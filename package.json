@@ -1,0 +1,15 @@
+{
+	"devDependencies": {
+		"lerna": "^2.10.1"
+	},
+	"name": "vue-components",
+	"version": "1.0.0",
+	"description": "Nextcloud vue components",
+	"keywords": ["vuejs", "nextcloud", "components"],
+	"repository": "https://github.com/nextcloud/vue-components",
+	"homepage": "https://github.com/nextcloud/vue-components",
+	"bugs": "https://github.com/nextcloud/vue-components/issues",
+	"author": "John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>",
+	"license": "AGPL-3.0",
+	"workspaces-experimental": true
+}
