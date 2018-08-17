@@ -31,3 +31,4 @@ let NcVueComponents = Vue => {
 NcVueComponents.version = '__VERSION__'
 
 export default NcVueComponents
+export * from './components'

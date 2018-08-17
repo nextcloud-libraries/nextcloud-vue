@@ -95,7 +95,7 @@
 </template>
 
 <script>
-import PopoverMenu from 'components/PopoverMenu/PopoverMenu'
+import PopoverMenu from '../PopoverMenu/PopoverMenu'
 import ClickOutside from 'vue-click-outside'
 import Vue from 'vue'
 
