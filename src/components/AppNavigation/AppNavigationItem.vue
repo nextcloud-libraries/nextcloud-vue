@@ -41,7 +41,7 @@
 		<div v-if="item.utils" class="app-navigation-entry-utils">
 			<ul>
 				<!-- counter -->
-				<li v-if="Number.isInteger(item.utils.counter)"
+				<li v-if="Number.isInteger(item.utils.counter) && item.utils.counter > 0"
 					class="app-navigation-entry-utils-counter">{{ item.utils.counter }}</li>
 
 				<!-- first action if only one action and counter -->
