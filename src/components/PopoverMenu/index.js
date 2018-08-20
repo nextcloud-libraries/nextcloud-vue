@@ -21,6 +21,5 @@
  */
 import PopoverMenu from './PopoverMenu'
 
-export default Vue => {
-	Vue.component(PopoverMenu.name, PopoverMenu)
-}
+export default PopoverMenu
+export { PopoverMenu }

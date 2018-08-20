@@ -21,6 +21,5 @@
  */
 import AppNavigation from './AppNavigation'
 
-export default Vue => {
-	Vue.component(AppNavigation.name, AppNavigation)
-}
+export default AppNavigation
+export { AppNavigation }

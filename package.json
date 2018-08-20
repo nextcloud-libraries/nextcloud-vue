@@ -21,6 +21,7 @@
 		"test": "jest",
 		"test:coverage": "jest --coverage"
 	},
+	"main": "src/index.js",
 	"dependencies": {
 		"babel-polyfill": "^6.26.0",
 		"v-tooltip": "^2.0.0-rc.33",
