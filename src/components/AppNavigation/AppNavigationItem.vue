@@ -145,16 +145,16 @@ export default {
 		// This is used to decide which outter element type to use
 		// li or router-link
 		navElement(item) {
-			if (item.href) {
+			if (item.router) {
 				return {
-					is: 'li'
+					is: 'router-link',
+					tag: 'li',
+					to: item.router,
+					exact: true
 				}
 			}
 			return {
-				is: 'router-link',
-				tag: 'li',
-				to: item.router,
-				exact: true
+				is: 'li'
 			}
 		}
 	}
