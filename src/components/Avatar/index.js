@@ -1,7 +1,7 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2018 Julius Härtl <jus@bitgrid.net>
  *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Julius Härtl <jus@bitgrid.net>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -20,16 +20,7 @@
  *
  */
 
-import AppNavigation from './AppNavigation'
-import PopoverMenu from './PopoverMenu'
-import DatetimePicker from './DatetimePicker'
-import Multiselect from './Multiselect'
 import Avatar from './Avatar'
 
-export {
-	AppNavigation,
-	PopoverMenu,
-	DatetimePicker,
-	Multiselect,
-	Avatar
-}
+export default Avatar
+export { Avatar }

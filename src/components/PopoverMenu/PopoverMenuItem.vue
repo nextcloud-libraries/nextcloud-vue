@@ -26,7 +26,8 @@
 		<a v-if="item.href" :href="(item.href) ? item.href : '#' "
 			:target="(item.target) ? item.target : '' "
 			rel="noreferrer noopener" @click="action">
-			<span :class="item.icon" />
+			<span v-if="!iconIsUrl" :class="item.icon" />
+			<img v-else :src="item.icon">
 			<span v-if="item.text">{{ item.text }}</span>
 			<p v-else-if="item.longtext">{{ item.longtext }}</p>
 		</a>
@@ -100,6 +101,15 @@ export default {
 			return this.item.key
 				? this.item.key
 				: Math.round(Math.random() * 16 * 1000000).toString(16)
+		},
+		iconIsUrl() {
+			try {
+				// eslint-disable-next-line no-new
+				new URL(this.item.icon)
+				return true
+			} catch (_) {
+				return false
+			}
 		}
 	},
 	methods: {
