@@ -19,13 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import { DatePicker as DatetimePicker } from 'vue2-datepicker'
 
-import AppNavigation from './AppNavigation'
-import PopoverMenu from './PopoverMenu'
-import DatetimePicker from './DatetimePicker'
-
-export {
-	AppNavigation,
-	PopoverMenu,
-	DatetimePicker
-}
+export default DatetimePicker
+export { DatetimePicker }
