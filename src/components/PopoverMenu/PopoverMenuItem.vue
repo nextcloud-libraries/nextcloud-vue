@@ -29,18 +29,33 @@
 			<span v-if="item.text">{{ item.text }}</span>
 			<p v-else-if="item.longtext">{{ item.longtext }}</p>
 		</a>
+
 		<!-- If item.input is set instead, an put will be used -->
 		<span v-else-if="item.input" class="menuitem">
-			<input :id="key" :type="item.input" :class="item.input"
-				v-model="item.model" @change="item.action">
+			<!-- does not show if input is checkbox -->
+			<span v-if="item.input !== 'checkbox'" :class="item.icon" />
+
+			<!-- only shows if input is text -->
+			<form v-if="item.input === 'text'"
+				:class="item.input" @submit.prevent="item.action">
+				<input :type="item.input" :value="item.value" :placeholder="item.placeholder"
+					required>
+				<input type="submit" value="" class="icon-confirm">
+			</form>
+
+			<!-- checkbox -->
+			<input v-else :id="key" :type="item.input"
+				:class="item.input" v-model="item.model" @change="item.action">
 			<label :for="key" @click.stop.prevent="item.action">{{ item.text }}</label>
 		</span>
+
 		<!-- If item.action is set instead, a button will be used -->
 		<button v-else-if="item.action" @click.stop.prevent="item.action">
 			<span :class="item.icon" />
 			<span v-if="item.text">{{ item.text }}</span>
 			<p v-else-if="item.longtext">{{ item.longtext }}</p>
 		</button>
+
 		<!-- If item.longtext is set AND the item does not have an action -->
 		<span v-else class="menuitem">
 			<span :class="item.icon" />
@@ -56,6 +71,7 @@ export default {
 	props: {
 		item: {
 			type: Object,
+			required: true,
 			default: () => {
 				return {
 					key: 'nextcloud-link',
@@ -64,7 +80,15 @@ export default {
 					text: 'Nextcloud'
 				}
 			},
-			required: true
+			// check the input types
+			// TODO: add more validation of types
+			validator: item => {
+				// TODO: support radio
+				if (item.input) {
+					return ['text', 'checkbox'].indexOf(item.input) !== -1
+				}
+				return true
+			}
 		}
 	},
 	computed: {

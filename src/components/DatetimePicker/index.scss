@@ -1,12 +1,12 @@
 .mx-datepicker-popup {
-  box-shadow: none;
+	box-shadow: none;
 }
 
 .mx-datepicker {
 	width: 210px;
 	color: inherit;
 	font: inherit;
-  user-select: none;
+	user-select: none;
 }
 
 .mx-shortcuts-wrapper {
@@ -34,7 +34,7 @@
 
 .mx-calendar {
 	font: inherit;
-  color: var(--color-text-lighter);
+	color: var(--color-text-lighter);
 }
 
 .mx-calendar-header {
@@ -47,14 +47,14 @@
 
 .mx-calendar-content {
 	.cell {
-    opacity: .7;
-    border-radius: 50px;
-    transition: all 100ms ease-in-out;
+		opacity: .7;
+		border-radius: 50px;
+		transition: all 100ms ease-in-out;
 		&:hover,
-    &.actived {
+		&.actived {
 			background-color: var(--color-background-darker);
 			font-weight: bold;
-      opacity: 1;
+			opacity: 1;
 		}
 		&.actived {
 			color: var(--color-primary-text);
@@ -66,21 +66,21 @@
 		&.disabled {
 			color: var(--color-text-lighter);
 			background-color: var(--color-background-darker);
-      opacity: .5;
+			opacity: .5;
 		}  
 	}
 }
 
 .mx-panel-date {
-  tr:hover,
-  tr:focus,
-  tr:active {
-    background-color: var(--color-main-background);
-  }
-  th {
-    color: var(--color-primary-element);
-    background-color: var(--color-primary-text);
-  }
+	tr:hover,
+	tr:focus,
+	tr:active {
+		background-color: var(--color-main-background);
+	}
+	th {
+		color: var(--color-primary-element);
+		background-color: var(--color-primary-text);
+	}
 	td {
 		&.today {
 			color: var(--color-primary-text);
@@ -88,7 +88,7 @@
 		&.last-month,
 		&.next-month {
 			color: var(--color-text-lighter);
-      opacity: .5;
+			opacity: .5;
 		}
 	}
 }
