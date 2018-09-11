@@ -41,6 +41,7 @@
 	> a {
 		&:hover {
 			color: var(--color-main-text);
+			background-color: var(--color-background-darker);
 		}
 		&.mx-current-month,
 		&.mx-current-year {
@@ -99,17 +100,24 @@
 }
 
 .mx-time-list {
+	padding: 5px;
+	li {
+		display: flex;
+		justify-content: center;
+	}
+	// invalid data to force a fallback
+	// to the server design
 	&::-webkit-scrollbar {
-		width: 8px;
-		height: 8px;
+		width: no;
+		height: no;
 	}
 	&::-webkit-scrollbar-thumb {
-		background-color: rgba(0, 0, 0, 0.05);
-		border-radius: 10px;
-		box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);
+		background-color: no;
+		border-radius: no;
+		box-shadow: no;
 	}
 
 	&:hover::-webkit-scrollbar-thumb {
-		background-color: rgba(0, 0, 0, 0.2);
+		background-color: no;
 	}
 }
