@@ -1,7 +1,13 @@
 # Vue components
-This repo contains the various Vue.js componenets that Nextcloud uses for its internal design and structure
+This repo contains the various Vue.js components that Nextcloud uses for its internal design and structure.
+
+# Usage
+``` js
+import { AppNavigation } from 'nextcloud-vue'
+```
 
 # List of the components
-- Popovermenu
 - AppNavigation
-- ... more to come
+- DatePicker
+- PopoverMenu
+- and more to come
