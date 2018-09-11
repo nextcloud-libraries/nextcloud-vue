@@ -41,6 +41,12 @@
 	> a {
 		&:hover {
 			color: var(--color-main-text);
+			background-color: var(--color-background-darker);
+		}
+		&.mx-current-month,
+		&.mx-current-year {
+			padding: 5px 10px;
+			border-radius: 30px;	
 		}
 	}
 }
@@ -67,7 +73,7 @@
 			color: var(--color-text-lighter);
 			background-color: var(--color-background-darker);
 			opacity: .5;
-		}  
+		}	
 	}
 }
 
@@ -94,17 +100,21 @@
 }
 
 .mx-time-list {
+	padding: 5px;
+	li {
+		display: flex;
+		justify-content: center;
+	}
 	&::-webkit-scrollbar {
-		width: 8px;
-		height: 8px;
+		width: 5px;
+		height: 5px;
 	}
 	&::-webkit-scrollbar-thumb {
-		background-color: rgba(0, 0, 0, 0.05);
-		border-radius: 10px;
-		box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);
+		background-color: var(--color-background-darker);
+		border-radius: var(--border-radius);
+		box-shadow: none;
 	}
-
 	&:hover::-webkit-scrollbar-thumb {
-		background-color: rgba(0, 0, 0, 0.2);
+		background-color: var(--color-background-darker);
 	}
 }
