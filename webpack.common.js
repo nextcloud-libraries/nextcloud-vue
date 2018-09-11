@@ -45,8 +45,6 @@ module.exports = {
 	plugins: [new VueLoaderPlugin(), new StyleLintPlugin()],
 	resolve: {
 		alias: {
-			// somehow doesn't work when importing from external app
-			// Components: path.join(__dirname, '/src/components/'),
 			vue$: 'vue/dist/vue.esm.js'
 		},
 		extensions: ['*', '.js', '.vue', '.json']
