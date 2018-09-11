@@ -19,7 +19,18 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import { DatePicker as DatetimePicker } from 'vue2-datepicker'
+import DatePicker from 'vue2-datepicker'
+import './index.scss'
 
-export default DatetimePicker
-export { DatetimePicker }
+/**
+ * hijack the display function and avoid the
+ * top and left original positionning
+ */
+DatePicker.methods.displayPopup = function() {
+	this.$el
+		.querySelector('.mx-datepicker-popup')
+		.className += ' popovermenu menu-center open'
+}
+
+export default DatePicker
+export { DatePicker }
