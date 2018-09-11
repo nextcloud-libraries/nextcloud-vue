@@ -24,6 +24,11 @@
 	<!-- Is this a caption ? -->
 	<li v-if="item.caption" class="app-navigation-caption">{{ item.text }}</li>
 
+	<!-- Is this a simple action ? -->
+	<li v-else-if="item.action" :class="item.classes">
+		<a :class="item.icon" href="#" @click.prevent.stop="item.action">{{ item.text }}</a>
+	</li>
+
 	<!-- Navigation item -->
 	<nav-element v-else :id="item.id" v-bind="navElement(item)"
 		:class="[{'icon-loading-small': item.loading, 'open': item.opened, 'collapsible': item.collapsible&&item.children&&item.children.length>0 }, item.classes]">
