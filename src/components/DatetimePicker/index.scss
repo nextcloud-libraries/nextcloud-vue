@@ -42,6 +42,11 @@
 		&:hover {
 			color: var(--color-main-text);
 		}
+		&.mx-current-month,
+		&.mx-current-year {
+			padding: 5px 10px;
+			border-radius: 30px;	
+		}
 	}
 }
 
