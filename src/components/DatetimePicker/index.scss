@@ -73,7 +73,7 @@
 			color: var(--color-text-lighter);
 			background-color: var(--color-background-darker);
 			opacity: .5;
-		}  
+		}	
 	}
 }
 
@@ -105,19 +105,16 @@
 		display: flex;
 		justify-content: center;
 	}
-	// invalid data to force a fallback
-	// to the server design
 	&::-webkit-scrollbar {
-		width: no;
-		height: no;
+		width: 5px;
+		height: 5px;
 	}
 	&::-webkit-scrollbar-thumb {
-		background-color: no;
-		border-radius: no;
-		box-shadow: no;
+		background-color: var(--color-background-darker);
+		border-radius: var(--border-radius);
+		box-shadow: none;
 	}
-
 	&:hover::-webkit-scrollbar-thumb {
-		background-color: no;
+		background-color: var(--color-background-darker);
 	}
 }
