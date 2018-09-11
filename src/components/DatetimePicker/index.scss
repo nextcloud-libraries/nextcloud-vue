@@ -1,0 +1,110 @@
+.mx-datepicker-popup {
+	box-shadow: none;
+}
+
+.mx-datepicker {
+	width: 210px;
+	color: inherit;
+	font: inherit;
+	user-select: none;
+}
+
+.mx-shortcuts-wrapper {
+	.mx-shortcuts {
+		&:hover {
+			color: var(--color-text-light);
+		}
+		&:after {
+			color: var(--color-text-lighter);
+		}
+	}
+}
+
+.mx-datepicker-btn {
+	background-color: var(--color-primary-element);
+}
+
+.mx-datepicker-btn-confirm {
+	color: var(--color-primary-text);
+	&:hover {
+		color: var(--color-primary-text);
+		border-color: var(--color-primary-element);
+	}
+}
+
+.mx-calendar {
+	font: inherit;
+	color: var(--color-text-lighter);
+}
+
+.mx-calendar-header {
+	> a {
+		&:hover {
+			color: var(--color-main-text);
+		}
+	}
+}
+
+.mx-calendar-content {
+	.cell {
+		opacity: .7;
+		border-radius: 50px;
+		transition: all 100ms ease-in-out;
+		&:hover,
+		&.actived {
+			background-color: var(--color-background-darker);
+			font-weight: bold;
+			opacity: 1;
+		}
+		&.actived {
+			color: var(--color-primary-text);
+			background-color: var(--color-primary-element);
+		}
+		&.inrange {
+			background-color: unset;
+		}
+		&.disabled {
+			color: var(--color-text-lighter);
+			background-color: var(--color-background-darker);
+			opacity: .5;
+		}  
+	}
+}
+
+.mx-panel-date {
+	tr:hover,
+	tr:focus,
+	tr:active {
+		background-color: var(--color-main-background);
+	}
+	th {
+		color: var(--color-primary-element);
+		background-color: var(--color-primary-text);
+	}
+	td {
+		&.today {
+			color: var(--color-primary-text);
+		}
+		&.last-month,
+		&.next-month {
+			color: var(--color-text-lighter);
+			opacity: .5;
+		}
+	}
+}
+
+.mx-time-list {
+	&::-webkit-scrollbar {
+		width: 8px;
+		height: 8px;
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: rgba(0, 0, 0, 0.05);
+		border-radius: 10px;
+		box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);
+	}
+
+	&:hover::-webkit-scrollbar-thumb {
+		background-color: rgba(0, 0, 0, 0.2);
+	}
+}
