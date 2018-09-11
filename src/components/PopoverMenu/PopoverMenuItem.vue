@@ -38,15 +38,17 @@
 			<!-- only shows if input is text -->
 			<form v-if="item.input === 'text'"
 				:class="item.input" @submit.prevent="item.action">
-				<input :type="item.input" :value="item.value" :placeholder="item.placeholder"
+				<input :type="item.input" :value="item.value" :placeholder="item.text"
 					required>
 				<input type="submit" value="" class="icon-confirm">
 			</form>
 
 			<!-- checkbox -->
-			<input v-else :id="key" :type="item.input"
-				:class="item.input" v-model="item.model" @change="item.action">
-			<label :for="key" @click.stop.prevent="item.action">{{ item.text }}</label>
+			<template v-else>
+				<input :id="key" :type="item.input" :class="item.input"
+					v-model="item.model" @change="item.action">
+				<label :for="key" @click.stop.prevent="item.action">{{ item.text }}</label>
+			</template>
 		</span>
 
 		<!-- If item.action is set instead, a button will be used -->
