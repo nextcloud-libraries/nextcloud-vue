@@ -24,11 +24,6 @@
 	<!-- Is this a caption ? -->
 	<li v-if="item.caption" class="app-navigation-caption">{{ item.text }}</li>
 
-	<!-- Is this a simple action ? -->
-	<li v-else-if="item.action" :class="item.classes">
-		<a :class="item.icon" href="#" @click.prevent.stop="item.action">{{ item.text }}</a>
-	</li>
-
 	<!-- Navigation item -->
 	<nav-element v-else :id="item.id" v-bind="navElement(item)"
 		:class="[{'icon-loading-small': item.loading, 'open': item.opened, 'collapsible': item.collapsible&&item.children&&item.children.length>0 }, item.classes]">
@@ -36,8 +31,16 @@
 		<!-- Bullet -->
 		<div v-if="item.bullet" :style="{ backgroundColor: item.bullet }" class="app-navigation-entry-bullet" />
 
+		<!-- Is this a simple action ? -->
+		<a v-if="item.action" :class="item.icon" href="#"
+			@click.prevent.stop="item.action">
+			<img v-if="item.iconUrl" :alt="item.text" :src="item.iconUrl">
+			{{ item.text }}
+		</a>
+
 		<!-- Main link -->
-		<a :href="(item.href) ? item.href : '#' " :class="item.icon" @click="toggleCollapse">
+		<a v-else :href="(item.href) ? item.href : '#' " :class="item.icon"
+			@click="toggleCollapse">
 			<img v-if="item.iconUrl" :alt="item.text" :src="item.iconUrl">
 			{{ item.text }}
 		</a>
@@ -49,8 +52,8 @@
 				<li v-if="Number.isInteger(item.utils.counter) && item.utils.counter > 0"
 					class="app-navigation-entry-utils-counter">{{ item.utils.counter }}</li>
 
-				<!-- first action if only one action and counter -->
-				<li v-if="item.utils.actions && item.utils.actions.length === 1 && Number.isInteger(item.utils.counter)"
+				<!-- first action if only one action -->
+				<li v-if="item.utils.actions && item.utils.actions.length === 1"
 					class="app-navigation-entry-utils-menu-button">
 					<button :class="item.utils.actions[0].icon" :title="item.utils.actions[0].text" @click="item.utils.actions[0].action" />
 				</li>
@@ -84,8 +87,8 @@
 
 		<!-- edit entry -->
 		<div v-if="item.edit" class="app-navigation-entry-edit">
-			<form>
-				<input v-model="item.text" type="text">
+			<form @submit.prevent.stop="item.edit.action">
+				<input :placeholder="item.edit.text" type="text">
 				<input type="submit" value="" class="icon-confirm">
 				<input type="submit" value="" class="icon-close"
 					@click.stop.prevent="cancelEdit">
@@ -139,13 +142,12 @@ export default {
 			// ternary is here to detect the undefined state of item.opened
 			Vue.set(this.item, 'opened', this.item.opened ? !this.item.opened : true)
 		},
-		cancelEdit() {
+		cancelEdit(e) {
 			// remove the editing class
 			if (Array.isArray(this.item.classes)) {
-				this.item.classes = this.item.classes.filter(
-					item => item !== 'editing'
-				)
+				this.item.classes = this.item.classes.filter(item => item !== 'editing')
 			}
+			this.item.edit.reset(e)
 		},
 		// This is used to decide which outter element type to use
 		// li or router-link
