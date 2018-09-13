@@ -23,7 +23,7 @@
 		"test": "jest",
 		"test:coverage": "jest --coverage"
 	},
-	"main": "./dist/ncvuecomponents.js",
+	"main": "dist/ncvuecomponents.js",
 	"files": [
 		"LICENSE",
 		"README.md",
