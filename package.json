@@ -23,7 +23,13 @@
 		"test": "jest",
 		"test:coverage": "jest --coverage"
 	},
-	"main": "dist/ncvuecomponents.js",
+	"main": "./dist/ncvuecomponents.js",
+	"files": [
+		"LICENSE",
+		"README.md",
+		"src",
+		"dist"
+	],
 	"dependencies": {
 		"@babel/polyfill": "^7.0.0",
 		"v-tooltip": "^2.0.0-rc.33",
