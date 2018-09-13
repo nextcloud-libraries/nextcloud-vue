@@ -36,3 +36,4 @@ export default {
 	install,
 	...NcComponents
 }
+export * from './components'
