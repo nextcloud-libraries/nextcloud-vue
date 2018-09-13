@@ -7,7 +7,10 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, './dist'),
 		publicPath: '/dist/',
-		filename: 'ncvuecomponents.js'
+		filename: 'ncvuecomponents.js',
+		libraryTarget: 'umd',
+		library: 'NextcloudVue',
+		umdNamedDefine: true
 	},
 	module: {
 		rules: [

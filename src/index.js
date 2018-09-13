@@ -19,16 +19,20 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import '@babel/polyfill'
+
 import * as NcComponents from './components'
 
-let NcVueComponents = Vue => {
-	Object.values(NcComponents).forEach((NcComponent) => {
-		Vue.use(NcComponent)
+function install(Vue) {
+	Object.values(NcComponents).forEach((component) => {
+		Vue.component(component.name, component)
 	})
 }
 
-NcVueComponents.version = '__VERSION__'
+if (typeof window !== 'undefined' && window.Vue) {
+	install(window.Vue)
+}
 
-export default NcVueComponents
-export * from './components'
+export default {
+	install,
+	...NcComponents
+}
