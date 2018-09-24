@@ -12,6 +12,14 @@ module.exports = {
 		library: 'NextcloudVue',
 		umdNamedDefine: true
 	},
+	externals: {
+			vue: {
+				commonjs: 'vue',
+				commonjs2: 'vue',
+				amd: 'vue',
+				root: 'Vue'
+			}
+		},
 	module: {
 		rules: [
 			{
