@@ -24,7 +24,7 @@
 	<li>
 		<!-- If item.href is set, a link will be directly used -->
 		<a v-if="item.href" :href="(item.href) ? item.href : '#' " :target="(item.target) ? item.target : '' "
-			rel="noreferrer noopener" @click.stop.prevent="item.action">
+			rel="noreferrer noopener" @click="item.action">
 			<span :class="item.icon" />
 			<span v-if="item.text">{{ item.text }}</span>
 			<p v-else-if="item.longtext">{{ item.longtext }}</p>
