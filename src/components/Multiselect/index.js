@@ -19,15 +19,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import Multiselect from 'vue-multiselect'
+import './index.scss'
 
-import AppNavigation from './AppNavigation'
-import PopoverMenu from './PopoverMenu'
-import DatetimePicker from './DatetimePicker'
-import Multiselect from './Multiselect'
-
-export {
-	AppNavigation,
-	PopoverMenu,
-	DatetimePicker,
-	Multiselect
-}
+export default Multiselect
+export { Multiselect }
