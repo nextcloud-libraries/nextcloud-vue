@@ -6,9 +6,6 @@ node_js:
 - node
 script:
 - npm run build
-branches:
-  only:
-  - master
 deploy:
   provider: npm
   skip_cleanup: true
