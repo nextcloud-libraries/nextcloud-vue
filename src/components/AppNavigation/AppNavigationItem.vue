@@ -153,11 +153,16 @@ export default {
 		// li or router-link
 		navElement(item) {
 			if (item.router) {
+				let exact = item.router.exact
+				if (typeof item.router.exact === 'undefined') {
+					exact = true
+				}
+
 				return {
 					is: 'router-link',
 					tag: 'li',
 					to: item.router,
-					exact: true
+					exact
 				}
 			}
 			return {
