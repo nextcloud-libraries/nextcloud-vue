@@ -1,7 +1,7 @@
 # Vue components
 
-[![npm](https://img.shields.io/npm/v/nextcloud-vue.svg)](https://www.npmjs.com/package/nextcloud-vue)
-[![travis](https://travis-ci.com/nextcloud/vue-components.svg?branch=master)](https://travis-ci.com/nextcloud/vue-components.svg?branch=master)
+[![npm](https://img.shields.io/npm/v/nextcloud-vue.svg?style=flat-square)](https://www.npmjs.com/package/nextcloud-vue)
+[![travis](https://img.shields.io/travis/com/nextcloud/vue-components/master.svg?style=flat-square)](https://travis-ci.com/nextcloud/vue-components)
 
 This repo contains the various Vue.js components that Nextcloud uses for its internal design and structure.
 
