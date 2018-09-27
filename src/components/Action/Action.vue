@@ -21,19 +21,21 @@
   -->
 
 <template>
-	<action :tabindex="actions.length === 1" :class="{ [actions[0].icon]: actions.length === 1 }"
-		v-bind="getType(actions[0])" v-on="actions.length === 1 ? { click: actions[0].action } : {}">
+	<!-- if only one action, check if we need to bind to click or not -->
+	<a :tabindex="actions.length === 1" :href="actions.length === 1 && actions[0].href ? actions[0].href : '#'"
+		:class="[actions.length === 1 ? `${actions[0].icon} action-item--single` : 'action-item--multiple']"
+		v-on="actions.length === 1 && actions[0].action ? { click: actions[0].action } : {}">
 
 		<!-- If more than one action, create a popovermenu -->
 		<template v-if="actions.length > 1">
-			<div v-click-outside="closeMenu" tabindex="1" class="icon-more"
+			<span v-click-outside="closeMenu" tabindex="1" class="action-item__menutoggle icon-more"
 				@click="toggleMenu" />
-			<div :class="{ 'open': opened }" class="popovermenu">
+			<span :class="{ 'open': opened }" class="action-item__menu popovermenu">
 				<popover-menu :menu="actions" />
-			</div>
+			</span>
 		</template>
 
-	</action>
+	</a>
 </template>
 
 <script>
@@ -85,24 +87,6 @@ export default {
 		},
 		closeMenu() {
 			this.opened = false
-		},
-		/**
-		 * Define what type of element is the main item
-		 * supposed to be
-		 *
-		 * @param {Object} action The first action
-		 * @returns {Object}
-		 */
-		getType(action) {
-			if (action.href) {
-				return {
-					tag: 'a',
-					href: action.href
-				}
-			}
-			return {
-				is: 'div'
-			}
 		}
 	}
 }
