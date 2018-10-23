@@ -23,10 +23,10 @@
 <template>
 	<div v-tooltip="displayName" v-click-outside="closeMenu"
 		:class="{ 'icon-loading': loading, 'unknown': unknown }"
-		:style="{width: size + 'px', height: size + 'px'}"
+		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper" @click="toggleMenu">
 		<img v-if="!loading && !unknown" :src="avatarUrlLoaded">
-		<div v-if="unknown" class="unknown">?</div>
+		<div v-if="unknown" class="unknown">{{ initials }}</div>
 		<div v-show="openedMenu" class="popovermenu">
 			<popover-menu :is-open="openedMenu" :menu="menu" />
 		</div>
@@ -41,6 +41,7 @@ import { VTooltip } from 'v-tooltip'
 import { PopoverMenu } from '../PopoverMenu'
 import ClickOutside from 'vue-click-outside'
 import axios from 'nextcloud-axios'
+import uidToColor from './uidToColor'
 
 export default {
 	name: 'Avatar',
@@ -52,21 +53,40 @@ export default {
 		PopoverMenu
 	},
 	props: {
+		/**
+		 * Set a custom url to the avatar image
+		 */
 		url: {
 			type: String,
 			default: undefined
 		},
+		/**
+		 * Set the user id to fetch the avatar
+		 */
 		user: {
 			type: String,
 			default: undefined
 		},
+		/**
+		 * Set a display name that will be rendered as a tooltip
+		 */
 		displayName: {
 			type: String,
 			default: undefined
 		},
+		/**
+		 * Set a size in px for the rendered avatar
+		 */
 		size: {
 			type: Number,
 			default: 32
+		},
+		/**
+		 * Placeholder avatars will be automatically generated when this is set to true
+		 */
+		allowPlaceholder: {
+			type: Boolean,
+			default: true
 		}
 	},
 	data() {
@@ -79,6 +99,37 @@ export default {
 		}
 	},
 	computed: {
+		isUserDefined() {
+			return typeof this.user !== 'undefined'
+		},
+		isUrlDefined() {
+			return typeof this.url !== 'undefined'
+		},
+		isValid() {
+			return this.isUrlDefined || this.isUserDefined
+		},
+		avatarStyle() {
+			let style = {
+				width: this.size + 'px',
+				height: this.size + 'px',
+				lineHeight: this.size + 'px',
+				fontSize: Math.round(this.size * 0.55) + 'px'
+			}
+
+			if (this.loading || !this.unknown || !this.isUserDefined || !this.allowPlaceholder) {
+				return style
+			}
+
+			const rgb = uidToColor(this.user)
+			style.backgroundColor = 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')'
+			return style
+		},
+		initials() {
+			if (!this.isUserDefined || !this.allowPlaceholder) {
+				return '?'
+			}
+			return this.user.charAt(0).toUpperCase()
+		},
 		menu() {
 			return this.actions.map((item) => {
 				return {
@@ -90,16 +141,22 @@ export default {
 		}
 	},
 	mounted() {
+		if (!this.isValid) {
+			this.loading = false
+			this.unknown = true
+			return
+		}
 		let avatarUrl = OC.generateUrl(
 			'/avatar/{user}/{size}',
 			{
 				user: this.user,
 				size: Math.ceil(this.size * window.devicePixelRatio)
 			})
-		if (this.user === OC.getCurrentUser().uid) {
+		// eslint-disable-next-line camelcase
+		if (this.user === OC.getCurrentUser().uid && typeof oc_userconfig !== 'undefined') {
 			avatarUrl += '?v=' + oc_userconfig.avatar.version
 		}
-		if (typeof this.url !== 'undefined') {
+		if (this.isUrlDefined) {
 			avatarUrl = this.url
 		}
 
@@ -128,7 +185,7 @@ export default {
 			this.openedMenu = false
 		},
 		fetchContactsMenu() {
-			axios.post(OC.generateUrl('contactsmenu/findOne'), 'shareType=0&shareWith=' + this.user).then((response) => {
+			axios.post(OC.generateUrl('contactsmenu/findOne'), 'shareType=0&shareWith=' + encodeURIComponent(this.user)).then((response) => {
 				this.actions = [response.data.topAction].concat(response.data.actions)
 			}).catch(() => {
 				this.openedMenu = false
@@ -153,10 +210,9 @@ export default {
 		color: var(--color-main-background);
 		width: 100%;
 		text-align: center;
-		font-size: 14pt;
 		display: block;
-		top: 18%;
 		left: 0;
+		top: 0;
 	}
 
 	.avatardiv img {
@@ -172,5 +228,6 @@ export default {
 	.popovermenu {
 		display: block;
 		margin: 0;
+		font-size: initial;
 	}
 </style>
