@@ -22,11 +22,11 @@
 
 <template>
 	<div v-tooltip="displayName" v-click-outside="closeMenu"
-		:class="{ 'icon-loading': loading, 'unknown': unknown }"
+		:class="{ 'icon-loading': loading, 'unknown': userDoesNotExist }"
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper" @click="toggleMenu">
-		<img v-if="!loading && !unknown" :src="avatarUrlLoaded">
-		<div v-if="unknown" class="unknown">{{ initials }}</div>
+		<img v-if="!loading && !userDoesNotExist" :src="avatarUrlLoaded">
+		<div v-if="userDoesNotExist" class="unknown">{{ initials }}</div>
 		<div v-show="openedMenu" class="popovermenu">
 			<popover-menu :is-open="openedMenu" :menu="menu" />
 		</div>
@@ -55,6 +55,7 @@ export default {
 	props: {
 		/**
 		 * Set a custom url to the avatar image
+		 * either the url or user property must be defined
 		 */
 		url: {
 			type: String,
@@ -62,6 +63,7 @@ export default {
 		},
 		/**
 		 * Set the user id to fetch the avatar
+		 * either the url or user property must be defined
 		 */
 		user: {
 			type: String,
@@ -91,11 +93,11 @@ export default {
 	},
 	data() {
 		return {
-			actions: [],
 			avatarUrlLoaded: null,
-			unknown: false,
-			loading: true,
-			openedMenu: false
+			userDoesNotExist: false,
+			loadingState: true,
+			contactsMenuActions: [],
+			contactsMenuOpenState: false
 		}
 	},
 	computed: {
@@ -116,7 +118,7 @@ export default {
 				fontSize: Math.round(this.size * 0.55) + 'px'
 			}
 
-			if (this.loading || !this.unknown || !this.isUserDefined || !this.allowPlaceholder) {
+			if (this.loadingState || !this.userDoesNotExist || !this.isUserDefined || !this.allowPlaceholder) {
 				return style
 			}
 
@@ -131,7 +133,7 @@ export default {
 			return this.user.charAt(0).toUpperCase()
 		},
 		menu() {
-			return this.actions.map((item) => {
+			return this.contactsMenuActions.map((item) => {
 				return {
 					href: item.hyperlink,
 					icon: item.icon,
@@ -142,8 +144,8 @@ export default {
 	},
 	mounted() {
 		if (!this.isValid) {
-			this.loading = false
-			this.unknown = true
+			this.loadingState = false
+			this.userDoesNotExist = true
 			return
 		}
 		let avatarUrl = OC.generateUrl(
@@ -163,32 +165,32 @@ export default {
 		let img = new Image()
 		img.onload = () => {
 			this.avatarUrlLoaded = avatarUrl
-			this.loading = false
+			this.loadingState = false
 		}
 		img.onerror = () => {
-			this.unknown = true
-			this.loading = false
+			this.userDoesNotExist = true
+			this.loadingState = false
 		}
 		img.src = avatarUrl
 	},
 	methods: {
 		toggleMenu() {
-			if (this.user === OC.getCurrentUser().uid || this.unknown || this.url) {
+			if (this.user === OC.getCurrentUser().uid || this.userDoesNotExist || this.url) {
 				return
 			}
-			this.openedMenu = !this.openedMenu
-			if (this.openedMenu) {
+			this.contactsMenuOpenState = !this.contactsMenuOpenState
+			if (this.contactsMenuOpenState) {
 				this.fetchContactsMenu()
 			}
 		},
 		closeMenu() {
-			this.openedMenu = false
+			this.contactsMenuOpenState = false
 		},
 		fetchContactsMenu() {
 			axios.post(OC.generateUrl('contactsmenu/findOne'), 'shareType=0&shareWith=' + encodeURIComponent(this.user)).then((response) => {
-				this.actions = [response.data.topAction].concat(response.data.actions)
+				this.contactsMenuActions = [response.data.topAction].concat(response.data.actions)
 			}).catch(() => {
-				this.openedMenu = false
+				this.contactsMenuOpenState = false
 			})
 		}
 	}
