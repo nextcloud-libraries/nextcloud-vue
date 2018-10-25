@@ -21,14 +21,14 @@
   -->
 
 <template>
-	<div v-tooltip="displayName" v-click-outside="closeMenu"
-		:class="{ 'icon-loading': loading, 'unknown': userDoesNotExist }"
+	<div v-tooltip="tooltip" v-click-outside="closeMenu"
+		:class="{ 'icon-loading': loadingState, 'unknown': userDoesNotExist }"
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper" @click="toggleMenu">
-		<img v-if="!loading && !userDoesNotExist" :src="avatarUrlLoaded">
+		<img v-if="!loadingState && !userDoesNotExist" :src="avatarUrlLoaded">
 		<div v-if="userDoesNotExist" class="unknown">{{ initials }}</div>
-		<div v-show="openedMenu" class="popovermenu">
-			<popover-menu :is-open="openedMenu" :menu="menu" />
+		<div v-show="contactsMenuOpenState" class="popovermenu">
+			<popover-menu :is-open="contactsMenuOpenState" :menu="menu" />
 		</div>
 	</div>
 </template>
@@ -55,7 +55,7 @@ export default {
 	props: {
 		/**
 		 * Set a custom url to the avatar image
-		 * either the url or user property must be defined
+		 * either the url, user or displayName property must be defined
 		 */
 		url: {
 			type: String,
@@ -63,7 +63,7 @@ export default {
 		},
 		/**
 		 * Set the user id to fetch the avatar
-		 * either the url or user property must be defined
+		 * either the url, user or displayName property must be defined
 		 */
 		user: {
 			type: String,
@@ -71,6 +71,9 @@ export default {
 		},
 		/**
 		 * Set a display name that will be rendered as a tooltip
+		 * either the url, user or displayName property must be defined
+		 * specify just the displayname to generate a placeholder avatar without
+		 * trying to fetch the avatar based on the user id
 		 */
 		displayName: {
 			type: String,
@@ -89,6 +92,13 @@ export default {
 		allowPlaceholder: {
 			type: Boolean,
 			default: true
+		},
+		/**
+		 * Disable the tooltip
+		 */
+		disableTooltip: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
@@ -101,14 +111,27 @@ export default {
 		}
 	},
 	computed: {
+		getUserIdentifier() {
+			if (this.isDisplayNameDefined) {
+				return this.displayName
+			}
+			if (this.isUserDefined) {
+				return this.user
+			}
+			return ''
+		},
 		isUserDefined() {
 			return typeof this.user !== 'undefined'
+		},
+		isDisplayNameDefined() {
+			return typeof this.displayName !== 'undefined'
 		},
 		isUrlDefined() {
 			return typeof this.url !== 'undefined'
 		},
-		isValid() {
-			return this.isUrlDefined || this.isUserDefined
+		shouldShowPlaceholder() {
+			return this.allowPlaceholder && (
+				this.userDoesNotExist)
 		},
 		avatarStyle() {
 			let style = {
@@ -118,19 +141,25 @@ export default {
 				fontSize: Math.round(this.size * 0.55) + 'px'
 			}
 
-			if (this.loadingState || !this.userDoesNotExist || !this.isUserDefined || !this.allowPlaceholder) {
+			if (!this.shouldShowPlaceholder) {
 				return style
 			}
 
-			const rgb = uidToColor(this.user)
+			const rgb = uidToColor(this.getUserIdentifier)
 			style.backgroundColor = 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')'
 			return style
 		},
-		initials() {
-			if (!this.isUserDefined || !this.allowPlaceholder) {
-				return '?'
+		tooltip() {
+			if (this.disableTooltip) {
+				return false
 			}
-			return this.user.charAt(0).toUpperCase()
+			return this.displayName
+		},
+		initials() {
+			if (this.shouldShowPlaceholder) {
+				return this.getUserIdentifier.charAt(0).toUpperCase()
+			}
+			return '?'
 		},
 		menu() {
 			return this.contactsMenuActions.map((item) => {
@@ -143,11 +172,13 @@ export default {
 		}
 	},
 	mounted() {
-		if (!this.isValid) {
+		/** Only run avatar image loading if either user or url property is defined */
+		if (!this.isUrlDefined && !this.isUserDefined) {
 			this.loadingState = false
 			this.userDoesNotExist = true
 			return
 		}
+
 		let avatarUrl = OC.generateUrl(
 			'/avatar/{user}/{size}',
 			{
