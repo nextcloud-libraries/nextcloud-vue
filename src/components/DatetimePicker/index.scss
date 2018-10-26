@@ -29,11 +29,9 @@ $opacity_full: 1;
 		}
 	}
 
-	.mx-datepicker-btn {
-		background-color: var(--color-primary-element);
-	}
-
+	// Confirm button
 	.mx-datepicker-btn-confirm {
+		background-color: var(--color-primary-element);
 		color: var(--color-primary-text);
 		&:hover {
 			color: var(--color-primary-text);
@@ -41,11 +39,13 @@ $opacity_full: 1;
 		}
 	}
 
+	// global design rule
 	.mx-calendar {
 		font: inherit;
 		color: var(--color-main-text);
 	}
 
+	// Headers: year, month and arrows
 	.mx-calendar-header {
 		display: flex;
 		align-items: center;
@@ -72,6 +72,8 @@ $opacity_full: 1;
 				border-radius: 50%;
 				line-height: 22px;
 			}
+			// arrows are all before month and year
+			// send them to the end of the row
 			&.mx-icon-next-month, 
 			&.mx-icon-next-year {
 				order: 3;
@@ -85,7 +87,9 @@ $opacity_full: 1;
 			opacity: $opacity_normal;
 			border-radius: 50px;
 			transition: all 100ms ease-in-out;
+			// Selected and mouse event
 			&:hover,
+			&:focus,
 			&.actived {
 				font-weight: bold;
 				opacity: $opacity_full;
