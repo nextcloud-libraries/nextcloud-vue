@@ -1,3 +1,8 @@
+$opacity_disabled: .5;
+$opacity_normal: .7;
+$opacity_full: 1;
+
+
 .mx-datepicker[data-v-#{$scope_version}] {
 	width: 210px;
 	color: inherit;
@@ -8,13 +13,18 @@
 		box-shadow: none;
 	}
 
+	// Range selectors
 	.mx-shortcuts-wrapper {
 		.mx-shortcuts {
+			font-weight: normal;
+			color: var(--color-text-lighter);
 			&:hover {
 				color: var(--color-text-light);
 			}
+			// divider
 			&:after {
 				color: var(--color-text-lighter);
+				opacity: $opacity_normal;
 			}
 		}
 	}
@@ -33,7 +43,7 @@
 
 	.mx-calendar {
 		font: inherit;
-		color: var(--color-text-lighter);
+		color: var(--color-main-text);
 	}
 
 	.mx-calendar-header {
@@ -41,6 +51,7 @@
 		align-items: center;
 		justify-content: space-between;
 		> a {
+			color: var(--color-text-lighter);
 			&:hover {
 				color: var(--color-main-text);
 				background-color: var(--color-background-darker);
@@ -70,40 +81,45 @@
 
 	.mx-calendar-content {
 		.cell {
-			opacity: .7;
+			opacity: $opacity_normal;
 			border-radius: 50px;
 			transition: all 100ms ease-in-out;
 			&:hover,
 			&.actived {
 				background-color: var(--color-background-darker);
 				font-weight: bold;
-				opacity: 1;
+				opacity: $opacity_full;
 			}
 			&.actived {
 				color: var(--color-primary-text);
 				background-color: var(--color-primary-element);
 			}
 			&.inrange {
-				background-color: unset;
+				background-color: transparent;
 			}
 			&.disabled {
 				color: var(--color-text-lighter);
 				background-color: var(--color-background-darker);
-				opacity: .5;
+				opacity: $opacity_disabled;
+				border-radius: 0;
+				font-weight: normal;
 			}	
 		}
 	}
 
 	.mx-panel-date {
+		// Rows, do not change on hover
 		tr:hover,
 		tr:focus,
 		tr:active {
-			background-color: var(--color-main-background);
+			background: none;
 		}
+		// Days of the week
 		th {
 			color: var(--color-primary-element);
 			background-color: var(--color-main-background);
 		}
+		// Days number
 		td {
 			&.today {
 				color: var(--color-primary);
@@ -113,7 +129,7 @@
 			&.last-month,
 			&.next-month {
 				color: var(--color-text-lighter);
-				opacity: .5;
+				opacity: $opacity_disabled;
 			}
 		}
 	}
