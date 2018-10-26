@@ -22,17 +22,17 @@
 
 <template>
 	<ul>
-		<popover-menu-item v-for="(item, key) in menu" :item="item" :key="key" />
+		<popover-menu-item v-for="(item, key) in menu" :key="key" :item="item" />
 	</ul>
 </template>
 
 <script>
-import popoverMenuItem from './PopoverMenuItem'
+import PopoverMenuItem from './PopoverMenuItem'
 
 export default {
 	name: 'PopoverMenu',
 	components: {
-		popoverMenuItem
+		PopoverMenuItem
 	},
 	props: {
 		menu: {
