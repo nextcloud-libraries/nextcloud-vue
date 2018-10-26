@@ -19,11 +19,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import ScopeComponent from 'Utils/ScopeComponent'
-import Multiselect from 'vue-multiselect'
-import './index.scss'
 
-ScopeComponent(Multiselect)
+const ScopeComponent = (Component) => {
+	Component.mounted = [
+		function() {
+			this.$el.setAttribute(`data-v-${SCOPE_VERSION}`, '')
+		}
+	]
+}
 
-export default Multiselect
-export { Multiselect }
+export default ScopeComponent
