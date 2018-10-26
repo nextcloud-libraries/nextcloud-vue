@@ -24,20 +24,17 @@
 	<div id="app-navigation" :class="{'icon-loading': menu.loading}">
 		<div v-if="menu.new" class="app-navigation-new">
 			<button :id="menu.new.id" :class="menu.new.icon" type="button"
-				@click="menu.new.action"
-			>{{ menu.new.text }}</button>
+				@click="menu.new.action">{{ menu.new.text }}</button>
 		</div>
 		<ul :id="menu.id">
 			<app-navigation-item v-for="item in menu.items" :key="item.key" :item="item" />
 		</ul>
 		<div v-if="!!$slots['settings-content']" id="app-settings" v-click-outside="closeMenu"
-			:class="{open: opened}"
-		>
+			:class="{open: opened}">
 			<div id="app-settings-header">
 				<button class="settings-button"
 					data-apps-slide-toggle="#app-settings-content"
-					@click="toggleMenu"
-				>{{ t('contacts', 'Settings') }}</button>
+					@click="toggleMenu">{{ t('contacts', 'Settings') }}</button>
 			</div>
 			<div id="app-settings-content">
 				<slot name="settings-content" />

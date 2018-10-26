@@ -25,8 +25,7 @@
 		<!-- If item.href is set, a link will be directly used -->
 		<a v-if="item.href" :href="(item.href) ? item.href : '#' "
 			:target="(item.target) ? item.target : '' "
-			rel="noreferrer noopener" @click="action"
-		>
+			rel="noreferrer noopener" @click="action">
 			<span :class="item.icon" />
 			<span v-if="item.text">{{ item.text }}</span>
 			<p v-else-if="item.longtext">{{ item.longtext }}</p>
@@ -39,19 +38,16 @@
 
 			<!-- only shows if input is text -->
 			<form v-if="item.input === 'text'"
-				:class="item.input" @submit.prevent="item.action"
-			>
+				:class="item.input" @submit.prevent="item.action">
 				<input :type="item.input" :value="item.value" :placeholder="item.text"
-					required
-				>
+					required>
 				<input type="submit" value="" class="icon-confirm">
 			</form>
 
 			<!-- checkbox -->
 			<template v-else>
 				<input :id="key" v-model="item.model" :type="item.input"
-					:class="item.input" @change="item.action"
-				>
+					:class="item.input" @change="item.action">
 				<label :for="key" @click.stop.prevent="item.action">{{ item.text }}</label>
 			</template>
 		</span>

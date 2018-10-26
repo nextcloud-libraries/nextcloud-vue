@@ -26,24 +26,21 @@
 
 	<!-- Navigation item -->
 	<nav-element v-else :id="item.id" v-bind="navElement(item)"
-		:class="[{'icon-loading-small': item.loading, 'open': item.opened, 'collapsible': item.collapsible&&item.children&&item.children.length>0 }, item.classes]"
-	>
+		:class="[{'icon-loading-small': item.loading, 'open': item.opened, 'collapsible': item.collapsible&&item.children&&item.children.length>0 }, item.classes]">
 
 		<!-- Bullet -->
 		<div v-if="item.bullet" :style="{ backgroundColor: item.bullet }" class="app-navigation-entry-bullet" />
 
 		<!-- Is this a simple action ? -->
 		<a v-if="item.action" :class="item.icon" href="#"
-			@click.prevent.stop="item.action"
-		>
+			@click.prevent.stop="item.action">
 			<img v-if="item.iconUrl" :alt="item.text" :src="item.iconUrl">
 			{{ item.text }}
 		</a>
 
 		<!-- Main link -->
 		<a v-else :href="(item.href) ? item.href : '#' " :class="item.icon"
-			@click="toggleCollapse"
-		>
+			@click="toggleCollapse">
 			<img v-if="item.iconUrl" :alt="item.text" :src="item.iconUrl">
 			{{ item.text }}
 		</a>
@@ -53,28 +50,26 @@
 			<ul>
 				<!-- counter -->
 				<li v-if="Number.isInteger(item.utils.counter) && item.utils.counter > 0"
-					class="app-navigation-entry-utils-counter"
-				>{{ item.utils.counter }}</li>
+					class="app-navigation-entry-utils-counter">
+					{{ item.utils.counter }}
+				</li>
 
 				<!-- first action if only one action -->
 				<li v-if="item.utils.actions && item.utils.actions.length === 1"
-					class="app-navigation-entry-utils-menu-button"
-				>
+					class="app-navigation-entry-utils-menu-button">
 					<button :class="item.utils.actions[0].icon" :title="item.utils.actions[0].text" @click="item.utils.actions[0].action" />
 				</li>
 
 				<!-- second action only two actions and no counter -->
 				<li v-for="action in item.utils.actions"
 					v-else-if="item.utils.actions && item.utils.actions.length === 2 && !Number.isInteger(item.utils.counter)" :key="action.action"
-					class="app-navigation-entry-utils-menu-button"
-				>
+					class="app-navigation-entry-utils-menu-button">
 					<button :class="action.icon" :title="action.text" @click="action.action" />
 				</li>
 
 				<!-- menu if only at least one action and counter OR two actions and no counter-->
 				<li v-else-if="item.utils.actions && item.utils.actions.length > 1 && (Number.isInteger(item.utils.counter) || item.utils.actions.length > 2)"
-					class="app-navigation-entry-utils-menu-button"
-				>
+					class="app-navigation-entry-utils-menu-button">
 					<button v-click-outside="hideMenu" @click="showMenu" />
 				</li>
 			</ul>
@@ -82,8 +77,7 @@
 
 		<!-- if more than 2 actions or more than 1 actions with counter -->
 		<div v-if="item.utils && item.utils.actions && item.utils.actions.length > 1 && (Number.isInteger(item.utils.counter) || item.utils.actions.length > 2)"
-			:class="{ 'open': openedMenu }" class="app-navigation-entry-menu"
-		>
+			:class="{ 'open': openedMenu }" class="app-navigation-entry-menu">
 			<popover-menu :menu="item.utils.actions" />
 		</div>
 
@@ -99,8 +93,7 @@
 				<input :placeholder="item.edit.text" type="text">
 				<input type="submit" value="" class="icon-confirm">
 				<input type="submit" value="" class="icon-close"
-					@click.stop.prevent="cancelEdit"
-				>
+					@click.stop.prevent="cancelEdit">
 			</form>
 		</div>
 

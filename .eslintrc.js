@@ -52,6 +52,8 @@ module.exports = {
 		'node/no-unsupported-features/es-syntax': ['off'],
 		// space before self-closing elements
 		'vue/html-closing-bracket-spacing': 'error',
+		// no ending html tag on a new line
+		'vue/html-closing-bracket-newline': ['error', { multiline: 'never' }],
 		// code spacing with attributes
 		'vue/max-attributes-per-line': [
 			'error',
