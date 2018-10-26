@@ -5,8 +5,7 @@ const { DefinePlugin } = require('webpack')
 
 const md5 = require('md5')
 const PACKAGE = require('./package.json');
-const version = PACKAGE.version;
-const SCOPE_VERSION = JSON.stringify(md5(version).substr(0, 7))
+const SCOPE_VERSION = JSON.stringify(md5(PACKAGE.version).substr(0, 7))
 
 module.exports = {
 	entry: path.join(__dirname, 'src', 'index.js'),
