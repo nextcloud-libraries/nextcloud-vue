@@ -3,6 +3,7 @@ const { VueLoaderPlugin } = require('vue-loader')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 const { DefinePlugin } = require('webpack')
 
+// scope variable
 const md5 = require('md5')
 const PACKAGE = require('./package.json');
 const SCOPE_VERSION = JSON.stringify(md5(PACKAGE.version).substr(0, 7))
@@ -70,7 +71,8 @@ module.exports = {
 	],
 	resolve: {
 		alias: {
-			vue$: 'vue/dist/vue.esm.js'
+			Components: path.resolve(__dirname, 'src/components/'),
+			Utils: path.resolve(__dirname, 'src/utils/')
 		},
 		extensions: ['*', '.js', '.vue', '.json']
 	}
