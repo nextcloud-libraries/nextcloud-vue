@@ -37,6 +37,9 @@
 	}
 
 	.mx-calendar-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 		> a {
 			&:hover {
 				color: var(--color-main-text);
@@ -44,8 +47,23 @@
 			}
 			&.mx-current-month,
 			&.mx-current-year {
-				padding: 5px 10px;
-				border-radius: 30px;	
+				padding: 5px;
+				border-radius: 30px;
+				height: 30px;
+				line-height: 20px;
+			}
+			&.mx-icon-last-year,
+			&.mx-icon-last-month,
+			&.mx-icon-next-month,
+			&.mx-icon-next-year {
+				min-width: 22px;
+				height: 22px;
+				border-radius: 50%;
+				line-height: 22px;
+			}
+			&.mx-icon-next-month, 
+			&.mx-icon-next-year {
+				order: 3;
 			}
 		}
 	}
@@ -89,6 +107,8 @@
 		td {
 			&.today {
 				color: var(--color-primary-text);
+				background-color: var(--color-primary);
+				opacity: 1;
 			}
 			&.last-month,
 			&.next-month {
