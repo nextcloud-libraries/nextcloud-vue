@@ -23,13 +23,13 @@
 /**
  * Manually scope a vue component to be used with an external css file
  * The external css must have the root element set with [data-v-#{$scope_version}]
- * 
+ *
  * e.g. .multiselect[data-v-#{$scope_version}]
  * import ScopeComponent from 'Utils/ScopeComponent'
  * import Multiselect from 'vue-multiselect'
  * import './index.scss'
  * ScopeComponent(Multiselect)
- * 
+ *
  * @param {Object} Component the vue component
  */
 const ScopeComponent = (Component) => {
