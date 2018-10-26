@@ -22,11 +22,10 @@
 import Multiselect from 'vue-multiselect'
 import './index.scss'
 
+// Manually force the addition of a scope data for the css
 Multiselect.mounted = [
 	function() {
-		console.debug(this, this.$el)
-		// eslint-disable-next-line
-		this.$el.className += ' ' + SCOPE_VERSION
+		this.$el.setAttribute(`data-v-${SCOPE_VERSION}`, '')
 	}
 ]
 

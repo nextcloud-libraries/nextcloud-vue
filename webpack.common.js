@@ -2,9 +2,11 @@ const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 const { DefinePlugin } = require('webpack')
+
 const md5 = require('md5')
-var PACKAGE = require('./package.json');
-var version = PACKAGE.version;
+const PACKAGE = require('./package.json');
+const version = PACKAGE.version;
+const SCOPE_VERSION = JSON.stringify(md5(version).substr(0, 7))
 
 module.exports = {
 	entry: path.join(__dirname, 'src', 'index.js'),
@@ -32,7 +34,12 @@ module.exports = {
 			},
 			{
 				test: /\.scss$/,
-				use: ['vue-style-loader', 'css-loader', 'sass-loader']
+				use: ['vue-style-loader', 'css-loader', {
+					loader: 'sass-loader',
+					options: {
+						data: '$scope_version: ' + SCOPE_VERSION + ';'
+					}
+				}]
 			},
 			{
 				test: /\.(js|vue)$/,
@@ -60,9 +67,7 @@ module.exports = {
 	plugins: [
 		new VueLoaderPlugin(),
 		new StyleLintPlugin(),
-		new DefinePlugin({
-			SCOPE_VERSION: JSON.stringify(md5(version))
-		})
+		new DefinePlugin({SCOPE_VERSION})
 	],
 	resolve: {
 		alias: {
