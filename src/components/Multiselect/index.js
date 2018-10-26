@@ -22,5 +22,13 @@
 import Multiselect from 'vue-multiselect'
 import './index.scss'
 
+Multiselect.mounted = [
+	function() {
+		console.debug(this, this.$el)
+		// eslint-disable-next-line
+		this.$el.className += ' ' + SCOPE_VERSION
+	}
+]
+
 export default Multiselect
 export { Multiselect }

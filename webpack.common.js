@@ -1,6 +1,10 @@
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
+const { DefinePlugin } = require('webpack')
+const md5 = require('md5')
+var PACKAGE = require('./package.json');
+var version = PACKAGE.version;
 
 module.exports = {
 	entry: path.join(__dirname, 'src', 'index.js'),
@@ -53,7 +57,13 @@ module.exports = {
 			}
 		]
 	},
-	plugins: [new VueLoaderPlugin(), new StyleLintPlugin()],
+	plugins: [
+		new VueLoaderPlugin(),
+		new StyleLintPlugin(),
+		new DefinePlugin({
+			SCOPE_VERSION: JSON.stringify(md5(version))
+		})
+	],
 	resolve: {
 		alias: {
 			vue$: 'vue/dist/vue.esm.js'
