@@ -80,17 +80,15 @@ $opacity_full: 1;
 	}
 
 	.mx-calendar-content {
+		// regular cell style
 		.cell {
 			opacity: $opacity_normal;
 			border-radius: 50px;
 			transition: all 100ms ease-in-out;
 			&:hover,
 			&.actived {
-				background-color: var(--color-background-darker);
 				font-weight: bold;
 				opacity: $opacity_full;
-			}
-			&.actived {
 				color: var(--color-primary-text);
 				background-color: var(--color-primary-element);
 			}
@@ -108,7 +106,7 @@ $opacity_full: 1;
 	}
 
 	.mx-panel-date {
-		// Rows, do not change on hover
+		// Rows: do not change on mouse event
 		tr:hover,
 		tr:focus,
 		tr:active {
