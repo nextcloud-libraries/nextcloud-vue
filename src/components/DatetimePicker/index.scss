@@ -106,9 +106,9 @@
 		}
 		td {
 			&.today {
-				color: var(--color-primary-text);
-				background-color: var(--color-primary);
+				color: var(--color-primary);
 				opacity: 1;
+				font-weight: bold;
 			}
 			&.last-month,
 			&.next-month {
