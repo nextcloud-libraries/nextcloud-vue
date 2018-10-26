@@ -46,8 +46,8 @@
 
 			<!-- checkbox -->
 			<template v-else>
-				<input :id="key" :type="item.input" :class="item.input"
-					v-model="item.model" @change="item.action">
+				<input :id="key" v-model="item.model" :type="item.input"
+					:class="item.input" @change="item.action">
 				<label :for="key" @click.stop.prevent="item.action">{{ item.text }}</label>
 			</template>
 		</span>

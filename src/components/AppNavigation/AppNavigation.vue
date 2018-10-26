@@ -27,15 +27,14 @@
 				@click="menu.new.action">{{ menu.new.text }}</button>
 		</div>
 		<ul :id="menu.id">
-			<app-navigation-item v-for="item in menu.items" :item="item" :key="item.key" />
+			<app-navigation-item v-for="item in menu.items" :key="item.key" :item="item" />
 		</ul>
-		<div v-click-outside="closeMenu" v-if="!!$slots['settings-content']" id="app-settings"
+		<div v-if="!!$slots['settings-content']" id="app-settings" v-click-outside="closeMenu"
 			:class="{open: opened}">
 			<div id="app-settings-header">
 				<button class="settings-button"
 					data-apps-slide-toggle="#app-settings-content"
-					@click="toggleMenu"
-				>{{ t('contacts', 'Settings') }}</button>
+					@click="toggleMenu">{{ t('contacts', 'Settings') }}</button>
 			</div>
 			<div id="app-settings-content">
 				<slot name="settings-content" />
@@ -51,8 +50,7 @@ import ClickOutside from 'vue-click-outside'
 export default {
 	name: 'AppNavigation',
 	components: {
-		AppNavigationItem,
-		ClickOutside
+		AppNavigationItem
 	},
 	directives: {
 		ClickOutside

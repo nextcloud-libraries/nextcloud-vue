@@ -50,7 +50,9 @@
 			<ul>
 				<!-- counter -->
 				<li v-if="Number.isInteger(item.utils.counter) && item.utils.counter > 0"
-					class="app-navigation-entry-utils-counter">{{ item.utils.counter }}</li>
+					class="app-navigation-entry-utils-counter">
+					{{ item.utils.counter }}
+				</li>
 
 				<!-- first action if only one action -->
 				<li v-if="item.utils.actions && item.utils.actions.length === 1"
@@ -97,7 +99,7 @@
 
 		<!-- if the item has children, inject the component with proper data -->
 		<ul v-if="item.children">
-			<navigation-item v-for="(item, key) in item.children" :item="item" :key="key" />
+			<navigation-item v-for="(child, key) in item.children" :key="key" :item="child" />
 		</ul>
 	</nav-element>
 </template>
