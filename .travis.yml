@@ -5,6 +5,7 @@ cache:
 node_js:
 - node
 script:
+- npm rebuild node-sass
 - npm run build
 - npm run lint
 deploy:
