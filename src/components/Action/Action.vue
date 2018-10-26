@@ -22,12 +22,13 @@
 
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
-	<a :tabindex="actions.length === 1" :href="actions.length === 1 && actions[0].href ? actions[0].href : '#'"
-		:class="[actions.length === 1 ? `${actions[0].icon} action-item--single` : 'action-item--multiple']"
-		v-on="actions.length === 1 && actions[0].action ? { click: actions[0].action } : {}">
+	<action :href="isSingleAction && actions[0].href ? actions[0].href : '#'"
+		:class="[isSingleAction ? `${actions[0].icon} action-item--single` : 'action-item--multiple']"
+		v-bind="mainActionElement()" class="action-item"
+		v-on="isSingleAction && actions[0].action ? { click: actions[0].action } : {}">
 
 		<!-- If more than one action, create a popovermenu -->
-		<template v-if="actions.length > 1">
+		<template v-if="!isSingleAction">
 			<span v-click-outside="closeMenu" tabindex="1" class="action-item__menutoggle icon-more"
 				@click="toggleMenu" />
 			<span :class="{ 'open': opened }" class="action-item__menu popovermenu">
@@ -35,7 +36,7 @@
 			</span>
 		</template>
 
-	</a>
+	</action>
 </template>
 
 <script>
@@ -77,6 +78,11 @@ export default {
 			opened: false
 		}
 	},
+	computed: {
+		isSingleAction() {
+			return this.actions.length === 1
+		}
+	},
 	mounted() {
 		// prevent click outside event with popupItem.
 		this.popupItem = this.$el
@@ -87,7 +93,35 @@ export default {
 		},
 		closeMenu() {
 			this.opened = false
+		},
+		mainActionElement() {
+			return {
+				is: this.isSingleAction ? 'a' : 'div'
+			}
 		}
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+.action-item {
+	display: inline-block;
+
+	// icons
+	&--single,
+	&__menutoggle {
+		padding: 14px;
+		height: 44px;
+		width: 44px;
+		cursor: pointer;
+	}
+	// icon-more
+	&__menutoggle {
+		display: inline-block;
+	}
+	// properly position the menu
+	&--multiple {
+		position: relative;
+	}
+}
+</style>
