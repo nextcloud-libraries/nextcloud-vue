@@ -21,8 +21,8 @@
  */
 
 const ScopeComponent = (Component) => {
-	Component.mounted.push(function() {	
-		this.$el.setAttribute(`data-v-${SCOPE_VERSION}`, '')	
+	Component.mounted.push(function() {
+		this.$el.setAttribute(`data-v-${SCOPE_VERSION}`, '')
 	})
 }
 
