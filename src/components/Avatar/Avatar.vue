@@ -234,12 +234,12 @@ export default {
 				this.avatarUrlLoaded = avatarUrl
 				this.loadingState = false
 			}
-			
+
 			img.onerror = () => {
 				this.userDoesNotExist = true
 				this.loadingState = false
 			}
-			
+
 			img.src = avatarUrl
 		}
 	}
