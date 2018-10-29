@@ -2,8 +2,7 @@
   "groups": {
     "default": {
       "packages": [
-        "package.json",
-        "packages/webpack4-template-simple/template/package.json"
+        "package.json"
       ]
     }
   }
