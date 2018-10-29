@@ -102,7 +102,7 @@ export default {
 		},
 		/**
 		 * Declares username is not a user's name, when true.
-		 * Prevents loading user's avatar from server and forces generating colored initials, 
+		 * Prevents loading user's avatar from server and forces generating colored initials,
 		 * i.e. if the user is a group
 		 */
 		isNoUser: {
