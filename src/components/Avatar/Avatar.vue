@@ -99,6 +99,15 @@ export default {
 		disableTooltip: {
 			type: Boolean,
 			default: false
+		},
+		/**
+		 * Declares username is not a user's name, when true.
+		 * Prevents loading user's avatar from server and forces generating colored initials,
+		 * i.e. if the user is a group
+		 */
+		isNoUser: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
@@ -171,38 +180,14 @@ export default {
 			})
 		}
 	},
+	watch: {
+		user() {
+			this.userDoesNotExist = false
+			this.loadAvatarUrl()
+		}
+	},
 	mounted() {
-		/** Only run avatar image loading if either user or url property is defined */
-		if (!this.isUrlDefined && !this.isUserDefined) {
-			this.loadingState = false
-			this.userDoesNotExist = true
-			return
-		}
-
-		let avatarUrl = OC.generateUrl(
-			'/avatar/{user}/{size}',
-			{
-				user: this.user,
-				size: Math.ceil(this.size * window.devicePixelRatio)
-			})
-		// eslint-disable-next-line camelcase
-		if (this.user === OC.getCurrentUser().uid && typeof oc_userconfig !== 'undefined') {
-			avatarUrl += '?v=' + oc_userconfig.avatar.version
-		}
-		if (this.isUrlDefined) {
-			avatarUrl = this.url
-		}
-
-		let img = new Image()
-		img.onload = () => {
-			this.avatarUrlLoaded = avatarUrl
-			this.loadingState = false
-		}
-		img.onerror = () => {
-			this.userDoesNotExist = true
-			this.loadingState = false
-		}
-		img.src = avatarUrl
+		this.loadAvatarUrl()
 	},
 	methods: {
 		toggleMenu() {
@@ -223,6 +208,39 @@ export default {
 			}).catch(() => {
 				this.contactsMenuOpenState = false
 			})
+		},
+		loadAvatarUrl() {
+			/** Only run avatar image loading if either user or url property is defined */
+			if (!this.isUrlDefined && (!this.isUserDefined || this.isNoUser)) {
+				this.loadingState = false
+				this.userDoesNotExist = true
+				return
+			}
+
+			let avatarUrl = OC.generateUrl(
+				'/avatar/{user}/{size}',
+				{
+					user: this.user,
+					size: Math.ceil(this.size * window.devicePixelRatio)
+				})
+			// eslint-disable-next-line camelcase
+			if (this.user === OC.getCurrentUser().uid && typeof oc_userconfig !== 'undefined') {
+				avatarUrl += '?v=' + oc_userconfig.avatar.version
+			}
+			if (this.isUrlDefined) {
+				avatarUrl = this.url
+			}
+
+			let img = new Image()
+			img.onload = () => {
+				this.avatarUrlLoaded = avatarUrl
+				this.loadingState = false
+			}
+			img.onerror = () => {
+				this.userDoesNotExist = true
+				this.loadingState = false
+			}
+			img.src = avatarUrl
 		}
 	}
 }
