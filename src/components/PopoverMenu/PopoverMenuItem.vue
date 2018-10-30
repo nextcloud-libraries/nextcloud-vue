@@ -70,6 +70,9 @@
 </template>
 
 <script>
+/**
+ * @vue-prop {Object} item - an action item
+ */
 export default {
 	name: 'PopoverMenuItem',
 	props: {

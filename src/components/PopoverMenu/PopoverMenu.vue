@@ -29,6 +29,9 @@
 <script>
 import PopoverMenuItem from './PopoverMenuItem'
 
+/**
+ * @vue-prop {Array} menu - The popover menu
+ */
 export default {
 	name: 'PopoverMenu',
 	components: {
