@@ -41,7 +41,7 @@
 
 <script>
 import ClickOutside from 'vue-click-outside'
-import PopoverMenu from '../PopoverMenu'
+import { PopoverMenu } from 'Components/PopoverMenu'
 
 export default {
 	name: 'Action',
