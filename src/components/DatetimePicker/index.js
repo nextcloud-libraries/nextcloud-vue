@@ -19,17 +19,21 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import ScopeComponent from 'Utils/ScopeComponent'
 import DatePicker from 'vue2-datepicker'
 import './index.scss'
+
+ScopeComponent(DatePicker)
 
 /**
  * hijack the display function and avoid the
  * top and left original positionning
  */
 DatePicker.methods.displayPopup = function() {
-	this.$el
-		.querySelector('.mx-datepicker-popup')
-		.className += ' popovermenu menu-center open'
+	const popupElmt = this.$el.querySelector('.mx-datepicker-popup')
+	if (popupElmt && !popupElmt.classList.contains('popovermenu')) {
+		popupElmt.className += ' popovermenu menu-center open'
+	}
 }
 
 export default DatePicker

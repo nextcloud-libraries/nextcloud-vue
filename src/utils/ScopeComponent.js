@@ -21,11 +21,17 @@
  */
 
 const ScopeComponent = (Component) => {
-	Component.mounted = [
-		function() {
-			this.$el.setAttribute(`data-v-${SCOPE_VERSION}`, '')
-		}
-	]
+	// Init mounted vue if none
+	if (!Component.mounted) {
+		Component.mounted = []
+	} else if (!Array.isArray(Component.mounted)) {
+		Component.mounted = [Component.mounted]
+	}
+
+	// Inject root scoping function
+	Component.mounted.push(function() {
+		this.$el.setAttribute(`data-v-${SCOPE_VERSION}`, '')
+	})
 }
 
 export default ScopeComponent
