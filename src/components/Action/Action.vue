@@ -22,18 +22,18 @@
 
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
-	<action :href="isSingleAction && actions[0].href ? actions[0].href : '#'"
-		:class="[isSingleAction ? `${actions[0].icon} action-item--single` : 'action-item--multiple']"
+	<action :href="isSingleAction && firstAction.href ? firstAction.href : '#'"
+		:class="[isSingleAction ? `${firstAction.icon} action-item--single` : 'action-item--multiple']"
 		v-bind="mainActionElement()" class="action-item"
-		v-on="isSingleAction && actions[0].action ? { click: actions[0].action } : {}">
+		v-on="isSingleAction && firstAction.action ? { click: firstAction.action } : {}">
 
 		<!-- If more than one action, create a popovermenu -->
 		<template v-if="!isSingleAction">
-			<span v-click-outside="closeMenu" tabindex="1" class="action-item__menutoggle icon-more"
+			<div v-click-outside="closeMenu" tabindex="1" class="action-item__menutoggle icon-more"
 				@click="toggleMenu" />
-			<span :class="{ 'open': opened }" class="action-item__menu popovermenu">
+			<div :class="{ 'open': opened }" class="action-item__menu popovermenu">
 				<popover-menu :menu="actions" />
-			</span>
+			</div>
 		</template>
 
 	</action>
@@ -81,6 +81,9 @@ export default {
 	computed: {
 		isSingleAction() {
 			return this.actions.length === 1
+		},
+		firstAction() {
+			return this.actions[0]
 		}
 	},
 	mounted() {
