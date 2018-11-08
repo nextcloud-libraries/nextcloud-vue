@@ -1,3 +1,6 @@
+// scoping is not working inside the Multiselect.vue component
+// as the nested properties are not inside it
+// Therefore we need to use an external scoping
 .multiselect[data-v-#{$scope_version}] {
 	margin: 1px 2px;
 	padding: 0 !important;
@@ -37,7 +40,7 @@
 			padding: 3px $space-between;
 			flex-grow: 1;
 			/* no tags or simple select? Show input directly
-			   input is used to display single value */
+			input is used to display single value */
 			&:empty ~ input.multiselect__input {
 				opacity: 1 !important;
 				/* hide default empty text, show input instead */
@@ -57,13 +60,13 @@
 				align-items: center;
 				border-radius: 3px;
 				/* require to override the default width
-				   and force the tag to shring properly */
+				and force the tag to shring properly */
 				min-width: 0;
 				max-width: 50%;
 				max-width: fit-content;
 				max-width: -moz-fit-content;
 				/* css hack, detect if more than two tags
-				   if so, flex-basis is set to half */
+				if so, flex-basis is set to half */
 				&:only-child {
 					flex: 0 1 auto;
 				}
@@ -71,7 +74,7 @@
 					margin-right: $space-between;
 				}
 				/* ellipsis the groups to be sure
-				   we display at least two of them */
+				we display at least two of them */
 				> span {
 					white-space: nowrap;
 					text-overflow: ellipsis;
@@ -144,8 +147,8 @@
 				white-space: nowrap;
 				overflow: hidden;
 				text-overflow: ellipsis;
-				height: 20px;
 				margin: 0;
+				height: auto;
 				min-height: 1em;
 				-webkit-touch-callout: none;
 				-webkit-user-select: none;
@@ -175,8 +178,7 @@
 					opacity: .5;
 				}
 				/* add the prop tag-placeholder="create" to add the +
-				 * icon on top of an unknown-and-ready-to-be-created entry
-				 */
+				icon on top of an unknown-and-ready-to-be-created entry */
 				&[data-select='create'] {
 					&::before {
 						background-image: var(--icon-add-000);

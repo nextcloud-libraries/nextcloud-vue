@@ -20,7 +20,7 @@
  *
  */
 import ScopeComponent from 'Utils/ScopeComponent'
-import Multiselect from 'vue-multiselect'
+import Multiselect from './Multiselect'
 import './index.scss'
 
 ScopeComponent(Multiselect)
