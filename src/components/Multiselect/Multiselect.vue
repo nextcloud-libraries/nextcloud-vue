@@ -48,7 +48,8 @@
 		<template v-if="userSelect" slot="option" slot-scope="{ option }">
 			<avatar-select-option :option="option" />
 		</template>
-		<span slot="limit" v-tooltip.auto="formatLimitTitle(value)" class="multiselect__limit">
+		<span v-if="multiple" slot="limit" v-tooltip.auto="formatLimitTitle(value)"
+			class="multiselect__limit">
 			{{ limitString }}
 		</span>
 		<!-- TODO add translation system
@@ -185,7 +186,7 @@ export default {
 		 * @returns {string}
 		 */
 		formatLimitTitle(options) {
-			if (options && options.length > 0) {
+			if (Array.isArray(options) && options.length > 0) {
 				let selection = options
 				if (typeof options[0] === 'object') {
 					selection = options.map(option => option[this.label])
