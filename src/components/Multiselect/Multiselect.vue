@@ -36,7 +36,6 @@
 	<vue-multiselect
 		:value="value"
 		v-bind="$attrs"
-		class="multiselect-vue"
 		:limit="maxOptions"
 		:close-on-select="!multiple"
 		:multiple="multiple"
