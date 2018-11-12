@@ -99,7 +99,7 @@
 
 		<!-- if the item has children, inject the component with proper data -->
 		<ul v-if="item.children">
-			<navigation-item v-for="(child, key) in item.children" :key="key" :item="child" />
+			<app-navigation-item v-for="(child, key) in item.children" :key="key" :item="child" />
 		</ul>
 	</nav-element>
 </template>
