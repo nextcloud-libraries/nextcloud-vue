@@ -67,12 +67,7 @@ export default {
 						icon: 'icon-add',
 						text: 'New item'
 					},
-					menu: {
-						id: 'navigation',
-						items: [
-
-						]
-					}
+					items: []
 				}
 			}
 		}
