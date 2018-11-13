@@ -24,7 +24,9 @@
 	<div id="app-navigation" :class="{'icon-loading': menu.loading}">
 		<div v-if="menu.new" class="app-navigation-new">
 			<button :id="menu.new.id" :class="menu.new.icon" type="button"
-				@click="menu.new.action">{{ menu.new.text }}</button>
+				:disabled="menu.new.disabled" @click="menu.new.action">
+				{{ menu.new.text }}
+			</button>
 		</div>
 		<ul :id="menu.id">
 			<app-navigation-item v-for="item in menu.items" :key="item.key" :item="item" />
