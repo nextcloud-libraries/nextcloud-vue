@@ -26,10 +26,12 @@
 
 	<!-- Navigation item -->
 	<nav-element v-else :id="item.id" v-bind="navElement(item)"
-		:title="item.title" :class="[{'icon-loading-small': item.loading, 'open': item.opened, 'collapsible': item.collapsible&&item.children&&item.children.length>0 }, item.classes]">
+		:title="item.title" :class="[{'icon-loading-small': item.loading, 'open': item.opened, 'collapsible': collapsible }, item.classes]">
 
 		<!-- Bullet -->
 		<div v-if="item.bullet" :style="{ backgroundColor: item.bullet }" class="app-navigation-entry-bullet" />
+
+		<button v-if="collapsible" class="collapse" @click.prevent.stop="toggleCollapse" />
 
 		<!-- Is this a simple action ? -->
 		<a v-if="item.action" :class="item.icon" href="#"
@@ -39,8 +41,7 @@
 		</a>
 
 		<!-- Main link -->
-		<a v-else :href="(item.href) ? item.href : '#' " :class="item.icon"
-			@click="toggleCollapse">
+		<a v-else :href="(item.href) ? item.href : '#' " :class="item.icon">
 			<img v-if="item.iconUrl" :alt="item.text" :src="item.iconUrl">
 			{{ item.text }}
 		</a>
@@ -126,6 +127,11 @@ export default {
 	data() {
 		return {
 			openedMenu: false
+		}
+	},
+	computed: {
+		collapsible() {
+			return this.item.collapsible && this.item.children && this.item.children.length > 0
 		}
 	},
 	mounted() {
