@@ -26,7 +26,7 @@
 
 	<!-- Navigation item -->
 	<nav-element v-else :id="item.id" v-bind="navElement(item)"
-		:title="item.title" :class="[{'icon-loading-small': item.loading, 'open': item.opened, 'collapsible': collapsible }, item.classes]">
+		:title="item.title" :class="[{'icon-loading-small': item.loading, 'open': opened, 'collapsible': collapsible }, item.classes]">
 
 		<!-- Bullet -->
 		<div v-if="item.bullet" :style="{ backgroundColor: item.bullet }" class="app-navigation-entry-bullet" />
@@ -108,7 +108,6 @@
 <script>
 import { PopoverMenu } from 'Components/PopoverMenu'
 import ClickOutside from 'vue-click-outside'
-import Vue from 'vue'
 
 export default {
 	name: 'AppNavigationItem',
@@ -126,12 +125,18 @@ export default {
 	},
 	data() {
 		return {
-			openedMenu: false
+			openedMenu: false,
+			opened: !!this.item.opened
 		}
 	},
 	computed: {
 		collapsible() {
 			return this.item.collapsible && this.item.children && this.item.children.length > 0
+		}
+	},
+	watch: {
+		item(oldItem, newItem) {
+			this.opened = !!newItem.opened
 		}
 	},
 	mounted() {
@@ -146,9 +151,7 @@ export default {
 			this.openedMenu = false
 		},
 		toggleCollapse() {
-			// if item.opened isn't set, Vue won't trigger view updates https://vuejs.org/v2/api/#Vue-set
-			// ternary is here to detect the undefined state of item.opened
-			Vue.set(this.item, 'opened', this.item.opened ? !this.item.opened : true)
+			this.opened = !this.opened
 		},
 		cancelEdit(e) {
 			// remove the editing class
