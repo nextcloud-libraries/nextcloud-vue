@@ -30,7 +30,7 @@
 		<!-- If more than one action, create a popovermenu -->
 		<template v-if="!isSingleAction">
 			<div v-click-outside="closeMenu" tabindex="1" class="action-item__menutoggle icon-more"
-				@click="toggleMenu" />
+				@click.prevent="toggleMenu" />
 			<div :class="{ 'open': opened }" class="action-item__menu popovermenu">
 				<popover-menu :menu="actions" />
 			</div>
