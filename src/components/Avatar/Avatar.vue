@@ -181,6 +181,10 @@ export default {
 		}
 	},
 	watch: {
+		url() {
+			this.userDoesNotExist = false
+			this.loadAvatarUrl()
+		},
 		user() {
 			this.userDoesNotExist = false
 			this.loadAvatarUrl()
@@ -210,6 +214,8 @@ export default {
 			})
 		},
 		loadAvatarUrl() {
+			this.loadingState = true
+
 			/** Only run avatar image loading if either user or url property is defined */
 			if (!this.isUrlDefined && (!this.isUserDefined || this.isNoUser)) {
 				this.loadingState = false
