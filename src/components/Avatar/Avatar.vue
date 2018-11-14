@@ -181,6 +181,10 @@ export default {
 		}
 	},
 	watch: {
+		url() {
+			this.userDoesNotExist = false
+			this.loadAvatarUrl()
+		},
 		user() {
 			this.userDoesNotExist = false
 			this.loadAvatarUrl()
