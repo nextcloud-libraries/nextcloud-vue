@@ -74,9 +74,11 @@ $opacity_full: 1;
 			}
 			// arrows are all before month and year
 			// send them to the end of the row
-			&.mx-icon-next-month, 
-			&.mx-icon-next-year {
+			&.mx-icon-next-month {
 				order: 3;
+			}
+			&.mx-icon-next-year {
+				order: 4;
 			}
 		}
 	}
