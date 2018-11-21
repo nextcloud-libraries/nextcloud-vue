@@ -25,7 +25,7 @@
 		:class="{ 'icon-loading': loadingState, 'unknown': userDoesNotExist }"
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper" @click="toggleMenu">
-		<img v-if="!loadingState && !userDoesNotExist" :src="avatarUrlLoaded">
+		<img v-if="!loadingState && !userDoesNotExist" :src="avatarUrlLoaded" :srcset="avatarSrcSetLoaded">
 		<div v-if="userDoesNotExist" class="unknown">{{ initials }}</div>
 		<div v-show="contactsMenuOpenState" class="popovermenu">
 			<popover-menu :is-open="contactsMenuOpenState" :menu="menu" />
@@ -113,6 +113,7 @@ export default {
 	data() {
 		return {
 			avatarUrlLoaded: null,
+			avatarSrcSetLoaded: null,
 			userDoesNotExist: false,
 			loadingState: true,
 			contactsMenuActions: [],
@@ -223,28 +224,47 @@ export default {
 				return
 			}
 
-			let avatarUrl = OC.generateUrl(
-				'/avatar/{user}/{size}',
-				{
-					user: this.user,
-					size: Math.ceil(this.size * window.devicePixelRatio)
-				})
-			// eslint-disable-next-line camelcase
-			if (this.user === OC.getCurrentUser().uid && typeof oc_userconfig !== 'undefined') {
-				avatarUrl += '?v=' + oc_userconfig.avatar.version
+			const urlGenerator = (user, size) => {
+				let avatarUrl = OC.generateUrl(
+					'/avatar/{user}/{size}',
+					{
+						user: user,
+						size: size
+					})
+				// eslint-disable-next-line camelcase
+				if (user === OC.getCurrentUser().uid && typeof oc_userconfig !== 'undefined') {
+					avatarUrl += '?v=' + oc_userconfig.avatar.version
+				}
+
+				return avatarUrl
 			}
+
+			let avatarUrl = urlGenerator(this.user, this.size)
 			if (this.isUrlDefined) {
 				avatarUrl = this.url
 			}
 
+			const srcset = [
+				avatarUrl + ' 1x',
+				urlGenerator(this.user, this.size * 2) + ' 2x',
+				urlGenerator(this.user, this.size * 4) + ' 4x'
+			].join(', ')
+
 			let img = new Image()
 			img.onload = () => {
 				this.avatarUrlLoaded = avatarUrl
+				if (!this.isUrlDefined) {
+					this.avatarSrcSetLoaded = srcset
+				}
 				this.loadingState = false
 			}
 			img.onerror = () => {
 				this.userDoesNotExist = true
 				this.loadingState = false
+			}
+
+			if (!this.isUrlDefined) {
+				img.srcset = srcset
 			}
 			img.src = avatarUrl
 		}
