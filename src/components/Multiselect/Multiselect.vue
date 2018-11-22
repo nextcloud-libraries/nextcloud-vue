@@ -36,6 +36,11 @@
 	<vue-multiselect
 		:value="value"
 		v-bind="$attrs"
+		:class="{
+			'icon-loading-small': loading,
+			'multiselect--multiple': multiple,
+			'multiselect--single': !multiple
+		}"
 		:limit="maxOptions"
 		:close-on-select="!multiple"
 		:multiple="multiple"
@@ -110,6 +115,15 @@ export default {
 		 * @type {Boolean}
 		 */
 		userSelect: {
+			type: Boolean,
+			default: false
+		},
+		/**
+		 * Overriding the default slot. Only showing a spiner.
+		 * @default true
+		 * @type {Boolean}
+		 */
+		loading: {
 			type: Boolean,
 			default: false
 		},

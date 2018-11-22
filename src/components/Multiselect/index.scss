@@ -2,10 +2,11 @@
 // as the nested properties are not inside it
 // Therefore we need to use an external scoping
 .multiselect[data-v-#{$scope_version}] {
-	margin: 1px 2px;
+	margin: 0;
 	padding: 0 !important;
 	display: inline-block;
-	width: 160px;
+	/* override this rule with your width styling if you need */
+	min-width: 160px; 
 	position: relative;
 	background-color: var(--color-main-background);
 	&.multiselect--active {
@@ -18,6 +19,11 @@
 	&.multiselect--disabled,
 	&.multiselect--disabled .multiselect__single {
 		background-color: var(--color-background-dark) !important;
+	}
+	// loading state
+	&.icon-loading-small::after {
+		left: 100%;
+		margin-left: -24px;
 	}
 	.multiselect__tags {
 		/* space between tags and limit tag */
@@ -117,6 +123,8 @@
 			display: block !important;
 			/* only when not active */
 			cursor: pointer;
+			/* override inline styling of the lib */
+			padding: 7px 6px !important;
 		}
 	}
 	/* results wrapper */
@@ -163,7 +171,6 @@
 				/* selected checkmark icon */
 				&::before {
 					content: ' ';
-					background-image: var(--icon-checkmark-000);
 					background-repeat: no-repeat;
 					background-position: center;
 					min-width: 16px;
@@ -200,5 +207,12 @@
 				}
 			}
 		}
+	}
+	/* Icon before option select */
+	&.multiselect--multiple .multiselect__content-wrapper li > span::before {
+		background-image: var(--icon-checkmark-000);
+	}
+	&.multiselect--single .multiselect__content-wrapper li > span::before {
+		background-image: var(--icon-triangle-e-000);
 	}
 }
