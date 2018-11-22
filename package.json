@@ -7,9 +7,9 @@
 		"nextcloud",
 		"components"
 	],
-	"repository": "https://github.com/nextcloud/vue-components",
-	"homepage": "https://github.com/nextcloud/vue-components",
-	"bugs": "https://github.com/nextcloud/vue-components/issues",
+	"repository": "https://github.com/nextcloud/nextcloud-vue",
+	"homepage": "https://github.com/nextcloud/nextcloud-vue",
+	"bugs": "https://github.com/nextcloud/nextcloud-vue/issues",
 	"author": "John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>",
 	"license": "AGPL-3.0",
 	"scripts": {
