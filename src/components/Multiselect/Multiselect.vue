@@ -36,6 +36,11 @@
 	<vue-multiselect
 		:value="value"
 		v-bind="$attrs"
+		:class="{
+			'icon-loading-small': loading,
+			'multiselect--multiple': multiple,
+			'multiselect--single': !multiple
+		}"
 		:limit="maxOptions"
 		:close-on-select="!multiple"
 		:multiple="multiple"
@@ -44,13 +49,27 @@
 		tag-placeholder="create"
 		v-on="$listeners"
 		@update:value="$emit('update:value', value)">
-		<template v-if="userSelect" slot="option" slot-scope="{ option }">
-			<avatar-select-option :option="option" />
+
+		<template slot="option" slot-scope="scope">
+			<!-- Avatar display select slot override.
+				You CANNOT use this scope, we will replace it by this -->
+			<avatar-select-option v-if="userSelect" :option="scope.option" />
+
+			<!-- Passing the singleLabel slot -->
+			<slot v-else name="option" v-bind="scope" />
 		</template>
+
+		<!-- Registering the limit slot to get the +xxx tooltip.
+			You CANNOT use this scope, we will replace it by this -->
 		<span v-if="multiple" slot="limit" v-tooltip.auto="formatLimitTitle(value)"
 			class="multiselect__limit">
 			{{ limitString }}
 		</span>
+
+		<!-- Passing the singleLabel slot -->
+		<template slot="singleLabel" slot-scope="scope">
+			<slot name="singleLabel" v-bind="scope" />
+		</template>
 		<!-- TODO add translation system
 		<span slot="noResult">{{ t('core', 'No results') }}</span> -->
 	</vue-multiselect>
@@ -110,6 +129,15 @@ export default {
 		 * @type {Boolean}
 		 */
 		userSelect: {
+			type: Boolean,
+			default: false
+		},
+		/**
+		 * Overriding the default slot. Only showing a spiner.
+		 * @default true
+		 * @type {Boolean}
+		 */
+		loading: {
 			type: Boolean,
 			default: false
 		},

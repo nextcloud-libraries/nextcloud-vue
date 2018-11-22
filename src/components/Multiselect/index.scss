@@ -2,10 +2,11 @@
 // as the nested properties are not inside it
 // Therefore we need to use an external scoping
 .multiselect[data-v-#{$scope_version}] {
-	margin: 1px 2px;
+	margin: 0;
 	padding: 0 !important;
 	display: inline-block;
-	width: 160px;
+	/* override this rule with your width styling if you need */
+	min-width: 160px; 
 	position: relative;
 	background-color: var(--color-main-background);
 	&.multiselect--active {
@@ -18,6 +19,11 @@
 	&.multiselect--disabled,
 	&.multiselect--disabled .multiselect__single {
 		background-color: var(--color-background-dark) !important;
+	}
+	// loading state
+	&.icon-loading-small::after {
+		left: 100%;
+		margin-left: -24px;
 	}
 	.multiselect__tags {
 		/* space between tags and limit tag */
@@ -43,7 +49,9 @@
 			input is used to display single value */
 			&:empty ~ input.multiselect__input {
 				opacity: 1 !important;
-				/* hide default empty text, show input instead */
+				/* hide default empty text like .multiselect__placeholder,
+				and show input instead. It looks better without a transition between
+				a span and the input that have different styling */
 				+ span:not(.multiselect__single) {
 					display: none;
 				}
@@ -82,14 +90,17 @@
 				}
 			}
 		}
-		/* Single select default value */
-		.multiselect__single {
-			padding: 8px 10px;
+		/* Single select default value
+		or default placeholder if search disabled*/
+		.multiselect__single,
+		.multiselect__placeholder {
+			padding: 7px 6px; // like the input
 			flex: 0 0 100%;
 			z-index: 1; /* above input */
 			background-color: var(--color-main-background);
 			cursor: pointer;
-			line-height: 17px;
+			line-height: 18px; // 32px - 2*6px (padding) - 2*1px (border)
+			color: var(--color-text-lighter); // like the input
 		}
 		/* displayed text if tag limit reached */
 		.multiselect__strong,
@@ -117,6 +128,8 @@
 			display: block !important;
 			/* only when not active */
 			cursor: pointer;
+			/* override inline styling of the lib */
+			padding: 7px 6px !important;
 		}
 	}
 	/* results wrapper */
@@ -163,7 +176,6 @@
 				/* selected checkmark icon */
 				&::before {
 					content: ' ';
-					background-image: var(--icon-checkmark-000);
 					background-repeat: no-repeat;
 					background-position: center;
 					min-width: 16px;
@@ -199,6 +211,20 @@
 					}
 				}
 			}
+		}
+	}
+	/* Icon before option select */
+	&.multiselect--multiple .multiselect__content-wrapper li > span::before {
+		background-image: var(--icon-checkmark-000);
+	}
+	&.multiselect--single .multiselect__content-wrapper li > span::before {
+		background-image: var(--icon-triangle-e-000);
+	}
+	/* Mouse feedback */
+	&:hover,
+	input.multiselect__input {
+		.multiselect__placeholder {
+			color: var(--color-main-text);
 		}
 	}
 }
