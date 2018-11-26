@@ -20,14 +20,14 @@
   -
   -->
 <template>
-
 	<!-- Is this a caption ? -->
-	<li v-if="item.caption" class="app-navigation-caption">{{ item.text }}</li>
+	<li v-if="item.caption" class="app-navigation-caption">
+		{{ item.text }}
+	</li>
 
 	<!-- Navigation item -->
 	<nav-element v-else :id="item.id" v-bind="navElement(item)"
 		:title="item.title" :class="[{'icon-loading-small': item.loading, 'open': opened, 'collapsible': collapsible }, item.classes]">
-
 		<!-- Bullet -->
 		<div v-if="item.bullet" :style="{ backgroundColor: item.bullet }" class="app-navigation-entry-bullet" />
 
@@ -84,7 +84,9 @@
 
 		<!-- undo entry -->
 		<div v-if="item.undo" class="app-navigation-entry-deleted">
-			<div class="app-navigation-entry-deleted-description">{{ item.undo.text }}</div>
+			<div class="app-navigation-entry-deleted-description">
+				{{ item.undo.text }}
+			</div>
 			<button :title="t('settings', 'Undo')" class="app-navigation-entry-deleted-button icon-history" />
 		</div>
 
