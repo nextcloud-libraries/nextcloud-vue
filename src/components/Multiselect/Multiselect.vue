@@ -49,7 +49,6 @@
 		tag-placeholder="create"
 		v-on="$listeners"
 		@update:value="$emit('update:value', value)">
-
 		<template slot="option" slot-scope="scope">
 			<!-- Avatar display select slot override.
 				You CANNOT use this scope, we will replace it by this -->

@@ -3,8 +3,12 @@
 		<avatar :display-name="option.displayName" :user="option.user" :disable-tooltip="true"
 			class="option__avatar" />
 		<div class="option__desc">
-			<span class="option__desc--lineone">{{ option.displayName }}</span>
-			<span v-if="option.desc" class="option__desc--linetwo">{{ option.desc }}</span>
+			<span class="option__desc--lineone">
+				{{ option.displayName }}
+			</span>
+			<span v-if="option.desc" class="option__desc--linetwo">
+				{{ option.desc }}
+			</span>
 		</div>
 		<span v-if="option.icon" class="icon option__icon" :class="option.icon" />
 	</span>

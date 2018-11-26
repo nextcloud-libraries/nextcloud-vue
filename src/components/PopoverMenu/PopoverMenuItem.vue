@@ -29,11 +29,19 @@
 			<span v-if="!iconIsUrl" :class="item.icon" />
 			<img v-else :src="item.icon">
 			<p v-if="item.text && item.longtext">
-				<strong class="menuitem-text">{{ item.text }}</strong><br>
-				<span class="menuitem-text-detail">{{ item.longtext }}</span>
+				<strong class="menuitem-text">
+					{{ item.text }}
+				</strong><br>
+				<span class="menuitem-text-detail">
+					{{ item.longtext }}
+				</span>
 			</p>
-			<span v-else-if="item.text">{{ item.text }}</span>
-			<p v-else-if="item.longtext">{{ item.longtext }}</p>
+			<span v-else-if="item.text">
+				{{ item.text }}
+			</span>
+			<p v-else-if="item.longtext">
+				{{ item.longtext }}
+			</p>
 		</a>
 
 		<!-- If item.input is set instead, an put will be used -->
@@ -53,7 +61,9 @@
 			<template v-else>
 				<input :id="key" v-model="item.model" :type="item.input"
 					:class="item.input" @change="item.action">
-				<label :for="key" @click.stop.prevent="item.action">{{ item.text }}</label>
+				<label :for="key" @click.stop.prevent="item.action">
+					{{ item.text }}
+				</label>
 			</template>
 		</span>
 
@@ -61,23 +71,38 @@
 		<button v-else-if="item.action" class="menuitem" @click.stop.prevent="item.action">
 			<span :class="item.icon" />
 			<p v-if="item.text && item.longtext">
-				<strong class="menuitem-text">{{ item.text }}</strong><br>
-				<span class="menuitem-text-detail">{{ item.longtext }}</span>
+				<strong class="menuitem-text">
+					{{ item.text }}
+				</strong><br>
+				<span class="menuitem-text-detail">
+					{{ item.longtext }}
+				</span>
 			</p>
-			<span v-else-if="item.text">{{ item.text }}</span>
-			<p v-else-if="item.longtext">{{ item.longtext }}</p>
+			<span v-else-if="item.text">
+				{{ item.text }}
+			</span>
+			<p v-else-if="item.longtext">
+				{{ item.longtext }}
+			</p>
 		</button>
 
 		<!-- If item.longtext is set AND the item does not have an action -->
 		<span v-else class="menuitem">
 			<span :class="item.icon" />
 			<p v-if="item.text && item.longtext">
-				<strong class="menuitem-text">{{ item.text }}</strong><br>
-				<span class="menuitem-text-detail">{{ item.longtext }}</span>
+				<strong class="menuitem-text">
+					{{ item.text }}
+				</strong><br>
+				<span class="menuitem-text-detail">
+					{{ item.longtext }}
+				</span>
 			</p>
-			<span v-else-if="item.text">{{ item.text }}</span>
-			<p v-else-if="item.longtext">{{ item.longtext }}</p>
-
+			<span v-else-if="item.text">
+				{{ item.text }}
+			</span>
+			<p v-else-if="item.longtext">
+				{{ item.longtext }}
+			</p>
 		</span>
 	</li>
 </template>

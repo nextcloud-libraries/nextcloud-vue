@@ -26,7 +26,6 @@
 		:class="[isSingleAction ? `${firstAction.icon} action-item--single` : 'action-item--multiple']"
 		v-bind="mainActionElement()" class="action-item"
 		v-on="isSingleAction && firstAction.action ? { click: firstAction.action } : {}">
-
 		<!-- If more than one action, create a popovermenu -->
 		<template v-if="!isSingleAction">
 			<div v-click-outside="closeMenu" tabindex="1" class="action-item__menutoggle icon-more"
@@ -35,7 +34,6 @@
 				<popover-menu :menu="actions" />
 			</div>
 		</template>
-
 	</action>
 </template>
 

@@ -26,7 +26,9 @@
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper" @click="toggleMenu">
 		<img v-if="!loadingState && !userDoesNotExist" :src="avatarUrlLoaded" :srcset="avatarSrcSetLoaded">
-		<div v-if="userDoesNotExist" class="unknown">{{ initials }}</div>
+		<div v-if="userDoesNotExist" class="unknown">
+			{{ initials }}
+		</div>
 		<div v-show="contactsMenuOpenState" class="popovermenu">
 			<popover-menu :is-open="contactsMenuOpenState" :menu="menu" />
 		</div>
