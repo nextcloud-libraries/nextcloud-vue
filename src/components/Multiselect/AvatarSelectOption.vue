@@ -1,7 +1,7 @@
 <template>
 	<span class="option">
 		<avatar :display-name="option.displayName" :user="option.user" :disable-tooltip="true"
-			class="option__avatar" />
+			:is-no-user="option.isNoUser" class="option__avatar" />
 		<div class="option__desc">
 			<span class="option__desc--lineone">
 				{{ option.displayName }}
@@ -30,7 +30,8 @@ export default {
 					desc: '',
 					displayName: 'Admin',
 					icon: 'icon-user',
-					user: 'admin'
+					user: 'admin',
+					isNoUser: false
 				}
 			},
 			validator: (option) => {
