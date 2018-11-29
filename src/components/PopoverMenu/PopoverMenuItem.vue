@@ -112,6 +112,10 @@
 	button.menuitem {
 		text-align: left;
 	}
+	button.menuitem.active {
+		box-shadow: inset 2px 0 var(--color-primary);
+		border-radius: 0;
+	}
 </style>
 
 <script>
