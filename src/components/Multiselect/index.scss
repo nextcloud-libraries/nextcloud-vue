@@ -213,6 +213,12 @@
 			}
 		}
 	}
+	/* ABOVE display */
+	&.multiselect--above .multiselect__content-wrapper {
+		bottom: 100%;
+		margin-bottom: -1px;
+	}
+
 	/* Icon before option select */
 	&.multiselect--multiple .multiselect__content-wrapper li > span::before {
 		background-image: var(--icon-checkmark-000);
