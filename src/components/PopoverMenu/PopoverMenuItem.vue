@@ -68,7 +68,7 @@
 		</span>
 
 		<!-- If item.action is set instead, a button will be used -->
-		<button v-else-if="item.action" class="menuitem" :class="{'active':(item.active === true)}"
+		<button v-else-if="item.action" class="menuitem" :class="{'active':(item.active)}"
 			@click.stop.prevent="item.action">
 			<span :class="item.icon" />
 			<p v-if="item.text && item.longtext">
