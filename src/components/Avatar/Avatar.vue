@@ -103,6 +103,16 @@ export default {
 			default: false
 		},
 		/**
+		 * Declares a custom tooltip when not null
+		 * Fallback will be the displayName
+		 *
+		 * requires disableTooltip not to be set to true
+		 */
+		tooltipMessage: {
+			type: String,
+			default: null
+		},
+		/**
 		 * Declares username is not a user's name, when true.
 		 * Prevents loading user's avatar from server and forces generating colored initials,
 		 * i.e. if the user is a group
@@ -165,6 +175,10 @@ export default {
 			if (this.disableTooltip) {
 				return false
 			}
+			if (this.tooltipMessage) {
+				return this.tooltipMessage
+			}
+
 			return this.displayName
 		},
 		initials() {
