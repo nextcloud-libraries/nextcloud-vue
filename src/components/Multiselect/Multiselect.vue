@@ -49,7 +49,8 @@
 		tag-placeholder="create"
 		v-on="$listeners"
 		@update:value="$emit('update:value', value)">
-		<template slot="option" slot-scope="scope">
+		<!-- This is the scope to format the list of available options in the dropdown -->
+		<template v-if="$scopedSlots['option']" slot="option" slot-scope="scope">
 			<!-- Avatar display select slot override.
 				You CANNOT use this scope, we will replace it by this -->
 			<avatar-select-option v-if="userSelect" :option="scope.option" />
@@ -65,10 +66,12 @@
 			{{ limitString }}
 		</span>
 
-		<!-- Passing the singleLabel slot -->
-		<template slot="singleLabel" slot-scope="scope">
+		<!-- Passing the singleLabel slot, this is used to format the selected
+			option on NON-multiple multiselects -->
+		<template v-if="$scopedSlots['singleLabel']" slot="singleLabel" slot-scope="scope">
 			<slot name="singleLabel" v-bind="scope" />
 		</template>
+
 		<!-- TODO add translation system
 		<span slot="noResult">{{ t('core', 'No results') }}</span> -->
 	</vue-multiselect>
