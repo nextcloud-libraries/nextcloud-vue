@@ -57,17 +57,14 @@ module.exports = {
 			},
 			{
 				test: /\.(png|jpg|gif|svg)$/,
-				loader: 'file-loader',
-				options: {
-					name: '[name].[ext]?[hash]'
-				}
+				loader: 'base64-inline-loader?limit=1000&name=[name].[ext]'
 			}
 		]
 	},
 	plugins: [
 		new VueLoaderPlugin(),
 		new StyleLintPlugin(),
-		new DefinePlugin({SCOPE_VERSION})
+		new DefinePlugin({ SCOPE_VERSION })
 	],
 	resolve: {
 		alias: {
