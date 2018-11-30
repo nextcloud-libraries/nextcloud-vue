@@ -26,10 +26,21 @@
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper" @click="toggleMenu">
 		<img v-if="!loadingState && !userDoesNotExist" :src="avatarUrlLoaded" :srcset="avatarSrcSetLoaded">
+		<div v-if="status" class="avatardiv__status" :class="'avatardiv__status--' + status"
+			:style="{ backgroundColor: `#${statusColor}` }">
+			<!-- triangle -->
+			<svg v-if="status === 'neutral'" xmlns="http://www.w3.org/2000/svg"
+				width="12" height="11"
+				viewBox="0 0 3.175 2.91">
+				<path d="M3.21 3.043H.494l.679-1.177.68-1.176.678 1.176z"
+					:style="{ fill: `#${statusColor}` }" stroke="#fff"
+					stroke-width=".265" stroke-linecap="square" />
+			</svg>
+		</div>
 		<div v-if="userDoesNotExist" class="unknown">
 			{{ initials }}
 		</div>
-		<div v-show="contactsMenuOpenState" class="popovermenu">
+		<div v-if="menu.length > 0" v-show="contactsMenuOpenState" class="popovermenu">
 			<popover-menu :is-open="contactsMenuOpenState" :menu="menu" />
 		</div>
 	</div>
@@ -120,6 +131,27 @@ export default {
 		isNoUser: {
 			type: Boolean,
 			default: false
+		},
+
+		status: {
+			type: String,
+			default: null,
+			validator: (value) => {
+				switch (value) {
+				case 'positive':
+				case 'negative':
+				case 'neutral':
+					return true
+				}
+				return false
+			}
+		},
+		statusColor: {
+			type: [Number, String],
+			default: null,
+			validator: value => {
+				return /^([a-f0-9]{3}){1,2}$/i.test(value)
+			}
 		}
 	},
 	data() {
@@ -288,39 +320,69 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	.avatardiv {
 		display: inline-block;
-	}
-
-	.avatardiv.unknown {
-		background-color: var(--color-text-maxcontrast);
 		position: relative;
-	}
 
-	.avatardiv > .unknown {
-		position: absolute;
-		color: var(--color-main-background);
-		width: 100%;
-		text-align: center;
-		display: block;
-		left: 0;
-		top: 0;
-	}
+		&.unknown {
+			background-color: var(--color-text-maxcontrast);
+			position: relative;
+		}
 
-	.avatardiv img {
-		width: 100%;
-		height: 100%;
-	}
+		> .unknown {
+			position: absolute;
+			color: var(--color-main-background);
+			width: 100%;
+			text-align: center;
+			display: block;
+			left: 0;
+			top: 0;
+		}
 
-	.popovermenu-wrapper {
-		position: relative;
-		display: inline-block;
-	}
+		img {
+			width: 100%;
+			height: 100%;
+		}
 
-	.popovermenu {
-		display: block;
-		margin: 0;
-		font-size: initial;
+		.avatardiv__status {
+			width: 10px;
+			height: 10px;
+			position: absolute;
+			left: 22px;
+			top: 22px;
+			border: 1px solid rgba(255, 255, 255, .5);
+			background-clip: content-box;
+			&--positive {
+				background-color: var(--color-success);
+				border-radius: 50%;
+			}
+			&--negative {
+				background-color: var(--color-error);
+			}
+			&--neutral {
+				background-color: transparent !important;
+				border: none;
+				svg {
+					position: absolute;
+					left: -2px;
+					top: -3px;
+					path {
+						fill: #aaa;
+					}
+				}
+			}
+		}
+
+		.popovermenu-wrapper {
+			position: relative;
+			display: inline-block;
+		}
+
+		.popovermenu {
+			display: block;
+			margin: 0;
+			font-size: initial;
+		}
 	}
 </style>
