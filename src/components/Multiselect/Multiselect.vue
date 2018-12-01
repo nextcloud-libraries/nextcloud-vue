@@ -50,7 +50,7 @@
 		v-on="$listeners"
 		@update:value="$emit('update:value', value)">
 		<!-- This is the scope to format the list of available options in the dropdown -->
-		<template v-if="$scopedSlots['option']" slot="option" slot-scope="scope">
+		<template v-if="$scopedSlots['option'] || userSelect" slot="option" slot-scope="scope">
 			<!-- Avatar display select slot override.
 				You CANNOT use this scope, we will replace it by this -->
 			<avatar-select-option v-if="userSelect" :option="scope.option" />
