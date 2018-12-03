@@ -9,22 +9,39 @@
 	min-width: 160px; 
 	position: relative;
 	background-color: var(--color-main-background);
+
+	// active state, force the input to be shown, we don't want
+	// the placeholder or the currently selected options
 	&.multiselect--active {
 		/* Opened: force display the input */
 		input.multiselect__input {
 			opacity: 1 !important;
 			cursor: text !important;
+			// remove border radius on bottom opening
+			border-radius: var(--border-radius) var(--border-radius) 0 0;
 		}
 	}
+
+	// Remove radius on top opening
+	&.multiselect--active.multiselect--above {
+		input.multiselect__input {
+			border-radius: 0 0 var(--border-radius) var(--border-radius);
+		}
+	}
+
+	// disabled state background
 	&.multiselect--disabled,
 	&.multiselect--disabled .multiselect__single {
 		background-color: var(--color-background-dark) !important;
 	}
+
 	// loading state
 	&.icon-loading-small::after {
 		left: 100%;
 		margin-left: -24px;
 	}
+
+	// multiple selected options display
 	.multiselect__tags {
 		/* space between tags and limit tag */
 		$space-between: 5px;
@@ -90,6 +107,7 @@
 				}
 			}
 		}
+	
 		/* Single select default value
 		or default placeholder if search disabled*/
 		.multiselect__single,
@@ -132,6 +150,7 @@
 			padding: 7px 6px !important;
 		}
 	}
+
 	/* results wrapper */
 	.multiselect__content-wrapper {
 		position: absolute;
@@ -142,9 +161,10 @@
 		z-index: 50;
 		max-height: 250px;
 		overflow-y: auto;
+		border-radius: 0 0 var(--border-radius) var(--border-radius);
 		.multiselect__content {
 			width: 100%;
-			padding: 5px 0;
+			padding: 0;
 		}
 		li {
 			position: relative;
@@ -156,7 +176,7 @@
 				cursor: pointer;
 			}
 			> span {
-				padding: 5px;
+				padding: 8px;
 				white-space: nowrap;
 				overflow: hidden;
 				text-overflow: ellipsis;
@@ -223,8 +243,9 @@
 	&.multiselect--multiple .multiselect__content-wrapper li > span::before {
 		background-image: var(--icon-checkmark-000);
 	}
+	/* No need for an icon here */
 	&.multiselect--single .multiselect__content-wrapper li > span::before {
-		background-image: var(--icon-triangle-e-000);
+		display: none;
 	}
 	/* Mouse feedback */
 	&:hover,
