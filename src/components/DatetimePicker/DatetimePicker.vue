@@ -21,21 +21,23 @@
   -->
 
 <template>
-	<datepicker
+	<date-picker
 		v-bind="$attrs"
 		:minute-step="10"
 		:clearable="false"
-		v-on="$listeners" />
+		:value="value"
+		v-on="$listeners"
+		@update:value="$emit('update:value', value)" />
 </template>
 
 <script>
-import Datepicker from 'vue2-datepicker'
+import DatePicker from 'vue2-datepicker/lib/datepicker'
 
 /**
  * hijack the display function and avoid the
  * top and left original positionning
  */
-Datepicker.methods.displayPopup = function() {
+DatePicker.methods.displayPopup = function() {
 	const popupElmt = this.$el.querySelector('.mx-datepicker-popup')
 	if (popupElmt && !popupElmt.classList.contains('popovermenu')) {
 		popupElmt.className += ' popovermenu menu-center open'
@@ -46,9 +48,18 @@ export default {
 	name: 'DatetimePicker',
 
 	components: {
-		Datepicker
+		DatePicker
 	},
 
-	inheritAttrs: false
+	inheritAttrs: false,
+
+	props: {
+		// eslint-disable-next-line
+		value: {
+			default() {
+				return new Date()
+			}
+		}
+	}
 }
 </script>

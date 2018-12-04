@@ -1,62 +1,137 @@
 $opacity_disabled: .5;
 $opacity_normal: .7;
 $opacity_full: 1;
+$cell_height: 32px;
+$cell_height_big: 44px;
 
 
 .mx-datepicker[data-v-#{$scope_version}] {
 	width: 210px;
 	color: inherit;
-	font: inherit;
 	user-select: none;
+	position: relative;
+	display: inline-block;
+
+	&.disabled {
+		opacity: .7;
+		cursor: not-allowed;
+	}
+
+	/* INPUT CONTAINER */
+	.mx-input-wrapper {
+		// input
+		.mx-input {
+			width: 100%;
+		}
+		// reset and calendar icon
+		.mx-input-append {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 30px;
+			height: 100%;
+			padding: 6px;
+			background-color: var(--color-main-background);
+			background-clip: content-box;
+			// generic style icon
+			.mx-input-icon {
+				display: inline-block;
+				font-style: normal;
+				text-align: center;
+				cursor: pointer;
+			}
+			// We forbid the cleareable option, so no need
+			// to style the reset icon: only hide it
+			.mx-clear-wrapper {
+				display: none;
+			}
+			.mx-calendar-icon {
+				stroke-width: 8px;
+				stroke: currentColor;
+				fill: currentColor;
+				width: 100%;
+				height: 100%;
+				color: var(--color-text-lighter);
+			}
+		}
+	}
 
 	.mx-datepicker-popup {
 		box-shadow: none;
+		background-color: var(--color-main-background);
+		position: absolute;
+		margin-top: 1px;
+		margin-bottom: 1px;
+		z-index: 1000;
 	}
 
-	// Range selectors
+	// MULTI CALENDAR DISPLAY FOR RANGE PICK
+	.mx-range-wrapper {
+		display: flex;
+		overflow: hidden;
+		.mx-calendar:first-child {
+			// override inline styling that separate the two calendars
+			box-shadow: var(--color-border) 1px 0px !important;
+		}
+		// first active cell
+		.mx-calendar-content .mx-panel .cell {
+			&.actived {
+				border-radius: var(--border-radius) 0 0 var(--border-radius);
+			}
+			// second selected cell
+			&.inrange + .cell.actived {
+				border-radius: 0 var(--border-radius) var(--border-radius) 0;
+			}
+		}
+	}
+	
+	// RANGE SELECTOR
 	.mx-shortcuts-wrapper {
+		display: flex;
+		justify-content: space-evenly;
+		padding: 5px;
+		border-bottom: 1px solid var(--color-border);
 		.mx-shortcuts {
 			font-weight: normal;
-			color: var(--color-text-lighter);
-			&:hover {
-				color: var(--color-text-light);
-			}
-			// divider
-			&:after {
-				color: var(--color-text-lighter);
-				opacity: $opacity_normal;
-			}
 		}
 	}
 
-	// Confirm button
-	.mx-datepicker-btn-confirm {
-		background-color: var(--color-primary-element);
-		color: var(--color-primary-text);
-		&:hover {
-			color: var(--color-primary-text);
-			border-color: var(--color-primary-element);
-		}
-	}
-
-	// global design rule
+	// GLOBAL CONTAINER
 	.mx-calendar {
 		font: inherit;
 		color: var(--color-main-text);
+		padding: 5px;
+		width: 240px;
 	}
 
-	// Headers: year, month and arrows
+	// HEADER: year, month and arrows
 	.mx-calendar-header {
+		padding: 0 4px;
+		margin-bottom: 4px;
+		text-align: center;
+		overflow: hidden;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		> a {
+			text-decoration: none;
+			cursor: pointer;
 			color: var(--color-text-lighter);
 			padding: 7px 10px;
-			border-radius: 30px;
-			height: 34px;
-			line-height: 22px;
-			min-width: 22px;
+			margin: 0 auto; // center also single element
+			border-radius: $cell_height;
+			height: $cell_height;
+			line-height: $cell_height - 12px; // padding minus 2px for better visual
+			min-width: $cell_height;
+			// Mouse feedback
+			&:hover,
+			&:focus {
+				opacity: 1;
+				color: var(--color-main-text);
+				background-color: var(--color-background-darker);
+			}
+
+			// Header arrows 
 			&.mx-icon-last-year,
 			&.mx-icon-last-month,
 			&.mx-icon-next-month,
@@ -84,88 +159,167 @@ $opacity_full: 1;
 				// send them to the end of the row
 				order: 4;
 			}
-			&:hover,
-			&:focus {
-				opacity: 1;
-				color: var(--color-main-text);
-				background-color: var(--color-background-darker);
-			}
 		}
 	}
 
+	// PANELS CONTAINER
 	.mx-calendar-content {
-		// regular cell style
-		.cell {
-			opacity: $opacity_normal;
-			border-radius: 50px;
-			transition: all 100ms ease-in-out;
-			// Selected and mouse event
-			&:hover,
-			&:focus,
-			&.actived {
-				font-weight: bold;
-				opacity: $opacity_full;
-				color: var(--color-primary-text);
-				background-color: var(--color-primary-element);
-			}
-			&.inrange {
-				background-color: transparent;
-			}
-			&.disabled {
-				color: var(--color-text-lighter);
-				background-color: var(--color-background-darker);
-				opacity: $opacity_disabled;
-				border-radius: 0;
-				font-weight: normal;
-			}	
-		}
-	}
 
-	.mx-panel-date {
-		// Rows: do not change on mouse event
-		tr:hover,
-		tr:focus,
-		tr:active {
-			background: none;
-		}
-		// Days of the week
-		th {
-			color: var(--color-text-lighter);
-			opacity: .5;
-		}
-		// Days number
-		td {
-			&.today {
-				color: var(--color-primary);
-				opacity: 1;
-				font-weight: bold;
-			}
-			&.last-month,
-			&.next-month {
-				color: var(--color-text-lighter);
-				opacity: $opacity_disabled;
-			}
-		}
-	}
+		// Various panels
+		.mx-panel {
+			width: 100%;
+			height: 100%;
+			text-align: center;
 
-	.mx-time-list {
-		padding: 5px;
-		li {
+			// regular cell style
+			.cell {
+				opacity: $opacity_normal;
+				border-radius: 50px;
+				transition: all 100ms ease-in-out;
+				cursor: pointer;
+				// Selected and mouse event
+				&:hover,
+				&:focus,
+				&.actived,
+				&.inrange  {
+					font-weight: bold;
+					opacity: $opacity_full;
+					color: var(--color-primary-text);
+					background-color: var(--color-primary-element);
+				}
+				&.inrange, 
+				&.disabled {
+					border-radius: 0;
+					font-weight: normal;
+				}	
+				&.inrange {
+					opacity: $opacity_normal;
+				}
+				&.disabled {
+					color: var(--color-text-lighter);
+					opacity: $opacity_disabled;
+					background-color: var(--color-background-darker);
+				}	
+			}
+			
+			// cell that are not in a table
+			span.cell,
+			li.cell {
+				height: $cell_height;
+			}
+		}
+
+		/* DATE SELECTOR */
+		.mx-panel-date {
+			table-layout: fixed;
+			border-collapse: collapse;
+			border-spacing: 0;
+			td, th {
+				font-size: 12px;
+				width: 32px;
+				height: 32px;
+				padding: 0;
+				overflow: hidden;
+				text-align: center;
+			}
+			// Days of the week
+			th {
+				color: var(--color-text-lighter);
+				opacity: .5;
+			}
+			// Days number
+			td {
+				&.today {
+					color: var(--color-primary);
+					opacity: 1;
+					font-weight: bold;
+				}
+				&.last-month,
+				&.next-month {
+					color: var(--color-text-lighter);
+					opacity: $opacity_disabled;
+				}
+			}
+			// Rows: do not change on mouse event
+			tr:hover,
+			tr:focus,
+			tr:active {
+				background: none;
+			}
+		}
+
+		// Global rules for year and month panel
+		.mx-panel-year,
+		.mx-panel-month {
 			display: flex;
-			justify-content: center;
-			margin-bottom: 1px;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			span.cell  {
+				display: block;
+				padding: 5px;
+				height: $cell_height_big;
+				line-height: $cell_height_big - 8px; // padding + 2px for better visual
+				margin-bottom: 1%;
+			}
 		}
-		&::-webkit-scrollbar {
-			width: 5px;
-			height: 5px;
+
+		/* YEAR SELECTOR */
+		.mx-panel-year {
+			.cell {
+				width: 45%; // two rows
+				
+			}
 		}
-		&::-webkit-scrollbar-thumb {
-			background-color: var(--color-background-darker);
-			border-radius: var(--border-radius);
-			box-shadow: none;
+
+		/* MONTH SELECTOR */
+		.mx-panel-month {
+			.cell  {
+				width: 30%; // three rows
+			}
 		}
-		&:hover::-webkit-scrollbar-thumb {
-			background-color: var(--color-background-darker);
+
+		/* TIME SELECTOR */
+		.mx-panel-time {
+			display: flex;
+			.mx-time-list {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				padding: 5px;
+				margin: 0;
+				list-style: none;
+				// border-top: 1px solid var(--color-border);
+				// border-left: 1px solid var(--color-border);
+				overflow-y: auto;
+				// half height so we can know there is a scrolling area
+				// minus mx-time-list padding and overall popover padding
+				max-height: 7.5 * $cell_height - 10px - 10px;
+				// TODO: find why we had this :D
+				.mx-time-picker-item {
+					display: block;
+					text-align: left;
+					padding-left: 10px;
+				}
+				.cell {
+					display: flex;
+					justify-content: center;
+					margin-bottom: 1px;
+					width: 100%;
+					font-size: 12px;
+					height: $cell_height;
+					line-height: $cell_height;
+				}
+			}
 		}
+	}
+
+	/* FOOTER if confirm option enabled*/
+	.mx-datepicker-footer {
+		padding: 4px;
+		clear: both;
+		text-align: right;
+		border-top: 1px solid var(--color-border);
+		// we don't style the confirm button
+		// leaving that to core
 	}
 }
