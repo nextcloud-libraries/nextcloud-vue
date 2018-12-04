@@ -24,7 +24,9 @@
 	<datepicker
 		v-bind="$attrs"
 		:minute-step="10"
+		:lang="lang"
 		:clearable="false"
+		:first-day-of-week="firstDay"
 		v-on="$listeners" />
 </template>
 
@@ -49,6 +51,28 @@ export default {
 		Datepicker
 	},
 
-	inheritAttrs: false
+	inheritAttrs: false,
+
+	computed: {
+		firstDay() {
+			return window.firstDay
+				? window.firstDay
+				: 0 // sunday as default
+		},
+		lang() {
+			// fallback to default in case of unavailable data
+			return {
+				days: window.dayNamesShort
+					? window.dayNamesShort			// provided by nextcloud
+					: ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.'],
+				months: window.monthNamesShort
+					? window.monthNamesShort		// provided by nextcloud
+					: ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May.', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'],
+				placeholder: {
+					date: 'Select Date' // TODO: Translate
+				}
+			}
+		}
+	}
 }
 </script>

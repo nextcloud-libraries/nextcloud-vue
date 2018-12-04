@@ -34,6 +34,7 @@
 		"@babel/polyfill": "^7.0.0",
 		"base64-inline-loader": "^1.1.1",
 		"md5": "^2.2.1",
+		"moment": "^2.22.2",
 		"nextcloud-axios": "^0.1.2",
 		"v-tooltip": "^2.0.0-rc.33",
 		"vue": "^2.5.16",
