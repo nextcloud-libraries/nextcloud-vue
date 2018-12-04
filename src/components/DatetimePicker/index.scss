@@ -52,33 +52,43 @@ $opacity_full: 1;
 		justify-content: space-between;
 		> a {
 			color: var(--color-text-lighter);
-			&:hover {
-				color: var(--color-main-text);
-				background-color: var(--color-background-darker);
-			}
-			&.mx-current-month,
-			&.mx-current-year {
-				padding: 5px;
-				border-radius: 30px;
-				height: 30px;
-				line-height: 20px;
-			}
+			padding: 7px 10px;
+			border-radius: 30px;
+			height: 34px;
+			line-height: 22px;
+			min-width: 22px;
 			&.mx-icon-last-year,
 			&.mx-icon-last-month,
 			&.mx-icon-next-month,
 			&.mx-icon-next-year {
-				min-width: 22px;
-				height: 22px;
-				border-radius: 50%;
-				line-height: 22px;
+				background-position: center;
+				background-repeat: no-repeat;
+				font-size: 0;
+				opacity: .5;
 			}
-			// arrows are all before month and year
-			// send them to the end of the row
+			&.mx-icon-last-year {
+				background-image: url(../../assets/arrow-left-double.svg);
+			}
+			&.mx-icon-last-month {
+				background-image: url(../../assets/arrow-left.svg);
+			}
 			&.mx-icon-next-month {
+				background-image: url(../../assets/arrow-right.svg);
+				// arrows are all before month and year
+				// send them to the end of the row
 				order: 3;
 			}
 			&.mx-icon-next-year {
+				background-image: url(../../assets/arrow-right-double.svg);
+				// arrows are all before month and year
+				// send them to the end of the row
 				order: 4;
+			}
+			&:hover,
+			&:focus {
+				opacity: 1;
+				color: var(--color-main-text);
+				background-color: var(--color-background-darker);
 			}
 		}
 	}
@@ -120,8 +130,8 @@ $opacity_full: 1;
 		}
 		// Days of the week
 		th {
-			color: var(--color-primary-element);
-			background-color: var(--color-main-background);
+			color: var(--color-text-lighter);
+			opacity: .5;
 		}
 		// Days number
 		td {
@@ -143,6 +153,7 @@ $opacity_full: 1;
 		li {
 			display: flex;
 			justify-content: center;
+			margin-bottom: 1px;
 		}
 		&::-webkit-scrollbar {
 			width: 5px;

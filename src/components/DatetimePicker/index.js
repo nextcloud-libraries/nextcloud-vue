@@ -20,21 +20,10 @@
  *
  */
 import ScopeComponent from 'Utils/ScopeComponent'
-import DatePicker from 'vue2-datepicker'
+import DatetimePicker from './DatetimePicker'
 import './index.scss'
 
-ScopeComponent(DatePicker)
+ScopeComponent(DatetimePicker)
 
-/**
- * hijack the display function and avoid the
- * top and left original positionning
- */
-DatePicker.methods.displayPopup = function() {
-	const popupElmt = this.$el.querySelector('.mx-datepicker-popup')
-	if (popupElmt && !popupElmt.classList.contains('popovermenu')) {
-		popupElmt.className += ' popovermenu menu-center open'
-	}
-}
-
-export default DatePicker
-export { DatePicker }
+export default DatetimePicker
+export { DatetimePicker }
