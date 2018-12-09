@@ -5,8 +5,9 @@ module.exports = {
 			{
 				targets: {
 					browsers: ['last 2 versions', 'ie >= 11']
-				}
-			}
+				},
+				include: ['transform-arrow-functions', 'es6.map']
+			},
 		]
 	]
 }
