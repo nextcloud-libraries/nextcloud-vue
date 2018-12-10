@@ -31,7 +31,6 @@
 		"dist"
 	],
 	"dependencies": {
-		"@babel/polyfill": "^7.0.0",
 		"base64-inline-loader": "^1.1.1",
 		"md5": "^2.2.1",
 		"nextcloud-axios": "^0.1.2",
@@ -46,6 +45,7 @@
 	},
 	"devDependencies": {
 		"@babel/core": "^7.0.1",
+		"@babel/plugin-transform-arrow-functions": "^7.2.0",
 		"@babel/preset-env": "^7.0.0",
 		"@vue/test-utils": "^1.0.0-beta.25",
 		"babel-eslint": "^10.0.0",
