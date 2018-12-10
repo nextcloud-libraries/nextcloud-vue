@@ -34,8 +34,17 @@
 import DatePicker from 'vue2-datepicker/lib/datepicker'
 
 /**
+ * remove leading zeros on hours and minutes
+ * https://github.com/mengxiong10/vue2-datepicker/blob/65c5762227649430f14158c01401a8486a881336/src/panel/time.js#L38
+ */
+DatePicker.components.CalendarPanel.components.PanelTime.methods.stringifyText = function(data) {
+	return data
+}
+
+/**
  * hijack the display function and avoid the
  * top and left original positionning
+ * https://github.com/mengxiong10/vue2-datepicker/blob/65c5762227649430f14158c01401a8486a881336/src/index.vue#L431
  */
 DatePicker.methods.displayPopup = function() {
 	const popupElmt = this.$el.querySelector('.mx-datepicker-popup')
