@@ -21,21 +21,32 @@
   -->
 
 <template>
-	<datepicker
+	<date-picker
 		v-bind="$attrs"
 		:minute-step="10"
 		:clearable="false"
-		v-on="$listeners" />
+		:value="value"
+		v-on="$listeners"
+		@update:value="$emit('update:value', value)" />
 </template>
 
 <script>
-import Datepicker from 'vue2-datepicker'
+import DatePicker from 'vue2-datepicker/lib/datepicker'
+
+/**
+ * remove leading zeros on hours and minutes
+ * https://github.com/mengxiong10/vue2-datepicker/blob/65c5762227649430f14158c01401a8486a881336/src/panel/time.js#L38
+ */
+DatePicker.components.CalendarPanel.components.PanelTime.methods.stringifyText = function(data) {
+	return data
+}
 
 /**
  * hijack the display function and avoid the
  * top and left original positionning
+ * https://github.com/mengxiong10/vue2-datepicker/blob/65c5762227649430f14158c01401a8486a881336/src/index.vue#L431
  */
-Datepicker.methods.displayPopup = function() {
+DatePicker.methods.displayPopup = function() {
 	const popupElmt = this.$el.querySelector('.mx-datepicker-popup')
 	if (popupElmt && !popupElmt.classList.contains('popovermenu')) {
 		popupElmt.className += ' popovermenu menu-center open'
@@ -46,9 +57,18 @@ export default {
 	name: 'DatetimePicker',
 
 	components: {
-		Datepicker
+		DatePicker
 	},
 
-	inheritAttrs: false
+	inheritAttrs: false,
+
+	props: {
+		// eslint-disable-next-line
+		value: {
+			default() {
+				return new Date()
+			}
+		}
+	}
 }
 </script>
