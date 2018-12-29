@@ -154,6 +154,7 @@ export default {
 		},
 		toggleCollapse() {
 			this.opened = !this.opened
+			this.item.opened = this.opened
 		},
 		cancelEdit(e) {
 			// remove the editing class
