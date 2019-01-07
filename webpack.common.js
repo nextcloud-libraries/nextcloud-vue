@@ -1,11 +1,15 @@
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
+
+const IconfontPlugin = require('iconfont-plugin-webpack')
+const IconfontName = 'iconfont-vue'
+
 const { DefinePlugin } = require('webpack')
 
 // scope variable
 const md5 = require('md5')
-const PACKAGE = require('./package.json');
+const PACKAGE = require('./package.json')
 const SCOPE_VERSION = JSON.stringify(md5(PACKAGE.version).substr(0, 7))
 
 module.exports = {
@@ -30,16 +34,26 @@ module.exports = {
 		rules: [
 			{
 				test: /\.css$/,
-				use: ['vue-style-loader', 'css-loader']
+				use: ['vue-style-loader', 'css-loader', 'resolve-url-loader']
 			},
 			{
 				test: /\.scss$/,
-				use: ['vue-style-loader', 'css-loader', {
-					loader: 'sass-loader',
-					options: {
-						data: '$scope_version: ' + SCOPE_VERSION + ';'
+				use: [
+					'vue-style-loader',
+					'css-loader',
+					'resolve-url-loader',
+					{
+						loader: 'sass-loader',
+						options: {
+							data: '$scope_version: ' + SCOPE_VERSION + ';',
+							/**
+							 * ! needed for resolve-url-loader
+							 */
+							sourceMap: true,
+							sourceMapContents: false
+						}
 					}
-				}]
+				]
 			},
 			{
 				test: /\.(js|vue)$/,
@@ -56,12 +70,23 @@ module.exports = {
 				exclude: /node_modules/
 			},
 			{
-				test: /\.(png|jpg|gif|svg)$/,
-				loader: 'base64-inline-loader?limit=1000&name=[name].[ext]'
+				test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/i,
+				loader: 'url-loader'
 			}
 		]
 	},
 	plugins: [
+		new IconfontPlugin({
+			src: './src/assets/iconfont',
+			family: IconfontName,
+			dest: {
+				font: './src/fonts/[family].[type]',
+				css: './src/fonts/scss/[family].scss'
+			},
+			watch: {
+				pattern: './src/assets/iconfont/*.svg'
+			}
+		}),
 		new VueLoaderPlugin(),
 		new StyleLintPlugin(),
 		new DefinePlugin({ SCOPE_VERSION })
@@ -69,8 +94,9 @@ module.exports = {
 	resolve: {
 		alias: {
 			Components: path.resolve(__dirname, 'src/components/'),
-			Utils: path.resolve(__dirname, 'src/utils/')
+			Utils: path.resolve(__dirname, 'src/utils/'),
+			Fonts: path.resolve(__dirname, 'src/fonts/')
 		},
 		extensions: ['*', '.js', '.vue', '.json']
 	}
-}
+};

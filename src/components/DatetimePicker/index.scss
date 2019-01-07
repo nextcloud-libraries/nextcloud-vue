@@ -4,6 +4,8 @@ $opacity_full: 1;
 $cell_height: 32px;
 $cell_height_big: 44px;
 
+// import the icons font scss
+@import '~Fonts/scss/iconfont-vue';
 
 .mx-datepicker[data-v-#{$scope_version}] {
 	width: 210px;
@@ -140,21 +142,32 @@ $cell_height_big: 44px;
 				background-repeat: no-repeat;
 				font-size: 0;
 				opacity: .5;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0; // leave the centering to flex
+
+				// font icons
+				&:before {
+					display: block;
+					font-size: 16px;
+				}
+
 			}
 			&.mx-icon-last-year {
-				background-image: url(../../assets/arrow-left-double.svg);
+				@include iconfont('arrow-left');
 			}
 			&.mx-icon-last-month {
-				background-image: url(../../assets/arrow-left.svg);
+				@include iconfont('arrow-left-double');
 			}
 			&.mx-icon-next-month {
-				background-image: url(../../assets/arrow-right.svg);
+				@include iconfont('arrow-right-double');
 				// arrows are all before month and year
 				// send them to the end of the row
 				order: 3;
 			}
 			&.mx-icon-next-year {
-				background-image: url(../../assets/arrow-right-double.svg);
+				@include iconfont('arrow-right');
 				// arrows are all before month and year
 				// send them to the end of the row
 				order: 4;
@@ -205,7 +218,7 @@ $cell_height_big: 44px;
 			// cell that are not in a table
 			span.cell,
 			li.cell {
-				height: $cell_height;
+				min-height: $cell_height;
 			}
 		}
 
