@@ -19,7 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import AppNavigation from './AppNavigation'
+import AppNavigationItem from './AppNavigationItem'
 
-export default AppNavigation
-export { AppNavigation }
+export default AppNavigationItem
+export { AppNavigationItem }
