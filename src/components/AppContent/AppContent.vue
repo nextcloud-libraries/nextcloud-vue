@@ -22,7 +22,19 @@
 
 <template>
 	<div id="content" :class="'app-' + appName">
+		<div v-if="!!$slots['navigation']"
+			id="app-navigation">
+			<slot name="navigation" />
+		</div>
+		<div v-if="!!$slots['content']"
+			id="app-content">
+			<slot name="content" />
+		</div>
 		<slot />
+		<div v-if="!!$slots['sidebar']"
+			id="app-sidebar">
+			<slot name="sidebar" />
+		</div>
 	</div>
 </template>
 
