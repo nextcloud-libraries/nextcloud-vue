@@ -21,7 +21,9 @@
  */
 
 import AppContent from './AppContent'
-import AppNavigation from './AppNavigation'
+import AppNavigationItem from './AppNavigationItem'
+import AppNavigationNew from './AppNavigationNew'
+import AppNavigationSettings from './AppNavigationSettings'
 import PopoverMenu from './PopoverMenu'
 import DatetimePicker from './DatetimePicker'
 import Multiselect from './Multiselect'
@@ -30,7 +32,9 @@ import Action from './Action'
 
 export {
 	AppContent,
-	AppNavigation,
+	AppNavigationItem,
+	AppNavigationNew,
+	AppNavigationSettings,
 	PopoverMenu,
 	DatetimePicker,
 	Multiselect,

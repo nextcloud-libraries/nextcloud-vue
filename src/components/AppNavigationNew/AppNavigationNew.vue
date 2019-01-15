@@ -21,27 +21,36 @@
  -->
 
 <template>
-	<div id="content" :class="'app-' + appName">
-		<div v-if="!!$slots['navigation']"
-			id="app-navigation">
-			<slot name="navigation" />
-		</div>
-		<div v-if="!!$slots['content']"
-			id="app-content">
-			<slot name="content" />
-		</div>
-		<slot />
-		<div v-if="!!$slots['sidebar']"
-			id="app-sidebar">
-			<slot name="sidebar" />
-		</div>
+	<div class="app-navigation-new">
+		<button :id="buttonId"
+			:class="buttonClass"
+			type="button"
+			:disabled="disabled"
+			@click="$emit('click')">
+			{{ text }}
+		</button>
 	</div>
 </template>
 
 <script>
 export default {
 	props: {
-		appName: {
+		buttonId: {
+			type: String,
+			required: false,
+			default: ''
+		},
+		buttonClass: {
+			type: String,
+			required: false,
+			default: ''
+		},
+		disabled: {
+			type: Boolean,
+			required: false,
+			default: false
+		},
+		text: {
 			type: String,
 			required: true
 		}

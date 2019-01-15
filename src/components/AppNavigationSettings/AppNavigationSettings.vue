@@ -21,29 +21,48 @@
  -->
 
 <template>
-	<div id="content" :class="'app-' + appName">
-		<div v-if="!!$slots['navigation']"
-			id="app-navigation">
-			<slot name="navigation" />
+	<div id="app-settings"
+		v-click-outside="closeMenu"
+		:class="{open}">
+		<div id="app-settings-header">
+			<button class="settings-button"
+				data-apps-slide-toggle="#app-settings-content"
+				@click="toggleMenu">
+				{{ title }}
+			</button>
 		</div>
-		<div v-if="!!$slots['content']"
-			id="app-content">
-			<slot name="content" />
-		</div>
-		<slot />
-		<div v-if="!!$slots['sidebar']"
-			id="app-sidebar">
-			<slot name="sidebar" />
+		<div id="app-settings-content">
+			<slot />
 		</div>
 	</div>
 </template>
 
 <script>
+import ClickOutside from 'vue-click-outside'
+
 export default {
+	directives: {
+		ClickOutside
+	},
 	props: {
-		appName: {
+		title: {
 			type: String,
-			required: true
+			required: false,
+			// TODO: translate
+			default: t('contacts', 'Settings')
+		}
+	},
+	data() {
+		return {
+			open: false
+		}
+	},
+	methods: {
+		toggleMenu() {
+			this.open = !this.opened
+		},
+		closeMenu() {
+			this.open = false
 		}
 	}
 }
