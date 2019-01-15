@@ -49,7 +49,7 @@ export default {
 			type: String,
 			required: false,
 			// TODO: translate
-			default: t('contacts', 'Settings')
+			default: t('core', 'Settings')
 		}
 	},
 	data() {
