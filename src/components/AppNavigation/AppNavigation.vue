@@ -34,7 +34,7 @@
 			<div id="app-settings-header">
 				<button class="settings-button"
 					data-apps-slide-toggle="#app-settings-content"
-					@click="toggleMenu">{{ t('contacts', 'Settings') }}</button>
+					@click="toggleMenu">{{ t('core', 'Settings') }}</button>
 			</div>
 			<div id="app-settings-content">
 				<slot name="settings-content" />
