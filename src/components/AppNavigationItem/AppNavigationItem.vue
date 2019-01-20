@@ -34,8 +34,8 @@
 		<button v-if="collapsible" class="collapse" @click.prevent.stop="toggleCollapse" />
 
 		<!-- Is this a simple action ? -->
-		<a v-if="item.action" :class="item.icon" href="#"
-			@click.prevent.stop="item.action">
+		<a v-if="simpleAction" :class="item.icon" href="#"
+			@click.prevent.stop="simpleAction">
 			<img v-if="item.iconUrl" :alt="item.text" :src="item.iconUrl">
 			{{ item.text }}
 		</a>
@@ -134,6 +134,13 @@ export default {
 	computed: {
 		collapsible() {
 			return this.item.collapsible && this.item.children && this.item.children.length > 0
+		},
+		simpleAction() {
+			if (this.collapsible && !this.item.action) {
+				return this.toggleCollapse
+			} else {
+				return this.item.action
+			}
 		}
 	},
 	watch: {
