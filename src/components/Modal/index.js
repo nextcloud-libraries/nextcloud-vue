@@ -1,5 +1,5 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -19,27 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
-import Action from './Action'
-import AppContent from './AppContent'
-import AppNavigationItem from './AppNavigationItem'
-import AppNavigationNew from './AppNavigationNew'
-import AppNavigationSettings from './AppNavigationSettings'
-import Avatar from './Avatar'
-import DatetimePicker from './DatetimePicker'
 import Modal from './Modal'
-import Multiselect from './Multiselect'
-import PopoverMenu from './PopoverMenu'
 
-export {
-	Action,
-	AppContent,
-	AppNavigationItem,
-	AppNavigationNew,
-	AppNavigationSettings,
-	Avatar,
-	DatetimePicker,
-	Modal,
-	Multiselect,
-	PopoverMenu
-}
+export default Modal
+export { Modal }
