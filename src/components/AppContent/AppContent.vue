@@ -23,11 +23,13 @@
 <template>
 	<div id="content" :class="'app-' + appName">
 		<div v-if="!!$slots['navigation']"
-			id="app-navigation">
+			id="app-navigation"
+			:class="navigationClass">
 			<slot name="navigation" />
 		</div>
 		<div v-if="!!$slots['content']"
-			id="app-content">
+			id="app-content"
+			:class="contentClass">
 			<slot name="content" />
 		</div>
 		<slot />
@@ -44,6 +46,16 @@ export default {
 		appName: {
 			type: String,
 			required: true
+		},
+		navigationClass: {
+			type: [String, Array, Object],
+			required: false,
+			default: ''
+		},
+		contentClass: {
+			type: [String, Array, Object],
+			required: false,
+			default: ''
 		}
 	}
 }
