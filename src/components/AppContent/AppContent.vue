@@ -22,18 +22,18 @@
 
 <template>
 	<div id="content" :class="'app-' + appName">
-		<div v-if="!!$slots['navigation']"
+		<div v-if="$slots['navigation'] !== undefined"
 			id="app-navigation"
 			:class="navigationClass">
 			<slot name="navigation" />
 		</div>
-		<div v-if="!!$slots['content']"
+		<div v-if="$slots['content'] !== undefined"
 			id="app-content"
 			:class="contentClass">
 			<slot name="content" />
 		</div>
 		<slot />
-		<div v-if="!!$slots['sidebar']"
+		<div v-if="$slots['sidebar'] !== undefined"
 			id="app-sidebar">
 			<slot name="sidebar" />
 		</div>
