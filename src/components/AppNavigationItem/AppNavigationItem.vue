@@ -33,16 +33,12 @@
 
 		<button v-if="collapsible" class="collapse" @click.prevent.stop="toggleCollapse" />
 
-		<!-- Is this a simple action ? -->
-		<a v-if="simpleAction" :class="item.icon" href="#"
-			@click.prevent.stop="simpleAction">
-			<img v-if="item.iconUrl" :alt="item.text" :src="item.iconUrl">
-			{{ item.text }}
-		</a>
-
-		<!-- Main link -->
-		<a v-else :href="(item.href) ? item.href : '#' " :class="item.icon">
-			<img v-if="item.iconUrl" :alt="item.text" :src="item.iconUrl">
+		<a :class="item.icon" :href="(item.href) ? item.href : '#'"
+			@click="callPreventStop(simpleAction, $event)">
+			<img v-if="item.iconUrl || item.iconClass"
+				:src="item.iconUrl" :class="item.iconClass"
+				:title="item.iconTitle"
+				@click="callPreventStop(item.iconAction, $event)">
 			{{ item.text }}
 		</a>
 
@@ -161,6 +157,13 @@ export default {
 		},
 		toggleCollapse() {
 			this.opened = !this.opened
+		},
+		callPreventStop(action, event) {
+			if (action) {
+				event.preventDefault()
+				event.stopPropagation()
+				action()
+			}
 		},
 		cancelEdit(e) {
 			// remove the editing class
