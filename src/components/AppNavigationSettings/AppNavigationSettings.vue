@@ -59,7 +59,7 @@ export default {
 	},
 	methods: {
 		toggleMenu() {
-			this.open = !this.opened
+			this.open = !this.open
 		},
 		closeMenu() {
 			this.open = false
