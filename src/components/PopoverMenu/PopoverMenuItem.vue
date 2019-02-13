@@ -45,7 +45,7 @@
 		</a>
 
 		<!-- If item.input is set instead, an put will be used -->
-		<span v-else-if="item.input" class="menuitem">
+		<span v-else-if="item.input" class="menuitem" :class="{active: item.active}">
 			<!-- does not show if input is checkbox -->
 			<span v-if="item.input !== 'checkbox'" :class="item.icon" />
 
@@ -68,7 +68,7 @@
 		</span>
 
 		<!-- If item.action is set instead, a button will be used -->
-		<button v-else-if="item.action" class="menuitem" :class="{'active':(item.active)}"
+		<button v-else-if="item.action" class="menuitem" :class="{active: item.active}"
 			@click.stop.prevent="item.action">
 			<span :class="item.icon" />
 			<p v-if="item.text && item.longtext">
@@ -88,7 +88,7 @@
 		</button>
 
 		<!-- If item.longtext is set AND the item does not have an action -->
-		<span v-else class="menuitem">
+		<span v-else class="menuitem" :class="{active: item.active}">
 			<span :class="item.icon" />
 			<p v-if="item.text && item.longtext">
 				<strong class="menuitem-text">
@@ -112,7 +112,10 @@
 	button.menuitem {
 		text-align: left;
 	}
-	button.menuitem.active {
+	button.menuitem * {
+		cursor: pointer;
+	}
+	.menuitem.active {
 		box-shadow: inset 2px 0 var(--color-primary);
 		border-radius: 0;
 	}
