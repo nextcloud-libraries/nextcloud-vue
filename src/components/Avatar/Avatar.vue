@@ -39,7 +39,7 @@
 
 /* global OC oc_userconfig */
 
-import { VTooltip } from 'v-tooltip'
+import Tooltip from 'Directives/Tooltip'
 import { PopoverMenu } from 'Components/PopoverMenu'
 import ClickOutside from 'vue-click-outside'
 import axios from 'nextcloud-axios'
@@ -48,7 +48,7 @@ import uidToColor from './uidToColor'
 export default {
 	name: 'Avatar',
 	directives: {
-		tooltip: VTooltip,
+		tooltip: Tooltip,
 		ClickOutside: ClickOutside
 	},
 	components: {
