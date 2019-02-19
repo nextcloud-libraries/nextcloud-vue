@@ -21,40 +21,45 @@
   -->
 
 <template>
-	<div class="modal-mask">
-		<!-- Navigation buttons -->
-		<div class="modal-navigation">
-			<a v-if="hasPrevious" class="prev" @click="previous">
-				<div class="icon-view-previous icon-white">
+	<transition name="fade">
+		<div class="modal-mask">
+			<!-- Navigation buttons -->
+			<div class="modal-navigation">
+				<a v-if="hasPrevious" class="prev" @click="previous">
+					<div class="icon-view-previous icon-white">
+						<span class="hidden-visually">
+							{{ t('core', 'Previous') }}
+						</span>
+					</div>
+				</a>
+				<a v-if="hasNext" class="next" @click="next">
+					<div class="icon-view-next icon-white">
+						<span class="hidden-visually">
+							{{ t('core', 'Next') }}
+						</span>
+					</div>
+				</a>
+				<a class="close icon-close icon-white" @click="close">
 					<span class="hidden-visually">
-						{{ t('core', 'Previous') }}
+						{{ t('core', 'Close') }}
 					</span>
-				</div>
-			</a>
-			<a v-if="hasNext" class="next" @click="next">
-				<div class="icon-view-next icon-white">
-					<span class="hidden-visually">
-						{{ t('core', 'Next') }}
-					</span>
-				</div>
-			</a>
-			<a class="close icon-close icon-white" @click="close">
-				<span class="hidden-visually">
-					{{ t('core', 'Close') }}
-				</span>
-			</a>
-		</div>
-
-		<!-- Content -->
-		<div class="modal-wrapper" @click.self="close">
-			<div class="modal-container">
-				<slot />
+				</a>
 			</div>
+
+			<!-- Content -->
+			<transition :name="modalTransitionName">
+				<div v-show="showModal" class="modal-wrapper" @click.self="close">
+					<div class="modal-container">
+						<slot />
+					</div>
+				</div>
+			</transition>
 		</div>
-	</div>
+	</transition>
 </template>
 
 <script>
+
 export default {
 	name: 'Modal',
 
@@ -66,6 +71,22 @@ export default {
 		hasNext: {
 			type: Boolean,
 			default: false
+		},
+		outTransition: {
+			type: Boolean,
+			default: false
+		}
+	},
+
+	data() {
+		return {
+			showModal: false
+		}
+	},
+
+	computed: {
+		modalTransitionName() {
+			return `modal-${this.outTransition ? 'out' : 'in'}`
 		}
 	},
 
@@ -74,6 +95,9 @@ export default {
 	},
 	beforeDestroy() {
 		window.removeEventListener('keydown', this.handleKeydown)
+	},
+	mounted() {
+		this.showModal = true
 	},
 
 	methods: {
@@ -84,7 +108,12 @@ export default {
 			this.$emit('next', data)
 		},
 		close(data) {
-			this.$emit('close', data)
+			this.showModal = false
+
+			// delay closing for animation
+			setTimeout(() => {
+				this.$emit('close', data)
+			}, 300)
 		},
 		handleKeydown(e) {
 			switch (e.keyCode) {
@@ -112,9 +141,8 @@ export default {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: #000000b3;
-	display: table;
-	transition: opacity .3s ease;
+	background-color: var(--color-box-shadow);
+	display: block;
 }
 
 /* Navigation buttons */
@@ -167,8 +195,11 @@ export default {
 }
 
 .modal-wrapper {
-	display: table-cell;
-	vertical-align: middle;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
 	.modal-container {
 		width: 70%;
 		max-width: 900px;
@@ -179,8 +210,43 @@ export default {
 		border-radius: var(--border-radius-large);
 		overflow: hidden;
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-		transition: all .3s ease;
-		display: table;
+		transition: transform 300ms ease;
+		display: block;
 	}
+}
+
+/* TRANSITIONS */
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 250ms;
+}
+
+.fade-enter,
+.fade-leave-to  {
+	opacity: 0;
+}
+
+.modal-in-enter-active,
+.modal-in-leave-active,
+.modal-out-enter-active,
+.modal-out-leave-active {
+	transition: opacity 250ms;
+}
+
+.modal-in-enter,
+.modal-in-leave-to,
+.modal-out-enter,
+.modal-out-leave-to {
+	opacity: 0;
+}
+
+.modal-in-enter .modal-container,
+.modal-in-leave-to .modal-container {
+	transform: scale(.9);
+}
+
+.modal-out-enter .modal-container,
+.modal-out-leave-to .modal-container {
+	transform: scale(1.1);
 }
 </style>
