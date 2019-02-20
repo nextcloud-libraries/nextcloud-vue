@@ -102,10 +102,16 @@ export default {
 
 	methods: {
 		previous(data) {
-			this.$emit('previous', data)
+			// do not send the event if nothing is available
+			if (this.hasPrevious) {
+				this.$emit('previous', data)
+			}
 		},
 		next(data) {
-			this.$emit('next', data)
+			// do not send the event if nothing is available
+			if (this.hasNext) {
+				this.$emit('next', data)
+			}
 		},
 		close(data) {
 			this.showModal = false
@@ -201,7 +207,6 @@ export default {
 	height: 100%;
 	width: 100%;
 	.modal-container {
-		width: 70%;
 		max-width: 900px;
 		max-height: 80%;
 		margin: 0 auto;
