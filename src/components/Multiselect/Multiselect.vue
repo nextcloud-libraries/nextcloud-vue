@@ -79,7 +79,7 @@
 
 <script>
 import VueMultiselect from 'vue-multiselect'
-import { VTooltip } from 'v-tooltip'
+import Tooltip from 'Directives/Tooltip'
 import AvatarSelectOption from './AvatarSelectOption'
 
 export default {
@@ -89,7 +89,7 @@ export default {
 		AvatarSelectOption
 	},
 	directives: {
-		tooltip: VTooltip
+		tooltip: Tooltip
 	},
 	inheritAttrs: false,
 	/**

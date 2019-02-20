@@ -19,21 +19,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import * as NcComponents from './components'
 
-function install(Vue) {
-	Object.values(NcComponents).forEach((component) => {
-		Vue.component(component.name, component)
-	})
-}
+import Tooltip from './Tooltip'
 
-if (typeof window !== 'undefined' && window.Vue) {
-	install(window.Vue)
+export {
+	Tooltip
 }
-
-export default {
-	install,
-	...NcComponents
-}
-export * from './components'
-export * from './directives'
