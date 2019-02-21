@@ -12,16 +12,52 @@ const md5 = require('md5')
 const PACKAGE = require('./package.json')
 const SCOPE_VERSION = JSON.stringify(md5(PACKAGE.version).substr(0, 7))
 
+function getComponents() {
+	const NcComponents = [
+		'Action', 'AppContent', 'AppNavigationItem', 'AppNavigationNew', 'AppNavigationSettings', 'Avatar', 'DatetimePicker', 'Modal', 'Multiselect', 'PopoverMenu'
+	];
+	let entries = {};
+	Object.values(NcComponents).forEach((component) => {
+		entries['Components/' + component] = path.join(__dirname, 'src', `components/${component}/index.js`)
+	})
+	return entries;
+}
+function getDirectives() {
+	const NcDirectives = [
+		'Tooltip'
+	];
+	let entries = {};
+	Object.values(NcDirectives).forEach((component) => {
+		entries['Directives/' + component] = path.join(__dirname, 'src', `directives/${component}/index.js`)
+	})
+	return entries;
+}
+
 module.exports = {
-	entry: path.join(__dirname, 'src', 'index.js'),
+	entry: {
+		ncvuecomponents: path.join(__dirname, 'src', 'index.js'),
+		...getComponents(),
+		...getDirectives()
+	},
 	output: {
 		path: path.resolve(__dirname, './dist'),
 		publicPath: '/dist/',
-		filename: 'ncvuecomponents.js',
+		filename: '[name].js',
 		libraryTarget: 'umd',
-		library: 'NextcloudVue',
+		library: ['NextcloudVue', '[name]'],
 		umdNamedDefine: true
 	},
+	optimization: {
+		     splitChunks: {
+			   cacheGroups: {
+				vendor: {
+					test: /node_modules/,
+					chunks: "all",
+					filename: 'vendor[id].js',
+				}
+			  }
+		     }
+		},
 	externals: {
 		vue: {
 			commonjs: 'vue',
