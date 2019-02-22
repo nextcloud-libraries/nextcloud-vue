@@ -47,17 +47,7 @@ module.exports = {
 		library: ['NextcloudVue', '[name]'],
 		umdNamedDefine: true
 	},
-	optimization: {
-		     splitChunks: {
-			   cacheGroups: {
-				vendor: {
-					test: /node_modules/,
-					chunks: "all",
-					filename: 'vendor[id].js',
-				}
-			  }
-		     }
-		},
+	
 	externals: {
 		vue: {
 			commonjs: 'vue',
