@@ -1,4 +1,5 @@
 const path = require('path')
+const glob = require('glob')
 const { VueLoaderPlugin } = require('vue-loader')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 
@@ -12,32 +13,19 @@ const md5 = require('md5')
 const PACKAGE = require('./package.json')
 const SCOPE_VERSION = JSON.stringify(md5(PACKAGE.version).substr(0, 7))
 
-function getComponents() {
-	const NcComponents = [
-		'Action', 'AppContent', 'AppNavigationItem', 'AppNavigationNew', 'AppNavigationSettings', 'Avatar', 'DatetimePicker', 'Modal', 'Multiselect', 'PopoverMenu'
-	];
-	let entries = {};
-	Object.values(NcComponents).forEach((component) => {
-		entries['Components/' + component] = path.join(__dirname, 'src', `components/${component}/index.js`)
-	})
-	return entries;
-}
-function getDirectives() {
-	const NcDirectives = [
-		'Tooltip'
-	];
-	let entries = {};
-	Object.values(NcDirectives).forEach((component) => {
-		entries['Directives/' + component] = path.join(__dirname, 'src', `directives/${component}/index.js`)
-	})
-	return entries;
-}
-
 module.exports = {
 	entry: {
 		ncvuecomponents: path.join(__dirname, 'src', 'index.js'),
-		...getComponents(),
-		...getDirectives()
+		...glob.sync('src/components/*/index.js').reduce((acc, item) => {
+			const name = item.replace('/index.js', '').replace('src/components/', 'Components/');
+			acc[name] = path.join(__dirname, item);
+			return acc;
+		}, {}),
+		...glob.sync('src/directives/*/index.js').reduce((acc, item) => {
+			const name = item.replace('/index.js', '').replace('src/directives/', 'Directives/');
+			acc[name] = path.join(__dirname, item);
+			return acc;
+		}, {}),
 	},
 	output: {
 		path: path.resolve(__dirname, './dist'),
@@ -47,7 +35,6 @@ module.exports = {
 		library: ['NextcloudVue', '[name]'],
 		umdNamedDefine: true
 	},
-	
 	externals: {
 		vue: {
 			commonjs: 'vue',
