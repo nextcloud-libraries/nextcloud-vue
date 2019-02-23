@@ -34,6 +34,7 @@
 
 <script>
 export default {
+	name: 'AppNavigationNew',
 	props: {
 		buttonId: {
 			type: String,

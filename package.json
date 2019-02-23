@@ -19,7 +19,9 @@
 		"lint": "eslint --ext .js,.vue src",
 		"lint:fix": "eslint --ext .js,.vue src --fix",
 		"stylelint": "stylelint src/**/*.vue src/**/*.scss src/**/*.css",
-		"stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix"
+		"stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix",
+		"docs": "vuepress-jsdoc -c ./jsdoc.json && vuepress build ./documentation",
+		"docs:dev": "vuepress-jsdoc -c ./jsdoc.json && vuepress dev ./documentation"
 	},
 	"main": "dist/ncvuecomponents.js",
 	"files": [
@@ -58,6 +60,9 @@
 		"eslint-plugin-standard": "^4.0.0",
 		"eslint-plugin-vue": "^5.2.2",
 		"iconfont-plugin-webpack": "^1.1.4",
+		"jsdoc": "^3.5.5",
+		"jsdoc-to-markdown": "^4.0.1",
+		"jsdoc-vuejs": "^2.4.2",
 		"node-sass": "^4.11.0",
 		"prettier-eslint": "^8.8.2",
 		"raw-loader": "^2.0.0",
@@ -70,6 +75,7 @@
 		"url-loader": "^1.1.2",
 		"vue-loader": "^15.6.4",
 		"vue-template-compiler": "^2.6.7",
+		"vuepress-jsdoc": "^1.7.2",
 		"webpack": "^4.29.5",
 		"webpack-cli": "^3.2.3",
 		"webpack-merge": "^4.2.1"

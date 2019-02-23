@@ -33,7 +33,8 @@
 <script>
 import DatePicker from 'vue2-datepicker/lib/datepicker'
 
-/**
+/*
+ * @ignore
  * remove leading zeros on hours and minutes
  * https://github.com/mengxiong10/vue2-datepicker/blob/65c5762227649430f14158c01401a8486a881336/src/panel/time.js#L38
  */
@@ -41,7 +42,8 @@ DatePicker.components.CalendarPanel.components.PanelTime.methods.stringifyText =
 	return data
 }
 
-/**
+/*
+ * @ignore
  * hijack the display function and avoid the
  * top and left original positionning
  * https://github.com/mengxiong10/vue2-datepicker/blob/65c5762227649430f14158c01401a8486a881336/src/index.vue#L431
@@ -52,6 +54,20 @@ DatePicker.methods.displayPopup = function() {
 		popupElmt.className += ' popovermenu menu-center open'
 	}
 }
+
+/**
+ * @vuepress
+ * ---
+ * title: DatetimePicker
+ * ---
+ */
+
+/**
+ * 
+ * ::: warning
+ * For full support of the accessibility dark mode at least Nextcloud 15 is required.
+ * :::
+ */
 
 export default {
 	name: 'DatetimePicker',

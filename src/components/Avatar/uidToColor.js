@@ -24,6 +24,7 @@ import md5 from 'md5'
 
 /**
  * Originally taken from https://github.com/nextcloud/server/blob/master/core/js/placeholder.js
+ * @ignore
  */
 
 const uidToColor = function(uid) {

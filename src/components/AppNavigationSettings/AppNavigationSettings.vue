@@ -42,6 +42,7 @@
 import ClickOutside from 'vue-click-outside'
 
 export default {
+	name: 'AppNavigationSettings',
 	directives: {
 		ClickOutside
 	},

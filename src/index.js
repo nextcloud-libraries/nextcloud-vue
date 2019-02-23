@@ -20,11 +20,13 @@
  *
  */
 import * as NcComponents from './components'
+import * as NcDirectives from './directives'
 
 function install(Vue) {
 	Object.values(NcComponents).forEach((component) => {
 		Vue.component(component.name, component)
 	})
+	Vue.directive('tooltip', NcDirectives.Tooltip)
 }
 
 if (typeof window !== 'undefined' && window.Vue) {

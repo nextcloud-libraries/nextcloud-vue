@@ -34,6 +34,7 @@ import AppNavigationToggle from '../AppNavigationToggle'
 
 export default {
 	name: 'AppContent',
+	
 	components: {
 		AppNavigationToggle
 	},

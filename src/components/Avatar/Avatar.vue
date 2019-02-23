@@ -64,6 +64,27 @@ import ClickOutside from 'vue-click-outside'
 import axios from 'nextcloud-axios'
 import uidToColor from './uidToColor'
 
+/**
+ * 
+ * 
+ * <VueCodeExample title="Show an avatar for the user `admin`">
+ *    ``` vue
+ *    <Avatar user="admin" />
+ *    ```
+ * </VueCodeExample>
+ * 
+ * <VueCodeExample title="Show an avatar with a displayname set">
+ *    ``` vue
+ *    <Avatar user="admin" display-name="Administrator" />
+ *    ```
+ * </VueCodeExample>
+ * 
+ * <VueCodeExample title="Show an avatar for the group `myteam`">
+ *    ``` vue
+ *    <Avatar user="myteam" :isNoUser="true" />
+ *    ```
+ * </VueCodeExample>
+ */
 export default {
 	name: 'Avatar',
 	directives: {
@@ -164,16 +185,24 @@ export default {
 	},
 	data() {
 		return {
+			/** @private */
 			avatarUrlLoaded: null,
+			/** @private */
 			avatarSrcSetLoaded: null,
+			/** @private */
 			userDoesNotExist: false,
+			/** @private */
 			isAvatarLoaded: false,
+			/** @private */
 			isMenuLoaded: false,
+			/** @private */
 			contactsMenuActions: [],
+			/** @private */
 			contactsMenuOpenState: false
 		}
 	},
 	computed: {
+		/** @private */
 		getUserIdentifier() {
 			if (this.isDisplayNameDefined) {
 				return this.displayName
@@ -183,25 +212,31 @@ export default {
 			}
 			return ''
 		},
+		/** @private */
 		isUserDefined() {
 			return typeof this.user !== 'undefined'
 		},
+		/** @private */
 		isDisplayNameDefined() {
 			return typeof this.displayName !== 'undefined'
 		},
+		/** @private */
 		isUrlDefined() {
 			return typeof this.url !== 'undefined'
 		},
+		/** @private */
 		hasMenu() {
 			if (this.isMenuLoaded) {
 				return this.menu.length > 0
 			}
 			return !(this.user === OC.getCurrentUser().uid || this.userDoesNotExist || this.url)
 		},
+		/** @private */
 		shouldShowPlaceholder() {
 			return this.allowPlaceholder && (
 				this.userDoesNotExist)
 		},
+		/** @private */
 		avatarStyle() {
 			let style = {
 				width: this.size + 'px',
@@ -214,6 +249,7 @@ export default {
 			style.backgroundColor = 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')'
 			return style
 		},
+		/** @private */
 		tooltip() {
 			if (this.disableTooltip) {
 				return false
@@ -224,12 +260,14 @@ export default {
 
 			return this.displayName
 		},
+		/** @private */
 		initials() {
 			if (this.shouldShowPlaceholder) {
 				return this.getUserIdentifier.charAt(0).toUpperCase()
 			}
 			return '?'
 		},
+		/** @private */
 		menu() {
 			return this.contactsMenuActions.map((item) => {
 				return {
@@ -255,6 +293,7 @@ export default {
 		this.loadAvatarUrl()
 	},
 	methods: {
+		/** @private */
 		toggleMenu() {
 			if (!this.hasMenu) {
 				return
@@ -264,9 +303,11 @@ export default {
 				this.fetchContactsMenu()
 			}
 		},
+		/** @private */
 		closeMenu() {
 			this.contactsMenuOpenState = false
 		},
+		/** @private */
 		async fetchContactsMenu() {
 			try {
 				const user = encodeURIComponent(this.user)
@@ -277,6 +318,7 @@ export default {
 			}
 			this.isMenuLoaded = true
 		},
+		/** @private */
 		loadAvatarUrl() {
 			this.isAvatarLoaded = false
 
