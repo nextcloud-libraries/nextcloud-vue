@@ -8,6 +8,7 @@ script:
 - npm rebuild node-sass
 - npm run build
 - npm run lint
+- npm run stylelint
 deploy:
   provider: npm
   skip_cleanup: true

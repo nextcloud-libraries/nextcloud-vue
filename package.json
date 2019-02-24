@@ -18,8 +18,8 @@
 		"build": "webpack --progress --hide-modules --config webpack.prod.js",
 		"lint": "eslint --ext .js,.vue src",
 		"lint:fix": "eslint --ext .js,.vue src --fix",
-		"stylelint": "stylelint src",
-		"stylelint:fix": "stylelint src --fix"
+		"stylelint": "stylelint src/**/*.vue src/**/*.scss src/**/*.css",
+		"stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix"
 	},
 	"main": "dist/ncvuecomponents.js",
 	"files": [

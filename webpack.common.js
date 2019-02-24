@@ -88,7 +88,9 @@ module.exports = {
 			}
 		}),
 		new VueLoaderPlugin(),
-		new StyleLintPlugin(),
+		new StyleLintPlugin({
+			files: ['src/**/*.vue', 'src/**/*.scss', 'src/**/*.css']
+		}),
 		new DefinePlugin({ SCOPE_VERSION })
 	],
 	resolve: {
