@@ -1,4 +1,5 @@
 const path = require('path')
+const glob = require('glob')
 const { VueLoaderPlugin } = require('vue-loader')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 
@@ -13,13 +14,25 @@ const PACKAGE = require('./package.json')
 const SCOPE_VERSION = JSON.stringify(md5(PACKAGE.version).substr(0, 7))
 
 module.exports = {
-	entry: path.join(__dirname, 'src', 'index.js'),
+	entry: {
+		ncvuecomponents: path.join(__dirname, 'src', 'index.js'),
+		...glob.sync('src/components/*/index.js').reduce((acc, item) => {
+			const name = item.replace('/index.js', '').replace('src/components/', 'Components/');
+			acc[name] = path.join(__dirname, item);
+			return acc;
+		}, {}),
+		...glob.sync('src/directives/*/index.js').reduce((acc, item) => {
+			const name = item.replace('/index.js', '').replace('src/directives/', 'Directives/');
+			acc[name] = path.join(__dirname, item);
+			return acc;
+		}, {}),
+	},
 	output: {
 		path: path.resolve(__dirname, './dist'),
 		publicPath: '/dist/',
-		filename: 'ncvuecomponents.js',
+		filename: '[name].js',
 		libraryTarget: 'umd',
-		library: 'NextcloudVue',
+		library: ['NextcloudVue', '[name]'],
 		umdNamedDefine: true
 	},
 	externals: {
