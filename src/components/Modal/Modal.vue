@@ -148,9 +148,11 @@ export default {
 		},
 		handleSwipe(e) {
 			if (e.type === 'swipeleft') {
-				this.previous(e)
-			} else if (e.type === 'swiperight') {
+				// swiping to left to go to the next item
 				this.next(e)
+			} else if (e.type === 'swiperight') {
+				// swiping to right to go back to the previous item
+				this.previous(e)
 			}
 		}
 	}
