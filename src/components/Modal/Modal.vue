@@ -22,7 +22,7 @@
 
 <template>
 	<transition name="fade">
-		<div class="modal-mask">
+		<div ref="mask" class="modal-mask">
 			<!-- Navigation buttons -->
 			<div class="modal-navigation">
 				<a v-if="hasPrevious" class="prev" @click="previous">
@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import Hammer from 'hammerjs'
 
 export default {
 	name: 'Modal',
@@ -80,6 +81,7 @@ export default {
 
 	data() {
 		return {
+			mc: null,
 			showModal: false
 		}
 	},
@@ -98,6 +100,15 @@ export default {
 	},
 	mounted() {
 		this.showModal = true
+
+		this.mc = new Hammer(this.$refs.mask)
+		this.mc.on('swipeleft swiperight', e => {
+			this.handleSwipe(e)
+		})
+	},
+	unmounted() {
+		this.mc.off('swipeleft swiperight')
+		this.ms.destroy()
 	},
 
 	methods: {
@@ -134,6 +145,15 @@ export default {
 				this.close(e)
 				break
 			}
+		},
+		handleSwipe(e) {
+			if (e.type === 'swipeleft') {
+				// swiping to left to go to the next item
+				this.next(e)
+			} else if (e.type === 'swiperight') {
+				// swiping to right to go back to the previous item
+				this.previous(e)
+			}
 		}
 	}
 }
@@ -147,7 +167,7 @@ export default {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: var(--color-box-shadow);
+	background-color: rgba(0, 0, 0, .7);
 	display: block;
 }
 
