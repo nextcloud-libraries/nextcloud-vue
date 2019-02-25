@@ -45,8 +45,7 @@ stylelint-fix:
 
 # Cleaning
 clean:
-	rm -f dist/ncvuecomponents.js
-	rm -f dist/ncvuecomponents.js.map
+	rm -rf dist/
 
 clean-dev:
 	rm -rf node_modules
