@@ -22,34 +22,67 @@
 
 <template>
 	<transition name="fade">
-		<div ref="mask" class="modal-mask">
+		<div id="modal-mask" ref="mask" @mousemove="handleMouseMove">
+			<!-- Header -->
+			<transition name="fade">
+				<div v-if="!clearView" id="modal-header">
+					<div v-if="title.trim() !== ''" class="modal-title">
+						{{ title }}
+					</div>
+					<div class="icons-menu">
+						<action v-if="actions.length > 0" :actions="actions" class="header-actions" />
+						<a class="close icon-close" @click="close">
+							<span class="hidden-visually">
+								{{ t('core', 'Close') }}
+							</span>
+						</a>
+					</div>
+				</div>
+			</transition>
+
 			<!-- Navigation buttons -->
-			<div class="modal-navigation">
-				<a v-if="hasPrevious" class="prev" @click="previous">
-					<div class="icon-view-previous icon-white">
-						<span class="hidden-visually">
-							{{ t('core', 'Previous') }}
-						</span>
-					</div>
-				</a>
-				<a v-if="hasNext" class="next" @click="next">
-					<div class="icon-view-next icon-white">
-						<span class="hidden-visually">
-							{{ t('core', 'Next') }}
-						</span>
-					</div>
-				</a>
-				<a class="close icon-close icon-white" @click="close">
-					<span class="hidden-visually">
-						{{ t('core', 'Close') }}
-					</span>
-				</a>
-			</div>
+			<transition name="fade">
+				<div v-if="!clearView" id="modal-navigation">
+					<transition name="fade">
+						<a v-if="hasPrevious" class="prev" @click="previous">
+							<div class="icon icon-previous">
+								<span class="hidden-visually">
+									{{ t('core', 'Previous') }}
+								</span>
+							</div>
+						</a>
+					</transition>
+					<transition name="fade">
+						<a v-if="hasNext" class="next" @click="next">
+							<div class="icon icon-next">
+								<span class="hidden-visually">
+									{{ t('core', 'Next') }}
+								</span>
+							</div>
+						</a>
+					</transition>
+					<transition name="fade">
+						<a v-if="hasNext && enableSlideshow" class="play-pause" @click="togglePlayPause">
+							<div :class="[playing ? 'icon-pause' : 'icon-play']">
+								<span class="hidden-visually">
+									{{ t('core', 'Next') }}
+								</span>
+							</div>
+							<svg v-if="playing" class="progress-ring" width="48"
+								height="48">
+								<circle class="progress-ring__circle" stroke="white" stroke-width="2"
+									fill="transparent" r="22" cx="24"
+									cy="24" />
+							</svg>
+						</a>
+					</transition>
+				</div>
+			</transition>
 
 			<!-- Content -->
 			<transition :name="modalTransitionName">
-				<div v-show="showModal" class="modal-wrapper" @click.self="close">
-					<div class="modal-container">
+				<div v-show="showModal" id="modal-wrapper" @click.self="close">
+					<div id="modal-container">
 						<slot />
 					</div>
 				</div>
@@ -60,11 +93,26 @@
 
 <script>
 import Hammer from 'hammerjs'
+import Action from 'Components/Action'
 
 export default {
 	name: 'Modal',
 
+	components: {
+		Action
+	},
+
 	props: {
+		actions: {
+			type: Array,
+			default: () => {
+				return []
+			}
+		},
+		title: {
+			type: String,
+			default: ''
+		},
 		hasPrevious: {
 			type: Boolean,
 			default: false
@@ -76,13 +124,25 @@ export default {
 		outTransition: {
 			type: Boolean,
 			default: false
+		},
+		enableSlideshow: {
+			type: Boolean,
+			default: false
+		},
+		slideshowDelay: {
+			type: Number,
+			default: 3000
 		}
 	},
 
 	data() {
 		return {
 			mc: null,
-			showModal: false
+			showModal: false,
+			clearView: false,
+			clearViewTimeout: null,
+			playing: false,
+			slideshowTimeout: null
 		}
 	},
 
@@ -100,6 +160,8 @@ export default {
 	},
 	mounted() {
 		this.showModal = true
+		// init clear view
+		this.handleMouseMove()
 
 		this.mc = new Hammer(this.$refs.mask)
 		this.mc.on('swipeleft swiperight', e => {
@@ -132,6 +194,14 @@ export default {
 				this.$emit('close', data)
 			}, 300)
 		},
+		togglePlayPause() {
+			this.playing = !this.playing
+			if (this.playing) {
+				this.handleSlideshow()
+			} else {
+				clearTimeout(this.slideshowTimeout)
+			}
+		},
 		handleKeydown(e) {
 			switch (e.keyCode) {
 			case 37:	// left arrow
@@ -154,13 +224,34 @@ export default {
 				// swiping to right to go back to the previous item
 				this.previous(e)
 			}
+		},
+		handleMouseMove() {
+			this.clearView = false
+			clearTimeout(this.clearViewTimeout)
+			this.clearViewTimeout = setTimeout(() => {
+				this.clearView = true
+			}, 5000)
+		},
+		handleSlideshow() {
+			this.playing = true
+			if (this.hasNext) {
+				this.slideshowTimeout = setTimeout(() => {
+					this.next()
+					this.handleSlideshow()
+				}, this.slideshowDelay)
+			} else {
+				this.playing = false
+				clearTimeout(this.slideshowTimeout)
+			}
 		}
 	}
 }
 </script>
 
 <style lang="scss" scoped>
-.modal-mask {
+@import '~Fonts/scss/iconfont-vue';
+
+#modal-mask {
 	position: fixed;
 	z-index: 9998;
 	top: 0;
@@ -172,9 +263,10 @@ export default {
 }
 
 /* Navigation buttons */
-.modal-navigation {
+#modal-navigation {
 	.prev,
-	.next {
+	.next,
+	.play-pause {
 		position: absolute;
 		top: 0;
 		z-index: 10000;
@@ -188,10 +280,51 @@ export default {
 	.next {
 		right: 0;
 	}
-	.icon-view-next,
-	.icon-view-previous {
-		background-size: 24px;
-		background-position: 12px center;
+	.play-pause {
+		$pi: 3.14159265358979;
+		right: 0;
+		top: calc(50% + 44px + 22px); // 1 + half the entry
+		height: 44px;
+		.progress-ring {
+			margin: -2px;
+			position: absolute;
+			left: 22px;
+			z-index: 1;
+			transform: rotate(-90deg);
+			.progress-ring__circle {
+				animation: progress-ring linear 3s infinite;
+				transition: 100ms stroke-dashoffset;
+				// axis compensation
+				transform-origin: 50% 50%;
+				stroke-dasharray: 22 * 2 * $pi, 22 * 2 * $pi; // radius * 2 * PI
+			}
+		}
+		.icon-play,
+		.icon-pause {
+			top: 0;
+			left: 22px;
+			// weirdly, 21px is a better visual w/ the antialiazing 🤷‍♀️
+			font-size: 21px;
+		}
+		.icon-play {
+			@include iconfont('play');
+			// better visual
+			padding: 13px;
+		}
+		.icon-pause {
+			@include iconfont('pause');
+			padding: 13px 11px;
+		}
+	}
+	.icon-next,
+	.icon-previous,
+	.icon-play,
+	.icon-pause {
+		background-image: none;
+		font-size: 24px;
+		padding: 12px 11px;
+		box-sizing: border-box;
+		color: white;
 		width: 44px;
 		height: 44px;
 		border-radius: 50%;
@@ -199,34 +332,82 @@ export default {
 		position: absolute;
 		margin: auto;
 	}
-	.icon-view-previous {
+	.icon-previous {
+		@include iconfont('arrow-left');
 		left: calc(100% - 22px - 44px);
 	}
-	.icon-view-next {
+	.icon-next {
+		@include iconfont('arrow-right');
 		background-color: var(--color-primary);
 		box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
 		left: 22px;
 	}
-	.icon-close {
+}
+
+#modal-header {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	z-index: 10001;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.modal-title {
+		max-width: 100%;
+		padding: 0 88px; // maximum actions is 2 (2*44px)
+		box-sizing: border-box;
+		color: #fff;
+		font-size: 14px;
+		text-overflow: ellipsis;
+		overflow-x: hidden;
+		white-space: nowrap;
+		transition: padding ease 100ms;
+	}
+
+	.icons-menu {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
 		position: absolute;
-		top: 0;
 		right: 0;
-		z-index: 10000;
-		width: 44px;
-		height: 44px;
-		display: block;
-		background-size: 24px;
-		background-position: center;
+
+		.icon-close {
+			@include iconfont('close');
+			height: 44px;
+			width: 44px;
+			box-sizing: border-box;
+			padding: 12px 11px;
+			font-size: 24px;
+			color: white;
+			background-image: none;
+		}
+
+		.header-actions {
+			color: white;
+		}
+
+		.action-item--single {
+			height: 44px;
+			width: 44px;
+			cursor: pointer;
+			box-sizing: border-box;
+			background-size: 22px;
+			background-position: center;
+		}
 	}
 }
 
-.modal-wrapper {
+#modal-wrapper {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	height: 100%;
 	width: 100%;
-	.modal-container {
+	#modal-container {
 		max-width: 900px;
 		max-height: 80%;
 		margin: 0 auto;
@@ -265,13 +446,42 @@ export default {
 	opacity: 0;
 }
 
-.modal-in-enter .modal-container,
-.modal-in-leave-to .modal-container {
+.modal-in-enter #modal-container,
+.modal-in-leave-to #modal-container {
 	transform: scale(.9);
 }
 
-.modal-out-enter .modal-container,
-.modal-out-leave-to .modal-container {
+.modal-out-enter #modal-container,
+.modal-out-leave-to #modal-container {
 	transform: scale(1.1);
+}
+
+@media only screen and (max-width: 768px) {
+	#modal-header {
+		justify-content: flex-start;
+		.modal-title {
+			padding: 0 88px 0 10px;
+		}
+	}
+}
+
+</style>
+<style lang="scss">
+// we cannot scope sub-components
+#modal-mask[data-v-#{$scope_version}] #modal-header .icons-menu .action-item__menutoggle {
+	// 22px is a somehow better looking for the icon-more icon
+	font-size: 22px;
+	padding: 13px 11px;
+}
+
+// keyframes get scoped too and break the animation name, we need them unscoped
+$pi: 3.14159265358979;
+@keyframes progress-ring {
+	from {
+		stroke-dashoffset: 22 * 2 * $pi; // radius * 2 * PI
+	}
+	to {
+		stroke-dashoffset: 0;
+	}
 }
 </style>
