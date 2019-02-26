@@ -28,7 +28,7 @@
 		v-on="isSingleAction && firstAction.action ? { click: firstAction.action } : {}">
 		<!-- If more than one action, create a popovermenu -->
 		<template v-if="!isSingleAction">
-			<div v-click-outside="closeMenu" tabindex="0" class="action-item__menutoggle icon-more"
+			<div v-click-outside="closeMenu" tabindex="0" class="icon action-item__menutoggle"
 				@click.prevent="toggleMenu" />
 			<div :class="{ 'open': opened }" class="action-item__menu popovermenu">
 				<popover-menu :menu="actions" />
@@ -105,12 +105,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~Fonts/scss/iconfont-vue';
+
 .action-item {
 	display: inline-block;
 
 	// icons
 	&--single,
 	&__menutoggle {
+		box-sizing: border-box;
 		padding: 14px;
 		height: 44px;
 		width: 44px;
@@ -119,6 +122,7 @@ export default {
 	// icon-more
 	&__menutoggle {
 		display: inline-block;
+		@include iconfont('more');
 	}
 	// properly position the menu
 	&--multiple {
