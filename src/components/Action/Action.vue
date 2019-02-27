@@ -69,11 +69,15 @@ export default {
 					}
 				]
 			}
+		},
+		open: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
 		return {
-			opened: false
+			opened: this.open
 		}
 	},
 	computed: {
@@ -84,6 +88,11 @@ export default {
 			return this.actions[0]
 		}
 	},
+	watch: {
+		open(newVal) {
+			this.opened = newVal
+		}
+	},
 	mounted() {
 		// prevent click outside event with popupItem.
 		this.popupItem = this.$el
@@ -91,9 +100,11 @@ export default {
 	methods: {
 		toggleMenu() {
 			this.opened = !this.opened
+			this.$emit('update:open', this.opened)
 		},
 		closeMenu() {
 			this.opened = false
+			this.$emit('update:open', this.opened)
 		},
 		mainActionElement() {
 			return {
