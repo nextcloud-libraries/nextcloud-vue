@@ -20,6 +20,11 @@
 			// remove border radius on bottom opening
 			border-radius: var(--border-radius) var(--border-radius) 0 0;
 		}
+
+		/* multiselect__limit hidden if active */
+		.multiselect__limit {
+			display: none;
+		}
 	}
 
 	// Remove radius on top opening
@@ -243,10 +248,12 @@
 	&.multiselect--multiple .multiselect__content-wrapper li > span::before {
 		background-image: var(--icon-checkmark-000);
 	}
+
 	/* No need for an icon here */
 	&.multiselect--single .multiselect__content-wrapper li > span::before {
 		display: none;
 	}
+
 	/* Mouse feedback */
 	&:hover,
 	input.multiselect__input {
