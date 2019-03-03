@@ -18,6 +18,8 @@ npm i --save nextcloud-vue
 # Usage
 ```js
 import { AppNavigation } from 'nextcloud-vue'
+// you can also import individual module without bundling the full library
+import Avatar from 'nextcloud-vue/dist/Components/Avatar'
 ```
 
 # List of the components
