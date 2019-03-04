@@ -22,7 +22,8 @@
 
 <template>
 	<transition name="fade">
-		<div id="modal-mask" ref="mask" @mousemove="handleMouseMove">
+		<div id="modal-mask" ref="mask" @click="handleMouseMove"
+			@mousemove="handleMouseMove" @touchmove="handleMouseMove">
 			<!-- Header -->
 			<transition name="fade">
 				<div v-if="!clearView" id="modal-header">
