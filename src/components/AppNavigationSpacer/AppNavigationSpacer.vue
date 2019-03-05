@@ -20,7 +20,7 @@
  -
  -->
 <template>
-	<li />
+	<li class="app-navigation-spacer" />
 </template>
 
 <script>
@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style scoped>
-	li {
+	.app-navigation-spacer {
 		height: 22px;
 	}
 </style>
