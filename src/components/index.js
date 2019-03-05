@@ -22,9 +22,11 @@
 
 import Action from './Action'
 import AppContent from './AppContent'
+import AppNavigation from './AppNavigation'
 import AppNavigationItem from './AppNavigationItem'
 import AppNavigationNew from './AppNavigationNew'
 import AppNavigationSettings from './AppNavigationSettings'
+import AppNavigationSpacer from './AppNavigationSpacer'
 import Avatar from './Avatar'
 import DatetimePicker from './DatetimePicker'
 import Modal from './Modal'
@@ -34,9 +36,11 @@ import PopoverMenu from './PopoverMenu'
 export {
 	Action,
 	AppContent,
+	AppNavigation,
 	AppNavigationItem,
 	AppNavigationNew,
 	AppNavigationSettings,
+	AppNavigationSpacer,
 	Avatar,
 	DatetimePicker,
 	Modal,

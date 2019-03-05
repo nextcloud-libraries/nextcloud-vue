@@ -1,5 +1,5 @@
 <!--
- - @copyright Copyright (c) 2018 Christoph Wurst <christoph@winzerhof-wurst.at>
+ - @copyright Copyright (c) 2019 Christoph Wurst <christoph@winzerhof-wurst.at>
  -
  - @author Christoph Wurst <christoph@winzerhof-wurst.at>
  -
@@ -19,31 +19,17 @@
  - along with this program. If not, see <http://www.gnu.org/licenses/>.
  -
  -->
-
 <template>
-	<div id="content" :class="'app-' + appName">
-		<slot name="navigation" />
-		<div v-if="$slots['content'] !== undefined"
-			id="app-content"
-			:class="contentClass">
-			<slot name="content" />
-		</div>
+	<div id="app-navigation" :class="navigationClass">
 		<slot />
-		<div v-if="$slots['sidebar'] !== undefined"
-			id="app-sidebar">
-			<slot name="sidebar" />
-		</div>
 	</div>
 </template>
 
 <script>
 export default {
+	name: 'AppNavigation',
 	props: {
-		appName: {
-			type: String,
-			required: true
-		},
-		contentClass: {
+		navigationClass: {
 			type: [String, Array, Object],
 			required: false,
 			default: ''

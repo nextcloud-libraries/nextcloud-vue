@@ -1,5 +1,5 @@
 <!--
- - @copyright Copyright (c) 2018 Christoph Wurst <christoph@winzerhof-wurst.at>
+ - @copyright Copyright (c) 2019 Christoph Wurst <christoph@winzerhof-wurst.at>
  -
  - @author Christoph Wurst <christoph@winzerhof-wurst.at>
  -
@@ -19,35 +19,18 @@
  - along with this program. If not, see <http://www.gnu.org/licenses/>.
  -
  -->
-
 <template>
-	<div id="content" :class="'app-' + appName">
-		<slot name="navigation" />
-		<div v-if="$slots['content'] !== undefined"
-			id="app-content"
-			:class="contentClass">
-			<slot name="content" />
-		</div>
-		<slot />
-		<div v-if="$slots['sidebar'] !== undefined"
-			id="app-sidebar">
-			<slot name="sidebar" />
-		</div>
-	</div>
+	<li />
 </template>
 
 <script>
 export default {
-	props: {
-		appName: {
-			type: String,
-			required: true
-		},
-		contentClass: {
-			type: [String, Array, Object],
-			required: false,
-			default: ''
-		}
-	}
+	name: 'AppNavigationSpacer'
 }
 </script>
+
+<style scoped>
+	li {
+		height: 22px;
+	}
+</style>
