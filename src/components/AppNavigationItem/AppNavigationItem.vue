@@ -61,23 +61,16 @@
 					<button :class="item.utils.actions[0].icon" :title="item.utils.actions[0].text" @click="item.utils.actions[0].action" />
 				</li>
 
-				<!-- second action only two actions and no counter -->
-				<li v-for="action in item.utils.actions"
-					v-else-if="item.utils.actions && item.utils.actions.length === 2 && !Number.isInteger(item.utils.counter)" :key="action.action"
-					class="app-navigation-entry-utils-menu-button">
-					<button :class="action.icon" :title="action.text" @click="action.action" />
-				</li>
-
 				<!-- menu if only at least one action and counter OR two actions and no counter-->
-				<li v-else-if="item.utils.actions && item.utils.actions.length > 1 && (Number.isInteger(item.utils.counter) || item.utils.actions.length > 2)"
+				<li v-else-if="item.utils.actions && item.utils.actions.length > 1"
 					class="app-navigation-entry-utils-menu-button">
-					<button v-click-outside="hideMenu" @click="showMenu" />
+					<button v-click-outside="hideMenu" @click="openedMenu = !openedMenu" />
 				</li>
 			</ul>
 		</div>
 
 		<!-- if more than 2 actions or more than 1 actions with counter -->
-		<div v-if="item.utils && item.utils.actions && item.utils.actions.length > 1 && (Number.isInteger(item.utils.counter) || item.utils.actions.length > 2)"
+		<div v-if="item.utils && item.utils.actions && item.utils.actions.length > 1"
 			:class="{ 'open': openedMenu }" class="app-navigation-entry-menu">
 			<popover-menu :menu="item.utils.actions" />
 		</div>
@@ -153,9 +146,6 @@ export default {
 		this.popupItem = this.$el
 	},
 	methods: {
-		showMenu() {
-			this.openedMenu = true
-		},
 		hideMenu() {
 			this.openedMenu = false
 		},
