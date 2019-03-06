@@ -42,7 +42,7 @@
 
 			<!-- Navigation buttons -->
 			<transition name="fade">
-				<div v-if="!clearView" id="modal-navigation">
+				<div id="modal-navigation" v-visible="!clearView">
 					<transition name="fade">
 						<a v-if="hasPrevious" class="prev" @click="previous">
 							<div class="icon icon-previous">
@@ -92,8 +92,12 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import Hammer from 'hammerjs'
+import VueVisible from 'vue-visible'
 import Action from 'Components/Action'
+
+Vue.use(VueVisible)
 
 export default {
 	name: 'Modal',
