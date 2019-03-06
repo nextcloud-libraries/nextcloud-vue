@@ -408,6 +408,9 @@ export default {
 	justify-content: center;
 	height: 100%;
 	width: 100%;
+	// do not go over the header
+	padding-top: 50px;
+	box-sizing: border-box;
 	#modal-container {
 		max-width: 900px;
 		max-height: 80%;
