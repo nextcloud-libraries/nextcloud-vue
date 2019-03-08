@@ -20,20 +20,13 @@
  -
  -->
 <template>
-	<div id="app-navigation" :class="navigationClass">
+	<div id="app-navigation">
 		<slot />
 	</div>
 </template>
 
 <script>
 export default {
-	name: 'AppNavigation',
-	props: {
-		navigationClass: {
-			type: [String, Array, Object],
-			required: false,
-			default: ''
-		}
-	}
+	name: 'AppNavigation'
 }
 </script>
