@@ -137,6 +137,10 @@ export default {
 		slideshowDelay: {
 			type: Number,
 			default: 3000
+		},
+		enableSwipe: {
+			type: Boolean,
+			default: true
 		}
 	},
 
@@ -222,12 +226,14 @@ export default {
 			}
 		},
 		handleSwipe(e) {
-			if (e.type === 'swipeleft') {
-				// swiping to left to go to the next item
-				this.next(e)
-			} else if (e.type === 'swiperight') {
-				// swiping to right to go back to the previous item
-				this.previous(e)
+			if (this.enableSwipe) {
+				if (e.type === 'swipeleft') {
+					// swiping to left to go to the next item
+					this.next(e)
+				} else if (e.type === 'swiperight') {
+					// swiping to right to go back to the previous item
+					this.previous(e)
+				}
 			}
 		},
 		handleMouseMove() {
