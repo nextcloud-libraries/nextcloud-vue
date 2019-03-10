@@ -61,7 +61,7 @@
 					<button :class="item.utils.actions[0].icon" :title="item.utils.actions[0].text" @click="item.utils.actions[0].action" />
 				</li>
 
-				<!-- menu if only at least one action and counter OR two actions and no counter-->
+				<!-- menu button if at least two actions -->
 				<li v-else-if="item.utils.actions && item.utils.actions.length > 1"
 					class="app-navigation-entry-utils-menu-button">
 					<button v-click-outside="hideMenu" @click="openedMenu = !openedMenu" />
@@ -69,7 +69,7 @@
 			</ul>
 		</div>
 
-		<!-- if more than 2 actions or more than 1 actions with counter -->
+		<!-- menu if at least two actions -->
 		<div v-if="item.utils && item.utils.actions && item.utils.actions.length > 1"
 			:class="{ 'open': openedMenu }" class="app-navigation-entry-menu">
 			<popover-menu :menu="item.utils.actions" />
