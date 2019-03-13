@@ -22,11 +22,11 @@
 
 <template>
 	<transition name="fade">
-		<div id="modal-mask" ref="mask" @click="handleMouseMove"
+		<div ref="mask" class="modal-mask" @click="handleMouseMove"
 			@mousemove="handleMouseMove" @touchmove="handleMouseMove">
 			<!-- Header -->
 			<transition name="fade">
-				<div v-if="!clearView" id="modal-header">
+				<div v-if="!clearView" class="modal-header">
 					<div v-if="title.trim() !== ''" class="modal-title">
 						{{ title }}
 					</div>
@@ -43,7 +43,7 @@
 
 			<!-- Navigation buttons -->
 			<transition name="fade">
-				<div id="modal-navigation" v-visible="!clearView">
+				<div v-visible="!clearView" :class="`modal-navigation--${size}`" class="modal-navigation">
 					<transition name="fade">
 						<a v-if="hasPrevious" class="prev" @click="previous">
 							<div class="icon icon-previous">
@@ -69,11 +69,11 @@
 									{{ t('core', 'Next') }}
 								</span>
 							</div>
-							<svg v-if="playing" class="progress-ring" width="48"
-								height="48">
+							<svg v-if="playing" class="progress-ring" width="32"
+								height="32">
 								<circle class="progress-ring__circle" stroke="white" stroke-width="2"
-									fill="transparent" r="22" cx="24"
-									cy="24" />
+									fill="transparent" r="14" cx="16"
+									cy="16" />
 							</svg>
 						</a>
 					</transition>
@@ -82,8 +82,9 @@
 
 			<!-- Content -->
 			<transition :name="modalTransitionName">
-				<div v-show="showModal" id="modal-wrapper" @click.self="close">
-					<div id="modal-container">
+				<div v-show="showModal" :class="`modal-wrapper--${size}`" class="modal-wrapper"
+					@click.self="close">
+					<div class="modal-container">
 						<slot />
 					</div>
 				</div>
@@ -141,6 +142,13 @@ export default {
 		enableSwipe: {
 			type: Boolean,
 			default: true
+		},
+		size: {
+			type: String,
+			default: 'normal',
+			validator: size => {
+				return ['normal', 'large', 'full'].indexOf(size) !== -1
+			}
 		}
 	},
 
@@ -262,19 +270,19 @@ export default {
 <style lang="scss" scoped>
 @import '~Fonts/scss/iconfont-vue';
 
-#modal-mask {
+.modal-mask {
 	position: fixed;
 	z-index: 9998;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0, 0, 0, .85);
+	background-color: rgba(0, 0, 0, .92);
 	display: block;
 }
 
 /* Navigation buttons */
-#modal-navigation {
+.modal-navigation {
 	.prev,
 	.next,
 	.play-pause {
@@ -282,6 +290,7 @@ export default {
 		top: 0;
 		z-index: 10000;
 		width: 15%;
+		min-width: 60px;
 		height: 100%;
 		display: block;
 	}
@@ -294,12 +303,13 @@ export default {
 	.play-pause {
 		$pi: 3.14159265358979;
 		right: 0;
-		top: calc(50% + 44px + 22px); // 1 + half the entry
+		top: calc(100% - 45px); // 1 + half the entry
 		height: 44px;
 		.progress-ring {
-			margin: -2px;
+			margin: 6px 5px;
+			margin-right: -14px;
 			position: absolute;
-			left: 22px;
+			right: 25%;
 			z-index: 1;
 			transform: rotate(-90deg);
 			.progress-ring__circle {
@@ -307,15 +317,8 @@ export default {
 				transition: 100ms stroke-dashoffset;
 				// axis compensation
 				transform-origin: 50% 50%;
-				stroke-dasharray: 22 * 2 * $pi, 22 * 2 * $pi; // radius * 2 * PI
+				stroke-dasharray: 16 * 2 * $pi, 16 * 2 * $pi; // radius * 2 * PI
 			}
-		}
-		.icon-play,
-		.icon-pause {
-			top: 0;
-			left: 22px;
-			// weirdly, 21px is a better visual w/ the antialiazing 🤷‍♀️
-			font-size: 21px;
 		}
 		.icon-play {
 			@include iconfont('play');
@@ -327,6 +330,17 @@ export default {
 			padding: 13px 11px;
 		}
 	}
+
+	&.modal-navigation--full,
+	&.modal-navigation--large {
+		.prev,
+		.next,
+		.play-pause {
+			width: 10%;
+		}
+	}
+
+	// buttons/icons
 	.icon-next,
 	.icon-previous,
 	.icon-play,
@@ -345,17 +359,26 @@ export default {
 	}
 	.icon-previous {
 		@include iconfont('arrow-left');
-		left: calc(100% - 22px - 44px);
+		// center horizontally
+		left: 25%;
+		margin-left: -22px;
 	}
 	.icon-next {
 		@include iconfont('arrow-right');
-		background-color: var(--color-primary);
-		box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-		left: 22px;
+		// center horizontally
+		right: 25%;
+		margin-right: -22px;
+	}
+	.icon-play,
+	.icon-pause {
+		top: 0;
+		right: 25%;
+		margin-right: -22px;
+		font-size: 19px;
 	}
 }
 
-#modal-header {
+.modal-header {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -412,18 +435,27 @@ export default {
 	}
 }
 
-#modal-wrapper {
+.modal-wrapper {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	height: 100%;
 	width: 100%;
-	// do not go over the header
-	padding-top: 50px;
 	box-sizing: border-box;
-	#modal-container {
-		max-width: 900px;
-		max-height: 80%;
+	&--full {
+		.modal-container {
+			max-width: 100%;
+			max-height: 100%;
+			border-radius: 0;
+		}
+	}
+	&--large {
+		.modal-container {
+			max-width: 70%;
+			max-height: 90%;
+		}
+	}
+	.modal-container {
 		margin: 0 auto;
 		padding: 0;
 		background-color: var(--color-main-background);
@@ -432,6 +464,10 @@ export default {
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
 		transition: transform 300ms ease;
 		display: block;
+	}
+	&:not(&--large):not(&--full).modal-container {
+		max-width: 900px;
+		max-height: 80%;
 	}
 }
 
@@ -460,29 +496,20 @@ export default {
 	opacity: 0;
 }
 
-.modal-in-enter #modal-container,
-.modal-in-leave-to #modal-container {
+.modal-in-enter .modal-container,
+.modal-in-leave-to .modal-container {
 	transform: scale(.9);
 }
 
-.modal-out-enter #modal-container,
-.modal-out-leave-to #modal-container {
+.modal-out-enter .modal-container,
+.modal-out-leave-to .modal-container {
 	transform: scale(1.1);
-}
-
-@media only screen and (max-width: 768px) {
-	#modal-header {
-		justify-content: flex-start;
-		.modal-title {
-			padding: 0 88px 0 10px;
-		}
-	}
 }
 
 </style>
 <style lang="scss">
 // we cannot scope sub-components
-#modal-mask[data-v-#{$scope_version}] #modal-header .icons-menu .action-item__menutoggle {
+.modal-mask[data-v-#{$scope_version}] .modal-header .icons-menu .action-item__menutoggle {
 	// 22px is a somehow better looking for the icon-more icon
 	font-size: 22px;
 	padding: 13px 11px;
@@ -492,7 +519,7 @@ export default {
 $pi: 3.14159265358979;
 @keyframes progress-ring {
 	from {
-		stroke-dashoffset: 22 * 2 * $pi; // radius * 2 * PI
+		stroke-dashoffset: 16 * 2 * $pi; // radius * 2 * PI
 	}
 	to {
 		stroke-dashoffset: 0;
