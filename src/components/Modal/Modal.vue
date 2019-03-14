@@ -32,6 +32,19 @@
 					</div>
 					<div class="icons-menu">
 						<action v-if="actions.length > 0" :actions="actions" class="header-actions" />
+						<a v-if="hasNext && enableSlideshow" class="play-pause" @click="togglePlayPause">
+							<div :class="[playing ? 'icon-pause' : 'icon-play']">
+								<span class="hidden-visually">
+									{{ t('core', 'Next') }}
+								</span>
+							</div>
+							<svg v-if="playing" class="progress-ring" height="50"
+								width="50">
+								<circle class="progress-ring__circle" stroke="white" stroke-width="2"
+									fill="transparent" r="15" cx="25"
+									cy="25" />
+							</svg>
+						</a>
 						<a class="close icon-close" @click="close">
 							<span class="hidden-visually">
 								{{ t('core', 'Close') }}
@@ -60,21 +73,6 @@
 									{{ t('core', 'Next') }}
 								</span>
 							</div>
-						</a>
-					</transition>
-					<transition name="fade">
-						<a v-if="hasNext && enableSlideshow" class="play-pause" @click="togglePlayPause">
-							<div :class="[playing ? 'icon-pause' : 'icon-play']">
-								<span class="hidden-visually">
-									{{ t('core', 'Next') }}
-								</span>
-							</div>
-							<svg v-if="playing" class="progress-ring" width="32"
-								height="32">
-								<circle class="progress-ring__circle" stroke="white" stroke-width="2"
-									fill="transparent" r="14" cx="16"
-									cy="16" />
-							</svg>
 						</a>
 					</transition>
 				</div>
@@ -284,8 +282,7 @@ export default {
 /* Navigation buttons */
 .modal-navigation {
 	.prev,
-	.next,
-	.play-pause {
+	.next {
 		position: absolute;
 		top: 0;
 		z-index: 10000;
@@ -300,51 +297,18 @@ export default {
 	.next {
 		right: 0;
 	}
-	.play-pause {
-		$pi: 3.14159265358979;
-		right: 0;
-		top: calc(100% - 45px); // 1 + half the entry
-		height: 44px;
-		.progress-ring {
-			margin: 6px 5px;
-			margin-right: -14px;
-			position: absolute;
-			right: 25%;
-			z-index: 1;
-			transform: rotate(-90deg);
-			.progress-ring__circle {
-				animation: progress-ring linear 3s infinite;
-				transition: 100ms stroke-dashoffset;
-				// axis compensation
-				transform-origin: 50% 50%;
-				stroke-dasharray: 16 * 2 * $pi, 16 * 2 * $pi; // radius * 2 * PI
-			}
-		}
-		.icon-play {
-			@include iconfont('play');
-			// better visual
-			padding: 13px;
-		}
-		.icon-pause {
-			@include iconfont('pause');
-			padding: 13px 11px;
-		}
-	}
 
 	&.modal-navigation--full,
 	&.modal-navigation--large {
 		.prev,
-		.next,
-		.play-pause {
+		.next {
 			width: 10%;
 		}
 	}
 
 	// buttons/icons
 	.icon-next,
-	.icon-previous,
-	.icon-play,
-	.icon-pause {
+	.icon-previous {
 		background-image: none;
 		font-size: 24px;
 		padding: 12px 11px;
@@ -368,13 +332,6 @@ export default {
 		// center horizontally
 		right: 25%;
 		margin-right: -22px;
-	}
-	.icon-play,
-	.icon-pause {
-		top: 0;
-		right: 25%;
-		margin-right: -22px;
-		font-size: 19px;
 	}
 }
 
@@ -411,13 +368,36 @@ export default {
 
 		.icon-close {
 			@include iconfont('close');
-			height: 44px;
-			width: 44px;
+			height: 50px;
+			width: 50px;
 			box-sizing: border-box;
-			padding: 12px 11px;
+			padding: 16px 14px;
 			font-size: 24px;
-			color: white;
+			color: #fff;
 			background-image: none;
+		}
+
+		.play-pause {
+			height: 50px;
+			width: 50px;
+			color: white;
+			font-size: 22px;
+			position: relative;
+			.icon-play,
+			.icon-pause {
+				height: 50px;
+			}
+			.icon-play {
+				@include iconfont('play');
+				// better visual
+				padding: 15px;
+			}
+			.icon-pause {
+				@include iconfont('pause');
+				padding: 15px;
+				// ! align with circle
+				font-size: 19.5px;
+			}
 		}
 
 		.header-actions {
@@ -515,11 +495,28 @@ export default {
 	padding: 13px 11px;
 }
 
-// keyframes get scoped too and break the animation name, we need them unscoped
+$radius: 15;
 $pi: 3.14159265358979;
-@keyframes progress-ring {
+// animated circle
+.modal-mask[data-v-#{$scope_version}] .progress-ring {
+	position: absolute;
+	transform: rotate(-90deg);
+	top: 0;
+	left: 0;
+	.progress-ring__circle {
+		animation: progressring linear 3s infinite;
+		transition: 100ms stroke-dashoffset;
+		stroke-linecap: round;
+		// axis compensation
+		transform-origin: 50% 50%;
+		stroke-dashoffset: $radius * 2 * $pi;	// radius * 2 * PI
+		stroke-dasharray: $radius * 2 * $pi;	// radius * 2 * PI
+	}
+}
+// keyframes get scoped too and break the animation name, we need them unscoped
+@keyframes progressring {
 	from {
-		stroke-dashoffset: 16 * 2 * $pi; // radius * 2 * PI
+		stroke-dashoffset: $radius * 2 * $pi;	// radius * 2 * PI
 	}
 	to {
 		stroke-dashoffset: 0;
