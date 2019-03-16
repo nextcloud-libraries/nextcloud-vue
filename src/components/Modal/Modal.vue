@@ -25,8 +25,10 @@
 		<div ref="mask" class="modal-mask" @click="handleMouseMove"
 			@mousemove="handleMouseMove" @touchmove="handleMouseMove">
 			<!-- Header -->
-			<transition name="fade">
-				<div v-if="!clearView" class="modal-header">
+			<transition name="fade-visibility">
+				<div v-show="!clearView" :class="{
+					invisible: clearView
+				}" class="modal-header">
 					<div v-if="title.trim() !== ''" class="modal-title">
 						{{ title }}
 					</div>
@@ -56,7 +58,7 @@
 
 			<!-- Navigation buttons -->
 			<transition name="fade">
-				<div v-visible="!clearView" :class="`modal-navigation--${size}`" class="modal-navigation">
+				<div v-if="!clearView" :class="`modal-navigation--${size}`" class="modal-navigation">
 					<transition name="fade">
 						<a v-if="hasPrevious" class="prev" @click="previous">
 							<div class="icon icon-previous">
@@ -92,12 +94,8 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import Hammer from 'hammerjs'
-import VueVisible from 'vue-visible'
 import Action from 'Components/Action'
-
-Vue.use(VueVisible)
 
 export default {
 	name: 'Modal',
@@ -343,9 +341,19 @@ export default {
 	width: 100%;
 	height: 50px;
 	z-index: 10001;
-	display: flex;
+	// prevent vue show to use display:none and reseting
+	// the circle animation loop
+	display: flex !important;
 	align-items: center;
 	justify-content: center;
+	transition: opacity 250ms,
+		visibility 250ms;
+
+	// replace display by visibility
+	&.invisible[style*='display:none'],
+	&.invisible[style*='display: none'] {
+		visibility: hidden;
+	}
 
 	.modal-title {
 		max-width: 100%;
@@ -386,6 +394,7 @@ export default {
 			.icon-play,
 			.icon-pause {
 				height: 50px;
+				background-image: none;
 			}
 			.icon-play {
 				@include iconfont('play');
@@ -460,6 +469,12 @@ export default {
 .fade-enter,
 .fade-leave-to  {
 	opacity: 0;
+}
+
+.fade-visibility-enter,
+.fade-visibility-leave-to  {
+	opacity: 0;
+	visibility: hidden;
 }
 
 .modal-in-enter-active,
