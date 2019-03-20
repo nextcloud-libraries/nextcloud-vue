@@ -58,7 +58,13 @@
 
 			<!-- Content wrapper -->
 			<transition :name="modalTransitionName">
-				<div v-show="showModal" :class="`modal-wrapper--${size}`" class="modal-wrapper"
+				<div
+					v-show="showModal"
+					:class="[
+						`modal-wrapper--${size}`,
+						spreadNavigation ? 'modal-wrapper--spread-navigation' : ''
+					]"
+					class="modal-wrapper"
 					@click.self="close">
 					<!-- Navigation button -->
 					<transition name="fade-visibility">
@@ -147,6 +153,10 @@ export default {
 		enableSwipe: {
 			type: Boolean,
 			default: true
+		},
+		spreadNavigation: {
+			type: Boolean,
+			default: false
 		},
 		size: {
 			type: String,
@@ -334,7 +344,7 @@ export default {
 			height: 50px;
 			width: 50px;
 			box-sizing: border-box;
-			padding: 16px 14px;
+			padding: 15px 14px;
 			font-size: 24px;
 			color: #fff;
 			background-image: none;
@@ -452,6 +462,9 @@ export default {
 			max-height: 100%;
 			border-radius: 0;
 		}
+	}
+	&--full,
+	&--spread-navigation {
 		.prev,
 		.next {
 			position: absolute;
