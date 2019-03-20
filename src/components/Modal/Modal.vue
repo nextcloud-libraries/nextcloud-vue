@@ -56,11 +56,16 @@
 				</div>
 			</transition>
 
-			<!-- Navigation buttons -->
-			<transition name="fade">
-				<div v-if="!clearView" :class="`modal-navigation--${size}`" class="modal-navigation">
-					<transition name="fade">
-						<a v-if="hasPrevious" class="prev" @click="previous">
+			<!-- Content wrapper -->
+			<transition :name="modalTransitionName">
+				<div v-show="showModal" :class="`modal-wrapper--${size}`" class="modal-wrapper"
+					@click.self="close">
+					<!-- Navigation button -->
+					<transition name="fade-visibility">
+						<a v-show="hasPrevious && !clearView" class="prev" :class="{
+								invisible: clearView || !hasPrevious
+							}"
+							@click="previous">
 							<div class="icon icon-previous">
 								<span class="hidden-visually">
 									{{ t('core', 'Previous') }}
@@ -68,8 +73,18 @@
 							</div>
 						</a>
 					</transition>
-					<transition name="fade">
-						<a v-if="hasNext" class="next" @click="next">
+
+					<!-- Content -->
+					<div class="modal-container">
+						<slot />
+					</div>
+
+					<!-- Navigation button -->
+					<transition name="fade-visibility">
+						<a v-show="hasNext && !clearView" class="next" :class="{
+								invisible: clearView || !hasNext
+							}"
+							@click="next">
 							<div class="icon icon-next">
 								<span class="hidden-visually">
 									{{ t('core', 'Next') }}
@@ -77,16 +92,6 @@
 							</div>
 						</a>
 					</transition>
-				</div>
-			</transition>
-
-			<!-- Content -->
-			<transition :name="modalTransitionName">
-				<div v-show="showModal" :class="`modal-wrapper--${size}`" class="modal-wrapper"
-					@click.self="close">
-					<div class="modal-container">
-						<slot />
-					</div>
 				</div>
 			</transition>
 		</div>
@@ -130,6 +135,10 @@ export default {
 		enableSlideshow: {
 			type: Boolean,
 			default: false
+		},
+		clearViewDelay: {
+			type: Number,
+			default: 5000
 		},
 		slideshowDelay: {
 			type: Number,
@@ -241,11 +250,13 @@ export default {
 			}
 		},
 		handleMouseMove() {
-			this.clearView = false
-			clearTimeout(this.clearViewTimeout)
-			this.clearViewTimeout = setTimeout(() => {
-				this.clearView = true
-			}, 5000)
+			if (this.clearViewDelay > 0) {
+				this.clearView = false
+				clearTimeout(this.clearViewTimeout)
+				this.clearViewTimeout = setTimeout(() => {
+					this.clearView = true
+				}, this.clearViewDelay)
+			}
 		},
 		handleSlideshow() {
 			this.playing = true
@@ -275,62 +286,6 @@ export default {
 	height: 100%;
 	background-color: rgba(0, 0, 0, .92);
 	display: block;
-}
-
-/* Navigation buttons */
-.modal-navigation {
-	.prev,
-	.next {
-		position: absolute;
-		top: 0;
-		z-index: 10000;
-		width: 15%;
-		min-width: 60px;
-		height: 100%;
-		display: block;
-	}
-	.prev {
-		left: 0;
-	}
-	.next {
-		right: 0;
-	}
-
-	&.modal-navigation--full,
-	&.modal-navigation--large {
-		.prev,
-		.next {
-			width: 10%;
-		}
-	}
-
-	// buttons/icons
-	.icon-next,
-	.icon-previous {
-		background-image: none;
-		font-size: 24px;
-		padding: 12px 11px;
-		box-sizing: border-box;
-		color: white;
-		width: 44px;
-		height: 44px;
-		border-radius: 50%;
-		top: 50%;
-		position: absolute;
-		margin: auto;
-	}
-	.icon-previous {
-		@include iconfont('arrow-left');
-		// center horizontally
-		left: 25%;
-		margin-left: -22px;
-	}
-	.icon-next {
-		@include iconfont('arrow-right');
-		// center horizontally
-		right: 25%;
-		margin-right: -22px;
-	}
 }
 
 .modal-header {
@@ -431,21 +386,52 @@ export default {
 	height: 100%;
 	width: 100%;
 	box-sizing: border-box;
-	&--full {
-		.modal-container {
-			max-width: 100%;
-			max-height: 100%;
-			border-radius: 0;
+
+	/* Navigation buttons */
+	.prev,
+	.next {
+		z-index: 10000;
+		width: 15%;
+		min-width: 60px;
+		height: 100%;
+		// ignore display: none
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+		transition: opacity 250ms,
+			visibility 250ms;
+
+		// we want to keep the elements on page
+		// even if hidden to avoid having a unbalanced
+		// centered content
+		// replace display by visibility
+		&.invisible[style*='display:none'],
+		&.invisible[style*='display: none'] {
+			visibility: hidden;
 		}
 	}
-	&--large {
-		.modal-container {
-			max-width: 70%;
-			max-height: 90%;
-		}
+
+	// buttons/icons
+	.icon-next,
+	.icon-previous {
+		background-image: none;
+		font-size: 24px;
+		padding: 12px 11px;
+		box-sizing: border-box;
+		color: white;
+		width: 44px;
+		height: 44px;
+		border-radius: 50%;
 	}
+	.icon-previous {
+		@include iconfont('arrow-left');
+	}
+	.icon-next {
+		@include iconfont('arrow-right');
+	}
+
+	/* Content */
 	.modal-container {
-		margin: 0 auto;
 		padding: 0;
 		background-color: var(--color-main-background);
 		border-radius: var(--border-radius-large);
@@ -454,9 +440,39 @@ export default {
 		transition: transform 300ms ease;
 		display: block;
 	}
-	&:not(&--large):not(&--full).modal-container {
+	&:not(&--large):not(&--full) .modal-container {
 		max-width: 900px;
 		max-height: 80%;
+	}
+
+	// Sizing
+	&--full {
+		.modal-container {
+			max-width: 100%;
+			max-height: 100%;
+			border-radius: 0;
+		}
+		.prev,
+		.next {
+			position: absolute;
+			width: 10%;
+		}
+		.prev {
+			left: 0;
+		}
+		.next {
+			right: 0;
+		}
+	}
+	&--large {
+		.modal-container {
+			max-width: 70%;
+			max-height: 90%;
+		}
+		.prev,
+		.next {
+			width: 10%;
+		}
 	}
 }
 
