@@ -206,15 +206,28 @@ export default {
 	},
 
 	methods: {
+		// Events emitters
 		previous(data) {
 			// do not send the event if nothing is available
 			if (this.hasPrevious) {
+				// if data is set, then it's a user mouse event
+				// and not the slideshow handler, therefore
+				// we reset the timer
+				if (data) {
+					this.resetSlideshow()
+				}
 				this.$emit('previous', data)
 			}
 		},
 		next(data) {
 			// do not send the event if nothing is available
 			if (this.hasNext) {
+				// if data is set, then it's a mouse event
+				// and not the slideshow handler, therefore
+				// we reset the timer
+				if (data) {
+					this.resetSlideshow()
+				}
 				this.$emit('next', data)
 			}
 		},
@@ -226,14 +239,8 @@ export default {
 				this.$emit('close', data)
 			}, 300)
 		},
-		togglePlayPause() {
-			this.playing = !this.playing
-			if (this.playing) {
-				this.handleSlideshow()
-			} else {
-				clearTimeout(this.slideshowTimeout)
-			}
-		},
+
+		// Key Handlers
 		handleKeydown(e) {
 			switch (e.keyCode) {
 			case 37:	// left arrow
@@ -268,6 +275,33 @@ export default {
 				}, this.clearViewDelay)
 			}
 		},
+
+		/**
+		 * Toggle the slideshow state
+		 */
+		togglePlayPause() {
+			this.playing = !this.playing
+			if (this.playing) {
+				this.handleSlideshow()
+			} else {
+				clearTimeout(this.slideshowTimeout)
+			}
+		},
+
+		/**
+		 * Reset the slideshow timer and keep going if it was on
+		 */
+		resetSlideshow() {
+			this.playing = !this.playing
+			clearTimeout(this.slideshowTimeout)
+			this.$nextTick(function() {
+				this.togglePlayPause()
+			})
+		},
+
+		/**
+		 * Handle the slideshow timer and next event
+		 */
 		handleSlideshow() {
 			this.playing = true
 			if (this.hasNext) {
@@ -548,13 +582,13 @@ $pi: 3.14159265358979;
 	top: 0;
 	left: 0;
 	.progress-ring__circle {
-		animation: progressring linear 3s infinite;
 		transition: 100ms stroke-dashoffset;
 		stroke-linecap: round;
 		// axis compensation
 		transform-origin: 50% 50%;
 		stroke-dashoffset: $radius * 2 * $pi;	// radius * 2 * PI
 		stroke-dasharray: $radius * 2 * $pi;	// radius * 2 * PI
+		animation: progressring linear 3s infinite;
 	}
 }
 // keyframes get scoped too and break the animation name, we need them unscoped
