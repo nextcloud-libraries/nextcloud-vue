@@ -57,7 +57,7 @@
 				<!-- menu button if at least two actions -->
 				<li v-else-if="item.utils.actions && item.utils.actions.length > 1"
 					class="app-navigation-entry-utils-menu-button">
-					<button v-click-outside="hideMenu" @click="openedMenu = !openedMenu" />
+					<button v-click-outside="hideMenu" @click="toggleMenu" />
 				</li>
 			</ul>
 		</div>
@@ -109,11 +109,15 @@ export default {
 		item: {
 			type: Object,
 			required: true
+		},
+		menuOpen: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
 		return {
-			openedMenu: false,
+			openedMenu: this.menuOpen,
 			opened: !!this.item.opened
 		}
 	},
@@ -132,6 +136,9 @@ export default {
 	watch: {
 		item(oldItem, newItem) {
 			this.opened = !!newItem.opened
+		},
+		menuOpen(newVal) {
+			this.openedMenu = newVal
 		}
 	},
 	mounted() {
@@ -141,6 +148,11 @@ export default {
 	methods: {
 		hideMenu() {
 			this.openedMenu = false
+			this.$emit('update:menu-open', this.openedMenu)
+		},
+		toggleMenu() {
+			this.openedMenu = !this.openedMenu
+			this.$emit('update:menu-open', this.openedMenu)
 		},
 		toggleCollapse() {
 			this.opened = !this.opened
