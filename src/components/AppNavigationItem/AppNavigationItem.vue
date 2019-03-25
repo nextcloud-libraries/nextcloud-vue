@@ -148,11 +148,11 @@ export default {
 	methods: {
 		hideMenu() {
 			this.openedMenu = false
-			this.$emit('update:menu-open', this.openedMenu)
+			this.$emit('update:menuOpen', this.openedMenu)
 		},
 		toggleMenu() {
 			this.openedMenu = !this.openedMenu
-			this.$emit('update:menu-open', this.openedMenu)
+			this.$emit('update:menuOpen', this.openedMenu)
 		},
 		toggleCollapse() {
 			this.opened = !this.opened
