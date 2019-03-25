@@ -41,7 +41,7 @@ export default {
 			default: ''
 		},
 		buttonClass: {
-			type: String,
+			type: [String, Array, Object],
 			required: false,
 			default: ''
 		},
