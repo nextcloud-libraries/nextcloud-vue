@@ -1,5 +1,5 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -19,22 +19,24 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import * as NcComponents from './components'
-
-function install(Vue) {
-	Object.values(NcComponents).forEach((component) => {
-		Vue.component(component.name, component)
-	})
-}
-
-if (typeof window !== 'undefined' && window.Vue) {
-	install(window.Vue)
-}
 
 export default {
-	install,
-	...NcComponents
+	data: () => ({
+		isMobile: this.isMobile()
+	}),
+	beforeMount() {
+		window.addEventListener('resize', this.onResize)
+	},
+	beforeDestroy() {
+		window.removeEventListener('resize', this.onResize)
+	},
+	methods: {
+		onResize() {
+			// Update mobile mode
+			this.isMobile = this.isMobile()
+		},
+		isMobile() {
+			return window.outerWidth <= 768
+		}
+	}
 }
-export * from './components'
-export * from './directives'
-export * from './mixins'

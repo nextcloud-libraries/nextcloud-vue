@@ -110,6 +110,7 @@ module.exports = {
 		alias: {
 			Components: path.resolve(__dirname, 'src/components/'),
 			Directives: path.resolve(__dirname, 'src/directives/'),
+			Mixins: path.resolve(__dirname, 'src/mixins/'),
 			Utils: path.resolve(__dirname, 'src/utils/'),
 			Fonts: path.resolve(__dirname, 'src/fonts/')
 		},
