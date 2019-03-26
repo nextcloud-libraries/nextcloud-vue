@@ -1,5 +1,5 @@
 /**
- * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -20,23 +20,8 @@
  *
  */
 
-export default {
-	data: () => ({
-		isMobile: this.isMobile()
-	}),
-	beforeMount() {
-		window.addEventListener('resize', this.onResize)
-	},
-	beforeDestroy() {
-		window.removeEventListener('resize', this.onResize)
-	},
-	methods: {
-		onResize() {
-			// Update mobile mode
-			this.isMobile = this.isMobile()
-		},
-		isMobile() {
-			return window.outerWidth <= 768
-		}
-	}
+import isMobile from './isMobile'
+
+export {
+	isMobile
 }
