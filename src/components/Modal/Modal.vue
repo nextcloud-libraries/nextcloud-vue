@@ -47,7 +47,7 @@
 									cy="25" />
 							</svg>
 						</a>
-						<a class="close icon-close" @click="close">
+						<a v-if="canClose" class="close icon-close" @click="close">
 							<span class="hidden-visually">
 								{{ t('core', 'Close') }}
 							</span>
@@ -164,6 +164,10 @@ export default {
 			validator: size => {
 				return ['normal', 'large', 'full'].indexOf(size) !== -1
 			}
+		},
+		canClose: {
+			type: Boolean,
+			default: true
 		}
 	},
 
