@@ -236,12 +236,15 @@ export default {
 			}
 		},
 		close(data) {
-			this.showModal = false
+			// do not fire event if forbidden
+			if (this.canClose) {
+				this.showModal = false
 
-			// delay closing for animation
-			setTimeout(() => {
-				this.$emit('close', data)
-			}, 300)
+				// delay closing for animation
+				setTimeout(() => {
+					this.$emit('close', data)
+				}, 300)
+			}
 		},
 
 		// Key Handlers
