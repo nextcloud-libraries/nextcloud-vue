@@ -196,6 +196,7 @@ export default {
 	},
 	mounted() {
 		this.showModal = true
+
 		// init clear view
 		this.handleMouseMove()
 
@@ -203,6 +204,9 @@ export default {
 		this.mc.on('swipeleft swiperight', e => {
 			this.handleSwipe(e)
 		})
+
+		// force mount the component to body
+		document.body.insertBefore(this.$el, document.body.lastChild)
 	},
 	unmounted() {
 		this.mc.off('swipeleft swiperight')
