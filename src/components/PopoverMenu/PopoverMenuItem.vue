@@ -25,6 +25,7 @@
 		<!-- If item.href is set, a link will be directly used -->
 		<a v-if="item.href" :href="(item.href) ? item.href : '#' "
 			:target="(item.target) ? item.target : '' "
+			:download="item.download"
 			rel="noreferrer noopener" @click="action">
 			<span v-if="!iconIsUrl" :class="item.icon" />
 			<img v-else :src="item.icon">
