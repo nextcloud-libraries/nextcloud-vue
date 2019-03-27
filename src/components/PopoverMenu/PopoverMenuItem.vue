@@ -25,7 +25,8 @@
 		<!-- If item.href is set, a link will be directly used -->
 		<a v-if="item.href" :href="(item.href) ? item.href : '#' "
 			:target="(item.target) ? item.target : '' "
-			rel="noreferrer noopener" @click="action">
+			rel="noreferrer noopener" v-bind="item.attr"
+			@click="action">
 			<span v-if="!iconIsUrl" :class="item.icon" />
 			<img v-else :src="item.icon">
 			<p v-if="item.text && item.longtext">
@@ -45,7 +46,8 @@
 		</a>
 
 		<!-- If item.input is set instead, an put will be used -->
-		<span v-else-if="item.input" class="menuitem" :class="{active: item.active}">
+		<span v-else-if="item.input" class="menuitem" :class="{active: item.active}"
+			v-bind="item.attr">
 			<!-- does not show if input is checkbox -->
 			<span v-if="item.input !== 'checkbox'" :class="item.icon" />
 
@@ -69,7 +71,7 @@
 
 		<!-- If item.action is set instead, a button will be used -->
 		<button v-else-if="item.action" class="menuitem" :class="{active: item.active}"
-			@click.stop.prevent="item.action">
+			v-bind="item.attr" @click.stop.prevent="item.action">
 			<span :class="item.icon" />
 			<p v-if="item.text && item.longtext">
 				<strong class="menuitem-text">
@@ -88,7 +90,8 @@
 		</button>
 
 		<!-- If item.longtext is set AND the item does not have an action -->
-		<span v-else class="menuitem" :class="{active: item.active}">
+		<span v-else class="menuitem" :class="{active: item.active}"
+			v-bind="item.attr">
 			<span :class="item.icon" />
 			<p v-if="item.text && item.longtext">
 				<strong class="menuitem-text">
