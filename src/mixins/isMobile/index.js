@@ -21,21 +21,23 @@
  */
 
 export default {
-	data: () => ({
-		isMobile: this.isMobile()
-	}),
+	data() {
+		return {
+			isMobile: this._isMobile()
+		}
+	},
 	beforeMount() {
-		window.addEventListener('resize', this.onResize)
+		window.addEventListener('resize', this._onResize)
 	},
 	beforeDestroy() {
-		window.removeEventListener('resize', this.onResize)
+		window.removeEventListener('resize', this._onResize)
 	},
 	methods: {
-		onResize() {
+		_onResize() {
 			// Update mobile mode
-			this.isMobile = this.isMobile()
+			this.isMobile = this._isMobile()
 		},
-		isMobile() {
+		_isMobile() {
 			return window.outerWidth <= 768
 		}
 	}
