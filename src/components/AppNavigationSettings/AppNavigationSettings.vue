@@ -21,13 +21,10 @@
  -->
 
 <template>
-	<div id="app-settings"
-		v-click-outside="closeMenu"
-		:class="{open}">
+	<div id="app-settings">
 		<div id="app-settings-header">
 			<button class="settings-button"
-				data-apps-slide-toggle="#app-settings-content"
-				@click="toggleMenu">
+				data-apps-slide-toggle="#app-settings-content">
 				{{ title }}
 			</button>
 		</div>
@@ -38,31 +35,13 @@
 </template>
 
 <script>
-import ClickOutside from 'vue-click-outside'
-
 export default {
-	directives: {
-		ClickOutside
-	},
 	props: {
 		title: {
 			type: String,
 			required: false,
 			// TODO: translate
 			default: t('core', 'Settings')
-		}
-	},
-	data() {
-		return {
-			open: false
-		}
-	},
-	methods: {
-		toggleMenu() {
-			this.open = !this.open
-		},
-		closeMenu() {
-			this.open = false
 		}
 	}
 }
