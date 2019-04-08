@@ -21,7 +21,7 @@
  */
 
 import Action from './Action'
-import AppContent from './AppContent'
+import Content from './Content'
 import AppNavigation from './AppNavigation'
 import AppNavigationItem from './AppNavigationItem'
 import AppNavigationNew from './AppNavigationNew'
@@ -35,7 +35,7 @@ import PopoverMenu from './PopoverMenu'
 
 export {
 	Action,
-	AppContent,
+	Content,
 	AppNavigation,
 	AppNavigationItem,
 	AppNavigationNew,
