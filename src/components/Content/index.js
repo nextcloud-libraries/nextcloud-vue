@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import AppContent from './AppContent'
+import Content from './Content'
 
-export default AppContent
-export { AppContent }
+export default Content
+export { Content }
