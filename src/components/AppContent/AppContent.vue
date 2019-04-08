@@ -21,11 +21,72 @@
  -->
 
 <template>
-	<div id="app-content">
+	<div id="app-content" class="no-snapper" :style="opened ? 'transform: translateX(300px)' : ''">
+		<app-navigation-toggle @click="toggleNavigation" />
 		<slot />
 	</div>
 </template>
 
 <script>
-export default {}
+import Hammer from 'hammerjs'
+import AppNavigationToggle from '../AppNavigationToggle'
+
+export default {
+	name: 'AppContent',
+	components: {
+		AppNavigationToggle
+	},
+	data() {
+		return {
+			// closed by default on mobile mode
+			opened: false
+		}
+	},
+	mounted() {
+		this.mc = new Hammer(this.$el)
+		this.mc.on('swipeleft swiperight', e => {
+			this.handleSwipe(e)
+		})
+	},
+	unmounted() {
+		this.mc.off('swipeleft swiperight')
+		this.ms.destroy()
+	},
+	methods: {
+		/**
+		 * Toggle the navigation
+		 *
+		 * @param {Boolean} [state] set the state instead of inverting the current one
+		 */
+		toggleNavigation(state) {
+			this.opened = state || !this.opened
+			this.opened
+				? document.body.classList.add('nav-open')
+				: document.body.classList.remove('nav-open')
+		},
+		// handle the swipe event
+		handleSwipe(e) {
+			const minSwipeX = 70
+			const touchzone = 40
+			const startX = e.srcEvent.pageX - e.deltaX
+			const hasEnoughDistance = Math.abs(e.deltaX) > minSwipeX
+			if (hasEnoughDistance && startX < touchzone) {
+				this.toggleNavigation(true)
+			} else if (this.opened && hasEnoughDistance && startX < touchzone + 300) {
+				this.toggleNavigation(false)
+			}
+		}
+	}
+}
 </script>
+<style lang="scss" scoped>
+#app-content {
+	z-index: 1000;
+	background-color: var(--color-main-background);
+	position: relative;
+	flex-basis: 100vw;
+	min-height: 100%;
+	will-change: transform;
+	transition: transform var(--animation-quick);
+}
+</style>

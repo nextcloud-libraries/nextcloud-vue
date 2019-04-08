@@ -1,5 +1,5 @@
 <!--
- - @copyright Copyright (c) 2018 Christoph Wurst <christoph@winzerhof-wurst.at>
+ - @copyright Copyright (c) 2019 Christoph Wurst <christoph@winzerhof-wurst.at>
  -
  - @author Christoph Wurst <christoph@winzerhof-wurst.at>
  -
@@ -19,20 +19,44 @@
  - along with this program. If not, see <http://www.gnu.org/licenses/>.
  -
  -->
-
 <template>
-	<div id="content" :class="`app-${appName}`">
-		<slot />
-	</div>
+	<div id="app-navigation-toggle" tabindex="0" @click="emitClick" />
 </template>
 
 <script>
 export default {
-	props: {
-		appName: {
-			type: String,
-			required: true
+	name: 'AppNavigationToggle',
+	methods: {
+		emitClick() {
+			this.$emit('click')
 		}
 	}
 }
 </script>
+
+<style scoped lang="scss">
+@import '~Fonts/scss/iconfont-vue';
+
+#app-navigation-toggle {
+	display: none;
+	position: fixed;
+	z-index: 149;
+	left: 0;
+	width: 44px;
+	height: 44px;
+	padding: 14px;
+
+	cursor: pointer;
+	opacity: 0.6;
+
+	font-size: 16px;
+	line-height: 17px;
+	@include iconfont('menu');
+}
+// mobile only
+@media only screen and (max-width: 768px) {
+	#app-navigation-toggle {
+		display: inline-block !important;
+	}
+}
+</style>

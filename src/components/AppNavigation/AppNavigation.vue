@@ -30,3 +30,16 @@ export default {
 	name: 'AppNavigation'
 }
 </script>
+<style lang="scss">
+#app-navigation {
+	will-change: transform;
+	transition: transform var(--animation-quick);
+}
+// mobile view only
+@media only screen and (max-width: 768px) {
+	// if navigation is shown
+	.nav-open #app-navigation {
+		transform: translateX(0);
+	}
+}
+</style>
