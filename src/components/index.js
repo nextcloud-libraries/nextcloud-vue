@@ -27,6 +27,7 @@ import AppNavigationItem from './AppNavigationItem'
 import AppNavigationNew from './AppNavigationNew'
 import AppNavigationSettings from './AppNavigationSettings'
 import AppNavigationSpacer from './AppNavigationSpacer'
+import AppSidebar from './AppSidebar'
 import Avatar from './Avatar'
 import DatetimePicker from './DatetimePicker'
 import Modal from './Modal'
@@ -41,6 +42,7 @@ export {
 	AppNavigationNew,
 	AppNavigationSettings,
 	AppNavigationSpacer,
+	AppSidebar,
 	Avatar,
 	DatetimePicker,
 	Modal,
