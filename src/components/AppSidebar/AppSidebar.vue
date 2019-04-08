@@ -1,5 +1,5 @@
 <!--
- - @copyright Copyright (c) 2018 Christoph Wurst <christoph@winzerhof-wurst.at>
+ - @copyright Copyright (c) 2019 Christoph Wurst <christoph@winzerhof-wurst.at>
  -
  - @author Christoph Wurst <christoph@winzerhof-wurst.at>
  -
@@ -21,21 +21,11 @@
  -->
 
 <template>
-	<div id="content" :class="'app-' + appName">
-		<slot name="navigation" />
-		<slot name="content" />
+	<div id="app-sidebar">
 		<slot />
-		<slot name="sidebar" />
 	</div>
 </template>
 
 <script>
-export default {
-	props: {
-		appName: {
-			type: String,
-			required: true
-		}
-	}
-}
+export default {}
 </script>
