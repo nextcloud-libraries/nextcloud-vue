@@ -21,13 +21,14 @@
  */
 
 import Action from './Action'
-import Content from './Content'
+import AppContent from './AppContent'
 import AppNavigation from './AppNavigation'
 import AppNavigationItem from './AppNavigationItem'
 import AppNavigationNew from './AppNavigationNew'
 import AppNavigationSettings from './AppNavigationSettings'
 import AppNavigationSpacer from './AppNavigationSpacer'
 import Avatar from './Avatar'
+import Content from './Content'
 import DatetimePicker from './DatetimePicker'
 import Modal from './Modal'
 import Multiselect from './Multiselect'
@@ -35,13 +36,14 @@ import PopoverMenu from './PopoverMenu'
 
 export {
 	Action,
-	Content,
+	AppContent,
 	AppNavigation,
 	AppNavigationItem,
 	AppNavigationNew,
 	AppNavigationSettings,
 	AppNavigationSpacer,
 	Avatar,
+	Content,
 	DatetimePicker,
 	Modal,
 	Multiselect,
