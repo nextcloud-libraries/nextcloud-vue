@@ -20,10 +20,14 @@
   -
   -->
 
+<!-- Accessibility guidelines:
+https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-actions.html -->
+
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
-	<a v-if="isSingleAction" href="#" :class="firstAction.icon"
-		class="action-item action-item--single" @click="firstAction.action ? firstAction.action : null" />
+	<a v-if="isSingleAction" :href="firstAction.href ? firstAction.href : '#'"
+		:class="firstAction.icon" class="action-item action-item--single"
+		@[firstActionEvent]="execFirstAction" />
 	<!-- more than one action -->
 	<div v-else
 		:class="{'action-item--open': opened}"
@@ -91,7 +95,7 @@ export default {
 		return {
 			opened: this.open,
 			focusIndex: 0,
-			randomId: Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)
+			randomId: 'menu-' + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)
 		}
 	},
 	computed: {
@@ -100,6 +104,12 @@ export default {
 		},
 		firstAction() {
 			return this.actions[0]
+		},
+		// return the event to bind if the firstAction have an action
+		firstActionEvent() {
+			return this.firstAction.action
+				? 'click'
+				: null
 		}
 	},
 	watch: {
@@ -127,8 +137,6 @@ export default {
 			this.$emit('update:open', this.opened)
 		},
 		focusAction() {
-			// eslint-disable-next-line
-			console.info(this.$el.querySelectorAll('.focusable')[this.focusIndex])
 			this.$el.querySelectorAll('.focusable')[this.focusIndex].focus()
 		},
 		focusPreviousAction() {
@@ -146,6 +154,11 @@ export default {
 		focusLastAction() {
 			this.focusIndex = this.$el.querySelectorAll('.focusable').length - 1
 			this.focusAction()
+		},
+		// exec the first action and prevent default
+		execFirstAction(e) {
+			this.firstAction.action(e)
+			e.preventDefault()
 		}
 	}
 }
@@ -177,7 +190,10 @@ export default {
 	}
 	// icon-more
 	&__menutoggle {
-		display: inline-block;
+		// align menu icon in center
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		opacity: .7;
 		@include iconfont('more');
 	}
