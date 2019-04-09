@@ -22,19 +22,31 @@
 
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
-	<action :href="isSingleAction && firstAction.href ? firstAction.href : '#'"
-		:class="[isSingleAction ? `${firstAction.icon} action-item--single` : 'action-item--multiple']"
-		v-bind="mainActionElement()" class="action-item"
-		v-on="isSingleAction && firstAction.action ? { click: firstAction.action } : {}">
+	<a v-if="isSingleAction" href="#" :class="firstAction.icon"
+		class="action-item action-item--single" @click="firstAction.action ? firstAction.action : null" />
+	<!-- more than one action -->
+	<div v-else
+		:class="{'action-item--open': opened}"
+		class="action-item"
+		@keydown.up.exact.prevent="focusPreviousAction"
+		@keydown.down.exact.prevent="focusNextAction"
+		@keydown.shift.tab.prevent="focusPreviousAction"
+		@keydown.tab.exact.prevent="focusNextAction"
+		@keydown.page-up.exact.prevent="focusFirstAction"
+		@keydown.page-down.exact.prevent="focusLastAction"
+		@keydown.esc.exact.prevent="closeMenu">
 		<!-- If more than one action, create a popovermenu -->
-		<template v-if="!isSingleAction">
-			<div v-click-outside="closeMenu" tabindex="0" class="icon action-item__menutoggle"
-				@click.prevent="toggleMenu" />
-			<div :class="{ 'open': opened }" class="action-item__menu popovermenu">
-				<popover-menu :menu="actions" />
-			</div>
-		</template>
-	</action>
+		<a v-click-outside="closeMenu"
+			class="icon action-item__menutoggle"
+			href="#" aria-haspopup="true"
+			:aria-controls="randomId"
+			:aria-expanded="opened"
+			@click.prevent="toggleMenu"
+			@keydown.space.exact.prevent="toggleMenu" />
+		<div :class="{ 'open': opened }" class="action-item__menu popovermenu" tabindex="-1">
+			<popover-menu :id="randomId" :menu="actions" tabindex="-1" />
+		</div>
+	</div>
 </template>
 
 <script>
@@ -77,7 +89,9 @@ export default {
 	},
 	data() {
 		return {
-			opened: this.open
+			opened: this.open,
+			focusIndex: 0,
+			randomId: Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)
 		}
 	},
 	computed: {
@@ -100,16 +114,38 @@ export default {
 	methods: {
 		toggleMenu() {
 			this.opened = !this.opened
+			// focus first on menu open after opening the menu
+			if (this.opened) {
+				this.$nextTick(function() {
+					this.focusFirstAction()
+				})
+			}
 			this.$emit('update:open', this.opened)
 		},
 		closeMenu() {
 			this.opened = false
 			this.$emit('update:open', this.opened)
 		},
-		mainActionElement() {
-			return {
-				is: this.isSingleAction ? 'a' : 'div'
-			}
+		focusAction() {
+			// eslint-disable-next-line
+			console.info(this.$el.querySelectorAll('.focusable')[this.focusIndex])
+			this.$el.querySelectorAll('.focusable')[this.focusIndex].focus()
+		},
+		focusPreviousAction() {
+			this.focusIndex = Math.max(this.focusIndex - 1, 0)
+			this.focusAction()
+		},
+		focusNextAction() {
+			this.focusIndex = Math.min(this.focusIndex + 1, this.$el.querySelectorAll('.focusable').length - 1)
+			this.focusAction()
+		},
+		focusFirstAction() {
+			this.focusIndex = 0
+			this.focusAction()
+		},
+		focusLastAction() {
+			this.focusIndex = this.$el.querySelectorAll('.focusable').length - 1
+			this.focusAction()
 		}
 	}
 }
@@ -120,6 +156,15 @@ export default {
 
 .action-item {
 	display: inline-block;
+	&:hover,
+	&:focus,
+	&__menutoggle:focus,
+	&__menutoggle:active {
+		&,
+		.action-item__menutoggle {
+			opacity: 1;
+		}
+	}
 
 	// icons
 	&--single,
@@ -133,7 +178,16 @@ export default {
 	// icon-more
 	&__menutoggle {
 		display: inline-block;
+		opacity: .7;
 		@include iconfont('more');
+	}
+	&--single {
+		opacity: .7;
+		&:hover,
+		&:focus,
+		a:active {
+			opacity: 1;
+		}
 	}
 	// properly position the menu
 	&--multiple {
