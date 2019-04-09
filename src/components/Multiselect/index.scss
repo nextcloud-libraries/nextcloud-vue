@@ -214,14 +214,6 @@
 					background-color: var(--color-background-dark);
 					opacity: .5;
 				}
-				/* add the prop tag-placeholder="create" to add the +
-				icon on top of an unknown-and-ready-to-be-created entry */
-				&[data-select='create'] {
-					&::before {
-						background-image: var(--icon-add-000);
-						visibility: visible;
-					}
-				}
 				&.multiselect__option--highlight {
 					color: var(--color-main-text);
 					background-color: var(--color-background-dark);
@@ -245,8 +237,18 @@
 	}
 
 	/* Icon before option select */
-	&.multiselect--multiple .multiselect__content-wrapper li > span::before {
-		background-image: var(--icon-checkmark-000);
+	&.multiselect--multiple .multiselect__content-wrapper li > span {
+		&::before {
+			background-image: var(--icon-checkmark-000);
+		}
+		/* add the prop tag-placeholder="create" to add the +
+		icon on top of an unknown-and-ready-to-be-created entry */
+		&[data-select='create'] {
+			&::before {
+				background-image: var(--icon-add-000);
+				visibility: visible;
+			}
+		}
 	}
 
 	/* No need for an icon here */
