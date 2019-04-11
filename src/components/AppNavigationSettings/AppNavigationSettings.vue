@@ -23,17 +23,18 @@
 <template>
 	<div id="app-settings"
 		v-click-outside="closeMenu"
-		:class="{open}">
+		:class="{ open }">
 		<div id="app-settings-header">
 			<button class="settings-button"
-				data-apps-slide-toggle="#app-settings-content"
 				@click="toggleMenu">
 				{{ title }}
 			</button>
 		</div>
-		<div id="app-settings-content">
-			<slot />
-		</div>
+		<transition name="slide-up">
+			<div id="app-settings-content" v-show="open">
+				<slot />
+			</div>
+		</transition>
 	</div>
 </template>
 
@@ -67,3 +68,27 @@ export default {
 	}
 }
 </script>
+<style lang="scss" scoped>
+#app-settings-content {
+	display: block;
+	padding: 10px;
+	background-color: var(--color-main-background);
+	/* restrict height of settings and make scrollable */
+	max-height: 300px;
+	overflow-y: auto;
+	box-sizing: border-box;
+}
+
+.slide-up-leave-active,
+.slide-up-enter-active {
+	transition-duration: var(--animation-quick);
+	transition-property: max-height, padding;
+}
+
+.slide-up-enter,
+.slide-up-leave-to {
+	max-height: 0 !important;
+	padding: 0 10px !important;
+}
+
+</style>
