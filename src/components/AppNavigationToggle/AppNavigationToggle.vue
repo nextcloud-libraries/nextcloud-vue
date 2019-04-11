@@ -20,7 +20,8 @@
  -
  -->
 <template>
-	<div id="app-navigation-toggle" tabindex="0" @click="emitClick" />
+	<a id="app-navigation-toggle" tabindex="0" href="#"
+		@click.prevent="emitClick" @keydown.space.exact.prevent="emitClick" />
 </template>
 
 <script>
@@ -52,6 +53,11 @@ export default {
 	font-size: 16px;
 	line-height: 17px;
 	@include iconfont('menu');
+
+	&:hover,
+	a:focus {
+		opacity: 1;
+	}
 }
 // mobile only
 @media only screen and (max-width: 768px) {

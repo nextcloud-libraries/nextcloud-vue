@@ -22,7 +22,8 @@
 
 <template>
 	<div id="app-content" class="no-snapper" :style="opened ? 'transform: translateX(300px)' : ''">
-		<app-navigation-toggle @click="toggleNavigation" />
+		<app-navigation-toggle :aria-expanded="opened" aria-controls="app-navigation"
+			@click="toggleNavigation" />
 		<slot />
 	</div>
 </template>
