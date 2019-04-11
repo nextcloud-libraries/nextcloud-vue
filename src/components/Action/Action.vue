@@ -126,7 +126,7 @@ export default {
 			this.opened = !this.opened
 			// focus first on menu open after opening the menu
 			if (this.opened) {
-				this.$nextTick(function() {
+				this.$nextTick(() => {
 					this.focusFirstAction()
 				})
 			}
