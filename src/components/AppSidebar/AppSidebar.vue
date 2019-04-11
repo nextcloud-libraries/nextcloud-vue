@@ -26,7 +26,7 @@
 <template>
 	<transition name="slide-right">
 		<aside id="app-sidebar">
-			<header class="app-sidebar-header">
+			<header :class="{ 'app-sidebar-header--with-figure': hasFigure }" class="app-sidebar-header">
 				<!-- close sidebar button -->
 				<a href="#" class="icon-close" :title="t('core', 'close')"
 					@click="closeSidebar" />
@@ -325,6 +325,17 @@ $desc-vertical-padding: 18px;
 			margin: 10px;
 			max-height: 50px;
 			align-items: center;
+		}
+
+		// menu without figure needs to be fixed or
+		// it'll go over the close icon
+		&:not(.app-sidebar-header--with-figure) {
+			.app-sidebar-header__menu {
+				background-color: transparent;
+				top: 0;
+				right: 44px;
+				margin-top: 0;
+			}
 		}
 	}
 	.app-sidebar-tabs {
