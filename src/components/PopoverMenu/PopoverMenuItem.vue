@@ -26,6 +26,7 @@
 		<a v-if="item.href" :href="(item.href) ? item.href : '#' "
 			:target="(item.target) ? item.target : '' "
 			:download="item.download"
+			class="focusable"
 			rel="noreferrer noopener" @click="action">
 			<span v-if="!iconIsUrl" :class="item.icon" />
 			<img v-else :src="item.icon">
@@ -69,7 +70,7 @@
 		</span>
 
 		<!-- If item.action is set instead, a button will be used -->
-		<button v-else-if="item.action" class="menuitem" :class="{active: item.active}"
+		<button v-else-if="item.action" class="menuitem focusable" :class="{active: item.active}"
 			@click.stop.prevent="item.action">
 			<span :class="item.icon" />
 			<p v-if="item.text && item.longtext">
