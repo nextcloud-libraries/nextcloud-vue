@@ -210,7 +210,7 @@ export default {
 	},
 	unmounted() {
 		this.mc.off('swipeleft swiperight')
-		this.ms.destroy()
+		this.mc.destroy()
 	},
 
 	methods: {
