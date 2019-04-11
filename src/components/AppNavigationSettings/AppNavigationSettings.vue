@@ -26,7 +26,6 @@
 		:class="{open}">
 		<div id="app-settings-header">
 			<button class="settings-button"
-				data-apps-slide-toggle="#app-settings-content"
 				@click="toggleMenu">
 				{{ title }}
 			</button>
