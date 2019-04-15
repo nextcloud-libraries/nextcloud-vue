@@ -81,7 +81,7 @@ export default {
 
 .slide-up-leave-active,
 .slide-up-enter-active {
-	transition-duration: 200ms;
+	transition-duration: var(--animation-slow);
 	transition-property: max-height, padding;
 	overflow-y: hidden !important;
 }
