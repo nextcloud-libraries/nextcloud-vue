@@ -57,7 +57,8 @@
 				</div>
 			</header>
 			<!-- tabs navigation -->
-			<nav class="app-sidebar-tabs__nav"
+			<nav v-if="hasMultipleTabs"
+				class="app-sidebar-tabs__nav"
 				@keydown.left.exact.prevent="focusPreviousTab"
 				@keydown.right.exact.prevent="focusNextTab"
 				@keydown.tab.exact.prevent="focusActiveTabContent"
@@ -80,7 +81,8 @@
 				</ul>
 			</nav>
 			<!-- tabs content -->
-			<div class="app-sidebar-tabs__content">
+			<div :class="{'app-sidebar-tabs__content--multiple': hasMultipleTabs}"
+				class="app-sidebar-tabs__content">
 				<slot :active-tab="activeTab" />
 			</div>
 		</aside>
@@ -135,6 +137,9 @@ export default {
 		},
 		hasFigure() {
 			return this.$slots['header'] || this.background
+		},
+		hasMultipleTabs() {
+			return this.tabs.length > 1
 		},
 		currentTabIndex() {
 			return this.tabs.findIndex(tab => tab.id === this.activeTab)
@@ -268,6 +273,8 @@ $desc-vertical-padding: 18px;
 				opacity: 1;
 			}
 		}
+
+		// header background
 		&__figure {
 			max-height: 250px;
 			height: 250px;
@@ -276,12 +283,14 @@ $desc-vertical-padding: 18px;
 			background-position: center;
 			background-repeat: no-repeat;
 		}
+
 		&__desc {
 			position: relative;
 			padding: #{$desc-vertical-padding} #{$desc-menu-right-margin * 4} #{$desc-vertical-padding} 10px;
 			&--with-star {
 				padding-left: 44px;
 			}
+			// titles
 			h3, h4 {
 				width: 100%;
 				white-space: nowrap;
@@ -289,6 +298,7 @@ $desc-vertical-padding: 18px;
 				overflow: hidden;
 				margin: 0;
 			}
+			// main title
 			h3 {
 				font-size: 16px;
 				padding: 0;
@@ -296,11 +306,13 @@ $desc-vertical-padding: 18px;
 					padding-top: 10px;
 				}
 			}
+			// subtitle
 			h4 {
 				font-size: 14px;
 				padding: 0;
 				opacity: .7;
 			}
+			// favourite
 			.app-sidebar-header__star {
 				display: block;
 				width: 44px;
@@ -310,6 +322,7 @@ $desc-vertical-padding: 18px;
 				top: $desc-vertical-padding - 12px; // aligned with main title
 				left: 0;
 			}
+			// main menu
 			.app-sidebar-header__menu {
 				position: absolute;
 				// aligned vertically in the middle
@@ -320,6 +333,8 @@ $desc-vertical-padding: 18px;
 				border-radius: 44px;
 			}
 		}
+
+		// sidebar action(s) slot
 		&__action {
 			display: flex;
 			margin: 10px;
@@ -380,8 +395,11 @@ $desc-vertical-padding: 18px;
 		}
 		&__content {
 			position: relative;
-			flex: 1 1 100%; // take full available height
-			> :not(section) {
+			// take full available height
+			flex: 1 1 100%;
+			// force the use of the tab component if more than one tab
+			// you can just put raw content if you don't use tabs
+			&--multiple > :not(section) {
 				display: none;
 			}
 		}
