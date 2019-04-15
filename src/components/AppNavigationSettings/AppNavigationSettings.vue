@@ -31,7 +31,7 @@
 			</button>
 		</div>
 		<transition name="slide-up">
-			<div id="app-settings-content" v-show="open">
+			<div v-show="open" id="app-settings-content">
 				<slot />
 			</div>
 		</transition>
