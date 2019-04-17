@@ -1,5 +1,5 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -20,10 +20,25 @@
  *
  */
 
-import isFullScreen from './isFullScreen'
-import isMobile from './isMobile'
-
-export {
-	isFullScreen,
-	isMobile
+export default {
+	data() {
+		return {
+			isFullscreen: this._isFullscreen()
+		}
+	},
+	beforeMount() {
+		window.addEventListener('resize', this._onResize)
+	},
+	beforeDestroy() {
+		window.removeEventListener('resize', this._onResize)
+	},
+	methods: {
+		_onResize() {
+			// Update fullscreen mode
+			this.isFullscreen = this._isFullscreen()
+		},
+		_isFullscreen() {
+			return window.innerWidth === screen.width
+		}
+	}
 }
