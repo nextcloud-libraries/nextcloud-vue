@@ -58,7 +58,7 @@
 			<avatar-select-option v-if="userSelect && !$scopedSlots['option']"
 				:option="scope.option" />
 
-			<!-- ellipsis in the middle if no option slot
+			<!-- Ellipsis in the middle if no option slot
 				is defined in the parent -->
 			<ellipsised-option v-else-if="!$scopedSlots['option']"
 				:option="scope.option" :label="label" />
@@ -69,14 +69,16 @@
 
 		<!-- Registering the limit slot to get the +xxx tooltip.
 			You CANNOT use this scope, we will replace it by this -->
-		<span v-if="multiple" slot="limit" v-tooltip.auto="formatLimitTitle(value)"
-			class="multiselect__limit">
-			{{ limitString }}
-		</span>
+		<template v-if="multiple" #limit>
+			<span v-tooltip.auto="formatLimitTitle(value)"
+				class="multiselect__limit">
+				{{ limitString }}
+			</span>
+		</template>
 
 		<!-- Passing the singleLabel slot, this is used to format the selected
 			option on NON-multiple multiselects -->
-		<template v-if="$scopedSlots['singleLabel']" slot="singleLabel" slot-scope="scope">
+		<template v-if="$scopedSlots['singleLabel']" #singleLabel="scope">
 			<slot name="singleLabel" v-bind="scope" />
 		</template>
 
