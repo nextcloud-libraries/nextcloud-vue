@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div class="name-parts">
+	<div class="name-parts" :title="name">
 		<span class="name-parts__first">{{ part1 }}</span>
 		<span v-if="part2" class="name-parts__last">{{ part2 }}</span>
 	</div>
