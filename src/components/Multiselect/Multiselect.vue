@@ -36,11 +36,12 @@
 	<vue-multiselect
 		:value="value"
 		v-bind="$attrs"
-		:class="{
-			'icon-loading-small': loading,
-			'multiselect--multiple': multiple,
-			'multiselect--single': !multiple
-		}"
+		:class="[
+			{
+				'icon-loading-small': loading
+			},
+			multiple ? 'multiselect--multiple': 'multiselect--single'
+		]"
 		:limit="maxOptions"
 		:close-on-select="!multiple"
 		:multiple="multiple"
@@ -49,11 +50,18 @@
 		tag-placeholder="create"
 		v-on="$listeners"
 		@update:value="$emit('update:value', value)">
-		<!-- This is the scope to format the list of available options in the dropdown -->
-		<template v-if="$scopedSlots['option'] || userSelect" slot="option" slot-scope="scope">
+		<!-- This is the scope to format the list of available options in the dropdown
+			Two templates to avoid registering the slot unnecessary -->
+		<template #option="scope">
 			<!-- Avatar display select slot override.
 				You CANNOT use this scope, we will replace it by this -->
-			<avatar-select-option v-if="userSelect" :option="scope.option" />
+			<avatar-select-option v-if="userSelect && !$scopedSlots['option']"
+				:option="scope.option" />
+
+			<!-- ellipsis in the middle if no option slot
+				is defined in the parent -->
+			<ellipsised-option v-else-if="!$scopedSlots['option']"
+				:option="scope.option" :label="label" />
 
 			<!-- Passing the singleLabel slot -->
 			<slot v-else name="option" v-bind="scope" />
@@ -78,20 +86,23 @@
 </template>
 
 <script>
-import VueMultiselect from 'vue-multiselect'
-import Tooltip from 'Directives/Tooltip'
 import AvatarSelectOption from './AvatarSelectOption'
+import EllipsisedOption from './EllipsisedOption'
+import Tooltip from 'Directives/Tooltip'
+import VueMultiselect from 'vue-multiselect'
 
 export default {
 	name: 'Multiselect',
 	components: {
-		VueMultiselect,
-		AvatarSelectOption
+		AvatarSelectOption,
+		EllipsisedOption,
+		VueMultiselect
 	},
 	directives: {
 		tooltip: Tooltip
 	},
 	inheritAttrs: false,
+
 	/**
 	 * Every prop that is defined here will break the auto
 	 * forward to the vue-multiselect component
@@ -116,14 +127,15 @@ export default {
 			type: Number,
 			default: 99999
 		},
-		// eslint-disable-next-line
 		label: {
-			type: String
+			type: String,
+			default: ''
 		},
-		// eslint-disable-next-line
 		trackBy: {
-			type: String
+			type: String,
+			default: ''
 		},
+
 		/**
 		 * Enable the big user selector w/ avatar
 		 * Make sure your objects fit the requirements
@@ -168,6 +180,7 @@ export default {
 			}
 		}
 	},
+
 	data() {
 		return {
 			elWidth: 0
@@ -193,12 +206,14 @@ export default {
 			return `+${this.value.length - this.maxOptions}`
 		}
 	},
+
 	watch: {
 		// ensure we update the width when we add or remove data
 		value: function() {
 			this.updateWidth()
 		}
 	},
+
 	mounted() {
 		this.updateWidth()
 		window.addEventListener('resize', this.updateWidth)
@@ -206,6 +221,7 @@ export default {
 	beforeDestroy() {
 		window.removeEventListener('resize', this.updateWidth)
 	},
+
 	methods: {
 		/**
 		 * Format array of groups objects to a string
@@ -224,12 +240,15 @@ export default {
 			}
 			return ''
 		},
+
 		/**
 		 * Update the component width data
 		 */
 		updateWidth() {
 			// width of the tags wrapper minus the padding
-			this.elWidth = this.$el.querySelector('.multiselect__tags-wrap').offsetWidth - 10
+			if (this.$el) {
+				this.elWidth = this.$el.querySelector('.multiselect__tags-wrap').offsetWidth - 10
+			}
 		}
 	}
 }
