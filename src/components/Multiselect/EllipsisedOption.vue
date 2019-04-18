@@ -78,5 +78,9 @@ export default {
 		white-space: nowrap;
 		text-overflow: ellipsis;
 	}
+	&__last {
+		// prevent whitespace from being trimmed
+		white-space: pre;
+	}
 }
 </style>
