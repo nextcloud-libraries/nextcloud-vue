@@ -49,3 +49,10 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+ul {
+	display: flex;
+	flex-direction: column;
+}
+</style>
