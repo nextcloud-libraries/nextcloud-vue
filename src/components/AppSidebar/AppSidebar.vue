@@ -167,8 +167,10 @@ export default {
 			return tabs
 		}, [])
 
-		// init active tab
-		this.updateActive()
+		// init active tab if exists
+		if (this.tabs.length > 0) {
+			this.updateActive()
+		}
 	},
 	methods: {
 		closeSidebar() {
