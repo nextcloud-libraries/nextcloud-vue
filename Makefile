@@ -46,6 +46,7 @@ stylelint-fix:
 # Cleaning
 clean:
 	rm -rf dist/
+	rm -rf src/fonts/
 
 clean-dev:
 	rm -rf node_modules
