@@ -63,12 +63,14 @@ module.exports = {
 					{
 						loader: 'sass-loader',
 						options: {
-							data: '$scope_version: ' + SCOPE_VERSION + ';',
+							loader: 'sass-loader',
+							data: `$scope_version:${SCOPE_VERSION}; @import 'variables';`,
 							/**
 							 * ! needed for resolve-url-loader
 							 */
 							sourceMap: true,
-							sourceMapContents: false
+							sourceMapContents: false,
+							includePaths: [path.resolve(__dirname, './src/assets')]
 						}
 					}
 				]

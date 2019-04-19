@@ -179,3 +179,178 @@ export default {
 	}
 }
 </script>
+<style lang="scss" scoped>
+li {
+	display: flex;
+	flex: 0 0 auto;
+
+	&.hidden {
+		display: none;
+	}
+
+	> button,
+	> a,
+	> .menuitem {
+		cursor: pointer;
+		line-height: $popoveritem-height;
+		border: 0;
+		border-radius: 0; // otherwise Safari will cut the border-radius area
+		background-color: transparent;
+		display: flex;
+		align-items: flex-start;
+		height: auto;
+		margin: 0;
+		padding: 0;
+		font-weight: normal;
+		box-shadow: none;
+		width: 100%;
+		color: var(--color-main-text);
+		white-space: nowrap;
+		opacity: .7;
+
+		// TODO split into individual components for readability
+		span[class^='icon-'],
+		span[class*=' icon-'],
+		&[class^='icon-'],
+		&[class*=' icon-'] {
+			min-width: 0; /* Overwrite icons*/
+			min-height: 0;
+			background-position: #{($popoveritem-height - $popovericon-size) / 2} center;
+			background-size: $popovericon-size;
+		}
+
+		span[class^='icon-'],
+		span[class*=' icon-'] {
+			/* Keep padding to define the width to
+				assure correct position of a possible text */
+			padding: #{$popoveritem-height / 2} 0 #{$popoveritem-height / 2} $popoveritem-height;
+		}
+
+		// If no icons set, force left margin to align
+		&:not([class^='icon-']):not([class*='icon-']) {
+			> span,
+			> input,
+			> form {
+				&:not([class^='icon-']):not([class*='icon-']):first-child {
+					margin-left: $popoveritem-height;
+				}
+			}
+		}
+
+		&[class^='icon-'],
+		&[class*=' icon-'] {
+			padding: 0 #{($popoveritem-height - $popovericon-size) / 2} 0 $popoveritem-height;
+		}
+
+		&:hover,
+		&:focus,
+		&.active {
+			opacity: 1 !important;
+		}
+
+		/* prevent .action class to break the design */
+		&.action {
+			padding: inherit !important;
+		}
+
+		> span {
+			cursor: pointer;
+			white-space: nowrap;
+		}
+
+		// long text area
+		> p {
+			width: 150px;
+			line-height: 1.6em;
+			padding: 8px 0;
+			white-space: normal;
+		}
+
+		// TODO: do we really supports it?
+		> select {
+			margin: 0;
+			margin-left: 6px;
+		}
+
+		/* Add padding if contains icon+text */
+		&:not(:empty) {
+			padding-right: $outter-margin !important;
+		}
+
+		/* DEPRECATED! old img in popover fallback
+			* TODO: to remove */
+		> img {
+			width: $popovericon-size;
+			padding: #{($popoveritem-height - $popovericon-size) / 2};
+		}
+
+		/* checkbox/radio fixes */
+		> input.radio + label,
+		> input.checkbox + label {
+			padding: 0 !important;
+			width: 100%;
+		}
+		> input.checkbox + label::before {
+			margin: -2px 13px 0;
+		}
+		> input.radio + label::before {
+			margin: -2px 12px 0;
+		}
+		> input:not([type=radio]):not([type=checkbox]):not([type=image]) {
+			width: 150px;
+		}
+
+		// Forms & text inputs
+		form {
+			display: flex;
+			flex: 1 1 auto;
+			/* put a small space between text and form
+				if there is an element before */
+			&:not(:first-child)  {
+				margin-left: 5px;
+			}
+		}
+		/* no margin if hidden span before */
+		> span.hidden + form,
+		> span[style*='display:none'] + form {
+			margin-left: 0;
+		}
+		/* Inputs inside popover supports text, submit & reset */
+		input {
+			min-width: $popoveritem-height;
+			max-height: #{$popoveritem-height - 4px}; /* twice the element margin-y */
+			margin: 2px 0;
+			flex: 1 1 auto;
+			// space between inline inputs
+			&:not(:first-child) {
+				margin-left: 5px;
+			}
+		}
+	}
+
+	// TODO: do that in js, should be cleaner
+	/* css hack, only first not hidden */
+	&:not(.hidden):not([style*='display:none']) {
+		&:first-of-type {
+			> button, > a, > .menuitem {
+				> form, > input {
+					margin-top: $outter-margin - 2px; // minus the input margin
+				}
+			}
+		}
+		&:last-of-type {
+			> button, > a, > .menuitem {
+				> form, > input {
+					margin-bottom: $outter-margin - 2px; // minus the input margin
+				}
+			}
+		}
+	}
+	> button {
+		padding: 0;
+		span {
+			opacity: 1;
+		}
+	}
+}
+</style>

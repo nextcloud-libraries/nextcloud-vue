@@ -169,6 +169,7 @@ export default {
 
 .action-item {
 	display: inline-block;
+	position: relative;
 	&:hover,
 	&:focus,
 	&__menutoggle:focus,
@@ -208,6 +209,75 @@ export default {
 	// properly position the menu
 	&--multiple {
 		position: relative;
+	}
+}
+</style>
+
+<style lang="scss" scoped>
+.ie,
+.edge {
+	.popovermenu,
+	.popovermenu:after,
+	#app-navigation .app-navigation-entry-menu,
+	#app-navigation .app-navigation-entry-menu:after {
+		border: 1px solid var(--color-border);
+	}
+}
+
+.popovermenu {
+	position: absolute;
+	background-color: var(--color-main-background);
+	color: var(--color-main-text);
+	border-radius: var(--border-radius);
+	z-index: 110;
+	margin: 0;
+	margin-top: -5px;
+	right: 50%;
+	transform: translateX(50%);
+	filter: drop-shadow(0 1px 3px var(--color-box-shadow));
+	display: none;
+
+	&.open {
+		display: block;
+	}
+
+	/* Arrow */
+	&:after {
+		bottom: 100%;
+		right: 50%;
+		margin-right: 1 - $arrow-width;
+		/* change this to adjust the arrow position */
+		border: solid transparent;
+		content: ' ';
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+		border-bottom-color: var(--color-main-background);
+		border-width: $arrow-width;
+	}
+
+	/* Align the popover to the right */
+	&.menu-right {
+		right: 0;
+		left: auto;
+		transform: none;
+		&:after {
+			right: $arrow-width - 1; // align to menu icon
+			margin-right: 0;
+		}
+	}
+
+	/* Align the popover to the left */
+	&.menu-left {
+		right: auto;
+		left: 0;
+		transform: none;
+		&:after {
+			left: $arrow-width - 1; // align to menu icon
+			right: auto;
+			margin-right: 0;
+		}
 	}
 }
 </style>
