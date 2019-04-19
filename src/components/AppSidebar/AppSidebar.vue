@@ -266,6 +266,7 @@ $desc-vertical-padding: 18px;
 			height: 44px;
 			top: 0;
 			right: 0;
+			z-index: 1000;
 			opacity: .7;
 			&:hover,
 			&:active,
