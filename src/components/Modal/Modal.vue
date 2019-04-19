@@ -106,13 +106,13 @@
 
 <script>
 import Hammer from 'hammerjs'
-import Action from 'Components/Action'
+import Actions from 'Components/Actions'
 
 export default {
 	name: 'Modal',
 
 	components: {
-		Action
+		Actions
 	},
 
 	props: {

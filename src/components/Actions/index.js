@@ -19,7 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import Action from './Action'
+import Actions from './Actions'
 
-export default Action
-export { Action }
+export default Actions
+export { Actions }

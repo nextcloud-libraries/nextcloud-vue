@@ -90,12 +90,12 @@
 </template>
 
 <script>
-import Action from 'Components/Action'
+import Actions from 'Components/Actions'
 
 export default {
 	name: 'AppSidebar',
 	components: {
-		Action
+		Actions
 	},
 	props: {
 		actions: {

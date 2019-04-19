@@ -20,7 +20,9 @@
  *
  */
 
-import Action from './Action'
+import ActionButton from './ActionButton'
+import ActionLink from './ActionLink'
+import Actions from './Actions'
 import AppContent from './AppContent'
 import AppNavigation from './AppNavigation'
 import AppNavigationItem from './AppNavigationItem'
@@ -37,7 +39,9 @@ import Multiselect from './Multiselect'
 import PopoverMenu from './PopoverMenu'
 
 export {
-	Action,
+	ActionButton,
+	ActionLink,
+	Actions,
 	AppContent,
 	AppNavigation,
 	AppNavigationItem,
