@@ -41,7 +41,7 @@
 			{{ initials }}
 		</div>
 		<div v-if="menu.length > 0" v-show="contactsMenuOpenState" class="popovermenu">
-			<popover-menu :is-open="contactsMenuOpenState" :menu="menu" />
+			<PopoverMenu :is-open="contactsMenuOpenState" :menu="menu" />
 		</div>
 	</div>
 </template>

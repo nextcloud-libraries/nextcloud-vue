@@ -21,6 +21,8 @@
  */
 
 import ActionButton from './ActionButton'
+import ActionCheckbox from './ActionCheckbox'
+import ActionInput from './ActionInput'
 import ActionLink from './ActionLink'
 import Actions from './Actions'
 import AppContent from './AppContent'
@@ -40,6 +42,8 @@ import PopoverMenu from './PopoverMenu'
 
 export {
 	ActionButton,
+	ActionCheckbox,
+	ActionInput,
 	ActionLink,
 	Actions,
 	AppContent,

@@ -22,7 +22,7 @@
 
 <template>
 	<ul>
-		<popover-menu-item v-for="(item, key) in menu" :key="key" :item="item" />
+		<PopoverMenuItem v-for="(item, key) in menu" :key="key" :item="item" />
 	</ul>
 </template>
 

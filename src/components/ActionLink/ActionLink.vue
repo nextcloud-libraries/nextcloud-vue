@@ -23,7 +23,8 @@
 <template>
 	<a :href="href"
 		class="action-link focusable"
-		rel="noreferrer noopener">
+		rel="noreferrer noopener"
+		@click="onClick">
 
 		<!-- icon -->
 		<span :class="[isIconUrl ? 'action-link__icon--url' : icon]"
@@ -38,13 +39,14 @@
 			<br>
 			<!-- white space is shown on longtext, so we can't
 				put {{ text }} on a new line for code readability -->
-			<span class="action-link__longtext">{{ text }}</span>
+			<span class="action-link__longtext" v-text="text" />
 		</p>
 
 		<!-- long text only -->
 		<!-- white space is shown on longtext, so we can't
 			put {{ text }} on a new line for code readability -->
-		<p v-else-if="isLongText" class="action-link__longtext">{{ text }}</p>
+		<p v-else-if="isLongText"
+			class="action-link__longtext" v-text="text" />
 
 		<!-- default text display -->
 		<span v-else class="action-link__text">{{ text }}</span>
@@ -91,6 +93,12 @@ export default {
 				? this.text.length > 20
 				: 0
 		}
+	},
+
+	methods: {
+		onClick(event) {
+			this.$emit('click', event)
+		}
 	}
 }
 </script>
@@ -119,12 +127,11 @@ export default {
 	line-height: $popoveritem-height;
 
 	&:hover,
-	&:focus,
-	&.active {
+	&:focus {
 		opacity: 1;
 	}
 
-	> span {
+	& > span {
 		cursor: pointer;
 		white-space: nowrap;
 	}
@@ -142,14 +149,18 @@ export default {
 
 	// long text area
 	p {
+		cursor: pointer;
 		width: 150px;
 		padding: 8px 0;
+
+		text-align: left;
 
 		line-height: 1.6em;
 	}
 
 	&__longtext {
-		// allow the use of \n
+		cursor: pointer;
+		// allow the use of `\n`
 		white-space: pre;
 	}
 

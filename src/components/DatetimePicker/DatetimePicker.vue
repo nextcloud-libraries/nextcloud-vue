@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<date-picker
+	<DatePicker
 		v-bind="$attrs"
 		:minute-step="10"
 		:clearable="false"

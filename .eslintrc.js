@@ -52,7 +52,7 @@ module.exports = {
 		'node/no-unpublished-require': ['off'],
 		'node/no-unsupported-features/es-syntax': ['off'],
 		// kebab case components for vuejs
-		'vue/component-name-in-template-casing': ['error', 'kebab-case'],
+		'vue/component-name-in-template-casing': ['error', 'PascalCase'],
 		// force name
 		'vue/match-component-file-name': ['error', {
 			'extensions': ['jsx', 'vue', 'js'],

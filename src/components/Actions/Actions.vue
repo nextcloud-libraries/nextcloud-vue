@@ -48,7 +48,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 			@click.prevent="toggleMenu"
 			@keydown.space.exact.prevent="toggleMenu" />
 		<div :class="{ 'open': opened }" class="action-item__menu popovermenu" tabindex="-1">
-			<popover-menu :id="randomId" :menu="actions" tabindex="-1" />
+			<PopoverMenu :id="randomId" :menu="actions" tabindex="-1" />
 		</div>
 	</div>
 </template>
@@ -56,6 +56,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 <script>
 import ClickOutside from 'vue-click-outside'
 import { PopoverMenu } from 'Components/PopoverMenu'
+import GenRandomId from 'Utils/GenRandomId'
 
 export default {
 	name: 'Actions',
@@ -95,7 +96,7 @@ export default {
 		return {
 			opened: this.open,
 			focusIndex: 0,
-			randomId: 'menu-' + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)
+			randomId: 'menu-' + GenRandomId()
 		}
 	},
 	computed: {
