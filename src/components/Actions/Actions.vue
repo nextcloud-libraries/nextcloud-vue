@@ -48,8 +48,11 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 			@click.prevent="toggleMenu"
 			@keydown.space.exact.prevent="toggleMenu" />
 		<div :class="{ 'open': opened }" class="action-item__menu popovermenu" tabindex="-1">
-			<PopoverMenu :id="randomId" :menu="actions" tabindex="-1" />
+			<ul :id="randomId" tabindex="-1">
+				<li :key="action.tag" for="action in actions" />
+			</ul>
 		</div>
+		<slot />
 	</div>
 </template>
 
@@ -67,26 +70,6 @@ export default {
 		ClickOutside
 	},
 	props: {
-		actions: {
-			type: Array,
-			required: true,
-			default: () => {
-				return [
-					{
-						href: 'https://nextcloud.com',
-						icon: 'icon-links',
-						text: 'Nextcloud'
-					},
-					{
-						action: () => {
-							alert('Deleted !')
-						},
-						icon: 'icon-delete',
-						text: 'Delete'
-					}
-				]
-			}
-		},
 		open: {
 			type: Boolean,
 			default: false
@@ -106,11 +89,24 @@ export default {
 		firstAction() {
 			return this.actions[0]
 		},
+
 		// return the event to bind if the firstAction have an action
 		firstActionEvent() {
 			return this.firstAction.action
 				? 'click'
 				: null
+		},
+
+		// filter out invalid slots
+		actions() {
+			return this.$slots && this.$slots.default
+				? this.$slots.default.filter(slot => {
+					console.info(slot.componentOptions)
+					return slot.componentOptions
+						&& ['ActionButton', 'ActionCheckbox', 'ActionInput', 'ActionLink']
+							.indexOf(slot.componentOptions.tag) > -1
+				})
+				: []
 		}
 	},
 	watch: {

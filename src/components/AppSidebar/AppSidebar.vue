@@ -50,7 +50,7 @@
 						{{ subtitle }}
 					</h4>
 					<!-- header main menu -->
-					<action v-if="actions.length > 0" class="app-sidebar-header__menu" :actions="actions" />
+					<Actions v-if="actions.length > 0" class="app-sidebar-header__menu" />
 				</div>
 				<div v-if="$slots['action']" class="app-sidebar-header__action">
 					<slot name="action" />
@@ -98,10 +98,6 @@ export default {
 		Actions
 	},
 	props: {
-		actions: {
-			type: Array,
-			default: () => ([])
-		},
 		active: {
 			type: String,
 			default: ''

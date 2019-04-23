@@ -115,6 +115,7 @@ module.exports = {
 	],
 	resolve: {
 		alias: {
+			Assets: path.resolve(__dirname, 'src/assets/'),
 			Components: path.resolve(__dirname, 'src/components/'),
 			Directives: path.resolve(__dirname, 'src/directives/'),
 			Mixins: path.resolve(__dirname, 'src/mixins/'),

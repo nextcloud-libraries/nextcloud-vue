@@ -112,10 +112,11 @@ export default {
 
 		width: 100%;
 		padding: 0;
+		padding-right: 14px;
 		// checkbox-width is 10px, border is 2
 		// (44 - 10 - 2) / 2 = 16
 		&::before {
-			margin: 0 16px 0;
+			margin: 0 16px 0 !important;
 		}
 	}
 }

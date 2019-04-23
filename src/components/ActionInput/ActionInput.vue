@@ -54,7 +54,7 @@ export default {
 		type: {
 			type: String,
 			default: 'text',
-			validator: type => {
+			validator: function(type) {
 				return ['date', 'datetime-local', 'month',
 					'number', 'password', 'search', 'tel',
 					'text', 'time', 'url', 'week'].indexOf(type) > -1
@@ -107,7 +107,9 @@ export default {
 
 <style lang="scss" scoped>
 @import '~Fonts/scss/iconfont-vue';
-$input-margin: 2px;
+@import '~Assets/inputs';
+
+$input-margin: 4px;
 
 .action-input {
 	display: flex;
@@ -159,6 +161,7 @@ $input-margin: 2px;
 		flex: 1 1 auto;
 
 		margin: $input-margin 0;
+		padding-right: 14px;
 	}
 
 	&__submit {

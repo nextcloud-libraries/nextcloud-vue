@@ -53,115 +53,23 @@
 </template>
 
 <script>
+import ActionMixin from 'Mixins/action'
+
 export default {
 	name: 'ActionButton',
 
+	mixins: [ActionMixin],
+
 	props: {
-		icon: {
-			type: String,
-			default: '',
-			required: true
-		},
-		title: {
-			type: String,
-			default: ''
-		},
 		disabled: {
 			type: Boolean,
 			default: false
-		}
-	},
-
-	computed: {
-		isIconUrl() {
-			try {
-				return new URL(this.icon)
-			} catch (error) {
-				return false
-			}
-		},
-		text() {
-			return this.$slots.default[0].text
-		},
-		isLongText() {
-			return this.text
-				? this.text.length > 20
-				: 0
-		}
-	},
-
-	methods: {
-		onClick(event) {
-			this.$emit('click', event)
 		}
 	}
 }
 </script>
 
 <style lang="scss" scoped>
-.action-button {
-	display: flex;
-	align-items: flex-start;
-
-	width: 100%;
-	height: auto;
-	margin: 0;
-	padding: 0;
-
-	cursor: pointer;
-	white-space: nowrap;
-
-	opacity: .7;
-	color: var(--color-main-text);
-	border: 0;
-	border-radius: 0; // otherwise Safari will cut the border-radius area
-	background-color: transparent;
-	box-shadow: none;
-
-	font-weight: normal;
-	line-height: $popoveritem-height;
-
-	&:hover,
-	&:focus {
-		opacity: 1;
-	}
-
-	& > span {
-		cursor: pointer;
-		white-space: nowrap;
-	}
-
-	&__icon {
-		min-width: 0; /* Overwrite icons*/
-		min-height: 0;
-		/* Keep padding to define the width to
-			assure correct position of a possible text */
-		padding: #{$popoveritem-height / 2} 0 #{$popoveritem-height / 2} $popoveritem-height;
-
-		background-position: #{($popoveritem-height - $popovericon-size) / 2} center;
-		background-size: $popovericon-size;
-	}
-
-	// long text area
-	p {
-		width: 150px;
-		padding: 8px 0;
-
-		cursor: pointer;
-		text-align: left;
-
-		line-height: 1.6em;
-	}
-
-	&__longtext {
-		cursor: pointer;
-		// allow the use of `\n`
-		white-space: pre;
-	}
-
-	&__title {
-		font-weight: bold;
-	}
-}
-
+@import '../../assets/action';
+@include action-item(button);
 </style>

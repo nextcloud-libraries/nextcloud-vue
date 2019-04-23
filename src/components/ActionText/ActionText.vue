@@ -21,54 +21,49 @@
   -->
 
 <template>
-	<a :href="href"
-		class="action-link focusable"
-		rel="noreferrer noopener"
-		@click="onClick">
-
+	<span class="action-text focusable" :disabled="disabled" @click="onClick">
 		<!-- icon -->
-		<span :class="[isIconUrl ? 'action-link__icon--url' : icon]"
+		<span :class="[isIconUrl ? 'action-text__icon--url' : icon]"
 			:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
-			class="action-link__icon" />
+			class="action-text__icon" />
 
 		<!-- long text with title -->
 		<p v-if="title">
-			<strong class="action-link__title">
+			<strong class="action-text__title">
 				{{ title }}
 			</strong>
 			<br>
 			<!-- white space is shown on longtext, so we can't
 				put {{ text }} on a new line for code readability -->
-			<span class="action-link__longtext" v-text="text" />
+			<span class="action-text__longtext" v-text="text" />
 		</p>
 
 		<!-- long text only -->
 		<!-- white space is shown on longtext, so we can't
 			put {{ text }} on a new line for code readability -->
 		<p v-else-if="isLongText"
-			class="action-link__longtext" v-text="text" />
+			class="action-text__longtext" v-text="text" />
 
 		<!-- default text display -->
-		<span v-else class="action-link__text">{{ text }}</span>
+		<span v-else class="action-text__text">{{ text }}</span>
 
 		<!-- fake slot to gather inner text -->
 		<slot v-if="false" />
-	</a>
+	</span>
 </template>
 
 <script>
 import ActionMixin from 'Mixins/action'
 
 export default {
-	name: 'ActionLink',
+	name: 'ActionText',
 
 	mixins: [ActionMixin],
 
 	props: {
-		href: {
-			type: String,
-			default: '#',
-			required: true
+		disabled: {
+			type: Boolean,
+			default: false
 		}
 	}
 }
@@ -76,5 +71,12 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/action';
-@include action-item(link);
+@include action-item(text);
+
+.action-text {
+	&,
+	span {
+		cursor: default;
+	}
+}
 </style>
