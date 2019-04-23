@@ -22,6 +22,7 @@
 
 <template>
 	<router-link :to="to"
+		:exact="exact"
 		class="action-router focusable"
 		rel="noreferrer noopener"
 		@click="onClick">
@@ -65,9 +66,13 @@ export default {
 
 	props: {
 		to: {
-			type: String,
+			type: [String, Object],
 			default: '',
 			required: true
+		},
+		exact: {
+			type: Boolean,
+			default: false
 		}
 	}
 }
