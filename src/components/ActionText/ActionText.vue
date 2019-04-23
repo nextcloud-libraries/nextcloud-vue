@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<span class="action-text focusable" :disabled="disabled" @click="onClick">
+	<span class="action-text focusable">
 		<!-- icon -->
 		<span :class="[isIconUrl ? 'action-text__icon--url' : icon]"
 			:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"

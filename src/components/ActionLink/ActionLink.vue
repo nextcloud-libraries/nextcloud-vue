@@ -23,8 +23,7 @@
 <template>
 	<a :href="href"
 		class="action-link focusable"
-		rel="noreferrer noopener"
-		@click="onClick">
+		rel="noreferrer noopener">
 
 		<!-- icon -->
 		<span :class="[isIconUrl ? 'action-link__icon--url' : icon]"
