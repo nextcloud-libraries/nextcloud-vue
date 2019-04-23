@@ -22,8 +22,10 @@
 
 <template>
 	<a :href="href"
+		:target="target"
 		class="action-link focusable"
-		rel="noreferrer noopener">
+		rel="noreferrer noopener"
+		@click="onClick">
 
 		<!-- icon -->
 		<span :class="[isIconUrl ? 'action-link__icon--url' : icon]"
@@ -68,6 +70,10 @@ export default {
 			type: String,
 			default: '#',
 			required: true
+		},
+		target: {
+			type: String,
+			default: '_self',
 		}
 	}
 }
