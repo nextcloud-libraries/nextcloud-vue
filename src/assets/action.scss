@@ -64,8 +64,8 @@
 		}
 
 		&__icon {
-			width: $icon-size;
-			height: $icon-size;
+			width: $clickable-area;
+			height: $clickable-area;
 			opacity: $opacity_full;
 			background-position: $icon-margin center;
 			background-size: $icon-size;

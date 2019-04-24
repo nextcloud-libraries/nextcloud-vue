@@ -69,7 +69,6 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 
 <script>
 import ClickOutside from 'vue-click-outside'
-import { PopoverMenu } from 'Components/PopoverMenu'
 import Tooltip from 'Directives/Tooltip'
 import GenRandomId from 'Utils/GenRandomId'
 import ValidateChildren from 'Utils/ValidateChildren'
@@ -87,10 +86,6 @@ const allowedChildren = [
 
 export default {
 	name: 'Actions',
-
-	components: {
-		PopoverMenu
-	},
 
 	directives: {
 		ClickOutside,

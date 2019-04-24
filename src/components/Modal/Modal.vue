@@ -33,7 +33,9 @@
 						{{ title }}
 					</div>
 					<div class="icons-menu">
-						<action v-if="actions.length > 0" :actions="actions" class="header-actions" />
+						<Actions class="header-actions">
+							<slot name="actions" />
+						</Actions>
 						<a v-if="hasNext && enableSlideshow" class="play-pause" @click="togglePlayPause">
 							<div :class="[playing ? 'icon-pause' : 'icon-play']">
 								<span class="hidden-visually">
@@ -116,12 +118,6 @@ export default {
 	},
 
 	props: {
-		actions: {
-			type: Array,
-			default: () => {
-				return []
-			}
-		},
 		title: {
 			type: String,
 			default: ''
