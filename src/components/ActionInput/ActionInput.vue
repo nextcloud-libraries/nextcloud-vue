@@ -35,6 +35,8 @@
 				<input :type="type" :value="value" :placeholder="text"
 					:disabled="disabled" required
 					class="action-input__input focusable" @input="onInput">
+				<!-- allow the custom font to inject a ::before
+					not possible on input[type=submit] -->
 				<label v-show="!disabled" :for="randomId" class="action-input__label" />
 			</form>
 		</span>
@@ -99,8 +101,13 @@ export default {
 			this.$emit('update:value', event.target.value)
 		},
 		onSubmit(event) {
+			event.preventDefault();
+			event.stopPropagation();
 			if (!this.disabled) {
 				this.$emit('submit', event)
+			} else {
+				// ignore submit
+				return false
 			}
 		}
 	}

@@ -201,7 +201,8 @@ export default {
 			}
 		},
 		focusAction() {
-			const focusElement = this.$refs.menu.querySelectorAll('.focusable')[this.focusIndex]
+			// TODO: have a global disabled state for non input elements
+			const focusElement = this.$refs.menu.querySelectorAll('.focusable:not(:disabled)')[this.focusIndex]
 			if (focusElement) {
 				const liMenuParent = focusElement.closest('li')
 				focusElement.focus()
@@ -216,7 +217,7 @@ export default {
 			this.focusAction()
 		},
 		focusNextAction() {
-			this.focusIndex = Math.min(this.focusIndex + 1, this.$el.querySelectorAll('.focusable').length - 1)
+			this.focusIndex = Math.min(this.focusIndex + 1, this.$el.querySelectorAll('.focusable:not(:disabled)').length - 1)
 			this.focusAction()
 		},
 		focusFirstAction() {
@@ -224,7 +225,7 @@ export default {
 			this.focusAction()
 		},
 		focusLastAction() {
-			this.focusIndex = this.$el.querySelectorAll('.focusable').length - 1
+			this.focusIndex = this.$el.querySelectorAll('.focusable:not(:disabled)').length - 1
 			this.focusAction()
 		},
 
