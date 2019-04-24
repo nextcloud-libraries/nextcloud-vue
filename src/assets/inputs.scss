@@ -32,13 +32,16 @@ input:not([type='range']),
 textarea {
 	margin: 0;
 	padding: 7px 6px;
-	font-size: 13px;
-	background-color: var(--color-main-background);
+
+	cursor: text;
+
 	color: var(--color-text-lighter);
 	border: 1px solid var(--color-border-dark);
-	outline: none;
 	border-radius: var(--border-radius);
-	cursor: text;
+	outline: none;
+	background-color: var(--color-main-background);
+
+	font-size: 13px;
 
 	&:not(:disabled):not(.primary) {
 		&:hover,
@@ -50,17 +53,17 @@ textarea {
 		}
 
 		&:active {
+			color: var(--color-text-light);
 			outline: none;
 			background-color: var(--color-main-background);
-			color: var(--color-text-light);
 		}
 	}
 
 	&:disabled {
-		background-color: var(--color-background-dark);
-		color: var(--color-text-maxcontrast);
 		cursor: default;
-		opacity: 0.5;
+		opacity: $opacity_disabled;
+		color: var(--color-text-maxcontrast);
+		background-color: var(--color-background-dark);
 	}
 
 	&:required {
@@ -68,23 +71,23 @@ textarea {
 	}
 
 	&:invalid {
-		box-shadow: none !important;
 		border-color: var(--color-error);
+		box-shadow: none !important;
 	}
 
 	/* Primary action button, use sparingly */
 	&.primary {
-		background-color: var(--color-primary-element);
-		border-color: var(--color-primary-element);
-		color: var(--color-primary-text);
 		cursor: pointer;
+		color: var(--color-primary-text);
+		border-color: var(--color-primary-element);
+		background-color: var(--color-primary-element);
 
 		&:not(:disabled) {
 			&:hover,
 			&:focus,
 			&:active {
-				background-color: var(--color-primary-element-light);
 				border-color: var(--color-primary-element-light);
+				background-color: var(--color-primary-element-light);
 			}
 			&:active {
 				color: var(--color-primary-text-dark);
@@ -92,10 +95,10 @@ textarea {
 		}
 
 		&:disabled {
+			cursor: default;
+			color: var(--color-primary-text-dark);
 			// opacity is already defined to .5 if disabled
 			background-color: var(--color-primary-element);
-			color: var(--color-primary-text-dark);
-			cursor: default;
 		}
 	}
 }

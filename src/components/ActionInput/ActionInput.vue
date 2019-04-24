@@ -127,7 +127,7 @@ $input-margin: 4px;
 	cursor: pointer;
 	white-space: nowrap;
 
-	opacity: .7;
+	opacity: $opacity_normal;
 	color: var(--color-main-text);
 	border: 0;
 	border-radius: 0; // otherwise Safari will cut the border-radius area
@@ -139,7 +139,7 @@ $input-margin: 4px;
 
 	&:hover,
 	&:focus {
-		opacity: 1;
+		opacity: $opacity_full;
 	}
 
 	& > span {
@@ -165,7 +165,7 @@ $input-margin: 4px;
 		flex: 1 1 auto;
 
 		margin: $input-margin 0;
-		padding-right: 14px;
+		padding-right: $icon-margin;
 	}
 
 	&__submit {
@@ -189,7 +189,7 @@ $input-margin: 4px;
 
 		cursor: pointer;
 
-		opacity: 1;
+		opacity: $opacity_full;
 		color: var(--color-text-lighter);
 		border: 1px solid var(--color-border-dark);
 		border-left-color: transparent;

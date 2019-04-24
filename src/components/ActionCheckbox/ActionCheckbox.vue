@@ -109,7 +109,7 @@ export default {
 		width: 1px;
 		height: 1px;
 		&:focus + .action-checkbox__label {
-			opacity: 1;
+			opacity: $opacity_full;
 		}
 	}
 
@@ -120,9 +120,9 @@ export default {
 
 		width: 100%;
 		padding: 0;
-		padding-right: 14px;
+		padding-right: $icon-margin;
 
-		opacity: .7;
+		opacity: $opacity_normal;
 		// checkbox-width is 10px, border is 2
 		// (44 - 10 - 2) / 2 = 16
 		&::before {
@@ -133,7 +133,7 @@ export default {
 	&:hover,
 	&:focus {
 		.action-checkbox__label {
-			opacity: 1;
+			opacity: $opacity_full;
 		}
 	}
 }

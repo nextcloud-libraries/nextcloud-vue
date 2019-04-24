@@ -38,7 +38,7 @@
 	&.in,
 	&.tooltip[aria-hidden='false'] {
 		visibility: visible;
-		opacity: 1;
+		opacity: $opacity_full;
 		transition: opacity .15s;
 	}
 	&.top .tooltip-arrow,

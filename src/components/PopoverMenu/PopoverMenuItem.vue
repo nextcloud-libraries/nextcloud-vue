@@ -206,7 +206,7 @@ li {
 		width: 100%;
 		color: var(--color-main-text);
 		white-space: nowrap;
-		opacity: .7;
+		opacity: $opacity_normal;
 
 		// TODO split into individual components for readability
 		span[class^='icon-'],
@@ -245,7 +245,7 @@ li {
 		&:hover,
 		&:focus,
 		&.active {
-			opacity: 1 !important;
+			opacity: $opacity_full !important;
 		}
 
 		/* prevent .action class to break the design */
@@ -349,7 +349,7 @@ li {
 	> button {
 		padding: 0;
 		span {
-			opacity: 1;
+			opacity: $opacity_full;
 		}
 	}
 }

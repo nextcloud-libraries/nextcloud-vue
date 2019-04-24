@@ -15,7 +15,7 @@
 	&.multiselect--active {
 		/* Opened: force display the input */
 		input.multiselect__input {
-			opacity: 1 !important;
+			opacity: $opacity_full !important;
 			cursor: text !important;
 			// remove border radius on bottom opening
 			border-radius: var(--border-radius) var(--border-radius) 0 0;
@@ -70,7 +70,7 @@
 			/* no tags or simple select? Show input directly
 			input is used to display single value */
 			&:empty ~ input.multiselect__input {
-				opacity: 1 !important;
+				opacity: $opacity_full !important;
 				/* hide default empty text like .multiselect__placeholder,
 				and show input instead. It looks better without a transition between
 				a span and the input that have different styling */
@@ -133,7 +133,7 @@
 			color: var(--color-text-lighter);
 			display: inline-flex;
 			align-items: center;
-			opacity: .7;
+			opacity: $opacity_normal;
 			margin-right: $space-between;
 			/* above the input */
 			z-index: 5;
@@ -206,13 +206,13 @@
 					min-width: 16px;
 					min-height: 16px;
 					display: block;
-					opacity: .5;
+					opacity: $opacity_disabled;
 					margin-right: 5px;
 					visibility: hidden;
 				}
 				&.multiselect__option--disabled {
 					background-color: var(--color-background-dark);
-					opacity: .5;
+					opacity: $opacity_disabled;
 				}
 				&.multiselect__option--highlight {
 					color: var(--color-main-text);

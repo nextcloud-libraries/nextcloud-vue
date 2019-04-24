@@ -258,16 +258,16 @@ $desc-vertical-padding: 18px;
 	.app-sidebar-header {
 		> .icon-close {
 			position: absolute;
-			width: 44px;
-			height: 44px;
+			width: $clickable-area;
+			height: $clickable-area;
 			top: 0;
 			right: 0;
 			z-index: 1000;
-			opacity: .7;
+			opacity: $opacity_normal;
 			&:hover,
 			&:active,
 			&:focus {
-				opacity: 1;
+				opacity: $opacity_full;
 			}
 		}
 
@@ -285,7 +285,7 @@ $desc-vertical-padding: 18px;
 			position: relative;
 			padding: #{$desc-vertical-padding} #{$desc-menu-right-margin * 4} #{$desc-vertical-padding} 10px;
 			&--with-star {
-				padding-left: 44px;
+				padding-left: $clickable-area;
 			}
 			// titles
 			h3, h4 {
@@ -297,7 +297,7 @@ $desc-vertical-padding: 18px;
 			}
 			// main title
 			h3 {
-				font-size: $icon-size;
+				font-size: 16px;
 				padding: 0;
 				+ h4 {
 					padding-top: 10px;
@@ -307,14 +307,14 @@ $desc-vertical-padding: 18px;
 			h4 {
 				font-size: 14px;
 				padding: 0;
-				opacity: .7;
+				opacity: $opacity_normal;
 			}
 			// favourite
 			.app-sidebar-header__star {
 				display: block;
-				width: 44px;
-				height: 44px;
-				padding: 14px;
+				width: $clickable-area;
+				height: $clickable-area;
+				padding: $icon-margin;
 				position: absolute;
 				top: $desc-vertical-padding - 12px; // aligned with main title
 				left: 0;
@@ -327,7 +327,7 @@ $desc-vertical-padding: 18px;
 				top: 50%;
 				margin-top: -22px;
 				background-color: var(--color-background-dark);
-				border-radius: 44px;
+				border-radius: $clickable-area / 2;
 			}
 		}
 
@@ -369,14 +369,14 @@ $desc-vertical-padding: 18px;
 				padding-top: 30px;
 				border-bottom: 1px solid var(--color-main-background);
 				text-align: center;
-				opacity: .7;
+				opacity: $opacity_normal;
 				color: var(--color-main-text);
 				transition: opacity var(--animation-quick), border-color var(--animation-quick);
 				&:hover,
 				&:focus,
 				&:active,
 				&.active {
-					opacity: 1;
+					opacity: $opacity_full;
 				}
 				&:active,
 				&.active {
@@ -429,7 +429,7 @@ $desc-vertical-padding: 18px;
 	top: 0;
 	left: 0;
 	width: 100%;
-	opacity: 1;
+	opacity: $opacity_full;
 }
 
 .fade-enter,

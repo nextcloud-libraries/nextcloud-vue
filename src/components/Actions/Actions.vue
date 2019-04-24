@@ -70,7 +70,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 <script>
 import ClickOutside from 'vue-click-outside'
 import { PopoverMenu } from 'Components/PopoverMenu'
-import { Tooltip } from 'Directives/Tooltip'
+import Tooltip from 'Directives/Tooltip'
 import GenRandomId from 'Utils/GenRandomId'
 import ValidateChildren from 'Utils/ValidateChildren'
 
@@ -267,7 +267,7 @@ export default {
 		background-color: var(--color-background-darker);
 		&,
 		.action-item__menutoggle {
-			opacity: 1;
+			opacity: $opacity_full;
 		}
 	}
 
@@ -293,7 +293,7 @@ export default {
 		align-items: center;
 		justify-content: center;
 
-		opacity: .7;
+		opacity: $opacity_normal;
 
 		font-size: $icon-size;
 
@@ -301,11 +301,11 @@ export default {
 	}
 
 	&--single {
-		opacity: .7;
+		opacity: $opacity_normal;
 		&:hover,
 		&:focus,
 		&:active {
-			opacity: 1;
+			opacity: $opacity_full;
 		}
 		// hide anything the slot is displaying
 		& > [hidden] {

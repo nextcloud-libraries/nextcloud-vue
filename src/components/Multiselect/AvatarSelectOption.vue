@@ -89,15 +89,15 @@ export default {
 			}
 		}
 		&--linetwo {
-			opacity: .7;
+			opacity: $opacity_normal;
 		}
 	}
 	&__icon {
-		width: 44px;
-		height: 44px;
-		flex: 0 0 44px;
+		width: $clickable-area;
+		height: $clickable-area;
+		flex: 0 0 $clickable-area;
 		margin: -6px;
-		opacity: .5;
+		opacity: $opacity_disabled;
 	}
 }
 </style>

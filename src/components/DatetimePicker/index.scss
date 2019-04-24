@@ -1,8 +1,4 @@
-$opacity_disabled: .5;
-$opacity_normal: .7;
-$opacity_full: 1;
 $cell_height: 32px;
-$cell_height_big: 44px;
 
 // import the icons font scss
 @import '~Fonts/scss/iconfont-vue';
@@ -15,7 +11,7 @@ $cell_height_big: 44px;
 	display: inline-block;
 
 	&.disabled {
-		opacity: .7;
+		opacity: $opacity_normal;
 		cursor: not-allowed;
 	}
 
@@ -128,7 +124,7 @@ $cell_height_big: 44px;
 			// Mouse feedback
 			&:hover,
 			&:focus {
-				opacity: 1;
+				opacity: $opacity_full;
 				color: var(--color-main-text);
 				background-color: var(--color-background-darker);
 			}
@@ -141,7 +137,7 @@ $cell_height_big: 44px;
 				background-position: center;
 				background-repeat: no-repeat;
 				font-size: 0;
-				opacity: .5;
+				opacity: $opacity_disabled;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -238,13 +234,13 @@ $cell_height_big: 44px;
 			// Days of the week
 			th {
 				color: var(--color-text-lighter);
-				opacity: .5;
+				opacity: $opacity_disabled;
 			}
 			// Days number
 			td {
 				&.today {
 					color: var(--color-primary);
-					opacity: 1;
+					opacity: $opacity_full;
 					font-weight: bold;
 				}
 				&.last-month,
@@ -270,8 +266,8 @@ $cell_height_big: 44px;
 			span.cell  {
 				display: block;
 				padding: 5px;
-				height: $cell_height_big;
-				line-height: $cell_height_big - 8px; // padding + 2px for better visual
+				height: $clickable-area;
+				line-height: $clickable-area - 8px; // padding + 2px for better visual
 				margin-bottom: 1%;
 			}
 		}

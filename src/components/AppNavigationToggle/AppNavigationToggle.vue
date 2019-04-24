@@ -43,9 +43,9 @@ export default {
 	position: fixed;
 	z-index: 149;
 	left: 0;
-	width: 44px;
-	height: 44px;
-	padding: 14px;
+	width: $clickable-area;
+	height: $clickable-area;
+	padding: $icon-margin;
 
 	cursor: pointer;
 	opacity: 0.6;
@@ -56,7 +56,7 @@ export default {
 
 	&:hover,
 	&:focus {
-		opacity: 1;
+		opacity: $opacity_full;
 	}
 }
 // mobile only
