@@ -25,9 +25,18 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
-	<a v-if="isSingleAction" :href="firstAction.href ? firstAction.href : '#'"
+	<element v-if="isValidSingleAction"
+		v-tooltip.auto="firstAction.text"
+		v-bind="firstActionElement"
 		:class="firstAction.icon" class="action-item action-item--single"
-		@[firstActionEvent]="execFirstAction" />
+		rel="noreferrer noopener"
+		@[firstActionEvent]="execFirstAction">
+		<!-- fake slot to gather main action -->
+		<span :aria-hidden="true" hidden>
+			<slot />
+		</span>
+	</element>
+
 	<!-- more than one action -->
 	<div v-else
 		:class="{'action-item--open': opened}"
@@ -47,78 +56,128 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 			:aria-expanded="opened"
 			@click.prevent="toggleMenu"
 			@keydown.space.exact.prevent="toggleMenu" />
-		<div :class="{ 'open': opened }" class="action-item__menu popovermenu" tabindex="-1">
+		<div ref="menu"
+			:class="{ 'open': opened }"
+			class="action-item__menu"
+			tabindex="-1"
+			@mousemove="unFocus">
 			<ul :id="randomId" tabindex="-1">
-				<li :key="action.tag" for="action in actions" />
+				<slot />
 			</ul>
 		</div>
-		<slot />
 	</div>
 </template>
 
 <script>
 import ClickOutside from 'vue-click-outside'
 import { PopoverMenu } from 'Components/PopoverMenu'
+import { Tooltip } from 'Directives/Tooltip'
 import GenRandomId from 'Utils/GenRandomId'
+import ValidateChildren from 'Utils/ValidateChildren'
+
+// This is the list of ALL the ALLOWED components
+// in the default SLOT
+const allowedChildren = [
+	'ActionButton',
+	'ActionCheckbox',
+	'ActionInput',
+	'ActionLink',
+	'ActionRouter',
+	'ActionText'
+]
 
 export default {
 	name: 'Actions',
+
 	components: {
 		PopoverMenu
 	},
+
 	directives: {
-		ClickOutside
+		ClickOutside,
+		tooltip: Tooltip
 	},
+
 	props: {
 		open: {
 			type: Boolean,
 			default: false
 		}
 	},
+
 	data() {
 		return {
+			actions: [],
 			opened: this.open,
 			focusIndex: 0,
 			randomId: 'menu-' + GenRandomId()
 		}
 	},
 	computed: {
-		isSingleAction() {
+		isValidSingleAction() {
 			return this.actions.length === 1
 		},
 		firstAction() {
 			return this.actions[0]
 		},
+		firstActionElement() {
+			switch (this.firstAction.$options.name) {
+			case 'ActionLink':
+				return {
+					is: 'a',
+					href: this.firstAction.href,
+					target: this.firstAction.target
+				}
+
+			case 'ActionRouter':
+				return {
+					is: 'router-link',
+					to: this.firstAction.to,
+					exact: this.firstAction.exact
+				}
+
+			default:
+				return {
+					is: 'button'
+				}
+			}
+		},
 
 		// return the event to bind if the firstAction have an action
 		firstActionEvent() {
-			return this.firstAction.action
+			return this.firstAction
+				&& this.firstAction.$listeners
+				&& this.firstAction.$listeners.click
 				? 'click'
 				: null
-		},
-
-		// filter out invalid slots
-		actions() {
-			return this.$slots && this.$slots.default
-				? this.$slots.default.filter(slot => {
-					console.info(slot.componentOptions)
-					return slot.componentOptions
-						&& ['ActionButton', 'ActionCheckbox', 'ActionInput', 'ActionLink']
-							.indexOf(slot.componentOptions.tag) > -1
-				})
-				: []
 		}
 	},
+
 	watch: {
 		open(newVal) {
 			this.opened = newVal
 		}
 	},
+	beforeMount() {
+		// init actions
+		this.initActions()
+
+		// filter invalid menu items
+		ValidateChildren(this, allowedChildren)
+	},
 	mounted() {
 		// prevent click outside event with popupItem.
 		this.popupItem = this.$el
 	},
+	beforeUpdate() {
+		// update children & actions
+		// no need to init actions again since we bound it to $children
+		// and the array is now reactive
+		ValidateChildren(this, allowedChildren)
+	},
+
 	methods: {
+		// MENU STATE MANAGEMENT
 		toggleMenu() {
 			this.opened = !this.opened
 			// focus first on menu open after opening the menu
@@ -133,8 +192,30 @@ export default {
 			this.opened = false
 			this.$emit('update:open', this.opened)
 		},
+
+		// MENU KEYS & FOCUS MANAGEMENT
+		// remove the focus on any element if the mouse
+		// is used to select an action
+		unFocus() {
+			this.$refs.menu.focus()
+			this.removeCurrentActive()
+		},
+		removeCurrentActive() {
+			const currentActiveElement = this.$refs.menu.querySelector('li.active')
+			if (currentActiveElement) {
+				currentActiveElement.classList.remove('active')
+			}
+		},
 		focusAction() {
-			this.$el.querySelectorAll('.focusable')[this.focusIndex].focus()
+			const focusElement = this.$refs.menu.querySelectorAll('.focusable')[this.focusIndex]
+			if (focusElement) {
+				const liMenuParent = focusElement.closest('li')
+				focusElement.focus()
+				if (liMenuParent) {
+					this.removeCurrentActive()
+					liMenuParent.classList.add('active')
+				}
+			}
 		},
 		focusPreviousAction() {
 			this.focusIndex = Math.max(this.focusIndex - 1, 0)
@@ -152,10 +233,18 @@ export default {
 			this.focusIndex = this.$el.querySelectorAll('.focusable').length - 1
 			this.focusAction()
 		},
+
+		// ACTIONS MANAGEMENT
 		// exec the first action and prevent default
-		execFirstAction(e) {
-			this.firstAction.action(e)
-			e.preventDefault()
+		execFirstAction(event) {
+			if (this.firstAction.$listeners && this.firstAction.$listeners.click) {
+				this.firstAction.$listeners.click(event)
+				event.preventDefault()
+			}
+		},
+		initActions() {
+			// filter out invalid slots
+			this.actions = this.$children || []
 		}
 	}
 }
@@ -165,8 +254,9 @@ export default {
 @import '~Fonts/scss/iconfont-vue';
 
 .action-item {
-	display: inline-block;
 	position: relative;
+	display: inline-block;
+
 	&:hover,
 	&:focus,
 	&__menutoggle:focus,
@@ -181,100 +271,125 @@ export default {
 	&--single,
 	&__menutoggle {
 		box-sizing: border-box;
-		padding: 14px;
-		height: 44px;
 		width: 44px;
+		height: 44px;
+		margin: 0;
+		padding: 14px;
+
 		cursor: pointer;
+
+		border: none;
+		background-color: transparent;
 	}
+
 	// icon-more
 	&__menutoggle {
 		// align menu icon in center
 		display: flex;
-		justify-content: center;
 		align-items: center;
+		justify-content: center;
+
 		opacity: .7;
+
+		font-size: 16px;
+
 		@include iconfont('more');
 	}
+
 	&--single {
 		opacity: .7;
 		&:hover,
 		&:focus,
-		a:active {
+		&:active {
 			opacity: 1;
 		}
+		// hide anything the slot is displaying
+		& > [hidden] {
+			display: none;
+		}
 	}
+
 	// properly position the menu
 	&--multiple {
 		position: relative;
 	}
-}
-</style>
 
-<style lang="scss" scoped>
+	&__menu {
+		position: absolute;
+		z-index: 110;
+		right: 50%;
+
+		display: none;
+
+		margin: 0;
+		margin-top: -5px;
+
+		transform: translateX(50%);
+
+		color: var(--color-main-text);
+		border-radius: var(--border-radius);
+		background-color: var(--color-main-background);
+
+		filter: drop-shadow(0 1px 3px var(--color-box-shadow));
+
+		// only allow li elements in the popovermenu
+		ul > :not(li) {
+			display: none;
+		}
+
+		&.open {
+			display: block;
+		}
+
+		/* Arrow */
+		&:after {
+			position: absolute;
+			right: 50%;
+			bottom: 100%;
+
+			width: 0;
+			height: 0;
+			margin-right: 1 - $arrow-width;
+
+			content: ' ';
+			pointer-events: none;
+
+			/* change this to adjust the arrow position */
+			border: solid transparent;
+			border-width: $arrow-width;
+			border-bottom-color: var(--color-main-background);
+		}
+
+		/* Align the popover to the right */
+		&.menu-right {
+			right: 0;
+			left: auto;
+			transform: none;
+			&:after {
+				right: $arrow-width - 1; // align to menu icon
+				margin-right: 0;
+			}
+		}
+
+		/* Align the popover to the left */
+		&.menu-left {
+			right: auto;
+			left: 0;
+			transform: none;
+			&:after {
+				right: auto;
+				left: $arrow-width - 1; // align to menu icon
+				margin-right: 0;
+			}
+		}
+	}
+}
+
 .ie,
 .edge {
-	.popovermenu,
-	.popovermenu:after,
-	#app-navigation .app-navigation-entry-menu,
-	#app-navigation .app-navigation-entry-menu:after {
+	.action-item__menu,
+	.action-item__menu:after {
 		border: 1px solid var(--color-border);
-	}
-}
-
-.popovermenu {
-	position: absolute;
-	background-color: var(--color-main-background);
-	color: var(--color-main-text);
-	border-radius: var(--border-radius);
-	z-index: 110;
-	margin: 0;
-	margin-top: -5px;
-	right: 50%;
-	transform: translateX(50%);
-	filter: drop-shadow(0 1px 3px var(--color-box-shadow));
-	display: none;
-
-	&.open {
-		display: block;
-	}
-
-	/* Arrow */
-	&:after {
-		bottom: 100%;
-		right: 50%;
-		margin-right: 1 - $arrow-width;
-		/* change this to adjust the arrow position */
-		border: solid transparent;
-		content: ' ';
-		height: 0;
-		width: 0;
-		position: absolute;
-		pointer-events: none;
-		border-bottom-color: var(--color-main-background);
-		border-width: $arrow-width;
-	}
-
-	/* Align the popover to the right */
-	&.menu-right {
-		right: 0;
-		left: auto;
-		transform: none;
-		&:after {
-			right: $arrow-width - 1; // align to menu icon
-			margin-right: 0;
-		}
-	}
-
-	/* Align the popover to the left */
-	&.menu-left {
-		right: auto;
-		left: 0;
-		transform: none;
-		&:after {
-			left: $arrow-width - 1; // align to menu icon
-			right: auto;
-			margin-right: 0;
-		}
 	}
 }
 </style>

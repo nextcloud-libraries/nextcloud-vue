@@ -21,40 +21,42 @@
   -->
 
 <template>
-	<a :href="href"
-		:target="target"
-		class="action-link focusable"
-		rel="noreferrer noopener"
-		@click="onClick">
+	<li>
+		<a :href="href"
+			:target="target"
+			class="action-link focusable"
+			rel="noreferrer noopener"
+			@click="onClick">
 
-		<!-- icon -->
-		<span :class="[isIconUrl ? 'action-link__icon--url' : icon]"
-			:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
-			class="action-link__icon" />
+			<!-- icon -->
+			<span :class="[isIconUrl ? 'action-link__icon--url' : icon]"
+				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+				class="action-link__icon" />
 
-		<!-- long text with title -->
-		<p v-if="title">
-			<strong class="action-link__title">
-				{{ title }}
-			</strong>
-			<br>
-			<!-- white space is shown on longtext, so we can't
+			<!-- long text with title -->
+			<p v-if="title">
+				<strong class="action-link__title">
+					{{ title }}
+				</strong>
+				<br>
+				<!-- white space is shown on longtext, so we can't
 				put {{ text }} on a new line for code readability -->
-			<span class="action-link__longtext" v-text="text" />
-		</p>
+				<span class="action-link__longtext" v-text="text" />
+			</p>
 
-		<!-- long text only -->
-		<!-- white space is shown on longtext, so we can't
+			<!-- long text only -->
+			<!-- white space is shown on longtext, so we can't
 			put {{ text }} on a new line for code readability -->
-		<p v-else-if="isLongText"
-			class="action-link__longtext" v-text="text" />
+			<p v-else-if="isLongText"
+				class="action-link__longtext" v-text="text" />
 
-		<!-- default text display -->
-		<span v-else class="action-link__text">{{ text }}</span>
+			<!-- default text display -->
+			<span v-else class="action-link__text">{{ text }}</span>
 
-		<!-- fake slot to gather inner text -->
-		<slot v-if="false" />
-	</a>
+			<!-- fake slot to gather inner text -->
+			<slot v-if="false" />
+		</a>
+	</li>
 </template>
 
 <script>
@@ -73,13 +75,14 @@ export default {
 		},
 		target: {
 			type: String,
-			default: '_self',
+			default: '_self'
 		}
 	}
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/action';
-@include action-item(link);
+@import '~Assets/action';
+@include action-active;
+@include action-item('link');
 </style>

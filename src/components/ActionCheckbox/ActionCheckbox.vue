@@ -21,15 +21,17 @@
   -->
 
 <template>
-	<span class="action-checkbox">
-		<input :id="id" :disabled="disabled" :checked="checked"
-			type="checkbox" class="checkbox action-checkbox__checkbox"
-			@change="onChange">
-		<label :for="id" class="action-checkbox__label">{{ text }}</label>
+	<li>
+		<span class="action-checkbox">
+			<input :id="id" :disabled="disabled" :checked="checked"
+				type="checkbox" class="focusable checkbox action-checkbox__checkbox"
+				@keydown.enter.exact.prevent="checkInput" @change="onChange">
+			<label ref="label" :for="id" class="action-checkbox__label">{{ text }}</label>
 
-		<!-- fake slot to gather inner text -->
-		<slot v-if="false" />
-	</span>
+			<!-- fake slot to gather inner text -->
+			<slot v-if="false" />
+		</span>
+	</li>
 </template>
 
 <script>
@@ -60,6 +62,10 @@ export default {
 	},
 
 	methods: {
+		checkInput(event) {
+			// by clicking we also trigger the change event
+			this.$refs.label.click()
+		},
 		onChange(event) {
 			this.$emit('change', event)
 		}
@@ -68,6 +74,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~Assets/action';
+@include action-active;
+
 .action-checkbox {
 	display: flex;
 	align-items: flex-start;
@@ -80,7 +89,6 @@ export default {
 	cursor: pointer;
 	white-space: nowrap;
 
-	opacity: .7;
 	color: var(--color-main-text);
 	border: 0;
 	border-radius: 0; // otherwise Safari will cut the border-radius area
@@ -90,19 +98,19 @@ export default {
 	font-weight: normal;
 	line-height: $popoveritem-height;
 
-	&:hover,
-	&:focus {
-		opacity: 1;
-	}
-
 	/* checkbox/radio fixes */
 	&__checkbox {
 		position: absolute;
-		left: -10000px;
 		top: auto;
+		left: -10000px;
+
+		overflow: hidden;
+
 		width: 1px;
 		height: 1px;
-		overflow: hidden;
+		&:focus + .action-checkbox__label {
+			opacity: 1;
+		}
 	}
 
 	&__label {
@@ -113,10 +121,19 @@ export default {
 		width: 100%;
 		padding: 0;
 		padding-right: 14px;
+
+		opacity: .7;
 		// checkbox-width is 10px, border is 2
 		// (44 - 10 - 2) / 2 = 16
 		&::before {
 			margin: 0 16px 0 !important;
+		}
+	}
+
+	&:hover,
+	&:focus {
+		.action-checkbox__label {
+			opacity: 1;
 		}
 	}
 }

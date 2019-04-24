@@ -21,35 +21,37 @@
   -->
 
 <template>
-	<button class="action-button focusable" :disabled="disabled" @click="onClick">
-		<!-- icon -->
-		<span :class="[isIconUrl ? 'action-button__icon--url' : icon]"
-			:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
-			class="action-button__icon" />
+	<li>
+		<button class="action-button focusable" :disabled="disabled" @click="onClick">
+			<!-- icon -->
+			<span :class="[isIconUrl ? 'action-button__icon--url' : icon]"
+				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+				class="action-button__icon" />
 
-		<!-- long text with title -->
-		<p v-if="title">
-			<strong class="action-button__title">
-				{{ title }}
-			</strong>
-			<br>
+			<!-- long text with title -->
+			<p v-if="title">
+				<strong class="action-button__title">
+					{{ title }}
+				</strong>
+				<br>
+				<!-- white space is shown on longtext, so we can't
+					put {{ text }} on a new line for code readability -->
+				<span class="action-button__longtext" v-text="text" />
+			</p>
+
+			<!-- long text only -->
 			<!-- white space is shown on longtext, so we can't
 				put {{ text }} on a new line for code readability -->
-			<span class="action-button__longtext" v-text="text" />
-		</p>
+			<p v-else-if="isLongText"
+				class="action-button__longtext" v-text="text" />
 
-		<!-- long text only -->
-		<!-- white space is shown on longtext, so we can't
-			put {{ text }} on a new line for code readability -->
-		<p v-else-if="isLongText"
-			class="action-button__longtext" v-text="text" />
+			<!-- default text display -->
+			<span v-else class="action-button__text">{{ text }}</span>
 
-		<!-- default text display -->
-		<span v-else class="action-button__text">{{ text }}</span>
-
-		<!-- fake slot to gather inner text -->
-		<slot v-if="false" />
-	</button>
+			<!-- fake slot to gather inner text -->
+			<slot v-if="false" />
+		</button>
+	</li>
 </template>
 
 <script>
@@ -70,6 +72,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/action';
-@include action-item(button);
+@import '~Assets/action';
+@include action-active;
+@include action-item('button');
 </style>

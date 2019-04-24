@@ -55,7 +55,7 @@ export default {
 	@include iconfont('menu');
 
 	&:hover,
-	a:focus {
+	&:focus {
 		opacity: 1;
 	}
 }

@@ -20,6 +20,15 @@
  *
  */
 
+@mixin action-active {
+	li {
+		&:hover,
+		&.active {
+			box-shadow: inset 4px 0 var(--color-primary);
+		}
+	}
+}
+
 @mixin action-item($name) {
 	.action-#{$name} {
 		display: flex;

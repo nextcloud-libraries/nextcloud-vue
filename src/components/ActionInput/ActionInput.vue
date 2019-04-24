@@ -21,22 +21,24 @@
   -->
 
 <template>
-	<span class="action-input">
-		<!-- icon -->
-		<span :class="[isIconUrl ? 'action-input__icon--url' : icon]"
-			:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
-			class="action-input__icon" />
+	<li>
+		<span class="action-input">
+			<!-- icon -->
+			<span :class="[isIconUrl ? 'action-input__icon--url' : icon]"
+				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+				class="action-input__icon" />
 
-		<!-- form and input -->
-		<form ref="form" class="action-input__form" :disabled="disabled"
-			@submit.prevent="onSubmit">
-			<input :id="randomId" type="submit" class="action-input__submit">
-			<input :type="type" :value="value" :placeholder="text"
-				:disabled="disabled"
-				required class="action-input__input" @input="onInput">
-			<label v-show="!disabled" :for="randomId" class="action-input__label" />
-		</form>
-	</span>
+			<!-- form and input -->
+			<form ref="form" class="action-input__form" :disabled="disabled"
+				@submit.prevent="onSubmit">
+				<input :id="randomId" type="submit" class="action-input__submit">
+				<input :type="type" :value="value" :placeholder="text"
+					:disabled="disabled" required
+					class="action-input__input focusable" @input="onInput">
+				<label v-show="!disabled" :for="randomId" class="action-input__label" />
+			</form>
+		</span>
+	</li>
 </template>
 
 <script>
@@ -108,6 +110,8 @@ export default {
 <style lang="scss" scoped>
 @import '~Fonts/scss/iconfont-vue';
 @import '~Assets/inputs';
+@import '~Assets/action';
+@include action-active;
 
 $input-margin: 4px;
 

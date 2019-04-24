@@ -21,35 +21,37 @@
   -->
 
 <template>
-	<span class="action-text focusable">
-		<!-- icon -->
-		<span :class="[isIconUrl ? 'action-text__icon--url' : icon]"
-			:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
-			class="action-text__icon" />
+	<li>
+		<span class="action-text">
+			<!-- icon -->
+			<span :class="[isIconUrl ? 'action-text__icon--url' : icon]"
+				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+				class="action-text__icon" />
 
-		<!-- long text with title -->
-		<p v-if="title">
-			<strong class="action-text__title">
-				{{ title }}
-			</strong>
-			<br>
-			<!-- white space is shown on longtext, so we can't
+			<!-- long text with title -->
+			<p v-if="title">
+				<strong class="action-text__title">
+					{{ title }}
+				</strong>
+				<br>
+				<!-- white space is shown on longtext, so we can't
 				put {{ text }} on a new line for code readability -->
-			<span class="action-text__longtext" v-text="text" />
-		</p>
+				<span class="action-text__longtext" v-text="text" />
+			</p>
 
-		<!-- long text only -->
-		<!-- white space is shown on longtext, so we can't
+			<!-- long text only -->
+			<!-- white space is shown on longtext, so we can't
 			put {{ text }} on a new line for code readability -->
-		<p v-else-if="isLongText"
-			class="action-text__longtext" v-text="text" />
+			<p v-else-if="isLongText"
+				class="action-text__longtext" v-text="text" />
 
-		<!-- default text display -->
-		<span v-else class="action-text__text">{{ text }}</span>
+			<!-- default text display -->
+			<span v-else class="action-text__text">{{ text }}</span>
 
-		<!-- fake slot to gather inner text -->
-		<slot v-if="false" />
-	</span>
+			<!-- fake slot to gather inner text -->
+			<slot v-if="false" />
+		</span>
+	</li>
 </template>
 
 <script>
@@ -70,8 +72,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/action';
-@include action-item(text);
+@import '~Assets/action';
+@include action-active;
+@include action-item('text');
 
 .action-text {
 	&,
