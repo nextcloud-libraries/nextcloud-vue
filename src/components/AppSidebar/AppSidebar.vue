@@ -297,7 +297,7 @@ $desc-vertical-padding: 18px;
 			}
 			// main title
 			h3 {
-				font-size: 16px;
+				font-size: $icon-size;
 				padding: 0;
 				+ h4 {
 					padding-top: 10px;

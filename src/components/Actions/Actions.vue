@@ -44,7 +44,6 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 		@keydown.up.exact.prevent="focusPreviousAction"
 		@keydown.down.exact.prevent="focusNextAction"
 		@keydown.shift.tab.prevent="focusPreviousAction"
-		@keydown.tab.exact.prevent="focusNextAction"
 		@keydown.page-up.exact.prevent="focusFirstAction"
 		@keydown.page-down.exact.prevent="focusLastAction"
 		@keydown.esc.exact.prevent="closeMenu">
@@ -257,10 +256,15 @@ export default {
 	position: relative;
 	display: inline-block;
 
+	// put a grey round background when menu is opened
+	// or hover-focused
 	&:hover,
 	&:focus,
 	&__menutoggle:focus,
-	&__menutoggle:active {
+	&__menutoggle:active,
+	&.action-item--open {
+		border-radius: $clickable-area / 2;
+		background-color: var(--color-background-darker);
 		&,
 		.action-item__menutoggle {
 			opacity: 1;
@@ -271,10 +275,10 @@ export default {
 	&--single,
 	&__menutoggle {
 		box-sizing: border-box;
-		width: 44px;
-		height: 44px;
+		width: $clickable-area;
+		height: $clickable-area;
 		margin: 0;
-		padding: 14px;
+		padding: $icon-margin;
 
 		cursor: pointer;
 
@@ -291,7 +295,7 @@ export default {
 
 		opacity: .7;
 
-		font-size: 16px;
+		font-size: $icon-size;
 
 		@include iconfont('more');
 	}

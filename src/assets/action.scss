@@ -51,7 +51,7 @@
 		box-shadow: none;
 
 		font-weight: normal;
-		line-height: $popoveritem-height;
+		line-height: $clickable-area;
 
 		&:hover,
 		&:focus {
@@ -68,11 +68,11 @@
 			min-height: 0;
 			/* Keep padding to define the width to
 				assure correct position of a possible text */
-			padding: #{$popoveritem-height / 2} 0 #{$popoveritem-height / 2} $popoveritem-height;
+			padding: #{$clickable-area / 2} 0 #{$clickable-area / 2} $clickable-area;
 
 			opacity: 1;
-			background-position: #{($popoveritem-height - $popovericon-size) / 2} center;
-			background-size: $popovericon-size;
+			background-position: #{$icon-margin} center;
+			background-size: $icon-size;
 		}
 
 		// long text area

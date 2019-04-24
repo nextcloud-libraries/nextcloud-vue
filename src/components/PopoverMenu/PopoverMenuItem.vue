@@ -192,7 +192,7 @@ li {
 	> a,
 	> .menuitem {
 		cursor: pointer;
-		line-height: $popoveritem-height;
+		line-height: $clickable-area;
 		border: 0;
 		border-radius: 0; // otherwise Safari will cut the border-radius area
 		background-color: transparent;
@@ -215,15 +215,15 @@ li {
 		&[class*=' icon-'] {
 			min-width: 0; /* Overwrite icons*/
 			min-height: 0;
-			background-position: #{($popoveritem-height - $popovericon-size) / 2} center;
-			background-size: $popovericon-size;
+			background-position: #{$icon-margin} center;
+			background-size: $icon-size;
 		}
 
 		span[class^='icon-'],
 		span[class*=' icon-'] {
 			/* Keep padding to define the width to
 				assure correct position of a possible text */
-			padding: #{$popoveritem-height / 2} 0 #{$popoveritem-height / 2} $popoveritem-height;
+			padding: #{$clickable-area / 2} 0 #{$clickable-area / 2} $clickable-area;
 		}
 
 		// If no icons set, force left margin to align
@@ -232,14 +232,14 @@ li {
 			> input,
 			> form {
 				&:not([class^='icon-']):not([class*='icon-']):first-child {
-					margin-left: $popoveritem-height;
+					margin-left: $clickable-area;
 				}
 			}
 		}
 
 		&[class^='icon-'],
 		&[class*=' icon-'] {
-			padding: 0 #{($popoveritem-height - $popovericon-size) / 2} 0 $popoveritem-height;
+			padding: 0 $icon-margin 0 $clickable-area;
 		}
 
 		&:hover,
@@ -274,14 +274,14 @@ li {
 
 		/* Add padding if contains icon+text */
 		&:not(:empty) {
-			padding-right: $outter-margin !important;
+			padding-right: $icon-margin !important;
 		}
 
 		/* DEPRECATED! old img in popover fallback
 			* TODO: to remove */
 		> img {
-			width: $popovericon-size;
-			padding: #{($popoveritem-height - $popovericon-size) / 2};
+			width: $icon-size;
+			padding: $icon-margin;
 		}
 
 		/* checkbox/radio fixes */
@@ -317,8 +317,8 @@ li {
 		}
 		/* Inputs inside popover supports text, submit & reset */
 		input {
-			min-width: $popoveritem-height;
-			max-height: #{$popoveritem-height - 4px}; /* twice the element margin-y */
+			min-width: $clickable-area;
+			max-height: #{$clickable-area - 4px}; /* twice the element margin-y */
 			margin: 2px 0;
 			flex: 1 1 auto;
 			// space between inline inputs
@@ -334,14 +334,14 @@ li {
 		&:first-of-type {
 			> button, > a, > .menuitem {
 				> form, > input {
-					margin-top: $outter-margin - 2px; // minus the input margin
+					margin-top: $icon-margin - 2px; // minus the input margin
 				}
 			}
 		}
 		&:last-of-type {
 			> button, > a, > .menuitem {
 				> form, > input {
-					margin-bottom: $outter-margin - 2px; // minus the input margin
+					margin-bottom: $icon-margin - 2px; // minus the input margin
 				}
 			}
 		}

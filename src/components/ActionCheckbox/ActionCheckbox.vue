@@ -96,7 +96,7 @@ export default {
 	box-shadow: none;
 
 	font-weight: normal;
-	line-height: $popoveritem-height;
+	line-height: $clickable-area;
 
 	/* checkbox/radio fixes */
 	&__checkbox {

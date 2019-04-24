@@ -50,7 +50,7 @@ export default {
 	cursor: pointer;
 	opacity: 0.6;
 
-	font-size: 16px;
+	font-size: $icon-size;
 	line-height: 17px;
 	@include iconfont('menu');
 

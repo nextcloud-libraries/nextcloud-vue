@@ -135,7 +135,7 @@ $input-margin: 4px;
 	box-shadow: none;
 
 	font-weight: normal;
-	line-height: $popoveritem-height;
+	line-height: $clickable-area;
 
 	&:hover,
 	&:focus {
@@ -152,10 +152,10 @@ $input-margin: 4px;
 		min-height: 0;
 		/* Keep padding to define the width to
 			assure correct position of a possible text */
-		padding: #{$popoveritem-height / 2} 0 #{$popoveritem-height / 2} $popoveritem-height;
+		padding: #{$clickable-area / 2} 0 #{$clickable-area / 2} $clickable-area;
 
-		background-position: #{($popoveritem-height - $popovericon-size) / 2} center;
-		background-size: $popovericon-size;
+		background-position: #{$icon-margin} center;
+		background-size: $icon-size;
 	}
 
 	// Forms & text inputs
@@ -182,8 +182,8 @@ $input-margin: 4px;
 		align-items: center;
 		justify-content: center;
 
-		width: #{$popoveritem-height - $input-margin * 2};
-		height: #{$popoveritem-height - $input-margin * 2};
+		width: #{$clickable-area - $input-margin * 2};
+		height: #{$clickable-area - $input-margin * 2};
 		margin: 0 0 0 -8px;
 		padding: 7px 6px;
 
@@ -198,7 +198,7 @@ $input-margin: 4px;
 		background-color: var(--color-main-background);
 		background-clip: padding-box;
 
-		font-size: 16px;
+		font-size: $icon-size;
 
 		@include iconfont('confirm');
 	}
@@ -207,9 +207,9 @@ $input-margin: 4px;
 	&__input {
 		flex: 1 1 auto;
 
-		min-width: $popoveritem-height;
-		min-height: #{$popoveritem-height - $input-margin * 2}; /* twice the element margin-y */
-		max-height: #{$popoveritem-height - $input-margin * 2}; /* twice the element margin-y */
+		min-width: $clickable-area;
+		min-height: #{$clickable-area - $input-margin * 2}; /* twice the element margin-y */
+		max-height: #{$clickable-area - $input-margin * 2}; /* twice the element margin-y */
 		margin: 0;
 
 		// if disabled, change cursor
@@ -246,6 +246,18 @@ $input-margin: 4px;
 			}
 		}
 	}
+}
+
+// if a form is the last of the list
+// add the same bottomMargin as the right padding
+// for visual balance
+li:last-child .action-input {
+	margin-bottom: $icon-margin - $input-margin;
+}
+
+// same for first item
+li:first-child .action-input {
+	margin-top: $icon-margin - $input-margin;
 }
 
 </style>
