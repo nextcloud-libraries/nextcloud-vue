@@ -20,41 +20,25 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import Vue from 'vue'
 
 export default {
-	props: {
-		icon: {
-			type: String,
-			default: '',
-			required: true
-		},
-		title: {
-			type: String,
-			default: ''
+	before() {
+		// all actions requires a valid text content
+		// if none, forbid the component mount and throw error
+		if (!this.$slots.default || this.text.trim() === '') {
+			Vue.util.warn(`${this.$options.name} cannot be empty and requires a meaningful text content`, this)
+			this.$destroy()
+			this.$el.remove()
 		}
 	},
 
 	computed: {
-		isIconUrl() {
-			try {
-				return new URL(this.icon)
-			} catch (error) {
-				return false
-			}
-		},
 		text() {
-			return this.$slots.default[0].text
+			return this.$slots.default ? this.$slots.default[0].text : ''
 		},
 		isLongText() {
-			return this.text
-				? this.text.length > 20
-				: 0
-		}
-	},
-
-	methods: {
-		onClick(event) {
-			this.$emit('click', event)
+			return this.text && this.text.length > 20
 		}
 	}
 }

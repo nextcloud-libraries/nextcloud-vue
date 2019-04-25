@@ -35,10 +35,13 @@
 </template>
 
 <script>
+import ActionGlobalMixin from 'Mixins/actionGlobal'
 import GenRandomId from 'Utils/GenRandomId'
 
 export default {
 	name: 'ActionCheckbox',
+
+	mixins: [ActionGlobalMixin],
 
 	props: {
 		id: {
@@ -52,12 +55,6 @@ export default {
 		disabled: {
 			type: Boolean,
 			default: false
-		}
-	},
-
-	computed: {
-		text() {
-			return this.$slots.default[0].text
 		}
 	},
 

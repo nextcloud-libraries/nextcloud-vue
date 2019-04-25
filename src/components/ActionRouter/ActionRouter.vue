@@ -58,12 +58,12 @@
 </template>
 
 <script>
-import ActionMixin from 'Mixins/action'
+import ActionTextMixin from 'Mixins/actionText'
 
 export default {
 	name: 'ActionRouter',
 
-	mixins: [ActionMixin],
+	mixins: [ActionTextMixin],
 
 	props: {
 		to: {

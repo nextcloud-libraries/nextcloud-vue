@@ -60,12 +60,12 @@
 </template>
 
 <script>
-import ActionMixin from 'Mixins/action'
+import ActionTextMixin from 'Mixins/actionText'
 
 export default {
 	name: 'ActionLink',
 
-	mixins: [ActionMixin],
+	mixins: [ActionTextMixin],
 
 	props: {
 		href: {

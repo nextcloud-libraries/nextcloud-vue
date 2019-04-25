@@ -44,10 +44,13 @@
 </template>
 
 <script>
+import ActionGlobalMixin from 'Mixins/actionGlobal'
 import GenRandomId from 'Utils/GenRandomId'
 
 export default {
 	name: 'ActionInput',
+
+	mixins: [ActionGlobalMixin],
 
 	props: {
 		icon: {
@@ -81,14 +84,6 @@ export default {
 			} catch (error) {
 				return false
 			}
-		},
-		text() {
-			return this.$slots.default[0].text
-		},
-		isLongText() {
-			return this.text
-				? this.text.length > 20
-				: 0
 		},
 		randomId() {
 			return GenRandomId()

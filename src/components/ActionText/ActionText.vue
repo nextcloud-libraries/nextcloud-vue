@@ -55,12 +55,12 @@
 </template>
 
 <script>
-import ActionMixin from 'Mixins/action'
+import ActionTextMixin from 'Mixins/actionText'
 
 export default {
 	name: 'ActionText',
 
-	mixins: [ActionMixin],
+	mixins: [ActionTextMixin],
 
 	props: {
 		disabled: {
