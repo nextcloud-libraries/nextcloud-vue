@@ -65,7 +65,7 @@
 		<!-- menu if at least two actions -->
 		<div v-if="item.utils && item.utils.actions && item.utils.actions.length > 1"
 			:class="{ 'open': openedMenu }" class="app-navigation-entry-menu">
-			<popover-menu :menu="item.utils.actions" />
+			<PopoverMenu :menu="item.utils.actions" />
 		</div>
 
 		<!-- undo entry -->

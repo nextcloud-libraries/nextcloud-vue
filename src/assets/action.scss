@@ -1,0 +1,95 @@
+/**
+ * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
+ *
+ * @author John Molakvoæ <skjnldsv@protonmail.com>
+ *
+ * @license GNU AGPL version 3 or any later version
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+@mixin action-active {
+	li {
+		&:hover,
+		&.active {
+			box-shadow: inset 4px 0 var(--color-primary);
+		}
+	}
+}
+
+@mixin action-item($name) {
+	.action-#{$name} {
+		display: flex;
+		align-items: flex-start;
+
+		width: 100%;
+		height: auto;
+		margin: 0;
+		padding: 0;
+		padding-right: $icon-margin;
+
+		cursor: pointer;
+		white-space: nowrap;
+
+		opacity: $opacity_normal;
+		color: var(--color-main-text);
+		border: 0;
+		border-radius: 0; // otherwise Safari will cut the border-radius area
+		background-color: transparent;
+		box-shadow: none;
+
+		font-weight: normal;
+		line-height: $clickable-area;
+
+		&:hover,
+		&:focus {
+			opacity: $opacity_full;
+		}
+
+		& > span {
+			cursor: pointer;
+			white-space: nowrap;
+		}
+
+		&__icon {
+			width: $clickable-area;
+			height: $clickable-area;
+			opacity: $opacity_full;
+			background-position: $icon-margin center;
+			background-size: $icon-size;
+		}
+
+		// long text area
+		p {
+			width: 150px;
+			padding: #{$icon-margin / 2} 0;
+
+			cursor: pointer;
+			text-align: left;
+
+			line-height: 1.6em;
+		}
+
+		&__longtext {
+			cursor: pointer;
+			// allow the use of `\n`
+			white-space: pre;
+		}
+
+		&__title {
+			font-weight: bold;
+		}
+	}
+}

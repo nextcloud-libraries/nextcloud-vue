@@ -22,7 +22,7 @@
 
 <template>
 	<span class="option">
-		<avatar :display-name="option.displayName" :user="option.user" :disable-tooltip="true"
+		<Avatar :display-name="option.displayName" :user="option.user" :disable-tooltip="true"
 			:is-no-user="option.isNoUser" class="option__avatar" />
 		<div class="option__desc">
 			<span class="option__desc--lineone">
@@ -89,15 +89,15 @@ export default {
 			}
 		}
 		&--linetwo {
-			opacity: .7;
+			opacity: $opacity_normal;
 		}
 	}
 	&__icon {
-		width: 44px;
-		height: 44px;
-		flex: 0 0 44px;
+		width: $clickable-area;
+		height: $clickable-area;
+		flex: 0 0 $clickable-area;
 		margin: -6px;
-		opacity: .5;
+		opacity: $opacity_disabled;
 	}
 }
 </style>

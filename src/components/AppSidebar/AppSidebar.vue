@@ -50,10 +50,12 @@
 						{{ subtitle }}
 					</h4>
 					<!-- header main menu -->
-					<action v-if="actions.length > 0" class="app-sidebar-header__menu" :actions="actions" />
+					<Actions class="app-sidebar-header__menu">
+						<slot name="secondary-actions" />
+					</Actions>
 				</div>
 				<div v-if="$slots['action']" class="app-sidebar-header__action">
-					<slot name="action" />
+					<slot name="primary-actions" />
 				</div>
 			</header>
 			<!-- tabs navigation -->
@@ -90,18 +92,14 @@
 </template>
 
 <script>
-import Action from 'Components/Action'
+import Actions from 'Components/Actions'
 
 export default {
 	name: 'AppSidebar',
 	components: {
-		Action
+		Actions
 	},
 	props: {
-		actions: {
-			type: Array,
-			default: () => ([])
-		},
 		active: {
 			type: String,
 			default: ''
@@ -264,16 +262,16 @@ $desc-vertical-padding: 18px;
 	.app-sidebar-header {
 		> .icon-close {
 			position: absolute;
-			width: 44px;
-			height: 44px;
+			width: $clickable-area;
+			height: $clickable-area;
 			top: 0;
 			right: 0;
 			z-index: 1000;
-			opacity: .7;
+			opacity: $opacity_normal;
 			&:hover,
 			&:active,
 			&:focus {
-				opacity: 1;
+				opacity: $opacity_full;
 			}
 		}
 
@@ -291,7 +289,7 @@ $desc-vertical-padding: 18px;
 			position: relative;
 			padding: #{$desc-vertical-padding} #{$desc-menu-right-margin * 4} #{$desc-vertical-padding} 10px;
 			&--with-star {
-				padding-left: 44px;
+				padding-left: $clickable-area;
 			}
 			// titles
 			h3, h4 {
@@ -313,14 +311,14 @@ $desc-vertical-padding: 18px;
 			h4 {
 				font-size: 14px;
 				padding: 0;
-				opacity: .7;
+				opacity: $opacity_normal;
 			}
 			// favourite
 			.app-sidebar-header__star {
 				display: block;
-				width: 44px;
-				height: 44px;
-				padding: 14px;
+				width: $clickable-area;
+				height: $clickable-area;
+				padding: $icon-margin;
 				position: absolute;
 				top: $desc-vertical-padding - 12px; // aligned with main title
 				left: 0;
@@ -333,7 +331,7 @@ $desc-vertical-padding: 18px;
 				top: 50%;
 				margin-top: -22px;
 				background-color: var(--color-background-dark);
-				border-radius: 44px;
+				border-radius: $clickable-area / 2;
 			}
 		}
 
@@ -375,14 +373,14 @@ $desc-vertical-padding: 18px;
 				padding-top: 30px;
 				border-bottom: 1px solid var(--color-main-background);
 				text-align: center;
-				opacity: .7;
+				opacity: $opacity_normal;
 				color: var(--color-main-text);
 				transition: opacity var(--animation-quick), border-color var(--animation-quick);
 				&:hover,
 				&:focus,
 				&:active,
 				&.active {
-					opacity: 1;
+					opacity: $opacity_full;
 				}
 				&:active,
 				&.active {
@@ -435,7 +433,7 @@ $desc-vertical-padding: 18px;
 	top: 0;
 	left: 0;
 	width: 100%;
-	opacity: 1;
+	opacity: $opacity_full;
 }
 
 .fade-enter,

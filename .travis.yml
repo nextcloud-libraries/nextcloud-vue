@@ -1,14 +1,17 @@
 language: node_js
+node_js:
+  - stable
+sudo: false
 cache:
+  npm: true
   directories:
   - node_modules
-node_js:
-- node
+install:
+  - npm install
 script:
-- npm rebuild node-sass
-- npm run build
-- npm run lint
-- npm run stylelint
+  - npm run build
+  - npm run lint
+  - npm run stylelint
 deploy:
   provider: npm
   skip_cleanup: true

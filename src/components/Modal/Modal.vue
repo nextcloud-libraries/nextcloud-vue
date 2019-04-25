@@ -33,7 +33,9 @@
 						{{ title }}
 					</div>
 					<div class="icons-menu">
-						<action v-if="actions.length > 0" :actions="actions" class="header-actions" />
+						<Actions class="header-actions">
+							<slot name="actions" />
+						</Actions>
 						<a v-if="hasNext && enableSlideshow" class="play-pause" @click="togglePlayPause">
 							<div :class="[playing ? 'icon-pause' : 'icon-play']">
 								<span class="hidden-visually">
@@ -106,22 +108,16 @@
 
 <script>
 import Hammer from 'hammerjs'
-import Action from 'Components/Action'
+import Actions from 'Components/Actions'
 
 export default {
 	name: 'Modal',
 
 	components: {
-		Action
+		Actions
 	},
 
 	props: {
-		actions: {
-			type: Array,
-			default: () => {
-				return []
-			}
-		},
 		title: {
 			type: String,
 			default: ''
@@ -367,10 +363,10 @@ export default {
 
 	.modal-title {
 		max-width: 100%;
-		padding: 0 88px; // maximum actions is 2 (2*44px)
+		padding: 0 #{$clickable-area * 2}; // maximum actions is 2
 		box-sizing: border-box;
 		color: #fff;
-		font-size: 14px;
+		font-size: $icon-margin;
 		text-overflow: ellipsis;
 		overflow-x: hidden;
 		white-space: nowrap;
@@ -389,6 +385,8 @@ export default {
 			height: 50px;
 			width: 50px;
 			box-sizing: border-box;
+			// not using $icon-margin since we have a custom font size
+			// and alignement seems odd
 			padding: 15px 14px;
 			font-size: 24px;
 			color: #fff;
@@ -424,8 +422,8 @@ export default {
 		}
 
 		.action-item--single {
-			height: 44px;
-			width: 44px;
+			height: $clickable-area;
+			width: $clickable-area;
 			cursor: pointer;
 			box-sizing: border-box;
 			background-size: 22px;
@@ -474,9 +472,9 @@ export default {
 		padding: 12px 11px;
 		box-sizing: border-box;
 		color: white;
-		width: 44px;
-		height: 44px;
-		border-radius: 50%;
+		width: $clickable-area;
+		height: $clickable-area;
+		border-radius: $clickable-area / 2;
 	}
 	.icon-previous {
 		@include iconfont('arrow-left');

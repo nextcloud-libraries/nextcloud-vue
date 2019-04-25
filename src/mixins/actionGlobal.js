@@ -1,5 +1,6 @@
+
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -19,7 +20,25 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import Action from './Action'
+import Vue from 'vue'
 
-export default Action
-export { Action }
+export default {
+	before() {
+		// all actions requires a valid text content
+		// if none, forbid the component mount and throw error
+		if (!this.$slots.default || this.text.trim() === '') {
+			Vue.util.warn(`${this.$options.name} cannot be empty and requires a meaningful text content`, this)
+			this.$destroy()
+			this.$el.remove()
+		}
+	},
+
+	computed: {
+		text() {
+			return this.$slots.default ? this.$slots.default[0].text : ''
+		},
+		isLongText() {
+			return this.text && this.text.length > 20
+		}
+	}
+}

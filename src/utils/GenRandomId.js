@@ -1,5 +1,6 @@
+
 /**
- * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -12,7 +13,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
@@ -20,23 +21,11 @@
  *
  */
 
-// https://uxplanet.org/7-rules-for-mobile-ui-button-design-e9cf2ea54556
-// recommended is 48px
-// 44px is what we choose and have very good visual-to-usability ratio
-$clickable-area: 44px;
+const GenRandomId = (length) => {
+	return Math.random()
+		.toString(36)
+		.replace(/[^a-z]+/g, '')
+		.substr(0, length || 5)
+}
 
-// background icon size
-// also used for the scss icon font
-$icon-size: 16px;
-
-// icon padding for a $clickable-area width and a $icon-size icon
-// ( 44px - 16px ) / 2
-$icon-margin: ($clickable-area - $icon-size) / 2;
-
-/* popovermenu arrow width from the triangle center */
-$arrow-width: 9px;
-
-/* opacities */
-$opacity_disabled: .5;
-$opacity_normal: .7;
-$opacity_full: 1;
+export default GenRandomId

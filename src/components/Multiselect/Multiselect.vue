@@ -33,7 +33,7 @@
 	## v-on="$listeners", v-bind="$attrs"
 	-> Forward all undeclared props to the vue-multiselect child
 	-->
-	<vue-multiselect
+	<VueMultiselect
 		:value="value"
 		v-bind="$attrs"
 		:class="[
@@ -55,12 +55,12 @@
 		<template #option="scope">
 			<!-- Avatar display select slot override.
 				You CANNOT use this scope, we will replace it by this -->
-			<avatar-select-option v-if="userSelect && !$scopedSlots['option']"
+			<AvatarSelectOption v-if="userSelect && !$scopedSlots['option']"
 				:option="scope.option" />
 
 			<!-- Ellipsis in the middle if no option slot
 				is defined in the parent -->
-			<ellipsised-option v-else-if="!$scopedSlots['option']"
+			<EllipsisedOption v-else-if="!$scopedSlots['option']"
 				:option="scope.option" :label="label" />
 
 			<!-- Passing the singleLabel slot -->
@@ -84,7 +84,7 @@
 
 		<!-- TODO add translation system
 		<span slot="noResult">{{ t('core', 'No results') }}</span> -->
-	</vue-multiselect>
+	</VueMultiselect>
 </template>
 
 <script>

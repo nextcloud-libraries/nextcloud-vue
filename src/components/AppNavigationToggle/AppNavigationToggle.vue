@@ -43,20 +43,20 @@ export default {
 	position: fixed;
 	z-index: 149;
 	left: 0;
-	width: 44px;
-	height: 44px;
-	padding: 14px;
+	width: $clickable-area;
+	height: $clickable-area;
+	padding: $icon-margin;
 
 	cursor: pointer;
 	opacity: 0.6;
 
-	font-size: 16px;
+	font-size: $icon-size;
 	line-height: 17px;
 	@include iconfont('menu');
 
 	&:hover,
-	a:focus {
-		opacity: 1;
+	&:focus {
+		opacity: $opacity_full;
 	}
 }
 // mobile only
