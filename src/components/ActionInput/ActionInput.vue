@@ -101,8 +101,8 @@ export default {
 			this.$emit('update:value', event.target.value)
 		},
 		onSubmit(event) {
-			event.preventDefault();
-			event.stopPropagation();
+			event.preventDefault()
+			event.stopPropagation()
 			if (!this.disabled) {
 				this.$emit('submit', event)
 			} else {
