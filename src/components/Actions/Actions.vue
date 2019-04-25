@@ -56,7 +56,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 			@click.prevent="toggleMenu"
 			@keydown.space.exact.prevent="toggleMenu" />
 		<div ref="menu"
-			:class="{ 'open': opened }"
+			:class="[`menu-${menuAlign}`, { 'open': opened }]"
 			class="action-item__menu"
 			tabindex="-1"
 			@mousemove="unFocus">
@@ -96,6 +96,13 @@ export default {
 		open: {
 			type: Boolean,
 			default: false
+		},
+		menuAlign: {
+			type: String,
+			default: 'center',
+			validator: align => {
+				return ['left', 'center', 'right'].indexOf(align) > -1
+			}
 		}
 	},
 
@@ -248,6 +255,9 @@ export default {
 <style lang="scss" scoped>
 @import '~Fonts/scss/iconfont-vue';
 
+// arrow distance to the border
+$arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
+
 .action-item {
 	position: relative;
 	display: inline-block;
@@ -349,7 +359,7 @@ export default {
 
 			width: 0;
 			height: 0;
-			margin-right: 1 - $arrow-width;
+			margin-right: - $arrow-width;
 
 			content: ' ';
 			pointer-events: none;
@@ -366,7 +376,8 @@ export default {
 			left: auto;
 			transform: none;
 			&:after {
-				right: $arrow-width - 1; // align to menu icon
+				// align to menu icon padding
+				right: $arrow-margin;
 				margin-right: 0;
 			}
 		}
@@ -378,7 +389,8 @@ export default {
 			transform: none;
 			&:after {
 				right: auto;
-				left: $arrow-width - 1; // align to menu icon
+				// align to menu icon padding
+				left: $arrow-margin;
 				margin-right: 0;
 			}
 		}
