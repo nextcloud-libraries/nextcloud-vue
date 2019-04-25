@@ -39,7 +39,7 @@
 				<!-- sidebar details -->
 				<div :class="{ 'app-sidebar-header__desc--with-star': canStar }" class="app-sidebar-header__desc">
 					<!-- favourite icon -->
-					<a v-if="canStar" :class="[ isStarred ? 'icon-starred' : 'icon-star', { loading: starLoading } ]"
+					<a v-if="canStar" :class="[ isStarred ? 'icon-starred' : 'icon-star', { 'icon-loading-small': starLoading } ]"
 						class="app-sidebar-header__star" @click.prevent="toggleStarred" />
 					<!-- main title -->
 					<h3 class="app-sidebar-header__title">
