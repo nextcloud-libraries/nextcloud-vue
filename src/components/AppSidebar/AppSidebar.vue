@@ -50,11 +50,11 @@
 						{{ subtitle }}
 					</h4>
 					<!-- header main menu -->
-					<Actions class="app-sidebar-header__menu">
+					<Actions v-if="$slots['secondary-actions']" class="app-sidebar-header__menu">
 						<slot name="secondary-actions" />
 					</Actions>
 				</div>
-				<div v-if="$slots['action']" class="app-sidebar-header__action">
+				<div v-if="$slots['primary-actions']" class="app-sidebar-header__action">
 					<slot name="primary-actions" />
 				</div>
 			</header>
