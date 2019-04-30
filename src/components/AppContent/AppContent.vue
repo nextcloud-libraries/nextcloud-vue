@@ -87,7 +87,6 @@ export default {
 	position: relative;
 	flex-basis: 100vw;
 	min-height: 100%;
-	will-change: transform;
 	transition: transform var(--animation-quick);
 }
 </style>
