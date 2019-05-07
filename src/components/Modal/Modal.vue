@@ -49,11 +49,9 @@
 									cy="25" />
 							</svg>
 						</a>
-						<a v-if="canClose" class="close icon-close" @click="close">
-							<span class="hidden-visually">
-								{{ t('core', 'Close') }}
-							</span>
-						</a>
+						<Actions v-if="canClose" class="header-close">
+							<ActionButton icon="icon-close" @click="close" />
+						</Actions>
 					</div>
 				</div>
 			</transition>
@@ -109,12 +107,14 @@
 <script>
 import Hammer from 'hammerjs'
 import Actions from 'Components/Actions'
+import ActionButton from 'Components/ActionButton'
 
 export default {
 	name: 'Modal',
 
 	components: {
-		Actions
+		Actions,
+		ActionButton
 	},
 
 	props: {
@@ -328,6 +328,8 @@ export default {
 <style lang="scss" scoped>
 @import '~Fonts/scss/iconfont-vue';
 
+$header-size: 50px;
+
 .modal-mask {
 	position: fixed;
 	z-index: 9998;
@@ -345,7 +347,7 @@ export default {
 	right: 0;
 	left: 0;
 	width: 100%;
-	height: 50px;
+	height: $header-size;
 	z-index: 10001;
 	// prevent vue show to use display:none and reseting
 	// the circle animation loop
@@ -382,36 +384,48 @@ export default {
 
 		.icon-close {
 			@include iconfont('close');
-			height: 50px;
-			width: 50px;
 			box-sizing: border-box;
 			// not using $icon-margin since we have a custom font size
 			// and alignement seems odd
-			padding: 15px 14px;
-			font-size: 24px;
+			padding: 10px 11px;
+			margin: ($header-size - $clickable-area) / 2;
+			font-size: 23px;
 			color: #fff;
 			background-image: none;
 		}
 
 		.play-pause {
-			height: 50px;
-			width: 50px;
+			height: $header-size;
+			width: $header-size;
 			color: white;
 			font-size: 22px;
 			position: relative;
+			&:hover,
+			&:focus {
+				.icon-play,
+				.icon-pause {
+					border-radius: $clickable-area / 2;
+					background-color: var(--color-background-darker);
+					opacity: 1;
+				}
+			}
 			.icon-play,
 			.icon-pause {
-				height: 50px;
+				height: $clickable-area;
+				width: $clickable-area;
+				margin: ($header-size - $clickable-area) / 2;
+				box-sizing: border-box;
 				background-image: none;
+				opacity: .7;
 			}
 			.icon-play {
 				@include iconfont('play');
 				// better visual
-				padding: 15px;
+				padding: 12px 13px;
 			}
 			.icon-pause {
 				@include iconfont('pause');
-				padding: 15px;
+				padding: 12px;
 				// ! align with circle
 				font-size: 19.5px;
 			}
@@ -419,6 +433,7 @@ export default {
 
 		.header-actions {
 			color: white;
+			margin: ($header-size - $clickable-area) / 2;
 		}
 
 		.action-item--single {
@@ -576,10 +591,14 @@ export default {
 </style>
 <style lang="scss">
 // we cannot scope sub-components
-.modal-mask[data-v-#{$scope_version}] .modal-header .icons-menu .action-item__menutoggle {
-	// 22px is a somehow better looking for the icon-more icon
-	font-size: 22px;
-	padding: 13px 11px;
+.modal-mask[data-v-#{$scope_version}] .modal-header .icons-menu {
+	.action-item__menutoggle {
+		// 22px is a somehow better looking for the icon-more icon
+		font-size: 22px;
+		padding: 13px 11px;
+		// force white instead of default main text
+		color: #fff;
+	}
 }
 
 $radius: 15;
