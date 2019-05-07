@@ -38,7 +38,9 @@ export default {
 			this.isFullscreen = this._isFullscreen()
 		},
 		_isFullscreen() {
-			return window.innerWidth === screen.width
+			// if the window height is equal to the screen height,
+			// we're in full screen mode
+			return window.outerHeight === screen.height
 		}
 	}
 }
