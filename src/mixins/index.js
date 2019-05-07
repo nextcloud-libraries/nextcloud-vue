@@ -20,10 +20,10 @@
  *
  */
 
-import isFullScreen from './isFullScreen'
+import isFullscreen from './isFullscreen'
 import isMobile from './isMobile'
 
 export {
-	isFullScreen,
+	isFullscreen,
 	isMobile
 }
