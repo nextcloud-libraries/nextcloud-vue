@@ -28,6 +28,8 @@ import ActionRouter from './ActionRouter'
 import ActionText from './ActionText'
 import Actions from './Actions'
 import AppContent from './AppContent'
+import AppContentDetails from './AppContentDetails'
+import AppContentList from './AppContentList'
 import AppNavigation from './AppNavigation'
 import AppNavigationItem from './AppNavigationItem'
 import AppNavigationNew from './AppNavigationNew'
@@ -51,6 +53,8 @@ export {
 	ActionText,
 	Actions,
 	AppContent,
+	AppContentDetails,
+	AppContentList,
 	AppNavigation,
 	AppNavigationItem,
 	AppNavigationNew,
