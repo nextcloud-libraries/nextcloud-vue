@@ -110,6 +110,10 @@ export default {
 			type: Object,
 			required: true
 		},
+		open: {
+			type: Boolean,
+			default: false
+		},
 		menuOpen: {
 			type: Boolean,
 			default: false
@@ -117,8 +121,8 @@ export default {
 	},
 	data() {
 		return {
-			openedMenu: this.menuOpen,
-			opened: !!this.item.opened
+			opened: this.open,
+			openedMenu: this.menuOpen
 		}
 	},
 	computed: {
@@ -134,8 +138,8 @@ export default {
 		}
 	},
 	watch: {
-		item(oldItem, newItem) {
-			this.opened = !!newItem.opened
+		open(newVal) {
+			this.opened = newVal
 		},
 		menuOpen(newVal) {
 			this.openedMenu = newVal
@@ -156,6 +160,7 @@ export default {
 		},
 		toggleCollapse() {
 			this.opened = !this.opened
+			this.$emit('update:open', this.opened)
 		},
 		callPreventStop(action, event) {
 			if (action) {
