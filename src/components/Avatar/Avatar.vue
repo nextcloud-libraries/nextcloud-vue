@@ -22,10 +22,18 @@
 
 <template>
 	<div v-tooltip="tooltip" v-click-outside="closeMenu"
-		:class="{ 'icon-loading': loadingState, 'unknown': userDoesNotExist }"
+		:class="{
+			'icon-loading': !isAvatarLoaded,
+			'avatardiv--unknown': userDoesNotExist,
+			'avatardiv--with-menu': hasMenu
+		}"
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper" @click="toggleMenu">
-		<img v-if="!loadingState && !userDoesNotExist" :src="avatarUrlLoaded" :srcset="avatarSrcSetLoaded">
+		<!-- avatar -->
+		<img v-if="isAvatarLoaded && !userDoesNotExist" :src="avatarUrlLoaded" :srcset="avatarSrcSetLoaded">
+		<div v-if="hasMenu" class="icon-more" />
+
+		<!-- avatar status -->
 		<div v-if="status" class="avatardiv__status" :class="'avatardiv__status--' + status"
 			:style="{ backgroundColor: `#${statusColor}` }">
 			<!-- triangle -->
@@ -40,7 +48,7 @@
 		<div v-if="userDoesNotExist" class="unknown">
 			{{ initials }}
 		</div>
-		<div v-if="menu.length > 0" v-show="contactsMenuOpenState" class="popovermenu">
+		<div v-if="hasMenu" v-show="contactsMenuOpenState" class="popovermenu menu-center">
 			<PopoverMenu :is-open="contactsMenuOpenState" :menu="menu" />
 		</div>
 	</div>
@@ -159,7 +167,8 @@ export default {
 			avatarUrlLoaded: null,
 			avatarSrcSetLoaded: null,
 			userDoesNotExist: false,
-			loadingState: true,
+			isAvatarLoaded: false,
+			isMenuLoaded: false,
 			contactsMenuActions: [],
 			contactsMenuOpenState: false
 		}
@@ -183,6 +192,12 @@ export default {
 		isUrlDefined() {
 			return typeof this.url !== 'undefined'
 		},
+		hasMenu() {
+			if (this.isMenuLoaded) {
+				return this.menu.length > 0
+			}
+			return !(this.user === OC.getCurrentUser().uid || this.userDoesNotExist || this.url)
+		},
 		shouldShowPlaceholder() {
 			return this.allowPlaceholder && (
 				this.userDoesNotExist)
@@ -193,10 +208,6 @@ export default {
 				height: this.size + 'px',
 				lineHeight: this.size + 'px',
 				fontSize: Math.round(this.size * 0.55) + 'px'
-			}
-
-			if (!this.shouldShowPlaceholder) {
-				return style
 			}
 
 			const rgb = uidToColor(this.getUserIdentifier)
@@ -236,6 +247,7 @@ export default {
 		},
 		user() {
 			this.userDoesNotExist = false
+			this.isMenuLoaded = false
 			this.loadAvatarUrl()
 		}
 	},
@@ -244,7 +256,7 @@ export default {
 	},
 	methods: {
 		toggleMenu() {
-			if (this.user === OC.getCurrentUser().uid || this.userDoesNotExist || this.url) {
+			if (!this.hasMenu) {
 				return
 			}
 			this.contactsMenuOpenState = !this.contactsMenuOpenState
@@ -255,19 +267,22 @@ export default {
 		closeMenu() {
 			this.contactsMenuOpenState = false
 		},
-		fetchContactsMenu() {
-			axios.post(OC.generateUrl('contactsmenu/findOne'), 'shareType=0&shareWith=' + encodeURIComponent(this.user)).then((response) => {
-				this.contactsMenuActions = [response.data.topAction].concat(response.data.actions)
-			}).catch(() => {
+		async fetchContactsMenu() {
+			try {
+				const user = encodeURIComponent(this.user)
+				const { data } = await axios.post(OC.generateUrl('contactsmenu/findOne'), `shareType=0&shareWith=${user}`)
+				this.contactsMenuActions = [data.topAction].concat(data.actions)
+			} catch (e) {
 				this.contactsMenuOpenState = false
-			})
+			}
+			this.isMenuLoaded = true
 		},
 		loadAvatarUrl() {
-			this.loadingState = true
+			this.isAvatarLoaded = false
 
 			/** Only run avatar image loading if either user or url property is defined */
 			if (!this.isUrlDefined && (!this.isUserDefined || this.isNoUser)) {
-				this.loadingState = false
+				this.isAvatarLoaded = true
 				this.userDoesNotExist = true
 				return
 			}
@@ -304,11 +319,11 @@ export default {
 				if (!this.isUrlDefined) {
 					this.avatarSrcSetLoaded = srcset
 				}
-				this.loadingState = false
+				this.isAvatarLoaded = true
 			}
 			img.onerror = () => {
 				this.userDoesNotExist = true
-				this.loadingState = false
+				this.isAvatarLoaded = true
 			}
 
 			if (!this.isUrlDefined) {
@@ -321,68 +336,107 @@ export default {
 </script>
 
 <style scoped lang="scss">
-	.avatardiv {
-		display: inline-block;
+@import '~Fonts/scss/iconfont-vue';
+
+.avatardiv {
+	position: relative;
+	display: inline-block;
+
+	&--unknown {
 		position: relative;
+		background-color: var(--color-text-maxcontrast);
+	}
 
-		&.unknown {
-			background-color: var(--color-text-maxcontrast);
-			position: relative;
-		}
-
-		> .unknown {
+	&--with-menu {
+		cursor: pointer;
+		.icon-more {
 			position: absolute;
-			color: var(--color-main-background);
-			width: 100%;
-			text-align: center;
-			display: block;
-			left: 0;
 			top: 0;
-		}
+			left: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: inherit;
+			height: inherit;
+			cursor: pointer;
+			opacity: 0;
+			background: none;
+			font-size: 18px;
 
+			@include iconfont('more');
+			&::before {
+				display: block;
+			}
+		}
+		&:focus,
+		&:hover {
+			.icon-more {
+				opacity: 1;
+			}
+			img {
+				opacity: 0;
+			}
+		}
+		.icon-more,
 		img {
-			width: 100%;
-			height: 100%;
+			transition: opacity var(--animation-quick);
 		}
+	}
 
-		.avatardiv__status {
-			width: 10px;
-			height: 10px;
-			position: absolute;
-			left: 22px;
-			top: 22px;
-			border: 1px solid rgba(255, 255, 255, .5);
-			background-clip: content-box;
-			&--positive {
-				background-color: var(--color-success);
-				border-radius: 50%;
-			}
-			&--negative {
-				background-color: var(--color-error);
-			}
-			&--neutral {
-				background-color: transparent !important;
-				border: none;
-				svg {
-					position: absolute;
-					left: -2px;
-					top: -3px;
-					path {
-						fill: #aaa;
-					}
+	> .unknown {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: block;
+		width: 100%;
+		text-align: center;
+		color: var(--color-main-background);
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+	}
+
+	.avatardiv__status {
+		position: absolute;
+		top: 22px;
+		left: 22px;
+		width: 10px;
+		height: 10px;
+		border: 1px solid rgba(255, 255, 255, .5);
+		background-clip: content-box;
+		&--positive {
+			border-radius: 50%;
+			background-color: var(--color-success);
+		}
+		&--negative {
+			background-color: var(--color-error);
+		}
+		&--neutral {
+			border: none;
+			background-color: transparent !important;
+			svg {
+				position: absolute;
+				top: -3px;
+				left: -2px;
+				path {
+					fill: #aaa;
 				}
 			}
 		}
-
-		.popovermenu-wrapper {
-			position: relative;
-			display: inline-block;
-		}
-
-		.popovermenu {
-			display: block;
-			margin: 0;
-			font-size: initial;
-		}
 	}
+
+	.popovermenu-wrapper {
+		position: relative;
+		display: inline-block;
+	}
+
+	.popovermenu {
+		display: block;
+		margin: 0;
+		font-size: initial;
+	}
+}
+
 </style>
