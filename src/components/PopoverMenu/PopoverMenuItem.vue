@@ -71,7 +71,7 @@
 
 		<!-- If item.action is set instead, a button will be used -->
 		<button v-else-if="item.action" class="menuitem focusable" :class="{active: item.active}"
-			@click.stop.prevent="item.action">
+			@click.stop.prevent="item.action" :disabled="item.disabled">
 			<span :class="item.icon" />
 			<p v-if="item.text && item.longtext">
 				<strong class="menuitem-text">
@@ -117,6 +117,15 @@
 
 	button.menuitem * {
 		cursor: pointer;
+	}
+
+	button.menuitem:disabled {
+		opacity: 0.5 !important;
+		cursor: default;
+	}
+
+	button.menuitem:disabled * {
+		cursor: default;
 	}
 
 	.menuitem.active {
