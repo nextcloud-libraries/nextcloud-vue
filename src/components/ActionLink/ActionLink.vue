@@ -22,7 +22,9 @@
 
 <template>
 	<li>
-		<a :href="href"
+		<a
+			:download="download"
+			:href="href"
 			:target="target"
 			class="action-link focusable"
 			rel="noreferrer noopener"
@@ -71,11 +73,26 @@ export default {
 		href: {
 			type: String,
 			default: '#',
-			required: true
+			required: true,
+			validator: value => {
+				// href is either an anchor or a valid url
+				try {
+					return new URL(value)
+				} catch (error) {
+					return value.startsWith('#')
+				}
+			}
+		},
+		download: {
+			type: String,
+			default: ''
 		},
 		target: {
 			type: String,
-			default: '_self'
+			default: '_self',
+			validator: value => {
+				return ['_blank', '_self', '_parent', '_top'].indexOf(value) > -1
+			}
 		}
 	}
 }
