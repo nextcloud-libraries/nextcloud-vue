@@ -35,10 +35,10 @@ export default {
 
 	computed: {
 		text() {
-			return this.$slots.default ? this.$slots.default[0].text : ''
+			return this.$slots.default ? this.$slots.default[0].text.trim() : ''
 		},
 		isLongText() {
-			return this.text && this.text.length > 20
+			return this.text && this.text.trim().length > 20
 		}
 	}
 }

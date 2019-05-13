@@ -38,7 +38,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 	</element>
 
 	<!-- more than one action -->
-	<div v-else
+	<div v-else v-show="actions.length > 0"
 		:class="{'action-item--open': opened}"
 		class="action-item"
 		@keydown.up.exact.prevent="focusPreviousAction"
@@ -270,7 +270,7 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 	&__menutoggle:active,
 	&.action-item--open {
 		border-radius: $clickable-area / 2;
-		background-color: var(--color-background-darker);
+		background-color: var(--color-box-shadow);
 		&,
 		.action-item__menutoggle {
 			opacity: $opacity_full;
