@@ -33,24 +33,37 @@
 						{{ title }}
 					</div>
 					<div class="icons-menu">
+						<!-- Actions menu -->
 						<Actions class="header-actions">
 							<slot name="actions" />
 						</Actions>
-						<a v-if="hasNext && enableSlideshow" class="play-pause" @click="togglePlayPause">
+
+						<!-- Play-pause toggle -->
+						<button v-if="hasNext && enableSlideshow"
+							v-tooltip.auto="playPauseTitle"
+							class="play-pause"
+							@click="togglePlayPause">
+							<!-- Progress circle, css animated -->
 							<div :class="[playing ? 'icon-pause' : 'icon-play']">
 								<span class="hidden-visually">
-									{{ t('core', 'Next') }}
+									{{ playPauseTitle }}
 								</span>
 							</div>
-							<svg v-if="playing" class="progress-ring" height="50"
-								width="50">
-								<circle class="progress-ring__circle" stroke="white" stroke-width="2"
-									fill="transparent" r="15" cx="25"
-									cy="25" />
+
+							<!-- Progress circle, css animated -->
+							<svg v-if="playing" class="progress-ring"
+								height="50" width="50">
+								<circle class="progress-ring__circle"
+									stroke="white" stroke-width="2" fill="transparent"
+									r="15" cx="25" cy="25" />
 							</svg>
-						</a>
+						</button>
+
+						<!-- Close modal -->
 						<Actions v-if="canClose" class="header-close">
-							<ActionButton icon="icon-close" @click="close" />
+							<ActionButton icon="icon-close" @click="close">
+								{{ t('core', 'Close') }}
+							</ActionButton>
 						</Actions>
 					</div>
 				</div>
@@ -108,6 +121,7 @@
 import Hammer from 'hammerjs'
 import Actions from 'Components/Actions'
 import ActionButton from 'Components/ActionButton'
+import Tooltip from 'Directives/Tooltip'
 
 export default {
 	name: 'Modal',
@@ -115,6 +129,10 @@ export default {
 	components: {
 		Actions,
 		ActionButton
+	},
+
+	directives: {
+		tooltip: Tooltip
 	},
 
 	props: {
@@ -181,6 +199,9 @@ export default {
 	computed: {
 		modalTransitionName() {
 			return `modal-${this.outTransition ? 'out' : 'in'}`
+		},
+		playPauseTitle() {
+			return this.playing ? t('core', 'Pause') : t('core', 'Play')
 		}
 	},
 
@@ -327,7 +348,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '~Fonts/scss/iconfont-vue';
-
 $header-size: 50px;
 
 .modal-mask {
@@ -335,25 +355,25 @@ $header-size: 50px;
 	z-index: 9998;
 	top: 0;
 	left: 0;
+	display: block;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, .92);
-	display: block;
 }
 
 .modal-header {
 	position: absolute;
+	z-index: 10001;
 	top: 0;
 	right: 0;
 	left: 0;
-	width: 100%;
-	height: $header-size;
-	z-index: 10001;
 	// prevent vue show to use display:none and reseting
 	// the circle animation loop
 	display: flex !important;
 	align-items: center;
 	justify-content: center;
+	width: 100%;
+	height: $header-size;
 	transition: opacity 250ms,
 		visibility 250ms;
 
@@ -364,85 +384,91 @@ $header-size: 50px;
 	}
 
 	.modal-title {
+		overflow-x: hidden;
+		box-sizing: border-box;
 		max-width: 100%;
 		padding: 0 #{$clickable-area * 2}; // maximum actions is 2
-		box-sizing: border-box;
+		transition: padding ease 100ms;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 		color: #fff;
 		font-size: $icon-margin;
-		text-overflow: ellipsis;
-		overflow-x: hidden;
-		white-space: nowrap;
-		transition: padding ease 100ms;
 	}
 
 	.icons-menu {
+		position: absolute;
+		right: 0;
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
-		position: absolute;
-		right: 0;
 
 		.icon-close {
-			@include iconfont('close');
 			box-sizing: border-box;
+			margin: ($header-size - $clickable-area) / 2;
 			// not using $icon-margin since we have a custom font size
 			// and alignement seems odd
 			padding: 10px 11px;
-			margin: ($header-size - $clickable-area) / 2;
-			font-size: 23px;
 			color: #fff;
 			background-image: none;
+			font-size: 23px;
+
+			@include iconfont('close');
 		}
 
 		.play-pause {
-			height: $header-size;
-			width: $header-size;
-			color: white;
-			font-size: 22px;
 			position: relative;
+			width: $header-size;
+			height: $header-size;
+			margin: 0;
+			padding: 0;
+			cursor: pointer;
+			color: white;
+			border: none;
+			background-color: transparent;
+			font-size: 22px;
 			&:hover,
 			&:focus {
 				.icon-play,
 				.icon-pause {
+					opacity: 1;
 					border-radius: $clickable-area / 2;
 					background-color: var(--color-background-darker);
-					opacity: 1;
 				}
 			}
 			.icon-play,
 			.icon-pause {
-				height: $clickable-area;
-				width: $clickable-area;
-				margin: ($header-size - $clickable-area) / 2;
 				box-sizing: border-box;
-				background-image: none;
+				width: $clickable-area;
+				height: $clickable-area;
+				margin: ($header-size - $clickable-area) / 2;
 				opacity: .7;
+				background-image: none;
 			}
 			.icon-play {
-				@include iconfont('play');
 				// better visual
-				padding: 12px 13px;
+				padding: 11px 13px;
+				@include iconfont('play');
 			}
 			.icon-pause {
-				@include iconfont('pause');
 				padding: 12px;
 				// ! align with circle
 				font-size: 19.5px;
+				@include iconfont('pause');
 			}
 		}
 
 		.header-actions {
-			color: white;
 			margin: ($header-size - $clickable-area) / 2;
+			color: white;
 		}
 
 		.action-item--single {
-			height: $clickable-area;
-			width: $clickable-area;
-			cursor: pointer;
 			box-sizing: border-box;
-			background-size: 22px;
+			width: $clickable-area;
+			height: $clickable-area;
+			cursor: pointer;
 			background-position: center;
+			background-size: 22px;
 		}
 	}
 }
@@ -451,21 +477,21 @@ $header-size: 50px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 100%;
-	width: 100%;
 	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
 
 	/* Navigation buttons */
 	.prev,
 	.next {
 		z-index: 10000;
-		width: 15%;
-		min-width: 60px;
-		height: 100%;
 		// ignore display: none
 		display: flex !important;
 		align-items: center;
 		justify-content: center;
+		width: 15%;
+		min-width: 60px;
+		height: 100%;
 		transition: opacity 250ms,
 			visibility 250ms;
 
@@ -482,14 +508,14 @@ $header-size: 50px;
 	// buttons/icons
 	.icon-next,
 	.icon-previous {
-		background-image: none;
-		font-size: 24px;
-		padding: 12px 11px;
 		box-sizing: border-box;
-		color: white;
 		width: $clickable-area;
 		height: $clickable-area;
+		padding: 12px 11px;
+		color: white;
 		border-radius: $clickable-area / 2;
+		background-image: none;
+		font-size: 24px;
 	}
 	.icon-previous {
 		@include iconfont('arrow-left');
@@ -500,13 +526,13 @@ $header-size: 50px;
 
 	/* Content */
 	.modal-container {
-		padding: 0;
-		background-color: var(--color-main-background);
-		border-radius: var(--border-radius-large);
-		overflow: hidden;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-		transition: transform 300ms ease;
 		display: block;
+		overflow: hidden;
+		padding: 0;
+		transition: transform 300ms ease;
+		border-radius: var(--border-radius-large);
+		background-color: var(--color-main-background);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
 	}
 	&:not(&--large):not(&--full) .modal-container {
 		max-width: 900px;
@@ -554,14 +580,14 @@ $header-size: 50px;
 }
 
 .fade-enter,
-.fade-leave-to  {
+.fade-leave-to {
 	opacity: 0;
 }
 
 .fade-visibility-enter,
-.fade-visibility-leave-to  {
-	opacity: 0;
+.fade-visibility-leave-to {
 	visibility: hidden;
+	opacity: 0;
 }
 
 .modal-in-enter-active,
@@ -593,11 +619,11 @@ $header-size: 50px;
 // we cannot scope sub-components
 .modal-mask[data-v-#{$scope_version}] .modal-header .icons-menu {
 	.action-item__menutoggle {
-		// 22px is a somehow better looking for the icon-more icon
-		font-size: 22px;
 		padding: 13px 11px;
 		// force white instead of default main text
 		color: #fff;
+		// 22px is a somehow better looking for the icon-more icon
+		font-size: 22px;
 	}
 }
 
@@ -606,17 +632,17 @@ $pi: 3.14159265358979;
 // animated circle
 .modal-mask[data-v-#{$scope_version}] .progress-ring {
 	position: absolute;
-	transform: rotate(-90deg);
 	top: 0;
 	left: 0;
+	transform: rotate(-90deg);
 	.progress-ring__circle {
 		transition: 100ms stroke-dashoffset;
+		transform-origin: 50% 50%; // axis compensation
+		animation: progressring linear 3s infinite;
+
 		stroke-linecap: round;
-		// axis compensation
-		transform-origin: 50% 50%;
 		stroke-dashoffset: $radius * 2 * $pi;	// radius * 2 * PI
 		stroke-dasharray: $radius * 2 * $pi;	// radius * 2 * PI
-		animation: progressring linear 3s infinite;
 	}
 }
 // keyframes get scoped too and break the animation name, we need them unscoped
@@ -628,4 +654,5 @@ $pi: 3.14159265358979;
 		stroke-dashoffset: 0;
 	}
 }
+
 </style>
