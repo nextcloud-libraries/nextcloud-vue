@@ -75,11 +75,11 @@ export default {
 			default: '#',
 			required: true,
 			validator: value => {
-				// href is either an anchor or a valid url
+				// href is either an anchor or a valid url starting with a scheme or a relative path
 				try {
 					return new URL(value)
 				} catch (error) {
-					return value.startsWith('#')
+					return value.startsWith('#') || value.startsWith('/')
 				}
 			}
 		},
