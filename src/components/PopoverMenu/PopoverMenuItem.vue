@@ -251,9 +251,9 @@ li {
 			padding: 0 $icon-margin 0 $clickable-area;
 		}
 
-		&:hover,
-		&:focus,
-		&.active {
+		&:not(:disabled):hover,
+		&:not(:disabled):focus,
+		&:not(:disabled).active {
 			opacity: $opacity_full !important;
 		}
 
