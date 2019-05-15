@@ -26,7 +26,11 @@ module.exports = {
 		'plugin:vue/recommended',
 		'standard'
 	],
-	plugins: ['vue', 'node'],
+	plugins: [
+		'nextcloud',
+		'node',
+		'vue',
+	],
 	rules: {
 		// space before function ()
 		'space-before-function-paren': ['error', 'never'],
@@ -48,6 +52,10 @@ module.exports = {
 		'operator-linebreak': ['error', 'before'],
 		// ternary on multiline
 		'multiline-ternary': ['error', 'always-multiline'],
+		// Nextcloud deprecations
+		'nextcloud/no-deprecations': 'warn',
+		// don't allow removed APIs
+		'nextcloud/no-removed-apis': 'error',
 		// es6 import/export and require
 		'node/no-unpublished-require': ['off'],
 		'node/no-unsupported-features/es-syntax': ['off'],
