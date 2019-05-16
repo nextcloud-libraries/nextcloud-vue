@@ -33,12 +33,27 @@ export default {
 		}
 	},
 
+	beforeUpdate() {
+		this.text = this.getText()
+	},
+
+	data() {
+		return {
+			// $slots are not reactive.
+			// We need to update  the content manually
+			text: this.getText()
+		}
+	},
+
 	computed: {
-		text() {
-			return this.$slots.default ? this.$slots.default[0].text.trim() : ''
-		},
 		isLongText() {
 			return this.text && this.text.trim().length > 20
+		}
+	},
+
+	methods: {
+		getText() {
+			return this.$slots.default ? this.$slots.default[0].text.trim() : ''
 		}
 	}
 }
