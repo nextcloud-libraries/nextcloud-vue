@@ -57,9 +57,15 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 			@keydown.space.exact.prevent="toggleMenu" />
 		<div ref="menu"
 			:class="[`menu-${menuAlign}`, { 'open': opened }]"
+			:style="{marginRight: `${ offsetX }px`}"
 			class="action-item__menu"
 			tabindex="-1"
 			@mousemove="unFocus">
+			<!-- arrow -->
+			<div class="action-item__menu_arrow"
+				:style="{ transform: `translateX(${ offsetX }px)`}" />
+
+			<!-- menu content -->
 			<ul :id="randomId" tabindex="-1">
 				<slot />
 			</ul>
@@ -71,6 +77,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 import ClickOutside from 'vue-click-outside'
 import Tooltip from 'Directives/Tooltip'
 import GenRandomId from 'Utils/GenRandomId'
+import IsOutOfViewport from 'Utils/IsOutOfViewport'
 import ValidateChildren from 'Utils/ValidateChildren'
 
 // This is the list of ALL the ALLOWED components
@@ -111,7 +118,8 @@ export default {
 			actions: [],
 			opened: this.open,
 			focusIndex: 0,
-			randomId: 'menu-' + GenRandomId()
+			randomId: 'menu-' + GenRandomId(),
+			offsetX: 0
 		}
 	},
 	computed: {
@@ -157,6 +165,11 @@ export default {
 	watch: {
 		open(newVal) {
 			this.opened = newVal
+			if (this.opened) {
+				this.$nextTick(() => {
+					this.onOpen()
+				})
+			}
 		}
 	},
 	beforeMount() {
@@ -184,14 +197,25 @@ export default {
 			// focus first on menu open after opening the menu
 			if (this.opened) {
 				this.$nextTick(() => {
+					this.onOpen()
 					this.focusFirstAction()
 				})
 			}
 			this.$emit('update:open', this.opened)
 		},
 		closeMenu() {
+			this.offsetX = 0
 			this.opened = false
 			this.$emit('update:open', this.opened)
+		},
+		onOpen() {
+			this.offsetX = 0
+			const isOut = IsOutOfViewport(this.$refs.menu)
+			if (isOut.any) {
+				this.offsetX = isOut.offsetX > 0
+					? Math.round(isOut.offsetX) + 5
+					: Math.round(isOut.offsetX) - 5
+			}
 		},
 
 		// MENU KEYS & FOCUS MANAGEMENT
@@ -352,7 +376,7 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 		}
 
 		/* Arrow */
-		&:after {
+		.action-item__menu_arrow {
 			position: absolute;
 			right: 50%;
 			bottom: 100%;
@@ -375,7 +399,7 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 			right: 0;
 			left: auto;
 			transform: none;
-			&:after {
+			.action-item__menu_arrow {
 				// align to menu icon padding
 				right: $arrow-margin;
 				margin-right: 0;
@@ -387,7 +411,7 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 			right: auto;
 			left: 0;
 			transform: none;
-			&:after {
+			.action-item__menu_arrow {
 				right: auto;
 				// align to menu icon padding
 				left: $arrow-margin;
@@ -400,7 +424,7 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 .ie,
 .edge {
 	.action-item__menu,
-	.action-item__menu:after {
+	.action-item__menu .action-item__menu_arrow {
 		border: 1px solid var(--color-border);
 	}
 }
