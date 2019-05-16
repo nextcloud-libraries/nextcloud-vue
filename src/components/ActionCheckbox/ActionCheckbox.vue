@@ -46,7 +46,8 @@ export default {
 	props: {
 		id: {
 			type: String,
-			default: 'checkbox-' + GenRandomId()
+			default: () => 'action-' + GenRandomId(),
+			validator: id => id.trim() !== ''
 		},
 		checked: {
 			type: Boolean,
@@ -116,14 +117,14 @@ export default {
 		align-items: baseline;
 
 		width: 100%;
-		padding: 0;
+		padding: 0 !important;
 		padding-right: $icon-margin;
 
 		opacity: $opacity_normal;
-		// checkbox-width is 10px, border is 2
-		// (44 - 10 - 2) / 2 = 16
+		// checkbox-width is 12px, border is 2
+		// (44 - 14 - 2) / 2 = 14
 		&::before {
-			margin: 0 16px 0 !important;
+			margin: 0 14px 0 !important;
 		}
 	}
 

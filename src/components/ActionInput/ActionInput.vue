@@ -31,13 +31,13 @@
 			<!-- form and input -->
 			<form ref="form" class="action-input__form" :disabled="disabled"
 				@submit.prevent="onSubmit">
-				<input :id="randomId" type="submit" class="action-input__submit">
+				<input :id="id" type="submit" class="action-input__submit">
 				<input :type="type" :value="value" :placeholder="text"
 					:disabled="disabled" required
 					class="action-input__input focusable" @input="onInput">
 				<!-- allow the custom font to inject a ::before
 					not possible on input[type=submit] -->
-				<label v-show="!disabled" :for="randomId" class="action-input__label" />
+				<label v-show="!disabled" :for="id" class="action-input__label" />
 			</form>
 		</span>
 	</li>
@@ -53,6 +53,11 @@ export default {
 	mixins: [ActionGlobalMixin],
 
 	props: {
+		id: {
+			type: String,
+			default: () => 'action-' + GenRandomId(),
+			validator: id => id.trim() !== ''
+		},
 		icon: {
 			type: String,
 			default: '',
@@ -84,9 +89,6 @@ export default {
 			} catch (error) {
 				return false
 			}
-		},
-		randomId() {
-			return GenRandomId()
 		}
 	},
 
@@ -209,7 +211,7 @@ $input-margin: 4px;
 	&__input {
 		flex: 1 1 auto;
 
-		min-width: $clickable-area;
+		min-width: $clickable-area * 3;
 		min-height: #{$clickable-area - $input-margin * 2}; /* twice the element margin-y */
 		max-height: #{$clickable-area - $input-margin * 2}; /* twice the element margin-y */
 		margin: 0;
