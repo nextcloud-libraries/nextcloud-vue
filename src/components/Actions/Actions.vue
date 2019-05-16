@@ -294,7 +294,8 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 	&__menutoggle:active,
 	&.action-item--open {
 		border-radius: $clickable-area / 2;
-		background-color: var(--color-box-shadow);
+		// good looking on dark AND white bg
+		background-color: rgba(127, 127, 127, .25);
 		&,
 		.action-item__menutoggle {
 			opacity: $opacity_full;
