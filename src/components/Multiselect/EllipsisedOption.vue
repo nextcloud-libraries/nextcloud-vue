@@ -75,7 +75,7 @@ export default {
 	max-width: 100%;
 	&__first {
 		overflow: hidden;
-		white-space: nowrap;
+		white-space: pre;
 		text-overflow: ellipsis;
 	}
 	&__last {
