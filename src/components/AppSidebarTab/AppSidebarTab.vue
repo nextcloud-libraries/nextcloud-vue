@@ -36,6 +36,8 @@
 
 <script>
 export default {
+	name: 'AppSidebarTab',
+
 	props: {
 		name: {
 			type: String,
@@ -48,6 +50,7 @@ export default {
 			required: true
 		}
 	},
+
 	computed: {
 		id() {
 			return this.name.toLowerCase().replace(/ /g, '-')
@@ -58,6 +61,7 @@ export default {
 	}
 }
 </script>
+
 <style lang="scss" scoped>
 section {
 	padding: 10px;
