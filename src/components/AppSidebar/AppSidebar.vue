@@ -32,8 +32,9 @@
 					@click="closeSidebar" />
 				<!-- sidebar header illustration/figure -->
 				<div v-if="hasFigure" class="app-sidebar-header__figure" :style="{
-					backgroundImage: `url(${background})`
-				}">
+						backgroundImage: `url(${background})`
+					}"
+					@click="onFigureClick">
 					<slot class="app-sidebar-header__background" name="header" />
 				</div>
 				<!-- sidebar details -->
@@ -175,47 +176,92 @@ export default {
 		}
 	},
 	methods: {
-		closeSidebar() {
-			this.$emit('close')
+		/**
+		 * Emit sidebar close event to parent component
+		 */
+		closeSidebar(e) {
+			this.$emit('close', e)
 		},
+
+		/**
+		 * Emit figure click event to parent component
+		 */
+		onFigureClick(e) {
+			this.$emit('figure-click', e)
+		},
+
+		/**
+		 * Set the current active tab
+		 */
 		setActive({ target }) {
 			const id = target.dataset.id
 			this.activeTab = id
 			this.$emit('update:active', id)
 
 		},
-		focusPreviousTab(e) {
+
+		/**
+		 * Focus the previous tab
+		 * and emit to the parent component
+		 */
+		focusPreviousTab() {
 			if (this.currentTabIndex > 0) {
 				this.activeTab = this.tabs[this.currentTabIndex - 1].id
 				this.$emit('update:active', this.activeTab)
 			}
 			this.focusActiveTab() // focus nav item
 		},
-		focusNextTab(e) {
+
+		/**
+		 * Focus the next tab
+		 * and emit to the parent component
+		 */
+		focusNextTab() {
 			if (this.currentTabIndex < this.tabs.length - 1) {
 				this.activeTab = this.tabs[this.currentTabIndex + 1].id
 				this.$emit('update:active', this.activeTab)
 			}
 			this.focusActiveTab() // focus nav item
 		},
-		focusFirstTab(e) {
+
+		/**
+		 * Focus the first tab
+		 * and emit to the parent component
+		 */
+		focusFirstTab() {
 			this.activeTab = this.tabs[0].id
 			this.$emit('update:active', this.activeTab)
 			this.focusActiveTab() // focus nav item
 		},
-		focusLastTab(e) {
+
+		/**
+		 * Focus the last tab
+		 * and emit to the parent component
+		 */
+		focusLastTab() {
 			this.activeTab = this.tabs[this.tabs.length - 1].id
 			this.$emit('update:active', this.activeTab)
 			this.focusActiveTab() // focus nav item
 		},
+
+		/**
+		 * Focus the current active tab
+		 */
 		focusActiveTab() {
 			this.$el.querySelector('#' + this.activeTab).focus()
 		},
-		// focus the content on tab
-		// see aria accessibility guidelines
+
+		/**
+		 * Focus the content on tab
+		 * see aria accessibility guidelines
+		 */
 		focusActiveTabContent() {
 			this.$el.querySelector('#tab-' + this.activeTab).focus()
 		},
+
+		/**
+		 * Update the current active tab
+		 */
 		updateActive() {
 			this.activeTab = this.active
 				&& this.tabs.findIndex(tab => tab.id === this.active) !== -1
@@ -224,6 +270,11 @@ export default {
 					? this.tabs[0].id
 					: ''
 		},
+
+		/**
+		 * Toggle the favourite state
+		 * and emit to the parent component
+		 */
 		toggleStarred() {
 			this.isStarred = !this.isStarred
 			this.$emit('update:starred', this.isStarred)
