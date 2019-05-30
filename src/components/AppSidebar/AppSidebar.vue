@@ -93,7 +93,12 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import Actions from 'Components/Actions'
+
+const IsValidString = function(value) {
+	return value && typeof value === 'string' && value.trim() !== '' && value.indexOf(' ') === -1
+}
 
 export default {
 	name: 'AppSidebar',
@@ -162,11 +167,19 @@ export default {
 	mounted() {
 		// Init tabs from $children
 		this.tabs = this.$children.reduce((tabs, tab) => {
-			if (tab.name && typeof tab.name === 'string'
-				&& tab.id && typeof tab.id === 'string' && tab.id.indexOf(' ') === -1
-				&& tab.icon && typeof tab.icon === 'string' && tab.icon.indexOf(' ') === -1) {
-				tabs.push(tab)
+			if (!tab.name || typeof tab.name !== 'string') {
+				Vue.util.warn(`This tab is missing a valid name: ${tab.name}`, tab)
+				return tabs
 			}
+			if (!IsValidString(tab.id)) {
+				Vue.util.warn(`This tab is missing a valid id: ${tab.id}`, tab)
+				return tabs
+			}
+			if (!IsValidString(tab.icon)) {
+				Vue.util.warn(`This tab is missing a valid icon: ${tab.icon}`, tab)
+				return tabs
+			}
+			tabs.push(tab)
 			return tabs
 		}, [])
 
