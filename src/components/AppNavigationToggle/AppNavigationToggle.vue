@@ -41,7 +41,7 @@ export default {
 #app-navigation-toggle {
 	display: none;
 	position: fixed;
-	z-index: 149;
+	z-index: 1050; // above app-content
 	left: 0;
 	width: $clickable-area;
 	height: $clickable-area;
