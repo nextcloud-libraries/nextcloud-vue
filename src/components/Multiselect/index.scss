@@ -142,6 +142,8 @@
 		input.multiselect__input {
 			width: 100% !important;
 			position: absolute !important;
+			top: 0;
+			left: 0;
 			margin: 0;
 			opacity: 0;
 			/* let's leave it on top of tags but hide it */
