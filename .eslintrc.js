@@ -7,12 +7,6 @@ module.exports = {
 		jest: true
 	},
 	globals: {
-		t: true,
-		n: true,
-		OC: true,
-		OCA: true,
-		Vue: true,
-		VueRouter: true,
 		SCOPE_VERSION: true
 	},
 	parserOptions: {
@@ -24,10 +18,10 @@ module.exports = {
 		'plugin:node/recommended',
 		'plugin:vue/essential',
 		'plugin:vue/recommended',
+		'plugin:nextcloud/recommended',
 		'standard'
 	],
 	plugins: [
-		'nextcloud',
 		'node',
 		'vue',
 	],
@@ -52,10 +46,6 @@ module.exports = {
 		'operator-linebreak': ['error', 'before'],
 		// ternary on multiline
 		'multiline-ternary': ['error', 'always-multiline'],
-		// Nextcloud deprecations
-		'nextcloud/no-deprecations': 'warn',
-		// don't allow removed APIs
-		'nextcloud/no-removed-apis': 'error',
 		// es6 import/export and require
 		'node/no-unpublished-require': ['off'],
 		'node/no-unsupported-features/es-syntax': ['off'],
