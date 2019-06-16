@@ -20,6 +20,21 @@
   -
   -->
 
+<docs>
+
+### Basic user avatar
+
+```vue
+	<avatar user="janedoe" display-name="Jane Doe" />
+```
+
+### Avatar with image
+
+```vue
+	<avatar url="https://nextcloud.com/wp-content/themes/next/assets/img/common/nextcloud-square-logo.png" />
+```
+
+</docs>
 <template>
 	<div v-tooltip="tooltip" v-click-outside="closeMenu"
 		:class="{

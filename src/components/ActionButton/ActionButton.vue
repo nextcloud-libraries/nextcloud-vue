@@ -57,6 +57,9 @@
 <script>
 import ActionTextMixin from 'Mixins/actionText'
 
+/**
+ * Button component to be used in Actions
+*/
 export default {
 	name: 'ActionButton',
 

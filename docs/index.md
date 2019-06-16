@@ -1,5 +1,3 @@
-# Vue components
-
 [![npm last version](https://img.shields.io/npm/v/nextcloud-vue.svg?style=flat-square)](https://www.npmjs.com/package/nextcloud-vue)
 [![travis build status](https://img.shields.io/travis/com/nextcloud/nextcloud-vue/master.svg?style=flat-square)](https://travis-ci.com/nextcloud/nextcloud-vue)
 [![Dependabot status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?longCache=true&style=flat-square&logo=dependabot)](https://dependabot.com)
@@ -7,30 +5,30 @@
 [![Code coverage](https://img.shields.io/codecov/c/github/nextcloud/nextcloud-vue.svg?style=flat-square)](https://codecov.io/gh/nextcloud/nextcloud-vue/)
 [![irc](https://img.shields.io/badge/IRC-%23nextcloud--dev%20on%20freenode-blue.svg?style=flat-square)](https://webchat.freenode.net/?channels=nextcloud-dev)
 
-This repo contains the various Vue.js components that Nextcloud uses for its internal design and structure. It provides standardized UI elements for building Nextcloud app frontends with Vue.js. 
+This repo contains the various Vue.js components that Nextcloud uses for its internal design and structure.
 
-## Documentation
-
-A list of available components with examples to try out is available in the [documentation](https://nextcloud-vue-components.netlify.com).
-
-## Getting started
-
-### Install the library:
+# Installation
 
 ```bash
 npm i --save nextcloud-vue
 ```
 
-### Usage
-
-To use a component, just import it:
-
-```js
+# Usage
+```js static
 import { AppNavigation } from 'nextcloud-vue'
+
+export default {
+    name: 'MyComponent',
+    components: {
+        AppNavigation
+    }
+}
 ```
 
-Depending on which components you use, you might want to only import individual (separately bundled) components:
+You can also import individual module without bundling the full library.
 
-```js
+
+```js static
 import Avatar from 'nextcloud-vue/dist/Components/Avatar'
 ```
+

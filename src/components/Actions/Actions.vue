@@ -23,6 +23,25 @@
 <!-- Accessibility guidelines:
 https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-actions.html -->
 
+<docs>
+
+### Single action
+
+```
+<actions>
+	<action-button icon="icon-delete" title="Delete" @click="alert('Delete')" />
+</actions>
+```
+
+### Multiple actions
+
+```
+<actions>
+	<action-button icon="icon-edit" title="Edit" @click="alert('Edit')" />
+	<action-button icon="icon-delete" title="Delete" @click="alert('Delete')" />
+</actions>
+```
+</docs>
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
 	<element v-if="isValidSingleAction"
@@ -91,6 +110,9 @@ const allowedChildren = [
 	'ActionText'
 ]
 
+/**
+ * @since 0.10.0
+ */
 export default {
 	name: 'Actions',
 
