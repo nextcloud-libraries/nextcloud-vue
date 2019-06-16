@@ -156,6 +156,10 @@ export default {
 			default: false
 		},
 
+		/**
+		 * Declares a status indicator on the avatar
+		 * Available options are `positive`, `negative`, `neutral`
+		 */
 		status: {
 			type: String,
 			default: null,
@@ -169,6 +173,9 @@ export default {
 				return false
 			}
 		},
+		/**
+		 * Declares a different color to be used with the status indicator
+		 */
 		statusColor: {
 			type: [Number, String],
 			default: null,

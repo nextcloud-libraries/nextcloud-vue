@@ -70,6 +70,9 @@ export default {
 	mixins: [ActionTextMixin],
 
 	props: {
+		/**
+		 * destionation to link to
+		 */
 		href: {
 			type: String,
 			default: '#',
@@ -83,10 +86,16 @@ export default {
 				}
 			}
 		},
+		/**
+		 * download the link instead of opening
+		 */
 		download: {
 			type: String,
 			default: ''
 		},
+		/**
+		 * target to open the link
+		 */
 		target: {
 			type: String,
 			default: '_self',

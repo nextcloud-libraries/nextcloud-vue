@@ -24,6 +24,7 @@
 	<div id="app-content" class="no-snapper" :style="opened ? 'transform: translateX(300px)' : ''">
 		<AppNavigationToggle :aria-expanded="opened" aria-controls="app-navigation"
 			@click="toggleNavigation" />
+		<!-- @slot Provide content to the app content -->
 		<slot />
 	</div>
 </template>
@@ -32,6 +33,10 @@
 import Hammer from 'hammerjs'
 import AppNavigationToggle from '../AppNavigationToggle'
 
+/**
+ * App content container to be used for the main content of your app
+ *
+ */
 export default {
 	name: 'AppContent',
 	components: {

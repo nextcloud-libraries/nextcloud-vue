@@ -13,7 +13,12 @@ window.OC = {
 		return 'https://nextcloud.com/wp-content/themes/next/assets/img/common/nextcloud-square-logo.png'
 	}
 }
+window.OCA = {}
 
 window.t = (app, text) => text
+
+Vue.prototype.t = window.t
+Vue.prototype.OC = window.OC
+Vue.prototype.OCA = window.OCA
 
 Vue.directive('tooltip', VTooltip)

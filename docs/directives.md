@@ -1,29 +1,38 @@
 ## Tooltip
 
+```js static
+import { Tooltip } from 'nextcloud-vue'
+
+Vue.directive('tooltip', VTooltip.VTooltip)
+```
 
 The tooltip directive is based on v-tooltip. For a full feature list see the projects [README](https://github.com/Akryum/v-tooltip/blob/master/README.md#directive)
 
 In the template, use the `v-tooltip` directive:
+
 ```vue
-<button v-tooltip="'You have new messages.'" />
+<a v-tooltip="'You have new messages.'">Hover me</a>
 ```
+
 Of course, you can use a reactive property:
 
 ```vue
     <template>
-        <button v-tooltip="tooltipContent" />
+        <a v-tooltip="tooltipContent">Hover me</a>
     </template>
     <script>
         export default {
             computed: {
-                count() => return 'You have new messages.'
+                tooltipContent: () => 'You have new messages.'
             }
         }
     </script>
 ```
+
 You can specify the tooltip position as a modifier:
+
 ```vue
-<button v-tooltip.bottom="'You have new messages.'" />
+<a v-tooltip.bottom="'You have new messages.'">Hover me</a>
 ```
 The available positions are:
  - `'auto'`
@@ -43,5 +52,7 @@ The available positions are:
  - `'left-end'`
 
 ```vue
-<button v-tooltip="{content: 'I\'m a tooltip', show: true, placement: 'right'}">I'm a button with a tooltip</button>
+<button v-tooltip="{content: 'I\'m a tooltip', show: true, placement: 'right'}">
+    I'm a button with a tooltip
+</button>
 ```

@@ -7,9 +7,8 @@ module.exports = {
     path.join(__dirname, 'styleguide/assets/icons.css'),
     path.join(__dirname, 'styleguide/assets/additional.scss'),
   ],
-  highlightTheme: '',
   pagePerSection: true,
-  minimize: false,
+  minimize: true,
   verbose: false,
   webpackConfig: Object.assign({}, require('./webpack.prod.js'), {
     externals: {},
@@ -21,7 +20,7 @@ module.exports = {
   usageMode: "expand",
   components: 'src/components/*/*.vue',
   getComponentPathLine(componentPath) {
-		const name = path.basename(componentPath, '.js')
+		const name = path.basename(componentPath, '.vue')
 		return `import { ${name} } from 'nextcloud-vue/dist/Components/${name}';`
 	},
   sections: [
@@ -32,21 +31,25 @@ module.exports = {
       usageMode: "hide",
     },
     {
+      name: 'Directives',
+      content: 'docs/directives.md',
+    },
+    {
       name: 'Components',
       content: 'docs/components.md',
       components: 'src/components/*/*.vue',
-      ignore: ['src/components/Actions/*.vue', 'src/components/Action[A-Z]*/*.vue'],
+      ignore: ['src/components/Action[sA-Z]*/*.vue', 'src/components/App*/*.vue', 'src/components/Multiselect/!(Multiselect).vue', 'src/components/PopoverMenu/!(PopoverMenu).vue'],
       sections: [
         {
           name: 'Actions',
           components: ['src/components/Actions/*.vue', 'src/components/Action[A-Z]*/*.vue'],
+        },
+        {
+          name: 'App containers',
+          components: ['src/components/App*/*.vue', 'src/components/Content/*.vue'],
         }
       ]
-    },
-    {
-      name: 'Directives',
-      content: 'docs/directives.md',
-    },
+    }
   ],
   ribbon: {
 		text: 'Fork me on GitHub',
@@ -57,7 +60,7 @@ module.exports = {
   },
   // see https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.js
   theme: {
-    maxWidth: '100%',
+    maxWidth: '900px',
     sidebarWidth: 280,
     spaceFactor: 20,
     color: {
