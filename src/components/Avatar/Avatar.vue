@@ -20,6 +20,21 @@
   -
   -->
 
+<docs>
+
+### Basic user avatar
+
+```vue
+	<avatar user="janedoe" display-name="Jane Doe" />
+```
+
+### Avatar with image
+
+```vue
+	<avatar url="https://nextcloud.com/wp-content/themes/next/assets/img/common/nextcloud-square-logo.png" />
+```
+
+</docs>
 <template>
 	<div v-tooltip="tooltip" v-click-outside="closeMenu"
 		:class="{
@@ -141,6 +156,10 @@ export default {
 			default: false
 		},
 
+		/**
+		 * Declares a status indicator on the avatar
+		 * Available options are `positive`, `negative`, `neutral`
+		 */
 		status: {
 			type: String,
 			default: null,
@@ -154,6 +173,9 @@ export default {
 				return false
 			}
 		},
+		/**
+		 * Declares a different color to be used with the status indicator
+		 */
 		statusColor: {
 			type: [Number, String],
 			default: null,

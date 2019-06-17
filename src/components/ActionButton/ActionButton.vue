@@ -20,6 +20,16 @@
   -
   -->
 
+<docs>
+This component is made to be used inside of the [Actions](#Actions) component slots.
+
+```vue
+	<actions>
+		<action-button icon="icon-delete" title="Delete" @click="alert('Delete')" />
+		<action-button icon="icon-delete" title="Delete" @click="alert('Delete')" />
+	</actions>
+```
+</docs>
 <template>
 	<li>
 		<button class="action-button focusable" :disabled="disabled" @click="onClick">
@@ -57,12 +67,18 @@
 <script>
 import ActionTextMixin from 'Mixins/actionText'
 
+/**
+ * Button component to be used in Actions
+*/
 export default {
 	name: 'ActionButton',
 
 	mixins: [ActionTextMixin],
 
 	props: {
+		/**
+		 * disabled state of the action button
+		 */
 		disabled: {
 			type: Boolean,
 			default: false

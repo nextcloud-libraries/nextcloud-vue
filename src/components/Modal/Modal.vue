@@ -20,6 +20,44 @@
   -
   -->
 
+<docs>
+
+```vue
+<template>
+	<div>
+		<button @click="showModal">Show Modal</button>
+		<modal v-show="modal" @close="closeModal">
+			<div class="modal__content">Hello world</div>
+		</modal>
+	</div>
+</template>
+<style scoped>
+	.modal__content {
+		width: 50vw;
+		text-align: center;
+		margin: 10vw 0;
+	}
+</style>
+<script>
+export default {
+	data() {
+		return {
+			modal: false
+		}
+	},
+	methods: {
+		showModal() {
+			this.modal = true
+		},
+		closeModal() {
+			this.modal = false
+		}
+	}
+}
+</script>
+```
+
+</docs>
 <template>
 	<transition name="fade">
 		<div ref="mask" class="modal-mask" @click="handleMouseMove"
@@ -35,6 +73,7 @@
 					<div class="icons-menu">
 						<!-- Actions menu -->
 						<Actions class="header-actions">
+							<!-- @slot List of actions to show -->
 							<slot name="actions" />
 						</Actions>
 
@@ -95,6 +134,7 @@
 
 					<!-- Content -->
 					<div class="modal-container">
+						<!-- @slot Modal content to render -->
 						<slot />
 					</div>
 
@@ -136,22 +176,37 @@ export default {
 	},
 
 	props: {
+		/**
+		 * Title to be shown with the modal
+		 */
 		title: {
 			type: String,
 			default: ''
 		},
+		/**
+		 * Declare if a previous slide is available
+		 */
 		hasPrevious: {
 			type: Boolean,
 			default: false
 		},
+		/**
+		 * Declare if a next slide is available
+		 */
 		hasNext: {
 			type: Boolean,
 			default: false
 		},
+		/**
+		 * Declare if hiding the modal should be animated
+		 */
 		outTransition: {
 			type: Boolean,
 			default: false
 		},
+		/**
+		 * Declare if the slideshow functionality should be enabled
+		 */
 		enableSlideshow: {
 			type: Boolean,
 			default: false
@@ -160,10 +215,16 @@ export default {
 			type: Number,
 			default: 5000
 		},
+		/**
+		 * Declare the slide interval
+		 */
 		slideshowDelay: {
 			type: Number,
 			default: 3000
 		},
+		/**
+		 * Enable swipe between slides
+		 */
 		enableSwipe: {
 			type: Boolean,
 			default: true
@@ -179,6 +240,9 @@ export default {
 				return ['normal', 'large', 'full'].indexOf(size) !== -1
 			}
 		},
+		/**
+		 * Declare if the modal can be closed
+		 */
 		canClose: {
 			type: Boolean,
 			default: true
@@ -263,6 +327,9 @@ export default {
 
 				// delay closing for animation
 				setTimeout(() => {
+					/**
+					 * Emitted when the closing animation is finished
+					 */
 					this.$emit('close', data)
 				}, 300)
 			}

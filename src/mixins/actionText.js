@@ -25,11 +25,17 @@ import actionGlobal from './actionGlobal'
 export default {
 	mixins: [actionGlobal],
 	props: {
+		/**
+		 * Icon to show with the action, can be either a CSS class or an URL
+		 */
 		icon: {
 			type: String,
 			default: '',
 			required: true
 		},
+		/**
+		 * Title to show next to the icon
+		 */
 		title: {
 			type: String,
 			default: ''
@@ -48,6 +54,10 @@ export default {
 
 	methods: {
 		onClick(event) {
+			/**
+			 * Emitted when the action is clicked
+			 * @type {Event}
+			 */
 			this.$emit('click', event)
 		}
 	}

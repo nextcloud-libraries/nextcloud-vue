@@ -23,6 +23,25 @@
 <!-- Accessibility guidelines:
 https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-actions.html -->
 
+<docs>
+### Single action
+
+```
+<actions>
+	<action-button icon="icon-delete" title="Delete" @click="alert('Delete')" />
+</actions>
+```
+
+### Multiple actions
+
+```
+<actions>
+	<action-button icon="icon-edit" title="Edit" @click="alert('Edit')" />
+	<action-button icon="icon-delete" title="Delete" @click="alert('Delete')" />
+	<action-link icon="icon-external" title="Link" href="https://nextcloud.com" />
+</actions>
+```
+</docs>
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
 	<element v-if="isValidSingleAction"
@@ -33,6 +52,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 		@[firstActionEvent]="execFirstAction">
 		<!-- fake slot to gather main action -->
 		<span :aria-hidden="true" hidden>
+			<!-- @slot All action elements passed into the default slot will be used -->
 			<slot />
 		</span>
 	</element>
@@ -72,7 +92,6 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 		</div>
 	</div>
 </template>
-
 <script>
 import ClickOutside from 'vue-click-outside'
 import Tooltip from 'Directives/Tooltip'
@@ -91,6 +110,14 @@ const allowedChildren = [
 	'ActionText'
 ]
 
+/**
+ * The Actions component can be used to display one ore more actions.
+ * If only a single action is provided, it will be rendered as an inline icon.
+ * For more, a menu indicator will be shown and a popovermenu containing the
+ * actions will be opened on click.
+ *
+ * @since 0.10.0
+ */
 export default {
 	name: 'Actions',
 
@@ -100,10 +127,17 @@ export default {
 	},
 
 	props: {
+		/**
+		 * Specify the open state of the popover menu
+		 */
 		open: {
 			type: Boolean,
 			default: false
 		},
+		/**
+		 * Specify the position of the popovermenu
+		 * `left`, `center` or `right`
+		 */
 		menuAlign: {
 			type: String,
 			default: 'center',
@@ -201,11 +235,19 @@ export default {
 					this.focusFirstAction()
 				})
 			}
+			/**
+			 * Event emitted when the popover menu open state is changed
+			 * @type {bool}
+			 */
 			this.$emit('update:open', this.opened)
 		},
 		closeMenu() {
 			this.offsetX = 0
 			this.opened = false
+			/**
+			 * Event emitted when the popover menu open state is changed
+			 * @type {bool}
+			 */
 			this.$emit('update:open', this.opened)
 		},
 		onOpen() {

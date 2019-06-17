@@ -44,15 +44,24 @@ export default {
 	mixins: [ActionGlobalMixin],
 
 	props: {
+		/**
+		 * id attribute of the checkbox element
+		 */
 		id: {
 			type: String,
 			default: () => 'action-' + GenRandomId(),
 			validator: id => id.trim() !== ''
 		},
+		/**
+		 * checked state of the the checkbox element
+		 */
 		checked: {
 			type: Boolean,
 			default: false
 		},
+		/**
+		 * disabled state of the checkbox element
+		 */
 		disabled: {
 			type: Boolean,
 			default: false
@@ -65,6 +74,10 @@ export default {
 			this.$refs.label.click()
 		},
 		onChange(event) {
+			/**
+			 * Emitted when the checkbox state is changed
+			 * @type {boolean}
+			 */
 			this.$emit('change', event)
 		}
 	}

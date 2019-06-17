@@ -22,6 +22,7 @@
 
 <template>
 	<div class="app-content-details">
+		<!-- @slot Provide content to the details view -->
 		<slot />
 	</div>
 </template>

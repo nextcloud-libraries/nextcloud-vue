@@ -53,16 +53,25 @@ export default {
 	mixins: [ActionGlobalMixin],
 
 	props: {
+		/**
+		 * id attribute of the checkbox element
+		 */
 		id: {
 			type: String,
 			default: () => 'action-' + GenRandomId(),
 			validator: id => id.trim() !== ''
 		},
+		/**
+		 * Icon to show with the action, can be either a CSS class or an URL
+		 */
 		icon: {
 			type: String,
 			default: '',
 			required: true
 		},
+		/**
+		 * type attribute of the input field
+		 */
 		type: {
 			type: String,
 			default: 'text',
@@ -72,10 +81,16 @@ export default {
 					'text', 'time', 'url', 'week'].indexOf(type) > -1
 			}
 		},
+		/**
+		 * value attribute of the input field
+		 */
 		value: {
 			type: String,
 			default: ''
 		},
+		/**
+		 * disabled state of the input field
+		 */
 		disabled: {
 			type: Boolean,
 			default: false
@@ -94,13 +109,25 @@ export default {
 
 	methods: {
 		onInput(event) {
+			/**
+			 * Emitted on input events of the text field
+			 * @type {Event}
+			 */
 			this.$emit('input', event)
+			/**
+			 * Emitted when the inputs value changes
+			 * @type {string}
+			 */
 			this.$emit('update:value', event.target.value)
 		},
 		onSubmit(event) {
 			event.preventDefault()
 			event.stopPropagation()
 			if (!this.disabled) {
+				/**
+				 * Emitted on submit of the input field
+				 * @type {Event}
+				 */
 				this.$emit('submit', event)
 			} else {
 				// ignore submit

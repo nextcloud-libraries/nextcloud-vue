@@ -63,6 +63,9 @@ export default {
 	mixins: [ActionTextMixin],
 
 	props: {
+		/**
+		 * disabled state of the checkbox element
+		 */
 		disabled: {
 			type: Boolean,
 			default: false

@@ -66,11 +66,17 @@ export default {
 	mixins: [ActionTextMixin],
 
 	props: {
+		/**
+		 * router-link to prop [https://router.vuejs.org/api/#to](https://router.vuejs.org/api/#to)
+		 */
 		to: {
 			type: [String, Object],
 			default: '',
 			required: true
 		},
+		/**
+		 * router-link exact prop [https://router.vuejs.org/api/#exact](https://router.vuejs.org/api/#exact)
+		 */
 		exact: {
 			type: Boolean,
 			default: false
