@@ -20,13 +20,8 @@
   -
   -->
 <template>
-	<!-- Is this a caption ? -->
-	<li v-if="item.caption" class="app-navigation-caption">
-		{{ item.text }}
-	</li>
-
 	<!-- Navigation item -->
-	<nav-element v-else :id="item.id" v-bind="navElement(item)"
+	<nav-element :id="item.id" v-bind="navElement(item)"
 		:title="item.title" :class="[{'icon-loading-small': item.loading, 'open': opened, 'collapsible': collapsible }, item.classes]">
 		<!-- Bullet -->
 		<div v-if="item.bullet" :style="{ backgroundColor: item.bullet }" class="app-navigation-entry-bullet" />
