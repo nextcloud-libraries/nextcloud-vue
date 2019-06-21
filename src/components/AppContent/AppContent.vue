@@ -49,7 +49,7 @@ export default {
 		}
 	},
 	mounted() {
-		this.mc = new Hammer(this.$el)
+		this.mc = new Hammer(this.$el, { cssProps: { userSelect: 'text' } })
 		this.mc.on('swipeleft swiperight', e => {
 			this.handleSwipe(e)
 		})
