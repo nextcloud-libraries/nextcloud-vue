@@ -166,22 +166,27 @@ export default {
 	},
 	mounted() {
 		// Init tabs from $children
-		this.tabs = this.$children.reduce((tabs, tab) => {
-			if (!tab.name || typeof tab.name !== 'string') {
-				Vue.util.warn(`This tab is missing a valid name: ${tab.name}`, tab)
+		const tabs = this.$children.filter(comp => comp.$options.name === 'AppSidebarTab')
+		if (tabs.length === 0 || tabs.length === this.$children.length) {
+			this.tabs = tabs.reduce((tabs, tab) => {
+				if (!tab.name || typeof tab.name !== 'string') {
+					Vue.util.warn(`This tab is missing a valid name: ${tab.name}`, tab)
+					return tabs
+				}
+				if (!IsValidString(tab.id)) {
+					Vue.util.warn(`This tab is missing a valid id: ${tab.id}`, tab)
+					return tabs
+				}
+				if (!IsValidString(tab.icon)) {
+					Vue.util.warn(`This tab is missing a valid icon: ${tab.icon}`, tab)
+					return tabs
+				}
+				tabs.push(tab)
 				return tabs
-			}
-			if (!IsValidString(tab.id)) {
-				Vue.util.warn(`This tab is missing a valid id: ${tab.id}`, tab)
-				return tabs
-			}
-			if (!IsValidString(tab.icon)) {
-				Vue.util.warn(`This tab is missing a valid icon: ${tab.icon}`, tab)
-				return tabs
-			}
-			tabs.push(tab)
-			return tabs
-		}, [])
+			}, [])
+		} else {
+			Vue.util.warn('You must use either AppSideTab\'s or custom elements.')
+		}
 
 		// init active tab if exists
 		if (this.tabs.length > 0) {
