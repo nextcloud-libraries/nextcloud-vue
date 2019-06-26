@@ -332,12 +332,13 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 	// or hover-focused
 	&:hover,
 	&:focus,
+	&:active,
 	&__menutoggle:focus,
 	&__menutoggle:active,
 	&.action-item--open {
 		border-radius: $clickable-area / 2;
 		// good looking on dark AND white bg
-		background-color: rgba(127, 127, 127, .25);
+		background-color: $icon-focus-bg !important; // override default server
 		&,
 		.action-item__menutoggle {
 			opacity: $opacity_full;
