@@ -265,7 +265,7 @@ export default {
 			return `modal-${this.outTransition ? 'out' : 'in'}`
 		},
 		playPauseTitle() {
-			return this.playing ? t('core', 'Pause') : t('core', 'Play')
+			return this.playing ? t('core', 'Pause slideshow') : t('core', 'Start slideshow')
 		}
 	},
 
