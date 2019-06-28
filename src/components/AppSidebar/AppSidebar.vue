@@ -26,30 +26,38 @@
 <template>
 	<transition name="slide-right">
 		<aside id="app-sidebar">
-			<header :class="{ 'app-sidebar-header--with-figure': hasFigure }" class="app-sidebar-header">
+			<header :class="{ 'app-sidebar-header--with-figure': hasFigure, 'app-sidebar-header--compact': compact }" class="app-sidebar-header">
 				<!-- close sidebar button -->
 				<a href="#" class="icon-close" :title="t('core', 'close')"
 					@click="closeSidebar" />
+
 				<!-- sidebar header illustration/figure -->
-				<div v-if="hasFigure" class="app-sidebar-header__figure" :style="{
+				<div v-if="hasFigure" :class="{
+						'app-sidebar-header__figure--with-action': hasFigureClickListener
+					}" class="app-sidebar-header__figure"
+					:style="{
 						backgroundImage: `url(${background})`
 					}"
 					@click="onFigureClick">
 					<slot class="app-sidebar-header__background" name="header" />
 				</div>
+
 				<!-- sidebar details -->
-				<div :class="{ 'app-sidebar-header__desc--with-star': canStar }" class="app-sidebar-header__desc">
+				<div :class="{ 'app-sidebar-header__desc--with-star': canStar, 'app-sidebar-header__desc--with-subtitle': subtitle }" class="app-sidebar-header__desc">
 					<!-- favourite icon -->
-					<a v-if="canStar" :class="{ 'icon-starred': isStarred, 'icon-star': !isStarred, 'icon-loading-small': starLoading }"
+					<a v-if="canStar" :class="{ 'icon-starred': isStarred&& !starLoading, 'icon-star': !isStarred && !starLoading, 'icon-loading-small': starLoading }"
 						class="app-sidebar-header__star" @click.prevent="toggleStarred" />
+
 					<!-- main title -->
 					<h3 class="app-sidebar-header__title">
 						{{ title }}
 					</h3>
+
 					<!-- secondary title -->
-					<h4 class="app-sidebar-header__subtitle">
+					<h4 v-if="subtitle.trim() !== ''" class="app-sidebar-header__subtitle">
 						{{ subtitle }}
 					</h4>
+
 					<!-- header main menu -->
 					<Actions v-if="$slots['secondary-actions']" class="app-sidebar-header__menu">
 						<slot name="secondary-actions" />
@@ -59,6 +67,7 @@
 					<slot name="primary-actions" />
 				</div>
 			</header>
+
 			<!-- tabs navigation -->
 			<nav v-if="hasMultipleTabs"
 				class="app-sidebar-tabs__nav"
@@ -72,17 +81,19 @@
 						<a :id="tab.id"
 							:aria-controls="`tab-${tab.id}`"
 							:aria-selected="activeTab === tab.id"
-							:class="[tab.icon, { active: activeTab === tab.id }]"
+							:class="{ active: activeTab === tab.id }"
 							:data-id="tab.id"
 							:href="`#tab-${tab.id}`"
 							:tabindex="activeTab === tab.id ? null : -1"
 							role="tab"
 							@click.prevent="setActive">
+							<span :class="tab.icon" class="app-sidebar-tabs__tab-icon" />
 							{{ tab.name }}
 						</a>
 					</li>
 				</ul>
 			</nav>
+
 			<!-- tabs content -->
 			<div :class="{'app-sidebar-tabs__content--multiple': hasMultipleTabs}"
 				class="app-sidebar-tabs__content">
@@ -130,6 +141,10 @@ export default {
 		starLoading: {
 			type: Boolean,
 			default: false
+		},
+		compact: {
+			type: Boolean,
+			default: false
 		}
 	},
 
@@ -150,6 +165,9 @@ export default {
 		},
 		hasMultipleTabs() {
 			return this.tabs.length > 1
+		},
+		hasFigureClickListener() {
+			return this.$listeners['figure-click']
 		},
 		currentTabIndex() {
 			return this.tabs.findIndex(tab => tab.id === this.activeTab)
@@ -191,7 +209,8 @@ export default {
 		 * Set the current active tab
 		 */
 		setActive({ target }) {
-			const id = target.dataset.id
+			// if click on icon, make sure we get the link
+			const id = target.closest('a').dataset.id
 			this.activeTab = id
 			this.$emit('update:active', id)
 
@@ -263,7 +282,7 @@ export default {
 			this.activeTab = this.active
 				&& this.tabs.findIndex(tab => tab.id === this.active) !== -1
 				? this.active
-				: this.tabs
+				: this.tabs.length > 0
 					? this.tabs[0].id
 					: ''
 		},
@@ -282,7 +301,7 @@ export default {
 		 */
 		updateTabs() {
 			// Init tabs from $children
-			this.tabs = this.$children.reduce((tabs, tab) => {
+			let tabs = this.$children.reduce((tabs, tab) => {
 				if (!tab.name || typeof tab.name !== 'string') {
 					Vue.util.warn(`This tab is missing a valid name: ${tab.name}`, tab)
 					return tabs
@@ -299,6 +318,15 @@ export default {
 				return tabs
 			}, [])
 
+			this.tabs = tabs.sort((a, b) => {
+				var orderA = a.order || 0
+				var orderB = b.order || 0
+				if (orderA === orderB) {
+					return OC.Util.naturalSortCompare(a.name, b.name)
+				}
+				return orderA - orderB
+			})
+
 			// init active tab if exists
 			if (this.tabs.length > 0) {
 				this.updateActive()
@@ -314,6 +342,7 @@ $sidebar-max-width: 500px;
 
 $desc-menu-right-margin: 22px;
 $desc-vertical-padding: 18px;
+$desc-height: 46px;
 
 /*
 	Sidebar: to be used within #content
@@ -326,7 +355,7 @@ $desc-vertical-padding: 18px;
 	min-width: $sidebar-min-width;
 	max-width: $sidebar-max-width;
 	top: $header-height;
-	right:0;
+	right: 0;
 
 	display: flex;
 	flex-shrink: 0;
@@ -346,12 +375,14 @@ $desc-vertical-padding: 18px;
 			height: $clickable-area;
 			top: 0;
 			right: 0;
-			z-index: 1000;
+			z-index: 100;
 			opacity: $opacity_normal;
+			border-radius: $clickable-area / 2;
 			&:hover,
 			&:active,
 			&:focus {
 				opacity: $opacity_full;
+				background-color: $action-background-hover;
 			}
 		}
 
@@ -363,13 +394,25 @@ $desc-vertical-padding: 18px;
 			background-size: contain;
 			background-position: center;
 			background-repeat: no-repeat;
+			&--with-action {
+				cursor: pointer;
+			}
 		}
 
 		&__desc {
 			position: relative;
-			padding: #{$desc-vertical-padding} #{$desc-menu-right-margin * 4} #{$desc-vertical-padding} 10px;
+			padding: #{$desc-vertical-padding} #{$desc-menu-right-margin * 4} #{$desc-vertical-padding} $desc-vertical-padding / 2;
+			display: flex;
+			height: $desc-height / 2;
+			flex-direction: column;
+			justify-content: center;
+			box-sizing: content-box;
 			&--with-star {
 				padding-left: $clickable-area;
+			}
+			&--with-subtitle {
+				justify-content: space-between;
+				height: $desc-height;
 			}
 			// titles
 			h3, h4 {
@@ -383,9 +426,6 @@ $desc-vertical-padding: 18px;
 			h3 {
 				font-size: 16px;
 				padding: 0;
-				+ h4 {
-					padding-top: 10px;
-				}
 			}
 			// subtitle
 			h4 {
@@ -410,7 +450,7 @@ $desc-vertical-padding: 18px;
 				right: $desc-menu-right-margin;
 				top: 50%;
 				margin-top: -22px;
-				background-color: var(--color-background-dark);
+				background-color: $action-background-hover;
 				border-radius: $clickable-area / 2;
 			}
 		}
@@ -423,14 +463,33 @@ $desc-vertical-padding: 18px;
 			align-items: center;
 		}
 
-		// menu without figure needs to be fixed or
-		// it'll go over the close icon
-		&:not(.app-sidebar-header--with-figure) {
-			.app-sidebar-header__menu {
-				background-color: transparent;
+		&--compact {
+			// wull width (+margin) of the figure minus left padding of the desc + 2px because it balances this a bit
+			padding-left: $desc-height + $desc-vertical-padding + $desc-vertical-padding - $clickable-area + 2px;
+			.app-sidebar-header__figure {
+				height: $desc-height + $desc-vertical-padding;
+				width: $desc-height + $desc-vertical-padding;
+				margin: $desc-vertical-padding / 2;
+				border-radius: 3px;
+				position: absolute;
+				left: 0;
 				top: 0;
-				right: 44px;
-				margin-top: 0;
+				z-index: 2;
+			}
+			.app-sidebar-header__desc {
+				// forcing $clickable-area no matter if star or not
+				padding-left: $clickable-area;
+				height: $desc-height;
+				.app-sidebar-header__star {
+					margin-top: -$desc-vertical-padding / 2;
+					z-index: 3; // above star
+				}
+				.app-sidebar-header__menu {
+					right: $clickable-area; // left of the close button
+					top: 0;
+					margin: 0;
+					background-color: transparent;
+				}
 			}
 		}
 	}
@@ -447,32 +506,54 @@ $desc-vertical-padding: 18px;
 			text-align: center;
 			flex: 1 1;
 			a {
-				background-position: center 8px;
-				background-size: 16px;
 				display: block;
-				padding-top: 30px;
-				border-bottom: 1px solid var(--color-main-background);
+				padding-top: 25px;
+				padding-bottom: 5px;
+				position: relative;
+				border-bottom: 1px solid var(--color-border);
 				text-align: center;
 				opacity: $opacity_normal;
 				color: var(--color-main-text);
-				transition: opacity var(--animation-quick), border-color var(--animation-quick);
+				transition: color var(--animation-quick), opacity var(--animation-quick), border-color var(--animation-quick);
 				&:hover,
 				&:focus,
 				&:active,
 				&.active {
 					opacity: $opacity_full;
+					.app-sidebar-tabs__tab-icon {
+						opacity: $opacity_full;
+					}
 				}
-				&:active,
+				&:not(.active):hover,
+				&:not(.active):focus {
+					box-shadow: inset 0 -1px 0 var(--color-background-darker);
+					border-bottom-color:  var(--color-background-darker);
+				}
 				&.active {
-					border-bottom-color: var(--color-main-text);
+					font-weight: bold;
+					color: var(--color-text-light);
+					border-bottom-color: var(--color-text-light);
+					box-shadow: inset 0 -1px 0 var(--color-text-light);
 				}
 				// differentiate the two for accessibility purpose
 				// make sure the user knows she's focusing the navigation
 				// and can use arrows/home/pageup...
 				&:focus {
-					border-bottom-color: var(--color-primary);
+					border-bottom-color: var(--color-primary-element);
+					box-shadow: inset 0 -1px 0 var(--color-primary-element);
 				}
 			}
+		}
+		&__tab-icon {
+			height: 25px;
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: $opacity_normal;
+			background-position: center 8px;
+			background-size: 16px;
+			transition: opacity var(--animation-quick);
 		}
 		&__content {
 			position: relative;

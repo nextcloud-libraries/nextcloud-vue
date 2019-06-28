@@ -38,9 +38,9 @@
 		<div v-if="item.utils" class="app-navigation-entry-utils">
 			<ul>
 				<!-- counter -->
-				<li :class="{highlighted: item.utils.counter_highlighted}"
-					class="app-navigation-entry-utils-counter"
-					v-if="Number.isInteger(item.utils.counter) && item.utils.counter > 0">
+				<li v-if="Number.isInteger(item.utils.counter) && item.utils.counter > 0"
+					:class="{highlighted: item.utils.counter_highlighted}"
+					class="app-navigation-entry-utils-counter">
 					<span>{{ item.utils.counter }}</span>
 				</li>
 

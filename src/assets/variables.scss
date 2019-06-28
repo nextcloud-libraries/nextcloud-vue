@@ -36,10 +36,14 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 // transparency background for icons
 $icon-focus-bg: rgba(127, 127, 127, .25);
 
-/* popovermenu arrow width from the triangle center */
+// popovermenu arrow width from the triangle center
 $arrow-width: 9px;
 
-/* opacities */
+// opacities
 $opacity_disabled: .5;
 $opacity_normal: .7;
 $opacity_full: 1;
+
+// menu round background hover feedback
+// good looking on dark AND white bg
+$action-background-hover: rgba(127, 127, 127, .25);
