@@ -132,6 +132,7 @@ export default {
 			default: false
 		}
 	},
+
 	data() {
 		return {
 			tabs: [],
@@ -139,6 +140,7 @@ export default {
 			isStarred: this.starred
 		}
 	},
+
 	computed: {
 		canStar() {
 			return this.isStarred !== null
@@ -153,6 +155,7 @@ export default {
 			return this.tabs.findIndex(tab => tab.id === this.activeTab)
 		}
 	},
+
 	watch: {
 		active: function(active) {
 			// prevent running it twice
@@ -164,30 +167,11 @@ export default {
 			this.isStarred = this.starred
 		}
 	},
-	mounted() {
-		// Init tabs from $children
-		this.tabs = this.$children.reduce((tabs, tab) => {
-			if (!tab.name || typeof tab.name !== 'string') {
-				Vue.util.warn(`This tab is missing a valid name: ${tab.name}`, tab)
-				return tabs
-			}
-			if (!IsValidString(tab.id)) {
-				Vue.util.warn(`This tab is missing a valid id: ${tab.id}`, tab)
-				return tabs
-			}
-			if (!IsValidString(tab.icon)) {
-				Vue.util.warn(`This tab is missing a valid icon: ${tab.icon}`, tab)
-				return tabs
-			}
-			tabs.push(tab)
-			return tabs
-		}, [])
 
-		// init active tab if exists
-		if (this.tabs.length > 0) {
-			this.updateActive()
-		}
+	mounted() {
+		this.updateTabs()
 	},
+
 	methods: {
 		/**
 		 * Emit sidebar close event to parent component
@@ -291,6 +275,34 @@ export default {
 		toggleStarred() {
 			this.isStarred = !this.isStarred
 			this.$emit('update:starred', this.isStarred)
+		},
+
+		/**
+		 * Manually update the sidebar tabs according to $children
+		 */
+		updateTabs() {
+			// Init tabs from $children
+			this.tabs = this.$children.reduce((tabs, tab) => {
+				if (!tab.name || typeof tab.name !== 'string') {
+					Vue.util.warn(`This tab is missing a valid name: ${tab.name}`, tab)
+					return tabs
+				}
+				if (!IsValidString(tab.id)) {
+					Vue.util.warn(`This tab is missing a valid id: ${tab.id}`, tab)
+					return tabs
+				}
+				if (!IsValidString(tab.icon)) {
+					Vue.util.warn(`This tab is missing a valid icon: ${tab.icon}`, tab)
+					return tabs
+				}
+				tabs.push(tab)
+				return tabs
+			}, [])
+
+			// init active tab if exists
+			if (this.tabs.length > 0) {
+				this.updateActive()
+			}
 		}
 	}
 }
