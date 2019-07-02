@@ -499,7 +499,7 @@ $header-size: 50px;
 				.icon-pause {
 					opacity: 1;
 					border-radius: $clickable-area / 2;
-					background-color: var(--color-background-darker);
+					background-color: $icon-focus-bg;
 				}
 			}
 			.icon-play,
@@ -510,6 +510,7 @@ $header-size: 50px;
 				margin: ($header-size - $clickable-area) / 2;
 				opacity: .7;
 				background-image: none;
+				cursor: pointer;
 			}
 			.icon-play {
 				// better visual
