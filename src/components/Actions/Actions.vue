@@ -342,6 +342,8 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 		&,
 		.action-item__menutoggle {
 			opacity: $opacity_full;
+			border-radius: $clickable-area / 2;
+			background-color: $action-background-hover;
 		}
 	}
 
