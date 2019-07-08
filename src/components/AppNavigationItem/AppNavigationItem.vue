@@ -40,7 +40,7 @@
 				<!-- counter -->
 				<li :class="{highlighted: item.utils.counter_highlighted}"
 					class="app-navigation-entry-utils-counter"
-					v-if="Number.isInteger(item.utils.counter) && item.utils.counter > 0">
+					v-if="item.utils.counter">
 					<span>{{ item.utils.counter }}</span>
 				</li>
 
