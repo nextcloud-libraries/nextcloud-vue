@@ -27,19 +27,19 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 ### Single action
 
 ```
-<actions>
-	<action-button icon="icon-delete" title="Delete" @click="alert('Delete')" />
-</actions>
+<Actions>
+	<ActionButton icon="icon-delete" @click="alert('Delete')">Delete</ActionButton>
+</Actions>
 ```
 
 ### Multiple actions
 
 ```
-<actions>
-	<action-button icon="icon-edit" title="Edit" @click="alert('Edit')" />
-	<action-button icon="icon-delete" title="Delete" @click="alert('Delete')" />
-	<action-link icon="icon-external" title="Link" href="https://nextcloud.com" />
-</actions>
+<Actions>
+	<ActionButton icon="icon-edit" @click="alert('Edit')">Edit</ActionButton>
+	<ActionButton icon="icon-delete" @click="alert('Delete')">Delete</ActionButton>
+	<ActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
+</Actions>
 ```
 </docs>
 <template>
@@ -234,6 +234,11 @@ export default {
 					this.onOpen()
 					this.focusFirstAction()
 				})
+				/**
+				 * Event emitted when the popover menu is opened
+				 * @type {null}
+				 */
+				this.$emit('open')
 			}
 			/**
 			 * Event emitted when the popover menu open state is changed
@@ -249,6 +254,11 @@ export default {
 			 * @type {bool}
 			 */
 			this.$emit('update:open', this.opened)
+			/**
+			 * Event emitted when the popover menu is closed
+			 * @type {null}
+			 */
+			this.$emit('close')
 		},
 		onOpen() {
 			this.offsetX = 0

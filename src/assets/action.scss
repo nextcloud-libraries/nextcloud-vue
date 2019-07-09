@@ -85,7 +85,7 @@
 		&__longtext {
 			cursor: pointer;
 			// allow the use of `\n`
-			white-space: pre;
+			white-space: pre-wrap;
 		}
 
 		&__title {
