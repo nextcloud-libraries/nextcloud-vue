@@ -38,11 +38,9 @@
 		<div v-if="item.utils" class="app-navigation-entry-utils">
 			<ul>
 				<!-- counter -->
-				<li v-if="item.utils.counter"
-					:class="{highlighted: item.utils.counter_highlighted}"
-					class="app-navigation-entry-utils-counter">
-					<span>{{ item.utils.counter }}</span>
-				</li>
+				<AppNavigationCounter v-if="item.utils.counter" :highlighted="item.utils.counter_highlighted === true">
+					{{ item.utils.counter }}
+				</AppNavigationCounter>
 
 				<!-- first action if only one action -->
 				<li v-if="item.utils.actions && item.utils.actions.length === 1"
@@ -92,11 +90,13 @@
 <script>
 import { PopoverMenu } from 'Components/PopoverMenu'
 import ClickOutside from 'vue-click-outside'
+import { AppNavigationCounter } from 'Components/AppNavigationCounter'
 
 export default {
 	name: 'AppNavigationItem',
 	components: {
-		PopoverMenu
+		PopoverMenu,
+		AppNavigationCounter
 	},
 	directives: {
 		ClickOutside
