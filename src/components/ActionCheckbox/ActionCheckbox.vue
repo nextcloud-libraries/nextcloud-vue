@@ -22,8 +22,9 @@
 
 <template>
 	<li>
-		<span class="action-checkbox">
-			<input :id="id" :disabled="disabled" :checked="checked"
+		<span class="action-checkbox" :class="{'action-checkbox--disabled': disabled}">
+			<input :id="id" ref="checkbox"
+				:disabled="disabled" :checked="checked"
 				type="checkbox" class="focusable checkbox action-checkbox__checkbox"
 				@keydown.enter.exact.prevent="checkInput" @change="onChange">
 			<label ref="label" :for="id" class="action-checkbox__label">{{ text }}</label>
@@ -76,9 +77,15 @@ export default {
 		onChange(event) {
 			/**
 			 * Emitted when the checkbox state is changed
-			 * @type {boolean}
+			 * @type {Event}
 			 */
 			this.$emit('change', event)
+
+			/**
+			 * Emitted when the checkbox state is changed
+			 * @type {boolean}
+			 */
+			this.$emit('update:checked', this.$refs.checkbox.checked)
 		}
 	}
 }
@@ -126,8 +133,7 @@ export default {
 
 	&__label {
 		display: flex;
-		// align checkbox to text
-		align-items: baseline;
+		align-items: center; // align checkbox to text
 
 		width: 100%;
 		padding: 0 !important;
@@ -141,8 +147,15 @@ export default {
 		}
 	}
 
-	&:hover,
-	&:focus {
+	&--disabled {
+		&,
+		.action-checkbox__label {
+			cursor: pointer;
+		}
+	}
+
+	&:not(.action-checkbox--disabled):hover,
+	&:not(.action-checkbox--disabled):focus {
 		.action-checkbox__label {
 			opacity: $opacity_full;
 		}
