@@ -411,7 +411,9 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 
 		display: none;
 
-		margin: 0;
+		// make sure to not have the menu right
+		// on the edge of the window
+		margin: 10px;
 		margin-top: -5px;
 
 		transform: translateX(50%);
