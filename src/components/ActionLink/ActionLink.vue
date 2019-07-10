@@ -20,6 +20,16 @@
   -
   -->
 
+<docs>
+This component is made to be used inside of the [Actions](#Actions) component slots.
+
+```
+<Actions>
+	<ActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
+</Actions>
+```
+</docs>
+
 <template>
 	<li>
 		<a

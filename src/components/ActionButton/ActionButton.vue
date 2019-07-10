@@ -24,10 +24,19 @@
 This component is made to be used inside of the [Actions](#Actions) component slots.
 
 ```vue
-	<actions>
-		<action-button icon="icon-delete" title="Delete" @click="alert('Delete')" />
-		<action-button icon="icon-delete" title="Delete" @click="alert('Delete')" />
-	</actions>
+	<Actions>
+		<ActionButton icon="icon-delete" @click="alert('Delete')">Delete</ActionButton>
+		<ActionButton icon="icon-delete" @click="alert('Delete')">Delete</ActionButton>
+	</Actions>
+```
+
+If you're using a long text you can specify a title
+
+```vue
+	<Actions>
+		<ActionButton icon="icon-add" @click="alert('Add')">Add new</ActionButton>
+		<ActionButton icon="icon-delete" title="Long button" @click="alert('Delete')">This button is associated with a very long text.\nAnd with new lines too.</ActionButton>
+	</Actions>
 ```
 </docs>
 <template>
