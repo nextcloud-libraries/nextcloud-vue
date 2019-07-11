@@ -41,12 +41,10 @@ your number or string
 </docs>
 
 <template>
-
 	<li :class="{ highlighted }"
 		class="app-navigation-entry-utils-counter">
 		<span><slot /></span>
 	</li>
-
 </template>
 
 <script>

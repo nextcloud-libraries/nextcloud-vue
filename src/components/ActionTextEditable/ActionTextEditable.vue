@@ -20,49 +20,56 @@
   -
   -->
 
+<docs>
+This component is made to be used inside of the [Actions](#Actions) component slots.
+
+```
+<Actions>
+	<ActionTextEditable icon="icon-edit" value="This is a textarea" />
+	<ActionTextEditable icon="icon-edit" :disabled="true" value="This is a disabled textarea" />
+	<ActionTextEditable icon="icon-edit" title="Please edit the text" value="This is a textarea with title" />
+</Actions>
+```
+</docs>
+
 <template>
 	<li>
-		<span :class="{'action-input--picker': isDatePickerType}" class="action-input">
+		<span class="action-text-editable">
 			<!-- icon -->
-			<span :class="[isIconUrl ? 'action-input__icon--url' : icon]"
+			<span :class="[isIconUrl ? 'action-text-editable__icon--url' : icon]"
 				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
-				class="action-input__icon" />
+				class="action-text-editable__icon" />
 
 			<!-- form and input -->
-			<form ref="form" class="action-input__form" :disabled="disabled"
+			<form ref="form" class="action-text-editable__form" :disabled="disabled"
 				@submit.prevent="onSubmit">
-				<input :id="id" type="submit" class="action-input__submit">
+				<input :id="id" type="submit" class="action-text-editable__submit">
 
-				<DatetimePicker v-if="isDatePickerType"
-					:disabled="disabled" :type="isDatePickerType"
-					:value="value" class="action-input__picker"
-					@input="onInput" @change="onChange" />
+				<!-- title -->
+				<strong v-if="title" class="action-text__title">
+					{{ title }}
+				</strong>
 
-				<template v-else>
-					<input :type="type" :value="value"
-						:placeholder="text" :disabled="disabled"
-						required class="action-input__input focusable"
-						@input="onInput" @change="onChange">
-					<!-- allow the custom font to inject a ::before
-						not possible on input[type=submit] -->
-					<label v-show="!disabled" :for="id" class="action-input__label" />
-				</template>
+				<textarea :disabled="disabled" :value="value"
+					class="action-text-editable__textarea focusable"
+					@input="onInput" />
+
+				<!-- allow the custom font to inject a ::before
+					not possible on input[type=submit] -->
+				<label v-show="!disabled" :for="id" class="action-text-editable__label" />
 			</form>
 		</span>
 	</li>
 </template>
 
 <script>
-import ActionGlobalMixin from 'Mixins/actionGlobal'
+import ActionTextMixin from 'Mixins/actionText'
 import GenRandomId from 'Utils/GenRandomId'
-import DatetimePicker from 'Components/DatetimePicker/index'
 
 export default {
-	name: 'ActionInput',
+	name: 'ActionTextEditable',
 
-	components: { DatetimePicker },
-
-	mixins: [ActionGlobalMixin],
+	mixins: [ActionTextMixin],
 
 	props: {
 		/**
@@ -74,24 +81,11 @@ export default {
 			validator: id => id.trim() !== ''
 		},
 		/**
-		 * Icon to show with the action, can be either a CSS class or an URL
+		 * disabled state of the checkbox element
 		 */
-		icon: {
-			type: String,
-			default: '',
-			required: true
-		},
-		/**
-		 * type attribute of the input field
-		 */
-		type: {
-			type: String,
-			default: 'text',
-			validator: function(type) {
-				return ['date', 'datetime-local', 'month',
-					'number', 'password', 'search', 'tel',
-					'text', 'time', 'url', 'week'].indexOf(type) > -1
-			}
+		disabled: {
+			type: Boolean,
+			default: false
 		},
 		/**
 		 * value attribute of the input field
@@ -99,36 +93,6 @@ export default {
 		value: {
 			type: String,
 			default: ''
-		},
-		/**
-		 * disabled state of the input field
-		 */
-		disabled: {
-			type: Boolean,
-			default: false
-		}
-	},
-
-	computed: {
-		isIconUrl() {
-			try {
-				return new URL(this.icon)
-			} catch (error) {
-				return false
-			}
-		},
-
-		isDatePickerType() {
-			switch (this.type) {
-			case 'date':
-			case 'month':
-			case 'time':
-				return this.type
-
-			case 'datetime-local':
-				return 'datetime'
-			}
-			return false
 		}
 	},
 
@@ -141,10 +105,9 @@ export default {
 			this.$emit('input', event)
 			/**
 			 * Emitted when the inputs value changes
-			 * ! DatetimePicker only send the value
 			 * @type {string|Date}
 			 */
-			this.$emit('update:value', event.target ? event.target.value : event)
+			this.$emit('update:value', event.target.value)
 		},
 		onSubmit(event) {
 			event.preventDefault()
@@ -159,13 +122,6 @@ export default {
 				// ignore submit
 				return false
 			}
-		},
-		onChange(event) {
-			/**
-			 * Emitted on change of the input field
-			 * @type {Event}
-			 */
-			this.$emit('change', event)
 		}
 	}
 }
@@ -179,7 +135,7 @@ export default {
 
 $input-margin: 4px;
 
-.action-input {
+.action-text-editable {
 	display: flex;
 	align-items: flex-start;
 
@@ -191,6 +147,7 @@ $input-margin: 4px;
 	cursor: pointer;
 	white-space: nowrap;
 
+	opacity: $opacity_normal;
 	color: var(--color-main-text);
 	border: 0;
 	border-radius: 0; // otherwise Safari will cut the border-radius area
@@ -198,25 +155,11 @@ $input-margin: 4px;
 	box-shadow: none;
 
 	font-weight: normal;
+	line-height: $clickable-area;
 
-	// do not change the opacity of the datepicker
-	&:not(.action-input--picker) {
-		opacity: $opacity_normal;
-		&:hover,
-		&:focus {
-			opacity: $opacity_full;
-		}
-	}
-
-	// only change for the icon then
-	&--picker {
-		.action-input__icon {
-			opacity: $opacity_normal;
-		}
-		&:hover .action-input__icon,
-		&:focus .action-input__icon {
-			opacity: $opacity_full;
-		}
+	&:hover,
+	&:focus {
+		opacity: $opacity_full;
 	}
 
 	& > span {
@@ -238,9 +181,10 @@ $input-margin: 4px;
 	// Forms & text inputs
 	&__form {
 		display: flex;
-		align-items: center;
 		flex: 1 1 auto;
+		flex-direction: column;
 
+		position: relative;
 		margin: $input-margin 0;
 		padding-right: $icon-margin;
 	}
@@ -259,18 +203,21 @@ $input-margin: 4px;
 		align-items: center;
 		justify-content: center;
 
+		// bottom-right corner
+		position: absolute;
+		right: $icon-margin + 1;
+		bottom: 1px;
 		width: #{$clickable-area - $input-margin * 2};
 		height: #{$clickable-area - $input-margin * 2};
-		margin: 0 0 0 -8px;
+		margin: 0;
 		padding: 7px 6px;
 
 		cursor: pointer;
 
 		opacity: $opacity_full;
 		color: var(--color-text-lighter);
-		border: 1px solid var(--color-border-dark);
-		border-left-color: transparent;
-		border-radius: 0 var(--border-radius) var(--border-radius) 0;
+		border: 0;
+		border-radius: 50%;
 		/* Avoid background under border */
 		background-color: var(--color-main-background);
 		background-clip: padding-box;
@@ -281,12 +228,14 @@ $input-margin: 4px;
 	}
 
 	/* Inputs inside popover supports text, submit & reset */
-	&__input {
+	&__textarea {
 		flex: 1 1 auto;
 
-		min-width: $clickable-area * 3;
-		min-height: #{$clickable-area - $input-margin * 2}; /* twice the element margin-y */
-		max-height: #{$clickable-area - $input-margin * 2}; /* twice the element margin-y */
+		min-height: #{$clickable-area * 2 - $input-margin * 2}; /* twice the element margin-y */
+		max-height: #{$clickable-area * 3 - $input-margin * 2}; /* twice the element margin-y */
+		// block width widening
+		min-width: $clickable-area * 4;
+		width: 100% !important;
 		margin: 0;
 
 		// if disabled, change cursor
@@ -297,24 +246,23 @@ $input-margin: 4px;
 		/* only show confirm borders if input is not focused */
 		&:not(:active):not(:hover):not(:focus) {
 			&:invalid {
-				& + .action-input__label {
-					border-color: var(--color-error);
-					border-left-color: transparent;
+				& + .action-text-editable__label {
+					background-color: var(--color-error);
 				}
 			}
-			&:not(:disabled) + .action-input__label {
+			&:not(:disabled) + .action-text-editable__label {
 				&:active,
 				&:hover,
 				&:focus {
-					border-color: var(--color-primary-element);
-					border-radius: var(--border-radius);
+					background-color: var(--color-primary-element);
+					color: var(--color-primary-text);
 				}
 			}
 		}
 		&:active,
 		&:hover,
 		&:focus {
-			&:not(:disabled) + .action-input__label {
+			&:not(:disabled) + .action-text-editable__label {
 				/* above previous input */
 				z-index: 2;
 
@@ -323,23 +271,17 @@ $input-margin: 4px;
 			}
 		}
 	}
-
-	&__picker::v-deep { // stylelint-disable-line
-		.mx-input {
-			margin: 0;
-		}
-	}
 }
 
 // if a form is the last of the list
 // add the same bottomMargin as the right padding
 // for visual balance
-li:last-child > .action-input {
+li:last-child > .action-text-editable {
 	margin-bottom: $icon-margin - $input-margin;
 }
 
 // same for first item
-li:first-child > .action-input {
+li:first-child > .action-text-editable {
 	margin-top: $icon-margin - $input-margin;
 }
 
