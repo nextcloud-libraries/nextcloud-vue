@@ -32,6 +32,7 @@ import AppContentDetails from './AppContentDetails'
 import AppContentList from './AppContentList'
 import AppNavigation from './AppNavigation'
 import AppNavigationCaption from './AppNavigationCaption'
+import AppNavigationCounter from './AppNavigationCounter'
 import AppNavigationItem from './AppNavigationItem'
 import AppNavigationNew from './AppNavigationNew'
 import AppNavigationSettings from './AppNavigationSettings'
@@ -58,6 +59,7 @@ export {
 	AppContentList,
 	AppNavigation,
 	AppNavigationCaption,
+	AppNavigationCounter,
 	AppNavigationItem,
 	AppNavigationNew,
 	AppNavigationSettings,
