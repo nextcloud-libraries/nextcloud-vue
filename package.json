@@ -35,7 +35,7 @@
 		"hammerjs": "^2.0.8",
 		"md5": "^2.2.1",
 		"nextcloud-axios": "^0.2.0",
-		"v-tooltip": "^2.0.0-rc.33",
+		"v-tooltip": "^3.0.0-alpha.11",
 		"vue": "^2.6.7",
 		"vue-click-outside": "^1.0.7",
 		"vue-multiselect": "^2.1.3",
