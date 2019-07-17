@@ -1,7 +1,7 @@
 /**
- * @copyright Copyright (c) 2019 Marco Ambrosini <marcoambrosini@pm.me>
+ * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
- * @author Marco Ambrosini <marcoambrosini@pm.me>
+ * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -19,8 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import AppNavigationIconBullet from './AppNavigationIconBullet'
 
-import AppNavigationCounter from './AppNavigationCounter'
-
-export default AppNavigationCounter
-export { AppNavigationCounter }
+export default AppNavigationIconBullet
+export { AppNavigationIconBullet }

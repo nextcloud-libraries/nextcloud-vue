@@ -57,3 +57,20 @@ export default {
 	}
 }
 </script>
+
+ <style lang="scss" scoped>
+/* 'New' button */
+.app-navigation-new {
+	display: block;
+	padding: 10px;
+	button {
+		display: inline-block;
+		width: 100%;
+		padding: 10px;
+		padding-left: 34px;
+		background-position: 10px center;
+		text-align: left;
+		margin: 0;
+	}
+}
+</style>

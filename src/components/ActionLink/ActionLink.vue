@@ -122,6 +122,5 @@ export default {
 @import '~Assets/action';
 @include action-active;
 @include action-item('link');
-@include action--disabled;
 
 </style>

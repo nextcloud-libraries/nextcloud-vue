@@ -1,5 +1,5 @@
 <!--
- - @copyright Copyright (c) 2019 Marco Ambrosini <ma12co@pm.me>
+ - @copyright Copyright (c) 2019 Marco Ambrosini <marcoambrosini@pm.me>
  -
  - @author Marco Ambrosini <marcoambrosini@pm.me>
  -
@@ -25,26 +25,23 @@
 ### Normal Counter
 
 ```
-<AppNavigationCounter :highlighted="false">
-your number or string
-</AppNavigationCounter>
+<AppNavigationCounter>314+</AppNavigationCounter>
 ```
 
 ### Highlighted Counter (i.e. mentions)
 
 ```
-<AppNavigationCounter :highlighted="true">
-your number or string
-</AppNavigationCounter>
+<AppNavigationCounter :highlighted="true">@admin</AppNavigationCounter>
+<AppNavigationCounter :highlighted="true">314+</AppNavigationCounter>
 ```
 
 </docs>
 
 <template>
-	<li :class="{ highlighted }"
-		class="app-navigation-entry-utils-counter">
-		<span><slot /></span>
-	</li>
+	<div :class="{ 'app-navigation-entry__counter--highlighted': highlighted }"
+		class="app-navigation-entry__counter">
+		<slot />
+	</div>
 </template>
 
 <script>
@@ -62,25 +59,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.app-navigation-entry__counter {
+	overflow: hidden;
+	max-width: $clickable-area;
+	margin: 4px;
+	padding: 0 4px;
+	text-align: center;
+	text-overflow: ellipsis;
+	line-height: 1em;
 
-	.app-navigation-entry-utils-counter {
-		overflow: hidden;
-		text-align: right;
-		font-size: 9px;
-		line-height: $clickable-area;
-		padding: 0 12px; /* Same padding as all li > a in the app-navigation */
-
+	&--highlighted {
+		padding: 4px 6px;
+		color: var(--color-primary-text);
+		border-radius: 10px;
+		background-color: var(--color-primary);
 	}
-
-	.highlighted {
-		padding: 0;
-		text-align: center;
-		span {
-			padding: 2px 5px;
-			border-radius: 10px;
-			background-color: var(--color-primary);
-			color: var(--color-primary-text);
-		}
-	}
-
+}
 </style>
