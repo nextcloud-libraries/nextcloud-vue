@@ -99,7 +99,7 @@ $cell_height: 32px;
 		font: inherit;
 		color: var(--color-main-text);
 		padding: 5px;
-		width: 240px;
+		width: $cell_height * 7  + 2 * 5px; // 7 days + padding
 	}
 
 	// HEADER: year, month and arrows
@@ -225,9 +225,14 @@ $cell_height: 32px;
 			border-spacing: 0;
 			td, th {
 				font-size: 12px;
-				width: 32px;
-				height: 32px;
+				width: $cell_height;
+				height: $cell_height;
+				// compensate the padding-top shifting
+				line-height: $cell_height - 2px;
+				border: 0;
 				padding: 0;
+				// shift a little bit down for visual balance
+				padding-top: 2px;
 				overflow: hidden;
 				text-align: center;
 			}

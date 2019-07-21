@@ -26,6 +26,7 @@ import ActionInput from './ActionInput'
 import ActionLink from './ActionLink'
 import ActionRouter from './ActionRouter'
 import ActionText from './ActionText'
+import ActionTextEditable from './ActionTextEditable'
 import Actions from './Actions'
 import AppContent from './AppContent'
 import AppContentDetails from './AppContentDetails'
@@ -53,6 +54,7 @@ export {
 	ActionLink,
 	ActionRouter,
 	ActionText,
+	ActionTextEditable,
 	Actions,
 	AppContent,
 	AppContentDetails,

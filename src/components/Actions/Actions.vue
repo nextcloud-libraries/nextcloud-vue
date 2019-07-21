@@ -107,7 +107,8 @@ const allowedChildren = [
 	'ActionInput',
 	'ActionLink',
 	'ActionRouter',
-	'ActionText'
+	'ActionText',
+	'ActionTextEditable'
 ]
 
 /**

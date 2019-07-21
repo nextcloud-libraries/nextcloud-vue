@@ -81,6 +81,20 @@ export default {
 			 */
 			this.$emit('change', event)
 
+			if (this.$refs.checkbox.checked) {
+				/**
+				 * Emitted when the checkbox is checked
+				 * @type {Event}
+				 */
+				this.$emit('check', true)
+			} else {
+				/**
+				 * Emitted when the checkbox is unchecked
+				 * @type {Event}
+				 */
+				this.$emit('uncheck', true)
+			}
+
 			/**
 			 * Emitted when the checkbox state is changed
 			 * @type {boolean}
