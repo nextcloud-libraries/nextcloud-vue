@@ -47,6 +47,7 @@
 		:multiple="multiple"
 		:label="label"
 		:track-by="trackBy"
+		:custom-label="customLabel"
 		tag-placeholder="create"
 		v-on="$listeners"
 		@update:value="$emit('update:value', value)">
@@ -132,6 +133,13 @@ export default {
 		label: {
 			type: String,
 			default: ''
+		},
+		customLabel: {
+			type: Function,
+			default: function(option, label) {
+				if (!option) return ''
+				return label ? option[label] : option
+			}
 		},
 		trackBy: {
 			type: String,
