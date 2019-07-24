@@ -36,6 +36,7 @@
 				<DatetimePicker v-if="isDatePickerType"
 					:disabled="disabled" :type="isDatePickerType"
 					:value="value" class="action-input__picker"
+					v-bind="$attrs"
 					@input="onInput" @change="onChange" />
 
 				<template v-else>
