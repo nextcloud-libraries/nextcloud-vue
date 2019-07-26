@@ -80,7 +80,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 			:style="{marginRight: `${ offsetX }px`}"
 			class="action-item__menu"
 			tabindex="-1"
-			@mousemove="unFocus">
+			@mousemove="onMouseFocusAction">
 			<!-- arrow -->
 			<div class="action-item__menu_arrow"
 				:style="{ transform: `translateX(${ offsetX }px)`}" />
@@ -272,11 +272,27 @@ export default {
 		},
 
 		// MENU KEYS & FOCUS MANAGEMENT
-		// remove the focus on any element if the mouse
-		// is used to select an action
-		unFocus() {
-			this.$refs.menu.focus()
-			this.removeCurrentActive()
+		// focus nearest focusable item on mouse move
+		// DO NOT change the focus if the target is already focused
+		// this will prevent issues with input being unfocused
+		// on mouse move
+		onMouseFocusAction(event) {
+			if (document.activeElement === event.target) {
+				return
+			}
+
+			const menuItem = event.target.closest('li')
+			if (menuItem) {
+				const focusableItem = menuItem.querySelector('.focusable:not(:disabled)')
+				if (focusableItem) {
+					const focusList = this.$refs.menu.querySelectorAll('.focusable:not(:disabled)')
+					const focusIndex = Array.prototype.indexOf.call(focusList, focusableItem)
+					if (focusIndex > -1) {
+						this.focusIndex = focusIndex
+						this.focusAction()
+					}
+				}
+			}
 		},
 		removeCurrentActive() {
 			const currentActiveElement = this.$refs.menu.querySelector('li.active')
