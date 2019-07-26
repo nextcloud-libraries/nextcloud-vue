@@ -39,6 +39,7 @@ If you're using a long text you can specify a title
 	</Actions>
 ```
 </docs>
+
 <template>
 	<li>
 		<button class="action-button focusable" :disabled="disabled" @click="onClick">

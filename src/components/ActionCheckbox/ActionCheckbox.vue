@@ -20,11 +20,24 @@
   -
   -->
 
+<docs>
+This component is made to be used inside of the [Actions](#Actions) component slots.
+
+```vue
+	<Actions>
+		<ActionCheckbox @change="alert('(un)checked !')">First choice</ActionCheckbox>
+		<ActionCheckbox value="second" @change="alert('(un)checked !')">Second choice</ActionCheckbox>
+		<ActionCheckbox :checked="true" @change="alert('(un)checked !')">Third choice (checked)</ActionCheckbox>
+		<ActionCheckbox :disabled="true" @change="alert('(un)checked !')">Second choice (disabled)</ActionCheckbox>
+	</Actions>
+```
+</docs>
+
 <template>
 	<li>
 		<span class="action-checkbox" :class="{'action-checkbox--disabled': disabled}">
 			<input :id="id" ref="checkbox"
-				:disabled="disabled" :checked="checked"
+				:disabled="disabled" :checked="checked" :value="value"
 				type="checkbox" class="focusable checkbox action-checkbox__checkbox"
 				@keydown.enter.exact.prevent="checkInput" @change="onChange">
 			<label ref="label" :for="id" class="action-checkbox__label">{{ text }}</label>
@@ -53,6 +66,7 @@ export default {
 			default: () => 'action-' + GenRandomId(),
 			validator: id => id.trim() !== ''
 		},
+
 		/**
 		 * checked state of the the checkbox element
 		 */
@@ -60,6 +74,15 @@ export default {
 			type: Boolean,
 			default: false
 		},
+
+		/**
+		 * value of the checkbox input
+		 */
+		value: {
+			type: [String, Number],
+			default: ''
+		},
+
 		/**
 		 * disabled state of the checkbox element
 		 */
@@ -151,7 +174,7 @@ export default {
 
 		width: 100%;
 		padding: 0 !important;
-		padding-right: $icon-margin;
+		padding-right: $icon-margin !important;
 
 		opacity: $opacity_normal;
 		// checkbox-width is 12px, border is 2
