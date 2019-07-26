@@ -22,6 +22,7 @@
 
 <docs>
 This component is made to be used inside of the [Actions](#Actions) component slots.
+All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 
 ```
 <Actions>
@@ -41,8 +42,8 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 				class="action-text-editable__icon" />
 
 			<!-- form and input -->
-			<form ref="form" class="action-text-editable__form" :disabled="disabled"
-				@submit.prevent="onSubmit">
+			<form ref="form" class="action-text-editable__form"
+				:disabled="disabled" @submit.prevent="onSubmit">
 				<input :id="id" type="submit" class="action-text-editable__submit">
 
 				<!-- title -->
@@ -51,6 +52,7 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 				</strong>
 
 				<textarea :disabled="disabled" :value="value"
+					v-bind="$attrs"
 					class="action-text-editable__textarea focusable"
 					@input="onInput" />
 

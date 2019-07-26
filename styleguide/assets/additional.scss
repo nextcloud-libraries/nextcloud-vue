@@ -1,5 +1,8 @@
 div[data-preview] {
      @import 'server.css';
+     * {
+          box-sizing: border-box;
+     }
 }
 
 body {
