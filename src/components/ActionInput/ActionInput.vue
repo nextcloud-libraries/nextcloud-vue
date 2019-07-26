@@ -20,29 +20,44 @@
   -
   -->
 
+<docs>
+This component is made to be used inside of the [Actions](#Actions) component slots.
+All undocumented attributes will be bound to the input or the datepicker. e.g. `maxlength`, `not-before`...
+
+```
+<Actions>
+	<ActionInput icon="icon-edit" value="This is an input" />
+	<ActionInput icon="icon-close" :disabled="true" value="This is a disabled input" />
+	<ActionInput icon="icon-edit" type="date" value="This is a date picker" />
+</Actions>
+```
+</docs>
+
 <template>
 	<li>
-		<span :class="{'action-input--picker': isDatePickerType}" class="action-input">
+		<span :class="{ 'action-input--picker': isDatePickerType }" class="action-input">
 			<!-- icon -->
 			<span :class="[isIconUrl ? 'action-input__icon--url' : icon]"
 				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
 				class="action-input__icon" />
 
 			<!-- form and input -->
-			<form ref="form" class="action-input__form" :disabled="disabled"
-				@submit.prevent="onSubmit">
+			<form ref="form" class="action-input__form"
+				:disabled="disabled" @submit.prevent="onSubmit">
 				<input :id="id" type="submit" class="action-input__submit">
 
 				<DatetimePicker v-if="isDatePickerType"
+					:value="value" :placeholder="text"
 					:disabled="disabled" :type="isDatePickerType"
-					:value="value" class="action-input__picker"
+					class="action-input__picker"
 					v-bind="$attrs"
 					@input="onInput" @change="onChange" />
 
 				<template v-else>
 					<input :type="type" :value="value"
 						:placeholder="text" :disabled="disabled"
-						required class="action-input__input focusable"
+						v-bind="$attrs"
+						class="action-input__input focusable"
 						@input="onInput" @change="onChange">
 					<!-- allow the custom font to inject a ::before
 						not possible on input[type=submit] -->
