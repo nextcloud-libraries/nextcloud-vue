@@ -27,8 +27,9 @@ All undocumented attributes will be bound to the input or the datepicker. e.g. `
 ```
 <Actions>
 	<ActionInput icon="icon-edit" value="This is an input" />
+	<ActionInput icon="icon-edit">This is the placeholder</ActionInput>
 	<ActionInput icon="icon-close" :disabled="true" value="This is a disabled input" />
-	<ActionInput icon="icon-edit" type="date" value="This is a date picker" />
+	<ActionInput icon="icon-edit" type="date">Please pick a date</ActionInput>
 </Actions>
 ```
 </docs>
