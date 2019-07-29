@@ -45,16 +45,18 @@ All undocumented attributes will be bound to the input or the datepicker. e.g. `
 			<!-- form and input -->
 			<form ref="form" class="action-input__form"
 				:disabled="disabled" @submit.prevent="onSubmit">
-				<input :id="id" type="submit" class="action-input__submit">
 
 				<DatetimePicker v-if="isDatePickerType"
 					:value="value" :placeholder="text"
 					:disabled="disabled" :type="isDatePickerType"
+					:input-class="['mx-input', 'focusable']"
 					class="action-input__picker"
 					v-bind="$attrs"
 					@input="onInput" @change="onChange" />
 
 				<template v-else>
+					<input :id="id" type="submit" class="action-input__submit">
+
 					<input :type="type" :value="value"
 						:placeholder="text" :disabled="disabled"
 						v-bind="$attrs"
