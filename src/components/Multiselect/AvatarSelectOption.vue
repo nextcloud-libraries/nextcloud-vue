@@ -22,6 +22,9 @@
 <docs>
 ### User layout
 By specifying `:user-select="true"`, you can benefit from a fully formatted layout.
+
+> **Note:** Any extra binding from the object will be added as `data-[key]` on the AvatarSelectOption root
+
 ```vue
 <template>
 	<Multiselect v-model="value" :options="formatedOptions"
