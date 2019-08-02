@@ -62,24 +62,23 @@ export default {
 </docs>
 
 <template>
-	<span class="option" v-bind="dataBind">
+	<span class="option">
 		<Avatar :display-name="displayName" :user="user"
 			:is-no-user="isNoUser"
 			:disable-menu="true" :disable-tooltip="true"
 			class="option__avatar" />
 		<div class="option__desc">
-			<span class="option__desc--lineone">
-				{{ displayName }}
-			</span>
-			<span v-if="desc !== ''" class="option__desc--linetwo">
-				{{ desc }}
-			</span>
+			<span class="option__desc--lineone"
+				v-html="highlightPhrase(escapedDisplayName)" />
+			<span v-if="desc !== ''" class="option__desc--linetwo"
+				v-html="highlightPhrase(escapedDesc)" />
 		</div>
 		<span v-if="icon !== ''" class="icon option__icon" :class="icon" />
 	</span>
 </template>
 
 <script>
+import escapeHtml from 'escape-html'
 import Avatar from 'Components/Avatar'
 
 export default {
@@ -125,17 +124,22 @@ export default {
 		}
 	},
 	computed: {
-		dataBind() {
-			return Object.keys(this.$attrs).reduce((obj, key) => {
-				obj[`data-${this.toKebabCase(key)}`] = this.$attrs[key]
-				return obj
-			}, {})
+		search() {
+			return this.$parent.search
+		},
+		escapedDisplayName() {
+			return escapeHtml(this.displayName)
+		},
+		escapedDesc() {
+			return escapeHtml(this.desc)
 		}
+
 	},
 
 	methods: {
-		toKebabCase: (string) => {
-			return string.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase()
+		highlightPhrase(text) {
+			if (!this.search.length) return text
+			return text.replace(new RegExp(this.search, 'gi'), `<strong>${this.search}</strong>`)
 		}
 	}
 }
@@ -173,6 +177,9 @@ export default {
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
+			strong {
+				font-weight: bold;
+			}
 		}
 	}
 	&__icon {
