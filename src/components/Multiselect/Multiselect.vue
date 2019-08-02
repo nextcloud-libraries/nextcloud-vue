@@ -70,8 +70,9 @@ export default {
 ```vue
 <template>
 	<Multiselect v-model="value" :options="formatedOptions"
-		label="label" track-by="id"
-		:user-select="true" />
+		label="displayName" track-by="user"
+		:user-select="true"
+		style="width: 250px" />
 </template>
 
 <script>
@@ -79,7 +80,7 @@ import Multiselect from '../index'
 export default {
 	data() {
 		return {
-			value: { id:2,label:'user 1' },
+			value: null,
 			options: ['admin', 'user1', 'user2', 'guest', 'group1']
 		}
 	},

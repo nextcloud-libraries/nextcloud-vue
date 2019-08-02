@@ -82,6 +82,7 @@ export default {
 		flex-direction: column;
 		justify-content: center;
 		flex: 1 1;
+		min-width: 0;
 		&--lineone {
 			color: var(--color-text-light);
 			&--highlight {
@@ -90,6 +91,12 @@ export default {
 		}
 		&--linetwo {
 			opacity: $opacity_normal;
+		}
+		&--lineone,
+		&--linetwo {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 	}
 	&__icon {
