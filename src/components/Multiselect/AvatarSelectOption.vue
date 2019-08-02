@@ -19,22 +19,60 @@
   - along with this program. If not, see <http://www.gnu.org/licenses/>.
   -
   -->
+<docs>
+### User layout
+By specifying `:user-select="true"`, you can benefit from a fully formatted layout.
+```vue
+<template>
+	<Multiselect v-model="value" :options="formatedOptions"
+		label="displayName" track-by="user"
+		:user-select="true"
+		style="width: 250px" />
+</template>
+
+<script>
+import Multiselect from '../index'
+export default {
+	data() {
+		return {
+			value: null,
+			options: ['admin', 'user1', 'user2', 'guest', 'group1']
+		}
+	},
+
+	computed: {
+		formatedOptions() {
+			return this.options.map(item => {
+				return {
+					user: item,
+					displayName: item,
+					desc: `This is the ${item.startsWith('group') ? 'group' : 'user'} ${item}`,
+					icon: item.startsWith('group') ? 'icon-group' : 'icon-user',
+					isNoUser: item.startsWith('group')
+				}
+			})
+		}
+	}
+}
+</script>
+```
+</docs>
 
 <template>
 	<span class="option" v-bind="dataBind">
-		<Avatar :display-name="option.displayName" :user="option.user"
-			:is-no-user="option.isNoUser"
+		<Avatar :display-name="displayName" :user="user"
+			:is-no-user="isNoUser"
 			:disable-menu="true" :disable-tooltip="true"
 			class="option__avatar" />
 		<div class="option__desc">
 			<span class="option__desc--lineone">
-				{{ option.displayName }}
+				{{ displayName }}
 			</span>
-			<span v-if="option.desc" class="option__desc--linetwo">
-				{{ option.desc }}
+			<span v-if="desc !== ''" class="option__desc--linetwo">
+				{{ desc }}
 			</span>
 		</div>
-		<span v-if="option.icon" class="icon option__icon" :class="option.icon" />
+		<span v-if="icon !== ''" class="icon option__icon" :class="icon" />
 	</span>
 </template>
 
@@ -47,27 +85,46 @@ export default {
 		Avatar
 	},
 	props: {
-		option: {
-			type: Object,
-			default() {
-				return {
-					desc: '',
-					displayName: 'Admin',
-					icon: 'icon-user',
-					user: 'admin',
-					isNoUser: false
-				}
-			},
-			validator: (option) => {
-				// minimum required is displayName
-				return 'displayName' in option
-			}
+		/**
+		 * Secondary optional line
+		 */
+		desc: {
+			type: String,
+			default: ''
+		},
+		/**
+		 * Default text
+		 */
+		displayName: {
+			type: String,
+			required: true
+		},
+		/**
+		 * Icon class to be displayed at the end of the component
+		 */
+		icon: {
+			type: String,
+			default: ''
+		},
+		/**
+		 * See the [Avatar](#Avatar) user prop
+		 */
+		user: {
+			type: String,
+			default: ''
+		},
+		/**
+		 * See the [Avatar](#Avatar) isNoUser prop
+		 */
+		isNoUser: {
+			type: Boolean,
+			default: false
 		}
 	},
 	computed: {
 		dataBind() {
-			return Object.keys(this.option).reduce((obj, key) => {
-				obj[`data-${this.toKebabCase(key)}`] = this.option[key]
+			return Object.keys(this.$attrs).reduce((obj, key) => {
+				obj[`data-${this.toKebabCase(key)}`] = this.$attrs[key]
 				return obj
 			}, {})
 		}

@@ -67,40 +67,7 @@ export default {
 ```
 
 ### User layout
-```vue
-<template>
-	<Multiselect v-model="value" :options="formatedOptions"
-		label="displayName" track-by="user"
-		:user-select="true"
-		style="width: 250px" />
-</template>
-
-<script>
-import Multiselect from '../index'
-export default {
-	data() {
-		return {
-			value: null,
-			options: ['admin', 'user1', 'user2', 'guest', 'group1']
-		}
-	},
-
-	computed: {
-		formatedOptions() {
-			return this.options.map(item => {
-				return {
-					user: item,
-					displayName: item,
-					desc: `This is the ${item.startsWith('group') ? 'group' : 'user'} ${item}`,
-					icon: item.startsWith('group') ? 'icon-group' : 'icon-user'
-				}
-			})
-		}
-	}
-}
-</script>
-```
-
+Please see the [AvatarSelectOption](#AvatarSelectOption) component
 </docs>
 
 <template>
@@ -139,7 +106,7 @@ export default {
 			<!-- Avatar display select slot override.
 				You CANNOT use this scope, we will replace it by this -->
 			<AvatarSelectOption v-if="userSelect && !$scopedSlots['option']"
-				:option="scope.option" />
+				v-bind="scope.option" />
 
 			<!-- Ellipsis in the middle if no option slot
 				is defined in the parent -->
