@@ -19,6 +19,88 @@
   - along with this program. If not, see <http://www.gnu.org/licenses/>.
   -
   -->
+<docs>
+## Multiselect
+We're wrapping the awesome vue-multiselect library to add our own styling and default props/methods
+You can use all the properties from https://vue-multiselect.js.org that are not declared/overrided here.
+
+### Simple examples
+```vue
+<template>
+	<div class="wrapper">
+		<Multiselect v-model="value1" :options="options" />
+		<Multiselect v-model="value2" :options="options" :multiple="true" />
+	</div>
+</template>
+
+<script>
+import Multiselect from '../index'
+export default {
+	data() {
+		return { value1: 2, value2: [2], options: [0, 1, 2, 3, 4] }
+	}
+}
+</script>
+```
+
+### Limit with automated tooltip
+```vue
+<template>
+	<Multiselect v-model="value"
+		:options="options" :multiple="true"
+		:tag-width="80" />
+</template>
+
+<script>
+import Multiselect from '../index'
+export default {
+	data() {
+		return {
+			value: ['eirmod', 'et', 'magna', 'invidunt', 'tempor'],
+			options: ['Consetetur', 'sadipscing', 'elitr', 'sed',
+				'diam', 'nonumy', 'eirmod', 'tempor', 'invidunt',
+				'ut', 'labore', 'et', 'dolore', 'magna', 'aliquyam', 'erat']
+		}
+	}
+}
+</script>
+```
+
+### User layout
+```vue
+<template>
+	<Multiselect v-model="value" :options="formatedOptions"
+		label="label" track-by="id"
+		:user-select="true" />
+</template>
+
+<script>
+import Multiselect from '../index'
+export default {
+	data() {
+		return {
+			value: { id:2,label:'user 1' },
+			options: ['admin', 'user1', 'user2', 'guest', 'group1']
+		}
+	},
+
+	computed: {
+		formatedOptions() {
+			return this.options.map(item => {
+				return {
+					user: item,
+					displayName: item,
+					desc: `This is the ${item.startsWith('group') ? 'group' : 'user'} ${item}`,
+					icon: item.startsWith('group') ? 'icon-group' : 'icon-user'
+				}
+			})
+		}
+	}
+}
+</script>
+```
+
+</docs>
 
 <template>
 	<!--
@@ -117,22 +199,33 @@ export default {
 				return []
 			}
 		},
-		// you need to declare props here if you want
-		// to use them on this component
-		// otherwise they're just sent to the child
-		// component and are not accessible here
+
+		/**
+		 * Allow multiple select ?
+		 */
 		multiple: {
 			type: Boolean,
 			default: false
 		},
+
+		/**
+		 * Limit the number of results
+		 */
 		limit: {
 			type: Number,
 			default: 99999
 		},
+
+		/**
+		 * key to use as label on object options
+		 */
 		label: {
 			type: String,
 			default: ''
 		},
+		/**
+		 * key to use as id on object options
+		 */
 		trackBy: {
 			type: String,
 			default: ''
@@ -141,8 +234,6 @@ export default {
 		/**
 		 * Enable the big user selector w/ avatar
 		 * Make sure your objects fit the requirements
-		 * @default true
-		 * @type {Boolean}
 		 */
 		userSelect: {
 			type: Boolean,
@@ -150,8 +241,6 @@ export default {
 		},
 		/**
 		 * Overriding the default slot. Only showing a spiner.
-		 * @default true
-		 * @type {Boolean}
 		 */
 		loading: {
 			type: Boolean,
@@ -160,8 +249,6 @@ export default {
 		/**
 		 * Enable the automatic limit and width calculation
 		 * Only works on multiple
-		 * @default true
-		 * @type {Boolean}
 		 */
 		autoLimit: {
 			type: Boolean,
@@ -171,8 +258,6 @@ export default {
 		* If autoLimit, allow to specify the min-width of every
 		* selected option when calculating the number of options
 		* to show. This needs to be a positive integer.
-		* @default 150
-		* @type {Number}
 		*/
 		tagWidth: {
 			type: Number,
