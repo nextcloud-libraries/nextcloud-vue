@@ -27,5 +27,6 @@ import './index.scss'
 // instead of .tooltip to avoid server compatibility
 // issues and the use of !important
 VTooltip.options.defaultTemplate = `<div class="vue-tooltip" role="tooltip" data-v-${SCOPE_VERSION}><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>`
+VTooltip.options.defaultHtml = false
 
 export default VTooltip
