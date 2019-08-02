@@ -22,8 +22,10 @@
 
 <template>
 	<span class="option">
-		<Avatar :display-name="option.displayName" :user="option.user" :disable-tooltip="true"
-			:is-no-user="option.isNoUser" class="option__avatar" />
+		<Avatar :display-name="option.displayName" :user="option.user"
+			:is-no-user="option.isNoUser"
+			:disable-menu="true" :disable-tooltip="true"
+			class="option__avatar" />
 		<div class="option__desc">
 			<span class="option__desc--lineone">
 				{{ option.displayName }}
