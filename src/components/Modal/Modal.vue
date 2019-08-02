@@ -26,7 +26,7 @@
 <template>
 	<div>
 		<button @click="showModal">Show Modal</button>
-		<modal v-show="modal" @close="closeModal">
+		<modal v-if="modal" @close="closeModal">
 			<div class="modal__content">Hello world</div>
 		</modal>
 	</div>
