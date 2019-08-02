@@ -137,6 +137,13 @@ export default {
 			default: false
 		},
 		/**
+		 * Disable the menu
+		 */
+		disableMenu: {
+			type: Boolean,
+			default: false
+		},
+		/**
 		 * Declares a custom tooltip when not null
 		 * Fallback will be the displayName
 		 *
@@ -215,6 +222,9 @@ export default {
 			return typeof this.url !== 'undefined'
 		},
 		hasMenu() {
+			if (this.disableMenu) {
+				return false
+			}
 			if (this.isMenuLoaded) {
 				return this.menu.length > 0
 			}
