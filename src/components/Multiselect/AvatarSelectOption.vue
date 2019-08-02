@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<span class="option">
+	<span class="option" v-bind="dataBind">
 		<Avatar :display-name="option.displayName" :user="option.user"
 			:is-no-user="option.isNoUser"
 			:disable-menu="true" :disable-tooltip="true"
@@ -62,6 +62,20 @@ export default {
 				// minimum required is displayName
 				return 'displayName' in option
 			}
+		}
+	},
+	computed: {
+		dataBind() {
+			return Object.keys(this.option).reduce((obj, key) => {
+				obj[`data-${this.toKebabCase(key)}`] = this.option[key]
+				return obj
+			}, {})
+		}
+	},
+
+	methods: {
+		toKebabCase: (string) => {
+			return string.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase()
 		}
 	}
 }
