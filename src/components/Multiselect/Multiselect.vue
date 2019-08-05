@@ -128,8 +128,8 @@ Please see the [AvatarSelectOption](#AvatarSelectOption) component
 
 		<!-- Passing the singleLabel slot, this is used to format the selected
 			option on NON-multiple multiselects -->
-		<template v-if="$scopedSlots['singleLabel']" #singleLabel="scope">
-			<slot name="singleLabel" v-bind="scope" />
+		<template v-for="(_, slot) of $scopedSlots" v-slot:[slot]="scope">
+			<slot :name="slot" v-bind="scope" />
 		</template>
 
 		<!-- TODO add translation system
