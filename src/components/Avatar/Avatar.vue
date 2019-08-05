@@ -106,6 +106,13 @@ export default {
 			default: undefined
 		},
 		/**
+		 * Is the user a guest user (then we have to user a different endpoint)
+		 */
+		isGuest: {
+			type: Boolean,
+			default: false
+		},
+		/**
 		 * Set a display name that will be rendered as a tooltip
 		 * either the url, user or displayName property must be defined
 		 * specify just the displayname to generate a placeholder avatar without
@@ -320,12 +327,18 @@ export default {
 			}
 
 			const urlGenerator = (user, size) => {
+				let url = '/avatar/{user}/{size}'
+				if (this.isGuest) {
+					url = '/avatar/guest/{user}/{size}'
+				}
+
 				let avatarUrl = OC.generateUrl(
-					'/avatar/{user}/{size}',
+					url,
 					{
 						user: user,
 						size: size
 					})
+
 				// eslint-disable-next-line camelcase
 				if (user === OC.getCurrentUser().uid && typeof oc_userconfig !== 'undefined') {
 					avatarUrl += '?v=' + oc_userconfig.avatar.version
