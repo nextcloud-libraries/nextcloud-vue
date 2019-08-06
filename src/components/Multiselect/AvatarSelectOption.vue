@@ -149,8 +149,8 @@ export default {
 .option {
 	display: flex;
 	align-items: center;
-	height: 32px;
 	width: 100%;
+	height: 32px;
 	&__avatar {
 		flex: 0 0 32px;
 		width: 32px;
@@ -159,9 +159,9 @@ export default {
 	}
 	&__desc {
 		display: flex;
+		flex: 1 1;
 		flex-direction: column;
 		justify-content: center;
-		flex: 1 1;
 		min-width: 0;
 		&--lineone {
 			color: var(--color-text-light);
@@ -174,8 +174,8 @@ export default {
 		}
 		&--lineone,
 		&--linetwo {
-			white-space: nowrap;
 			overflow: hidden;
+			white-space: nowrap;
 			text-overflow: ellipsis;
 			strong {
 				font-weight: bold;
@@ -183,11 +183,14 @@ export default {
 		}
 	}
 	&__icon {
+		flex: 0 0 $clickable-area;
 		width: $clickable-area;
 		height: $clickable-area;
-		flex: 0 0 $clickable-area;
 		margin: -6px;
 		opacity: $opacity_disabled;
+		background-position: center;
+		background-size: 16px;
 	}
 }
+
 </style>
