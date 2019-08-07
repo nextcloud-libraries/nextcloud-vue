@@ -80,6 +80,7 @@ export default {
 						<!-- Play-pause toggle -->
 						<button v-if="hasNext && enableSlideshow"
 							v-tooltip.auto="playPauseTitle"
+							:class="{ 'play-pause--paused': slideshowPaused }"
 							class="play-pause"
 							@click="togglePlayPause">
 							<!-- Progress circle, css animated -->
@@ -90,7 +91,8 @@ export default {
 							</div>
 
 							<!-- Progress circle, css animated -->
-							<svg v-if="playing" class="progress-ring"
+							<svg v-if="playing"
+								class="progress-ring"
 								height="50" width="50">
 								<circle class="progress-ring__circle"
 									stroke="white" stroke-width="2" fill="transparent"
@@ -162,6 +164,7 @@ import Hammer from 'hammerjs'
 import Actions from 'Components/Actions'
 import ActionButton from 'Components/ActionButton'
 import Tooltip from 'Directives/Tooltip'
+import Timer from 'Utils/Timer'
 
 export default {
 	name: 'Modal',
@@ -223,6 +226,13 @@ export default {
 			default: 3000
 		},
 		/**
+		 * Allow to pause an ongoing slideshow
+		 */
+		slideshowPaused: {
+			type: Boolean,
+			default: false
+		},
+		/**
 		 * Enable swipe between slides
 		 */
 		enableSwipe: {
@@ -266,6 +276,21 @@ export default {
 		},
 		playPauseTitle() {
 			return this.playing ? t('core', 'Pause slideshow') : t('core', 'Start slideshow')
+		}
+	},
+
+	watch: {
+		/**
+		 * Handle play/pause of an ongoing slideshow
+		 */
+		slideshowPaused: function(paused) {
+			if (this.slideshowTimeout) {
+				if (paused) {
+					this.slideshowTimeout.pause()
+				} else {
+					this.slideshowTimeout.start()
+				}
+			}
 		}
 	},
 
@@ -379,7 +404,7 @@ export default {
 			if (this.playing) {
 				this.handleSlideshow()
 			} else {
-				clearTimeout(this.slideshowTimeout)
+				this.slideshowTimeout.clear()
 			}
 		},
 
@@ -388,7 +413,7 @@ export default {
 		 */
 		resetSlideshow() {
 			this.playing = !this.playing
-			clearTimeout(this.slideshowTimeout)
+			this.slideshowTimeout.clear()
 			this.$nextTick(function() {
 				this.togglePlayPause()
 			})
@@ -400,13 +425,13 @@ export default {
 		handleSlideshow() {
 			this.playing = true
 			if (this.hasNext) {
-				this.slideshowTimeout = setTimeout(() => {
+				this.slideshowTimeout = new Timer(() => {
 					this.next()
 					this.handleSlideshow()
 				}, this.slideshowDelay)
 			} else {
 				this.playing = false
-				clearTimeout(this.slideshowTimeout)
+				this.slideshowTimeout.clear()
 			}
 		}
 	}
@@ -538,6 +563,15 @@ $header-size: 50px;
 			background-position: center;
 			background-size: 22px;
 		}
+
+		&::v-deep .action-item__menutoggle {
+			padding: 13px 11px;
+			// force white instead of default main text
+			color: #fff;
+			// 22px is a somehow better looking for the icon-more icon
+			font-size: 22px;
+		}
+
 	}
 }
 
@@ -682,37 +716,36 @@ $header-size: 50px;
 	transform: scale(1.1);
 }
 
-</style>
-<style lang="scss">
-// we cannot scope sub-components
-.modal-mask[data-v-#{$scope_version}] .modal-header .icons-menu {
-	.action-item__menutoggle {
-		padding: 13px 11px;
-		// force white instead of default main text
-		color: #fff;
-		// 22px is a somehow better looking for the icon-more icon
-		font-size: 22px;
-	}
-}
-
+// animated circle
 $radius: 15;
 $pi: 3.14159265358979;
-// animated circle
-.modal-mask[data-v-#{$scope_version}] .progress-ring {
-	position: absolute;
-	top: 0;
-	left: 0;
-	transform: rotate(-90deg);
-	.progress-ring__circle {
-		transition: 100ms stroke-dashoffset;
-		transform-origin: 50% 50%; // axis compensation
-		animation: progressring linear 3s infinite;
 
-		stroke-linecap: round;
-		stroke-dashoffset: $radius * 2 * $pi;	// radius * 2 * PI
-		stroke-dasharray: $radius * 2 * $pi;	// radius * 2 * PI
+.modal-mask .play-pause {
+	.progress-ring {
+		position: absolute;
+		top: 0;
+		left: 0;
+		transform: rotate(-90deg);
+		.progress-ring__circle {
+			transition: 100ms stroke-dashoffset;
+			transform-origin: 50% 50%; // axis compensation
+			animation: progressring linear 3s infinite;
+
+			stroke-linecap: round;
+			stroke-dashoffset: $radius * 2 * $pi;	// radius * 2 * PI
+			stroke-dasharray: $radius * 2 * $pi;	// radius * 2 * PI
+		}
+	}
+	&--paused {
+		.icon-pause {
+			animation: breath 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+		}
+		.progress-ring__circle {
+			animation-play-state: paused !important;
+		}
 	}
 }
+
 // keyframes get scoped too and break the animation name, we need them unscoped
 @keyframes progressring {
 	from {
@@ -720,6 +753,18 @@ $pi: 3.14159265358979;
 	}
 	to {
 		stroke-dashoffset: 0;
+	}
+}
+
+@keyframes breath {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
 	}
 }
 
