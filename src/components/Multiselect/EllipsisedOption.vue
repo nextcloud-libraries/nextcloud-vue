@@ -48,7 +48,7 @@ export default {
 			return this.option
 		},
 		needsTruncate() {
-			return this.name.length >= 10
+			return this.name && this.name.length >= 10
 		},
 		part1() {
 			if (this.needsTruncate) {
