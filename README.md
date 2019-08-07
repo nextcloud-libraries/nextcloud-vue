@@ -16,8 +16,7 @@ A list of available components with examples to try out is available in the [doc
 ## Getting started
 
 ### App example
-If you want to check a real live example of a nextcloud app that uses this library, you can head over: 
-https://dev.skjnldsv.com/apps/vueexample/
+If you want to check a real live example of a nextcloud app that uses this library, you can head over to https://dev.skjnldsv.com/apps/vueexample/
 We will try to maintain this repository the best we can, but some example might be obsolete. Always check this [repository documentation](#documentation).
 
 ### Install the library
