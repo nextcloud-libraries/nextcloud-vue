@@ -404,7 +404,7 @@ export default {
 			if (this.playing) {
 				this.handleSlideshow()
 			} else {
-				this.slideshowTimeout.clear()
+				this.clearSlideshowTimeout()
 			}
 		},
 
@@ -413,7 +413,7 @@ export default {
 		 */
 		resetSlideshow() {
 			this.playing = !this.playing
-			this.slideshowTimeout.clear()
+			this.clearSlideshowTimeout()
 			this.$nextTick(function() {
 				this.togglePlayPause()
 			})
@@ -431,6 +431,15 @@ export default {
 				}, this.slideshowDelay)
 			} else {
 				this.playing = false
+				this.clearSlideshowTimeout()
+			}
+		},
+
+		/**
+		 * Clear slideshowTimeout if ongoing
+		 */
+		clearSlideshowTimeout() {
+			if (this.slideshowTimeout) {
 				this.slideshowTimeout.clear()
 			}
 		}
