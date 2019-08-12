@@ -357,21 +357,22 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 
 	// put a grey round background when menu is opened
 	// or hover-focused
-	&:hover,
-	&:focus,
-	&:active,
+	&--single:hover,
+	&--single:focus,
+	&--single:active,
+	&__menutoggle:hover,
 	&__menutoggle:focus,
-	&__menutoggle:active,
-	&.action-item--open {
+	&__menutoggle:active{
 		border-radius: $clickable-area / 2;
 		// good looking on dark AND white bg
 		background-color: $icon-focus-bg !important; // override default server
-		&,
-		.action-item__menutoggle {
-			opacity: $opacity_full;
-			border-radius: $clickable-area / 2;
-			background-color: $action-background-hover;
-		}
+		opacity: $opacity_full;
+	}
+
+	&.action-item--open .action-item__menutoggle {
+		opacity: $opacity_full;
+		border-radius: $clickable-area / 2;
+		background-color: $action-background-hover;
 	}
 
 	// icons
