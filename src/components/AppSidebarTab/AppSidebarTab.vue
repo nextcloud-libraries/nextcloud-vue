@@ -48,6 +48,11 @@ export default {
 			type: String,
 			default: '',
 			required: true
+		},
+		order: {
+			type: Number,
+			default: 0,
+			required: false
 		}
 	},
 
