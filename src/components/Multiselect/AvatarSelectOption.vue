@@ -69,9 +69,9 @@ export default {
 			class="option__avatar" />
 		<div class="option__desc">
 			<span class="option__desc--lineone"
-				v-html="highlightPhrase(escapedDisplayName)" />
+				v-html="highlightedDisplayName" />
 			<span v-if="desc !== ''" class="option__desc--linetwo"
-				v-html="highlightPhrase(escapedDesc)" />
+				v-html="highlightedDesc" />
 		</div>
 		<span v-if="icon !== ''" class="icon option__icon" :class="icon" />
 	</span>
@@ -80,12 +80,14 @@ export default {
 <script>
 import escapeHtml from 'escape-html'
 import Avatar from 'Components/Avatar'
+import highlightText from 'Mixins/highlightText'
 
 export default {
 	name: 'AvatarSelectOption',
 	components: {
 		Avatar
 	},
+	mixins: [highlightText],
 	props: {
 		/**
 		 * Secondary optional line
@@ -121,25 +123,19 @@ export default {
 		isNoUser: {
 			type: Boolean,
 			default: false
+		},
+
+		search: {
+			type: String,
+			default: ''
 		}
 	},
 	computed: {
-		search() {
-			return this.$parent.search
+		highlightedDisplayName() {
+			return this.highlightText(escapeHtml(this.displayName), this.search)
 		},
-		escapedDisplayName() {
-			return escapeHtml(this.displayName)
-		},
-		escapedDesc() {
-			return escapeHtml(this.desc)
-		}
-
-	},
-
-	methods: {
-		highlightPhrase(text) {
-			if (!this.search.length) return text
-			return text.replace(new RegExp(this.search, 'gi'), `<strong>${this.search}</strong>`)
+		highlightedDesc() {
+			return this.highlightText(escapeHtml(this.desc), this.search)
 		}
 	}
 }
@@ -165,9 +161,6 @@ export default {
 		min-width: 0;
 		&--lineone {
 			color: var(--color-text-light);
-			&--highlight {
-				font-weight: 600;
-			}
 		}
 		&--linetwo {
 			opacity: $opacity_normal;
