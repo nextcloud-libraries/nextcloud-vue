@@ -45,6 +45,9 @@ export default {
 			if (this.label) {
 				return this.option[this.label]
 			}
+			if (this.option.isTag) {
+				return this.option.label
+			}
 			return this.option
 		},
 		needsTruncate() {
