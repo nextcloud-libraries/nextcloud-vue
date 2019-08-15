@@ -42,10 +42,7 @@ export default {
 	},
 	computed: {
 		name() {
-			if (this.label) {
-				return this.option[this.label]
-			}
-			return this.option
+			return this.$parent.getOptionLabel(this.option)
 		},
 		needsTruncate() {
 			return this.name && this.name.length >= 10
