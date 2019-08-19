@@ -49,7 +49,8 @@ module.exports = {
 		// es6 import/export and require
 		'node/no-unpublished-require': ['off'],
 		'node/no-unsupported-features/es-syntax': ['off'],
-		// kebab case components for vuejs
+		// PascalCase components names for vuejs
+		// https://vuejs.org/v2/style-guide/#Single-file-component-filename-casing-strongly-recommended
 		'vue/component-name-in-template-casing': ['error', 'PascalCase'],
 		// force name
 		'vue/match-component-file-name': ['error', {
