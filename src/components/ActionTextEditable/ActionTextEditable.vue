@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Marco Ambrosini <marcoambrosini@pm.me>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -34,7 +35,7 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 </docs>
 
 <template>
-	<li>
+	<li :class="{ 'action--disabled': disabled }">
 		<span class="action-text-editable">
 			<!-- icon -->
 			<span :class="[isIconUrl ? 'action-text-editable__icon--url' : icon]"
@@ -53,7 +54,7 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 
 				<textarea :disabled="disabled" :value="value"
 					v-bind="$attrs"
-					class="action-text-editable__textarea focusable"
+					:class="['action-text-editable__textarea',{ focusable: isFocusable }]"
 					@input="onInput" />
 
 				<!-- allow the custom font to inject a ::before
@@ -83,7 +84,7 @@ export default {
 			validator: id => id.trim() !== ''
 		},
 		/**
-		 * disabled state of the checkbox element
+		 * disabled state of the text area
 		 */
 		disabled: {
 			type: Boolean,
@@ -95,6 +96,15 @@ export default {
 		value: {
 			type: String,
 			default: ''
+		}
+	},
+
+	computed: {
+		/**
+		* determines if the action is focusable
+		*/
+		isFocusable: function() {
+			return !this.disabled
 		}
 	},
 
@@ -134,6 +144,7 @@ export default {
 @import '~Assets/inputs';
 @import '~Assets/action';
 @include action-active;
+@include action--disabled;
 
 $input-margin: 4px;
 

@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Marco Ambrosini <marcoambrosini@pm.me>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -21,10 +22,10 @@
   -->
 
 <template>
-	<li>
+	<li :class="{ 'action--disabled': disabled }">
 		<router-link :to="to"
 			:exact="exact"
-			class="action-router focusable"
+			:class="[ 'action-router', { focusable : isFocusable }]"
 			rel="noreferrer noopener">
 			<!-- icon -->
 			<span :class="[isIconUrl ? 'action-router__icon--url' : icon]"
@@ -80,6 +81,21 @@ export default {
 		exact: {
 			type: Boolean,
 			default: false
+		},
+		/**
+		 * Disabled state of the router
+		 */
+		disabled: {
+			type: Boolean,
+			default: false
+		}
+	},
+	computed: {
+		/**
+		* determines if the action is focusable
+		*/
+		isFocusable: function() {
+			return !this.disabled
 		}
 	}
 }
@@ -89,4 +105,6 @@ export default {
 @import '~Assets/action';
 @include action-active;
 @include action-item('router');
+@include action--disabled;
+
 </style>
