@@ -106,12 +106,12 @@ Please see the [AvatarSelectOption](#AvatarSelectOption) component
 			<!-- Avatar display select slot override.
 				You CANNOT use this scope, we will replace it by this -->
 			<AvatarSelectOption v-if="userSelect && !$scopedSlots['option']"
-				v-bind="scope.option" />
+				v-bind="scope.option" :search="scope.search" />
 
 			<!-- Ellipsis in the middle if no option slot
 				is defined in the parent -->
 			<EllipsisedOption v-else-if="!$scopedSlots['option']"
-				:option="scope.option" :label="label" />
+				:option="scope.option" :search="scope.search" :label="label" />
 
 			<!-- Passing the singleLabel slot -->
 			<slot v-else name="option" v-bind="scope" />

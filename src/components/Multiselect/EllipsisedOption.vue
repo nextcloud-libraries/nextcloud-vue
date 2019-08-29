@@ -22,13 +22,19 @@
 
 <template>
 	<div class="name-parts" :title="name">
-		<span class="name-parts__first">{{ part1 }}</span>
-		<span v-if="part2" class="name-parts__last">{{ part2 }}</span>
+		<span class="name-parts__first" v-html="highlightedPart1" />
+		<span v-if="part2" class="name-parts__last" v-html="highlightedPart2" />
 	</div>
 </template>
 <script>
+import escapeHtml from 'escape-html'
+import highlightText from 'Mixins/highlightText'
+
 export default {
 	name: 'EllipsisedOption',
+
+	mixins: [highlightText],
+
 	props: {
 		option: {
 			type: [String, Object],
@@ -38,8 +44,13 @@ export default {
 		label: {
 			type: String,
 			default: ''
+		},
+		search: {
+			type: String,
+			default: ''
 		}
 	},
+
 	computed: {
 		name() {
 			return this.$parent.getOptionLabel(this.option)
@@ -61,8 +72,13 @@ export default {
 				return this.name.substr(this.name.length - split)
 			}
 			return ''
+		},
+		highlightedPart1() {
+			return this.highlightText(escapeHtml(this.part1), this.search)
+		},
+		highlightedPart2() {
+			return this.highlightText(escapeHtml(this.part2), this.search)
 		}
-
 	}
 }
 </script>
@@ -78,6 +94,9 @@ export default {
 	&__last {
 		// prevent whitespace from being trimmed
 		white-space: pre;
+		strong {
+			font-weight: bold;
+		}
 	}
 }
 </style>
