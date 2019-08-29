@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Marco Ambrosini <marcoambrosini@pm.me>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -34,11 +35,12 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 </docs>
 
 <template>
-	<li>
-		<span class="action-checkbox" :class="{'action-checkbox--disabled': disabled}">
+	<li :class="{ 'action--disabled': disabled }">
+		<span class="action-checkbox">
 			<input :id="id" ref="checkbox"
 				:disabled="disabled" :checked="checked" :value="value"
-				type="checkbox" class="focusable checkbox action-checkbox__checkbox"
+				:class="{ focusable: isFocusable }"
+				type="checkbox" class="checkbox action-checkbox__checkbox"
 				@keydown.enter.exact.prevent="checkInput" @change="onChange">
 			<label ref="label" :for="id" class="action-checkbox__label">{{ text }}</label>
 
@@ -92,6 +94,15 @@ export default {
 		}
 	},
 
+	computed: {
+		/**
+		 * determines if the action is focusable
+		 */
+		isFocusable: function() {
+			return !this.disabled
+		}
+	},
+
 	methods: {
 		checkInput(event) {
 			// by clicking we also trigger the change event
@@ -131,6 +142,7 @@ export default {
 <style lang="scss" scoped>
 @import '~Assets/action';
 @include action-active;
+@include action--disabled;
 
 .action-checkbox {
 	display: flex;

@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Marco Ambrosini <marcoambrosini@pm.me>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -35,8 +36,9 @@ All undocumented attributes will be bound to the input or the datepicker. e.g. `
 </docs>
 
 <template>
-	<li>
-		<span :class="{ 'action-input--picker': isDatePickerType }" class="action-input">
+	<li :class="{ 'action--disabled': disabled }">
+		<span :class="{ 'action-input--picker': isDatePickerType , 'action-input-picker--disabled': disabled}"
+			class="action-input">
 			<!-- icon -->
 			<span :class="[isIconUrl ? 'action-input__icon--url' : icon]"
 				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
@@ -49,7 +51,7 @@ All undocumented attributes will be bound to the input or the datepicker. e.g. `
 				<DatetimePicker v-if="isDatePickerType"
 					:value="value" :placeholder="text"
 					:disabled="disabled" :type="isDatePickerType"
-					:input-class="['mx-input', 'focusable']"
+					:input-class="['mx-input', { focusable: isFocusable }]"
 					class="action-input__picker"
 					v-bind="$attrs"
 					@input="onInput" @change="onChange" />
@@ -60,7 +62,8 @@ All undocumented attributes will be bound to the input or the datepicker. e.g. `
 					<input :type="type" :value="value"
 						:placeholder="text" :disabled="disabled"
 						v-bind="$attrs"
-						class="action-input__input focusable"
+						:class="{ focusable: isFocusable }"
+						class="action-input__input"
 						@input="onInput" @change="onChange">
 					<!-- allow the custom font to inject a ::before
 						not possible on input[type=submit] -->
@@ -148,6 +151,12 @@ export default {
 				return 'datetime'
 			}
 			return false
+		},
+		/**
+		 * determines if the action is focusable
+		 */
+		isFocusable: function() {
+			return !this.disabled
 		}
 	},
 
@@ -195,6 +204,7 @@ export default {
 @import '~Assets/inputs';
 @import '~Assets/action';
 @include action-active;
+@include action--disabled;
 
 $input-margin: 4px;
 

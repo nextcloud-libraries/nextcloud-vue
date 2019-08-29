@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Marco Ambrosini <marcoambrosini@pm.me>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -41,8 +42,9 @@ If you're using a long text you can specify a title
 </docs>
 
 <template>
-	<li>
-		<button class="action-button focusable" :disabled="disabled" @click="onClick">
+	<li :class="{ 'action--disabled': disabled }">
+		<button class="action-button"
+			:class="{ focusable: isFocusable }" @click="onClick">
 			<!-- icon -->
 			<span :class="[isIconUrl ? 'action-button__icon--url' : icon]"
 				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
@@ -93,6 +95,14 @@ export default {
 			type: Boolean,
 			default: false
 		}
+	},
+	computed: {
+		/**
+		 * determines if the action is focusable
+		 */
+		isFocusable: function() {
+			return !this.disabled
+		}
 	}
 }
 </script>
@@ -100,5 +110,6 @@ export default {
 <style lang="scss" scoped>
 @import '~Assets/action';
 @include action-active;
+@include action--disabled;
 @include action-item('button');
 </style>

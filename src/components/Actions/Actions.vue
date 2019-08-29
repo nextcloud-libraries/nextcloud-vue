@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Marco Ambrosini <marcoambrosini@pm.me
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -110,6 +111,8 @@ const allowedChildren = [
 	'ActionText',
 	'ActionTextEditable'
 ]
+
+const focusableSelector = '.focusable'
 
 /**
  * The Actions component can be used to display one ore more actions.
@@ -283,9 +286,9 @@ export default {
 
 			const menuItem = event.target.closest('li')
 			if (menuItem) {
-				const focusableItem = menuItem.querySelector('.focusable:not(:disabled)')
+				const focusableItem = menuItem.querySelector(focusableSelector)
 				if (focusableItem) {
-					const focusList = this.$refs.menu.querySelectorAll('.focusable:not(:disabled)')
+					const focusList = this.$refs.menu.querySelectorAll(focusableSelector)
 					const focusIndex = Array.prototype.indexOf.call(focusList, focusableItem)
 					if (focusIndex > -1) {
 						this.focusIndex = focusIndex
@@ -302,7 +305,7 @@ export default {
 		},
 		focusAction() {
 			// TODO: have a global disabled state for non input elements
-			const focusElement = this.$refs.menu.querySelectorAll('.focusable:not(:disabled)')[this.focusIndex]
+			const focusElement = this.$refs.menu.querySelectorAll(focusableSelector)[this.focusIndex]
 			if (focusElement) {
 				const liMenuParent = focusElement.closest('li')
 				focusElement.focus()
@@ -317,7 +320,7 @@ export default {
 			this.focusAction()
 		},
 		focusNextAction() {
-			this.focusIndex = Math.min(this.focusIndex + 1, this.$el.querySelectorAll('.focusable:not(:disabled)').length - 1)
+			this.focusIndex = Math.min(this.focusIndex + 1, this.$el.querySelectorAll(focusableSelector).length - 1)
 			this.focusAction()
 		},
 		focusFirstAction() {
@@ -325,7 +328,7 @@ export default {
 			this.focusAction()
 		},
 		focusLastAction() {
-			this.focusIndex = this.$el.querySelectorAll('.focusable:not(:disabled)').length - 1
+			this.focusIndex = this.$el.querySelectorAll(focusableSelector).length - 1
 			this.focusAction()
 		},
 

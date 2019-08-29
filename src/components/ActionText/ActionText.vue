@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Marco Ambrosini <marcoambrosini@pm.me>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -60,17 +61,8 @@ import ActionTextMixin from 'Mixins/actionText'
 export default {
 	name: 'ActionText',
 
-	mixins: [ActionTextMixin],
+	mixins: [ActionTextMixin]
 
-	props: {
-		/**
-		 * disabled state of the checkbox element
-		 */
-		disabled: {
-			type: Boolean,
-			default: false
-		}
-	}
 }
 </script>
 
@@ -78,6 +70,7 @@ export default {
 @import '~Assets/action';
 @include action-active;
 @include action-item('text');
+@include action--disabled;
 
 .action-text {
 	&,

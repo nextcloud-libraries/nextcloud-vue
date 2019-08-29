@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Marco Ambrosini <marcoambrosini@pm.me>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -31,12 +32,12 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 </docs>
 
 <template>
-	<li>
+	<li :class="{ 'action--disabled': disabled }">
 		<a
 			:download="download"
 			:href="href"
 			:target="target"
-			class="action-link focusable"
+			:class="['action-link', { focusable: isFocusable }]"
 			rel="noreferrer noopener"
 			@click="onClick">
 
@@ -112,6 +113,21 @@ export default {
 			validator: value => {
 				return ['_blank', '_self', '_parent', '_top'].indexOf(value) > -1
 			}
+		},
+		/**
+		 * Disabled state of the link
+		 */
+		disabled: {
+			type: Boolean,
+			default: false
+		}
+	},
+	computed: {
+		/**
+		* determines if the action is focusable
+		*/
+		isFocusable: function() {
+			return !this.disabled
 		}
 	}
 }
@@ -121,4 +137,6 @@ export default {
 @import '~Assets/action';
 @include action-active;
 @include action-item('link');
+@include action--disabled;
+
 </style>
