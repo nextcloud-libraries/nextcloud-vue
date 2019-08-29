@@ -82,14 +82,6 @@ export default {
 			type: Boolean,
 			default: false
 		}
-	},
-	computed: {
-		/**
-		* determines if the action is focusable
-		*/
-		isFocusable: function() {
-			return !this.disabled
-		}
 	}
 }
 </script>
