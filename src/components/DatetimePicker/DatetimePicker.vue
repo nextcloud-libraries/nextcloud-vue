@@ -76,22 +76,24 @@ export default {
 
 	methods: {
 		handleSelectYear(year) {
-			if (this.value) {
+			const value = this.$refs.datepicker.currentValue
+			if (value) {
 				try {
-					const value = new Date(new Date(this.value).setFullYear(year))
-					this.$refs.datepicker.selectDate(value)
+					const date = new Date(new Date(value).setFullYear(year))
+					this.$refs.datepicker.selectDate(date)
 				} catch (error) {
-					console.error('Invalid value', this.value, year)
+					console.error('Invalid value', value, year)
 				}
 			}
 		},
 		handleSelectMonth(month) {
-			if (this.value) {
+			const value = this.$refs.datepicker.currentValue
+			if (value) {
 				try {
-					const value = new Date(new Date(this.value).setMonth(month))
-					this.$refs.datepicker.selectDate(value)
+					const date = new Date(new Date(value).setMonth(month))
+					this.$refs.datepicker.selectDate(date)
 				} catch (error) {
-					console.error('Invalid value', this.value, month)
+					console.error('Invalid value', value, month)
 				}
 			}
 		}
