@@ -114,14 +114,6 @@ export default {
 				return ['_blank', '_self', '_parent', '_top'].indexOf(value) > -1
 			}
 		}
-	},
-	computed: {
-		/**
-		* determines if the action is focusable
-		*/
-		isFocusable: function() {
-			return !this.disabled
-		}
 	}
 }
 </script>
