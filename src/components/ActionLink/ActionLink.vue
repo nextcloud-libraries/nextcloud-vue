@@ -37,7 +37,7 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 			:download="download"
 			:href="href"
 			:target="target"
-			:class="['action-link', { focusable: isFocusable }]"
+			class="action-link focusable"
 			rel="noreferrer noopener"
 			@click="onClick">
 
@@ -113,13 +113,6 @@ export default {
 			validator: value => {
 				return ['_blank', '_self', '_parent', '_top'].indexOf(value) > -1
 			}
-		},
-		/**
-		 * Disabled state of the link
-		 */
-		disabled: {
-			type: Boolean,
-			default: false
 		}
 	},
 	computed: {
