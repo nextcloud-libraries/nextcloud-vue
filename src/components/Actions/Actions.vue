@@ -320,7 +320,7 @@ export default {
 			this.focusAction()
 		},
 		focusNextAction() {
-			this.focusIndex = Math.min(this.focusIndex + 1, this.$el.querySelectorAll(focusableSelector).length - 1)
+			this.focusIndex = Math.min(this.focusIndex + 1, this.$refs.menu.querySelectorAll(focusableSelector).length - 1)
 			this.focusAction()
 		},
 		focusFirstAction() {
