@@ -28,6 +28,7 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 	<Actions>
 		<ActionButton icon="icon-delete" @click="alert('Delete')">Delete</ActionButton>
 		<ActionButton icon="icon-delete" @click="alert('Delete')">Delete</ActionButton>
+		<ActionButton icon="icon-delete" :disabled="true" @click="alert('Disabled')">Disabled button</ActionButton>
 	</Actions>
 ```
 

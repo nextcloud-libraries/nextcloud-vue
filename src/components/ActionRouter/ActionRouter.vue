@@ -25,7 +25,7 @@
 	<li :class="{ 'action--disabled': disabled }">
 		<router-link :to="to"
 			:exact="exact"
-			:class="[ 'action-router', { focusable : isFocusable }]"
+			class="action-router focusable"
 			rel="noreferrer noopener">
 			<!-- icon -->
 			<span :class="[isIconUrl ? 'action-router__icon--url' : icon]"
@@ -79,13 +79,6 @@ export default {
 		 * router-link exact prop [https://router.vuejs.org/api/#exact](https://router.vuejs.org/api/#exact)
 		 */
 		exact: {
-			type: Boolean,
-			default: false
-		},
-		/**
-		 * Disabled state of the router
-		 */
-		disabled: {
 			type: Boolean,
 			default: false
 		}
