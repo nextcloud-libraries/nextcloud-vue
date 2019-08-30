@@ -22,7 +22,7 @@
   -->
 
 <template>
-	<li :class="{ 'action--disabled': disabled }">
+	<li>
 		<router-link :to="to"
 			:exact="exact"
 			class="action-router focusable"
