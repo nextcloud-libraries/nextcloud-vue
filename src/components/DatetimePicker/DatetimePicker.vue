@@ -20,6 +20,25 @@
   -
   -->
 
+<docs>
+> We're wrapping the awesome datepicker library here https://github.com/mengxiong10/vue2-datepicker
+> Please check there for all the available options.
+
+### Defaults
+- cleareable: false
+- minute-step: 10
+
+### Example
+```vue
+	<DatetimePicker
+		:value="new Date()"
+		type="datetime"
+		@update:value="alert('Value updated')"
+		@change="alert('Date changed')" />
+```
+
+</docs>
+
 <template>
 	<DatePicker
 		ref="datepicker"
