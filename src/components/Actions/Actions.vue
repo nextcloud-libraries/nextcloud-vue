@@ -76,7 +76,8 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 			:aria-expanded="opened"
 			@click.prevent="toggleMenu"
 			@keydown.space.exact.prevent="toggleMenu" />
-		<div ref="menu"
+		<div v-if="opened"
+			ref="menu"
 			:class="[`menu-${menuAlign}`, { 'open': opened }]"
 			:style="{marginRight: `${ offsetX }px`}"
 			class="action-item__menu"
@@ -98,7 +99,7 @@ import ClickOutside from 'vue-click-outside'
 import Tooltip from 'Directives/Tooltip'
 import GenRandomId from 'Utils/GenRandomId'
 import IsOutOfViewport from 'Utils/IsOutOfViewport'
-import ValidateChildren from 'Utils/ValidateChildren'
+import ValidateSlot from 'Utils/ValidateSlot'
 
 // This is the list of ALL the ALLOWED components
 // in the default SLOT
@@ -215,7 +216,7 @@ export default {
 		this.initActions()
 
 		// filter invalid menu items
-		ValidateChildren(this, allowedChildren)
+		ValidateSlot(this.$slots.default, allowedChildren, this)
 	},
 	mounted() {
 		// prevent click outside event with popupItem.
@@ -225,7 +226,7 @@ export default {
 		// update children & actions
 		// no need to init actions again since we bound it to $children
 		// and the array is now reactive
-		ValidateChildren(this, allowedChildren)
+		ValidateSlot(this.$slots.default, allowedChildren, this)
 	},
 
 	methods: {
@@ -244,6 +245,7 @@ export default {
 				 */
 				this.$emit('open')
 			}
+
 			/**
 			 * Event emitted when the popover menu open state is changed
 			 * @type {bool}
@@ -251,18 +253,28 @@ export default {
 			this.$emit('update:open', this.opened)
 		},
 		closeMenu() {
-			this.offsetX = 0
+			/**
+			 * only emit events if it was opened
+			 * or else any click on the page will trigger
+			 * the click outside directive!
+			 */
+			if (this.opened) {
+				/**
+				 * Event emitted when the popover menu open state is changed
+				 * @type {bool}
+				 */
+				this.$emit('update:open', false)
+				/**
+				 * Event emitted when the popover menu is closed
+				 * @type {null}
+				 */
+				this.$emit('close')
+
+			}
+
+			// close everything
 			this.opened = false
-			/**
-			 * Event emitted when the popover menu open state is changed
-			 * @type {bool}
-			 */
-			this.$emit('update:open', this.opened)
-			/**
-			 * Event emitted when the popover menu is closed
-			 * @type {null}
-			 */
-			this.$emit('close')
+			this.offsetX = 0
 		},
 		onOpen() {
 			this.offsetX = 0
@@ -342,7 +354,7 @@ export default {
 		},
 		initActions() {
 			// filter out invalid slots
-			this.actions = this.$children || []
+			this.actions = this.$slots.default.filter(node => node && node.componentOptions) || []
 		}
 	}
 }
