@@ -46,9 +46,9 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
 	<element v-if="isValidSingleAction"
-		v-tooltip.auto="firstAction.text"
+		v-tooltip.auto="getVNodeProp(firstAction, 'text')"
 		v-bind="firstActionElement"
-		:class="firstAction.icon" class="action-item action-item--single"
+		:class="getVNodeProp(firstAction, 'icon')" class="action-item action-item--single"
 		rel="noreferrer noopener"
 		@[firstActionEvent]="execFirstAction">
 		<!-- fake slot to gather main action -->
@@ -169,33 +169,33 @@ export default {
 			return this.actions[0]
 		},
 		firstActionElement() {
-			switch (this.firstAction.$options.name) {
-			case 'ActionLink':
-				return {
-					is: 'a',
-					href: this.firstAction.href,
-					target: this.firstAction.target
+			if (this.firstAction && this.firstAction.componentOptions) {
+				const tag = this.firstAction.componentOptions.tag
+				if (tag === 'ActionLink') {
+					return {
+						is: 'a',
+						href: this.getVNodeProp(this.firstAction, 'href'),
+						target: this.getVNodeProp(this.firstAction, 'target')
+					}
+				} else if (tag === 'ActionRouter') {
+					return {
+						is: 'router-link',
+						to: this.getVNodeProp(this.firstAction, 'to'),
+						exact: this.getVNodeProp(this.firstAction, 'exact')
+					}
 				}
-
-			case 'ActionRouter':
-				return {
-					is: 'router-link',
-					to: this.firstAction.to,
-					exact: this.firstAction.exact
-				}
-
-			default:
-				return {
-					is: 'button'
-				}
+			}
+			return {
+				is: 'button'
 			}
 		},
 
 		// return the event to bind if the firstAction have an action
 		firstActionEvent() {
 			return this.firstAction
-				&& this.firstAction.$listeners
-				&& this.firstAction.$listeners.click
+				&& this.firstAction.componentOptions
+				&& this.firstAction.componentOptions.listeners
+				&& this.firstAction.componentOptions.listeners.click
 				? 'click'
 				: null
 		}
@@ -344,11 +344,24 @@ export default {
 			this.focusAction()
 		},
 
+		/**
+		 * Get a vNode prop
+		 * @param {Object} vnode the vnode
+		 * @param {string} prop the prop
+		 * @returns {any} the prop data if any
+		 */
+		getVNodeProp(vnode, prop) {
+			return vnode.componentOptions.propsData[prop]
+		},
+
 		// ACTIONS MANAGEMENT
 		// exec the first action and prevent default
 		execFirstAction(event) {
-			if (this.firstAction.$listeners && this.firstAction.$listeners.click) {
-				this.firstAction.$listeners.click(event)
+			if (this.firstAction
+				&& this.firstAction.componentOptions
+				&& this.firstAction.componentOptions.listeners
+				&& this.firstAction.componentOptions.listeners.click) {
+				this.firstAction.componentOptions.listeners.click(event)
 				event.preventDefault()
 			}
 		},
