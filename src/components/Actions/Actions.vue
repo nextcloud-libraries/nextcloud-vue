@@ -367,7 +367,7 @@ export default {
 		},
 		initActions() {
 			// filter out invalid slots
-			this.actions = this.$slots.default.filter(node => node && node.componentOptions) || []
+			this.actions = (this.$slots.default || []).filter(node => node && node.componentOptions)
 		}
 	}
 }
