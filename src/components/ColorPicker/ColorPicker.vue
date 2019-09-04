@@ -24,17 +24,15 @@
 </docs>
 
 <template>
-	<div class='color-picker'>
-		<div v-if='!advanced' class="color-picker-simple">
+	<div class="color-picker">
+		<div v-if="!advanced" class="color-picker-simple" />
 
-		</div>
-
-		<Chrome v-else class="color-picker-advanced" v-model="color"
-			:disableAlpha='true'
-			:disableFields='true' />
+		<Chrome v-else v-model="color" class="color-picker-advanced"
+			:disable-alpha="true"
+			:disable-fields="true" />
 		<div class="color-picker-navigation">
-			<button class="color-picker-navigation-button back"><label>prev</label></button>
-			<button class="color-picker-navigation-button chosecolor"><label>confirm</label></button>
+			<button class="color-picker-navigation-button back" />
+			<button class="color-picker-navigation-button confirm" />
 		</div>
 	</div>
 </template>
@@ -59,6 +57,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+<<<<<<< HEAD
+@import '~Fonts/scss/iconfont-vue';
+
+=======
+>>>>>>> c2df97a... fixup! Add checkmark to iconfont
+@import '~Fonts/scss/iconfont-vue';
 
 .color-picker {
 	width: 255px;
@@ -74,8 +78,17 @@ export default {
 		margin: 15px 0 15px 0;
 		display: flex;
 		flex-direction: row;
+		justify-content: space-between;
 		&-button {
 			justify-self: flex-end;
+			&.back{
+				@include iconfont('arrow-left');
+			}
+			&.confirm {
+				@include iconfont('checkmark');
+				color: black;
+				stroke: 2px;
+			}
 		}
 	}
 
