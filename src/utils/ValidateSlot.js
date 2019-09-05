@@ -33,8 +33,9 @@ const ValidateSlot = (slots, allowed, vm) => {
 		return
 	}
 	slots.forEach((node, index) => {
-		const isHtmlElement = !node.componentOptions && node.tag
-		const isVueComponent = node.componentOptions && typeof node.componentOptions.tag === 'string'
+		// also check against allowed to avoid uninitiated vnodes with no componentOptions
+		const isHtmlElement = !node.componentOptions && node.tag && allowed.indexOf(node.tag) === -1
+		const isVueComponent = !!node.componentOptions && typeof node.componentOptions.tag === 'string'
 		const isForbiddenComponent = isVueComponent && allowed.indexOf(node.componentOptions.tag) === -1
 
 		// if not a vue component or component not in allowed tags
