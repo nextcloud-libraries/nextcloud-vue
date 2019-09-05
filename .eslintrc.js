@@ -21,10 +21,7 @@ module.exports = {
 		'plugin:nextcloud/recommended',
 		'standard'
 	],
-	plugins: [
-		'node',
-		'vue',
-	],
+	plugins: ['node', 'vue'],
 	rules: {
 		// space before function ()
 		'space-before-function-paren': ['error', 'never'],
@@ -36,7 +33,7 @@ module.exports = {
 		'brace-style': 'error',
 		// tabs only
 		indent: ['error', 'tab'],
-		'no-tabs': 0,
+		'no-tabs': ['off'],
 		'vue/html-indent': ['error', 'tab'],
 		// only debug console
 		'no-console': ['error', { allow: ['error', 'warn', 'debug'] }],
@@ -53,10 +50,13 @@ module.exports = {
 		// https://vuejs.org/v2/style-guide/#Single-file-component-filename-casing-strongly-recommended
 		'vue/component-name-in-template-casing': ['error', 'PascalCase'],
 		// force name
-		'vue/match-component-file-name': ['error', {
-			'extensions': ['jsx', 'vue', 'js'],
-			'shouldMatchCase': true
-		 }],
+		'vue/match-component-file-name': [
+			'error',
+			{
+				extensions: ['jsx', 'vue', 'js'],
+				shouldMatchCase: true
+			}
+		],
 		// space before self-closing elements
 		'vue/html-closing-bracket-spacing': 'error',
 		// no ending html tag on a new line

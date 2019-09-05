@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Marco Ambrosini <marcoambrosini@pm.me>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -19,126 +20,328 @@
   - along with this program. If not, see <http://www.gnu.org/licenses/>.
   -
   -->
+<docs>
+
+# Usage
+
+### Simple element
+
+* With an icon:
+
+```
+<AppNavigationItem title="My title" icon="icon-category-enabled">
+
+```
+* With a spinning loader instead of the icon:
+
+<AppNavigationItem title="Loading Item" :loading="true" />
+
+### Element with actions
+Wrap the children in a template. If you have more than 2 actions, a popover menu and a menu
+button will be automatically created.
+
+```
+<AppNavigationItem title="Item with actions" icon="icon-category-enabled">
+	<template slot="actions">
+		<ActionButton icon="icon-edit" @click="alert('Edit')">
+			Edit
+		</ActionButton>
+		<ActionButton icon="icon-delete" @click="alert('Delete')">
+			Delete
+		</ActionButton>
+		<ActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
+	</template>
+</AppNavigationItem>
+```
+
+### Element with counter
+Just nest the counter into <AppNavigationItem> and add `slot="counter"` to it.
+
+```
+<AppNavigationItem title="Item with counter" icon="icon-folder">
+	<AppNavigationCounter slot="counter">
+		99+
+	</AppNavigationCounter>
+</AppNavigationItem>
+```
+
+### Element with children
+
+Wrap the children in a template with the `slot` property and use the prop `allowCollapse` to choose wether to allow or
+prevent the user from collapsing the items.
+
+```
+<AppNavigationItem title="Item with children" :allowCollapse="true">
+	<template>
+		<AppNavigationItem title="AppNavigationItemChild1" />
+		<AppNavigationItem title="AppNavigationItemChild2" />
+		<AppNavigationItem title="AppNavigationItemChild3"  />
+		<AppNavigationItem title="AppNavigationItemChild4"  />
+	</template>
+</AppNavigationItem>
+```
+### Editable element
+Add the prop `:editable=true` and an edit placeholder if you need it. By devault
+the placeholder is the previous title of the element.
+
+```
+<AppNavigationItem title="Editable Item" :editable="true"
+	editPlaceholder="your_placeholder_here" />
+```
+### Undo element
+Just set the `undo` and `title` props.
+
+```
+<AppNavigationItem :undo="true" title="Are you sure you want to delete?"  />
+
+```
+### Pinned element
+Just set the `pinned` prop.
+```
+<AppNavigationItem title="Pinned item" :pinned="true" />
+```
+
+</docs>
+
 <template>
-	<!-- Navigation item -->
-	<nav-element :id="item.id" v-bind="navElement(item)"
-		:title="item.title" :class="[{'icon-loading-small': item.loading, 'open': opened, 'collapsible': collapsible }, item.classes]">
-		<!-- Bullet -->
-		<div v-if="item.bullet" :style="{ backgroundColor: item.bullet }" class="app-navigation-entry-bullet" />
+	<!-- Navigation item, can be either an <li> or a <router-link> depending on the props -->
+	<nav-element v-bind="navElement"
+		:title="title"
+		:class="{
+			'app-navigation-entry--no-icon': !isIconShown,
+			'app-navigation-entry--opened': opened,
+			'app-navigation-entry--pinned': pinned,
+			'app-navigation-entry--editing' : editing,
+			'app-navigation-entry--deleted': undo,
+			'app-navigation-entry--collapsible': collapsible
+		}"
+		class="app-navigation-entry">
+		<!-- Icon and title -->
+		<a v-if="!undo && !editing"
+			class="app-navigation-entry-link" href="#"
+			@click="onClick">
 
-		<button v-if="collapsible" class="collapse" @click.prevent.stop="toggleCollapse" />
-
-		<a :class="item.icon" :href="(item.href) ? item.href : '#'"
-			@click="callPreventStop(simpleAction, $event)">
-			<img v-if="item.iconUrl" :alt="item.text" :src="item.iconUrl">
-			{{ item.text }}
+			<!-- icon if not collapsible -->
+			<!-- never show the icon over the collapsible if mobile -->
+			<div :class="{ 'icon-loading-small': loading, [icon]: icon && isIconShown }"
+				class="app-navigation-entry-icon">
+				<slot v-if="!loading" v-show="isIconShown" name="icon" />
+			</div>
+			<span class="app-navigation-entry__title">{{ title }}</span>
 		</a>
 
-		<!-- Popover, counter and button(s) -->
-		<div v-if="item.utils" class="app-navigation-entry-utils">
-			<ul>
-				<!-- counter -->
-				<AppNavigationCounter v-if="item.utils.counter" :highlighted="item.utils.counter_highlighted === true">
-					{{ item.utils.counter }}
-				</AppNavigationCounter>
-
-				<!-- first action if only one action -->
-				<li v-if="item.utils.actions && item.utils.actions.length === 1"
-					class="app-navigation-entry-utils-menu-button">
-					<button :class="item.utils.actions[0].icon" :title="item.utils.actions[0].text" @click="item.utils.actions[0].action" />
-				</li>
-
-				<!-- menu button if at least two actions -->
-				<li v-else-if="item.utils.actions && item.utils.actions.length > 1"
-					class="app-navigation-entry-utils-menu-button">
-					<button v-click-outside="hideMenu" @click="toggleMenu" />
-				</li>
-			</ul>
-		</div>
-
-		<!-- menu if at least two actions -->
-		<div v-if="item.utils && item.utils.actions && item.utils.actions.length > 1"
-			:class="{ 'open': openedMenu }" class="app-navigation-entry-menu">
-			<PopoverMenu :menu="item.utils.actions" />
-		</div>
-
+		<AppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
 		<!-- undo entry -->
-		<div v-if="item.undo" class="app-navigation-entry-deleted">
-			<div class="app-navigation-entry-deleted-description">
-				{{ item.undo.text }}
+		<div v-if="undo" class="app-navigation-entry__deleted">
+			<div class="app-navigation-entry__deleted-description">
+				{{ title }}
 			</div>
-			<button :title="t('settings', 'Undo')" class="app-navigation-entry-deleted-button icon-history" />
+		</div>
+
+		<!-- Counter and Actions -->
+		<div v-if="hasUtils" class="app-navigation-entry__utils">
+			<slot name="counter" />
+			<Actions menu-align="right" :open="menuOpen" @update:open="onMenuToggle">
+				<ActionButton v-if="editable && !editing" icon="icon-rename" @click="handleEdit" />
+				<ActionButton v-if="undo" icon="app-navigation-entry__deleted-button icon-history" @click="handleUndo" />
+				<slot name="actions" />
+			</Actions>
 		</div>
 
 		<!-- edit entry -->
-		<div v-if="item.edit" class="app-navigation-entry-edit">
-			<form @submit.prevent.stop="item.edit.action">
-				<input :placeholder="item.edit.text" type="text">
-				<input type="submit" value="" class="icon-confirm">
-				<input type="submit" value="" class="icon-close"
-					@click.stop.prevent="cancelEdit">
+		<div v-if="editing" class="app-navigation-entry__edit">
+			<form v-if="editing" @submit.prevent="handleRename">
+				<input v-model="newTitle" type="text" class="app-navigation-entry__edit-input"
+					:placeholder="editPlaceholder !== '' ? editPlaceholder : title">
+				<button type="submit" class="icon-confirm" />
+				<button type="submit" class="icon-close"
+					@click.stop.prevent="cancelEdit" />
 			</form>
 		</div>
 
-		<!-- if the item has children, inject the component with proper data -->
-		<ul v-if="item.children">
-			<app-navigation-item v-for="(child, key) in item.children" :key="key" :item="child" />
+		<!-- Children elements -->
+		<ul v-if="canHaveChildren && hasChildren" class="app-navigation-entry__children">
+			<slot />
 		</ul>
 	</nav-element>
 </template>
 
 <script>
-import { PopoverMenu } from 'Components/PopoverMenu'
 import ClickOutside from 'vue-click-outside'
-import { AppNavigationCounter } from 'Components/AppNavigationCounter'
+import Actions from '../Actions/Actions'
+import ActionButton from '../ActionButton/ActionButton'
+import AppNavigationIconCollapsible from './AppNavigationIconCollapsible'
+import isMobile from 'Mixins/isMobile'
 
 export default {
 	name: 'AppNavigationItem',
+
 	components: {
-		PopoverMenu,
-		AppNavigationCounter
+		Actions,
+		ActionButton,
+		AppNavigationIconCollapsible
 	},
 	directives: {
 		ClickOutside
 	},
+	mixins: [isMobile],
 	props: {
-		item: {
-			type: Object,
+		/**
+		 * The title of the element.
+		 */
+		title: {
+			type: String,
 			required: true
 		},
+		/**
+		* Refers to the icon on the left, this prop accepts a class
+		* like 'icon-category-enabled'.
+		*/
+		icon: {
+			type: String,
+			default: ''
+		},
+
+		/**
+		* Displays a loading animated icon on the left of the element
+		* instead of the icon.
+		*/
+		loading: {
+			type: Boolean,
+			default: false
+		},
+		/**
+		* Passing in a route will make the root element of this
+		* component a <router-link /> that points to that route.
+		* By leaving this blank, the root element will be a <li>.
+		*/
+		to: {
+			type: [String, Object],
+			default: ''
+		},
+		/**
+		* Pass in `true` if you want the matching behaviour to
+		* be non-inclusive: https://router.vuejs.org/api/#exact
+		*/
+		exact: {
+			type: Boolean,
+			default: false
+		},
+		/**
+		* Gives the possibility to collapse the children elements into the
+		* parent element (true) or expands the cildren elements (false).		*/
+		allowCollapse: {
+			type: Boolean,
+			default: false
+		},
+		/**
+		* Makes the title of the item editable by providing an `ActionButton`
+		* component that toggles a form
+		*/
+		editable: {
+			type: Boolean,
+			default: false
+		},
+		/**
+		* Only for 'editable' items, sets placeholder text for the editing form.
+		*/
+		editPlaceholder: {
+			type: String,
+			default: ''
+		},
+		/**
+		* Pins the item to the bottom left area, above the settings. Do not
+		* place 'non-pinned' `AppnavigationItem` components below `pinned`
+		* ones.
+		*/
+		pinned: {
+			type: Boolean,
+			default: false
+		},
+		/**
+		* Puts the item in the 'undo' state.
+		*/
+		undo: {
+			type: Boolean,
+			default: false
+		},
+		/**
+		 * The navigation collapsible state (synced)
+		 */
 		open: {
 			type: Boolean,
 			default: false
 		},
+		/**
+		 * The actions menu open state (synced)
+		 */
 		menuOpen: {
 			type: Boolean,
 			default: false
 		}
 	},
+
 	data() {
 		return {
+			newTitle: '',
 			opened: this.open,
-			openedMenu: this.menuOpen
+			editing: false
 		}
 	},
 	computed: {
 		collapsible() {
-			return this.item.collapsible && this.item.children && this.item.children.length > 0
+			return this.allowCollapse && !!this.$slots.default
 		},
-		simpleAction() {
-			if (this.collapsible && !this.item.action) {
-				return this.toggleCollapse
+
+		// is the icon shown?
+		// we don't show it on mobile if the entry is collapsible
+		// we show the collapse toggle directly!
+		isIconShown() {
+			return !this.collapsible || (this.collapsible && !this.isMobile)
+		},
+
+		// Checks if the component is already a children of another
+		// instance of AppNavigationItem
+		canHaveChildren() {
+			if (this.$parent.$options._componentTag === 'AppNavigationItem') {
+				return false
 			} else {
-				return this.item.action
+				return true
+			}
+		},
+		hasChildren() {
+			if (this.$slots.default) {
+				return true
+			} else {
+				return false
+			}
+		},
+		hasUtils() {
+			if (this.$slots.actions || this.$slots.counter || this.editable || this.undo) {
+				return true
+			} else {
+				return false
+			}
+		},
+		// This is used to decide which outer element type to use
+		// li or router-link
+		navElement() {
+			if (this.to) {
+				return {
+					is: 'router-link',
+					tag: 'li',
+					to: this.to,
+					exact: this.exactRoute
+				}
+			}
+			return {
+				is: 'li'
 			}
 		}
 	},
 	watch: {
 		open(newVal) {
 			this.opened = newVal
-		},
-		menuOpen(newVal) {
-			this.openedMenu = newVal
 		}
 	},
 	mounted() {
@@ -146,52 +349,249 @@ export default {
 		this.popupItem = this.$el
 	},
 	methods: {
-		hideMenu() {
-			this.openedMenu = false
-			this.$emit('update:menuOpen', this.openedMenu)
+		// sync opened menu state with prop
+		onMenuToggle(state) {
+			this.$emit('update:menuOpen', state)
 		},
-		toggleMenu() {
-			this.openedMenu = !this.openedMenu
-			this.$emit('update:menuOpen', this.openedMenu)
-		},
+		// toggle the collapsible state
 		toggleCollapse() {
 			this.opened = !this.opened
 			this.$emit('update:open', this.opened)
 		},
-		callPreventStop(action, event) {
-			if (action) {
-				event.preventDefault()
-				event.stopPropagation()
-				action()
-			}
-		},
-		cancelEdit(e) {
-			// remove the editing class
-			if (Array.isArray(this.item.classes)) {
-				this.item.classes = this.item.classes.filter(item => item !== 'editing')
-			}
-			this.item.edit.reset(e)
-		},
-		// This is used to decide which outter element type to use
-		// li or router-link
-		navElement(item) {
-			if (item.router) {
-				let exact = item.router.exact
-				if (typeof item.router.exact === 'undefined') {
-					exact = true
-				}
 
-				return {
-					is: 'router-link',
-					tag: 'li',
-					to: item.router,
-					exact
-				}
-			}
-			return {
-				is: 'li'
-			}
+		// forward click event
+		onClick(event) {
+			this.$emit('click', event)
+		},
+
+		// Edition methods
+		handleEdit() {
+			this.editing = true
+		},
+		cancelEdit() {
+			// remove the editing class
+			this.editing = false
+		},
+		handleRename() {
+			this.$emit('update:title', this.newTitle)
+			this.newTitle = ''
+			this.editing = false
+		},
+
+		// Undo methods
+		handleUndo() {
+			this.$emit('undo')
 		}
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+@import '~Fonts/scss/iconfont-vue';
+
+.app-navigation-entry {
+	position: relative;
+	display: flex;
+	flex-shrink: 0;
+	flex-wrap: wrap;
+	order: 1;
+	box-sizing: border-box;
+	width: 100%;
+	min-height: $clickable-area;
+
+	a:hover,
+	a:focus,
+	a:active {
+		color: var(--color-main-text);
+		box-shadow: inset 4px 0 var(--color-primary);
+	}
+
+	/* hide deletion/collapse of subitems */
+	&.app-navigation-entry--deleted,
+	&.app-navigation-entry--collapsible:not(.app-navigation-entry--opened) {
+		> ul {
+			// NO ANIMATE because if not really hidden, we can still tab through it
+			display: none;
+		}
+	}
+
+	// Main entry link
+	.app-navigation-entry-link {
+		z-index: 100; /* above the bullet to allow click*/
+		display: flex;
+		overflow: hidden;
+		flex: 1 1 0;
+		box-sizing: border-box;
+		min-height: $clickable-area;
+		padding: 0;
+		padding-right: $icon-margin;
+		white-space: nowrap;
+		color: var(--color-text-light);
+		background-repeat: no-repeat;
+		background-position: $icon-margin center;
+		background-size: $icon-size $icon-size;
+		line-height: $clickable-area;
+
+		.app-navigation-entry-icon {
+			display: flex;
+			align-items: center;
+			flex: 0 0 $clickable-area;
+			justify-content: center;
+			width: $clickable-area;
+			height: $clickable-area;
+		}
+
+		.app-navigation-entry__title {
+			overflow: hidden;
+			max-width: 100%;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+	}
+
+	/* Second level nesting for lists */
+	.app-navigation-entry__children {
+		position: relative;
+		display: flex;
+		flex: 0 1 auto;
+		flex-direction: column;
+		width: 100%;
+
+		.app-navigation-entry {
+			display: inline-flex;
+			flex-wrap: wrap;
+			padding-left: $clickable-area;
+		}
+	}
+}
+
+/* Deleted entries */
+.app-navigation-entry__deleted {
+	display: inline-flex;
+	flex: 1 1 0;
+	padding-left: $clickable-area !important;
+	.app-navigation-entry__deleted-description {
+		position: relative;
+		overflow: hidden;
+		flex: 1 1 0;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		line-height: $clickable-area;
+	}
+}
+
+.app-navigation-entry__edit {
+	flex: 1 0 100%;
+	/* Ugly hack for overriding the main entry link */
+	/* align the input correctly with the link text
+	44px-6px padding for the input */
+	padding-left: $clickable-area - 6px !important;
+	form {
+		display: flex;
+		width: 100%;
+		.app-navigation-entry__edit-input {
+			flex: 1 1 100%;
+		}
+
+		// submit and cancel buttons
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: $clickable-area !important;
+			color: var(--color-main-text);
+			background: none;
+			font-size: 16px;
+
+			// icon hover/focus feedback
+			&::before {
+				opacity: $opacity_normal;
+			}
+			&:hover,
+			&:focus {
+				&::before {
+					opacity: $opacity_full;
+				}
+			}
+
+			&.icon-confirm {
+				@include iconfont('confirm');
+			}
+
+			&.icon-close {
+				@include iconfont('close');
+			}
+		}
+		.icon-close {
+			margin: 0;
+			border: none;
+			background-color: transparent;
+		}
+	}
+}
+
+/* Makes the icon of the collapsible element disappear
+*  When hovering on the root element */
+.app-navigation-entry--collapsible {
+	//shows the triangle button
+	.icon-collapse {
+		visibility: hidden;
+	}
+	&.app-navigation-entry--no-icon,
+	&:hover, &:focus {
+		a .app-navigation-entry-icon {
+			// hides the icon
+			visibility: hidden;
+		}
+		.icon-collapse {
+			//shows the triangle button
+			visibility: visible;
+		}
+		// prevent the icon of children elements from being hidden
+		// by the previous rule
+		.app-navigation-entry__children li a :first-child {
+			visibility: visible;
+		}
+	}
+}
+
+/* counter and actions */
+.app-navigation-entry__utils {
+	display: flex;
+	align-items: center;
+	flex: 0 1 auto;
+	// visually balance the menu so it's not
+	// stuck to the scrollbar
+	.action-item {
+		margin-right: 2px;
+	}
+}
+
+// STATES
+/* editing state */
+.app-navigation-entry--editing {
+	.app-navigation-entry-edit {
+		z-index: 250;
+		opacity: 1;
+	}
+}
+
+/* deleted state */
+.app-navigation-entry--deleted {
+	.app-navigation-entry-deleted {
+		z-index: 250;
+		transform: translateX(0);
+	}
+}
+
+/* pinned state */
+.app-navigation-entry--pinned {
+	order: 2;
+	margin-top: auto;
+	// only put a marginTop auto to the first one!
+	~ .app-navigation-entry--pinned {
+		margin-top: 0;
+	}
+}
+
+</style>

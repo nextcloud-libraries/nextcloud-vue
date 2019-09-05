@@ -276,13 +276,21 @@ export default {
 			this.opened = false
 			this.offsetX = 0
 		},
+
+		/**
+		 * Run when the user open the menu
+		 * if align=center, we automatically
+		 * shift the popup if it's out of bound
+		 */
 		onOpen() {
 			this.offsetX = 0
-			const isOut = IsOutOfViewport(this.$refs.menu)
-			if (isOut.any) {
-				this.offsetX = isOut.offsetX > 0
-					? Math.round(isOut.offsetX) + 5
-					: Math.round(isOut.offsetX) - 5
+			if (this.menuAlign === 'center') {
+				const isOut = IsOutOfViewport(this.$refs.menu)
+				if (isOut.any) {
+					this.offsetX = isOut.offsetX > 0
+						? Math.round(isOut.offsetX) + 5
+						: Math.round(isOut.offsetX) - 5
+				}
 			}
 		},
 
@@ -459,7 +467,7 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 
 		// make sure to not have the menu right
 		// on the edge of the window
-		margin: 10px;
+		margin-bottom: 10px;
 		margin-top: -5px;
 
 		transform: translateX(50%);

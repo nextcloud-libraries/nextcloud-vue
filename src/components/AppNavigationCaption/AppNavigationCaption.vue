@@ -1,6 +1,6 @@
 <template>
-	<li class="app-navigation-caption--item">
-		{{ text }}
+	<li class="app-navigation-caption">
+		{{ title }}
 	</li>
 </template>
 
@@ -9,15 +9,16 @@
 export default {
 	name: 'AppNavigationCaption',
 	props: {
-		text: {
+		title: {
 			type: String,
 			required: true
 		}
 	}
 }
 </script>
+
 <style lang="scss" scoped>
-.app-navigation-caption--item {
+.app-navigation-caption {
 	font-weight: bold;
 	color: var(--color-text-maxcontrast);
 	line-height: $clickable-area;
@@ -27,10 +28,12 @@ export default {
 	text-overflow: ellipsis;
 	opacity: 0.7;
 	box-shadow: none !important;
-	pointer-events: none;
+	order: 1;
+	flex-shrink: 0;
 }
 
-.app-navigation-caption--item:not(:first-child) {
+// extra top space if it's not the first item on the list
+.app-navigation-caption:not(:first-child) {
 	margin-top: $clickable-area / 2;
 }
 </style>
