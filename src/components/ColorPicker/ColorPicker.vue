@@ -25,26 +25,35 @@
 
 <template>
 	<div class="color-picker">
-		<transition name="advancedSlide">
+		<transition name="slide" mode="out-in">
 			<div v-if="!advanced" class="color-picker-simple">
-				<button v-for="simpleColor in palette" :key="simpleColor.id"
+				<button
+					v-for="simpleColor in palette"
+					:key="simpleColor.id"
 					:style="{'background-color': simpleColor.hex}"
 					class="color-picker-simple-color-circle"
 					@click="handleSimpleClick(simpleColor)"
 					:class="{ 'color-picker-simple-color-circle--active' : simpleColor === color }" />
 			</div>
-		</transition>
-		<transition name="advancedSlide">
-			<Chrome v-if="advanced" v-model="color" class="color-picker-advanced"
+			<Chrome
+				v-if="advanced"
+				v-model="color"
+				class="color-picker-advanced"
 				:disable-alpha="true"
 				:disable-fields="true" />
 		</transition>
 		<div class="color-picker-navigation">
-			<button v-if="advanced" class="color-picker-navigation-button back"
+			<button
+				v-if="advanced"
+				class="color-picker-navigation-button back"
 				@click='handleBack' />
-			<button v-if="advanced" class="color-picker-navigation-button confirm"
+			<button
+				v-if="advanced"
+				class="color-picker-navigation-button confirm"
 				@click='handleConfirm' />
-			<button v-if="!advanced" class="color-picker-navigation-button more-settings"
+			<button
+				v-if="!advanced"
+				class="color-picker-navigation-button more-settings"
 				@click='handleMoreSettings' />
 		</div>
 	</div>
@@ -63,7 +72,7 @@ export default {
 		return {
 			color: '#194d33',
 			advanced: false,
-			palette: [{ hex: '#CFCFCF', id: 0 }, { hex: '#CFCFCF', id: 1 }, { hex: '#CFCFCF', id: 2 }, { hex: '#CFCFCF', id: 3 }, { hex: '#CFCFCF', id: 4 }, { hex: '#CFCFCF', id: 5 }, { hex: '#CFCFCF', id: 6 }, { hex: '#CFCFCF', id: 7 }, { hex: '#CFCFCF', id: 8 }, { hex: '#CFCFCF', id: 9 }, { hex: '#CFCFCF', id: 10 }, { hex: '#CFCFCF', id: 11 }, { hex: '#CFCFCF', id: 2 }, { hex: '#CFCFCF', id: 13 }, { hex: '#CFCFCF', id: 14 }, { hex: '#CFCFCF', id: 15 }]
+			palette: [{ hex: '#CFCFCF', id: 0 }, { hex: '#CFCFCF', id: 1 }, { hex: '#CFCFCF', id: 2 }, { hex: '#CFCFCF', id: 3 }, { hex: '#CFCFCF', id: 4 }, { hex: '#CFCFCF', id: 5 }, { hex: '#CFCFCF', id: 6 }, { hex: '#CFCFCF', id: 7 }, { hex: '#CFCFCF', id: 8 }, { hex: '#CFCFCF', id: 9 }, { hex: '#CFCFCF', id: 10 }, { hex: '#CFCFCF', id: 11 }, { hex: '#CFCFCF', id: 12 }, { hex: '#CFCFCF', id: 13 }, { hex: '#CFCFCF', id: 14 }, { hex: '#CFCFCF', id: 15 }]
 		}
 	},
 	methods: {
@@ -88,11 +97,10 @@ export default {
 @import '~Fonts/scss/iconfont-vue';
 
 .color-picker {
-	width: 164px;
-	height: 208px;
+	width: 176px;
 	margin: 100px;
-	box-shadow: 0 0 2px rgba(0,0,0,.3), 0 4px 8px rgba(0,0,0,.3);
-	padding: 16px;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+	padding: 14px;
 	border-radius: 3px;
 	display: flex;
 	flex-direction: column;
@@ -102,13 +110,13 @@ export default {
 	box-sizing: content-box !important;
 	&-simple {
 		display: grid;
-		grid-template-columns: repeat(4, 41px);
-		grid-template-rows: repeat(4, 41px);
+		grid-template-columns: repeat(4, $clickable-area);
+		grid-template-rows: repeat(4, $clickable-area);
 		&-color-circle {
-			width: 27px;
-			height: 27px;
-			min-height: 27px;
-			border-radius: 13px;
+			width: 28px;
+			height: 28px;
+			min-height: 28px;
+			border-radius: 14px;
 			margin:auto;
 			padding: 0;
 			&--active {
@@ -123,6 +131,7 @@ export default {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+		margin-top: 5px;
 		&-button {
 			justify-self: flex-end;
 			&.back{
@@ -139,89 +148,59 @@ export default {
 	}
 }
 
-::v-deep .vc-chrome {
-	width: 164px;
+::v-deep .vc {
+	&-chrome {
+		width: 176px;
+		height: 176px;
+		&-color-wrap {
+			display: none;
+		}
+		&-body {
+			padding: 14px 0 0 0;
+		}
+		&-saturation {
+			&-wrap {
+				border-radius: 3px;
+			}
+			&-circle {
+				width: 20px;
+				height: 20px;
+			}
+		}
+	}
+	&-hue {
+		&--horizontal {
+			height: 16px;
+		}
+		&-picker {
+			width: 10px !important;
+			height: 14px !important;
+			border-radius: 3px !important;
+			border: 1px solid black !important;
+			transform: translate(-6px, -1px) !important;
+			background-color: transparent !important;
+			box-shadow: none !important;
+		}
+	}
 }
 
-::v-deep .vc-chrome-color-wrap {
-	display: none;
-}
-
-::v-deep .vc-chrome-body {
-	padding: 15px 0 0 0;
-}
-
-::v-deep .vc-hue.vc-hue--horizontal {
-	height: 15px;
-}
-
-::v-deep .vc-chrome-saturation-wrap {
-	border-radius: 3px;
-}
-
-::v-deep .vc-saturation-circle {
-	width: 20px;
-	height: 20px;
-}
-
-::v-deep .vc-chrome-hue-wrap .vc-hue-picker {
-	width: 10px;
-	height: 15px;
-	border-radius: 3px;
-	border: 1px solid black;
-	transform: translate(-6px, -1px);
-	background-color: transparent;
-	box-shadow: none;
-}
-
-.advancedSlide-enter {
-	transform: translateX(50%);
-	opacity: 0;
-}
-
-.advancedSlide-enter-to {
-	transform: translateX(0);
-	opacity: 1;
-}
-
-.advancedSlide-leave {
-	transform: translateX(0);
-	opacity: 1;
-}
-
-.advancedSlide-leave-to {
-	transform: translateX(50%);
-	opacity: 0;
-}
-
-.advancedSlide-enter-active,
-.advancedSlide-leave-active {
-	transition: all 0.1s ease-in-out;
-}
-
-.simpleSlide-enter {
-	transform: translateX(-50%);
-	opacity: 0;
-}
-
-.simpleSlide-enter-to {
-	transform: translateX(0);
-	opacity: 1;
-}
-
-.simpleSlide-leave {
-	transform: translateX(0);
-	opacity: 1;
-}
-
-.simpleSlide-leave-to {
-	transform: translateX(-50%);
-	opacity: 0;
-}
-
-.simpleSlide-enter-active,
-.simpleSlide-leave-active {
-	transition: all 0.1s ease-in-out;
+.slide {
+	&-enter {
+		transform: translateY(-50%);
+		opacity: 0;
+	}
+	&-enter-to {
+		transform: translateY(0);
+		opacity: 1;
+	}&-leave {
+		transform: translateY(0);
+		opacity: 1;
+	}&-leave-to {
+		transform: translateY(-50%);
+		opacity: 0;
+	}&-enter-active, &-leave-active {
+		transition: all 60ms ease-in-out;
+	}
 }
 
 </style>
