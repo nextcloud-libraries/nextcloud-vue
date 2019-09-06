@@ -25,14 +25,21 @@
 
 <template>
 	<div class="color-picker">
-		<div v-if="!advanced" class="color-picker-simple" />
-
-		<Chrome v-else v-model="color" class="color-picker-advanced"
-			:disable-alpha="true"
-			:disable-fields="true" />
+		<transition name="slide">
+			<div v-if="!advanced" class="color-picker-simple" />
+		</transition>
+		<transition name="slide">
+			<Chrome v-if="advanced" v-model="color" class="color-picker-advanced"
+				:disable-alpha="true"
+				:disable-fields="true" />
+		</transition>
 		<div class="color-picker-navigation">
-			<button class="color-picker-navigation-button back" />
-			<button class="color-picker-navigation-button confirm" />
+			<button v-if="advanced" class="color-picker-navigation-button back"
+				@click='handleBack' />
+			<button v-if="advanced" class="color-picker-navigation-button confirm"
+				@click='handleConfirm' />
+			<button v-if="!advanced" class="color-picker-navigation-button more-settings"
+				@click='handleMoreSettings' />
 		</div>
 	</div>
 </template>
@@ -51,31 +58,42 @@ export default {
 			color: '#194d33',
 			advanced: true
 		}
+	},
+	methods: {
+		handleConfirm() {
+			alert(`You've chosen the color ${this.color.hex}`)
+		},
+		handleBack() {
+			this.advanced = false
+		},
+		handleMoreSettings() {
+			this.advanced = true
+		}
 	}
 }
 
 </script>
 
 <style lang="scss" scoped>
-<<<<<<< HEAD
-@import '~Fonts/scss/iconfont-vue';
-
-=======
->>>>>>> c2df97a... fixup! Add checkmark to iconfont
 @import '~Fonts/scss/iconfont-vue';
 
 .color-picker {
 	width: 255px;
-	height:240px;
+	height: 245px;
 	margin: 100px;
 	box-shadow: 0 0 2px rgba(0,0,0,.3), 0 4px 8px rgba(0,0,0,.3);
 	padding: 16px;
 	border-radius: 3px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-content: flex-end;
+	overflow: hidden;
 	&-advanced {
 		box-shadow: none !important;
 	}
 	&-navigation {
-		margin: 15px 0 15px 0;
+		margin-top: 15px;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -86,12 +104,13 @@ export default {
 			}
 			&.confirm {
 				@include iconfont('checkmark');
-				color: black;
-				stroke: 2px;
+			}
+			&.more-settings {
+				@include iconfont('more');
+				margin-left: auto;
 			}
 		}
 	}
-
 }
 
 ::v-deep .vc-chrome-color-wrap {
@@ -123,6 +142,31 @@ export default {
 	transform: translate(-6px, -1px);
 	background-color: transparent;
 	box-shadow: none;
+}
+
+.slide-enter {
+	transform: translateX(50%);
+	opacity: 0;
+}
+
+.enter-to {
+	transform: translateX(0);
+	opacity: 1;
+}
+
+.slide-leave {
+	transform: translateX(0);
+	opacity: 1;
+}
+
+.slide-leave-to {
+	transform: translateX(50%);
+	opacity: 0;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+	transition: all 0.1s ease-in-out;
 }
 
 </style>
