@@ -25,13 +25,17 @@
 
 <template>
 	<div class="color-picker">
-		<div v-if="!advanced" class="color-picker-simple">
-			<div v-for="(color, index) in palette" :key="index"
-				:style="{'background-color': color}"
-				class="color-picker-simple-color-circle" />
-		</div>
-		<transition name="slide">
-			<Chrome v-if="advanced" v-model="advColor" class="color-picker-advanced"
+		<transition name="advancedSlide">
+			<div v-if="!advanced" class="color-picker-simple">
+				<button v-for="simpleColor in palette" :key="simpleColor.id"
+					:style="{'background-color': simpleColor.hex}"
+					class="color-picker-simple-color-circle"
+					@click="handleSimpleClick(simpleColor)"
+					:class="{ 'color-picker-simple-color-circle--active' : simpleColor === color }" />
+			</div>
+		</transition>
+		<transition name="advancedSlide">
+			<Chrome v-if="advanced" v-model="color" class="color-picker-advanced"
 				:disable-alpha="true"
 				:disable-fields="true" />
 		</transition>
@@ -57,9 +61,9 @@ export default {
 
 	data() {
 		return {
-			advColor: '#194d33',
+			color: '#194d33',
 			advanced: false,
-			palette: ['#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF']
+			palette: [{ hex: '#CFCFCF', id: 0 }, { hex: '#CFCFCF', id: 1 }, { hex: '#CFCFCF', id: 2 }, { hex: '#CFCFCF', id: 3 }, { hex: '#CFCFCF', id: 4 }, { hex: '#CFCFCF', id: 5 }, { hex: '#CFCFCF', id: 6 }, { hex: '#CFCFCF', id: 7 }, { hex: '#CFCFCF', id: 8 }, { hex: '#CFCFCF', id: 9 }, { hex: '#CFCFCF', id: 10 }, { hex: '#CFCFCF', id: 11 }, { hex: '#CFCFCF', id: 2 }, { hex: '#CFCFCF', id: 13 }, { hex: '#CFCFCF', id: 14 }, { hex: '#CFCFCF', id: 15 }]
 		}
 	},
 	methods: {
@@ -71,6 +75,9 @@ export default {
 		},
 		handleMoreSettings() {
 			this.advanced = true
+		},
+		handleSimpleClick(simpleColor) {
+			this.color = simpleColor
 		}
 	}
 }
@@ -100,8 +107,13 @@ export default {
 		&-color-circle {
 			width: 27px;
 			height: 27px;
+			min-height: 27px;
 			border-radius: 13px;
 			margin:auto;
+			padding: 0;
+			&--active {
+				@include iconfont('checkmark');
+			}
 		}
 	}
 	&-advanced {
@@ -162,28 +174,53 @@ export default {
 	box-shadow: none;
 }
 
-.slide-enter {
+.advancedSlide-enter {
 	transform: translateX(50%);
 	opacity: 0;
 }
 
-.enter-to {
+.advancedSlide-enter-to {
 	transform: translateX(0);
 	opacity: 1;
 }
 
-.slide-leave {
+.advancedSlide-leave {
 	transform: translateX(0);
 	opacity: 1;
 }
 
-.slide-leave-to {
+.advancedSlide-leave-to {
 	transform: translateX(50%);
 	opacity: 0;
 }
 
-.slide-enter-active,
-.slide-leave-active {
+.advancedSlide-enter-active,
+.advancedSlide-leave-active {
+	transition: all 0.1s ease-in-out;
+}
+
+.simpleSlide-enter {
+	transform: translateX(-50%);
+	opacity: 0;
+}
+
+.simpleSlide-enter-to {
+	transform: translateX(0);
+	opacity: 1;
+}
+
+.simpleSlide-leave {
+	transform: translateX(0);
+	opacity: 1;
+}
+
+.simpleSlide-leave-to {
+	transform: translateX(-50%);
+	opacity: 0;
+}
+
+.simpleSlide-enter-active,
+.simpleSlide-leave-active {
 	transition: all 0.1s ease-in-out;
 }
 
