@@ -25,11 +25,13 @@
 
 <template>
 	<div class="color-picker">
+		<div v-if="!advanced" class="color-picker-simple">
+			<div v-for="(color, index) in palette" :key="index"
+				:style="{'background-color': color}"
+				class="color-picker-simple-color-circle" />
+		</div>
 		<transition name="slide">
-			<div v-if="!advanced" class="color-picker-simple" />
-		</transition>
-		<transition name="slide">
-			<Chrome v-if="advanced" v-model="color" class="color-picker-advanced"
+			<Chrome v-if="advanced" v-model="advColor" class="color-picker-advanced"
 				:disable-alpha="true"
 				:disable-fields="true" />
 		</transition>
@@ -55,8 +57,9 @@ export default {
 
 	data() {
 		return {
-			color: '#194d33',
-			advanced: true
+			advColor: '#194d33',
+			advanced: false,
+			palette: ['#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF', '#CFCFCF']
 		}
 	},
 	methods: {
@@ -78,22 +81,33 @@ export default {
 @import '~Fonts/scss/iconfont-vue';
 
 .color-picker {
-	width: 255px;
-	height: 245px;
+	width: 164px;
+	height: 208px;
 	margin: 100px;
 	box-shadow: 0 0 2px rgba(0,0,0,.3), 0 4px 8px rgba(0,0,0,.3);
 	padding: 16px;
 	border-radius: 3px;
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-end;
+	justify-content: space-between;
 	align-content: flex-end;
 	overflow: hidden;
+	box-sizing: content-box !important;
+	&-simple {
+		display: grid;
+		grid-template-columns: repeat(4, 41px);
+		grid-template-rows: repeat(4, 41px);
+		&-color-circle {
+			width: 27px;
+			height: 27px;
+			border-radius: 13px;
+			margin:auto;
+		}
+	}
 	&-advanced {
 		box-shadow: none !important;
 	}
 	&-navigation {
-		margin-top: 15px;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -113,16 +127,20 @@ export default {
 	}
 }
 
+::v-deep .vc-chrome {
+	width: 164px;
+}
+
 ::v-deep .vc-chrome-color-wrap {
 	display: none;
 }
 
 ::v-deep .vc-chrome-body {
-	padding: 16px 0 0 0;
+	padding: 15px 0 0 0;
 }
 
 ::v-deep .vc-hue.vc-hue--horizontal {
-	height: 16px;
+	height: 15px;
 }
 
 ::v-deep .vc-chrome-saturation-wrap {
@@ -136,7 +154,7 @@ export default {
 
 ::v-deep .vc-chrome-hue-wrap .vc-hue-picker {
 	width: 10px;
-	height: 16px;
+	height: 15px;
 	border-radius: 3px;
 	border: 1px solid black;
 	transform: translate(-6px, -1px);
