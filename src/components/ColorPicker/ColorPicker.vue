@@ -70,11 +70,12 @@ export default {
 
 	data() {
 		return {
-			color: '#194d33',
+			color: '#FF5722',
 			advanced: false,
-			palette: [{ hex: '#CFCFCF', id: 0 }, { hex: '#CFCFCF', id: 1 }, { hex: '#CFCFCF', id: 2 }, { hex: '#CFCFCF', id: 3 }, { hex: '#CFCFCF', id: 4 }, { hex: '#CFCFCF', id: 5 }, { hex: '#CFCFCF', id: 6 }, { hex: '#CFCFCF', id: 7 }, { hex: '#CFCFCF', id: 8 }, { hex: '#CFCFCF', id: 9 }, { hex: '#CFCFCF', id: 10 }, { hex: '#CFCFCF', id: 11 }]
+			palette: [{ hex: '#FF5722', id: 0 }, { hex: '#3F51B5', id: 1 }, { hex: '#009688', id: 2 }, { hex: '#FFEB3B', id: 3 }, { hex: '#E91E63', id: 4 }, { hex: '#2196F3', id: 5 }, { hex: '#4CAF50', id: 6 }, { hex: '#FF9800', id: 7 }, { hex: '#9C27B0', id: 8 }, { hex: '#00BCD4', id: 9 }, { hex: '#CDDC39', id: 10 }, { hex: '#795548', id: 11 }]
 		}
 	},
+
 	methods: {
 		handleConfirm() {
 			alert(`You've chosen the color ${this.color.hex}`)
@@ -113,14 +114,24 @@ export default {
 		grid-template-columns: repeat(4, $clickable-area);
 		grid-template-rows: repeat(3, $clickable-area);
 		&-color-circle {
-			width: 28px;
-			height: 28px;
-			min-height: 28px;
-			border-radius: 14px;
+			width: 34px;
+			height: 34px;
+			min-height: 34px;
+			border-radius: 17px;
+			color: white;
 			margin:auto;
 			padding: 0;
+			font-size: 16px;
+			border: none;
+			display: flex;
+			align-content: center;
+			justify-content: center;
+			&:hover {
+				opacity: 0.6;
+			}
 			&--active {
 				@include iconfont('checkmark');
+				opacity: 1 !important;
 			}
 		}
 	}
@@ -139,6 +150,12 @@ export default {
 			border: none;
 			background: none;
 			justify-self: flex-end;
+			font-size: $icon-size;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			align-content: center;
+			justify-content: center;
 			&:hover {
 				background-color: $icon-focus-bg;
 			}
@@ -147,6 +164,11 @@ export default {
 			}
 			&.confirm {
 				@include iconfont('checkmark');
+				color: white;
+				background-color: var(--color-primary);
+				&:hover {
+					background-color: var(--color-primary-element-light);
+				}
 			}
 			&.more-settings {
 				@include iconfont('more');
@@ -161,7 +183,13 @@ export default {
 		width: 176px;
 		height: 132px;
 		&-color-wrap {
-			display: none;
+			width: 30px;
+			height: 30px;
+		}
+		&-active-color {
+			height: 34px;
+			width: 34px;
+			border-radius: 17px;
 		}
 		&-body {
 			padding: 14px 0 0 0;
@@ -174,20 +202,6 @@ export default {
 				width: 20px;
 				height: 20px;
 			}
-		}
-	}
-	&-hue {
-		&--horizontal {
-			height: 16px;
-		}
-		&-picker {
-			width: 10px !important;
-			height: 18px !important;
-			border-radius: 3px !important;
-			border: 2px solid black !important;
-			transform: translate(-6px, -1px) !important;
-			background-color: transparent !important;
-			box-shadow: none !important;
 		}
 	}
 }
@@ -207,7 +221,7 @@ export default {
 		transform: translateY(-50%);
 		opacity: 0;
 	}&-enter-active, &-leave-active {
-		transition: all 60ms ease-in-out;
+		transition: all 80ms ease-in-out;
 	}
 }
 
