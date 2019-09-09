@@ -28,16 +28,16 @@
 		<transition name="slide" mode="out-in">
 			<div v-if="!advanced" class="color-picker-simple">
 				<button
-					v-for="simpleColor in palette"
-					:key="simpleColor.id"
-					:style="{'background-color': simpleColor.hex}"
+					v-for="(color, index) in palette"
+					:key="index"
+					:style="{'background-color': `#${color}`}"
 					class="color-picker-simple-color-circle"
-					@click="handleSimpleClick(simpleColor)"
-					:class="{ 'color-picker-simple-color-circle--active' : simpleColor === color }" />
+					:class="{ 'color-picker-simple-color-circle--active' : color === value }"
+					@click="pickColor(color)" />
 			</div>
 			<Chrome
 				v-if="advanced"
-				v-model="color"
+				v-model="localValue"
 				class="color-picker-advanced"
 				:disable-alpha="true"
 				:disable-fields="true" />
@@ -46,21 +46,22 @@
 			<button
 				v-if="advanced"
 				class="color-picker-navigation-button back"
-				@click='handleBack' />
+				@click="handleBack" />
 			<button
 				v-if="advanced"
 				class="color-picker-navigation-button confirm"
-				@click='handleConfirm' />
+				@click="handleConfirm" />
 			<button
 				v-if="!advanced"
 				class="color-picker-navigation-button more-settings"
-				@click='handleMoreSettings' />
+				@click="handleMoreSettings" />
 		</div>
 	</div>
 </template>
 
 <script>
 import { Chrome } from 'vue-color'
+import GenColors from 'Utils/GenColors'
 
 export default {
 	name: 'ColorPicker',
@@ -68,17 +69,38 @@ export default {
 		Chrome
 	},
 
+	props: {
+		value: {
+			type: String,
+			required: true
+		}
+	},
+
 	data() {
 		return {
-			color: '#FF5722',
 			advanced: false,
-			palette: [{ hex: '#FF5722', id: 0 }, { hex: '#3F51B5', id: 1 }, { hex: '#009688', id: 2 }, { hex: '#FFEB3B', id: 3 }, { hex: '#E91E63', id: 4 }, { hex: '#2196F3', id: 5 }, { hex: '#4CAF50', id: 6 }, { hex: '#FF9800', id: 7 }, { hex: '#9C27B0', id: 8 }, { hex: '#00BCD4', id: 9 }, { hex: '#CDDC39', id: 10 }, { hex: '#795548', id: 11 }]
+			palette: GenColors(4).map(color => {
+				return this.rgbToHex(color.r) + this.rgbToHex(color.g) + this.rgbToHex(color.b)
+			})
+		}
+	},
+
+	computed: {
+		localValue: {
+			get() {
+				return this.value
+			},
+			set(color) {
+				this.$emit('update:value', color)
+				this.$emit('input', color)
+				this.$emit('change', color)
+			}
 		}
 	},
 
 	methods: {
 		handleConfirm() {
-			alert(`You've chosen the color ${this.color.hex}`)
+			this.$emit('close')
 		},
 		handleBack() {
 			this.advanced = false
@@ -86,8 +108,12 @@ export default {
 		handleMoreSettings() {
 			this.advanced = true
 		},
-		handleSimpleClick(simpleColor) {
-			this.color = simpleColor
+		pickColor(color) {
+			this.localValue = color
+		},
+		rgbToHex(color) {
+			const hex = color.toString(16)
+			return hex.length === 1 ? '0' + hex : hex
 		}
 	}
 }
@@ -98,81 +124,87 @@ export default {
 @import '~Fonts/scss/iconfont-vue';
 
 .color-picker {
-	width: 176px;
-	margin: 100px;
-	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
-	padding: 14px;
-	border-radius: 3px;
 	display: flex;
+	overflow: hidden;
+	align-content: flex-end;
 	flex-direction: column;
 	justify-content: space-between;
-	align-content: flex-end;
-	overflow: hidden;
 	box-sizing: content-box !important;
+	width: 176px;
+	padding: 14px;
+	border-radius: 3px;
+
 	&-simple {
 		display: grid;
 		grid-template-columns: repeat(4, $clickable-area);
-		grid-template-rows: repeat(3, $clickable-area);
+		grid-auto-rows: $clickable-area;
+
 		&-color-circle {
-			width: 34px;
-			height: 34px;
-			min-height: 34px;
-			border-radius: 17px;
-			color: white;
-			margin:auto;
-			padding: 0;
-			font-size: 16px;
-			border: none;
 			display: flex;
 			align-content: center;
 			justify-content: center;
+			width: 34px;
+			height: 34px;
+			min-height: 34px;
+			margin: auto;
+			padding: 0;
+			color: white;
+			border: none;
+			border-radius: 17px;
+			font-size: 16px;
 			&:hover {
-				opacity: 0.6;
+				opacity: .6;
 			}
 			&--active {
-				@include iconfont('checkmark');
 				opacity: 1 !important;
+				@include iconfont('checkmark');
 			}
 		}
 	}
+
 	&-advanced {
 		box-shadow: none !important;
 	}
+
 	&-navigation {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		margin-top: 10px;
 		&-button {
-			width: $clickable-area;
-			height: $clickable-area;
-			border-radius: calc($clickable-area/2);
-			border: none;
-			background: none;
-			justify-self: flex-end;
-			font-size: $icon-size;
-			padding: 0;
-			margin: 0;
 			display: flex;
 			align-content: center;
 			justify-content: center;
+			min-width: $clickable-area;
+			height: $clickable-area;
+			padding:$icon-margin;
+			margin: 0;
+			border: none;
+			border-radius: $clickable-area / 2;
+			background: none;
+			justify-self: flex-end;
+
+			&::before {
+				font-size: $icon-size;
+			}
 			&:hover {
 				background-color: $icon-focus-bg;
 			}
-			&.back{
+
+			&.back {
 				@include iconfont('arrow-left');
 			}
 			&.confirm {
-				@include iconfont('checkmark');
 				color: white;
 				background-color: var(--color-primary);
+				@include iconfont('checkmark');
 				&:hover {
 					background-color: var(--color-primary-element-light);
 				}
 			}
 			&.more-settings {
-				@include iconfont('more');
 				margin-left: auto;
+				@include iconfont('more');
 			}
 		}
 	}
@@ -182,22 +214,27 @@ export default {
 	&-chrome {
 		width: 176px;
 		height: 132px;
+
 		&-color-wrap {
 			width: 30px;
 			height: 30px;
 		}
+
 		&-active-color {
-			height: 34px;
 			width: 34px;
+			height: 34px;
 			border-radius: 17px;
 		}
+
 		&-body {
 			padding: 14px 0 0 0;
 		}
+
 		&-saturation {
 			&-wrap {
 				border-radius: 3px;
 			}
+
 			&-circle {
 				width: 20px;
 				height: 20px;
@@ -214,13 +251,17 @@ export default {
 	&-enter-to {
 		transform: translateY(0);
 		opacity: 1;
-	}&-leave {
+	}
+	&-leave {
 		transform: translateY(0);
 		opacity: 1;
-	}&-leave-to {
+	}
+	&-leave-to {
 		transform: translateY(-50%);
 		opacity: 0;
-	}&-enter-active, &-leave-active {
+	}
+	&-enter-active,
+	&-leave-active {
 		transition: all 80ms ease-in-out;
 	}
 }

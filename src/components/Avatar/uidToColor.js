@@ -21,11 +21,11 @@
  */
 
 import md5 from 'md5'
+import GenColors from 'Utils/GenColors'
 
 /**
  * Originally taken from https://github.com/nextcloud/server/blob/master/core/js/placeholder.js
  */
-
 const uidToColor = function(uid) {
 	// Normalize hash
 	let hash = uid.toLowerCase()
@@ -37,45 +37,8 @@ const uidToColor = function(uid) {
 
 	hash = hash.replace(/[^0-9a-f]/g, '')
 
-	function Color(r, g, b) {
-		this.r = r
-		this.g = g
-		this.b = b
-	}
-
-	function stepCalc(steps, ends) {
-		var step = new Array(3)
-		step[0] = (ends[1].r - ends[0].r) / steps
-		step[1] = (ends[1].g - ends[0].g) / steps
-		step[2] = (ends[1].b - ends[0].b) / steps
-		return step
-	}
-
-	function mixPalette(steps, color1, color2) {
-		var palette = []
-		palette.push(color1)
-		var step = stepCalc(steps, [color1, color2])
-		for (let i = 1; i < steps; i++) {
-			var r = parseInt(color1.r + (step[0] * i))
-			var g = parseInt(color1.g + (step[1] * i))
-			var b = parseInt(color1.b + (step[2] * i))
-			palette.push(new Color(r, g, b))
-		}
-		return palette
-	}
-
-	var red = new Color(182, 70, 157)
-	var yellow = new Color(221, 203, 85)
-	var blue = new Color(0, 130, 201) // Nextcloud blue
-	// Number of steps to go from a color to another
-	// 3 colors * 6 will result in 18 generated colors
-	var steps = 6
-
-	var palette1 = mixPalette(steps, red, yellow)
-	var palette2 = mixPalette(steps, yellow, blue)
-	var palette3 = mixPalette(steps, blue, red)
-
-	var finalPalette = palette1.concat(palette2).concat(palette3)
+	const steps = 6
+	const finalPalette = GenColors(steps)
 
 	// Convert a string to an integer evenly
 	function hashToInt(hash, maximum) {
@@ -87,13 +50,15 @@ const uidToColor = function(uid) {
 			// chars in md5 goes up to f, hex:16
 			result.push(parseInt(hash.charAt(i), 16) % 16)
 		}
+
 		// Adds up all results
 		for (var j in result) {
 			finalInt += result[j]
 		}
+
 		// chars in md5 goes up to f, hex:16
 		// make sure we're always using int in our operation
-		return parseInt(parseInt(finalInt) % maximum)
+		return parseInt(parseInt(finalInt, 10) % maximum, 10)
 	}
 	return finalPalette[hashToInt(hash, steps * 3)]
 }
