@@ -72,7 +72,7 @@ export default {
 		return {
 			color: '#194d33',
 			advanced: false,
-			palette: [{ hex: '#CFCFCF', id: 0 }, { hex: '#CFCFCF', id: 1 }, { hex: '#CFCFCF', id: 2 }, { hex: '#CFCFCF', id: 3 }, { hex: '#CFCFCF', id: 4 }, { hex: '#CFCFCF', id: 5 }, { hex: '#CFCFCF', id: 6 }, { hex: '#CFCFCF', id: 7 }, { hex: '#CFCFCF', id: 8 }, { hex: '#CFCFCF', id: 9 }, { hex: '#CFCFCF', id: 10 }, { hex: '#CFCFCF', id: 11 }, { hex: '#CFCFCF', id: 12 }, { hex: '#CFCFCF', id: 13 }, { hex: '#CFCFCF', id: 14 }, { hex: '#CFCFCF', id: 15 }]
+			palette: [{ hex: '#CFCFCF', id: 0 }, { hex: '#CFCFCF', id: 1 }, { hex: '#CFCFCF', id: 2 }, { hex: '#CFCFCF', id: 3 }, { hex: '#CFCFCF', id: 4 }, { hex: '#CFCFCF', id: 5 }, { hex: '#CFCFCF', id: 6 }, { hex: '#CFCFCF', id: 7 }, { hex: '#CFCFCF', id: 8 }, { hex: '#CFCFCF', id: 9 }, { hex: '#CFCFCF', id: 10 }, { hex: '#CFCFCF', id: 11 }]
 		}
 	},
 	methods: {
@@ -111,7 +111,7 @@ export default {
 	&-simple {
 		display: grid;
 		grid-template-columns: repeat(4, $clickable-area);
-		grid-template-rows: repeat(4, $clickable-area);
+		grid-template-rows: repeat(3, $clickable-area);
 		&-color-circle {
 			width: 28px;
 			height: 28px;
@@ -131,9 +131,17 @@ export default {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		margin-top: 5px;
+		margin-top: 10px;
 		&-button {
+			width: $clickable-area;
+			height: $clickable-area;
+			border-radius: calc($clickable-area/2);
+			border: none;
+			background: none;
 			justify-self: flex-end;
+			&:hover {
+				background-color: $icon-focus-bg;
+			}
 			&.back{
 				@include iconfont('arrow-left');
 			}
@@ -151,7 +159,7 @@ export default {
 ::v-deep .vc {
 	&-chrome {
 		width: 176px;
-		height: 176px;
+		height: 132px;
 		&-color-wrap {
 			display: none;
 		}
@@ -174,9 +182,9 @@ export default {
 		}
 		&-picker {
 			width: 10px !important;
-			height: 14px !important;
+			height: 18px !important;
 			border-radius: 3px !important;
-			border: 1px solid black !important;
+			border: 2px solid black !important;
 			transform: translate(-6px, -1px) !important;
 			background-color: transparent !important;
 			box-shadow: none !important;
