@@ -102,7 +102,7 @@ export default {
 		 */
 		download: {
 			type: String,
-			default: ''
+			default: null
 		},
 		/**
 		 * target to open the link
