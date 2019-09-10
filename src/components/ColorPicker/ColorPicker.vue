@@ -78,7 +78,7 @@ disappear when the confirm button is pressed.
 			<button
 				v-if="advanced"
 				class="color-picker-navigation-button confirm"
-				@click="handleConfirm" />
+				@click="handleConfirm">{{t('core', 'Choose')}}</button>
 			<button
 				v-if="!advanced"
 				class="color-picker-navigation-button more-settings"
@@ -141,6 +141,7 @@ export default {
 		},
 		pickColor(color) {
 			this.localValue = color
+			this.$emit('close')
 		},
 		rgbToHex(color) {
 			const hex = color.toString(16)
@@ -228,13 +229,12 @@ export default {
 			&.confirm {
 				color: white;
 				background-color: var(--color-primary);
-				@include iconfont('checkmark');
 				&:hover {
 					background-color: var(--color-primary-element-light);
 				}
 			}
 			&.more-settings {
-				margin-left: auto;
+				margin-right: auto;
 				@include iconfont('more');
 			}
 		}
