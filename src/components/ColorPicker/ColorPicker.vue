@@ -20,7 +20,35 @@
  -
  -->
 
- <docs>
+<docs>
+
+### General description
+
+This component allows the user to choose a color. It consists of 2
+actual pickers:
+
+- One simple picker with a predefined palette of colors;
+- One more advanced picker that provides the full color spectrum;
+
+It is meant to be used within the `<Popover>` component but it will
+work elsewhere too.
+You have to provide an initial HEX value to initialise it.
+
+### Usage
+
+```
+<Popover>
+	<ColorPicker value="#someHexColor" @update:value="doSomething" />
+</Popover>
+```
+
+### Events
+
+This component fires 2 different events:
+- `update:value` which carries the new color as payload;
+- `close` which tells the wrapping `<Popover>` component to
+disappear when the confirm button is pressed.
+
 </docs>
 
 <template>
@@ -68,7 +96,9 @@ export default {
 	components: {
 		Chrome
 	},
-
+	/**
+	* A HEX color that represents the initial value of the picker
+	*/
 	props: {
 		value: {
 			type: String,
@@ -101,6 +131,7 @@ export default {
 	methods: {
 		handleConfirm() {
 			this.$emit('close')
+			this.advanced = false
 		},
 		handleBack() {
 			this.advanced = false
