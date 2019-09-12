@@ -29,6 +29,9 @@ import Vue from 'vue'
  * @param {Object} vm the vue component instance
  */
 const ValidateSlot = (slots, allowed, vm) => {
+	if (slots === undefined) {
+		return
+	}
 	slots.forEach((node, index) => {
 		const isHtmlElement = !node.componentOptions && node.tag
 		const isVueComponent = node.componentOptions && typeof node.componentOptions.tag === 'string'

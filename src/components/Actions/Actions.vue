@@ -46,11 +46,12 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
 	<element v-if="isValidSingleAction"
-		v-tooltip.auto="getVNodeProp(firstAction, 'text')"
-		v-bind="firstActionElement"
-		:class="getVNodeProp(firstAction, 'icon')" class="action-item action-item--single"
+		v-tooltip.auto="firstAction.text"
+		:aria-label="firstAction.text"
+		v-bind="firstActionBinding"
+		:class="firstAction.icon" class="action-item action-item--single"
 		rel="noreferrer noopener"
-		@[firstActionEvent]="execFirstAction">
+		@[firstActionEventBinding]="execFirstAction">
 		<!-- fake slot to gather main action -->
 		<span :aria-hidden="true" hidden>
 			<!-- @slot All action elements passed into the default slot will be used -->
@@ -59,7 +60,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 	</element>
 
 	<!-- more than one action -->
-	<div v-else v-show="actions.length > 0"
+	<div v-else v-show="hasMultipleActions"
 		:class="{'action-item--open': opened}"
 		class="action-item"
 		@keydown.up.exact.prevent="focusPreviousAction"
@@ -158,46 +159,85 @@ export default {
 			opened: this.open,
 			focusIndex: 0,
 			randomId: 'menu-' + GenRandomId(),
-			offsetX: 0
+			offsetX: 0,
+			// Making children reactive!
+			// By binding this here, vuejs will track the object content
+			// Needed for firstAction reactivity !!!
+			children: this.$children
 		}
 	},
+
 	computed: {
+		/**
+		 * Is there more than one action?
+		 */
+		hasMultipleActions() {
+			return this.actions.length > 1
+		},
+		/**
+		 * Is there any first action ?
+		 * And is it allowed as a standalone element ?
+		 */
 		isValidSingleAction() {
 			return this.actions.length === 1
+				&& this.firstActionElement !== null
 		},
-		firstAction() {
+		/**
+		 * First action vnode
+		 */
+		firstActionVNode() {
 			return this.actions[0]
 		},
-		firstActionElement() {
-			if (this.firstAction && this.firstAction.componentOptions) {
-				const tag = this.firstAction.componentOptions.tag
+		/**
+		 * Reactive binding to the first children
+		 * Since we're here, it means we already passed all the proper checks
+		 * we can assume the first action is the first children too
+		 */
+		firstAction() {
+			return this.children[0]
+				? this.children[0]
+				: {}
+		},
+
+		/**
+		 * Binding of the first action to the template
+		 */
+		firstActionBinding() {
+			if (this.firstActionVNode && this.firstActionVNode.componentOptions) {
+				const tag = this.firstActionVNode.componentOptions.tag
 				if (tag === 'ActionLink') {
 					return {
 						is: 'a',
-						href: this.getVNodeProp(this.firstAction, 'href'),
-						target: this.getVNodeProp(this.firstAction, 'target')
+						href: this.firstAction.href,
+						target: this.firstAction.target
 					}
-				} else if (tag === 'ActionRouter') {
+				}
+				if (tag === 'ActionRouter') {
 					return {
 						is: 'router-link',
-						to: this.getVNodeProp(this.firstAction, 'to'),
-						exact: this.getVNodeProp(this.firstAction, 'exact')
+						to: this.firstAction.to,
+						exact: this.firstAction.exact
+					}
+				}
+				if (tag === 'ActionButton') {
+					return {
+						is: 'button'
 					}
 				}
 			}
-			return {
-				is: 'button'
-			}
+			// other action types are not allowed as standalone buttons
+			return null
 		},
 
-		// return the event to bind if the firstAction have an action
+		// return the event to bind if the firstActionVNode have an action
 		firstActionEvent() {
-			return this.firstAction
-				&& this.firstAction.componentOptions
-				&& this.firstAction.componentOptions.listeners
-				&& this.firstAction.componentOptions.listeners.click
-				? 'click'
-				: null
+			return this.firstActionVNode
+				&& this.firstActionVNode.componentOptions
+				&& this.firstActionVNode.componentOptions.listeners
+				&& this.firstActionVNode.componentOptions.listeners.click
+		},
+		firstActionEventBinding() {
+			return this.firstActionEvent ? 'click' : null
 		}
 	},
 
@@ -223,9 +263,14 @@ export default {
 		this.popupItem = this.$el
 	},
 	beforeUpdate() {
+		// ! since we're using $slots to manage our actions
+		// ! we NEED to update the actions if anything change
+
 		// update children & actions
 		// no need to init actions again since we bound it to $children
 		// and the array is now reactive
+		// init actions
+		this.initActions()
 		ValidateSlot(this.$slots.default, allowedChildren, this)
 	},
 
@@ -344,30 +389,16 @@ export default {
 			this.focusAction()
 		},
 
-		/**
-		 * Get a vNode prop
-		 * @param {Object} vnode the vnode
-		 * @param {string} prop the prop
-		 * @returns {any} the prop data if any
-		 */
-		getVNodeProp(vnode, prop) {
-			return vnode.componentOptions.propsData[prop]
-		},
-
 		// ACTIONS MANAGEMENT
-		// exec the first action and prevent default
+		// exec the first action
 		execFirstAction(event) {
-			if (this.firstAction
-				&& this.firstAction.componentOptions
-				&& this.firstAction.componentOptions.listeners
-				&& this.firstAction.componentOptions.listeners.click) {
-				this.firstAction.componentOptions.listeners.click(event)
-				event.preventDefault()
+			if (this.firstActionEvent) {
+				this.firstActionEvent(event)
 			}
 		},
 		initActions() {
 			// filter out invalid slots
-			this.actions = this.$slots.default.filter(node => node && node.componentOptions) || []
+			this.actions = (this.$slots.default || []).filter(node => !!node && !!node.componentOptions)
 		}
 	}
 }
