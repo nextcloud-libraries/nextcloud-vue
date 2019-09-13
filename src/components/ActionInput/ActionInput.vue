@@ -38,7 +38,7 @@ All undocumented attributes will be bound to the input or the datepicker. e.g. `
 <template>
 	<li :class="{ 'action--disabled': disabled }">
 		<span :class="{ 'action-input--picker': isDatePickerType , 'action-input-picker--disabled': disabled}"
-			class="action-input">
+			class="action-input" @mouseleave="onLeave">
 			<!-- icon -->
 			<span :class="[isIconUrl ? 'action-input__icon--url' : icon]"
 				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
@@ -49,11 +49,11 @@ All undocumented attributes will be bound to the input or the datepicker. e.g. `
 				:disabled="disabled" @submit.prevent="onSubmit">
 
 				<DatetimePicker v-if="isDatePickerType"
-					:value="value" :placeholder="text"
-					:disabled="disabled" :type="isDatePickerType"
+					ref="datetimepicker" :value="value"
+					:placeholder="text" :disabled="disabled"
+					:type="isDatePickerType"
 					:input-class="['mx-input', { focusable: isFocusable }]"
-					class="action-input__picker"
-					v-bind="$attrs"
+					class="action-input__picker" v-bind="$attrs"
 					@input="onInput" @change="onChange" />
 
 				<template v-else>
@@ -161,6 +161,12 @@ export default {
 	},
 
 	methods: {
+		// closing datepicker popup on mouseleave = unfocus
+		onLeave() {
+			if (this.$refs.datetimepicker && this.$refs.datetimepicker.$refs.datepicker) {
+				this.$refs.datetimepicker.$refs.datepicker.closePopup()
+			}
+		},
 		onInput(event) {
 			/**
 			 * Emitted on input events of the text field
