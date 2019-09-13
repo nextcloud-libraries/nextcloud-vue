@@ -23,26 +23,29 @@
 
 <docs>
 This component is made to be used inside of the [Actions](#Actions) component slots.
+Usually, you will provide a name prop to bind the radio together.
+So that only one of each name set can be selected at the same time.
 
 ```vue
 	<Actions>
-		<ActionCheckbox @change="alert('(un)checked !')">First choice</ActionCheckbox>
-		<ActionCheckbox value="second" @change="alert('(un)checked !')">Second choice</ActionCheckbox>
-		<ActionCheckbox :checked="true" @change="alert('(un)checked !')">Third choice (checked)</ActionCheckbox>
-		<ActionCheckbox :disabled="true" @change="alert('(un)checked !')">Second choice (disabled)</ActionCheckbox>
+		<ActionRadio @change="alert('(un)checked !')" name="uniqueId">First choice</ActionRadio>
+		<ActionRadio value="second" name="uniqueId" @change="alert('(un)checked !')">Second choice</ActionRadio>
+		<ActionRadio :checked="true" name="uniqueId" @change="alert('(un)checked !')">Third choice (checked)</ActionRadio>
+		<ActionRadio :disabled="true" name="uniqueId" @change="alert('(un)checked !')">Second choice (disabled)</ActionRadio>
 	</Actions>
 ```
 </docs>
 
 <template>
 	<li :class="{ 'action--disabled': disabled }">
-		<span class="action-checkbox">
-			<input :id="id" ref="checkbox"
-				:disabled="disabled" :checked="checked" :value="value"
+		<span class="action-radio">
+			<input :id="id" ref="radio"
+				:disabled="disabled" :checked="checked"
+				:name="name" :value="value"
 				:class="{ focusable: isFocusable }"
-				type="checkbox" class="checkbox action-checkbox__checkbox"
-				@keydown.enter.exact.prevent="checkInput" @change="onChange">
-			<label ref="label" :for="id" class="action-checkbox__label">{{ text }}</label>
+				type="radio" class="radio action-radio__radio"
+				@keydown.enter.exact.prevent="toggleInput" @change="onChange">
+			<label ref="label" :for="id" class="action-radio__label">{{ text }}</label>
 
 			<!-- fake slot to gather inner text -->
 			<slot v-if="false" />
@@ -55,13 +58,13 @@ import ActionGlobalMixin from 'Mixins/actionGlobal'
 import GenRandomId from 'Utils/GenRandomId'
 
 export default {
-	name: 'ActionCheckbox',
+	name: 'ActionRadio',
 
 	mixins: [ActionGlobalMixin],
 
 	props: {
 		/**
-		 * id attribute of the checkbox element
+		 * id attribute of the radio element
 		 */
 		id: {
 			type: String,
@@ -70,7 +73,7 @@ export default {
 		},
 
 		/**
-		 * checked state of the the checkbox element
+		 * checked state of the the radio element
 		 */
 		checked: {
 			type: Boolean,
@@ -78,7 +81,17 @@ export default {
 		},
 
 		/**
-		 * value of the checkbox input
+		 * Define if this radio is part of a set.
+		 * Checking the radio will disable all the
+		 * others with the same name.
+		 */
+		name: {
+			type: String,
+			required: true
+		},
+
+		/**
+		 * value of the radio input
 		 */
 		value: {
 			type: [String, Number],
@@ -86,7 +99,7 @@ export default {
 		},
 
 		/**
-		 * disabled state of the checkbox element
+		 * disabled state of the radio element
 		 */
 		disabled: {
 			type: Boolean,
@@ -104,36 +117,22 @@ export default {
 	},
 
 	methods: {
-		checkInput(event) {
+		toggleInput(event) {
 			// by clicking we also trigger the change event
 			this.$refs.label.click()
 		},
 		onChange(event) {
 			/**
-			 * Emitted when the checkbox state is changed
+			 * Emitted when the radio state is changed
 			 * @type {boolean}
 			 */
-			this.$emit('update:checked', this.$refs.checkbox.checked)
+			this.$emit('update:checked', this.$refs.radio.checked)
 
 			/**
-			 * Emitted when the checkbox state is changed
+			 * Emitted when the radio state is changed
 			 * @type {Event}
 			 */
 			this.$emit('change', event)
-
-			if (this.$refs.checkbox.checked) {
-				/**
-				 * Emitted when the checkbox is checked
-				 * @type {Event}
-				 */
-				this.$emit('check')
-			} else {
-				/**
-				 * Emitted when the checkbox is unchecked
-				 * @type {Event}
-				 */
-				this.$emit('uncheck')
-			}
 		}
 	}
 }
@@ -144,7 +143,7 @@ export default {
 @include action-active;
 @include action--disabled;
 
-.action-checkbox {
+.action-radio {
 	display: flex;
 	align-items: flex-start;
 
@@ -166,7 +165,7 @@ export default {
 	line-height: $clickable-area;
 
 	/* checkbox/radio fixes */
-	&__checkbox {
+	&__radio {
 		position: absolute;
 		top: auto;
 		left: -10000px;
@@ -175,21 +174,21 @@ export default {
 
 		width: 1px;
 		height: 1px;
-		&:focus + .action-checkbox__label {
+		&:focus + .action-radio__label {
 			opacity: $opacity_full;
 		}
 	}
 
 	&__label {
 		display: flex;
-		align-items: center; // align checkbox to text
+		align-items: center; // align radio to text
 
 		width: 100%;
 		padding: 0 !important;
 		padding-right: $icon-margin !important;
 
 		opacity: $opacity_normal;
-		// checkbox-width is 12px, border is 2
+		// radio-width is 12px, border is 2
 		// (44 - 14 - 2) / 2 = 14
 		&::before {
 			margin: 0 14px 0 !important;
@@ -198,14 +197,14 @@ export default {
 
 	&--disabled {
 		&,
-		.action-checkbox__label {
+		.action-radio__label {
 			cursor: pointer;
 		}
 	}
 
-	&:not(.action-checkbox--disabled):hover,
-	&:not(.action-checkbox--disabled):focus {
-		.action-checkbox__label {
+	&:not(.action-radio--disabled):hover,
+	&:not(.action-radio--disabled):focus {
+		.action-radio__label {
 			opacity: $opacity_full;
 		}
 	}
