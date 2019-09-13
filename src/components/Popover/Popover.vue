@@ -20,28 +20,44 @@
 -->
 
 <docs>
-### Usage
-```
-<Popover>
-	<p slot="trigger"> I am the trigger </p>
-	<template>
-		<div class="content">
-			<h2>this is some content</h2>
-		</div>
-	</template>
-</Popover>
+
+### General description
+
+This component is just a wrapper for the v-component plgin by Akryum,
+please refer to this documentation for customization:
+https://github.com/Akryum/v-tooltip
+
+This components has two slots:
+* 'trigger' which can be any html element and it will trigger the popover
+this slot is optional since you can toggle the popover also by updating the
+open prop on this component;
+
+* a default slot that is for the content of the popover.
+
+### Examples
+
+With a `<button>` as a trigger:
+```vue
+<template>
+  <Popover>
+    <button slot="trigger"> I am the trigger </button>
+    <template>
+		<h2>this is some content</h2>
+    </template>
+  </Popover>
+</template>
 ```
 </docs>
 
 <template>
-	<v-popover>
+	<VPopover v-bind="$attrs">
 		<!-- This will be the popover target (for the events and position) -->
-		<slot name='trigger' />
+		<slot name="trigger" />
 		<!-- This will be the content of the popover -->
 		<template slot="popover">
 			<slot />
 		</template>
-	</v-popover>
+	</VPopover>
 </template>
 
 <script>
@@ -49,9 +65,8 @@ import { VPopover } from 'v-tooltip'
 
 export default {
 	name: 'Popover',
-
 	components: {
-		'v-popover': VPopover
+		VPopover
 	}
 }
 </script>

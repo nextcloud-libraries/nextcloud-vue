@@ -46,8 +46,8 @@ import Content from './Content'
 import DatetimePicker from './DatetimePicker'
 import Modal from './Modal'
 import Multiselect from './Multiselect'
-import PopoverMenu from './PopoverMenu'
 import Popover from './Popover'
+import PopoverMenu from './PopoverMenu'
 
 export {
 	ActionButton,
@@ -76,6 +76,6 @@ export {
 	DatetimePicker,
 	Modal,
 	Multiselect,
-	PopoverMenu,
-	Popover
+	Popover,
+	PopoverMenu
 }
