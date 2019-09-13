@@ -30,24 +30,13 @@ actual pickers:
 - One simple picker with a predefined palette of colors;
 - One more advanced picker that provides the full color spectrum;
 
-It is meant to be used within the `<Popover>` component but it will
-work elsewhere too.
-You have to provide an initial HEX value to initialise it.
-
 ### Usage
 
 ```
-<Popover>
-	<ColorPicker value="#someHexColor" @update:value="doSomething" />
-</Popover>
+<ColorPicker v-model="color" />
+<ColorPicker :value.sync="color" />
+<ColorPicker :value="color" @change="updateColor" />
 ```
-
-### Events
-
-This component fires 2 different events:
-- `update:value` which carries the new color as payload;
-- `close` which tells the wrapping `<Popover>` component to
-disappear when the confirm button is pressed.
 
 </docs>
 
@@ -60,12 +49,13 @@ disappear when the confirm button is pressed.
 					:key="index"
 					:style="{'background-color': `#${color}`}"
 					class="color-picker-simple-color-circle"
-					:class="{ 'color-picker-simple-color-circle--active' : color === value }"
+					:class="{ 'color-picker-simple-color-circle--active' : color === currentColor }"
 					@click="pickColor(color)" />
 			</div>
 			<Chrome
 				v-if="advanced"
-				v-model="localValue"
+				@input="pickColor"
+				v-model="currentColor"
 				class="color-picker-advanced"
 				:disable-alpha="true"
 				:disable-fields="true" />
@@ -76,13 +66,12 @@ disappear when the confirm button is pressed.
 				class="color-picker-navigation-button back"
 				@click="handleBack" />
 			<button
-				v-if="advanced"
-				class="color-picker-navigation-button confirm"
-				@click="handleConfirm">{{t('core', 'Choose')}}</button>
-			<button
 				v-if="!advanced"
 				class="color-picker-navigation-button more-settings"
 				@click="handleMoreSettings" />
+			<button
+				class="color-picker-navigation-button confirm"
+				@click="handleConfirm">{{t('core', 'Choose')}}</button>
 		</div>
 	</div>
 </template>
@@ -96,10 +85,11 @@ export default {
 	components: {
 		Chrome
 	},
-	/**
-	* A HEX color that represents the initial value of the picker
-	*/
+
 	props: {
+		/**
+		* A HEX color that represents the initial value of the picker
+		*/
 		value: {
 			type: String,
 			required: true
@@ -108,29 +98,23 @@ export default {
 
 	data() {
 		return {
+			currentColor: this.value,
 			advanced: false,
 			palette: GenColors(4).map(color => {
 				return this.rgbToHex(color.r) + this.rgbToHex(color.g) + this.rgbToHex(color.b)
 			})
 		}
 	},
-
-	computed: {
-		localValue: {
-			get() {
-				return this.value
-			},
-			set(color) {
-				this.$emit('update:value', color)
-				this.$emit('input', color)
-				this.$emit('change', color)
-			}
+	watch: {
+		value(color) {
+			this.currentColor = color
 		}
 	},
 
 	methods: {
 		handleConfirm() {
 			this.$emit('close')
+			this.$emit('change', this.currentColor)
 			this.advanced = false
 		},
 		handleBack() {
@@ -140,8 +124,13 @@ export default {
 			this.advanced = true
 		},
 		pickColor(color) {
-			this.localValue = color
+			if (typeof color !== 'string') {
+				color = this.currentColor.hex
+			}
+			this.currentColor = color
 			this.$emit('close')
+			this.$emit('update:value', color)
+			this.$emit('input', color)
 		},
 		rgbToHex(color) {
 			const hex = color.toString(16)
