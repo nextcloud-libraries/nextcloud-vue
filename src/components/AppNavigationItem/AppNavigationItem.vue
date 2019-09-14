@@ -399,6 +399,7 @@ export default {
 	width: 100%;
 	min-height: $clickable-area;
 
+	&.active,
 	a:hover,
 	a:focus,
 	a:active {
