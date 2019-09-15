@@ -41,49 +41,58 @@ actual pickers:
 </docs>
 
 <template>
-	<div class="color-picker">
-		<transition name="slide" mode="out-in">
-			<div v-if="!advanced" class="color-picker-simple">
+	<Popover v-bind="$attrs">
+		<template #trigger>
+			<slot />
+		</template>
+		<div class="color-picker">
+			<transition name="slide" mode="out-in">
+				<div v-if="!advanced" class="color-picker-simple">
+					<button
+						v-for="(color, index) in palette"
+						:key="index"
+						:style="{'background-color': `#${color}`}"
+						class="color-picker-simple-color-circle"
+						:class="{ 'color-picker-simple-color-circle--active' : color === currentColor }"
+						@click="pickColor(color)" />
+				</div>
+				<Chrome
+					v-if="advanced"
+					v-model="currentColor"
+					class="color-picker-advanced"
+					:disable-alpha="true"
+					:disable-fields="true"
+					@input="pickColor" />
+			</transition>
+			<div class="color-picker-navigation">
 				<button
-					v-for="(color, index) in palette"
-					:key="index"
-					:style="{'background-color': `#${color}`}"
-					class="color-picker-simple-color-circle"
-					:class="{ 'color-picker-simple-color-circle--active' : color === currentColor }"
-					@click="pickColor(color)" />
+					v-if="advanced"
+					class="color-picker-navigation-button back"
+					@click="handleBack" />
+				<button
+					v-if="!advanced"
+					class="color-picker-navigation-button more-settings"
+					@click="handleMoreSettings" />
+				<button
+					class="color-picker-navigation-button confirm"
+					@click="handleConfirm">
+					{{ t('core', 'Choose') }}
+				</button>
 			</div>
-			<Chrome
-				v-if="advanced"
-				@input="pickColor"
-				v-model="currentColor"
-				class="color-picker-advanced"
-				:disable-alpha="true"
-				:disable-fields="true" />
-		</transition>
-		<div class="color-picker-navigation">
-			<button
-				v-if="advanced"
-				class="color-picker-navigation-button back"
-				@click="handleBack" />
-			<button
-				v-if="!advanced"
-				class="color-picker-navigation-button more-settings"
-				@click="handleMoreSettings" />
-			<button
-				class="color-picker-navigation-button confirm"
-				@click="handleConfirm">{{t('core', 'Choose')}}</button>
 		</div>
-	</div>
+	</Popover>
 </template>
 
 <script>
 import { Chrome } from 'vue-color'
 import GenColors from 'Utils/GenColors'
+import Popover from '../Popover'
 
 export default {
 	name: 'ColorPicker',
 	components: {
-		Chrome
+		Chrome,
+		Popover
 	},
 
 	props: {

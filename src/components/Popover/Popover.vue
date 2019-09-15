@@ -50,7 +50,7 @@ With a `<button>` as a trigger:
 </docs>
 
 <template>
-	<VPopover v-bind="$attrs">
+	<VPopover class="popover" v-bind="$attrs">
 		<!-- This will be the popover target (for the events and position) -->
 		<slot name="trigger" />
 		<!-- This will be the content of the popover -->
@@ -70,3 +70,9 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+.popover {
+	padding: 0px !important;
+}
+</style>

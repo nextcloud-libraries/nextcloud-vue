@@ -80,5 +80,6 @@ export {
 	Modal,
 	Multiselect,
 	Popover,
-	PopoverMenu
+	PopoverMenu,
+	ColorPicker
 }
