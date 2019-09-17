@@ -49,6 +49,7 @@ import Modal from './Modal'
 import Multiselect from './Multiselect'
 import Popover from './Popover'
 import PopoverMenu from './PopoverMenu'
+import ColorPicker from './ColorPicker'
 
 export {
 	ActionButton,
@@ -79,5 +80,6 @@ export {
 	Modal,
 	Multiselect,
 	Popover,
-	PopoverMenu
+	PopoverMenu,
+	ColorPicker
 }

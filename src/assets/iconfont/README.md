@@ -10,6 +10,12 @@ If you want to use an icon as a background on the components you need to use thi
 	}
 	```
 
+# Informations
+- Your svg must not have strokes. This is not compatible with fonts.
+  Please convert them to path instead
+- If you encounter the 'Undefined Iconfont Glyph' error, please close make and run it again
+  The webpack config needs to refresh the svg list
+
 # Results
 - Your scss selector will now use the `:before` pseudo-element with the unicode content matching your icon.
 	``` scss
