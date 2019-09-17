@@ -38,7 +38,8 @@
 <template>
 	<div v-tooltip="tooltip" v-click-outside="closeMenu"
 		:class="{
-			'icon-loading': !isAvatarLoaded,
+			'icon-loading': !isAvatarLoaded && size > 16,
+			'icon-loading-small': !isAvatarLoaded && size <= 16,
 			'avatardiv--unknown': userDoesNotExist,
 			'avatardiv--with-menu': hasMenu
 		}"
