@@ -309,7 +309,6 @@ export default {
 
 			// tabs are optional, but you can use either tabs or non-tab-content only
 			if (tabs.length !== 0 && tabs.length !== this.$children.length) {
-				tabs = []
 				Vue.util.warn(`Mixing tabs and non-tab-content is not possible.`)
 			}
 
