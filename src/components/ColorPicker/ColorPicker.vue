@@ -74,6 +74,7 @@ actual pickers:
 					class="color-picker-navigation-button more-settings"
 					@click="handleMoreSettings" />
 				<button
+					v-if="advanced"
 					class="color-picker-navigation-button confirm"
 					@click="handleConfirm">
 					{{ t('core', 'Choose') }}
@@ -163,7 +164,7 @@ export default {
 	width: 176px;
 	padding: 14px;
 	border-radius: 3px;
-
+	height: 196px;
 	&-simple {
 		display: grid;
 		grid-template-columns: repeat(4, $clickable-area);
@@ -232,7 +233,7 @@ export default {
 				}
 			}
 			&.more-settings {
-				margin-right: auto;
+				margin-left: auto;
 				@include iconfont('more');
 			}
 		}
@@ -242,8 +243,7 @@ export default {
 ::v-deep .vc {
 	&-chrome {
 		width: 176px;
-		height: 132px;
-
+		height: 13;
 		&-color-wrap {
 			width: 30px;
 			height: 30px;
@@ -274,24 +274,24 @@ export default {
 
 .slide {
 	&-enter {
-		transform: translateY(-50%);
+		transform: translateX(-50%);
 		opacity: 0;
 	}
 	&-enter-to {
-		transform: translateY(0);
+		transform: translateX(0);
 		opacity: 1;
 	}
 	&-leave {
-		transform: translateY(0);
+		transform: translateX(0);
 		opacity: 1;
 	}
 	&-leave-to {
-		transform: translateY(-50%);
+		transform: translateX(-50%);
 		opacity: 0;
 	}
 	&-enter-active,
 	&-leave-active {
-		transition: all 80ms ease-in-out;
+		transition: all 50ms ease-in-out;
 	}
 }
 
