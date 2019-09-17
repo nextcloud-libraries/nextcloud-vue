@@ -1,6 +1,7 @@
 <!--
   - @copyright Copyright (c) 2019 Jonas Sulzer <jonas@violoncello.ch>
   -
+  - @author Marco Ambrosini <marcoambrosini@pm.me>
   - @author Jonas Sulzer <jonas@violoncello.ch>
   -
   - @license GNU AGPL version 3 or any later version
@@ -20,16 +21,16 @@
 -->
 
 <template>
-	<Popover>
-		<template slot="trigger">
-			<div class="user-bubble">
-				<Avatar :user="userName" :display-name="userName" />
-				<h6>{{userName}}</h6>
-			</div>
-		</template>
-		<template>
-			<h2>I am the content</h2>
-		</template>
+	<Popover trigger="hover focus" :open="open" class="test"
+		@update:open="onOpenChange">
+		<div slot="trigger" class="user-bubble">
+			<Avatar v-bind="$attrs" :user="user" :size="16"
+				:disable-tooltip="true" :disable-menu="true" class="avatar" />
+			<h6 class="user">
+				{{ displayName ? displayName : user }}
+			</h6>
+		</div>
+		<slot />
 	</Popover>
 </template>
 
@@ -44,20 +45,50 @@ export default {
 		Avatar
 	},
 	props: {
-		userName: {
+		user: {
 			type: String,
 			required: true
+		},
+		displayName: {
+			type: String,
+			required: false
+		},
+		url: {
+			type: String,
+			required: false
+		},
+		open: {
+			type: Boolean,
+			default: false
+		}
+	},
+	methods: {
+		onOpenChange(state) {
+			this.$emit('update:open', state)
 		}
 	}
-
 }
 </script>
 
 <style lang="scss" scoped>
 .user-bubble {
 	display: flex;
-	height: 1.8em;
-	border-radius: 50%;
+	height: 20px;
+	border-radius: 10px;
 	background-color: var(--color-background-dark);
+}
+
+.avatar {
+    align-self: center;
+    margin-left: 2px;
+}
+
+.user {
+    margin: 0 8px 0 4px;
+}
+
+.test {
+    display: inline;
+    vertical-align: top;
 }
 </style>
