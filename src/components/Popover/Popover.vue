@@ -23,7 +23,7 @@
 
 ### General description
 
-This component is just a wrapper for the v-component plgin by Akryum,
+This component is just a wrapper for the v-component plugin by Akryum,
 please refer to this documentation for customization:
 https://github.com/Akryum/v-tooltip
 
