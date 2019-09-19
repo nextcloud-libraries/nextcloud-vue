@@ -43,6 +43,40 @@ export default {
 </script>
 ```
 
+### Simple example with objects
+You can either use the exact object or the track-by key to match against your options
+
+```vue
+<template>
+	<div class="wrapper">
+		<Multiselect v-model="value1" :options="options" track-by="id" label="label" />
+		<pre>Selected option: {{ value1 }}</pre>
+		<br />
+		<Multiselect v-model="value2" :options="options" track-by="id" label="label" />
+		<pre>Selected option: {{ value2 }}</pre>
+	</div>
+</template>
+
+<script>
+import Multiselect from '../index'
+const options = [
+	{ id: 1, label: 'Option 1' },
+	{ id: 2, label: 'Option 2' },
+	{ id: 3, label: 'Option 3' },
+	{ id: 4, label: 'Option 4' }
+]
+export default {
+	data() {
+		return {
+			value1: options[1],
+			value2: 2,
+			options
+		}
+	}
+}
+</script>
+```
+
 ### Limit with automated tooltip
 ```vue
 <template>
@@ -84,7 +118,7 @@ Please see the [AvatarSelectOption](#AvatarSelectOption) component
 	-> Forward all undeclared props to the vue-multiselect child
 	-->
 	<VueMultiselect
-		:value="value"
+		v-model="localValue"
 		v-bind="$attrs"
 		:class="[
 			{
@@ -92,14 +126,14 @@ Please see the [AvatarSelectOption](#AvatarSelectOption) component
 			},
 			multiple ? 'multiselect--multiple': 'multiselect--single'
 		]"
+		:options="options"
 		:limit="maxOptions"
 		:close-on-select="!multiple"
 		:multiple="multiple"
 		:label="label"
 		:track-by="trackBy"
 		tag-placeholder="create"
-		v-on="$listeners"
-		@update:value="$emit('update:value', value)">
+		v-on="$listeners">
 		<!-- This is the scope to format the list of available options in the dropdown
 			Two templates to avoid registering the slot unnecessary -->
 		<template #option="scope">
@@ -200,6 +234,16 @@ export default {
 		},
 
 		/**
+		 * Array of available options: Objects, Strings or Integers.
+		 * If array of objects, visible label will default to option.label.
+		 * If `labal` prop is passed, label will equal option['label']
+		 */
+		options: {
+			type: Array,
+			required: true
+		},
+
+		/**
 		 * Enable the big user selector w/ avatar
 		 * Make sure your objects fit the requirements
 		 */
@@ -259,6 +303,22 @@ export default {
 		 */
 		limitString() {
 			return `+${this.value.length - this.maxOptions}`
+		},
+
+		localValue: {
+			get() {
+				if (this.trackBy && this.options
+					&& typeof this.value !== 'object'
+					&& this.options[this.value]) {
+					return this.options[this.value]
+				}
+				return this.value
+			},
+			set(value) {
+				this.$emit('input', value)
+				this.$emit('update:value', value)
+				this.$emit('change', value)
+			}
 		}
 	},
 
