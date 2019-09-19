@@ -301,22 +301,16 @@ export default {
 		 */
 		updateTabs() {
 			// Init tabs from $children
-			let tabs = this.$children.reduce((tabs, tab) => {
-				if (!tab.name || typeof tab.name !== 'string') {
-					Vue.util.warn(`This tab is missing a valid name: ${tab.name}`, tab)
-					return tabs
-				}
-				if (!IsValidString(tab.id)) {
-					Vue.util.warn(`This tab is missing a valid id: ${tab.id}`, tab)
-					return tabs
-				}
-				if (!IsValidString(tab.icon)) {
-					Vue.util.warn(`This tab is missing a valid icon: ${tab.icon}`, tab)
-					return tabs
-				}
-				tabs.push(tab)
-				return tabs
-			}, [])
+			let tabs = this.$children.filter(child =>
+				(child.name && typeof child.name === 'string')
+				&& IsValidString(child.id)
+				&& IsValidString(child.icon)
+			)
+
+			// tabs are optional, but you can use either tabs or non-tab-content only
+			if (tabs.length !== 0 && tabs.length !== this.$children.length) {
+				Vue.util.warn(`Mixing tabs and non-tab-content is not possible.`)
+			}
 
 			this.tabs = tabs.sort((a, b) => {
 				var orderA = a.order || 0
