@@ -67,6 +67,7 @@ export default {
 	text-align: center;
 	text-overflow: ellipsis;
 	line-height: 1em;
+	font-size: 0.8125rem; //13px with root font size set at 16px
 
 	&--highlighted {
 		padding: 4px 6px;

@@ -398,6 +398,7 @@ export default {
 	box-sizing: border-box;
 	width: 100%;
 	min-height: $clickable-area;
+	font-size: 0.875rem; //14px with root font size set at 16px
 
 	&.active,
 	a:hover,
