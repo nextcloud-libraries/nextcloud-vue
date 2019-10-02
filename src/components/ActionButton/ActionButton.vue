@@ -27,7 +27,7 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 ```vue
 	<Actions>
 		<ActionButton icon="icon-delete" @click="alert('Delete')">Delete</ActionButton>
-		<ActionButton icon="icon-delete" @click="alert('Delete')">Delete</ActionButton>
+		<ActionButton icon="icon-delete" :close-after-click="true" @click="alert('Delete and close menu')">Delete and close</ActionButton>
 		<ActionButton icon="icon-delete" :disabled="true" @click="alert('Disabled')">Disabled button</ActionButton>
 	</Actions>
 ```

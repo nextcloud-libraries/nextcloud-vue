@@ -39,6 +39,13 @@ export default {
 		title: {
 			type: String,
 			default: ''
+		},
+		/**
+		 * Whether we close the Actions menu after the click
+		 */
+		closeAfterClick: {
+			type: Boolean,
+			default: false
 		}
 	},
 
@@ -59,6 +66,10 @@ export default {
 			 * @type {Event}
 			 */
 			this.$emit('click', event)
+
+			if (this.closeAfterClick) {
+				this.$parent.closeMenu()
+			}
 		}
 	}
 }
