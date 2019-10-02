@@ -76,7 +76,7 @@
 import Tooltip from 'Directives/Tooltip'
 import { PopoverMenu } from 'Components/PopoverMenu'
 import ClickOutside from 'vue-click-outside'
-import axios from 'nextcloud-axios'
+import axios from '@nextcloud/axios'
 import uidToColor from './uidToColor'
 
 export default {
