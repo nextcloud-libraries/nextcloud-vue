@@ -70,7 +70,7 @@ export default {
 
 			if (this.closeAfterClick) {
 				const parent = GetParent(this, 'Actions')
-				if (parent) {
+				if (parent && parent.closeMenu) {
 					parent.closeMenu()
 				}
 			}
