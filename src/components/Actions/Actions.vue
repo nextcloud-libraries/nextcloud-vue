@@ -476,6 +476,10 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 
 		opacity: $opacity_normal;
 
+		&:before {
+			content: '';
+		}
+
 		&--default-icon {
 			font-size: $icon-size;
 			@include iconfont('more');
