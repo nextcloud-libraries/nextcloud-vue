@@ -290,6 +290,8 @@ export default {
 				 * @type {null}
 				 */
 				this.$emit('open')
+			} else {
+				this.offsetX = 0
 			}
 
 			/**
