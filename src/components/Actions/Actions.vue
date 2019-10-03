@@ -72,6 +72,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 		<!-- If more than one action, create a popovermenu -->
 		<a v-click-outside="closeMenu"
 			class="icon action-item__menutoggle"
+			:class="defaultIcon"
 			href="#" aria-haspopup="true"
 			:aria-controls="randomId"
 			:aria-expanded="opened"
@@ -151,6 +152,14 @@ export default {
 			validator: align => {
 				return ['left', 'center', 'right'].indexOf(align) > -1
 			}
+		},
+		/**
+		 * Specify the icon to be shown as placeholder
+		 * when more than one action is inside the actions component
+		 */
+		defaultIcon: {
+			type: String,
+			default: 'action-item__menutoggle--default-icon'
 		}
 	},
 
@@ -467,9 +476,10 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 
 		opacity: $opacity_normal;
 
-		font-size: $icon-size;
-
-		@include iconfont('more');
+		&--default-icon {
+			font-size: $icon-size;
+			@include iconfont('more');
+		}
 	}
 
 	&--single {
