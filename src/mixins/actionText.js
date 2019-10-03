@@ -21,6 +21,7 @@
  *
  */
 import actionGlobal from './actionGlobal'
+import GetParent from 'Utils/GetParent'
 
 export default {
 	mixins: [actionGlobal],
@@ -68,7 +69,10 @@ export default {
 			this.$emit('click', event)
 
 			if (this.closeAfterClick) {
-				this.$parent.closeMenu()
+				const parent = GetParent(this, 'Actions')
+				if (parent) {
+					parent.closeMenu()
+				}
 			}
 		}
 	}
