@@ -24,6 +24,7 @@ import ActionButton from './ActionButton'
 import ActionCheckbox from './ActionCheckbox'
 import ActionInput from './ActionInput'
 import ActionLink from './ActionLink'
+import ActionRadio from './ActionRadio'
 import ActionRouter from './ActionRouter'
 import ActionText from './ActionText'
 import ActionTextEditable from './ActionTextEditable'
@@ -52,6 +53,7 @@ export {
 	ActionCheckbox,
 	ActionInput,
 	ActionLink,
+	ActionRadio,
 	ActionRouter,
 	ActionText,
 	ActionTextEditable,
