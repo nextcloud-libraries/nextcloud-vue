@@ -42,6 +42,16 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 	<ActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
 </Actions>
 ```
+
+### Multiple actions with custom icon
+
+```
+<Actions default-icon="icon-edit">
+	<ActionButton icon="icon-edit" @click="alert('Edit')">Edit</ActionButton>
+	<ActionButton icon="icon-delete" @click="alert('Delete')">Delete</ActionButton>
+	<ActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
+</Actions>
+```
 </docs>
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
@@ -154,8 +164,9 @@ export default {
 			}
 		},
 		/**
-		 * Specify the icon to be shown as placeholder
-		 * when more than one action is inside the actions component
+		 * Icon to show for the toggle menu button
+		 * when more than one action is inside the actions component.
+		 * Only replace the default three-dot icon if really necessary.
 		 */
 		defaultIcon: {
 			type: String,
@@ -477,6 +488,10 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 		justify-content: center;
 
 		opacity: $opacity_normal;
+
+		&:before {
+			content: '';
+		}
 
 		&--default-icon {
 			font-size: $icon-size;
