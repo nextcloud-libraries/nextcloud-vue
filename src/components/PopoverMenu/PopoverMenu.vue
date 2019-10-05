@@ -20,6 +20,10 @@
   -
   -->
 
+<docs>
+	This component is deprecated. Please use the [Actions](#/Components?id=actions-1) component instead.
+</docs>
+
 <template>
 	<ul>
 		<PopoverMenuItem v-for="(item, key) in menu" :key="key" :item="item" />
