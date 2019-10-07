@@ -452,14 +452,12 @@ $desc-height: 46px;
 		// sidebar action(s) slot
 		&__action {
 			display: flex;
-			margin: 10px;
+			margin: 0 10px;
 			max-height: 50px;
 			align-items: center;
 		}
 
 		&--compact {
-			// wull width (+margin) of the figure minus left padding of the desc + 2px because it balances this a bit
-			padding-left: $desc-height + $desc-vertical-padding + $desc-vertical-padding - $clickable-area + 2px;
 			.app-sidebar-header__figure {
 				height: $desc-height + $desc-vertical-padding;
 				width: $desc-height + $desc-vertical-padding;
@@ -473,6 +471,10 @@ $desc-height: 46px;
 			.app-sidebar-header__desc {
 				// forcing $clickable-area no matter if star or not
 				padding-left: $clickable-area;
+				// wull width (+margin) of the figure minus left padding of the desc + 2px because it balances this a bit
+				// this is only here to align the favourite star icon, we're using margin and padding
+				// to have a two steps left distance: | margin | favourite | padding | title + subtitle
+				margin-left: $desc-height + $desc-vertical-padding + $desc-vertical-padding - $clickable-area + 2px;
 				height: $desc-height;
 				.app-sidebar-header__star {
 					margin-top: -$desc-vertical-padding / 2;
