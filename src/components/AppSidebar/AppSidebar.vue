@@ -23,6 +23,68 @@
 <!-- Follows the tab aria guidelines
 	https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-1/tabs.html -->
 
+<docs>
+
+	### General description
+
+	This component provides a way to include the standardised sidebar.
+	The standard properties like title, subtitle, starred, etc. allow to automatically
+	include a standard-header like it's used by the files app.
+
+	### Standard usage
+
+	```vue
+	<template>
+		<AppSidebar
+			:title="title"
+			:subtitle="subtitle">
+			<!-- Insert your slots and tabs here -->
+		</AppSidebar>
+	</template>
+	<script>
+		export default {
+			data() {
+				return {
+					title: 'cat-picture.jpg',
+					subtitle: 'last edited 3 weeks ago'
+				}
+			}
+		}
+	</script>
+	```
+
+	### Editable title
+	```vue
+	<template>
+		<AppSidebar
+			:title="title"
+			:title-editable="true"
+			:title-placeholder="titlePlaceholder"
+			:subtitle="subtitle"
+			@update:title="titleUpdate">
+			<!-- Insert your slots and tabs here -->
+		</AppSidebar>
+	</template>
+	<script>
+		export default {
+			data() {
+				return {
+					title: 'cat-picture.jpg',
+					titlePlaceholder: 'Filename',
+					subtitle: 'last edited 3 weeks ago'
+				}
+			},
+			methods: {
+				titleUpdate(e) {
+					this.title = e
+				}
+			}
+		}
+	</script>
+	```
+
+</docs>
+
 <template>
 	<transition name="slide-right">
 		<aside id="app-sidebar">
@@ -43,15 +105,19 @@
 				</div>
 
 				<!-- sidebar details -->
-				<div :class="{ 'app-sidebar-header__desc--with-star': canStar, 'app-sidebar-header__desc--with-subtitle': subtitle }" class="app-sidebar-header__desc">
+				<div :class="{ 'app-sidebar-header__desc--with-star': canStar, 'app-sidebar-header__desc--with-subtitle': subtitle && !titleEditable, 'app-sidebar-header__desc--editable': titleEditable && !subtitle, 'app-sidebar-header__desc--with-subtitle--editable': titleEditable && subtitle}" class="app-sidebar-header__desc">
 					<!-- favourite icon -->
 					<a v-if="canStar" :class="{ 'icon-starred': isStarred&& !starLoading, 'icon-star': !isStarred && !starLoading, 'icon-loading-small': starLoading }"
 						class="app-sidebar-header__star" @click.prevent="toggleStarred" />
 
 					<!-- main title -->
-					<h3 class="app-sidebar-header__title">
+					<h3 v-if="!titleEditable" class="app-sidebar-header__title">
 						{{ title }}
 					</h3>
+
+					<input v-if="titleEditable" v-focus class="app-sidebar-header__title-input"
+						type="text" :placeholder="titlePlaceholder" :value="title"
+						@input="onTitleInput">
 
 					<!-- secondary title -->
 					<h4 v-if="subtitle.trim() !== ''" class="app-sidebar-header__subtitle">
@@ -106,6 +172,7 @@
 <script>
 import Vue from 'vue'
 import Actions from 'Components/Actions'
+import Focus from 'Directives/Focus'
 
 const IsValidString = function(value) {
 	return value && typeof value === 'string' && value.trim() !== '' && value.indexOf(' ') === -1
@@ -116,6 +183,9 @@ export default {
 	components: {
 		Actions
 	},
+	directives: {
+		focus: Focus
+	},
 	props: {
 		active: {
 			type: String,
@@ -125,6 +195,14 @@ export default {
 			type: String,
 			default: '',
 			required: true
+		},
+		titleEditable: {
+			type: Boolean,
+			default: false
+		},
+		titlePlaceholder: {
+			type: String,
+			default: ''
 		},
 		subtitle: {
 			type: String,
@@ -325,6 +403,22 @@ export default {
 			if (this.tabs.length > 0) {
 				this.updateActive()
 			}
+		},
+
+		/**
+		 * Emit title change event to parent component
+		 */
+		onTitleInput(event) {
+			/**
+			 * Emitted on title events of the text field
+			 * @type {Event|Date}
+			 */
+			this.$emit('input:title', event)
+			/**
+			 * Emitted when the title value changes
+			 * @type {string|Date}
+			 */
+			this.$emit('update:title', event.target.value)
 		}
 	}
 }
@@ -397,7 +491,7 @@ $desc-height: 46px;
 			position: relative;
 			padding: #{$desc-vertical-padding} #{$desc-menu-right-margin * 4} #{$desc-vertical-padding} $desc-vertical-padding / 2;
 			display: flex;
-			height: $desc-height / 2;
+			height: $desc-height * 0.5;
 			flex-direction: column;
 			justify-content: center;
 			box-sizing: content-box;
@@ -407,6 +501,20 @@ $desc-height: 46px;
 			&--with-subtitle {
 				justify-content: space-between;
 				height: $desc-height;
+			}
+			&--editable {
+				height: $desc-height * 0.75;
+			}
+			&--with-subtitle--editable {
+				height: $desc-height * 1.5;
+
+				.app-sidebar-header__subtitle {
+					margin-left: 7px;
+
+					input.app-sidebar-header__title-input {
+						margin-top: -$desc-vertical-padding / 2;
+					}
+				}
 			}
 			// titles
 			h3, h4 {
@@ -421,6 +529,11 @@ $desc-height: 46px;
 				font-size: 16px;
 				padding: 0;
 			}
+			input.app-sidebar-header__title-input {
+				font-size: 16px;
+				width: 100%;
+			}
+
 			// subtitle
 			h4 {
 				font-size: 14px;
@@ -485,6 +598,12 @@ $desc-height: 46px;
 					top: 0;
 					margin: 0;
 					background-color: transparent;
+				}
+				&--editable {
+					padding-top: 0;
+					input.app-sidebar-header__title-input {
+						margin-top: 0;
+					}
 				}
 			}
 		}
