@@ -361,7 +361,7 @@ export default {
 		 */
 		updateWidth() {
 			// width of the tags wrapper minus the padding
-			if (this.$el) {
+			if (this.$el && this.$el.querySelector('.multiselect__tags-wrap')) {
 				this.elWidth = this.$el.querySelector('.multiselect__tags-wrap').offsetWidth - 10
 			}
 		}
