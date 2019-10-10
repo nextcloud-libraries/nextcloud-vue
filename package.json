@@ -1,6 +1,6 @@
 {
 	"name": "nextcloud-vue",
-	"version": "0.12.5",
+	"version": "0.12.6",
 	"description": "Nextcloud vue components",
 	"keywords": [
 		"vuejs",
