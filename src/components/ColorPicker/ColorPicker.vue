@@ -32,10 +32,75 @@ actual pickers:
 
 ### Usage
 
+* Using v-model and passing in an HTML element that will be treated as a trigger:
+
+```vue
+<template>
+	<div class="container0">
+		<ColorPicker v-model="color">
+			<button> Click Me </button>
+		</ColorPicker>
+		<div :style="{'background-color': color}" class="color0" />
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			color: '#0082c9'
+		}
+	}
+}
+</script>
+<style>
+.container0 {
+	display: flex;
+}
+
+.color0 {
+	width: 100px;
+	margin-left: 20px;
+	border-radius: 6px;
+}
+</style>
 ```
-<ColorPicker v-model="color" />
-<ColorPicker :value.sync="color" />
-<ColorPicker :value="color" @change="updateColor" />
+
+* Using v-bind for both color and open state and emitting an event that updates the color
+
+```vue
+<template>
+	<div class="container1">
+		<button @click="open = !open"> Click Me </button>
+		<ColorPicker :value="color" @input="updateColor" :open="open" />
+		<div :style="{'background-color': color}" class="color1" />
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			color: '#0082c9',
+			open: 'false'
+		}
+	},
+	methods: {
+		updateColor(e) {
+			this.color = e
+		}
+	}
+}
+</script>
+<style>
+.container1 {
+	display: flex;
+}
+
+.color1 {
+	width: 100px;
+	margin-left: 20px;
+	border-radius: 6px;
+}
+</style>
 ```
 
 </docs>
