@@ -51,7 +51,7 @@ actual pickers:
 					<button
 						v-for="(color, index) in palette"
 						:key="index"
-						:style="{'background-color': `#${color}`}"
+						:style="{'background-color': color }"
 						class="color-picker-simple-color-circle"
 						:class="{ 'color-picker-simple-color-circle--active' : color === currentColor }"
 						@click="pickColor(color)" />
@@ -111,8 +111,9 @@ export default {
 			currentColor: this.value,
 			advanced: false,
 			palette: GenColors(4).map(color => {
-				return this.rgbToHex(color.r) + this.rgbToHex(color.g) + this.rgbToHex(color.b)
-			})
+				return '#' + this.rgbToHex(color.r) + this.rgbToHex(color.g) + this.rgbToHex(color.b)
+			}),
+			open: true
 		}
 	},
 	watch: {
@@ -124,7 +125,10 @@ export default {
 	methods: {
 		handleConfirm() {
 			this.$emit('close')
-			this.$emit('change', this.currentColor)
+			/**
+			 * Emits a hexadecimal string e.g. '#ffffff'
+			 */
+			this.$emit('submit', this.currentColor)
 			this.advanced = false
 		},
 		handleBack() {
@@ -139,8 +143,15 @@ export default {
 			}
 			this.currentColor = color
 			this.$emit('close')
+			/**
+			 * Emits a hexadecimal string e.g. '#ffffff'
+			 */
 			this.$emit('update:value', color)
+			/**
+			 * Emits a hexadecimal string e.g. '#ffffff'
+			 */
 			this.$emit('input', color)
+
 		},
 		rgbToHex(color) {
 			const hex = color.toString(16)
@@ -162,7 +173,7 @@ export default {
 	justify-content: space-between;
 	box-sizing: content-box !important;
 	width: 176px;
-	padding: 14px;
+	padding: 4px;
 	border-radius: 3px;
 	height: 196px;
 	&-simple {
