@@ -50,7 +50,7 @@ With a `<button>` as a trigger:
 </docs>
 
 <template>
-	<VPopover class="popover" v-bind="$attrs">
+	<VPopover class="popover" v-bind="$attrs" v-on="$listeners">
 		<!-- This will be the popover target (for the events and position) -->
 		<slot name="trigger" />
 		<!-- This will be the content of the popover -->
