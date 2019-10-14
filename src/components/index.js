@@ -50,6 +50,9 @@ import Multiselect from './Multiselect'
 import Popover from './Popover'
 import PopoverMenu from './PopoverMenu'
 import ColorPicker from './ColorPicker'
+import SettingsInputText from './SettingsInputText/SettingsInputText'
+import SettingsCheckbox from './SettingsCheckbox/SettingsCheckbox'
+import SettingsSection from './SettingsSection/SettingsSection'
 
 export {
 	ActionButton,
@@ -81,5 +84,8 @@ export {
 	Multiselect,
 	Popover,
 	PopoverMenu,
-	ColorPicker
+	ColorPicker,
+	SettingsInputText,
+	SettingsCheckbox,
+	SettingsSection
 }
