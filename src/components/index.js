@@ -27,10 +27,10 @@ import ActionInput from './ActionInput'
 import ActionLink from './ActionLink'
 import ActionRadio from './ActionRadio'
 import ActionRouter from './ActionRouter'
+import Actions from './Actions'
 import ActionSeparator from './ActionSeparator'
 import ActionText from './ActionText'
 import ActionTextEditable from './ActionTextEditable'
-import Actions from './Actions'
 import AppContent from './AppContent'
 import AppContentDetails from './AppContentDetails'
 import AppContentList from './AppContentList'
@@ -45,6 +45,7 @@ import AppNavigationSpacer from './AppNavigationSpacer'
 import AppSidebar from './AppSidebar'
 import AppSidebarTab from './AppSidebarTab'
 import Avatar from './Avatar'
+import ColorPicker from './ColorPicker'
 import Content from './Content'
 import DatetimePicker from './DatetimePicker'
 import Modal from './Modal'
@@ -52,7 +53,7 @@ import Multiselect from './Multiselect'
 import MultiselectTags from './MultiselectTags'
 import Popover from './Popover'
 import PopoverMenu from './PopoverMenu'
-import ColorPicker from './ColorPicker'
+import SettingsSection from './SettingsSection'
 import UserBubble from './UserBubble'
 
 export {
@@ -62,10 +63,10 @@ export {
 	ActionLink,
 	ActionRadio,
 	ActionRouter,
+	Actions,
 	ActionSeparator,
 	ActionText,
 	ActionTextEditable,
-	Actions,
 	AppContent,
 	AppContentDetails,
 	AppContentList,
@@ -80,6 +81,7 @@ export {
 	AppSidebar,
 	AppSidebarTab,
 	Avatar,
+	ColorPicker,
 	Content,
 	DatetimePicker,
 	Modal,
@@ -87,6 +89,6 @@ export {
 	MultiselectTags,
 	Popover,
 	PopoverMenu,
-	ColorPicker,
+	SettingsSection,
 	UserBubble,
 }
