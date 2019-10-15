@@ -28,6 +28,7 @@ msgstr ""
 
 #: src/components/Multiselect/Multiselect.vue:172
 #: src/components/MultiselectTags/MultiselectTags.vue:78
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:34
 msgid "No results"
 msgstr ""
 
@@ -49,4 +50,8 @@ msgstr ""
 
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
+msgstr ""
+
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:138
+msgid "Unable to search the group"
 msgstr ""
