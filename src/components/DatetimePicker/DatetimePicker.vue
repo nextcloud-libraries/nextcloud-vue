@@ -49,7 +49,11 @@
 		v-on="$listeners"
 		@select-year="handleSelectYear"
 		@select-month="handleSelectMonth"
-		@update:value="$emit('update:value', value)" />
+		@update:value="$emit('update:value', value)">
+		<template v-for="(_, slot) of $scopedSlots" v-slot:[slot]="scope">
+			<slot :name="slot" v-bind="scope" />
+		</template>
+	</DatePicker>
 </template>
 
 <script>
