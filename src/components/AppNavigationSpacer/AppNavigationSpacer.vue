@@ -32,5 +32,6 @@ export default {
 <style scoped>
 	.app-navigation-spacer {
 		height: 22px;
+		order: 1;
 	}
 </style>
