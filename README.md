@@ -7,7 +7,7 @@
 [![Code coverage](https://img.shields.io/codecov/c/github/nextcloud/nextcloud-vue.svg?style=flat-square)](https://codecov.io/gh/nextcloud/nextcloud-vue/)
 [![irc](https://img.shields.io/badge/IRC-%23nextcloud--dev%20on%20freenode-blue.svg?style=flat-square)](https://webchat.freenode.net/?channels=nextcloud-dev)
 
-This repo contains the various Vue.js components that Nextcloud uses for its internal design and structure. It provides standardized UI elements for building Nextcloud app frontends with Vue.js. 
+This repo contains the various Vue.js components that Nextcloud uses for its internal design and structure. It provides standardized UI elements for building Nextcloud app frontends with Vue.js.
 
 ## Documentation
 
@@ -38,3 +38,16 @@ Depending on which components you use, you might want to only import individual 
 ```js
 import Avatar from 'nextcloud-vue/dist/Components/Avatar'
 ```
+
+
+## Development setup
+
+If you want to work on improving the components it’s best to run the latest code and link it to your local Nextcloud installation:
+
+1. Install the dependencies with `npm i`
+2. Build the components every time you do changes: `npm run build`
+3. Connect it to your local Nextcloud development setup:
+    - In this repository do `npm link`
+    - In the repository of an app do `npm link @nextcloud/vue`
+
+The link is going to be broken every time you do `npm i` in the app you linked it to, so then you will have to re-link.
