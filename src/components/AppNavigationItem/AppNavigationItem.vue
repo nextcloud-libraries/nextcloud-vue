@@ -440,6 +440,7 @@ export default {
 			justify-content: center;
 			width: $clickable-area;
 			height: $clickable-area;
+			background-size: $icon-size $icon-size;
 		}
 
 		.app-navigation-entry__title {
