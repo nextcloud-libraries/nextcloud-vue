@@ -6,7 +6,7 @@
 	padding: 0 !important;
 	display: inline-block;
 	/* override this rule with your width styling if you need */
-	min-width: 160px; 
+	min-width: 160px;
 	position: relative;
 	background-color: var(--color-main-background);
 
@@ -84,7 +84,7 @@
 				line-height: 20px;
 				padding: 1px 5px;
 				background-image: none;
-				color: var(--color-text-lighter);
+				color: var(--color-main-text);
 				border: 1px solid var(--color-border-dark);
 				display: inline-flex;
 				align-items: center;
@@ -112,7 +112,7 @@
 				}
 			}
 		}
-	
+
 		/* Single select default value
 		or default placeholder if search disabled*/
 		.multiselect__single,
