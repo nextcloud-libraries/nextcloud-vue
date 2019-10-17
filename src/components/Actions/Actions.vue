@@ -59,7 +59,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 		v-tooltip.auto="firstAction.text"
 		:aria-label="firstAction.text"
 		v-bind="firstActionBinding"
-		:class="firstAction.icon" class="action-item action-item--single"
+		:class="[firstAction.icon, firstActionClass]" class="action-item action-item--single"
 		rel="noreferrer noopener"
 		@[firstActionEventBinding]="execFirstAction">
 		<!-- fake slot to gather main action -->
@@ -259,6 +259,11 @@ export default {
 		},
 		firstActionEventBinding() {
 			return this.firstActionEvent ? 'click' : null
+		},
+		firstActionClass() {
+			const staticClass = this.firstActionVNode && this.firstActionVNode.data.staticClass
+			const dynClass = this.firstActionVNode && this.firstActionVNode.data.class
+			return `${staticClass} ${dynClass}`
 		}
 	},
 
