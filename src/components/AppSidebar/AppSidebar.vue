@@ -90,7 +90,7 @@
 		<aside id="app-sidebar">
 			<header :class="{ 'app-sidebar-header--with-figure': hasFigure, 'app-sidebar-header--compact': compact }" class="app-sidebar-header">
 				<!-- close sidebar button -->
-				<a href="#" class="icon-close" :title="t('core', 'close')"
+				<a href="#" class="app-sidebar__close icon-close" :title="t('core', 'close')"
 					@click="closeSidebar" />
 
 				<!-- sidebar header illustration/figure -->
@@ -457,7 +457,7 @@ $desc-height: 46px;
 	background: var(--color-main-background);
 	border-left: 1px solid var(--color-border);
 	.app-sidebar-header {
-		> .icon-close {
+		> .app-sidebar__close {
 			position: absolute;
 			width: $clickable-area;
 			height: $clickable-area;
