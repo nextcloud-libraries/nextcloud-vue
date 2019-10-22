@@ -46,7 +46,17 @@ module.exports = {
 			commonjs2: 'vue',
 			amd: 'vue',
 			root: 'Vue'
-		}
+		},
+		'@nextcloud/axios': '@nextcloud/axios',
+		'escape-html': 'escape-html',
+		'hammerjs': 'hammerjs',
+		'md5': 'md5',
+		'v-click-outside': 'v-click-outside',
+		'v-tooltip': 'v-tooltip',
+		'vue-color': 'vue-color',
+		'vue-multiselect': 'vue-multiselect',
+		'vue-visible': 'vue-visible',
+		'vue2-datepicker': 'vue2-datepicker'
 	},
 	module: {
 		rules: [
