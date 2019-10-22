@@ -45,6 +45,7 @@ module.exports = {
 				'src/components/Action[sA-Z]*/*.vue',
 				'src/components/App*/*.vue',
 				'src/components/Multiselect/*.vue',
+				'src/components/Multiselect*/*.vue',
 				'src/components/PopoverMenu/!(PopoverMenu).vue'
 			],
 			sections: [
@@ -66,7 +67,8 @@ module.exports = {
 					name: 'Multiselect',
 					components: [
 						'src/components/Multiselect/Multiselect.vue',
-						'src/components/Multiselect/AvatarSelectOption.vue'
+						'src/components/Multiselect/AvatarSelectOption.vue',
+						'src/components/MultiselectTags/MultiselectTags.vue'
 					]
 				}
 			]
