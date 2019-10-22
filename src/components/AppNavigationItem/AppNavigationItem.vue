@@ -88,9 +88,9 @@
 </template>
 
 <script>
-import { PopoverMenu } from 'Components/PopoverMenu'
-import ClickOutside from 'vue-click-outside'
 import { AppNavigationCounter } from 'Components/AppNavigationCounter'
+import { directive as ClickOutside } from 'v-click-outside'
+import { PopoverMenu } from 'Components/PopoverMenu'
 
 export default {
 	name: 'AppNavigationItem',

@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import ClickOutside from 'vue-click-outside'
+import { directive as ClickOutside } from 'v-click-outside'
 
 export default {
 	directives: {
