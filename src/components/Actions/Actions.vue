@@ -107,7 +107,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 	</div>
 </template>
 <script>
-import ClickOutside from 'vue-click-outside'
+import { directive as ClickOutside } from 'v-click-outside'
 import Tooltip from 'Directives/Tooltip'
 import GenRandomId from 'Utils/GenRandomId'
 import IsOutOfViewport from 'Utils/IsOutOfViewport'

@@ -167,7 +167,7 @@ Just set the `pinned` prop.
 </template>
 
 <script>
-import ClickOutside from 'vue-click-outside'
+import { directive as ClickOutside } from 'v-click-outside'
 import Actions from '../Actions/Actions'
 import ActionButton from '../ActionButton/ActionButton'
 import AppNavigationIconCollapsible from './AppNavigationIconCollapsible'
