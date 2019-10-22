@@ -1,7 +1,7 @@
 ## Tooltip
 
 ```js static
-import { Tooltip } from 'nextcloud-vue'
+import { Tooltip } from '@nextcloud/vue'
 
 Vue.directive('tooltip', VTooltip.VTooltip)
 ```
