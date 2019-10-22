@@ -141,10 +141,6 @@ export default {
 			this.openedMenu = newVal
 		}
 	},
-	mounted() {
-		// prevent click outside event with popupItem.
-		this.popupItem = this.$el
-	},
 	methods: {
 		hideMenu() {
 			this.openedMenu = false

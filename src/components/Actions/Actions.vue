@@ -70,8 +70,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 		@keydown.page-down.exact.prevent="focusLastAction"
 		@keydown.esc.exact.prevent="closeMenu">
 		<!-- If more than one action, create a popovermenu -->
-		<a v-click-outside="closeMenu"
-			class="icon action-item__menutoggle"
+		<a class="icon action-item__menutoggle"
 			href="#" aria-haspopup="true"
 			:aria-controls="randomId"
 			:aria-expanded="opened"
@@ -79,6 +78,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 			@keydown.space.exact.prevent="toggleMenu" />
 		<div v-if="opened"
 			ref="menu"
+			v-click-outside="closeMenu"
 			:class="[`menu-${menuAlign}`, { 'open': opened }]"
 			:style="{marginRight: `${ offsetX }px`}"
 			class="action-item__menu"
@@ -263,10 +263,6 @@ export default {
 
 		// filter invalid menu items
 		ValidateSlot(this.$slots.default, allowedChildren, this)
-	},
-	mounted() {
-		// prevent click outside event with popupItem.
-		this.popupItem = this.$el
 	},
 	beforeUpdate() {
 		// ! since we're using $slots to manage our actions
