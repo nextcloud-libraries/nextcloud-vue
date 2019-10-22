@@ -23,7 +23,7 @@ module.exports = {
 	components: 'src/components/*/*.vue',
 	getComponentPathLine(componentPath) {
 		const name = path.basename(componentPath, '.vue');
-		return `import { ${name} } from 'nextcloud-vue/dist/Components/${name}';`;
+		return `import { ${name} } from '@nextcloud/vue/dist/Components/${name}';`;
 	},
 	sections: [
 		{
