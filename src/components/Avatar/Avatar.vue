@@ -72,11 +72,10 @@
 <script>
 
 /* global OC oc_userconfig */
-
-import Tooltip from 'Directives/Tooltip'
+import { directive as ClickOutside } from 'v-click-outside'
 import { PopoverMenu } from 'Components/PopoverMenu'
-import ClickOutside from 'vue-click-outside'
 import axios from 'nextcloud-axios'
+import Tooltip from 'Directives/Tooltip'
 import uidToColor from './uidToColor'
 
 export default {
