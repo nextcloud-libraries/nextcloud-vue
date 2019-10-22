@@ -82,7 +82,7 @@ export default {
 	name: 'Avatar',
 	directives: {
 		tooltip: Tooltip,
-		ClickOutside: ClickOutside
+		ClickOutside
 	},
 	components: {
 		PopoverMenu

@@ -344,10 +344,6 @@ export default {
 			this.opened = newVal
 		}
 	},
-	mounted() {
-		// prevent click outside event with popupItem.
-		this.popupItem = this.$el
-	},
 	methods: {
 		// sync opened menu state with prop
 		onMenuToggle(state) {
