@@ -3,7 +3,7 @@
 [![npm last version](https://img.shields.io/npm/v/nextcloud-vue.svg?style=flat-square)](https://www.npmjs.com/package/nextcloud-vue)
 [![travis build status](https://img.shields.io/travis/com/nextcloud/nextcloud-vue/master.svg?style=flat-square)](https://travis-ci.com/nextcloud/nextcloud-vue)
 [![Dependabot status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?longCache=true&style=flat-square&logo=dependabot)](https://dependabot.com)
-[![Codacy Badge](https://img.shields.io/codacy/grade/57e9764b68904cbf8f9e050c33340ab4.svg?style=flat-square)](https://app.codacy.com/app/skjnldsv/nextcloud-vue)
+[![Codacy Badge](https://img.shields.io/codacy/grade/57e9764b68904cbf8f9e050c33340ab4.svg?style=flat-square)](https://app.codacy.com/app/nextcloud/nextcloud-vue)
 [![Code coverage](https://img.shields.io/codecov/c/github/nextcloud/nextcloud-vue.svg?style=flat-square)](https://codecov.io/gh/nextcloud/nextcloud-vue/)
 [![irc](https://img.shields.io/badge/IRC-%23nextcloud--dev%20on%20freenode-blue.svg?style=flat-square)](https://webchat.freenode.net/?channels=nextcloud-dev)
 
@@ -22,7 +22,7 @@ We will try to maintain this repository the best we can, but some example might 
 ### Install the library
 
 ```bash
-npm i --save nextcloud-vue
+npm i --save @nextcloud/vue
 ```
 
 ### Usage
@@ -30,13 +30,13 @@ npm i --save nextcloud-vue
 To use a component, just import it:
 
 ```js
-import { AppNavigation } from 'nextcloud-vue'
+import { AppNavigation } from '@nextcloud/vue'
 ```
 
 Depending on which components you use, you might want to only import individual (separately bundled) components:
 
 ```js
-import Avatar from 'nextcloud-vue/dist/Components/Avatar'
+import Avatar from '@nextcloud/vue/dist/Components/Avatar'
 ```
 
 
