@@ -8,6 +8,8 @@ const IconfontName = 'iconfont-vue'
 
 const { DefinePlugin } = require('webpack')
 
+const nodeExternals = require('webpack-node-externals')
+
 // scope variable
 const md5 = require('md5')
 const PACKAGE = require('./package.json')
@@ -40,14 +42,9 @@ module.exports = {
 		library: ['NextcloudVue', '[name]'],
 		umdNamedDefine: true
 	},
-	externals: {
-		vue: {
-			commonjs: 'vue',
-			commonjs2: 'vue',
-			amd: 'vue',
-			root: 'Vue'
-		}
-	},
+	externals: [
+		nodeExternals()
+	],
 	module: {
 		rules: [
 			{
