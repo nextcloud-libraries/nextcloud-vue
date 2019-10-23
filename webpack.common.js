@@ -8,6 +8,8 @@ const IconfontName = 'iconfont-vue'
 
 const { DefinePlugin } = require('webpack')
 
+const nodeExternals = require('webpack-node-externals')
+
 // scope variable
 const md5 = require('md5')
 const PACKAGE = require('./package.json')
@@ -40,24 +42,9 @@ module.exports = {
 		library: ['NextcloudVue', '[name]'],
 		umdNamedDefine: true
 	},
-	externals: {
-		vue: {
-			commonjs: 'vue',
-			commonjs2: 'vue',
-			amd: 'vue',
-			root: 'Vue'
-		},
-		'@nextcloud/axios': '@nextcloud/axios',
-		'escape-html': 'escape-html',
-		'hammerjs': 'hammerjs',
-		'md5': 'md5',
-		'v-click-outside': 'v-click-outside',
-		'v-tooltip': 'v-tooltip',
-		'vue-color': 'vue-color',
-		'vue-multiselect': 'vue-multiselect',
-		'vue-visible': 'vue-visible',
-		'vue2-datepicker': 'vue2-datepicker'
-	},
+	externals: [
+		nodeExternals()
+	],
 	module: {
 		rules: [
 			{
