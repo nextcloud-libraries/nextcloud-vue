@@ -42,3 +42,7 @@ Vue.prototype.n = window.n
 Vue.prototype.OC = window.OC
 Vue.prototype.OCA = window.OCA
 ```
+
+<a href="https://www.netlify.com">
+  <img src="https://www.netlify.com/img/global/badges/netlify-dark.svg"/>
+</a>
