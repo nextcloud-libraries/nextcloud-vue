@@ -51,3 +51,7 @@ If you want to work on improving the components it’s best to run the latest co
     - In the repository of an app do `npm link @nextcloud/vue`
 
 The link is going to be broken every time you do `npm i` in the app you linked it to, so then you will have to re-link.
+
+<a href="https://www.netlify.com">
+  <img src="https://www.netlify.com/img/global/badges/netlify-dark.svg"/>
+</a>
