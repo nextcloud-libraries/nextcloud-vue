@@ -10,10 +10,10 @@ module.exports = {
 	pagePerSection: true,
 	minimize: true,
 	verbose: false,
-	webpackConfig: Object.assign({}, require('./webpack.prod.js'), {
+	webpackConfig: Object.assign({}, require('./webpack.dev.js'), {
 		externals: {},
 		module: {
-			rules: require('./webpack.prod.js').module.rules.filter(
+			rules: require('./webpack.dev.js').module.rules.filter(
 				rule => rule.use !== 'eslint-loader'
 			)
 		}
@@ -40,6 +40,7 @@ module.exports = {
 			name: 'Components',
 			content: 'docs/components.md',
 			components: 'src/components/*/*.vue',
+			sectionDepth: 1,
 			ignore: [
 				'src/components/Action[sA-Z]*/*.vue',
 				'src/components/App*/*.vue',
@@ -73,7 +74,7 @@ module.exports = {
 	],
 	ribbon: {
 		text: 'Fork me on GitHub',
-		url: 'https://github.com/nextcloud/vue-components'
+		url: 'https://github.com/nextcloud/nextcloud-vue'
 	},
 	editorConfig: {
 		theme: 'material'
