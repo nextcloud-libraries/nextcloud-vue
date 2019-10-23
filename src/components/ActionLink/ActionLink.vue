@@ -26,7 +26,9 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 
 ```
 <Actions>
-	<ActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
+	<ActionLink icon="icon-external" href="https://nextcloud.com">
+		Nextcloud website
+	</ActionLink>
 </Actions>
 ```
 </docs>
