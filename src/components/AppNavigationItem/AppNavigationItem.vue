@@ -141,7 +141,8 @@ Just set the `pinned` prop.
 		<!-- Counter and Actions -->
 		<div v-if="hasUtils" class="app-navigation-entry__utils">
 			<slot name="counter" />
-			<Actions menu-align="right" :open="menuOpen" @update:open="onMenuToggle">
+			<Actions menu-align="right" :open="menuOpen" :default-icon="menuIcon"
+				@update:open="onMenuToggle">
 				<ActionButton v-if="editable && !editing" icon="icon-rename" @click="handleEdit" />
 				<ActionButton v-if="undo" icon="app-navigation-entry__deleted-button icon-history" @click="handleUndo" />
 				<slot name="actions" />
@@ -229,7 +230,8 @@ export default {
 		},
 		/**
 		* Gives the possibility to collapse the children elements into the
-		* parent element (true) or expands the cildren elements (false).		*/
+		* parent element (true) or expands the children elements (false).
+		*/
 		allowCollapse: {
 			type: Boolean,
 			default: false
@@ -278,6 +280,13 @@ export default {
 		menuOpen: {
 			type: Boolean,
 			default: false
+		},
+		/**
+		 * The action's menu default icon
+		 */
+		menuIcon: {
+			type: String,
+			default: undefined
 		}
 	},
 
