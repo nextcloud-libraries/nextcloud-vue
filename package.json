@@ -31,7 +31,7 @@
 		"dist"
 	],
 	"dependencies": {
-		"@babel/polyfill": "^7.4.4",
+		"@babel/runtime": "^7.6.3",
 		"@nextcloud/axios": "^0.4.0",
 		"escape-html": "^1.0.3",
 		"hammerjs": "^2.0.8",
