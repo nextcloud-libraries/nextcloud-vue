@@ -89,10 +89,10 @@ the placeholder is the previous title of the element.
 	editPlaceholder="your_placeholder_here" />
 ```
 ### Undo element
-Just set the `undo` and `title` props.
+Just set the `undo` and `title` props. When clicking the undo button, an `undo` event is emitted.
 
 ```
-<AppNavigationItem :undo="true" title="Are you sure you want to delete?"  />
+<AppNavigationItem :undo="true" title="Deleted important entry" @undo="alert('undo delete')"  />
 
 ```
 ### Pinned element
