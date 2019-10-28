@@ -62,7 +62,7 @@ export default {
 // mobile only
 @media only screen and (max-width: 768px) {
 	#app-navigation-toggle {
-		display: inline-block !important;
+		display: none !important;
 	}
 }
 </style>
