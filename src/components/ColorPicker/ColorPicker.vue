@@ -71,7 +71,7 @@ export default {
 <template>
 	<div class="container1">
 		<button @click="open = !open"> Click Me </button>
-		<ColorPicker :value="color" @input="updateColor" :open="open" />
+		<ColorPicker :value="color" @input="updateColor" :open.sync="open" />
 		<div :style="{'background-color': color}" class="color1" />
 	</div>
 </template>
@@ -106,7 +106,7 @@ export default {
 </docs>
 
 <template>
-	<Popover v-bind="$attrs">
+	<Popover v-bind="$attrs" v-on="$listeners">
 		<template #trigger>
 			<slot />
 		</template>
