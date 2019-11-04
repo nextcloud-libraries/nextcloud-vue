@@ -20,6 +20,35 @@
   - along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 
+<docs>
+
+### General description
+
+This component displays a user together with a small avatar in a grey bubble. 
+It's possible to replace the avatar with something else, 
+to link the bubble to e.g. a users profile 
+and to show a popover on hover with e.g. the full user name handle / email address or something else.
+
+This components has two slots:
+* 'avatar' which allows you to replace the user-avatar with e.g. an icon;
+
+* a default slot which is for the content of the popover (this is passed to the popover component directly).
+
+### Examples
+
+```vue
+<template>
+	<p>
+		Some text before
+		<user-bubble :user="'admin'" :displayName="'Admin Example'" :url="'/test'" >
+  			@admin@foreign-host.com
+		</user-bubble>
+		 and after the bubble.
+	</p>
+</template>
+```
+</docs>
+
 <template>
 	<Popover trigger="hover focus" :open="open" :disabled="popoverEmpty"
 		class="user-bubble-popover" @update:open="onOpenChange">
