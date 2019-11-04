@@ -21,11 +21,13 @@
 -->
 
 <template>
-	<Popover trigger="hover focus" :open="open" class="test"
-		@update:open="onOpenChange">
-		<div slot="trigger" class="user-bubble">
-			<Avatar v-bind="$attrs" :user="user" :size="16"
-				:disable-tooltip="true" :disable-menu="true" class="avatar" />
+	<Popover trigger="hover focus" :open="open" :disabled="popoverEmpty"
+		class="user-bubble-popover" @update:open="onOpenChange">
+		<div slot="trigger" v-bind="linkOrNot" class="user-bubble">
+			<slot name="avatar">
+				<Avatar v-bind="$attrs" :user="user" :size="16"
+					:disable-tooltip="true" :disable-menu="true" class="avatar" />
+			</slot>
 			<h6 class="user">
 				{{ displayName ? displayName : user }}
 			</h6>
@@ -51,15 +53,35 @@ export default {
 		},
 		displayName: {
 			type: String,
-			required: false
+			required: true
 		},
 		url: {
 			type: String,
-			required: false
+			default: ''
 		},
 		open: {
 			type: Boolean,
 			default: false
+		}
+	},
+	computed: {
+		componentType() {
+			if (this.url) {
+				return 'div'
+			}
+			return 'a'
+		},
+		linkOrNot() {
+			if (this.url !== '') {
+				return { is: 'a', href: this.url }
+			}
+			return { is: 'div' }
+		},
+		popoverEmpty() {
+			if (typeof this.$slots.default === 'undefined') {
+				return true
+			}
+			return false
 		}
 	},
 	methods: {
@@ -71,6 +93,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.user-bubble-popover {
+	display: inline;
+	vertical-align: top;
+}
+
 .user-bubble {
 	display: flex;
 	height: 20px;
@@ -79,16 +106,11 @@ export default {
 }
 
 .avatar {
-    align-self: center;
-    margin-left: 2px;
+	align-self: center;
+	margin-left: 2px;
 }
 
 .user {
-    margin: 0 8px 0 4px;
-}
-
-.test {
-    display: inline;
-    vertical-align: top;
+	margin: 0 8px 0 4px;
 }
 </style>
