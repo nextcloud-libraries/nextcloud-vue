@@ -38,7 +38,7 @@ This component has the following slot:
 <template>
 	<p>
 		Some text before
-		<user-bubble :user="'admin'" :displayName="'Admin Example'" :url="'/test'" >
+		<user-bubble :user="'admin'" :displayName="'Admin Example'" :url="'/test'" :primary="true" >
 			@admin@foreign-host.com
 		</user-bubble>
 		and after the bubble.
@@ -49,7 +49,8 @@ This component has the following slot:
 <template>
 	<Popover trigger="hover focus" :open="open" :disabled="popoverEmpty"
 		class="user-bubble-popover" @update:open="onOpenChange">
-		<div slot="trigger" v-bind="linkOrNot" class="user-bubble">
+		<div slot="trigger" v-bind="linkOrNot" class="user-bubble"
+			:class="primary ? 'user-bubble-primary' : ''">
 			<Avatar :url="!isUserAvatar && isIconUrl ? avatarImage : ''"
 				:icon-class="!isUserAvatar && !isIconUrl ? avatarImage : ''"
 				:user="isUserAvatar ? user : ''" :size="16" :disable-tooltip="true"
@@ -90,6 +91,10 @@ export default {
 			default: ''
 		},
 		open: {
+			type: Boolean,
+			default: false
+		},
+		primary: {
 			type: Boolean,
 			default: false
 		}
@@ -148,6 +153,11 @@ export default {
 	height: 20px;
 	border-radius: 10px;
 	background-color: var(--color-background-dark);
+}
+
+.user-bubble-primary {
+	color: var(--color-primary-text);
+	background-color: var(--color-primary-element);
 }
 
 h6 {
