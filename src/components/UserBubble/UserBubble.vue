@@ -134,6 +134,10 @@ export default {
 	background-color: var(--color-background-dark);
 }
 
+h6 {
+	line-height: 20px;
+}
+
 .avatar {
 	align-self: center;
 	margin-left: 2px;
