@@ -46,7 +46,8 @@
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper" @click="toggleMenu">
 		<!-- avatar -->
-		<img v-if="isAvatarLoaded && !userDoesNotExist" :src="avatarUrlLoaded" :srcset="avatarSrcSetLoaded">
+		<div v-if="iconClass" :class="iconClass" class="avatar-class-icon"></div>
+		<img v-else-if="isAvatarLoaded && !userDoesNotExist" :src="avatarUrlLoaded" :srcset="avatarSrcSetLoaded">
 		<div v-if="hasMenu" class="icon-more" />
 
 		<!-- avatar status -->
@@ -94,6 +95,13 @@ export default {
 		 * either the url, user or displayName property must be defined
 		 */
 		url: {
+			type: String,
+			default: undefined
+		},
+		/**
+		 * Set a css icon-class for an icon to be used instead of the avatar.
+		 */
+		iconClass: {
 			type: String,
 			default: undefined
 		},
@@ -249,8 +257,10 @@ export default {
 				fontSize: Math.round(this.size * 0.55) + 'px'
 			}
 
-			const rgb = uidToColor(this.getUserIdentifier)
-			style.backgroundColor = 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')'
+			if (!this.iconClass) {
+				const rgb = uidToColor(this.getUserIdentifier)
+				style.backgroundColor = 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')'
+			}
 			return style
 		},
 		tooltip() {
@@ -482,6 +492,11 @@ export default {
 		margin: 0;
 		font-size: initial;
 	}
+}
+
+.avatar-class-icon {
+	border-radius: 50%;
+	background-color: var(--color-background-darker);
 }
 
 </style>

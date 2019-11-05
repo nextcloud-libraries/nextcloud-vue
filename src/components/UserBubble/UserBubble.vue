@@ -24,14 +24,12 @@
 
 ### General description
 
-This component displays a user together with a small avatar in a grey bubble. 
-It's possible to replace the avatar with something else, 
-to link the bubble to e.g. a users profile 
+This component displays a user together with a small avatar in a grey bubble.
+It's possible to use an actual user's avatar, just an image/icon as a url or an icon-class,
+to link the bubble to e.g. a users profile
 and to show a popover on hover with e.g. the full user name handle / email address or something else.
 
-This components has two slots:
-* 'avatar' which allows you to replace the user-avatar with e.g. an icon;
-
+This component has the following slot:
 * a default slot which is for the content of the popover (this is passed to the popover component directly).
 
 ### Examples
@@ -41,22 +39,21 @@ This components has two slots:
 	<p>
 		Some text before
 		<user-bubble :user="'admin'" :displayName="'Admin Example'" :url="'/test'" >
-  			@admin@foreign-host.com
+			@admin@foreign-host.com
 		</user-bubble>
-		 and after the bubble.
+		and after the bubble.
 	</p>
 </template>
 ```
 </docs>
-
 <template>
 	<Popover trigger="hover focus" :open="open" :disabled="popoverEmpty"
 		class="user-bubble-popover" @update:open="onOpenChange">
 		<div slot="trigger" v-bind="linkOrNot" class="user-bubble">
-			<slot name="avatar">
-				<Avatar v-bind="$attrs" :user="user" :size="16"
-					:disable-tooltip="true" :disable-menu="true" class="avatar" />
-			</slot>
+			<Avatar :url="!isUserAvatar && isIconUrl ? avatarImage : ''"
+				:icon-class="!isUserAvatar && !isIconUrl ? avatarImage : ''"
+				:user="isUserAvatar ? user : ''" :size="16" :disable-tooltip="true"
+				:disable-menu="true" class="avatar" />
 			<h6 class="user">
 				{{ displayName ? displayName : user }}
 			</h6>
@@ -76,6 +73,10 @@ export default {
 		Avatar
 	},
 	props: {
+		avatarImage: {
+			type: String,
+			default: ''
+		},
 		user: {
 			type: String,
 			required: true
@@ -94,6 +95,21 @@ export default {
 		}
 	},
 	computed: {
+		isUserAvatar() {
+			if (!this.avatarImage) {
+				return true
+			}
+			return false
+		},
+		isIconUrl() {
+			try {
+				// eslint-disable-next-line
+				new URL(this.avatarImage)
+				return true
+			} catch (error) {
+				return false
+			}
+		},
 		componentType() {
 			if (this.url) {
 				return 'div'
