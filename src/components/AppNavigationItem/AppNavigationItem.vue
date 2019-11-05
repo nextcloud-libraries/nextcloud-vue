@@ -3,6 +3,7 @@
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
   - @author Marco Ambrosini <marcoambrosini@pm.me>
+  - @author Jonas Sulzer <jonas@violoncello.ch>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -340,7 +341,7 @@ export default {
 					is: 'router-link',
 					tag: 'li',
 					to: this.to,
-					exact: this.exactRoute
+					exact: this.exact
 				}
 			}
 			return {
