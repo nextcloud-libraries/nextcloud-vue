@@ -50,6 +50,7 @@ import Multiselect from './Multiselect'
 import Popover from './Popover'
 import PopoverMenu from './PopoverMenu'
 import ColorPicker from './ColorPicker'
+import UserBubble from './UserBubble'
 
 export {
 	ActionButton,
@@ -81,5 +82,6 @@ export {
 	Multiselect,
 	Popover,
 	PopoverMenu,
-	ColorPicker
+	ColorPicker,
+	UserBubble
 }
