@@ -53,8 +53,11 @@ This component has the following slot:
 			:class="primary ? 'user-bubble-primary' : ''">
 			<Avatar :url="!isUserAvatar && isIconUrl ? avatarImage : undefined"
 				:icon-class="!isUserAvatar && !isIconUrl ? avatarImage : undefined"
-				:user="isUserAvatar ? user : undefined" :size="16" :disable-tooltip="true"
-				:disable-menu="true" class="avatar" />
+				:user="isUserAvatar ? user : undefined"
+				:size="16"
+				:disable-tooltip="true"
+				:disable-menu="true"
+				class="avatar" />
 			<h6 class="user">
 				{{ displayName ? displayName : user }}
 			</h6>
