@@ -54,6 +54,7 @@ This component has the following slot:
 			<Avatar :url="!isUserAvatar && isIconUrl ? avatarImage : undefined"
 				:icon-class="!isUserAvatar && !isIconUrl ? avatarImage : undefined"
 				:user="isUserAvatar ? user : undefined"
+				:display-name="isUserAvatar ? displayName : undefined"
 				:size="16"
 				:disable-tooltip="true"
 				:disable-menu="true"
