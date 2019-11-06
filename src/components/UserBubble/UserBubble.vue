@@ -51,9 +51,9 @@ This component has the following slot:
 		class="user-bubble-popover" @update:open="onOpenChange">
 		<div slot="trigger" v-bind="linkOrNot" class="user-bubble"
 			:class="primary ? 'user-bubble-primary' : ''">
-			<Avatar :url="!isUserAvatar && isIconUrl ? avatarImage : ''"
-				:icon-class="!isUserAvatar && !isIconUrl ? avatarImage : ''"
-				:user="isUserAvatar ? user : ''" :size="16" :disable-tooltip="true"
+			<Avatar :url="!isUserAvatar && isIconUrl ? avatarImage : undefined"
+				:icon-class="!isUserAvatar && !isIconUrl ? avatarImage : undefined"
+				:user="isUserAvatar ? user : undefined" :size="16" :disable-tooltip="true"
 				:disable-menu="true" class="avatar" />
 			<h6 class="user">
 				{{ displayName ? displayName : user }}
