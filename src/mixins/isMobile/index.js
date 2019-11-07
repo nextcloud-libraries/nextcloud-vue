@@ -38,8 +38,8 @@ export default {
 			this.isMobile = this._isMobile()
 		},
 		_isMobile() {
-			// check if content width is under 768px
-			return document.documentElement.clientWidth < 768
+			// check if content width is under 1024px
+			return document.documentElement.clientWidth < 1024
 		}
 	}
 }
