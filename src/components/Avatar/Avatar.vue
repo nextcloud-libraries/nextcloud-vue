@@ -257,7 +257,7 @@ export default {
 				fontSize: Math.round(this.size * 0.55) + 'px'
 			}
 
-			if (!this.iconClass) {
+			if (!this.iconClass && !this.avatarSrcSetLoaded) {
 				const rgb = uidToColor(this.getUserIdentifier)
 				style.backgroundColor = 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')'
 			}
