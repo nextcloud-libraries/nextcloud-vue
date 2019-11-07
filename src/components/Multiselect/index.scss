@@ -63,7 +63,7 @@
 		cursor: pointer;
 		position: relative;
 		border-radius: 3px;
-		height: 34px;
+		min-height: 34px;
 		/* tag wrapper */
 		.multiselect__tags-wrap {
 			align-items: center;
