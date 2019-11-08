@@ -142,9 +142,11 @@ Just set the `pinned` prop.
 		<!-- Counter and Actions -->
 		<div v-if="hasUtils" class="app-navigation-entry__utils">
 			<slot name="counter" />
-			<Actions menu-align="right" :open="menuOpen" :default-icon="menuIcon"
+			<Actions menu-align="right" :open="menuOpened" :default-icon="menuIcon"
 				@update:open="onMenuToggle">
-				<ActionButton v-if="editable && !editing" icon="icon-rename" @click="handleEdit" />
+				<ActionButton v-if="editable && !editing" icon="icon-rename" @click="handleEdit">
+					{{ editLabel }}
+				</ActionButton>
 				<ActionButton v-if="undo" icon="app-navigation-entry__deleted-button icon-history" @click="handleUndo" />
 				<slot name="actions" />
 			</Actions>
@@ -152,11 +154,13 @@ Just set the `pinned` prop.
 
 		<!-- edit entry -->
 		<div v-if="editing" class="app-navigation-entry__edit">
-			<form v-if="editing" @submit.prevent="handleRename">
-				<input v-model="newTitle" type="text" class="app-navigation-entry__edit-input"
+			<form @submit.prevent="handleRename">
+				<input v-model="newTitle" type="text"
+					class="app-navigation-entry__edit-input"
 					:placeholder="editPlaceholder !== '' ? editPlaceholder : title">
-				<button type="submit" class="icon-confirm" />
-				<button type="submit" class="icon-close"
+				<button type="submit" class="icon-confirm"
+					@click.stop.prevent="handleRename" />
+				<button type="reset" class="icon-close"
 					@click.stop.prevent="cancelEdit" />
 			</form>
 		</div>
@@ -246,6 +250,13 @@ export default {
 			default: false
 		},
 		/**
+		* Only for 'editable' items, sets label for the edit action button.
+		*/
+		editLabel: {
+			type: String,
+			default: ''
+		},
+		/**
 		* Only for 'editable' items, sets placeholder text for the editing form.
 		*/
 		editPlaceholder: {
@@ -295,6 +306,7 @@ export default {
 		return {
 			newTitle: '',
 			opened: this.open,
+			menuOpened: this.menuOpen,
 			editing: false
 		}
 	},
@@ -327,7 +339,9 @@ export default {
 			}
 		},
 		hasUtils() {
-			if (this.$slots.actions || this.$slots.counter || this.editable || this.undo) {
+			if (this.editing) {
+				return false
+			} else if (this.$slots.actions || this.$slots.counter || this.editable || this.undo) {
 				return true
 			} else {
 				return false
@@ -352,11 +366,15 @@ export default {
 	watch: {
 		open(newVal) {
 			this.opened = newVal
+		},
+		menuOpen(newVal) {
+			this.menuOpened = newVal
 		}
 	},
 	methods: {
 		// sync opened menu state with prop
 		onMenuToggle(state) {
+			this.menuOpened = state
 			this.$emit('update:menuOpen', state)
 		},
 		// toggle the collapsible state
@@ -372,10 +390,11 @@ export default {
 
 		// Edition methods
 		handleEdit() {
+			this.newTitle = this.title
 			this.editing = true
+			this.onMenuToggle(false)
 		},
 		cancelEdit() {
-			// remove the editing class
 			this.editing = false
 		},
 		handleRename() {
