@@ -91,7 +91,7 @@
 			<header :class="{ 'app-sidebar-header--with-figure': hasFigure, 'app-sidebar-header--compact': compact }" class="app-sidebar-header">
 				<!-- close sidebar button -->
 				<a href="#" class="app-sidebar__close icon-close" :title="t('core', 'close')"
-					@click="closeSidebar" />
+					@click.prevent="closeSidebar" />
 
 				<!-- sidebar header illustration/figure -->
 				<div v-if="hasFigure" :class="{
