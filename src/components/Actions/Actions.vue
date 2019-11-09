@@ -91,13 +91,13 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 			ref="menu"
 			v-click-outside="closeMenu"
 			:class="[`menu-${menuAlign}`, { 'open': opened }]"
-			:style="{marginRight: `${ offsetX }px`}"
+			:style="{marginRight: `${ offsetX }px`, marginTop: `${ offsetY }px`}"
 			class="action-item__menu"
 			tabindex="-1"
 			@mousemove="onMouseFocusAction">
 			<!-- arrow -->
 			<div class="action-item__menu_arrow"
-				:style="{ transform: `translateX(${ offsetX }px)`}" />
+				:style="{ transform: `translateX(${ offsetX }px) translateY(${ offsetYArrow }px) ${ rotateArrow ? ' rotate(180deg)' : ''}` }" />
 
 			<!-- menu content -->
 			<ul :id="randomId" tabindex="-1">
@@ -181,6 +181,9 @@ export default {
 			focusIndex: 0,
 			randomId: 'menu-' + GenRandomId(),
 			offsetX: 0,
+			offsetY: 0,
+			offsetYArrow: 0,
+			rotateArrow: false,
 			// Making children reactive!
 			// By binding this here, vuejs will track the object content
 			// Needed for firstAction reactivity !!!
@@ -313,6 +316,9 @@ export default {
 				this.$emit('open')
 			} else {
 				this.offsetX = 0
+				this.offsetY = 0
+				this.offsetYArrow = 0
+				this.rotateArrow = false
 			}
 
 			/**
@@ -344,6 +350,9 @@ export default {
 			// close everything
 			this.opened = false
 			this.offsetX = 0
+			this.offsetY = 0
+			this.offsetYArrow = 0
+			this.rotateArrow = false
 		},
 
 		/**
@@ -353,12 +362,20 @@ export default {
 		 */
 		onOpen() {
 			this.offsetX = 0
+			this.offsetY = 0
+			this.offsetYArrow = 0
+			this.rotateArrow = false
 			if (this.menuAlign === 'center') {
 				const isOut = IsOutOfViewport(this.$refs.menu)
-				if (isOut.any) {
+				if (isOut.left || isOut.right) {
 					this.offsetX = isOut.offsetX > 0
 						? Math.round(isOut.offsetX) + 5
 						: Math.round(isOut.offsetX) - 5
+				}
+				if (isOut.bottom) {
+					this.offsetY = 0 - Math.round(this.$refs.menu.clientHeight) - 42
+					this.offsetYArrow = Math.round(this.$refs.menu.clientHeight) + 18
+					this.rotateArrow = true
 				}
 			}
 		},
