@@ -26,6 +26,7 @@ import ActionInput from './ActionInput'
 import ActionLink from './ActionLink'
 import ActionRadio from './ActionRadio'
 import ActionRouter from './ActionRouter'
+import ActionSeparator from './ActionSeparator'
 import ActionText from './ActionText'
 import ActionTextEditable from './ActionTextEditable'
 import Actions from './Actions'
@@ -60,6 +61,7 @@ export {
 	ActionLink,
 	ActionRadio,
 	ActionRouter,
+	ActionSeparator,
 	ActionText,
 	ActionTextEditable,
 	Actions,

@@ -122,6 +122,7 @@ const allowedChildren = [
 	'ActionLink',
 	'ActionRadio',
 	'ActionRouter',
+	'ActionSeparator',
 	'ActionText',
 	'ActionTextEditable'
 ]
