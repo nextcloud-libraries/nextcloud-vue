@@ -155,7 +155,7 @@ Just set the `pinned` prop.
 		<!-- edit entry -->
 		<div v-if="editing" class="app-navigation-entry__edit">
 			<form @submit.prevent="handleRename">
-				<input v-model="newTitle" type="text"
+				<input v-model="newTitle" ref="inputTitle" type="text"
 					class="app-navigation-entry__edit-input"
 					:placeholder="editPlaceholder !== '' ? editPlaceholder : title">
 				<button type="submit" class="icon-confirm"
@@ -393,6 +393,9 @@ export default {
 			this.newTitle = this.title
 			this.editing = true
 			this.onMenuToggle(false)
+			this.$nextTick(() => {
+				this.$refs.inputTitle.focus()
+			})
 		},
 		cancelEdit() {
 			this.editing = false
