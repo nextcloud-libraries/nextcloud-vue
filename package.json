@@ -37,7 +37,7 @@
 		"escape-html": "^1.0.3",
 		"hammerjs": "^2.0.8",
 		"md5": "^2.2.1",
-		"v-click-outside": "^2.1.4",
+		"v-click-outside": "^3.0.0",
 		"v-tooltip": "^2.0.0-rc.33",
 		"vue": "^2.6.7",
 		"vue-color": "^2.7.0",
