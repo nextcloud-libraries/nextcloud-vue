@@ -38,10 +38,10 @@ This component has the following slot:
 <template>
 	<p>
 		Some text before
-		<user-bubble :user="'admin'" :displayName="'Admin Example'" :url="'/test'">
+		<user-bubble :user="'admin'" :display-name="'Admin Example'" :url="'/test'">
 			@admin@foreign-host.com
 		</user-bubble>
-		and after the bubble. <user-bubble :avatarImage="'icon-group'" :displayName="'test group xy'" :primary="true">Hey there!</user-bubble>
+		and after the bubble. <user-bubble :avatar-image="'icon-group'" :display-name="'test group xy'" :primary="true">Hey there!</user-bubble>
 	</p>
 </template>
 ```
@@ -51,10 +51,14 @@ This component has the following slot:
 		class="user-bubble-popover" @update:open="onOpenChange">
 		<div slot="trigger" v-bind="linkOrNot" class="user-bubble"
 			:class="primary ? 'user-bubble-primary' : ''">
-			<Avatar :url="!isUserAvatar && isIconUrl ? avatarImage : ''"
-				:icon-class="!isUserAvatar && !isIconUrl ? avatarImage : ''"
-				:user="isUserAvatar ? user : ''" :size="16" :disable-tooltip="true"
-				:disable-menu="true" class="avatar" />
+			<Avatar :url="!isUserAvatar && isIconUrl ? avatarImage : undefined"
+				:icon-class="!isUserAvatar && !isIconUrl ? avatarImage : undefined"
+				:user="isUserAvatar ? user : undefined"
+				:display-name="isUserAvatar ? displayName : undefined"
+				:size="16"
+				:disable-tooltip="true"
+				:disable-menu="true"
+				class="avatar" />
 			<h6 class="user">
 				{{ displayName ? displayName : user }}
 			</h6>
