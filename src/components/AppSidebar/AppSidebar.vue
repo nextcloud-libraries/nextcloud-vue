@@ -517,7 +517,7 @@ $desc-height: 46px;
 				}
 			}
 			// titles
-			h2,
+			.app-sidebar-header__title,
 			.app-sidebar-header__subtitle {
 				width: 100%;
 				white-space: nowrap;
@@ -526,7 +526,7 @@ $desc-height: 46px;
 				margin: 0;
 			}
 			// main title
-			h2 {
+			.app-sidebar-header__title {
 				padding: 0;
 			}
 			input.app-sidebar-header__title-input {
