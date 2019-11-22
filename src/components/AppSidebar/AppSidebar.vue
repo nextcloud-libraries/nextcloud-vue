@@ -111,18 +111,18 @@
 						class="app-sidebar-header__star" @click.prevent="toggleStarred" />
 
 					<!-- main title -->
-					<h3 v-if="!titleEditable" class="app-sidebar-header__title">
+					<h2 v-if="!titleEditable" class="app-sidebar-header__title">
 						{{ title }}
-					</h3>
+					</h2>
 
 					<input v-if="titleEditable" v-focus class="app-sidebar-header__title-input"
 						type="text" :placeholder="titlePlaceholder" :value="title"
 						@input="onTitleInput">
 
 					<!-- secondary title -->
-					<h4 v-if="subtitle.trim() !== ''" class="app-sidebar-header__subtitle">
+					<p v-if="subtitle.trim() !== ''" class="app-sidebar-header__subtitle">
 						{{ subtitle }}
-					</h4>
+					</p>
 
 					<!-- header main menu -->
 					<Actions v-if="$slots['secondary-actions']" class="app-sidebar-header__menu">
@@ -517,7 +517,8 @@ $desc-height: 46px;
 				}
 			}
 			// titles
-			h3, h4 {
+			.app-sidebar-header__title,
+			.app-sidebar-header__subtitle {
 				width: 100%;
 				white-space: nowrap;
 				text-overflow: ellipsis;
@@ -525,8 +526,7 @@ $desc-height: 46px;
 				margin: 0;
 			}
 			// main title
-			h3 {
-				font-size: 16px;
+			.app-sidebar-header__title {
 				padding: 0;
 			}
 			input.app-sidebar-header__title-input {
@@ -535,7 +535,7 @@ $desc-height: 46px;
 			}
 
 			// subtitle
-			h4 {
+			.app-sidebar-header__subtitle {
 				font-size: 14px;
 				padding: 0;
 				opacity: $opacity_normal;
