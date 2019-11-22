@@ -31,8 +31,7 @@ export default {
 		 */
 		icon: {
 			type: String,
-			default: '',
-			required: true
+			default: ''
 		},
 		/**
 		 * Title to show next to the icon
