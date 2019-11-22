@@ -25,7 +25,9 @@
 	<li>
 		<span class="action-text">
 			<!-- icon -->
-			<span :class="[isIconUrl ? 'action-text__icon--url' : icon]"
+			<span
+				v-if="icon !== ''"
+				:class="[isIconUrl ? 'action-text__icon--url' : icon]"
 				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
 				class="action-text__icon" />
 
