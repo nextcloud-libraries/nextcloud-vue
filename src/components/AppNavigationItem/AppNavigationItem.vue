@@ -114,7 +114,8 @@ Just set the `pinned` prop.
 			'app-navigation-entry--pinned': pinned,
 			'app-navigation-entry--editing' : editing,
 			'app-navigation-entry--deleted': undo,
-			'app-navigation-entry--collapsible': collapsible
+			'app-navigation-entry--collapsible': collapsible,
+			'active': isActive
 		}"
 		class="app-navigation-entry">
 		<!-- Icon and title -->
@@ -361,6 +362,9 @@ export default {
 			return {
 				is: 'li'
 			}
+		},
+		isActive() {
+			return this.to && this.$route === this.to
 		}
 	},
 	watch: {
@@ -427,14 +431,6 @@ export default {
 	width: 100%;
 	min-height: $clickable-area;
 
-	&.active,
-	a:hover,
-	a:focus,
-	a:active {
-		color: var(--color-main-text);
-		box-shadow: inset 4px 0 var(--color-primary);
-	}
-
 	/* hide deletion/collapse of subitems */
 	&.app-navigation-entry--deleted,
 	&.app-navigation-entry--collapsible:not(.app-navigation-entry--opened) {
@@ -455,11 +451,22 @@ export default {
 		padding: 0;
 		padding-right: $icon-margin;
 		white-space: nowrap;
-		color: var(--color-text-light);
+		color: var(--color-main-text);
 		background-repeat: no-repeat;
 		background-position: $icon-margin center;
 		background-size: $icon-size $icon-size;
 		line-height: $clickable-area;
+		&:hover,
+		&:hover ~ .app-navigation-entry__utils,
+		&:focus,
+		&:focus ~ .app-navigation-entry__utils {
+			background-color: var(--color-background-hover);
+		}
+		&.active,
+		&:active,
+		&:active ~ .app-navigation-entry__utils {
+			background-color: var(--color-primary-light);
+		}
 
 		.app-navigation-entry-icon {
 			display: flex;
