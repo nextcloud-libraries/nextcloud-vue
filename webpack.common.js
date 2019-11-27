@@ -112,7 +112,6 @@ module.exports = {
 	],
 	resolve: {
 		alias: {
-			vue$: 'vue/dist/vue.esm.js',
 			Assets: path.resolve(__dirname, 'src/assets/'),
 			Components: path.resolve(__dirname, 'src/components/'),
 			Directives: path.resolve(__dirname, 'src/directives/'),
@@ -120,6 +119,7 @@ module.exports = {
 			Utils: path.resolve(__dirname, 'src/utils/'),
 			Fonts: path.resolve(__dirname, 'src/fonts/')
 		},
-		extensions: ['*', '.js', '.vue', '.json']
+		extensions: ['*', '.js', '.vue'],
+		symlinks: false
 	}
 };
