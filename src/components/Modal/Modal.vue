@@ -60,7 +60,10 @@ export default {
 </docs>
 <template>
 	<transition name="fade">
-		<div ref="mask" class="modal-mask" @click="handleMouseMove"
+		<div ref="mask"
+			class="modal-mask"
+			:class="{ 'modal-mask--dark': dark }"
+			@click="handleMouseMove"
 			@mousemove="handleMouseMove" @touchmove="handleMouseMove">
 			<!-- Header -->
 			<transition name="fade-visibility">
@@ -256,6 +259,11 @@ export default {
 		canClose: {
 			type: Boolean,
 			default: true
+		},
+		/** Makes the modal backdrop black if true  */
+		dark: {
+			type: Boolean,
+			default: false
 		}
 	},
 
@@ -459,7 +467,10 @@ $header-size: 50px;
 	display: block;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0, 0, 0, .92);
+	background-color: rgba(0, 0, 0, .5);
+	&--dark {
+		background-color: black;
+	}
 }
 
 .modal-header {
@@ -643,7 +654,7 @@ $header-size: 50px;
 		transition: transform 300ms ease;
 		border-radius: var(--border-radius-large);
 		background-color: var(--color-main-background);
-		box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+		box-shadow: 0 0 40px rgba(0, 0, 0, .2);
 	}
 	&:not(&--large):not(&--full) .modal-container {
 		max-width: 900px;
