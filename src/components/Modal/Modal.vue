@@ -62,7 +62,7 @@ export default {
 	<transition name="fade">
 		<div ref="mask"
 			class="modal-mask"
-			:class="{ 'modal-mask--dark' : dark }"
+			:class="{ 'modal-mask--dark': dark }"
 			@click="handleMouseMove"
 			@mousemove="handleMouseMove" @touchmove="handleMouseMove">
 			<!-- Header -->
