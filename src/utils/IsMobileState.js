@@ -1,7 +1,8 @@
 /**
- * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2019 Kristof Hamann, Paul Schwörer
  *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Kristof Hamann
+ * @author Paul Schwörer
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -20,24 +21,29 @@
  *
  */
 
-import { IsMobileState } from 'Utils/IsMobileState'
+import Vue from 'vue'
 
-export default {
+export const IsMobileState = new Vue({
 	data() {
 		return {
 			isMobile: false
 		}
 	},
-	mounted() {
-		IsMobileState.$on('changed', this.onIsMobileChanged)
-		this.isMobile = IsMobileState.isMobile
+	watch: {
+		isMobile(val) {
+			this.$emit('changed', val)
+		}
+	},
+	created() {
+		window.addEventListener('resize', this.handleWindowResize)
+		this.handleWindowResize()
 	},
 	beforeDestroy() {
-		IsMobileState.$off('changed', this.onIsMobileChanged)
+		window.removeEventListener('resize', this.handleWindowResize)
 	},
 	methods: {
-		onIsMobileChanged(val) {
-			this.isMobile = val
+		handleWindowResize() {
+			this.isMobile = document.documentElement.clientWidth < 1024
 		}
 	}
-}
+})
