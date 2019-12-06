@@ -4,14 +4,17 @@ const { VueLoaderPlugin } = require('vue-loader')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 
 const IconfontPlugin = require('iconfont-plugin-webpack')
-const IconfontName = 'iconfont-vue'
 
 const { DefinePlugin } = require('webpack')
 
 // scope variable
 const md5 = require('md5')
-const PACKAGE = require('./package.json')
-const SCOPE_VERSION = JSON.stringify(md5(PACKAGE.version).substr(0, 7))
+const appVersion = JSON.stringify(process.env.npm_package_version)
+const versionHash = md5(appVersion).substr(0, 7)
+const SCOPE_VERSION = JSON.stringify(versionHash)
+const ICONFONT_NAME = `iconfont-vue-${versionHash}`
+
+console.info('This build version hash is', versionHash, '\n')
 
 module.exports = {
 	entry: {
@@ -98,10 +101,10 @@ module.exports = {
 	plugins: [
 		new IconfontPlugin({
 			src: './src/assets/iconfont',
-			family: IconfontName,
+			family: ICONFONT_NAME,
 			dest: {
 				font: './src/fonts/[family].[type]',
-				css: './src/fonts/scss/[family].scss'
+				css: './src/fonts/scss/iconfont-vue.scss'
 			},
 			watch: {
 				pattern: './src/assets/iconfont/*.svg'
