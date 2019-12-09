@@ -498,13 +498,21 @@ $header-size: 50px;
 	.modal-title {
 		overflow-x: hidden;
 		box-sizing: border-box;
-		max-width: 100%;
-		padding: 0 #{$clickable-area * 2}; // maximum actions is 2
+		width: 100%;
+		padding: 0 #{$clickable-area * 3} 0 12px; // maximum actions is 2 but we violate it here
 		transition: padding ease 100ms;
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		color: #fff;
 		font-size: $icon-margin;
+	}
+
+	// On wider screens the title can be centered
+	@media only screen and (min-width: $breakpoint-mobile/2) {
+		.modal-title {
+			text-align: center;
+			padding-left: #{$clickable-area * 3}; // maximum actions is 2 but we violate it here
+		}
 	}
 
 	.icons-menu {
