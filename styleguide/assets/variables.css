@@ -20,6 +20,7 @@
     --color-box-shadow:rgba(77, 77, 77, 0.5);
     --color-border:#ededed;
     --color-border-dark:#dbdbdb;
+    --breakpoint-mobile:1024px;
     --border-radius:3px;
     --border-radius-large:10px;
     --border-radius-pill:100px;
