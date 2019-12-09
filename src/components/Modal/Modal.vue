@@ -74,12 +74,6 @@ export default {
 						{{ title }}
 					</div>
 					<div class="icons-menu">
-						<!-- Actions menu -->
-						<Actions class="header-actions">
-							<!-- @slot List of actions to show -->
-							<slot name="actions" />
-						</Actions>
-
 						<!-- Play-pause toggle -->
 						<button v-if="hasNext && enableSlideshow"
 							v-tooltip.auto="playPauseTitle"
@@ -102,6 +96,12 @@ export default {
 									r="15" cx="25" cy="25" />
 							</svg>
 						</button>
+
+						<!-- Actions menu -->
+						<Actions class="header-actions">
+							<!-- @slot List of actions to show -->
+							<slot name="actions" />
+						</Actions>
 
 						<!-- Close modal -->
 						<Actions v-if="canClose" class="header-close">
