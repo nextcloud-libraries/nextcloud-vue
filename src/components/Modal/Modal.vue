@@ -499,7 +499,7 @@ $header-size: 50px;
 		overflow-x: hidden;
 		box-sizing: border-box;
 		width: 100%;
-		padding: 0 #{$clickable-area * 3} 0 12px; // maximum actions is 2 but we violate it here
+		padding: 0 #{$clickable-area * 3} 0 12px; // maximum actions is 3
 		transition: padding ease 100ms;
 		white-space: nowrap;
 		text-overflow: ellipsis;
@@ -511,7 +511,7 @@ $header-size: 50px;
 	@media only screen and (min-width: $breakpoint-mobile/2) {
 		.modal-title {
 			text-align: center;
-			padding-left: #{$clickable-area * 3}; // maximum actions is 2 but we violate it here
+			padding-left: #{$clickable-area * 3}; // maximum actions is 3
 		}
 	}
 
