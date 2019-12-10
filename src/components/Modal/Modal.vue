@@ -74,12 +74,6 @@ export default {
 						{{ title }}
 					</div>
 					<div class="icons-menu">
-						<!-- Actions menu -->
-						<Actions class="header-actions">
-							<!-- @slot List of actions to show -->
-							<slot name="actions" />
-						</Actions>
-
 						<!-- Play-pause toggle -->
 						<button v-if="hasNext && enableSlideshow"
 							v-tooltip.auto="playPauseTitle"
@@ -102,6 +96,12 @@ export default {
 									r="15" cx="25" cy="25" />
 							</svg>
 						</button>
+
+						<!-- Actions menu -->
+						<Actions class="header-actions">
+							<!-- @slot List of actions to show -->
+							<slot name="actions" />
+						</Actions>
 
 						<!-- Close modal -->
 						<Actions v-if="canClose" class="header-close">
@@ -498,13 +498,21 @@ $header-size: 50px;
 	.modal-title {
 		overflow-x: hidden;
 		box-sizing: border-box;
-		max-width: 100%;
-		padding: 0 #{$clickable-area * 2}; // maximum actions is 2
+		width: 100%;
+		padding: 0 #{$clickable-area * 3} 0 12px; // maximum actions is 3
 		transition: padding ease 100ms;
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		color: #fff;
 		font-size: $icon-margin;
+	}
+
+	// On wider screens the title can be centered
+	@media only screen and (min-width: $breakpoint-mobile/2) {
+		.modal-title {
+			text-align: center;
+			padding-left: #{$clickable-area * 3}; // maximum actions is 3
+		}
 	}
 
 	.icons-menu {
