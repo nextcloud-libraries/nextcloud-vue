@@ -469,7 +469,7 @@ $header-size: 50px;
 	height: 100%;
 	background-color: rgba(0, 0, 0, .5);
 	&--dark {
-		background-color: black;
+		background-color: rgba(0, 0, 0, .92);
 	}
 }
 
