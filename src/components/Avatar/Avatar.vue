@@ -65,7 +65,9 @@
 		<div v-if="userDoesNotExist" class="unknown">
 			{{ initials }}
 		</div>
-		<div v-if="hasMenu" v-show="contactsMenuOpenState" class="popovermenu menu-center">
+		<div v-if="hasMenu" v-show="contactsMenuOpenState"
+			class="popovermenu"
+			:class="`menu-${menuPosition}`">
 			<PopoverMenu :is-open="contactsMenuOpenState" :menu="menu" />
 		</div>
 	</div>
@@ -204,6 +206,14 @@ export default {
 			validator: value => {
 				return /^([a-f0-9]{3}){1,2}$/i.test(value)
 			}
+		},
+		/**
+		 * Choose the avatar menu alignment.
+		 * Possible values are `left`, `center`, `right`.
+		 */
+		menuPosition: {
+			type: String,
+			default: 'center'
 		}
 	},
 	data() {
