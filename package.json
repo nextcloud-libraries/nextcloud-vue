@@ -31,7 +31,7 @@
 		"dist"
 	],
 	"dependencies": {
-		"@nextcloud/axios": "^0.5.0",
+		"@nextcloud/axios": "^1.1.0",
 		"@nextcloud/router": "^0.1.0",
 		"core-js": "^3.4.4",
 		"escape-html": "^1.0.3",
