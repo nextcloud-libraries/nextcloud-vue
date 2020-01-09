@@ -230,7 +230,8 @@ export default {
 		return {
 			tabs: [],
 			activeTab: '',
-			isStarred: this.starred
+			isStarred: this.starred,
+			children: []
 		}
 	},
 
@@ -261,11 +262,21 @@ export default {
 		},
 		starred: function() {
 			this.isStarred = this.starred
+		},
+
+		// update the tabs list if the children
+		// length change
+		children: function() {
+			this.updateTabs()
 		}
 	},
 
 	mounted() {
+		// init the tabs list
 		this.updateTabs()
+
+		// let's make the children list reactive
+		this.children = this.$children
 	},
 
 	methods: {
