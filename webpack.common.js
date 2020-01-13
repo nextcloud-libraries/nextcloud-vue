@@ -70,7 +70,9 @@ module.exports = {
 							 */
 							sourceMap: true,
 							sourceMapContents: false,
-							includePaths: [path.resolve(__dirname, './src/assets')]
+							sassOptions: {
+								includePaths: [path.resolve(__dirname, './src/assets')]
+							}
 						}
 					}
 				]
