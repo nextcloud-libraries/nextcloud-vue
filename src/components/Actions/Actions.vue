@@ -45,7 +45,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 </docs>
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
-	<element v-if="isValidSingleAction"
+	<element v-if="isValidSingleAction && !forceMenu"
 		v-tooltip.auto="firstAction.text"
 		:aria-label="firstAction.text"
 		v-bind="firstActionBinding"
@@ -60,7 +60,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 	</element>
 
 	<!-- more than one action -->
-	<div v-else v-show="hasMultipleActions"
+	<div v-else v-show="hasMultipleActions || forceMenu"
 		:class="{'action-item--open': opened}"
 		class="action-item"
 		@keydown.up.exact.prevent="focusPreviousAction"
@@ -141,6 +141,15 @@ export default {
 			type: Boolean,
 			default: false
 		},
+
+		/**
+		 * Force the actions to display in a three dot menu
+		 */
+		forceMenu: {
+			type: Boolean,
+			default: false
+		},
+
 		/**
 		 * Specify the position of the popovermenu
 		 * `left`, `center` or `right`
