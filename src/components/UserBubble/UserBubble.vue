@@ -84,7 +84,7 @@ export default {
 		},
 		user: {
 			type: String,
-			required: true
+			default: ''
 		},
 		displayName: {
 			type: String,
