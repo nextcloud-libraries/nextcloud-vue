@@ -125,7 +125,7 @@
 					</p>
 
 					<!-- header main menu -->
-					<Actions v-if="$slots['secondary-actions']" class="app-sidebar-header__menu">
+					<Actions v-if="$slots['secondary-actions']" class="app-sidebar-header__menu" :force-menu="forceMenu">
 						<slot name="secondary-actions" />
 					</Actions>
 				</div>
@@ -208,19 +208,44 @@ export default {
 			type: String,
 			default: ''
 		},
+
+		/**
+		 * Url to the top header background image
+		 * Applied with css
+		 */
 		background: {
 			type: String,
 			default: ''
 		},
+
+		/**
+		 * Enable the favourite icon if not null
+		 * See fired events
+		 */
 		starred: {
 			type: Boolean,
 			default: null
 		},
+		/**
+		 * Show loading spinner instead of the star icon
+		 */
 		starLoading: {
 			type: Boolean,
 			default: false
 		},
+
+		/**
+		 * Display the sidebar in compact mode
+		 */
 		compact: {
+			type: Boolean,
+			default: false
+		},
+
+		/**
+		 * Force the actions to display in a three dot menu
+		 */
+		forceMenu: {
 			type: Boolean,
 			default: false
 		}
