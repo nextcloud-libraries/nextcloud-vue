@@ -287,7 +287,7 @@ export default {
 
 	methods: {
 		// MENU STATE MANAGEMENT
-		toggleMenu() {
+		toggleMenu(e) {
 			this.opened = !this.opened
 			// focus first on menu open after opening the menu
 			if (this.opened) {
@@ -299,7 +299,7 @@ export default {
 				 * Event emitted when the popover menu is opened
 				 * @type {null}
 				 */
-				this.$emit('open')
+				this.$emit('open', e)
 			} else {
 				this.offsetX = 0
 			}
@@ -310,7 +310,7 @@ export default {
 			 */
 			this.$emit('update:open', this.opened)
 		},
-		closeMenu() {
+		closeMenu(e) {
 			/**
 			 * only emit events if it was opened
 			 * or else any click on the page will trigger
@@ -326,7 +326,7 @@ export default {
 				 * Event emitted when the popover menu is closed
 				 * @type {null}
 				 */
-				this.$emit('close')
+				this.$emit('close', e)
 
 			}
 
