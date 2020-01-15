@@ -466,6 +466,7 @@ $sidebar-max-width: 500px;
 
 $desc-menu-right-margin: 22px;
 $desc-vertical-padding: 18px;
+$desc-input-padding: 7px;
 $desc-height: 46px;
 
 /*
@@ -531,27 +532,7 @@ $desc-height: 46px;
 			flex-direction: column;
 			justify-content: center;
 			box-sizing: content-box;
-			&--with-star {
-				padding-left: $clickable-area;
-			}
-			&--with-subtitle {
-				justify-content: space-between;
-				height: $desc-height;
-			}
-			&--editable {
-				height: $desc-height * 0.75;
-			}
-			&--with-subtitle--editable {
-				height: $desc-height * 1.5;
 
-				.app-sidebar-header__subtitle {
-					margin-left: 7px;
-
-					input.app-sidebar-header__title-input {
-						margin-top: -$desc-vertical-padding / 2;
-					}
-				}
-			}
 			// titles
 			.app-sidebar-header__title,
 			.app-sidebar-header__subtitle {
@@ -564,9 +545,12 @@ $desc-height: 46px;
 			// main title
 			.app-sidebar-header__title {
 				padding: 0;
+				font-size: 20px;
+				line-height: 20px;
 			}
 			input.app-sidebar-header__title-input {
 				font-size: 16px;
+				padding: $desc-input-padding;
 				width: 100%;
 			}
 
@@ -583,7 +567,7 @@ $desc-height: 46px;
 				height: $clickable-area;
 				padding: $icon-margin;
 				position: absolute;
-				top: $desc-vertical-padding - 12px; // aligned with main title
+				top: $desc-vertical-padding - 10px; // aligned with main title
 				left: 0;
 			}
 			// main menu
@@ -592,10 +576,34 @@ $desc-height: 46px;
 				// aligned vertically in the middle
 				right: $desc-menu-right-margin;
 				top: 50%;
-				margin-top: -22px;
+				margin-top: -$desc-vertical-padding;
 				background-color: $action-background-hover;
 				border-radius: $clickable-area / 2;
 			}
+
+			// custom overrides
+			&--with-star {
+				padding-left: $clickable-area;
+			}
+			&--with-subtitle {
+				justify-content: space-between;
+				height: $desc-height;
+			}
+			&--editable {
+				height: $desc-height * 0.75;
+			}
+			&--with-subtitle--editable {
+				height: $desc-height * 1.5;
+
+				.app-sidebar-header__subtitle {
+					margin-left: $desc-input-padding;
+				}
+
+				.app-sidebar-header__title-input {
+					margin-top: -$desc-vertical-padding / 2 - $desc-input-padding;
+				}
+			}
+
 		}
 
 		// sidebar action(s) slot
