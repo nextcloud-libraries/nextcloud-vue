@@ -88,7 +88,10 @@
 <template>
 	<transition name="slide-right">
 		<aside id="app-sidebar">
-			<header :class="{ 'app-sidebar-header--with-figure': hasFigure, 'app-sidebar-header--compact': compact }" class="app-sidebar-header">
+			<header :class="{
+				'app-sidebar-header--with-figure': hasFigure,
+				'app-sidebar-header--compact': compact
+			}" class="app-sidebar-header">
 				<!-- close sidebar button -->
 				<a href="#" class="app-sidebar__close icon-close" :title="t('core', 'close')"
 					@click.prevent="closeSidebar" />
@@ -114,11 +117,23 @@
 					<h2 v-if="!titleEditable" class="app-sidebar-header__title">
 						{{ title }}
 					</h2>
-
-					<input v-if="titleEditable" v-focus class="app-sidebar-header__title-input"
-						type="text" :placeholder="titlePlaceholder" :value="title"
-						@input="onTitleInput">
-
+					<template v-if="titleEditable">
+						<form
+							class="rename-form"
+							@submit.prevent="onSubmitTitle">
+							<input
+								v-focus
+								class="app-sidebar-header__title-input"
+								type="text"
+								:placeholder="titlePlaceholder"
+								:value="title"
+								@keydown.esc="onDismissEditing"
+								@input="onTitleInput">
+							<button
+								class="icon-confirm"
+								type="submit" />
+						</form>
+					</template>
 					<!-- secondary title -->
 					<p v-if="subtitle.trim() !== ''" class="app-sidebar-header__subtitle">
 						{{ subtitle }}
@@ -449,12 +464,22 @@ export default {
 			 * Emitted on title events of the text field
 			 * @type {Event|Date}
 			 */
-			this.$emit('input:title', event)
+			this.$emit('input-title', event)
 			/**
 			 * Emitted when the title value changes
 			 * @type {string|Date}
 			 */
 			this.$emit('update:title', event.target.value)
+		},
+		/**
+		 * Emit when the title form edit confirm button is pressed in order
+		 * to change the title.
+		 */
+		onSubmitTitle(event) {
+			this.$emit('submit-title', event)
+		},
+		onDismissEditing() {
+			this.$emit('dismiss-editing')
 		}
 	}
 }
@@ -464,9 +489,13 @@ $header-height: 50px;
 $sidebar-min-width: 300px;
 $sidebar-max-width: 500px;
 
-$desc-menu-right-margin: 22px;
 $desc-vertical-padding: 18px;
-$desc-height: 46px;
+$desc-input-padding: 7px;
+$desc-title-height: 30px;
+// title and subtitle
+$desc-height: $desc-title-height + 22px;
+
+$top-buttons-spacing: 6px;
 
 /*
 	Sidebar: to be used within #content
@@ -497,8 +526,8 @@ $desc-height: 46px;
 			position: absolute;
 			width: $clickable-area;
 			height: $clickable-area;
-			top: 0;
-			right: 0;
+			top: $top-buttons-spacing;
+			right: $top-buttons-spacing;
 			z-index: 100;
 			opacity: $opacity_normal;
 			border-radius: $clickable-area / 2;
@@ -525,33 +554,12 @@ $desc-height: 46px;
 
 		&__desc {
 			position: relative;
-			padding: #{$desc-vertical-padding} #{$desc-menu-right-margin * 4} #{$desc-vertical-padding} $desc-vertical-padding / 2;
+			padding: #{$desc-vertical-padding} #{$clickable-area * 2 + $top-buttons-spacing * 3} #{$desc-vertical-padding} $desc-vertical-padding / 2;
 			display: flex;
-			height: $desc-height * 0.5;
 			flex-direction: column;
 			justify-content: center;
 			box-sizing: content-box;
-			&--with-star {
-				padding-left: $clickable-area;
-			}
-			&--with-subtitle {
-				justify-content: space-between;
-				height: $desc-height;
-			}
-			&--editable {
-				height: $desc-height * 0.75;
-			}
-			&--with-subtitle--editable {
-				height: $desc-height * 1.5;
 
-				.app-sidebar-header__subtitle {
-					margin-left: 7px;
-
-					input.app-sidebar-header__title-input {
-						margin-top: -$desc-vertical-padding / 2;
-					}
-				}
-			}
 			// titles
 			.app-sidebar-header__title,
 			.app-sidebar-header__subtitle {
@@ -564,10 +572,14 @@ $desc-height: 46px;
 			// main title
 			.app-sidebar-header__title {
 				padding: 0;
+				font-size: 20px;
+				line-height: $desc-title-height;
 			}
 			input.app-sidebar-header__title-input {
 				font-size: 16px;
+				padding: $desc-input-padding;
 				width: 100%;
+				margin: 0;
 			}
 
 			// subtitle
@@ -583,18 +595,49 @@ $desc-height: 46px;
 				height: $clickable-area;
 				padding: $icon-margin;
 				position: absolute;
-				top: $desc-vertical-padding - 12px; // aligned with main title
 				left: 0;
 			}
 			// main menu
 			.app-sidebar-header__menu {
 				position: absolute;
-				// aligned vertically in the middle
-				right: $desc-menu-right-margin;
-				top: 50%;
-				margin-top: -22px;
+				right: $clickable-area / 2;
 				background-color: $action-background-hover;
 				border-radius: $clickable-area / 2;
+			}
+
+			// custom overrides
+			&--with-star {
+				padding-left: $clickable-area;
+			}
+			&--with-subtitle {
+				justify-content: space-between;
+				height: $desc-height;
+			}
+			&--editable {
+				height: $desc-height * 0.75;
+			}
+			&--with-subtitle--editable {
+				height: $desc-height * 1.5;
+
+				.app-sidebar-header__subtitle {
+					margin-left: $desc-input-padding;
+				}
+
+				.app-sidebar-header__title-input {
+					margin-top: -$desc-vertical-padding / 2 - $desc-input-padding;
+				}
+			}
+
+		}
+		&--with-figure {
+			.app-sidebar-header__desc {
+				padding-right: $clickable-area * 2;
+			}
+		}
+		&:not(.app-sidebar-header--with-figure) {
+			.app-sidebar-header__menu {
+				top: $top-buttons-spacing;
+				right: $top-buttons-spacing * 2 + $clickable-area;
 			}
 		}
 
@@ -630,8 +673,8 @@ $desc-height: 46px;
 					z-index: 3; // above star
 				}
 				.app-sidebar-header__menu {
-					right: $clickable-area; // left of the close button
-					top: 0;
+					right: $clickable-area + $top-buttons-spacing; // left of the close button
+					top: $top-buttons-spacing;
 					margin: 0;
 					background-color: transparent;
 				}
@@ -751,6 +794,13 @@ $desc-height: 46px;
 .fade-enter,
 .fade-leave-to {
 	opacity: 0;
+}
+
+.rename-form {
+	display: flex;
+	& .icon-confirm {
+		margin: 0;
+	}
 }
 
 </style>
