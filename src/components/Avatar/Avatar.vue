@@ -82,21 +82,22 @@
 		<div v-if="userDoesNotExist && !iconClass" class="unknown">
 			{{ initials }}
 		</div>
-
-		<!-- Menu container -->
-		<div v-if="hasMenu"
-			v-show="contactsMenuOpenState"
-			class="popovermenu"
-			:class="`menu-${menuPosition}`">
-			<PopoverMenu :is-open="contactsMenuOpenState" :menu="menu" />
-		</div>
+		<Popover
+			placement="auto"
+			:open="contactsMenuOpenState">
+			<template>
+				<ul>
+					<PopoverMenuItem v-for="(item, key) in contactsMenuActions" :key="key" :item="item" />
+				</ul>
+				<p>Dummy content</p>
+			</template>
+		</Popover>
 	</div>
 </template>
 
 <script>
 import { getBuilder } from '@nextcloud/browser-storage'
 import { directive as ClickOutside } from 'v-click-outside'
-import PopoverMenu from '../PopoverMenu'
 import { getCurrentUser } from '@nextcloud/auth'
 import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 import axios from '@nextcloud/axios'
@@ -104,6 +105,8 @@ import { generateUrl } from '@nextcloud/router'
 import Tooltip from '../../directives/Tooltip'
 import usernameToColor from '../../functions/usernameToColor'
 import { userStatus } from '../../mixins'
+import Popover from '../Popover/Popover'
+import PopoverMenuItem from '../PopoverMenu/PopoverMenuItem'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 
@@ -128,7 +131,8 @@ export default {
 		ClickOutside,
 	},
 	components: {
-		PopoverMenu,
+		Popover,
+		PopoverMenuItem,
 	},
 	mixins: [userStatus],
 	props: {
