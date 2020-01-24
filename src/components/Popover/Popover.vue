@@ -39,18 +39,20 @@ open prop on this component;
 With a `<button>` as a trigger:
 ```vue
 <template>
-  <Popover>
-    <button slot="trigger"> I am the trigger </button>
-    <template>
+	<Popover>
+		<button slot="trigger"> I am the trigger </button>
+		<template>
 		<h2>this is some content</h2>
-    </template>
-  </Popover>
+		</template>
+	</Popover>
 </template>
 ```
 </docs>
 
 <template>
-	<VPopover class="popover" v-bind="$attrs" v-on="$listeners">
+	<VPopover
+		v-bind="$attrs"
+		v-on="$listeners">
 		<!-- This will be the popover target (for the events and position) -->
 		<slot name="trigger" />
 		<!-- This will be the content of the popover -->
@@ -71,8 +73,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.popover {
+<style lang="scss">
+.popover,
+.popover .popover-inner  {
 	padding: 0px !important;
 }
 </style>
