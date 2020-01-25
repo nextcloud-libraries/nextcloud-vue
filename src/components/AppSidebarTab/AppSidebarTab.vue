@@ -39,6 +39,10 @@ export default {
 	name: 'AppSidebarTab',
 
 	props: {
+		id: {
+			type: String,
+			default: () => this.name.toLowerCase().replace(/ /g, '-')
+		},
 		name: {
 			type: String,
 			default: '',
@@ -57,9 +61,6 @@ export default {
 	},
 
 	computed: {
-		id() {
-			return this.name.toLowerCase().replace(/ /g, '-')
-		},
 		isActive() {
 			return this.$parent.activeTab === this.id
 		}
