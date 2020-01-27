@@ -1,0 +1,46 @@
+name: Node CI
+
+on:
+  pull_request:
+    branches:
+      - master
+      - stable*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [11.x]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install
+        run: npm ci
+      - name: build
+        run: npm run build
+        env:
+          CI: true
+
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [11.x]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install
+        run: npm ci
+      - name: ESLint
+        run: npm run lint
+      - name: Stylelint
+        run: npm run stylelint
+        env:
+          CI: true
