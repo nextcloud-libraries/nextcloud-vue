@@ -41,22 +41,19 @@ export default {
 	props: {
 		id: {
 			type: String,
-			default: () => this.name.toLowerCase().replace(/ /g, '-')
+			required: true
 		},
 		name: {
 			type: String,
-			default: '',
 			required: true
 		},
 		icon: {
 			type: String,
-			default: '',
 			required: true
 		},
 		order: {
 			type: Number,
-			default: 0,
-			required: false
+			default: 0
 		}
 	},
 
