@@ -315,7 +315,6 @@ export default {
 				return this.value
 			},
 			set(value) {
-				this.$emit('input', value)
 				this.$emit('update:value', value)
 				this.$emit('change', value)
 			}
