@@ -2,6 +2,7 @@ name: Test
 
 on:
   pull_request:
+  push:
     branches:
       - master
       - stable*
@@ -9,12 +10,14 @@ on:
 jobs:
   jest:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         node-version: [11.x]
+
     steps:
-      - uses: actions/checkout@v1
-      - name: Setup node ${{ matrix.node-version }}
+      - uses: actions/checkout@v2
+      - name: Use node ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
@@ -22,5 +25,3 @@ jobs:
         run: npm ci
       - name: Test
         run: npm run test
-        env:
-          CI: true
