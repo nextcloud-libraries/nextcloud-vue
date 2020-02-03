@@ -14,13 +14,13 @@ jobs:
         node-version: [11.x]
     steps:
       - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup node ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install
+      - name: Install dependencies
         run: npm ci
-      - name: build
+      - name: Build
         run: npm run build
         env:
           CI: true
@@ -32,11 +32,11 @@ jobs:
         node-version: [11.x]
     steps:
       - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup node ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install
+      - name: Install dependencies
         run: npm ci
       - name: ESLint
         run: npm run lint
