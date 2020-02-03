@@ -87,7 +87,7 @@
 		"url-loader": "^3.0.0",
 		"vue-jest": "^3.0.5",
 		"vue-loader": "^15.6.4",
-		"vue-styleguidist": "^3.14.5",
+		"vue-styleguidist": "^4.7.6",
 		"vue-template-compiler": "^2.6.7",
 		"webpack": "^4.29.5",
 		"webpack-cli": "^3.3.9",
