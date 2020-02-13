@@ -40,6 +40,7 @@
 
 <script>
 import { directive as ClickOutside } from 'v-click-outside'
+import { t } from '../../l10n'
 
 export default {
 	directives: {
@@ -49,8 +50,7 @@ export default {
 		title: {
 			type: String,
 			required: false,
-			// TODO: translate
-			default: t('core', 'Settings')
+			default: t('Settings')
 		}
 	},
 	data() {

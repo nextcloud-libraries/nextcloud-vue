@@ -142,7 +142,7 @@ export default {
 					v-if="advanced"
 					class="color-picker-navigation-button confirm"
 					@click="handleConfirm">
-					{{ t('core', 'Choose') }}
+					{{ t('Choose') }}
 				</button>
 			</div>
 		</div>
@@ -152,6 +152,7 @@ export default {
 <script>
 import { Chrome } from 'vue-color'
 import GenColors from 'Utils/GenColors'
+import l10n from '../../mixins/l10n'
 import Popover from '../Popover'
 
 export default {
@@ -160,6 +161,7 @@ export default {
 		Chrome,
 		Popover
 	},
+	mixins: [l10n],
 
 	props: {
 		/**

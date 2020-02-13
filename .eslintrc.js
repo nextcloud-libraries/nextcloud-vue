@@ -7,7 +7,8 @@ module.exports = {
 		jest: true
 	},
 	globals: {
-		SCOPE_VERSION: true
+		SCOPE_VERSION: true,
+		TRANSLATIONS: true
 	},
 	parserOptions: {
 		parser: 'babel-eslint',

@@ -1,7 +1,10 @@
-const path = require('path')
+const fs = require('fs')
+const gettextParser = require('gettext-parser')
 const glob = require('glob')
-const { VueLoaderPlugin } = require('vue-loader')
+const md5 = require('md5')
+const path = require('path')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
+const { VueLoaderPlugin } = require('vue-loader')
 
 const IconfontPlugin = require('iconfont-plugin-webpack')
 
@@ -10,13 +13,29 @@ const { DefinePlugin } = require('webpack')
 const nodeExternals = require('webpack-node-externals')
 
 // scope variable
-const md5 = require('md5')
 const appVersion = JSON.stringify(process.env.npm_package_version)
 const versionHash = md5(appVersion).substr(0, 7)
 const SCOPE_VERSION = JSON.stringify(versionHash)
 const ICONFONT_NAME = `iconfont-vue-${versionHash}`
 
 console.info('This build version hash is', versionHash, '\n')
+
+// https://github.com/alexanderwallin/node-gettext#usage
+// https://github.com/alexanderwallin/node-gettext#load-and-add-translations-from-mo-or-po-files
+const translations = fs
+	.readdirSync('./l10n')
+	.filter(name => name !== 'messages.pot' && name.endsWith('.pot'))
+	.map(file => {
+		const path = './l10n/' + file
+		const locale = file.substr(0, file.length -'.pot'.length)
+
+		const po = fs.readFileSync(path)
+		const json = gettextParser.po.parse(po)
+		return {
+			locale,
+			json
+		}
+	})
 
 module.exports = {
 	entry: {
@@ -111,7 +130,10 @@ module.exports = {
 		new StyleLintPlugin({
 			files: ['src/**/*.vue', 'src/**/*.scss', 'src/**/*.css']
 		}),
-		new DefinePlugin({ SCOPE_VERSION })
+		new DefinePlugin({ 
+			SCOPE_VERSION,
+			TRANSLATIONS: JSON.stringify(translations)
+		})
 	],
 	resolve: {
 		alias: {

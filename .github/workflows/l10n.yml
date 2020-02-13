@@ -1,0 +1,19 @@
+name: L10n
+on: pull_request
+
+jobs:
+  l10n-extract-check:
+    runs-on: ubuntu-latest
+    name: Pot check
+    steps:
+    - uses: actions/checkout@master
+    - name: Set up Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: npm install
+      run: npm ci
+    - name: extract l10n files
+      run: npm run l10n:extract
+    - name: Check l10n file changes
+      run: bash -c "[[ ! \"`git status --porcelain l10n`\" ]] || ( echo 'Uncommited l10n changes. Run `npm l10n:extract`.' && git status && exit 1 )"

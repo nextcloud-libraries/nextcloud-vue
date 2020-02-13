@@ -1,0 +1,48 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:169
+msgid "{tag} (invisible)"
+msgstr ""
+
+#: src/components/MultiselectTags/MultiselectTags.vue:172
+msgid "{tag} (restricted)"
+msgstr ""
+
+#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Choose"
+msgstr ""
+
+#: src/components/Modal/Modal.vue:109
+msgid "Close"
+msgstr ""
+
+#: src/components/Modal/Modal.vue:154
+msgid "Next"
+msgstr ""
+
+#: src/components/Multiselect/Multiselect.vue:169
+#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No results"
+msgstr ""
+
+#: src/components/Modal/Modal.vue:290
+msgid "Pause slideshow"
+msgstr ""
+
+#: src/components/Modal/Modal.vue:134
+msgid "Previous"
+msgstr ""
+
+#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Select a tag"
+msgstr ""
+
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Settings"
+msgstr ""
+
+#: src/components/Modal/Modal.vue:290
+msgid "Start slideshow"
+msgstr ""

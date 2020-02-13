@@ -75,7 +75,7 @@ export default {
 		:tag-width="60"
 		:disabled="disabled"
 		@input="update">
-		<span slot="noResult">{{ t('core', 'No results') }}</span>
+		<span slot="noResult">{{ t('No results') }}</span>
 		<template #option="scope">
 			{{ tagLabel(scope.option) }}
 		</template>
@@ -83,18 +83,21 @@ export default {
 </template>
 
 <script>
+import l10n from '../../mixins/l10n'
 import { Multiselect } from 'Components/Multiselect'
 import { searchTags } from './api'
+import { t } from '../../l10n'
 
 export default {
 	name: 'MultiselectTags',
 	components: {
 		Multiselect
 	},
+	mixins: [l10n],
 	props: {
 		label: {
 			type: String,
-			default: t('systemtags', 'Select a tag')
+			default: t('Select a tag')
 		},
 		value: {
 			type: [Number, Array],
@@ -163,12 +166,10 @@ export default {
 		 */
 		tagLabel({ displayName, userVisible, userAssignable }) {
 			if (userVisible === false) {
-				// TODO Use proper parameters once the translation is updated in the systemtags app
-				return t('systemtags', '%s (invisible)').replace('%s', displayName)
+				return t('{tag} (invisible)', { tag: displayName })
 			}
 			if (userAssignable === false) {
-				// TODO Use proper parameters once the translation is updated in the systemtags app
-				return t('systemtags', '%s (restricted)').replace('%s', displayName)
+				return t('{tag} (restricted)', { tag: displayName })
 			}
 			return displayName
 		}
