@@ -151,19 +151,19 @@ $cell_height: 32px;
 
 			}
 			&.mx-icon-last-year {
-				@include iconfont('arrow-left');
-			}
-			&.mx-icon-last-month {
 				@include iconfont('arrow-left-double');
 			}
+			&.mx-icon-last-month {
+				@include iconfont('arrow-left');
+			}
 			&.mx-icon-next-month {
-				@include iconfont('arrow-right-double');
+				@include iconfont('arrow-right');
 				// arrows are all before month and year
 				// send them to the end of the row
 				order: 3;
 			}
 			&.mx-icon-next-year {
-				@include iconfont('arrow-right');
+				@include iconfont('arrow-right-double');
 				// arrows are all before month and year
 				// send them to the end of the row
 				order: 4;
