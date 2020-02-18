@@ -45,6 +45,7 @@
 		:clearable="false"
 		:minute-step="10"
 		:value="value"
+		:append-to-body="false"
 		v-bind="$attrs"
 		v-on="$listeners"
 		@select-year="handleSelectYear"
@@ -57,15 +58,15 @@
 </template>
 
 <script>
-import DatePicker from 'vue2-datepicker/lib/datepicker'
+import DatePicker from 'vue2-datepicker'
 
 /**
  * remove leading zeros on hours and minutes
  * https://github.com/mengxiong10/vue2-datepicker/blob/65c5762227649430f14158c01401a8486a881336/src/panel/time.js#L38
  */
-DatePicker.components.CalendarPanel.components.PanelTime.methods.stringifyText = function(data) {
-	return data
-}
+// DatePicker.CalendarPanel.components.PanelTime.methods.stringifyText = function(data) {
+// return data
+// }
 
 /**
  * hijack the display function and avoid the
