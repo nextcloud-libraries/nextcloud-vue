@@ -42,8 +42,8 @@
 <template>
 	<DatePicker
 		ref="datepicker"
-		:clearable="false"
-		:minute-step="10"
+		:clearable="clearable"
+		:minute-step="minuteStep"
 		:value="value"
 		:append-to-body="false"
 		v-bind="$attrs"
@@ -90,6 +90,20 @@ export default {
 	inheritAttrs: false,
 
 	props: {
+		// eslint-disable-next-line
+		clearable: {
+			default() {
+				return false
+			}
+		},
+
+		// eslint-disable-next-line
+		minuteStep: {
+			default() {
+				return 10
+			}
+		},
+
 		// eslint-disable-next-line
 		value: {
 			default() {
