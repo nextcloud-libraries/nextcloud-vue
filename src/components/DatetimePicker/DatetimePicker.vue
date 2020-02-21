@@ -44,6 +44,8 @@
 		ref="datepicker"
 		:clearable="clearable"
 		:minute-step="minuteStep"
+		:format="format"
+		:type="type"
 		:value="value"
 		:append-to-body="false"
 		v-bind="$attrs"
@@ -59,14 +61,6 @@
 
 <script>
 import DatePicker from 'vue2-datepicker'
-
-/**
- * remove leading zeros on hours and minutes
- * https://github.com/mengxiong10/vue2-datepicker/blob/65c5762227649430f14158c01401a8486a881336/src/panel/time.js#L38
- */
-// DatePicker.CalendarPanel.components.PanelTime.methods.stringifyText = function(data) {
-// return data
-// }
 
 /**
  * hijack the display function and avoid the
@@ -90,17 +84,37 @@ export default {
 	inheritAttrs: false,
 
 	props: {
-		// eslint-disable-next-line
 		clearable: {
+			type: Boolean,
 			default() {
 				return false
 			}
 		},
 
-		// eslint-disable-next-line
 		minuteStep: {
+			type: Number,
 			default() {
 				return 10
+			}
+		},
+
+		type: {
+			type: String,
+			default: 'date'
+		},
+
+		format: {
+			type: [String, Object],
+			default() {
+				const map = {
+					date: 'YYYY-MM-DD',
+					datetime: 'YYYY-MM-DD H:mm:ss',
+					year: 'YYYY',
+					month: 'YYYY-MM',
+					time: 'H:mm:ss',
+					week: 'w'
+				}
+				return map[this.type] || map.date
 			}
 		},
 
