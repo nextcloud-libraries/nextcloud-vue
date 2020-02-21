@@ -172,19 +172,17 @@ $cell_height: 32px;
 	}
 
 	.mx-calendar-header {
-		padding: 0 4px;
 		margin-bottom: 4px;
 		text-align: center;
 		overflow: hidden;
 		align-items: center;
 		justify-content: space-between;
+		display: flex;
 
-		button,
-		.mx-calendar-header-label {
+		button {
 			text-decoration: none;
 			cursor: pointer;
 			color: var(--color-text-lighter);
-			padding: 7px 10px;
 			margin: 0 auto; // center also single element
 			border-radius: $cell_height;
 			height: $cell_height;
@@ -199,6 +197,10 @@ $cell_height: 32px;
 				color: var(--color-main-text);
 				background-color: var(--color-background-darker);
 			}
+		}
+
+		.mx-calendar-header-label {
+			display: flex;
 
 			// Header arrows
 			&.mx-icon-double-left,
@@ -247,6 +249,14 @@ $cell_height: 32px;
 				// send them to the end of the row
 				//order: 4;
 			}
+		}
+
+		button.mx-btn-icon-right {
+			order: 2;
+		}
+
+		button.mx-btn-icon-double-right {
+			order: 3
 		}
 	}
 
