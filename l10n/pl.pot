@@ -1,0 +1,55 @@
+# Translators:
+# Valdnet Valdnet, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Valdnet Valdnet, 2020\n"
+"Language-Team: Polish (https://www.transifex.com/nextcloud/teams/64236/pl/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:169
+msgid "{tag} (invisible)"
+msgstr "{tag} (niewidoczny)"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:172
+msgid "{tag} (restricted)"
+msgstr "{tag} (ograniczony)"
+
+#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Choose"
+msgstr "Wybierz"
+
+#: src/components/Modal/Modal.vue:109
+msgid "Close"
+msgstr "Zamknij"
+
+#: src/components/Modal/Modal.vue:154
+msgid "Next"
+msgstr "Następny"
+
+#: src/components/Multiselect/Multiselect.vue:169
+#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No results"
+msgstr "Brak wyników"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Pause slideshow"
+msgstr "Wstrzymaj pokaz slajdów"
+
+#: src/components/Modal/Modal.vue:134
+msgid "Previous"
+msgstr "Poprzedni"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Select a tag"
+msgstr "Wybierz etykietę"
+
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Start slideshow"
+msgstr "Rozpocznij prezentację"
