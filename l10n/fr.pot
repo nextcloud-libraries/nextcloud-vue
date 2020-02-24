@@ -1,0 +1,56 @@
+# Translators:
+# Brendan Abolivier <transifex@brendanabolivier.com>, 2020
+# gud bes <gudbes@protonmail.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: gud bes <gudbes@protonmail.com>, 2020\n"
+"Language-Team: French (https://www.transifex.com/nextcloud/teams/64236/fr/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:169
+msgid "{tag} (invisible)"
+msgstr "{tag} (invisible)"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:172
+msgid "{tag} (restricted)"
+msgstr "{tag} (restreint)"
+
+#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Choose"
+msgstr "Choisir"
+
+#: src/components/Modal/Modal.vue:109
+msgid "Close"
+msgstr "Fermer"
+
+#: src/components/Modal/Modal.vue:154
+msgid "Next"
+msgstr "Suivant"
+
+#: src/components/Multiselect/Multiselect.vue:169
+#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No results"
+msgstr "Aucun résultat"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Pause slideshow"
+msgstr "Mettre le diaporama en pause"
+
+#: src/components/Modal/Modal.vue:134
+msgid "Previous"
+msgstr "Précédent"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Select a tag"
+msgstr "Sélectionnez une balise"
+
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Settings"
+msgstr "Paramètres"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Start slideshow"
+msgstr "Démarrer le diaporama"
