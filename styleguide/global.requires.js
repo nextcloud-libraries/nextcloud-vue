@@ -11,6 +11,9 @@ window.OC = {
 	},
 	generateUrl() {
 		return 'https://nextcloud.com/wp-content/themes/next/assets/img/common/nextcloud-square-logo.png'
+	},
+	getLanguage() {
+		return 'en'
 	}
 }
 window.OCA = {}
