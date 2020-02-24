@@ -1,0 +1,55 @@
+# Translators:
+# Random_R, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Random_R, 2020\n"
+"Language-Team: Italian (https://www.transifex.com/nextcloud/teams/64236/it/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:169
+msgid "{tag} (invisible)"
+msgstr "{tag} (invisibile)"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:172
+msgid "{tag} (restricted)"
+msgstr "{tag} (limitato)"
+
+#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Choose"
+msgstr "Scegli"
+
+#: src/components/Modal/Modal.vue:109
+msgid "Close"
+msgstr "Chiudi"
+
+#: src/components/Modal/Modal.vue:154
+msgid "Next"
+msgstr "Successivo"
+
+#: src/components/Multiselect/Multiselect.vue:169
+#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No results"
+msgstr "Nessun risultato"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Pause slideshow"
+msgstr "Presentazione in pausa"
+
+#: src/components/Modal/Modal.vue:134
+msgid "Previous"
+msgstr "Precedente"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Select a tag"
+msgstr "Seleziona un'etichetta"
+
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Start slideshow"
+msgstr "Avvia presentazione"
