@@ -42,9 +42,12 @@
 <template>
 	<DatePicker
 		ref="datepicker"
-		:clearable="false"
-		:minute-step="10"
+		:clearable="clearable"
+		:minute-step="minuteStep"
+		:format="format"
+		:type="type"
 		:value="value"
+		:append-to-body="false"
 		v-bind="$attrs"
 		v-on="$listeners"
 		@select-year="handleSelectYear"
@@ -57,15 +60,7 @@
 </template>
 
 <script>
-import DatePicker from 'vue2-datepicker/lib/datepicker'
-
-/**
- * remove leading zeros on hours and minutes
- * https://github.com/mengxiong10/vue2-datepicker/blob/65c5762227649430f14158c01401a8486a881336/src/panel/time.js#L38
- */
-DatePicker.components.CalendarPanel.components.PanelTime.methods.stringifyText = function(data) {
-	return data
-}
+import DatePicker from 'vue2-datepicker'
 
 /**
  * hijack the display function and avoid the
@@ -89,6 +84,40 @@ export default {
 	inheritAttrs: false,
 
 	props: {
+		clearable: {
+			type: Boolean,
+			default() {
+				return false
+			}
+		},
+
+		minuteStep: {
+			type: Number,
+			default() {
+				return 10
+			}
+		},
+
+		type: {
+			type: String,
+			default: 'date'
+		},
+
+		format: {
+			type: [String, Object],
+			default() {
+				const map = {
+					date: 'YYYY-MM-DD',
+					datetime: 'YYYY-MM-DD H:mm:ss',
+					year: 'YYYY',
+					month: 'YYYY-MM',
+					time: 'H:mm:ss',
+					week: 'w'
+				}
+				return map[this.type] || map.date
+			}
+		},
+
 		// eslint-disable-next-line
 		value: {
 			default() {
