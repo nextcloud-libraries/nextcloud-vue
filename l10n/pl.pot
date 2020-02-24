@@ -15,7 +15,7 @@ msgstr "{tag} (niewidoczna)"
 
 #: src/components/MultiselectTags/MultiselectTags.vue:172
 msgid "{tag} (restricted)"
-msgstr "{tag} (ograniczony)"
+msgstr "{tag} (ograniczona)"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
