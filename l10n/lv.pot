@@ -1,0 +1,55 @@
+# Translators:
+# stendec <stendec@inbox.lv>, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: stendec <stendec@inbox.lv>, 2020\n"
+"Language-Team: Latvian (https://www.transifex.com/nextcloud/teams/64236/lv/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: lv\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:169
+msgid "{tag} (invisible)"
+msgstr "{tag} (neredzams)"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:172
+msgid "{tag} (restricted)"
+msgstr "{tag} (ierobežots)"
+
+#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Choose"
+msgstr "Izvēlēties"
+
+#: src/components/Modal/Modal.vue:109
+msgid "Close"
+msgstr "Aizvērt"
+
+#: src/components/Modal/Modal.vue:154
+msgid "Next"
+msgstr "Nākamais"
+
+#: src/components/Multiselect/Multiselect.vue:169
+#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No results"
+msgstr "Nav rezultātu"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Pause slideshow"
+msgstr "Pauzēt slaidrādi"
+
+#: src/components/Modal/Modal.vue:134
+msgid "Previous"
+msgstr "Iepriekšējais"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Select a tag"
+msgstr "Izvēlēties birku"
+
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Settings"
+msgstr "Iestatījumi"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Start slideshow"
+msgstr "Sākt slaidrādi"
