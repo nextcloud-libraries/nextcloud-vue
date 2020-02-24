@@ -11,11 +11,11 @@ msgstr ""
 
 #: src/components/MultiselectTags/MultiselectTags.vue:169
 msgid "{tag} (invisible)"
-msgstr "{tag} (niewidoczny)"
+msgstr "{tag} (niewidoczna)"
 
 #: src/components/MultiselectTags/MultiselectTags.vue:172
 msgid "{tag} (restricted)"
-msgstr "{tag} (ograniczony)"
+msgstr "{tag} (ograniczona)"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
@@ -52,4 +52,4 @@ msgstr "Ustawienia"
 
 #: src/components/Modal/Modal.vue:290
 msgid "Start slideshow"
-msgstr "Rozpocznij prezentację"
+msgstr "Rozpocznij pokaz slajdów"
