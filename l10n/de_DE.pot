@@ -1,9 +1,10 @@
 # Translators:
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2020
+# Philipp Fischbeck <pfischbeck@googlemail.com>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2020\n"
+"Last-Translator: Philipp Fischbeck <pfischbeck@googlemail.com>, 2020\n"
 "Language-Team: German (Germany) (https://www.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -23,7 +24,7 @@ msgstr "Auswählen"
 
 #: src/components/Modal/Modal.vue:109
 msgid "Close"
-msgstr "Schliessen"
+msgstr "Schließen"
 
 #: src/components/Modal/Modal.vue:154
 msgid "Next"
