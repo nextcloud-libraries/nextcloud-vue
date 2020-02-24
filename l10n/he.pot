@@ -1,0 +1,55 @@
+# Translators:
+# Yaron Shahrabani <sh.yaron@gmail.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>, 2020\n"
+"Language-Team: Hebrew (https://www.transifex.com/nextcloud/teams/64236/he/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: he\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:169
+msgid "{tag} (invisible)"
+msgstr "{tag} (נסתר)"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:172
+msgid "{tag} (restricted)"
+msgstr "{tag} (מוגבל)"
+
+#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Choose"
+msgstr "בחירה"
+
+#: src/components/Modal/Modal.vue:109
+msgid "Close"
+msgstr "סגירה"
+
+#: src/components/Modal/Modal.vue:154
+msgid "Next"
+msgstr "הבא"
+
+#: src/components/Multiselect/Multiselect.vue:169
+#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No results"
+msgstr "אין תוצאות"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Pause slideshow"
+msgstr "השהיית מצגת"
+
+#: src/components/Modal/Modal.vue:134
+msgid "Previous"
+msgstr "הקודם"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Select a tag"
+msgstr "בחירת תגית"
+
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Settings"
+msgstr "הגדרות"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Start slideshow"
+msgstr "התחלת המצגת"
