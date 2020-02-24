@@ -106,7 +106,7 @@ export default {
 						<!-- Close modal -->
 						<Actions v-if="canClose" class="header-close">
 							<ActionButton icon="icon-close" @click="close">
-								{{ t('core', 'Close') }}
+								{{ t('Close') }}
 							</ActionButton>
 						</Actions>
 					</div>
@@ -131,7 +131,7 @@ export default {
 							@click="previous">
 							<div class="icon icon-previous">
 								<span class="hidden-visually">
-									{{ t('core', 'Previous') }}
+									{{ t('Previous') }}
 								</span>
 							</div>
 						</a>
@@ -151,7 +151,7 @@ export default {
 							@click="next">
 							<div class="icon icon-next">
 								<span class="hidden-visually">
-									{{ t('core', 'Next') }}
+									{{ t('Next') }}
 								</span>
 							</div>
 						</a>
@@ -166,6 +166,8 @@ export default {
 import Hammer from 'hammerjs'
 import Actions from 'Components/Actions'
 import ActionButton from 'Components/ActionButton'
+import l10n from '../../mixins/l10n'
+import t from '../../l10n'
 import Tooltip from 'Directives/Tooltip'
 import Timer from 'Utils/Timer'
 
@@ -180,6 +182,8 @@ export default {
 	directives: {
 		tooltip: Tooltip
 	},
+
+	mixins: [l10n],
 
 	props: {
 		/**
@@ -283,7 +287,7 @@ export default {
 			return `modal-${this.outTransition ? 'out' : 'in'}`
 		},
 		playPauseTitle() {
-			return this.playing ? t('core', 'Pause slideshow') : t('core', 'Start slideshow')
+			return this.playing ? t('Pause slideshow') : t('Start slideshow')
 		}
 	},
 

@@ -93,7 +93,7 @@
 				'app-sidebar-header--compact': compact
 			}" class="app-sidebar-header">
 				<!-- close sidebar button -->
-				<a href="#" class="app-sidebar__close icon-close" :title="t('core', 'close')"
+				<a href="#" class="app-sidebar__close icon-close" :title="t('close')"
 					@click.prevent="closeSidebar" />
 
 				<!-- sidebar header illustration/figure -->
@@ -188,6 +188,7 @@
 import Vue from 'vue'
 import Actions from 'Components/Actions'
 import Focus from 'Directives/Focus'
+import l10n from '../../mixins/l10n'
 
 const IsValidString = function(value) {
 	return value && typeof value === 'string' && value.trim() !== '' && value.indexOf(' ') === -1
@@ -201,6 +202,7 @@ export default {
 	directives: {
 		focus: Focus
 	},
+	mixins: [l10n],
 	props: {
 		active: {
 			type: String,
