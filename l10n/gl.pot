@@ -11,7 +11,7 @@ msgstr ""
 
 #: src/components/MultiselectTags/MultiselectTags.vue:169
 msgid "{tag} (invisible)"
-msgstr "{tag} (invisible)"
+msgstr "{tag} (invisíbel)"
 
 #: src/components/MultiselectTags/MultiselectTags.vue:172
 msgid "{tag} (restricted)"
