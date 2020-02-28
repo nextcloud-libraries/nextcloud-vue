@@ -1,0 +1,55 @@
+# Translators:
+# Kemal Oktay Aktoğan <oktayaktogan@gmail.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Kemal Oktay Aktoğan <oktayaktogan@gmail.com>, 2020\n"
+"Language-Team: Turkish (https://www.transifex.com/nextcloud/teams/64236/tr/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:169
+msgid "{tag} (invisible)"
+msgstr "{tag} (görünmez)"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:172
+msgid "{tag} (restricted)"
+msgstr "{tag} (kısıtlı)"
+
+#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Choose"
+msgstr "Seç"
+
+#: src/components/Modal/Modal.vue:109
+msgid "Close"
+msgstr "Kapat"
+
+#: src/components/Modal/Modal.vue:154
+msgid "Next"
+msgstr "İleri"
+
+#: src/components/Multiselect/Multiselect.vue:169
+#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No results"
+msgstr "Sonuç yok"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Pause slideshow"
+msgstr "Slayt gösterisini duraklat"
+
+#: src/components/Modal/Modal.vue:134
+msgid "Previous"
+msgstr "Önceki"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Select a tag"
+msgstr "Bir etiket seçin"
+
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Start slideshow"
+msgstr "Slayt gösterisini başlat"
