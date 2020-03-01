@@ -1,0 +1,55 @@
+# Translators:
+# byStarTW (pan93412) <pan93412@gmail.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: byStarTW (pan93412) <pan93412@gmail.com>, 2020\n"
+"Language-Team: Chinese (Taiwan) (https://www.transifex.com/nextcloud/teams/64236/zh_TW/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:169
+msgid "{tag} (invisible)"
+msgstr "{tag} (隱藏)"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:172
+msgid "{tag} (restricted)"
+msgstr "{tag} (受限)"
+
+#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Choose"
+msgstr "選擇"
+
+#: src/components/Modal/Modal.vue:109
+msgid "Close"
+msgstr "關閉"
+
+#: src/components/Modal/Modal.vue:154
+msgid "Next"
+msgstr "下一個"
+
+#: src/components/Multiselect/Multiselect.vue:169
+#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No results"
+msgstr "無結果"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Pause slideshow"
+msgstr "暫停幻燈片"
+
+#: src/components/Modal/Modal.vue:134
+msgid "Previous"
+msgstr "上一個"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Select a tag"
+msgstr "選擇標籤"
+
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Settings"
+msgstr "設定"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Start slideshow"
+msgstr "開始幻燈片"
