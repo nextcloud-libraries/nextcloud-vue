@@ -430,6 +430,12 @@ export default {
 	box-sizing: border-box;
 	width: 100%;
 	min-height: $clickable-area;
+	// When .active class is applied, change color background of link and utils. The
+	// !important prevents the focus state to override the active state.
+	&.active > a,
+	&.active > a ~ .app-navigation-entry__utils {
+		background-color: var(--color-primary-light) !important;
+	}
 
 	/* hide deletion/collapse of subitems */
 	&.app-navigation-entry--deleted,
