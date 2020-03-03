@@ -45,7 +45,8 @@ If you're using a long text you can specify a title
 <template>
 	<li :class="{ 'action--disabled': disabled }">
 		<button class="action-button"
-			:class="{ focusable: isFocusable }" @click="onClick">
+			:class="{ focusable: isFocusable }"
+			@click="onClick">
 			<!-- icon -->
 			<span :class="[isIconUrl ? 'action-button__icon--url' : icon]"
 				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
@@ -66,7 +67,8 @@ If you're using a long text you can specify a title
 			<!-- white space is shown on longtext, so we can't
 				put {{ text }} on a new line for code readability -->
 			<p v-else-if="isLongText"
-				class="action-button__longtext" v-text="text" />
+				class="action-button__longtext"
+				v-text="text" />
 
 			<!-- default text display -->
 			<span v-else class="action-button__text">{{ text }}</span>
@@ -78,7 +80,7 @@ If you're using a long text you can specify a title
 </template>
 
 <script>
-import ActionTextMixin from 'Mixins/actionText'
+import ActionTextMixin from '../../mixins/actionText'
 
 /**
  * Button component to be used in Actions
@@ -94,22 +96,23 @@ export default {
 		 */
 		disabled: {
 			type: Boolean,
-			default: false
-		}
+			default: false,
+		},
 	},
 	computed: {
 		/**
 		 * determines if the action is focusable
+		 * @returns {boolean} is the action focusable ?
 		 */
 		isFocusable: function() {
 			return !this.disabled
-		}
-	}
+		},
+	},
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~Assets/action';
+@import '../../assets/action';
 @include action-active;
 @include action--disabled;
 @include action-item('button');

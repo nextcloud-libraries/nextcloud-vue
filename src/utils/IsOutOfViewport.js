@@ -11,7 +11,7 @@ const isOutOfViewport = function(elem) {
 	const contentWidth = document.documentElement.clientWidth
 
 	// Check if it's out of the viewport on each side
-	let out = Object.assign({})
+	const out = Object.assign({})
 	out.top = bounding.top < 0
 	out.left = bounding.left < 0
 	out.bottom = bounding.bottom > contentHeight

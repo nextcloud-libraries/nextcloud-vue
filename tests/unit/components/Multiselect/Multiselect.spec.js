@@ -21,7 +21,7 @@
  */
 
 import { mount } from '@vue/test-utils'
-import Multiselect from 'Components/Multiselect/Multiselect.vue'
+import Multiselect from '../../../../src/components/Multiselect/Multiselect.vue'
 
 describe('Multiselect.vue', () => {
 	'use strict'

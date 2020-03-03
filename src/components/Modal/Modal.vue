@@ -164,23 +164,23 @@ export default {
 
 <script>
 import Hammer from 'hammerjs'
-import Actions from 'Components/Actions'
-import ActionButton from 'Components/ActionButton'
+import Actions from '../Actions'
+import ActionButton from '../ActionButton'
 import l10n from '../../mixins/l10n'
 import { t } from '../../l10n'
-import Tooltip from 'Directives/Tooltip'
-import Timer from 'Utils/Timer'
+import Tooltip from '../../directives/Tooltip'
+import Timer from '../../utils/Timer'
 
 export default {
 	name: 'Modal',
 
 	components: {
 		Actions,
-		ActionButton
+		ActionButton,
 	},
 
 	directives: {
-		tooltip: Tooltip
+		tooltip: Tooltip,
 	},
 
 	mixins: [l10n],
@@ -191,84 +191,84 @@ export default {
 		 */
 		title: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		/**
 		 * Declare if a previous slide is available
 		 */
 		hasPrevious: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		 * Declare if a next slide is available
 		 */
 		hasNext: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		 * Declare if hiding the modal should be animated
 		 */
 		outTransition: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		 * Declare if the slideshow functionality should be enabled
 		 */
 		enableSlideshow: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		clearViewDelay: {
 			type: Number,
-			default: 5000
+			default: 5000,
 		},
 		/**
 		 * Declare the slide interval
 		 */
 		slideshowDelay: {
 			type: Number,
-			default: 3000
+			default: 3000,
 		},
 		/**
 		 * Allow to pause an ongoing slideshow
 		 */
 		slideshowPaused: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		 * Enable swipe between slides
 		 */
 		enableSwipe: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		spreadNavigation: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		size: {
 			type: String,
 			default: 'normal',
 			validator: size => {
 				return ['normal', 'large', 'full'].indexOf(size) !== -1
-			}
+			},
 		},
 		/**
 		 * Declare if the modal can be closed
 		 */
 		canClose: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		/** Makes the modal backdrop black if true  */
 		dark: {
 			type: Boolean,
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	data() {
@@ -278,7 +278,7 @@ export default {
 			clearView: false,
 			clearViewTimeout: null,
 			playing: false,
-			slideshowTimeout: null
+			slideshowTimeout: null,
 		}
 	},
 
@@ -288,12 +288,13 @@ export default {
 		},
 		playPauseTitle() {
 			return this.playing ? t('Pause slideshow') : t('Start slideshow')
-		}
+		},
 	},
 
 	watch: {
 		/**
 		 * Handle play/pause of an ongoing slideshow
+		 * @param {boolean} paused is the player paused
 		 */
 		slideshowPaused: function(paused) {
 			if (this.slideshowTimeout) {
@@ -303,7 +304,7 @@ export default {
 					this.slideshowTimeout.start()
 				}
 			}
-		}
+		},
 	},
 
 	beforeMount() {
@@ -375,14 +376,14 @@ export default {
 		// Key Handlers
 		handleKeydown(e) {
 			switch (e.keyCode) {
-			case 37:	// left arrow
+			case 37: // left arrow
 				this.previous(e)
 				break
-			case 13:	// enter key
-			case 39:	// rigth arrow
+			case 13: // enter key
+			case 39: // rigth arrow
 				this.next(e)
 				break
-			case 27:	// escape key
+			case 27: // escape key
 				this.close(e)
 				break
 			}
@@ -454,13 +455,13 @@ export default {
 			if (this.slideshowTimeout) {
 				this.slideshowTimeout.clear()
 			}
-		}
-	}
+		},
+	},
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~Fonts/scss/iconfont-vue';
+@import '../../fonts/scss/iconfont-vue';
 $header-size: 50px;
 
 .modal-mask {
@@ -764,8 +765,8 @@ $pi: 3.14159265358979;
 			animation: progressring linear 3s infinite;
 
 			stroke-linecap: round;
-			stroke-dashoffset: $radius * 2 * $pi;	// radius * 2 * PI
-			stroke-dasharray: $radius * 2 * $pi;	// radius * 2 * PI
+			stroke-dashoffset: $radius * 2 * $pi; // radius * 2 * PI
+			stroke-dasharray: $radius * 2 * $pi; // radius * 2 * PI
 		}
 	}
 	&--paused {
@@ -781,7 +782,7 @@ $pi: 3.14159265358979;
 // keyframes get scoped too and break the animation name, we need them unscoped
 @keyframes progressring {
 	from {
-		stroke-dashoffset: $radius * 2 * $pi;	// radius * 2 * PI
+		stroke-dashoffset: $radius * 2 * $pi; // radius * 2 * PI
 	}
 	to {
 		stroke-dashoffset: 0;

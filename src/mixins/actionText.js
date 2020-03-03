@@ -21,7 +21,7 @@
  *
  */
 import actionGlobal from './actionGlobal'
-import GetParent from 'Utils/GetParent'
+import GetParent from '../utils/GetParent'
 
 export default {
 	mixins: [actionGlobal],
@@ -31,22 +31,22 @@ export default {
 		 */
 		icon: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		/**
 		 * Title to show next to the icon
 		 */
 		title: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		/**
 		 * Whether we close the Actions menu after the click
 		 */
 		closeAfterClick: {
 			type: Boolean,
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	computed: {
@@ -56,7 +56,7 @@ export default {
 			} catch (error) {
 				return false
 			}
-		}
+		},
 	},
 
 	methods: {
@@ -73,6 +73,6 @@ export default {
 					parent.closeMenu()
 				}
 			}
-		}
-	}
+		},
+	},
 }

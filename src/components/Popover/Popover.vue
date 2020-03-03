@@ -66,8 +66,8 @@ import { VPopover } from 'v-tooltip'
 export default {
 	name: 'Popover',
 	components: {
-		VPopover
-	}
+		VPopover,
+	},
 }
 </script>
 

@@ -25,5 +25,5 @@ import Tooltip from './Tooltip'
 
 export {
 	Focus,
-	Tooltip
+	Tooltip,
 }

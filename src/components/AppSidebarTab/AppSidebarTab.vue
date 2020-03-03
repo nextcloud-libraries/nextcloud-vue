@@ -41,27 +41,27 @@ export default {
 	props: {
 		id: {
 			type: String,
-			required: true
+			required: true,
 		},
 		name: {
 			type: String,
-			required: true
+			required: true,
 		},
 		icon: {
 			type: String,
-			required: true
+			required: true,
 		},
 		order: {
 			type: Number,
-			default: 0
-		}
+			default: 0,
+		},
 	},
 
 	computed: {
 		isActive() {
 			return this.$parent.activeTab === this.id
-		}
-	}
+		},
+	},
 }
 </script>
 

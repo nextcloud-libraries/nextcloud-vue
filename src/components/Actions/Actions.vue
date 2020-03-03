@@ -59,7 +59,8 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 		v-tooltip.auto="firstAction.text"
 		:aria-label="firstAction.text"
 		v-bind="firstActionBinding"
-		:class="[firstAction.icon, firstActionClass]" class="action-item action-item--single"
+		:class="[firstAction.icon, firstActionClass]"
+		class="action-item action-item--single"
 		rel="noreferrer noopener"
 		@[firstActionEventBinding]="execFirstAction">
 		<!-- fake slot to gather main action -->
@@ -70,7 +71,8 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 	</element>
 
 	<!-- more than one action -->
-	<div v-else v-show="hasMultipleActions || forceMenu"
+	<div v-else
+		v-show="hasMultipleActions || forceMenu"
 		:class="{'action-item--open': opened}"
 		class="action-item"
 		@keydown.up.exact.prevent="focusPreviousAction"
@@ -82,7 +84,8 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 		<!-- If more than one action, create a popovermenu -->
 		<a class="icon action-item__menutoggle"
 			:class="defaultIcon"
-			href="#" aria-haspopup="true"
+			href="#"
+			aria-haspopup="true"
 			:aria-controls="randomId"
 			:aria-expanded="opened"
 			@click.prevent="toggleMenu"
@@ -108,10 +111,10 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 </template>
 <script>
 import { directive as ClickOutside } from 'v-click-outside'
-import Tooltip from 'Directives/Tooltip'
-import GenRandomId from 'Utils/GenRandomId'
-import IsOutOfViewport from 'Utils/IsOutOfViewport'
-import ValidateSlot from 'Utils/ValidateSlot'
+import Tooltip from '../../directives/Tooltip'
+import GenRandomId from '../../utils/GenRandomId'
+import IsOutOfViewport from '../../utils/IsOutOfViewport'
+import ValidateSlot from '../../utils/ValidateSlot'
 
 // This is the list of ALL the ALLOWED components
 // in the default SLOT
@@ -124,7 +127,7 @@ const allowedChildren = [
 	'ActionRouter',
 	'ActionSeparator',
 	'ActionText',
-	'ActionTextEditable'
+	'ActionTextEditable',
 ]
 
 const focusableSelector = '.focusable'
@@ -142,7 +145,7 @@ export default {
 
 	directives: {
 		ClickOutside,
-		tooltip: Tooltip
+		tooltip: Tooltip,
 	},
 
 	props: {
@@ -151,7 +154,7 @@ export default {
 		 */
 		open: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 
 		/**
@@ -159,7 +162,7 @@ export default {
 		 */
 		forceMenu: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 
 		/**
@@ -171,7 +174,7 @@ export default {
 			default: 'center',
 			validator: align => {
 				return ['left', 'center', 'right'].indexOf(align) > -1
-			}
+			},
 		},
 		/**
 		 * Icon to show for the toggle menu button
@@ -180,8 +183,8 @@ export default {
 		 */
 		defaultIcon: {
 			type: String,
-			default: 'action-item__menutoggle--default-icon'
-		}
+			default: 'action-item__menutoggle--default-icon',
+		},
 	},
 
 	data() {
@@ -197,13 +200,14 @@ export default {
 			// Making children reactive!
 			// By binding this here, vuejs will track the object content
 			// Needed for firstAction reactivity !!!
-			children: this.$children
+			children: this.$children,
 		}
 	},
 
 	computed: {
 		/**
 		 * Is there more than one action?
+		 * @returns {boolean}
 		 */
 		hasMultipleActions() {
 			return this.actions.length > 1
@@ -211,6 +215,7 @@ export default {
 		/**
 		 * Is there any first action ?
 		 * And is it allowed as a standalone element ?
+		 * @returns {boolean}
 		 */
 		isValidSingleAction() {
 			return this.actions.length === 1
@@ -218,6 +223,7 @@ export default {
 		},
 		/**
 		 * First action vnode
+		 * @returns {Object} return the first action vue vnode
 		 */
 		firstActionVNode() {
 			return this.actions[0]
@@ -226,6 +232,7 @@ export default {
 		 * Reactive binding to the first children
 		 * Since we're here, it means we already passed all the proper checks
 		 * we can assume the first action is the first children too
+		 * @returns {Object} first action vue children object
 		 */
 		firstAction() {
 			return this.children[0]
@@ -235,6 +242,7 @@ export default {
 
 		/**
 		 * Binding of the first action to the template
+		 * @returns {Object} vue template v-bind shortcut
 		 */
 		firstActionBinding() {
 			if (this.firstActionVNode && this.firstActionVNode.componentOptions) {
@@ -243,19 +251,19 @@ export default {
 					return {
 						is: 'a',
 						href: this.firstAction.href,
-						target: this.firstAction.target
+						target: this.firstAction.target,
 					}
 				}
 				if (tag === 'ActionRouter') {
 					return {
 						is: 'router-link',
 						to: this.firstAction.to,
-						exact: this.firstAction.exact
+						exact: this.firstAction.exact,
 					}
 				}
 				if (tag === 'ActionButton') {
 					return {
-						is: 'button'
+						is: 'button',
 					}
 				}
 			}
@@ -277,7 +285,7 @@ export default {
 			const staticClass = this.firstActionVNode && this.firstActionVNode.data.staticClass
 			const dynClass = this.firstActionVNode && this.firstActionVNode.data.class
 			return `${staticClass} ${dynClass}`
-		}
+		},
 	},
 
 	watch: {
@@ -288,7 +296,7 @@ export default {
 					this.onOpen()
 				})
 			}
-		}
+		},
 	},
 	beforeMount() {
 		// init actions
@@ -458,13 +466,13 @@ export default {
 		initActions() {
 			// filter out invalid slots
 			this.actions = (this.$slots.default || []).filter(node => !!node && !!node.componentOptions)
-		}
-	}
+		},
+	},
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~Fonts/scss/iconfont-vue';
+@import '../../fonts/scss/iconfont-vue';
 
 // arrow distance to the border
 $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;

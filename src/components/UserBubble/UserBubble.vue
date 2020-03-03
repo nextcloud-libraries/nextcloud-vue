@@ -47,9 +47,14 @@ This component has the following slot:
 ```
 </docs>
 <template>
-	<Popover trigger="hover focus" :open="open" :disabled="popoverEmpty"
-		class="user-bubble-popover" @update:open="onOpenChange">
-		<div slot="trigger" v-bind="linkOrNot" class="user-bubble"
+	<Popover trigger="hover focus"
+		:open="open"
+		:disabled="popoverEmpty"
+		class="user-bubble-popover"
+		@update:open="onOpenChange">
+		<div slot="trigger"
+			v-bind="linkOrNot"
+			class="user-bubble"
 			:class="primary ? 'user-bubble-primary' : ''">
 			<Avatar :url="!isUserAvatar && isIconUrl ? avatarImage : undefined"
 				:icon-class="!isUserAvatar && !isIconUrl ? avatarImage : undefined"
@@ -75,33 +80,33 @@ export default {
 	name: 'UserBubble',
 	components: {
 		Popover,
-		Avatar
+		Avatar,
 	},
 	props: {
 		avatarImage: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		user: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		displayName: {
 			type: String,
-			required: true
+			required: true,
 		},
 		url: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		open: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		primary: {
 			type: Boolean,
-			default: false
-		}
+			default: false,
+		},
 	},
 	computed: {
 		isUserAvatar() {
@@ -136,13 +141,13 @@ export default {
 				return true
 			}
 			return false
-		}
+		},
 	},
 	methods: {
 		onOpenChange(state) {
 			this.$emit('update:open', state)
-		}
-	}
+		},
+	},
 }
 </script>
 

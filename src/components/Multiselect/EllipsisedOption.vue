@@ -28,7 +28,7 @@
 </template>
 <script>
 import escapeHtml from 'escape-html'
-import highlightText from 'Mixins/highlightText'
+import highlightText from '../../mixins/highlightText'
 
 export default {
 	name: 'EllipsisedOption',
@@ -39,16 +39,16 @@ export default {
 		option: {
 			type: [String, Object],
 			required: true,
-			default: ''
+			default: '',
 		},
 		label: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		search: {
 			type: String,
-			default: ''
-		}
+			default: '',
+		},
 	},
 
 	computed: {
@@ -61,14 +61,14 @@ export default {
 		part1() {
 			if (this.needsTruncate) {
 				// leave maximum 10 letters
-				var split = Math.min(Math.floor(this.name.length / 2), 10)
+				const split = Math.min(Math.floor(this.name.length / 2), 10)
 				return this.name.substr(0, this.name.length - split)
 			}
 			return this.name
 		},
 		part2() {
 			if (this.needsTruncate) {
-				var split = Math.min(Math.floor(this.name.length / 2), 10)
+				const split = Math.min(Math.floor(this.name.length / 2), 10)
 				return this.name.substr(this.name.length - split)
 			}
 			return ''
@@ -78,8 +78,8 @@ export default {
 		},
 		highlightedPart2() {
 			return this.highlightText(escapeHtml(this.part2), this.search)
-		}
-	}
+		},
+	},
 }
 </script>
 <style lang="scss" scoped>

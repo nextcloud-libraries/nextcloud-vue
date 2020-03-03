@@ -22,7 +22,8 @@
 
 <template>
 	<div id="app-content" class="no-snapper" :style="opened ? 'transform: translateX(300px)' : ''">
-		<AppNavigationToggle :aria-expanded="opened" aria-controls="app-navigation"
+		<AppNavigationToggle :aria-expanded="opened"
+			aria-controls="app-navigation"
 			@click="toggleNavigation" />
 		<!-- @slot Provide content to the app content -->
 		<slot />
@@ -40,12 +41,12 @@ import AppNavigationToggle from '../AppNavigationToggle'
 export default {
 	name: 'AppContent',
 	components: {
-		AppNavigationToggle
+		AppNavigationToggle,
 	},
 	data() {
 		return {
 			// closed by default on mobile mode
-			opened: false
+			opened: false,
 		}
 	},
 	mounted() {
@@ -81,8 +82,8 @@ export default {
 			} else if (this.opened && hasEnoughDistance && startX < touchzone + 300) {
 				this.toggleNavigation(false)
 			}
-		}
-	}
+		},
+	},
 }
 </script>
 <style lang="scss" scoped>

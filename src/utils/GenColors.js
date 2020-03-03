@@ -31,7 +31,7 @@ function Color(r, g, b) {
 }
 
 function stepCalc(steps, ends) {
-	var step = new Array(3)
+	const step = new Array(3)
 	step[0] = (ends[1].r - ends[0].r) / steps
 	step[1] = (ends[1].g - ends[0].g) / steps
 	step[2] = (ends[1].b - ends[0].b) / steps
@@ -39,13 +39,13 @@ function stepCalc(steps, ends) {
 }
 
 function mixPalette(steps, color1, color2) {
-	var palette = []
+	const palette = []
 	palette.push(color1)
-	var step = stepCalc(steps, [color1, color2])
+	const step = stepCalc(steps, [color1, color2])
 	for (let i = 1; i < steps; i++) {
-		var r = parseInt(color1.r + step[0] * i, 10)
-		var g = parseInt(color1.g + step[1] * i, 10)
-		var b = parseInt(color1.b + step[2] * i, 10)
+		const r = parseInt(color1.r + step[0] * i, 10)
+		const g = parseInt(color1.g + step[1] * i, 10)
+		const b = parseInt(color1.b + step[2] * i, 10)
 		palette.push(new Color(r, g, b))
 	}
 	return palette
@@ -65,13 +65,13 @@ function GenColors(steps) {
 		steps = 6
 	}
 
-	var red = new Color(182, 70, 157)
-	var yellow = new Color(221, 203, 85)
-	var blue = new Color(0, 130, 201) // Nextcloud blue
+	const red = new Color(182, 70, 157)
+	const yellow = new Color(221, 203, 85)
+	const blue = new Color(0, 130, 201) // Nextcloud blue
 
-	var palette1 = mixPalette(steps, red, yellow)
-	var palette2 = mixPalette(steps, yellow, blue)
-	var palette3 = mixPalette(steps, blue, red)
+	const palette1 = mixPalette(steps, red, yellow)
+	const palette2 = mixPalette(steps, yellow, blue)
+	const palette3 = mixPalette(steps, blue, red)
 
 	return palette1.concat(palette2).concat(palette3)
 }

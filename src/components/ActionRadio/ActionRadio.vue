@@ -39,12 +39,17 @@ So that only one of each name set can be selected at the same time.
 <template>
 	<li :class="{ 'action--disabled': disabled }">
 		<span class="action-radio">
-			<input :id="id" ref="radio"
-				:disabled="disabled" :checked="checked"
-				:name="name" :value="value"
+			<input :id="id"
+				ref="radio"
+				:disabled="disabled"
+				:checked="checked"
+				:name="name"
+				:value="value"
 				:class="{ focusable: isFocusable }"
-				type="radio" class="radio action-radio__radio"
-				@keydown.enter.exact.prevent="toggleInput" @change="onChange">
+				type="radio"
+				class="radio action-radio__radio"
+				@keydown.enter.exact.prevent="toggleInput"
+				@change="onChange">
 			<label ref="label" :for="id" class="action-radio__label">{{ text }}</label>
 
 			<!-- fake slot to gather inner text -->
@@ -54,8 +59,8 @@ So that only one of each name set can be selected at the same time.
 </template>
 
 <script>
-import ActionGlobalMixin from 'Mixins/actionGlobal'
-import GenRandomId from 'Utils/GenRandomId'
+import ActionGlobalMixin from '../../mixins/actionGlobal'
+import GenRandomId from '../../utils/GenRandomId'
 
 export default {
 	name: 'ActionRadio',
@@ -69,7 +74,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'action-' + GenRandomId(),
-			validator: id => id.trim() !== ''
+			validator: id => id.trim() !== '',
 		},
 
 		/**
@@ -77,7 +82,7 @@ export default {
 		 */
 		checked: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 
 		/**
@@ -87,7 +92,7 @@ export default {
 		 */
 		name: {
 			type: String,
-			required: true
+			required: true,
 		},
 
 		/**
@@ -95,7 +100,7 @@ export default {
 		 */
 		value: {
 			type: [String, Number],
-			default: ''
+			default: '',
 		},
 
 		/**
@@ -103,17 +108,18 @@ export default {
 		 */
 		disabled: {
 			type: Boolean,
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	computed: {
 		/**
 		 * determines if the action is focusable
+		 * @returns {boolean} is the action focusable ?
 		 */
 		isFocusable: function() {
 			return !this.disabled
-		}
+		},
 	},
 
 	methods: {
@@ -133,13 +139,13 @@ export default {
 			 * @type {Event}
 			 */
 			this.$emit('change', event)
-		}
-	}
+		},
+	},
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~Assets/action';
+@import '../../assets/action';
 @include action-active;
 @include action--disabled;
 

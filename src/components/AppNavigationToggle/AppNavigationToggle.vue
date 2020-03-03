@@ -20,8 +20,11 @@
  -
  -->
 <template>
-	<a id="app-navigation-toggle" tabindex="0" href="#"
-		@click.prevent="emitClick" @keydown.space.exact.prevent="emitClick" />
+	<a id="app-navigation-toggle"
+		tabindex="0"
+		href="#"
+		@click.prevent="emitClick"
+		@keydown.space.exact.prevent="emitClick" />
 </template>
 
 <script>
@@ -30,13 +33,13 @@ export default {
 	methods: {
 		emitClick() {
 			this.$emit('click')
-		}
-	}
+		},
+	},
 }
 </script>
 
 <style scoped lang="scss">
-@import '~Fonts/scss/iconfont-vue';
+@import '../../fonts/scss/iconfont-vue';
 
 #app-navigation-toggle {
 	display: none;

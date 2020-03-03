@@ -87,5 +87,5 @@ export {
 	Popover,
 	PopoverMenu,
 	ColorPicker,
-	UserBubble
+	UserBubble,
 }

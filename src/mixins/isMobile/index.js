@@ -20,12 +20,12 @@
  *
  */
 
-import { IsMobileState } from 'Utils/IsMobileState'
+import { IsMobileState } from '../../utils/IsMobileState'
 
 export default {
 	data() {
 		return {
-			isMobile: false
+			isMobile: false,
 		}
 	},
 	mounted() {
@@ -38,6 +38,6 @@ export default {
 	methods: {
 		onIsMobileChanged(val) {
 			this.isMobile = val
-		}
-	}
+		},
+	},
 }

@@ -140,12 +140,15 @@ Please see the [AvatarSelectOption](#AvatarSelectOption) component
 			<!-- Avatar display select slot override.
 				You CANNOT use this scope, we will replace it by this -->
 			<AvatarSelectOption v-if="userSelect && !$scopedSlots['option']"
-				v-bind="scope.option" :search="scope.search" />
+				v-bind="scope.option"
+				:search="scope.search" />
 
 			<!-- Ellipsis in the middle if no option slot
 				is defined in the parent -->
 			<EllipsisedOption v-else-if="!$scopedSlots['option']"
-				:option="scope.option" :search="scope.search" :label="label" />
+				:option="scope.option"
+				:search="scope.search"
+				:label="label" />
 
 			<!-- Passing the singleLabel slot -->
 			<slot v-else name="option" v-bind="scope" />
@@ -174,7 +177,7 @@ Please see the [AvatarSelectOption](#AvatarSelectOption) component
 import AvatarSelectOption from './AvatarSelectOption'
 import EllipsisedOption from './EllipsisedOption'
 import l10n from '../../mixins/l10n'
-import Tooltip from 'Directives/Tooltip'
+import Tooltip from '../../directives/Tooltip'
 import VueMultiselect from 'vue-multiselect'
 
 export default {
@@ -182,10 +185,10 @@ export default {
 	components: {
 		AvatarSelectOption,
 		EllipsisedOption,
-		VueMultiselect
+		VueMultiselect,
 	},
 	directives: {
-		tooltip: Tooltip
+		tooltip: Tooltip,
 	},
 	mixins: [l10n],
 	inheritAttrs: false,
@@ -200,7 +203,7 @@ export default {
 		value: {
 			default() {
 				return []
-			}
+			},
 		},
 
 		/**
@@ -208,7 +211,7 @@ export default {
 		 */
 		multiple: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 
 		/**
@@ -216,7 +219,7 @@ export default {
 		 */
 		limit: {
 			type: Number,
-			default: 99999
+			default: 99999,
 		},
 
 		/**
@@ -224,14 +227,14 @@ export default {
 		 */
 		label: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		/**
 		 * key to use as id on object options
 		 */
 		trackBy: {
 			type: String,
-			default: ''
+			default: '',
 		},
 
 		/**
@@ -241,7 +244,7 @@ export default {
 		 */
 		options: {
 			type: Array,
-			required: true
+			required: true,
 		},
 
 		/**
@@ -250,14 +253,14 @@ export default {
 		 */
 		userSelect: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		 * Overriding the default slot. Only showing a spiner.
 		 */
 		loading: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		 * Enable the automatic limit and width calculation
@@ -265,7 +268,7 @@ export default {
 		 */
 		autoLimit: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		/**
 		* If autoLimit, allow to specify the min-width of every
@@ -277,13 +280,13 @@ export default {
 			default: 150,
 			validator: (value) => {
 				return value > 0
-			}
-		}
+			},
+		},
 	},
 
 	data() {
 		return {
-			elWidth: 0
+			elWidth: 0,
 		}
 	},
 	computed: {
@@ -291,6 +294,7 @@ export default {
 		 * Calculate the number of options to show
 		 * depending on the width of the select.
 		 * Only works if `autoLimit` is `true`
+		 * @returns {number}
 		 */
 		maxOptions() {
 			if (this.autoLimit && this.elWidth > 0 && this.tagWidth !== 0) {
@@ -301,6 +305,7 @@ export default {
 		},
 		/**
 		 * Make the tooltip limit string for the `autoLimit`
+		 * @returns {string}
 		 */
 		limitString() {
 			return `+${this.value.length - this.maxOptions}`
@@ -318,15 +323,15 @@ export default {
 			set(value) {
 				this.$emit('update:value', value)
 				this.$emit('change', value)
-			}
-		}
+			},
+		},
 	},
 
 	watch: {
 		// ensure we update the width when we add or remove data
 		value: function() {
 			this.updateWidth()
-		}
+		},
 	},
 
 	mounted() {
@@ -364,7 +369,7 @@ export default {
 			if (this.$el && this.$el.querySelector('.multiselect__tags-wrap')) {
 				this.elWidth = this.$el.querySelector('.multiselect__tags-wrap').offsetWidth - 10
 			}
-		}
-	}
+		},
+	},
 }
 </script>

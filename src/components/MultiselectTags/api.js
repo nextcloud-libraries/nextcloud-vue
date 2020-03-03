@@ -46,7 +46,7 @@ const xmlToJson = (xml) => {
 				obj[nodeName] = xmlToJson(item)
 			} else {
 				if (typeof obj[nodeName].push === 'undefined') {
-					var old = obj[nodeName]
+					const old = obj[nodeName]
 					obj[nodeName] = []
 					obj[nodeName].push(old)
 				}
@@ -82,7 +82,7 @@ const xmlToTagList = (xml) => {
 			displayName: tag['d:prop']['oc:display-name']['#text'],
 			canAssign: tag['d:prop']['oc:can-assign']['#text'] === 'true',
 			userAssignable: tag['d:prop']['oc:user-assignable']['#text'] === 'true',
-			userVisible: tag['d:prop']['oc:user-visible']['#text'] === 'true'
+			userVisible: tag['d:prop']['oc:user-visible']['#text'] === 'true',
 		})
 	}
 	return result
@@ -105,11 +105,11 @@ const searchTags = async function() {
 						<oc:user-assignable />
 						<oc:can-assign />
 					  </d:prop>
-					</d:propfind>`
+					</d:propfind>`,
 	})
 	return xmlToTagList(result.data)
 }
 
 export {
-	searchTags
+	searchTags,
 }

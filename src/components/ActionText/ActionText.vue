@@ -46,7 +46,8 @@
 			<!-- white space is shown on longtext, so we can't
 			put {{ text }} on a new line for code readability -->
 			<p v-else-if="isLongText"
-				class="action-text__longtext" v-text="text" />
+				class="action-text__longtext"
+				v-text="text" />
 
 			<!-- default text display -->
 			<span v-else class="action-text__text">{{ text }}</span>
@@ -58,18 +59,18 @@
 </template>
 
 <script>
-import ActionTextMixin from 'Mixins/actionText'
+import ActionTextMixin from '../../mixins/actionText'
 
 export default {
 	name: 'ActionText',
 
-	mixins: [ActionTextMixin]
+	mixins: [ActionTextMixin],
 
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~Assets/action';
+@import '../../assets/action';
 @include action-active;
 @include action-item('text');
 @include action--disabled;

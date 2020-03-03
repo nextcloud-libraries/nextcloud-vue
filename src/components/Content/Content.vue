@@ -31,8 +31,8 @@ export default {
 	props: {
 		appName: {
 			type: String,
-			required: true
-		}
-	}
+			required: true,
+		},
+	},
 }
 </script>

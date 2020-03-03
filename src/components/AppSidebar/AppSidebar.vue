@@ -89,17 +89,22 @@
 	<transition name="slide-right">
 		<aside id="app-sidebar">
 			<header :class="{
-				'app-sidebar-header--with-figure': hasFigure,
-				'app-sidebar-header--compact': compact
-			}" class="app-sidebar-header">
+					'app-sidebar-header--with-figure': hasFigure,
+					'app-sidebar-header--compact': compact
+				}"
+				class="app-sidebar-header">
 				<!-- close sidebar button -->
-				<a href="#" class="app-sidebar__close icon-close" :title="t('close')"
+				<a href="#"
+					class="app-sidebar__close icon-close"
+					:title="t('close')"
 					@click.prevent="closeSidebar" />
 
 				<!-- sidebar header illustration/figure -->
-				<div v-if="hasFigure" :class="{
+				<div v-if="hasFigure"
+					:class="{
 						'app-sidebar-header__figure--with-action': hasFigureClickListener
-					}" class="app-sidebar-header__figure"
+					}"
+					class="app-sidebar-header__figure"
 					:style="{
 						backgroundImage: `url(${background})`
 					}"
@@ -110,8 +115,10 @@
 				<!-- sidebar details -->
 				<div :class="{ 'app-sidebar-header__desc--with-star': canStar, 'app-sidebar-header__desc--with-subtitle': subtitle && !titleEditable, 'app-sidebar-header__desc--editable': titleEditable && !subtitle, 'app-sidebar-header__desc--with-subtitle--editable': titleEditable && subtitle}" class="app-sidebar-header__desc">
 					<!-- favourite icon -->
-					<a v-if="canStar" :class="{ 'icon-starred': isStarred&& !starLoading, 'icon-star': !isStarred && !starLoading, 'icon-loading-small': starLoading }"
-						class="app-sidebar-header__star" @click.prevent="toggleStarred" />
+					<a v-if="canStar"
+						:class="{ 'icon-starred': isStarred&& !starLoading, 'icon-star': !isStarred && !starLoading, 'icon-loading-small': starLoading }"
+						class="app-sidebar-header__star"
+						@click.prevent="toggleStarred" />
 
 					<!-- main title -->
 					<h2 v-if="!titleEditable" class="app-sidebar-header__title">
@@ -186,8 +193,8 @@
 
 <script>
 import Vue from 'vue'
-import Actions from 'Components/Actions'
-import Focus from 'Directives/Focus'
+import Actions from '../Actions'
+import Focus from '../../directives/Focus'
 import l10n from '../../mixins/l10n'
 
 const IsValidString = function(value) {
@@ -197,33 +204,33 @@ const IsValidString = function(value) {
 export default {
 	name: 'AppSidebar',
 	components: {
-		Actions
+		Actions,
 	},
 	directives: {
-		focus: Focus
+		focus: Focus,
 	},
 	mixins: [l10n],
 	props: {
 		active: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		title: {
 			type: String,
 			default: '',
-			required: true
+			required: true,
 		},
 		titleEditable: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		titlePlaceholder: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		subtitle: {
 			type: String,
-			default: ''
+			default: '',
 		},
 
 		/**
@@ -232,7 +239,7 @@ export default {
 		 */
 		background: {
 			type: String,
-			default: ''
+			default: '',
 		},
 
 		/**
@@ -241,14 +248,14 @@ export default {
 		 */
 		starred: {
 			type: Boolean,
-			default: null
+			default: null,
 		},
 		/**
 		 * Show loading spinner instead of the star icon
 		 */
 		starLoading: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 
 		/**
@@ -256,7 +263,7 @@ export default {
 		 */
 		compact: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 
 		/**
@@ -264,8 +271,8 @@ export default {
 		 */
 		forceMenu: {
 			type: Boolean,
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	data() {
@@ -273,7 +280,7 @@ export default {
 			tabs: [],
 			activeTab: '',
 			isStarred: this.starred,
-			children: []
+			children: [],
 		}
 	},
 
@@ -292,7 +299,7 @@ export default {
 		},
 		currentTabIndex() {
 			return this.tabs.findIndex(tab => tab.id === this.activeTab)
-		}
+		},
 	},
 
 	watch: {
@@ -310,7 +317,7 @@ export default {
 		// length change
 		children: function() {
 			this.updateTabs()
-		}
+		},
 	},
 
 	mounted() {
@@ -324,6 +331,7 @@ export default {
 	methods: {
 		/**
 		 * Emit sidebar close event to parent component
+		 * @param {Event} e click event
 		 */
 		closeSidebar(e) {
 			this.$emit('close', e)
@@ -331,6 +339,7 @@ export default {
 
 		/**
 		 * Emit figure click event to parent component
+		 * @param {Event} e click event
 		 */
 		onFigureClick(e) {
 			this.$emit('figure-click', e)
@@ -432,7 +441,7 @@ export default {
 		 */
 		updateTabs() {
 			// Init tabs from $children
-			let tabs = this.$children.filter(child =>
+			const tabs = this.$children.filter(child =>
 				(child.name && typeof child.name === 'string')
 				&& IsValidString(child.id)
 				&& IsValidString(child.icon)
@@ -444,8 +453,8 @@ export default {
 			}
 
 			this.tabs = tabs.sort((a, b) => {
-				var orderA = a.order || 0
-				var orderB = b.order || 0
+				const orderA = a.order || 0
+				const orderB = b.order || 0
 				if (orderA === orderB) {
 					return OC.Util.naturalSortCompare(a.name, b.name)
 				}
@@ -460,6 +469,7 @@ export default {
 
 		/**
 		 * Emit title change event to parent component
+		 * @param {Event} event input event
 		 */
 		onTitleInput(event) {
 			/**
@@ -476,14 +486,15 @@ export default {
 		/**
 		 * Emit when the title form edit confirm button is pressed in order
 		 * to change the title.
+		 * @param {Event} event submit event
 		 */
 		onSubmitTitle(event) {
 			this.$emit('submit-title', event)
 		},
 		onDismissEditing() {
 			this.$emit('dismiss-editing')
-		}
-	}
+		},
+	},
 }
 </script>
 <style lang="scss" scoped>

@@ -25,5 +25,5 @@ import isMobile from './isMobile'
 
 export {
 	isFullscreen,
-	isMobile
+	isMobile,
 }

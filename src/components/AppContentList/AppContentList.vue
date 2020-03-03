@@ -33,12 +33,12 @@ export default {
 	props: {
 		selection: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		showDetails: {
 			type: Boolean,
-			default: false
-		}
-	}
+			default: false,
+		},
+	},
 }
 </script>

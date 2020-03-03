@@ -38,33 +38,43 @@ All undocumented attributes will be bound to the input or the datepicker. e.g. `
 <template>
 	<li :class="{ 'action--disabled': disabled }">
 		<span :class="{ 'action-input--picker': isDatePickerType , 'action-input-picker--disabled': disabled}"
-			class="action-input" @mouseleave="onLeave">
+			class="action-input"
+			@mouseleave="onLeave">
 			<!-- icon -->
 			<span :class="[isIconUrl ? 'action-input__icon--url' : icon]"
 				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
 				class="action-input__icon" />
 
 			<!-- form and input -->
-			<form ref="form" class="action-input__form"
-				:disabled="disabled" @submit.prevent="onSubmit">
+			<form ref="form"
+				class="action-input__form"
+				:disabled="disabled"
+				@submit.prevent="onSubmit">
 
 				<DatetimePicker v-if="isDatePickerType"
-					ref="datetimepicker" :value="value"
-					:placeholder="text" :disabled="disabled"
+					ref="datetimepicker"
+					:value="value"
+					:placeholder="text"
+					:disabled="disabled"
 					:type="isDatePickerType"
 					:input-class="['mx-input', { focusable: isFocusable }]"
-					class="action-input__picker" v-bind="$attrs"
-					@input="onInput" @change="onChange" />
+					class="action-input__picker"
+					v-bind="$attrs"
+					@input="onInput"
+					@change="onChange" />
 
 				<template v-else>
 					<input :id="id" type="submit" class="action-input__submit">
 
-					<input :type="type" :value="value"
-						:placeholder="text" :disabled="disabled"
+					<input :type="type"
+						:value="value"
+						:placeholder="text"
+						:disabled="disabled"
 						v-bind="$attrs"
 						:class="{ focusable: isFocusable }"
 						class="action-input__input"
-						@input="onInput" @change="onChange">
+						@input="onInput"
+						@change="onChange">
 					<!-- allow the custom font to inject a ::before
 						not possible on input[type=submit] -->
 					<label v-show="!disabled" :for="id" class="action-input__label" />
@@ -75,9 +85,9 @@ All undocumented attributes will be bound to the input or the datepicker. e.g. `
 </template>
 
 <script>
-import ActionGlobalMixin from 'Mixins/actionGlobal'
-import GenRandomId from 'Utils/GenRandomId'
-import DatetimePicker from 'Components/DatetimePicker/index'
+import ActionGlobalMixin from '../../mixins/actionGlobal'
+import GenRandomId from '../../utils/GenRandomId'
+import DatetimePicker from '../DatetimePicker'
 
 export default {
 	name: 'ActionInput',
@@ -93,7 +103,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'action-' + GenRandomId(),
-			validator: id => id.trim() !== ''
+			validator: id => id.trim() !== '',
 		},
 		/**
 		 * Icon to show with the action, can be either a CSS class or an URL
@@ -101,7 +111,7 @@ export default {
 		icon: {
 			type: String,
 			default: '',
-			required: true
+			required: true,
 		},
 		/**
 		 * type attribute of the input field
@@ -113,22 +123,22 @@ export default {
 				return ['date', 'datetime-local', 'month',
 					'number', 'password', 'search', 'tel',
 					'text', 'time', 'url', 'week'].indexOf(type) > -1
-			}
+			},
 		},
 		/**
 		 * value attribute of the input field
 		 */
 		value: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		/**
 		 * disabled state of the input field
 		 */
 		disabled: {
 			type: Boolean,
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	computed: {
@@ -154,10 +164,11 @@ export default {
 		},
 		/**
 		 * determines if the action is focusable
+		 * @returns {boolean} is the action focusable ?
 		 */
 		isFocusable: function() {
 			return !this.disabled
-		}
+		},
 	},
 
 	methods: {
@@ -200,15 +211,15 @@ export default {
 			 * @type {Event}
 			 */
 			this.$emit('change', event)
-		}
-	}
+		},
+	},
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~Fonts/scss/iconfont-vue';
-@import '~Assets/inputs';
-@import '~Assets/action';
+@import '../../fonts/scss/iconfont-vue';
+@import '../../assets/inputs';
+@import '../../assets/action';
 @include action-active;
 @include action--disabled;
 

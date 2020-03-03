@@ -2,7 +2,7 @@
 If you want to use an icon as a background on the components you need to use this tool.
 
 1. Put any 16x16 icon in this folder with a proper filename
-2. On your component scss import the font scss: `@import '~Fonts/scss/iconfont-vue';`
+2. On your component scss import the font scss: `@import '../../fonts/scss/iconfont-vue';`
 3. On your scss rule, use the `iconfont` mixin:
 	``` scss
 	.icon-test {

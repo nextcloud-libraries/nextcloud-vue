@@ -21,10 +21,12 @@
  */
 
 import md5 from 'md5'
-import GenColors from 'Utils/GenColors'
+import GenColors from '../../utils/GenColors'
 
 /**
  * Originally taken from https://github.com/nextcloud/server/blob/master/core/js/placeholder.js
+ * @param {string} uid unique id to generate from
+ * @returns {Object} the rgb colors as {r:255, g:255, b:255}
  */
 const uidToColor = function(uid) {
 	// Normalize hash
@@ -42,17 +44,17 @@ const uidToColor = function(uid) {
 
 	// Convert a string to an integer evenly
 	function hashToInt(hash, maximum) {
-		var finalInt = 0
-		var result = []
+		let finalInt = 0
+		const result = []
 
 		// Splitting evenly the string
-		for (var i = 0; i < hash.length; i++) {
+		for (let i = 0; i < hash.length; i++) {
 			// chars in md5 goes up to f, hex:16
 			result.push(parseInt(hash.charAt(i), 16) % 16)
 		}
 
 		// Adds up all results
-		for (var j in result) {
+		for (const j in result) {
 			finalInt += result[j]
 		}
 

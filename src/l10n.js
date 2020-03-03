@@ -5,5 +5,7 @@ const gtBuilder = getGettextBuilder()
 TRANSLATIONS.map(data => gtBuilder.addTranslation(data.locale, data.json))
 const gt = gtBuilder.build()
 
-export const n = gt.ngettext.bind(gt)
-export const t = gt.gettext.bind(gt)
+const n = gt.ngettext.bind(gt)
+const t = gt.gettext.bind(gt)
+
+export { t, n }

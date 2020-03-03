@@ -32,6 +32,6 @@ export default {
 		highlightText(text, match) {
 			if (!match.length) return text
 			return text.replace(new RegExp(match, 'gi'), `<strong>${match}</strong>`)
-		}
-	}
+		},
+	},
 }
