@@ -10,17 +10,23 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [11.x]
+        node-versions: [12.x]
 
+    name: node${{ matrix.node-versions }}
     steps:
       - uses: actions/checkout@v2
-      - name: Use node ${{ matrix.node-version }}
+
+      - name: Set up node ${{ matrix.node-versions }}
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm run build
-      - run: npm publish
+          node-versions: ${{ matrix.node-versions }}
+
+      - name: Install dependencies & build
+        run: |
+          npm ci
+          npm run build --if-present
+
+      - name: Publish to npm
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
