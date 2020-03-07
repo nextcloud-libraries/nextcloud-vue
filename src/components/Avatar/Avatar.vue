@@ -330,7 +330,7 @@ export default {
 			try {
 				const user = encodeURIComponent(this.user)
 				const { data } = await axios.post(OC.generateUrl('contactsmenu/findOne'), `shareType=0&shareWith=${user}`)
-				this.contactsMenuActions = [data.topAction].concat(data.actions)
+				this.contactsMenuActions = data.topAction ? [data.topAction].concat(data.actions) : data.actions
 			} catch (e) {
 				this.contactsMenuOpenState = false
 			}
