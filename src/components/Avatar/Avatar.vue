@@ -314,14 +314,14 @@ export default {
 		this.loadAvatarUrl()
 	},
 	methods: {
-		toggleMenu() {
+		async toggleMenu() {
 			if (!this.hasMenu) {
 				return
 			}
-			this.contactsMenuOpenState = !this.contactsMenuOpenState
-			if (this.contactsMenuOpenState) {
-				this.fetchContactsMenu()
+			if (!this.contactsMenuOpenState) {
+				await this.fetchContactsMenu()
 			}
+			this.contactsMenuOpenState = !this.contactsMenuOpenState
 		},
 		closeMenu() {
 			this.contactsMenuOpenState = false
@@ -330,7 +330,7 @@ export default {
 			try {
 				const user = encodeURIComponent(this.user)
 				const { data } = await axios.post(OC.generateUrl('contactsmenu/findOne'), `shareType=0&shareWith=${user}`)
-				this.contactsMenuActions = [data.topAction].concat(data.actions)
+				this.contactsMenuActions = data.topAction ? [data.topAction].concat(data.actions) : data.actions
 			} catch (e) {
 				this.contactsMenuOpenState = false
 			}
@@ -500,7 +500,7 @@ export default {
 	.popovermenu {
 		display: block;
 		margin: 0;
-		font-size: initial;
+		font-size: 14px;
 	}
 }
 
