@@ -1,0 +1,55 @@
+# Translators:
+# Quentin PAGÈS, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Quentin PAGÈS, 2020\n"
+"Language-Team: Occitan (post 1500) (https://www.transifex.com/nextcloud/teams/64236/oc/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: oc\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:169
+msgid "{tag} (invisible)"
+msgstr "{tag} (invisible)"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:172
+msgid "{tag} (restricted)"
+msgstr "{tag} (limit)"
+
+#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Choose"
+msgstr "Causir"
+
+#: src/components/Modal/Modal.vue:109
+msgid "Close"
+msgstr "Tampar"
+
+#: src/components/Modal/Modal.vue:154
+msgid "Next"
+msgstr "Seguent"
+
+#: src/components/Multiselect/Multiselect.vue:169
+#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No results"
+msgstr "Cap de resultat"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Pause slideshow"
+msgstr "Metre en pausa lo diaporama"
+
+#: src/components/Modal/Modal.vue:134
+msgid "Previous"
+msgstr "Precedent"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Select a tag"
+msgstr "Seleccionar una etiqueta"
+
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Settings"
+msgstr "Paramètres"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Start slideshow"
+msgstr "Lançar lo diaporama"
