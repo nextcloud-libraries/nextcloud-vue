@@ -1,0 +1,55 @@
+# Translators:
+# Сашко Тодоров, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Сашко Тодоров, 2020\n"
+"Language-Team: Macedonian (https://www.transifex.com/nextcloud/teams/64236/mk/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: mk\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:169
+msgid "{tag} (invisible)"
+msgstr "{tag} (невидливо)"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:172
+msgid "{tag} (restricted)"
+msgstr "{tag} (ограничено)"
+
+#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Choose"
+msgstr "Избери"
+
+#: src/components/Modal/Modal.vue:109
+msgid "Close"
+msgstr "Затвори"
+
+#: src/components/Modal/Modal.vue:154
+msgid "Next"
+msgstr "Следно"
+
+#: src/components/Multiselect/Multiselect.vue:169
+#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No results"
+msgstr "Нема резултати"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Pause slideshow"
+msgstr "Пузирај слајдшоу"
+
+#: src/components/Modal/Modal.vue:134
+msgid "Previous"
+msgstr "Предходно"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Select a tag"
+msgstr "Избери ознака"
+
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Settings"
+msgstr "Параметри"
+
+#: src/components/Modal/Modal.vue:290
+msgid "Start slideshow"
+msgstr "Стартувај слајдшоу"
