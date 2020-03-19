@@ -167,7 +167,7 @@ import Hammer from 'hammerjs'
 import Actions from 'Components/Actions'
 import ActionButton from 'Components/ActionButton'
 import l10n from '../../mixins/l10n'
-import t from '../../l10n'
+import { t } from '../../l10n'
 import Tooltip from 'Directives/Tooltip'
 import Timer from 'Utils/Timer'
 
