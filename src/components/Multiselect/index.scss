@@ -10,6 +10,12 @@
 	position: relative;
 	background-color: var(--color-main-background);
 
+	/* Force single multiselect value to be shown when not active */
+	&:not(.multiselect--active) .multiselect__single {
+		position: absolute;
+		width: 100%;
+	}
+
 	// active state, force the input to be shown, we don't want
 	// the placeholder or the currently selected options
 	&.multiselect--active {
