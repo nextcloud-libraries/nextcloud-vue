@@ -71,7 +71,7 @@
 		"eslint-plugin-promise": "^4.0.1",
 		"eslint-plugin-standard": "^4.0.0",
 		"eslint-plugin-vue": "^6.0.1",
-		"file-loader": "^5.0.2",
+		"file-loader": "^6.0.0",
 		"gettext-extractor": "^3.5.2",
 		"gettext-parser": "^4.0.2",
 		"iconfont-plugin-webpack": "^1.1.4",
