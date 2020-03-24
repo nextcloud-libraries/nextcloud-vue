@@ -44,6 +44,7 @@ module.exports = {
 			ignore: [
 				'src/components/Action[sA-Z]*/*.vue',
 				'src/components/App*/*.vue',
+				'src/components/Breadcrumb*/*.vue',
 				'src/components/Multiselect/*.vue',
 				'src/components/Multiselect*/*.vue',
 				'src/components/PopoverMenu/!(PopoverMenu).vue'
@@ -61,6 +62,12 @@ module.exports = {
 					components: [
 						'src/components/App*/*.vue',
 						'src/components/Content/*.vue'
+					]
+				},
+				{
+					name: 'Breadcrumbs',
+					components: [
+						'src/components/Breadcrumb*/*.vue',
 					]
 				},
 				{

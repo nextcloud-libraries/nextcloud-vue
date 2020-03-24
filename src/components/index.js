@@ -45,6 +45,7 @@ import AppNavigationSpacer from './AppNavigationSpacer'
 import AppSidebar from './AppSidebar'
 import AppSidebarTab from './AppSidebarTab'
 import Avatar from './Avatar'
+import Breadcrumb from './Breadcrumb'
 import Breadcrumbs from './Breadcrumbs'
 import ColorPicker from './ColorPicker'
 import Content from './Content'
@@ -82,6 +83,7 @@ export {
 	AppSidebar,
 	AppSidebarTab,
 	Avatar,
+	Breadcrumb,
 	Breadcrumbs,
 	ColorPicker,
 	Content,

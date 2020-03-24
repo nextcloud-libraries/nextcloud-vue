@@ -20,6 +20,6 @@
  *
  */
 
-import Breadcrumbs from './Breadcrumbs'
+import Breadcrumb from './Breadcrumb'
 
-export default Breadcrumbs
+export default Breadcrumb

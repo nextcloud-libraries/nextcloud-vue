@@ -33,12 +33,19 @@ is dropped on a creadcrumb.
 ```vue
 <template>
 	<div>
-		<div class="container container__wide">
-			<Breadcrumbs :breadcrumbs="breadcrumbs" @dropped="dropped" />
-		</div>
-		<br />
-		<div class="container container__narrow">
-			<Breadcrumbs :breadcrumbs="breadcrumbs" @dropped="dropped" />
+		<div class="container">
+			<Breadcrumbs @dropped="dropped">
+				<Breadcrumb title="Home" href="/" @dropped="droppedOnCrumb" />
+				<Breadcrumb title="Folder 1" href="/Folder 1" />
+				<Breadcrumb title="Folder 2" href="/Folder 1/Folder 2" :disable-drop="true" />
+				<Breadcrumb title="Folder 3" href="/Folder 1/Folder 2/Folder 3" />
+				<Breadcrumb title="Folder 4" href="/Folder 1/Folder 2/Folder 3/Folder 4" />
+				<Breadcrumb title="Folder 5" href="/Folder 1/Folder 2/Folder 3/Folder 4/Folder 5" :disable-drop="true">
+					<ActionButton icon="icon-share" @click="alert('Share')">
+						Share
+					</ActionButton>
+				</Breadcrumb>
+			</Breadcrumbs>
 		</div>
 		<br />
 		<div class="dragme" draggable="true">
@@ -49,21 +56,12 @@ is dropped on a creadcrumb.
 
 <script>
 export default {
-	computed: {
-		breadcrumbs() {
-			const path = 'Folder 1/Folder 2/Folder 3/Folder 4'
-			const crumbs = (path === '') ? [] : path.split('/')
-			return [{ name: 'Home', path: '/' }].concat(crumbs.map((crumb, i) => {
-				return {
-					name: crumb,
-					path: '/' + crumbs.slice(0, i + 1).join('/'),
-				}
-			}))
-		},
-	},
 	methods: {
-		dropped(path) {
-			alert('Dropped something on ' + path)
+		dropped(e, path) {
+			alert('Global drop on ' + path)
+		},
+		droppedOnCrumb(e, path) {
+			alert('Drop on crumb ' + path)
 		},
 	}
 }
@@ -71,14 +69,7 @@ export default {
 <style>
 .container {
 	display: inline-flex;
-}
-
-.container__wide {
-	width: 800px;
-}
-
-.container__narrow {
-	width: 250px;
+	width: 100%;
 }
 
 .dragme {
@@ -91,126 +82,55 @@ export default {
 ```
 </docs>
 
-<template>
-	<div ref="container" class="breadcrumb">
-		<div v-for="(crumb, index) in crumbs1"
-			:key="`f1${index}`"
-			:ref="`crumb_${index}`"
-			class="crumb svg folder"
-			:class="{'hidden': isHidden(index)}"
-			draggable="false"
-			@dragstart="dragstart"
-			@drop="dropped(index, $event)"
-			@dragover="dragOver($event)"
-			@dragenter="($event) => dragEnter(index, $event)"
-			@dragleave="dragLeave">
-			<a :href="'#' + crumb.path">
-				<span v-if="!index" :class="rootIcon" class="icon" />
-				<span v-else>{{ crumb.name }}</span>
-			</a>
-		</div>
-		<div v-if="hiddenCrumbs.length" class="crumb svg">
-			<Actions class="dropdown"
-				:force-menu="true"
-				:open.sync="actionsOpen"
-				draggable="false"
-				@dragstart.native="dragstart"
-				@dragover.native="dragOver($event)"
-				@drop.native="dropOnActions"
-				@dragenter.native="actionsOpen = true"
-				@dragleave.native="closeActions">
-				<ActionRouter
-					v-for="(crumb, index) in hiddenCrumbs"
-					:key="`dropdown${index}`"
-					:to="crumb.path"
-					icon="icon-folder"
-					class="crumb"
-					draggable="false"
-					@dragstart.native="dragstart"
-					@drop.native="dropped(hiddenIndices[index], $event)"
-					@dragover.native="dragOver($event)"
-					@dragenter.native="($event) => dragEnter(hiddenIndices[index], $event)"
-					@dragleave.native="dragLeave">
-					{{ crumb.name }}
-				</ActionRouter>
-			</Actions>
-		</div>
-		<div v-for="(crumb, index) in crumbs2"
-			:key="`f2${index}`"
-			:ref="`crumb_${index + crumbs1.length}`"
-			class="crumb svg folder"
-			:class="{'hidden': isHidden(index + crumbs1.length)}"
-			draggable="false"
-			@dragstart="dragstart"
-			@drop="dropped(index + crumbs1.length, $event)"
-			@dragover="dragOver($event)"
-			@dragenter="($event) => dragEnter(index + crumbs1.length, $event)"
-			@dragleave="dragLeave">
-			<a :href="'#' + crumb.path">
-				<span>{{ crumb.name }}</span>
-			</a>
-		</div>
-	</div>
-</template>
-
 <script>
+import Vue from 'vue'
 import debounce from 'debounce'
-import { Actions } from 'Components/Actions'
-import { ActionRouter } from 'Components/ActionRouter'
+import Actions from '../Actions'
+import ActionRouter from '../ActionRouter'
+import ActionLink from '../ActionLink'
+import ValidateSlot from '../../utils/ValidateSlot'
 
 export default {
+	name: 'Breadcrumbs',
 	components: {
 		Actions,
-		ActionRouter
+		ActionRouter,
+		ActionLink,
 	},
 	props: {
-		breadcrumbs: {
-			type: Array,
-			required: true,
-			default: () => []
-		},
+		/**
+		 * Set a css icon-class for the icon of the root breadcrumb to be used.
+		 */
 		rootIcon: {
 			type: String,
-			required: false,
-			default: 'icon-home'
-		}
+			default: 'icon-home',
+		},
 	},
-	data: function() {
+	data() {
 		return {
+			/**
+			 * The breadcrumbs which should be shown in a dropdown Actions menu.
+			 */
+			hiddenCrumbs: [],
+			/**
+			 * Array to track the hidden breadcrumbs by their index.
+			 * Comparing two crumbs somehow does not work, so we use the indices.
+			 */
 			hiddenIndices: [],
-			actionsOpen: false
 		}
 	},
-	computed: {
-		crumbs1() {
-			if (this.hiddenIndices.length) {
-				return this.breadcrumbs.slice(0, Math.round(this.breadcrumbs.length / 2))
-			}
-			return this.breadcrumbs
-		},
-
-		crumbs2() {
-			if (this.hiddenIndices.length) {
-				return this.breadcrumbs.slice(Math.round(this.breadcrumbs.length / 2))
-			}
-			return []
-		},
-
-		hiddenCrumbs() {
-			const crumbs = []
-			for (let jj = 0; jj < this.hiddenIndices.length; jj++) {
-				crumbs.push(this.breadcrumbs[this.hiddenIndices[jj]])
-			}
-			return crumbs
-		}
+	beforeMount() {
+		// Filter all invalid items, only Breadcrumb components are allowed
+		ValidateSlot(this.$slots.default, ['Breadcrumb'], this)
 	},
-	watch: {
-		breadcrumbs: function(val) {
-			this.actionsOpen = false
-			this.$nextTick(() => this.handleWindowResize())
-		}
+	beforeUpdate() {
+		// Also check before every update
+		ValidateSlot(this.$slots.default, ['Breadcrumb'], this)
 	},
 	created() {
+		/**
+		 * Add a listener so the component reacts on resize
+		 */
 		window.addEventListener('resize', debounce(() => {
 			this.handleWindowResize()
 		}, 100))
@@ -218,95 +138,180 @@ export default {
 	mounted() {
 		this.handleWindowResize()
 	},
+	updated() {
+		/**
+		 * Check the size on update
+		 */
+		this.$nextTick(() => {
+			this.handleWindowResize()
+		})
+	},
 	beforeDestroy() {
 		window.removeEventListener('resize', this.handleWindowResize)
 	},
 	methods: {
+		/**
+		 * Close the actions menu
+		 *
+		 * @param {Object} e The event
+		 */
 		closeActions(e) {
-			// Get the correct element, the events are bound to the <a>
-			if (e.target.closest) {
-				const target = e.target.closest('.crumb .dropdown')
-				// Don't do anything if we leave towards a child element.
-				if (target.contains(e.relatedTarget)) {
-					return
-				}
-				this.actionsOpen = false
+			// Don't do anything if we leave towards a child element.
+			if (this.$refs.actions.$el.contains(e.relatedTarget)) {
+				return
 			}
+			this.$refs.actions.opened = false
 		},
-
-		isHidden(index) {
-			return this.hiddenIndices.includes(index)
-		},
-
+		/**
+		 * Check the width of the breadcrumb and hide breadcrumbs
+		 * if we overflow otherwise.
+		 */
 		handleWindowResize() {
+			// All breadcrumb components passed into the default slot
+			const breadcrumbs = this.$slots.default || []
+			// If there is no container yet, we cannot determine its size
 			if (this.$refs.container) {
-				const nrCrumbs = this.breadcrumbs.length
+				const nrCrumbs = breadcrumbs.length
 				const hiddenIndices = []
 				const availableWidth = this.$refs.container.offsetWidth
-				const totalWidth = this.getTotalWidth()
+				const totalWidth = this.getTotalWidth(breadcrumbs)
 				let overflow = totalWidth - availableWidth
 				// If we overflow, we have to take the action-item width into account as well.
 				overflow += (overflow > 0) ? 51 : 0
 				let i = 0
+				// We start hiding the breadcrumb in the center
 				const startIndex = Math.floor(nrCrumbs / 2)
+				// Don't hide the first and last breadcrumb
 				while (overflow > 0 && i < nrCrumbs - 2) {
+					// We hide elements alternating to the left and right
 					const currentIndex = startIndex + ((i % 2) ? i + 1 : i) / 2 * Math.pow(-1, i + (nrCrumbs % 2))
-					overflow -= this.getWidth(this.$refs[`crumb_${currentIndex}`][0])
+					// Calculate the remaining overflow width after hiding this breadcrumb
+					overflow -= this.getWidth(breadcrumbs[currentIndex].elm)
 					hiddenIndices.push(currentIndex)
 					i++
 				}
-				this.hiddenIndices = hiddenIndices.sort()
+				// We only update the hidden crumbs if they have changed,
+				// otherwise we will run into an infinite update loop.
+				if (!this.arraysEqual(this.hiddenIndices, hiddenIndices.sort())) {
+					// Get all breadcrumbs based on the hidden indices
+					this.hiddenCrumbs = hiddenIndices.map((index) => { return breadcrumbs[index] })
+					this.hiddenIndices = hiddenIndices
+				}
 			}
 		},
+		/**
+		 * Checks if two arrays are equal.
+		 * Only works for primitive arrays, but that's enough here.
+		 *
+		 * @param {Array} a The first array
+		 * @param {Array} b The second array
+		 * @returns {boolean} Wether the arrays are equal
+		 */
+		arraysEqual(a, b) {
+			if (a.length !== b.length) return false
+			if (a === b) return true
+			if (a === null || b === null) return false
 
-		getTotalWidth() {
-			return this.breadcrumbs.reduce((width, crumb, index) => width + this.getWidth(this.$refs[`crumb_${index}`][0]), 0)
+			for (let i = 0; i < a.length; ++i) {
+				if (a[i] !== b[i]) {
+					return false
+				}
+			}
+			return true
 		},
-
+		/**
+		 * Calculates the total width of all breadcrumbs
+		 *
+		 * @param {Array} breadcrumbs All breadcrumbs
+		 * @returns {Integer} The total width
+		 */
+		getTotalWidth(breadcrumbs) {
+			return breadcrumbs.reduce((width, crumb, index) => width + this.getWidth(crumb.elm), 0)
+		},
+		/**
+		 * Calculates the width of the provided element
+		 *
+		 * @param {Object} el The element
+		 * @returns {Integer} The width
+		 */
 		getWidth(el) {
-			const hide = el.classList.contains('hidden')
-			el.classList.remove('hidden')
+			if (!el.classList) return 0
+			const hide = el.classList.contains('crumb--hidden')
+			el.classList.remove('crumb--hidden')
 			const w = el.offsetWidth
 			if (hide) {
-				el.classList.add('hidden')
+				el.classList.add('crumb--hidden')
 			}
 			return w
 		},
-		cancelEvent(e) {
-			e.stopPropagation()
-			e.preventDefault()
-			return false
-		},
-		dropOnActions(e) {
-			this.actionsOpen = false
-			return this.cancelEvent(e)
-		},
-		dragstart(e) {
-			return this.cancelEvent(e)
-		},
-		dropped(index, e) {
-			this.cancelEvent(e)
-			// If it is the last element in the path,
-			// don't do anything
-			if (index === (this.breadcrumbs.length - 1)) {
-				return
-			}
-			this.$emit('dropped', this.breadcrumbs[index].path)
-			this.actionsOpen = false
-			const crumbs = document.querySelectorAll('.crumb')
-			crumbs.forEach((f) => { f.classList.remove('over') })
-			return false
-		},
-		dragOver(e) {
+		/**
+		 * Prevents the default of a provided event
+		 *
+		 * @param {Object} e The event
+		 * @returns {boolean}
+		 */
+		preventDefault(e) {
 			if (e.preventDefault) {
 				e.preventDefault()
 			}
 			return false
 		},
-		dragEnter(index, e) {
-			// If it is the last element in the path,
-			// don't do anything
-			if (index === (this.breadcrumbs.length - 1)) {
+		/**
+		 * Handles the drag start.
+		 * Prevents a breadcrumb from being draggable.
+		 *
+		 * @param {Object} e The event
+		 * @returns {boolean}
+		 */
+		dragStart(e) {
+			return this.preventDefault(e)
+		},
+		/**
+		 * Handles when something is dropped on the breadcrumb.
+		 *
+		 * @param {Object} e The drop event
+		 * @param {String} path The path of the breadcrumb
+		 * @param {boolean} disabled Whether dropping is disabled for this breadcrumb
+		 * @returns {boolean}
+		 */
+		dropped(e, path, disabled) {
+			/**
+			 * Don't emit if dropping is disabled.
+			 */
+			if (!disabled) {
+				/**
+				 * Event emitted when something is dropped on the breadcrumb.
+				 * @type {null}
+				 */
+				this.$emit('dropped', e, path)
+			}
+			// Close the actions menu after the drop
+			this.$refs.actions.opened = false
+			// Remove all hovering classes
+			const crumbs = document.querySelectorAll('.crumb')
+			crumbs.forEach((f) => { f.classList.remove('crumb--hovered') })
+			return this.preventDefault(e)
+		},
+		/**
+		 * Handles the drag over event
+		 *
+		 * @param {Object} e The drag over event
+		 * @returns {boolean}
+		 */
+		dragOver(e) {
+			return this.preventDefault(e)
+		},
+		/**
+		 * Handles the drag enter event
+		 *
+		 * @param {Object} e The drag over event
+		 * @param {boolean} disabled Whether dropping is disabled for this breadcrumb
+		 */
+		dragEnter(e, disabled) {
+			/**
+			 * Don't do anything if dropping is disabled.
+			 */
+			if (disabled) {
 				return
 			}
 			// Get the correct element, in case we hover a child.
@@ -314,12 +319,24 @@ export default {
 				const target = e.target.closest('.crumb')
 				if (target.classList && target.classList.contains('crumb')) {
 					const crumbs = document.querySelectorAll('.crumb')
-					crumbs.forEach((f) => { f.classList.remove('over') })
-					target.classList.add('over')
+					crumbs.forEach((f) => { f.classList.remove('crumb--hovered') })
+					target.classList.add('crumb--hovered')
 				}
 			}
 		},
-		dragLeave(e) {
+		/**
+		 * Handles the drag leave event
+		 *
+		 * @param {Object} e The drag leave event
+		 * @param {boolean} disabled Whether dropping is disabled for this breadcrumb
+		 */
+		dragLeave(e, disabled) {
+			/**
+			 * Don't do anything if dropping is disabled.
+			 */
+			if (disabled) {
+				return
+			}
 			// Don't do anything if we leave towards a child element.
 			if (e.target.contains(e.relatedTarget)) {
 				return
@@ -331,41 +348,156 @@ export default {
 					return
 				}
 				if (target.classList && target.classList.contains('crumb')) {
-					target.classList.remove('over')
+					target.classList.remove('crumb--hovered')
 				}
 			}
+		},
+		/**
+		 * Check for each crumb if we have to hide it and
+		 * add it to the array of all crumbs.
+		 *
+		 * @param {Array} crumbs The array of all crumbs
+		 * @param {Array} newCrumbs The array of the crumbs to hide and add
+		 */
+		addCrumbs(crumbs, newCrumbs) {
+			newCrumbs.forEach((crumb, i) => {
+				if (crumb.elm && crumb.elm.classList) {
+					if (this.hiddenCrumbs.includes(crumb)) {
+						crumb.elm.classList.add('crumb--hidden')
+					} else {
+						crumb.elm.classList.remove('crumb--hidden')
+					}
+				}
+				crumbs.push(crumb)
+			})
+		},
+	},
+	/**
+	 * The render function to display the component
+	 *
+	 * @param {Function} createElement The function to create VNodes
+	 * @returns {VNodes} The created VNodes
+	 */
+	render: function(createElement) {
+		// Get the breadcrumbs
+		const breadcrumbs = this.$slots.default || []
+
+		// Check that we have at least one breadcrumb
+		if (breadcrumbs.length === 0) {
+			return
 		}
-	}
+
+		// Add the root icon to the first breadcrumb
+		Vue.set(breadcrumbs[0].componentOptions.propsData, 'icon', this.rootIcon)
+
+		// The array of all created VNodes
+		const crumbs = []
+		/**
+		 * We show the first half of the breadcrumbs before the Actions dropdown menu
+		 * which shows the hidden breadcrumbs.
+		 */
+		const crumbs1 = this.hiddenCrumbs.length
+			? breadcrumbs.slice(0, Math.round(breadcrumbs.length / 2))
+			: breadcrumbs
+		// Add the breadcrumbs to the array of the created VNodes, check if hiding them is necessary.
+		this.addCrumbs(crumbs, crumbs1)
+
+		// The Actions menu
+		if (this.hiddenCrumbs.length) {
+			// Create the Actions menu
+			crumbs.push(createElement('div', { class: 'crumb' },
+				[createElement('Actions', {
+					class: 'dropdown',
+					// We want the Actions to always show as a dropdown menu
+					props: {
+						forceMenu: true,
+					},
+					// Add a ref to the Actions menu
+					ref: 'actions',
+					// Add handlers so the Actions menu opens on hover
+					nativeOn: {
+						dragstart: this.dragStart,
+						dragenter: () => { this.$refs.actions.opened = true },
+						dragleave: this.closeActions,
+					},
+				// Add all hidden breadcrumbs as ActionRouter or ActionLink
+				}, this.hiddenCrumbs.map(crumb => {
+					// Get the parameters from the breadcrumb component props
+					const to = crumb.componentOptions.propsData.to
+					const href = crumb.componentOptions.propsData.href
+					const disabled = crumb.componentOptions.propsData.disableDrop
+					// Decide whether to show the breadcrumbs as ActionRouter or ActionLink
+					let element = 'ActionLink'
+					let path = href
+					if (to) {
+						element = 'ActionRouter'
+						path = to
+					}
+					return createElement(element, {
+						class: 'crumb',
+						props: {
+							to: to,
+							href: href,
+							icon: 'icon-folder',
+						},
+						// Prevent the breadcrumbs from being draggable
+						attrs: {
+							draggable: false,
+						},
+						// Add the drag and drop handlers
+						nativeOn: {
+							dragstart: this.dragStart,
+							drop: ($event) => this.dropped($event, path, disabled),
+							dragover: this.dragOver,
+							dragenter: ($event) => this.dragEnter($event, disabled),
+							dragleave: ($event) => this.dragLeave($event, disabled),
+						},
+					},
+					crumb.componentOptions.propsData.title
+					)
+				}))]
+			))
+		}
+		// The second half of the breadcrumbs
+		const crumbs2 = this.hiddenCrumbs.length
+			? breadcrumbs.slice(Math.round(breadcrumbs.length / 2))
+			: []
+		this.addCrumbs(crumbs, crumbs2)
+
+		return createElement('div', { class: 'breadcrumb', ref: 'container' }, crumbs)
+	},
 }
 </script>
 
 <style lang="scss" scoped>
+@import '../../fonts/scss/iconfont-vue';
+
 .breadcrumb {
-	width: calc(100% - 88px);
+	width: 100%;
 	flex-grow: 1;
 
-	.crumb {
-		&.over {
-			background-color: var(--color-primary-light);
-		}
-		&.action-item {
-			ul {
-				overflow-y: auto;
-				-webkit-overflow-scrolling: touch;
-				min-height: calc(44px * 1.5);
-				max-height: calc(100vh - 50px * 2);
-			}
-		}
-		> a {
-			align-items: center;
-			display: inline-flex;
+	div.crumb {
+		@include iconfont('breadcrumb');
+		background-image: none;
+		display: inline-flex;
+		height: $clickable-area;
+		padding: 0;
 
-			> span {
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-			}
+		&::before {
+			display: flex;
+			align-items: center;
+			order: 1;
+			color: var(--color-border-dark);
+			font-size: 26px;
 		}
+
+		&--hidden {
+			display: none;
+		}
+	}
+
+	.crumb--hovered{
+		background-color: var(--color-primary-light);
 	}
 }
 </style>
