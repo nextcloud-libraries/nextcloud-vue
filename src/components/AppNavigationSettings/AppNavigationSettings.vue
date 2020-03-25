@@ -44,18 +44,18 @@ import { t } from '../../l10n'
 
 export default {
 	directives: {
-		ClickOutside
+		ClickOutside,
 	},
 	props: {
 		title: {
 			type: String,
 			required: false,
-			default: t('Settings')
-		}
+			default: t('Settings'),
+		},
 	},
 	data() {
 		return {
-			open: false
+			open: false,
 		}
 	},
 	methods: {
@@ -64,8 +64,8 @@ export default {
 		},
 		closeMenu() {
 			this.open = false
-		}
-	}
+		},
+	},
 }
 </script>
 <style lang="scss" scoped>

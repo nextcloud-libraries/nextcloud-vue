@@ -151,7 +151,7 @@ export default {
 
 <script>
 import { Chrome } from 'vue-color'
-import GenColors from 'Utils/GenColors'
+import GenColors from '../../utils/GenColors'
 import l10n from '../../mixins/l10n'
 import Popover from '../Popover'
 
@@ -159,7 +159,7 @@ export default {
 	name: 'ColorPicker',
 	components: {
 		Chrome,
-		Popover
+		Popover,
 	},
 	mixins: [l10n],
 
@@ -169,8 +169,8 @@ export default {
 		*/
 		value: {
 			type: String,
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data() {
@@ -180,13 +180,13 @@ export default {
 			palette: GenColors(4).map(color => {
 				return '#' + this.rgbToHex(color.r) + this.rgbToHex(color.g) + this.rgbToHex(color.b)
 			}),
-			open: true
+			open: true,
 		}
 	},
 	watch: {
 		value(color) {
 			this.currentColor = color
-		}
+		},
 	},
 
 	methods: {
@@ -223,14 +223,14 @@ export default {
 		rgbToHex(color) {
 			const hex = color.toString(16)
 			return hex.length === 1 ? '0' + hex : hex
-		}
-	}
+		},
+	},
 }
 
 </script>
 
 <style lang="scss" scoped>
-@import '~Fonts/scss/iconfont-vue';
+@import '../../fonts/scss/iconfont-vue';
 
 .color-picker {
 	display: flex;

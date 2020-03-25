@@ -23,4 +23,3 @@
 import UserBubble from './UserBubble'
 
 export default UserBubble
-export { UserBubble }

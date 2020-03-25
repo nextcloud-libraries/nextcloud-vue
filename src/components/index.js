@@ -1,3 +1,4 @@
+
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -87,5 +88,5 @@ export {
 	Popover,
 	PopoverMenu,
 	ColorPicker,
-	UserBubble
+	UserBubble,
 }

@@ -29,7 +29,7 @@
 
 <script>
 export default {
-	name: 'ActionSeparator'
+	name: 'ActionSeparator',
 }
 </script>
 

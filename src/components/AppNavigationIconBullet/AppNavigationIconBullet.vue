@@ -55,8 +55,8 @@ export default {
 			validator: function(color) {
 				// #000, 000, #0082c9 and 0082c9
 				return /^#?([0-9A-F]{3}){1,2}$/i.test(color)
-			}
-		}
+			},
+		},
 	},
 
 	computed: {
@@ -65,14 +65,14 @@ export default {
 				return this.color
 			}
 			return '#' + this.color
-		}
+		},
 	},
 
 	methods: {
 		onClick(e) {
 			this.$emit('click', e)
-		}
-	}
+		},
+	},
 
 }
 </script>

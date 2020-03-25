@@ -63,7 +63,8 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 			<!-- white space is shown on longtext, so we can't
 			put {{ text }} on a new line for code readability -->
 			<p v-else-if="isLongText"
-				class="action-link__longtext" v-text="text" />
+				class="action-link__longtext"
+				v-text="text" />
 
 			<!-- default text display -->
 			<span v-else class="action-link__text">{{ text }}</span>
@@ -75,7 +76,7 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 </template>
 
 <script>
-import ActionTextMixin from 'Mixins/actionText'
+import ActionTextMixin from '../../mixins/actionText'
 
 export default {
 	name: 'ActionLink',
@@ -97,14 +98,14 @@ export default {
 				} catch (error) {
 					return value.startsWith('#') || value.startsWith('/')
 				}
-			}
+			},
 		},
 		/**
 		 * download the link instead of opening
 		 */
 		download: {
 			type: String,
-			default: null
+			default: null,
 		},
 		/**
 		 * target to open the link
@@ -114,14 +115,14 @@ export default {
 			default: '_self',
 			validator: value => {
 				return ['_blank', '_self', '_parent', '_top'].indexOf(value) > -1
-			}
-		}
-	}
+			},
+		},
+	},
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~Assets/action';
+@import '../../assets/action';
 @include action-active;
 @include action-item('link');
 

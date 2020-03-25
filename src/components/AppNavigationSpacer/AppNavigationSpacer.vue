@@ -25,7 +25,7 @@
 
 <script>
 export default {
-	name: 'AppNavigationSpacer'
+	name: 'AppNavigationSpacer',
 }
 </script>
 

@@ -84,43 +84,43 @@ export default {
 
 <script>
 import l10n from '../../mixins/l10n'
-import { Multiselect } from 'Components/Multiselect'
+import Multiselect from '../Multiselect'
 import { searchTags } from './api'
 import { t } from '../../l10n'
 
 export default {
 	name: 'MultiselectTags',
 	components: {
-		Multiselect
+		Multiselect,
 	},
 	mixins: [l10n],
 	props: {
 		label: {
 			type: String,
-			default: t('Select a tag')
+			default: t('Select a tag'),
 		},
 		value: {
 			type: [Number, Array],
-			required: true
+			required: true,
 		},
 		disabled: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		multiple: {
 			type: Boolean,
-			default: true
-		}
+			default: true,
+		},
 	},
 	data() {
 		return {
-			tags: []
+			tags: [],
 		}
 	},
 	computed: {
 		inputValue() {
 			return this.getValueObject()
-		}
+		},
 	},
 	async beforeCreate() {
 		try {
@@ -159,10 +159,11 @@ export default {
 			}
 		},
 		/**
-		 * @param {Object} tag
-		 * @param {string} tag.displayName
-		 * @param {bool} tag.userVisible
-		 * @param {bool} tag.userAssignable
+		 * @param {Object} tag destructuring object
+		 * @param {string} tag.displayName the tag display name
+		 * @param {bool} tag.userVisible is the tag visible
+		 * @param {bool} tag.userAssignable is the tag restricted
+		 * @returns {string}
 		 */
 		tagLabel({ displayName, userVisible, userAssignable }) {
 			if (userVisible === false) {
@@ -172,7 +173,7 @@ export default {
 				return t('{tag} (restricted)', { tag: displayName })
 			}
 			return displayName
-		}
-	}
+		},
+	},
 }
 </script>

@@ -1,7 +1,7 @@
 $cell_height: 32px;
 
 // import the icons font scss
-@import '~Fonts/scss/iconfont-vue';
+@import '../../fonts/scss/iconfont-vue';
 @import '~vue2-datepicker/scss/index.scss';
 
 .mx-datepicker[data-v-#{$scope_version}] {

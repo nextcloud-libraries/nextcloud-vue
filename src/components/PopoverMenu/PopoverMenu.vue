@@ -36,7 +36,7 @@ import PopoverMenuItem from './PopoverMenuItem'
 export default {
 	name: 'PopoverMenu',
 	components: {
-		PopoverMenuItem
+		PopoverMenuItem,
 	},
 	props: {
 		menu: {
@@ -45,12 +45,12 @@ export default {
 				return [{
 					href: 'https://nextcloud.com',
 					icon: 'icon-links',
-					text: 'Nextcloud'
+					text: 'Nextcloud',
 				}]
 			},
-			required: true
-		}
-	}
+			required: true,
+		},
+	},
 }
 </script>
 

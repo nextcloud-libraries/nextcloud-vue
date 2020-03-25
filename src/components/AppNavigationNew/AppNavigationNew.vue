@@ -38,23 +38,23 @@ export default {
 		buttonId: {
 			type: String,
 			required: false,
-			default: ''
+			default: '',
 		},
 		buttonClass: {
 			type: [String, Array, Object],
 			required: false,
-			default: ''
+			default: '',
 		},
 		disabled: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: false,
 		},
 		text: {
 			type: String,
-			required: true
-		}
-	}
+			required: true,
+		},
+	},
 }
 </script>
 

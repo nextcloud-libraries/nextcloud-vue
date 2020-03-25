@@ -36,7 +36,8 @@
 
 </docs>
 <template>
-	<div v-tooltip="tooltip" v-click-outside="closeMenu"
+	<div v-tooltip="tooltip"
+		v-click-outside="closeMenu"
 		:class="{
 			'icon-loading': !isAvatarLoaded && size > 16,
 			'icon-loading-small': !isAvatarLoaded && size <= 16,
@@ -44,28 +45,36 @@
 			'avatardiv--with-menu': hasMenu
 		}"
 		:style="avatarStyle"
-		class="avatardiv popovermenu-wrapper" @click="toggleMenu">
+		class="avatardiv popovermenu-wrapper"
+		@click="toggleMenu">
 		<!-- avatar -->
 		<div v-if="iconClass" :class="iconClass" class="avatar-class-icon" />
 		<img v-else-if="isAvatarLoaded && !userDoesNotExist" :src="avatarUrlLoaded" :srcset="avatarSrcSetLoaded">
 		<div v-if="hasMenu" class="icon-more" />
 
 		<!-- avatar status -->
-		<div v-if="status" class="avatardiv__status" :class="'avatardiv__status--' + status"
+		<div v-if="status"
+			class="avatardiv__status"
+			:class="'avatardiv__status--' + status"
 			:style="{ backgroundColor: `#${statusColor}` }">
 			<!-- triangle -->
-			<svg v-if="status === 'neutral'" xmlns="http://www.w3.org/2000/svg"
-				width="12" height="11"
+			<svg v-if="status === 'neutral'"
+				xmlns="http://www.w3.org/2000/svg"
+				width="12"
+				height="11"
 				viewBox="0 0 3.175 2.91">
 				<path d="M3.21 3.043H.494l.679-1.177.68-1.176.678 1.176z"
-					:style="{ fill: `#${statusColor}` }" stroke="#fff"
-					stroke-width=".265" stroke-linecap="square" />
+					:style="{ fill: `#${statusColor}` }"
+					stroke="#fff"
+					stroke-width=".265"
+					stroke-linecap="square" />
 			</svg>
 		</div>
 		<div v-if="userDoesNotExist" class="unknown">
 			{{ initials }}
 		</div>
-		<div v-if="hasMenu" v-show="contactsMenuOpenState"
+		<div v-if="hasMenu"
+			v-show="contactsMenuOpenState"
 			class="popovermenu"
 			:class="`menu-${menuPosition}`">
 			<PopoverMenu :is-open="contactsMenuOpenState" :menu="menu" />
@@ -77,19 +86,19 @@
 
 /* global OC oc_userconfig */
 import { directive as ClickOutside } from 'v-click-outside'
-import { PopoverMenu } from 'Components/PopoverMenu'
+import PopoverMenu from '../PopoverMenu'
 import axios from '@nextcloud/axios'
-import Tooltip from 'Directives/Tooltip'
+import Tooltip from '../../directives/Tooltip'
 import uidToColor from './uidToColor'
 
 export default {
 	name: 'Avatar',
 	directives: {
 		tooltip: Tooltip,
-		ClickOutside
+		ClickOutside,
 	},
 	components: {
-		PopoverMenu
+		PopoverMenu,
 	},
 	props: {
 		/**
@@ -98,14 +107,14 @@ export default {
 		 */
 		url: {
 			type: String,
-			default: undefined
+			default: undefined,
 		},
 		/**
 		 * Set a css icon-class for an icon to be used instead of the avatar.
 		 */
 		iconClass: {
 			type: String,
-			default: undefined
+			default: undefined,
 		},
 		/**
 		 * Set the user id to fetch the avatar
@@ -113,14 +122,14 @@ export default {
 		 */
 		user: {
 			type: String,
-			default: undefined
+			default: undefined,
 		},
 		/**
 		 * Is the user a guest user (then we have to user a different endpoint)
 		 */
 		isGuest: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		 * Set a display name that will be rendered as a tooltip
@@ -130,35 +139,35 @@ export default {
 		 */
 		displayName: {
 			type: String,
-			default: undefined
+			default: undefined,
 		},
 		/**
 		 * Set a size in px for the rendered avatar
 		 */
 		size: {
 			type: Number,
-			default: 32
+			default: 32,
 		},
 		/**
 		 * Placeholder avatars will be automatically generated when this is set to true
 		 */
 		allowPlaceholder: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		/**
 		 * Disable the tooltip
 		 */
 		disableTooltip: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		 * Disable the menu
 		 */
 		disableMenu: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		 * Declares a custom tooltip when not null
@@ -168,7 +177,7 @@ export default {
 		 */
 		tooltipMessage: {
 			type: String,
-			default: null
+			default: null,
 		},
 		/**
 		 * Declares username is not a user's name, when true.
@@ -177,7 +186,7 @@ export default {
 		 */
 		isNoUser: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 
 		/**
@@ -195,7 +204,7 @@ export default {
 					return true
 				}
 				return false
-			}
+			},
 		},
 		/**
 		 * Declares a different color to be used with the status indicator
@@ -205,7 +214,7 @@ export default {
 			default: null,
 			validator: value => {
 				return /^([a-f0-9]{3}){1,2}$/i.test(value)
-			}
+			},
 		},
 		/**
 		 * Choose the avatar menu alignment.
@@ -213,8 +222,8 @@ export default {
 		 */
 		menuPosition: {
 			type: String,
-			default: 'center'
-		}
+			default: 'center',
+		},
 	},
 	data() {
 		return {
@@ -224,7 +233,7 @@ export default {
 			isAvatarLoaded: false,
 			isMenuLoaded: false,
 			contactsMenuActions: [],
-			contactsMenuOpenState: false
+			contactsMenuOpenState: false,
 		}
 	},
 	computed: {
@@ -260,11 +269,11 @@ export default {
 				this.userDoesNotExist)
 		},
 		avatarStyle() {
-			let style = {
+			const style = {
 				width: this.size + 'px',
 				height: this.size + 'px',
 				lineHeight: this.size + 'px',
-				fontSize: Math.round(this.size * 0.55) + 'px'
+				fontSize: Math.round(this.size * 0.55) + 'px',
 			}
 
 			if (!this.iconClass && !this.avatarSrcSetLoaded) {
@@ -294,10 +303,10 @@ export default {
 				return {
 					href: item.hyperlink,
 					icon: item.icon,
-					text: item.title
+					text: item.title,
 				}
 			})
-		}
+		},
 	},
 	watch: {
 		url() {
@@ -308,7 +317,7 @@ export default {
 			this.userDoesNotExist = false
 			this.isMenuLoaded = false
 			this.loadAvatarUrl()
-		}
+		},
 	},
 	mounted() {
 		this.loadAvatarUrl()
@@ -356,7 +365,7 @@ export default {
 					url,
 					{
 						user: user,
-						size: size
+						size: size,
 					})
 
 				// eslint-disable-next-line camelcase
@@ -375,10 +384,10 @@ export default {
 			const srcset = [
 				avatarUrl + ' 1x',
 				urlGenerator(this.user, this.size * 2) + ' 2x',
-				urlGenerator(this.user, this.size * 4) + ' 4x'
+				urlGenerator(this.user, this.size * 4) + ' 4x',
 			].join(', ')
 
-			let img = new Image()
+			const img = new Image()
 			img.onload = () => {
 				this.avatarUrlLoaded = avatarUrl
 				if (!this.isUrlDefined) {
@@ -395,13 +404,13 @@ export default {
 				img.srcset = srcset
 			}
 			img.src = avatarUrl
-		}
-	}
+		},
+	},
 }
 </script>
 
 <style scoped lang="scss">
-@import '~Fonts/scss/iconfont-vue';
+@import '../../fonts/scss/iconfont-vue';
 
 .avatardiv {
 	position: relative;

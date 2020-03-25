@@ -120,7 +120,8 @@ Just set the `pinned` prop.
 		class="app-navigation-entry">
 		<!-- Icon and title -->
 		<a v-if="!undo && !editing"
-			class="app-navigation-entry-link" href="#"
+			class="app-navigation-entry-link"
+			href="#"
 			@click="onClick">
 
 			<!-- icon if not collapsible -->
@@ -143,7 +144,9 @@ Just set the `pinned` prop.
 		<!-- Counter and Actions -->
 		<div v-if="hasUtils" class="app-navigation-entry__utils">
 			<slot name="counter" />
-			<Actions menu-align="right" :open="menuOpened" :force-menu="forceMenu"
+			<Actions menu-align="right"
+				:open="menuOpened"
+				:force-menu="forceMenu"
 				:default-icon="menuIcon"
 				@update:open="onMenuToggle">
 				<ActionButton v-if="editable && !editing" icon="icon-rename" @click="handleEdit">
@@ -157,12 +160,16 @@ Just set the `pinned` prop.
 		<!-- edit entry -->
 		<div v-if="editing" class="app-navigation-entry__edit">
 			<form @submit.prevent="handleRename" @keydown.esc.exact.prevent="cancelEdit">
-				<input ref="inputTitle" v-model="newTitle" type="text"
+				<input ref="inputTitle"
+					v-model="newTitle"
+					type="text"
 					class="app-navigation-entry__edit-input"
 					:placeholder="editPlaceholder !== '' ? editPlaceholder : title">
-				<button type="submit" class="icon-confirm"
+				<button type="submit"
+					class="icon-confirm"
 					@click.stop.prevent="handleRename" />
-				<button type="reset" class="icon-close"
+				<button type="reset"
+					class="icon-close"
 					@click.stop.prevent="cancelEdit" />
 			</form>
 		</div>
@@ -179,7 +186,7 @@ import { directive as ClickOutside } from 'v-click-outside'
 import Actions from '../Actions/Actions'
 import ActionButton from '../ActionButton/ActionButton'
 import AppNavigationIconCollapsible from './AppNavigationIconCollapsible'
-import isMobile from 'Mixins/isMobile'
+import isMobile from '../../mixins/isMobile'
 
 export default {
 	name: 'AppNavigationItem',
@@ -187,10 +194,10 @@ export default {
 	components: {
 		Actions,
 		ActionButton,
-		AppNavigationIconCollapsible
+		AppNavigationIconCollapsible,
 	},
 	directives: {
-		ClickOutside
+		ClickOutside,
 	},
 	mixins: [isMobile],
 	props: {
@@ -199,7 +206,7 @@ export default {
 		 */
 		title: {
 			type: String,
-			required: true
+			required: true,
 		},
 		/**
 		* Refers to the icon on the left, this prop accepts a class
@@ -207,7 +214,7 @@ export default {
 		*/
 		icon: {
 			type: String,
-			default: ''
+			default: '',
 		},
 
 		/**
@@ -216,7 +223,7 @@ export default {
 		*/
 		loading: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		* Passing in a route will make the root element of this
@@ -225,7 +232,7 @@ export default {
 		*/
 		to: {
 			type: [String, Object],
-			default: ''
+			default: '',
 		},
 		/**
 		* Pass in `true` if you want the matching behaviour to
@@ -233,7 +240,7 @@ export default {
 		*/
 		exact: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		* Gives the possibility to collapse the children elements into the
@@ -241,7 +248,7 @@ export default {
 		*/
 		allowCollapse: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		* Makes the title of the item editable by providing an `ActionButton`
@@ -249,21 +256,21 @@ export default {
 		*/
 		editable: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		* Only for 'editable' items, sets label for the edit action button.
 		*/
 		editLabel: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		/**
 		* Only for 'editable' items, sets placeholder text for the editing form.
 		*/
 		editPlaceholder: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		/**
 		* Pins the item to the bottom left area, above the settings. Do not
@@ -272,43 +279,43 @@ export default {
 		*/
 		pinned: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		* Puts the item in the 'undo' state.
 		*/
 		undo: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		 * The navigation collapsible state (synced)
 		 */
 		open: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		 * The actions menu open state (synced)
 		 */
 		menuOpen: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		 * Force the actions to display in a three dot menu
 		 */
 		forceMenu: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		 * The action's menu default icon
 		 */
 		menuIcon: {
 			type: String,
-			default: undefined
-		}
+			default: undefined,
+		},
 	},
 
 	data() {
@@ -316,7 +323,7 @@ export default {
 			newTitle: '',
 			opened: this.open,
 			menuOpened: this.menuOpen,
-			editing: false
+			editing: false,
 		}
 	},
 	computed: {
@@ -364,16 +371,16 @@ export default {
 					is: 'router-link',
 					tag: 'li',
 					to: this.to,
-					exact: this.exact
+					exact: this.exact,
 				}
 			}
 			return {
-				is: 'li'
+				is: 'li',
 			}
 		},
 		isActive() {
 			return this.to && this.$route === this.to
-		}
+		},
 	},
 	watch: {
 		open(newVal) {
@@ -381,7 +388,7 @@ export default {
 		},
 		menuOpen(newVal) {
 			this.menuOpened = newVal
-		}
+		},
 	},
 	methods: {
 		// sync opened menu state with prop
@@ -421,13 +428,13 @@ export default {
 		// Undo methods
 		handleUndo() {
 			this.$emit('undo')
-		}
-	}
+		},
+	},
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~Fonts/scss/iconfont-vue';
+@import '../../fonts/scss/iconfont-vue';
 
 .app-navigation-entry {
 	position: relative;

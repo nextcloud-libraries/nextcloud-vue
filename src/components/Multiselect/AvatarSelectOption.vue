@@ -63,14 +63,17 @@ export default {
 
 <template>
 	<span class="option">
-		<Avatar :display-name="displayName" :user="user"
+		<Avatar :display-name="displayName"
+			:user="user"
 			:is-no-user="isNoUser"
-			:disable-menu="true" :disable-tooltip="true"
+			:disable-menu="true"
+			:disable-tooltip="true"
 			class="option__avatar" />
 		<div class="option__desc">
 			<span class="option__desc--lineone"
 				v-html="highlightedDisplayName" />
-			<span v-if="desc !== ''" class="option__desc--linetwo"
+			<span v-if="desc !== ''"
+				class="option__desc--linetwo"
 				v-html="highlightedDesc" />
 		</div>
 		<span v-if="icon !== ''" class="icon option__icon" :class="icon" />
@@ -79,13 +82,13 @@ export default {
 
 <script>
 import escapeHtml from 'escape-html'
-import Avatar from 'Components/Avatar'
-import highlightText from 'Mixins/highlightText'
+import Avatar from '../Avatar'
+import highlightText from '../../mixins/highlightText'
 
 export default {
 	name: 'AvatarSelectOption',
 	components: {
-		Avatar
+		Avatar,
 	},
 	mixins: [highlightText],
 	props: {
@@ -94,41 +97,41 @@ export default {
 		 */
 		desc: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		/**
 		 * Default text
 		 */
 		displayName: {
 			type: String,
-			required: true
+			required: true,
 		},
 		/**
 		 * Icon class to be displayed at the end of the component
 		 */
 		icon: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		/**
 		 * See the [Avatar](#Avatar) user prop
 		 */
 		user: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		/**
 		 * See the [Avatar](#Avatar) isNoUser prop
 		 */
 		isNoUser: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 
 		search: {
 			type: String,
-			default: ''
-		}
+			default: '',
+		},
 	},
 	computed: {
 		highlightedDisplayName() {
@@ -136,8 +139,8 @@ export default {
 		},
 		highlightedDesc() {
 			return this.highlightText(escapeHtml(this.desc), this.search)
-		}
-	}
+		},
+	},
 }
 </script>
 

@@ -47,7 +47,8 @@
 			<!-- white space is shown on longtext, so we can't
 			put {{ text }} on a new line for code readability -->
 			<p v-else-if="isLongText"
-				class="action-router__longtext" v-text="text" />
+				class="action-router__longtext"
+				v-text="text" />
 
 			<!-- default text display -->
 			<span v-else class="action-router__text">{{ text }}</span>
@@ -59,7 +60,7 @@
 </template>
 
 <script>
-import ActionTextMixin from 'Mixins/actionText'
+import ActionTextMixin from '../../mixins/actionText'
 
 export default {
 	name: 'ActionRouter',
@@ -73,21 +74,21 @@ export default {
 		to: {
 			type: [String, Object],
 			default: '',
-			required: true
+			required: true,
 		},
 		/**
 		 * router-link exact prop [https://router.vuejs.org/api/#exact](https://router.vuejs.org/api/#exact)
 		 */
 		exact: {
 			type: Boolean,
-			default: false
-		}
-	}
+			default: false,
+		},
+	},
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~Assets/action';
+@import '../../assets/action';
 @include action-active;
 @include action-item('router');
 @include action--disabled;

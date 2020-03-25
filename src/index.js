@@ -33,7 +33,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export default {
 	install,
-	...NcComponents
+	...NcComponents,
 }
 export * from './components'
 export * from './directives'

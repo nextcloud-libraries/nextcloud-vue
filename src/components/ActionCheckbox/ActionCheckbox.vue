@@ -37,11 +37,16 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 <template>
 	<li :class="{ 'action--disabled': disabled }">
 		<span class="action-checkbox">
-			<input :id="id" ref="checkbox"
-				:disabled="disabled" :checked="checked" :value="value"
+			<input :id="id"
+				ref="checkbox"
+				:disabled="disabled"
+				:checked="checked"
+				:value="value"
 				:class="{ focusable: isFocusable }"
-				type="checkbox" class="checkbox action-checkbox__checkbox"
-				@keydown.enter.exact.prevent="checkInput" @change="onChange">
+				type="checkbox"
+				class="checkbox action-checkbox__checkbox"
+				@keydown.enter.exact.prevent="checkInput"
+				@change="onChange">
 			<label ref="label" :for="id" class="action-checkbox__label">{{ text }}</label>
 
 			<!-- fake slot to gather inner text -->
@@ -51,8 +56,8 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 </template>
 
 <script>
-import ActionGlobalMixin from 'Mixins/actionGlobal'
-import GenRandomId from 'Utils/GenRandomId'
+import ActionGlobalMixin from '../../mixins/actionGlobal'
+import GenRandomId from '../../utils/GenRandomId'
 
 export default {
 	name: 'ActionCheckbox',
@@ -66,7 +71,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'action-' + GenRandomId(),
-			validator: id => id.trim() !== ''
+			validator: id => id.trim() !== '',
 		},
 
 		/**
@@ -74,7 +79,7 @@ export default {
 		 */
 		checked: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 
 		/**
@@ -82,7 +87,7 @@ export default {
 		 */
 		value: {
 			type: [String, Number],
-			default: ''
+			default: '',
 		},
 
 		/**
@@ -90,17 +95,18 @@ export default {
 		 */
 		disabled: {
 			type: Boolean,
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	computed: {
 		/**
 		 * determines if the action is focusable
+		 * @returns {boolean} is the action focusable ?
 		 */
 		isFocusable: function() {
 			return !this.disabled
-		}
+		},
 	},
 
 	methods: {
@@ -134,13 +140,13 @@ export default {
 				 */
 				this.$emit('uncheck')
 			}
-		}
-	}
+		},
+	},
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~Assets/action';
+@import '../../assets/action';
 @include action-active;
 @include action--disabled;
 

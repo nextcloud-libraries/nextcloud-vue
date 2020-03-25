@@ -23,7 +23,7 @@
 export default {
 	data() {
 		return {
-			isFullscreen: this._isFullscreen()
+			isFullscreen: this._isFullscreen(),
 		}
 	},
 	beforeMount() {
@@ -41,6 +41,6 @@ export default {
 			// if the window height is equal to the screen height,
 			// we're in full screen mode
 			return window.outerHeight === screen.height
-		}
-	}
+		},
+	},
 }

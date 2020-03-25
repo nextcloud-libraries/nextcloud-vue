@@ -22,4 +22,3 @@
 import AppNavigationIconBullet from './AppNavigationIconBullet'
 
 export default AppNavigationIconBullet
-export { AppNavigationIconBullet }

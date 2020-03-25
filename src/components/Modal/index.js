@@ -19,10 +19,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import ScopeComponent from 'Utils/ScopeComponent'
+import ScopeComponent from '../../utils/ScopeComponent'
 import Modal from './Modal'
 
 ScopeComponent(Modal)
 
 export default Modal
-export { Modal }

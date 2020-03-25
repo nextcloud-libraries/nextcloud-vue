@@ -21,4 +21,3 @@
 import AppContent from './AppContent'
 
 export default AppContent
-export { AppContent }

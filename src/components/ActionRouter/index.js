@@ -22,4 +22,3 @@
 import ActionRouter from './ActionRouter'
 
 export default ActionRouter
-export { ActionRouter }

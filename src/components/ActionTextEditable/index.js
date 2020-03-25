@@ -22,4 +22,3 @@
 import ActionTextEditable from './ActionTextEditable'
 
 export default ActionTextEditable
-export { ActionTextEditable }

@@ -27,13 +27,13 @@ const translations = fs
 	.filter(name => name !== 'messages.pot' && name.endsWith('.pot'))
 	.map(file => {
 		const path = './l10n/' + file
-		const locale = file.substr(0, file.length -'.pot'.length)
+		const locale = file.substr(0, file.length - '.pot'.length)
 
 		const po = fs.readFileSync(path)
 		const json = gettextParser.po.parse(po)
 		return {
 			locale,
-			json
+			json,
 		}
 	})
 
@@ -41,19 +41,25 @@ module.exports = {
 	entry: {
 		ncvuecomponents: path.join(__dirname, 'src', 'index.js'),
 		...glob.sync('src/components/*/index.js').reduce((acc, item) => {
-			const name = item.replace('/index.js', '').replace('src/components/', 'Components/');
-			acc[name] = path.join(__dirname, item);
-			return acc;
+			const name = item
+				.replace('/index.js', '')
+				.replace('src/components/', 'Components/')
+			acc[name] = path.join(__dirname, item)
+			return acc
 		}, {}),
 		...glob.sync('src/directives/*/index.js').reduce((acc, item) => {
-			const name = item.replace('/index.js', '').replace('src/directives/', 'Directives/');
-			acc[name] = path.join(__dirname, item);
-			return acc;
+			const name = item
+				.replace('/index.js', '')
+				.replace('src/directives/', 'Directives/')
+			acc[name] = path.join(__dirname, item)
+			return acc
 		}, {}),
 		...glob.sync('src/mixins/*/index.js').reduce((acc, item) => {
-			const name = item.replace('/index.js', '').replace('src/mixins/', 'Mixins/');
-			acc[name] = path.join(__dirname, item);
-			return acc;
+			const name = item
+				.replace('/index.js', '')
+				.replace('src/mixins/', 'Mixins/')
+			acc[name] = path.join(__dirname, item)
+			return acc
 		}, {}),
 	},
 	output: {
@@ -62,16 +68,14 @@ module.exports = {
 		filename: '[name].js',
 		libraryTarget: 'umd',
 		library: ['NextcloudVue', '[name]'],
-		umdNamedDefine: true
+		umdNamedDefine: true,
 	},
-	externals: [
-		nodeExternals()
-	],
+	externals: [nodeExternals()],
 	module: {
 		rules: [
 			{
 				test: /\.css$/,
-				use: ['vue-style-loader', 'css-loader', 'resolve-url-loader']
+				use: ['vue-style-loader', 'css-loader', 'resolve-url-loader'],
 			},
 			{
 				test: /\.scss$/,
@@ -89,31 +93,33 @@ module.exports = {
 							sourceMap: true,
 							sassOptions: {
 								sourceMapContents: false,
-								includePaths: [path.resolve(__dirname, './src/assets')]
-							}
-						}
-					}
-				]
+								includePaths: [
+									path.resolve(__dirname, './src/assets'),
+								],
+							},
+						},
+					},
+				],
 			},
 			{
 				test: /\.(js|vue)$/,
 				use: 'eslint-loader',
-				enforce: 'pre'
+				enforce: 'pre',
 			},
 			{
 				test: /\.vue$/,
-				loader: 'vue-loader'
+				loader: 'vue-loader',
 			},
 			{
 				test: /\.js$/,
 				loader: 'babel-loader',
-				exclude: /node_modules/
+				exclude: /node_modules/,
 			},
 			{
 				test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/i,
-				loader: 'url-loader'
-			}
-		]
+				loader: 'url-loader',
+			},
+		],
 	},
 	plugins: [
 		new IconfontPlugin({
@@ -121,31 +127,23 @@ module.exports = {
 			family: ICONFONT_NAME,
 			dest: {
 				font: './src/fonts/[family].[type]',
-				css: './src/fonts/scss/iconfont-vue.scss'
+				css: './src/fonts/scss/iconfont-vue.scss',
 			},
 			watch: {
-				pattern: './src/assets/iconfont/*.svg'
-			}
+				pattern: './src/assets/iconfont/*.svg',
+			},
 		}),
 		new VueLoaderPlugin(),
 		new StyleLintPlugin({
-			files: ['src/**/*.vue', 'src/**/*.scss', 'src/**/*.css']
+			files: ['src/**/*.vue', 'src/**/*.scss', 'src/**/*.css'],
 		}),
-		new DefinePlugin({ 
+		new DefinePlugin({
 			SCOPE_VERSION,
-			TRANSLATIONS: JSON.stringify(translations)
-		})
+			TRANSLATIONS: JSON.stringify(translations),
+		}),
 	],
 	resolve: {
-		alias: {
-			Assets: path.resolve(__dirname, 'src/assets/'),
-			Components: path.resolve(__dirname, 'src/components/'),
-			Directives: path.resolve(__dirname, 'src/directives/'),
-			Mixins: path.resolve(__dirname, 'src/mixins/'),
-			Utils: path.resolve(__dirname, 'src/utils/'),
-			Fonts: path.resolve(__dirname, 'src/fonts/')
-		},
 		extensions: ['*', '.js', '.vue'],
-		symlinks: false
-	}
-};
+		symlinks: false,
+	},
+}

@@ -22,4 +22,3 @@
 import ActionRadio from './ActionRadio'
 
 export default ActionRadio
-export { ActionRadio }

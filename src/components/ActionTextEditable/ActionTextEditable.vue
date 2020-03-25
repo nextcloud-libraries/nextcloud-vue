@@ -43,8 +43,10 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 				class="action-text-editable__icon" />
 
 			<!-- form and input -->
-			<form ref="form" class="action-text-editable__form"
-				:disabled="disabled" @submit.prevent="onSubmit">
+			<form ref="form"
+				class="action-text-editable__form"
+				:disabled="disabled"
+				@submit.prevent="onSubmit">
 				<input :id="id" type="submit" class="action-text-editable__submit">
 
 				<!-- title -->
@@ -52,7 +54,8 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 					{{ title }}
 				</strong>
 
-				<textarea :disabled="disabled" :value="value"
+				<textarea :disabled="disabled"
+					:value="value"
 					v-bind="$attrs"
 					:class="['action-text-editable__textarea',{ focusable: isFocusable }]"
 					@input="onInput" />
@@ -66,8 +69,8 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 </template>
 
 <script>
-import ActionTextMixin from 'Mixins/actionText'
-import GenRandomId from 'Utils/GenRandomId'
+import ActionTextMixin from '../../mixins/actionText'
+import GenRandomId from '../../utils/GenRandomId'
 
 export default {
 	name: 'ActionTextEditable',
@@ -81,31 +84,32 @@ export default {
 		id: {
 			type: String,
 			default: () => 'action-' + GenRandomId(),
-			validator: id => id.trim() !== ''
+			validator: id => id.trim() !== '',
 		},
 		/**
 		 * disabled state of the text area
 		 */
 		disabled: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		/**
 		 * value attribute of the input field
 		 */
 		value: {
 			type: String,
-			default: ''
-		}
+			default: '',
+		},
 	},
 
 	computed: {
 		/**
-		* determines if the action is focusable
-		*/
+		 * determines if the action is focusable
+		 * @returns {boolean} is the action focusable ?
+		 */
 		isFocusable: function() {
 			return !this.disabled
-		}
+		},
 	},
 
 	methods: {
@@ -134,15 +138,15 @@ export default {
 				// ignore submit
 				return false
 			}
-		}
-	}
+		},
+	},
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~Fonts/scss/iconfont-vue';
-@import '~Assets/inputs';
-@import '~Assets/action';
+@import '../../fonts/scss/iconfont-vue';
+@import '../../assets/inputs';
+@import '../../assets/action';
 @include action-active;
 @include action--disabled;
 

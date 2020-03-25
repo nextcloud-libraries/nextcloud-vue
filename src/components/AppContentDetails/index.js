@@ -21,4 +21,3 @@
 import AppContentDetails from './AppContentDetails'
 
 export default AppContentDetails
-export { AppContentDetails }

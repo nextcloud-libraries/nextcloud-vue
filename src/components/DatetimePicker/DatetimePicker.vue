@@ -78,7 +78,7 @@ export default {
 	name: 'DatetimePicker',
 
 	components: {
-		DatePicker
+		DatePicker,
 	},
 
 	inheritAttrs: false,
@@ -88,19 +88,19 @@ export default {
 			type: Boolean,
 			default() {
 				return false
-			}
+			},
 		},
 
 		minuteStep: {
 			type: Number,
 			default() {
 				return 10
-			}
+			},
 		},
 
 		type: {
 			type: String,
-			default: 'date'
+			default: 'date',
 		},
 
 		format: {
@@ -112,18 +112,18 @@ export default {
 					year: 'YYYY',
 					month: 'YYYY-MM',
 					time: 'H:mm:ss',
-					week: 'w'
+					week: 'w',
 				}
 				return map[this.type] || map.date
-			}
+			},
 		},
 
 		// eslint-disable-next-line
 		value: {
 			default() {
 				return new Date()
-			}
-		}
+			},
+		},
 	},
 
 	methods: {
@@ -148,7 +148,7 @@ export default {
 					console.error('Invalid value', value, month)
 				}
 			}
-		}
-	}
+		},
+	},
 }
 </script>

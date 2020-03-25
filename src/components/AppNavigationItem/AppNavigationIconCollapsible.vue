@@ -24,7 +24,8 @@
 	<!-- Button to expand or collapse children -->
 	<button
 		class="icon-collapse"
-		:class="{'icon-collapse--rotated':open}" @click="onClick" />
+		:class="{'icon-collapse--rotated':open}"
+		@click="onClick" />
 </template>
 
 <script>
@@ -34,21 +35,21 @@ export default {
 	props: {
 		open: {
 			type: Boolean,
-			default: true
-		}
+			default: true,
+		},
 	},
 
 	methods: {
 		onClick(e) {
 			this.$emit('click', e)
-		}
-	}
+		},
+	},
 
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~Fonts/scss/iconfont-vue';
+@import '../../fonts/scss/iconfont-vue';
 
 .icon-collapse {
 	position: absolute;

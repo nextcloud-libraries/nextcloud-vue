@@ -23,11 +23,13 @@
 <template>
 	<li>
 		<!-- If item.href is set, a link will be directly used -->
-		<a v-if="item.href" :href="(item.href) ? item.href : '#' "
+		<a v-if="item.href"
+			:href="(item.href) ? item.href : '#' "
 			:target="(item.target) ? item.target : '' "
 			:download="item.download"
 			class="focusable"
-			rel="noreferrer noopener" @click="action">
+			rel="noreferrer noopener"
+			@click="action">
 			<span v-if="!iconIsUrl" :class="item.icon" />
 			<img v-else :src="item.icon">
 			<p v-if="item.text && item.longtext">
@@ -53,16 +55,22 @@
 
 			<!-- only shows if input is text -->
 			<form v-if="item.input === 'text'"
-				:class="item.input" @submit.prevent="item.action">
-				<input :type="item.input" :value="item.value" :placeholder="item.text"
+				:class="item.input"
+				@submit.prevent="item.action">
+				<input :type="item.input"
+					:value="item.value"
+					:placeholder="item.text"
 					required>
 				<input type="submit" value="" class="icon-confirm">
 			</form>
 
 			<!-- checkbox -->
 			<template v-else>
-				<input :id="key" v-model="item.model" :type="item.input"
-					:class="item.input" @change="item.action">
+				<input :id="key"
+					v-model="item.model"
+					:type="item.input"
+					:class="item.input"
+					@change="item.action">
 				<label :for="key" @click.stop.prevent="item.action">
 					{{ item.text }}
 				</label>
@@ -70,8 +78,11 @@
 		</span>
 
 		<!-- If item.action is set instead, a button will be used -->
-		<button v-else-if="item.action" class="menuitem focusable" :class="{active: item.active}"
-			:disabled="item.disabled" @click.stop.prevent="item.action">
+		<button v-else-if="item.action"
+			class="menuitem focusable"
+			:class="{active: item.active}"
+			:disabled="item.disabled"
+			@click.stop.prevent="item.action">
 			<span :class="item.icon" />
 			<p v-if="item.text && item.longtext">
 				<strong class="menuitem-text">
@@ -146,7 +157,7 @@ export default {
 					key: 'nextcloud-link',
 					href: 'https://nextcloud.com',
 					icon: 'icon-links',
-					text: 'Nextcloud'
+					text: 'Nextcloud',
 				}
 			},
 			// check the input types
@@ -157,8 +168,8 @@ export default {
 					return ['text', 'checkbox'].indexOf(item.input) !== -1
 				}
 				return true
-			}
-		}
+			},
+		},
 	},
 	computed: {
 		// random key for inputs binding if not provided
@@ -175,7 +186,7 @@ export default {
 			} catch (_) {
 				return false
 			}
-		}
+		},
 	},
 	methods: {
 		// allow us to use both link and an action on `a`
@@ -184,8 +195,8 @@ export default {
 			if (this.item.action) {
 				this.item.action(event)
 			}
-		}
-	}
+		},
+	},
 }
 </script>
 <style lang="scss" scoped>

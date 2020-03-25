@@ -29,6 +29,6 @@
 
 <script>
 export default {
-	name: 'AppContentDetails'
+	name: 'AppContentDetails',
 }
 </script>

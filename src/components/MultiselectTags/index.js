@@ -21,4 +21,3 @@
 import MultiselectTags from './MultiselectTags'
 
 export default MultiselectTags
-export { MultiselectTags }
