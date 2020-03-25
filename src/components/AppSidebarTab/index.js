@@ -21,4 +21,3 @@
 import AppSidebarTab from './AppSidebarTab'
 
 export default AppSidebarTab
-export { AppSidebarTab }

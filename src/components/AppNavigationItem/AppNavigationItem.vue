@@ -144,7 +144,9 @@ Just set the `pinned` prop.
 		<!-- Counter and Actions -->
 		<div v-if="hasUtils" class="app-navigation-entry__utils">
 			<slot name="counter" />
-			<Actions menu-align="right" :open="menuOpened" :force-menu="forceMenu"
+			<Actions menu-align="right"
+				:open="menuOpened"
+				:force-menu="forceMenu"
 				:default-icon="menuIcon"
 				@update:open="onMenuToggle">
 				<ActionButton v-if="editable && !editing" icon="icon-rename" @click="handleEdit">
@@ -321,7 +323,7 @@ export default {
 			newTitle: '',
 			opened: this.open,
 			menuOpened: this.menuOpen,
-			editing: false
+			editing: false,
 		}
 	},
 	computed: {

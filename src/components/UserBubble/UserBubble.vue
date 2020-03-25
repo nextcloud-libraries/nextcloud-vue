@@ -73,8 +73,8 @@ This component has the following slot:
 </template>
 
 <script>
-import { Popover } from '../Popover'
-import { Avatar } from '../Avatar'
+import Popover from '../Popover'
+import Avatar from '../Avatar'
 
 export default {
 	name: 'UserBubble',

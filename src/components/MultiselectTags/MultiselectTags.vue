@@ -84,7 +84,7 @@ export default {
 
 <script>
 import l10n from '../../mixins/l10n'
-import { Multiselect } from '../Multiselect'
+import Multiselect from '../Multiselect'
 import { searchTags } from './api'
 import { t } from '../../l10n'
 

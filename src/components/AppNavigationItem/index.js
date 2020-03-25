@@ -22,4 +22,3 @@
 import AppNavigationItem from './AppNavigationItem'
 
 export default AppNavigationItem
-export { AppNavigationItem }

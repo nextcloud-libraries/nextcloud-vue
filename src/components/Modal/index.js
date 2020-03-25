@@ -25,4 +25,3 @@ import Modal from './Modal'
 ScopeComponent(Modal)
 
 export default Modal
-export { Modal }

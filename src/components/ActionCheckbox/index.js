@@ -22,4 +22,3 @@
 import ActionCheckbox from './ActionCheckbox'
 
 export default ActionCheckbox
-export { ActionCheckbox }

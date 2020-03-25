@@ -21,4 +21,3 @@
 import AppNavigationNew from './AppNavigationNew'
 
 export default AppNavigationNew
-export { AppNavigationNew }

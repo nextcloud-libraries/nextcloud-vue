@@ -22,4 +22,3 @@
 import PopoverMenu from './PopoverMenu'
 
 export default PopoverMenu
-export { PopoverMenu }

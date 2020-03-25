@@ -22,4 +22,3 @@
 import ActionText from './ActionText'
 
 export default ActionText
-export { ActionText }

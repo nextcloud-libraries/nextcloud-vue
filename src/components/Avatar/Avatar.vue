@@ -86,7 +86,7 @@
 
 /* global OC oc_userconfig */
 import { directive as ClickOutside } from 'v-click-outside'
-import { PopoverMenu } from '..//PopoverMenu'
+import PopoverMenu from '../PopoverMenu'
 import axios from '@nextcloud/axios'
 import Tooltip from '../../directives/Tooltip'
 import uidToColor from './uidToColor'

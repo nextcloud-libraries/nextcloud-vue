@@ -21,4 +21,3 @@
 import AppNavigationSettings from './AppNavigationSettings'
 
 export default AppNavigationSettings
-export { AppNavigationSettings }

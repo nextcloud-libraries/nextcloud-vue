@@ -23,4 +23,3 @@
 import AppNavigationCounter from './AppNavigationCounter'
 
 export default AppNavigationCounter
-export { AppNavigationCounter }

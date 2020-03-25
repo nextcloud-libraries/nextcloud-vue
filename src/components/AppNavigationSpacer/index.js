@@ -21,4 +21,3 @@
 import AppNavigationSpacer from './AppNavigationSpacer'
 
 export default AppNavigationSpacer
-export { AppNavigationSpacer }

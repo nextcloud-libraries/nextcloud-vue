@@ -22,4 +22,3 @@
 import ActionSeparator from './ActionSeparator'
 
 export default ActionSeparator
-export { ActionSeparator }

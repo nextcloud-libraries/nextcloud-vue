@@ -26,4 +26,3 @@ import './index.scss'
 ScopeComponent(Multiselect)
 
 export default Multiselect
-export { Multiselect }

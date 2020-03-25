@@ -64,12 +64,15 @@ export default {
 			class="modal-mask"
 			:class="{ 'modal-mask--dark': dark }"
 			@click="handleMouseMove"
-			@mousemove="handleMouseMove" @touchmove="handleMouseMove">
+			@mousemove="handleMouseMove"
+			@touchmove="handleMouseMove">
 			<!-- Header -->
 			<transition name="fade-visibility">
-				<div v-show="!clearView" :class="{
-					invisible: clearView
-				}" class="modal-header">
+				<div v-show="!clearView"
+					:class="{
+						invisible: clearView
+					}"
+					class="modal-header">
 					<div v-if="title.trim() !== ''" class="modal-title">
 						{{ title }}
 					</div>
@@ -90,10 +93,15 @@ export default {
 							<!-- Progress circle, css animated -->
 							<svg v-if="playing"
 								class="progress-ring"
-								height="50" width="50">
+								height="50"
+								width="50">
 								<circle class="progress-ring__circle"
-									stroke="white" stroke-width="2" fill="transparent"
-									r="15" cx="25" cy="25" />
+									stroke="white"
+									stroke-width="2"
+									fill="transparent"
+									r="15"
+									cx="25"
+									cy="25" />
 							</svg>
 						</button>
 
@@ -125,7 +133,9 @@ export default {
 					@click.self="close">
 					<!-- Navigation button -->
 					<transition name="fade-visibility">
-						<a v-show="hasPrevious && !clearView" class="prev" :class="{
+						<a v-show="hasPrevious && !clearView"
+							class="prev"
+							:class="{
 								invisible: clearView || !hasPrevious
 							}"
 							@click="previous">
@@ -145,7 +155,9 @@ export default {
 
 					<!-- Navigation button -->
 					<transition name="fade-visibility">
-						<a v-show="hasNext && !clearView" class="next" :class="{
+						<a v-show="hasNext && !clearView"
+							class="next"
+							:class="{
 								invisible: clearView || !hasNext
 							}"
 							@click="next">

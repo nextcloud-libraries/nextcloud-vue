@@ -26,4 +26,3 @@ import './index.scss'
 ScopeComponent(DatetimePicker)
 
 export default DatetimePicker
-export { DatetimePicker }
