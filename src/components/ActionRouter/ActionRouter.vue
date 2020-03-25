@@ -26,6 +26,7 @@
 		<router-link :to="to"
 			:exact="exact"
 			class="action-router focusable"
+			:aria-label="ariaLabel"
 			rel="noreferrer noopener">
 			<!-- icon -->
 			<span :class="[isIconUrl ? 'action-router__icon--url' : icon]"

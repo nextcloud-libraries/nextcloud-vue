@@ -44,7 +44,9 @@ If you're using a long text you can specify a title
 
 <template>
 	<li :class="{ 'action--disabled': disabled }">
-		<button class="action-button"
+		<button
+			class="action-button"
+			:aria-label="ariaLabel"
 			:class="{ focusable: isFocusable }"
 			@click="onClick">
 			<!-- icon -->

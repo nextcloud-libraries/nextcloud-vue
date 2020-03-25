@@ -38,6 +38,7 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 		<a
 			:download="download"
 			:href="href"
+			:aria-label="ariaLabel"
 			:target="target"
 			class="action-link focusable"
 			rel="noreferrer noopener"
