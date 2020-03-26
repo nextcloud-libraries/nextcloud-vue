@@ -83,8 +83,6 @@
 </template>
 
 <script>
-
-/* global OC oc_userconfig */
 import { directive as ClickOutside } from 'v-click-outside'
 import PopoverMenu from '../PopoverMenu'
 import axios from '@nextcloud/axios'
