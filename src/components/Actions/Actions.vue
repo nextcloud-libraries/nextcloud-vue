@@ -57,7 +57,6 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 	<!-- if only one action, check if we need to bind to click or not -->
 	<element v-if="isValidSingleAction && !forceMenu"
 		v-tooltip.auto="firstAction.text"
-		:aria-label="firstAction.text"
 		v-bind="firstActionBinding"
 		:class="[firstAction.icon, firstActionClass]"
 		class="action-item action-item--single"
@@ -252,6 +251,7 @@ export default {
 						is: 'a',
 						href: this.firstAction.href,
 						target: this.firstAction.target,
+						ariaLabel: this.firstAction.ariaLabel,
 					}
 				}
 				if (tag === 'ActionRouter') {
@@ -259,11 +259,13 @@ export default {
 						is: 'router-link',
 						to: this.firstAction.to,
 						exact: this.firstAction.exact,
+						ariaLabel: this.firstAction.ariaLabel,
 					}
 				}
 				if (tag === 'ActionButton') {
 					return {
 						is: 'button',
+						ariaLabel: this.firstAction.ariaLabel,
 					}
 				}
 			}

@@ -47,6 +47,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Aria label for the button. Not needed if the button has text.
+		 */
+		ariaLabel: {
+			type: String,
+			default: '',
+		},
 	},
 
 	computed: {
