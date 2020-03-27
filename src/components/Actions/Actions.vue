@@ -90,7 +90,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 			:aria-expanded="opened"
 			@click.prevent="toggleMenu"
 			@keydown.space.exact.prevent="toggleMenu" />
-		<div v-if="opened"
+		<div v-show="opened"
 			ref="menu"
 			v-click-outside="closeMenu"
 			:class="[`menu-${menuAlign}`, { 'open': opened }]"
@@ -104,7 +104,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 
 			<!-- menu content -->
 			<ul :id="randomId" tabindex="-1">
-				<slot />
+				<slot v-if="opened" />
 			</ul>
 		</div>
 	</div>
