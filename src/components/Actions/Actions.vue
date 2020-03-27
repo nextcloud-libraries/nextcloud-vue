@@ -251,7 +251,7 @@ export default {
 						is: 'a',
 						href: this.firstAction.href,
 						target: this.firstAction.target,
-						ariaLabel: this.firstAction.ariaLabel,
+						'aria-label': this.firstAction.ariaLabel,
 					}
 				}
 				if (tag === 'ActionRouter') {
@@ -259,13 +259,13 @@ export default {
 						is: 'router-link',
 						to: this.firstAction.to,
 						exact: this.firstAction.exact,
-						ariaLabel: this.firstAction.ariaLabel,
+						'aria-label': this.firstAction.ariaLabel,
 					}
 				}
 				if (tag === 'ActionButton') {
 					return {
 						is: 'button',
-						ariaLabel: this.firstAction.ariaLabel,
+						'aria-label': this.firstAction.ariaLabel,
 					}
 				}
 			}
