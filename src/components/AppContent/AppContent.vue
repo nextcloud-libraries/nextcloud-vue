@@ -21,13 +21,13 @@
  -->
 
 <template>
-	<div id="app-content" class="no-snapper" :style="opened ? 'transform: translateX(300px)' : ''">
+	<main id="app-content" class="no-snapper" :style="opened ? 'transform: translateX(300px)' : ''">
 		<AppNavigationToggle :aria-expanded="opened"
 			aria-controls="app-navigation"
 			@click="toggleNavigation" />
 		<!-- @slot Provide content to the app content -->
 		<slot />
-	</div>
+	</main>
 </template>
 
 <script>
