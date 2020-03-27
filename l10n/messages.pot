@@ -10,6 +10,10 @@ msgstr ""
 msgid "{tag} (restricted)"
 msgstr ""
 
+#: src/components/Actions/Actions.vue:194
+msgid "Actions"
+msgstr ""
+
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
 msgstr ""
