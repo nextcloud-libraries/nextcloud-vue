@@ -32,7 +32,9 @@ const ValidateSlot = (slots, allowed, vm) => {
 	if (slots === undefined) {
 		return
 	}
-	slots.forEach((node, index) => {
+
+	for (let index = slots.length - 1; index >= 0; index--) {
+		const node = slots[index]
 		// also check against allowed to avoid uninitiated vnodes with no componentOptions
 		const isHtmlElement = !node.componentOptions && node.tag && allowed.indexOf(node.tag) === -1
 		const isVueComponent = !!node.componentOptions && typeof node.componentOptions.tag === 'string'
@@ -46,7 +48,7 @@ const ValidateSlot = (slots, allowed, vm) => {
 			// cleanup
 			slots.splice(index, 1)
 		}
-	})
+	}
 }
 
 export default ValidateSlot
