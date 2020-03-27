@@ -84,6 +84,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 		<a class="icon action-item__menutoggle"
 			:class="defaultIcon"
 			href="#"
+			:aria-label="ariaLabel"
 			aria-haspopup="true"
 			:aria-controls="randomId"
 			:aria-expanded="opened"
@@ -114,6 +115,7 @@ import Tooltip from '../../directives/Tooltip'
 import GenRandomId from '../../utils/GenRandomId'
 import IsOutOfViewport from '../../utils/IsOutOfViewport'
 import ValidateSlot from '../../utils/ValidateSlot'
+import { t } from '../../l10n'
 
 // This is the list of ALL the ALLOWED components
 // in the default SLOT
@@ -183,6 +185,13 @@ export default {
 		defaultIcon: {
 			type: String,
 			default: 'action-item__menutoggle--default-icon',
+		},
+		/**
+		 * Aria label for the actions menu
+		 */
+		ariaLabel: {
+			type: String,
+			default: t('Actions'),
 		},
 	},
 
