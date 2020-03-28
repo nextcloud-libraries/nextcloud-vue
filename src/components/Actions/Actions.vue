@@ -72,6 +72,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 	<!-- more than one action -->
 	<div v-else
 		v-show="hasMultipleActions || forceMenu"
+		v-click-outside="closeMenu"
 		:class="{'action-item--open': opened}"
 		class="action-item"
 		@keydown.up.exact.prevent="focusPreviousAction"
@@ -92,7 +93,6 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 			@keydown.space.exact.prevent="toggleMenu" />
 		<div v-show="opened"
 			ref="menu"
-			v-click-outside="closeMenu"
 			:class="[`menu-${menuAlign}`, { 'open': opened }]"
 			:style="{marginRight: `${ offsetX }px`, marginTop: `${ offsetY }px`}"
 			class="action-item__menu"
@@ -104,7 +104,9 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 
 			<!-- menu content -->
 			<ul :id="randomId" tabindex="-1">
-				<slot v-if="opened" />
+				<template v-if="opened">
+					<slot />
+				</template>
 			</ul>
 		</div>
 	</div>
