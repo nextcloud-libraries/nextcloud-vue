@@ -32,21 +32,26 @@ const ValidateSlot = (slots, allowed, vm) => {
 	if (slots === undefined) {
 		return
 	}
-	slots.forEach((node, index) => {
+
+	for (let index = slots.length - 1; index >= 0; index--) {
+		const node = slots[index]
 		// also check against allowed to avoid uninitiated vnodes with no componentOptions
 		const isHtmlElement = !node.componentOptions && node.tag && allowed.indexOf(node.tag) === -1
 		const isVueComponent = !!node.componentOptions && typeof node.componentOptions.tag === 'string'
 		const isForbiddenComponent = isVueComponent && allowed.indexOf(node.componentOptions.tag) === -1
 
-		// if not a vue component or component not in allowed tags
-		if (isHtmlElement || isForbiddenComponent) {
-			// warn
-			Vue.util.warn(`${isHtmlElement ? node.tag : node.componentOptions.tag} is not allowed inside the ${vm.$options.name} component`, vm)
+		// if html element or not a vue component or vue component not in allowed tags
+		if (isHtmlElement || !isVueComponent || isForbiddenComponent) {
+			// only warn when html elment or forbidden component
+			// sometimes text nodes are present which are hardly removeable by the developer and spam the warnings
+			if (isHtmlElement || isForbiddenComponent) {
+				Vue.util.warn(`${isHtmlElement ? node.tag : node.componentOptions.tag} is not allowed inside the ${vm.$options.name} component`, vm)
+			}
 
 			// cleanup
 			slots.splice(index, 1)
 		}
-	})
+	}
 }
 
 export default ValidateSlot
