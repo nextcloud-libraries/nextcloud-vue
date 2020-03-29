@@ -38,11 +38,15 @@ This component is meant to be used inside a Breadcrumbs component.
 		@dragover.prevent="() => {}"
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
-		<element :is="tag" :to="to" :href="href">
+		<element
+			:is="tag"
+			v-if="title || icon"
+			:to="to"
+			:href="href">
 			<span v-if="icon" :class="icon" class="icon" />
 			<span v-else>{{ title }}</span>
 		</element>
-		<Actions :force-menu="forceMenu">
+		<Actions :force-menu="forceMenu" :open="open" @update:open="onOpenChange">
 			<!-- @slot All action elements passed into the default slot will be used -->
 			<slot />
 		</Actions>
@@ -108,6 +112,10 @@ export default {
 			 * Variable to track if we hover over the breadcrumb
 			 */
 			hovering: false,
+			/**
+			 * Variable for the open state of the Actions menu
+			 */
+			open: false,
 		}
 	},
 	computed: {
@@ -121,6 +129,19 @@ export default {
 		},
 	},
 	methods: {
+		/**
+		 * Function to handle changing the open state of the Actions menu
+		 * $emit the open state.
+		 *
+		 * @param {boolean} open The open state of the Actions menu
+		 */
+		onOpenChange(open) {
+			/**
+			 * Event emitted when the open state of the Actions menu changes
+			 * @type {null}
+			 */
+			this.$emit('update:open', open)
+		},
 		/**
 		 * Function to handle a drop on the breadcrumb.
 		 * $emit the event and the path, remove the hovering state.
@@ -184,7 +205,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.breadcrumb div.crumb {
+@import '../../fonts/scss/iconfont-vue';
+
+.crumb {
+	@include iconfont('breadcrumb');
+	background-image: none;
+	display: inline-flex;
+	height: $clickable-area;
+	padding: 0;
+
+	&::before {
+		display: flex;
+		align-items: center;
+		order: 1;
+		color: var(--color-border-dark);
+		font-size: 26px;
+	}
+
+	&--hidden {
+		display: none;
+	}
+
 	&--with-action a {
 		padding-right: 2px;
 	}
