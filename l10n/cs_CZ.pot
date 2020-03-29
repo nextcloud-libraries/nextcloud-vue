@@ -9,36 +9,40 @@ msgstr ""
 "Language: cs_CZ\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:169
+#: src/components/MultiselectTags/MultiselectTags.vue:170
 msgid "{tag} (invisible)"
 msgstr "{tag} (neviditelný)"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:172
+#: src/components/MultiselectTags/MultiselectTags.vue:173
 msgid "{tag} (restricted)"
 msgstr "{tag} (omezený)"
+
+#: src/components/Actions/Actions.vue:194
+msgid "Actions"
+msgstr "Akce"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
 msgstr "Zvolit"
 
-#: src/components/Modal/Modal.vue:109
+#: src/components/Modal/Modal.vue:117
 msgid "Close"
 msgstr "Zavřít"
 
-#: src/components/Modal/Modal.vue:154
+#: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "Následující"
 
-#: src/components/Multiselect/Multiselect.vue:169
+#: src/components/Multiselect/Multiselect.vue:172
 #: src/components/MultiselectTags/MultiselectTags.vue:78
 msgid "No results"
 msgstr "Žádné výsledky"
 
-#: src/components/Modal/Modal.vue:290
+#: src/components/Modal/Modal.vue:302
 msgid "Pause slideshow"
 msgstr "Pozastavit prezentaci"
 
-#: src/components/Modal/Modal.vue:134
+#: src/components/Modal/Modal.vue:144
 msgid "Previous"
 msgstr "Předchozí"
 
@@ -50,6 +54,6 @@ msgstr "Vybrat štítek"
 msgid "Settings"
 msgstr "Nastavení"
 
-#: src/components/Modal/Modal.vue:290
+#: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Spustit prezentaci"
