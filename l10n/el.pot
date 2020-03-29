@@ -1,44 +1,49 @@
 # Translators:
 # Efstathios Iosifidis <iefstathios@gmail.com>, 2020
+# george k <norhorn@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>, 2020\n"
+"Last-Translator: george k <norhorn@gmail.com>, 2020\n"
 "Language-Team: Greek (https://www.transifex.com/nextcloud/teams/64236/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:169
+#: src/components/MultiselectTags/MultiselectTags.vue:170
 msgid "{tag} (invisible)"
 msgstr "{tag} (αόρατο)"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:172
+#: src/components/MultiselectTags/MultiselectTags.vue:173
 msgid "{tag} (restricted)"
 msgstr "{tag} (περιορισμένο)"
+
+#: src/components/Actions/Actions.vue:194
+msgid "Actions"
+msgstr "Ενέργειες"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
 msgstr "Επιλογή"
 
-#: src/components/Modal/Modal.vue:109
+#: src/components/Modal/Modal.vue:117
 msgid "Close"
 msgstr "Κλείσιμο"
 
-#: src/components/Modal/Modal.vue:154
+#: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "Επόμενο"
 
-#: src/components/Multiselect/Multiselect.vue:169
+#: src/components/Multiselect/Multiselect.vue:172
 #: src/components/MultiselectTags/MultiselectTags.vue:78
 msgid "No results"
 msgstr "Κανένα αποτέλεσμα"
 
-#: src/components/Modal/Modal.vue:290
+#: src/components/Modal/Modal.vue:302
 msgid "Pause slideshow"
 msgstr "Παύση προβολής διαφανειών"
 
-#: src/components/Modal/Modal.vue:134
+#: src/components/Modal/Modal.vue:144
 msgid "Previous"
 msgstr "Προηγούμενο"
 
@@ -50,6 +55,6 @@ msgstr "Επιλογή ετικέτας"
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
-#: src/components/Modal/Modal.vue:290
+#: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Έναρξη προβολής διαφανειών"
