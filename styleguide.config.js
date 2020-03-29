@@ -15,26 +15,26 @@ module.exports = {
 		module: {
 			rules: require('./webpack.dev.js').module.rules.filter(
 				rule => rule.use !== 'eslint-loader'
-			)
-		}
+			),
+		},
 	}),
 	exampleMode: 'expand',
 	usageMode: 'expand',
 	components: 'src/components/*/*.vue',
 	getComponentPathLine(componentPath) {
-		const name = path.basename(componentPath, '.vue');
-		return `import { ${name} } from '@nextcloud/vue/dist/Components/${name}';`;
+		const name = path.basename(componentPath, '.vue')
+		return `import { ${name} } from '@nextcloud/vue/dist/Components/${name}';`
 	},
 	sections: [
 		{
 			name: 'Introduction',
 			content: 'docs/index.md',
 			exampleMode: 'hide',
-			usageMode: 'hide'
+			usageMode: 'hide',
 		},
 		{
 			name: 'Directives',
-			content: 'docs/directives.md'
+			content: 'docs/directives.md',
 		},
 		{
 			name: 'Components',
@@ -42,48 +42,67 @@ module.exports = {
 			components: 'src/components/*/*.vue',
 			sectionDepth: 1,
 			ignore: [
-				'src/components/Action[sA-Z]*/*.vue',
-				'src/components/App*/*.vue',
+				'src/components/Action*/*.vue',
+				'src/components/AppNavigation*/*.vue',
+				'src/components/AppContent*/*.vue',
+				'src/components/AppSidebar*/*.vue',
 				'src/components/Breadcrumb*/*.vue',
-				'src/components/Multiselect/*.vue',
 				'src/components/Multiselect*/*.vue',
-				'src/components/PopoverMenu/!(PopoverMenu).vue'
+				'src/components/PopoverMenu/!(PopoverMenu).vue',
 			],
 			sections: [
 				{
 					name: 'Actions',
 					components: [
-						'src/components/Actions/*.vue',
-						'src/components/Action[A-Z]*/*.vue'
-					]
+						'src/components/Action*/*.vue',
+					],
 				},
 				{
 					name: 'App containers',
 					components: [
-						'src/components/App*/*.vue',
-						'src/components/Content/*.vue'
-					]
+						'src/components/Content/*.vue',
+					],
+					sections: [
+						{
+							name: 'AppNavigation',
+							components: [
+								'src/components/AppNavigation*/*.vue',
+							],
+						},
+						{
+							name: 'AppContent',
+							components: [
+								'src/components/AppContent*/*.vue',
+							],
+						},
+						{
+							name: 'AppSidebar',
+							components: [
+								'src/components/AppSidebar*/*.vue',
+							],
+						},
+					],
 				},
 				{
 					name: 'Breadcrumbs',
 					components: [
 						'src/components/Breadcrumb*/*.vue',
-					]
+					],
 				},
 				{
 					name: 'Multiselect',
 					components: [
 						'src/components/Multiselect/Multiselect.vue',
 						'src/components/Multiselect/AvatarSelectOption.vue',
-						'src/components/MultiselectTags/MultiselectTags.vue'
-					]
-				}
-			]
-		}
+						'src/components/MultiselectTags/MultiselectTags.vue',
+					],
+				},
+			],
+		},
 	],
 	ribbon: {
 		text: 'Fork me on GitHub',
-		url: 'https://github.com/nextcloud/nextcloud-vue'
+		url: 'https://github.com/nextcloud/nextcloud-vue',
 	},
 	// see https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.js
 	theme: {
@@ -95,10 +114,10 @@ module.exports = {
 			linkHover: '#0082c9',
 			sidebarBackground: '#ffffff',
 			errorBackground: '#e22d44',
-			ribbonBackground: '#0082c9'
+			ribbonBackground: '#0082c9',
 		},
 		fontFamily: {
-			base: '"Nunito", "Open Sans", sans-serif'
-		}
-	}
-};
+			base: '"Nunito", "Open Sans", sans-serif',
+		},
+	},
+}
