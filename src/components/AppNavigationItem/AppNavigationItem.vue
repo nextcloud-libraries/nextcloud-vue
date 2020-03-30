@@ -145,7 +145,7 @@ Just set the `pinned` prop.
 		<div v-if="hasUtils" class="app-navigation-entry__utils">
 			<slot name="counter" />
 			<Actions menu-align="right"
-				:open="menuOpened"
+				:open="menuOpen"
 				:force-menu="forceMenu"
 				:default-icon="menuIcon"
 				@update:open="onMenuToggle">
@@ -322,7 +322,6 @@ export default {
 		return {
 			newTitle: '',
 			opened: this.open,
-			menuOpened: this.menuOpen,
 			editing: false,
 		}
 	},
@@ -386,14 +385,10 @@ export default {
 		open(newVal) {
 			this.opened = newVal
 		},
-		menuOpen(newVal) {
-			this.menuOpened = newVal
-		},
 	},
 	methods: {
 		// sync opened menu state with prop
 		onMenuToggle(state) {
-			this.menuOpened = state
 			this.$emit('update:menuOpen', state)
 		},
 		// toggle the collapsible state
