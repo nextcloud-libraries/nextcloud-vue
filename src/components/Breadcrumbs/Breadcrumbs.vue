@@ -194,7 +194,7 @@ export default {
 				}
 				// We only update the hidden crumbs if they have changed,
 				// otherwise we will run into an infinite update loop.
-				if (!this.arraysEqual(this.hiddenIndices, hiddenIndices.sort())) {
+				if (!this.arraysEqual(this.hiddenIndices, hiddenIndices.sort((a, b) => a - b))) {
 					// Get all breadcrumbs based on the hidden indices
 					this.hiddenCrumbs = hiddenIndices.map((index) => { return breadcrumbs[index] })
 					this.hiddenIndices = hiddenIndices
