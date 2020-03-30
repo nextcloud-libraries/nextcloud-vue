@@ -159,10 +159,10 @@ export default {
 		 */
 		closeActions(e) {
 			// Don't do anything if we leave towards a child element.
-			if (this.$refs.actions.$el.contains(e.relatedTarget)) {
+			if (this.$refs.actionsBreadcrumb.$el.contains(e.relatedTarget)) {
 				return
 			}
-			this.$refs.actions.open = false
+			this.$refs.actionsBreadcrumb.$refs.actions.opened = false
 		},
 		/**
 		 * Check the width of the breadcrumb and hide breadcrumbs
@@ -288,7 +288,7 @@ export default {
 				this.$emit('dropped', e, path)
 			}
 			// Close the actions menu after the drop
-			this.$refs.actions.open = false
+			this.$refs.actionsBreadcrumb.$refs.actions.opened = false
 			// Remove all hovering classes
 			const crumbs = document.querySelectorAll('.crumb')
 			crumbs.forEach((f) => { f.classList.remove('crumb--hovered') })
@@ -419,12 +419,12 @@ export default {
 					hideable: false,
 				},
 				// Add a ref to the Actions menu
-				ref: 'actions',
+				ref: 'actionsBreadcrumb',
 				key: 'actions-breadcrumb-1',
 				// Add handlers so the Actions menu opens on hover
 				nativeOn: {
 					dragstart: this.dragStart,
-					dragenter: () => { this.$refs.actions.open = true },
+					dragenter: () => { this.$refs.actionsBreadcrumb.$refs.actions.opened = true },
 					dragleave: this.closeActions,
 				},
 			// Add all hidden breadcrumbs as ActionRouter or ActionLink

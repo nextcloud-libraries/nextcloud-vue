@@ -46,7 +46,10 @@ This component is meant to be used inside a Breadcrumbs component.
 			<span v-if="icon" :class="icon" class="icon" />
 			<span v-else>{{ title }}</span>
 		</element>
-		<Actions :force-menu="forceMenu" :open="open" @update:open="onOpenChange">
+		<Actions ref="actions"
+			:force-menu="forceMenu"
+			:open="open"
+			@update:open="onOpenChange">
 			<!-- @slot All action elements passed into the default slot will be used -->
 			<slot />
 		</Actions>
@@ -105,6 +108,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Open state of the Actions menu
+		 */
+		open: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		return {
@@ -112,10 +122,6 @@ export default {
 			 * Variable to track if we hover over the breadcrumb
 			 */
 			hovering: false,
-			/**
-			 * Variable for the open state of the Actions menu
-			 */
-			open: false,
 		}
 	},
 	computed: {
