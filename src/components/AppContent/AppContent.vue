@@ -87,6 +87,7 @@ export default {
 	min-height: 100%;
 	// Overriding server styles TODO: cleanup!
 	margin: 0 !important;
+	min-width: 0;
 }
 
 </style>
