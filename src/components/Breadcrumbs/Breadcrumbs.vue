@@ -89,6 +89,7 @@ import Actions from '../Actions'
 import ActionRouter from '../ActionRouter'
 import ActionLink from '../ActionLink'
 import ValidateSlot from '../../utils/ValidateSlot'
+import Breadcrumb from '../Breadcrumb'
 
 export default {
 	name: 'Breadcrumbs',
@@ -96,6 +97,7 @@ export default {
 		Actions,
 		ActionRouter,
 		ActionLink,
+		Breadcrumb,
 	},
 	props: {
 		/**
@@ -157,10 +159,10 @@ export default {
 		 */
 		closeActions(e) {
 			// Don't do anything if we leave towards a child element.
-			if (this.$refs.actions.$el.contains(e.relatedTarget)) {
+			if (this.$refs.actionsBreadcrumb.$el.contains(e.relatedTarget)) {
 				return
 			}
-			this.$refs.actions.opened = false
+			this.$refs.actionsBreadcrumb.$refs.actions.opened = false
 		},
 		/**
 		 * Check the width of the breadcrumb and hide breadcrumbs
@@ -192,7 +194,7 @@ export default {
 				}
 				// We only update the hidden crumbs if they have changed,
 				// otherwise we will run into an infinite update loop.
-				if (!this.arraysEqual(this.hiddenIndices, hiddenIndices.sort())) {
+				if (!this.arraysEqual(this.hiddenIndices, hiddenIndices.sort((a, b) => a - b))) {
 					// Get all breadcrumbs based on the hidden indices
 					this.hiddenCrumbs = hiddenIndices.map((index) => { return breadcrumbs[index] })
 					this.hiddenIndices = hiddenIndices
@@ -286,7 +288,7 @@ export default {
 				this.$emit('dropped', e, path)
 			}
 			// Close the actions menu after the drop
-			this.$refs.actions.opened = false
+			this.$refs.actionsBreadcrumb.$refs.actions.opened = false
 			// Remove all hovering classes
 			const crumbs = document.querySelectorAll('.crumb')
 			crumbs.forEach((f) => { f.classList.remove('crumb--hovered') })
@@ -404,59 +406,64 @@ export default {
 
 		// The Actions menu
 		if (this.hiddenCrumbs.length) {
-			// Create the Actions menu
-			crumbs.push(createElement('div', { class: 'crumb' },
-				[createElement('Actions', {
-					class: 'dropdown',
-					// We want the Actions to always show as a dropdown menu
+			// Use a breadcrumb component for the hidden breadcrumbs
+			crumbs.push(createElement('Breadcrumb', {
+				class: 'dropdown',
+				// We want the Actions to always show as a dropdown menu
+				props: {
+					// Don't show a title for this breadcrumb, only the Actions menu
+					title: '',
+					forceMenu: true,
+					// Don't allow dropping directly on the actions breadcrumb
+					disableDrop: true,
+					hideable: false,
+				},
+				// Add a ref to the Actions menu
+				ref: 'actionsBreadcrumb',
+				key: 'actions-breadcrumb-1',
+				// Add handlers so the Actions menu opens on hover
+				nativeOn: {
+					dragstart: this.dragStart,
+					dragenter: () => { this.$refs.actionsBreadcrumb.$refs.actions.opened = true },
+					dragleave: this.closeActions,
+				},
+			// Add all hidden breadcrumbs as ActionRouter or ActionLink
+			}, this.hiddenCrumbs.map(crumb => {
+				// Get the parameters from the breadcrumb component props
+				const to = crumb.componentOptions.propsData.to
+				const href = crumb.componentOptions.propsData.href
+				const disabled = crumb.componentOptions.propsData.disableDrop
+				// Decide whether to show the breadcrumbs as ActionRouter or ActionLink
+				let element = 'ActionLink'
+				let path = href
+				if (to) {
+					element = 'ActionRouter'
+					path = to
+				}
+				return createElement(element, {
+					class: 'crumb',
 					props: {
-						forceMenu: true,
+						to: to,
+						href: href,
+						icon: 'icon-folder',
 					},
-					// Add a ref to the Actions menu
-					ref: 'actions',
-					// Add handlers so the Actions menu opens on hover
+					// Prevent the breadcrumbs from being draggable
+					attrs: {
+						draggable: false,
+					},
+					// Add the drag and drop handlers
 					nativeOn: {
 						dragstart: this.dragStart,
-						dragenter: () => { this.$refs.actions.opened = true },
-						dragleave: this.closeActions,
+						drop: ($event) => this.dropped($event, path, disabled),
+						dragover: this.dragOver,
+						dragenter: ($event) => this.dragEnter($event, disabled),
+						dragleave: ($event) => this.dragLeave($event, disabled),
 					},
-				// Add all hidden breadcrumbs as ActionRouter or ActionLink
-				}, this.hiddenCrumbs.map(crumb => {
-					// Get the parameters from the breadcrumb component props
-					const to = crumb.componentOptions.propsData.to
-					const href = crumb.componentOptions.propsData.href
-					const disabled = crumb.componentOptions.propsData.disableDrop
-					// Decide whether to show the breadcrumbs as ActionRouter or ActionLink
-					let element = 'ActionLink'
-					let path = href
-					if (to) {
-						element = 'ActionRouter'
-						path = to
-					}
-					return createElement(element, {
-						class: 'crumb',
-						props: {
-							to: to,
-							href: href,
-							icon: 'icon-folder',
-						},
-						// Prevent the breadcrumbs from being draggable
-						attrs: {
-							draggable: false,
-						},
-						// Add the drag and drop handlers
-						nativeOn: {
-							dragstart: this.dragStart,
-							drop: ($event) => this.dropped($event, path, disabled),
-							dragover: this.dragOver,
-							dragenter: ($event) => this.dragEnter($event, disabled),
-							dragleave: ($event) => this.dragLeave($event, disabled),
-						},
-					},
-					crumb.componentOptions.propsData.title
-					)
-				}))]
-			))
+				},
+				crumb.componentOptions.propsData.title
+				)
+			}))
+			)
 		}
 		// The second half of the breadcrumbs
 		const crumbs2 = this.hiddenCrumbs.length
@@ -470,31 +477,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../fonts/scss/iconfont-vue';
-
 .breadcrumb {
 	width: 100%;
 	flex-grow: 1;
-
-	div.crumb {
-		@include iconfont('breadcrumb');
-		background-image: none;
-		display: inline-flex;
-		height: $clickable-area;
-		padding: 0;
-
-		&::before {
-			display: flex;
-			align-items: center;
-			order: 1;
-			color: var(--color-border-dark);
-			font-size: 26px;
-		}
-
-		&--hidden {
-			display: none;
-		}
-	}
 
 	.crumb--hovered{
 		background-color: var(--color-primary-light);
