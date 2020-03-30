@@ -9,36 +9,40 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:169
+#: src/components/MultiselectTags/MultiselectTags.vue:170
 msgid "{tag} (invisible)"
 msgstr "{tag} (invisibile)"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:172
+#: src/components/MultiselectTags/MultiselectTags.vue:173
 msgid "{tag} (restricted)"
 msgstr "{tag} (limitato)"
+
+#: src/components/Actions/Actions.vue:196
+msgid "Actions"
+msgstr "Azioni"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
 msgstr "Scegli"
 
-#: src/components/Modal/Modal.vue:109
+#: src/components/Modal/Modal.vue:117
 msgid "Close"
 msgstr "Chiudi"
 
-#: src/components/Modal/Modal.vue:154
+#: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "Successivo"
 
-#: src/components/Multiselect/Multiselect.vue:169
+#: src/components/Multiselect/Multiselect.vue:172
 #: src/components/MultiselectTags/MultiselectTags.vue:78
 msgid "No results"
 msgstr "Nessun risultato"
 
-#: src/components/Modal/Modal.vue:290
+#: src/components/Modal/Modal.vue:302
 msgid "Pause slideshow"
 msgstr "Presentazione in pausa"
 
-#: src/components/Modal/Modal.vue:134
+#: src/components/Modal/Modal.vue:144
 msgid "Previous"
 msgstr "Precedente"
 
@@ -50,6 +54,6 @@ msgstr "Seleziona un'etichetta"
 msgid "Settings"
 msgstr "Impostazioni"
 
-#: src/components/Modal/Modal.vue:290
+#: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Avvia presentazione"
