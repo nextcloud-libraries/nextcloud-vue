@@ -9,36 +9,40 @@ msgstr ""
 "Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:169
+#: src/components/MultiselectTags/MultiselectTags.vue:170
 msgid "{tag} (invisible)"
 msgstr "{tag} (invisíbel)"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:172
+#: src/components/MultiselectTags/MultiselectTags.vue:173
 msgid "{tag} (restricted)"
 msgstr "{tag} (restrinxido)"
+
+#: src/components/Actions/Actions.vue:196
+msgid "Actions"
+msgstr "Accións"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
 msgstr "Escoller"
 
-#: src/components/Modal/Modal.vue:109
+#: src/components/Modal/Modal.vue:117
 msgid "Close"
 msgstr "Pechar"
 
-#: src/components/Modal/Modal.vue:154
+#: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "Seguinte"
 
-#: src/components/Multiselect/Multiselect.vue:169
+#: src/components/Multiselect/Multiselect.vue:172
 #: src/components/MultiselectTags/MultiselectTags.vue:78
 msgid "No results"
 msgstr "Sen resultados"
 
-#: src/components/Modal/Modal.vue:290
+#: src/components/Modal/Modal.vue:302
 msgid "Pause slideshow"
 msgstr "Pausar o diaporama"
 
-#: src/components/Modal/Modal.vue:134
+#: src/components/Modal/Modal.vue:144
 msgid "Previous"
 msgstr "Anterir"
 
@@ -50,6 +54,6 @@ msgstr "Seleccione unha etiqueta"
 msgid "Settings"
 msgstr "Axustes"
 
-#: src/components/Modal/Modal.vue:290
+#: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Iniciar o diaporama"
