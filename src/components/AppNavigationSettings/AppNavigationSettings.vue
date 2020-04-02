@@ -22,7 +22,7 @@
 
 <template>
 	<div id="app-settings"
-		v-click-outside="closeMenu"
+		v-click-outside="clickOutsideConfig"
 		:class="{ open }">
 		<div id="app-settings-header">
 			<button class="settings-button"
@@ -41,11 +41,15 @@
 <script>
 import { directive as ClickOutside } from 'v-click-outside'
 import { t } from '../../l10n'
+import { excludeClickOutsideClasses } from '../../mixins'
 
 export default {
 	directives: {
 		ClickOutside,
 	},
+	mixins: [
+		excludeClickOutsideClasses,
+	],
 	props: {
 		title: {
 			type: String,
@@ -56,6 +60,10 @@ export default {
 	data() {
 		return {
 			open: false,
+			clickOutsideConfig: {
+				handler: this.closeMenu,
+				middleware: this.clickOutsideMiddleware,
+			},
 		}
 	},
 	methods: {

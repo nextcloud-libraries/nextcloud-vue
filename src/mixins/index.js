@@ -20,10 +20,12 @@
  *
  */
 
+import excludeClickOutsideClasses from './excludeClickOutsideClasses.js'
 import isFullscreen from './isFullscreen'
 import isMobile from './isMobile'
 
 export {
+	excludeClickOutsideClasses,
 	isFullscreen,
 	isMobile,
 }
