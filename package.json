@@ -34,6 +34,7 @@
 	],
 	"dependencies": {
 		"@nextcloud/axios": "^1.1.0",
+		"@nextcloud/event-bus": "^1.1.4",
 		"@nextcloud/l10n": "^1.1.0",
 		"@nextcloud/router": "^1.0.0",
 		"core-js": "^3.4.4",
