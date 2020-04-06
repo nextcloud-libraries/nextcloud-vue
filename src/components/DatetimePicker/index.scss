@@ -35,7 +35,6 @@ $cell_height: 32px;
 	}
 
 	.mx-datepicker-main {
-		font-size: 0.875em;
 		font-family: var(--font-face) !important;
 		line-height: 1.5;
 		color: var(--color-main-text);
@@ -74,8 +73,8 @@ $cell_height: 32px;
 		display: flex;
 		overflow: hidden;
 
-		// first active cell
-		.mx-calendar-content .cell {
+		// first active cell, range style on day picker panel only
+		.mx-calendar-content .mx-table-date .cell {
 			&.active {
 				border-radius: var(--border-radius) 0 0 var(--border-radius);
 			}
@@ -93,7 +92,14 @@ $cell_height: 32px;
 		thead > tr > th {
 			text-align: center;
 			color: var(--color-text-lighter);
-			opacity: .5;
+			opacity: $opacity_disabled;
+		}
+
+		// Override table rule from server
+		tr:focus,
+		tr:hover,
+		tr:active {
+			background-color: transparent;
 		}
 
 		// regular cell style
@@ -102,18 +108,21 @@ $cell_height: 32px;
 			border-radius: 50px;
 			text-align: center;
 			transition: all 100ms ease-in-out;
-			cursor: pointer;
+
+			// force pointer on all content
+			> * {
+				cursor: pointer;
+			}
+
 			// Selected and mouse event
-			&:hover,
-			&:focus,
-			&.actived,
-			&.active,
-			&.today,
-			&.in-range  {
+			&.today {
 				font-weight: bold;
 				opacity: $opacity_full;
-				color: var(--color-primary-text);
-				background-color: var(--color-primary-element);
+				color: var(--color-primary-element);
+				&:hover,
+				&:focus {
+					color: var(--color-primary-text);
+				}
 			}
 			&.in-range,
 			&.disabled {
@@ -123,15 +132,31 @@ $cell_height: 32px;
 			&.in-range {
 				opacity: $opacity_normal;
 			}
+			&.not-current-month {
+				color: var(--color-text-lighter);
+				opacity: $opacity_disabled;
+				&:hover,
+				&:focus {
+					opacity: $opacity_full;
+				}
+			}
+
+			// hover-/focus after the other rules
+			&:hover,
+			&:focus,
+			&.actived,
+			&.active,
+			&.in-range  {
+				font-weight: bold;
+				opacity: $opacity_full;
+				color: var(--color-primary-text);
+				background-color: var(--color-primary-element);
+			}
 			&.disabled {
 				color: var(--color-text-lighter);
 				opacity: $opacity_disabled;
 				background-color: var(--color-background-darker);
-			}
-
-			&.not-current-month {
-				color: var(--color-text-lighter);
-				opacity: .5;
+				border-radius: 0;
 			}
 		}
 
@@ -149,13 +174,43 @@ $cell_height: 32px;
 		li.cell {
 			min-height: $cell_height;
 		}
+
+		// Big grid layouts for years & months panels
+		&.mx-table-year,
+		&.mx-table-month {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+			tr {
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				flex: 1 1;
+				.cell {
+					display: flex;
+					// 3 rows with a little spacing
+					flex: 0 1 32%;
+					align-items: center;
+					justify-content: center;
+					// spacing between rows
+					height: 95%;
+				}
+			}
+		}
+		&.mx-table-year {
+			tr .cell {
+				// only two rows in year panel
+				flex-basis: 48%;
+			}
+		}
 	}
 
+	// default buttons: header...
 	.mx-btn {
 		text-decoration: none;
 		cursor: pointer;
 		color: var(--color-text-lighter);
-		opacity: .5;
+		opacity: $opacity_disabled;
 		padding: 7px 10px;
 		margin: 0 auto; // center also single element
 		border-radius: $cell_height;
@@ -171,6 +226,7 @@ $cell_height: 32px;
 		}
 	}
 
+	// Header, arrows, years, months
 	.mx-calendar-header {
 		margin-bottom: 4px;
 		text-align: center;
@@ -178,17 +234,19 @@ $cell_height: 32px;
 		align-items: center;
 		justify-content: space-between;
 		display: flex;
+		height: $clickable-area;
 
 		button {
 			text-decoration: none;
 			cursor: pointer;
-			color: var(--color-text-lighter);
+			color: var(--color-main-text);
+			min-height: $cell_height;
 			margin: 0 auto; // center also single element
 			border-radius: $cell_height;
-			height: $cell_height;
 			line-height: $cell_height - 12px; // padding minus 2px for better visual
 			min-width: $cell_height;
 			text-align: center;
+			opacity: $opacity_normal;
 
 			// Mouse feedback
 			&:hover,
@@ -197,19 +255,12 @@ $cell_height: 32px;
 				color: var(--color-main-text);
 				background-color: var(--color-background-darker);
 			}
-		}
-
-		.mx-calendar-header-label {
-			display: flex;
 
 			// Header arrows
-			&.mx-icon-double-left,
-			&.mx-icon-left,
-			&.mx-icon-right,
-			&.mx-icon-double-right {
-				background: none;
-				font-size: 0;
-				opacity: $opacity_disabled;
+			&.mx-btn-icon-double-left,
+			&.mx-btn-icon-left,
+			&.mx-btn-icon-right,
+			&.mx-btn-icon-double-right {
 				align-items: center;
 				justify-content: center;
 				padding: 0; // leave the centering to flex
@@ -219,36 +270,40 @@ $cell_height: 32px;
 				&:before {
 					display: block;
 					font-size: $icon-size;
-					content: '';
+				}
+				
+				// Hide original icons
+				> i {
+					display: none;
 				}
 
-				&:after {
-					content: none !important;
-				}
-
 			}
+		}
 
-			&.mx-icon-double-left {
-				@include iconfont('arrow-left-double');
-			}
+		.mx-calendar-header-label {
+			display: flex;			
+		}
 
-			&.mx-icon-left {
-				@include iconfont('arrow-left');
-			}
+		.mx-btn-icon-double-left {
+			@include iconfont('arrow-left-double');
+		}
 
-			&.mx-icon-right {
-				@include iconfont('arrow-right');
-				// arrows are all before month and year
-				// send them to the end of the row
-				//order: 3;
-			}
+		.mx-btn-icon-left {
+			@include iconfont('arrow-left');
+		}
 
-			&.mx-icon-double-right {
-				@include iconfont('arrow-right-double');
-				// arrows are all before month and year
-				// send them to the end of the row
-				//order: 4;
-			}
+		.mx-btn-icon-right {
+			@include iconfont('arrow-right');
+			// arrows are all before month and year
+			// send them to the end of the row
+			//order: 3;
+		}
+
+		.mx-btn-icon-double-right {
+			@include iconfont('arrow-right-double');
+			// arrows are all before month and year
+			// send them to the end of the row
+			//order: 4;
 		}
 
 		button.mx-btn-icon-right {

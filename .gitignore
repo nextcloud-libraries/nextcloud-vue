@@ -21,3 +21,7 @@ CHANGELOG.md
 
 # Unit test / coverage reports
 coverage
+
+# Docs compiled build
+styleguide/build/
+styleguide/index.html
