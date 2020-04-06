@@ -48,7 +48,7 @@ is dropped on a creadcrumb.
 			</Breadcrumbs>
 		</div>
 		<br />
-		<div class="dragme" draggable="true">
+		<div class="dragme" draggable="true" @dragstart="dragStart">
 			<span>Drag me onto the breadcrumbs.</span>
 		</div>
 	</div>
@@ -62,6 +62,9 @@ export default {
 		},
 		droppedOnCrumb(e, path) {
 			alert('Drop on crumb ' + path)
+		},
+		dragStart(e) {
+			e.dataTransfer.setData('text/plain', 'dragging')
 		},
 	}
 }
