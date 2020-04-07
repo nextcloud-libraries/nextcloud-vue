@@ -30,13 +30,46 @@
 
 ### Example
 ```vue
-	<DatetimePicker
-		:value="new Date()"
-		type="datetime"
-		@update:value="alert('Value updated')"
-		@change="alert('Date changed')" />
+<template>
+	<span>
+		<DatetimePicker
+			v-model="time"
+			type="datetime" />
+		{{ time }}
+	</span>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			time: null,
+		}
+	},
+}
+</script>
 ```
 
+### Range picker
+```vue
+<template>
+	<span>
+		<DatetimePicker
+			v-model="time"
+			range
+			type="date" />
+		{{ time }}
+	</span>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			time: null,
+		}
+	},
+}
+</script>
+```
 </docs>
 
 <template>
@@ -61,18 +94,6 @@
 
 <script>
 import DatePicker from 'vue2-datepicker'
-
-/**
- * hijack the display function and avoid the
- * top and left original positionning
- * https://github.com/mengxiong10/vue2-datepicker/blob/65c5762227649430f14158c01401a8486a881336/src/index.vue#L431
- */
-DatePicker.methods.displayPopup = function() {
-	const popupElmt = this.$el.querySelector('.mx-datepicker-popup')
-	if (popupElmt && !popupElmt.classList.contains('popovermenu')) {
-		popupElmt.className += ' popovermenu menu-center open'
-	}
-}
 
 export default {
 	name: 'DatetimePicker',
