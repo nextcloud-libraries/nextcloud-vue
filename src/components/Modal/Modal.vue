@@ -264,7 +264,7 @@ export default {
 		},
 		size: {
 			type: String,
-			default: 'normal',
+			default: 'large',
 			validator: size => {
 				return ['normal', 'large', 'full'].indexOf(size) !== -1
 			},
