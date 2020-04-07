@@ -5,8 +5,8 @@ $cell_height: 32px;
 @import '~vue2-datepicker/scss/index.scss';
 
 .mx-datepicker[data-v-#{$scope_version}] {
-	color: var(--color-main-text);
 	user-select: none;
+	color: var(--color-main-text);
 
 	svg {
 		fill: var(--color-main-text);
@@ -17,15 +17,15 @@ $cell_height: 32px;
 		// input
 		.mx-input {
 			width: 100%;
+			border: 1px solid var(--color-border);
 			background-color: var(--color-main-background);
 			background-clip: content-box;
-			border: 1px solid var(--color-border);
 		}
 
 		&:disabled,
 		&.disabled {
-			opacity: $opacity_normal;
 			cursor: not-allowed;
+			opacity: $opacity_normal;
 		}
 
 		.mx-icon-calendar,
@@ -36,16 +36,16 @@ $cell_height: 32px;
 
 	// Datepicker popup wrapper
 	.mx-datepicker-main {
+		color: var(--color-main-text);
+		border: 1px solid var(--color-border);
+		background-color: var(--color-main-background);
 		font-family: var(--font-face) !important;
 		line-height: 1.5;
-		color: var(--color-main-text);
-		background-color: var(--color-main-background);
-		border: 1px solid var(--color-border);
 	}
 
 	.mx-datepicker-popup {
-		box-shadow: none;
 		z-index: 1000;
+		box-shadow: none;
 
 		.mx-datepicker-sidebar + .mx-datepicker-content {
 			border-left: 1px solid var(--color-border);
@@ -62,8 +62,8 @@ $cell_height: 32px;
 
 	// default popup styles
 	.mx-calendar {
-		padding: 5px;
 		width: $cell_height * 7  + 2 * 5px; // 7 days + padding
+		padding: 5px;
 		&.mx-calendar-week-mode {
 			width: $cell_height * 8  + 2 * 5px; // week number + 7 days + padding
 		}
@@ -96,8 +96,8 @@ $cell_height: 32px;
 
 		thead > tr > th {
 			text-align: center;
-			color: var(--color-text-lighter);
 			opacity: $opacity_disabled;
+			color: var(--color-text-lighter);
 		}
 
 		// Override table rule from server
@@ -109,10 +109,10 @@ $cell_height: 32px;
 
 		// regular cell style
 		.cell {
+			transition: all 100ms ease-in-out;
+			text-align: center;
 			opacity: $opacity_normal;
 			border-radius: 50px;
-			text-align: center;
-			transition: all 100ms ease-in-out;
 
 			// force pointer on all content
 			> * {
@@ -121,9 +121,9 @@ $cell_height: 32px;
 
 			// Selected and mouse event
 			&.today {
-				font-weight: bold;
 				opacity: $opacity_full;
 				color: var(--color-primary-element);
+				font-weight: bold;
 				&:hover,
 				&:focus {
 					color: var(--color-primary-text);
@@ -138,8 +138,8 @@ $cell_height: 32px;
 				opacity: $opacity_normal;
 			}
 			&.not-current-month {
-				color: var(--color-text-lighter);
 				opacity: $opacity_disabled;
+				color: var(--color-text-lighter);
 				&:hover,
 				&:focus {
 					opacity: $opacity_full;
@@ -151,24 +151,24 @@ $cell_height: 32px;
 			&:focus,
 			&.actived,
 			&.active,
-			&.in-range  {
-				font-weight: bold;
+			&.in-range {
 				opacity: $opacity_full;
 				color: var(--color-primary-text);
 				background-color: var(--color-primary-element);
+				font-weight: bold;
 			}
 			&.disabled {
-				color: var(--color-text-lighter);
 				opacity: $opacity_disabled;
-				background-color: var(--color-background-darker);
+				color: var(--color-text-lighter);
 				border-radius: 0;
+				background-color: var(--color-background-darker);
 			}
 		}
 
 		.mx-week-number {
+			text-align: center;
 			opacity: $opacity_normal;
 			border-radius: 50px;
-			text-align: center;
 		}
 
 		// cell that are not in a table
@@ -189,23 +189,23 @@ $cell_height: 32px;
 			justify-content: space-around;
 			tr {
 				display: inline-flex;
-				justify-content: space-around;
 				align-items: center;
 				flex: 1 1 $cell_height;
+				justify-content: space-around;
 				min-height: $cell_height;
 			}
 			// Default cell style
 			th,
 			td {
 				display: flex;
+				align-items: center;
 				// 3 rows with a little spacing
 				flex: 0 1 32%;
-				align-items: center;
 				justify-content: center;
+				min-width: $cell_height;
 				// spacing between rows
 				height: 95%;
 				min-height: $cell_height;
-				min-width: $cell_height;
 				transition: background 100ms ease-in-out;
 			}
 		}
@@ -227,16 +227,16 @@ $cell_height: 32px;
 
 	// default buttons: header...
 	.mx-btn {
-		text-decoration: none;
-		cursor: pointer;
-		color: var(--color-text-lighter);
-		opacity: $opacity_disabled;
-		padding: 7px 10px;
-		margin: 0 auto; // center also single element
-		border-radius: $cell_height;
-		height: $cell_height;
-		line-height: $cell_height - 12px; // padding minus 2px for better visual
 		min-width: $cell_height;
+		height: $cell_height;
+		margin: 0 auto; // center also single element
+		padding: 7px 10px;
+		cursor: pointer;
+		text-decoration: none;
+		opacity: $opacity_disabled;
+		color: var(--color-text-lighter);
+		border-radius: $cell_height;
+		line-height: $cell_height - 12px; // padding minus 2px for better visual
 		// Mouse feedback
 		&:hover,
 		&:focus {
@@ -248,24 +248,24 @@ $cell_height: 32px;
 
 	// Header, arrows, years, months
 	.mx-calendar-header {
-		margin-bottom: 4px;
+		display: inline-flex;
 		align-items: center;
 		justify-content: space-between;
-		display: inline-flex;
-		height: $clickable-area;
 		width: 100%;
+		height: $clickable-area;
+		margin-bottom: 4px;
 
 		button {
-			text-decoration: none;
-			cursor: pointer;
-			color: var(--color-main-text);
+			min-width: $cell_height;
 			min-height: $cell_height;
 			margin: 0;
+			cursor: pointer;
+			text-align: center;
+			text-decoration: none;
+			opacity: $opacity_normal;
+			color: var(--color-main-text);
 			border-radius: $cell_height;
 			line-height: $cell_height - 12px; // padding minus 2px for better visual
-			min-width: $cell_height;
-			text-align: center;
-			opacity: $opacity_normal;
 
 			// Mouse feedback
 			&:hover,
@@ -282,25 +282,24 @@ $cell_height: 32px;
 			&.mx-btn-icon-double-right {
 				align-items: center;
 				justify-content: center;
-				padding: 0; // leave the centering to flex
 				width: $cell_height;
+				padding: 0; // leave the centering to flex
 
 				// font icons
 				&:before {
 					display: block;
 					font-size: $icon-size;
 				}
-				
+
 				// Hide original icons
 				> i {
 					display: none;
 				}
-
 			}
 		}
 
 		.mx-calendar-header-label {
-			display: flex;			
+			display: flex;
 		}
 
 		.mx-btn-icon-double-left {
@@ -330,7 +329,7 @@ $cell_height: 32px;
 		}
 
 		button.mx-btn-icon-double-right {
-			order: 3
+			order: 3;
 		}
 	}
 
@@ -338,6 +337,9 @@ $cell_height: 32px;
 	.mx-calendar-week-mode {
 		// move focus on row and not on cell
 		.mx-date-row {
+			.mx-week-number {
+				font-weight: bold;
+			}
 			&:hover,
 			&.mx-active-week {
 				opacity: $opacity_full;
@@ -355,8 +357,8 @@ $cell_height: 32px;
 				background-color: var(--color-primary-element);
 				// Remove cell feedback on selected rows
 				td {
-					font-weight: normal;
 					opacity: $opacity_normal;
+					font-weight: normal;
 				}
 			}
 		}
@@ -367,15 +369,15 @@ $cell_height: 32px;
 		background-color: var(--color-main-background);
 
 		.mx-time-header {
-			border-bottom: 1px solid var(--color-border);
 			// only one button, center it
 			justify-content: center;
+			border-bottom: 1px solid var(--color-border);
 		}
-	
+
 		.mx-time-column {
 			border-left: 1px solid var(--color-border);
 		}
-	
+
 		.mx-time-option,
 		.mx-time-item {
 			&.active,
@@ -383,10 +385,10 @@ $cell_height: 32px;
 				color: var(--color-primary-text);
 				background-color: var(--color-primary-element);
 			}
-	
+
 			&.disabled {
-				opacity: $opacity_disabled;
 				cursor: not-allowed;
+				opacity: $opacity_disabled;
 				color: var(--color-main-text);
 				background-color: var(--color-main-background);
 			}
