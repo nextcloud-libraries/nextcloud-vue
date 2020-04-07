@@ -34,6 +34,7 @@ $cell_height: 32px;
 		}
 	}
 
+	// Datepicker popup wrapper
 	.mx-datepicker-main {
 		font-family: var(--font-face) !important;
 		line-height: 1.5;
@@ -59,9 +60,13 @@ $cell_height: 32px;
 		border-top: 1px solid var(--color-border);
 	}
 
+	// default popup styles
 	.mx-calendar {
 		padding: 5px;
 		width: $cell_height * 7  + 2 * 5px; // 7 days + padding
+		&.mx-calendar-week-mode {
+			width: $cell_height * 8  + 2 * 5px; // week number + 7 days + padding
+		}
 	}
 
 	.mx-time + .mx-time,
@@ -164,7 +169,6 @@ $cell_height: 32px;
 			opacity: $opacity_normal;
 			border-radius: 50px;
 			text-align: center;
-			transition: all 100ms ease-in-out;
 		}
 
 		// cell that are not in a table
@@ -175,32 +179,48 @@ $cell_height: 32px;
 			min-height: $cell_height;
 		}
 
-		// Big grid layouts for years & months panels
+		// Standard grid/flex layout for day/month/year panels
+		&.mx-table-date thead,
+		&.mx-table-date tbody,
 		&.mx-table-year,
 		&.mx-table-month {
 			display: flex;
 			flex-direction: column;
 			justify-content: space-around;
 			tr {
-				display: flex;
+				display: inline-flex;
 				justify-content: space-around;
 				align-items: center;
-				flex: 1 1;
-				.cell {
-					display: flex;
-					// 3 rows with a little spacing
-					flex: 0 1 32%;
-					align-items: center;
-					justify-content: center;
-					// spacing between rows
-					height: 95%;
-				}
+				flex: 1 1 $cell_height;
+				min-height: $cell_height;
+			}
+			// Default cell style
+			th,
+			td {
+				display: flex;
+				// 3 rows with a little spacing
+				flex: 0 1 32%;
+				align-items: center;
+				justify-content: center;
+				// spacing between rows
+				height: 95%;
+				min-height: $cell_height;
+				min-width: $cell_height;
+				transition: background 100ms ease-in-out;
 			}
 		}
 		&.mx-table-year {
-			tr .cell {
+			tr th,
+			tr td {
 				// only two rows in year panel
 				flex-basis: 48%;
+			}
+		}
+		&.mx-table-date {
+			tr th,
+			tr td {
+				// only two rows in year panel
+				flex-basis: $cell_height;
 			}
 		}
 	}
@@ -229,19 +249,18 @@ $cell_height: 32px;
 	// Header, arrows, years, months
 	.mx-calendar-header {
 		margin-bottom: 4px;
-		text-align: center;
-		overflow: hidden;
 		align-items: center;
 		justify-content: space-between;
-		display: flex;
+		display: inline-flex;
 		height: $clickable-area;
+		width: 100%;
 
 		button {
 			text-decoration: none;
 			cursor: pointer;
 			color: var(--color-main-text);
 			min-height: $cell_height;
-			margin: 0 auto; // center also single element
+			margin: 0;
 			border-radius: $cell_height;
 			line-height: $cell_height - 12px; // padding minus 2px for better visual
 			min-width: $cell_height;
@@ -315,58 +334,62 @@ $cell_height: 32px;
 		}
 	}
 
+	// Week panel
 	.mx-calendar-week-mode {
+		// move focus on row and not on cell
 		.mx-date-row {
 			&:hover,
 			&.mx-active-week {
-				background-color: var(--color-main-background);
-
-				.mx-week-number,
-				.cell {
-					border-radius: 0;
-					font-weight: bold;
-					opacity: 1;
-					background-color: var(--color-background-dark);
-
-					&:first-of-type {
-						border-top-left-radius: 50px;
-						border-bottom-left-radius: 50px;
+				opacity: $opacity_full;
+				border-radius: 50px;
+				background-color: var(--color-background-dark);
+				td {
+					background-color: transparent;
+					&, &:hover, &:focus {
+						color: inherit;
 					}
-
-					&:last-of-type {
-						border-top-right-radius: 50px;
-						border-bottom-right-radius: 50px;
-					}
+				}
+			}
+			&.mx-active-week {
+				color: var(--color-primary-text);
+				background-color: var(--color-primary-element);
+				// Remove cell feedback on selected rows
+				td {
+					font-weight: normal;
+					opacity: $opacity_normal;
 				}
 			}
 		}
 	}
 
+	// Time panel
 	.mx-time {
 		background-color: var(--color-main-background);
-	}
 
-	.mx-time-header {
-		border-bottom: 1px solid var(--color-border);
-	}
-
-	.mx-time-column {
-		border-left: 1px solid var(--color-border);
-	}
-
-	.mx-time-option,
-	.mx-time-item {
-		&.active,
-		&:hover {
-			color: var(--color-primary-text);
-			background-color: var(--color-primary-element);
+		.mx-time-header {
+			border-bottom: 1px solid var(--color-border);
+			// only one button, center it
+			justify-content: center;
 		}
-
-		&.disabled {
-			opacity: $opacity_disabled;
-			cursor: not-allowed;
-			color: var(--color-main-text);
-			background-color: var(--color-main-background);
+	
+		.mx-time-column {
+			border-left: 1px solid var(--color-border);
+		}
+	
+		.mx-time-option,
+		.mx-time-item {
+			&.active,
+			&:hover {
+				color: var(--color-primary-text);
+				background-color: var(--color-primary-element);
+			}
+	
+			&.disabled {
+				opacity: $opacity_disabled;
+				cursor: not-allowed;
+				color: var(--color-main-text);
+				background-color: var(--color-main-background);
+			}
 		}
 	}
 }
