@@ -21,6 +21,12 @@ jobs:
         with:
           node-versions: ${{ matrix.node-versions }}
 
+      - name: Cleanup
+        run: |
+          rm -rf dist/
+          rm -rf src/fonts/
+
+
       - name: Install dependencies & build
         run: |
           npm ci
