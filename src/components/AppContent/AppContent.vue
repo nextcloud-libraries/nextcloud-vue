@@ -2,6 +2,8 @@
  - @copyright Copyright (c) 2019 Christoph Wurst <christoph@winzerhof-wurst.at>
  -
  - @author Christoph Wurst <christoph@winzerhof-wurst.at>
+ - @author Marco Ambrosini <marcoambrosini@pm.me>
+ - @author John Molakvoæ <skjnldsv@protonmail.com>
  -
  - @license GNU AGPL version 3 or any later version
  -
@@ -21,10 +23,7 @@
  -->
 
 <template>
-	<main id="app-content" class="no-snapper" :style="opened ? 'transform: translateX(300px)' : ''">
-		<AppNavigationToggle :aria-expanded="opened"
-			aria-controls="app-navigation"
-			@click="toggleNavigation" />
+	<main id="app-content" class="no-snapper">
 		<!-- @slot Provide content to the app content -->
 		<slot />
 	</main>
@@ -32,7 +31,7 @@
 
 <script>
 import Hammer from 'hammerjs'
-import AppNavigationToggle from '../AppNavigationToggle'
+import { emit } from '@nextcloud/event-bus'
 
 /**
  * App content container to be used for the main content of your app
@@ -40,37 +39,25 @@ import AppNavigationToggle from '../AppNavigationToggle'
  */
 export default {
 	name: 'AppContent',
-	components: {
-		AppNavigationToggle,
+
+	props: {
+		// Allows to disable the control by swipe of the app navigation open state
+		allowSwipeNavigation: {
+			type: Boolean,
+			default: true,
+		},
 	},
-	data() {
-		return {
-			// closed by default on mobile mode
-			opened: false,
+
+	mounted() {
+		if (this.allowSwipeNavigation) {
+			this.mc = new Hammer(this.$el, { cssProps: { userSelect: 'text' } })
+			this.mc.on('swipeleft swiperight', this.handleSwipe)
 		}
 	},
-	mounted() {
-		this.mc = new Hammer(this.$el, { cssProps: { userSelect: 'text' } })
-		this.mc.on('swipeleft swiperight', e => {
-			this.handleSwipe(e)
-		})
-	},
-	unmounted() {
-		this.mc.off('swipeleft swiperight')
-		this.mc.destroy()
+	beforeDestroy() {
+		this.mc.off('swipeleft swiperight', this.handleSwipe)
 	},
 	methods: {
-		/**
-		 * Toggle the navigation
-		 *
-		 * @param {Boolean} [state] set the state instead of inverting the current one
-		 */
-		toggleNavigation(state) {
-			this.opened = state || !this.opened
-			this.opened
-				? document.body.classList.add('nav-open')
-				: document.body.classList.remove('nav-open')
-		},
 		// handle the swipe event
 		handleSwipe(e) {
 			const minSwipeX = 70
@@ -78,21 +65,28 @@ export default {
 			const startX = e.srcEvent.pageX - e.deltaX
 			const hasEnoughDistance = Math.abs(e.deltaX) > minSwipeX
 			if (hasEnoughDistance && startX < touchzone) {
-				this.toggleNavigation(true)
-			} else if (this.opened && hasEnoughDistance && startX < touchzone + 300) {
-				this.toggleNavigation(false)
+				emit('toggle-navigation', {
+					open: true,
+				})
+			} else if (hasEnoughDistance && startX < touchzone + 300) {
+				emit('toggle-navigation', {
+					open: false,
+				})
 			}
 		},
 	},
 }
 </script>
 <style lang="scss" scoped>
+
 #app-content {
 	z-index: 1000;
 	background-color: var(--color-main-background);
 	position: relative;
 	flex-basis: 100vw;
 	min-height: 100%;
-	transition: transform var(--animation-quick);
+	// Overriding server styles TODO: cleanup!
+	margin: 0 !important;
 }
+
 </style>

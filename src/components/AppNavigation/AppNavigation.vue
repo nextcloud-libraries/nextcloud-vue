@@ -2,6 +2,7 @@
  - @copyright Copyright (c) 2019 Christoph Wurst <christoph@winzerhof-wurst.at>
  -
  - @author Christoph Wurst <christoph@winzerhof-wurst.at>
+ - @author John Molakvoæ <skjnldsv@protonmail.com>
  - @author Marco Ambrosini <marcoambrosini@pm.me>
  -
  - @license GNU AGPL version 3 or any later version
@@ -20,34 +21,118 @@
  - along with this program. If not, see <http://www.gnu.org/licenses/>.
  -
  -->
+<docs>
+The navigation bar can be open and closed from anywhere in the app using the
+nextcloud event bus.
+
+### Install the event bus package
+
+```bash
+npm i -S @nextcloud/event-bus
+```
+
+### Usage
+
+#### Open the navigation
+
+```js static
+import { emit } from '@nextcloud/event-bus'
+emit('toggle-navigation', {
+	open: true,
+})
+```
+
+#### Close the navigation
+
+```js static
+import { emit } from '@nextcloud/event-bus'
+emit('toggle-navigation', {
+	open: false,
+})
+```
+
+</docs>
+
 <template>
-	<div id="app-navigation" class="vue">
+	<div
+		class="app-navigation"
+		:class="{'app-navigation--close':!open }">
+		<AppNavigationToggle :open.sync="open" />
 		<slot />
 	</div>
 </template>
 
 <script>
+import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
+import AppNavigationToggle from '../AppNavigationToggle/AppNavigationToggle'
+import isMobile from '../../mixins/isMobile'
+
 export default {
 	name: 'AppNavigation',
+
+	components: {
+		AppNavigationToggle,
+	},
+
+	mixins: [isMobile],
+
+	data() {
+		return {
+			open: true,
+		}
+	},
+
+	watch: {
+		isMobile() {
+			this.open = !this.isMobile
+		},
+	},
+
+	mounted() {
+		subscribe('toggle-navigation', this.toggleNavigationByEventBus)
+		// Emit an event with the initial state of the navigation
+		emit('navigation-toggled', {
+			open: this.open,
+		})
+	},
+	unmounted() {
+		this.mc.off('swipeleft swiperight')
+		this.mc.destroy()
+		unsubscribe('toggle-navigation', this.toggleNavigationByEventBus)
+	},
+
+	methods: {
+		/**
+		 * Toggle the navigation
+		 *
+		 * @param {Boolean} [state] set the state instead of inverting the current one
+		 */
+		toggleNavigation(state) {
+			this.open = state || !this.open
+			emit('navigation-toggled', {
+				open: this.open,
+			})
+		},
+		toggleNavigationByEventBus({ open }) {
+			this.toggleNavigation(open)
+		},
+	},
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/variables.scss';
 
-#app-navigation {
+.app-navigation {
 	will-change: transform;
-	transition: transform var(--animation-quick);
+	transition: transform var(--animation-quick), margin var(--animation-quick);
 	width: $navigation-width;
-	position: fixed;
+	position: sticky;
+	position: -webkit-sticky;
 	top: $header-height;
 	left: 0;
-	z-index: 500;
-	overflow-y: auto;
-	overflow-x: hidden;
-	// Do not use vh because of mobile headers
-	// are included in the calculation
-	height: calc(100% - #{$header-height});
+	// Above appcontent
+	z-index: 2000;
+	height: calc(100vh - #{$header-height});
 	box-sizing: border-box;
 	background-color: var(--color-main-background);
 	-webkit-user-select: none;
@@ -59,25 +144,30 @@ export default {
 	flex-direction: column;
 	flex-grow: 0;
 	flex-shrink: 0;
-}
 
-//list of navigation items
-ul {
-	position: relative;
-	height: 100%;
-	width: inherit;
-	overflow-x: hidden;
-	overflow-y: auto;
-	box-sizing: border-box;
-	display: flex;
-	flex-direction: column;
-}
+	&--close {
+		margin-left: - $navigation-width;
+		transform: translateX(-100%);
+	}
 
-// mobile view only
-@media only screen and (max-width: $breakpoint-mobile) {
-	// if navigation is shown
-	.nav-open #app-navigation {
-		transform: translateX(0);
+	//list of navigation items
+	ul {
+		position: relative;
+		height: 100%;
+		width: inherit;
+		overflow-x: hidden;
+		overflow-y: auto;
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
 	}
 }
+
+// When on mobile, we make the navigation slide over the appcontent
+@media only screen and (max-width: $breakpoint-mobile) {
+	.app-navigation:not(.app-navigation--close) {
+		margin-left: - $navigation-width;
+	}
+}
+
 </style>

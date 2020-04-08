@@ -2,6 +2,8 @@
  - @copyright Copyright (c) 2019 Christoph Wurst <christoph@winzerhof-wurst.at>
  -
  - @author Christoph Wurst <christoph@winzerhof-wurst.at>
+ - @author John Molakvoæ <skjnldsv@protonmail.com>
+ - @author Marco Ambrosini <marcoambrosini@pm.me>
  -
  - @license GNU AGPL version 3 or any later version
  -
@@ -20,19 +22,31 @@
  -
  -->
 <template>
-	<a id="app-navigation-toggle"
+	<a class="app-navigation-toggle"
 		tabindex="0"
 		href="#"
-		@click.prevent="emitClick"
-		@keydown.space.exact.prevent="emitClick" />
+		:aria-expanded="open"
+		aria-controls="app-navigation"
+		@click.prevent="toggleNavigation"
+		@keydown.space.exact.prevent="toggleNavigation" />
 </template>
 
 <script>
+
 export default {
+
 	name: 'AppNavigationToggle',
+
+	props: {
+		open: {
+			type: Boolean,
+			required: true,
+		},
+	},
+
 	methods: {
-		emitClick() {
-			this.$emit('click')
+		toggleNavigation() {
+			this.$emit('update:open', !this.open)
 		},
 	},
 }
@@ -41,11 +55,11 @@ export default {
 <style scoped lang="scss">
 @import '../../fonts/scss/iconfont-vue';
 
-#app-navigation-toggle {
-	display: none;
-	position: fixed;
-	z-index: 1050; // above app-content
-	left: 0;
+.app-navigation-toggle {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: - $clickable-area;
 	width: $clickable-area;
 	height: $clickable-area;
 	padding: $icon-margin;
@@ -62,10 +76,5 @@ export default {
 		opacity: $opacity_full;
 	}
 }
-// mobile only
-@media only screen and (max-width: 768px) {
-	#app-navigation-toggle {
-		display: inline-block !important;
-	}
-}
+
 </style>
