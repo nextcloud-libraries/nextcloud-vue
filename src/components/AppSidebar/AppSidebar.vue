@@ -501,13 +501,11 @@ export default {
 $header-height: 50px;
 $sidebar-min-width: 300px;
 $sidebar-max-width: 500px;
-
 $desc-vertical-padding: 18px;
 $desc-input-padding: 7px;
 $desc-title-height: 30px;
 // title and subtitle
 $desc-height: $desc-title-height + 22px;
-
 $top-buttons-spacing: 6px;
 
 /*
@@ -515,33 +513,30 @@ $top-buttons-spacing: 6px;
 	#app-content will be shrinked properly
 */
 #app-sidebar {
+	position: -webkit-sticky; // Safari support
+	position: sticky;
 	z-index: 1500;
-	height: calc(100vh - #{$header-height});
+	top: $header-height;
+	right: 0;
+	display: flex;
+	overflow-x: hidden;
+	overflow-y: auto;
+	flex-direction: column;
+	flex-shrink: 0;
 	width: 27vw;
 	min-width: $sidebar-min-width;
 	max-width: $sidebar-max-width;
-	top: $header-height;
-	right: 0;
-
-	display: flex;
-	flex-shrink: 0;
-	flex-direction: column;
-	position: -webkit-sticky; // Safari support
-	position: sticky;
-
-	overflow-y: auto;
-	overflow-x: hidden;
-
-	background: var(--color-main-background);
+	height: calc(100vh - #{$header-height});
 	border-left: 1px solid var(--color-border);
+	background: var(--color-main-background);
 	.app-sidebar-header {
 		> .app-sidebar__close {
 			position: absolute;
-			width: $clickable-area;
-			height: $clickable-area;
+			z-index: 100;
 			top: $top-buttons-spacing;
 			right: $top-buttons-spacing;
-			z-index: 100;
+			width: $clickable-area;
+			height: $clickable-area;
 			opacity: $opacity_normal;
 			border-radius: $clickable-area / 2;
 			&:hover,
@@ -554,12 +549,12 @@ $top-buttons-spacing: 6px;
 
 		// header background
 		&__figure {
-			max-height: 250px;
-			height: 250px;
 			width: 100%;
-			background-size: contain;
-			background-position: center;
+			height: 250px;
+			max-height: 250px;
 			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
 			&--with-action {
 				cursor: pointer;
 			}
@@ -567,20 +562,20 @@ $top-buttons-spacing: 6px;
 
 		&__desc {
 			position: relative;
-			padding: #{$desc-vertical-padding} #{$clickable-area * 2 + $top-buttons-spacing * 3} #{$desc-vertical-padding} $desc-vertical-padding / 2;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			box-sizing: content-box;
+			padding: #{$desc-vertical-padding} #{$clickable-area * 2 + $top-buttons-spacing * 3} #{$desc-vertical-padding} $desc-vertical-padding / 2;
 
 			// titles
 			.app-sidebar-header__title,
 			.app-sidebar-header__subtitle {
+				overflow: hidden;
 				width: 100%;
+				margin: 0;
 				white-space: nowrap;
 				text-overflow: ellipsis;
-				overflow: hidden;
-				margin: 0;
 			}
 			// main title
 			.app-sidebar-header__title {
@@ -589,33 +584,33 @@ $top-buttons-spacing: 6px;
 				line-height: $desc-title-height;
 			}
 			input.app-sidebar-header__title-input {
-				font-size: 16px;
-				padding: $desc-input-padding;
 				width: 100%;
 				margin: 0;
+				padding: $desc-input-padding;
+				font-size: 16px;
 			}
 
 			// subtitle
 			.app-sidebar-header__subtitle {
-				font-size: 14px;
 				padding: 0;
 				opacity: $opacity_normal;
+				font-size: 14px;
 			}
 			// favourite
 			.app-sidebar-header__star {
+				position: absolute;
+				left: 0;
 				display: block;
 				width: $clickable-area;
 				height: $clickable-area;
 				padding: $icon-margin;
-				position: absolute;
-				left: 0;
 			}
 			// main menu
 			.app-sidebar-header__menu {
 				position: absolute;
 				right: $clickable-area / 2;
-				background-color: $action-background-hover;
 				border-radius: $clickable-area / 2;
+				background-color: $action-background-hover;
 			}
 
 			// custom overrides
@@ -627,7 +622,7 @@ $top-buttons-spacing: 6px;
 				height: $desc-height;
 			}
 			&--editable {
-				height: $desc-height * 0.75;
+				height: $desc-height * .75;
 			}
 			&--with-subtitle--editable {
 				height: $desc-height * 1.5;
@@ -640,7 +635,6 @@ $top-buttons-spacing: 6px;
 					margin-top: -$desc-vertical-padding / 2 - $desc-input-padding;
 				}
 			}
-
 		}
 		&--with-figure {
 			.app-sidebar-header__desc {
@@ -657,37 +651,37 @@ $top-buttons-spacing: 6px;
 		// sidebar action(s) slot
 		&__action {
 			display: flex;
-			margin: 0 10px;
-			max-height: 50px;
 			align-items: center;
+			max-height: 50px;
+			margin: 0 10px;
 		}
 
 		&--compact {
 			.app-sidebar-header__figure {
-				height: $desc-height + $desc-vertical-padding;
+				position: absolute;
+				z-index: 2;
+				top: 0;
+				left: 0;
 				width: $desc-height + $desc-vertical-padding;
+				height: $desc-height + $desc-vertical-padding;
 				margin: $desc-vertical-padding / 2;
 				border-radius: 3px;
-				position: absolute;
-				left: 0;
-				top: 0;
-				z-index: 2;
 			}
 			.app-sidebar-header__desc {
-				// forcing $clickable-area no matter if star or not
-				padding-left: $clickable-area;
+				height: $desc-height;
 				// wull width (+margin) of the figure minus left padding of the desc + 2px because it balances this a bit
 				// this is only here to align the favourite star icon, we're using margin and padding
 				// to have a two steps left distance: | margin | favourite | padding | title + subtitle
 				margin-left: $desc-height + $desc-vertical-padding + $desc-vertical-padding - $clickable-area + 2px;
-				height: $desc-height;
+				// forcing $clickable-area no matter if star or not
+				padding-left: $clickable-area;
 				.app-sidebar-header__star {
-					margin-top: -$desc-vertical-padding / 2;
 					z-index: 3; // above star
+					margin-top: -$desc-vertical-padding / 2;
 				}
 				.app-sidebar-header__menu {
-					right: $clickable-area + $top-buttons-spacing; // left of the close button
 					top: $top-buttons-spacing;
+					right: $clickable-area + $top-buttons-spacing; // left of the close button
 					margin: 0;
 					background-color: transparent;
 				}
@@ -710,21 +704,21 @@ $top-buttons-spacing: 6px;
 		}
 		&__tab {
 			display: block;
-			text-align: center;
 			flex: 1 1;
 			min-width: 0;
+			text-align: center;
 			a {
-				display: block;
-				padding: 25px 5px 5px 5px;
 				position: relative;
-				border-bottom: 1px solid var(--color-border);
+				display: block;
+				overflow: hidden;
+				padding: 25px 5px 5px 5px;
+				transition: color var(--animation-quick), opacity var(--animation-quick), border-color var(--animation-quick);
 				text-align: center;
+				white-space: nowrap;
+				text-overflow: ellipsis;
 				opacity: $opacity_normal;
 				color: var(--color-main-text);
-				transition: color var(--animation-quick), opacity var(--animation-quick), border-color var(--animation-quick);
-				text-overflow: ellipsis;
-				white-space: nowrap;
-				overflow: hidden;
+				border-bottom: 1px solid var(--color-border);
 
 				&:hover,
 				&:focus,
@@ -737,14 +731,14 @@ $top-buttons-spacing: 6px;
 				}
 				&:not(.active):hover,
 				&:not(.active):focus {
+					border-bottom-color: var(--color-background-darker);
 					box-shadow: inset 0 -1px 0 var(--color-background-darker);
-					border-bottom-color:  var(--color-background-darker);
 				}
 				&.active {
-					font-weight: bold;
 					color: var(--color-text-light);
 					border-bottom-color: var(--color-text-light);
 					box-shadow: inset 0 -1px 0 var(--color-text-light);
+					font-weight: bold;
 				}
 				// differentiate the two for accessibility purpose
 				// make sure the user knows she's focusing the navigation
@@ -757,15 +751,15 @@ $top-buttons-spacing: 6px;
 		}
 
 		&__tab-icon {
-			height: 25px;
-			width: 100%;
 			position: absolute;
 			top: 0;
 			left: 0;
+			width: 100%;
+			height: 25px;
+			transition: opacity var(--animation-quick);
 			opacity: $opacity_normal;
 			background-position: center 8px;
 			background-size: 16px;
-			transition: opacity var(--animation-quick);
 		}
 
 		&__content {
@@ -801,12 +795,12 @@ $top-buttons-spacing: 6px;
 
 .fade-leave-active,
 .fade-enter-active {
-	transition-duration: var(--animation-quick);
-	transition-property: opacity;
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
+	transition-duration: var(--animation-quick);
+	transition-property: opacity;
 	opacity: $opacity_full;
 }
 
@@ -835,4 +829,5 @@ $top-buttons-spacing: 6px;
 		padding: 6px 22px;
 	}
 }
+
 </style>
