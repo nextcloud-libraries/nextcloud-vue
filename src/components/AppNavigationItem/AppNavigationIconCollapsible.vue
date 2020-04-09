@@ -62,7 +62,7 @@ export default {
 	-webkit-transform: rotate(-90deg);
 	-ms-transform: rotate(-90deg);
 	transform: rotate(-90deg);
-	color: black;
+	color: var(--color-main-text);
 	border: none;
 	border-radius: 0;
 	outline: none !important;
