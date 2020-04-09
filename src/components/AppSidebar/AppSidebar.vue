@@ -712,16 +712,20 @@ $top-buttons-spacing: 6px;
 			display: block;
 			text-align: center;
 			flex: 1 1;
+			min-width: 0;
 			a {
 				display: block;
-				padding-top: 25px;
-				padding-bottom: 5px;
+				padding: 25px 5px 5px 5px;
 				position: relative;
 				border-bottom: 1px solid var(--color-border);
 				text-align: center;
 				opacity: $opacity_normal;
 				color: var(--color-main-text);
 				transition: color var(--animation-quick), opacity var(--animation-quick), border-color var(--animation-quick);
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+
 				&:hover,
 				&:focus,
 				&:active,
@@ -751,6 +755,7 @@ $top-buttons-spacing: 6px;
 				}
 			}
 		}
+
 		&__tab-icon {
 			height: 25px;
 			width: 100%;
@@ -762,6 +767,7 @@ $top-buttons-spacing: 6px;
 			background-size: 16px;
 			transition: opacity var(--animation-quick);
 		}
+
 		&__content {
 			position: relative;
 			// take full available height
