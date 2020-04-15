@@ -93,6 +93,7 @@ import ActionRouter from '../ActionRouter'
 import ActionLink from '../ActionLink'
 import ValidateSlot from '../../utils/ValidateSlot'
 import Breadcrumb from '../Breadcrumb'
+import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 
 export default {
 	name: 'Breadcrumbs',
@@ -139,6 +140,7 @@ export default {
 		window.addEventListener('resize', debounce(() => {
 			this.handleWindowResize()
 		}, 100))
+		subscribe('navigation-toggled', this.delayedResize)
 	},
 	mounted() {
 		this.handleWindowResize()
@@ -153,6 +155,7 @@ export default {
 	},
 	beforeDestroy() {
 		window.removeEventListener('resize', this.handleWindowResize)
+		unsubscribe('navigation-toggled', this.delayedResize)
 	},
 	methods: {
 		/**
@@ -166,6 +169,14 @@ export default {
 				return
 			}
 			this.$refs.actionsBreadcrumb.$refs.actions.opened = false
+		},
+		/**
+		 * Call the resize function after a delay
+		 */
+		delayedResize() {
+			this.$nextTick(() => {
+				this.handleWindowResize()
+			})
 		},
 		/**
 		 * Check the width of the breadcrumb and hide breadcrumbs
