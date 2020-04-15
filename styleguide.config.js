@@ -43,10 +43,11 @@ module.exports = {
 			sectionDepth: 1,
 			ignore: [
 				'src/components/Action*/*.vue',
-				'src/components/AppNavigation*/*.vue',
 				'src/components/AppContent*/*.vue',
+				'src/components/AppNavigation*/*.vue',
 				'src/components/AppSidebar*/*.vue',
 				'src/components/Breadcrumb*/*.vue',
+				'src/components/Content/*.vue',
 				'src/components/Multiselect*/*.vue',
 				'src/components/PopoverMenu/!(PopoverMenu).vue',
 			],
