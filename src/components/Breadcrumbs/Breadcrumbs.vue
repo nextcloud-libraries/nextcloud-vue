@@ -363,11 +363,12 @@ export default {
 		 *
 		 * @param {Array} crumbs The array of all crumbs
 		 * @param {Array} newCrumbs The array of the crumbs to hide and add
+		 * @param {Integer} offset The offset of the indices of the provided crumbs array
 		 */
-		addCrumbs(crumbs, newCrumbs) {
+		addCrumbs(crumbs, newCrumbs, offset = 0) {
 			newCrumbs.forEach((crumb, i) => {
 				if (crumb.elm && crumb.elm.classList) {
-					if (this.hiddenCrumbs.includes(crumb)) {
+					if (this.hiddenIndices.includes(i + offset)) {
 						crumb.elm.classList.add('crumb--hidden')
 					} else {
 						crumb.elm.classList.remove('crumb--hidden')
@@ -472,7 +473,7 @@ export default {
 		const crumbs2 = this.hiddenCrumbs.length
 			? breadcrumbs.slice(Math.round(breadcrumbs.length / 2))
 			: []
-		this.addCrumbs(crumbs, crumbs2)
+		this.addCrumbs(crumbs, crumbs2, crumbs1.length)
 
 		return createElement('div', { class: 'breadcrumb', ref: 'container' }, crumbs)
 	},
