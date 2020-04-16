@@ -25,7 +25,7 @@
 	<a class="app-navigation-toggle"
 		href="#"
 		:aria-expanded="open"
-		aria-controls="app-navigation"
+		aria-controls="app-navigation-vue"
 		@click.prevent="toggleNavigation"
 		@keydown.space.exact.prevent="toggleNavigation" />
 </template>

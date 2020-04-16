@@ -87,7 +87,7 @@
 
 <template>
 	<transition name="slide-right">
-		<aside id="app-sidebar">
+		<aside id="app-sidebar-vue" class="app-sidebar">
 			<header :class="{
 					'app-sidebar-header--with-figure': hasFigure,
 					'app-sidebar-header--compact': compact
@@ -510,9 +510,9 @@ $top-buttons-spacing: 6px;
 
 /*
 	Sidebar: to be used within #content
-	#app-content will be shrinked properly
+	app-content will be shrinked properly
 */
-#app-sidebar {
+.app-sidebar {
 	position: -webkit-sticky; // Safari support
 	position: sticky;
 	z-index: 1500;

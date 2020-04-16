@@ -23,7 +23,7 @@
  -->
 
 <template>
-	<main id="app-content" class="no-snapper">
+	<main id="app-content-vue" class="app-content no-snapper">
 		<!-- @slot Provide content to the app content -->
 		<slot />
 	</main>
@@ -79,14 +79,15 @@ export default {
 </script>
 <style lang="scss" scoped>
 
-#app-content {
-	z-index: 1000;
-	background-color: var(--color-main-background);
+.app-content {
 	position: relative;
+	z-index: 1000;
 	flex-basis: 100vw;
+	min-width: 0;
 	min-height: 100%;
 	// Overriding server styles TODO: cleanup!
 	margin: 0 !important;
+	background-color: var(--color-main-background);
 }
 
 </style>

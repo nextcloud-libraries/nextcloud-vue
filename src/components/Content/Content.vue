@@ -45,7 +45,9 @@
 </docs>
 
 <template>
-	<div id="content" :class="`app-${appName}`">
+	<div id="content-vue"
+		:class="`app-${appName.toLowerCase()}`"
+		class="content">
 		<slot />
 	</div>
 </template>
@@ -60,3 +62,16 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.content {
+	box-sizing: border-box;
+	position: relative;
+	display: flex;
+	padding-top: 50px;
+	min-height: 100%;
+	::v-deep * {
+		box-sizing: border-box;
+	}
+}
+</style>
