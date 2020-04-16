@@ -710,12 +710,13 @@ $header-size: 50px;
 	}
 	&--large {
 		.modal-container {
-			max-width: 70%;
+			max-width: 85%;
 			max-height: 90%;
 		}
 		.prev,
 		.next {
 			width: 10%;
+			min-width: $clickable-area;
 		}
 	}
 }
