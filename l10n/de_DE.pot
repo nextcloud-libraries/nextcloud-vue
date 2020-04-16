@@ -18,7 +18,7 @@ msgstr "{tag} (unsichtbar)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (eingeschränkt)"
 
-#: src/components/Actions/Actions.vue:194
+#: src/components/Actions/Actions.vue:196
 msgid "Actions"
 msgstr "Aktionen"
 
