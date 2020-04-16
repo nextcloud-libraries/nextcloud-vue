@@ -23,7 +23,6 @@
  -->
 <template>
 	<a class="app-navigation-toggle"
-		tabindex="0"
 		href="#"
 		:aria-expanded="open"
 		aria-controls="app-navigation"
@@ -32,7 +31,6 @@
 </template>
 
 <script>
-
 export default {
 
 	name: 'AppNavigationToggle',

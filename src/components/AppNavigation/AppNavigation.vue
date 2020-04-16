@@ -57,7 +57,7 @@ emit('toggle-navigation', {
 	<div
 		class="app-navigation"
 		:class="{'app-navigation--close':!open }">
-		<AppNavigationToggle :open.sync="open" />
+		<AppNavigationToggle :open="open" @update:open="toggleNavigation" />
 		<slot />
 	</div>
 </template>
@@ -109,9 +109,14 @@ export default {
 		 */
 		toggleNavigation(state) {
 			this.open = state || !this.open
-			emit('navigation-toggled', {
-				open: this.open,
-			})
+			const bodyStyles = getComputedStyle(document.body)
+			const animationLength = parseInt(bodyStyles.getPropertyValue('--animation-quick')) | 100
+
+			setTimeout(() => {
+				emit('navigation-toggled', {
+					open: this.open,
+				})
+			}, animationLength)
 		},
 		toggleNavigationByEventBus({ open }) {
 			this.toggleNavigation(open)
