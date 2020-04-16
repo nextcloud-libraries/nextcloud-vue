@@ -116,7 +116,8 @@ export default {
 				emit('navigation-toggled', {
 					open: this.open,
 				})
-			}, animationLength)
+			// We wait for 1.5 times the animation length to give the animation time to really finish.
+			}, 1.5 * animationLength)
 		},
 		toggleNavigationByEventBus({ open }) {
 			this.toggleNavigation(open)
