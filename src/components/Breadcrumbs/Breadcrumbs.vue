@@ -123,6 +123,20 @@ export default {
 			 * Comparing two crumbs somehow does not work, so we use the indices.
 			 */
 			hiddenIndices: [],
+
+			/**
+			 * This is the props of the middle Action menu
+			 * that show the ellipsised breadcrumbs
+			 */
+			menuBreadcrumbProps: {
+				// Don't show a title for this breadcrumb, only the Actions menu
+				title: '',
+				forceMenu: true,
+				// Don't allow dropping directly on the actions breadcrumb
+				disableDrop: true,
+				// Is the menu open or not
+				open: false,
+			},
 		}
 	},
 	beforeMount() {
@@ -168,7 +182,7 @@ export default {
 			if (this.$refs.actionsBreadcrumb.$el.contains(e.relatedTarget)) {
 				return
 			}
-			this.$refs.actionsBreadcrumb.$refs.actions.opened = false
+			this.menuBreadcrumbProps.open = false
 		},
 		/**
 		 * Call the resize function after a delay
@@ -302,7 +316,8 @@ export default {
 				this.$emit('dropped', e, path)
 			}
 			// Close the actions menu after the drop
-			this.$refs.actionsBreadcrumb.$refs.actions.opened = false
+			this.menuBreadcrumbProps.open = false
+
 			// Remove all hovering classes
 			const crumbs = document.querySelectorAll('.crumb')
 			crumbs.forEach((f) => { f.classList.remove('crumb--hovered') })
@@ -424,23 +439,24 @@ export default {
 			// Use a breadcrumb component for the hidden breadcrumbs
 			crumbs.push(createElement('Breadcrumb', {
 				class: 'dropdown',
-				// We want the Actions to always show as a dropdown menu
-				props: {
-					// Don't show a title for this breadcrumb, only the Actions menu
-					title: '',
-					forceMenu: true,
-					// Don't allow dropping directly on the actions breadcrumb
-					disableDrop: true,
-					hideable: false,
-				},
+
+				props: this.menuBreadcrumbProps,
+
 				// Add a ref to the Actions menu
 				ref: 'actionsBreadcrumb',
 				key: 'actions-breadcrumb-1',
 				// Add handlers so the Actions menu opens on hover
 				nativeOn: {
 					dragstart: this.dragStart,
-					dragenter: () => { this.$refs.actionsBreadcrumb.$refs.actions.opened = true },
+					dragenter: () => { this.menuBreadcrumbProps.open = true },
 					dragleave: this.closeActions,
+				},
+				on: {
+					// Make sure we keep the same open state
+					// as the Actions component
+					'update:open': (open) => {
+						this.menuBreadcrumbProps.open = open
+					},
 				},
 			// Add all hidden breadcrumbs as ActionRouter or ActionLink
 			}, this.hiddenCrumbs.map(crumb => {

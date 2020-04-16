@@ -52,6 +52,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 	<ActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
 </Actions>
 ```
+
 </docs>
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
@@ -332,29 +333,39 @@ export default {
 
 	methods: {
 		// MENU STATE MANAGEMENT
-		toggleMenu(e) {
-			this.opened = !this.opened
+		toggleMenu(state) {
+			if (typeof state === 'boolean') {
+				this.opened = state
+			} else {
+				this.opened = !this.opened
+			}
+
 			// focus first on menu open after opening the menu
 			if (this.opened) {
 				this.$nextTick(() => {
 					this.onOpen()
 					this.focusFirstAction()
 				})
+
 				/**
 				 * Event emitted when the popover menu is opened
-				 * @type {null}
 				 */
-				this.$emit('open', e)
+				this.$emit('open')
 			} else {
 				this.offsetX = 0
 				this.offsetY = 0
 				this.offsetYArrow = 0
 				this.rotateArrow = false
+
+				/**
+				 * Event emitted when the popover menu is closed
+				 */
+				this.$emit('close')
 			}
 
 			/**
 			 * Event emitted when the popover menu open state is changed
-			 * @type {bool}
+			 * @type {boolean}
 			 */
 			this.$emit('update:open', this.opened)
 		},
@@ -367,23 +378,22 @@ export default {
 			if (this.opened) {
 				/**
 				 * Event emitted when the popover menu open state is changed
-				 * @type {bool}
+				 * @type {boolean}
 				 */
 				this.$emit('update:open', false)
+
 				/**
 				 * Event emitted when the popover menu is closed
-				 * @type {null}
 				 */
-				this.$emit('close', e)
+				this.$emit('close')
 
+				// close everything
+				this.opened = false
+				this.offsetX = 0
+				this.offsetY = 0
+				this.offsetYArrow = 0
+				this.rotateArrow = false
 			}
-
-			// close everything
-			this.opened = false
-			this.offsetX = 0
-			this.offsetY = 0
-			this.offsetYArrow = 0
-			this.rotateArrow = false
 		},
 
 		/**
