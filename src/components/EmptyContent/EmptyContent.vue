@@ -1,33 +1,33 @@
 <!--
-- @copyright Copyright (c) 2020 Greta Doci <gretadoci@gmail.com>
--
-- @author 2020 Greta Doci <gretadoci@gmail.com>
--
-- @license GNU AGPL version 3 or any later version
--
-- This program is free software: you can redistribute it and/or modify
-- it under the terms of the GNU Affero General Public License as
-- published by the Free Software Foundation, either version 3 of the
-- License, or (at your option) any later version.
--
-- This program is distributed in the hope that it will be useful,
-- but WITHOUT ANY WARRANTY; without even the implied warranty of
-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- GNU Affero General Public License for more details.
--
-- You should have received a copy of the GNU Affero General Public License
-- along with this program. If not, see <http://www.gnu.org/licenses/>.
--
--->
+  - @copyright Copyright (c) 2020 Greta Doci <gretadoci@gmail.com>
+  -
+  - @author 2020 Greta Doci <gretadoci@gmail.com>
+  -
+  - @license GNU AGPL version 3 or any later version
+  -
+  - This program is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU Affero General Public License as
+  - published by the Free Software Foundation, either version 3 of the
+  - License, or (at your option) any later version.
+  -
+  - This program is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - GNU Affero General Public License for more details.
+  -
+  - You should have received a copy of the GNU Affero General Public License
+  - along with this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  -->
 
 <docs>
-### General description
+### Basic use
 
-This component provides a way to standardize the empty content.
-The standard properties like empty text and description allow to automatically
-include a standard empty content.
+Use this component to display a message about an empty content.
+An icon and a title are mandatory.
+Providing an additional description is strongly advised.
 
-```vue
+```
 <EmptyContent icon="icon-comment">
 	No comments
 	<template #desc>No comments in here</template>
