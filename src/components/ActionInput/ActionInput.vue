@@ -129,7 +129,7 @@ export default {
 		 * value attribute of the input field
 		 */
 		value: {
-			type: String,
+			type: [String, Date, Number],
 			default: '',
 		},
 		/**
