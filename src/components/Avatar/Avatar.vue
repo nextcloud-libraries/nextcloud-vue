@@ -85,7 +85,9 @@
 <script>
 import { directive as ClickOutside } from 'v-click-outside'
 import PopoverMenu from '../PopoverMenu'
+import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
+import { generateUrl } from '@nextcloud/router'
 import Tooltip from '../../directives/Tooltip'
 import uidToColor from './uidToColor'
 
@@ -260,7 +262,7 @@ export default {
 			if (this.isMenuLoaded) {
 				return this.menu.length > 0
 			}
-			return !(this.user === OC.getCurrentUser().uid || this.userDoesNotExist || this.url)
+			return !(this.user === getCurrentUser().uid || this.userDoesNotExist || this.url)
 		},
 		shouldShowPlaceholder() {
 			return this.allowPlaceholder && (
@@ -336,7 +338,7 @@ export default {
 		async fetchContactsMenu() {
 			try {
 				const user = encodeURIComponent(this.user)
-				const { data } = await axios.post(OC.generateUrl('contactsmenu/findOne'), `shareType=0&shareWith=${user}`)
+				const { data } = await axios.post(generateUrl('contactsmenu/findOne'), `shareType=0&shareWith=${user}`)
 				this.contactsMenuActions = data.topAction ? [data.topAction].concat(data.actions) : data.actions
 			} catch (e) {
 				this.contactsMenuOpenState = false
@@ -359,7 +361,7 @@ export default {
 					url = '/avatar/guest/{user}/{size}'
 				}
 
-				let avatarUrl = OC.generateUrl(
+				let avatarUrl = generateUrl(
 					url,
 					{
 						user: user,
@@ -367,7 +369,7 @@ export default {
 					})
 
 				// eslint-disable-next-line camelcase
-				if (user === OC.getCurrentUser().uid && typeof oc_userconfig !== 'undefined') {
+				if (user === getCurrentUser().uid && typeof oc_userconfig !== 'undefined') {
 					avatarUrl += '?v=' + oc_userconfig.avatar.version
 				}
 
