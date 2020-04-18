@@ -70,27 +70,30 @@ export default {
 			:disable-tooltip="true"
 			class="option__avatar" />
 		<div class="option__desc">
-			<span class="option__desc--lineone"
-				v-html="highlightedDisplayName" />
-			<span v-if="desc !== ''"
+			<Highlight
+				class="option__desc--lineone"
+				:text="displayName"
+				:search="search" />
+			<Highlight
+				v-if="desc !== ''"
 				class="option__desc--linetwo"
-				v-html="highlightedDesc" />
+				:text="desc"
+				:search="search" />
 		</div>
 		<span v-if="icon !== ''" class="icon option__icon" :class="icon" />
 	</span>
 </template>
 
 <script>
-import escapeHtml from 'escape-html'
 import Avatar from '../Avatar'
-import highlightText from '../../mixins/highlightText'
+import Highlight from '../Highlight'
 
 export default {
 	name: 'AvatarSelectOption',
 	components: {
 		Avatar,
+		Highlight,
 	},
-	mixins: [highlightText],
 	props: {
 		/**
 		 * Secondary optional line
@@ -131,14 +134,6 @@ export default {
 		search: {
 			type: String,
 			default: '',
-		},
-	},
-	computed: {
-		highlightedDisplayName() {
-			return this.highlightText(escapeHtml(this.displayName), this.search)
-		},
-		highlightedDesc() {
-			return this.highlightText(escapeHtml(this.desc), this.search)
 		},
 	},
 }

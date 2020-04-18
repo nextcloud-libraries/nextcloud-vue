@@ -1,7 +1,7 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2020 Raimund Schlüßler <raimund.schluessler@mailbox.org>
  *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Raimund Schlüßler <raimund.schluessler@mailbox.org>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -20,18 +20,6 @@
  *
  */
 
-export default {
-	methods: {
-		/**
-		 * Highlight a string with html <strong>
-		 *
-		 * @param {string} text the string to process
-		 * @param {string} match the string to match
-		 * @returns {string}
-		 */
-		highlightText(text, match) {
-			if (!match.length) return text
-			return text.replace(new RegExp(match, 'gi'), `<strong>${match}</strong>`)
-		},
-	},
-}
+import Highlight from './Highlight'
+
+export default Highlight
