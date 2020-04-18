@@ -90,8 +90,8 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 			aria-haspopup="true"
 			:aria-controls="randomId"
 			:aria-expanded="opened"
-			@click.prevent="toggleMenu"
-			@keydown.space.exact.prevent="toggleMenu" />
+			@click.prevent.stop="toggleMenu"
+			@keydown.space.exact.prevent.stop="toggleMenu" />
 		<div v-show="opened"
 			ref="menu"
 			:class="[`menu-${menuAlign}`, { 'open': opened }]"
