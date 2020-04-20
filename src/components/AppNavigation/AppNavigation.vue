@@ -111,7 +111,7 @@ export default {
 		toggleNavigation(state) {
 			this.open = state || !this.open
 			const bodyStyles = getComputedStyle(document.body)
-			const animationLength = parseInt(bodyStyles.getPropertyValue('--animation-quick')) | 100
+			const animationLength = parseInt(bodyStyles.getPropertyValue('--animation-quick')) || 100
 
 			setTimeout(() => {
 				emit('navigation-toggled', {
