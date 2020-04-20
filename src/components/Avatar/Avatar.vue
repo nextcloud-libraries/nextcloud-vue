@@ -262,7 +262,7 @@ export default {
 			if (this.isMenuLoaded) {
 				return this.menu.length > 0
 			}
-			return !(this.user === getCurrentUser().uid || this.userDoesNotExist || this.url)
+			return !(this.user === getCurrentUser()?.uid || this.userDoesNotExist || this.url)
 		},
 		shouldShowPlaceholder() {
 			return this.allowPlaceholder && (
@@ -369,7 +369,7 @@ export default {
 					})
 
 				// eslint-disable-next-line camelcase
-				if (user === getCurrentUser().uid && typeof oc_userconfig !== 'undefined') {
+				if (user === getCurrentUser()?.uid && typeof oc_userconfig !== 'undefined') {
 					avatarUrl += '?v=' + oc_userconfig.avatar.version
 				}
 
