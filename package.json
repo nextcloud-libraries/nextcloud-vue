@@ -40,7 +40,6 @@
 		"@nextcloud/router": "^1.0.0",
 		"core-js": "^3.4.4",
 		"debounce": "1.2.0",
-		"escape-html": "^1.0.3",
 		"hammerjs": "^2.0.8",
 		"md5": "^2.2.1",
 		"regenerator-runtime": "^0.13.3",

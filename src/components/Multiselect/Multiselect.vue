@@ -37,7 +37,7 @@ You can use all the properties from https://vue-multiselect.js.org that are not 
 import Multiselect from '../index'
 export default {
 	data() {
-		return { value1: 2, value2: [2], options: [0, 1, 2, 3, 4] }
+		return { value1: '2', value2: ['2'], options: ['0', '1', '2', '3', '4'] }
 	}
 }
 </script>

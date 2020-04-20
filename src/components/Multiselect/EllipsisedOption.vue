@@ -22,18 +22,29 @@
 
 <template>
 	<div class="name-parts" :title="name">
-		<span class="name-parts__first" v-html="highlightedPart1" />
-		<span v-if="part2" class="name-parts__last" v-html="highlightedPart2" />
+		<Highlight
+			class="name-parts__first"
+			:text="part1"
+			:search="search"
+			:highlight="highlight1" />
+		<Highlight
+			v-if="part2"
+			class="name-parts__last"
+			:text="part2"
+			:search="search"
+			:highlight="highlight2" />
 	</div>
 </template>
 <script>
-import escapeHtml from 'escape-html'
-import highlightText from '../../mixins/highlightText'
+import Highlight from '../Highlight'
+import FindRanges from '../../utils/FindRanges'
 
 export default {
 	name: 'EllipsisedOption',
 
-	mixins: [highlightText],
+	components: {
+		Highlight,
+	},
 
 	props: {
 		option: {
@@ -53,31 +64,58 @@ export default {
 
 	computed: {
 		name() {
-			return this.$parent.getOptionLabel(this.option)
+			return String(this.$parent.getOptionLabel(this.option))
 		},
 		needsTruncate() {
 			return this.name && this.name.length >= 10
 		},
+		/**
+		 * Index at which to split the name if it is longer than 10 characters.
+		 *
+		 * @returns {Integer} The position at which to split
+		 */
+		split() {
+			// leave maximum 10 letters
+			return this.name.length - Math.min(Math.floor(this.name.length / 2), 10)
+		},
 		part1() {
 			if (this.needsTruncate) {
-				// leave maximum 10 letters
-				const split = Math.min(Math.floor(this.name.length / 2), 10)
-				return this.name.substr(0, this.name.length - split)
+				return this.name.substr(0, this.split)
 			}
 			return this.name
 		},
 		part2() {
 			if (this.needsTruncate) {
-				const split = Math.min(Math.floor(this.name.length / 2), 10)
-				return this.name.substr(this.name.length - split)
+				return this.name.substr(this.split)
 			}
 			return ''
 		},
-		highlightedPart1() {
-			return this.highlightText(escapeHtml(this.part1), this.search)
+		/**
+		 * The ranges to highlight. Since we split the string for ellipsising,
+		 * the Highlight component cannot figure this out itself and needs the ranges provided.
+		 *
+		 * @returns {Array} The array with the ranges to highlight
+		 */
+		highlight1() {
+			if (!this.search) {
+				return []
+			}
+			return FindRanges(this.name, this.search)
 		},
-		highlightedPart2() {
-			return this.highlightText(escapeHtml(this.part2), this.search)
+		/**
+		 * We shift the ranges for the second part by the position of the split.
+		 * Ranges out of the string length are discarded by the Highlight component,
+		 * so we don't need to take care of this here.
+		 *
+		 * @returns {Array} The array with the ranges to highlight
+		 */
+		highlight2() {
+			return this.highlight1.map(range => {
+				return {
+					start: range.start - this.split,
+					end: range.end - this.split,
+				}
+			})
 		},
 	},
 }
