@@ -57,7 +57,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
 	<element v-if="isValidSingleAction && !forceMenu"
-		v-tooltip.auto="firstAction.text"
+		v-tooltip.auto="firstAction.title"
 		v-bind="firstActionBinding"
 		:class="[firstAction.icon, firstActionClass]"
 		class="action-item action-item--single"
