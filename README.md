@@ -44,13 +44,12 @@ import Avatar from '@nextcloud/vue/dist/Components/Avatar'
 
 If you want to work on improving the components it’s best to run the latest code and link it to your local Nextcloud installation:
 
-1. Install the dependencies with `npm i`
+1. Install the dependencies with `npm ci`
 2. Build the components every time you do changes: `npm run build`
 3. Connect it to your local Nextcloud development setup:
     - In this repository do `npm link`
-    - In the repository of an app do `npm link @nextcloud/vue`
-
-The link is going to be broken every time you do `npm i` in the app you linked it to, so then you will have to re-link.
+    - In the repository of an app do `npm link @nextcloud/vue` (you need to re-link any time you do `npm ci` in the app)
+4. Then build the app with: `npm run build` (or watch for changes with `npm run watch`)
 
 <a href="https://www.netlify.com">
   <img src="https://www.netlify.com/img/global/badges/netlify-dark.svg"/>
