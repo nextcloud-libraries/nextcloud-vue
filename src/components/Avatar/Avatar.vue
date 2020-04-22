@@ -464,6 +464,7 @@ export default {
 		display: block;
 		width: 100%;
 		text-align: center;
+		font-weight: normal;
 		color: var(--color-main-background);
 	}
 
