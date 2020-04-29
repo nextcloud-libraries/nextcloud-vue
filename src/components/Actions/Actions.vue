@@ -117,7 +117,6 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 				'action-item__menutoggle--with-title': menuTitle,
 				'action-item__menutoggle--primary': primary
 			}"
-			href="#"
 			:aria-label="ariaLabel"
 			aria-haspopup="true"
 			:aria-controls="randomId"
@@ -563,9 +562,9 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 	&__menutoggle:hover,
 	&__menutoggle:focus,
 	&__menutoggle:active {
+		opacity: $opacity_full;
 		// good looking on dark AND white bg
 		background-color: $icon-focus-bg;
-		opacity: $opacity_full;
 	}
 
 	&.action-item--open .action-item__menutoggle {
@@ -577,13 +576,12 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 	&--single,
 	&__menutoggle {
 		box-sizing: border-box;
+		width: auto;
 		min-width: $clickable-area;
 		height: $clickable-area;
 		margin: 0;
 		padding: $icon-margin;
-
 		cursor: pointer;
-
 		border: none;
 		background-color: transparent;
 	}
@@ -593,10 +591,11 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 		// align menu icon in center
 		display: flex;
 		align-items: center;
-		border-radius: $clickable-area / 2;
 		justify-content: center;
-
 		opacity: $opacity_normal;
+		border-radius: $clickable-area / 2;
+		font-weight: bold;
+		line-height: $icon-size;
 
 		&:before {
 			content: '';
@@ -604,7 +603,7 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 
 		&--default-icon {
 			@include iconfont('more');
-			&::before  {
+			&::before {
 				font-size: $icon-size;
 			}
 		}
@@ -613,31 +612,31 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 			position: relative;
 			padding-left: $clickable-area;
 			white-space: nowrap;
+			opacity: $opacity_full;
+			border: 1px solid var(--color-border-dark);
 			// with a title, we need to display this as a real button
 			background-color: var(--color-background-dark);
-			border: 1px solid var(--color-border-dark);
 			background-position: $icon-margin center;
 			font-size: inherit;
-			opacity: $opacity_full;
 			// non-background icon class
 			&:before {
 				position: absolute;
-				left: $icon-margin;
 				top: $icon-margin;
+				left: $icon-margin;
 			}
 		}
 
 		&--primary {
-			background-color: var(--color-primary-element);
+			opacity: $opacity_full;
 			color: var(--color-primary-text);
 			border: none;
-			opacity: $opacity_full;
+			background-color: var(--color-primary-element);
 			.action-item--open &,
 			&:hover,
 			&:focus,
 			&:active {
-				background-color: var(--color-primary-element-light) !important;
 				color: var(--color-primary-text) !important;
+				background-color: var(--color-primary-element-light) !important;
 			}
 		}
 	}
@@ -664,16 +663,12 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 		position: absolute;
 		z-index: 110;
 		right: 50%;
-
 		display: none;
-
+		margin-top: -5px;
 		// make sure to not have the menu right
 		// on the edge of the window
 		margin-bottom: 10px;
-		margin-top: -5px;
-
 		transform: translateX(50%);
-
 		color: var(--color-main-text);
 		border-radius: var(--border-radius);
 		background-color: var(--color-main-background);
@@ -694,14 +689,11 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 			position: absolute;
 			right: 50%;
 			bottom: 100%;
-
 			width: 0;
 			height: 0;
 			margin-right: - $arrow-width;
-
 			content: ' ';
 			pointer-events: none;
-
 			/* change this to adjust the arrow position */
 			border: solid transparent;
 			border-width: $arrow-width;
@@ -742,4 +734,5 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 		border: 1px solid var(--color-border);
 	}
 }
+
 </style>
