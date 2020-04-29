@@ -53,6 +53,34 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 </Actions>
 ```
 
+### With menu title
+
+```
+<Actions default-icon="icon-edit" menu-title="Object management">
+	<ActionButton icon="icon-edit">Rename</ActionButton>
+	<ActionButton icon="icon-delete">Delete</ActionButton>
+	<ActionButton icon="icon-confirm">Validate</ActionButton>
+	<ActionButton icon="icon-download">Download</ActionButton>
+</Actions>
+```
+
+### Various icons styles
+```
+<Actions :primary="true">
+	<ActionButton icon="icon-edit">Edit</ActionButton>
+	<ActionButton icon="icon-delete">Delete</ActionButton>
+</Actions>
+```
+
+```
+<Actions default-icon="icon-add-white" :primary="true" menu-title="Object management">
+	<ActionButton icon="icon-edit">Rename</ActionButton>
+	<ActionButton icon="icon-delete">Delete</ActionButton>
+	<ActionButton icon="icon-confirm">Validate</ActionButton>
+	<ActionButton icon="icon-download">Download</ActionButton>
+</Actions>
+```
+
 </docs>
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
@@ -83,15 +111,20 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 		@keydown.page-down.exact.prevent="focusLastAction"
 		@keydown.esc.exact.prevent="closeMenu">
 		<!-- If more than one action, create a popovermenu -->
-		<a class="icon action-item__menutoggle"
-			:class="defaultIcon"
-			href="#"
+		<button class="icon action-item__menutoggle"
+			:class="{
+				[defaultIcon]: true,
+				'action-item__menutoggle--with-title': menuTitle,
+				'action-item__menutoggle--primary': primary
+			}"
 			:aria-label="ariaLabel"
 			aria-haspopup="true"
 			:aria-controls="randomId"
 			:aria-expanded="opened"
 			@click.prevent="toggleMenu"
-			@keydown.space.exact.prevent="toggleMenu" />
+			@keydown.space.exact.prevent="toggleMenu">
+			{{ menuTitle }}
+		</button>
 		<div v-show="opened"
 			ref="menu"
 			:class="[`menu-${menuAlign}`, { 'open': opened }]"
@@ -180,6 +213,23 @@ export default {
 				return ['left', 'center', 'right'].indexOf(align) > -1
 			},
 		},
+
+		/**
+		 * Specify the menu title
+		 */
+		menuTitle: {
+			type: String,
+			default: null,
+		},
+
+		/**
+		 * Apply primary styling for this menu
+		 */
+		primary: {
+			type: Boolean,
+			default: false,
+		},
+
 		/**
 		 * Icon to show for the toggle menu button
 		 * when more than one action is inside the actions component.
@@ -511,16 +561,14 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 	&--single:active,
 	&__menutoggle:hover,
 	&__menutoggle:focus,
-	&__menutoggle:active{
-		border-radius: $clickable-area / 2;
-		// good looking on dark AND white bg
-		background-color: $icon-focus-bg !important; // override default server
+	&__menutoggle:active {
 		opacity: $opacity_full;
+		// good looking on dark AND white bg
+		background-color: $icon-focus-bg;
 	}
 
 	&.action-item--open .action-item__menutoggle {
 		opacity: $opacity_full;
-		border-radius: $clickable-area / 2;
 		background-color: $action-background-hover;
 	}
 
@@ -528,13 +576,12 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 	&--single,
 	&__menutoggle {
 		box-sizing: border-box;
-		width: $clickable-area;
+		width: auto;
+		min-width: $clickable-area;
 		height: $clickable-area;
 		margin: 0;
 		padding: $icon-margin;
-
 		cursor: pointer;
-
 		border: none;
 		background-color: transparent;
 	}
@@ -545,16 +592,52 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-
 		opacity: $opacity_normal;
+		border-radius: $clickable-area / 2;
+		font-weight: bold;
+		line-height: $icon-size;
 
 		&:before {
 			content: '';
 		}
 
 		&--default-icon {
-			font-size: $icon-size;
 			@include iconfont('more');
+			&::before {
+				font-size: $icon-size;
+			}
+		}
+
+		&--with-title {
+			position: relative;
+			padding-left: $clickable-area;
+			white-space: nowrap;
+			opacity: $opacity_full;
+			border: 1px solid var(--color-border-dark);
+			// with a title, we need to display this as a real button
+			background-color: var(--color-background-dark);
+			background-position: $icon-margin center;
+			font-size: inherit;
+			// non-background icon class
+			&:before {
+				position: absolute;
+				top: $icon-margin;
+				left: $icon-margin;
+			}
+		}
+
+		&--primary {
+			opacity: $opacity_full;
+			color: var(--color-primary-text);
+			border: none;
+			background-color: var(--color-primary-element);
+			.action-item--open &,
+			&:hover,
+			&:focus,
+			&:active {
+				color: var(--color-primary-text) !important;
+				background-color: var(--color-primary-element-light) !important;
+			}
 		}
 	}
 
@@ -580,16 +663,12 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 		position: absolute;
 		z-index: 110;
 		right: 50%;
-
 		display: none;
-
+		margin-top: -5px;
 		// make sure to not have the menu right
 		// on the edge of the window
 		margin-bottom: 10px;
-		margin-top: -5px;
-
 		transform: translateX(50%);
-
 		color: var(--color-main-text);
 		border-radius: var(--border-radius);
 		background-color: var(--color-main-background);
@@ -610,14 +689,11 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 			position: absolute;
 			right: 50%;
 			bottom: 100%;
-
 			width: 0;
 			height: 0;
 			margin-right: - $arrow-width;
-
 			content: ' ';
 			pointer-events: none;
-
 			/* change this to adjust the arrow position */
 			border: solid transparent;
 			border-width: $arrow-width;
@@ -658,4 +734,5 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 		border: 1px solid var(--color-border);
 	}
 }
+
 </style>
