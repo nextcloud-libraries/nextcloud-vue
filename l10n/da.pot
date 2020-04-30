@@ -1,0 +1,60 @@
+# 
+# Translators:
+# Thomas Nielsen <thsnielsen@gmail.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Thomas Nielsen <thsnielsen@gmail.com>, 2020\n"
+"Language-Team: Danish (https://www.transifex.com/nextcloud/teams/64236/da/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: da\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:170
+msgid "{tag} (invisible)"
+msgstr "{tag} (usynlig)"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:173
+msgid "{tag} (restricted)"
+msgstr "{tag} (begrænset)"
+
+#: src/components/Actions/Actions.vue:247
+msgid "Actions"
+msgstr "Handlinger"
+
+#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Choose"
+msgstr "Vælg"
+
+#: src/components/Modal/Modal.vue:117
+msgid "Close"
+msgstr "Luk"
+
+#: src/components/Modal/Modal.vue:166
+msgid "Next"
+msgstr "Videre"
+
+#: src/components/Multiselect/Multiselect.vue:172
+#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No results"
+msgstr "Ingen resultater"
+
+#: src/components/Modal/Modal.vue:302
+msgid "Pause slideshow"
+msgstr "Suspender fremvisning"
+
+#: src/components/Modal/Modal.vue:144
+msgid "Previous"
+msgstr "Forrige"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Select a tag"
+msgstr "Vælg et mærke"
+
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Settings"
+msgstr "Indstillinger"
+
+#: src/components/Modal/Modal.vue:302
+msgid "Start slideshow"
+msgstr "Start fremvisning"
