@@ -10,7 +10,7 @@ msgstr ""
 msgid "{tag} (restricted)"
 msgstr ""
 
-#: src/components/Actions/Actions.vue:197
+#: src/components/Actions/Actions.vue:247
 msgid "Actions"
 msgstr ""
 
