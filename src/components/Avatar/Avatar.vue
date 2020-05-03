@@ -419,6 +419,12 @@ export default {
 		background-color: var(--color-text-maxcontrast);
 	}
 
+	&:not(&--unknown) {
+		// White background for avatars with transparency, also in dark theme
+		background-color: #fff !important;
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.05) inset;
+	}
+
 	&--with-menu {
 		cursor: pointer;
 		.icon-more {
