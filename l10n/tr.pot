@@ -1,3 +1,4 @@
+# 
 # Translators:
 # Kemal Oktay Aktoğan <oktayaktogan@gmail.com>, 2020
 # abc Def <hdogan1974@gmail.com>, 2020
@@ -18,7 +19,7 @@ msgstr "{tag} (görünmez)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (kısıtlı)"
 
-#: src/components/Actions/Actions.vue:196
+#: src/components/Actions/Actions.vue:247
 msgid "Actions"
 msgstr "Eylemler"
 
@@ -37,7 +38,7 @@ msgstr "İleri"
 #: src/components/Multiselect/Multiselect.vue:172
 #: src/components/MultiselectTags/MultiselectTags.vue:78
 msgid "No results"
-msgstr "Sonuç yok"
+msgstr "Sonuçlar yok"
 
 #: src/components/Modal/Modal.vue:302
 msgid "Pause slideshow"
