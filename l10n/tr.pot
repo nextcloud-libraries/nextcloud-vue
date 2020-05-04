@@ -33,7 +33,7 @@ msgstr "Kapat"
 
 #: src/components/Modal/Modal.vue:166
 msgid "Next"
-msgstr "İleri"
+msgstr "Sonraki"
 
 #: src/components/Multiselect/Multiselect.vue:172
 #: src/components/MultiselectTags/MultiselectTags.vue:78
