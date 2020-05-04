@@ -1,0 +1,61 @@
+# 
+# Translators:
+# javier san felipe <jsanfe@gmail.com>, 2020
+# asd fgh <c1@cgps.xyz>, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: asd fgh <c1@cgps.xyz>, 2020\n"
+"Language-Team: Spanish (https://www.transifex.com/nextcloud/teams/64236/es/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:170
+msgid "{tag} (invisible)"
+msgstr "{etiqueta} (invisible)"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:173
+msgid "{tag} (restricted)"
+msgstr "{etiqueta} (restringido)"
+
+#: src/components/Actions/Actions.vue:247
+msgid "Actions"
+msgstr "acciones"
+
+#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Choose"
+msgstr "Elige"
+
+#: src/components/Modal/Modal.vue:117
+msgid "Close"
+msgstr "Cierra"
+
+#: src/components/Modal/Modal.vue:166
+msgid "Next"
+msgstr "Siguiente"
+
+#: src/components/Multiselect/Multiselect.vue:172
+#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No results"
+msgstr " Ningún resultado"
+
+#: src/components/Modal/Modal.vue:302
+msgid "Pause slideshow"
+msgstr "Pausa la presentación "
+
+#: src/components/Modal/Modal.vue:144
+msgid "Previous"
+msgstr "Anterior"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Select a tag"
+msgstr "Selecciona una etiqueta"
+
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Settings"
+msgstr "Ajustes"
+
+#: src/components/Modal/Modal.vue:302
+msgid "Start slideshow"
+msgstr "Comienza la presentación "
