@@ -1,0 +1,60 @@
+# 
+# Translators:
+# Sveinn í Felli <sv1@fellsnet.is>, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>, 2020\n"
+"Language-Team: Icelandic (https://www.transifex.com/nextcloud/teams/64236/is/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: is\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:170
+msgid "{tag} (invisible)"
+msgstr "{tag} (ósýnilegt)"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:173
+msgid "{tag} (restricted)"
+msgstr "{tag} (takmarkað)"
+
+#: src/components/Actions/Actions.vue:247
+msgid "Actions"
+msgstr "Aðgerðir"
+
+#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Choose"
+msgstr "Velja"
+
+#: src/components/Modal/Modal.vue:117
+msgid "Close"
+msgstr "Loka"
+
+#: src/components/Modal/Modal.vue:166
+msgid "Next"
+msgstr "Næsta"
+
+#: src/components/Multiselect/Multiselect.vue:172
+#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No results"
+msgstr "Engar niðurstöður"
+
+#: src/components/Modal/Modal.vue:302
+msgid "Pause slideshow"
+msgstr "Gera hlé á skyggnusýningu"
+
+#: src/components/Modal/Modal.vue:144
+msgid "Previous"
+msgstr "Fyrri"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Select a tag"
+msgstr "Veldu merki"
+
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Settings"
+msgstr "Stillingar"
+
+#: src/components/Modal/Modal.vue:302
+msgid "Start slideshow"
+msgstr "Byrja skyggnusýningu"
