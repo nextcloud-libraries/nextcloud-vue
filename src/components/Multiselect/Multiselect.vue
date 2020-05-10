@@ -118,6 +118,7 @@ Please see the [AvatarSelectOption](#AvatarSelectOption) component
 	-> Forward all undeclared props to the vue-multiselect child
 	-->
 	<VueMultiselect
+		ref="VueMultiselect"
 		v-model="localValue"
 		v-bind="$attrs"
 		:class="[
@@ -146,6 +147,7 @@ Please see the [AvatarSelectOption](#AvatarSelectOption) component
 			<!-- Ellipsis in the middle if no option slot
 				is defined in the parent -->
 			<EllipsisedOption v-else-if="!$scopedSlots['option']"
+				:name="getOptionLabel(scope.option)"
 				:option="scope.option"
 				:search="scope.search"
 				:label="label" />
@@ -343,6 +345,15 @@ export default {
 	},
 
 	methods: {
+		/**
+		 * Returns the option label
+		 *
+		 * @param {String} option The selected option
+		 * @returns {string}
+		 */
+		getOptionLabel(option) {
+			return String(this.$refs.VueMultiselect?.getOptionLabel(option))
+		},
 		/**
 		 * Format array of groups objects to a string
 		 * for the limit popup using the label prop
