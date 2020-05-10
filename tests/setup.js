@@ -20,5 +20,9 @@
  *
  */
 
+import { OC } from './OC.js'
+
+global.OC = new OC()
+
 global.TRANSLATIONS = []
 global.SCOPE_VERSION = 1
