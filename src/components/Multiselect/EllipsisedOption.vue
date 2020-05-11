@@ -60,12 +60,13 @@ export default {
 			type: String,
 			default: '',
 		},
+		name: {
+			type: String,
+			default: '',
+		},
 	},
 
 	computed: {
-		name() {
-			return String(this.$parent.getOptionLabel(this.option))
-		},
 		needsTruncate() {
 			return this.name && this.name.length >= 10
 		},
