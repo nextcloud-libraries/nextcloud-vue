@@ -50,6 +50,7 @@ import Breadcrumbs from './Breadcrumbs'
 import ColorPicker from './ColorPicker'
 import Content from './Content'
 import DatetimePicker from './DatetimePicker'
+import EmptyContent from './EmptyContent'
 import Modal from './Modal'
 import Multiselect from './Multiselect'
 import MultiselectTags from './MultiselectTags'
@@ -88,6 +89,7 @@ export {
 	ColorPicker,
 	Content,
 	DatetimePicker,
+	EmptyContent,
 	Modal,
 	Multiselect,
 	MultiselectTags,
