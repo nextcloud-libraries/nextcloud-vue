@@ -36,7 +36,8 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 
 <template>
 	<li :class="{ 'action--disabled': disabled }">
-		<span class="action-text-editable">
+		<span class="action-text-editable"
+			@click="onClick">
 			<!-- icon -->
 			<span :class="[isIconUrl ? 'action-text-editable__icon--url' : icon]"
 				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
