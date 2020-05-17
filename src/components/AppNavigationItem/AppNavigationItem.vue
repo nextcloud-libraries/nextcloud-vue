@@ -107,7 +107,6 @@ Just set the `pinned` prop.
 <template>
 	<!-- Navigation item, can be either an <li> or a <router-link> depending on the props -->
 	<nav-element v-bind="navElement"
-		:title="title"
 		:class="{
 			'app-navigation-entry--no-icon': !isIconShown,
 			'app-navigation-entry--opened': opened,
@@ -130,7 +129,9 @@ Just set the `pinned` prop.
 				class="app-navigation-entry-icon">
 				<slot v-if="!loading" v-show="isIconShown" name="icon" />
 			</div>
-			<span class="app-navigation-entry__title">{{ title }}</span>
+			<span class="app-navigation-entry__title" :title="title">
+				{{ title }}
+			</span>
 		</a>
 
 		<AppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
