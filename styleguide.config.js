@@ -3,7 +3,6 @@ const path = require('path');
 module.exports = {
 	require: [
 		path.join(__dirname, 'styleguide/global.requires.js'),
-		path.join(__dirname, 'styleguide/assets/font.css'),
 		path.join(__dirname, 'styleguide/assets/icons.css'),
 		path.join(__dirname, 'styleguide/assets/additional.scss')
 	],
@@ -118,7 +117,7 @@ module.exports = {
 			ribbonBackground: '#0082c9',
 		},
 		fontFamily: {
-			base: '"Nunito", "Open Sans", sans-serif',
+			base: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
 		},
 	},
 }
