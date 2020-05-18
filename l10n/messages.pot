@@ -26,7 +26,7 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: src/components/Multiselect/Multiselect.vue:172
+#: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
 msgid "No results"
 msgstr ""
