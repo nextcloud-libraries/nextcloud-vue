@@ -27,7 +27,8 @@
 			:exact="exact"
 			class="action-router focusable"
 			:aria-label="ariaLabel"
-			rel="noreferrer noopener">
+			rel="noreferrer noopener"
+			@click.native="onClick">
 			<!-- icon -->
 			<span :class="[isIconUrl ? 'action-router__icon--url' : icon]"
 				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"

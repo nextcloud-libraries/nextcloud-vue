@@ -23,7 +23,8 @@
 
 <template>
 	<li>
-		<span class="action-text">
+		<span class="action-text"
+			@click="onClick">
 			<!-- icon -->
 			<span
 				v-if="icon !== ''"
