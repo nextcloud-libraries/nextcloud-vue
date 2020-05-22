@@ -138,7 +138,7 @@ export default {
 	top: $header-height;
 	left: 0;
 	// Above appcontent
-	z-index: 2000;
+	z-index: 1800;
 	height: calc(100vh - #{$header-height});
 	box-sizing: border-box;
 	background-color: var(--color-main-background);
