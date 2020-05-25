@@ -60,6 +60,11 @@ emit('toggle-navigation', {
 		:class="{'app-navigation--close':!open }">
 		<AppNavigationToggle :open="open" @update:open="toggleNavigation" />
 		<slot />
+
+		<!-- List for Navigation li-items -->
+		<ul class="app-navigation__list">
+			<slot name="list" />
+		</ul>
 	</div>
 </template>
 
@@ -158,7 +163,8 @@ export default {
 	}
 
 	//list of navigation items
-	ul {
+	ul,
+	&__list {
 		position: relative;
 		height: 100%;
 		width: inherit;
