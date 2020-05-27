@@ -1,9 +1,10 @@
+# 
 # Translators:
-# Valdnet Valdnet, 2020
+# Valdnet, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Valdnet Valdnet, 2020\n"
+"Last-Translator: Valdnet, 2020\n"
 "Language-Team: Polish (https://www.transifex.com/nextcloud/teams/64236/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
@@ -17,7 +18,7 @@ msgstr "{tag} (niewidoczna)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (ograniczona)"
 
-#: src/components/Actions/Actions.vue:196
+#: src/components/Actions/Actions.vue:247
 msgid "Actions"
 msgstr "Działania"
 
@@ -33,8 +34,9 @@ msgstr "Zamknij"
 msgid "Next"
 msgstr "Następny"
 
-#: src/components/Multiselect/Multiselect.vue:172
+#: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:34
 msgid "No results"
 msgstr "Brak wyników"
 
@@ -57,3 +59,7 @@ msgstr "Ustawienia"
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Rozpocznij pokaz slajdów"
+
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:138
+msgid "Unable to search the group"
+msgstr "Nie można przeszukać grupy"
