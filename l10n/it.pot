@@ -1,3 +1,4 @@
+# 
 # Translators:
 # Random_R, 2020
 # 
@@ -17,7 +18,7 @@ msgstr "{tag} (invisibile)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (limitato)"
 
-#: src/components/Actions/Actions.vue:196
+#: src/components/Actions/Actions.vue:247
 msgid "Actions"
 msgstr "Azioni"
 
@@ -33,8 +34,9 @@ msgstr "Chiudi"
 msgid "Next"
 msgstr "Successivo"
 
-#: src/components/Multiselect/Multiselect.vue:172
+#: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:34
 msgid "No results"
 msgstr "Nessun risultato"
 
@@ -57,3 +59,7 @@ msgstr "Impostazioni"
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Avvia presentazione"
+
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:138
+msgid "Unable to search the group"
+msgstr "Impossibile cercare il gruppo"
