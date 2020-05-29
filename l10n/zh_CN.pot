@@ -64,4 +64,4 @@ msgstr "开始幻灯片"
 
 #: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
-msgstr "无法搜索群组"
+msgstr "无法搜索分组"
