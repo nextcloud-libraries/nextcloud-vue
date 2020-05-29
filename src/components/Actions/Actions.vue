@@ -104,11 +104,12 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 		v-click-outside="closeMenu"
 		:class="{'action-item--open': opened}"
 		class="action-item"
-		@keydown.up.exact.prevent="focusPreviousAction"
-		@keydown.down.exact.prevent="focusNextAction"
-		@keydown.shift.tab.prevent="focusPreviousAction"
-		@keydown.page-up.exact.prevent="focusFirstAction"
-		@keydown.page-down.exact.prevent="focusLastAction"
+		@keydown.up.exact="focusPreviousAction"
+		@keydown.down.exact="focusNextAction"
+		@keydown.tab.exact="focusNextAction"
+		@keydown.shift.tab.exact="focusPreviousAction"
+		@keydown.page-up.exact="focusFirstAction"
+		@keydown.page-down.exact="focusLastAction"
 		@keydown.esc.exact.prevent="closeMenu">
 		<!-- If more than one action, create a popovermenu -->
 		<button class="icon action-item__menutoggle"
@@ -512,21 +513,33 @@ export default {
 				}
 			}
 		},
-		focusPreviousAction() {
-			this.focusIndex = Math.max(this.focusIndex - 1, 0)
-			this.focusAction()
+		focusPreviousAction(event) {
+			if (this.opened) {
+				event.preventDefault()
+				this.focusIndex = Math.max(this.focusIndex - 1, 0)
+				this.focusAction()
+			}
 		},
-		focusNextAction() {
-			this.focusIndex = Math.min(this.focusIndex + 1, this.$refs.menu.querySelectorAll(focusableSelector).length - 1)
-			this.focusAction()
+		focusNextAction(event) {
+			if (this.opened) {
+				event.preventDefault()
+				this.focusIndex = Math.min(this.focusIndex + 1, this.$refs.menu.querySelectorAll(focusableSelector).length - 1)
+				this.focusAction()
+			}
 		},
-		focusFirstAction() {
-			this.focusIndex = 0
-			this.focusAction()
+		focusFirstAction(event) {
+			if (this.opened) {
+				event.preventDefault()
+				this.focusIndex = 0
+				this.focusAction()
+			}
 		},
-		focusLastAction() {
-			this.focusIndex = this.$el.querySelectorAll(focusableSelector).length - 1
-			this.focusAction()
+		focusLastAction(event) {
+			if (this.opened) {
+				event.preventDefault()
+				this.focusIndex = this.$el.querySelectorAll(focusableSelector).length - 1
+				this.focusAction()
+			}
 		},
 
 		// ACTIONS MANAGEMENT
