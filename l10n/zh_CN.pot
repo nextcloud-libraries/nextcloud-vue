@@ -1,10 +1,12 @@
+# 
 # Translators:
 # SleepyJesse <Jesse_Xu@live.com>, 2020
 # Jianming Liang <fuufuukun@163.com>, 2020
+# Pascal Janus <pascal_janus@163.com>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Jianming Liang <fuufuukun@163.com>, 2020\n"
+"Last-Translator: Pascal Janus <pascal_janus@163.com>, 2020\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/nextcloud/teams/64236/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_CN\n"
@@ -18,7 +20,7 @@ msgstr "{tag} （不可见）"
 msgid "{tag} (restricted)"
 msgstr "{tag} （受限）"
 
-#: src/components/Actions/Actions.vue:197
+#: src/components/Actions/Actions.vue:247
 msgid "Actions"
 msgstr "行为"
 
@@ -34,8 +36,9 @@ msgstr "关闭"
 msgid "Next"
 msgstr "下一个"
 
-#: src/components/Multiselect/Multiselect.vue:172
+#: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
 msgid "No results"
 msgstr "无结果"
 
@@ -58,3 +61,7 @@ msgstr "设置"
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "开始幻灯片"
+
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
+msgid "Unable to search the group"
+msgstr "无法搜索群组"
