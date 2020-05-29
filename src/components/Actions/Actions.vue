@@ -505,10 +505,10 @@ export default {
 			// TODO: have a global disabled state for non input elements
 			const focusElement = this.$refs.fullmenu.querySelectorAll(focusableSelector)[this.focusIndex]
 			if (focusElement) {
-				const liMenuParent = focusElement.closest('li')
+				this.removeCurrentActive()
+				const liMenuParent = focusElement.closest('li.action')
 				focusElement.focus()
 				if (liMenuParent) {
-					this.removeCurrentActive()
 					liMenuParent.classList.add('active')
 				}
 			}

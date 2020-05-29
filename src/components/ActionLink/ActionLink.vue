@@ -34,7 +34,7 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 </docs>
 
 <template>
-	<li>
+	<li class="action">
 		<a
 			:download="download"
 			:href="href"

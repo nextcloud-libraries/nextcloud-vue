@@ -35,7 +35,7 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 </docs>
 
 <template>
-	<li :class="{ 'action--disabled': disabled }">
+	<li class="action" :class="{ 'action--disabled': disabled }">
 		<span class="action-checkbox">
 			<input :id="id"
 				ref="checkbox"

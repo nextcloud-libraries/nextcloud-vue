@@ -22,7 +22,7 @@
   -->
 
 <template>
-	<li>
+	<li class="action">
 		<router-link :to="to"
 			:exact="exact"
 			class="action-router focusable"

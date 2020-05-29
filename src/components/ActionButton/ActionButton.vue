@@ -43,7 +43,7 @@ If you're using a long text you can specify a title
 </docs>
 
 <template>
-	<li :class="{ 'action--disabled': disabled }">
+	<li class="action" :class="{ 'action--disabled': disabled }">
 		<button
 			class="action-button"
 			:aria-label="ariaLabel"
