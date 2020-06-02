@@ -1,3 +1,4 @@
+# 
 # Translators:
 # Efstathios Iosifidis <iefstathios@gmail.com>, 2020
 # george k <norhorn@gmail.com>, 2020
@@ -18,7 +19,7 @@ msgstr "{tag} (αόρατο)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (περιορισμένο)"
 
-#: src/components/Actions/Actions.vue:194
+#: src/components/Actions/Actions.vue:247
 msgid "Actions"
 msgstr "Ενέργειες"
 
@@ -34,8 +35,9 @@ msgstr "Κλείσιμο"
 msgid "Next"
 msgstr "Επόμενο"
 
-#: src/components/Multiselect/Multiselect.vue:172
+#: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:34
 msgid "No results"
 msgstr "Κανένα αποτέλεσμα"
 
@@ -58,3 +60,7 @@ msgstr "Ρυθμίσεις"
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Έναρξη προβολής διαφανειών"
+
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:138
+msgid "Unable to search the group"
+msgstr "Δεν είναι δυνατή η αναζήτηση της ομάδας"
