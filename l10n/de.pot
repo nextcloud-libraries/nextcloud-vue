@@ -1,10 +1,12 @@
+# 
 # Translators:
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2020
 # Philipp Fischbeck <pfischbeck@googlemail.com>, 2020
+# Andreas Eitel <github-aneitel@online.de>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Philipp Fischbeck <pfischbeck@googlemail.com>, 2020\n"
+"Last-Translator: Andreas Eitel <github-aneitel@online.de>, 2020\n"
 "Language-Team: German (https://www.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -18,7 +20,7 @@ msgstr "{tag} (unsichtbar)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (eingeschränkt)"
 
-#: src/components/Actions/Actions.vue:196
+#: src/components/Actions/Actions.vue:247
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -34,8 +36,9 @@ msgstr "Schließen"
 msgid "Next"
 msgstr "Weiter"
 
-#: src/components/Multiselect/Multiselect.vue:172
+#: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
 msgid "No results"
 msgstr "Keine Ergebnisse"
 
@@ -58,3 +61,7 @@ msgstr "Einstellungen"
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Diashow starten"
+
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
+msgid "Unable to search the group"
+msgstr "Die Gruppe konnte nicht durchsucht werden"
