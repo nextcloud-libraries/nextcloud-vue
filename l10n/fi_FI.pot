@@ -1,0 +1,65 @@
+# 
+# Translators:
+# Robin Lahtinen <robin.lahtinen@gmail.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Robin Lahtinen <robin.lahtinen@gmail.com>, 2020\n"
+"Language-Team: Finnish (Finland) (https://www.transifex.com/nextcloud/teams/64236/fi_FI/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: fi_FI\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:170
+msgid "{tag} (invisible)"
+msgstr "{tag} (näkymätön)"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:173
+msgid "{tag} (restricted)"
+msgstr "{tag} (rajoitettu)"
+
+#: src/components/Actions/Actions.vue:247
+msgid "Actions"
+msgstr "Toiminnot"
+
+#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Choose"
+msgstr "Valitse"
+
+#: src/components/Modal/Modal.vue:117
+msgid "Close"
+msgstr "Sulje"
+
+#: src/components/Modal/Modal.vue:166
+msgid "Next"
+msgstr "Seuraava"
+
+#: src/components/Multiselect/Multiselect.vue:174
+#: src/components/MultiselectTags/MultiselectTags.vue:78
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
+msgid "No results"
+msgstr "Ei tuloksia"
+
+#: src/components/Modal/Modal.vue:302
+msgid "Pause slideshow"
+msgstr "Keskeytä diaesitys"
+
+#: src/components/Modal/Modal.vue:144
+msgid "Previous"
+msgstr "Edellinen"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Select a tag"
+msgstr "Valitse tagi"
+
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Settings"
+msgstr "Asetukset"
+
+#: src/components/Modal/Modal.vue:302
+msgid "Start slideshow"
+msgstr "Aloita diaesitys"
+
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
+msgid "Unable to search the group"
+msgstr "Ryhmää ei voi hakea"
