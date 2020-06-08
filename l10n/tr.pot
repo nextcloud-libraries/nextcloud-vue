@@ -2,10 +2,11 @@
 # Translators:
 # Kemal Oktay Aktoğan <oktayaktogan@gmail.com>, 2020
 # abc Def <hdogan1974@gmail.com>, 2020
+# Hüseyin Fahri Uzun <mail@fahriuzun.com>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: abc Def <hdogan1974@gmail.com>, 2020\n"
+"Last-Translator: Hüseyin Fahri Uzun <mail@fahriuzun.com>, 2020\n"
 "Language-Team: Turkish (https://www.transifex.com/nextcloud/teams/64236/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: tr\n"
@@ -35,8 +36,9 @@ msgstr "Kapat"
 msgid "Next"
 msgstr "Sonraki"
 
-#: src/components/Multiselect/Multiselect.vue:172
+#: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
 msgid "No results"
 msgstr "Sonuçlar yok"
 
@@ -59,3 +61,7 @@ msgstr "Ayarlar"
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Slayt gösterisini başlat"
+
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
+msgid "Unable to search the group"
+msgstr "Grupta arama yapılamıyor"
