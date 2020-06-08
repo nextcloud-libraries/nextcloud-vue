@@ -15,7 +15,10 @@ window.OC = {
 	},
 	getLanguage() {
 		return 'en'
-	}
+	},
+	isUserAdmin() {
+		return true
+	},
 }
 window.OCA = {}
 
