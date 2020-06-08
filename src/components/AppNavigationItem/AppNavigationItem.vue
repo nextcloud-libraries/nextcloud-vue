@@ -72,12 +72,12 @@ Wrap the children in a template with the `slot` property and use the prop `allow
 prevent the user from collapsing the items.
 
 ```
-<AppNavigationItem title="Item with children" :allowCollapse="true">
+<AppNavigationItem title="Item with children" :allowCollapse="true" :open="true">
 	<template>
 		<AppNavigationItem title="AppNavigationItemChild1" />
-		<AppNavigationItem title="AppNavigationItemChild2" />
-		<AppNavigationItem title="AppNavigationItemChild3"  />
-		<AppNavigationItem title="AppNavigationItemChild4"  />
+		<AppNavigationItem class="active" title="AppNavigationItemChild2" />
+		<AppNavigationItem title="AppNavigationItemChild3" />
+		<AppNavigationItem title="AppNavigationItemChild4" />
 	</template>
 </AppNavigationItem>
 ```
@@ -441,11 +441,22 @@ export default {
 	box-sizing: border-box;
 	width: 100%;
 	min-height: $clickable-area;
+
 	// When .active class is applied, change color background of link and utils. The
 	// !important prevents the focus state to override the active state.
-	&.active > a,
-	&.active > a ~ .app-navigation-entry__utils {
+	&.active {
 		background-color: var(--color-primary-light) !important;
+	}
+	&:focus-within,
+	&:hover {
+		background-color: var(--color-background-hover);
+	}
+	&.active,
+	&:focus-within,
+	&:hover {
+		.app-navigation-entry__children {
+			background-color: var(--color-main-background);
+		}
 	}
 
 	/* hide deletion/collapse of subitems */
@@ -473,17 +484,6 @@ export default {
 		background-position: $icon-margin center;
 		background-size: $icon-size $icon-size;
 		line-height: $clickable-area;
-		&:hover,
-		&:hover ~ .app-navigation-entry__utils,
-		&:focus,
-		&:focus ~ .app-navigation-entry__utils {
-			background-color: var(--color-background-hover);
-		}
-		&.active,
-		&:active,
-		&:active ~ .app-navigation-entry__utils {
-			background-color: var(--color-primary-light);
-		}
 
 		.app-navigation-entry-icon {
 			display: flex;
