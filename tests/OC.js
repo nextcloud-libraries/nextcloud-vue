@@ -8,4 +8,8 @@ export class OC {
 		return 'en_GB'
 	}
 
+	isUserAdmin() {
+		return true
+	}
+
 }
