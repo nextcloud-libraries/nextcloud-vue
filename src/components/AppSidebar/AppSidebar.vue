@@ -619,13 +619,8 @@ $top-buttons-spacing: 6px;
 			}
 			&--with-subtitle {
 				justify-content: space-between;
-				height: $desc-height;
-			}
-			&--editable {
-				height: $desc-height * .75;
 			}
 			&--with-subtitle--editable {
-				height: $desc-height * 1.5;
 
 				.app-sidebar-header__subtitle {
 					margin-left: $desc-input-padding;
