@@ -34,8 +34,9 @@ msgstr "Loka"
 msgid "Next"
 msgstr "Næsta"
 
-#: src/components/Multiselect/Multiselect.vue:172
+#: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
 msgid "No results"
 msgstr "Engar niðurstöður"
 
@@ -58,3 +59,7 @@ msgstr "Stillingar"
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Byrja skyggnusýningu"
+
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
+msgid "Unable to search the group"
+msgstr "Get ekki leitað í hópnum"
