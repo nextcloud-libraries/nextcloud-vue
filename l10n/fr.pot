@@ -1,11 +1,13 @@
+# 
 # Translators:
 # Brendan Abolivier <transifex@brendanabolivier.com>, 2020
 # gud bes <gudbes@protonmail.com>, 2020
 # Greg Greg <grena@grenabox.fr>, 2020
+# Luclu7 <theluc7andcompagnie@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Greg Greg <grena@grenabox.fr>, 2020\n"
+"Last-Translator: Luclu7 <theluc7andcompagnie@gmail.com>, 2020\n"
 "Language-Team: French (https://www.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -19,7 +21,7 @@ msgstr "{tag} (invisible)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (restreint)"
 
-#: src/components/Actions/Actions.vue:196
+#: src/components/Actions/Actions.vue:247
 msgid "Actions"
 msgstr "Actions"
 
@@ -35,8 +37,9 @@ msgstr "Fermer"
 msgid "Next"
 msgstr "Suivant"
 
-#: src/components/Multiselect/Multiselect.vue:172
+#: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
 msgid "No results"
 msgstr "Aucun résultat"
 
@@ -59,3 +62,7 @@ msgstr "Paramètres"
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Démarrer le diaporama"
+
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
+msgid "Unable to search the group"
+msgstr "Impossible de chercher le groupe"
