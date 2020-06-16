@@ -16,4 +16,4 @@ jobs:
     - name: extract l10n files
       run: npm run l10n:extract
     - name: Check l10n file changes
-      run: bash -c "[[ ! \"`git status --porcelain l10n`\" ]] || ( echo 'Uncommited l10n changes. Run `npm l10n:extract`.' && git status && exit 1 )"
+      run: bash -c "[[ ! \"`git status --porcelain l10n`\" ]] || ( echo 'Uncommited l10n changes. Run \`npm run l10n:extract\`.' && exit 1 )"
