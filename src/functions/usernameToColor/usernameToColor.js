@@ -25,12 +25,12 @@ import GenColors from '../../utils/GenColors'
 
 /**
  * Originally taken from https://github.com/nextcloud/server/blob/master/core/js/placeholder.js
- * @param {string} uid unique id to generate from
+ * @param {string} username Display name or user id to generate from
  * @returns {Object} the rgb colors as {r:255, g:255, b:255}
  */
-const uidToColor = function(uid) {
+const usernameToColor = function(username) {
 	// Normalize hash
-	let hash = uid.toLowerCase()
+	let hash = username.toLowerCase()
 
 	// Already a md5 hash?
 	if (hash.match(/^([0-9a-f]{4}-?){8}$/) === null) {
@@ -65,4 +65,4 @@ const uidToColor = function(uid) {
 	return finalPalette[hashToInt(hash, steps * 3)]
 }
 
-export default uidToColor
+export default usernameToColor

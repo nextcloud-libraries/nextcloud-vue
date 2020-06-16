@@ -20,6 +20,6 @@
  *
  */
 
-import uidToColor from './uidToColor'
+import usernameToColor from './usernameToColor'
 
-export default uidToColor
+export default usernameToColor

@@ -87,7 +87,7 @@ import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
 import Tooltip from '../../directives/Tooltip'
-import uidToColor from '../../functions/uidToColor'
+import usernameToColor from '../../functions/usernameToColor'
 
 export default {
 	name: 'Avatar',
@@ -275,7 +275,7 @@ export default {
 			}
 
 			if (!this.iconClass && !this.avatarSrcSetLoaded) {
-				const rgb = uidToColor(this.getUserIdentifier)
+				const rgb = usernameToColor(this.getUserIdentifier)
 				style.backgroundColor = 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')'
 			}
 			return style
