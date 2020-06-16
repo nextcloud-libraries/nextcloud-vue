@@ -54,6 +54,13 @@ module.exports = {
 			acc[name] = path.join(__dirname, item)
 			return acc
 		}, {}),
+		...glob.sync('src/functions/*/index.js').reduce((acc, item) => {
+			const name = item
+				.replace('/index.js', '')
+				.replace('src/functions/', 'Functions/')
+			acc[name] = path.join(__dirname, item)
+			return acc
+		}, {}),
 		...glob.sync('src/mixins/*/index.js').reduce((acc, item) => {
 			const name = item
 				.replace('/index.js', '')

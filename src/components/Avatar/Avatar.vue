@@ -87,7 +87,7 @@ import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
 import Tooltip from '../../directives/Tooltip'
-import uidToColor from './uidToColor'
+import uidToColor from '../../functions/uidToColor'
 
 export default {
 	name: 'Avatar',
