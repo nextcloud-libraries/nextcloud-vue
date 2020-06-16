@@ -1,0 +1,65 @@
+# 
+# Translators:
+# Anton Kuchár <tonokuc@pobox.sk>, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Anton Kuchár <tonokuc@pobox.sk>, 2020\n"
+"Language-Team: Slovak (Slovakia) (https://www.transifex.com/nextcloud/teams/64236/sk_SK/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: sk_SK\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:170
+msgid "{tag} (invisible)"
+msgstr "{tag} (neviditeľný)"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:173
+msgid "{tag} (restricted)"
+msgstr "{tag} (obmedzený)"
+
+#: src/components/Actions/Actions.vue:247
+msgid "Actions"
+msgstr "Akcie"
+
+#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Choose"
+msgstr "Vybrať"
+
+#: src/components/Modal/Modal.vue:117
+msgid "Close"
+msgstr "Zatvoriť"
+
+#: src/components/Modal/Modal.vue:166
+msgid "Next"
+msgstr "Ďalší"
+
+#: src/components/Multiselect/Multiselect.vue:174
+#: src/components/MultiselectTags/MultiselectTags.vue:78
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
+msgid "No results"
+msgstr "Žiadne výsledky"
+
+#: src/components/Modal/Modal.vue:302
+msgid "Pause slideshow"
+msgstr "Pozastaviť prezentáciu"
+
+#: src/components/Modal/Modal.vue:144
+msgid "Previous"
+msgstr "Predchádzajúci"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Select a tag"
+msgstr "Vybrať štítok"
+
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Settings"
+msgstr "Nastavenia"
+
+#: src/components/Modal/Modal.vue:302
+msgid "Start slideshow"
+msgstr "Začať prezentáciu"
+
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
+msgid "Unable to search the group"
+msgstr "Skupinu sa nepodarilo nájsť"
