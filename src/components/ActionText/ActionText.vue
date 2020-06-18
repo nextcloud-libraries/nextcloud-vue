@@ -22,7 +22,7 @@
   -->
 
 <template>
-	<li>
+	<li class="action">
 		<span class="action-text"
 			@click="onClick">
 			<!-- icon -->

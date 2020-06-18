@@ -35,7 +35,7 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 </docs>
 
 <template>
-	<li :class="{ 'action--disabled': disabled }">
+	<li class="action" :class="{ 'action--disabled': disabled }">
 		<span class="action-text-editable"
 			@click="onClick">
 			<!-- icon -->

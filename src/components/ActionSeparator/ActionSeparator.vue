@@ -24,7 +24,7 @@
   -->
 
 <template>
-	<li class="action-separator action--disabled" />
+	<li class="action action-separator action--disabled" />
 </template>
 
 <script>

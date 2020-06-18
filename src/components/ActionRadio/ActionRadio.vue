@@ -37,7 +37,7 @@ So that only one of each name set can be selected at the same time.
 </docs>
 
 <template>
-	<li :class="{ 'action--disabled': disabled }">
+	<li class="action" :class="{ 'action--disabled': disabled }">
 		<span class="action-radio">
 			<input :id="id"
 				ref="radio"

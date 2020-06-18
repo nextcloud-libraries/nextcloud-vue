@@ -101,17 +101,19 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 	<!-- more than one action -->
 	<div v-else
 		v-show="hasMultipleActions || forceMenu"
+		ref="fullmenu"
 		v-click-outside="closeMenu"
 		:class="{'action-item--open': opened}"
 		class="action-item"
-		@keydown.up.exact.prevent="focusPreviousAction"
-		@keydown.down.exact.prevent="focusNextAction"
-		@keydown.shift.tab.prevent="focusPreviousAction"
-		@keydown.page-up.exact.prevent="focusFirstAction"
-		@keydown.page-down.exact.prevent="focusLastAction"
+		@keydown.up.exact="focusPreviousAction"
+		@keydown.down.exact="focusNextAction"
+		@keydown.tab.exact="focusNextAction"
+		@keydown.shift.tab.exact="focusPreviousAction"
+		@keydown.page-up.exact="focusFirstAction"
+		@keydown.page-down.exact="focusLastAction"
 		@keydown.esc.exact.prevent="closeMenu">
 		<!-- If more than one action, create a popovermenu -->
-		<button class="icon action-item__menutoggle"
+		<button class="icon action-item__menutoggle focusable"
 			:class="{
 				[defaultIcon]: true,
 				'action-item__menutoggle--with-title': menuTitle,
@@ -122,7 +124,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 			:aria-controls="randomId"
 			:aria-expanded="opened"
 			@click.prevent="toggleMenu"
-			@keydown.space.exact.prevent="toggleMenu">
+			@keyup.space.exact.prevent="toggleMenu">
 			{{ menuTitle }}
 		</button>
 		<div v-show="opened"
@@ -390,11 +392,9 @@ export default {
 				this.opened = !this.opened
 			}
 
-			// focus first on menu open after opening the menu
 			if (this.opened) {
 				this.$nextTick(() => {
 					this.onOpen()
-					this.focusFirstAction()
 				})
 
 				/**
@@ -439,6 +439,7 @@ export default {
 
 				// close everything
 				this.opened = false
+				this.focusIndex = 0
 				this.offsetX = 0
 				this.offsetY = 0
 				this.offsetYArrow = 0
@@ -485,7 +486,7 @@ export default {
 			if (menuItem) {
 				const focusableItem = menuItem.querySelector(focusableSelector)
 				if (focusableItem) {
-					const focusList = this.$refs.menu.querySelectorAll(focusableSelector)
+					const focusList = this.$refs.fullmenu.querySelectorAll(focusableSelector)
 					const focusIndex = Array.prototype.indexOf.call(focusList, focusableItem)
 					if (focusIndex > -1) {
 						this.focusIndex = focusIndex
@@ -495,38 +496,61 @@ export default {
 			}
 		},
 		removeCurrentActive() {
-			const currentActiveElement = this.$refs.menu.querySelector('li.active')
+			const currentActiveElement = this.$refs.fullmenu.querySelector('li.active')
 			if (currentActiveElement) {
 				currentActiveElement.classList.remove('active')
 			}
 		},
 		focusAction() {
 			// TODO: have a global disabled state for non input elements
-			const focusElement = this.$refs.menu.querySelectorAll(focusableSelector)[this.focusIndex]
+			const focusElement = this.$refs.fullmenu.querySelectorAll(focusableSelector)[this.focusIndex]
 			if (focusElement) {
-				const liMenuParent = focusElement.closest('li')
+				this.removeCurrentActive()
+				const liMenuParent = focusElement.closest('li.action')
 				focusElement.focus()
 				if (liMenuParent) {
-					this.removeCurrentActive()
 					liMenuParent.classList.add('active')
 				}
 			}
 		},
-		focusPreviousAction() {
-			this.focusIndex = Math.max(this.focusIndex - 1, 0)
-			this.focusAction()
+		focusPreviousAction(event) {
+			if (this.opened) {
+				if (this.focusIndex === 0) {
+					// First element overflows to body-navigation (no preventDefault!) and closes Actions-menu
+					this.closeMenu()
+				} else {
+					event.preventDefault()
+					this.focusIndex = this.focusIndex - 1
+				}
+				this.focusAction()
+			}
 		},
-		focusNextAction() {
-			this.focusIndex = Math.min(this.focusIndex + 1, this.$refs.menu.querySelectorAll(focusableSelector).length - 1)
-			this.focusAction()
+		focusNextAction(event) {
+			if (this.opened) {
+				const indexLength = this.$refs.fullmenu.querySelectorAll(focusableSelector).length - 1
+				if (this.focusIndex === indexLength) {
+					// Last element overflows to body-navigation (no preventDefault!) and closes Actions-menu
+					this.closeMenu()
+				} else {
+					event.preventDefault()
+					this.focusIndex = this.focusIndex + 1
+				}
+				this.focusAction()
+			}
 		},
-		focusFirstAction() {
-			this.focusIndex = 0
-			this.focusAction()
+		focusFirstAction(event) {
+			if (this.opened) {
+				event.preventDefault()
+				this.focusIndex = 0
+				this.focusAction()
+			}
 		},
-		focusLastAction() {
-			this.focusIndex = this.$el.querySelectorAll(focusableSelector).length - 1
-			this.focusAction()
+		focusLastAction(event) {
+			if (this.opened) {
+				event.preventDefault()
+				this.focusIndex = this.$el.querySelectorAll(focusableSelector).length - 1
+				this.focusAction()
+			}
 		},
 
 		// ACTIONS MANAGEMENT

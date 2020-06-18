@@ -36,7 +36,7 @@ All undocumented attributes will be bound to the input or the datepicker. e.g. `
 </docs>
 
 <template>
-	<li :class="{ 'action--disabled': disabled }">
+	<li class="action" :class="{ 'action--disabled': disabled }">
 		<span :class="{ 'action-input--picker': isDatePickerType , 'action-input-picker--disabled': disabled}"
 			class="action-input"
 			@mouseleave="onLeave">
