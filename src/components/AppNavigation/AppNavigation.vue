@@ -166,6 +166,7 @@ export default {
 	ul,
 	&__list {
 		position: relative;
+		height: 100%;
 		width: inherit;
 		overflow-x: hidden;
 		overflow-y: auto;
