@@ -457,17 +457,19 @@ export default {
 			this.offsetY = 0
 			this.offsetYArrow = 0
 			this.rotateArrow = false
+
+			const isOut = IsOutOfViewport(this.$refs.menu)
+			if (isOut.bottom) {
+				this.offsetY = 0 - Math.round(this.$refs.menu.clientHeight) - 42
+				this.offsetYArrow = Math.round(this.$refs.menu.clientHeight) + 18
+				this.rotateArrow = true
+			}
+
 			if (this.menuAlign === 'center') {
-				const isOut = IsOutOfViewport(this.$refs.menu)
 				if (isOut.left || isOut.right) {
 					this.offsetX = isOut.offsetX > 0
 						? Math.round(isOut.offsetX) + 5
 						: Math.round(isOut.offsetX) - 5
-				}
-				if (isOut.bottom) {
-					this.offsetY = 0 - Math.round(this.$refs.menu.clientHeight) - 42
-					this.offsetYArrow = Math.round(this.$refs.menu.clientHeight) + 18
-					this.rotateArrow = true
 				}
 			}
 		},
