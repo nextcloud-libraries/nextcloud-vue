@@ -65,6 +65,9 @@ emit('toggle-navigation', {
 		<ul class="app-navigation__list">
 			<slot name="list" />
 		</ul>
+
+		<!-- Footer for e.g. AppNavigationSettings -->
+		<slot name="footer" />
 	</div>
 </template>
 
