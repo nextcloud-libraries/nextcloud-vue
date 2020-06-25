@@ -36,8 +36,8 @@ This component has the following slot:
 
 ```vue
 <p>
-	Some text before <user-bubble user="admin" display-name="Admin Example" :url="'/test'">@admin@foreign-host.com</user-bubble> and after the bubble.
-	<user-bubble avatar-image="icon-group" display-name="test group xyz" :primary="true">Hey there!</user-bubble>
+	Some text before <UserBubble user="admin" display-name="Admin Example" :url="'/test'">@admin@foreign-host.com</UserBubble> and after the bubble.
+	<UserBubble avatar-image="icon-group" display-name="test group xyz" :primary="true">Hey there!</UserBubble>
 </p>
 ```
 
