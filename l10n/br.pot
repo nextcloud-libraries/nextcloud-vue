@@ -1,0 +1,65 @@
+# 
+# Translators:
+# Kervoas-Le Nabat Ewen <ewenkervoas@free.fr>, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Kervoas-Le Nabat Ewen <ewenkervoas@free.fr>, 2020\n"
+"Language-Team: Breton (https://www.transifex.com/nextcloud/teams/64236/br/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: br\n"
+"Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:170
+msgid "{tag} (invisible)"
+msgstr "{tag} (diwelus)"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:173
+msgid "{tag} (restricted)"
+msgstr "{tag} (bevennet)"
+
+#: src/components/Actions/Actions.vue:249
+msgid "Actions"
+msgstr "Oberenn"
+
+#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Choose"
+msgstr "Dibab"
+
+#: src/components/Modal/Modal.vue:117
+msgid "Close"
+msgstr "Seriñ"
+
+#: src/components/Modal/Modal.vue:166
+msgid "Next"
+msgstr "Da heul"
+
+#: src/components/Multiselect/Multiselect.vue:174
+#: src/components/MultiselectTags/MultiselectTags.vue:78
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
+msgid "No results"
+msgstr "Disoc'h ebet"
+
+#: src/components/Modal/Modal.vue:302
+msgid "Pause slideshow"
+msgstr "Arsav an diaporama"
+
+#: src/components/Modal/Modal.vue:144
+msgid "Previous"
+msgstr "A-raok"
+
+#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Select a tag"
+msgstr "Chaoz un tag"
+
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Settings"
+msgstr "Arvetoù"
+
+#: src/components/Modal/Modal.vue:302
+msgid "Start slideshow"
+msgstr "Kregiñ an diaporama"
+
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
+msgid "Unable to search the group"
+msgstr "N'eo ket evit klask ar strollad"
