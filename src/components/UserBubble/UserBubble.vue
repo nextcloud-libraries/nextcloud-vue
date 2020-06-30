@@ -202,11 +202,14 @@ export default {
 		 * @returns {boolean}
 		 */
 		isAvatarUrl() {
+			if (!this.avatarImage) {
+				return false
+			}
+
 			try {
 				const url = new URL(this.avatarImage)
 				return !!url
 			} catch (error) {
-				console.error(error)
 				return false
 			}
 		},
