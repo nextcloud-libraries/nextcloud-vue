@@ -44,6 +44,7 @@ This component has the following slot:
 ### Example with title slot
 
 ```vue
+<template>
 <UserBubble
 	:margin="4"
 	:size="30"
@@ -56,6 +57,14 @@ This component has the following slot:
 			@click="alert" />
 	</template>
 </UserBubble>
+</template>
+
+<style>
+.icon-close {
+	display: block;
+	height: 100%;
+}
+</style>
 ```
 
 </docs>
@@ -70,7 +79,8 @@ This component has the following slot:
 			v-bind="isLinkComponent"
 			class="user-bubble__content"
 			:style="styles.content"
-			:class="primary ? 'user-bubble__content--primary' : ''">
+			:class="primary ? 'user-bubble__content--primary' : ''"
+			@click="onClick">
 			<!-- Avatar -->
 			<Avatar :url="!isCustomAvatar && isAvatarUrl ? avatarImage : undefined"
 				:icon-class="!isCustomAvatar && !isAvatarUrl ? avatarImage : undefined"
@@ -238,6 +248,13 @@ export default {
 	methods: {
 		onOpenChange(state) {
 			this.$emit('update:open', state)
+		},
+		/**
+		 * Catch and forward click event to parent
+		 * @param {Event} event the click event
+		 */
+		onClick(event) {
+			this.$emit('click', event)
 		},
 	},
 }
