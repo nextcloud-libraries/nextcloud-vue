@@ -171,8 +171,6 @@ export default {
 		position: relative;
 		height: 100%;
 		width: inherit;
-		overflow-x: hidden;
-		overflow-y: auto;
 		box-sizing: border-box;
 		display: flex;
 		flex-direction: column;
