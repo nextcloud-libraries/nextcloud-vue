@@ -308,7 +308,7 @@ export default {
 		 * Handle play/pause of an ongoing slideshow
 		 * @param {boolean} paused is the player paused
 		 */
-		slideshowPaused: function(paused) {
+		slideshowPaused(paused) {
 			if (this.slideshowTimeout) {
 				if (paused) {
 					this.slideshowTimeout.pause()

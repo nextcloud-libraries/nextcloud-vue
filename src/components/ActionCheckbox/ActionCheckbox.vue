@@ -104,7 +104,7 @@ export default {
 		 * determines if the action is focusable
 		 * @returns {boolean} is the action focusable ?
 		 */
-		isFocusable: function() {
+		isFocusable() {
 			return !this.disabled
 		},
 	},

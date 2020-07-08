@@ -52,7 +52,7 @@ export default {
 		color: {
 			type: String,
 			required: true,
-			validator: function(color) {
+			validator(color) {
 				// #000, 000, #0082c9 and 0082c9
 				return /^#?([0-9A-F]{3}){1,2}$/i.test(color)
 			},

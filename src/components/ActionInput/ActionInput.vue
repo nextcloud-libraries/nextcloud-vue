@@ -119,7 +119,7 @@ export default {
 		type: {
 			type: String,
 			default: 'text',
-			validator: function(type) {
+			validator(type) {
 				return ['date', 'datetime-local', 'month',
 					'number', 'password', 'search', 'tel',
 					'text', 'time', 'url', 'week'].indexOf(type) > -1
@@ -166,7 +166,7 @@ export default {
 		 * determines if the action is focusable
 		 * @returns {boolean} is the action focusable ?
 		 */
-		isFocusable: function() {
+		isFocusable() {
 			return !this.disabled
 		},
 	},
