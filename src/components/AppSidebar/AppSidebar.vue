@@ -303,19 +303,19 @@ export default {
 	},
 
 	watch: {
-		active: function(active) {
+		active(active) {
 			// prevent running it twice
 			if (active !== this.activeTab) {
 				this.updateActive()
 			}
 		},
-		starred: function() {
+		starred() {
 			this.isStarred = this.starred
 		},
 
 		// update the tabs list if the children
 		// length change
-		children: function() {
+		children() {
 			this.updateTabs()
 		},
 	},

@@ -331,7 +331,7 @@ export default {
 
 	watch: {
 		// ensure we update the width when we add or remove data
-		value: function() {
+		value() {
 			this.updateWidth()
 		},
 	},

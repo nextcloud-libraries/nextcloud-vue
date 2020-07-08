@@ -362,8 +362,8 @@ export default {
 				let avatarUrl = generateUrl(
 					url,
 					{
-						user: user,
-						size: size,
+						user,
+						size,
 					})
 
 				// eslint-disable-next-line camelcase

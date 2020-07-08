@@ -170,7 +170,7 @@ export default {
 	 * @param {Function} createElement The function to create VNodes
 	 * @returns {VNodes} The created VNodes
 	 */
-	render: function(createElement) {
+	render(createElement) {
 		if (!this.ranges.length) {
 			return createElement('span', {}, this.text)
 		}

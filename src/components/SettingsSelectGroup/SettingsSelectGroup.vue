@@ -109,7 +109,7 @@ export default {
 				(id) => {
 					if (typeof this.groups[id] === 'undefined') {
 						return {
-							id: id,
+							id,
 							displayname: id,
 						}
 					}

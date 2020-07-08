@@ -410,7 +410,7 @@ export default {
 	 * @param {Function} createElement The function to create VNodes
 	 * @returns {VNodes} The created VNodes
 	 */
-	render: function(createElement) {
+	render(createElement) {
 		// Get the breadcrumbs
 		const breadcrumbs = this.$slots.default || []
 
@@ -474,8 +474,8 @@ export default {
 				return createElement(element, {
 					class: 'crumb',
 					props: {
-						to: to,
-						href: href,
+						to,
+						href,
 						icon: 'icon-folder',
 					},
 					// Prevent the breadcrumbs from being draggable
