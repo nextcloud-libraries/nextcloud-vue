@@ -93,11 +93,10 @@ module.exports = {
 					{
 						loader: 'sass-loader',
 						options: {
-							prependData: `$scope_version:${SCOPE_VERSION}; @import 'variables';`,
+							additionalData: `$scope_version:${SCOPE_VERSION}; @import 'variables';`,
 							/**
 							 * ! needed for resolve-url-loader
 							 */
-							sourceMap: true,
 							sassOptions: {
 								sourceMapContents: false,
 								includePaths: [
