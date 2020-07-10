@@ -514,7 +514,7 @@ export default {
 		.app-navigation-entry {
 			display: inline-flex;
 			flex-wrap: wrap;
-			padding-left: $clickable-area;
+			padding-left: $clickable-area - $icon-margin;
 		}
 	}
 }
@@ -523,7 +523,7 @@ export default {
 .app-navigation-entry__deleted {
 	display: inline-flex;
 	flex: 1 1 0;
-	padding-left: $clickable-area !important;
+	padding-left: $clickable-area - $icon-margin !important;
 	.app-navigation-entry__deleted-description {
 		position: relative;
 		overflow: hidden;
@@ -539,7 +539,7 @@ export default {
 	/* Ugly hack for overriding the main entry link */
 	/* align the input correctly with the link text
 	44px-6px padding for the input */
-	padding-left: $clickable-area - 6px !important;
+	padding-left: $clickable-area - $icon-margin - 6px !important;
 	form {
 		display: flex;
 		width: 100%;
@@ -603,7 +603,7 @@ export default {
 		}
 		// prevent the icon of children elements from being hidden
 		// by the previous rule
-		.app-navigation-entry__children li a :first-child {
+		.app-navigation-entry__children li:not(.app-navigation-entry--collapsible) a :first-child {
 			visibility: visible;
 		}
 	}
