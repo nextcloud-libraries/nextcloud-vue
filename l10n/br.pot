@@ -20,7 +20,7 @@ msgstr "{tag} (bevennet)"
 
 #: src/components/Actions/Actions.vue:249
 msgid "Actions"
-msgstr "Oberenn"
+msgstr "Oberioù"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
