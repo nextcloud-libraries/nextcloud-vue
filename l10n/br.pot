@@ -54,7 +54,7 @@ msgstr "Choaz un tag"
 
 #: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
 msgid "Settings"
-msgstr "Arvetoù"
+msgstr "Arventoù"
 
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
