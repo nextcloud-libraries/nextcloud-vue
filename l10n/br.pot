@@ -50,7 +50,7 @@ msgstr "A-raok"
 
 #: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
-msgstr "Chaoz un tag"
+msgstr "Choaz un tag"
 
 #: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
 msgid "Settings"
