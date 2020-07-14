@@ -62,4 +62,4 @@ msgstr "Kregiñ an diaporama"
 
 #: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
-msgstr "N'eo ket evit klask ar strollad"
+msgstr "Dibosuple klask ar strollad"
