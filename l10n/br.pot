@@ -20,7 +20,7 @@ msgstr "{tag} (bevennet)"
 
 #: src/components/Actions/Actions.vue:249
 msgid "Actions"
-msgstr "Oberenn"
+msgstr "Oberioù"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
@@ -50,11 +50,11 @@ msgstr "A-raok"
 
 #: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
-msgstr "Chaoz un tag"
+msgstr "Choaz un tag"
 
 #: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
 msgid "Settings"
-msgstr "Arvetoù"
+msgstr "Arventoù"
 
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
@@ -62,4 +62,4 @@ msgstr "Kregiñ an diaporama"
 
 #: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
-msgstr "N'eo ket evit klask ar strollad"
+msgstr "Dibosuple klask ar strollad"
