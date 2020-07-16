@@ -251,6 +251,7 @@ export default {
 		&-color-circle {
 			display: flex;
 			align-content: center;
+			align-items: center;
 			justify-content: center;
 			width: 34px;
 			height: 34px;
