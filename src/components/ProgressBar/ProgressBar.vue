@@ -29,14 +29,14 @@ This is a simple progress bar component.
 ### Medium
 <ProgressBar :value="60" size="medium" />
 
-### Warn
-<ProgressBar :value="60" :warn="true" />
+### error
+<ProgressBar :value="60" :error="true" />
 
 </docs>
 
 <template>
 	<progress class="progress-bar vue"
-		:class="{ 'progress-bar--warn': warn }"
+		:class="{ 'progress-bar--error': error }"
 		:style="progressBarStyle"
 		:value="value"
 		max="100" />
@@ -76,7 +76,7 @@ export default {
 		/**
 		 * Applies an error color to the progressbar if true.
 		 */
-		warn: {
+		error: {
 			type: Boolean,
 			default: false,
 		},
@@ -123,7 +123,7 @@ export default {
 	&::-moz-progress-bar {
 		background: linear-gradient(40deg, var(--color-primary-element) 0%, var(--color-primary-element-light) 100%);
 	}
-	&--warn {
+	&--error {
 		// Override previous values
 		&::-moz-progress-bar {
 			background: var(--color-error) !important;
