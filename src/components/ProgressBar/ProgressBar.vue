@@ -54,6 +54,10 @@ export default {
 		value: {
 			type: Number,
 			default: 0,
+			validator: (value) => {
+				return value > 0
+					&& value <= 100
+			},
 		},
 		/**
 		 * Determines the height of the progressbar.
@@ -64,6 +68,10 @@ export default {
 		size: {
 			type: String,
 			default: 'small',
+			validator: (value) => {
+				return value === 'small'
+					|| value === 'medium'
+			},
 		},
 		/**
 		 * Applies an error color to the progressbar if true.
