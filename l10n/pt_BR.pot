@@ -19,9 +19,17 @@ msgstr "{tag} (invisível)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (restrito) "
 
-#: src/components/Actions/Actions.vue:247
+#: src/components/Actions/Actions.vue:249
 msgid "Actions"
 msgstr "Ações"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:176
+msgid "Activities"
+msgstr "Atividades"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:174
+msgid "Animals & Nature"
+msgstr "Animais & Natureza"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
@@ -31,23 +39,63 @@ msgstr "Escolher"
 msgid "Close"
 msgstr "Fechar"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:181
+msgid "Custom"
+msgstr "Personalizado"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:180
+msgid "Flags"
+msgstr "Bandeiras"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:175
+msgid "Food & Drink"
+msgstr "Comida & Bebida"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:171
+msgid "Frequently used"
+msgstr "Mais usados"
+
 #: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "Próximo"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:168
+msgid "No emoji found"
+msgstr "Nenhum emoji encontrado"
+
 #: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
-#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:34
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
 msgid "No results"
 msgstr "Sem resultados"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:178
+msgid "Objects"
+msgstr "Objetos"
 
 #: src/components/Modal/Modal.vue:302
 msgid "Pause slideshow"
 msgstr "Pausar apresentação de slides"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:173
+msgid "People & Body"
+msgstr "Pessoas & Corpo"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:153
+msgid "Pick an emoji"
+msgstr "Escolha um emoji"
+
 #: src/components/Modal/Modal.vue:144
 msgid "Previous"
 msgstr "Anterior"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:167
+msgid "Search"
+msgstr "Pesquisar"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:170
+msgid "Search results"
+msgstr "Resultados da pesquisa"
 
 #: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
@@ -57,10 +105,22 @@ msgstr "Selecionar uma tag"
 msgid "Settings"
 msgstr "Configurações"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:172
+msgid "Smileys & Emotion"
+msgstr "Smiles & Emoções"
+
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Iniciar apresentação de slides"
 
-#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:138
+#: src/components/EmojiPicker/EmojiPicker.vue:179
+msgid "Symbols"
+msgstr "Símbolo"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:177
+msgid "Travel & Places"
+msgstr "Viagem & Lugares"
+
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
 msgstr "Não foi possível pesquisar o grupo"
