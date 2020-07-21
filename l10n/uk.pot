@@ -24,7 +24,7 @@ msgstr "Дії"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:176
 msgid "Activities"
-msgstr "Дії"
+msgstr "Діяльність"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:174
 msgid "Animals & Nature"
