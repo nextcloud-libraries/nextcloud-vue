@@ -1,3 +1,4 @@
+# 
 # Translators:
 # Oleksa Stasevych <oleksiy.stasevych@gmail.com>, 2020
 # 
@@ -17,9 +18,17 @@ msgstr "{tag} (invisible)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (restricted)"
 
-#: src/components/Actions/Actions.vue:197
+#: src/components/Actions/Actions.vue:249
 msgid "Actions"
 msgstr "Дії"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:176
+msgid "Activities"
+msgstr "Дії"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:174
+msgid "Animals & Nature"
+msgstr "Тварини та природа"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
@@ -29,22 +38,63 @@ msgstr "Виберіть"
 msgid "Close"
 msgstr "Закрити"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:181
+msgid "Custom"
+msgstr "Власне"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:180
+msgid "Flags"
+msgstr "Прапори"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:175
+msgid "Food & Drink"
+msgstr "Їжа та напитки"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:171
+msgid "Frequently used"
+msgstr "Найчастіші"
+
 #: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "Вперед"
 
-#: src/components/Multiselect/Multiselect.vue:172
+#: src/components/EmojiPicker/EmojiPicker.vue:168
+msgid "No emoji found"
+msgstr "Емоційки відсутні"
+
+#: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
 msgid "No results"
 msgstr "Відсутні результати"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:178
+msgid "Objects"
+msgstr "Об'єкти"
 
 #: src/components/Modal/Modal.vue:302
 msgid "Pause slideshow"
 msgstr "Пауза у показі слайдів"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:173
+msgid "People & Body"
+msgstr "Люди та жести"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:153
+msgid "Pick an emoji"
+msgstr "Виберіть емоційку"
+
 #: src/components/Modal/Modal.vue:144
 msgid "Previous"
 msgstr "Назад"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:167
+msgid "Search"
+msgstr "Пошук"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:170
+msgid "Search results"
+msgstr "Результати пошуку"
 
 #: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
@@ -54,6 +104,22 @@ msgstr "Виберіть позначку"
 msgid "Settings"
 msgstr "Налаштування"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:172
+msgid "Smileys & Emotion"
+msgstr "Усміхайлики та емоційки"
+
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Почати показ слайдів"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:179
+msgid "Symbols"
+msgstr "Символи"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:177
+msgid "Travel & Places"
+msgstr "Поїздки та місця"
+
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
+msgid "Unable to search the group"
+msgstr "Неможливо шукати в групі"
