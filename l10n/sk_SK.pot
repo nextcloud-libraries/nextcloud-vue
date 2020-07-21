@@ -18,9 +18,17 @@ msgstr "{tag} (neviditeľný)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (obmedzený)"
 
-#: src/components/Actions/Actions.vue:247
+#: src/components/Actions/Actions.vue:249
 msgid "Actions"
 msgstr "Akcie"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:176
+msgid "Activities"
+msgstr "Aktivity"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:174
+msgid "Animals & Nature"
+msgstr "Zvieratá a príroda"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
@@ -30,9 +38,29 @@ msgstr "Vybrať"
 msgid "Close"
 msgstr "Zatvoriť"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:181
+msgid "Custom"
+msgstr "Zvyk"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:180
+msgid "Flags"
+msgstr "Vlajky"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:175
+msgid "Food & Drink"
+msgstr "Jedlo a nápoje"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:171
+msgid "Frequently used"
+msgstr "Často používané"
+
 #: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "Ďalší"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:168
+msgid "No emoji found"
+msgstr "Nenašli sa žiadne emodži"
 
 #: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
@@ -40,13 +68,33 @@ msgstr "Ďalší"
 msgid "No results"
 msgstr "Žiadne výsledky"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:178
+msgid "Objects"
+msgstr "Objekty"
+
 #: src/components/Modal/Modal.vue:302
 msgid "Pause slideshow"
 msgstr "Pozastaviť prezentáciu"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:173
+msgid "People & Body"
+msgstr "Ľudia a telo"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:153
+msgid "Pick an emoji"
+msgstr "Vyberte si emodži"
+
 #: src/components/Modal/Modal.vue:144
 msgid "Previous"
 msgstr "Predchádzajúci"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:167
+msgid "Search"
+msgstr "Hľadať"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:170
+msgid "Search results"
+msgstr "Výsledky vyhľadávania"
 
 #: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
@@ -56,9 +104,21 @@ msgstr "Vybrať štítok"
 msgid "Settings"
 msgstr "Nastavenia"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:172
+msgid "Smileys & Emotion"
+msgstr "Smajlíky a emócie"
+
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Začať prezentáciu"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:179
+msgid "Symbols"
+msgstr "Symboly"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:177
+msgid "Travel & Places"
+msgstr "Cestovanie a miesta"
 
 #: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
