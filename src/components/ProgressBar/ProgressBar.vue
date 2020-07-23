@@ -54,8 +54,8 @@ export default {
 		value: {
 			type: Number,
 			default: 0,
-			validator: (value) => {
-				return value > 0
+			validator(value) {
+				return value >= 0
 					&& value <= 100
 			},
 		},
@@ -68,9 +68,8 @@ export default {
 		size: {
 			type: String,
 			default: 'small',
-			validator: (value) => {
-				return value === 'small'
-					|| value === 'medium'
+			validator(value) {
+				return ['small', 'medium'].indexOf(value) !== -1
 			},
 		},
 		/**
@@ -81,7 +80,6 @@ export default {
 			default: false,
 		},
 	},
-
 	computed: {
 
 		progressBarStyle() {
