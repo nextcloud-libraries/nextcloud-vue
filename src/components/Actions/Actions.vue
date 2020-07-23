@@ -609,6 +609,7 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 		padding: $icon-margin;
 		cursor: pointer;
 		border: none;
+		border-radius: $clickable-area / 2;
 		background-color: transparent;
 	}
 
@@ -619,7 +620,6 @@ $arrow-margin: ($clickable-area - 2 * $arrow-width)  / 2;
 		align-items: center;
 		justify-content: center;
 		opacity: $opacity_normal;
-		border-radius: $clickable-area / 2;
 		font-weight: bold;
 		line-height: $icon-size;
 
