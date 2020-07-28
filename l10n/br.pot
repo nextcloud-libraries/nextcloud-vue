@@ -24,7 +24,7 @@ msgstr "Oberioù"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:176
 msgid "Activities"
-msgstr "Oberennoù"
+msgstr "Oberiantizoù"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:174
 msgid "Animals & Nature"
@@ -36,11 +36,11 @@ msgstr "Dibab"
 
 #: src/components/Modal/Modal.vue:117
 msgid "Close"
-msgstr "Seriñ"
+msgstr "Serriñ"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:181
 msgid "Custom"
-msgstr "Kustom"
+msgstr "custom"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:180
 msgid "Flags"
@@ -52,7 +52,7 @@ msgstr "Boued & Evajoù"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:171
 msgid "Frequently used"
-msgstr "Implijet kalz"
+msgstr "Implijet alies"
 
 #: src/components/Modal/Modal.vue:166
 msgid "Next"
@@ -94,7 +94,7 @@ msgstr "Klask"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:170
 msgid "Search results"
-msgstr "Disoc'h an enklask"
+msgstr "Disoc'hoù an enklask"
 
 #: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
