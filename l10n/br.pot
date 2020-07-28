@@ -24,7 +24,7 @@ msgstr "Oberioù"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:176
 msgid "Activities"
-msgstr "Oberennoù"
+msgstr "Oberiantizoù"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:174
 msgid "Animals & Nature"
