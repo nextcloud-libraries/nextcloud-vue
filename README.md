@@ -51,6 +51,13 @@ If you want to work on improving the components it’s best to run the latest co
     - In the repository of an app do `npm link @nextcloud/vue` (you need to re-link any time you do `npm ci` in the app)
 4. Then build the app with: `npm run build` (or watch for changes with `npm run watch`)
 
+## Releasing a new version
+
+1. Checkout latest master
+2. Run `npm version`
+3. Push the tag and the master branch
+4. Make the tag a release on github and add the changelog (https://github.com/nextcloud/nextcloud-vue/releases)
+
 <a href="https://www.netlify.com">
   <img src="https://www.netlify.com/img/global/badges/netlify-dark.svg"/>
 </a>
