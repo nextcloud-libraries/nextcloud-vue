@@ -7,7 +7,7 @@ window.OC = {
 	getCurrentUser() {
 		return {
 			uid: 'admin',
-			displayName: 'Administrator'
+			displayName: 'Administrator',
 		}
 	},
 	generateUrl() {
@@ -19,6 +19,7 @@ window.OC = {
 	isUserAdmin() {
 		return true
 	},
+	config: {},
 }
 window.OCA = {}
 
