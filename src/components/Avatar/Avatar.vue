@@ -47,7 +47,10 @@
 		@click="toggleMenu">
 		<!-- avatar -->
 		<div v-if="iconClass" :class="iconClass" class="avatar-class-icon" />
-		<img v-else-if="isAvatarLoaded && !userDoesNotExist" :src="avatarUrlLoaded" :srcset="avatarSrcSetLoaded">
+		<img v-else-if="isAvatarLoaded && !userDoesNotExist"
+			:src="avatarUrlLoaded"
+			:srcset="avatarSrcSetLoaded"
+			alt="">
 		<div v-if="hasMenu" class="icon-more" />
 
 		<!-- avatar status -->
