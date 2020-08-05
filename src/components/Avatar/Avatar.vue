@@ -54,7 +54,10 @@
 		<div v-if="hasMenu" class="icon-more" />
 
 		<!-- avatar status -->
-		<div v-if="status"
+		<div v-if="canDisplayUserStatus"
+			class="avatardiv__user-status"
+			:class="'avatardiv__user-status--' + userStatus.status" />
+		<div v-else-if="status"
 			class="avatardiv__status"
 			:class="'avatardiv__status--' + status"
 			:style="{ backgroundColor: `#${statusColor}` }">
@@ -91,6 +94,7 @@ import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
 import Tooltip from '../../directives/Tooltip'
 import usernameToColor from '../../functions/usernameToColor'
+import { userStatus } from '../../mixins'
 
 export default {
 	name: 'Avatar',
@@ -101,6 +105,7 @@ export default {
 	components: {
 		PopoverMenu,
 	},
+	mixins: [userStatus],
 	props: {
 		/**
 		 * Set a custom url to the avatar image
@@ -124,6 +129,13 @@ export default {
 		user: {
 			type: String,
 			default: undefined,
+		},
+		/**
+		 * Whether or not to display the user-status
+		 */
+		showUserStatus: {
+			type: Boolean,
+			default: true,
 		},
 		/**
 		 * Is the user a guest user (then we have to user a different endpoint)
@@ -191,6 +203,9 @@ export default {
 		},
 
 		/**
+		 * DEPRECATED!
+		 * This prop will be removed with nc/vue 3.0
+		 *
 		 * Declares a status indicator on the avatar
 		 * Available options are `positive`, `negative`, `neutral`
 		 */
@@ -238,6 +253,9 @@ export default {
 		}
 	},
 	computed: {
+		canDisplayUserStatus() {
+			return this.showUserStatus && this.hasStatus
+		},
 		getUserIdentifier() {
 			if (this.isDisplayNameDefined) {
 				return this.displayName
@@ -300,13 +318,30 @@ export default {
 			return '?'
 		},
 		menu() {
-			return this.contactsMenuActions.map((item) => {
+			const actions = this.contactsMenuActions.map((item) => {
 				return {
 					href: item.hyperlink,
 					icon: item.icon,
 					text: item.title,
 				}
 			})
+
+			function escape(html) {
+				const text = document.createTextNode(html)
+				const p = document.createElement('p')
+				p.appendChild(text)
+				return p.innerHTML
+			}
+
+			if (this.showUserStatus && (this.userStatus.icon || this.userStatus.message)) {
+				return [{
+					href: '#',
+					icon: `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><text x='0' y='14' font-size='14'>${escape(this.userStatus.icon)}</text></svg>`,
+					text: `${this.userStatus.message}`,
+				}].concat(actions)
+			}
+
+			return actions
 		},
 	},
 	watch: {
@@ -322,6 +357,9 @@ export default {
 	},
 	mounted() {
 		this.loadAvatarUrl()
+		if (this.user) {
+			this.fetchUserStatus(this.user)
+		}
 	},
 	methods: {
 		async toggleMenu() {
@@ -506,6 +544,34 @@ export default {
 					fill: #aaa;
 				}
 			}
+		}
+	}
+
+	.avatardiv__user-status {
+		position: absolute;
+		right: -5px;
+		bottom: -5px;
+		height: 16px;
+		width: 16px;
+		line-height: 14px;
+		font-size: 14px;
+		border: 1px solid var(--color-main-background);
+		border-radius: 50%;
+
+		&--online{
+			@include iconfont('user-status-online');
+			color: #49b382;
+		}
+		&--dnd{
+			@include iconfont('user-status-dnd');
+			color: #ed484c;
+		}
+		&--away{
+			@include iconfont('user-status-away');
+			color: #f4a331;
+		}
+		&--offline{
+			@include iconfont('user-status-invisible');
 		}
 	}
 

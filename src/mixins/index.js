@@ -23,9 +23,11 @@
 import excludeClickOutsideClasses from './excludeClickOutsideClasses.js'
 import isFullscreen from './isFullscreen'
 import isMobile from './isMobile'
+import userStatus from './userStatus'
 
 export {
 	excludeClickOutsideClasses,
 	isFullscreen,
 	isMobile,
+	userStatus,
 }
