@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Efstathios Iosifidis <iefstathios@gmail.com>, 2020
 # george k <norhorn@gmail.com>, 2020
+# Efstathios Iosifidis <iefstathios@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: george k <norhorn@gmail.com>, 2020\n"
+"Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>, 2020\n"
 "Language-Team: Greek (https://www.transifex.com/nextcloud/teams/64236/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: el\n"
@@ -19,9 +19,17 @@ msgstr "{tag} (αόρατο)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (περιορισμένο)"
 
-#: src/components/Actions/Actions.vue:247
+#: src/components/Actions/Actions.vue:249
 msgid "Actions"
 msgstr "Ενέργειες"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:176
+msgid "Activities"
+msgstr "Δραστηριότητες"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:174
+msgid "Animals & Nature"
+msgstr "Ζώα & Φύση"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
@@ -31,23 +39,63 @@ msgstr "Επιλογή"
 msgid "Close"
 msgstr "Κλείσιμο"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:181
+msgid "Custom"
+msgstr "Προσαρμογή"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:180
+msgid "Flags"
+msgstr "Σημαίες"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:175
+msgid "Food & Drink"
+msgstr "Φαγητό & Ποτό"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:171
+msgid "Frequently used"
+msgstr "Συχνά χρησιμοποιούμενο"
+
 #: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "Επόμενο"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:168
+msgid "No emoji found"
+msgstr "Δεν βρέθηκε emoji"
+
 #: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
-#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:34
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
 msgid "No results"
 msgstr "Κανένα αποτέλεσμα"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:178
+msgid "Objects"
+msgstr "Αντικείμενα"
 
 #: src/components/Modal/Modal.vue:302
 msgid "Pause slideshow"
 msgstr "Παύση προβολής διαφανειών"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:173
+msgid "People & Body"
+msgstr "Άνθρωποι & Σώμα"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:153
+msgid "Pick an emoji"
+msgstr "Επιλέξτε ένα emoji"
+
 #: src/components/Modal/Modal.vue:144
 msgid "Previous"
 msgstr "Προηγούμενο"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:167
+msgid "Search"
+msgstr "Αναζήτηση"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:170
+msgid "Search results"
+msgstr "Αποτελέσματα αναζήτησης"
 
 #: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
@@ -57,10 +105,22 @@ msgstr "Επιλογή ετικέτας"
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:172
+msgid "Smileys & Emotion"
+msgstr "Φατσούλες & Συναίσθημα"
+
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Έναρξη προβολής διαφανειών"
 
-#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:138
+#: src/components/EmojiPicker/EmojiPicker.vue:179
+msgid "Symbols"
+msgstr "Σύμβολα"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:177
+msgid "Travel & Places"
+msgstr "Ταξίδια & Τοποθεσίες"
+
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
 msgstr "Δεν είναι δυνατή η αναζήτηση της ομάδας"
