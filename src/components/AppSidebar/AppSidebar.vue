@@ -82,13 +82,37 @@
 		}
 	</script>
 	```
+	```
+
+	### Blank sidebar for e.g. empty content
+	```vue
+	<template>
+		<AppSidebar
+			:title="title"
+			blank="true">
+			<EmptyContent icon="icon-search">
+				Content not found.
+			</EmptyContent>
+		</AppSidebar>
+	</template>
+	<script>
+		export default {
+			data() {
+				return {
+					title: 'cat-picture.jpg'
+				}
+			}
+		}
+	</script>
+	```
 
 </docs>
 
 <template>
 	<transition name="slide-right">
 		<aside id="app-sidebar-vue" class="app-sidebar">
-			<header :class="{
+			<header v-if="!blank"
+				:class="{
 					'app-sidebar-header--with-figure': hasFigure,
 					'app-sidebar-header--compact': compact
 				}"
@@ -157,7 +181,7 @@
 			</header>
 
 			<!-- tabs navigation -->
-			<nav v-if="hasMultipleTabs"
+			<nav v-if="hasMultipleTabs && !blank"
 				class="app-sidebar-tabs__nav"
 				@keydown.left.exact.prevent="focusPreviousTab"
 				@keydown.right.exact.prevent="focusNextTab"
@@ -231,6 +255,10 @@ export default {
 		subtitle: {
 			type: String,
 			default: '',
+		},
+		blank: {
+			type: Boolean,
+			default: false,
 		},
 
 		/**
