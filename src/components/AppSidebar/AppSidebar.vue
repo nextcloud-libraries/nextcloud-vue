@@ -88,22 +88,13 @@
 	```vue
 	<template>
 		<AppSidebar
-			:title="title"
+			title="cat-picture.jpg"
 			blank="true">
 			<EmptyContent icon="icon-search">
 				Content not found.
 			</EmptyContent>
 		</AppSidebar>
 	</template>
-	<script>
-		export default {
-			data() {
-				return {
-					title: 'cat-picture.jpg'
-				}
-			}
-		}
-	</script>
 	```
 
 </docs>
