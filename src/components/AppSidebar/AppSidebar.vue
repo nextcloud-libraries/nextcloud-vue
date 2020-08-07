@@ -89,7 +89,7 @@
 	<template>
 		<AppSidebar
 			title="cat-picture.jpg"
-			blank="true">
+			:blank="true">
 			<EmptyContent icon="icon-search">
 				Content not found.
 			</EmptyContent>
