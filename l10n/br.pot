@@ -98,11 +98,11 @@ msgstr "Disoc'hoù an enklask"
 
 #: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
-msgstr "Choaz un klav"
+msgstr "Choaz ur c'hlav"
 
 #: src/components/AppNavigationSettings/AppNavigationSettings.vue:57
 msgid "Settings"
-msgstr "Arventoù"
+msgstr "Arventennoù"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:172
 msgid "Smileys & Emotion"
