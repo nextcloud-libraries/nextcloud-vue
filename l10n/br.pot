@@ -40,7 +40,7 @@ msgstr "Serriñ"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:181
 msgid "Custom"
-msgstr "custom"
+msgstr "Personelañ"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:180
 msgid "Flags"
@@ -100,7 +100,7 @@ msgstr "Disoc'hoù an enklask"
 msgid "Select a tag"
 msgstr "Choaz un klav"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:57
 msgid "Settings"
 msgstr "Arventoù"
 
