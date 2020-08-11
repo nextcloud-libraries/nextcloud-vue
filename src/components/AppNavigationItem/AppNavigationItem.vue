@@ -259,6 +259,10 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		inline-button: {
+			type: Boolean,
+			default: false,	
+		}
 		/**
 		* Only for 'editable' items, sets label for the edit action button.
 		*/
