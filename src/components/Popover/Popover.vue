@@ -52,6 +52,10 @@ With a `<button>` as a trigger:
 <template>
 	<VPopover
 		v-bind="$attrs"
+		popover-base-class="popover"
+		popover-wrapper-class="popover__wrapper"
+		popover-arrow-class="popover__arrow"
+		popover-inner-class="popover__inner"
 		v-on="$listeners">
 		<!-- This will be the popover target (for the events and position) -->
 		<slot name="trigger" />
@@ -74,8 +78,102 @@ export default {
 </script>
 
 <style lang="scss">
-.popover,
-.popover .popover-inner  {
-	padding: 0px !important;
+$arrow-width: 10px;
+
+.popover {
+	z-index: 100000;
+	display: block !important;
+
+	filter: drop-shadow(0 1px 10px var(--color-box-shadow));
+
+	&__inner {
+		padding: 0;
+		color: var(--color-main-text);
+		border-radius: var(--border-radius);
+		background: var(--color-main-background);
+	}
+
+	&__arrow {
+		position: absolute;
+		z-index: 1;
+		width: 0;
+		height: 0;
+		margin: $arrow-width;
+		border-style: solid;
+		border-color: var(--color-main-background);
+	}
+
+	&[x-placement^='top'] {
+		margin-bottom: $arrow-width;
+
+		.popover__arrow {
+			bottom: -$arrow-width;
+			left: calc(50% - $arrow-width);
+			margin-top: 0;
+			margin-bottom: 0;
+			border-width: $arrow-width $arrow-width 0 $arrow-width;
+			border-right-color: transparent !important;
+			border-bottom-color: transparent !important;
+			border-left-color: transparent !important;
+		}
+	}
+
+	&[x-placement^='bottom'] {
+		margin-top: $arrow-width;
+
+		.popover__arrow {
+			top: -$arrow-width;
+			left: calc(50% - $arrow-width);
+			margin-top: 0;
+			margin-bottom: 0;
+			border-width: 0 $arrow-width $arrow-width $arrow-width;
+			border-top-color: transparent !important;
+			border-right-color: transparent !important;
+			border-left-color: transparent !important;
+		}
+	}
+
+	&[x-placement^='right'] {
+		margin-left: $arrow-width;
+
+		.popover__arrow {
+			top: calc(50% - $arrow-width);
+			left: -$arrow-width;
+			margin-right: 0;
+			margin-left: 0;
+			border-width: $arrow-width $arrow-width $arrow-width 0;
+			border-top-color: transparent !important;
+			border-bottom-color: transparent !important;
+			border-left-color: transparent !important;
+		}
+	}
+
+	&[x-placement^='left'] {
+		margin-right: $arrow-width;
+
+		.popover__arrow {
+			top: calc(50% - $arrow-width);
+			right: -$arrow-width;
+			margin-right: 0;
+			margin-left: 0;
+			border-width: $arrow-width 0 $arrow-width $arrow-width;
+			border-top-color: transparent !important;
+			border-right-color: transparent !important;
+			border-bottom-color: transparent !important;
+		}
+	}
+
+	&[aria-hidden='true'] {
+		visibility: hidden;
+		transition: opacity var(--animation-quick), visibility var(--animation-quick);
+		opacity: 0;
+	}
+
+	&[aria-hidden='false'] {
+		visibility: visible;
+		transition: opacity var(--animation-quick);
+		opacity: 1;
+	}
 }
+
 </style>
