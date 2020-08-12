@@ -117,7 +117,7 @@ export default {
 		 * @param {Boolean} [state] set the state instead of inverting the current one
 		 */
 		toggleNavigation(state) {
-			this.open = state || !this.open
+			this.open = (typeof state === 'undefined') ? !this.open : state
 			const bodyStyles = getComputedStyle(document.body)
 			const animationLength = parseInt(bodyStyles.getPropertyValue('--animation-quick')) || 100
 
