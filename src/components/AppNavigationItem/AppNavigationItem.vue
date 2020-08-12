@@ -259,7 +259,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-		inline-button: {
+		newItem: {
 			type: Boolean,
 			default: false,	
 		}
