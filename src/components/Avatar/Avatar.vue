@@ -524,6 +524,7 @@ export default {
 .avatar-class-icon {
 	border-radius: 50%;
 	background-color: var(--color-background-darker);
+	height: 100%;
 }
 
 </style>
