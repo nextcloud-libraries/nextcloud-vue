@@ -79,7 +79,6 @@
 		}
 	</script>
 	```
-	```
 
 	### Empty sidebar for e.g. empty content component.
 	```vue
