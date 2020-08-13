@@ -25,12 +25,14 @@
 	<li class="action">
 		<span class="action-text"
 			@click="onClick">
-			<!-- icon -->
-			<span
-				v-if="icon !== ''"
-				:class="[isIconUrl ? 'action-text__icon--url' : icon]"
-				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
-				class="action-text__icon" />
+			<!-- @slot Manually provide icon -->
+			<slot name="icon">
+				<span
+					v-if="icon !== ''"
+					:class="[isIconUrl ? 'action-text__icon--url' : icon]"
+					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+					class="action-text__icon" />
+			</slot>
 
 			<!-- long text with title -->
 			<p v-if="title">

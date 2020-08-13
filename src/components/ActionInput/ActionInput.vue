@@ -40,10 +40,12 @@ All undocumented attributes will be bound to the input or the datepicker. e.g. `
 		<span :class="{ 'action-input--picker': isDatePickerType , 'action-input-picker--disabled': disabled}"
 			class="action-input"
 			@mouseleave="onLeave">
-			<!-- icon -->
-			<span :class="[isIconUrl ? 'action-input__icon--url' : icon]"
-				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
-				class="action-input__icon" />
+			<!-- @slot Manually provide icon -->
+			<slot name="icon">
+				<span :class="[isIconUrl ? 'action-input__icon--url' : icon]"
+					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+					class="action-input__icon" />
+			</slot>
 
 			<!-- form and input -->
 			<form ref="form"
