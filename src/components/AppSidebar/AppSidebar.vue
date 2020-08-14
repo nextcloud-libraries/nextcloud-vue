@@ -123,36 +123,55 @@
 				</div>
 
 				<!-- sidebar details -->
-				<div v-if="!empty" :class="{ 'app-sidebar-header__desc--with-star': canStar, 'app-sidebar-header__desc--with-subtitle': subtitle && !titleEditable, 'app-sidebar-header__desc--editable': titleEditable && !subtitle, 'app-sidebar-header__desc--with-subtitle--editable': titleEditable && subtitle}" class="app-sidebar-header__desc">
+				<div v-if="!empty"
+					:class="{
+						'app-sidebar-header__desc--with-star': canStar,
+						'app-sidebar-header__desc--with-subtitle': subtitle && !titleEditable,
+						'app-sidebar-header__desc--editable': titleEditable && !subtitle,
+						'app-sidebar-header__desc--with-subtitle--editable': titleEditable && subtitle
+					}"
+					class="app-sidebar-header__desc">
 					<!-- favourite icon -->
-					<a v-if="canStar"
-						:class="{ 'icon-starred': isStarred&& !starLoading, 'icon-star': !isStarred && !starLoading, 'icon-loading-small': starLoading }"
-						class="app-sidebar-header__star"
-						@click.prevent="toggleStarred" />
+					<div v-if="canStar" class="app-sidebar-header__star-action">
+						<a :class="{
+								'icon-starred': isStarred && !starLoading,
+								'icon-star': !isStarred && !starLoading,
+								'icon-loading-small': starLoading
+							}"
+							class="app-sidebar-header__star"
+							@click.prevent="toggleStarred" />
+					</div>
 
 					<!-- main title -->
-					<h2 v-if="!titleEditable" v-linkify="title" class="app-sidebar-header__title" />
-					<template v-if="titleEditable">
-						<form
-							class="rename-form"
-							@submit.prevent="onSubmitTitle">
-							<input
-								v-focus
-								class="app-sidebar-header__title-input"
-								type="text"
-								:placeholder="titlePlaceholder"
-								:value="title"
-								@keydown.esc="onDismissEditing"
-								@input="onTitleInput">
-							<button
-								class="icon-confirm"
-								type="submit" />
-						</form>
-					</template>
-					<!-- secondary title -->
-					<p v-if="subtitle.trim() !== ''" class="app-sidebar-header__subtitle">
-						{{ subtitle }}
-					</p>
+					<div class="app-sidebar-header__title">
+						<h2 v-show="!titleEditable"
+							v-linkify="title"
+							class="app-sidebar-header__maintitle"
+							@click.self="editTitle($event)" />
+						<template v-if="titleEditable">
+							<form
+								v-click-outside="() => onSubmitTitle()"
+								class="app-sidebar-header__maintitle-form"
+								@submit.prevent="onSubmitTitle">
+								<input
+									ref="titleInput"
+									v-focus
+									class="app-sidebar-header__maintitle-input"
+									type="text"
+									:placeholder="titlePlaceholder"
+									:value="title"
+									@keydown.esc="onDismissEditing"
+									@input="onTitleInput">
+								<button
+									class="icon-confirm"
+									type="submit" />
+							</form>
+						</template>
+						<!-- secondary title -->
+						<p v-if="subtitle.trim() !== ''" class="app-sidebar-header__subtitle">
+							{{ subtitle }}
+						</p>
+					</div>
 
 					<!-- header main menu -->
 					<Actions v-if="$slots['secondary-actions']" class="app-sidebar-header__menu" :force-menu="forceMenu">
@@ -177,6 +196,7 @@ import Focus from '../../directives/Focus'
 import Linkify from '../../directives/Linkify'
 import l10n from '../../mixins/l10n'
 import AppSidebarTabs from '../AppSidebarTabs/AppSidebarTabs'
+import { directive as ClickOutside } from 'v-click-outside'
 
 export default {
 	name: 'AppSidebar',
@@ -187,6 +207,7 @@ export default {
 	directives: {
 		focus: Focus,
 		linkify: Linkify,
+		ClickOutside,
 	},
 	mixins: [l10n],
 	props: {
@@ -199,6 +220,10 @@ export default {
 			default: '',
 			required: true,
 		},
+
+		/**
+		 * Allow to edit the sidebar title.
+		 */
 		titleEditable: {
 			type: Boolean,
 			default: false,
@@ -314,16 +339,21 @@ export default {
 			this.$emit('update:starred', this.isStarred)
 		},
 
+		editTitle(event) {
+			this.$emit('update:titleEditable', true)
+			// Focus the title input
+			if (this.titleEditable) {
+				this.$nextTick(
+					() => this.$refs.titleInput.focus()
+				)
+			}
+		},
+
 		/**
 		 * Emit title change event to parent component
 		 * @param {Event} event input event
 		 */
 		onTitleInput(event) {
-			/**
-			 * Emitted on title events of the text field
-			 * @type {Event|Date}
-			 */
-			this.$emit('input-title', event)
 			/**
 			 * Emitted when the title value changes
 			 * @type {string|Date}
@@ -336,9 +366,13 @@ export default {
 		 * @param {Event} event submit event
 		 */
 		onSubmitTitle(event) {
+			// Disable editing
+			this.$emit('update:titleEditable', false)
 			this.$emit('submit-title', event)
 		},
 		onDismissEditing() {
+			// Disable editing
+			this.$emit('update:titleEditable', false)
 			this.$emit('dismiss-editing')
 		},
 	},
@@ -410,13 +444,37 @@ $top-buttons-spacing: 6px;
 		&__desc {
 			position: relative;
 			display: flex;
-			flex-direction: column;
+			flex-direction: row;
 			justify-content: center;
 			box-sizing: content-box;
-			padding: #{$desc-vertical-padding} #{$clickable-area * 2 + $top-buttons-spacing * 3} #{$desc-vertical-padding} $desc-vertical-padding / 2;
+			padding: #{$desc-vertical-padding} 0 #{$desc-vertical-padding} #{$desc-vertical-padding / 2};
+
+			.app-sidebar-header__star-action {
+				display: flex;
+				height: $clickable-area;
+				width: $clickable-area;
+				justify-content: center;
+				flex: 0 0 auto;
+			}
+
+			.app-sidebar-header__title {
+				flex: 1 1 auto;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				min-width: 0;
+			}
+
+			.app-sidebar-header__maintitle-form {
+				display: flex;
+				margin-left: -7.5px;
+				& .icon-confirm {
+					margin: 0;
+				}
+			}
 
 			// titles
-			.app-sidebar-header__title,
+			.app-sidebar-header__maintitle,
 			.app-sidebar-header__subtitle {
 				overflow: hidden;
 				width: 100%;
@@ -425,8 +483,9 @@ $top-buttons-spacing: 6px;
 				text-overflow: ellipsis;
 			}
 			// main title
-			.app-sidebar-header__title {
+			.app-sidebar-header__maintitle {
 				padding: 0;
+				min-height: 30px;
 				font-size: 20px;
 				line-height: $desc-title-height;
 
@@ -436,12 +495,12 @@ $top-buttons-spacing: 6px;
 					text-decoration: underline;
 				}
 			}
-
-			input.app-sidebar-header__title-input {
-				width: 100%;
+			input.app-sidebar-header__maintitle-input {
+				flex: 1 1 auto;
 				margin: 0;
 				padding: $desc-input-padding;
-				font-size: 16px;
+				font-size: 20px;
+				font-weight: bold;
 			}
 
 			// subtitle
@@ -452,8 +511,6 @@ $top-buttons-spacing: 6px;
 			}
 			// favourite
 			.app-sidebar-header__star {
-				position: absolute;
-				left: 0;
 				display: block;
 				width: $clickable-area;
 				height: $clickable-area;
@@ -461,44 +518,40 @@ $top-buttons-spacing: 6px;
 			}
 			// main menu
 			.app-sidebar-header__menu {
-				position: absolute;
-				right: $clickable-area / 2;
+				height: $clickable-area;
+				width: $clickable-area;
 				border-radius: $clickable-area / 2;
 				background-color: $action-background-hover;
 			}
 
+			&--editable {
+				.app-sidebar-header__maintitle-form {
+					margin-top: -2px;
+					margin-bottom: -2px;
+				}
+			}
+
 			// custom overrides
 			&--with-star {
-				padding-left: $clickable-area;
-			}
-			&--with-subtitle {
-				justify-content: space-between;
-				height: $desc-height;
-			}
-			&--editable {
-				height: $desc-height * .75;
+				padding-left: 0;
 			}
 			&--with-subtitle--editable {
-				height: $desc-height * 1.5;
-
+				.app-sidebar-header__maintitle-form {
+					margin-top: -2px;
+				}
 				.app-sidebar-header__subtitle {
-					margin-left: $desc-input-padding;
+					margin-top: -2px;
 				}
-
-				.app-sidebar-header__title-input {
-					margin-top: -$desc-vertical-padding / 2 - $desc-input-padding;
-				}
-			}
-		}
-		&--with-figure {
-			.app-sidebar-header__desc {
-				padding-right: $clickable-area * 2;
 			}
 		}
 		&:not(.app-sidebar-header--with-figure) {
+			.app-sidebar-header__desc {
+				padding-right: #{$clickable-area * 2 + $top-buttons-spacing};
+			}
 			.app-sidebar-header__menu {
+				position: absolute;
 				top: $top-buttons-spacing;
-				right: $top-buttons-spacing * 2 + $clickable-area;
+				right: $top-buttons-spacing + $clickable-area;
 			}
 		}
 
@@ -582,13 +635,6 @@ $top-buttons-spacing: 6px;
 .fade-enter,
 .fade-leave-to {
 	opacity: 0;
-}
-
-.rename-form {
-	display: flex;
-	& .icon-confirm {
-		margin: 0;
-	}
 }
 
 </style>
