@@ -29,7 +29,7 @@ export default {
 		 */
 		excludeClickOutsideClasses: {
 			type: String | Array,
-			default: [],
+			default: () => [],
 		},
 	},
 	methods: {
