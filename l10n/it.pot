@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Random_R, 2020
+# Vincenzo Reale <vinx.reale@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Random_R, 2020\n"
+"Last-Translator: Vincenzo Reale <vinx.reale@gmail.com>, 2020\n"
 "Language-Team: Italian (https://www.transifex.com/nextcloud/teams/64236/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: it\n"
@@ -94,7 +95,7 @@ msgstr "Cerca"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:170
 msgid "Search results"
-msgstr "Cerca risultati"
+msgstr "Risultati di ricerca"
 
 #: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
