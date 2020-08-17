@@ -53,6 +53,10 @@ export default {
 				this.userStatus.icon = icon || ''
 				this.hasStatus = true
 			} catch (e) {
+				if (e.response.status === 404 && e.response.data.ocs?.data?.length === 0) {
+					// User just has no status set, so don't log it
+					return
+				}
 				console.error(e)
 			}
 		},
