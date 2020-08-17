@@ -142,6 +142,13 @@ export default {
 			required: true,
 		},
 		/**
+		 * Whether or not to display the user-status
+		 */
+		showUserStatus: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		 * Define the whole bubble as a link
 		 */
 		url: {
