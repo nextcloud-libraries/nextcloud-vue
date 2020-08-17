@@ -90,6 +90,7 @@ This component has the following slot:
 				:style="styles.avatar"
 				:disable-tooltip="true"
 				:disable-menu="true"
+				v-bind="$props"
 				class="user-bubble__avatar" />
 
 			<!-- Title -->
