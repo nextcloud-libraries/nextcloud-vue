@@ -21,9 +21,11 @@
  */
 
 import Focus from './Focus'
+import Linkify from './Linkify'
 import Tooltip from './Tooltip'
 
 export {
 	Focus,
+	Linkify,
 	Tooltip,
 }
