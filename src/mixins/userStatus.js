@@ -41,6 +41,11 @@ export default {
 		 * @returns {Promise<void>}
 		 */
 		async fetchUserStatus(userId) {
+			const capabilities = OC.getCapabilities()
+			if (!Object.prototype.hasOwnProperty.call(capabilities, 'user_status') || !capabilities['user_status'].enabled) {
+				return
+			}
+
 			try {
 				const { data } = await axios.get(generateOcsUrl('apps/user_status/api/v1', 2) + `statuses/${encodeURIComponent(userId)}`)
 				const {
