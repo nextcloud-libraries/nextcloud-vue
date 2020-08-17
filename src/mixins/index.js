@@ -20,7 +20,7 @@
  *
  */
 
-import excludeClickOutsideClasses from './excludeClickOutsideClasses.js'
+import excludeClickOutsideClasses from './excludeClickOutsideClasses'
 import isFullscreen from './isFullscreen'
 import isMobile from './isMobile'
 
