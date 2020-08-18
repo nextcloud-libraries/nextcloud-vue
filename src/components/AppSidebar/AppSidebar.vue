@@ -80,6 +80,37 @@
 	</script>
 	```
 
+	### Editable title after click
+	```vue
+	<template>
+		<AppSidebar
+			:title="title"
+			:title-editable.sync="titleEditable"
+			:title-placeholder="titlePlaceholder"
+			:subtitle="subtitle"
+			@update:title="titleUpdate">
+			<!-- Insert your slots and tabs here -->
+		</AppSidebar>
+	</template>
+	<script>
+		export default {
+			data() {
+				return {
+					title: 'cat-picture.jpg',
+					titlePlaceholder: 'Filename',
+					subtitle: 'last edited 3 weeks ago',
+					titleEditable: false
+				}
+			},
+			methods: {
+				titleUpdate(e) {
+					this.title = e
+				}
+			}
+		}
+	</script>
+	```
+
 	### Empty sidebar for e.g. empty content component.
 	```vue
 	<template>
