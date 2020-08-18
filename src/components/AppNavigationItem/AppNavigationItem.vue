@@ -261,8 +261,8 @@ export default {
 		},
 		newItem: {
 			type: Boolean,
-			default: false,	
-		}
+			default: false,
+		},
 		/**
 		* Only for 'editable' items, sets label for the edit action button.
 		*/
