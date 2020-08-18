@@ -58,6 +58,7 @@ export default {
 	},
 
 	computed: {
+		// TODO: implement a better way to force pass a prop fromm Sidebar
 		isActive() {
 			return this.$parent.activeTab === this.id
 		},
@@ -69,6 +70,7 @@ export default {
 section {
 	padding: 10px;
 	min-height: 100%; // fill available height
+
 	&:focus {
 		border-color: var(--color-primary);
 		box-shadow: 0 0 0.2em var(--color-primary);

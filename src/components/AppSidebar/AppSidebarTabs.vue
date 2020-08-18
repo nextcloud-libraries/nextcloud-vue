@@ -213,15 +213,24 @@ export default {
 		 * Manually update the sidebar tabs according to $slots.default
 		 */
 		updateTabs() {
+			if (!this.$slots.default) {
+				this.tabs = []
+				return
+			}
+
 			// Find all valid instances of AppSidebarTab
 			const tabs = this.$slots.default.reduce((tabs, tabNode) => {
 				const tab = tabNode.componentInstance
-				if (// Find AppSidebarTab components only, take care of PascalCase and kebab-case
-					tabNode?.componentOptions?.tag.replace(/-/g, '').toLowerCase() === 'appsidebartab'
-					&& (tab?.name && typeof tab?.name === 'string')
+				// Make sure all required props are provided and valid
+				if (IsValidString(tab?.name)
 					&& IsValidString(tab?.id)
 					&& IsValidString(tab?.icon)) {
 					tabs.push(tab)
+				} else {
+					// Don't warn if the node only contains whitespace
+					if (tabNode.tag || tabNode.text.trim()) {
+						console.debug('Ignoring invalid tab', tabNode)
+					}
 				}
 				return tabs
 			}, [])

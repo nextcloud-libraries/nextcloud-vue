@@ -31,34 +31,27 @@
 	### Standard usage
 
 	```vue
-	<template>
-		<AppSidebar
-			:title="title"
-			:subtitle="subtitle">
-			<!-- Insert your slots and tabs here -->
-		</AppSidebar>
-	</template>
-	<script>
-		export default {
-			data() {
-				return {
-					title: 'cat-picture.jpg',
-					subtitle: 'last edited 3 weeks ago'
-				}
-			}
-		}
-	</script>
+	<AppSidebar
+		title="cat-picture.jpg"
+		subtitle="last edited 3 weeks ago">
+		<AppSidebarTab icon="icon-settings" name="Settings" id="settings">
+			Settings tab content
+		</AppSidebarTab>
+		<AppSidebarTab icon="icon-share" name="Sharing" id="share">
+			Sharing tab content
+		</AppSidebarTab>
+	</AppSidebar>
 	```
 
 	### Editable title
+
 	```vue
 	<template>
 		<AppSidebar
-			:title="title"
+			:title.sync="title"
 			:title-editable="true"
-			:title-placeholder="titlePlaceholder"
-			:subtitle="subtitle"
-			@update:title="titleUpdate">
+			title-placeholder="Filename"
+			subtitle="last edited 3 weeks ago">
 			<!-- Insert your slots and tabs here -->
 		</AppSidebar>
 	</template>
@@ -67,20 +60,14 @@
 			data() {
 				return {
 					title: 'cat-picture.jpg',
-					titlePlaceholder: 'Filename',
-					subtitle: 'last edited 3 weeks ago'
 				}
 			},
-			methods: {
-				titleUpdate(e) {
-					this.title = e
-				}
-			}
 		}
 	</script>
 	```
 
 	### Editable title after click with custom tertiary action
+
 	```vue
 	<template>
 		<AppSidebar
@@ -119,6 +106,7 @@
 	```
 
 	### Empty sidebar for e.g. empty content component.
+
 	```vue
 	<template>
 		<AppSidebar
@@ -224,7 +212,7 @@
 				</div>
 			</header>
 
-			<AppSidebarTabs>
+			<AppSidebarTabs ref="tabs">
 				<slot :active="active" />
 			</AppSidebarTabs>
 		</aside>
@@ -236,21 +224,25 @@ import Actions from '../Actions'
 import Focus from '../../directives/Focus'
 import Linkify from '../../directives/Linkify'
 import l10n from '../../mixins/l10n'
-import AppSidebarTabs from '../AppSidebarTabs/AppSidebarTabs'
+import AppSidebarTabs from './AppSidebarTabs'
 import { directive as ClickOutside } from 'v-click-outside'
 
 export default {
 	name: 'AppSidebar',
+
 	components: {
 		Actions,
 		AppSidebarTabs,
 	},
+
 	directives: {
 		focus: Focus,
 		linkify: Linkify,
 		ClickOutside,
 	},
+
 	mixins: [l10n],
+
 	props: {
 		active: {
 			type: String,
@@ -401,6 +393,7 @@ export default {
 			 */
 			this.$emit('update:title', event.target.value)
 		},
+
 		/**
 		 * Emit when the title form edit confirm button is pressed in order
 		 * to change the title.

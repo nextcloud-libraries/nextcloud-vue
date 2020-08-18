@@ -23,7 +23,7 @@
 import { mount } from '@vue/test-utils'
 
 import Vue from 'vue'
-import AppSidebarTabs from '../../../../src/components/AppSidebarTabs/AppSidebarTabs.vue'
+import AppSidebarTabs from '../../../../src/components/AppSidebar/AppSidebarTabs.vue'
 import AppSidebarTab from '../../../../src/components/AppSidebarTab/AppSidebarTab.vue'
 import ActionButton from '../../../../src/components/ActionButton/ActionButton.vue'
 
@@ -58,7 +58,7 @@ describe('AppSidebarTabs.vue', () => {
 			},
 			stubs: {
 				// used to register custom components
-				'ActionButton': ActionButton
+				ActionButton,
 			},
 
 		})
@@ -77,7 +77,7 @@ describe('AppSidebarTabs.vue', () => {
 			},
 			stubs: {
 				// used to register custom components
-				'app-sidebar-tab': AppSidebarTab
+				'app-sidebar-tab': AppSidebarTab,
 			},
 
 		})
@@ -102,7 +102,7 @@ describe('AppSidebarTabs.vue', () => {
 				 * to make sure both works.
 				 */
 				'app-sidebar-tab': AppSidebarTab,
-				'AppSidebarTab': AppSidebarTab,
+				AppSidebarTab,
 			},
 
 		})
