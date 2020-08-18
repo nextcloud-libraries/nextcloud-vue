@@ -116,7 +116,8 @@ Just set the `pinned` prop.
 			'app-navigation-entry--collapsible': collapsible,
 			'active': isActive
 		}"
-		class="app-navigation-entry">
+		class="app-navigation-entry"
+		@click="handleEdit">
 		<!-- Icon and title -->
 		<a v-if="!undo && !editing"
 			class="app-navigation-entry-link"
@@ -160,7 +161,7 @@ Just set the `pinned` prop.
 
 		<!-- edit entry -->
 		<div v-if="editing" class="app-navigation-entry__edit">
-			<form @submit.prevent="handleRename" @keydown.esc.exact.prevent="cancelEdit">
+			<form @submit.prevent="handleEditDone" @keydown.esc.exact.prevent="cancelEdit">
 				<input ref="inputTitle"
 					v-model="newTitle"
 					type="text"
@@ -168,7 +169,7 @@ Just set the `pinned` prop.
 					:placeholder="editPlaceholder !== '' ? editPlaceholder : title">
 				<button type="submit"
 					class="icon-confirm"
-					@click.stop.prevent="handleRename" />
+					@click.stop.prevent="handleEditDone" />
 				<button type="reset"
 					class="icon-close"
 					@click.stop.prevent="cancelEdit" />
@@ -409,18 +410,34 @@ export default {
 
 		// Edition methods
 		handleEdit() {
-			this.newTitle = this.title
-			this.editing = true
-			this.onMenuToggle(false)
-			this.$nextTick(() => {
-				this.$refs.inputTitle.focus()
-			})
+			if (this.editable) {
+				this.newTitle = this.title
+			}
+			if (this.editable || this.newItem) {
+				this.editing = true
+				this.onMenuToggle(false)
+				this.$nextTick(() => {
+					this.$refs.inputTitle.focus()
+				})
+			}
 		},
 		cancelEdit() {
 			this.editing = false
 		},
+		handleEditDone() {
+			if (this.editable) {
+				this.handleRename()
+			} else if (this.newItem) {
+				this.handleNewItem()
+			}
+		},
 		handleRename() {
 			this.$emit('update:title', this.newTitle)
+			this.newTitle = ''
+			this.editing = false
+		},
+		handleNewItem() {
+			this.$emit('newItem', this.newTitle)
 			this.newTitle = ''
 			this.editing = false
 		},
