@@ -79,6 +79,10 @@ export default {
 				class="option__desc--linetwo"
 				:text="desc"
 				:search="search" />
+			<span v-else-if="hasStatus">
+				<span>{{ userStatus.icon }}</span>
+				<span>{{ userStatus.message }}</span>
+			</span>
 		</div>
 		<span v-if="icon !== ''" class="icon option__icon" :class="icon" />
 	</span>
@@ -87,6 +91,7 @@ export default {
 <script>
 import Avatar from '../Avatar'
 import Highlight from '../Highlight'
+import { userStatus } from '../../mixins'
 
 export default {
 	name: 'AvatarSelectOption',
@@ -94,6 +99,7 @@ export default {
 		Avatar,
 		Highlight,
 	},
+	mixins: [userStatus],
 	props: {
 		/**
 		 * Secondary optional line
@@ -124,6 +130,13 @@ export default {
 			default: '',
 		},
 		/**
+		 * The status of the user
+		 */
+		status: {
+			type: Object,
+			default: null,
+		},
+		/**
 		 * See the [Avatar](#Avatar) isNoUser prop
 		 */
 		isNoUser: {
@@ -135,6 +148,11 @@ export default {
 			type: String,
 			default: '',
 		},
+	},
+	beforeMount() {
+		if (!this.isNoUser) {
+			this.fetchUserStatus(this.user)
+		}
 	},
 }
 </script>

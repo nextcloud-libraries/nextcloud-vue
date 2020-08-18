@@ -90,6 +90,7 @@ This component has the following slot:
 				:style="styles.avatar"
 				:disable-tooltip="true"
 				:disable-menu="true"
+				v-bind="$props"
 				class="user-bubble__avatar" />
 
 			<!-- Title -->
@@ -139,6 +140,13 @@ export default {
 		displayName: {
 			type: String,
 			required: true,
+		},
+		/**
+		 * Whether or not to display the user-status
+		 */
+		showUserStatus: {
+			type: Boolean,
+			default: false,
 		},
 		/**
 		 * Define the whole bubble as a link
