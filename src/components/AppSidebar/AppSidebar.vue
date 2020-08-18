@@ -163,14 +163,17 @@
 					}"
 					class="app-sidebar-header__desc">
 					<!-- favourite icon -->
-					<div v-if="canStar" class="app-sidebar-header__star-action">
-						<a :class="{
-								'icon-starred': isStarred && !starLoading,
-								'icon-star': !isStarred && !starLoading,
-								'icon-loading-small': starLoading
-							}"
-							class="app-sidebar-header__star"
-							@click.prevent="toggleStarred" />
+					<div v-if="canStar || $slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
+						<slot name="tertiary-actions">
+							<a v-if="canStar"
+								:class="{
+									'icon-starred': isStarred && !starLoading,
+									'icon-star': !isStarred && !starLoading,
+									'icon-loading-small': starLoading
+								}"
+								class="app-sidebar-header__star"
+								@click.prevent="toggleStarred" />
+						</slot>
 					</div>
 
 					<!-- main title -->
@@ -480,7 +483,7 @@ $top-buttons-spacing: 6px;
 			box-sizing: content-box;
 			padding: #{$desc-vertical-padding} 0 #{$desc-vertical-padding} #{$desc-vertical-padding / 2};
 
-			.app-sidebar-header__star-action {
+			.app-sidebar-header__tertiary-actions {
 				display: flex;
 				height: $clickable-area;
 				width: $clickable-area;
