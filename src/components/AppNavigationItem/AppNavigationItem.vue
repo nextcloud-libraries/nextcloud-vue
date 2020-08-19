@@ -539,6 +539,7 @@ export default {
 			max-width: 100%;
 			white-space: nowrap;
 			text-overflow: ellipsis;
+			padding-left: 6px;
 		}
 	}
 
@@ -575,7 +576,8 @@ export default {
 
 .app-navigation-entry__inline-input-container {
 	flex: 1 0 100%;
-	width: calc(100% - #{$clickable-area});
+	max-width: calc(100% - #{$clickable-area});
+	margin: auto;
 	/* Ugly hack for overriding the main entry link */
 	/* align the input correctly with the link text
 	44px-6px padding for the input */
@@ -584,6 +586,7 @@ export default {
 		display: flex;
 		.app-navigation-entry__inline-input {
 			flex: 1 1 100%;
+			font-size: 14px;
 		}
 
 		// submit and cancel buttons
