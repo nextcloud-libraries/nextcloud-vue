@@ -331,7 +331,7 @@ export default {
 			return this.isStarred !== null
 		},
 		hasFigure() {
-			return this.$slots['header'] || this.background
+			return this.$slots.header || this.background
 		},
 		hasFigureClickListener() {
 			return this.$listeners['figure-click']

@@ -231,7 +231,7 @@ export default {
 
 			// Tabs are optional, but you can use either tabs or non-tab-content only
 			if (tabs.length !== 0 && tabs.length !== children.length) {
-				Vue.util.warn(`Mixing tabs and non-tab-content is not possible.`)
+				Vue.util.warn('Mixing tabs and non-tab-content is not possible.')
 			}
 
 			// We sort the tabs by their order or by their name
