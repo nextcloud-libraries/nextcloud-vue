@@ -254,7 +254,9 @@ export default {
 	},
 	computed: {
 		canDisplayUserStatus() {
-			return this.showUserStatus && this.hasStatus
+			return this.showUserStatus
+				&& this.hasStatus
+				&& ['online', 'away', 'dnd'].includes(this.userStatus.status)
 		},
 		getUserIdentifier() {
 			if (this.isDisplayNameDefined) {
@@ -569,9 +571,6 @@ export default {
 		&--away{
 			@include iconfont('user-status-away');
 			color: #f4a331;
-		}
-		&--offline{
-			@include iconfont('user-status-invisible');
 		}
 	}
 
