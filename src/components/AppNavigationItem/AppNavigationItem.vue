@@ -123,8 +123,7 @@ Just set the `pinned` prop.
 			'app-navigation-entry--collapsible': collapsible,
 			'active': isActive
 		}"
-		class="app-navigation-entry"
-		@click="handleEdit">
+		class="app-navigation-entry">
 		<!-- Icon and title -->
 		<a v-if="!undo && !newItem && !editing"
 			class="app-navigation-entry-link"
@@ -151,7 +150,7 @@ Just set the `pinned` prop.
 		</div>
 
 		<!-- New Item -->
-		<div v-if="newItem">
+		<div v-if="newItem" @click="handleEdit" class="app-navigation-entry-div">
 			<div :class="{ 'icon-loading-small': loading, [icon]: icon && isIconShown }"
 				class="app-navigation-entry-icon">
 				<slot v-if="!loading" v-show="isIconShown" name="icon" />
@@ -508,7 +507,7 @@ export default {
 	}
 
 	// Main entry link
-	.app-navigation-entry-link {
+	.app-navigation-entry-link .app-navigation-entry-div {
 		z-index: 100; /* above the bullet to allow click*/
 		display: flex;
 		overflow: hidden;
