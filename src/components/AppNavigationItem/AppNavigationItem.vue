@@ -160,12 +160,12 @@ Just set the `pinned` prop.
 		</div>
 
 		<!-- edit entry -->
-		<div v-if="editing" class="app-navigation-entry__edit">
+		<div v-if="editing" class="app-navigation-entry__inline-input-container">
 			<form @submit.prevent="handleEditDone" @keydown.esc.exact.prevent="cancelEdit">
 				<input ref="inputTitle"
-					v-model="newTitle"
+					v-model="inlineInputValue"
 					type="text"
-					class="app-navigation-entry__edit-input"
+					class="app-navigation-entry__inline-input"
 					:placeholder="editPlaceholder !== '' ? editPlaceholder : title">
 				<button type="submit"
 					class="icon-confirm"
@@ -326,7 +326,7 @@ export default {
 
 	data() {
 		return {
-			newTitle: '',
+			inlineInputValue: '',
 			opened: this.open,
 			editing: false,
 		}
@@ -411,7 +411,7 @@ export default {
 		// Edition methods
 		handleEdit() {
 			if (this.editable) {
-				this.newTitle = this.title
+				this.inlineInputValue = this.title
 			}
 			if (this.editable || this.newItem) {
 				this.editing = true
@@ -432,13 +432,13 @@ export default {
 			}
 		},
 		handleRename() {
-			this.$emit('update:title', this.newTitle)
-			this.newTitle = ''
+			this.$emit('update:title', this.inlineInputValue)
+			this.inlineInputValue = ''
 			this.editing = false
 		},
 		handleNewItem() {
-			this.$emit('newItem', this.newTitle)
-			this.newTitle = ''
+			this.$emit('newItem', this.inlineInputValue)
+			this.inlineInputValue = ''
 			this.editing = false
 		},
 
@@ -555,7 +555,7 @@ export default {
 	}
 }
 
-.app-navigation-entry__edit {
+.app-navigation-entry__inline-input-container {
 	flex: 1 0 100%;
 	/* Ugly hack for overriding the main entry link */
 	/* align the input correctly with the link text
@@ -564,7 +564,7 @@ export default {
 	form {
 		display: flex;
 		width: 100%;
-		.app-navigation-entry__edit-input {
+		.app-navigation-entry__inline-input {
 			flex: 1 1 100%;
 		}
 
