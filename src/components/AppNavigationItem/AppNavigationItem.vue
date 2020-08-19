@@ -179,6 +179,10 @@ Just set the `pinned` prop.
 		<!-- inline input -->
 		<div v-if="editing" class="app-navigation-entry__inline-input-container">
 			<form @submit.prevent="handleEditDone" @keydown.esc.exact.prevent="cancelEdit">
+				<div :class="{ 'icon-loading-small': loading, [icon]: icon && isIconShown }"
+					class="app-navigation-entry-icon">
+					<slot v-if="!loading" v-show="isIconShown" name="icon" />
+				</div>
 				<input ref="inputTitle"
 					v-model="inlineInputValue"
 					type="text"
