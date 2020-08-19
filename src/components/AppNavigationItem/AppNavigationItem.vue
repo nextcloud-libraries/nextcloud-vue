@@ -150,7 +150,7 @@ Just set the `pinned` prop.
 		</div>
 
 		<!-- New Item -->
-		<div v-if="newItem" class="app-navigation-entry-div" @click="handleEdit">
+		<div v-if="newItem && !editing" class="app-navigation-entry-div" @click="handleEdit">
 			<div :class="{ 'icon-loading-small': loading, [icon]: icon && isIconShown }"
 				class="app-navigation-entry-icon">
 				<slot v-if="!loading" v-show="isIconShown" name="icon" />
@@ -507,7 +507,7 @@ export default {
 	}
 
 	// Main entry link
-	.app-navigation-entry-link .app-navigation-entry-div {
+	.app-navigation-entry-link, .app-navigation-entry-div {
 		z-index: 100; /* above the bullet to allow click*/
 		display: flex;
 		overflow: hidden;
