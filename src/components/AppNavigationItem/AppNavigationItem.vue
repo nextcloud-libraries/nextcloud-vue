@@ -126,7 +126,7 @@ Just set the `pinned` prop.
 		class="app-navigation-entry"
 		@click="handleEdit">
 		<!-- Icon and title -->
-		<a v-if="!undo && !editing"
+		<a v-if="!undo && !newItem && !editing"
 			class="app-navigation-entry-link"
 			href="#"
 			@click="onClick">
@@ -148,6 +148,17 @@ Just set the `pinned` prop.
 			<div class="app-navigation-entry__deleted-description">
 				{{ title }}
 			</div>
+		</div>
+
+		<!-- New Item -->
+		<div v-if="newItem">
+			<div :class="{ 'icon-loading-small': loading, [icon]: icon && isIconShown }"
+				class="app-navigation-entry-icon">
+				<slot v-if="!loading" v-show="isIconShown" name="icon" />
+			</div>
+			<span class="app-navigation-entry__title" :title="title">
+				{{ title }}
+			</span>
 		</div>
 
 		<!-- Counter and Actions -->
