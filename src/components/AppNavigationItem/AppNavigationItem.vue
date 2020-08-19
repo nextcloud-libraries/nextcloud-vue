@@ -82,12 +82,19 @@ prevent the user from collapsing the items.
 </AppNavigationItem>
 ```
 ### Editable element
-Add the prop `:editable=true` and an edit placeholder if you need it. By devault
+Add the prop `:editable=true` and an edit placeholder if you need it. By default
 the placeholder is the previous title of the element.
 
 ```
 <AppNavigationItem title="Editable Item" :editable="true"
 	editPlaceholder="your_placeholder_here" />
+```
+
+### New Item element
+Add the prop `:new-item=true`.
+
+```
+<AppNavigationItem title="New Item" :new-item="true" @new-item="alert(value)" />
 ```
 ### Undo element
 Just set the `undo` and `title` props. When clicking the undo button, an `undo` event is emitted.
@@ -437,7 +444,7 @@ export default {
 			this.editing = false
 		},
 		handleNewItem() {
-			this.$emit('newItem', this.inlineInputValue)
+			this.$emit('new-item', this.inlineInputValue)
 			this.inlineInputValue = ''
 			this.editing = false
 		},
