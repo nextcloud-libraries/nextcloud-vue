@@ -166,7 +166,7 @@ Just set the `pinned` prop.
 			</Actions>
 		</div>
 
-		<!-- edit entry -->
+		<!-- inline input -->
 		<div v-if="editing" class="app-navigation-entry__inline-input-container">
 			<form @submit.prevent="handleEditDone" @keydown.esc.exact.prevent="cancelEdit">
 				<input ref="inputTitle"
