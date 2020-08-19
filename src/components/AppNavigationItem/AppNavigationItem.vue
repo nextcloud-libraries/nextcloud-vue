@@ -150,7 +150,7 @@ Just set the `pinned` prop.
 		</div>
 
 		<!-- New Item -->
-		<div v-if="newItem" @click="handleEdit" class="app-navigation-entry-div">
+		<div v-if="newItem" class="app-navigation-entry-div" @click="handleEdit">
 			<div :class="{ 'icon-loading-small': loading, [icon]: icon && isIconShown }"
 				class="app-navigation-entry-icon">
 				<slot v-if="!loading" v-show="isIconShown" name="icon" />
