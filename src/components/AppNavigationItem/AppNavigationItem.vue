@@ -150,14 +150,32 @@ Just set the `pinned` prop.
 		</div>
 
 		<!-- New Item -->
-		<div v-if="newItem && !editing" class="app-navigation-entry-div" @click="handleEdit">
+		<div v-if="newItem" class="app-navigation-entry-div" @click="handleEdit">
 			<div :class="{ 'icon-loading-small': loading, [icon]: icon && isIconShown }"
 				class="app-navigation-entry-icon">
 				<slot v-if="!loading" v-show="isIconShown" name="icon" />
 			</div>
-			<span class="app-navigation-entry__title" :title="title">
+
+			<span v-if="!editing" class="app-navigation-entry__title" :title="title">
 				{{ title }}
 			</span>
+
+			<!-- inline input -->
+			<div v-if="editing" class="app-navigation-entry__inline-input-container">
+				<form @submit.prevent="handleEditDone" @keydown.esc.exact.prevent="cancelEdit">
+					<input ref="inputTitle"
+						v-model="inlineInputValue"
+						type="text"
+						class="app-navigation-entry__inline-input"
+						:placeholder="editPlaceholder !== '' ? editPlaceholder : title">
+					<button type="submit"
+						class="icon-confirm"
+						@click.stop.prevent="handleEditDone" />
+					<button type="reset"
+						class="icon-close"
+						@click.stop.prevent="cancelEdit" />
+				</form>
+			</div>
 		</div>
 
 		<!-- Counter and Actions -->
@@ -174,27 +192,6 @@ Just set the `pinned` prop.
 				<ActionButton v-if="undo" icon="app-navigation-entry__deleted-button icon-history" @click="handleUndo" />
 				<slot name="actions" />
 			</Actions>
-		</div>
-
-		<!-- inline input -->
-		<div v-if="editing" class="app-navigation-entry__inline-input-container">
-			<form @submit.prevent="handleEditDone" @keydown.esc.exact.prevent="cancelEdit">
-				<div :class="{ 'icon-loading-small': loading, [icon]: icon && isIconShown }"
-					class="app-navigation-entry-icon">
-					<slot v-if="!loading" v-show="isIconShown" name="icon" />
-				</div>
-				<input ref="inputTitle"
-					v-model="inlineInputValue"
-					type="text"
-					class="app-navigation-entry__inline-input"
-					:placeholder="editPlaceholder !== '' ? editPlaceholder : title">
-				<button type="submit"
-					class="icon-confirm"
-					@click.stop.prevent="handleEditDone" />
-				<button type="reset"
-					class="icon-close"
-					@click.stop.prevent="cancelEdit" />
-			</form>
 		</div>
 
 		<!-- Children elements -->
@@ -578,13 +575,13 @@ export default {
 
 .app-navigation-entry__inline-input-container {
 	flex: 1 0 100%;
+	width: calc(100% - #{$clickable-area});
 	/* Ugly hack for overriding the main entry link */
 	/* align the input correctly with the link text
 	44px-6px padding for the input */
-	padding-left: $clickable-area - $icon-margin - 6px !important;
+	/*padding-left: $clickable-area - $icon-margin - 6px !important;*/
 	form {
 		display: flex;
-		width: 100%;
 		.app-navigation-entry__inline-input {
 			flex: 1 1 100%;
 		}
