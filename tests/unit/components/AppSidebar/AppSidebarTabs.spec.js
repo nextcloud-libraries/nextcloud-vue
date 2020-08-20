@@ -30,9 +30,13 @@ import ActionButton from '../../../../src/components/ActionButton/ActionButton.v
 describe('AppSidebarTabs.vue', () => {
 	'use strict'
 
-	it('Issues no warning when using it without tabs.', () => {
+	it('Issues no warning and logs nothing to console when using it without tabs.', () => {
 		const onWarning = jest.fn()
+		const originalDebug = console.debug
+		const consoleOutput = []
+		console.debug = output => consoleOutput.push(output)
 		Vue.config.warnHandler = onWarning
+
 		const wrapper = mount(AppSidebarTabs, {
 			propsData: {
 				title: 'Sidebar title.'
@@ -43,6 +47,8 @@ describe('AppSidebarTabs.vue', () => {
 
 		})
 		expect(onWarning).toHaveBeenCalledTimes(0)
+		expect(consoleOutput.length).toBe(0)
+		console.debug = originalDebug
 	})
 
 	it('Issues no warning when using secondary actions.', () => {
@@ -84,9 +90,13 @@ describe('AppSidebarTabs.vue', () => {
 		expect(onWarning).toHaveBeenCalledTimes(0)
 	})
 
-	it('Issues a warning when AppSidebarTab and other elements are mixed.', () => {
+	it('Issues a warning and logs to console when tabs and other elements are mixed.', () => {
 		const onWarning = jest.fn()
+		const originalDebug = console.debug
+		const consoleOutput = []
+		console.debug = output => consoleOutput.push(output)
 		Vue.config.warnHandler = onWarning
+
 		const wrapper = mount(AppSidebarTabs, {
 			slots: {
 				default: [
@@ -107,5 +117,7 @@ describe('AppSidebarTabs.vue', () => {
 
 		})
 		expect(onWarning).toHaveBeenCalledTimes(1)
+		expect(consoleOutput.length).toBe(2)
+		console.debug = originalDebug
 	})
 })
