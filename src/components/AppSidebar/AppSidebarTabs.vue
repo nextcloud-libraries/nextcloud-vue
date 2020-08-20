@@ -218,8 +218,12 @@ export default {
 				return
 			}
 
+			// Find all valid children (AppSidbarTab, other components, text nodes, etc.)
+			const children = this.$slots.default.filter(elem => elem.tag || elem.text.trim())
+
 			// Find all valid instances of AppSidebarTab
-			const tabs = this.$slots.default.reduce((tabs, tabNode) => {
+			const invalidTabs = []
+			const tabs = children.reduce((tabs, tabNode) => {
 				const tab = tabNode.componentInstance
 				// Make sure all required props are provided and valid
 				if (IsValidString(tab?.name)
@@ -227,20 +231,15 @@ export default {
 					&& IsValidString(tab?.icon)) {
 					tabs.push(tab)
 				} else {
-					// Don't warn if the node only contains whitespace
-					if (tabNode.tag || tabNode.text.trim()) {
-						console.debug('Ignoring invalid tab', tabNode)
-					}
+					invalidTabs.push(tabNode)
 				}
 				return tabs
 			}, [])
 
-			// Find all valid children (AppSidbarTab, other components, text nodes, etc.)
-			const children = this.$slots.default.filter(elem => elem.tag || elem.text.trim())
-
 			// Tabs are optional, but you can use either tabs or non-tab-content only
 			if (tabs.length !== 0 && tabs.length !== children.length) {
 				Vue.util.warn('Mixing tabs and non-tab-content is not possible.')
+				invalidTabs.map(invalid => console.debug('Ignoring invalid tab', invalid))
 			}
 
 			// We sort the tabs by their order or by their name
