@@ -80,7 +80,7 @@
 	</script>
 	```
 
-	### Editable title after click
+	### Editable title after click with custom tertiary action
 	```vue
 	<template>
 		<AppSidebar
@@ -89,7 +89,11 @@
 			:title-placeholder="titlePlaceholder"
 			:subtitle="subtitle"
 			@update:title="titleUpdate">
-			<!-- Insert your slots and tabs here -->
+			<template slot="tertiary-actions">
+				<form>
+					<input type="checkbox" @click="toggledCheckbox"/>
+				</form>
+			</template>
 		</AppSidebar>
 	</template>
 	<script>
@@ -105,6 +109,9 @@
 			methods: {
 				titleUpdate(e) {
 					this.title = e
+				},
+				toggledCheckbox() {
+					alert('toggle')
 				}
 			}
 		}
