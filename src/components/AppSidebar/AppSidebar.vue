@@ -80,7 +80,7 @@
 	</script>
 	```
 
-	### Editable title after click
+	### Editable title after click with custom tertiary action
 	```vue
 	<template>
 		<AppSidebar
@@ -89,7 +89,11 @@
 			:title-placeholder="titlePlaceholder"
 			:subtitle="subtitle"
 			@update:title="titleUpdate">
-			<!-- Insert your slots and tabs here -->
+			<template slot="tertiary-actions">
+				<form>
+					<input type="checkbox" @click="toggledCheckbox"/>
+				</form>
+			</template>
 		</AppSidebar>
 	</template>
 	<script>
@@ -105,6 +109,9 @@
 			methods: {
 				titleUpdate(e) {
 					this.title = e
+				},
+				toggledCheckbox() {
+					alert('toggle')
 				}
 			}
 		}
@@ -163,14 +170,17 @@
 					}"
 					class="app-sidebar-header__desc">
 					<!-- favourite icon -->
-					<div v-if="canStar" class="app-sidebar-header__star-action">
-						<a :class="{
-								'icon-starred': isStarred && !starLoading,
-								'icon-star': !isStarred && !starLoading,
-								'icon-loading-small': starLoading
-							}"
-							class="app-sidebar-header__star"
-							@click.prevent="toggleStarred" />
+					<div v-if="canStar || $slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
+						<slot name="tertiary-actions">
+							<a v-if="canStar"
+								:class="{
+									'icon-starred': isStarred && !starLoading,
+									'icon-star': !isStarred && !starLoading,
+									'icon-loading-small': starLoading
+								}"
+								class="app-sidebar-header__star"
+								@click.prevent="toggleStarred" />
+						</slot>
 					</div>
 
 					<!-- main title -->
@@ -480,7 +490,7 @@ $top-buttons-spacing: 6px;
 			box-sizing: content-box;
 			padding: #{$desc-vertical-padding} 0 #{$desc-vertical-padding} #{$desc-vertical-padding / 2};
 
-			.app-sidebar-header__star-action {
+			.app-sidebar-header__tertiary-actions {
 				display: flex;
 				height: $clickable-area;
 				width: $clickable-area;
