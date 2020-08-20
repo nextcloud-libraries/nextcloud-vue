@@ -103,7 +103,7 @@ msgstr "Suchergebnisse"
 msgid "Select a tag"
 msgstr "Schlagwort auswählen"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:57
 msgid "Settings"
 msgstr "Einstellungen"
 
