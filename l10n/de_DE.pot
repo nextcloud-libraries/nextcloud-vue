@@ -1,13 +1,13 @@
 # 
 # Translators:
-# Mark Ziegler <mark.ziegler@rakekniven.de>, 2020
 # Philipp Fischbeck <pfischbeck@googlemail.com>, 2020
 # ProfDrJones <jones@fs.cs.hm.edu>, 2020
 # Mario Siegmann <mario_siegmann@web.de>, 2020
+# Mark Ziegler <mark.ziegler@rakekniven.de>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2020\n"
+"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2020\n"
 "Language-Team: German (Germany) (https://www.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -47,7 +47,7 @@ msgstr "Benutzerdefiniert"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:180
 msgid "Flags"
-msgstr "Markierung"
+msgstr "Flaggen"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:175
 msgid "Food & Drink"
@@ -93,7 +93,7 @@ msgstr "Vorherige"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:167
 msgid "Search"
-msgstr "Suchen"
+msgstr "Suche"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:170
 msgid "Search results"
@@ -103,7 +103,7 @@ msgstr "Suchergebnisse"
 msgid "Select a tag"
 msgstr "Schlagwort auswählen"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:57
 msgid "Settings"
 msgstr "Einstellungen"
 
