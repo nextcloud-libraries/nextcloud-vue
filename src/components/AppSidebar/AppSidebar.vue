@@ -174,9 +174,11 @@
 					<!-- main title -->
 					<div class="app-sidebar-header__title">
 						<h2 v-show="!titleEditable"
-							v-linkify="title"
+							v-linkify="{text: title, linkify: linkifyTitle}"
 							class="app-sidebar-header__maintitle"
-							@click.self="editTitle($event)" />
+							@click.self="editTitle">
+							{{ title }}
+						</h2>
 						<template v-if="titleEditable">
 							<form
 								v-click-outside="() => onSubmitTitle()"
@@ -320,6 +322,14 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Linkify the title
+		 */
+		linkifyTitle: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -372,7 +382,7 @@ export default {
 			this.$emit('update:starred', this.isStarred)
 		},
 
-		editTitle(event) {
+		editTitle() {
 			this.$emit('update:titleEditable', true)
 			// Focus the title input
 			if (this.titleEditable) {
