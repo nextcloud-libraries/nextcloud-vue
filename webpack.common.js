@@ -152,5 +152,15 @@ module.exports = {
 	resolve: {
 		extensions: ['*', '.js', '.vue'],
 		symlinks: false,
+		alias: {
+			'/core/css/../img': path.resolve(
+				__dirname,
+				'../../core/img'
+			),
+			'/core/css/../fonts': path.resolve(
+				__dirname,
+				'../../core/fonts'
+			),
+		},
 	},
 }
