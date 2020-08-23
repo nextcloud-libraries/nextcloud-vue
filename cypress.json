@@ -1,0 +1,15 @@
+{
+  "projectId": "3paxvy",
+  "viewportWidth": 1920, 
+  "viewportHeight": 1080,
+  "defaultCommandTimeout": 6000,
+  "experimentalComponentTesting": true,
+  "componentFolder": "tests/visual",
+  "nodeVersion": "system",
+  "env": {
+    "failSilently": false,
+    "type": "actual"
+  },
+  "screenshotsFolder": "cypress/snapshots/actual",
+  "trashAssetsBeforeRuns": true
+}

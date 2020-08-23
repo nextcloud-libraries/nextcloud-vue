@@ -25,3 +25,8 @@ coverage
 # Docs compiled build
 styleguide/build/
 styleguide/index.html
+
+# Cypress files
+cypress/videos
+cypress/screenshots
+cypress/snapshots/actual
