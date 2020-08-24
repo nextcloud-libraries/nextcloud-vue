@@ -81,6 +81,14 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 </Actions>
 ```
 
+### Custom icon slot
+```
+<Actions :primary="true">
+	<ActionButton><template #icon><MagnifyIcon /></template>Search</ActionButton>
+	<ActionButton icon="icon-delete">Delete</ActionButton>
+</Actions>
+```
+
 </docs>
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
