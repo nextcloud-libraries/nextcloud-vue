@@ -567,6 +567,7 @@ export default {
 		}
 		&--dnd{
 			@include iconfont('user-status-dnd');
+			background-color: #ffffff;
 			color: #ed484c;
 		}
 		&--away{
