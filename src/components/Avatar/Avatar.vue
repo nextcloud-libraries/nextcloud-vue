@@ -558,6 +558,7 @@ export default {
 		line-height: 14px;
 		font-size: 14px;
 		border: 1px solid var(--color-main-background);
+		background-color: var(--color-main-background);
 		border-radius: 50%;
 
 		&--online{
@@ -566,6 +567,7 @@ export default {
 		}
 		&--dnd{
 			@include iconfont('user-status-dnd');
+			background-color: #ffffff;
 			color: #ed484c;
 		}
 		&--away{
