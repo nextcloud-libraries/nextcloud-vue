@@ -21,9 +21,11 @@ import linkifyStr from 'linkifyjs/string'
 // Use function shorthand for same behavior on bind and update
 // https://vuejs.org/v2/guide/custom-directive.html#Function-Shorthand
 export const directive = function(el, binding) {
-	el.innerHTML = linkifyStr(binding.value, {
-		defaultProtocol: 'https',
-	})
+	if (binding.value?.linkify === true) {
+		el.innerHTML = linkifyStr(binding.value.text, {
+			defaultProtocol: 'https',
+		})
+	}
 }
 
 export default directive
