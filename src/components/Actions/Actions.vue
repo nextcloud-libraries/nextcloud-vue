@@ -266,8 +266,8 @@ export default {
 		 * DOM element for the actions' popover boundaries
 		 */
 		boundariesElement: {
-			type: String,
-			default: 'body',
+			type: Element,
+			default: () => document.querySelector('body'),
 		},
 	},
 
