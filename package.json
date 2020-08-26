@@ -24,9 +24,10 @@
 		"stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix",
 		"styleguide": "vue-styleguidist server",
 		"styleguide:build": "vue-styleguidist build",
-		"cypress": "cypress run",
+		"cypress": "docker-compose run visual sh -c \"npx cypress run\"",
+		"cypress:record": "docker-compose run visual sh -c \"npx cypress run --record\"",
 		"cypress:gui": "cypress open",
-		"cypress:update-snapshots": "cypress run --env type=base --config screenshotsFolder=cypress/snapshots/base"
+		"cypress:update-snapshots": "docker-compose run visual sh -c \"npx cypress run --env type=base --config screenshotsFolder=cypress/snapshots/base\""
 	},
 	"main": "dist/ncvuecomponents.js",
 	"files": [

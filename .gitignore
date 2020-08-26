@@ -30,3 +30,4 @@ styleguide/index.html
 cypress/videos
 cypress/screenshots
 cypress/snapshots/actual
+cypress/snapshots/diff

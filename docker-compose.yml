@@ -1,0 +1,13 @@
+version: '3'
+services:
+  visual:
+    build:
+      context: .
+    volumes:
+      - "./cypress:/app/cypress"
+      - "./src:/app/src"
+      - "./styleguide:/app/styleguide"
+      - "./tests:/app/tests"
+      - "./l10n:/app/l10n"
+    environment:
+      - CYPRESS_RECORD_KEY

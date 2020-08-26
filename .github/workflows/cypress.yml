@@ -17,8 +17,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # run x copies of the current job in parallel
-        containers: [1, 2]
         node-version: ['12.x']
 
     name: Runner ${{ matrix.containers }}
@@ -31,13 +29,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install dependencies
-        run: npm ci
-
       - name: Cypress run
-        uses: cypress-io/github-action@v1
-        with:
-          record: true
-          parallel: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        run: npm run cypress:record
