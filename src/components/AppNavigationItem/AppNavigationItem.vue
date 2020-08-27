@@ -452,6 +452,16 @@ export default {
 				this.$refs.editingInput.focus()
 			})
 		},
+		cancelEditing() {
+			this.editingActive = false
+		},
+		handleEditingDone() {
+			this.$emit('update:title', this.editingValue)
+			this.editingValue = ''
+			this.editingActive = false
+		},
+
+		// New Item methods
 		handleNewItem() {
 			this.newItemActive = true
 			this.onMenuToggle(false)
@@ -459,16 +469,8 @@ export default {
 				this.$refs.newItemInput.focus()
 			})
 		},
-		cancelEditing() {
-			this.editingActive = false
-		},
 		cancelNewItem() {
 			this.newItemActive = false
-		},
-		handleEditingDone() {
-			this.$emit('update:title', this.editingValue)
-			this.editingValue = ''
-			this.editingActive = false
 		},
 		handleNewItemDone() {
 			this.$emit('new-item', this.newItemValue)
