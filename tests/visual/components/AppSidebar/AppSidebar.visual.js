@@ -51,6 +51,9 @@ describe('AppSidebar.vue', () => {
 	const cssFiles = [server, icons, variables]
 
 	// Possible props and actions
+	const title = 'Very long title that will certainly overflow the sidebar width'
+	const subtitles = ['', 'Very long subtitle what will certainly overflow the sidebar width']
+	const titleEditable = [false, true]
 	const starred = [null, false, true]
 	const compact = [false, true]
 	const header = ['', '<div style="background: no-repeat center/contain var(--icon-folder-000); height: 100%;" />']
@@ -64,37 +67,44 @@ describe('AppSidebar.vue', () => {
 		components,
 	}
 
-	starred.forEach(star => {
-		compact.forEach(comp => {
-			header.forEach(head => {
-				secondary.forEach(second => {
-					const fileName = `AppSidebar.vue
-						 - starred_${star === null ? 'null' : star ? 'true' : 'false'}
-						 - compact_${comp ? 'true' : 'false'}
-						 - header_${head ? 'image' : 'none'}
-						 - secondary_${second ? 'button' : 'none'}
-					`.replace(/(\n|\t)/gi, '')
+	subtitles.forEach(subtitle => {
+		titleEditable.forEach(editable => {
+			starred.forEach(star => {
+				compact.forEach(comp => {
+					header.forEach(head => {
+						secondary.forEach(second => {
+							const fileName = `AppSidebar.vue
+									–subtitle_${subtitle ? 'true' : 'null'}
+									–starred_${star === null ? 'null' : star ? 'true' : 'false'}
+									–compact_${comp ? 'true' : 'false'}
+									–header_${head ? 'image' : 'none'}
+									–secondary_${second ? 'button' : 'none'}
+									–editable_${editable ? 'true' : 'false'}
+							`.replace(/(\n|\t)/gi, '')
 
-					const defaultOptions = {
-						propsData: {
-							title: 'Sidebar title.',
-							subtitle: 'subtitle',
-							starred: star,
-							compact: comp,
-						},
-						slots: {
-							default: ['<div />'],
-							header: head,
-							'secondary-actions': second,
-						},
-						style,
-						cssFiles,
-						extensions,
-					}
+							const defaultOptions = {
+								propsData: {
+									title,
+									subtitle,
+									starred: star,
+									compact: comp,
+									titleEditable: editable,
+								},
+								slots: {
+									default: ['<div />'],
+									header: head,
+									'secondary-actions': second,
+								},
+								style,
+								cssFiles,
+								extensions,
+							}
 
-					it('Renders ' + fileName, () => {
-						mount(AppSidebar, defaultOptions)
-						cy.get('.app-sidebar-header').compareSnapshot(fileName)
+							it('Renders ' + fileName, () => {
+								mount(AppSidebar, defaultOptions)
+								cy.get('.app-sidebar-header').compareSnapshot(fileName)
+							})
+						})
 					})
 				})
 			})
