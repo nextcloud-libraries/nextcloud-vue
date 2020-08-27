@@ -1,0 +1,53 @@
+name: Cypress
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - stable*
+
+env:
+  APP_NAME: nextcloud-vue
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        # run x copies of the current job in parallel
+        containers: [1]
+        node-version: ['12']
+
+    name: Runner ${{ matrix.containers }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up node ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v1
+        with:
+          record: true
+          parallel: true
+          tag: ${{ github.event_name }}
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # https://github.com/cypress-io/github-action/issues/124
+          COMMIT_INFO_MESSAGE: ${{ github.event.pull_request.title }}
+
+      - name: Upload snapshots
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: snapshots
+          path: cypress/snapshots

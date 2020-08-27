@@ -13,7 +13,8 @@ const { DefinePlugin } = require('webpack')
 const nodeExternals = require('webpack-node-externals')
 
 // scope variable
-const appVersion = JSON.stringify(process.env.npm_package_version)
+// fallback for cypress testing
+const appVersion = JSON.stringify(process.env.npm_package_version || 'nextcloud-vue')
 const versionHash = md5(appVersion).substr(0, 7)
 const SCOPE_VERSION = JSON.stringify(versionHash)
 const ICONFONT_NAME = `iconfont-vue-${versionHash}`
