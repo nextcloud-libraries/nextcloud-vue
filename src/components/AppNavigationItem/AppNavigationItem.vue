@@ -118,14 +118,14 @@ Just set the `pinned` prop.
 			'app-navigation-entry--no-icon': !isIconShown,
 			'app-navigation-entry--opened': opened,
 			'app-navigation-entry--pinned': pinned,
-			'app-navigation-entry--editing' : editing,
+			'app-navigation-entry--editing' : editingActive,
 			'app-navigation-entry--deleted': undo,
 			'app-navigation-entry--collapsible': collapsible,
 			'active': isActive
 		}"
 		class="app-navigation-entry">
 		<!-- Icon and title -->
-		<a v-if="!undo && !newItem && !editing"
+		<a v-if="!undo && !newItem"
 			class="app-navigation-entry-link"
 			href="#"
 			@click="onClick">
@@ -136,9 +136,24 @@ Just set the `pinned` prop.
 				class="app-navigation-entry-icon">
 				<slot v-if="!loading" v-show="isIconShown" name="icon" />
 			</div>
-			<span class="app-navigation-entry__title" :title="title">
+			<span v-if="!editingActive" class="app-navigation-entry__title" :title="title">
 				{{ title }}
 			</span>
+			<div v-if="editingActive" class="app-navigation-entry__inline-input-container">
+				<form @submit.prevent="handleEditingDone" @keydown.esc.exact.prevent="cancelEditing">
+					<input ref="editingInput"
+						v-model="editingValue"
+						type="text"
+						class="app-navigation-entry__inline-input"
+						:placeholder="editPlaceholder !== '' ? editPlaceholder : title">
+					<button type="submit"
+						class="icon-confirm"
+						@click.stop.prevent="handleEditingDone" />
+					<button type="reset"
+						class="icon-close"
+						@click.stop.prevent="cancelEditing" />
+				</form>
+			</div>
 		</a>
 
 		<AppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
@@ -150,30 +165,30 @@ Just set the `pinned` prop.
 		</div>
 
 		<!-- New Item -->
-		<div v-if="newItem" class="app-navigation-entry-div" @click="handleEdit">
+		<div v-if="newItem" class="app-navigation-entry-div" @click="handleNewItem">
 			<div :class="{ 'icon-loading-small': loading, [icon]: icon && isIconShown }"
 				class="app-navigation-entry-icon">
 				<slot v-if="!loading" v-show="isIconShown" name="icon" />
 			</div>
 
-			<span v-if="!editing" class="app-navigation-entry__title" :title="title">
+			<span v-if="!newItemActive" class="app-navigation-entry__title" :title="title">
 				{{ title }}
 			</span>
 
-			<!-- inline input -->
-			<div v-if="editing" class="app-navigation-entry__inline-input-container">
-				<form @submit.prevent="handleEditDone" @keydown.esc.exact.prevent="cancelEdit">
-					<input ref="inputTitle"
-						v-model="inlineInputValue"
+			<!-- new Item input -->
+			<div v-if="newItemActive" class="app-navigation-entry__inline-input-container">
+				<form @submit.prevent="handleNewItemDone" @keydown.esc.exact.prevent="cancelNewItem">
+					<input ref="newItemInput"
+						v-model="newItemValue"
 						type="text"
 						class="app-navigation-entry__inline-input"
-						:placeholder="editPlaceholder !== '' ? editPlaceholder : title">
+						:placeholder="title">
 					<button type="submit"
 						class="icon-confirm"
-						@click.stop.prevent="handleEditDone" />
+						@click.stop.prevent="handleNewItemDone" />
 					<button type="reset"
 						class="icon-close"
-						@click.stop.prevent="cancelEdit" />
+						@click.stop.prevent="cancelNewItem" />
 				</form>
 			</div>
 		</div>
@@ -186,7 +201,7 @@ Just set the `pinned` prop.
 				:force-menu="forceMenu"
 				:default-icon="menuIcon"
 				@update:open="onMenuToggle">
-				<ActionButton v-if="editable && !editing" icon="icon-rename" @click="handleEdit">
+				<ActionButton v-if="editable && !editingActive" icon="icon-rename" @click="handleEdit">
 					{{ editLabel }}
 				</ActionButton>
 				<ActionButton v-if="undo" icon="app-navigation-entry__deleted-button icon-history" @click="handleUndo" />
@@ -344,9 +359,11 @@ export default {
 
 	data() {
 		return {
-			inlineInputValue: '',
+			newItemValue: '',
+			editingValue: '',
 			opened: this.open,
-			editing: false,
+			editingActive: false,
+			newItemActive: false,
 		}
 	},
 	computed: {
@@ -428,36 +445,35 @@ export default {
 
 		// Edition methods
 		handleEdit() {
-			if (this.editable) {
-				this.inlineInputValue = this.title
-			}
-			if (this.editable || this.newItem) {
-				this.editing = true
-				this.onMenuToggle(false)
-				this.$nextTick(() => {
-					this.$refs.inputTitle.focus()
-				})
-			}
-		},
-		cancelEdit() {
-			this.editing = false
-		},
-		handleEditDone() {
-			if (this.editable) {
-				this.handleRename()
-			} else if (this.newItem) {
-				this.handleNewItem()
-			}
-		},
-		handleRename() {
-			this.$emit('update:title', this.inlineInputValue)
-			this.inlineInputValue = ''
-			this.editing = false
+			this.editingValue = this.title
+			this.editingActive = true
+			this.onMenuToggle(false)
+			this.$nextTick(() => {
+				this.$refs.editingInput.focus()
+			})
 		},
 		handleNewItem() {
-			this.$emit('new-item', this.inlineInputValue)
-			this.inlineInputValue = ''
-			this.editing = false
+			this.newItemActive = true
+			this.onMenuToggle(false)
+			this.$nextTick(() => {
+				this.$refs.newItemInput.focus()
+			})
+		},
+		cancelEditing() {
+			this.editingActive = false
+		},
+		cancelNewItem() {
+			this.newItemActive = false
+		},
+		handleEditingDone() {
+			this.$emit('update:title', this.editingValue)
+			this.editingValue = ''
+			this.editingActive = false
+		},
+		handleNewItemDone() {
+			this.$emit('new-item', this.newItemValue)
+			this.newItemValue = ''
+			this.newItemActive = false
 		},
 
 		// Undo methods
