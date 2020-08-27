@@ -18,9 +18,17 @@ msgstr "{tag} (ósýnilegt)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (takmarkað)"
 
-#: src/components/Actions/Actions.vue:247
+#: src/components/Actions/Actions.vue:254
 msgid "Actions"
 msgstr "Aðgerðir"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:176
+msgid "Activities"
+msgstr "Aðgerðir"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:174
+msgid "Animals & Nature"
+msgstr "Dýr og náttúra"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
@@ -30,9 +38,29 @@ msgstr "Velja"
 msgid "Close"
 msgstr "Loka"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:181
+msgid "Custom"
+msgstr "Sérsniðið"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:180
+msgid "Flags"
+msgstr "Flögg"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:175
+msgid "Food & Drink"
+msgstr "Matur og drykkur"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:171
+msgid "Frequently used"
+msgstr "Oftast notað"
+
 #: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "Næsta"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:168
+msgid "No emoji found"
+msgstr "Ekkert tjáningartákn fannst"
 
 #: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
@@ -40,25 +68,57 @@ msgstr "Næsta"
 msgid "No results"
 msgstr "Engar niðurstöður"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:178
+msgid "Objects"
+msgstr "Hlutir"
+
 #: src/components/Modal/Modal.vue:302
 msgid "Pause slideshow"
 msgstr "Gera hlé á skyggnusýningu"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:173
+msgid "People & Body"
+msgstr "Fólk og líkami"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:153
+msgid "Pick an emoji"
+msgstr "Veldu tjáningartákn"
 
 #: src/components/Modal/Modal.vue:144
 msgid "Previous"
 msgstr "Fyrri"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:167
+msgid "Search"
+msgstr "Leita"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:170
+msgid "Search results"
+msgstr "Leitarniðurstöður"
+
 #: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
 msgstr "Veldu merki"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:57
 msgid "Settings"
 msgstr "Stillingar"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:172
+msgid "Smileys & Emotion"
+msgstr "Broskallar og tilfinningar"
 
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Byrja skyggnusýningu"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:179
+msgid "Symbols"
+msgstr "Tákn"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:177
+msgid "Travel & Places"
+msgstr "Staðir og ferðalög"
 
 #: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
