@@ -646,7 +646,6 @@ $top-buttons-spacing: 6px;
 				height: $clickable-area;
 				width: $clickable-area;
 				border-radius: $clickable-area / 2;
-				background-color: $action-background-hover;
 			}
 		}
 
