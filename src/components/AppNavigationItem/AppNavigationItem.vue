@@ -87,7 +87,7 @@ the placeholder is the previous title of the element.
 
 ```
 <AppNavigationItem title="Editable Item" :editable="true"
-	editPlaceholder="your_placeholder_here" />
+	editPlaceholder="your_placeholder_here" icon="icon-folder" />
 ```
 
 ### New Item element
