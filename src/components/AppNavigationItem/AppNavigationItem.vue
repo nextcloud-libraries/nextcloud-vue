@@ -87,14 +87,14 @@ the placeholder is the previous title of the element.
 
 ```
 <AppNavigationItem title="Editable Item" :editable="true"
-	editPlaceholder="your_placeholder_here" icon="icon-folder" />
+	editPlaceholder="your_placeholder_here" icon="icon-folder" @update:title="function(value){alert(value)}" />
 ```
 
 ### New Item element
 Add the prop `:new-item=true`.
 
 ```
-<AppNavigationItem title="New Item" icon="icon-add" :new-item="true" @new-item="alert('new-item')" />
+<AppNavigationItem title="New Item" icon="icon-add" :new-item="true" @new-item="function(value){alert(value)}" />
 ```
 ### Undo element
 Just set the `undo` and `title` props. When clicking the undo button, an `undo` event is emitted.
