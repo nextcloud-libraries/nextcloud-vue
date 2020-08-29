@@ -25,7 +25,25 @@ const options = {
 	watchOptions: {},
 }
 
-module.exports = (on, config) => {
+module.exports = (on) => {
 	getCompareSnapshotsPlugin(on)
 	on('file:preprocessor', webpack(options))
+
+	// Disable spell checking to prevent rendering differences
+	on('before:browser:launch', (browser, launchOptions) => {
+		if (browser.family === 'chromium' && browser.name !== 'electron') {
+			launchOptions.preferences.default['browser.enable_spellchecking'] = false
+			return launchOptions
+		}
+
+		if (browser.family === 'firefox') {
+			launchOptions.preferences['layout.spellcheckDefault'] = 0
+			return launchOptions
+		}
+
+		if (browser.name === 'electron') {
+			launchOptions.preferences.spellcheck = false
+			return launchOptions
+		}
+	})
 }
