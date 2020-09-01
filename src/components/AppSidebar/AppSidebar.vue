@@ -218,8 +218,8 @@
 				</div>
 			</header>
 
-			<AppSidebarTabs ref="tabs">
-				<slot :active="active" />
+			<AppSidebarTabs ref="tabs" :active="active">
+				<slot />
 			</AppSidebarTabs>
 		</aside>
 	</transition>
