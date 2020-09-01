@@ -218,7 +218,7 @@
 				</div>
 			</header>
 
-			<AppSidebarTabs ref="tabs" :active="active">
+			<AppSidebarTabs ref="tabs" :active="active" @update:active="onUpdateActive">
 				<slot />
 			</AppSidebarTabs>
 		</aside>
@@ -422,6 +422,9 @@ export default {
 			// Disable editing
 			this.$emit('update:titleEditable', false)
 			this.$emit('dismiss-editing')
+		},
+		onUpdateActive(activeTab) {
+			this.$emit('update:active', activeTab)
 		},
 	},
 }
