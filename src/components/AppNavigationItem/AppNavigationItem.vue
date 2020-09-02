@@ -146,6 +146,7 @@ Just set the `pinned` prop.
 		<div v-if="hasUtils" class="app-navigation-entry__utils">
 			<slot name="counter" />
 			<Actions menu-align="right"
+				:placement="menuPlacement"
 				:open="menuOpen"
 				:force-menu="forceMenu"
 				:default-icon="menuIcon"
@@ -316,6 +317,13 @@ export default {
 		menuIcon: {
 			type: String,
 			default: undefined,
+		},
+		/**
+		 * The action's menu direction
+		 */
+		menuPlacement: {
+			type: String,
+			default: 'bottom',
 		},
 	},
 
