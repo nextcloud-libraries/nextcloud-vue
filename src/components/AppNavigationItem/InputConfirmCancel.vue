@@ -1,6 +1,6 @@
 <template>
 	<div class="app-navigation-entry__inline-input-container">
-		<form @submit.prevent="confirm" @keydown.esc.exact.prevent="cancel">
+		<form @submit.prevent="confirm" @keydown.esc.exact.prevent="cancel" @click.stop.prevent>
 			<input ref="editingInput"
 				v-model="valueModel"
 				type="text"
