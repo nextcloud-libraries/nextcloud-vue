@@ -474,11 +474,6 @@ export default {
 <style lang="scss" scoped>
 @import '../../fonts/scss/iconfont-vue';
 
-.editingContainer, .newItemContainer {
-	width: calc(100% - #{$clickable-area});
-	margin: auto;
-}
-
 .app-navigation-entry {
 	position: relative;
 	display: flex;
@@ -553,6 +548,11 @@ export default {
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			padding-left: 6px;
+		}
+
+		.editingContainer, .newItemContainer {
+			width: calc(100% - #{$clickable-area});
+			margin: auto;
 		}
 	}
 
