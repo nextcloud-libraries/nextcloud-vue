@@ -119,6 +119,7 @@ Just set the `pinned` prop.
 			'app-navigation-entry--opened': opened,
 			'app-navigation-entry--pinned': pinned,
 			'app-navigation-entry--editing' : editingActive,
+			'app-navigation-entry--newItemActive': newItemActive,
 			'app-navigation-entry--deleted': undo,
 			'app-navigation-entry--collapsible': collapsible,
 			'active': isActive
@@ -139,20 +140,11 @@ Just set the `pinned` prop.
 			<span v-if="!editingActive" class="app-navigation-entry__title" :title="title">
 				{{ title }}
 			</span>
-			<div v-if="editingActive" class="app-navigation-entry__inline-input-container">
-				<form @submit.prevent="handleEditingDone" @keydown.esc.exact.prevent="cancelEditing">
-					<input ref="editingInput"
-						v-model="editingValue"
-						type="text"
-						class="app-navigation-entry__inline-input"
-						:placeholder="editPlaceholder !== '' ? editPlaceholder : title">
-					<button type="submit"
-						class="icon-confirm"
-						@click.stop.prevent="handleEditingDone" />
-					<button type="reset"
-						class="icon-close"
-						@click.stop.prevent="cancelEditing" />
-				</form>
+			<div v-if="editingActive" class="editingContainer">
+				<InputConfirmCancel v-model="editingValue"
+					:placeholder="editPlaceholder !== '' ? editPlaceholder : title"
+					@cancel="cancelEditing"
+					@confirm="handleEditingDone" />
 			</div>
 		</a>
 
@@ -176,20 +168,11 @@ Just set the `pinned` prop.
 			</span>
 
 			<!-- new Item input -->
-			<div v-if="newItemActive" class="app-navigation-entry__inline-input-container">
-				<form @submit.prevent="handleNewItemDone" @keydown.esc.exact.prevent="cancelNewItem">
-					<input ref="newItemInput"
-						v-model="newItemValue"
-						type="text"
-						class="app-navigation-entry__inline-input"
-						:placeholder="title">
-					<button type="submit"
-						class="icon-confirm"
-						@click.stop.prevent="handleNewItemDone" />
-					<button type="reset"
-						class="icon-close"
-						@click.stop.prevent="cancelNewItem" />
-				</form>
+			<div v-if="newItemActive" class="newItemContainer">
+				<InputConfirmCancel v-model="newItemValue"
+					:placeholder="editPlaceholder !== '' ? editPlaceholder : title"
+					@cancel="cancelNewItem"
+					@confirm="handleNewItemDone" />
 			</div>
 		</div>
 
@@ -222,6 +205,7 @@ import Actions from '../Actions/Actions'
 import ActionButton from '../ActionButton/ActionButton'
 import AppNavigationIconCollapsible from './AppNavigationIconCollapsible'
 import isMobile from '../../mixins/isMobile'
+import InputConfirmCancel from './InputConfirmCancel.vue'
 
 export default {
 	name: 'AppNavigationItem',
@@ -230,6 +214,7 @@ export default {
 		Actions,
 		ActionButton,
 		AppNavigationIconCollapsible,
+		InputConfirmCancel,
 	},
 	directives: {
 		ClickOutside,
@@ -449,7 +434,7 @@ export default {
 			this.editingActive = true
 			this.onMenuToggle(false)
 			this.$nextTick(() => {
-				this.$refs.editingInput.focus()
+				// this.$refs.editingInput.focus()
 			})
 		},
 		cancelEditing() {
@@ -466,7 +451,7 @@ export default {
 			this.newItemActive = true
 			this.onMenuToggle(false)
 			this.$nextTick(() => {
-				this.$refs.newItemInput.focus()
+				// this.$refs.newItemInput.focus()
 			})
 		},
 		cancelNewItem() {
@@ -488,6 +473,11 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../fonts/scss/iconfont-vue';
+
+.editingContainer, .newItemContainer {
+	width: calc(100% - #{$clickable-area});
+	margin: auto;
+}
 
 .app-navigation-entry {
 	position: relative;
@@ -525,6 +515,12 @@ export default {
 		}
 	}
 
+	&:not(.app-navigation-entry--newItemActive):not(.app-navigation-entry--editing) {
+		.app-navigation-entry-link, .app-navigation-entry-div {
+			padding-right: $icon-margin;
+		}
+	}
+
 	// Main entry link
 	.app-navigation-entry-link, .app-navigation-entry-div {
 		z-index: 100; /* above the bullet to allow click*/
@@ -534,7 +530,6 @@ export default {
 		box-sizing: border-box;
 		min-height: $clickable-area;
 		padding: 0;
-		padding-right: $icon-margin;
 		white-space: nowrap;
 		color: var(--color-main-text);
 		background-repeat: no-repeat;
@@ -589,58 +584,6 @@ export default {
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		line-height: $clickable-area;
-	}
-}
-
-.app-navigation-entry__inline-input-container {
-	flex: 1 0 100%;
-	max-width: calc(100% - #{$clickable-area});
-	margin: auto;
-	/* Ugly hack for overriding the main entry link */
-	/* align the input correctly with the link text
-	44px-6px padding for the input */
-	/*padding-left: $clickable-area - $icon-margin - 6px !important;*/
-	form {
-		display: flex;
-		.app-navigation-entry__inline-input {
-			flex: 1 1 100%;
-			font-size: 14px;
-		}
-
-		// submit and cancel buttons
-		button {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: $clickable-area !important;
-			color: var(--color-main-text);
-			background: none;
-			font-size: 16px;
-
-			// icon hover/focus feedback
-			&::before {
-				opacity: $opacity_normal;
-			}
-			&:hover,
-			&:focus {
-				&::before {
-					opacity: $opacity_full;
-				}
-			}
-
-			&.icon-confirm {
-				@include iconfont('confirm');
-			}
-
-			&.icon-close {
-				@include iconfont('close');
-			}
-		}
-		.icon-close {
-			margin: 0;
-			border: none;
-			background-color: transparent;
-		}
 	}
 }
 
