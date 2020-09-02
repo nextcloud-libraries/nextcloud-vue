@@ -278,6 +278,10 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		* When clicked a inline text input with a confirm and cancel button appears insted of the title.
+		* When the user confirms the input the 'new-item' event gets emitted.
+		*/
 		newItem: {
 			type: Boolean,
 			default: false,
@@ -290,7 +294,7 @@ export default {
 			default: '',
 		},
 		/**
-		* Only for 'editable' items, sets placeholder text for the editing form.
+		* Only for items in 'editable' or 'newItem' mode, sets the placeholder text for the editing form.
 		*/
 		editPlaceholder: {
 			type: String,
