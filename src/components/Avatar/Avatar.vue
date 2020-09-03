@@ -359,7 +359,7 @@ export default {
 	},
 	mounted() {
 		this.loadAvatarUrl()
-		if (this.user && !this.isNoUser) {
+		if (this.showUserStatus && this.user && !this.isNoUser) {
 			this.fetchUserStatus(this.user)
 		}
 	},
