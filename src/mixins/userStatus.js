@@ -22,6 +22,7 @@
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
 import { getCapabilities } from '@nextcloud/capabilities'
+import { getCurrentUser } from '@nextcloud/auth'
 
 export default {
 	data() {
@@ -44,6 +45,11 @@ export default {
 		async fetchUserStatus(userId) {
 			const capabilities = getCapabilities()
 			if (!Object.prototype.hasOwnProperty.call(capabilities, 'user_status') || !capabilities.user_status.enabled) {
+				return
+			}
+
+			// User status endpoint is not available for guests.
+			if (!getCurrentUser()) {
 				return
 			}
 
