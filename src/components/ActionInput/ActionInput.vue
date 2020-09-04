@@ -309,6 +309,7 @@ $input-margin: 4px;
 
 		width: #{$clickable-area - $input-margin * 2};
 		height: #{$clickable-area - $input-margin * 2};
+		box-sizing: border-box;
 		margin: 0 0 0 -8px;
 		padding: 7px 6px;
 
