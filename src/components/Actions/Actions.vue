@@ -118,7 +118,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 			:open.sync="opened"
 			:placement="placement"
 			:boundaries-element="boundariesElement"
-			container="body"
+			:container="container"
 			@show="openMenu"
 			@apply-show="onOpen"
 			@hide="closeMenu">
@@ -268,6 +268,14 @@ export default {
 		boundariesElement: {
 			type: Element,
 			default: () => document.querySelector('body'),
+		},
+
+		/**
+		 * Selector for the actions' popover container
+		 */
+		container: {
+			type: String,
+			default: 'body',
 		},
 	},
 
