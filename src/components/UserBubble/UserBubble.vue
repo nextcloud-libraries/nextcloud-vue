@@ -82,8 +82,8 @@ This component has the following slot:
 			:class="primary ? 'user-bubble__content--primary' : ''"
 			@click="onClick">
 			<!-- Avatar -->
-			<Avatar :url="!isCustomAvatar && isAvatarUrl ? avatarImage : undefined"
-				:icon-class="!isCustomAvatar && !isAvatarUrl ? avatarImage : undefined"
+			<Avatar :url="isCustomAvatar && isAvatarUrl ? avatarImage : undefined"
+				:icon-class="isCustomAvatar && !isAvatarUrl ? avatarImage : undefined"
 				:user="user"
 				:display-name="displayName"
 				:size="size - (margin * 2)"
