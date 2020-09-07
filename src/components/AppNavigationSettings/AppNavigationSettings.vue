@@ -54,7 +54,7 @@ export default {
 		title: {
 			type: String,
 			required: false,
-			default: t('Settings'),
+			default: t('deck', 'Settings'),
 		},
 	},
 	data() {
