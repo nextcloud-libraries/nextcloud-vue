@@ -8,7 +8,7 @@ Add the prop `:new-item=true`.
 </docs>
 <template>
 	<!-- Navigation item, can be either an <li> or a <router-link> depending on the props -->
-	<nav-element v-bind="navElement"
+	<li
 		:class="{
 			'app-navigation-entry--newItemActive': newItemActive,
 		}"
@@ -32,7 +32,7 @@ Add the prop `:new-item=true`.
 					@confirm="handleNewItemDone" />
 			</div>
 		</div>
-	</nav-element>
+	</li>
 </template>
 
 <script>
@@ -98,11 +98,6 @@ export default {
 		}
 	},
 	computed: {
-        navElement() {
-			return {
-				is: 'li',
-			}
-		},
 	},
 	methods: {
 		// New Item methods
