@@ -89,13 +89,6 @@ the placeholder is the previous title of the element.
 <AppNavigationItem title="Editable Item" :editable="true"
 	editPlaceholder="your_placeholder_here" icon="icon-folder" @update:title="function(value){alert(value)}" />
 ```
-
-### New Item element
-Add the prop `:new-item=true`.
-
-```
-<AppNavigationItem title="New Item" icon="icon-add" :new-item="true" @new-item="function(value){alert(value)}" />
-```
 ### Undo element
 Just set the `undo` and `title` props. When clicking the undo button, an `undo` event is emitted.
 
@@ -119,14 +112,13 @@ Just set the `pinned` prop.
 			'app-navigation-entry--opened': opened,
 			'app-navigation-entry--pinned': pinned,
 			'app-navigation-entry--editing' : editingActive,
-			'app-navigation-entry--newItemActive': newItemActive,
 			'app-navigation-entry--deleted': undo,
 			'app-navigation-entry--collapsible': collapsible,
 			'active': isActive
 		}"
 		class="app-navigation-entry">
 		<!-- Icon and title -->
-		<a v-if="!undo && !newItem"
+		<a v-if="!undo"
 			class="app-navigation-entry-link"
 			href="#"
 			@click="onClick">
@@ -153,26 +145,6 @@ Just set the `pinned` prop.
 		<div v-if="undo" class="app-navigation-entry__deleted">
 			<div class="app-navigation-entry__deleted-description">
 				{{ title }}
-			</div>
-		</div>
-
-		<!-- New Item -->
-		<div v-if="newItem" class="app-navigation-entry-div" @click="handleNewItem">
-			<div :class="{ 'icon-loading-small': loading, [icon]: icon && isIconShown }"
-				class="app-navigation-entry-icon">
-				<slot v-if="!loading" v-show="isIconShown" name="icon" />
-			</div>
-
-			<span v-if="!newItemActive" class="app-navigation-entry__title" :title="title">
-				{{ title }}
-			</span>
-
-			<!-- new Item input -->
-			<div v-if="newItemActive" class="newItemContainer">
-				<InputConfirmCancel v-model="newItemValue"
-					:placeholder="editPlaceholder !== '' ? editPlaceholder : title"
-					@cancel="cancelNewItem"
-					@confirm="handleNewItemDone" />
 			</div>
 		</div>
 
@@ -279,14 +251,6 @@ export default {
 			default: false,
 		},
 		/**
-		* When clicked a inline text input with a confirm and cancel button appears insted of the title.
-		* When the user confirms the input the 'new-item' event gets emitted.
-		*/
-		newItem: {
-			type: Boolean,
-			default: false,
-		},
-		/**
 		* Only for 'editable' items, sets label for the edit action button.
 		*/
 		editLabel: {
@@ -294,7 +258,7 @@ export default {
 			default: '',
 		},
 		/**
-		* Only for items in 'editable' or 'newItem' mode, sets the placeholder text for the editing form.
+		* Only for items in 'editable' mode, sets the placeholder text for the editing form.
 		*/
 		editPlaceholder: {
 			type: String,
@@ -348,11 +312,9 @@ export default {
 
 	data() {
 		return {
-			newItemValue: '',
 			editingValue: '',
 			opened: this.open,
 			editingActive: false,
-			newItemActive: false,
 		}
 	},
 	computed: {
@@ -450,23 +412,6 @@ export default {
 			this.editingActive = false
 		},
 
-		// New Item methods
-		handleNewItem() {
-			this.newItemActive = true
-			this.onMenuToggle(false)
-			this.$nextTick(() => {
-				// this.$refs.newItemInput.focus()
-			})
-		},
-		cancelNewItem() {
-			this.newItemActive = false
-		},
-		handleNewItemDone() {
-			this.$emit('new-item', this.newItemValue)
-			this.newItemValue = ''
-			this.newItemActive = false
-		},
-
 		// Undo methods
 		handleUndo() {
 			this.$emit('undo')
@@ -475,7 +420,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../../fonts/scss/iconfont-vue';
 
 .app-navigation-entry {
