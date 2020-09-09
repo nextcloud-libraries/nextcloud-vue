@@ -98,6 +98,11 @@ export default {
 		}
 	},
 	computed: {
+        navElement() {
+			return {
+				is: 'li',
+			}
+		},
 	},
 	methods: {
 		// New Item methods
