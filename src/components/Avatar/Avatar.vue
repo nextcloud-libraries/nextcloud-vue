@@ -463,8 +463,12 @@ export default {
 	}
 
 	&:not(&--unknown) {
-		// White background for avatars with transparency, also in dark theme
+		// White background for avatars with transparency
 		background-color: #fff !important;
+		body.theme--dark & {
+			// And black background in dark mode, as it shines through on hover of the menu
+			background-color: #000 !important;
+		}
 		box-shadow: 0 0 5px rgba(0, 0, 0, 0.05) inset;
 	}
 
@@ -495,7 +499,7 @@ export default {
 				opacity: 1;
 			}
 			img {
-				opacity: 0;
+				opacity: 0.3;
 			}
 		}
 		.icon-more,
