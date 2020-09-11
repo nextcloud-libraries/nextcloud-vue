@@ -463,8 +463,12 @@ export default {
 	}
 
 	&:not(&--unknown) {
-		// White background for avatars with transparency, also in dark theme
+		// White background for avatars with transparency
 		background-color: #fff !important;
+		body.theme--dark & {
+			// And black background in dark mode, as it shines through on hover of the menu
+			background-color: #000 !important;
+		}
 		box-shadow: 0 0 5px rgba(0, 0, 0, 0.05) inset;
 	}
 
@@ -495,7 +499,7 @@ export default {
 				opacity: 1;
 			}
 			img {
-				opacity: 0;
+				opacity: 0.3;
 			}
 		}
 		.icon-more,
@@ -551,15 +555,24 @@ export default {
 
 	.avatardiv__user-status {
 		position: absolute;
-		right: -5px;
-		bottom: -5px;
-		height: 16px;
-		width: 16px;
+		right: -4px;
+		bottom: -4px;
+		height: 18px;
+		width: 18px;
 		line-height: 14px;
 		font-size: 14px;
-		border: 1px solid var(--color-main-background);
+		border: 2px solid var(--color-main-background);
 		background-color: var(--color-main-background);
 		border-radius: 50%;
+
+		.acli:hover & {
+			border-color: var(--color-background-hover);
+			background-color: var(--color-background-hover);
+		}
+		.acli.active & {
+			border-color: var(--color-primary-light);
+			background-color: var(--color-primary-light);
+		}
 
 		&--online{
 			@include iconfont('user-status-online');
