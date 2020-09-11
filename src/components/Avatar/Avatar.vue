@@ -565,6 +565,15 @@ export default {
 		background-color: var(--color-main-background);
 		border-radius: 50%;
 
+		.acli:hover & {
+			border-color: var(--color-background-hover);
+			background-color: var(--color-background-hover);
+		}
+		.acli.active & {
+			border-color: var(--color-primary-light);
+			background-color: var(--color-primary-light);
+		}
+
 		&--online{
 			@include iconfont('user-status-online');
 			color: #49b382;
