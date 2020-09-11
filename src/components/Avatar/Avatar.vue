@@ -555,13 +555,13 @@ export default {
 
 	.avatardiv__user-status {
 		position: absolute;
-		right: -5px;
-		bottom: -5px;
-		height: 16px;
-		width: 16px;
+		right: -4px;
+		bottom: -4px;
+		height: 18px;
+		width: 18px;
 		line-height: 14px;
 		font-size: 14px;
-		border: 1px solid var(--color-main-background);
+		border: 2px solid var(--color-main-background);
 		background-color: var(--color-main-background);
 		border-radius: 50%;
 
