@@ -90,6 +90,7 @@
 import { directive as ClickOutside } from 'v-click-outside'
 import PopoverMenu from '../PopoverMenu'
 import { getCurrentUser } from '@nextcloud/auth'
+import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
 import Tooltip from '../../directives/Tooltip'
@@ -346,6 +347,7 @@ export default {
 			return actions
 		},
 	},
+
 	watch: {
 		url() {
 			this.userDoesNotExist = false
@@ -357,13 +359,32 @@ export default {
 			this.loadAvatarUrl()
 		},
 	},
+
 	mounted() {
 		this.loadAvatarUrl()
 		if (this.showUserStatus && this.user && !this.isNoUser) {
 			this.fetchUserStatus(this.user)
+			subscribe('user_status:status.updated', this.handleUserStatusUpdated)
 		}
 	},
+
+	beforeDestroyed() {
+		if (this.showUserStatus && this.user && !this.isNoUser) {
+			unsubscribe('user_status:status.updated', this.handleUserStatusUpdated)
+		}
+	},
+
 	methods: {
+		handleUserStatusUpdated(state) {
+			if (this.user === state.userId) {
+				this.userStatus = {
+					status: state.status,
+					icon: state.icon,
+					message: state.message,
+				}
+			}
+		},
+
 		async toggleMenu() {
 			if (!this.hasMenu) {
 				return
