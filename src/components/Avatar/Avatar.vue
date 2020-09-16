@@ -314,10 +314,20 @@ export default {
 			return this.displayName
 		},
 		initials() {
+			let initials
 			if (this.shouldShowPlaceholder) {
-				return this.getUserIdentifier.charAt(0).toUpperCase()
+				const user = this.getUserIdentifier
+				const idx = user.indexOf(' ')
+				if (user === '') {
+					initials = '?'
+				} else {
+					initials = String.fromCodePoint(user.codePointAt(0))
+					if (idx !== -1) {
+						initials = initials.concat(String.fromCodePoint(user.codePointAt(idx + 1)))
+					}
+				}
 			}
-			return '?'
+			return initials.toUpperCase()
 		},
 		menu() {
 			const actions = this.contactsMenuActions.map((item) => {
