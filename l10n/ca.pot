@@ -1,11 +1,12 @@
 # 
 # Translators:
-# Marc Riera <marcriera@softcatala.org>, 2020
 # Carles Ferrando Garcia <carles.ferrando@gnuescultura.eu>, 2020
+# Marc Riera <marcriera@softcatala.org>, 2020
+# Toni Hermoso Pulido <toniher@softcatala.cat>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Carles Ferrando Garcia <carles.ferrando@gnuescultura.eu>, 2020\n"
+"Last-Translator: Toni Hermoso Pulido <toniher@softcatala.cat>, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/nextcloud/teams/64236/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ca\n"
@@ -19,21 +20,49 @@ msgstr "{tag} (invisible)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (restringit)"
 
-#: src/components/Actions/Actions.vue:249
+#: src/components/Actions/Actions.vue:254
 msgid "Actions"
 msgstr "Accions"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:176
+msgid "Activities"
+msgstr "Activitats"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:174
+msgid "Animals & Nature"
+msgstr "Animals i natura"
+
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
-msgstr "Trieu"
+msgstr "Tria"
 
 #: src/components/Modal/Modal.vue:117
 msgid "Close"
 msgstr "Tanca"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:181
+msgid "Custom"
+msgstr "Personalitzat"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:180
+msgid "Flags"
+msgstr "Marques"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:175
+msgid "Food & Drink"
+msgstr "Menjar i begudes"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:171
+msgid "Frequently used"
+msgstr "Utilitzats recentment"
+
 #: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "Següent"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:168
+msgid "No emoji found"
+msgstr "No s'ha trobat cap emoji"
 
 #: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
@@ -41,25 +70,57 @@ msgstr "Següent"
 msgid "No results"
 msgstr "Sense resultats"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:178
+msgid "Objects"
+msgstr "Objectes"
+
 #: src/components/Modal/Modal.vue:302
 msgid "Pause slideshow"
 msgstr "Atura la presentació"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:173
+msgid "People & Body"
+msgstr "Persones i cos"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:153
+msgid "Pick an emoji"
+msgstr "Trieu un emoji"
 
 #: src/components/Modal/Modal.vue:144
 msgid "Previous"
 msgstr "Anterior"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:167
+msgid "Search"
+msgstr "Cerca"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:170
+msgid "Search results"
+msgstr "Resultats de cerca"
+
 #: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
 msgstr "Selecciona una etiqueta"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:57
 msgid "Settings"
 msgstr "Paràmetres"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:172
+msgid "Smileys & Emotion"
+msgstr "Cares i emocions"
 
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Inicia la presentació"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:179
+msgid "Symbols"
+msgstr "Símbols"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:177
+msgid "Travel & Places"
+msgstr "Viatges i llocs"
 
 #: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
