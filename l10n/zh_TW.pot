@@ -1,55 +1,126 @@
+# 
 # Translators:
 # byStarTW (pan93412) <pan93412@gmail.com>, 2020
+# Natashia Maxins <railroad1987@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: byStarTW (pan93412) <pan93412@gmail.com>, 2020\n"
+"Last-Translator: Natashia Maxins <railroad1987@gmail.com>, 2020\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/nextcloud/teams/64236/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:169
+#: src/components/MultiselectTags/MultiselectTags.vue:170
 msgid "{tag} (invisible)"
 msgstr "{tag} (隱藏)"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:172
+#: src/components/MultiselectTags/MultiselectTags.vue:173
 msgid "{tag} (restricted)"
 msgstr "{tag} (受限)"
+
+#: src/components/Actions/Actions.vue:254
+msgid "Actions"
+msgstr "動作"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:176
+msgid "Activities"
+msgstr "活動"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:174
+msgid "Animals & Nature"
+msgstr "動物與自然"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
 msgstr "選擇"
 
-#: src/components/Modal/Modal.vue:109
+#: src/components/Modal/Modal.vue:117
 msgid "Close"
 msgstr "關閉"
 
-#: src/components/Modal/Modal.vue:154
+#: src/components/EmojiPicker/EmojiPicker.vue:181
+msgid "Custom"
+msgstr "自定義"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:180
+msgid "Flags"
+msgstr "旗幟"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:175
+msgid "Food & Drink"
+msgstr "食物與飲料"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:171
+msgid "Frequently used"
+msgstr "最近使用"
+
+#: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "下一個"
 
-#: src/components/Multiselect/Multiselect.vue:169
+#: src/components/EmojiPicker/EmojiPicker.vue:168
+msgid "No emoji found"
+msgstr "未找到表情符號"
+
+#: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
 msgid "No results"
 msgstr "無結果"
 
-#: src/components/Modal/Modal.vue:290
+#: src/components/EmojiPicker/EmojiPicker.vue:178
+msgid "Objects"
+msgstr "物件"
+
+#: src/components/Modal/Modal.vue:302
 msgid "Pause slideshow"
 msgstr "暫停幻燈片"
 
-#: src/components/Modal/Modal.vue:134
+#: src/components/EmojiPicker/EmojiPicker.vue:173
+msgid "People & Body"
+msgstr "人物"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:153
+msgid "Pick an emoji"
+msgstr "選擇表情符號"
+
+#: src/components/Modal/Modal.vue:144
 msgid "Previous"
 msgstr "上一個"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:167
+msgid "Search"
+msgstr "搜尋"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:170
+msgid "Search results"
+msgstr "搜尋結果"
 
 #: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
 msgstr "選擇標籤"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:57
 msgid "Settings"
 msgstr "設定"
 
-#: src/components/Modal/Modal.vue:290
+#: src/components/EmojiPicker/EmojiPicker.vue:172
+msgid "Smileys & Emotion"
+msgstr "表情"
+
+#: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "開始幻燈片"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:179
+msgid "Symbols"
+msgstr "標誌"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:177
+msgid "Travel & Places"
+msgstr "旅遊與景點"
+
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
+msgid "Unable to search the group"
+msgstr "無法搜尋群組"
