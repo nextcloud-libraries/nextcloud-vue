@@ -124,4 +124,8 @@ export default {
 	padding-left: 7px;
 	font-size: 14px;
 }
+.newItemContainer {
+	width: calc(100% - #{$clickable-area});
+	margin: auto;
+}
 </style>

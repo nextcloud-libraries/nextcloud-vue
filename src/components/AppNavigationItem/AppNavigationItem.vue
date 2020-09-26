@@ -459,7 +459,7 @@ export default {
 		}
 	}
 
-	&:not(.app-navigation-entry--newItemActive):not(.app-navigation-entry--editing) {
+	&:not(.app-navigation-entry--editing) {
 		.app-navigation-entry-link, .app-navigation-entry-div {
 			padding-right: $icon-margin;
 		}
@@ -499,7 +499,7 @@ export default {
 			padding-left: 6px;
 		}
 
-		.editingContainer, .newItemContainer {
+		.editingContainer {
 			width: calc(100% - #{$clickable-area});
 			margin: auto;
 		}
