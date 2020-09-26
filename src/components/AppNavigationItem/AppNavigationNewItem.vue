@@ -17,7 +17,7 @@
 				<slot v-if="!loading" name="icon" />
 			</div>
 
-			<span v-if="!newItemActive" class="app-navigation-entry__title app-navigation-new-item__title" :title="title">
+			<span v-if="!newItemActive" class="app-navigation-new-item__title" :title="title">
 				{{ title }}
 			</span>
 
@@ -117,6 +117,10 @@ export default {
 </script>
 <style lang="scss">
 .app-navigation-new-item__title {
+	overflow: hidden;
+	max-width: 100%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 	padding-left: 7px;
 	font-size: 14px;
 }
