@@ -14,9 +14,9 @@ Add the prop `:new-item=true`.
 		class="app-navigation-entry">
 		<!-- New Item -->
 		<div class="app-navigation-entry-div" @click="handleNewItem">
-			<div :class="{ 'icon-loading-small': loading, [icon]: icon && isIconShown }"
+			<div :class="{ 'icon-loading-small': loading, [icon]: icon }"
 				class="app-navigation-entry-icon">
-				<slot v-if="!loading" v-show="isIconShown" name="icon" />
+				<slot v-if="!loading" name="icon" />
 			</div>
 
 			<span v-if="!newItemActive" class="app-navigation-entry__title" :title="title">
