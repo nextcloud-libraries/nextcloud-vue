@@ -1,7 +1,5 @@
 <docs>
 ### New Item element
-Add the prop `:new-item=true`.
-
 ```
 <AppNavigationNewItem title="New Item" icon="icon-add" @new-item="function(value){alert(value)}" />
 ```
