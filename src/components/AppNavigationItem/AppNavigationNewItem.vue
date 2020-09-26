@@ -19,7 +19,7 @@ Add the prop `:new-item=true`.
 				<slot v-if="!loading" name="icon" />
 			</div>
 
-			<span v-if="!newItemActive" class="app-navigation-entry__title" :title="title">
+			<span v-if="!newItemActive" class="app-navigation-entry__title app-navigation-new-item__title" :title="title">
 				{{ title }}
 			</span>
 
@@ -117,3 +117,9 @@ export default {
 	},
 }
 </script>
+<style lang="scss">
+.app-navigation-new-item__title {
+	padding-left: 7px;
+	font-size: 14px;
+}
+</style>
