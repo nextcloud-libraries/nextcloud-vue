@@ -3,11 +3,10 @@
 Add the prop `:new-item=true`.
 
 ```
-<AppNavigationItem title="New Item" icon="icon-add" :new-item="true" @new-item="function(value){alert(value)}" />
+<AppNavigationNewItem title="New Item" icon="icon-add" @new-item="function(value){alert(value)}" />
 ```
 </docs>
 <template>
-	<!-- Navigation item, can be either an <li> or a <router-link> depending on the props -->
 	<li
 		:class="{
 			'app-navigation-entry--newItemActive': newItemActive,
@@ -100,7 +99,6 @@ export default {
 	computed: {
 	},
 	methods: {
-		// New Item methods
 		handleNewItem() {
 			this.newItemActive = true
 			this.onMenuToggle(false)
