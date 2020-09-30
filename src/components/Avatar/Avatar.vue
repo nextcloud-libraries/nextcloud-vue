@@ -54,7 +54,10 @@
 		<div v-if="hasMenu" class="icon-more" />
 
 		<!-- avatar status -->
-		<div v-if="canDisplayUserStatus"
+		<div v-if="userStatus.icon && userStatus.status !== 'dnd'" class="avatardiv__user-status avatardiv__user-status--icon">
+			{{ userStatus.icon }}
+		</div>
+		<div v-else-if="canDisplayUserStatus"
 			class="avatardiv__user-status"
 			:class="'avatardiv__user-status--' + userStatus.status" />
 		<div v-else-if="status"
@@ -608,6 +611,11 @@ export default {
 			@include iconfont('user-status-away');
 			color: #f4a331;
 		}
+		&--icon {
+			border: none;
+			background-color: transparent;
+		}
+		
 	}
 
 	.popovermenu-wrapper {
