@@ -270,7 +270,7 @@ export default {
 				&& ['online', 'away', 'dnd'].includes(this.userStatus.status)
 		},
 		showUserStatusIconOnAvatar() {
-			return  this.showUserStatus
+			return this.showUserStatus
 				&& this.showUserStatusCompact
 				&& this.hasStatus
 				&& this.userStatus.status !== 'dnd'
@@ -628,7 +628,6 @@ export default {
 			border: none;
 			background-color: transparent;
 		}
-		
 	}
 
 	.popovermenu-wrapper {
