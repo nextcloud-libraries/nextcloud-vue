@@ -54,7 +54,10 @@
 		<div v-if="hasMenu" class="icon-more" />
 
 		<!-- avatar status -->
-		<div v-if="canDisplayUserStatus"
+		<div v-if="showUserStatusIconOnAvatar" class="avatardiv__user-status avatardiv__user-status--icon">
+			{{ userStatus.icon }}
+		</div>
+		<div v-else-if="canDisplayUserStatus"
 			class="avatardiv__user-status"
 			:class="'avatardiv__user-status--' + userStatus.status" />
 		<div v-else-if="status"
@@ -135,6 +138,13 @@ export default {
 		 * Whether or not to display the user-status
 		 */
 		showUserStatus: {
+			type: Boolean,
+			default: true,
+		},
+		/**
+		 * Whether or not to the status-icon should be used instead of online/away
+		 */
+		showUserStatusCompact: {
 			type: Boolean,
 			default: true,
 		},
@@ -258,6 +268,12 @@ export default {
 			return this.showUserStatus
 				&& this.hasStatus
 				&& ['online', 'away', 'dnd'].includes(this.userStatus.status)
+		},
+		showUserStatusIconOnAvatar() {
+			return this.showUserStatus
+				&& this.showUserStatusCompact
+				&& this.hasStatus
+				&& this.userStatus.status !== 'dnd'
 		},
 		getUserIdentifier() {
 			if (this.isDisplayNameDefined) {
@@ -607,6 +623,10 @@ export default {
 		&--away{
 			@include iconfont('user-status-away');
 			color: #f4a331;
+		}
+		&--icon {
+			border: none;
+			background-color: transparent;
 		}
 	}
 
