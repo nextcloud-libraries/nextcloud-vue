@@ -274,6 +274,7 @@ export default {
 				&& this.showUserStatusCompact
 				&& this.hasStatus
 				&& this.userStatus.status !== 'dnd'
+				&& this.userStatus.icon
 		},
 		getUserIdentifier() {
 			if (this.isDisplayNameDefined) {
