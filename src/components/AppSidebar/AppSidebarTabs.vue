@@ -54,7 +54,7 @@
 		<!-- tabs content -->
 		<div :class="{'app-sidebar-tabs__content--multiple': hasMultipleTabs}"
 			class="app-sidebar-tabs__content">
-			<slot :active-tab="activeTab" />
+			<slot />
 		</div>
 	</div>
 </template>

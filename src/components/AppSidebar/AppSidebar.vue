@@ -218,9 +218,14 @@
 				</div>
 			</header>
 
-			<AppSidebarTabs ref="tabs" :active="active" @update:active="onUpdateActive">
+			<AppSidebarTabs v-show="!loading"
+				ref="tabs"
+				:active="active"
+				@update:active="onUpdateActive">
 				<slot />
 			</AppSidebarTabs>
+
+			<EmptyContent v-if="loading" icon="icon-loading" />
 		</aside>
 	</transition>
 </template>
@@ -231,6 +236,7 @@ import Focus from '../../directives/Focus'
 import Linkify from '../../directives/Linkify'
 import l10n from '../../mixins/l10n'
 import AppSidebarTabs from './AppSidebarTabs'
+import EmptyContent from '../EmptyContent/EmptyContent'
 import { directive as ClickOutside } from 'v-click-outside'
 
 export default {
@@ -239,6 +245,7 @@ export default {
 	components: {
 		Actions,
 		AppSidebarTabs,
+		EmptyContent,
 	},
 
 	directives: {
@@ -297,6 +304,13 @@ export default {
 		 * Show loading spinner instead of the star icon
 		 */
 		starLoading: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Show loading spinner instead of tabs
+		 */
+		loading: {
 			type: Boolean,
 			default: false,
 		},
