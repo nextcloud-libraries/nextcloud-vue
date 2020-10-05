@@ -63,6 +63,10 @@
 import Vue from 'vue'
 
 const IsValidString = function(value) {
+	return value && typeof value === 'string' && value.trim() !== ''
+}
+
+const IsValidStringWithoutSpaces = function(value) {
 	return value && typeof value === 'string' && value.trim() !== '' && value.indexOf(' ') === -1
 }
 
@@ -227,8 +231,8 @@ export default {
 				const tab = tabNode.componentInstance
 				// Make sure all required props are provided and valid
 				if (IsValidString(tab?.name)
-					&& IsValidString(tab?.id)
-					&& IsValidString(tab?.icon)) {
+					&& IsValidStringWithoutSpaces(tab?.id)
+					&& IsValidStringWithoutSpaces(tab?.icon)) {
 					tabs.push(tab)
 				} else {
 					invalidTabs.push(tabNode)
