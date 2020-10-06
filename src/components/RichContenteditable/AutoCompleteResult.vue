@@ -1,0 +1,180 @@
+<!--
+  - @copyright Copyright (c) 2020 John Molakvoæ <skjnldsv@protonmail.com>
+  -
+  - @author John Molakvoæ <skjnldsv@protonmail.com>
+  -
+  - @license GNU AGPL version 3 or any later version
+  -
+  - This program is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU Affero General Public License as
+  - published by the Free Software Foundation, either version 3 of the
+  - License, or (at your option) any later version.
+  -
+  - This program is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  - GNU Affero General Public License for more details.
+  -
+  - You should have received a copy of the GNU Affero General Public License
+  - along with this program. If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<template>
+	<div class="autocomplete-result">
+		<!-- Avatar or icon -->
+		<div :class="[icon, `autocomplete-result__icon--${avatarUrl ? 'with-avatar' : ''}`]"
+			:style="{ backgroundImage: `url(${avatarUrl})` }"
+			class="autocomplete-result__icon">
+			<div v-if="haveStatus"
+				:class="[`autocomplete-result__status--${status && status.icon ? 'icon' : status.status}`]"
+				class="autocomplete-result__status">
+				{{ status && status.icon || '' }}
+			</div>
+		</div>
+
+		<!-- Title and subtitle -->
+		<span class="autocomplete-result__content">
+			<span class="autocomplete-result__title">
+				{{ label }}
+			</span>
+			<span v-if="subline" class="autocomplete-result__subline">
+				{{ subline }}
+			</span>
+		</span>
+	</div>
+</template>
+
+<script>
+import { generateUrl } from '@nextcloud/router'
+
+export default {
+	name: 'AutoCompleteResult',
+
+	props: {
+		label: {
+			type: String,
+			required: true,
+		},
+		subline: {
+			type: String,
+			default: null,
+		},
+		id: {
+			type: String,
+			default: null,
+		},
+		icon: {
+			type: String,
+			required: true,
+		},
+		source: {
+			type: String,
+			required: true,
+		},
+		status: {
+			type: [Object, Array],
+			default: () => ({}),
+		},
+	},
+	computed: {
+		avatarUrl() {
+			return this.id && this.source === 'users'
+				? this.getAvatarUrl(this.id, 44)
+				: null
+		},
+		haveStatus() {
+			return this.status?.icon || this.status?.status
+		},
+	},
+
+	methods: {
+		getAvatarUrl(user, size) {
+			return generateUrl('/avatar/{user}/{size}', {
+				user,
+				size,
+			})
+		},
+	},
+}
+</script>
+
+<style lang="scss" scoped>
+@import '../../fonts/scss/iconfont-vue';
+
+$autocomplete-padding: 10px;
+
+.autocomplete-result {
+	display: flex;
+	height: $clickable-area;
+	padding: $autocomplete-padding;
+
+	.highlight & {
+		color: var(--color-main-text);
+		background: var(--color-primary-light);
+		&, * {
+			cursor: pointer;
+		}
+	}
+
+	&__icon {
+		position: relative;
+		width: $clickable-area;
+		height: $clickable-area;
+		border-radius: $clickable-area;
+		background-color: var(--color-background-darker);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: $clickable-area - 2 * $autocomplete-padding;
+		&--with-avatar {
+			color: inherit;
+			background-size: cover;
+		}
+	}
+
+	&__status {
+		position: absolute;
+		right: -4px;
+		bottom: -4px;
+		box-sizing: border-box;
+		width: 18px;
+		height: 18px;
+		border: 2px solid var(--color-main-background);
+		border-radius: 50%;
+		background-color: var(--color-main-background);
+		font-size: 14px;
+		line-height: 14px;
+		&--online {
+			color: #49b382;
+
+			@include iconfont('user-status-online');
+		}
+		&--dnd {
+			color: #ed484c;
+			background-color: #fff;
+
+			@include iconfont('user-status-dnd');
+		}
+		&--away {
+			color: #f4a331;
+
+			@include iconfont('user-status-away');
+		}
+		&--icon {
+			border: none;
+			background-color: transparent;
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex: 1 1;
+		flex-direction: column;
+		justify-content: center;
+		padding-left: $autocomplete-padding;
+	}
+
+	&__subline {
+		color: var(--color-text-lighter);
+	}
+}
+</style>

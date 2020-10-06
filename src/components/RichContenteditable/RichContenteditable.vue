@@ -69,29 +69,32 @@ export default {
 </docs>
 
 <template>
-	<InputContenteditable
-		_is="div"
-		:value="value"
+	<div ref="contenteditable"
+		:contenteditable="true"
 		:placeholder="placeholder"
 		class="rich-contenteditable__input"
 		@input="onInput" />
 </template>
 
 <script>
-import InputContenteditable from 'vue-input-contenteditable'
-
+import Vue from 'vue'
 import Tribute from 'tributejs/dist/tribute.esm'
 import debounce from 'debounce'
-import { generateUrl } from '@nextcloud/router'
+import stripTags from 'striptags'
+import escapeHtml from 'escape-html'
 
 import { t } from '../../l10n.js'
+import AutoCompleteResult from './AutoCompleteResult'
+import MentionBubble from './MentionBubble.vue'
+
+const MENTION_START = '[\\n\\t ]'
+// Anything that is not text
+const MENTION_END = '[^a-z]'
+const USERID_REGEX = new RegExp(`${MENTION_START}(@[a-zA-Z0-9_.@\\-']+)(${MENTION_END})`, 'g')
+const USERID_REGEX_WITH_SPACE = new RegExp(`${MENTION_START}(@"[a-zA-Z0-9 _.@\\-']+")(${MENTION_END})`, 'g')
 
 export default {
 	name: 'RichContenteditable',
-
-	components: {
-		InputContenteditable,
-	},
 
 	props: {
 		value: {
@@ -110,6 +113,10 @@ export default {
 			type: Element,
 			default: () => document.body,
 		},
+		userData: {
+			type: Object,
+			default: () => ({}),
+		},
 	},
 
 	data() {
@@ -120,12 +127,26 @@ export default {
 				// Search against id and label (display name)
 				lookup: result => `${result.id} ${result.label}`,
 				menuContainer: this.menuContainer,
-				menuItemTemplate: this.genTemplate,
+				menuItemTemplate: item => this.renderComponentHtml(item.original, AutoCompleteResult),
 				noMatchTemplate: () => '<span class="hidden"></span>',
-				selectTemplate: item => `@${item.original.id}`,
+				selectTemplate: item => this.genSelectTemplate(item.original?.id),
 				values: this.debouncedAutoComplete,
 			},
 		}
+	},
+
+	watch: {
+		/**
+		 * If the parent value change, we compare the plain text rendering
+		 * If it's different, we render everything and update the main content
+		 */
+		value() {
+			const html = this.$refs.contenteditable.innerHTML
+			if (this.value !== this.parseContent(html)) {
+				const renderedContent = this.renderContent(this.value)
+				this.$refs.contenteditable.innerHTML = renderedContent
+			}
+		},
 	},
 
 	mounted() {
@@ -141,9 +162,11 @@ export default {
 	methods: {
 		/**
 		 * Re-emit the input event to the parent
-		 * @param {string} text the message
+		 * @param {Event} event the input event
 		 */
-		onInput(text) {
+		onInput(event) {
+			const html = event.target.innerHTML
+			const text = this.parseContent(html)
 			this.$emit('input', text)
 			this.$emit('update:value', text)
 		},
@@ -155,37 +178,106 @@ export default {
 			this.autoComplete(search, callback)
 		}, 200),
 
-		genTemplate({ original }) {
-			const avatarUrl = original.source === 'users'
-				? this.getAvatarUrl(original.id)
-				: null
+		/**
+		 * Convert the value string to html for the inner content
+		 * @param {string} value the content without html
+		 * @returns {string}
+		 */
+		renderContent(value) {
+			// Sanitize the value prop
+			// Wrapping in two a space because mentions needs to be
+			// separated by spaces. Wwe trim afterwards
+			const sanitizedValue = ' ' + escapeHtml(value) + ' '
 
-			const haveStatus = original.status?.icon || original.status?.status
+			// Extract all the userIds
+			const splitValue = sanitizedValue.split(USERID_REGEX)
+				.map(part => part.split(USERID_REGEX_WITH_SPACE)).flat()
 
-			return `<div class="autocomplete-result" data-v-${SCOPE_VERSION}>
-				<!-- Avatar or icon -->
-				<div class="autocomplete-result__icon ${original.icon} autocomplete-result__avatar--${avatarUrl ? 'with-avatar' : ''}" style="background-image: ${avatarUrl}">
-					<div class="autocomplete-result__status autocomplete-result__status--${original.status?.icon ? 'icon' : original.status?.status}"
-						style="${haveStatus ? '' : 'display:none'}">${original.status?.icon || ''}</div>
-				</div>
+			// Replace userIds by html
+			return splitValue
+				.map(part => {
+					// When splitting, the string is always putting the userIds
+					// on the the uneven indexes. We only want to generate the mentions html
+					if (!part.startsWith('@')) {
+						return part
+					}
 
-				<!-- Title and subtitle -->
-				<span class="autocomplete-result__content">
-					<span class="autocomplete-result__title">
-						${original.label}
-					</span>
-					<span class="autocomplete-result__subline" style="${original.subline ? '' : 'display:none'}">
-						${original.subline}
-					</span>
-				</span>
-			</div>`
+					// Extracting the id, nuking the " and @
+					const id = part.replace(/[@"]/gi, '')
+
+					// Compiling template and append missing space at the end
+					return this.genSelectTemplate(id) + ' '
+				})
+				.join('')
+				.trim()
 		},
 
-		getAvatarUrl(user) {
-			return generateUrl('/avatar/{user}/{size}', {
-				user,
-				size: 44,
+		/**
+		 * Convert the value string to html for the inner content
+		 * @param {string} content the content without html
+		 * @returns {string}
+		 */
+		parseContent(content) {
+			let text = content.replace(/<br>/g, '\n')
+			text = text.replace(/&nbsp;/g, ' ')
+
+			// Convert the mentions to text only
+			text = stripTags(text)
+
+			return text.trim()
+		},
+
+		/**
+		 * Generate an autocompletion popup entry template
+		 * @param {string} value the valeu to match against the userData
+		 * @returns {string}
+		 */
+		genSelectTemplate(value) {
+			let data = this.userData[value]
+
+			// Default fallback value in case nothing is found
+			if (!data) {
+				data = {
+					id: value,
+					label: value,
+					icon: 'icon-user',
+					source: 'users',
+				}
+			}
+
+			// Return template and make sure we strip of new lines and tabs
+			return this.renderComponentHtml(data, MentionBubble).replace(/[\n\t]/g, '')
+		},
+
+		/**
+		 * Render a component and return its html content
+		 *
+		 * @param {Object} propsData the props to pass to the component
+		 * @param {Object} component the component to render
+		 * @returns {string} the rendered html
+		 */
+		renderComponentHtml(propsData, component) {
+			const View = Vue.extend(component)
+			const Item = new View({
+				propsData,
 			})
+
+			// Prepare mountpoint
+			const wrapper = document.createElement('div')
+			const mount = document.createElement('div')
+			wrapper.style.display = 'none'
+			wrapper.appendChild(mount)
+			document.body.appendChild(wrapper)
+
+			// Mount and get raw html
+			Item.$mount(mount)
+			const renderedHtml = wrapper.innerHTML
+
+			// Destroy
+			Item.$destroy()
+			wrapper.remove()
+
+			return renderedHtml
 		},
 	},
 }
@@ -201,6 +293,7 @@ export default {
 		color: var(--color-text-maxcontrast);
 	}
 }
+
 </style>
 
 <style lang="scss">
@@ -219,83 +312,6 @@ export default {
 	border-radius: var(--border-radius);
 	background: var(--color-main-background);
 	box-shadow: 0 0 5px var(--color-box-shadow);
-}
-
-$padding: 10px;
-
-.autocomplete-result[data-v-#{$scope_version}] {
-	display: flex;
-	height: $clickable-area;
-	padding: $padding;
-
-	.highlight & {
-		color: var(--color-main-text);
-		background: var(--color-primary-light);
-		&, * {
-			cursor: pointer;
-		}
-	}
-
-	.autocomplete-result__icon {
-		position: relative;
-		width: $clickable-area;
-		height: $clickable-area;
-		border-radius: $clickable-area;
-		background-color: var(--color-background-darker);
-		background-repeat: no-repeat;
-		background-position: center;
-		background-size: $clickable-area - 2 * $padding;
-		&--with-avatar {
-			color: inherit;
-			background-size: cover;
-		}
-	}
-
-	.autocomplete-result__status {
-		position: absolute;
-		right: -4px;
-		bottom: -4px;
-		box-sizing: border-box;
-		width: 18px;
-		height: 18px;
-		border: 2px solid var(--color-main-background);
-		border-radius: 50%;
-		background-color: var(--color-main-background);
-		font-size: 14px;
-		line-height: 14px;
-		&--online {
-			color: #49b382;
-
-			@include iconfont('user-status-online');
-		}
-		&--dnd {
-			color: #ed484c;
-			background-color: #fff;
-
-			@include iconfont('user-status-dnd');
-		}
-		&--away {
-			color: #f4a331;
-
-			@include iconfont('user-status-away');
-		}
-		&--icon {
-			border: none;
-			background-color: transparent;
-		}
-	}
-
-	.autocomplete-result__content {
-		display: flex;
-		flex: 1 1;
-		flex-direction: column;
-		justify-content: center;
-		padding-left: $padding;
-	}
-
-	.autocomplete-result__subline {
-		color: var(--color-text-lighter);
-	}
 }
 
 </style>
