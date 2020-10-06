@@ -1,5 +1,5 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2020 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -20,16 +20,6 @@
  *
  */
 
-import excludeClickOutsideClasses from './excludeClickOutsideClasses'
-import isFullscreen from './isFullscreen'
-import isMobile from './isMobile'
-import richEditor from './richEditor'
-import userStatus from './userStatus'
+import RichContenteditable from './RichContenteditable'
 
-export {
-	excludeClickOutsideClasses,
-	isFullscreen,
-	isMobile,
-	richEditor,
-	userStatus,
-}
+export default RichContenteditable
