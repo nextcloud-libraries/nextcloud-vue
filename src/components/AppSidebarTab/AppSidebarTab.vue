@@ -24,10 +24,12 @@
 	https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-1/tabs.html -->
 
 <template>
-	<section v-show="isActive"
+	<section
 		:id="`tab-${id}`"
+		:class="{'app-sidebar__tab--active': isActive}"
 		:aria-hidden="!isActive"
 		:aria-labelledby="name"
+		class="app-sidebar__tab"
 		tabindex="0"
 		role="tabpanel">
 		<slot />
@@ -67,7 +69,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-section {
+.app-sidebar__tab {
+	display: none;
 	padding: 10px;
 	min-height: 100%; // fill available height
 
@@ -75,6 +78,10 @@ section {
 		border-color: var(--color-primary);
 		box-shadow: 0 0 0.2em var(--color-primary);
 		outline: 0;
+	}
+
+	&--active {
+		display: block;
 	}
 }
 </style>
