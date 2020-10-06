@@ -116,6 +116,6 @@ msgstr ""
 msgid "Unable to search the group"
 msgstr ""
 
-#: src/components/RichContenteditable/RichContenteditable.vue:103
+#: src/components/RichContenteditable/RichContenteditable.vue:119
 msgid "Write message, @ to mention someone …"
 msgstr ""

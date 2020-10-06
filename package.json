@@ -57,7 +57,6 @@
 		"v-tooltip": "^2.0.3",
 		"vue": "^2.6.11",
 		"vue-color": "^2.7.1",
-		"vue-input-contenteditable": "^1.0.1",
 		"vue-multiselect": "^2.1.6",
 		"vue-visible": "^1.0.2",
 		"vue2-datepicker": "^3.6.2"

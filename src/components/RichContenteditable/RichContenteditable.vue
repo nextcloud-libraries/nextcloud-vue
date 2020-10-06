@@ -33,6 +33,7 @@ This component displays contenteditable div with automated @ autocompletion [at]
 		<RichContenteditable
 			v-model="message"
 			:auto-complete="autoComplete"
+			:user-data="userData"
 			placeholder="Try mentioning the user Test01"
 			style="width: 350px;height: 100px;" />
 		{{ message }}
@@ -43,6 +44,23 @@ export default {
 	data() {
 		return {
 			message: '',
+			// You need to provide this for the inline
+			// mention to understand what to display or not.
+			userData: {
+				Test01: {
+					icon: 'icon-user',
+					id: 'Test01',
+					label: 'Test01',
+					source: 'users',
+					primary: true
+				},
+				Test02: {
+					icon: 'icon-user',
+					id: 'Test02',
+					label: 'Test02',
+					source: 'users'
+				}
+			}
 		}
 	},
 	methods: {
@@ -54,12 +72,7 @@ export default {
 		* @param {Function} callback the callback to process the results with
 		*/
 		autoComplete(search, callback) {
-			return callback([{
-				icon: 'icon-user',
-				id: 'Test01',
-				label: 'Test01',
-				source: 'users',
-			}])
+			return callback(Object.values(this.userData))
 		}
 	}
 }
@@ -152,6 +165,11 @@ export default {
 	mounted() {
 		this.tribute = new Tribute(this.options)
 		this.tribute.attach(this.$el)
+
+		// Update default value
+		const renderedContent = this.renderContent(this.value)
+		this.$refs.contenteditable.innerHTML = renderedContent
+
 	},
 	beforeDestroy() {
 		if (this.tribute) {
