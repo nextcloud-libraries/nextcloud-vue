@@ -56,6 +56,7 @@ import Multiselect from './Multiselect'
 import MultiselectTags from './MultiselectTags'
 import Popover from './Popover'
 import PopoverMenu from './PopoverMenu'
+import RichContenteditable from './RichContenteditable'
 import SettingsSection from './SettingsSection'
 import UserBubble from './UserBubble'
 
@@ -95,6 +96,7 @@ export {
 	MultiselectTags,
 	Popover,
 	PopoverMenu,
+	RichContenteditable,
 	SettingsSection,
 	UserBubble,
 }

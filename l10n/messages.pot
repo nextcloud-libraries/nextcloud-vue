@@ -115,3 +115,7 @@ msgstr ""
 #: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
 msgstr ""
+
+#: src/components/RichContenteditable/RichContenteditable.vue:103
+msgid "Write message, @ to mention someone …"
+msgstr ""
