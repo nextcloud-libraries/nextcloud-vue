@@ -324,6 +324,8 @@ export default {
 	},
 	beforeDestroy() {
 		window.removeEventListener('keydown', this.handleKeydown)
+		this.mc.off('swipeleft swiperight')
+		this.mc.destroy()
 	},
 	mounted() {
 		this.showModal = true
@@ -339,9 +341,8 @@ export default {
 		// force mount the component to body
 		document.body.insertBefore(this.$el, document.body.lastChild)
 	},
-	unmounted() {
-		this.mc.off('swipeleft swiperight')
-		this.mc.destroy()
+	destroyed() {
+		this.$el.remove()
 	},
 
 	methods: {
