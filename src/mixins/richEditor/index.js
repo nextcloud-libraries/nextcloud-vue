@@ -94,7 +94,7 @@ export default {
 		/**
 		 * Generate an autocompletion popup entry template
 		 *
-		 * @param {string} value the valeu to match against the userData
+		 * @param {string} value the value to match against the userData
 		 * @returns {string}
 		 */
 		genSelectTemplate(value) {
