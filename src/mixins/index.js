@@ -23,11 +23,13 @@
 import excludeClickOutsideClasses from './excludeClickOutsideClasses'
 import isFullscreen from './isFullscreen'
 import isMobile from './isMobile'
+import richEditor from './richEditor'
 import userStatus from './userStatus'
 
 export {
 	excludeClickOutsideClasses,
 	isFullscreen,
 	isMobile,
+	richEditor,
 	userStatus,
 }
