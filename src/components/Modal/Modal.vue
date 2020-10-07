@@ -675,7 +675,7 @@ $header-size: 50px;
 	/* Content */
 	.modal-container {
 		display: block;
-		overflow: hidden;
+		overflow: auto;
 		padding: 0;
 		transition: transform 300ms ease;
 		border-radius: var(--border-radius-large);
