@@ -83,10 +83,12 @@ export default {
 
 <template>
 	<div ref="contenteditable"
+		:class="{'rich-contenteditable__input--empty': isEmptyValue}"
 		:contenteditable="contenteditable"
 		:placeholder="placeholder"
 		class="rich-contenteditable__input"
-		@input="onInput" />
+		@input="onInput"
+		@keydown.delete="onKeyDown" />
 </template>
 
 <script>
@@ -144,6 +146,21 @@ export default {
 		}
 	},
 
+	computed: {
+		isEmptyValue() {
+			return !this.value || this.value.trim() === ''
+		},
+
+		/**
+		 * Is this Firefox? 🙄
+		 * @returns {boolean}
+		 */
+		isFF() {
+			return !!navigator.userAgent.match(/firefox/i)
+		},
+
+	},
+
 	watch: {
 		/**
 		 * If the parent value change, we compare the plain text rendering
@@ -186,6 +203,31 @@ export default {
 		},
 
 		/**
+		 * Because FF have a decade old bug preventing contenteditable=false
+		 * to properly be deleted on backspace, we have to hack 👀
+		 * https://stackoverflow.com/a/59383394/3885878
+		 *
+		 * @param {Event} e the delete keydown event
+		 */
+		onKeyDown(e) {
+			if (!this.isFF) {
+				return
+			}
+			const selection = document.getSelection()
+
+			// If caret is at the begining of the text node (0), remove previous element
+			if (selection && selection.anchorOffset === 0) {
+				// If there is no node or the node is not a mention, let's do nothing
+				if (!selection.anchorNode.previousSibling
+					|| !selection.anchorNode.previousSibling.classList.contains('mention-bubble')) {
+					return
+				}
+				// Otherwise, delete the node
+				selection.anchorNode.previousSibling.parentNode.removeChild(selection.anchorNode.previousSibling)
+			}
+		},
+
+		/**
 		 * Debounce the autocomplete function
 		 */
 		debouncedAutoComplete: debounce(async function(search, callback) {
@@ -210,7 +252,9 @@ export default {
 	font-family: var(--font-face);
 	font-size: inherit;
 
-	&:empty:before {
+	// Cannot use :empty because of firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=1513303
+	&--empty:before {
+		position: absolute;
 		content: attr(placeholder);
 		color: var(--color-text-maxcontrast);
 	}
