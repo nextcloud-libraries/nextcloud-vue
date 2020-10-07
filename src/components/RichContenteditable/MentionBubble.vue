@@ -27,7 +27,7 @@
 			<div class="mention-bubble__content">
 				<!-- Avatar or icon -->
 				<div :class="[icon, `mention-bubble__icon--${avatarUrl ? 'with-avatar' : ''}`]"
-					:style="{ backgroundImage: `url(${avatarUrl})` }"
+					:style="avatarUrl ? { backgroundImage: `url(${avatarUrl})` } : null"
 					class="mention-bubble__icon" />
 
 				<!-- Title -->

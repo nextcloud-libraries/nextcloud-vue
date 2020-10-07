@@ -23,7 +23,7 @@
 	<div class="autocomplete-result">
 		<!-- Avatar or icon -->
 		<div :class="[icon, `autocomplete-result__icon--${avatarUrl ? 'with-avatar' : ''}`]"
-			:style="{ backgroundImage: `url(${avatarUrl})` }"
+			:style="avatarUrl ? { backgroundImage: `url(${avatarUrl})` } : null "
 			class="autocomplete-result__icon">
 			<div v-if="haveStatus"
 				:class="[`autocomplete-result__status--${status && status.icon ? 'icon' : status.status}`]"
