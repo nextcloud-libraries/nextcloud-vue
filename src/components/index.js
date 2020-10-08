@@ -58,6 +58,8 @@ import Popover from './Popover'
 import PopoverMenu from './PopoverMenu'
 import SettingsSection from './SettingsSection'
 import UserBubble from './UserBubble'
+import AppSettingsDialog from './AppSettingsDialog'
+import AppSettingsSection from './AppSettingsSection'
 
 export {
 	ActionButton,
@@ -97,4 +99,6 @@ export {
 	PopoverMenu,
 	SettingsSection,
 	UserBubble,
+	AppSettingsDialog,
+	AppSettingsSection,
 }

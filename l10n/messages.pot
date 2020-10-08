@@ -96,6 +96,10 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
+#: src/components/AppSettingsDialog/AppSettingsDialog.vue:106
+msgid "Settings navigation"
+msgstr ""
+
 #: src/components/EmojiPicker/EmojiPicker.vue:172
 msgid "Smileys & Emotion"
 msgstr ""
