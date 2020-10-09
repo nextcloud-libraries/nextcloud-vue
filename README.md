@@ -51,6 +51,29 @@ If you want to work on improving the components it’s best to run the latest co
     - In the repository of an app do `npm link @nextcloud/vue` (you need to re-link any time you do `npm ci` in the app)
 4. Then build the app with: `npm run build` (or watch for changes with `npm run watch`)
 
+### Using vue-devtools in Firefox
+
+If you want to use [vue-devtools](https://github.com/vuejs/vue-devtools) in Firefox, you need to patch your nextcloud instance as follow:
+
+```diff
+diff --git a/lib/public/AppFramework/Http/ContentSecurityPolicy.php b/lib/public/AppFramework/Http/ContentSecurityPolicy.php
+index 3a9ab8f8c1..4bc2b4a4d0 100644
+--- a/lib/public/AppFramework/Http/ContentSecurityPolicy.php
++++ b/lib/public/AppFramework/Http/ContentSecurityPolicy.php
+@@ -42,9 +42,9 @@ namespace OCP\AppFramework\Http;
+  */
+ class ContentSecurityPolicy extends EmptyContentSecurityPolicy {
+        /** @var bool Whether inline JS snippets are allowed */
+-       protected $inlineScriptAllowed = false;
++       protected $inlineScriptAllowed = true;
+        /** @var bool Whether eval in JS scripts is allowed */
+-       protected $evalScriptAllowed = false;
++       protected $evalScriptAllowed = true;
+        /** @var array Domains from which scripts can get loaded */
+        protected $allowedScriptDomains = [
+                '\'self\'',
+```
+
 ## Releasing a new version
 
 1. Checkout latest master
