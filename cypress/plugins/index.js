@@ -25,8 +25,8 @@ const options = {
 	watchOptions: {},
 }
 
-module.exports = (on) => {
-	getCompareSnapshotsPlugin(on)
+module.exports = (on, config) => {
+	getCompareSnapshotsPlugin(on, config)
 	on('file:preprocessor', webpack(options))
 
 	// Disable spell checking to prevent rendering differences
