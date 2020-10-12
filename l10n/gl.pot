@@ -127,3 +127,7 @@ msgstr "Viaxes e lugares"
 #: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
 msgstr "Non foi posíbel buscar o grupo"
+
+#: src/components/RichContenteditable/RichContenteditable.vue:126
+msgid "Write message, @ to mention someone …"
+msgstr "Escriba  mensaxe, @ para mencionar a alguén…"
