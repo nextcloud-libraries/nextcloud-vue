@@ -100,6 +100,18 @@ import Tooltip from '../../directives/Tooltip'
 import usernameToColor from '../../functions/usernameToColor'
 import { userStatus } from '../../mixins'
 
+function getUserHasAvatar(userId) {
+	const flag = window.sessionStorage.getItem('userHasAvatar-' + userId)
+	if (typeof flag === 'string') {
+		return Boolean(flag)
+	}
+	return null
+}
+
+function setUserHasAvatar(userId, flag) {
+	window.sessionStorage.setItem('userHasAvatar-' + userId, flag)
+}
+
 export default {
 	name: 'Avatar',
 	directives: {
@@ -466,6 +478,20 @@ export default {
 				urlGenerator(this.user, this.size * 4) + ' 4x',
 			].join(', ')
 
+			// skip loading
+			const userHasAvatar = getUserHasAvatar(this.user)
+			if (typeof userHasAvatar === 'boolean') {
+				this.isAvatarLoaded = true
+				this.avatarUrlLoaded = avatarUrl
+				if (!this.isUrlDefined) {
+					this.avatarSrcSetLoaded = srcset
+				}
+				if (userHasAvatar === false) {
+					this.userDoesNotExist = true
+				}
+				return
+			}
+
 			const img = new Image()
 			img.onload = () => {
 				this.avatarUrlLoaded = avatarUrl
@@ -473,10 +499,13 @@ export default {
 					this.avatarSrcSetLoaded = srcset
 				}
 				this.isAvatarLoaded = true
+				// re-get to avoid concurrent access
+				setUserHasAvatar(this.user, true)
 			}
 			img.onerror = () => {
 				this.userDoesNotExist = true
 				this.isAvatarLoaded = true
+				setUserHasAvatar(this.user, false)
 			}
 
 			if (!this.isUrlDefined) {
