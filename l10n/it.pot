@@ -19,7 +19,7 @@ msgstr "{tag} (invisibile)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (limitato)"
 
-#: src/components/Actions/Actions.vue:249
+#: src/components/Actions/Actions.vue:254
 msgid "Actions"
 msgstr "Azioni"
 
@@ -104,6 +104,10 @@ msgstr "Seleziona un'etichetta"
 #: src/components/AppNavigationSettings/AppNavigationSettings.vue:57
 msgid "Settings"
 msgstr "Impostazioni"
+
+#: src/components/AppSettingsDialog/AppSettingsDialog.vue:106
+msgid "Settings navigation"
+msgstr "Navigazione delle impostazioni"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:172
 msgid "Smileys & Emotion"
