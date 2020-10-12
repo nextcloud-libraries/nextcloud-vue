@@ -15,7 +15,7 @@
 	"scripts": {
 		"dev": "webpack --config webpack.dev.js",
 		"watch": "webpack --progress --watch --config webpack.dev.js",
-		"build": "NODE_ENV=production webpack --progress --hide-modules --config webpack.prod.js",
+		"build": "NODE_ENV=production webpack --progress --config webpack.prod.js",
 		"l10n:extract": "node build/extract-l10n.js",
 		"lint": "eslint --ext .js,.vue src",
 		"lint:fix": "eslint --ext .js,.vue src --fix",
