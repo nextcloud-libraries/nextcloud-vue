@@ -110,7 +110,7 @@
 		"vue-styleguidist": "^4.31.0",
 		"vue-template-compiler": "^2.6.11",
 		"webpack": "^4.42.1",
-		"webpack-cli": "^3.3.11",
+		"webpack-cli": "^4.0.0",
 		"webpack-merge": "^5.0.8",
 		"webpack-node-externals": "^2.5.1"
 	},
