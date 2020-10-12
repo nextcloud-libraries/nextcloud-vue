@@ -3,14 +3,13 @@ const gettextParser = require('gettext-parser')
 const glob = require('glob')
 const md5 = require('md5')
 const path = require('path')
-const StyleLintPlugin = require('stylelint-webpack-plugin')
-const { VueLoaderPlugin } = require('vue-loader')
-
-const IconfontPlugin = require('iconfont-plugin-webpack')
 
 const { DefinePlugin } = require('webpack')
-
+const { VueLoaderPlugin } = require('vue-loader')
+const BabelLoaderExcludeNodeModulesExcept = require('babel-loader-exclude-node-modules-except')
+const IconfontPlugin = require('iconfont-plugin-webpack')
 const nodeExternals = require('webpack-node-externals')
+const StyleLintPlugin = require('stylelint-webpack-plugin')
 
 // scope variable
 // fallback for cypress testing
@@ -121,7 +120,9 @@ module.exports = {
 			{
 				test: /\.js$/,
 				loader: 'babel-loader',
-				exclude: /node_modules/,
+				exclude: BabelLoaderExcludeNodeModulesExcept([
+					'tributejs',
+				]),
 			},
 			{
 				test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/i,
