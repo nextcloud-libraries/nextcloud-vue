@@ -33,9 +33,22 @@ This component displays contenteditable div with automated @ autocompletion [at]
 		<RichContenteditable
 			v-model="message"
 			:auto-complete="autoComplete"
+			:maxlength="100"
 			:user-data="userData"
 			placeholder="Try mentioning the user Test01"
-			style="min-height: 100px;" />
+			@submit="onSubmit" />
+		<br>
+
+		<RichContenteditable
+			v-model="message"
+			:auto-complete="autoComplete"
+			:maxlength="400"
+			:multiline="true"
+			:user-data="userData"
+			placeholder="Try mentioning the user Test01"
+			@submit="onSubmit" />
+		<br>
+		<br>
 		{{ JSON.stringify(message) }}
 	</div>
 </template>
@@ -43,7 +56,8 @@ This component displays contenteditable div with automated @ autocompletion [at]
 export default {
 	data() {
 		return {
-			message: '',
+			message: 'Lorem ipsum dolor sit amet.',
+
 			// You need to provide this for the inline
 			// mention to understand what to display or not.
 			userData: {
@@ -82,6 +96,9 @@ export default {
 		*/
 		autoComplete(search, callback) {
 			callback(Object.values(this.userData))
+		},
+		onSubmit() {
+			alert(this.message)
 		}
 	}
 }
@@ -92,7 +109,12 @@ export default {
 
 <template>
 	<div ref="contenteditable"
-		:class="{'rich-contenteditable__input--empty': isEmptyValue}"
+		v-tooltip="tooltip"
+		:class="{
+			'rich-contenteditable__input--empty': isEmptyValue,
+			'rich-contenteditable__input--multiline': multiLine,
+			'rich-contenteditable__input--overflow': isOverMaxlength,
+		}"
 		:contenteditable="contenteditable"
 		:placeholder="placeholder"
 		aria-multiline="true"
@@ -100,6 +122,8 @@ export default {
 		role="textbox"
 		@input="onInput"
 		@keydown.delete="onDelete"
+		@keydown.enter.exact="onEnter"
+		@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
 		@paste="onPaste" />
 </template>
 
@@ -133,12 +157,33 @@ export default {
 			type: Element,
 			default: () => document.body,
 		},
+
 		/**
-		 * Is the content editable
+		 * Make the contenteditable looks like a textarea or not.
+		 * Default looks like a single-line input.
+		 * This also handle the default enter/shift+enter behaviour.
+		 * if multiLine, enter = newline; otherwise enter = submit
+		 * shift+enter always add a new line. ctrl+enter always submits
+		 */
+		multiLine: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Is the content editable ?
 		 */
 		contenteditable: {
 			type: Boolean,
 			default: true,
+		},
+
+		/**
+		 * Max allowed length
+		 */
+		maxlength: {
+			type: Number,
+			default: null,
 		},
 	},
 
@@ -169,6 +214,10 @@ export default {
 	},
 
 	computed: {
+		/**
+		 * Is the current trimmed value empty?
+		 * @returns {boolean}
+		 */
 		isEmptyValue() {
 			return !this.localValue || this.localValue.trim() === ''
 		},
@@ -181,6 +230,31 @@ export default {
 			return !!navigator.userAgent.match(/firefox/i)
 		},
 
+		/**
+		 * Is the current value over maxlength?
+		 * @returns {boolean}
+		 */
+		isOverMaxlength() {
+			if (this.isEmptyValue || !this.maxlength) {
+				return false
+			}
+			return this.localValue.length > this.maxlength
+		},
+
+		/**
+		 * Tooltip to show if characters count is over limit
+		 * @returns {string}
+		 */
+		tooltip() {
+			if (!this.isOverMaxlength) {
+				return null
+			}
+			return {
+				content: t('Message limit of {count} characters reached', { count: this.maxlength }),
+				show: true,
+				trigger: 'manual',
+			}
+		},
 	},
 
 	watch: {
@@ -327,6 +401,30 @@ export default {
 		},
 
 		/**
+		 * Enter key pressed. Submits if not multiline
+		 * @param {Event} event the keydown event
+		 */
+		onEnter(event) {
+			if (this.multiLine || this.isOverMaxlength) {
+				return
+			}
+
+			event.preventDefault()
+			event.stopPropagation()
+			this.$emit('submit', event)
+		},
+		/**
+		 * Ctrl + Enter key pressed
+		 * @param {Event} event the keydown event
+		 */
+		onCtrlEnter(event) {
+			if (this.isOverMaxlength) {
+				return
+			}
+			this.$emit('submit', event)
+		},
+
+		/**
 		 * Debounce the autocomplete function
 		 */
 		debouncedAutoComplete: debounce(async function(search, callback) {
@@ -353,6 +451,8 @@ export default {
 	background-color: var(--color-main-background);
 	font-family: var(--font-face);
 	font-size: inherit;
+	min-height: $clickable-area;
+	max-height: $clickable-area * 5.5;
 
 	// Cannot use :empty because of firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=1513303
 	&--empty:before {
@@ -368,6 +468,12 @@ export default {
 		border: 1px solid var(--color-background-darker);
 		border-radius: var(--border-radius);
 		background-color: var(--color-background-dark);
+	}
+
+	&--multiline {
+		min-height: $clickable-area * 3;
+		// No max for mutiline
+		max-height: none;
 	}
 }
 
