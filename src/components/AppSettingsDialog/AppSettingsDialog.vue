@@ -103,7 +103,7 @@ export default {
 		},
 
 		settingsNavigationAriaLabel() {
-			return t('Settings navigation')
+			return t('Navigation settings')
 		},
 	},
 
