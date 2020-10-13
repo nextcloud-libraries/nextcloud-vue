@@ -2,12 +2,12 @@
 # Translators:
 # Philipp Fischbeck <pfischbeck@googlemail.com>, 2020
 # ProfDrJones <jones@fs.cs.hm.edu>, 2020
-# Mario Siegmann <mario_siegmann@web.de>, 2020
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2020
+# Mario Siegmann <mario_siegmann@web.de>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2020\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2020\n"
 "Language-Team: German (Germany) (https://www.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -21,7 +21,7 @@ msgstr "{tag} (unsichtbar)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (eingeschränkt)"
 
-#: src/components/Actions/Actions.vue:249
+#: src/components/Actions/Actions.vue:254
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -107,6 +107,10 @@ msgstr "Schlagwort auswählen"
 msgid "Settings"
 msgstr "Einstellungen"
 
+#: src/components/AppSettingsDialog/AppSettingsDialog.vue:106
+msgid "Settings navigation"
+msgstr "Einstellungen-Navigation"
+
 #: src/components/EmojiPicker/EmojiPicker.vue:172
 msgid "Smileys & Emotion"
 msgstr "Smileys & Emotionen"
@@ -126,3 +130,7 @@ msgstr "Reisen & Orte"
 #: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
 msgstr "Die Gruppe kann nicht durchsucht werden"
+
+#: src/components/RichContenteditable/RichContenteditable.vue:126
+msgid "Write message, @ to mention someone …"
+msgstr "Nachricht schreiben, @ um jemanden zu erwähnen ..."
