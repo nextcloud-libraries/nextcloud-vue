@@ -18,7 +18,7 @@ msgstr "{tag} (niewidoczna)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (ograniczona)"
 
-#: src/components/Actions/Actions.vue:249
+#: src/components/Actions/Actions.vue:254
 msgid "Actions"
 msgstr "Działania"
 
@@ -100,9 +100,13 @@ msgstr "Wyniki wyszukiwania"
 msgid "Select a tag"
 msgstr "Wybierz etykietę"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:57
 msgid "Settings"
 msgstr "Ustawienia"
+
+#: src/components/AppSettingsDialog/AppSettingsDialog.vue:106
+msgid "Settings navigation"
+msgstr "Ustawienia nawigacji"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:172
 msgid "Smileys & Emotion"
@@ -123,3 +127,7 @@ msgstr "Podróże i miejsca"
 #: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
 msgstr "Nie można przeszukać grupy"
+
+#: src/components/RichContenteditable/RichContenteditable.vue:126
+msgid "Write message, @ to mention someone …"
+msgstr "Napisz wiadomość, aby wspomnieć o kimś użyj @…"
