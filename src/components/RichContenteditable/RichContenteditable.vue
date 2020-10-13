@@ -405,7 +405,9 @@ export default {
 		 * @param {Event} event the keydown event
 		 */
 		onEnter(event) {
-			if (this.multiLine || this.isOverMaxlength) {
+			// Prevent submitting if autocompletion menu
+			// is opened or length is over maxlength
+			if (this.multiLine || this.isOverMaxlength || this.tribute.isActive) {
 				return
 			}
 
