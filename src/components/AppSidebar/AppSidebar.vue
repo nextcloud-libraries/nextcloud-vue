@@ -156,7 +156,7 @@
 							'app-sidebar-header__desc--with-tertiary-action': canStar || $slots['tertiary-actions'],
 							'app-sidebar-header__desc--editable': titleEditable && !subtitle,
 							'app-sidebar-header__desc--with-subtitle--editable': titleEditable && subtitle,
-							'app-sidebar-header__desc--without-menu': !$slots['primary-actions'],
+							'app-sidebar-header__desc--without-actions': !$slots['secondary-actions'],
 						}"
 						class="app-sidebar-header__desc">
 						<!-- favourite icon -->
@@ -512,6 +512,11 @@ $top-buttons-spacing: 6px;
 					flex: 1 1 auto;
 					min-width: 0;
 					padding-right: 2 * $clickable-area + $top-buttons-spacing;
+
+					&.app-sidebar-header__desc--without-actions {
+						padding-right: #{$clickable-area + $top-buttons-spacing};
+					}
+
 					.app-sidebar-header__tertiary-actions {
 						z-index: 3; // above star
 						position: absolute;
@@ -539,6 +544,10 @@ $top-buttons-spacing: 6px;
 			// increase the padding to not overlap the menu
 			.app-sidebar-header__desc {
 				padding-right: #{$clickable-area * 2 + $top-buttons-spacing};
+
+				&.app-sidebar-header__desc--without-actions {
+					padding-right: #{$clickable-area + $top-buttons-spacing};
+				}
 			}
 		}
 
@@ -568,7 +577,7 @@ $top-buttons-spacing: 6px;
 			flex-direction: row;
 			justify-content: center;
 			box-sizing: content-box;
-			padding: #{$desc-vertical-padding} 0 #{$desc-vertical-padding} #{$desc-vertical-padding / 2};
+			padding: #{$desc-vertical-padding} #{$top-buttons-spacing} #{$desc-vertical-padding} #{$desc-vertical-padding / 2};
 
 			// custom overrides
 			&--with-tertiary-action {
@@ -582,10 +591,6 @@ $top-buttons-spacing: 6px;
 
 			&--with-subtitle--editable .app-sidebar-header__subtitle {
 				margin-top: -2px;
-			}
-
-			&--without-menu {
-				padding-right: #{$top-buttons-spacing};
 			}
 
 			.app-sidebar-header__tertiary-actions {
