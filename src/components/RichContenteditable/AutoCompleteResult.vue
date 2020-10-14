@@ -176,6 +176,13 @@ $autocomplete-padding: 10px;
 		padding-left: $autocomplete-padding;
 	}
 
+	&__title,
+	&__subline {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
 	&__subline {
 		color: var(--color-text-lighter);
 	}
