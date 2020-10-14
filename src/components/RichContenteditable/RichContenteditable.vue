@@ -130,6 +130,7 @@ export default {
 <script>
 import Tribute from 'tributejs/dist/tribute.esm'
 import debounce from 'debounce'
+import stringLength from 'string-length'
 
 import { t } from '../../l10n.js'
 import AutoCompleteResult from './AutoCompleteResult'
@@ -238,7 +239,7 @@ export default {
 			if (this.isEmptyValue || !this.maxlength) {
 				return false
 			}
-			return this.localValue.length > this.maxlength
+			return stringLength(this.localValue) > this.maxlength
 		},
 
 		/**

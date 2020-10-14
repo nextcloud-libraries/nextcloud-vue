@@ -100,7 +100,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../fonts/scss/iconfont-vue';
-
 $autocomplete-padding: 10px;
 
 .autocomplete-result {
@@ -118,7 +117,9 @@ $autocomplete-padding: 10px;
 
 	&__icon {
 		position: relative;
+		flex: 0 0 $clickable-area;
 		width: $clickable-area;
+		min-width: $clickable-area;
 		height: $clickable-area;
 		border-radius: $clickable-area;
 		background-color: var(--color-background-darker);
@@ -168,9 +169,10 @@ $autocomplete-padding: 10px;
 
 	&__content {
 		display: flex;
-		flex: 1 1;
+		flex: 1 1 100%;
 		flex-direction: column;
 		justify-content: center;
+		min-width: 0;
 		padding-left: $autocomplete-padding;
 	}
 
@@ -178,4 +180,5 @@ $autocomplete-padding: 10px;
 		color: var(--color-text-lighter);
 	}
 }
+
 </style>

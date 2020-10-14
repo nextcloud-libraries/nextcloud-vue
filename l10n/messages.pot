@@ -46,7 +46,7 @@ msgstr ""
 msgid "Frequently used"
 msgstr ""
 
-#: src/components/RichContenteditable/RichContenteditable.vue:253
+#: src/components/RichContenteditable/RichContenteditable.vue:254
 msgid "Message limit of {count} characters reached"
 msgstr ""
 
@@ -124,6 +124,6 @@ msgstr ""
 msgid "Unable to search the group"
 msgstr ""
 
-#: src/components/RichContenteditable/RichContenteditable.vue:150
+#: src/components/RichContenteditable/RichContenteditable.vue:151
 msgid "Write message, @ to mention someone …"
 msgstr ""
