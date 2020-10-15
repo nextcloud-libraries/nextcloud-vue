@@ -93,34 +93,38 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$bubble-size: 20px;
+$bubble-height: 20px;
+$bubble-max-width: 150px;
 $bubble-padding: 2px;
-$bubble-avatar-size: $bubble-size - 2 * $bubble-padding;
+$bubble-avatar-size: $bubble-height - 2 * $bubble-padding;
 
 .mention-bubble {
 	&--primary &__content {
-		background-color: var(--color-primary-element);
 		color: var(--color-primary-text);
+		background-color: var(--color-primary-element);
 	}
 
 	&__wrapper {
-		display: inline-block;
-		vertical-align: middle;
-		white-space: nowrap;
-		// Align vertically with nearby text
-		line-height: 16px;
+		max-width: $bubble-max-width;
+		// Align with text
+		height: $bubble-height - $bubble-padding;
+		vertical-align: text-bottom;
+		display: inline-flex;
+		align-items: center;
 	}
 
 	&__content {
 		display: inline-flex;
+		overflow: hidden;
 		align-items: center;
-		height: $bubble-size;
+		max-width: 100%;
+		height: $bubble-height ;
+		-webkit-user-select: none;
+		user-select: none;
 		padding-right: $bubble-padding * 3;
 		padding-left: $bubble-padding;
-		border-radius: $bubble-size / 2;
+		border-radius: $bubble-height / 2;
 		background-color: var(--color-background-dark);
-		user-select: none;
-		-webkit-user-select: none;
 	}
 
 	&__icon {
@@ -140,7 +144,10 @@ $bubble-avatar-size: $bubble-size - 2 * $bubble-padding;
 	}
 
 	&__title {
+		overflow: hidden;
 		margin-left: $bubble-padding;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 		// Put label in ::before so it is not selectable
 		&::before {
 			content: attr(title);
