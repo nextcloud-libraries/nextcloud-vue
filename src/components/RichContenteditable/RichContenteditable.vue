@@ -218,7 +218,7 @@ export default {
 	data() {
 		return {
 			tribute: null,
-			options: {
+			autocompleteOptions: {
 				fillAttr: 'id',
 				// Search against id and label (display name)
 				lookup: result => `${result.id} ${result.label}`,
@@ -232,6 +232,21 @@ export default {
 				selectTemplate: item => this.genSelectTemplate(item?.original?.id),
 				// Autocompletion results
 				values: this.debouncedAutoComplete,
+			},
+			emojiOptions: {
+				trigger: ':',
+				// Search against id and label (display name)
+				lookup: result => result.short_names.join(' '),
+				// Where to inject the menu popup
+				menuContainer: this.menuContainer,
+				// Popup mention autocompletion templates
+				menuItemTemplate: item => item.original.value,
+				// Hide if no results
+				noMatchTemplate: () => '<span class="hidden"></span>',
+				// Inner display of mentions, display raw emoji
+				selectTemplate: item => item.original.value,
+				// Autocompletion results
+				values: EMOJIS,
 			},
 
 			// Represent the raw untrimmed text of the contenteditable
@@ -309,8 +324,11 @@ export default {
 	},
 
 	mounted() {
-		this.tribute = new Tribute(this.options)
-		this.tribute.attach(this.$el)
+		this.autocompleteTribute = new Tribute(this.autocompleteOptions)
+		this.autocompleteTribute.attach(this.$el)
+
+		this.emojiTribute = new Tribute(this.emojiOptions)
+		this.emojiTribute.attach(this.$el)
 
 		// Update default value
 		this.updateContent(this.value)
@@ -320,8 +338,11 @@ export default {
 		this.$refs.contenteditable.contentEditable = this.canEdit
 	},
 	beforeDestroy() {
-		if (this.tribute) {
-			this.tribute.detach(this.$el)
+		if (this.autocompleteTribute) {
+			this.autocompleteTribute.detach(this.$el)
+		}
+		if (this.emojiTribute) {
+			this.emojiTribute.detach(this.$el)
 		}
 	},
 
@@ -463,7 +484,8 @@ export default {
 		onEnter(event) {
 			// Prevent submitting if autocompletion menu
 			// is opened or length is over maxlength
-			if (this.multiline || this.isOverMaxlength || this.tribute.isActive) {
+			if (this.multiline || this.isOverMaxlength
+				|| this.autocompleteTribute.isActive || this.emojiTribute.isActive) {
 				return
 			}
 
