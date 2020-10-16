@@ -491,13 +491,14 @@ export default {
 	min-width: 250px;
 	max-width: 300px;
 	// Show maximum 4 entries and a half to show scroll
-	max-height: $clickable-area * 4.5;
+	// 44px + 10px padding
+	max-height: ($clickable-area + 20px) * 4.5;
 	// Space it out a bit from the text
 	margin: 5px 0;
 	color: var(--color-main-text);
 	border-radius: var(--border-radius);
 	background: var(--color-main-background);
-	box-shadow: 0 0 5px var(--color-box-shadow);
+	box-shadow: 0 1px 5px var(--color-box-shadow);
 }
 
 </style>
