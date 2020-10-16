@@ -90,6 +90,7 @@
 </template>
 
 <script>
+import { getBuilder } from '@nextcloud/browser-storage'
 import { directive as ClickOutside } from 'v-click-outside'
 import PopoverMenu from '../PopoverMenu'
 import { getCurrentUser } from '@nextcloud/auth'
@@ -100,8 +101,10 @@ import Tooltip from '../../directives/Tooltip'
 import usernameToColor from '../../functions/usernameToColor'
 import { userStatus } from '../../mixins'
 
+const browserStorage = getBuilder('nextcloud').persist().build()
+
 function getUserHasAvatar(userId) {
-	const flag = window.sessionStorage.getItem('userHasAvatar-' + userId)
+	const flag = browserStorage.getItem('user-has-avatar.' + userId)
 	if (typeof flag === 'string') {
 		return Boolean(flag)
 	}
@@ -109,7 +112,7 @@ function getUserHasAvatar(userId) {
 }
 
 function setUserHasAvatar(userId, flag) {
-	window.sessionStorage.setItem('userHasAvatar-' + userId, flag)
+	browserStorage.setItem('user-has-avatar.' + userId, flag)
 }
 
 export default {
