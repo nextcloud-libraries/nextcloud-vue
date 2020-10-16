@@ -54,6 +54,10 @@ msgstr "Jídlo a pití"
 msgid "Frequently used"
 msgstr "Často používané"
 
+#: src/components/RichContenteditable/RichContenteditable.vue:254
+msgid "Message limit of {count} characters reached"
+msgstr "Dosaženo limitu počtu znaků {count}"
+
 #: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "Následující"
@@ -127,3 +131,7 @@ msgstr "Cestování a místa"
 #: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
 msgstr "Nedaří se hledat skupinu"
+
+#: src/components/RichContenteditable/RichContenteditable.vue:151
+msgid "Write message, @ to mention someone …"
+msgstr "Pište zprávu, pokud chcete někoho zmínit, použijte @ …"
