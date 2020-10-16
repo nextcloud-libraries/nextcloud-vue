@@ -444,14 +444,17 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-$header-height: 50px;
 $sidebar-min-width: 300px;
 $sidebar-max-width: 500px;
+
 $desc-vertical-padding: 18px;
 $desc-input-padding: 7px;
-$desc-title-height: 30px;
+
 // title and subtitle
-$desc-height: $desc-title-height + 22px;
+$desc-title-height: 30px;
+$desc-subtitle-height: 22px;
+$desc-height: $desc-title-height + $desc-subtitle-height;
+
 $top-buttons-spacing: 6px;
 
 /*
@@ -462,7 +465,7 @@ $top-buttons-spacing: 6px;
 	position: -webkit-sticky; // Safari support
 	position: sticky;
 	z-index: 1500;
-	top: $header-height;
+	top: var(--header-height);
 	right: 0;
 	display: flex;
 	overflow-x: hidden;
@@ -472,7 +475,7 @@ $top-buttons-spacing: 6px;
 	width: 27vw;
 	min-width: $sidebar-min-width;
 	max-width: $sidebar-max-width;
-	height: calc(100vh - #{$header-height});
+	height: calc(100vh - var(--header-height));
 	border-left: 1px solid var(--color-border);
 	background: var(--color-main-background);
 	.app-sidebar-header {
