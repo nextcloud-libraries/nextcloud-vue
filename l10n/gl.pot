@@ -54,6 +54,10 @@ msgstr "Comida e bebida"
 msgid "Frequently used"
 msgstr "Usado con frecuencia"
 
+#: src/components/RichContenteditable/RichContenteditable.vue:254
+msgid "Message limit of {count} characters reached"
+msgstr "Acadouse o límite de {count} caracteres por mensaxe"
+
 #: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "Seguinte"
@@ -128,6 +132,6 @@ msgstr "Viaxes e lugares"
 msgid "Unable to search the group"
 msgstr "Non foi posíbel buscar o grupo"
 
-#: src/components/RichContenteditable/RichContenteditable.vue:126
+#: src/components/RichContenteditable/RichContenteditable.vue:151
 msgid "Write message, @ to mention someone …"
 msgstr "Escriba a mensaxe, @ para mencionar a alguén…"
