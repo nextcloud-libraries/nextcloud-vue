@@ -112,7 +112,7 @@ export default {
 		v-tooltip="tooltip"
 		:class="{
 			'rich-contenteditable__input--empty': isEmptyValue,
-			'rich-contenteditable__input--multiline': multiLine,
+			'rich-contenteditable__input--multiline': multiline,
 			'rich-contenteditable__input--overflow': isOverMaxlength,
 		}"
 		:contenteditable="contenteditable"
@@ -163,10 +163,10 @@ export default {
 		 * Make the contenteditable looks like a textarea or not.
 		 * Default looks like a single-line input.
 		 * This also handle the default enter/shift+enter behaviour.
-		 * if multiLine, enter = newline; otherwise enter = submit
+		 * if multiline, enter = newline; otherwise enter = submit
 		 * shift+enter always add a new line. ctrl+enter always submits
 		 */
-		multiLine: {
+		multiline: {
 			type: Boolean,
 			default: false,
 		},
@@ -408,7 +408,7 @@ export default {
 		onEnter(event) {
 			// Prevent submitting if autocompletion menu
 			// is opened or length is over maxlength
-			if (this.multiLine || this.isOverMaxlength || this.tribute.isActive) {
+			if (this.multiline || this.isOverMaxlength || this.tribute.isActive) {
 				return
 			}
 
