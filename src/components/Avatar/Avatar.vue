@@ -449,6 +449,10 @@ export default {
 			}
 			this.isMenuLoaded = true
 		},
+
+		/**
+		 * Handle avatar loading if user or url defined
+		 */
 		loadAvatarUrl() {
 			this.isAvatarLoaded = false
 
@@ -459,44 +463,63 @@ export default {
 				return
 			}
 
-			const urlGenerator = (user, size) => {
-				let url = '/avatar/{user}/{size}'
-				if (this.isGuest) {
-					url = '/avatar/guest/{user}/{size}'
-				}
-
-				let avatarUrl = generateUrl(
-					url,
-					{
-						user,
-						size,
-					})
-
-				// eslint-disable-next-line camelcase
-				if (user === getCurrentUser()?.uid && typeof oc_userconfig !== 'undefined') {
-					avatarUrl += '?v=' + oc_userconfig.avatar.version
-				}
-
-				return avatarUrl
-			}
-
-			let avatarUrl = urlGenerator(this.user, this.size)
+			// Directly use the url if defined
 			if (this.isUrlDefined) {
-				avatarUrl = this.url
+				this.updateImageIfValid(this.url)
+				return
 			}
 
+			const avatarUrl = this.avatarUrlGenerator(this.user, this.size)
 			const srcset = [
 				avatarUrl + ' 1x',
-				urlGenerator(this.user, this.size * 2) + ' 2x',
-				urlGenerator(this.user, this.size * 4) + ' 4x',
+				this.avatarUrlGenerator(this.user, this.size * 2) + ' 2x',
+				this.avatarUrlGenerator(this.user, this.size * 4) + ' 4x',
 			].join(', ')
 
+			this.updateImageIfValid(avatarUrl, srcset)
+		},
+
+		/**
+		 * Generate an avatar url from the server's avatar endpoint
+		 *
+		 * @param {string} user the user id
+		 * @param {number} size the desired size
+		 * @returns {string}
+		 */
+		avatarUrlGenerator(user, size) {
+			let url = '/avatar/{user}/{size}'
+			if (this.isGuest) {
+				url = '/avatar/guest/{user}/{size}'
+			}
+
+			let avatarUrl = generateUrl(
+				url,
+				{
+					user,
+					size,
+				})
+
+			// eslint-disable-next-line camelcase
+			if (user === getCurrentUser()?.uid && typeof oc_userconfig !== 'undefined') {
+				avatarUrl += '?v=' + oc_userconfig.avatar.version
+			}
+
+			return avatarUrl
+		},
+
+		/**
+		 * Check if the provided url is valid and update Avatar if so
+		 *
+		 * @param {string} url the avatar url
+		 * @param {array} srcset the avatar srcset
+		 */
+		updateImageIfValid(url, srcset = null) {
 			// skip loading
 			const userHasAvatar = getUserHasAvatar(this.user)
 			if (typeof userHasAvatar === 'boolean') {
 				this.isAvatarLoaded = true
-				this.avatarUrlLoaded = avatarUrl
-				if (!this.isUrlDefined) {
+				this.avatarUrlLoaded = url
+				if (srcset) {
 					this.avatarSrcSetLoaded = srcset
 				}
 				if (userHasAvatar === false) {
@@ -507,8 +530,8 @@ export default {
 
 			const img = new Image()
 			img.onload = () => {
-				this.avatarUrlLoaded = avatarUrl
-				if (!this.isUrlDefined) {
+				this.avatarUrlLoaded = url
+				if (srcset) {
 					this.avatarSrcSetLoaded = srcset
 				}
 				this.isAvatarLoaded = true
@@ -521,10 +544,10 @@ export default {
 				setUserHasAvatar(this.user, false)
 			}
 
-			if (!this.isUrlDefined) {
+			if (srcset) {
 				img.srcset = srcset
 			}
-			img.src = avatarUrl
+			img.src = url
 		},
 	},
 }
