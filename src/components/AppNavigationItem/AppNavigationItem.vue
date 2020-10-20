@@ -180,6 +180,9 @@ Just set the `pinned` prop.
 		<ul v-if="canHaveChildren && hasChildren" class="app-navigation-entry__children">
 			<slot />
 		</ul>
+
+		<!-- Anything (virtual) that should be mounted in the component, like a related modal -->
+		<slot name="extra" />
 	</nav-element>
 </template>
 
