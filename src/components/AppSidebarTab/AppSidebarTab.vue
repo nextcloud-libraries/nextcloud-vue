@@ -31,7 +31,8 @@
 		:aria-labelledby="name"
 		class="app-sidebar__tab"
 		tabindex="0"
-		role="tabpanel">
+		role="tabpanel"
+		@scroll="onScroll">
 		<slot />
 	</section>
 </template>
@@ -65,6 +66,19 @@ export default {
 			return this.$parent.activeTab === this.id
 		},
 	},
+
+	methods: {
+		onScroll(event) {
+			// Are we scrolled to the very bottom ?
+			if (this.$el.scrollHeight - this.$el.scrollTop === this.$el.clientHeight) {
+				/**
+				 * Bottom scroll is reached
+				 */
+				this.$emit('bottomReached', event)
+			}
+			this.$emit('scroll', event)
+		},
+	},
 }
 </script>
 
@@ -73,6 +87,8 @@ export default {
 	display: none;
 	padding: 10px;
 	min-height: 100%; // fill available height
+	max-height: 100%; // scroll inside
+	overflow: auto;
 
 	&:focus {
 		border-color: var(--color-primary);

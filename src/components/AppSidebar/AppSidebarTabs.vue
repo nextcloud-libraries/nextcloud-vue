@@ -266,9 +266,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 .app-sidebar-tabs {
-	flex: 1 1 auto;
 	display: flex;
 	flex-direction: column;
+	min-height: 0;
+	flex: 1 1 100%;
 
 	&__nav {
 		margin-top: 10px;
@@ -340,7 +341,8 @@ export default {
 	&__content {
 		position: relative;
 		// take full available height
-		flex: 1 1 100%;
+		min-height: 0;
+		height: 100%;
 		// force the use of the tab component if more than one tab
 		// you can just put raw content if you don't use tabs
 		&--multiple > :not(section) {
