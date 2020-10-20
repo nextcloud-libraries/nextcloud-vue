@@ -112,7 +112,9 @@ function getUserHasAvatar(userId) {
 }
 
 function setUserHasAvatar(userId, flag) {
-	browserStorage.setItem('user-has-avatar.' + userId, flag)
+	if (userId) {
+		browserStorage.setItem('user-has-avatar.' + userId, flag)
+	}
 }
 
 export default {
@@ -516,7 +518,7 @@ export default {
 		updateImageIfValid(url, srcset = null) {
 			// skip loading
 			const userHasAvatar = getUserHasAvatar(this.user)
-			if (typeof userHasAvatar === 'boolean') {
+			if (this.isUserDefined && typeof userHasAvatar === 'boolean') {
 				this.isAvatarLoaded = true
 				this.avatarUrlLoaded = url
 				if (srcset) {
@@ -539,8 +541,13 @@ export default {
 				setUserHasAvatar(this.user, true)
 			}
 			img.onerror = () => {
+				console.debug('Invalid avatar url', url)
+				// Avatar is invalid, reset
+				this.avatarUrlLoaded = null
+				this.avatarSrcSetLoaded = null
+
 				this.userDoesNotExist = true
-				this.isAvatarLoaded = true
+				this.isAvatarLoaded = false
 				setUserHasAvatar(this.user, false)
 			}
 
