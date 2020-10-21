@@ -144,6 +144,7 @@ export default {
 	props: {
 		value: {
 			type: String,
+			default: '',
 			required: true,
 		},
 		placeholder: {
@@ -202,7 +203,7 @@ export default {
 				// Hide if no results
 				noMatchTemplate: () => '<span class="hidden"></span>',
 				// Inner display of mentions
-				selectTemplate: item => this.genSelectTemplate(item.original?.id),
+				selectTemplate: item => this.genSelectTemplate(item?.original?.id),
 				// Autocompletion results
 				values: this.debouncedAutoComplete,
 			},
@@ -210,7 +211,7 @@ export default {
 			// Represent the raw untrimmed text of the contenteditable
 			// serves no other purpose than to check whether the
 			// content is empty or not
-			localValue: '',
+			localValue: this.value,
 		}
 	},
 
@@ -311,9 +312,9 @@ export default {
 			/** The original paste event */
 			this.$emit('paste', event)
 
-			// If we have other data than text, ignore
+			// If we have a file or if we don't have any text, ignore
 			if (clipboardData.files.length !== 0
-				|| !Object.values(clipboardData.items).every(item => item?.type.startsWith('text'))) {
+				|| !Object.values(clipboardData.items).find(item => item?.type.startsWith('text'))) {
 				return
 			}
 
