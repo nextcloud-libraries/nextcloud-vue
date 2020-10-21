@@ -45,7 +45,7 @@
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper"
 		@click="toggleMenu">
-		<!-- avatar -->
+		<!-- Avatar icon or image -->
 		<div v-if="iconClass" :class="iconClass" class="avatar-class-icon" />
 		<img v-else-if="isAvatarLoaded && !userDoesNotExist"
 			:src="avatarUrlLoaded"
@@ -53,7 +53,7 @@
 			alt="">
 		<div v-if="hasMenu" class="icon-more" />
 
-		<!-- avatar status -->
+		<!-- Avatar status -->
 		<div v-if="showUserStatusIconOnAvatar" class="avatardiv__user-status avatardiv__user-status--icon">
 			{{ userStatus.icon }}
 		</div>
@@ -77,9 +77,13 @@
 					stroke-linecap="square" />
 			</svg>
 		</div>
-		<div v-if="userDoesNotExist" class="unknown">
+
+		<!-- Show the letter if no avatar nor icon class -->
+		<div v-if="userDoesNotExist && !iconClass" class="unknown">
 			{{ initials }}
 		</div>
+
+		<!-- Menu container -->
 		<div v-if="hasMenu"
 			v-show="contactsMenuOpenState"
 			class="popovermenu"
@@ -630,8 +634,11 @@ export default {
 	}
 
 	img {
+		// Cover entire area
 		width: 100%;
 		height: 100%;
+		// Keep ratio
+		object-fit: cover;
 	}
 
 	.avatardiv__status {
