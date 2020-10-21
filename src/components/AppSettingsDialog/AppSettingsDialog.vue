@@ -115,7 +115,7 @@ export default {
 	updated() {
 		if (!this.scroller) {
 			// Get the scroller element
-			this.scroller = this.$el.querySelector('.app-settings__content')
+			this.scroller = this.$refs.settingsScroller
 		}
 		if (this.scroller && !this.addedScrollListener) {
 			this.scroller.addEventListener('scroll', this.handleScroll)
@@ -167,15 +167,19 @@ export default {
 			this.$emit('update:open', false)
 		},
 
-		// Remove selected section once the user starts scrolling
 		handleScroll() {
 			if (!this.linkClicked) {
-				debounce(() => {
-					this.selectedSection = ''
-					document.activeElement.blur()
-				}, 300)
+				this.unfocusNavigationItem()
 			}
 		},
+
+		// Remove selected section once the user starts scrolling
+		unfocusNavigationItem: debounce(function() {
+			this.selectedSection = ''
+			if (document.activeElement.className.includes('navigation-list__link')) {
+				document.activeElement.blur()
+			}
+		}, 300),
 
 		handleLinkKeydown(keyDownEvent, item) {
 			if (keyDownEvent.code === 'Enter') {
@@ -249,6 +253,7 @@ export default {
 						attrs: {
 							class: 'app-settings__content',
 						},
+						ref: 'settingsScroller',
 					}, this.$slots.default)]),
 			])
 		} else {
