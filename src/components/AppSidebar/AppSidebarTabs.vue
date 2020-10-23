@@ -1,5 +1,6 @@
 <!--
   - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
+  - @copyright Copyright (c) 2020 Simon Belbeoch <simon.belbeoch@gmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
   -
@@ -22,7 +23,6 @@
 
 <!-- Follows the tab aria guidelines
 	https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-1/tabs.html -->
-
 <template>
 	<div class="app-sidebar-tabs">
 		<!-- tabs navigation -->
@@ -69,7 +69,7 @@ const IsValidString = function(value) {
 }
 
 const IsValidStringWithoutSpaces = function(value) {
-	return value && typeof value === 'string' && value.trim() !== '' && value.indexOf(' ') === -1
+	return IsValidString(value) && value.indexOf(' ') === -1
 }
 
 export default {
@@ -148,8 +148,7 @@ export default {
 		 */
 		focusPreviousTab() {
 			if (this.currentTabIndex > 0) {
-				this.activeTab = this.tabs[this.currentTabIndex - 1].id
-				this.$emit('update:active', this.activeTab)
+				this.setActive(this.tabs[this.currentTabIndex - 1].id)
 			}
 			this.focusActiveTab() // focus nav item
 		},
@@ -160,8 +159,7 @@ export default {
 		 */
 		focusNextTab() {
 			if (this.currentTabIndex < this.tabs.length - 1) {
-				this.activeTab = this.tabs[this.currentTabIndex + 1].id
-				this.$emit('update:active', this.activeTab)
+				this.setActive(this.tabs[this.currentTabIndex + 1].id)
 			}
 			this.focusActiveTab() // focus nav item
 		},
@@ -171,8 +169,7 @@ export default {
 		 * and emit to the parent component
 		 */
 		focusFirstTab() {
-			this.activeTab = this.tabs[0].id
-			this.$emit('update:active', this.activeTab)
+			this.setActive(this.tabs[0].id)
 			this.focusActiveTab() // focus nav item
 		},
 
@@ -181,8 +178,7 @@ export default {
 		 * and emit to the parent component
 		 */
 		focusLastTab() {
-			this.activeTab = this.tabs[this.tabs.length - 1].id
-			this.$emit('update:active', this.activeTab)
+			this.setActive(this.tabs[this.tabs.length - 1].id)
 			this.focusActiveTab() // focus nav item
 		},
 
