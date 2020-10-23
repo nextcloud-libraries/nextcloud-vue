@@ -1,5 +1,6 @@
 /**
  * @copyright Copyright (c) 2020 Raimund Schlüßler <raimund.schluessler@mailbox.org>
+ * @copyright Copyright (c) 2020 Simon Belbeoch <simon.belbeoch@gmail.com>
  *
  * @author Raimund Schlüßler <raimund.schluessler@mailbox.org>
  *
@@ -27,97 +28,93 @@ import AppSidebarTabs from '../../../../src/components/AppSidebar/AppSidebarTabs
 import AppSidebarTab from '../../../../src/components/AppSidebarTab/AppSidebarTab.vue'
 import ActionButton from '../../../../src/components/ActionButton/ActionButton.vue'
 
+let onWarning
+let consoleDebug
+
+const initialConsole = { ...console }
+
 describe('AppSidebarTabs.vue', () => {
 	'use strict'
-
-	it('Issues no warning and logs nothing to console when using it without tabs.', () => {
-		const onWarning = jest.fn()
-		const originalDebug = console.debug
-		const consoleOutput = []
-		console.debug = output => consoleOutput.push(output)
+	beforeEach(() => {
+		onWarning = jest.fn()
+		consoleDebug = jest.fn()
 		Vue.config.warnHandler = onWarning
-
-		const wrapper = mount(AppSidebarTabs, {
-			propsData: {
-				title: 'Sidebar title.'
-			},
-			slots: {
-				default: ['<div />'],
-			}
-
-		})
-		expect(onWarning).toHaveBeenCalledTimes(0)
-		expect(consoleOutput.length).toBe(0)
-		console.debug = originalDebug
+		global.console = { ...console, debug: consoleDebug }
 	})
-
-	it('Issues no warning when using secondary actions.', () => {
-		const onWarning = jest.fn()
-		Vue.config.warnHandler = onWarning
-		const wrapper = mount(AppSidebarTabs, {
-			propsData: {
-				title: 'Sidebar title.'
-			},
-			slots: {
-				default: '<div />',
-				'secondary-actions': ['<ActionButton icon="icon-delete">Test</ActionButton>'],
-			},
-			stubs: {
-				// used to register custom components
-				ActionButton,
-			},
-
-		})
-		expect(onWarning).toHaveBeenCalledTimes(0)
+	afterEach(() => {
+		Vue.config.warnHandler = () => null
+		global.console = initialConsole
 	})
-
-	it('Issues no warning when only children of type AppSidebarTab are used.', () => {
-		const onWarning = jest.fn()
-		Vue.config.warnHandler = onWarning
-		const wrapper = mount(AppSidebarTabs, {
-			slots: {
-				default: [
-					'<app-sidebar-tab id="1" icon="icon-details" name="Tab1">Tab1</app-sidebar-tab>',
-					'<app-sidebar-tab id="2" icon="icon-details" name="Tab2">Tab2</app-sidebar-tab>',
-				],
-			},
-			stubs: {
-				// used to register custom components
-				'app-sidebar-tab': AppSidebarTab,
-			},
-
+	describe('when using the component without tabs', () => {
+		it('Issues no warning nor logs nothing to console.', () => {
+			mount(AppSidebarTabs, {
+				propsData: {
+					title: 'Sidebar title.',
+				},
+				slots: {
+					default: ['<div />'],
+				},
+			})
+			expect(onWarning).toHaveBeenCalledTimes(0)
+			expect(consoleDebug).toHaveBeenCalledTimes(0)
 		})
-		expect(onWarning).toHaveBeenCalledTimes(0)
+
+		it('Issues no warning when using secondary actions.', () => {
+			mount(AppSidebarTabs, {
+				propsData: {
+					title: 'Sidebar title.',
+				},
+				slots: {
+					default: '<div />',
+					'secondary-actions': ['<ActionButton icon="icon-delete">Test</ActionButton>'],
+				},
+				stubs: {
+					// used to register custom components
+					ActionButton,
+				},
+			})
+			expect(onWarning).toHaveBeenCalledTimes(0)
+		})
 	})
-
-	it('Issues a warning and logs to console when tabs and other elements are mixed.', () => {
-		const onWarning = jest.fn()
-		const originalDebug = console.debug
-		const consoleOutput = []
-		console.debug = output => consoleOutput.push(output)
-		Vue.config.warnHandler = onWarning
-
-		const wrapper = mount(AppSidebarTabs, {
-			slots: {
-				default: [
-					'<app-sidebar-tab id="1" icon="icon-details" name="Tab1">Tab1</app-sidebar-tab>',
-					'<AppSidebarTab id="2" icon="icon-details" name="Tab2">Tab2</AppSidebarTab>',
-					'<div>Non-tab-content</div>',
-					'Test',
-				],
-			},
-			stubs: {
-				/*
-				 * Register the component with PascalCase and kebab-case
-				 * to make sure both works.
-				 */
-				'app-sidebar-tab': AppSidebarTab,
-				AppSidebarTab,
-			},
-
+	describe('when only children of type AppSidebarTab are used', () => {
+		it('Issues no warning.', () => {
+			mount(AppSidebarTabs, {
+				slots: {
+					default: [
+						'<app-sidebar-tab id="1" icon="icon-details" name="Tab1">Tab1</app-sidebar-tab>',
+						'<app-sidebar-tab id="2" icon="icon-details" name="Tab2">Tab2</app-sidebar-tab>',
+					],
+				},
+				stubs: {
+					// used to register custom components
+					'app-sidebar-tab': AppSidebarTab,
+				},
+			})
+			expect(onWarning).toHaveBeenCalledTimes(0)
 		})
-		expect(onWarning).toHaveBeenCalledTimes(1)
-		expect(consoleOutput.length).toBe(2)
-		console.debug = originalDebug
+	})
+	describe('when tabs and other elements are mixed', () => {
+		it('Issues a warning and logs to console .', () => {
+			mount(AppSidebarTabs, {
+				slots: {
+					default: [
+						'<app-sidebar-tab id="1" icon="icon-details" name="Tab1">Tab1</app-sidebar-tab>',
+						'<AppSidebarTab id="2" icon="icon-details" name="Tab2">Tab2</AppSidebarTab>',
+						'<div>Non-tab-content</div>',
+						'Test',
+					],
+				},
+				stubs: {
+					/*
+					 * Register the component with PascalCase and kebab-case
+					 * to make sure both works.
+					 */
+					'app-sidebar-tab': AppSidebarTab,
+					AppSidebarTab,
+				},
+			})
+			expect(onWarning).toHaveBeenCalledTimes(1)
+			expect(consoleDebug).toHaveBeenCalledTimes(2)
+		})
 	})
 })
