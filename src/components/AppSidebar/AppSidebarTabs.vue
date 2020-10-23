@@ -222,7 +222,7 @@ export default {
 				return
 			}
 
-			// Find all valid children (AppSidbarTab, other components, text nodes, etc.)
+			// Find all valid children (AppSidebarTab, other components, text nodes, etc.)
 			const children = this.$slots.default.filter(elem => elem.tag || elem.text.trim())
 
 			// Find all valid instances of AppSidebarTab
