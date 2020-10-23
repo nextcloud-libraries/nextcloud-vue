@@ -43,7 +43,7 @@
 						:href="`#tab-${tab.id}`"
 						:tabindex="activeTab === tab.id ? null : -1"
 						role="tab"
-						@click.prevent="setActive">
+						@click.prevent="setActive(tab.id)">
 						<span :class="tab.icon" class="app-sidebar-tabs__tab-icon" />
 						{{ tab.name }}
 					</a>
@@ -133,13 +133,11 @@ export default {
 
 		/**
 		 * Set the current active tab
+		 * @param {string} id the id of the tab
 		 */
-		setActive({ target }) {
-			// if click on icon, make sure we get the link
-			const id = target.closest('a').dataset.id
+		setActive(id) {
 			this.activeTab = id
 			this.$emit('update:active', this.activeTab)
-
 		},
 
 		/**
