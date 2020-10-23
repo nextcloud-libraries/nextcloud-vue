@@ -31,6 +31,8 @@ import ActionButton from '../../../../src/components/ActionButton/ActionButton.v
 let onWarning
 let consoleDebug
 
+let wrapper
+
 const initialConsole = { ...console }
 
 describe('AppSidebarTabs.vue', () => {
@@ -46,51 +48,103 @@ describe('AppSidebarTabs.vue', () => {
 		global.console = initialConsole
 	})
 	describe('when using the component without tabs', () => {
-		it('Issues no warning nor logs nothing to console.', () => {
-			mount(AppSidebarTabs, {
-				propsData: {
-					title: 'Sidebar title.',
-				},
-				slots: {
-					default: ['<div />'],
-				},
+		describe('with only one div', () => {
+			beforeEach(() => {
+				wrapper = mount(AppSidebarTabs, {
+					propsData: {
+						title: 'Sidebar title.',
+					},
+					slots: {
+						default: ['<div />'],
+					},
+				})
 			})
-			expect(onWarning).toHaveBeenCalledTimes(0)
-			expect(consoleDebug).toHaveBeenCalledTimes(0)
+			it('Issues no warning nor logs to console.', () => {
+				expect(onWarning).toHaveBeenCalledTimes(0)
+				expect(consoleDebug).toHaveBeenCalledTimes(0)
+			})
+			it('does not display the nav element', () => {
+				expect(wrapper.find('nav').exists()).toBe(false)
+			})
+		})
+		describe('with div and secondary action', () => {
+			beforeEach(() => {
+				wrapper = mount(AppSidebarTabs, {
+					propsData: {
+						title: 'Sidebar title.',
+					},
+					slots: {
+						default: '<div />',
+						'secondary-actions': ['<ActionButton icon="icon-delete">Test</ActionButton>'],
+					},
+					stubs: {
+						// used to register custom components
+						ActionButton,
+					},
+				})
+			})
+			it('Issues no warning.', () => {
+				expect(onWarning).toHaveBeenCalledTimes(0)
+			})
 		})
 
-		it('Issues no warning when using secondary actions.', () => {
-			mount(AppSidebarTabs, {
-				propsData: {
-					title: 'Sidebar title.',
-				},
-				slots: {
-					default: '<div />',
-					'secondary-actions': ['<ActionButton icon="icon-delete">Test</ActionButton>'],
-				},
-				stubs: {
-					// used to register custom components
-					ActionButton,
-				},
-			})
-			expect(onWarning).toHaveBeenCalledTimes(0)
+		it('does not display the nav element', () => {
+			expect(wrapper.find('nav').exists()).toBe(false)
 		})
 	})
 	describe('when only children of type AppSidebarTab are used', () => {
-		it('Issues no warning.', () => {
-			mount(AppSidebarTabs, {
-				slots: {
-					default: [
-						'<app-sidebar-tab id="1" icon="icon-details" name="Tab1">Tab1</app-sidebar-tab>',
-						'<app-sidebar-tab id="2" icon="icon-details" name="Tab2">Tab2</app-sidebar-tab>',
-					],
-				},
-				stubs: {
-					// used to register custom components
-					'app-sidebar-tab': AppSidebarTab,
-				},
+		describe('when they are more than 1 child of type AppSidebarTab are used', () => {
+			beforeEach(() => {
+				wrapper = mount(AppSidebarTabs, {
+					slots: {
+						default: [
+							'<app-sidebar-tab id="1" icon="icon-details" name="Tab1">Tab1</app-sidebar-tab>',
+							'<app-sidebar-tab id="2" icon="icon-details" name="Tab2">Tab2</app-sidebar-tab>',
+						],
+					},
+					stubs: {
+						// used to register custom components
+						AppSidebarTab,
+					},
+				})
 			})
-			expect(onWarning).toHaveBeenCalledTimes(0)
+			it('Issues no warning.', () => {
+				expect(onWarning).toHaveBeenCalledTimes(0)
+			})
+			it('display the nav element', () => {
+				expect(wrapper.find('nav').exists()).toBe(true)
+			})
+			it('display all the elements in li', () => {
+				const liList = wrapper.findAll('nav>ul>li')
+				expect(liList.length).toEqual(2)
+			})
+			it('emit "update:active" event with the tab id when clicking on a tab', () => {
+				const firstLink = wrapper.find('nav>ul>li>a')
+				const id = firstLink.attributes('id')
+				firstLink.trigger('click')
+				expect(wrapper.emitted('update:active')[0]).toEqual([id])
+			})
+		})
+		describe('when they is only 1 child of type AppSidebarTab are used', () => {
+			beforeEach(() => {
+				wrapper = mount(AppSidebarTabs, {
+					slots: {
+						default: [
+							'<app-sidebar-tab id="1" icon="icon-details" name="Tab1">Tab1</app-sidebar-tab>',
+						],
+					},
+					stubs: {
+						// used to register custom components
+						AppSidebarTab,
+					},
+				})
+			})
+			it('Issues no warning.', () => {
+				expect(onWarning).toHaveBeenCalledTimes(0)
+			})
+			it('does not display the nav element', () => {
+				expect(wrapper.find('nav').exists()).toBe(false)
+			})
 		})
 	})
 	describe('when tabs and other elements are mixed', () => {
