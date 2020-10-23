@@ -105,11 +105,6 @@ describe('AppSidebarTabs.vue', () => {
 					],
 				},
 				stubs: {
-					/*
-					 * Register the component with PascalCase and kebab-case
-					 * to make sure both works.
-					 */
-					'app-sidebar-tab': AppSidebarTab,
 					AppSidebarTab,
 				},
 			})
