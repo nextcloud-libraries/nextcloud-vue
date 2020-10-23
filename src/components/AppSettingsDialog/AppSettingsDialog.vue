@@ -75,9 +75,9 @@ export default {
 			required: true,
 		},
 		/**
-		 * Hides the navigation on desktop if true
+		 * Shows the navigation on desktop if true
 		 */
-		hideNavigation: {
+		showNavigation: {
 			type: Boolean,
 			default: false,
 		},
@@ -95,7 +95,7 @@ export default {
 	computed: {
 
 		hasNavigation() {
-			if (this.isMobile || this.hideNavigation) {
+			if (this.isMobile || !this.showNavigation) {
 				return false
 			} else {
 				return true
