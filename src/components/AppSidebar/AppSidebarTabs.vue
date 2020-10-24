@@ -26,8 +26,7 @@
 <template>
 	<div class="app-sidebar-tabs">
 		<!-- tabs navigation -->
-		<!-- 33 and 34 code is for page up and page down
-			the working shortcode "pageup" and "pagedown" are not allowed on linter -->
+		<!-- 33 and 34 code is for page up and page down -->
 		<nav v-if="hasMultipleTabs"
 			class="app-sidebar-tabs__nav"
 			@keydown.left.exact.prevent="focusPreviousTab"
