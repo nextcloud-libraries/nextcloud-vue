@@ -78,6 +78,7 @@ export default {
 		:clearable="clearable"
 		:minute-step="minuteStep"
 		:format="format"
+		:formatter="formatter"
 		:type="type"
 		:value="value"
 		:append-to-body="false"
@@ -125,7 +126,7 @@ export default {
 		},
 
 		format: {
-			type: [String, Object],
+			type: String,
 			default() {
 				const map = {
 					date: 'YYYY-MM-DD',
@@ -136,6 +137,13 @@ export default {
 					week: 'w',
 				}
 				return map[this.type] || map.date
+			},
+		},
+
+		formatter: {
+			type: Object,
+			default() {
+				return null
 			},
 		},
 
