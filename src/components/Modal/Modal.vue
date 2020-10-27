@@ -685,13 +685,19 @@ $header-size: 50px;
 	&:not(&--large):not(&--full) .modal-container {
 		max-width: 900px;
 		max-height: 80%;
+		width: 900px;
+		height: 80%;
 	}
 
 	// Sizing
+	// Always set max and height/width simultaneously here
+	// to allow children to contain themselves properly
 	&--full {
 		.modal-container {
 			max-width: 100%;
 			max-height: 100%;
+			width: 100%;
+			height: 100%;
 			border-radius: 0;
 		}
 	}
@@ -713,6 +719,8 @@ $header-size: 50px;
 		.modal-container {
 			max-width: 85%;
 			max-height: 90%;
+			width: 85%;
+			height: 90%;
 		}
 		.prev,
 		.next {
