@@ -113,19 +113,19 @@ export default {
 	},
 
 	updated() {
-		if (!this.scroller) {
-			// Get the scroller element
-			this.scroller = this.$refs.settingsScroller
+		// Check that the scroller element has been mounted
+		if (!this.$refs.settingsScroller) {
+			return
 		}
-		if (this.scroller && !this.addedScrollListener) {
+		// Get the scroller element
+		this.scroller = this.$refs.settingsScroller
+		if (!this.addedScrollListener) {
 			this.scroller.addEventListener('scroll', this.handleScroll)
 			this.addedScrollListener = true
 		}
+
 	},
 
-	beforeDestroy() {
-		this.scroller.removeEventListener('scroll', this.handleScroll)
-	},
 	methods: {
 
 		/**
@@ -165,6 +165,10 @@ export default {
 
 		handleCloseModal() {
 			this.$emit('update:open', false)
+			// Remove scroll listener each time the modal is closed
+			this.scroller.removeEventListener('scroll', this.handleScroll)
+			this.addedScrollListener = false
+			this.scroller.scrollTop = 0
 		},
 
 		handleScroll() {
