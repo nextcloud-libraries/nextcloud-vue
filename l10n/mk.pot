@@ -18,7 +18,7 @@ msgstr "{tag} (невидливо)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (ограничено)"
 
-#: src/components/Actions/Actions.vue:249
+#: src/components/Actions/Actions.vue:254
 msgid "Actions"
 msgstr "Акции"
 
@@ -53,6 +53,11 @@ msgstr "Храна & Пијалоци"
 #: src/components/EmojiPicker/EmojiPicker.vue:171
 msgid "Frequently used"
 msgstr "Најчесто користени"
+
+#: src/components/RichContenteditable/RichContenteditable.vue:254
+msgid "Message limit of {count} characters reached"
+msgstr ""
+"Ограничувањето на должината на пораката од {count} карактери е надминато"
 
 #: src/components/Modal/Modal.vue:166
 msgid "Next"
@@ -104,6 +109,10 @@ msgstr "Избери ознака"
 msgid "Settings"
 msgstr "Параметри"
 
+#: src/components/AppSettingsDialog/AppSettingsDialog.vue:106
+msgid "Settings navigation"
+msgstr "Параметри за навигација"
+
 #: src/components/EmojiPicker/EmojiPicker.vue:172
 msgid "Smileys & Emotion"
 msgstr "Смешковци & Емотикони"
@@ -123,3 +132,7 @@ msgstr "Патувања & Места"
 #: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
 msgstr "Неможе да се принајде групата"
+
+#: src/components/RichContenteditable/RichContenteditable.vue:151
+msgid "Write message, @ to mention someone …"
+msgstr "Напиши порака, @ за да спомнеш некој …"
