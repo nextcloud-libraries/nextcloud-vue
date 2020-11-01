@@ -3,10 +3,12 @@
 # SleepyJesse <Jesse_Xu@live.com>, 2020
 # Jianming Liang <fuufuukun@163.com>, 2020
 # Pascal Janus <pascal_janus@163.com>, 2020
+# Toms Project <tom@projectoms.com>, 2020
+# tranxde, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Pascal Janus <pascal_janus@163.com>, 2020\n"
+"Last-Translator: tranxde, 2020\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/nextcloud/teams/64236/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_CN\n"
@@ -20,9 +22,17 @@ msgstr "{tag} （不可见）"
 msgid "{tag} (restricted)"
 msgstr "{tag} （受限）"
 
-#: src/components/Actions/Actions.vue:247
+#: src/components/Actions/Actions.vue:254
 msgid "Actions"
 msgstr "行为"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:176
+msgid "Activities"
+msgstr "活动"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:174
+msgid "Animals & Nature"
+msgstr "动物 & 自然"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
@@ -32,9 +42,33 @@ msgstr "选择"
 msgid "Close"
 msgstr "关闭"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:181
+msgid "Custom"
+msgstr "自定义"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:180
+msgid "Flags"
+msgstr "旗帜"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:175
+msgid "Food & Drink"
+msgstr "食物 & 饮品"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:171
+msgid "Frequently used"
+msgstr "经常使用"
+
+#: src/components/RichContenteditable/RichContenteditable.vue:254
+msgid "Message limit of {count} characters reached"
+msgstr "已达到 {count} 个字符的消息限制"
+
 #: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "下一个"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:168
+msgid "No emoji found"
+msgstr "表情未找到"
 
 #: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
@@ -42,26 +76,66 @@ msgstr "下一个"
 msgid "No results"
 msgstr "无结果"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:178
+msgid "Objects"
+msgstr "物体"
+
 #: src/components/Modal/Modal.vue:302
 msgid "Pause slideshow"
 msgstr "暂停幻灯片"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:173
+msgid "People & Body"
+msgstr "人 & 身体"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:153
+msgid "Pick an emoji"
+msgstr "选择一个表情"
 
 #: src/components/Modal/Modal.vue:144
 msgid "Previous"
 msgstr "上一个"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:167
+msgid "Search"
+msgstr "搜索"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:170
+msgid "Search results"
+msgstr "搜索结果"
+
 #: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
 msgstr "选择一个标签"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:57
 msgid "Settings"
 msgstr "设置"
+
+#: src/components/AppSettingsDialog/AppSettingsDialog.vue:106
+msgid "Settings navigation"
+msgstr "设置向导"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:172
+msgid "Smileys & Emotion"
+msgstr "笑脸 & 情感"
 
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "开始幻灯片"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:179
+msgid "Symbols"
+msgstr "符号"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:177
+msgid "Travel & Places"
+msgstr "旅游 & 地点"
+
 #: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
 msgstr "无法搜索分组"
+
+#: src/components/RichContenteditable/RichContenteditable.vue:151
+msgid "Write message, @ to mention someone …"
+msgstr "输入消息，输入 @ 来提醒某人"
