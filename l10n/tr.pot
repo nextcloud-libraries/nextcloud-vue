@@ -2,11 +2,11 @@
 # Translators:
 # Kemal Oktay Aktoğan <oktayaktogan@gmail.com>, 2020
 # abc Def <hdogan1974@gmail.com>, 2020
-# Hüseyin Fahri Uzun <mail@fahriuzun.com>, 2020
+# Kaya Zeren <kayazeren@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Hüseyin Fahri Uzun <mail@fahriuzun.com>, 2020\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2020\n"
 "Language-Team: Turkish (https://www.transifex.com/nextcloud/teams/64236/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: tr\n"
@@ -20,48 +20,120 @@ msgstr "{tag} (görünmez)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (kısıtlı)"
 
-#: src/components/Actions/Actions.vue:247
+#: src/components/Actions/Actions.vue:254
 msgid "Actions"
-msgstr "Eylemler"
+msgstr "İşlemler"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:176
+msgid "Activities"
+msgstr "Etkinlikler"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:174
+msgid "Animals & Nature"
+msgstr "Hayvanlar ve Doğa"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
-msgstr "Seç"
+msgstr "Seçin"
 
 #: src/components/Modal/Modal.vue:117
 msgid "Close"
 msgstr "Kapat"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:181
+msgid "Custom"
+msgstr "Özel"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:180
+msgid "Flags"
+msgstr "Bayraklar"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:175
+msgid "Food & Drink"
+msgstr "Yeme ve İçme"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:171
+msgid "Frequently used"
+msgstr "Sık kullanılanlar"
+
+#: src/components/RichContenteditable/RichContenteditable.vue:254
+msgid "Message limit of {count} characters reached"
+msgstr "{count} karakter ileti sınırına ulaşıldı"
+
 #: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "Sonraki"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:168
+msgid "No emoji found"
+msgstr "Herhangi bir emoji bulunamadı"
 
 #: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
 #: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
 msgid "No results"
-msgstr "Sonuçlar yok"
+msgstr "Herhangi bir sonuç bulunamadı"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:178
+msgid "Objects"
+msgstr "Nesneler"
 
 #: src/components/Modal/Modal.vue:302
 msgid "Pause slideshow"
-msgstr "Slayt gösterisini duraklat"
+msgstr "Slayt sunumunu duraklat"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:173
+msgid "People & Body"
+msgstr "İnsanlar ve Beden"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:153
+msgid "Pick an emoji"
+msgstr "Bir emoji seçin"
 
 #: src/components/Modal/Modal.vue:144
 msgid "Previous"
 msgstr "Önceki"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:167
+msgid "Search"
+msgstr "Arama"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:170
+msgid "Search results"
+msgstr "Arama sonuçları"
+
 #: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
 msgstr "Bir etiket seçin"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:57
 msgid "Settings"
 msgstr "Ayarlar"
 
+#: src/components/AppSettingsDialog/AppSettingsDialog.vue:106
+msgid "Settings navigation"
+msgstr "Gezinme ayarları"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:172
+msgid "Smileys & Emotion"
+msgstr "İfadeler ve Duygular"
+
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
-msgstr "Slayt gösterisini başlat"
+msgstr "Slayt sunumunu başlat"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:179
+msgid "Symbols"
+msgstr "Simgeler"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:177
+msgid "Travel & Places"
+msgstr "Gezi ve Yerler"
 
 #: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
-msgstr "Grupta arama yapılamıyor"
+msgstr "Grupta arama yapılamadı"
+
+#: src/components/RichContenteditable/RichContenteditable.vue:151
+msgid "Write message, @ to mention someone …"
+msgstr "İletiyi yazın. Birini anmak için @ kullanın …"
