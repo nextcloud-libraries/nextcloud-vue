@@ -32,7 +32,10 @@ module.exports = (on, config) => {
 	// Disable spell checking to prevent rendering differences
 	on('before:browser:launch', (browser, launchOptions) => {
 		if (browser.family === 'chromium' && browser.name !== 'electron') {
-			launchOptions.preferences.default['browser.enable_spellchecking'] = false
+			Object.assign(launchOptions.preferences.default, {
+				browser: Object.assign(launchOptions.preferences.default.browser, { enable_spellchecking: false, enable_autospellcorrect: false }),
+				spellcheck: Object.assign(launchOptions.preferences.default.spellcheck, { dictionary: [] }),
+			})
 			return launchOptions
 		}
 
@@ -42,7 +45,9 @@ module.exports = (on, config) => {
 		}
 
 		if (browser.name === 'electron') {
-			launchOptions.preferences.spellcheck = false
+			Object.assign(launchOptions.preferences, {
+				webPreferences: Object.assign(launchOptions.preferences.webPreferences, { spellcheck: false }),
+			})
 			return launchOptions
 		}
 	})

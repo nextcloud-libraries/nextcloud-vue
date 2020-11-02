@@ -32,7 +32,7 @@ import icons from '../../../../styleguide/assets/icons.css'
 import variables from '../../../../styleguide/assets/variables.css'
 
 // Import font so CI has the same
-import 'fontsource-roboto'
+import font from 'typeface-noto-sans'
 
 describe('AppSidebar.vue', () => {
 	'use strict'
@@ -48,7 +48,7 @@ describe('AppSidebar.vue', () => {
 		}
 	`
 	// Load the server CSS styles
-	const cssFiles = [server, icons, variables]
+	const cssFiles = [font, server, icons, variables]
 
 	// Possible props and actions
 	const title = 'Very long title that will certainly overflow the sidebar width'

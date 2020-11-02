@@ -82,12 +82,12 @@ module.exports = {
 		rules: [
 			{
 				test: /\.css$/,
-				use: ['vue-style-loader', 'css-loader', 'resolve-url-loader'],
+				use: ['style-loader', 'css-loader', 'resolve-url-loader'],
 			},
 			{
 				test: /\.scss$/,
 				use: [
-					'vue-style-loader',
+					'style-loader',
 					'css-loader',
 					'resolve-url-loader',
 					{
@@ -154,5 +154,10 @@ module.exports = {
 	resolve: {
 		extensions: ['*', '.js', '.vue'],
 		symlinks: false,
+		// Alias the default server assets path to link to local one
+		alias: {
+			'/core/css/../img': path.join(__dirname, 'styleguide/assets/img'),
+			'/core/css/../fonts': path.join(__dirname, 'styleguide/assets/fonts'),
+		},
 	},
 }
