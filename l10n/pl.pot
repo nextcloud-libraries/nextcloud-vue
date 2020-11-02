@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Valdnet, 2020
 # Artur Skoczylas <art.skoczylas@gmail.com>, 2020
+# Valdnet, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Artur Skoczylas <art.skoczylas@gmail.com>, 2020\n"
+"Last-Translator: Valdnet, 2020\n"
 "Language-Team: Polish (https://www.transifex.com/nextcloud/teams/64236/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
@@ -111,7 +111,7 @@ msgstr "Ustawienia"
 
 #: src/components/AppSettingsDialog/AppSettingsDialog.vue:106
 msgid "Settings navigation"
-msgstr "Ustawienia nawigacji"
+msgstr "Nawigacja ustawień"
 
 #: src/components/EmojiPicker/EmojiPicker.vue:172
 msgid "Smileys & Emotion"
