@@ -142,7 +142,7 @@ $autocomplete-padding: 10px;
 		border: 2px solid var(--color-main-background);
 		border-radius: 50%;
 		background-color: var(--color-main-background);
-		font-size: 14px;
+		font-size: var(--default-font-size);
 		line-height: 14px;
 		&--online {
 			color: #49b382;
