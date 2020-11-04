@@ -73,13 +73,14 @@ describe('AppSidebar.vue', () => {
 				compact.forEach(comp => {
 					header.forEach(head => {
 						secondary.forEach(second => {
+							// TODO remove when https://github.com/mjhea0/cypress-visual-regression/pull/56
 							const fileName = `AppSidebar.vue
-									–subtitle_${subtitle ? 'true' : 'null'}
-									–starred_${star === null ? 'null' : star ? 'true' : 'false'}
-									–compact_${comp ? 'true' : 'false'}
-									–header_${head ? 'image' : 'none'}
-									–secondary_${second ? 'button' : 'none'}
-									–editable_${editable ? 'true' : 'false'}
+									-subtitle_${subtitle ? 'true' : 'null'}
+									-starred_${star === null ? 'null' : star ? 'true' : 'false'}
+									-compact_${comp ? 'true' : 'false'}
+									-header_${head ? 'image' : 'none'}
+									-secondary_${second ? 'button' : 'none'}
+									-editable_${editable ? 'true' : 'false'}
 							`.replace(/(\n|\t)/gi, '')
 
 							const defaultOptions = {
