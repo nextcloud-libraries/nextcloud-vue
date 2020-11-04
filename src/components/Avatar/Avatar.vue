@@ -670,7 +670,7 @@ export default {
 		height: 18px;
 		width: 18px;
 		line-height: 14px;
-		font-size: var(--default-font-size);
+		font-size: 14px;
 		border: 2px solid var(--color-main-background);
 		background-color: var(--color-main-background);
 		border-radius: 50%;
@@ -711,7 +711,7 @@ export default {
 	.popovermenu {
 		display: block;
 		margin: 0;
-		font-size: var(--default-font-size);
+		font-size: 14px;
 	}
 }
 
