@@ -22,6 +22,11 @@
 ```
 <AppNavigationNewItem title="New Item" icon="icon-add" @new-item="function(value){alert(value)}" />
 ```
+
+### New Item element with a loading animation instead of the icon
+```
+<AppNavigationNewItem title="New Item" icon="icon-add" :loading="true" />
+```
 </docs>
 <template>
 	<li
