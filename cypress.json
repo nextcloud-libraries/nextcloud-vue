@@ -5,6 +5,7 @@
   "defaultCommandTimeout": 6000,
   "experimentalComponentTesting": true,
   "componentFolder": "tests/visual",
+  "testFiles": "**/*.visual.*",
   "nodeVersion": "system",
   "env": {
     "failSilently": false,

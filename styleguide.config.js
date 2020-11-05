@@ -1,18 +1,20 @@
 const path = require('path');
+const webpackConfig = require('./webpack.dev.js');
 
 module.exports = {
 	require: [
 		path.join(__dirname, 'styleguide/global.requires.js'),
 		path.join(__dirname, 'styleguide/assets/icons.css'),
-		path.join(__dirname, 'styleguide/assets/additional.scss')
+		path.join(__dirname, 'styleguide/assets/additional.scss'),
 	],
 	pagePerSection: true,
 	minimize: true,
 	verbose: false,
-	webpackConfig: Object.assign({}, require('./webpack.dev.js'), {
+	webpackConfig: Object.assign({}, webpackConfig, {
 		externals: {},
 		module: {
-			rules: require('./webpack.dev.js').module.rules.filter(
+			// Ignore eslint
+			rules: webpackConfig.module.rules.filter(
 				rule => rule.use !== 'eslint-loader'
 			),
 		},

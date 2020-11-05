@@ -18,8 +18,8 @@ jobs:
       fail-fast: false
       matrix:
         # run x copies of the current job in parallel
-        containers: [1]
-        node-version: ['12']
+        containers: [1, 2]
+        node-version: [12]
 
     name: Runner ${{ matrix.containers }}
 
