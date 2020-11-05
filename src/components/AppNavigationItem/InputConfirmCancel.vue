@@ -30,7 +30,7 @@
 <template>
 	<div class="app-navigation-entry__inline-input-container">
 		<form @submit.prevent="confirm" @keydown.esc.exact.prevent="cancel" @click.stop.prevent>
-			<input ref="editingInput"
+			<input ref="input"
 				v-model="valueModel"
 				type="text"
 				class="app-navigation-entry__inline-input"
@@ -72,6 +72,11 @@ export default {
 		},
 		cancel() {
 			this.$emit('cancel')
+		},
+		focusInput() {
+			this.$nextTick(() => {
+				this.$refs.input.focus()
+			})
 		},
 	},
 }

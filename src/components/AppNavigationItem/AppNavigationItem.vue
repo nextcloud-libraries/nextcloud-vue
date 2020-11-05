@@ -135,7 +135,9 @@ Just set the `pinned` prop.
 				{{ title }}
 			</span>
 			<div v-if="editingActive" class="editingContainer">
-				<InputConfirmCancel v-model="editingValue"
+				<InputConfirmCancel
+					ref="editingInput"
+					v-model="editingValue"
 					:placeholder="editPlaceholder !== '' ? editPlaceholder : title"
 					@cancel="cancelEditing"
 					@confirm="handleEditingDone" />
@@ -401,9 +403,7 @@ export default {
 			this.editingValue = this.title
 			this.editingActive = true
 			this.onMenuToggle(false)
-			this.$nextTick(() => {
-				// this.$refs.editingInput.focus()
-			})
+			this.$refs.editingInput.focusInput()
 		},
 		cancelEditing() {
 			this.editingActive = false

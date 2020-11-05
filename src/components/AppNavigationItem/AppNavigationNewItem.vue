@@ -52,7 +52,8 @@
 
 			<!-- new Item input -->
 			<div v-if="newItemActive" class="newItemContainer">
-				<InputConfirmCancel v-model="newItemValue"
+				<InputConfirmCancel ref="newItemInput"
+					v-model="newItemValue"
 					:placeholder="editPlaceholder !== '' ? editPlaceholder : title"
 					@cancel="cancelNewItem"
 					@confirm="handleNewItemDone" />
@@ -130,9 +131,7 @@ export default {
 			if (!this.loading) {
 				this.newItemActive = true
 				this.onMenuToggle(false)
-				// this.$nextTick(() => {
-				// this.$refs.newItemInput.focus()
-				// })
+				this.$refs.newItemInput.focusInput()
 			}
 		},
 		cancelNewItem() {
