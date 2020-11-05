@@ -74,9 +74,7 @@ export default {
 			this.$emit('cancel')
 		},
 		focusInput() {
-			//this.$nextTick(() => {
 			this.$refs.input.focus()
-			//})
 		},
 	},
 }

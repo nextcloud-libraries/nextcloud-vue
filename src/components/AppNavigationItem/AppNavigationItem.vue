@@ -32,7 +32,7 @@
 * With an icon:
 
 ```
-<AppNavigationItem title="My title" icon="icon-category-enabled">
+<AppNavigationItem title="My title" icon="icon-category-enabled" />
 
 ```
 * With a spinning loader instead of the icon:
@@ -403,7 +403,9 @@ export default {
 			this.editingValue = this.title
 			this.editingActive = true
 			this.onMenuToggle(false)
-			this.$refs.editingInput.focusInput()
+			this.$nextTick(() => {
+				this.$refs.editingInput.focusInput()
+			})
 		},
 		cancelEditing() {
 			this.editingActive = false

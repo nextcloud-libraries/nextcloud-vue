@@ -130,7 +130,9 @@ export default {
 		handleNewItem() {
 			if (!this.loading) {
 				this.newItemActive = true
-				this.$refs.newItemInput.focusInput()
+				this.$nextTick(() => {
+					this.$refs.newItemInput.focusInput()
+				})
 			}
 		},
 		cancelNewItem() {
