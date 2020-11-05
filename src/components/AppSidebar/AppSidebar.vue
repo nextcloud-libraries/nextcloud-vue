@@ -639,7 +639,7 @@ $top-buttons-spacing: 6px;
 				.app-sidebar-header__subtitle {
 					padding: 0;
 					opacity: $opacity_normal;
-					font-size: 14px;
+					font-size: var(--default-font-size);
 				}
 
 				.app-sidebar-header__maintitle-form {
