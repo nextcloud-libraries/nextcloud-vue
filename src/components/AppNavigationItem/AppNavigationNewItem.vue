@@ -130,7 +130,6 @@ export default {
 		handleNewItem() {
 			if (!this.loading) {
 				this.newItemActive = true
-				this.onMenuToggle(false)
 				this.$refs.newItemInput.focusInput()
 			}
 		},
