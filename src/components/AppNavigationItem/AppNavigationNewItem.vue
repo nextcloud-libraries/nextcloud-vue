@@ -36,7 +36,7 @@
 		class="app-navigation-entry">
 		<!-- New Item -->
 		<div class="app-navigation-entry-div" @click="handleNewItem">
-			<div :class="{ 'icon-loading-small': loading, [icon]: icon }"
+			<div :class="{ 'icon-loading-small': loading, [icon]: !loading }"
 				class="app-navigation-entry-icon">
 				<slot v-if="!loading" name="icon" />
 			</div>
