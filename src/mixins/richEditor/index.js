@@ -100,17 +100,14 @@ export default {
 		 * @returns {string}
 		 */
 		genSelectTemplate(value) {
-			let data = this.userData[value]
+			const data = this.userData[value]
 
 			// Fallback to @mention in case no data matches
 			if (!data) {
 				// return `@${value}`
-				data = {
-					id: value,
-					label: value,
-					icon: 'icon-user',
-					source: 'users',
-				}
+				return value.indexOf(' ') === -1
+					? `@${value}`
+					: `@"${value}"`
 			}
 
 			// Return template and make sure we strip of new lines and tabs
