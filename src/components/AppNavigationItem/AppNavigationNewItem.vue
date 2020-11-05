@@ -18,6 +18,8 @@
   -
   -->
 <docs>
+# Usage
+
 ### New Item element
 ```
 <AppNavigationNewItem title="New Item" icon="icon-add" @new-item="function(value){alert(value)}" />

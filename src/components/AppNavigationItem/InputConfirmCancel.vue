@@ -1,3 +1,10 @@
+<docs>
+# Usage
+
+```
+<InputConfirmCancel @confirm="alert('confirm')" @cancel="alert('cancel')" />
+```
+</docs>
 <template>
 	<div class="app-navigation-entry__inline-input-container">
 		<form @submit.prevent="confirm" @keydown.esc.exact.prevent="cancel" @click.stop.prevent>
