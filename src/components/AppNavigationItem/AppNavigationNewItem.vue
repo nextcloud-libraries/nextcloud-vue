@@ -122,12 +122,12 @@ export default {
 	},
 	methods: {
 		handleNewItem() {
-			if(!this.loading) {
+			if (!this.loading) {
 				this.newItemActive = true
 				this.onMenuToggle(false)
-				//this.$nextTick(() => {
-					// this.$refs.newItemInput.focus()
-				//})
+				// this.$nextTick(() => {
+				// this.$refs.newItemInput.focus()
+				// })
 			}
 		},
 		cancelNewItem() {
