@@ -130,9 +130,10 @@
 				}"
 				class="app-sidebar-header">
 				<!-- close sidebar button -->
-				<a href="#"
+				<a
+					v-tooltip.auto="t('close')"
+					href="#"
 					class="app-sidebar__close icon-close"
-					:title="t('close')"
 					@click.prevent="closeSidebar" />
 
 				<!-- container for figure and description, allows easy switching to compact mode -->
@@ -178,6 +179,7 @@
 							<!-- main title -->
 							<h2 v-show="!titleEditable"
 								v-linkify="{text: title, linkify: linkifyTitle}"
+								v-tooltip.auto="titleTooltip"
 								class="app-sidebar-header__maintitle"
 								@click.self="editTitle">
 								{{ title }}
@@ -234,6 +236,7 @@
 import Actions from '../Actions'
 import Focus from '../../directives/Focus'
 import Linkify from '../../directives/Linkify'
+import Tooltip from '../../directives/Tooltip'
 import l10n from '../../mixins/l10n'
 import AppSidebarTabs from './AppSidebarTabs'
 import EmptyContent from '../EmptyContent/EmptyContent'
@@ -252,6 +255,7 @@ export default {
 		focus: Focus,
 		linkify: Linkify,
 		ClickOutside,
+		Tooltip,
 	},
 
 	mixins: [l10n],
@@ -347,6 +351,15 @@ export default {
 		linkifyTitle: {
 			type: Boolean,
 			default: false,
+		},
+
+		/**
+		 * Tooltip to display for the title.
+		 * Can be set to the same text in case it's too long.
+		 */
+		titleTooltip: {
+			type: String,
+			default: '',
 		},
 	},
 
