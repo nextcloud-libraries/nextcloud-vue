@@ -3,10 +3,11 @@
 # Carles Ferrando Garcia <carles.ferrando@gnuescultura.eu>, 2020
 # Marc Riera <marcriera@softcatala.org>, 2020
 # Toni Hermoso Pulido <toniher@softcatala.cat>, 2020
+# David Jacovkis <david@freeknowledge.eu>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Toni Hermoso Pulido <toniher@softcatala.cat>, 2020\n"
+"Last-Translator: David Jacovkis <david@freeknowledge.eu>, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/nextcloud/teams/64236/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ca\n"
@@ -55,6 +56,10 @@ msgstr "Menjar i begudes"
 #: src/components/EmojiPicker/EmojiPicker.vue:171
 msgid "Frequently used"
 msgstr "Utilitzats recentment"
+
+#: src/components/RichContenteditable/RichContenteditable.vue:255
+msgid "Message limit of {count} characters reached"
+msgstr "S'ha arribat al límit de {count} caràcters per missatge"
 
 #: src/components/Modal/Modal.vue:166
 msgid "Next"
@@ -106,6 +111,10 @@ msgstr "Selecciona una etiqueta"
 msgid "Settings"
 msgstr "Paràmetres"
 
+#: src/components/AppSettingsDialog/AppSettingsDialog.vue:106
+msgid "Settings navigation"
+msgstr "Navegació d'opcions"
+
 #: src/components/EmojiPicker/EmojiPicker.vue:172
 msgid "Smileys & Emotion"
 msgstr "Cares i emocions"
@@ -125,3 +134,7 @@ msgstr "Viatges i llocs"
 #: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
 msgstr "No es pot cercar el grup"
+
+#: src/components/RichContenteditable/RichContenteditable.vue:152
+msgid "Write message, @ to mention someone …"
+msgstr "Escriu un missatge, @ per mencionar algú..."
