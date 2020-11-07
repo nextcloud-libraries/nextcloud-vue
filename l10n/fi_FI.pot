@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Robin Lahtinen <robin.lahtinen@gmail.com>, 2020
+# teemue, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Robin Lahtinen <robin.lahtinen@gmail.com>, 2020\n"
+"Last-Translator: teemue, 2020\n"
 "Language-Team: Finnish (Finland) (https://www.transifex.com/nextcloud/teams/64236/fi_FI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fi_FI\n"
@@ -18,9 +19,17 @@ msgstr "{tag} (näkymätön)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (rajoitettu)"
 
-#: src/components/Actions/Actions.vue:247
+#: src/components/Actions/Actions.vue:254
 msgid "Actions"
 msgstr "Toiminnot"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:176
+msgid "Activities"
+msgstr "Aktiviteetit"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:174
+msgid "Animals & Nature"
+msgstr "Eläimet & luonto"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
@@ -30,9 +39,33 @@ msgstr "Valitse"
 msgid "Close"
 msgstr "Sulje"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:181
+msgid "Custom"
+msgstr "Mukautettu"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:180
+msgid "Flags"
+msgstr "Liput"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:175
+msgid "Food & Drink"
+msgstr "Ruoka & juoma"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:171
+msgid "Frequently used"
+msgstr "Usein käytetyt"
+
+#: src/components/RichContenteditable/RichContenteditable.vue:255
+msgid "Message limit of {count} characters reached"
+msgstr "Viestin maksimimerkkimäärä  {count} täynnä "
+
 #: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "Seuraava"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:168
+msgid "No emoji found"
+msgstr "Emojia ei löytynyt"
 
 #: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
@@ -40,26 +73,66 @@ msgstr "Seuraava"
 msgid "No results"
 msgstr "Ei tuloksia"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:178
+msgid "Objects"
+msgstr "Esineet & asiat"
+
 #: src/components/Modal/Modal.vue:302
 msgid "Pause slideshow"
 msgstr "Keskeytä diaesitys"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:173
+msgid "People & Body"
+msgstr "Ihmiset & keho"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:153
+msgid "Pick an emoji"
+msgstr "Valitse emoji"
 
 #: src/components/Modal/Modal.vue:144
 msgid "Previous"
 msgstr "Edellinen"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:167
+msgid "Search"
+msgstr "Etsi"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:170
+msgid "Search results"
+msgstr "Hakutulokset"
+
 #: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
 msgstr "Valitse tagi"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:57
 msgid "Settings"
 msgstr "Asetukset"
+
+#: src/components/AppSettingsDialog/AppSettingsDialog.vue:106
+msgid "Settings navigation"
+msgstr "Asetusnavigaatio"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:172
+msgid "Smileys & Emotion"
+msgstr "Hymiöt ja & tunteet"
 
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Aloita diaesitys"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:179
+msgid "Symbols"
+msgstr "Symbolit"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:177
+msgid "Travel & Places"
+msgstr "Matkustus & kohteet"
+
 #: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
 msgstr "Ryhmää ei voi hakea"
+
+#: src/components/RichContenteditable/RichContenteditable.vue:152
+msgid "Write message, @ to mention someone …"
+msgstr "Kirjoita viesti, @ mainitaksesi jonkun..."
