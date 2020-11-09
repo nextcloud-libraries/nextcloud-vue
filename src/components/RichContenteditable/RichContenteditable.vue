@@ -114,6 +114,7 @@ export default {
 			'rich-contenteditable__input--empty': isEmptyValue,
 			'rich-contenteditable__input--multiline': multiline,
 			'rich-contenteditable__input--overflow': isOverMaxlength,
+			'rich-contenteditable__input--disabled': disabled,
 		}"
 		:contenteditable="contenteditable"
 		:placeholder="placeholder"
@@ -177,6 +178,14 @@ export default {
 		contenteditable: {
 			type: Boolean,
 			default: true,
+		},
+
+		/**
+		 * Applies the 'disabled' styles
+		 */
+		disabled: {
+			type: Boolean,
+			default: false,
 		},
 
 		/**
@@ -281,6 +290,12 @@ export default {
 		// Update default value
 		const renderedContent = this.renderContent(this.value)
 		this.$refs.contenteditable.innerHTML = renderedContent
+
+		// Dirty hack to remove the contenteditable attribute at first load
+		// if the prop is set to false.
+		if (!this.contentEditable) {
+			this.$refs.contenteditable.contentEditable = false
+		}
 
 	},
 	beforeDestroy() {
@@ -441,20 +456,20 @@ export default {
 // Standalone styling, independent from server
 .rich-contenteditable__input {
 	overflow-y: auto;
-	width: auto;
+	width: 100%;
 	margin: 0;
-	padding: 6px;
+	padding: 8px;
 	cursor: text;
 	white-space: pre-wrap;
 	word-break: break-word;
 	color: var(--color-main-text);
 	border: 1px solid var(--color-border-dark);
-	border-radius: var(--border-radius);
+	border-radius: var(--border-radius-large);
 	outline: none;
 	background-color: var(--color-main-background);
 	font-family: var(--font-face);
 	font-size: inherit;
-	min-height: $clickable-area;
+	min-height: var(--default-line-height);
 	max-height: $clickable-area * 5.5;
 
 	// Cannot use :empty because of firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=1513303
@@ -465,16 +480,23 @@ export default {
 	}
 
 	&[contenteditable='false'] {
+		border: 0;
+		opacity: 1;
+		padding: 0;
+		border-radius: 0;
+	}
+
+	&--disabled {
+		border: 1px solid var(--color-border-dark);
+		padding: 8px;
 		cursor: default;
 		opacity: .5;
 		color: var(--color-text-lighter);
-		border: 1px solid var(--color-background-darker);
-		border-radius: var(--border-radius);
+		border-radius: var(--border-radius-large);
 		background-color: var(--color-background-dark);
 	}
 
 	&--multiline {
-		min-height: $clickable-area * 3;
 		// No max for mutiline
 		max-height: none;
 	}
