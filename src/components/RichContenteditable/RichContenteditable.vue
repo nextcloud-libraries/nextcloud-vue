@@ -268,9 +268,7 @@ export default {
 			const html = this.$refs.contenteditable.innerHTML
 			// Compare trimmed versions to be safe
 			if (this.value.trim() !== this.parseContent(html).trim()) {
-				const renderedContent = this.renderContent(this.value)
-				this.$refs.contenteditable.innerHTML = renderedContent
-				this.localValue = this.value
+				this.updateContent(this.value)
 			}
 		},
 	},
@@ -280,8 +278,7 @@ export default {
 		this.tribute.attach(this.$el)
 
 		// Update default value
-		const renderedContent = this.renderContent(this.value)
-		this.$refs.contenteditable.innerHTML = renderedContent
+		this.updateContent(this.value)
 
 	},
 	beforeDestroy() {
@@ -352,6 +349,16 @@ export default {
 			this.localValue = text
 			this.$emit('input', text)
 			this.$emit('update:value', text)
+		},
+
+		/**
+		 * Update content and local value
+		 * @param {string} value the message value
+		 */
+		updateContent(value) {
+			const renderedContent = this.renderContent(this.value)
+			this.$refs.contenteditable.innerHTML = renderedContent
+			this.localValue = this.value
 		},
 
 		/**
