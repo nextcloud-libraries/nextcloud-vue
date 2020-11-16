@@ -270,10 +270,13 @@ export default {
 
 <style lang="scss" scoped>
 
+::v-deep .modal-wrapper .modal-container {
+	display: flex;
+}
+
 .app-settings {
 	padding: 28px 16px;
 	display: flex;
-	height: 600px;
 	width: 100%;
 	&__navigation {
 		width: 200px;
