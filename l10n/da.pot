@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Thomas Nielsen <thsnielsen@gmail.com>, 2020
+# Peter Jespersen <flywheel@illogical.dk>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Thomas Nielsen <thsnielsen@gmail.com>, 2020\n"
+"Last-Translator: Peter Jespersen <flywheel@illogical.dk>, 2020\n"
 "Language-Team: Danish (https://www.transifex.com/nextcloud/teams/64236/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: da\n"
@@ -18,9 +19,17 @@ msgstr "{tag} (usynlig)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (begrænset)"
 
-#: src/components/Actions/Actions.vue:247
+#: src/components/Actions/Actions.vue:254
 msgid "Actions"
 msgstr "Handlinger"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:176
+msgid "Activities"
+msgstr "Aktiviteter"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:174
+msgid "Animals & Nature"
+msgstr "Dyr & Natur"
 
 #: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
@@ -30,31 +39,100 @@ msgstr "Vælg"
 msgid "Close"
 msgstr "Luk"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:181
+msgid "Custom"
+msgstr "Brugerdefineret"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:180
+msgid "Flags"
+msgstr "Flag"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:175
+msgid "Food & Drink"
+msgstr "Mad & Drikke"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:171
+msgid "Frequently used"
+msgstr "Ofte brugt"
+
+#: src/components/RichContenteditable/RichContenteditable.vue:255
+msgid "Message limit of {count} characters reached"
+msgstr "Begrænsning på {count} tegn er nået"
+
 #: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "Videre"
 
-#: src/components/Multiselect/Multiselect.vue:172
+#: src/components/EmojiPicker/EmojiPicker.vue:168
+msgid "No emoji found"
+msgstr "Ingen emoji fundet"
+
+#: src/components/Multiselect/Multiselect.vue:174
 #: src/components/MultiselectTags/MultiselectTags.vue:78
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
 msgid "No results"
 msgstr "Ingen resultater"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:178
+msgid "Objects"
+msgstr "Objekter"
 
 #: src/components/Modal/Modal.vue:302
 msgid "Pause slideshow"
 msgstr "Suspender fremvisning"
 
+#: src/components/EmojiPicker/EmojiPicker.vue:173
+msgid "People & Body"
+msgstr "Mennesker & Menneskekroppen"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:153
+msgid "Pick an emoji"
+msgstr "Vælg en emoji"
+
 #: src/components/Modal/Modal.vue:144
 msgid "Previous"
 msgstr "Forrige"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:167
+msgid "Search"
+msgstr "Søg"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:170
+msgid "Search results"
+msgstr "Søgeresultater"
 
 #: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
 msgstr "Vælg et mærke"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+#: src/components/AppNavigationSettings/AppNavigationSettings.vue:57
 msgid "Settings"
 msgstr "Indstillinger"
+
+#: src/components/AppSettingsDialog/AppSettingsDialog.vue:106
+msgid "Settings navigation"
+msgstr "Naviger i indstillinger"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:172
+msgid "Smileys & Emotion"
+msgstr "Smileys & Emotion"
 
 #: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Start fremvisning"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:179
+msgid "Symbols"
+msgstr "Symboler"
+
+#: src/components/EmojiPicker/EmojiPicker.vue:177
+msgid "Travel & Places"
+msgstr "Rejser & Rejsemål"
+
+#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
+msgid "Unable to search the group"
+msgstr "Kan ikke søge på denne gruppe"
+
+#: src/components/RichContenteditable/RichContenteditable.vue:152
+msgid "Write message, @ to mention someone …"
+msgstr "Skriv i meddelelse, @ for at nævne nogen  …"
