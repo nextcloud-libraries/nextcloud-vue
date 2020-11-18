@@ -27,9 +27,10 @@ It might be used for list rendering or within the multiselect for example
 
 ```vue
 <ListItemIcon title="User 1" />
+<ListItemIcon title="User 1" subtitle="Hidden subtitle because size is too small" :avatar-size="24" />
 ```
 ```vue
-<ListItemIcon title="User 1" :size="44" icon="icon-user" />
+<ListItemIcon title="User 1" :avatar-size="44" icon="icon-user" />
 ```
 
 ### With icon
@@ -63,7 +64,7 @@ It might be used for list rendering or within the multiselect for example
 			:disable-tooltip="true"
 			:display-name="displayName || title"
 			:is-no-user="isNoUser"
-			:size="size"
+			:size="avatarSize"
 			class="option__avatar" />
 		<div class="option__details">
 			<Highlight
@@ -71,7 +72,7 @@ It might be used for list rendering or within the multiselect for example
 				:text="title"
 				:search="search" />
 			<Highlight
-				v-if="subtitle !== ''"
+				v-if="isValidSubtitle && isSizeBigEnough"
 				class="option__linetwo"
 				:text="subtitle"
 				:search="search" />
@@ -92,7 +93,9 @@ import Avatar from '../Avatar'
 import Highlight from '../Highlight'
 import { userStatus } from '../../mixins'
 
-const margin = 6
+// global margin, ^2 ratio
+const margin = 8
+const defaultSize = 32
 
 export default {
 	name: 'ListItemIcon',
@@ -114,6 +117,7 @@ export default {
 
 		/**
 		 * Secondary optional line
+		 * Only visible on size of 32 and above
 		 */
 		subtitle: {
 			type: String,
@@ -137,11 +141,12 @@ export default {
 		},
 
 		/**
-		 * Set a size in px for the height
+		 * Set a size in px that will define the avatar height/width
+		 * and therefore, the height of the component
 		 */
-		size: {
+		avatarSize: {
 			type: Number,
-			default: 32,
+			default: defaultSize,
 		},
 
 		/**
@@ -172,13 +177,20 @@ export default {
 		hasIcon() {
 			return this.icon !== ''
 		},
-
 		hasSlot() {
 			return !!this.$slots.default
 		},
+
+		isValidSubtitle() {
+			return this.subtitle?.trim?.() !== ''
+		},
+		isSizeBigEnough() {
+			return this.avatarSize >= defaultSize
+		},
+
 		cssVars() {
 			return {
-				'--height': this.size + 2 * this.margin + 'px',
+				'--height': this.avatarSize + 2 * this.margin + 'px',
 				'--margin': this.margin + 'px',
 			}
 		},
