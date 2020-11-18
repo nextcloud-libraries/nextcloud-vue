@@ -131,6 +131,7 @@ Please see the [AvatarSelectOption](#AvatarSelectOption) component
 		:limit="maxOptions"
 		:close-on-select="!multiple"
 		:multiple="multiple"
+		:open-direction="openDirection"
 		:label="label"
 		:track-by="trackBy"
 		tag-placeholder="create"
@@ -283,6 +284,16 @@ export default {
 			validator: (value) => {
 				return value > 0
 			},
+		},
+
+		/**
+		 * Fixed opening direction
+		 * @default ''
+		 * @type {String}
+		 */
+		openDirection: {
+			type: String,
+			default: '',
 		},
 	},
 
