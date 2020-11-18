@@ -81,6 +81,7 @@ window.OC = {
 			return aa.length - bb.length
 		},
 	},
+	webroot: ''
 }
 window.OCA = {}
 
