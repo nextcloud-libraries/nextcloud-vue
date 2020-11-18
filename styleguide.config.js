@@ -1,5 +1,16 @@
 const path = require('path');
+const { merge } = require('webpack-merge');
 const webpackConfig = require('./webpack.dev.js');
+
+const newConfig = Object.assign({}, webpackConfig, {
+	externals: {},
+	module: {
+		// Ignore eslint
+		rules: webpackConfig.module.rules.filter(
+			rule => rule.use !== 'eslint-loader'
+		)
+	},
+})
 
 module.exports = {
 	require: [
@@ -10,22 +21,31 @@ module.exports = {
 	pagePerSection: true,
 	minimize: true,
 	verbose: false,
-	webpackConfig: Object.assign({}, webpackConfig, {
-		externals: {},
-		module: {
-			// Ignore eslint
-			rules: webpackConfig.module.rules.filter(
-				rule => rule.use !== 'eslint-loader'
-			),
+
+	webpackConfig: merge(newConfig, {
+		// https://webpack.js.org/configuration/dev-server/#devserverproxy
+		devServer: {
+			proxy: {
+				// redirect to the guest avatar endpoint
+				'/index.php/avatar': {
+					target: 'https://nextcloud.com/wp-content/themes/next/assets/img/common/nextcloud-square-logo.png',
+					changeOrigin: true,
+					ignorePath: true,
+					secure: false,
+				}
+			}
 		},
 	}),
+
 	exampleMode: 'expand',
 	usageMode: 'expand',
+
 	components: 'src/components/*/*.vue',
 	getComponentPathLine(componentPath) {
 		const name = path.basename(componentPath, '.vue')
 		return `import ${name} from '@nextcloud/vue/dist/Components/${name}'`
 	},
+
 	sections: [
 		{
 			name: 'Introduction',
@@ -95,17 +115,18 @@ module.exports = {
 					name: 'Multiselect',
 					components: [
 						'src/components/Multiselect/Multiselect.vue',
-						'src/components/Multiselect/AvatarSelectOption.vue',
 						'src/components/MultiselectTags/MultiselectTags.vue',
 					],
 				},
 			],
 		},
 	],
+
 	ribbon: {
 		text: 'Fork me on GitHub',
 		url: 'https://github.com/nextcloud/nextcloud-vue',
 	},
+
 	// see https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.js
 	theme: {
 		maxWidth: '900px',
