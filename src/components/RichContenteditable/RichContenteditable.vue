@@ -280,6 +280,9 @@ export default {
 		// Update default value
 		this.updateContent(this.value)
 
+		// Removes the contenteditable attribute at first load if the prop is
+		// set to false.
+		this.$refs.contenteditable.contentEditable = this.contenteditable
 	},
 	beforeDestroy() {
 		if (this.tribute) {
