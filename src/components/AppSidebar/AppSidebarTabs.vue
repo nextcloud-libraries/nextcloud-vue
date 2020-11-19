@@ -1,5 +1,6 @@
 <!--
   - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
+  - @copyright Copyright (c) 2020 Simon Belbeoch <simon.belbeoch@gmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
   -
@@ -22,17 +23,17 @@
 
 <!-- Follows the tab aria guidelines
 	https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-1/tabs.html -->
-
 <template>
 	<div class="app-sidebar-tabs">
 		<!-- tabs navigation -->
+		<!-- 33 and 34 code is for page up and page down -->
 		<nav v-if="hasMultipleTabs"
 			class="app-sidebar-tabs__nav"
 			@keydown.left.exact.prevent="focusPreviousTab"
 			@keydown.right.exact.prevent="focusNextTab"
 			@keydown.tab.exact.prevent="focusActiveTabContent"
-			@keydown.page-up.exact.prevent="focusFirstTab"
-			@keydown.page-down.exact.prevent="focusLastTab">
+			@keydown.33.exact.prevent="focusFirstTab"
+			@keydown.34.exact.prevent="focusLastTab">
 			<ul>
 				<li v-for="tab in tabs" :key="tab.id" class="app-sidebar-tabs__tab">
 					<a :id="tab.id"
@@ -43,7 +44,7 @@
 						:href="`#tab-${tab.id}`"
 						:tabindex="activeTab === tab.id ? null : -1"
 						role="tab"
-						@click.prevent="setActive">
+						@click.prevent="setActive(tab.id)">
 						<span :class="tab.icon" class="app-sidebar-tabs__tab-icon" />
 						{{ tab.name }}
 					</a>
@@ -67,7 +68,7 @@ const IsValidString = function(value) {
 }
 
 const IsValidStringWithoutSpaces = function(value) {
-	return value && typeof value === 'string' && value.trim() !== '' && value.indexOf(' ') === -1
+	return IsValidString(value) && value.indexOf(' ') === -1
 }
 
 export default {
@@ -133,13 +134,11 @@ export default {
 
 		/**
 		 * Set the current active tab
+		 * @param {string} id the id of the tab
 		 */
-		setActive({ target }) {
-			// if click on icon, make sure we get the link
-			const id = target.closest('a').dataset.id
+		setActive(id) {
 			this.activeTab = id
 			this.$emit('update:active', this.activeTab)
-
 		},
 
 		/**
@@ -148,8 +147,7 @@ export default {
 		 */
 		focusPreviousTab() {
 			if (this.currentTabIndex > 0) {
-				this.activeTab = this.tabs[this.currentTabIndex - 1].id
-				this.$emit('update:active', this.activeTab)
+				this.setActive(this.tabs[this.currentTabIndex - 1].id)
 			}
 			this.focusActiveTab() // focus nav item
 		},
@@ -160,8 +158,7 @@ export default {
 		 */
 		focusNextTab() {
 			if (this.currentTabIndex < this.tabs.length - 1) {
-				this.activeTab = this.tabs[this.currentTabIndex + 1].id
-				this.$emit('update:active', this.activeTab)
+				this.setActive(this.tabs[this.currentTabIndex + 1].id)
 			}
 			this.focusActiveTab() // focus nav item
 		},
@@ -171,8 +168,7 @@ export default {
 		 * and emit to the parent component
 		 */
 		focusFirstTab() {
-			this.activeTab = this.tabs[0].id
-			this.$emit('update:active', this.activeTab)
+			this.setActive(this.tabs[0].id)
 			this.focusActiveTab() // focus nav item
 		},
 
@@ -181,8 +177,7 @@ export default {
 		 * and emit to the parent component
 		 */
 		focusLastTab() {
-			this.activeTab = this.tabs[this.tabs.length - 1].id
-			this.$emit('update:active', this.activeTab)
+			this.setActive(this.tabs[this.tabs.length - 1].id)
 			this.focusActiveTab() // focus nav item
 		},
 
@@ -222,7 +217,7 @@ export default {
 				return
 			}
 
-			// Find all valid children (AppSidbarTab, other components, text nodes, etc.)
+			// Find all valid children (AppSidebarTab, other components, text nodes, etc.)
 			const children = this.$slots.default.filter(elem => elem.tag || elem.text.trim())
 
 			// Find all valid instances of AppSidebarTab
