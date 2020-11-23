@@ -215,8 +215,8 @@
 						</Actions>
 					</div>
 				</div>
-				<div v-if="$slots['primary-actions'] && !empty" class="app-sidebar-header__action">
-					<slot name="primary-actions" />
+				<div v-if="$slots['description'] && !empty" class="app-sidebar-header__description">
+					<slot name="description" />
 				</div>
 			</header>
 
@@ -688,11 +688,10 @@ $top-buttons-spacing: 6px;
 			}
 		}
 
-		// sidebar action(s) slot
-		&__action {
+		// sidebar description slot
+		&__description {
 			display: flex;
 			align-items: center;
-			max-height: 50px;
 			margin: 0 10px;
 		}
 	}
@@ -736,8 +735,8 @@ $top-buttons-spacing: 6px;
 
 <style lang="scss">
 // ! slots specific designs, cannot be scoped
-// if any button inside the action slot, icrease visual padding
-.app-sidebar-header__action {
+// if any button inside the description slot, icrease visual padding
+.app-sidebar-header__description {
 	button, .button,
 	input[type='button'],
 	input[type='submit'],
