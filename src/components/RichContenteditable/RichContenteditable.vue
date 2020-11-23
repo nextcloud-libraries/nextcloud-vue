@@ -121,6 +121,7 @@ export default {
 		class="rich-contenteditable__input"
 		role="textbox"
 		@input="onInput"
+		v-on="$listeners"
 		@keydown.delete="onDelete"
 		@keydown.enter.exact="onEnter"
 		@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
