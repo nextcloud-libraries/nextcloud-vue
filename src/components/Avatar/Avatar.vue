@@ -44,7 +44,7 @@
 		}"
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper"
-		@click="toggleMenu">
+		v-on="disableMenu ? { click: toggleMenu } : {}">
 		<!-- Avatar icon or image -->
 		<div v-if="iconClass" :class="iconClass" class="avatar-class-icon" />
 		<img v-else-if="isAvatarLoaded && !userDoesNotExist"
