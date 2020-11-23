@@ -1,26 +1,28 @@
 <!--
-  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
-  - @author Marco Ambrosini <marcoambrosini@pm.me>
-  - @author Jonas Sulzer <jonas@violoncello.ch>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  -->
+ - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ -
+ - @author John Molakvoæ <skjnldsv@protonmail.com>
+ - @author Marco Ambrosini <marcoambrosini@pm.me>
+ - @author Jonas Sulzer <jonas@violoncello.ch>
+ - @author Jonathan Treffler <mail@jonathan-treffler.de>
+ -
+ - @license GNU AGPL version 3 or any later version
+ -
+ - This program is free software: you can redistribute it and/or modify
+ - it under the terms of the GNU Affero General Public License as
+ - published by the Free Software Foundation, either version 3 of the
+ - License, or (at your option) any later version.
+ -
+ - This program is distributed in the hope that it will be useful,
+ - but WITHOUT ANY WARRANTY; without even the implied warranty of
+ - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ - GNU Affero General Public License for more details.
+ -
+ - You should have received a copy of the GNU Affero General Public License
+ - along with this program. If not, see <http://www.gnu.org/licenses/>.
+ -
+ -->
+
 <docs>
 
 # Usage
@@ -30,7 +32,7 @@
 * With an icon:
 
 ```
-<AppNavigationItem title="My title" icon="icon-category-enabled">
+<AppNavigationItem title="My title" icon="icon-category-enabled" />
 
 ```
 * With a spinning loader instead of the icon:
@@ -82,12 +84,12 @@ prevent the user from collapsing the items.
 </AppNavigationItem>
 ```
 ### Editable element
-Add the prop `:editable=true` and an edit placeholder if you need it. By devault
+Add the prop `:editable=true` and an edit placeholder if you need it. By default
 the placeholder is the previous title of the element.
 
 ```
 <AppNavigationItem title="Editable Item" :editable="true"
-	editPlaceholder="your_placeholder_here" />
+	editPlaceholder="your_placeholder_here" icon="icon-folder" @update:title="function(value){alert(value)}" />
 ```
 ### Undo element
 Just set the `undo` and `title` props. When clicking the undo button, an `undo` event is emitted.
@@ -111,14 +113,14 @@ Just set the `pinned` prop.
 			'app-navigation-entry--no-icon': !isIconShown,
 			'app-navigation-entry--opened': opened,
 			'app-navigation-entry--pinned': pinned,
-			'app-navigation-entry--editing' : editing,
+			'app-navigation-entry--editing' : editingActive,
 			'app-navigation-entry--deleted': undo,
 			'app-navigation-entry--collapsible': collapsible,
 			'active': isActive
 		}"
 		class="app-navigation-entry">
 		<!-- Icon and title -->
-		<a v-if="!undo && !editing"
+		<a v-if="!undo"
 			class="app-navigation-entry-link"
 			href="#"
 			@click="onClick">
@@ -129,9 +131,17 @@ Just set the `pinned` prop.
 				class="app-navigation-entry-icon">
 				<slot v-if="!loading" v-show="isIconShown" name="icon" />
 			</div>
-			<span class="app-navigation-entry__title" :title="title">
+			<span v-if="!editingActive" class="app-navigation-entry__title" :title="title">
 				{{ title }}
 			</span>
+			<div v-if="editingActive" class="editingContainer">
+				<InputConfirmCancel
+					ref="editingInput"
+					v-model="editingValue"
+					:placeholder="editPlaceholder !== '' ? editPlaceholder : title"
+					@cancel="cancelEditing"
+					@confirm="handleEditingDone" />
+			</div>
 		</a>
 
 		<AppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
@@ -151,29 +161,12 @@ Just set the `pinned` prop.
 				:force-menu="forceMenu"
 				:default-icon="menuIcon"
 				@update:open="onMenuToggle">
-				<ActionButton v-if="editable && !editing" icon="icon-rename" @click="handleEdit">
+				<ActionButton v-if="editable && !editingActive" icon="icon-rename" @click="handleEdit">
 					{{ editLabel }}
 				</ActionButton>
 				<ActionButton v-if="undo" icon="app-navigation-entry__deleted-button icon-history" @click="handleUndo" />
 				<slot name="actions" />
 			</Actions>
-		</div>
-
-		<!-- edit entry -->
-		<div v-if="editing" class="app-navigation-entry__edit">
-			<form @submit.prevent="handleRename" @keydown.esc.exact.prevent="cancelEdit">
-				<input ref="inputTitle"
-					v-model="newTitle"
-					type="text"
-					class="app-navigation-entry__edit-input"
-					:placeholder="editPlaceholder !== '' ? editPlaceholder : title">
-				<button type="submit"
-					class="icon-confirm"
-					@click.stop.prevent="handleRename" />
-				<button type="reset"
-					class="icon-close"
-					@click.stop.prevent="cancelEdit" />
-			</form>
 		</div>
 
 		<!-- Children elements -->
@@ -192,6 +185,7 @@ import Actions from '../Actions/Actions'
 import ActionButton from '../ActionButton/ActionButton'
 import AppNavigationIconCollapsible from './AppNavigationIconCollapsible'
 import isMobile from '../../mixins/isMobile'
+import InputConfirmCancel from './InputConfirmCancel.vue'
 
 export default {
 	name: 'AppNavigationItem',
@@ -200,6 +194,7 @@ export default {
 		Actions,
 		ActionButton,
 		AppNavigationIconCollapsible,
+		InputConfirmCancel,
 	},
 	directives: {
 		ClickOutside,
@@ -271,7 +266,7 @@ export default {
 			default: '',
 		},
 		/**
-		* Only for 'editable' items, sets placeholder text for the editing form.
+		* Only for items in 'editable' mode, sets the placeholder text for the editing form.
 		*/
 		editPlaceholder: {
 			type: String,
@@ -332,9 +327,9 @@ export default {
 
 	data() {
 		return {
-			newTitle: '',
+			editingValue: '',
 			opened: this.open,
-			editing: false,
+			editingActive: false,
 		}
 	},
 	computed: {
@@ -416,20 +411,20 @@ export default {
 
 		// Edition methods
 		handleEdit() {
-			this.newTitle = this.title
-			this.editing = true
+			this.editingValue = this.title
+			this.editingActive = true
 			this.onMenuToggle(false)
 			this.$nextTick(() => {
-				this.$refs.inputTitle.focus()
+				this.$refs.editingInput.focusInput()
 			})
 		},
-		cancelEdit() {
-			this.editing = false
+		cancelEditing() {
+			this.editingActive = false
 		},
-		handleRename() {
-			this.$emit('update:title', this.newTitle)
-			this.newTitle = ''
-			this.editing = false
+		handleEditingDone() {
+			this.$emit('update:title', this.editingValue)
+			this.editingValue = ''
+			this.editingActive = false
 		},
 
 		// Undo methods
@@ -440,7 +435,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../../fonts/scss/iconfont-vue';
 
 .app-navigation-entry {
@@ -479,8 +474,14 @@ export default {
 		}
 	}
 
+	&:not(.app-navigation-entry--editing) {
+		.app-navigation-entry-link, .app-navigation-entry-div {
+			padding-right: $icon-margin;
+		}
+	}
+
 	// Main entry link
-	.app-navigation-entry-link {
+	.app-navigation-entry-link, .app-navigation-entry-div {
 		z-index: 100; /* above the bullet to allow click*/
 		display: flex;
 		overflow: hidden;
@@ -488,7 +489,6 @@ export default {
 		box-sizing: border-box;
 		min-height: $clickable-area;
 		padding: 0;
-		padding-right: $icon-margin;
 		white-space: nowrap;
 		color: var(--color-main-text);
 		background-repeat: no-repeat;
@@ -511,6 +511,12 @@ export default {
 			max-width: 100%;
 			white-space: nowrap;
 			text-overflow: ellipsis;
+			padding-left: 6px;
+		}
+
+		.editingContainer {
+			width: calc(100% - #{$clickable-area});
+			margin: auto;
 		}
 	}
 
@@ -542,56 +548,6 @@ export default {
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		line-height: $clickable-area;
-	}
-}
-
-.app-navigation-entry__edit {
-	flex: 1 0 100%;
-	/* Ugly hack for overriding the main entry link */
-	/* align the input correctly with the link text
-	44px-6px padding for the input */
-	padding-left: $clickable-area - $icon-margin - 6px !important;
-	form {
-		display: flex;
-		width: 100%;
-		.app-navigation-entry__edit-input {
-			flex: 1 1 100%;
-		}
-
-		// submit and cancel buttons
-		button {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: $clickable-area !important;
-			color: var(--color-main-text);
-			background: none;
-			font-size: 16px;
-
-			// icon hover/focus feedback
-			&::before {
-				opacity: $opacity_normal;
-			}
-			&:hover,
-			&:focus {
-				&::before {
-					opacity: $opacity_full;
-				}
-			}
-
-			&.icon-confirm {
-				@include iconfont('confirm');
-			}
-
-			&.icon-close {
-				@include iconfont('close');
-			}
-		}
-		.icon-close {
-			margin: 0;
-			border: none;
-			background-color: transparent;
-		}
 	}
 }
 
