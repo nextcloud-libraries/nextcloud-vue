@@ -90,7 +90,7 @@
 
 		// long text area
 		p {
-			width: 150px;
+			width: 185px;
 			padding: #{$icon-margin / 2} 0;
 
 			cursor: pointer;
@@ -107,6 +107,11 @@
 
 		&__title {
 			font-weight: bold;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+			max-width: 100%;
+			display: inline-block;
 		}
 	}
 }
