@@ -7,6 +7,19 @@ jobs:
 
     name: Pot check
     steps:
+<<<<<<< HEAD
+    - uses: actions/checkout@master
+    - name: Set up Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: npm install
+      run: npm ci
+    - name: extract l10n files
+      run: npm run l10n:extract
+    - name: Check l10n file changes
+      run: bash -c "[[ ! \"`git status --porcelain l10n`\" ]] || ( echo 'Uncommited l10n changes. Run \`npm run l10n:extract\`.' && exit 1 )"
+=======
       - uses: actions/checkout@v2
 
       - name: Set up node
@@ -22,3 +35,4 @@ jobs:
 
       - name: Check l10n file changes
         run: bash -c "[[ ! \"`git status --porcelain l10n`\" ]] || ( echo 'Uncommited l10n changes. Run \`npm run l10n:extract\`.' && exit 1 )"
+>>>>>>> 78e4a0d (Do not check l10n comments)
