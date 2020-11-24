@@ -94,9 +94,9 @@ This component has the following slot:
 				class="user-bubble__avatar" />
 
 			<!-- Title -->
-			<h6 class="user-bubble__title">
+			<span class="user-bubble__title">
 				{{ displayName || user }}
-			</h6>
+			</span>
 
 			<!-- @slot Optional slot just after the title -->
 			<span v-if="$slots.title" class="user-bubble__secondary">
