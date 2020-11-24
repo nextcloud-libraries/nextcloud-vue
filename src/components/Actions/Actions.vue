@@ -134,7 +134,8 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 				:aria-label="ariaLabel"
 				aria-haspopup="true"
 				:aria-controls="randomId"
-				:aria-expanded="opened">
+				test-attr="1"
+				:aria-expanded="opened ? 'true' : 'false'">
 				{{ menuTitle }}
 			</button>
 
