@@ -82,6 +82,7 @@ export default {
 		:type="type"
 		:value="value"
 		:append-to-body="false"
+		:input-attr="inputAttr"
 		v-bind="$attrs"
 		v-on="$listeners"
 		@select-year="handleSelectYear"
@@ -152,6 +153,20 @@ export default {
 			default() {
 				return new Date()
 			},
+		},
+
+		required: {
+			type: Boolean,
+			default: false,
+		},
+	},
+
+	computed: {
+		// An object of attributes, that are not explicitely provided as prop on vue2-datepicker. Applied there onto html input element.
+		inputAttr() {
+			return {
+				required: this.required,
+			}
 		},
 	},
 
