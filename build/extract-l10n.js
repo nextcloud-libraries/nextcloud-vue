@@ -18,6 +18,11 @@ extractor
     ])
     .parseFilesGlob('./src/**/*.@(ts|js|vue)');
 
+// remove references to avoid conflicts
+extractor.getMessages().forEach((msg) => {
+    msg.references = [];
+});
+      
 extractor.savePotFile('./l10n/messages.pot');
 
 extractor.printStats();
