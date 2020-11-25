@@ -83,7 +83,8 @@ index 3a9ab8f8c1..4bc2b4a4d0 100644
 ## Releasing a new version
 
 - Checkout latest master (pull);
-- Run `npm version patch` (`npm version minor` if minor). This will return a new version name;
+- Edit CHANGELOG.md and add new entries there for the new version, then create a commit;
+- Run `npm version patch` (`npm version minor` if minor). This will return a new version name, make sure it matches what was added in the CHANGELOG.md;
 - Push the tag and the master branch `git push origin master [printed-version-name]`;
 - Make the tag a release on github and add the changelog (https://github.com/nextcloud/nextcloud-vue/releases);
 - Click edit on a previous release and copy the body of the changelog;
