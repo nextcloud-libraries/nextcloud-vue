@@ -1,7 +1,7 @@
 # Vue components
 
 [![npm last version](https://img.shields.io/npm/v/@nextcloud/vue.svg?style=flat-square)](https://www.npmjs.com/package/@nextcloud/vue)
-[![travis build status](https://img.shields.io/travis/com/nextcloud/nextcloud-vue/master.svg?style=flat-square)](https://travis-ci.com/nextcloud/nextcloud-vue)
+[![travis build status](https://img.shields.io/travis/com/nextcloud/nextcloud-vue/stable2.svg?style=flat-square)](https://travis-ci.com/nextcloud/nextcloud-vue)
 [![Dependabot status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?longCache=true&style=flat-square&logo=dependabot)](https://dependabot.com)
 [![Codacy Badge](https://img.shields.io/codacy/grade/57e9764b68904cbf8f9e050c33340ab4.svg?style=flat-square)](https://app.codacy.com/app/nextcloud/nextcloud-vue)
 [![Code coverage](https://img.shields.io/codecov/c/github/nextcloud/nextcloud-vue.svg?style=flat-square)](https://codecov.io/gh/nextcloud/nextcloud-vue/)
@@ -51,6 +51,12 @@ If you want to work on improving the components it’s best to run the latest co
     - In the repository of an app do `npm link @nextcloud/vue` (you need to re-link any time you do `npm ci` in the app)
 4. Then build the app with: `npm run build` (or watch for changes with `npm run watch`)
 
+### Styleguide
+
+When developing new components or extending compnents, make sure to also have some bits of related documentation like examples, where applicable.
+To test components and the documentation in that context, you can run `npm run styleguide` to run a local server that serves the style guide
+with all the components.
+
 ### Using vue-devtools in Firefox
 
 If you want to use [vue-devtools](https://github.com/vuejs/vue-devtools) in Firefox, you need to patch your nextcloud instance as follow:
@@ -76,10 +82,16 @@ index 3a9ab8f8c1..4bc2b4a4d0 100644
 
 ## Releasing a new version
 
-1. Checkout latest master
-2. Run `npm version`
-3. Push the tag and the master branch
-4. Make the tag a release on github and add the changelog (https://github.com/nextcloud/nextcloud-vue/releases)
+- Checkout latest stable2 (pull);
+- Edit CHANGELOG.md and add new entries there for the new version, then create a commit;
+- Run `npm version patch` (`npm version minor` if minor). This will return a new version name, make sure it matches what was added in the CHANGELOG.md;
+- Push the tag and the stable2 branch `git push origin stable2 [printed-version-name]`;
+- Make the tag a release on github and add the changelog (https://github.com/nextcloud/nextcloud-vue/releases);
+- Click edit on a previous release and copy the body of the changelog;
+- Go back, click on your release and paste the copied text;
+- Edit all the version numbers;
+- Click on preview and click on view full changelog, this will show you all the prs that have been; added since the previous version;
+- Copy them in the changelog with the same format as previous ones;
 
 <a href="https://www.netlify.com">
   <img src="https://www.netlify.com/img/global/badges/netlify-dark.svg"/>
