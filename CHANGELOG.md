@@ -2,32 +2,6 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v3.2.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.2.0) (2020-11-09)
-
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.1.2...v3.2.0)
-
-### Added
-- Add default font and line size [\#1542](https://github.com/nextcloud/nextcloud-vue/pull/1542) ([GretaD](gretadoci@gmail.com))
-- Add tooltips in app sidebar header [\#1555](https://github.com/nextcloud/nextcloud-vue/pull/1555) ([PVince81](https://github.com/PVince81))
-
-### Fixed
-- Fix RichEditor rendering of unknown mention, undefined checks and fix default value init [\#1504](https://github.com/nextcloud/nextcloud-vue/pull/1504)  ([skjnldsv](https://github.com/skjnldsv))
-- Fix menu font for apps [\#1543](https://github.com/nextcloud/nextcloud-vue/pull/1543) ([GretaD](gretadoci@gmail.com))
-- Reverted "Also set Modal height/width to allow children to define their height/width and not only max-height/width" [\#1558](https://github.com/nextcloud/nextcloud-vue/pull/1558) ([skjnldsv](https://github.com/skjnldsv))
-- Fix action text margin for long texts [\#1525](https://github.com/nextcloud/nextcloud-vue/pull/1525) ([st3iny](https://github.com/st3iny))
-
-### Version bumps
-- Bump cypress config and split into two specs [\#1548](https://github.com/nextcloud/nextcloud-vue/pull/1548) ([skjnldsv](https://github.com/skjnldsv))
-- Bump core-js from 3.6.5 to 3.7.0 [\#1557](https://github.com/nextcloud/nextcloud-vue/pull/1557)
-- Bump vue-styleguidist from 4.33.5 to 4.33.6 [\#1553](https://github.com/nextcloud/nextcloud-vue/pull/1553)
-- Bump css-loader from 3.6.0 to 5.0.1 [\#1537](https://github.com/nextcloud/nextcloud-vue/pull/1537) [\#1552](https://github.com/nextcloud/nextcloud-vue/pull/1552)
-- Bump webpack-cli from 4.1.0 to 4.2.0 [\#1546](https://github.com/nextcloud/nextcloud-vue/pull/1546)
-- Bump jest from 26.6.1 to 26.6.3 [\#1541](https://github.com/nextcloud/nextcloud-vue/pull/1541) [\#1545](https://github.com/nextcloud/nextcloud-vue/pull/1545)
-- Bump babel-jest from 26.6.2 to 26.6.3 [\#1544](https://github.com/nextcloud/nextcloud-vue/pull/1544)
-- Bump vue-loader from 15.9.4 to 15.9.5 [\#1536](https://github.com/nextcloud/nextcloud-vue/pull/1536)
-- Bump node-sass from 4.14.1 to 5.0.0 and sass-loader to 10.0.5 [\#1534](https://github.com/nextcloud/nextcloud-vue/pull/1534)
-- Translations updates
-
 ## [v2.9.0](https://github.com/nextcloud/nextcloud-vue/tree/v2.9.0) (2020-11-09)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v2.8.2...v2.9.0)
@@ -44,57 +18,12 @@ All notable changes to this project will be documented in this file.
 
 - Add ability to choose popovermenu alignment in avatar component #1554
 
-## [v3.1.2](https://github.com/nextcloud/nextcloud-vue/tree/v3.1.2) (2020-11-02)
-
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.1.1...v3.1.2)
-
-### Fixed
-- Use static emoji picker to solve performance issue with background CPU usage [\#1526](https://github.com/nextcloud/nextcloud-vue/pull/1526) ([PVince81](https://github.com/PVince81))
-- Fix setting navigation item blur [\#1503](https://github.com/nextcloud/nextcloud-vue/pull/1503) ([ma12-co](https://github.com/ma12-co))
-- Translations update [\#1519](https://github.com/nextcloud/nextcloud-vue/pull/1519)
-
-### Version bumps
-- Bump @vue/test-utils from 1.1.0 to 1.1.1 [\#1530](https://github.com/nextcloud/nextcloud-vue/pull/1530)
-- Bump webpack-merge from 5.2.0 to 5.3.0 [\#1528](https://github.com/nextcloud/nextcloud-vue/pull/1528)
-- Bump emoji-mart-vue-fast from 7.0.6 to 7.0.7 [\#1527](https://github.com/nextcloud/nextcloud-vue/pull/1527)
-- Bump cypress from 5.4.0 to 5.5.0 [\#1523](https://github.com/nextcloud/nextcloud-vue/pull/1523)
-- Bump @nextcloud/axios from 1.4.0 to 1.5.0 [\#1522](https://github.com/nextcloud/nextcloud-vue/pull/1522)
-- Bump file-loader from 6.1.1 to 6.2.0 [\#1521](https://github.com/nextcloud/nextcloud-vue/pull/1521)
-- Bump vue-loader from 15.9.3 to 15.9.4 [\#1520](https://github.com/nextcloud/nextcloud-vue/pull/1520)
-
 ## [v2.8.2](https://github.com/nextcloud/nextcloud-vue/tree/v2.8.2) (2020-11-02)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v2.8.1...v2.8.2)
 
 ### Fixed
 - Use static emoji picker to solve performance issue with background CPU usage [\#1526](https://github.com/nextcloud/nextcloud-vue/pull/1526) ([PVince81](https://github.com/PVince81))
-
-## [v3.1.1](https://github.com/nextcloud/nextcloud-vue/tree/v3.1.1) (2020-10-27)
-
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.1.0...v3.1.1)
-
-### Fixed
-
-- Also set Modal height/width to allow children to define their height/width and not only max-height/width [\#1518](https://github.com/nextcloud/nextcloud-vue/pull/1518) ([skjnldsv](https://github.com/skjnldsv))
-- Don't show navigation of settings modal by default [\#1509](https://github.com/nextcloud/nextcloud-vue/pull/1509) ([ma12-co](https://github.com/ma12-co))
-- Adapt to new vue2-datepicker format props [\#1517](https://github.com/nextcloud/nextcloud-vue/pull/1517) ([eneiluj](https://github.com/eneiluj))
-
-## [v3.1.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.1.0) (2020-10-21)
-
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.0.0...v3.1.0)
-
-### Fixed
-
-- Do not show letter if we have an icon and keep image ratio [\#1501](https://github.com/nextcloud/nextcloud-vue/pull/1501) ([skjnldsv](https://github.com/skjnldsv))
-- Allow an "extra" slot for the AppNavigationItem [\##1493](https://github.com/nextcloud/nextcloud-vue/pull/1493) ([ChristophWurst](https://github.com/ChristophWurst))
-- Fix avatar caching for non-user rendering [\#1491](https://github.com/nextcloud/nextcloud-vue/pull/1491) ([skjnldsv](https://github.com/skjnldsv))
-
-## [v3.0.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.0.0) (2020-10-20)
-
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v2.8.1...v3.0.0)
-
-### Fixed
-- Make appSidebar scrollable inside [\#1485](https://github.com/nextcloud/nextcloud-vue/pull/1485) ([skjnldsv](https://github.com/skjnldsv))
 
 ## [v2.8.1](https://github.com/nextcloud/nextcloud-vue/tree/v2.8.1) (2020-10-19)
 
