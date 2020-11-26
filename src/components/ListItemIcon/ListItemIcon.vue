@@ -150,6 +150,15 @@ export default {
 		},
 
 		/**
+		 * Disable the margins of this component.
+		 * Useful for integration in Multiselect for example
+		 */
+		noMargin: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * See the [Avatar](#Avatar) displayName prop
 		 * Fallback to title
 		 */
@@ -189,8 +198,11 @@ export default {
 		},
 
 		cssVars() {
+			// Don't use margin to calculate the height if noMargin
+			const margin = this.noMargin ? 0 : this.margin
+
 			return {
-				'--height': this.avatarSize + 2 * this.margin + 'px',
+				'--height': this.avatarSize + 2 * margin + 'px',
 				'--margin': this.margin + 'px',
 			}
 		},

@@ -102,6 +102,7 @@ export default {
 
 ### User layout
 By specifying `:user-select="true"`, you can benefit from a fully formatted layout.
+The singleLabel slot here is optional of course and here for demonstration purposes
 
 > **Note:** Any extra binding from the object will be added as attribute (`$attrs`) on the ListItemIcon component used here
 
@@ -110,33 +111,34 @@ By specifying `:user-select="true"`, you can benefit from a fully formatted layo
 	<Multiselect v-model="value" :options="formatedOptions"
 		label="displayName" track-by="user"
 		:user-select="true"
-		style="width: 250px" />
+		style="width: 250px">
+		<template #singleLabel="{ option }">
+			<ListItemIcon v-bind="option" :title="option.displayName" :avatar-size="24" :no-margin="true" />
+		</template>
+	</Multiselect>
 </template>
 
 <script>
 import Multiselect from '../index'
+
+// Building fake data for the docs
+const options = ['admin', 'user1', 'user2', 'guest', 'group1']
+const formattedOptions = options.map(item => {
+	return {
+		user: item,
+		displayName: item,
+		subtitle: `This is the ${item.startsWith('group') ? 'group' : 'user'} ${item}`,
+		icon: item.startsWith('group') ? 'icon-group' : 'icon-user',
+		isNoUser: item.startsWith('group')
+	}
+})
 export default {
 	data() {
-		return {
-			value: null,
-			options: ['admin', 'user1', 'user2', 'guest', 'group1']
-		}
+			return {
+					value: formattedOptions[0],
+					formattedOptions,
+			}
 	},
-
-	computed: {
-		// Building fake data for the docs
-		formatedOptions() {
-			return this.options.map(item => {
-				return {
-					user: item,
-					displayName: item,
-					subtitle: `This is the ${item.startsWith('group') ? 'group' : 'user'} ${item}`,
-					icon: item.startsWith('group') ? 'icon-group' : 'icon-user',
-					isNoUser: item.startsWith('group')
-				}
-			})
-		}
-	}
 }
 </script>
 ```

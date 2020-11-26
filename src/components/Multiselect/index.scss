@@ -12,8 +12,8 @@
 
 	/* Force single multiselect value to be shown when not active */
 	&:not(.multiselect--active) .multiselect__single {
-		position: absolute;
 		width: 100%;
+		z-index: 2 !important;
 	}
 
 	// active state, force the input to be shown, we don't want
@@ -64,6 +64,8 @@
 		position: relative;
 		border-radius: 3px;
 		min-height: 34px;
+		height: 100%;
+
 		/* tag wrapper */
 		.multiselect__tags-wrap {
 			align-items: center;
@@ -127,9 +129,16 @@
 			flex: 0 0 100%;
 			z-index: 1; /* above input */
 			background-color: var(--color-main-background);
-			cursor: pointer;
 			line-height: 18px; // 32px - 2*6px (padding) - 2*1px (border)
 			color: var(--color-text-lighter); // like the input
+			// Align content and make the flow smoother
+			display: flex;
+			align-items: center;
+			
+			// Anything inside will trigger the select opening
+			&, * {
+				cursor: pointer;
+			}
 		}
 		/* displayed text if tag limit reached */
 		.multiselect__strong,
@@ -153,7 +162,7 @@
 			margin: 0;
 			opacity: 0;
 			/* let's leave it on top of tags but hide it */
-			height: 100%;
+			height: 100% !important;
 			border: none;
 			/* override hide to force show the placeholder */
 			display: block !important;
