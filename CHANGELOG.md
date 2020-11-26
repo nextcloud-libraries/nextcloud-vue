@@ -2,6 +2,54 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.3.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.3.0) (2020-11-26)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.2.0...v3.3.0)
+
+### Added
+
+- Add ListItemIcon component - [\#1578](https://github.com/nextcloud/nextcloud-vue/issues/1578) ([PVince81](https://github.com/pvince81))
+- Richcontenteditable: bind event listeners - [\#1592](https://github.com/nextcloud/nextcloud-vue/issues/1592) ([ma12-co](https://github.com/ma12-co))
+- Add notes about styleguide command in README - [\#1596](https://github.com/nextcloud/nextcloud-vue/issues/1596) ([PVince81](https://github.com/pvince81))
+- AppNavigationItem improved editing mode and AppNavigationNewItem component - [\#1277](https://github.com/nextcloud/nextcloud-vue/issues/1277) ([JonathanTreffler](https://github.com/JonathanTreffler))
+
+### Fixed
+
+- Remove sidebar actions slot max height - [\#1566](https://github.com/nextcloud/nextcloud-vue/issues/1566) ([ma12-co](https://github.com/ma12-co))
+- Fix contenteditable state at first load - [\#1584](https://github.com/nextcloud/nextcloud-vue/issues/1584) ([ma12-co](https://github.com/ma12-co))
+- Fix rich-contenteditor default value init and small code cleanup - [\#1570](https://github.com/nextcloud/nextcloud-vue/issues/1570) ([skjnldsv](https://github.com/skjnldsv))
+- Fix action button text for long translations - [\#1576](https://github.com/nextcloud/nextcloud-vue/issues/1576) ([GretaD](gretadoci@gmail.com))
+- Fix default multiselect height - [\#1579](https://github.com/nextcloud/nextcloud-vue/issues/1579) ([skjnldsv](https://github.com/skjnldsv))
+- Aria-expanded must be a false string, not absent - [\#1599](https://github.com/nextcloud/nextcloud-vue/issues/1599) ([PVince81](https://github.com/pvince81))
+- Set navigation role and aria label on app navigation - [\#1585](https://github.com/nextcloud/nextcloud-vue/issues/1585) ([PVince81](https://github.com/pvince81))
+- Remove semantics of h6 in user bubble - [\#1586](https://github.com/nextcloud/nextcloud-vue/issues/1586) ([PVince81](https://github.com/pvince81))
+- Fix labelledby in tab section - [\#1583](https://github.com/nextcloud/nextcloud-vue/issues/1583) ([PVince81](https://github.com/pvince81))
+- Do not check l10n comments - [\#1597](https://github.com/nextcloud/nextcloud-vue/issues/1597) ([skjnldsv](https://github.com/skjnldsv))
+- Disable avatar menu click event when menu disabled - [\#1587](https://github.com/nextcloud/nextcloud-vue/issues/1587) ([PVince81](https://github.com/pvince81))
+- Improve testability + small code changes of AppSideBarTabs - [\#1515](https://github.com/nextcloud/nextcloud-vue/issues/1515) ([LiquidITGuy](https://github.com/LiquidITGuy))
+- Proxy avatar to fixed image in the documentation - [\#1580](https://github.com/nextcloud/nextcloud-vue/issues/1580) ([skjnldsv](https://github.com/skjnldsv))
+- Fix sizing of modal container and app settings dialog - [\#1573](https://github.com/nextcloud/nextcloud-vue/issues/1573) ([PVince81](https://github.com/pvince81))
+
+### Changed
+
+- Translate '/l10n/messages.pot' in 'da' - [\#1575](https://github.com/nextcloud/nextcloud-vue/issues/1575) ([juliushaertl](https://github.com/juliushaertl))
+
+### Version bumps
+
+- Bump @babel/core from 7.12.3 to 7.12.9- [\#1594](https://github.com/nextcloud/nextcloud-vue/issues/1594) [\#1602](https://github.com/nextcloud/nextcloud-vue/issues/1602) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump babel-loader from 8.1.0 to 8.2.1 - [\#1565](https://github.com/nextcloud/nextcloud-vue/issues/1565) ([juliushaertl](https://github.com/juliushaertl))
+- Bump @babel/preset-env from 7.12.1 to 7.12.7 - [\#1595](https://github.com/nextcloud/nextcloud-vue/issues/1595) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump core-js from 3.7.0 to 3.8.0 - [\#1608](https://github.com/nextcloud/nextcloud-vue/issues/1608) ([violoncello.ch](22591354+violoncelloCH@users.noreply.github.com))
+- Bump cypress from 5.5.0 to 5.6.0 - [\#1562](https://github.com/nextcloud/nextcloud-vue/issues/1562) ([violoncello.ch](22591354+violoncelloCH@users.noreply.github.com))
+- Bump cypress-visual-regression from 1.5.2 to 1.5.5 - [\#1588](https://github.com/nextcloud/nextcloud-vue/issues/1588) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump eslint-plugin-standard from 4.0.2 to 4.1.0 - [\#1564](https://github.com/nextcloud/nextcloud-vue/issues/1564) ([violoncello.ch](22591354+violoncelloCH@users.noreply.github.com))
+- Bump @nextcloud/dialogs from 3.0.0 to 3.1.1 - [\#1563](https://github.com/nextcloud/nextcloud-vue/issues/1563) [\#1571](https://github.com/nextcloud/nextcloud-vue/issues/1571) ([violoncello.ch](22591354+violoncelloCH@users.noreply.github.com))
+- Bump sass-loader from 10.0.5 to 10.1.0 - [\#1568](https://github.com/nextcloud/nextcloud-vue/issues/1568) ([violoncello.ch](22591354+violoncelloCH@users.noreply.github.com))
+- Bump stylelint from 13.7.2 to 13.8.0 - [\#1577](https://github.com/nextcloud/nextcloud-vue/issues/1577) ([violoncello.ch](22591354+violoncelloCH@users.noreply.github.com))
+- Bump vue2-datepicker from 3.7.0 to 3.8.1 - [\#1589](https://github.com/nextcloud/nextcloud-vue/issues/1589) [\#1609](https://github.com/nextcloud/nextcloud-vue/issues/1609) ([PVince81](https://github.com/pvince81))
+- Bump vue-styleguidist from 4.33.6 to 4.33.7 - [\#1572](https://github.com/nextcloud/nextcloud-vue/issues/1572) [\#1574](https://github.com/nextcloud/nextcloud-vue/issues/1574) [\#1593](https://github.com/nextcloud/nextcloud-vue/issues/1593) [\#1607](https://github.com/nextcloud/nextcloud-vue/issues/1607) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump webpack-merge from 5.3.0 to 5.4.0 - [\#1569](https://github.com/nextcloud/nextcloud-vue/issues/1569) ([juliushaertl](https://github.com/juliushaertl))
+
 ## [v3.2.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.2.0) (2020-11-09)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.1.2...v3.2.0)
