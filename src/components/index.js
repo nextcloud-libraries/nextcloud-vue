@@ -42,6 +42,8 @@ import AppNavigationItem from './AppNavigationItem'
 import AppNavigationNew from './AppNavigationNew'
 import AppNavigationSettings from './AppNavigationSettings'
 import AppNavigationSpacer from './AppNavigationSpacer'
+import AppSettingsDialog from './AppSettingsDialog'
+import AppSettingsSection from './AppSettingsSection'
 import AppSidebar from './AppSidebar'
 import AppSidebarTab from './AppSidebarTab'
 import Avatar from './Avatar'
@@ -51,6 +53,7 @@ import ColorPicker from './ColorPicker'
 import Content from './Content'
 import DatetimePicker from './DatetimePicker'
 import EmptyContent from './EmptyContent'
+import ListItemIcon from './ListItemIcon'
 import Modal from './Modal'
 import Multiselect from './Multiselect'
 import MultiselectTags from './MultiselectTags'
@@ -59,8 +62,6 @@ import PopoverMenu from './PopoverMenu'
 import RichContenteditable from './RichContenteditable'
 import SettingsSection from './SettingsSection'
 import UserBubble from './UserBubble'
-import AppSettingsDialog from './AppSettingsDialog'
-import AppSettingsSection from './AppSettingsSection'
 
 export {
 	ActionButton,
@@ -84,6 +85,8 @@ export {
 	AppNavigationNew,
 	AppNavigationSettings,
 	AppNavigationSpacer,
+	AppSettingsDialog,
+	AppSettingsSection,
 	AppSidebar,
 	AppSidebarTab,
 	Avatar,
@@ -93,6 +96,7 @@ export {
 	Content,
 	DatetimePicker,
 	EmptyContent,
+	ListItemIcon,
 	Modal,
 	Multiselect,
 	MultiselectTags,
@@ -101,6 +105,4 @@ export {
 	RichContenteditable,
 	SettingsSection,
 	UserBubble,
-	AppSettingsDialog,
-	AppSettingsSection,
 }

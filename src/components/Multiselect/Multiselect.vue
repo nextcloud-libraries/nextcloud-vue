@@ -101,7 +101,45 @@ export default {
 ```
 
 ### User layout
-Please see the [AvatarSelectOption](#AvatarSelectOption) component
+By specifying `:user-select="true"`, you can benefit from a fully formatted layout.
+
+> **Note:** Any extra binding from the object will be added as attribute (`$attrs`) on the ListItemIcon component used here
+
+```vue
+<template>
+	<Multiselect v-model="value" :options="formatedOptions"
+		label="displayName" track-by="user"
+		:user-select="true"
+		style="width: 250px" />
+</template>
+
+<script>
+import Multiselect from '../index'
+export default {
+	data() {
+		return {
+			value: null,
+			options: ['admin', 'user1', 'user2', 'guest', 'group1']
+		}
+	},
+
+	computed: {
+		// Building fake data for the docs
+		formatedOptions() {
+			return this.options.map(item => {
+				return {
+					user: item,
+					displayName: item,
+					subtitle: `This is the ${item.startsWith('group') ? 'group' : 'user'} ${item}`,
+					icon: item.startsWith('group') ? 'icon-group' : 'icon-user',
+					isNoUser: item.startsWith('group')
+				}
+			})
+		}
+	}
+}
+</script>
+```
 </docs>
 
 <template>
@@ -140,8 +178,9 @@ Please see the [AvatarSelectOption](#AvatarSelectOption) component
 		<template #option="scope">
 			<!-- Avatar display select slot override.
 				You CANNOT use this scope, we will replace it by this -->
-			<AvatarSelectOption v-if="userSelect && !$scopedSlots['option']"
+			<ListItemIcon v-if="userSelect && !$scopedSlots['option']"
 				v-bind="scope.option"
+				:title="scope.option[label]"
 				:search="scope.search" />
 
 			<!-- Ellipsis in the middle if no option slot
@@ -176,17 +215,18 @@ Please see the [AvatarSelectOption](#AvatarSelectOption) component
 </template>
 
 <script>
-import AvatarSelectOption from './AvatarSelectOption'
+import VueMultiselect from 'vue-multiselect'
+
 import EllipsisedOption from './EllipsisedOption'
 import l10n from '../../mixins/l10n'
+import ListItemIcon from '../ListItemIcon'
 import Tooltip from '../../directives/Tooltip'
-import VueMultiselect from 'vue-multiselect'
 
 export default {
 	name: 'Multiselect',
 	components: {
-		AvatarSelectOption,
 		EllipsisedOption,
+		ListItemIcon,
 		VueMultiselect,
 	},
 	directives: {
