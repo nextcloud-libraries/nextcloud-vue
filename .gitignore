@@ -17,8 +17,6 @@ yarn-error.log*
 
 .marginalia
 
-CHANGELOG.md
-
 # Unit test / coverage reports
 coverage
 
