@@ -40,6 +40,42 @@ If you're using a long text you can specify a title
 		<ActionButton icon="icon-delete" title="Long button" @click="alert('Delete')">This button is associated with a very long text.\nAnd with new lines too.</ActionButton>
 	</Actions>
 ```
+
+You can also use a custom icon, for example from the vue-material-design-icons library:
+
+```vue
+<template>
+	<Actions>
+		<ActionButton>
+			<HandLeft
+				slot="icon"
+				:size="16"
+				decorative
+				title="" />
+			Raise left hand
+		</ActionButton>
+		<ActionButton>
+			<HandRight
+				slot="icon"
+				:size="16"
+				decorative
+				title="" />
+			Raise right hand
+		</ActionButton>
+	</Actions>
+</template>
+<script>
+import HandLeft from 'vue-material-design-icons/HandLeft'
+import HandRight from 'vue-material-design-icons/HandRight'
+
+export default {
+	components: {
+		HandLeft,
+		HandRight,
+	},
+}
+</script>
+```
 </docs>
 
 <template>
