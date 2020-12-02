@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.3.1](https://github.com/nextcloud/nextcloud-vue/tree/v3.3.1) (2020-12-02)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.3.0...v3.3.1)
+
+### Fixed
+
+- Quickfix for action button and material design icon - [\#1614](https://github.com/nextcloud/nextcloud-vue/issues/1614) ([Vincent Petry](vincent@nextcloud.com))
+
+### Changed
+
+- Translate '/l10n/messages.pot' in 'fr' - [\#1606](https://github.com/nextcloud/nextcloud-vue/issues/1606)
+
+### Version bumps
+
+- Bump vue-styleguidist from 4.34.0 to 4.34.1 - [\#1615](https://github.com/nextcloud/nextcloud-vue/issues/1615) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump babel-loader from 8.2.1 to 8.2.2 - [\#1612](https://github.com/nextcloud/nextcloud-vue/issues/1612) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+
 ## [v3.3.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.3.0) (2020-11-26)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.2.0...v3.3.0)
