@@ -1,60 +1,106 @@
+# 
 # Translators:
-# Roeland Jago Douma <roeland@famdouma.nl>, 2020
+# Roeland Jago Douma, 2020
 # Arjan van S, 2020
+# Robin Slot, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Arjan van S, 2020\n"
+"Last-Translator: Robin Slot, 2020\n"
 "Language-Team: Dutch (https://www.transifex.com/nextcloud/teams/64236/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:170
 msgid "{tag} (invisible)"
 msgstr "{tag} (onzichtbaar)"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:173
 msgid "{tag} (restricted)"
 msgstr "{tag} (beperkt)"
 
-#: src/components/Actions/Actions.vue:196
 msgid "Actions"
 msgstr "Acties"
 
-#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Activities"
+msgstr "Activiteiten"
+
+msgid "Animals & Nature"
+msgstr "Dieren & Natuur"
+
 msgid "Choose"
 msgstr "Kies"
 
-#: src/components/Modal/Modal.vue:117
 msgid "Close"
 msgstr "Sluiten"
 
-#: src/components/Modal/Modal.vue:166
+msgid "Custom"
+msgstr "Aangepast"
+
+msgid "Flags"
+msgstr "Vlaggen"
+
+msgid "Food & Drink"
+msgstr "Eten & Drinken"
+
+msgid "Frequently used"
+msgstr "Vaak gebruikt"
+
+msgid "Message limit of {count} characters reached"
+msgstr "Berichtlengte van {count} karakters bereikt"
+
 msgid "Next"
 msgstr "Volgende"
 
-#: src/components/Multiselect/Multiselect.vue:172
-#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No emoji found"
+msgstr "Geen emoji gevonden"
+
 msgid "No results"
 msgstr "Geen resultaten"
 
-#: src/components/Modal/Modal.vue:302
+msgid "Objects"
+msgstr "Objecten"
+
 msgid "Pause slideshow"
 msgstr "Pauzeer diavoorstelling"
 
-#: src/components/Modal/Modal.vue:144
+msgid "People & Body"
+msgstr "Mensen & Lichaam"
+
+msgid "Pick an emoji"
+msgstr "Kies een emoji"
+
 msgid "Previous"
 msgstr "Vorige"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Search"
+msgstr "Zoeken"
+
+msgid "Search results"
+msgstr "Zoekresultaten"
+
 msgid "Select a tag"
 msgstr "Selecteer een label"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
 msgid "Settings"
 msgstr "Instellingen"
 
-#: src/components/Modal/Modal.vue:302
+msgid "Settings navigation"
+msgstr "Instellingen navigatie"
+
+msgid "Smileys & Emotion"
+msgstr "Smileys & Emotie"
+
 msgid "Start slideshow"
 msgstr "Start diavoorstelling"
+
+msgid "Symbols"
+msgstr "Symbolen"
+
+msgid "Travel & Places"
+msgstr "Reizen & Plaatsen"
+
+msgid "Unable to search the group"
+msgstr "Kan niet in de groep zoeken"
+
+msgid "Write message, @ to mention someone …"
+msgstr "Schrijf een bericht, @ om iemand te noemen ..."
