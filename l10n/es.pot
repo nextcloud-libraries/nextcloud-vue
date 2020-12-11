@@ -1,61 +1,105 @@
 # 
 # Translators:
 # javier san felipe <jsanfe@gmail.com>, 2020
-# asd fgh <c1@cgps.xyz>, 2020
+# Maira Belmonte <mairabelmonte@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: asd fgh <c1@cgps.xyz>, 2020\n"
+"Last-Translator: Maira Belmonte <mairabelmonte@gmail.com>, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/nextcloud/teams/64236/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:170
 msgid "{tag} (invisible)"
-msgstr "{etiqueta} (invisible)"
+msgstr "{tag} (invisible)"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:173
 msgid "{tag} (restricted)"
-msgstr "{etiqueta} (restringido)"
+msgstr "{tag} (restringido)"
 
-#: src/components/Actions/Actions.vue:247
 msgid "Actions"
-msgstr "acciones"
+msgstr "Acciones"
 
-#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Activities"
+msgstr "Actividades"
+
+msgid "Animals & Nature"
+msgstr "Animales y naturaleza"
+
 msgid "Choose"
-msgstr "Elige"
+msgstr "Elegir"
 
-#: src/components/Modal/Modal.vue:117
 msgid "Close"
-msgstr "Cierra"
+msgstr "Cerrar"
 
-#: src/components/Modal/Modal.vue:166
+msgid "Custom"
+msgstr "Personalizado"
+
+msgid "Flags"
+msgstr "Banderas"
+
+msgid "Food & Drink"
+msgstr "Comida y bebida"
+
+msgid "Frequently used"
+msgstr "Usado con frecuenca"
+
+msgid "Message limit of {count} characters reached"
+msgstr "El mensaje ha alcanzado el límite de {count} caracteres"
+
 msgid "Next"
 msgstr "Siguiente"
 
-#: src/components/Multiselect/Multiselect.vue:172
-#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No emoji found"
+msgstr "No hay ningún emoji"
+
 msgid "No results"
 msgstr " Ningún resultado"
 
-#: src/components/Modal/Modal.vue:302
-msgid "Pause slideshow"
-msgstr "Pausa la presentación "
+msgid "Objects"
+msgstr "Objetos"
 
-#: src/components/Modal/Modal.vue:144
+msgid "Pause slideshow"
+msgstr "Pausar la presentación "
+
+msgid "People & Body"
+msgstr "Personas y cuerpos"
+
+msgid "Pick an emoji"
+msgstr "Elegir un emoji"
+
 msgid "Previous"
 msgstr "Anterior"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:100
-msgid "Select a tag"
-msgstr "Selecciona una etiqueta"
+msgid "Search"
+msgstr "Buscar"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Search results"
+msgstr "Resultados de la búsqueda"
+
+msgid "Select a tag"
+msgstr "Seleccione una etiqueta"
+
 msgid "Settings"
 msgstr "Ajustes"
 
-#: src/components/Modal/Modal.vue:302
+msgid "Settings navigation"
+msgstr "Navegación por ajustes"
+
+msgid "Smileys & Emotion"
+msgstr "Smileys y emoticonos"
+
 msgid "Start slideshow"
-msgstr "Comienza la presentación "
+msgstr "Iniciar la presentación"
+
+msgid "Symbols"
+msgstr "Símbolos"
+
+msgid "Travel & Places"
+msgstr "Viajes y lugares"
+
+msgid "Unable to search the group"
+msgstr "No es posible buscar en el grupo"
+
+msgid "Write message, @ to mention someone …"
+msgstr "Escriba un mensaje, @ para mencionar a alguien..."
