@@ -181,11 +181,12 @@ Just set the `pinned` prop.
 
 <script>
 import { directive as ClickOutside } from 'v-click-outside'
+
 import Actions from '../Actions/Actions'
 import ActionButton from '../ActionButton/ActionButton'
 import AppNavigationIconCollapsible from './AppNavigationIconCollapsible'
 import isMobile from '../../mixins/isMobile'
-import InputConfirmCancel from './InputConfirmCancel.vue'
+import InputConfirmCancel from './InputConfirmCancel'
 
 export default {
 	name: 'AppNavigationItem',

@@ -64,8 +64,9 @@
 
 <script>
 import { directive as ClickOutside } from 'v-click-outside'
+
 import isMobile from '../../mixins/isMobile'
-import InputConfirmCancel from './InputConfirmCancel.vue'
+import InputConfirmCancel from '../AppNavigationItem/InputConfirmCancel'
 
 export default {
 	name: 'AppNavigationNewItem',
@@ -77,6 +78,7 @@ export default {
 		ClickOutside,
 	},
 	mixins: [isMobile],
+
 	props: {
 		/**
 		 * The title of the element.
@@ -124,8 +126,7 @@ export default {
 			newItemActive: false,
 		}
 	},
-	computed: {
-	},
+
 	methods: {
 		handleNewItem() {
 			if (!this.loading) {
@@ -146,6 +147,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss">
 .app-navigation-new-item__title {
 	overflow: hidden;

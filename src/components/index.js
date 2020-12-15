@@ -40,6 +40,7 @@ import AppNavigationCounter from './AppNavigationCounter'
 import AppNavigationIconBullet from './AppNavigationIconBullet'
 import AppNavigationItem from './AppNavigationItem'
 import AppNavigationNew from './AppNavigationNew'
+import AppNavigationNewItem from './AppNavigationNewItem'
 import AppNavigationSettings from './AppNavigationSettings'
 import AppNavigationSpacer from './AppNavigationSpacer'
 import AppSettingsDialog from './AppSettingsDialog'
@@ -83,6 +84,7 @@ export {
 	AppNavigationIconBullet,
 	AppNavigationItem,
 	AppNavigationNew,
+	AppNavigationNewItem,
 	AppNavigationSettings,
 	AppNavigationSpacer,
 	AppSettingsDialog,
