@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.3.2](https://github.com/nextcloud/nextcloud-vue/tree/v3.3.2) (2020-12-16)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.3.1...v3.3.2)
+
+### Changed
+
+- Translate '/l10n/messages.pot' in 'nl' - [\#1621](https://github.com/nextcloud/nextcloud-vue/issues/1621) ([Julius Härtl](jus@bitgrid.net))
+- Translate '/l10n/messages.pot' in 'es' - [\#1630](https://github.com/nextcloud/nextcloud-vue/issues/1630) ([Julius Härtl](jus@bitgrid.net))
+
+### Fixed
+
+- Fix avatar menu click handler - [\#1639](https://github.com/nextcloud/nextcloud-vue/issues/1639) ([PVince81](vincent@nextcloud.com))
+- Fix export of AppNavigationNewItem - [\#1638](https://github.com/nextcloud/nextcloud-vue/issues/1638) ([John Molakvoæ](skjnldsv@users.noreply.github.com))
+
+### Version bumps
+
+- Bump @babel/core from 7.12.9 to 7.12.10 - [\#1626](https://github.com/nextcloud/nextcloud-vue/issues/1626) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump @babel/preset-env from 7.12.7 to 7.12.11 - [\#1627](https://github.com/nextcloud/nextcloud-vue/issues/1627) [\#1640](https://github.com/nextcloud/nextcloud-vue/issues/1640) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump core-js from 3.8.0 to 3.8.1 - [\#1623](https://github.com/nextcloud/nextcloud-vue/issues/1623) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump fontsource-roboto from 3.0.3 to 3.1.5 - [\#1628](https://github.com/nextcloud/nextcloud-vue/issues/1628) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump ini from 1.3.5 to 1.3.7 - [\#1631](https://github.com/nextcloud/nextcloud-vue/issues/1631) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump vue2-datepicker from 3.8.1 to 3.8.2 - [\#1624](https://github.com/nextcloud/nextcloud-vue/issues/1624) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump vue-color from 2.7.1 to 2.8.0 - [\#1635](https://github.com/nextcloud/nextcloud-vue/issues/1635) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump vue-eslint-parser from 7.1.1 to 7.3.0 - [\#1619](https://github.com/nextcloud/nextcloud-vue/issues/1619) [\#1636](https://github.com/nextcloud/nextcloud-vue/issues/1636) ([Julius Härtl](jus@bitgrid.net))
+- Bump vue-styleguidist from 4.34.1 to 4.34.2 - [\#1622](https://github.com/nextcloud/nextcloud-vue/issues/1622) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump @vue/test-utils from 1.1.1 to 1.1.2 - [\#1637](https://github.com/nextcloud/nextcloud-vue/issues/1637) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump webpack-merge from 5.4.0 to 5.7.0 - [\#1625](https://github.com/nextcloud/nextcloud-vue/issues/1625) [\#1632](https://github.com/nextcloud/nextcloud-vue/issues/1632) [\#1634](https://github.com/nextcloud/nextcloud-vue/issues/1634) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+
 ## [v3.3.1](https://github.com/nextcloud/nextcloud-vue/tree/v3.3.1) (2020-12-02)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.3.0...v3.3.1)
