@@ -1,0 +1,104 @@
+# 
+# Translators:
+# Va Milushnikov <va.milushnikov@gmail.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Va Milushnikov <va.milushnikov@gmail.com>, 2020\n"
+"Language-Team: Esperanto (https://www.transifex.com/nextcloud/teams/64236/eo/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: eo\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "{tag} (invisible)"
+msgstr "{tag} (kaŝita)"
+
+msgid "{tag} (restricted)"
+msgstr "{tag} (limigita)"
+
+msgid "Actions"
+msgstr "Agoj"
+
+msgid "Activities"
+msgstr "Aktiveco"
+
+msgid "Animals & Nature"
+msgstr "Bestoj & Naturo"
+
+msgid "Choose"
+msgstr "Elektu"
+
+msgid "Close"
+msgstr "Fermu"
+
+msgid "Custom"
+msgstr "Propra"
+
+msgid "Flags"
+msgstr "Flagoj"
+
+msgid "Food & Drink"
+msgstr "Manĝaĵo & Trinkaĵo"
+
+msgid "Frequently used"
+msgstr "Ofte uzataj"
+
+msgid "Message limit of {count} characters reached"
+msgstr "La limo je {count} da literoj atingita"
+
+msgid "Next"
+msgstr "Sekva"
+
+msgid "No emoji found"
+msgstr "La emoĝio forestas"
+
+msgid "No results"
+msgstr "La rezulto forestas"
+
+msgid "Objects"
+msgstr "Objektoj"
+
+msgid "Pause slideshow"
+msgstr "Payzi bildprezenton"
+
+msgid "People & Body"
+msgstr "Homoj & Korpo"
+
+msgid "Pick an emoji"
+msgstr "Elekti emoĝion "
+
+msgid "Previous"
+msgstr "Antaŭa"
+
+msgid "Search"
+msgstr "Serĉi"
+
+msgid "Search results"
+msgstr "Serĉrezultoj"
+
+msgid "Select a tag"
+msgstr "Elektu etikedon"
+
+msgid "Settings"
+msgstr "Agordo"
+
+msgid "Settings navigation"
+msgstr "Agorda navigado"
+
+msgid "Smileys & Emotion"
+msgstr "Ridoj kaj Emocioj"
+
+msgid "Start slideshow"
+msgstr "Komenci bildprezenton"
+
+msgid "Symbols"
+msgstr "Signoj"
+
+msgid "Travel & Places"
+msgstr "Vojaĵoj & Lokoj"
+
+msgid "Unable to search the group"
+msgstr "Ne eblas serĉi en la grupo"
+
+msgid "Write message, @ to mention someone …"
+msgstr "Mesaĝi, uzu @ por mencii iun ..."
