@@ -130,7 +130,7 @@ export default {
 						spreadNavigation ? 'modal-wrapper--spread-navigation' : ''
 					]"
 					class="modal-wrapper"
-					@click.self="close">
+					@mousedown.self="close">
 					<!-- Navigation button -->
 					<transition name="fade-visibility">
 						<a v-show="hasPrevious && !clearView"
