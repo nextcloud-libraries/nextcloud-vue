@@ -1,61 +1,107 @@
+# 
 # Translators:
 # Gabriel Ekström <gabriel.ekstrom06@gmail.com>, 2020
 # Erik Lennartsson, 2020
-# Jonatan Nyberg, 2020
+# Jonatan Nyberg <jonatan.nyberg.karl@gmail.com>, 2020
+# Victor Nyberg <v70123@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Jonatan Nyberg, 2020\n"
+"Last-Translator: Victor Nyberg <v70123@gmail.com>, 2021\n"
 "Language-Team: Swedish (https://www.transifex.com/nextcloud/teams/64236/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:170
 msgid "{tag} (invisible)"
 msgstr "{tag} (osynlig)"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:173
 msgid "{tag} (restricted)"
 msgstr "{tag} (begränsad)"
 
-#: src/components/Actions/Actions.vue:194
 msgid "Actions"
 msgstr "Åtgärder"
 
-#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Activities"
+msgstr "Aktiviteter"
+
+msgid "Animals & Nature"
+msgstr "Djur & Natur"
+
 msgid "Choose"
 msgstr "Välj"
 
-#: src/components/Modal/Modal.vue:117
 msgid "Close"
 msgstr "Stäng"
 
-#: src/components/Modal/Modal.vue:166
+msgid "Custom"
+msgstr "Anpassad"
+
+msgid "Flags"
+msgstr "Flaggor"
+
+msgid "Food & Drink"
+msgstr "Mat & Dryck"
+
+msgid "Frequently used"
+msgstr "Används ofta"
+
+msgid "Message limit of {count} characters reached"
+msgstr "Meddelandegräns {count} tecken används"
+
 msgid "Next"
 msgstr "Nästa"
 
-#: src/components/Multiselect/Multiselect.vue:172
-#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No emoji found"
+msgstr "Hittade inga emojis"
+
 msgid "No results"
 msgstr "Inga resultat"
 
-#: src/components/Modal/Modal.vue:302
-msgid "Pause slideshow"
-msgstr "Pausa bildspel"
+msgid "Objects"
+msgstr "Objekt"
 
-#: src/components/Modal/Modal.vue:144
+msgid "Pause slideshow"
+msgstr "Pausa bildspelet"
+
+msgid "People & Body"
+msgstr "Kropp & Själ"
+
+msgid "Pick an emoji"
+msgstr "Välj en emoji"
+
 msgid "Previous"
 msgstr "Föregående"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Search"
+msgstr "Sök"
+
+msgid "Search results"
+msgstr "Sökresultat"
+
 msgid "Select a tag"
 msgstr "Välj en tag"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
 msgid "Settings"
 msgstr "Inställningar"
 
-#: src/components/Modal/Modal.vue:302
+msgid "Settings navigation"
+msgstr "Inställningsmeny"
+
+msgid "Smileys & Emotion"
+msgstr "Selfies & Känslor"
+
 msgid "Start slideshow"
-msgstr "Starta bildspel"
+msgstr "Starta bildspelet"
+
+msgid "Symbols"
+msgstr "Symboler"
+
+msgid "Travel & Places"
+msgstr "Resor & Sevärdigheter"
+
+msgid "Unable to search the group"
+msgstr "Kunde inte söka i gruppen"
+
+msgid "Write message, @ to mention someone …"
+msgstr "Skicka meddelande, skriv @ för att omnämna någon ..."
