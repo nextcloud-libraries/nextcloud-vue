@@ -124,7 +124,8 @@ export default {
 			validator(type) {
 				return ['date', 'datetime-local', 'month',
 					'number', 'password', 'search', 'tel',
-					'text', 'time', 'url', 'week', 'color'].indexOf(type) > -1
+					'text', 'time', 'url', 'week', 'color',
+					'email'].indexOf(type) > -1
 			},
 		},
 		/**
