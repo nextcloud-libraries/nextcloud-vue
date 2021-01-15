@@ -222,7 +222,8 @@ export default {
 		 * @returns {boolean}
 		 */
 		isEmptyValue() {
-			return !this.localValue || this.localValue.trim() === ''
+			return !this.localValue
+				|| (this.localValue && this.localValue.trim() === '')
 		},
 
 		/**
@@ -360,9 +361,9 @@ export default {
 		 * @param {string} value the message value
 		 */
 		updateContent(value) {
-			const renderedContent = this.renderContent(this.value)
+			const renderedContent = this.renderContent(value)
 			this.$refs.contenteditable.innerHTML = renderedContent
-			this.localValue = this.value
+			this.localValue = value
 		},
 
 		/**
