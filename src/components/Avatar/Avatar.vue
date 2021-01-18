@@ -51,7 +51,16 @@
 			:src="avatarUrlLoaded"
 			:srcset="avatarSrcSetLoaded"
 			alt="">
-		<div v-if="hasMenu" class="icon-more" />
+		<Popover
+			placement="auto"
+			:open="contactsMenuOpenState">
+			<template>
+				<PopoverMenu :is-open="contactsMenuOpenState" :menu="menu" />
+			</template>
+			<template slot="trigger">
+				<div v-if="hasMenu" class="icon-more" :style="{'width': size + 'px'}" />
+			</template>
+		</Popover>
 
 		<!-- Avatar status -->
 		<div v-if="showUserStatusIconOnAvatar" class="avatardiv__user-status avatardiv__user-status--icon">
@@ -82,22 +91,13 @@
 		<div v-if="userDoesNotExist && !iconClass" class="unknown">
 			{{ initials }}
 		</div>
-		<Popover
-			placement="auto"
-			:open="contactsMenuOpenState">
-			<template>
-				<ul>
-					<PopoverMenuItem v-for="(item, key) in menu" :key="key" :item="item" />
-				</ul>
-				<p>Dummy content</p>
-			</template>
-		</Popover>
 	</div>
 </template>
 
 <script>
 import { getBuilder } from '@nextcloud/browser-storage'
 import { directive as ClickOutside } from 'v-click-outside'
+import PopoverMenu from '../PopoverMenu'
 import { getCurrentUser } from '@nextcloud/auth'
 import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 import axios from '@nextcloud/axios'
@@ -106,7 +106,6 @@ import Tooltip from '../../directives/Tooltip'
 import usernameToColor from '../../functions/usernameToColor'
 import { userStatus } from '../../mixins'
 import Popover from '../Popover/Popover'
-import PopoverMenuItem from '../PopoverMenu/PopoverMenuItem'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 
@@ -132,7 +131,7 @@ export default {
 	},
 	components: {
 		Popover,
-		PopoverMenuItem,
+		PopoverMenu,
 	},
 	mixins: [userStatus],
 	props: {
@@ -592,20 +591,20 @@ export default {
 
 	&--with-menu {
 		cursor: pointer;
-		.icon-more {
+		::v-deep .trigger {
 			position: absolute;
 			top: 0;
 			left: 0;
+		}
+		.icon-more {
 			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: inherit;
-			height: inherit;
 			cursor: pointer;
 			opacity: 0;
+			cursor: pointer;
 			background: none;
 			font-size: 18px;
-
+			align-items: center;
+			justify-content: center;
 			@include iconfont('more');
 			&::before {
 				display: block;
@@ -717,12 +716,6 @@ export default {
 	.popovermenu-wrapper {
 		position: relative;
 		display: inline-block;
-	}
-
-	.popovermenu {
-		display: block;
-		margin: 0;
-		font-size: var(--default-font-size);
 	}
 }
 
