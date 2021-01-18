@@ -20,10 +20,12 @@
  *
  */
 
-import Vue from 'vue'
-import stripTags from 'striptags'
 import escapeHtml from 'escape-html'
-import MentionBubble from '../../components/RichContenteditable/MentionBubble.vue'
+import linkifyUrls from 'linkify-urls'
+import stripTags from 'striptags'
+import Vue from 'vue'
+
+import MentionBubble from '../../components/RichContenteditable/MentionBubble'
 
 // Beginning or whitespace. Non-capturing group
 const MENTION_START = '(?:^|\\s)'
@@ -60,7 +62,14 @@ export default {
 					// When splitting, the string is always putting the userIds
 					// on the the uneven indexes. We only want to generate the mentions html
 					if (!part.startsWith('@')) {
-						return part
+						// This part doesn't contain a mention, let's make sure links are parsed
+						return linkifyUrls(part, {
+							attributes: {
+								rel: 'noopener noreferrer',
+								target: '_blank',
+								class: 'external',
+							},
+						})
 					}
 
 					// Extracting the id, nuking the " and @
@@ -70,7 +79,8 @@ export default {
 					return ' ' + this.genSelectTemplate(id)
 				})
 				.join('')
-				.replace(/\n/gm, '<br>')
+				.replace(/\n/gmi, '<br>')
+				.replace(/&amp;/gmi, '&')
 		},
 
 		/**
@@ -80,12 +90,13 @@ export default {
 		 * @returns {string}
 		 */
 		parseContent(content) {
-			let text = content.replace(/<br>/g, '\n')
-			text = text.replace(/&nbsp;/g, ' ')
+			let text = content.replace(/<br>/gmi, '\n')
+			text = text.replace(/&nbsp;/gmi, ' ')
+			text = text.replace(/&amp;/gmi, '&')
 
 			// Convert the mentions to text only
 			// first we replace divs with new lines
-			text = text.replace(/<\/div>/gim, '\n')
+			text = text.replace(/<\/div>/gmi, '\n')
 			// then we remove all leftover html
 			text = stripTags(text, '<div>')
 			text = stripTags(text)
@@ -111,7 +122,7 @@ export default {
 			}
 
 			// Return template and make sure we strip of new lines and tabs
-			return this.renderComponentHtml(data, MentionBubble).replace(/[\n\t]/g, '')
+			return this.renderComponentHtml(data, MentionBubble).replace(/[\n\t]/gmi, '')
 		},
 
 		/**
