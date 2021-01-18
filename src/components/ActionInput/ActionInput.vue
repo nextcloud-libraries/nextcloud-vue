@@ -23,14 +23,15 @@
 
 <docs>
 This component is made to be used inside of the [Actions](#Actions) component slots.
-All undocumented attributes will be bound to the input or the datepicker. e.g. `maxlength`, `not-before`...
-
+All undocumented attributes will be bound to the input, the datepicker or the multiselect component, e.g. `maxlength`, `not-before`.
+For the multiselect component, all events will be passed through. Please see the multiselect component's documentation for more details and examples.
 ```
 <Actions>
 	<ActionInput icon="icon-edit" value="This is an input" />
 	<ActionInput icon="icon-edit">This is the placeholder</ActionInput>
 	<ActionInput icon="icon-close" :disabled="true" value="This is a disabled input" />
 	<ActionInput icon="icon-edit" type="date">Please pick a date</ActionInput>
+	<ActionInput icon="icon-edit" type="multiselect" :options="['Apple', 'Banana', 'Cherry']">Please pick a fruit</ActionInput>
 </Actions>
 ```
 </docs>
@@ -65,6 +66,15 @@ All undocumented attributes will be bound to the input or the datepicker. e.g. `
 					@input="onInput"
 					@change="onChange" />
 
+				<Multiselect v-else-if="isMultiselectType"
+					:value="value"
+					:placeholder="text"
+					:disabled="disabled"
+					:class="{ focusable: isFocusable }"
+					class="action-input__multi"
+					v-bind="$attrs"
+					v-on="$listeners" />
+
 				<template v-else>
 					<input :id="id" type="submit" class="action-input__submit">
 
@@ -90,11 +100,15 @@ All undocumented attributes will be bound to the input or the datepicker. e.g. `
 import ActionGlobalMixin from '../../mixins/actionGlobal'
 import GenRandomId from '../../utils/GenRandomId'
 import DatetimePicker from '../DatetimePicker'
+import Multiselect from '../Multiselect'
 
 export default {
 	name: 'ActionInput',
 
-	components: { DatetimePicker },
+	components: {
+		DatetimePicker,
+		Multiselect,
+	},
 
 	mixins: [ActionGlobalMixin],
 
@@ -122,7 +136,7 @@ export default {
 			type: String,
 			default: 'text',
 			validator(type) {
-				return ['date', 'datetime-local', 'month',
+				return ['date', 'datetime-local', 'month', 'multiselect',
 					'number', 'password', 'search', 'tel',
 					'text', 'time', 'url', 'week', 'color',
 					'email'].indexOf(type) > -1
@@ -151,6 +165,10 @@ export default {
 			} catch (error) {
 				return false
 			}
+		},
+
+		isMultiselectType() {
+			return this.type === 'multiselect'
 		},
 
 		isDatePickerType() {
@@ -378,6 +396,10 @@ $input-margin: 4px;
 		.mx-input {
 			margin: 0;
 		}
+	}
+
+	&__multi {
+		width: 100%;
 	}
 }
 
