@@ -87,7 +87,7 @@
 			:open="contactsMenuOpenState">
 			<template>
 				<ul>
-					<PopoverMenuItem v-for="(item, key) in contactsMenuActions" :key="key" :item="item" />
+					<PopoverMenuItem v-for="(item, key) in menu" :key="key" :item="item" />
 				</ul>
 				<p>Dummy content</p>
 			</template>
