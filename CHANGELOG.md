@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.4.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.4.0) (2021-01-18)
+
+### Added
+
+- Add multiselect type to ActionInput - [\#1250](https://github.com/nextcloud/nextcloud-vue/issues/1250) ([korelstar](korelstar@users.noreply.github.com>))
+- Add link support to richcontenteditor and fix various issues - [\#1669](https://github.com/nextcloud/nextcloud-vue/issues/1669) ([John Molakvoæ](skjnldsv@users.noreply.github.com))
+- Allow ActionInput type=email - [\#1667](https://github.com/nextcloud/nextcloud-vue/issues/1667) ([tcitworld](tcit@tcit.fr))
+- Allow ActionInput type=color - [\#1662](https://github.com/nextcloud/nextcloud-vue/issues/1662) ([ChristophWurst](https://github.com/ChristophWurst))
+
+### Changed
+
+- Bump axios from 0.21.0 to 0.21.1 - [\#1655](https://github.com/nextcloud/nextcloud-vue/issues/1655) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump core-js from 3.8.1 to 3.8.2 - [\#1654](https://github.com/nextcloud/nextcloud-vue/issues/1654) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump fontsource-roboto from 3.1.5 to 4.0.0 - [\#1648](https://github.com/nextcloud/nextcloud-vue/issues/1648) ([Julius Härtl](jus@bitgrid.net))
+- Bump @nextcloud/axios from 1.5.0 to 1.6.0 - [\#1657](https://github.com/nextcloud/nextcloud-vue/issues/1657) ([violoncello.ch](22591354+violoncelloCH@users.noreply.github.com))
+- Bump sass-loader from 10.1.0 to 10.1.1 - [\#1663](https://github.com/nextcloud/nextcloud-vue/issues/1663) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump v-tooltip from 2.0.3 to 2.1.0 - [\#1651](https://github.com/nextcloud/nextcloud-vue/issues/1651) ([violoncello.ch](22591354+violoncelloCH@users.noreply.github.com))
+- Bump v-tooltip from 2.1.0 to 2.1.1 - [\#1653](https://github.com/nextcloud/nextcloud-vue/issues/1653) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump v-tooltip from 2.1.1 to 2.1.2 - [\#1656](https://github.com/nextcloud/nextcloud-vue/issues/1656) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump vue-color from 2.8.0 to 2.8.1 - [\#1649](https://github.com/nextcloud/nextcloud-vue/issues/1649) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump vue-loader from 15.9.5 to 15.9.6 - [\#1642](https://github.com/nextcloud/nextcloud-vue/issues/1642) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump webpack-cli from 4.2.0 to 4.3.0 - [\#1650](https://github.com/nextcloud/nextcloud-vue/issues/1650) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump webpack-cli from 4.3.0 to 4.3.1 - [\#1652](https://github.com/nextcloud/nextcloud-vue/issues/1652) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump webpack from 4.44.2 to 4.45.0 - [\#1661](https://github.com/nextcloud/nextcloud-vue/issues/1661) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump webpack from 4.45.0 to 4.46.0 - [\#1664](https://github.com/nextcloud/nextcloud-vue/issues/1664) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump webpack-merge from 5.7.0 to 5.7.2 - [\#1641](https://github.com/nextcloud/nextcloud-vue/issues/1641) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump webpack-merge from 5.7.2 to 5.7.3 - [\#1646](https://github.com/nextcloud/nextcloud-vue/issues/1646) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Translate '/l10n/messages.pot' in 'zh_TW' - [\#1659](https://github.com/nextcloud/nextcloud-vue/issues/1659) ([Julius Härtl](jus@bitgrid.net))
+- Translate '/l10n/messages.pot' in 'sv' - [\#1658](https://github.com/nextcloud/nextcloud-vue/issues/1658) ([Julius Härtl](jus@bitgrid.net))
+- Translate '/l10n/messages.pot' in 'eo' - [\#1644](https://github.com/nextcloud/nextcloud-vue/issues/1644) ([Julius Härtl](jus@bitgrid.net))
+- Translate '/l10n/messages.pot' in 'de' - [\#1643](https://github.com/nextcloud/nextcloud-vue/issues/1643) ([Julius Härtl](jus@bitgrid.net))
+
+### Fixed
+
+- Don't close modal on mouseup - [\#1647](https://github.com/nextcloud/nextcloud-vue/issues/1647) ([ma12-co](https://github.com/ma12-co))
+
 ## [v3.3.2](https://github.com/nextcloud/nextcloud-vue/tree/v3.3.2) (2020-12-16)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.3.1...v3.3.2)
