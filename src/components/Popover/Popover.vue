@@ -53,7 +53,7 @@ With a `<button>` as a trigger:
 	<VPopover
 		v-bind="$attrs"
 		popover-base-class="popover"
-		popover-wrapper-class="popover__wrapper"
+		:popover-wrapper-class="open ? 'popover__wrapper' : 'hidden-visually'"
 		popover-arrow-class="popover__arrow"
 		popover-inner-class="popover__inner"
 		v-on="$listeners">
@@ -73,6 +73,12 @@ export default {
 	name: 'Popover',
 	components: {
 		VPopover,
+	},
+	props: {
+		open: {
+			type: Boolean,
+			default: false,
+		},
 	},
 }
 </script>
