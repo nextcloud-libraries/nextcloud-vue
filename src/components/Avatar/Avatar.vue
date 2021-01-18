@@ -52,13 +52,14 @@
 			:srcset="avatarSrcSetLoaded"
 			alt="">
 		<Popover
+			v-if="hasMenu"
 			placement="auto"
 			:open="contactsMenuOpenState">
 			<template>
-				<PopoverMenu :is-open="contactsMenuOpenState" :menu="menu" />
+				<PopoverMenu :menu="menu" />
 			</template>
 			<template slot="trigger">
-				<div v-if="hasMenu" class="icon-more" :style="{'width': size + 'px'}" />
+				<div class="icon-more" :style="{'width': size + 'px'}" />
 			</template>
 		</Popover>
 
@@ -600,11 +601,11 @@ export default {
 			display: flex;
 			cursor: pointer;
 			opacity: 0;
-			cursor: pointer;
 			background: none;
 			font-size: 18px;
 			align-items: center;
 			justify-content: center;
+
 			@include iconfont('more');
 			&::before {
 				display: block;
