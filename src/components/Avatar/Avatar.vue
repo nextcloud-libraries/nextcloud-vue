@@ -59,7 +59,7 @@
 				<PopoverMenu :menu="menu" />
 			</template>
 			<template slot="trigger">
-				<div class="icon-more" :style="{'width': size + 'px'}" />
+				<div :class="contactsMenuLoading ? 'icon-loading' : 'icon-more'" :style="{'width': size + 'px', 'height': size + 'px'}" />
 			</template>
 		</Popover>
 
@@ -284,6 +284,7 @@ export default {
 			userDoesNotExist: false,
 			isAvatarLoaded: false,
 			isMenuLoaded: false,
+			contactsMenuLoading: false,
 			contactsMenuActions: [],
 			contactsMenuOpenState: false,
 		}
@@ -450,6 +451,7 @@ export default {
 			this.contactsMenuOpenState = false
 		},
 		async fetchContactsMenu() {
+			this.contactsMenuLoading = true
 			try {
 				const user = encodeURIComponent(this.user)
 				const { data } = await axios.post(generateUrl('contactsmenu/findOne'), `shareType=0&shareWith=${user}`)
@@ -457,6 +459,7 @@ export default {
 			} catch (e) {
 				this.contactsMenuOpenState = false
 			}
+			this.contactsMenuLoading = false
 			this.isMenuLoaded = true
 		},
 
