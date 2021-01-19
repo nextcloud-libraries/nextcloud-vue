@@ -52,8 +52,8 @@ With a `<button>` as a trigger:
 <template>
 	<VPopover
 		v-bind="$attrs"
-		popover-base-class="popover"
-		:popover-wrapper-class="doShowMenu ? 'popover__wrapper' : 'popover__wrapper popover__hidden'"
+		:popover-base-class="doShowMenu ? 'popover' : 'popover popover__hidden'"
+		popover-wrapper-class="popover__wrapper"
 		popover-arrow-class="popover__arrow"
 		popover-inner-class="popover__inner"
 		v-on="$listeners">
@@ -113,7 +113,12 @@ $arrow-width: 10px;
 	filter: drop-shadow(0 1px 10px var(--color-box-shadow));
 
 	&__hidden {
-		visibility: hidden;
+		/* same as visibility-hidden but keep the size to avoid resizes on show */
+		/* !important is here to override inline styles set by v-tooltip for initial show */
+		visibility: hidden !important;
+		left: -10000px !important;
+		top: auto !important;
+		transform: transform3d(-10000, -10000, 0) !important;
 	}
 
 	&__inner {
