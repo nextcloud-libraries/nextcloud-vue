@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<li>
+	<li class="popover__menuitem">
 		<!-- If item.href is set, a link will be directly used -->
 		<a v-if="item.href"
 			:href="(item.href) ? item.href : '#' "
