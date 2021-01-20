@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v3.5.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.4.0) (2021-01-18)
+## [v3.5.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.5.0) (2021-01-20)
 
 ### Changed
 
