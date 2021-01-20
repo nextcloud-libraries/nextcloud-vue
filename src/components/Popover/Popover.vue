@@ -92,9 +92,11 @@ export default {
 				// show with delay to allow position calculation to happen for dynamic contents,
 				// otherwise the popover will appear in the wrong place first and be visible,
 				// and then in the next tick it repositions itself
+				// Note: we can't use this.$nextTick here as it happens too early before
+				// v-tooltip's position calculation happens
 				window.setTimeout(() => {
 					this.doShowMenu = newValue
-				}, 1)
+				}, 2)
 			} else {
 				this.doShowMenu = false
 			}

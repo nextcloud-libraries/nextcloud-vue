@@ -55,9 +55,7 @@
 			v-if="hasMenu"
 			placement="auto"
 			:open="contactsMenuOpenState">
-			<template>
-				<PopoverMenu :menu="menu" />
-			</template>
+			<PopoverMenu :menu="menu" />
 			<template slot="trigger">
 				<div :class="contactsMenuLoading ? 'icon-loading' : 'icon-more'" :style="{'width': size + 'px', 'height': size + 'px'}" />
 			</template>
