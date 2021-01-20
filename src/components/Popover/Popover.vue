@@ -52,7 +52,7 @@ With a `<button>` as a trigger:
 <template>
 	<VPopover
 		v-bind="$attrs"
-		popover-base-class="popover"
+		:popover-base-class="doShowMenu ? 'popover' : 'popover popover__hidden'"
 		popover-wrapper-class="popover__wrapper"
 		popover-arrow-class="popover__arrow"
 		popover-inner-class="popover__inner"
@@ -74,6 +74,34 @@ export default {
 	components: {
 		VPopover,
 	},
+	props: {
+		open: {
+			type: Boolean,
+			default: false,
+		},
+	},
+	data() {
+		return {
+			doShowMenu: false,
+		}
+	},
+
+	watch: {
+		open(newValue) {
+			if (newValue === true) {
+				// show with delay to allow position calculation to happen for dynamic contents,
+				// otherwise the popover will appear in the wrong place first and be visible,
+				// and then in the next tick it repositions itself
+				// Note: we can't use this.$nextTick here as it happens too early before
+				// v-tooltip's position calculation happens
+				window.setTimeout(() => {
+					this.doShowMenu = newValue
+				}, 2)
+			} else {
+				this.doShowMenu = false
+			}
+		},
+	},
 }
 </script>
 
@@ -85,6 +113,15 @@ $arrow-width: 10px;
 	display: block !important;
 
 	filter: drop-shadow(0 1px 10px var(--color-box-shadow));
+
+	&__hidden {
+		/* same as visibility-hidden but keep the size to avoid resizes on show */
+		/* !important is here to override inline styles set by v-tooltip for initial show */
+		visibility: hidden !important;
+		left: -10000px !important;
+		top: auto !important;
+		transform: transform3d(-10000, -10000, 0) !important;
+	}
 
 	&__inner {
 		padding: 0;

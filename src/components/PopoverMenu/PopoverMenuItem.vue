@@ -300,7 +300,7 @@ li {
 		/* DEPRECATED! old img in popover fallback
 			* TODO: to remove */
 		> img {
-			width: $clickable-area;
+			width: $icon-size;
 			padding: $icon-margin;
 		}
 

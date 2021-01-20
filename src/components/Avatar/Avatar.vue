@@ -51,7 +51,15 @@
 			:src="avatarUrlLoaded"
 			:srcset="avatarSrcSetLoaded"
 			alt="">
-		<div v-if="hasMenu" class="icon-more" />
+		<Popover
+			v-if="hasMenu"
+			placement="auto"
+			:open="contactsMenuOpenState">
+			<PopoverMenu :menu="menu" />
+			<template slot="trigger">
+				<div :class="contactsMenuLoading ? 'icon-loading' : 'icon-more'" :style="{'width': size + 'px', 'height': size + 'px'}" />
+			</template>
+		</Popover>
 
 		<!-- Avatar status -->
 		<div v-if="showUserStatusIconOnAvatar" class="avatardiv__user-status avatardiv__user-status--icon">
@@ -82,14 +90,6 @@
 		<div v-if="userDoesNotExist && !iconClass" class="unknown">
 			{{ initials }}
 		</div>
-
-		<!-- Menu container -->
-		<div v-if="hasMenu"
-			v-show="contactsMenuOpenState"
-			class="popovermenu"
-			:class="`menu-${menuPosition}`">
-			<PopoverMenu :is-open="contactsMenuOpenState" :menu="menu" />
-		</div>
 	</div>
 </template>
 
@@ -104,6 +104,7 @@ import { generateUrl } from '@nextcloud/router'
 import Tooltip from '../../directives/Tooltip'
 import usernameToColor from '../../functions/usernameToColor'
 import { userStatus } from '../../mixins'
+import Popover from '../Popover/Popover'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 
@@ -128,6 +129,7 @@ export default {
 		ClickOutside,
 	},
 	components: {
+		Popover,
 		PopoverMenu,
 	},
 	mixins: [userStatus],
@@ -280,6 +282,7 @@ export default {
 			userDoesNotExist: false,
 			isAvatarLoaded: false,
 			isMenuLoaded: false,
+			contactsMenuLoading: false,
 			contactsMenuActions: [],
 			contactsMenuOpenState: false,
 		}
@@ -446,6 +449,7 @@ export default {
 			this.contactsMenuOpenState = false
 		},
 		async fetchContactsMenu() {
+			this.contactsMenuLoading = true
 			try {
 				const user = encodeURIComponent(this.user)
 				const { data } = await axios.post(generateUrl('contactsmenu/findOne'), `shareType=0&shareWith=${user}`)
@@ -453,6 +457,7 @@ export default {
 			} catch (e) {
 				this.contactsMenuOpenState = false
 			}
+			this.contactsMenuLoading = false
 			this.isMenuLoaded = true
 		},
 
@@ -588,19 +593,19 @@ export default {
 
 	&--with-menu {
 		cursor: pointer;
-		.icon-more {
+		::v-deep .trigger {
 			position: absolute;
 			top: 0;
 			left: 0;
+		}
+		.icon-more {
 			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: inherit;
-			height: inherit;
 			cursor: pointer;
 			opacity: 0;
 			background: none;
 			font-size: 18px;
+			align-items: center;
+			justify-content: center;
 
 			@include iconfont('more');
 			&::before {
@@ -713,12 +718,6 @@ export default {
 	.popovermenu-wrapper {
 		position: relative;
 		display: inline-block;
-	}
-
-	.popovermenu {
-		display: block;
-		margin: 0;
-		font-size: var(--default-font-size);
 	}
 }
 
