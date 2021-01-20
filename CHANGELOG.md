@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.5.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.4.0) (2021-01-18)
+
+### Changed
+
+- Avatar component now uses the popover component - [\#831](https://github.com/nextcloud/nextcloud-vue/issues/831) ([ma12-co](https://github.com/ma12-co)) ([Vincent Petry](vincent@nextcloud.com))
+- Bump core-js from 3.8.2 to 3.8.3 - [\#1671](https://github.com/nextcloud/nextcloud-vue/issues/1671) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+
 ## [v3.4.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.4.0) (2021-01-18)
 
 ### Added
