@@ -284,6 +284,10 @@ li {
 			line-height: 1.6em;
 			padding: 8px 0;
 			white-space: normal;
+
+			// in case there are no spaces like long email addresses
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 
 		// TODO: do we really supports it?

@@ -376,7 +376,7 @@ export default {
 				return {
 					href: item.hyperlink,
 					icon: item.icon,
-					text: item.title,
+					longtext: item.title,
 				}
 			})
 
