@@ -21,7 +21,7 @@
  */
 
 import escapeHtml from 'escape-html'
-import linkifyUrls from 'linkify-urls'
+import linkifyStr from 'linkifyjs/string'
 import stripTags from 'striptags'
 import Vue from 'vue'
 
@@ -63,11 +63,12 @@ export default {
 					// on the the uneven indexes. We only want to generate the mentions html
 					if (!part.startsWith('@')) {
 						// This part doesn't contain a mention, let's make sure links are parsed
-						return linkifyUrls(part, {
+						return linkifyStr(part, {
+							defaultProtocol: 'https',
+							target: '_blank',
+							className: 'external',
 							attributes: {
 								rel: 'noopener noreferrer',
-								target: '_blank',
-								class: 'external',
 							},
 						})
 					}
