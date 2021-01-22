@@ -100,13 +100,17 @@
 
 		// long text area
 		p {
-			width: 185px;
+			width: 220px;
 			padding: #{$icon-margin / 2} 0;
 
 			cursor: pointer;
 			text-align: left;
 
 			line-height: 1.6em;
+
+			// in case there are no spaces like long email addresses
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 
 		&__longtext {
