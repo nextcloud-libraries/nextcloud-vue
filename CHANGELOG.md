@@ -2,7 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.5.2](https://github.com/nextcloud/nextcloud-vue/tree/v3.5.2) (2021-01-22)
+
+### Fixed
+
+- Increase max width of action button - [\#1677](https://github.com/nextcloud/nextcloud-vue/issues/1677) ([Vincent Petry](vincent@nextcloud.com))
+
 ## [v3.5.1](https://github.com/nextcloud/nextcloud-vue/tree/v3.5.1) (2021-01-20)
+
+### Fixed
 
 - Fix longtext appearance for avatar popover menu - [\#1675](https://github.com/nextcloud/nextcloud-vue/issues/1675) ([Vincent Petry](vincent@nextcloud.com))
 - Make the popover menu more easily addressable - [\#1674](https://github.com/nextcloud/nextcloud-vue/issues/1674) ([Vincent Petry](vincent@nextcloud.com))
