@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.5.3](https://github.com/nextcloud/nextcloud-vue/tree/v3.5.3) (2021-01-25)
+
+### Fixed
+
+- Replace linkify-urls with linkifyjs to fix Safari incompatibility issues - [\#1678](https://github.com/nextcloud/nextcloud-vue/issues/1678) ([Vincent Petry](vincent@nextcloud.com))
+
 ## [v3.5.2](https://github.com/nextcloud/nextcloud-vue/tree/v3.5.2) (2021-01-22)
 
 ### Fixed
