@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.5.4](https://github.com/nextcloud/nextcloud-vue/tree/v3.5.4) (2021-01-27)
+
+### Fixed
+
+- Revert workaround for popper glitch, fix regression - [\#1685](https://github.com/nextcloud/nextcloud-vue/issues/1685) ([Vincent Petry](vincent@nextcloud.com))
+
+### Added
+
+- Translate '/l10n/messages.pot' in 'zh_HK' - [\#1682](https://github.com/nextcloud/nextcloud-vue/issues/1682) ([transifex-integration[bot]](https://github.com/apps/transifex-integration))
+
+### Changed
+
+- Bump cypress-visual-regression from 1.5.5 to 1.5.6 - [\#1620](https://github.com/nextcloud/nextcloud-vue/issues/1620) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump webpack-cli from 4.3.1 to 4.4.0 - [\#1672](https://github.com/nextcloud/nextcloud-vue/issues/1672) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump stylelint from 13.8.0 to 13.9.0 - [\#1673](https://github.com/nextcloud/nextcloud-vue/issues/1673) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump vue-eslint-parser from 7.3.0 to 7.4.1 - [\#1676](https://github.com/nextcloud/nextcloud-vue/issues/1676) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump vue-styleguidist from 4.34.2 to 4.35.0 - [\#1686](https://github.com/nextcloud/nextcloud-vue/issues/1686) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+
 ## [v3.5.3](https://github.com/nextcloud/nextcloud-vue/tree/v3.5.3) (2021-01-25)
 
 ### Fixed
