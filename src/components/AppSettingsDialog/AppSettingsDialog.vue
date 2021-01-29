@@ -292,6 +292,8 @@ export default {
 }
 
 .navigation-list {
+	height: 100%;
+	overflow-y: auto;
 	&__link {
 		display: block;
 		font-size: 16px;
