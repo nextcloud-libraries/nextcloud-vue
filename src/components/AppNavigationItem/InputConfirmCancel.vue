@@ -51,18 +51,16 @@ export default {
 			default: '',
 			type: String,
 		},
-	},
-	data() {
-		return {
-			value: '',
-		}
+		value: {
+			default: '',
+			type: String,
+		},
 	},
 	computed: {
 		valueModel: {
 			get() { return this.value },
 			set(newValue) {
 				this.$emit('input', newValue)
-				this.value = newValue
 			},
 		},
 	},
