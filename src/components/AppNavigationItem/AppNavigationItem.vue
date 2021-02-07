@@ -37,7 +37,9 @@
 ```
 * With a spinning loader instead of the icon:
 
+```
 <AppNavigationItem title="Loading Item" :loading="true" />
+```
 
 ### Element with actions
 Wrap the children in a template. If you have more than 2 actions, a popover menu and a menu
