@@ -60,7 +60,7 @@ button will be automatically created.
 ```
 
 ### Element with counter
-Just nest the counter into <AppNavigationItem> and add `slot="counter"` to it.
+Just nest the counter into `<AppNavigationItem>` and add `slot="counter"` to it.
 
 ```
 <AppNavigationItem title="Item with counter" icon="icon-folder">
