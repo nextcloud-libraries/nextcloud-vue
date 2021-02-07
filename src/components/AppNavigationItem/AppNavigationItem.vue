@@ -230,8 +230,8 @@ export default {
 		},
 		/**
 		* Passing in a route will make the root element of this
-		* component a <router-link /> that points to that route.
-		* By leaving this blank, the root element will be a <li>.
+		* component a `<router-link />` that points to that route.
+		* By leaving this blank, the root element will be a `<li>`.
 		*/
 		to: {
 			type: [String, Object],
