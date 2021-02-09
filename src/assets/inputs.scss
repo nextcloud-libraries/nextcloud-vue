@@ -27,7 +27,7 @@
  */
 
 /* Default global values */
-button,
+button:not(.button-vue),
 input:not([type='range']),
 textarea {
 	margin: 0;
