@@ -63,6 +63,7 @@ import PopoverMenu from './PopoverMenu'
 import RichContenteditable from './RichContenteditable'
 import SettingsSection from './SettingsSection'
 import UserBubble from './UserBubble'
+import Button from './Button'
 
 export {
 	ActionButton,
@@ -107,4 +108,5 @@ export {
 	RichContenteditable,
 	SettingsSection,
 	UserBubble,
+	Button,
 }
