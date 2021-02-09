@@ -37,7 +37,9 @@
 ```
 * With a spinning loader instead of the icon:
 
+```
 <AppNavigationItem title="Loading Item" :loading="true" />
+```
 
 ### Element with actions
 Wrap the children in a template. If you have more than 2 actions, a popover menu and a menu
@@ -58,7 +60,7 @@ button will be automatically created.
 ```
 
 ### Element with counter
-Just nest the counter into <AppNavigationItem> and add `slot="counter"` to it.
+Just nest the counter into `<AppNavigationItem>` and add `slot="counter"` to it.
 
 ```
 <AppNavigationItem title="Item with counter" icon="icon-folder">
@@ -228,8 +230,8 @@ export default {
 		},
 		/**
 		* Passing in a route will make the root element of this
-		* component a <router-link /> that points to that route.
-		* By leaving this blank, the root element will be a <li>.
+		* component a `<router-link />` that points to that route.
+		* By leaving this blank, the root element will be a `<li>`.
 		*/
 		to: {
 			type: [String, Object],
