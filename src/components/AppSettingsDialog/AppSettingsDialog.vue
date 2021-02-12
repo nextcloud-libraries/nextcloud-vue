@@ -275,7 +275,6 @@ export default {
 }
 
 .app-settings {
-	padding: 28px 16px;
 	display: flex;
 	width: 100%;
 	&__navigation {
@@ -283,11 +282,10 @@ export default {
 		margin-right: 20px;
 	}
 	&__content {
-		width: 350px;
 		max-width: 100vw;
 		overflow-y: auto;
 		overflow-x: hidden;
-		padding: 0 20px;
+		padding: 24px;
 	}
 }
 
