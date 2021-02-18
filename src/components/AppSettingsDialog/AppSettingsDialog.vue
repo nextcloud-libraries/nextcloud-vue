@@ -278,7 +278,7 @@ export default {
 	display: flex;
 	width: 100%;
 	&__navigation {
-		width: 200px;
+		min-width: 200px;
 		margin-right: 20px;
 	}
 	&__content {
