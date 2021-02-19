@@ -25,6 +25,7 @@
 			cursor: text !important;
 			// remove border radius on bottom opening
 			border-radius: var(--border-radius) var(--border-radius) 0 0;
+			display: block !important;
 		}
 
 		/* multiselect__limit hidden if active */
@@ -74,11 +75,13 @@
 			max-width: 100%;
 			position: relative;
 			padding: 3px $space-between;
-			flex-grow: 1;
+			flex: 1 1;
+			flex-wrap: nowrap;
 			/* no tags or simple select? Show input directly
 			input is used to display single value */
 			&:empty ~ input.multiselect__input {
 				opacity: $opacity_full !important;
+				display: block !important;
 				/* hide default empty text like .multiselect__placeholder,
 				and show input instead. It looks better without a transition between
 				a span and the input that have different styling */
@@ -88,7 +91,6 @@
 			}
 			/* selected tag */
 			.multiselect__tag {
-				flex: 1 0 0;
 				line-height: 20px;
 				padding: 1px 5px;
 				background-image: none;
@@ -100,9 +102,9 @@
 				/* require to override the default width
 				and force the tag to shring properly */
 				min-width: 0;
-				max-width: 50%;
 				max-width: fit-content;
 				max-width: -moz-fit-content;
+				margin-bottom: 3px;
 				/* css hack, detect if more than two tags
 				if so, flex-basis is set to half */
 				&:only-child {
@@ -134,7 +136,7 @@
 			// Align content and make the flow smoother
 			display: flex;
 			align-items: center;
-			
+
 			// Anything inside will trigger the select opening
 			&, * {
 				cursor: pointer;
@@ -143,7 +145,6 @@
 		/* displayed text if tag limit reached */
 		.multiselect__strong,
 		.multiselect__limit {
-			flex: 0 0 auto;
 			line-height: 20px;
 			color: var(--color-text-lighter);
 			display: inline-flex;
@@ -156,20 +157,18 @@
 		/* default multiselect input for search and placeholder */
 		input.multiselect__input {
 			width: 100% !important;
-			position: absolute !important;
-			top: 0;
-			left: 0;
+			position: relative !important;
 			margin: 0;
 			opacity: 0;
 			/* let's leave it on top of tags but hide it */
 			height: 100% !important;
 			border: none;
 			/* override hide to force show the placeholder */
-			display: block !important;
 			/* only when not active */
 			cursor: pointer;
 			/* override inline styling of the lib */
 			padding: 7px 6px !important;
+			display: none;
 		}
 	}
 
@@ -254,16 +253,24 @@
 	}
 
 	/* Icon before option select */
-	&.multiselect--multiple .multiselect__content-wrapper li > span {
-		&::before {
-			background-image: var(--icon-checkmark-000);
+	&.multiselect--multiple {
+		// push the input after the tag list
+		.multiselect__tags {
+			flex-wrap: wrap;
 		}
-		/* add the prop tag-placeholder="create" to add the +
-		icon on top of an unknown-and-ready-to-be-created entry */
-		&[data-select='create'] {
+
+		.multiselect__content-wrapper li > span {
 			&::before {
-				background-image: var(--icon-add-000);
-				visibility: visible;
+				background-image: var(--icon-checkmark-000);
+			}
+
+			/* add the prop tag-placeholder="create" to add the +
+			icon on top of an unknown-and-ready-to-be-created entry */
+			&[data-select='create'] {
+				&::before {
+					background-image: var(--icon-add-000);
+					visibility: visible;
+				}
 			}
 		}
 	}
