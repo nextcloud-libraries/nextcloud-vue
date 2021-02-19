@@ -31,10 +31,12 @@ The button
 </docs>
 
 <template>
-	<button class="nc-button"
-		:disabled="disabled"
-		:class="buttonClasses"
-		@click="handleClick">
+	<button class="nc-button button-vue"
+		v-bind="$attrs"
+		:class="buttonClassObject"
+		@click="handleClick"
+		@blur="handleBlur"
+		@keyup.tab.exact="handleTabUp">
 		<div class="nc-button__wrapper">
 			<div v-if="hasIcon" class="nc-button__icon">
 				<slot />
@@ -47,7 +49,6 @@ The button
 
 export default {
 	name: 'Button',
-
 	props: {
 
 		/**
@@ -64,14 +65,6 @@ export default {
 		text: {
 			type: String,
 			default: '',
-		},
-
-		/**
-		 * Toggle the disabled state for the button
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
 		},
 
 		/**
@@ -95,6 +88,17 @@ export default {
 		},
 	},
 
+	data() {
+		return {
+			/**
+			 * Keeps track of whether the element's focus status is due to having
+			 * tabbed to it. We use this to display a thick 'focus outline' only
+			 * when the user is navigating with the keyboard.
+			 */
+			tabbed: false,
+		}
+	},
+
 	computed: {
 
 		hasText() {
@@ -105,39 +109,18 @@ export default {
 			return this.$slots.default !== undefined
 		},
 
-		buttonClasses() {
-			const classes = []
-
-			// Type
-			switch (this.type) {
-			case 'outlined': {
-				classes.push('nc-button--outlined')
-				break
-			}
-			case 'contained': {
-				classes.push('nc-button--contained')
-				break
-			}
-			case 'text': {
-				classes.push('nc-button--text')
-			}
+		buttonClassObject() {
+			return {
+				'nc-button--outlined': this.type === 'outlined',
+				'nc-button--contained': this.type === 'contained',
+				'nc-button--text': this.type === 'text',
+				// If icon only, some additional css rules are required
+				'nc-button--icon-only': !this.hasText && this.hasIcon,
+				[this.color]: this.color !== '',
+				wide: this.wide,
+				tabbed: this.tabbed,
 			}
 
-			// If icon only, some additional css rules are required
-			if (!this.hasText && this.hasIcon) {
-				classes.push('nc-button--icon-only')
-			}
-
-			// Colors
-			if (this.color !== '') {
-				classes.push(this.color)
-			}
-
-			// Width
-			if (this.wide) {
-				classes.push('wide')
-			}
-			return classes
 		},
 	},
 
@@ -145,6 +128,14 @@ export default {
 		// Forward the click event to the parent component
 		handleClick(event) {
 			this.$emit('click', event)
+		},
+
+		handleTabUp() {
+			this.tabbed = true
+		},
+
+		handleBlur(event) {
+			this.tabbed = false
 		},
 	},
 }
@@ -154,11 +145,7 @@ export default {
 <style lang="scss" scoped>
 
 .nc-button {
-	// Remove server rules
-	margin: 0;
 	border: 0;
-	padding: 0;
-	// TODO: exclude vue button from server styles
 	font-size: var(--default-font-size);
 	height: $clickable-area;
 	min-width: $clickable-area;
@@ -168,13 +155,21 @@ export default {
 	border-radius: var(--border-radius-pill);
 	transition: background-color 0.1s linear !important;
 	transition: border 0.1s linear;
+	// No outline feedback for focus. Handled with a toggled class in js (see data)
+	&:focus {
+		outline: none;
+	}
+	// No active state for buttons
+	&:active {
+		background-color: unset;
+	}
 
 	&__wrapper {
 		padding: 0 20px;
 		display: inline-flex;
 		align-items: center;
 		justify-content: space-around;
-		}
+	}
 
 	&__icon {
 		height: 16px;
@@ -218,18 +213,16 @@ export default {
 		// regular:
 		background-color: var(--color-background-dark);
 		border-color: var(--color-background-dark);
-		&:hover,
-			&:focus {
-				background-color: var(--color-background-hover);
-				border-color: var(--color-background-hover);
-			}
+		&:hover {
+			background-color: var(--color-background-hover);
+			border-color: var(--color-background-hover);
+		}
 		// Variants
 		&.primary {
 			background-color: var(--color-primary-element);
 			border-color: var(--color-primary-element);
 			color: var(--color-primary-text);
-			&:hover,
-			&:focus {
+			&:hover {
 				background-color: var(--color-primary-element-light);
 				border-color: var(--color-primary-element-light);
 			}
@@ -249,8 +242,7 @@ export default {
 		}
 		&.primary {
 			color: var(--color-primary);
-			&:hover,
-			&:focus {
+			&:hover {
 				color: var(--color-primary) !important;
 				background-color: var(--color-primary-light) !important;
 			}
@@ -260,6 +252,11 @@ export default {
 	&.wide {
 		width: 100%;
 	}
-}
 
+	// We use around our buttons instead of an outline, so that the added "border"
+	// coincides with the border of the element.
+	&.tabbed {
+		box-shadow: 0px 0px 0px 2px var(--color-text-light);
+	}
+}
 </style>
