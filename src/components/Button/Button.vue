@@ -31,7 +31,8 @@ The button
 </docs>
 
 <template>
-	<button class="nc-button button-vue"
+	<button v-ripple="'var(--color-ripple)'"
+		class="nc-button button-vue"
 		v-bind="$attrs"
 		:class="buttonClassObject"
 		@click="handleClick"
@@ -46,9 +47,15 @@ The button
 	</button>
 </template>
 <script>
+import ripple from 'vue-ripple-directive'
 
 export default {
 	name: 'Button',
+
+	directives: {
+		ripple,
+	},
+
 	props: {
 
 		/**
@@ -134,7 +141,7 @@ export default {
 			this.tabbed = true
 		},
 
-		handleBlur(event) {
+		handleBlur() {
 			this.tabbed = false
 		},
 	},
@@ -145,6 +152,8 @@ export default {
 <style lang="scss" scoped>
 
 .nc-button {
+	position: relative;
+	overflow: hidden;
 	border: 0;
 	font-size: var(--default-font-size);
 	height: $clickable-area;
@@ -200,8 +209,7 @@ export default {
 		background-color: var(--color-main-background);
 		color: var(--color-primary);
 		border: 2px solid var(--color-primary);
-		&:hover,
-		&:focus {
+		&:hover {
 			background-color: var(--color-primary-light) !important;
 			border: 2px solid var(--color-primary) !important; // TODO: remove server rules targeting this;;
 		}
