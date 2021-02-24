@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.5.5](https://github.com/nextcloud/nextcloud-vue/tree/v3.5.5) (2021-02-24)
+
+### Added
+
+- Improve settings dialog layout [\#1708](https://github.com/nextcloud/nextcloud-vue/pull/1708) ([ma12-co](https://github.com/ma12-co))
+- Make settings navigation list scrollable [\#1684](https://github.com/nextcloud/nextcloud-vue/pull/1684) ([ma12-co](https://github.com/ma12-co))
+
+### Fixed
+
+- Make sure we can check the classList on the node [\#1723](https://github.com/nextcloud/nextcloud-vue/pull/1723) ([skjnldsv](https://github.com/skjnldsv))
+- Fix settings navigation layout [\#1713](https://github.com/nextcloud/nextcloud-vue/pull/1713) ([ma12-co](https://github.com/ma12-co))
+- Update action hover feedback [\#1692](https://github.com/nextcloud/nextcloud-vue/pull/1692) ([ma12-co](https://github.com/ma12-co))
+
 ## [v3.5.4](https://github.com/nextcloud/nextcloud-vue/tree/v3.5.4) (2021-01-27)
 
 ### Fixed
