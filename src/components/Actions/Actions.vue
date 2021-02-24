@@ -114,6 +114,7 @@ It can be used with one or multiple actions.
 			[firstActionClass]: !iconSlotIsPopulated }"
 		class="action-item action-item--single"
 		rel="noreferrer noopener"
+		:disabled="disabled"
 		@[firstActionEventBinding]="execFirstAction">
 		<!-- fake slot to gather main action -->
 		<slot name="icon" />
@@ -142,6 +143,7 @@ It can be used with one or multiple actions.
 			<!-- Menu open/close trigger button -->
 			<button slot="trigger"
 				ref="menuButton"
+				:disabled="disabled"
 				class="icon action-item__menutoggle"
 				:class="{
 					[defaultIcon]: !iconSlotIsPopulated,
@@ -295,6 +297,14 @@ export default {
 		container: {
 			type: String,
 			default: 'body',
+		},
+
+		/**
+		 * Disabled state of the main button (single action or menu toggle)
+		 */
+		disabled: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -606,6 +616,12 @@ export default {
 		opacity: $opacity_full;
 		// good looking on dark AND white bg
 		background-color: $icon-focus-bg;
+	}
+
+	// TODO: handle this in the future button component
+	&__menutoggle:disabled,
+	&--single:disabled {
+		opacity: .3 !important;
 	}
 
 	&.action-item--open .action-item__menutoggle {
