@@ -61,7 +61,7 @@ export default {
 		 */
 		hasNodeOrAnyParentClass(node, classArray) {
 			for (const className of classArray) {
-				if (node.classList.contains(className)) {
+				if (node?.classList?.contains(className)) {
 					return true
 				}
 			}
