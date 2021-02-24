@@ -82,6 +82,20 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 ```
 
 ### Custom icon slot
+To be used with `vue-material-design-icons` only. For icon classes use the `default-icon` slot.
+It can be used with one or multiple actions.
+```
+<Actions>
+	<MicrophoneOff
+		slot="icon"
+		decorative
+		title="" />
+	<ActionButton icon="icon-delete">Delete</ActionButton>
+	<ActionButton icon="icon-reply">Reply</ActionButton>
+</Actions>
+```
+
+### Custom icon slot in child elements
 ```
 <Actions :primary="true">
 	<ActionButton><template #icon><MagnifyIcon /></template>Search</ActionButton>
@@ -95,11 +109,15 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 	<element v-if="isValidSingleAction && !forceMenu"
 		v-tooltip.auto="firstAction.text"
 		v-bind="firstActionBinding"
-		:class="[firstAction.icon, firstActionClass]"
+		:class="{
+			[firstAction.icon]: !iconSlotIsPopulated ,
+			[firstActionClass]: !iconSlotIsPopulated }"
 		class="action-item action-item--single"
 		rel="noreferrer noopener"
+		:disabled="disabled"
 		@[firstActionEventBinding]="execFirstAction">
 		<!-- fake slot to gather main action -->
+		<slot name="icon" />
 		<span :aria-hidden="true" hidden>
 			<!-- @slot All action elements passed into the default slot will be used -->
 			<slot />
@@ -125,9 +143,10 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 			<!-- Menu open/close trigger button -->
 			<button slot="trigger"
 				ref="menuButton"
+				:disabled="disabled"
 				class="icon action-item__menutoggle"
 				:class="{
-					[defaultIcon]: true,
+					[defaultIcon]: !iconSlotIsPopulated,
 					'action-item__menutoggle--with-title': menuTitle,
 					'action-item__menutoggle--primary': primary
 				}"
@@ -136,6 +155,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 				:aria-controls="randomId"
 				test-attr="1"
 				:aria-expanded="opened ? 'true' : 'false'">
+				<slot name="icon" />
 				{{ menuTitle }}
 			</button>
 
@@ -278,6 +298,14 @@ export default {
 			type: String,
 			default: 'body',
 		},
+
+		/**
+		 * Disabled state of the main button (single action or menu toggle)
+		 */
+		disabled: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -377,6 +405,10 @@ export default {
 			const staticClass = this.firstActionVNode && this.firstActionVNode.data.staticClass
 			const dynClass = this.firstActionVNode && this.firstActionVNode.data.class
 			return `${staticClass} ${dynClass}`
+		},
+
+		iconSlotIsPopulated() {
+			return !!this.$slots.icon
 		},
 	},
 
@@ -584,6 +616,12 @@ export default {
 		opacity: $opacity_full;
 		// good looking on dark AND white bg
 		background-color: $icon-focus-bg;
+	}
+
+	// TODO: handle this in the future button component
+	&__menutoggle:disabled,
+	&--single:disabled {
+		opacity: .3 !important;
 	}
 
 	&.action-item--open .action-item__menutoggle {
