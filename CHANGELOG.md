@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.6.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.6.0) (2021-02-25)
+
+### Added
+
+- Add disabled state to actions - [\#1724](https://github.com/nextcloud/nextcloud-vue/pull/1724) ([ma12-co](https://github.com/ma12-co))
+- Add support for material design icons - [\#1714](https://github.com/nextcloud/nextcloud-vue/pull/1714) ([ma12-co](https://github.com/ma12-co))
+
+### Changed
+
+- Bump @babel/core from 7.12.17 to 7.13.1 - [\#1721](https://github.com/nextcloud/nextcloud-vue/issues/1721) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump @babel/preset-env from 7.12.17 to 7.13.5 - [\#1725](https://github.com/nextcloud/nextcloud-vue/issues/1725) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump babel-loader-exclude-node-modules-except from 1.0.3 to 1.1.2 - [\#1702](https://github.com/nextcloud/nextcloud-vue/issues/1702) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump core-js from 3.8.3 to 3.9.0 - [\#1717](https://github.com/nextcloud/nextcloud-vue/issues/1717) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump cypress from 5.6.0 to 6.5.0 - [\#1712](https://github.com/nextcloud/nextcloud-vue/issues/1712) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump eslint-plugin-promise from 4.2.1 to 4.3.1 - [\#1704](https://github.com/nextcloud/nextcloud-vue/issues/1704) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump stylelint from 13.9.0 to 13.11.0 - [\#1719](https://github.com/nextcloud/nextcloud-vue/issues/1719) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump vue2-datepicker from 3.8.2 to 3.9.0 - [\#1699](https://github.com/nextcloud/nextcloud-vue/issues/1699) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump vue-eslint-parser from 7.4.1 to 7.5.0 - [\#1711](https://github.com/nextcloud/nextcloud-vue/issues/1711) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+
+### Fixed
+
+- Use data of parent component in InputConfirmCanel subcomponent - [\#1697](https://github.com/nextcloud/nextcloud-vue/issues/1697) ([christianlupus](github@christianwolf.email))
+
 ## [v3.5.5](https://github.com/nextcloud/nextcloud-vue/tree/v3.5.5) (2021-02-24)
 
 ### Added
