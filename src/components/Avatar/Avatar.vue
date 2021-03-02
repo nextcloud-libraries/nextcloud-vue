@@ -173,6 +173,8 @@ export default {
 		},
 		/**
 		 * When the user status was preloaded via another source it can be handed in with this property to save the request.
+		 * If this property is not set the status will be fetched automatically.
+		 * If a preloaded no-status is available provide this object with properties "status", "icon" and "message" set to null.
 		 */
 		preloadedUserStatus: {
 			type: Object,
