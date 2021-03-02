@@ -172,6 +172,15 @@ export default {
 			default: true,
 		},
 		/**
+		 * When the user status was preloaded via another source it can be handed in with this property to save the request.
+		 * If this property is not set the status will be fetched automatically.
+		 * If a preloaded no-status is available provide this object with properties "status", "icon" and "message" set to null.
+		 */
+		preloadedUserStatus: {
+			type: Object,
+			default: undefined,
+		},
+		/**
 		 * Is the user a guest user (then we have to user a different endpoint)
 		 */
 		isGuest: {
@@ -414,7 +423,14 @@ export default {
 	mounted() {
 		this.loadAvatarUrl()
 		if (this.showUserStatus && this.user && !this.isNoUser) {
-			this.fetchUserStatus(this.user)
+			if (!this.preloadedUserStatus) {
+				this.fetchUserStatus(this.user)
+			} else {
+				this.userStatus.status = this.preloadedUserStatus.status || ''
+				this.userStatus.message = this.preloadedUserStatus.message || ''
+				this.userStatus.icon = this.preloadedUserStatus.icon || ''
+				this.hasStatus = this.preloadedUserStatus.status !== null
+			}
 			subscribe('user_status:status.updated', this.handleUserStatusUpdated)
 		}
 	},
