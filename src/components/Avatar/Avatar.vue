@@ -54,6 +54,7 @@
 		<Popover
 			v-if="hasMenu"
 			placement="auto"
+			:container="menuContainer"
 			:open="contactsMenuOpenState">
 			<PopoverMenu :menu="menu" />
 			<template slot="trigger">
@@ -273,6 +274,14 @@ export default {
 		menuPosition: {
 			type: String,
 			default: 'center',
+		},
+
+		/**
+		 * Selector for the popover menu container
+		 */
+		menuContainer: {
+			type: String,
+			default: 'body',
 		},
 	},
 	data() {

@@ -81,6 +81,14 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Selector for the popover container
+		 */
+		container: {
+			type: String,
+			default: 'body',
+		},
 	},
 
 	data() {
@@ -244,6 +252,9 @@ export default {
 		// Return value of the render function
 		if (this.open) {
 			return createElement('Modal', {
+				attrs: {
+					container: this.container,
+				},
 				on: {
 					close: () => { this.handleCloseModal() },
 				},

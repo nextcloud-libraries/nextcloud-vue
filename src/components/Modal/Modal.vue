@@ -281,6 +281,14 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Selector for the modal container
+		 */
+		container: {
+			type: String,
+			default: 'body',
+		},
 	},
 
 	data() {
@@ -338,8 +346,14 @@ export default {
 			this.handleSwipe(e)
 		})
 
-		// force mount the component to body
-		document.body.insertBefore(this.$el, document.body.lastChild)
+		if (this.container === 'body') {
+			// force mount the component to body
+			document.body.insertBefore(this.$el, document.body.lastChild)
+		} else {
+			const container = document.querySelector(this.container)
+			container.appendChild(this.$el)
+		}
+
 	},
 	destroyed() {
 		this.$el.remove()
