@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.7.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.7.0) (2021-03-03)
+
+### Added
+
+- Allow to inject preloaded user statuses - [\#1433](https://github.com/nextcloud/nextcloud-vue/pull/1433) ([nickvergessen](https://github.com/nickvergessen))
+- Add a container property to popup components - [\#1734](https://github.com/nextcloud/nextcloud-vue/issues/1734) ([Vincent Petry](vincent@nextcloud.com))
+
+### Changed
+
+- Bump vue-eslint-parser from 7.5.0 to 7.6.0 - [\#1737](https://github.com/nextcloud/nextcloud-vue/issues/1737) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump pug from 3.0.0 to 3.0.2 - [\#1736](https://github.com/nextcloud/nextcloud-vue/issues/1736) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump pug-code-gen from 3.0.1 to 3.0.2 - [\#1735](https://github.com/nextcloud/nextcloud-vue/issues/1735) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump css-loader from 5.0.2 to 5.1.1 - [\#1731](https://github.com/nextcloud/nextcloud-vue/issues/1731) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump cypress from 6.5.0 to 6.6.0 - [\#1730](https://github.com/nextcloud/nextcloud-vue/issues/1730) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump @babel/preset-env from 7.13.8 to 7.13.9 - [\#1732](https://github.com/nextcloud/nextcloud-vue/issues/1732) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump core-js from 3.9.0 to 3.9.1 - [\#1729](https://github.com/nextcloud/nextcloud-vue/issues/1729) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump @babel/preset-env from 7.13.5 to 7.13.8 - [\#1728](https://github.com/nextcloud/nextcloud-vue/issues/1728) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump @babel/core from 7.13.1 to 7.13.8 - [\#1727](https://github.com/nextcloud/nextcloud-vue/issues/1727) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+
 ## [v3.6.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.6.0) (2021-02-25)
 
 ### Added
