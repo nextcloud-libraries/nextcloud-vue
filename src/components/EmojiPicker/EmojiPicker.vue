@@ -89,6 +89,7 @@
 <template>
 	<Popover
 		:open.sync="open"
+		:container="container"
 		popover-class="emoji-popover"
 		popover-inner-class="popover-emoji-picker-inner">
 		<template #trigger>
@@ -158,6 +159,14 @@ export default {
 		closeOnSelect: {
 			type: Boolean,
 			default: true,
+		},
+
+		/**
+		 * Selector for the popover container
+		 */
+		container: {
+			type: String,
+			default: 'body',
 		},
 	},
 	data() {
