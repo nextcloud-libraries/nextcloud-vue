@@ -108,7 +108,7 @@ The singleLabel slot here is optional of course and here for demonstration purpo
 
 ```vue
 <template>
-	<Multiselect v-model="value" :options="formatedOptions"
+	<Multiselect v-model="value" :options="formattedOptions"
 		label="displayName" track-by="user"
 		:user-select="true"
 		style="width: 250px">
