@@ -94,7 +94,7 @@ This component has the following slot:
 				class="user-bubble__avatar" />
 
 			<!-- Title -->
-			<span class="user-bubble__title">
+			<span v-if="!avatarOnly" class="user-bubble__title">
 				{{ displayName || user }}
 			</span>
 
@@ -192,6 +192,13 @@ export default {
 			type: Number,
 			default: 2,
 		},
+		/**
+		 * Show the avatar only
+		 */
+		avatarOnly: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	computed: {
 		/**
@@ -244,7 +251,7 @@ export default {
 		},
 
 		styles() {
-			return {
+			const styles = {
 				content: {
 					height: this.size + 'px',
 					lineHeight: this.size + 'px',
@@ -254,6 +261,12 @@ export default {
 					marginLeft: this.margin + 'px',
 				},
 			}
+
+			if (this.avatarOnly) {
+				styles.avatar.marginRight = styles.avatar.marginLeft
+			}
+
+			return styles
 		},
 	},
 	methods: {
