@@ -85,14 +85,43 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 To be used with `vue-material-design-icons` only. For icon classes use the `default-icon` slot.
 It can be used with one or multiple actions.
 ```
-<Actions>
-	<MicrophoneOff
-		slot="icon"
-		decorative
-		title="" />
-	<ActionButton icon="icon-delete">Delete</ActionButton>
-	<ActionButton icon="icon-reply">Reply</ActionButton>
-</Actions>
+<template>
+	<div style="display: flex;align-items: center;">
+		<button @click="toggled = !toggled">Toggle multiple action</button>
+		<Actions>
+			<DotsHorizontalCircleOutline
+				slot="icon"
+				:size="16"
+				decorative />
+			<ActionButton>
+				<MicrophoneOff
+					slot="icon"
+					:size="16"
+					decorative />
+				Mute
+			</ActionButton>
+			<ActionButton v-if="toggled" icon="icon-delete">Delete</ActionButton>
+		</Actions>
+		<Actions>
+		</Actions>
+	</div>
+</template>
+<script>
+import DotsHorizontalCircleOutline from 'vue-material-design-icons/DotsHorizontalCircleOutline'
+import MicrophoneOff from 'vue-material-design-icons/MicrophoneOff'
+
+export default {
+	components: {
+		DotsHorizontalCircleOutline,
+		MicrophoneOff,
+	},
+	data() {
+		return {
+			toggled: false
+		}
+	}
+}
+</script>
 ```
 
 ### Custom icon slot in child elements
@@ -116,8 +145,10 @@ It can be used with one or multiple actions.
 		rel="noreferrer noopener"
 		:disabled="disabled"
 		@[firstActionEventBinding]="execFirstAction">
+		<!-- Render the icon slot content of the first action -->
+		<VNodes :vnodes="firstActionIconSlot" />
+
 		<!-- fake slot to gather main action -->
-		<slot name="icon" />
 		<span :aria-hidden="true" hidden>
 			<!-- @slot All action elements passed into the default slot will be used -->
 			<slot />
@@ -222,6 +253,12 @@ export default {
 
 	components: {
 		Popover,
+
+		// Component to render the first action icon slot content (vnodes)
+		VNodes: {
+			functional: true,
+			render: (h, context) => context.props.vnodes,
+		},
 	},
 
 	props: {
@@ -393,13 +430,14 @@ export default {
 
 		// return the event to bind if the firstActionVNode have an action
 		firstActionEvent() {
-			return this.firstActionVNode
-				&& this.firstActionVNode.componentOptions
-				&& this.firstActionVNode.componentOptions.listeners
-				&& this.firstActionVNode.componentOptions.listeners.click
+			return this.firstActionVNode?.componentOptions?.listeners?.click
 		},
 		firstActionEventBinding() {
 			return this.firstActionEvent ? 'click' : null
+		},
+		// return the first action icon slot vnodes array
+		firstActionIconSlot() {
+			return this.firstAction?.$slots?.icon
 		},
 		firstActionClass() {
 			const staticClass = this.firstActionVNode && this.firstActionVNode.data.staticClass
@@ -653,6 +691,13 @@ export default {
 		opacity: $opacity_normal;
 		font-weight: bold;
 		line-height: $icon-size;
+
+		// image slot
+		/deep/ span {
+			width: $icon-size;
+			height: $icon-size;
+			line-height: $icon-size;
+		}
 
 		&:before {
 			content: '';
