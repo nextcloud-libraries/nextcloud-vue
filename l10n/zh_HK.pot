@@ -1,10 +1,10 @@
 # 
 # Translators:
-# Cha Wong <cafetango@gmail.com>, 2021
+# Café Tango, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Cha Wong <cafetango@gmail.com>, 2021\n"
+"Last-Translator: Café Tango, 2021\n"
 "Language-Team: Chinese (Hong Kong) (https://www.transifex.com/nextcloud/teams/64236/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_HK\n"
@@ -41,7 +41,7 @@ msgid "Food & Drink"
 msgstr "食物與飲料"
 
 msgid "Frequently used"
-msgstr "最近使用"
+msgstr "經常使用"
 
 msgid "Message limit of {count} characters reached"
 msgstr "已達到訊息最多 {count} 字元限制"
