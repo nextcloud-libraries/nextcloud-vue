@@ -8,7 +8,7 @@ const newConfig = Object.assign({}, webpackConfig, {
 		// Ignore eslint
 		rules: webpackConfig.module.rules.filter(
 			rule => rule.use !== 'eslint-loader'
-		)
+		),
 	},
 })
 
@@ -32,8 +32,8 @@ module.exports = {
 					changeOrigin: true,
 					ignorePath: true,
 					secure: false,
-				}
-			}
+				},
+			},
 		},
 	}),
 
