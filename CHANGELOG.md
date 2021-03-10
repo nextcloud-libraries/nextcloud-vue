@@ -2,7 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v3.7.1]() (2021-03-10)
+## [v3.7.2](https://github.com/nextcloud/nextcloud-vue/tree/v3.7.2) (2021-03-10)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.7.1...v3.7.2)
+
+**Fixed bugs:**
+
+- Render the first action icon slot if single action [\#1753](https://github.com/nextcloud/nextcloud-vue/pull/1753) ([skjnldsv](https://github.com/skjnldsv))
+- Fix formattedOptions var in multiselect docs [\#1744](https://github.com/nextcloud/nextcloud-vue/pull/1744) ([skjnldsv](https://github.com/skjnldsv))
+
+## [v3.7.1](https://github.com/nextcloud/nextcloud-vue/tree/v3.7.1) (2021-03-10)
 
 ### Added
 - Fix ActionButton icon slot - [\#1741](https://github.com/nextcloud/nextcloud-vue/pull/1741) ([ma12-co](https://github.com/ma12-co))
