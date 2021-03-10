@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.7.1]() (2021-03-10)
+
+### Added
+- Fix ActionButton icon slot - [\#1741](https://github.com/nextcloud/nextcloud-vue/pull/1741) ([ma12-co](https://github.com/ma12-co))
+- Improve multiselect tag [\#1718](https://github.com/nextcloud/nextcloud-vue/pull/1718) ([GretaD](https://github.com/GretaD))
+
+### Changed
+- Bump debounce from 1.2.0 to 1.2.1 - [\#1754](https://github.com/nextcloud/nextcloud-vue/pull/1754) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump stylelint from 13.11.0 to 13.12.0 - [\#1743](https://github.com/nextcloud/nextcloud-vue/pull/1743) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+
 ## [v3.7.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.7.0) (2021-03-03)
 
 ### Added
