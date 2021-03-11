@@ -52,6 +52,7 @@
 		"linkifyjs": "~2.1.9",
 		"md5": "^2.2.1",
 		"regenerator-runtime": "^0.13.5",
+		"splitpanes": "^2.3.6",
 		"string-length": "^4.0.1",
 		"striptags": "^3.1.1",
 		"style-loader": "^2.0.0",
