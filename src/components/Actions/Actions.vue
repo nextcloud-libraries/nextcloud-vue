@@ -115,6 +115,8 @@ It can be used with one or multiple actions.
 		class="action-item action-item--single"
 		rel="noreferrer noopener"
 		:disabled="disabled"
+		@focus="onFocus"
+		@blur="onBlur"
 		@[firstActionEventBinding]="execFirstAction">
 		<!-- fake slot to gather main action -->
 		<slot name="icon" />
@@ -154,7 +156,9 @@ It can be used with one or multiple actions.
 				aria-haspopup="true"
 				:aria-controls="randomId"
 				test-attr="1"
-				:aria-expanded="opened ? 'true' : 'false'">
+				:aria-expanded="opened ? 'true' : 'false'"
+				@focus="onFocus"
+				@blur="onBlur">
 				<slot name="icon" />
 				{{ menuTitle }}
 			</button>
@@ -593,6 +597,12 @@ export default {
 		initActions() {
 			// filter out invalid slots
 			this.actions = (this.$slots.default || []).filter(node => !!node && !!node.componentOptions)
+		},
+		onFocus(event) {
+			this.$emit('focus', event)
+		},
+		onBlur(event) {
+			this.$emit('blur', event)
 		},
 	},
 }
