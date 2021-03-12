@@ -51,6 +51,7 @@ With a `<button>` as a trigger:
 
 <template>
 	<VPopover
+		ref="popover"
 		v-bind="$attrs"
 		popover-base-class="popover"
 		popover-wrapper-class="popover__wrapper"
@@ -73,6 +74,24 @@ export default {
 	name: 'Popover',
 	components: {
 		VPopover,
+	},
+
+	mounted() {
+		this.$watch(
+			() => {
+				// required because v-tooltip doesn't provide events
+				// and @show is too early
+				// see https://github.com/Akryum/v-tooltip/issues/661
+				return this.$refs.popover.isOpen
+			},
+			(val) => {
+				if (val) {
+					this.$emit('after-show')
+				} else {
+					this.$emit('after-hide')
+				}
+			}
+		)
 	},
 }
 </script>
