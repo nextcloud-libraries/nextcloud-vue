@@ -86,8 +86,18 @@ export default {
 			},
 			(val) => {
 				if (val) {
+					/**
+					 * Triggered after the tooltip was visually displayed.
+					 *
+					 * This is different from the 'show' and 'apply-show' which
+					 * run earlier than this where there is no guarantee that the
+					 * tooltip is already visible and in the DOM.
+					 */
 					this.$emit('after-show')
 				} else {
+					/**
+					 * Triggered after the tooltip was visually hidden.
+					 */
 					this.$emit('after-hide')
 				}
 			}
