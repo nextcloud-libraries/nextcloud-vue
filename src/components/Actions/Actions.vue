@@ -171,7 +171,7 @@ export default {
 			:boundaries-element="boundariesElement"
 			:container="container"
 			@show="openMenu"
-			@apply-show="onOpen"
+			@after-show="onOpen"
 			@hide="closeMenu">
 			<!-- Menu open/close trigger button -->
 			<button slot="trigger"
@@ -502,8 +502,6 @@ export default {
 			 * Event emitted when the popover menu is closed
 			 */
 			this.$emit('open')
-
-			this.onOpen(e)
 		},
 		closeMenu(e) {
 			if (!this.opened) {

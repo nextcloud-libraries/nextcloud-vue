@@ -51,6 +51,7 @@ With a `<button>` as a trigger:
 
 <template>
 	<VPopover
+		ref="popover"
 		v-bind="$attrs"
 		popover-base-class="popover"
 		popover-wrapper-class="popover__wrapper"
@@ -73,6 +74,34 @@ export default {
 	name: 'Popover',
 	components: {
 		VPopover,
+	},
+
+	mounted() {
+		this.$watch(
+			() => {
+				// required because v-tooltip doesn't provide events
+				// and @show is too early
+				// see https://github.com/Akryum/v-tooltip/issues/661
+				return this.$refs.popover.isOpen
+			},
+			(val) => {
+				if (val) {
+					/**
+					 * Triggered after the tooltip was visually displayed.
+					 *
+					 * This is different from the 'show' and 'apply-show' which
+					 * run earlier than this where there is no guarantee that the
+					 * tooltip is already visible and in the DOM.
+					 */
+					this.$emit('after-show')
+				} else {
+					/**
+					 * Triggered after the tooltip was visually hidden.
+					 */
+					this.$emit('after-hide')
+				}
+			}
+		)
 	},
 }
 </script>
