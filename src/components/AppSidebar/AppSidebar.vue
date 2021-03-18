@@ -520,7 +520,6 @@ $top-buttons-spacing: 6px;
 					flex: 0 0 auto;
 				}
 				.app-sidebar-header__desc {
-					height: $desc-height;
 					padding-left: 0;
 					flex: 1 1 auto;
 					min-width: 0;
@@ -589,7 +588,6 @@ $top-buttons-spacing: 6px;
 			display: flex;
 			flex-direction: row;
 			justify-content: center;
-			box-sizing: content-box;
 			padding: #{$desc-vertical-padding} #{$top-buttons-spacing} #{$desc-vertical-padding} #{$desc-vertical-padding / 2};
 
 			// custom overrides
