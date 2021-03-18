@@ -1,60 +1,105 @@
+# 
 # Translators:
-# Balázs Meskó <mesko.balazs@fsf.hu>, 2020
-# asbot10 <asbot000@gmail.com>, 2020
+# asbot10 <richard@asbot.tech>, 2020
+# Balázs Meskó <meskobalazs@mailbox.org>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: asbot10 <asbot000@gmail.com>, 2020\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>, 2021\n"
 "Language-Team: Hungarian (Hungary) (https://www.transifex.com/nextcloud/teams/64236/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: hu_HU\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:170
 msgid "{tag} (invisible)"
 msgstr "{tag} (láthatatlan)"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:173
 msgid "{tag} (restricted)"
 msgstr "{tag} (korlátozott)"
 
-#: src/components/Actions/Actions.vue:197
 msgid "Actions"
 msgstr "Műveletek"
 
-#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Activities"
+msgstr "Tevékenységek"
+
+msgid "Animals & Nature"
+msgstr "Állatok és természet"
+
 msgid "Choose"
 msgstr "Válassszon"
 
-#: src/components/Modal/Modal.vue:117
 msgid "Close"
 msgstr "Bezárás"
 
-#: src/components/Modal/Modal.vue:166
+msgid "Custom"
+msgstr "Egyéni"
+
+msgid "Flags"
+msgstr "Zászló"
+
+msgid "Food & Drink"
+msgstr "Étel és ital"
+
+msgid "Frequently used"
+msgstr "Gyakran használt"
+
+msgid "Message limit of {count} characters reached"
+msgstr "{count} karakteres üzenetkorlát elérve"
+
 msgid "Next"
 msgstr "Következő"
 
-#: src/components/Multiselect/Multiselect.vue:172
-#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No emoji found"
+msgstr "Nem található emodzsi"
+
 msgid "No results"
 msgstr "Nincs találat"
 
-#: src/components/Modal/Modal.vue:302
+msgid "Objects"
+msgstr "Tárgyak"
+
 msgid "Pause slideshow"
 msgstr "Diavetítés szüneteltetése"
 
-#: src/components/Modal/Modal.vue:144
+msgid "People & Body"
+msgstr "Emberek és test"
+
+msgid "Pick an emoji"
+msgstr "Válasszon egy emodzsit"
+
 msgid "Previous"
 msgstr "Előző"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Search"
+msgstr "Keresés"
+
+msgid "Search results"
+msgstr "Találatok"
+
 msgid "Select a tag"
 msgstr "Válasszon címkét"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
 msgid "Settings"
 msgstr "Beállítások"
 
-#: src/components/Modal/Modal.vue:302
+msgid "Settings navigation"
+msgstr "Navigáció a beállításokban"
+
+msgid "Smileys & Emotion"
+msgstr "Mosolyok és érzelmek"
+
 msgid "Start slideshow"
 msgstr "Diavetítés indítása"
+
+msgid "Symbols"
+msgstr "Szimbólumok"
+
+msgid "Travel & Places"
+msgstr "Utazás és helyek"
+
+msgid "Unable to search the group"
+msgstr "A csoport nem kereshető"
+
+msgid "Write message, @ to mention someone …"
+msgstr "Írjon üzenetet, @ valaki megemlítéséhez…"
