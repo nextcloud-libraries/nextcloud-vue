@@ -502,7 +502,7 @@ export default {
 			: []
 		this.addCrumbs(crumbs, crumbs2, crumbs1.length)
 
-		return createElement('div', { class: 'breadcrumb', ref: 'container' }, crumbs)
+		return createElement('div', { class: ['breadcrumb', { 'breadcrumb--collapsed': (this.hiddenCrumbs.length === breadcrumbs.length - 2) }], ref: 'container' }, crumbs)
 	},
 }
 </script>
@@ -511,6 +511,11 @@ export default {
 .breadcrumb {
 	width: 100%;
 	flex-grow: 1;
+
+	&--collapsed  .crumb:last-child {
+		min-width: 100px;
+		flex-shrink: 1;
+	}
 
 	.crumb--hovered{
 		background-color: var(--color-primary-light);
