@@ -31,9 +31,28 @@ const translations = fs
 
 		const po = fs.readFileSync(path)
 		const json = gettextParser.po.parse(po)
+
+		// Compress translations Content
+		const translations = {}
+		for (key in json.translations['']) {
+			if (key !== '') {
+				// Plural
+				if ('msgid_plural'in json.translations[''][key]) {
+					translations[json.translations[''][key].msgid] = {
+						pluralId: json.translations[''][key].msgid_plural,
+						msgstr: json.translations[''][key].msgstr
+					}
+					continue
+				}
+
+				// Singular
+				translations[json.translations[''][key].msgid] = json.translations[''][key].msgstr[0]
+			}
+		}
+
 		return {
 			locale,
-			json,
+			translations,
 		}
 	})
 
