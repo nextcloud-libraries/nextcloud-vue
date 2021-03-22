@@ -220,6 +220,14 @@ export default {
 	height: $clickable-area;
 	padding: 0;
 
+	&:last-child {
+		max-width: 210px;
+
+		a {
+			flex-shrink: 1;
+		}
+	}
+
 	&::before {
 		display: flex;
 		align-items: center;
@@ -234,6 +242,10 @@ export default {
 
 	&--with-action a {
 		padding-right: 2px;
+	}
+
+	> a, > span {
+		max-width: 100%;
 	}
 
 	a {
