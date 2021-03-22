@@ -26,6 +26,9 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
+msgid "External documentation for {title}"
+msgstr ""
+
 msgid "Flags"
 msgstr ""
 
@@ -81,6 +84,9 @@ msgid "Smileys & Emotion"
 msgstr ""
 
 msgid "Start slideshow"
+msgstr ""
+
+msgid "Submit"
 msgstr ""
 
 msgid "Symbols"

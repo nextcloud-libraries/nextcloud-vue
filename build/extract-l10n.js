@@ -11,8 +11,8 @@ extractor
         }),
         JsExtractors.callExpression('n', {
             arguments: {
-                text: 1,
-                textPlural: 2,
+                text: 0,
+                textPlural: 1,
             }
         }),
     ])

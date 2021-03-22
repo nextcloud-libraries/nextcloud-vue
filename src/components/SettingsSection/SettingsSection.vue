@@ -48,7 +48,7 @@ This component is to be used in the settings section of nextcloud.
 				:href="docUrl"
 				class="settings-section__info"
 				role=""
-				:title="t('External documentation for {title}', {title})" />
+				:title="docTitleTranslated" />
 		</h2>
 		<p v-if="hasDescription"
 			class="settings-section__desc">
@@ -59,14 +59,14 @@ This component is to be used in the settings section of nextcloud.
 </template>
 
 <script>
-import l10n from '../../mixins/l10n'
+import { t } from '../../l10n'
 
 export default {
 	name: 'SettingsSection',
 	components: {
 
 	},
-	mixins: [l10n],
+
 	props: {
 		title: {
 			type: String,
@@ -80,6 +80,14 @@ export default {
 			type: String,
 			default: '',
 		},
+	},
+
+	data() {
+		return {
+			docTitleTranslated: t('External documentation for {title}', {
+				title: this.title,
+			}),
+		}
 	},
 
 	computed: {
