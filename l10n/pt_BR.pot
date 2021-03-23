@@ -3,137 +3,105 @@
 # Maurício Gardini <accounts@mauriciogardini.com>, 2020
 # Paulo Schopf, 2020
 # Rodrigo de Almeida Sottomaior Macedo <rmsolucoeseminformatica@protonmail.com>, 2020
+# Flávio Veras <flaviove@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Rodrigo de Almeida Sottomaior Macedo <rmsolucoeseminformatica@protonmail.com>, 2020\n"
+"Last-Translator: Flávio Veras <flaviove@gmail.com>, 2021\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:170
 msgid "{tag} (invisible)"
 msgstr "{tag} (invisível)"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:173
 msgid "{tag} (restricted)"
 msgstr "{tag} (restrito) "
 
-#: src/components/Actions/Actions.vue:254
 msgid "Actions"
 msgstr "Ações"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:176
 msgid "Activities"
 msgstr "Atividades"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:174
 msgid "Animals & Nature"
 msgstr "Animais & Natureza"
 
-#: src/components/ColorPicker/ColorPicker.vue:145
 msgid "Choose"
 msgstr "Escolher"
 
-#: src/components/Modal/Modal.vue:117
 msgid "Close"
 msgstr "Fechar"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:181
 msgid "Custom"
 msgstr "Personalizado"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:180
 msgid "Flags"
 msgstr "Bandeiras"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:175
 msgid "Food & Drink"
 msgstr "Comida & Bebida"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:171
 msgid "Frequently used"
 msgstr "Mais usados"
 
-#: src/components/RichContenteditable/RichContenteditable.vue:254
 msgid "Message limit of {count} characters reached"
 msgstr "Limite de mensagem de {count} caracteres atingido"
 
-#: src/components/Modal/Modal.vue:166
 msgid "Next"
 msgstr "Próximo"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:168
 msgid "No emoji found"
 msgstr "Nenhum emoji encontrado"
 
-#: src/components/Multiselect/Multiselect.vue:174
-#: src/components/MultiselectTags/MultiselectTags.vue:78
-#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
 msgid "No results"
 msgstr "Sem resultados"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:178
 msgid "Objects"
 msgstr "Objetos"
 
-#: src/components/Modal/Modal.vue:302
 msgid "Pause slideshow"
 msgstr "Pausar apresentação de slides"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:173
 msgid "People & Body"
 msgstr "Pessoas & Corpo"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:153
 msgid "Pick an emoji"
 msgstr "Escolha um emoji"
 
-#: src/components/Modal/Modal.vue:144
 msgid "Previous"
 msgstr "Anterior"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:167
 msgid "Search"
 msgstr "Pesquisar"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:170
 msgid "Search results"
 msgstr "Resultados da pesquisa"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
 msgstr "Selecionar uma tag"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:57
 msgid "Settings"
 msgstr "Configurações"
 
-#: src/components/AppSettingsDialog/AppSettingsDialog.vue:106
 msgid "Settings navigation"
-msgstr "Navegação nas configurações"
+msgstr "Navegação de configurações"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:172
 msgid "Smileys & Emotion"
 msgstr "Smiles & Emoções"
 
-#: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Iniciar apresentação de slides"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:179
 msgid "Symbols"
 msgstr "Símbolo"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:177
 msgid "Travel & Places"
 msgstr "Viagem & Lugares"
 
-#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
 msgid "Unable to search the group"
 msgstr "Não foi possível pesquisar o grupo"
 
-#: src/components/RichContenteditable/RichContenteditable.vue:151
 msgid "Write message, @ to mention someone …"
 msgstr "Escreva mensagem, @ para mencionar alguém ..."
