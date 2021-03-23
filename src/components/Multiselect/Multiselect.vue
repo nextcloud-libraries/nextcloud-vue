@@ -159,8 +159,7 @@ export default {
 	## v-on="$listeners", v-bind="$attrs"
 	-> Forward all undeclared props to the vue-multiselect child
 	-->
-	<VueMultiselect
-		ref="VueMultiselect"
+	<VueMultiselect ref="VueMultiselect"
 		v-model="localValue"
 		v-bind="$attrs"
 		:class="[

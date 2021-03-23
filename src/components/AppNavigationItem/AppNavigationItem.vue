@@ -140,8 +140,7 @@ Just set the `pinned` prop.
 				{{ title }}
 			</span>
 			<div v-if="editingActive" class="editingContainer">
-				<InputConfirmCancel
-					ref="editingInput"
+				<InputConfirmCancel ref="editingInput"
 					v-model="editingValue"
 					:placeholder="editPlaceholder !== '' ? editPlaceholder : title"
 					@cancel="cancelEditing"
@@ -173,8 +172,7 @@ Just set the `pinned` prop.
 					<!-- @slot Slot for the custom menu icon -->
 					<slot name="menu-icon" />
 				</template>
-				<ActionButton
-					v-if="editable && !editingActive"
+				<ActionButton v-if="editable && !editingActive"
 					:aria-label="editButtonAriaLabel"
 					@click="handleEdit">
 					<template #icon>
@@ -182,8 +180,7 @@ Just set the `pinned` prop.
 					</template>
 					{{ editLabel }}
 				</ActionButton>
-				<ActionButton
-					v-if="undo"
+				<ActionButton v-if="undo"
 					:aria-label="undoButtonAriaLabel"
 					@click="handleUndo">
 					<template #icon>

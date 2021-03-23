@@ -134,8 +134,7 @@ include a standard-header like it's used by the files app.
 </docs>
 
 <template>
-	<transition
-		appear
+	<transition appear
 		name="slide-right"
 		@before-enter="onBeforeEnter"
 		@after-enter="onAfterEnter"
@@ -148,8 +147,7 @@ include a standard-header like it's used by the files app.
 				}"
 				class="app-sidebar-header">
 				<!-- close sidebar button -->
-				<a
-					v-tooltip.auto="closeTranslated"
+				<a v-tooltip.auto="closeTranslated"
 					href="#"
 					class="app-sidebar__close"
 					@click.prevent="closeSidebar">
@@ -211,12 +209,10 @@ include a standard-header like it's used by the files app.
 									{{ title }}
 								</h2>
 								<template v-if="titleEditable">
-									<form
-										v-click-outside="() => onSubmitTitle()"
+									<form v-click-outside="() => onSubmitTitle()"
 										class="app-sidebar-header__maintitle-form"
 										@submit.prevent="onSubmitTitle">
-										<input
-											ref="titleInput"
+										<input ref="titleInput"
 											v-focus
 											class="app-sidebar-header__maintitle-input"
 											type="text"
@@ -224,8 +220,7 @@ include a standard-header like it's used by the files app.
 											:value="title"
 											@keydown.esc="onDismissEditing"
 											@input="onTitleInput">
-										<button
-											class="icon-confirm"
+										<button class="icon-confirm"
 											type="submit" />
 									</form>
 								</template>
@@ -237,8 +232,7 @@ include a standard-header like it's used by the files app.
 								</Actions>
 							</div>
 							<!-- secondary title -->
-							<p
-								v-if="subtitle.trim() !== ''"
+							<p v-if="subtitle.trim() !== ''"
 								v-tooltip.auto="subtitleTooltip"
 								class="app-sidebar-header__subtitle">
 								{{ subtitle }}

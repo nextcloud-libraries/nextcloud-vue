@@ -22,13 +22,11 @@
 
 <template>
 	<div class="name-parts" :title="name">
-		<Highlight
-			class="name-parts__first"
+		<Highlight class="name-parts__first"
 			:text="part1"
 			:search="search"
 			:highlight="highlight1" />
-		<Highlight
-			v-if="part2"
+		<Highlight v-if="part2"
 			class="name-parts__last"
 			:text="part2"
 			:search="search"

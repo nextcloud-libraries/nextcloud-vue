@@ -136,8 +136,7 @@ export default {
 
 			<!-- Content wrapper -->
 			<transition :name="modalTransitionName">
-				<div
-					v-show="showModal"
+				<div v-show="showModal"
 					:class="[
 						`modal-wrapper--${size}`,
 						spreadNavigation ? 'modal-wrapper--spread-navigation' : ''
@@ -579,7 +578,7 @@ export default {
 	}
 
 	// On wider screens the title can be centered
-	@media only screen and (min-width: $breakpoint-mobile/2) {
+	@media only screen and (min-width: $breakpoint-mobile / 2) {
 		.modal-title {
 			padding-left: #{$clickable-area * 3}; // maximum actions is 3
 			text-align: center;
@@ -757,7 +756,7 @@ export default {
 	}
 
 	// Make modal full screen on mobile
-	@media only screen and (max-width: $breakpoint-mobile/2) {
+	@media only screen and (max-width: $breakpoint-mobile / 2) {
 		&:not(&--small) .modal-container {
 			max-width: initial;
 			width: 100%;

@@ -39,8 +39,7 @@ This component is meant to be used inside a Breadcrumbs component.
 		@dragover.prevent="() => {}"
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
-		<element
-			:is="tag"
+		<element :is="tag"
 			v-if="(title || icon) && !$slots.default"
 			:to="to"
 			:href="href">

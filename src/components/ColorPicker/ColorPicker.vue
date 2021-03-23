@@ -116,8 +116,7 @@ export default {
 		<div class="color-picker">
 			<transition name="slide" mode="out-in">
 				<div v-if="!advanced" class="color-picker__simple">
-					<button
-						v-for="(color, index) in palette"
+					<button v-for="(color, index) in palette"
 						:key="index"
 						:style="{'background-color': color }"
 						class="color-picker__simple-color-circle"
@@ -130,8 +129,7 @@ export default {
 							decorative />
 					</button>
 				</div>
-				<Chrome
-					v-if="advanced"
+				<Chrome v-if="advanced"
 					v-model="currentColor"
 					class="color-picker__advanced"
 					:disable-alpha="true"
@@ -139,22 +137,19 @@ export default {
 					@input="pickColor" />
 			</transition>
 			<div class="color-picker__navigation">
-				<button
-					v-if="advanced"
+				<button v-if="advanced"
 					class="color-picker__navigation-button back"
 					type="button"
 					@click="handleBack">
 					<ArrowLeft :size="20" title="" decorative />
 				</button>
-				<button
-					v-if="!advanced"
+				<button v-if="!advanced"
 					class="color-picker__navigation-button more-settings"
 					type="button"
 					@click="handleMoreSettings">
 					<DotsHorizontal :size="20" title="" decorative />
 				</button>
-				<button
-					v-if="advanced"
+				<button v-if="advanced"
 					class="color-picker__navigation-button confirm"
 					type="button"
 					@click="handleConfirm">

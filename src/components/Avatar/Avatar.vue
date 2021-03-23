@@ -36,8 +36,7 @@
 
 </docs>
 <template>
-	<div
-		ref="main"
+	<div ref="main"
 		v-tooltip="tooltip"
 		v-click-outside="closeMenu"
 		:class="{
@@ -59,8 +58,7 @@
 			alt="">
 
 		<!-- Contact menu -->
-		<Popover
-			v-if="hasMenu"
+		<Popover v-if="hasMenu"
 			placement="auto"
 			:container="menuContainer"
 			:open="contactsMenuOpenState"

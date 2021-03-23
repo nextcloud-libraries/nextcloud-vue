@@ -34,8 +34,7 @@
 ```
 </docs>
 <template>
-	<li
-		:class="{
+	<li :class="{
 			'app-navigation-entry--newItemActive': newItemActive,
 		}"
 		class="app-navigation-entry">

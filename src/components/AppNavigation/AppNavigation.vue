@@ -54,8 +54,7 @@ emit('toggle-navigation', {
 </docs>
 
 <template>
-	<div
-		id="app-navigation-vue"
+	<div id="app-navigation-vue"
 		class="app-navigation"
 		role="navigation"
 		:class="{'app-navigation--close':!open }">

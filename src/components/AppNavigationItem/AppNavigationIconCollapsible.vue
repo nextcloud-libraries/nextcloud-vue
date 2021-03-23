@@ -22,8 +22,7 @@
 
 <template>
 	<!-- Button to expand or collapse children -->
-	<button
-		class="icon-collapse"
+	<button class="icon-collapse"
 		:class="{'icon-collapse--rotated':open}"
 		type="button"
 		@click="onClick">

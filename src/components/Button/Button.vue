@@ -209,8 +209,7 @@ button {
 </docs>
 
 <template>
-	<button
-		class="button-vue"
+	<button class="button-vue"
 		v-bind="$attrs"
 		:class="buttonClassObject"
 		:aria-label="ariaLabel"

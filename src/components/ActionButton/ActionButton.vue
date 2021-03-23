@@ -82,8 +82,7 @@ export default {
 
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }">
-		<button
-			class="action-button"
+		<button class="action-button"
 			:class="{ focusable: isFocusable }"
 			:aria-label="ariaLabel"
 			type="button"

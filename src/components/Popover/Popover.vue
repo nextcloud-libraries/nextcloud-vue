@@ -52,8 +52,7 @@ With a `<button>` as a trigger:
 </docs>
 
 <template>
-	<VPopover
-		ref="popover"
+	<VPopover ref="popover"
 		v-bind="$attrs"
 		popover-base-class="popover"
 		popover-wrapper-class="popover__wrapper"

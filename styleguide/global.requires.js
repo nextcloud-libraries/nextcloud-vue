@@ -1,4 +1,6 @@
+/* eslint-disable-next-line */
 import 'core-js/stable'
+/* eslint-disable-next-line */
 import 'regenerator-runtime/runtime'
 import Vue from 'vue'
 import VTooltip from './../src/directives/Tooltip'
@@ -15,7 +17,7 @@ function chunkify(t) {
 	while (x < t.length) {
 	  c = t.charAt(x) // only include the dot in strings
 
-	  const m = !n && c === '.' || c >= '0' && c <= '9'
+	  const m = !n && (c === '.' || (c >= '0' && c <= '9'))
 
 	  if (m !== n) {
 		// next chunk
@@ -68,7 +70,7 @@ window.OC = {
 
 					/* eslint-disable-next-line */
 
-					if (aNum == aa[x] && bNum == bb[x]) {
+					if (aNum === aa[x] && bNum === bb[x]) {
 						return aNum - bNum
 					} else {
 					// Note: This locale setting isn't supported by all browsers but for the ones

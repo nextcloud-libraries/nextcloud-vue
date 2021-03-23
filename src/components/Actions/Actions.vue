@@ -164,8 +164,7 @@ export default {
 		:class="{'action-item--open': opened}"
 		class="action-item">
 		<!-- If more than one action, create a popovermenu -->
-		<Popover
-			:delay="0"
+		<Popover :delay="0"
 			:handle-resize="true"
 			:open.sync="opened"
 			:placement="placement"
@@ -717,7 +716,7 @@ export default {
 
 			// non-background icon class
 			// image slot
-			/deep/ span {
+			::v-deep span {
 				width: 24px;
 				height: 24px;
 				line-height: $icon-size;

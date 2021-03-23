@@ -25,8 +25,7 @@
 		v-click-outside="clickOutsideConfig"
 		:class="{ open }">
 		<div id="app-settings__header">
-			<button
-				class="settings-button"
+			<button class="settings-button"
 				type="button"
 				@click="toggleMenu">
 				<Cog class="settings-button__icon" :size="20" decorative />

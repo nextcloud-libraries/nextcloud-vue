@@ -87,8 +87,7 @@
 </docs>
 
 <template>
-	<Popover
-		:open.sync="open"
+	<Popover :open.sync="open"
 		:container="container"
 		popover-class="emoji-popover"
 		popover-inner-class="popover-emoji-picker-inner"
@@ -97,8 +96,7 @@
 		<template #trigger>
 			<slot />
 		</template>
-		<Picker
-			:auto-focus="true"
+		<Picker :auto-focus="true"
 			color="var(--color-primary)"
 			:data="emojiIndex"
 			:emoji="previewFallbackEmoji"
@@ -210,7 +208,7 @@ export default {
 			/**
 			 * Emits a object with more data about the picked emoji
 			 */
-			this.$emit('selectData', emojiObject)
+			this.$emit('select-data', emojiObject)
 
 			if (this.closeOnSelect) {
 				this.open = false
