@@ -208,7 +208,7 @@ export default {
 
 		<!-- Passing the singleLabel slot, this is used to format the selected
 			option on NON-multiple multiselects -->
-		<template v-for="(_, slot) of $scopedSlots" v-slot:[slot]="scope">
+		<template v-for="(_, slot) of $scopedSlots" #[slot]="scope">
 			<slot :name="slot" v-bind="scope" />
 		</template>
 
