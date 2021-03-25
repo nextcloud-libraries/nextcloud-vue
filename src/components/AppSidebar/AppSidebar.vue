@@ -32,7 +32,7 @@
 
 	```vue
 	<AppSidebar
-		title="cat-picture.jpg"
+		title="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.jpg"
 		subtitle="last edited 3 weeks ago">
 		<AppSidebarTab icon="icon-settings" name="Settings" id="settings">
 			Settings tab content
@@ -179,7 +179,7 @@
 							<!-- main title -->
 							<h2 v-show="!titleEditable"
 								v-linkify="{text: title, linkify: linkifyTitle}"
-								v-tooltip.auto="titleTooltip"
+								v-tooltip.auto="titleTooltip || title"
 								class="app-sidebar-header__maintitle"
 								@click.self="editTitle">
 								{{ title }}
@@ -359,7 +359,7 @@ export default {
 		 */
 		titleTooltip: {
 			type: String,
-			default: '',
+			default: null,
 		},
 	},
 
@@ -459,7 +459,6 @@ export default {
 <style lang="scss" scoped>
 $sidebar-min-width: 300px;
 $sidebar-max-width: 500px;
-
 $desc-vertical-padding: 18px;
 $desc-input-padding: 7px;
 
@@ -467,7 +466,6 @@ $desc-input-padding: 7px;
 $desc-title-height: 30px;
 $desc-subtitle-height: 22px;
 $desc-height: $desc-title-height + $desc-subtitle-height;
-
 $top-buttons-spacing: 6px;
 
 /*
@@ -516,34 +514,34 @@ $top-buttons-spacing: 6px;
 
 				.app-sidebar-header__figure {
 					z-index: 2;
+					flex: 0 0 auto;
 					width: $desc-height + $desc-vertical-padding;
 					height: $desc-height + $desc-vertical-padding;
 					margin: $desc-vertical-padding / 2;
 					border-radius: 3px;
-					flex: 0 0 auto;
 				}
 				.app-sidebar-header__desc {
-					height: $desc-height;
-					padding-left: 0;
 					flex: 1 1 auto;
 					min-width: 0;
+					height: $desc-height;
 					padding-right: 2 * $clickable-area + $top-buttons-spacing;
+					padding-left: 0;
 
 					&.app-sidebar-header__desc--without-actions {
 						padding-right: #{$clickable-area + $top-buttons-spacing};
 					}
 
 					.app-sidebar-header__tertiary-actions {
-						z-index: 3; // above star
 						position: absolute;
+						z-index: 3; // above star
 						top: $desc-vertical-padding / 2;
 						left: -1 * $clickable-area;
 					}
 					.app-sidebar-header__menu {
+						position: absolute;
 						top: $top-buttons-spacing;
 						right: $clickable-area + $top-buttons-spacing; // left of the close button
 						background-color: transparent;
-						position: absolute;
 					}
 				}
 			}
@@ -611,24 +609,24 @@ $top-buttons-spacing: 6px;
 
 			.app-sidebar-header__tertiary-actions {
 				display: flex;
-				height: $clickable-area;
-				width: $clickable-area;
-				justify-content: center;
 				flex: 0 0 auto;
+				justify-content: center;
+				width: $clickable-area;
+				height: $clickable-area;
 			}
 
 			// titles
 			.app-sidebar-header__title-container {
-				flex: 1 1 auto;
 				display: flex;
+				flex: 1 1 auto;
 				flex-direction: column;
 				justify-content: center;
 				min-width: 0;
 
 				// main title
 				.app-sidebar-header__maintitle {
-					padding: 0;
 					min-height: 30px;
+					padding: 0;
 					font-size: 20px;
 					line-height: $desc-title-height;
 
@@ -641,11 +639,14 @@ $top-buttons-spacing: 6px;
 
 				.app-sidebar-header__maintitle,
 				.app-sidebar-header__subtitle {
+					display: -webkit-box;
 					overflow: hidden;
+					-webkit-box-orient: vertical;
 					width: 100%;
 					margin: 0;
-					white-space: nowrap;
 					text-overflow: ellipsis;
+
+					-webkit-line-clamp: 2;
 				}
 
 				// subtitle
@@ -681,8 +682,8 @@ $top-buttons-spacing: 6px;
 			}
 			// main menu
 			.app-sidebar-header__menu {
-				height: $clickable-area;
 				width: $clickable-area;
+				height: $clickable-area;
 				border-radius: $clickable-area / 2;
 				background-color: $action-background-hover;
 			}
