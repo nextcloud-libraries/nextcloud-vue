@@ -48,6 +48,7 @@
 
 export default {
 	name: 'AppNavigationCounter',
+
 	props: {
 		highlighted: {
 			type: Boolean,
@@ -60,19 +61,22 @@ export default {
 
 <style lang="scss" scoped>
 .app-navigation-entry__counter {
+	font-size: calc(var(--default-font-size) * .8);
 	overflow: hidden;
+	width: fit-content;
 	max-width: $clickable-area;
-	margin: 4px;
-	padding: 0 4px;
 	text-align: center;
 	text-overflow: ellipsis;
 	line-height: 1em;
+	padding: 4px 8px;
+	border-radius: var(--border-radius-pill);
+	background-color: var(--color-background-darker);
 
 	&--highlighted {
 		padding: 4px 6px;
 		color: var(--color-primary-text);
-		border-radius: 10px;
 		background-color: var(--color-primary);
 	}
 }
+
 </style>
