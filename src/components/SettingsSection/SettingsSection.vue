@@ -102,6 +102,10 @@ export default {
 	margin-bottom: auto;
 	padding: 30px;
 
+	&:not(:last-child) {
+		border-bottom: 1px solid var(--color-border);
+	}
+
 	&__title {
 		display: inline-flex;
 		align-items: center;
@@ -130,7 +134,7 @@ export default {
 	}
 
 	&__desc {
-		margin-top: -1em;
+		margin-top: -0.2em;
 		margin-bottom: 1em;
 		opacity: $opacity_normal;
 	}
