@@ -103,6 +103,8 @@ export default {
 ### User layout
 By specifying `:user-select="true"`, you can benefit from a fully formatted layout.
 The singleLabel slot here is optional of course and here for demonstration purposes
+The ListItemIcon title will be provided by the option key refering to the `label` prop.
+Example here: `displayName`
 
 > **Note:** Any extra binding from the object will be added as attribute (`$attrs`) on the ListItemIcon component used here
 
