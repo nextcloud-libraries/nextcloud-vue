@@ -2,14 +2,42 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.8.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.8.0) (2021-03-26)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.7.2...v3.8.0)
+
+### Added
+
+- Actions now forward the focus and blur events on trigger - [\#1757](https://github.com/nextcloud/nextcloud-vue/pull/1757) ([Vincent Petry](vincent@nextcloud.com))
+
+### Changed
+
+- Updated translations - [\#1755](https://github.com/nextcloud/nextcloud-vue/issues/1755) [\#1758](https://github.com/nextcloud/nextcloud-vue/pull/1758) [\#1782](https://github.com/nextcloud/nextcloud-vue/pull/1782) ([transifex-integration[bot]](https://github.com/apps/transifex-integration))
+- Bump @babel/core from 7.13.8 to 7.13.10 - [\#1748](https://github.com/nextcloud/nextcloud-vue/pull/1748) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump @babel/preset-env from 7.13.9 to 7.13.12 - [\#1747](https://github.com/nextcloud/nextcloud-vue/pull/1747) [\#1778](https://github.com/nextcloud/nextcloud-vue/pull/1778) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump css-loader from 5.1.1 to 5.2.0 - [\#1764](https://github.com/nextcloud/nextcloud-vue/pull/1764) [\#1785](https://github.com/nextcloud/nextcloud-vue/pull/1785) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump cypress from 6.6.0 to 6.8.0 - [\#1765](https://github.com/nextcloud/nextcloud-vue/pull/1765) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump elliptic from 6.5.3 to 6.5.4 - [\#1747](https://github.com/nextcloud/nextcloud-vue/pull/1746) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump string-length from 4.0.1 to 4.0.2 - [\#1766](https://github.com/nextcloud/nextcloud-vue/pull/1766) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump v-tooltip from 2.1.2 to 2.1.3 - [\#1773](https://github.com/nextcloud/nextcloud-vue/pull/1773) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+- Bump vue-styleguidist from 4.35.0 to 4.36.1 - [\#1772](https://github.com/nextcloud/nextcloud-vue/pull/1772) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
+
+### Fixed
+
+- Fix actions dropdown focus timing - [\#1761](https://github.com/nextcloud/nextcloud-vue/pull/1761) ([Vincent Petry](vincent@nextcloud.com))
+- Update AppNavigationCounter styles - [\#1769](https://github.com/nextcloud/nextcloud-vue/pull/1769) ([ma12-co](https://github.com/ma12-co))
+- Fix settings css - [\#1770](https://github.com/nextcloud/nextcloud-vue/pull/1770) ([jotoeri](https://github.com/jotoeri))
+- Allow last crumb to shrink if all crumbs collapsed - [\#1771](https://github.com/nextcloud/nextcloud-vue/pull/1771) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix multiselect listitemicon docs - [\#1787](https://github.com/nextcloud/nextcloud-vue/pull/1787) ([skjnldsv](https://github.com/skjnldsv))
+
 ## [v3.7.2](https://github.com/nextcloud/nextcloud-vue/tree/v3.7.2) (2021-03-10)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.7.1...v3.7.2)
 
-**Fixed bugs:**
+### Fixed
 
-- Render the first action icon slot if single action [\#1753](https://github.com/nextcloud/nextcloud-vue/pull/1753) ([skjnldsv](https://github.com/skjnldsv))
-- Fix formattedOptions var in multiselect docs [\#1744](https://github.com/nextcloud/nextcloud-vue/pull/1744) ([skjnldsv](https://github.com/skjnldsv))
+- Render the first action icon slot if single action - [\#1753](https://github.com/nextcloud/nextcloud-vue/pull/1753) ([skjnldsv](https://github.com/skjnldsv))
+- Fix formattedOptions var in multiselect docs - [\#1744](https://github.com/nextcloud/nextcloud-vue/pull/1744) ([skjnldsv](https://github.com/skjnldsv))
 
 ## [v3.7.1](https://github.com/nextcloud/nextcloud-vue/tree/v3.7.1) (2021-03-10)
 
