@@ -66,8 +66,8 @@
 
 			<!-- checkbox -->
 			<template v-else>
-				<input :id="key"
-					v-model="item.model"
+				<!-- eslint-disable-next-line -->
+				<input :id="key" v-model="item.model"
 					:type="item.input"
 					:class="item.input"
 					@change="item.action">
@@ -120,30 +120,6 @@
 		</span>
 	</li>
 </template>
-
-<style scoped>
-	button.menuitem {
-		text-align: left;
-	}
-
-	button.menuitem * {
-		cursor: pointer;
-	}
-
-	button.menuitem:disabled {
-		opacity: 0.5 !important;
-		cursor: default;
-	}
-
-	button.menuitem:disabled * {
-		cursor: default;
-	}
-
-	.menuitem.active {
-		box-shadow: inset 2px 0 var(--color-primary);
-		border-radius: 0;
-	}
-</style>
 
 <script>
 export default {
@@ -199,6 +175,31 @@ export default {
 	},
 }
 </script>
+
+<style scoped>
+	button.menuitem {
+		text-align: left;
+	}
+
+	button.menuitem * {
+		cursor: pointer;
+	}
+
+	button.menuitem:disabled {
+		opacity: 0.5 !important;
+		cursor: default;
+	}
+
+	button.menuitem:disabled * {
+		cursor: default;
+	}
+
+	.menuitem.active {
+		box-shadow: inset 2px 0 var(--color-primary);
+		border-radius: 0;
+	}
+</style>
+
 <style lang="scss" scoped>
 li {
 	display: flex;
