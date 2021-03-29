@@ -131,7 +131,7 @@
 				class="app-sidebar-header">
 				<!-- close sidebar button -->
 				<a
-					v-tooltip.auto="t('close')"
+					v-tooltip.auto="closeTranslated"
 					href="#"
 					class="app-sidebar__close icon-close"
 					@click.prevent="closeSidebar" />
@@ -237,9 +237,9 @@ import Actions from '../Actions'
 import Focus from '../../directives/Focus'
 import Linkify from '../../directives/Linkify'
 import Tooltip from '../../directives/Tooltip'
-import l10n from '../../mixins/l10n'
 import AppSidebarTabs from './AppSidebarTabs'
 import EmptyContent from '../EmptyContent/EmptyContent'
+import { t } from '../../l10n'
 import { directive as ClickOutside } from 'v-click-outside'
 
 export default {
@@ -257,8 +257,6 @@ export default {
 		ClickOutside,
 		Tooltip,
 	},
-
-	mixins: [l10n],
 
 	props: {
 		active: {
@@ -365,6 +363,7 @@ export default {
 
 	data() {
 		return {
+			closeTranslated: t('Close'),
 			isStarred: this.starred,
 		}
 	},

@@ -33,7 +33,7 @@
 				@input="onInput"
 				@change="onChange">
 			<input :id="idSubmit"
-				:value="t('Submit')"
+				:value="submitTranslated"
 				type="submit"
 				class="action-input__submit">
 			<label v-show="!disabled" :for="idSubmit" class="action-input__label" />
@@ -45,7 +45,9 @@
 </template>
 
 <script>
+import { t } from '../../l10n'
 import GenRandomId from '../../utils/GenRandomId'
+
 export default {
 	name: 'SettingsInputText',
 	props: {
@@ -90,6 +92,13 @@ export default {
 			validator: id => id.trim() !== '',
 		},
 	},
+
+	data() {
+		return {
+			submitTranslated: t('Submit'),
+		}
+	},
+
 	computed: {
 		/**
 		 * @returns {string}
