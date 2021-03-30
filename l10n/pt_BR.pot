@@ -37,6 +37,9 @@ msgstr "Fechar"
 msgid "Custom"
 msgstr "Personalizado"
 
+msgid "External documentation for {title}"
+msgstr "Documentação externa para {title}"
+
 msgid "Flags"
 msgstr "Bandeiras"
 
@@ -93,6 +96,9 @@ msgstr "Smiles & Emoções"
 
 msgid "Start slideshow"
 msgstr "Iniciar apresentação de slides"
+
+msgid "Submit"
+msgstr "Enviar"
 
 msgid "Symbols"
 msgstr "Símbolo"
