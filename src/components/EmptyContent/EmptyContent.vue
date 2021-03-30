@@ -33,11 +33,34 @@ Providing an additional description is strongly advised.
 	<template #desc>No comments in here</template>
 </EmptyContent>
 ```
+```
+<template>
+	<EmptyContent>
+		Network error
+		<template #icon><Airplane /></template>
+		<template #desc>Unable to load the list</template>
+	</EmptyContent>
+</template>
+
+<script>
+import Airplane from 'vue-material-design-icons/Airplane'
+
+export default {
+	components: {
+		Airplane
+	}
+}
+</script>
+
+```
 </docs>
 
 <template>
 	<div class="empty-content" role="note">
-		<div class="empty-content__icon" :class="icon" role="img" />
+		<div class="empty-content__icon" :class="icon" role="img">
+			<!-- @slot Optional icon slot -->
+			<slot name="icon" />
+		</div>
 		<h2 class="empty-content__title">
 			<!-- @slot Mandatory title -->
 			<slot />
@@ -58,31 +81,40 @@ export default {
 		 */
 		icon: {
 			type: String,
-			required: true,
+			default: '',
 		},
 	},
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .empty-content {
-	margin-top: 20vh;
 	display: flex;
-	flex-direction: column;
 	align-items: center;
+	flex-direction: column;
+	margin-top: 20vh;
 
 	&__icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		width: 64px;
 		height: 64px;
 		margin: 0 auto 15px;
 		opacity: .4;
-		background-size: 64px;
 		background-repeat: no-repeat;
 		background-position: center;
+		background-size: 64px;
+
+		svg {
+			width: 64px;
+			height: 64px;
+		}
 	}
 
 	&__title {
 		margin-bottom: 10px;
 	}
 }
+
 </style>
