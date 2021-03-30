@@ -6,10 +6,11 @@
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2020
 # Mario Siegmann <mario_siegmann@web.de>, 2020
 # Markus Eckstein, 2020
+# Christian Spaan, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Markus Eckstein, 2020\n"
+"Last-Translator: Christian Spaan, 2021\n"
 "Language-Team: German (https://www.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -38,6 +39,9 @@ msgstr "Schließen"
 
 msgid "Custom"
 msgstr "Benutzerdefiniert"
+
+msgid "External documentation for {title}"
+msgstr "Externe Dokumentation für {title}"
 
 msgid "Flags"
 msgstr "Flaggen"
@@ -95,6 +99,9 @@ msgstr "Smileys & Emotionen"
 
 msgid "Start slideshow"
 msgstr "Diashow starten"
+
+msgid "Submit"
+msgstr "Einreichen"
 
 msgid "Symbols"
 msgstr "Symbole"
