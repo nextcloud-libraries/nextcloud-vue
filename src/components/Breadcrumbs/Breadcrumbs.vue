@@ -163,15 +163,26 @@ export default {
 		/**
 		 * Check the size on update
 		 */
-		this.$nextTick(() => {
-			this.handleWindowResize()
-		})
+		this.delayedResize()
+		/**
+		 * Check that crumbs to hide are hidden
+		 */
+		this.delayedHideCrumbs()
 	},
 	beforeDestroy() {
 		window.removeEventListener('resize', this.handleWindowResize)
 		unsubscribe('navigation-toggled', this.delayedResize)
 	},
 	methods: {
+		/**
+		 * Check that all crumbs to hide are really hidden
+		 */
+		delayedHideCrumbs() {
+			this.$nextTick(() => {
+				const crumbs = this.$slots.default || []
+				this.hideCrumbs(crumbs)
+			})
+		},
 		/**
 		 * Close the actions menu
 		 *
@@ -387,20 +398,18 @@ export default {
 		 * Check for each crumb if we have to hide it and
 		 * add it to the array of all crumbs.
 		 *
-		 * @param {Array} crumbs The array of all crumbs
-		 * @param {Array} newCrumbs The array of the crumbs to hide and add
+		 * @param {Array} crumbs The array of the crumbs to hide
 		 * @param {Integer} offset The offset of the indices of the provided crumbs array
 		 */
-		addCrumbs(crumbs, newCrumbs, offset = 0) {
-			newCrumbs.forEach((crumb, i) => {
-				if (crumb.elm && crumb.elm.classList) {
+		hideCrumbs(crumbs, offset = 0) {
+			crumbs.forEach((crumb, i) => {
+				if (crumb?.elm?.classList) {
 					if (this.hiddenIndices.includes(i + offset)) {
 						crumb.elm.classList.add('crumb--hidden')
 					} else {
 						crumb.elm.classList.remove('crumb--hidden')
 					}
 				}
-				crumbs.push(crumb)
 			})
 		},
 	},
@@ -423,7 +432,7 @@ export default {
 		Vue.set(breadcrumbs[0].componentOptions.propsData, 'icon', this.rootIcon)
 
 		// The array of all created VNodes
-		const crumbs = []
+		let crumbs = []
 		/**
 		 * We show the first half of the breadcrumbs before the Actions dropdown menu
 		 * which shows the hidden breadcrumbs.
@@ -432,7 +441,8 @@ export default {
 			? breadcrumbs.slice(0, Math.round(breadcrumbs.length / 2))
 			: breadcrumbs
 		// Add the breadcrumbs to the array of the created VNodes, check if hiding them is necessary.
-		this.addCrumbs(crumbs, crumbs1)
+		crumbs = crumbs.concat(crumbs1)
+		this.hideCrumbs(crumbs1)
 
 		// The Actions menu
 		if (this.hiddenCrumbs.length) {
@@ -500,7 +510,8 @@ export default {
 		const crumbs2 = this.hiddenCrumbs.length
 			? breadcrumbs.slice(Math.round(breadcrumbs.length / 2))
 			: []
-		this.addCrumbs(crumbs, crumbs2, crumbs1.length)
+		crumbs = crumbs.concat(crumbs2)
+		this.hideCrumbs(crumbs2, crumbs1.length)
 
 		return createElement('div', { class: ['breadcrumb', { 'breadcrumb--collapsed': (this.hiddenCrumbs.length === breadcrumbs.length - 2) }], ref: 'container' }, crumbs)
 	},
