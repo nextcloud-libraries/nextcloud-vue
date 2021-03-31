@@ -278,11 +278,13 @@ export default {
 		getWidth(el) {
 			if (!el.classList) return 0
 			const hide = el.classList.contains('crumb--hidden')
+			el.style.minWidth = 'auto'
 			el.classList.remove('crumb--hidden')
 			const w = el.offsetWidth
 			if (hide) {
 				el.classList.add('crumb--hidden')
 			}
+			el.style.minWidth = ''
 			return w
 		},
 		/**
