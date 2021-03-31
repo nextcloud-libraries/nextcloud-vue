@@ -411,6 +411,8 @@ export default {
 						href: this.firstAction.href,
 						target: this.firstAction.target,
 						'aria-label': this.firstAction.ariaLabel,
+						...this.firstAction.$attrs,
+						...this.firstAction.$props,
 					}
 				}
 				if (tag === 'ActionRouter') {
@@ -419,12 +421,16 @@ export default {
 						to: this.firstAction.to,
 						exact: this.firstAction.exact,
 						'aria-label': this.firstAction.ariaLabel,
+						...this.firstAction.$attrs,
+						...this.firstAction.$props,
 					}
 				}
 				if (tag === 'ActionButton') {
 					return {
 						is: 'button',
 						'aria-label': this.firstAction.ariaLabel,
+						...this.firstAction.$attrs,
+						...this.firstAction.$props,
 					}
 				}
 			}
