@@ -211,10 +211,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../fonts/scss/iconfont-vue';
-
 .crumb {
-	@include iconfont('breadcrumb');
 	background-image: none;
 	display: inline-flex;
 	height: $clickable-area;

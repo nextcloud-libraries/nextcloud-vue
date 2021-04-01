@@ -59,6 +59,7 @@ export default {
 
 .color0 {
 	width: 100px;
+	height: 40px;
 	margin-left: 20px;
 	border-radius: 6px;
 }
@@ -71,8 +72,9 @@ export default {
 <template>
 	<div class="container1">
 		<button @click="open = !open"> Click Me </button>
-		<ColorPicker :value="color" @input="updateColor" :open.sync="open" />
-		<div :style="{'background-color': color}" class="color1" />
+		<ColorPicker :value="color" @input="updateColor" :open.sync="open">
+			<div :style="{'background-color': color}" class="color1" />
+		</ColorPicker>
 	</div>
 </template>
 <script>
@@ -80,7 +82,7 @@ export default {
 	data() {
 		return {
 			color: '#0082c9',
-			open: 'false'
+			open: false
 		}
 	},
 	methods: {
@@ -97,6 +99,7 @@ export default {
 
 .color1 {
 	width: 100px;
+	height: 40px;
 	margin-left: 20px;
 	border-radius: 6px;
 }
@@ -106,41 +109,47 @@ export default {
 </docs>
 
 <template>
-	<Popover v-bind="$attrs" v-on="$listeners">
+	<Popover v-bind="$attrs" v-on="$listeners" @apply-hide="handleClose">
 		<template #trigger>
 			<slot />
 		</template>
 		<div class="color-picker">
 			<transition name="slide" mode="out-in">
-				<div v-if="!advanced" class="color-picker-simple">
+				<div v-if="!advanced" class="color-picker__simple">
 					<button
 						v-for="(color, index) in palette"
 						:key="index"
 						:style="{'background-color': color }"
-						class="color-picker-simple-color-circle"
-						:class="{ 'color-picker-simple-color-circle--active' : color === currentColor }"
-						@click="pickColor(color)" />
+						class="color-picker__simple-color-circle"
+						:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }"
+						@click="pickColor(color)">
+						<Check v-if="color === currentColor" :size="24" decorative />
+					</button>
 				</div>
 				<Chrome
 					v-if="advanced"
 					v-model="currentColor"
-					class="color-picker-advanced"
+					class="color-picker__advanced"
 					:disable-alpha="true"
 					:disable-fields="true"
 					@input="pickColor" />
 			</transition>
-			<div class="color-picker-navigation">
+			<div class="color-picker__navigation">
 				<button
 					v-if="advanced"
-					class="color-picker-navigation-button back"
-					@click="handleBack" />
+					class="color-picker__navigation-button back"
+					@click="handleBack">
+					<ArrowLeft :size="24" decorative />
+				</button>
 				<button
 					v-if="!advanced"
-					class="color-picker-navigation-button more-settings"
-					@click="handleMoreSettings" />
+					class="color-picker__navigation-button more-settings"
+					@click="handleMoreSettings">
+					<DotsHorizontal :size="24" decorative />
+				</button>
 				<button
 					v-if="advanced"
-					class="color-picker-navigation-button confirm"
+					class="color-picker__navigation-button confirm"
 					@click="handleConfirm">
 					{{ t('Choose') }}
 				</button>
@@ -150,17 +159,27 @@ export default {
 </template>
 
 <script>
+import ArrowLeft from 'vue-material-design-icons/ArrowLeft'
+import Check from 'vue-material-design-icons/Check'
+import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal'
+
 import { Chrome } from 'vue-color'
+
 import GenColors from '../../utils/GenColors'
 import l10n from '../../mixins/l10n'
 import Popover from '../Popover'
 
 export default {
 	name: 'ColorPicker',
+
 	components: {
+		ArrowLeft,
+		Check,
 		Chrome,
+		DotsHorizontal,
 		Popover,
 	},
+
 	mixins: [l10n],
 
 	props: {
@@ -180,7 +199,6 @@ export default {
 			palette: GenColors(4).map(color => {
 				return '#' + this.rgbToHex(color.r) + this.rgbToHex(color.g) + this.rgbToHex(color.b)
 			}),
-			open: true,
 		}
 	},
 	watch: {
@@ -191,11 +209,13 @@ export default {
 
 	methods: {
 		handleConfirm() {
-			this.$emit('close')
+
 			/**
 			 * Emits a hexadecimal string e.g. '#ffffff'
 			 */
 			this.$emit('submit', this.currentColor)
+			this.handleClose()
+
 			this.advanced = false
 		},
 		handleBack() {
@@ -204,16 +224,30 @@ export default {
 		handleMoreSettings() {
 			this.advanced = true
 		},
+		handleClose() {
+			/**
+			 * Emitted after picker close
+			 */
+			this.$emit('close')
+			this.$emit('update:open', false)
+		},
+
 		pickColor(color) {
 			if (typeof color !== 'string') {
 				color = this.currentColor.hex
 			}
 			this.currentColor = color
+
+			/**
+			 * 
+			 */
 			this.$emit('close')
+
 			/**
 			 * Emits a hexadecimal string e.g. '#ffffff'
 			 */
 			this.$emit('update:value', color)
+
 			/**
 			 * Emits a hexadecimal string e.g. '#ffffff'
 			 */
@@ -230,8 +264,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../fonts/scss/iconfont-vue';
-
 .color-picker {
 	display: flex;
 	overflow: hidden;
@@ -243,7 +275,7 @@ export default {
 	padding: 4px;
 	border-radius: 3px;
 	height: 196px;
-	&-simple {
+	&__simple {
 		display: grid;
 		grid-template-columns: repeat(4, $clickable-area);
 		grid-auto-rows: $clickable-area;
@@ -266,16 +298,15 @@ export default {
 			}
 			&--active {
 				opacity: 1 !important;
-				@include iconfont('checkmark');
 			}
 		}
 	}
 
-	&-advanced {
+	&__advanced {
 		box-shadow: none !important;
 	}
 
-	&-navigation {
+	&__navigation {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -286,25 +317,26 @@ export default {
 			justify-content: center;
 			min-width: $clickable-area;
 			height: $clickable-area;
-			padding:$icon-margin;
+			padding: 0;
 			margin: 0;
 			border: none;
 			border-radius: $clickable-area / 2;
 			background: none;
 			justify-self: flex-end;
+			opacity: $opacity_normal;
 
-			&::before {
-				font-size: $icon-size;
-			}
+			&:focus,
 			&:hover {
 				background-color: $icon-focus-bg;
+				opacity: $opacity_full;
 			}
 
-			&.back {
-				@include iconfont('arrow-left');
-			}
 			&.confirm {
-				color: white;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 4px 8px;
+				color: white !important;
 				background-color: var(--color-primary);
 				&:hover {
 					background-color: var(--color-primary-element-light);
@@ -312,7 +344,6 @@ export default {
 			}
 			&.more-settings {
 				margin-left: auto;
-				@include iconfont('more');
 			}
 		}
 	}

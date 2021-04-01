@@ -63,18 +63,25 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 
 				<!-- allow the custom font to inject a ::before
 					not possible on input[type=submit] -->
-				<label v-show="!disabled" :for="id" class="action-text-editable__label" />
+				<label v-show="!disabled" :for="id" class="action-text-editable__label">
+					<ArrowRight :size="24" decorative />
+				</label>
 			</form>
 		</span>
 	</li>
 </template>
 
 <script>
+import ArrowRight from 'vue-material-design-icons/ArrowRight'
 import ActionTextMixin from '../../mixins/actionText'
 import GenRandomId from '../../utils/GenRandomId'
 
 export default {
 	name: 'ActionTextEditable',
+
+	components: {
+		ArrowRight,
+	},
 
 	mixins: [ActionTextMixin],
 
@@ -145,7 +152,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../fonts/scss/iconfont-vue';
 @import '../../assets/inputs';
 @import '../../assets/action';
 @include action-active;
@@ -227,10 +233,9 @@ $input-margin: 4px;
 		bottom: 1px;
 		width: #{$clickable-area - $input-margin * 2};
 		height: #{$clickable-area - $input-margin * 2};
+		box-sizing: border-box;
 		margin: 0;
 		padding: 7px 6px;
-
-		cursor: pointer;
 
 		opacity: $opacity_full;
 		color: var(--color-text-lighter);
@@ -240,9 +245,9 @@ $input-margin: 4px;
 		background-color: var(--color-main-background);
 		background-clip: padding-box;
 
-		font-size: $icon-size;
-
-		@include iconfont('confirm');
+		&, * {
+			cursor: pointer;
+		}
 	}
 
 	/* Inputs inside popover supports text, submit & reset */

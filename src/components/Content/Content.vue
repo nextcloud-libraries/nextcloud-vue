@@ -22,25 +22,40 @@
 
 <docs>
 
-	### General description
+### General description
 
-	This component provides the default container of all apps.
-	It _MUST_ be used as the main wrapper of your app.
-	It includes the Navigation, the App content and the Sidebar.
+This component provides the default container of all apps.
+It _MUST_ be used as the main wrapper of your app.
+It includes the Navigation, the App content and the Sidebar.
 
-	### Standard usage
+### Standard usage
 
-	```vue
-	<template>
-		<Content app-name="forms">
-			<AppNavigation>
-				<AppNavigationItem title="My title" icon="icon-category-enabled">
-			</AppNavigation>
-			<AppContent>Your main app content here</AppContent>
-			<AppSidebar title="cat-picture.jpg"></AppSidebar>
-		</Content>
-	</template>
-	```
+```vue
+<template>
+	<Content app-name="forms">
+		<AppNavigation>
+			<template #list>
+				<AppNavigationNew text="Create article" />
+				<AppNavigationItem title="My title" icon="icon-category-enabled" />
+			</template>
+		</AppNavigation>
+		<AppContent>
+			<h2>Your main app content here</h2>
+			<button @click="opened = !opened">Toggle sidebar</button>
+		</AppContent>
+		<AppSidebar v-if="opened" title="cat-picture.jpg" @close="opened=false"></AppSidebar>
+	</Content>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			opened: false,
+		}
+	}
+}
+</script>
+```
 
 </docs>
 

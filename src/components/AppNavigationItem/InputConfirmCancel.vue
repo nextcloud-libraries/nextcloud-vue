@@ -28,24 +28,44 @@
 ```
 </docs>
 <template>
-	<div class="app-navigation-entry__inline-input-container">
-		<form @submit.prevent="confirm" @keydown.esc.exact.prevent="cancel" @click.stop.prevent>
+	<div class="app-navigation-input-confirm">
+		<form @submit.prevent="confirm"
+			@keydown.esc.exact.prevent="cancel"
+			@click.stop.prevent>
 			<input ref="input"
 				v-model="valueModel"
 				type="text"
-				class="app-navigation-entry__inline-input"
+				class="app-navigation-input-confirm__input"
 				:placeholder="placeholder">
+
 			<button type="submit"
-				class="icon-confirm"
-				@click.stop.prevent="confirm" />
+				class="app-navigation-input-confirm__confirm"
+				:aria-label="t('Confirm changes')"
+				@click.stop.prevent="confirm">
+				<ArrowRight :size="24" decorative title="" />
+			</button>
+
 			<button type="reset"
-				class="icon-close"
-				@click.stop.prevent="cancel" />
+				class="app-navigation-input-confirm__close"
+				:aria-label="t('Cancel changes')"
+				@click.stop.prevent="cancel">
+				<Close :size="24" decorative title="" />
+			</button>
 		</form>
 	</div>
 </template>
 <script>
+import ArrowRight from 'vue-material-design-icons/ArrowRight'
+import Close from 'vue-material-design-icons/Close'
+
 export default {
+	name: 'InputConfirmCancel',
+
+	components: {
+		ArrowRight,
+		Close,
+	},
+
 	props: {
 		placeholder: {
 			default: '',
@@ -56,6 +76,7 @@ export default {
 			type: String,
 		},
 	},
+
 	computed: {
 		valueModel: {
 			get() { return this.value },
@@ -64,6 +85,7 @@ export default {
 			},
 		},
 	},
+
 	methods: {
 		confirm() {
 			this.$emit('confirm')
@@ -79,56 +101,87 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../fonts/scss/iconfont-vue';
+$input-height: 34px;
+$input-padding: 7px;
+$input-margin: 3px;
 
-.app-navigation-entry__inline-input-container {
+.app-navigation-input-confirm {
 	flex: 1 0 100%;
 	width: 100%;
+
 	form {
 		display: flex;
-		.app-navigation-entry__inline-input {
-			flex: 1 1 100%;
-			font-size: 14px;
-		}
+	}
 
-		// submit and cancel buttons
-		button {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: $clickable-area !important;
-			color: var(--color-main-text);
-			background: none;
-			font-size: 16px;
+	&__input {
+		height: $input-height;
+		flex: 1 1 100%;
+		font-size: 14px;
+		margin: $input-margin;
+		margin-left: 0;
+		padding: $input-padding;
 
-			// icon hover/focus feedback
-			&::before {
-				opacity: $opacity_normal;
-			}
-			&:hover,
-			&:focus {
-				&::before {
-					opacity: $opacity_full;
-				}
-			}
+		&:active,
+		&:focus,
+		&:hover {
+			outline: none;
+			background-color: var(--color-main-background);
+			color: var(--color-text-light);
+			border-color: var(--color-primary-element);
 
-			&.icon-confirm {
-				@include iconfont('confirm');
-				border-left: none;
-			}
-			&.icon-confirm:hover {
-				border-radius: 0px var(--border-radius) var(--border-radius) 0px !important;
-			}
-
-			&.icon-close {
-				@include iconfont('close');
+			+ .app-navigation-input-confirm__confirm {
+				border-color: var(--color-primary-element);
+				border-left-color: transparent !important;
+				border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
 			}
 		}
-		.icon-close {
-			margin: 0;
-			border: none;
-			background-color: transparent;
+	}
+
+	// submit and cancel buttons
+	button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: $clickable-area !important;
+		color: var(--color-main-text);
+		border-radius: 0;
+
+		// icon hover/focus feedback
+		span {
+			opacity: $opacity_normal;
 		}
+		&:hover,
+		&:focus {
+			span {
+				opacity: $opacity_full;
+			}
+		}
+	}
+
+	&__confirm {
+		margin-left: -8px;
+		border-left-color: transparent !important;
+		border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
+		background-clip: padding-box;
+		background-color: var(--color-main-background);
+		opacity: 1;
+		height: $input-height;
+		width: $input-height;
+		padding: $input-padding;
+		cursor: pointer;
+		margin-right: 0;
+
+		&:focus,
+		&:hover {
+			border-radius: var(--border-radius) !important;
+			border-color: var(--color-primary-element) !important;
+		}
+	}
+
+	&__close {
+		margin: 0;
+		border: none;
+		background-color: transparent;
 	}
 }
 </style>

@@ -49,7 +49,7 @@ You can also use a custom icon, for example from the vue-material-design-icons l
 		<ActionButton>
 			<HandLeft
 				slot="icon"
-				:size="16"
+				:size="24"
 				decorative
 				title="" />
 			Raise left hand
@@ -57,7 +57,7 @@ You can also use a custom icon, for example from the vue-material-design-icons l
 		<ActionButton>
 			<HandRight
 				slot="icon"
-				:size="16"
+				:size="24"
 				decorative
 				title="" />
 			Raise right hand

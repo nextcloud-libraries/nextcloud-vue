@@ -91,12 +91,12 @@ It can be used with one or multiple actions.
 		<Actions>
 			<DotsHorizontalCircleOutline
 				slot="icon"
-				:size="16"
+				:size="24"
 				decorative />
 			<ActionButton>
 				<MicrophoneOff
 					slot="icon"
-					:size="16"
+					:size="24"
 					decorative />
 				Mute
 			</ActionButton>
@@ -181,6 +181,8 @@ export default {
 				:class="{
 					[defaultIcon]: !iconSlotIsPopulated,
 					'action-item__menutoggle--with-title': menuTitle,
+					'action-item__menutoggle--with-icon-slot': iconSlotIsPopulated,
+					'action-item__menutoggle--default-icon': !iconSlotIsPopulated && defaultIcon === '',
 					'action-item__menutoggle--primary': primary
 				}"
 				:aria-label="ariaLabel"
@@ -190,7 +192,8 @@ export default {
 				:aria-expanded="opened ? 'true' : 'false'"
 				@focus="onFocus"
 				@blur="onBlur">
-				<slot name="icon" />
+				<slot v-if="iconSlotIsPopulated" name="icon" />
+				<DotsHorizontal v-else-if="defaultIcon === ''" :size="24" decorative />
 				{{ menuTitle }}
 			</button>
 
@@ -218,6 +221,8 @@ export default {
 	</div>
 </template>
 <script>
+import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal'
+
 import Tooltip from '../../directives/Tooltip'
 import GenRandomId from '../../utils/GenRandomId'
 import ValidateSlot from '../../utils/ValidateSlot'
@@ -256,6 +261,7 @@ export default {
 	},
 
 	components: {
+		DotsHorizontal,
 		Popover,
 
 		// Component to render the first action icon slot content (vnodes)
@@ -305,7 +311,7 @@ export default {
 		 */
 		defaultIcon: {
 			type: String,
-			default: 'action-item__menutoggle--default-icon',
+			default: '',
 		},
 
 		/**
@@ -645,8 +651,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../fonts/scss/iconfont-vue';
-
 .action-item {
 	position: relative;
 	display: inline-block;
@@ -660,8 +664,8 @@ export default {
 	&__menutoggle:focus,
 	&__menutoggle:active {
 		opacity: $opacity_full;
-		// good looking on dark AND white bg
-		background-color: $icon-focus-bg;
+		// good looking on dark AND white bg, override server styling
+		background-color: $icon-focus-bg !important;
 	}
 
 	// TODO: handle this in the future button component
@@ -683,7 +687,7 @@ export default {
 		min-width: $clickable-area;
 		height: $clickable-area;
 		margin: 0;
-		padding: $icon-margin;
+		padding: 0;
 		cursor: pointer;
 		border: none;
 		border-radius: $clickable-area / 2;
@@ -700,26 +704,9 @@ export default {
 		font-weight: bold;
 		line-height: $icon-size;
 
-		// image slot
-		/deep/ span {
-			width: $icon-size;
-			height: $icon-size;
-			line-height: $icon-size;
-		}
-
-		&:before {
-			content: '';
-		}
-
-		&--default-icon {
-			@include iconfont('more');
-			&::before {
-				font-size: $icon-size;
-			}
-		}
-
 		&--with-title {
 			position: relative;
+			padding: 0 $icon-margin;
 			padding-left: $clickable-area;
 			white-space: nowrap;
 			opacity: $opacity_full;
@@ -728,11 +715,16 @@ export default {
 			background-color: var(--color-background-dark);
 			background-position: $icon-margin center;
 			font-size: inherit;
+
 			// non-background icon class
-			&:before {
+			// image slot
+			/deep/ span {
+				width: 24px;
+				height: 24px;
+				line-height: $icon-size;
 				position: absolute;
-				top: $icon-margin;
-				left: $icon-margin;
+				top: ($clickable-area - 24px) / 2;
+				left: ($clickable-area - 24px) / 2;
 			}
 		}
 

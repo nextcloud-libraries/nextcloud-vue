@@ -58,7 +58,8 @@
 			:open="contactsMenuOpenState">
 			<PopoverMenu :menu="menu" />
 			<template slot="trigger">
-				<div :class="contactsMenuLoading ? 'icon-loading' : 'icon-more'" :style="{'width': size + 'px', 'height': size + 'px'}" />
+				<div v-if="contactsMenuLoading" class="icon-loading" />
+				<DotsHorizontal v-else :size="24" class="icon-more" decorative />
 			</template>
 		</Popover>
 
@@ -95,13 +96,16 @@
 </template>
 
 <script>
-import { getBuilder } from '@nextcloud/browser-storage'
+import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal'
+
 import { directive as ClickOutside } from 'v-click-outside'
-import PopoverMenu from '../PopoverMenu'
+import { generateUrl } from '@nextcloud/router'
+import { getBuilder } from '@nextcloud/browser-storage'
 import { getCurrentUser } from '@nextcloud/auth'
 import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 import axios from '@nextcloud/axios'
-import { generateUrl } from '@nextcloud/router'
+
+import PopoverMenu from '../PopoverMenu'
 import Tooltip from '../../directives/Tooltip'
 import usernameToColor from '../../functions/usernameToColor'
 import { userStatus } from '../../mixins'
@@ -130,6 +134,7 @@ export default {
 		ClickOutside,
 	},
 	components: {
+		DotsHorizontal,
 		Popover,
 		PopoverMenu,
 	},
@@ -351,8 +356,7 @@ export default {
 		},
 		avatarStyle() {
 			const style = {
-				width: this.size + 'px',
-				height: this.size + 'px',
+				'--size': this.size + 'px',
 				lineHeight: this.size + 'px',
 				fontSize: Math.round(this.size * 0.55) + 'px',
 			}
@@ -600,6 +604,8 @@ export default {
 .avatardiv {
 	position: relative;
 	display: inline-block;
+	width: var(--size);
+	height: var(--size);
 
 	&--unknown {
 		position: relative;
@@ -625,17 +631,13 @@ export default {
 		}
 		.icon-more {
 			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: var(--size);
+			height: var(--size);
 			cursor: pointer;
 			opacity: 0;
 			background: none;
-			font-size: 18px;
-			align-items: center;
-			justify-content: center;
-
-			@include iconfont('more');
-			&::before {
-				display: block;
-			}
 		}
 		&:focus,
 		&:hover {
