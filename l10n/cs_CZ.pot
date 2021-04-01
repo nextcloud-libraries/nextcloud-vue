@@ -11,10 +11,10 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 msgid "{tag} (invisible)"
-msgstr "{tag} (neviditelný)"
+msgstr "{tag} (neviditelné)"
 
 msgid "{tag} (restricted)"
-msgstr "{tag} (omezený)"
+msgstr "{tag} (omezené)"
 
 msgid "Actions"
 msgstr "Akce"
@@ -47,7 +47,7 @@ msgid "Frequently used"
 msgstr "Často používané"
 
 msgid "Message limit of {count} characters reached"
-msgstr "Dosaženo limitu počtu znaků {count}"
+msgstr "Dosaženo limitu počtu ({count}) znaků zprávy"
 
 msgid "Next"
 msgstr "Následující"
