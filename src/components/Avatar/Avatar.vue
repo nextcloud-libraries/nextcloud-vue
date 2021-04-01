@@ -599,8 +599,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../../fonts/scss/iconfont-vue';
-
 .avatardiv {
 	position: relative;
 	display: inline-block;
@@ -712,6 +710,9 @@ export default {
 		font-size: var(--default-font-size);
 		border: 2px solid var(--color-main-background);
 		background-color: var(--color-main-background);
+		background-repeat: no-repeat;
+		background-size: 16px;
+		background-position: center;
 		border-radius: 50%;
 
 		.acli:hover & {
@@ -724,17 +725,14 @@ export default {
 		}
 
 		&--online{
-			@include iconfont('user-status-online');
-			color: #49b382;
+			background-image: url('../../assets/status-icons/user-status-online.svg');
 		}
 		&--dnd{
-			@include iconfont('user-status-dnd');
+			background-image: url('../../assets/status-icons/user-status-dnd.svg');
 			background-color: #ffffff;
-			color: #ed484c;
 		}
 		&--away{
-			@include iconfont('user-status-away');
-			color: #f4a331;
+			background-image: url('../../assets/status-icons/user-status-away.svg');
 		}
 		&--icon {
 			border: none;

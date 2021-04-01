@@ -99,7 +99,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../fonts/scss/iconfont-vue';
 $autocomplete-padding: 10px;
 
 .autocomplete-result {
@@ -144,23 +143,20 @@ $autocomplete-padding: 10px;
 		background-color: var(--color-main-background);
 		font-size: var(--default-font-size);
 		line-height: 15px;
-		&--online {
-			color: #49b382;
+		background-repeat: no-repeat;
+		background-size: 16px;
+		background-position: center;
 
-			@include iconfont('user-status-online');
+		&--online{
+			background-image: url('../../assets/status-icons/user-status-online.svg');
 		}
-		&--dnd {
-			color: #ed484c;
-			background-color: #fff;
-
-			@include iconfont('user-status-dnd');
+		&--dnd{
+			background-image: url('../../assets/status-icons/user-status-dnd.svg');
+			background-color: #ffffff;
 		}
-		&--away {
-			color: #f4a331;
-
-			@include iconfont('user-status-away');
+		&--away{
+			background-image: url('../../assets/status-icons/user-status-away.svg');
 		}
-		&--offline,
 		&--icon {
 			border: none;
 			background-color: transparent;
