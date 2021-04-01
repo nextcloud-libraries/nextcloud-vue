@@ -56,8 +56,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../fonts/scss/iconfont-vue';
-
 .icon-collapse {
 	position: absolute;
 	z-index: 105; // above a, under button

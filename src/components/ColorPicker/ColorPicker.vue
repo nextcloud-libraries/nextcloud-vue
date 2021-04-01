@@ -201,6 +201,7 @@ export default {
 			}),
 		}
 	},
+
 	watch: {
 		value(color) {
 			this.currentColor = color
@@ -208,8 +209,10 @@ export default {
 	},
 
 	methods: {
+		/**
+		 * Submit a picked colour and close picker
+		 */
 		handleConfirm() {
-
 			/**
 			 * Emits a hexadecimal string e.g. '#ffffff'
 			 */
@@ -217,12 +220,6 @@ export default {
 			this.handleClose()
 
 			this.advanced = false
-		},
-		handleBack() {
-			this.advanced = false
-		},
-		handleMoreSettings() {
-			this.advanced = true
 		},
 		handleClose() {
 			/**
@@ -232,16 +229,25 @@ export default {
 			this.$emit('update:open', false)
 		},
 
+		/**
+		 * Inner navigations
+		 */
+		handleBack() {
+			this.advanced = false
+		},
+		handleMoreSettings() {
+			this.advanced = true
+		},
+
+		/**
+		 * Pick a colour
+		 * @param {string} color the picked color
+		 */
 		pickColor(color) {
 			if (typeof color !== 'string') {
 				color = this.currentColor.hex
 			}
 			this.currentColor = color
-
-			/**
-			 * 
-			 */
-			this.$emit('close')
 
 			/**
 			 * Emits a hexadecimal string e.g. '#ffffff'
@@ -275,6 +281,7 @@ export default {
 	padding: 4px;
 	border-radius: 3px;
 	height: 196px;
+
 	&__simple {
 		display: grid;
 		grid-template-columns: repeat(4, $clickable-area);

@@ -439,8 +439,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../fonts/scss/iconfont-vue';
-
 .app-navigation-entry {
 	position: relative;
 	display: flex;

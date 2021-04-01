@@ -86,8 +86,14 @@ export default {
 							class="play-pause-icons"
 							@click="togglePlayPause">
 							<!-- Play/pause icons -->
-							<Play v-if="!playing" :size="iconSize" class="play-pause-icons__play" decorative />
-							<Pause v-else :size="iconSize" class="play-pause-icons__pause" decorative />
+							<Play v-if="!playing"
+								:size="iconSize"
+								class="play-pause-icons__play"
+								decorative />
+							<Pause v-else
+								:size="iconSize"
+								class="play-pause-icons__pause"
+								decorative />
 							<span class="hidden-visually">
 								{{ playPauseTitle }}
 							</span>
@@ -631,7 +637,6 @@ $header-size: 50px;
 			background-position: center;
 			background-size: 22px;
 		}
-
 
 		::v-deep button {
 			// force white instead of default main text

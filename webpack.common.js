@@ -7,7 +7,6 @@ const path = require('path')
 const { DefinePlugin } = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const BabelLoaderExcludeNodeModulesExcept = require('babel-loader-exclude-node-modules-except')
-const IconfontPlugin = require('iconfont-plugin-webpack')
 const nodeExternals = require('webpack-node-externals')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 
@@ -16,7 +15,6 @@ const StyleLintPlugin = require('stylelint-webpack-plugin')
 const appVersion = JSON.stringify(process.env.npm_package_version || 'nextcloud-vue')
 const versionHash = md5(appVersion).substr(0, 7)
 const SCOPE_VERSION = JSON.stringify(versionHash)
-const ICONFONT_NAME = `iconfont-vue-${versionHash}`
 
 console.info('This build version hash is', versionHash, '\n')
 
@@ -34,13 +32,13 @@ const translations = fs
 
 		// Compress translations Content
 		const translations = {}
-		for (key in json.translations['']) {
+		for (const key in json.translations['']) {
 			if (key !== '') {
 				// Plural
 				if ('msgid_plural'in json.translations[''][key]) {
 					translations[json.translations[''][key].msgid] = {
 						pluralId: json.translations[''][key].msgid_plural,
-						msgstr: json.translations[''][key].msgstr
+						msgstr: json.translations[''][key].msgstr,
 					}
 					continue
 				}
@@ -150,17 +148,6 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new IconfontPlugin({
-			src: './src/assets/iconfont',
-			family: ICONFONT_NAME,
-			dest: {
-				font: './src/fonts/[family].[type]',
-				css: './src/fonts/scss/iconfont-vue.scss',
-			},
-			watch: {
-				pattern: './src/assets/iconfont/*.svg',
-			},
-		}),
 		new VueLoaderPlugin(),
 		new StyleLintPlugin({
 			files: ['src/**/*.vue', 'src/**/*.scss', 'src/**/*.css'],

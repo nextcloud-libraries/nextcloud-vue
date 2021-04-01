@@ -59,7 +59,10 @@
 			<PopoverMenu :menu="menu" />
 			<template slot="trigger">
 				<div v-if="contactsMenuLoading" class="icon-loading" />
-				<DotsHorizontal v-else :size="24" class="icon-more" decorative />
+				<DotsHorizontal v-else
+					:size="24"
+					class="icon-more"
+					decorative />
 			</template>
 		</Popover>
 

@@ -496,8 +496,6 @@ export default {
 </style>
 
 <style lang="scss">
-@import '../../fonts/scss/iconfont-vue';
-
 .tribute-container {
 	z-index: 9000;
 	overflow: auto;

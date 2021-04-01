@@ -98,7 +98,6 @@
 		"gettext-extractor": "^3.5.2",
 		"gettext-parser": "^4.0.3",
 		"glob": "^7.1.6",
-		"iconfont-plugin-webpack": "^1.1.4",
 		"jest": "^26.4.0",
 		"jest-environment-jsdom-sixteen": "^1.0.3",
 		"jest-serializer-vue": "^2.0.2",
