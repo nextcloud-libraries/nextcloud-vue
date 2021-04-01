@@ -1,7 +1,5 @@
 $cell_height: 32px;
 
-// import the icons font scss
-@import '../../fonts/scss/iconfont-vue';
 @import '~vue2-datepicker/scss/index.scss';
 
 .mx-datepicker[data-v-#{$scope_version}] {
@@ -284,12 +282,9 @@ $cell_height: 32px;
 				justify-content: center;
 				width: $cell_height;
 				padding: 0; // leave the centering to flex
-
-				// font icons
-				&:before {
-					display: block;
-					font-size: $icon-size;
-				}
+				background-repeat: no-repeat;
+				background-size: 16px;
+				background-position: center;
 
 				// Hide original icons
 				> i {
@@ -303,25 +298,31 @@ $cell_height: 32px;
 		}
 
 		.mx-btn-icon-double-left {
-			@include iconfont('arrow-left-double');
+			background-image: url('./chevron-double-left.svg');
+			body.theme--dark & {
+				background-image: url('./chevron-double-left-light.svg');
+			}
 		}
 
 		.mx-btn-icon-left {
-			@include iconfont('arrow-left');
+			background-image: url('./chevron-left.svg');
+			body.theme--dark & {
+				background-image: url('./chevron-left-light.svg');
+			}
 		}
 
 		.mx-btn-icon-right {
-			@include iconfont('arrow-right');
-			// arrows are all before month and year
-			// send them to the end of the row
-			//order: 3;
+			background-image: url('./chevron-right.svg');
+			body.theme--dark & {
+				background-image: url('./chevron-right-light.svg');
+			}
 		}
 
 		.mx-btn-icon-double-right {
-			@include iconfont('arrow-right-double');
-			// arrows are all before month and year
-			// send them to the end of the row
-			//order: 4;
+			background-image: url('./chevron-double-right.svg');
+			body.theme--dark & {
+				background-image: url('./chevron-double-right-light.svg');
+			}
 		}
 
 		button.mx-btn-icon-right {
