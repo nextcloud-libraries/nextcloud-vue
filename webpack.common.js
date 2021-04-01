@@ -112,7 +112,7 @@ module.exports = {
 					{
 						loader: 'sass-loader',
 						options: {
-							additionalData: `$scope_version:${SCOPE_VERSION}; @import 'variables';`,
+							additionalData: `$scope_version:${SCOPE_VERSION}; @import 'variables'; @import 'material-icons';`,
 							/**
 							 * ! needed for resolve-url-loader
 							 */

@@ -60,6 +60,7 @@
 		"v-tooltip": "^2.0.3",
 		"vue": "^2.6.11",
 		"vue-color": "^2.7.1",
+		"vue-material-design-icons": "^4.11.0",
 		"vue-multiselect": "^2.1.6",
 		"vue-visible": "^1.0.2",
 		"vue2-datepicker": "^3.6.3"
@@ -115,7 +116,6 @@
 		"vue-eslint-parser": "^7.1.0",
 		"vue-jest": "^3.0.5",
 		"vue-loader": "^15.9.1",
-		"vue-material-design-icons": "^4.11.0",
 		"vue-styleguidist": "^4.33.9",
 		"vue-template-compiler": "^2.6.11",
 		"webpack": "^4.42.1",
