@@ -211,6 +211,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .crumb {
 	background-image: none;
 	display: inline-flex;
@@ -225,12 +226,21 @@ export default {
 		}
 	}
 
-	&::before {
+	&::after {
+		content: '';
 		display: flex;
 		align-items: center;
-		order: 1;
 		color: var(--color-border-dark);
 		font-size: 26px;
+		width: 8px;
+		background-image: url('./breadcrumb.svg');
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		opacity: .3;
+		body.theme--dark & {
+			background-image: url('./breadcrumb-light.svg');
+		}
 	}
 
 	&--hidden {
