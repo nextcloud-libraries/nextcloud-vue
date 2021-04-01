@@ -127,21 +127,13 @@
 			"js",
 			"vue"
 		],
-		"moduleNameMapper": {
-			"^@/(.*)$": "<rootDir>/src/$1",
-			"^Assets/(.*)$": "<rootDir>/src/assets/$1",
-			"^Components/(.*)$": "<rootDir>/src/components/$1",
-			"^Directives/(.*)$": "<rootDir>/src/directives/$1",
-			"^Mixins/(.*)$": "<rootDir>/src/mixins/$1",
-			"^Utils/(.*)$": "<rootDir>/src/utils/$1",
-			"^Fonts/(.*)$": "<rootDir>/src/fonts/$1"
-		},
 		"testEnvironment": "jest-environment-jsdom-sixteen",
 		"transform": {
-			"^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-			".*\\.(vue)$": "<rootDir>/node_modules/vue-jest",
+			"^.+\\.js$": "babel-jest",
+			"^.+\\.vue$": "vue-jest",
 			".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
 		},
+		"transformIgnorePatterns": ["/node_modules/(?!vue-material-design-icons)"],
 		"snapshotSerializers": [
 			"<rootDir>/node_modules/jest-serializer-vue"
 		],

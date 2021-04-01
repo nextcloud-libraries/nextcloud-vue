@@ -1,4 +1,4 @@
-import usernameToColor from '@/functions/usernameToColor/index'
+import usernameToColor from '../../../../src/functions/usernameToColor/index'
 
 const rgbToHex = (color) => {
 	return '#' + ((1 << 24) + (color.r << 16) + (color.g << 8) + color.b).toString(16).slice(1)
