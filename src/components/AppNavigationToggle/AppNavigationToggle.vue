@@ -28,7 +28,7 @@
 		aria-controls="app-navigation-vue"
 		@click.prevent="toggleNavigation"
 		@keydown.space.exact.prevent="toggleNavigation">
-		<Menu :size="24" decorative title="" />
+		<Menu :size="24" title="" decorative />
 	</a>
 </template>
 

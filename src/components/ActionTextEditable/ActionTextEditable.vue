@@ -58,13 +58,13 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 				<textarea :disabled="disabled"
 					:value="value"
 					v-bind="$attrs"
-					:class="['action-text-editable__textarea',{ focusable: isFocusable }]"
+					:class="['action-text-editable__textarea', { focusable: isFocusable }]"
 					@input="onInput" />
 
 				<!-- allow the custom font to inject a ::before
 					not possible on input[type=submit] -->
 				<label v-show="!disabled" :for="id" class="action-text-editable__label">
-					<ArrowRight :size="24" decorative />
+					<ArrowRight :size="24" title="" decorative />
 				</label>
 			</form>
 		</span>

@@ -62,6 +62,7 @@
 				<DotsHorizontal v-else
 					:size="24"
 					class="icon-more"
+					title=""
 					decorative />
 			</template>
 		</Popover>

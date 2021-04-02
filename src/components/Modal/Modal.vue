@@ -89,10 +89,12 @@ export default {
 							<Play v-if="!playing"
 								:size="iconSize"
 								class="play-pause-icons__play"
+								title=""
 								decorative />
 							<Pause v-else
 								:size="iconSize"
 								class="play-pause-icons__pause"
+								title=""
 								decorative />
 							<span class="hidden-visually">
 								{{ playPauseTitle }}
@@ -123,7 +125,7 @@ export default {
 						<Actions v-if="canClose" class="header-close">
 							<ActionButton @click="close">
 								<template #icon>
-									<Close :size="iconSize" decorative />
+									<Close :size="iconSize" title="" decorative />
 								</template>
 								{{ t('Close') }}
 							</ActionButton>
@@ -152,7 +154,7 @@ export default {
 							}"
 							@click.prevent.stop="previous">
 							<span class="icon-previous">
-								<ChevronLeft :size="40" decorative />
+								<ChevronLeft :size="40" title="" decorative />
 								<span class="hidden-visually">
 									{{ t('Previous') }}
 								</span>
@@ -176,7 +178,7 @@ export default {
 							}"
 							@click.prevent.stop="next">
 							<span class="icon-next">
-								<ChevronRight :size="40" decorative />
+								<ChevronRight :size="40" title="" decorative />
 								<span class="hidden-visually">
 									{{ t('Next') }}
 								</span>

@@ -123,7 +123,10 @@ export default {
 						class="color-picker__simple-color-circle"
 						:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }"
 						@click="pickColor(color)">
-						<Check v-if="color === currentColor" :size="24" decorative />
+						<Check v-if="color === currentColor"
+							:size="24"
+							title=""
+							decorative />
 					</button>
 				</div>
 				<Chrome
@@ -139,13 +142,13 @@ export default {
 					v-if="advanced"
 					class="color-picker__navigation-button back"
 					@click="handleBack">
-					<ArrowLeft :size="24" decorative />
+					<ArrowLeft :size="24" title="" decorative />
 				</button>
 				<button
 					v-if="!advanced"
 					class="color-picker__navigation-button more-settings"
 					@click="handleMoreSettings">
-					<DotsHorizontal :size="24" decorative />
+					<DotsHorizontal :size="24" title="" decorative />
 				</button>
 				<button
 					v-if="advanced"
