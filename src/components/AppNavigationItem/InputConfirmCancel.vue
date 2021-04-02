@@ -40,14 +40,14 @@
 
 			<button type="submit"
 				class="app-navigation-input-confirm__confirm"
-				:aria-label="t('Confirm changes')"
+				:aria-label="labelConfirm"
 				@click.stop.prevent="confirm">
 				<ArrowRight :size="24" decorative title="" />
 			</button>
 
 			<button type="reset"
 				class="app-navigation-input-confirm__close"
-				:aria-label="t('Cancel changes')"
+				:aria-label="labelCancel"
 				@click.stop.prevent="cancel">
 				<Close :size="24" decorative title="" />
 			</button>
@@ -75,6 +75,13 @@ export default {
 			default: '',
 			type: String,
 		},
+	},
+
+	data() {
+		return {
+			labelConfirm: t('Confirm changes'),
+			labelCancel: t('Cancel changes'),
+		}
 	},
 
 	computed: {

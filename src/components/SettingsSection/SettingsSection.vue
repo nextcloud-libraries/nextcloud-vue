@@ -49,7 +49,7 @@ This component is to be used in the settings section of nextcloud.
 				class="settings-section__info"
 				role="note"
 				:title="docTitleTranslated">
-				<InformationVariant :size="24" decorative title="" />
+				<HelpCircle :size="24" decorative title="" />
 			</a>
 		</h2>
 		<p v-if="hasDescription"
@@ -61,7 +61,7 @@ This component is to be used in the settings section of nextcloud.
 </template>
 
 <script>
-import InformationVariant from 'vue-material-design-icons/InformationVariant'
+import HelpCircle from 'vue-material-design-icons/HelpCircle'
 
 import { t } from '../../l10n'
 
@@ -69,7 +69,7 @@ export default {
 	name: 'SettingsSection',
 
 	components: {
-		InformationVariant,
+		HelpCircle,
 	},
 
 	props: {
