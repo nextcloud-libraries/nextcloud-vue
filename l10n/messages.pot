@@ -17,10 +17,16 @@ msgstr ""
 msgid "Animals & Nature"
 msgstr ""
 
+msgid "Cancel changes"
+msgstr ""
+
 msgid "Choose"
 msgstr ""
 
 msgid "Close"
+msgstr ""
+
+msgid "Confirm changes"
 msgstr ""
 
 msgid "Custom"
