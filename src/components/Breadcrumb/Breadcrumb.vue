@@ -233,6 +233,7 @@ export default {
 		color: var(--color-border-dark);
 		font-size: 26px;
 		width: 8px;
+		min-width: 8px;
 		background-image: url('./breadcrumb.svg');
 		background-size: contain;
 		background-repeat: no-repeat;
