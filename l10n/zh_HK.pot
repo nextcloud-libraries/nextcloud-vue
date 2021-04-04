@@ -34,6 +34,9 @@ msgstr "關閉"
 msgid "Custom"
 msgstr "自定義"
 
+msgid "External documentation for {title}"
+msgstr "{title} 的外部文檔"
+
 msgid "Flags"
 msgstr "旗幟"
 
@@ -90,6 +93,9 @@ msgstr "表情"
 
 msgid "Start slideshow"
 msgstr "開始幻燈片"
+
+msgid "Submit"
+msgstr "提交"
 
 msgid "Symbols"
 msgstr "標誌"
