@@ -597,7 +597,8 @@ $top-buttons-spacing: 6px;
 				padding-left: 0;
 			}
 
-			&--editable .app-sidebar-header__maintitle-form {
+			&--editable .app-sidebar-header__maintitle-form,
+			&--with-subtitle--editable .app-sidebar-header__maintitle-form {
 				margin-top: -2px;
 				margin-bottom: -2px;
 			}
