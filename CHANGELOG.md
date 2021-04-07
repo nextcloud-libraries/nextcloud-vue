@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.9.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.9.0) (2021-04-07)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.8.0...v3.9.0)
+
+## Enhancements
+
+- Add icon slot to emptycontent [\#1806](https://github.com/nextcloud/nextcloud-vue/pull/1806) ([skjnldsv](https://github.com/skjnldsv))
+
+## Fixed bugs
+
+- Make sure to pass all props and attributes to single-action Actions [\#1809](https://github.com/nextcloud/nextcloud-vue/pull/1809) ([skjnldsv](https://github.com/skjnldsv))
+- Ensure that crumbs to hide have correct class [\#1807](https://github.com/nextcloud/nextcloud-vue/pull/1807) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix compact sidebar subtitle not visible [\#1767](https://github.com/nextcloud/nextcloud-vue/pull/1767) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
+## Closed pull requests
+
+- Fix translation extraction [\#1776](https://github.com/nextcloud/nextcloud-vue/pull/1776) ([jotoeri](https://github.com/jotoeri))
+- Minimize bundled translations [\#1775](https://github.com/nextcloud/nextcloud-vue/pull/1775) ([jotoeri](https://github.com/jotoeri))
+
 ## [v3.8.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.8.0) (2021-03-26)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.7.2...v3.8.0)
