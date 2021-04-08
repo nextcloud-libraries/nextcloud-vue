@@ -1,0 +1,57 @@
+name: Changelog
+
+on:
+  push:
+    paths:
+      - 'package.json'
+
+jobs:
+  build:
+    name: Auto generation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check-out
+        uses: actions/checkout@v2
+
+      - name: Get last released tag
+        id: last_version
+        uses: InsonusK/get-latest-release@v1.0.1
+        with:
+          myToken: ${{ secrets.GITHUB_TOKEN }}
+          exclude_types: draft|prerelease
+          view_top: 1
+
+      - name: Get new version
+        id: future_version
+        uses: Saionaro/extract-package-version@v1.0.6
+
+      - name: Generate changelog
+        uses: docker://ferrarimarco/github-changelog-generator
+        with:
+          args: >
+            -t ${{ secrets.GITHUB_TOKEN }}
+            --user nextcloud
+            --project nextcloud-vue
+            --no-issues
+            --no-issues-wo-labels
+            --max-issues 0
+            --exclude-labels "duplicate,question,invalid,wontfix,dependencies"
+            --since-tag ${{ steps.last_version.outputs.tag_name }}
+            --future-release v${{ steps.future_version.outputs.version }}
+            --breaking-label "## Breaking changes"
+            --enhancement-label "## Enhancements"
+            --bugs-label "## Fixed bugs"
+            --deprecated-label "## Deprecated"
+            --removed-label "## Removed"
+            --security-label "## Security fixes"
+            --issues-label "## Closed issues"
+            --pr-label "## Closed pull requests"
+
+      - name: Print changelog to console
+        run: cat CHANGELOG.md
+
+      - name: Upload changelog
+        uses: actions/upload-artifact@v2
+        with:
+          name: Changelog
+          path: CHANGELOG.md
