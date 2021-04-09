@@ -57,7 +57,7 @@ It might be used for list rendering or within the multiselect for example
 </docs>
 
 <template>
-	<span class="option" :style="cssVars">
+	<span :id="id" class="option" :style="cssVars">
 		<Avatar
 			v-bind="$attrs"
 			:disable-menu="true"
@@ -173,6 +173,14 @@ export default {
 		isNoUser: {
 			type: Boolean,
 			default: false,
+		},
+
+		/**
+		 * Unique list item ID
+		 */
+		id: {
+			type: String,
+			default: null,
 		},
 	},
 

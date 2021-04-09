@@ -125,6 +125,7 @@ function setUserHasAvatar(userId, flag) {
 
 export default {
 	name: 'Avatar',
+
 	directives: {
 		tooltip: Tooltip,
 		ClickOutside,
