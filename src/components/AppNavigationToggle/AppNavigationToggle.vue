@@ -25,15 +25,24 @@
 	<a class="app-navigation-toggle"
 		href="#"
 		:aria-expanded="open ? 'true' : 'false'"
+		:aria-label="ariaLabel"
 		aria-controls="app-navigation-vue"
 		@click.prevent="toggleNavigation"
 		@keydown.space.exact.prevent="toggleNavigation" />
 </template>
 
 <script>
+import l10n from '../../mixins/l10n'
+
 export default {
 
 	name: 'AppNavigationToggle',
+
+	computed: {
+		ariaLabel() {
+			return this.open ? t('Close navigation') : t('Open navigation')
+		},
+	},
 
 	props: {
 		open: {
@@ -47,6 +56,8 @@ export default {
 			this.$emit('update:open', !this.open)
 		},
 	},
+
+	mixins: [l10n],
 }
 </script>
 
