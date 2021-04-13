@@ -72,6 +72,8 @@ export default {
 	&:hover,
 	&:focus {
 		opacity: $opacity_full;
+		background-color: var(--color-background-hover);
+		border-radius: var(--border-radius-pill);
 	}
 }
 
