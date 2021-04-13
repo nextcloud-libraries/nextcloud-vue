@@ -38,11 +38,7 @@ export default {
 
 	name: 'AppNavigationToggle',
 
-	computed: {
-		ariaLabel() {
-			return this.open ? t('Close navigation') : t('Open navigation')
-		},
-	},
+	mixins: [l10n],
 
 	props: {
 		open: {
@@ -51,13 +47,17 @@ export default {
 		},
 	},
 
+	computed: {
+		ariaLabel() {
+			return this.open ? this.t('Close navigation') : this.t('Open navigation')
+		},
+	},
+
 	methods: {
 		toggleNavigation() {
 			this.$emit('update:open', !this.open)
 		},
 	},
-
-	mixins: [l10n],
 }
 </script>
 
