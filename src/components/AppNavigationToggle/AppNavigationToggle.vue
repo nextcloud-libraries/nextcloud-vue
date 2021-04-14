@@ -27,13 +27,20 @@
 		:aria-expanded="open ? 'true' : 'false'"
 		aria-controls="app-navigation-vue"
 		@click.prevent="toggleNavigation"
-		@keydown.space.exact.prevent="toggleNavigation" />
+		@keydown.space.exact.prevent="toggleNavigation">
+		<Menu :size="24" title="" decorative />
+	</a>
 </template>
 
 <script>
-export default {
+import Menu from 'vue-material-design-icons/Menu'
 
+export default {
 	name: 'AppNavigationToggle',
+
+	components: {
+		Menu,
+	},
 
 	props: {
 		open: {
@@ -51,23 +58,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../../fonts/scss/iconfont-vue';
-
 .app-navigation-toggle {
 	position: absolute;
 	top: 0;
 	right: 0;
-	margin-right: - $clickable-area;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: $clickable-area;
 	height: $clickable-area;
-	padding: $icon-margin;
-
+	margin-right: - $clickable-area;
+	padding: 0;
 	cursor: pointer;
-	opacity: 0.6;
-
-	font-size: $icon-size;
-	line-height: 17px;
-	@include iconfont('menu');
+	opacity: .6;
 
 	&:hover,
 	&:focus {

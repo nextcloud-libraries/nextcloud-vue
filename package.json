@@ -60,6 +60,7 @@
 		"v-tooltip": "^2.0.3",
 		"vue": "^2.6.11",
 		"vue-color": "^2.7.1",
+		"vue-material-design-icons": "^4.11.0",
 		"vue-multiselect": "^2.1.6",
 		"vue-visible": "^1.0.2",
 		"vue2-datepicker": "^3.6.3"
@@ -97,7 +98,6 @@
 		"gettext-extractor": "^3.5.2",
 		"gettext-parser": "^4.0.3",
 		"glob": "^7.1.6",
-		"iconfont-plugin-webpack": "^1.1.4",
 		"jest": "^26.4.0",
 		"jest-environment-jsdom-sixteen": "^1.0.3",
 		"jest-serializer-vue": "^2.0.2",
@@ -115,7 +115,6 @@
 		"vue-eslint-parser": "^7.1.0",
 		"vue-jest": "^3.0.5",
 		"vue-loader": "^15.9.1",
-		"vue-material-design-icons": "^4.11.0",
 		"vue-styleguidist": "^4.33.9",
 		"vue-template-compiler": "^2.6.11",
 		"webpack": "^4.42.1",
@@ -128,21 +127,13 @@
 			"js",
 			"vue"
 		],
-		"moduleNameMapper": {
-			"^@/(.*)$": "<rootDir>/src/$1",
-			"^Assets/(.*)$": "<rootDir>/src/assets/$1",
-			"^Components/(.*)$": "<rootDir>/src/components/$1",
-			"^Directives/(.*)$": "<rootDir>/src/directives/$1",
-			"^Mixins/(.*)$": "<rootDir>/src/mixins/$1",
-			"^Utils/(.*)$": "<rootDir>/src/utils/$1",
-			"^Fonts/(.*)$": "<rootDir>/src/fonts/$1"
-		},
 		"testEnvironment": "jest-environment-jsdom-sixteen",
 		"transform": {
-			"^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-			".*\\.(vue)$": "<rootDir>/node_modules/vue-jest",
+			"^.+\\.js$": "babel-jest",
+			"^.+\\.vue$": "vue-jest",
 			".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
 		},
+		"transformIgnorePatterns": ["/node_modules/(?!vue-material-design-icons)"],
 		"snapshotSerializers": [
 			"<rootDir>/node_modules/jest-serializer-vue"
 		],

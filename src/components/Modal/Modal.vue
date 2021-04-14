@@ -34,9 +34,10 @@
 <style scoped>
 	.modal__content {
 		width: 50vw;
-		text-align: center;
 		margin: 10vw 0;
+		text-align: center;
 	}
+
 </style>
 <script>
 export default {
@@ -63,6 +64,7 @@ export default {
 		<div ref="mask"
 			class="modal-mask"
 			:class="{ 'modal-mask--dark': dark }"
+			:style="cssVariables"
 			@click="handleMouseMove"
 			@mousemove="handleMouseMove"
 			@touchmove="handleMouseMove">
@@ -80,15 +82,23 @@ export default {
 						<!-- Play-pause toggle -->
 						<button v-if="hasNext && enableSlideshow"
 							v-tooltip.auto="playPauseTitle"
-							:class="{ 'play-pause--paused': slideshowPaused }"
-							class="play-pause"
+							:class="{ 'play-pause-icons--paused': slideshowPaused }"
+							class="play-pause-icons"
 							@click="togglePlayPause">
-							<!-- Progress circle, css animated -->
-							<div :class="[playing ? 'icon-pause' : 'icon-play']">
-								<span class="hidden-visually">
-									{{ playPauseTitle }}
-								</span>
-							</div>
+							<!-- Play/pause icons -->
+							<Play v-if="!playing"
+								:size="iconSize"
+								class="play-pause-icons__play"
+								title=""
+								decorative />
+							<Pause v-else
+								:size="iconSize"
+								class="play-pause-icons__pause"
+								title=""
+								decorative />
+							<span class="hidden-visually">
+								{{ playPauseTitle }}
+							</span>
 
 							<!-- Progress circle, css animated -->
 							<svg v-if="playing"
@@ -113,7 +123,10 @@ export default {
 
 						<!-- Close modal -->
 						<Actions v-if="canClose" class="header-close">
-							<ActionButton icon="icon-close" @click="close">
+							<ActionButton @click="close">
+								<template #icon>
+									<Close :size="iconSize" title="" decorative />
+								</template>
 								{{ t('Close') }}
 							</ActionButton>
 						</Actions>
@@ -135,15 +148,17 @@ export default {
 					<transition name="fade-visibility">
 						<a v-show="hasPrevious && !clearView"
 							class="prev"
+							href="#"
 							:class="{
 								invisible: clearView || !hasPrevious
 							}"
-							@click="previous">
-							<div class="icon icon-previous">
+							@click.prevent.stop="previous">
+							<span class="icon-previous">
+								<ChevronLeft :size="40" title="" decorative />
 								<span class="hidden-visually">
 									{{ t('Previous') }}
 								</span>
-							</div>
+							</span>
 						</a>
 					</transition>
 
@@ -157,15 +172,17 @@ export default {
 					<transition name="fade-visibility">
 						<a v-show="hasNext && !clearView"
 							class="next"
+							href="#"
 							:class="{
 								invisible: clearView || !hasNext
 							}"
-							@click="next">
-							<div class="icon icon-next">
+							@click.prevent.stop="next">
+							<span class="icon-next">
+								<ChevronRight :size="40" title="" decorative />
 								<span class="hidden-visually">
 									{{ t('Next') }}
 								</span>
-							</div>
+							</span>
 						</a>
 					</transition>
 				</div>
@@ -176,6 +193,12 @@ export default {
 
 <script>
 import Hammer from 'hammerjs'
+import ChevronLeft from 'vue-material-design-icons/ChevronLeft'
+import ChevronRight from 'vue-material-design-icons/ChevronRight'
+import Close from 'vue-material-design-icons/Close'
+import Pause from 'vue-material-design-icons/Pause'
+import Play from 'vue-material-design-icons/Play'
+
 import Actions from '../Actions'
 import ActionButton from '../ActionButton'
 import l10n from '../../mixins/l10n'
@@ -187,8 +210,13 @@ export default {
 	name: 'Modal',
 
 	components: {
-		Actions,
 		ActionButton,
+		Actions,
+		ChevronLeft,
+		ChevronRight,
+		Close,
+		Pause,
+		Play,
 	},
 
 	directives: {
@@ -299,6 +327,7 @@ export default {
 			clearViewTimeout: null,
 			playing: false,
 			slideshowTimeout: null,
+			iconSize: 24,
 		}
 	},
 
@@ -308,6 +337,12 @@ export default {
 		},
 		playPauseTitle() {
 			return this.playing ? t('Pause slideshow') : t('Start slideshow')
+		},
+		cssVariables() {
+			return {
+				'--slideshow-duration': this.slideshowDelay + 'ms',
+				'--icon-size': this.iconSize + 'px',
+			}
 		},
 	},
 
@@ -361,28 +396,28 @@ export default {
 
 	methods: {
 		// Events emitters
-		previous(data) {
+		previous(event) {
 			// do not send the event if nothing is available
 			if (this.hasPrevious) {
 				// if data is set, then it's a user mouse event
 				// and not the slideshow handler, therefore
 				// we reset the timer
-				if (data) {
+				if (event) {
 					this.resetSlideshow()
 				}
-				this.$emit('previous', data)
+				this.$emit('previous', event)
 			}
 		},
-		next(data) {
+		next(event) {
 			// do not send the event if nothing is available
 			if (this.hasNext) {
 				// if data is set, then it's a mouse event
 				// and not the slideshow handler, therefore
 				// we reset the timer
-				if (data) {
+				if (event) {
 					this.resetSlideshow()
 				}
-				this.$emit('next', data)
+				this.$emit('next', event)
 			}
 		},
 		close(data) {
@@ -488,7 +523,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../fonts/scss/iconfont-vue';
 $header-size: 50px;
 
 .modal-mask {
@@ -542,8 +576,8 @@ $header-size: 50px;
 	// On wider screens the title can be centered
 	@media only screen and (min-width: $breakpoint-mobile/2) {
 		.modal-title {
-			text-align: center;
 			padding-left: #{$clickable-area * 3}; // maximum actions is 3
+			text-align: center;
 		}
 	}
 
@@ -554,59 +588,41 @@ $header-size: 50px;
 		align-items: center;
 		justify-content: flex-end;
 
-		.icon-close {
+		.header-close {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			box-sizing: border-box;
 			margin: ($header-size - $clickable-area) / 2;
-			// not using $icon-margin since we have a custom font size
-			// and alignement seems odd
-			padding: 10px 11px;
-			color: #fff;
-			background-image: none;
-			font-size: 23px;
-
-			@include iconfont('close');
+			padding: 0;
 		}
 
-		.play-pause {
+		.play-pause-icons {
 			position: relative;
 			width: $header-size;
 			height: $header-size;
 			margin: 0;
 			padding: 0;
 			cursor: pointer;
-			color: white;
 			border: none;
 			background-color: transparent;
-			font-size: 22px;
 			&:hover,
 			&:focus {
-				.icon-play,
-				.icon-pause {
-					opacity: 1;
+				.play-pause-icons__play,
+				.play-pause-icons__pause {
+					opacity: $opacity_full;
 					border-radius: $clickable-area / 2;
 					background-color: $icon-focus-bg;
 				}
 			}
-			.icon-play,
-			.icon-pause {
+			&__play,
+			&__pause {
 				box-sizing: border-box;
 				width: $clickable-area;
 				height: $clickable-area;
 				margin: ($header-size - $clickable-area) / 2;
-				opacity: .7;
-				background-image: none;
 				cursor: pointer;
-			}
-			.icon-play {
-				// better visual
-				padding: 11px 13px;
-				@include iconfont('play');
-			}
-			.icon-pause {
-				padding: 12px;
-				// ! align with circle
-				font-size: 19.5px;
-				@include iconfont('pause');
+				opacity: $opacity_normal;
 			}
 		}
 
@@ -624,14 +640,19 @@ $header-size: 50px;
 			background-size: 22px;
 		}
 
-		&::v-deep .action-item__menutoggle {
-			padding: 13px 11px;
+		::v-deep button {
 			// force white instead of default main text
 			color: #fff;
-			// 22px is a somehow better looking for the icon-more icon
-			font-size: 22px;
 		}
 
+		// Force the Actions menu icon to be the same size as other icons
+		&::v-deep .action-item__menutoggle {
+			padding: 0;
+			span, svg {
+				width: var(--icon-size);
+				height: var(--icon-size);
+			}
+		}
 	}
 }
 
@@ -673,17 +694,9 @@ $header-size: 50px;
 		box-sizing: border-box;
 		width: $clickable-area;
 		height: $clickable-area;
-		padding: 12px 11px;
 		color: white;
-		border-radius: $clickable-area / 2;
 		background-image: none;
-		font-size: 24px;
-	}
-	.icon-previous {
-		@include iconfont('arrow-left');
-	}
-	.icon-next {
-		@include iconfont('arrow-right');
+		display: flex;
 	}
 
 	/* Content */
@@ -781,7 +794,7 @@ $header-size: 50px;
 $radius: 15;
 $pi: 3.14159265358979;
 
-.modal-mask .play-pause {
+.modal-mask .play-pause-icons {
 	.progress-ring {
 		position: absolute;
 		top: 0;
@@ -790,7 +803,7 @@ $pi: 3.14159265358979;
 		.progress-ring__circle {
 			transition: 100ms stroke-dashoffset;
 			transform-origin: 50% 50%; // axis compensation
-			animation: progressring linear 3s infinite;
+			animation: progressring linear var(--slideshow-duration) infinite;
 
 			stroke-linecap: round;
 			stroke-dashoffset: $radius * 2 * $pi; // radius * 2 * PI
@@ -799,7 +812,7 @@ $pi: 3.14159265358979;
 	}
 	&--paused {
 		.icon-pause {
-			animation: breath 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+			animation: breath 2s cubic-bezier(.4, 0, .2, 1) infinite;
 		}
 		.progress-ring__circle {
 			animation-play-state: paused !important;

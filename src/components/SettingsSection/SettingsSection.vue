@@ -47,8 +47,10 @@ This component is to be used in the settings section of nextcloud.
 			<a v-if="hasDocUrl"
 				:href="docUrl"
 				class="settings-section__info"
-				role=""
-				:title="docTitleTranslated" />
+				role="note"
+				:title="docTitleTranslated">
+				<HelpCircle :size="24" decorative title="" />
+			</a>
 		</h2>
 		<p v-if="hasDescription"
 			class="settings-section__desc">
@@ -59,12 +61,15 @@ This component is to be used in the settings section of nextcloud.
 </template>
 
 <script>
+import HelpCircle from 'vue-material-design-icons/HelpCircle'
+
 import { t } from '../../l10n'
 
 export default {
 	name: 'SettingsSection',
-	components: {
 
+	components: {
+		HelpCircle,
 	},
 
 	props: {
@@ -103,8 +108,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../fonts/scss/iconfont-vue';
-
 .settings-section {
 	display: block;
 	margin-bottom: auto;
@@ -132,9 +135,6 @@ export default {
 		margin: -$icon-margin;
 		margin-left: 0;
 		opacity: $opacity_normal;
-		font-size: $icon-size;
-
-		@include iconfont('info');
 
 		&:hover, &:focus, &:active {
 			opacity: $opacity_full;
@@ -142,7 +142,7 @@ export default {
 	}
 
 	&__desc {
-		margin-top: -0.2em;
+		margin-top: -.2em;
 		margin-bottom: 1em;
 		opacity: $opacity_normal;
 	}

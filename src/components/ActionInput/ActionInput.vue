@@ -89,7 +89,9 @@ For the multiselect component, all events will be passed through. Please see the
 						@change="onChange">
 					<!-- allow the custom font to inject a ::before
 						not possible on input[type=submit] -->
-					<label v-show="!disabled" :for="id" class="action-input__label" />
+					<label v-show="!disabled" :for="id" class="action-input__label">
+						<ArrowRight :size="24" title="" decorative />
+					</label>
 				</template>
 			</form>
 		</span>
@@ -97,6 +99,8 @@ For the multiselect component, all events will be passed through. Please see the
 </template>
 
 <script>
+import ArrowRight from 'vue-material-design-icons/ArrowRight'
+
 import ActionGlobalMixin from '../../mixins/actionGlobal'
 import GenRandomId from '../../utils/GenRandomId'
 import DatetimePicker from '../DatetimePicker'
@@ -106,6 +110,7 @@ export default {
 	name: 'ActionInput',
 
 	components: {
+		ArrowRight,
 		DatetimePicker,
 		Multiselect,
 	},
@@ -238,7 +243,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../fonts/scss/iconfont-vue';
 @import '../../assets/inputs';
 @import '../../assets/action';
 @include action-active;
@@ -332,8 +336,6 @@ $input-margin: 4px;
 		margin: 0 0 0 -8px;
 		padding: 7px 6px;
 
-		cursor: pointer;
-
 		opacity: $opacity_full;
 		color: var(--color-text-lighter);
 		border: 1px solid var(--color-border-dark);
@@ -343,9 +345,9 @@ $input-margin: 4px;
 		background-color: var(--color-main-background);
 		background-clip: padding-box;
 
-		font-size: $icon-size;
-
-		@include iconfont('confirm');
+		&, * {
+			cursor: pointer;
+		}
 	}
 
 	/* Inputs inside popover supports text, submit & reset */

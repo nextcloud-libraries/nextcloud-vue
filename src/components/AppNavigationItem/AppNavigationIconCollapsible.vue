@@ -25,12 +25,19 @@
 	<button
 		class="icon-collapse"
 		:class="{'icon-collapse--rotated':open}"
-		@click="onClick" />
+		@click="onClick">
+		<MenuDown :size="24" title="" decorative />
+	</button>
 </template>
 
 <script>
+import MenuDown from 'vue-material-design-icons/MenuDown'
 export default {
 	name: 'AppNavigationIconCollapsible',
+
+	components: {
+		MenuDown,
+	},
 
 	props: {
 		open: {
@@ -49,8 +56,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../fonts/scss/iconfont-vue';
-
 .icon-collapse {
 	position: absolute;
 	z-index: 105; // above a, under button
@@ -68,9 +73,6 @@ export default {
 	outline: none !important;
 	background-color: transparent;
 	box-shadow: none;
-	font-size: 18px;
-
-	@include iconfont('triangle-s');
 
 	&:hover{
 		color: var(--color-primary);
