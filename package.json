@@ -71,7 +71,10 @@
 	"devDependencies": {
 		"@babel/core": "^7.9.0",
 		"@babel/eslint-parser": "^7.13.10",
+		"@babel/plugin-transform-modules-commonjs": "^7.13.8",
+		"@babel/plugin-transform-shorthand-properties": "^7.12.13",
 		"@babel/preset-env": "^7.9.5",
+		"@nextcloud/babel-config": "^1.0.0-beta.1",
 		"@nextcloud/browserslist-config": "^2.1.0",
 		"@nextcloud/eslint-config": "^4.0.0",
 		"@nextcloud/eslint-plugin": "^2.0.0",
@@ -93,6 +96,7 @@
 		"eslint-plugin-promise": "^4.2.1",
 		"eslint-plugin-standard": "^4.0.1",
 		"eslint-plugin-vue": "^7.8.0",
+		"eslint-webpack-plugin": "^2.5.3",
 		"file-loader": "^6.0.0",
 		"fontsource-roboto": "^4.0.0",
 		"gettext-extractor": "^3.5.2",
@@ -133,7 +137,9 @@
 			"^.+\\.vue$": "vue-jest",
 			".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
 		},
-		"transformIgnorePatterns": ["/node_modules/(?!vue-material-design-icons)"],
+		"transformIgnorePatterns": [
+			"/node_modules/(?!vue-material-design-icons)"
+		],
 		"snapshotSerializers": [
 			"<rootDir>/node_modules/jest-serializer-vue"
 		],
