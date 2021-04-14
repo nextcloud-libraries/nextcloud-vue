@@ -26,11 +26,17 @@ msgstr "Aktywność"
 msgid "Animals & Nature"
 msgstr "Zwierzęta i natura"
 
+msgid "Cancel changes"
+msgstr "Anuluj zmiany"
+
 msgid "Choose"
 msgstr "Wybierz"
 
 msgid "Close"
 msgstr "Zamknij"
+
+msgid "Confirm changes"
+msgstr "Potwierdź zmiany"
 
 msgid "Custom"
 msgstr "Zwyczajne"
