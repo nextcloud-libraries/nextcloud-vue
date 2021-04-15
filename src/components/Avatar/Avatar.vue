@@ -44,7 +44,11 @@
 		}"
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper"
-		v-on="!disableMenu ? { click: toggleMenu } : {}">
+		:tabindex="disableMenu ? '-1' : '0'"
+		:aria-label="avatarAriaLabel"
+		:role="disableMenu ? '' : 'button'"
+		v-on="!disableMenu ? { click: toggleMenu } : {}"
+		@keydown.enter="toggleMenu">
 		<!-- Avatar icon or image -->
 		<div v-if="iconClass" :class="iconClass" class="avatar-class-icon" />
 		<img v-else-if="isAvatarLoaded && !userDoesNotExist"
@@ -98,6 +102,7 @@ import PopoverMenu from '../PopoverMenu'
 import Tooltip from '../../directives/Tooltip'
 import usernameToColor from '../../functions/usernameToColor'
 import { userStatus } from '../../mixins'
+import { t } from '../../l10n'
 import Popover from '../Popover/Popover'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
@@ -257,6 +262,11 @@ export default {
 			type: String,
 			default: 'body',
 		},
+
+		ariaLabel: {
+			type: String,
+			default: null,
+		},
 	},
 	data() {
 		return {
@@ -271,6 +281,14 @@ export default {
 		}
 	},
 	computed: {
+		avatarAriaLabel() {
+			if (this.ariaLabel !== null) {
+				return this.ariaLabel
+			}
+
+			return t('Avatar of {displayName}', { displayName: this.displayName || this.userId })
+		},
+
 		canDisplayUserStatus() {
 			return this.showUserStatus
 				&& this.hasStatus
