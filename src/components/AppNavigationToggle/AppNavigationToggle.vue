@@ -25,7 +25,6 @@
 	<Actions class="app-navigation-toggle">
 		<ActionButton
 			:aria-expanded="open ? 'true' : 'false'"
-			:aria-label="label"
 			aria-controls="app-navigation-vue"
 			@click="toggleNavigation">
 			<Menu
