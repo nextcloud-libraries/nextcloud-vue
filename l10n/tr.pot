@@ -27,11 +27,17 @@ msgstr "Etkinlikler"
 msgid "Animals & Nature"
 msgstr "Hayvanlar ve Doğa"
 
+msgid "Cancel changes"
+msgstr "Değişiklikleri iptal et"
+
 msgid "Choose"
 msgstr "Seçin"
 
 msgid "Close"
 msgstr "Kapat"
+
+msgid "Confirm changes"
+msgstr "Değişiklikleri onayla"
 
 msgid "Custom"
 msgstr "Özel"
