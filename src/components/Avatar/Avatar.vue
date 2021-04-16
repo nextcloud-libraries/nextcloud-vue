@@ -36,7 +36,9 @@
 
 </docs>
 <template>
-	<div v-tooltip="tooltip"
+	<div
+		ref="main"
+		v-tooltip="tooltip"
 		v-click-outside="closeMenu"
 		:class="{
 			'avatardiv--unknown': userDoesNotExist,
@@ -61,8 +63,10 @@
 			v-if="hasMenu"
 			placement="auto"
 			:container="menuContainer"
-			:open="contactsMenuOpenState">
-			<PopoverMenu :menu="menu" />
+			:open="contactsMenuOpenState"
+			@after-show="handlePopoverAfterShow"
+			@after-hide="handlePopoverAfterHide">
+			<PopoverMenu ref="popoverMenu" :menu="menu" />
 			<template slot="trigger">
 				<div v-if="contactsMenuLoading" class="icon-loading" />
 				<DotsHorizontal v-else
@@ -433,6 +437,16 @@ export default {
 	},
 
 	methods: {
+		handlePopoverAfterShow() {
+			const links = this.$refs.popoverMenu.$el.getElementsByTagName('a')
+			if (links.length) {
+				links[0].focus()
+			}
+		},
+		handlePopoverAfterHide() {
+			// bring focus back to the trigger
+			this.$refs.main.focus()
+		},
 		handleUserStatusUpdated(state) {
 			if (this.user === state.userId) {
 				this.userStatus = {
