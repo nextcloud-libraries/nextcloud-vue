@@ -63,6 +63,7 @@ import PopoverMenu from './PopoverMenu'
 import RichContenteditable from './RichContenteditable'
 import SettingsSection from './SettingsSection'
 import UserBubble from './UserBubble'
+import ListItem from './ListItem'
 
 export {
 	ActionButton,
@@ -98,6 +99,7 @@ export {
 	Content,
 	DatetimePicker,
 	EmptyContent,
+	ListItem,
 	ListItemIcon,
 	Modal,
 	Multiselect,

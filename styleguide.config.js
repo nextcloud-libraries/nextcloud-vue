@@ -1,6 +1,6 @@
-const path = require('path');
-const { merge } = require('webpack-merge');
-const webpackConfig = require('./webpack.dev.js');
+const path = require('path')
+const { merge } = require('webpack-merge')
+const webpackConfig = require('./webpack.dev.js')
 
 const newConfig = Object.assign({}, webpackConfig, {
 	externals: {},
@@ -116,6 +116,13 @@ module.exports = {
 					components: [
 						'src/components/Multiselect/Multiselect.vue',
 						'src/components/MultiselectTags/MultiselectTags.vue',
+					],
+				},
+				{
+					name: 'List items',
+					components: [
+						'src/components/ListItem/ListItem.vue',
+						'src/components/ListItemIcon/ListItemIcon.vue',
 					],
 				},
 			],
