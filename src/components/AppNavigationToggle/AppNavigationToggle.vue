@@ -22,25 +22,38 @@
  -
  -->
 <template>
-	<a class="app-navigation-toggle"
-		href="#"
-		:aria-expanded="open ? 'true' : 'false'"
-		aria-controls="app-navigation-vue"
-		@click.prevent="toggleNavigation"
-		@keydown.space.exact.prevent="toggleNavigation">
-		<Menu :size="24" title="" decorative />
-	</a>
+	<Actions class="app-navigation-toggle">
+		<ActionButton
+			:aria-expanded="open ? 'true' : 'false'"
+			aria-controls="app-navigation-vue"
+			@click="toggleNavigation">
+			<Menu
+				slot="icon"
+				:size="24"
+				title=""
+				decorative />
+			{{ label }}
+		</ActionButton>
+	</Actions>
 </template>
 
 <script>
+import Actions from '../Actions/Actions'
+import ActionButton from '../ActionButton/ActionButton'
+import l10n from '../../mixins/l10n'
+
 import Menu from 'vue-material-design-icons/Menu'
 
 export default {
 	name: 'AppNavigationToggle',
 
 	components: {
+		Actions,
+		ActionButton,
 		Menu,
 	},
+
+	mixins: [l10n],
 
 	props: {
 		open: {
@@ -49,6 +62,11 @@ export default {
 		},
 	},
 
+	computed: {
+		label() {
+			return this.open ? this.t('Close navigation') : this.t('Open navigation')
+		},
+	},
 	methods: {
 		toggleNavigation() {
 			this.$emit('update:open', !this.open)
@@ -58,24 +76,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.app-navigation-toggle {
+
+button.app-navigation-toggle {
 	position: absolute;
 	top: 0;
 	right: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: $clickable-area;
-	height: $clickable-area;
 	margin-right: - $clickable-area;
-	padding: 0;
-	cursor: pointer;
-	opacity: .6;
-
-	&:hover,
-	&:focus {
-		opacity: $opacity_full;
-	}
 }
 
 </style>

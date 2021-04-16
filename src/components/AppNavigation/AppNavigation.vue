@@ -171,7 +171,7 @@ export default {
 	&__list {
 		position: relative;
 		height: 100%;
-		width: inherit;
+		width: 100%;
 		overflow-x: hidden;
 		overflow-y: auto;
 		box-sizing: border-box;

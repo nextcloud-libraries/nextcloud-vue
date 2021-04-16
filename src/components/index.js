@@ -22,6 +22,7 @@
  */
 
 import ActionButton from './ActionButton'
+import ActionCaption from './ActionCaption'
 import ActionCheckbox from './ActionCheckbox'
 import ActionInput from './ActionInput'
 import ActionLink from './ActionLink'
@@ -54,6 +55,7 @@ import ColorPicker from './ColorPicker'
 import Content from './Content'
 import DatetimePicker from './DatetimePicker'
 import EmptyContent from './EmptyContent'
+import ListItem from './ListItem'
 import ListItemIcon from './ListItemIcon'
 import Modal from './Modal'
 import Multiselect from './Multiselect'
@@ -63,7 +65,6 @@ import PopoverMenu from './PopoverMenu'
 import RichContenteditable from './RichContenteditable'
 import SettingsSection from './SettingsSection'
 import UserBubble from './UserBubble'
-import ActionCaption from './ActionCaption'
 
 export {
 	ActionButton,
@@ -99,6 +100,7 @@ export {
 	Content,
 	DatetimePicker,
 	EmptyContent,
+	ListItem,
 	ListItemIcon,
 	Modal,
 	Multiselect,
