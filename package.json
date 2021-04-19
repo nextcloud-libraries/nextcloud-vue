@@ -46,7 +46,7 @@
 		"@nextcloud/router": "^1.0.2",
 		"core-js": "^3.6.5",
 		"debounce": "1.2.1",
-		"emoji-mart-vue-fast": "^7.0.7",
+		"emoji-mart-vue-fast": "^10.0.0",
 		"escape-html": "^1.0.3",
 		"hammerjs": "^2.0.8",
 		"linkifyjs": "~2.1.9",
