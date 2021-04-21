@@ -57,7 +57,10 @@ It might be used for list rendering or within the multiselect for example
 </docs>
 
 <template>
-	<span :id="id" class="option" :style="cssVars">
+	<span :id="id"
+		class="option"
+		:style="cssVars"
+		v-on="$listeners">
 		<Avatar
 			v-bind="$attrs"
 			:disable-menu="true"
