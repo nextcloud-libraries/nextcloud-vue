@@ -51,6 +51,7 @@ import AppSidebarTab from './AppSidebarTab'
 import Avatar from './Avatar'
 import Breadcrumb from './Breadcrumb'
 import Breadcrumbs from './Breadcrumbs'
+import CheckboxRadio from './CheckboxRadio'
 import ColorPicker from './ColorPicker'
 import Content from './Content'
 import DatetimePicker from './DatetimePicker'
@@ -96,6 +97,7 @@ export {
 	Avatar,
 	Breadcrumb,
 	Breadcrumbs,
+	CheckboxRadio,
 	ColorPicker,
 	Content,
 	DatetimePicker,
