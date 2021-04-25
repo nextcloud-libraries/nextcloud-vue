@@ -31,18 +31,22 @@ $cell_height: 32px;
 			color: var(--color-text-lighter);
 		}
 	}
+}
 
-	// Datepicker popup wrapper
-	.mx-datepicker-main {
-		color: var(--color-main-text);
-		border: 1px solid var(--color-border);
-		background-color: var(--color-main-background);
-		font-family: var(--font-face) !important;
-		line-height: 1.5;
+// Datepicker popup wrapper
+.mx-datepicker-main {
+	color: var(--color-main-text);
+	border: 1px solid var(--color-border);
+	background-color: var(--color-main-background);
+	font-family: var(--font-face) !important;
+	line-height: 1.5;
+
+	svg {
+		fill: var(--color-main-text);
 	}
 
-	.mx-datepicker-popup {
-		z-index: 1000;
+	&.mx-datepicker-popup {
+		z-index: 2000;
 		box-shadow: none;
 
 		.mx-datepicker-sidebar + .mx-datepicker-content {

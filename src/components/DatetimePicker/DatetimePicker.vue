@@ -81,7 +81,7 @@ export default {
 		:formatter="formatter"
 		:type="type"
 		:value="value"
-		:append-to-body="false"
+		:append-to-body="appendToBody"
 		v-bind="$attrs"
 		v-on="$listeners"
 		@select-year="handleSelectYear"
@@ -152,6 +152,11 @@ export default {
 			default() {
 				return new Date()
 			},
+		},
+
+		appendToBody: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
