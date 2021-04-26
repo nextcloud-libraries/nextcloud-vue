@@ -124,110 +124,111 @@
 <template>
 	<transition name="slide-right" appear>
 		<aside id="app-sidebar-vue" class="app-sidebar">
-			<header :class="{
-					'app-sidebar-header--with-figure': hasFigure,
-					'app-sidebar-header--compact': compact,
-				}"
-				class="app-sidebar-header">
-				<!-- close sidebar button -->
-				<a
-					v-tooltip.auto="closeTranslated"
-					href="#"
-					class="app-sidebar__close icon-close"
-					@click.prevent="closeSidebar" />
-
-				<!-- container for figure and description, allows easy switching to compact mode -->
-				<div class="app-sidebar-header__info">
-					<!-- sidebar header illustration/figure -->
-					<div v-if="hasFigure && !empty"
-						:class="{
-							'app-sidebar-header__figure--with-action': hasFigureClickListener
-						}"
-						class="app-sidebar-header__figure"
-						:style="{
-							backgroundImage: `url(${background})`
-						}"
-						@click="onFigureClick">
-						<slot class="app-sidebar-header__background" name="header" />
-					</div>
-
-					<!-- sidebar details -->
-					<div v-if="!empty"
-						:class="{
-							'app-sidebar-header__desc--with-tertiary-action': canStar || $slots['tertiary-actions'],
-							'app-sidebar-header__desc--editable': titleEditable && !subtitle,
-							'app-sidebar-header__desc--with-subtitle--editable': titleEditable && subtitle,
-							'app-sidebar-header__desc--without-actions': !$slots['secondary-actions'],
-						}"
-						class="app-sidebar-header__desc">
-						<!-- favourite icon -->
-						<div v-if="canStar || $slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
-							<slot name="tertiary-actions">
-								<a v-if="canStar"
-									:class="{
-										'icon-starred': isStarred && !starLoading,
-										'icon-star': !isStarred && !starLoading,
-										'icon-loading-small': starLoading,
-									}"
-									class="app-sidebar-header__star"
-									@click.prevent="toggleStarred" />
-							</slot>
+			<div class="app-sidebar-wrapper">
+				<header :class="{
+						'app-sidebar-header--with-figure': hasFigure,
+						'app-sidebar-header--compact': compact,
+					}"
+					class="app-sidebar-header">
+					<!-- container for figure and description, allows easy switching to compact mode -->
+					<div class="app-sidebar-header__info">
+						<!-- close sidebar button -->
+						<a
+							v-tooltip.auto="closeTranslated"
+							href="#"
+							class="app-sidebar__close icon-close"
+							@click.prevent="closeSidebar" />
+						<!-- sidebar header illustration/figure -->
+						<div v-if="hasFigure && !empty"
+							:class="{
+								'app-sidebar-header__figure--with-action': hasFigureClickListener
+							}"
+							class="app-sidebar-header__figure"
+							:style="{
+								backgroundImage: `url(${background})`
+							}"
+							@click="onFigureClick">
+							<slot class="app-sidebar-header__background" name="header" />
 						</div>
 
-						<!-- title -->
-						<div class="app-sidebar-header__title-container">
-							<!-- main title -->
-							<h2 v-show="!titleEditable"
-								v-linkify="{text: title, linkify: linkifyTitle}"
-								v-tooltip.auto="titleTooltip"
-								class="app-sidebar-header__maintitle"
-								@click.self="editTitle">
-								{{ title }}
-							</h2>
-							<template v-if="titleEditable">
-								<form
-									v-click-outside="() => onSubmitTitle()"
-									class="app-sidebar-header__maintitle-form"
-									@submit.prevent="onSubmitTitle">
-									<input
-										ref="titleInput"
-										v-focus
-										class="app-sidebar-header__maintitle-input"
-										type="text"
-										:placeholder="titlePlaceholder"
-										:value="title"
-										@keydown.esc="onDismissEditing"
-										@input="onTitleInput">
-									<button
-										class="icon-confirm"
-										type="submit" />
-								</form>
-							</template>
-							<!-- secondary title -->
-							<p v-if="subtitle.trim() !== ''" class="app-sidebar-header__subtitle">
-								{{ subtitle }}
-							</p>
+						<!-- sidebar details -->
+						<div v-if="!empty"
+							:class="{
+								'app-sidebar-header__desc--with-tertiary-action': canStar || $slots['tertiary-actions'],
+								'app-sidebar-header__desc--editable': titleEditable && !subtitle,
+								'app-sidebar-header__desc--with-subtitle--editable': titleEditable && subtitle,
+								'app-sidebar-header__desc--without-actions': !$slots['secondary-actions'],
+							}"
+							class="app-sidebar-header__desc">
+							<!-- favourite icon -->
+							<div v-if="canStar || $slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
+								<slot name="tertiary-actions">
+									<a v-if="canStar"
+										:class="{
+											'icon-starred': isStarred && !starLoading,
+											'icon-star': !isStarred && !starLoading,
+											'icon-loading-small': starLoading,
+										}"
+										class="app-sidebar-header__star"
+										@click.prevent="toggleStarred" />
+								</slot>
+							</div>
+
+							<!-- title -->
+							<div class="app-sidebar-header__title-container">
+								<!-- main title -->
+								<h2 v-show="!titleEditable"
+									v-linkify="{text: title, linkify: linkifyTitle}"
+									v-tooltip.auto="titleTooltip"
+									class="app-sidebar-header__maintitle"
+									@click.self="editTitle">
+									{{ title }}
+								</h2>
+								<template v-if="titleEditable">
+									<form
+										v-click-outside="() => onSubmitTitle()"
+										class="app-sidebar-header__maintitle-form"
+										@submit.prevent="onSubmitTitle">
+										<input
+											ref="titleInput"
+											v-focus
+											class="app-sidebar-header__maintitle-input"
+											type="text"
+											:placeholder="titlePlaceholder"
+											:value="title"
+											@keydown.esc="onDismissEditing"
+											@input="onTitleInput">
+										<button
+											class="icon-confirm"
+											type="submit" />
+									</form>
+								</template>
+								<!-- secondary title -->
+								<p v-if="subtitle.trim() !== ''" class="app-sidebar-header__subtitle">
+									{{ subtitle }}
+								</p>
+							</div>
+
+							<!-- header main menu -->
+							<Actions v-if="$slots['secondary-actions']" class="app-sidebar-header__menu" :force-menu="forceMenu">
+								<slot name="secondary-actions" />
+							</Actions>
 						</div>
-
-						<!-- header main menu -->
-						<Actions v-if="$slots['secondary-actions']" class="app-sidebar-header__menu" :force-menu="forceMenu">
-							<slot name="secondary-actions" />
-						</Actions>
 					</div>
-				</div>
-				<div v-if="$slots['description'] && !empty" class="app-sidebar-header__description">
-					<slot name="description" />
-				</div>
-			</header>
+					<div v-if="$slots['description'] && !empty" class="app-sidebar-header__description">
+						<slot name="description" />
+					</div>
+				</header>
 
-			<AppSidebarTabs v-show="!loading"
-				ref="tabs"
-				:active="active"
-				@update:active="onUpdateActive">
-				<slot />
-			</AppSidebarTabs>
+				<AppSidebarTabs v-show="!loading"
+					ref="tabs"
+					:active="active"
+					@update:active="onUpdateActive">
+					<slot />
+				</AppSidebarTabs>
 
-			<EmptyContent v-if="loading" icon="icon-loading" />
+				<EmptyContent v-if="loading" icon="icon-loading" />
+			</div>
 		</aside>
 	</transition>
 </template>
@@ -477,220 +478,227 @@ $top-buttons-spacing: 6px;
 	position: -webkit-sticky; // Safari support
 	position: sticky;
 	z-index: 1500;
-	top: var(--header-height);
-	right: 0;
-	display: flex;
-	overflow-x: hidden;
-	overflow-y: auto;
-	flex-direction: column;
-	flex-shrink: 0;
+	border-left: 1px solid var(--color-border);
+	background: var(--color-main-background);
 	width: 27vw;
 	min-width: $sidebar-min-width;
 	max-width: $sidebar-max-width;
 	height: calc(100vh - var(--header-height));
-	border-left: 1px solid var(--color-border);
-	background: var(--color-main-background);
-	.app-sidebar-header {
-		> .app-sidebar__close {
-			position: absolute;
-			z-index: 100;
-			top: $top-buttons-spacing;
-			right: $top-buttons-spacing;
-			width: $clickable-area;
-			height: $clickable-area;
-			opacity: $opacity_normal;
-			border-radius: $clickable-area / 2;
-			&:hover,
-			&:active,
-			&:focus {
-				opacity: $opacity_full;
-				background-color: $action-background-hover;
-			}
-		}
+	top: var(--header-height);
+	right: 0;
+	flex-shrink: 0;
 
-		// Compact mode only affects a sidebar with a figure
-		&--compact.app-sidebar-header--with-figure {
-			.app-sidebar-header__info {
-				flex-direction: row;
+	.app-sidebar-wrapper {
+		height: 100%;
+		z-index: 1500;
+		display: flex;
+		flex-direction: column;
+		overflow-x: hidden;
+		overflow-y: auto;
+		.app-sidebar-header {
 
-				.app-sidebar-header__figure {
-					z-index: 2;
-					width: $desc-height + $desc-vertical-padding;
-					height: $desc-height + $desc-vertical-padding;
-					margin: $desc-vertical-padding / 2;
-					border-radius: 3px;
-					flex: 0 0 auto;
+			// Compact mode only affects a sidebar with a figure
+			&--compact.app-sidebar-header--with-figure {
+				.app-sidebar-header__info {
+					flex-direction: row;
+					position: relative;
+
+					.app-sidebar-header__figure {
+						z-index: 2;
+						width: $desc-height + $desc-vertical-padding;
+						height: $desc-height + $desc-vertical-padding;
+						margin: $desc-vertical-padding / 2;
+						border-radius: 3px;
+						flex: 0 0 auto;
+					}
+					.app-sidebar-header__desc {
+						padding-left: 0;
+						flex: 1 1 auto;
+						min-width: 0;
+						padding-right: 2 * $clickable-area + $top-buttons-spacing;
+
+						&.app-sidebar-header__desc--without-actions {
+							padding-right: #{$clickable-area + $top-buttons-spacing};
+						}
+
+						.app-sidebar-header__tertiary-actions {
+							z-index: 3; // above star
+							position: absolute;
+							top: $desc-vertical-padding / 2;
+							left: -1 * $clickable-area;
+						}
+						.app-sidebar-header__menu {
+							top: $top-buttons-spacing;
+							right: $clickable-area + $top-buttons-spacing; // left of the close button
+							background-color: transparent;
+							position: absolute;
+						}
+					}
 				}
+			}
+
+			// sidebar without figure
+			&:not(.app-sidebar-header--with-figure) {
+				// align the menu with the close button
+				.app-sidebar-header__menu {
+					position: absolute;
+					top: $top-buttons-spacing;
+					right: $top-buttons-spacing + $clickable-area;
+				}
+				// increase the padding to not overlap the menu
 				.app-sidebar-header__desc {
-					padding-left: 0;
-					flex: 1 1 auto;
-					min-width: 0;
-					padding-right: 2 * $clickable-area + $top-buttons-spacing;
+					padding-right: #{$clickable-area * 2 + $top-buttons-spacing};
 
 					&.app-sidebar-header__desc--without-actions {
 						padding-right: #{$clickable-area + $top-buttons-spacing};
 					}
-
-					.app-sidebar-header__tertiary-actions {
-						z-index: 3; // above star
-						position: absolute;
-						top: $desc-vertical-padding / 2;
-						left: -1 * $clickable-area;
-					}
-					.app-sidebar-header__menu {
-						top: $top-buttons-spacing;
-						right: $clickable-area + $top-buttons-spacing; // left of the close button
-						background-color: transparent;
-						position: absolute;
-					}
 				}
 			}
-		}
 
-		// sidebar without figure
-		&:not(.app-sidebar-header--with-figure) {
-			// align the menu with the close button
-			.app-sidebar-header__menu {
-				position: absolute;
-				top: $top-buttons-spacing;
-				right: $top-buttons-spacing + $clickable-area;
-			}
-			// increase the padding to not overlap the menu
-			.app-sidebar-header__desc {
-				padding-right: #{$clickable-area * 2 + $top-buttons-spacing};
-
-				&.app-sidebar-header__desc--without-actions {
-					padding-right: #{$clickable-area + $top-buttons-spacing};
-				}
-			}
-		}
-
-		// the container with the figure and the description
-		.app-sidebar-header__info {
-			display: flex;
-			flex-direction: column;
-		}
-
-		// header background
-		&__figure {
-			width: 100%;
-			height: 250px;
-			max-height: 250px;
-			background-repeat: no-repeat;
-			background-position: center;
-			background-size: contain;
-			&--with-action {
-				cursor: pointer;
-			}
-		}
-
-		// description
-		&__desc {
-			position: relative;
-			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			padding: #{$desc-vertical-padding} #{$top-buttons-spacing} #{$desc-vertical-padding} #{$desc-vertical-padding / 2};
-
-			// custom overrides
-			&--with-tertiary-action {
-				padding-left: 0;
-			}
-
-			&--editable .app-sidebar-header__maintitle-form,
-			&--with-subtitle--editable .app-sidebar-header__maintitle-form {
-				margin-top: -2px;
-				margin-bottom: -2px;
-			}
-
-			&--with-subtitle--editable .app-sidebar-header__subtitle {
-				margin-top: -2px;
-			}
-
-			.app-sidebar-header__tertiary-actions {
-				display: flex;
-				height: $clickable-area;
-				width: $clickable-area;
-				justify-content: center;
-				flex: 0 0 auto;
-			}
-
-			// titles
-			.app-sidebar-header__title-container {
-				flex: 1 1 auto;
+			// the container with the figure and the description
+			.app-sidebar-header__info {
 				display: flex;
 				flex-direction: column;
-				justify-content: center;
-				min-width: 0;
-
-				// main title
-				.app-sidebar-header__maintitle {
-					padding: 0;
-					min-height: 30px;
-					font-size: 20px;
-					line-height: $desc-title-height;
-
-					// Needs 'deep' as the link is generated by the linkify directive
-					&::v-deep .linkified {
-						cursor: pointer;
-						text-decoration: underline;
-					}
-				}
-
-				.app-sidebar-header__maintitle,
-				.app-sidebar-header__subtitle {
-					overflow: hidden;
-					width: 100%;
-					margin: 0;
-					white-space: nowrap;
-					text-overflow: ellipsis;
-				}
-
-				// subtitle
-				.app-sidebar-header__subtitle {
-					padding: 0;
+				position: relative;
+				> .app-sidebar__close {
+					position: absolute;
+					z-index: 100;
+					top: $top-buttons-spacing;
+					right: $top-buttons-spacing;
+					width: $clickable-area;
+					height: $clickable-area;
 					opacity: $opacity_normal;
-					font-size: var(--default-font-size);
+					border-radius: $clickable-area / 2;
+					&:hover,
+					&:active,
+					&:focus {
+						opacity: $opacity_full;
+						background-color: $action-background-hover;
+					}
+				}
+			}
+
+			// header background
+			&__figure {
+				width: 100%;
+				height: 250px;
+				max-height: 250px;
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: contain;
+				&--with-action {
+					cursor: pointer;
+				}
+			}
+
+			// description
+			&__desc {
+				position: relative;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				padding: #{$desc-vertical-padding} #{$top-buttons-spacing} #{$desc-vertical-padding} #{$desc-vertical-padding / 2};
+
+				// custom overrides
+				&--with-tertiary-action {
+					padding-left: 0;
 				}
 
-				.app-sidebar-header__maintitle-form {
+				&--editable .app-sidebar-header__maintitle-form,
+				&--with-subtitle--editable .app-sidebar-header__maintitle-form {
+					margin-top: -2px;
+					margin-bottom: -2px;
+				}
+
+				&--with-subtitle--editable .app-sidebar-header__subtitle {
+					margin-top: -2px;
+				}
+
+				.app-sidebar-header__tertiary-actions {
 					display: flex;
-					margin-left: -7.5px;
-					& .icon-confirm {
-						margin: 0;
+					height: $clickable-area;
+					width: $clickable-area;
+					justify-content: center;
+					flex: 0 0 auto;
+				}
+
+				// titles
+				.app-sidebar-header__title-container {
+					flex: 1 1 auto;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					min-width: 0;
+
+					// main title
+					.app-sidebar-header__maintitle {
+						padding: 0;
+						min-height: 30px;
+						font-size: 20px;
+						line-height: $desc-title-height;
+
+						// Needs 'deep' as the link is generated by the linkify directive
+						&::v-deep .linkified {
+							cursor: pointer;
+							text-decoration: underline;
+						}
 					}
 
-					input.app-sidebar-header__maintitle-input {
-						flex: 1 1 auto;
+					.app-sidebar-header__maintitle,
+					.app-sidebar-header__subtitle {
+						overflow: hidden;
+						width: 100%;
 						margin: 0;
-						padding: $desc-input-padding;
-						font-size: 20px;
-						font-weight: bold;
+						white-space: nowrap;
+						text-overflow: ellipsis;
 					}
+
+					// subtitle
+					.app-sidebar-header__subtitle {
+						padding: 0;
+						opacity: $opacity_normal;
+						font-size: var(--default-font-size);
+					}
+
+					.app-sidebar-header__maintitle-form {
+						display: flex;
+						margin-left: -7.5px;
+						& .icon-confirm {
+							margin: 0;
+						}
+
+						input.app-sidebar-header__maintitle-input {
+							flex: 1 1 auto;
+							margin: 0;
+							padding: $desc-input-padding;
+							font-size: 20px;
+							font-weight: bold;
+						}
+					}
+				}
+
+				// favourite
+				.app-sidebar-header__star {
+					display: block;
+					width: $clickable-area;
+					height: $clickable-area;
+					padding: $icon-margin;
+				}
+				// main menu
+				.app-sidebar-header__menu {
+					height: $clickable-area;
+					width: $clickable-area;
+					border-radius: $clickable-area / 2;
+					background-color: $action-background-hover;
 				}
 			}
 
-			// favourite
-			.app-sidebar-header__star {
-				display: block;
-				width: $clickable-area;
-				height: $clickable-area;
-				padding: $icon-margin;
+			// sidebar description slot
+			&__description {
+				display: flex;
+				align-items: center;
+				margin: 0 10px;
 			}
-			// main menu
-			.app-sidebar-header__menu {
-				height: $clickable-area;
-				width: $clickable-area;
-				border-radius: $clickable-area / 2;
-				background-color: $action-background-hover;
-			}
-		}
-
-		// sidebar description slot
-		&__description {
-			display: flex;
-			align-items: center;
-			margin: 0 10px;
 		}
 	}
 }

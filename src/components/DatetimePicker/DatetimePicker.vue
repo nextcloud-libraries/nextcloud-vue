@@ -82,6 +82,7 @@ export default {
 		:type="type"
 		:value="value"
 		:append-to-body="false"
+		:positioned-parent="positionedParent"
 		v-bind="$attrs"
 		v-on="$listeners"
 		@select-year="handleSelectYear"
@@ -152,6 +153,11 @@ export default {
 			default() {
 				return new Date()
 			},
+		},
+
+		positionedParent: {
+			type: HTMLElement,
+			default: null,
 		},
 	},
 
