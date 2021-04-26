@@ -1,55 +1,118 @@
+# 
 # Translators:
 # Alex <kekcuha@gmail.com>, 2020
+# Andrey Atapin <atab@kirovedu.ru>, 2020
+# Nikita Epifanov, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Alex <kekcuha@gmail.com>, 2020\n"
+"Last-Translator: Nikita Epifanov, 2021\n"
 "Language-Team: Russian (https://www.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:169
 msgid "{tag} (invisible)"
 msgstr "{tag} (невидимое)"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:172
 msgid "{tag} (restricted)"
 msgstr "{tag} (ограниченное)"
 
-#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Actions"
+msgstr "Действия "
+
+msgid "Activities"
+msgstr "События"
+
+msgid "Animals & Nature"
+msgstr "Животные и природа "
+
+msgid "Cancel changes"
+msgstr "Отменить изменения"
+
 msgid "Choose"
 msgstr "Выберите"
 
-#: src/components/Modal/Modal.vue:109
 msgid "Close"
 msgstr "Закрыть"
 
-#: src/components/Modal/Modal.vue:154
+msgid "Confirm changes"
+msgstr "Подтвердить изменения"
+
+msgid "Custom"
+msgstr "Пользовательское"
+
+msgid "External documentation for {title}"
+msgstr "Внешняя документация для {title}"
+
+msgid "Flags"
+msgstr "Флаги"
+
+msgid "Food & Drink"
+msgstr "Еда, напиток"
+
+msgid "Frequently used"
+msgstr "Часто используемый"
+
+msgid "Message limit of {count} characters reached"
+msgstr "Достигнуто ограничение на количество символов в {count}"
+
 msgid "Next"
 msgstr "Следующее"
 
-#: src/components/Multiselect/Multiselect.vue:169
-#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No emoji found"
+msgstr "Эмодзи не найдено"
+
 msgid "No results"
 msgstr "Результаты отсуствуют"
 
-#: src/components/Modal/Modal.vue:290
+msgid "Objects"
+msgstr "Объекты"
+
 msgid "Pause slideshow"
 msgstr "Приостановить показ слйдов"
 
-#: src/components/Modal/Modal.vue:134
+msgid "People & Body"
+msgstr "Люди и тело"
+
+msgid "Pick an emoji"
+msgstr "Выберите эмодзи"
+
 msgid "Previous"
 msgstr "Предыдущее"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Search results"
+msgstr "Результаты поиска"
+
 msgid "Select a tag"
 msgstr "Выберите метку"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
 msgid "Settings"
 msgstr "Параметры"
 
-#: src/components/Modal/Modal.vue:290
+msgid "Settings navigation"
+msgstr "Навигация по настройкам"
+
+msgid "Smileys & Emotion"
+msgstr "Смайлики и эмоции"
+
 msgid "Start slideshow"
 msgstr "Начать показ слайдов"
+
+msgid "Submit"
+msgstr "Утвердить"
+
+msgid "Symbols"
+msgstr "Символы"
+
+msgid "Travel & Places"
+msgstr "Путешествия и места"
+
+msgid "Unable to search the group"
+msgstr "Невозможно найти группу"
+
+msgid "Write message, @ to mention someone …"
+msgstr "Напишите сообщение, используйте @ чтобы упомянуть кого-то…"
