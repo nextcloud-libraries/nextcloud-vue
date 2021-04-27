@@ -71,12 +71,19 @@ module.exports = {
 				'src/components/Content/*.vue',
 				'src/components/Multiselect*/*.vue',
 				'src/components/PopoverMenu/!(PopoverMenu).vue',
+				'src/components/ListItem*/*.vue',
+				'src/components/AppSettings*/*.vue',
+				'src/components/*Picker/*.vue',
+				'src/components/RichContenteditable/!(RichContenteditable).vue',
+				'src/components/Settings*/*.vue',
 			],
 			sections: [
 				{
 					name: 'Actions',
 					components: [
-						'src/components/Action*/*.vue',
+						// Put Actions component first
+						'src/components/Actions/*.vue',
+						'src/components/Action[A-Z]*/*.vue',
 					],
 				},
 				{
@@ -103,6 +110,12 @@ module.exports = {
 								'src/components/AppSidebar*/*.vue',
 							],
 						},
+						{
+							name: 'AppSettings',
+							components: [
+								'src/components/AppSettings*/*.vue',
+							],
+						},
 					],
 				},
 				{
@@ -112,17 +125,27 @@ module.exports = {
 					],
 				},
 				{
-					name: 'Multiselect',
+					name: 'List items',
 					components: [
-						'src/components/Multiselect/Multiselect.vue',
-						'src/components/MultiselectTags/MultiselectTags.vue',
+						'src/components/ListItem*/*.vue',
 					],
 				},
 				{
-					name: 'List items',
+					name: 'Multiselect',
 					components: [
-						'src/components/ListItem/ListItem.vue',
-						'src/components/ListItemIcon/ListItemIcon.vue',
+						'src/components/Multiselect*/*.vue',
+					],
+				},
+				{
+					name: 'Pickers',
+					components: [
+						'src/components/*Picker/*.vue',
+					],
+				},
+				{
+					name: 'Settings',
+					components: [
+						'src/components/Settings*/*.vue',
 					],
 				},
 			],
