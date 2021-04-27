@@ -701,7 +701,7 @@ export default {
 		background-color: transparent;
 	}
 
-	.material-design-icon {
+	&::v-deep .material-design-icon {
 		width: $clickable-area;
 		height: $clickable-area;
 		opacity: $opacity_full;
