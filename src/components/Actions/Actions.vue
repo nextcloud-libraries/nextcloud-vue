@@ -701,6 +701,16 @@ export default {
 		background-color: transparent;
 	}
 
+	&::v-deep .material-design-icon {
+		width: $clickable-area;
+		height: $clickable-area;
+		opacity: $opacity_full;
+
+		.material-design-icon__svg {
+			vertical-align: middle;
+		}
+	}
+
 	// icon-more
 	&__menutoggle {
 		// align menu icon in center
