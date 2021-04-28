@@ -32,6 +32,7 @@ This is a standard input checkbox/radio design
 	<div>
 		<CheckboxRadio :checked.sync="sharingEnabled">Enable sharing</CheckboxRadio>
 		<CheckboxRadio :checked.sync="sharingEnabled" :disabled="true">Enable sharing</CheckboxRadio>
+		<CheckboxRadio :checked="sharingEnabled" :loading="loading" @update:checked="onToggle">Enable sharing</CheckboxRadio>
 		<br>
 		sharingEnabled: {{ sharingEnabled }}
 	</div>
@@ -40,7 +41,18 @@ This is a standard input checkbox/radio design
 export default {
 	data() {
 		return {
+			loading: false,
 			sharingEnabled: false,
+		}
+	},
+	methods: {
+		onToggle() {
+			this.loading = true
+
+			setTimeout(() => {
+				this.sharingEnabled = !this.sharingEnabled
+				this.loading = false
+			}, 1000)
 		}
 	}
 }
@@ -111,7 +123,9 @@ export default {
 			@change="onToggle">
 
 		<label :for="id" class="checkbox-radio__label">
+			<div v-if="loading" class="icon-loading-small checkbox-radio__icon" />
 			<icon :is="checkboxRadioIconElement"
+				v-else
 				:size="24"
 				class="checkbox-radio__icon"
 				title=""
@@ -197,6 +211,14 @@ export default {
 		 * Indeterminate state
 		 */
 		indeterminate: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Loading state
+		 */
+		loading: {
 			type: Boolean,
 			default: false,
 		},
@@ -327,6 +349,8 @@ $spacing: 4px;
 		// Remove the left margin of material design icons to align text
 		margin-left: -2px;
 		color: var(--color-primary-element);
+		width: 24px;
+		height: 24px;
 	}
 
 	&--disabled &__label {
