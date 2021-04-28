@@ -113,61 +113,68 @@
 			@click="onClick"
 			@keydown.esc="hideActions">
 
-			<!-- @slot This slot is used for the avatar or icon -->
-			<slot name="icon" />
+			<div class="list-item-content__wrapper">
+				<!-- @slot This slot is used for the avatar or icon -->
+				<slot name="icon" />
 
-			<!-- Main content -->
-			<div class="list-item-content">
-				<div class="list-item-content__main">
+				<!-- Main content -->
+				<div class="list-item-content">
+					<div class="list-item-content__main">
 
-					<!-- First line, title and details -->
-					<div class="line-one"
-						:class="{'line-one--bold': bold}">
-						<span
-							class="line-one__title">
-							{{ title }}
-						</span>
-						<span
-							v-if="hasDetails && !displayActions"
-							class="line-one__details">
-							{{ details }}
-						</span>
+						<!-- First line, title and details -->
+						<div class="line-one"
+							:class="{'line-one--bold': bold}">
+							<span
+								class="line-one__title">
+								{{ title }}
+							</span>
+							<span
+								v-if="hasDetails && !displayActions"
+								class="line-one__details">
+								{{ details }}
+							</span>
+						</div>
+
+						<!-- Second line, subtitle and counter -->
+						<div class="line-two"
+							:class="{'line-one--bold': bold}">
+							<span v-if="hasSubtitle" class="line-two__subtitle">
+								<!-- @slot Slot for the second line of the component -->
+								<slot name="subtitle" />
+							</span>
+
+							<!-- Counter -->
+							<span v-if="!displayActions" class="line-two__counter">
+								<AppNavigationCounter
+									v-if="counterNumber != 0"
+									:highlighted="counterHighlighted">
+									{{ counterNumber }}
+								</AppNavigationCounter>
+							</span>
+						</div>
 					</div>
 
-					<!-- Second line, subtitle and counter -->
-					<div class="line-two"
-						:class="{'line-one--bold': bold}">
-						<span v-if="hasSubtitle" class="line-two__subtitle">
-							<!-- @slot Slot for the second line of the component -->
-							<slot name="subtitle" />
-						</span>
-
-						<!-- Counter -->
-						<span v-if="!displayActions" class="line-two__counter">
-							<AppNavigationCounter
-								v-if="counterNumber != 0"
-								:highlighted="counterHighlighted">
-								{{ counterNumber }}
-							</AppNavigationCounter>
-						</span>
+					<!-- Actions -->
+					<div
+						v-show="displayActions"
+						class="list-item-content__actions"
+						@click.prevent.stop="">
+						<Actions
+							ref="actions"
+							menu-align="right"
+							:aria-label="actionsAriaLabel"
+							@update:open="handleActionsUpdateOpen">
+							<!-- @slot Provide the actions for the right side quick menu -->
+							<slot
+								name="actions" />
+						</Actions>
 					</div>
 				</div>
+			</div>
 
-				<!-- Actions -->
-				<div
-					v-show="displayActions"
-					class="list-item-content__actions"
-					@click.prevent.stop="">
-					<Actions
-						ref="actions"
-						menu-align="right"
-						:aria-label="actionsAriaLabel"
-						@update:open="handleActionsUpdateOpen">
-						<!-- @slot Provide the actions for the right side quick menu -->
-						<slot
-							name="actions" />
-					</Actions>
-				</div>
+			<!-- @slot Extra elements below the item -->
+			<div v-if="$slots.extra" class="list-item__extra">
+				<slot name="extra" />
 			</div>
 		</a>
 	</nav-element>
@@ -406,13 +413,11 @@ export default {
 
 // listItem
 .list-item {
+	display: block;
 	position: relative;
-	display: flex;
-	align-items: center;
 	flex: 0 0 auto;
 	justify-content: flex-start;
-	padding: 2px 2px 2px 8px;
-	height: 64px;
+	padding: 8px;
 	border-radius: 16px;
 	margin: 2px 0;
 	width: 100%;
@@ -420,7 +425,7 @@ export default {
 	transition: background-color 200ms ease-in-out;
 	list-style: none;
 	&:hover,
-	&:focus  {
+	&:focus {
 		background-color: var(--color-background-hover);
 	}
 	&--active,
@@ -429,11 +434,16 @@ export default {
 		background-color: var(--color-primary-light);
 	}
 
+	&-content__wrapper {
+		display: flex;
+		align-items: center;
+	}
+
 	&-content {
 		display: flex;
 		flex: 1 1 auto;
 		justify-content: space-between;
-		padding: 0 8px;
+		padding-left: 8px;
 
 		&__main {
 			flex: 1 1 auto;
@@ -448,6 +458,10 @@ export default {
 			justify-content: center;
 
 		}
+	}
+
+	&__extra {
+		margin-top: 4px;
 	}
 }
 
