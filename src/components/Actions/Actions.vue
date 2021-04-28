@@ -139,8 +139,8 @@ export default {
 		v-tooltip.auto="firstAction.text"
 		v-bind="firstActionBinding"
 		:class="{
-			[firstAction.icon]: !iconSlotIsPopulated ,
-			[firstActionClass]: !iconSlotIsPopulated }"
+			[firstAction.icon]: firstAction.icon,
+			[firstActionClass]: firstActionClass }"
 		class="action-item action-item--single"
 		rel="noreferrer noopener"
 		:disabled="disabled"
@@ -452,7 +452,7 @@ export default {
 		firstActionClass() {
 			const staticClass = this.firstActionVNode && this.firstActionVNode.data.staticClass
 			const dynClass = this.firstActionVNode && this.firstActionVNode.data.class
-			return `${staticClass} ${dynClass}`
+			return (staticClass + ' ' + dynClass).trim()
 		},
 
 		iconSlotIsPopulated() {
