@@ -24,15 +24,16 @@
 
 ### General description
 
-This is a standard input checkbox/radio design
+This is a simple input checkbox, radio and switch design.
+Please have a look at proper usage and recommendations: https://material.io/components/checkboxes
 
 ### Standard checkbox
 ```vue
 <template>
 	<div>
-		<CheckboxRadio :checked.sync="sharingEnabled">Enable sharing</CheckboxRadio>
-		<CheckboxRadio :checked.sync="sharingEnabled" :disabled="true">Enable sharing</CheckboxRadio>
-		<CheckboxRadio :checked="sharingEnabled" :loading="loading" @update:checked="onToggle">Enable sharing</CheckboxRadio>
+		<CheckboxRadioSwitch :checked.sync="sharingEnabled">Enable sharing</CheckboxRadioSwitch>
+		<CheckboxRadioSwitch :checked.sync="sharingEnabled" :disabled="true">Enable sharing (disabled)</CheckboxRadioSwitch>
+		<CheckboxRadioSwitch :checked="sharingEnabled" :loading="loading" @update:checked="onToggle">Enable sharing (with request loading)</CheckboxRadioSwitch>
 		<br>
 		sharingEnabled: {{ sharingEnabled }}
 	</div>
@@ -63,8 +64,8 @@ export default {
 ```vue
 <template>
 	<div>
-		<CheckboxRadio :checked.sync="sharingPermission" value="r" name="sharing_permission_radio" type="radio">Default permission read</CheckboxRadio>
-		<CheckboxRadio :checked.sync="sharingPermission" value="rw" name="sharing_permission_radio" type="radio">Default permission read+write</CheckboxRadio>
+		<CheckboxRadioSwitch :checked.sync="sharingPermission" value="r" name="sharing_permission_radio" type="radio">Default permission read</CheckboxRadioSwitch>
+		<CheckboxRadioSwitch :checked.sync="sharingPermission" value="rw" name="sharing_permission_radio" type="radio">Default permission read+write</CheckboxRadioSwitch>
 		<br>
 		sharingPermission: {{ sharingPermission }}
 	</div>
@@ -84,9 +85,9 @@ export default {
 ```vue
 <template>
 	<div>
-		<CheckboxRadio :disabled="true" :checked.sync="sharingPermission" value="r" name="sharing_permission">Permission read</CheckboxRadio>
-		<CheckboxRadio :checked.sync="sharingPermission" value="w" name="sharing_permission">Permission write</CheckboxRadio>
-		<CheckboxRadio :checked.sync="sharingPermission" value="d" name="sharing_permission">Permission delete</CheckboxRadio>
+		<CheckboxRadioSwitch :disabled="true" :checked.sync="sharingPermission" value="r" name="sharing_permission">Permission read</CheckboxRadioSwitch>
+		<CheckboxRadioSwitch :checked.sync="sharingPermission" value="w" name="sharing_permission">Permission write</CheckboxRadioSwitch>
+		<CheckboxRadioSwitch :checked.sync="sharingPermission" value="d" name="sharing_permission">Permission delete</CheckboxRadioSwitch>
 		<br>
 		sharingPermission: {{ sharingPermission }}
 	</div>
@@ -102,32 +103,55 @@ export default {
 </script>
 ```
 
+### Standard switch
+```vue
+<template>
+	<div>
+		<CheckboxRadioSwitch :checked.sync="sharingEnabled" type="switch">Enable sharing</CheckboxRadioSwitch>
+		<CheckboxRadioSwitch :checked.sync="sharingEnabled" type="switch" :disabled="true">Enable sharing (disabled)</CheckboxRadioSwitch>
+		<br>
+		sharingEnabled: {{ sharingEnabled }}
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			sharingEnabled: true,
+		}
+	},
+}
+</script>
+```
+
 </docs>
 
 <template>
 	<element :is="wrapperElement"
 		:class="{
-			'checkbox-radio--checked': isChecked,
-			'checkbox-radio--disabled': disabled,
-			'checkbox-radio--indeterminate': indeterminate,
+			['checkbox-radio-switch-' + type]: type,
+			'checkbox-radio-switch--checked': isChecked,
+			'checkbox-radio-switch--disabled': disabled,
+			'checkbox-radio-switch--indeterminate': indeterminate,
 		}"
-		class="checkbox-radio">
+		:style="cssVars"
+		class="checkbox-radio-switch">
 		<input :id="id"
 			:checked="isChecked"
 			:disabled="disabled"
 			:indeterminate="indeterminate"
 			:name="name"
-			:type="type"
+			:type="inputType"
 			:value="value"
-			class="checkbox-radio__input"
+			class="checkbox-radio-switch__input"
 			@change="onToggle">
 
-		<label :for="id" class="checkbox-radio__label">
-			<div v-if="loading" class="icon-loading-small checkbox-radio__icon" />
+		<label :for="id" class="checkbox-radio-switch__label">
+			<div v-if="loading" class="icon-loading-small checkbox-radio-switch__icon" />
 			<icon :is="checkboxRadioIconElement"
 				v-else
-				:size="24"
-				class="checkbox-radio__icon"
+				:size="size"
+				class="checkbox-radio-switch__icon"
 				title=""
 				decorative />
 
@@ -143,15 +167,18 @@ import MinusBox from 'vue-material-design-icons/MinusBox'
 import CheckboxMarked from 'vue-material-design-icons/CheckboxMarked'
 import RadioboxMarked from 'vue-material-design-icons/RadioboxMarked'
 import RadioboxBlank from 'vue-material-design-icons/RadioboxBlank'
+import ToggleSwitchOff from 'vue-material-design-icons/ToggleSwitchOff'
+import ToggleSwitch from 'vue-material-design-icons/ToggleSwitch'
 
 import GenRandomId from '../../utils/GenRandomId'
 import l10n from '../../mixins/l10n'
 
 export const TYPE_CHECKBOX = 'checkbox'
 export const TYPE_RADIO = 'radio'
+export const TYPE_SWITCH = 'switch'
 
 export default {
-	name: 'CheckboxRadio',
+	name: 'CheckboxRadioSwitch',
 
 	mixins: [l10n],
 
@@ -162,7 +189,7 @@ export default {
 		 */
 		id: {
 			type: String,
-			default: () => 'checkbox-radio-' + GenRandomId(),
+			default: () => 'checkbox-radio-switch-' + GenRandomId(),
 			validator: id => id.trim() !== '',
 		},
 
@@ -180,7 +207,7 @@ export default {
 		type: {
 			type: String,
 			default: 'checkbox',
-			validator: type => type === TYPE_CHECKBOX || type === TYPE_RADIO,
+			validator: type => type === TYPE_CHECKBOX || type === TYPE_RADIO || type === TYPE_SWITCH,
 		},
 
 		/**
@@ -234,6 +261,38 @@ export default {
 
 	computed: {
 		/**
+		 * Icon size
+		 @returns {number}
+		 */
+		size() {
+			return this.type === TYPE_SWITCH
+				? 36
+				: 24
+		},
+
+		/**
+		 * Css local variables for this component
+		 * @returns {Object}
+		 */
+		cssVars() {
+			return {
+				'--icon-size': this.size + 'px',
+			}
+		},
+
+		/**
+		 * Return the input type.
+		 * Switch is not an official type
+		 * @returns {string}
+		 */
+		inputType() {
+			if (this.type === TYPE_RADIO) {
+				return TYPE_RADIO
+			}
+			return TYPE_CHECKBOX
+		},
+
+		/**
 		 * Check if that entry is checked
 		 * If value is defined, we use that as the checked value
 		 * If not, we expect true/false in this.checked
@@ -254,11 +313,19 @@ export default {
 		 * @returns {Component}
 		 */
 		checkboxRadioIconElement() {
-			if (this.type === 'radio') {
+			if (this.type === TYPE_RADIO) {
 				if (this.isChecked) {
 					return RadioboxMarked
 				}
 				return RadioboxBlank
+			}
+
+			// Switch
+			if (this.type === TYPE_SWITCH) {
+				if (this.isChecked) {
+					return ToggleSwitch
+				}
+				return ToggleSwitchOff
 			}
 
 			// Checkbox
@@ -275,8 +342,18 @@ export default {
 	mounted() {
 		if (this.name && this.type === TYPE_CHECKBOX) {
 			if (!Array.isArray(this.checked)) {
-				throw new Error('When using groups of checkboxes, the updated value will be an array')
+				throw new Error('When using groups of checkboxes, the updated value will be an array.')
 			}
+		}
+
+		// https://material.io/components/checkboxes#usage
+		if (this.name && this.type === TYPE_SWITCH) {
+			throw new Error('Switches are not made to be used for data sets. Please use checkboxes instead.')
+		}
+
+		// https://material.io/components/checkboxes#usage
+		if (typeof this.checked !== 'boolean' && this.type === TYPE_SWITCH) {
+			throw new Error('Switches can only be used with boolean as checked prop.')
 		}
 	},
 
@@ -289,6 +366,12 @@ export default {
 			// If this is a radio, there can only be one value
 			if (this.type === TYPE_RADIO) {
 				this.$emit('update:checked', this.value)
+				return
+			}
+
+			// If this is a radio, there can only be one value
+			if (this.type === TYPE_SWITCH) {
+				this.$emit('update:checked', !this.isChecked)
 				return
 			}
 
@@ -319,7 +402,7 @@ export default {
 <style lang="scss" scoped>
 $spacing: 4px;
 
-.checkbox-radio {
+.checkbox-radio-switch {
 	display: flex;
 
 	&__input {
@@ -349,22 +432,30 @@ $spacing: 4px;
 		// Remove the left margin of material design icons to align text
 		margin-left: -2px;
 		color: var(--color-primary-element);
-		width: 24px;
-		height: 24px;
+		width: var(--icon-size);
+		height: var(--icon-size);
 	}
 
 	&--disabled &__label {
 		opacity: $opacity_disabled;
-		.checkbox-radio__icon {
+		.checkbox-radio-switch__icon {
 			color: var(--color-text-light)
 		}
 	}
 
-	&:not(&--disabled) {
-		.checkbox-radio__input:hover + .checkbox-radio__label,
-		.checkbox-radio__input:focus + .checkbox-radio__label {
-			background-color: var(--color-primary-light);
-		}
+	&:not(&--disabled) &__input:hover + &__label,
+	&:not(&--disabled) &__input:focus + &__label {
+		background-color: var(--color-primary-light);
+	}
+
+	// Switch specific rules
+	&-switch:not(&--checked) &__icon {
+		color: var(--color-text-lighter);
+	}
+
+	// If  switch is checked AND disabled, use the fade primary colour
+	&-switch.checkbox-radio-switch--disabled.checkbox-radio-switch--checked &__icon {
+		color: var(--color-primary-element-light);
 	}
 }
 

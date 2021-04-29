@@ -20,6 +20,6 @@
  *
  */
 
-import CheckboxRadio from './CheckboxRadio'
+import CheckboxRadioSwitch from './CheckboxRadioSwitch'
 
-export default CheckboxRadio
+export default CheckboxRadioSwitch
