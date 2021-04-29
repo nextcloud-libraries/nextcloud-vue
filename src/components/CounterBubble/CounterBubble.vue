@@ -20,37 +20,34 @@
  -
  -->
 
-<docs>
+ <docs>
 
 ### Normal Counter
 
 ```
-<AppNavigationCounter>314+</AppNavigationCounter>
+<CounterBubble>314+</CounterBubble>
 ```
 
 ### Highlighted Counter (i.e. mentions)
 
 ```
-<AppNavigationCounter :highlighted="true">@admin</AppNavigationCounter>
-<AppNavigationCounter :highlighted="true">314+</AppNavigationCounter>
+<CounterBubble :highlighted="true">@admin</CounterBubble>
+<CounterBubble :highlighted="true">314+</CounterBubble>
 ```
 
 </docs>
 
 <template>
-	<div :class="{ 'app-navigation-entry__counter--highlighted': highlighted }"
-		class="app-navigation-entry__counter">
+	<div :class="{ 'counter-bubble__counter--highlighted': highlighted }"
+		class="counter-bubble__counter">
 		<slot />
 	</div>
 </template>
 
 <script>
 
-/**
- * @deprecated use [CounterBubble](#/Components/CounterBubble) instead
- */
 export default {
-	name: 'AppNavigationCounter',
+	name: 'CounterBubble',
 
 	props: {
 		highlighted: {
@@ -63,7 +60,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.app-navigation-entry__counter {
+.counter-bubble__counter {
 	font-size: calc(var(--default-font-size) * .8);
 	overflow: hidden;
 	width: fit-content;

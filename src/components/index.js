@@ -54,6 +54,7 @@ import Breadcrumbs from './Breadcrumbs'
 import CheckboxRadio from './CheckboxRadio'
 import ColorPicker from './ColorPicker'
 import Content from './Content'
+import CounterBubble from './CounterBubble'
 import DatetimePicker from './DatetimePicker'
 import EmptyContent from './EmptyContent'
 import ListItem from './ListItem'
@@ -100,6 +101,7 @@ export {
 	CheckboxRadio,
 	ColorPicker,
 	Content,
+	CounterBubble,
 	DatetimePicker,
 	EmptyContent,
 	ListItem,
