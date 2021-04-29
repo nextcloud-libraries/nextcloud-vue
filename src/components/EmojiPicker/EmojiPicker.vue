@@ -95,16 +95,15 @@
 		<template #trigger>
 			<slot />
 		</template>
-		<StaticPicker
+		<Picker
 			:auto-focus="true"
 			color="var(--color-primary)"
 			:data="emojiIndex"
 			:emoji="previewFallbackEmoji"
 			:i18n="i18n"
 			:native="native"
-			:emoji-size="24"
-			:per-line="8"
-			:picker-styles="{ width: '320px' }"
+			:emoji-size="20"
+			:per-line="9"
 			:show-preview="showPreview"
 			:title="previewFallbackTitle"
 			v-bind="$attrs"
@@ -113,7 +112,7 @@
 </template>
 
 <script>
-import { StaticPicker, EmojiIndex } from 'emoji-mart-vue-fast'
+import { Picker, EmojiIndex } from 'emoji-mart-vue-fast'
 import data from 'emoji-mart-vue-fast/data/all.json'
 import Popover from '../Popover'
 import { t } from '../../l10n'
@@ -121,7 +120,7 @@ import { t } from '../../l10n'
 export default {
 	name: 'EmojiPicker',
 	components: {
-		StaticPicker,
+		Picker,
 		Popover,
 	},
 	props: {
@@ -260,6 +259,12 @@ export default {
 			border-top-left-radius: var(--border-radius) !important;
 			border-top-right-radius: var(--border-radius) !important;
 		}
+
+		.emoji-mart-anchor {
+			cursor: pointer;
+			border-radius: 0px;
+			padding: 10px 0px;
+		}
 	}
 
 	.emoji-mart-category {
@@ -277,16 +282,12 @@ export default {
 
 		.emoji-mart-category-label {
 			flex-basis: 100%;
-		}
-
-		.emoji-mart-anchor,
-		.emoji-mart-anchor * {
-			cursor: pointer;
+			margin-bottom: 2px;
 		}
 
 		.emoji-mart-emoji {
-			flex-basis: 12.5%;
 			text-align: center;
+			padding: 2px;
 
 			span {
 				cursor: pointer !important;
