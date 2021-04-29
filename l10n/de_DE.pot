@@ -96,7 +96,7 @@ msgid "Settings"
 msgstr "Einstellungen"
 
 msgid "Settings navigation"
-msgstr "Einstellungen für die Navigation"
+msgstr "Navigations-Einstellungen"
 
 msgid "Smileys & Emotion"
 msgstr "Smileys & Emotionen"
