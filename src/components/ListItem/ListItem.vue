@@ -30,7 +30,7 @@
 		:counter-number="44"
 		:counter-highlighted="true">
 		<template #icon>
-			<avatar size="44" user="janedoe" display-name="Jane Doe" />
+			<avatar :size="44" user="janedoe" display-name="Jane Doe" />
 		</template>
 		<template #subtitle>
 			In this slot you can put both text and other components such as icons
@@ -54,7 +54,7 @@
 		:title="'Title of the element'"
 		:bold="false">
 		<template #icon>
-			<avatar size="44" user="janedoe" display-name="Jane Doe" />
+			<avatar :size="44" user="janedoe" display-name="Jane Doe" />
 		</template>
 		<template #subtitle>
 			In this slot you can put both text and other components such as icons
@@ -79,7 +79,7 @@
 		:bold="false"
 		:details="'One hour ago'">
 		<template #icon>
-			<avatar size="44" user="janedoe" display-name="Jane Doe" />
+			<avatar :size="44" user="janedoe" display-name="Jane Doe" />
 		</template>
 		<template #subtitle>
 			In this slot you can put both text and other components such as icons
