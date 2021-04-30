@@ -64,9 +64,9 @@ Just nest the counter into `<AppNavigationItem>` and add `slot="counter"` to it.
 
 ```
 <AppNavigationItem title="Item with counter" icon="icon-folder">
-	<AppNavigationCounter slot="counter">
+	<CounterBubble slot="counter">
 		99+
-	</AppNavigationCounter>
+	</CounterBubble>
 </AppNavigationItem>
 ```
 
