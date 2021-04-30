@@ -35,9 +35,9 @@
 		<template #subtitle>
 			In this slot you can put both text and other components such as icons
 		</template>
-		<AppNavigationCounter #counter>
+		<CounterBubble #counter>
 			7
-		</AppNavigationCounter>
+		</CounterBubble>
 		<template #actions>
 			<ActionButton>
 				Button one
@@ -59,9 +59,9 @@
 		<template #subtitle>
 			In this slot you can put both text and other components such as icons
 		</template>
-		<AppNavigationCounter #counter>
+		<CounterBubble #counter>
 			7
-		</AppNavigationCounter>
+		</CounterBubble>
 		<template #actions>
 			<ActionButton>
 				Button one
@@ -84,9 +84,9 @@
 		<template #subtitle>
 			In this slot you can put both text and other components such as icons
 		</template>
-		<AppNavigationCounter #counter>
+		<CounterBubble #counter>
 			7
-		</AppNavigationCounter>
+		</CounterBubble>
 	</listItem>
 </ul>
 
@@ -145,11 +145,11 @@
 
 							<!-- Counter -->
 							<span v-if="!displayActions" class="line-two__counter">
-								<AppNavigationCounter
+								<CounterBubble
 									v-if="counterNumber != 0"
 									:highlighted="counterHighlighted">
 									{{ counterNumber }}
-								</AppNavigationCounter>
+								</CounterBubble>
 							</span>
 						</div>
 					</div>
@@ -182,14 +182,14 @@
 
 <script>
 import Actions from '../Actions'
-import AppNavigationCounter from '../AppNavigationCounter'
+import CounterBubble from '../CounterBubble'
 
 export default {
 	name: 'ListItem',
 
 	components: {
 		Actions,
-		AppNavigationCounter,
+		CounterBubble,
 	},
 
 	props: {
@@ -268,7 +268,7 @@ export default {
 
 		/**
 		 * If different from from 0 this component will display the
-		 * AppNavigationCounter component
+		 * CounterBubble component
 		 */
 		 counterNumber: {
 			 type: [Number, String],
