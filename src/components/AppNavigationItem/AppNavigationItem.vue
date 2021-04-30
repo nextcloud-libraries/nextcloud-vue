@@ -156,7 +156,10 @@ Just set the `pinned` prop.
 
 		<!-- Counter and Actions -->
 		<div v-if="hasUtils" class="app-navigation-entry__utils">
-			<slot name="counter" />
+			<div v-if="$slots.counter"
+				class="app-navigation-entry__counter-wrapper">
+				<slot name="counter" />
+			</div>
 			<Actions menu-align="right"
 				:placement="menuPlacement"
 				:open="menuOpen"
@@ -450,6 +453,7 @@ export default {
 	box-sizing: border-box;
 	width: 100%;
 	min-height: $clickable-area;
+	padding: 4px;
 
 	// When .active class is applied, change color background of link and utils. The
 	// !important prevents the focus state to override the active state.
@@ -584,11 +588,12 @@ export default {
 	display: flex;
 	align-items: center;
 	flex: 0 1 auto;
-	// visually balance the menu so it's not
-	// stuck to the scrollbar
-	.action-item {
-		margin-right: 2px;
-	}
+}
+
+/* counter */
+.app-navigation-entry__counter-wrapper {
+	// Add slightly more space to the right of the counter
+	margin-right: 2px;
 }
 
 // STATES
