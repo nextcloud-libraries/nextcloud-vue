@@ -21,108 +21,112 @@
   -->
 
 <docs>
+### General description
 
-	### General description
+This component provides a way to include the standardised sidebar.
+The standard properties like title, subtitle, starred, etc. allow to automatically
+include a standard-header like it's used by the files app.
 
-	This component provides a way to include the standardised sidebar.
-	The standard properties like title, subtitle, starred, etc. allow to automatically
-	include a standard-header like it's used by the files app.
+### Standard usage
 
-	### Standard usage
+```vue
+<AppSidebar
+	title="cat-picture.jpg"
+	subtitle="last edited 3 weeks ago">
+	<AppSidebarTab icon="icon-settings" name="Settings" id="settings">
+		Settings tab content
+	</AppSidebarTab>
+	<AppSidebarTab icon="icon-share" name="Sharing" id="share">
+		Sharing tab content
+	</AppSidebarTab>
+</AppSidebar>
+```
 
-	```vue
+### Editable title
+
+```vue
+<template>
 	<AppSidebar
-		title="cat-picture.jpg"
+		:title.sync="title"
+		:title-editable="true"
+		title-placeholder="Filename"
 		subtitle="last edited 3 weeks ago">
-		<AppSidebarTab icon="icon-settings" name="Settings" id="settings">
-			Settings tab content
-		</AppSidebarTab>
-		<AppSidebarTab icon="icon-share" name="Sharing" id="share">
-			Sharing tab content
-		</AppSidebarTab>
+		<!-- Insert your slots and tabs here -->
 	</AppSidebar>
-	```
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				title: 'cat-picture.jpg',
+			}
+		},
+	}
+</script>
+```
 
-	### Editable title
+### Editable title after click with custom tertiary action
 
-	```vue
-	<template>
-		<AppSidebar
-			:title.sync="title"
-			:title-editable="true"
-			title-placeholder="Filename"
-			subtitle="last edited 3 weeks ago">
-			<!-- Insert your slots and tabs here -->
-		</AppSidebar>
-	</template>
-	<script>
-		export default {
-			data() {
-				return {
-					title: 'cat-picture.jpg',
-				}
+```vue
+<template>
+	<AppSidebar
+		:title="title"
+		:title-editable.sync="titleEditable"
+		:title-placeholder="titlePlaceholder"
+		:subtitle="subtitle"
+		@update:title="titleUpdate">
+		<template slot="tertiary-actions">
+			<form>
+				<input type="checkbox" @click="toggledCheckbox"/>
+			</form>
+		</template>
+	</AppSidebar>
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				title: 'cat-picture.jpg',
+				titlePlaceholder: 'Filename',
+				subtitle: 'last edited 3 weeks ago',
+				titleEditable: false
+			}
+		},
+		methods: {
+			titleUpdate(e) {
+				this.title = e
 			},
-		}
-	</script>
-	```
-
-	### Editable title after click with custom tertiary action
-
-	```vue
-	<template>
-		<AppSidebar
-			:title="title"
-			:title-editable.sync="titleEditable"
-			:title-placeholder="titlePlaceholder"
-			:subtitle="subtitle"
-			@update:title="titleUpdate">
-			<template slot="tertiary-actions">
-				<form>
-					<input type="checkbox" @click="toggledCheckbox"/>
-				</form>
-			</template>
-		</AppSidebar>
-	</template>
-	<script>
-		export default {
-			data() {
-				return {
-					title: 'cat-picture.jpg',
-					titlePlaceholder: 'Filename',
-					subtitle: 'last edited 3 weeks ago',
-					titleEditable: false
-				}
-			},
-			methods: {
-				titleUpdate(e) {
-					this.title = e
-				},
-				toggledCheckbox() {
-					alert('toggle')
-				}
+			toggledCheckbox() {
+				alert('toggle')
 			}
 		}
-	</script>
-	```
+	}
+</script>
+```
 
-	### Empty sidebar for e.g. empty content component.
+### Empty sidebar for e.g. empty content component.
 
-	```vue
-	<template>
-		<AppSidebar
-			title="cat-picture.jpg"
-			:empty="true">
-			<EmptyContent icon="icon-search">
-				Content not found.
-			</EmptyContent>
-		</AppSidebar>
-	</template>
-	```
-
+```vue
+<template>
+	<AppSidebar
+		title="cat-picture.jpg"
+		:empty="true">
+		<EmptyContent icon="icon-search">
+			Content not found.
+		</EmptyContent>
+	</AppSidebar>
+</template>
+```
 </docs>
 
 <template>
-	<transition name="slide-right" appear>
+	<transition
+		appear
+		name="slide-right"
+		@before-enter="onBeforeEnter"
+		@after-enter="onAfterEnter"
+		@before-leave="onBeforeLeave"
+		@after-leave="onAfterLeave">
 		<aside id="app-sidebar-vue" class="app-sidebar">
 			<header :class="{
 					'app-sidebar-header--with-figure': hasFigure,
@@ -387,11 +391,44 @@ export default {
 	},
 
 	methods: {
+		onBeforeEnter(element) {
+			/**
+			 * The sidebar is opening and the transition is in progress
+			 * @type {HTMLElement}
+			 */
+			this.$emit('opening', element)
+		},
+		onAfterEnter(element) {
+			/**
+			 * The sidebar is opened and the transition is complete
+			 * @type {HTMLElement}
+			 */
+			this.$emit('opened', element)
+		},
+		onBeforeLeave(element) {
+			/**
+			 * The sidebar is closing and the transition is in progress
+			 * @type {HTMLElement}
+			 */
+			this.$emit('closing', element)
+		},
+		onAfterLeave(element) {
+			/**
+			 * The sidebar is closed and the transition is complete
+			 * @type {HTMLElement}
+			 */
+			this.$emit('closed', element)
+		},
+
 		/**
-		 * Emit sidebar close event to parent component
-		 * @param {Event} e click event
+		 * Used to tell parent component the user asked to close the sidebar
+		 * @param {Event} e close icon click event
 		 */
 		closeSidebar(e) {
+			/**
+			 * The user clicked to closed the sidebar
+			 * @type {Event}
+			 */
 			this.$emit('close', e)
 		},
 
@@ -400,6 +437,10 @@ export default {
 		 * @param {Event} e click event
 		 */
 		onFigureClick(e) {
+			/**
+			 * The figure/background header has been clicked
+			 * @type {Event}
+			 */
 			this.$emit('figure-click', e)
 		},
 
@@ -409,10 +450,18 @@ export default {
 		 */
 		toggleStarred() {
 			this.isStarred = !this.isStarred
+			/**
+			 * Emitted when the starred value changes
+			 * @type {boolean}
+			 */
 			this.$emit('update:starred', this.isStarred)
 		},
 
 		editTitle() {
+			/**
+			 * Emitted when the titleEditable value changes
+			 * @type {boolean}
+			 */
 			this.$emit('update:titleEditable', true)
 			// Focus the title input
 			if (this.titleEditable) {
@@ -442,14 +491,26 @@ export default {
 		onSubmitTitle(event) {
 			// Disable editing
 			this.$emit('update:titleEditable', false)
+			/**
+			 * Emitted when the title edit input has been submitted
+			 * @type {Event}
+			 */
 			this.$emit('submit-title', event)
 		},
 		onDismissEditing() {
 			// Disable editing
 			this.$emit('update:titleEditable', false)
+			/**
+			 * Emitted when the title edit has been cancelled
+			 * @type {Event}
+			 */
 			this.$emit('dismiss-editing')
 		},
 		onUpdateActive(activeTab) {
+			/**
+			 * The active tab changed
+			 * @type {string}
+			 */
 			this.$emit('update:active', activeTab)
 		},
 	},
@@ -712,28 +773,11 @@ $top-buttons-spacing: 6px;
 	min-width: 0 !important;
 	max-width: 0 !important;
 }
-
-.fade-leave-active,
-.fade-enter-active {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	transition-duration: var(--animation-quick);
-	transition-property: opacity;
-	opacity: $opacity_full;
-}
-
-.fade-enter,
-.fade-leave-to {
-	opacity: 0;
-}
-
 </style>
 
 <style lang="scss">
 // ! slots specific designs, cannot be scoped
-// if any button inside the description slot, icrease visual padding
+// if any button inside the description slot, increase visual padding
 .app-sidebar-header__description {
 	button, .button,
 	input[type='button'],
