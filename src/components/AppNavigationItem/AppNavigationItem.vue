@@ -447,7 +447,6 @@ export default {
 	display: flex;
 	flex-shrink: 0;
 	flex-wrap: wrap;
-	order: 1;
 	box-sizing: border-box;
 	width: 100%;
 	min-height: $clickable-area;
