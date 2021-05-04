@@ -31,7 +31,7 @@ This component displays contenteditable div with automated @ autocompletion [at]
 <template>
 	<div>
 		<RichContenteditable
-			v-model="message"
+			:value.sync="message"
 			:auto-complete="autoComplete"
 			:maxlength="100"
 			:user-data="userData"
@@ -40,7 +40,7 @@ This component displays contenteditable div with automated @ autocompletion [at]
 		<br>
 
 		<RichContenteditable
-			v-model="message"
+			:value.sync="message"
 			:auto-complete="autoComplete"
 			:maxlength="400"
 			:multiline="true"
@@ -114,8 +114,9 @@ export default {
 			'rich-contenteditable__input--empty': isEmptyValue,
 			'rich-contenteditable__input--multiline': multiline,
 			'rich-contenteditable__input--overflow': isOverMaxlength,
+			'rich-contenteditable__input--disabled': disabled,
 		}"
-		:contenteditable="contenteditable"
+		:contenteditable="canEdit"
 		:placeholder="placeholder"
 		aria-multiline="true"
 		class="rich-contenteditable__input"
@@ -148,10 +149,12 @@ export default {
 			default: '',
 			required: true,
 		},
+
 		placeholder: {
 			type: String,
 			default: t('Write message, @ to mention someone …'),
 		},
+
 		autoComplete: {
 			type: Function,
 			required: true,
@@ -179,6 +182,14 @@ export default {
 		contenteditable: {
 			type: Boolean,
 			default: true,
+		},
+
+		/**
+		 * Disable the editing and show specific disabled design
+		 */
+		disabled: {
+			type: Boolean,
+			default: false,
 		},
 
 		/**
@@ -259,6 +270,14 @@ export default {
 				trigger: 'manual',
 			}
 		},
+
+		/**
+		 * Edit is only allowed when contenteditableis true and disabled is false
+		 * @returns {boolean}
+		 */
+		canEdit() {
+			return this.contenteditable && !this.disabled
+		},
 	},
 
 	watch: {
@@ -284,7 +303,7 @@ export default {
 
 		// Removes the contenteditable attribute at first load if the prop is
 		// set to false.
-		this.$refs.contenteditable.contentEditable = this.contenteditable
+		this.$refs.contenteditable.contentEditable = this.canEdit
 	},
 	beforeDestroy() {
 		if (this.tribute) {
@@ -308,6 +327,11 @@ export default {
 		 * @emits {Event} paste the original paste event
 		 */
 		onPaste(event) {
+			// Either disabled or edit deactivated
+			if (!this.canEdit) {
+				return
+			}
+
 			event.preventDefault()
 			const clipboardData = event.clipboardData
 
@@ -352,7 +376,6 @@ export default {
 		updateValue(htmlOrText) {
 			const text = this.parseContent(htmlOrText)
 			this.localValue = text
-			this.$emit('input', text)
 			this.$emit('update:value', text)
 		},
 
@@ -376,6 +399,11 @@ export default {
 		 */
 		onDelete(event) {
 			if (!this.isFF || !window.getSelection) {
+				return
+			}
+
+			// Either disabled or edit deactivated
+			if (!this.canEdit) {
 				return
 			}
 
@@ -429,8 +457,9 @@ export default {
 			event.stopPropagation()
 			this.$emit('submit', event)
 		},
+
 		/**
-		 * Ctrl + Enter key pressed
+		 * Ctrl + Enter key pressed is used to submit
 		 * @param {Event} event the keydown event
 		 */
 		onCtrlEnter(event) {
@@ -477,19 +506,27 @@ export default {
 		color: var(--color-text-maxcontrast);
 	}
 
-	&[contenteditable='false'] {
+	&[contenteditable='false']:not(&--disabled) {
 		cursor: default;
-		opacity: .5;
-		color: var(--color-text-lighter);
-		border: 1px solid var(--color-background-darker);
-		border-radius: var(--border-radius);
-		background-color: var(--color-background-dark);
+		background-color: transparent;
+		color: var(--color-main-text);
+		border-color: transparent;
+		opacity: 1;
+		border-radius: 0;
 	}
 
 	&--multiline {
 		min-height: $clickable-area * 3;
 		// No max for mutiline
 		max-height: none;
+	}
+
+	&--disabled {
+		opacity: $opacity_disabled;
+		color: var(--color-text-lighter);
+		border: 1px solid var(--color-background-darker);
+		border-radius: var(--border-radius);
+		background-color: var(--color-background-dark);
 	}
 }
 
