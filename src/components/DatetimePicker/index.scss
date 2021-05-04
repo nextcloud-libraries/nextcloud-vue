@@ -51,6 +51,10 @@ $cell_height: 32px;
 			border-left: 1px solid var(--color-border);
 		}
 	}
+	
+	&.show-week-number .mx-calendar {
+		width: $cell_height * 8  + 2 * 5px; // week number + 7 days + padding
+	}
 
 	.mx-datepicker-header {
 		border-bottom: 1px solid var(--color-border);
