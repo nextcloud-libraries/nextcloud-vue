@@ -81,7 +81,9 @@ export default {
 		:formatter="formatter"
 		:type="type"
 		:value="value"
-		:append-to-body="false"
+		:append-to-body="appendToBody"
+		:show-week-number="showWeekNumber"
+		:popup-class="{ 'show-week-number': showWeekNumber }"
 		v-bind="$attrs"
 		v-on="$listeners"
 		@select-year="handleSelectYear"
@@ -152,6 +154,16 @@ export default {
 			default() {
 				return new Date()
 			},
+		},
+
+		appendToBody: {
+			type: Boolean,
+			default: false,
+		},
+
+		showWeekNumber: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
