@@ -25,11 +25,17 @@ msgstr "Aktivity"
 msgid "Animals & Nature"
 msgstr "Zvířata a příroda"
 
+msgid "Cancel changes"
+msgstr "Zrušit změny"
+
 msgid "Choose"
 msgstr "Zvolit"
 
 msgid "Close"
 msgstr "Zavřít"
+
+msgid "Confirm changes"
+msgstr "Potvrdit změny"
 
 msgid "Custom"
 msgstr "Uživatelsky určené"
