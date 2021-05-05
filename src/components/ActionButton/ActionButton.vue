@@ -85,12 +85,12 @@ export default {
 			:aria-label="ariaLabel"
 			:class="{ focusable: isFocusable }"
 			@click="onClick">
-			<span :class="[isIconUrl ? 'action-button__icon--url' : icon]"
-				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
-				class="action-button__icon">
-				<!-- @slot Manually provide icon -->
-				<slot name="icon" />
-			</span>
+			<!-- @slot Manually provide icon -->
+			<slot name="icon">
+				<span :class="[isIconUrl ? 'action-button__icon--url' : icon]"
+					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+					class="action-button__icon" />
+			</slot>
 
 			<!-- long text with title -->
 			<p v-if="title">
