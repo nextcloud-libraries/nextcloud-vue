@@ -2,12 +2,12 @@
 # Translators:
 # Gabriel Ekström <gabriel.ekstrom06@gmail.com>, 2020
 # Erik Lennartsson, 2020
-# Jonatan Nyberg <jonatan.nyberg.karl@gmail.com>, 2020
-# Victor Nyberg <v70123@gmail.com>, 2021
+# efef6ec5b435a041fce803c7f8af77d2_2341d43, 2020
+# victor <v70123@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Victor Nyberg <v70123@gmail.com>, 2021\n"
+"Last-Translator: victor <v70123@gmail.com>, 2021\n"
 "Language-Team: Swedish (https://www.transifex.com/nextcloud/teams/64236/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sv\n"
@@ -28,14 +28,23 @@ msgstr "Aktiviteter"
 msgid "Animals & Nature"
 msgstr "Djur & Natur"
 
+msgid "Cancel changes"
+msgstr "Avbryt ändringar"
+
 msgid "Choose"
 msgstr "Välj"
 
 msgid "Close"
 msgstr "Stäng"
 
+msgid "Confirm changes"
+msgstr "Bekräfta ändringar"
+
 msgid "Custom"
 msgstr "Anpassad"
+
+msgid "External documentation for {title}"
+msgstr "Extern dokumentation för {title}"
 
 msgid "Flags"
 msgstr "Flaggor"
@@ -93,6 +102,9 @@ msgstr "Selfies & Känslor"
 
 msgid "Start slideshow"
 msgstr "Starta bildspelet"
+
+msgid "Submit"
+msgstr "Skicka"
 
 msgid "Symbols"
 msgstr "Symboler"
