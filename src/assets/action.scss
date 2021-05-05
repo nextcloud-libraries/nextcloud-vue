@@ -88,7 +88,7 @@
 			background-repeat: no-repeat;
 		}
 
-		.material-design-icon {
+		&::v-deep .material-design-icon {
 			width: $clickable-area;
 			height: $clickable-area;
 			opacity: $opacity_full;
