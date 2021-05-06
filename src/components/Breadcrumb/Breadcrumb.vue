@@ -43,8 +43,10 @@ This component is meant to be used inside a Breadcrumbs component.
 			v-if="title || icon"
 			:to="to"
 			:href="href">
-			<span v-if="icon" :class="icon" class="icon" />
-			<span v-else>{{ title }}</span>
+			<slot name="icon">
+				<span v-if="icon" :class="icon" class="icon" />
+				<span v-else>{{ title }}</span>
+			</slot>
 		</element>
 		<Actions ref="actions"
 			:force-menu="forceMenu"
