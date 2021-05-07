@@ -35,7 +35,12 @@ is dropped on a creadcrumb.
 	<div>
 		<div class="container">
 			<Breadcrumbs @dropped="dropped">
-				<Breadcrumb title="Home" href="/" @dropped="droppedOnCrumb" />
+				<Breadcrumb title="Home" href="/" @dropped="droppedOnCrumb">
+					<Folder
+						slot="icon"
+						:size="24"
+						decorative />
+				</Breadcrumb>
 				<Breadcrumb title="Folder 1" href="/Folder 1" />
 				<Breadcrumb title="Folder 2" href="/Folder 1/Folder 2" :disable-drop="true" />
 				<Breadcrumb title="Folder 3" href="/Folder 1/Folder 2/Folder 3" />
@@ -55,7 +60,12 @@ is dropped on a creadcrumb.
 </template>
 
 <script>
+import Folder from 'vue-material-design-icons/Folder'
+
 export default {
+	components: {
+		Folder,
+	},
 	methods: {
 		dropped(e, path) {
 			alert('Global drop on ' + path)
