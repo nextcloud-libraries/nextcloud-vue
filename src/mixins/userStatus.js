@@ -54,7 +54,7 @@ export default {
 			}
 
 			try {
-				const { data } = await axios.get(generateOcsUrl('apps/user_status/api/v1', 2) + `statuses/${encodeURIComponent(userId)}`)
+				const { data } = await axios.get(generateOcsUrl('apps/user_status/api/v1/statuses/{userId}', { userId }))
 				const {
 					status,
 					message,
