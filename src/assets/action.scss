@@ -54,6 +54,7 @@
 		margin: 0;
 		padding: 0;
 		padding-right: $icon-margin;
+		box-sizing: border-box; // otherwise router-link overflows in Firefox
 
 		cursor: pointer;
 		white-space: nowrap;
