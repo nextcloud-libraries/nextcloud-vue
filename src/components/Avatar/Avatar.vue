@@ -51,6 +51,8 @@
 			:src="avatarUrlLoaded"
 			:srcset="avatarSrcSetLoaded"
 			alt="">
+
+		<!-- Contact menu -->
 		<Popover
 			v-if="hasMenu"
 			placement="auto"
@@ -74,23 +76,6 @@
 		<div v-else-if="canDisplayUserStatus"
 			class="avatardiv__user-status"
 			:class="'avatardiv__user-status--' + userStatus.status" />
-		<div v-else-if="status"
-			class="avatardiv__status"
-			:class="'avatardiv__status--' + status"
-			:style="{ backgroundColor: `#${statusColor}` }">
-			<!-- triangle -->
-			<svg v-if="status === 'neutral'"
-				xmlns="http://www.w3.org/2000/svg"
-				width="12"
-				height="11"
-				viewBox="0 0 3.175 2.91">
-				<path d="M3.21 3.043H.494l.679-1.177.68-1.176.678 1.176z"
-					:style="{ fill: `#${statusColor}` }"
-					stroke="#fff"
-					stroke-width=".265"
-					stroke-linecap="square" />
-			</svg>
-		</div>
 
 		<!-- Show the letter if no avatar nor icon class -->
 		<div v-if="userDoesNotExist && !iconClass" class="unknown">
@@ -256,36 +241,6 @@ export default {
 			default: false,
 		},
 
-		/**
-		 * DEPRECATED!
-		 * This prop will be removed with nc/vue 3.0
-		 *
-		 * Declares a status indicator on the avatar
-		 * Available options are `positive`, `negative`, `neutral`
-		 */
-		status: {
-			type: String,
-			default: null,
-			validator: (value) => {
-				switch (value) {
-				case 'positive':
-				case 'negative':
-				case 'neutral':
-					return true
-				}
-				return false
-			},
-		},
-		/**
-		 * Declares a different color to be used with the status indicator
-		 */
-		statusColor: {
-			type: [Number, String],
-			default: null,
-			validator: value => {
-				return /^([a-f0-9]{3}){1,2}$/i.test(value)
-			},
-		},
 		/**
 		 * Choose the avatar menu alignment.
 		 * Possible values are `left`, `center`, `right`.
@@ -674,35 +629,6 @@ export default {
 		height: 100%;
 		// Keep ratio
 		object-fit: cover;
-	}
-
-	.avatardiv__status {
-		position: absolute;
-		top: 22px;
-		left: 22px;
-		width: 10px;
-		height: 10px;
-		border: 1px solid rgba(255, 255, 255, .5);
-		background-clip: content-box;
-		&--positive {
-			border-radius: 50%;
-			background-color: var(--color-success);
-		}
-		&--negative {
-			background-color: var(--color-error);
-		}
-		&--neutral {
-			border: none;
-			background-color: transparent !important;
-			svg {
-				position: absolute;
-				top: -3px;
-				left: -2px;
-				path {
-					fill: #aaa;
-				}
-			}
-		}
 	}
 
 	.avatardiv__user-status {
