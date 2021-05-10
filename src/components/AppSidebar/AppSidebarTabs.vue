@@ -45,7 +45,10 @@
 						:tabindex="activeTab === tab.id ? null : -1"
 						role="tab"
 						@click.prevent="setActive(tab.id)">
-						<span :class="tab.icon" class="app-sidebar-tabs__tab-icon" />
+						<span class="app-sidebar-tabs__tab-icon">
+							<VNodes v-if="hasMdIcon(tab)" :vnodes="tab.$slots.icon[0]" />
+							<span v-else :class="tab.icon" />
+						</span>
 						{{ tab.name }}
 					</a>
 				</li>
@@ -73,6 +76,15 @@ const IsValidStringWithoutSpaces = function(value) {
 
 export default {
 	name: 'AppSidebarTabs',
+
+	components: {
+		// Component to render the material design icon (vnodes)
+		VNodes: {
+			functional: true,
+			render: (h, context) => context.props.vnodes,
+		},
+	},
+
 	props: {
 		/**
 		 * Id of the tab to activate
@@ -208,6 +220,10 @@ export default {
 					: ''
 		},
 
+		hasMdIcon(tab) {
+			return tab?.$slots?.icon
+		},
+
 		/**
 		 * Manually update the sidebar tabs according to $slots.default
 		 */
@@ -227,7 +243,7 @@ export default {
 				// Make sure all required props are provided and valid
 				if (IsValidString(tab?.name)
 					&& IsValidStringWithoutSpaces(tab?.id)
-					&& IsValidStringWithoutSpaces(tab?.icon)) {
+					&& (IsValidStringWithoutSpaces(tab?.icon) || tab?.$slots?.icon)) {
 					tabs.push(tab)
 				} else {
 					invalidTabs.push(tabNode)
@@ -331,6 +347,12 @@ export default {
 		opacity: $opacity_normal;
 		background-position: center 8px;
 		background-size: 16px;
+
+		& > span {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
 	}
 
 	&__content {

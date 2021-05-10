@@ -52,7 +52,7 @@ export default {
 		},
 		icon: {
 			type: String,
-			required: true,
+			default: '',
 		},
 		order: {
 			type: Number,

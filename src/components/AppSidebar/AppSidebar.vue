@@ -30,16 +30,28 @@ include a standard-header like it's used by the files app.
 ### Standard usage
 
 ```vue
-<AppSidebar
-	title="cat-picture.jpg"
-	subtitle="last edited 3 weeks ago">
-	<AppSidebarTab icon="icon-settings" name="Settings" id="settings">
-		Settings tab content
-	</AppSidebarTab>
-	<AppSidebarTab icon="icon-share" name="Sharing" id="share">
-		Sharing tab content
-	</AppSidebarTab>
-</AppSidebar>
+<template>
+	<AppSidebar
+		title="cat-picture.jpg"
+		subtitle="last edited 3 weeks ago">
+		<AppSidebarTab icon="icon-settings" name="Settings" id="settings">
+			<Cog slot="icon" :size="24" decorative />
+			Settings tab content
+		</AppSidebarTab>
+		<AppSidebarTab icon="icon-share" name="Sharing" id="share">
+			Sharing tab content
+		</AppSidebarTab>
+	</AppSidebar>
+</template>
+<script>
+	import Cog from 'vue-material-design-icons/Cog.vue'
+
+	export default {
+		components: {
+			Cog,
+		},
+	}
+</script>
 ```
 
 ### Editable title
