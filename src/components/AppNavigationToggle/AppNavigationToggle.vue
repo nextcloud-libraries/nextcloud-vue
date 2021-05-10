@@ -76,8 +76,8 @@ export default {
 
 button.app-navigation-toggle {
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: $topbar-margin;
+	right: - $topbar-margin;
 	margin-right: - $clickable-area;
 }
 
