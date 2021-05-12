@@ -30,9 +30,9 @@
 	},
 	"main": "dist/ncvuecomponents.js",
 	"files": [
+		"CHANGELOG.md",
 		"LICENSE",
 		"README.md",
-		"src",
 		"dist"
 	],
 	"dependencies": {
