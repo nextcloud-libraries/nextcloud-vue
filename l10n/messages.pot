@@ -17,6 +17,9 @@ msgstr ""
 msgid "Animals & Nature"
 msgstr ""
 
+msgid "Avatar of {displayName}"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr ""
 
