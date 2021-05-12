@@ -1,3 +1,13 @@
 /build
+/cypress
+/docs
 /l10n
 /node_modules
+/src
+/styleguide
+/tests
+
+Makefile
+*.config.js
+cypress.json
+webpack.*.js
