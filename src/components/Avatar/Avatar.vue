@@ -36,7 +36,9 @@
 
 </docs>
 <template>
-	<div v-tooltip="tooltip"
+	<div
+		ref="main"
+		v-tooltip="tooltip"
 		v-click-outside="closeMenu"
 		:class="{
 			'avatardiv--unknown': userDoesNotExist,
@@ -44,7 +46,11 @@
 		}"
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper"
-		v-on="!disableMenu ? { click: toggleMenu } : {}">
+		:tabindex="disableMenu ? '-1' : '0'"
+		:aria-label="avatarAriaLabel"
+		:role="disableMenu ? '' : 'button'"
+		v-on="!disableMenu ? { click: toggleMenu } : {}"
+		@keydown.enter="toggleMenu">
 		<!-- Avatar icon or image -->
 		<div v-if="iconClass" :class="iconClass" class="avatar-class-icon" />
 		<img v-else-if="isAvatarLoaded && !userDoesNotExist"
@@ -57,8 +63,10 @@
 			v-if="hasMenu"
 			placement="auto"
 			:container="menuContainer"
-			:open="contactsMenuOpenState">
-			<PopoverMenu :menu="menu" />
+			:open="contactsMenuOpenState"
+			@after-show="handlePopoverAfterShow"
+			@after-hide="handlePopoverAfterHide">
+			<PopoverMenu ref="popoverMenu" :menu="menu" />
 			<template slot="trigger">
 				<div v-if="contactsMenuLoading" class="icon-loading" />
 				<DotsHorizontal v-else
@@ -98,6 +106,7 @@ import PopoverMenu from '../PopoverMenu'
 import Tooltip from '../../directives/Tooltip'
 import usernameToColor from '../../functions/usernameToColor'
 import { userStatus } from '../../mixins'
+import { t } from '../../l10n'
 import Popover from '../Popover/Popover'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
@@ -257,6 +266,11 @@ export default {
 			type: String,
 			default: 'body',
 		},
+
+		ariaLabel: {
+			type: String,
+			default: null,
+		},
 	},
 	data() {
 		return {
@@ -271,6 +285,14 @@ export default {
 		}
 	},
 	computed: {
+		avatarAriaLabel() {
+			if (this.ariaLabel !== null) {
+				return this.ariaLabel
+			}
+
+			return t('Avatar of {displayName}', { displayName: this.displayName || this.userId })
+		},
+
 		canDisplayUserStatus() {
 			return this.showUserStatus
 				&& this.hasStatus
@@ -415,6 +437,16 @@ export default {
 	},
 
 	methods: {
+		handlePopoverAfterShow() {
+			const links = this.$refs.popoverMenu.$el.getElementsByTagName('a')
+			if (links.length) {
+				links[0].focus()
+			}
+		},
+		handlePopoverAfterHide() {
+			// bring focus back to the trigger
+			this.$refs.main.focus()
+		},
 		handleUserStatusUpdated(state) {
 			if (this.user === state.userId) {
 				this.userStatus = {
