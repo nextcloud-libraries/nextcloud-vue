@@ -80,6 +80,19 @@ export default {
 						status: 'away',
 					},
 					subline: 'Visiting London',
+				},
+				'Test 03': {
+					icon: 'icon-user',
+					id: 'Test 03',
+					label: 'Test 03',
+					source: 'users',
+					status: {
+						clearAt: null,
+						icon: '🎡',
+						message: 'Having space in my name',
+						status: 'in space',
+					},
+					subline: 'Visiting London',
 				}
 			}
 		}
