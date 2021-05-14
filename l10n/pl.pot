@@ -26,6 +26,9 @@ msgstr "Aktywność"
 msgid "Animals & Nature"
 msgstr "Zwierzęta i natura"
 
+msgid "Avatar of {displayName}"
+msgstr "Awatar {displayName}"
+
 msgid "Cancel changes"
 msgstr "Anuluj zmiany"
 
