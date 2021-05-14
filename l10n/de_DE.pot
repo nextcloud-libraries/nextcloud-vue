@@ -2,13 +2,13 @@
 # Translators:
 # Philipp Fischbeck <pfischbeck@googlemail.com>, 2020
 # ProfDrJones <jones@fs.cs.hm.edu>, 2020
-# Mark Ziegler <mark.ziegler@rakekniven.de>, 2020
 # Mario Siegmann <mario_siegmann@web.de>, 2020
 # Gustav Gyges, 2021
+# Mark Ziegler <mark.ziegler@rakekniven.de>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Gustav Gyges, 2021\n"
+"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2021\n"
 "Language-Team: German (Germany) (https://www.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -28,6 +28,9 @@ msgstr "Aktivitäten"
 
 msgid "Animals & Nature"
 msgstr "Tiere & Natur"
+
+msgid "Avatar of {displayName}"
+msgstr "Avatar von {displayName}"
 
 msgid "Cancel changes"
 msgstr "Änderungen verwerfen"
@@ -96,7 +99,7 @@ msgid "Settings"
 msgstr "Einstellungen"
 
 msgid "Settings navigation"
-msgstr "Navigations-Einstellungen"
+msgstr "Einstellungen für die Navigation"
 
 msgid "Smileys & Emotion"
 msgstr "Smileys & Emotionen"
