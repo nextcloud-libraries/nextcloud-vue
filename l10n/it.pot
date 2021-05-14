@@ -1,12 +1,12 @@
 # 
 # Translators:
-# Vincenzo Reale <vinx.reale@gmail.com>, 2020
 # Random_R, 2021
 # Gabriele <ravo1986@gmail.com>, 2021
+# Vincenzo Reale <vinx.reale@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Gabriele <ravo1986@gmail.com>, 2021\n"
+"Last-Translator: Vincenzo Reale <vinx.reale@gmail.com>, 2021\n"
 "Language-Team: Italian (https://www.transifex.com/nextcloud/teams/64236/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: it\n"
@@ -26,6 +26,9 @@ msgstr "Attività"
 
 msgid "Animals & Nature"
 msgstr "Animali e natura"
+
+msgid "Avatar of {displayName}"
+msgstr "Avatar di {displayName}"
 
 msgid "Cancel changes"
 msgstr "Annulla modifiche"
