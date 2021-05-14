@@ -27,6 +27,9 @@ msgstr "Etkinlikler"
 msgid "Animals & Nature"
 msgstr "Hayvanlar ve Doğa"
 
+msgid "Avatar of {displayName}"
+msgstr "{displayName} avatarı"
+
 msgid "Cancel changes"
 msgstr "Değişiklikleri iptal et"
 
