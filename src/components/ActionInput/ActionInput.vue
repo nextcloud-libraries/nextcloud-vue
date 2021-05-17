@@ -409,12 +409,12 @@ $input-margin: 4px;
 // add the same bottomMargin as the right padding
 // for visual balance
 li:last-child > .action-input {
-	margin-bottom: $icon-margin - $input-margin;
+	padding-bottom: $icon-margin - $input-margin;
 }
 
 // same for first item
 li:first-child > .action-input {
-	margin-top: $icon-margin - $input-margin;
+	padding-top: $icon-margin - $input-margin;
 }
 
 </style>
