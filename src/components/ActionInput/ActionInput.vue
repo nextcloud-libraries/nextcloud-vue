@@ -270,6 +270,16 @@ $input-margin: 4px;
 
 	font-weight: normal;
 
+	&::v-deep .material-design-icon {
+		width: $clickable-area;
+		height: $clickable-area;
+		opacity: $opacity_full;
+
+		.material-design-icon__svg {
+			vertical-align: middle;
+		}
+	}
+
 	// do not change the opacity of the datepicker
 	&:not(.action-input--picker) {
 		opacity: $opacity_normal;
