@@ -204,7 +204,10 @@
 								</form>
 							</template>
 							<!-- secondary title -->
-							<p v-if="subtitle.trim() !== ''" class="app-sidebar-header__subtitle">
+							<p
+								v-if="subtitle.trim() !== ''"
+								v-tooltip.auto="subtitleTooltip"
+								class="app-sidebar-header__subtitle">
 								{{ subtitle }}
 							</p>
 						</div>
@@ -281,6 +284,10 @@ export default {
 			default: '',
 		},
 		subtitle: {
+			type: String,
+			default: '',
+		},
+		subtitleTooltip: {
 			type: String,
 			default: '',
 		},
