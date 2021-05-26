@@ -28,5 +28,6 @@ import './index.scss'
 // issues and the use of !important
 VTooltip.options.defaultTemplate = `<div class="vue-tooltip" role="tooltip" data-v-${SCOPE_VERSION}><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>`
 VTooltip.options.defaultHtml = false
+VTooltip.options.defaultDelay = { show: 500, hide: 200 }
 
 export default VTooltip
