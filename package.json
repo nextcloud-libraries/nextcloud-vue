@@ -80,7 +80,7 @@
 		"@nextcloud/eslint-plugin": "^2.0.0",
 		"@vue/test-utils": "^1.0.4",
 		"babel-core": "^7.0.0-bridge.0",
-		"babel-jest": "^26.3.0",
+		"babel-jest": "^27.0.1",
 		"babel-loader": "^8.1.0",
 		"babel-loader-exclude-node-modules-except": "^1.0.3",
 		"css-loader": "^5.0.0",
