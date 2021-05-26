@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.10.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.10.0) (2021-05-27)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.9.0...v3.10.0)
+
+## Enhancements
+
+- \[stable3\] Add proper opening/opened/closing/closed events & fix events docs [\#1923](https://github.com/nextcloud/nextcloud-vue/pull/1923) ([backportbot-nextcloud[bot]](https://github.com/apps/backportbot-nextcloud))
+- Add timestamp tooltip [\#1971](https://github.com/nextcloud/nextcloud-vue/pull/1971) ([Pytal](https://github.com/Pytal))
+## Fixed bugs
+
+- \[stable3\] Fix counter margin [\#1933](https://github.com/nextcloud/nextcloud-vue/pull/1933) ([backportbot-nextcloud[bot]](https://github.com/apps/backportbot-nextcloud))
+- Allow to append datepicker to body [\#1921](https://github.com/nextcloud/nextcloud-vue/pull/1921) ([skjnldsv](https://github.com/skjnldsv))
+- \[backport-1880-stable3\] Fix datepicker overflow when week numbers are shown [\#1920](https://github.com/nextcloud/nextcloud-vue/pull/1920) ([backportbot-nextcloud[bot]](https://github.com/apps/backportbot-nextcloud))
+- Fix datepicker overflow when week numbers are shown [\#1917](https://github.com/nextcloud/nextcloud-vue/pull/1917) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Remove AppNavigationItem flex order for AppNavigationCaption [\#1911](https://github.com/nextcloud/nextcloud-vue/pull/1911) ([skjnldsv](https://github.com/skjnldsv))
+- \[stable3\] Fix appnavigationitem layout [\#1902](https://github.com/nextcloud/nextcloud-vue/pull/1902) ([backportbot-nextcloud[bot]](https://github.com/apps/backportbot-nextcloud))
+- \[stable3\] Fix first-action icon class not showing when Actions icon-slot is def… [\#1885](https://github.com/nextcloud/nextcloud-vue/pull/1885) ([backportbot-nextcloud[bot]](https://github.com/apps/backportbot-nextcloud))
+- \[stable3\] Fix ListItemIcon listeners [\#1871](https://github.com/nextcloud/nextcloud-vue/pull/1871) ([backportbot-nextcloud[bot]](https://github.com/apps/backportbot-nextcloud))
+
 ## [v3.9.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.9.0) (2021-04-07)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.8.0...v3.9.0)
