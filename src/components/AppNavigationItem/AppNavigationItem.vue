@@ -155,7 +155,7 @@ Just set the `pinned` prop.
 		</div>
 
 		<!-- Counter and Actions -->
-		<div v-if="hasUtils" class="app-navigation-entry__utils">
+		<div v-if="hasUtils && !editingActive" class="app-navigation-entry__utils">
 			<div v-if="$slots.counter"
 				class="app-navigation-entry__counter-wrapper">
 				<slot name="counter" />
