@@ -397,6 +397,11 @@ export default {
 		},
 	},
 
+	beforeDestroy() {
+		// Make sure that the 'closed' event is dispatched even if this element is destroyed before the 'after-leave' event is received.
+		this.$emit('closed')
+	},
+
 	methods: {
 		onBeforeEnter(element) {
 			/**
