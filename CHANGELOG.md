@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.10.1](https://github.com/nextcloud/nextcloud-vue/tree/v3.10.1) (2021-06-02)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.10.0...v3.10.1)
+## Fixed bugs
+
+- Ensure the closed event is dispatched in AppSidebar [\#1993](https://github.com/nextcloud/nextcloud-vue/pull/1993) ([artonge](https://github.com/artonge))
+- AppNavigationItem: hide utils if edit mode is active [\#1996](https://github.com/nextcloud/nextcloud-vue/pull/1996) ([korelstar](https://github.com/korelstar))
+
 ## [v3.10.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.10.0) (2021-05-27)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.9.0...v3.10.0)
