@@ -619,15 +619,17 @@ export default {
 			top: 0;
 			left: 0;
 		}
-		.icon-more {
+		.icon-more, .icon-loading {
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			width: var(--size);
 			height: var(--size);
 			cursor: pointer;
-			opacity: 0;
 			background: none;
+		}
+		.icon-more {
+			opacity: 0;
 		}
 		&:focus,
 		&:hover {
