@@ -78,16 +78,15 @@ index 3a9ab8f8c1..4bc2b4a4d0 100644
 
 ## Releasing a new version
 
-- Checkout latest master (pull);
-- Edit CHANGELOG.md and add new entries there for the new version, then create a commit;
-- Run `npm version patch` (`npm version minor` if minor). This will return a new version name, make sure it matches what was added in the CHANGELOG.md;
-- Push the tag and the master branch `git push origin master [printed-version-name]`;
-- Make the tag a release on github and add the changelog (https://github.com/nextcloud/nextcloud-vue/releases);
-- Click edit on a previous release and copy the body of the changelog;
-- Go back, click on your release and paste the copied text;
-- Edit all the version numbers;
-- Click on preview and click on view full changelog, this will show you all the prs that have been; added since the previous version;
-- Copy them in the changelog with the same format as previous ones;
+- Pull the latest changes from `master` or `stableX`;
+- Checkout a new branch: `git checkout -b npm/v<version>`;
+- Run `npm version patch` (`npm version minor --no-git-tag-version` if minor). This will return a new version name, make sure it matches what you expect;
+- Commit, push and create PR;
+- Add the change log content from the 'Changelog' action on Github to `CHANGELOG.md`;
+- Commit and push;
+- Tag the commit then push the tag: `git tag v<version>`, `git push --tag`;
+- Get your PR reviewed and merged;
+- Create a release on github from the tag and add the changelog content as description (https://github.com/nextcloud/nextcloud-vue/releases);
 
 <a href="https://www.netlify.com">
   <img src="https://www.netlify.com/img/global/badges/netlify-dark.svg"/>
