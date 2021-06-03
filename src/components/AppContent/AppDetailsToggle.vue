@@ -21,12 +21,23 @@
   -->
 
 <template>
-	<a v-tooltip="t('contacts', 'Go back to the list')" class="app-details-toggle icon-confirm" href="#" />
+	<a v-tooltip="title" class="app-details-toggle icon-confirm" href="#" />
 </template>
 
 <script>
+import { emit } from '@nextcloud/event-bus'
+
+import l10n from '../../mixins/l10n'
 export default {
 	name: 'AppDetailsToggle',
+
+	mixins: [l10n],
+
+	computed: {
+		title() {
+			return this.t('Go back to the list')
+		},
+	},
 
 	beforeMount() {
 		this.toggleAppNavigationButton(true)
@@ -41,6 +52,11 @@ export default {
 			const appNavigationToggle = document.querySelector('.app-navigation .app-navigation-toggle')
 			if (appNavigationToggle) {
 				appNavigationToggle.style.display = hide ? 'none' : null
+
+				// If we hide the NavigationToggle, we need to make sure the Navigation is also closed
+				if (hide === true) {
+					emit('toggle-navigation', { open: false })
+				}
 			}
 		},
 	},
