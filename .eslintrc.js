@@ -4,7 +4,7 @@ module.exports = {
 		TRANSLATIONS: true,
 		oc_userconfig: true,
 		appName: true,
-		appversion: true,
+		appVersion: true,
 	},
 	extends: [
 		'@nextcloud',

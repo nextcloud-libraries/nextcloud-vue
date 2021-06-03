@@ -68,7 +68,17 @@ The list size must be between the min and the max width value.
 
 <template>
 	<main id="app-content-vue" class="app-content no-snapper">
-		<div class="app-content-wrapper">
+		<!-- Mobile view does not allow resizeable panes -->
+		<div v-if="isMobile"
+			:class="showDetails ? 'app-content-wrapper--show-details' : 'app-content-wrapper--show-list'"
+			class="app-content-wrapper app-content-wrapper--mobile">
+			<AppDetailsToggle v-if="showDetails" @click.native.stop.prevent="hideDetails" />
+
+			<slot name="list" />
+			<slot />
+		</div>
+
+		<div v-else class="app-content-wrapper">
 			<Splitpanes
 				v-if="hasList"
 				class="default-theme"
@@ -97,11 +107,15 @@ The list size must be between the min and the max width value.
 </template>
 
 <script>
-import Hammer from 'hammerjs'
+import 'splitpanes/dist/splitpanes.css'
+
 import { emit } from '@nextcloud/event-bus'
 import { getBuilder } from '@nextcloud/browser-storage'
 import { Splitpanes, Pane } from 'splitpanes'
-import 'splitpanes/dist/splitpanes.css'
+import Hammer from 'hammerjs'
+
+import AppDetailsToggle from './AppDetailsToggle'
+import isMobile from '../../mixins/isMobile'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 
@@ -113,9 +127,12 @@ export default {
 	name: 'AppContent',
 
 	components: {
-		Splitpanes,
+		AppDetailsToggle,
 		Pane,
+		Splitpanes,
 	},
+
+	mixins: [isMobile],
 
 	props: {
 		/**
@@ -159,6 +176,18 @@ export default {
 		paneConfigKey: {
 			type: String,
 			default: appName,
+		},
+
+		/**
+		 * When in mobile view, only the list or the details are shown
+		 * If you provide a list, you need to provide a variable
+		 * that will be set to true by the user when an element of
+		 * the list gets selected. The details will then show a back
+		 * arrow to return to the list that will update this prop to false.
+		 */
+		showDetails: {
+			type: Boolean,
+			default: true,
 		},
 	},
 
@@ -263,6 +292,13 @@ export default {
 				return listPaneSize
 			}
 		},
+
+		/**
+		 * The user clicked the back arrow from the details view
+		 */
+		hideDetails() {
+			this.$emit('update:showDetails', false)
+		},
 	},
 }
 </script>
@@ -277,6 +313,26 @@ export default {
 	// Overriding server styles TODO: cleanup!
 	margin: 0 !important;
 	background-color: var(--color-main-background);
+}
+
+// Mobile list/details handling
+.app-content-wrapper--mobile {
+	&.app-content-wrapper--show-list ::v-deep {
+		.app-content-list {
+			display: initial !important;
+		}
+		.app-content-details {
+			display: none !important;
+		}
+	}
+	&.app-content-wrapper--show-details ::v-deep {
+		.app-content-list {
+			display: none !important;
+		}
+		.app-content-details {
+			display: initial !important;
+		}
+	}
 }
 
 ::v-deep .splitpanes.default-theme {
