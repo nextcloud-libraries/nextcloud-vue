@@ -1,7 +1,56 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [v4.0.0](https://github.com/nextcloud/nextcloud-vue/tree/v4.0.0) (2021-06-04)
 
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.10.1...v4.0.0)
+
+## Breaking
+
+- Remove deprecated legacy avatar user status [\#1945](https://github.com/nextcloud/nextcloud-vue/pull/1945) ([skjnldsv](https://github.com/skjnldsv))
+- Fix vue material icons [\#1816](https://github.com/nextcloud/nextcloud-vue/pull/1816) ([skjnldsv](https://github.com/skjnldsv))
+- Resizable columns [\#1759](https://github.com/nextcloud/nextcloud-vue/pull/1759) ([brueckner](https://github.com/brueckner))
+- Bump @nextcloud/browserslist-config from 1.0.0 to 2.1.0 [\#1786](https://github.com/nextcloud/nextcloud-vue/pull/1786) ([dependabot](https://github.com/dependabot))
+
+## Enhancements
+
+- Add CheckboxRadio component [\#1875](https://github.com/nextcloud/nextcloud-vue/pull/1875) ([skjnldsv](https://github.com/skjnldsv))
+- Add disabled state to RichContenteditable and clean not-working v-model [\#1894](https://github.com/nextcloud/nextcloud-vue/pull/1894) ([skjnldsv](https://github.com/skjnldsv))
+- Add loading state to CheckboxRadio [\#1889](https://github.com/nextcloud/nextcloud-vue/pull/1889) ([skjnldsv](https://github.com/skjnldsv))
+- Add proper opening/opened/closing/closed events & fix events docs [\#1914](https://github.com/nextcloud/nextcloud-vue/pull/1914) ([skjnldsv](https://github.com/skjnldsv))
+- Add slot for third line in listitem component [\#1888](https://github.com/nextcloud/nextcloud-vue/pull/1888) ([ma12-co](https://github.com/ma12-co))
+- Allow material design icon in breadcrumb [\#1938](https://github.com/nextcloud/nextcloud-vue/pull/1938) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Allow material design icons in AppSidebarTab [\#1939](https://github.com/nextcloud/nextcloud-vue/pull/1939) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Create ActionCaption component [\#1739](https://github.com/nextcloud/nextcloud-vue/pull/1739) ([ma12-co](https://github.com/ma12-co))
+- Create ListItem component [\#616](https://github.com/nextcloud/nextcloud-vue/pull/616) ([ma12-co](https://github.com/ma12-co))
+- Create ListItem component [\#616](https://github.com/nextcloud/nextcloud-vue/pull/616) ([ma12-co](https://github.com/ma12-co))
+- Fix alignment of md icons in single action [\#1886](https://github.com/nextcloud/nextcloud-vue/pull/1886) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Implement switch mode to CheckboxRadioSwitch [\#1890](https://github.com/nextcloud/nextcloud-vue/pull/1890) ([skjnldsv](https://github.com/skjnldsv))
+- Improve documentation sections [\#1883](https://github.com/nextcloud/nextcloud-vue/pull/1883) ([skjnldsv](https://github.com/skjnldsv))
+- Make avatar menu focusable with keyboard [\#1854](https://github.com/nextcloud/nextcloud-vue/pull/1854) ([PVince81](https://github.com/PVince81))
+- Replace AppNavigationCounter with CounterBubble [\#1895](https://github.com/nextcloud/nextcloud-vue/pull/1895) ([PVince81](https://github.com/PVince81))
+- Update appnavigationcaption [\#1863](https://github.com/nextcloud/nextcloud-vue/pull/1863) ([ma12-co](https://github.com/ma12-co))
+- Wrap icon span in icon slot for ActionButton [\#1930](https://github.com/nextcloud/nextcloud-vue/pull/1930) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
+## Fixed bugs
+
+- Add id prop to ListItemIcon to prevent v-binding to the Avatar [\#1833](https://github.com/nextcloud/nextcloud-vue/pull/1833) ([skjnldsv](https://github.com/skjnldsv))
+- Allow to append datepicker to body [\#1880](https://github.com/nextcloud/nextcloud-vue/pull/1880) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Check slots on updated hook [\#2015](https://github.com/nextcloud/nextcloud-vue/pull/2015) ([ma12-co](https://github.com/ma12-co))
+- Correctly align md icon in ActionRouter component [\#1927](https://github.com/nextcloud/nextcloud-vue/pull/1927) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix Actions css [\#1834](https://github.com/nextcloud/nextcloud-vue/pull/1834) ([jotoeri](https://github.com/jotoeri))
+- Fix appnavigationitem layout [\#1897](https://github.com/nextcloud/nextcloud-vue/pull/1897) ([ma12-co](https://github.com/ma12-co))
+- Fix counter margin [\#1912](https://github.com/nextcloud/nextcloud-vue/pull/1912) ([ma12-co](https://github.com/ma12-co))
+- Fix datepicker overflow when week numbers are shown [\#1917](https://github.com/nextcloud/nextcloud-vue/pull/1917) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix first and last action input padding [\#1967](https://github.com/nextcloud/nextcloud-vue/pull/1967) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix first-action icon class not showing when Actions icon-slot is def… [\#1879](https://github.com/nextcloud/nextcloud-vue/pull/1879) ([nickvergessen](https://github.com/nickvergessen))
+- Fix flex order of AppNavigationCaption [\#2024](https://github.com/nextcloud/nextcloud-vue/pull/2024) ([skjnldsv](https://github.com/skjnldsv))
+- Fix ListItemIcon listeners [\#1870](https://github.com/nextcloud/nextcloud-vue/pull/1870) ([skjnldsv](https://github.com/skjnldsv))
+- Fix md icon size in ActionInput [\#1966](https://github.com/nextcloud/nextcloud-vue/pull/1966) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix user bubble when username contains a space [\#1948](https://github.com/nextcloud/nextcloud-vue/pull/1948) ([artonge](https://github.com/artonge))
+- Prevent overflow of action-link in Firefox [\#1934](https://github.com/nextcloud/nextcloud-vue/pull/1934) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Remove AppNavigationItem flex order for AppNavigationCaption [\#1911](https://github.com/nextcloud/nextcloud-vue/pull/1911) ([skjnldsv](https://github.com/skjnldsv))
+- Use ActionButton for AppNavigationToggle [\#1844](https://github.com/nextcloud/nextcloud-vue/pull/1844) ([raimund-schluessler](https://github.com/raimund-schluessler))
 ## [v3.9.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.9.0) (2021-04-07)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.8.0...v3.9.0)
