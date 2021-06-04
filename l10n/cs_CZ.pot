@@ -25,6 +25,9 @@ msgstr "Aktivity"
 msgid "Animals & Nature"
 msgstr "Zvířata a příroda"
 
+msgid "Avatar of {displayName}"
+msgstr "Zástupný obrázek uživatele {displayName}"
+
 msgid "Cancel changes"
 msgstr "Zrušit změny"
 
