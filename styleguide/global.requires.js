@@ -84,6 +84,7 @@ window.OC = {
 	webroot: ''
 }
 window.OCA = {}
+window.appName = 'nextcloud-vue'
 
 window.t = (app, text) => text
 

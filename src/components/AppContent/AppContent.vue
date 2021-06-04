@@ -59,9 +59,9 @@ The list size must be between the min and the max width value.
 
 ```
 <AppContent
-	list-size="35"
-	list-min-width="20"
-	list-max-width="45"
+	:list-size="35"
+	:list-min-width="20"
+	:list-max-width="45"
 >...</AppContent>
 ```
 </docs>
