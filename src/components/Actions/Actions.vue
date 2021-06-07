@@ -735,7 +735,7 @@ export default {
 
 			// non-background icon class
 			// image slot
-			::v-deep span {
+			/deep/ span {
 				width: 24px;
 				height: 24px;
 				line-height: $icon-size;
