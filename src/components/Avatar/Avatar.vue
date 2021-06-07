@@ -624,10 +624,9 @@ export default {
 			top: 0;
 			left: 0;
 		}
-		.icon-more {
+		.icon-more, .icon-loading {
 			display: flex;
 			cursor: pointer;
-			opacity: 0;
 			background: none;
 			font-size: 18px;
 			align-items: center;
@@ -637,6 +636,9 @@ export default {
 			&::before {
 				display: block;
 			}
+		}
+		.icon-more {
+			opacity: 0;
 		}
 		&:focus,
 		&:hover {
