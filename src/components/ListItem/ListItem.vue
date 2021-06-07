@@ -289,6 +289,8 @@ export default {
 		return {
 			hovered: false,
 			focused: false,
+			hasActions: false,
+			hasSubtitle: false,
 			displayActions: false,
 			menuOpen: false,
 		}
@@ -298,10 +300,6 @@ export default {
 
 		hasDetails() {
 			return this.details !== ''
-		},
-
-		hasActions() {
-			return (!!this.$slots.actions)
 		},
 
 		// This is used to decide which outer element type to use
@@ -320,10 +318,6 @@ export default {
 			}
 		},
 
-		// Check if the subtitle slot is populated
-		hasSubtitle() {
-			return !!this.$slots.subtitle
-		},
 	},
 
 	watch: {
@@ -334,6 +328,14 @@ export default {
 				this.displayActions = false
 			}
 		},
+	},
+
+	mounted() {
+		this.checkSlots()
+	},
+
+	updated() {
+		this.checkSlots()
 	},
 
 	methods: {
@@ -399,6 +401,16 @@ export default {
 
 		handleActionsUpdateOpen(e) {
 			this.menuOpen = e
+		},
+
+		// Check if subtitle and actions slots is populated
+		checkSlots() {
+			if (this.hasActions !== !!this.$slots.actions) {
+				this.hasActions = !!this.$slots.actions
+			}
+			if (this.hasSubtitle !== !!this.$slots.subtitle) {
+				this.hasSubtitle = !!this.$slots.subtitle
+			}
 		},
 	},
 }
