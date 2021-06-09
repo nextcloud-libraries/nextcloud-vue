@@ -403,7 +403,7 @@ export default {
 			this.menuOpen = e
 		},
 
-		// Check if subtitle and actions slots is populated
+		// Check if subtitle and actions slots are populated
 		checkSlots() {
 			if (this.hasActions !== !!this.$slots.actions) {
 				this.hasActions = !!this.$slots.actions
