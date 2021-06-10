@@ -68,41 +68,42 @@ The list size must be between the min and the max width value.
 
 <template>
 	<main id="app-content-vue" class="app-content no-snapper">
-		<!-- Mobile view does not allow resizeable panes -->
-		<div v-if="isMobile"
-			:class="showDetails ? 'app-content-wrapper--show-details' : 'app-content-wrapper--show-list'"
-			class="app-content-wrapper app-content-wrapper--mobile">
-			<AppDetailsToggle v-if="hasList && showDetails" @click.native.stop.prevent="hideDetails" />
+		<template v-if="hasList">
+			<!-- Mobile view does not allow resizeable panes -->
+			<div v-if="isMobile"
+				:class="showDetails ? 'app-content-wrapper--show-details' : 'app-content-wrapper--show-list'"
+				class="app-content-wrapper app-content-wrapper--mobile">
+				<AppDetailsToggle v-if="hasList && showDetails" @click.native.stop.prevent="hideDetails" />
 
-			<slot name="list" />
-			<slot />
-		</div>
+				<slot name="list" />
+				<slot />
+			</div>
 
-		<div v-else class="app-content-wrapper">
-			<Splitpanes
-				v-if="hasList"
-				class="default-theme"
-				@resized="handlePaneResize">
-				<Pane class="splitpanes__pane-list"
-					:size="listPaneSize || paneDefaults.list.size"
-					:min-size="paneDefaults.list.min"
-					:max-size="paneDefaults.list.max">
-					<!-- @slot Provide a list to the app content -->
-					<slot name="list" />
-				</Pane>
+			<div v-else class="app-content-wrapper">
+				<Splitpanes
+					class="default-theme"
+					@resized="handlePaneResize">
+					<Pane class="splitpanes__pane-list"
+						:size="listPaneSize || paneDefaults.list.size"
+						:min-size="paneDefaults.list.min"
+						:max-size="paneDefaults.list.max">
+						<!-- @slot Provide a list to the app content -->
+						<slot name="list" />
+					</Pane>
 
-				<Pane class="splitpanes__pane-details"
-					:size="detailsPaneSize"
-					:min-size="paneDefaults.details.min"
-					:max-size="paneDefaults.details.max">
-					<!-- @slot Provide the main content to the app content -->
-					<slot />
-				</Pane>
-			</Splitpanes>
+					<Pane class="splitpanes__pane-details"
+						:size="detailsPaneSize"
+						:min-size="paneDefaults.details.min"
+						:max-size="paneDefaults.details.max">
+						<!-- @slot Provide the main content to the app content -->
+						<slot />
+					</Pane>
+				</Splitpanes>
+			</div>
+		</template>
 
-			<!-- @slot Provide the main content to the app content -->
-			<slot v-else />
-		</div>
+		<!-- @slot Provide the main content to the app content -->
+		<slot v-else />
 	</main>
 </template>
 
