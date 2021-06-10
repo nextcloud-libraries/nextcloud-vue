@@ -315,22 +315,25 @@ export default {
 	background-color: var(--color-main-background);
 }
 
-// Mobile list/details handling
-.app-content-wrapper--mobile {
-	&.app-content-wrapper--show-list ::v-deep {
-		.app-content-list {
-			display: initial !important;
+.app-content-wrapper {
+	height: 100%;
+	// Mobile list/details handling
+	&--mobile {
+		&.app-content-wrapper--show-list ::v-deep {
+			.app-content-list {
+				display: initial !important;
+			}
+			.app-content-details {
+				display: none !important;
+			}
 		}
-		.app-content-details {
-			display: none !important;
-		}
-	}
-	&.app-content-wrapper--show-details ::v-deep {
-		.app-content-list {
-			display: none !important;
-		}
-		.app-content-details {
-			display: initial !important;
+		&.app-content-wrapper--show-details ::v-deep {
+			.app-content-list {
+				display: none !important;
+			}
+			.app-content-details {
+				display: initial !important;
+			}
 		}
 	}
 }
