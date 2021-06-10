@@ -57,7 +57,6 @@ export default {
 .app-navigation-caption {
 	display: flex;
 	justify-content: space-between;
-	flex-direction: row-reverse;
 	padding: 0 8px 0 $clickable-area/2;
 
 	&__title {
@@ -69,7 +68,6 @@ export default {
 		text-overflow: ellipsis;
 		opacity: $opacity_normal;
 		box-shadow: none !important;
-		order: 1;
 		flex-shrink: 0;
 	}
 
