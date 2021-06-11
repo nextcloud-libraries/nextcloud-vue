@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Katsumi Sasaki <tripper@kidnappers.gr.jp>, 2021
 # YANO Tetsu <tetuyano+transi@gmail.com>, 2021
+# Katsumi Sasaki <tripper@kidnappers.gr.jp>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: YANO Tetsu <tetuyano+transi@gmail.com>, 2021\n"
+"Last-Translator: Katsumi Sasaki <tripper@kidnappers.gr.jp>, 2021\n"
 "Language-Team: Japanese (Japan) (https://www.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ja_JP\n"
@@ -26,14 +26,26 @@ msgstr "アクティビティ"
 msgid "Animals & Nature"
 msgstr "動物と自然"
 
+msgid "Avatar of {displayName}"
+msgstr "{displayName} のアバター"
+
+msgid "Cancel changes"
+msgstr "変更をキャンセル"
+
 msgid "Choose"
 msgstr "選択"
 
 msgid "Close"
 msgstr "閉じる"
 
+msgid "Confirm changes"
+msgstr "変更を承認"
+
 msgid "Custom"
 msgstr "カスタム"
+
+msgid "External documentation for {title}"
+msgstr "{title} のための添付文書"
 
 msgid "Flags"
 msgstr "国旗"
@@ -91,6 +103,9 @@ msgstr "笑顔と気持ち"
 
 msgid "Start slideshow"
 msgstr "スライドショーを開始"
+
+msgid "Submit"
+msgstr "提出"
 
 msgid "Symbols"
 msgstr "記号"
