@@ -303,11 +303,12 @@ export default {
 .navigation-list {
 	height: 100%;
 	overflow-y: auto;
+	padding: 12px;
 	&__link {
 		display: block;
 		font-size: 16px;
 		height: $clickable-area;
-		margin: 4px;
+		margin: 4px 0;
 		line-height: $clickable-area;
 		border-radius: var(--border-radius-pill);
 		font-weight: bold;
