@@ -9,3 +9,13 @@ div[data-preview] {
 body {
 	line-height: 1.5 !important;
 }
+
+div[data-preview="AppNavigationItem"],
+div[data-preview="AppNavigationCaption"] {
+	width: auto;
+}
+
+div[data-preview="AppNavigationItem"] > div,
+div[data-preview="AppNavigationCaption"] > div {
+	width: 300px;
+}
