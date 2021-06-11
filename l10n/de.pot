@@ -5,12 +5,12 @@
 # Joachim Sokolowski, 2020
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2020
 # Mario Siegmann <mario_siegmann@web.de>, 2020
-# Markus Eckstein, 2020
-# Christian Spaan, 2021
+# Gustav Gyges, 2021
+# Markus Eckstein, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Christian Spaan, 2021\n"
+"Last-Translator: Markus Eckstein, 2021\n"
 "Language-Team: German (https://www.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -31,11 +31,20 @@ msgstr "Aktivitäten"
 msgid "Animals & Nature"
 msgstr "Tiere & Natur"
 
+msgid "Avatar of {displayName}"
+msgstr "Avatar von {displayName}"
+
+msgid "Cancel changes"
+msgstr "Änderungen verwerfen"
+
 msgid "Choose"
 msgstr "Auswählen"
 
 msgid "Close"
 msgstr "Schließen"
+
+msgid "Confirm changes"
+msgstr "Änderungen bestätigen"
 
 msgid "Custom"
 msgstr "Benutzerdefiniert"
