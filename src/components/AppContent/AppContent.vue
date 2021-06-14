@@ -172,11 +172,10 @@ export default {
 		/**
 		 * Specify the config key for the pane config sizes
 		 * Default is the global var appName if you use the webpack-vue-config
-		 * Otherwise it will be undefined and you will have to provide one
 		 */
 		paneConfigKey: {
 			type: String,
-			default: appName,
+			default: '',
 		},
 
 		/**
@@ -203,8 +202,21 @@ export default {
 
 	computed: {
 		paneConfigID() {
-			// Using the webpack-vue-config, appName is a global variable
-			return `pane-list-size-${this.paneConfigKey}`
+			// If provided, let's use it
+			if (this.paneConfigKey !== '') {
+				return `pane-list-size-${this.paneConfigKey}`
+			}
+
+			try {
+				// Using the webpack-vue-config, appName is a global variable
+				// This will throw a ReferenceError when the global variable is missing
+				// In that case either you provide paneConfigKey or else it fallback
+				// to a global storage key
+				return `pane-list-size-${appName}`
+			} catch (e) {
+				console.info('[INFO] AppContent:', 'falling back to global nextcloud pane config')
+				return 'pane-list-size-nextcloud'
+			}
 		},
 
 		detailsPaneSize() {
