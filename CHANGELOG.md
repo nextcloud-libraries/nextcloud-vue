@@ -1,6 +1,21 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+
+## [v4.0.1](https://github.com/nextcloud/nextcloud-vue/tree/v4.0.1) (2021-06-14)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.0.0...v4.0.1)
+
+## Fixed bugs
+
+- Safely check the global appName and handle its inexistence [\#2028](nextcloud/nextcloud-vue/pull/2028) ([ChristophWurst](@ChristophWurst))
+- Do not use app-content-wrapper if no list is provided [\#2026](nextcloud/nextcloud-vue/pull/2026) ([skjnldsv](@skjnldsv))
+
+## Closed pull requests
+
+- Fix settings navigation  layout [\#2033](nextcloud/nextcloud-vue/pull/2033) ([marcoambrosini](@marcoambrosini))
+- Set AppNavigation examples' width to 300px [\#2030](nextcloud/nextcloud-vue/pull/2030) ([korelstar](@korelstar))
+
 ## [v4.0.0](https://github.com/nextcloud/nextcloud-vue/tree/v4.0.0) (2021-06-04)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.10.1...v4.0.0)
