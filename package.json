@@ -103,8 +103,8 @@
 		"gettext-extractor": "^3.5.2",
 		"gettext-parser": "^4.0.3",
 		"glob": "^7.1.6",
-		"jest": "^26.4.0",
-		"jest-environment-jsdom-sixteen": "^2.0.0",
+		"jest": "^27.0.4",
+		"jest-environment-jsdom": "27.0.3",
 		"jest-serializer-vue": "^2.0.2",
 		"jest-transform-stub": "^2.0.0",
 		"node-sass": "^5.0.0",
@@ -133,7 +133,7 @@
 			"js",
 			"vue"
 		],
-		"testEnvironment": "jest-environment-jsdom-sixteen",
+		"testEnvironment": "jsdom",
 		"transform": {
 			"^.+\\.js$": "babel-jest",
 			"^.+\\.vue$": "vue-jest",
