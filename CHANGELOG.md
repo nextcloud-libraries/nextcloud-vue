@@ -2,13 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v4.0.2](https://github.com/nextcloud/nextcloud-vue/tree/v4.0.2) (2021-06-16)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.0.1...v4.0.2)
+
+## Fixed bugs
+
+- Safely check the global appName and handle its inexistence [\#2028](https://github.com/nextcloud/nextcloud-vue/pull/2028) ([ChristophWurst](https://github.com/ChristophWurst))
+- Fix settings navigation  layout [\#2033](https://github.com/nextcloud/nextcloud-vue/pull/2033) ([marcoambrosini](https://github.com/marcoambrosini))
+
 ## [v4.0.1](https://github.com/nextcloud/nextcloud-vue/tree/v4.0.1) (2021-06-14)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.0.0...v4.0.1)
 
 ## Fixed bugs
 
-- Safely check the global appName and handle its inexistence [\#2028](nextcloud/nextcloud-vue/pull/2028) ([ChristophWurst](@ChristophWurst))
 - Do not use app-content-wrapper if no list is provided [\#2026](nextcloud/nextcloud-vue/pull/2026) ([skjnldsv](@skjnldsv))
 
 ## Closed pull requests
@@ -66,6 +74,7 @@ All notable changes to this project will be documented in this file.
 - Prevent overflow of action-link in Firefox [\#1934](https://github.com/nextcloud/nextcloud-vue/pull/1934) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - Remove AppNavigationItem flex order for AppNavigationCaption [\#1911](https://github.com/nextcloud/nextcloud-vue/pull/1911) ([skjnldsv](https://github.com/skjnldsv))
 - Use ActionButton for AppNavigationToggle [\#1844](https://github.com/nextcloud/nextcloud-vue/pull/1844) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
 ## [v3.9.0](https://github.com/nextcloud/nextcloud-vue/tree/v3.9.0) (2021-04-07)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.8.0...v3.9.0)
