@@ -332,18 +332,18 @@ export default {
 .app-content-wrapper--mobile {
 	&.app-content-wrapper--show-list ::v-deep {
 		.app-content-list {
-			display: initial !important;
+			display: block;
 		}
 		.app-content-details {
-			display: none !important;
+			display: none;
 		}
 	}
 	&.app-content-wrapper--show-details ::v-deep {
 		.app-content-list {
-			display: none !important;
+			display: none;
 		}
 		.app-content-details {
-			display: initial !important;
+			display: block;
 		}
 	}
 }
