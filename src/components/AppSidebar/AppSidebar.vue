@@ -740,7 +740,6 @@ $top-buttons-spacing: 6px;
 
 				.app-sidebar-header__maintitle-form {
 					display: flex;
-					margin-left: -7.5px;
 					& .icon-confirm {
 						margin: 0;
 					}
@@ -768,6 +767,7 @@ $top-buttons-spacing: 6px;
 				width: $clickable-area;
 				border-radius: $clickable-area / 2;
 				background-color: $action-background-hover;
+				margin-left: 5px;
 			}
 		}
 
