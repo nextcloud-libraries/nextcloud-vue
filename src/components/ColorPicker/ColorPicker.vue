@@ -122,6 +122,7 @@ export default {
 						:style="{'background-color': color }"
 						class="color-picker__simple-color-circle"
 						:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }"
+						type="button"
 						@click="pickColor(color)">
 						<Check v-if="color === currentColor"
 							:size="24"
@@ -141,18 +142,21 @@ export default {
 				<button
 					v-if="advanced"
 					class="color-picker__navigation-button back"
+					type="button"
 					@click="handleBack">
 					<ArrowLeft :size="24" title="" decorative />
 				</button>
 				<button
 					v-if="!advanced"
 					class="color-picker__navigation-button more-settings"
+					type="button"
 					@click="handleMoreSettings">
 					<DotsHorizontal :size="24" title="" decorative />
 				</button>
 				<button
 					v-if="advanced"
 					class="color-picker__navigation-button confirm"
+					type="button"
 					@click="handleConfirm">
 					{{ t('Choose') }}
 				</button>
