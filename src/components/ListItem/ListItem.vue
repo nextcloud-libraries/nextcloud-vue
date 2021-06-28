@@ -443,6 +443,7 @@ export default {
 		background-color: var(--color-background-hover);
 		.list-item-content__main {
 			flex-basis: calc(100% - 44px);
+		}
 	}
 	&--active,
 	&:active,
@@ -457,12 +458,12 @@ export default {
 
 	&-content {
 		display: flex;
-		flex: 1 1 auto;
+		width: 100%;
 		justify-content: space-between;
 		padding-left: 8px;
 
 		&__main {
-			flex: 1 1 auto;
+			flex: 1 1 100%;
 			flex-direction: column;
 			width: 0;
 			margin: auto 0;
@@ -470,10 +471,10 @@ export default {
 		}
 
 		&__actions {
-			flex: 0 0 auto;
+			flex-basis: 0;
 			align-self: center;
 			justify-content: center;
-
+			transition: all 250ms;
 		}
 	}
 
@@ -530,15 +531,12 @@ export default {
 	}
 }
 
-.slide-fade-enter-active {
-	transition: all .3s ease;
+.list-item-content:hover .list-item-content__main {
+	flex-basis: calc(300px - 44px);
 }
-.slide-fade-leave-active {
-	transition: all .3s ease;
-}
-.slide-fade-enter, .slide-fade-leave-to {
-	transform: translateX(44px);
-	opacity: 0;
+
+.list-item-content:hover .list-item-content__action {
+	flex-basis: 44px;
 }
 
 </style>
