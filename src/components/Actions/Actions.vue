@@ -185,11 +185,12 @@ export default {
 					'action-item__menutoggle--default-icon': !iconSlotIsPopulated && defaultIcon === '',
 					'action-item__menutoggle--primary': primary
 				}"
-				:aria-label="ariaLabel"
 				aria-haspopup="true"
+				:aria-label="ariaLabel"
 				:aria-controls="randomId"
-				test-attr="1"
 				:aria-expanded="opened ? 'true' : 'false'"
+				test-attr="1"
+				type="button"
 				@focus="onFocus"
 				@blur="onBlur">
 				<slot v-if="iconSlotIsPopulated" name="icon" />

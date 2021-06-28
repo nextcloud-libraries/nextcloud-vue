@@ -84,6 +84,7 @@ export default {
 							v-tooltip.auto="playPauseTitle"
 							:class="{ 'play-pause-icons--paused': slideshowPaused }"
 							class="play-pause-icons"
+							type="button"
 							@click="togglePlayPause">
 							<!-- Play/pause icons -->
 							<Play v-if="!playing"
