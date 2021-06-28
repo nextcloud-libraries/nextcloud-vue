@@ -144,7 +144,7 @@
 							</span>
 
 							<!-- Counter -->
-							<span v-if="!displayActions" class="line-two__counter">
+							<span class="line-two__counter">
 								<CounterBubble
 									v-if="counterNumber != 0"
 									:highlighted="counterHighlighted">
@@ -155,20 +155,22 @@
 					</div>
 
 					<!-- Actions -->
-					<div
-						v-show="displayActions"
-						class="list-item-content__actions"
-						@click.prevent.stop="">
-						<Actions
-							ref="actions"
-							menu-align="right"
-							:aria-label="actionsAriaLabel"
-							@update:open="handleActionsUpdateOpen">
-							<!-- @slot Provide the actions for the right side quick menu -->
-							<slot
-								name="actions" />
-						</Actions>
-					</div>
+					<transition name="slide-fade">
+						<div
+							v-show="displayActions"
+							class="list-item-content__actions"
+							@click.prevent.stop="">
+							<Actions
+								ref="actions"
+								menu-align="right"
+								:aria-label="actionsAriaLabel"
+								@update:open="handleActionsUpdateOpen">
+								<!-- @slot Provide the actions for the right side quick menu -->
+								<slot
+									name="actions" />
+							</Actions>
+						</div>
+					</transition>
 				</div>
 			</div>
 
@@ -439,6 +441,8 @@ export default {
 	&:hover,
 	&:focus {
 		background-color: var(--color-background-hover);
+		.list-item-content__main {
+			flex-basis: calc(100% - 44px);
 	}
 	&--active,
 	&:active,
@@ -462,6 +466,7 @@ export default {
 			flex-direction: column;
 			width: 0;
 			margin: auto 0;
+			transition: all 2s
 		}
 
 		&__actions {
@@ -523,6 +528,17 @@ export default {
 	&__counter {
 		margin: 2px 4px 0 0;
 	}
+}
+
+.slide-fade-enter-active {
+	transition: all .3s ease;
+}
+.slide-fade-leave-active {
+	transition: all .3s ease;
+}
+.slide-fade-enter, .slide-fade-leave-to {
+	transform: translateX(44px);
+	opacity: 0;
 }
 
 </style>
