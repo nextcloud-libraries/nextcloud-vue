@@ -82,8 +82,9 @@ export default {
 	<li class="action" :class="{ 'action--disabled': disabled }">
 		<button
 			class="action-button"
-			:aria-label="ariaLabel"
 			:class="{ focusable: isFocusable }"
+			:aria-label="ariaLabel"
+			type="button"
 			@click="onClick">
 			<span :class="[isIconUrl ? 'action-button__icon--url' : icon]"
 				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"

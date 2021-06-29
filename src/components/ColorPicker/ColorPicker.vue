@@ -119,6 +119,7 @@ export default {
 						:style="{'background-color': color }"
 						class="color-picker-simple-color-circle"
 						:class="{ 'color-picker-simple-color-circle--active' : color === currentColor }"
+						type="button"
 						@click="pickColor(color)" />
 				</div>
 				<Chrome
@@ -133,14 +134,17 @@ export default {
 				<button
 					v-if="advanced"
 					class="color-picker-navigation-button back"
+					type="button"
 					@click="handleBack" />
 				<button
 					v-if="!advanced"
 					class="color-picker-navigation-button more-settings"
+					type="button"
 					@click="handleMoreSettings" />
 				<button
 					v-if="advanced"
 					class="color-picker-navigation-button confirm"
+					type="button"
 					@click="handleConfirm">
 					{{ t('Choose') }}
 				</button>

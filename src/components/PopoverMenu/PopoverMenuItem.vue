@@ -82,6 +82,7 @@
 			class="menuitem focusable"
 			:class="{active: item.active}"
 			:disabled="item.disabled"
+			type="button"
 			@click.stop.prevent="item.action">
 			<span :class="item.icon" />
 			<p v-if="item.text && item.longtext">
