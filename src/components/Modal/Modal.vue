@@ -82,6 +82,7 @@ export default {
 							v-tooltip.auto="playPauseTitle"
 							:class="{ 'play-pause--paused': slideshowPaused }"
 							class="play-pause"
+							type="button"
 							@click="togglePlayPause">
 							<!-- Progress circle, css animated -->
 							<div :class="[playing ? 'icon-pause' : 'icon-play']">

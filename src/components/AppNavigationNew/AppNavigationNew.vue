@@ -24,8 +24,8 @@
 	<div class="app-navigation-new">
 		<button :id="buttonId"
 			:class="buttonClass"
-			type="button"
 			:disabled="disabled"
+			type="button"
 			@click="$emit('click')">
 			{{ text }}
 		</button>
