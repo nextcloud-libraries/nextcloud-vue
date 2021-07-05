@@ -79,7 +79,7 @@ index 3a9ab8f8c1..4bc2b4a4d0 100644
 ## Releasing a new version
 
 - Pull the latest changes from `master` or `stableX`;
-- Checkout a new branch: `git checkout -b npm/v<version>`;
+- Checkout a new branch with the tag name (e.g `v4.0.1`): `git checkout -b v<version>`;
 - Run `npm version patch` (`npm version minor --no-git-tag-version` if minor). This will return a new version name, make sure it matches what you expect;
 - Commit, push and create PR;
 - Add the change log content from the 'Changelog' action on Github to `CHANGELOG.md`;
