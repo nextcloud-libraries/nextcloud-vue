@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v4.0.3](https://github.com/nextcloud/nextcloud-vue/tree/v4.0.3) (2021-07-05)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.0.2...v4.0.3)
+
+## Enhancements
+
+- Fix ActionCaption layout [\#2043](https://github.com/nextcloud/nextcloud-vue/pull/2043) ([marcoambrosini](https://github.com/marcoambrosini))
+
+## Fixed bugs
+
+- Add type=button attribute to buttons [\#2069](https://github.com/nextcloud/nextcloud-vue/pull/2069) ([Pytal](https://github.com/Pytal))
+- Fix AppContent mobile display [\#2048](https://github.com/nextcloud/nextcloud-vue/pull/2048) ([skjnldsv](https://github.com/skjnldsv))
+
+## Closed pull requests
+
+- v4.0.2 [\#2041](https://github.com/nextcloud/nextcloud-vue/pull/2041) ([marcoambrosini](https://github.com/marcoambrosini))
+
 ## [v4.0.2](https://github.com/nextcloud/nextcloud-vue/tree/v4.0.2) (2021-06-16)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.0.1...v4.0.2)
