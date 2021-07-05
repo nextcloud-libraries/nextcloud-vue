@@ -80,13 +80,13 @@ index 3a9ab8f8c1..4bc2b4a4d0 100644
 
 - Pull the latest changes from `master` or `stableX`;
 - Checkout a new branch with the tag name (e.g `v4.0.1`): `git checkout -b v<version>`;
-- Run `npm version patch` (`npm version minor --no-git-tag-version` if minor). This will return a new version name, make sure it matches what you expect;
+- Run `npm version patch --no-git-tag-version` (`npm version minor --no-git-tag-version` if minor). This will return a new version name, make sure it matches what you expect;
 - Commit, push and create PR;
 - Add the change log content from the 'Changelog' action on Github to `CHANGELOG.md`;
 - Commit and push;
-- Tag the commit then push the tag: `git tag v<version>`, `git push --tag`;
 - Get your PR reviewed and merged;
-- Create a release on github from the tag and add the changelog content as description (https://github.com/nextcloud/nextcloud-vue/releases);
+- Create a release on github with the version as tag (e.g `v4.0.1`) and add the changelog content as description (https://github.com/nextcloud/nextcloud-vue/releases);
+  ![image](https://user-images.githubusercontent.com/14975046/124442568-2a952500-dd7d-11eb-82a2-402f9170231a.png)
 
 <a href="https://www.netlify.com">
   <img src="https://www.netlify.com/img/global/badges/netlify-dark.svg"/>
