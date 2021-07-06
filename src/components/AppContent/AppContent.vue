@@ -29,6 +29,10 @@ This components provides a wrapper around the main app's content.
 Single-column layouts can just use the default slot. A resizable column
 can be added by providing content to the named slot `list`.
 
+### CSS variables
+In the css section some css variables are declared and will be available for
+all the children of the AppContent component
+
 ### Examples
 
 #### Usage: Single-column content
@@ -325,6 +329,10 @@ export default {
 	// Overriding server styles TODO: cleanup!
 	margin: 0 !important;
 	background-color: var(--color-main-background);
+
+	// Variables
+	// the whitespace between the topbar content and its edges
+	--topbar-margin: $topbar-margin: 4px;
 }
 
 // Mobile list/details handling
