@@ -19,7 +19,7 @@ jobs:
       matrix:
         # run x copies of the current job in parallel
         containers: [1, 2]
-        node-version: [12]
+        node-version: [14]
 
     name: Runner ${{ matrix.containers }}
 
