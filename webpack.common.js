@@ -110,7 +110,7 @@ module.exports = {
 					{
 						loader: 'sass-loader',
 						options: {
-							additionalData: `$scope_version:${SCOPE_VERSION}; @import 'variables'; @import 'material-icons';`,
+							additionalData: `@use 'sass:math'; $scope_version:${SCOPE_VERSION}; @import 'variables'; @import 'material-icons';`,
 							/**
 							 * ! needed for resolve-url-loader
 							 */

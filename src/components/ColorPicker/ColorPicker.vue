@@ -334,7 +334,7 @@ export default {
 			padding: 0;
 			margin: 0;
 			border: none;
-			border-radius: $clickable-area / 2;
+			border-radius: math.div($clickable-area, 2);
 			background: none;
 			justify-self: flex-end;
 			opacity: $opacity_normal;

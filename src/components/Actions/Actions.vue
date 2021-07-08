@@ -698,7 +698,7 @@ export default {
 		padding: 0;
 		cursor: pointer;
 		border: none;
-		border-radius: $clickable-area / 2;
+		border-radius: math.div($clickable-area, 2);
 		background-color: transparent;
 	}
 
@@ -741,8 +741,8 @@ export default {
 				height: 24px;
 				line-height: $icon-size;
 				position: absolute;
-				top: ($clickable-area - 24px) / 2;
-				left: ($clickable-area - 24px) / 2;
+				top: math.div($clickable-area - 24px, 2);
+				left: math.div($clickable-area - 24px, 2);
 			}
 		}
 

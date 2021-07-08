@@ -105,7 +105,7 @@
 			line-height: 1.6em;
 
 			// 14px are currently 1em line-height. Mixing units as '44px - 1.6em' does not work.
-			padding: #{($clickable-area - 1.6*14px) / 2} 0;
+			padding: #{math.div($clickable-area - 1.6 * 14px, 2)} 0;
 
 			cursor: pointer;
 			text-align: left;
