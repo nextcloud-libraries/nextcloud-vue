@@ -74,6 +74,9 @@ msgstr ""
 msgid "Pick an emoji"
 msgstr ""
 
+msgid "Please select a timezone:"
+msgstr ""
+
 msgid "Previous"
 msgstr ""
 
