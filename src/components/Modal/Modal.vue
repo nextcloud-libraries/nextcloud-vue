@@ -728,7 +728,8 @@ $header-size: 50px;
 		.prev,
 		.next {
 			position: absolute;
-			width: 10%;
+			width: 8%;
+			height: 35vw;
 		}
 		.prev {
 			left: 0;
@@ -744,8 +745,9 @@ $header-size: 50px;
 		}
 		.prev,
 		.next {
-			width: 10%;
+			width: 8%;
 			min-width: $clickable-area;
+			height: 35vw;
 		}
 	}
 }
