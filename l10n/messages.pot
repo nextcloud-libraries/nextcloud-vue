@@ -47,6 +47,9 @@ msgstr ""
 msgid "Frequently used"
 msgstr ""
 
+msgid "Global"
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr ""
 
@@ -102,6 +105,9 @@ msgid "Symbols"
 msgstr ""
 
 msgid "Travel & Places"
+msgstr ""
+
+msgid "Type to search timezone"
 msgstr ""
 
 msgid "Unable to search the group"
