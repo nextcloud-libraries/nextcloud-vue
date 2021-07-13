@@ -2,13 +2,13 @@
 # Translators:
 # Philipp Fischbeck <pfischbeck@googlemail.com>, 2020
 # ProfDrJones <jones@fs.cs.hm.edu>, 2020
-# Mario Siegmann <mario_siegmann@web.de>, 2020
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2021
 # Gustav Gyges, 2021
+# Mario Siegmann <mario_siegmann@web.de>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Gustav Gyges, 2021\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2021\n"
 "Language-Team: German (Germany) (https://www.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -58,6 +58,9 @@ msgstr "Essen & Trinken"
 
 msgid "Frequently used"
 msgstr "Häufig verwendet"
+
+msgid "Global"
+msgstr "Global"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
@@ -115,6 +118,9 @@ msgstr "Symbole"
 
 msgid "Travel & Places"
 msgstr "Reisen & Orte"
+
+msgid "Type to search timezone"
+msgstr "Tippen, um eine Zeitzone zu suchen"
 
 msgid "Unable to search the group"
 msgstr "Die Gruppe kann nicht durchsucht werden"
