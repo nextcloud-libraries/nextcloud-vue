@@ -55,6 +55,9 @@ msgstr "Jídlo a pití"
 msgid "Frequently used"
 msgstr "Často používané"
 
+msgid "Global"
+msgstr "Globální"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Dosaženo limitu počtu ({count}) znaků zprávy"
 
@@ -111,6 +114,9 @@ msgstr "Symboly"
 
 msgid "Travel & Places"
 msgstr "Cestování a místa"
+
+msgid "Type to search timezone"
+msgstr "Psaním vyhledejte časovou zónu"
 
 msgid "Unable to search the group"
 msgstr "Nedaří se hledat skupinu"
