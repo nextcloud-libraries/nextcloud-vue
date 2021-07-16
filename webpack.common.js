@@ -139,6 +139,7 @@ module.exports = {
 				loader: 'babel-loader',
 				exclude: BabelLoaderExcludeNodeModulesExcept([
 					'tributejs',
+					'calendar-js',
 				]),
 			},
 			{
