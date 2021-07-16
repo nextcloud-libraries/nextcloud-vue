@@ -128,7 +128,7 @@ export default {
 
 				<div class="timezone-popover-wrapper__title">
 					<strong>
-						{{ t('Please select a timezone:') }}
+						{{ t('Please select a time zone:') }}
 					</strong>
 				</div>
 				<TimezonePicker
