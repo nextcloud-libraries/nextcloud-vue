@@ -70,6 +70,34 @@ export default {
 }
 </script>
 ```
+
+### Timezone-aware date picker
+
+The datepicker can optionally include a picker for the preferred timezone. The selected time does not factor in the
+picked timezone, but you will have to convert it yourself when necessary.
+
+```vue
+<template>
+	<span>
+		<DatetimePicker
+			v-model="time"
+			type="datetime"
+			:show-timezone-select="true"
+			:timezone-id.sync="tz" /><br>
+		{{ time }} | {{ tz }}
+	</span>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			time: undefined,
+			tz: 'Europe/Berlin',
+		}
+	},
+}
+</script>
+```
 </docs>
 
 <template>
@@ -89,6 +117,26 @@ export default {
 		@select-year="handleSelectYear"
 		@select-month="handleSelectMonth"
 		@update:value="$emit('update:value', value)">
+		<template v-if="showTimezoneSelect" #icon-calendar>
+			<Popover
+				:open.sync="showTimezonePopover"
+				open-class="timezone-popover-wrapper">
+				<button slot="trigger"
+					class="datetime-picker-inline-icon icon-timezone icon"
+					:class="{'datetime-picker-inline-icon--highlighted': highlightTimezone}"
+					@mousedown.stop.prevent="() => {}" />
+
+				<div class="timezone-popover-wrapper__title">
+					<strong>
+						{{ t('Please select a timezone:') }}
+					</strong>
+				</div>
+				<TimezonePicker
+					v-model="tzVal"
+					class="timezone-popover-wrapper__timezone-select"
+					@input="$emit('update:timezone-id', arguments[0])" />
+			</Popover>
+		</template>
 		<template v-for="(_, slot) of $scopedSlots" #[slot]="scope">
 			<slot :name="slot" v-bind="scope" />
 		</template>
@@ -98,11 +146,16 @@ export default {
 <script>
 import DatePicker from 'vue2-datepicker'
 
+import Popover from '../Popover/index'
+import TimezonePicker from '../TimezonePicker'
+
 export default {
 	name: 'DatetimePicker',
 
 	components: {
 		DatePicker,
+		Popover,
+		TimezonePicker,
 	},
 
 	inheritAttrs: false,
@@ -149,11 +202,34 @@ export default {
 			},
 		},
 
+		/**
+		 * The value to initialize, but also two-way bind the selected date. The date is – like the `Date` object in
+		 * JavaScript – tied to UTC. The selected timezone does not have an influence of the selected time and date
+		 * value. You have to translate the time yourself when you want to factor in timezones.
+		 */
 		// eslint-disable-next-line
 		value: {
 			default() {
 				return new Date()
 			},
+		},
+
+		/**
+		 * The preselected IANA timezone ID for the timezone picker, only relevant in combination with `:show-timezone-select="true"`. Example: `Europe/Berlin`. The prop supports two-way binding through the .sync modifier.
+		 */
+		timezoneId: {
+			type: String,
+			default: 'UTC',
+		},
+
+		showTimezoneSelect: {
+			type: Boolean,
+			default: false,
+		},
+
+		highlightTimezone: {
+			type: Boolean,
+			default: false,
 		},
 
 		appendToBody: {
@@ -165,6 +241,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+	},
+
+	data() {
+		return {
+			showTimezonePopover: false,
+			tzVal: this.timezoneId,
+		}
 	},
 
 	methods: {
@@ -179,6 +262,7 @@ export default {
 				}
 			}
 		},
+
 		handleSelectMonth(month) {
 			const value = this.$refs.datepicker.currentValue
 			if (value) {
@@ -190,6 +274,37 @@ export default {
 				}
 			}
 		},
+
+		/**
+		 * Toggles the visibility of the timezone popover
+		 */
+		toggleTimezonePopover() {
+			if (!this.showTimezoneSelect) {
+				// Just a click on the icon, but not for timezones -> ignore
+				return
+			}
+
+			this.showTimezonePopover = !this.showTimezonePopover
+		},
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.datetime-picker-inline-icon {
+	opacity: .3;
+	border: none;
+	background-color: transparent;
+	border-radius: 0;
+	padding: 6px !important;
+
+	&--highlighted {
+		opacity: .7;
+	}
+
+	&:focus,
+	&:hover {
+		opacity: 1;
+	}
+}
+</style>
