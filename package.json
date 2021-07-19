@@ -122,7 +122,7 @@
 		"url-loader": "^4.1.0",
 		"vue-eslint-parser": "^7.1.0",
 		"vue-jest": "^3.0.5",
-		"vue-loader": "^15.9.1",
+		"vue-loader": "^16.3.1",
 		"vue-styleguidist": "^4.33.9",
 		"vue-template-compiler": "^2.6.11",
 		"webpack": "^4.42.1",
