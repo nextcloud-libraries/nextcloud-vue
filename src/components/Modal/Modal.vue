@@ -271,7 +271,7 @@ export default {
 		 */
 		slideshowDelay: {
 			type: Number,
-			default: 3000,
+			default: 5000,
 		},
 		/**
 		 * Allow to pause an ongoing slideshow
