@@ -56,6 +56,9 @@ msgstr "Jedzenie i picie"
 msgid "Frequently used"
 msgstr "Często używane"
 
+msgid "Global"
+msgstr "Globalnie"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Przekroczono limit wiadomości wynoszący {count} znaków"
 
@@ -79,6 +82,9 @@ msgstr "Ludzie i ciało"
 
 msgid "Pick an emoji"
 msgstr "Wybierz emoji"
+
+msgid "Please select a timezone:"
+msgstr "Wybierz strefę czasową:"
 
 msgid "Previous"
 msgstr "Poprzedni"
@@ -112,6 +118,9 @@ msgstr "Symbole"
 
 msgid "Travel & Places"
 msgstr "Podróże i miejsca"
+
+msgid "Type to search timezone"
+msgstr "Wpisz, aby wyszukać strefę czasową"
 
 msgid "Unable to search the group"
 msgstr "Nie można przeszukać grupy"
