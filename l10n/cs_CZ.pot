@@ -82,6 +82,9 @@ msgstr "Lidé a tělo"
 msgid "Pick an emoji"
 msgstr "Vybrat emoji"
 
+msgid "Please select a timezone:"
+msgstr "Vyberte časovou zónu:"
+
 msgid "Previous"
 msgstr "Předchozí"
 
