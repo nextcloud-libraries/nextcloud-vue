@@ -87,7 +87,7 @@ export default {
 	},
 	computed: {
 		placeholder() {
-			return t('Type to search timezone')
+			return t('Type to search time zone')
 		},
 		selectedTimezone() {
 			for (const additionalTimezone of this.additionalTimezones) {

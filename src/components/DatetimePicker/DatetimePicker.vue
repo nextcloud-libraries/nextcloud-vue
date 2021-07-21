@@ -71,10 +71,10 @@ export default {
 </script>
 ```
 
-### Timezone-aware date picker
+### Time zone aware date picker
 
-The datepicker can optionally include a picker for the preferred timezone. The selected time does not factor in the
-picked timezone, but you will have to convert it yourself when necessary.
+The datepicker can optionally include a picker for the preferred time zone. The selected time does not factor in the
+picked time zone, but you will have to convert it yourself when necessary.
 
 ```vue
 <template>
@@ -128,7 +128,7 @@ export default {
 
 				<div class="timezone-popover-wrapper__title">
 					<strong>
-						{{ t('Please select a timezone:') }}
+						{{ t('Please select a time zone:') }}
 					</strong>
 				</div>
 				<TimezonePicker
@@ -204,8 +204,8 @@ export default {
 
 		/**
 		 * The value to initialize, but also two-way bind the selected date. The date is – like the `Date` object in
-		 * JavaScript – tied to UTC. The selected timezone does not have an influence of the selected time and date
-		 * value. You have to translate the time yourself when you want to factor in timezones.
+		 * JavaScript – tied to UTC. The selected time zone does not have an influence of the selected time and date
+		 * value. You have to translate the time yourself when you want to factor in time zones.
 		 */
 		// eslint-disable-next-line
 		value: {
@@ -215,7 +215,7 @@ export default {
 		},
 
 		/**
-		 * The preselected IANA timezone ID for the timezone picker, only relevant in combination with `:show-timezone-select="true"`. Example: `Europe/Berlin`. The prop supports two-way binding through the .sync modifier.
+		 * The preselected IANA time zone ID for the time zone picker, only relevant in combination with `:show-timezone-select="true"`. Example: `Europe/Berlin`. The prop supports two-way binding through the .sync modifier.
 		 */
 		timezoneId: {
 			type: String,
@@ -276,11 +276,11 @@ export default {
 		},
 
 		/**
-		 * Toggles the visibility of the timezone popover
+		 * Toggles the visibility of the time zone popover
 		 */
 		toggleTimezonePopover() {
 			if (!this.showTimezoneSelect) {
-				// Just a click on the icon, but not for timezones -> ignore
+				// Just a click on the icon, but not for time zones -> ignore
 				return
 			}
 

@@ -21,14 +21,14 @@ import argparse, ftplib, json, os, os.path, re, shutil, subprocess, sys, tarfile
 from collections import OrderedDict
 from datetime import date, timedelta
 
-# Keep timezone changes from this date onwards. If the zones.json file is becoming
+# Keep time zone changes from this date onwards. If the zones.json file is becoming
 # too large, consider changing to a later date.
 HISTORY_CUTOFF = 20180101
 FUTURE_CUTOFF = 20221231
 
 
 class TimezoneUpdater(object):
-    """ Timezone updater class, use the run method to do everything automatically"""
+    """ Time zone updater class, use the run method to do everything automatically"""
     def __init__(self, tzdata_path, zoneinfo_pure_path):
         self.tzdata_path = tzdata_path
         self.zoneinfo_pure_path = zoneinfo_pure_path
@@ -72,7 +72,7 @@ class TimezoneUpdater(object):
         ], stdout=sys.stderr)
 
     def read_backward(self):
-        """Read the 'backward' file, which contains timezone identifier links"""
+        """Read the 'backward' file, which contains time zone identifier links"""
         links = {}
         with open(os.path.join(self.tzdata_path, "backward"), "r") as backward:
             for line in backward:
@@ -160,7 +160,7 @@ class TimezoneUpdater(object):
             component = kept_components[i]
             last = i == len(kept_components) - 1
             # In this block of code, we attempt to match what vzic does when
-            # creating "Outlook-compatible" timezone files. This is to minimize
+            # creating "Outlook-compatible" time zone files. This is to minimize
             # changes in our zones.json file. And to be more Outlook-compatible.
             if int(component["DTSTART"][0:8]) < HISTORY_CUTOFF:
                 if not last and "valid_rdates" in component and len(component["valid_rdates"]) > 0:
@@ -297,7 +297,7 @@ class TimezoneUpdater(object):
             jsonfile.write("\n")
 
     def run(self, zones_json_file, tzprops_file, vzic_path):
-        """Run the timezone updater, with a zones.json file and the path to vzic"""
+        """Run the time zone updater, with a zones.json file and the path to vzic"""
 
         need_download_tzdata = self.tzdata_path is None
         if need_download_tzdata:
@@ -335,7 +335,7 @@ class TimezoneUpdater(object):
 def parse_args():
     """Gather arguments from the command-line."""
     parser = argparse.ArgumentParser(
-        description="Create timezone info JSON file from tzdata files"
+        description="Create time zone info JSON file from tzdata files"
     )
     parser.add_argument("-v", "--vzic", dest="vzic_path", required=True,
                         help="""Path to the `vzic` executable. This must be
@@ -343,7 +343,7 @@ def parse_args():
                         compiled.""")
     parser.add_argument("-t", "--tzdata", dest="tzdata_path",
                         help="""Path to a directory containing the IANA
-                        timezone data.  If this argument is omitted, the data
+                        time zone data.  If this argument is omitted, the data
                         will be downloaded from ftp.iana.org.""")
     return parser.parse_args()
 
@@ -387,7 +387,7 @@ def create_test_data(zones_file):
             wpf.write("\n")
 
         """Please run calendar xpshell test 'test_timezone_definition.js' to check the updated
-        timezone definition for any glitches."""
+        time zone definition for any glitches."""
 
     else:
         # This may happen if the script is executed multiple times without new tzdata available
@@ -396,7 +396,7 @@ def create_test_data(zones_file):
 
 
 def main():
-    """Run the timezone updater from command-line args"""
+    """Run the time zone updater from command-line args"""
     args = parse_args()
     json_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), "zones.json")
     tzprops_file = os.path.join(os.path.dirname(os.path.realpath(__file__)),
