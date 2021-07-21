@@ -74,7 +74,7 @@ msgstr ""
 msgid "Pick an emoji"
 msgstr ""
 
-msgid "Please select a timezone:"
+msgid "Please select a time zone:"
 msgstr ""
 
 msgid "Previous"
@@ -110,7 +110,7 @@ msgstr ""
 msgid "Travel & Places"
 msgstr ""
 
-msgid "Type to search timezone"
+msgid "Type to search time zone"
 msgstr ""
 
 msgid "Unable to search the group"
