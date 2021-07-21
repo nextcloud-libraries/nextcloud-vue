@@ -7,10 +7,11 @@
 # Mario Siegmann <mario_siegmann@web.de>, 2020
 # Gustav Gyges, 2021
 # Markus Eckstein, 2021
+# Bernd Lukasik, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Markus Eckstein, 2021\n"
+"Last-Translator: Bernd Lukasik, 2021\n"
 "Language-Team: German (https://www.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -61,6 +62,9 @@ msgstr "Essen & Trinken"
 msgid "Frequently used"
 msgstr "Häufig verwendet"
 
+msgid "Global"
+msgstr "Global"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
 
@@ -84,6 +88,9 @@ msgstr "Menschen & Körper"
 
 msgid "Pick an emoji"
 msgstr "Ein Emoji auswählen"
+
+msgid "Please select a timezone:"
+msgstr "Bitte eine Zeitzone auswählen:"
 
 msgid "Previous"
 msgstr "Vorherige"
@@ -117,6 +124,9 @@ msgstr "Symbole"
 
 msgid "Travel & Places"
 msgstr "Reisen & Orte"
+
+msgid "Type to search timezone"
+msgstr "Tippen, um eine Zeitzone zu suchen"
 
 msgid "Unable to search the group"
 msgstr "Die Gruppe konnte nicht durchsucht werden"
