@@ -83,7 +83,7 @@ msgstr "Ludzie i ciało"
 msgid "Pick an emoji"
 msgstr "Wybierz emoji"
 
-msgid "Please select a timezone:"
+msgid "Please select a time zone:"
 msgstr "Wybierz strefę czasową:"
 
 msgid "Previous"
@@ -119,7 +119,7 @@ msgstr "Symbole"
 msgid "Travel & Places"
 msgstr "Podróże i miejsca"
 
-msgid "Type to search timezone"
+msgid "Type to search time zone"
 msgstr "Wpisz, aby wyszukać strefę czasową"
 
 msgid "Unable to search the group"
