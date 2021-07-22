@@ -82,7 +82,7 @@ msgstr "Lidé a tělo"
 msgid "Pick an emoji"
 msgstr "Vybrat emoji"
 
-msgid "Please select a timezone:"
+msgid "Please select a time zone:"
 msgstr "Vyberte časovou zónu:"
 
 msgid "Previous"
@@ -118,7 +118,7 @@ msgstr "Symboly"
 msgid "Travel & Places"
 msgstr "Cestování a místa"
 
-msgid "Type to search timezone"
+msgid "Type to search time zone"
 msgstr "Psaním vyhledejte časovou zónu"
 
 msgid "Unable to search the group"
