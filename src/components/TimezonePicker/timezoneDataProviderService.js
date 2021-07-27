@@ -19,7 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import { getTimezoneManager } from 'calendar-js'
+import { getTimezoneManager } from '@nextcloud/calendar-js'
 
 import tzData from '../../../resources/timezones/zones.json'
 import logger from '../../utils/logger.js'

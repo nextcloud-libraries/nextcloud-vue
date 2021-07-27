@@ -1,4 +1,9 @@
-name: Test
+# This workflow is provided via the organization template repository
+#
+# https://github.com/nextcloud/.github
+# https://docs.github.com/en/actions/learn-github-actions/sharing-workflows-with-your-organization
+
+name: Lint
 
 on:
   pull_request:
@@ -8,12 +13,14 @@ on:
       - stable*
 
 jobs:
-  jest:
+  lint:
     runs-on: ubuntu-latest
 
-    name: node
+    name: stylelint
+
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: Read package.json node and npm engines version
         uses: skjnldsv/read-package-engines-version-actions@v1.1
@@ -33,5 +40,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Test
-        run: npm run test
+      - name: Lint
+        run: npm run stylelint

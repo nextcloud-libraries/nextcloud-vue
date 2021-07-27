@@ -138,6 +138,7 @@ module.exports = {
 				test: /\.js$/,
 				loader: 'babel-loader',
 				exclude: BabelLoaderExcludeNodeModulesExcept([
+					'@nextcloud/calendar-js',
 					'tributejs',
 				]),
 			},
