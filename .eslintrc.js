@@ -9,4 +9,7 @@ module.exports = {
 	extends: [
 		'@nextcloud',
 	],
+	plugins: [
+		'cypress',
+	],
 }
