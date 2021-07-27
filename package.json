@@ -45,7 +45,7 @@
 		"@nextcloud/l10n": "^1.2.3",
 		"@nextcloud/logger": "^2.0.0",
 		"@nextcloud/router": "^2.0.0",
-		"calendar-js": "git+https://github.com/nextcloud/calendar-js.git",
+		"@nextcloud/calendar-js": "^1.0.0",
 		"debounce": "1.2.1",
 		"emoji-mart-vue-fast": "^7.0.7",
 		"escape-html": "^1.0.3",
