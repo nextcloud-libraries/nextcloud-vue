@@ -404,7 +404,7 @@ $input-margin: 4px;
 		}
 	}
 
-	&__picker::v-deep { // stylelint-disable-line
+	&__picker::v-deep {
 		.mx-input {
 			margin: 0;
 		}
