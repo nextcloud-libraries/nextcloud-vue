@@ -1,3 +1,8 @@
+# This workflow is provided via the organization template repository
+#
+# https://github.com/nextcloud/.github
+# https://docs.github.com/en/actions/learn-github-actions/sharing-workflows-with-your-organization
+
 name: Publish
 
 on:
@@ -5,36 +10,42 @@ on:
     types: [published]
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14]
-
-    name: node${{ matrix.node-version }}
+    name: Build and publish to npm
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up node ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Check actor permission level
+        uses: skjnldsv/check-actor-permission@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          require: admin
 
-      - name: Cleanup
-        run: |
-          rm -rf dist/
-          rm -rf src/fonts/
+      - name: Checkout
+        uses: actions/checkout@v2
 
+      - name: Read package.json node and npm engines version
+        uses: skjnldsv/read-package-engines-version-actions@v1.1
+        id: versions
+        with:
+          fallbackNode: '^12'
+          fallbackNpm: '^6'
+
+      - name: Set up node ${{ steps.versions.outputs.nodeVersion }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ steps.versions.outputs.nodeVersion }}
+
+      - name: Set up npm ${{ steps.versions.outputs.npmVersion }}
+        run: npm i -g npm@"${{ steps.versions.outputs.npmVersion }}"
 
       - name: Install dependencies & build
         run: |
           npm ci
           npm run build --if-present
 
-      - name: Publish to npm
+      - name: Publish
         run: |
           npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
           npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
