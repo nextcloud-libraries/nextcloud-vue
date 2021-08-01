@@ -24,6 +24,7 @@
 ### General description
 
 This component displays contenteditable div with automated @ autocompletion [at].
+Note you need to register the [tooltip directive](https://nextcloud-vue-components.netlify.app/#/Directives) in your entry file.
 
 ### Examples
 
