@@ -59,6 +59,9 @@ msgstr "Comida & Bebida"
 msgid "Frequently used"
 msgstr "Mais usados"
 
+msgid "Global"
+msgstr "Global"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Limite de mensagem de {count} caracteres atingido"
 
@@ -82,6 +85,9 @@ msgstr "Pessoas & Corpo"
 
 msgid "Pick an emoji"
 msgstr "Escolha um emoji"
+
+msgid "Please select a time zone:"
+msgstr "Selecione um fuso horário: "
 
 msgid "Previous"
 msgstr "Anterior"
@@ -115,6 +121,9 @@ msgstr "Símbolo"
 
 msgid "Travel & Places"
 msgstr "Viagem & Lugares"
+
+msgid "Type to search time zone"
+msgstr "Digite para pesquisar o fuso horário "
 
 msgid "Unable to search the group"
 msgstr "Não foi possível pesquisar o grupo"
