@@ -3,7 +3,7 @@
 ```js static
 import { Tooltip } from '@nextcloud/vue'
 
-Vue.directive('tooltip', VTooltip.VTooltip)
+Vue.directive('tooltip', Tooltip)
 ```
 
 The tooltip directive is based on v-tooltip. For a full feature list see the projects [README](https://github.com/Akryum/v-tooltip/blob/master/README.md#directive)
