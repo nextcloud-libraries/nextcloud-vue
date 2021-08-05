@@ -43,6 +43,9 @@ export default {
 		 * @returns {Promise<void>}
 		 */
 		async fetchUserStatus(userId) {
+			if (!userId) {
+				return
+			}
 			const capabilities = getCapabilities()
 			if (!Object.prototype.hasOwnProperty.call(capabilities, 'user_status') || !capabilities.user_status.enabled) {
 				return
