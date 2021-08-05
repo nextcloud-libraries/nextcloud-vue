@@ -40,7 +40,9 @@ With a `<button>` as a trigger:
 ```vue
 <template>
 	<Popover>
-		<button slot="trigger"> I am the trigger </button>
+		<template #trigger>
+			<button> I am the trigger </button>
+		</template>
 		<template>
 		<h2>this is some content</h2>
 		</template>
@@ -61,7 +63,7 @@ With a `<button>` as a trigger:
 		<!-- This will be the popover target (for the events and position) -->
 		<slot name="trigger" />
 		<!-- This will be the content of the popover -->
-		<template slot="popover">
+		<template #popover>
 			<slot />
 		</template>
 	</VPopover>

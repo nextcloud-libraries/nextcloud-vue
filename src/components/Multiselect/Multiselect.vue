@@ -214,7 +214,9 @@ export default {
 			<slot :name="slot" v-bind="scope" />
 		</template>
 
-		<span slot="noResult">{{ t('No results') }}</span>
+		<template #noResult>
+			<span>{{ t('No results') }}</span>
+		</template>
 	</VueMultiselect>
 </template>
 

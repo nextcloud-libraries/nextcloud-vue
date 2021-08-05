@@ -35,7 +35,9 @@ include a standard-header like it's used by the files app.
 		title="cat-picture.jpg"
 		subtitle="last edited 3 weeks ago">
 		<AppSidebarTab icon="icon-settings" name="Settings" id="settings">
-			<Cog slot="icon" :size="24" decorative />
+			<template #icon>
+				<Cog :size="24" decorative />
+			</template>
 			Settings tab content
 		</AppSidebarTab>
 		<AppSidebarTab icon="icon-share" name="Sharing" id="share">
@@ -87,7 +89,7 @@ include a standard-header like it's used by the files app.
 		:title-placeholder="titlePlaceholder"
 		:subtitle="subtitle"
 		@update:title="titleUpdate">
-		<template slot="tertiary-actions">
+		<template #tertiary-actions>
 			<form>
 				<input type="checkbox" @click="toggledCheckbox"/>
 			</form>

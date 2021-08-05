@@ -36,10 +36,9 @@ is dropped on a creadcrumb.
 		<div class="container">
 			<Breadcrumbs @dropped="dropped">
 				<Breadcrumb title="Home" href="/" @dropped="droppedOnCrumb">
-					<Folder
-						slot="icon"
-						:size="24"
-						decorative />
+					<template #icon>
+						<Folder :size="24" decorative />
+					</template>
 				</Breadcrumb>
 				<Breadcrumb title="Folder 1" href="/Folder 1" />
 				<Breadcrumb title="Folder 2" href="/Folder 1/Folder 2" :disable-drop="true" />
