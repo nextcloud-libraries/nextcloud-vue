@@ -89,15 +89,13 @@ It can be used with one or multiple actions.
 	<div style="display: flex;align-items: center;">
 		<button @click="toggled = !toggled">Toggle multiple action</button>
 		<Actions>
-			<DotsHorizontalCircleOutline
-				slot="icon"
-				:size="24"
-				decorative />
+			<template #icon>
+				<DotsHorizontalCircleOutline :size="24" decorative />
+			</template>
 			<ActionButton>
-				<MicrophoneOff
-					slot="icon"
-					:size="24"
-					decorative />
+				<template #icon>
+					<MicrophoneOff :size="24" decorative />
+				</template>
 				Mute
 			</ActionButton>
 			<ActionButton v-if="toggled" icon="icon-delete">Delete</ActionButton>
@@ -174,29 +172,30 @@ export default {
 			@after-show="onOpen"
 			@hide="closeMenu">
 			<!-- Menu open/close trigger button -->
-			<button slot="trigger"
-				ref="menuButton"
-				:disabled="disabled"
-				class="icon action-item__menutoggle"
-				:class="{
-					[defaultIcon]: !iconSlotIsPopulated,
-					'action-item__menutoggle--with-title': menuTitle,
-					'action-item__menutoggle--with-icon-slot': iconSlotIsPopulated,
-					'action-item__menutoggle--default-icon': !iconSlotIsPopulated && defaultIcon === '',
-					'action-item__menutoggle--primary': primary
-				}"
-				aria-haspopup="true"
-				:aria-label="ariaLabel"
-				:aria-controls="randomId"
-				:aria-expanded="opened ? 'true' : 'false'"
-				test-attr="1"
-				type="button"
-				@focus="onFocus"
-				@blur="onBlur">
-				<slot v-if="iconSlotIsPopulated" name="icon" />
-				<DotsHorizontal v-else-if="defaultIcon === ''" :size="24" decorative />
-				{{ menuTitle }}
-			</button>
+			<template #trigger>
+				<button ref="menuButton"
+					:disabled="disabled"
+					class="icon action-item__menutoggle"
+					:class="{
+						[defaultIcon]: !iconSlotIsPopulated,
+						'action-item__menutoggle--with-title': menuTitle,
+						'action-item__menutoggle--with-icon-slot': iconSlotIsPopulated,
+						'action-item__menutoggle--default-icon': !iconSlotIsPopulated && defaultIcon === '',
+						'action-item__menutoggle--primary': primary
+					}"
+					aria-haspopup="true"
+					:aria-label="ariaLabel"
+					:aria-controls="randomId"
+					:aria-expanded="opened ? 'true' : 'false'"
+					test-attr="1"
+					type="button"
+					@focus="onFocus"
+					@blur="onBlur">
+					<slot v-if="iconSlotIsPopulated" name="icon" />
+					<DotsHorizontal v-else-if="defaultIcon === ''" :size="24" decorative />
+					{{ menuTitle }}
+				</button>
+			</template>
 
 			<!-- Menu content -->
 			<div v-show="opened"

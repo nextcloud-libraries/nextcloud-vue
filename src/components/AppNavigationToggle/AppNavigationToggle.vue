@@ -27,11 +27,11 @@
 			:aria-expanded="open ? 'true' : 'false'"
 			aria-controls="app-navigation-vue"
 			@click="toggleNavigation">
-			<Menu
-				slot="icon"
-				:size="24"
-				title=""
-				decorative />
+			<template #icon>
+				<Menu :size="24"
+					title=""
+					decorative />
+			</template>
 			{{ label }}
 		</ActionButton>
 	</Actions>

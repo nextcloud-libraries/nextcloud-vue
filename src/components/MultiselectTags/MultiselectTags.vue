@@ -75,7 +75,9 @@ export default {
 		:tag-width="60"
 		:disabled="disabled"
 		@input="update">
-		<span slot="noResult">{{ t('No results') }}</span>
+		<template #noResult>
+			<span>{{ t('No results') }}</span>
+		</template>
 		<template #option="scope">
 			{{ tagLabel(scope.option) }}
 		</template>

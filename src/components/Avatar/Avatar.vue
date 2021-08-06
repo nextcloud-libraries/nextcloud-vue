@@ -67,7 +67,7 @@
 			@after-show="handlePopoverAfterShow"
 			@after-hide="handlePopoverAfterHide">
 			<PopoverMenu ref="popoverMenu" :menu="menu" />
-			<template slot="trigger">
+			<template #trigger>
 				<div v-if="contactsMenuLoading" class="icon-loading" />
 				<DotsHorizontal v-else
 					:size="24"

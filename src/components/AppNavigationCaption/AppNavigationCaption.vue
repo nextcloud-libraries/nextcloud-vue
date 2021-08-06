@@ -2,9 +2,9 @@
 ```
 <AppNavigationCaption
 	title="Your caption goes here">
-	<ActionButton
-		slot="actions"
-		icon="icon-add"/>
+	<template #actions>
+		<ActionButton icon="icon-add"/>
+	</template>
 </AppNavigationCaption>
 ```
 </docs>

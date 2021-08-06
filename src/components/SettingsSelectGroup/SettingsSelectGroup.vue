@@ -35,7 +35,9 @@
 		:disabled="disabled"
 		@input="update"
 		@search-change="findGroup">
-		<span slot="noResult">{{ t( 'No results') }}</span>
+		<template #noResult>
+			<span>{{ t( 'No results') }}</span>
+		</template>
 	</Multiselect>
 </template>
 

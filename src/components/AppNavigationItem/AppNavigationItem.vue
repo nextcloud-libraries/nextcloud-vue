@@ -47,7 +47,7 @@ button will be automatically created.
 
 ```
 <AppNavigationItem title="Item with actions" icon="icon-category-enabled">
-	<template slot="actions">
+	<template #actions>
 		<ActionButton icon="icon-edit" @click="alert('Edit')">
 			Edit
 		</ActionButton>
@@ -60,13 +60,15 @@ button will be automatically created.
 ```
 
 ### Element with counter
-Just nest the counter into `<AppNavigationItem>` and add `slot="counter"` to it.
+Just nest the counter in a template within `<AppNavigationItem>` and add `#counter` to it.
 
 ```
 <AppNavigationItem title="Item with counter" icon="icon-folder">
-	<CounterBubble slot="counter">
-		99+
-	</CounterBubble>
+	<template #counter>
+		<CounterBubble>
+			99+
+		</CounterBubble>
+	</template>
 </AppNavigationItem>
 ```
 

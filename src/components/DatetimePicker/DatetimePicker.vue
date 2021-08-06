@@ -121,10 +121,11 @@ export default {
 			<Popover
 				:open.sync="showTimezonePopover"
 				open-class="timezone-popover-wrapper">
-				<button slot="trigger"
-					class="datetime-picker-inline-icon icon-timezone icon"
-					:class="{'datetime-picker-inline-icon--highlighted': highlightTimezone}"
-					@mousedown.stop.prevent="() => {}" />
+				<template #trigger>
+					<button class="datetime-picker-inline-icon icon-timezone icon"
+						:class="{'datetime-picker-inline-icon--highlighted': highlightTimezone}"
+						@mousedown.stop.prevent="() => {}" />
+				</template>
 
 				<div class="timezone-popover-wrapper__title">
 					<strong>

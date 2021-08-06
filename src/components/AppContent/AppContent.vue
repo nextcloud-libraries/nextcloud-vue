@@ -44,7 +44,7 @@ can be added by providing content to the named slot `list`.
 ```vue
 <template>
 	<AppContent>
-		<template slot="list">
+		<template #list>
 			<div>Resizable list content</div>
 		</template>
 

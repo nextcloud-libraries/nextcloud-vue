@@ -25,15 +25,21 @@
 This component is made to be used inside of the [AppNavigationItem](#AppNavigationItem) component slot: `icon`.
 
 ```
-<AppNavigationIconBullet slot="icon" color="0082c9" />
-<AppNavigationIconBullet slot="icon" color="#0082c9" />
+<template #icon>
+	<AppNavigationIconBullet color="0082c9" />
+</template>
+<template #icon>
+	<AppNavigationIconBullet color="#0082c9" />
+</template>
 
 ```
 
 ### AppNavigationItem example
 ```
 <AppNavigationItem  title="Entry 2" :pinned="true">
-	<AppNavigationIconBullet slot="icon" color="0082c9" />
+	<template #icon>
+		<AppNavigationIconBullet color="0082c9" />
+	</template>
 </AppNavigationItem>
 ```
 </docs>
