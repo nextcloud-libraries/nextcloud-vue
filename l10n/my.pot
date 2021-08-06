@@ -1,0 +1,128 @@
+# 
+# Translators:
+# Htike Aung Kyaw <htikeagkyaw@gmail.com>, 2021
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Htike Aung Kyaw <htikeagkyaw@gmail.com>, 2021\n"
+"Language-Team: Burmese (https://www.transifex.com/nextcloud/teams/64236/my/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: my\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "{tag} (invisible)"
+msgstr "{tag} (ကွယ်ဝှက်ထား)"
+
+msgid "{tag} (restricted)"
+msgstr "{tag} (ကန့်သတ်)"
+
+msgid "Actions"
+msgstr "လုပ်ဆောင်ချက်များ"
+
+msgid "Activities"
+msgstr "ပြုလုပ်ဆောင်တာများ"
+
+msgid "Animals & Nature"
+msgstr "တိရစ္ဆာန်များနှင့် သဘာဝ"
+
+msgid "Avatar of {displayName}"
+msgstr "{displayName} ၏ ကိုယ်ပွား"
+
+msgid "Cancel changes"
+msgstr "ပြောင်းလဲမှုများ ပယ်ဖျက်ရန်"
+
+msgid "Choose"
+msgstr "ရွေးချယ်ရန်"
+
+msgid "Close"
+msgstr "ပိတ်ရန်"
+
+msgid "Confirm changes"
+msgstr "ပြောင်းလဲမှုများ အတည်ပြုရန်"
+
+msgid "Custom"
+msgstr "အလိုကျချိန်ညှိမှု"
+
+msgid "External documentation for {title}"
+msgstr "{title} အတွက် ပြင်ပ စာရွက်စာတမ်း"
+
+msgid "Flags"
+msgstr "အလံများ"
+
+msgid "Food & Drink"
+msgstr "အစားအသောက်"
+
+msgid "Frequently used"
+msgstr "မကြာခဏအသုံးပြုသော"
+
+msgid "Global"
+msgstr "ကမ္ဘာလုံးဆိုင်ရာ"
+
+msgid "Message limit of {count} characters reached"
+msgstr "ကန့်သတ် စာလုံးရေ {count} လုံး ပြည့်ပါပြီ"
+
+msgid "Next"
+msgstr "နောက်သို့ဆက်ရန်"
+
+msgid "No emoji found"
+msgstr "အီမိုဂျီ ရှာဖွေမတွေ့နိုင်ပါ"
+
+msgid "No results"
+msgstr "ရလဒ်မရှိပါ"
+
+msgid "Objects"
+msgstr "အရာဝတ္ထုများ"
+
+msgid "Pause slideshow"
+msgstr "စလိုက်ရှိုး ခေတ္တရပ်ရန်"
+
+msgid "People & Body"
+msgstr "လူပုဂ္ဂိုလ်များနှင့် ခန္ဓာကိုယ်"
+
+msgid "Pick an emoji"
+msgstr "အီမိုဂျီရွေးရန်"
+
+msgid "Please select a time zone:"
+msgstr "ဒေသစံတော်ချိန် ရွေးချယ်ပေးပါ"
+
+msgid "Previous"
+msgstr "ယခင်"
+
+msgid "Search"
+msgstr "ရှာဖွေရန်"
+
+msgid "Search results"
+msgstr "ရှာဖွေမှု ရလဒ်များ"
+
+msgid "Select a tag"
+msgstr "tag ရွေးချယ်ရန်"
+
+msgid "Settings"
+msgstr "ချိန်ညှိချက်များ"
+
+msgid "Settings navigation"
+msgstr "ချိန်ညှိချက်အညွှန်း"
+
+msgid "Smileys & Emotion"
+msgstr "စမိုင်လီများနှင့် အီမိုရှင်း"
+
+msgid "Start slideshow"
+msgstr "စလိုက်ရှိုးအား စတင်ရန်"
+
+msgid "Submit"
+msgstr "တင်သွင်းရန်"
+
+msgid "Symbols"
+msgstr "သင်္ကေတများ"
+
+msgid "Travel & Places"
+msgstr "ခရီးသွားလာခြင်းနှင့် နေရာများ"
+
+msgid "Type to search time zone"
+msgstr "ဒေသစံတော်ချိန်များ ရှာဖွေရန် စာရိုက်ပါ"
+
+msgid "Unable to search the group"
+msgstr "အဖွဲ့အား ရှာဖွေ၍ မရနိုင်ပါ"
+
+msgid "Write message, @ to mention someone …"
+msgstr "စာရေးသားရန်၊ တစ်စုံတစ်ဦးအား @ အသုံးပြု ရည်ညွှန်းရန်..."
