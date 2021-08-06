@@ -27,6 +27,9 @@ msgstr "События"
 msgid "Animals & Nature"
 msgstr "Животные и природа "
 
+msgid "Avatar of {displayName}"
+msgstr "Аватар {displayName}"
+
 msgid "Cancel changes"
 msgstr "Отменить изменения"
 
@@ -54,6 +57,9 @@ msgstr "Еда, напиток"
 msgid "Frequently used"
 msgstr "Часто используемый"
 
+msgid "Global"
+msgstr "Глобальный"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Достигнуто ограничение на количество символов в {count}"
 
@@ -77,6 +83,9 @@ msgstr "Люди и тело"
 
 msgid "Pick an emoji"
 msgstr "Выберите эмодзи"
+
+msgid "Please select a time zone:"
+msgstr "Пожалуйста, выберите часовой пояс:"
 
 msgid "Previous"
 msgstr "Предыдущее"
@@ -110,6 +119,9 @@ msgstr "Символы"
 
 msgid "Travel & Places"
 msgstr "Путешествия и места"
+
+msgid "Type to search time zone"
+msgstr "Введите для поиска часового пояса"
 
 msgid "Unable to search the group"
 msgstr "Невозможно найти группу"
