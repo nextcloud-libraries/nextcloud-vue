@@ -73,7 +73,7 @@
 	"devDependencies": {
 		"@nextcloud/babel-config": "^1.0.0",
 		"@nextcloud/browserslist-config": "^2.1.0",
-		"@nextcloud/eslint-config": "^4.0.0",
+		"@nextcloud/eslint-config": "^6.0.1",
 		"@nextcloud/stylelint-config": "^1.0.0-beta.0",
 		"@vue/test-utils": "^1.0.4",
 		"babel-core": "^7.0.0-bridge.0",
