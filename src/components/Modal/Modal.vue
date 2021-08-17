@@ -295,7 +295,7 @@ export default {
 			type: String,
 			default: 'normal',
 			validator: size => {
-				return ['normal', 'large', 'full'].indexOf(size) !== -1
+				return ['small', 'medium', 'normal', 'large', 'full'].indexOf(size) !== -1
 			},
 		},
 		/**
@@ -673,9 +673,10 @@ $header-size: 50px;
 		display: flex !important;
 		align-items: center;
 		justify-content: center;
-		width: 15%;
-		min-width: 60px;
-		height: 100%;
+		width: 8%;
+		min-width: $clickable-area;
+		height: 35vw;
+		position: absolute;
 		transition: opacity 250ms,
 			visibility 250ms;
 
@@ -687,6 +688,12 @@ $header-size: 50px;
 		&.invisible[style*='display: none'] {
 			visibility: hidden;
 		}
+	}
+	.prev {
+		left: 0;
+	}
+	.next {
+		right: 0;
 	}
 
 	// buttons/icons
@@ -703,51 +710,63 @@ $header-size: 50px;
 	/* Content */
 	.modal-container {
 		display: block;
-		overflow: hidden;
+		overflow: auto; // avoids unecessary hacks if the content should be bigger than the modal
 		padding: 0;
 		transition: transform 300ms ease;
 		border-radius: var(--border-radius-large);
 		background-color: var(--color-main-background);
 		box-shadow: 0 0 40px rgba(0, 0, 0, .2);
 	}
-	&:not(&--large):not(&--full) .modal-container {
-		max-width: 900px;
-		max-height: 80%;
-	}
 
 	// Sizing
-	&--full {
+	&--small {
 		.modal-container {
-			max-width: 100%;
-			max-height: 100%;
-			border-radius: 0;
+			width: 350px;
+			height: 200px;
 		}
 	}
-	&--full,
-	&--spread-navigation {
-		.prev,
-		.next {
-			position: absolute;
-			width: 8%;
-			height: 35vw;
+	&--medium {
+		.modal-container {
+			width: 500px;
+			height: 600px;
 		}
-		.prev {
-			left: 0;
-		}
-		.next {
-			right: 0;
+	}
+	&--normal {
+		.modal-container {
+			max-width: 70%;
+			width: 700px;
+			max-height: 80%;
+			height: 600px;
 		}
 	}
 	&--large {
 		.modal-container {
-			max-width: 85%;
+			max-width: 90%;
+			width: 900px;
 			max-height: 90%;
+			height: 700px;
 		}
-		.prev,
-		.next {
-			width: 8%;
-			min-width: $clickable-area;
-			height: 35vw;
+	}
+	&--full {
+		.modal-container {
+			width: 100%;
+			height: calc(100% - $header-size);
+			position: absolute;
+			top: $header-size;
+			border-radius: 0;
+		}
+	}
+
+	// Make modal always full screen on mobile independent from modal size
+	@media only screen and (max-width: $breakpoint-mobile/2) {
+		&:not(&--small) .modal-container {
+			max-width: initial;
+			width: 100%;
+			max-height: initial;
+			height: calc(100% - $header-size);
+			position: absolute;
+			top: $header-size;
+			border-radius: 0;
 		}
 	}
 }
