@@ -295,7 +295,7 @@ export default {
 			type: String,
 			default: 'normal',
 			validator: size => {
-				return ['small', 'medium', 'normal', 'large', 'full'].indexOf(size) !== -1
+				return ['prompt', 'small', 'medium', 'normal', 'large', 'full'].includes(size)
 			},
 		},
 		/**
@@ -719,10 +719,16 @@ $header-size: 50px;
 	}
 
 	// Sizing
+	&--prompt {
+		.modal-container {
+			width: 300px;
+			height: 200px;
+		}
+	}
 	&--small {
 		.modal-container {
 			width: 350px;
-			height: 200px;
+			height: 450px;
 		}
 	}
 	&--medium {
@@ -759,7 +765,7 @@ $header-size: 50px;
 
 	// Make modal always full screen on mobile independent from modal size
 	@media only screen and (max-width: $breakpoint-mobile/2) {
-		&:not(&--small) .modal-container {
+		&:not(&--prompt):not(&--small) .modal-container {
 			max-width: initial;
 			width: 100%;
 			max-height: initial;
