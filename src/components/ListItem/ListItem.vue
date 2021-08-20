@@ -109,7 +109,7 @@
 			@mouseleave="handleMouseleave"
 			@focus="handleFocus"
 			@blur="handleBlur"
-			@keydown.tab="handleTab"
+			@keydown.tab.exact="handleTab"
 			@click="onClick"
 			@keydown.esc="hideActions">
 
