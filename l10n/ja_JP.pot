@@ -2,10 +2,11 @@
 # Translators:
 # YANO Tetsu <tetuyano+transi@gmail.com>, 2021
 # Katsumi Sasaki <tripper@kidnappers.gr.jp>, 2021
+# hiroshisuga <suga0330@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Katsumi Sasaki <tripper@kidnappers.gr.jp>, 2021\n"
+"Last-Translator: hiroshisuga <suga0330@gmail.com>, 2021\n"
 "Language-Team: Japanese (Japan) (https://www.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ja_JP\n"
@@ -56,6 +57,9 @@ msgstr "食べ物と飲み物"
 msgid "Frequently used"
 msgstr "よく使うもの"
 
+msgid "Global"
+msgstr "全体"
+
 msgid "Message limit of {count} characters reached"
 msgstr "{count} 文字のメッセージ上限に達しています"
 
@@ -80,6 +84,9 @@ msgstr "様々な人と体の部位"
 msgid "Pick an emoji"
 msgstr "絵文字を選択"
 
+msgid "Please select a time zone:"
+msgstr "タイムゾーンを選んで下さい："
+
 msgid "Previous"
 msgstr "前"
 
@@ -99,7 +106,7 @@ msgid "Settings navigation"
 msgstr "ナビゲーション設定"
 
 msgid "Smileys & Emotion"
-msgstr "笑顔と気持ち"
+msgstr "感情表現"
 
 msgid "Start slideshow"
 msgstr "スライドショーを開始"
@@ -113,8 +120,11 @@ msgstr "記号"
 msgid "Travel & Places"
 msgstr "旅行と場所"
 
+msgid "Type to search time zone"
+msgstr "タイムゾーン検索のため入力してください"
+
 msgid "Unable to search the group"
 msgstr "グループを検索できません"
 
 msgid "Write message, @ to mention someone …"
-msgstr "メッセージを書く、@ で通知します。"
+msgstr "メッセージを記入　@をつけるとその人に通知が行きます"
