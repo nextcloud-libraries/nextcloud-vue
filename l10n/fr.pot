@@ -6,10 +6,12 @@
 # Luclu7 <theluc7andcompagnie@gmail.com>, 2020
 # Julien Veyssier, 2020
 # Ludovici t <ludovic.tourtelier@e-c.bzh>, 2020
+# Framboise Pi, 2021
+# Boris Alet, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ludovici t <ludovic.tourtelier@e-c.bzh>, 2020\n"
+"Last-Translator: Boris Alet, 2021\n"
 "Language-Team: French (https://www.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -30,14 +32,26 @@ msgstr "Activités"
 msgid "Animals & Nature"
 msgstr "Animaux & Nature"
 
+msgid "Avatar of {displayName}"
+msgstr "Avatar de {displayName}"
+
+msgid "Cancel changes"
+msgstr "Annuler les modifications"
+
 msgid "Choose"
 msgstr "Choisir"
 
 msgid "Close"
 msgstr "Fermer"
 
+msgid "Confirm changes"
+msgstr "Confirmer les modifications"
+
 msgid "Custom"
 msgstr "Personnalisé"
+
+msgid "External documentation for {title}"
+msgstr "Documentation externe pour {title}"
 
 msgid "Flags"
 msgstr "Drapeaux"
@@ -47,6 +61,9 @@ msgstr "Nourriture & Boissons"
 
 msgid "Frequently used"
 msgstr "Utilisés fréquemment"
+
+msgid "Global"
+msgstr "Global"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Limite de messages de {count} caractères atteinte"
@@ -72,6 +89,9 @@ msgstr "Personnes & Corps"
 msgid "Pick an emoji"
 msgstr "Choisissez un émoji"
 
+msgid "Please select a time zone:"
+msgstr "Sélectionnez un fuseau horaire : "
+
 msgid "Previous"
 msgstr "Précédent"
 
@@ -96,11 +116,17 @@ msgstr "Smileys & Émotions"
 msgid "Start slideshow"
 msgstr "Démarrer le diaporama"
 
+msgid "Submit"
+msgstr "Valider"
+
 msgid "Symbols"
 msgstr "Symboles"
 
 msgid "Travel & Places"
 msgstr "Voyage & Lieux"
+
+msgid "Type to search time zone"
+msgstr "Saisissez les premiers lettres pour rechercher un fuseau horaire"
 
 msgid "Unable to search the group"
 msgstr "Impossible de chercher le groupe"
