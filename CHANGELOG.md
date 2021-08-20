@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v4.0.4](https://github.com/nextcloud/nextcloud-vue/tree/v4.0.4) (2021-08-18)
+
+## Enhancements
+- Simplify release process [\#2085](https://github.com/nextcloud/nextcloud-vue/pull/2085) ([skjnldsv](https://github.com/skjnldsv))
+- Add timezone picker [\#2095](https://github.com/nextcloud/nextcloud-vue/pull/2095) ([Christoph](https://github.com/ChristophWurst))
+- Check that userId is defined before querying [\#2159](https://github.com/nextcloud/nextcloud-vue/pull/2159) ([Raimund](https://github.com/raimund-schluessler))
+- Optionally make the DatetimePicker timezone-aware [\](https://github.com/nextcloud/nextcloud-vue/pull/2100) ([Christoph](https://github.com/ChristophWurst))
+- Use new named slot syntax [\#2160](https://github.com/nextcloud/nextcloud-vue/pull/2160) ([Raimund](https://github.com/raimund-schluessler))
+
+## Fixed bugs
+- Fix videoplayer controls in viewer [\#2099](https://github.com/nextcloud/nextcloud-vue/pull/2099) ([Simon](https://github.com/szaimen))
+- Fix typo on registering the directive [\#](https://github.com/nextcloud/nextcloud-vue/pull/2150) ([nickvergessen](https://github.com/nickvergessen))
+
 ## [v4.0.3](https://github.com/nextcloud/nextcloud-vue/tree/v4.0.3) (2021-07-05)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.0.2...v4.0.3)
