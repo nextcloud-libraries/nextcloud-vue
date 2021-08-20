@@ -56,6 +56,9 @@ msgstr "Jedlo a nápoje"
 msgid "Frequently used"
 msgstr "Často používané"
 
+msgid "Global"
+msgstr "Globálne"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Limit správy na {count} znakov dosiahnutý"
 
@@ -79,6 +82,9 @@ msgstr "Ľudia a telo"
 
 msgid "Pick an emoji"
 msgstr "Vyberte si emodži"
+
+msgid "Please select a time zone:"
+msgstr "Prosím vyberte časovú zónu:"
 
 msgid "Previous"
 msgstr "Predchádzajúci"
@@ -112,6 +118,9 @@ msgstr "Symboly"
 
 msgid "Travel & Places"
 msgstr "Cestovanie a miesta"
+
+msgid "Type to search time zone"
+msgstr "Začníte písať pre vyhľadávanie časovej zóny"
 
 msgid "Unable to search the group"
 msgstr "Skupinu sa nepodarilo nájsť"
