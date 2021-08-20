@@ -25,11 +25,20 @@ msgstr "活動"
 msgid "Animals & Nature"
 msgstr "動物與自然"
 
+msgid "Avatar of {displayName}"
+msgstr "{displayName} 的頭像"
+
+msgid "Cancel changes"
+msgstr "取消更改"
+
 msgid "Choose"
 msgstr "選擇"
 
 msgid "Close"
 msgstr "關閉"
+
+msgid "Confirm changes"
+msgstr "確認更改"
 
 msgid "Custom"
 msgstr "自定義"
@@ -45,6 +54,9 @@ msgstr "食物與飲料"
 
 msgid "Frequently used"
 msgstr "經常使用"
+
+msgid "Global"
+msgstr "全球的"
 
 msgid "Message limit of {count} characters reached"
 msgstr "已達到訊息最多 {count} 字元限制"
@@ -69,6 +81,9 @@ msgstr "人物"
 
 msgid "Pick an emoji"
 msgstr "選擇表情符號"
+
+msgid "Please select a time zone:"
+msgstr "請選擇時區："
 
 msgid "Previous"
 msgstr "上一個"
@@ -102,6 +117,9 @@ msgstr "標誌"
 
 msgid "Travel & Places"
 msgstr "旅遊與景點"
+
+msgid "Type to search time zone"
+msgstr "鍵入以搜索時區"
 
 msgid "Unable to search the group"
 msgstr "無法搜尋群組"
