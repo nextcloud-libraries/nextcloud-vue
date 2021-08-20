@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v4.1.0](https://github.com/nextcloud/nextcloud-vue/tree/v4.1.0) (2021-08-23)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.0.3...v4.1.0)
+
+## Enhancements
+
+- Set default slideshowdelay to 5000 ms [\#2122](https://github.com/nextcloud/nextcloud-vue/pull/2122) ([szaimen](https://github.com/szaimen))
+- Optionally make the DatetimePicker timezone-aware [\#2100](https://github.com/nextcloud/nextcloud-vue/pull/2100) ([ChristophWurst](https://github.com/ChristophWurst))
+- Fix videoplayer controls in viewer [\#2099](https://github.com/nextcloud/nextcloud-vue/pull/2099) ([szaimen](https://github.com/szaimen))
+- Add timezone picker [\#2095](https://github.com/nextcloud/nextcloud-vue/pull/2095) ([ChristophWurst](https://github.com/ChristophWurst))
+
+## Fixed bugs
+
+- Check that userId is defined before querying [\#2159](https://github.com/nextcloud/nextcloud-vue/pull/2159) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
+## Closed pull requests
+
+- Use new named slot syntax [\#2160](https://github.com/nextcloud/nextcloud-vue/pull/2160) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Add a hint about the tooltip directive [\#2151](https://github.com/nextcloud/nextcloud-vue/pull/2151) ([nickvergessen](https://github.com/nickvergessen))
+- Fix typo on registering the directive [\#2150](https://github.com/nextcloud/nextcloud-vue/pull/2150) ([nickvergessen](https://github.com/nickvergessen))
+- Simplify release process [\#2085](https://github.com/nextcloud/nextcloud-vue/pull/2085) ([skjnldsv](https://github.com/skjnldsv))
+
 ## [v4.0.3](https://github.com/nextcloud/nextcloud-vue/tree/v4.0.3) (2021-07-05)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.0.2...v4.0.3)
