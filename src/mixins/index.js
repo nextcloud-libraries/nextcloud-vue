@@ -20,16 +20,8 @@
  *
  */
 
-import excludeClickOutsideClasses from './excludeClickOutsideClasses'
-import isFullscreen from './isFullscreen'
-import isMobile from './isMobile'
-import richEditor from './richEditor'
-import userStatus from './userStatus'
-
-export {
-	excludeClickOutsideClasses,
-	isFullscreen,
-	isMobile,
-	richEditor,
-	userStatus,
-}
+export { default as excludeClickOutsideClasses } from './excludeClickOutsideClasses'
+export { default as isFullscreen } from './isFullscreen'
+export { default as isMobile } from './isMobile'
+export { default as richEditor } from './richEditor'
+export { default as userStatus } from './userStatus'

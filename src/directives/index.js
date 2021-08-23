@@ -20,12 +20,6 @@
  *
  */
 
-import Focus from './Focus'
-import Linkify from './Linkify'
-import Tooltip from './Tooltip'
-
-export {
-	Focus,
-	Linkify,
-	Tooltip,
-}
+export { default as Focus } from './Focus'
+export { default as Linkify } from './Linkify'
+export { default as Tooltip } from './Tooltip'
