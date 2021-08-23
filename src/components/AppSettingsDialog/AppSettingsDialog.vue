@@ -254,6 +254,7 @@ export default {
 			return createElement('Modal', {
 				attrs: {
 					container: this.container,
+					size: 'large',
 				},
 				on: {
 					close: () => { this.handleCloseModal() },
