@@ -28,7 +28,7 @@ providing the section's title prop. You can put your settings within each
 <template>
 	<div>
 		<button @click="settingsOpen = true">Show Settings</button>
-		<AppSettingsDialog :open.sync="settingsOpen" >
+		<AppSettingsDialog :open.sync="settingsOpen" showNavigation=true>
 			<AppSettingsSection title="Example title 1">
 				Some example content
 			</AppSettingsSection>
@@ -298,11 +298,13 @@ export default {
 		overflow-y: auto;
 		overflow-x: hidden;
 		padding: 24px;
+		width: 100%;
 	}
 }
 
 .navigation-list {
 	height: 100%;
+	box-sizing: border-box;
 	overflow-y: auto;
 	padding: 12px;
 	&__link {
