@@ -26,14 +26,26 @@ msgstr "Tevékenységek"
 msgid "Animals & Nature"
 msgstr "Állatok és természet"
 
+msgid "Avatar of {displayName}"
+msgstr "{displayName} profilképe"
+
+msgid "Cancel changes"
+msgstr "Változtatások elvetése"
+
 msgid "Choose"
 msgstr "Válassszon"
 
 msgid "Close"
 msgstr "Bezárás"
 
+msgid "Confirm changes"
+msgstr "Változtatások megerősítése"
+
 msgid "Custom"
 msgstr "Egyéni"
+
+msgid "External documentation for {title}"
+msgstr "Külső dokumentáció ehhez: {title}"
 
 msgid "Flags"
 msgstr "Zászló"
@@ -43,6 +55,9 @@ msgstr "Étel és ital"
 
 msgid "Frequently used"
 msgstr "Gyakran használt"
+
+msgid "Global"
+msgstr "Globális"
 
 msgid "Message limit of {count} characters reached"
 msgstr "{count} karakteres üzenetkorlát elérve"
@@ -68,6 +83,9 @@ msgstr "Emberek és test"
 msgid "Pick an emoji"
 msgstr "Válasszon egy emodzsit"
 
+msgid "Please select a time zone:"
+msgstr "Válasszon időzónát:"
+
 msgid "Previous"
 msgstr "Előző"
 
@@ -92,11 +110,17 @@ msgstr "Mosolyok és érzelmek"
 msgid "Start slideshow"
 msgstr "Diavetítés indítása"
 
+msgid "Submit"
+msgstr "Beküldés"
+
 msgid "Symbols"
 msgstr "Szimbólumok"
 
 msgid "Travel & Places"
 msgstr "Utazás és helyek"
+
+msgid "Type to search time zone"
+msgstr "Gépeljen az időzóna kereséséhez"
 
 msgid "Unable to search the group"
 msgstr "A csoport nem kereshető"
