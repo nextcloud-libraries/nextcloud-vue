@@ -28,17 +28,22 @@
 <CounterBubble>314+</CounterBubble>
 ```
 
-### Highlighted Counter (i.e. mentions)
+### Outlined Counter (e.g team mentions)
 
 ```
-<CounterBubble :highlighted="true">@admin</CounterBubble>
-<CounterBubble :highlighted="true">314+</CounterBubble>
+<CounterBubble type="outlined">314+</CounterBubble>
+```
+
+### Highlighted Counter (e.g direct mentions)
+
+```
+<CounterBubble type="highlighted">314+</CounterBubble>
 ```
 
 </docs>
 
 <template>
-	<div :class="{ 'counter-bubble__counter--highlighted': highlighted }"
+	<div :class="counterClassObject"
 		class="counter-bubble__counter">
 		<slot />
 	</div>
@@ -50,9 +55,21 @@ export default {
 	name: 'CounterBubble',
 
 	props: {
-		highlighted: {
-			type: Boolean,
-			default: false,
+		type: {
+			type: String,
+			default: '',
+			validator(value) {
+				return ['highlighted', 'outlined'].indexOf(value) !== -1
+			},
+		},
+	},
+
+	computed: {
+		counterClassObject() {
+			return {
+				'counter-bubble__counter--highlighted': this.type === 'highlighted',
+				'counter-bubble__counter--outlined': this.type === 'outlined',
+			}
 		},
 	},
 }
@@ -68,14 +85,20 @@ export default {
 	text-align: center;
 	text-overflow: ellipsis;
 	line-height: 1em;
-	padding: 4px 8px;
+	padding: 4px 6px;
 	border-radius: var(--border-radius-pill);
 	background-color: var(--color-background-darker);
+	font-weight: bold;
 
 	&--highlighted {
-		padding: 4px 6px;
 		color: var(--color-primary-text);
 		background-color: var(--color-primary);
+	}
+
+	&--outlined {
+		color: var(--color-primary);
+		background: transparent;
+		box-shadow: inset 0 0 0 2px;
 	}
 }
 
