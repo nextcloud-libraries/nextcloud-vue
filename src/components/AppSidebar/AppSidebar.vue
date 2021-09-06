@@ -151,8 +151,10 @@ include a standard-header like it's used by the files app.
 				<a
 					v-tooltip.auto="closeTranslated"
 					href="#"
-					class="app-sidebar__close icon-close"
-					@click.prevent="closeSidebar" />
+					class="app-sidebar__close"
+					@click.prevent="closeSidebar">
+					<Close class="app-sidebar__close-icon" :size="24" decorative />
+				</a>
 
 				<!-- container for figure and description, allows easy switching to compact mode -->
 				<div class="app-sidebar-header__info">
@@ -266,6 +268,8 @@ import EmptyContent from '../EmptyContent/EmptyContent'
 import { t } from '../../l10n'
 import { directive as ClickOutside } from 'v-click-outside'
 
+import Close from 'vue-material-design-icons/Close.vue'
+
 export default {
 	name: 'AppSidebar',
 
@@ -273,6 +277,7 @@ export default {
 		Actions,
 		AppSidebarTabs,
 		EmptyContent,
+		Close,
 	},
 
 	directives: {
@@ -595,6 +600,11 @@ $top-buttons-spacing: 6px;
 			&:focus {
 				opacity: $opacity_full;
 				background-color: $action-background-hover;
+			}
+
+			.app-sidebar__close-icon {
+				width: $clickable-area;
+				height: $clickable-area;
 			}
 		}
 
