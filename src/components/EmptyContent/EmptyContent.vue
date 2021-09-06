@@ -114,6 +114,7 @@ export default {
 
 	&__title {
 		margin-bottom: 10px;
+		text-align: center;
 	}
 }
 
