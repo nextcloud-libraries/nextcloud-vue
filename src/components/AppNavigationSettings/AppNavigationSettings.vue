@@ -79,6 +79,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+
+#app-settings-header .settings-button {
+	padding-left: 50px;
+}
+
 #app-settings-content {
 	display: block;
 	padding: 10px;
