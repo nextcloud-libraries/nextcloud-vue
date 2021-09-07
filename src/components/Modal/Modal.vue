@@ -26,15 +26,14 @@
 <template>
 	<div>
 		<button @click="showModal">Show Modal</button>
-		<modal v-if="modal" @close="closeModal">
+		<modal v-if="modal" @close="closeModal" size="prompt">
 			<div class="modal__content">Hello world</div>
 		</modal>
 	</div>
 </template>
 <style scoped>
 	.modal__content {
-		width: 50vw;
-		margin: 10vw 0;
+		margin: 50px;
 		text-align: center;
 	}
 
@@ -291,6 +290,12 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Defines the modal size
+		 * Default is 'normal'
+		 * Available are 'prompt', 'small', 'medium', 'normal', 'large' and 'full'
+		 * All sizes except 'prompt' and 'small' change automatically to full-screen on mobile
+		 */
 		size: {
 			type: String,
 			default: 'normal',
@@ -524,7 +529,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$header-size: 50px;
 
 .modal-mask {
 	position: fixed;
@@ -552,7 +556,7 @@ $header-size: 50px;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	height: $header-size;
+	height: $header-height;
 	transition: opacity 250ms,
 		visibility 250ms;
 
@@ -594,14 +598,14 @@ $header-size: 50px;
 			align-items: center;
 			justify-content: center;
 			box-sizing: border-box;
-			margin: ($header-size - $clickable-area) / 2;
+			margin: ($header-height - $clickable-area) / 2;
 			padding: 0;
 		}
 
 		.play-pause-icons {
 			position: relative;
-			width: $header-size;
-			height: $header-size;
+			width: $header-height;
+			height: $header-height;
 			margin: 0;
 			padding: 0;
 			cursor: pointer;
@@ -621,14 +625,14 @@ $header-size: 50px;
 				box-sizing: border-box;
 				width: $clickable-area;
 				height: $clickable-area;
-				margin: ($header-size - $clickable-area) / 2;
+				margin: ($header-height - $clickable-area) / 2;
 				cursor: pointer;
 				opacity: $opacity_normal;
 			}
 		}
 
 		.header-actions {
-			margin: ($header-size - $clickable-area) / 2;
+			margin: ($header-height - $clickable-area) / 2;
 			color: white;
 		}
 
@@ -728,20 +732,22 @@ $header-size: 50px;
 	&--small {
 		.modal-container {
 			width: 350px;
+			max-height: 90%;
 			height: 450px;
 		}
 	}
 	&--medium {
 		.modal-container {
 			width: 500px;
+			max-height: 90%;
 			height: 600px;
 		}
 	}
 	&--normal {
 		.modal-container {
-			max-width: 70%;
+			max-width: 90%;
 			width: 700px;
-			max-height: 80%;
+			max-height: 90%;
 			height: 600px;
 		}
 	}
@@ -756,9 +762,9 @@ $header-size: 50px;
 	&--full {
 		.modal-container {
 			width: 100%;
-			height: calc(100% - $header-size);
+			height: calc(100% - var(--header-height));
 			position: absolute;
-			top: $header-size;
+			top: $header-height;
 			border-radius: 0;
 		}
 	}
@@ -769,9 +775,9 @@ $header-size: 50px;
 			max-width: initial;
 			width: 100%;
 			max-height: initial;
-			height: calc(100% - $header-size);
+			height: calc(100% - var(--header-height));
 			position: absolute;
-			top: $header-size;
+			top: $header-height;
 			border-radius: 0;
 		}
 	}
