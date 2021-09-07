@@ -46,7 +46,7 @@ import { directive as ClickOutside } from 'v-click-outside'
 import { t } from '../../l10n'
 import { excludeClickOutsideClasses } from '../../mixins'
 
-import Cog from 'vue-material-design-icons/Cog.vue'
+import Cog from 'vue-material-design-icons/Cog'
 
 export default {
 	directives: {
