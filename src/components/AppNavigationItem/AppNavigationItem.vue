@@ -168,10 +168,21 @@ Just set the `pinned` prop.
 				:force-menu="forceMenu"
 				:default-icon="menuIcon"
 				@update:open="onMenuToggle">
-				<ActionButton v-if="editable && !editingActive" icon="icon-rename" @click="handleEdit">
+				<template #icon>
+					<!-- @slot Slot for the custom menu icon -->
+					<slot name="menu-icon" />
+				</template>
+				<ActionButton v-if="editable && !editingActive" @click="handleEdit">
+					<template #icon>
+						<Pencil :size="24" decorative />
+					</template>
 					{{ editLabel }}
 				</ActionButton>
-				<ActionButton v-if="undo" icon="app-navigation-entry__deleted-button icon-history" @click="handleUndo" />
+				<ActionButton v-if="undo" icon="app-navigation-entry__deleted-button" @click="handleUndo">
+					<template #icon>
+						<Undo :size="24" decorative />
+					</template>
+				</ActionButton>
 				<slot name="actions" />
 			</Actions>
 		</div>
@@ -195,6 +206,9 @@ import AppNavigationIconCollapsible from './AppNavigationIconCollapsible'
 import isMobile from '../../mixins/isMobile'
 import InputConfirmCancel from './InputConfirmCancel'
 
+import Pencil from 'vue-material-design-icons/Pencil.vue'
+import Undo from 'vue-material-design-icons/Undo.vue'
+
 export default {
 	name: 'AppNavigationItem',
 
@@ -203,6 +217,8 @@ export default {
 		ActionButton,
 		AppNavigationIconCollapsible,
 		InputConfirmCancel,
+		Pencil,
+		Undo,
 	},
 	directives: {
 		ClickOutside,
