@@ -59,7 +59,7 @@ export default {
 			type: String,
 			default: '',
 			validator(value) {
-				return ['highlighted', 'outlined'].indexOf(value) !== -1
+				return ['highlighted', 'outlined', ''].indexOf(value) !== -1
 			},
 		},
 	},
