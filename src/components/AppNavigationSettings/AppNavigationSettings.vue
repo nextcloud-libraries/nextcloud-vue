@@ -24,16 +24,17 @@
 	<div id="app-settings"
 		v-click-outside="clickOutsideConfig"
 		:class="{ open }">
-		<div id="app-settings-header">
+		<div id="app-settings__header">
 			<button
 				class="settings-button"
 				type="button"
 				@click="toggleMenu">
-				{{ title }}
+				<Cog class="settings-button__icon" :size="24" decorative />
+				<span class="settings-button__label">{{ title }}</span>
 			</button>
 		</div>
 		<transition name="slide-up">
-			<div v-show="open" id="app-settings-content">
+			<div v-show="open" id="app-settings__content">
 				<slot />
 			</div>
 		</transition>
@@ -45,9 +46,14 @@ import { directive as ClickOutside } from 'v-click-outside'
 import { t } from '../../l10n'
 import { excludeClickOutsideClasses } from '../../mixins'
 
+import Cog from 'vue-material-design-icons/Cog.vue'
+
 export default {
 	directives: {
 		ClickOutside,
+	},
+	components: {
+		Cog,
 	},
 	mixins: [
 		excludeClickOutsideClasses,
@@ -79,14 +85,60 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-#app-settings-content {
-	display: block;
-	padding: 10px;
-	background-color: var(--color-main-background);
-	/* restrict height of settings and make scrollable */
-	max-height: 300px;
-	overflow-y: auto;
-	box-sizing: border-box;
+#app-settings {
+	margin-top: auto;
+
+	&__header {
+		box-sizing: border-box;
+		background-color: var(--color-main-background);
+
+		.settings-button {
+			display: flex;
+			flex: 1 1 0;
+			height: $clickable-area;
+			width: 100%;
+			padding: 0;
+			margin: 0;
+			background-color: var(--color-main-background);
+			box-shadow: none;
+			border: 0;
+			border-radius: 0;
+			text-align: left;
+			font-weight: normal;
+			font-size: 100%;
+			color: var(--color-main-text);
+			padding-right: 14px;
+			line-height: $clickable-area;
+
+			&:hover,
+			&:focus {
+				background-color: var(--color-background-hover);
+			}
+
+			&__icon {
+				width: $clickable-area;
+				height: $clickable-area;
+				min-width: $clickable-area;
+			}
+			&__label {
+				overflow: hidden;
+				max-width: 100%;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				padding-left: 6px;
+			}
+		}
+	}
+
+	&__content {
+		display: block;
+		padding: 10px;
+		background-color: var(--color-main-background);
+		/* restrict height of settings and make scrollable */
+		max-height: 300px;
+		overflow-y: auto;
+		box-sizing: border-box;
+	}
 }
 
 .slide-up-leave-active,
