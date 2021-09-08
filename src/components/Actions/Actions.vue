@@ -141,7 +141,7 @@ export default {
 			[firstActionClass]: firstActionClass }"
 		class="action-item action-item--single"
 		rel="noreferrer noopener"
-		:disabled="disabled"
+		:disabled="isDisabled"
 		@focus="onFocus"
 		@blur="onBlur"
 		@[firstActionEventBinding]="execFirstAction">
@@ -385,6 +385,10 @@ export default {
 		isValidSingleAction() {
 			return this.actions.length === 1
 				&& this.firstActionElement !== null
+		},
+		isDisabled() {
+			return this.disabled
+				|| (this.actions.length === 1 && this.firstAction?.$props?.disabled)
 		},
 		/**
 		 * First action vnode
