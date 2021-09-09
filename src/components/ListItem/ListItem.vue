@@ -500,6 +500,7 @@ export default {
 	&__details {
 		color: var(--color-text-lighter);
 		margin: 0 8px;
+		font-weight: normal;
 	}
 }
 
