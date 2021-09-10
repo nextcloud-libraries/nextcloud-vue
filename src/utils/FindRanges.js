@@ -38,7 +38,7 @@ const FindRanges = (text, search) => {
 		currentIndex = index + search.length
 		ranges.push({ start: index, end: currentIndex })
 
-		index = text.toLowerCase().indexOf(search.toLowerCase(), index + 1)
+		index = text.toLowerCase().indexOf(search.toLowerCase(), currentIndex)
 		i++
 	}
 	return ranges

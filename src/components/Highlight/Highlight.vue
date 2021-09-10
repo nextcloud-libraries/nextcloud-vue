@@ -1,5 +1,5 @@
 <!--
-  - @copyright Copyright (c) 2020 Raimund Schlüßler <raimund.schluessler@mailbox.org>
+  - @copyright Copyright (c) 2021 Raimund Schlüßler <raimund.schluessler@mailbox.org>
   -
   - @author Raimund Schlüßler <raimund.schluessler@mailbox.org>
   -
@@ -91,10 +91,22 @@ export default {
 			}
 
 			/**
+			 * Ensure that the start of each range is equal to or smaller than the end
+			 */
+			ranges.forEach((range, i) => {
+				if (range.end < range.start) {
+					ranges[i] = {
+						start: range.end,
+						end: range.start,
+					}
+				}
+			})
+
+			/**
 			 * Validate the ranges array to be within the string length
 			 * and discard ranges which are completely out of bonds.
 			 */
-			return ranges.reduce((validRanges, range) => {
+			ranges = ranges.reduce((validRanges, range) => {
 				if (range.start < this.text.length && range.end > 0) {
 					validRanges.push({
 						start: (range.start < 0) ? 0 : range.start,
@@ -103,6 +115,37 @@ export default {
 				}
 				return validRanges
 			}, [])
+
+			/**
+			 * Sort ranges ascendingly (necessary for next step)
+			 */
+			ranges.sort((a, b) => {
+				return a.start - b.start
+			})
+
+			/**
+			 * Merge overlapping or adjacent ranges
+			 */
+			ranges = ranges.reduce((mergedRanges, range) => {
+				// If there are no ranges, just add the range
+				if (!mergedRanges.length) {
+					mergedRanges.push(range)
+				} else {
+					// If the range overlaps the last range, merge them
+					const idx = mergedRanges.length - 1
+					if (mergedRanges[idx].end >= range.start) {
+						mergedRanges[idx] = {
+							start: mergedRanges[idx].start,
+							end: Math.max(mergedRanges[idx].end, range.end),
+						}
+					} else {
+						mergedRanges.push(range)
+					}
+				}
+				return mergedRanges
+			}, [])
+
+			return ranges
 		},
 		/**
 		 * Calculate the different chunks to show based on the ranges to highlight.
