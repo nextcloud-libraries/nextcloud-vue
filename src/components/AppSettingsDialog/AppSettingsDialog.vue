@@ -54,6 +54,8 @@ export default {
 <script>
 import Modal from '../Modal'
 import isMobile from '../../mixins/isMobile'
+import { t } from '../../l10n'
+
 import debounce from 'debounce'
 
 export default {

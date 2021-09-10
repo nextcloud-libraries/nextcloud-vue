@@ -86,9 +86,6 @@ window.OC = {
 window.OCA = {}
 window.appName = 'nextcloud-vue'
 
-window.t = (app, text) => text
-
-Vue.prototype.t = window.t
 Vue.prototype.OC = window.OC
 Vue.prototype.OCA = window.OCA
 
