@@ -48,6 +48,8 @@ import GenRandomId from '../../utils/GenRandomId'
 import { generateOcsUrl } from '@nextcloud/router'
 import { showError } from '@nextcloud/dialogs'
 import l10n from '../../mixins/l10n'
+import { t } from '../../l10n'
+
 export default {
 	name: 'SettingsSelectGroup',
 	components: {
