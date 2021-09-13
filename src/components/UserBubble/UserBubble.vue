@@ -75,35 +75,34 @@ This component has the following slot:
 		class="user-bubble__wrapper"
 		@update:open="onOpenChange">
 		<!-- Main userbubble structure -->
-		<template #trigger>
-			<div v-bind="isLinkComponent"
-				class="user-bubble__content"
-				:style="styles.content"
-				:class="primary ? 'user-bubble__content--primary' : ''"
-				@click="onClick">
-				<!-- Avatar -->
-				<Avatar :url="isCustomAvatar && isAvatarUrl ? avatarImage : undefined"
-					:icon-class="isCustomAvatar && !isAvatarUrl ? avatarImage : undefined"
-					:user="user"
-					:display-name="displayName"
-					:size="size - (margin * 2)"
-					:style="styles.avatar"
-					:disable-tooltip="true"
-					:disable-menu="true"
-					v-bind="$props"
-					class="user-bubble__avatar" />
+		<div slot="trigger"
+			v-bind="isLinkComponent"
+			class="user-bubble__content"
+			:style="styles.content"
+			:class="primary ? 'user-bubble__content--primary' : ''"
+			@click="onClick">
+			<!-- Avatar -->
+			<Avatar :url="isCustomAvatar && isAvatarUrl ? avatarImage : undefined"
+				:icon-class="isCustomAvatar && !isAvatarUrl ? avatarImage : undefined"
+				:user="user"
+				:display-name="displayName"
+				:size="size - (margin * 2)"
+				:style="styles.avatar"
+				:disable-tooltip="true"
+				:disable-menu="true"
+				v-bind="$props"
+				class="user-bubble__avatar" />
 
-				<!-- Title -->
-				<span class="user-bubble__title">
-					{{ displayName || user }}
-				</span>
+			<!-- Title -->
+			<span class="user-bubble__title">
+				{{ displayName || user }}
+			</span>
 
-				<!-- @slot Optional slot just after the title -->
-				<span v-if="$slots.title" class="user-bubble__secondary">
-					<slot name="title" />
-				</span>
-			</div>
-		</template>
+			<!-- @slot Optional slot just after the title -->
+			<span v-if="$slots.title" class="user-bubble__secondary">
+				<slot name="title" />
+			</span>
+		</div>
 
 		<!-- @slot Main Popover content on userbubble hover/focus -->
 		<slot />
