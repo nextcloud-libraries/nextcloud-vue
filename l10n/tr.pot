@@ -40,6 +40,9 @@ msgstr "Seçin"
 msgid "Close"
 msgstr "Kapat"
 
+msgid "Close navigation"
+msgstr "Gezinmeyi kapat"
+
 msgid "Confirm changes"
 msgstr "Değişiklikleri onayla"
 
@@ -61,6 +64,9 @@ msgstr "Sık kullanılanlar"
 msgid "Global"
 msgstr "Evrensel"
 
+msgid "Go back to the list"
+msgstr "Listeye dön"
+
 msgid "Message limit of {count} characters reached"
 msgstr "{count} karakter ileti sınırına ulaşıldı"
 
@@ -75,6 +81,9 @@ msgstr "Herhangi bir sonuç bulunamadı"
 
 msgid "Objects"
 msgstr "Nesneler"
+
+msgid "Open navigation"
+msgstr "Gezinmeyi aç"
 
 msgid "Pause slideshow"
 msgstr "Slayt sunumunu duraklat"
