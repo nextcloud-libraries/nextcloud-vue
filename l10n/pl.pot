@@ -38,6 +38,9 @@ msgstr "Wybierz"
 msgid "Close"
 msgstr "Zamknij"
 
+msgid "Close navigation"
+msgstr "Zamknij nawigację"
+
 msgid "Confirm changes"
 msgstr "Potwierdź zmiany"
 
@@ -59,6 +62,9 @@ msgstr "Często używane"
 msgid "Global"
 msgstr "Globalnie"
 
+msgid "Go back to the list"
+msgstr "Powrót do listy"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Przekroczono limit wiadomości wynoszący {count} znaków"
 
@@ -73,6 +79,9 @@ msgstr "Brak wyników"
 
 msgid "Objects"
 msgstr "Obiekty"
+
+msgid "Open navigation"
+msgstr "Otwórz nawigację"
 
 msgid "Pause slideshow"
 msgstr "Wstrzymaj pokaz slajdów"
