@@ -27,15 +27,13 @@
 <script>
 import { emit } from '@nextcloud/event-bus'
 
-import l10n from '../../mixins/l10n'
+import { t } from '../../l10n'
 export default {
 	name: 'AppDetailsToggle',
 
-	mixins: [l10n],
-
 	computed: {
 		title() {
-			return this.t('Go back to the list')
+			return t('Go back to the list')
 		},
 	},
 

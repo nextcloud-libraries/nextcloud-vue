@@ -55,6 +55,8 @@
 	</div>
 </template>
 <script>
+import { t } from '../../l10n'
+
 import ArrowRight from 'vue-material-design-icons/ArrowRight'
 import Close from 'vue-material-design-icons/Close'
 

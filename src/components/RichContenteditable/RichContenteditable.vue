@@ -148,7 +148,7 @@ import Tribute from 'tributejs/dist/tribute.esm'
 import debounce from 'debounce'
 import stringLength from 'string-length'
 
-import { t } from '../../l10n.js'
+import { t } from '../../l10n'
 import AutoCompleteResult from './AutoCompleteResult'
 import richEditor from '../../mixins/richEditor/index'
 
