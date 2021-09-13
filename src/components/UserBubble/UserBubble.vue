@@ -112,6 +112,7 @@ This component has the following slot:
 
 <script>
 import Popover from '../Popover'
+import UserBubbleDiv from './UserBubbleDiv'
 import Avatar from '../Avatar'
 
 export default {
@@ -119,6 +120,7 @@ export default {
 	components: {
 		Popover,
 		Avatar,
+		UserBubbleDiv,
 	},
 	props: {
 		/**
@@ -198,12 +200,14 @@ export default {
 		/**
 		 * If userbubble is empty, let's NOT
 		 * use the Popover component
-		 * @returns {string} 'Popover' or 'div'
+		 * We need a component instead of a simple div here,
+		 * because otherwise the trigger template will not be shown.
+		 * @returns {string} 'Popover' or 'UserBubbleDiv'
 		 */
 		isPopoverComponent() {
 			return !this.popoverEmpty
 				? 'Popover'
-				: 'div'
+				: 'UserBubbleDiv'
 		},
 
 		/**

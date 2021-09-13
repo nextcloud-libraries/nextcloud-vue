@@ -76,6 +76,7 @@ module.exports = {
 				'src/components/*Picker/*.vue',
 				'src/components/RichContenteditable/!(RichContenteditable).vue',
 				'src/components/Settings*/*.vue',
+				'src/components/UserBubble/UserBubbleDiv.vue',
 			],
 			sections: [
 				{
