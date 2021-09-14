@@ -41,6 +41,9 @@ msgstr "Auswählen"
 msgid "Close"
 msgstr "Schließen"
 
+msgid "Close navigation"
+msgstr "Navigation schließen"
+
 msgid "Confirm changes"
 msgstr "Änderungen bestätigen"
 
@@ -62,6 +65,9 @@ msgstr "Häufig verwendet"
 msgid "Global"
 msgstr "Global"
 
+msgid "Go back to the list"
+msgstr "Zurück zur Liste"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
 
@@ -76,6 +82,9 @@ msgstr "Keine Ergebnisse"
 
 msgid "Objects"
 msgstr "Objekte"
+
+msgid "Open navigation"
+msgstr "Navigation öffnen"
 
 msgid "Pause slideshow"
 msgstr "Diashow pausieren"
