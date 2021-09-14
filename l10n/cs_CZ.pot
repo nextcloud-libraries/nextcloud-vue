@@ -37,6 +37,9 @@ msgstr "Zvolit"
 msgid "Close"
 msgstr "Zavřít"
 
+msgid "Close navigation"
+msgstr "Zavřít navigaci"
+
 msgid "Confirm changes"
 msgstr "Potvrdit změny"
 
@@ -58,6 +61,9 @@ msgstr "Často používané"
 msgid "Global"
 msgstr "Globální"
 
+msgid "Go back to the list"
+msgstr "Jít zpět na seznam"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Dosaženo limitu počtu ({count}) znaků zprávy"
 
@@ -72,6 +78,9 @@ msgstr "Nic nenalezeno"
 
 msgid "Objects"
 msgstr "Objekty"
+
+msgid "Open navigation"
+msgstr "Otevřít navigaci"
 
 msgid "Pause slideshow"
 msgstr "Pozastavit prezentaci"
