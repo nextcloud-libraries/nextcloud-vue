@@ -1,55 +1,139 @@
+# 
 # Translators:
 # Asier Iturralde Sarasola <asier.iturralde@gmail.com>, 2020
+# Unai Tolosa Pontesta <utolosa002@gmail.com>, 2021
+# Gontzal M. Pujana <juchuf@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Asier Iturralde Sarasola <asier.iturralde@gmail.com>, 2020\n"
+"Last-Translator: Gontzal M. Pujana <juchuf@gmail.com>, 2021\n"
 "Language-Team: Basque (https://www.transifex.com/nextcloud/teams/64236/eu/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:169
 msgid "{tag} (invisible)"
 msgstr "{tag} (ikusezina)"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:172
 msgid "{tag} (restricted)"
 msgstr "{tag} (mugatua)"
 
-#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Actions"
+msgstr "Ekintzak"
+
+msgid "Activities"
+msgstr "Jarduerak"
+
+msgid "Animals & Nature"
+msgstr "Animaliak eta Natura"
+
+msgid "Avatar of {displayName}"
+msgstr "{displayName}-(e)n irudia"
+
+msgid "Cancel changes"
+msgstr "Ezeztatu aldaketak"
+
 msgid "Choose"
 msgstr "Aukeratu"
 
-#: src/components/Modal/Modal.vue:109
 msgid "Close"
 msgstr "Itxi"
 
-#: src/components/Modal/Modal.vue:154
+msgid "Close navigation"
+msgstr "Itxi nabigazioa"
+
+msgid "Confirm changes"
+msgstr "Baieztatu aldaketak"
+
+msgid "Custom"
+msgstr "Pertsonalizatua"
+
+msgid "External documentation for {title}"
+msgstr "Kanpoko dokumentazioa {title}(r)entzat"
+
+msgid "Flags"
+msgstr "Banderak"
+
+msgid "Food & Drink"
+msgstr "Janaria eta edariak"
+
+msgid "Frequently used"
+msgstr "Askotan erabilia"
+
+msgid "Global"
+msgstr "Globala"
+
+msgid "Go back to the list"
+msgstr "Bueltatu zerrendara"
+
+msgid "Message limit of {count} characters reached"
+msgstr "Mezuaren {count} karaketere-limitera heldu zara"
+
 msgid "Next"
 msgstr "Hurrengoa"
 
-#: src/components/Multiselect/Multiselect.vue:169
-#: src/components/MultiselectTags/MultiselectTags.vue:78
+msgid "No emoji found"
+msgstr "Ez da emojirik aurkitu"
+
 msgid "No results"
 msgstr "Emaitzarik ez"
 
-#: src/components/Modal/Modal.vue:290
+msgid "Objects"
+msgstr "Objektuak"
+
+msgid "Open navigation"
+msgstr "Ireki nabigazioa"
+
 msgid "Pause slideshow"
 msgstr "Pausatu diaporama"
 
-#: src/components/Modal/Modal.vue:134
+msgid "People & Body"
+msgstr "Jendea eta gorputza"
+
+msgid "Pick an emoji"
+msgstr "Aukeratu emoji bat"
+
+msgid "Please select a time zone:"
+msgstr "Mesedez hautatu ordu-zona bat:"
+
 msgid "Previous"
 msgstr "Aurrekoa"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Search"
+msgstr "Bilatu"
+
+msgid "Search results"
+msgstr "Bilaketa emaitzak"
+
 msgid "Select a tag"
 msgstr "Hautatu etiketa bat"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
 msgid "Settings"
 msgstr "Ezarpenak"
 
-#: src/components/Modal/Modal.vue:290
+msgid "Settings navigation"
+msgstr "Nabigazio ezarpenak"
+
+msgid "Smileys & Emotion"
+msgstr "Smileyak eta emozioa"
+
 msgid "Start slideshow"
 msgstr "Hasi diaporama"
+
+msgid "Submit"
+msgstr "Bidali"
+
+msgid "Symbols"
+msgstr "Sinboloak"
+
+msgid "Travel & Places"
+msgstr "Bidaiak eta lekuak"
+
+msgid "Type to search time zone"
+msgstr "Idatzi ordu-zona bat bilatzeko"
+
+msgid "Unable to search the group"
+msgstr "Ezin izan da taldea bilatu"
+
+msgid "Write message, @ to mention someone …"
+msgstr "Idatzi mezua, @ norbait aipatzeko …"
