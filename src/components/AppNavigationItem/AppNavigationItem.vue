@@ -47,41 +47,87 @@ button will be automatically created.
 
 ```
 <template>
-	<AppNavigationItem title="Old icons" icon="icon-category-enabled">
-		<template #menu-icon>
-			<span class="icon-more" />
-		</template>
-		<template #actions>
-			<ActionButton icon="icon-edit" @click="alert('Edit')">
-				Edit
-			</ActionButton>
-			<ActionButton icon="icon-delete" @click="alert('Delete')">
-				Delete
-			</ActionButton>
-			<ActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
-		</template>
-	</AppNavigationItem>
-	<AppNavigationItem title="Material design size=20">
-		<template #icon>
-			<Check :size="20" decorative />
-		</template>
-		<template #menu-icon>
-			<DotsHorizontal :size="20" decorative />
-		</template>
-		<template #actions>
-			<ActionButton @click="alert('Edit')">
-				<template #icon>
-					<File :size="20" decorative />
-				</template>
-				Edit
-			</ActionButton>
-			<ActionButton @click="alert('Delete')">
-				<template #icon>
-					<Delete :size="20" decorative />
-				</template>
-				Delete
-			</ActionButton>
-		</template>
+	<AppNavigationItem title="Icon size comparison" >
+		<AppNavigationItem title="Old icons" icon="icon-category-enabled">
+			<template #menu-icon>
+				<span class="icon-more" />
+			</template>
+			<template #actions>
+				<ActionButton icon="icon-edit" @click="alert('Edit')">
+					Edit
+				</ActionButton>
+				<ActionButton icon="icon-delete" @click="alert('Delete')">
+					Delete
+				</ActionButton>
+				<ActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
+			</template>
+		</AppNavigationItem>
+		<AppNavigationItem title="MDI size=20">
+			<template #icon>
+				<Check :size="20" decorative />
+			</template>
+			<template #menu-icon>
+				<DotsHorizontal :size="20" decorative />
+			</template>
+			<template #actions>
+				<ActionButton @click="alert('Edit')">
+					<template #icon>
+						<File :size="20" decorative />
+					</template>
+					Edit
+				</ActionButton>
+				<ActionButton @click="alert('Delete')">
+					<template #icon>
+						<Delete :size="20" decorative />
+					</template>
+					Delete
+				</ActionButton>
+			</template>
+		</AppNavigationItem>
+		<AppNavigationItem title="MDI size=22">
+			<template #icon>
+				<Check :size="22" decorative />
+			</template>
+			<template #menu-icon>
+				<DotsHorizontal :size="22" decorative />
+			</template>
+			<template #actions>
+				<ActionButton @click="alert('Edit')">
+					<template #icon>
+						<File :size="22" decorative />
+					</template>
+					Edit
+				</ActionButton>
+				<ActionButton @click="alert('Delete')">
+					<template #icon>
+						<Delete :size="22" decorative />
+					</template>
+					Delete
+				</ActionButton>
+			</template>
+		</AppNavigationItem>
+		<AppNavigationItem title="MDI size=24">
+			<template #icon>
+				<Check :size="24" decorative />
+			</template>
+			<template #menu-icon>
+				<DotsHorizontal :size="24" decorative />
+			</template>
+			<template #actions>
+				<ActionButton @click="alert('Edit')">
+					<template #icon>
+						<File :size="24" decorative />
+					</template>
+					Edit
+				</ActionButton>
+				<ActionButton @click="alert('Delete')">
+					<template #icon>
+						<Delete :size="24" decorative />
+					</template>
+					Delete
+				</ActionButton>
+			</template>
+		</AppNavigationItem>
 	</AppNavigationItem>
 </template>
 <script>
