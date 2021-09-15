@@ -46,17 +46,59 @@ Wrap the children in a template. If you have more than 2 actions, a popover menu
 button will be automatically created.
 
 ```
-<AppNavigationItem title="Item with actions" icon="icon-category-enabled">
-	<template #actions>
-		<ActionButton icon="icon-edit" @click="alert('Edit')">
-			Edit
-		</ActionButton>
-		<ActionButton icon="icon-delete" @click="alert('Delete')">
-			Delete
-		</ActionButton>
-		<ActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
-	</template>
-</AppNavigationItem>
+<template>
+	<AppNavigationItem title="Old icons" icon="icon-category-enabled">
+		<template #menu-icon>
+			<span class="icon-more" />
+		</template>
+		<template #actions>
+			<ActionButton icon="icon-edit" @click="alert('Edit')">
+				Edit
+			</ActionButton>
+			<ActionButton icon="icon-delete" @click="alert('Delete')">
+				Delete
+			</ActionButton>
+			<ActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
+		</template>
+	</AppNavigationItem>
+	<AppNavigationItem title="Material design size=20">
+		<template #icon>
+			<Check :size="20" decorative />
+		</template>
+		<template #menu-icon>
+			<DotsHorizontal :size="20" decorative />
+		</template>
+		<template #actions>
+			<ActionButton @click="alert('Edit')">
+				<template #icon>
+					<File :size="20" decorative />
+				</template>
+				Edit
+			</ActionButton>
+			<ActionButton @click="alert('Delete')">
+				<template #icon>
+					<Delete :size="20" decorative />
+				</template>
+				Delete
+			</ActionButton>
+		</template>
+	</AppNavigationItem>
+</template>
+<script>
+import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal'
+import Check from 'vue-material-design-icons/Check'
+import File from 'vue-material-design-icons/File'
+import Delete from 'vue-material-design-icons/Delete'
+
+export default {
+	components: {
+		File,
+		DotsHorizontal,
+		Check,
+		Delete,
+	},
+}
+</script>
 ```
 
 ### Element with counter
