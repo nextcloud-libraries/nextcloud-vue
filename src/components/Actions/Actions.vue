@@ -140,7 +140,7 @@ export default {
 			[firstAction.icon]: firstAction.icon,
 			[firstActionClass]: firstActionClass }"
 		class="action-item action-item--single"
-		rel="noreferrer noopener"
+		rel="nofollow noreferrer noopener"
 		:disabled="isDisabled"
 		@focus="onFocus"
 		@blur="onBlur"
