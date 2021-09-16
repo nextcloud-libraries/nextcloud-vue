@@ -228,21 +228,6 @@ import GenRandomId from '../../utils/GenRandomId'
 import { t } from '../../l10n'
 import Popover from '../Popover'
 
-// This is the list of ALL the ALLOWED components
-// in the default SLOT
-const allowedChildren = [
-	'ActionButton',
-	'ActionCheckbox',
-	'ActionInput',
-	'ActionLink',
-	'ActionRadio',
-	'ActionRouter',
-	'ActionSeparator',
-	'ActionText',
-	'ActionTextEditable',
-	'ActionCaption',
-]
-
 const focusableSelector = '.focusable'
 
 /**
