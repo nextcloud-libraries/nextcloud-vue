@@ -37,8 +37,6 @@ import Avatar from '@nextcloud/vue/dist/Components/Avatar'
 Some components require Nextcloud functionality to work, so it is currently recommended to extend Vue with the following:
 
 ```js static
-Vue.prototype.t = window.t
-Vue.prototype.n = window.n
 Vue.prototype.OC = window.OC
 Vue.prototype.OCA = window.OCA
 ```
