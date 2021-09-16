@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.10.2](https://github.com/nextcloud/nextcloud-vue/tree/v3.10.2) (2021-09-16)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.10.1...v3.10.2)
+## Fixed bugs
+
+- Fix alignment of loading spinner in avatar menu [\#2006](https://github.com/nextcloud/nextcloud-vue/pull/2006) ([PVince81](https://github.com/PVince81))
+- Add type=button attribute to buttons [\#2071](https://github.com/nextcloud/nextcloud-vue/pull/2071) ([Pytal](https://github.com/Pytal))
+- Stop filtering Actions in $slots [\#2252](https://github.com/nextcloud/nextcloud-vue/pull/2252) ([skjnldsv](https://github.com/skjnldsv))
+
 ## [v3.10.1](https://github.com/nextcloud/nextcloud-vue/tree/v3.10.1) (2021-06-02)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.10.0...v3.10.1)
