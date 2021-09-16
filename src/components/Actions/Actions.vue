@@ -225,24 +225,8 @@ import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal'
 
 import Tooltip from '../../directives/Tooltip'
 import GenRandomId from '../../utils/GenRandomId'
-import ValidateSlot from '../../utils/ValidateSlot'
 import { t } from '../../l10n'
 import Popover from '../Popover'
-
-// This is the list of ALL the ALLOWED components
-// in the default SLOT
-const allowedChildren = [
-	'ActionButton',
-	'ActionCheckbox',
-	'ActionInput',
-	'ActionLink',
-	'ActionRadio',
-	'ActionRouter',
-	'ActionSeparator',
-	'ActionText',
-	'ActionTextEditable',
-	'ActionCaption',
-]
 
 const focusableSelector = '.focusable'
 
@@ -484,9 +468,6 @@ export default {
 	beforeMount() {
 		// init actions
 		this.initActions()
-
-		// filter invalid menu items
-		ValidateSlot(this.$slots.default, allowedChildren, this)
 	},
 	beforeUpdate() {
 		// ! since we're using $slots to manage our actions
@@ -497,7 +478,6 @@ export default {
 		// and the array is now reactive
 		// init actions
 		this.initActions()
-		ValidateSlot(this.$slots.default, allowedChildren, this)
 	},
 
 	methods: {
