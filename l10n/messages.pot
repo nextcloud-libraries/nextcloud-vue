@@ -29,6 +29,9 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
+msgid "Close navigation"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr ""
 
@@ -50,6 +53,9 @@ msgstr ""
 msgid "Global"
 msgstr ""
 
+msgid "Go back to the list"
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr ""
 
@@ -63,6 +69,9 @@ msgid "No results"
 msgstr ""
 
 msgid "Objects"
+msgstr ""
+
+msgid "Open navigation"
 msgstr ""
 
 msgid "Pause slideshow"

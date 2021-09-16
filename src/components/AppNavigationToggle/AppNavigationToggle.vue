@@ -40,7 +40,7 @@
 <script>
 import Actions from '../Actions/Actions'
 import ActionButton from '../ActionButton/ActionButton'
-import l10n from '../../mixins/l10n'
+import { t } from '../../l10n'
 
 import Menu from 'vue-material-design-icons/Menu'
 
@@ -53,8 +53,6 @@ export default {
 		Menu,
 	},
 
-	mixins: [l10n],
-
 	props: {
 		open: {
 			type: Boolean,
@@ -64,7 +62,7 @@ export default {
 
 	computed: {
 		label() {
-			return this.open ? this.t('Close navigation') : this.t('Open navigation')
+			return this.open ? t('Close navigation') : t('Open navigation')
 		},
 	},
 	methods: {

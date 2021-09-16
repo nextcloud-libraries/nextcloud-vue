@@ -150,6 +150,8 @@ import DatePicker from 'vue2-datepicker'
 import Popover from '../Popover/index'
 import TimezonePicker from '../TimezonePicker'
 
+import l10n from '../../mixins/l10n'
+
 export default {
 	name: 'DatetimePicker',
 
@@ -158,6 +160,8 @@ export default {
 		Popover,
 		TimezonePicker,
 	},
+
+	mixins: [l10n],
 
 	inheritAttrs: false,
 
