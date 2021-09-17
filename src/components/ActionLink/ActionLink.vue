@@ -41,7 +41,7 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 			:aria-label="ariaLabel"
 			:target="target"
 			class="action-link focusable"
-			rel="noreferrer noopener"
+			rel="nofollow noreferrer noopener"
 			@click="onClick">
 
 			<!-- @slot Manually provide icon -->

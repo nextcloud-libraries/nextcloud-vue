@@ -27,7 +27,7 @@
 			:exact="exact"
 			class="action-router focusable"
 			:aria-label="ariaLabel"
-			rel="noreferrer noopener"
+			rel="nofollow noreferrer noopener"
 			@click.native="onClick">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">

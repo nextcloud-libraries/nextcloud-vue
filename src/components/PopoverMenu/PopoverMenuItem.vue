@@ -28,7 +28,7 @@
 			:target="(item.target) ? item.target : '' "
 			:download="item.download"
 			class="focusable"
-			rel="noreferrer noopener"
+			rel="nofollow noreferrer noopener"
 			@click="action">
 			<span v-if="!iconIsUrl" :class="item.icon" />
 			<img v-else :src="item.icon">

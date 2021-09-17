@@ -68,7 +68,7 @@ export default {
 							target: '_blank',
 							className: 'external',
 							attributes: {
-								rel: 'noopener noreferrer',
+								rel: 'nofollow noopener noreferrer',
 							},
 						})
 					}
