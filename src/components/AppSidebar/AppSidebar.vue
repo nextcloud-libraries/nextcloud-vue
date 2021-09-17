@@ -184,13 +184,18 @@ include a standard-header like it's used by the files app.
 						<div v-if="canStar || $slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
 							<slot name="tertiary-actions">
 								<a v-if="canStar"
-									:class="{
-										'icon-starred': isStarred && !starLoading,
-										'icon-star': !isStarred && !starLoading,
-										'icon-loading-small': starLoading,
-									}"
 									class="app-sidebar-header__star"
-									@click.prevent="toggleStarred" />
+									@click.prevent="toggleStarred">
+									<span v-if="starLoading" class="icon-loading-small" />
+									<Star v-else
+										:class="{
+											'star--starred': isStarred,
+											'star--star': !isStarred,
+										}"
+										class="star"
+										:size="20"
+										decorative />
+								</a>
 							</slot>
 						</div>
 
@@ -269,6 +274,7 @@ import { t } from '../../l10n'
 import { directive as ClickOutside } from 'v-click-outside'
 
 import Close from 'vue-material-design-icons/Close.vue'
+import Star from 'vue-material-design-icons/Star.vue'
 
 export default {
 	name: 'AppSidebar',
@@ -278,6 +284,7 @@ export default {
 		AppSidebarTabs,
 		EmptyContent,
 		Close,
+		Star,
 	},
 
 	directives: {
@@ -791,7 +798,31 @@ $top-buttons-spacing: 6px;
 				display: block;
 				width: $clickable-area;
 				height: $clickable-area;
-				padding: $icon-margin;
+
+				.icon-loading-small {
+					display: block;
+					width: $clickable-area;
+					height: $clickable-area;
+				}
+
+				.star {
+					width: $clickable-area;
+					height: $clickable-area;
+					&--star {
+						color: #000;
+						opacity: .5;
+						&:hover {
+							color: #FC0;
+						}
+					}
+					&--starred {
+						color: #FC0;
+						&:hover {
+							color: #000;
+							opacity: .5;
+						}
+					}
+				}
 			}
 		}
 
