@@ -90,11 +90,11 @@ It can be used with one or multiple actions.
 		<button @click="toggled = !toggled">Toggle multiple action</button>
 		<Actions>
 			<template #icon>
-				<DotsHorizontalCircleOutline :size="24" decorative />
+				<DotsHorizontalCircleOutline :size="20" decorative />
 			</template>
 			<ActionButton>
 				<template #icon>
-					<MicrophoneOff :size="24" decorative />
+					<MicrophoneOff :size="20" decorative />
 				</template>
 				Mute
 			</ActionButton>
@@ -192,7 +192,7 @@ export default {
 					@focus="onFocus"
 					@blur="onBlur">
 					<slot v-if="iconSlotIsPopulated" name="icon" />
-					<DotsHorizontal v-else-if="defaultIcon === ''" :size="24" decorative />
+					<DotsHorizontal v-else-if="defaultIcon === ''" :size="20" decorative />
 					{{ menuTitle }}
 				</button>
 			</template>

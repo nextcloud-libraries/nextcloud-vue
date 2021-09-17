@@ -70,7 +70,7 @@
 			<template #trigger>
 				<div v-if="contactsMenuLoading" class="icon-loading" />
 				<DotsHorizontal v-else
-					:size="24"
+					:size="20"
 					class="icon-more"
 					title=""
 					decorative />

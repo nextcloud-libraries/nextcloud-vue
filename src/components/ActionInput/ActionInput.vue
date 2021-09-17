@@ -90,7 +90,7 @@ For the multiselect component, all events will be passed through. Please see the
 					<!-- allow the custom font to inject a ::before
 						not possible on input[type=submit] -->
 					<label v-show="!disabled" :for="id" class="action-input__label">
-						<ArrowRight :size="24" title="" decorative />
+						<ArrowRight :size="20" title="" decorative />
 					</label>
 				</template>
 			</form>

@@ -49,7 +49,7 @@ You can also use a custom icon, for example from the vue-material-design-icons l
 		<ActionButton>
 			<template #icon>
 				<HandBackLeft
-					:size="24"
+					:size="20"
 					decorative
 					title="" />
 			</template>
@@ -58,7 +58,7 @@ You can also use a custom icon, for example from the vue-material-design-icons l
 		<ActionButton>
 			<template #icon>
 				<HandBackRight
-					:size="24"
+					:size="20"
 					decorative
 					title="" />
 			</template>
