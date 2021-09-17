@@ -49,7 +49,7 @@ This component is to be used in the settings section of nextcloud.
 				class="settings-section__info"
 				role="note"
 				:title="docTitleTranslated">
-				<HelpCircle :size="24" decorative title="" />
+				<HelpCircle :size="20" decorative title="" />
 			</a>
 		</h2>
 		<p v-if="hasDescription"
