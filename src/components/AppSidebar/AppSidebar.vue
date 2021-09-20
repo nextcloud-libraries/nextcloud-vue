@@ -36,7 +36,7 @@ include a standard-header like it's used by the files app.
 		subtitle="last edited 3 weeks ago">
 		<AppSidebarTab icon="icon-settings" name="Settings" id="settings">
 			<template #icon>
-				<Cog :size="24" decorative />
+				<Cog :size="20" decorative />
 			</template>
 			Settings tab content
 		</AppSidebarTab>
@@ -153,7 +153,7 @@ include a standard-header like it's used by the files app.
 					href="#"
 					class="app-sidebar__close"
 					@click.prevent="closeSidebar">
-					<Close class="app-sidebar__close-icon" :size="24" decorative />
+					<Close class="app-sidebar__close-icon" :size="20" decorative />
 				</a>
 
 				<!-- container for figure and description, allows easy switching to compact mode -->
