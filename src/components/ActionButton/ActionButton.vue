@@ -48,7 +48,7 @@ You can also use a custom icon, for example from the vue-material-design-icons l
 	<Actions>
 		<ActionButton>
 			<template #icon>
-				<HandLeft
+				<HandBackLeft
 					:size="24"
 					decorative
 					title="" />
@@ -57,7 +57,7 @@ You can also use a custom icon, for example from the vue-material-design-icons l
 		</ActionButton>
 		<ActionButton>
 			<template #icon>
-				<HandRight
+				<HandBackRight
 					:size="24"
 					decorative
 					title="" />
@@ -67,13 +67,13 @@ You can also use a custom icon, for example from the vue-material-design-icons l
 	</Actions>
 </template>
 <script>
-import HandLeft from 'vue-material-design-icons/HandLeft'
-import HandRight from 'vue-material-design-icons/HandRight'
+import HandBackLeft from 'vue-material-design-icons/HandBackLeft'
+import HandBackRight from 'vue-material-design-icons/HandBackRight'
 
 export default {
 	components: {
-		HandLeft,
-		HandRight,
+		HandBackLeft,
+		HandBackRight,
 	},
 }
 </script>
