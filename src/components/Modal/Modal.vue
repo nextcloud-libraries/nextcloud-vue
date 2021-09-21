@@ -26,7 +26,7 @@
 <template>
 	<div>
 		<button @click="showModal">Show Modal</button>
-		<modal v-if="modal" @close="closeModal" size="prompt">
+		<modal v-if="modal" @close="closeModal" size="small">
 			<div class="modal__content">Hello world</div>
 		</modal>
 	</div>
@@ -291,16 +291,16 @@ export default {
 			default: false,
 		},
 		/**
-		 * Defines the modal size
-		 * Default is 'normal'
-		 * Available are 'prompt', 'small', 'medium', 'normal', 'large' and 'full'
-		 * All sizes except 'prompt' and 'small' change automatically to full-screen on mobile
+		 * Defines the modal size.
+		 * Default is 'normal'.
+		 * Available are 'small', 'normal', 'large' and 'full'.
+		 * All sizes except 'small' change automatically to full-screen on mobile.
 		 */
 		size: {
 			type: String,
 			default: 'normal',
 			validator: size => {
-				return ['prompt', 'small', 'medium', 'normal', 'large', 'full'].includes(size)
+				return ['small', 'normal', 'large', 'full'].includes(size)
 			},
 		},
 		/**
@@ -723,30 +723,16 @@ export default {
 	}
 
 	// Sizing
-	&--prompt {
-		.modal-container {
-			width: 300px;
-			height: 200px;
-		}
-	}
 	&--small {
 		.modal-container {
-			width: 350px;
+			width: 330px;
 			max-height: 90%;
-			height: 450px;
-		}
-	}
-	&--medium {
-		.modal-container {
-			width: 500px;
-			max-height: 90%;
-			height: 600px;
 		}
 	}
 	&--normal {
 		.modal-container {
 			max-width: 90%;
-			width: 700px;
+			width: 600px;
 			max-height: 90%;
 			height: 600px;
 		}
@@ -769,9 +755,9 @@ export default {
 		}
 	}
 
-	// Make modal always full screen on mobile independent from modal size
+	// Make modal full screen on mobile
 	@media only screen and (max-width: $breakpoint-mobile/2) {
-		&:not(&--prompt):not(&--small) .modal-container {
+		&:not(&--small) .modal-container {
 			max-width: initial;
 			width: 100%;
 			max-height: initial;
