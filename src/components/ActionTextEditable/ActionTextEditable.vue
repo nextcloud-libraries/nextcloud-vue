@@ -64,7 +64,7 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 				<!-- allow the custom font to inject a ::before
 					not possible on input[type=submit] -->
 				<label v-show="!disabled" :for="id" class="action-text-editable__label">
-					<ArrowRight :size="24" title="" decorative />
+					<ArrowRight :size="20" title="" decorative />
 				</label>
 			</form>
 		</span>
