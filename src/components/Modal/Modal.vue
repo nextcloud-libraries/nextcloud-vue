@@ -291,16 +291,18 @@ export default {
 			default: false,
 		},
 		/**
-		 * Defines the modal size
-		 * Default is 'normal'
-		 * Available are 'prompt', 'small', 'medium', 'normal', 'large' and 'full'
-		 * All sizes except 'prompt' and 'small' change automatically to full-screen on mobile
+		 * Defines the modal size.
+		 * Default is 'normal'.
+		 * Available sizes are 'prompt', 'small', 'medium', 'normal', 'large' and 'full'.
+		 * All sizes except 'prompt' and 'small' change automatically to full-screen on mobile.
+		 * Additionally available is 'custom' which allows to set a custom size but its usage is unappreciated.
+		 * This size only defines a max height and width of 100%. The size must then be set manually.
 		 */
 		size: {
 			type: String,
 			default: 'normal',
 			validator: size => {
-				return ['prompt', 'small', 'medium', 'normal', 'large', 'full'].includes(size)
+				return ['prompt', 'small', 'medium', 'normal', 'large', 'full', 'custom'].includes(size)
 			},
 		},
 		/**
@@ -768,10 +770,16 @@ export default {
 			border-radius: 0;
 		}
 	}
+	&--custom {
+		.modal-container {
+			max-width: 100%;
+			max-height: 100%;
+		}
+	}
 
-	// Make modal always full screen on mobile independent from modal size
+	// Make modal full screen on mobile
 	@media only screen and (max-width: $breakpoint-mobile/2) {
-		&:not(&--prompt):not(&--small) .modal-container {
+		&:not(&--prompt):not(&--small):not(&--custom) .modal-container {
 			max-width: initial;
 			width: 100%;
 			max-height: initial;
