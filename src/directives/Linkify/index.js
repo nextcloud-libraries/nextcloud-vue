@@ -16,15 +16,13 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import linkifyStr from 'linkifyjs/string'
+import Linkify from '../../utils/Linkify'
 
 // Use function shorthand for same behavior on bind and update
 // https://vuejs.org/v2/guide/custom-directive.html#Function-Shorthand
 export const directive = function(el, binding) {
 	if (binding.value?.linkify === true) {
-		el.innerHTML = linkifyStr(binding.value.text, {
-			defaultProtocol: 'https',
-		})
+		el.innerHTML = Linkify(binding.value.text)
 	}
 }
 
