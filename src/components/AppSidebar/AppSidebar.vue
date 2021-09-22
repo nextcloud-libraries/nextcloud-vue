@@ -745,6 +745,7 @@ $top-buttons-spacing: 6px;
 						&::v-deep .linkified {
 							cursor: pointer;
 							text-decoration: underline;
+							margin: 0;
 						}
 					}
 
