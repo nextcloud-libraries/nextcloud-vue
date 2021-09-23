@@ -46,6 +46,9 @@ msgstr "Potvrdit změny"
 msgid "Custom"
 msgstr "Uživatelsky určené"
 
+msgid "Edit item"
+msgstr "Upravit položku"
+
 msgid "External documentation for {title}"
 msgstr "Externí dokumentace k {title}"
 
@@ -132,6 +135,9 @@ msgstr "Psaním vyhledejte časovou zónu"
 
 msgid "Unable to search the group"
 msgstr "Nedaří se hledat skupinu"
+
+msgid "Undo changes"
+msgstr "Vzít změny zpět"
 
 msgid "Write message, @ to mention someone …"
 msgstr "Pište zprávu, pokud chcete někoho zmínit, použijte @ …"
