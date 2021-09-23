@@ -38,6 +38,9 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
+msgid "Edit item"
+msgstr ""
+
 msgid "External documentation for {title}"
 msgstr ""
 
@@ -123,6 +126,9 @@ msgid "Type to search time zone"
 msgstr ""
 
 msgid "Unable to search the group"
+msgstr ""
+
+msgid "Undo changes"
 msgstr ""
 
 msgid "Write message, @ to mention someone …"
