@@ -47,6 +47,9 @@ msgstr "Potwierdź zmiany"
 msgid "Custom"
 msgstr "Zwyczajne"
 
+msgid "Edit item"
+msgstr "Edytuj element"
+
 msgid "External documentation for {title}"
 msgstr "Dokumentacja zewnętrzna dla {title}"
 
@@ -133,6 +136,9 @@ msgstr "Wpisz, aby wyszukać strefę czasową"
 
 msgid "Unable to search the group"
 msgstr "Nie można przeszukać grupy"
+
+msgid "Undo changes"
+msgstr "Cofnij zmiany"
 
 msgid "Write message, @ to mention someone …"
 msgstr "Napisz wiadomość, aby wspomnieć o kimś użyj @…"
