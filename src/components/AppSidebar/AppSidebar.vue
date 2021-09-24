@@ -46,7 +46,7 @@ include a standard-header like it's used by the files app.
 	</AppSidebar>
 </template>
 <script>
-	import Cog from 'vue-material-design-icons/Cog.vue'
+	import Cog from 'vue-material-design-icons/Cog'
 
 	export default {
 		components: {
@@ -273,8 +273,8 @@ import EmptyContent from '../EmptyContent/EmptyContent'
 import { t } from '../../l10n'
 import { directive as ClickOutside } from 'v-click-outside'
 
-import Close from 'vue-material-design-icons/Close.vue'
-import Star from 'vue-material-design-icons/Star.vue'
+import Close from 'vue-material-design-icons/Close'
+import Star from 'vue-material-design-icons/Star'
 
 export default {
 	name: 'AppSidebar',

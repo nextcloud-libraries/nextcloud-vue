@@ -168,10 +168,27 @@ Just set the `pinned` prop.
 				:force-menu="forceMenu"
 				:default-icon="menuIcon"
 				@update:open="onMenuToggle">
-				<ActionButton v-if="editable && !editingActive" icon="icon-rename" @click="handleEdit">
+				<template #icon>
+					<!-- @slot Slot for the custom menu icon -->
+					<slot name="menu-icon" />
+				</template>
+				<ActionButton
+					v-if="editable && !editingActive"
+					:aria-label="editButtonAriaLabel"
+					@click="handleEdit">
+					<template #icon>
+						<Pencil :size="20" decorative />
+					</template>
 					{{ editLabel }}
 				</ActionButton>
-				<ActionButton v-if="undo" icon="app-navigation-entry__deleted-button icon-history" @click="handleUndo" />
+				<ActionButton
+					v-if="undo"
+					:aria-label="undoButtonAriaLabel"
+					@click="handleUndo">
+					<template #icon>
+						<Undo :size="20" decorative />
+					</template>
+				</ActionButton>
 				<slot name="actions" />
 			</Actions>
 		</div>
@@ -194,6 +211,10 @@ import ActionButton from '../ActionButton/ActionButton'
 import AppNavigationIconCollapsible from './AppNavigationIconCollapsible'
 import isMobile from '../../mixins/isMobile'
 import InputConfirmCancel from './InputConfirmCancel'
+import { t } from '../../l10n'
+
+import Pencil from 'vue-material-design-icons/Pencil'
+import Undo from 'vue-material-design-icons/Undo'
 
 export default {
 	name: 'AppNavigationItem',
@@ -203,6 +224,8 @@ export default {
 		ActionButton,
 		AppNavigationIconCollapsible,
 		InputConfirmCancel,
+		Pencil,
+		Undo,
 	},
 	directives: {
 		ClickOutside,
@@ -394,6 +417,12 @@ export default {
 		},
 		isActive() {
 			return this.to && this.$route === this.to
+		},
+		editButtonAriaLabel() {
+			return this.editLabel ? this.editLabel : t('Edit item')
+		},
+		undoButtonAriaLabel() {
+			return t('Undo changes')
 		},
 	},
 	watch: {
