@@ -49,6 +49,9 @@ msgstr "Değişiklikleri onayla"
 msgid "Custom"
 msgstr "Özel"
 
+msgid "Edit item"
+msgstr "Ögeyi düzenle"
+
 msgid "External documentation for {title}"
 msgstr "{title} için dış belgeler"
 
@@ -135,6 +138,9 @@ msgstr "Saat dilimi aramak için yazmaya başlayın"
 
 msgid "Unable to search the group"
 msgstr "Grupta arama yapılamadı"
+
+msgid "Undo changes"
+msgstr "Değişiklikleri geri al"
 
 msgid "Write message, @ to mention someone …"
 msgstr "İletiyi yazın. Birini anmak için @ kullanın …"
