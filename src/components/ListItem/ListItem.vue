@@ -147,7 +147,8 @@
 							<span v-if="!displayActions" class="line-two__counter">
 								<CounterBubble
 									v-if="counterNumber != 0"
-									:type="counterType">
+									:type="counterType"
+									:highlighted="counterHighlighted">
 									{{ counterNumber }}
 								</CounterBubble>
 							</span>
@@ -284,6 +285,15 @@ export default {
 			validator(value) {
 				return ['highlighted', 'outlined', ''].indexOf(value) !== -1
 			},
+		},
+
+		/**
+		 * DEPRECATED: use the prop "counterType" instead.
+		 * Toggles the highlighted state of the counter
+		 */
+		counterHighlighted: {
+			type: Boolean,
+			default: false,
 		},
 	},
 

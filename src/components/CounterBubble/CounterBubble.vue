@@ -62,10 +62,22 @@ export default {
 				return ['highlighted', 'outlined', ''].indexOf(value) !== -1
 			},
 		},
+
+		/**
+		 * DEPRECATED: use the prop "type" instead.
+		 * Toggles the highlighted state of the counter.
+		 */
+		highlighted: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	computed: {
 		counterClassObject() {
+			if (this.highlighted) {
+				return 'counter-bubble__counter--highlighted'
+			}
 			return {
 				'counter-bubble__counter--highlighted': this.type === 'highlighted',
 				'counter-bubble__counter--outlined': this.type === 'outlined',
