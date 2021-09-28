@@ -28,7 +28,7 @@
 		:bold="false"
 		:details="'One hour ago'"
 		:counter-number="44"
-		:counter-highlighted="true">
+		counterType="highlighted">
 		<template #icon>
 			<avatar :size="44" user="janedoe" display-name="Jane Doe" />
 		</template>
@@ -147,6 +147,7 @@
 							<span v-if="!displayActions" class="line-two__counter">
 								<CounterBubble
 									v-if="counterNumber != 0"
+									:type="counterType"
 									:highlighted="counterHighlighted">
 									{{ counterNumber }}
 								</CounterBubble>
@@ -276,13 +277,24 @@ export default {
 		 },
 
 		/**
+		 * Outlined or highlighted state of the counter
+		 */
+		counterType: {
+			type: String,
+			default: '',
+			validator(value) {
+				return ['highlighted', 'outlined', ''].indexOf(value) !== -1
+			},
+		},
+
+		/**
+		 * DEPRECATED: use the prop "counterType" instead.
 		 * Toggles the highlighted state of the counter
 		 */
-		 counterHighlighted: {
-			 type: Boolean,
-			 default: false,
-		 },
-
+		counterHighlighted: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
