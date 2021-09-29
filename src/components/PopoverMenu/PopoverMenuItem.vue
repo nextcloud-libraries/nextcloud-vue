@@ -307,7 +307,7 @@ li {
 			* TODO: to remove */
 		> img {
 			width: $icon-size;
-			padding: $icon-margin;
+			margin: $icon-margin;
 		}
 
 		/* checkbox/radio fixes */
