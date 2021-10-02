@@ -2,10 +2,11 @@
 # Translators:
 # Anton Kuchár <tonokuc@pobox.sk>, 2020
 # Tomas Rusnak <linkermail@gmail.com>, 2021
+# Maroš Molek <marosmolek@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Tomas Rusnak <linkermail@gmail.com>, 2021\n"
+"Last-Translator: Maroš Molek <marosmolek@gmail.com>, 2021\n"
 "Language-Team: Slovak (Slovakia) (https://www.transifex.com/nextcloud/teams/64236/sk_SK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sk_SK\n"
@@ -38,11 +39,17 @@ msgstr "Vybrať"
 msgid "Close"
 msgstr "Zatvoriť"
 
+msgid "Close navigation"
+msgstr "Zavrieť navigáciu"
+
 msgid "Confirm changes"
 msgstr "Potvrdiť zmeny"
 
 msgid "Custom"
 msgstr "Zvyk"
+
+msgid "Edit item"
+msgstr "Upraviť položku"
 
 msgid "External documentation for {title}"
 msgstr "Externá dokumentácia pre {title}"
@@ -59,6 +66,9 @@ msgstr "Často používané"
 msgid "Global"
 msgstr "Globálne"
 
+msgid "Go back to the list"
+msgstr "Naspäť na zoznam"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Limit správy na {count} znakov dosiahnutý"
 
@@ -73,6 +83,9 @@ msgstr "Žiadne výsledky"
 
 msgid "Objects"
 msgstr "Objekty"
+
+msgid "Open navigation"
+msgstr "Otvoriť navigáciu"
 
 msgid "Pause slideshow"
 msgstr "Pozastaviť prezentáciu"
@@ -124,6 +137,9 @@ msgstr "Začníte písať pre vyhľadávanie časovej zóny"
 
 msgid "Unable to search the group"
 msgstr "Skupinu sa nepodarilo nájsť"
+
+msgid "Undo changes"
+msgstr "Vrátiť zmeny"
 
 msgid "Write message, @ to mention someone …"
 msgstr "Napíšte správu, @ pre spomenutie niekoho ..."
