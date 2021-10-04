@@ -50,6 +50,9 @@ msgstr "Confirmar alterações"
 msgid "Custom"
 msgstr "Personalizado"
 
+msgid "Edit item"
+msgstr "Editar item"
+
 msgid "External documentation for {title}"
 msgstr "Documentação externa para {title}"
 
@@ -136,6 +139,9 @@ msgstr "Digite para pesquisar o fuso horário "
 
 msgid "Unable to search the group"
 msgstr "Não foi possível pesquisar o grupo"
+
+msgid "Undo changes"
+msgstr "Desfazer modificações"
 
 msgid "Write message, @ to mention someone …"
 msgstr "Escreva mensagem, @ para mencionar alguém ..."
