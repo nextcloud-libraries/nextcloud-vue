@@ -41,18 +41,24 @@ It can be used with one or multiple actions.
 		<p>Primary</p>
 		<Button
 			type="tertiary">
-			<Video
-				:size="20" />
+			<template #icon>
+				<Video
+					:size="20" />
+			</template>
 		</Button>
 		<Button>
-			<Video
-				title=""
-				:size="20" />
+			<template #icon>
+				<Video
+					title=""
+					:size="20" />
+			</template>
 		</Button>
 		<Button
 			type="primary">
-			<Video
-				:size="20" />
+			<template #icon>
+				<Video
+					:size="20" />
+			</template>
 		</Button>
 	</div>
 
@@ -63,14 +69,15 @@ It can be used with one or multiple actions.
 		<p>Secondary</p>
 		<p>Primary</p>
 		<Button
-			text="Example text"
 			type="tertiary">
+			Example text
+		</Button>
+		<Button>
+			Example text
 		</Button>
 		<Button
-			text="Example text" />
-		<Button
-			text="Example text"
 			type="primary">
+			Example text
 		</Button>
 	</div>
 
@@ -81,22 +88,28 @@ It can be used with one or multiple actions.
 		<p>Secondary</p>
 		<p>Primary</p>
 		<Button
-			text="Example text"
 			type="tertiary">
-			<Video
-				:size="20" />
+			<template #icon>
+				<Video
+					:size="20" />
+			</template>
+			Example text
+		</Button>
+		<Button>
+			<template #icon>
+				<Video
+					title=""
+					:size="20" />
+			</template>
+			Example text
 		</Button>
 		<Button
-			text="Example text">
-			<Video
-				title=""
-				:size="20" />
-		</Button>
-		<Button
-			text="Example text"
 			type="primary">
-			<Video
-				:size="20" />
+			<template #icon>
+				<Video
+					:size="20" />
+			</template>
+			Example text
 		</Button>
 	</div>
 
@@ -105,9 +118,12 @@ It can be used with one or multiple actions.
 	<Button
 		text="Example text"
 		wide="true">
-		<Video
-			title=""
-			:size="20" />
+		<template #icon>
+			<Video
+				title=""
+				:size="20" />
+		</template>
+		Example text
 	</Button>
 
 	<!-- Special buttons -->
@@ -117,23 +133,29 @@ It can be used with one or multiple actions.
 		<p>Warning</p>
 		<p>Error</p>
 		<Button
-			text="Example text"
 			type="success">
-			<Video
-				:size="20" />
+			<template #icon>
+				<Video
+					:size="20" />
+			</template>
+			Example text
 		</Button>
 		<Button
-			type="warning"
-			text="Example text">
-			<Video
-				title=""
-				:size="20" />
+			type="warning">
+			<template #icon>
+				<Video
+					title=""
+					:size="20" />
+			</template>
+			Example text
 		</Button>
 		<Button
-			text="Example text"
 			type="error">
-			<Video
-				:size="20" />
+			<template #icon>
+				<Video
+					:size="20" />
+			</template>
+			Example text
 		</Button>
 	</div>
 </div>
@@ -203,9 +225,11 @@ button {
 		<span class="button-vue__wrapper">
 			<span v-if="hasIcon" class="button-vue__icon">
 				<!-- @slot The material design icon slot -->
+				<slot name="icon" />
+			</span>
+			<span v-if="hasText" class="button-vue__text">
 				<slot />
 			</span>
-			<span v-if="hasText" class="button-vue__text">{{ text }}</span>
 		</span>
 	</button>
 </template>
@@ -215,14 +239,6 @@ export default {
 	name: 'Button',
 
 	props: {
-		/**
-		 * The text of the button.
-		 */
-		text: {
-			type: String,
-			default: '',
-		},
-
 		/**
 		 * Toggles the disabled state of the button on and off.
 		 */
@@ -265,6 +281,10 @@ export default {
 		},
 	},
 
+	beforeUpdate() {
+		this.text = this.getText()
+	},
+
 	data() {
 		return {
 			/**
@@ -273,6 +293,11 @@ export default {
 			 * when the user is navigating with the keyboard.
 			 */
 			tabbed: false,
+			/**
+			 * $slots are not reactive.
+			 * We need to update the content manually
+			 */
+			text: this.getText(),
 		}
 	},
 
@@ -282,7 +307,7 @@ export default {
 		},
 
 		hasIcon() {
-			return this.$slots.default !== undefined
+			return this.$slots.icon !== undefined
 		},
 
 		iconOnly() {
@@ -321,6 +346,9 @@ export default {
 	},
 
 	methods: {
+		getText() {
+			return this.$slots.default ? this.$slots.default[0].text.trim() : null
+		},
 
 		/**
 		 * Removes the tabbed state of the button.
