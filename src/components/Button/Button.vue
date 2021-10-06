@@ -104,12 +104,13 @@ It can be used with one or multiple actions.
 			Example text
 		</Button>
 		<Button
-			type="primary">
+			type="primary"
+			@click="toggle">
 			<template #icon>
 				<Video
 					:size="20" />
 			</template>
-			Example text
+			{{ text }}
 		</Button>
 	</div>
 
@@ -172,7 +173,17 @@ export default {
 		return {
 			toggled: false
 		}
-	}
+	},
+	methods: {
+		toggle() {
+			this.toggled = !this.toggled
+		},
+	},
+	computed: {
+		text() {
+			return this.toggled ? '' : 'Example text'
+		},
+	},
 }
 </script>
 <style lang="scss" scoped>
