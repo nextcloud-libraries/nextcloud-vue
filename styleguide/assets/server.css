@@ -1373,7 +1373,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
   }
   /* Simple selector to allow easy overriding */
   /* line 26, /var/www/nextcloud/core/css/inputs.scss */
-  select, button, input, textarea, div[contenteditable=true], div[contenteditable=false] {
+  select, button:not(.button-vue), input, textarea, div[contenteditable=true], div[contenteditable=false] {
 	width: 130px;
 	min-height: 34px;
 	box-sizing: border-box;
@@ -1385,7 +1385,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
    */
   /* Default global values */
   /* line 44, /var/www/nextcloud/core/css/inputs.scss */
-  div.select2-drop .select2-search input, select, button, .button, input:not([type='range']), textarea, div[contenteditable=true], .pager li a {
+  div.select2-drop .select2-search input, select, button:not(.button-vue), .button, input:not([type='range']), textarea, div[contenteditable=true], .pager li a {
 	margin: 3px 3px 3px 0;
 	padding: 7px 6px;
 	font-size: 13px;
@@ -1404,7 +1404,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 	outline: none;
   }
   /* line 68, /var/www/nextcloud/core/css/inputs.scss */
-  div.select2-drop .select2-search input:not(:disabled):not(.primary):active, select:not(:disabled):not(.primary):active, button:not(:disabled):not(.primary):active, .button:not(:disabled):not(.primary):active, input:not([type='range']):not(:disabled):not(.primary):active, textarea:not(:disabled):not(.primary):active, div[contenteditable=true]:not(:disabled):not(.primary):active, .pager li a:not(:disabled):not(.primary):active {
+  div.select2-drop .select2-search input:not(:disabled):not(.primary):active, select:not(:disabled):not(.primary):active, button:not(:disabled):not(.primary):not(.button-vue):active, input:not([type='range']):not(:disabled):not(.primary):active, textarea:not(:disabled):not(.primary):active, div[contenteditable=true]:not(:disabled):not(.primary):active, .pager li a:not(:disabled):not(.primary):active {
 	outline: none;
 	background-color: var(--color-main-background);
 	color: var(--color-text-light);
@@ -1503,7 +1503,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
   }
   /* 'Click' inputs */
   /* line 170, /var/www/nextcloud/core/css/inputs.scss */
-  select, button, .button, input[type='button'], input[type='submit'], input[type='reset'] {
+  select, button:not(.button-vue), .button, input[type='button'], input[type='submit'], input[type='reset'] {
 	padding: 6px 12px;
 	width: auto;
 	min-height: 34px;
