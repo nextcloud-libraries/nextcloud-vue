@@ -1,29 +1,37 @@
 :root {
 	--color-main-text: #222;
 	--color-main-background: #fff;
-	--color-main-background-translucent: rgba(255, 255, 255, 1);
-	--color-background-hover: #f5f5f5;
+	--color-main-background-translucent: rgba(255, 255, 255, 0.97);
+	--gradient-main-background: var(--color-main-background) 0%, var(--color-main-background-translucent) 85%, transparent 100%;
+	--color-background-hover: whitesmoke;
 	--color-background-dark: #ededed;
 	--color-background-darker: #dbdbdb;
 	--color-placeholder-light: #e6e6e6;
 	--color-placeholder-dark: #ccc;
 	--color-primary: #0082c9;
-	--color-primary-light: #fbf0f4;
-	--color-primary-text: #fff;
+	--color-primary-hover: #339bd4;
+	--color-primary-light: #e6f3fa;
+	--color-primary-light-hover: #dce8ef;
+	--color-primary-text: #ffffff;
+	--color-primary-light-text: #0082c9;
 	--color-primary-text-dark: #ededed;
 	--color-primary-element: #0082c9;
+	--color-primary-element-hover: #339bd4;
 	--color-primary-element-light: #17adff;
-	--color-primary-light: #e6f3fa;
+	--color-primary-element-lighter: #d9ecf7;
 	--color-error: #e9322d;
+	--color-error-hover: #ed5b57;
 	--color-warning: #eca700;
+	--color-warning-hover: #f0b933;
 	--color-success: #46ba61;
+	--color-success-hover: #6bc881;
 	--color-text-maxcontrast: #767676;
 	--color-text-light: #222;
 	--color-text-lighter: #767676;
-	/* --image-logo: url('/core/img/logo/logo.png?v=12');
-	--image-login-background: url('/core/img/background.png?v=12');
-	--image-logoheader: url('/core/img/logo/logo.png?v=12');
-	--image-favicon: url('/core/img/logo/logo.png?v=12'); */
+	/* --image-logo: url(/core/img/logo/logo.png?v=0);
+	--image-login-background: url(/core/img/background.png?v=0);
+	--image-logoheader: url(/core/img/logo/logo.png?v=0);
+	--image-favicon: url(/core/img/logo/logo.png?v=0); */
 	--color-loading-light: #ccc;
 	--color-loading-dark: #444;
 	--color-box-shadow: rgba(77, 77, 77, 0.5);
