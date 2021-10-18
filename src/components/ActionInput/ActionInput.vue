@@ -132,7 +132,6 @@ export default {
 		icon: {
 			type: String,
 			default: '',
-			required: true,
 		},
 		/**
 		 * type attribute of the input field
