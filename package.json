@@ -104,7 +104,7 @@
 		"sass-loader": "^10.2.0",
 		"stylelint-webpack-plugin": "^2.1.0",
 		"url-loader": "^4.1.0",
-		"vue-eslint-parser": "^7.1.0",
+		"vue-eslint-parser": "^8.0.0",
 		"vue-jest": "^3.0.5",
 		"vue-loader": "^15.9.1",
 		"vue-styleguidist": "^4.33.9",
