@@ -669,8 +669,10 @@ export default {
 		position: absolute;
 		right: -4px;
 		bottom: -4px;
-		height: 18px;
-		width: 18px;
+		max-height: 18px;
+		max-width: 18px;
+		height: 40%;
+		width: 40%;
 		line-height: 15px;
 		font-size: var(--default-font-size);
 		border: 2px solid var(--color-main-background);
