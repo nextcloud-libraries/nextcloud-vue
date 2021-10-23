@@ -37,11 +37,17 @@ msgstr "選擇"
 msgid "Close"
 msgstr "關閉"
 
+msgid "Close navigation"
+msgstr "關閉導航"
+
 msgid "Confirm changes"
 msgstr "確認更改"
 
 msgid "Custom"
 msgstr "自定義"
+
+msgid "Edit item"
+msgstr "編輯項目"
 
 msgid "External documentation for {title}"
 msgstr "{title} 的外部文檔"
@@ -58,6 +64,9 @@ msgstr "經常使用"
 msgid "Global"
 msgstr "全球的"
 
+msgid "Go back to the list"
+msgstr "返回清單"
+
 msgid "Message limit of {count} characters reached"
 msgstr "已達到訊息最多 {count} 字元限制"
 
@@ -72,6 +81,9 @@ msgstr "無結果"
 
 msgid "Objects"
 msgstr "物件"
+
+msgid "Open navigation"
+msgstr "開啟導航"
 
 msgid "Pause slideshow"
 msgstr "暫停幻燈片"
@@ -123,6 +135,9 @@ msgstr "鍵入以搜索時區"
 
 msgid "Unable to search the group"
 msgstr "無法搜尋群組"
+
+msgid "Undo changes"
+msgstr "取消更改"
 
 msgid "Write message, @ to mention someone …"
 msgstr "輸入訊息時可使用 @ 來標示某人..."
