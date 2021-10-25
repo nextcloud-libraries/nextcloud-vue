@@ -31,6 +31,9 @@ msgstr "Hayvanlar ve Doğa"
 msgid "Avatar of {displayName}"
 msgstr "{displayName} avatarı"
 
+msgid "Avatar of {displayName}, {status}"
+msgstr "{displayName}, {status} avatarı"
+
 msgid "Cancel changes"
 msgstr "Değişiklikleri iptal et"
 
