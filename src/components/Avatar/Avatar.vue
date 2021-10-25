@@ -290,6 +290,9 @@ export default {
 				return this.ariaLabel
 			}
 
+			if (this.hasStatus && this.showUserStatus && this.showUserStatusCompact) {
+				return t('Avatar of {displayName}, {status}', { displayName: this.displayName || this.userId, status: this.userStatus.status })
+			}
 			return t('Avatar of {displayName}', { displayName: this.displayName || this.userId })
 		},
 

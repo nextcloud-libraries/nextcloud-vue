@@ -20,6 +20,9 @@ msgstr ""
 msgid "Avatar of {displayName}"
 msgstr ""
 
+msgid "Avatar of {displayName}, {status}"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr ""
 
