@@ -125,7 +125,6 @@ export default {
 				max-width: 100%;
 				white-space: nowrap;
 				text-overflow: ellipsis;
-				padding-left: 6px;
 			}
 		}
 	}

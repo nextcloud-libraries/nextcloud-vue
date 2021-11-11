@@ -546,7 +546,6 @@ export default {
 			max-width: 100%;
 			white-space: nowrap;
 			text-overflow: ellipsis;
-			padding-left: 6px;
 		}
 
 		.editingContainer {
@@ -566,7 +565,8 @@ export default {
 		.app-navigation-entry {
 			display: inline-flex;
 			flex-wrap: wrap;
-			padding-left: $clickable-area - $icon-margin;
+			padding-left: $icon-size;
+			padding-right: 0;
 		}
 	}
 }
