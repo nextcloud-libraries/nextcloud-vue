@@ -8,10 +8,11 @@
 # Ludovici t <ludovic.tourtelier@e-c.bzh>, 2020
 # Framboise Pi, 2021
 # Boris Alet, 2021
+# Mer0me <postmaster@merome.net>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Boris Alet, 2021\n"
+"Last-Translator: Mer0me <postmaster@merome.net>, 2021\n"
 "Language-Team: French (https://www.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -35,6 +36,9 @@ msgstr "Animaux & Nature"
 msgid "Avatar of {displayName}"
 msgstr "Avatar de {displayName}"
 
+msgid "Avatar of {displayName}, {status}"
+msgstr "Avatar de {displayName}, {status}"
+
 msgid "Cancel changes"
 msgstr "Annuler les modifications"
 
@@ -44,11 +48,17 @@ msgstr "Choisir"
 msgid "Close"
 msgstr "Fermer"
 
+msgid "Close navigation"
+msgstr "Fermer la navigation"
+
 msgid "Confirm changes"
 msgstr "Confirmer les modifications"
 
 msgid "Custom"
 msgstr "Personnalisé"
+
+msgid "Edit item"
+msgstr "Éditer l'élément"
 
 msgid "External documentation for {title}"
 msgstr "Documentation externe pour {title}"
@@ -65,6 +75,9 @@ msgstr "Utilisés fréquemment"
 msgid "Global"
 msgstr "Global"
 
+msgid "Go back to the list"
+msgstr "Retourner à la liste"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Limite de messages de {count} caractères atteinte"
 
@@ -79,6 +92,9 @@ msgstr "Aucun résultat"
 
 msgid "Objects"
 msgstr "Objets"
+
+msgid "Open navigation"
+msgstr "Ouvrir la navigation"
 
 msgid "Pause slideshow"
 msgstr "Mettre le diaporama en pause"
@@ -130,6 +146,9 @@ msgstr "Saisissez les premiers lettres pour rechercher un fuseau horaire"
 
 msgid "Unable to search the group"
 msgstr "Impossible de chercher le groupe"
+
+msgid "Undo changes"
+msgstr "Annuler les changements"
 
 msgid "Write message, @ to mention someone …"
 msgstr "Écrivez un message, @ pour mentionner quelqu'un…"
