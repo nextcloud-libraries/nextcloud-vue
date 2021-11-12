@@ -32,6 +32,9 @@ msgstr "Animais & Natureza"
 msgid "Avatar of {displayName}"
 msgstr "Avatar de {displayName}"
 
+msgid "Avatar of {displayName}, {status}"
+msgstr "Avatar de {displayName}, {status}"
+
 msgid "Cancel changes"
 msgstr "Cancelar alterações"
 
