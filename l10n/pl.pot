@@ -29,6 +29,9 @@ msgstr "Zwierzęta i natura"
 msgid "Avatar of {displayName}"
 msgstr "Awatar {displayName}"
 
+msgid "Avatar of {displayName}, {status}"
+msgstr "Awatar {displayName}, {status}"
+
 msgid "Cancel changes"
 msgstr "Anuluj zmiany"
 
