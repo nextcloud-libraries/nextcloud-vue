@@ -2,10 +2,11 @@
 # Translators:
 # george k <norhorn@gmail.com>, 2020
 # Efstathios Iosifidis <iefstathios@gmail.com>, 2021
+# Gerasimos Theotokatos, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>, 2021\n"
+"Last-Translator: Gerasimos Theotokatos, 2021\n"
 "Language-Team: Greek (https://www.transifex.com/nextcloud/teams/64236/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: el\n"
@@ -38,11 +39,17 @@ msgstr "Επιλογή"
 msgid "Close"
 msgstr "Κλείσιμο"
 
+msgid "Close navigation"
+msgstr "Κλείσιμο πλοήγησης"
+
 msgid "Confirm changes"
 msgstr "Επιβεβαίωση αλλαγών"
 
 msgid "Custom"
 msgstr "Προσαρμογή"
+
+msgid "Edit item"
+msgstr "Επεξεργασία"
 
 msgid "External documentation for {title}"
 msgstr "Εξωτερική τεκμηρίωση για {title}"
@@ -59,6 +66,9 @@ msgstr "Συχνά χρησιμοποιούμενο"
 msgid "Global"
 msgstr "Καθολικό"
 
+msgid "Go back to the list"
+msgstr "Επιστροφή στην αρχική λίστα "
+
 msgid "Message limit of {count} characters reached"
 msgstr "Συμπληρώθηκε το όριο των {count} χαρακτήρων του μηνύματος"
 
@@ -73,6 +83,9 @@ msgstr "Κανένα αποτέλεσμα"
 
 msgid "Objects"
 msgstr "Αντικείμενα"
+
+msgid "Open navigation"
+msgstr "Άνοιγμα πλοήγησης"
 
 msgid "Pause slideshow"
 msgstr "Παύση προβολής διαφανειών"
@@ -124,6 +137,9 @@ msgstr "Πληκτρολογήστε για αναζήτηση ζώνης ώρα
 
 msgid "Unable to search the group"
 msgstr "Δεν είναι δυνατή η αναζήτηση της ομάδας"
+
+msgid "Undo changes"
+msgstr "Αναίρεση Αλλαγών"
 
 msgid "Write message, @ to mention someone …"
 msgstr "Γράψτε ένα μήνυμα, και με το σύμβολο @, μνημονεύστε κάποιον …"
