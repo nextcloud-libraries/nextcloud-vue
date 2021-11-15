@@ -35,6 +35,9 @@ msgstr "Tiere & Natur"
 msgid "Avatar of {displayName}"
 msgstr "Avatar von {displayName}"
 
+msgid "Avatar of {displayName}, {status}"
+msgstr "Avatar von {displayName}, {status}"
+
 msgid "Cancel changes"
 msgstr "Änderungen verwerfen"
 
