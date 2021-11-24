@@ -307,6 +307,7 @@ li {
 			* TODO: to remove */
 		> img {
 			width: $icon-size;
+			height: $icon-size;
 			margin: $icon-margin;
 		}
 
