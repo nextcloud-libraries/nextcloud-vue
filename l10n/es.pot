@@ -2,10 +2,12 @@
 # Translators:
 # javier san felipe <jsanfe@gmail.com>, 2020
 # Maira Belmonte <mairabelmonte@gmail.com>, 2020
+# Mateo Riofrio <materiochi123@gmail.com>, 2021
+# Next Cloud <nextcloud.translator.es@cgj.es>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Maira Belmonte <mairabelmonte@gmail.com>, 2020\n"
+"Last-Translator: Next Cloud <nextcloud.translator.es@cgj.es>, 2021\n"
 "Language-Team: Spanish (https://www.transifex.com/nextcloud/teams/64236/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es\n"
@@ -26,14 +28,35 @@ msgstr "Actividades"
 msgid "Animals & Nature"
 msgstr "Animales y naturaleza"
 
+msgid "Avatar of {displayName}"
+msgstr "Avatar de {displayName}"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "Avatar de {displayName}, {status}"
+
+msgid "Cancel changes"
+msgstr "Cancelar cambios"
+
 msgid "Choose"
 msgstr "Elegir"
 
 msgid "Close"
 msgstr "Cerrar"
 
+msgid "Close navigation"
+msgstr "Cerrar navegación"
+
+msgid "Confirm changes"
+msgstr "Confirmar cambios"
+
 msgid "Custom"
 msgstr "Personalizado"
+
+msgid "Edit item"
+msgstr "Editar elemento"
+
+msgid "External documentation for {title}"
+msgstr "Documentacion externa de {title}"
 
 msgid "Flags"
 msgstr "Banderas"
@@ -43,6 +66,12 @@ msgstr "Comida y bebida"
 
 msgid "Frequently used"
 msgstr "Usado con frecuenca"
+
+msgid "Global"
+msgstr "Global"
+
+msgid "Go back to the list"
+msgstr "Volver a la lista"
 
 msgid "Message limit of {count} characters reached"
 msgstr "El mensaje ha alcanzado el límite de {count} caracteres"
@@ -59,6 +88,9 @@ msgstr " Ningún resultado"
 msgid "Objects"
 msgstr "Objetos"
 
+msgid "Open navigation"
+msgstr "Abrir navegación"
+
 msgid "Pause slideshow"
 msgstr "Pausar la presentación "
 
@@ -67,6 +99,9 @@ msgstr "Personas y cuerpos"
 
 msgid "Pick an emoji"
 msgstr "Elegir un emoji"
+
+msgid "Please select a time zone:"
+msgstr "Por favor elige un huso de horario:"
 
 msgid "Previous"
 msgstr "Anterior"
@@ -92,14 +127,23 @@ msgstr "Smileys y emoticonos"
 msgid "Start slideshow"
 msgstr "Iniciar la presentación"
 
+msgid "Submit"
+msgstr "Enviar"
+
 msgid "Symbols"
 msgstr "Símbolos"
 
 msgid "Travel & Places"
 msgstr "Viajes y lugares"
 
+msgid "Type to search time zone"
+msgstr "Escribe para buscar un huso de horario"
+
 msgid "Unable to search the group"
 msgstr "No es posible buscar en el grupo"
+
+msgid "Undo changes"
+msgstr "Deshacer cambios"
 
 msgid "Write message, @ to mention someone …"
 msgstr "Escriba un mensaje, @ para mencionar a alguien..."
