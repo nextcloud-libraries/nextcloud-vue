@@ -82,6 +82,7 @@
 			class="menuitem focusable"
 			:class="{active: item.active}"
 			:disabled="item.disabled"
+			:title="item.buttonTitle"
 			type="button"
 			@click.stop.prevent="item.action">
 			<span :class="item.icon" />
@@ -135,6 +136,7 @@ export default {
 					href: 'https://nextcloud.com',
 					icon: 'icon-links',
 					text: 'Nextcloud',
+					buttonTitle: '',
 				}
 			},
 			// check the input types

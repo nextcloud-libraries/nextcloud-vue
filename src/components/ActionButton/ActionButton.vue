@@ -86,6 +86,7 @@ export default {
 			class="action-button"
 			:class="{ focusable: isFocusable }"
 			:aria-label="ariaLabel"
+			:title="buttonTitle"
 			type="button"
 			@click="onClick">
 			<!-- @slot Manually provide icon -->
@@ -140,6 +141,13 @@ export default {
 		disabled: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Title (tooltip) for the button element.
+		 */
+		buttonTitle: {
+			type: String,
+			default: '',
 		},
 	},
 	computed: {
