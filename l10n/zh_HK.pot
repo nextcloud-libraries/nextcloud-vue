@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Café Tango, 2021
+# ous 50, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Café Tango, 2021\n"
+"Last-Translator: ous 50, 2021\n"
 "Language-Team: Chinese (Hong Kong) (https://www.transifex.com/nextcloud/teams/64236/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_HK\n"
@@ -27,6 +28,9 @@ msgstr "動物與自然"
 
 msgid "Avatar of {displayName}"
 msgstr "{displayName} 的頭像"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "{displayName}的頭像，{status}"
 
 msgid "Cancel changes"
 msgstr "取消更改"
