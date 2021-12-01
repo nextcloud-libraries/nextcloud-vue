@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v4.3.0](https://github.com/nextcloud/nextcloud-vue/tree/v4.3.0) (2021-12-01)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.2.0...v4.3.0)
+
+## Fixed bugs
+
+- Change background style target for tab icons [\#2374](https://github.com/nextcloud/nextcloud-vue/pull/2374) ([artonge](https://github.com/artonge))
+
+## Closed pull requests
+
+- Reduce size of status icons in Avatar component [\#2323](https://github.com/nextcloud/nextcloud-vue/pull/2323) ([CarlSchwan](https://github.com/CarlSchwan))
+- Free closeOnSelect [\#2391](https://github.com/nextcloud/nextcloud-vue/pull/2391) ([jotoeri](https://github.com/jotoeri)))
+
 ## [v4.2.0](https://github.com/nextcloud/nextcloud-vue/tree/v4.1.1) (2021-09-28)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.1.1...v4.2.0)
