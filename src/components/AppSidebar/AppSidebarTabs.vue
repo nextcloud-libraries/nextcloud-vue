@@ -345,13 +345,12 @@ export default {
 		height: 25px;
 		transition: opacity var(--animation-quick);
 		opacity: $opacity_normal;
-		background-position: center 8px;
-		background-size: 16px;
 
 		& > span {
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			background-size: 16px;
 		}
 	}
 
