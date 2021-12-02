@@ -151,6 +151,7 @@ import stringLength from 'string-length'
 import { t } from '../../l10n'
 import AutoCompleteResult from './AutoCompleteResult'
 import richEditor from '../../mixins/richEditor/index'
+import { allEmojis, emojiSearch } from '../../functions/emoji/index'
 
 export default {
 	name: 'RichContenteditable',
@@ -235,18 +236,23 @@ export default {
 			},
 			emojiOptions: {
 				trigger: ':',
-				// Search against id and label (display name)
-				lookup: result => result.short_names.join(' '),
+				// Don't use the tribute search function at all
+				// We pass search results as values (see below)
+				lookup: (result, query) => query,
 				// Where to inject the menu popup
 				menuContainer: this.menuContainer,
 				// Popup mention autocompletion templates
-				menuItemTemplate: item => item.original.value,
+				menuItemTemplate: item => `${item.original.value} :${item.original.short_name}`,
 				// Hide if no results
-				noMatchTemplate: () => '<span class="hidden"></span>',
-				// Inner display of mentions, display raw emoji
+				noMatchTemplate: () => t('No emojis found'),
+				// Display raw emoji along with its name
 				selectTemplate: item => item.original.value,
-				// Autocompletion results
-				values: EMOJIS,
+				// Pass the search results as values
+				values: (text, cb) => cb(emojiSearch(allEmojis, text)),
+				// Class added to the menu container
+				containerClass: 'tribute-container-emoji',
+				// Class added to each list item
+				itemClass: 'tribute-container-emoji__item',
 			},
 
 			// Represent the raw untrimmed text of the contenteditable
@@ -569,7 +575,7 @@ export default {
 </style>
 
 <style lang="scss">
-.tribute-container {
+.tribute-container, .tribute-container-emoji {
 	z-index: 9000;
 	overflow: auto;
 	min-width: 250px;
@@ -583,6 +589,37 @@ export default {
 	border-radius: var(--border-radius);
 	background: var(--color-main-background);
 	box-shadow: 0 1px 5px var(--color-box-shadow);
+}
+
+.tribute-container-emoji {
+	min-width: 180px;
+	padding: 0.2rem;
+
+	&__item {
+		border-radius: 5px;
+		padding: 0.2rem 0.5rem;
+		margin-bottom: 0.2rem;
+		opacity: 0.8;
+		cursor: pointer;
+
+		// Take care of long names
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.highlight {
+		opacity: 1;
+		color: var(--color-main-text);
+		background: var(--color-primary-light);
+		&, * {
+			cursor: pointer;
+		}
+	}
 }
 
 </style>
