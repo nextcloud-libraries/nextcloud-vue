@@ -20,44 +20,28 @@
  *
  */
 
-export const allEmojis = EMOJIS
+import data from 'emoji-mart-vue-fast/data/all.json'
+import { EmojiIndex } from 'emoji-mart-vue-fast/src'
+import frequently from 'emoji-mart-vue-fast/src/utils/frequently'
 
-/** later
-const DEFAULTS = [
-	'heart',
-	'+1',
-	'-1',
-	'joy',
-	'cry',
-]
- */
+// export const allEmojis = index.buildIndex()
 
 /**
- * @param {Array} searchItems Array of emojis
  * @param {string} query Emoji search string
+ * @param {Number} maxResults Maximum of returned emojis
  * @returns {Array} list of found emojis
  */
-export const emojiSearch = function(searchItems, query) {
-	if (!query) {
-		// Return first five emojis for empty searches
-		return searchItems.slice(0, 5)
+export const emojiSearch = function(query, maxResults = 5) {
+	const index = new EmojiIndex(data)
+	if (query) {
+		return index.search(query, maxResults) || []
 	}
 
-	// First search for exact matches
-	let results = searchItems.filter(item => item.short_names
-		.filter(name => name.toLowerCase() === query.toLowerCase()).length > 0)
-
-	// Second search for matches that start with query string
-	results = [...new Set([...results, ...searchItems.filter(item => item.short_names
-		.filter(name => name.toLowerCase().startsWith(query.toLowerCase())).length > 0)])]
-
-	// If we still don't have enough, search for general matches
-	if (results.length < 5) {
-		results = [...new Set([...results, ...searchItems.filter(item => item.short_names
-			.filter(name => name.toLowerCase().includes(query.toLowerCase())).length > 0)])]
-	}
-
-	return results.slice(0, 5)
+	return frequently.get(maxResults).map((id) => index.emoji(id)) || []
 }
 
-export default { allEmojis, emojiSearch }
+export const addRecent = function(id) {
+	frequently.add(id)
+}
+
+export default { emojiSearch, addRecent }

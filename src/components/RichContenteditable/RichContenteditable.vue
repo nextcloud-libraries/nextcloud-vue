@@ -151,7 +151,7 @@ import stringLength from 'string-length'
 import { t } from '../../l10n'
 import AutoCompleteResult from './AutoCompleteResult'
 import richEditor from '../../mixins/richEditor/index'
-import { allEmojis, emojiSearch } from '../../functions/emoji/index'
+import { emojiSearch, addRecent } from '../../functions/emoji'
 
 export default {
 	name: 'RichContenteditable',
@@ -242,13 +242,16 @@ export default {
 				// Where to inject the menu popup
 				menuContainer: this.menuContainer,
 				// Popup mention autocompletion templates
-				menuItemTemplate: item => `${item.original.value} :${item.original.short_name}`,
+				menuItemTemplate: item => `${item.original.native} :${item.original.short_name}`,
 				// Hide if no results
-				noMatchTemplate: () => t('No emojis found'),
+				noMatchTemplate: () => t('No emoji found'),
 				// Display raw emoji along with its name
-				selectTemplate: item => item.original.value,
+				selectTemplate: (item) => {
+					addRecent(item.original)
+					return item.original.native
+				},
 				// Pass the search results as values
-				values: (text, cb) => cb(emojiSearch(allEmojis, text)),
+				values: (text, cb) => cb(emojiSearch(text)),
 				// Class added to the menu container
 				containerClass: 'tribute-container-emoji',
 				// Class added to each list item

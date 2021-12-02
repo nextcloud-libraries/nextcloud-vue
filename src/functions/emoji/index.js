@@ -20,7 +20,6 @@
  *
  */
 
-import { allEmojis, emojiSearch } from './emoji'
+import { emojiSearch, addRecent } from './emoji'
 
-export { allEmojis, emojiSearch }
-export default { allEmojis, emojiSearch }
+export { emojiSearch, addRecent }
