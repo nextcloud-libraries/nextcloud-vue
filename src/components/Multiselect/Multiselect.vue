@@ -171,7 +171,7 @@ export default {
 		]"
 		:options="options"
 		:limit="maxOptions"
-		:close-on-select="!multiple"
+		:close-on-select="willCloseOnSelect"
 		:multiple="multiple"
 		:label="label"
 		:track-by="trackBy"
@@ -252,6 +252,15 @@ export default {
 			default() {
 				return []
 			},
+		},
+
+		/**
+		 * Close the Multiselect when selecting an item.
+		 * Will be overwritten by !multiple if undefined.
+		 */
+		closeOnSelect: {
+			type: Boolean,
+			default: undefined,
 		},
 
 		/**
@@ -372,6 +381,15 @@ export default {
 				this.$emit('update:value', value)
 				this.$emit('change', value)
 			},
+		},
+
+		/**
+		 * If closeOnSelect is not manually set, set it to !multiple
+		 * @returns {boolean} closeOnSelect for vue-multiselect
+		 */
+		willCloseOnSelect() {
+			if (this.closeOnSelect === undefined) return !this.multiple
+			return this.closeOnSelect
 		},
 	},
 
