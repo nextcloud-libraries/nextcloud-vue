@@ -4,10 +4,11 @@
 # Arjan van S, 2020
 # Robin Slot, 2020
 # André Koot <meneer@tken.net>, 2021
+# Nico Vromans, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: André Koot <meneer@tken.net>, 2021\n"
+"Last-Translator: Nico Vromans, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/nextcloud/teams/64236/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nl\n"
@@ -31,6 +32,9 @@ msgstr "Dieren & Natuur"
 msgid "Avatar of {displayName}"
 msgstr "Avatar van {displayName}"
 
+msgid "Avatar of {displayName}, {status}"
+msgstr "Avatar van {displayName}, {status}"
+
 msgid "Cancel changes"
 msgstr "Wijzigingen annuleren"
 
@@ -40,11 +44,17 @@ msgstr "Kies"
 msgid "Close"
 msgstr "Sluiten"
 
+msgid "Close navigation"
+msgstr "Navigatie sluiten"
+
 msgid "Confirm changes"
 msgstr "Wijzigingen bevestigen"
 
 msgid "Custom"
 msgstr "Aangepast"
+
+msgid "Edit item"
+msgstr "Item bewerken"
 
 msgid "External documentation for {title}"
 msgstr "Externe documentatie voor {title}"
@@ -57,6 +67,12 @@ msgstr "Eten & Drinken"
 
 msgid "Frequently used"
 msgstr "Vaak gebruikt"
+
+msgid "Global"
+msgstr "Globaal"
+
+msgid "Go back to the list"
+msgstr "Ga terug naar de lijst"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Berichtlengte van {count} karakters bereikt"
@@ -73,6 +89,9 @@ msgstr "Geen resultaten"
 msgid "Objects"
 msgstr "Objecten"
 
+msgid "Open navigation"
+msgstr "Navigatie openen"
+
 msgid "Pause slideshow"
 msgstr "Pauzeer diavoorstelling"
 
@@ -81,6 +100,9 @@ msgstr "Mensen & Lichaam"
 
 msgid "Pick an emoji"
 msgstr "Kies een emoji"
+
+msgid "Please select a time zone:"
+msgstr "Selecteer a.u.b. een tijdzone:"
 
 msgid "Previous"
 msgstr "Vorige"
@@ -115,8 +137,14 @@ msgstr "Symbolen"
 msgid "Travel & Places"
 msgstr "Reizen & Plaatsen"
 
+msgid "Type to search time zone"
+msgstr "Type om de tijdzone te zoeken"
+
 msgid "Unable to search the group"
 msgstr "Kan niet in de groep zoeken"
+
+msgid "Undo changes"
+msgstr "Wijzigingen ongedaan maken"
 
 msgid "Write message, @ to mention someone …"
 msgstr "Schrijf een bericht, @ om iemand te noemen ..."
