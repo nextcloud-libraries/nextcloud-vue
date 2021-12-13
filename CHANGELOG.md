@@ -2,6 +2,56 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v4.3.0](https://github.com/nextcloud/nextcloud-vue/tree/v4.3.0) (2021-12-01)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.2.0...v4.3.0)
+
+## Fixed bugs
+
+- Change background style target for tab icons [\#2374](https://github.com/nextcloud/nextcloud-vue/pull/2374) ([artonge](https://github.com/artonge))
+
+## Closed pull requests
+
+- Reduce size of status icons in Avatar component [\#2323](https://github.com/nextcloud/nextcloud-vue/pull/2323) ([CarlSchwan](https://github.com/CarlSchwan))
+- Free closeOnSelect [\#2391](https://github.com/nextcloud/nextcloud-vue/pull/2391) ([jotoeri](https://github.com/jotoeri)))
+
+## [v4.2.0](https://github.com/nextcloud/nextcloud-vue/tree/v4.1.1) (2021-09-28)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.1.1...v4.2.0)
+
+## Enhancements
+
+- Use material design icon for AppSidebar star [\#2265](https://github.com/nextcloud/nextcloud-vue/pull/2265) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Bump vue-material-design-icons from 4.12.1 to 4.13.0 [\#2269](https://github.com/nextcloud/nextcloud-vue/pull/2269)
+- Allow material design icons for appnavigationitem [\#2276](https://github.com/nextcloud/nextcloud-vue/pull/2276) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Unify linkify usage, move to linkify-string [\#2281](https://github.com/nextcloud/nextcloud-vue/pull/2281) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Unify linkify usage, move to linkify-string [\#2281](https://github.com/nextcloud/nextcloud-vue/pull/2281) ([raimund-schluessler](https://github.com/raimund-schluessler))## Fixed bugs
+- Add outlined counter [\#2287](https://github.com/nextcloud/nextcloud-vue/pull/2268) ([marcoambrosini](https://github.com/marcoambrosini))
+
+## Fixed bugs
+
+- Set material design icon size to 20 [\#2268](https://github.com/nextcloud/nextcloud-vue/pull/2268) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix missing icon [\#2297](https://github.com/nextcloud/nextcloud-vue/pull/2297#event-5378397330) ([Pytal](https://github.com/Pytal))
+
+## [v4.1.1](https://github.com/nextcloud/nextcloud-vue/tree/v4.1.1) (2021-09-16)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.1.0...v4.1.1)
+
+## Enhancements
+
+- Use material design icon for appsidebar close [\#2212](https://github.com/nextcloud/nextcloud-vue/pull/2212) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Use material design icon for settings icon [\#2213](https://github.com/nextcloud/nextcloud-vue/pull/2213) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Bump @nextcloud/calendar-js from 1.1.1 to 2.0.0 [\#2204](https://github.com/nextcloud/nextcloud-vue/pull/2204)
+
+## Fixed bugs
+
+- Do not duplicate character in Highlight directive, only highlight first match occurence [\#2226](https://github.com/nextcloud/nextcloud-vue/pull/2226) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Disable actions when the only action is disabeld [\#2227](https://github.com/nextcloud/nextcloud-vue/pull/2227) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Make timestamp of unread msg not bold [\#2228](https://github.com/nextcloud/nextcloud-vue/pull/2228) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix empty user bubble [\#2241](https://github.com/nextcloud/nextcloud-vue/pull/2241) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Stop filtering Actions in $slots [\#2254](https://github.com/nextcloud/nextcloud-vue/pull/2254) ([skjnldsv](https://github.com/skjnldsv))
+- Don't rely on Vue.prototype.t and properly extract all strings [\#2231](https://github.com/nextcloud/nextcloud-vue/pull/2231) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
 ## [v4.1.0](https://github.com/nextcloud/nextcloud-vue/tree/v4.1.0) (2021-08-23)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.0.3...v4.1.0)
