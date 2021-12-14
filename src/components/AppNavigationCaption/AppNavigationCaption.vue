@@ -57,7 +57,7 @@ export default {
 .app-navigation-caption {
 	display: flex;
 	justify-content: space-between;
-	padding: 0 8px 0 $clickable-area/2;
+	padding: 0 4px 0 $clickable-area/2;
 
 	&__title {
 		font-weight: bold;
