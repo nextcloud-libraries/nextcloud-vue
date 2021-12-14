@@ -681,7 +681,7 @@ $top-buttons-spacing: 6px;
 		// header background
 		&__figure {
 			width: 100%;
-			height: 250px;
+			height: 20vh;
 			max-height: 250px;
 			background-repeat: no-repeat;
 			background-position: center;
