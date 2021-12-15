@@ -432,6 +432,7 @@ export default {
 	flex: 0 0 auto;
 	justify-content: flex-start;
 	padding: 8px;
+	padding-right: 4px;
 	border-radius: 16px;
 	margin: 2px 0;
 	width: 100%;
