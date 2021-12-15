@@ -481,7 +481,7 @@ export default {
 	box-sizing: border-box;
 	width: 100%;
 	min-height: $clickable-area;
-	padding-right: 4px;
+	padding-right: 8px;
 
 	// When .active class is applied, change color background of link and utils. The
 	// !important prevents the focus state to override the active state.
