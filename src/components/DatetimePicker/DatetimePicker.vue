@@ -103,15 +103,17 @@ export default {
 <template>
 	<DatePicker
 		ref="datepicker"
+		:append-to-body="appendToBody"
 		:clearable="clearable"
-		:minute-step="minuteStep"
-		:format="format"
+		:format="format ? format : formatTypeMap"
 		:formatter="formatter"
+		:lang="lang"
+		:minute-step="minuteStep"
+		:placeholder="placeholder"
+		:popup-class="{ 'show-week-number': showWeekNumber }"
+		:show-week-number="showWeekNumber"
 		:type="type"
 		:value="value"
-		:append-to-body="appendToBody"
-		:show-week-number="showWeekNumber"
-		:popup-class="{ 'show-week-number': showWeekNumber }"
 		v-bind="$attrs"
 		v-on="$listeners"
 		@select-year="handleSelectYear"
@@ -145,12 +147,29 @@ export default {
 </template>
 
 <script>
+import {
+	getFirstDay,
+	getDayNames,
+	getDayNamesShort,
+	getDayNamesMin,
+	getMonthNames,
+	getMonthNamesShort,
+} from '@nextcloud/l10n'
 import DatePicker from 'vue2-datepicker'
 
 import Popover from '../Popover/index'
 import TimezonePicker from '../TimezonePicker'
 
 import l10n from '../../mixins/l10n'
+
+const formatMap = {
+	date: 'YYYY-MM-DD',
+	datetime: 'YYYY-MM-DD H:mm:ss',
+	year: 'YYYY',
+	month: 'YYYY-MM',
+	time: 'H:mm:ss',
+	week: 'w',
+}
 
 export default {
 	name: 'DatetimePicker',
@@ -168,16 +187,12 @@ export default {
 	props: {
 		clearable: {
 			type: Boolean,
-			default() {
-				return false
-			},
+			default: false,
 		},
 
 		minuteStep: {
 			type: Number,
-			default() {
-				return 10
-			},
+			default: 10,
 		},
 
 		type: {
@@ -187,24 +202,12 @@ export default {
 
 		format: {
 			type: String,
-			default() {
-				const map = {
-					date: 'YYYY-MM-DD',
-					datetime: 'YYYY-MM-DD H:mm:ss',
-					year: 'YYYY',
-					month: 'YYYY-MM',
-					time: 'H:mm:ss',
-					week: 'w',
-				}
-				return map[this.type] || map.date
-			},
+			default: null,
 		},
 
 		formatter: {
 			type: Object,
-			default() {
-				return null
-			},
+			default: null,
 		},
 
 		/**
@@ -214,9 +217,7 @@ export default {
 		 */
 		// eslint-disable-next-line
 		value: {
-			default() {
-				return new Date()
-			},
+			default: () => new Date(),
 		},
 
 		/**
@@ -253,6 +254,60 @@ export default {
 			showTimezonePopover: false,
 			tzVal: this.timezoneId,
 		}
+	},
+
+	computed: {
+		/**
+		 * Datepicker language
+		 * https://github.com/mengxiong10/vue2-datepicker/blob/master/locale.md
+		 * @returns {object}
+		 */
+		lang() {
+			return {
+				formatLocale: {
+					months: getMonthNames(),
+					monthsShort: getMonthNamesShort(),
+					weekdays: getDayNames(),
+					weekdaysShort: getDayNamesShort(),
+					weekdaysMin: getDayNamesMin(),
+					// 0 = sunday, 1 = monday
+					firstDayOfWeek: getFirstDay(),
+				},
+				monthFormat: 'MMM',
+			}
+		},
+
+		/**
+		 * Translated placeholder
+		 * @returns {string}
+		 */
+		placeholder() {
+			if (this.type === 'time') {
+				return this.t('Pick a time')
+			}
+			if (this.type === 'month') {
+				return this.t('Pick a month')
+			}
+			if (this.type === 'year') {
+				return this.t('Pick a year')
+			}
+			if (this.type === 'week') {
+				return this.t('Pick a week')
+			}
+			if (this.type === 'date') {
+				return this.t('Pick a date')
+			}
+			return this.t('Pick a date and a time')
+		},
+
+		/**
+		 * If format is not provided, try to match the type
+		 * or fallback to 'date'
+		 * @returns {string}
+		 */
+		formatTypeMap() {
+			return formatMap[this.type] ?? formatMap.date
+		},
 	},
 
 	methods: {
