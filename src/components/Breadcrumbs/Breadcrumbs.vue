@@ -286,12 +286,12 @@ export default {
 		 */
 		getWidth(el) {
 			if (!el.classList) return 0
-			const hide = el.classList.contains('crumb--hidden')
+			const hide = el.classList.contains('vue-crumb--hidden')
 			el.style.minWidth = 'auto'
-			el.classList.remove('crumb--hidden')
+			el.classList.remove('vue-crumb--hidden')
 			const w = el.offsetWidth
 			if (hide) {
-				el.classList.add('crumb--hidden')
+				el.classList.add('vue-crumb--hidden')
 			}
 			el.style.minWidth = ''
 			return w
@@ -341,8 +341,8 @@ export default {
 			this.menuBreadcrumbProps.open = false
 
 			// Remove all hovering classes
-			const crumbs = document.querySelectorAll('.crumb')
-			crumbs.forEach((f) => { f.classList.remove('crumb--hovered') })
+			const crumbs = document.querySelectorAll('.vue-crumb')
+			crumbs.forEach((f) => { f.classList.remove('vue-crumb--hovered') })
 			return this.preventDefault(e)
 		},
 		/**
@@ -369,11 +369,11 @@ export default {
 			}
 			// Get the correct element, in case we hover a child.
 			if (e.target.closest) {
-				const target = e.target.closest('.crumb')
-				if (target.classList && target.classList.contains('crumb')) {
-					const crumbs = document.querySelectorAll('.crumb')
-					crumbs.forEach((f) => { f.classList.remove('crumb--hovered') })
-					target.classList.add('crumb--hovered')
+				const target = e.target.closest('.vue-crumb')
+				if (target.classList && target.classList.contains('vue-crumb')) {
+					const crumbs = document.querySelectorAll('.vue-crumb')
+					crumbs.forEach((f) => { f.classList.remove('vue-crumb--hovered') })
+					target.classList.add('vue-crumb--hovered')
 				}
 			}
 		},
@@ -396,12 +396,12 @@ export default {
 			}
 			// Get the correct element, in case we leave directly from a child.
 			if (e.target.closest) {
-				const target = e.target.closest('.crumb')
+				const target = e.target.closest('.vue-crumb')
 				if (target.contains(e.relatedTarget)) {
 					return
 				}
-				if (target.classList && target.classList.contains('crumb')) {
-					target.classList.remove('crumb--hovered')
+				if (target.classList && target.classList.contains('vue-crumb')) {
+					target.classList.remove('vue-crumb--hovered')
 				}
 			}
 		},
@@ -416,9 +416,9 @@ export default {
 			crumbs.forEach((crumb, i) => {
 				if (crumb?.elm?.classList) {
 					if (this.hiddenIndices.includes(i + offset)) {
-						crumb.elm.classList.add('crumb--hidden')
+						crumb.elm.classList.add('vue-crumb--hidden')
 					} else {
-						crumb.elm.classList.remove('crumb--hidden')
+						crumb.elm.classList.remove('vue-crumb--hidden')
 					}
 				}
 			})
@@ -493,7 +493,7 @@ export default {
 					path = to
 				}
 				return createElement(element, {
-					class: 'crumb',
+					class: 'vue-crumb',
 					props: {
 						to,
 						href,
@@ -537,10 +537,6 @@ export default {
 	&--collapsed  .crumb:last-child {
 		min-width: 100px;
 		flex-shrink: 1;
-	}
-
-	.crumb--hovered{
-		background-color: var(--color-primary-light);
 	}
 }
 </style>
