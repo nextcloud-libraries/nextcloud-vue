@@ -104,6 +104,8 @@ import ValidateSlot from '../../utils/ValidateSlot'
 import Breadcrumb from '../Breadcrumb'
 import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 
+import IconFolder from 'vue-material-design-icons/Folder'
+
 export default {
 	name: 'Breadcrumbs',
 	components: {
@@ -111,6 +113,7 @@ export default {
 		ActionRouter,
 		ActionLink,
 		Breadcrumb,
+		IconFolder,
 	},
 	props: {
 		/**
@@ -492,12 +495,17 @@ export default {
 					element = 'ActionRouter'
 					path = to
 				}
+				const folderIcon = createElement('IconFolder', {
+					props: {
+						size: 20,
+					},
+					slot: 'icon',
+				})
 				return createElement(element, {
 					class: 'crumb',
 					props: {
 						to,
 						href,
-						icon: 'icon-folder',
 					},
 					// Prevent the breadcrumbs from being draggable
 					attrs: {
@@ -512,7 +520,7 @@ export default {
 						dragleave: ($event) => this.dragLeave($event, disabled),
 					},
 				},
-				crumb.componentOptions.propsData.title
+				[crumb.componentOptions.propsData.title, folderIcon]
 				)
 			}))
 			)
