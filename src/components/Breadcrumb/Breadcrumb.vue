@@ -30,8 +30,8 @@ This component is meant to be used inside a Breadcrumbs component.
 
 <template>
 	<div ref="crumb"
-		class="crumb"
-		:class="{'crumb--with-action': $slots.default, 'crumb--hovered': hovering}"
+		class="vue-crumb"
+		:class="{'vue-crumb--with-action': $slots.default, 'vue-crumb--hovered': hovering}"
 		draggable="false"
 		@dragstart.prevent="() => {/** Prevent the breadcrumb from being draggable. */}"
 		@drop.prevent="dropped"
@@ -56,16 +56,20 @@ This component is meant to be used inside a Breadcrumbs component.
 			<!-- @slot All action elements passed into the default slot will be used -->
 			<slot />
 		</Actions>
+		<ChevronRight class="vue-crumb__separator" :size="20" />
 	</div>
 </template>
 
 <script>
 import Actions from '../Actions'
 
+import ChevronRight from 'vue-material-design-icons/ChevronRight'
+
 export default {
 	name: 'Breadcrumb',
 	components: {
 		Actions,
+		ChevronRight,
 	},
 	props: {
 		/**
@@ -215,7 +219,7 @@ export default {
 
 <style lang="scss" scoped>
 
-.crumb {
+.vue-crumb {
 	background-image: none;
 	display: inline-flex;
 	height: $clickable-area;
@@ -227,23 +231,9 @@ export default {
 		a {
 			flex-shrink: 1;
 		}
-	}
-
-	&::after {
-		content: '';
-		display: flex;
-		align-items: center;
-		color: var(--color-border-dark);
-		font-size: 26px;
-		width: 8px;
-		min-width: 8px;
-		background-image: url('./breadcrumb.svg');
-		background-size: contain;
-		background-repeat: no-repeat;
-		background-position: center;
-		opacity: .3;
-		body.theme--dark & {
-			background-image: url('./breadcrumb-light.svg');
+		// Don't show breadcrumb separator for last crumb
+		.vue-crumb__separator {
+			display: none;
 		}
 	}
 
@@ -255,8 +245,31 @@ export default {
 		padding-right: 2px;
 	}
 
-	> a, > span {
+	&__separator {
+		padding: 0;
+		opacity: .7;
+	}
+
+	&#{&}--hovered > a {
+		background-color: var(--color-background-dark);
+		opacity: .7;
+	}
+
+	> a {
+		&:hover,
+		&:focus {
+			background-color: var(--color-background-dark);
+		}
+		&:focus{
+			opacity: 1;
+		}
+		&:hover {
+			opacity: .7;
+		}
+		opacity: .5;
+		padding: 12px;
 		max-width: 100%;
+		border-radius: var(--border-radius-pill);
 	}
 
 	a {
