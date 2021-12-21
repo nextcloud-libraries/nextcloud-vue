@@ -45,8 +45,20 @@ is dropped on a creadcrumb.
 				<Breadcrumb title="Folder 3" href="/Folder 1/Folder 2/Folder 3" />
 				<Breadcrumb title="Folder 4" href="/Folder 1/Folder 2/Folder 3/Folder 4" />
 				<Breadcrumb title="Folder 5" href="/Folder 1/Folder 2/Folder 3/Folder 4/Folder 5" :disable-drop="true">
-					<ActionButton icon="icon-share" @click="alert('Share')">
+					<template #menu-icon>
+						<MenuDown :size="20" />
+					</template>
+					<ActionButton @click="alert('Share')">
+						<template #icon>
+							<ShareVariant :size="20" />
+						</template>
 						Share
+					</ActionButton>
+					<ActionButton @click="alert('Download')">
+						<template #icon>
+							<Download :size="20" />
+						</template>
+						Download
 					</ActionButton>
 				</Breadcrumb>
 			</Breadcrumbs>
@@ -59,11 +71,17 @@ is dropped on a creadcrumb.
 </template>
 
 <script>
+import Download from 'vue-material-design-icons/Download'
 import Folder from 'vue-material-design-icons/Folder'
+import MenuDown from 'vue-material-design-icons/MenuDown'
+import ShareVariant from 'vue-material-design-icons/ShareVariant'
 
 export default {
 	components: {
+		Download,
 		Folder,
+		MenuDown,
+		ShareVariant,
 	},
 	methods: {
 		dropped(e, path) {
