@@ -52,7 +52,8 @@ This component is meant to be used inside a Breadcrumbs component.
 		<Actions ref="actions"
 			:force-menu="forceMenu"
 			:open="open"
-			@update:open="onOpenChange">
+			@update:open="onOpenChange"
+			container=".vue-crumb--with-action.dropdown">
 			<!-- @slot All action elements passed into the default slot will be used -->
 			<slot />
 		</Actions>
