@@ -32,6 +32,7 @@ This component is meant to be used inside a Breadcrumbs component.
 	<div ref="crumb"
 		class="vue-crumb"
 		:class="{'vue-crumb--with-action': $slots.default, 'vue-crumb--hovered': hovering}"
+		:[crumbId]="''"
 		draggable="false"
 		@dragstart.prevent="() => {/** Prevent the breadcrumb from being draggable. */}"
 		@drop.prevent="dropped"
@@ -52,8 +53,12 @@ This component is meant to be used inside a Breadcrumbs component.
 		<Actions ref="actions"
 			:force-menu="forceMenu"
 			:open="open"
-			@update:open="onOpenChange"
-			container=".vue-crumb--with-action.dropdown">
+			:container="`.vue-crumb--with-action[${crumbId}]`"
+			@update:open="onOpenChange">
+			<template #icon>
+				<!-- @slot Slot for the custom menu icon -->
+				<slot name="menu-icon" />
+			</template>
 			<!-- @slot All action elements passed into the default slot will be used -->
 			<slot />
 		</Actions>
@@ -63,6 +68,7 @@ This component is meant to be used inside a Breadcrumbs component.
 
 <script>
 import Actions from '../Actions'
+import GenRandomId from '../../utils/GenRandomId'
 
 import ChevronRight from 'vue-material-design-icons/ChevronRight'
 
@@ -130,6 +136,11 @@ export default {
 			 * Variable to track if we hover over the breadcrumb
 			 */
 			hovering: false,
+			/**
+			 * The unique id of the breadcrumb. Necessary to append the
+			 * Actions menu to the correct crumb.
+			 */
+			crumbId: `crumb-id-${GenRandomId()}`,
 		}
 	},
 	computed: {
