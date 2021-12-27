@@ -23,7 +23,7 @@
 
 ### General description
 
-This component displays contenteditable div with automated @ autocompletion [at].
+This component displays contenteditable div with automated `@` [at] autocompletion and `:` [colon] emoji autocompletion.
 Note you need to register the [tooltip directive](https://nextcloud-vue-components.netlify.app/#/Directives) in your entry file.
 
 ### Examples
@@ -36,7 +36,7 @@ Note you need to register the [tooltip directive](https://nextcloud-vue-componen
 			:auto-complete="autoComplete"
 			:maxlength="100"
 			:user-data="userData"
-			placeholder="Try mentioning the user Test01"
+			placeholder="Try mentioning user @Test01 or inserting emoji :smile"
 			@submit="onSubmit" />
 		<br>
 
@@ -46,7 +46,7 @@ Note you need to register the [tooltip directive](https://nextcloud-vue-componen
 			:maxlength="400"
 			:multiline="true"
 			:user-data="userData"
-			placeholder="Try mentioning the user Test01"
+			placeholder="Try mentioning user @Test01 or inserting emoji :smile"
 			@submit="onSubmit" />
 		<br>
 		<br>
@@ -167,7 +167,7 @@ export default {
 
 		placeholder: {
 			type: String,
-			default: t('Write message, @ to mention someone …'),
+			default: t('Write message, @ to mention someone, : for emoji autocompletion …'),
 		},
 
 		autoComplete: {
@@ -213,6 +213,14 @@ export default {
 		maxlength: {
 			type: Number,
 			default: null,
+		},
+
+		/**
+		 * Enable or disable emoji autocompletion
+		 */
+		emojiAutocomplete: {
+			type: Boolean,
+			default: true,
 		},
 	},
 
@@ -336,8 +344,10 @@ export default {
 		this.autocompleteTribute = new Tribute(this.autocompleteOptions)
 		this.autocompleteTribute.attach(this.$el)
 
-		this.emojiTribute = new Tribute(this.emojiOptions)
-		this.emojiTribute.attach(this.$el)
+		if (this.emojiAutocomplete) {
+			this.emojiTribute = new Tribute(this.emojiOptions)
+			this.emojiTribute.attach(this.$el)
+		}
 
 		// Update default value
 		this.updateContent(this.value)

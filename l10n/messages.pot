@@ -134,5 +134,5 @@ msgstr ""
 msgid "Undo changes"
 msgstr ""
 
-msgid "Write message, @ to mention someone …"
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
 msgstr ""
