@@ -250,7 +250,7 @@ export default {
 				// Where to inject the menu popup
 				menuContainer: this.menuContainer,
 				// Popup mention autocompletion templates
-				menuItemTemplate: item => `${item.original.native} :${item.original.short_name}`,
+				menuItemTemplate: item => `<span class="tribute-container-emoji__item__emoji">${item.original.native}</span> :${item.original.short_name}`,
 				// Hide if no results
 				noMatchTemplate: () => t('No emoji found'),
 				// Display raw emoji along with its name
@@ -622,6 +622,10 @@ export default {
 
 		&:last-child {
 			margin-bottom: 0;
+		}
+
+		&__emoji {
+			padding-right: 8px;
 		}
 	}
 
