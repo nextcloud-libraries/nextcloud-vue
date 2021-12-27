@@ -52,6 +52,34 @@
 	</listItem>
 	<listItem
 		:title="'Title of the element'"
+		:bold="false"
+		:force-display-actions="true"
+		:details="'One hour ago'"
+		:counter-number="44"
+		counterType="highlighted">
+		<template #icon>
+			<avatar :size="44" user="janedoe" display-name="Jane Doe" />
+		</template>
+		<template #subtitle>
+			In this slot you can put both text and other components such as icons
+		</template>
+		<CounterBubble #counter>
+			7
+		</CounterBubble>
+		<template #actions>
+			<ActionButton>
+				Button one
+			</ActionButton>
+			<ActionButton>
+				Button two
+			</ActionButton>
+			<ActionButton>
+				Button three
+			</ActionButton>
+		</template>
+	</listItem>
+	<listItem
+		:title="'Title of the element'"
 		:bold="false">
 		<template #icon>
 			<avatar :size="44" user="janedoe" display-name="Jane Doe" />
@@ -129,7 +157,7 @@
 								{{ title }}
 							</span>
 							<span
-								v-if="hasDetails && !displayActions"
+								v-if="showDetails"
 								class="line-one__details">
 								{{ details }}
 							</span>
@@ -144,7 +172,7 @@
 							</span>
 
 							<!-- Counter -->
-							<span v-if="!displayActions" class="line-two__counter">
+							<span v-if="showCounter" class="line-two__counter">
 								<CounterBubble
 									v-if="counterNumber != 0"
 									:type="counterType">
@@ -156,7 +184,7 @@
 
 					<!-- Actions -->
 					<div
-						v-show="displayActions"
+						v-show="displayActionsOnHoverFocus && !forceDisplayActions"
 						class="list-item-content__actions"
 						@click.prevent.stop="">
 						<Actions
@@ -169,6 +197,21 @@
 								name="actions" />
 						</Actions>
 					</div>
+				</div>
+				<!-- Actions -->
+				<div
+					v-show="forceDisplayActions"
+					class="list-item-content__actions"
+					@click.prevent.stop="">
+					<Actions
+						ref="actions"
+						menu-align="right"
+						:aria-label="actionsAriaLabel"
+						@update:open="handleActionsUpdateOpen">
+						<!-- @slot Provide the actions for the right side quick menu -->
+						<slot
+							name="actions" />
+					</Actions>
 				</div>
 			</div>
 
@@ -285,6 +328,14 @@ export default {
 				return ['highlighted', 'outlined', ''].indexOf(value) !== -1
 			},
 		},
+
+		/**
+		 * To be used only when the elements in the actions menu are very important
+		 */
+		forceDisplayActions: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -293,7 +344,7 @@ export default {
 			focused: false,
 			hasActions: false,
 			hasSubtitle: false,
-			displayActions: false,
+			displayActionsOnHoverFocus: false,
 			menuOpen: false,
 		}
 	},
@@ -320,6 +371,14 @@ export default {
 			}
 		},
 
+		showCounter() {
+			return !this.displayActionsOnHoverFocus || this.forceDisplayActions
+		},
+
+		showDetails() {
+			return this.hasDetails && (!this.displayActionsOnHoverFocus || this.forceDisplayActions)
+		},
+
 	},
 
 	watch: {
@@ -327,7 +386,7 @@ export default {
 		menuOpen(newValue) {
 			// A click outside both the menu and the root element hides the actions again
 			if (!newValue && !this.hovered) {
-				this.displayActions = false
+				this.displayActionsOnHoverFocus = false
 			}
 		},
 	},
@@ -354,13 +413,13 @@ export default {
 
 		showActions() {
 			if (this.hasActions) {
-				this.displayActions = true
+				this.displayActionsOnHoverFocus = true
 			}
 			this.hovered = false
 		},
 
 		hideActions() {
-			this.displayActions = false
+			this.displayActionsOnHoverFocus = false
 		},
 
 		/**
@@ -380,7 +439,7 @@ export default {
 		 */
 		handleMouseleave() {
 			if (!this.menuOpen) {
-				this.displayActions = false
+				this.displayActionsOnHoverFocus = false
 			}
 			this.hovered = false
 		},
@@ -396,7 +455,7 @@ export default {
 				this.$refs.actions.$refs.menuButton.focus()
 				this.focused = false
 			} else {
-				this.displayActions = false
+				this.displayActionsOnHoverFocus = false
 				this.$refs.actions.$refs.menuButton.blur()
 			}
 		},
