@@ -605,11 +605,12 @@ export default {
 }
 
 .tribute-container-emoji {
-	min-width: 180px;
+	min-width: 300px;
+	max-width: 300px;
 	padding: 0.2rem;
 
 	&__item {
-		border-radius: 5px;
+		border-radius: 8px;
 		padding: 0.2rem 0.5rem;
 		margin-bottom: 0.2rem;
 		opacity: 0.8;
