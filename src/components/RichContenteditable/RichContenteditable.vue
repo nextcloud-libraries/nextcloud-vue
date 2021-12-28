@@ -607,12 +607,14 @@ export default {
 .tribute-container-emoji {
 	min-width: 300px;
 	max-width: 300px;
-	padding: 0.2rem;
+	padding: 4px;
+	// Show maximum 5 entries and a half to show scroll
+	max-height: 34.5px * 5 + 29.5px / 2;
 
 	&__item {
 		border-radius: 8px;
-		padding: 0.2rem 0.5rem;
-		margin-bottom: 0.2rem;
+		padding: 4px 8px;
+		margin-bottom: 4px;
 		opacity: 0.8;
 		cursor: pointer;
 
