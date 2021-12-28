@@ -31,7 +31,7 @@ import frequently from 'emoji-mart-vue-fast/src/utils/frequently'
  * @param {Number} maxResults Maximum of returned emojis
  * @returns {Array} list of found emojis
  */
-export const emojiSearch = function(query, maxResults = 5) {
+export const emojiSearch = function(query, maxResults = 10) {
 	const index = new EmojiIndex(data)
 	if (query) {
 		return index.search(query, maxResults) || []
