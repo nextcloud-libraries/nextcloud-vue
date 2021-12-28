@@ -457,13 +457,16 @@ export default {
 			}
 		},
 		handleSwipe(e) {
-			if (this.enableSwipe) {
-				if (e.type === 'swipeleft') {
-					// swiping to left to go to the next item
-					this.next(e)
-				} else if (e.type === 'swiperight') {
-					// swiping to right to go back to the previous item
-					this.previous(e)
+			// Prevent swipe on media player controls from triggering swipe navigation
+			if (!e.target.id.startsWith('plyr-seek-') && !e.target.id.startsWith('plyr-volume-')) {
+				if (this.enableSwipe) {
+					if (e.type === 'swipeleft') {
+						// swiping to left to go to the next item
+						this.next(e)
+					} else if (e.type === 'swiperight') {
+						// swiping to right to go back to the previous item
+						this.previous(e)
+					}
 				}
 			}
 		},
