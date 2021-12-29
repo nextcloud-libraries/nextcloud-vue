@@ -23,7 +23,7 @@
 
 ### General description
 
-This component displays contenteditable div with automated @ autocompletion [at].
+This component displays contenteditable div with automated `@` [at] autocompletion and `:` [colon] emoji autocompletion.
 Note you need to register the [tooltip directive](https://nextcloud-vue-components.netlify.app/#/Directives) in your entry file.
 
 ### Examples
@@ -36,7 +36,7 @@ Note you need to register the [tooltip directive](https://nextcloud-vue-componen
 			:auto-complete="autoComplete"
 			:maxlength="100"
 			:user-data="userData"
-			placeholder="Try mentioning the user Test01"
+			placeholder="Try mentioning user @Test01 or inserting emoji :smile"
 			@submit="onSubmit" />
 		<br>
 
@@ -46,7 +46,7 @@ Note you need to register the [tooltip directive](https://nextcloud-vue-componen
 			:maxlength="400"
 			:multiline="true"
 			:user-data="userData"
-			placeholder="Try mentioning the user Test01"
+			placeholder="Try mentioning user @Test01 or inserting emoji :smile"
 			@submit="onSubmit" />
 		<br>
 		<br>
@@ -151,6 +151,7 @@ import stringLength from 'string-length'
 import { t } from '../../l10n'
 import AutoCompleteResult from './AutoCompleteResult'
 import richEditor from '../../mixins/richEditor/index'
+import { emojiSearch, addRecent } from '../../functions/emoji'
 
 export default {
 	name: 'RichContenteditable',
@@ -166,7 +167,7 @@ export default {
 
 		placeholder: {
 			type: String,
-			default: t('Write message, @ to mention someone …'),
+			default: t('Write message, @ to mention someone, : for emoji autocompletion …'),
 		},
 
 		autoComplete: {
@@ -213,12 +214,20 @@ export default {
 			type: Number,
 			default: null,
 		},
+
+		/**
+		 * Enable or disable emoji autocompletion
+		 */
+		emojiAutocomplete: {
+			type: Boolean,
+			default: true,
+		},
 	},
 
 	data() {
 		return {
 			tribute: null,
-			options: {
+			autocompleteOptions: {
 				fillAttr: 'id',
 				// Search against id and label (display name)
 				lookup: result => `${result.id} ${result.label}`,
@@ -232,6 +241,29 @@ export default {
 				selectTemplate: item => this.genSelectTemplate(item?.original?.id),
 				// Autocompletion results
 				values: this.debouncedAutoComplete,
+			},
+			emojiOptions: {
+				trigger: ':',
+				// Don't use the tribute search function at all
+				// We pass search results as values (see below)
+				lookup: (result, query) => query,
+				// Where to inject the menu popup
+				menuContainer: this.menuContainer,
+				// Popup mention autocompletion templates
+				menuItemTemplate: item => `<span class="tribute-container-emoji__item__emoji">${item.original.native}</span> :${item.original.short_name}`,
+				// Hide if no results
+				noMatchTemplate: () => t('No emoji found'),
+				// Display raw emoji along with its name
+				selectTemplate: (item) => {
+					addRecent(item.original)
+					return item.original.native
+				},
+				// Pass the search results as values
+				values: (text, cb) => cb(emojiSearch(text)),
+				// Class added to the menu container
+				containerClass: 'tribute-container-emoji',
+				// Class added to each list item
+				itemClass: 'tribute-container-emoji__item',
 			},
 
 			// Represent the raw untrimmed text of the contenteditable
@@ -309,8 +341,13 @@ export default {
 	},
 
 	mounted() {
-		this.tribute = new Tribute(this.options)
-		this.tribute.attach(this.$el)
+		this.autocompleteTribute = new Tribute(this.autocompleteOptions)
+		this.autocompleteTribute.attach(this.$el)
+
+		if (this.emojiAutocomplete) {
+			this.emojiTribute = new Tribute(this.emojiOptions)
+			this.emojiTribute.attach(this.$el)
+		}
 
 		// Update default value
 		this.updateContent(this.value)
@@ -320,8 +357,11 @@ export default {
 		this.$refs.contenteditable.contentEditable = this.canEdit
 	},
 	beforeDestroy() {
-		if (this.tribute) {
-			this.tribute.detach(this.$el)
+		if (this.autocompleteTribute) {
+			this.autocompleteTribute.detach(this.$el)
+		}
+		if (this.emojiTribute) {
+			this.emojiTribute.detach(this.$el)
 		}
 	},
 
@@ -463,7 +503,8 @@ export default {
 		onEnter(event) {
 			// Prevent submitting if autocompletion menu
 			// is opened or length is over maxlength
-			if (this.multiline || this.isOverMaxlength || this.tribute.isActive) {
+			if (this.multiline || this.isOverMaxlength
+				|| this.autocompleteTribute.isActive || this.emojiTribute.isActive) {
 				return
 			}
 
@@ -547,7 +588,7 @@ export default {
 </style>
 
 <style lang="scss">
-.tribute-container {
+.tribute-container, .tribute-container-emoji {
 	z-index: 9000;
 	overflow: auto;
 	min-width: 250px;
@@ -561,6 +602,44 @@ export default {
 	border-radius: var(--border-radius);
 	background: var(--color-main-background);
 	box-shadow: 0 1px 5px var(--color-box-shadow);
+}
+
+.tribute-container-emoji {
+	min-width: 200px;
+	max-width: 200px;
+	padding: 4px;
+	// Show maximum 5 entries and a half to show scroll
+	max-height: 34.5px * 5 + 29.5px / 2;
+
+	&__item {
+		border-radius: 8px;
+		padding: 4px 8px;
+		margin-bottom: 4px;
+		opacity: 0.8;
+		cursor: pointer;
+
+		// Take care of long names
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		&__emoji {
+			padding-right: 8px;
+		}
+	}
+
+	.highlight {
+		opacity: 1;
+		color: var(--color-main-text);
+		background: var(--color-primary-light);
+		&, * {
+			cursor: pointer;
+		}
+	}
 }
 
 </style>
