@@ -2,13 +2,13 @@
 # Translators:
 # Philipp Fischbeck <pfischbeck@googlemail.com>, 2020
 # ProfDrJones <jones@fs.cs.hm.edu>, 2020
-# Mark Ziegler <mark.ziegler@rakekniven.de>, 2021
 # Gustav Gyges, 2021
 # Mario Siegmann <mario_siegmann@web.de>, 2021
+# Mark Ziegler <mark.ziegler@rakekniven.de>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2021\n"
+"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2021\n"
 "Language-Team: German (Germany) (https://www.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -146,5 +146,7 @@ msgstr "Die Gruppe kann nicht durchsucht werden"
 msgid "Undo changes"
 msgstr "Änderungen rückgängig machen"
 
-msgid "Write message, @ to mention someone …"
-msgstr "Nachricht schreiben, @ um jemanden zu erwähnen ..."
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr ""
+"Nachricht schreiben, @, um jemanden zu erwähnen, : für die automatische "
+"Vervollständigung von Emojis …"
