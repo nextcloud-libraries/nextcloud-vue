@@ -2,16 +2,16 @@
 # Translators:
 # Philipp Fischbeck <pfischbeck@googlemail.com>, 2020
 # Andreas Eitel <github-aneitel@online.de>, 2020
-# Joachim Sokolowski, 2020
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2020
-# Mario Siegmann <mario_siegmann@web.de>, 2020
 # Bernd Lukasik, 2021
 # Gustav Gyges, 2021
 # Markus Eckstein, 2021
+# Mario Siegmann <mario_siegmann@web.de>, 2021
+# Joachim Sokolowski, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Markus Eckstein, 2021\n"
+"Last-Translator: Joachim Sokolowski, 2022\n"
 "Language-Team: German (https://www.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -123,7 +123,7 @@ msgid "Settings"
 msgstr "Einstellungen"
 
 msgid "Settings navigation"
-msgstr "Einstellungen-Navigation"
+msgstr "Einstellungen für die Navigation"
 
 msgid "Smileys & Emotion"
 msgstr "Smileys & Emotionen"
@@ -149,5 +149,7 @@ msgstr "Die Gruppe konnte nicht durchsucht werden"
 msgid "Undo changes"
 msgstr "Änderungen rückgängig machen"
 
-msgid "Write message, @ to mention someone …"
-msgstr "Nachricht schreiben, @ um jemanden zu erwähnen ..."
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr ""
+"Nachricht schreiben, @, um jemanden zu erwähnen, : für die automatische "
+"Vervollständigung von Emojis … "
