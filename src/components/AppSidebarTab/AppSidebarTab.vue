@@ -88,6 +88,7 @@ export default {
 	padding: 10px;
 	min-height: 100%; // fill available height
 	max-height: 100%; // scroll inside
+	height: 100%;
 	overflow: auto;
 
 	&:focus {
