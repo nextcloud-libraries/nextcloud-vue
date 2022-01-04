@@ -724,8 +724,8 @@ export default {
 				height: 24px;
 				line-height: $icon-size;
 				position: absolute;
-				top: ($clickable-area - 24px) / 2;
-				left: ($clickable-area - 24px) / 2;
+				top: 0;
+				left: 0;
 			}
 		}
 
