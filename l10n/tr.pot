@@ -145,5 +145,6 @@ msgstr "Grupta arama yapılamadı"
 msgid "Undo changes"
 msgstr "Değişiklikleri geri al"
 
-msgid "Write message, @ to mention someone …"
-msgstr "İletiyi yazın. Birini anmak için @ kullanın …"
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr ""
+"İleti yazın, birini anmak için @, otomatik emoji tamamlamak için : kullanın…"
