@@ -138,7 +138,8 @@ export default {
 		v-bind="firstActionBinding"
 		:class="{
 			[firstAction.icon]: firstAction.icon,
-			[firstActionClass]: firstActionClass }"
+			[firstActionClass]: firstActionClass,
+			'action-item--single--with-title': singleActionTitle }"
 		class="action-item action-item--single"
 		rel="nofollow noreferrer noopener"
 		:disabled="isDisabled"
@@ -147,6 +148,8 @@ export default {
 		@[firstActionEventBinding]="execFirstAction">
 		<!-- Render the icon slot content of the first action -->
 		<VNodes :vnodes="firstActionIconSlot" />
+
+		{{ singleActionTitle }}
 
 		<!-- fake slot to gather main action -->
 		<span :aria-hidden="true" hidden>
@@ -274,6 +277,14 @@ export default {
 		},
 
 		/**
+		 * Force the title to show for single actions
+		 */
+		forceTitle: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * Specify the menu title
 		 */
 		menuTitle: {
@@ -369,6 +380,13 @@ export default {
 		isValidSingleAction() {
 			return this.actions.length === 1
 				&& this.firstActionElement !== null
+		},
+		/**
+		 * Return the title of the single action if forced
+		 * @returns {string}
+		 */
+		singleActionTitle() {
+			return this.forceTitle ? this.menuTitle : ''
 		},
 		isDisabled() {
 			return this.disabled
@@ -683,27 +701,6 @@ export default {
 		border: none;
 		border-radius: $clickable-area / 2;
 		background-color: transparent;
-	}
-
-	&::v-deep .material-design-icon {
-		width: $clickable-area;
-		height: $clickable-area;
-		opacity: $opacity_full;
-
-		.material-design-icon__svg {
-			vertical-align: middle;
-		}
-	}
-
-	// icon-more
-	&__menutoggle {
-		// align menu icon in center
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		opacity: $opacity_normal;
-		font-weight: bold;
-		line-height: $icon-size;
 
 		&--with-title {
 			position: relative;
@@ -728,6 +725,27 @@ export default {
 				left: ($clickable-area - 24px) / 2;
 			}
 		}
+	}
+
+	&::v-deep .material-design-icon {
+		width: $clickable-area;
+		height: $clickable-area;
+		opacity: $opacity_full;
+
+		.material-design-icon__svg {
+			vertical-align: middle;
+		}
+	}
+
+	// icon-more
+	&__menutoggle {
+		// align menu icon in center
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: $opacity_normal;
+		font-weight: bold;
+		line-height: $icon-size;
 
 		&--primary {
 			opacity: $opacity_full;
