@@ -31,7 +31,7 @@ This component is meant to be used inside a Breadcrumbs component.
 <template>
 	<div ref="crumb"
 		class="vue-crumb"
-		:class="{'vue-crumb--with-action': $slots.default, 'vue-crumb--hovered': hovering}"
+		:class="{'vue-crumb--hovered': hovering}"
 		:[crumbId]="''"
 		draggable="false"
 		@dragstart.prevent="() => {/** Prevent the breadcrumb from being draggable. */}"
@@ -41,7 +41,7 @@ This component is meant to be used inside a Breadcrumbs component.
 		@dragleave="dragLeave">
 		<element
 			:is="tag"
-			v-if="title || icon"
+			v-if="(title || icon) && !$slots.default"
 			:to="to"
 			:href="href">
 			<!-- @slot Slot for passing a material design icon. Precedes the icon and title prop. -->
@@ -53,7 +53,9 @@ This component is meant to be used inside a Breadcrumbs component.
 		<Actions ref="actions"
 			:force-menu="forceMenu"
 			:open="open"
-			:container="`.vue-crumb--with-action[${crumbId}]`"
+			:menu-title="title"
+			:force-title="true"
+			:container="`.vue-crumb[${crumbId}]`"
 			@update:open="onOpenChange">
 			<template #icon>
 				<!-- @slot Slot for the custom menu icon -->
@@ -239,13 +241,25 @@ export default {
 
 	&:last-child {
 		max-width: 210px;
+		font-weight: bold;
 
-		a {
-			flex-shrink: 1;
+		> a,
+		> a::v-deep * {
+			cursor: default;
 		}
+
 		// Don't show breadcrumb separator for last crumb
 		.vue-crumb__separator {
 			display: none;
+		}
+	}
+
+	// Hover and focus effect for crumbs, but not the last one
+	&:not(:last-child) > a {
+		&:hover,
+		&:focus {
+			background-color: var(--color-background-dark);
+			color: var(--color-main-text);
 		}
 	}
 
@@ -253,38 +267,22 @@ export default {
 		display: none;
 	}
 
-	&--with-action a {
-		padding-right: 2px;
+	&#{&}--hovered > a {
+		background-color: var(--color-background-dark);
+		color: var(--color-main-text);
 	}
 
 	&__separator {
 		padding: 0;
-		opacity: .7;
-	}
-
-	&#{&}--hovered > a {
-		background-color: var(--color-background-dark);
-		opacity: .7;
+		color: var(--color-text-maxcontrast);
 	}
 
 	> a {
-		&:hover,
-		&:focus {
-			background-color: var(--color-background-dark);
-		}
-		&:focus{
-			opacity: 1;
-		}
-		&:hover {
-			opacity: .7;
-		}
-		opacity: .5;
+		overflow: hidden;
+		color: var(--color-text-maxcontrast);
 		padding: 12px;
 		max-width: 100%;
 		border-radius: var(--border-radius-pill);
-	}
-
-	a {
 		align-items: center;
 		display: inline-flex;
 
@@ -292,6 +290,36 @@ export default {
 			overflow: hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
+		}
+	}
+
+	// Adjust action item appearance for crumbs with actions
+	// to match other crumbs
+	&::v-deep .action-item {
+		&__menutoggle--with-title,
+		&--single--with-title {
+			background-color: unset;
+			border: none;
+
+			&:hover,
+			&:focus,
+			&:active {
+				background-color: var(--color-background-dark) !important;
+				color: var(--color-main-text);
+			}
+
+			// Show the icon on the right
+			padding-right: 44px;
+			padding-left: 14px;
+			& > span.material-design-icon {
+				right: 0;
+				left: unset;
+			}
+		}
+		// Adjust the background of the last crumb when the action is open
+		&.action-item--open .action-item__menutoggle--with-title {
+			background-color: var(--color-background-dark);
+			color: var(--color-main-text);
 		}
 	}
 }
