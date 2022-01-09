@@ -1,0 +1,148 @@
+# 
+# Translators:
+# ButterflyOfFire, 2020
+# Anouar Fadili, 2022
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Anouar Fadili, 2022\n"
+"Language-Team: Arabic (https://www.transifex.com/nextcloud/teams/64236/ar/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+msgid "{tag} (invisible)"
+msgstr "{tag} (غير مرئي)"
+
+msgid "{tag} (restricted)"
+msgstr "{tag} (مقيد)"
+
+msgid "Actions"
+msgstr "الإجراءات"
+
+msgid "Activities"
+msgstr "النشاطات"
+
+msgid "Animals & Nature"
+msgstr "الحيوانات والطبيعة"
+
+msgid "Avatar of {displayName}"
+msgstr "صورة {displayName} الرمزية"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "صورة {displayName} الرمزية، {status}"
+
+msgid "Cancel changes"
+msgstr "إلغاء التغييرات"
+
+msgid "Choose"
+msgstr "إختيار"
+
+msgid "Close"
+msgstr "أغلق"
+
+msgid "Close navigation"
+msgstr "إغلاق المتصفح"
+
+msgid "Confirm changes"
+msgstr "تأكيد التغييرات"
+
+msgid "Custom"
+msgstr "مخصص"
+
+msgid "Edit item"
+msgstr "تعديل عنصر"
+
+msgid "External documentation for {title}"
+msgstr "الوثائق الخارجية لـ{title}"
+
+msgid "Flags"
+msgstr "الأعلام"
+
+msgid "Food & Drink"
+msgstr "الطعام والشراب"
+
+msgid "Frequently used"
+msgstr "كثيرا ما تستخدم"
+
+msgid "Global"
+msgstr "عالمي"
+
+msgid "Go back to the list"
+msgstr "العودة إلى القائمة"
+
+msgid "Message limit of {count} characters reached"
+msgstr "تم الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
+
+msgid "Next"
+msgstr "التالي"
+
+msgid "No emoji found"
+msgstr "لم يتم العثور على أي رمز تعبيري"
+
+msgid "No results"
+msgstr "ليس هناك أية نتيجة"
+
+msgid "Objects"
+msgstr "الأشياء"
+
+msgid "Open navigation"
+msgstr "فتح المتصفح"
+
+msgid "Pause slideshow"
+msgstr "إيقاف العرض مؤقتًا"
+
+msgid "People & Body"
+msgstr "الناس والجسم"
+
+msgid "Pick an emoji"
+msgstr "اختر رمزًا تعبيريًا"
+
+msgid "Please select a time zone:"
+msgstr "الرجاء تحديد المنطقة الزمنية:"
+
+msgid "Previous"
+msgstr "السابق"
+
+msgid "Search"
+msgstr "بحث"
+
+msgid "Search results"
+msgstr "نتائج البحث"
+
+msgid "Select a tag"
+msgstr "اختر علامة"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "Settings navigation"
+msgstr "إعدادات المتصفح"
+
+msgid "Smileys & Emotion"
+msgstr "الوجوه و الرموز التعبيرية"
+
+msgid "Start slideshow"
+msgstr "بدء العرض"
+
+msgid "Submit"
+msgstr "إرسال"
+
+msgid "Symbols"
+msgstr "الرموز"
+
+msgid "Travel & Places"
+msgstr "السفر والأماكن"
+
+msgid "Type to search time zone"
+msgstr "اكتب للبحث عن منطقة زمنية"
+
+msgid "Unable to search the group"
+msgstr "تعذر البحث في المجموعة"
+
+msgid "Undo changes"
+msgstr "التراجع عن التغييرات"
+
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr ""
+"اكتب رسالة، @ للإشارة إلى شخص ما، : للإكمال التلقائي للرموز التعبيرية ..."
