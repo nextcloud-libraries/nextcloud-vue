@@ -5,10 +5,11 @@
 # Robin Slot, 2020
 # André Koot <meneer@tken.net>, 2021
 # Nico Vromans, 2021
+# Marc Hoeve <mrhoeve@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Nico Vromans, 2021\n"
+"Last-Translator: Marc Hoeve <mrhoeve@gmail.com>, 2022\n"
 "Language-Team: Dutch (https://www.transifex.com/nextcloud/teams/64236/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nl\n"
@@ -75,7 +76,7 @@ msgid "Go back to the list"
 msgstr "Ga terug naar de lijst"
 
 msgid "Message limit of {count} characters reached"
-msgstr "Berichtlengte van {count} karakters bereikt"
+msgstr "Berichtlimiet van {count} karakters bereikt"
 
 msgid "Next"
 msgstr "Volgende"
@@ -102,7 +103,7 @@ msgid "Pick an emoji"
 msgstr "Kies een emoji"
 
 msgid "Please select a time zone:"
-msgstr "Selecteer a.u.b. een tijdzone:"
+msgstr "Selecteer een tijdzone:"
 
 msgid "Previous"
 msgstr "Vorige"
@@ -146,5 +147,6 @@ msgstr "Kan niet in de groep zoeken"
 msgid "Undo changes"
 msgstr "Wijzigingen ongedaan maken"
 
-msgid "Write message, @ to mention someone …"
-msgstr "Schrijf een bericht, @ om iemand te noemen ..."
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr ""
+"Schrijf bericht, @ om iemand te noemen, : voor emoji auto-aanvullen ..."
