@@ -61,6 +61,14 @@ is dropped on a creadcrumb.
 						Download
 					</ActionButton>
 				</Breadcrumb>
+				<template #actions>
+					<Button>
+						<template #icon>
+							<Plus :size="20" />
+						</template>
+						New
+					</Button>
+				</template>
 			</Breadcrumbs>
 		</div>
 		<br />
@@ -74,6 +82,7 @@ is dropped on a creadcrumb.
 import Download from 'vue-material-design-icons/Download'
 import Folder from 'vue-material-design-icons/Folder'
 import MenuDown from 'vue-material-design-icons/MenuDown'
+import Plus from 'vue-material-design-icons/Plus'
 import ShareVariant from 'vue-material-design-icons/ShareVariant'
 
 export default {
@@ -81,6 +90,7 @@ export default {
 		Download,
 		Folder,
 		MenuDown,
+		Plus,
 		ShareVariant,
 	},
 	methods: {
@@ -245,10 +255,14 @@ export default {
 				const nrCrumbs = breadcrumbs.length
 				const hiddenIndices = []
 				const availableWidth = this.$refs.container.offsetWidth
-				const totalWidth = this.getTotalWidth(breadcrumbs)
+				let totalWidth = this.getTotalWidth(breadcrumbs)
+				// If we have breadcumbs actions, we have to take their width into account too.
+				if (this.$refs.breadcrumb__actions) {
+					totalWidth += this.$refs.breadcrumb__actions.offsetWidth
+				}
 				let overflow = totalWidth - availableWidth
 				// If we overflow, we have to take the action-item width into account as well.
-				overflow += (overflow > 0) ? 51 : 0
+				overflow += (overflow > 0) ? 64 : 0
 				let i = 0
 				// We start hiding the breadcrumb in the center
 				const startIndex = Math.floor(nrCrumbs / 2)
@@ -550,7 +564,14 @@ export default {
 		crumbs = crumbs.concat(crumbs2)
 		this.hideCrumbs(crumbs2, crumbs1.length)
 
-		return createElement('div', { class: ['breadcrumb', { 'breadcrumb--collapsed': (this.hiddenCrumbs.length === breadcrumbs.length - 2) }], ref: 'container' }, crumbs)
+		const wrapper = []
+		wrapper.push(createElement('div', { class: 'breadcrumb__crumbs' }, crumbs))
+		// Append the actions slot if it is populated
+		if (this.$slots.actions) {
+			wrapper.push(createElement('div', { class: 'breadcrumb__actions', ref: 'breadcrumb__actions' }, this.$slots.actions))
+		}
+
+		return createElement('div', { class: ['breadcrumb', { 'breadcrumb--collapsed': (this.hiddenCrumbs.length === breadcrumbs.length - 2) }], ref: 'container' }, wrapper)
 	},
 }
 </script>
@@ -559,10 +580,16 @@ export default {
 .breadcrumb {
 	width: 100%;
 	flex-grow: 1;
+	display: inline-flex;
 
 	&--collapsed  .crumb:last-child {
 		min-width: 100px;
 		flex-shrink: 1;
+	}
+
+	& #{&}__crumbs,
+	& #{&}__actions {
+		display: inline-flex;
 	}
 }
 </style>
