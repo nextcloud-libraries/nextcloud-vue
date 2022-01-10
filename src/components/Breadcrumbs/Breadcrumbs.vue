@@ -134,6 +134,8 @@ import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 
 import IconFolder from 'vue-material-design-icons/Folder'
 
+const crumbClass = 'vue-crumb'
+
 export default {
 	name: 'Breadcrumbs',
 	components: {
@@ -321,12 +323,12 @@ export default {
 		 */
 		getWidth(el) {
 			if (!el.classList) return 0
-			const hide = el.classList.contains('vue-crumb--hidden')
+			const hide = el.classList.contains(`${crumbClass}--hidden`)
 			el.style.minWidth = 'auto'
-			el.classList.remove('vue-crumb--hidden')
+			el.classList.remove(`${crumbClass}--hidden`)
 			const w = el.offsetWidth
 			if (hide) {
-				el.classList.add('vue-crumb--hidden')
+				el.classList.add(`${crumbClass}--hidden`)
 			}
 			el.style.minWidth = ''
 			return w
@@ -376,8 +378,8 @@ export default {
 			this.menuBreadcrumbProps.open = false
 
 			// Remove all hovering classes
-			const crumbs = document.querySelectorAll('.vue-crumb')
-			crumbs.forEach((f) => { f.classList.remove('vue-crumb--hovered') })
+			const crumbs = document.querySelectorAll(`.${crumbClass}`)
+			crumbs.forEach((f) => { f.classList.remove(`${crumbClass}--hovered`) })
 			return this.preventDefault(e)
 		},
 		/**
@@ -404,11 +406,11 @@ export default {
 			}
 			// Get the correct element, in case we hover a child.
 			if (e.target.closest) {
-				const target = e.target.closest('.vue-crumb')
-				if (target.classList && target.classList.contains('vue-crumb')) {
-					const crumbs = document.querySelectorAll('.vue-crumb')
-					crumbs.forEach((f) => { f.classList.remove('vue-crumb--hovered') })
-					target.classList.add('vue-crumb--hovered')
+				const target = e.target.closest(`.${crumbClass}`)
+				if (target.classList && target.classList.contains(crumbClass)) {
+					const crumbs = document.querySelectorAll(`.${crumbClass}`)
+					crumbs.forEach((f) => { f.classList.remove(`${crumbClass}--hovered`) })
+					target.classList.add(`${crumbClass}--hovered`)
 				}
 			}
 		},
@@ -431,12 +433,12 @@ export default {
 			}
 			// Get the correct element, in case we leave directly from a child.
 			if (e.target.closest) {
-				const target = e.target.closest('.vue-crumb')
+				const target = e.target.closest(`.${crumbClass}`)
 				if (target.contains(e.relatedTarget)) {
 					return
 				}
-				if (target.classList && target.classList.contains('vue-crumb')) {
-					target.classList.remove('vue-crumb--hovered')
+				if (target.classList && target.classList.contains(crumbClass)) {
+					target.classList.remove(`${crumbClass}--hovered`)
 				}
 			}
 		},
@@ -451,9 +453,9 @@ export default {
 			crumbs.forEach((crumb, i) => {
 				if (crumb?.elm?.classList) {
 					if (this.hiddenIndices.includes(i + offset)) {
-						crumb.elm.classList.add('vue-crumb--hidden')
+						crumb.elm.classList.add(`${crumbClass}--hidden`)
 					} else {
-						crumb.elm.classList.remove('vue-crumb--hidden')
+						crumb.elm.classList.remove(`${crumbClass}--hidden`)
 					}
 				}
 			})
@@ -534,7 +536,7 @@ export default {
 					slot: 'icon',
 				})
 				return createElement(element, {
-					class: 'vue-crumb',
+					class: crumbClass,
 					props: {
 						to,
 						href,
