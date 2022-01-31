@@ -6,10 +6,11 @@
 # Toms Project <tom@projectoms.com>, 2020
 # tranxde, 2020
 # ous 50, 2021
+# Jack Frost, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: ous 50, 2021\n"
+"Last-Translator: Jack Frost, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/nextcloud/teams/64236/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_CN\n"
@@ -147,5 +148,5 @@ msgstr "无法搜索分组"
 msgid "Undo changes"
 msgstr "撤销更改"
 
-msgid "Write message, @ to mention someone …"
-msgstr "输入消息，输入 @ 来提醒某人"
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr "写信息，@ 提到某人，: 用于表情符号自动完成 ..."
