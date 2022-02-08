@@ -164,7 +164,10 @@ export default {
 		/**
 		 * aria-label attribute of the input field
 		 */
-		ariaLabel: String,
+		ariaLabel: {
+			type: String,
+			default: '',
+		},
 	},
 
 	computed: {
