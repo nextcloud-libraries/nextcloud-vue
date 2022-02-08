@@ -82,6 +82,7 @@ For the multiselect component, all events will be passed through. Please see the
 						:value="value"
 						:placeholder="text"
 						:disabled="disabled"
+						:aria-label="ariaLabel"
 						v-bind="$attrs"
 						:class="{ focusable: isFocusable }"
 						class="action-input__input"
@@ -159,6 +160,13 @@ export default {
 		disabled: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * aria-label attribute of the input field
+		 */
+		ariaLabel: {
+			type: String,
+			default: '',
 		},
 	},
 
