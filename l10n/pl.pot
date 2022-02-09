@@ -1,11 +1,11 @@
 # 
 # Translators:
 # Artur Skoczylas <art.skoczylas@gmail.com>, 2020
-# Valdnet, 2021
+# Valdnet, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Valdnet, 2021\n"
+"Last-Translator: Valdnet, 2022\n"
 "Language-Team: Polish (https://www.transifex.com/nextcloud/teams/64236/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
@@ -117,7 +117,7 @@ msgid "Settings"
 msgstr "Ustawienia"
 
 msgid "Settings navigation"
-msgstr "Nawigacja ustawień"
+msgstr "Ustawienia nawigacji"
 
 msgid "Smileys & Emotion"
 msgstr "Buźki i emotikony"
