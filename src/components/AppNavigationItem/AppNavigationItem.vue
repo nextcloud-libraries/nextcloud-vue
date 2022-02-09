@@ -361,6 +361,7 @@ export default {
 			editingValue: '',
 			opened: this.open,
 			editingActive: false,
+			hasChildren: false,
 		}
 	},
 	computed: {
@@ -382,13 +383,6 @@ export default {
 				return false
 			} else {
 				return true
-			}
-		},
-		hasChildren() {
-			if (this.$slots.default) {
-				return true
-			} else {
-				return false
 			}
 		},
 		hasUtils() {
@@ -430,6 +424,15 @@ export default {
 			this.opened = newVal
 		},
 	},
+
+	created() {
+		this.updateSlotInfo()
+	},
+
+	beforeUpdate() {
+		this.updateSlotInfo()
+	},
+
 	methods: {
 		// sync opened menu state with prop
 		onMenuToggle(state) {
@@ -467,6 +470,10 @@ export default {
 		// Undo methods
 		handleUndo() {
 			this.$emit('undo')
+		},
+
+		updateSlotInfo() {
+			this.hasChildren = !!this.$slots.default
 		},
 	},
 }
