@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v5.0.0](https://github.com/nextcloud/nextcloud-vue/tree/v5.0.0) (2022-02-10)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.3.0...v5.0.0)
+
+## Enhancements
+
+- Implement showing global crumb actions [\#2444](https://github.com/nextcloud/nextcloud-vue/pull/2444) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Add option to always show actions [\#2419](https://github.com/nextcloud/nextcloud-vue/pull/2419) ([marcoambrosini](https://github.com/marcoambrosini))
+- Move crumb Actions into hover background area [\#2416](https://github.com/nextcloud/nextcloud-vue/pull/2416) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Allow custom action menu icon for breadcrumb [\#2414](https://github.com/nextcloud/nextcloud-vue/pull/2414) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Use MD icon for hidden crumbs action button icons [\#2413](https://github.com/nextcloud/nextcloud-vue/pull/2413) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Adjust breadcrumb appearance [\#2411](https://github.com/nextcloud/nextcloud-vue/pull/2411) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Automatically use Nextcloud translated months, days and years [\#2397](https://github.com/nextcloud/nextcloud-vue/pull/2397) ([skjnldsv](https://github.com/skjnldsv))
+
+## Fixed bugs
+
+- AppNavigationItem.vue: updating of this.$slots [\#2483](https://github.com/nextcloud/nextcloud-vue/pull/2483) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+- Fix md icon position for Actions with title [\#2435](https://github.com/nextcloud/nextcloud-vue/pull/2435) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix dragging onto hidden crumbs [\#2412](https://github.com/nextcloud/nextcloud-vue/pull/2412) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
+## Closed pull requests
+
+- Limit avatar request sizes to 64 and 512 pixel [\#2486](https://github.com/nextcloud/nextcloud-vue/pull/2486) ([nickvergessen](https://github.com/nickvergessen))
+- Add aria label to the ActionInput component [\#2472](https://github.com/nextcloud/nextcloud-vue/pull/2472) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+- Add variable for crumb class name [\#2450](https://github.com/nextcloud/nextcloud-vue/pull/2450) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Show menu title for single Action [\#2436](https://github.com/nextcloud/nextcloud-vue/pull/2436) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Set sidebar tab content height to be 100 percent [\#2431](https://github.com/nextcloud/nextcloud-vue/pull/2431) ([kiranparajuli589](https://github.com/kiranparajuli589))
+- Free closeOnSelect [\#2391](https://github.com/nextcloud/nextcloud-vue/pull/2391) ([jotoeri](https://github.com/jotoeri))
 ## [v4.3.0](https://github.com/nextcloud/nextcloud-vue/tree/v4.3.0) (2021-12-01)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.2.0...v4.3.0)
