@@ -504,14 +504,18 @@ export default {
 				return
 			}
 
-			const avatarUrl = this.avatarUrlGenerator(this.user, this.size)
-			const srcset = [
-				avatarUrl + ' 1x',
-				this.avatarUrlGenerator(this.user, this.size * 2) + ' 2x',
-				this.avatarUrlGenerator(this.user, this.size * 4) + ' 4x',
-			].join(', ')
+			if (this.size <= 64) {
+				const avatarUrl = this.avatarUrlGenerator(this.user, 64)
+				const srcset = [
+					avatarUrl + ' 1x',
+					this.avatarUrlGenerator(this.user, 512) + ' 8x',
+				].join(', ')
 
-			this.updateImageIfValid(avatarUrl, srcset)
+				this.updateImageIfValid(avatarUrl, srcset)
+			} else {
+				const avatarUrl = this.avatarUrlGenerator(this.user, 512)
+				this.updateImageIfValid(avatarUrl)
+			}
 		},
 
 		/**
