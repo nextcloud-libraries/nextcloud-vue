@@ -296,8 +296,22 @@ export default {
 	// Adjust action item appearance for crumbs with actions
 	// to match other crumbs
 	&::v-deep .action-item {
+		// Adjustments necessary to correctly shrink on small screens
+		max-width: 100%;
+		.trigger {
+			max-width: 100%;
+		}
+
 		&__menutoggle--with-title,
 		&--single--with-title {
+			// Adjustments necessary to correctly shrink on small screens
+			max-width: 100%;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			width: 100%;
+			display: inline-block;
+
 			background-color: unset;
 			border: none;
 
