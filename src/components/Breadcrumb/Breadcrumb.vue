@@ -93,7 +93,7 @@ export default {
 		 * If set, the breadcrumbs will be rendered by router-link.
 		 */
 		to: {
-			type: String,
+			type: [String, Object],
 			default: undefined,
 		},
 		/**
