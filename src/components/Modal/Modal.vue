@@ -725,7 +725,8 @@ export default {
 	// Sizing
 	&--small {
 		.modal-container {
-			width: 330px;
+			width: 390px;
+			max-width: 100%;
 			max-height: 90%;
 		}
 	}
