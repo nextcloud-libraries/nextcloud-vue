@@ -9,10 +9,11 @@
 # Framboise Pi, 2021
 # Boris Alet, 2021
 # Mer0me <postmaster@merome.net>, 2021
+# Cédric JARRIGE <jarrige.cedric@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mer0me <postmaster@merome.net>, 2021\n"
+"Last-Translator: Cédric JARRIGE <jarrige.cedric@gmail.com>, 2022\n"
 "Language-Team: French (https://www.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -150,5 +151,7 @@ msgstr "Impossible de chercher le groupe"
 msgid "Undo changes"
 msgstr "Annuler les changements"
 
-msgid "Write message, @ to mention someone …"
-msgstr "Écrivez un message, @ pour mentionner quelqu'un…"
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr ""
+"Ecrire un message, @ pour mentionner quelqu'un, : pour l'auto-complétion des"
+" émoticônes"
