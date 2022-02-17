@@ -133,7 +133,7 @@ Just set the `pinned` prop.
 			<!-- never show the icon over the collapsible if mobile -->
 			<div :class="{ 'icon-loading-small': loading, [icon]: icon && isIconShown }"
 				class="app-navigation-entry-icon">
-				<slot v-if="!loading" v-show="isIconShown" name="icon" />
+				<slot v-show="!loading && isIconShown" name="icon" />
 			</div>
 			<span v-if="!editingActive" class="app-navigation-entry__title" :title="title">
 				{{ title }}
