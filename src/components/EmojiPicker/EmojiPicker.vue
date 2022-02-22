@@ -95,14 +95,14 @@
 		<template #trigger>
 			<slot />
 		</template>
-		<StaticPicker
+		<Picker
 			:auto-focus="true"
 			color="var(--color-primary)"
 			:data="emojiIndex"
 			:emoji="previewFallbackEmoji"
 			:i18n="i18n"
 			:native="native"
-			:emoji-size="24"
+			:emoji-size="20"
 			:per-line="8"
 			:picker-styles="{ width: '320px' }"
 			:show-preview="showPreview"
@@ -113,7 +113,7 @@
 </template>
 
 <script>
-import { StaticPicker, EmojiIndex } from 'emoji-mart-vue-fast'
+import { Picker, EmojiIndex } from 'emoji-mart-vue-fast'
 import data from 'emoji-mart-vue-fast/data/all.json'
 import Popover from '../Popover'
 import { t } from '../../l10n'
@@ -121,7 +121,7 @@ import { t } from '../../l10n'
 export default {
 	name: 'EmojiPicker',
 	components: {
-		StaticPicker,
+		Picker,
 		Popover,
 	},
 	props: {
@@ -242,6 +242,20 @@ export default {
 	border: 0;
 	color: var(--color-main-text) !important;
 
+	// default style reset
+	button {
+		margin: 0;
+		padding: 0;
+		border: none;
+		background: transparent;
+		font-size: inherit;
+		height: 36px;
+		width: auto;
+		* {
+			cursor: pointer !important;
+		}
+	}
+
 	.emoji-mart-bar,
 	.emoji-mart-anchors,
 	.emoji-mart-search,
@@ -262,6 +276,14 @@ export default {
 		}
 	}
 
+	.emoji-mart-anchors {
+		button {
+			border-radius: 0;
+			padding: 12px 4px;
+			height: auto;
+		}
+	}
+
 	.emoji-mart-category {
 		display: flex;
 		flex-direction: row;
@@ -277,20 +299,13 @@ export default {
 
 		.emoji-mart-category-label {
 			flex-basis: 100%;
-		}
-
-		.emoji-mart-anchor,
-		.emoji-mart-anchor * {
-			cursor: pointer;
+			margin: 0;
 		}
 
 		.emoji-mart-emoji {
-			flex-basis: 12.5%;
+			// 8 emoji per row
+			flex-basis: calc(100% / 8);
 			text-align: center;
-
-			span {
-				cursor: pointer !important;
-			}
 
 			&:hover::before {
 				background-color: var(--color-background-hover);
