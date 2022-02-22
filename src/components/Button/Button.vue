@@ -214,6 +214,7 @@ button {
 		v-bind="$attrs"
 		:class="buttonClassObject"
 		:aria-label="ariaLabel"
+		:type="nativeType"
 		:disabled="disabled"
 		v-on="$listeners"
 		@keydown.enter="makeActive"
@@ -258,6 +259,19 @@ export default {
 				return ['primary', 'tertiary', 'error', 'warning', 'success', ''].indexOf(value) !== -1
 			},
 			default: '',
+		},
+
+		/**
+		 * Specifies the button native type
+		 * Accepted values: submit, reset, button. If left empty,
+		 * the default "button" type will be used.
+		 */
+		nativeType: {
+			type: String,
+			validator(value) {
+				return ['submit', 'reset', 'button'].indexOf(value) !== -1
+			},
+			default: 'button',
 		},
 
 		/**
