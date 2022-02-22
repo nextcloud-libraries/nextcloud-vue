@@ -3,10 +3,11 @@
 # Random_R, 2021
 # Gabriele <ravo1986@gmail.com>, 2021
 # Vincenzo Reale <vinx.reale@gmail.com>, 2021
+# Schuster Lorenz, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Vincenzo Reale <vinx.reale@gmail.com>, 2021\n"
+"Last-Translator: Schuster Lorenz, 2022\n"
 "Language-Team: Italian (https://www.transifex.com/nextcloud/teams/64236/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: it\n"
@@ -30,6 +31,9 @@ msgstr "Animali e natura"
 msgid "Avatar of {displayName}"
 msgstr "Avatar di {displayName}"
 
+msgid "Avatar of {displayName}, {status}"
+msgstr "Avatar di {displayName}, {status}"
+
 msgid "Cancel changes"
 msgstr "Annulla modifiche"
 
@@ -39,11 +43,17 @@ msgstr "Scegli"
 msgid "Close"
 msgstr "Chiudi"
 
+msgid "Close navigation"
+msgstr "Chiudi la navigazione"
+
 msgid "Confirm changes"
 msgstr "Conferma modifiche"
 
 msgid "Custom"
 msgstr "Personalizzato"
+
+msgid "Edit item"
+msgstr "Modifica l'elemento"
 
 msgid "External documentation for {title}"
 msgstr "Documentazione esterna per {title}"
@@ -56,6 +66,12 @@ msgstr "Cibo e bevande"
 
 msgid "Frequently used"
 msgstr "Usati di frequente"
+
+msgid "Global"
+msgstr "Globale"
+
+msgid "Go back to the list"
+msgstr "Torna all'elenco"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Limite dei messaggi di {count} caratteri raggiunto"
@@ -72,6 +88,9 @@ msgstr "Nessun risultato"
 msgid "Objects"
 msgstr "Oggetti"
 
+msgid "Open navigation"
+msgstr "Apri la navigazione"
+
 msgid "Pause slideshow"
 msgstr "Presentazione in pausa"
 
@@ -80,6 +99,9 @@ msgstr "Persone e corpo"
 
 msgid "Pick an emoji"
 msgstr "Scegli un emoji"
+
+msgid "Please select a time zone:"
+msgstr "Si prega di selezionare un fuso orario:"
 
 msgid "Previous"
 msgstr "Precedente"
@@ -114,8 +136,16 @@ msgstr "Simboli"
 msgid "Travel & Places"
 msgstr "Viaggi e luoghi"
 
+msgid "Type to search time zone"
+msgstr "Digita per cercare un fuso orario"
+
 msgid "Unable to search the group"
 msgstr "Impossibile cercare il gruppo"
 
-msgid "Write message, @ to mention someone …"
-msgstr "Scrivi messaggio, @ per menzionare qualcuno…"
+msgid "Undo changes"
+msgstr "Cancella i cambiamenti"
+
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr ""
+"Scrivi un messaggio, @ per menzionare qualcuno, : per il completamento "
+"automatico delle emoji ..."
