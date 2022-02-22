@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Asier Iturralde Sarasola <asier.iturralde@gmail.com>, 2020
-# Unai Tolosa Pontesta <utolosa002@gmail.com>, 2021
-# Gontzal M. Pujana <juchuf@gmail.com>, 2021
+# Thadah D. Denyse <juchuf@gmail.com>, 2021
+# Unai Tolosa Pontesta <utolosa002@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Gontzal M. Pujana <juchuf@gmail.com>, 2021\n"
+"Last-Translator: Unai Tolosa Pontesta <utolosa002@gmail.com>, 2022\n"
 "Language-Team: Basque (https://www.transifex.com/nextcloud/teams/64236/eu/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: eu\n"
@@ -30,6 +30,9 @@ msgstr "Animaliak eta Natura"
 msgid "Avatar of {displayName}"
 msgstr "{displayName}-(e)n irudia"
 
+msgid "Avatar of {displayName}, {status}"
+msgstr "{displayName} -(e)n irudia, {status}"
+
 msgid "Cancel changes"
 msgstr "Ezeztatu aldaketak"
 
@@ -47,6 +50,9 @@ msgstr "Baieztatu aldaketak"
 
 msgid "Custom"
 msgstr "Pertsonalizatua"
+
+msgid "Edit item"
+msgstr "Editatu elementua"
 
 msgid "External documentation for {title}"
 msgstr "Kanpoko dokumentazioa {title}(r)entzat"
@@ -135,5 +141,8 @@ msgstr "Idatzi ordu-zona bat bilatzeko"
 msgid "Unable to search the group"
 msgstr "Ezin izan da taldea bilatu"
 
-msgid "Write message, @ to mention someone …"
-msgstr "Idatzi mezua, @ norbait aipatzeko …"
+msgid "Undo changes"
+msgstr "Aldaketak desegin"
+
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr "Idatzi mezua, @ norbait aipatzeko, : emojia automatikoki idazteko"
