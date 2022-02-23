@@ -1,6 +1,16 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [v4.4.0](https://github.com/nextcloud/nextcloud-vue/tree/v4.4.0) (2022-02-23)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v5.0.0...v4.4.0)
+
+## Fixed bugs
+- Remove whitespace from PopoverMenuItem when displaying emoji [\#2396](https://github.com/nextcloud/nextcloud-vue/pull/2396)([CarlSchwan](https://github.com/CarlSchwan))
+- Change appearance of the slot "icon" at AppNavigationItem [\#2506](https://github.com/nextcloud/nextcloud-vue/pull/2506) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+- AppNavigationItem.vue: updating of this.$slots [\#2485](https://github.com/nextcloud/nextcloud-vue/pull/2485]) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+- Increase padding right of AppNavigationItem to 8 px [\#2407](https://github.com/nextcloud/nextcloud-vue/pull/2407) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Md icon position for Actions with title [\2445](https://github.com/nextcloud/nextcloud-vue/pull/2445) ([raimund-schluessler](https://github.com/raimund-schluessler))
 
 ## [v4.3.0](https://github.com/nextcloud/nextcloud-vue/tree/v4.3.0) (2021-12-01)
 
