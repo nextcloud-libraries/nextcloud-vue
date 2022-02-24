@@ -21,8 +21,7 @@
  */
 
 import data from 'emoji-mart-vue-fast/data/all.json'
-import { EmojiIndex } from 'emoji-mart-vue-fast/src'
-import frequently from 'emoji-mart-vue-fast/src/utils/frequently'
+import { EmojiIndex, frequently } from 'emoji-mart-vue-fast'
 
 // export const allEmojis = index.buildIndex()
 
