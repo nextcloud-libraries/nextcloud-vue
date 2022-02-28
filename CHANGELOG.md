@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v5.1.0](https://github.com/nextcloud/nextcloud-vue/tree/v5.1.0) (2022-02-28)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.4.0...v5.1.0)
+
+## Enhancements
+
+- Add button native type prop on \<Button\> [\#2516](https://github.com/nextcloud/nextcloud-vue/pull/2516) ([tcitworld](https://github.com/tcitworld))
+- increase the small modal width [\#2496](https://github.com/nextcloud/nextcloud-vue/pull/2496) ([szaimen](https://github.com/szaimen))
+- Allow Breadcrumbs "to" prop to be an object [\#2491](https://github.com/nextcloud/nextcloud-vue/pull/2491) ([tcitworld](https://github.com/tcitworld))
+
+## Fixed bugs
+
+- Change appearance of the slot "icon" at AppNavigationItem [\#2506](https://github.com/nextcloud/nextcloud-vue/pull/2506) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+- Fix shrinking of last breadcrumb for narrow width [\#2492](https://github.com/nextcloud/nextcloud-vue/pull/2492) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
+## Closed pull requests
+
+- fix: imports from emoji-mart-vue-fast [\#2521](https://github.com/nextcloud/nextcloud-vue/pull/2521) ([max-nextcloud](https://github.com/max-nextcloud))
+
 ## [v5.0.0](https://github.com/nextcloud/nextcloud-vue/tree/v5.0.0) (2022-02-10)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.3.0...v5.0.0)
