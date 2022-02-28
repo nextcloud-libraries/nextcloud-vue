@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v5.0.1](https://github.com/nextcloud/nextcloud-vue/tree/v5.0.1) (2022-02-28)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.4.0...v5.0.1)
+
+## Enhancements
+
+- Add button native type prop on \<Button\> [\#2516](https://github.com/nextcloud/nextcloud-vue/pull/2516) ([tcitworld](https://github.com/tcitworld))
+- Allow Breadcrumbs "to" prop to be an object [\#2491](https://github.com/nextcloud/nextcloud-vue/pull/2491) ([tcitworld](https://github.com/tcitworld))
+
+## Fixed bugs
+
+- Change appearance of the slot "icon" at AppNavigationItem [\#2506](https://github.com/nextcloud/nextcloud-vue/pull/2506) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+- Fix shrinking of last breadcrumb for narrow width [\#2492](https://github.com/nextcloud/nextcloud-vue/pull/2492) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
+## Closed pull requests
+
+- fix: imports from emoji-mart-vue-fast [\#2521](https://github.com/nextcloud/nextcloud-vue/pull/2521) ([max-nextcloud](https://github.com/max-nextcloud))
+
 ## [v5.0.0](https://github.com/nextcloud/nextcloud-vue/tree/v5.0.0) (2022-02-10)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.3.0...v5.0.0)
@@ -30,6 +48,7 @@ All notable changes to this project will be documented in this file.
 - Show menu title for single Action [\#2436](https://github.com/nextcloud/nextcloud-vue/pull/2436) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - Set sidebar tab content height to be 100 percent [\#2431](https://github.com/nextcloud/nextcloud-vue/pull/2431) ([kiranparajuli589](https://github.com/kiranparajuli589))
 - Free closeOnSelect [\#2391](https://github.com/nextcloud/nextcloud-vue/pull/2391) ([jotoeri](https://github.com/jotoeri))
+
 ## [v4.3.0](https://github.com/nextcloud/nextcloud-vue/tree/v4.3.0) (2021-12-01)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.2.0...v4.3.0)
