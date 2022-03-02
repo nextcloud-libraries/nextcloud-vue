@@ -361,6 +361,7 @@ export default {
 			// By binding this here, vuejs will track the object content
 			// Needed for firstAction reactivity !!!
 			children: this.$children,
+			firstAction: {},
 		}
 	},
 
@@ -399,18 +400,6 @@ export default {
 		firstActionVNode() {
 			return this.actions[0]
 		},
-		/**
-		 * Reactive binding to the first children
-		 * Since we're here, it means we already passed all the proper checks
-		 * we can assume the first action is the first children too
-		 * @returns {Object} first action vue children object
-		 */
-		firstAction() {
-			return this.children[0]
-				? this.children[0]
-				: {}
-		},
-
 		/**
 		 * Binding of the first action to the template
 		 * @returns {Object} vue template v-bind shortcut
@@ -481,6 +470,18 @@ export default {
 			}
 
 			this.opened = state
+		},
+		/**
+		 * Reactive binding to the first children
+		 * Since we're here, it means we already passed all the proper checks
+		 * we can assume the first action is the first children too
+		 */
+		children() {
+			// Fix #2529, slots maybe not available on creation lifecycle
+			// first action vue children object
+			this.firstAction = this.children[0]
+				? this.children[0]
+				: {}
 		},
 	},
 	beforeMount() {
