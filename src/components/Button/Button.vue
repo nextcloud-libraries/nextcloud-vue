@@ -250,13 +250,13 @@ export default {
 
 		/**
 		 * Specifies the button type
-		 * Accepted values: primary, error, tertiary, warning, success. If left empty,
-		 * the default button style will be applyed.
+		 * Accepted values: primary, secondary, tertiary, error, warning, success. If left empty,
+		 * the default button style will be applied.
 		 */
 		type: {
 			type: String,
 			validator(value) {
-				return ['primary', 'tertiary', 'error', 'warning', 'success', ''].indexOf(value) !== -1
+				return ['primary', 'secondary', 'tertiary', 'error', 'warning', 'success', ''].indexOf(value) !== -1
 			},
 			default: '',
 		},
