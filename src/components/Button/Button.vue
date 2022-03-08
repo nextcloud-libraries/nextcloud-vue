@@ -508,7 +508,7 @@ export default {
 	// coincides with the border of the element. It's not possible to add a border-radius to
 	// the outline
 	&--tabbed {
-		box-shadow: 0px 0px 0px 2px var(--color-main-text);
+		box-shadow: 0 0 0 2px var(--color-main-text);
 		background-color: var(--color-primary-light-hover);
 		&.button-vue--vue-primary {
 			background-color: var(--color-primary-hover);
