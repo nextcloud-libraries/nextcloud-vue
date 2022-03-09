@@ -4,10 +4,11 @@
 # Toni Hermoso Pulido <toniher@softcatala.cat>, 2020
 # David Jacovkis <david@freeknowledge.eu>, 2020
 # Marc Riera <marcriera@softcatala.org>, 2021
+# Omar Macías Molina <omar.maciasmolina@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Marc Riera <marcriera@softcatala.org>, 2021\n"
+"Last-Translator: Omar Macías Molina <omar.maciasmolina@gmail.com>, 2022\n"
 "Language-Team: Catalan (https://www.transifex.com/nextcloud/teams/64236/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ca\n"
@@ -28,6 +29,12 @@ msgstr "Activitats"
 msgid "Animals & Nature"
 msgstr "Animals i natura"
 
+msgid "Avatar of {displayName}"
+msgstr "Avatar de {displayName}"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "Avatar de {displayName}, {status}"
+
 msgid "Cancel changes"
 msgstr "Cancel·la els canvis"
 
@@ -37,11 +44,17 @@ msgstr "Tria"
 msgid "Close"
 msgstr "Tanca"
 
+msgid "Close navigation"
+msgstr "Tancar la navegació"
+
 msgid "Confirm changes"
 msgstr "Confirmeu els canvis"
 
 msgid "Custom"
 msgstr "Personalitzat"
+
+msgid "Edit item"
+msgstr "Edita l'element"
 
 msgid "External documentation for {title}"
 msgstr "Documentació externa per a {title}"
@@ -54,6 +67,12 @@ msgstr "Menjar i begudes"
 
 msgid "Frequently used"
 msgstr "Utilitzats recentment"
+
+msgid "Global"
+msgstr "Global"
+
+msgid "Go back to the list"
+msgstr "Torna a la llista"
 
 msgid "Message limit of {count} characters reached"
 msgstr "S'ha arribat al límit de {count} caràcters per missatge"
@@ -70,6 +89,9 @@ msgstr "Sense resultats"
 msgid "Objects"
 msgstr "Objectes"
 
+msgid "Open navigation"
+msgstr "Obrir la navegació"
+
 msgid "Pause slideshow"
 msgstr "Atura la presentació"
 
@@ -78,6 +100,9 @@ msgstr "Persones i cos"
 
 msgid "Pick an emoji"
 msgstr "Trieu un emoji"
+
+msgid "Please select a time zone:"
+msgstr "Seleccioneu una zona horària:"
 
 msgid "Previous"
 msgstr "Anterior"
@@ -112,8 +137,16 @@ msgstr "Símbols"
 msgid "Travel & Places"
 msgstr "Viatges i llocs"
 
+msgid "Type to search time zone"
+msgstr "Escriviu per cercar la zona horària"
+
 msgid "Unable to search the group"
 msgstr "No es pot cercar el grup"
 
-msgid "Write message, @ to mention someone …"
-msgstr "Escriu un missatge, @ per mencionar algú..."
+msgid "Undo changes"
+msgstr "Desfer canvis"
+
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr ""
+"Escriu un missatge, @ per esmentar algú, : per a la compleció automàtica "
+"d'emojis..."
