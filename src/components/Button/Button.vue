@@ -250,13 +250,13 @@ export default {
 
 		/**
 		 * Specifies the button type
-		 * Accepted values: primary, error, tertiary, warning, success. If left empty,
-		 * the default button style will be applyed.
+		 * Accepted values: primary, secondary, tertiary, error, warning, success. If left empty,
+		 * the default button style will be applied.
 		 */
 		type: {
 			type: String,
 			validator(value) {
-				return ['primary', 'tertiary', 'error', 'warning', 'success', ''].indexOf(value) !== -1
+				return ['primary', 'secondary', 'tertiary', 'error', 'warning', 'success', ''].indexOf(value) !== -1
 			},
 			default: '',
 		},
@@ -361,7 +361,7 @@ export default {
 
 	methods: {
 		getText() {
-			return this.$slots.default ? this.$slots.default[0].text.trim() : null
+			return this.$slots?.default[0]?.text ? this.$slots.default[0].text.trim() : null
 		},
 
 		/**
@@ -508,7 +508,7 @@ export default {
 	// coincides with the border of the element. It's not possible to add a border-radius to
 	// the outline
 	&--tabbed {
-		box-shadow: 0px 0px 0px 2px var(--color-main-text);
+		box-shadow: 0 0 0 2px var(--color-main-text);
 		background-color: var(--color-primary-light-hover);
 		&.button-vue--vue-primary {
 			background-color: var(--color-primary-hover);
