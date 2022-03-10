@@ -1020,6 +1020,15 @@ export default {
 		}
 	}
 
+	// Secondary
+	&--vue-secondary {
+		div.dark &,
+		body.theme--dark & {
+			// Fix dark mode
+			color: var(--color-main-text);
+		}
+	}
+
 	// Tertiary
 	&--vue-tertiary {
 		color: var(--color-text-lighter);
