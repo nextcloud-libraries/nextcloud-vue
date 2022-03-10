@@ -33,6 +33,483 @@ It can be used with one or multiple actions.
 ```
 <template>
 <div class="wrapper">
+	<div class="bright bright-0082c9">
+		<!-- Icon and text -->
+		<h5>Bright - #0082c9</h5>
+		<div class="grid">
+			<p>Tertiary</p>
+			<p>Secondary</p>
+			<p>Primary</p>
+			<Button
+				type="tertiary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="secondary">
+				<template #icon>
+					<Video
+						title=""
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="primary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+		</div>
+	</div>
+	<div class="dark dark-0082c9">
+		<!-- Icon and text -->
+		<h5>Dark - #0082c9</h5>
+		<div class="grid">
+			<p>Tertiary</p>
+			<p>Secondary</p>
+			<p>Primary</p>
+			<Button
+				type="tertiary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="secondary">
+				<template #icon>
+					<Video
+						title=""
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="primary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+		</div>
+	</div>
+	<div class="bright bright-ffffff">
+		<!-- Icon and text -->
+		<h5>Bright - #ffffff</h5>
+		<div class="grid">
+			<p>Tertiary</p>
+			<p>Secondary</p>
+			<p>Primary</p>
+			<Button
+				type="tertiary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="secondary">
+				<template #icon>
+					<Video
+						title=""
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="primary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+		</div>
+	</div>
+	<div class="dark dark-ffffff">
+		<!-- Icon and text -->
+		<h5>Dark - #ffffff</h5>
+		<div class="grid">
+			<p>Tertiary</p>
+			<p>Secondary</p>
+			<p>Primary</p>
+			<Button
+				type="tertiary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="secondary">
+				<template #icon>
+					<Video
+						title=""
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="primary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+		</div>
+	</div>
+	<div class="bright bright-FFCFCF">
+		<!-- Icon and text -->
+		<h5>Bright - #FFCFCF</h5>
+		<div class="grid">
+			<p>Tertiary</p>
+			<p>Secondary</p>
+			<p>Primary</p>
+			<Button
+				type="tertiary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="secondary">
+				<template #icon>
+					<Video
+						title=""
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="primary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+		</div>
+	</div>
+	<div class="dark dark-FFCFCF">
+		<!-- Icon and text -->
+		<h5>Dark - #FFCFCF</h5>
+		<div class="grid">
+			<p>Tertiary</p>
+			<p>Secondary</p>
+			<p>Primary</p>
+			<Button
+				type="tertiary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="secondary">
+				<template #icon>
+					<Video
+						title=""
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="primary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+		</div>
+	</div>
+	<div class="bright bright-FF9896">
+		<!-- Icon and text -->
+		<h5>Bright - #FF9896</h5>
+		<div class="grid">
+			<p>Tertiary</p>
+			<p>Secondary</p>
+			<p>Primary</p>
+			<Button
+				type="tertiary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="secondary">
+				<template #icon>
+					<Video
+						title=""
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="primary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+		</div>
+	</div>
+	<div class="dark dark-FF9896">
+		<!-- Icon and text -->
+		<h5>Dark - #FF9896</h5>
+		<div class="grid">
+			<p>Tertiary</p>
+			<p>Secondary</p>
+			<p>Primary</p>
+			<Button
+				type="tertiary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="secondary">
+				<template #icon>
+					<Video
+						title=""
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="primary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+		</div>
+	</div>
+	<div class="bright bright-470404">
+		<!-- Icon and text -->
+		<h5>Bright - #470404</h5>
+		<div class="grid">
+			<p>Tertiary</p>
+			<p>Secondary</p>
+			<p>Primary</p>
+			<Button
+				type="tertiary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="secondary">
+				<template #icon>
+					<Video
+						title=""
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="primary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+		</div>
+	</div>
+	<div class="dark dark-470404">
+		<!-- Icon and text -->
+		<h5>Dark - #470404</h5>
+		<div class="grid">
+			<p>Tertiary</p>
+			<p>Secondary</p>
+			<p>Primary</p>
+			<Button
+				type="tertiary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="secondary">
+				<template #icon>
+					<Video
+						title=""
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="primary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+		</div>
+	</div>
+	<div class="bright bright-170101">
+		<!-- Icon and text -->
+		<h5>Bright - #170101</h5>
+		<div class="grid">
+			<p>Tertiary</p>
+			<p>Secondary</p>
+			<p>Primary</p>
+			<Button
+				type="tertiary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="secondary">
+				<template #icon>
+					<Video
+						title=""
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="primary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+		</div>
+	</div>
+	<div class="dark dark-170101">
+		<!-- Icon and text -->
+		<h5>Dark - #170101</h5>
+		<div class="grid">
+			<p>Tertiary</p>
+			<p>Secondary</p>
+			<p>Primary</p>
+			<Button
+				type="tertiary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="secondary">
+				<template #icon>
+					<Video
+						title=""
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="primary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+		</div>
+	</div>
+	<div class="bright bright-000000">
+		<!-- Icon and text -->
+		<h5>Bright - #000000</h5>
+		<div class="grid">
+			<p>Tertiary</p>
+			<p>Secondary</p>
+			<p>Primary</p>
+			<Button
+				type="tertiary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="secondary">
+				<template #icon>
+					<Video
+						title=""
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="primary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+		</div>
+	</div>
+	<div class="dark dark-000000">
+		<!-- Icon and text -->
+		<h5>Dark - #000000</h5>
+		<div class="grid">
+			<p>Tertiary</p>
+			<p>Secondary</p>
+			<p>Primary</p>
+			<Button
+				type="tertiary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="secondary">
+				<template #icon>
+					<Video
+						title=""
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+			<Button
+				type="primary">
+				<template #icon>
+					<Video
+						:size="20" />
+				</template>
+				Example text
+			</Button>
+		</div>
+	</div>
+
 	<!-- Icon only -->
 	<h5>Icon only buttons</h5>
 	<div class="grid">
