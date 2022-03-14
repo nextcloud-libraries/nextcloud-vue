@@ -361,7 +361,7 @@ export default {
 
 	methods: {
 		getText() {
-			return this.$slots?.default[0]?.text ? this.$slots.default[0].text.trim() : null
+			return this.$slots?.default && this.$slots?.default[0]?.text ? this.$slots.default[0].text.trim() : null
 		},
 
 		/**
