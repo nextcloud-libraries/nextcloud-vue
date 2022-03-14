@@ -92,11 +92,18 @@
 		popover-class="emoji-popover"
 		popover-inner-class="popover-emoji-picker-inner"
 		v-bind="$attrs"
-		v-on="$listeners">
+		v-on="$listeners"
+		@after-show="afterShow">
 		<template #trigger>
 			<slot />
 		</template>
+<<<<<<< HEAD
 		<Picker :auto-focus="true"
+=======
+		<Picker
+			ref="picker"
+			:auto-focus="true"
+>>>>>>> 4da67de7... make selectable by tab
 			color="var(--color-primary)"
 			:data="emojiIndex"
 			:emoji="previewFallbackEmoji"
@@ -217,6 +224,15 @@ export default {
 				this.open = false
 			}
 		},
+		afterShow() {
+			const picker = this.$refs.picker
+			const input = picker.$refs.search.$el.querySelector('input')
+
+			if (input) {
+				input.focus()
+			}
+
+		},
 	},
 }
 </script>
@@ -254,8 +270,15 @@ export default {
 		font-size: inherit;
 		height: 36px;
 		width: auto;
+
 		* {
 			cursor: pointer !important;
+		}
+
+		&:focus-visible {
+			background-color: var(--color-background-hover);
+			border: 2px solid var(--color-primary-element) !important;
+			border-radius: 50%;
 		}
 	}
 
@@ -310,8 +333,10 @@ export default {
 			flex-basis: calc(100% / 8);
 			text-align: center;
 
-			&:hover::before {
-				background-color: var(--color-background-hover);
+			&:hover::before,
+			&.emoji-mart-emoji-selected::before{
+				background-color: var(--color-background-hover) !important;
+				outline: 2px solid var(--color-primary-element);
 			}
 		}
 	}
