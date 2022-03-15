@@ -81,7 +81,7 @@
 		"babel-loader": "^8.1.0",
 		"babel-loader-exclude-node-modules-except": "^1.0.3",
 		"css-loader": "^5.0.0",
-		"cypress": "^6.5.0",
+		"cypress": "^9.5.2",
 		"cypress-visual-regression": "^1.5.0",
 		"cypress-vue-unit-test": "^3.5.1",
 		"eslint": "^7.21.0",
