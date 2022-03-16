@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v5.1.1](https://github.com/nextcloud/nextcloud-vue/tree/v5.1.1) (2022-03-16)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v5.1.0...v5.1.1)
+
+## Fixed bugs
+
+- Fix error spam of icon only buttons part2 [\#2547](https://github.com/nextcloud/nextcloud-vue/pull/2547) ([nickvergessen](https://github.com/nickvergessen))
+- Fix error spam from buttons [\#2540](https://github.com/nextcloud/nextcloud-vue/pull/2540) ([nickvergessen](https://github.com/nickvergessen))
+- 🐛 \(\#2529\): fix missing firstAction [\#2532](https://github.com/nextcloud/nextcloud-vue/pull/2532) ([vinicius73](https://github.com/vinicius73))
+
 ## [v5.1.0](https://github.com/nextcloud/nextcloud-vue/tree/v5.1.0) (2022-02-28)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.4.0...v5.1.0)
