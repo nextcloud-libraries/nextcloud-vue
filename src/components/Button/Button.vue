@@ -256,7 +256,10 @@ export default {
 		type: {
 			type: String,
 			validator(value) {
-				return ['primary', 'secondary', 'tertiary', 'error', 'warning', 'success', ''].indexOf(value) !== -1
+				// Disallowing secondary until we solve theming and
+				// accessibility issues.
+				// https://github.com/nextcloud/nextcloud-vue/issues/2538
+				return ['primary', 'tertiary', 'error', 'warning', 'success'].indexOf(value) !== -1
 			},
 			default: '',
 		},
