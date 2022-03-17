@@ -161,7 +161,8 @@ export default {
 	<!-- more than one action -->
 	<div v-else
 		v-show="hasMultipleActions || forceMenu"
-		:class="{'action-item--open': opened}"
+		:class="{'action-item--open': opened,
+			'action-item--title--with-trigger': useTitleAsActionTrigger,}"
 		class="action-item">
 		<!-- If more than one action, create a popovermenu -->
 		<Popover
@@ -169,35 +170,40 @@ export default {
 			:handle-resize="true"
 			:open.sync="opened"
 			:placement="placement"
+			class="action-item--popover"
 			:boundaries-element="boundariesElement"
 			:container="container"
+			trigger="click"
 			@show="openMenu"
 			@after-show="onOpen"
 			@hide="closeMenu">
 			<!-- Menu open/close trigger button -->
 			<template #trigger>
-				<button ref="menuButton"
-					:disabled="disabled"
-					class="icon action-item__menutoggle"
-					:class="{
-						[defaultIcon]: !iconSlotIsPopulated,
-						'action-item__menutoggle--with-title': menuTitle,
-						'action-item__menutoggle--with-icon-slot': iconSlotIsPopulated,
-						'action-item__menutoggle--default-icon': !iconSlotIsPopulated && defaultIcon === '',
-						'action-item__menutoggle--primary': primary
-					}"
-					aria-haspopup="true"
-					:aria-label="ariaLabel"
-					:aria-controls="randomId"
-					:aria-expanded="opened ? 'true' : 'false'"
-					test-attr="1"
-					type="button"
-					@focus="onFocus"
-					@blur="onBlur">
-					<slot v-if="iconSlotIsPopulated" name="icon" />
-					<DotsHorizontal v-else-if="defaultIcon === ''" :size="20" decorative />
-					{{ menuTitle }}
-				</button>
+				<slot name="trigger">
+					<button
+						ref="menuButton"
+						:disabled="disabled"
+						class="icon action-item__menutoggle"
+						:class="{
+							[defaultIcon]: !iconSlotIsPopulated,
+							'action-item__menutoggle--with-title': menuTitle,
+							'action-item__menutoggle--with-icon-slot': iconSlotIsPopulated,
+							'action-item__menutoggle--default-icon': !iconSlotIsPopulated && defaultIcon === '',
+							'action-item__menutoggle--primary': primary
+						}"
+						aria-haspopup="true"
+						:aria-label="ariaLabel"
+						:aria-controls="randomId"
+						:aria-expanded="opened ? 'true' : 'false'"
+						test-attr="1"
+						type="button"
+						@focus="onFocus"
+						@blur="onBlur">
+						<slot v-if="iconSlotIsPopulated" name="icon" />
+						<DotsHorizontal v-else-if="defaultIcon === ''" :size="20" decorative />
+						{{ menuTitle }}
+					</button>
+				</slot>
 			</template>
 
 			<!-- Menu content -->
@@ -346,6 +352,14 @@ export default {
 		 * Disabled state of the main button (single action or menu toggle)
 		 */
 		disabled: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Use title as popover trigger
+		 */
+		useTitleAsActionTrigger: {
 			type: Boolean,
 			default: false,
 		},
@@ -541,8 +555,8 @@ export default {
 			this.opened = false
 			this.focusIndex = 0
 
-			// focus back the menu button
-			this.$refs.menuButton.focus()
+			// focus back the menu button if one exists
+			this.$refs.menuButton?.focus()
 		},
 
 		onOpen(event) {
@@ -774,6 +788,16 @@ export default {
 		& > [hidden] {
 			display: none;
 		}
+	}
+
+	&--popover {
+		display: flex;
+		align-items: stretch;
+		flex-direction: column;
+	}
+
+	&--title--with-trigger {
+		width: 100%;
 	}
 }
 

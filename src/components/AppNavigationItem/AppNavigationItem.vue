@@ -58,6 +58,23 @@ button will be automatically created.
 	</template>
 </AppNavigationItem>
 ```
+### Element with actions which are triggered by link
+Actions can be triggered by link which is located in `<AppNavigationItemTitle>` component.
+If the prop `useTitleAsActionTrigger` is true then `<a>` link will be used for triggering a popover menu.
+A menu button will not be created.
+
+```
+<AppNavigationItem :use-title-as-action-trigger="true" title="Item with actions" icon="icon-category-enabled">
+	<template #actions>
+		<ActionButton icon="icon-edit" @click="alert('Edit')">
+			Edit
+		</ActionButton>
+		<ActionButton icon="icon-delete" @click="alert('Delete')">
+			Delete
+		</ActionButton>
+	</template>
+</AppNavigationItem>
+```
 
 ### Element with counter
 Just nest the counter in a template within `<AppNavigationItem>` and add `#counter` to it.
@@ -124,30 +141,19 @@ Just set the `pinned` prop.
 		}"
 		class="app-navigation-entry">
 		<!-- Icon and title -->
-		<a v-if="!undo"
-			class="app-navigation-entry-link"
+		<AppNavigationItemTitle v-if="!undo && !useTitleAsActionTrigger"
+			:loading="loading"
+			:icon="icon"
+			:is-icon-shown="isIconShown"
+			:editing-active.sync="editingActive"
+			:editing-value.sync="editingValue"
 			:aria-description="ariaDescription"
-			href="#"
-			@click="onClick">
-
-			<!-- icon if not collapsible -->
-			<!-- never show the icon over the collapsible if mobile -->
-			<div :class="{ 'icon-loading-small': loading, [icon]: icon && isIconShown }"
-				class="app-navigation-entry-icon">
-				<slot v-show="!loading && isIconShown" name="icon" />
-			</div>
-			<span v-if="!editingActive" class="app-navigation-entry__title" :title="title">
-				{{ title }}
-			</span>
-			<div v-if="editingActive" class="editingContainer">
-				<InputConfirmCancel
-					ref="editingInput"
-					v-model="editingValue"
-					:placeholder="editPlaceholder !== '' ? editPlaceholder : title"
-					@cancel="cancelEditing"
-					@confirm="handleEditingDone" />
-			</div>
-		</a>
+			:title.sync="title"
+			@click="onClick"
+			@input="editingValue=$event"
+			@cancel="editingActive=$event">
+			<slot v-show="!loading && isIconShown" name="icon" />
+		</AppNavigationItemTitle>
 
 		<AppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
 		<!-- undo entry -->
@@ -167,6 +173,7 @@ Just set the `pinned` prop.
 				:placement="menuPlacement"
 				:open="menuOpen"
 				:force-menu="forceMenu"
+				:use-title-as-action-trigger="useTitleAsActionTrigger"
 				:default-icon="menuIcon"
 				@update:open="onMenuToggle">
 				<template #icon>
@@ -190,6 +197,22 @@ Just set the `pinned` prop.
 						<Undo :size="20" decorative />
 					</template>
 				</ActionButton>
+				<template v-if="useTitleAsActionTrigger" #trigger>
+					<!-- Icon and title -->
+					<AppNavigationItemTitle v-if="!undo"
+						:loading="loading"
+						:icon="icon"
+						:is-icon-shown="isIconShown"
+						:editing-active.sync="editingActive"
+						:aria-description="ariaDescription"
+						:editing-value.sync="editingValue"
+						:title.sync="title"
+						@input="editingValue=$event"
+						@cancel="editingActive=$event">
+						<slot v-show="!loading && isIconShown" name="icon" />
+					</AppNavigationItemTitle>
+				</template>
+
 				<slot name="actions" />
 			</Actions>
 		</div>
@@ -210,8 +233,8 @@ import { directive as ClickOutside } from 'v-click-outside'
 import Actions from '../Actions/Actions'
 import ActionButton from '../ActionButton/ActionButton'
 import AppNavigationIconCollapsible from './AppNavigationIconCollapsible'
+import AppNavigationItemTitle from './AppNavigationItemTitle'
 import isMobile from '../../mixins/isMobile'
-import InputConfirmCancel from './InputConfirmCancel'
 import { t } from '../../l10n'
 
 import Pencil from 'vue-material-design-icons/Pencil'
@@ -221,10 +244,10 @@ export default {
 	name: 'AppNavigationItem',
 
 	components: {
+		AppNavigationItemTitle,
 		Actions,
 		ActionButton,
 		AppNavigationIconCollapsible,
-		InputConfirmCancel,
 		Pencil,
 		Undo,
 	},
@@ -356,6 +379,13 @@ export default {
 			default: 'bottom',
 		},
 		/**
+		 * Use title as popover trigger
+		 */
+		useTitleAsActionTrigger: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		 * Entry aria details
 		 */
 		ariaDescription: {
@@ -465,14 +495,6 @@ export default {
 			this.$nextTick(() => {
 				this.$refs.editingInput.focusInput()
 			})
-		},
-		cancelEditing() {
-			this.editingActive = false
-		},
-		handleEditingDone() {
-			this.$emit('update:title', this.editingValue)
-			this.editingValue = ''
-			this.editingActive = false
 		},
 
 		// Undo methods
