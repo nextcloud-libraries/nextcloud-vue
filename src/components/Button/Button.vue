@@ -479,7 +479,7 @@ export default {
 
 	&__text {
 		font-weight: bold;
-		margin-bottom: 3px;
+		margin-bottom: 1px;
 		padding: 2px 0;
 	}
 
