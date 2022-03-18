@@ -117,7 +117,7 @@ It can be used with one or multiple actions.
 	<h5>Wide button</h5>
 	<Button
 		text="Example text"
-		wide="true">
+		:wide="true">
 		<template #icon>
 			<Video
 				title=""
