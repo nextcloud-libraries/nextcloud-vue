@@ -235,6 +235,7 @@ export default {
 
 .vue-crumb {
 	background-image: none;
+	background-color: blue;
 	display: inline-flex;
 	height: $clickable-area;
 	padding: 0;
@@ -278,6 +279,7 @@ export default {
 	}
 
 	> a {
+		background-color: red;
 		overflow: hidden;
 		color: var(--color-text-maxcontrast);
 		padding: 12px;
@@ -287,6 +289,7 @@ export default {
 		display: inline-flex;
 
 		> span {
+			background-color: green;
 			overflow: hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
