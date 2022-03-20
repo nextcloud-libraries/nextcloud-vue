@@ -590,8 +590,6 @@ export default {
 	}
 
 	& #{&}__crumbs {
-		flex-shrink: 1;
-		max-width: 100%;
 		/**
 		 * This value is given by the min-width of the last crumb (100px) plus
 		 * two times the width of a crumb with an icon (first crumb and hidden crumbs actions).
