@@ -126,6 +126,7 @@ Just set the `pinned` prop.
 		<!-- Icon and title -->
 		<a v-if="!undo"
 			class="app-navigation-entry-link"
+			:aria-description="ariaDescription"
 			href="#"
 			@click="onClick">
 
@@ -353,6 +354,13 @@ export default {
 		menuPlacement: {
 			type: String,
 			default: 'bottom',
+		},
+		/**
+		 * Entry aria details
+		 */
+		ariaDescription: {
+			type: String,
+			default: null,
 		},
 	},
 
