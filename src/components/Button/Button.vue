@@ -256,12 +256,9 @@ export default {
 		type: {
 			type: String,
 			validator(value) {
-				// Disallowing secondary until we solve theming and
-				// accessibility issues.
-				// https://github.com/nextcloud/nextcloud-vue/issues/2538
-				return ['primary', 'tertiary', 'error', 'warning', 'success'].indexOf(value) !== -1
+				return ['primary', 'secondary', 'tertiary', 'error', 'warning', 'success'].indexOf(value) !== -1
 			},
-			default: '',
+			default: 'secondary',
 		},
 
 		/**
@@ -516,6 +513,9 @@ export default {
 		&.button-vue--vue-primary {
 			background-color: var(--color-primary-hover);
 		}
+		&.button-vue--vue-secondary {
+			box-shadow: 0 0 0 2px var(--color-main-text);
+		}
 		&.button-vue--vue-tertiary {
 			color: var(--color-main-text);
 		}
@@ -543,6 +543,18 @@ export default {
 		// TODO: add ripple effect
 		&:active {
 			background-color: var(--color-primary-element);
+		}
+	}
+
+	// Secondary
+	&--vue-secondary {
+		color: var(--color-main-text);
+		background-color: var(--color-background-dark);
+		box-shadow: 0 0 0 2px var(--color-border-dark);
+		&:hover {
+			color: var(--color-main-text);
+			background-color: var(--color-background-dark);
+			box-shadow: 0 0 0 2px var(--color-primary-element);
 		}
 	}
 
