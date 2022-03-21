@@ -91,7 +91,9 @@
 		:open.sync="open"
 		:container="container"
 		popover-class="emoji-popover"
-		popover-inner-class="popover-emoji-picker-inner">
+		popover-inner-class="popover-emoji-picker-inner"
+		v-bind="$attrs"
+		v-on="$listeners">
 		<template #trigger>
 			<slot />
 		</template>
