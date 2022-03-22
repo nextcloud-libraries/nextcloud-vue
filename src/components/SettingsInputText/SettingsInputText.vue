@@ -45,7 +45,6 @@
 				:value="submitTranslated"
 				type="submit"
 				class="action-input__submit">
-			<label v-show="!disabled" :for="idSubmit" class="action-input__label" />
 			<p v-if="hint" class="hint">
 				{{ hint }}
 			</p>
@@ -147,60 +146,15 @@ export default {
 
 <style lang="scss" scoped>
 
-	$input-margin: 4px;
-
 	.input-wrapper {
 		display: flex;
-		align-items: flex-start;
+		align-items: center;
 		flex-wrap: wrap;
 		width: 100%;
 		max-width: 400px;
-		&__form {
-			display: flex;
-			align-items: center;
-			flex: 1 1 auto;
 
-			margin: $input-margin 0;
-			padding-right: $icon-margin;
-		}
-
-		&__submit {
-			position: absolute;
-			left: -10000px;
-			top: auto;
-			width: 1px;
-			height: 1px;
-			overflow: hidden;
-		}
-
-		&__label {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-
-			width: #{$clickable-area - $input-margin * 2};
-			height: #{$clickable-area - $input-margin * 2};
-
-			cursor: pointer;
-
-			opacity: $opacity_full;
-			color: var(--color-text-lighter);
-			border: 1px solid var(--color-border-dark);
-			border-left-color: transparent;
-			border-radius: 0 var(--border-radius) var(--border-radius) 0;
-			/* Avoid background under border */
-			background-color: var(--color-main-background);
-			background-clip: padding-box;
-
-			font-size: $icon-size;
-		}
-
-		&__input[type=text] {
-			flex-grow: 1;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			overflow: hidden;
-			cursor: text;
+		& .action-input__label {
+			margin-right: 12px;
 		}
 
 		// if disabled, change cursor
@@ -210,6 +164,7 @@ export default {
 
 		.hint {
 			color: var(--color-text-lighter);
+			margin-left: 8px;
 		}
 	}
 
