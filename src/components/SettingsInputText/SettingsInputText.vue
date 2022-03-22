@@ -20,6 +20,15 @@
   -
   -->
 
+<docs>
+
+```vue
+<SettingsInputText label="Label" hint="Hint" />
+<SettingsInputText label="Label" value="Value" hint="Hint" disabled />
+```
+
+</docs>
+
 <template>
 	<form ref="form"
 		:disabled="disabled"
