@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v5.2.0](https://github.com/nextcloud/nextcloud-vue/tree/v5.2.0) (2022-03-23)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v5.1.1...v5.2.0)
+
+## Enhancements
+
+- Use large corner radius for the Popover component [\#2566](https://github.com/nextcloud/nextcloud-vue/pull/2566) ([quentinguidee](https://github.com/quentinguidee))
+
+
+- Inherit attrs and forward listeners in the emojipicker's popover [\#2563](https://github.com/nextcloud/nextcloud-vue/pull/2563) ([marcoambrosini](https://github.com/marcoambrosini))
+- Add aria-description to AppNavigationItem [\#2548](https://github.com/nextcloud/nextcloud-vue/pull/2548) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+
+## Fixed bugs
+
+- Fix secondary button with old style as temporary solution [\#2562](https://github.com/nextcloud/nextcloud-vue/pull/2562) ([nickvergessen](https://github.com/nickvergessen))
+- Pass in a boolean instead of a string in the 'wide' prop [\#2556](https://github.com/nextcloud/nextcloud-vue/pull/2556) ([marcoambrosini](https://github.com/marcoambrosini))
 ## [v5.1.1](https://github.com/nextcloud/nextcloud-vue/tree/v5.1.1) (2022-03-16)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v5.1.0...v5.1.1)
