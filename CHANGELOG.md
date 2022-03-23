@@ -16,6 +16,8 @@ All notable changes to this project will be documented in this file.
 
 - Fix secondary button with old style as temporary solution [\#2562](https://github.com/nextcloud/nextcloud-vue/pull/2562) ([nickvergessen](https://github.com/nickvergessen))
 - Pass in a boolean instead of a string in the 'wide' prop [\#2556](https://github.com/nextcloud/nextcloud-vue/pull/2556) ([marcoambrosini](https://github.com/marcoambrosini))
+
+
 ## [v5.1.1](https://github.com/nextcloud/nextcloud-vue/tree/v5.1.1) (2022-03-16)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v5.1.0...v5.1.1)
