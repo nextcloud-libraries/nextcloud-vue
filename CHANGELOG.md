@@ -9,8 +9,6 @@ All notable changes to this project will be documented in this file.
 ## Enhancements
 
 - Use large corner radius for the Popover component [\#2566](https://github.com/nextcloud/nextcloud-vue/pull/2566) ([quentinguidee](https://github.com/quentinguidee))
-
-
 - Inherit attrs and forward listeners in the emojipicker's popover [\#2563](https://github.com/nextcloud/nextcloud-vue/pull/2563) ([marcoambrosini](https://github.com/marcoambrosini))
 - Add aria-description to AppNavigationItem [\#2548](https://github.com/nextcloud/nextcloud-vue/pull/2548) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
 
