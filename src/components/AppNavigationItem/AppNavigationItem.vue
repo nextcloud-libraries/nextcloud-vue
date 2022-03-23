@@ -81,7 +81,7 @@ prevent the user from collapsing the items.
 <AppNavigationItem title="Item with children" :allowCollapse="true" :open="true">
 	<template>
 		<AppNavigationItem title="AppNavigationItemChild1" />
-		<AppNavigationItem class="active" title="AppNavigationItemChild2" />
+		<AppNavigationItem title="AppNavigationItemChild2" />
 		<AppNavigationItem title="AppNavigationItemChild3" />
 		<AppNavigationItem title="AppNavigationItemChild4" />
 	</template>
@@ -111,108 +111,110 @@ Just set the `pinned` prop.
 </docs>
 
 <template>
-	<!-- Navigation item, can be either an <li> or a <router-link> depending on the props -->
-	<nav-element v-bind="navElement"
+	<li class="app-navigation-entry-wrapper"
 		:class="{
-			'app-navigation-entry--no-icon': !isIconShown,
 			'app-navigation-entry--opened': opened,
-			'app-navigation-entry--pinned': pinned,
-			'app-navigation-entry--editing' : editingActive,
-			'app-navigation-entry--deleted': undo,
 			'app-navigation-entry--collapsible': collapsible,
-			'active': isActive
-		}"
-		class="app-navigation-entry">
-		<!-- Icon and title -->
-		<a v-if="!undo"
-			class="app-navigation-entry-link"
-			:aria-description="ariaDescription"
-			href="#"
-			@click="onClick">
+		}">
+		<nav-element v-bind="navElement"
+			:class="{
+				'app-navigation-entry--no-icon': !isIconShown,
+				'app-navigation-entry--pinned': pinned,
+				'app-navigation-entry--editing' : editingActive,
+				'app-navigation-entry--deleted': undo,
+				'active': isActive,
+			}"
+			class="app-navigation-entry">
+			<!-- Icon and title -->
+			<a v-if="!undo"
+				class="app-navigation-entry-link"
+				:aria-description="ariaDescription"
+				href="#"
+				@click="onClick">
 
-			<!-- icon if not collapsible -->
-			<!-- never show the icon over the collapsible if mobile -->
-			<div :class="{ 'icon-loading-small': loading, [icon]: icon && isIconShown }"
-				class="app-navigation-entry-icon">
-				<slot v-show="!loading && isIconShown" name="icon" />
-			</div>
-			<span v-if="!editingActive" class="app-navigation-entry__title" :title="title">
-				{{ title }}
-			</span>
-			<div v-if="editingActive" class="editingContainer">
-				<InputConfirmCancel ref="editingInput"
-					v-model="editingValue"
-					:placeholder="editPlaceholder !== '' ? editPlaceholder : title"
-					@cancel="cancelEditing"
-					@confirm="handleEditingDone" />
-			</div>
-		</a>
+				<!-- icon if not collapsible -->
+				<!-- never show the icon over the collapsible if mobile -->
+				<div :class="{ 'icon-loading-small': loading, [icon]: icon && isIconShown }"
+					class="app-navigation-entry-icon">
+					<slot v-show="!loading && isIconShown" name="icon" />
+				</div>
+				<span v-if="!editingActive" class="app-navigation-entry__title" :title="title">
+					{{ title }}
+				</span>
+				<div v-if="editingActive" class="editingContainer">
+					<InputConfirmCancel ref="editingInput"
+						v-model="editingValue"
+						:placeholder="editPlaceholder !== '' ? editPlaceholder : title"
+						@cancel="cancelEditing"
+						@confirm="handleEditingDone" />
+				</div>
+			</a>
 
-		<AppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
-		<!-- undo entry -->
-		<div v-if="undo" class="app-navigation-entry__deleted">
-			<div class="app-navigation-entry__deleted-description">
-				{{ title }}
+			<AppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
+			<!-- undo entry -->
+			<div v-if="undo" class="app-navigation-entry__deleted">
+				<div class="app-navigation-entry__deleted-description">
+					{{ title }}
+				</div>
 			</div>
-		</div>
 
-		<!-- Counter and Actions -->
-		<div v-if="hasUtils && !editingActive" class="app-navigation-entry__utils">
-			<div v-if="$slots.counter"
-				class="app-navigation-entry__counter-wrapper">
-				<slot name="counter" />
-			</div>
-			<Actions menu-align="right"
-				:placement="menuPlacement"
-				:open="menuOpen"
-				:force-menu="forceMenu"
-				:default-icon="menuIcon"
-				@update:open="onMenuToggle">
-				<template #icon>
-					<!-- @slot Slot for the custom menu icon -->
-					<slot name="menu-icon" />
-				</template>
-				<ActionButton v-if="editable && !editingActive"
-					:aria-label="editButtonAriaLabel"
-					@click="handleEdit">
+			<!-- Counter and Actions -->
+			<div v-if="hasUtils && !editingActive" class="app-navigation-entry__utils">
+				<div v-if="$slots.counter"
+					class="app-navigation-entry__counter-wrapper">
+					<slot name="counter" />
+				</div>
+				<Actions menu-align="right"
+					:placement="menuPlacement"
+					:open="menuOpen"
+					:force-menu="forceMenu"
+					:default-icon="menuIcon"
+					@update:open="onMenuToggle">
 					<template #icon>
-						<Pencil :size="20" decorative />
+						<!-- @slot Slot for the custom menu icon -->
+						<slot name="menu-icon" />
 					</template>
-					{{ editLabel }}
-				</ActionButton>
-				<ActionButton v-if="undo"
-					:aria-label="undoButtonAriaLabel"
-					@click="handleUndo">
-					<template #icon>
-						<Undo :size="20" decorative />
-					</template>
-				</ActionButton>
-				<slot name="actions" />
-			</Actions>
-		</div>
+					<ActionButton v-if="editable && !editingActive"
+						:aria-label="editButtonAriaLabel"
+						@click="handleEdit">
+						<template #icon>
+							<Pencil :size="20" decorative />
+						</template>
+						{{ editLabel }}
+					</ActionButton>
+					<ActionButton v-if="undo"
+						:aria-label="undoButtonAriaLabel"
+						@click="handleUndo">
+						<template #icon>
+							<Undo :size="20" decorative />
+						</template>
+					</ActionButton>
+					<slot name="actions" />
+				</Actions>
+			</div>
 
+			<!-- Anything (virtual) that should be mounted in the component, like a related modal -->
+			<slot name="extra" />
+		</nav-element>
 		<!-- Children elements -->
 		<ul v-if="canHaveChildren && hasChildren" class="app-navigation-entry__children">
 			<slot />
 		</ul>
-
-		<!-- Anything (virtual) that should be mounted in the component, like a related modal -->
-		<slot name="extra" />
-	</nav-element>
+	</li>
 </template>
 
 <script>
-import AppNavigationIconCollapsible from './AppNavigationIconCollapsible.vue'
-import InputConfirmCancel from './InputConfirmCancel.vue'
+import { directive as ClickOutside } from 'v-click-outside'
+
 import Actions from '../Actions/index.js'
 import ActionButton from '../ActionButton/index.js'
+import AppNavigationIconCollapsible from './AppNavigationIconCollapsible.vue'
 import isMobile from '../../mixins/isMobile/index.js'
+import InputConfirmCancel from './InputConfirmCancel.vue'
 import { t } from '../../l10n.js'
 
 import Pencil from 'vue-material-design-icons/Pencil'
 import Undo from 'vue-material-design-icons/Undo'
-
-import { directive as ClickOutside } from 'v-click-outside'
 
 export default {
 	name: 'AppNavigationItem',
@@ -400,18 +402,17 @@ export default {
 			}
 		},
 		// This is used to decide which outer element type to use
-		// li or router-link
 		navElement() {
 			if (this.to) {
 				return {
 					is: 'router-link',
-					tag: 'li',
+					tag: 'div',
 					to: this.to,
 					exact: this.exact,
 				}
 			}
 			return {
-				is: 'li',
+				is: 'div',
 			}
 		},
 		isActive() {
@@ -494,6 +495,15 @@ export default {
 	width: 100%;
 	min-height: $clickable-area;
 	padding-right: 8px;
+
+	&-wrapper {
+		position: relative;
+		display: flex;
+		flex-shrink: 0;
+		flex-wrap: wrap;
+		box-sizing: border-box;
+		width: 100%;
+	}
 
 	// When .active class is applied, change color background of link and utils. The
 	// !important prevents the focus state to override the active state.
