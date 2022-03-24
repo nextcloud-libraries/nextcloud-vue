@@ -305,12 +305,16 @@ export default {
 			padding: 0;
 			color: white;
 			border: none;
-			border-radius: 17px;
+			border-radius: 50%;
 			font-size: 16px;
 			&:hover {
 				opacity: .6;
 			}
 			&--active {
+				width: 38px;
+				height: 38px;
+				min-height: 38px;
+				transition: all 100ms ease-in-out;
 				opacity: 1 !important;
 			}
 		}
