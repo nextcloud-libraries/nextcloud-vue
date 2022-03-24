@@ -285,7 +285,7 @@ export default {
 	justify-content: space-between;
 	box-sizing: content-box !important;
 	width: 176px;
-	padding: 4px;
+	padding: 8px;
 	border-radius: 3px;
 	height: 196px;
 
