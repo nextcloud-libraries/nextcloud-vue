@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v5.2.1]
+Releasing this patch to re-trigger an npm package build since last release github was down
+
+
 ## [v5.2.0](https://github.com/nextcloud/nextcloud-vue/tree/v5.2.0) (2022-03-23)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v5.1.1...v5.2.0)
