@@ -81,13 +81,13 @@ export default {
 		},
 		part1() {
 			if (this.needsTruncate) {
-				return this.name.substr(0, this.split)
+				return this.name.slice(0, this.split)
 			}
 			return this.name
 		},
 		part2() {
 			if (this.needsTruncate) {
-				return this.name.substr(this.split)
+				return this.name.slice(this.split)
 			}
 			return ''
 		},

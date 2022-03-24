@@ -13,7 +13,7 @@ const StyleLintPlugin = require('stylelint-webpack-plugin')
 // scope variable
 // fallback for cypress testing
 const appVersion = JSON.stringify(process.env.npm_package_version || 'nextcloud-vue')
-const versionHash = md5(appVersion).substr(0, 7)
+const versionHash = md5(appVersion).slice(0, 7)
 const SCOPE_VERSION = JSON.stringify(versionHash)
 
 console.info('This build version hash is', versionHash, '\n')
@@ -25,7 +25,7 @@ const translations = fs
 	.filter(name => name !== 'messages.pot' && name.endsWith('.pot'))
 	.map(file => {
 		const path = './l10n/' + file
-		const locale = file.substr(0, file.length - '.pot'.length)
+		const locale = file.slice(0, -'.pot'.length)
 
 		const po = fs.readFileSync(path)
 		const json = gettextParser.po.parse(po)
