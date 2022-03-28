@@ -24,13 +24,19 @@ This is a simple progress bar component.
 ## Usage:
 
 ### Small
+```vue
 <ProgressBar :value="60" />
+```
 
 ### Medium
+```vue
 <ProgressBar :value="60" size="medium" />
+```
 
 ### error
+```vue
 <ProgressBar :value="60" :error="true" />
+```
 
 </docs>
 
