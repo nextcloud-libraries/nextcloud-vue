@@ -507,7 +507,7 @@ export default {
 	// We use box-shadow around our buttons instead of an outline, so that the added "border"
 	// coincides with the border of the element. It's not possible to add a border-radius to
 	// the outline
-	&--tabbed {
+	&--tabbed, &:focus-visible {
 		box-shadow: 0 0 0 2px var(--color-main-text);
 		background-color: var(--color-primary-light-hover);
 		&.button-vue--vue-primary {
