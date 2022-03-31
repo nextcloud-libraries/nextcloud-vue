@@ -560,11 +560,12 @@ export default {
 
 	// Tertiary
 	&--vue-tertiary {
-		color: var(--color-text-lighter);
+		color: var(--color-main-text);
 		background-color: transparent;
+		opacity: .7;
 		&:hover {
-			color: var(--color-main-text);
 			background-color: transparent;
+			opacity: 1;
 		}
 	}
 
