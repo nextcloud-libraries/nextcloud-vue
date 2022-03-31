@@ -36,9 +36,17 @@ It can be used with one or multiple actions.
 	<!-- Icon only -->
 	<h5>Icon only buttons</h5>
 	<div class="grid">
+		<p>Tertiary, no background</p>
 		<p>Tertiary</p>
 		<p>Secondary</p>
 		<p>Primary</p>
+		<Button
+			type="tertiary-no-background">
+			<template #icon>
+				<Video
+					:size="20" />
+			</template>
+		</Button>
 		<Button
 			type="tertiary">
 			<template #icon>
@@ -65,9 +73,14 @@ It can be used with one or multiple actions.
 	<!-- Text only -->
 	<h5>Text only buttons</h5>
 	<div class="grid">
+		<p>Tertiary, no background</p>
 		<p>Tertiary</p>
 		<p>Secondary</p>
 		<p>Primary</p>
+		<Button
+			type="tertiary-no-background">
+			Example text
+		</Button>
 		<Button
 			type="tertiary">
 			Example text
@@ -84,9 +97,18 @@ It can be used with one or multiple actions.
 	<!-- Icon and text -->
 	<h5>Icon and text buttons</h5>
 	<div class="grid">
+		<p>Tertiary, no background</p>
 		<p>Tertiary</p>
 		<p>Secondary</p>
 		<p>Primary</p>
+		<Button
+			type="tertiary-no-background">
+			<template #icon>
+				<Video
+					:size="20" />
+			</template>
+			Example text
+		</Button>
 		<Button
 			type="tertiary">
 			<template #icon>
@@ -132,6 +154,7 @@ It can be used with one or multiple actions.
 		<p>Success</p>
 		<p>Warning</p>
 		<p>Error</p>
+		<p> - </p>
 		<Button
 			type="success">
 			<template #icon>
@@ -157,6 +180,7 @@ It can be used with one or multiple actions.
 			</template>
 			Example text
 		</Button>
+		<p> - </p>
 	</div>
 </div>
 
@@ -183,7 +207,7 @@ export default {
 
 .grid {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
 	grid-template-rows: repeat(auto-fill, auto);
 	position: relative;
 	margin: 12px 0;
@@ -256,7 +280,7 @@ export default {
 		type: {
 			type: String,
 			validator(value) {
-				return ['primary', 'secondary', 'tertiary', 'error', 'warning', 'success'].indexOf(value) !== -1
+				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'error', 'warning', 'success'].indexOf(value) !== -1
 			},
 			default: 'secondary',
 		},
@@ -516,8 +540,8 @@ export default {
 		&.button-vue--vue-secondary {
 			box-shadow: 0 0 0 2px var(--color-main-text);
 		}
-		&.button-vue--vue-tertiary {
-			color: var(--color-main-text);
+		&.button-vue--vue-tertiary-no-background {
+			opacity: 1;
 		}
 		&.button-vue--vue-success {
 			background-color: var(--color-success-hover);
@@ -561,6 +585,16 @@ export default {
 	// Tertiary
 	&--vue-tertiary {
 		color: var(--color-main-text);
+		background-color: transparent;
+		&:hover {
+			background-color: var(--color);
+			background-color: var(--color-background-hover);
+		}
+	}
+
+	// Tertiary, no background
+	&--vue-tertiary-no-background {
+		color: var(--color-text-lighter);
 		background-color: transparent;
 		opacity: .7;
 		&:hover {
