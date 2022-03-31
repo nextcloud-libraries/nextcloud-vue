@@ -1,6 +1,19 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## [v5.3.0](https://github.com/nextcloud/nextcloud-vue/tree/v5.3.0) (2022-03-31)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v5.2.1...v5.3.0)
+
+## Fixed bugs
+
+- Fix tertiary buttons hover feedback [\#2583](https://github.com/nextcloud/nextcloud-vue/pull/2583) ([marcoambrosini](https://github.com/marcoambrosini))
+- Fix the ProgressBar display in the documentation [\#2564](https://github.com/nextcloud/nextcloud-vue/pull/2564) ([quentinguidee](https://github.com/quentinguidee))
+
+## Closed pull requests
+
+- Add tertiary buttons with background and make them the default [\#2585](https://github.com/nextcloud/nextcloud-vue/pull/2585) ([marcoambrosini](https://github.com/marcoambrosini))
+- Update variables.css [\#2574](https://github.com/nextcloud/nextcloud-vue/pull/2574) ([skjnldsv](https://github.com/skjnldsv))
+
 
 ## [v5.2.1](https://github.com/nextcloud/nextcloud-vue/tree/v5.2.1) (2022-03-24)
 Releasing this patch to re-trigger an npm package build since last release github was down
