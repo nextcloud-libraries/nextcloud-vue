@@ -594,7 +594,7 @@ export default {
 
 	// Tertiary, no background
 	&--vue-tertiary-no-background {
-		color: var(--color-text-lighter);
+		color: var(--color-main-text);
 		background-color: transparent;
 		opacity: .7;
 		&:hover {
