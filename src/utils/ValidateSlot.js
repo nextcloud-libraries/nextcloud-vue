@@ -3,7 +3,7 @@
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
- * @license GNU AGPL version 3 or any later version
+ * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,9 +24,9 @@ import Vue from 'vue'
 /**
  * Validate children of a vue component
  *
- * @param {Object[]} slots the vue component slot
- * @param {String[]} allowed the allowed components name
- * @param {Object} vm the vue component instance
+ * @param {object[]} slots the vue component slot
+ * @param {string[]} allowed the allowed components name
+ * @param {object} vm the vue component instance
  */
 const ValidateSlot = (slots, allowed, vm) => {
 	if (slots === undefined) {

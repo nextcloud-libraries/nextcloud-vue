@@ -123,11 +123,9 @@
 
 <template>
 	<!-- This wrapper can be either a router link or a `<li>` -->
-	<nav-element
-		class="list-item__wrapper"
+	<nav-element class="list-item__wrapper"
 		v-bind="navElement">
-		<a
-			:id="anchorId"
+		<a :id="anchorId"
 			ref="list-item"
 			:class="{ 'list-item--active' : active }"
 			href="#"
@@ -152,12 +150,10 @@
 						<!-- First line, title and details -->
 						<div class="line-one"
 							:class="{'line-one--bold': bold}">
-							<span
-								class="line-one__title">
+							<span class="line-one__title">
 								{{ title }}
 							</span>
-							<span
-								v-if="showDetails"
+							<span v-if="showDetails"
 								class="line-one__details">
 								{{ details }}
 							</span>
@@ -173,8 +169,7 @@
 
 							<!-- Counter -->
 							<span v-if="showCounter" class="line-two__counter">
-								<CounterBubble
-									v-if="counterNumber != 0"
+								<CounterBubble v-if="counterNumber != 0"
 									:type="counterType">
 									{{ counterNumber }}
 								</CounterBubble>
@@ -183,34 +178,28 @@
 					</div>
 
 					<!-- Actions -->
-					<div
-						v-show="displayActionsOnHoverFocus && !forceDisplayActions"
+					<div v-show="displayActionsOnHoverFocus && !forceDisplayActions"
 						class="list-item-content__actions"
 						@click.prevent.stop="">
-						<Actions
-							ref="actions"
+						<Actions ref="actions"
 							menu-align="right"
 							:aria-label="actionsAriaLabel"
 							@update:open="handleActionsUpdateOpen">
 							<!-- @slot Provide the actions for the right side quick menu -->
-							<slot
-								name="actions" />
+							<slot name="actions" />
 						</Actions>
 					</div>
 				</div>
 				<!-- Actions -->
-				<div
-					v-show="forceDisplayActions"
+				<div v-show="forceDisplayActions"
 					class="list-item-content__actions"
 					@click.prevent.stop="">
-					<Actions
-						ref="actions"
+					<Actions ref="actions"
 						menu-align="right"
 						:aria-label="actionsAriaLabel"
 						@update:open="handleActionsUpdateOpen">
 						<!-- @slot Provide the actions for the right side quick menu -->
-						<slot
-							name="actions" />
+						<slot name="actions" />
 					</Actions>
 				</div>
 			</div>
@@ -253,17 +242,17 @@ export default {
 		},
 
 		/**
-		* Pass in `true` if you want the matching behavior to
-		* be non-inclusive: https://router.vuejs.org/api/#exact
-		*/
+		 * Pass in `true` if you want the matching behavior to
+		 * be non-inclusive: https://router.vuejs.org/api/#exact
+		 */
 		exact: {
 			type: Boolean,
 			default: false,
 		},
 
 		/**
-		* The route for the router link.
-		*/
+		 * The route for the router link.
+		 */
 		to: {
 			type: [String, Object],
 			default: '',
@@ -447,6 +436,7 @@ export default {
 		/**
 		 * This method checks if the root element of the component is focused and
 		 * if that's the case it focuses the actions button if available
+		 *
 		 * @param {Event} e the keydown event
 		 */
 		handleTab(e) {

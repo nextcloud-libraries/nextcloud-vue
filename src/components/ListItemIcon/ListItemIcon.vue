@@ -61,8 +61,7 @@ It might be used for list rendering or within the multiselect for example
 		class="option"
 		:style="cssVars"
 		v-on="$listeners">
-		<Avatar
-			v-bind="$attrs"
+		<Avatar v-bind="$attrs"
 			:disable-menu="true"
 			:disable-tooltip="true"
 			:display-name="displayName || title"
@@ -70,12 +69,10 @@ It might be used for list rendering or within the multiselect for example
 			:size="avatarSize"
 			class="option__avatar" />
 		<div class="option__details">
-			<Highlight
-				class="option__lineone"
+			<Highlight class="option__lineone"
 				:text="title"
 				:search="search" />
-			<Highlight
-				v-if="isValidSubtitle && isSizeBigEnough"
+			<Highlight v-if="isValidSubtitle && isSizeBigEnough"
 				class="option__linetwo"
 				:text="subtitle"
 				:search="search" />

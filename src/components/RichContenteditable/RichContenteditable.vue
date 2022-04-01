@@ -276,7 +276,8 @@ export default {
 	computed: {
 		/**
 		 * Is the current trimmed value empty?
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		isEmptyValue() {
 			return !this.localValue
@@ -285,7 +286,8 @@ export default {
 
 		/**
 		 * Is this Firefox? 🙄
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		isFF() {
 			return !!navigator.userAgent.match(/firefox/i)
@@ -293,7 +295,8 @@ export default {
 
 		/**
 		 * Is the current value over maxlength?
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		isOverMaxlength() {
 			if (this.isEmptyValue || !this.maxlength) {
@@ -304,7 +307,8 @@ export default {
 
 		/**
 		 * Tooltip to show if characters count is over limit
-		 * @returns {string}
+		 *
+		 * @return {string}
 		 */
 		tooltip() {
 			if (!this.isOverMaxlength) {
@@ -319,7 +323,8 @@ export default {
 
 		/**
 		 * Edit is only allowed when contenteditableis true and disabled is false
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		canEdit() {
 			return this.contenteditable && !this.disabled
@@ -368,6 +373,7 @@ export default {
 	methods: {
 		/**
 		 * Re-emit the input event to the parent
+		 *
 		 * @param {Event} event the input event
 		 */
 		onInput(event) {
@@ -377,8 +383,9 @@ export default {
 		/**
 		 * When pasting, sanitize the content, extract text
 		 * and render it again
+		 *
 		 * @param {Event} event the paste event
-		 * @emits {Event} paste the original paste event
+		 * @fires Event paste the original paste event
 		 */
 		onPaste(event) {
 			// Either disabled or edit deactivated
@@ -425,6 +432,7 @@ export default {
 
 		/**
 		 * Update the value text from the provided html
+		 *
 		 * @param {string} htmlOrText the html content (or raw text with @mentions)
 		 */
 		updateValue(htmlOrText) {
@@ -435,6 +443,7 @@ export default {
 
 		/**
 		 * Update content and local value
+		 *
 		 * @param {string} value the message value
 		 */
 		updateContent(value) {
@@ -498,6 +507,7 @@ export default {
 
 		/**
 		 * Enter key pressed. Submits if not multiline
+		 *
 		 * @param {Event} event the keydown event
 		 */
 		onEnter(event) {
@@ -515,6 +525,7 @@ export default {
 
 		/**
 		 * Ctrl + Enter key pressed is used to submit
+		 *
 		 * @param {Event} event the keydown event
 		 */
 		onCtrlEnter(event) {

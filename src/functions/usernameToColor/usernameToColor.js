@@ -3,7 +3,7 @@
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
- * @license GNU AGPL version 3 or any later version
+ * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -25,8 +25,9 @@ import GenColors from '../../utils/GenColors'
 
 /**
  * Originally taken from https://github.com/nextcloud/server/blob/master/core/js/placeholder.js
+ *
  * @param {string} username Display name or user id to generate from
- * @returns {Object} the rgb colors as {r:255, g:255, b:255}
+ * @return {object} the rgb colors as {r:255, g:255, b:255}
  */
 const usernameToColor = function(username) {
 	// Normalize hash
@@ -42,7 +43,12 @@ const usernameToColor = function(username) {
 	const steps = 6
 	const finalPalette = GenColors(steps)
 
-	// Convert a string to an integer evenly
+	/**
+	 * Convert a string to an integer evenly
+	 *
+	 * @param {string} hash The hash to convert
+	 * @param {number} maximum Largest number allowed
+	 */
 	function hashToInt(hash, maximum) {
 		let finalInt = 0
 		const result = []

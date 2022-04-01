@@ -3,7 +3,7 @@
  *
  * @author Georg Ehrke <oc.list@georgehrke.com>
  *
- * @license GNU AGPL version 3 or any later version
+ * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,9 +23,9 @@ import { t } from '../../l10n'
 
 /**
  *
- * @param {String[]} timezoneList List of Olsen timezones
+ * @param {string[]} timezoneList List of Olsen timezones
  * @param {Array} additionalTimezones List of additional timezones
- * @returns {[]}
+ * @return {Array}
  */
 export function getSortedTimezoneList(timezoneList = [], additionalTimezones = []) {
 	const sortedByContinent = {}
@@ -97,8 +97,8 @@ export function getSortedTimezoneList(timezoneList = [], additionalTimezones = [
 /**
  * Get human-readable name for timezoneId
  *
- * @param {String} timezoneId TimezoneId to turn human-readable
- * @returns {String}
+ * @param {string} timezoneId TimezoneId to turn human-readable
+ * @return {string}
  */
 export function getReadableTimezoneName(timezoneId) {
 	return timezoneId

@@ -3,7 +3,7 @@
  *
  * @author Georg Ehrke <georg-nextcloud@ehrke.email>
  *
- * @license GNU AGPL version 3 or any later version
+ * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -37,7 +37,7 @@ export default {
 		 * Middleware Handler for V-Click-Outside
 		 *
 		 * @param {Event} event The click event
-		 * @returns {Boolean}
+		 * @return {boolean}
 		 */
 		clickOutsideMiddleware(event) {
 			const excludedClassList = Array.isArray(this.excludeClickOutsideClasses)
@@ -57,7 +57,7 @@ export default {
 		 *
 		 * @param {Element} node Node to test
 		 * @param {Array} classArray List of classes to check for
-		 * @returns {Boolean}
+		 * @return {boolean}
 		 */
 		hasNodeOrAnyParentClass(node, classArray) {
 			for (const className of classArray) {

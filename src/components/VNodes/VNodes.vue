@@ -28,8 +28,8 @@ export default {
 	 * The render function to display the component
 	 *
 	 * @param {Function} createElement The function to create VNodes
-	 * @param {Object} context The context object of the functional component
-	 * @returns {VNodes} The created VNodes
+	 * @param {object} context The context object of the functional component
+	 * @return {VNodes} The created VNodes
 	 */
 	render(createElement, context) {
 		return context.props.vnodes

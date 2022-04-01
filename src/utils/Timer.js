@@ -3,7 +3,7 @@
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
- * @license GNU AGPL version 3 or any later version
+ * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,6 +20,10 @@
  *
  */
 
+/**
+ * @param {Function} callback The function to call
+ * @param {number} delay The time to wait
+ */
 export default function timer(callback, delay) {
 	let id
 	let started

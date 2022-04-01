@@ -145,6 +145,7 @@ export default {
 
 		/**
 		 * Set the current active tab
+		 *
 		 * @param {string} id the id of the tab
 		 */
 		setActive(id) {

@@ -58,24 +58,24 @@ export default {
 	mixins: [l10n],
 	props: {
 		/**
-			 * label of the select group element
-			 */
+		 * label of the select group element
+		 */
 		label: {
 			type: String,
 			required: true,
 		},
 
 		/**
-			 * hint of the select group input
-			 */
+		 * hint of the select group input
+		 */
 		hint: {
 			type: String,
 			default: '',
 		},
 
 		/**
-			 * id attribute of the select group element
-			 */
+		 * id attribute of the select group element
+		 */
 		id: {
 			type: String,
 			default: () => 'action-' + GenRandomId(),
@@ -83,16 +83,16 @@ export default {
 		},
 
 		/**
-			 * value of the select group input
-			 */
+		 * value of the select group input
+		 */
 		value: {
 			type: Array,
 			default: () => [],
 		},
 
 		/**
-			 * disabled state of the settings select group input
-			 */
+		 * disabled state of the settings select group input
+		 */
 		disabled: {
 			type: Boolean,
 			default: false,

@@ -149,6 +149,7 @@ export default {
 			if (this.multiple) {
 				/**
 				 * Emitted on input events of the multiselect field
+				 *
 				 * @type {number|number[]}
 				 */
 				this.$emit('input', value.map((element) => element.id))
@@ -161,11 +162,11 @@ export default {
 			}
 		},
 		/**
-		 * @param {Object} tag destructuring object
+		 * @param {object} tag destructuring object
 		 * @param {string} tag.displayName the tag display name
-		 * @param {bool} tag.userVisible is the tag visible
-		 * @param {bool} tag.userAssignable is the tag restricted
-		 * @returns {string}
+		 * @param {boolean} tag.userVisible is the tag visible
+		 * @param {boolean} tag.userAssignable is the tag restricted
+		 * @return {string}
 		 */
 		tagLabel({ displayName, userVisible, userAssignable }) {
 			if (userVisible === false) {

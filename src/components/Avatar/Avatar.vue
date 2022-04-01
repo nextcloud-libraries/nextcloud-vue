@@ -36,8 +36,7 @@
 
 </docs>
 <template>
-	<div
-		ref="main"
+	<div ref="main"
 		v-tooltip="tooltip"
 		v-click-outside="closeMenu"
 		:class="{
@@ -59,8 +58,7 @@
 			alt="">
 
 		<!-- Contact menu -->
-		<Popover
-			v-if="hasMenu"
+		<Popover v-if="hasMenu"
 			placement="auto"
 			:container="menuContainer"
 			:open="contactsMenuOpenState"
@@ -111,6 +109,9 @@ import Popover from '../Popover/Popover'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 
+/**
+ * @param {string} userId The id of the user
+ */
 function getUserHasAvatar(userId) {
 	const flag = browserStorage.getItem('user-has-avatar.' + userId)
 	if (typeof flag === 'string') {
@@ -119,6 +120,10 @@ function getUserHasAvatar(userId) {
 	return null
 }
 
+/**
+ * @param {string} userId The id of the user
+ * @param {boolean} flag Has the user an avatar
+ */
 function setUserHasAvatar(userId, flag) {
 	if (userId) {
 		browserStorage.setItem('user-has-avatar.' + userId, flag)
@@ -387,6 +392,9 @@ export default {
 				}
 			})
 
+			/**
+			 * @param {string} html The HTML to escape
+			 */
 			function escape(html) {
 				const text = document.createTextNode(html)
 				const p = document.createElement('p')
@@ -523,7 +531,7 @@ export default {
 		 *
 		 * @param {string} user the user id
 		 * @param {number} size the desired size
-		 * @returns {string}
+		 * @return {string}
 		 */
 		avatarUrlGenerator(user, size) {
 			let url = '/avatar/{user}/{size}'
@@ -550,7 +558,7 @@ export default {
 		 * Check if the provided url is valid and update Avatar if so
 		 *
 		 * @param {string} url the avatar url
-		 * @param {array} srcset the avatar srcset
+		 * @param {Array} srcset the avatar srcset
 		 */
 		updateImageIfValid(url, srcset = null) {
 			// skip loading

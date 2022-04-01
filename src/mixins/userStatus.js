@@ -3,7 +3,7 @@
  *
  * @author Georg Ehrke <georg-nextcloud@ehrke.email>
  *
- * @license GNU AGPL version 3 or any later version
+ * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -38,9 +38,10 @@ export default {
 	methods: {
 		/**
 		 * Fetches the user-status from the server
-		 * @param {String} userId UserId of the user to fetch the status for
 		 *
-		 * @returns {Promise<void>}
+		 * @param {string} userId UserId of the user to fetch the status for
+		 *
+		 * @return {Promise<void>}
 		 */
 		async fetchUserStatus(userId) {
 			if (!userId) {

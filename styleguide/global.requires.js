@@ -1,9 +1,16 @@
+/* eslint-disable-next-line */
 import 'core-js/stable'
+/* eslint-disable-next-line */
 import 'regenerator-runtime/runtime'
 import Vue from 'vue'
 import VTooltip from './../src/directives/Tooltip'
 
-// From server util.js
+/**
+ * From server util.js
+ *
+ * @param {string} t The string to chunkify
+ * @return {Array}
+ */
 function chunkify(t) {
 	// Adapted from http://my.opera.com/GreyWyvern/blog/show.dml/1671288
 	const tz = []
@@ -15,7 +22,7 @@ function chunkify(t) {
 	while (x < t.length) {
 	  c = t.charAt(x) // only include the dot in strings
 
-	  const m = !n && c === '.' || c >= '0' && c <= '9'
+	  const m = !n && (c === '.' || (c >= '0' && c <= '9'))
 
 	  if (m !== n) {
 		// next chunk
@@ -51,9 +58,10 @@ window.OC = {
 	Util: {
 		/**
 		 * Compare two strings to provide a natural sort
+		 *
 		 * @param {string} a first string to compare
 		 * @param {string} b second string to compare
-		 * @returns {number} -1 if b comes before a, 1 if a comes before b
+		 * @return {number} -1 if b comes before a, 1 if a comes before b
 		 * or 0 if the strings are identical
 		 */
 		naturalSortCompare: function naturalSortCompare(a, b) {
@@ -67,7 +75,6 @@ window.OC = {
 					const bNum = Number(bb[x]) // note: == is correct here
 
 					/* eslint-disable-next-line */
-
 					if (aNum == aa[x] && bNum == bb[x]) {
 						return aNum - bNum
 					} else {
@@ -81,7 +88,7 @@ window.OC = {
 			return aa.length - bb.length
 		},
 	},
-	webroot: ''
+	webroot: '',
 }
 window.OCA = {}
 window.appName = 'nextcloud-vue'

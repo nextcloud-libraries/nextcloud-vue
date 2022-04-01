@@ -82,8 +82,7 @@ export default {
 
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }">
-		<button
-			class="action-button"
+		<button class="action-button"
 			:class="{ focusable: isFocusable }"
 			:aria-label="ariaLabel"
 			type="button"
@@ -127,7 +126,7 @@ import ActionTextMixin from '../../mixins/actionText'
 
 /**
  * Button component to be used in Actions
-*/
+ */
 export default {
 	name: 'ActionButton',
 
@@ -145,7 +144,8 @@ export default {
 	computed: {
 		/**
 		 * determines if the action is focusable
-		 * @returns {boolean} is the action focusable ?
+		 *
+		 * @return {boolean} is the action focusable ?
 		 */
 		isFocusable() {
 			return !this.disabled

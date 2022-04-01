@@ -102,7 +102,8 @@ export default {
 	computed: {
 		/**
 		 * determines if the action is focusable
-		 * @returns {boolean} is the action focusable ?
+		 *
+		 * @return {boolean} is the action focusable ?
 		 */
 		isFocusable() {
 			return !this.disabled
@@ -117,12 +118,14 @@ export default {
 		onChange(event) {
 			/**
 			 * Emitted when the checkbox state is changed
+			 *
 			 * @type {boolean}
 			 */
 			this.$emit('update:checked', this.$refs.checkbox.checked)
 
 			/**
 			 * Emitted when the checkbox state is changed
+			 *
 			 * @type {Event}
 			 */
 			this.$emit('change', event)
@@ -130,12 +133,14 @@ export default {
 			if (this.$refs.checkbox.checked) {
 				/**
 				 * Emitted when the checkbox is checked
+				 *
 				 * @type {Event}
 				 */
 				this.$emit('check')
 			} else {
 				/**
 				 * Emitted when the checkbox is unchecked
+				 *
 				 * @type {Event}
 				 */
 				this.$emit('uncheck')

@@ -164,8 +164,7 @@ export default {
 		:class="{'action-item--open': opened}"
 		class="action-item">
 		<!-- If more than one action, create a popovermenu -->
-		<Popover
-			:delay="0"
+		<Popover :delay="0"
 			:handle-resize="true"
 			:open.sync="opened"
 			:placement="placement"
@@ -366,7 +365,8 @@ export default {
 	computed: {
 		/**
 		 * Is there more than one action?
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		hasMultipleActions() {
 			return this.actions.length > 1
@@ -374,7 +374,8 @@ export default {
 		/**
 		 * Is there any first action ?
 		 * And is it allowed as a standalone element ?
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		isValidSingleAction() {
 			return this.actions.length === 1
@@ -382,7 +383,8 @@ export default {
 		},
 		/**
 		 * Return the title of the single action if forced
-		 * @returns {string}
+		 *
+		 * @return {string}
 		 */
 		singleActionTitle() {
 			return this.forceTitle ? this.menuTitle : ''
@@ -393,14 +395,16 @@ export default {
 		},
 		/**
 		 * First action vnode
-		 * @returns {Object} return the first action vue vnode
+		 *
+		 * @return {object} return the first action vue vnode
 		 */
 		firstActionVNode() {
 			return this.actions[0]
 		},
 		/**
 		 * Binding of the first action to the template
-		 * @returns {Object} vue template v-bind shortcut
+		 *
+		 * @return {object} vue template v-bind shortcut
 		 */
 		firstActionBinding() {
 			if (this.firstActionVNode && this.firstActionVNode.componentOptions) {
@@ -508,6 +512,7 @@ export default {
 
 			/**
 			 * Event emitted when the popover menu open state is changed
+			 *
 			 * @type {boolean}
 			 */
 			this.$emit('update:open', true)
@@ -526,6 +531,7 @@ export default {
 
 			/**
 			 * Event emitted when the popover menu open state is changed
+			 *
 			 * @type {boolean}
 			 */
 			this.$emit('update:open', false)

@@ -202,7 +202,8 @@ export default {
 		 * use the Popover component
 		 * We need a component instead of a simple div here,
 		 * because otherwise the trigger template will not be shown.
-		 * @returns {string} 'Popover' or 'UserBubbleDiv'
+		 *
+		 * @return {string} 'Popover' or 'UserBubbleDiv'
 		 */
 		isPopoverComponent() {
 			return !this.popoverEmpty
@@ -212,7 +213,8 @@ export default {
 
 		/**
 		 * Is the provided avatar url valid or not
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		isAvatarUrl() {
 			if (!this.avatarImage) {
@@ -228,7 +230,8 @@ export default {
 		},
 		/**
 		 * Do we have a custom avatar or not
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		isCustomAvatar() {
 			return !!this.avatarImage
@@ -267,6 +270,7 @@ export default {
 		},
 		/**
 		 * Catch and forward click event to parent
+		 *
 		 * @param {Event} event the click event
 		 */
 		onClick(event) {

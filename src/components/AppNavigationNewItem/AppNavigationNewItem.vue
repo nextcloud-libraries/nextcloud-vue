@@ -34,8 +34,7 @@
 ```
 </docs>
 <template>
-	<li
-		:class="{
+	<li :class="{
 			'app-navigation-entry--newItemActive': newItemActive,
 		}"
 		class="app-navigation-entry">
@@ -88,32 +87,32 @@ export default {
 			required: true,
 		},
 		/**
-		* Refers to the icon on the left, this prop accepts a class
-		* like 'icon-category-enabled'.
-		*/
+		 * Refers to the icon on the left, this prop accepts a class
+		 * like 'icon-category-enabled'.
+		 */
 		icon: {
 			type: String,
 			default: '',
 		},
 
 		/**
-		* Displays a loading animated icon on the left of the element
-		* instead of the icon.
-		*/
+		 * Displays a loading animated icon on the left of the element
+		 * instead of the icon.
+		 */
 		loading: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		* Only for 'editable' items, sets label for the edit action button.
-		*/
+		 * Only for 'editable' items, sets label for the edit action button.
+		 */
 		editLabel: {
 			type: String,
 			default: '',
 		},
 		/**
-		* Sets the placeholder text for the editing form.
-		*/
+		 * Sets the placeholder text for the editing form.
+		 */
 		editPlaceholder: {
 			type: String,
 			default: '',

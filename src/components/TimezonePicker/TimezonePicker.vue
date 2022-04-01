@@ -41,8 +41,7 @@ export default {
 </docs>
 
 <template>
-	<Multiselect
-		:value="selectedTimezone"
+	<Multiselect :value="selectedTimezone"
 		:options="options"
 		:multiple="false"
 		:group-select="false"
@@ -71,15 +70,15 @@ export default {
 	},
 	props: {
 		/**
-		* An array of additional timezones to include with the standard database. Useful if there is a custom timezone, e.g. read from user data
-		*/
+		 * An array of additional timezones to include with the standard database. Useful if there is a custom timezone, e.g. read from user data
+		 */
 		additionalTimezones: {
 			type: Array,
 			default: () => [],
 		},
 		/**
-		* The selected timezone. Use v-model for two-way binding. The default timezone is floating, which means a time independent of timezone. See https://icalendar.org/CalDAV-Access-RFC-4791/7-3-date-and-floating-time.html for details.
-		*/
+		 * The selected timezone. Use v-model for two-way binding. The default timezone is floating, which means a time independent of timezone. See https://icalendar.org/CalDAV-Access-RFC-4791/7-3-date-and-floating-time.html for details.
+		 */
 		value: {
 			type: String,
 			default: 'floating',

@@ -73,7 +73,7 @@ export default {
 		 * If an array with ranges is provided, we use it. Otherwise
 		 * we calculate it based on the provided substring to highlight.
 		 *
-		 * @returns {Array} The array of ranges to highlight
+		 * @return {Array} The array of ranges to highlight
 		 */
 		ranges() {
 			let ranges = []
@@ -150,7 +150,7 @@ export default {
 		/**
 		 * Calculate the different chunks to show based on the ranges to highlight.
 		 *
-		 * @returns {Array} The chunks
+		 * @return {Array} The chunks
 		 */
 		chunks() {
 			// If the ranges array is empty, show only one chunk with all text
@@ -211,7 +211,7 @@ export default {
 	 * The render function to display the component
 	 *
 	 * @param {Function} createElement The function to create VNodes
-	 * @returns {VNodes} The created VNodes
+	 * @return {VNodes} The created VNodes
 	 */
 	render(createElement) {
 		if (!this.ranges.length) {

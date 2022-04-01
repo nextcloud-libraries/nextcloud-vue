@@ -3,7 +3,7 @@
  *
  * @author Raimund Schlüßler <raimund.schluessler@mailbox.org>
  *
- * @license GNU AGPL version 3 or any later version
+ * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,9 +23,9 @@
 /**
  * Find the ranges of a substr in a given string
  *
- * @param {String} text The text to search in
- * @param {String} search The text to search for
- * @returns {Array} The array of ranges to highlight
+ * @param {string} text The text to search in
+ * @param {string} search The text to search for
+ * @return {Array} The array of ranges to highlight
  */
 const FindRanges = (text, search) => {
 	const ranges = []
