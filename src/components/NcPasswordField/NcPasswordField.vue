@@ -102,7 +102,6 @@ export default {
 		:error="computedError"
 		:success="computedSuccess"
 		:minlength="rules.minlength"
-		v-on="$listeners"
 		@trailing-button-click="togglePasswordVisibility"
 		@input="handleInput">
 		<!-- Default slot for the leading icon -->

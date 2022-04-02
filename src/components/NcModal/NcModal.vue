@@ -172,7 +172,7 @@ export default {
 </docs>
 
 <template>
-	<transition name="fade">
+	<Transition name="fade">
 		<div ref="mask"
 			class="modal-mask"
 			:class="{ 'modal-mask--dark': dark }"
@@ -241,10 +241,10 @@ export default {
 						</NcButton>
 					</div>
 				</div>
-			</transition>
+			</Transition>
 
 			<!-- Content wrapper -->
-			<transition :name="modalTransitionName">
+			<Transition :name="modalTransitionName">
 				<div v-show="showModal"
 					:class="[
 						`modal-wrapper--${size}`,
@@ -300,9 +300,9 @@ export default {
 						</NcButton>
 					</transition>
 				</div>
-			</transition>
+			</Transition>
 		</div>
-	</transition>
+	</Transition>
 </template>
 
 <script>
@@ -535,7 +535,7 @@ export default {
 	beforeMount() {
 		window.addEventListener('keydown', this.handleKeydown)
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		window.removeEventListener('keydown', this.handleKeydown)
 		this.mc.off('swipeleft swiperight')
 		this.mc.destroy()
@@ -560,7 +560,7 @@ export default {
 			}
 		}
 	},
-	destroyed() {
+	unmounted() {
 		this.clearFocusTrap()
 		this.$el.remove()
 	},
@@ -953,12 +953,12 @@ export default {
 	transition: opacity 250ms;
 }
 
-.fade-enter,
+.fade-enter-from,
 .fade-leave-to {
 	opacity: 0;
 }
 
-.fade-visibility-enter,
+.fade-visibility-enter-from,
 .fade-visibility-leave-to {
 	visibility: hidden;
 	opacity: 0;
@@ -971,9 +971,9 @@ export default {
 	transition: opacity 250ms;
 }
 
-.modal-in-enter,
+.modal-in-enter-from,
 .modal-in-leave-to,
-.modal-out-enter,
+.modal-out-enter-from,
 .modal-out-leave-to {
 	opacity: 0;
 }

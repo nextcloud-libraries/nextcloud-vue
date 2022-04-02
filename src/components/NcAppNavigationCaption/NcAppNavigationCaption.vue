@@ -120,7 +120,7 @@ export default {
 	computed: {
 		// Check if the actions slot is populated
 		hasActions() {
-			return !!this.$slots.actions
+			return !!this.$slots?.actions
 		},
 	},
 }

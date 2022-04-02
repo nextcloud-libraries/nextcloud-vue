@@ -40,9 +40,11 @@ describe('NcActions.vue', () => {
 							'<NcActionButton>Test2</NcActionButton>',
 						],
 					},
-					stubs: {
-						// used to register custom components
-						NcActionButton,
+					global: {
+						stubs: {
+							// used to register custom components
+							NcActionButton,
+						},
 					},
 				})
 			})
@@ -58,9 +60,11 @@ describe('NcActions.vue', () => {
 							'<NcActionButton>Test1</NcActionButton>',
 						],
 					},
-					stubs: {
-						// used to register custom components
-						NcActionButton,
+					global: {
+						stubs: {
+							// used to register custom components
+							NcActionButton,
+						},
 					},
 				})
 			})
@@ -83,9 +87,11 @@ describe('NcActions.vue', () => {
 							'<NcActionButton>Test3</NcActionButton>',
 						],
 					},
-					stubs: {
-						// used to register custom components
-						NcActionButton,
+					global: {
+						stubs: {
+							// used to register custom components
+							NcActionButton,
+						},
 					},
 					propsData: {
 						inline: 1,

@@ -144,8 +144,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 			:value="formattedValue"
 			:min="formattedMin"
 			:max="formattedMax"
-			v-bind="$attrs"
-			v-on="listeners">
+			v-bind="attrs">
 	</div>
 </template>
 
@@ -240,9 +239,9 @@ export default {
 			}
 			return false
 		},
-		listeners() {
+		attrs() {
 			return {
-				...this.$listeners,
+				...this.$attrs,
 				/**
 				 * Handle the input event
 				 *

@@ -31,7 +31,7 @@ describe('NcMultiselect.vue', () => {
 	it('Test that the input function is only called once on select', () => {
 		const onInput = vi.fn()
 		const wrapper = mount(NcMultiselect, {
-			propsData: {
+			props: {
 				label: 'name',
 				multiple: false,
 				options: [

@@ -19,7 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import Vue from 'vue'
+import { warn } from 'vue'
 
 /**
  * Validate children of a vue component
@@ -38,7 +38,7 @@ const ValidateChildren = (vm, allowed) => {
 		// that you import  with import myActionWrapper from 'myActionWrapper'
 		if (!(isChildren || isWrappedChildren)) {
 			// warn
-			Vue.util.warn(`${child.$options.name} is not allowed inside the ${vm.$options.name} component`, vm)
+			warn(`${child.$options.name} is not allowed inside the ${vm.$options.name} component`, vm)
 
 			// cleanup
 			vm.$children.splice(index, 1)

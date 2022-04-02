@@ -42,6 +42,8 @@ Highlight a string with html &lt;strong&gt;. Accepts a substring to highlight or
 <script>
 import FindRanges from '../../utils/FindRanges.js'
 
+import { h } from 'vue'
+
 export default {
 	name: 'NcHighlight',
 	props: {
@@ -213,7 +215,7 @@ export default {
 	 * @param {Function} h The function to create VNodes
 	 * @return {object} The created VNode
 	 */
-	render(h) {
+	render() {
 		if (!this.ranges.length) {
 			return h('span', {}, this.text)
 		}

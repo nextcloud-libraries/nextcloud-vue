@@ -521,8 +521,9 @@ import Tooltip from '../../directives/Tooltip/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { t } from '../../l10n.js'
 
-import Vue from 'vue'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
+
+import { h, Fragment, resolveComponent, withDirectives, warn } from 'vue'
 
 const focusableSelector = '.focusable'
 
@@ -711,6 +712,9 @@ export default {
 			const componentName = action?.componentOptions?.Ctor?.extendOptions?.name ?? action?.componentOptions?.tag
 			return ['NcActionButton', 'NcActionLink', 'NcActionRouter'].includes(componentName)
 		},
+		isAction(vnode) {
+			return vnode?.type?.name?.startsWith?.('NcAction')
+		},
 
 		// MENU STATE MANAGEMENT
 		openMenu(e) {
@@ -895,22 +899,30 @@ export default {
 	 * @param {Function} h The function to create VNodes
 	 * @return {object|undefined} The created VNode
 	 */
-	render(h) {
-		/**
-		 * Filter the Actions, so that we only get allowed components.
-		 * This also ensure that we don't get 'text' elements, which would
-		 * become problematic later on.
-		 */
-		const actions = (this.$slots.default || []).filter(
-			action => action?.componentOptions?.tag
-		)
+	render() {
+		const actions = []
+		// We have to iterate over all slot elements
+		this.$slots.default?.().forEach(vnode => {
+			if (this.isAction(vnode)) {
+				actions.push(vnode)
+				return
+			}
+			// If we encounter a Fragment, we have to check its children too
+			if (vnode?.type === Fragment) {
+				vnode?.children?.forEach?.(child => {
+					if (this.isAction(child)) {
+						actions.push(child)
+					}
+				})
+			}
+		})
 
 		/**
 		 * Filter and list actions that are allowed to be displayed inline
 		 */
 		let inlineActions = actions.filter(this.isValidSingleAction)
 		if (this.forceMenu && inlineActions.length > 0 && this.inline > 0) {
-			Vue.util.warn('Specifying forceMenu will ignore any inline actions rendering.')
+			warn('Specifying forceMenu will ignore any inline actions rendering.')
 			inlineActions = []
 		}
 
@@ -926,55 +938,41 @@ export default {
 		 * @return {Function} the vue render function
 		 */
 		const renderInlineAction = (action) => {
-			const icon = action?.data?.scopedSlots?.icon()?.[0] || h('span', { class: ['icon', action?.componentOptions?.propsData?.icon] })
+			const icon = action?.children?.icon?.()?.[0] || h('span', { class: ['icon', action?.componentOptions?.propsData?.icon] })
 			const title = this.forceTitle ? this.menuTitle : ''
-			const clickListener = action?.componentOptions?.listeners?.click
+			const clickListener = action?.props?.onClick
 
-			return h('NcButton',
+			return withDirectives(h(resolveComponent('NcButton'),
 				{
 					class: [
 						'action-item action-item--single',
 						action?.data?.staticClass,
 						action?.data?.class,
 					],
-					attrs: {
-						'aria-label': action?.componentOptions?.propsData?.ariaLabel || action?.componentOptions?.children?.[0]?.text,
-						title: action?.componentOptions?.propsData?.title,
-					},
+					'aria-label': action?.componentOptions?.propsData?.ariaLabel || action?.componentOptions?.children?.[0]?.text,
+					title: action?.componentOptions?.propsData?.title,
 					ref: action?.data?.ref,
-					props: {
-						// If it has a title, we use a secondary button
-						type: this.type || (title ? 'secondary' : 'tertiary'),
-						disabled: this.disabled || action?.componentOptions?.propsData?.disabled,
-						...action?.componentOptions?.propsData,
-					},
-					directives: [{
-						name: 'tooltip',
-						value: action?.componentOptions?.children?.[0]?.text,
-						modifiers: {
-							auto: true,
+					// If it has a title, we use a secondary button
+					type: this.type || (title ? 'secondary' : 'tertiary'),
+					disabled: this.disabled || action?.componentOptions?.propsData?.disabled,
+					...action?.componentOptions?.propsData,
+					onFocus: this.onFocus,
+					onBlur: this.onBlur,
+					// If we have a click listener,
+					// we bind it to execute on click and forward the click event
+					...(!!clickListener && {
+						onClick: (event) => {
+							if (clickListener) {
+								clickListener(event)
+							}
 						},
-
-					}],
-					on: {
-						focus: this.onFocus,
-						blur: this.onBlur,
-						// If we have a click listener,
-						// we bind it to execute on click and forward the click event
-						...(!!clickListener && {
-							click: (event) => {
-								if (clickListener) {
-									clickListener(event)
-								}
-							},
-						}),
-					},
+					}),
 				},
-				[
-					h('template', { slot: 'icon' }, [icon]),
-					title,
-				],
-			)
+				{
+					default: () => title,
+					icon: () => icon,
+				},
+			), [[Tooltip, action.children.default?.()?.[0]?.children?.trim(), '', { auto: true }]])
 		}
 
 		/**
@@ -984,93 +982,59 @@ export default {
 		 * @return {Function} the vue render function
 		 */
 		const renderActionsPopover = (actions) => {
-			const triggerIcon = this.$slots.icon?.[0] || (
+			const triggerIcon = this.$slots.icon?.()?.[0] || (
 				this.defaultIcon
 					? h('span', { class: ['icon', this.defaultIcon] })
-					: h('DotsHorizontal', {
-						props: {
-							size: 20,
-						},
-					})
+					: h(resolveComponent('DotsHorizontal'), { size: 20 })
 			)
-			return h('NcPopover',
+			return h(resolveComponent('NcPopover'),
 				{
 					ref: 'popover',
-					props: {
-						delay: 0,
-						handleResize: true,
-						shown: this.opened,
-						placement: this.placement,
-						boundary: this.boundariesElement,
-						container: this.container,
-						popoverBaseClass: 'action-item__popper',
-						setReturnFocus: this.$refs.menuButton?.$el,
-					},
-					// For some reason the popover component
-					// does not react to props given under the 'props' key,
-					// so we use both 'attrs' and 'props'
-					attrs: {
-						delay: 0,
-						handleResize: true,
-						shown: this.opened,
-						placement: this.placement,
-						boundary: this.boundariesElement,
-						container: this.container,
-						popoverBaseClass: 'action-item__popper',
-					},
-					on: {
-						show: this.openMenu,
-						'after-show': this.onOpen,
-						hide: this.closeMenu,
-					},
+					delay: 0,
+					handleResize: true,
+					shown: this.opened,
+					placement: this.placement,
+					boundary: this.boundariesElement,
+					container: this.container,
+					popoverBaseClass: 'action-item__popper',
+					onShow: this.openMenu,
+					onAfterShow: this.onOpen,
+					onHide: this.closeMenu,
 				},
-				[
-					h('NcButton', {
+				{
+					trigger: () => h(resolveComponent('NcButton'), {
 						class: 'action-item__menutoggle',
-						props: {
-							type: this.triggerBtnType,
-							disabled: this.disabled,
-						},
-						slot: 'trigger',
+						type: this.triggerBtnType,
+						disabled: this.disabled,
 						ref: 'menuButton',
-						attrs: {
-							'aria-haspopup': 'menu',
-							'aria-label': this.ariaLabel,
-							'aria-controls': this.opened ? this.randomId : null,
-							'aria-expanded': this.opened.toString(),
-						},
-						on: {
-							focus: this.onFocus,
-							blur: this.onBlur,
-						},
-					}, [
-						h('template', { slot: 'icon' }, [triggerIcon]),
-						this.menuTitle,
-					]),
-					h('div', {
+						'aria-haspopup': 'menu',
+						'aria-label': this.ariaLabel,
+						'aria-controls': this.opened ? this.randomId : null,
+						'aria-expanded': this.opened.toString(),
+						onFocus: this.onFocus,
+						onBlur: this.onBlur,
+					}, {
+						icon: () => triggerIcon,
+						default: () => this.menuTitle,
+					}),
+					default: () => h('div', {
 						class: {
 							open: this.opened,
 						},
-						attrs: {
-							tabindex: '-1',
-						},
-						on: {
-							keydown: this.onKeydown,
-							mousemove: this.onMouseFocusAction,
-						},
+						tabindex: '-1',
+						onKeydown: this.onKeydown,
+						onMousemove: this.onMouseFocusAction,
 						ref: 'menu',
 					}, [
 						h('ul', {
-							attrs: {
-								id: this.randomId,
-								tabindex: '-1',
-								role: 'menu',
-							},
+							id: this.randomId,
+							tabindex: '-1',
+							role: 'menu',
 						}, [
 							actions,
 						]),
 					]),
-				],
+				},
 			)
 		}
 

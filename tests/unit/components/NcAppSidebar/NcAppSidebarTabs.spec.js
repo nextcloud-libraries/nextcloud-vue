@@ -24,7 +24,7 @@
 import { mount } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import Vue from 'vue'
+// import { createApp } from 'vue'
 import NcAppSidebarTabs from '../../../../src/components/NcAppSidebar/NcAppSidebarTabs.vue'
 import NcAppSidebarTab from '../../../../src/components/NcAppSidebarTab/NcAppSidebarTab.vue'
 import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'
@@ -37,12 +37,11 @@ describe('NcAppSidebarTabs.vue', () => {
 	beforeEach((ctx) => {
 		ctx.onWarning = vi.fn()
 		ctx.consoleDebug = vi.fn()
-		Vue.config.warnHandler = ctx.onWarning
 		global.console = { ...console, debug: ctx.consoleDebug }
 	})
 
 	afterEach(() => {
-		Vue.config.warnHandler = () => null
+		// app.config.warnHandler = () => null
 		global.console = initialConsole
 	})
 
@@ -50,7 +49,7 @@ describe('NcAppSidebarTabs.vue', () => {
 		describe('with only one div', () => {
 			beforeEach((ctx) => {
 				ctx.wrapper = mount(NcAppSidebarTabs, {
-					propsData: {
+					props: {
 						title: 'Sidebar title.',
 					},
 					slots: {
@@ -74,16 +73,18 @@ describe('NcAppSidebarTabs.vue', () => {
 		describe('with div and secondary action', () => {
 			beforeEach((ctx) => {
 				ctx.wrapper = mount(NcAppSidebarTabs, {
-					propsData: {
+					props: {
 						title: 'Sidebar title.',
 					},
 					slots: {
 						default: '<div />',
 						'secondary-actions': ['<NcActionButton icon="icon-delete">Test</NcActionButton>'],
 					},
-					stubs: {
-						// used to register custom components
-						NcActionButton,
+					global: {
+						stubs: {
+							// used to register custom components
+							NcActionButton,
+						},
 					},
 				})
 			})
@@ -104,9 +105,11 @@ describe('NcAppSidebarTabs.vue', () => {
 							'<nc-app-sidebar-tab id="last" icon="icon-details" name="Tab2">Tab2</nc-app-sidebar-tab>',
 						],
 					},
-					stubs: {
-					// used to register custom components
-						NcAppSidebarTab,
+					global: {
+						stubs: {
+						// used to register custom components
+							NcAppSidebarTab,
+						},
 					},
 				})
 			})
@@ -128,17 +131,17 @@ describe('NcAppSidebarTabs.vue', () => {
 			})
 			it('emit "update:active" event with the first tab id when keydown pageup is pressed', ({ wrapper }) => {
 				const lastLink = wrapper.find('nav>ul>li:last-of-type>a')
-				lastLink.trigger('keydown', { keyCode: 33 })
+				lastLink.trigger('keydown.page-up')
 				expect(wrapper.emitted('update:active')[0]).toEqual(['first'])
 			})
 			it('emit "update:active" event with the last tab id when keydown pagedown is pressed', ({ wrapper }) => {
 				const lastLink = wrapper.find('nav>ul>li:last-of-type>a')
-				lastLink.trigger('keydown', { keyCode: 34 })
+				lastLink.trigger('keydown.page-down')
 				expect(wrapper.emitted('update:active')[0]).toEqual(['last'])
 			})
-			describe('when we select the first element', () => {
+			describe('when we select the first element', (ctx) => {
 				beforeEach((ctx) => {
-					ctx.wrapper.setData({ activeTab: 'first' })
+					ctx.wrapper.setProps({ active: 'first' })
 				})
 				it('does not emit "update:active" event when keydown left is pressed', ({ wrapper }) => {
 					expect(wrapper.emitted('update:active')).toBeFalsy()
@@ -152,11 +155,12 @@ describe('NcAppSidebarTabs.vue', () => {
 					expect(wrapper.emitted('update:active')[0]).toEqual(['second'])
 				})
 			})
-			describe('when we select the last element', () => {
-				beforeEach((ctx) => {
-					ctx.wrapper.setData({ activeTab: 'last' })
+			describe('when we select the last element', (ctx) => {
+				beforeEach(async (ctx) => {
+					await wrapper.setProps({ active: 'last' })
 				})
-				it('emit "update:active" event with the previous tab id when keydown left is pressed', ({ wrapper }) => {
+				it('emit "update:active" event with the previous tab id when keydown left is pressed', async ({ wrapper }) => {
+					expect(wrapper.vm.activeTab).toBe('last')
 					const lastLink = wrapper.find('nav>ul>li:last-of-type>a')
 					lastLink.trigger('keydown.left')
 					expect(wrapper.emitted('update:active')[0]).toEqual(['second'])
@@ -178,9 +182,11 @@ describe('NcAppSidebarTabs.vue', () => {
 							'<nc-app-sidebar-tab id="1" icon="icon-details" name="Tab1">Tab1</nc-app-sidebar-tab>',
 						],
 					},
-					stubs: {
-						// used to register custom components
-						NcAppSidebarTab,
+					global: {
+						stubs: {
+							// used to register custom components
+							NcAppSidebarTab,
+						},
 					},
 				})
 			})
@@ -203,12 +209,14 @@ describe('NcAppSidebarTabs.vue', () => {
 						'Test',
 					],
 				},
-				stubs: {
-					NcAppSidebarTab,
+				global: {
+					stubs: {
+						NcAppSidebarTab,
+					},
 				},
 			})
-			expect(onWarning).toHaveBeenCalledTimes(1)
 			expect(consoleDebug).toHaveBeenCalledTimes(2)
+			expect(onWarning).toHaveBeenCalledTimes(1)
 		})
 	})
 })

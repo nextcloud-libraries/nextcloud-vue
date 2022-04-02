@@ -3,6 +3,10 @@
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
+ * @copyright Copyright (c) 2022 Raimund Schlüßler <raimund.schluessler@mailbox.org>
+ *
+ * @author Raimund Schlüßler <raimund.schluessler@mailbox.org>
+ *
  * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,28 +23,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
 export default {
-	data() {
-		return {
-			isFullscreen: this._isFullscreen(),
-		}
-	},
-	beforeMount() {
-		window.addEventListener('resize', this._onResize)
-	},
-	beforeDestroy() {
-		window.removeEventListener('resize', this._onResize)
-	},
-	methods: {
-		_onResize() {
-			// Update fullscreen mode
-			this.isFullscreen = this._isFullscreen()
-		},
-		_isFullscreen() {
-			// if the window height is equal to the screen height,
-			// we're in full screen mode
-			return window.outerHeight === screen.height
-		},
-	},
+	inject: ['isFullscreen'],
 }
