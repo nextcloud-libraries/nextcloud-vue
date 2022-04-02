@@ -218,7 +218,7 @@ Just set the `pinned` prop.
 </template>
 
 <script>
-import { directive as ClickOutside } from 'v-click-outside'
+import { directive as ClickOutside } from 'click-outside-vue3'
 
 import NcActions from '../NcActions/index.js'
 import NcActionButton from '../NcActionButton/index.js'

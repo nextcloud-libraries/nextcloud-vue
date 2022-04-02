@@ -1,16 +1,21 @@
 import * as NcComponents from './components/index.js'
 
+import { createApp } from 'vue'
+
 /**
- * @param {object} Vue The vue instance
+ *
  */
-function install(Vue) {
+function install() {
+	console.debug('component')
+	const app = createApp({})
+
 	Object.values(NcComponents).forEach((component) => {
-		Vue.component(component.name, component)
+		app.component(component.name, component)
 	})
 }
 
-if (typeof window !== 'undefined' && window.Vue) {
-	install(window.Vue)
+if (typeof window !== 'undefined') {
+	install()
 }
 
 export default install

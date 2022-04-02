@@ -25,7 +25,7 @@ import Linkify from '../../utils/Linkify.js'
 
 import escapeHtml from 'escape-html'
 import stripTags from 'striptags'
-import Vue from 'vue'
+// import Vue from 'vue'
 
 // Beginning or whitespace. Non-capturing group
 const MENTION_START = '(?:^|\\s)'
@@ -126,24 +126,24 @@ export default {
 		 * @return {string} the rendered html
 		 */
 		renderComponentHtml(propsData, component) {
-			const View = Vue.extend(component)
-			const Item = new View({
-				propsData,
-			})
+			// const View = Vue.extend(component)
+			// const Item = new View({
+			// propsData,
+			// })
 
-			// Prepare mountpoint
+			// // Prepare mountpoint
 			const wrapper = document.createElement('div')
-			const mount = document.createElement('div')
-			wrapper.style.display = 'none'
-			wrapper.appendChild(mount)
-			document.body.appendChild(wrapper)
+			// const mount = document.createElement('div')
+			// wrapper.style.display = 'none'
+			// wrapper.appendChild(mount)
+			// document.body.appendChild(wrapper)
 
-			// Mount and get raw html
-			Item.$mount(mount)
+			// // Mount and get raw html
+			// Item.$mount(mount)
 			const renderedHtml = wrapper.innerHTML
 
-			// Destroy
-			Item.$destroy()
+			// // Destroy
+			// Item.$destroy()
 			wrapper.remove()
 
 			return renderedHtml

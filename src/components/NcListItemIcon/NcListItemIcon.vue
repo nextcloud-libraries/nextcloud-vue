@@ -60,7 +60,7 @@ It might be used for list rendering or within the multiselect for example
 	<span :id="id"
 		class="option"
 		:style="cssVars"
-		v-on="$listeners">
+		v-bind="$attrs">
 		<NcAvatar v-bind="$attrs"
 			:disable-menu="true"
 			:disable-tooltip="true"

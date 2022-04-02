@@ -81,6 +81,7 @@ import isMobile from '../../mixins/isMobile/index.js'
 import { t } from '../../l10n.js'
 
 import debounce from 'debounce'
+import { h } from 'vue'
 
 export default {
 
@@ -153,7 +154,7 @@ export default {
 
 	mounted() {
 		// Select first settings section
-		this.selectedSection = this.$slots.default[0].componentOptions.propsData.id
+		this.selectedSection = this.$slots.default?.()[0]?.props?.title
 	},
 
 	updated() {
@@ -251,7 +252,7 @@ export default {
 		},
 	},
 
-	render(h) {
+	render() {
 		/**
 		 * Build the navigation
 		 *
@@ -270,7 +271,7 @@ export default {
 						class: 'navigation-list',
 						role: 'tablist',
 					},
-				}, this.getSettingsNavigation(this.$slots.default).map(item => {
+				}, this.getSettingsNavigation(this.$slots.default()).map(item => {
 					return createListElement(item)
 				}))])]
 			} else {
@@ -344,7 +345,7 @@ export default {
 									class: 'app-settings__content',
 								},
 								ref: 'settingsScroller',
-							}, this.$slots.default),
+							}, this.$slots.default()),
 						]
 					),
 				]),

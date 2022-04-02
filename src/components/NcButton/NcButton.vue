@@ -35,11 +35,11 @@ It can be used with one or multiple actions.
 <div class="wrapper">
 	<!-- Style selector -->
 	<div class="grid">
-		<NcCheckboxRadioSwitch :checked.sync="style" value="text" name="style" type="radio">Text only</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="style" value="icon" name="style" type="radio">Icon only</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="style" value="icontext" name="style" type="radio">Icon and text</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="disabled" type="checkbox">Disabled</NcCheckboxRadioSwitch>
-		<!--<NcCheckboxRadioSwitch :checked.sync="readonly" type="checkbox">Read-only</NcCheckboxRadioSwitch>-->
+		<NcCheckboxRadioSwitch v-model:checked="style" value="text" name="style" type="radio">Text only</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="style" value="icon" name="style" type="radio">Icon only</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="style" value="icontext" name="style" type="radio">Icon and text</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="disabled" type="checkbox">Disabled</NcCheckboxRadioSwitch>
+		<!--<NcCheckboxRadioSwitch v-model:checked="readonly" type="checkbox">Read-only</NcCheckboxRadioSwitch>-->
 	</div>
 
 	<h5>Standard buttons</h5>
@@ -198,13 +198,12 @@ button {
 </docs>
 
 <template>
-	<root-element class="button-vue"
-		v-bind="rootElement"
+	<component :is="rootElement"
+		class="button-vue"
 		:class="buttonClassObject"
 		:aria-label="ariaLabel"
 		:type="nativeType"
-		:disabled="disabled"
-		v-on="$listeners">
+		:disabled="disabled">
 		<span class="button-vue__wrapper">
 			<span v-if="hasIcon" class="button-vue__icon">
 				<!-- @slot The material design icon slot -->
@@ -214,7 +213,7 @@ button {
 				<slot />
 			</span>
 		</span>
-	</root-element>
+	</component>
 </template>
 <script>
 
@@ -304,48 +303,26 @@ export default {
 		},
 	},
 
-	data() {
-		return {
-			/**
-			 * Making sure the slots are reactive
-			 */
-			slots: this.$slots,
-		}
-	},
-
 	computed: {
 		// Determines whether the root element is an a,
 		// a router-link or a button
 		rootElement() {
 			if (this.to) {
-				return {
-					is: 'router-link',
-					tag: 'button',
-					to: this.to,
-					exact: this.exact,
-					...this.$attrs,
-				}
+				return 'vue:router-link'
 			}
 			if (this.href) {
-				return {
-					is: 'a',
-					href: this.href,
-					...this.$attrs,
-				}
+				return 'a'
 			}
-			return {
-				is: 'button',
-				...this.$attrs,
-			}
+			return 'button'
 		},
 
 		hasText() {
-			return this.slots?.default !== undefined
-				&& this.slots?.default[0]?.text
+			return this.$slots?.default
+				&& this.$slots?.default?.()[0]?.children
 		},
 
 		hasIcon() {
-			return this.slots.icon !== undefined
+			return this.$slots.icon
 		},
 
 		iconOnly() {
@@ -361,7 +338,7 @@ export default {
 		},
 
 		text() {
-			return this.hasText ? this.slots.default[0].text.trim() : null
+			return this.hasText ? this.$slots.default?.()?.[0].children.trim?.() : null
 		},
 
 		// Classes applied to the button element
@@ -375,11 +352,6 @@ export default {
 				'button-vue--wide': this.wide,
 			}
 		},
-	},
-
-	beforeUpdate() {
-		// $slots is not reactive, this make sure we are able to detect changes
-		this.slots = this.$slots
 	},
 
 	mounted() {

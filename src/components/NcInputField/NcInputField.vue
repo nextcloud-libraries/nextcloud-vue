@@ -57,7 +57,6 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 					'input-field__input--error': error,
 				}"
 				:value="value"
-				v-on="$listeners"
 				@input="handleInput">
 
 			<!-- Leading icon -->

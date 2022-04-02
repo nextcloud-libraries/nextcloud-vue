@@ -66,7 +66,7 @@
 import NcInputConfirmCancel from '../NcAppNavigationItem/NcInputConfirmCancel.vue'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
-import { directive as ClickOutside } from 'v-click-outside'
+import { directive as ClickOutside } from 'click-outside-vue3'
 
 export default {
 	name: 'NcAppNavigationNewItem',

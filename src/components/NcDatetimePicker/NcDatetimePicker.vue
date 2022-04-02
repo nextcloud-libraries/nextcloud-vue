@@ -136,12 +136,11 @@ export default {
 		:type="type"
 		:value="value"
 		v-bind="$attrs"
-		v-on="$listeners"
 		@select-year="handleSelectYear"
 		@select-month="handleSelectMonth"
 		@update:value="$emit('update:value', value)">
 		<template v-if="showTimezoneSelect" #icon-calendar>
-			<NcPopover :open.sync="showTimezonePopover"
+			<NcPopover v-model:open="showTimezonePopover"
 				open-class="timezone-popover-wrapper">
 				<template #trigger>
 					<button class="datetime-picker-inline-icon icon-timezone icon"
@@ -159,7 +158,7 @@ export default {
 					@input="$emit('update:timezone-id', arguments[0])" />
 			</NcPopover>
 		</template>
-		<template v-for="(_, slot) of $scopedSlots" #[slot]="scope">
+		<template v-for="(_, slot) of $slots" #[slot]="scope">
 			<slot :name="slot" v-bind="scope" />
 		</template>
 	</DatePicker>
@@ -179,7 +178,7 @@ import {
 	getMonthNamesShort,
 } from '@nextcloud/l10n'
 
-import DatePicker from 'vue2-datepicker'
+import DatePicker from 'vue-datepicker-next'
 
 const formatMap = {
 	date: 'YYYY-MM-DD',

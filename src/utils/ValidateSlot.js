@@ -19,7 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import Vue from 'vue'
+import { warn } from 'vue'
 
 /**
  * Validate children of a vue component
@@ -45,7 +45,7 @@ const ValidateSlot = (slots, allowed, vm) => {
 			// only warn when html elment or forbidden component
 			// sometimes text nodes are present which are hardly removeable by the developer and spam the warnings
 			if (isHtmlElement || isForbiddenComponent) {
-				Vue.util.warn(`${isHtmlElement ? node.tag : node.componentOptions.tag} is not allowed inside the ${vm.$options.name} component`, vm)
+				warn(`${isHtmlElement ? node.tag : node.componentOptions.tag} is not allowed inside the ${vm.$options.name} component`, vm)
 			}
 
 			// cleanup

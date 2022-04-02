@@ -39,7 +39,7 @@ This component is meant to be used inside a Breadcrumbs component.
 		@dragover.prevent="() => {}"
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
-		<element :is="tag"
+		<component :is="tag"
 			v-if="(title || icon) && !$slots.default"
 			:to="to"
 			:href="href">
@@ -48,7 +48,7 @@ This component is meant to be used inside a Breadcrumbs component.
 				<span v-if="icon" :class="icon" class="icon" />
 				<span v-else>{{ title }}</span>
 			</slot>
-		</element>
+		</component>
 		<NcActions v-if="$slots.default"
 			ref="actions"
 			type="tertiary"

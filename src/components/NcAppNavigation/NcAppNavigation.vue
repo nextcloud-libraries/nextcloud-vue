@@ -89,16 +89,21 @@ export default {
 	data() {
 		return {
 			open: true,
+			// Watching an injected property directly does not work
+			// so we watch a data property instead.
+			localIsMobile: this.isMobile,
 		}
 	},
 
 	watch: {
-		isMobile() {
-			this.open = !this.isMobile
+		localIsMobile(isMobile) {
+			this.open = !isMobile
 		},
 	},
 
 	mounted() {
+		// Sync the state
+		this.open = !this.localIsMobile
 		subscribe('toggle-navigation', this.toggleNavigationByEventBus)
 		// Emit an event with the initial state of the navigation
 		emit('navigation-toggled', {
@@ -141,7 +146,6 @@ export default {
 	// Set scoped variable override
 	// Using --color-text-maxcontrast as a fallback evaluates to an invalid value as it references itself in this scope instead of the variable defined higher up
 	--color-text-maxcontrast: var(--color-text-maxcontrast-background-blur, var(--color-text-maxcontrast-default));
-
 	transition: transform var(--animation-quick), margin var(--animation-quick);
 	width: $navigation-width;
 	position: relative;

@@ -134,8 +134,8 @@ export default {
 		aria-multiline="true"
 		class="rich-contenteditable__input"
 		role="textbox"
+		v-bind="$attrs"
 		@input="onInput"
-		v-on="$listeners"
 		@keydown.delete="onDelete"
 		@keydown.enter.exact="onEnter"
 		@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
@@ -371,7 +371,7 @@ export default {
 		// set to false.
 		this.$refs.contenteditable.contentEditable = this.canEdit
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		if (this.autocompleteTribute) {
 			this.autocompleteTribute.detach(this.$el)
 		}

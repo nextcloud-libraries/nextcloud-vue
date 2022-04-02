@@ -77,7 +77,7 @@ The list size must be between the min and the max width value.
 			<div v-if="isMobile"
 				:class="showDetails ? 'app-content-wrapper--show-details' : 'app-content-wrapper--show-list'"
 				class="app-content-wrapper app-content-wrapper--mobile">
-				<NcAppDetailsToggle v-if="hasList && showDetails" @click.native.stop.prevent="hideDetails" />
+				<NcAppDetailsToggle v-if="hasList && showDetails" @click.stop.prevent="hideDetails" />
 
 				<slot name="list" />
 				<slot />
@@ -264,7 +264,7 @@ export default {
 		this.restorePaneConfig()
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.mc.off('swipeleft swiperight', this.handleSwipe)
 	},
 
