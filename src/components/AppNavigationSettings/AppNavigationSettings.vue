@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { directive as ClickOutside } from 'v-click-outside'
+import { directive as ClickOutside } from 'click-outside-vue3'
 import { t } from '../../l10n'
 import { excludeClickOutsideClasses } from '../../mixins'
 

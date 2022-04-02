@@ -23,7 +23,7 @@
 
 import { mount } from '@vue/test-utils'
 
-import Vue from 'vue'
+import { createApp } from 'vue'
 import AppSidebarTabs from '../../../../src/components/AppSidebar/AppSidebarTabs.vue'
 import AppSidebarTab from '../../../../src/components/AppSidebarTab/AppSidebarTab.vue'
 import ActionButton from '../../../../src/components/ActionButton/ActionButton.vue'
@@ -35,23 +35,25 @@ let wrapper
 
 const initialConsole = { ...console }
 
+const app = createApp({})
+
 describe('AppSidebarTabs.vue', () => {
 	'use strict'
 	beforeEach(() => {
 		onWarning = jest.fn()
 		consoleDebug = jest.fn()
-		Vue.config.warnHandler = onWarning
+		app.config.warnHandler = onWarning
 		global.console = { ...console, debug: consoleDebug }
 	})
 	afterEach(() => {
-		Vue.config.warnHandler = () => null
+		app.config.warnHandler = () => null
 		global.console = initialConsole
 	})
 	describe('when using the component without tabs', () => {
 		describe('with only one div', () => {
 			beforeEach(() => {
 				wrapper = mount(AppSidebarTabs, {
-					propsData: {
+					props: {
 						title: 'Sidebar title.',
 					},
 					slots: {
@@ -70,7 +72,7 @@ describe('AppSidebarTabs.vue', () => {
 		describe('with div and secondary action', () => {
 			beforeEach(() => {
 				wrapper = mount(AppSidebarTabs, {
-					propsData: {
+					props: {
 						title: 'Sidebar title.',
 					},
 					slots: {

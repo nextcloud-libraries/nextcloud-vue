@@ -58,6 +58,8 @@ import { t } from '../../l10n'
 
 import debounce from 'debounce'
 
+import { h } from 'vue'
+
 export default {
 
 	name: 'AppSettingsDialog',
@@ -119,7 +121,7 @@ export default {
 
 	mounted() {
 		// Select first settings section
-		this.selectedSection = this.$slots.default[0].componentOptions.propsData.title
+		this.selectedSection = this.$slots.default()[0].componentOptions.propsData.title
 	},
 
 	updated() {
@@ -204,7 +206,7 @@ export default {
 		},
 	},
 
-	render(createElement) {
+	render() {
 		/**
 		 * Build the navigation
 		 *
@@ -212,18 +214,18 @@ export default {
 		 */
 		const createAppSettingsNavigation = () => {
 			if (this.hasNavigation) {
-				return [createElement('div', {
+				return [h('div', {
 					attrs: {
 						class: 'app-settings__navigation',
 						role: 'tablist',
 						'aria-label': this.settingsNavigationAriaLabel,
 					},
-				}, [createElement('ul', {
+				}, [h('ul', {
 					attrs: {
 						class: 'navigation-list',
 						role: 'tablist',
 					},
-				}, this.getSettingsNavigation(this.$slots.default).map(item => {
+				}, this.getSettingsNavigation(this.$slots.default()).map(item => {
 					return createListElemtent(item)
 				}))])]
 			} else {
@@ -237,7 +239,7 @@ export default {
 		 * @param {object} item the navigation item
 		 * @return {object} the list element
 		 */
-		const createListElemtent = (item) => createElement('li', {}, [createElement('a', {
+		const createListElemtent = (item) => h('li', {}, [h('a', {
 			class: {
 				'navigation-list__link': true,
 				'navigation-list__link--active': item === this.selectedSection,
@@ -257,7 +259,7 @@ export default {
 
 		// Return value of the render function
 		if (this.open) {
-			return createElement('Modal', {
+			return h('Modal', {
 				attrs: {
 					container: this.container,
 					size: 'large',
@@ -266,17 +268,17 @@ export default {
 					close: () => { this.handleCloseModal() },
 				},
 			}, [
-				createElement('div', {
+				h('div', {
 					attrs: {
 						class: 'app-settings',
 					},
 				}, [...createAppSettingsNavigation(),
-					createElement('div', {
+					h('div', {
 						attrs: {
 							class: 'app-settings__content',
 						},
 						ref: 'settingsScroller',
-					}, this.$slots.default)]),
+					}, this.$slots.default())]),
 			])
 		} else {
 			return undefined

@@ -20,7 +20,7 @@
  *
  */
 
-import { IsMobileState } from '../../utils/IsMobileState'
+// import { IsMobileState } from '../../utils/IsMobileState'
 
 export default {
 	data() {
@@ -29,11 +29,11 @@ export default {
 		}
 	},
 	mounted() {
-		IsMobileState.$on('changed', this.onIsMobileChanged)
-		this.isMobile = IsMobileState.isMobile
+		// IsMobileState.$on('changed', this.onIsMobileChanged)
+		// this.isMobile = IsMobileState.isMobile
 	},
 	beforeDestroy() {
-		IsMobileState.$off('changed', this.onIsMobileChanged)
+		// IsMobileState.$off('changed', this.onIsMobileChanged)
 	},
 	methods: {
 		onIsMobileChanged(val) {

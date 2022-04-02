@@ -29,7 +29,7 @@ describe('Multiselect.vue', () => {
 	it('Test that the input function is only called once on select', () => {
 		const onInput = jest.fn()
 		const wrapper = mount(Multiselect, {
-			propsData: {
+			props: {
 				label: 'name',
 				multiple: false,
 				options: [

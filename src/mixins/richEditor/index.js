@@ -23,7 +23,7 @@
 import escapeHtml from 'escape-html'
 import Linkify from '../../utils/Linkify'
 import stripTags from 'striptags'
-import Vue from 'vue'
+// import Vue from 'vue'
 
 import MentionBubble from '../../components/RichContenteditable/MentionBubble'
 
@@ -126,27 +126,27 @@ export default {
 		 * @return {string} the rendered html
 		 */
 		renderComponentHtml(propsData, component) {
-			const View = Vue.extend(component)
-			const Item = new View({
-				propsData,
-			})
+			// const View = Vue.extend(component)
+			// const Item = new View({
+			// propsData,
+			// })
 
-			// Prepare mountpoint
-			const wrapper = document.createElement('div')
-			const mount = document.createElement('div')
-			wrapper.style.display = 'none'
-			wrapper.appendChild(mount)
-			document.body.appendChild(wrapper)
+			// // Prepare mountpoint
+			// const wrapper = document.createElement('div')
+			// const mount = document.createElement('div')
+			// wrapper.style.display = 'none'
+			// wrapper.appendChild(mount)
+			// document.body.appendChild(wrapper)
 
-			// Mount and get raw html
-			Item.$mount(mount)
-			const renderedHtml = wrapper.innerHTML
+			// // Mount and get raw html
+			// Item.$mount(mount)
+			// const renderedHtml = wrapper.innerHTML
 
-			// Destroy
-			Item.$destroy()
-			wrapper.remove()
+			// // Destroy
+			// Item.$destroy()
+			// wrapper.remove()
 
-			return renderedHtml
+			// return renderedHtml
 		},
 	},
 }

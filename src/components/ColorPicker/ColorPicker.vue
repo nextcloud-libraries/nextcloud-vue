@@ -115,26 +115,28 @@ export default {
 		</template>
 		<div class="color-picker">
 			<transition name="slide" mode="out-in">
-				<div v-if="!advanced" class="color-picker__simple">
-					<button v-for="(color, index) in palette"
-						:key="index"
-						:style="{'background-color': color }"
-						class="color-picker__simple-color-circle"
-						:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }"
-						type="button"
-						@click="pickColor(color)">
-						<Check v-if="color === currentColor"
-							:size="20"
-							title=""
-							decorative />
-					</button>
+				<div>
+					<div v-if="!advanced" class="color-picker__simple">
+						<button v-for="(color, index) in palette"
+							:key="index"
+							:style="{'background-color': color }"
+							class="color-picker__simple-color-circle"
+							:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }"
+							type="button"
+							@click="pickColor(color)">
+							<Check v-if="color === currentColor"
+								:size="20"
+								title=""
+								decorative />
+						</button>
+					</div>
+					<Chrome v-if="advanced"
+						v-model="currentColor"
+						class="color-picker__advanced"
+						:disable-alpha="true"
+						:disable-fields="true"
+						@input="pickColor" />
 				</div>
-				<Chrome v-if="advanced"
-					v-model="currentColor"
-					class="color-picker__advanced"
-					:disable-alpha="true"
-					:disable-fields="true"
-					@input="pickColor" />
 			</transition>
 			<div class="color-picker__navigation">
 				<button v-if="advanced"
@@ -165,7 +167,7 @@ import ArrowLeft from 'vue-material-design-icons/ArrowLeft'
 import Check from 'vue-material-design-icons/Check'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal'
 
-import { Chrome } from 'vue-color'
+import { Chrome } from '@ckpack/vue-color'
 
 import GenColors from '../../utils/GenColors'
 import l10n from '../../mixins/l10n'

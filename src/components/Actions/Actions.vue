@@ -133,7 +133,7 @@ export default {
 </docs>
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
-	<element v-if="isValidSingleAction && !forceMenu"
+	<component v-if="isValidSingleAction && !forceMenu"
 		v-tooltip.auto="firstAction.text"
 		v-bind="firstActionBinding"
 		:class="{
@@ -156,7 +156,7 @@ export default {
 			<!-- @slot All action elements passed into the default slot will be used -->
 			<slot />
 		</span>
-	</element>
+	</component>
 
 	<!-- more than one action -->
 	<div v-else
@@ -451,7 +451,7 @@ export default {
 		},
 		// return the first action icon slot vnodes array
 		firstActionIconSlot() {
-			return this.firstAction?.$slots?.icon
+			return this.firstAction?.$slots.icon?.()
 		},
 		firstActionClass() {
 			const staticClass = this.firstActionVNode && this.firstActionVNode.data.staticClass
@@ -652,7 +652,7 @@ export default {
 		},
 		initActions() {
 			// filter out invalid slots
-			this.actions = (this.$slots.default || []).filter(node => !!node && !!node.componentOptions)
+			this.actions = (this.$slots.default?.() || []).filter(node => !!node && !!node.componentOptions)
 		},
 		onFocus(event) {
 			this.$emit('focus', event)

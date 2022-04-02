@@ -46,7 +46,7 @@
 						role="tab"
 						@click.prevent="setActive(tab.id)">
 						<span class="app-sidebar-tabs__tab-icon">
-							<VNodes v-if="hasMdIcon(tab)" :vnodes="tab.$slots.icon[0]" />
+							<VNodes v-if="hasMdIcon(tab)" :vnodes="tab.$slots.icon()[0]" />
 							<span v-else :class="tab.icon" />
 						</span>
 						{{ tab.name }}
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import { warn } from 'vue'
 
 import VNodes from '../VNodes/VNodes'
 
@@ -221,20 +221,20 @@ export default {
 		},
 
 		hasMdIcon(tab) {
-			return tab?.$slots?.icon
+			return tab?.$slots?.icon()
 		},
 
 		/**
 		 * Manually update the sidebar tabs according to $slots.default
 		 */
 		updateTabs() {
-			if (!this.$slots.default) {
+			if (!this.$slots.default()) {
 				this.tabs = []
 				return
 			}
 
 			// Find all valid children (AppSidebarTab, other components, text nodes, etc.)
-			const children = this.$slots.default.filter(elem => elem.tag || elem.text.trim())
+			const children = this.$slots.default().filter(elem => elem.tag || elem.text?.trim())
 
 			// Find all valid instances of AppSidebarTab
 			const invalidTabs = []
@@ -243,7 +243,7 @@ export default {
 				// Make sure all required props are provided and valid
 				if (IsValidString(tab?.name)
 					&& IsValidStringWithoutSpaces(tab?.id)
-					&& (IsValidStringWithoutSpaces(tab?.icon) || tab?.$slots?.icon)) {
+					&& (IsValidStringWithoutSpaces(tab?.icon) || tab?.$slots?.icon())) {
 					tabs.push(tab)
 				} else {
 					invalidTabs.push(tabNode)
@@ -253,7 +253,7 @@ export default {
 
 			// Tabs are optional, but you can use either tabs or non-tab-content only
 			if (tabs.length !== 0 && tabs.length !== children.length) {
-				Vue.util.warn('Mixing tabs and non-tab-content is not possible.')
+				warn('Mixing tabs and non-tab-content is not possible.')
 				invalidTabs.map(invalid => console.debug('Ignoring invalid tab', invalid))
 			}
 

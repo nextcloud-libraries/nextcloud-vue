@@ -137,7 +137,7 @@ export default {
 					@input="$emit('update:timezone-id', arguments[0])" />
 			</Popover>
 		</template>
-		<template v-for="(_, slot) of $scopedSlots" #[slot]="scope">
+		<template v-for="(_, slot) of $slots" #[slot]="scope">
 			<slot :name="slot" v-bind="scope" />
 		</template>
 	</DatePicker>
@@ -152,7 +152,7 @@ import {
 	getMonthNames,
 	getMonthNamesShort,
 } from '@nextcloud/l10n'
-import DatePicker from 'vue2-datepicker'
+import DatePicker from 'vue-datepicker-next'
 
 import Popover from '../Popover/index'
 import TimezonePicker from '../TimezonePicker'

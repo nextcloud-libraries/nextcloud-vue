@@ -123,7 +123,6 @@ export default {
 </docs>
 
 <script>
-import Vue from 'vue'
 import debounce from 'debounce'
 import Actions from '../Actions'
 import ActionRouter from '../ActionRouter'
@@ -133,6 +132,8 @@ import Breadcrumb from '../Breadcrumb'
 import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 
 import IconFolder from 'vue-material-design-icons/Folder'
+
+import { h } from 'vue'
 
 const crumbClass = 'vue-crumb'
 
@@ -183,11 +184,11 @@ export default {
 	},
 	beforeMount() {
 		// Filter all invalid items, only Breadcrumb components are allowed
-		ValidateSlot(this.$slots.default, ['Breadcrumb'], this)
+		ValidateSlot(this.$slots.default(), ['Breadcrumb'], this)
 	},
 	beforeUpdate() {
 		// Also check before every update
-		ValidateSlot(this.$slots.default, ['Breadcrumb'], this)
+		ValidateSlot(this.$slots.default(), ['Breadcrumb'], this)
 	},
 	created() {
 		/**
@@ -221,7 +222,7 @@ export default {
 		 */
 		delayedHideCrumbs() {
 			this.$nextTick(() => {
-				const crumbs = this.$slots.default || []
+				const crumbs = this.$slots.default() || []
 				this.hideCrumbs(crumbs)
 			})
 		},
@@ -251,7 +252,7 @@ export default {
 		 */
 		handleWindowResize() {
 			// All breadcrumb components passed into the default slot
-			const breadcrumbs = this.$slots.default || []
+			const breadcrumbs = this.$slots.default() || []
 			// If there is no container yet, we cannot determine its size
 			if (this.$refs.container) {
 				const nrCrumbs = breadcrumbs.length
@@ -465,12 +466,11 @@ export default {
 	/**
 	 * The render function to display the component
 	 *
-	 * @param {Function} createElement The function to create VNodes
 	 * @return {VNodes} The created VNodes
 	 */
-	render(createElement) {
+	render() {
 		// Get the breadcrumbs
-		const breadcrumbs = this.$slots.default || []
+		const breadcrumbs = this.$slots.default() || []
 
 		// Check that we have at least one breadcrumb
 		if (breadcrumbs.length === 0) {
@@ -478,7 +478,7 @@ export default {
 		}
 
 		// Add the root icon to the first breadcrumb
-		Vue.set(breadcrumbs[0].componentOptions.propsData, 'icon', this.rootIcon)
+		breadcrumbs[0].componentOptions.propsData.icon = this.rootIcon
 
 		// The array of all created VNodes
 		let crumbs = []
@@ -496,7 +496,7 @@ export default {
 		// The Actions menu
 		if (this.hiddenCrumbs.length) {
 			// Use a breadcrumb component for the hidden breadcrumbs
-			crumbs.push(createElement('Breadcrumb', {
+			crumbs.push(h('Breadcrumb', {
 				class: 'dropdown',
 
 				props: this.menuBreadcrumbProps,
@@ -530,13 +530,13 @@ export default {
 					element = 'ActionRouter'
 					path = to
 				}
-				const folderIcon = createElement('IconFolder', {
+				const folderIcon = h('IconFolder', {
 					props: {
 						size: 20,
 					},
 					slot: 'icon',
 				})
-				return createElement(element, {
+				return h(element, {
 					class: crumbClass,
 					props: {
 						to,
@@ -568,13 +568,13 @@ export default {
 		this.hideCrumbs(crumbs2, crumbs1.length)
 
 		const wrapper = []
-		wrapper.push(createElement('div', { class: 'breadcrumb__crumbs' }, crumbs))
+		wrapper.push(h('div', { class: 'breadcrumb__crumbs' }, crumbs))
 		// Append the actions slot if it is populated
-		if (this.$slots.actions) {
-			wrapper.push(createElement('div', { class: 'breadcrumb__actions', ref: 'breadcrumb__actions' }, this.$slots.actions))
+		if (this.$slots.actions()) {
+			wrapper.push(h('div', { class: 'breadcrumb__actions', ref: 'breadcrumb__actions' }, this.$slots.actions()))
 		}
 
-		return createElement('div', { class: ['breadcrumb', { 'breadcrumb--collapsed': (this.hiddenCrumbs.length === breadcrumbs.length - 2) }], ref: 'container' }, wrapper)
+		return h('div', { class: ['breadcrumb', { 'breadcrumb--collapsed': (this.hiddenCrumbs.length === breadcrumbs.length - 2) }], ref: 'container' }, wrapper)
 	},
 }
 </script>

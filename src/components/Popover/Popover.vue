@@ -52,29 +52,27 @@ With a `<button>` as a trigger:
 </docs>
 
 <template>
-	<VPopover ref="popover"
+	<Dropdown ref="popover"
+		:distance="10"
+		:arrow-padding="10"
 		v-bind="$attrs"
-		popover-base-class="popover"
-		popover-wrapper-class="popover__wrapper"
-		popover-arrow-class="popover__arrow"
-		popover-inner-class="popover__inner"
 		v-on="$listeners">
 		<!-- This will be the popover target (for the events and position) -->
 		<slot name="trigger" />
 		<!-- This will be the content of the popover -->
-		<template #popover>
+		<template #popper>
 			<slot />
 		</template>
-	</VPopover>
+	</Dropdown>
 </template>
 
 <script>
-import { VPopover } from 'v-tooltip'
+import { Dropdown } from 'floating-vue'
 
 export default {
 	name: 'Popover',
 	components: {
-		VPopover,
+		Dropdown,
 	},
 
 	mounted() {
@@ -83,7 +81,7 @@ export default {
 				// required because v-tooltip doesn't provide events
 				// and @show is too early
 				// see https://github.com/Akryum/v-tooltip/issues/661
-				return this.$refs.popover.isOpen
+				return this.$refs.popover.$refs.popper.isShown
 			},
 			(val) => {
 				if (val) {
@@ -108,94 +106,98 @@ export default {
 </script>
 
 <style lang="scss">
+
+.resize-observer {
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:-1;
+	width:100%;
+	height:100%;
+	border:none;
+	background-color:transparent;
+	pointer-events:none;
+	display:block;
+	overflow:hidden;
+	opacity:0
+}
+
+.resize-observer object {
+	display:block;
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	overflow:hidden;
+	pointer-events:none;
+	z-index:-1
+}
+
 $arrow-width: 10px;
 
-.popover {
-	z-index: 100000;
-	display: block !important;
+.v-popper--theme-dropdown {
+	&.v-popper__popper {
+		z-index: 100000;
+		top: 0;
+		left: 0;
+		display: block !important;
 
-	filter: drop-shadow(0 1px 10px var(--color-box-shadow));
+		filter: drop-shadow(0 1px 10px var(--color-box-shadow));
 
-	&__inner {
-		padding: 0;
-		color: var(--color-main-text);
-		border-radius: var(--border-radius);
-		background: var(--color-main-background);
-	}
+		.v-popper__inner {
+			padding: 0;
+			color: var(--color-main-text);
+			border-radius: var(--border-radius);
+			overflow: hidden;
+			background: var(--color-main-background);
+		}
 
-	&__arrow {
-		position: absolute;
-		z-index: 1;
-		width: 0;
-		height: 0;
-		margin: $arrow-width;
-		border-style: solid;
-		border-color: transparent;
-		border-width: $arrow-width;
-	}
+		.v-popper__arrow-container {
+			position: absolute;
+			z-index: 1;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-color: transparent;
+			border-width: $arrow-width;
+		}
 
-	&[x-placement^='top'] {
-		margin-bottom: $arrow-width;
-
-		.popover__arrow {
+		&[data-popper-placement^='top'] .v-popper__arrow-container {
 			bottom: -$arrow-width;
-			left: calc(50% - $arrow-width);
-			margin-top: 0;
-			margin-bottom: 0;
 			border-bottom-width: 0;
 			border-top-color: var(--color-main-background);
 		}
-	}
 
-	&[x-placement^='bottom'] {
-		margin-top: $arrow-width;
-
-		.popover__arrow {
+		&[data-popper-placement^='bottom'] .v-popper__arrow-container {
 			top: -$arrow-width;
-			left: calc(50% - $arrow-width);
-			margin-top: 0;
-			margin-bottom: 0;
 			border-top-width: 0;
 			border-bottom-color: var(--color-main-background);
 		}
-	}
 
-	&[x-placement^='right'] {
-		margin-left: $arrow-width;
-
-		.popover__arrow {
-			top: calc(50% - $arrow-width);
+		&[data-popper-placement^='right'] .v-popper__arrow-container {
 			left: -$arrow-width;
-			margin-right: 0;
-			margin-left: 0;
 			border-left-width: 0;
 			border-right-color: var(--color-main-background);
 		}
-	}
 
-	&[x-placement^='left'] {
-		margin-right: $arrow-width;
-
-		.popover__arrow {
-			top: calc(50% - $arrow-width);
+		&[data-popper-placement^='left'] .v-popper__arrow-container {
 			right: -$arrow-width;
-			margin-right: 0;
-			margin-left: 0;
 			border-right-width: 0;
 			border-left-color: var(--color-main-background);
 		}
-	}
 
-	&[aria-hidden='true'] {
-		visibility: hidden;
-		transition: opacity var(--animation-quick), visibility var(--animation-quick);
-		opacity: 0;
-	}
+		&[aria-hidden='true'] {
+			visibility: hidden;
+			transition: opacity var(--animation-quick), visibility var(--animation-quick);
+			opacity: 0;
+		}
 
-	&[aria-hidden='false'] {
-		visibility: visible;
-		transition: opacity var(--animation-quick);
-		opacity: 1;
+		&[aria-hidden='false'] {
+			visibility: visible;
+			transition: opacity var(--animation-quick);
+			opacity: 1;
+		}
 	}
 }
 

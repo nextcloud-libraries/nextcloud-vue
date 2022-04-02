@@ -265,7 +265,7 @@ import Tooltip from '../../directives/Tooltip'
 import AppSidebarTabs from './AppSidebarTabs'
 import EmptyContent from '../EmptyContent/EmptyContent'
 import { t } from '../../l10n'
-import { directive as ClickOutside } from 'v-click-outside'
+import { directive as ClickOutside } from 'click-outside-vue3'
 
 import Close from 'vue-material-design-icons/Close'
 import Star from 'vue-material-design-icons/Star'
@@ -407,7 +407,7 @@ export default {
 			return this.isStarred !== null
 		},
 		hasFigure() {
-			return this.$slots.header || this.background
+			return this.$slots.header() || this.background
 		},
 		hasFigureClickListener() {
 			return this.$listeners['figure-click']

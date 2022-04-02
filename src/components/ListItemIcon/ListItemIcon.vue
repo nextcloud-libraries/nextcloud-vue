@@ -195,7 +195,7 @@ export default {
 			return this.icon !== ''
 		},
 		hasSlot() {
-			return !!this.$slots.default
+			return !!this.$slots.default()
 		},
 
 		isValidSubtitle() {

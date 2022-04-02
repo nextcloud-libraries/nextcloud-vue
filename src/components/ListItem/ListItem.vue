@@ -456,11 +456,11 @@ export default {
 
 		// Check if subtitle and actions slots are populated
 		checkSlots() {
-			if (this.hasActions !== !!this.$slots.actions) {
-				this.hasActions = !!this.$slots.actions
+			if (this.hasActions !== !!this.$slots.actions()) {
+				this.hasActions = !!this.$slots.actions()
 			}
-			if (this.hasSubtitle !== !!this.$slots.subtitle) {
-				this.hasSubtitle = !!this.$slots.subtitle
+			if (this.hasSubtitle !== !!this.$slots.subtitle()) {
+				this.hasSubtitle = !!this.$slots.subtitle()
 			}
 		},
 	},

@@ -134,7 +134,7 @@ Just set the `pinned` prop.
 			<!-- never show the icon over the collapsible if mobile -->
 			<div :class="{ 'icon-loading-small': loading, [icon]: icon && isIconShown }"
 				class="app-navigation-entry-icon">
-				<slot v-show="!loading && isIconShown" name="icon" />
+				<slot v-if="!loading && isIconShown" name="icon" />
 			</div>
 			<span v-if="!editingActive" class="app-navigation-entry__title" :title="title">
 				{{ title }}
@@ -202,7 +202,7 @@ Just set the `pinned` prop.
 </template>
 
 <script>
-import { directive as ClickOutside } from 'v-click-outside'
+import { directive as ClickOutside } from 'click-outside-vue3'
 
 import Actions from '../Actions/Actions'
 import ActionButton from '../ActionButton/ActionButton'
@@ -371,7 +371,7 @@ export default {
 	},
 	computed: {
 		collapsible() {
-			return this.allowCollapse && !!this.$slots.default
+			return this.allowCollapse && !!this.$slots?.default
 		},
 
 		// is the icon shown?
@@ -393,7 +393,7 @@ export default {
 		hasUtils() {
 			if (this.editing) {
 				return false
-			} else if (this.$slots.actions || this.$slots.counter || this.editable || this.undo) {
+			} else if (this.$slots?.actions || this.$slots?.counter || this.editable || this.undo) {
 				return true
 			} else {
 				return false

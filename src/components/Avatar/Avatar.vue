@@ -93,7 +93,7 @@
 <script>
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal'
 
-import { directive as ClickOutside } from 'v-click-outside'
+import { directive as ClickOutside } from 'click-outside-vue3'
 import { generateUrl } from '@nextcloud/router'
 import { getBuilder } from '@nextcloud/browser-storage'
 import { getCurrentUser } from '@nextcloud/auth'

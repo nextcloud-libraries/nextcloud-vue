@@ -20,30 +20,3 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
-import Vue from 'vue'
-
-export const IsMobileState = new Vue({
-	data() {
-		return {
-			isMobile: false,
-		}
-	},
-	watch: {
-		isMobile(val) {
-			this.$emit('changed', val)
-		},
-	},
-	created() {
-		window.addEventListener('resize', this.handleWindowResize)
-		this.handleWindowResize()
-	},
-	beforeDestroy() {
-		window.removeEventListener('resize', this.handleWindowResize)
-	},
-	methods: {
-		handleWindowResize() {
-			this.isMobile = document.documentElement.clientWidth < 1024
-		},
-	},
-})

@@ -181,14 +181,14 @@ export default {
 		<template #option="scope">
 			<!-- Avatar display select slot override.
 				You CANNOT use this scope, we will replace it by this -->
-			<ListItemIcon v-if="userSelect && !$scopedSlots['option']"
+			<ListItemIcon v-if="userSelect && !$slots['option']"
 				v-bind="scope.option"
 				:title="scope.option[label]"
 				:search="scope.search" />
 
 			<!-- Ellipsis in the middle if no option slot
 				is defined in the parent -->
-			<EllipsisedOption v-else-if="!$scopedSlots['option']"
+			<EllipsisedOption v-else-if="!$lots['option']"
 				:name="getOptionLabel(scope.option)"
 				:option="scope.option"
 				:search="scope.search"
@@ -209,7 +209,7 @@ export default {
 
 		<!-- Passing the singleLabel slot, this is used to format the selected
 			option on NON-multiple multiselects -->
-		<template v-for="(_, slot) of $scopedSlots" #[slot]="scope">
+		<template v-for="(_, slot) of $slots" #[slot]="scope">
 			<slot :name="slot" v-bind="scope" />
 		</template>
 

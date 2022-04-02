@@ -29,7 +29,7 @@ describe('Highlight.vue', () => {
 	describe('validate given ranges', () => {
 		it('should ensure ranges are well formed (start before end)', () => {
 			const wrapper = mount(Highlight, {
-				propsData: {
+				props: {
 					text: 'Highlight me',
 					search: 'me',
 					highlight: [
@@ -47,7 +47,7 @@ describe('Highlight.vue', () => {
 
 		it('should discard ranges completely out of bound', () => {
 			const wrapper = mount(Highlight, {
-				propsData: {
+				props: {
 					text: 'Highlight me',
 					search: 'me',
 					highlight: [
@@ -67,7 +67,7 @@ describe('Highlight.vue', () => {
 
 		it('should limit ranges to the string length', () => {
 			const wrapper = mount(Highlight, {
-				propsData: {
+				props: {
 					text: 'Highlight me',
 					search: 'me',
 					highlight: [
@@ -91,7 +91,7 @@ describe('Highlight.vue', () => {
 
 		it('should sort ranges ascendingly', () => {
 			const wrapper = mount(Highlight, {
-				propsData: {
+				props: {
 					text: 'Highlight me',
 					search: 'me',
 					highlight: [
@@ -115,7 +115,7 @@ describe('Highlight.vue', () => {
 
 		it('should merge overlapping or adjacent ranges', () => {
 			const wrapper = mount(Highlight, {
-				propsData: {
+				props: {
 					text: 'Highlight me',
 					search: 'me',
 					highlight: [
