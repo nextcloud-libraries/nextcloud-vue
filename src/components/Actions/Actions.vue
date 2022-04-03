@@ -226,6 +226,7 @@ export default {
 <script>
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal'
 
+import VNodes from '../VNodes/VNodes'
 import Tooltip from '../../directives/Tooltip'
 import GenRandomId from '../../utils/GenRandomId'
 import { t } from '../../l10n'
@@ -253,10 +254,7 @@ export default {
 		Popover,
 
 		// Component to render the first action icon slot content (vnodes)
-		VNodes: {
-			functional: true,
-			render: (h, context) => context.props.vnodes,
-		},
+		VNodes,
 	},
 
 	props: {
