@@ -72,7 +72,7 @@ export default {
 <template>
 	<div class="container1">
 		<button @click="open = !open"> Click Me </button>
-		<ColorPicker :value="color" @input="updateColor" :open.sync="open">
+		<ColorPicker :value="color" @input="updateColor" :shown.sync="open">
 			<div :style="{'background-color': color}" class="color1" />
 		</ColorPicker>
 	</div>
