@@ -72,6 +72,7 @@
 	},
 	"devDependencies": {
 		"@cypress/webpack-preprocessor": "5.11.1",
+		"@fontsource/roboto": "^4.5.5",
 		"@nextcloud/babel-config": "^1.0.0",
 		"@nextcloud/browserslist-config": "^2.1.0",
 		"@nextcloud/eslint-config": "^5.1.0",
@@ -90,7 +91,6 @@
 		"eslint-plugin-cypress": "^2.11.1",
 		"eslint-plugin-import": "^2.23.4",
 		"file-loader": "^6.0.0",
-		"fontsource-roboto": "^4.0.0",
 		"gettext-extractor": "^3.5.2",
 		"gettext-parser": "^5.0.0",
 		"glob": "^7.1.6",
