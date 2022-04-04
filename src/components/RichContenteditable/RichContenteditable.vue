@@ -556,7 +556,6 @@ export default {
 
 	// Cannot use :empty because of firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=1513303
 	&--empty:before {
-		position: absolute;
 		content: attr(placeholder);
 		color: var(--color-text-maxcontrast);
 	}
