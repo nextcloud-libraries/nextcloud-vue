@@ -73,9 +73,7 @@ export default {
 				/**
 				 * Bottom scroll is reached
 				 */
-				// Todo: Adjust for next major release
-				// eslint-disable-next-line vue/custom-event-name-casing
-				this.$emit('bottomReached', event)
+				this.$emit('bottom-reached', event)
 			}
 			this.$emit('scroll', event)
 		},

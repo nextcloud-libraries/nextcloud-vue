@@ -212,9 +212,7 @@ export default {
 			/**
 			 * Emits a object with more data about the picked emoji
 			 */
-			// Todo: Adjust for next major release
-			// eslint-disable-next-line vue/custom-event-name-casing
-			this.$emit('selectData', emojiObject)
+			this.$emit('select-data', emojiObject)
 
 			if (this.closeOnSelect) {
 				this.open = false
