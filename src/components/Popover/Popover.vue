@@ -132,7 +132,8 @@ $arrow-width: 10px;
 		height: 0;
 		margin: $arrow-width;
 		border-style: solid;
-		border-color: var(--color-main-background);
+		border-color: transparent;
+		border-width: $arrow-width;
 	}
 
 	&[x-placement^='top'] {
@@ -143,10 +144,8 @@ $arrow-width: 10px;
 			left: calc(50% - $arrow-width);
 			margin-top: 0;
 			margin-bottom: 0;
-			border-width: $arrow-width $arrow-width 0 $arrow-width;
-			border-right-color: transparent !important;
-			border-bottom-color: transparent !important;
-			border-left-color: transparent !important;
+			border-bottom-width: 0;
+			border-top-color: var(--color-main-background);
 		}
 	}
 
@@ -158,10 +157,8 @@ $arrow-width: 10px;
 			left: calc(50% - $arrow-width);
 			margin-top: 0;
 			margin-bottom: 0;
-			border-width: 0 $arrow-width $arrow-width $arrow-width;
-			border-top-color: transparent !important;
-			border-right-color: transparent !important;
-			border-left-color: transparent !important;
+			border-top-width: 0;
+			border-bottom-color: var(--color-main-background);
 		}
 	}
 
@@ -173,10 +170,8 @@ $arrow-width: 10px;
 			left: -$arrow-width;
 			margin-right: 0;
 			margin-left: 0;
-			border-width: $arrow-width $arrow-width $arrow-width 0;
-			border-top-color: transparent !important;
-			border-bottom-color: transparent !important;
-			border-left-color: transparent !important;
+			border-left-width: 0;
+			border-right-color: var(--color-main-background);
 		}
 	}
 
@@ -188,10 +183,8 @@ $arrow-width: 10px;
 			right: -$arrow-width;
 			margin-right: 0;
 			margin-left: 0;
-			border-width: $arrow-width 0 $arrow-width $arrow-width;
-			border-top-color: transparent !important;
-			border-right-color: transparent !important;
-			border-bottom-color: transparent !important;
+			border-right-width: 0;
+			border-left-color: var(--color-main-background);
 		}
 	}
 

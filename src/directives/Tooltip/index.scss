@@ -31,55 +31,31 @@ $arrow-width: 10px;
 	filter: drop-shadow(0 1px 10px var(--color-box-shadow));
 
 	// TOP
-	&[x-placement^='top'] {
-		.tooltip-arrow {
-			bottom: 0;
-			margin-top: 0;
-			margin-bottom: 0;
-			border-width: $arrow-width $arrow-width 0 $arrow-width;
-			border-right-color: transparent;
-			border-bottom-color: transparent;
-			border-left-color: transparent;
-		}
+	&[x-placement^='top'] .tooltip-arrow {
+		bottom: 0;
+		border-bottom-width: 0;
+		border-top-color: var(--color-main-background);
 	}
 
 	// BOTTOM
-	&[x-placement^='bottom'] {
-		.tooltip-arrow {
-			top: 0;
-			margin-top: 0;
-			margin-bottom: 0;
-			border-width: 0 $arrow-width $arrow-width $arrow-width;
-			border-top-color: transparent;
-			border-right-color: transparent;
-			border-left-color: transparent;
-		}
+	&[x-placement^='bottom'] .tooltip-arrow {
+		top: 0;
+		border-top-width: 0;
+		border-bottom-color: var(--color-main-background);
 	}
 
 	// RIGHT
-	&[x-placement^='right'] {
-		.tooltip-arrow {
-			right: 100%;
-			margin-right: 0;
-			margin-left: 0;
-			border-width: $arrow-width $arrow-width $arrow-width 0;
-			border-top-color: transparent;
-			border-bottom-color: transparent;
-			border-left-color: transparent;
-		}
+	&[x-placement^='right'] .tooltip-arrow {
+		right: 100%;
+		border-left-width: 0;
+		border-right-color: var(--color-main-background);
 	}
 
 	// LEFT
-	&[x-placement^='left'] {
-		.tooltip-arrow {
-			left: 100%;
-			margin-right: 0;
-			margin-left: 0;
-			border-width: $arrow-width 0 $arrow-width $arrow-width;
-			border-top-color: transparent;
-			border-right-color: transparent;
-			border-bottom-color: transparent;
-		}
+	&[x-placement^='left'] .tooltip-arrow {
+		left: 100%;
+		border-right-width: 0;
+		border-left-color: var(--color-main-background);
 	}
 
 	// HIDDEN / SHOWN
@@ -112,6 +88,7 @@ $arrow-width: 10px;
 		height: 0;
 		margin: 0;
 		border-style: solid;
-		border-color: var(--color-main-background);
+		border-color: transparent;
+		border-width: $arrow-width;
 	}
 }
