@@ -33,7 +33,7 @@ import icons from '../../../../styleguide/assets/icons.css'
 import variables from '../../../../styleguide/assets/variables.css'
 
 // Import font so CI has the same
-import font from 'fontsource-roboto'
+import font from '@fontsource/roboto'
 
 /**
  * Split the Appsidebar test in two for performances
