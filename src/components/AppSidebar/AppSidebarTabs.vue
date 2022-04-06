@@ -66,6 +66,8 @@
 <script>
 import Vue from 'vue'
 
+import VNodes from '../VNodes/VNodes'
+
 const IsValidString = function(value) {
 	return value && typeof value === 'string' && value.trim() !== ''
 }
@@ -79,10 +81,7 @@ export default {
 
 	components: {
 		// Component to render the material design icon (vnodes)
-		VNodes: {
-			functional: true,
-			render: (h, context) => context.props.vnodes,
-		},
+		VNodes,
 	},
 
 	props: {
