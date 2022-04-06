@@ -50,7 +50,8 @@ This component is meant to be used inside a Breadcrumbs component.
 				<span v-else>{{ title }}</span>
 			</slot>
 		</element>
-		<Actions ref="actions"
+		<Actions v-if="$slots.default"
+			ref="actions"
 			:force-menu="forceMenu"
 			:open="open"
 			:menu-title="title"
