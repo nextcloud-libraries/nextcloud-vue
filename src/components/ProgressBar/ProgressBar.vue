@@ -92,7 +92,7 @@ export default {
 			let height = 0
 			let borderRadius = 0
 			if (this.size === 'small') {
-				height = '4px'
+				height = '.38rem'
 				borderRadius = '2px'
 			} else if (this.size === 'medium') {
 				height = '6px'
