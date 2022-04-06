@@ -120,8 +120,7 @@ $arrow-width: 10px;
 	&__inner {
 		padding: 0;
 		color: var(--color-main-text);
-		border-radius: var(--border-radius-large);
-		overflow: hidden;
+		border-radius: var(--border-radius);
 		background: var(--color-main-background);
 	}
 
