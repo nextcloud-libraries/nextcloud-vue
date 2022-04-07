@@ -176,7 +176,7 @@ export default {
 					chunks.push({
 						...range,
 						highlight: true,
-						text: this.text.substr(range.start, range.end - range.start),
+						text: this.text.slice(range.start, range.end),
 					})
 					currentRange++
 					currentIndex = range.end
@@ -187,7 +187,7 @@ export default {
 							start: currentIndex,
 							end: this.text.length,
 							highlight: false,
-							text: this.text.substr(currentIndex, this.text.length - currentIndex),
+							text: this.text.slice(currentIndex),
 						})
 						// Set the current index so the while loop ends.
 						currentIndex = this.text.length
@@ -200,7 +200,7 @@ export default {
 					start: currentIndex,
 					end: range.start,
 					highlight: false,
-					text: this.text.substr(currentIndex, range.start - currentIndex),
+					text: this.text.slice(currentIndex, range.start),
 				})
 				currentIndex = range.start
 			}
