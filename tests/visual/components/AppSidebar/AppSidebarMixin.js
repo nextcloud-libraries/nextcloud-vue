@@ -20,20 +20,26 @@
  *
  */
 
-import { mount } from 'cypress-vue-unit-test'
+import { mount } from '@cypress/vue'
 import sanitize from 'sanitize-filename'
 
 // import Vue from 'vue'
 import AppSidebar from '../../../../src/components/AppSidebar/AppSidebar.vue'
 import ActionButton from '../../../../src/components/ActionButton/ActionButton.vue'
 
-// Server CSS styles
-import server from '../../../../styleguide/assets/server.css'
-import icons from '../../../../styleguide/assets/icons.css'
-import variables from '../../../../styleguide/assets/variables.css'
+// // Server CSS styles
+import '../../../../styleguide/assets/server.css'
+import '../../../../styleguide/assets/icons.css'
+import '../../../../styleguide/assets/variables.css'
+/**
+ * We need this custom style because we run the AppSidebar component without a Content component,
+ * which applies this rule:
+ * https://github.com/nextcloud/nextcloud-vue/blob/master/src/components/Content/Content.vue#L88-L90
+ */
+import './style.css'
 
 // Import font so CI has the same
-import font from '@fontsource/roboto'
+import '@fontsource/roboto'
 
 /**
  * Split the Appsidebar test in two for performances
@@ -43,20 +49,6 @@ import font from '@fontsource/roboto'
 export default function(compact) {
 	describe(`AppSidebar.vue ${compact ? '' : 'not '}in compact mode`, () => {
 		'use strict'
-
-		/**
-		 * We need this custom style because we run the AppSidebar component without a Content component,
-		 * which applies this rule:
-		 * https://github.com/nextcloud/nextcloud-vue/blob/master/src/components/Content/Content.vue#L73-L75
-		 */
-		const style = `
-			* {
-				box-sizing: border-box;
-			}
-		`
-		// Load the server CSS styles
-		const cssFiles = [font, server, icons, variables]
-
 		// Possible props and actions
 		const title = 'Very long title that will certainly overflow the sidebar width'
 		const subtitles = ['', 'Very long subtitle what will certainly overflow the sidebar width']
@@ -101,8 +93,6 @@ export default function(compact) {
 									header: head,
 									'secondary-actions': second,
 								},
-								style,
-								cssFiles,
 								extensions,
 							}
 

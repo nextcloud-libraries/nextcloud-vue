@@ -13,5 +13,4 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-import 'cypress-vue-unit-test/dist/support'
 import './commands'

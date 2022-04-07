@@ -14,6 +14,7 @@
 const getCompareSnapshotsPlugin = require('cypress-visual-regression/dist/plugin')
 
 const webpack = require('@cypress/webpack-preprocessor')
+const { startDevServer } = require('@cypress/webpack-dev-server')
 
 const webpackOptions = require('../../webpack.dev.js')
 webpackOptions.externals = {}
@@ -28,6 +29,10 @@ const options = {
 module.exports = (on, config) => {
 	getCompareSnapshotsPlugin(on, config)
 	on('file:preprocessor', webpack(options))
+
+	on('dev-server:start', (options) => {
+		return startDevServer({ options, webpackConfig: webpackOptions })
+	  })
 
 	// Disable spell checking to prevent rendering differences
 	on('before:browser:launch', (browser, launchOptions) => {
@@ -51,4 +56,5 @@ module.exports = (on, config) => {
 			return launchOptions
 		}
 	})
+	return config
 }

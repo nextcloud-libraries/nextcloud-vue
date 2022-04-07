@@ -24,9 +24,9 @@
 		"stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix",
 		"styleguide": "vue-styleguidist server",
 		"styleguide:build": "vue-styleguidist build",
-		"cypress": "cypress run",
-		"cypress:gui": "cypress open",
-		"cypress:update-snapshots": "cypress run --env type=base --config screenshotsFolder=cypress/snapshots/base"
+		"cypress": "cypress run-ct",
+		"cypress:gui": "cypress open-ct",
+		"cypress:update-snapshots": "cypress run-ct --env type=base --config screenshotsFolder=cypress/snapshots/base"
 	},
 	"main": "dist/ncvuecomponents.js",
 	"files": [
@@ -71,6 +71,8 @@
 		"npm": "^7.0.0"
 	},
 	"devDependencies": {
+		"@cypress/vue": "^2.2.4",
+		"@cypress/webpack-dev-server": "^1.8.4",
 		"@cypress/webpack-preprocessor": "5.11.1",
 		"@fontsource/roboto": "^4.5.5",
 		"@nextcloud/babel-config": "^1.0.0",
@@ -84,9 +86,8 @@
 		"babel-loader": "^8.1.0",
 		"babel-loader-exclude-node-modules-except": "^1.0.3",
 		"css-loader": "^5.0.0",
-		"cypress": "^6.5.0",
+		"cypress": "^9.5.3",
 		"cypress-visual-regression": "^1.5.0",
-		"cypress-vue-unit-test": "^3.5.1",
 		"eslint": "^7.21.0",
 		"eslint-loader": "^4.0.2",
 		"eslint-plugin-cypress": "^2.11.1",
