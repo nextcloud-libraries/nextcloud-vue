@@ -3,13 +3,15 @@
   "viewportWidth": 1920, 
   "viewportHeight": 1080,
   "defaultCommandTimeout": 6000,
-  "experimentalComponentTesting": true,
-  "componentFolder": "tests/visual",
+  "integrationFolder": "tests/visual",
   "testFiles": "**/*.visual.*",
-  "nodeVersion": "system",
   "env": {
     "failSilently": false,
     "type": "actual"
+  },
+  "component": {
+    "componentFolder": "tests/visual",
+    "testFiles": "**/*.visual.{js,ts,jsx,tsx}"
   },
   "screenshotsFolder": "cypress/snapshots/actual",
   "trashAssetsBeforeRuns": true
