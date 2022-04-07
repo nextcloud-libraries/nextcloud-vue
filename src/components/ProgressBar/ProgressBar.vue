@@ -122,7 +122,8 @@ export default {
 	}
 	&::-webkit-progress-value {
 		background: linear-gradient(40deg, var(--color-primary-element) 0%, var(--color-primary-element-light) 100%);
-		border-radius: var(--border-radius);
+		border-radius: 2px:
+		height:.38rem
 	}
 	&::-moz-progress-bar {
 		background: linear-gradient(40deg, var(--color-primary-element) 0%, var(--color-primary-element-light) 100%);
