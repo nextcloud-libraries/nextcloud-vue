@@ -43,7 +43,7 @@ This is a simple progress bar component.
 <template>
 	<progress class="progress-bar vue"
 		:class="{ 'progress-bar--error': error }"
-		:style="progressBarStyle"
+		:style="{'--progress-bar-height': height }"
 		:value="value"
 		max="100" />
 </template>
@@ -87,21 +87,11 @@ export default {
 		},
 	},
 	computed: {
-
-		progressBarStyle() {
-			let height = 0
-			let borderRadius = 0
+		height() {
 			if (this.size === 'small') {
-				height = '4px'
-				borderRadius = '2px'
-			} else if (this.size === 'medium') {
-				height = '6px'
-				borderRadius = '3px'
+				return '4px'
 			}
-			return {
-				height,
-				'border-radius': borderRadius,
-			}
+			return '6px'
 		},
 	},
 }
@@ -116,16 +106,18 @@ export default {
 	background: var(--color-background-dark);
 	border: 0;
 	padding: 0;
-	border-radius: var(--border-radius);
+	height: var(--progress-bar-height);
+	border-radius: calc(var(--progress-bar-height) / 2);
 	&::-webkit-progress-bar {
-		height: calc(var(--border-radius) * 2);
+		height: var(--progress-bar-height);
 	}
 	&::-webkit-progress-value {
 		background: linear-gradient(40deg, var(--color-primary-element) 0%, var(--color-primary-element-light) 100%);
-		border-radius: var(--border-radius);
+		border-radius: calc(var(--progress-bar-height) / 2);
 	}
 	&::-moz-progress-bar {
 		background: linear-gradient(40deg, var(--color-primary-element) 0%, var(--color-primary-element-light) 100%);
+		border-radius: calc(var(--progress-bar-height) / 2);
 	}
 	&--error {
 		// Override previous values
