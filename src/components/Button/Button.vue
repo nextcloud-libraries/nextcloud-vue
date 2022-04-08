@@ -33,113 +33,70 @@ It can be used with one or multiple actions.
 ```
 <template>
 <div class="wrapper">
-	<!-- Icon only -->
-	<h5>Icon only buttons</h5>
+	<!-- Style selector -->
+	<div class="grid">
+		<CheckboxRadioSwitch :checked.sync="style" value="text" name="style" type="radio">Text only</CheckboxRadioSwitch>
+		<CheckboxRadioSwitch :checked.sync="style" value="icon" name="style" type="radio">Icon only</CheckboxRadioSwitch>
+		<CheckboxRadioSwitch :checked.sync="style" value="icontext" name="style" type="radio">Icon and text</CheckboxRadioSwitch>
+		<CheckboxRadioSwitch :checked.sync="disabled" type="checkbox">Disabled</CheckboxRadioSwitch>
+		<!--<CheckboxRadioSwitch :checked.sync="readonly" type="checkbox">Read-only</CheckboxRadioSwitch>-->
+	</div>
+
+	<h5>Standard buttons</h5>
 	<div class="grid">
 		<p>Tertiary, no background</p>
 		<p>Tertiary</p>
 		<p>Secondary</p>
 		<p>Primary</p>
 		<Button
+			:disabled="disabled"
+			:readonly="readonly"
 			type="tertiary-no-background">
-			<template #icon>
+			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
 					:size="20" />
 			</template>
+			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</Button>
 		<Button
+			:disabled="disabled"
+			:readonly="readonly"
 			type="tertiary">
-			<template #icon>
+			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
 					:size="20" />
 			</template>
+			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</Button>
-		<Button>
-			<template #icon>
+		<Button
+			:disabled="disabled"
+			:readonly="readonly">
+			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
 					title=""
 					:size="20" />
 			</template>
+			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</Button>
 		<Button
+			:disabled="disabled"
+			:readonly="readonly"
 			type="primary">
-			<template #icon>
+			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
 					:size="20" />
 			</template>
-		</Button>
-	</div>
-
-	<!-- Text only -->
-	<h5>Text only buttons</h5>
-	<div class="grid">
-		<p>Tertiary, no background</p>
-		<p>Tertiary</p>
-		<p>Secondary</p>
-		<p>Primary</p>
-		<Button
-			type="tertiary-no-background">
-			Example text
-		</Button>
-		<Button
-			type="tertiary">
-			Example text
-		</Button>
-		<Button>
-			Example text
-		</Button>
-		<Button
-			type="primary">
-			Example text
-		</Button>
-	</div>
-
-	<!-- Icon and text -->
-	<h5>Icon and text buttons</h5>
-	<div class="grid">
-		<p>Tertiary, no background</p>
-		<p>Tertiary</p>
-		<p>Secondary</p>
-		<p>Primary</p>
-		<Button
-			type="tertiary-no-background">
-			<template #icon>
-				<Video
-					:size="20" />
-			</template>
-			Example text
-		</Button>
-		<Button
-			type="tertiary">
-			<template #icon>
-				<Video
-					:size="20" />
-			</template>
-			Example text
-		</Button>
-		<Button>
-			<template #icon>
-				<Video
-					title=""
-					:size="20" />
-			</template>
-			Example text
-		</Button>
-		<Button
-			type="primary">
-			<template #icon>
-				<Video
-					:size="20" />
-			</template>
-			Example text
+			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</Button>
 	</div>
 
 	<!-- Wide button -->
 	<h5>Wide button</h5>
 	<Button
-		text="Example text"
-		:wide="true">
+		:disabled="disabled"
+		:readonly="readonly"
+		:wide="true"
+		text="Example text">
 		<template #icon>
 			<Video
 				title=""
@@ -156,6 +113,8 @@ It can be used with one or multiple actions.
 		<p>Error</p>
 		<p> - </p>
 		<Button
+			:disabled="disabled"
+			:readonly="readonly"
 			type="success">
 			<template #icon>
 				<Video
@@ -164,6 +123,8 @@ It can be used with one or multiple actions.
 			Example text
 		</Button>
 		<Button
+			:disabled="disabled"
+			:readonly="readonly"
 			type="warning">
 			<template #icon>
 				<Video
@@ -173,6 +134,8 @@ It can be used with one or multiple actions.
 			Example text
 		</Button>
 		<Button
+			:disabled="disabled"
+			:readonly="readonly"
 			type="error">
 			<template #icon>
 				<Video
@@ -194,13 +157,16 @@ export default {
 	},
 	data() {
 		return {
-			toggled: false
+			toggled: false,
+			disabled: false,
+			readonly: false,
+			style: 'icontext',
 		}
 	}
 }
 </script>
-<style lang="scss" scoped>
 
+<style lang="scss" scoped>
 .wrapper {
 	padding: 0 12px;
 }
@@ -229,7 +195,6 @@ button {
 }
 </style>
 ```
-
 </docs>
 
 <template>
@@ -314,7 +279,7 @@ export default {
 		 */
 		ariaLabel: {
 			type: String,
-			default: '',
+			default: null,
 		},
 	},
 
@@ -326,21 +291,22 @@ export default {
 			 * when the user is navigating with the keyboard.
 			 */
 			tabbed: false,
+
 			/**
-			 * $slots are not reactive.
-			 * We need to update the content manually
+			 * Making sure the slots are reactive
 			 */
-			text: this.getText(),
+			slots: this.$slots,
 		}
 	},
 
 	computed: {
 		hasText() {
-			return this.$slots.default !== undefined
+			return this.slots?.default !== undefined
+				&& this.slots?.default[0]?.text
 		},
 
 		hasIcon() {
-			return this.$slots.icon !== undefined
+			return this.slots.icon !== undefined
 		},
 
 		iconOnly() {
@@ -353,6 +319,10 @@ export default {
 
 		iconAndText() {
 			return this.hasIcon && this.hasText
+		},
+
+		text() {
+			return this.hasText ? this.slots.default[0].text.trim() : null
 		},
 
 		// Classes applied to the button element
@@ -370,23 +340,24 @@ export default {
 	},
 
 	beforeUpdate() {
-		this.text = this.getText()
+		// $slots is not reactive, this make sure we are able to detect changes
+		this.slots = this.$slots
 	},
 
 	mounted() {
 		/**
 		 * Always fill either the text prop or the ariaLabel one.
 		 */
-		if (!(this.text && this.ariaLabel)) {
-			console.warn('You need to fill either the text or the ariaLabel props in the button component.')
+		if (!this.text && !this.ariaLabel) {
+			console.warn('You need to fill either the text or the ariaLabel props in the button component.', {
+				text: this.text,
+				ariaLabel: this.ariaLabel,
+			},
+			this)
 		}
 	},
 
 	methods: {
-		getText() {
-			return this.$slots?.default && this.$slots?.default[0]?.text ? this.$slots.default[0].text.trim() : null
-		},
-
 		/**
 		 * Removes the tabbed state of the button.
 		 */
@@ -461,20 +432,18 @@ export default {
 		& * {
 			cursor: default;
 		}
-		background-color: var(--color-background-dark);
-		color: var(--color-border-dark);
-		&:hover {
-			background-color: var(--color-background-dark);
-			color: var(--color-border-dark);
-		}
+		opacity: $opacity_disabled;
+		// Gives a wash out effect
+		filter: saturate($opacity_normal);
 	}
 
 	// Default button type
 	background-color: var(--color-primary-element-lighter);
 	color: var(--color-primary-light-text);
-	&:hover {
+	&:hover:not(:disabled) {
 		background-color: var(--color-primary-light-hover);
 	}
+
 	// Back to the default color for this button when active
 	// TODO: add ripple effect
 	&:active {
@@ -559,7 +528,7 @@ export default {
 	&--vue-primary {
 		background-color: var(--color-primary-element);
 		color: var(--color-primary-text);
-		&:hover {
+		&:hover:not(:disabled) {
 			background-color: var(--color-primary-element-hover);
 		}
 		// Back to the default color for this button when active
@@ -574,7 +543,7 @@ export default {
 		color: var(--color-main-text);
 		background-color: var(--color-background-dark);
 		box-shadow: 0 0 0 2px var(--color-border-dark);
-		&:hover {
+		&:hover:not(:disabled) {
 			color: var(--color-main-text);
 			background-color: var(--color-background-dark);
 			box-shadow: 0 0 0 2px var(--color-primary-element);
@@ -585,7 +554,7 @@ export default {
 	&--vue-tertiary {
 		color: var(--color-main-text);
 		background-color: transparent;
-		&:hover {
+		&:hover:not(:disabled) {
 			background-color: var(--color);
 			background-color: var(--color-background-hover);
 		}
@@ -596,7 +565,7 @@ export default {
 		color: var(--color-main-text);
 		background-color: transparent;
 		opacity: .7;
-		&:hover {
+		&:hover:not(:disabled) {
 			background-color: transparent;
 			opacity: 1;
 		}
@@ -606,7 +575,7 @@ export default {
 	&--vue-success {
 		background-color: var(--color-success);
 		color: white;
-		&:hover {
+		&:hover:not(:disabled) {
 			background-color: var(--color-success-hover);
 		}
 		// Back to the default color for this button when active
@@ -620,7 +589,7 @@ export default {
 	&--vue-warning {
 		background-color: var(--color-warning);
 		color: white;
-		&:hover {
+		&:hover:not(:disabled) {
 			background-color: var(--color-warning-hover);
 		}
 		// Back to the default color for this button when active
@@ -634,7 +603,7 @@ export default {
 	&--vue-error {
 		background-color: var(--color-error);
 		color: white;
-		&:hover {
+		&:hover:not(:disabled) {
 			background-color: var(--color-error-hover);
 		}
 		// Back to the default color for this button when active
