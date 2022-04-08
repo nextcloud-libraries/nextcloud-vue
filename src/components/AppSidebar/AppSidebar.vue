@@ -34,13 +34,13 @@ include a standard-header like it's used by the files app.
 	<AppSidebar
 		title="cat-picture.jpg"
 		subtitle="last edited 3 weeks ago">
-		<AppSidebarTab icon="icon-settings" name="Settings" id="settings">
+		<AppSidebarTab icon="icon-settings" name="Settings" id="settings-tab">
 			<template #icon>
 				<Cog :size="20" decorative />
 			</template>
 			Settings tab content
 		</AppSidebarTab>
-		<AppSidebarTab icon="icon-share" name="Sharing" id="share">
+		<AppSidebarTab icon="icon-share" name="Sharing" id="share-tab">
 			Sharing tab content
 		</AppSidebarTab>
 	</AppSidebar>
