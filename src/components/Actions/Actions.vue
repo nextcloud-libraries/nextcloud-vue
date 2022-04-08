@@ -177,7 +177,7 @@ export default {
 			<template #trigger>
 				<button ref="menuButton"
 					:disabled="disabled"
-					class="icon action-item__menutoggle"
+					class="icon vue-button action-item__menutoggle"
 					:class="{
 						[defaultIcon]: !iconSlotIsPopulated,
 						'action-item__menutoggle--with-title': menuTitle,
