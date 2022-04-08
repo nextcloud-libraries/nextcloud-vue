@@ -296,7 +296,7 @@ export default {
 			/**
 			 * Making sure the slots are reactive
 			 */
-			slots: this.$slots
+			slots: this.$slots,
 		}
 	},
 
@@ -352,7 +352,8 @@ export default {
 		if (!this.text && !this.ariaLabel) {
 			console.warn('You need to fill either the text or the ariaLabel props in the button component.', {
 				text: this.text,
-				ariaLabel: this.ariaLabel},
+				ariaLabel: this.ariaLabel,
+			},
 			this)
 		}
 	},
@@ -440,7 +441,7 @@ export default {
 	// Default button type
 	background-color: var(--color-primary-element-lighter);
 	color: var(--color-primary-light-text);
-	&:hover {
+	&:hover:not(:disabled) {
 		background-color: var(--color-primary-light-hover);
 	}
 
@@ -528,7 +529,7 @@ export default {
 	&--vue-primary {
 		background-color: var(--color-primary-element);
 		color: var(--color-primary-text);
-		&:hover {
+		&:hover:not(:disabled) {
 			background-color: var(--color-primary-element-hover);
 		}
 		// Back to the default color for this button when active
@@ -543,7 +544,7 @@ export default {
 		color: var(--color-main-text);
 		background-color: var(--color-background-dark);
 		box-shadow: 0 0 0 2px var(--color-border-dark);
-		&:hover {
+		&:hover:not(:disabled) {
 			color: var(--color-main-text);
 			background-color: var(--color-background-dark);
 			box-shadow: 0 0 0 2px var(--color-primary-element);
@@ -554,7 +555,7 @@ export default {
 	&--vue-tertiary {
 		color: var(--color-main-text);
 		background-color: transparent;
-		&:hover {
+		&:hover:not(:disabled) {
 			background-color: var(--color);
 			background-color: var(--color-background-hover);
 		}
@@ -565,7 +566,7 @@ export default {
 		color: var(--color-main-text);
 		background-color: transparent;
 		opacity: .7;
-		&:hover {
+		&:hover:not(:disabled) {
 			background-color: transparent;
 			opacity: 1;
 		}
@@ -575,7 +576,7 @@ export default {
 	&--vue-success {
 		background-color: var(--color-success);
 		color: white;
-		&:hover {
+		&:hover:not(:disabled) {
 			background-color: var(--color-success-hover);
 		}
 		// Back to the default color for this button when active
@@ -589,7 +590,7 @@ export default {
 	&--vue-warning {
 		background-color: var(--color-warning);
 		color: white;
-		&:hover {
+		&:hover:not(:disabled) {
 			background-color: var(--color-warning-hover);
 		}
 		// Back to the default color for this button when active
@@ -603,7 +604,7 @@ export default {
 	&--vue-error {
 		background-color: var(--color-error);
 		color: white;
-		&:hover {
+		&:hover:not(:disabled) {
 			background-color: var(--color-error-hover);
 		}
 		// Back to the default color for this button when active
