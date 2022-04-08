@@ -113,7 +113,8 @@ export default {
 	computed: {
 		/**
 		 * determines if the action is focusable
-		 * @returns {boolean} is the action focusable ?
+		 *
+		 * @return {boolean} is the action focusable ?
 		 */
 		isFocusable() {
 			return !this.disabled
@@ -124,11 +125,13 @@ export default {
 		onInput(event) {
 			/**
 			 * Emitted on input events of the text field
+			 *
 			 * @type {Event|Date}
 			 */
 			this.$emit('input', event)
 			/**
 			 * Emitted when the inputs value changes
+			 *
 			 * @type {string|Date}
 			 */
 			this.$emit('update:value', event.target.value)
@@ -139,6 +142,7 @@ export default {
 			if (!this.disabled) {
 				/**
 				 * Emitted on submit of the input field
+				 *
 				 * @type {Event}
 				 */
 				this.$emit('submit', event)

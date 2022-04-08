@@ -3,7 +3,7 @@
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
- * @license GNU AGPL version 3 or any later version
+ * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,12 +24,24 @@
  * Originally taken from https://github.com/nextcloud/server/blob/master/core/js/placeholder.js
  */
 
+/**
+ * @param {number} r The red value
+ * @param {number} g The green value
+ * @param {number} b The blue value
+ */
 function Color(r, g, b) {
 	this.r = r
 	this.g = g
 	this.b = b
 }
 
+/**
+ * Calculate the number of steps
+ *
+ * @param {number} steps The number of steps
+ * @param {Array} ends The ends
+ * @return {Array} Array containing the number of steps per color
+ */
 function stepCalc(steps, ends) {
 	const step = new Array(3)
 	step[0] = (ends[1].r - ends[0].r) / steps
@@ -38,6 +50,14 @@ function stepCalc(steps, ends) {
 	return step
 }
 
+/**
+ * Create a color palette from two colors
+ *
+ * @param {number} steps The number of steps the palette has
+ * @param {string} color1 The first color
+ * @param {string} color2 The second color
+ * @return {Array} The created palette array
+ */
 function mixPalette(steps, color1, color2) {
 	const palette = []
 	palette.push(color1)
@@ -58,7 +78,7 @@ function mixPalette(steps, color1, color2) {
  * 3 colors * 6 will result in 18 generated colors
  *
  * @param {number} [steps=6] Number of steps to go from a color to another
- * @returns {Object[]}
+ * @return {object[]}
  */
 function GenColors(steps) {
 	if (!steps) {

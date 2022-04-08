@@ -80,8 +80,7 @@ The list size must be between the min and the max width value.
 			</div>
 
 			<div v-else class="app-content-wrapper">
-				<Splitpanes
-					class="default-theme"
+				<Splitpanes class="default-theme"
 					@resized="handlePaneResize">
 					<Pane class="splitpanes__pane-list"
 						:size="listPaneSize || paneDefaults.list.size"

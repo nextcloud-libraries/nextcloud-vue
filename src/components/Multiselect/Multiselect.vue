@@ -159,8 +159,7 @@ export default {
 	## v-on="$listeners", v-bind="$attrs"
 	-> Forward all undeclared props to the vue-multiselect child
 	-->
-	<VueMultiselect
-		ref="VueMultiselect"
+	<VueMultiselect ref="VueMultiselect"
 		v-model="localValue"
 		v-bind="$attrs"
 		:class="[
@@ -328,10 +327,10 @@ export default {
 			default: true,
 		},
 		/**
-		* If autoLimit, allow to specify the min-width of every
-		* selected option when calculating the number of options
-		* to show. This needs to be a positive integer.
-		*/
+		 * If autoLimit, allow to specify the min-width of every
+		 * selected option when calculating the number of options
+		 * to show. This needs to be a positive integer.
+		 */
 		tagWidth: {
 			type: Number,
 			default: 150,
@@ -351,7 +350,8 @@ export default {
 		 * Calculate the number of options to show
 		 * depending on the width of the select.
 		 * Only works if `autoLimit` is `true`
-		 * @returns {number}
+		 *
+		 * @return {number}
 		 */
 		maxOptions() {
 			if (this.autoLimit && this.elWidth > 0 && this.tagWidth !== 0) {
@@ -362,7 +362,8 @@ export default {
 		},
 		/**
 		 * Make the tooltip limit string for the `autoLimit`
-		 * @returns {string}
+		 *
+		 * @return {string}
 		 */
 		limitString() {
 			return `+${this.value.length - this.maxOptions}`
@@ -385,7 +386,8 @@ export default {
 
 		/**
 		 * If closeOnSelect is not manually set, set it to !multiple
-		 * @returns {boolean} closeOnSelect for vue-multiselect
+		 *
+		 * @return {boolean} closeOnSelect for vue-multiselect
 		 */
 		willCloseOnSelect() {
 			if (this.closeOnSelect === undefined) return !this.multiple
@@ -412,8 +414,8 @@ export default {
 		/**
 		 * Returns the option label
 		 *
-		 * @param {String} option The selected option
-		 * @returns {string}
+		 * @param {string} option The selected option
+		 * @return {string}
 		 */
 		getOptionLabel(option) {
 			return String(this.$refs.VueMultiselect?.getOptionLabel(option))
@@ -422,8 +424,8 @@ export default {
 		 * Format array of groups objects to a string
 		 * for the limit popup using the label prop
 		 *
-		 * @param {array} options The selected options
-		 * @returns {string}
+		 * @param {Array} options The selected options
+		 * @return {string}
 		 */
 		formatLimitTitle(options) {
 			if (Array.isArray(options) && options.length > 0) {

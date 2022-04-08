@@ -134,8 +134,7 @@ include a standard-header like it's used by the files app.
 </docs>
 
 <template>
-	<transition
-		appear
+	<transition appear
 		name="slide-right"
 		@before-enter="onBeforeEnter"
 		@after-enter="onAfterEnter"
@@ -148,8 +147,7 @@ include a standard-header like it's used by the files app.
 				}"
 				class="app-sidebar-header">
 				<!-- close sidebar button -->
-				<a
-					v-tooltip.auto="closeTranslated"
+				<a v-tooltip.auto="closeTranslated"
 					href="#"
 					class="app-sidebar__close"
 					@click.prevent="closeSidebar">
@@ -211,12 +209,10 @@ include a standard-header like it's used by the files app.
 									{{ title }}
 								</h2>
 								<template v-if="titleEditable">
-									<form
-										v-click-outside="() => onSubmitTitle()"
+									<form v-click-outside="() => onSubmitTitle()"
 										class="app-sidebar-header__maintitle-form"
 										@submit.prevent="onSubmitTitle">
-										<input
-											ref="titleInput"
+										<input ref="titleInput"
 											v-focus
 											class="app-sidebar-header__maintitle-input"
 											type="text"
@@ -224,8 +220,7 @@ include a standard-header like it's used by the files app.
 											:value="title"
 											@keydown.esc="onDismissEditing"
 											@input="onTitleInput">
-										<button
-											class="icon-confirm"
+										<button class="icon-confirm"
 											type="submit" />
 									</form>
 								</template>
@@ -237,8 +232,7 @@ include a standard-header like it's used by the files app.
 								</Actions>
 							</div>
 							<!-- secondary title -->
-							<p
-								v-if="subtitle.trim() !== ''"
+							<p v-if="subtitle.trim() !== ''"
 								v-tooltip.auto="subtitleTooltip"
 								class="app-sidebar-header__subtitle">
 								{{ subtitle }}
@@ -435,6 +429,7 @@ export default {
 		onBeforeEnter(element) {
 			/**
 			 * The sidebar is opening and the transition is in progress
+			 *
 			 * @type {HTMLElement}
 			 */
 			this.$emit('opening', element)
@@ -442,6 +437,7 @@ export default {
 		onAfterEnter(element) {
 			/**
 			 * The sidebar is opened and the transition is complete
+			 *
 			 * @type {HTMLElement}
 			 */
 			this.$emit('opened', element)
@@ -449,6 +445,7 @@ export default {
 		onBeforeLeave(element) {
 			/**
 			 * The sidebar is closing and the transition is in progress
+			 *
 			 * @type {HTMLElement}
 			 */
 			this.$emit('closing', element)
@@ -456,6 +453,7 @@ export default {
 		onAfterLeave(element) {
 			/**
 			 * The sidebar is closed and the transition is complete
+			 *
 			 * @type {HTMLElement}
 			 */
 			this.$emit('closed', element)
@@ -463,11 +461,13 @@ export default {
 
 		/**
 		 * Used to tell parent component the user asked to close the sidebar
+		 *
 		 * @param {Event} e close icon click event
 		 */
 		closeSidebar(e) {
 			/**
 			 * The user clicked to closed the sidebar
+			 *
 			 * @type {Event}
 			 */
 			this.$emit('close', e)
@@ -475,11 +475,13 @@ export default {
 
 		/**
 		 * Emit figure click event to parent component
+		 *
 		 * @param {Event} e click event
 		 */
 		onFigureClick(e) {
 			/**
 			 * The figure/background header has been clicked
+			 *
 			 * @type {Event}
 			 */
 			this.$emit('figure-click', e)
@@ -493,6 +495,7 @@ export default {
 			this.isStarred = !this.isStarred
 			/**
 			 * Emitted when the starred value changes
+			 *
 			 * @type {boolean}
 			 */
 			this.$emit('update:starred', this.isStarred)
@@ -501,6 +504,7 @@ export default {
 		editTitle() {
 			/**
 			 * Emitted when the titleEditable value changes
+			 *
 			 * @type {boolean}
 			 */
 			this.$emit('update:titleEditable', true)
@@ -514,11 +518,13 @@ export default {
 
 		/**
 		 * Emit title change event to parent component
+		 *
 		 * @param {Event} event input event
 		 */
 		onTitleInput(event) {
 			/**
 			 * Emitted when the title value changes
+			 *
 			 * @type {string|Date}
 			 */
 			this.$emit('update:title', event.target.value)
@@ -527,6 +533,7 @@ export default {
 		/**
 		 * Emit when the title form edit confirm button is pressed in order
 		 * to change the title.
+		 *
 		 * @param {Event} event submit event
 		 */
 		onSubmitTitle(event) {
@@ -534,6 +541,7 @@ export default {
 			this.$emit('update:titleEditable', false)
 			/**
 			 * Emitted when the title edit input has been submitted
+			 *
 			 * @type {Event}
 			 */
 			this.$emit('submit-title', event)
@@ -543,6 +551,7 @@ export default {
 			this.$emit('update:titleEditable', false)
 			/**
 			 * Emitted when the title edit has been cancelled
+			 *
 			 * @type {Event}
 			 */
 			this.$emit('dismiss-editing')
@@ -550,6 +559,7 @@ export default {
 		onUpdateActive(activeTab) {
 			/**
 			 * The active tab changed
+			 *
 			 * @type {string}
 			 */
 			this.$emit('update:active', activeTab)

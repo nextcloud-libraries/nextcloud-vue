@@ -24,8 +24,7 @@
 	https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-1/tabs.html -->
 
 <template>
-	<section
-		:id="`tab-${id}`"
+	<section :id="`tab-${id}`"
 		:class="{'app-sidebar__tab--active': isActive}"
 		:aria-hidden="!isActive"
 		:aria-labelledby="id"
@@ -74,6 +73,8 @@ export default {
 				/**
 				 * Bottom scroll is reached
 				 */
+				// Todo: Adjust for next major release
+				// eslint-disable-next-line vue/custom-event-name-casing
 				this.$emit('bottomReached', event)
 			}
 			this.$emit('scroll', event)

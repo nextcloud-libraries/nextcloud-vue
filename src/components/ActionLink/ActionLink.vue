@@ -35,8 +35,7 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 
 <template>
 	<li class="action">
-		<a
-			:download="download"
+		<a :download="download"
 			:href="href"
 			:aria-label="ariaLabel"
 			:target="target"

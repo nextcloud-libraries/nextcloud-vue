@@ -60,15 +60,15 @@ export default {
 		},
 
 		/**
-		* hint of the select group input
-		*/
+		 * hint of the select group input
+		 */
 		hint: {
 			type: String,
 			default: '',
 		},
 
 		/**
-		* value of the select group input
+		 * value of the select group input
 		 */
 		value: {
 			type: String,
@@ -101,7 +101,7 @@ export default {
 
 	computed: {
 		/**
-		 * @returns {string}
+		 * @return {string}
 		 */
 		idSubmit() {
 			return this.id + '-submit'
@@ -112,6 +112,7 @@ export default {
 			this.$emit('input', event)
 			/**
 			 * Emitted when the inputs value changes
+			 *
 			 * @type {string}
 			 */
 			this.$emit('update:value', event.target.value)
@@ -120,6 +121,7 @@ export default {
 			if (!this.disabled) {
 				/**
 				 * Emitted on submit of the input field
+				 *
 				 * @type {Event}
 				 */
 				this.$emit('submit', event)
@@ -128,6 +130,7 @@ export default {
 		onChange(event) {
 			/**
 			 * Emitted on change of the input field
+			 *
 			 * @type {Event}
 			 */
 			this.$emit('change', event)

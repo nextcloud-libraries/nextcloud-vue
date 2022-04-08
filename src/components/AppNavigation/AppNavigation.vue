@@ -54,8 +54,7 @@ emit('toggle-navigation', {
 </docs>
 
 <template>
-	<div
-		id="app-navigation-vue"
+	<div id="app-navigation-vue"
 		class="app-navigation"
 		role="navigation"
 		:class="{'app-navigation--close':!open }">
@@ -115,7 +114,7 @@ export default {
 		/**
 		 * Toggle the navigation
 		 *
-		 * @param {Boolean} [state] set the state instead of inverting the current one
+		 * @param {boolean} [state] set the state instead of inverting the current one
 		 */
 		toggleNavigation(state) {
 			this.open = (typeof state === 'undefined') ? !this.open : state

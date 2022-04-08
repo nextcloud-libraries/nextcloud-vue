@@ -140,8 +140,9 @@ export default {
 
 		/**
 		 * Builds the settings navigation menu
+		 *
 		 * @param {object} slots The default slots object passed from the render function.
-		 * @returns {array} the navigation items
+		 * @return {Array} the navigation items
 		 */
 		getSettingsNavigation(slots) {
 			// Array of navigationitems strings
@@ -159,6 +160,7 @@ export default {
 
 		/**
 		 * Scrolls the content to the selected settings section.absolute
+		 *
 		 * @param {string} item the name of the section
 		 */
 		handleSettingsNavigationClick(item) {
@@ -205,7 +207,8 @@ export default {
 	render(createElement) {
 		/**
 		 * Build the navigation
-		 * @returns {object} the navigation
+		 *
+		 * @return {object} the navigation
 		 */
 		const createAppSettingsNavigation = () => {
 			if (this.hasNavigation) {
@@ -230,8 +233,9 @@ export default {
 
 		/**
 		 * Build each list element in the navigation
+		 *
 		 * @param {object} item the navigation item
-		 * @returns {object} the list element
+		 * @return {object} the list element
 		 */
 		const createListElemtent = (item) => createElement('li', {}, [createElement('a', {
 			class: {

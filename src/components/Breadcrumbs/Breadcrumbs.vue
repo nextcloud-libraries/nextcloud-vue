@@ -228,7 +228,7 @@ export default {
 		/**
 		 * Close the actions menu
 		 *
-		 * @param {Object} e The event
+		 * @param {object} e The event
 		 */
 		closeActions(e) {
 			// Don't do anything if we leave towards a child element.
@@ -292,7 +292,7 @@ export default {
 		 *
 		 * @param {Array} a The first array
 		 * @param {Array} b The second array
-		 * @returns {boolean} Wether the arrays are equal
+		 * @return {boolean} Wether the arrays are equal
 		 */
 		arraysEqual(a, b) {
 			if (a.length !== b.length) return false
@@ -310,7 +310,7 @@ export default {
 		 * Calculates the total width of all breadcrumbs
 		 *
 		 * @param {Array} breadcrumbs All breadcrumbs
-		 * @returns {Integer} The total width
+		 * @return {number} The total width
 		 */
 		getTotalWidth(breadcrumbs) {
 			return breadcrumbs.reduce((width, crumb, index) => width + this.getWidth(crumb.elm), 0)
@@ -318,8 +318,8 @@ export default {
 		/**
 		 * Calculates the width of the provided element
 		 *
-		 * @param {Object} el The element
-		 * @returns {Integer} The width
+		 * @param {object} el The element
+		 * @return {number} The width
 		 */
 		getWidth(el) {
 			if (!el.classList) return 0
@@ -336,8 +336,8 @@ export default {
 		/**
 		 * Prevents the default of a provided event
 		 *
-		 * @param {Object} e The event
-		 * @returns {boolean}
+		 * @param {object} e The event
+		 * @return {boolean}
 		 */
 		preventDefault(e) {
 			if (e.preventDefault) {
@@ -349,8 +349,8 @@ export default {
 		 * Handles the drag start.
 		 * Prevents a breadcrumb from being draggable.
 		 *
-		 * @param {Object} e The event
-		 * @returns {boolean}
+		 * @param {object} e The event
+		 * @return {boolean}
 		 */
 		dragStart(e) {
 			return this.preventDefault(e)
@@ -358,10 +358,10 @@ export default {
 		/**
 		 * Handles when something is dropped on the breadcrumb.
 		 *
-		 * @param {Object} e The drop event
-		 * @param {String} path The path of the breadcrumb
+		 * @param {object} e The drop event
+		 * @param {string} path The path of the breadcrumb
 		 * @param {boolean} disabled Whether dropping is disabled for this breadcrumb
-		 * @returns {boolean}
+		 * @return {boolean}
 		 */
 		dropped(e, path, disabled) {
 			/**
@@ -370,6 +370,7 @@ export default {
 			if (!disabled) {
 				/**
 				 * Event emitted when something is dropped on the breadcrumb.
+				 *
 				 * @type {null}
 				 */
 				this.$emit('dropped', e, path)
@@ -385,8 +386,8 @@ export default {
 		/**
 		 * Handles the drag over event
 		 *
-		 * @param {Object} e The drag over event
-		 * @returns {boolean}
+		 * @param {object} e The drag over event
+		 * @return {boolean}
 		 */
 		dragOver(e) {
 			return this.preventDefault(e)
@@ -394,7 +395,7 @@ export default {
 		/**
 		 * Handles the drag enter event
 		 *
-		 * @param {Object} e The drag over event
+		 * @param {object} e The drag over event
 		 * @param {boolean} disabled Whether dropping is disabled for this breadcrumb
 		 */
 		dragEnter(e, disabled) {
@@ -417,7 +418,7 @@ export default {
 		/**
 		 * Handles the drag leave event
 		 *
-		 * @param {Object} e The drag leave event
+		 * @param {object} e The drag leave event
 		 * @param {boolean} disabled Whether dropping is disabled for this breadcrumb
 		 */
 		dragLeave(e, disabled) {
@@ -447,7 +448,7 @@ export default {
 		 * add it to the array of all crumbs.
 		 *
 		 * @param {Array} crumbs The array of the crumbs to hide
-		 * @param {Integer} offset The offset of the indices of the provided crumbs array
+		 * @param {number} offset The offset of the indices of the provided crumbs array
 		 */
 		hideCrumbs(crumbs, offset = 0) {
 			crumbs.forEach((crumb, i) => {
@@ -465,7 +466,7 @@ export default {
 	 * The render function to display the component
 	 *
 	 * @param {Function} createElement The function to create VNodes
-	 * @returns {VNodes} The created VNodes
+	 * @return {VNodes} The created VNodes
 	 */
 	render(createElement) {
 		// Get the breadcrumbs

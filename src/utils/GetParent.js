@@ -4,7 +4,7 @@
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
- * @license GNU AGPL version 3 or any later version
+ * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,9 +24,9 @@
 /**
  * Get the first parent component matching the provided name
  *
- * @param {Object} context the context to search from (usualy this)
+ * @param {object} context the context to search from (usualy this)
  * @param {string} name the parent name
- * @returns {Object} the parent component
+ * @return {object} the parent component
  */
 const GetParent = function(context, name) {
 	let parent = context.$parent

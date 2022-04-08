@@ -3,7 +3,7 @@
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
- * @license GNU AGPL version 3 or any later version
+ * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -46,7 +46,7 @@ export default {
 		 * Convert the value string to html for the inner content
 		 *
 		 * @param {string} value the content without html
-		 * @returns {string} rendered html
+		 * @return {string} rendered html
 		 */
 		renderContent(value) {
 			// Sanitize the value prop
@@ -80,7 +80,7 @@ export default {
 		 * Convert the innerHtml content to a string with mentions as text
 		 *
 		 * @param {string} content the content without html
-		 * @returns {string}
+		 * @return {string}
 		 */
 		parseContent(content) {
 			let text = content.replace(/<br>/gmi, '\n')
@@ -101,7 +101,7 @@ export default {
 		 * Generate an autocompletion popup entry template
 		 *
 		 * @param {string} value the value to match against the userData
-		 * @returns {string}
+		 * @return {string}
 		 */
 		genSelectTemplate(value) {
 			const data = this.userData[value]
@@ -121,9 +121,9 @@ export default {
 		/**
 		 * Render a component and return its html content
 		 *
-		 * @param {Object} propsData the props to pass to the component
-		 * @param {Object} component the component to render
-		 * @returns {string} the rendered html
+		 * @param {object} propsData the props to pass to the component
+		 * @param {object} component the component to render
+		 * @return {string} the rendered html
 		 */
 		renderComponentHtml(propsData, component) {
 			const View = Vue.extend(component)

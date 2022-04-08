@@ -39,8 +39,7 @@ This component is meant to be used inside a Breadcrumbs component.
 		@dragover.prevent="() => {}"
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
-		<element
-			:is="tag"
+		<element :is="tag"
 			v-if="(title || icon) && !$slots.default"
 			:to="to"
 			:href="href">
@@ -150,7 +149,7 @@ export default {
 		/**
 		 * Determines which element tag to use
 		 *
-		 * @returns {String} the tag
+		 * @return {string} the tag
 		 */
 		tag() {
 			return this.to ? 'router-link' : 'a'
@@ -166,6 +165,7 @@ export default {
 		onOpenChange(open) {
 			/**
 			 * Event emitted when the open state of the Actions menu changes
+			 *
 			 * @type {null}
 			 */
 			this.$emit('update:open', open)
@@ -174,8 +174,8 @@ export default {
 		 * Function to handle a drop on the breadcrumb.
 		 * $emit the event and the path, remove the hovering state.
 		 *
-		 * @param {Object} e The drop event
-		 * @returns {boolean}
+		 * @param {object} e The drop event
+		 * @return {boolean}
 		 */
 		dropped(e) {
 			/**
@@ -186,6 +186,7 @@ export default {
 			}
 			/**
 			 * Event emitted when something is dropped on the breadcrumb.
+			 *
 			 * @type {null}
 			 */
 			this.$emit('dropped', e, this.to || this.href)
@@ -196,7 +197,7 @@ export default {
 		/**
 		 * Add the hovering state on drag enter
 		 *
-		 * @param {Object} e The drag enter event
+		 * @param {object} e The drag enter event
 		 */
 		dragEnter(e) {
 			/**
@@ -210,7 +211,7 @@ export default {
 		/**
 		 * Remove the hovering state on drag leave
 		 *
-		 * @param {Object} e The drag leave event
+		 * @param {object} e The drag leave event
 		 */
 		dragLeave(e) {
 			/**

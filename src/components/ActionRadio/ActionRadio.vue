@@ -115,7 +115,8 @@ export default {
 	computed: {
 		/**
 		 * determines if the action is focusable
-		 * @returns {boolean} is the action focusable ?
+		 *
+		 * @return {boolean} is the action focusable ?
 		 */
 		isFocusable() {
 			return !this.disabled
@@ -130,12 +131,14 @@ export default {
 		onChange(event) {
 			/**
 			 * Emitted when the radio state is changed
+			 *
 			 * @type {boolean}
 			 */
 			this.$emit('update:checked', this.$refs.radio.checked)
 
 			/**
 			 * Emitted when the radio state is changed
+			 *
 			 * @type {Event}
 			 */
 			this.$emit('change', event)

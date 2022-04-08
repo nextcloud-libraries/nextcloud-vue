@@ -197,7 +197,8 @@ export default {
 		},
 		/**
 		 * determines if the action is focusable
-		 * @returns {boolean} is the action focusable ?
+		 *
+		 * @return {boolean} is the action focusable ?
 		 */
 		isFocusable() {
 			return !this.disabled
@@ -214,12 +215,14 @@ export default {
 		onInput(event) {
 			/**
 			 * Emitted on input events of the text field
+			 *
 			 * @type {Event|Date}
 			 */
 			this.$emit('input', event)
 			/**
 			 * Emitted when the inputs value changes
 			 * ! DatetimePicker only send the value
+			 *
 			 * @type {string|Date}
 			 */
 			this.$emit('update:value', event.target ? event.target.value : event)
@@ -230,6 +233,7 @@ export default {
 			if (!this.disabled) {
 				/**
 				 * Emitted on submit of the input field
+				 *
 				 * @type {Event}
 				 */
 				this.$emit('submit', event)
@@ -241,6 +245,7 @@ export default {
 		onChange(event) {
 			/**
 			 * Emitted on change of the input field
+			 *
 			 * @type {Event}
 			 */
 			this.$emit('change', event)

@@ -262,7 +262,8 @@ export default {
 	computed: {
 		/**
 		 * Icon size
-		 @returns {number}
+		 *
+		 @return {number}
 		 */
 		size() {
 			return this.type === TYPE_SWITCH
@@ -272,7 +273,8 @@ export default {
 
 		/**
 		 * Css local variables for this component
-		 * @returns {Object}
+		 *
+		 * @return {object}
 		 */
 		cssVars() {
 			return {
@@ -283,7 +285,8 @@ export default {
 		/**
 		 * Return the input type.
 		 * Switch is not an official type
-		 * @returns {string}
+		 *
+		 * @return {string}
 		 */
 		inputType() {
 			if (this.type === TYPE_RADIO) {
@@ -296,7 +299,8 @@ export default {
 		 * Check if that entry is checked
 		 * If value is defined, we use that as the checked value
 		 * If not, we expect true/false in this.checked
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		isChecked() {
 			if (this.value !== null) {
@@ -310,7 +314,8 @@ export default {
 
 		/**
 		 * Returns the proper Material icon depending on the select case
-		 * @returns {Component}
+		 *
+		 * @return {Component}
 		 */
 		checkboxRadioIconElement() {
 			if (this.type === TYPE_RADIO) {
@@ -390,7 +395,8 @@ export default {
 
 		/**
 		 * Get the input set based on this name
-		 * @returns {Node[]}
+		 *
+		 * @return {Node[]}
 		 */
 		getInputsSet() {
 			return [...document.getElementsByName(this.name)]

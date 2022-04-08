@@ -101,8 +101,7 @@ export default {
 </docs>
 
 <template>
-	<DatePicker
-		ref="datepicker"
+	<DatePicker ref="datepicker"
 		:append-to-body="appendToBody"
 		:clearable="clearable"
 		:format="format ? format : formatTypeMap"
@@ -120,8 +119,7 @@ export default {
 		@select-month="handleSelectMonth"
 		@update:value="$emit('update:value', value)">
 		<template v-if="showTimezoneSelect" #icon-calendar>
-			<Popover
-				:open.sync="showTimezonePopover"
+			<Popover :open.sync="showTimezonePopover"
 				open-class="timezone-popover-wrapper">
 				<template #trigger>
 					<button class="datetime-picker-inline-icon icon-timezone icon"
@@ -134,8 +132,7 @@ export default {
 						{{ t('Please select a time zone:') }}
 					</strong>
 				</div>
-				<TimezonePicker
-					v-model="tzVal"
+				<TimezonePicker v-model="tzVal"
 					class="timezone-popover-wrapper__timezone-select"
 					@input="$emit('update:timezone-id', arguments[0])" />
 			</Popover>
@@ -260,7 +257,8 @@ export default {
 		/**
 		 * Datepicker language
 		 * https://github.com/mengxiong10/vue2-datepicker/blob/master/locale.md
-		 * @returns {object}
+		 *
+		 * @return {object}
 		 */
 		lang() {
 			return {
@@ -279,7 +277,8 @@ export default {
 
 		/**
 		 * Translated placeholder
-		 * @returns {string}
+		 *
+		 * @return {string}
 		 */
 		placeholder() {
 			if (this.type === 'time') {
@@ -303,7 +302,8 @@ export default {
 		/**
 		 * If format is not provided, try to match the type
 		 * or fallback to 'date'
-		 * @returns {string}
+		 *
+		 * @return {string}
 		 */
 		formatTypeMap() {
 			return formatMap[this.type] ?? formatMap.date

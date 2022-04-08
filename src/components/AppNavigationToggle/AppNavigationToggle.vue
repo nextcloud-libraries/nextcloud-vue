@@ -23,8 +23,7 @@
  -->
 <template>
 	<Actions class="app-navigation-toggle">
-		<ActionButton
-			:aria-expanded="open ? 'true' : 'false'"
+		<ActionButton :aria-expanded="open ? 'true' : 'false'"
 			aria-controls="app-navigation-vue"
 			@click="toggleNavigation">
 			<template #icon>

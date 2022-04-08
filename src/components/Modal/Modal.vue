@@ -136,8 +136,7 @@ export default {
 
 			<!-- Content wrapper -->
 			<transition :name="modalTransitionName">
-				<div
-					v-show="showModal"
+				<div v-show="showModal"
 					:class="[
 						`modal-wrapper--${size}`,
 						spreadNavigation ? 'modal-wrapper--spread-navigation' : ''
@@ -355,6 +354,7 @@ export default {
 	watch: {
 		/**
 		 * Handle play/pause of an ongoing slideshow
+		 *
 		 * @param {boolean} paused is the player paused
 		 */
 		slideshowPaused(paused) {

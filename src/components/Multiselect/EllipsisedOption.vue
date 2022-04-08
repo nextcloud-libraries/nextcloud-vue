@@ -22,13 +22,11 @@
 
 <template>
 	<div class="name-parts" :title="name">
-		<Highlight
-			class="name-parts__first"
+		<Highlight class="name-parts__first"
 			:text="part1"
 			:search="search"
 			:highlight="highlight1" />
-		<Highlight
-			v-if="part2"
+		<Highlight v-if="part2"
 			class="name-parts__last"
 			:text="part2"
 			:search="search"
@@ -73,7 +71,7 @@ export default {
 		/**
 		 * Index at which to split the name if it is longer than 10 characters.
 		 *
-		 * @returns {Integer} The position at which to split
+		 * @return {number} The position at which to split
 		 */
 		split() {
 			// leave maximum 10 letters
@@ -95,7 +93,7 @@ export default {
 		 * The ranges to highlight. Since we split the string for ellipsising,
 		 * the Highlight component cannot figure this out itself and needs the ranges provided.
 		 *
-		 * @returns {Array} The array with the ranges to highlight
+		 * @return {Array} The array with the ranges to highlight
 		 */
 		highlight1() {
 			if (!this.search) {
@@ -108,7 +106,7 @@ export default {
 		 * Ranges out of the string length are discarded by the Highlight component,
 		 * so we don't need to take care of this here.
 		 *
-		 * @returns {Array} The array with the ranges to highlight
+		 * @return {Array} The array with the ranges to highlight
 		 */
 		highlight2() {
 			return this.highlight1.map(range => {

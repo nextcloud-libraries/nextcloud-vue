@@ -140,8 +140,7 @@ Just set the `pinned` prop.
 				{{ title }}
 			</span>
 			<div v-if="editingActive" class="editingContainer">
-				<InputConfirmCancel
-					ref="editingInput"
+				<InputConfirmCancel ref="editingInput"
 					v-model="editingValue"
 					:placeholder="editPlaceholder !== '' ? editPlaceholder : title"
 					@cancel="cancelEditing"
@@ -173,8 +172,7 @@ Just set the `pinned` prop.
 					<!-- @slot Slot for the custom menu icon -->
 					<slot name="menu-icon" />
 				</template>
-				<ActionButton
-					v-if="editable && !editingActive"
+				<ActionButton v-if="editable && !editingActive"
 					:aria-label="editButtonAriaLabel"
 					@click="handleEdit">
 					<template #icon>
@@ -182,8 +180,7 @@ Just set the `pinned` prop.
 					</template>
 					{{ editLabel }}
 				</ActionButton>
-				<ActionButton
-					v-if="undo"
+				<ActionButton v-if="undo"
 					:aria-label="undoButtonAriaLabel"
 					@click="handleUndo">
 					<template #icon>
@@ -241,81 +238,81 @@ export default {
 			required: true,
 		},
 		/**
-		* Refers to the icon on the left, this prop accepts a class
-		* like 'icon-category-enabled'.
-		*/
+		 * Refers to the icon on the left, this prop accepts a class
+		 * like 'icon-category-enabled'.
+		 */
 		icon: {
 			type: String,
 			default: '',
 		},
 
 		/**
-		* Displays a loading animated icon on the left of the element
-		* instead of the icon.
-		*/
+		 * Displays a loading animated icon on the left of the element
+		 * instead of the icon.
+		 */
 		loading: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		* Passing in a route will make the root element of this
-		* component a `<router-link />` that points to that route.
-		* By leaving this blank, the root element will be a `<li>`.
-		*/
+		 * Passing in a route will make the root element of this
+		 * component a `<router-link />` that points to that route.
+		 * By leaving this blank, the root element will be a `<li>`.
+		 */
 		to: {
 			type: [String, Object],
 			default: '',
 		},
 		/**
-		* Pass in `true` if you want the matching behaviour to
-		* be non-inclusive: https://router.vuejs.org/api/#exact
-		*/
+		 * Pass in `true` if you want the matching behaviour to
+		 * be non-inclusive: https://router.vuejs.org/api/#exact
+		 */
 		exact: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		* Gives the possibility to collapse the children elements into the
-		* parent element (true) or expands the children elements (false).
-		*/
+		 * Gives the possibility to collapse the children elements into the
+		 * parent element (true) or expands the children elements (false).
+		 */
 		allowCollapse: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		* Makes the title of the item editable by providing an `ActionButton`
-		* component that toggles a form
-		*/
+		 * Makes the title of the item editable by providing an `ActionButton`
+		 * component that toggles a form
+		 */
 		editable: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		* Only for 'editable' items, sets label for the edit action button.
-		*/
+		 * Only for 'editable' items, sets label for the edit action button.
+		 */
 		editLabel: {
 			type: String,
 			default: '',
 		},
 		/**
-		* Only for items in 'editable' mode, sets the placeholder text for the editing form.
-		*/
+		 * Only for items in 'editable' mode, sets the placeholder text for the editing form.
+		 */
 		editPlaceholder: {
 			type: String,
 			default: '',
 		},
 		/**
-		* Pins the item to the bottom left area, above the settings. Do not
-		* place 'non-pinned' `AppnavigationItem` components below `pinned`
-		* ones.
-		*/
+		 * Pins the item to the bottom left area, above the settings. Do not
+		 * place 'non-pinned' `AppnavigationItem` components below `pinned`
+		 * ones.
+		 */
 		pinned: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		* Puts the item in the 'undo' state.
-		*/
+		 * Puts the item in the 'undo' state.
+		 */
 		undo: {
 			type: Boolean,
 			default: false,
