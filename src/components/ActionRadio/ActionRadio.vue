@@ -50,22 +50,19 @@ So that only one of each name set can be selected at the same time.
 				class="radio action-radio__radio"
 				@keydown.enter.exact.prevent="toggleInput"
 				@change="onChange">
-			<label ref="label" :for="id" class="action-radio__label">{{ text }}</label>
+			<label ref="label" :for="id" class="action-radio__label">
+				<slot />
+			</label>
 
-			<!-- fake slot to gather inner text -->
-			<slot v-if="false" />
 		</span>
 	</li>
 </template>
 
 <script>
-import ActionGlobalMixin from '../../mixins/actionGlobal'
 import GenRandomId from '../../utils/GenRandomId'
 
 export default {
 	name: 'ActionRadio',
-
-	mixins: [ActionGlobalMixin],
 
 	props: {
 		/**
