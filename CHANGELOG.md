@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v5.3.1](https://github.com/nextcloud/nextcloud-vue/tree/v5.3.1) (2022-04-08)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v5.3.0...v5.3.1)
+
+## Fixed bugs
+
+- Fix button disable state and reactivity [\#2622](https://github.com/nextcloud/nextcloud-vue/pull/2622) ([skjnldsv](https://github.com/skjnldsv))
+- Fix border radius for small progress bar [\#2618](https://github.com/nextcloud/nextcloud-vue/pull/2618) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Revert "Use large corner radius for the Popover component" [\#2611](https://github.com/nextcloud/nextcloud-vue/pull/2611) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+- fix positioning of content text [\#2601](https://github.com/nextcloud/nextcloud-vue/pull/2601) ([szaimen](https://github.com/szaimen))
+- Fix EmptyContent svg size [\#2592](https://github.com/nextcloud/nextcloud-vue/pull/2592) ([skjnldsv](https://github.com/skjnldsv))
+- Fix visual issue of the settings tab in the documentation [\#2573](https://github.com/nextcloud/nextcloud-vue/pull/2573) ([quentinguidee](https://github.com/quentinguidee))
+- Don't give normal and large modals a fixed height [\#2610](https://github.com/nextcloud/nextcloud-vue/pull/2610) ([szaimen](https://github.com/szaimen))
+- Cleanup tooltip and popover CSS [\#2602](https://github.com/nextcloud/nextcloud-vue/pull/2602) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Ensure l10n check uses right node and npm version [\#2596](https://github.com/nextcloud/nextcloud-vue/pull/2596) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Action button vue class [\#2586](https://github.com/nextcloud/nextcloud-vue/pull/2586) ([CarlSchwan](https://github.com/CarlSchwan))
+- Replace deprecated String.prototype.substr\(\) [\#2579](https://github.com/nextcloud/nextcloud-vue/pull/2579) ([CommanderRoot](https://github.com/CommanderRoot))
+- Only show actions if actions given for breadcrumbs [\#2559](https://github.com/nextcloud/nextcloud-vue/pull/2559) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
 ## [v5.3.0](https://github.com/nextcloud/nextcloud-vue/tree/v5.3.0) (2022-03-31)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v5.2.1...v5.3.0)
