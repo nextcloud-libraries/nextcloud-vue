@@ -735,7 +735,6 @@ export default {
 			max-width: 90%;
 			width: 600px;
 			max-height: 90%;
-			height: 600px;
 		}
 	}
 	&--large {
@@ -743,7 +742,6 @@ export default {
 			max-width: 90%;
 			width: 900px;
 			max-height: 90%;
-			height: 700px;
 		}
 	}
 	&--full {
