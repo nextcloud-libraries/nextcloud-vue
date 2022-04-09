@@ -579,7 +579,7 @@ export default {
 	}
 
 	// On wider screens the title can be centered
-	@media only screen and (min-width: $breakpoint-mobile / 2) {
+	@media only screen and (min-width: math.div($breakpoint-mobile, 2)) {
 		.modal-title {
 			padding-left: #{$clickable-area * 3}; // maximum actions is 3
 			text-align: center;
@@ -598,7 +598,7 @@ export default {
 			align-items: center;
 			justify-content: center;
 			box-sizing: border-box;
-			margin: ($header-height - $clickable-area) / 2;
+			margin: math.div($header-height - $clickable-area, 2);
 			padding: 0;
 		}
 
@@ -616,7 +616,7 @@ export default {
 				.play-pause-icons__play,
 				.play-pause-icons__pause {
 					opacity: $opacity_full;
-					border-radius: $clickable-area / 2;
+					border-radius: math.div($clickable-area, 2);
 					background-color: $icon-focus-bg;
 				}
 			}
@@ -625,14 +625,14 @@ export default {
 				box-sizing: border-box;
 				width: $clickable-area;
 				height: $clickable-area;
-				margin: ($header-height - $clickable-area) / 2;
+				margin: math.div($header-height - $clickable-area, 2);
 				cursor: pointer;
 				opacity: $opacity_normal;
 			}
 		}
 
 		.header-actions {
-			margin: ($header-height - $clickable-area) / 2;
+			margin: math.div($header-height - $clickable-area, 2);
 			color: white;
 		}
 
@@ -755,7 +755,7 @@ export default {
 	}
 
 	// Make modal full screen on mobile
-	@media only screen and (max-width: $breakpoint-mobile / 2) {
+	@media only screen and (max-width: math.div($breakpoint-mobile, 2)) {
 		&:not(&--small) .modal-container {
 			max-width: initial;
 			width: 100%;

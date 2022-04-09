@@ -611,7 +611,7 @@ $top-buttons-spacing: 6px;
 			width: $clickable-area;
 			height: $clickable-area;
 			opacity: $opacity_normal;
-			border-radius: $clickable-area / 2;
+			border-radius: math.div($clickable-area, 2);
 			&:hover,
 			&:active,
 			&:focus {
@@ -634,7 +634,7 @@ $top-buttons-spacing: 6px;
 					z-index: 2;
 					width: $desc-height + $desc-vertical-padding;
 					height: $desc-height + $desc-vertical-padding;
-					margin: $desc-vertical-padding / 2;
+					margin: math.div($desc-vertical-padding, 2);
 					border-radius: 3px;
 					flex: 0 0 auto;
 				}
@@ -651,7 +651,7 @@ $top-buttons-spacing: 6px;
 					.app-sidebar-header__tertiary-actions {
 						z-index: 3; // above star
 						position: absolute;
-						top: $desc-vertical-padding / 2;
+						top: math.div($desc-vertical-padding, 2);
 						left: -1 * $clickable-area;
 					}
 					.app-sidebar-header__menu {
@@ -707,7 +707,7 @@ $top-buttons-spacing: 6px;
 			display: flex;
 			flex-direction: row;
 			justify-content: center;
-			padding: #{$desc-vertical-padding} #{$top-buttons-spacing} #{$desc-vertical-padding} #{$desc-vertical-padding / 2};
+			padding: #{$desc-vertical-padding} #{$top-buttons-spacing} #{$desc-vertical-padding} #{math.div($desc-vertical-padding, 2)};
 
 			// custom overrides
 			&--with-tertiary-action {
@@ -780,7 +780,7 @@ $top-buttons-spacing: 6px;
 					.app-sidebar-header__menu {
 						height: $clickable-area;
 						width: $clickable-area;
-						border-radius: $clickable-area / 2;
+						border-radius: math.div($clickable-area, 2);
 						background-color: $action-background-hover;
 						margin-left: 5px;
 					}

@@ -418,7 +418,7 @@ export default {
 	& * {
 		cursor: pointer;
 	}
-	border-radius: $clickable-area / 2;
+	border-radius: math.div($clickable-area, 2);
 	transition: background-color 0.1s linear !important;
 	transition: border 0.1s linear;
 
