@@ -98,6 +98,7 @@
 		"jest-serializer-vue": "^2.0.2",
 		"jest-transform-stub": "^2.0.0",
 		"node-sass": "^7.0.1",
+		"process": "^0.11.10",
 		"raw-loader": "^4.0.1",
 		"resolve-url-loader": "^5.0.0",
 		"sanitize-filename": "^1.6.3",

@@ -1,5 +1,6 @@
 const path = require('path')
 const { merge } = require('webpack-merge')
+const webpack = require('webpack')
 const webpackConfig = require('./webpack.dev.js')
 
 const newConfig = Object.assign({}, webpackConfig, {
@@ -10,6 +11,15 @@ const newConfig = Object.assign({}, webpackConfig, {
 			rule => rule.use !== 'eslint-loader'
 		),
 	},
+	plugins: [
+		...webpackConfig.plugins,
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.ProvidePlugin({
+			// Webpack 5 does no longer include a polyfill for this Node.js variable.
+			// https://webpack.js.org/migrate/5/#run-a-single-build-and-follow-advice
+			process: 'process/browser'
+		})
+	],
 })
 
 module.exports = {
