@@ -619,7 +619,7 @@ export default {
 	max-width: 200px;
 	padding: 4px;
 	// Show maximum 5 entries and a half to show scroll
-	max-height: 34.5px * 5 + 29.5px / 2;
+	max-height: 34.5px * 5 + math.div(29.5px, 2);
 
 	&__item {
 		border-radius: 8px;

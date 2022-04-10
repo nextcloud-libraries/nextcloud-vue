@@ -200,7 +200,7 @@ $input-margin: 4px;
 		min-height: 0;
 		/* Keep padding to define the width to
 			assure correct position of a possible text */
-		padding: #{$clickable-area / 2} 0 #{$clickable-area / 2} $clickable-area;
+		padding: #{math.div($clickable-area, 2)} 0 #{math.div($clickable-area, 2)} $clickable-area;
 
 		background-position: #{$icon-margin} center;
 		background-size: $icon-size;
