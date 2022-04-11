@@ -97,7 +97,6 @@
 		"jest-environment-jsdom": "27.5.1",
 		"jest-serializer-vue": "^2.0.2",
 		"jest-transform-stub": "^2.0.0",
-		"process": "^0.11.10",
 		"raw-loader": "^4.0.1",
 		"resolve-url-loader": "^5.0.0",
 		"sanitize-filename": "^1.6.3",
