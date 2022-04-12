@@ -725,8 +725,8 @@ export default {
 	// Sizing
 	&--small {
 		.modal-container {
-			width: 390px;
-			max-width: 95%;
+			width: 400px;
+			max-width: 90%;
 			max-height: 90%;
 		}
 	}
@@ -756,7 +756,7 @@ export default {
 
 	// Make modal full screen on mobile
 	@media only screen and (max-width: math.div($breakpoint-mobile, 2)) {
-		&:not(&--small) .modal-container {
+		.modal-container {
 			max-width: initial;
 			width: 100%;
 			max-height: initial;
