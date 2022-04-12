@@ -42,7 +42,11 @@ describe('Popover.vue', () => {
 			expect(wrapper.find('.content').isVisible()).toBe(false)
 		})
 		it('is open when prop is set', async () => {
+			const div = document.createElement('div')
+			div.id = 'root'
+			document.body.appendChild(div)
 			const wrapper = mount(Popover, {
+				attachTo: '#root',
 				slots: {
 					default: ['<div class="content" />'],
 					trigger: ['<div class="trigger" />'],
@@ -55,6 +59,7 @@ describe('Popover.vue', () => {
 				}
 			})
 			expect(wrapper.find('.content').isVisible()).toBe(true)
+			wrapper.destroy()
 		})
 	})
 	describe('is reactive', () => {
