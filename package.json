@@ -92,7 +92,7 @@
 		"file-loader": "^6.0.0",
 		"gettext-extractor": "^3.5.2",
 		"gettext-parser": "^5.0.0",
-		"glob": "^7.1.6",
+		"glob": "^8.0.1",
 		"jest": "^27.0.4",
 		"jest-environment-jsdom": "27.5.1",
 		"jest-serializer-vue": "^2.0.2",
