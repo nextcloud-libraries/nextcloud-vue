@@ -441,7 +441,7 @@ export default {
 		}
 	},
 
-	beforeDestroyed() {
+	beforeDestroy() {
 		if (this.showUserStatus && this.user && !this.isNoUser) {
 			unsubscribe('user_status:status.updated', this.handleUserStatusUpdated)
 		}
