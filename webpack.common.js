@@ -149,7 +149,9 @@ module.exports = {
 		new StyleLintPlugin({
 			files: ['src/**/*.vue', 'src/**/*.scss', 'src/**/*.css'],
 		}),
-		new ESLintPlugin(),
+		new ESLintPlugin({
+			extensions: ['js', 'vue'],
+		}),
 		new DefinePlugin({
 			SCOPE_VERSION,
 			TRANSLATIONS: JSON.stringify(translations),
