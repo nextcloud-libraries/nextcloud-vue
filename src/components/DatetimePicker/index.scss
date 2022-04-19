@@ -66,6 +66,18 @@ $cell_height: 32px;
 		border-top: 1px solid var(--color-border);
 	}
 
+	.mx-datepicker-btn-confirm {
+		background-color: var(--color-primary-element);
+		border-color: var(--color-primary-element);
+		color: var(--color-primary-text) !important;
+		opacity: 1 !important;
+	}
+
+	.mx-datepicker-btn-confirm:hover {
+		background-color: var(--color-primary-element-light) !important;
+		border-color: var(--color-primary-element-light) !important;
+	}
+
 	// default popup styles
 	.mx-calendar {
 		width: $cell_height * 7 + 2 * 5px + 30px; // 7 days + padding + 30px padding to fit the buttons
@@ -344,7 +356,6 @@ $cell_height: 32px;
 			order: 3;
 		}
 	}
-
 	// Week panel
 	.mx-calendar-week-mode {
 		// move focus on row and not on cell
