@@ -299,6 +299,9 @@ $cell_height: 32px;
 					display: none;
 				}
 			}
+			&.mx-btn-text {
+				line-height: initial;
+			}
 		}
 
 		.mx-calendar-header-label {
