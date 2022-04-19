@@ -235,7 +235,7 @@ $cell_height: 32px;
 	.mx-btn {
 		min-width: $cell_height;
 		height: $cell_height;
-		margin: 0 auto; // center also single element
+		margin: 0 2px !important; // center also single element. Definitively use margin so that buttons are not touching
 		padding: 7px 10px;
 		cursor: pointer;
 		text-decoration: none;
