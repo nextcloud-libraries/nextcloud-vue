@@ -55,7 +55,7 @@ $cell_height: 32px;
 	}
 	
 	&.show-week-number .mx-calendar {
-		width: $cell_height * 8 + 2 * 5px; // week number + 7 days + padding
+		width: $cell_height * 8 + 2 * 5px + 30px; // week number + 7 days + padding + 30px padding to fit the buttons
 	}
 
 	.mx-datepicker-header {
@@ -68,10 +68,10 @@ $cell_height: 32px;
 
 	// default popup styles
 	.mx-calendar {
-		width: $cell_height * 7 + 2 * 5px; // 7 days + padding
+		width: $cell_height * 7 + 2 * 5px + 30px; // 7 days + padding + 30px padding to fit the buttons
 		padding: 5px;
 		&.mx-calendar-week-mode {
-			width: $cell_height * 8 + 2 * 5px; // week number + 7 days + padding
+			width: $cell_height * 8 + 2 * 5px + 30px; // week number + 7 days + padding + 30px padding to fit the buttons
 		}
 	}
 
