@@ -8,8 +8,6 @@ const { DefinePlugin } = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const BabelLoaderExcludeNodeModulesExcept = require('babel-loader-exclude-node-modules-except')
 const nodeExternals = require('webpack-node-externals')
-const StyleLintPlugin = require('stylelint-webpack-plugin')
-const ESLintPlugin = require('eslint-webpack-plugin')
 
 // scope variable
 // fallback for cypress testing
@@ -146,10 +144,6 @@ module.exports = {
 	},
 	plugins: [
 		new VueLoaderPlugin(),
-		new StyleLintPlugin({
-			files: ['src/**/*.vue', 'src/**/*.scss', 'src/**/*.css'],
-		}),
-		new ESLintPlugin(),
 		new DefinePlugin({
 			SCOPE_VERSION,
 			TRANSLATIONS: JSON.stringify(translations),
