@@ -52,9 +52,9 @@ export default {
 </docs>
 
 <script>
-import Modal from '../Modal'
-import isMobile from '../../mixins/isMobile'
-import { t } from '../../l10n'
+import Modal from '../Modal/index.js'
+import isMobile from '../../mixins/isMobile/index.js'
+import { t } from '../../l10n.js'
 
 import debounce from 'debounce'
 

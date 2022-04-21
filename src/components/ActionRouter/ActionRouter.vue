@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import ActionTextMixin from '../../mixins/actionText'
+import ActionTextMixin from '../../mixins/actionText.js'
 
 export default {
 	name: 'ActionRouter',

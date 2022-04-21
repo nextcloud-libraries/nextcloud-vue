@@ -223,13 +223,13 @@ export default {
 	</div>
 </template>
 <script>
-import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal'
+import Popover from '../Popover/index.js'
+import VNodes from '../VNodes/index.js'
+import Tooltip from '../../directives/Tooltip/index.js'
+import GenRandomId from '../../utils/GenRandomId.js'
+import { t } from '../../l10n.js'
 
-import VNodes from '../VNodes/VNodes'
-import Tooltip from '../../directives/Tooltip'
-import GenRandomId from '../../utils/GenRandomId'
-import { t } from '../../l10n'
-import Popover from '../Popover'
+import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal'
 
 const focusableSelector = '.focusable'
 

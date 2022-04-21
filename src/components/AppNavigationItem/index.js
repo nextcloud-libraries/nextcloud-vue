@@ -19,6 +19,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import AppNavigationItem from './AppNavigationItem'
+import AppNavigationItem from './AppNavigationItem.vue'
 
 export default AppNavigationItem

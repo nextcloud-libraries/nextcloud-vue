@@ -19,6 +19,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import Actions from './Actions'
+import Actions from './Actions.vue'
 
 export default Actions

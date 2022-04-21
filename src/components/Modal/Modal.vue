@@ -191,19 +191,20 @@ export default {
 </template>
 
 <script>
-import Hammer from 'hammerjs'
+import Actions from '../Actions/index.js'
+import ActionButton from '../ActionButton/index.js'
+import Tooltip from '../../directives/Tooltip/index.js'
+import l10n from '../../mixins/l10n.js'
+import Timer from '../../utils/Timer.js'
+import { t } from '../../l10n.js'
+
 import ChevronLeft from 'vue-material-design-icons/ChevronLeft'
 import ChevronRight from 'vue-material-design-icons/ChevronRight'
 import Close from 'vue-material-design-icons/Close'
 import Pause from 'vue-material-design-icons/Pause'
 import Play from 'vue-material-design-icons/Play'
 
-import Actions from '../Actions'
-import ActionButton from '../ActionButton'
-import l10n from '../../mixins/l10n'
-import { t } from '../../l10n'
-import Tooltip from '../../directives/Tooltip'
-import Timer from '../../utils/Timer'
+import Hammer from 'hammerjs'
 
 export default {
 	name: 'Modal',

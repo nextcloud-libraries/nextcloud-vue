@@ -34,8 +34,8 @@
 	</div>
 </template>
 <script>
-import Highlight from '../Highlight'
-import FindRanges from '../../utils/FindRanges'
+import Highlight from '../Highlight/index.js'
+import FindRanges from '../../utils/FindRanges.js'
 
 export default {
 	name: 'EllipsisedOption',

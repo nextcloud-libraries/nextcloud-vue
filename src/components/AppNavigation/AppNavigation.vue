@@ -72,9 +72,10 @@ emit('toggle-navigation', {
 </template>
 
 <script>
+import AppNavigationToggle from '../AppNavigationToggle/index.js'
+import isMobile from '../../mixins/isMobile/index.js'
+
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
-import AppNavigationToggle from '../AppNavigationToggle/AppNavigationToggle'
-import isMobile from '../../mixins/isMobile'
 
 export default {
 	name: 'AppNavigation',

@@ -258,17 +258,18 @@ include a standard-header like it's used by the files app.
 </template>
 
 <script>
-import Actions from '../Actions'
-import Focus from '../../directives/Focus'
-import Linkify from '../../directives/Linkify'
-import Tooltip from '../../directives/Tooltip'
-import AppSidebarTabs from './AppSidebarTabs'
-import EmptyContent from '../EmptyContent/EmptyContent'
-import { t } from '../../l10n'
-import { directive as ClickOutside } from 'v-click-outside'
+import AppSidebarTabs from './AppSidebarTabs.vue'
+import Actions from '../Actions/index.js'
+import EmptyContent from '../EmptyContent/index.js'
+import Focus from '../../directives/Focus/index.js'
+import Linkify from '../../directives/Linkify/index.js'
+import Tooltip from '../../directives/Tooltip/index.js'
+import { t } from '../../l10n.js'
 
 import Close from 'vue-material-design-icons/Close'
 import Star from 'vue-material-design-icons/Star'
+
+import { directive as ClickOutside } from 'v-click-outside'
 
 export default {
 	name: 'AppSidebar',

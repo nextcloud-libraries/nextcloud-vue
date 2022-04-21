@@ -78,7 +78,7 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 </template>
 
 <script>
-import ActionTextMixin from '../../mixins/actionText'
+import ActionTextMixin from '../../mixins/actionText.js'
 
 export default {
 	name: 'ActionLink',

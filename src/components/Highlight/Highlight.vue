@@ -40,7 +40,7 @@ Highlight a string with html &lt;strong&gt;. Accepts a substring to highlight or
 </docs>
 
 <script>
-import FindRanges from '../../utils/FindRanges'
+import FindRanges from '../../utils/FindRanges.js'
 
 export default {
 	name: 'Highlight',

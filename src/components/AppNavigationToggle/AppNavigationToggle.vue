@@ -37,9 +37,9 @@
 </template>
 
 <script>
-import Actions from '../Actions/Actions'
-import ActionButton from '../ActionButton/ActionButton'
-import { t } from '../../l10n'
+import Actions from '../Actions/index.js'
+import ActionButton from '../ActionButton/index.js'
+import { t } from '../../l10n.js'
 
 import Menu from 'vue-material-design-icons/Menu'
 

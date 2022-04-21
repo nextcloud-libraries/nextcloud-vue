@@ -123,16 +123,18 @@ export default {
 </docs>
 
 <script>
-import Vue from 'vue'
-import debounce from 'debounce'
-import Actions from '../Actions'
-import ActionRouter from '../ActionRouter'
-import ActionLink from '../ActionLink'
-import ValidateSlot from '../../utils/ValidateSlot'
-import Breadcrumb from '../Breadcrumb'
+import Actions from '../Actions/index.js'
+import ActionRouter from '../ActionRouter/index.js'
+import ActionLink from '../ActionLink/index.js'
+import Breadcrumb from '../Breadcrumb/index.js'
+import ValidateSlot from '../../utils/ValidateSlot.js'
+
 import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 
 import IconFolder from 'vue-material-design-icons/Folder'
+
+import debounce from 'debounce'
+import Vue from 'vue'
 
 const crumbClass = 'vue-crumb'
 

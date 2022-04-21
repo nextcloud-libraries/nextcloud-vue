@@ -41,11 +41,12 @@
 </template>
 
 <script>
-import { directive as ClickOutside } from 'v-click-outside'
-import { t } from '../../l10n'
-import { excludeClickOutsideClasses } from '../../mixins'
+import { t } from '../../l10n.js'
+import { excludeClickOutsideClasses } from '../../mixins/index.js'
 
 import Cog from 'vue-material-design-icons/Cog'
+
+import { directive as ClickOutside } from 'v-click-outside'
 
 export default {
 	directives: {

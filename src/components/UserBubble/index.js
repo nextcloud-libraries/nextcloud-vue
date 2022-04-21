@@ -20,6 +20,6 @@
  *
  */
 
-import UserBubble from './UserBubble'
+import UserBubble from './UserBubble.vue'
 
 export default UserBubble

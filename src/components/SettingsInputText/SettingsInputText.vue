@@ -45,8 +45,8 @@
 </template>
 
 <script>
-import { t } from '../../l10n'
-import GenRandomId from '../../utils/GenRandomId'
+import { t } from '../../l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 export default {
 	name: 'SettingsInputText',

@@ -55,13 +55,13 @@ export default {
 </template>
 
 <script>
-import Multiselect from '../Multiselect'
 import {
 	getReadableTimezoneName,
 	getSortedTimezoneList,
 } from './timezone.js'
 import getTimezoneManager from './timezoneDataProviderService.js'
-import { t } from '../../l10n'
+import Multiselect from '../Multiselect/index.js'
+import { t } from '../../l10n.js'
 
 export default {
 	name: 'TimezonePicker',

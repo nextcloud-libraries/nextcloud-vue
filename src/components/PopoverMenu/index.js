@@ -19,6 +19,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import PopoverMenu from './PopoverMenu'
+import PopoverMenu from './PopoverMenu.vue'
 
 export default PopoverMenu

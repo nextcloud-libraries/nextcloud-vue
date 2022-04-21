@@ -18,6 +18,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import AppContent from './AppContent'
+import AppContent from './AppContent.vue'
 
 export default AppContent

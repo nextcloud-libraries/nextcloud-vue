@@ -20,6 +20,6 @@
  *
  */
 
-import ListItem from './ListItem'
+import ListItem from './ListItem.vue'
 
 export default ListItem

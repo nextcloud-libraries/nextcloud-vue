@@ -161,15 +161,15 @@ export default {
 </template>
 
 <script>
+import Popover from '../Popover/index.js'
+import l10n from '../../mixins/l10n.js'
+import GenColors from '../../utils/GenColors.js'
+
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft'
 import Check from 'vue-material-design-icons/Check'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal'
 
 import { Chrome } from 'vue-color'
-
-import GenColors from '../../utils/GenColors'
-import l10n from '../../mixins/l10n'
-import Popover from '../Popover'
 
 export default {
 	name: 'ColorPicker',

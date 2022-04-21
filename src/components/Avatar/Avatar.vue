@@ -91,21 +91,22 @@
 </template>
 
 <script>
+import Popover from '../Popover/index.js'
+import PopoverMenu from '../PopoverMenu/index.js'
+import Tooltip from '../../directives/Tooltip/index.js'
+import usernameToColor from '../../functions/usernameToColor/index.js'
+import { userStatus } from '../../mixins/index.js'
+import { t } from '../../l10n.js'
+
+import { getCurrentUser } from '@nextcloud/auth'
+import axios from '@nextcloud/axios'
+import { subscribe, unsubscribe } from '@nextcloud/event-bus'
+import { getBuilder } from '@nextcloud/browser-storage'
+import { generateUrl } from '@nextcloud/router'
+
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal'
 
 import { directive as ClickOutside } from 'v-click-outside'
-import { generateUrl } from '@nextcloud/router'
-import { getBuilder } from '@nextcloud/browser-storage'
-import { getCurrentUser } from '@nextcloud/auth'
-import { subscribe, unsubscribe } from '@nextcloud/event-bus'
-import axios from '@nextcloud/axios'
-
-import PopoverMenu from '../PopoverMenu'
-import Tooltip from '../../directives/Tooltip'
-import usernameToColor from '../../functions/usernameToColor'
-import { userStatus } from '../../mixins'
-import { t } from '../../l10n'
-import Popover from '../Popover/Popover'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 
@@ -134,8 +135,8 @@ export default {
 	name: 'Avatar',
 
 	directives: {
-		tooltip: Tooltip,
 		ClickOutside,
+		tooltip: Tooltip,
 	},
 	components: {
 		DotsHorizontal,

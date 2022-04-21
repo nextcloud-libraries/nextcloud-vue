@@ -20,8 +20,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import actionGlobal from './actionGlobal'
-import GetParent from '../utils/GetParent'
+import actionGlobal from './actionGlobal.js'
+import GetParent from '../utils/GetParent.js'
 
 export default {
 	mixins: [actionGlobal],

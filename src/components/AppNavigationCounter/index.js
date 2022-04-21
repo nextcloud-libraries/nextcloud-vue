@@ -20,6 +20,6 @@
  *
  */
 
-import AppNavigationCounter from './AppNavigationCounter'
+import AppNavigationCounter from './AppNavigationCounter.vue'
 
 export default AppNavigationCounter

@@ -1,7 +1,7 @@
 /**
- * @copyright Copyright (c) 2020 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2019 Marco Ambrosini <marcoambrosini@pm.me>
  *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Marco Ambrosini <marcoambrosini@pm.me>
  *
  * @license AGPL-3.0-or-later
  *
@@ -20,6 +20,6 @@
  *
  */
 
-import ListItemIcon from './ListItemIcon.vue'
+import VNodes from './VNodes.vue'
 
-export default ListItemIcon
+export default VNodes

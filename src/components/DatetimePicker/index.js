@@ -19,9 +19,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import ScopeComponent from '../../utils/ScopeComponent'
-import DatetimePicker from './DatetimePicker'
 import './index.scss'
+import DatetimePicker from './DatetimePicker.vue'
+import ScopeComponent from '../../utils/ScopeComponent.js'
 
 ScopeComponent(DatetimePicker)
 

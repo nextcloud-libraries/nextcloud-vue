@@ -202,17 +202,17 @@ Just set the `pinned` prop.
 </template>
 
 <script>
-import { directive as ClickOutside } from 'v-click-outside'
-
-import Actions from '../Actions/Actions'
-import ActionButton from '../ActionButton/ActionButton'
-import AppNavigationIconCollapsible from './AppNavigationIconCollapsible'
-import isMobile from '../../mixins/isMobile'
-import InputConfirmCancel from './InputConfirmCancel'
-import { t } from '../../l10n'
+import AppNavigationIconCollapsible from './AppNavigationIconCollapsible.vue'
+import InputConfirmCancel from './InputConfirmCancel.vue'
+import Actions from '../Actions/index.js'
+import ActionButton from '../ActionButton/index.js'
+import isMobile from '../../mixins/isMobile/index.js'
+import { t } from '../../l10n.js'
 
 import Pencil from 'vue-material-design-icons/Pencil'
 import Undo from 'vue-material-design-icons/Undo'
+
+import { directive as ClickOutside } from 'v-click-outside'
 
 export default {
 	name: 'AppNavigationItem',

@@ -213,8 +213,8 @@
 </template>
 
 <script>
-import Actions from '../Actions'
-import CounterBubble from '../CounterBubble'
+import Actions from '../Actions/index.js'
+import CounterBubble from '../CounterBubble/index.js'
 
 export default {
 	name: 'ListItem',

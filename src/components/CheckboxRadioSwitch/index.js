@@ -20,6 +20,6 @@
  *
  */
 
-import CheckboxRadioSwitch from './CheckboxRadioSwitch'
+import CheckboxRadioSwitch from './CheckboxRadioSwitch.vue'
 
 export default CheckboxRadioSwitch

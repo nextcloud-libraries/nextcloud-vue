@@ -62,9 +62,9 @@
 </template>
 
 <script>
-import { directive as ClickOutside } from 'v-click-outside'
+import InputConfirmCancel from '../AppNavigationItem/InputConfirmCancel.vue'
 
-import InputConfirmCancel from '../AppNavigationItem/InputConfirmCancel'
+import { directive as ClickOutside } from 'v-click-outside'
 
 export default {
 	name: 'AppNavigationNewItem',

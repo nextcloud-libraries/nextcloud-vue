@@ -16,7 +16,7 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import Linkify from '../../utils/Linkify'
+import Linkify from '../../utils/Linkify.js'
 
 // Use function shorthand for same behavior on bind and update
 // https://vuejs.org/v2/guide/custom-directive.html#Function-Shorthand
