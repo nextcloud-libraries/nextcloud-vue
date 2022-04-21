@@ -64,7 +64,6 @@
 <script>
 import { directive as ClickOutside } from 'v-click-outside'
 
-import isMobile from '../../mixins/isMobile'
 import InputConfirmCancel from '../AppNavigationItem/InputConfirmCancel'
 
 export default {
@@ -76,7 +75,6 @@ export default {
 	directives: {
 		ClickOutside,
 	},
-	mixins: [isMobile],
 
 	props: {
 		/**
