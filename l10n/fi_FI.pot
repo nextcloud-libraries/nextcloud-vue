@@ -3,11 +3,11 @@
 # Robin Lahtinen <robin.lahtinen@gmail.com>, 2020
 # teemue, 2021
 # Eldemarkki <eldemarkkiyt@gmail.com>, 2021
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2021
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>, 2021\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>, 2022\n"
 "Language-Team: Finnish (Finland) (https://www.transifex.com/nextcloud/teams/64236/fi_FI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fi_FI\n"
@@ -145,5 +145,6 @@ msgstr "Ryhmää ei voi hakea"
 msgid "Undo changes"
 msgstr "Kumoa muutokset"
 
-msgid "Write message, @ to mention someone …"
-msgstr "Kirjoita viesti, @ mainitaksesi jonkun..."
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr ""
+"Kirjoita viesti, @ mainitaksesi käyttäjän, : emojin automaattitäydennykseen…"
