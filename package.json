@@ -76,7 +76,7 @@
 		"@fontsource/roboto": "^4.5.5",
 		"@nextcloud/babel-config": "^1.0.0",
 		"@nextcloud/browserslist-config": "^2.1.0",
-		"@nextcloud/eslint-config": "^7.0.2",
+		"@nextcloud/eslint-config": "^8.0.0",
 		"@nextcloud/stylelint-config": "^2.1.2",
 		"@vue/test-utils": "^1.0.4",
 		"@vue/vue2-jest": "^27.0.0-alpha.4",
