@@ -162,6 +162,9 @@ export default {
 </template>
 
 <script>
+import GenRandomId from '../../utils/GenRandomId.js'
+import l10n from '../../mixins/l10n.js'
+
 import CheckboxBlankOutline from 'vue-material-design-icons/CheckboxBlankOutline'
 import MinusBox from 'vue-material-design-icons/MinusBox'
 import CheckboxMarked from 'vue-material-design-icons/CheckboxMarked'
@@ -169,9 +172,6 @@ import RadioboxMarked from 'vue-material-design-icons/RadioboxMarked'
 import RadioboxBlank from 'vue-material-design-icons/RadioboxBlank'
 import ToggleSwitchOff from 'vue-material-design-icons/ToggleSwitchOff'
 import ToggleSwitch from 'vue-material-design-icons/ToggleSwitch'
-
-import GenRandomId from '../../utils/GenRandomId'
-import l10n from '../../mixins/l10n'
 
 export const TYPE_CHECKBOX = 'checkbox'
 export const TYPE_RADIO = 'radio'

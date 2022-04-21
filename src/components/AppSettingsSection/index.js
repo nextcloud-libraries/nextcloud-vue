@@ -20,6 +20,6 @@
  *
  */
 
-import AppSettingsSection from './AppSettingsSection'
+import AppSettingsSection from './AppSettingsSection.vue'
 
 export default AppSettingsSection

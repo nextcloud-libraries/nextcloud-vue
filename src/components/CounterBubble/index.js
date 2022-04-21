@@ -20,6 +20,6 @@
  *
  */
 
-import CounterBubble from './CounterBubble'
+import CounterBubble from './CounterBubble.vue'
 
 export default CounterBubble

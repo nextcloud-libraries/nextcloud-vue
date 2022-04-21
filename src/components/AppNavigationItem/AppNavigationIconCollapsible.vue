@@ -32,6 +32,7 @@
 
 <script>
 import MenuDown from 'vue-material-design-icons/MenuDown'
+
 export default {
 	name: 'AppNavigationIconCollapsible',
 

@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import Actions from '../Actions/Actions'
+import Actions from '../Actions/index.js'
 
 export default {
 	name: 'AppNavigationCaption',

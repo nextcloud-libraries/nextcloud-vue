@@ -19,6 +19,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import ActionRadio from './ActionRadio'
+import ActionRadio from './ActionRadio.vue'
 
 export default ActionRadio

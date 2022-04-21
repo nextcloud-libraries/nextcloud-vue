@@ -19,10 +19,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import axios from '@nextcloud/axios'
-import { generateOcsUrl } from '@nextcloud/router'
-import { getCapabilities } from '@nextcloud/capabilities'
+
 import { getCurrentUser } from '@nextcloud/auth'
+import axios from '@nextcloud/axios'
+import { getCapabilities } from '@nextcloud/capabilities'
+import { generateOcsUrl } from '@nextcloud/router'
 
 export default {
 	data() {

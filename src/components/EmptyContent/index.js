@@ -19,6 +19,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import EmptyContent from './EmptyContent'
+import EmptyContent from './EmptyContent.vue'
 
 export default EmptyContent

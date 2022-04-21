@@ -220,12 +220,12 @@ export default {
 </template>
 
 <script>
-import VueMultiselect from 'vue-multiselect'
+import EllipsisedOption from './EllipsisedOption.vue'
+import ListItemIcon from '../ListItemIcon/index.js'
+import Tooltip from '../../directives/Tooltip/index.js'
+import l10n from '../../mixins/l10n.js'
 
-import EllipsisedOption from './EllipsisedOption'
-import l10n from '../../mixins/l10n'
-import ListItemIcon from '../ListItemIcon'
-import Tooltip from '../../directives/Tooltip'
+import VueMultiselect from 'vue-multiselect'
 
 export default {
 	name: 'Multiselect',

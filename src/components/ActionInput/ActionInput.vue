@@ -100,12 +100,12 @@ For the multiselect component, all events will be passed through. Please see the
 </template>
 
 <script>
-import ArrowRight from 'vue-material-design-icons/ArrowRight'
+import DatetimePicker from '../DatetimePicker/index.js'
+import Multiselect from '../Multiselect/index.js'
+import ActionGlobalMixin from '../../mixins/actionGlobal.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
-import ActionGlobalMixin from '../../mixins/actionGlobal'
-import GenRandomId from '../../utils/GenRandomId'
-import DatetimePicker from '../DatetimePicker'
-import Multiselect from '../Multiselect'
+import ArrowRight from 'vue-material-design-icons/ArrowRight'
 
 export default {
 	name: 'ActionInput',

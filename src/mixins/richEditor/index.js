@@ -20,12 +20,12 @@
  *
  */
 
+import MentionBubble from '../../components/RichContenteditable/MentionBubble.vue'
+import Linkify from '../../utils/Linkify.js'
+
 import escapeHtml from 'escape-html'
-import Linkify from '../../utils/Linkify'
 import stripTags from 'striptags'
 import Vue from 'vue'
-
-import MentionBubble from '../../components/RichContenteditable/MentionBubble'
 
 // Beginning or whitespace. Non-capturing group
 const MENTION_START = '(?:^|\\s)'

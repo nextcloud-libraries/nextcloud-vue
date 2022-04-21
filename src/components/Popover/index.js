@@ -20,6 +20,6 @@
  *
  */
 
-import Popover from './Popover'
+import Popover from './Popover.vue'
 
 export default Popover

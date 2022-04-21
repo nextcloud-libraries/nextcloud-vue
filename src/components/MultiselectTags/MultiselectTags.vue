@@ -85,10 +85,10 @@ export default {
 </template>
 
 <script>
-import l10n from '../../mixins/l10n'
-import Multiselect from '../Multiselect'
-import { searchTags } from './api'
-import { t } from '../../l10n'
+import { searchTags } from './api.js'
+import Multiselect from '../Multiselect/index.js'
+import l10n from '../../mixins/l10n.js'
+import { t } from '../../l10n.js'
 
 export default {
 	name: 'MultiselectTags',

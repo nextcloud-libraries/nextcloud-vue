@@ -19,8 +19,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import ScopeComponent from '../../utils/ScopeComponent'
-import Modal from './Modal'
+import ScopeComponent from '../../utils/ScopeComponent.js'
+import Modal from './Modal.vue'
 
 ScopeComponent(Modal)
 

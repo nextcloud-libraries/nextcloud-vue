@@ -64,9 +64,9 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import VNodes from '../VNodes/index.js'
 
-import VNodes from '../VNodes/VNodes'
+import Vue from 'vue'
 
 const IsValidString = function(value) {
 	return value && typeof value === 'string' && value.trim() !== ''

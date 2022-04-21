@@ -56,8 +56,8 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 </template>
 
 <script>
-import ActionGlobalMixin from '../../mixins/actionGlobal'
-import GenRandomId from '../../utils/GenRandomId'
+import ActionGlobalMixin from '../../mixins/actionGlobal.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 export default {
 	name: 'ActionCheckbox',

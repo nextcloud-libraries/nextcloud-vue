@@ -89,9 +89,9 @@ It might be used for list rendering or within the multiselect for example
 </template>
 
 <script>
-import Avatar from '../Avatar'
-import Highlight from '../Highlight'
-import { userStatus } from '../../mixins'
+import Avatar from '../Avatar/index.js'
+import Highlight from '../Highlight/index.js'
+import { userStatus } from '../../mixins/index.js'
 
 // global margin, ^2 ratio
 const margin = 8

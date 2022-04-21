@@ -19,6 +19,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import ActionSeparator from './ActionSeparator'
+import ActionSeparator from './ActionSeparator.vue'
 
 export default ActionSeparator

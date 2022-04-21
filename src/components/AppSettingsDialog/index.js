@@ -20,6 +20,6 @@
  *
  */
 
-import AppSettingsDialog from './AppSettingsDialog'
+import AppSettingsDialog from './AppSettingsDialog.vue'
 
 export default AppSettingsDialog

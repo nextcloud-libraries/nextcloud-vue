@@ -20,6 +20,6 @@
  *
  */
 
-export { default as Focus } from './Focus'
-export { default as Linkify } from './Linkify'
-export { default as Tooltip } from './Tooltip'
+export { default as Focus } from './Focus/index.js'
+export { default as Linkify } from './Linkify/index.js'
+export { default as Tooltip } from './Tooltip/index.js'

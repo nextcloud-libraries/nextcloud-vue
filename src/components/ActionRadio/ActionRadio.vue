@@ -59,8 +59,8 @@ So that only one of each name set can be selected at the same time.
 </template>
 
 <script>
-import ActionGlobalMixin from '../../mixins/actionGlobal'
-import GenRandomId from '../../utils/GenRandomId'
+import ActionGlobalMixin from '../../mixins/actionGlobal.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 export default {
 	name: 'ActionRadio',

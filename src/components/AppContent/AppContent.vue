@@ -107,15 +107,15 @@ The list size must be between the min and the max width value.
 </template>
 
 <script>
-import 'splitpanes/dist/splitpanes.css'
+import AppDetailsToggle from './AppDetailsToggle.vue'
+import isMobile from '../../mixins/isMobile/index.js'
 
-import { emit } from '@nextcloud/event-bus'
 import { getBuilder } from '@nextcloud/browser-storage'
-import { Splitpanes, Pane } from 'splitpanes'
-import Hammer from 'hammerjs'
+import { emit } from '@nextcloud/event-bus'
 
-import AppDetailsToggle from './AppDetailsToggle'
-import isMobile from '../../mixins/isMobile'
+import Hammer from 'hammerjs'
+import 'splitpanes/dist/splitpanes.css'
+import { Splitpanes, Pane } from 'splitpanes'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 

@@ -25,9 +25,10 @@
 </template>
 
 <script>
+import { t } from '../../l10n.js'
+
 import { emit } from '@nextcloud/event-bus'
 
-import { t } from '../../l10n'
 export default {
 	name: 'AppDetailsToggle',
 

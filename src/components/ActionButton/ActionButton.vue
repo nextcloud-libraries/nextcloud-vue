@@ -122,7 +122,7 @@ export default {
 </template>
 
 <script>
-import ActionTextMixin from '../../mixins/actionText'
+import ActionTextMixin from '../../mixins/actionText.js'
 
 /**
  * Button component to be used in Actions

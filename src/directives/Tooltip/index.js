@@ -20,8 +20,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import { VTooltip } from 'v-tooltip'
 import './index.scss'
+
+import { VTooltip } from 'v-tooltip'
 
 // force scope the tooltip and use .vue-tooltip
 // instead of .tooltip to avoid server compatibility

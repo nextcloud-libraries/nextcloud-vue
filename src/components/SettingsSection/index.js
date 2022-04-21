@@ -19,6 +19,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import SettingsSection from './SettingsSection'
+import SettingsSection from './SettingsSection.vue'
 
 export default SettingsSection

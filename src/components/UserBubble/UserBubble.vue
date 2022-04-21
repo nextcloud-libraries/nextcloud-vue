@@ -111,15 +111,15 @@ This component has the following slot:
 </template>
 
 <script>
-import Popover from '../Popover'
-import UserBubbleDiv from './UserBubbleDiv'
-import Avatar from '../Avatar'
+import UserBubbleDiv from './UserBubbleDiv.vue'
+import Avatar from '../Avatar/index.js'
+import Popover from '../Popover/index.js'
 
 export default {
 	name: 'UserBubble',
 	components: {
-		Popover,
 		Avatar,
+		Popover,
 		UserBubbleDiv,
 	},
 	props: {

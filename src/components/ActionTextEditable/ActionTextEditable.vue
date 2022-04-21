@@ -72,9 +72,10 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 </template>
 
 <script>
+import ActionTextMixin from '../../mixins/actionText.js'
+import GenRandomId from '../../utils/GenRandomId.js'
+
 import ArrowRight from 'vue-material-design-icons/ArrowRight'
-import ActionTextMixin from '../../mixins/actionText'
-import GenRandomId from '../../utils/GenRandomId'
 
 export default {
 	name: 'ActionTextEditable',
