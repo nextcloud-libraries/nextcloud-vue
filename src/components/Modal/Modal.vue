@@ -22,40 +22,84 @@
 
 <docs>
 
-```vue
-<template>
-	<div>
-		<button @click="showModal">Show Modal</button>
-		<modal v-if="modal" @close="closeModal" size="small">
-			<div class="modal__content">Hello world</div>
-		</modal>
-	</div>
-</template>
-<style scoped>
+	```vue
+	<template>
+		<div>
+			<button @click="showModal">Show Modal</button>
+			<modal v-if="modal" @close="closeModal" size="small">
+				<div class="modal__content">Hello world</div>
+			</modal>
+		</div>
+	</template>
+	<style scoped>
 	.modal__content {
 		margin: 50px;
 		text-align: center;
 	}
 
-</style>
-<script>
-export default {
-	data() {
-		return {
-			modal: false
-		}
-	},
-	methods: {
-		showModal() {
-			this.modal = true
+	</style>
+	<script>
+	export default {
+		data() {
+			return {
+				modal: false
+			}
 		},
-		closeModal() {
-			this.modal = false
+		methods: {
+			showModal() {
+				this.modal = true
+			},
+			closeModal() {
+				this.modal = false
+			}
 		}
 	}
-}
-</script>
-```
+	</script>
+	```
+
+	### Usage of popover in modal
+
+	* Set container property to .modal-mask to inject popover context of the modal:
+
+	```vue
+	<template>
+		<div>
+			<button @click="showModal">Show Modal</button>
+			<modal v-if="modal" @close="closeModal" size="small">
+				<EmojiPicker container=".modal-mask" @select="select">
+					<button>Select emoji {{ emoji }}</button>
+				</EmojiPicker>
+			</modal>
+		</div>
+	</template>
+	<style scoped>
+		.modal__content {
+			margin: 50px;
+			text-align: center;
+		}
+	</style>
+	<script>
+	export default {
+		data() {
+			return {
+				emoji: '😛',
+				modal: false
+			}
+		},
+		methods: {
+			showModal() {
+				this.modal = true
+			},
+			closeModal() {
+				this.modal = false
+			},
+			select(emoji) {
+				this.emoji = emoji
+			},
+		},
+	}
+	</script>
+	```
 
 </docs>
 <template>
@@ -205,7 +249,7 @@ import Pause from 'vue-material-design-icons/Pause'
 import Play from 'vue-material-design-icons/Play'
 
 import Hammer from 'hammerjs'
-
+import { createFocusTrap } from 'focus-trap'
 export default {
 	name: 'Modal',
 
@@ -334,6 +378,7 @@ export default {
 			playing: false,
 			slideshowTimeout: null,
 			iconSize: 24,
+			focusTrap: null,
 		}
 	},
 
@@ -382,7 +427,7 @@ export default {
 
 		// init clear view
 		this.handleMouseMove()
-
+		this.useFocusTrap()
 		this.mc = new Hammer(this.$refs.mask)
 		this.mc.on('swipeleft swiperight', e => {
 			this.handleSwipe(e)
@@ -398,6 +443,7 @@ export default {
 
 	},
 	destroyed() {
+		this.clearFocusTrap()
 		this.$el.remove()
 	},
 
@@ -525,6 +571,22 @@ export default {
 				this.slideshowTimeout.clear()
 			}
 		},
+		/**
+		 * Add focus trap for accessibility.
+		 */
+		useFocusTrap() {
+			const contentContainer = this.$refs.mask
+			// wait until all children are mounted and available in the DOM before focusTrap can be added
+			this.$nextTick(function() {
+				this.focusTrap = createFocusTrap(contentContainer)
+				this.focusTrap.activate()
+			})
+		},
+		clearFocusTrap() {
+			this.focusTrap?.deactivate()
+			this.focusTrap = null
+		},
+
 	},
 }
 </script>

@@ -49,6 +49,7 @@
 		"debounce": "1.2.1",
 		"emoji-mart-vue-fast": "^10.2.1",
 		"escape-html": "^1.0.3",
+		"focus-trap": "^6.8.1",
 		"hammerjs": "^2.0.8",
 		"linkify-string": "^3.0.2",
 		"md5": "^2.2.1",
