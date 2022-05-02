@@ -20,6 +20,14 @@
  -
  -->
 
+<docs>
+
+### General description
+
+This component is meant to be used inside a DashboardWidget component.
+
+</docs>
+
 <template>
 	<div @mouseover="hovered = true" @mouseleave="hovered = false">
 		<component :is="targetUrl ? 'a' : 'div'"
@@ -27,6 +35,7 @@
 			:target="targetUrl ? '_blank' : undefined"
 			:class="{ 'item-list__entry': true, 'item-list__entry--has-actions-menu': gotMenu }"
 			@click="onLinkClick">
+			<!-- @slot Slot for passing a user avatar. -->
 			<slot name="avatar" :avatar-url="avatarUrl" :avatar-username="avatarUsername">
 				<Avatar class="item-avatar"
 					:size="44"
