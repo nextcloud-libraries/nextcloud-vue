@@ -174,12 +174,6 @@ export default {
 		},
 	},
 
-	watch: {
-	},
-
-	mounted() {
-	},
-
 	methods: {
 		onLinkClick(event) {
 			if (event.target.tagName === 'BUTTON') {
