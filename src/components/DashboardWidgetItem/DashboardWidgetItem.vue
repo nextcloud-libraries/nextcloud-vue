@@ -175,7 +175,7 @@ export default {
 
 	methods: {
 		onLinkClick(event) {
-			if (event.target.tagName === 'BUTTON') {
+			if (event.target.closest('.action-item')) {
 				event.preventDefault()
 			}
 		},
