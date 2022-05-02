@@ -27,9 +27,8 @@
 			:target="targetUrl ? '_blank' : undefined"
 			:class="{ 'item-list__entry': true, 'item-list__entry--has-actions-menu': gotMenu }"
 			@click="onLinkClick">
-			<slot name="avatar" :avatarUrl="avatarUrl" :avatarUsername="avatarUsername">
-				<Avatar
-					class="item-avatar"
+			<slot name="avatar" :avatar-url="avatarUrl" :avatar-username="avatarUsername">
+				<Avatar class="item-avatar"
 					:size="44"
 					:url="avatarUrl"
 					:user="avatarUsername"
