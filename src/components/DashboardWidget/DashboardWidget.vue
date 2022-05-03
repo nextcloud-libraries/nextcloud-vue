@@ -72,7 +72,7 @@
 			target="_blank"
 			class="more"
 			tabindex="0">
-			{{ t('core', 'More {what} …', { what: showMoreText }) }}
+			{{ showMoreLabel }}
 		</a>
 	</div>
 </template>
@@ -81,6 +81,8 @@
 import Avatar from '../Avatar/index.js'
 import DashboardWidgetItem from '../DashboardWidgetItem/index.js'
 import EmptyContent from '../EmptyContent/index.js'
+
+import { t } from '../../l10n.js'
 
 export default {
 	name: 'DashboardWidget',
@@ -101,7 +103,7 @@ export default {
 		},
 		showMoreText: {
 			type: String,
-			default: t('core', 'items'),
+			default: t('items'),
 		},
 		loading: {
 			type: Boolean,
@@ -161,6 +163,10 @@ export default {
 
 		showMore() {
 			return this.showMoreUrl && this.items.length >= this.maxItemNumber
+		},
+
+		showMoreLabel() {
+			return t('More {what} …', { what: this.showMoreText })
 		},
 	},
 }

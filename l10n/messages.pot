@@ -62,7 +62,13 @@ msgstr ""
 msgid "Go back to the list"
 msgstr ""
 
+msgid "items"
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
+msgstr ""
+
+msgid "More {what} …"
 msgstr ""
 
 msgid "Next"
