@@ -69,6 +69,7 @@ module.exports = {
 				'src/components/AppSidebar*/*.vue',
 				'src/components/Breadcrumb*/*.vue',
 				'src/components/Content/*.vue',
+				'src/components/Dashboard*/*.vue',
 				'src/components/Multiselect*/*.vue',
 				'src/components/PopoverMenu/!(PopoverMenu).vue',
 				'src/components/ListItem*/*.vue',
@@ -123,6 +124,12 @@ module.exports = {
 					name: 'Breadcrumbs',
 					components: [
 						'src/components/Breadcrumb*/*.vue',
+					],
+				},
+				{
+					name: 'Dashboard',
+					components: [
+						'src/components/Dashboard*/*.vue',
 					],
 				},
 				{
