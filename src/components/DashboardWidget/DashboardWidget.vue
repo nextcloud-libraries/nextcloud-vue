@@ -140,7 +140,7 @@ export default {
 	<div>
 		<!-- This element is shown if we have items, but want to show a general message as well.
 		Can be used e.g. to show "No mentions" on top of the item list. -->
-		<EmptyContent v-if="showItemsAndEmptyContent && halfEmptyContentString && items.length !== 0"
+		<EmptyContent v-if="showHalfEmptyContentArea"
 			class="half-screen"
 			:icon="halfEmptyContentIcon">
 			<template #desc>
@@ -152,14 +152,7 @@ export default {
 			<li v-for="item in displayedItems" :key="item.id">
 				<!-- @slot The default slot can be optionally overridden. It contains the template of one item. -->
 				<slot name="default" :item="item">
-					<DashboardWidgetItem :id="item.id"
-						:target-url="item.targetUrl"
-						:avatar-url="item.avatarUrl"
-						:avatar-username="item.avatarUsername"
-						:avatar-is-no-user="item.avatarIsNoUser"
-						:overlay-icon-url="item.overlayIconUrl"
-						:main-text="item.mainText"
-						:sub-text="item.subText"
+					<DashboardWidgetItem v-bind="item"
 						:item-menu="itemMenu"
 						v-on="handlers" />
 				</slot>
@@ -304,6 +297,10 @@ export default {
 				? this.maxItemNumber - 1
 				: this.maxItemNumber
 			return this.items.slice(0, nbItems)
+		},
+
+		showHalfEmptyContentArea() {
+			return this.showItemsAndEmptyContent && this.halfEmptyContentString && this.items.length !== 0
 		},
 
 		halfEmptyContentString() {
