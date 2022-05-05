@@ -1,10 +1,10 @@
 # 
 # Translators:
-# Pavel Borecki <pavel.borecki@gmail.com>, 2021
+# Pavel Borecki <pavel.borecki@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2021\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2022\n"
 "Language-Team: Czech (Czech Republic) (https://www.transifex.com/nextcloud/teams/64236/cs_CZ/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: cs_CZ\n"
@@ -70,8 +70,14 @@ msgstr "Globální"
 msgid "Go back to the list"
 msgstr "Jít zpět na seznam"
 
+msgid "items"
+msgstr "položky"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Dosaženo limitu počtu ({count}) znaků zprávy"
+
+msgid "More {what} …"
+msgstr "Další {what} …"
 
 msgid "Next"
 msgstr "Následující"
