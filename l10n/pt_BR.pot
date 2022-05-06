@@ -74,8 +74,14 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Volte para a lista"
 
+msgid "items"
+msgstr "itens"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Limite de mensagem de {count} caracteres atingido"
+
+msgid "More {what} …"
+msgstr "Mais {what} …"
 
 msgid "Next"
 msgstr "Próximo"
