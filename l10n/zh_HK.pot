@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Café Tango, 2021
 # ous 50, 2021
+# Café Tango, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: ous 50, 2021\n"
+"Last-Translator: Café Tango, 2022\n"
 "Language-Team: Chinese (Hong Kong) (https://www.transifex.com/nextcloud/teams/64236/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_HK\n"
@@ -71,8 +71,14 @@ msgstr "全球的"
 msgid "Go back to the list"
 msgstr "返回清單"
 
+msgid "items"
+msgstr "項目"
+
 msgid "Message limit of {count} characters reached"
 msgstr "已達到訊息最多 {count} 字元限制"
+
+msgid "More {what} …"
+msgstr "更多 {what} …"
 
 msgid "Next"
 msgstr "下一個"
@@ -143,5 +149,5 @@ msgstr "無法搜尋群組"
 msgid "Undo changes"
 msgstr "取消更改"
 
-msgid "Write message, @ to mention someone …"
-msgstr "輸入訊息時可使用 @ 來標示某人..."
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr "寫訊息，使用 @ 來指代某人，使用：用於表情符號自動填充 ..."
