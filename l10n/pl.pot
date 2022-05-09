@@ -71,8 +71,14 @@ msgstr "Globalnie"
 msgid "Go back to the list"
 msgstr "Powrót do listy"
 
+msgid "items"
+msgstr "elementy"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Przekroczono limit wiadomości wynoszący {count} znaków"
+
+msgid "More {what} …"
+msgstr "Więcej {what}…"
 
 msgid "Next"
 msgstr "Następny"
