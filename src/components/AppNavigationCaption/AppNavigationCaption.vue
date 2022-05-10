@@ -7,6 +7,34 @@
 	</template>
 </AppNavigationCaption>
 ```
+
+### Element with a slot for custom actions icon
+```
+<template>
+	<AppNavigationCaption
+		title="Your caption goes here">
+		<template #actionsTriggerIcon>
+			<PlusIcon slot="icon" :size="20" />
+		</template>
+		<template #actions>
+			<ActionButton icon="icon-edit">Rename</ActionButton>
+			<ActionButton icon="icon-delete">Delete</ActionButton>
+			<ActionButton icon="icon-confirm">Validate</ActionButton>
+			<ActionButton icon="icon-download">Download</ActionButton>
+		</template>
+	</AppNavigationCaption>
+</template>
+<script>
+	import PlusIcon from 'vue-material-design-icons/Plus'
+
+	export default {
+		components: {
+			PlusIcon
+		}
+	}
+</script>
+```
+
 </docs>
 
 <template>
@@ -22,6 +50,9 @@
 			<Actions v-bind="$attrs">
 				<!-- @slot Slot for the actions menu -->
 				<slot name="actions" />
+				<template #icon>
+					<slot name="actionsTriggerIcon" />
+				</template>
 			</Actions>
 		</div>
 	</li>
