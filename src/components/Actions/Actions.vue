@@ -130,6 +130,59 @@ export default {
 </Actions>
 ```
 
+### With Material Design Icons
+
+```
+<template>
+	<div>
+		<Actions title="Single Action">
+			<ActionButton
+				@click="alert('Action')">
+				<template #icon>
+					<GestureDoubleTap />
+				</template>
+				Action
+			</ActionButton>
+		</Actions>
+
+		<Actions title="Multiple Actions">
+			<ActionButton
+				close-after-click
+				v-tooltip="'More action'"
+				@click="alert('Action')">
+				<template #icon>
+					<GestureDoubleTap />
+				</template>
+				Action 1
+			</ActionButton>
+			<ActionButton
+				close-after-click
+				@click="alert('Action')">
+				<template #icon>
+					<GestureDoubleTap />
+				</template>
+				Action 2
+			</ActionButton>
+		</Actions>
+	</div>
+</template>
+
+<script>
+import GestureDoubleTap from 'vue-material-design-icons/GestureDoubleTap'
+
+export default {
+	components: {
+		GestureDoubleTap,
+	},
+	methods: {
+		alert (message) {
+			window.alert(message)
+		}
+	}
+}
+</script>
+```
+
 </docs>
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
