@@ -155,14 +155,14 @@
 						</Actions>
 
 						<!-- Close modal -->
-						<Actions v-if="canClose && !closeButtonContained" class="header-close">
-							<ActionButton @click="close">
-								<template #icon>
-									<Close :size="iconSize" />
-								</template>
-								{{ t('Close') }}
-							</ActionButton>
-						</Actions>
+						<ButtonVue v-if="canClose && !closeButtonContained"
+								type="tertiary"
+								class="header-close"
+								:aria-label="t('Close')">
+							<template #icon>
+								<Close :size="iconSize" />
+							</template>
+						</ButtonVue>
 					</div>
 				</div>
 			</transition>
@@ -178,20 +178,18 @@
 					@mousedown.self="close">
 					<!-- Navigation button -->
 					<transition name="fade-visibility">
-						<a v-show="hasPrevious"
+						<ButtonVue v-show="hasPrevious"
+							type="tertiary-no-background"
 							class="prev"
-							href="#"
 							:class="{
 								invisible: !hasPrevious
 							}"
-							@click.prevent.stop="previous">
-							<span class="icon-previous">
+							:aria-label="t('Previous')"
+							@click="previous">
+							<template #icon>
 								<ChevronLeft :size="40" />
-								<span class="hidden-visually">
-									{{ t('Previous') }}
-								</span>
-							</span>
-						</a>
+							</template>
+						</ButtonVue>
 					</transition>
 
 					<!-- Content -->
@@ -212,20 +210,18 @@
 
 					<!-- Navigation button -->
 					<transition name="fade-visibility">
-						<a v-show="hasNext"
+						<ButtonVue v-show="hasNext"
+							type="tertiary-no-background"
 							class="next"
-							href="#"
 							:class="{
 								invisible: !hasNext
 							}"
-							@click.prevent.stop="next">
-							<span class="icon-next">
+							:aria-label="t('Next')"
+							@click="next">
+							<template #icon>
 								<ChevronRight :size="40" />
-								<span class="hidden-visually">
-									{{ t('Next') }}
-								</span>
-							</span>
-						</a>
+							</template>
+						</ButtonVue>
 					</transition>
 				</div>
 			</transition>
@@ -235,7 +231,6 @@
 
 <script>
 import Actions from '../Actions/index.js'
-import ActionButton from '../ActionButton/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import l10n from '../../mixins/l10n.js'
 import Timer from '../../utils/Timer.js'
@@ -254,7 +249,6 @@ export default {
 	name: 'Modal',
 
 	components: {
-		ActionButton,
 		Actions,
 		ChevronLeft,
 		ChevronRight,
@@ -759,17 +753,6 @@ export default {
 	}
 	.next {
 		right: 0;
-	}
-
-	// buttons/icons
-	.icon-next,
-	.icon-previous {
-		box-sizing: border-box;
-		width: $clickable-area;
-		height: $clickable-area;
-		color: white;
-		background-image: none;
-		display: flex;
 	}
 
 	/* Content */
