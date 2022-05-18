@@ -49,6 +49,28 @@ export default {
 </script>
 ```
 
+### Example with confirm button
+```vue
+<template>
+	<span>
+		<DatetimePicker
+			v-model="time"
+			type="datetime"
+			confirm />
+		{{ time }}
+	</span>
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				time: null,
+			}
+		},
+	}
+</script>
+```
+
 ### Range picker
 ```vue
 <template>
