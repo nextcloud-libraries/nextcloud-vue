@@ -575,7 +575,7 @@ export default {
 			margin: auto;
 		}
 	}
-
+}
 	/* Second level nesting for lists */
 	.app-navigation-entry__children {
 		position: relative;
@@ -589,7 +589,6 @@ export default {
 			flex-wrap: wrap;
 			padding-left: $icon-size;
 			padding-right: 0;
-		}
 	}
 }
 
