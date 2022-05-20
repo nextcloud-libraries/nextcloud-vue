@@ -503,6 +503,11 @@ export default {
 		flex-wrap: wrap;
 		box-sizing: border-box;
 		width: 100%;
+
+		&.app-navigation-entry--collapsible:not(.app-navigation-entry--opened) > ul {
+			// NO ANIMATE because if not really hidden, we can still tab through it
+			display: none;
+		}
 	}
 
 	// When .active class is applied, change color background of link and utils. The
@@ -523,12 +528,9 @@ export default {
 	}
 
 	/* hide deletion/collapse of subitems */
-	&.app-navigation-entry--deleted,
-	&.app-navigation-entry--collapsible:not(.app-navigation-entry--opened) {
-		> ul {
-			// NO ANIMATE because if not really hidden, we can still tab through it
-			display: none;
-		}
+	&.app-navigation-entry--deleted > ul {
+		// NO ANIMATE because if not really hidden, we can still tab through it
+		display: none;
 	}
 
 	&:not(.app-navigation-entry--editing) {
