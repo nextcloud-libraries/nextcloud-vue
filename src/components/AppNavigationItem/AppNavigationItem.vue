@@ -590,7 +590,6 @@ export default {
 		display: inline-flex;
 		flex-wrap: wrap;
 		padding-left: $icon-size;
-		padding-right: 0;
 	}
 }
 
