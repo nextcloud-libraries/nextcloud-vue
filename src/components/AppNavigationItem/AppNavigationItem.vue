@@ -114,13 +114,13 @@ Just set the `pinned` prop.
 	<li class="app-navigation-entry-wrapper"
 		:class="{
 			'app-navigation-entry--opened': opened,
+			'app-navigation-entry--pinned': pinned,
 			'app-navigation-entry--collapsible': collapsible,
 		}">
 		<nav-element v-bind="navElement"
 			:class="{
 				'app-navigation-entry--no-icon': !isIconShown,
-				'app-navigation-entry--pinned': pinned,
-				'app-navigation-entry--editing' : editingActive,
+				'app-navigation-entry--editing': editingActive,
 				'app-navigation-entry--deleted': undo,
 				'active': isActive,
 			}"
@@ -577,18 +577,18 @@ export default {
 	}
 }
 	/* Second level nesting for lists */
-	.app-navigation-entry__children {
-		position: relative;
-		display: flex;
-		flex: 0 1 auto;
-		flex-direction: column;
-		width: 100%;
+.app-navigation-entry__children {
+	position: relative;
+	display: flex;
+	flex: 0 1 auto;
+	flex-direction: column;
+	width: 100%;
 
-		.app-navigation-entry {
-			display: inline-flex;
-			flex-wrap: wrap;
-			padding-left: $icon-size;
-			padding-right: 0;
+	.app-navigation-entry {
+		display: inline-flex;
+		flex-wrap: wrap;
+		padding-left: $icon-size;
+		padding-right: 0;
 	}
 }
 
