@@ -68,7 +68,7 @@ msgstr ""
 msgid "Message limit of {count} characters reached"
 msgstr ""
 
-msgid "More {what} …"
+msgid "More {dashboardItemType} …"
 msgstr ""
 
 msgid "Next"
