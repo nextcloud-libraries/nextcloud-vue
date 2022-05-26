@@ -10,14 +10,15 @@
 # Boris Alet, 2021
 # Mer0me <postmaster@merome.net>, 2021
 # Cédric JARRIGE <jarrige.cedric@gmail.com>, 2022
+# Arnaud Wallon <arnaud@netbeat.be>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Cédric JARRIGE <jarrige.cedric@gmail.com>, 2022\n"
+"Last-Translator: Arnaud Wallon <arnaud@netbeat.be>, 2022\n"
 "Language-Team: French (https://www.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (invisible)"
@@ -79,8 +80,14 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Retourner à la liste"
 
+msgid "items"
+msgstr "éléments"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Limite de messages de {count} caractères atteinte"
+
+msgid "More {what} …"
+msgstr "Plus de {what} ..."
 
 msgid "Next"
 msgstr "Suivant"
