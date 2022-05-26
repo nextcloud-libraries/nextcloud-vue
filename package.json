@@ -93,7 +93,7 @@
 		"gettext-extractor": "^3.5.2",
 		"gettext-parser": "^5.0.0",
 		"glob": "^8.0.1",
-		"jest": "^27.0.4",
+		"jest": "^28.1.0",
 		"jest-environment-jsdom": "27.5.1",
 		"jest-serializer-vue": "^2.0.2",
 		"jest-transform-stub": "^2.0.0",
