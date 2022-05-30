@@ -25,6 +25,8 @@
 	li {
 		&.active {
 			background-color: var(--color-background-hover);
+			border-radius: var(--border-radius-large);
+			padding: 0;
 		}
 	}
 }
