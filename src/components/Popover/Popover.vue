@@ -54,7 +54,7 @@ With a `<button>` as a trigger:
 <template>
 	<VPopover ref="popover"
 		v-bind="$attrs"
-		popover-base-class="popover"
+		:popover-base-class="`popover ${popoverBaseClass}`"
 		popover-wrapper-class="popover__wrapper"
 		popover-arrow-class="popover__arrow"
 		popover-inner-class="popover__inner"
@@ -75,6 +75,13 @@ export default {
 	name: 'Popover',
 	components: {
 		VPopover,
+	},
+
+	props: {
+		popoverBaseClass: {
+			type: String,
+			default: '',
+		}
 	},
 
 	mounted() {
