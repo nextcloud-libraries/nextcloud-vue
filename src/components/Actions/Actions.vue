@@ -170,6 +170,7 @@ export default {
 			:placement="placement"
 			:boundaries-element="boundariesElement"
 			:container="container"
+			popover-base-class="action-item__popover"
 			@show="openMenu"
 			@after-show="onOpen"
 			@hide="closeMenu">
@@ -781,6 +782,10 @@ export default {
 	}
 }
 
+.popover__inner ul {
+	padding: 4px;
+}
+
 .ie,
 .edge {
 	.action-item__menu,
@@ -789,4 +794,12 @@ export default {
 	}
 }
 
+</style>
+
+<style lang="scss">
+// We overwrote the popover base class, so we can style
+// the popover__inner for actions only.
+.popover.action-item__popover .popover__inner {
+	border-radius: var(--border-radius-large);
+}
 </style>

@@ -25,6 +25,8 @@
 	li {
 		&.active {
 			background-color: var(--color-background-hover);
+			border-radius: 6px;
+			padding: 0;
 		}
 	}
 }
