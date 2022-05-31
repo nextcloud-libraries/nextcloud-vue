@@ -800,6 +800,6 @@ export default {
 // We overwrote the popover base class, so we can style
 // the popover__inner for actions only.
 .popover.action-item__popover .popover__inner {
-	border-radius: 14px;
+	border-radius: var(--border-radius-large);
 }
 </style>
