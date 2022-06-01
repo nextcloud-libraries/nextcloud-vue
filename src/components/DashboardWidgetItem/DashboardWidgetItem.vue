@@ -57,13 +57,16 @@ This component is meant to be used inside a DashboardWidget component.
 				</p>
 			</div>
 			<Actions v-if="gotMenu" :force-menu="forceMenu" menu-align="right">
-				<ActionButton v-for="(m, menuItemId) in itemMenu"
-					:key="menuItemId"
-					:icon="m.icon"
-					:close-after-click="true"
-					@click.prevent.stop="$emit(menuItemId, item)">
-					{{ m.text }}
-				</ActionButton>
+				<!-- @slot This slot can be used to provide actions for each dashboard widget item. -->
+				<slot name="actions">
+					<ActionButton v-for="(m, menuItemId) in itemMenu"
+						:key="menuItemId"
+						:icon="m.icon"
+						:close-after-click="true"
+						@click.prevent.stop="$emit(menuItemId, item)">
+						{{ m.text }}
+					</ActionButton>
+				</slot>
 			</Actions>
 		</component>
 	</div>
@@ -175,7 +178,7 @@ export default {
 			}
 		},
 		gotMenu() {
-			return Object.keys(this.itemMenu).length !== 0
+			return Object.keys(this.itemMenu).length !== 0 || !!this.$slots.actions
 		},
 		gotOverlayIcon() {
 			return this.overlayIconUrl && this.overlayIconUrl !== ''
