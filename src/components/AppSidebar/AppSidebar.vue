@@ -147,12 +147,16 @@ include a standard-header like it's used by the files app.
 				}"
 				class="app-sidebar-header">
 				<!-- close sidebar button -->
-				<a v-tooltip.auto="closeTranslated"
-					href="#"
+				<Button v-tooltip.auto="closeTranslated"
+					type="tertiary"
 					class="app-sidebar__close"
 					@click.prevent="closeSidebar">
-					<Close class="app-sidebar__close-icon" :size="20" decorative />
-				</a>
+					<template #icon>
+						<Close class="app-sidebar__close-icon"
+							:size="20"
+							decorative />
+					</template>
+				</Button>
 
 				<!-- container for figure and description, allows easy switching to compact mode -->
 				<div class="app-sidebar-header__info">
@@ -165,7 +169,9 @@ include a standard-header like it's used by the files app.
 						:style="{
 							backgroundImage: `url(${background})`
 						}"
-						@click="onFigureClick">
+						tabindex="0"
+						@click="onFigureClick"
+						@keydown.enter="onFigureClick">
 						<slot class="app-sidebar-header__background" name="header" />
 					</div>
 
@@ -181,19 +187,17 @@ include a standard-header like it's used by the files app.
 						<!-- favourite icon -->
 						<div v-if="canStar || $slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
 							<slot name="tertiary-actions">
-								<a v-if="canStar"
+								<Button v-if="canStar"
+									type="tertiary-no-background"
 									class="app-sidebar-header__star"
 									@click.prevent="toggleStarred">
-									<LoadingIcon v-if="starLoading" />
-									<Star v-else
-										:class="{
-											'star--starred': isStarred,
-											'star--star': !isStarred,
-										}"
-										class="star"
-										:size="20"
-										decorative />
-								</a>
+									<template #icon>
+										<LoadingIcon v-if="starLoading" />
+										<Star v-else
+											:size="20"
+											decorative />
+									</template>
+								</Button>
 							</slot>
 						</div>
 
@@ -205,6 +209,7 @@ include a standard-header like it's used by the files app.
 									v-linkify="{text: title, linkify: linkifyTitle}"
 									v-tooltip.auto="titleTooltip"
 									class="app-sidebar-header__maintitle"
+									:tabindex="titleEditable ? 0 : -1"
 									@click.self="editTitle">
 									{{ title }}
 								</h2>
@@ -265,6 +270,7 @@ include a standard-header like it's used by the files app.
 import AppSidebarTabs from './AppSidebarTabs.vue'
 import Actions from '../Actions/index.js'
 import LoadingIcon from '../LoadingIcon/index.js'
+import Button from '../Button/Button.vue'
 import EmptyContent from '../EmptyContent/index.js'
 import Focus from '../../directives/Focus/index.js'
 import Linkify from '../../directives/Linkify/index.js'
@@ -282,6 +288,7 @@ export default {
 	components: {
 		Actions,
 		AppSidebarTabs,
+		Button,
 		LoadingIcon,
 		EmptyContent,
 		Close,
@@ -625,11 +632,6 @@ $top-buttons-spacing: 6px;
 				opacity: $opacity_full;
 				background-color: $action-background-hover;
 			}
-
-			.app-sidebar__close-icon {
-				width: $clickable-area;
-				height: $clickable-area;
-			}
 		}
 
 		// Compact mode only affects a sidebar with a figure
@@ -731,14 +733,6 @@ $top-buttons-spacing: 6px;
 				margin-top: -2px;
 			}
 
-			.app-sidebar-header__tertiary-actions {
-				display: flex;
-				height: $clickable-area;
-				width: $clickable-area;
-				justify-content: center;
-				flex: 0 0 auto;
-			}
-
 			// titles
 			.app-sidebar-header__title-container {
 				flex: 1 1 auto;
@@ -813,18 +807,7 @@ $top-buttons-spacing: 6px;
 
 			// favourite
 			.app-sidebar-header__star {
-				display: block;
-				width: $clickable-area;
-				height: $clickable-area;
-
-				.loading-icon {
-					width: $clickable-area;
-					height: $clickable-area;
-				}
-
 				.star {
-					width: $clickable-area;
-					height: $clickable-area;
 					&--star {
 						color: #000;
 						opacity: .5;
