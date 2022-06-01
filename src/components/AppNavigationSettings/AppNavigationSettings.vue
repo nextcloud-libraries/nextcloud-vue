@@ -102,7 +102,7 @@ export default {
 			background-color: var(--color-main-background);
 			box-shadow: none;
 			border: 0;
-			border-radius: 0;
+			border-radius: var(--border-radius-large);
 			text-align: left;
 			font-weight: normal;
 			font-size: 100%;
@@ -113,6 +113,7 @@ export default {
 			&:hover,
 			&:focus {
 				background-color: var(--color-background-hover);
+				border-radius: var(--border-radius-large);
 			}
 
 			&__icon {
