@@ -177,11 +177,11 @@ include a standard-header like it's used by the files app.
 							<slot name="tertiary-actions">
 								<Button v-if="canStar"
 									type="tertiary-no-background"
-									class="app-sidebar-header__star"
 									@click.prevent="toggleStarred">
 									<template #icon>
 										<LoadingIcon v-if="starLoading" />
 										<Star v-else
+											:fill-color="isStarred ? '#FC0' : 'currentColor'"
 											:size="20"
 											decorative />
 									</template>
@@ -805,26 +805,6 @@ $top-buttons-spacing: 6px;
 					padding: 0;
 					opacity: $opacity_normal;
 					font-size: var(--default-font-size);
-				}
-			}
-
-			// favourite
-			.app-sidebar-header__star {
-				.star {
-					&--star {
-						color: #000;
-						opacity: .5;
-						&:hover {
-							color: #FC0;
-						}
-					}
-					&--starred {
-						color: #FC0;
-						&:hover {
-							color: #000;
-							opacity: .5;
-						}
-					}
 				}
 			}
 		}
