@@ -739,6 +739,14 @@ $top-buttons-spacing: 6px;
 				margin-top: -2px;
 			}
 
+			.app-sidebar-header__tertiary-actions {
+				display: flex;
+				height: $clickable-area;
+				width: $clickable-area;
+				justify-content: center;
+				flex: 0 0 auto;
+			}
+
 			// titles
 			.app-sidebar-header__title-container {
 				flex: 1 1 auto;
