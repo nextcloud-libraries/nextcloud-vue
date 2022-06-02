@@ -55,6 +55,8 @@ export default {
 	margin-bottom: 80px;
 	&__title {
 		font-size: 20px;
+		margin: 0;
+		padding: 20px 0;
 		font-weight: bold;
 		overflow: hidden;
 		white-space: nowrap;
