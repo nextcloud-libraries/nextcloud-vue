@@ -146,18 +146,6 @@ include a standard-header like it's used by the files app.
 					'app-sidebar-header--compact': compact,
 				}"
 				class="app-sidebar-header">
-				<!-- close sidebar button -->
-				<Button v-tooltip.auto="closeTranslated"
-					type="tertiary"
-					class="app-sidebar__close"
-					@click.prevent="closeSidebar">
-					<template #icon>
-						<Close class="app-sidebar__close-icon"
-							:size="20"
-							decorative />
-					</template>
-				</Button>
-
 				<!-- container for figure and description, allows easy switching to compact mode -->
 				<div class="app-sidebar-header__info">
 					<!-- sidebar header illustration/figure -->
@@ -250,6 +238,17 @@ include a standard-header like it's used by the files app.
 						</div>
 					</div>
 				</div>
+
+				<Button v-tooltip.auto="closeTranslated"
+					type="tertiary"
+					class="app-sidebar__close"
+					@click.prevent="closeSidebar">
+					<template #icon>
+						<Close :size="20"
+							decorative />
+					</template>
+				</Button>
+
 				<div v-if="$slots['description'] && !empty" class="app-sidebar-header__description">
 					<slot name="description" />
 				</div>
