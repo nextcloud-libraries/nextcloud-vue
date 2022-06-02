@@ -20,28 +20,52 @@
  -
  -->
 
+ <docs>
+### Usage
+
+ ```
+ <template>
+	<AppNavigationNew text="New Element">
+		<template #icon>
+			<Plus :size="20" decorative />
+		</template>
+	</AppNavigationNew>
+ </template>
+ <script>
+ import Plus from 'vue-material-design-icons/Plus'
+
+ export default {
+	components: {
+		Plus,
+	},
+ }
+ </script>
+ ```
+ </docs>
+
 <template>
 	<div class="app-navigation-new">
-		<button :id="buttonId"
-			:class="buttonClass"
+		<Button :id="buttonId"
 			:disabled="disabled"
-			type="button"
 			@click="$emit('click')">
+			<template #icon>
+				<slot name="icon" />
+			</template>
 			{{ text }}
-		</button>
+		</Button>
 	</div>
 </template>
 
 <script>
+import Button from '../Button/index.js'
+
 export default {
+	components: {
+		Button,
+	},
 	props: {
 		buttonId: {
 			type: String,
-			required: false,
-			default: '',
-		},
-		buttonClass: {
-			type: [String, Array, Object],
 			required: false,
 			default: '',
 		},
@@ -64,13 +88,7 @@ export default {
 	display: block;
 	padding: 10px;
 	button {
-		display: inline-block;
 		width: 100%;
-		padding: 10px;
-		padding-left: 34px;
-		background-position: 10px center;
-		text-align: left;
-		margin: 0;
 	}
 }
 </style>
