@@ -28,11 +28,35 @@ providing the section's title prop. You can put your settings within each
 <template>
 	<div>
 		<button @click="settingsOpen = true">Show Settings</button>
-		<AppSettingsDialog :open.sync="settingsOpen" showNavigation=true>
+		<AppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" title="Application settings">
 			<AppSettingsSection title="Example title 1">
 				Some example content
 			</AppSettingsSection>
 			<AppSettingsSection title="Example title 2">
+				Some more content
+			</AppSettingsSection>
+			<AppSettingsSection title="Example title 3">
+				Some example content
+			</AppSettingsSection>
+			<AppSettingsSection title="Example title 4">
+				Some more content
+			</AppSettingsSection>
+			<AppSettingsSection title="Example title 5">
+				Some example content
+			</AppSettingsSection>
+			<AppSettingsSection title="Example title 6">
+				Some more content
+			</AppSettingsSection>
+			<AppSettingsSection title="Example title 7">
+				Some example content
+			</AppSettingsSection>
+			<AppSettingsSection title="Example title 8">
+				Some more content
+			</AppSettingsSection>
+			<AppSettingsSection title="Example title 9">
+				Some more content
+			</AppSettingsSection>
+			<AppSettingsSection title="Example title 10">
 				Some more content
 			</AppSettingsSection>
 		</AppSettingsDialog>
@@ -90,6 +114,14 @@ export default {
 		container: {
 			type: String,
 			default: 'body',
+		},
+
+		/**
+		 * Title of the settings
+		 */
+		title: {
+			type: String,
+			default: '',
 		},
 	},
 
@@ -224,7 +256,7 @@ export default {
 						role: 'tablist',
 					},
 				}, this.getSettingsNavigation(this.$slots.default).map(item => {
-					return createListElemtent(item)
+					return createListElement(item)
 				}))])]
 			} else {
 				return []
@@ -237,7 +269,7 @@ export default {
 		 * @param {object} item the navigation item
 		 * @return {object} the list element
 		 */
-		const createListElemtent = (item) => createElement('li', {}, [createElement('a', {
+		const createListElement = (item) => createElement('li', {}, [createElement('a', {
 			class: {
 				'navigation-list__link': true,
 				'navigation-list__link--active': item === this.selectedSection,
@@ -266,17 +298,40 @@ export default {
 					close: () => { this.handleCloseModal() },
 				},
 			}, [
+				// main app-settings root element
 				createElement('div', {
 					attrs: {
 						class: 'app-settings',
 					},
-				}, [...createAppSettingsNavigation(),
-					createElement('div', {
-						attrs: {
-							class: 'app-settings__content',
+				}, [
+					// app-settings title
+					this.title
+						? createElement('h2', {
+							attrs: {
+								class: 'app-settings__title',
+							},
+						}, this.title)
+						: undefined,
+
+					// app-settings navigation + content
+					createElement(
+						'div',
+						{
+							attrs: {
+								class: 'app-settings__wrapper',
+							},
 						},
-						ref: 'settingsScroller',
-					}, this.$slots.default)]),
+						[
+							...createAppSettingsNavigation(),
+							createElement('div', {
+								attrs: {
+									class: 'app-settings__content',
+								},
+								ref: 'settingsScroller',
+							}, this.$slots.default),
+						]
+					),
+				]),
 			])
 		} else {
 			return undefined
@@ -290,14 +345,32 @@ export default {
 
 ::v-deep .modal-wrapper .modal-container {
 	display: flex;
+	overflow: hidden;
 }
 
 .app-settings {
-	display: flex;
 	width: 100%;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	&__title {
+		padding-top: 12px;
+		text-align: center;
+	}
+	&__wrapper {
+		display: flex;
+		width: 100%;
+		overflow: hidden;
+		height: 100%;
+		position: relative;
+	}
 	&__navigation {
 		min-width: 200px;
 		margin-right: 20px;
+		overflow-x: hidden;
+		overflow-y: auto;
+		position: relative;
+		height: 100%;
 	}
 	&__content {
 		max-width: 100vw;
