@@ -81,7 +81,7 @@ export default {
 		popoverBaseClass: {
 			type: String,
 			default: '',
-		}
+		},
 	},
 
 	mounted() {
