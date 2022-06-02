@@ -225,8 +225,13 @@ include a standard-header like it's used by the files app.
 											:value="title"
 											@keydown.esc="onDismissEditing"
 											@input="onTitleInput">
-										<button class="icon-confirm"
-											type="submit" />
+										<Button type="tertiary-no-background"
+											native-type="submit">
+											<template #icon>
+												<ArrowRight :size="20"
+													decorative />
+											</template>
+										</Button>
 									</form>
 								</template>
 								<!-- header main menu -->
@@ -277,6 +282,7 @@ import Linkify from '../../directives/Linkify/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import { t } from '../../l10n.js'
 
+import ArrowRight from 'vue-material-design-icons/ArrowRight'
 import Close from 'vue-material-design-icons/Close'
 import Star from 'vue-material-design-icons/Star'
 
@@ -288,6 +294,7 @@ export default {
 	components: {
 		Actions,
 		AppSidebarTabs,
+		ArrowRight,
 		Button,
 		LoadingIcon,
 		EmptyContent,
@@ -763,10 +770,7 @@ $top-buttons-spacing: 6px;
 					.app-sidebar-header__maintitle-form {
 						display: flex;
 						flex: 1 1 auto;
-
-						& .icon-confirm {
-							margin: 0;
-						}
+						align-items: center;
 
 						input.app-sidebar-header__maintitle-input {
 							flex: 1 1 auto;
