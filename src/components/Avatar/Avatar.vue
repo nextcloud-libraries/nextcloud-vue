@@ -50,12 +50,15 @@
 		:role="disableMenu ? '' : 'button'"
 		v-on="!disableMenu ? { click: toggleMenu } : {}"
 		@keydown.enter="toggleMenu">
-		<!-- Avatar icon or image -->
-		<div v-if="iconClass" :class="iconClass" class="avatar-class-icon" />
-		<img v-else-if="isAvatarLoaded && !userDoesNotExist"
-			:src="avatarUrlLoaded"
-			:srcset="avatarSrcSetLoaded"
-			alt="">
+		<!-- @slot Icon slot -->
+		<slot name="icon">
+			<!-- Avatar icon or image -->
+			<div v-if="iconClass" :class="iconClass" class="avatar-class-icon" />
+			<img v-else-if="isAvatarLoaded && !userDoesNotExist"
+				:src="avatarUrlLoaded"
+				:srcset="avatarSrcSetLoaded"
+				alt="">
+		</slot>
 
 		<!-- Contact menu -->
 		<Popover v-if="hasMenu"
@@ -84,7 +87,7 @@
 			:class="'avatardiv__user-status--' + userStatus.status" />
 
 		<!-- Show the letter if no avatar nor icon class -->
-		<div v-if="userDoesNotExist && !iconClass" class="unknown">
+		<div v-if="userDoesNotExist && !(iconClass || $slots.icon)" class="unknown">
 			{{ initials }}
 		</div>
 	</div>
@@ -679,6 +682,11 @@ export default {
 		height: 100%;
 		// Keep ratio
 		object-fit: cover;
+	}
+
+	.material-design-icon {
+		width: var(--size);
+		height: var(--size);
 	}
 
 	.avatardiv__user-status {
