@@ -316,7 +316,7 @@ export default {
 		},
 
 		showMoreLabel() {
-			return t('More {what} …', { what: this.showMoreText })
+			return t('More {dashboardItemType} …', { dashboardItemType: this.showMoreText })
 		},
 	},
 }
