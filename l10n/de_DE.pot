@@ -80,8 +80,8 @@ msgstr "Elemente"
 msgid "Message limit of {count} characters reached"
 msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
 
-msgid "More {what} …"
-msgstr "Mehr {what} …"
+msgid "More {dashboardItemType} …"
+msgstr "Mehr {dashboardItemType} …"
 
 msgid "Next"
 msgstr "Weiter"
