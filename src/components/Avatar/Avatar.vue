@@ -34,6 +34,27 @@
 	<avatar url="https://nextcloud.com/wp-content/themes/next/assets/img/common/nextcloud-square-logo.png" />
 ```
 
+### Avatar with material design icon
+
+```
+ <template>
+	<avatar>
+		<template #icon>
+			<AccountMultiple :size="20" decorative />
+		</template>
+	</AppNavigationNew>
+ </template>
+ <script>
+ import AccountMultiple from 'vue-material-design-icons/AccountMultiple'
+
+ export default {
+	components: {
+		AccountMultiple,
+	},
+ }
+ </script>
+```
+
 </docs>
 <template>
 	<div ref="main"
