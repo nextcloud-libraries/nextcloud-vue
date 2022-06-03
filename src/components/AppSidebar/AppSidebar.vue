@@ -176,6 +176,7 @@ include a standard-header like it's used by the files app.
 						<div v-if="canStar || $slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
 							<slot name="tertiary-actions">
 								<Button v-if="canStar"
+									:aria-label="favoriteTranslated"
 									type="tertiary-no-background"
 									@click.prevent="toggleStarred">
 									<template #icon>
@@ -214,6 +215,7 @@ include a standard-header like it's used by the files app.
 											@keydown.esc="onDismissEditing"
 											@input="onTitleInput">
 										<Button type="tertiary-no-background"
+											:aria-label="changeTitleTranslated"
 											native-type="submit">
 											<template #icon>
 												<ArrowRight :size="20"
@@ -240,6 +242,7 @@ include a standard-header like it's used by the files app.
 				</div>
 
 				<Button v-tooltip.auto="closeTranslated"
+					:aria-label="closeTranslated"
 					type="tertiary"
 					class="app-sidebar__close"
 					@click.prevent="closeSidebar">
@@ -417,7 +420,9 @@ export default {
 
 	data() {
 		return {
+			changeTitleTranslated: t('Change title'),
 			closeTranslated: t('Close'),
+			favoriteTranslated: t('Favorite'),
 			isStarred: this.starred,
 		}
 	},
