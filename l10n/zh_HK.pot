@@ -2,10 +2,11 @@
 # Translators:
 # ous 50, 2021
 # Café Tango, 2022
+# Ami GPN, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Café Tango, 2022\n"
+"Last-Translator: Ami GPN, 2022\n"
 "Language-Team: Chinese (Hong Kong) (https://www.transifex.com/nextcloud/teams/64236/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_HK\n"
@@ -77,8 +78,8 @@ msgstr "項目"
 msgid "Message limit of {count} characters reached"
 msgstr "已達到訊息最多 {count} 字元限制"
 
-msgid "More {what} …"
-msgstr "更多 {what} …"
+msgid "More {dashboardItemType} …"
+msgstr "更多 {dashboardItemType} …"
 
 msgid "Next"
 msgstr "下一個"
