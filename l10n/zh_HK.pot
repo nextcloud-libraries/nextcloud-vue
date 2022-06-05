@@ -1,6 +1,6 @@
 # 
 # Translators:
-# ous 50, 2021
+# Ami GPN, 2022
 # Café Tango, 2022
 # 
 msgid ""
@@ -30,7 +30,7 @@ msgid "Avatar of {displayName}"
 msgstr "{displayName} 的頭像"
 
 msgid "Avatar of {displayName}, {status}"
-msgstr "{displayName}的頭像，{status}"
+msgstr "{displayName} 的頭像，{status}"
 
 msgid "Cancel changes"
 msgstr "取消更改"
@@ -77,8 +77,8 @@ msgstr "項目"
 msgid "Message limit of {count} characters reached"
 msgstr "已達到訊息最多 {count} 字元限制"
 
-msgid "More {what} …"
-msgstr "更多 {what} …"
+msgid "More {dashboardItemType} …"
+msgstr "更多 {dashboardItemType} …"
 
 msgid "Next"
 msgstr "下一個"
