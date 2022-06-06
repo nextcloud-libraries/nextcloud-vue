@@ -76,8 +76,8 @@ msgstr "položky"
 msgid "Message limit of {count} characters reached"
 msgstr "Dosaženo limitu počtu ({count}) znaků zprávy"
 
-msgid "More {what} …"
-msgstr "Další {what} …"
+msgid "More {dashboardItemType} …"
+msgstr "Další {dashboardItemType} …"
 
 msgid "Next"
 msgstr "Následující"
