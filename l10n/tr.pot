@@ -79,8 +79,8 @@ msgstr "ögeler"
 msgid "Message limit of {count} characters reached"
 msgstr "{count} karakter ileti sınırına ulaşıldı"
 
-msgid "More {what} …"
-msgstr "Diğer {what} …"
+msgid "More {dashboardItemType} …"
+msgstr "Diğer {dashboardItemType} ögeleri…"
 
 msgid "Next"
 msgstr "Sonraki"
