@@ -77,8 +77,8 @@ msgstr "elementy"
 msgid "Message limit of {count} characters reached"
 msgstr "Przekroczono limit wiadomości wynoszący {count} znaków"
 
-msgid "More {what} …"
-msgstr "Więcej {what}…"
+msgid "More {dashboardItemType} …"
+msgstr "Więcej {dashboardItemType}…"
 
 msgid "Next"
 msgstr "Następny"
