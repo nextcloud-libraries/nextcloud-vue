@@ -62,8 +62,7 @@
 			placement="auto"
 			:container="menuContainer"
 			:open="contactsMenuOpenState"
-			@after-show="handlePopoverAfterShow"
-			@after-hide="handlePopoverAfterHide">
+			@after-show="handlePopoverAfterShow">
 			<PopoverMenu ref="popoverMenu" :menu="menu" />
 			<template #trigger>
 				<div v-if="contactsMenuLoading" class="icon-loading" />
@@ -454,10 +453,6 @@ export default {
 			if (links.length) {
 				links[0].focus()
 			}
-		},
-		handlePopoverAfterHide() {
-			// bring focus back to the trigger
-			this.$refs.main.focus()
 		},
 		handleUserStatusUpdated(state) {
 			if (this.user === state.userId) {
