@@ -3,10 +3,13 @@
 # YANO Tetsu <tetuyano+transi@gmail.com>, 2021
 # Katsumi Sasaki <tripper@kidnappers.gr.jp>, 2021
 # hiroshisuga <suga0330@gmail.com>, 2021
+# 焼きすぎた鮭, 2021
+# Kosugi_kun, 2022
+# T.S, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: hiroshisuga <suga0330@gmail.com>, 2021\n"
+"Last-Translator: T.S, 2022\n"
 "Language-Team: Japanese (Japan) (https://www.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ja_JP\n"
@@ -30,6 +33,9 @@ msgstr "動物と自然"
 msgid "Avatar of {displayName}"
 msgstr "{displayName} のアバター"
 
+msgid "Avatar of {displayName}, {status}"
+msgstr "{displayName}, {status}のアバター"
+
 msgid "Cancel changes"
 msgstr "変更をキャンセル"
 
@@ -39,11 +45,17 @@ msgstr "選択"
 msgid "Close"
 msgstr "閉じる"
 
+msgid "Close navigation"
+msgstr "ナビゲーションを閉じる"
+
 msgid "Confirm changes"
 msgstr "変更を承認"
 
 msgid "Custom"
 msgstr "カスタム"
+
+msgid "Edit item"
+msgstr "編集"
 
 msgid "External documentation for {title}"
 msgstr "{title} のための添付文書"
@@ -60,8 +72,17 @@ msgstr "よく使うもの"
 msgid "Global"
 msgstr "全体"
 
+msgid "Go back to the list"
+msgstr "リストに戻る"
+
+msgid "items"
+msgstr "アイテム"
+
 msgid "Message limit of {count} characters reached"
 msgstr "{count} 文字のメッセージ上限に達しています"
+
+msgid "More {dashboardItemType} …"
+msgstr "{dashboardItemType}をさらに表示…"
 
 msgid "Next"
 msgstr "次"
@@ -74,6 +95,9 @@ msgstr "なし"
 
 msgid "Objects"
 msgstr "物"
+
+msgid "Open navigation"
+msgstr "ナビゲーションを開く"
 
 msgid "Pause slideshow"
 msgstr "スライドショーを一時停止"
@@ -126,5 +150,8 @@ msgstr "タイムゾーン検索のため入力してください"
 msgid "Unable to search the group"
 msgstr "グループを検索できません"
 
-msgid "Write message, @ to mention someone …"
-msgstr "メッセージを記入　@をつけるとその人に通知が行きます"
+msgid "Undo changes"
+msgstr "変更を取り消し"
+
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr "メッセージを書く、@で誰かを紹介する、: で絵文字を自動補完する ..."
