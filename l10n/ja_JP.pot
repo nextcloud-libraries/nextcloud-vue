@@ -45,6 +45,9 @@ msgstr "選択"
 msgid "Close"
 msgstr "閉じる"
 
+msgid "Close modal"
+msgstr "モーダルを閉じる"
+
 msgid "Close navigation"
 msgstr "ナビゲーションを閉じる"
 
