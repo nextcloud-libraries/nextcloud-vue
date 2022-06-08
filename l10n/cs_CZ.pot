@@ -40,6 +40,9 @@ msgstr "Zvolit"
 msgid "Close"
 msgstr "Zavřít"
 
+msgid "Close modal"
+msgstr "Zavřít dialogové okno"
+
 msgid "Close navigation"
 msgstr "Zavřít navigaci"
 
