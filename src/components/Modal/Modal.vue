@@ -381,12 +381,12 @@ export default {
 		},
 
 		/**
-		 * Pass in true if you want the modal 'close' button to be displayed
-		 * within the modal boundaries.
+		 * Pass in false if you want the modal 'close' button to be displayed
+		 * outside the modal boundaries, in the top right corner of the window
 		 */
 		closeButtonContained: {
 			type: Boolean,
-			default: false,
+			default: true,
 		},
 	},
 
