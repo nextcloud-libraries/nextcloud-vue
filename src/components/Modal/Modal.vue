@@ -166,7 +166,7 @@
 						</Actions>
 
 						<!-- Close modal -->
-						<Actions v-if="canClose" class="header-close">
+						<Actions v-if="canClose && !closeButtonContained" class="header-close">
 							<ActionButton @click="close">
 								<template #icon>
 									<Close :size="iconSize" title="" decorative />
@@ -207,6 +207,16 @@
 
 					<!-- Content -->
 					<div class="modal-container">
+						<!-- Close modal -->
+						<ButtonVue v-if="canClose && closeButtonContained"
+							type="tertiary"
+							class="modal-container__close"
+							:aria-label="closeButtonAriaLabel"
+							@click="close">
+							<template #icon>
+								<Close :size="20" title="" decorative />
+							</template>
+						</ButtonVue>
 						<!-- @slot Modal content to render -->
 						<slot />
 					</div>
@@ -241,6 +251,7 @@ import Tooltip from '../../directives/Tooltip/index.js'
 import l10n from '../../mixins/l10n.js'
 import Timer from '../../utils/Timer.js'
 import { t } from '../../l10n.js'
+import ButtonVue from '../../components/Button/index.js'
 
 import ChevronLeft from 'vue-material-design-icons/ChevronLeft'
 import ChevronRight from 'vue-material-design-icons/ChevronRight'
@@ -261,6 +272,7 @@ export default {
 		Close,
 		Pause,
 		Play,
+		ButtonVue,
 	},
 
 	directives: {
@@ -367,6 +379,15 @@ export default {
 			type: String,
 			default: 'body',
 		},
+
+		/**
+		 * Pass in false if you want the modal 'close' button to be displayed
+		 * outside the modal boundaries, in the top right corner of the window
+		 */
+		closeButtonContained: {
+			type: Boolean,
+			default: true,
+		},
 	},
 
 	data() {
@@ -394,6 +415,10 @@ export default {
 				'--slideshow-duration': this.slideshowDelay + 'ms',
 				'--icon-size': this.iconSize + 'px',
 			}
+		},
+
+		closeButtonAriaLabel() {
+			return t('Close modal')
 		},
 	},
 
@@ -776,6 +801,7 @@ export default {
 
 	/* Content */
 	.modal-container {
+		position: relative;
 		display: block;
 		overflow: auto; // avoids unecessary hacks if the content should be bigger than the modal
 		padding: 0;
@@ -783,6 +809,11 @@ export default {
 		border-radius: var(--border-radius-large);
 		background-color: var(--color-main-background);
 		box-shadow: 0 0 40px rgba(0, 0, 0, .2);
+		&__close {
+			position: absolute;
+			top: 4px;
+			right: 4px;
+		}
 	}
 
 	// Sizing
