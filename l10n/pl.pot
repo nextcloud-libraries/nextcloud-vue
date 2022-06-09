@@ -41,6 +41,9 @@ msgstr "Wybierz"
 msgid "Close"
 msgstr "Zamknij"
 
+msgid "Close modal"
+msgstr "Zamknij modal"
+
 msgid "Close navigation"
 msgstr "Zamknij nawigację"
 
