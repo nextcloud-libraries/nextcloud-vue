@@ -776,6 +776,7 @@ $top-buttons-spacing: 6px;
 				.app-sidebar-header__maintitle-container {
 					display: flex;
 					align-items: center;
+					min-height: $clickable-area;
 
 					// main title
 					.app-sidebar-header__maintitle {
