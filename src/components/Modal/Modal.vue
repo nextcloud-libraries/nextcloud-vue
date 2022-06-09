@@ -107,17 +107,10 @@
 		<div ref="mask"
 			class="modal-mask"
 			:class="{ 'modal-mask--dark': dark }"
-			:style="cssVariables"
-			@click="handleMouseMove"
-			@mousemove="handleMouseMove"
-			@touchmove="handleMouseMove">
+			:style="cssVariables">
 			<!-- Header -->
 			<transition name="fade-visibility">
-				<div v-show="!clearView"
-					:class="{
-						invisible: clearView
-					}"
-					class="modal-header">
+				<div class="modal-header">
 					<div v-if="title.trim() !== ''" class="modal-title">
 						{{ title }}
 					</div>
@@ -189,11 +182,11 @@
 					@mousedown.self="close">
 					<!-- Navigation button -->
 					<transition name="fade-visibility">
-						<a v-show="hasPrevious && !clearView"
+						<a v-show="hasPrevious"
 							class="prev"
 							href="#"
 							:class="{
-								invisible: clearView || !hasPrevious
+								invisible: !hasPrevious
 							}"
 							@click.prevent.stop="previous">
 							<span class="icon-previous">
@@ -223,11 +216,11 @@
 
 					<!-- Navigation button -->
 					<transition name="fade-visibility">
-						<a v-show="hasNext && !clearView"
+						<a v-show="hasNext"
 							class="next"
 							href="#"
 							:class="{
-								invisible: clearView || !hasNext
+								invisible: !hasNext
 							}"
 							@click.prevent.stop="next">
 							<span class="icon-next">
@@ -317,10 +310,6 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-		clearViewDelay: {
-			type: Number,
-			default: 5000,
-		},
 		/**
 		 * Declare the slide interval
 		 */
@@ -394,8 +383,6 @@ export default {
 		return {
 			mc: null,
 			showModal: false,
-			clearView: false,
-			clearViewTimeout: null,
 			playing: false,
 			slideshowTimeout: null,
 			iconSize: 24,
@@ -451,7 +438,6 @@ export default {
 		this.showModal = true
 
 		// init clear view
-		this.handleMouseMove()
 		this.useFocusTrap()
 		this.mc = new Hammer(this.$refs.mask)
 		this.mc.on('swipeleft swiperight', e => {
@@ -537,15 +523,6 @@ export default {
 					// swiping to right to go back to the previous item
 					this.previous(e)
 				}
-			}
-		},
-		handleMouseMove() {
-			if (this.clearViewDelay > 0) {
-				this.clearView = false
-				clearTimeout(this.clearViewTimeout)
-				this.clearViewTimeout = setTimeout(() => {
-					this.clearView = true
-				}, this.clearViewDelay)
 			}
 		},
 
