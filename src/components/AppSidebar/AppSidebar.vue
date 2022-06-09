@@ -177,6 +177,8 @@ include a standard-header like it's used by the files app.
 							<slot name="tertiary-actions">
 								<Button v-if="canStar"
 									:aria-label="favoriteTranslated"
+									class="app-sidebar-header__star"
+									:class="{ starred: isStarred }"
 									type="tertiary-no-background"
 									@click.prevent="toggleStarred">
 									<template #icon>
@@ -750,6 +752,17 @@ $top-buttons-spacing: 6px;
 				width: $clickable-area;
 				justify-content: center;
 				flex: 0 0 auto;
+
+				.app-sidebar-header__star {
+					// Override default Button component styles
+					&.starred {
+						opacity: 1;
+
+						&:hover {
+							opacity: 0.7;
+						}
+					}
+				}
 			}
 
 			// titles
