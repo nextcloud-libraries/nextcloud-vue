@@ -332,7 +332,7 @@ export default {
 
 	// Variables
 	// the whitespace between the topbar content and its edges
-	--topbar-margin: $topbar-margin: 4px;
+	--topbar-margin: $topbar-margin;
 }
 
 // Mobile list/details handling
