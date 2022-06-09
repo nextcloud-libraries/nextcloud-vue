@@ -847,6 +847,13 @@ $top-buttons-spacing: 6px;
 	}
 }
 
+// Make the sidebar full-width on small screens
+@media only screen and (max-width: math.div($breakpoint-mobile, 2)) {
+	.app-sidebar {
+		width: 100vw;
+	}
+}
+
 .slide-right-leave-active,
 .slide-right-enter-active {
 	transition-duration: var(--animation-quick);
