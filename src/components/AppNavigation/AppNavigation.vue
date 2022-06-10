@@ -188,4 +188,11 @@ export default {
 	}
 }
 
+// Put the toggle behind appsidebar on small screens
+@media only screen and (max-width: math.div($breakpoint-mobile, 2)) {
+	.app-navigation {
+		z-index: 1400;
+	}
+}
+
 </style>
