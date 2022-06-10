@@ -12,7 +12,7 @@ msgstr ""
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (invisível)"
@@ -43,6 +43,9 @@ msgstr "Escolher"
 
 msgid "Close"
 msgstr "Fechar"
+
+msgid "Close modal"
+msgstr "Fechar modal"
 
 msgid "Close navigation"
 msgstr "Fechar navegação"
@@ -80,8 +83,8 @@ msgstr "itens"
 msgid "Message limit of {count} characters reached"
 msgstr "Limite de mensagem de {count} caracteres atingido"
 
-msgid "More {what} …"
-msgstr "Mais {what} …"
+msgid "More {dashboardItemType} …"
+msgstr "Mais {dashboardItemType} …"
 
 msgid "Next"
 msgstr "Próximo"
