@@ -202,11 +202,6 @@ export default {
 	position: relative;
 	padding: 8px;
 
-	// Account for action menu
-	&--has-actions-menu {
-		padding-right: 0 !important;
-	}
-
 	&:hover,
 	&:focus {
 		background-color: var(--color-background-hover);
