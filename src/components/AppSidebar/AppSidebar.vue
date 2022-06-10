@@ -603,6 +603,7 @@ $sidebar-min-width: 300px;
 $sidebar-max-width: 500px;
 
 $desc-vertical-padding: 18px;
+$desc-vertical-padding-compact: 10px;
 $desc-input-padding: 7px;
 
 // title and subtitle
@@ -669,6 +670,7 @@ $top-buttons-spacing: 6px;
 					flex: 1 1 auto;
 					min-width: 0;
 					padding-right: 2 * $clickable-area + $top-buttons-spacing;
+					padding-top: $desc-vertical-padding-compact;
 
 					&.app-sidebar-header__desc--without-actions {
 						padding-right: #{$clickable-area + $top-buttons-spacing};
