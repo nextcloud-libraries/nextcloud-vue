@@ -183,8 +183,10 @@ include a standard-header like it's used by the files app.
 									@click.prevent="toggleStarred">
 									<template #icon>
 										<LoadingIcon v-if="starLoading" />
-										<Star v-else
-											:fill-color="isStarred ? '#FC0' : 'currentColor'"
+										<Star v-else-if="isStarred"
+											:size="20"
+											decorative />
+										<StarOutline v-else
 											:size="20"
 											decorative />
 									</template>
@@ -289,6 +291,7 @@ import { t } from '../../l10n.js'
 import ArrowRight from 'vue-material-design-icons/ArrowRight'
 import Close from 'vue-material-design-icons/Close'
 import Star from 'vue-material-design-icons/Star'
+import StarOutline from 'vue-material-design-icons/StarOutline'
 
 import { directive as ClickOutside } from 'v-click-outside'
 
@@ -304,6 +307,7 @@ export default {
 		EmptyContent,
 		Close,
 		Star,
+		StarOutline,
 	},
 
 	directives: {
