@@ -735,6 +735,7 @@ $top-buttons-spacing: 6px;
 			display: flex;
 			flex-direction: row;
 			justify-content: center;
+			align-items: center;
 			padding: #{$desc-vertical-padding} #{$top-buttons-spacing} #{$desc-vertical-padding} #{math.div($desc-vertical-padding, 2)};
 
 			// custom overrides
