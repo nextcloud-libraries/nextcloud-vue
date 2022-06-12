@@ -81,12 +81,12 @@ export default {
 </script>
 ```
 
-### Standard radio set with alternative style
+### Standard radio set with alternative button style
 ```vue
 <template>
 	<div>
-		<CheckboxRadioSwitch :checked.sync="sharingPermission" value="r" name="sharing_permission_radio" type="radio" :alternative-style="true">Default permission read</CheckboxRadioSwitch>
-		<CheckboxRadioSwitch :checked.sync="sharingPermission" value="rw" name="sharing_permission_radio" type="radio" :alternative-style="true">Default permission read+write</CheckboxRadioSwitch>
+		<CheckboxRadioSwitch :checked.sync="sharingPermission" value="r" name="sharing_permission_radio" type="radio" :button-variant="true">Default permission read</CheckboxRadioSwitch>
+		<CheckboxRadioSwitch :checked.sync="sharingPermission" value="rw" name="sharing_permission_radio" type="radio" :button-variant="true">Default permission read+write</CheckboxRadioSwitch>
 		<br>
 		sharingPermission: {{ sharingPermission }}
 	</div>
@@ -154,7 +154,7 @@ export default {
 			'checkbox-radio-switch--checked': isChecked,
 			'checkbox-radio-switch--disabled': disabled,
 			'checkbox-radio-switch--indeterminate': indeterminate,
-			'checkbox-radio-switch--alternate-radio': isAlternativeRadio,
+			'checkbox-radio-switch--button-variant': buttonVariant,
 		}"
 		:style="cssVars"
 		class="checkbox-radio-switch">
@@ -171,7 +171,7 @@ export default {
 		<label :for="id" class="checkbox-radio-switch__label">
 			<div v-if="loading" class="icon-loading-small checkbox-radio-switch__icon" />
 			<icon :is="checkboxRadioIconElement"
-				v-else-if="!isAlternativeRadio"
+				v-else-if="!buttonVariant"
 				:size="size"
 				class="checkbox-radio-switch__icon"
 				title=""
@@ -233,9 +233,9 @@ export default {
 		},
 
 		/**
-		 * Toggle the alternative style (for radio type only)
+		 * Toggle the alternative button style
 		 */
-		alternativeStyle: {
+		buttonVariant: {
 			type: Boolean,
 			default: false,
 		},
@@ -323,10 +323,6 @@ export default {
 				return TYPE_RADIO
 			}
 			return TYPE_CHECKBOX
-		},
-
-		isAlternativeRadio() {
-			return this.type === TYPE_RADIO && this.alternativeStyle
 		},
 
 		/**
@@ -498,7 +494,7 @@ $spacing: 4px;
 		color: var(--color-primary-element-light);
 	}
 
-	&.checkbox-radio-switch--alternate-radio.checkbox-radio-switch {
+	&--button-variant.checkbox-radio-switch {
 		border: 2px solid var(--color-border-dark);
 		border-radius: var(--border-radius);
 
@@ -524,12 +520,12 @@ $spacing: 4px;
 				background-color: var(--color-background-dark);
 			}
 		}
+	}
 
-		.checkbox-radio-switch__label {
-			border-radius: 0 !important;
-			width: 100% !important;
-			margin: 0 !important;
-		}
+	&--button-variant &__label {
+		border-radius: 0 !important;
+		width: 100% !important;
+		margin: 0 !important;
 	}
 }
 </style>
