@@ -38,23 +38,28 @@
 				class="app-navigation-input-confirm__input"
 				:placeholder="placeholder">
 
-			<button type="submit"
-				class="app-navigation-input-confirm__confirm"
+			<ButtonVue native-type="submit"
+				type="primary"
 				:aria-label="labelConfirm"
 				@click.stop.prevent="confirm">
-				<ArrowRight :size="20" decorative title="" />
-			</button>
+				<template #icon>
+					<ArrowRight :size="20" decorative title="" />
+				</template>
+			</ButtonVue>
 
-			<button type="reset"
-				class="app-navigation-input-confirm__close"
+			<ButtonVue native-type="reset"
+				type="tertiary"
 				:aria-label="labelCancel"
 				@click.stop.prevent="cancel">
-				<Close :size="20" decorative title="" />
-			</button>
+				<template #icon>
+					<Close :size="20" decorative title="" />
+				</template>
+			</ButtonVue>
 		</form>
 	</div>
 </template>
 <script>
+import ButtonVue from '../Button/index.js'
 import { t } from '../../l10n.js'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight'
@@ -64,6 +69,7 @@ export default {
 	name: 'InputConfirmCancel',
 
 	components: {
+		ButtonVue,
 		ArrowRight,
 		Close,
 	},
@@ -112,7 +118,7 @@ export default {
 <style lang="scss">
 $input-height: 34px;
 $input-padding: 7px;
-$input-margin: 3px;
+$input-margin: 5px;
 
 .app-navigation-input-confirm {
 	flex: 1 0 100%;
@@ -126,8 +132,8 @@ $input-margin: 3px;
 		height: $input-height;
 		flex: 1 1 100%;
 		font-size: 14px;
-		margin: $input-margin;
-		margin-left: 0;
+		margin: $input-margin !important;
+		margin-left: 0 !important;
 		padding: $input-padding;
 
 		&:active,
@@ -137,60 +143,7 @@ $input-margin: 3px;
 			background-color: var(--color-main-background);
 			color: var(--color-text-light);
 			border-color: var(--color-primary-element);
-
-			+ .app-navigation-input-confirm__confirm {
-				border-color: var(--color-primary-element);
-				border-left-color: transparent !important;
-				border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
-			}
 		}
-	}
-
-	// submit and cancel buttons
-	button {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: $clickable-area !important;
-		color: var(--color-main-text);
-		border-radius: 0;
-
-		// icon hover/focus feedback
-		span {
-			opacity: $opacity_normal;
-		}
-		&:hover,
-		&:focus {
-			span {
-				opacity: $opacity_full;
-			}
-		}
-	}
-
-	&__confirm {
-		margin-left: -8px;
-		border-left-color: transparent !important;
-		border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
-		background-clip: padding-box;
-		background-color: var(--color-main-background);
-		opacity: 1;
-		height: $input-height;
-		width: $input-height;
-		padding: $input-padding;
-		cursor: pointer;
-		margin-right: 0;
-
-		&:focus,
-		&:hover {
-			border-radius: var(--border-radius) !important;
-			border-color: var(--color-primary-element) !important;
-		}
-	}
-
-	&__close {
-		margin: 0;
-		border: none;
-		background-color: transparent;
 	}
 }
 </style>
