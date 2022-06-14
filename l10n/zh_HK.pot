@@ -41,6 +41,9 @@ msgstr "選擇"
 msgid "Close"
 msgstr "關閉"
 
+msgid "Close modal"
+msgstr "關閉模態"
+
 msgid "Close navigation"
 msgstr "關閉導航"
 
