@@ -25,14 +25,17 @@
 
 ```
 <LoadingIcon />
+<LoadingIcon :size="64" fill-color="var(--color-primary-element)" title="Loading with primary color" />
 ```
 </docs>
 
 <template>
-	<Loading :size="size" />
+	<Loading :size="size" :fill-color="fillColor" :title="title" />
 </template>
 
 <script>
+import { t } from '../../l10n.js'
+
 import Loading from 'vue-material-design-icons/Loading'
 
 export default {
@@ -41,9 +44,26 @@ export default {
 		Loading,
 	},
 	props: {
+		/**
+		 * Specify the size of the loading icon.
+		 */
 		size: {
 			type: Number,
 			default: 20,
+		},
+		/**
+		 * Overwrites the default color. Necessary for dark backgrounds.
+		 */
+		fillColor: {
+			type: String,
+			default: 'var(--color-loading-dark)',
+		},
+		/**
+		 * Specify what is loading.
+		 */
+		title: {
+			type: String,
+			default: t('Loading'),
 		},
 	},
 }
@@ -52,6 +72,5 @@ export default {
 <style lang="scss" scoped>
 .material-design-icon::v-deep svg {
 	animation: rotate var(--animation-duration, 0.8s) linear infinite;
-	color: var(--color-loading-dark);
 }
 </style>
