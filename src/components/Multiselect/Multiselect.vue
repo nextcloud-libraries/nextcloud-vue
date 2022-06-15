@@ -163,13 +163,11 @@ export default {
 		v-model="localValue"
 		v-bind="$attrs"
 		:class="[
-			{
-				'icon-loading-small': loading
-			},
 			multiple ? 'multiselect--multiple': 'multiselect--single'
 		]"
 		:options="options"
 		:limit="maxOptions"
+		:loading="loading"
 		:close-on-select="willCloseOnSelect"
 		:multiple="multiple"
 		:label="label"
@@ -216,12 +214,16 @@ export default {
 		<template #noResult>
 			<span>{{ t('No results') }}</span>
 		</template>
+		<template #loading>
+			<LoadingIcon v-if="loading" />
+		</template>
 	</VueMultiselect>
 </template>
 
 <script>
 import EllipsisedOption from './EllipsisedOption.vue'
 import ListItemIcon from '../ListItemIcon/index.js'
+import LoadingIcon from '../LoadingIcon/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import l10n from '../../mixins/l10n.js'
 
@@ -232,6 +234,7 @@ export default {
 	components: {
 		EllipsisedOption,
 		ListItemIcon,
+		LoadingIcon,
 		VueMultiselect,
 	},
 	directives: {
