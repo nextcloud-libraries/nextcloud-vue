@@ -184,7 +184,7 @@ include a standard-header like it's used by the files app.
 								<a v-if="canStar"
 									class="app-sidebar-header__star"
 									@click.prevent="toggleStarred">
-									<span v-if="starLoading" class="icon-loading-small" />
+									<LoadingIcon v-if="starLoading" />
 									<Star v-else
 										:class="{
 											'star--starred': isStarred,
@@ -252,7 +252,11 @@ include a standard-header like it's used by the files app.
 				<slot />
 			</AppSidebarTabs>
 
-			<EmptyContent v-if="loading" icon="icon-loading" />
+			<EmptyContent v-if="loading">
+				<template #icon>
+					<LoadingIcon :size="64" />
+				</template>
+			</EmptyContent>
 		</aside>
 	</transition>
 </template>
@@ -260,6 +264,7 @@ include a standard-header like it's used by the files app.
 <script>
 import AppSidebarTabs from './AppSidebarTabs.vue'
 import Actions from '../Actions/index.js'
+import LoadingIcon from '../LoadingIcon/index.js'
 import EmptyContent from '../EmptyContent/index.js'
 import Focus from '../../directives/Focus/index.js'
 import Linkify from '../../directives/Linkify/index.js'
@@ -277,6 +282,7 @@ export default {
 	components: {
 		Actions,
 		AppSidebarTabs,
+		LoadingIcon,
 		EmptyContent,
 		Close,
 		Star,
@@ -811,8 +817,7 @@ $top-buttons-spacing: 6px;
 				width: $clickable-area;
 				height: $clickable-area;
 
-				.icon-loading-small {
-					display: block;
+				.loading-icon {
 					width: $clickable-area;
 					height: $clickable-area;
 				}
