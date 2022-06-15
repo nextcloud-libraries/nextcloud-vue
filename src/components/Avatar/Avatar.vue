@@ -90,7 +90,7 @@
 			@after-hide="handlePopoverAfterHide">
 			<PopoverMenu ref="popoverMenu" :menu="menu" />
 			<template #trigger>
-				<div v-if="contactsMenuLoading" class="icon-loading" />
+				<LoadingIcon v-if="contactsMenuLoading" />
 				<DotsHorizontal v-else
 					:size="20"
 					class="icon-more"
@@ -117,6 +117,7 @@
 <script>
 import Popover from '../Popover/index.js'
 import PopoverMenu from '../PopoverMenu/index.js'
+import LoadingIcon from '../LoadingIcon/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import usernameToColor from '../../functions/usernameToColor/index.js'
 import { userStatus } from '../../mixins/index.js'
@@ -164,6 +165,7 @@ export default {
 	},
 	components: {
 		DotsHorizontal,
+		LoadingIcon,
 		Popover,
 		PopoverMenu,
 	},
@@ -659,16 +661,8 @@ export default {
 			top: 0;
 			left: 0;
 		}
-		.icon-more, .icon-loading {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: var(--size);
-			height: var(--size);
-			cursor: pointer;
-			background: none;
-		}
 		.icon-more {
+			cursor: pointer;
 			opacity: 0;
 		}
 		&:focus,
