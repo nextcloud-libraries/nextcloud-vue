@@ -68,9 +68,6 @@ msgstr ""
 msgid "items"
 msgstr ""
 
-msgid "Loading"
-msgstr ""
-
 msgid "Message limit of {count} characters reached"
 msgstr ""
 

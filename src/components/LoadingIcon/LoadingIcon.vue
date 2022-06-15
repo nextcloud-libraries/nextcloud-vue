@@ -34,8 +34,6 @@
 </template>
 
 <script>
-import { t } from '../../l10n.js'
-
 import Loading from 'vue-material-design-icons/Loading'
 
 export default {
@@ -63,7 +61,7 @@ export default {
 		 */
 		title: {
 			type: String,
-			default: t('Loading'),
+			default: '',
 		},
 	},
 }
