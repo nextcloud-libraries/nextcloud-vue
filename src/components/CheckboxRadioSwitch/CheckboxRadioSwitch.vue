@@ -136,17 +136,16 @@ export default {
 		}"
 		:style="cssVars"
 		class="checkbox-radio-switch">
-		<input :id="id"
-			:checked="isChecked"
-			:disabled="disabled"
-			:indeterminate="indeterminate"
-			:name="name"
-			:type="inputType"
-			:value="value"
-			class="checkbox-radio-switch__input"
-			@change="onToggle">
-
 		<label :for="id" class="checkbox-radio-switch__label">
+			<input :id="id"
+				:checked="isChecked"
+				:disabled="disabled"
+				:indeterminate="indeterminate"
+				:name="name"
+				:type="inputType"
+				:value="value"
+				class="checkbox-radio-switch__input"
+				@change="onToggle">
 			<div v-if="loading" class="icon-loading-small checkbox-radio-switch__icon" />
 			<icon :is="checkboxRadioIconElement"
 				v-else
@@ -412,15 +411,16 @@ $spacing: 4px;
 	display: flex;
 
 	&__input {
-		position: fixed;
+		position: absolute;
 		z-index: -1;
-		top: -5000px;
-		left: -5000px;
-		opacity: 0;
+		opacity: 0 !important; // We need !important, or it gets overwritten by server style
+		width: var(--icon-size);
+		height: var(--icon-size);
 	}
 
 	&__label {
 		display: flex;
+		position: relative;
 		align-items: center;
 		user-select: none;
 		height: $clickable-area;
@@ -449,8 +449,8 @@ $spacing: 4px;
 		}
 	}
 
-	&:not(&--disabled) &__input:hover + &__label,
-	&:not(&--disabled) &__input:focus + &__label {
+	&:not(&--disabled) &__label:hover,
+	&:not(&--disabled) &__label:focus-within {
 		background-color: var(--color-primary-light);
 	}
 
