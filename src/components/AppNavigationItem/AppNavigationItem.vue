@@ -134,9 +134,10 @@ Just set the `pinned` prop.
 
 				<!-- icon if not collapsible -->
 				<!-- never show the icon over the collapsible if mobile -->
-				<div :class="{ 'icon-loading-small': loading, [icon]: icon && isIconShown }"
+				<div :class="{ [icon]: icon && isIconShown }"
 					class="app-navigation-entry-icon">
-					<slot v-show="!loading && isIconShown" name="icon" />
+					<LoadingIcon v-if="loading" />
+					<slot v-else-if="isIconShown" name="icon" />
 				</div>
 				<span v-if="!editingActive" class="app-navigation-entry__title" :title="title">
 					{{ title }}
@@ -208,6 +209,7 @@ import { directive as ClickOutside } from 'v-click-outside'
 
 import Actions from '../Actions/index.js'
 import ActionButton from '../ActionButton/index.js'
+import LoadingIcon from '../LoadingIcon/index.js'
 import AppNavigationIconCollapsible from './AppNavigationIconCollapsible.vue'
 import isMobile from '../../mixins/isMobile/index.js'
 import InputConfirmCancel from './InputConfirmCancel.vue'
@@ -222,6 +224,7 @@ export default {
 	components: {
 		Actions,
 		ActionButton,
+		LoadingIcon,
 		AppNavigationIconCollapsible,
 		InputConfirmCancel,
 		Pencil,
