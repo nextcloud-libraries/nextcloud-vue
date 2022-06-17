@@ -155,6 +155,7 @@ export default {
 			'checkbox-radio-switch--disabled': disabled,
 			'checkbox-radio-switch--indeterminate': indeterminate,
 			'checkbox-radio-switch--button-variant': buttonVariant,
+			'checkbox-radio-switch--button-variant-grouped': buttonVariantGrouped,
 		}"
 		:style="cssVars"
 		class="checkbox-radio-switch">
@@ -236,6 +237,14 @@ export default {
 		 * Toggle the alternative button style
 		 */
 		buttonVariant: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * If the elements are all direct successors
+		 */
+		buttonVariantGrouped: {
 			type: Boolean,
 			default: false,
 		},
@@ -494,19 +503,41 @@ $spacing: 4px;
 		color: var(--color-primary-element-light);
 	}
 
-	&--button-variant.checkbox-radio-switch {
-		border: 2px solid var(--color-border-dark);
-		border-radius: var(--border-radius);
+	&--button-variant &__label {
+		border-radius: 0;
+		width: 100%;
+		margin: 0;
+	}
+
+	&--button-variant:not(&--button-variant-grouped) {
+		border-radius: var(--border-radius-large);
+	}
+
+	&--button-variant-grouped {
+		&:first-of-type {
+			border-top-left-radius: var(--border-radius-large);
+			border-top-right-radius: var(--border-radius-large);
+		}
+		&:last-of-type {
+			border-bottom-left-radius: var(--border-radius-large);
+			border-bottom-right-radius: var(--border-radius-large);
+		}
 
 		// avoid double borders between elements
-		& + &:not(&--checked) {
+		& + &:not(&.checkbox-radio-switch--checked) {
 			border-top: 0;
 		}
-		& + &--checked {
+		& + &.checkbox-radio-switch--checked {
 			// as the selected element has all borders:
 			// small trick to cover the previous bottom border (only if there is one)
 			margin-top: -2px;
 		}
+	}
+
+	&--button-variant.checkbox-radio-switch {
+		border: 2px solid var(--color-border-dark);
+		// better than setting border-radius on labels (producing a small gap)
+		overflow: hidden;
 
 		&--checked {
 			font-weight: bold;
@@ -520,12 +551,6 @@ $spacing: 4px;
 				background-color: var(--color-background-dark);
 			}
 		}
-	}
-
-	&--button-variant &__label {
-		border-radius: 0 !important;
-		width: 100% !important;
-		margin: 0 !important;
 	}
 }
 </style>
