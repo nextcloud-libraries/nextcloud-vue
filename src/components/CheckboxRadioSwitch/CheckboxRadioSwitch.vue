@@ -146,7 +146,7 @@ export default {
 				:value="value"
 				class="checkbox-radio-switch__input"
 				@change="onToggle">
-			<div v-if="loading" class="icon-loading-small checkbox-radio-switch__icon" />
+			<LoadingIcon v-if="loading" class="checkbox-radio-switch__icon" />
 			<icon :is="checkboxRadioIconElement"
 				v-else
 				:size="size"
@@ -161,6 +161,7 @@ export default {
 </template>
 
 <script>
+import LoadingIcon from '../LoadingIcon/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import l10n from '../../mixins/l10n.js'
 
@@ -178,6 +179,10 @@ export const TYPE_SWITCH = 'switch'
 
 export default {
 	name: 'CheckboxRadioSwitch',
+
+	components: {
+		LoadingIcon,
+	},
 
 	mixins: [l10n],
 
