@@ -85,8 +85,8 @@ export default {
 ```vue
 <template>
 	<div>
-		<CheckboxRadioSwitch :checked.sync="sharingPermission" value="r" name="sharing_permission_radio" type="radio" :button-variant="true">Default permission read</CheckboxRadioSwitch>
-		<CheckboxRadioSwitch :checked.sync="sharingPermission" value="rw" name="sharing_permission_radio" type="radio" :button-variant="true">Default permission read+write</CheckboxRadioSwitch>
+		<CheckboxRadioSwitch :checked.sync="sharingPermission" value="r" name="sharing_permission_radio" type="radio" :button-variant="true" button-variant-grouped="vertical">Default permission read</CheckboxRadioSwitch>
+		<CheckboxRadioSwitch :checked.sync="sharingPermission" value="rw" name="sharing_permission_radio" type="radio" :button-variant="true" button-variant-grouped="vertical">Default permission read+write</CheckboxRadioSwitch>
 		<br>
 		sharingPermission: {{ sharingPermission }}
 	</div>
@@ -155,7 +155,8 @@ export default {
 			'checkbox-radio-switch--disabled': disabled,
 			'checkbox-radio-switch--indeterminate': indeterminate,
 			'checkbox-radio-switch--button-variant': buttonVariant,
-			'checkbox-radio-switch--button-variant-grouped': buttonVariantGrouped,
+			'checkbox-radio-switch--button-variant-v-grouped': buttonVariant && buttonVariantGrouped === 'vertical',
+			'checkbox-radio-switch--button-variant-h-grouped': buttonVariant && buttonVariantGrouped === 'horizontal',
 		}"
 		:style="cssVars"
 		class="checkbox-radio-switch">
@@ -242,11 +243,14 @@ export default {
 		},
 
 		/**
-		 * If the elements are all direct successors
+		 * Are the elements are all direct siblings?
+		 * If so they will be grouped horizontally or vertically
+		 * Possible values are `no`, `horizontal`, `vertical`.
 		 */
 		buttonVariantGrouped: {
-			type: Boolean,
-			default: false,
+			type: String,
+			default: 'no',
+			validator: v => ['no', 'vertical', 'horizontal'].includes(v),
 		},
 
 		/**
@@ -509,11 +513,11 @@ $spacing: 4px;
 		margin: 0;
 	}
 
-	&--button-variant:not(&--button-variant-grouped) {
+	&--button-variant:not(&--button-variant-v-grouped):not(&--button-variant-h-grouped) {
 		border-radius: var(--border-radius-large);
 	}
 
-	&--button-variant-grouped {
+	&--button-variant-v-grouped {
 		&:first-of-type {
 			border-top-left-radius: var(--border-radius-large);
 			border-top-right-radius: var(--border-radius-large);
@@ -531,6 +535,27 @@ $spacing: 4px;
 			// as the selected element has all borders:
 			// small trick to cover the previous bottom border (only if there is one)
 			margin-top: -2px;
+		}
+	}
+
+	&--button-variant-h-grouped {
+		&:first-of-type {
+			border-top-left-radius: var(--border-radius-large);
+			border-bottom-left-radius: var(--border-radius-large);
+		}
+		&:last-of-type {
+			border-top-right-radius: var(--border-radius-large);
+			border-bottom-right-radius: var(--border-radius-large);
+		}
+
+		// avoid double borders between elements
+		& + &:not(&.checkbox-radio-switch--checked) {
+			border-left: 0;
+		}
+		& + &.checkbox-radio-switch--checked {
+			// as the selected element has all borders:
+			// small trick to cover the previous bottom border (only if there is one)
+			margin-left: -2px;
 		}
 	}
 
