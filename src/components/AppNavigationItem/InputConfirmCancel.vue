@@ -131,10 +131,10 @@ $input-margin: 5px;
 	&__input {
 		height: $input-height;
 		flex: 1 1 100%;
-		font-size: 14px;
+		font-size: 100% !important;
 		margin: $input-margin !important;
-		margin-left: 0 !important;
-		padding: $input-padding;
+		margin-left: -1px - $input-padding !important;
+		padding: $input-padding !important;
 
 		&:active,
 		&:focus,
