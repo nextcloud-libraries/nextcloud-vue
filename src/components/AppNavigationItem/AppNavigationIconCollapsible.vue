@@ -22,28 +22,50 @@
 
 <template>
 	<!-- Button to expand or collapse children -->
-	<button class="icon-collapse"
-		:class="{'icon-collapse--rotated':open}"
-		type="button"
+	<ButtonVue class="icon-collapse"
+		:class="{'icon-collapse--open':open}"
+		type="tertiary"
+		:aria-label="labelButton"
 		@click="onClick">
-		<MenuDown :size="20" title="" decorative />
-	</button>
+		<template #icon>
+			<ChevronDown v-if="open"
+				:size="20"
+				title=""
+				decorative />
+			<ChevronRight v-else
+				:size="20"
+				title=""
+				decorative />
+		</template>
+	</ButtonVue>
 </template>
 
 <script>
-import MenuDown from 'vue-material-design-icons/MenuDown'
+import ButtonVue from '../Button/index.js'
+import { t } from '../../l10n.js'
+
+import ChevronRight from 'vue-material-design-icons/ChevronRight'
+import ChevronDown from 'vue-material-design-icons/ChevronDown'
 
 export default {
 	name: 'AppNavigationIconCollapsible',
 
 	components: {
-		MenuDown,
+		ButtonVue,
+		ChevronRight,
+		ChevronDown,
 	},
 
 	props: {
 		open: {
 			type: Boolean,
 			default: true,
+		},
+	},
+
+	computed: {
+		labelButton() {
+			return open ? t('Close') : t('Open')
 		},
 	},
 
@@ -60,28 +82,12 @@ export default {
 .icon-collapse {
 	position: absolute;
 	z-index: 105; // above a, under button
-	width: 44px;
-	height: 44px;
-	margin: 0;
-	padding: 0;
-	transition: opacity var(--animation-quick) ease-in-out;
-	-webkit-transform: rotate(-90deg);
-	-ms-transform: rotate(-90deg);
-	transform: rotate(-90deg);
 	color: var(--color-main-text);
-	border: none;
-	border-radius: 0;
-	outline: none !important;
-	background-color: transparent;
-	box-shadow: none;
 
 	&:hover{
 		color: var(--color-primary);
 	}
-	&--rotated {
-		-webkit-transform: rotate(0deg);
-		-ms-transform: rotate(0deg);
-		transform: rotate(0deg);
+	&--open {
 		color: var(--color-main-text);
 		&:hover{
 			color: var(--color-primary);

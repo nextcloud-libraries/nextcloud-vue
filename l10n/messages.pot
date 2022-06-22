@@ -86,6 +86,9 @@ msgstr ""
 msgid "Objects"
 msgstr ""
 
+msgid "Open"
+msgstr ""
+
 msgid "Open navigation"
 msgstr ""
 
