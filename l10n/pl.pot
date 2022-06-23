@@ -95,6 +95,9 @@ msgstr "Brak wyników"
 msgid "Objects"
 msgstr "Obiekty"
 
+msgid "Open"
+msgstr "Otwórz"
+
 msgid "Open navigation"
 msgstr "Otwórz nawigację"
 
