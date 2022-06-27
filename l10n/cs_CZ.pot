@@ -94,6 +94,9 @@ msgstr "Nic nenalezeno"
 msgid "Objects"
 msgstr "Objekty"
 
+msgid "Open"
+msgstr "Otevřít"
+
 msgid "Open navigation"
 msgstr "Otevřít navigaci"
 
