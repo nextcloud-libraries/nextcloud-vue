@@ -97,6 +97,9 @@ msgstr "Herhangi bir sonuç bulunamadı"
 msgid "Objects"
 msgstr "Nesneler"
 
+msgid "Open"
+msgstr "Aç"
+
 msgid "Open navigation"
 msgstr "Gezinmeyi aç"
 
