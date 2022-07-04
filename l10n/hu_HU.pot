@@ -41,6 +41,9 @@ msgstr "Válassszon"
 msgid "Close"
 msgstr "Bezárás"
 
+msgid "Close modal"
+msgstr "Ablak bezárása"
+
 msgid "Close navigation"
 msgstr "Navigáció bezárása"
 
@@ -77,8 +80,8 @@ msgstr "elemek"
 msgid "Message limit of {count} characters reached"
 msgstr "{count} karakteres üzenetkorlát elérve"
 
-msgid "More {what} …"
-msgstr "További {what}…"
+msgid "More {dashboardItemType} …"
+msgstr "Több {dashboardItemType}…"
 
 msgid "Next"
 msgstr "Következő"
@@ -91,6 +94,9 @@ msgstr "Nincs találat"
 
 msgid "Objects"
 msgstr "Tárgyak"
+
+msgid "Open"
+msgstr "Megnyitás"
 
 msgid "Open navigation"
 msgstr "Navigáció megnyitása"
