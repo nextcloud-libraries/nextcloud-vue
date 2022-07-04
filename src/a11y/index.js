@@ -1,7 +1,7 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright 2022 Christopher Ng <chrng8@gmail.com>
  *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Christopher Ng <chrng8@gmail.com>
  *
  * @license AGPL-3.0-or-later
  *
@@ -19,26 +19,20 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import * as NcComponents from './components/index.js'
 
 /**
- * @param {object} Vue The vue instance
+ * Return true if the DOM event is an accessible mouse or keyboard element activation, false otherwise
+ *
+ * @param {Event} event DOM event
+ *
+ * @return {boolean}
  */
-function install(Vue) {
-	Object.values(NcComponents).forEach((component) => {
-		Vue.component(component.name, component)
-	})
+export const isA11yActivation = (event) => {
+	if (event.type === 'click') {
+		return true
+	}
+	if (event.type === 'keydown' && event.key === 'Enter') {
+		return true
+	}
+	return false
 }
-
-if (typeof window !== 'undefined' && window.Vue) {
-	install(window.Vue)
-}
-
-export default {
-	install,
-	...NcComponents,
-}
-export * from './components/index.js'
-export * from './directives/index.js'
-export * from './mixins/index.js'
-export * from './a11y/index.js'
