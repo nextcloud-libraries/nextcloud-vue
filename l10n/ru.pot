@@ -1,12 +1,16 @@
 # 
 # Translators:
 # Alex <kekcuha@gmail.com>, 2020
-# Andrey Atapin <atab@kirovedu.ru>, 2020
+# Andrey Atapin <atab74@gmail.com>, 2020
 # Nikita Epifanov, 2021
+# Dmitry Plakhov <dim5x@yahoo.com>, 2021
+# Влад <integration.into.society@gmail.com>, 2022
+# Вадим Фещенко, 2022
+# Алексей Хрусталёв, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Nikita Epifanov, 2021\n"
+"Last-Translator: Алексей Хрусталёв, 2022\n"
 "Language-Team: Russian (https://www.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
@@ -30,6 +34,9 @@ msgstr "Животные и природа "
 msgid "Avatar of {displayName}"
 msgstr "Аватар {displayName}"
 
+msgid "Avatar of {displayName}, {status}"
+msgstr "Фотография {displayName}, {status}"
+
 msgid "Cancel changes"
 msgstr "Отменить изменения"
 
@@ -39,11 +46,20 @@ msgstr "Выберите"
 msgid "Close"
 msgstr "Закрыть"
 
+msgid "Close modal"
+msgstr "Закрыть модальное окно"
+
+msgid "Close navigation"
+msgstr "Закрыть навигацию"
+
 msgid "Confirm changes"
 msgstr "Подтвердить изменения"
 
 msgid "Custom"
 msgstr "Пользовательское"
+
+msgid "Edit item"
+msgstr "Изменить элемент"
 
 msgid "External documentation for {title}"
 msgstr "Внешняя документация для {title}"
@@ -60,8 +76,17 @@ msgstr "Часто используемый"
 msgid "Global"
 msgstr "Глобальный"
 
+msgid "Go back to the list"
+msgstr "Вернуться к списку"
+
+msgid "items"
+msgstr "элементов"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Достигнуто ограничение на количество символов в {count}"
+
+msgid "More {dashboardItemType} …"
+msgstr "Больше {dashboardItemType} …"
 
 msgid "Next"
 msgstr "Следующее"
@@ -74,6 +99,12 @@ msgstr "Результаты отсуствуют"
 
 msgid "Objects"
 msgstr "Объекты"
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Open navigation"
+msgstr "Открыть навигацию"
 
 msgid "Pause slideshow"
 msgstr "Приостановить показ слйдов"
@@ -126,5 +157,10 @@ msgstr "Введите для поиска часового пояса"
 msgid "Unable to search the group"
 msgstr "Невозможно найти группу"
 
-msgid "Write message, @ to mention someone …"
-msgstr "Напишите сообщение, используйте @ чтобы упомянуть кого-то…"
+msgid "Undo changes"
+msgstr "Отменить изменения"
+
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr ""
+"Напишите сообщение, @ - чтобы упомянуть кого-то, : - для автозаполнения "
+"эмодзи …"
