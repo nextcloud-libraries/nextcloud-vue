@@ -99,6 +99,9 @@ msgstr "なし"
 msgid "Objects"
 msgstr "物"
 
+msgid "Open"
+msgstr "開く"
+
 msgid "Open navigation"
 msgstr "ナビゲーションを開く"
 
