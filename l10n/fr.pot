@@ -11,10 +11,11 @@
 # Mer0me <postmaster@merome.net>, 2021
 # Cédric JARRIGE <jarrige.cedric@gmail.com>, 2022
 # Arnaud Wallon <arnaud@netbeat.be>, 2022
+# salixor, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Arnaud Wallon <arnaud@netbeat.be>, 2022\n"
+"Last-Translator: salixor, 2022\n"
 "Language-Team: French (https://www.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -49,6 +50,9 @@ msgstr "Choisir"
 
 msgid "Close"
 msgstr "Fermer"
+
+msgid "Close modal"
+msgstr "Fermer la fenêtre"
 
 msgid "Close navigation"
 msgstr "Fermer la navigation"
@@ -86,8 +90,8 @@ msgstr "éléments"
 msgid "Message limit of {count} characters reached"
 msgstr "Limite de messages de {count} caractères atteinte"
 
-msgid "More {what} …"
-msgstr "Plus de {what} ..."
+msgid "More {dashboardItemType} …"
+msgstr "Plus de {dashboardItemType} …"
 
 msgid "Next"
 msgstr "Suivant"
@@ -100,6 +104,9 @@ msgstr "Aucun résultat"
 
 msgid "Objects"
 msgstr "Objets"
+
+msgid "Open"
+msgstr "Ouvrir"
 
 msgid "Open navigation"
 msgstr "Ouvrir la navigation"
