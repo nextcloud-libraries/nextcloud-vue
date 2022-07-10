@@ -96,6 +96,9 @@ msgstr "Emaitzarik ez"
 msgid "Objects"
 msgstr "Objektuak"
 
+msgid "Open"
+msgstr "Ireki"
+
 msgid "Open navigation"
 msgstr "Ireki nabigazioa"
 
