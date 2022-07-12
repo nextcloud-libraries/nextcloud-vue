@@ -178,17 +178,12 @@ include a standard-header like it's used by the files app.
 								<Button v-if="canStar"
 									:aria-label="favoriteTranslated"
 									class="app-sidebar-header__star"
-									:class="{ starred: isStarred }"
-									type="tertiary-no-background"
+									type="secondary"
 									@click.prevent="toggleStarred">
 									<template #icon>
 										<LoadingIcon v-if="starLoading" />
-										<Star v-else-if="isStarred"
-											:size="20"
-											decorative />
-										<StarOutline v-else
-											:size="20"
-											decorative />
+										<Star v-else-if="isStarred" :size="20" />
+										<StarOutline v-else :size="20" />
 									</template>
 								</Button>
 							</slot>
@@ -222,8 +217,7 @@ include a standard-header like it's used by the files app.
 											:aria-label="changeTitleTranslated"
 											native-type="submit">
 											<template #icon>
-												<ArrowRight :size="20"
-													decorative />
+												<ArrowRight :size="20" />
 											</template>
 										</Button>
 									</form>
@@ -251,8 +245,7 @@ include a standard-header like it's used by the files app.
 					class="app-sidebar__close"
 					@click.prevent="closeSidebar">
 					<template #icon>
-						<Close :size="20"
-							decorative />
+						<Close :size="20" />
 					</template>
 				</Button>
 
@@ -681,6 +674,7 @@ $top-buttons-spacing: 6px;
 						position: absolute;
 						top: math.div($desc-vertical-padding, 2);
 						left: -1 * $clickable-area;
+						gap: 0; // override gap
 					}
 					.app-sidebar-header__menu {
 						top: $top-buttons-spacing;
@@ -737,10 +731,11 @@ $top-buttons-spacing: 6px;
 			justify-content: center;
 			align-items: center;
 			padding: #{$desc-vertical-padding} #{$top-buttons-spacing} #{$desc-vertical-padding} #{math.div($desc-vertical-padding, 2)};
+			gap: 0 4px;
 
 			// custom overrides
 			&--with-tertiary-action {
-				padding-left: 0;
+				padding-left: 6px;
 			}
 
 			&--editable .app-sidebar-header__maintitle-form,
@@ -762,12 +757,10 @@ $top-buttons-spacing: 6px;
 
 				.app-sidebar-header__star {
 					// Override default Button component styles
-					&.starred {
-						opacity: 1;
-
-						&:hover {
-							opacity: 0.7;
-						}
+					box-shadow: none;
+					&:hover {
+						box-shadow: none;
+						background-color: var(--color-background-hover);
 					}
 				}
 			}
