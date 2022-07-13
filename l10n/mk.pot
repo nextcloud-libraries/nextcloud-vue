@@ -1,138 +1,167 @@
 # 
 # Translators:
-# Сашко Тодоров, 2020
+# Сашко Тодоров <sasetodorov@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Сашко Тодоров, 2020\n"
+"Last-Translator: Сашко Тодоров <sasetodorov@gmail.com>, 2022\n"
 "Language-Team: Macedonian (https://www.transifex.com/nextcloud/teams/64236/mk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: mk\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:170
 msgid "{tag} (invisible)"
 msgstr "{tag} (невидливо)"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:173
 msgid "{tag} (restricted)"
 msgstr "{tag} (ограничено)"
 
-#: src/components/Actions/Actions.vue:254
 msgid "Actions"
 msgstr "Акции"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:176
 msgid "Activities"
 msgstr "Активности"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:174
 msgid "Animals & Nature"
 msgstr "Животни & Природа"
 
-#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Avatar of {displayName}"
+msgstr "Аватар на {displayName}"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "Аватар на {displayName}, {status}"
+
+msgid "Cancel changes"
+msgstr "Откажи ги промените"
+
+msgid "Change title"
+msgstr "Промени наслов"
+
 msgid "Choose"
 msgstr "Избери"
 
-#: src/components/Modal/Modal.vue:117
 msgid "Close"
 msgstr "Затвори"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:181
+msgid "Close modal"
+msgstr "Затвори модал"
+
+msgid "Close navigation"
+msgstr "Затвори навигација"
+
+msgid "Confirm changes"
+msgstr "Потврди ги промените"
+
 msgid "Custom"
 msgstr "Прилагодени"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:180
+msgid "Edit item"
+msgstr "Уреди"
+
+msgid "External documentation for {title}"
+msgstr "Надворешна документација за {title}"
+
+msgid "Favorite"
+msgstr "Фаворити"
+
 msgid "Flags"
 msgstr "Знамиња"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:175
 msgid "Food & Drink"
 msgstr "Храна & Пијалоци"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:171
 msgid "Frequently used"
 msgstr "Најчесто користени"
 
-#: src/components/RichContenteditable/RichContenteditable.vue:254
+msgid "Global"
+msgstr "Глобално"
+
+msgid "Go back to the list"
+msgstr "Врати се на листата"
+
+msgid "items"
+msgstr "ставки"
+
 msgid "Message limit of {count} characters reached"
 msgstr ""
 "Ограничувањето на должината на пораката од {count} карактери е надминато"
 
-#: src/components/Modal/Modal.vue:166
+msgid "More {dashboardItemType} …"
+msgstr "Повеќе {dashboardItemType} …"
+
 msgid "Next"
 msgstr "Следно"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:168
 msgid "No emoji found"
 msgstr "Не се пронајдени емотикони"
 
-#: src/components/Multiselect/Multiselect.vue:174
-#: src/components/MultiselectTags/MultiselectTags.vue:78
-#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
 msgid "No results"
 msgstr "Нема резултати"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:178
 msgid "Objects"
 msgstr "Објекти"
 
-#: src/components/Modal/Modal.vue:302
+msgid "Open"
+msgstr "Отвори"
+
+msgid "Open navigation"
+msgstr "Отвори навигација"
+
 msgid "Pause slideshow"
 msgstr "Пузирај слајдшоу"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:173
 msgid "People & Body"
 msgstr "Луѓе & Тело"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:153
 msgid "Pick an emoji"
 msgstr "Избери емотикон"
 
-#: src/components/Modal/Modal.vue:144
+msgid "Please select a time zone:"
+msgstr "Изберете временска зона:"
+
 msgid "Previous"
 msgstr "Предходно"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:167
 msgid "Search"
 msgstr "Барај"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:170
 msgid "Search results"
 msgstr "Резултати од барувањето"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
 msgstr "Избери ознака"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:57
 msgid "Settings"
 msgstr "Параметри"
 
-#: src/components/AppSettingsDialog/AppSettingsDialog.vue:106
 msgid "Settings navigation"
 msgstr "Параметри за навигација"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:172
 msgid "Smileys & Emotion"
 msgstr "Смешковци & Емотикони"
 
-#: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Стартувај слајдшоу"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:179
+msgid "Submit"
+msgstr "Испрати"
+
 msgid "Symbols"
 msgstr "Симболи"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:177
 msgid "Travel & Places"
 msgstr "Патувања & Места"
 
-#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
+msgid "Type to search time zone"
+msgstr "Напишете за да пребарате временска зона"
+
 msgid "Unable to search the group"
 msgstr "Неможе да се принајде групата"
 
-#: src/components/RichContenteditable/RichContenteditable.vue:151
-msgid "Write message, @ to mention someone …"
-msgstr "Напиши порака, @ за да спомнеш некој …"
+msgid "Undo changes"
+msgstr "Врати ги промените"
+
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr ""
+"Напиши порака, @ за да спомнете некого, : за емотинони автоатско "
+"комплетирање ..."
