@@ -43,7 +43,7 @@
 				:aria-label="labelConfirm"
 				@click.stop.prevent="confirm">
 				<template #icon>
-					<ArrowRight :size="20" decorative title="" />
+					<ArrowRight :size="20" />
 				</template>
 			</ButtonVue>
 
@@ -52,7 +52,7 @@
 				:aria-label="labelCancel"
 				@click.stop.prevent="cancel">
 				<template #icon>
-					<Close :size="20" decorative title="" />
+					<Close :size="20" />
 				</template>
 			</ButtonVue>
 		</form>

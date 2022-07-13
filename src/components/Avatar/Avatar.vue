@@ -40,7 +40,7 @@
  <template>
 	<avatar>
 		<template #icon>
-			<AccountMultiple :size="20" decorative />
+			<AccountMultiple :size="20" />
 		</template>
 	</AppNavigationNew>
  </template>
@@ -93,9 +93,7 @@
 				<LoadingIcon v-if="contactsMenuLoading" />
 				<DotsHorizontal v-else
 					:size="20"
-					class="icon-more"
-					title=""
-					decorative />
+					class="icon-more" />
 			</template>
 		</Popover>
 
