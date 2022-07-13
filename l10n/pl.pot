@@ -35,6 +35,9 @@ msgstr "Awatar {displayName}, {status}"
 msgid "Cancel changes"
 msgstr "Anuluj zmiany"
 
+msgid "Change title"
+msgstr "Zmień tytuł"
+
 msgid "Choose"
 msgstr "Wybierz"
 
@@ -58,6 +61,9 @@ msgstr "Edytuj element"
 
 msgid "External documentation for {title}"
 msgstr "Dokumentacja zewnętrzna dla {title}"
+
+msgid "Favorite"
+msgstr "Ulubiony"
 
 msgid "Flags"
 msgstr "Flagi"
