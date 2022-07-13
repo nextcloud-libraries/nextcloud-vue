@@ -37,6 +37,9 @@ msgstr "{displayName}, {status} avatarı"
 msgid "Cancel changes"
 msgstr "Değişiklikleri iptal et"
 
+msgid "Change title"
+msgstr "Başlığı değiştir"
+
 msgid "Choose"
 msgstr "Seçin"
 
@@ -60,6 +63,9 @@ msgstr "Ögeyi düzenle"
 
 msgid "External documentation for {title}"
 msgstr "{title} için dış belgeler"
+
+msgid "Favorite"
+msgstr "Sık kullanılanlara ekle"
 
 msgid "Flags"
 msgstr "Bayraklar"
