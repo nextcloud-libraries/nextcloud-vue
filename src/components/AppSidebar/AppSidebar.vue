@@ -36,7 +36,7 @@ include a standard-header like it's used by the files app.
 		subtitle="last edited 3 weeks ago">
 		<AppSidebarTab icon="icon-settings" name="Settings" id="settings-tab">
 			<template #icon>
-				<Cog :size="20" decorative />
+				<Cog :size="20" />
 			</template>
 			Settings tab content
 		</AppSidebarTab>

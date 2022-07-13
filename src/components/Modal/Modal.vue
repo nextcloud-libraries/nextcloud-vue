@@ -132,14 +132,10 @@
 							<!-- Play/pause icons -->
 							<Play v-if="!playing"
 								:size="iconSize"
-								class="play-pause-icons__play"
-								title=""
-								decorative />
+								class="play-pause-icons__play" />
 							<Pause v-else
 								:size="iconSize"
-								class="play-pause-icons__pause"
-								title=""
-								decorative />
+								class="play-pause-icons__pause" />
 							<span class="hidden-visually">
 								{{ playPauseTitle }}
 							</span>
@@ -169,7 +165,7 @@
 						<Actions v-if="canClose" class="header-close">
 							<ActionButton @click="close">
 								<template #icon>
-									<Close :size="iconSize" title="" decorative />
+									<Close :size="iconSize" />
 								</template>
 								{{ t('Close') }}
 							</ActionButton>
@@ -197,7 +193,7 @@
 							}"
 							@click.prevent.stop="previous">
 							<span class="icon-previous">
-								<ChevronLeft :size="40" title="" decorative />
+								<ChevronLeft :size="40" />
 								<span class="hidden-visually">
 									{{ t('Previous') }}
 								</span>
@@ -221,7 +217,7 @@
 							}"
 							@click.prevent.stop="next">
 							<span class="icon-next">
-								<ChevronRight :size="40" title="" decorative />
+								<ChevronRight :size="40" />
 								<span class="hidden-visually">
 									{{ t('Next') }}
 								</span>

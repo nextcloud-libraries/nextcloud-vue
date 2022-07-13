@@ -48,19 +48,13 @@ You can also use a custom icon, for example from the vue-material-design-icons l
 	<Actions>
 		<ActionButton>
 			<template #icon>
-				<HandBackLeft
-					:size="20"
-					decorative
-					title="" />
+				<HandBackLeft :size="20" />
 			</template>
 			Raise left hand
 		</ActionButton>
 		<ActionButton>
 			<template #icon>
-				<HandBackRight
-					:size="20"
-					decorative
-					title="" />
+				<HandBackRight :size="20" />
 			</template>
 			Raise right hand
 		</ActionButton>

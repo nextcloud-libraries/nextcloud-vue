@@ -37,7 +37,7 @@ is dropped on a creadcrumb.
 			<Breadcrumbs @dropped="dropped">
 				<Breadcrumb title="Home" href="/" @dropped="droppedOnCrumb">
 					<template #icon>
-						<Folder :size="20" decorative />
+						<Folder :size="20" />
 					</template>
 				</Breadcrumb>
 				<Breadcrumb title="Folder 1" href="/Folder 1" />
