@@ -190,7 +190,6 @@ export default {
 					:aria-label="ariaLabel"
 					:aria-controls="randomId"
 					:aria-expanded="opened ? 'true' : 'false'"
-					test-attr="1"
 					type="button"
 					@focus="onFocus"
 					@blur="onBlur">
