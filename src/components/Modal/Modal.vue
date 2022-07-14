@@ -156,9 +156,9 @@
 
 						<!-- Close modal -->
 						<ButtonVue v-if="canClose && !closeButtonContained"
-								type="tertiary"
-								class="header-close"
-								:aria-label="t('Close')">
+							type="tertiary"
+							class="header-close"
+							:aria-label="closeButtonAriaLabel">
 							<template #icon>
 								<Close :size="iconSize" />
 							</template>
@@ -184,7 +184,7 @@
 							:class="{
 								invisible: !hasPrevious
 							}"
-							:aria-label="t('Previous')"
+							:aria-label="prevButtonAriaLabel"
 							@click="previous">
 							<template #icon>
 								<ChevronLeft :size="40" />
@@ -216,7 +216,7 @@
 							:class="{
 								invisible: !hasNext
 							}"
-							:aria-label="t('Next')"
+							:aria-label="nextButtonAriaLabel"
 							@click="next">
 							<template #icon>
 								<ChevronRight :size="40" />
@@ -396,6 +396,12 @@ export default {
 
 		closeButtonAriaLabel() {
 			return t('Close modal')
+		},
+		prevButtonAriaLabel() {
+			return t('Previous')
+		},
+		nextButtonAriaLabel() {
+			return t('Next')
 		},
 	},
 
