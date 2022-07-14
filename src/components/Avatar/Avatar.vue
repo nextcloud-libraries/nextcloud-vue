@@ -66,9 +66,9 @@
 		}"
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper"
-		:tabindex="disableMenu ? '-1' : '0'"
+		:tabindex="disableMenu ? undefined : '0'"
 		:aria-label="avatarAriaLabel"
-		:role="disableMenu ? '' : 'button'"
+		:role="disableMenu ? undefined : 'button'"
 		v-on="!disableMenu ? { click: toggleMenu } : {}"
 		@keydown.enter="toggleMenu">
 		<!-- @slot Icon slot -->

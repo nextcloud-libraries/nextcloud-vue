@@ -197,7 +197,7 @@ include a standard-header like it's used by the files app.
 									v-linkify="{text: title, linkify: linkifyTitle}"
 									v-tooltip.auto="titleTooltip"
 									class="app-sidebar-header__maintitle"
-									:tabindex="titleEditable ? 0 : -1"
+									:tabindex="titleEditable ? 0 : undefined"
 									@click.self="editTitle">
 									{{ title }}
 								</h2>
