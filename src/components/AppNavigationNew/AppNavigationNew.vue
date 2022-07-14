@@ -27,7 +27,7 @@
  <template>
 	<AppNavigationNew text="New Element">
 		<template #icon>
-			<Plus :size="20" decorative />
+			<Plus :size="20" />
 		</template>
 	</AppNavigationNew>
  </template>

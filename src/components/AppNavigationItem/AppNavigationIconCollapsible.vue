@@ -29,13 +29,9 @@
 		@click="onClick">
 		<template #icon>
 			<ChevronDown v-if="open"
-				:size="20"
-				title=""
-				decorative />
+				:size="20" />
 			<ChevronRight v-else
-				:size="20"
-				title=""
-				decorative />
+				:size="20" />
 		</template>
 	</ButtonVue>
 </template>

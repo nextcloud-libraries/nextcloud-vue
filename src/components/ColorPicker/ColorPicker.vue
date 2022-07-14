@@ -124,9 +124,7 @@ export default {
 						type="button"
 						@click="pickColor(color)">
 						<Check v-if="color === currentColor"
-							:size="20"
-							title=""
-							decorative />
+							:size="20" />
 					</button>
 				</div>
 				<Chrome v-if="advanced"
@@ -141,13 +139,13 @@ export default {
 					class="color-picker__navigation-button back"
 					type="button"
 					@click="handleBack">
-					<ArrowLeft :size="20" title="" decorative />
+					<ArrowLeft :size="20" />
 				</button>
 				<button v-if="!advanced"
 					class="color-picker__navigation-button more-settings"
 					type="button"
 					@click="handleMoreSettings">
-					<DotsHorizontal :size="20" title="" decorative />
+					<DotsHorizontal :size="20" />
 				</button>
 				<button v-if="advanced"
 					class="color-picker__navigation-button confirm"
