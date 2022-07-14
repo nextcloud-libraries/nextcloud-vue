@@ -42,7 +42,7 @@
 						:class="{ active: activeTab === tab.id }"
 						:data-id="tab.id"
 						:href="`#tab-${tab.id}`"
-						:tabindex="activeTab === tab.id ? null : -1"
+						:tabindex="activeTab === tab.id ? undefined : -1"
 						role="tab"
 						@click.prevent="setActive(tab.id)">
 						<span class="app-sidebar-tabs__tab-icon">
