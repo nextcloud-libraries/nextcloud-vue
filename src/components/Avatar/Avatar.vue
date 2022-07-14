@@ -42,7 +42,7 @@
 		<template #icon>
 			<AccountMultiple :size="20" decorative />
 		</template>
-	</AppNavigationNew>
+	</avatar>
  </template>
  <script>
  import AccountMultiple from 'vue-material-design-icons/AccountMultiple'
@@ -109,7 +109,7 @@
 
 		<!-- Show the letter if no avatar nor icon class -->
 		<div v-if="userDoesNotExist && !(iconClass || $slots.icon)" class="unknown">
-			{{ initials }}
+		-
 		</div>
 	</div>
 </template>
