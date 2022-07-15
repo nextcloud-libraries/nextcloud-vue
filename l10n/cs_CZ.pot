@@ -34,6 +34,9 @@ msgstr "Zástupný obrázek uživatele {displayName}, {status}"
 msgid "Cancel changes"
 msgstr "Zrušit změny"
 
+msgid "Change title"
+msgstr "Změnit nadpis"
+
 msgid "Choose"
 msgstr "Zvolit"
 
@@ -57,6 +60,9 @@ msgstr "Upravit položku"
 
 msgid "External documentation for {title}"
 msgstr "Externí dokumentace k {title}"
+
+msgid "Favorite"
+msgstr "Oblíbené"
 
 msgid "Flags"
 msgstr "Příznaky"
