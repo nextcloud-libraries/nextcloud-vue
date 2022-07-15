@@ -28,6 +28,7 @@
 		<!-- tabs navigation -->
 		<!-- 33 and 34 code is for page up and page down -->
 		<nav v-if="hasMultipleTabs"
+			role="tablist"
 			class="app-sidebar-tabs__nav"
 			@keydown.left.exact.prevent="focusPreviousTab"
 			@keydown.right.exact.prevent="focusNextTab"
