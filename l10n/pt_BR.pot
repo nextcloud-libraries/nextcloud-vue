@@ -38,6 +38,9 @@ msgstr "Avatar de {displayName}, {status}"
 msgid "Cancel changes"
 msgstr "Cancelar alterações"
 
+msgid "Change title"
+msgstr "Alterar título"
+
 msgid "Choose"
 msgstr "Escolher"
 
@@ -61,6 +64,9 @@ msgstr "Editar item"
 
 msgid "External documentation for {title}"
 msgstr "Documentação externa para {title}"
+
+msgid "Favorite"
+msgstr "Favorito"
 
 msgid "Flags"
 msgstr "Bandeiras"
