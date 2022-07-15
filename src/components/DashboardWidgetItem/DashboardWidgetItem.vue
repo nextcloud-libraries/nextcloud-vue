@@ -56,7 +56,7 @@ This component is meant to be used inside a DashboardWidget component.
 					{{ subText }}
 				</p>
 			</div>
-			<Actions v-if="gotMenu" :force-menu="forceMenu" menu-align="right">
+			<Actions v-if="gotMenu" :force-menu="forceMenu" placement="right">
 				<!-- @slot This slot can be used to provide actions for each dashboard widget item. -->
 				<slot name="actions">
 					<ActionButton v-for="(m, menuItemId) in itemMenu"

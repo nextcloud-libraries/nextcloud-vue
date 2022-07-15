@@ -182,7 +182,7 @@
 						class="list-item-content__actions"
 						@click.prevent.stop="">
 						<Actions ref="actions"
-							menu-align="right"
+							placement="right"
 							:aria-label="actionsAriaLabel"
 							@update:open="handleActionsUpdateOpen">
 							<!-- @slot Provide the actions for the right side quick menu -->
@@ -195,7 +195,7 @@
 					class="list-item-content__actions"
 					@click.prevent.stop="">
 					<Actions ref="actions"
-						menu-align="right"
+						placement="right"
 						:aria-label="actionsAriaLabel"
 						@update:open="handleActionsUpdateOpen">
 						<!-- @slot Provide the actions for the right side quick menu -->

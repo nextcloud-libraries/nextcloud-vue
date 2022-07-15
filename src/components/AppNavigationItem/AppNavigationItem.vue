@@ -165,8 +165,7 @@ Just set the `pinned` prop.
 					class="app-navigation-entry__counter-wrapper">
 					<slot name="counter" />
 				</div>
-				<Actions menu-align="right"
-					:placement="menuPlacement"
+				<Actions :placement="menuPlacement"
 					:open="menuOpen"
 					:force-menu="forceMenu"
 					:default-icon="menuIcon"
