@@ -107,11 +107,16 @@
 		<div ref="mask"
 			class="modal-mask"
 			:class="{ 'modal-mask--dark': dark }"
-			:style="cssVariables">
+			:style="cssVariables"
+			role="dialog"
+			aria-labelledby="modal-title"
+			aria-describedby="modal-description">
 			<!-- Header -->
 			<transition name="fade-visibility">
 				<div class="modal-header">
-					<div v-if="title.trim() !== ''" class="modal-title">
+					<div v-if="title.trim() !== ''"
+						id="modal-title"
+						class="modal-title">
 						{{ title }}
 					</div>
 					<div class="icons-menu">
@@ -195,7 +200,7 @@
 					</transition>
 
 					<!-- Content -->
-					<div class="modal-container">
+					<div id="modal-description" class="modal-container">
 						<!-- Close modal -->
 						<ButtonVue v-if="canClose && closeButtonContained"
 							type="tertiary"
