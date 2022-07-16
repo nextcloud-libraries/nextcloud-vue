@@ -162,6 +162,7 @@ export default {
 	<div v-else
 		v-show="hasMultipleActions || forceMenu"
 		:class="{'action-item--open': opened}"
+
 		class="action-item">
 		<!-- If more than one action, create a popovermenu -->
 		<Popover :delay="0"
@@ -186,7 +187,7 @@ export default {
 						'action-item__menutoggle--default-icon': !iconSlotIsPopulated && defaultIcon === '',
 						'action-item__menutoggle--primary': primary
 					}"
-					aria-haspopup="true"
+					aria-haspopup="menu"
 					:aria-label="ariaLabel"
 					:aria-controls="randomId"
 					:aria-expanded="opened ? 'true' : 'false'"
@@ -213,7 +214,7 @@ export default {
 				@keydown.esc.exact.prevent="closeMenu"
 				@mousemove="onMouseFocusAction">
 				<!-- menu content -->
-				<ul :id="randomId" tabindex="-1">
+				<ul :id="randomId" tabindex="-1" role="menu">
 					<template v-if="opened">
 						<slot />
 					</template>

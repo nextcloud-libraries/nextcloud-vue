@@ -75,10 +75,11 @@ export default {
 </docs>
 
 <template>
-	<li class="action" :class="{ 'action--disabled': disabled }">
+	<li class="action" role="presentation" :class="{ 'action--disabled': disabled }">
 		<button class="action-button"
 			:class="{ focusable: isFocusable }"
 			:aria-label="ariaLabel"
+			role="menuitem"
 			type="button"
 			@click="onClick">
 			<!-- @slot Manually provide icon -->
