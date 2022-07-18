@@ -28,11 +28,11 @@ providing the section's title prop. You can put your settings within each
 <template>
 	<div>
 		<button @click="settingsOpen = true">Show Settings</button>
-		<AppSettingsDialog :open.sync="settingsOpen" showNavigation=true>
-			<AppSettingsSection title="Example title 1">
+		<AppSettingsDialog :open.sync="settingsOpen" :show-navigation="true">
+			<AppSettingsSection id="asci-title-1" title="Example title 1">
 				Some example content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 2">
+			<AppSettingsSection id="asci-title-2" title="Example title 2">
 				Some more content
 			</AppSettingsSection>
 		</AppSettingsDialog>
