@@ -145,7 +145,8 @@
 
 				<!-- Main content -->
 				<div class="list-item-content">
-					<div class="list-item-content__main">
+					<div class="list-item-content__main"
+						:class="{ 'list-item-content__main--oneline': oneLine }">
 
 						<!-- First line, title and details -->
 						<div class="line-one"
@@ -360,6 +361,10 @@ export default {
 			}
 		},
 
+		oneLine() {
+			return !this.hasSubtitle && !this.showDetails
+		},
+
 		showCounter() {
 			return !this.displayActionsOnHoverFocus || this.forceDisplayActions
 		},
@@ -500,6 +505,7 @@ export default {
 	&-content__wrapper {
 		display: flex;
 		align-items: center;
+		height: 48px;
 	}
 
 	&-content {
@@ -510,16 +516,19 @@ export default {
 
 		&__main {
 			flex: 1 1 auto;
-			flex-direction: column;
 			width: 0;
 			margin: auto 0;
+
+			&--oneline {
+				display: flex;
+			}
 		}
 
 		&__actions {
 			flex: 0 0 auto;
 			align-self: center;
 			justify-content: center;
-
+			margin-left: 4px;
 		}
 	}
 
@@ -533,7 +542,8 @@ export default {
 	align-items: center;
 	justify-content: space-between;
 	white-space: nowrap;
-	margin: 0 auto;
+	margin: 0 auto 0 0;
+	overflow: hidden;
 	&--bold {
 		font-weight: bold;
 	}
@@ -565,7 +575,6 @@ export default {
 	&__subtitle {
 		overflow: hidden;
 		flex-grow: 1;
-		padding-right: 4px;
 		cursor: pointer;
 		white-space: nowrap;
 		text-overflow: ellipsis;
@@ -573,7 +582,7 @@ export default {
 	}
 
 	&__counter {
-		margin: 2px 4px 0 0;
+		margin: 2px 4px 0 4px;
 	}
 }
 
