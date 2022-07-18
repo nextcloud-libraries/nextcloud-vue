@@ -29,34 +29,34 @@ providing the section's title prop. You can put your settings within each
 	<div>
 		<button @click="settingsOpen = true">Show Settings</button>
 		<AppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" title="Application settings">
-			<AppSettingsSection title="Example title 1">
+			<AppSettingsSection id="asci-title-1" title="Example title 1">
 				Some example content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 2">
+			<AppSettingsSection id="asci-title-2" title="Example title 2">
 				Some more content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 3">
+			<AppSettingsSection id="asci-title-3" title="Example title 3">
 				Some example content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 4">
+			<AppSettingsSection id="asci-title-4" title="Example title 4">
 				Some more content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 5">
+			<AppSettingsSection id="asci-title-5" title="Example title 5">
 				Some example content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 6">
+			<AppSettingsSection id="asci-title-6" title="Example title 6">
 				Some more content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 7">
+			<AppSettingsSection id="asci-title-7" title="Example title 7">
 				Some example content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 8">
+			<AppSettingsSection id="asci-title-8" title="Example title 8">
 				Some more content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 9">
+			<AppSettingsSection id="asci-title-9" title="Example title 9">
 				Some more content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 10">
+			<AppSettingsSection id="asci-title-10" title="Example title 10">
 				Some more content
 			</AppSettingsSection>
 		</AppSettingsDialog>
