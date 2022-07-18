@@ -18,12 +18,11 @@
  - You should have received a copy of the GNU Affero General Public License
  - along with this program. If not, see <http://www.gnu.org/licenses/>.
  -
- -->`
+ -->
 
 <template>
-	<div :id="id" class="app-settings-section">
-		<h3 :id="title"
-			class="app-settings-section__title">
+	<div :id="idOrFallback" class="app-settings-section">
+		<h3 class="app-settings-section__title">
 			{{ title }}
 		</h3>
 		<slot />
@@ -39,10 +38,19 @@ export default {
 			type: String,
 			required: true,
 		},
+
+		id: {
+			type: String,
+			default: '',
+		},
 	},
 	computed: {
 		// generate an id for each settingssection based on the title without whitespaces
-		id() {
+		idOrFallback() {
+			if (this.id) {
+				return 'settings-section_' + this.id
+			}
+			console.warn('Settings sections should have an ID, as a fallback the translated title is used but that can contain invalid characters')
 			return 'settings-section_' + this.title.replace(/\s+/g, '')
 		},
 	},
