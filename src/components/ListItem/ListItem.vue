@@ -20,7 +20,7 @@
 -->
 <docs>
 
-# Usage
+### Default Usage
 ```
 <ul>
 	<listItem
@@ -119,6 +119,65 @@
 </ul>
 
 ```
+
+### ListItem compact mode
+```
+<ul style="width: 350px;">
+	<listItem
+		:title="'Title of the element'"
+		:counter-number=1
+		:compact="true" >
+		<template #icon>
+			<div class="icon-edit" />
+		</template>
+		<template #subtitle>
+			This one is with subtitle
+		</template>
+		<template #actions>
+			<ActionButton>
+				Button one
+			</ActionButton>
+			<ActionButton>
+				Button two
+			</ActionButton>
+		</template>
+	</listItem>
+	<listItem
+		:title="'Title of the element'"
+		:compact="true" >
+		<template #icon>
+			<div class="icon-edit" />
+		</template>
+	</listItem>
+	<listItem
+		:title="'Title of the element'"
+		:counter-number=3
+		:compact="true" >
+		<template #icon>
+			<div class="icon-edit" />
+		</template>
+		<template #subtitle>
+			This one is with subtitle
+		</template>
+		<template #actions>
+			<ActionButton>
+				Button one
+			</ActionButton>
+			<ActionButton>
+				Button two
+			</ActionButton>
+		</template>
+	</listItem>
+	<listItem
+		:title="'Title of the element'"
+		:counter-number=4
+		:compact="true" >
+		<template #icon>
+			<div class="icon-edit" />
+		</template>
+	</listItem>
+</ul>
+```
 </docs>
 
 <template>
@@ -139,7 +198,8 @@
 			@click="onClick"
 			@keydown.esc="hideActions">
 
-			<div class="list-item-content__wrapper">
+			<div class="list-item-content__wrapper"
+				:class="{ 'list-item-content__wrapper--compact': compact }">
 				<!-- @slot This slot is used for the avatar or icon -->
 				<slot name="icon" />
 
@@ -271,6 +331,14 @@ export default {
 		 * Make title and subtitle bold
 		 */
 		bold: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Show the ListItem in compact design
+		 */
+		compact: {
 			type: Boolean,
 			default: false,
 		},
@@ -506,6 +574,15 @@ export default {
 		display: flex;
 		align-items: center;
 		height: 48px;
+
+		&--compact {
+			height: 36px;
+
+			.line-one, .line-two {
+				margin-top: -4px;
+				margin-bottom: -4px;
+			}
+		}
 	}
 
 	&-content {
