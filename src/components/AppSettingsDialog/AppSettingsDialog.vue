@@ -29,34 +29,34 @@ providing the section's title prop. You can put your settings within each
 	<div>
 		<button @click="settingsOpen = true">Show Settings</button>
 		<AppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" title="Application settings">
-			<AppSettingsSection title="Example title 1">
+			<AppSettingsSection id="asci-title-1" title="Example title 1">
 				Some example content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 2">
+			<AppSettingsSection id="asci-title-2" title="Example title 2">
 				Some more content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 3">
+			<AppSettingsSection id="asci-title-3" title="Example title 3">
 				Some example content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 4">
+			<AppSettingsSection id="asci-title-4" title="Example title 4">
 				Some more content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 5">
+			<AppSettingsSection id="asci-title-5" title="Example title 5">
 				Some example content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 6">
+			<AppSettingsSection id="asci-title-6" title="Example title 6">
 				Some more content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 7">
+			<AppSettingsSection id="asci-title-7" title="Example title 7">
 				Some example content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 8">
+			<AppSettingsSection id="asci-title-8" title="Example title 8">
 				Some more content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 9">
+			<AppSettingsSection id="asci-title-9" title="Example title 9">
 				Some more content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 10">
+			<AppSettingsSection id="asci-title-10" title="Example title 10">
 				Some more content
 			</AppSettingsSection>
 		</AppSettingsDialog>
@@ -151,7 +151,9 @@ export default {
 
 	mounted() {
 		// Select first settings section
-		this.selectedSection = this.$slots.default[0].componentOptions.propsData.title
+		this.selectedSection = this.$slots.default[0].componentOptions.propsData.id
+			? this.$slots.default[0].componentOptions.propsData.id
+			: this.$slots.default[0].componentOptions.propsData.title
 	},
 
 	updated() {
@@ -178,13 +180,26 @@ export default {
 		 */
 		getSettingsNavigation(slots) {
 			// Array of navigationitems strings
-			const navigationItems = slots.filter(vNode => vNode.componentOptions).map(vNode => vNode.componentOptions.propsData?.title)
+			const navigationItems = slots.filter(vNode => vNode.componentOptions).map(vNode => {
+				return {
+					id: vNode.componentOptions.propsData?.id ? vNode.componentOptions.propsData?.id : vNode.componentOptions.propsData?.title,
+					title: vNode.componentOptions.propsData?.title,
+				}
+			})
+			const navigationTitles = slots.map(item => item.title)
+			const navigationIds = slots.map(item => item.id)
+
 			// Check for the uniqueness of section titles
 			navigationItems.forEach((element, index) => {
-				const newArray = [...navigationItems]
-				newArray.splice(index, 1)
-				if (newArray.indexOf(element) !== -1) {
+				const newTitlesArray = [...navigationTitles]
+				const newIdArray = [...navigationIds]
+				newTitlesArray.splice(index, 1)
+				newIdArray.splice(index, 1)
+				if (newTitlesArray.indexOf(element.title) !== -1) {
 					throw new Error(`Duplicate section title found: ${element}. Settings navigation sections must have unique section titles.`)
+				}
+				if (newIdArray.indexOf(element.id) !== -1) {
+					throw new Error(`Duplicate section id found: ${element}. Settings navigation sections must have unique section ids.`)
 				}
 			})
 			return navigationItems
@@ -193,11 +208,12 @@ export default {
 		/**
 		 * Scrolls the content to the selected settings section.absolute
 		 *
-		 * @param {string} item the name of the section
+		 * @param {string} item the ID of the section
 		 */
 		handleSettingsNavigationClick(item) {
+			console.error(item)
 			this.linkClicked = true
-			document.getElementById('settings-section_' + item.replace(/\s+/g, '')).scrollIntoView({
+			document.getElementById('settings-section_' + item).scrollIntoView({
 				behavior: 'smooth',
 				inline: 'nearest',
 			})
@@ -272,20 +288,20 @@ export default {
 		const createListElement = (item) => createElement('li', {}, [createElement('a', {
 			class: {
 				'navigation-list__link': true,
-				'navigation-list__link--active': item === this.selectedSection,
+				'navigation-list__link--active': item.id === this.selectedSection,
 			},
 
 			attrs: {
 				role: 'tab',
-				'aria-selected': item === this.selectedSection,
+				'aria-selected': item.id === this.selectedSection,
 				tabindex: '0',
 			},
 
 			on: {
-				click: () => this.handleSettingsNavigationClick(item),
-				keydown: () => this.handleLinkKeydown(event, item),
+				click: () => this.handleSettingsNavigationClick(item.id),
+				keydown: () => this.handleLinkKeydown(event, item.id),
 			},
-		}, item)])
+		}, item.title)])
 
 		// Return value of the render function
 		if (this.open) {
