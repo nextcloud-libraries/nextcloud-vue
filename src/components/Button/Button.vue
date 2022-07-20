@@ -198,8 +198,8 @@ button {
 </docs>
 
 <template>
-	<button class="button-vue"
-		v-bind="$attrs"
+	<root-element class="button-vue"
+		v-bind="rootElement"
 		:class="buttonClassObject"
 		:aria-label="ariaLabel"
 		:type="nativeType"
@@ -220,7 +220,7 @@ button {
 				<slot />
 			</span>
 		</span>
-	</button>
+	</root-element>
 </template>
 <script>
 
@@ -281,6 +281,15 @@ export default {
 			type: String,
 			default: null,
 		},
+
+		/**
+		 * Providing the href attribute turns the button component into a an `a`
+		 * element
+		 */
+		href: {
+			type: String,
+			default: '',
+		},
 	},
 
 	data() {
@@ -300,6 +309,21 @@ export default {
 	},
 
 	computed: {
+		// Determines whether the root element is an a or a button
+		rootElement() {
+			if (this.href) {
+				return {
+					is: 'a',
+					href: this.href,
+					...this.$attrs,
+				}
+			}
+			return {
+				is: 'button',
+				...this.$attrs,
+			}
+		},
+
 		hasText() {
 			return this.slots?.default !== undefined
 				&& this.slots?.default[0]?.text
