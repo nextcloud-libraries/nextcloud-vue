@@ -288,7 +288,7 @@ export default {
 		 */
 		href: {
 			type: String,
-			default: '',
+			default: null,
 		},
 	},
 
