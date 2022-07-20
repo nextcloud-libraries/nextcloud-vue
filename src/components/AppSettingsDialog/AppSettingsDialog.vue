@@ -151,9 +151,9 @@ export default {
 
 	mounted() {
 		// Select first settings section
-		this.selectedSection = this.$slots.default[0].componentOptions.propsData.id ?
-			this.$slots.default[0].componentOptions.propsData.id :
-			this.$slots.default[0].componentOptions.propsData.title
+		this.selectedSection = this.$slots.default[0].componentOptions.propsData.id
+			? this.$slots.default[0].componentOptions.propsData.id
+			: this.$slots.default[0].componentOptions.propsData.title
 	},
 
 	updated() {
