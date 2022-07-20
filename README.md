@@ -59,10 +59,10 @@ If you want to use [vue-devtools](https://github.com/vuejs/vue-devtools) in Fire
 
 ```diff
 diff --git a/lib/public/AppFramework/Http/ContentSecurityPolicy.php b/lib/public/AppFramework/Http/ContentSecurityPolicy.php
-index 3a9ab8f8c1..4bc2b4a4d0 100644
+index 0e3a6a705d..416b8b0fb9 100644
 --- a/lib/public/AppFramework/Http/ContentSecurityPolicy.php
 +++ b/lib/public/AppFramework/Http/ContentSecurityPolicy.php
-@@ -42,9 +42,9 @@ namespace OCP\AppFramework\Http;
+@@ -41,9 +41,9 @@ namespace OCP\AppFramework\Http;
   */
  class ContentSecurityPolicy extends EmptyContentSecurityPolicy {
         /** @var bool Whether inline JS snippets are allowed */
@@ -71,9 +71,9 @@ index 3a9ab8f8c1..4bc2b4a4d0 100644
         /** @var bool Whether eval in JS scripts is allowed */
 -       protected $evalScriptAllowed = false;
 +       protected $evalScriptAllowed = true;
+        /** @var bool Whether strict-dynamic should be set */
+        protected $strictDynamicAllowed = false;
         /** @var array Domains from which scripts can get loaded */
-        protected $allowedScriptDomains = [
-                '\'self\'',
 ```
 
 ## Releasing a new version
