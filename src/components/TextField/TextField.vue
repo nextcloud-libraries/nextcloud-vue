@@ -100,14 +100,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .text-field {
 	position: relative;
 	width: 100%;
 	border-radius: var(--border-radius-large);
 	padding-left: 16px;
+	display: flex;
+	align-items: center;
 
 	&__input {
+		margin: 0;
+		padding: 0 12px;
+		font-size: var(--default-font-size);
+		background-color: var(--color-main-background);
+		color: var(--color-main-text);
+		border: 2px solid var(--color-border-dark);
+		height: 36px !important;
+		border-radius: var(--border-radius-large);
+		cursor: pointer;
 		width: 100%;
+		-webkit-appearance: textfield !important;
+		-moz-appearance: textfield !important;
+
+		&:hover {
+			border-color: var(--color-primary-element);
+		}
+		&:focus {
+			cursor: text;
+		}
 	}
 
 	&__clear-button {
