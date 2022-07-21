@@ -20,7 +20,7 @@
 -->
 
 <docs>
-### Sescription
+### Description
 
 General purpose text field component.
 
