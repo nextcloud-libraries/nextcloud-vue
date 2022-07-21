@@ -43,7 +43,8 @@ export default {
 
 <template>
 	<div class="text-field">
-		<input class="text-input__input"
+		<input v-bind="$attrs"
+			ref="input"
 			type="text"
 			:value="value"
 			@input="handleInput">
@@ -66,14 +67,6 @@ export default {
 		 * The value of the input field
 		 */
 		value: {
-			type: String,
-			required: true,
-		},
-
-		/**
-		 * The input placeholder
-		 */
-		placeholder: {
 			type: String,
 			required: true,
 		},
