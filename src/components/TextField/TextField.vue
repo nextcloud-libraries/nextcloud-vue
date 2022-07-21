@@ -26,14 +26,23 @@ General purpose text field component.
 
 ```
 <template>
-	<TextField :value.sync="textField"
+	<TextField :value.sync="text"
+		placeholder="Type something here"
+		:can-clear="true"
+		@clear="clearText" />
 </template>
 <script>
 
 export default {
 	data() {
 		return {
-			textField: '',
+			text: '',
+		}
+	},
+
+	methods: {
+		clearText() {
+			this.text = ''
 		}
 	}
 }
@@ -45,21 +54,32 @@ export default {
 	<div class="text-field">
 		<input v-bind="$attrs"
 			ref="input"
+			class="text-field__input"
 			type="text"
+			:class="{ 'text-field__input--can-clear': canClear }"
 			:value="value"
+			v-on="$listeners"
 			@input="handleInput">
-		<Button type="tertiary-no-background" v-if="showClearButton" class="text-input__clear-button" />
+		<Button v-if="canClear"
+			type="tertiary-no-background"
+			class="text-field__clear-button"
+			@click="clearText">
+			<Close slot="icon"
+				:size="20" />
+		</Button>
 	</div>
 </template>
 
 <script>
 import Button from '../Button/index.js'
+import Close from 'vue-material-design-icons/Close'
 
 export default {
 	name: 'TextField',
 
 	components: {
 		Button,
+		Close,
 	},
 
 	props: {
@@ -78,15 +98,20 @@ export default {
 		 * the text input. Instead, a 'clear' event is sent to the parent
 		 * component.
 		 */
-		showClearButton: {
+		canClear: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 	},
 
 	methods: {
 		handleInput(event) {
 			this.$emit('update:value', event.target.value)
+		},
+
+		clearText(event) {
+			this.$emit('clear', event)
+			this.$refs.input.focus()
 		},
 	},
 }
@@ -99,8 +124,6 @@ export default {
 	width: 100%;
 	border-radius: var(--border-radius-large);
 	padding-left: 16px;
-	display: flex;
-	align-items: center;
 
 	&__input {
 		margin: 0;
@@ -122,12 +145,24 @@ export default {
 		&:focus {
 			cursor: text;
 		}
+
+		&--can-clear {
+			padding-right: 36px;
+		}
 	}
 
 	&__clear-button {
 		position: absolute;
-		top: 0;
-		right: 0;
+		top: 2px;
+		right: 1px;
 	}
+}
+
+::v-deep .button-vue {
+	min-width: unset;
+	min-height: unset;
+	height: 32px;
+	width: 32px !important;
+	border-radius: var(--border-radius-large);
 }
 </style>
