@@ -2,7 +2,7 @@
  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  -
  - @author John Molakvoæ <skjnldsv@protonmail.com>
- - @author Marco Ambrosini <marcoambrosini@pm.me>
+ - @author Marco Ambrosini <marcoambrosini@icloud.com>
  - @author Jonas Sulzer <jonas@violoncello.ch>
  - @author Jonathan Treffler <mail@jonathan-treffler.de>
  -

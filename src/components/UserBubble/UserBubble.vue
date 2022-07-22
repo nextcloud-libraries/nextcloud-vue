@@ -1,7 +1,7 @@
 <!--
   - @copyright Copyright (c) 2019 Jonas Sulzer <jonas@violoncello.ch>
   -
-  - @author Marco Ambrosini <marcoambrosini@pm.me>
+  - @author Marco Ambrosini <marcoambrosini@icloud.com>
   - @author Jonas Sulzer <jonas@violoncello.ch>
   -
   - @license GNU AGPL version 3 or any later version
