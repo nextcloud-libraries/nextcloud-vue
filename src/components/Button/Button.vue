@@ -238,13 +238,13 @@ export default {
 
 		/**
 		 * Specifies the button type
-		 * Accepted values: primary, secondary, tertiary, error, warning, success. If left empty,
+		 * Accepted values: primary, secondary, tertiary, tertiary-no-background, tertiary-on-primary, error, warning, success. If left empty,
 		 * the default button style will be applied.
 		 */
 		type: {
 			type: String,
 			validator(value) {
-				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'error', 'warning', 'success'].indexOf(value) !== -1
+				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].indexOf(value) !== -1
 			},
 			default: 'secondary',
 		},
@@ -535,6 +535,11 @@ export default {
 		&.button-vue--vue-tertiary-no-background {
 			opacity: 1;
 		}
+		&.button-vue--vue-tertiary-on-primary {
+			border-radius: var(--border-radius);
+			opacity: 1;
+			background-color: transparent;
+		}
 		&.button-vue--vue-success {
 			background-color: var(--color-success-hover);
 		}
@@ -589,6 +594,18 @@ export default {
 		color: var(--color-main-text);
 		background-color: transparent;
 		opacity: .7;
+		&:hover:not(:disabled) {
+			background-color: transparent;
+			opacity: 1;
+		}
+	}
+
+	// Tertiary on primary color (like the header)
+	&--vue-tertiary-on-primary {
+		color: var(--color-primary-text);
+		background-color: transparent;
+		opacity: .7;
+
 		&:hover:not(:disabled) {
 			background-color: transparent;
 			opacity: 1;
