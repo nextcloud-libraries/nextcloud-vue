@@ -43,8 +43,8 @@
 		<svg :width="size"
 			:height="size"
 			viewBox="0 0 24 24">
-			<path :fill="colorCircle" d="M12,4V2A10,10 0 1,0 22,12H20A8,8 0 1,1 12,4Z" />
-			<path :fill="colorSpinner" d="M12,4V2A10,10 0 0,1 22,12H20A8,8 0 0,0 12,4Z">
+			<path :fill="colors[0]" d="M12,4V2A10,10 0 1,0 22,12H20A8,8 0 1,1 12,4Z" />
+			<path :fill="colors[1]" d="M12,4V2A10,10 0 0,1 22,12H20A8,8 0 0,0 12,4Z">
 				<title v-if="title">{{ title }}</title>
 			</path>
 		</svg>
@@ -83,21 +83,14 @@ export default {
 		},
 	},
 	computed: {
-		colorCircle() {
+		colors() {
+			const colors = ['#777', '#CCC']
 			if (this.appearance === 'light') {
-				return '#777'
+				return colors
 			} else if (this.appearance === 'dark') {
-				return '#CCC'
+				return colors.reverse()
 			}
-			return 'var(--color-loading-light)'
-		},
-		colorSpinner() {
-			if (this.appearance === 'light') {
-				return '#CCC'
-			} else if (this.appearance === 'dark') {
-				return '#777'
-			}
-			return 'var(--color-loading-dark)'
+			return ['var(--color-loading-light)', 'var(--color-loading-dark)']
 		},
 	},
 }
