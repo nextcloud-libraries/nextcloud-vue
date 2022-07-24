@@ -283,12 +283,30 @@ export default {
 		},
 
 		/**
-		 * Providing the href attribute turns the button component into a an `a`
-		 * element
+		 * Providing the href attribute turns the button component into an `a`
+		 * element.
 		 */
 		href: {
 			type: String,
 			default: null,
+		},
+
+		/**
+		 * Providing the to attribute turns the button component into a `router-link`
+		 * element. Takes precedence over the href attribute.
+		 */
+		to: {
+			type: [String, Object],
+			default: null,
+		},
+
+		/**
+		 * Pass in `true` if you want the matching behaviour of `router-link` to
+		 * be non-inclusive: https://router.vuejs.org/api/#exact
+		 */
+		exact: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -309,8 +327,18 @@ export default {
 	},
 
 	computed: {
-		// Determines whether the root element is an a or a button
+		// Determines whether the root element is an a,
+		// a router-link or a button
 		rootElement() {
+			if (this.to) {
+				return {
+					is: 'router-link',
+					tag: 'button',
+					to: this.to,
+					exact: this.exact,
+					...this.$attrs,
+				}
+			}
 			if (this.href) {
 				return {
 					is: 'a',
