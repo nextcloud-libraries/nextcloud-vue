@@ -134,7 +134,7 @@ export default {
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
 	<span v-if="isValidSingleAction && !forceMenu">
-		<ButtonVue v-tooltip.auto="firstAction.text"
+		<!-- <ButtonVue v-tooltip.auto="firstAction.text"
 			v-bind="firstActionBinding"
 			:class="{
 				[firstActionClass]: firstActionClass,
@@ -144,10 +144,12 @@ export default {
 			:disabled="isDisabled"
 			@focus="onFocus"
 			@blur="onBlur"
-			@[firstActionEventBinding]="execFirstAction">
+			@[firstActionEventBinding]="execFirstAction"> -->
+		<ButtonVue>
 			<template #icon>
 				<!-- Render the icon slot content of the first action -->
 				<!-- <VNodes :vnodes="firstActionIconSlot" /> -->
+				<DotsHorizontal />
 			</template>
 
 			<template v-if="singleActionTitle">
