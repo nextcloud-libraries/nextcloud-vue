@@ -564,6 +564,7 @@ export default {
 			opacity: 1;
 		}
 		&.button-vue--vue-tertiary-on-primary {
+			box-shadow: 0 0 0 2px var(--color-primary-text);
 			border-radius: var(--border-radius);
 			opacity: 1;
 			background-color: transparent;
