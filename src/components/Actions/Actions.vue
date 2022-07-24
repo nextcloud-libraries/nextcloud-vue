@@ -148,8 +148,7 @@ export default {
 		<ButtonVue>
 			<template #icon>
 				<!-- Render the icon slot content of the first action -->
-				<!-- <VNodes :vnodes="firstActionIconSlot" /> -->
-				<DotsHorizontal />
+				<VNodes :vnodes="firstActionIconSlot" />
 			</template>
 
 			<template v-if="singleActionTitle">
