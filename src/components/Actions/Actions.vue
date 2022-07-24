@@ -28,9 +28,25 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 ### Single action
 
 ```
-<Actions>
-	<ActionButton icon="icon-delete" @click="alert('Delete')">Delete</ActionButton>
-</Actions>
+<template>
+	<Actions>
+		<ActionButton @click="alert('Delete')">
+			<template #icon>
+				<Delete :size="20" />
+			</template>
+			Delete
+		</ActionButton>
+	</Actions>
+</template>
+<script>
+import Delete from 'vue-material-design-icons/Delete'
+
+export default {
+	components: {
+		Delete,
+	},
+}
+</script>
 ```
 
 ### Multiple actions
