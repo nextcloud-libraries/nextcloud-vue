@@ -145,8 +145,10 @@ export default {
 		@focus="onFocus"
 		@blur="onBlur"
 		@[firstActionEventBinding]="execFirstAction">
-		<!-- Render the icon slot content of the first action -->
-		<VNodes :vnodes="firstActionIconSlot" />
+		<template #icon>
+			<!-- Render the icon slot content of the first action -->
+			<VNodes :vnodes="firstActionIconSlot" />
+		</template>
 
 		{{ singleActionTitle }}
 
