@@ -133,11 +133,10 @@ export default {
 </docs>
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
-	<element v-if="isValidSingleAction && !forceMenu"
+	<ButtonVue v-if="isValidSingleAction && !forceMenu"
 		v-tooltip.auto="firstAction.text"
 		v-bind="firstActionBinding"
 		:class="{
-			[firstAction.icon]: firstAction.icon,
 			[firstActionClass]: firstActionClass,
 			'action-item--single--with-title': singleActionTitle }"
 		class="action-item action-item--single"
@@ -156,7 +155,7 @@ export default {
 			<!-- @slot All action elements passed into the default slot will be used -->
 			<slot />
 		</span>
-	</element>
+	</ButtonVue>
 
 	<!-- more than one action -->
 	<div v-else
@@ -224,6 +223,7 @@ export default {
 	</div>
 </template>
 <script>
+import ButtonVue from '../Button/index.js'
 import Popover from '../Popover/index.js'
 import VNodes from '../VNodes/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
@@ -250,6 +250,7 @@ export default {
 	},
 
 	components: {
+		ButtonVue,
 		DotsHorizontal,
 		Popover,
 
@@ -412,7 +413,6 @@ export default {
 				const tag = this.firstActionVNode.componentOptions.tag
 				if (tag === 'ActionLink') {
 					return {
-						is: 'a',
 						href: this.firstAction.href,
 						target: this.firstAction.target,
 						'aria-label': this.firstAction.ariaLabel,
@@ -422,7 +422,6 @@ export default {
 				}
 				if (tag === 'ActionRouter') {
 					return {
-						is: 'router-link',
 						to: this.firstAction.to,
 						exact: this.firstAction.exact,
 						'aria-label': this.firstAction.ariaLabel,
@@ -432,7 +431,6 @@ export default {
 				}
 				if (tag === 'ActionButton') {
 					return {
-						is: 'button',
 						'aria-label': this.firstAction.ariaLabel,
 						...this.firstAction.$attrs,
 						...this.firstAction.$props,
