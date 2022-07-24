@@ -147,10 +147,12 @@ export default {
 			@[firstActionEventBinding]="execFirstAction">
 			<template #icon>
 				<!-- Render the icon slot content of the first action -->
-				<VNodes :vnodes="firstActionIconSlot" />
+				<!-- <VNodes :vnodes="firstActionIconSlot" /> -->
 			</template>
 
-			{{ singleActionTitle }}
+			<template v-if="singleActionTitle">
+				{{ singleActionTitle }}
+			</template>
 		</ButtonVue>
 
 		<!-- fake slot to gather main action -->
