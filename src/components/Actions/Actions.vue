@@ -133,31 +133,32 @@ export default {
 </docs>
 <template>
 	<!-- if only one action, check if we need to bind to click or not -->
-	<ButtonVue v-if="isValidSingleAction && !forceMenu"
-		v-tooltip.auto="firstAction.text"
-		v-bind="firstActionBinding"
-		:class="{
-			[firstActionClass]: firstActionClass,
-			'action-item--single--with-title': singleActionTitle }"
-		class="action-item action-item--single"
-		rel="nofollow noreferrer noopener"
-		:disabled="isDisabled"
-		@focus="onFocus"
-		@blur="onBlur"
-		@[firstActionEventBinding]="execFirstAction">
-		<template #icon>
-			<!-- Render the icon slot content of the first action -->
-			<VNodes :vnodes="firstActionIconSlot" />
-		</template>
+	<span v-if="isValidSingleAction && !forceMenu">
+		<ButtonVue v-tooltip.auto="firstAction.text"
+			v-bind="firstActionBinding"
+			:class="{
+				[firstActionClass]: firstActionClass,
+				'action-item--single--with-title': singleActionTitle }"
+			class="action-item action-item--single"
+			rel="nofollow noreferrer noopener"
+			:disabled="isDisabled"
+			@focus="onFocus"
+			@blur="onBlur"
+			@[firstActionEventBinding]="execFirstAction">
+			<template #icon>
+				<!-- Render the icon slot content of the first action -->
+				<VNodes :vnodes="firstActionIconSlot" />
+			</template>
 
-		{{ singleActionTitle }}
+			{{ singleActionTitle }}
+		</ButtonVue>
 
 		<!-- fake slot to gather main action -->
 		<span :aria-hidden="true" hidden>
 			<!-- @slot All action elements passed into the default slot will be used -->
 			<slot />
 		</span>
-	</ButtonVue>
+	</span>
 
 	<!-- more than one action -->
 	<div v-else
