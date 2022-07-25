@@ -66,7 +66,6 @@ export default {
 <template>
 	<Multiselect :value="inputValue"
 		:options="tags"
-		:options-limit="5"
 		:placeholder="label"
 		track-by="id"
 		:custom-label="tagLabel"
