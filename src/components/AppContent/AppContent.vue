@@ -2,7 +2,7 @@
  - @copyright Copyright (c) 2019 Christoph Wurst <christoph@winzerhof-wurst.at>
  -
  - @author Christoph Wurst <christoph@winzerhof-wurst.at>
- - @author Marco Ambrosini <marcoambrosini@pm.me>
+ - @author Marco Ambrosini <marcoambrosini@icloud.com>
  - @author John Molakvoæ <skjnldsv@protonmail.com>
  -
  - @license GNU AGPL version 3 or any later version

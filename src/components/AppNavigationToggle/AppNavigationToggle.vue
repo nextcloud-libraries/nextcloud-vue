@@ -3,7 +3,7 @@
  -
  - @author Christoph Wurst <christoph@winzerhof-wurst.at>
  - @author John Molakvoæ <skjnldsv@protonmail.com>
- - @author Marco Ambrosini <marcoambrosini@pm.me>
+ - @author Marco Ambrosini <marcoambrosini@icloud.com>
  -
  - @license GNU AGPL version 3 or any later version
  -
