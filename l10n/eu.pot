@@ -36,6 +36,9 @@ msgstr "{displayName} -(e)n irudia, {status}"
 msgid "Cancel changes"
 msgstr "Ezeztatu aldaketak"
 
+msgid "Change title"
+msgstr "Aldatu titulua"
+
 msgid "Choose"
 msgstr "Aukeratu"
 
@@ -59,6 +62,9 @@ msgstr "Editatu elementua"
 
 msgid "External documentation for {title}"
 msgstr "Kanpoko dokumentazioa {title}(r)entzat"
+
+msgid "Favorite"
+msgstr "Gogokoa"
 
 msgid "Flags"
 msgstr "Banderak"
