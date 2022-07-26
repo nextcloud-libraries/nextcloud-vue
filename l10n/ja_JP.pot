@@ -6,10 +6,11 @@
 # 焼きすぎた鮭, 2021
 # Kosugi_kun, 2022
 # T.S, 2022
+# かたかめ, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: T.S, 2022\n"
+"Last-Translator: かたかめ, 2022\n"
 "Language-Team: Japanese (Japan) (https://www.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ja_JP\n"
@@ -39,6 +40,9 @@ msgstr "{displayName}, {status} のアバター"
 msgid "Cancel changes"
 msgstr "変更をキャンセル"
 
+msgid "Change title"
+msgstr "タイトルを変更"
+
 msgid "Choose"
 msgstr "選択"
 
@@ -62,6 +66,9 @@ msgstr "編集"
 
 msgid "External documentation for {title}"
 msgstr "{title} のための添付文書"
+
+msgid "Favorite"
+msgstr "お気に入り"
 
 msgid "Flags"
 msgstr "国旗"
