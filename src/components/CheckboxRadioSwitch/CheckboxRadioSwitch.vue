@@ -228,7 +228,7 @@ export default {
 		},
 
 		/**
-		 * Type of the input. Checkbox or radio
+		 * Type of the input. checkbox, radio or switch
 		 */
 		type: {
 			type: String,
