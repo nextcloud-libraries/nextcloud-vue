@@ -159,7 +159,8 @@ export default {
 			'checkbox-radio-switch--button-variant-h-grouped': buttonVariant && buttonVariantGrouped === 'horizontal',
 		}"
 		:style="cssVars"
-		class="checkbox-radio-switch">
+		class="checkbox-radio-switch"
+		@click="$emit('click')">
 		<label :for="id" class="checkbox-radio-switch__label">
 			<input :id="id"
 				:checked="isChecked"
