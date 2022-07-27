@@ -26,12 +26,19 @@ General purpose text field component.
 
 ```
 <template>
-	<TextField :value.sync="text"
-		placeholder="Type something here"
-		:can-clear="true"
-		@clear="clearText">
-		<Magnify :size="16 " />
-	</TextField>
+	<div class="wrapper">
+		<TextField :value.sync="text"
+			placeholder="Type something here"
+			:can-clear="true"
+			@clear="clearText">
+			<Magnify :size="16 " />
+		</TextField>
+		<TextField :value.sync="text"
+			placeholder="Type something here"
+			:success="true"
+			@clear="clearText">
+		</TextField>
+	</div>
 </template>
 <script>
 import Magnify from 'vue-material-design-icons/Magnify'
@@ -54,6 +61,12 @@ export default {
 	}
 }
 </script>
+<style lang="scss" scoped>
+.wrapper {
+	display: flex;
+	gap: 4px;
+}
+</style>
 ```
 </docs>
 
@@ -72,11 +85,14 @@ export default {
 			@input="handleInput">
 
 		<!-- Leading icon -->
-		<div class="text-field__leading-icon">
+		<div class="text-field__icon text-field__icon--leading">
 			<!-- Leading material design icon in the text field, set the size to 18 -->
 			<slot />
 		</div>
-
+		<!-- Success icon -->
+		<div v-if="success" class="text-field__icon text-field__icon--trailing">
+			<Check :size="18" />
+		</div>
 		<!-- clear text button -->
 		<Button v-if="canClear"
 			type="tertiary-no-background"
@@ -91,6 +107,7 @@ export default {
 <script>
 import Button from '../Button/index.js'
 import Close from 'vue-material-design-icons/Close'
+import Check from 'vue-material-design-icons/Check'
 
 export default {
 	name: 'TextField',
@@ -98,6 +115,7 @@ export default {
 	components: {
 		Button,
 		Close,
+		Check,
 	},
 
 	props: {
@@ -117,6 +135,15 @@ export default {
 		 * component.
 		 */
 		canClear: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Toggles the success state of the component. Adds a checkmark icon.
+		 * this cannot be used together with canClear.
+		 */
+		success: {
 			type: Boolean,
 			default: false,
 		},
@@ -200,16 +227,23 @@ export default {
 		}
 	}
 
-	&__leading-icon {
+	&__icon {
 		position: absolute;
-		top: 2px;
-		left: 20px;
 		height: 32px;
 		width: 32px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		opacity: 0.7;
+		&--leading {
+			top: 2px;
+			left: 20px;
+		}
+
+		&--trailing {
+			top: 2px;
+			right: 2px;
+		}
 	}
 
 	&__clear-button {
