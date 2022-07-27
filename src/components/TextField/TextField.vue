@@ -29,15 +29,22 @@ General purpose text field component.
 	<TextField :value.sync="text"
 		placeholder="Type something here"
 		:can-clear="true"
-		@clear="clearText" />
+		@clear="clearText">
+		<Magnify :size="16 " />
+	</TextField>
 </template>
 <script>
+import Magnify from 'vue-material-design-icons/Magnify'
 
 export default {
 	data() {
 		return {
 			text: '',
 		}
+	},
+
+	components: {
+		Magnify,
 	},
 
 	methods: {
@@ -56,10 +63,21 @@ export default {
 			ref="input"
 			class="text-field__input"
 			type="text"
-			:class="{ 'text-field__input--can-clear': canClear }"
+			:class="{
+				'text-field__input--can-clear': canClear,
+				'text-field__input--leading-icon': hasLeadingIcon,
+			}"
 			:value="value"
 			v-on="$listeners"
 			@input="handleInput">
+
+		<!-- Leading icon -->
+		<div class="text-field__leading-icon">
+			<!-- Leading material design icon in the text field, set the size to 18 -->
+			<slot />
+		</div>
+
+		<!-- clear text button -->
 		<Button v-if="canClear"
 			type="tertiary-no-background"
 			class="text-field__clear-button"
@@ -104,6 +122,26 @@ export default {
 		},
 	},
 
+	computed: {
+		hasLeadingIcon() {
+			return this.$slots.default
+		},
+	},
+
+	watch: {
+		/**
+		 * Don't allow both trailing checkmark and clear button to be present
+		 * at the same time
+		 */
+		success() {
+			this.validateProps()
+		},
+
+		canClear() {
+			this.validateProps()
+		},
+	},
+
 	methods: {
 		handleInput(event) {
 			this.$emit('update:value', event.target.value)
@@ -113,8 +151,15 @@ export default {
 			this.$emit('clear', event)
 			this.$refs.input.focus()
 		},
+
+		validateProps() {
+			if (this.canClear && this.success) {
+				throw new Error('success and canClear props cannot be true at the same time')
+			}
+		},
 	},
 }
+
 </script>
 
 <style lang="scss" scoped>
@@ -149,6 +194,22 @@ export default {
 		&--can-clear {
 			padding-right: 36px;
 		}
+
+		&--leading-icon {
+			padding-left: 32px;
+		}
+	}
+
+	&__leading-icon {
+		position: absolute;
+		top: 2px;
+		left: 20px;
+		height: 32px;
+		width: 32px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0.7;
 	}
 
 	&__clear-button {
