@@ -52,6 +52,9 @@ msgstr "Üste açılan pencereyi kapat"
 msgid "Close navigation"
 msgstr "Gezinmeyi kapat"
 
+msgid "Close sidebar"
+msgstr "Yan çubuğu kapat"
+
 msgid "Confirm changes"
 msgstr "Değişiklikleri onayla"
 
