@@ -23,6 +23,9 @@
 ### Description
 
 General purpose text field component.
+Note: the inner html `input` element inherits all the attributes from the
+textField component so you can add things like `autocomplete`, `maxlength`
+and `minlength`.
 
 ```
 <template>
@@ -38,21 +41,30 @@ General purpose text field component.
 			:success="true"
 			@clear="clearText">
 		</TextField>
+		<TextField :value.sync="text3"
+			label="Type something here"
+			:label-visible="true"
+			@clear="clearText">
+			<Lock :size="16 " />
+		</TextField>
 	</div>
 </template>
 <script>
 import Magnify from 'vue-material-design-icons/Magnify'
+import Lock from 'vue-material-design-icons/Lock'
 
 export default {
 	data() {
 		return {
 			text1: '',
 			text2: '',
+			text3: '',
 		}
 	},
 
 	components: {
 		Magnify,
+		Lock,
 	},
 
 	methods: {
@@ -66,6 +78,7 @@ export default {
 .wrapper {
 	display: flex;
 	gap: 4px;
+	align-items: flex-end;
 }
 </style>
 ```
@@ -73,38 +86,45 @@ export default {
 
 <template>
 	<div class="text-field">
-		<input v-bind="$attrs"
-			ref="input"
-			:name="inputName"
-			class="text-field__input"
-			type="text"
-			:placeholder="hasPlaceholder ? placeholder : label"
-			aria-live="polite"
-			:class="{
-				'text-field__input--can-clear': canClear,
-				'text-field__input--leading-icon': hasLeadingIcon,
-			}"
-			:value="value"
-			v-on="$listeners"
-			@input="handleInput">
-		<label class="hidden-visually" :for="inputName">{{ label }}</label>
-		<!-- Leading icon -->
-		<div class="text-field__icon text-field__icon--leading">
-			<!-- Leading material design icon in the text field, set the size to 18 -->
-			<slot />
+		<label class="text-field__label"
+			:class="{ 'text-field__label--hidden': !labelVisible }"
+			:for="inputName">
+			{{ label }}
+		</label>
+		<div class="text-field__main-wrapper">
+			<input v-bind="$attrs"
+				ref="input"
+				:name="inputName"
+				class="text-field__input"
+				type="text"
+				:placeholder="computedPlaceholder"
+				aria-live="polite"
+				:class="{
+					'text-field__input--can-clear': canClear,
+					'text-field__input--leading-icon': hasLeadingIcon,
+					'text-field__input--trailing-icon': hasTrailingIcon,
+				}"
+				:value="value"
+				v-on="$listeners"
+				@input="handleInput">
+			<!-- Leading icon -->
+			<div class="text-field__icon text-field__icon--leading">
+				<!-- Leading material design icon in the text field, set the size to 18 -->
+				<slot />
+			</div>
+			<!-- Success icon -->
+			<div v-if="success" class="text-field__icon text-field__icon--trailing">
+				<Check :size="18" />
+			</div>
+			<!-- clear text button -->
+			<Button v-if="canClear"
+				type="tertiary-no-background"
+				class="text-field__clear-button"
+				@click="clearText">
+				<Close slot="icon"
+					:size="20" />
+			</Button>
 		</div>
-		<!-- Success icon -->
-		<div v-if="success" class="text-field__icon text-field__icon--trailing">
-			<Check :size="18" />
-		</div>
-		<!-- clear text button -->
-		<Button v-if="canClear"
-			type="tertiary-no-background"
-			class="text-field__clear-button"
-			@click="clearText">
-			<Close slot="icon"
-				:size="20" />
-		</Button>
 	</div>
 </template>
 
@@ -140,6 +160,16 @@ export default {
 		label: {
 			type: String,
 			required: true,
+		},
+
+		/**
+		 * We normally have the lable hidden visually and use it for
+		 * accessibility only. If you want to have the label visible just above
+		 * the input field pass in true to this prop.
+		 */
+		labelVisible: {
+			type: Boolean,
+			default: false,
 		},
 
 		/**
@@ -183,9 +213,21 @@ export default {
 			return this.$slots.default
 		},
 
+		hasTrailingIcon() {
+			return this.success
+		},
+
 		hasPlaceholder() {
 			return this.placeholder !== '' && this.placeholder !== undefined
 		},
+
+		computedPlaceholder() {
+			if (this.labelVisible) {
+				return this.placeholder ? this.placeholder : ''
+			} else {
+				return this.hasPlaceholder ? this.placeholder : this.label
+			}
+		}
 	},
 
 	watch: {
@@ -230,6 +272,11 @@ export default {
 	border-radius: var(--border-radius-large);
 	padding-left: 16px;
 
+	&__main-wrapper {
+		height: 36px;
+		position: relative;
+	}
+
 	&__input {
 		margin: 0;
 		padding: 0 12px;
@@ -239,6 +286,7 @@ export default {
 		border: 2px solid var(--color-border-dark);
 		height: 36px !important;
 		border-radius: var(--border-radius-large);
+		text-overflow: ellipsis;
 		cursor: pointer;
 		width: 100%;
 		-webkit-appearance: textfield !important;
@@ -252,11 +300,29 @@ export default {
 		}
 
 		&--can-clear {
-			padding-right: 36px;
+			padding-right: 28px;
 		}
 
 		&--leading-icon {
-			padding-left: 32px;
+			padding-left: 28px;
+		}
+
+		&--trailing-icon {
+			padding-right: 28px;
+		}
+	}
+
+	&__label {
+		padding: 0px 4px 4px 12px;
+		display: block;
+
+		&--hidden {
+			position: absolute;
+			left: -10000px;
+			top: auto;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
 		}
 	}
 
@@ -269,12 +335,12 @@ export default {
 		justify-content: center;
 		opacity: 0.7;
 		&--leading {
-			top: 2px;
-			left: 20px;
+			bottom: 2px;
+			left: 2px;
 		}
 
 		&--trailing {
-			top: 2px;
+			bottom: 2px;
 			right: 2px;
 		}
 	}
@@ -292,14 +358,5 @@ export default {
 	height: 32px;
 	width: 32px !important;
 	border-radius: var(--border-radius-large);
-}
-
-.hidden-visually {
-	position: absolute;
-	left: -10000px;
-	top: auto;
-	width: 1px;
-	height: 1px;
-	overflow: hidden;
 }
 </style>
