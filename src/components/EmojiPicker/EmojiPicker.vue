@@ -32,7 +32,7 @@
 	```vue
 	<template>
 		<div>
-			<EmojiPicker @select="select">
+			<EmojiPicker @select="select" style="display: inline-block">
 				<button> Click Me </button>
 			</EmojiPicker>
 			<span>selected emoji: {{ emoji }}</span>
@@ -62,7 +62,8 @@
 			<EmojiPicker
 				:close-on-select="false"
 				:show-preview="true"
-				@select="select">
+				@select="select"
+				style="display: inline-block">
 				<button> Click Me </button>
 			</EmojiPicker>
 			<span>selected emoji: {{ emoji }}</span>
@@ -87,10 +88,8 @@
 </docs>
 
 <template>
-	<Popover :open.sync="open"
+	<Popover :shown.sync="open"
 		:container="container"
-		popover-class="emoji-popover"
-		popover-inner-class="popover-emoji-picker-inner"
 		v-bind="$attrs"
 		v-on="$listeners"
 		@after-show="afterShow"
@@ -263,22 +262,6 @@ export default {
 
 <style lang="scss">
 @import '~emoji-mart-vue-fast/css/emoji-mart.css';
-
-.emoji-popover {
-	& .tooltip-arrow,
-	&[x-placement^='top'] {
-		margin-left: 0 !important;
-	}
-	& .tooltip-arrow,
-	&[x-placement^='bottom'] {
-		margin-top: 0 !important;
-	}
-
-	// Remove the extra padding from VTooltip
-	.popover-emoji-picker-inner {
-		padding: 0;
-	}
-}
 
 .emoji-mart {
 	background-color: var(--color-main-background) !important;

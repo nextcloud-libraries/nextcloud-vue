@@ -167,11 +167,11 @@ export default {
 		<!-- If more than one action, create a popovermenu -->
 		<Popover :delay="0"
 			:handle-resize="true"
-			:open.sync="opened"
+			:shown.sync="opened"
 			:placement="placement"
-			:boundaries-element="boundariesElement"
+			:boundary="boundariesElement"
 			:container="container"
-			popover-base-class="action-item__popover"
+			popover-base-class="action-item__popper"
 			@show="openMenu"
 			@after-show="onOpen"
 			@hide="closeMenu">
@@ -519,7 +519,7 @@ export default {
 			this.$emit('update:open', true)
 
 			/**
-			 * Event emitted when the popover menu is closed
+			 * Event emitted when the popover menu is opened
 			 */
 			this.$emit('open')
 		},
@@ -781,25 +781,13 @@ export default {
 		}
 	}
 }
-
-.popover__inner ul {
-	padding: 4px;
-}
-
-.ie,
-.edge {
-	.action-item__menu,
-	.action-item__menu .action-item__menu_arrow {
-		border: 1px solid var(--color-border);
-	}
-}
-
 </style>
 
 <style lang="scss">
 // We overwrote the popover base class, so we can style
 // the popover__inner for actions only.
-.popover.action-item__popover .popover__inner {
+.v-popper__popper.action-item__popper .v-popper__inner {
 	border-radius: var(--border-radius-large);
+	padding: 4px;
 }
 </style>

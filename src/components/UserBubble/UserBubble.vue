@@ -71,7 +71,7 @@ This component has the following slot:
 <template>
 	<Popover :is="isPopoverComponent"
 		trigger="hover focus"
-		:open="open"
+		:shown="open"
 		class="user-bubble__wrapper"
 		@update:open="onOpenChange">
 		<!-- Main userbubble structure -->

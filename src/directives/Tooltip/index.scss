@@ -12,66 +12,67 @@
 
 $arrow-width: 10px;
 
-.vue-tooltip[data-v-#{$scope_version}] {
-	position: absolute;
-	z-index: 100000;
-	right: auto;
-	left: auto;
-	display: block;
-	margin: 0;
-	/* default to top */
-	margin-top: -3px;
-	padding: 10px 0;
-	text-align: left;
-	text-align: start;
-	opacity: 0;
-	line-height: 1.6;
-
-	line-break: auto;
-	filter: drop-shadow(0 1px 10px var(--color-box-shadow));
-
-	// TOP
-	&[x-placement^='top'] .tooltip-arrow {
-		bottom: 0;
-		border-bottom-width: 0;
-		border-top-color: var(--color-main-background);
-	}
-
-	// BOTTOM
-	&[x-placement^='bottom'] .tooltip-arrow {
+.v-popper--theme-tooltip {
+	&.v-popper__popper {
+		position: absolute;
+		z-index: 100000;
 		top: 0;
-		border-top-width: 0;
-		border-bottom-color: var(--color-main-background);
-	}
-
-	// RIGHT
-	&[x-placement^='right'] .tooltip-arrow {
-		right: 100%;
-		border-left-width: 0;
-		border-right-color: var(--color-main-background);
-	}
-
-	// LEFT
-	&[x-placement^='left'] .tooltip-arrow {
-		left: 100%;
-		border-right-width: 0;
-		border-left-color: var(--color-main-background);
-	}
-
-	// HIDDEN / SHOWN
-	&[aria-hidden='true'] {
-		visibility: hidden;
-		transition: opacity .15s, visibility .15s;
+		right: auto;
+		left: auto;
+		display: block;
+		margin: 0;
+		padding: 0;
+		text-align: left;
+		text-align: start;
 		opacity: 0;
-	}
-	&[aria-hidden='false'] {
-		visibility: visible;
-		transition: opacity .15s;
-		opacity: 1;
+		line-height: 1.6;
+
+		line-break: auto;
+		filter: drop-shadow(0 1px 10px var(--color-box-shadow));
+
+		// TOP
+		&[data-popper-placement^='top'] .v-popper__arrow-container {
+			bottom: 0;
+			border-bottom-width: 0;
+			border-top-color: var(--color-main-background);
+		}
+
+		// BOTTOM
+		&[data-popper-placement^='bottom'] .v-popper__arrow-container {
+			top: -$arrow-width;
+			border-top-width: 0;
+			border-bottom-color: var(--color-main-background);
+		}
+
+		// RIGHT
+		&[data-popper-placement^='right'] .v-popper__arrow-container {
+			right: 100%;
+			border-left-width: 0;
+			border-right-color: var(--color-main-background);
+		}
+
+		// LEFT
+		&[data-popper-placement^='left'] .v-popper__arrow-container {
+			left: 100%;
+			border-right-width: 0;
+			border-left-color: var(--color-main-background);
+		}
+
+		// HIDDEN / SHOWN
+		&[aria-hidden='true'] {
+			visibility: hidden;
+			transition: opacity .15s, visibility .15s;
+			opacity: 0;
+		}
+		&[aria-hidden='false'] {
+			visibility: visible;
+			transition: opacity .15s;
+			opacity: 1;
+		}
 	}
 
 	// CONTENT
-	.tooltip-inner {
+	.v-popper__inner {
 		max-width: 350px;
 		padding: 5px 8px;
 		text-align: center;
@@ -81,7 +82,7 @@ $arrow-width: 10px;
 	}
 
 	// ARROW
-	.tooltip-arrow {
+	.v-popper__arrow-container {
 		position: absolute;
 		z-index: 1;
 		width: 0;
