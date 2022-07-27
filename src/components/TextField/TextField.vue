@@ -28,13 +28,13 @@ General purpose text field component.
 <template>
 	<div class="wrapper">
 		<TextField :value.sync="text"
-			placeholder="Type something here"
+			label="Type something here"
 			:can-clear="true"
 			@clear="clearText">
 			<Magnify :size="16 " />
 		</TextField>
 		<TextField :value.sync="text"
-			placeholder="Type something here"
+			label="Type something here"
 			:success="true"
 			@clear="clearText">
 		</TextField>
@@ -74,8 +74,10 @@ export default {
 	<div class="text-field">
 		<input v-bind="$attrs"
 			ref="input"
+			:name="inputName"
 			class="text-field__input"
 			type="text"
+			:placeholder="hasPlaceholder ? placeholder : label"
 			:class="{
 				'text-field__input--can-clear': canClear,
 				'text-field__input--leading-icon': hasLeadingIcon,
@@ -83,7 +85,7 @@ export default {
 			:value="value"
 			v-on="$listeners"
 			@input="handleInput">
-
+		<label class="hidden-visually" :for="inputName">{{ label }}</label>
 		<!-- Leading icon -->
 		<div class="text-field__icon text-field__icon--leading">
 			<!-- Leading material design icon in the text field, set the size to 18 -->
@@ -108,6 +110,7 @@ export default {
 import Button from '../Button/index.js'
 import Close from 'vue-material-design-icons/Close'
 import Check from 'vue-material-design-icons/Check'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 export default {
 	name: 'TextField',
@@ -125,6 +128,26 @@ export default {
 		value: {
 			type: String,
 			required: true,
+		},
+
+		/**
+		 * The hidden input label for accessibility purposes. This will also
+		 * be used as a placeholder unless the placeholder prop is populated
+		 * with a different string.
+		 */
+		label: {
+			type: String,
+			required: true,
+		},
+
+		/**
+		 * The placeholder of the input. This defaults as the string that's
+		 * passed into the label prop. In order to remove the placeholder,
+		 * pass in an empty string.
+		 */
+		placeholder: {
+			type: String,
+			default: undefined,
 		},
 
 		/**
@@ -150,8 +173,16 @@ export default {
 	},
 
 	computed: {
+		inputName() {
+			return 'input' + GenRandomId()
+		},
+
 		hasLeadingIcon() {
 			return this.$slots.default
+		},
+
+		hasPlaceholder() {
+			return this.placeholder !== '' && this.placeholder !== undefined
 		},
 	},
 
@@ -259,5 +290,14 @@ export default {
 	height: 32px;
 	width: 32px !important;
 	border-radius: var(--border-radius-large);
+}
+
+.hidden-visually {
+	position: absolute;
+	left: -10000px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
 }
 </style>
