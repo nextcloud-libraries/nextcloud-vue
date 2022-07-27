@@ -380,7 +380,7 @@ export default {
 		 */
 		isValidSingleAction() {
 			return this.actions.length === 1
-				&& this.firstActionElement !== null
+				&& this.firstActionBinding !== null
 		},
 		/**
 		 * Return the title of the single action if forced
