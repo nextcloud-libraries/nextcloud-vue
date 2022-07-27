@@ -24,23 +24,36 @@
 # Usage
 
 ```
-<LoadingIcon />
-<LoadingIcon :size="64" fill-color="var(--color-primary-element)" title="Loading with primary color" />
+<div>
+	<LoadingIcon />
+</div>
+<div style="background-color: #171717;">
+	<LoadingIcon :size="64" appearance="light" title="Loading on dark background" />
+</div>
+<div style="background-color: #fff;">
+	<LoadingIcon :size="64" appearance="dark" title="Loading on light background" />
+</div>
 ```
 </docs>
 
 <template>
-	<Loading :size="size" :fill-color="fillColor" :title="title" />
+	<span :aria-label="title"
+		role="img"
+		class="material-design-icon loading-icon">
+		<svg :width="size"
+			:height="size"
+			viewBox="0 0 24 24">
+			<path :fill="colors[0]" d="M12,4V2A10,10 0 1,0 22,12H20A8,8 0 1,1 12,4Z" />
+			<path :fill="colors[1]" d="M12,4V2A10,10 0 0,1 22,12H20A8,8 0 0,0 12,4Z">
+				<title v-if="title">{{ title }}</title>
+			</path>
+		</svg>
+	</span>
 </template>
 
 <script>
-import Loading from 'vue-material-design-icons/Loading'
-
 export default {
 	name: 'LoadingIcon',
-	components: {
-		Loading,
-	},
 	props: {
 		/**
 		 * Specify the size of the loading icon.
@@ -50,11 +63,16 @@ export default {
 			default: 20,
 		},
 		/**
-		 * Overwrites the default color. Necessary for dark backgrounds.
+		 * The appearance of the loading icon.
+		 * 'auto' adjusts to the Nextcloud color scheme,
+		 * 'light' and 'dark' are static.
 		 */
-		fillColor: {
+		appearance: {
 			type: String,
-			default: 'var(--color-loading-dark)',
+			validator(value) {
+				return ['auto', 'light', 'dark'].includes(value)
+			},
+			default: 'auto',
 		},
 		/**
 		 * Specify what is loading.
@@ -64,11 +82,22 @@ export default {
 			default: '',
 		},
 	},
+	computed: {
+		colors() {
+			const colors = ['#777', '#CCC']
+			if (this.appearance === 'light') {
+				return colors
+			} else if (this.appearance === 'dark') {
+				return colors.reverse()
+			}
+			return ['var(--color-loading-light)', 'var(--color-loading-dark)']
+		},
+	},
 }
 </script>
 
 <style lang="scss" scoped>
-.material-design-icon::v-deep svg {
+.loading-icon svg{
 	animation: rotate var(--animation-duration, 0.8s) linear infinite;
 }
 </style>
