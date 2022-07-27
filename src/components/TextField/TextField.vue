@@ -27,13 +27,13 @@ General purpose text field component.
 ```
 <template>
 	<div class="wrapper">
-		<TextField :value.sync="text"
+		<TextField :value.sync="text1"
 			label="Type something here"
-			:can-clear="true"
+			:can-clear="text1 !== ''"
 			@clear="clearText">
 			<Magnify :size="16 " />
 		</TextField>
-		<TextField :value.sync="text"
+		<TextField :value.sync="text2"
 			label="Type something here"
 			:success="true"
 			@clear="clearText">
@@ -46,7 +46,8 @@ import Magnify from 'vue-material-design-icons/Magnify'
 export default {
 	data() {
 		return {
-			text: '',
+			text1: '',
+			text2: '',
 		}
 	},
 
@@ -56,7 +57,7 @@ export default {
 
 	methods: {
 		clearText() {
-			this.text = ''
+			this.text1 = ''
 		}
 	}
 }
@@ -78,6 +79,7 @@ export default {
 			class="text-field__input"
 			type="text"
 			:placeholder="hasPlaceholder ? placeholder : label"
+			aria-live="polite"
 			:class="{
 				'text-field__input--can-clear': canClear,
 				'text-field__input--leading-icon': hasLeadingIcon,
