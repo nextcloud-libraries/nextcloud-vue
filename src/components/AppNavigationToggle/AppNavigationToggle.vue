@@ -22,7 +22,8 @@
  -
  -->
 <template>
-	<Button class="app-navigation-toggle"
+	<Button v-tooltip.auto="label"
+		class="app-navigation-toggle"
 		type="tertiary"
 		:aria-expanded="open ? 'true' : 'false'"
 		:aria-label="label"
@@ -36,12 +37,17 @@
 
 <script>
 import Button from '../Button/index.js'
+import Tooltip from '../../directives/Tooltip/index.js'
 import { t } from '../../l10n.js'
 
 import Menu from 'vue-material-design-icons/Menu'
 
 export default {
 	name: 'AppNavigationToggle',
+
+	directives: {
+		tooltip: Tooltip,
+	},
 
 	components: {
 		Button,
