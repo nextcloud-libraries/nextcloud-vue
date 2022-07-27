@@ -420,7 +420,7 @@ export default {
 	data() {
 		return {
 			changeTitleTranslated: t('Change title'),
-			closeTranslated: t('Close'),
+			closeTranslated: t('Close sidebar'),
 			favoriteTranslated: t('Favorite'),
 			isStarred: this.starred,
 		}
