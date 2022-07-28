@@ -190,7 +190,7 @@ export default {
 					aria-haspopup="menu"
 					:aria-label="ariaLabel"
 					:aria-controls="randomId"
-					:aria-expanded="opened ? 'true' : 'false'"
+					:aria-expanded="opened.toString()"
 					type="button"
 					@focus="onFocus"
 					@blur="onBlur">
