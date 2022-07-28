@@ -546,10 +546,8 @@ export default {
 	&--vue-tertiary-no-background {
 		color: var(--color-main-text);
 		background-color: transparent;
-		opacity: .7;
 		&:hover:not(:disabled) {
 			background-color: transparent;
-			opacity: 1;
 		}
 	}
 
@@ -557,11 +555,9 @@ export default {
 	&--vue-tertiary-on-primary {
 		color: var(--color-primary-text);
 		background-color: transparent;
-		opacity: .7;
 
 		&:hover:not(:disabled) {
 			background-color: transparent;
-			opacity: 1;
 		}
 	}
 
