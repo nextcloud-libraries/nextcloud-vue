@@ -130,6 +130,7 @@ Just set the `pinned` prop.
 				class="app-navigation-entry-link"
 				:aria-description="ariaDescription"
 				href="#"
+				:aria-expanded="opened.toString()"
 				@click="onClick">
 
 				<!-- icon if not collapsible -->
