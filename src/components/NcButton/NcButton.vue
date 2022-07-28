@@ -499,30 +499,10 @@ export default {
 
 	&:focus-visible {
 		box-shadow: 0 0 0 2px var(--color-main-text);
-		background-color: var(--color-primary-light-hover);
-		&.button-vue--vue-primary {
-			background-color: var(--color-primary-hover);
-		}
-		&.button-vue--vue-secondary {
-			box-shadow: 0 0 0 2px var(--color-main-text);
-		}
-		&.button-vue--vue-tertiary-no-background {
-			opacity: 1;
-		}
 		&.button-vue--vue-tertiary-on-primary {
-			box-shadow: 0 0 0 2px var(--color-primary-text);
+			outline: 2px solid var(--color-primary-text);
 			border-radius: var(--border-radius);
-			opacity: 1;
 			background-color: transparent;
-		}
-		&.button-vue--vue-success {
-			background-color: var(--color-success-hover);
-		}
-		&.button-vue--vue-warning {
-			background-color: var(--color-warning-hover);
-		}
-		&.button-vue--vue-error {
-			background-color: var(--color-error-hover);
 		}
 	}
 
