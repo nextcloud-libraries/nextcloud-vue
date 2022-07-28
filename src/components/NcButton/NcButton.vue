@@ -498,7 +498,7 @@ export default {
 	}
 
 	&:focus-visible {
-		box-shadow: 0 0 0 2px var(--color-main-text);
+		outline: 2px solid var(--color-main-text) !important;
 		&.button-vue--vue-tertiary-on-primary {
 			outline: 2px solid var(--color-primary-text);
 			border-radius: var(--border-radius);
