@@ -49,6 +49,9 @@ msgstr "Zavřít dialogové okno"
 msgid "Close navigation"
 msgstr "Zavřít navigaci"
 
+msgid "Close sidebar"
+msgstr "Zavřít postranní panel"
+
 msgid "Confirm changes"
 msgstr "Potvrdit změny"
 
