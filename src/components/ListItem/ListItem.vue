@@ -20,7 +20,7 @@
 -->
 <docs>
 
-# Usage
+### Default Usage
 ```
 <ul>
 	<listItem
@@ -119,6 +119,65 @@
 </ul>
 
 ```
+
+### ListItem compact mode
+```
+<ul style="width: 350px;">
+	<listItem
+		:title="'Title of the element'"
+		:counter-number=1
+		:compact="true" >
+		<template #icon>
+			<div class="icon-edit" />
+		</template>
+		<template #subtitle>
+			This one is with subtitle
+		</template>
+		<template #actions>
+			<ActionButton>
+				Button one
+			</ActionButton>
+			<ActionButton>
+				Button two
+			</ActionButton>
+		</template>
+	</listItem>
+	<listItem
+		:title="'Title of the element'"
+		:compact="true" >
+		<template #icon>
+			<div class="icon-edit" />
+		</template>
+	</listItem>
+	<listItem
+		:title="'Title of the element'"
+		:counter-number=3
+		:compact="true" >
+		<template #icon>
+			<div class="icon-edit" />
+		</template>
+		<template #subtitle>
+			This one is with subtitle
+		</template>
+		<template #actions>
+			<ActionButton>
+				Button one
+			</ActionButton>
+			<ActionButton>
+				Button two
+			</ActionButton>
+		</template>
+	</listItem>
+	<listItem
+		:title="'Title of the element'"
+		:counter-number=4
+		:compact="true" >
+		<template #icon>
+			<div class="icon-edit" />
+		</template>
+	</listItem>
+</ul>
+```
 </docs>
 
 <template>
@@ -139,13 +198,15 @@
 			@click="onClick"
 			@keydown.esc="hideActions">
 
-			<div class="list-item-content__wrapper">
+			<div class="list-item-content__wrapper"
+				:class="{ 'list-item-content__wrapper--compact': compact }">
 				<!-- @slot This slot is used for the avatar or icon -->
 				<slot name="icon" />
 
 				<!-- Main content -->
 				<div class="list-item-content">
-					<div class="list-item-content__main">
+					<div class="list-item-content__main"
+						:class="{ 'list-item-content__main--oneline': oneLine }">
 
 						<!-- First line, title and details -->
 						<div class="line-one"
@@ -275,6 +336,14 @@ export default {
 		},
 
 		/**
+		 * Show the ListItem in compact design
+		 */
+		compact: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * Toggle the active state of the component
 		 */
 		active: {
@@ -358,6 +427,10 @@ export default {
 			return {
 				is: 'li',
 			}
+		},
+
+		oneLine() {
+			return !this.hasSubtitle && !this.showDetails
 		},
 
 		showCounter() {
@@ -500,6 +573,16 @@ export default {
 	&-content__wrapper {
 		display: flex;
 		align-items: center;
+		height: 48px;
+
+		&--compact {
+			height: 36px;
+
+			.line-one, .line-two {
+				margin-top: -4px;
+				margin-bottom: -4px;
+			}
+		}
 	}
 
 	&-content {
@@ -510,16 +593,19 @@ export default {
 
 		&__main {
 			flex: 1 1 auto;
-			flex-direction: column;
 			width: 0;
 			margin: auto 0;
+
+			&--oneline {
+				display: flex;
+			}
 		}
 
 		&__actions {
 			flex: 0 0 auto;
 			align-self: center;
 			justify-content: center;
-
+			margin-left: 4px;
 		}
 	}
 
@@ -533,7 +619,8 @@ export default {
 	align-items: center;
 	justify-content: space-between;
 	white-space: nowrap;
-	margin: 0 auto;
+	margin: 0 auto 0 0;
+	overflow: hidden;
 	&--bold {
 		font-weight: bold;
 	}
@@ -565,7 +652,6 @@ export default {
 	&__subtitle {
 		overflow: hidden;
 		flex-grow: 1;
-		padding-right: 4px;
 		cursor: pointer;
 		white-space: nowrap;
 		text-overflow: ellipsis;
@@ -573,7 +659,7 @@ export default {
 	}
 
 	&__counter {
-		margin: 2px 4px 0 0;
+		margin: 2px 4px 0 4px;
 	}
 }
 
