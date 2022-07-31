@@ -50,6 +50,9 @@ msgstr "Zamknij modal"
 msgid "Close navigation"
 msgstr "Zamknij nawigację"
 
+msgid "Close sidebar"
+msgstr "Zamknij pasek boczny"
+
 msgid "Confirm changes"
 msgstr "Potwierdź zmiany"
 
