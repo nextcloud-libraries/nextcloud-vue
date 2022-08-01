@@ -45,9 +45,9 @@
 		}"
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper"
-		:tabindex="!hasMenu ? undefined : '0'"
+		:tabindex="hasMenu ? '0' : undefined"
 		:aria-label="avatarAriaLabel"
-		:role="!hasMenu ? undefined : 'button'"
+		:role="hasMenu ? 'button' : undefined"
 		v-on="hasMenu ? { click: toggleMenu } : {}"
 		@keydown.enter="toggleMenu">
 		<!-- Avatar icon or image -->
