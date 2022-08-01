@@ -1,5 +1,5 @@
 <!--
-  - @copyright Copyright (c) 2021 Marco Ambrosini <marcoambrosini@pm.me>
+  - @copyright Copyright (c) 2022 Marco Ambrosini <marcoambrosini@pm.me>
   -
   - @author Marco Ambrosini <marcoambrosini@pm.me>
   -
@@ -86,7 +86,8 @@ export default {
 
 <template>
 	<div class="text-field">
-		<label class="text-field__label"
+		<label v-if="!labelOutside"
+			class="text-field__label"
 			:class="{ 'text-field__label--hidden': !labelVisible }"
 			:for="inputName">
 			{{ label }}
@@ -163,6 +164,16 @@ export default {
 		},
 
 		/**
+		 * Pass in true if you want to use an external label. This is useful
+		 * if you need a label that looks different from the one provided by
+		 * this component
+		 */
+		labelOutside: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * We normally have the lable hidden visually and use it for
 		 * accessibility only. If you want to have the label visible just above
 		 * the input field pass in true to this prop.
@@ -227,7 +238,7 @@ export default {
 			} else {
 				return this.hasPlaceholder ? this.placeholder : this.label
 			}
-		}
+		},
 	},
 
 	watch: {
