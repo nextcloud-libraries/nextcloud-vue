@@ -34,7 +34,7 @@ and `minlength`.
 			label="Type something here"
 			:can-clear="text1 !== ''"
 			@clear="clearText">
-			<Magnify :size="16 " />
+			<Magnify :size="16" />
 		</TextField>
 		<TextField :value.sync="text2"
 			label="Type something here"
@@ -45,8 +45,16 @@ and `minlength`.
 			label="Type something here"
 			:label-visible="true"
 			@clear="clearText">
-			<Lock :size="16 " />
+			<Lock :size="16" />
 		</TextField>
+		<div class="external-label">
+			<label for="$refs.textField.id">External label</label>
+			<TextField :value.sync="text4"
+				ref="textField"
+				:label-visible="true"
+				:labelOutside= "true"
+				@clear="clearText" />
+		</div>
 	</div>
 </template>
 <script>
@@ -59,6 +67,7 @@ export default {
 			text1: '',
 			text2: '',
 			text3: '',
+			text4: '',
 		}
 	},
 
@@ -79,6 +88,12 @@ export default {
 	display: flex;
 	gap: 4px;
 	align-items: flex-end;
+	flex-wrap: wrap;
+}
+
+.external-label {
+	display: flex;
+	width: 100%;
 }
 </style>
 ```
@@ -86,7 +101,7 @@ export default {
 
 <template>
 	<div class="text-field">
-		<label v-if="!labelOutside"
+		<label v-if="!labelOutside && label !== undefined"
 			class="text-field__label"
 			:class="{ 'text-field__label--hidden': !labelVisible }"
 			:for="inputName">
@@ -108,15 +123,18 @@ export default {
 				:value="value"
 				v-on="$listeners"
 				@input="handleInput">
+
 			<!-- Leading icon -->
 			<div class="text-field__icon text-field__icon--leading">
 				<!-- Leading material design icon in the text field, set the size to 18 -->
 				<slot />
 			</div>
+
 			<!-- Success icon -->
 			<div v-if="success" class="text-field__icon text-field__icon--trailing">
 				<Check :size="18" />
 			</div>
+
 			<!-- clear text button -->
 			<Button v-if="canClear"
 				type="tertiary-no-background"
@@ -160,7 +178,7 @@ export default {
 		 */
 		label: {
 			type: String,
-			required: true,
+			default: undefined,
 		},
 
 		/**
@@ -247,11 +265,19 @@ export default {
 		 * at the same time
 		 */
 		success() {
-			this.validateProps()
+			this.validateTrailingIcons()
 		},
 
 		canClear() {
-			this.validateProps()
+			this.validateTrailingIcons()
+		},
+
+		label() {
+			this.validateLabel()
+		},
+
+		labelOutside() {
+			this.validateLabel()
 		},
 	},
 
@@ -265,9 +291,15 @@ export default {
 			this.$refs.input.focus()
 		},
 
-		validateProps() {
+		validateTrailingIcons() {
 			if (this.canClear && this.success) {
 				throw new Error('success and canClear props cannot be true at the same time')
+			}
+		},
+
+		validateLabel() {
+			if (this.label && !this.labelOutside) {
+				throw new Error('You need to add a label to the textField component. Either use the prop label or use an external one, as per the example in the documentation')
 			}
 		},
 	},
@@ -281,7 +313,6 @@ export default {
 	position: relative;
 	width: 100%;
 	border-radius: var(--border-radius-large);
-	padding-left: 16px;
 
 	&__main-wrapper {
 		height: 36px;
@@ -370,4 +401,5 @@ export default {
 	width: 32px !important;
 	border-radius: var(--border-radius-large);
 }
+
 </style>
