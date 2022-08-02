@@ -124,10 +124,21 @@ export default {
 
 ### Custom icon slot in child elements
 ```
-<Actions :primary="true">
-	<ActionButton><template #icon><MagnifyIcon /></template>Search</ActionButton>
-	<ActionButton icon="icon-delete">Delete</ActionButton>
-</Actions>
+<template>
+	<Actions :primary="true">
+		<ActionButton><template #icon><Magnify :size="20" /></template>Search</ActionButton>
+		<ActionButton icon="icon-delete">Delete</ActionButton>
+	</Actions>
+</template>
+<script>
+import Magnify from 'vue-material-design-icons/Magnify'
+
+export default {
+	components: {
+		Magnify,
+	},
+}
+</script>
 ```
 
 </docs>
