@@ -32,33 +32,41 @@ and `minlength`.
 	<div class="wrapper">
 		<TextField :value.sync="text1"
 			label="Type something here"
-			:can-clear="text1 !== ''"
-			@clear="clearText">
+			:has-trailing-button="text1 !== ''"
+			@trailing-button-click="clearText">
 			<Magnify :size="16" />
+			<template slot="trailing-button-icon">
+				<Close  :size="20" /></template>
+			</template>
 		</TextField>
 		<TextField :value.sync="text2"
 			label="Type something here"
 			:success="true"
-			@clear="clearText">
+			@trailing-button-click="clearText">
 		</TextField>
 		<TextField :value.sync="text3"
 			label="Type something here"
 			:label-visible="true"
-			@clear="clearText">
+			:has-trailing-button="text3 !== ''"
+			@trailing-button-click="clearText">
 			<Lock :size="16" />
+			<template slot="trailing-button-icon">
+				<Close :size="20" /></template>
+			</template>
 		</TextField>
 		<div class="external-label">
 			<label for="$refs.textField.id">External label</label>
 			<TextField :value.sync="text4"
 				ref="textField"
 				:label-outside= "true"
-				@clear="clearText" />
+				@trailing-button-click="clearText" />
 		</div>
 	</div>
 </template>
 <script>
 import Magnify from 'vue-material-design-icons/Magnify'
 import Lock from 'vue-material-design-icons/Lock'
+import Close from 'vue-material-design-icons/Close'
 
 export default {
 	data() {
@@ -73,11 +81,13 @@ export default {
 	components: {
 		Magnify,
 		Lock,
+		Close,
 	},
 
 	methods: {
 		clearText() {
 			this.text1 = ''
+			this.text3 = ''
 		}
 	}
 }
@@ -115,9 +125,8 @@ export default {
 				:placeholder="computedPlaceholder"
 				aria-live="polite"
 				:class="{
-					'text-field__input--can-clear': canClear,
+					'text-field__input--trailing-icon': hasTrailingButton || hasTrailingIcon,
 					'text-field__input--leading-icon': hasLeadingIcon,
-					'text-field__input--trailing-icon': hasTrailingIcon,
 				}"
 				:value="value"
 				v-on="$listeners"
@@ -134,13 +143,16 @@ export default {
 				<Check :size="18" />
 			</div>
 
-			<!-- clear text button -->
-			<Button v-else-if="canClear"
+			<!-- trailing button -->
+			<Button v-else-if="hasTrailingButton"
 				type="tertiary-no-background"
 				class="text-field__clear-button"
-				@click="clearText">
-				<Close slot="icon"
-					:size="20" />
+				@click="handleTrailingButtonClick">
+				<!-- Populating this slot creates a trailing button within the
+				input boundaries that emits a `trailing-button-click` event -->
+				<template slot="icon">
+					<slot name="trailing-button-icon" />
+				</template>
 			</Button>
 		</div>
 	</div>
@@ -148,7 +160,6 @@ export default {
 
 <script>
 import Button from '../Button/index.js'
-import Close from 'vue-material-design-icons/Close'
 import Check from 'vue-material-design-icons/Check'
 import GenRandomId from '../../utils/GenRandomId.js'
 
@@ -157,7 +168,6 @@ export default {
 
 	components: {
 		Button,
-		Close,
 		Check,
 	},
 
@@ -211,13 +221,9 @@ export default {
 		},
 
 		/**
-		 * Controls whether to display the clear button or not. Since the
-		 * parent component will have to store the value of this text input,
-		 * once clear button is pressed, there's no change in the value of
-		 * the text input. Instead, a 'clear' event is sent to the parent
-		 * component.
+		 * Controls whether to display the trailing button.
 		 */
-		canClear: {
+		hasTrailingButton: {
 			type: Boolean,
 			default: false,
 		},
@@ -264,11 +270,11 @@ export default {
 		 * at the same time
 		 */
 		success() {
-			this.validateTrailingIcons()
+			this.validateTrailingIcon()
 		},
 
 		canClear() {
-			this.validateTrailingIcons()
+			this.validateTrailingIcon()
 		},
 
 		label() {
@@ -285,12 +291,11 @@ export default {
 			this.$emit('update:value', event.target.value)
 		},
 
-		clearText(event) {
-			this.$emit('clear', event)
-			this.$refs.input.focus()
+		handleTrailingButtonClick(event) {
+			this.$emit('trailing-button-click', event)
 		},
 
-		validateTrailingIcons() {
+		validateTrailingIcon() {
 			if (this.canClear && this.success) {
 				throw new Error('success and canClear props cannot be true at the same time')
 			}
@@ -338,10 +343,6 @@ export default {
 		}
 		&:focus {
 			cursor: text;
-		}
-
-		&--can-clear {
-			padding-right: 28px;
 		}
 
 		&--leading-icon {
