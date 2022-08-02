@@ -51,7 +51,7 @@ and `minlength`.
 			<label for="$refs.textField.id">External label</label>
 			<TextField :value.sync="text4"
 				ref="textField"
-				:labelOutside= "true"
+				:label-outside= "true"
 				@clear="clearText" />
 		</div>
 	</div>
