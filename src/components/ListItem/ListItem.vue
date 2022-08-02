@@ -525,6 +525,7 @@ export default {
 
 		handleActionsUpdateOpen(e) {
 			this.menuOpen = e
+			this.$emit('update:menuOpen', e)
 		},
 
 		// Check if subtitle and actions slots are populated
