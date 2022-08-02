@@ -251,7 +251,7 @@ export default {
 
 		computedPlaceholder() {
 			if (this.labelVisible) {
-				return this.placeholder ? this.placeholder : ''
+				return this.hasPlaceholder ? this.placeholder : ''
 			} else {
 				return this.hasPlaceholder ? this.placeholder : this.label
 			}
