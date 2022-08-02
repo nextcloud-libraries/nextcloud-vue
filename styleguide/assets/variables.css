@@ -20,10 +20,13 @@
 	--color-primary-element-light: #17adff;
 	--color-primary-element-lighter: #d9ecf7;
 	--color-error: #e9322d;
+	--color-error-rgb: 233,50,45;
 	--color-error-hover: #ed5b57;
 	--color-warning: #eca700;
+    --color-warning-rgb: 236,167,0;
 	--color-warning-hover: #f0b933;
 	--color-success: #46ba61;
+	--color-success-rgb: 70,186,97;
 	--color-success-hover: #6bc881;
 	--color-text-maxcontrast: #767676;
 	--color-text-light: #222;
