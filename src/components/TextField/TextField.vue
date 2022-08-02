@@ -135,7 +135,7 @@ export default {
 			</div>
 
 			<!-- clear text button -->
-			<Button v-if="canClear"
+			<Button v-else-if="canClear"
 				type="tertiary-no-background"
 				class="text-field__clear-button"
 				@click="clearText">
