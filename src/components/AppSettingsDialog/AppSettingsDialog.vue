@@ -152,8 +152,6 @@ export default {
 	mounted() {
 		// Select first settings section
 		this.selectedSection = this.$slots.default[0].componentOptions.propsData.id
-			? this.$slots.default[0].componentOptions.propsData.id
-			: this.$slots.default[0].componentOptions.propsData.title
 	},
 
 	updated() {
@@ -182,7 +180,7 @@ export default {
 			// Array of navigationitems strings
 			const navigationItems = slots.filter(vNode => vNode.componentOptions).map(vNode => {
 				return {
-					id: vNode.componentOptions.propsData?.id ? vNode.componentOptions.propsData?.id : vNode.componentOptions.propsData?.title,
+					id: vNode.componentOptions.propsData?.id,
 					title: vNode.componentOptions.propsData?.title,
 				}
 			})
@@ -195,10 +193,10 @@ export default {
 				const newIdArray = [...navigationIds]
 				newTitlesArray.splice(index, 1)
 				newIdArray.splice(index, 1)
-				if (newTitlesArray.indexOf(element.title) !== -1) {
+				if (newTitlesArray.includes(element.title)) {
 					throw new Error(`Duplicate section title found: ${element}. Settings navigation sections must have unique section titles.`)
 				}
-				if (newIdArray.indexOf(element.id) !== -1) {
+				if (newIdArray.includes(element.id)) {
 					throw new Error(`Duplicate section id found: ${element}. Settings navigation sections must have unique section ids.`)
 				}
 			})

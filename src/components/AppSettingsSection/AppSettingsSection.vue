@@ -21,7 +21,7 @@
  -->
 
 <template>
-	<div :id="idOrFallback" class="app-settings-section">
+	<div :id="htmlId" class="app-settings-section">
 		<h3 class="app-settings-section__title">
 			{{ title }}
 		</h3>
@@ -41,17 +41,17 @@ export default {
 
 		id: {
 			type: String,
-			default: '',
+			required: true,
+			validator(id) {
+				// Only alphanumeric, dash and underscore
+				return /^([a-z0-9\-_]+)$/.test(id)
+			},
 		},
 	},
 	computed: {
 		// generate an id for each settingssection based on the title without whitespaces
-		idOrFallback() {
-			if (this.id) {
-				return 'settings-section_' + this.id
-			}
-			console.warn('Settings sections should have an ID, as a fallback the translated title is used but that can contain invalid characters')
-			return 'settings-section_' + this.title.replace(/\s+/g, '')
+		htmlId() {
+			return 'settings-section_' + this.id
 		},
 	},
 }
