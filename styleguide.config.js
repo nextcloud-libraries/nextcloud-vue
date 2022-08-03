@@ -78,6 +78,7 @@ module.exports = {
 				'src/components/RichContenteditable/!(RichContenteditable).vue',
 				'src/components/Settings*/*.vue',
 				'src/components/UserBubble/UserBubbleDiv.vue',
+				'src/components/InputField/InputField.vue',
 			],
 			sections: [
 				{
