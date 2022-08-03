@@ -27,9 +27,7 @@
 			aria-controls="app-navigation-vue"
 			@click="toggleNavigation">
 			<template #icon>
-				<Menu :size="20"
-					title=""
-					decorative />
+				<Menu :size="20" />
 			</template>
 			{{ label }}
 		</ActionButton>

@@ -28,7 +28,7 @@
 			<button class="settings-button"
 				type="button"
 				@click="toggleMenu">
-				<Cog class="settings-button__icon" :size="20" decorative />
+				<Cog class="settings-button__icon" :size="20" />
 				<span class="settings-button__label">{{ title }}</span>
 			</button>
 		</div>

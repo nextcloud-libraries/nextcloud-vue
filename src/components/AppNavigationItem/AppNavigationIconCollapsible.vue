@@ -26,7 +26,7 @@
 		:class="{'icon-collapse--rotated':open}"
 		type="button"
 		@click="onClick">
-		<MenuDown :size="20" title="" decorative />
+		<MenuDown :size="20" />
 	</button>
 </template>
 

@@ -151,9 +151,7 @@ export default {
 			<icon :is="checkboxRadioIconElement"
 				v-else
 				:size="size"
-				class="checkbox-radio-switch__icon"
-				title=""
-				decorative />
+				class="checkbox-radio-switch__icon" />
 
 			<!-- @slot The checkbox/radio label -->
 			<slot />
