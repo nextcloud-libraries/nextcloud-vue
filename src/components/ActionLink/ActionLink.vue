@@ -25,11 +25,25 @@
 This component is made to be used inside of the [Actions](#Actions) component slots.
 
 ```
-<Actions>
-	<ActionLink icon="icon-external" href="https://nextcloud.com">
-		Nextcloud website
-	</ActionLink>
-</Actions>
+<template>
+	<Actions>
+		<ActionLink href="https://nextcloud.com">
+			<template #icon>
+				<OpenInNew :size="20" />
+			</template>
+			Nextcloud website
+		</ActionLink>
+	</Actions>
+</template>
+<script>
+import OpenInNew from 'vue-material-design-icons/OpenInNew'
+
+export default {
+	components: {
+		OpenInNew,
+	},
+}
+</script>
 ```
 </docs>
 
