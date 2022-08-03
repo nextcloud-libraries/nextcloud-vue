@@ -32,12 +32,10 @@ and `minlength`.
 	<div class="wrapper">
 		<TextField :value.sync="text1"
 			label="Type something here"
-			:has-trailing-button="text1 !== ''"
+			trailing-button-icon="close"
+			:show-trailing-button="text1 !== ''"
 			@trailing-button-click="clearText">
 			<Magnify :size="16" />
-			<template slot="trailing-button-icon">
-				<Close  :size="20" /></template>
-			</template>
 		</TextField>
 		<TextField :value.sync="text2"
 			label="Type something here"
@@ -47,12 +45,10 @@ and `minlength`.
 		<TextField :value.sync="text3"
 			label="Type something here"
 			:label-visible="true"
-			:has-trailing-button="text3 !== ''"
+			trailing-button-icon="close"
+			:show-trailing-button="text3 !== ''"
 			@trailing-button-click="clearText">
 			<Lock :size="16" />
-			<template slot="trailing-button-icon">
-				<Close :size="20" /></template>
-			</template>
 		</TextField>
 		<div class="external-label">
 			<label for="$refs.textField.id">External label</label>
@@ -109,66 +105,31 @@ export default {
 </docs>
 
 <template>
-	<div class="text-field">
-		<label v-if="!labelOutside && label !== undefined"
-			class="text-field__label"
-			:class="{ 'text-field__label--hidden': !labelVisible }"
-			:for="inputName">
-			{{ label }}
-		</label>
-		<div class="text-field__main-wrapper">
-			<input v-bind="$attrs"
-				ref="input"
-				:name="inputName"
-				class="text-field__input"
-				type="text"
-				:placeholder="computedPlaceholder"
-				aria-live="polite"
-				:class="{
-					'text-field__input--trailing-icon': hasTrailingButton || hasTrailingIcon,
-					'text-field__input--leading-icon': hasLeadingIcon,
-				}"
-				:value="value"
-				v-on="$listeners"
-				@input="handleInput">
-
-			<!-- Leading icon -->
-			<div class="text-field__icon text-field__icon--leading">
-				<!-- Leading material design icon in the text field, set the size to 18 -->
-				<slot />
-			</div>
-
-			<!-- Success icon -->
-			<div v-if="success" class="text-field__icon text-field__icon--trailing">
-				<Check :size="18" />
-			</div>
-
-			<!-- trailing button -->
-			<Button v-else-if="hasTrailingButton"
-				type="tertiary-no-background"
-				class="text-field__clear-button"
-				@click="handleTrailingButtonClick">
-				<!-- Populating this slot creates a trailing button within the
-				input boundaries that emits a `trailing-button-click` event -->
-				<template slot="icon">
-					<slot name="trailing-button-icon" />
-				</template>
-			</Button>
-		</div>
-	</div>
+	<InputField v-bind="$props"
+		v-on="$listeners"
+		@input="handleInput">
+		<!-- Default slot for the leading icon -->
+		<slot />
+		<template slot="trailing-button-icon">
+			<Close v-if="trailingButtonIcon === 'close'" :size="20" />
+			<ArrowRight v-else-if="trailingButtonIcon === 'arrowRight'" :size="20" />
+		</template>
+	</InputField>
 </template>
 
 <script>
-import Button from '../Button/index.js'
-import Check from 'vue-material-design-icons/Check'
-import GenRandomId from '../../utils/GenRandomId.js'
+
+import InputField from '../InputField/InputField.vue'
+import Close from 'vue-material-design-icons/Close'
+import ArrowRight from 'vue-material-design-icons/ArrowRight'
 
 export default {
 	name: 'TextField',
 
 	components: {
-		Button,
-		Check,
+		InputField,
+		Close,
+		ArrowRight,
 	},
 
 	props: {
@@ -178,6 +139,22 @@ export default {
 		value: {
 			type: String,
 			required: true,
+		},
+
+		/**
+		 * The type of the input element, it can be `text`, `password`,
+		 * `email`, `number`, `tel` and `url`.
+		 */
+		type: {
+			type: String,
+			default: 'text',
+			validator: (value) => [
+				'text',
+				'password',
+				'email',
+				'tel',
+				'url',
+			].includes(value),
 		},
 
 		/**
@@ -223,9 +200,22 @@ export default {
 		/**
 		 * Controls whether to display the trailing button.
 		 */
-		hasTrailingButton: {
+		showTrailingButton: {
 			type: Boolean,
 			default: false,
+		},
+
+		/**
+		 * Specifies which material design icon should be used for the trailing
+		 * button. Values can be `close` anbd `arrowRight`.
+		 */
+		trailingButtonIcon: {
+			type: String,
+			default: 'close',
+			validator: (value) => [
+				'close',
+				'arrowRight',
+			].includes(value),
 		},
 
 		/**
@@ -236,53 +226,14 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-	},
 
-	computed: {
-		inputName() {
-			return 'input' + GenRandomId()
-		},
-
-		hasLeadingIcon() {
-			return this.$slots.default
-		},
-
-		hasTrailingIcon() {
-			return this.success
-		},
-
-		hasPlaceholder() {
-			return this.placeholder !== '' && this.placeholder !== undefined
-		},
-
-		computedPlaceholder() {
-			if (this.labelVisible) {
-				return this.hasPlaceholder ? this.placeholder : ''
-			} else {
-				return this.hasPlaceholder ? this.placeholder : this.label
-			}
-		},
-	},
-
-	watch: {
 		/**
-		 * Don't allow both trailing checkmark and clear button to be present
-		 * at the same time
+		 * Toggles the error state of the component. Adds an error icon.
+		 * this cannot be used together with canClear.
 		 */
-		success() {
-			this.validateTrailingIcon()
-		},
-
-		canClear() {
-			this.validateTrailingIcon()
-		},
-
-		label() {
-			this.validateLabel()
-		},
-
-		labelOutside() {
-			this.validateLabel()
+		error: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -290,116 +241,6 @@ export default {
 		handleInput(event) {
 			this.$emit('update:value', event.target.value)
 		},
-
-		handleTrailingButtonClick(event) {
-			this.$emit('trailing-button-click', event)
-		},
-
-		validateTrailingIcon() {
-			if (this.canClear && this.success) {
-				throw new Error('success and canClear props cannot be true at the same time')
-			}
-		},
-
-		validateLabel() {
-			if (this.label && !this.labelOutside) {
-				throw new Error('You need to add a label to the textField component. Either use the prop label or use an external one, as per the example in the documentation')
-			}
-		},
 	},
 }
-
 </script>
-
-<style lang="scss" scoped>
-
-.text-field {
-	position: relative;
-	width: 100%;
-	border-radius: var(--border-radius-large);
-
-	&__main-wrapper {
-		height: 36px;
-		position: relative;
-	}
-
-	&__input {
-		margin: 0;
-		padding: 0 12px;
-		font-size: var(--default-font-size);
-		background-color: var(--color-main-background);
-		color: var(--color-main-text);
-		border: 2px solid var(--color-border-dark);
-		height: 36px !important;
-		border-radius: var(--border-radius-large);
-		text-overflow: ellipsis;
-		cursor: pointer;
-		width: 100%;
-		-webkit-appearance: textfield !important;
-		-moz-appearance: textfield !important;
-
-		&:hover {
-			border-color: var(--color-primary-element);
-		}
-		&:focus {
-			cursor: text;
-		}
-
-		&--leading-icon {
-			padding-left: 28px;
-		}
-
-		&--trailing-icon {
-			padding-right: 28px;
-		}
-	}
-
-	&__label {
-		padding: 0px 4px 4px 12px;
-		display: block;
-
-		&--hidden {
-			position: absolute;
-			left: -10000px;
-			top: auto;
-			width: 1px;
-			height: 1px;
-			overflow: hidden;
-		}
-	}
-
-	&__icon {
-		position: absolute;
-		height: 32px;
-		width: 32px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		opacity: 0.7;
-		&--leading {
-			bottom: 2px;
-			left: 2px;
-		}
-
-		&--trailing {
-			bottom: 2px;
-			right: 2px;
-		}
-	}
-
-	&__clear-button {
-		position: absolute;
-		top: 2px;
-		right: 1px;
-	}
-}
-
-::v-deep .button-vue {
-	min-width: unset;
-	min-height: unset;
-	height: 32px;
-	width: 32px !important;
-	border-radius: var(--border-radius-large);
-}
-
-</style>
