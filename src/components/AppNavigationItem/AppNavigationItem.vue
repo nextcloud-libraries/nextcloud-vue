@@ -176,7 +176,7 @@ Just set the `pinned` prop.
 					:aria-label="editButtonAriaLabel"
 					@click="handleEdit">
 					<template #icon>
-						<Pencil :size="20" decorative />
+						<Pencil :size="20" />
 					</template>
 					{{ editLabel }}
 				</ActionButton>
@@ -184,7 +184,7 @@ Just set the `pinned` prop.
 					:aria-label="undoButtonAriaLabel"
 					@click="handleUndo">
 					<template #icon>
-						<Undo :size="20" decorative />
+						<Undo :size="20" />
 					</template>
 				</ActionButton>
 				<slot name="actions" />

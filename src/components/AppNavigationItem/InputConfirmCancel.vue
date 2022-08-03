@@ -42,14 +42,14 @@
 				class="app-navigation-input-confirm__confirm"
 				:aria-label="labelConfirm"
 				@click.stop.prevent="confirm">
-				<ArrowRight :size="20" decorative title="" />
+				<ArrowRight :size="20" />
 			</button>
 
 			<button type="reset"
 				class="app-navigation-input-confirm__close"
 				:aria-label="labelCancel"
 				@click.stop.prevent="cancel">
-				<Close :size="20" decorative title="" />
+				<Close :size="20" />
 			</button>
 		</form>
 	</div>
