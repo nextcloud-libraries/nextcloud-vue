@@ -26,11 +26,34 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 
 ```
-<Actions>
-	<ActionTextEditable icon="icon-edit" value="This is a textarea" />
-	<ActionTextEditable icon="icon-edit" :disabled="true" value="This is a disabled textarea" />
-	<ActionTextEditable icon="icon-edit" title="Please edit the text" value="This is a textarea with title" />
-</Actions>
+<template>
+	<Actions>
+		<ActionTextEditable value="This is a textarea">
+			<template #icon>
+				<Pencil :size="20" />
+			</template>
+		</ActionTextEditable>
+		<ActionTextEditable :disabled="true" value="This is a disabled textarea">
+			<template #icon>
+				<Pencil :size="20" />
+			</template>
+		</ActionTextEditable>
+		<ActionTextEditable title="Please edit the text" value="This is a textarea with title">
+			<template #icon>
+				<Pencil :size="20" />
+			</template>
+		</ActionTextEditable>
+	</Actions>
+</template>
+<script>
+import Pencil from 'vue-material-design-icons/Pencil'
+
+export default {
+	components: {
+		Pencil,
+	},
+}
+</script>
 ```
 </docs>
 
@@ -38,10 +61,12 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 	<li class="action" :class="{ 'action--disabled': disabled }">
 		<span class="action-text-editable"
 			@click="onClick">
-			<!-- icon -->
-			<span :class="[isIconUrl ? 'action-text-editable__icon--url' : icon]"
-				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
-				class="action-text-editable__icon" />
+			<!-- @slot Manually provide icon -->
+			<slot name="icon">
+				<span :class="[isIconUrl ? 'action-text-editable__icon--url' : icon]"
+					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+					class="action-text-editable__icon" />
+			</slot>
 
 			<!-- form and input -->
 			<form ref="form"
@@ -205,6 +230,16 @@ $input-margin: 4px;
 
 		background-position: #{$icon-margin} center;
 		background-size: $icon-size;
+	}
+
+	&::v-deep .material-design-icon {
+		width: $clickable-area;
+		height: $clickable-area;
+		opacity: $opacity_full;
+
+		.material-design-icon__svg {
+			vertical-align: middle;
+		}
 	}
 
 	// Forms & text inputs
