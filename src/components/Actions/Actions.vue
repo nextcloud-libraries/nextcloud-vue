@@ -28,57 +28,241 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 ### Single action
 
 ```
-<Actions>
-	<ActionButton icon="icon-delete" @click="alert('Delete')">Delete</ActionButton>
-</Actions>
+<template>
+	<Actions>
+		<ActionButton @click="alert('Delete')">
+			<template #icon>
+				<Delete :size="20" />
+			</template>
+			Delete
+		</ActionButton>
+	</Actions>
+</template>
+<script>
+import Delete from 'vue-material-design-icons/Delete'
+
+export default {
+	components: {
+		Delete,
+	},
+}
+</script>
 ```
 
 ### Multiple actions
 
 ```
-<Actions>
-	<ActionButton icon="icon-edit" @click="alert('Edit')">Edit</ActionButton>
-	<ActionButton icon="icon-delete" @click="alert('Delete')">Delete</ActionButton>
-	<ActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
-</Actions>
+<template>
+	<Actions>
+		<ActionButton @click="alert('Edit')">
+			<template #icon>
+				<Pencil :size="20" />
+			</template>
+			Edit
+		</ActionButton>
+		<ActionButton @click="alert('Delete')">
+			<template #icon>
+				<Delete :size="20" />
+			</template>
+			Delete
+		</ActionButton>
+		<ActionLink href="https://nextcloud.com">
+			<template #icon>
+				<OpenInNew :size="20" />
+			</template>
+			Link
+		</ActionLink>
+	</Actions>
+</template>
+<script>
+import Delete from 'vue-material-design-icons/Delete'
+import OpenInNew from 'vue-material-design-icons/OpenInNew'
+import Pencil from 'vue-material-design-icons/Pencil'
+
+export default {
+	components: {
+		Delete,
+		OpenInNew,
+		Pencil,
+	},
+}
+</script>
 ```
 
 ### Multiple actions with custom icon
 
 ```
-<Actions default-icon="icon-edit">
-	<ActionButton icon="icon-edit" @click="alert('Edit')">Edit</ActionButton>
-	<ActionButton icon="icon-delete" @click="alert('Delete')">Delete</ActionButton>
-	<ActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
-</Actions>
+<template>
+	<Actions>
+		<template #icon>
+			<Pencil :size="20" />
+		</template>
+		<ActionButton @click="alert('Edit')">
+			<template #icon>
+				<Pencil :size="20" />
+			</template>
+			Edit
+		</ActionButton>
+		<ActionButton @click="alert('Delete')">
+			<template #icon>
+				<Delete :size="20" />
+			</template>
+			Delete
+		</ActionButton>
+		<ActionLink href="https://nextcloud.com">
+			<template #icon>
+				<OpenInNew :size="20" />
+			</template>
+			Link
+		</ActionLink>
+	</Actions>
+</template>
+<script>
+import Delete from 'vue-material-design-icons/Delete'
+import OpenInNew from 'vue-material-design-icons/OpenInNew'
+import Pencil from 'vue-material-design-icons/Pencil'
+
+export default {
+	components: {
+		Delete,
+		OpenInNew,
+		Pencil,
+	},
+}
+</script>
 ```
 
 ### With menu title
 
 ```
-<Actions default-icon="icon-edit" menu-title="Object management">
-	<ActionButton icon="icon-edit">Rename</ActionButton>
-	<ActionButton icon="icon-delete">Delete</ActionButton>
-	<ActionButton icon="icon-confirm">Validate</ActionButton>
-	<ActionButton icon="icon-download">Download</ActionButton>
-</Actions>
+<template>
+	<Actions menu-title="Object management">
+		<template #icon>
+			<Pencil :size="20" />
+		</template>
+		<ActionButton>
+			<template #icon>
+				<Pencil :size="20" />
+			</template>
+			Rename
+		</ActionButton>
+		<ActionButton>
+			<template #icon>
+				<Delete :size="20" />
+			</template>
+			Delete
+		</ActionButton>
+		<ActionButton>
+			<template #icon>
+				<ArrowRight :size="20" />
+			</template>
+			Validate
+		</ActionButton>
+		<ActionButton>
+			<template #icon>
+				<Download :size="20" />
+			</template>
+			Download
+		</ActionButton>
+	</Actions>
+</template>
+<script>
+import ArrowRight from 'vue-material-design-icons/ArrowRight'
+import Delete from 'vue-material-design-icons/Delete'
+import Download from 'vue-material-design-icons/Download'
+import Pencil from 'vue-material-design-icons/Pencil'
+
+export default {
+	components: {
+		ArrowRight,
+		Delete,
+		Download,
+		Pencil,
+	},
+}
+</script>
 ```
 
 ### Various icons styles
 ```
-<Actions :primary="true">
-	<ActionButton icon="icon-edit">Edit</ActionButton>
-	<ActionButton icon="icon-delete">Delete</ActionButton>
-</Actions>
+<template>
+	<Actions :primary="true">
+		<ActionButton icon="icon-edit">
+			<template #icon>
+				<Pencil :size="20" />
+			</template>
+			Edit
+		</ActionButton>
+		<ActionButton icon="icon-delete">
+			<template #icon>
+				<Delete :size="20" />
+			</template>
+			Delete
+		</ActionButton>
+	</Actions>
+</template>
+<script>
+import Delete from 'vue-material-design-icons/Delete'
+import Pencil from 'vue-material-design-icons/Pencil'
+
+export default {
+	components: {
+		Delete,
+		Pencil,
+	},
+}
+</script>
 ```
 
 ```
-<Actions default-icon="icon-add-white" :primary="true" menu-title="Object management">
-	<ActionButton icon="icon-edit">Rename</ActionButton>
-	<ActionButton icon="icon-delete">Delete</ActionButton>
-	<ActionButton icon="icon-confirm">Validate</ActionButton>
-	<ActionButton icon="icon-download">Download</ActionButton>
-</Actions>
+<template>
+	<Actions :primary="true" menu-title="Object management">
+		<template #icon>
+			<Plus :size="20" />
+		</template>
+		<ActionButton>
+			<template #icon>
+				<Pencil :size="20" />
+			</template>
+			Rename
+		</ActionButton>
+		<ActionButton>
+			<template #icon>
+				<Delete :size="20" />
+			</template>
+			Delete
+		</ActionButton>
+		<ActionButton>
+			<template #icon>
+				<ArrowRight :size="20" />
+			</template>
+			Validate
+		</ActionButton>
+		<ActionButton>
+			<template #icon>
+				<Download :size="20" />
+			</template>
+			Download
+		</ActionButton>
+	</Actions>
+</template>
+<script>
+import ArrowRight from 'vue-material-design-icons/ArrowRight'
+import Delete from 'vue-material-design-icons/Delete'
+import Download from 'vue-material-design-icons/Download'
+import Pencil from 'vue-material-design-icons/Pencil'
+import Plus from 'vue-material-design-icons/Plus'
+
+export default {
+	components: {
+		ArrowRight,
+		Delete,
+		Download,
+		Pencil,
+		Plus,
+	},
+}
+</script>
 ```
 
 ### Custom icon slot
@@ -98,18 +282,25 @@ It can be used with one or multiple actions.
 				</template>
 				Mute
 			</ActionButton>
-			<ActionButton v-if="toggled" icon="icon-delete">Delete</ActionButton>
+			<ActionButton v-if="toggled">
+				<template #icon>
+					<Delete :size="20" />
+				</template>
+				Delete
+			</ActionButton>
 		</Actions>
 		<Actions>
 		</Actions>
 	</div>
 </template>
 <script>
+import Delete from 'vue-material-design-icons/Delete'
 import DotsHorizontalCircleOutline from 'vue-material-design-icons/DotsHorizontalCircleOutline'
 import MicrophoneOff from 'vue-material-design-icons/MicrophoneOff'
 
 export default {
 	components: {
+		Delete,
 		DotsHorizontalCircleOutline,
 		MicrophoneOff,
 	},
@@ -126,15 +317,27 @@ export default {
 ```
 <template>
 	<Actions :primary="true">
-		<ActionButton><template #icon><Magnify :size="20" /></template>Search</ActionButton>
-		<ActionButton icon="icon-delete">Delete</ActionButton>
+		<ActionButton>
+			<template #icon>
+				<Magnify :size="20" />
+			</template>
+			Search
+		</ActionButton>
+		<ActionButton>
+			<template #icon>
+				<Delete :size="20" />
+			</template>
+			Delete
+		</ActionButton>
 	</Actions>
 </template>
 <script>
+import Delete from 'vue-material-design-icons/Delete'
 import Magnify from 'vue-material-design-icons/Magnify'
 
 export default {
 	components: {
+		Delete,
 		Magnify,
 	},
 }

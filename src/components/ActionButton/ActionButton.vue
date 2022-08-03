@@ -25,20 +25,70 @@
 This component is made to be used inside of the [Actions](#Actions) component slots.
 
 ```vue
-	<Actions>
-		<ActionButton icon="icon-delete" @click="alert('Delete')">Delete</ActionButton>
-		<ActionButton icon="icon-delete" :close-after-click="true" @click="alert('Delete and close menu')">Delete and close</ActionButton>
-		<ActionButton icon="icon-delete" :disabled="true" @click="alert('Disabled')">Disabled button</ActionButton>
-	</Actions>
+	<template>
+		<Actions>
+			<ActionButton @click="alert('Delete')">
+				<template #icon>
+					<Delete :size="20" />
+				</template>
+				Delete
+			</ActionButton>
+			<ActionButton :close-after-click="true" @click="alert('Delete and close menu')">
+				<template #icon>
+					<Delete :size="20" />
+				</template>
+				Delete and close
+			</ActionButton>
+			<ActionButton :disabled="true" @click="alert('Disabled')">
+				<template #icon>
+					<Delete :size="20" />
+				</template>
+				Disabled button
+			</ActionButton>
+		</Actions>
+	</template>
+	<script>
+	import Delete from 'vue-material-design-icons/Delete'
+
+	export default {
+		components: {
+			Delete,
+		},
+	}
+	</script>
 ```
 
 If you're using a long text you can specify a title
 
 ```vue
-	<Actions>
-		<ActionButton icon="icon-add" @click="alert('Add')">Add new</ActionButton>
-		<ActionButton icon="icon-delete" title="Long button" @click="alert('Delete')">This button is associated with a very long text.\nAnd with new lines too.</ActionButton>
-	</Actions>
+	<template>
+		<Actions>
+			<ActionButton icon="icon-add" @click="alert('Add')">
+				<template #icon>
+					<Plus :size="20" />
+				</template>
+				Add new
+			</ActionButton>
+			<ActionButton title="Long button" @click="alert('Delete')">
+				<template #icon>
+					<Delete :size="20" />
+				</template>
+				This button is associated with a very long text.\nAnd with new lines too.
+			</ActionButton>
+		</Actions>
+	</template>
+	<script>
+	import Delete from 'vue-material-design-icons/Delete'
+	import Plus from 'vue-material-design-icons/Plus'
+
+	export default {
+		components: {
+			Delete,
+			Plus,
+		},
+	}
+	</script>
+
 ```
 
 You can also use a custom icon, for example from the vue-material-design-icons library:
