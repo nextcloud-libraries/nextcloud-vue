@@ -31,28 +31,34 @@ and `minlength`.
 <template>
 	<div class="wrapper">
 		<TextField :value.sync="text1"
-			label="Type something here"
+			label="Leading icon and trailing button"
 			trailing-button-icon="close"
 			:show-trailing-button="text1 !== ''"
 			@trailing-button-click="clearText">
 			<Magnify :size="16" />
 		</TextField>
 		<TextField :value.sync="text2"
-			label="Type something here"
+			label="Success state"
 			:success="true"
 			@trailing-button-click="clearText">
 		</TextField>
 		<TextField :value.sync="text3"
-			label="Type something here"
+			label="Error state"
+			:error="true"
+			@trailing-button-click="clearText">
+		</TextField>
+		<TextField :value.sync="text4"
+			label="Internal label"
+			placeholder="That can be used together with placeholder"
 			:label-visible="true"
 			trailing-button-icon="close"
-			:show-trailing-button="text3 !== ''"
+			:show-trailing-button="text4 !== ''"
 			@trailing-button-click="clearText">
 			<Lock :size="16" />
 		</TextField>
 		<div class="external-label">
 			<label for="$refs.textField.id">External label</label>
-			<TextField :value.sync="text4"
+			<TextField :value.sync="text5"
 				ref="textField"
 				:label-outside= "true"
 				@trailing-button-click="clearText" />
@@ -71,6 +77,7 @@ export default {
 			text2: '',
 			text3: '',
 			text4: '',
+			text5: '',
 		}
 	},
 

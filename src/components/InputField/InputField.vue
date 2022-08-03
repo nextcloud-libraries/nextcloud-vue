@@ -38,6 +38,8 @@
 				:class="{
 					'input-field__input--trailing-icon': showTrailingButton || hasTrailingIcon,
 					'input-field__input--leading-icon': hasLeadingIcon,
+					'input-field__input--success': success,
+					'input-field__input--error': error,
 				}"
 				:value="value"
 				v-on="$listeners"
@@ -49,9 +51,10 @@
 				<slot />
 			</div>
 
-			<!-- Success icon -->
-			<div v-if="success" class="input-field__icon input-field__icon--trailing">
-				<Check :size="18" />
+			<!-- Success and error icons -->
+			<div v-if="success || error" class="input-field__icon input-field__icon--trailing">
+				<Check v-if="success" :size="18" />
+				<AlertCircle v-else-if="error" :size="18" />
 			</div>
 
 			<!-- trailing button -->
@@ -72,6 +75,7 @@
 <script>
 import Button from '../Button/index.js'
 import Check from 'vue-material-design-icons/Check'
+import AlertCircle from 'vue-material-design-icons/AlertCircleOutline'
 import GenRandomId from '../../utils/GenRandomId.js'
 
 export default {
@@ -80,6 +84,7 @@ export default {
 	components: {
 		Button,
 		Check,
+		AlertCircle,
 	},
 
 	props: {
@@ -193,18 +198,6 @@ export default {
 	},
 
 	watch: {
-		/**
-		 * Don't allow both trailing checkmark and clear button to be present
-		 * at the same time
-		 */
-		success() {
-			this.validateTrailingIcon()
-		},
-
-		canClear() {
-			this.validateTrailingIcon()
-		},
-
 		label() {
 			this.validateLabel()
 		},
@@ -221,12 +214,6 @@ export default {
 
 		handleTrailingButtonClick(event) {
 			this.$emit('trailing-button-click', event)
-		},
-
-		validateTrailingIcon() {
-			if (this.canClear && this.success) {
-				throw new Error('success and canClear props cannot be true at the same time')
-			}
 		},
 
 		validateLabel() {
@@ -271,6 +258,14 @@ export default {
 		}
 		&:focus {
 			cursor: text;
+		}
+
+		&--success {
+			border-color: var(--color-success) !important; //Override hover border color
+		}
+
+		&--error {
+			border-color: var(--color-error) !important; //Override hover border color
 		}
 
 		&--leading-icon {
