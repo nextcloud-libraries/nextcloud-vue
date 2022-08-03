@@ -40,9 +40,9 @@
 <template>
 	<li class="app-navigation-caption">
 		<!-- Title of the caption -->
-		<div class="app-navigation-caption__title">
+		<h2 class="app-navigation-caption__title">
 			{{ title }}
-		</div>
+		</h2>
 
 		<!-- Actions -->
 		<div v-if="hasActions"
@@ -93,6 +93,7 @@ export default {
 	&__title {
 		font-weight: bold;
 		color: var(--color-primary-element);
+		font-size: var(--default-font-size);
 		line-height: $clickable-area;
 		white-space: nowrap;
 		overflow: hidden;
