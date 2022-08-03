@@ -44,7 +44,7 @@ export default {
 			required: true,
 			validator(id) {
 				// Only alphanumeric, dash and underscore
-				return /^([a-z0-9\-_]+)$/.test(id)
+				return /^[a-z0-9\-_]+$/.test(id)
 			},
 		},
 	},
