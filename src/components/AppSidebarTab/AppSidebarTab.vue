@@ -32,6 +32,9 @@
 		tabindex="0"
 		role="tabpanel"
 		@scroll="onScroll">
+		<h3 class="hidden-visually">
+			{{ name }}
+		</h3>
 		<slot />
 	</section>
 </template>
