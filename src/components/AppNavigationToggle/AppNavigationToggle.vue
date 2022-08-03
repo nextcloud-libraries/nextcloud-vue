@@ -22,21 +22,22 @@
  -
  -->
 <template>
-	<Actions class="app-navigation-toggle">
-		<ActionButton :aria-expanded="open ? 'true' : 'false'"
-			aria-controls="app-navigation-vue"
-			@click="toggleNavigation">
-			<template #icon>
-				<Menu :size="20" />
-			</template>
-			{{ label }}
-		</ActionButton>
-	</Actions>
+	<Button v-tooltip.auto="label"
+		class="app-navigation-toggle"
+		type="tertiary"
+		:aria-expanded="open ? 'true' : 'false'"
+		:aria-label="label"
+		aria-controls="app-navigation-vue"
+		@click="toggleNavigation">
+		<template #icon>
+			<Menu :size="20" />
+		</template>
+	</Button>
 </template>
 
 <script>
-import Actions from '../Actions/index.js'
-import ActionButton from '../ActionButton/index.js'
+import Button from '../Button/index.js'
+import Tooltip from '../../directives/Tooltip/index.js'
 import { t } from '../../l10n.js'
 
 import Menu from 'vue-material-design-icons/Menu'
@@ -44,9 +45,12 @@ import Menu from 'vue-material-design-icons/Menu'
 export default {
 	name: 'AppNavigationToggle',
 
+	directives: {
+		tooltip: Tooltip,
+	},
+
 	components: {
-		Actions,
-		ActionButton,
+		Button,
 		Menu,
 	},
 
