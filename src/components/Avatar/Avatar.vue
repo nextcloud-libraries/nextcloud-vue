@@ -45,10 +45,10 @@
 		}"
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper"
-		:tabindex="disableMenu ? undefined : '0'"
+		:tabindex="hasMenu ? '0' : undefined"
 		:aria-label="avatarAriaLabel"
-		:role="disableMenu ? undefined : 'button'"
-		v-on="!disableMenu ? { click: toggleMenu } : {}"
+		:role="hasMenu ? 'button' : undefined"
+		v-on="hasMenu ? { click: toggleMenu } : {}"
 		@keydown.enter="toggleMenu">
 		<!-- Avatar icon or image -->
 		<div v-if="iconClass" :class="iconClass" class="avatar-class-icon" />
