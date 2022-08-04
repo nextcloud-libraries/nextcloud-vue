@@ -60,7 +60,7 @@ and `minlength`.
 			<label for="$refs.textField.id">External label</label>
 			<TextField :value.sync="text5"
 				ref="textField"
-				:label-outside= "true"
+				:label-outside="true"
 				@trailing-button-click="clearText" />
 		</div>
 	</div>
@@ -167,7 +167,8 @@ export default {
 		/**
 		 * The hidden input label for accessibility purposes. This will also
 		 * be used as a placeholder unless the placeholder prop is populated
-		 * with a different string.
+		 * with a different string. This is required if an external label is
+		 * not provided.
 		 */
 		label: {
 			type: String,
