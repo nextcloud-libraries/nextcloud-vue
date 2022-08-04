@@ -34,6 +34,7 @@
 				class="input-field__input"
 				:type="type"
 				:placeholder="computedPlaceholder"
+				:aria-describedby="helperText.length > 0 ? `${inputName}-helper-text` : ''"
 				aria-live="polite"
 				:class="{
 					'input-field__input--trailing-icon': showTrailingButton || hasTrailingIcon,
@@ -51,14 +52,8 @@
 				<slot />
 			</div>
 
-			<!-- Success and error icons -->
-			<div v-if="success || error" class="input-field__icon input-field__icon--trailing">
-				<Check v-if="success" :size="18" />
-				<AlertCircle v-else-if="error" :size="18" />
-			</div>
-
 			<!-- trailing button -->
-			<NcButton v-else-if="showTrailingButton"
+			<NcButtonVue v-if="showTrailingButton"
 				type="tertiary-no-background"
 				class="input-field__clear-button"
 				@click="handleTrailingButtonClick">
@@ -68,7 +63,20 @@
 					<slot name="trailing-button-icon" />
 				</template>
 			</NcButton>
+
+			<!-- Success and error icons -->
+			<div v-else-if="success || error"
+				class="input-field__icon input-field__icon--trailing">
+				<Check v-if="success" :size="18" />
+				<AlertCircle v-else-if="error" :size="18" />
+			</div>
 		</div>
+		<p v-if="helperText.length > 0"
+			:id="`${inputName}-helper-text`"
+			class="input-field__helpter-text-message"
+			:class="{ 'input-field__helpter-text-message--error': error }">
+			{{ helperText }}
+		</p>
 	</div>
 </template>
 
@@ -170,6 +178,17 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Additional helter text message
+		 *
+		 * This will be displayed beneath the input field. In case the field is
+		 * also marked as having an error, the text will be displayed in red.
+		 */
+		helperText: {
+			type: String,
+			default: '',
+		},
 	},
 
 	emits: [
@@ -229,7 +248,6 @@ export default {
 		},
 	},
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -273,10 +291,16 @@ export default {
 
 		&--success {
 			border-color: var(--color-success) !important; //Override hover border color
+			&:focus {
+				box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+			}
 		}
 
 		&--error {
 			border-color: var(--color-error) !important; //Override hover border color
+			&:focus {
+				box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+			}
 		}
 
 		&--leading-icon {
@@ -330,6 +354,13 @@ export default {
 		height: 32px;
 		width: 32px !important;
 		border-radius: var(--border-radius-large);
+	}
+
+	&__helpter-text-message {
+		padding: 4px 0;
+		&--error {
+			color: var(--color-error);
+		}
 	}
 }
 
