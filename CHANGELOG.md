@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v5.4.0](https://github.com/nextcloud/nextcloud-vue/tree/v5.4.0) (2022-08-04)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v5.3.1...v5.4.0)
+
+
+#### Enhancements
+* [#2936](https://github.com/nextcloud/nextcloud-vue/pull/2936) [stable5] Create TextField component ([@backportbot-nextcloud[bot]](https://github.com/apps/backportbot-nextcloud))
+* [#2913](https://github.com/nextcloud/nextcloud-vue/pull/2913) [stable5] Fix ListItem css & add compact mode ([@backportbot-nextcloud[bot]](https://github.com/apps/backportbot-nextcloud))
+* [#2552](https://github.com/nextcloud/nextcloud-vue/pull/2552) Make emojis selectable by tab ([@skjnldsv](https://github.com/skjnldsv))
+* [#2668](https://github.com/nextcloud/nextcloud-vue/pull/2668) Merge Dashboard components into repository ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2654](https://github.com/nextcloud/nextcloud-vue/pull/2654) add handle keyboard focus for accessibility ([@vanpertsch](https://github.com/vanpertsch))
+* [#2629](https://github.com/nextcloud/nextcloud-vue/pull/2629) small cleanup of small modal size ([@szaimen](https://github.com/szaimen))
+
+#### Bug Fix
+* [#2915](https://github.com/nextcloud/nextcloud-vue/pull/2915) [stable5] Fix invalid setting section IDs ([@backportbot-nextcloud[bot]](https://github.com/apps/backportbot-nextcloud))
+* [#2919](https://github.com/nextcloud/nextcloud-vue/pull/2919) [stable5] Fix invalid tabindex and role ([@backportbot-nextcloud[bot]](https://github.com/apps/backportbot-nextcloud))
+* [#2918](https://github.com/nextcloud/nextcloud-vue/pull/2918) [stable5] Fix HTML validation of AppNavigationToggle ([@backportbot-nextcloud[bot]](https://github.com/apps/backportbot-nextcloud))
+* [#2913](https://github.com/nextcloud/nextcloud-vue/pull/2913) [stable5] Fix ListItem css & add compact mode ([@backportbot-nextcloud[bot]](https://github.com/apps/backportbot-nextcloud))
+* [#2921](https://github.com/nextcloud/nextcloud-vue/pull/2921) [stable5] Fix vue material design icons HTML validation ([@backportbot-nextcloud[bot]](https://github.com/apps/backportbot-nextcloud))
+* [#2920](https://github.com/nextcloud/nextcloud-vue/pull/2920) [stable5] Remove invalid test-attr ([@backportbot-nextcloud[bot]](https://github.com/apps/backportbot-nextcloud))
+* [#2914](https://github.com/nextcloud/nextcloud-vue/pull/2914) [stable5] Make captions real headings for improved a11y ([@backportbot-nextcloud[bot]](https://github.com/apps/backportbot-nextcloud))
+* [#2916](https://github.com/nextcloud/nextcloud-vue/pull/2916) [stable5] Add headline to sidebar sections to improve landmarks ([@backportbot-nextcloud[bot]](https://github.com/apps/backportbot-nextcloud))
+* [#2638](https://github.com/nextcloud/nextcloud-vue/pull/2638) Fix lifecycle hook name in Avatar ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2628](https://github.com/nextcloud/nextcloud-vue/pull/2628) Fix styleguide serve ([@raimund-schluessler](https://github.com/raimund-schluessler))
+
 ## [v5.3.1](https://github.com/nextcloud/nextcloud-vue/tree/v5.3.1) (2022-04-08)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v5.3.0...v5.3.1)
