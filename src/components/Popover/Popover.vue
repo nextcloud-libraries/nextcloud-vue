@@ -36,7 +36,7 @@ open prop on this component;
 
 ### Examples
 
-With a `<button>` as a trigger:
+#### With a `<button>` as a trigger:
 
 ```vue
 <template>
@@ -134,7 +134,11 @@ export default {
 					return
 				}
 
-				this.$focusTrap = createFocusTrap(el)
+				this.$focusTrap = createFocusTrap(el, {
+					// Prevents to lose focus using esc key
+					// Focus will be release when popover be hide
+					escapeDeactivates: false,
+				})
 				this.$focusTrap.activate()
 			})
 		},
