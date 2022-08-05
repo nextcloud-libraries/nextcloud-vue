@@ -582,7 +582,7 @@ export default {
 		useFocusTrap() {
 			const contentContainer = this.$refs.mask
 			// wait until all children are mounted and available in the DOM before focusTrap can be added
-			this.$nextTick(function() {
+			this.$nextTick(() => {
 				this.focusTrap = createFocusTrap(contentContainer)
 				this.focusTrap.activate()
 			})
