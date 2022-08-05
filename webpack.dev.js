@@ -8,5 +8,4 @@ module.exports = merge(common, {
 		noInfo: true,
 		overlay: true,
 	},
-	devtool: 'source-map',
 })
