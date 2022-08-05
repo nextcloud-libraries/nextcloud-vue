@@ -820,7 +820,7 @@ $top-buttons-spacing: 6px;
 					width: $clickable-area;
 					height: $clickable-area;
 					&--star {
-						color: #000;
+						color: var(--color-main-text);
 						opacity: .5;
 						&:hover {
 							color: #FC0;
@@ -829,7 +829,7 @@ $top-buttons-spacing: 6px;
 					&--starred {
 						color: #FC0;
 						&:hover {
-							color: #000;
+							color: var(--color-main-text);
 							opacity: .5;
 						}
 					}
