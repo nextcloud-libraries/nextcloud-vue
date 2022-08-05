@@ -109,13 +109,13 @@
 			:class="{ 'modal-mask--dark': dark }"
 			:style="cssVariables"
 			role="dialog"
-			aria-labelledby="modal-title"
-			aria-describedby="modal-description">
+			:aria-labelledby="'modal-title-' + randId"
+			:aria-describedby="'modal-description-' + randId">
 			<!-- Header -->
 			<transition name="fade-visibility">
 				<div class="modal-header">
 					<div v-if="title.trim() !== ''"
-						id="modal-title"
+						:id="'modal-title-' + randId"
 						class="modal-title">
 						{{ title }}
 					</div>
@@ -198,7 +198,7 @@
 					</transition>
 
 					<!-- Content -->
-					<div id="modal-description" class="modal-container">
+					<div :id="'modal-description-' + randId" class="modal-container">
 						<!-- Close modal -->
 						<ButtonVue v-if="canClose && closeButtonContained"
 							type="tertiary"
@@ -241,6 +241,7 @@ import l10n from '../../mixins/l10n.js'
 import Timer from '../../utils/Timer.js'
 import { t } from '../../l10n.js'
 import ButtonVue from '../../components/Button/index.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 import ChevronLeft from 'vue-material-design-icons/ChevronLeft'
 import ChevronRight from 'vue-material-design-icons/ChevronRight'
@@ -382,6 +383,7 @@ export default {
 			slideshowTimeout: null,
 			iconSize: 24,
 			focusTrap: null,
+			randId: GenRandomId(),
 		}
 	},
 
