@@ -51,6 +51,9 @@ msgstr "Itxi modala"
 msgid "Close navigation"
 msgstr "Itxi nabigazioa"
 
+msgid "Close sidebar"
+msgstr "Itxi albo-barra"
+
 msgid "Confirm changes"
 msgstr "Baieztatu aldaketak"
 
