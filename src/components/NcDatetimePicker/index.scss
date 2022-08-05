@@ -1,6 +1,6 @@
 $cell_height: 32px;
 
-@import '~vue2-datepicker/scss/index';
+@import 'vue2-datepicker/scss/index';
 
 .mx-datepicker[data-v-#{$scope_version}] {
 	user-select: none;
@@ -53,7 +53,7 @@ $cell_height: 32px;
 			border-left: 1px solid var(--color-border);
 		}
 	}
-	
+
 	&.show-week-number .mx-calendar {
 		width: $cell_height * 8 + 2 * 5px + 30px; // week number + 7 days + padding + 30px padding to fit the buttons
 	}

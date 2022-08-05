@@ -34,10 +34,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 	install(window.Vue)
 }
 
-export default {
-	install,
-	...NcComponents,
-}
+export { install }
 export * from './components/index.js'
 export * from './directives/index.js'
 export * from './mixins/index.js'
