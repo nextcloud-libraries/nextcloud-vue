@@ -57,9 +57,9 @@ and `minlength`.
 			<Lock :size="16" />
 		</NcTextField>
 		<div class="external-label">
-			<label for="$refs.textField.id">External label</label>
+			<label for="textField">External label</label>
 			<NcTextField :value.sync="text5"
-				ref="textField"
+				id="textField"
 				:label-outside="true"
 				@trailing-button-click="clearText" />
 		</div>
@@ -238,12 +238,30 @@ export default {
 		},
 
 		/**
+		 * Additional error message
+		 *
+		 * This will be displayed beneath the input field
+		 */
+		helperText: {
+			type: String,
+			default: '',
+		},
+
+		/**
 		 * Toggles the error state of the component. Adds an error icon.
 		 * this cannot be used together with canClear.
 		 */
 		error: {
 			type: Boolean,
 			default: false,
+		},
+
+		/**
+		 * Id of the input field. To use when using external label
+		 */
+		id: {
+			type: String,
+			default: '',
 		},
 	},
 

@@ -37,13 +37,20 @@ General purpose password field component.
 				:label-outside="true" />
 		</div>
 		<div class="external-label">
-			<label for="$refs.textField.id">New password</label>
+			<label for="textField2">New password</label>
 			<PasswordField :value.sync="text5"
 				:error="true"
-				ref="textField"
+				id="textField2"
 				:label-outside="true"
 				helper-text="Password is insecure" />
 		</div>
+
+		<PasswordField :value.sync="text5"
+			label="Good new password"
+			label-visible="true"
+			:success="true"
+			id="textField2"
+			helper-text="Password is secure" />
 	</div>
 </template>
 <script>
@@ -254,6 +261,14 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Id of the input field. To use when using external label
+		 */
+		id: {
+			type: String,
+			default: '',
+		},
 	},
 
 	data() {
@@ -310,7 +325,7 @@ export default {
 				.then(res => res.data.ocs.data)
 				.then(data => {
 					if (data.passed) {
-						this.internalErrorMessage = ''
+						this.internalErrorMessage = t('Password is secure')
 					}
 					this.internalErrorMessage = data.reason
 				})

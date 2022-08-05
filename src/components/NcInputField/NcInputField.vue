@@ -75,6 +75,8 @@
 			:id="`${inputName}-helper-text`"
 			class="input-field__helpter-text-message"
 			:class="{ 'input-field__helpter-text-message--error': error }">
+			<Check class="input-field__helpter-text-message__icon" v-if="success" :size="18" />
+			<AlertCircle class="input-field__helpter-text-message__icon" v-else-if="error" :size="18" />
 			{{ helperText }}
 		</p>
 	</div>
@@ -358,8 +360,19 @@ export default {
 
 	&__helpter-text-message {
 		padding: 4px 0;
+		display: flex;
+		align-items: center;
+
+		&__icon {
+			margin-right: 8px;
+		}
+
 		&--error {
 			color: var(--color-error);
+		}
+
+		&--success {
+			color: var(--color-success);
 		}
 	}
 }
