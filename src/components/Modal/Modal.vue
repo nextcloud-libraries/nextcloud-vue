@@ -26,7 +26,51 @@
 	<template>
 		<div>
 			<button @click="showModal">Show Modal</button>
-			<modal v-if="modal" @close="closeModal" size="small">
+			<modal v-if="modal" @close="closeModal" size="small" title="Title">
+				<div class="modal__content">Hello world</div>
+			</modal>
+		</div>
+	</template>
+	<style scoped>
+	.modal__content {
+		margin: 50px;
+		text-align: center;
+	}
+
+	</style>
+	<script>
+	export default {
+		data() {
+			return {
+				modal: false
+			}
+		},
+		methods: {
+			showModal() {
+				this.modal = true
+			},
+			closeModal() {
+				this.modal = false
+			}
+		}
+	}
+	</script>
+	```
+
+	### Modal with more properties
+
+	```vue
+	<template>
+		<div>
+			<button @click="showModal">Show Modal with more properties</button>
+			<modal
+				v-if="modal"
+				@close="closeModal"
+				size="large"
+				:outTransition="true"
+				:hasNext="true"
+				:hasPrevious="true"
+				title="Title inside modal">
 				<div class="modal__content">Hello world</div>
 			</modal>
 		</div>
@@ -499,7 +543,7 @@ export default {
 				this.previous(e)
 				break
 			case 13: // enter key
-			case 39: // rigth arrow
+			case 39: // right arrow
 				this.next(e)
 				break
 			case 27: // escape key
