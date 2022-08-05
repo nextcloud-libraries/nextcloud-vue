@@ -30,7 +30,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 ```
 <template>
 	<Actions>
-		<ActionButton @click="alert('Delete')">
+		<ActionButton @click="actionDelete">
 			<template #icon>
 				<Delete :size="20" />
 			</template>
@@ -45,6 +45,11 @@ export default {
 	components: {
 		Delete,
 	},
+	methods: {
+		actionDelete() {
+			alert('Delete')
+		},
+	},
 }
 </script>
 ```
@@ -54,13 +59,13 @@ export default {
 ```
 <template>
 	<Actions>
-		<ActionButton @click="alert('Edit')">
+		<ActionButton @click="showMessage('Edit')">
 			<template #icon>
 				<Pencil :size="20" />
 			</template>
 			Edit
 		</ActionButton>
-		<ActionButton @click="alert('Delete')">
+		<ActionButton @click="showMessage('Delete')">
 			<template #icon>
 				<Delete :size="20" />
 			</template>
@@ -84,6 +89,11 @@ export default {
 		Delete,
 		OpenInNew,
 		Pencil,
+	},
+	methods: {
+		showMessage(msg) {
+			alert(msg)
+		},
 	},
 }
 </script>
@@ -97,13 +107,13 @@ export default {
 		<template #icon>
 			<Pencil :size="20" />
 		</template>
-		<ActionButton @click="alert('Edit')">
+		<ActionButton @click="showMessage('Edit')">
 			<template #icon>
 				<Pencil :size="20" />
 			</template>
 			Edit
 		</ActionButton>
-		<ActionButton @click="alert('Delete')">
+		<ActionButton @click="showMessage('Delete')">
 			<template #icon>
 				<Delete :size="20" />
 			</template>
@@ -127,6 +137,11 @@ export default {
 		Delete,
 		OpenInNew,
 		Pencil,
+	},
+	methods: {
+		showMessage(msg) {
+			alert(msg)
+		},
 	},
 }
 </script>
