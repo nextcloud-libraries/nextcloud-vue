@@ -60,6 +60,25 @@ open prop on this component;
 	</Popover>
 </template>
 ```
+
+#### Without focus trap:
+
+The [`focus-trap`](https://github.com/focus-trap/focus-trap) emits an error when used in a non-focusable element tree.
+
+The prop `:focus-trap="false"` help to prevent it when the default behavior is not relevant.
+
+```vue
+<template>
+	<Popover :focus-trap="false">
+		<template #trigger>
+			<button> Click me! </button>
+		</template>
+		<template>
+			Hi! 🚀
+		</template>
+	</Popover>
+</template>
+```
 </docs>
 
 <template>
@@ -92,6 +111,10 @@ export default {
 		popoverBaseClass: {
 			type: String,
 			default: '',
+		},
+		focusTrap: {
+			type: Boolean,
+			default: true,
 		},
 	},
 
@@ -128,6 +151,10 @@ export default {
 			 * Add focus trap for accessibility.
 			 */
 			this.$nextTick(() => {
+				if (!this.focusTrap) {
+					return
+				}
+
 				const el = this.$refs.popover?.$refs.popperContent?.$el
 
 				if (!el) {
