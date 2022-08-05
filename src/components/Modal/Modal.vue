@@ -26,7 +26,14 @@
 	<template>
 		<div>
 			<button @click="showModal">Show Modal</button>
-			<modal v-if="modal" @close="closeModal" size="small" title="Title">
+			<modal
+				v-if="modal"
+				@close="closeModal"
+				size="small"
+				title="Title"
+				:outTransition="true"
+				:hasNext="true"
+				:hasPrevious="true">
 				<div class="modal__content">Hello world</div>
 			</modal>
 		</div>
@@ -62,16 +69,21 @@
 	```vue
 	<template>
 		<div>
-			<button @click="showModal">Show Modal with more properties</button>
+			<button @click="showModal">Show Modal with fields</button>
 			<modal
 				v-if="modal"
 				@close="closeModal"
 				size="large"
-				:outTransition="true"
-				:hasNext="true"
-				:hasPrevious="true"
 				title="Title inside modal">
-				<div class="modal__content">Hello world</div>
+				<div class="modal__content">
+					<h2>Please enter your name</h2>
+					<TextField label="First Name" :value.sync="firstName" />
+					<TextField label="Last Name" :value.sync="lastName" />
+					<Button
+						:disabled="!this.firstName || !this.lastName"
+						@click="closeModal"
+						type="primary">Submit</Button>
+				</div>
 			</modal>
 		</div>
 	</template>
@@ -81,16 +93,30 @@
 		text-align: center;
 	}
 
+	.input-field {
+		margin: 12px 0px;
+	}
+
 	</style>
 	<script>
+
+	import Button from '../Button/index.js'
+	import TextField from '../TextField/index.js'
 	export default {
+		components: {
+			TextField,
+		},
 		data() {
 			return {
-				modal: false
+				modal: false,
+				firstName: '',
+				lastName: '',
 			}
 		},
 		methods: {
 			showModal() {
+				this.firstName = ''
+				this.lastName = ''
 				this.modal = true
 			},
 			closeModal() {
