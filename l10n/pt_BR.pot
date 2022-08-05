@@ -53,6 +53,9 @@ msgstr "Fechar modal"
 msgid "Close navigation"
 msgstr "Fechar navegação"
 
+msgid "Close sidebar"
+msgstr "Fechar barra lateral"
+
 msgid "Confirm changes"
 msgstr "Confirmar alterações"
 
