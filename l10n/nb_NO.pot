@@ -1,12 +1,13 @@
 # 
 # Translators:
 # Ole Jakob Brustad <ole.jakob@brustadbuss.no>, 2020
-# Sverre Magnus Vikan <sverre.vikan@gmail.com>, 2020
+# sverre.vikan <sverre.vikan@gmail.com>, 2020
 # Martin Tøndel, 2021
+# Ari Selseng <ari@selseng.net>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Martin Tøndel, 2021\n"
+"Last-Translator: Ari Selseng <ari@selseng.net>, 2022\n"
 "Language-Team: Norwegian Bokmål (Norway) (https://www.transifex.com/nextcloud/teams/64236/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nb_NO\n"
@@ -36,14 +37,23 @@ msgstr "{displayName}'s avatar, {status}"
 msgid "Cancel changes"
 msgstr "Avbryt endringer"
 
+msgid "Change title"
+msgstr "Endre tittel"
+
 msgid "Choose"
 msgstr "Velg"
 
 msgid "Close"
 msgstr "Lukk"
 
+msgid "Close modal"
+msgstr "Lukk modal"
+
 msgid "Close navigation"
 msgstr "Lukk navigasjon"
+
+msgid "Close sidebar"
+msgstr "Lukk sidepanel"
 
 msgid "Confirm changes"
 msgstr "Bekreft endringer"
@@ -56,6 +66,9 @@ msgstr "Rediger"
 
 msgid "External documentation for {title}"
 msgstr "Ekstern dokumentasjon for {title}"
+
+msgid "Favorite"
+msgstr "Favoritt"
 
 msgid "Flags"
 msgstr "Flagg"
@@ -72,8 +85,14 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Gå tilbake til listen"
 
+msgid "items"
+msgstr "enheter"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Karakter begrensing {count} nådd i melding"
+
+msgid "More {dashboardItemType} …"
+msgstr "Mer {dashboardItemType} …"
 
 msgid "Next"
 msgstr "Neste"
@@ -86,6 +105,9 @@ msgstr "Ingen resultater"
 
 msgid "Objects"
 msgstr "Objekter"
+
+msgid "Open"
+msgstr "Åpne"
 
 msgid "Open navigation"
 msgstr "Åpne navigasjon"
@@ -144,5 +166,5 @@ msgstr "Kunne ikke søke i gruppen"
 msgid "Undo changes"
 msgstr "Tilbakestill endringer"
 
-msgid "Write message, @ to mention someone …"
-msgstr "Bruk @ for å nevne noen i en melding"
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr "Skriv melding, @ for å nevne noen, : for emoji-autofullføring…"
