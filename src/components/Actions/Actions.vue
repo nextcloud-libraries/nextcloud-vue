@@ -187,13 +187,13 @@ export default {
 ```
 <template>
 	<Actions :primary="true">
-		<ActionButton icon="icon-edit">
+		<ActionButton>
 			<template #icon>
 				<Pencil :size="20" />
 			</template>
 			Edit
 		</ActionButton>
-		<ActionButton icon="icon-delete">
+		<ActionButton>
 			<template #icon>
 				<Delete :size="20" />
 			</template>
