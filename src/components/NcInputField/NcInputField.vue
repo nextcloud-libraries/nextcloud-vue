@@ -74,7 +74,10 @@
 		<p v-if="helperText.length > 0"
 			:id="`${inputName}-helper-text`"
 			class="input-field__helpter-text-message"
-			:class="{ 'input-field__helpter-text-message--error': error }">
+			:class="{
+				'input-field__helpter-text-message--error': error,
+				'input-field__helpter-text-message--success': success,
+			}">
 			<Check class="input-field__helpter-text-message__icon" v-if="success" :size="18" />
 			<AlertCircle class="input-field__helpter-text-message__icon" v-else-if="error" :size="18" />
 			{{ helperText }}
@@ -293,15 +296,15 @@ export default {
 
 		&--success {
 			border-color: var(--color-success) !important; //Override hover border color
-			&:focus {
-				box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+			&:focus-visible {
+				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 			}
 		}
 
 		&--error {
 			border-color: var(--color-error) !important; //Override hover border color
-			&:focus {
-				box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+			&:focus-visible {
+				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 			}
 		}
 
