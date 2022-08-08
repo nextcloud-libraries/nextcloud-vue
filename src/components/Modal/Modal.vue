@@ -109,8 +109,8 @@
 			:class="{ 'modal-mask--dark': dark }"
 			:style="cssVariables"
 			role="dialog"
-			aria-labelledby="modal-title"
-			aria-describedby="modal-description"
+			:aria-labelledby="'modal-title-' + randId"
+			:aria-describedby="'modal-description-' + randId"
 			@click="handleMouseMove"
 			@mousemove="handleMouseMove"
 			@touchmove="handleMouseMove">
@@ -122,7 +122,7 @@
 					}"
 					class="modal-header">
 					<div v-if="title.trim() !== ''"
-						id="modal-title"
+						:id="'modal-title-' + randId"
 						class="modal-title">
 						{{ title }}
 					</div>
@@ -207,7 +207,7 @@
 					</transition>
 
 					<!-- Content -->
-					<div id="modal-description" class="modal-container">
+					<div :id="'modal-description-' + randId" class="modal-container">
 						<!-- @slot Modal content to render -->
 						<slot />
 					</div>
@@ -251,6 +251,8 @@ import Play from 'vue-material-design-icons/Play'
 
 import Hammer from 'hammerjs'
 import { createFocusTrap } from 'focus-trap'
+import GenRandomId from '../../utils/GenRandomId.js'
+
 export default {
 	name: 'Modal',
 
@@ -380,6 +382,7 @@ export default {
 			slideshowTimeout: null,
 			iconSize: 24,
 			focusTrap: null,
+			randId: GenRandomId(),
 		}
 	},
 
