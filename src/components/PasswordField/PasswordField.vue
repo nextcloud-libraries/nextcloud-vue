@@ -32,20 +32,20 @@ General purpose password field component.
 			label="Old password" />
 		<div class="external-label">
 			<label for="$refs.textField.id">New password</label>
-			<PasswordField :value.sync="text5"
+			<PasswordField :value.sync="text2"
 				ref="textField"
 				:label-outside="true" />
 		</div>
 		<div class="external-label">
 			<label for="textField2">New password</label>
-			<PasswordField :value.sync="text5"
+			<PasswordField :value.sync="text3"
 				:error="true"
 				id="textField2"
 				:label-outside="true"
 				helper-text="Password is insecure" />
 		</div>
 
-		<PasswordField :value.sync="text5"
+		<PasswordField :value.sync="text4"
 			label="Good new password"
 			label-visible="true"
 			:success="true"
@@ -54,10 +54,6 @@ General purpose password field component.
 	</div>
 </template>
 <script>
-import Magnify from 'vue-material-design-icons/Magnify'
-import Lock from 'vue-material-design-icons/Lock'
-import Close from 'vue-material-design-icons/Close'
-
 export default {
 	data() {
 		return {
@@ -65,22 +61,8 @@ export default {
 			text2: '',
 			text3: '',
 			text4: '',
-			text5: '',
 		}
 	},
-
-	components: {
-		Magnify,
-		Lock,
-		Close,
-	},
-
-	methods: {
-		clearText() {
-			this.text1 = ''
-			this.text3 = ''
-		}
-	}
 }
 </script>
 <style lang="scss" scoped>
@@ -104,13 +86,14 @@ export default {
 	<InputField v-bind="$props"
 		:type="isPasswordHidden ? 'password' : 'text'"
 		:show-trailing-button="true"
+		:helper-text="computedHelperText"
 		v-on="$listeners"
 		@trailing-button-click="togglePasswordVisibility"
 		@input="handleInput">
 		<!-- Default slot for the leading icon -->
 		<slot />
 		<template slot="trailing-button-icon">
-			<Eye v-if="isPasswordHidden" :size="20" />
+			<Eye v-if="isPasswordHidden" :size="18" />
 			<EyeOff v-else :size="18" />
 		</template>
 	</InputField>
@@ -280,9 +263,9 @@ export default {
 	},
 
 	computed: {
-		computerErrorMessage() {
-			if (this.errorMessage) {
-				return this.errorMessage
+		computedHelperText() {
+			if (this.helperText.length > 0) {
+				return this.helperText
 			}
 			return this.internalErrorMessage
 		},

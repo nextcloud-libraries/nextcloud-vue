@@ -1,7 +1,7 @@
 /**
- * @copyright Copyright (c) 2022 Marco Ambrosini <marcoambrosini@pm.me>
+ * @copyright Copyright (c) 2022 Carl Schwan <carl@carlschwan.eu>
  *
- * @author Marco Ambrosini <marcoambrosini@pm.me>
+ * @author Carl Schwan <carl@carlschwan.eu>
  *
  * @license AGPL-3.0-or-later
  *

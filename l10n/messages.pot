@@ -101,6 +101,9 @@ msgstr ""
 msgid "Open navigation"
 msgstr ""
 
+msgid "Password is secure"
+msgstr ""
+
 msgid "Pause slideshow"
 msgstr ""
 

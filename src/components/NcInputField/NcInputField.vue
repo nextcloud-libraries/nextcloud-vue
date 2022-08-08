@@ -73,13 +73,13 @@
 		</div>
 		<p v-if="helperText.length > 0"
 			:id="`${inputName}-helper-text`"
-			class="input-field__helpter-text-message"
+			class="input-field__helper-text-message"
 			:class="{
-				'input-field__helpter-text-message--error': error,
-				'input-field__helpter-text-message--success': success,
+				'input-field__helper-text-message--error': error,
+				'input-field__helper-text-message--success': success,
 			}">
-			<Check class="input-field__helpter-text-message__icon" v-if="success" :size="18" />
-			<AlertCircle class="input-field__helpter-text-message__icon" v-else-if="error" :size="18" />
+			<Check class="input-field__helper-text-message__icon" v-if="success" :size="18" />
+			<AlertCircle class="input-field__helper-text-message__icon" v-else-if="error" :size="18" />
 			{{ helperText }}
 		</p>
 	</div>
@@ -185,7 +185,7 @@ export default {
 		},
 
 		/**
-		 * Additional helter text message
+		 * Additional helper text message
 		 *
 		 * This will be displayed beneath the input field. In case the field is
 		 * also marked as having an error, the text will be displayed in red.
@@ -361,7 +361,7 @@ export default {
 		border-radius: var(--border-radius-large);
 	}
 
-	&__helpter-text-message {
+	&__helper-text-message {
 		padding: 4px 0;
 		display: flex;
 		align-items: center;
