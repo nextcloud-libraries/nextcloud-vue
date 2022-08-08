@@ -159,6 +159,7 @@ export default {
 				'text',
 				'password',
 				'email',
+				'number',
 				'tel',
 				'url',
 			].includes(value),
