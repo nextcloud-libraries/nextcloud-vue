@@ -36,7 +36,8 @@
 		".": {
 			"import": "./dist/index.es.js",
 			"require": "./dist/index.cjs.js"
-		}
+		},
+		"./style.css": "./dist/style.css"
 	},
 	"files": [
 		"CHANGELOG.md",
