@@ -262,8 +262,13 @@ export default {
 		&:hover {
 			border-color: var(--color-primary-element);
 		}
+
 		&:focus {
 			cursor: text;
+		}
+
+		&:focus-visible {
+			box-shadow: unset !important; // Override server rules
 		}
 
 		&--success {
