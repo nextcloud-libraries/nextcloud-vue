@@ -1,10 +1,31 @@
+/**
+ * @copyright Copyright (c) 2022 Vinicius Reis <vinicius@nextcloud.com>
+ *
+ * @author Vinicius Reis <vinicius@nextcloud.com>
+ *
+ * @license AGPL-3.0-or-later
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 import { fileURLToPath, URL } from 'node:url'
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue2'
 import commonjs from 'vite-plugin-commonjs'
-import { dependencies, version } from './package.json'
 import md5 from 'md5'
+import { dependencies, version } from './package.json'
 import { loadTranslations } from './resources/translations.js'
 
 const versionHash = md5(version).slice(0, 7)
