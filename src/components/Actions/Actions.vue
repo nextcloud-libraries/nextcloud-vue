@@ -436,6 +436,19 @@ export default {
 		},
 
 		/**
+		 * Specifies the button type used for trigger and single actions buttons
+		 * Accepted values: primary, secondary, tertiary, tertiary-no-background, tertiary-on-primary, error, warning, success. If left empty,
+		 * the default button style will be applied.
+		 */
+		type: {
+			type: String,
+			validator(value) {
+				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].indexOf(value) !== -1
+			},
+			default: null,
+		},
+
+		/**
 		 * Aria label for the actions menu
 		 */
 		ariaLabel: {
@@ -723,7 +736,7 @@ export default {
 					},
 					props: {
 						 // If it has a title, we use a secondary button
-						type: title ? 'secondary' : 'tertiary',
+						type: this.type || (title ? 'secondary' : 'tertiary'),
 						disabled: this.disabled || firstAction?.componentOptions?.propsData?.disabled,
 						...firstAction?.componentOptions?.propsData,
 					},
@@ -807,10 +820,10 @@ export default {
 								class: 'action-item__menutoggle',
 								props: {
 									// If requested, we use a primary button
-									type: this.primary
+									type: this.type || (this.primary
 										? 'primary'
 										// If it has a title, we use a secondary button
-										: this.menuTitle ? 'secondary' : 'tertiary',
+										: this.menuTitle ? 'secondary' : 'tertiary'),
 									disabled: this.disabled,
 								},
 								slot: 'trigger',
