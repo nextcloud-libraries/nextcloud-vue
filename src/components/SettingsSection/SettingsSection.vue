@@ -63,7 +63,7 @@ This component is to be used in the settings section of nextcloud.
 <script>
 import { t } from '../../l10n.js'
 
-import HelpCircle from 'vue-material-design-icons/HelpCircle'
+import HelpCircle from 'vue-material-design-icons/HelpCircle.vue'
 
 export default {
 	name: 'SettingsSection',

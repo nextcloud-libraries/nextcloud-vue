@@ -40,7 +40,7 @@ import ButtonVue from '../ButtonVue/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import { t } from '../../l10n.js'
 
-import MenuIcon from 'vue-material-design-icons/Menu'
+import MenuIcon from 'vue-material-design-icons/Menu.vue'
 
 export default {
 	name: 'AppNavigationToggle',

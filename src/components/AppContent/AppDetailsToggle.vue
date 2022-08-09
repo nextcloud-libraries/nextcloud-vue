@@ -35,7 +35,7 @@ import Tooltip from '../../directives/Tooltip/index.js'
 
 import { emit } from '@nextcloud/event-bus'
 
-import ArrowRight from 'vue-material-design-icons/ArrowRight'
+import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 
 export default {
 	name: 'AppDetailsToggle',

@@ -163,9 +163,9 @@ import Popover from '../Popover/index.js'
 import l10n from '../../mixins/l10n.js'
 import GenColors from '../../utils/GenColors.js'
 
-import ArrowLeft from 'vue-material-design-icons/ArrowLeft'
-import Check from 'vue-material-design-icons/Check'
-import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal'
+import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
+import Check from 'vue-material-design-icons/Check.vue'
+import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 import { Chrome } from 'vue-color'
 

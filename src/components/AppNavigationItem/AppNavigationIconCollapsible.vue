@@ -40,8 +40,8 @@
 import ButtonVue from '../ButtonVue/index.js'
 import { t } from '../../l10n.js'
 
-import ChevronRight from 'vue-material-design-icons/ChevronRight'
-import ChevronDown from 'vue-material-design-icons/ChevronDown'
+import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
+import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 
 export default {
 	name: 'AppNavigationIconCollapsible',

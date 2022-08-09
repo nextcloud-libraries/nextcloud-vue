@@ -149,7 +149,7 @@ import AutoCompleteResult from './AutoCompleteResult.vue'
 import richEditor from '../../mixins/richEditor/index.js'
 import { emojiSearch, addRecent } from '../../functions/emoji/index.js'
 
-import Tribute from 'tributejs/dist/tribute.esm'
+import Tribute from 'tributejs/dist/tribute.esm.js'
 import debounce from 'debounce'
 import stringLength from 'string-length'
 

@@ -127,8 +127,9 @@ export default {
 <script>
 
 import InputField from '../InputField/InputField.vue'
-import Close from 'vue-material-design-icons/Close'
-import ArrowRight from 'vue-material-design-icons/ArrowRight'
+
+import Close from 'vue-material-design-icons/Close.vue'
+import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 
 export default {
 	name: 'TextField',

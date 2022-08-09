@@ -74,17 +74,18 @@
 
 <script>
 import ButtonVue from '../ButtonVue/index.js'
-import Check from 'vue-material-design-icons/Check'
-import AlertCircle from 'vue-material-design-icons/AlertCircleOutline'
 import GenRandomId from '../../utils/GenRandomId.js'
+
+import AlertCircle from 'vue-material-design-icons/AlertCircleOutline.vue'
+import Check from 'vue-material-design-icons/Check.vue'
 
 export default {
 	name: 'InputField',
 
 	components: {
 		ButtonVue,
-		Check,
 		AlertCircle,
+		Check,
 	},
 
 	props: {
