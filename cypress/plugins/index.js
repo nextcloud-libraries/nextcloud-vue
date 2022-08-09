@@ -16,7 +16,7 @@ const getCompareSnapshotsPlugin = require('cypress-visual-regression/dist/plugin
 const webpack = require('@cypress/webpack-preprocessor')
 const { startDevServer } = require('@cypress/webpack-dev-server')
 
-const webpackOptions = require('../../webpack.dev.js')
+const webpackOptions = require('../../webpack.config.js')
 webpackOptions.externals = {}
 
 const options = {
