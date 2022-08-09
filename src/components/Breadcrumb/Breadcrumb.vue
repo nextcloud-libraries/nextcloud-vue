@@ -72,7 +72,7 @@ This component is meant to be used inside a Breadcrumbs component.
 import Actions from '../Actions/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
-import ChevronRight from 'vue-material-design-icons/ChevronRight'
+import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
 
 export default {
 	name: 'Breadcrumb',

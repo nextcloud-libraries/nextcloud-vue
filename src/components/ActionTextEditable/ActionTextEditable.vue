@@ -100,7 +100,7 @@ export default {
 import ActionTextMixin from '../../mixins/actionText.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
-import ArrowRight from 'vue-material-design-icons/ArrowRight'
+import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 
 export default {
 	name: 'ActionTextEditable',

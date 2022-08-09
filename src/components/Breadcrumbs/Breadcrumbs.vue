@@ -131,7 +131,7 @@ import ValidateSlot from '../../utils/ValidateSlot.js'
 
 import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 
-import IconFolder from 'vue-material-design-icons/Folder'
+import IconFolder from 'vue-material-design-icons/Folder.vue'
 
 import debounce from 'debounce'
 import Vue from 'vue'

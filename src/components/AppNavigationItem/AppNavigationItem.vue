@@ -216,8 +216,8 @@ import isMobile from '../../mixins/isMobile/index.js'
 import InputConfirmCancel from './InputConfirmCancel.vue'
 import { t } from '../../l10n.js'
 
-import Pencil from 'vue-material-design-icons/Pencil'
-import Undo from 'vue-material-design-icons/Undo'
+import Pencil from 'vue-material-design-icons/Pencil.vue'
+import Undo from 'vue-material-design-icons/Undo.vue'
 
 export default {
 	name: 'AppNavigationItem',

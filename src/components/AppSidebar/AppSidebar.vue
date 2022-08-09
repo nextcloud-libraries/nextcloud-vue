@@ -175,7 +175,7 @@ include a standard-header like it's used by the files app.
 						<!-- favourite icon -->
 						<div v-if="canStar || $slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
 							<slot name="tertiary-actions">
-								<Button v-if="canStar"
+								<ButtonVue v-if="canStar"
 									:aria-label="favoriteTranslated"
 									class="app-sidebar-header__star"
 									type="secondary"
@@ -185,7 +185,7 @@ include a standard-header like it's used by the files app.
 										<Star v-else-if="isStarred" :size="20" />
 										<StarOutline v-else :size="20" />
 									</template>
-								</Button>
+								</ButtonVue>
 							</slot>
 						</div>
 
@@ -213,13 +213,13 @@ include a standard-header like it's used by the files app.
 											:value="title"
 											@keydown.esc="onDismissEditing"
 											@input="onTitleInput">
-										<Button type="tertiary-no-background"
+										<ButtonVue type="tertiary-no-background"
 											:aria-label="changeTitleTranslated"
 											native-type="submit">
 											<template #icon>
 												<ArrowRight :size="20" />
 											</template>
-										</Button>
+										</ButtonVue>
 									</form>
 								</template>
 								<!-- header main menu -->
@@ -239,7 +239,7 @@ include a standard-header like it's used by the files app.
 					</div>
 				</div>
 
-				<Button v-tooltip.auto="closeTranslated"
+				<ButtonVue v-tooltip.auto="closeTranslated"
 					:aria-label="closeTranslated"
 					type="tertiary"
 					class="app-sidebar__close"
@@ -247,7 +247,7 @@ include a standard-header like it's used by the files app.
 					<template #icon>
 						<Close :size="20" />
 					</template>
-				</Button>
+				</ButtonVue>
 
 				<div v-if="$slots['description'] && !empty" class="app-sidebar-header__description">
 					<slot name="description" />
@@ -274,17 +274,17 @@ include a standard-header like it's used by the files app.
 import AppSidebarTabs from './AppSidebarTabs.vue'
 import Actions from '../Actions/index.js'
 import LoadingIcon from '../LoadingIcon/index.js'
-import Button from '../Button/Button.vue'
+import ButtonVue from '../ButtonVue/index.js'
 import EmptyContent from '../EmptyContent/index.js'
 import Focus from '../../directives/Focus/index.js'
 import Linkify from '../../directives/Linkify/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import { t } from '../../l10n.js'
 
-import ArrowRight from 'vue-material-design-icons/ArrowRight'
-import Close from 'vue-material-design-icons/Close'
-import Star from 'vue-material-design-icons/Star'
-import StarOutline from 'vue-material-design-icons/StarOutline'
+import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+import Close from 'vue-material-design-icons/Close.vue'
+import Star from 'vue-material-design-icons/Star.vue'
+import StarOutline from 'vue-material-design-icons/StarOutline.vue'
 
 import { directive as ClickOutside } from 'v-click-outside'
 
@@ -295,7 +295,7 @@ export default {
 		Actions,
 		AppSidebarTabs,
 		ArrowRight,
-		Button,
+		ButtonVue,
 		LoadingIcon,
 		EmptyContent,
 		Close,

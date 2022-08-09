@@ -363,13 +363,13 @@ export default {
 </docs>
 
 <script>
-import ButtonVue from '../Button/index.js'
+import ButtonVue from '../ButtonVue/index.js'
 import Popover from '../Popover/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { t } from '../../l10n.js'
 
-import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal'
+import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 const focusableSelector = '.focusable'
 

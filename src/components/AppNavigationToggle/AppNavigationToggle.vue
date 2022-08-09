@@ -22,7 +22,7 @@
  -
  -->
 <template>
-	<Button v-tooltip.auto="label"
+	<ButtonVue v-tooltip.auto="label"
 		class="app-navigation-toggle"
 		type="tertiary"
 		:aria-expanded="open ? 'true' : 'false'"
@@ -30,17 +30,17 @@
 		aria-controls="app-navigation-vue"
 		@click="toggleNavigation">
 		<template #icon>
-			<Menu :size="20" />
+			<MenuIcon :size="20" />
 		</template>
-	</Button>
+	</ButtonVue>
 </template>
 
 <script>
-import Button from '../Button/index.js'
+import ButtonVue from '../ButtonVue/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import { t } from '../../l10n.js'
 
-import Menu from 'vue-material-design-icons/Menu'
+import MenuIcon from 'vue-material-design-icons/Menu.vue'
 
 export default {
 	name: 'AppNavigationToggle',
@@ -50,8 +50,8 @@ export default {
 	},
 
 	components: {
-		Button,
-		Menu,
+		ButtonVue,
+		MenuIcon,
 	},
 
 	props: {

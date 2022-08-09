@@ -127,7 +127,7 @@ import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { getBuilder } from '@nextcloud/browser-storage'
 import { generateUrl } from '@nextcloud/router'
 
-import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal'
+import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 import { directive as ClickOutside } from 'v-click-outside'
 

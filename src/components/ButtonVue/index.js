@@ -20,6 +20,6 @@
  *
  */
 
-import Button from './Button.vue'
+import ButtonVue from './ButtonVue.vue'
 
-export default Button
+export default ButtonVue
