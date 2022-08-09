@@ -42,7 +42,7 @@ open prop on this component;
 <template>
 	<Popover>
 		<template #trigger>
-			<button> I am the trigger </button>
+			<ButtonVue> I am the trigger </ButtonVue>
 		</template>
 		<template>
 			<form tabindex="0" @submit.prevent>
@@ -71,7 +71,7 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 <template>
 	<Popover :focus-trap="false">
 		<template #trigger>
-			<button> Click me! </button>
+			<ButtonVue> Click me! </ButtonVue>
 		</template>
 		<template>
 			Hi! 🚀

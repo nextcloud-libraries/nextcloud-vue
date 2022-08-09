@@ -27,7 +27,7 @@ providing the section's title prop. You can put your settings within each
 ```vue
 <template>
 	<div>
-		<button @click="settingsOpen = true">Show Settings</button>
+		<ButtonVue @click="settingsOpen = true">Show Settings</ButtonVue>
 		<AppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" title="Application settings">
 			<AppSettingsSection id="asci-title-1" title="Example title 1">
 				Some example content

@@ -33,7 +33,7 @@
 	<template>
 		<div>
 			<EmojiPicker @select="select" style="display: inline-block">
-				<button> Click Me </button>
+				<ButtonVue> Click Me </ButtonVue>
 			</EmojiPicker>
 			<span>selected emoji: {{ emoji }}</span>
 		</div>
@@ -64,7 +64,7 @@
 				:show-preview="true"
 				@select="select"
 				style="display: inline-block">
-				<button> Click Me </button>
+				<ButtonVue> Click Me </ButtonVue>
 			</EmojiPicker>
 			<span>selected emoji: {{ emoji }}</span>
 		</div>

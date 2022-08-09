@@ -41,7 +41,7 @@ It includes the Navigation, the App content and the Sidebar.
 		</AppNavigation>
 		<AppContent>
 			<h2>Your main app content here</h2>
-			<button @click="opened = !opened">Toggle sidebar</button>
+			<ButtonVue @click="opened = !opened">Toggle sidebar</ButtonVue>
 		</AppContent>
 		<AppSidebar v-if="opened" title="cat-picture.jpg" @close="opened=false"></AppSidebar>
 	</Content>
