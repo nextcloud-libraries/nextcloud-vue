@@ -45,23 +45,23 @@
 
 <template>
 	<div class="app-navigation-new">
-		<Button :id="buttonId"
+		<ButtonVue :id="buttonId"
 			:disabled="disabled"
 			@click="$emit('click')">
 			<template #icon>
 				<slot name="icon" />
 			</template>
 			{{ text }}
-		</Button>
+		</ButtonVue>
 	</div>
 </template>
 
 <script>
-import Button from '../Button/index.js'
+import ButtonVue from '../ButtonVue/index.js'
 
 export default {
 	components: {
-		Button,
+		ButtonVue,
 	},
 	props: {
 		buttonId: {

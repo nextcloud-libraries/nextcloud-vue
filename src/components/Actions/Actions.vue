@@ -363,7 +363,7 @@ export default {
 </docs>
 
 <script>
-import ButtonVue from '../Button/index.js'
+import ButtonVue from '../ButtonVue/index.js'
 import Popover from '../Popover/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'

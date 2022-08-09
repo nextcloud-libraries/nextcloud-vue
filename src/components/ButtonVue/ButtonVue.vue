@@ -48,7 +48,7 @@ It can be used with one or multiple actions.
 		<p>Tertiary</p>
 		<p>Secondary</p>
 		<p>Primary</p>
-		<Button
+		<ButtonVue
 			:disabled="disabled"
 			:readonly="readonly"
 			type="tertiary-no-background">
@@ -57,8 +57,8 @@ It can be used with one or multiple actions.
 					:size="20" />
 			</template>
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
-		</Button>
-		<Button
+		</ButtonVue>
+		<ButtonVue
 			:disabled="disabled"
 			:readonly="readonly"
 			type="tertiary">
@@ -67,8 +67,8 @@ It can be used with one or multiple actions.
 					:size="20" />
 			</template>
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
-		</Button>
-		<Button
+		</ButtonVue>
+		<ButtonVue
 			:disabled="disabled"
 			:readonly="readonly">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
@@ -77,8 +77,8 @@ It can be used with one or multiple actions.
 					:size="20" />
 			</template>
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
-		</Button>
-		<Button
+		</ButtonVue>
+		<ButtonVue
 			:disabled="disabled"
 			:readonly="readonly"
 			type="primary">
@@ -87,12 +87,12 @@ It can be used with one or multiple actions.
 					:size="20" />
 			</template>
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
-		</Button>
+		</ButtonVue>
 	</div>
 
 	<!-- Wide button -->
 	<h5>Wide button</h5>
-	<Button
+	<ButtonVue
 		:disabled="disabled"
 		:readonly="readonly"
 		:wide="true"
@@ -103,7 +103,7 @@ It can be used with one or multiple actions.
 				:size="20" />
 		</template>
 		Example text
-	</Button>
+	</ButtonVue>
 
 	<!-- Special buttons -->
 	<h5>Special buttons</h5>
@@ -112,7 +112,7 @@ It can be used with one or multiple actions.
 		<p>Warning</p>
 		<p>Error</p>
 		<p> - </p>
-		<Button
+		<ButtonVue
 			:disabled="disabled"
 			:readonly="readonly"
 			type="success">
@@ -121,8 +121,8 @@ It can be used with one or multiple actions.
 					:size="20" />
 			</template>
 			Example text
-		</Button>
-		<Button
+		</ButtonVue>
+		<ButtonVue
 			:disabled="disabled"
 			:readonly="readonly"
 			type="warning">
@@ -132,8 +132,8 @@ It can be used with one or multiple actions.
 					:size="20" />
 			</template>
 			Example text
-		</Button>
-		<Button
+		</ButtonVue>
+		<ButtonVue
 			:disabled="disabled"
 			:readonly="readonly"
 			type="error">
@@ -142,7 +142,7 @@ It can be used with one or multiple actions.
 					:size="20" />
 			</template>
 			Example text
-		</Button>
+		</ButtonVue>
 		<p> - </p>
 	</div>
 </div>
@@ -225,7 +225,7 @@ button {
 <script>
 
 export default {
-	name: 'Button',
+	name: 'ButtonVue',
 
 	props: {
 		/**

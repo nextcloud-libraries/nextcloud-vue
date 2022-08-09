@@ -22,7 +22,7 @@
  -
  -->
 <template>
-	<Button v-tooltip.auto="label"
+	<ButtonVue v-tooltip.auto="label"
 		class="app-navigation-toggle"
 		type="tertiary"
 		:aria-expanded="open ? 'true' : 'false'"
@@ -32,11 +32,11 @@
 		<template #icon>
 			<Menu :size="20" />
 		</template>
-	</Button>
+	</ButtonVue>
 </template>
 
 <script>
-import Button from '../Button/index.js'
+import ButtonVue from '../ButtonVue/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import { t } from '../../l10n.js'
 
@@ -50,7 +50,7 @@ export default {
 	},
 
 	components: {
-		Button,
+		ButtonVue,
 		Menu,
 	},
 

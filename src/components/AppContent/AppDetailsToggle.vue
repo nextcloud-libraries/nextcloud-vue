@@ -21,15 +21,15 @@
   -->
 
 <template>
-	<Button v-tooltip="title" :aria-label="title" class="app-details-toggle">
+	<ButtonVue v-tooltip="title" :aria-label="title" class="app-details-toggle">
 		<template #icon>
 			<ArrowRight :size="20" />
 		</template>
-	</Button>
+	</ButtonVue>
 </template>
 
 <script>
-import Button from '../Button/index.js'
+import ButtonVue from '../ButtonVue/index.js'
 import { t } from '../../l10n.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 
@@ -45,7 +45,7 @@ export default {
 	},
 
 	components: {
-		Button,
+		ButtonVue,
 		ArrowRight,
 	},
 

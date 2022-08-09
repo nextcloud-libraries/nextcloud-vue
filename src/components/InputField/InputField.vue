@@ -58,7 +58,7 @@
 			</div>
 
 			<!-- trailing button -->
-			<Button v-else-if="showTrailingButton"
+			<ButtonVue v-else-if="showTrailingButton"
 				type="tertiary-no-background"
 				class="input-field__clear-button"
 				@click="handleTrailingButtonClick">
@@ -67,13 +67,13 @@
 				<template slot="icon">
 					<slot name="trailing-button-icon" />
 				</template>
-			</Button>
+			</ButtonVue>
 		</div>
 	</div>
 </template>
 
 <script>
-import Button from '../Button/index.js'
+import ButtonVue from '../ButtonVue/index.js'
 import Check from 'vue-material-design-icons/Check'
 import AlertCircle from 'vue-material-design-icons/AlertCircleOutline'
 import GenRandomId from '../../utils/GenRandomId.js'
@@ -82,7 +82,7 @@ export default {
 	name: 'InputField',
 
 	components: {
-		Button,
+		ButtonVue,
 		Check,
 		AlertCircle,
 	},

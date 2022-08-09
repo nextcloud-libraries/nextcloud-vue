@@ -59,7 +59,7 @@
 	</div>
 </template>
 <script>
-import ButtonVue from '../Button/index.js'
+import ButtonVue from '../ButtonVue/index.js'
 import { t } from '../../l10n.js'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight'

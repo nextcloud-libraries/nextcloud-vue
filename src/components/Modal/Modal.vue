@@ -240,7 +240,7 @@ import Tooltip from '../../directives/Tooltip/index.js'
 import l10n from '../../mixins/l10n.js'
 import Timer from '../../utils/Timer.js'
 import { t } from '../../l10n.js'
-import ButtonVue from '../../components/Button/index.js'
+import ButtonVue from '../../components/ButtonVue/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
 import ChevronLeft from 'vue-material-design-icons/ChevronLeft'

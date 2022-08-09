@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import ButtonVue from '../Button/index.js'
+import ButtonVue from '../ButtonVue/index.js'
 import { t } from '../../l10n.js'
 
 import ChevronRight from 'vue-material-design-icons/ChevronRight'
