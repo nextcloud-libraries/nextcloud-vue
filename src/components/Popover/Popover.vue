@@ -23,9 +23,9 @@
 
 ### General description
 
-This component is just a wrapper for the v-component plugin by Akryum,
+This component is just a wrapper for the floating-vue plugin by Akryum,
 please refer to this documentation for customization:
-https://github.com/Akryum/v-tooltip
+https://github.com/Akryum/floating-vue
 
 This components has two slots:
 * 'trigger' which can be any html element and it will trigger the popover
@@ -36,7 +36,8 @@ open prop on this component;
 
 ### Examples
 
-With a `<button>` as a trigger:
+#### With a `<button>` as a trigger:
+
 ```vue
 <template>
 	<Popover>
@@ -44,7 +45,36 @@ With a `<button>` as a trigger:
 			<button> I am the trigger </button>
 		</template>
 		<template>
-		<h2>this is some content</h2>
+			<form tabindex="0" @submit.prevent>
+				<h2>this is some content</h2>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. </br>
+					Vestibulum eget placerat velit.
+				</p>
+				<label>
+					Label element
+					<input type="text" placehold="input element" />
+				</label>
+			</form>
+		</template>
+	</Popover>
+</template>
+```
+
+#### Without focus trap:
+
+The [`focus-trap`](https://github.com/focus-trap/focus-trap) emits an error when used in a non-focusable element tree.
+
+The prop `:focus-trap="false"` help to prevent it when the default behavior is not relevant.
+
+```vue
+<template>
+	<Popover :focus-trap="false">
+		<template #trigger>
+			<button> Click me! </button>
+		</template>
+		<template>
+			Hi! 🚀
 		</template>
 	</Popover>
 </template>
@@ -69,6 +99,7 @@ With a `<button>` as a trigger:
 
 <script>
 import { Dropdown } from 'floating-vue'
+import { createFocusTrap } from 'focus-trap'
 
 export default {
 	name: 'Popover',
@@ -80,6 +111,10 @@ export default {
 		popoverBaseClass: {
 			type: String,
 			default: '',
+		},
+		focusTrap: {
+			type: Boolean,
+			default: true,
 		},
 	},
 
@@ -93,22 +128,59 @@ export default {
 			},
 			(val) => {
 				if (val) {
-					/**
-					 * Triggered after the tooltip was visually displayed.
-					 *
-					 * This is different from the 'show' and 'apply-show' which
-					 * run earlier than this where there is no guarantee that the
-					 * tooltip is already visible and in the DOM.
-					 */
-					this.$emit('after-show')
+					this.afterShow()
 				} else {
-					/**
-					 * Triggered after the tooltip was visually hidden.
-					 */
-					this.$emit('after-hide')
+					this.afterHide()
 				}
 			}
 		)
+	},
+
+	methods: {
+		afterShow() {
+			/**
+			 * Triggered after the tooltip was visually displayed.
+			 *
+			 * This is different from the 'show' and 'apply-show' which
+			 * run earlier than this where there is no guarantee that the
+			 * tooltip is already visible and in the DOM.
+			 */
+			this.$emit('after-show')
+
+			/**
+			 * Add focus trap for accessibility.
+			 */
+			this.$nextTick(() => {
+				if (!this.focusTrap) {
+					return
+				}
+
+				const el = this.$refs.popover?.$refs.popperContent?.$el
+
+				if (!el) {
+					return
+				}
+
+				this.$focusTrap = createFocusTrap(el, {
+					// Prevents to lose focus using esc key
+					// Focus will be release when popover be hide
+					escapeDeactivates: false,
+				})
+				this.$focusTrap.activate()
+			})
+		},
+		afterHide() {
+			/**
+			 * Triggered after the tooltip was visually hidden.
+			 */
+			this.$emit('after-hide')
+
+			/**
+			 * Remove focus trap
+			 */
+			this.$focusTrap?.deactivate()
+			this.$focusTrap = null
+		},
 	},
 }
 </script>
