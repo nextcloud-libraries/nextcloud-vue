@@ -66,7 +66,6 @@ export default {
 <template>
 	<Multiselect :value="inputValue"
 		:options="availableOptions"
-		:options-limit="5"
 		:placeholder="label"
 		track-by="id"
 		:custom-label="tagLabel"
@@ -115,7 +114,7 @@ export default {
 		},
 		filter: {
 			type: Function,
-			default: () => true,
+			default: (element, index) => index < 5,
 		},
 	},
 	data() {
