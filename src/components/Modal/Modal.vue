@@ -79,10 +79,12 @@
 					<h2>Please enter your name</h2>
 					<TextField label="First Name" :value.sync="firstName" />
 					<TextField label="Last Name" :value.sync="lastName" />
-					<Button
+					<ButtonVue
 						:disabled="!this.firstName || !this.lastName"
 						@click="closeModal"
-						type="primary">Submit</Button>
+						type="primary">
+						Submit
+					</ButtonVue>
 				</div>
 			</modal>
 		</div>
@@ -99,11 +101,11 @@
 
 	</style>
 	<script>
-
-	import Button from '../Button/index.js'
+	import ButtonVue from '../ButtonVue/index.js'
 	import TextField from '../TextField/index.js'
 	export default {
 		components: {
+			ButtonVue,
 			TextField,
 		},
 		data() {
