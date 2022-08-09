@@ -65,13 +65,12 @@ export default {
 
 <template>
 	<Multiselect :value="inputValue"
-		:options="tags"
-		:options-limit="5"
+		:options="availableOptions"
 		:placeholder="label"
 		track-by="id"
 		:custom-label="tagLabel"
 		:multiple="multiple"
-		:close-on-select="multiple"
+		:close-on-select="!multiple"
 		:tag-width="60"
 		:disabled="disabled"
 		@input="update">
@@ -113,6 +112,10 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+		filter: {
+			type: Function,
+			default: (element, index) => index < 5,
+		},
 	},
 	data() {
 		return {
@@ -122,6 +125,12 @@ export default {
 	computed: {
 		inputValue() {
 			return this.getValueObject()
+		},
+		availableOptions() {
+			if (this.filter) {
+				return this.tags.filter(this.filter)
+			}
+			return this.tags
 		},
 	},
 	async beforeCreate() {
