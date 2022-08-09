@@ -61,6 +61,27 @@ export default {
 }
 </script>
 ```
+
+## Custom filter
+Because of compatibility reasons only 5 tag entries are shown by default. If you want to show all available tags set the `filter` function-prop to `null`:
+```vue
+<template>
+	<div class="wrapper">
+		<MultiselectTags v-model="value" :filter="null" />
+		{{ value }}
+	</div>
+</template>
+```
+
+It's also possible to apply any custom filter logic by setting the `filter` function-prop to any custom function receiving the tag element and the index:
+```vue
+<template>
+	<div class="wrapper">
+		<MultiselectTags v-model="value" :filter="(element, index) => element.id > 2 && element.displayName !== '' && element.canAssign && element.userAssignable && element.userVisible" />
+		{{ value }}
+	</div>
+</template>
+```
 </docs>
 
 <template>
@@ -114,7 +135,7 @@ export default {
 		},
 		filter: {
 			type: Function,
-			default: (element, index) => index < 5,
+			default: (_element, index) => index < 5,
 		},
 	},
 	data() {
