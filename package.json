@@ -13,9 +13,9 @@
 	"author": "John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>",
 	"license": "AGPL-3.0",
 	"scripts": {
-		"dev": "webpack --config webpack.dev.js",
-		"watch": "webpack --progress --watch --config webpack.dev.js",
-		"build": "NODE_ENV=production webpack --progress --config webpack.prod.js",
+		"dev": "webpack --node-env development --progress",
+		"watch": "webpack --node-env development --progress --watch",
+		"build": "webpack --node-env production --progress",
 		"l10n:extract": "node build/extract-l10n.js",
 		"lint": "eslint --ext .js,.vue src",
 		"lint:fix": "eslint --ext .js,.vue src --fix",

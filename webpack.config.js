@@ -4,6 +4,9 @@ const glob = require('glob')
 const md5 = require('md5')
 const path = require('path')
 
+const buildMode = process.env.NODE_ENV
+const isDev = buildMode === 'development'
+
 const { DefinePlugin } = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const BabelLoaderExcludeNodeModulesExcept = require('babel-loader-exclude-node-modules-except')
@@ -54,6 +57,13 @@ const translations = fs
 	})
 
 module.exports = {
+	mode: buildMode,
+	devtool: isDev ? false : 'source-map',
+	devServer: {
+		historyApiFallback: true,
+		noInfo: true,
+		overlay: true,
+	},
 	entry: {
 		ncvuecomponents: path.join(__dirname, 'src', 'index.js'),
 		...glob.sync('src/components/*/index.js').reduce((acc, item) => {
