@@ -318,7 +318,7 @@ export default {
 	}
 }
 
-::v-deep .button-vue {
+:deep(.button-vue) {
 	min-width: unset;
 	min-height: unset;
 	height: 32px;

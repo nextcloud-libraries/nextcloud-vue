@@ -361,7 +361,7 @@ export default {
 	}
 }
 
-::v-deep .vc {
+:deep() .vc {
 	&-chrome {
 		width: 176px;
 		height: 13;

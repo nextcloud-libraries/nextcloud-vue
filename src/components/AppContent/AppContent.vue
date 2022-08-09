@@ -337,7 +337,7 @@ export default {
 
 // Mobile list/details handling
 .app-content-wrapper--mobile {
-	&.app-content-wrapper--show-list ::v-deep {
+	&.app-content-wrapper--show-list :deep() {
 		.app-content-list {
 			display: block;
 		}
@@ -345,7 +345,7 @@ export default {
 			display: none;
 		}
 	}
-	&.app-content-wrapper--show-details ::v-deep {
+	&.app-content-wrapper--show-details :deep() {
 		.app-content-list {
 			display: none;
 		}
@@ -355,7 +355,7 @@ export default {
 	}
 }
 
-::v-deep .splitpanes.default-theme {
+:deep(.splitpanes.default-theme) {
 	.app-content-list {
 		max-width: none;
 	}

@@ -357,7 +357,7 @@ export default {
 
 <style lang="scss" scoped>
 
-::v-deep .modal-wrapper .modal-container {
+:deep(.modal-wrapper .modal-container) {
 	display: flex;
 	overflow: hidden;
 }

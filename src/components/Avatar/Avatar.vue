@@ -654,7 +654,7 @@ export default {
 
 	&--with-menu {
 		cursor: pointer;
-		::v-deep .v-popper {
+		:deep(.v-popper) {
 			position: absolute;
 			top: 0;
 			left: 0;

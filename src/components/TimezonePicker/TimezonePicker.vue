@@ -121,7 +121,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .multiselect__tags {
+:deep(.multiselect__tags) {
 	border: none !important; // Remove the Multiselect border
 }
 </style>
