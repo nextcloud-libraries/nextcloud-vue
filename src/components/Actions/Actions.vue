@@ -719,7 +719,7 @@ export default {
 						firstAction?.data?.class,
 					],
 					attrs: {
-						'aria-label': firstAction?.componentOptions?.propsData?.ariaLabel,
+						'aria-label': firstAction?.componentOptions?.propsData?.ariaLabel || firstAction?.componentOptions?.children?.[0]?.text,
 					},
 					props: {
 						 // If it has a title, we use a secondary button
