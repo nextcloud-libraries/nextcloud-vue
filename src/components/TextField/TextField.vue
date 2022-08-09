@@ -150,7 +150,7 @@ export default {
 
 		/**
 		 * The type of the input element, it can be `text`, `password`,
-		 * `email`, `number`, `tel` and `url`.
+		 * `email`, `tel` and `url`.
 		 */
 		type: {
 			type: String,
