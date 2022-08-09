@@ -27,19 +27,19 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 ```vue
 	<template>
 		<Actions>
-			<ActionButton @click="alert('Delete')">
+			<ActionButton @click="showMessage('Delete')">
 				<template #icon>
 					<Delete :size="20" />
 				</template>
 				Delete
 			</ActionButton>
-			<ActionButton :close-after-click="true" @click="alert('Delete and close menu')">
+			<ActionButton :close-after-click="true" @click="showMessage('Delete and close menu')">
 				<template #icon>
 					<Delete :size="20" />
 				</template>
 				Delete and close
 			</ActionButton>
-			<ActionButton :disabled="true" @click="alert('Disabled')">
+			<ActionButton :disabled="true" @click="showMessage('Disabled')">
 				<template #icon>
 					<Delete :size="20" />
 				</template>
@@ -54,6 +54,11 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 		components: {
 			Delete,
 		},
+		methods: {
+			showMessage(msg) {
+				alert(msg)
+			},
+		},
 	}
 	</script>
 ```
@@ -63,13 +68,13 @@ If you're using a long text you can specify a title
 ```vue
 	<template>
 		<Actions>
-			<ActionButton icon="icon-add" @click="alert('Add')">
+			<ActionButton icon="icon-add" @click="showMessage('Add')">
 				<template #icon>
 					<Plus :size="20" />
 				</template>
 				Add new
 			</ActionButton>
-			<ActionButton title="Long button" @click="alert('Delete')">
+			<ActionButton title="Long button" @click="showMessage('Delete')">
 				<template #icon>
 					<Delete :size="20" />
 				</template>
@@ -85,6 +90,11 @@ If you're using a long text you can specify a title
 		components: {
 			Delete,
 			Plus,
+		},
+		methods: {
+			showMessage(msg) {
+				alert(msg)
+			},
 		},
 	}
 	</script>

@@ -2,7 +2,8 @@
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
-  - @author Marco Ambrosini <marcoambrosini@icloud.com
+  - @author Marco Ambrosini <marcoambrosini@icloud.com>
+  - @author Raimund Schlüßler <raimund.schluessler@mailbox.org>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -30,7 +31,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 ```
 <template>
 	<Actions>
-		<ActionButton @click="alert('Delete')">
+		<ActionButton @click="actionDelete">
 			<template #icon>
 				<Delete :size="20" />
 			</template>
@@ -45,6 +46,11 @@ export default {
 	components: {
 		Delete,
 	},
+	methods: {
+		actionDelete() {
+			alert('Delete')
+		},
+	},
 }
 </script>
 ```
@@ -54,13 +60,13 @@ export default {
 ```
 <template>
 	<Actions>
-		<ActionButton @click="alert('Edit')">
+		<ActionButton @click="showMessage('Edit')">
 			<template #icon>
 				<Pencil :size="20" />
 			</template>
 			Edit
 		</ActionButton>
-		<ActionButton @click="alert('Delete')">
+		<ActionButton @click="showMessage('Delete')">
 			<template #icon>
 				<Delete :size="20" />
 			</template>
@@ -84,6 +90,11 @@ export default {
 		Delete,
 		OpenInNew,
 		Pencil,
+	},
+	methods: {
+		showMessage(msg) {
+			alert(msg)
+		},
 	},
 }
 </script>
@@ -97,13 +108,13 @@ export default {
 		<template #icon>
 			<Pencil :size="20" />
 		</template>
-		<ActionButton @click="alert('Edit')">
+		<ActionButton @click="showMessage('Edit')">
 			<template #icon>
 				<Pencil :size="20" />
 			</template>
 			Edit
 		</ActionButton>
-		<ActionButton @click="alert('Delete')">
+		<ActionButton @click="showMessage('Delete')">
 			<template #icon>
 				<Delete :size="20" />
 			</template>
@@ -127,6 +138,11 @@ export default {
 		Delete,
 		OpenInNew,
 		Pencil,
+	},
+	methods: {
+		showMessage(msg) {
+			alert(msg)
+		},
 	},
 }
 </script>
@@ -345,101 +361,10 @@ export default {
 ```
 
 </docs>
-<template>
-	<!-- if only one action, check if we need to bind to click or not -->
-	<element v-if="isValidSingleAction && !forceMenu"
-		v-tooltip.auto="firstAction.text"
-		v-bind="firstActionBinding"
-		:class="{
-			[firstAction.icon]: firstAction.icon,
-			[firstActionClass]: firstActionClass,
-			'action-item--single--with-title': singleActionTitle }"
-		class="action-item action-item--single"
-		rel="nofollow noreferrer noopener"
-		:disabled="isDisabled"
-		@focus="onFocus"
-		@blur="onBlur"
-		@[firstActionEventBinding]="execFirstAction">
-		<!-- Render the icon slot content of the first action -->
-		<VNodes :vnodes="firstActionIconSlot" />
 
-		{{ singleActionTitle }}
-
-		<!-- fake slot to gather main action -->
-		<span :aria-hidden="true" hidden>
-			<!-- @slot All action elements passed into the default slot will be used -->
-			<slot />
-		</span>
-	</element>
-
-	<!-- more than one action -->
-	<div v-else
-		v-show="hasMultipleActions || forceMenu"
-		:class="{'action-item--open': opened}"
-
-		class="action-item">
-		<!-- If more than one action, create a popovermenu -->
-		<Popover :delay="0"
-			:handle-resize="true"
-			:shown.sync="opened"
-			:placement="placement"
-			:boundary="boundariesElement"
-			:container="container"
-			popover-base-class="action-item__popper"
-			@show="openMenu"
-			@after-show="onOpen"
-			@hide="closeMenu">
-			<!-- Menu open/close trigger button -->
-			<template #trigger>
-				<button ref="menuButton"
-					:disabled="disabled"
-					class="icon vue-button action-item__menutoggle"
-					:class="{
-						[defaultIcon]: !iconSlotIsPopulated,
-						'action-item__menutoggle--with-title': menuTitle,
-						'action-item__menutoggle--with-icon-slot': iconSlotIsPopulated,
-						'action-item__menutoggle--default-icon': !iconSlotIsPopulated && defaultIcon === '',
-						'action-item__menutoggle--primary': primary
-					}"
-					aria-haspopup="menu"
-					:aria-label="ariaLabel"
-					:aria-controls="randomId"
-					:aria-expanded="opened.toString()"
-					type="button"
-					@focus="onFocus"
-					@blur="onBlur">
-					<slot v-if="iconSlotIsPopulated" name="icon" />
-					<DotsHorizontal v-else-if="defaultIcon === ''" :size="20" />
-					{{ menuTitle }}
-				</button>
-			</template>
-
-			<!-- Menu content -->
-			<div v-show="opened"
-				ref="menu"
-				:class="{ open: opened }"
-				tabindex="-1"
-				@keydown.up.exact="focusPreviousAction"
-				@keydown.down.exact="focusNextAction"
-				@keydown.tab.exact="focusNextAction"
-				@keydown.shift.tab.exact="focusPreviousAction"
-				@keydown.page-up.exact="focusFirstAction"
-				@keydown.page-down.exact="focusLastAction"
-				@keydown.esc.exact.prevent="closeMenu"
-				@mousemove="onMouseFocusAction">
-				<!-- menu content -->
-				<ul :id="randomId" tabindex="-1" role="menu">
-					<template v-if="opened">
-						<slot />
-					</template>
-				</ul>
-			</div>
-		</Popover>
-	</div>
-</template>
 <script>
+import ButtonVue from '../Button/index.js'
 import Popover from '../Popover/index.js'
-import VNodes from '../VNodes/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { t } from '../../l10n.js'
@@ -464,11 +389,9 @@ export default {
 	},
 
 	components: {
+		ButtonVue,
 		DotsHorizontal,
 		Popover,
-
-		// Component to render the first action icon slot content (vnodes)
-		VNodes,
 	},
 
 	props: {
@@ -510,16 +433,6 @@ export default {
 		primary: {
 			type: Boolean,
 			default: false,
-		},
-
-		/**
-		 * Icon to show for the toggle menu button
-		 * when more than one action is inside the actions component.
-		 * Only replace the default three-dot icon if really necessary.
-		 */
-		defaultIcon: {
-			type: String,
-			default: '',
 		},
 
 		/**
@@ -565,118 +478,10 @@ export default {
 
 	data() {
 		return {
-			actions: [],
 			opened: this.open,
 			focusIndex: 0,
-			randomId: 'menu-' + GenRandomId(),
-			// Making children reactive!
-			// By binding this here, vuejs will track the object content
-			// Needed for firstAction reactivity !!!
-			children: this.$children,
-			firstAction: {},
+			randomId: `menu-${GenRandomId()}`,
 		}
-	},
-
-	computed: {
-		/**
-		 * Is there more than one action?
-		 *
-		 * @return {boolean}
-		 */
-		hasMultipleActions() {
-			return this.actions.length > 1
-		},
-		/**
-		 * Is there any first action ?
-		 * And is it allowed as a standalone element ?
-		 *
-		 * @return {boolean}
-		 */
-		isValidSingleAction() {
-			return this.actions.length === 1
-				&& this.firstActionBinding !== null
-		},
-		/**
-		 * Return the title of the single action if forced
-		 *
-		 * @return {string}
-		 */
-		singleActionTitle() {
-			return this.forceTitle ? this.menuTitle : ''
-		},
-		isDisabled() {
-			return this.disabled
-				|| (this.actions.length === 1 && this.firstAction?.$props?.disabled)
-		},
-		/**
-		 * First action vnode
-		 *
-		 * @return {object} return the first action vue vnode
-		 */
-		firstActionVNode() {
-			return this.actions[0]
-		},
-		/**
-		 * Binding of the first action to the template
-		 *
-		 * @return {object} vue template v-bind shortcut
-		 */
-		firstActionBinding() {
-			if (this.firstActionVNode && this.firstActionVNode.componentOptions) {
-				const tag = this.firstActionVNode.componentOptions.tag
-				if (tag === 'ActionLink') {
-					return {
-						is: 'a',
-						href: this.firstAction.href,
-						target: this.firstAction.target,
-						'aria-label': this.firstAction.ariaLabel,
-						...this.firstAction.$attrs,
-						...this.firstAction.$props,
-					}
-				}
-				if (tag === 'ActionRouter') {
-					return {
-						is: 'router-link',
-						to: this.firstAction.to,
-						exact: this.firstAction.exact,
-						'aria-label': this.firstAction.ariaLabel,
-						...this.firstAction.$attrs,
-						...this.firstAction.$props,
-					}
-				}
-				if (tag === 'ActionButton') {
-					return {
-						is: 'button',
-						'aria-label': this.firstAction.ariaLabel,
-						...this.firstAction.$attrs,
-						...this.firstAction.$props,
-					}
-				}
-			}
-			// other action types are not allowed as standalone buttons
-			return null
-		},
-
-		// return the event to bind if the firstActionVNode have an action
-		firstActionEvent() {
-			return this.firstActionVNode?.componentOptions?.listeners?.click
-		},
-		firstActionEventBinding() {
-			return this.firstActionEvent ? 'click' : null
-		},
-		// return the first action icon slot vnodes array
-		firstActionIconSlot() {
-			return this.firstAction?.$slots?.icon
-		},
-		firstActionClass() {
-			const staticClass = this.firstActionVNode && this.firstActionVNode.data.staticClass
-			const dynClass = this.firstActionVNode && this.firstActionVNode.data.class
-			return (staticClass + ' ' + dynClass).trim()
-		},
-
-		iconSlotIsPopulated() {
-			return !!this.$slots.icon
-		},
 	},
 
 	watch: {
@@ -688,35 +493,20 @@ export default {
 
 			this.opened = state
 		},
-		/**
-		 * Reactive binding to the first children
-		 * Since we're here, it means we already passed all the proper checks
-		 * we can assume the first action is the first children too
-		 */
-		children() {
-			// Fix #2529, slots maybe not available on creation lifecycle
-			// first action vue children object
-			this.firstAction = this.children[0]
-				? this.children[0]
-				: {}
-		},
-	},
-	beforeMount() {
-		// init actions
-		this.initActions()
-	},
-	beforeUpdate() {
-		// ! since we're using $slots to manage our actions
-		// ! we NEED to update the actions if anything change
-
-		// update children & actions
-		// no need to init actions again since we bound it to $children
-		// and the array is now reactive
-		// init actions
-		this.initActions()
 	},
 
 	methods: {
+		/**
+		 * Do we have exactly one Action and
+		 * is it allowed as a standalone element?
+		 *
+		 * @param {Array} actions The acttions to check
+		 * @return {boolean}
+		 */
+		isValidSingleAction(actions) {
+			return actions.length === 1
+				&& ['ActionButton', 'ActionLink', 'ActionRouter'].includes(actions[0]?.componentOptions?.tag)
+		},
 		// MENU STATE MANAGEMENT
 		openMenu(e) {
 			if (this.opened) {
@@ -761,7 +551,7 @@ export default {
 			this.focusIndex = 0
 
 			// focus back the menu button
-			this.$refs.menuButton.focus()
+			this.$refs.menuButton.$el.focus()
 		},
 
 		onOpen(event) {
@@ -791,6 +581,34 @@ export default {
 						this.focusAction()
 					}
 				}
+			}
+		},
+		/**
+		 * Dispatches the keydown listener to different handlers
+		 *
+		 * @param {object} event The keydown event
+		 */
+		onKeydown(event) {
+			// Up or Shift+Tab
+			if (event.keyCode === 38 || (event.keyCode === 9 && event.shiftKey)) {
+				this.focusPreviousAction(event)
+			}
+			// Down or Tab
+			if (event.keyCode === 40 || (event.keyCode === 9 && !event.shiftKey)) {
+				this.focusNextAction(event)
+			}
+			// Page-Up
+			if (event.keyCode === 33) {
+				this.focusFirstAction(event)
+			}
+			// Page-Down
+			if (event.keyCode === 34) {
+				this.focusLastAction(event)
+			}
+			// Esc
+			if (event.keyCode === 27) {
+				this.closeMenu(event)
+				event.preventDefault()
 			}
 		},
 		removeCurrentActive() {
@@ -850,24 +668,11 @@ export default {
 				this.focusAction()
 			}
 		},
-
 		preventIfEvent(event) {
 			if (event) {
 				event.preventDefault()
 				event.stopPropagation()
 			}
-		},
-
-		// ACTIONS MANAGEMENT
-		// exec the first action
-		execFirstAction(event) {
-			if (this.firstActionEvent) {
-				this.firstActionEvent(event)
-			}
-		},
-		initActions() {
-			// filter out invalid slots
-			this.actions = (this.$slots.default || []).filter(node => !!node && !!node.componentOptions)
 		},
 		onFocus(event) {
 			this.$emit('focus', event)
@@ -875,6 +680,182 @@ export default {
 		onBlur(event) {
 			this.$emit('blur', event)
 		},
+	},
+	/**
+	 * The render function to display the component
+	 *
+	 * @param {Function} h The function to create VNodes
+	 * @return {VNodes} The created VNodes
+	 */
+	render(h) {
+		/**
+		 * Filter the Actions, so that we only get allowed components.
+		 * This also ensure that we don't get 'text' elements, which would
+		 * become problematic later on.
+		 */
+		const actions = (this.$slots.default || []).filter(
+			action => action?.componentOptions?.tag
+		)
+
+		// Check that we have at least one action
+		if (actions.length === 0) {
+			return
+		}
+
+		/**
+		 * If we have a single action only and didn't force a menu,
+		 * we render the action as a standalone button
+		 */
+		if (this.isValidSingleAction(actions) && !this.forceMenu) {
+			const firstAction = actions[0]
+			const icon = firstAction?.data?.scopedSlots?.icon()?.[0]
+			const title = this.forceTitle ? this.menuTitle : ''
+			const clickListener = firstAction?.componentOptions?.listeners?.click
+			return h('ButtonVue',
+				{
+					class: [
+						'action-item action-item--single',
+						firstAction?.data?.staticClass,
+						firstAction?.data?.class,
+					],
+					attrs: {
+						'aria-label': firstAction?.componentOptions?.propsData?.ariaLabel,
+					},
+					props: {
+						 // If it has a title, we use a secondary button
+						type: title ? 'secondary' : 'tertiary',
+						disabled: this.disabled || firstAction?.componentOptions?.propsData?.disabled,
+						...firstAction?.componentOptions?.propsData,
+					},
+					directives: [{
+						name: 'tooltip',
+						value: firstAction?.componentOptions?.children?.[0]?.text,
+						modifiers: {
+							auto: true,
+						},
+
+					}],
+					on: {
+						focus: this.onFocus,
+						blur: this.onBlur,
+						// If we have a click listener,
+						// we bind it to execute on click and forward the click event
+						...(!!clickListener && {
+							click: (event) => {
+								if (clickListener) {
+									clickListener(event)
+								}
+							},
+						}),
+					},
+				},
+				[
+					h('template', { slot: 'icon' }, [icon]),
+					title,
+				],
+			)
+		/**
+		 * Otherwise, we render the actions in a popover
+		 */
+		} else {
+			const triggerIcon = this.$slots.icon?.[0] || h('DotsHorizontal', {
+				props: {
+					size: 20,
+				},
+			})
+			return h('div',
+				{
+					class: [
+						'action-item',
+						{
+							'action-item--open': this.opened,
+						},
+					],
+				},
+				[
+					h('Popover',
+						{
+							props: {
+								delay: 0,
+								handleResize: true,
+								shown: this.opened,
+								placement: this.placement,
+								boundary: this.boundariesElement,
+								container: this.container,
+								popoverBaseClass: 'action-item__popper',
+							},
+							// For some reason the popover component
+							// does not react to props given under the 'props' key,
+							// so we use both 'attrs' and 'props'
+							attrs: {
+								delay: 0,
+								handleResize: true,
+								shown: this.opened,
+								placement: this.placement,
+								boundary: this.boundariesElement,
+								container: this.container,
+								popoverBaseClass: 'action-item__popper',
+							},
+							on: {
+								show: this.openMenu,
+								'after-show': this.onOpen,
+								hide: this.closeMenu,
+							},
+						},
+						[
+							h('ButtonVue', {
+								class: 'action-item__menutoggle',
+								props: {
+									// If requested, we use a primary button
+									type: this.primary
+										? 'primary'
+										// If it has a title, we use a secondary button
+										: this.menuTitle ? 'secondary' : 'tertiary',
+									disabled: this.disabled,
+								},
+								slot: 'trigger',
+								ref: 'menuButton',
+								attrs: {
+									'aria-haspopup': 'menu',
+									'aria-label': this.ariaLabel,
+									'aria-controls': this.randomId,
+									'aria-expanded': this.opened.toString(),
+								},
+								on: {
+									focus: this.onFocus,
+									blur: this.onBlur,
+								},
+							}, [
+								h('template', { slot: 'icon' }, [triggerIcon]),
+								this.menuTitle,
+							]),
+							h('div', {
+								class: {
+									open: this.opened,
+								},
+								attrs: {
+									tabindex: '-1',
+								},
+								on: {
+									keydown: this.onKeydown,
+									mousemove: this.onMouseFocusAction,
+								},
+								ref: 'menu',
+							}, [
+								h('ul', {
+									attrs: {
+										id: this.randomId,
+										tabindex: '-1',
+										role: 'menu',
+									},
+								}, [
+									actions,
+								]),
+							]),
+						],
+					),
+				])
+		}
 	},
 }
 </script>
@@ -884,115 +865,9 @@ export default {
 	position: relative;
 	display: inline-block;
 
-	// put a grey round background when menu is opened
-	// or hover-focused
-	&--single:hover,
-	&--single:focus,
-	&--single:active,
-	&__menutoggle:hover,
-	&__menutoggle:focus,
-	&__menutoggle:active {
-		opacity: $opacity_full;
-		// good looking on dark AND white bg, override server styling
-		background-color: $icon-focus-bg !important;
-	}
-
-	// TODO: handle this in the future button component
-	&__menutoggle:disabled,
-	&--single:disabled {
-		opacity: .3 !important;
-	}
-
 	&.action-item--open .action-item__menutoggle {
 		opacity: $opacity_full;
 		background-color: $action-background-hover;
-	}
-
-	// icons
-	&--single,
-	&__menutoggle {
-		box-sizing: border-box;
-		width: auto;
-		min-width: $clickable-area;
-		height: $clickable-area;
-		margin: 0;
-		padding: 0;
-		cursor: pointer;
-		border: none;
-		border-radius: math.div($clickable-area, 2);
-		background-color: transparent;
-
-		&--with-title {
-			position: relative;
-			padding: 0 $icon-margin;
-			padding-left: $clickable-area;
-			white-space: nowrap;
-			opacity: $opacity_full;
-			border: 1px solid var(--color-border-dark);
-			// with a title, we need to display this as a real button
-			background-color: var(--color-background-dark);
-			background-position: $icon-margin center;
-			font-size: inherit;
-
-			// non-background icon class
-			// image slot
-			::v-deep span {
-				width: 24px;
-				height: 24px;
-				line-height: $icon-size;
-				position: absolute;
-				top: 0;
-				left: 0;
-			}
-		}
-	}
-
-	&::v-deep .material-design-icon {
-		width: $clickable-area;
-		height: $clickable-area;
-		opacity: $opacity_full;
-
-		.material-design-icon__svg {
-			vertical-align: middle;
-		}
-	}
-
-	// icon-more
-	&__menutoggle {
-		// align menu icon in center
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		opacity: $opacity_normal;
-		font-weight: bold;
-		line-height: $icon-size;
-
-		&--primary {
-			opacity: $opacity_full;
-			color: var(--color-primary-text);
-			border: none;
-			background-color: var(--color-primary-element);
-			.action-item--open &,
-			&:hover,
-			&:focus,
-			&:active {
-				color: var(--color-primary-text) !important;
-				background-color: var(--color-primary-element-light) !important;
-			}
-		}
-	}
-
-	&--single {
-		opacity: $opacity_normal;
-		&:hover,
-		&:focus,
-		&:active {
-			opacity: $opacity_full;
-		}
-		// hide anything the slot is displaying
-		& > [hidden] {
-			display: none;
-		}
 	}
 }
 </style>
