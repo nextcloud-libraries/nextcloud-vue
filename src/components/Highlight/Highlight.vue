@@ -210,16 +210,16 @@ export default {
 	/**
 	 * The render function to display the component
 	 *
-	 * @param {Function} createElement The function to create VNodes
+	 * @param {Function} h The function to create VNodes
 	 * @return {VNodes} The created VNodes
 	 */
-	render(createElement) {
+	render(h) {
 		if (!this.ranges.length) {
-			return createElement('span', {}, this.text)
+			return h('span', {}, this.text)
 		}
 
-		return createElement('span', {}, this.chunks.map(chunk => {
-			return chunk.highlight ? createElement('strong', {}, chunk.text) : chunk.text
+		return h('span', {}, this.chunks.map(chunk => {
+			return chunk.highlight ? h('strong', {}, chunk.text) : chunk.text
 		}))
 	},
 }

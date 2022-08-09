@@ -250,7 +250,7 @@ export default {
 		},
 	},
 
-	render(createElement) {
+	render(h) {
 		/**
 		 * Build the navigation
 		 *
@@ -258,13 +258,13 @@ export default {
 		 */
 		const createAppSettingsNavigation = () => {
 			if (this.hasNavigation) {
-				return [createElement('div', {
+				return [h('div', {
 					attrs: {
 						class: 'app-settings__navigation',
 						role: 'tablist',
 						'aria-label': this.settingsNavigationAriaLabel,
 					},
-				}, [createElement('ul', {
+				}, [h('ul', {
 					attrs: {
 						class: 'navigation-list',
 						role: 'tablist',
@@ -283,7 +283,7 @@ export default {
 		 * @param {object} item the navigation item
 		 * @return {object} the list element
 		 */
-		const createListElement = (item) => createElement('li', {}, [createElement('a', {
+		const createListElement = (item) => h('li', {}, [h('a', {
 			class: {
 				'navigation-list__link': true,
 				'navigation-list__link--active': item.id === this.selectedSection,
@@ -303,7 +303,7 @@ export default {
 
 		// Return value of the render function
 		if (this.open) {
-			return createElement('Modal', {
+			return h('Modal', {
 				attrs: {
 					container: this.container,
 					size: 'large',
@@ -313,14 +313,14 @@ export default {
 				},
 			}, [
 				// main app-settings root element
-				createElement('div', {
+				h('div', {
 					attrs: {
 						class: 'app-settings',
 					},
 				}, [
 					// app-settings title
 					this.title
-						? createElement('h2', {
+						? h('h2', {
 							attrs: {
 								class: 'app-settings__title',
 							},
@@ -328,7 +328,7 @@ export default {
 						: undefined,
 
 					// app-settings navigation + content
-					createElement(
+					h(
 						'div',
 						{
 							attrs: {
@@ -337,7 +337,7 @@ export default {
 						},
 						[
 							...createAppSettingsNavigation(),
-							createElement('div', {
+							h('div', {
 								attrs: {
 									class: 'app-settings__content',
 								},
