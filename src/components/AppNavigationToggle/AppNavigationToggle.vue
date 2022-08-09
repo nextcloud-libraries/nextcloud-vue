@@ -30,7 +30,7 @@
 		aria-controls="app-navigation-vue"
 		@click="toggleNavigation">
 		<template #icon>
-			<Menu :size="20" />
+			<MenuIcon :size="20" />
 		</template>
 	</ButtonVue>
 </template>
@@ -40,7 +40,7 @@ import ButtonVue from '../ButtonVue/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import { t } from '../../l10n.js'
 
-import Menu from 'vue-material-design-icons/Menu'
+import MenuIcon from 'vue-material-design-icons/Menu'
 
 export default {
 	name: 'AppNavigationToggle',
@@ -51,7 +51,7 @@ export default {
 
 	components: {
 		ButtonVue,
-		Menu,
+		MenuIcon,
 	},
 
 	props: {
