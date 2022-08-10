@@ -232,7 +232,7 @@ $input-margin: 4px;
 		background-size: $icon-size;
 	}
 
-	&::v-deep .material-design-icon {
+	&:deep(.material-design-icon) {
 		width: $clickable-area;
 		height: $clickable-area;
 		opacity: $opacity_full;

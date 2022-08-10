@@ -85,7 +85,7 @@ export default {
 	display: flex;
 	padding-top: 50px;
 	min-height: 100%;
-	::v-deep * {
+	:deep(*) {
 		box-sizing: border-box;
 	}
 }

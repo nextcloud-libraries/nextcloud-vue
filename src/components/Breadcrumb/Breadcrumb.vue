@@ -246,7 +246,7 @@ export default {
 		font-weight: bold;
 
 		> a,
-		> a::v-deep * {
+		> a:deep(*) {
 			cursor: default;
 		}
 
@@ -297,7 +297,7 @@ export default {
 
 	// Adjust action item appearance for crumbs with actions
 	// to match other crumbs
-	&::v-deep .action-item {
+	&:deep() .action-item {
 		// Adjustments necessary to correctly shrink on small screens
 		max-width: 100%;
 		.trigger {

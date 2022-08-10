@@ -785,13 +785,13 @@ export default {
 			background-size: 22px;
 		}
 
-		::v-deep button {
+		:deep(button) {
 			// force white instead of default main text
 			color: #fff;
 		}
 
 		// Force the Actions menu icon to be the same size as other icons
-		&::v-deep .action-item__menutoggle {
+		&:deep(.action-item__menutoggle) {
 			padding: 0;
 			span, svg {
 				width: var(--icon-size);

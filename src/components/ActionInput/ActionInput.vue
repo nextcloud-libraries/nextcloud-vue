@@ -282,7 +282,7 @@ $input-margin: 4px;
 
 	font-weight: normal;
 
-	&::v-deep .material-design-icon {
+	&:deep(.material-design-icon) {
 		width: $clickable-area;
 		height: $clickable-area;
 		opacity: $opacity_full;
@@ -416,10 +416,8 @@ $input-margin: 4px;
 		}
 	}
 
-	&__picker::v-deep {
-		.mx-input {
-			margin: 0;
-		}
+	&__picker :deep(.mx-input) {
+		margin: 0;
 	}
 
 	&__multi {
