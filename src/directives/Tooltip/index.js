@@ -29,3 +29,4 @@ options.themes.tooltip.distance = 10
 options.themes.tooltip['arrow-padding'] = 3
 
 export default VTooltip
+export { options }
