@@ -170,6 +170,13 @@ export default {
 		},
 	},
 
+	emits: [
+		'input',
+		'submit',
+		'change',
+		'update:value',
+	],
+
 	computed: {
 		isIconUrl() {
 			try {

@@ -133,6 +133,10 @@ export default {
 			default: false,
 		},
 	},
+	emits: [
+		'update:open',
+		'dropped',
+	],
 	data() {
 		return {
 			/**

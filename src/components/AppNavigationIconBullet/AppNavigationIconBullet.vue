@@ -65,6 +65,8 @@ export default {
 		},
 	},
 
+	emits: ['click'],
+
 	computed: {
 		formattedColor() {
 			if (this.color.startsWith('#')) {

@@ -95,6 +95,8 @@ export default {
 		},
 	},
 
+	emits: ['update:active'],
+
 	data() {
 		return {
 			/**

@@ -120,6 +120,8 @@ export default {
 		},
 	},
 
+	emits: ['new-item'],
+
 	data() {
 		return {
 			newItemValue: '',

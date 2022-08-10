@@ -99,6 +99,10 @@ export default {
 			default: false,
 		},
 	},
+	emits: [
+		'input',
+		'error',
+	],
 	data() {
 		return {
 			groups: {},

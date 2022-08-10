@@ -59,6 +59,8 @@ export default {
 		},
 	},
 
+	emits: ['click'],
+
 	computed: {
 		labelButton() {
 			return open ? t('Close') : t('Open')

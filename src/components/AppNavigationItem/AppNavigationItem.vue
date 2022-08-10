@@ -367,6 +367,14 @@ export default {
 		},
 	},
 
+	emits: [
+		'update:menuOpen',
+		'update:open',
+		'update:title',
+		'click',
+		'undo',
+	],
+
 	data() {
 		return {
 			editingValue: '',

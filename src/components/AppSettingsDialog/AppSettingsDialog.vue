@@ -125,6 +125,8 @@ export default {
 		},
 	},
 
+	emits: ['update:open'],
+
 	data() {
 		return {
 			selectedSection: '',

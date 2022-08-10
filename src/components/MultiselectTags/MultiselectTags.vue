@@ -117,6 +117,7 @@ export default {
 			default: (element, index) => index < 5,
 		},
 	},
+	emits: ['input'],
 	data() {
 		return {
 			tags: [],

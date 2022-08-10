@@ -56,6 +56,10 @@ export default {
 		},
 	},
 
+	emits: [
+		'click',
+	],
+
 	computed: {
 		isIconUrl() {
 			try {

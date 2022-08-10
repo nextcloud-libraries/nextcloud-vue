@@ -246,6 +246,10 @@ export default {
 		},
 	},
 
+	emits: [
+		'update:value',
+	],
+
 	methods: {
 		handleInput(event) {
 			this.$emit('update:value', event.target.value)

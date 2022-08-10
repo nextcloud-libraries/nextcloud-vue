@@ -99,6 +99,13 @@ export default {
 		},
 	},
 
+	emits: [
+		'change',
+		'check',
+		'uncheck',
+		'update:checked',
+	],
+
 	computed: {
 		/**
 		 * determines if the action is focusable

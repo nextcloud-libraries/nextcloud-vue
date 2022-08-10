@@ -447,6 +447,12 @@ export default {
 		},
 	},
 
+	emits: [
+		'previous',
+		'next',
+		'close',
+	],
+
 	data() {
 		return {
 			mc: null,
