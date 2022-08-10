@@ -322,7 +322,7 @@ export default {
 			}
 			return {
 				content: t('Message limit of {count} characters reached', { count: this.maxlength }),
-				show: true,
+				shown: true,
 				trigger: 'manual',
 			}
 		},
