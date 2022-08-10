@@ -32,7 +32,7 @@ $arrow-width: 10px;
 
 		// TOP
 		&[data-popper-placement^='top'] .v-popper__arrow-container {
-			bottom: 0;
+			bottom: -$arrow-width;
 			border-bottom-width: 0;
 			border-top-color: var(--color-main-background);
 		}
