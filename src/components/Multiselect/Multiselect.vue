@@ -343,6 +343,11 @@ export default {
 		},
 	},
 
+	emits: [
+		'change',
+		'update:value',
+	],
+
 	data() {
 		return {
 			elWidth: 0,

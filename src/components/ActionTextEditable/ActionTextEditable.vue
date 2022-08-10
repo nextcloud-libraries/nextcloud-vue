@@ -136,6 +136,12 @@ export default {
 		},
 	},
 
+	emits: [
+		'input',
+		'update:value',
+		'submit',
+	],
+
 	computed: {
 		/**
 		 * determines if the action is focusable

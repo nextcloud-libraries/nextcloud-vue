@@ -194,6 +194,8 @@ export default {
 		},
 	},
 
+	emits: ['update:showDetails'],
+
 	data() {
 		return {
 			contentHeight: 0,

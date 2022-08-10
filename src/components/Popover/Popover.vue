@@ -118,6 +118,11 @@ export default {
 		},
 	},
 
+	emits: [
+		'after-show',
+		'after-hide',
+	],
+
 	mounted() {
 		this.$watch(
 			() => {

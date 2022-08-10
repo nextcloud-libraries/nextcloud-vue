@@ -156,6 +156,7 @@ export default {
 			default: 'icon-home',
 		},
 	},
+	emits: ['dropped'],
 	data() {
 		return {
 			/**

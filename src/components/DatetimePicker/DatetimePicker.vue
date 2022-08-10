@@ -268,6 +268,11 @@ export default {
 		},
 	},
 
+	emits: [
+		'update:value',
+		'update:timezone-id',
+	],
+
 	data() {
 		return {
 			showTimezonePopover: false,

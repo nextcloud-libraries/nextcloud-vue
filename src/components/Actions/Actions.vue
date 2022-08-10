@@ -476,6 +476,15 @@ export default {
 		},
 	},
 
+	emits: [
+		'update:open',
+		'open',
+		'update:open',
+		'close',
+		'focus',
+		'blur',
+	],
+
 	data() {
 		return {
 			opened: this.open,

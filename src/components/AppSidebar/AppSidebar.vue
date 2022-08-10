@@ -417,6 +417,21 @@ export default {
 		},
 	},
 
+	emits: [
+		'close',
+		'closing',
+		'closed',
+		'opening',
+		'opened',
+		'figure-click',
+		'update:starred',
+		'update:titleEditable',
+		'update:title',
+		'update:active',
+		'submit-title',
+		'dismiss-editing',
+	],
+
 	data() {
 		return {
 			changeTitleTranslated: t('Change title'),

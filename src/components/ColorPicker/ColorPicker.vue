@@ -192,6 +192,14 @@ export default {
 		},
 	},
 
+	emits: [
+		'submit',
+		'close',
+		'update:open',
+		'update:value',
+		'input',
+	],
+
 	data() {
 		return {
 			currentColor: this.value,

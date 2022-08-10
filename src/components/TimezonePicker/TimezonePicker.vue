@@ -84,6 +84,7 @@ export default {
 			default: 'floating',
 		},
 	},
+	emits: ['input'],
 	computed: {
 		placeholder() {
 			return t('Type to search time zone')

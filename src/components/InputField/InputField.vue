@@ -172,6 +172,11 @@ export default {
 		},
 	},
 
+	emits: [
+		'update:value',
+		'trailing-button-click',
+	],
+
 	computed: {
 		inputName() {
 			return 'input' + GenRandomId()

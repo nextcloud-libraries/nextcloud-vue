@@ -172,6 +172,10 @@ export default {
 			default: 'body',
 		},
 	},
+	emits: [
+		'select',
+		'select-data',
+	],
 	data() {
 		return {
 			emojiIndex: new EmojiIndex(data),

@@ -224,6 +224,12 @@ export default {
 		},
 	},
 
+	emits: [
+		'submit',
+		'paste',
+		'update:value',
+	],
+
 	data() {
 		return {
 			tribute: null,

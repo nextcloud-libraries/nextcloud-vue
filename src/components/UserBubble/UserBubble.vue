@@ -196,6 +196,10 @@ export default {
 			default: 2,
 		},
 	},
+	emits: [
+		'click',
+		'update:open',
+	],
 	computed: {
 		/**
 		 * If userbubble is empty, let's NOT
