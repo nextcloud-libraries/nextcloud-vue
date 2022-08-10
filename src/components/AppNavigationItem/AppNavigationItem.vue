@@ -583,7 +583,7 @@ export default {
 		}
 	}
 }
-	/* Second level nesting for lists */
+/* Second level nesting for lists */
 .app-navigation-entry__children {
 	position: relative;
 	display: flex;
