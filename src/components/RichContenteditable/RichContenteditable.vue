@@ -24,7 +24,6 @@
 ### General description
 
 This component displays contenteditable div with automated `@` [at] autocompletion and `:` [colon] emoji autocompletion.
-Note you need to register the [tooltip directive](https://nextcloud-vue-components.netlify.app/#/Directives) in your entry file.
 
 ### Examples
 
@@ -123,7 +122,7 @@ export default {
 
 <template>
 	<div ref="contenteditable"
-		v-tooltip="tooltip"
+		v-tooltip="tooltipString"
 		:class="{
 			'rich-contenteditable__input--empty': isEmptyValue,
 			'rich-contenteditable__input--multiline': multiline,
@@ -147,6 +146,7 @@ export default {
 import { t } from '../../l10n.js'
 import AutoCompleteResult from './AutoCompleteResult.vue'
 import richEditor from '../../mixins/richEditor/index.js'
+import Tooltip from '../../directives/Tooltip/index.js'
 import { emojiSearch, addRecent } from '../../functions/emoji/index.js'
 
 import Tribute from 'tributejs/dist/tribute.esm.js'
@@ -155,6 +155,10 @@ import stringLength from 'string-length'
 
 export default {
 	name: 'RichContenteditable',
+
+	directives: {
+		tooltip: Tooltip,
+	},
 
 	mixins: [richEditor],
 
@@ -316,7 +320,7 @@ export default {
 		 *
 		 * @return {string}
 		 */
-		tooltip() {
+		tooltipString() {
 			if (!this.isOverMaxlength) {
 				return null
 			}
