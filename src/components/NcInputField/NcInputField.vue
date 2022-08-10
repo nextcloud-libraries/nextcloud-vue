@@ -29,6 +29,7 @@
 		</label>
 		<div class="input-field__main-wrapper">
 			<input v-bind="$attrs"
+				:id="computedId"
 				ref="input"
 				:name="inputName"
 				class="input-field__input"
@@ -53,9 +54,10 @@
 			</div>
 
 			<!-- trailing button -->
-			<NcButtonVue v-if="showTrailingButton"
+			<NcButton v-if="showTrailingButton"
 				type="tertiary-no-background"
 				class="input-field__clear-button"
+				:aria-label="trailingButtonLabel"
 				@click="handleTrailingButtonClick">
 				<!-- Populating this slot creates a trailing button within the
 				input boundaries that emits a `trailing-button-click` event -->
@@ -78,8 +80,8 @@
 				'input-field__helper-text-message--error': error,
 				'input-field__helper-text-message--success': success,
 			}">
-			<Check class="input-field__helper-text-message__icon" v-if="success" :size="18" />
-			<AlertCircle class="input-field__helper-text-message__icon" v-else-if="error" :size="18" />
+			<Check v-if="success" class="input-field__helper-text-message__icon" :size="18" />
+			<AlertCircle v-else-if="error" class="input-field__helper-text-message__icon" :size="18" />
 			{{ helperText }}
 		</p>
 	</div>
@@ -100,6 +102,8 @@ export default {
 		AlertCircle,
 		Check,
 	},
+
+	inheritAttrs: false,
 
 	props: {
 		/**
@@ -167,6 +171,16 @@ export default {
 		},
 
 		/**
+		 * Label of the trailing button
+		 *
+		 * Required when showTrailingButton is set
+		 */
+		trailingButtonLabel: {
+			type: String,
+			default: '',
+		},
+
+		/**
 		 * Toggles the success state of the component. Adds a checkmark icon.
 		 * this cannot be used together with canClear.
 		 */
@@ -202,6 +216,10 @@ export default {
 	],
 
 	computed: {
+		computedId() {
+			return this.$attrs.id && this.$attrs.id !== '' ? this.$attrs.id : this.inputName
+		},
+
 		inputName() {
 			return 'input' + GenRandomId()
 		},

@@ -106,6 +106,13 @@ export default {
 .external-label {
 	display: flex;
 	width: 100%;
+	margin-top: 1rem;
+}
+
+.external-label label {
+	padding-top: 7px;
+	padding-right: 14px;
+	white-space: nowrap;
 }
 </style>
 ```
@@ -114,6 +121,7 @@ export default {
 <template>
 	<NcInputField v-bind="$props"
 		ref="inputField"
+		:trailing-button-label="clearTextLabel"
 		v-on="$listeners"
 		@input="handleInput">
 		<!-- Default slot for the leading icon -->
@@ -131,6 +139,8 @@ import NcInputField from '../NcInputField/NcInputField.vue'
 
 import Close from 'vue-material-design-icons/Close.vue'
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+
+import { t } from '../../l10n.js'
 
 export default {
 	name: 'NcTextField',
@@ -268,6 +278,12 @@ export default {
 	emits: [
 		'update:value',
 	],
+
+	computed: {
+		clearTextLabel() {
+			return t('Clear text')
+		},
+	},
 
 	methods: {
 		handleInput(event) {

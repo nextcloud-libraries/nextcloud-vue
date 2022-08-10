@@ -32,6 +32,9 @@ msgstr ""
 msgid "Choose"
 msgstr ""
 
+msgid "Clear text"
+msgstr ""
+
 msgid "Close"
 msgstr ""
 
@@ -72,6 +75,9 @@ msgid "Global"
 msgstr ""
 
 msgid "Go back to the list"
+msgstr ""
+
+msgid "Hide password"
 msgstr ""
 
 msgid "items"
@@ -132,6 +138,9 @@ msgid "Settings"
 msgstr ""
 
 msgid "Settings navigation"
+msgstr ""
+
+msgid "Show password"
 msgstr ""
 
 msgid "Smileys & Emotion"

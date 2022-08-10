@@ -28,28 +28,27 @@ General purpose password field component.
 ```
 <template>
 	<div class="wrapper">
-		<PasswordField :value.sync="text1"
+		<NcPasswordField :value.sync="text1"
 			label="Old password" />
 		<div class="external-label">
-			<label for="$refs.textField.id">New password</label>
-			<PasswordField :value.sync="text2"
-				ref="textField"
+			<label for="textField">New password</label>
+			<NcPasswordField :value.sync="text2"
+				id="textField"
 				:label-outside="true" />
 		</div>
 		<div class="external-label">
 			<label for="textField2">New password</label>
-			<PasswordField :value.sync="text3"
+			<NcPasswordField :value.sync="text3"
 				:error="true"
 				id="textField2"
 				:label-outside="true"
 				helper-text="Password is insecure" />
 		</div>
 
-		<PasswordField :value.sync="text4"
+		<NcPasswordField :value.sync="text4"
 			label="Good new password"
-			label-visible="true"
+			:label-visible="true"
 			:success="true"
-			id="textField2"
 			helper-text="Password is secure" />
 	</div>
 </template>
@@ -59,7 +58,7 @@ export default {
 		return {
 			text1: '',
 			text2: '',
-			text3: '',
+			text3: 'hunter',
 			text4: '',
 		}
 	},
@@ -78,42 +77,54 @@ export default {
 	width: 100%;
 	margin-top: 1rem;
 }
+
+.external-label label {
+	padding-top: 7px;
+	padding-right: 14px;
+	white-space: nowrap;
+}
 </style>
 ```
 </docs>
 
 <template>
-	<InputField v-bind="$props"
+	<NcInputField v-bind="$props"
 		:type="isPasswordHidden ? 'password' : 'text'"
 		:show-trailing-button="true"
 		:helper-text="computedHelperText"
+		:minlength="rules.minlength"
+		:trailing-button-label="trailingButtonLabel"
 		v-on="$listeners"
 		@trailing-button-click="togglePasswordVisibility"
 		@input="handleInput">
 		<!-- Default slot for the leading icon -->
 		<slot />
-		<template slot="trailing-button-icon">
+		<template #trailing-button-icon>
 			<Eye v-if="isPasswordHidden" :size="18" />
 			<EyeOff v-else :size="18" />
 		</template>
-	</InputField>
+	</NcInputField>
 </template>
 
 <script>
 
-import Eye from 'vue-material-design-icons/Eye'
-import EyeOff from 'vue-material-design-icons/EyeOff'
-import InputField from '../InputField/InputField.vue'
-import _ from 'lodash'
+import Eye from 'vue-material-design-icons/Eye.vue'
+import EyeOff from 'vue-material-design-icons/EyeOff.vue'
+import NcInputField from '../NcInputField/NcInputField.vue'
+import debounce from 'debounce'
 import axios from '@nextcloud/axios'
 import { loadState } from '@nextcloud/initial-state'
 import { generateOcsUrl } from '@nextcloud/router'
+import { t } from '../../l10n.js'
+import logger from '../../utils/logger.js'
+
+const defaultPasswordPolicy = loadState('core', 'capabilities', { passwordPolicy: null }).password_policy
 
 export default {
-	name: 'PasswordField',
+	name: 'NcPasswordField',
 
 	components: {
-		InputField,
+		NcInputField,
 		Eye,
 		EyeOff,
 	},
@@ -246,46 +257,64 @@ export default {
 		},
 
 		/**
-		 * Id of the input field. To use when using external label
+		 * Id of the input field. To use when using an external label
 		 */
 		id: {
 			type: String,
 			default: '',
 		},
+
+		/**
+		 * Disable the password field
+		 */
+		disabled: {
+			type: Boolean,
+			default: '',
+		},
 	},
+
+	emits: [
+		'valid',
+		'invalid',
+		'update:value',
+	],
 
 	data() {
 		return {
 			isPasswordHidden: true,
-			internalErrorMessage: '',
-			passwordPolicy: null,
+			internalHelpMessage: '',
+			passwordPolicy: defaultPasswordPolicy,
+			isValid: true,
 		}
 	},
 
 	computed: {
+		computedError() {
+			return this.error || !this.isValid
+		},
+		computedSuccess() {
+			return this.success && this.isValid
+		},
 		computedHelperText() {
 			if (this.helperText.length > 0) {
 				return this.helperText
 			}
-			return this.internalErrorMessage
+			return this.internalHelpMessage
 		},
-		computedMinlength() {
-			if (this.$props.minlength) {
-				return this.$props.minlength
+		rules() {
+			const { minlength, passwordPolicy } = this
+			return {
+				minlength: minlength ?? passwordPolicy?.minLength,
 			}
-			if (this.passwordPolicy) {
-				return this.passwordPolicy.minLength
-			}
-			return null
+		},
+		trailingButtonLabel() {
+			return this.isPasswordHidden ? t('Show password') : t('Hide password')
 		},
 	},
 
 	watch: {
 		value(newValue) {
 			if (this.checkPasswordStrength) {
-				if (this.passwordPolicy === null) {
-					this.passwordPolicy = loadState('core', 'capabilities').password_policy
-				}
 				if (this.passwordPolicy === null) {
 					return
 				}
@@ -298,20 +327,40 @@ export default {
 
 	methods: {
 		handleInput(event) {
+			/**
+			 * Triggers when the value inside the password field is
+			 * updated.
+			 *
+			 * @property {string} The new value
+			 */
 			this.$emit('update:value', event.target.value)
 		},
 		togglePasswordVisibility() {
 			this.isPasswordHidden = !this.isPasswordHidden
 		},
-		checkPassword: _.debounce(function(password) {
-			axios.post(generateOcsUrl('apps/password_policy/api/v1/validate'), { password })
-				.then(res => res.data.ocs.data)
-				.then(data => {
-					if (data.passed) {
-						this.internalErrorMessage = t('Password is secure')
-					}
-					this.internalErrorMessage = data.reason
-				})
+		checkPassword: debounce(async function(password) {
+			try {
+				const { data } = await axios.post(generateOcsUrl('apps/password_policy/api/v1/validate'), { password })
+				this.isValid = data.ocs.data.passed
+				if (data.ocs.data.passed) {
+					this.internalHelpMessage = t('Password is secure')
+					/**
+					 * Triggers when the internal password_policy detect that the
+					 * password entered is valid.
+					 */
+					this.$emit('valid')
+					return
+				}
+
+				this.internalHelpMessage = data.reason
+				/**
+				 * Triggers when the internal password_policy detect that the
+				 * password entered is invalid.
+				 */
+				this.$emit('invalid')
+			} catch (e) {
+				logger.error('Password policy returned an error', e)
+			}
 		}, 500),
 	},
 }
