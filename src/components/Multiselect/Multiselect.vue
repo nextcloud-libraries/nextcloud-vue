@@ -212,7 +212,9 @@ export default {
 		</template>
 
 		<template #noResult>
-			<span>{{ t('No results') }}</span>
+			<slot name="noResult">
+				<span>{{ t('No results') }}</span>
+			</slot>
 		</template>
 		<template #loading>
 			<LoadingIcon v-if="loading" />
