@@ -25,6 +25,7 @@
 <ul>
 	<listItem
 		:title="'Title of the element'"
+		:titleTooltip="'Shown when hovering over title'"
 		:bold="false"
 		:details="'One hour ago'"
 		:counter-number="44"
@@ -211,7 +212,8 @@
 						<!-- First line, title and details -->
 						<div class="line-one"
 							:class="{'line-one--bold': bold}">
-							<span class="line-one__title">
+							<span class="line-one__title"
+								v-tooltip="titleTooltip">
 								{{ title }}
 							</span>
 							<span v-if="showDetails"
@@ -276,6 +278,7 @@
 <script>
 import Actions from '../Actions/index.js'
 import CounterBubble from '../CounterBubble/index.js'
+import Tooltip from '../../directives/Tooltip/index.js'
 
 export default {
 	name: 'ListItem',
@@ -283,6 +286,10 @@ export default {
 	components: {
 		Actions,
 		CounterBubble,
+	},
+
+	directives: {
+		Tooltip,
 	},
 
 	props: {
@@ -300,6 +307,15 @@ export default {
 		title: {
 			type: String,
 			required: true,
+		},
+
+		/**
+		 * Tooltip to display for the title.
+		 * Can be set to the same text in case it's too long.
+		 */
+		titleTooltip: {
+			type: String,
+			default: '',
 		},
 
 		/**
