@@ -287,7 +287,7 @@ It can be used with one or multiple actions.
 ```
 <template>
 	<div style="display: flex;align-items: center;">
-		<button @click="toggled = !toggled">Toggle multiple action</button>
+		<ButtonVue @click="toggled = !toggled">Toggle multiple action</ButtonVue>
 		<Actions>
 			<template #icon>
 				<DotsHorizontalCircleOutline :size="20" />

@@ -25,7 +25,7 @@
 	```vue
 	<template>
 		<div>
-			<button @click="showModal">Show Modal</button>
+			<ButtonVue @click="showModal">Show Modal</ButtonVue>
 			<modal
 				v-if="modal"
 				@close="closeModal"
@@ -69,7 +69,7 @@
 	```vue
 	<template>
 		<div>
-			<button @click="showModal">Show Modal with fields</button>
+			<ButtonVue @click="showModal">Show Modal with fields</ButtonVue>
 			<modal
 				v-if="modal"
 				@close="closeModal"
@@ -136,10 +136,10 @@
 	```vue
 	<template>
 		<div>
-			<button @click="showModal">Show Modal</button>
+			<ButtonVue @click="showModal">Show Modal</ButtonVue>
 			<modal v-if="modal" @close="closeModal" size="small">
 				<EmojiPicker container=".modal-mask" @select="select">
-					<button>Select emoji {{ emoji }}</button>
+					<ButtonVue>Select emoji {{ emoji }}</ButtonVue>
 				</EmojiPicker>
 			</modal>
 		</div>

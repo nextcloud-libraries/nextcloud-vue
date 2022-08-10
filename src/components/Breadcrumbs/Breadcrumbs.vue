@@ -62,12 +62,12 @@ is dropped on a creadcrumb.
 					</ActionButton>
 				</Breadcrumb>
 				<template #actions>
-					<Button>
+					<ButtonVue>
 						<template #icon>
 							<Plus :size="20" />
 						</template>
 						New
-					</Button>
+					</ButtonVue>
 				</template>
 			</Breadcrumbs>
 		</div>

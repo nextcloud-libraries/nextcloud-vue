@@ -38,7 +38,7 @@ actual pickers:
 <template>
 	<div class="container0">
 		<ColorPicker v-model="color">
-			<button> Click Me </button>
+			<ButtonVue> Click Me </ButtonVue>
 		</ColorPicker>
 		<div :style="{'background-color': color}" class="color0" />
 	</div>
@@ -71,7 +71,7 @@ export default {
 ```vue
 <template>
 	<div class="container1">
-		<button @click="open = !open"> Click Me </button>
+		<ButtonVue @click="open = !open"> Click Me </ButtonVue>
 		<ColorPicker :value="color" @input="updateColor" :shown.sync="open">
 			<div :style="{'background-color': color}" class="color1" />
 		</ColorPicker>
