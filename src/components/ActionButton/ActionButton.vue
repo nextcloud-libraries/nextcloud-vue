@@ -69,9 +69,6 @@ If you're using a long text you can specify a title
 	<template>
 		<Actions>
 			<ActionButton icon="icon-add" @click="showMessage('Add')">
-				<template #icon>
-					<Plus :size="20" />
-				</template>
 				Add new
 			</ActionButton>
 			<ActionButton title="Long button" @click="showMessage('Delete')">
@@ -84,13 +81,33 @@ If you're using a long text you can specify a title
 	</template>
 	<script>
 	import Delete from 'vue-material-design-icons/Delete'
-	import Plus from 'vue-material-design-icons/Plus'
 
 	export default {
 		components: {
 			Delete,
-			Plus,
 		},
+		methods: {
+			showMessage(msg) {
+				alert(msg)
+			},
+		},
+	}
+	</script>
+
+```
+
+Action icon attribute with a single action
+
+```vue
+	<template>
+		<Actions>
+			<ActionButton icon="icon-add" @click="showMessage('Add')">
+				Add new
+			</ActionButton>
+		</Actions>
+	</template>
+	<script>
+	export default {
 		methods: {
 			showMessage(msg) {
 				alert(msg)
