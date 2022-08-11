@@ -170,11 +170,14 @@ export default {
 		]"
 		:options="options"
 		:limit="maxOptions"
+		:aria-expanded="ariaExpanded"
 		:close-on-select="willCloseOnSelect"
 		:multiple="multiple"
 		:label="label"
 		:track-by="trackBy"
 		tag-placeholder="create"
+		@close="ariaExpanded='false'"
+		@open="ariaExpanded='true'"
 		v-on="$listeners">
 		<!-- This is the scope to format the list of available options in the dropdown
 			Two templates to avoid registering the slot unnecessary -->
@@ -343,6 +346,7 @@ export default {
 	data() {
 		return {
 			elWidth: 0,
+			ariaExpanded: 'false',
 		}
 	},
 	computed: {
