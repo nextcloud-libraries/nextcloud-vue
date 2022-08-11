@@ -2,15 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## v6.0.0-beta.2 (2022-08-11)
+
+#### :bug: Bug Fix
+
+* [#3006](https://github.com/nextcloud/nextcloud-vue/pull/3006) Fix single button action icon attribute ([@PVince81](https://github.com/PVince81))
+
 ## v6.0.0-beta.1 (2022-08-11)
 
 #### :boom: Breaking Change
 * [#2980](https://github.com/nextcloud/nextcloud-vue/pull/2980) Bump @nextcloud/eslint-config from 8.0.0 to 8.1.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
-* [#2911](https://github.com/nextcloud/nextcloud-vue/pull/2911) Use render function in Actions component ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* ~~[#2911](https://github.com/nextcloud/nextcloud-vue/pull/2911) Use render function in Actions component ([@raimund-schluessler](https://github.com/raimund-schluessler))~~ No more breaking after [#3006](https://github.com/nextcloud/nextcloud-vue/pull/3006) in beta.2
 * [#2929](https://github.com/nextcloud/nextcloud-vue/pull/2929) Bump vue from 2.6.14 to 2.7.8 ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#2923](https://github.com/nextcloud/nextcloud-vue/pull/2923) Enforce setting section ids ([@nickvergessen](https://github.com/nickvergessen))
 
 #### :rocket: Enhancement
+* [#2911](https://github.com/nextcloud/nextcloud-vue/pull/2911) Use render function in Actions component ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#2998](https://github.com/nextcloud/nextcloud-vue/pull/2998) Import tooltip directive only locally ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#2983](https://github.com/nextcloud/nextcloud-vue/pull/2983) Simplify webpack configuration ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#2973](https://github.com/nextcloud/nextcloud-vue/pull/2973) Allow to filter the available tags ([@nickvergessen](https://github.com/nickvergessen))
