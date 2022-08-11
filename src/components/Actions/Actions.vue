@@ -739,6 +739,8 @@ export default {
 						'action-item action-item--single',
 						firstAction?.data?.staticClass,
 						firstAction?.data?.class,
+						// use icon attribute as class if icon slot is not used
+						icon ? undefined : firstAction?.componentOptions?.propsData?.icon,
 					],
 					attrs: {
 						'aria-label': firstAction?.componentOptions?.propsData?.ariaLabel || firstAction?.componentOptions?.children?.[0]?.text,
