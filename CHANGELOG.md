@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file.
 
+## v6.0.0-beta.1 (2022-08-11)
+
+#### :boom: Breaking Change
+* [#2980](https://github.com/nextcloud/nextcloud-vue/pull/2980) Bump @nextcloud/eslint-config from 8.0.0 to 8.1.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#2911](https://github.com/nextcloud/nextcloud-vue/pull/2911) Use render function in Actions component ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2929](https://github.com/nextcloud/nextcloud-vue/pull/2929) Bump vue from 2.6.14 to 2.7.8 ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2923](https://github.com/nextcloud/nextcloud-vue/pull/2923) Enforce setting section ids ([@nickvergessen](https://github.com/nickvergessen))
+
+#### :rocket: Enhancement
+* [#2998](https://github.com/nextcloud/nextcloud-vue/pull/2998) Import tooltip directive only locally ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2983](https://github.com/nextcloud/nextcloud-vue/pull/2983) Simplify webpack configuration ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2973](https://github.com/nextcloud/nextcloud-vue/pull/2973) Allow to filter the available tags ([@nickvergessen](https://github.com/nickvergessen))
+* [#2868](https://github.com/nextcloud/nextcloud-vue/pull/2868) Create TextField component ([@marcoambrosini](https://github.com/marcoambrosini))
+* [#2856](https://github.com/nextcloud/nextcloud-vue/pull/2856) Fix ListItem css & add compact mode ([@jotoeri](https://github.com/jotoeri))
+
+#### :bug: Bug Fix
+* [#2533](https://github.com/nextcloud/nextcloud-vue/pull/2533) [MultiSelect] pass the #noResult slot to the underlying component ([@eneiluj](https://github.com/eneiluj))
+* [#2999](https://github.com/nextcloud/nextcloud-vue/pull/2999) Also export tooltip options ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2997](https://github.com/nextcloud/nextcloud-vue/pull/2997) Fix regressions from floating-vue migration ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2991](https://github.com/nextcloud/nextcloud-vue/pull/2991) Fix Actions styling in Breadcrumbs ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2984](https://github.com/nextcloud/nextcloud-vue/pull/2984) Fix button import in modal example ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2981](https://github.com/nextcloud/nextcloud-vue/pull/2981) Add aria-label to single action button ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2911](https://github.com/nextcloud/nextcloud-vue/pull/2911) Use render function in Actions component ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2961](https://github.com/nextcloud/nextcloud-vue/pull/2961) Fix focusing last action with page-down ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2946](https://github.com/nextcloud/nextcloud-vue/pull/2946) Make sure modal ids are unique ([@nickvergessen](https://github.com/nickvergessen))
+* [#2883](https://github.com/nextcloud/nextcloud-vue/pull/2883) Do not treat an avatar as a button if there is no menu ([@danxuliu](https://github.com/danxuliu))
+* [#2929](https://github.com/nextcloud/nextcloud-vue/pull/2929) Bump vue from 2.6.14 to 2.7.8 ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2938](https://github.com/nextcloud/nextcloud-vue/pull/2938) Revert "Bump vue-styleguidist from 4.48.0 to 4.50.0" ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2912](https://github.com/nextcloud/nextcloud-vue/pull/2912) Fix missing icon in actions custom icon slot ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2856](https://github.com/nextcloud/nextcloud-vue/pull/2856) Fix ListItem css & add compact mode ([@jotoeri](https://github.com/jotoeri))
+* [#2894](https://github.com/nextcloud/nextcloud-vue/pull/2894) Add more explicit title to the sidebar close button ([@juliushaertl](https://github.com/juliushaertl))
+
 
 ## v6.0.0-alpha.0 (2022-07-27)
 
