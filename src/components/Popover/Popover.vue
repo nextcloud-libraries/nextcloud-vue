@@ -114,7 +114,7 @@ export default {
 		},
 		focusTrap: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 	},
 
