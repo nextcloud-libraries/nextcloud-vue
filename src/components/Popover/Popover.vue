@@ -175,6 +175,7 @@ export default {
 					// Focus will be release when popover be hide
 					escapeDeactivates: false,
 					allowOutsideClick: true,
+					returnFocusOnDeactivate: false,
 				})
 				this.$focusTrap.activate()
 			})
