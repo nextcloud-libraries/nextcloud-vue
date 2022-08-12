@@ -782,7 +782,7 @@ export default {
 		 * Filter the Actions, so that we only get allowed components.
 		 * This also ensure that we don't get 'text' elements, which would
 		 * become problematic later on.
-		 * 
+		 *
 	 	 * Expose some internal methods to parent template.
 		 */
 		const actions = (this.$slots.default || this.$scopedSlots?.default?.({ clearFocusTrap: this.clearFocusTrap }) || []).filter(
