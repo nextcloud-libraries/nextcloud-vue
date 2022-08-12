@@ -94,3 +94,15 @@ index 0e3a6a705d..416b8b0fb9 100644
 <a href="https://www.netlify.com">
   <img src="https://www.netlify.com/img/global/badges/netlify-dark.svg"/>
 </a>
+
+### Releasing a pre-release
+
+A pre-release can be built in the same way as described above, however it requires manual adjustments to avoid that npm ships the pre-release to all users:
+
+1. Retag latest to the last stable release
+
+    npm dist-tag add @nextcloud/vue@5.4.0 latest
+  
+2. Tag the new pre-release as next
+
+    npm dist-tag add @nextcloud/vue@6.0.0-beta.2 next
