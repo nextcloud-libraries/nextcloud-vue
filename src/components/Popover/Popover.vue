@@ -170,6 +170,7 @@ export default {
 					// Prevents to lose focus using esc key
 					// Focus will be release when popover be hide
 					escapeDeactivates: false,
+					allowOutsideClick: true,
 				})
 				this.$focusTrap.activate()
 			})
