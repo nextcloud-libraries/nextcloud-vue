@@ -445,6 +445,14 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+
+		/**
+		 * Additional elements to add to the focus trap
+		 */
+		additionalTrapElements: {
+			type: Array,
+			default: () => [],
+		},
 	},
 
 	emits: [
@@ -503,6 +511,12 @@ export default {
 				} else {
 					this.slideshowTimeout.start()
 				}
+			}
+		},
+		additionalTrapElements(elements) {
+			if (this.focusTrap) {
+				const contentContainer = this.$refs.mask
+				this.focusTrap.updateContainerElements([contentContainer, ...elements])
 			}
 		},
 	},
