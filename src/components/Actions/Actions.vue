@@ -449,6 +449,16 @@ export default {
 		},
 
 		/**
+		 * Icon to show for the toggle menu button
+		 * when more than one action is inside the actions component.
+		 * Only replace the default three-dot icon if really necessary.
+		 */
+		defaultIcon: {
+			type: String,
+			default: '',
+		},
+
+		/**
 		 * Aria label for the actions menu
 		 */
 		ariaLabel: {
@@ -730,7 +740,7 @@ export default {
 		 */
 		if (this.isValidSingleAction(actions) && !this.forceMenu) {
 			const firstAction = actions[0]
-			const icon = firstAction?.data?.scopedSlots?.icon()?.[0]
+			const icon = firstAction?.data?.scopedSlots?.icon()?.[0] || h('span', { class: ['icon', firstAction?.componentOptions?.propsData?.icon] })
 			const title = this.forceTitle ? this.menuTitle : ''
 			const clickListener = firstAction?.componentOptions?.listeners?.click
 			return h('ButtonVue',
@@ -739,8 +749,6 @@ export default {
 						'action-item action-item--single',
 						firstAction?.data?.staticClass,
 						firstAction?.data?.class,
-						// use icon attribute as class if icon slot is not used
-						icon ? undefined : firstAction?.componentOptions?.propsData?.icon,
 					],
 					attrs: {
 						'aria-label': firstAction?.componentOptions?.propsData?.ariaLabel || firstAction?.componentOptions?.children?.[0]?.text,
@@ -782,11 +790,15 @@ export default {
 		 * Otherwise, we render the actions in a popover
 		 */
 		} else {
-			const triggerIcon = this.$slots.icon?.[0] || h('DotsHorizontal', {
-				props: {
-					size: 20,
-				},
-			})
+			const triggerIcon = this.$slots.icon?.[0] || (
+				this.defaultIcon
+					? h('span', { class: ['icon', this.defaultIcon] })
+					: h('DotsHorizontal', {
+						props: {
+							size: 20,
+						},
+					})
+			)
 			return h('div',
 				{
 					class: [
