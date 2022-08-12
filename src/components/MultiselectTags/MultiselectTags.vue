@@ -21,7 +21,7 @@
   -->
 
 <docs>
-## Single tag selector
+### Single tag selector
 
 ```vue
 <template>
@@ -42,7 +42,7 @@ export default {
 </script>
 ```
 
-## Multiple tag selector
+### Multiple tag selector
 ```vue
 <template>
 	<div class="wrapper">
@@ -62,7 +62,7 @@ export default {
 </script>
 ```
 
-## Custom filter
+### Custom filter
 Because of compatibility reasons only 5 tag entries are shown by default. If you want to show all available tags set the `filter` function-prop to `null`:
 ```vue
 <template>
@@ -71,16 +71,53 @@ Because of compatibility reasons only 5 tag entries are shown by default. If you
 		{{ value }}
 	</div>
 </template>
+
+<script>
+export default {
+	data() {
+		return {
+			value: [1, 2]
+		}
+	}
+}
+</script>
 ```
 
 It's also possible to apply any custom filter logic by setting the `filter` function-prop to any custom function receiving the tag element and the index:
 ```vue
 <template>
 	<div class="wrapper">
-		<MultiselectTags v-model="value" :filter="(element, index) => element.id > 2 && element.displayName !== '' && element.canAssign && element.userAssignable && element.userVisible" />
+		<MultiselectTags v-model="value" :filter="customFilter" />
 		{{ value }}
 	</div>
 </template>
+
+<script>
+export default {
+	data() {
+		return {
+			value: [1, 2]
+		}
+	},
+	methods: {
+		/**
+		* Implement your custom filter logic to filter tags delivered
+		* by the server
+		*
+		* @param {object} the tag object
+		* @param {int} the index of the object inside the collection
+		*/
+		customFilter(element, index) {
+			/*
+			* Tag objects returned by the server will have the
+			* following properties (see also api.js):
+			* id, displayName, canAssign, userAssignable, userVisible
+			*/
+			return element.id >= 2 && element.displayName !== '' && element.canAssign && element.userAssignable && element.userVisible
+		}
+	}
+}
+</script>
 ```
 </docs>
 
