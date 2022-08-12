@@ -359,8 +359,7 @@ export default {
 <style lang="scss" scoped>
 
 :deep(.modal-wrapper .modal-container) {
-	display: flex;
-	overflow: hidden;
+	overflow: initial;
 }
 
 .app-settings {
@@ -375,7 +374,6 @@ export default {
 	&__wrapper {
 		display: flex;
 		width: 100%;
-		overflow: hidden;
 		height: 100%;
 		position: relative;
 	}
