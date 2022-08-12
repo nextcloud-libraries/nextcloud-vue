@@ -360,6 +360,52 @@ export default {
 </script>
 ```
 
+### Scoped slot
+
+```vue
+<template>
+    <div>
+        <input ref="input" />
+        <Actions>
+            <template v-slot:default="{ clearFocusTrap }">
+				<ActionButton @click="focusInput(clearFocusTrap)" :close-after-click="true">
+					<template #icon>
+						<Delete :size="20" />
+					</template>
+					Focus input
+				</ActionButton>
+				<ActionButton @click="actionDelete">
+					<template #icon>
+						<Delete :size="20" />
+					</template>
+					Delete
+				</ActionButton>
+			</template>
+        </Actions>
+    </div>
+</template>
+
+<script>
+import Delete from 'vue-material-design-icons/Delete'
+
+export default {
+	components: {
+		Delete,
+	},
+	methods: {
+		actionDelete() {
+			alert('Delete')
+		},
+		async focusInput(clearFocusTrap) {
+			await clearFocusTrap({ returnFocus: false })
+			await this.$nextTick()
+            this.$refs.input.focus()
+		},
+	},
+}
+</script>
+```
+
 </docs>
 
 <script>
@@ -372,6 +418,26 @@ import { t } from '../../l10n.js'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 const focusableSelector = '.focusable'
+
+const getActions = (ctx) => {
+	/**
+	 * Filter the Actions, so that we only get allowed components.
+	 * This also ensure that we don't get 'text' elements, which would
+	 * become problematic later on.
+	 */
+	if (ctx.$slots.default !== undefined) {
+		return ctx.$slots.default.filter(action => action?.componentOptions?.tag)
+	}
+
+	/**
+	 * Expose some internal methods to parent template
+	 */
+	if (ctx.$scopedSlots.default) {
+		return ctx.$scopedSlots.default({ clearFocusTrap: ctx.clearFocusTrap })
+	}
+
+	return []
+}
 
 /**
  * The Actions component can be used to display one ore more actions.
@@ -496,6 +562,13 @@ export default {
 		disabled: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Enable popover focus trap
+		 */
+		focusTrap: {
+			type: Boolean,
+			default: true,
 		},
 	},
 
@@ -712,6 +785,9 @@ export default {
 		onBlur(event) {
 			this.$emit('blur', event)
 		},
+		clearFocusTrap(options = {}) {
+			return this.$refs.popover.clearFocusTrap(options)
+		},
 	},
 	/**
 	 * The render function to display the component
@@ -720,14 +796,7 @@ export default {
 	 * @return {VNodes} The created VNodes
 	 */
 	render(h) {
-		/**
-		 * Filter the Actions, so that we only get allowed components.
-		 * This also ensure that we don't get 'text' elements, which would
-		 * become problematic later on.
-		 */
-		const actions = (this.$slots.default || []).filter(
-			action => action?.componentOptions?.tag
-		)
+		const actions = getActions(this)
 
 		// Check that we have at least one action
 		if (actions.length === 0) {
@@ -799,6 +868,7 @@ export default {
 						},
 					})
 			)
+
 			return h('div',
 				{
 					class: [
@@ -811,6 +881,7 @@ export default {
 				[
 					h('Popover',
 						{
+							ref: 'popover',
 							props: {
 								delay: 0,
 								handleResize: true,
@@ -818,6 +889,7 @@ export default {
 								placement: this.placement,
 								boundary: this.boundariesElement,
 								container: this.container,
+								focusTrap: this.focusTrap,
 								popoverBaseClass: 'action-item__popper',
 							},
 							// For some reason the popover component
@@ -830,6 +902,7 @@ export default {
 								placement: this.placement,
 								boundary: this.boundariesElement,
 								container: this.container,
+								focusTrap: this.focusTrap,
 								popoverBaseClass: 'action-item__popper',
 							},
 							on: {
@@ -884,9 +957,7 @@ export default {
 										tabindex: '-1',
 										role: 'menu',
 									},
-								}, [
-									actions,
-								]),
+								}, actions),
 							]),
 						],
 					),

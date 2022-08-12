@@ -112,9 +112,12 @@ export default {
 			type: String,
 			default: '',
 		},
+		/**
+		 * Enable popover focus trap
+		 */
 		focusTrap: {
 			type: Boolean,
-			default: false,
+			default: true,
 		},
 	},
 
@@ -142,23 +145,14 @@ export default {
 	},
 
 	beforeDestroy() {
-		this.afterHide()
+		this.clearFocusTrap()
 	},
 
 	methods: {
-		afterShow() {
-			/**
-			 * Triggered after the tooltip was visually displayed.
-			 *
-			 * This is different from the 'show' and 'apply-show' which
-			 * run earlier than this where there is no guarantee that the
-			 * tooltip is already visible and in the DOM.
-			 */
-			this.$emit('after-show')
-
-			/**
-			 * Add focus trap for accessibility.
-			 */
+		/**
+		 * Add focus trap for accessibility.
+		 */
+		useFocusTrap() {
 			this.$nextTick(() => {
 				if (!this.focusTrap) {
 					return
@@ -179,17 +173,36 @@ export default {
 				this.$focusTrap.activate()
 			})
 		},
+		/**
+		 * Remove focus trap
+		 *
+		 * @param options
+		 */
+		async clearFocusTrap(options = {}) {
+			try {
+				this.$focusTrap?.deactivate(options)
+				this.$focusTrap = null
+			} catch (err) {
+				console.warn(err)
+			}
+		},
+		afterShow() {
+			/**
+			 * Triggered after the tooltip was visually displayed.
+			 *
+			 * This is different from the 'show' and 'apply-show' which
+			 * run earlier than this where there is no guarantee that the
+			 * tooltip is already visible and in the DOM.
+			 */
+			this.$emit('after-show')
+			this.useFocusTrap()
+		},
 		afterHide() {
 			/**
 			 * Triggered after the tooltip was visually hidden.
 			 */
 			this.$emit('after-hide')
-
-			/**
-			 * Remove focus trap
-			 */
-			this.$focusTrap?.deactivate()
-			this.$focusTrap = null
+			this.clearFocusTrap()
 		},
 	},
 }
