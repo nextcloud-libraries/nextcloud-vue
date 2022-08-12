@@ -364,13 +364,13 @@ export default {
 
 ```vue
 <template>
-    <div>
-        <input ref="input" />
-        <Actions>
-            <template v-slot:default="{ clearFocusTrap }">
+	<div>
+		<input ref="input" />
+		<Actions>
+			<template #default="{ clearFocusTrap }">
 				<ActionButton @click="focusInput(clearFocusTrap)" :close-after-click="true">
 					<template #icon>
-						<Delete :size="20" />
+						<Plus :size="20" />
 					</template>
 					Focus input
 				</ActionButton>
@@ -381,16 +381,18 @@ export default {
 					Delete
 				</ActionButton>
 			</template>
-        </Actions>
-    </div>
+		</Actions>
+	</div>
 </template>
 
 <script>
 import Delete from 'vue-material-design-icons/Delete'
+import Plus from 'vue-material-design-icons/Plus'
 
 export default {
 	components: {
 		Delete,
+		Plus,
 	},
 	methods: {
 		actionDelete() {
@@ -399,7 +401,7 @@ export default {
 		async focusInput(clearFocusTrap) {
 			await clearFocusTrap({ returnFocus: false })
 			await this.$nextTick()
-            this.$refs.input.focus()
+			this.$refs.input.focus()
 		},
 	},
 }
@@ -418,26 +420,6 @@ import { t } from '../../l10n.js'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 const focusableSelector = '.focusable'
-
-const getActions = (ctx) => {
-	/**
-	 * Filter the Actions, so that we only get allowed components.
-	 * This also ensure that we don't get 'text' elements, which would
-	 * become problematic later on.
-	 */
-	if (ctx.$slots.default !== undefined) {
-		return ctx.$slots.default.filter(action => action?.componentOptions?.tag)
-	}
-
-	/**
-	 * Expose some internal methods to parent template
-	 */
-	if (ctx.$scopedSlots.default) {
-		return ctx.$scopedSlots.default({ clearFocusTrap: ctx.clearFocusTrap })
-	}
-
-	return []
-}
 
 /**
  * The Actions component can be used to display one ore more actions.
@@ -796,7 +778,16 @@ export default {
 	 * @return {VNodes} The created VNodes
 	 */
 	render(h) {
-		const actions = getActions(this)
+		/**
+		 * Filter the Actions, so that we only get allowed components.
+		 * This also ensure that we don't get 'text' elements, which would
+		 * become problematic later on.
+		 * 
+	 	 * Expose some internal methods to parent template.
+		 */
+		const actions = (this.$slots.default || this.$scopedSlots?.default?.({ clearFocusTrap: this.clearFocusTrap }) || []).filter(
+			action => action?.componentOptions?.tag
+		)
 
 		// Check that we have at least one action
 		if (actions.length === 0) {
