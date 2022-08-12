@@ -20,6 +20,7 @@
 		"lint": "eslint --ext .js,.vue src",
 		"lint:fix": "eslint --ext .js,.vue src --fix",
 		"test": "jest --verbose",
+		"test:coverage": "jest --verbose --coverage --no-cache",
 		"stylelint": "stylelint src/**/*.vue src/**/*.scss src/**/*.css",
 		"stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix",
 		"styleguide": "vue-styleguidist server",
