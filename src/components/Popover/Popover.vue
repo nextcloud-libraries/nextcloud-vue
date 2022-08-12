@@ -141,6 +141,10 @@ export default {
 		)
 	},
 
+	beforeDestroy() {
+		this.afterHide()
+	},
+
 	methods: {
 		afterShow() {
 			/**
