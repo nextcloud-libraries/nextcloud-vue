@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 #### :bug: Bug Fix
 
+* [#3017](https://github.com/nextcloud/nextcloud-vue/pull/3017) Fix icon-class, re-add default-icon support for Actions ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#3006](https://github.com/nextcloud/nextcloud-vue/pull/3006) Fix single button action icon attribute ([@PVince81](https://github.com/PVince81))
 
 ## v6.0.0-beta.1 (2022-08-11)
