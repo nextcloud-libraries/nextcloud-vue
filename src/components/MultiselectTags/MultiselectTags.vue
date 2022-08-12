@@ -96,7 +96,7 @@ It's also possible to apply any custom filter logic by setting the `filter` func
 export default {
 	data() {
 		return {
-			value: [1, 2]
+			value: [3]
 		}
 	},
 	methods: {
