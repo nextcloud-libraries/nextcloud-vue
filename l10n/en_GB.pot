@@ -1,0 +1,167 @@
+# 
+# Translators:
+# Andi Chandler <andi@gowling.com>, 2022
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Andi Chandler <andi@gowling.com>, 2022\n"
+"Language-Team: English (United Kingdom) (https://www.transifex.com/nextcloud/teams/64236/en_GB/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "{tag} (invisible)"
+msgstr "{tag} (invisible)"
+
+msgid "{tag} (restricted)"
+msgstr "{tag} (restricted)"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "Activities"
+msgstr "Activities"
+
+msgid "Animals & Nature"
+msgstr "Animals & Nature"
+
+msgid "Avatar of {displayName}"
+msgstr "Avatar of {displayName}"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "Avatar of {displayName}, {status}"
+
+msgid "Cancel changes"
+msgstr "Cancel changes"
+
+msgid "Change title"
+msgstr "Change title"
+
+msgid "Choose"
+msgstr "Choose"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Close modal"
+msgstr "Close modal"
+
+msgid "Close navigation"
+msgstr "Close navigation"
+
+msgid "Close sidebar"
+msgstr "Close sidebar"
+
+msgid "Confirm changes"
+msgstr "Confirm changes"
+
+msgid "Custom"
+msgstr "Custom"
+
+msgid "Edit item"
+msgstr "Edit item"
+
+msgid "External documentation for {title}"
+msgstr "External documentation for {title}"
+
+msgid "Favorite"
+msgstr "Favourite"
+
+msgid "Flags"
+msgstr "Flags"
+
+msgid "Food & Drink"
+msgstr "Food & Drink"
+
+msgid "Frequently used"
+msgstr "Frequently used"
+
+msgid "Global"
+msgstr "Global"
+
+msgid "Go back to the list"
+msgstr "Go back to the list"
+
+msgid "items"
+msgstr "items"
+
+msgid "Message limit of {count} characters reached"
+msgstr "Message limit of {count} characters reached"
+
+msgid "More {dashboardItemType} …"
+msgstr "More {dashboardItemType} …"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "No emoji found"
+msgstr "No emoji found"
+
+msgid "No results"
+msgstr "No results"
+
+msgid "Objects"
+msgstr "Objects"
+
+msgid "Open"
+msgstr "Open"
+
+msgid "Open navigation"
+msgstr "Open navigation"
+
+msgid "Pause slideshow"
+msgstr "Pause slideshow"
+
+msgid "People & Body"
+msgstr "People & Body"
+
+msgid "Pick an emoji"
+msgstr "Pick an emoji"
+
+msgid "Please select a time zone:"
+msgstr "Please select a time zone:"
+
+msgid "Previous"
+msgstr "Previous"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Search results"
+msgstr "Search results"
+
+msgid "Select a tag"
+msgstr "Select a tag"
+
+msgid "Settings"
+msgstr "Settings"
+
+msgid "Settings navigation"
+msgstr "Settings navigation"
+
+msgid "Smileys & Emotion"
+msgstr "Smileys & Emotion"
+
+msgid "Start slideshow"
+msgstr "Start slideshow"
+
+msgid "Submit"
+msgstr "Submit"
+
+msgid "Symbols"
+msgstr "Symbols"
+
+msgid "Travel & Places"
+msgstr "Travel & Places"
+
+msgid "Type to search time zone"
+msgstr "Type to search time zone"
+
+msgid "Unable to search the group"
+msgstr "Unable to search the group"
+
+msgid "Undo changes"
+msgstr "Undo changes"
+
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr "Write message, @ to mention someone, : for emoji autocompletion …"
