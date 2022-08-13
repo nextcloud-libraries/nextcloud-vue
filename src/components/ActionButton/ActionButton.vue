@@ -26,37 +26,51 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 
 ```vue
 	<template>
-		<Actions>
-			<ActionButton @click="showMessage('Delete')">
-				<template #icon>
-					<Delete :size="20" />
-				</template>
-				Delete
-			</ActionButton>
-			<ActionButton :close-after-click="true" @click="showMessage('Delete and close menu')">
-				<template #icon>
-					<Delete :size="20" />
-				</template>
-				Delete and close
-			</ActionButton>
-			<ActionButton :disabled="true" @click="showMessage('Disabled')">
-				<template #icon>
-					<Delete :size="20" />
-				</template>
-				Disabled button
-			</ActionButton>
-		</Actions>
+		<div style="display: flex; align-items: center;">
+			<Actions>
+				<ActionButton @click="showMessage('Delete')">
+					<template #icon>
+						<Delete :size="20" />
+					</template>
+					Delete
+				</ActionButton>
+				<ActionButton :close-after-click="true" @click="showMessage('Delete and close menu')">
+					<template #icon>
+						<Delete :size="20" />
+					</template>
+					Delete and close
+				</ActionButton>
+				<ActionButton :close-after-click="true" @click="focusInput">
+					<template #icon>
+						<Plus :size="20" />
+					</template>
+					Create
+				</ActionButton>
+				<ActionButton :disabled="true" @click="showMessage('Disabled')">
+					<template #icon>
+						<Delete :size="20" />
+					</template>
+					Disabled button
+				</ActionButton>
+			</Actions>
+			<input ref="input" />
+		</div>
 	</template>
 	<script>
 	import Delete from 'vue-material-design-icons/Delete'
+	import Plus from 'vue-material-design-icons/Plus'
 
 	export default {
 		components: {
 			Delete,
+			Plus,
 		},
 		methods: {
 			showMessage(msg) {
 				alert(msg)
+			},
+			focusInput() {
+				this.$nextTick(() => this.$refs.input.focus())
 			},
 		},
 	}
