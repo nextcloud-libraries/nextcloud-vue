@@ -306,6 +306,9 @@ export default {
 		// Return value of the render function
 		if (this.open) {
 			return h('Modal', {
+				class: [
+					'app-settings-modal'
+				],
 				attrs: {
 					container: this.container,
 					size: 'large',
@@ -359,7 +362,7 @@ export default {
 
 <style lang="scss" scoped>
 
-:deep(.modal-wrapper .modal-container) {
+.app-settings-modal :deep(.modal-wrapper .modal-container) {
 	display: flex;
 	overflow: hidden;
 }
