@@ -137,7 +137,7 @@ export default {
 </docs>
 
 <template>
-	<div>
+	<div class="dashboard-widget">
 		<!-- This element is shown if we have items, but want to show a general message as well.
 		Can be used e.g. to show "No mentions" on top of the item list. -->
 		<EmptyContent v-if="showHalfEmptyContentArea"
@@ -320,7 +320,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.empty-content {
+.dashboard-widget .empty-content {
 	text-align: center;
 	margin-top: 5vh;
 
