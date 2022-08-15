@@ -137,12 +137,17 @@ export default {
 </docs>
 
 <template>
-	<div>
+	<div class="dashboard-widget">
 		<!-- This element is shown if we have items, but want to show a general message as well.
 		Can be used e.g. to show "No mentions" on top of the item list. -->
 		<EmptyContent v-if="showHalfEmptyContentArea"
-			class="half-screen"
-			:icon="halfEmptyContentIcon">
+			class="half-screen">
+			<template #icon>
+				<!-- @slot The icon to show in the half empty content area. -->
+				<slot name="halfEmptyContentIcon">
+					<Check />
+				</slot>
+			</template>
 			<template #desc>
 				{{ halfEmptyContentString }}
 			</template>
@@ -172,8 +177,11 @@ export default {
 		</div>
 		<!-- @slot Slot for showing information in case of an empty item list. -->
 		<slot v-else-if="items.length === 0" name="empty-content">
-			<EmptyContent v-if="emptyContentMessage"
-				:icon="emptyContentIcon">
+			<EmptyContent v-if="emptyContentMessage">
+				<template #icon>
+					<!-- @slot The icon to show in the empty content area. -->
+					<slot name="emptyContentIcon" />
+				</template>
 				<template #desc>
 					{{ emptyContentMessage }}
 				</template>
@@ -195,6 +203,8 @@ import Avatar from '../Avatar/index.js'
 import DashboardWidgetItem from '../DashboardWidgetItem/index.js'
 import EmptyContent from '../EmptyContent/index.js'
 
+import Check from 'vue-material-design-icons/Check.vue'
+
 import { t } from '../../l10n.js'
 
 export default {
@@ -203,6 +213,7 @@ export default {
 		Avatar,
 		DashboardWidgetItem,
 		EmptyContent,
+		Check,
 	},
 
 	props: {
@@ -252,25 +263,11 @@ export default {
 			default: false,
 		},
 		/**
-		 * The icon to show in the empty content area.
-		 */
-		emptyContentIcon: {
-			type: String,
-			default: '',
-		},
-		/**
 		 * The text to show in the empty content area.
 		 */
 		emptyContentMessage: {
 			type: String,
 			default: '',
-		},
-		/**
-		 * The icon to show in the half empty content area.
-		 */
-		halfEmptyContentIcon: {
-			type: String,
-			default: 'icon-checkmark',
 		},
 		/**
 		 * The text to show in the half empty content area.
@@ -323,7 +320,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.empty-content {
+.dashboard-widget .empty-content {
 	text-align: center;
 	margin-top: 5vh;
 
