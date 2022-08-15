@@ -5,12 +5,12 @@
 # hiroshisuga <suga0330@gmail.com>, 2021
 # 焼きすぎた鮭, 2021
 # Kosugi_kun, 2022
-# T.S, 2022
 # かたかめ, 2022
+# T.S, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: かたかめ, 2022\n"
+"Last-Translator: T.S, 2022\n"
 "Language-Team: Japanese (Japan) (https://www.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ja_JP\n"
@@ -54,6 +54,9 @@ msgstr "モーダルを閉じる"
 
 msgid "Close navigation"
 msgstr "ナビゲーションを閉じる"
+
+msgid "Close sidebar"
+msgstr "サイドバーを閉じる"
 
 msgid "Confirm changes"
 msgstr "変更を承認"
