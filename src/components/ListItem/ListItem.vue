@@ -125,7 +125,7 @@
 <ul style="width: 350px;">
 	<listItem
 		:title="'Title of the element'"
-		:counter-number=1
+		:counter-number="1"
 		:compact="true" >
 		<template #icon>
 			<div class="icon-edit" />
@@ -151,7 +151,7 @@
 	</listItem>
 	<listItem
 		:title="'Title of the element'"
-		:counter-number=3
+		:counter-number="3"
 		:compact="true" >
 		<template #icon>
 			<div class="icon-edit" />
@@ -170,10 +170,14 @@
 	</listItem>
 	<listItem
 		:title="'Title of the element'"
-		:counter-number=4
-		:compact="true" >
+		:compact="true"
+		:counter-number="4"
+		href="https://nextcloud.com">
 		<template #icon>
 			<div class="icon-edit" />
+		</template>
+		<template #subtitle>
+			This one is with an external link
 		</template>
 	</listItem>
 </ul>
@@ -187,7 +191,9 @@
 		<a :id="anchorId"
 			ref="list-item"
 			:class="{ 'list-item--active' : active }"
-			href="#"
+			:href="href"
+			target="_blank"
+			rel="noopener noreferrer"
 			class="list-item"
 			:aria-label="linkAriaLabel"
 			@mouseover="handleMouseover"
@@ -317,6 +323,14 @@ export default {
 		to: {
 			type: [String, Object],
 			default: '',
+		},
+
+		/**
+		 * The value for the external link
+		 */
+		href: {
+			type: String,
+			default: '#',
 		},
 
 		/**
