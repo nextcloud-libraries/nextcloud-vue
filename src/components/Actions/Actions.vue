@@ -854,7 +854,7 @@ export default {
 								attrs: {
 									'aria-haspopup': 'menu',
 									'aria-label': this.ariaLabel,
-									'aria-controls': this.randomId,
+									'aria-controls': this.opened ? this.randomId : null,
 									'aria-expanded': this.opened.toString(),
 								},
 								on: {
