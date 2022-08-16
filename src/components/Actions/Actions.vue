@@ -398,10 +398,10 @@ export default {
 		actionDelete() {
 			alert('Delete')
 		},
-		async focusInput(clearFocusTrap) {
-			await clearFocusTrap({ returnFocus: false })
-			await this.$nextTick()
-			this.$refs.input.focus()
+		focusInput(clearFocusTrap) {
+			return clearFocusTrap({ returnFocus: false })
+				.then(() => this.$refs.input.focus())
+				.catch(console.error)
 		},
 	},
 }
@@ -783,7 +783,7 @@ export default {
 		 * This also ensure that we don't get 'text' elements, which would
 		 * become problematic later on.
 		 *
-	 	 * Expose some internal methods to parent template.
+		 * Expose some internal methods to parent template.
 		 */
 		const actions = (this.$slots.default || this.$scopedSlots?.default?.({ clearFocusTrap: this.clearFocusTrap }) || []).filter(
 			action => action?.componentOptions?.tag
