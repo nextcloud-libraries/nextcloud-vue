@@ -32,7 +32,7 @@ It includes the Navigation, the App content and the Sidebar.
 
 ```vue
 <template>
-	<Content app-name="forms">
+	<ContentVue app-name="forms">
 		<AppNavigation>
 			<template #list>
 				<AppNavigationNew text="Create article" />
@@ -44,7 +44,7 @@ It includes the Navigation, the App content and the Sidebar.
 			<ButtonVue @click="opened = !opened">Toggle sidebar</ButtonVue>
 		</AppContent>
 		<AppSidebar v-if="opened" title="cat-picture.jpg" @close="opened=false"></AppSidebar>
-	</Content>
+	</ContentVue>
 </template>
 <script>
 export default {
