@@ -307,7 +307,7 @@ export default {
 		if (this.open) {
 			return h('Modal', {
 				class: [
-					'app-settings-modal'
+					'app-settings-modal',
 				],
 				attrs: {
 					container: this.container,
