@@ -507,7 +507,7 @@ export default {
 	width: 100%;
 	min-height: $clickable-area;
 	padding-right: 8px;
-	border-radius: var(--border-radius-large);
+	border-radius: var(--border-radius-pill);
 
 	&-wrapper {
 		position: relative;
