@@ -559,12 +559,14 @@ export default {
 			 */
 			this.$emit('open')
 		},
-		closeMenu(e) {
+		closeMenu(returnFocus = true) {
 			if (!this.opened) {
 				return
 			}
 
 			this.opened = false
+
+			this.$refs.popover.clearFocusTrap({ returnFocus })
 
 			/**
 			 * Event emitted when the popover menu open state is changed
@@ -639,7 +641,7 @@ export default {
 			}
 			// Esc
 			if (event.keyCode === 27) {
-				this.closeMenu(event)
+				this.closeMenu()
 				event.preventDefault()
 			}
 		},
@@ -811,6 +813,7 @@ export default {
 				[
 					h('Popover',
 						{
+							ref: 'popover',
 							props: {
 								delay: 0,
 								handleResize: true,

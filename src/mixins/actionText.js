@@ -82,7 +82,7 @@ export default {
 			if (this.closeAfterClick) {
 				const parent = GetParent(this, 'Actions')
 				if (parent && parent.closeMenu) {
-					parent.closeMenu()
+					parent.closeMenu(false)
 				}
 			}
 		},

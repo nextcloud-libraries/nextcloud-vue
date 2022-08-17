@@ -112,9 +112,12 @@ export default {
 			type: String,
 			default: '',
 		},
+		/**
+		 * Enable popover focus trap
+		 */
 		focusTrap: {
 			type: Boolean,
-			default: false,
+			default: true,
 		},
 	},
 
@@ -142,10 +145,47 @@ export default {
 	},
 
 	beforeDestroy() {
-		this.afterHide()
+		this.clearFocusTrap()
 	},
 
 	methods: {
+		/**
+		 * Add focus trap for accessibility.
+		 */
+		async useFocusTrap() {
+			await this.$nextTick()
+
+			if (!this.focusTrap) {
+				return
+			}
+
+			const el = this.$refs.popover?.$refs.popperContent?.$el
+
+			if (!el) {
+				return
+			}
+
+			this.$focusTrap = createFocusTrap(el, {
+				// Prevents to lose focus using esc key
+				// Focus will be release when popover be hide
+				escapeDeactivates: false,
+				allowOutsideClick: true,
+			})
+			this.$focusTrap.activate()
+		},
+		/**
+		 * Remove focus trap
+		 *
+		 * @param {object} options The configuration options for focusTrap
+		 */
+		clearFocusTrap(options = {}) {
+			try {
+				this.$focusTrap?.deactivate(options)
+				this.$focusTrap = null
+			} catch (err) {
+				console.warn(err)
+			}
+		},
 		afterShow() {
 			/**
 			 * Triggered after the tooltip was visually displayed.
@@ -155,41 +195,14 @@ export default {
 			 * tooltip is already visible and in the DOM.
 			 */
 			this.$emit('after-show')
-
-			/**
-			 * Add focus trap for accessibility.
-			 */
-			this.$nextTick(() => {
-				if (!this.focusTrap) {
-					return
-				}
-
-				const el = this.$refs.popover?.$refs.popperContent?.$el
-
-				if (!el) {
-					return
-				}
-
-				this.$focusTrap = createFocusTrap(el, {
-					// Prevents to lose focus using esc key
-					// Focus will be release when popover be hide
-					escapeDeactivates: false,
-					allowOutsideClick: true,
-				})
-				this.$focusTrap.activate()
-			})
+			this.useFocusTrap()
 		},
 		afterHide() {
 			/**
 			 * Triggered after the tooltip was visually hidden.
 			 */
 			this.$emit('after-hide')
-
-			/**
-			 * Remove focus trap
-			 */
-			this.$focusTrap?.deactivate()
-			this.$focusTrap = null
+			this.clearFocusTrap()
 		},
 	},
 }
