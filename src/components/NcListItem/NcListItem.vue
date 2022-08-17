@@ -570,7 +570,7 @@ export default {
 	flex: 0 0 auto;
 	justify-content: flex-start;
 	padding: 8px;
-	border-radius: 16px;
+	border-radius: var(--border-radius-pill);
 	margin: 2px 0;
 	width: 100%;
 	cursor: pointer;
