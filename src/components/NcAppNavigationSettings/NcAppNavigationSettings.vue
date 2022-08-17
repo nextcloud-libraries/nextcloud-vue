@@ -90,7 +90,6 @@ export default {
 
 	&__header {
 		box-sizing: border-box;
-		background-color: var(--color-main-background);
 
 		.settings-button {
 			display: flex;
