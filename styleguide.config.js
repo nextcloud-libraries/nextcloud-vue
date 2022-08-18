@@ -63,98 +63,98 @@ module.exports = {
 			components: 'src/components/*/*.vue',
 			sectionDepth: 1,
 			ignore: [
-				'src/components/Action*/*.vue',
-				'src/components/AppContent*/*.vue',
-				'src/components/AppNavigation*/*.vue',
-				'src/components/AppSidebar*/*.vue',
-				'src/components/Breadcrumb*/*.vue',
-				'src/components/Content/*.vue',
-				'src/components/Dashboard*/*.vue',
-				'src/components/Multiselect*/*.vue',
-				'src/components/PopoverMenu/!(PopoverMenu).vue',
-				'src/components/ListItem*/*.vue',
-				'src/components/AppSettings*/*.vue',
-				'src/components/*Picker/*.vue',
-				'src/components/RichContenteditable/!(RichContenteditable).vue',
-				'src/components/Settings*/*.vue',
-				'src/components/UserBubble/UserBubbleDiv.vue',
-				'src/components/InputField/InputField.vue',
+				'src/components/NcAction*/*.vue',
+				'src/components/NcAppContent*/*.vue',
+				'src/components/NcAppNavigation*/*.vue',
+				'src/components/NcAppSidebar*/*.vue',
+				'src/components/NcBreadcrumb*/*.vue',
+				'src/components/NcContent/*.vue',
+				'src/components/NcDashboard*/*.vue',
+				'src/components/NcMultiselect*/*.vue',
+				'src/components/NcPopoverMenu/!(NcPopoverMenu).vue',
+				'src/components/NcListItem*/*.vue',
+				'src/components/NcAppSettings*/*.vue',
+				'src/components/Nc*Picker/*.vue',
+				'src/components/NcRichContenteditable/!(NcRichContenteditable).vue',
+				'src/components/NcSettings*/*.vue',
+				'src/components/NcUserBubble/NcUserBubbleDiv.vue',
+				'src/components/NcInputField/NcInputField.vue',
 			],
 			sections: [
 				{
-					name: 'Actions',
+					name: 'NcActions',
 					components: [
 						// Put Actions component first
-						'src/components/Actions/*.vue',
-						'src/components/Action[A-Z]*/*.vue',
+						'src/components/NcActions/*.vue',
+						'src/components/NcAction[A-Z]*/*.vue',
 					],
 				},
 				{
 					name: 'App containers',
 					components: [
-						'src/components/Content/*.vue',
+						'src/components/NcContent/*.vue',
 					],
 					sections: [
 						{
-							name: 'AppNavigation',
+							name: 'NcAppNavigation',
 							components: [
-								'src/components/AppNavigation*/*.vue',
+								'src/components/NcAppNavigation*/*.vue',
 							],
 						},
 						{
-							name: 'AppContent',
+							name: 'NcAppContent',
 							components: [
-								'src/components/AppContent*/*.vue',
+								'src/components/NcAppContent*/*.vue',
 							],
 						},
 						{
-							name: 'AppSidebar',
+							name: 'NcAppSidebar',
 							components: [
-								'src/components/AppSidebar*/*.vue',
+								'src/components/NcAppSidebar*/*.vue',
 							],
 						},
 						{
-							name: 'AppSettings',
+							name: 'NcAppSettings',
 							components: [
-								'src/components/AppSettings*/*.vue',
+								'src/components/NcAppSettings*/*.vue',
 							],
 						},
 					],
 				},
 				{
-					name: 'Breadcrumbs',
+					name: 'NcBreadcrumbs',
 					components: [
-						'src/components/Breadcrumb*/*.vue',
+						'src/components/NcBreadcrumb*/*.vue',
 					],
 				},
 				{
-					name: 'Dashboard',
+					name: 'NcDashboard',
 					components: [
-						'src/components/Dashboard*/*.vue',
+						'src/components/NcDashboard*/*.vue',
 					],
 				},
 				{
-					name: 'List items',
+					name: 'NcListItems',
 					components: [
-						'src/components/ListItem*/*.vue',
+						'src/components/NcListItem*/*.vue',
 					],
 				},
 				{
-					name: 'Multiselect',
+					name: 'NcMultiselect',
 					components: [
-						'src/components/Multiselect*/*.vue',
+						'src/components/NcMultiselect*/*.vue',
 					],
 				},
 				{
-					name: 'Pickers',
+					name: 'NcPickers',
 					components: [
-						'src/components/*Picker/*.vue',
+						'src/components/Nc*Picker/*.vue',
 					],
 				},
 				{
-					name: 'Settings',
+					name: 'NcSettings',
 					components: [
-						'src/components/Settings*/*.vue',
+						'src/components/NcSettings*/*.vue',
 					],
 				},
 			],

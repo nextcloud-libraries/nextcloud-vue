@@ -80,7 +80,7 @@ export default {
 			this.$emit('click', event)
 
 			if (this.closeAfterClick) {
-				const parent = GetParent(this, 'Actions')
+				const parent = GetParent(this, 'NcActions')
 				if (parent && parent.closeMenu) {
 					parent.closeMenu(false)
 				}

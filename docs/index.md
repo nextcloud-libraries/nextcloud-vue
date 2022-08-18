@@ -15,12 +15,12 @@ npm i --save @nextcloud/vue
 
 # Usage
 ```js static
-import { AppNavigation } from '@nextcloud/vue'
+import { NcAppNavigation } from '@nextcloud/vue'
 
 export default {
     name: 'MyComponent',
     components: {
-        AppNavigation
+        NcAppNavigation
     }
 }
 ```
@@ -29,7 +29,7 @@ You can also import individual module without bundling the full library.
 
 
 ```js static
-import Avatar from '@nextcloud/vue/dist/Components/Avatar'
+import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar'
 ```
 
 ## Recommendations

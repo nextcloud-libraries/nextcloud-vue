@@ -20,7 +20,7 @@
  *
  */
 
-import MentionBubble from '../../components/RichContenteditable/MentionBubble.vue'
+import NcMentionBubble from '../../components/NcRichContenteditable/NcMentionBubble.vue'
 import Linkify from '../../utils/Linkify.js'
 
 import escapeHtml from 'escape-html'
@@ -115,7 +115,7 @@ export default {
 			}
 
 			// Return template and make sure we strip of new lines and tabs
-			return this.renderComponentHtml(data, MentionBubble).replace(/[\n\t]/gmi, '')
+			return this.renderComponentHtml(data, NcMentionBubble).replace(/[\n\t]/gmi, '')
 		},
 
 		/**
