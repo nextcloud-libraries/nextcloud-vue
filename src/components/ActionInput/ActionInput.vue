@@ -66,6 +66,13 @@ For the multiselect component, all events will be passed through. Please see the
 					@input="onInput"
 					@change="onChange" />
 
+				<NativeDatetimePicker v-else-if="isNativePicker"
+					:value="value"
+					:type="isNativeDatePickerType"
+					v-bind="$attrs"
+					@input="onInput"
+					@change="onChange" />
+
 				<Multiselect v-else-if="isMultiselectType"
 					:value="value"
 					:placeholder="text"
@@ -100,12 +107,13 @@ For the multiselect component, all events will be passed through. Please see the
 </template>
 
 <script>
-import ArrowRight from 'vue-material-design-icons/ArrowRight'
+import DatetimePicker from '../DatetimePicker/index.js'
+import Multiselect from '../Multiselect/index.js'
+import ActionGlobalMixin from '../../mixins/actionGlobal.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
-import ActionGlobalMixin from '../../mixins/actionGlobal'
-import GenRandomId from '../../utils/GenRandomId'
-import DatetimePicker from '../DatetimePicker'
-import Multiselect from '../Multiselect'
+import ArrowRight from 'vue-material-design-icons/ArrowRight'
+import NativeDatetimePicker from '../NativeDatetimePicker/NativeDatetimePicker'
 
 export default {
 	name: 'ActionInput',
@@ -114,6 +122,7 @@ export default {
 		ArrowRight,
 		DatetimePicker,
 		Multiselect,
+		NativeDatetimePicker,
 	},
 
 	mixins: [ActionGlobalMixin],
@@ -146,6 +155,10 @@ export default {
 					'text', 'time', 'url', 'week', 'color',
 					'email'].indexOf(type) > -1
 			},
+		},
+		isNativePicker: {
+			type: Boolean,
+			default: false,
 		},
 		/**
 		 * value attribute of the input field
@@ -183,15 +196,29 @@ export default {
 			return this.type === 'multiselect'
 		},
 
-		isDatePickerType() {
+		isNativeDatePickerType() {
 			switch (this.type) {
 			case 'date':
 			case 'month':
 			case 'time':
-				return this.type
-
+			case 'week':
 			case 'datetime-local':
-				return 'datetime'
+				return this.type
+			}
+			return false
+		},
+
+		isDatePickerType() {
+			if (!this.isNativePicker) {
+				switch (this.type) {
+				case 'date':
+				case 'month':
+				case 'time':
+					return this.type
+
+				case 'datetime-local':
+					return 'datetime'
+				}
 			}
 			return false
 		},
