@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v6.0.0-beta.3](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.3) (2022-08-18)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.2...v6.0.0-beta.3)
+
+## Enhancements
+
+- Allow to render x items outside an Actions menu [\#3060](https://github.com/nextcloud/nextcloud-vue/pull/3060) ([skjnldsv](https://github.com/skjnldsv))
+- Allow ListItem components to link to external links [\#3040](https://github.com/nextcloud/nextcloud-vue/pull/3040) ([tcitworld](https://github.com/tcitworld))
+
+## Fixed bugs
+
+- Fix breadcrumbs dropdown icon alignment [\#3059](https://github.com/nextcloud/nextcloud-vue/pull/3059) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Add missing trailing comma [\#3046](https://github.com/nextcloud/nextcloud-vue/pull/3046) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Correctly overwrite app-settings modal style [\#3035](https://github.com/nextcloud/nextcloud-vue/pull/3035) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Implement empty content icon slot in DashboardWidget [\#3034](https://github.com/nextcloud/nextcloud-vue/pull/3034) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix reference to closed menu in "aria-controls" [\#3031](https://github.com/nextcloud/nextcloud-vue/pull/3031) ([danxuliu](https://github.com/danxuliu))
+- Don't return focus after close-after-click [\#3030](https://github.com/nextcloud/nextcloud-vue/pull/3030) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Dismis focus trap when component gets destroyed [\#3023](https://github.com/nextcloud/nextcloud-vue/pull/3023) ([juliushaertl](https://github.com/juliushaertl))
+- Allow click outside for Popover focus trap [\#3022](https://github.com/nextcloud/nextcloud-vue/pull/3022) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Disable focus-trap for Popover by default [\#3021](https://github.com/nextcloud/nextcloud-vue/pull/3021) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix issues with focus trap on modal [\#3020](https://github.com/nextcloud/nextcloud-vue/pull/3020) ([juliushaertl](https://github.com/juliushaertl))
+- ```aria-expanded``` was fixed for Multiselect.vue [\#3037](https://github.com/nextcloud/nextcloud-vue/pull/3037) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+
+## Closed pull requests
+
+- Add note about pre-releases to the readme [\#3019](https://github.com/nextcloud/nextcloud-vue/pull/3019) ([juliushaertl](https://github.com/juliushaertl))
+
 ## v6.0.0-beta.2 (2022-08-11)
 
 #### :bug: Bug Fix
