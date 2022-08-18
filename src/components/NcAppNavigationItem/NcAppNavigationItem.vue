@@ -506,6 +506,7 @@ export default {
 	box-sizing: border-box;
 	width: 100%;
 	min-height: $clickable-area;
+	transition: background-color 200ms ease-in-out;
 	border-radius: var(--border-radius-pill);
 
 	&-wrapper {
