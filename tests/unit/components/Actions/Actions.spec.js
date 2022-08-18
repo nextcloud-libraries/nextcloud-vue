@@ -36,7 +36,7 @@ describe('Actions.vue', () => {
 					slots: {
 						default: [
 							'<ActionButton>Test1</ActionButton>',
-							'<ActionButton>Test2</ActionButton>'
+							'<ActionButton>Test2</ActionButton>',
 						],
 					},
 					stubs: {
@@ -54,7 +54,7 @@ describe('Actions.vue', () => {
 				wrapper = mount(Actions, {
 					slots: {
 						default: [
-							'<ActionButton>Test1</ActionButton>'
+							'<ActionButton>Test1</ActionButton>',
 						],
 					},
 					stubs: {
@@ -68,6 +68,51 @@ describe('Actions.vue', () => {
 			})
 			it('shows the menu toggle when forced.', async () => {
 				await wrapper.setProps({ forceMenu: true })
+				expect(wrapper.find('.action-item__menutoggle').exists()).toBe(true)
+			})
+		})
+
+		describe('3 ActionButton with one inline', () => {
+			beforeEach(() => {
+				wrapper = mount(Actions, {
+					slots: {
+						default: [
+							'<ActionButton>Test1</ActionButton>',
+							'<ActionButton>Test2</ActionButton>',
+							'<ActionButton>Test3</ActionButton>',
+						],
+					},
+					stubs: {
+						// used to register custom components
+						ActionButton,
+					},
+					propsData: {
+						inline: 1,
+					},
+				})
+			})
+			it('shows the first action outside.', () => {
+				expect(wrapper.findAll('.action-item').length).toBe(2)
+				expect(wrapper.findAll('button.action-item').length).toBe(1)
+				expect(wrapper.find('button.action-item').exists()).toBe(true)
+			})
+			it('shows the menu toggle.', () => {
+				expect(wrapper.find('.action-item__menutoggle').exists()).toBe(true)
+			})
+			it('shows the first two action outside on prop change.', async () => {
+				await wrapper.setProps({ inline: 2 })
+				expect(wrapper.findAll('.action-item').length).toBe(3)
+				expect(wrapper.findAll('button.action-item').length).toBe(2)
+			})
+			it('shows all actions outside on prop change.', async () => {
+				await wrapper.setProps({ inline: 3 })
+				expect(wrapper.findAll('.action-item').length).toBe(3)
+				expect(wrapper.findAll('button.action-item').length).toBe(3)
+				expect(wrapper.find('.action-item__menutoggle').exists()).toBe(false)
+			})
+			it('shows the menu toggle when forced.', async () => {
+				await wrapper.setProps({ forceMenu: true })
+				expect(wrapper.findAll('button.action-item').length).toBe(0)
 				expect(wrapper.find('.action-item__menutoggle').exists()).toBe(true)
 			})
 		})

@@ -100,6 +100,59 @@ export default {
 </script>
 ```
 
+### Multiple actions with 2 items inline
+
+```
+<template>
+	<Actions :inline="2">
+		<ActionButton @click="showMessage('Add')">
+			<template #icon>
+				<Plus :size="20" />
+			</template>
+			Add
+		</ActionButton>
+		<ActionButton @click="showMessage('Edit')">
+			<template #icon>
+				<Pencil :size="20" />
+			</template>
+			Edit
+		</ActionButton>
+		<ActionButton @click="showMessage('Delete')">
+			<template #icon>
+				<Delete :size="20" />
+			</template>
+			Delete
+		</ActionButton>
+		<ActionLink href="https://nextcloud.com">
+			<template #icon>
+				<OpenInNew :size="20" />
+			</template>
+			Link
+		</ActionLink>
+	</Actions>
+</template>
+<script>
+import Plus from 'vue-material-design-icons/Plus'
+import Delete from 'vue-material-design-icons/Delete'
+import OpenInNew from 'vue-material-design-icons/OpenInNew'
+import Pencil from 'vue-material-design-icons/Pencil'
+
+export default {
+	components: {
+		Delete,
+		OpenInNew,
+		Pencil,
+		Plus,
+	},
+	methods: {
+		showMessage(msg) {
+			alert(msg)
+		},
+	},
+}
+</script>
+```
+
 ### Multiple actions with custom icon
 
 ```
@@ -369,6 +422,7 @@ import Tooltip from '../../directives/Tooltip/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { t } from '../../l10n.js'
 
+import Vue from 'vue'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 const focusableSelector = '.focusable'
@@ -497,6 +551,15 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Display x items inline out of the dropdown menu
+		 * Will be ignored if `forceMenu` is set
+		 */
+		inline: {
+			type: Number,
+			default: 0,
+		},
 	},
 
 	emits: [
@@ -532,13 +595,13 @@ export default {
 		 * Do we have exactly one Action and
 		 * is it allowed as a standalone element?
 		 *
-		 * @param {Array} actions The acttions to check
+		 * @param {Array} action The action to check
 		 * @return {boolean}
 		 */
-		isValidSingleAction(actions) {
-			return actions.length === 1
-				&& ['ActionButton', 'ActionLink', 'ActionRouter'].includes(actions[0]?.componentOptions?.tag)
+		isValidSingleAction(action) {
+			return ['ActionButton', 'ActionLink', 'ActionRouter'].includes(action?.componentOptions?.tag)
 		},
+
 		// MENU STATE MANAGEMENT
 		openMenu(e) {
 			if (this.opened) {
@@ -715,6 +778,7 @@ export default {
 			this.$emit('blur', event)
 		},
 	},
+
 	/**
 	 * The render function to display the component
 	 *
@@ -731,39 +795,50 @@ export default {
 			action => action?.componentOptions?.tag
 		)
 
+		/**
+		 * Filter and list actions that are allowed to be displayed inline
+		 */
+		let inlineActions = actions.filter(this.isValidSingleAction)
+		if (this.forceMenu && inlineActions.length > 0 && this.inline > 0) {
+			Vue.util.warn('Specifying forceMenu will ignore any inline actions rendering.')
+			inlineActions = []
+		}
+
 		// Check that we have at least one action
 		if (actions.length === 0) {
 			return
 		}
 
 		/**
-		 * If we have a single action only and didn't force a menu,
-		 * we render the action as a standalone button
+		 * Render the provided action
+		 *
+		 * @param {VNode} action the action to render
+		 * @return {Function} the vue render function
 		 */
-		if (this.isValidSingleAction(actions) && !this.forceMenu) {
-			const firstAction = actions[0]
-			const icon = firstAction?.data?.scopedSlots?.icon()?.[0] || h('span', { class: ['icon', firstAction?.componentOptions?.propsData?.icon] })
+		const renderInlineAction = (action) => {
+			const icon = action?.data?.scopedSlots?.icon()?.[0] || h('span', { class: ['icon', action?.componentOptions?.propsData?.icon] })
 			const title = this.forceTitle ? this.menuTitle : ''
-			const clickListener = firstAction?.componentOptions?.listeners?.click
+			const clickListener = action?.componentOptions?.listeners?.click
+
 			return h('ButtonVue',
 				{
 					class: [
 						'action-item action-item--single',
-						firstAction?.data?.staticClass,
-						firstAction?.data?.class,
+						action?.data?.staticClass,
+						action?.data?.class,
 					],
 					attrs: {
-						'aria-label': firstAction?.componentOptions?.propsData?.ariaLabel || firstAction?.componentOptions?.children?.[0]?.text,
+						'aria-label': action?.componentOptions?.propsData?.ariaLabel || action?.componentOptions?.children?.[0]?.text,
 					},
 					props: {
-						 // If it has a title, we use a secondary button
+						// If it has a title, we use a secondary button
 						type: this.type || (title ? 'secondary' : 'tertiary'),
-						disabled: this.disabled || firstAction?.componentOptions?.propsData?.disabled,
-						...firstAction?.componentOptions?.propsData,
+						disabled: this.disabled || action?.componentOptions?.propsData?.disabled,
+						...action?.componentOptions?.propsData,
 					},
 					directives: [{
 						name: 'tooltip',
-						value: firstAction?.componentOptions?.children?.[0]?.text,
+						value: action?.componentOptions?.children?.[0]?.text,
 						modifiers: {
 							auto: true,
 						},
@@ -788,10 +863,15 @@ export default {
 					title,
 				],
 			)
+		}
+
 		/**
-		 * Otherwise, we render the actions in a popover
+		 * Render the actions popover
+		 *
+		 * @param {VNode} actions the actions to render within
+		 * @return {Function} the vue render function
 		 */
-		} else {
+		const renderActionsPopover = (actions) => {
 			const triggerIcon = this.$slots.icon?.[0] || (
 				this.defaultIcon
 					? h('span', { class: ['icon', this.defaultIcon] })
@@ -801,105 +881,157 @@ export default {
 						},
 					})
 			)
+			return h('Popover',
+				{
+					ref: 'popover',
+					props: {
+						delay: 0,
+						handleResize: true,
+						shown: this.opened,
+						placement: this.placement,
+						boundary: this.boundariesElement,
+						container: this.container,
+						popoverBaseClass: 'action-item__popper',
+					},
+					// For some reason the popover component
+					// does not react to props given under the 'props' key,
+					// so we use both 'attrs' and 'props'
+					attrs: {
+						delay: 0,
+						handleResize: true,
+						shown: this.opened,
+						placement: this.placement,
+						boundary: this.boundariesElement,
+						container: this.container,
+						popoverBaseClass: 'action-item__popper',
+					},
+					on: {
+						show: this.openMenu,
+						'after-show': this.onOpen,
+						hide: this.closeMenu,
+					},
+				},
+				[
+					h('ButtonVue', {
+						class: 'action-item__menutoggle',
+						props: {
+							// If requested, we use a primary button
+							type: this.type || (this.primary
+								? 'primary'
+								// If it has a title, we use a secondary button
+								: this.menuTitle ? 'secondary' : 'tertiary'),
+							disabled: this.disabled,
+						},
+						slot: 'trigger',
+						ref: 'menuButton',
+						attrs: {
+							'aria-haspopup': 'menu',
+							'aria-label': this.ariaLabel,
+							'aria-controls': this.opened ? this.randomId : null,
+							'aria-expanded': this.opened.toString(),
+						},
+						on: {
+							focus: this.onFocus,
+							blur: this.onBlur,
+						},
+					}, [
+						h('template', { slot: 'icon' }, [triggerIcon]),
+						this.menuTitle,
+					]),
+					h('div', {
+						class: {
+							open: this.opened,
+						},
+						attrs: {
+							tabindex: '-1',
+						},
+						on: {
+							keydown: this.onKeydown,
+							mousemove: this.onMouseFocusAction,
+						},
+						ref: 'menu',
+					}, [
+						h('ul', {
+							attrs: {
+								id: this.randomId,
+								tabindex: '-1',
+								role: 'menu',
+							},
+						}, [
+							actions,
+						]),
+					]),
+				],
+			)
+		}
+
+		/**
+		 * If we have a single action only and didn't force a menu,
+		 * we render the action as a standalone button
+		 */
+		if (actions.length === 1 && inlineActions.length === 1 && !this.forceMenu) {
+			return renderInlineAction(inlineActions[0])
+		}
+
+		/**
+		 * If we some inline actions to render, render them, then the menu
+		 */
+		if (inlineActions.length > 0 && this.inline > 0) {
+			const renderedInlineActions = inlineActions.slice(0, this.inline)
+			// Filter already rendered actions
+			const menuActions = actions.filter(action => !renderedInlineActions.includes(action))
 			return h('div',
 				{
 					class: [
-						'action-item',
-						{
-							'action-item--open': this.opened,
-						},
+						'action-items',
 					],
 				},
 				[
-					h('Popover',
-						{
-							ref: 'popover',
-							props: {
-								delay: 0,
-								handleResize: true,
-								shown: this.opened,
-								placement: this.placement,
-								boundary: this.boundariesElement,
-								container: this.container,
-								popoverBaseClass: 'action-item__popper',
-							},
-							// For some reason the popover component
-							// does not react to props given under the 'props' key,
-							// so we use both 'attrs' and 'props'
-							attrs: {
-								delay: 0,
-								handleResize: true,
-								shown: this.opened,
-								placement: this.placement,
-								boundary: this.boundariesElement,
-								container: this.container,
-								popoverBaseClass: 'action-item__popper',
-							},
-							on: {
-								show: this.openMenu,
-								'after-show': this.onOpen,
-								hide: this.closeMenu,
-							},
-						},
-						[
-							h('ButtonVue', {
-								class: 'action-item__menutoggle',
-								props: {
-									// If requested, we use a primary button
-									type: this.type || (this.primary
-										? 'primary'
-										// If it has a title, we use a secondary button
-										: this.menuTitle ? 'secondary' : 'tertiary'),
-									disabled: this.disabled,
-								},
-								slot: 'trigger',
-								ref: 'menuButton',
-								attrs: {
-									'aria-haspopup': 'menu',
-									'aria-label': this.ariaLabel,
-									'aria-controls': this.opened ? this.randomId : null,
-									'aria-expanded': this.opened.toString(),
-								},
-								on: {
-									focus: this.onFocus,
-									blur: this.onBlur,
-								},
-							}, [
-								h('template', { slot: 'icon' }, [triggerIcon]),
-								this.menuTitle,
-							]),
-							h('div', {
-								class: {
-									open: this.opened,
-								},
-								attrs: {
-									tabindex: '-1',
-								},
-								on: {
-									keydown: this.onKeydown,
-									mousemove: this.onMouseFocusAction,
-								},
-								ref: 'menu',
-							}, [
-								h('ul', {
-									attrs: {
-										id: this.randomId,
-										tabindex: '-1',
-										role: 'menu',
+					// Render inline actions
+					...renderedInlineActions.map(renderInlineAction),
+					// render the rest within the popover menu
+					menuActions.length > 0
+						? h('div',
+							{
+								class: [
+									'action-item',
+									{
+										'action-item--open': this.opened,
 									},
-								}, [
-									actions,
-								]),
-							]),
-						],
-					),
+								],
+							},
+							[
+								renderActionsPopover(menuActions),
+							])
+						: null,
 				])
 		}
+
+		/**
+		 * Otherwise, we render the actions in a popover
+		 */
+		return h('div',
+			{
+				class: [
+					'action-item',
+					{
+						'action-item--open': this.opened,
+					},
+				],
+			},
+			[
+				renderActionsPopover(actions),
+			])
 	},
 }
 </script>
 
 <style lang="scss" scoped>
+.action-items {
+	display: flex;
+	align-items: center;
+}
+
 .action-item {
 	position: relative;
 	display: inline-block;
