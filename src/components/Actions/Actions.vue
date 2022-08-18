@@ -554,6 +554,7 @@ export default {
 
 		/**
 		 * Display x items inline out of the dropdown menu
+		 * Will be ignored if `forceMenu` is set
 		 */
 		inline: {
 			type: Number,

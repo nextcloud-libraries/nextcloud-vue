@@ -22,158 +22,159 @@
 
 <docs>
 
-	```vue
-	<template>
-		<div>
-			<ButtonVue @click="showModal">Show Modal</ButtonVue>
-			<modal
-				v-if="modal"
-				@close="closeModal"
-				size="small"
-				title="Title"
-				:outTransition="true"
-				:hasNext="true"
-				:hasPrevious="true">
-				<div class="modal__content">Hello world</div>
-			</modal>
-		</div>
-	</template>
-	<style scoped>
+```vue
+<template>
+	<div>
+		<ButtonVue @click="showModal">Show Modal</ButtonVue>
+		<modal
+			v-if="modal"
+			@close="closeModal"
+			size="small"
+			title="Title"
+			:outTransition="true"
+			:hasNext="true"
+			:hasPrevious="true">
+			<div class="modal__content">Hello world</div>
+		</modal>
+	</div>
+</template>
+<style scoped>
+.modal__content {
+	margin: 50px;
+	text-align: center;
+}
+
+</style>
+<script>
+export default {
+	data() {
+		return {
+			modal: false
+		}
+	},
+	methods: {
+		showModal() {
+			this.modal = true
+		},
+		closeModal() {
+			this.modal = false
+		}
+	}
+}
+</script>
+```
+
+### Modal with more properties
+
+```vue
+<template>
+	<div>
+		<ButtonVue @click="showModal">Show Modal with fields</ButtonVue>
+		<modal
+			v-if="modal"
+			@close="closeModal"
+			title="Title inside modal">
+			<div class="modal__content">
+				<h2>Please enter your name</h2>
+				<TextField label="First Name" :value.sync="firstName" />
+				<TextField label="Last Name" :value.sync="lastName" />
+				<ButtonVue
+					:disabled="!this.firstName || !this.lastName"
+					@click="closeModal"
+					type="primary">
+					Submit
+				</ButtonVue>
+			</div>
+		</modal>
+	</div>
+</template>
+<script>
+import ButtonVue from '../ButtonVue/index.js'
+import TextField from '../TextField/index.js'
+
+export default {
+	components: {
+		ButtonVue,
+		TextField,
+	},
+	data() {
+		return {
+			modal: false,
+			firstName: '',
+			lastName: '',
+		}
+	},
+	methods: {
+		showModal() {
+			this.firstName = ''
+			this.lastName = ''
+			this.modal = true
+		},
+		closeModal() {
+			this.modal = false
+		}
+	}
+}
+</script>
+<style scoped>
+.modal__content {
+	margin: 50px;
+	text-align: center;
+}
+
+.input-field {
+	margin: 12px 0px;
+}
+
+</style>
+
+```
+
+### Usage of popover in modal
+
+* Set container property to .modal-mask to inject popover context of the modal:
+
+```vue
+<template>
+	<div>
+		<ButtonVue @click="showModal">Show Modal</ButtonVue>
+		<modal v-if="modal" @close="closeModal" size="small">
+			<EmojiPicker container=".modal-mask" @select="select">
+				<ButtonVue>Select emoji {{ emoji }}</ButtonVue>
+			</EmojiPicker>
+		</modal>
+	</div>
+</template>
+<style scoped>
 	.modal__content {
 		margin: 50px;
 		text-align: center;
 	}
-
-	</style>
-	<script>
-	export default {
-		data() {
-			return {
-				modal: false
-			}
-		},
-		methods: {
-			showModal() {
-				this.modal = true
-			},
-			closeModal() {
-				this.modal = false
-			}
+</style>
+<script>
+export default {
+	data() {
+		return {
+			emoji: '😛',
+			modal: false
 		}
-	}
-	</script>
-	```
-
-	### Modal with more properties
-
-	```vue
-	<template>
-		<div>
-			<ButtonVue @click="showModal">Show Modal with fields</ButtonVue>
-			<modal
-				v-if="modal"
-				@close="closeModal"
-				size="large"
-				title="Title inside modal">
-				<div class="modal__content">
-					<h2>Please enter your name</h2>
-					<TextField label="First Name" :value.sync="firstName" />
-					<TextField label="Last Name" :value.sync="lastName" />
-					<ButtonVue
-						:disabled="!this.firstName || !this.lastName"
-						@click="closeModal"
-						type="primary">
-						Submit
-					</ButtonVue>
-				</div>
-			</modal>
-		</div>
-	</template>
-	<style scoped>
-	.modal__content {
-		margin: 50px;
-		text-align: center;
-	}
-
-	.input-field {
-		margin: 12px 0px;
-	}
-
-	</style>
-	<script>
-	import ButtonVue from '../ButtonVue/index.js'
-	import TextField from '../TextField/index.js'
-	export default {
-		components: {
-			ButtonVue,
-			TextField,
+	},
+	methods: {
+		showModal() {
+			this.modal = true
 		},
-		data() {
-			return {
-				modal: false,
-				firstName: '',
-				lastName: '',
-			}
+		closeModal() {
+			this.modal = false
 		},
-		methods: {
-			showModal() {
-				this.firstName = ''
-				this.lastName = ''
-				this.modal = true
-			},
-			closeModal() {
-				this.modal = false
-			}
-		}
-	}
-	</script>
-	```
-
-	### Usage of popover in modal
-
-	* Set container property to .modal-mask to inject popover context of the modal:
-
-	```vue
-	<template>
-		<div>
-			<ButtonVue @click="showModal">Show Modal</ButtonVue>
-			<modal v-if="modal" @close="closeModal" size="small">
-				<EmojiPicker container=".modal-mask" @select="select">
-					<ButtonVue>Select emoji {{ emoji }}</ButtonVue>
-				</EmojiPicker>
-			</modal>
-		</div>
-	</template>
-	<style scoped>
-		.modal__content {
-			margin: 50px;
-			text-align: center;
-		}
-	</style>
-	<script>
-	export default {
-		data() {
-			return {
-				emoji: '😛',
-				modal: false
-			}
+		select(emoji) {
+			this.emoji = emoji
 		},
-		methods: {
-			showModal() {
-				this.modal = true
-			},
-			closeModal() {
-				this.modal = false
-			},
-			select(emoji) {
-				this.emoji = emoji
-			},
-		},
-	}
-	</script>
-	```
-
+	},
+}
+</script>
+```
 </docs>
+
 <template>
 	<transition name="fade">
 		<div ref="mask"
@@ -226,7 +227,7 @@
 						</button>
 
 						<!-- Actions menu -->
-						<Actions class="header-actions">
+						<Actions class="header-actions" :inline="inlineActions">
 							<!-- @slot List of actions to show -->
 							<slot name="actions" />
 						</Actions>
@@ -452,6 +453,16 @@ export default {
 		additionalTrapElements: {
 			type: Array,
 			default: () => [],
+		},
+
+		/**
+		 * Display x items inline
+		 *
+		 * @see Actions component usage
+		 */
+		inlineActions: {
+			type: Number,
+			default: 0,
 		},
 	},
 
