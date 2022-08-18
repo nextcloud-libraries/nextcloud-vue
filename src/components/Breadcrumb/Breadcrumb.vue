@@ -302,7 +302,7 @@ export default {
 
 	// Adjust action item appearance for crumbs with actions
 	// to match other crumbs
-	&:deep() .action-item {
+	&:not(.dropdown) :deep(.action-item) {
 		// Adjustments necessary to correctly shrink on small screens
 		max-width: 100%;
 
