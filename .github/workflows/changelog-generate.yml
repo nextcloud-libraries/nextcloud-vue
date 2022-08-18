@@ -1,7 +1,7 @@
 name: Changelog
 
 on:
-  push:
+  pull_request:
     paths:
       - 'package.json'
 
@@ -25,8 +25,10 @@ jobs:
         id: future_version
         uses: Saionaro/extract-package-version@v1.0.6
 
-      - name: Generate changelog
+      - name: Generate changelog between ${{ steps.last_version.outputs.tag_name }} and v${{ steps.future_version.outputs.version }}
         uses: docker://ferrarimarco/github-changelog-generator
+        # If we have a version change
+        if: contains(steps.last_version.outputs.tag_name, steps.future_version.outputs.version) == false
         with:
           args: >
             -t ${{ secrets.GITHUB_TOKEN }}
