@@ -18,7 +18,7 @@ jobs:
         uses: InsonusK/get-latest-release@v1.0.1
         with:
           myToken: ${{ secrets.GITHUB_TOKEN }}
-          exclude_types: draft|prerelease
+          exclude_types: draft
           view_top: 1
 
       - name: Get new version
