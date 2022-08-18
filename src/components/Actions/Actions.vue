@@ -422,6 +422,7 @@ import Tooltip from '../../directives/Tooltip/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { t } from '../../l10n.js'
 
+import Vue from 'vue'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 const focusableSelector = '.focusable'
@@ -796,7 +797,11 @@ export default {
 		/**
 		 * Filter and list actions that are allowed to be displayed inline
 		 */
-		const inlineActions = actions.filter(this.isValidSingleAction)
+		let inlineActions = actions.filter(this.isValidSingleAction)
+		if (this.forceMenu && inlineActions.length > 0 && this.inline > 0) {
+			Vue.util.warn('Specifying forceMenu will ignore any inline actions rendering.')
+			inlineActions = []
+		}
 
 		// Check that we have at least one action
 		if (actions.length === 0) {
@@ -984,18 +989,20 @@ export default {
 					// Render inline actions
 					...renderedInlineActions.map(renderInlineAction),
 					// render the rest within the popover menu
-					h('div',
-						{
-							class: [
-								'action-item',
-								{
-									'action-item--open': this.opened,
-								},
-							],
-						},
-						[
-							renderActionsPopover(menuActions),
-						]),
+					menuActions.length > 0
+						? h('div',
+							{
+								class: [
+									'action-item',
+									{
+										'action-item--open': this.opened,
+									},
+								],
+							},
+							[
+								renderActionsPopover(menuActions),
+							])
+						: null,
 				])
 		}
 
@@ -1012,7 +1019,7 @@ export default {
 				],
 			},
 			[
-				renderActionsPopover(actions)
+				renderActionsPopover(actions),
 			])
 	},
 }

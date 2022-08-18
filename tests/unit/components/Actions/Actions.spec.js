@@ -110,6 +110,11 @@ describe('Actions.vue', () => {
 				expect(wrapper.findAll('button.action-item').length).toBe(3)
 				expect(wrapper.find('.action-item__menutoggle').exists()).toBe(false)
 			})
+			it('shows the menu toggle when forced.', async () => {
+				await wrapper.setProps({ forceMenu: true })
+				expect(wrapper.findAll('button.action-item').length).toBe(0)
+				expect(wrapper.find('.action-item__menutoggle').exists()).toBe(true)
+			})
 		})
 	})
 })
