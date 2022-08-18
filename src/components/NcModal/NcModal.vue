@@ -806,17 +806,20 @@ export default {
 		}
 
 		.header-actions {
-			margin: math.div($header-height - $clickable-area, 2);
 			color: white;
 		}
 
-		.action-item--single {
-			box-sizing: border-box;
-			width: $clickable-area;
-			height: $clickable-area;
-			cursor: pointer;
-			background-position: center;
-			background-size: 22px;
+		&:deep() .action-item {
+			margin: math.div($header-height - $clickable-area, 2);
+
+			&--single {
+				box-sizing: border-box;
+				width: $clickable-area;
+				height: $clickable-area;
+				cursor: pointer;
+				background-position: center;
+				background-size: 22px;
+			}
 		}
 
 		:deep(button) {
