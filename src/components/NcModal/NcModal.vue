@@ -234,9 +234,10 @@ export default {
 
 						<!-- Close modal -->
 						<NcButton v-if="canClose && !closeButtonContained"
-							type="tertiary"
+							:aria-label="closeButtonAriaLabel"
 							class="header-close"
-							:aria-label="closeButtonAriaLabel">
+							type="tertiary"
+							@click="close">
 							<template #icon>
 								<Close :size="iconSize" />
 							</template>
