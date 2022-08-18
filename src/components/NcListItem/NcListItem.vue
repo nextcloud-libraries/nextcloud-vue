@@ -26,7 +26,7 @@
 	<NcListItem
 		:title="'Title of the element'"
 		:bold="false"
-		:details="'One hour ago'"
+		:details="'1h'"
 		:counter-number="44"
 		counterType="highlighted">
 		<template #icon>
@@ -54,7 +54,7 @@
 		:title="'Title of the element'"
 		:bold="false"
 		:force-display-actions="true"
-		:details="'One hour ago'"
+		:details="'1h'"
 		:counter-number="44"
 		counterType="highlighted">
 		<template #icon>
@@ -105,7 +105,7 @@
 	<NcListItem
 		:title="'Title of the element'"
 		:bold="false"
-		:details="'One hour ago'">
+		:details="'1h'">
 		<template #icon>
 			<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
 		</template>
