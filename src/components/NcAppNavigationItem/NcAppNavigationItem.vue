@@ -169,11 +169,11 @@ Just set the `pinned` prop.
 
 			<!-- Counter and Actions -->
 			<div v-if="hasUtils && !editingActive" class="app-navigation-entry__utils">
-				<div v-if="$slots.counter && !displayActionsOnHoverFocus"
+				<div v-if="$slots.counter && (!displayActionsOnHoverFocus || forceDisplayActions)"
 					class="app-navigation-entry__counter-wrapper">
 					<slot name="counter" />
 				</div>
-				<NcActions v-show="displayActionsOnHoverFocus"
+				<NcActions v-show="displayActionsOnHoverFocus || forceDisplayActions"
 					ref="actions"
 					menu-align="right"
 					:container="'#' + id"
@@ -283,6 +283,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Passing in a route will make the root element of this
 		 * component a `<router-link />` that points to that route.
@@ -292,6 +293,7 @@ export default {
 			type: [String, Object],
 			default: '',
 		},
+
 		/**
 		 * Pass in `true` if you want the matching behaviour to
 		 * be non-inclusive: https://router.vuejs.org/api/#exact
@@ -308,6 +310,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Makes the title of the item editable by providing an `ActionButton`
 		 * component that toggles a form
@@ -316,6 +319,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Only for 'editable' items, sets label for the edit action button.
 		 */
@@ -323,6 +327,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Only for items in 'editable' mode, sets the placeholder text for the editing form.
 		 */
@@ -330,6 +335,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Pins the item to the bottom left area, above the settings. Do not
 		 * place 'non-pinned' `AppnavigationItem` components below `pinned`
@@ -339,6 +345,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Puts the item in the 'undo' state.
 		 */
@@ -346,6 +353,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * The navigation collapsible state (synced)
 		 */
@@ -353,6 +361,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * The actions menu open state (synced)
 		 */
@@ -360,6 +369,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Force the actions to display in a three dot menu
 		 */
@@ -367,6 +377,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * The action's menu default icon
 		 */
@@ -374,6 +385,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * The action's menu direction
 		 */
@@ -381,12 +393,21 @@ export default {
 			type: String,
 			default: 'bottom',
 		},
+
 		/**
 		 * Entry aria details
 		 */
 		ariaDescription: {
 			type: String,
 			default: null,
+		},
+
+		/**
+		 * To be used only when the elements in the actions menu are very important
+		 */
+		forceDisplayActions: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
