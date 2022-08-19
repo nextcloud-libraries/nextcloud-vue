@@ -598,13 +598,11 @@ export default {
 
 	// Secondary
 	&--vue-secondary {
-		color: var(--color-main-text);
-		background-color: var(--color-background-dark);
-		box-shadow: 0 0 0 2px var(--color-border-dark);
+		color: var(--color-primary-light-text);
+		background-color: var(--color-primary-light);
 		&:hover:not(:disabled) {
-			color: var(--color-main-text);
-			background-color: var(--color-background-dark);
-			box-shadow: 0 0 0 2px var(--color-primary-element);
+			color: var(--color-primary-light-text);
+			background-color: var(--color-primary-light-hover);
 		}
 	}
 
