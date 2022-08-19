@@ -169,7 +169,7 @@ Just set the `pinned` prop.
 
 			<!-- Counter and Actions -->
 			<div v-if="hasUtils && !editingActive" class="app-navigation-entry__utils">
-				<div v-if="$slots.counter"
+				<div v-if="$slots.counter && !displayActionsOnHoverFocus"
 					class="app-navigation-entry__counter-wrapper">
 					<slot name="counter" />
 				</div>
