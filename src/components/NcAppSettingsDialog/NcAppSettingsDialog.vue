@@ -323,13 +323,11 @@ export default {
 					},
 				}, [
 					// app-settings title
-					this.title
-						? h('h2', {
-							attrs: {
-								class: 'app-settings__title',
-							},
-						}, this.title)
-						: undefined,
+					h('h2', {
+						attrs: {
+							class: 'app-settings__title',
+						},
+					}, this.title),
 
 					// app-settings navigation + content
 					h(
