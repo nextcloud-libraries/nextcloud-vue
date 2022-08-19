@@ -34,14 +34,23 @@ msgstr "Avatarul lui {displayName}, {status}"
 msgid "Cancel changes"
 msgstr "Anulează modificările"
 
+msgid "Change title"
+msgstr "Modificați titlul"
+
 msgid "Choose"
 msgstr "Alegeți"
 
 msgid "Close"
 msgstr "Închideți"
 
+msgid "Close modal"
+msgstr "Închideți modulul"
+
 msgid "Close navigation"
 msgstr "Închideți navigarea"
+
+msgid "Close sidebar"
+msgstr "Închide bara laterală"
 
 msgid "Confirm changes"
 msgstr "Confirmați modificările"
@@ -54,6 +63,9 @@ msgstr "Editați elementul"
 
 msgid "External documentation for {title}"
 msgstr "Documentație externă pentru {title}"
+
+msgid "Favorite"
+msgstr "Favorit"
 
 msgid "Flags"
 msgstr "Marcaje"
@@ -76,8 +88,8 @@ msgstr "articole"
 msgid "Message limit of {count} characters reached"
 msgstr "Limita mesajului de {count} caractere a fost atinsă"
 
-msgid "More {what} …"
-msgstr "Mai mult {what} ..."
+msgid "More {dashboardItemType} …"
+msgstr "Mai multe {dashboardItemType} …"
 
 msgid "Next"
 msgstr "Următorul"
@@ -90,6 +102,9 @@ msgstr "Nu există rezultate"
 
 msgid "Objects"
 msgstr "Obiecte"
+
+msgid "Open"
+msgstr "Deschideți"
 
 msgid "Open navigation"
 msgstr "Deschideți navigația"
