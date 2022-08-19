@@ -47,7 +47,7 @@
 <script>
 
 /**
- * @deprecated use [CounterBubble](#/Components/CounterBubble) instead
+ * @deprecated use [NcCounterBubble](#/Components/NcCounterBubble) instead
  */
 export default {
 	name: 'NcAppNavigationCounter',
