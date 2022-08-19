@@ -316,19 +316,16 @@ export default {
 		}
 	}
 
-	&__clear-button {
+	&__clear-button.button-vue {
 		position: absolute;
 		top: 2px;
 		right: 1px;
+		min-width: unset;
+		min-height: unset;
+		height: 32px;
+		width: 32px !important;
+		border-radius: var(--border-radius-large);
 	}
-}
-
-:deep(.button-vue) {
-	min-width: unset;
-	min-height: unset;
-	height: 32px;
-	width: 32px !important;
-	border-radius: var(--border-radius-large);
 }
 
 </style>
