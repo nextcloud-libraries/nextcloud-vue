@@ -370,7 +370,10 @@ export default {
 	flex-direction: column;
 	min-width: 0;
 	&__title {
-		padding-top: 12px;
+		min-height: $clickable-area;
+		height: $clickable-area;
+		line-height: $clickable-area;
+		padding-top: 4px; // Same as the close button top spacing
 		text-align: center;
 	}
 	&__wrapper {
