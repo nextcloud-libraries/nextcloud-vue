@@ -531,11 +531,11 @@ export default {
 		handleTab(e) {
 			if (this.focused && this.hasActions) {
 				e.preventDefault()
-				this.$refs.actions.$refs.menuButton.focus()
+				this.$refs.actions.$refs.menuButton.$el.focus()
 				this.focused = false
 			} else {
 				this.displayActionsOnHoverFocus = false
-				this.$refs.actions.$refs.menuButton.blur()
+				this.$refs.actions.$refs.menuButton.$el.blur()
 			}
 		},
 
