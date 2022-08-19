@@ -50,6 +50,10 @@ General purpose password field component.
 			:label-visible="true"
 			:success="true"
 			helper-text="Password is secure" />
+
+		<NcPasswordField :value.sync="text5"
+			:disabled="true"
+			label="Disabled" />
 	</div>
 </template>
 <script>
@@ -60,6 +64,7 @@ export default {
 			text2: '',
 			text3: 'hunter',
 			text4: '',
+			text5: '',
 		}
 	},
 }
@@ -96,6 +101,7 @@ export default {
 		:trailing-button-label="trailingButtonLabel"
 		v-on="$listeners"
 		@trailing-button-click="togglePasswordVisibility"
+		:disabled="disabled"
 		@input="handleInput">
 		<!-- Default slot for the leading icon -->
 		<slot />
@@ -269,7 +275,7 @@ export default {
 		 */
 		disabled: {
 			type: Boolean,
-			default: '',
+			default: false,
 		},
 	},
 

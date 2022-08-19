@@ -34,6 +34,7 @@
 				:name="inputName"
 				class="input-field__input"
 				:type="type"
+				:disabled="disabled"
 				:placeholder="computedPlaceholder"
 				:aria-describedby="helperText.length > 0 ? `${inputName}-helper-text` : ''"
 				aria-live="polite"
@@ -58,6 +59,7 @@
 				type="tertiary-no-background"
 				class="input-field__clear-button"
 				:aria-label="trailingButtonLabel"
+				:disabled="disabled"
 				@click="handleTrailingButtonClick">
 				<!-- Populating this slot creates a trailing button within the
 				input boundaries that emits a `trailing-button-click` event -->
@@ -208,6 +210,14 @@ export default {
 			type: String,
 			default: '',
 		},
+
+		/**
+		 * Disable the input field
+		 */
+		disabled: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	emits: [
@@ -300,7 +310,7 @@ export default {
 		-webkit-appearance: textfield !important;
 		-moz-appearance: textfield !important;
 
-		&:hover {
+		&:hover:not([disabled]) {
 			border-color: var(--color-primary-element);
 		}
 
