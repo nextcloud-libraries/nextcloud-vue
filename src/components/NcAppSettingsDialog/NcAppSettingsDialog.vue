@@ -211,7 +211,6 @@ export default {
 		 * @param {string} item the ID of the section
 		 */
 		handleSettingsNavigationClick(item) {
-			console.error(item)
 			this.linkClicked = true
 			document.getElementById('settings-section_' + item).scrollIntoView({
 				behavior: 'smooth',
