@@ -48,13 +48,13 @@ button will be automatically created.
 ```
 <NcAppNavigationItem title="Item with actions" icon="icon-category-enabled">
 	<template #actions>
-		<ActionButton icon="icon-edit" @click="alert('Edit')">
+		<NcActionButton icon="icon-edit" @click="alert('Edit')">
 			Edit
-		</ActionButton>
-		<ActionButton icon="icon-delete" @click="alert('Delete')">
+		</NcActionButton>
+		<NcActionButton icon="icon-delete" @click="alert('Delete')">
 			Delete
-		</ActionButton>
-		<ActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
+		</NcActionButton>
+		<NcActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
 	</template>
 </NcAppNavigationItem>
 ```
@@ -65,9 +65,9 @@ Just nest the counter in a template within `<NcAppNavigationItem>` and add `#cou
 ```
 <NcAppNavigationItem title="Item with counter" icon="icon-folder">
 	<template #counter>
-		<CounterBubble>
+		<NcCounterBubble>
 			99+
-		</CounterBubble>
+		</NcCounterBubble>
 	</template>
 </NcAppNavigationItem>
 ```
