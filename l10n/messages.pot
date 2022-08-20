@@ -56,6 +56,9 @@ msgstr ""
 msgid "Edit item"
 msgstr ""
 
+msgid "Error getting related resources"
+msgstr ""
+
 msgid "External documentation for {title}"
 msgstr ""
 
@@ -104,6 +107,9 @@ msgstr ""
 msgid "Open"
 msgstr ""
 
+msgid "Open link to \"{resourceTitle}\""
+msgstr ""
+
 msgid "Open navigation"
 msgstr ""
 
@@ -123,6 +129,9 @@ msgid "Please select a time zone:"
 msgstr ""
 
 msgid "Previous"
+msgstr ""
+
+msgid "Related resources"
 msgstr ""
 
 msgid "Search"
