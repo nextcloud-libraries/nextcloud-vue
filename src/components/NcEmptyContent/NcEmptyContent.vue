@@ -103,7 +103,6 @@ export default {
 
 		hasDescription() {
 			return this.slots?.desc !== undefined
-				&& this.slots?.desc[0]?.text
 		},
 	},
 }
