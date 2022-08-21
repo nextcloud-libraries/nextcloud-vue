@@ -113,6 +113,7 @@ export default {
 
 <template>
 	<NcInputField v-bind="$props"
+		ref="inputField"
 		v-on="$listeners"
 		@input="handleInput">
 		<!-- Default slot for the leading icon -->
