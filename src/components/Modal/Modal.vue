@@ -26,7 +26,14 @@
 	<template>
 		<div>
 			<button @click="showModal">Show Modal</button>
-			<modal v-if="modal" @close="closeModal" size="small">
+			<modal
+				v-if="modal"
+				@close="closeModal"
+				size="small"
+				title="Title"
+				:outTransition="true"
+				:hasNext="true"
+				:hasPrevious="true">
 				<div class="modal__content">Hello world</div>
 			</modal>
 		</div>
@@ -47,6 +54,69 @@
 		},
 		methods: {
 			showModal() {
+				this.modal = true
+			},
+			closeModal() {
+				this.modal = false
+			}
+		}
+	}
+	</script>
+	```
+
+	### Modal with more properties
+
+	```vue
+	<template>
+		<div>
+			<button @click="showModal">Show Modal with fields</button>
+			<modal
+				v-if="modal"
+				@close="closeModal"
+				size="large"
+				title="Title inside modal">
+				<div class="modal__content">
+					<h2>Please enter your name</h2>
+					<TextField label="First Name" :value.sync="firstName" />
+					<TextField label="Last Name" :value.sync="lastName" />
+					<Button
+						:disabled="!this.firstName || !this.lastName"
+						@click="closeModal"
+						type="primary">Submit</Button>
+				</div>
+			</modal>
+		</div>
+	</template>
+	<style scoped>
+	.modal__content {
+		margin: 50px;
+		text-align: center;
+	}
+
+	.input-field {
+		margin: 12px 0px;
+	}
+
+	</style>
+	<script>
+
+	import Button from '../Button/index.js'
+	import TextField from '../TextField/index.js'
+	export default {
+		components: {
+			TextField,
+		},
+		data() {
+			return {
+				modal: false,
+				firstName: '',
+				lastName: '',
+			}
+		},
+		methods: {
+			showModal() {
+				this.firstName = ''
+				this.lastName = ''
 				this.modal = true
 			},
 			closeModal() {
@@ -499,7 +569,7 @@ export default {
 				this.previous(e)
 				break
 			case 13: // enter key
-			case 39: // rigth arrow
+			case 39: // right arrow
 				this.next(e)
 				break
 			case 27: // escape key
