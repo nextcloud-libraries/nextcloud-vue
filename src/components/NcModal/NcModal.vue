@@ -79,8 +79,23 @@ export default {
 				<NcTextField label="First Name" :value.sync="firstName" />
 				<NcTextField label="Last Name" :value.sync="lastName" />
 				<NcButton
-					:disabled="!this.firstName || !this.lastName"
-					@click="closeModal"
+					:disabled="!firstName || !lastName"
+					@click="submitFirstModal"
+					type="primary">
+					Submit
+				</NcButton>
+			</div>
+		</NcModal>
+		<NcModal
+			v-if="petModal"
+			@close="closePetModal"
+			title="One more thing">
+			<div class="modal__content">
+				<h2>One more thing, what is your favorite pet ?</h2>
+				<NcTextField label="Favorite Pet" :value.sync="pet" />
+				<NcButton
+					:disabled="!pet"
+					@click="submitSecondModal"
 					type="primary">
 					Submit
 				</NcButton>
@@ -100,15 +115,29 @@ export default {
 	data() {
 		return {
 			modal: false,
+			petModal: false,
 			firstName: '',
 			lastName: '',
+			pet: '',
 		}
 	},
 	methods: {
 		showModal() {
 			this.firstName = ''
 			this.lastName = ''
+			this.pet = ''
 			this.modal = true
+		},
+		submitFirstModal() {
+			// raise second modal on top of first one to test focus trap
+			this.petModal = true
+		},
+		submitSecondModal() {
+			this.petModal = false
+			this.modal = false
+		},
+		closePetModal() {
+			this.petModal = false
 		},
 		closeModal() {
 			this.modal = false
