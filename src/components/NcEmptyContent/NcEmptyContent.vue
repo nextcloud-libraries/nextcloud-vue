@@ -27,14 +27,27 @@ Use this component to display a message about an empty content.
 Providing an icon, title, and a description is strongly advised.
 
 ```
-<NcEmptyContent>
-	No comments
-	<template #icon>
-		<Comment />
-	</template>
-	<template #desc>No comments in here</template>
-</NcEmptyContent>
+<template>
+	<NcEmptyContent>
+		No comments
+		<template #icon>
+			<Comment />
+		</template>
+		<template #desc>No comments in here</template>
+	</NcEmptyContent>
+</template>
+
+<script>
+import Comment from 'vue-material-design-icons/Comment'
+
+export default {
+	components: {
+		Comment,
+	},
+}
+</script>
 ```
+
 ```
 <template>
 	<NcEmptyContent>
@@ -48,16 +61,13 @@ Providing an icon, title, and a description is strongly advised.
 
 <script>
 import Airplane from 'vue-material-design-icons/Airplane'
-import Comment from 'vue-material-design-icons/Comment'
 
 export default {
 	components: {
 		Airplane,
-		Comment,
-	}
+	},
 }
 </script>
-
 ```
 </docs>
 
