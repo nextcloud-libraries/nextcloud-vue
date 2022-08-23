@@ -66,12 +66,12 @@ For the multiselect component, all events will be passed through. Please see the
 					@input="onInput"
 					@change="onChange" />
 
-				<NativeDatetimePicker v-else-if="isNativePicker"
+				<DateTimePickerNative v-else-if="isNativePicker"
 					:value="value"
 					:type="isNativeDatePickerType"
 					v-bind="$attrs"
-					@input="onInput"
-					@change="onChange" />
+					@input="$emit('input', $event)"
+					@change="$emit('change', $event)" />
 
 				<Multiselect v-else-if="isMultiselectType"
 					:value="value"
@@ -98,7 +98,7 @@ For the multiselect component, all events will be passed through. Please see the
 					<!-- allow the custom font to inject a ::before
 						not possible on input[type=submit] -->
 					<label v-show="!disabled" :for="id" class="action-input__label">
-						<ArrowRight :size="20" title="" decorative />
+						<ArrowRight :size="20" />
 					</label>
 				</template>
 			</form>
@@ -113,7 +113,7 @@ import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight'
-import NativeDatetimePicker from '../NativeDatetimePicker/NativeDatetimePicker'
+import DateTimePickerNative from '../DateTimePickerNative/DateTimePickerNative'
 
 export default {
 	name: 'ActionInput',
@@ -122,7 +122,7 @@ export default {
 		ArrowRight,
 		DatetimePicker,
 		Multiselect,
-		NativeDatetimePicker,
+		DateTimePickerNative,
 	},
 
 	mixins: [ActionGlobalMixin],
