@@ -574,7 +574,7 @@ export default {
 	margin: 2px 0;
 	width: 100%;
 	cursor: pointer;
-	transition: background-color 200ms ease-in-out;
+	transition: background-color var(--animation-quick) ease-in-out;
 	list-style: none;
 	&:hover,
 	&:focus {
