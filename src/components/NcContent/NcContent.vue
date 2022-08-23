@@ -81,10 +81,18 @@ export default {
 <style lang="scss" scoped>
 .content {
 	box-sizing: border-box;
-	position: relative;
+	margin: var(--body-container-margin);
+	margin-top: 50px;
 	display: flex;
-	padding-top: 50px;
-	min-height: 100%;
+	width: calc(100% - var(--body-container-margin) * 2);
+	height: var(--body-height);
+	overflow: hidden;
+	padding: 0;
+
+	&:not(.with-sidebar--full) {
+		position: fixed;
+	}
+
 	:deep(*) {
 		box-sizing: border-box;
 	}

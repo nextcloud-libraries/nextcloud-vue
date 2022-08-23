@@ -149,7 +149,7 @@ export default {
 	padding: 4px;
 	// Above appcontent
 	z-index: 1800;
-	height: calc(100vh - #{$header-height});
+	height: 100%;
 	box-sizing: border-box;
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -162,6 +162,7 @@ export default {
 	background-color:  var(--color-main-background-blur, var(--color-main-background));
 	-webkit-backdrop-filter: var(--filter-background-blur, none);
 	backdrop-filter: var(--filter-background-blur, none);
+
 	&--close {
 		margin-left: - $navigation-width;
 		transform: translateX(-100%);

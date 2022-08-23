@@ -639,9 +639,10 @@ $top-buttons-spacing: 6px;
 	width: 27vw;
 	min-width: $sidebar-min-width;
 	max-width: $sidebar-max-width;
-	height: calc(100vh - var(--header-height));
+	height: 100%;
 	border-left: 1px solid var(--color-border);
 	background: var(--color-main-background);
+
 	.app-sidebar-header {
 		> .app-sidebar__close {
 			position: absolute;

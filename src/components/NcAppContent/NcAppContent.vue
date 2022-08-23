@@ -323,14 +323,14 @@ export default {
 <style lang="scss" scoped>
 
 .app-content {
-	position: relative;
+	position: initial;
 	z-index: 1000;
 	flex-basis: 100vw;
-	min-width: 0;
-	min-height: 100%;
+	height: 100%;
 	// Overriding server styles TODO: cleanup!
 	margin: 0 !important;
 	background-color: var(--color-main-background);
+	overflow: scroll;
 
 	// Variables
 	// the whitespace between the topbar content and its edges
