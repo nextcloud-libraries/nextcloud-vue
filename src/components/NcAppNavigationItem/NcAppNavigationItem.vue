@@ -111,12 +111,15 @@ Just set the `pinned` prop.
 </docs>
 
 <template>
-	<li class="app-navigation-entry-wrapper"
+	<li :id="id"
 		:class="{
 			'app-navigation-entry--opened': opened,
 			'app-navigation-entry--pinned': pinned,
 			'app-navigation-entry--collapsible': collapsible,
-		}">
+		}"
+		class="app-navigation-entry-wrapper"
+		@mouseover="handleMouseover"
+		@mouseleave="handleMouseleave">
 		<nav-element v-bind="navElement"
 			:class="{
 				'app-navigation-entry--no-icon': !isIconShown,
@@ -131,6 +134,10 @@ Just set the `pinned` prop.
 				:aria-description="ariaDescription"
 				href="#"
 				:aria-expanded="opened.toString()"
+				@focus="handleFocus"
+				@blur="handleBlur"
+				@keydown.tab.exact="handleTab"
+				@keydown.esc="hideActions"
 				@click="onClick">
 
 				<!-- icon if not collapsible -->
@@ -162,11 +169,14 @@ Just set the `pinned` prop.
 
 			<!-- Counter and Actions -->
 			<div v-if="hasUtils && !editingActive" class="app-navigation-entry__utils">
-				<div v-if="$slots.counter"
+				<div v-if="$slots.counter && (!displayActionsOnHoverFocus || forceDisplayActions)"
 					class="app-navigation-entry__counter-wrapper">
 					<slot name="counter" />
 				</div>
-				<NcActions menu-align="right"
+				<NcActions v-show="displayActionsOnHoverFocus || forceDisplayActions"
+					ref="actions"
+					menu-align="right"
+					:container="'#' + id"
 					:placement="menuPlacement"
 					:open="menuOpen"
 					:force-menu="forceMenu"
@@ -215,6 +225,7 @@ import NcAppNavigationIconCollapsible from './NcAppNavigationIconCollapsible.vue
 import isMobile from '../../mixins/isMobile/index.js'
 import NcInputConfirmCancel from './NcInputConfirmCancel.vue'
 import { t } from '../../l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 import Pencil from 'vue-material-design-icons/Pencil.vue'
 import Undo from 'vue-material-design-icons/Undo.vue'
@@ -234,7 +245,9 @@ export default {
 	directives: {
 		ClickOutside,
 	},
+
 	mixins: [isMobile],
+
 	props: {
 		/**
 		 * The title of the element.
@@ -243,6 +256,16 @@ export default {
 			type: String,
 			required: true,
 		},
+
+		/**
+		 * id attribute of the list item element
+		 */
+		id: {
+			type: String,
+			default: () => 'app-navigation-item-' + GenRandomId(),
+			validator: id => id.trim() !== '',
+		},
+
 		/**
 		 * Refers to the icon on the left, this prop accepts a class
 		 * like 'icon-category-enabled'.
@@ -260,6 +283,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Passing in a route will make the root element of this
 		 * component a `<router-link />` that points to that route.
@@ -269,6 +293,7 @@ export default {
 			type: [String, Object],
 			default: '',
 		},
+
 		/**
 		 * Pass in `true` if you want the matching behaviour to
 		 * be non-inclusive: https://router.vuejs.org/api/#exact
@@ -285,6 +310,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Makes the title of the item editable by providing an `ActionButton`
 		 * component that toggles a form
@@ -293,6 +319,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Only for 'editable' items, sets label for the edit action button.
 		 */
@@ -300,6 +327,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Only for items in 'editable' mode, sets the placeholder text for the editing form.
 		 */
@@ -307,6 +335,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Pins the item to the bottom left area, above the settings. Do not
 		 * place 'non-pinned' `AppnavigationItem` components below `pinned`
@@ -316,6 +345,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Puts the item in the 'undo' state.
 		 */
@@ -323,6 +353,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * The navigation collapsible state (synced)
 		 */
@@ -330,6 +361,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * The actions menu open state (synced)
 		 */
@@ -337,6 +369,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Force the actions to display in a three dot menu
 		 */
@@ -344,6 +377,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * The action's menu default icon
 		 */
@@ -351,6 +385,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * The action's menu direction
 		 */
@@ -358,12 +393,21 @@ export default {
 			type: String,
 			default: 'bottom',
 		},
+
 		/**
 		 * Entry aria details
 		 */
 		ariaDescription: {
 			type: String,
 			default: null,
+		},
+
+		/**
+		 * To be used only when the elements in the actions menu are very important
+		 */
+		forceDisplayActions: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -378,11 +422,21 @@ export default {
 	data() {
 		return {
 			editingValue: '',
-			opened: this.open,
+			opened: this.open, // Collapsible state
 			editingActive: false,
 			hasChildren: false,
+			/**
+			 * Tracks the open state of the actions menu
+			 */
+			menuOpenLocalValue: false,
+			hovered: false,
+			focused: false,
+			hasActions: false,
+			displayActionsOnHoverFocus: false,
+
 		}
 	},
+
 	computed: {
 		collapsible() {
 			return this.allowCollapse && !!this.$slots.default
@@ -404,6 +458,7 @@ export default {
 				return true
 			}
 		},
+
 		hasUtils() {
 			if (this.editing) {
 				return false
@@ -413,6 +468,7 @@ export default {
 				return false
 			}
 		},
+
 		// This is used to decide which outer element type to use
 		navElement() {
 			if (this.to) {
@@ -427,19 +483,30 @@ export default {
 				is: 'div',
 			}
 		},
+
 		isActive() {
 			return this.to && this.$route === this.to
 		},
+
 		editButtonAriaLabel() {
 			return this.editLabel ? this.editLabel : t('Edit item')
 		},
+
 		undoButtonAriaLabel() {
 			return t('Undo changes')
 		},
 	},
+
 	watch: {
 		open(newVal) {
 			this.opened = newVal
+		},
+
+		menuOpenLocalValue(open) {
+			// A click outside both the menu and the root element hides the actions again
+			if (!open && !this.hovered) {
+				this.hideActions()
+			}
 		},
 	},
 
@@ -455,6 +522,7 @@ export default {
 		// sync opened menu state with prop
 		onMenuToggle(state) {
 			this.$emit('update:menuOpen', state)
+			this.menuOpenLocalValue = state
 		},
 		// toggle the collapsible state
 		toggleCollapse() {
@@ -492,6 +560,66 @@ export default {
 
 		updateSlotInfo() {
 			this.hasChildren = !!this.$slots.default
+			if (this.hasActions !== !!this.$slots.actions) {
+				this.hasActions = !!this.$slots.actions
+			}
+		},
+
+		// Display the actions menu on hover or focus
+		showActions() {
+			if (this.hasActions) {
+				this.displayActionsOnHoverFocus = true
+			}
+			this.hovered = false
+		},
+
+		// Hide the actions menu
+		hideActions() {
+			this.displayActionsOnHoverFocus = false
+		},
+
+		handleMouseover() {
+			this.showActions()
+			this.hovered = true
+		},
+
+		/**
+		 * Hide the actions on mouseleave unless the menu is open
+		 */
+		handleMouseleave() {
+			if (!this.menuOpenLocalValue) {
+				this.hideActions()
+			}
+			this.hovered = false
+		},
+
+		/**
+		 * Show actions upon focus
+		 */
+		handleFocus() {
+			this.focused = true
+			this.showActions()
+		},
+
+		handleBlur() {
+			this.focused = false
+		},
+
+		/**
+		 * This method checks if the root element of the component is focused and
+		 * if that's the case it focuses the actions button if available
+		 *
+		 * @param {Event} e the keydown event
+		 */
+		handleTab(e) {
+			if (this.focused && this.hasActions) {
+				e.preventDefault()
+				this.$refs.actions.$refs.menuButton.$el.focus()
+				this.focused = false
+			} else {
+				this.hideActions()
+				this.$refs.actions.$refs.menuButton.$el.blur()
+			}
 		},
 	},
 }
@@ -507,6 +635,7 @@ export default {
 	width: 100%;
 	min-height: $clickable-area;
 	transition: background-color var(--animation-quick) ease-in-out;
+	transition: background-color 200ms ease-in-out;
 	border-radius: var(--border-radius-pill);
 
 	&-wrapper {
