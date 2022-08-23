@@ -73,15 +73,14 @@ export default {
 
 <template>
 	<div class="empty-content" role="note">
-		<div v-if="hasIcon" class="empty-content__icon">
+		<div v-if="$slots.icon" class="empty-content__icon">
 			<!-- @slot Optional material design icon -->
 			<slot name="icon" />
 		</div>
 		<h2 v-if="hasTitle" class="empty-content__title">
-			<!-- @slot Optional title -->
-			<slot />
+			{{ title }}
 		</h2>
-		<p v-if="hasDescription">
+		<p v-if="$slots.desc">
 			<!-- @slot Optional description -->
 			<slot name="desc" />
 		</p>
@@ -92,27 +91,16 @@ export default {
 export default {
 	name: 'NcEmptyContent',
 
-	data() {
-		return {
-			/**
-			 * Making sure the slots are reactive
-			 */
-			slots: this.$slots,
-		}
+	props: {
+		title: {
+			type: String,
+			default: '',
+		},
 	},
 
 	computed: {
-		hasIcon() {
-			return this.slots.icon !== undefined
-		},
-
 		hasTitle() {
-			return this.slots?.default !== undefined
-				&& this.slots?.default[0]?.text
-		},
-
-		hasDescription() {
-			return this.slots?.desc !== undefined
+			return this.title !== ''
 		},
 	},
 }
