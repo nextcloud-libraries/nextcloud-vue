@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v6.0.0-beta.4](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.4) (2022-08-23)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.3...v6.0.0-beta.4)
+
+### :rocket: Enhancements
+
+- Allow more than text on EmptyContent description [\#3082](https://github.com/nextcloud/nextcloud-vue/pull/3082) ([jotoeri](https://github.com/jotoeri))
+- Add ref to NcInputField in NcTextField [\#3078](https://github.com/nextcloud/nextcloud-vue/pull/3078) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- 📰 Update AppNavigationItem design [\#3056](https://github.com/nextcloud/nextcloud-vue/pull/3056) ([marcoambrosini](https://github.com/marcoambrosini))
+- ListItem Design update [\#3055](https://github.com/nextcloud/nextcloud-vue/pull/3055) ([marcoambrosini](https://github.com/marcoambrosini))
+
+### :bug: Fixed bugs
+
+- Make input field button style take precedence [\#3077](https://github.com/nextcloud/nextcloud-vue/pull/3077) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix NcAppNavigationItem docs [\#3076](https://github.com/nextcloud/nextcloud-vue/pull/3076) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix listitem tabbed navigation [\#3075](https://github.com/nextcloud/nextcloud-vue/pull/3075) ([marcoambrosini](https://github.com/marcoambrosini))
+- Always show NcAppSettingsDialog title [\#3074](https://github.com/nextcloud/nextcloud-vue/pull/3074) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix link in docs to NcCounterBubble [\#3071](https://github.com/nextcloud/nextcloud-vue/pull/3071) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Only set target and rel attributes when href != '\#' [\#3069](https://github.com/nextcloud/nextcloud-vue/pull/3069) ([tcitworld](https://github.com/tcitworld))
+- Fix margin for Modal inline actions [\#3065](https://github.com/nextcloud/nextcloud-vue/pull/3065) ([skjnldsv](https://github.com/skjnldsv))
+- Fix InputField focus state [\#2970](https://github.com/nextcloud/nextcloud-vue/pull/2970) ([marcoambrosini](https://github.com/marcoambrosini))
+- Fix Modal closing [\#3066](https://github.com/nextcloud/nextcloud-vue/pull/3066) ([skjnldsv](https://github.com/skjnldsv))
+
+### Closed pull requests
+
+- Fix EmptyContent comments example in docs [\#3089](https://github.com/nextcloud/nextcloud-vue/pull/3089) ([Pytal](https://github.com/Pytal))
+- Remove debug log statement [\#3072](https://github.com/nextcloud/nextcloud-vue/pull/3072) ([st3iny](https://github.com/st3iny))
+
 ## [v6.0.0-beta.3](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.3) (2022-08-18)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.2...v6.0.0-beta.3)
