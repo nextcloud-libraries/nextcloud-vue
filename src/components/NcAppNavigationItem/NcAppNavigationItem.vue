@@ -506,8 +506,8 @@ export default {
 	box-sizing: border-box;
 	width: 100%;
 	min-height: $clickable-area;
-	padding-right: 8px;
-	border-radius: var(--border-radius-large);
+	transition: background-color var(--animation-quick) ease-in-out;
+	border-radius: var(--border-radius-pill);
 
 	&-wrapper {
 		position: relative;
@@ -649,6 +649,7 @@ export default {
 /* counter and actions */
 .app-navigation-entry__utils {
 	display: flex;
+	width: $clickable-area;
 	align-items: center;
 	flex: 0 1 auto;
 }
