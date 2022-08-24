@@ -582,6 +582,7 @@ export default {
 		background-color: var(--color-background-hover);
 	}
 	&--active,
+	.active,
 	&:active,
 	&:active ~ .app-navigation-entry__utils {
 		background-color: var(--color-primary-light);
