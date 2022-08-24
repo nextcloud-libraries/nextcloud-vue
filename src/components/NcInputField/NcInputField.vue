@@ -29,11 +29,14 @@
 		</label>
 		<div class="input-field__main-wrapper">
 			<input v-bind="$attrs"
+				:id="computedId"
 				ref="input"
 				:name="inputName"
 				class="input-field__input"
 				:type="type"
+				:disabled="disabled"
 				:placeholder="computedPlaceholder"
+				:aria-describedby="helperText.length > 0 ? `${inputName}-helper-text` : ''"
 				aria-live="polite"
 				:class="{
 					'input-field__input--trailing-icon': showTrailingButton || hasTrailingIcon,
@@ -51,16 +54,12 @@
 				<slot />
 			</div>
 
-			<!-- Success and error icons -->
-			<div v-if="success || error" class="input-field__icon input-field__icon--trailing">
-				<Check v-if="success" :size="18" />
-				<AlertCircle v-else-if="error" :size="18" />
-			</div>
-
 			<!-- trailing button -->
-			<NcButton v-else-if="showTrailingButton"
+			<NcButton v-if="showTrailingButton"
 				type="tertiary-no-background"
 				class="input-field__clear-button"
+				:aria-label="trailingButtonLabel"
+				:disabled="disabled"
 				@click="handleTrailingButtonClick">
 				<!-- Populating this slot creates a trailing button within the
 				input boundaries that emits a `trailing-button-click` event -->
@@ -68,7 +67,25 @@
 					<slot name="trailing-button-icon" />
 				</template>
 			</NcButton>
+
+			<!-- Success and error icons -->
+			<div v-else-if="success || error"
+				class="input-field__icon input-field__icon--trailing">
+				<Check v-if="success" :size="18" />
+				<AlertCircle v-else-if="error" :size="18" />
+			</div>
 		</div>
+		<p v-if="helperText.length > 0"
+			:id="`${inputName}-helper-text`"
+			class="input-field__helper-text-message"
+			:class="{
+				'input-field__helper-text-message--error': error,
+				'input-field__helper-text-message--success': success,
+			}">
+			<Check v-if="success" class="input-field__helper-text-message__icon" :size="18" />
+			<AlertCircle v-else-if="error" class="input-field__helper-text-message__icon" :size="18" />
+			{{ helperText }}
+		</p>
 	</div>
 </template>
 
@@ -87,6 +104,8 @@ export default {
 		AlertCircle,
 		Check,
 	},
+
+	inheritAttrs: false,
 
 	props: {
 		/**
@@ -154,6 +173,16 @@ export default {
 		},
 
 		/**
+		 * Label of the trailing button
+		 *
+		 * Required when showTrailingButton is set
+		 */
+		trailingButtonLabel: {
+			type: String,
+			default: '',
+		},
+
+		/**
 		 * Toggles the success state of the component. Adds a checkmark icon.
 		 * this cannot be used together with canClear.
 		 */
@@ -170,6 +199,25 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Additional helper text message
+		 *
+		 * This will be displayed beneath the input field. In case the field is
+		 * also marked as having an error, the text will be displayed in red.
+		 */
+		helperText: {
+			type: String,
+			default: '',
+		},
+
+		/**
+		 * Disable the input field
+		 */
+		disabled: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	emits: [
@@ -178,6 +226,10 @@ export default {
 	],
 
 	computed: {
+		computedId() {
+			return this.$attrs.id && this.$attrs.id !== '' ? this.$attrs.id : this.inputName
+		},
+
 		inputName() {
 			return 'input' + GenRandomId()
 		},
@@ -229,7 +281,6 @@ export default {
 		},
 	},
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -259,7 +310,7 @@ export default {
 		-webkit-appearance: textfield !important;
 		-moz-appearance: textfield !important;
 
-		&:hover {
+		&:hover:not([disabled]) {
 			border-color: var(--color-primary-element);
 		}
 
@@ -273,10 +324,16 @@ export default {
 
 		&--success {
 			border-color: var(--color-success) !important; //Override hover border color
+			&:focus-visible {
+				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
+			}
 		}
 
 		&--error {
 			border-color: var(--color-error) !important; //Override hover border color
+			&:focus-visible {
+				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
+			}
 		}
 
 		&--leading-icon {
@@ -330,6 +387,24 @@ export default {
 		height: 32px;
 		width: 32px !important;
 		border-radius: var(--border-radius-large);
+	}
+
+	&__helper-text-message {
+		padding: 4px 0;
+		display: flex;
+		align-items: center;
+
+		&__icon {
+			margin-right: 8px;
+		}
+
+		&--error {
+			color: var(--color-error);
+		}
+
+		&--success {
+			color: var(--color-success);
+		}
 	}
 }
 
