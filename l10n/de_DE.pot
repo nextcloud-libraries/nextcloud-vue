@@ -44,6 +44,9 @@ msgstr "Titel ändern"
 msgid "Choose"
 msgstr "Auswählen"
 
+msgid "Clear text"
+msgstr "Klartext"
+
 msgid "Close"
 msgstr "Schließen"
 
@@ -86,6 +89,9 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Zurück zur Liste"
 
+msgid "Hide password"
+msgstr "Passwort verbergen"
+
 msgid "items"
 msgstr "Elemente"
 
@@ -112,6 +118,9 @@ msgstr "Öffnen"
 
 msgid "Open navigation"
 msgstr "Navigation öffnen"
+
+msgid "Password is secure"
+msgstr "Passwort ist sicher"
 
 msgid "Pause slideshow"
 msgstr "Diashow pausieren"
@@ -142,6 +151,9 @@ msgstr "Einstellungen"
 
 msgid "Settings navigation"
 msgstr "Einstellungen für die Navigation"
+
+msgid "Show password"
+msgstr "Passwort anzeigen"
 
 msgid "Smileys & Emotion"
 msgstr "Smileys & Emotionen"
