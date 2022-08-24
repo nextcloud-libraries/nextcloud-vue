@@ -40,6 +40,9 @@ msgstr "Změnit nadpis"
 msgid "Choose"
 msgstr "Zvolit"
 
+msgid "Clear text"
+msgstr "Čitelný text"
+
 msgid "Close"
 msgstr "Zavřít"
 
@@ -82,6 +85,9 @@ msgstr "Globální"
 msgid "Go back to the list"
 msgstr "Jít zpět na seznam"
 
+msgid "Hide password"
+msgstr "Skrýt heslo"
+
 msgid "items"
 msgstr "položky"
 
@@ -108,6 +114,9 @@ msgstr "Otevřít"
 
 msgid "Open navigation"
 msgstr "Otevřít navigaci"
+
+msgid "Password is secure"
+msgstr "Heslo je bezpečné"
 
 msgid "Pause slideshow"
 msgstr "Pozastavit prezentaci"
@@ -138,6 +147,9 @@ msgstr "Nastavení"
 
 msgid "Settings navigation"
 msgstr "Pohyb po nastavení"
+
+msgid "Show password"
+msgstr "Zobrazit heslo"
 
 msgid "Smileys & Emotion"
 msgstr "Úsměvy a emoce"
