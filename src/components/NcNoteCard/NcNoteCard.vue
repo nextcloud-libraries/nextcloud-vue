@@ -76,16 +76,16 @@ export default {
 		 */
 		type: {
 			type: String,
-			default: () => 'warning',
-			validator: type => type === 'success' || type === 'warning' || type === 'error',
+			default: 'warning',
+			validator: type => ['success', 'warning', 'error'].includes(type),
 		},
 		showAlert: {
 			type: Boolean,
-			default: () => false,
+			default: false,
 		},
 		heading: {
 			type: String,
-			required: false,
+			default: '',
 		},
 	},
 	computed: {
