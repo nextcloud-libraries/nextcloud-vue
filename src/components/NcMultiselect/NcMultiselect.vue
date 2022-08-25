@@ -41,6 +41,14 @@ export default {
 	}
 }
 </script>
+
+<style>
+.wrapper {
+	display: flex;
+	gap: 8px;
+	align-items: start;
+}
+</style>
 ```
 
 ### Simple example with objects
