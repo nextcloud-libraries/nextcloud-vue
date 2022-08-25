@@ -2,10 +2,11 @@
 # Translators:
 # Artur Skoczylas <art.skoczylas@gmail.com>, 2020
 # Valdnet, 2022
+# Karol Guzik, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Valdnet, 2022\n"
+"Last-Translator: Karol Guzik, 2022\n"
 "Language-Team: Polish (https://www.transifex.com/nextcloud/teams/64236/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
@@ -40,6 +41,9 @@ msgstr "Zmień tytuł"
 
 msgid "Choose"
 msgstr "Wybierz"
+
+msgid "Clear text"
+msgstr "Wyczyść tekst"
 
 msgid "Close"
 msgstr "Zamknij"
@@ -83,6 +87,9 @@ msgstr "Globalnie"
 msgid "Go back to the list"
 msgstr "Powrót do listy"
 
+msgid "Hide password"
+msgstr "Ukryj hasło"
+
 msgid "items"
 msgstr "elementy"
 
@@ -109,6 +116,9 @@ msgstr "Otwórz"
 
 msgid "Open navigation"
 msgstr "Otwórz nawigację"
+
+msgid "Password is secure"
+msgstr "Hasło jest bezpieczne"
 
 msgid "Pause slideshow"
 msgstr "Wstrzymaj pokaz slajdów"
@@ -140,6 +150,9 @@ msgstr "Ustawienia"
 msgid "Settings navigation"
 msgstr "Ustawienia nawigacji"
 
+msgid "Show password"
+msgstr "Pokaż hasło"
+
 msgid "Smileys & Emotion"
 msgstr "Buźki i emotikony"
 
@@ -166,4 +179,4 @@ msgstr "Cofnij zmiany"
 
 msgid "Write message, @ to mention someone, : for emoji autocompletion …"
 msgstr ""
-"Napisz wiadomość, @ aby o kimś wspomnieć, : dla autouzupełniania emotikonów…"
+"Napisz wiadomość, @ aby o kimś wspomnieć, : dla autouzupełniania emotikon…"
