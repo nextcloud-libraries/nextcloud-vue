@@ -1,19 +1,72 @@
+<!--
+  - @copyright Copyright (c) 2022 Julia Kirschenheuter <julia.kirschenheuter@nextcloud.com>
+  -
+  - @author Julia Kirschenheuter <julia.kirschenheuter@nextcloud.com>
+  -
+  - @license GNU AGPL version 3 or any later version
+  -
+  - This program is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU Affero General Public License as
+  - published by the Free Software Foundation, either version 3 of the
+  - License, or (at your option) any later version.
+  -
+  - This program is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  - GNU Affero General Public License for more details.
+  -
+  - You should have received a copy of the GNU Affero General Public License
+  - along with this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  -->
+
+<docs>
+> We're wrapping the awesome native browser datepicker as an input with some type of date e.g. https://html.spec.whatwg.org/multipage/input.html#local-date-and-time-state-(type=datetime-local)
+> Please check there for all the available options: https://html.spec.whatwg.org/multipage/input.html#
+> All available types are: 'date', 'datetime-local', 'month', 'time' and 'week'.
+
+### Example: datetime-local
+```vue
+<template>
+	<span>
+		<DateTimePickerNative
+			v-model="value"
+			:label="label"
+			type="datetime-local" />
+	</span>
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				value: new Date(),
+				label: 'please select a new date'
+			}
+		},
+	}
+</script>
+```
+
+</docs>
+
 <template>
 	<div class="native-datetime-picker">
-		<label for="native-datetime-picker_${value}">{{ t('Choose a date') }}</label>
-		<input id="native-datetime-picker_${value}"
+		<label :class="{ 'hidden-visually': noVisibleLabel }"
+			:for="`native-datetime-picker_${label}`">{{ label }}</label>
+		<input :id="`native-datetime-picker_${label}`"
 			class="native-datetime-picker--input"
 			:type="type"
 			v-bind="$attrs"
 			:value="formattedValue"
 			:min="formattedMin"
 			:max="formattedMax"
-			@input="onInput($event)"
-			@change="$emit('change', $event)">
+			v-on="listeners">
 	</div>
 </template>
 
 <script>
+
+const inputDateTypes = ['date', 'datetime-local', 'month', 'time', 'week']
 
 export default {
 	name: 'DateTimePickerNative',
@@ -23,10 +76,11 @@ export default {
 		type: {
 			type: String,
 			default: 'date',
-			validator(type) {
-				return ['date', 'datetime-local', 'month',
-					'time', 'week'].indexOf(type) > -1
-			},
+			validate: (name) => inputDateTypes.includes(name),
+		},
+		label: {
+			type: String,
+			required: true,
 		},
 		value: {
 			type: Date,
@@ -42,7 +96,12 @@ export default {
 			default: null,
 			required: false,
 		},
+		noVisibleLabel: {
+			type: Boolean,
+			default: false,
+		},
 	},
+
 	computed: {
 		formattedValue() {
 			return this.formatValue(this.value)
@@ -59,35 +118,58 @@ export default {
 			}
 			return false
 		},
+		listeners() {
+			const yyyy = this.value.getFullYear()
+			const MM = (this.value.getMonth() + 1).toString().padStart(2, '0')
+			const dd = this.value.getDate().toString().padStart(2, '0')
+			return {
+				...this.$listeners,
+				input: ($event) => {
+					if (this.type === 'month') {
+						return this.$emit('input', new Date(Date.parse($event.target.value)))
+					} else if (this.type === 'time') {
+						return this.$emit('input', new Date(`${yyyy}-${MM}-${dd}T${$event.target.value}`))
+					} else if (this.type === 'datetime-local') {
+						// todo: time doesn't works right
+						return this.$emit('input', new Date($event.target.valueAsNumber))
+					} else if (this.type === 'week') {
+						// todo: time doesn't works right
+						return this.$emit('input', new Date($event.target.valueAsNumber))
+					} else {
+						return this.$emit('input', new Date($event.target.valueAsNumber))
+					}
+				},
+				change: ($event) => {
+					return this.$emit('change', $event)
+				},
+			}
+		},
 	},
 
 	methods: {
 		formatValue(value) {
-			const cutISOString = value.toISOString().slice(0, -8)
+			const yyyy = value.getFullYear()
+			const MM = (value.getMonth() + 1).toString().padStart(2, '0')
+			const dd = value.getDate().toString().padStart(2, '0')
+			const hh = value.getHours().toString().padStart(2, '0')
+			const mm = value.getMinutes().toString().padStart(2, '0')
 
 			if (this.type === 'datetime-local') {
-				return cutISOString
+				return `${yyyy}-${MM}-${dd}T${hh}:${mm}`
 			} else if (this.type === 'date') {
-				return cutISOString.slice(0, cutISOString.indexOf('T'))
+				return `${yyyy}-${MM}-${dd}`
 			} else if (this.type === 'month') {
-				return cutISOString.slice(0, cutISOString.indexOf('T') - 3)
+				return `${yyyy}-${MM}`
 			} else if (this.type === 'time') {
-				return cutISOString.slice(cutISOString.indexOf('T') + 1, cutISOString.indexOf('T') + 6)
+				return `${hh}:${mm}`
 			} else if (this.type === 'week') {
-				const startDate = new Date(value.getFullYear(), 0, 1)
+				const startDate = new Date(yyyy, 0, 1)
 				const daysSinceBeginningOfYear = Math.floor((value - startDate)
 					/ (24 * 60 * 60 * 1000))
 				const returnWeek = Math.ceil(daysSinceBeginningOfYear / 7)
-				return `${value.getFullYear()}-W${returnWeek}`
-			}
-			return cutISOString
-		},
-
-		onInput($event) {
-			if (this.type === 'month') {
-				return this.$emit('input', new Date(Date.parse($event.target.value)))
+				return `${yyyy}-W${returnWeek}`
 			} else {
-				return this.$emit('input', new Date($event.target.valueAsNumber))
+				return false
 			}
 		},
 	},
@@ -95,7 +177,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+	.native-datetime-picker{
+		display: flex;;
+		flex-direction: column;
+	}
 	.native-datetime-picker .native-datetime-picker--input {
 		width: 100%;
+		flex: 0 0 auto;
 	}
 </style>
