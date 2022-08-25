@@ -43,6 +43,9 @@ msgstr "Başlığı değiştir"
 msgid "Choose"
 msgstr "Seçin"
 
+msgid "Clear text"
+msgstr "Metni temizle"
+
 msgid "Close"
 msgstr "Kapat"
 
@@ -85,6 +88,9 @@ msgstr "Evrensel"
 msgid "Go back to the list"
 msgstr "Listeye dön"
 
+msgid "Hide password"
+msgstr "Parolayı gizle"
+
 msgid "items"
 msgstr "ögeler"
 
@@ -111,6 +117,9 @@ msgstr "Aç"
 
 msgid "Open navigation"
 msgstr "Gezinmeyi aç"
+
+msgid "Password is secure"
+msgstr "Parola güvenli"
 
 msgid "Pause slideshow"
 msgstr "Slayt sunumunu duraklat"
@@ -141,6 +150,9 @@ msgstr "Ayarlar"
 
 msgid "Settings navigation"
 msgstr "Gezinme ayarları"
+
+msgid "Show password"
+msgstr "Parolayı görüntüle"
 
 msgid "Smileys & Emotion"
 msgstr "İfadeler ve Duygular"
