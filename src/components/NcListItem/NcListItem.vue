@@ -195,6 +195,55 @@
 	</NcListItem>
 </ul>
 ```
+
+### NcListItem not bold or fully bold
+```
+<ul style="width: 350px;">
+	<NcListItem
+		:title="'Title of the element'"
+		:bold="true"
+		:counter-number="1"
+		:compact="true" >
+		<template #icon>
+			<div class="icon-edit" />
+		</template>
+		<template #subtitle>
+			This one is with subtitle
+		</template>
+		<template #actions>
+			<NcActionButton>
+				Button one
+			</NcActionButton>
+			<NcActionButton>
+				Button two
+			</NcActionButton>
+		</template>
+	</NcListItem>
+	<NcListItem
+		:title="'Title of the element'"
+		:counter-number="2"
+		:compact="true" >
+		<template #icon>
+			<div class="icon-edit" />
+		</template>
+		<template #subtitle>
+			This one is with subtitle
+		</template>
+	</NcListItem>
+	<NcListItem
+		:title="'Title of the element'"
+		:counter-number="3"
+		:boldTitle="false"
+		:compact="true" >
+		<template #icon>
+			<div class="icon-edit" />
+		</template>
+		<template #subtitle>
+			This one is with subtitle
+		</template>
+	</NcListItem>
+</ul>
+```
 </docs>
 
 <template>
@@ -228,7 +277,8 @@
 						:class="{ 'list-item-content__main--oneline': oneLine }">
 
 						<!-- First line, title and details -->
-						<div class="line-one">
+						<div class="line-one"
+							:class="{'line-one--bold': bold || boldTitle}">
 							<span class="line-one__title">
 								{{ title }}
 							</span>
@@ -360,7 +410,15 @@ export default {
 		},
 
 		/**
-		 * Make subtitle bold
+		 * Make only title bold
+		 */
+		boldTitle: {
+			type: Boolean,
+			default: true,
+		},
+
+		/**
+		 * Make title and subtitle bold
 		 */
 		bold: {
 			type: Boolean,
@@ -665,6 +723,9 @@ export default {
 	white-space: nowrap;
 	margin: 0 auto 0 0;
 	overflow: hidden;
+	&--bold {
+		font-weight: bold;
+	}
 
 	&__title {
 		overflow: hidden;
@@ -672,7 +733,6 @@ export default {
 		cursor: pointer;
 		text-overflow: ellipsis;
 		color: var(--color-main-text);
-		font-weight: bold;
 	}
 
 	&__details {
