@@ -125,18 +125,16 @@ export default {
 			return {
 				...this.$listeners,
 				input: ($event) => {
-					if (this.type === 'month') {
-						return this.$emit('input', new Date(Date.parse($event.target.value)))
-					} else if (this.type === 'time') {
+					if (this.type === 'time') {
 						return this.$emit('input', new Date(`${yyyy}-${MM}-${dd}T${$event.target.value}`))
-					} else if (this.type === 'datetime-local') {
-						// todo: time doesn't works right
-						return this.$emit('input', new Date($event.target.valueAsNumber))
 					} else if (this.type === 'week') {
-						// todo: time doesn't works right
-						return this.$emit('input', new Date($event.target.valueAsNumber))
+						return $event.target.valueAsNumber
+							? this.$emit('input', new Date($event.target.valueAsNumber))
+							: this.$emit('input', this.value)
 					} else {
-						return this.$emit('input', new Date($event.target.valueAsNumber))
+						return $event.target.valueAsNumber
+							? this.$emit('input', new Date(Date.parse($event.target.value)))
+							: this.$emit('input', this.value)
 					}
 				},
 				change: ($event) => {
@@ -166,8 +164,8 @@ export default {
 				const startDate = new Date(yyyy, 0, 1)
 				const daysSinceBeginningOfYear = Math.floor((value - startDate)
 					/ (24 * 60 * 60 * 1000))
-				const returnWeek = Math.ceil(daysSinceBeginningOfYear / 7)
-				return `${yyyy}-W${returnWeek}`
+				const weekNumber = Math.ceil(daysSinceBeginningOfYear / 7)
+				return `${yyyy}-W${weekNumber}`
 			} else {
 				return false
 			}
