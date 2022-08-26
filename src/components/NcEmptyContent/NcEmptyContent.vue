@@ -28,12 +28,11 @@ Providing an icon, title, and a description is strongly advised.
 
 ```
 <template>
-	<NcEmptyContent>
-		No comments
+	<NcEmptyContent
+		title="No comments">
 		<template #icon>
 			<Comment />
 		</template>
-		<template #desc>No comments in here</template>
 	</NcEmptyContent>
 </template>
 
@@ -47,24 +46,28 @@ export default {
 }
 </script>
 ```
-
 ```
 <template>
-	<NcEmptyContent>
-		Network error
+	<NcEmptyContent
+		title="No comments"
+		description="No comments in here">
 		<template #icon>
-			<Airplane />
+			<Comment />
 		</template>
-		<template #desc>Unable to load the list</template>
+		<template #action>
+			<NcButton type="primary">
+				Add a comment!
+			</NcButton>
+		</template>
 	</NcEmptyContent>
 </template>
 
 <script>
-import Airplane from 'vue-material-design-icons/Airplane'
+import Comment from 'vue-material-design-icons/Comment'
 
 export default {
 	components: {
-		Airplane,
+		Comment,
 	},
 }
 </script>
@@ -80,10 +83,13 @@ export default {
 		<h2 v-if="hasTitle" class="empty-content__title">
 			{{ title }}
 		</h2>
-		<p v-if="$slots.desc">
-			<!-- @slot Optional description -->
-			<slot name="desc" />
+		<p v-if="hasDescription">
+			{{ description }}
 		</p>
+		<div v-if="$slots.action" class="empty-content__action">
+			<!-- @slot Optional slot for a button or the like -->
+			<slot name="action" />
+		</div>
 	</div>
 </template>
 
@@ -96,11 +102,19 @@ export default {
 			type: String,
 			default: '',
 		},
+
+		description: {
+			type: String,
+			default: '',
+		},
 	},
 
 	computed: {
 		hasTitle() {
 			return this.title !== ''
+		},
+		hasDescription() {
+			return this.description !== ''
 		},
 	},
 }
@@ -134,6 +148,10 @@ export default {
 	&__title {
 		margin-bottom: 10px;
 		text-align: center;
+	}
+
+	&__action {
+		margin-top: 8px;
 	}
 }
 </style>
