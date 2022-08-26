@@ -852,14 +852,17 @@ export default {
 		z-index: 10000;
 		// ignore display: none
 		display: flex !important;
-		align-items: center;
-		justify-content: center;
-		width: 8%;
-		min-width: $clickable-area;
 		height: 35vw;
 		position: absolute;
 		transition: opacity 250ms,
-			visibility 250ms;
+		visibility 250ms;
+		color: var(--color-primary-text);
+
+		&:focus-visible {
+			// Override NcButton focus styles
+			box-shadow: 0 0 0 2px var(--color-primary-text);
+			background-color: var(--color-box-shadow);
+		}
 
 		// we want to keep the elements on page
 		// even if hidden to avoid having a unbalanced
@@ -871,10 +874,10 @@ export default {
 		}
 	}
 	.prev {
-		left: 0;
+		left: 2px;
 	}
 	.next {
-		right: 0;
+		right: 2px;
 	}
 
 	/* Content */
