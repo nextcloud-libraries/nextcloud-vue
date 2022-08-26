@@ -1,125 +1,183 @@
 # 
 # Translators:
-# Oleksa Stasevych <oleksiy.stasevych@gmail.com>, 2020
+# O St <oleksiy.stasevych@gmail.com>, 2020
+# Dmytro Ratynchuk <ratynchuk@gmail.com>, 2021
+# Vlad Anisimov <uniss@ua.fm>, 2021
+# Vitaliy <gviabcua@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Oleksa Stasevych <oleksiy.stasevych@gmail.com>, 2020\n"
+"Last-Translator: Vitaliy <gviabcua@gmail.com>, 2022\n"
 "Language-Team: Ukrainian (https://www.transifex.com/nextcloud/teams/64236/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:170
 msgid "{tag} (invisible)"
-msgstr "{tag} (invisible)"
+msgstr "{tag} (невидимий)"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:173
 msgid "{tag} (restricted)"
-msgstr "{tag} (restricted)"
+msgstr "{tag} (обмежений)"
 
-#: src/components/Actions/Actions.vue:249
 msgid "Actions"
 msgstr "Дії"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:176
 msgid "Activities"
 msgstr "Діяльність"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:174
 msgid "Animals & Nature"
 msgstr "Тварини та природа"
 
-#: src/components/ColorPicker/ColorPicker.vue:145
-msgid "Choose"
-msgstr "Виберіть"
+msgid "Avatar of {displayName}"
+msgstr "Аватар {displayName}"
 
-#: src/components/Modal/Modal.vue:117
+msgid "Avatar of {displayName}, {status}"
+msgstr "Аватар {displayName}, {status}"
+
+msgid "Cancel changes"
+msgstr "Скасувати зміни"
+
+msgid "Change title"
+msgstr "Змінити назву"
+
+msgid "Choose"
+msgstr "ВиберітьВиберіть"
+
+msgid "Clear text"
+msgstr "Очистити текст"
+
 msgid "Close"
 msgstr "Закрити"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:181
+msgid "Close modal"
+msgstr "Закрити модаль"
+
+msgid "Close navigation"
+msgstr "Закрити навігацію"
+
+msgid "Close sidebar"
+msgstr "Закрити бічну панель"
+
+msgid "Confirm changes"
+msgstr "Підтвердити зміни"
+
 msgid "Custom"
 msgstr "Власне"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:180
+msgid "Edit item"
+msgstr "Редагувати елемент"
+
+msgid "External documentation for {title}"
+msgstr "Зовнішня документація для {title}"
+
+msgid "Favorite"
+msgstr "Улюблений"
+
 msgid "Flags"
 msgstr "Прапори"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:175
 msgid "Food & Drink"
-msgstr "Їжа та напитки"
+msgstr "Їжа та напої"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:171
 msgid "Frequently used"
 msgstr "Найчастіші"
 
-#: src/components/Modal/Modal.vue:166
+msgid "Global"
+msgstr "Глобальний"
+
+msgid "Go back to the list"
+msgstr "Повернутися до списку"
+
+msgid "Hide password"
+msgstr "Приховати пароль"
+
+msgid "items"
+msgstr "елементи"
+
+msgid "Message limit of {count} characters reached"
+msgstr "Вичерпано ліміт у {count} символів для повідомлення"
+
+msgid "More {dashboardItemType} …"
+msgstr "Більше {dashboardItemType}…"
+
 msgid "Next"
 msgstr "Вперед"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:168
 msgid "No emoji found"
 msgstr "Емоційки відсутні"
 
-#: src/components/Multiselect/Multiselect.vue:174
-#: src/components/MultiselectTags/MultiselectTags.vue:78
-#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
 msgid "No results"
 msgstr "Відсутні результати"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:178
 msgid "Objects"
 msgstr "Об'єкти"
 
-#: src/components/Modal/Modal.vue:302
+msgid "Open"
+msgstr "Відкрити"
+
+msgid "Open navigation"
+msgstr "Відкрити навігацію"
+
+msgid "Password is secure"
+msgstr "Пароль безпечний"
+
 msgid "Pause slideshow"
 msgstr "Пауза у показі слайдів"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:173
 msgid "People & Body"
 msgstr "Люди та жести"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:153
 msgid "Pick an emoji"
 msgstr "Виберіть емоційку"
 
-#: src/components/Modal/Modal.vue:144
+msgid "Please select a time zone:"
+msgstr "Виберіть часовий пояс:"
+
 msgid "Previous"
 msgstr "Назад"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:167
 msgid "Search"
 msgstr "Пошук"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:170
 msgid "Search results"
 msgstr "Результати пошуку"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:100
 msgid "Select a tag"
 msgstr "Виберіть позначку"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
 msgid "Settings"
 msgstr "Налаштування"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:172
-msgid "Smileys & Emotion"
-msgstr "Усміхайлики та емоційки"
+msgid "Settings navigation"
+msgstr "Навігація у налаштуваннях"
 
-#: src/components/Modal/Modal.vue:302
+msgid "Show password"
+msgstr "Показати пароль"
+
+msgid "Smileys & Emotion"
+msgstr "Смайли та емоції"
+
 msgid "Start slideshow"
 msgstr "Почати показ слайдів"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:179
+msgid "Submit"
+msgstr "Надіслати"
+
 msgid "Symbols"
 msgstr "Символи"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:177
 msgid "Travel & Places"
 msgstr "Поїздки та місця"
 
-#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
+msgid "Type to search time zone"
+msgstr "Введіть для пошуку часовий пояс"
+
 msgid "Unable to search the group"
 msgstr "Неможливо шукати в групі"
+
+msgid "Undo changes"
+msgstr "Скасувати зміни"
+
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr ""
+"Напишіть повідомлення, @, щоб згадати когось, : для автозаповнення емодзі…"
