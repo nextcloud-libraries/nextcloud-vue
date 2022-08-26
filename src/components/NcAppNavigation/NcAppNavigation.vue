@@ -151,17 +151,17 @@ export default {
 	z-index: 1800;
 	height: calc(100vh - #{$header-height});
 	box-sizing: border-box;
-	background-color: var(--color-main-background);
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	border-right: 1px solid var(--color-border);
 	display: flex;
 	flex-direction: column;
 	flex-grow: 0;
 	flex-shrink: 0;
-
+	background-color:  var(--color-main-background-blur, var(--color-main-background));
+	-webkit-backdrop-filter: var(--filter-background-blur, none);
+	backdrop-filter: var(--filter-background-blur, none);
 	&--close {
 		margin-left: - $navigation-width;
 		transform: translateX(-100%);

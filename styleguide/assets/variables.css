@@ -40,6 +40,8 @@
 	--color-box-shadow: rgba(77, 77, 77, 0.5);
 	--color-border: #ededed;
 	--color-border-dark: #dbdbdb;
+	--color-main-background-blur: rgba(255,255,255,0.8);
+	--background-blur: blur(25px);
 	--border-radius: 3px;
 	--border-radius-large: 10px;
 	--border-radius-pill: 100px;
