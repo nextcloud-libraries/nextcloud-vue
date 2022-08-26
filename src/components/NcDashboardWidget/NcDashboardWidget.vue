@@ -141,15 +141,13 @@ export default {
 		<!-- This element is shown if we have items, but want to show a general message as well.
 		Can be used e.g. to show "No mentions" on top of the item list. -->
 		<NcEmptyContent v-if="showHalfNcArea"
+			:description="halfEmptyContentString"
 			class="half-screen">
 			<template #icon>
 				<!-- @slot The icon to show in the half empty content area. -->
 				<slot name="halfEmptyContentIcon">
 					<Check />
 				</slot>
-			</template>
-			<template #desc>
-				{{ halfEmptyContentString }}
 			</template>
 		</NcEmptyContent>
 		<!-- The list of items to show. -->
@@ -177,13 +175,11 @@ export default {
 		</div>
 		<!-- @slot Slot for showing information in case of an empty item list. -->
 		<slot v-else-if="items.length === 0" name="empty-content">
-			<NcEmptyContent v-if="emptyContentMessage">
+			<NcEmptyContent v-if="emptyContentMessage"
+				:description="emptyContentMessage">
 				<template #icon>
 					<!-- @slot The icon to show in the empty content area. -->
 					<slot name="emptyContentIcon" />
-				</template>
-				<template #desc>
-					{{ emptyContentMessage }}
 				</template>
 			</NcEmptyContent>
 		</slot>
