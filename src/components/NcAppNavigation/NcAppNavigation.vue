@@ -57,6 +57,7 @@ emit('toggle-navigation', {
 	<div id="app-navigation-vue"
 		class="app-navigation"
 		role="navigation"
+		:inert="!open || null"
 		:class="{'app-navigation--close':!open }">
 		<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
 		<slot />
