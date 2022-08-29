@@ -411,6 +411,107 @@ export default {
 </script>
 ```
 
+### Type variants
+
+```
+<template>
+	<div>
+		<NcActions :type="current">
+			<template #icon>
+				<SelectColor :size="20" />
+			</template>
+
+			<NcActionButton v-if="current" close-after-click @click="define(undefined)">
+				<template #icon>
+					<Delete :size="20" />
+				</template>
+				Remove
+			</NcActionButton>
+
+			<NcActionButton close-after-click @click="define(row)" v-for="row in types" :key="`type-icon--${row}`">
+				<template #icon>
+					<CheckboxMarkedCircleOutline v-if="row === current" :size="20" />
+					<SelectColor v-else :size="20" />
+				</template>
+				{{ row }}
+			</NcActionButton>
+		</NcActions>
+
+		<NcActions :type="current" menu-title="Choose a type">
+			<NcActionButton v-if="current" close-after-click @click="define(undefined)">
+				<template #icon>
+					<Delete :size="20" />
+				</template>
+				Remove
+			</NcActionButton>
+
+			<NcActionButton close-after-click @click="define(row)" v-for="row in types" :key="`type-text--${row}`">
+				<template #icon>
+					<CheckboxMarkedCircleOutline v-if="row === current" :size="20" />
+					<SelectColor v-else :size="20" />
+				</template>
+				{{ row }}
+			</NcActionButton>
+		</NcActions>
+
+		<NcActions :type="current"  menu-title="Choose a type">
+			<template #icon>
+				<SelectColor :size="20" />
+			</template>
+
+			<NcActionButton v-if="current" close-after-click @click="define(undefined)">
+				<template #icon>
+					<Delete :size="20" />
+				</template>
+				Remove
+			</NcActionButton>
+
+			<NcActionButton close-after-click @click="define(row)" v-for="row in types" :key="`type-icon-text--${row}`">
+				<template #icon>
+					<CheckboxMarkedCircleOutline v-if="row === current" :size="20" />
+					<SelectColor v-else :size="20" />
+				</template>
+				{{ row }}
+			</NcActionButton>
+		</NcActions>
+	</div>
+</template>
+
+<script>
+import Delete from 'vue-material-design-icons/Delete'
+import Palette from 'vue-material-design-icons/Palette'
+import SelectColor from 'vue-material-design-icons/SelectColor'
+import CheckboxMarkedCircleOutline from 'vue-material-design-icons/CheckboxMarkedCircleOutline'
+
+export default {
+	components: {
+		Delete,
+		Palette,
+		SelectColor,
+		CheckboxMarkedCircleOutline,
+	},
+	data() {
+		return {
+			current: 'primary',
+			types: [
+				'primary',
+				'secondary',
+				'tertiary',
+				'error',
+				'warning',
+				'success'
+			]
+		}
+	},
+	methods: {
+		define(row) {
+			this.current = row
+		}
+	}
+}
+</script>
+```
+
 </docs>
 
 <script>
@@ -575,6 +676,16 @@ export default {
 			focusIndex: 0,
 			randomId: `menu-${GenRandomId()}`,
 		}
+	},
+
+	computed: {
+		triggerBtnType() {
+			// If requested, we use a primary button
+			return this.type || (this.primary
+				? 'primary'
+				// If it has a title, we use a secondary button
+				: this.menuTitle ? 'secondary' : 'tertiary')
+		},
 	},
 
 	watch: {
@@ -913,11 +1024,7 @@ export default {
 					h('NcButton', {
 						class: 'action-item__menutoggle',
 						props: {
-							// If requested, we use a primary button
-							type: this.type || (this.primary
-								? 'primary'
-								// If it has a title, we use a secondary button
-								: this.menuTitle ? 'secondary' : 'tertiary'),
+							type: this.triggerBtnType,
 							disabled: this.disabled,
 						},
 						slot: 'trigger',
@@ -982,6 +1089,7 @@ export default {
 				{
 					class: [
 						'action-items',
+						`action-item--${this.triggerBtnType}`,
 					],
 				},
 				[
@@ -1011,7 +1119,8 @@ export default {
 		return h('div',
 			{
 				class: [
-					'action-item',
+					'action-item action-item--default-popover',
+					`action-item--${this.triggerBtnType}`,
 					{
 						'action-item--open': this.opened,
 					},
@@ -1031,12 +1140,33 @@ export default {
 }
 
 .action-item {
+	--open-background-color: var(--color-background-hover, $action-background-hover);
 	position: relative;
 	display: inline-block;
 
+	&.action-item--primary {
+		--open-background-color: var(--color-primary-element-hover);
+	}
+
+	&.action-item--secondary {
+		--open-background-color: var(--color-primary-light-hover);
+	}
+
+	&.action-item--error {
+		--open-background-color: var(--color-error-hover);
+	}
+
+	&.action-item--warning {
+		--open-background-color: var(--color-warning-hover);
+	}
+
+	&.action-item--success {
+		--open-background-color: var(--color-success-hover);
+	}
+
 	&.action-item--open .action-item__menutoggle {
 		opacity: $opacity_full;
-		background-color: $action-background-hover;
+		background-color: var(--open-background-color);
 	}
 }
 </style>
