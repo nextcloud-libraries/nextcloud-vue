@@ -182,6 +182,7 @@ export default {
 			:class="{ 'modal-mask--dark': dark }"
 			:style="cssVariables"
 			role="dialog"
+			aria-modal="true"
 			:aria-labelledby="'modal-title-' + randId"
 			:aria-describedby="'modal-description-' + randId">
 			<!-- Header -->
