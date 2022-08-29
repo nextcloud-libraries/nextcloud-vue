@@ -85,6 +85,7 @@ export default {
 	margin-top: 50px;
 	display: flex;
 	width: calc(100% - var(--body-container-margin) * 2);
+	border-radius: var(--body-container-radius);
 	height: var(--body-height);
 	overflow: hidden;
 	padding: 0;
