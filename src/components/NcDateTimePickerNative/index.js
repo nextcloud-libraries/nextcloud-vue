@@ -19,8 +19,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import ScopeComponent from '../../utils/ScopeComponent'
-import NcDateTimePickerNative from './NcDateTimePickerNative'
+
+import NcDateTimePickerNative from './NcDateTimePickerNative.vue'
+import ScopeComponent from '../../utils/ScopeComponent.js'
 
 ScopeComponent(NcDateTimePickerNative)
 

@@ -109,7 +109,7 @@ For the multiselect component, all events will be passed through. Please see the
 <script>
 import DatetimePicker from '../DatetimePicker/index.js'
 import Multiselect from '../Multiselect/index.js'
-import NcDateTimePickerNative from '../NcDateTimePickerNative/NcDateTimePickerNative'
+import NcDateTimePickerNative from '../NcDateTimePickerNative/index.js'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
