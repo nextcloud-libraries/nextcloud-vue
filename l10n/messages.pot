@@ -32,6 +32,9 @@ msgstr ""
 msgid "Choose"
 msgstr ""
 
+msgid "Clear text"
+msgstr ""
+
 msgid "Close"
 msgstr ""
 
@@ -74,6 +77,9 @@ msgstr ""
 msgid "Go back to the list"
 msgstr ""
 
+msgid "Hide password"
+msgstr ""
+
 msgid "items"
 msgstr ""
 
@@ -99,6 +105,9 @@ msgid "Open"
 msgstr ""
 
 msgid "Open navigation"
+msgstr ""
+
+msgid "Password is secure"
 msgstr ""
 
 msgid "Pause slideshow"
@@ -129,6 +138,9 @@ msgid "Settings"
 msgstr ""
 
 msgid "Settings navigation"
+msgstr ""
+
+msgid "Show password"
 msgstr ""
 
 msgid "Smileys & Emotion"

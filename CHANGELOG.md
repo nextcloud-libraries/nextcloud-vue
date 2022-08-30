@@ -2,22 +2,97 @@
 
 All notable changes to this project will be documented in this file.
 
-## v6.0.0-beta.2 (2022-08-11)
+## [v6.0.0-beta.5](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.5) (2022-08-30)
 
-#### :bug: Bug Fix
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.4...v6.0.0-beta.5)
+
+### :boom: Breaking changes
+
+- Fix emptyContent once more [\#3106](https://github.com/nextcloud/nextcloud-vue/pull/3106) ([jotoeri](https://github.com/jotoeri))
+- Fix EmptyContent Reactivity [\#3090](https://github.com/nextcloud/nextcloud-vue/pull/3090) ([jotoeri](https://github.com/jotoeri))
+
+### :rocket: Enhancements
+
+- Improve multiselect [\#3100](https://github.com/nextcloud/nextcloud-vue/pull/3100) ([CarlSchwan](https://github.com/CarlSchwan))
+- 🥛 Make app navigation semi-transparent [\#3057](https://github.com/nextcloud/nextcloud-vue/pull/3057) ([GretaD](https://github.com/GretaD))
+- Make unread counter primary colour [\#3070](https://github.com/nextcloud/nextcloud-vue/pull/3070) ([GretaD](https://github.com/GretaD))
+
+### Closed pull requests
+
+- Add aria-modal to Modal dialog [\#3113](https://github.com/nextcloud/nextcloud-vue/pull/3113) ([PVince81](https://github.com/PVince81))
+- Fix contrast of next/prev modal buttons [\#3080](https://github.com/nextcloud/nextcloud-vue/pull/3080) ([Pytal](https://github.com/Pytal))
+
+## [v6.0.0-beta.4](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.4) (2022-08-23)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.3...v6.0.0-beta.4)
+
+### :rocket: Enhancements
+
+- Allow more than text on EmptyContent description [\#3082](https://github.com/nextcloud/nextcloud-vue/pull/3082) ([jotoeri](https://github.com/jotoeri))
+- Add ref to NcInputField in NcTextField [\#3078](https://github.com/nextcloud/nextcloud-vue/pull/3078) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- 📰 Update AppNavigationItem design [\#3056](https://github.com/nextcloud/nextcloud-vue/pull/3056) ([marcoambrosini](https://github.com/marcoambrosini))
+- ListItem Design update [\#3055](https://github.com/nextcloud/nextcloud-vue/pull/3055) ([marcoambrosini](https://github.com/marcoambrosini))
+
+### :bug: Fixed bugs
+
+- Make input field button style take precedence [\#3077](https://github.com/nextcloud/nextcloud-vue/pull/3077) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix NcAppNavigationItem docs [\#3076](https://github.com/nextcloud/nextcloud-vue/pull/3076) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix listitem tabbed navigation [\#3075](https://github.com/nextcloud/nextcloud-vue/pull/3075) ([marcoambrosini](https://github.com/marcoambrosini))
+- Always show NcAppSettingsDialog title [\#3074](https://github.com/nextcloud/nextcloud-vue/pull/3074) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix link in docs to NcCounterBubble [\#3071](https://github.com/nextcloud/nextcloud-vue/pull/3071) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Only set target and rel attributes when href != '\#' [\#3069](https://github.com/nextcloud/nextcloud-vue/pull/3069) ([tcitworld](https://github.com/tcitworld))
+- Fix margin for Modal inline actions [\#3065](https://github.com/nextcloud/nextcloud-vue/pull/3065) ([skjnldsv](https://github.com/skjnldsv))
+- Fix InputField focus state [\#2970](https://github.com/nextcloud/nextcloud-vue/pull/2970) ([marcoambrosini](https://github.com/marcoambrosini))
+- Fix Modal closing [\#3066](https://github.com/nextcloud/nextcloud-vue/pull/3066) ([skjnldsv](https://github.com/skjnldsv))
+
+### Closed pull requests
+
+- Fix EmptyContent comments example in docs [\#3089](https://github.com/nextcloud/nextcloud-vue/pull/3089) ([Pytal](https://github.com/Pytal))
+- Remove debug log statement [\#3072](https://github.com/nextcloud/nextcloud-vue/pull/3072) ([st3iny](https://github.com/st3iny))
+
+## [v6.0.0-beta.3](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.3) (2022-08-18)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.2...v6.0.0-beta.3)
+
+### :boom: Breaking changes
+- Add Nc prefix to all components [\#3058](https://github.com/nextcloud/nextcloud-vue/pull/3058) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
+### :rocket: Enhancement
+- Allow to render x items outside an Actions menu [\#3060](https://github.com/nextcloud/nextcloud-vue/pull/3060) ([skjnldsv](https://github.com/skjnldsv))
+- Allow ListItem components to link to external links [\#3040](https://github.com/nextcloud/nextcloud-vue/pull/3040) ([tcitworld](https://github.com/tcitworld))
+
+### :bug: Fixed bugs
+- Fix breadcrumbs dropdown icon alignment [\#3059](https://github.com/nextcloud/nextcloud-vue/pull/3059) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Add missing trailing comma [\#3046](https://github.com/nextcloud/nextcloud-vue/pull/3046) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Correctly overwrite app-settings modal style [\#3035](https://github.com/nextcloud/nextcloud-vue/pull/3035) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Implement empty content icon slot in DashboardWidget [\#3034](https://github.com/nextcloud/nextcloud-vue/pull/3034) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix reference to closed menu in "aria-controls" [\#3031](https://github.com/nextcloud/nextcloud-vue/pull/3031) ([danxuliu](https://github.com/danxuliu))
+- Don't return focus after close-after-click [\#3030](https://github.com/nextcloud/nextcloud-vue/pull/3030) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Dismis focus trap when component gets destroyed [\#3023](https://github.com/nextcloud/nextcloud-vue/pull/3023) ([juliushaertl](https://github.com/juliushaertl))
+- Allow click outside for Popover focus trap [\#3022](https://github.com/nextcloud/nextcloud-vue/pull/3022) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Disable focus-trap for Popover by default [\#3021](https://github.com/nextcloud/nextcloud-vue/pull/3021) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix issues with focus trap on modal [\#3020](https://github.com/nextcloud/nextcloud-vue/pull/3020) ([juliushaertl](https://github.com/juliushaertl))
+- ```aria-expanded``` was fixed for Multiselect.vue [\#3037](https://github.com/nextcloud/nextcloud-vue/pull/3037) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+
+### Closed pull requests
+- Add note about pre-releases to the readme [\#3019](https://github.com/nextcloud/nextcloud-vue/pull/3019) ([juliushaertl](https://github.com/juliushaertl))
+
+## [v6.0.0-beta.2](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.2) (2022-08-11)
+
+### :bug: Fixed bugs
 
 * [#3017](https://github.com/nextcloud/nextcloud-vue/pull/3017) Fix icon-class, re-add default-icon support for Actions ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#3006](https://github.com/nextcloud/nextcloud-vue/pull/3006) Fix single button action icon attribute ([@PVince81](https://github.com/PVince81))
 
-## v6.0.0-beta.1 (2022-08-11)
+## [v6.0.0-beta.1](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.1) (2022-08-11)
 
-#### :boom: Breaking Change
+### :boom: Breaking changes
 * [#2980](https://github.com/nextcloud/nextcloud-vue/pull/2980) Bump @nextcloud/eslint-config from 8.0.0 to 8.1.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
 * ~~[#2911](https://github.com/nextcloud/nextcloud-vue/pull/2911) Use render function in Actions component ([@raimund-schluessler](https://github.com/raimund-schluessler))~~ No more breaking after [#3006](https://github.com/nextcloud/nextcloud-vue/pull/3006) in beta.2
 * [#2929](https://github.com/nextcloud/nextcloud-vue/pull/2929) Bump vue from 2.6.14 to 2.7.8 ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#2923](https://github.com/nextcloud/nextcloud-vue/pull/2923) Enforce setting section ids ([@nickvergessen](https://github.com/nickvergessen))
 
-#### :rocket: Enhancement
+### :rocket: Enhancement
 * [#2911](https://github.com/nextcloud/nextcloud-vue/pull/2911) Use render function in Actions component ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#2998](https://github.com/nextcloud/nextcloud-vue/pull/2998) Import tooltip directive only locally ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#2983](https://github.com/nextcloud/nextcloud-vue/pull/2983) Simplify webpack configuration ([@raimund-schluessler](https://github.com/raimund-schluessler))
@@ -25,7 +100,7 @@ All notable changes to this project will be documented in this file.
 * [#2868](https://github.com/nextcloud/nextcloud-vue/pull/2868) Create TextField component ([@marcoambrosini](https://github.com/marcoambrosini))
 * [#2856](https://github.com/nextcloud/nextcloud-vue/pull/2856) Fix ListItem css & add compact mode ([@jotoeri](https://github.com/jotoeri))
 
-#### :bug: Bug Fix
+### :bug: Bug Fix
 * [#2533](https://github.com/nextcloud/nextcloud-vue/pull/2533) [MultiSelect] pass the #noResult slot to the underlying component ([@eneiluj](https://github.com/eneiluj))
 * [#2999](https://github.com/nextcloud/nextcloud-vue/pull/2999) Also export tooltip options ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#2997](https://github.com/nextcloud/nextcloud-vue/pull/2997) Fix regressions from floating-vue migration ([@raimund-schluessler](https://github.com/raimund-schluessler))
@@ -45,7 +120,7 @@ All notable changes to this project will be documented in this file.
 
 ## v6.0.0-alpha.0 (2022-07-27)
 
-#### :boom: Breaking Changes
+### :boom: Breaking Changes
 * [#2600](https://github.com/nextcloud/nextcloud-vue/pull/2600) Migrate to floating-vue ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#2867](https://github.com/nextcloud/nextcloud-vue/pull/2867) Accessible EmptyContent component ([@Pytal](https://github.com/Pytal))
 * [#2630](https://github.com/nextcloud/nextcloud-vue/pull/2630) show the action buttons on top of the modal always by default ([@szaimen](https://github.com/szaimen))
@@ -55,7 +130,7 @@ All notable changes to this project will be documented in this file.
 * [#2603](https://github.com/nextcloud/nextcloud-vue/pull/2603) Comply with eslint for event name ([@artonge](https://github.com/artonge))
 * [#2704](https://github.com/nextcloud/nextcloud-vue/pull/2704) Put the children of AppNavigationItem outside of the main item ([@raimund-schluessler](https://github.com/raimund-schluessler))
 
-#### :rocket: Enhancements
+### :rocket: Enhancements
 * [#2875](https://github.com/nextcloud/nextcloud-vue/pull/2875) Adjust loading icon style, replace `fillColor` prop ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#2879](https://github.com/nextcloud/nextcloud-vue/pull/2879) Turn the button into router-link when to is there ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#2565](https://github.com/nextcloud/nextcloud-vue/pull/2565) Improve SettingsInputText component ([@quentinguidee](https://github.com/quentinguidee))
@@ -79,7 +154,7 @@ All notable changes to this project will be documented in this file.
 * [#2654](https://github.com/nextcloud/nextcloud-vue/pull/2654) add handle keyboard focus for accessibility ([@vanpertsch](https://github.com/vanpertsch))
 * [#2629](https://github.com/nextcloud/nextcloud-vue/pull/2629) small cleanup of small modal size ([@szaimen](https://github.com/szaimen))
 
-#### :bug: Fixed bugs
+### :bug: Fixed bugs
 * [#2878](https://github.com/nextcloud/nextcloud-vue/pull/2878) Fix single action validation ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#2877](https://github.com/nextcloud/nextcloud-vue/pull/2877) Bring back AppNavigationToggle tooltip ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#2895](https://github.com/nextcloud/nextcloud-vue/pull/2895) Fix issues with Multiselect component ([@nickvergessen](https://github.com/nickvergessen))
@@ -103,7 +178,7 @@ All notable changes to this project will be documented in this file.
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v5.3.0...v5.3.1)
 
-## Fixed bugs
+### Fixed bugs
 
 - Fix button disable state and reactivity [\#2622](https://github.com/nextcloud/nextcloud-vue/pull/2622) ([skjnldsv](https://github.com/skjnldsv))
 - Fix border radius for small progress bar [\#2618](https://github.com/nextcloud/nextcloud-vue/pull/2618) ([raimund-schluessler](https://github.com/raimund-schluessler))
@@ -122,13 +197,13 @@ All notable changes to this project will be documented in this file.
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v5.2.1...v5.3.0)
 
-## Fixed bugs
+### Fixed bugs
 
 - Fix tertiary no background button color [\#2589](https://github.com/nextcloud/nextcloud-vue/pull/2589) ([marcoambrosini](https://github.com/marcoambrosini))
 - Fix tertiary buttons hover feedback [\#2583](https://github.com/nextcloud/nextcloud-vue/pull/2583) ([marcoambrosini](https://github.com/marcoambrosini))
 - Fix the ProgressBar display in the documentation [\#2564](https://github.com/nextcloud/nextcloud-vue/pull/2564) ([quentinguidee](https://github.com/quentinguidee))
 
-## Closed pull requests
+### Closed pull requests
 
 - Add tertiary buttons with background and make them the default [\#2585](https://github.com/nextcloud/nextcloud-vue/pull/2585) ([marcoambrosini](https://github.com/marcoambrosini))
 - Update variables.css [\#2574](https://github.com/nextcloud/nextcloud-vue/pull/2574) ([skjnldsv](https://github.com/skjnldsv))
@@ -142,13 +217,13 @@ Releasing this patch to re-trigger an npm package build since last release githu
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v5.1.1...v5.2.0)
 
-## Enhancements
+### Enhancements
 
 - Use large corner radius for the Popover component [\#2566](https://github.com/nextcloud/nextcloud-vue/pull/2566) ([quentinguidee](https://github.com/quentinguidee))
 - Inherit attrs and forward listeners in the emojipicker's popover [\#2563](https://github.com/nextcloud/nextcloud-vue/pull/2563) ([marcoambrosini](https://github.com/marcoambrosini))
 - Add aria-description to AppNavigationItem [\#2548](https://github.com/nextcloud/nextcloud-vue/pull/2548) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
 
-## Fixed bugs
+### Fixed bugs
 
 - Fix secondary button with old style as temporary solution [\#2562](https://github.com/nextcloud/nextcloud-vue/pull/2562) ([nickvergessen](https://github.com/nickvergessen))
 - Pass in a boolean instead of a string in the 'wide' prop [\#2556](https://github.com/nextcloud/nextcloud-vue/pull/2556) ([marcoambrosini](https://github.com/marcoambrosini))
@@ -158,7 +233,7 @@ Releasing this patch to re-trigger an npm package build since last release githu
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v5.1.0...v5.1.1)
 
-## Fixed bugs
+### Fixed bugs
 
 - Fix error spam of icon only buttons part2 [\#2547](https://github.com/nextcloud/nextcloud-vue/pull/2547) ([nickvergessen](https://github.com/nickvergessen))
 - Fix error spam from buttons [\#2540](https://github.com/nextcloud/nextcloud-vue/pull/2540) ([nickvergessen](https://github.com/nickvergessen))
@@ -168,18 +243,18 @@ Releasing this patch to re-trigger an npm package build since last release githu
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.4.0...v5.1.0)
 
-## Enhancements
+### Enhancements
 
 - Add button native type prop on \<Button\> [\#2516](https://github.com/nextcloud/nextcloud-vue/pull/2516) ([tcitworld](https://github.com/tcitworld))
 - increase the small modal width [\#2496](https://github.com/nextcloud/nextcloud-vue/pull/2496) ([szaimen](https://github.com/szaimen))
 - Allow Breadcrumbs "to" prop to be an object [\#2491](https://github.com/nextcloud/nextcloud-vue/pull/2491) ([tcitworld](https://github.com/tcitworld))
 
-## Fixed bugs
+### Fixed bugs
 
 - Change appearance of the slot "icon" at AppNavigationItem [\#2506](https://github.com/nextcloud/nextcloud-vue/pull/2506) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
 - Fix shrinking of last breadcrumb for narrow width [\#2492](https://github.com/nextcloud/nextcloud-vue/pull/2492) ([raimund-schluessler](https://github.com/raimund-schluessler))
 
-## Closed pull requests
+### Closed pull requests
 
 - fix: imports from emoji-mart-vue-fast [\#2521](https://github.com/nextcloud/nextcloud-vue/pull/2521) ([max-nextcloud](https://github.com/max-nextcloud))
 
@@ -187,7 +262,7 @@ Releasing this patch to re-trigger an npm package build since last release githu
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.3.0...v5.0.0)
 
-## Enhancements
+### Enhancements
 
 - Implement showing global crumb actions [\#2444](https://github.com/nextcloud/nextcloud-vue/pull/2444) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - Add option to always show actions [\#2419](https://github.com/nextcloud/nextcloud-vue/pull/2419) ([marcoambrosini](https://github.com/marcoambrosini))
@@ -197,13 +272,13 @@ Releasing this patch to re-trigger an npm package build since last release githu
 - Adjust breadcrumb appearance [\#2411](https://github.com/nextcloud/nextcloud-vue/pull/2411) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - Automatically use Nextcloud translated months, days and years [\#2397](https://github.com/nextcloud/nextcloud-vue/pull/2397) ([skjnldsv](https://github.com/skjnldsv))
 
-## Fixed bugs
+### Fixed bugs
 
 - AppNavigationItem.vue: updating of this.$slots [\#2483](https://github.com/nextcloud/nextcloud-vue/pull/2483) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
 - Fix md icon position for Actions with title [\#2435](https://github.com/nextcloud/nextcloud-vue/pull/2435) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - Fix dragging onto hidden crumbs [\#2412](https://github.com/nextcloud/nextcloud-vue/pull/2412) ([raimund-schluessler](https://github.com/raimund-schluessler))
 
-## Closed pull requests
+### Closed pull requests
 
 - Limit avatar request sizes to 64 and 512 pixel [\#2486](https://github.com/nextcloud/nextcloud-vue/pull/2486) ([nickvergessen](https://github.com/nickvergessen))
 - Add aria label to the ActionInput component [\#2472](https://github.com/nextcloud/nextcloud-vue/pull/2472) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
@@ -215,11 +290,11 @@ Releasing this patch to re-trigger an npm package build since last release githu
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.2.0...v4.3.0)
 
-## Fixed bugs
+### Fixed bugs
 
 - Change background style target for tab icons [\#2374](https://github.com/nextcloud/nextcloud-vue/pull/2374) ([artonge](https://github.com/artonge))
 
-## Closed pull requests
+### Closed pull requests
 
 - Reduce size of status icons in Avatar component [\#2323](https://github.com/nextcloud/nextcloud-vue/pull/2323) ([CarlSchwan](https://github.com/CarlSchwan))
 - Free closeOnSelect [\#2391](https://github.com/nextcloud/nextcloud-vue/pull/2391) ([jotoeri](https://github.com/jotoeri)))
@@ -228,16 +303,16 @@ Releasing this patch to re-trigger an npm package build since last release githu
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.1.1...v4.2.0)
 
-## Enhancements
+### Enhancements
 
 - Use material design icon for AppSidebar star [\#2265](https://github.com/nextcloud/nextcloud-vue/pull/2265) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - Bump vue-material-design-icons from 4.12.1 to 4.13.0 [\#2269](https://github.com/nextcloud/nextcloud-vue/pull/2269)
 - Allow material design icons for appnavigationitem [\#2276](https://github.com/nextcloud/nextcloud-vue/pull/2276) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - Unify linkify usage, move to linkify-string [\#2281](https://github.com/nextcloud/nextcloud-vue/pull/2281) ([raimund-schluessler](https://github.com/raimund-schluessler))
-- Unify linkify usage, move to linkify-string [\#2281](https://github.com/nextcloud/nextcloud-vue/pull/2281) ([raimund-schluessler](https://github.com/raimund-schluessler))## Fixed bugs
+- Unify linkify usage, move to linkify-string [\#2281](https://github.com/nextcloud/nextcloud-vue/pull/2281) ([raimund-schluessler](https://github.com/raimund-schluessler))### Fixed bugs
 - Add outlined counter [\#2287](https://github.com/nextcloud/nextcloud-vue/pull/2268) ([marcoambrosini](https://github.com/marcoambrosini))
 
-## Fixed bugs
+### Fixed bugs
 
 - Set material design icon size to 20 [\#2268](https://github.com/nextcloud/nextcloud-vue/pull/2268) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - Fix missing icon [\#2297](https://github.com/nextcloud/nextcloud-vue/pull/2297#event-5378397330) ([Pytal](https://github.com/Pytal))
@@ -246,13 +321,13 @@ Releasing this patch to re-trigger an npm package build since last release githu
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.1.0...v4.1.1)
 
-## Enhancements
+### Enhancements
 
 - Use material design icon for appsidebar close [\#2212](https://github.com/nextcloud/nextcloud-vue/pull/2212) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - Use material design icon for settings icon [\#2213](https://github.com/nextcloud/nextcloud-vue/pull/2213) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - Bump @nextcloud/calendar-js from 1.1.1 to 2.0.0 [\#2204](https://github.com/nextcloud/nextcloud-vue/pull/2204)
 
-## Fixed bugs
+### Fixed bugs
 
 - Do not duplicate character in Highlight directive, only highlight first match occurence [\#2226](https://github.com/nextcloud/nextcloud-vue/pull/2226) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - Disable actions when the only action is disabeld [\#2227](https://github.com/nextcloud/nextcloud-vue/pull/2227) ([raimund-schluessler](https://github.com/raimund-schluessler))
@@ -265,18 +340,18 @@ Releasing this patch to re-trigger an npm package build since last release githu
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.0.3...v4.1.0)
 
-## Enhancements
+### Enhancements
 
 - Set default slideshowdelay to 5000 ms [\#2122](https://github.com/nextcloud/nextcloud-vue/pull/2122) ([szaimen](https://github.com/szaimen))
 - Optionally make the DatetimePicker timezone-aware [\#2100](https://github.com/nextcloud/nextcloud-vue/pull/2100) ([ChristophWurst](https://github.com/ChristophWurst))
 - Fix videoplayer controls in viewer [\#2099](https://github.com/nextcloud/nextcloud-vue/pull/2099) ([szaimen](https://github.com/szaimen))
 - Add timezone picker [\#2095](https://github.com/nextcloud/nextcloud-vue/pull/2095) ([ChristophWurst](https://github.com/ChristophWurst))
 
-## Fixed bugs
+### Fixed bugs
 
 - Check that userId is defined before querying [\#2159](https://github.com/nextcloud/nextcloud-vue/pull/2159) ([raimund-schluessler](https://github.com/raimund-schluessler))
 
-## Closed pull requests
+### Closed pull requests
 
 - Use new named slot syntax [\#2160](https://github.com/nextcloud/nextcloud-vue/pull/2160) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - Add a hint about the tooltip directive [\#2151](https://github.com/nextcloud/nextcloud-vue/pull/2151) ([nickvergessen](https://github.com/nickvergessen))
@@ -287,16 +362,16 @@ Releasing this patch to re-trigger an npm package build since last release githu
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.0.2...v4.0.3)
 
-## Enhancements
+### Enhancements
 
 - Fix ActionCaption layout [\#2043](https://github.com/nextcloud/nextcloud-vue/pull/2043) ([marcoambrosini](https://github.com/marcoambrosini))
 
-## Fixed bugs
+### Fixed bugs
 
 - Add type=button attribute to buttons [\#2069](https://github.com/nextcloud/nextcloud-vue/pull/2069) ([Pytal](https://github.com/Pytal))
 - Fix AppContent mobile display [\#2048](https://github.com/nextcloud/nextcloud-vue/pull/2048) ([skjnldsv](https://github.com/skjnldsv))
 
-## Closed pull requests
+### Closed pull requests
 
 - v4.0.2 [\#2041](https://github.com/nextcloud/nextcloud-vue/pull/2041) ([marcoambrosini](https://github.com/marcoambrosini))
 
@@ -304,7 +379,7 @@ Releasing this patch to re-trigger an npm package build since last release githu
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.0.1...v4.0.2)
 
-## Fixed bugs
+### Fixed bugs
 
 - Safely check the global appName and handle its inexistence [\#2028](https://github.com/nextcloud/nextcloud-vue/pull/2028) ([ChristophWurst](https://github.com/ChristophWurst))
 - Fix settings navigation  layout [\#2033](https://github.com/nextcloud/nextcloud-vue/pull/2033) ([marcoambrosini](https://github.com/marcoambrosini))
@@ -313,11 +388,11 @@ Releasing this patch to re-trigger an npm package build since last release githu
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v4.0.0...v4.0.1)
 
-## Fixed bugs
+### Fixed bugs
 
 - Do not use app-content-wrapper if no list is provided [\#2026](nextcloud/nextcloud-vue/pull/2026) ([skjnldsv](@skjnldsv))
 
-## Closed pull requests
+### Closed pull requests
 
 - Fix settings navigation  layout [\#2033](nextcloud/nextcloud-vue/pull/2033) ([marcoambrosini](@marcoambrosini))
 - Set AppNavigation examples' width to 300px [\#2030](nextcloud/nextcloud-vue/pull/2030) ([korelstar](@korelstar))
@@ -326,14 +401,14 @@ Releasing this patch to re-trigger an npm package build since last release githu
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.10.1...v4.0.0)
 
-## Breaking
+### Breaking
 
 - Remove deprecated legacy avatar user status [\#1945](https://github.com/nextcloud/nextcloud-vue/pull/1945) ([skjnldsv](https://github.com/skjnldsv))
 - Fix vue material icons [\#1816](https://github.com/nextcloud/nextcloud-vue/pull/1816) ([skjnldsv](https://github.com/skjnldsv))
 - Resizable columns [\#1759](https://github.com/nextcloud/nextcloud-vue/pull/1759) ([brueckner](https://github.com/brueckner))
 - Bump @nextcloud/browserslist-config from 1.0.0 to 2.1.0 [\#1786](https://github.com/nextcloud/nextcloud-vue/pull/1786) ([dependabot](https://github.com/dependabot))
 
-## Enhancements
+### Enhancements
 
 - Add CheckboxRadio component [\#1875](https://github.com/nextcloud/nextcloud-vue/pull/1875) ([skjnldsv](https://github.com/skjnldsv))
 - Add disabled state to RichContenteditable and clean not-working v-model [\#1894](https://github.com/nextcloud/nextcloud-vue/pull/1894) ([skjnldsv](https://github.com/skjnldsv))
@@ -353,7 +428,7 @@ Releasing this patch to re-trigger an npm package build since last release githu
 - Update appnavigationcaption [\#1863](https://github.com/nextcloud/nextcloud-vue/pull/1863) ([ma12-co](https://github.com/ma12-co))
 - Wrap icon span in icon slot for ActionButton [\#1930](https://github.com/nextcloud/nextcloud-vue/pull/1930) ([raimund-schluessler](https://github.com/raimund-schluessler))
 
-## Fixed bugs
+### Fixed bugs
 
 - Add id prop to ListItemIcon to prevent v-binding to the Avatar [\#1833](https://github.com/nextcloud/nextcloud-vue/pull/1833) ([skjnldsv](https://github.com/skjnldsv))
 - Allow to append datepicker to body [\#1880](https://github.com/nextcloud/nextcloud-vue/pull/1880) ([raimund-schluessler](https://github.com/raimund-schluessler))
@@ -377,17 +452,17 @@ Releasing this patch to re-trigger an npm package build since last release githu
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v3.8.0...v3.9.0)
 
-## Enhancements
+### Enhancements
 
 - Add icon slot to emptycontent [\#1806](https://github.com/nextcloud/nextcloud-vue/pull/1806) ([skjnldsv](https://github.com/skjnldsv))
 
-## Fixed bugs
+### Fixed bugs
 
 - Make sure to pass all props and attributes to single-action Actions [\#1809](https://github.com/nextcloud/nextcloud-vue/pull/1809) ([skjnldsv](https://github.com/skjnldsv))
 - Ensure that crumbs to hide have correct class [\#1807](https://github.com/nextcloud/nextcloud-vue/pull/1807) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - Fix compact sidebar subtitle not visible [\#1767](https://github.com/nextcloud/nextcloud-vue/pull/1767) ([raimund-schluessler](https://github.com/raimund-schluessler))
 
-## Closed pull requests
+### Closed pull requests
 
 - Fix translation extraction [\#1776](https://github.com/nextcloud/nextcloud-vue/pull/1776) ([jotoeri](https://github.com/jotoeri))
 - Minimize bundled translations [\#1775](https://github.com/nextcloud/nextcloud-vue/pull/1775) ([jotoeri](https://github.com/jotoeri))
@@ -883,7 +958,7 @@ Releasing this patch to re-trigger an npm package build since last release githu
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v2.6.0...v2.6.1)
 
-### Fixed bugs:
+#### Fixed bugs:
 
 - Allow to toggle linkification by prop [\#1337](https://github.com/nextcloud/nextcloud-vue/pull/1337) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - Fix sidebar layout in compact mode [\#1338](https://github.com/nextcloud/nextcloud-vue/pull/1338) ([raimund-schluessler](https://github.com/raimund-schluessler))
@@ -901,7 +976,7 @@ Releasing this patch to re-trigger an npm package build since last release githu
 - Allow to toggle editable title by click [\#1288](https://github.com/nextcloud/nextcloud-vue/pull/1288) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - Feature/641/use popover component for actions [\#832](https://github.com/nextcloud/nextcloud-vue/pull/832) ([ma12-co](https://github.com/ma12-co))
 
-### Fixed bugs:
+#### Fixed bugs:
 
 - Add `background-repeat:no-repeat` to icons [\#1330](https://github.com/nextcloud/nextcloud-vue/pull/1330) ([dk1a](https://github.com/dk1a))
 - Fix tabs & lint [\#1303](https://github.com/nextcloud/nextcloud-vue/pull/1303) ([skjnldsv](https://github.com/skjnldsv))

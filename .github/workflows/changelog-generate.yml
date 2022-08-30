@@ -1,7 +1,7 @@
 name: Changelog
 
 on:
-  push:
+  pull_request:
     paths:
       - 'package.json'
 
@@ -18,15 +18,17 @@ jobs:
         uses: InsonusK/get-latest-release@v1.0.1
         with:
           myToken: ${{ secrets.GITHUB_TOKEN }}
-          exclude_types: draft|prerelease
+          exclude_types: draft
           view_top: 1
 
       - name: Get new version
         id: future_version
         uses: Saionaro/extract-package-version@v1.0.6
 
-      - name: Generate changelog
+      - name: Generate changelog between ${{ steps.last_version.outputs.tag_name }} and v${{ steps.future_version.outputs.version }}
         uses: docker://ferrarimarco/github-changelog-generator
+        # If we have a version change
+        if: contains(steps.last_version.outputs.tag_name, steps.future_version.outputs.version) == false
         with:
           args: >
             -t ${{ secrets.GITHUB_TOKEN }}
@@ -38,14 +40,14 @@ jobs:
             --exclude-labels "duplicate,question,invalid,wontfix,dependencies"
             --since-tag ${{ steps.last_version.outputs.tag_name }}
             --future-release v${{ steps.future_version.outputs.version }}
-            --breaking-label "## Breaking changes"
-            --enhancement-label "## Enhancements"
-            --bugs-label "## Fixed bugs"
-            --deprecated-label "## Deprecated"
-            --removed-label "## Removed"
-            --security-label "## Security fixes"
-            --issues-label "## Closed issues"
-            --pr-label "## Closed pull requests"
+            --breaking-label "### :boom: Breaking changes"
+            --enhancement-label "### :rocket: Enhancements"
+            --bugs-label "### :bug: Fixed bugs"
+            --deprecated-label "### Deprecated"
+            --removed-label "### Removed"
+            --security-label "### Security fixes"
+            --issues-label "### Closed issues"
+            --pr-label "### Closed pull requests"
 
       - name: Print changelog to console
         run: cat CHANGELOG.md
