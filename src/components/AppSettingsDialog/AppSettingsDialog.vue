@@ -1,7 +1,7 @@
 <!--
- - @copyright Copyright (c) 2020 Marco Ambrosini <marcoambrosini@pm.me>
+ - @copyright Copyright (c) 2020 Marco Ambrosini <marcoambrosini@icloud.com>
  -
- - @author Marco Ambrosini <marcoambrosini@pm.me>
+ - @author Marco Ambrosini <marcoambrosini@icloud.com>
  -
  - @license GNU AGPL version 3 or any later version
  -
@@ -27,12 +27,36 @@ providing the section's title prop. You can put your settings within each
 ```vue
 <template>
 	<div>
-		<button @click="settingsOpen = true">Show Settings</button>
-		<AppSettingsDialog :open.sync="settingsOpen" showNavigation=true>
-			<AppSettingsSection title="Example title 1">
+		<ButtonVue @click="settingsOpen = true">Show Settings</ButtonVue>
+		<AppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" title="Application settings">
+			<AppSettingsSection id="asci-title-1" title="Example title 1">
 				Some example content
 			</AppSettingsSection>
-			<AppSettingsSection title="Example title 2">
+			<AppSettingsSection id="asci-title-2" title="Example title 2">
+				Some more content
+			</AppSettingsSection>
+			<AppSettingsSection id="asci-title-3" title="Example title 3">
+				Some example content
+			</AppSettingsSection>
+			<AppSettingsSection id="asci-title-4" title="Example title 4">
+				Some more content
+			</AppSettingsSection>
+			<AppSettingsSection id="asci-title-5" title="Example title 5">
+				Some example content
+			</AppSettingsSection>
+			<AppSettingsSection id="asci-title-6" title="Example title 6">
+				Some more content
+			</AppSettingsSection>
+			<AppSettingsSection id="asci-title-7" title="Example title 7">
+				Some example content
+			</AppSettingsSection>
+			<AppSettingsSection id="asci-title-8" title="Example title 8">
+				Some more content
+			</AppSettingsSection>
+			<AppSettingsSection id="asci-title-9" title="Example title 9">
+				Some more content
+			</AppSettingsSection>
+			<AppSettingsSection id="asci-title-10" title="Example title 10">
 				Some more content
 			</AppSettingsSection>
 		</AppSettingsDialog>
@@ -52,9 +76,9 @@ export default {
 </docs>
 
 <script>
-import Modal from '../Modal'
-import isMobile from '../../mixins/isMobile'
-import { t } from '../../l10n'
+import Modal from '../Modal/index.js'
+import isMobile from '../../mixins/isMobile/index.js'
+import { t } from '../../l10n.js'
 
 import debounce from 'debounce'
 
@@ -91,7 +115,17 @@ export default {
 			type: String,
 			default: 'body',
 		},
+
+		/**
+		 * Title of the settings
+		 */
+		title: {
+			type: String,
+			default: '',
+		},
 	},
+
+	emits: ['update:open'],
 
 	data() {
 		return {
@@ -119,7 +153,7 @@ export default {
 
 	mounted() {
 		// Select first settings section
-		this.selectedSection = this.$slots.default[0].componentOptions.propsData.title
+		this.selectedSection = this.$slots.default[0].componentOptions.propsData.id
 	},
 
 	updated() {
@@ -146,13 +180,26 @@ export default {
 		 */
 		getSettingsNavigation(slots) {
 			// Array of navigationitems strings
-			const navigationItems = slots.filter(vNode => vNode.componentOptions).map(vNode => vNode.componentOptions.propsData?.title)
+			const navigationItems = slots.filter(vNode => vNode.componentOptions).map(vNode => {
+				return {
+					id: vNode.componentOptions.propsData?.id,
+					title: vNode.componentOptions.propsData?.title,
+				}
+			})
+			const navigationTitles = slots.map(item => item.title)
+			const navigationIds = slots.map(item => item.id)
+
 			// Check for the uniqueness of section titles
 			navigationItems.forEach((element, index) => {
-				const newArray = [...navigationItems]
-				newArray.splice(index, 1)
-				if (newArray.indexOf(element) !== -1) {
+				const newTitlesArray = [...navigationTitles]
+				const newIdArray = [...navigationIds]
+				newTitlesArray.splice(index, 1)
+				newIdArray.splice(index, 1)
+				if (newTitlesArray.includes(element.title)) {
 					throw new Error(`Duplicate section title found: ${element}. Settings navigation sections must have unique section titles.`)
+				}
+				if (newIdArray.includes(element.id)) {
+					throw new Error(`Duplicate section id found: ${element}. Settings navigation sections must have unique section ids.`)
 				}
 			})
 			return navigationItems
@@ -161,11 +208,12 @@ export default {
 		/**
 		 * Scrolls the content to the selected settings section.absolute
 		 *
-		 * @param {string} item the name of the section
+		 * @param {string} item the ID of the section
 		 */
 		handleSettingsNavigationClick(item) {
+			console.error(item)
 			this.linkClicked = true
-			document.getElementById('settings-section_' + item.replace(/\s+/g, '')).scrollIntoView({
+			document.getElementById('settings-section_' + item).scrollIntoView({
 				behavior: 'smooth',
 				inline: 'nearest',
 			})
@@ -204,7 +252,7 @@ export default {
 		},
 	},
 
-	render(createElement) {
+	render(h) {
 		/**
 		 * Build the navigation
 		 *
@@ -212,19 +260,19 @@ export default {
 		 */
 		const createAppSettingsNavigation = () => {
 			if (this.hasNavigation) {
-				return [createElement('div', {
+				return [h('div', {
 					attrs: {
 						class: 'app-settings__navigation',
 						role: 'tablist',
 						'aria-label': this.settingsNavigationAriaLabel,
 					},
-				}, [createElement('ul', {
+				}, [h('ul', {
 					attrs: {
 						class: 'navigation-list',
 						role: 'tablist',
 					},
 				}, this.getSettingsNavigation(this.$slots.default).map(item => {
-					return createListElemtent(item)
+					return createListElement(item)
 				}))])]
 			} else {
 				return []
@@ -237,27 +285,30 @@ export default {
 		 * @param {object} item the navigation item
 		 * @return {object} the list element
 		 */
-		const createListElemtent = (item) => createElement('li', {}, [createElement('a', {
+		const createListElement = (item) => h('li', {}, [h('a', {
 			class: {
 				'navigation-list__link': true,
-				'navigation-list__link--active': item === this.selectedSection,
+				'navigation-list__link--active': item.id === this.selectedSection,
 			},
 
 			attrs: {
 				role: 'tab',
-				'aria-selected': item === this.selectedSection,
+				'aria-selected': item.id === this.selectedSection,
 				tabindex: '0',
 			},
 
 			on: {
-				click: () => this.handleSettingsNavigationClick(item),
-				keydown: () => this.handleLinkKeydown(event, item),
+				click: () => this.handleSettingsNavigationClick(item.id),
+				keydown: () => this.handleLinkKeydown(event, item.id),
 			},
-		}, item)])
+		}, item.title)])
 
 		// Return value of the render function
 		if (this.open) {
-			return createElement('Modal', {
+			return h('Modal', {
+				class: [
+					'app-settings-modal',
+				],
 				attrs: {
 					container: this.container,
 					size: 'large',
@@ -266,17 +317,40 @@ export default {
 					close: () => { this.handleCloseModal() },
 				},
 			}, [
-				createElement('div', {
+				// main app-settings root element
+				h('div', {
 					attrs: {
 						class: 'app-settings',
 					},
-				}, [...createAppSettingsNavigation(),
-					createElement('div', {
-						attrs: {
-							class: 'app-settings__content',
+				}, [
+					// app-settings title
+					this.title
+						? h('h2', {
+							attrs: {
+								class: 'app-settings__title',
+							},
+						}, this.title)
+						: undefined,
+
+					// app-settings navigation + content
+					h(
+						'div',
+						{
+							attrs: {
+								class: 'app-settings__wrapper',
+							},
 						},
-						ref: 'settingsScroller',
-					}, this.$slots.default)]),
+						[
+							...createAppSettingsNavigation(),
+							h('div', {
+								attrs: {
+									class: 'app-settings__content',
+								},
+								ref: 'settingsScroller',
+							}, this.$slots.default),
+						]
+					),
+				]),
 			])
 		} else {
 			return undefined
@@ -288,16 +362,34 @@ export default {
 
 <style lang="scss" scoped>
 
-::v-deep .modal-wrapper .modal-container {
+.app-settings-modal :deep(.modal-wrapper .modal-container) {
 	display: flex;
+	overflow: hidden;
 }
 
 .app-settings {
-	display: flex;
 	width: 100%;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	&__title {
+		padding-top: 12px;
+		text-align: center;
+	}
+	&__wrapper {
+		display: flex;
+		width: 100%;
+		overflow: hidden;
+		height: 100%;
+		position: relative;
+	}
 	&__navigation {
 		min-width: 200px;
 		margin-right: 20px;
+		overflow-x: hidden;
+		overflow-y: auto;
+		position: relative;
+		height: 100%;
 	}
 	&__content {
 		max-width: 100vw;

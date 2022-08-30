@@ -1,7 +1,7 @@
 /**
- * @copyright Copyright (c) 2021 Marco Ambrosini <marcoambrosini@pm.me>
+ * @copyright Copyright (c) 2021 Marco Ambrosini <marcoambrosini@icloud.com>
  *
- * @author Marco Ambrosini <marcoambrosini@pm.me>
+ * @author Marco Ambrosini <marcoambrosini@icloud.com>
  *
  * @license AGPL-3.0-or-later
  *
@@ -19,6 +19,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import ActionCaption from './ActionCaption'
+import ActionCaption from './ActionCaption.vue'
 
 export default ActionCaption

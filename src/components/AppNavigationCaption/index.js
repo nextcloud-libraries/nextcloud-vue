@@ -1,3 +1,3 @@
-import AppNavigationCaption from './AppNavigationCaption'
+import AppNavigationCaption from './AppNavigationCaption.vue'
 
 export default AppNavigationCaption

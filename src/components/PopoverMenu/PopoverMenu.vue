@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import PopoverMenuItem from './PopoverMenuItem'
+import PopoverMenuItem from './PopoverMenuItem.vue'
 
 export default {
 	name: 'PopoverMenu',

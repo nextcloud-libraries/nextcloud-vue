@@ -1,7 +1,7 @@
 <!--
- - @copyright Copyright (c) 2019 Marco Ambrosini <marcoambrosini@pm.me>
+ - @copyright Copyright (c) 2019 Marco Ambrosini <marcoambrosini@icloud.com>
  -
- - @author Marco Ambrosini <marcoambrosini@pm.me>
+ - @author Marco Ambrosini <marcoambrosini@icloud.com>
  -
  - @license GNU AGPL version 3 or any later version
  -
@@ -22,27 +22,48 @@
 
 <template>
 	<!-- Button to expand or collapse children -->
-	<button class="icon-collapse"
-		:class="{'icon-collapse--rotated':open}"
-		type="button"
+	<ButtonVue class="icon-collapse"
+		:class="{'icon-collapse--open':open}"
+		type="tertiary"
+		:aria-label="labelButton"
 		@click="onClick">
-		<MenuDown :size="20" title="" decorative />
-	</button>
+		<template #icon>
+			<ChevronDown v-if="open"
+				:size="20" />
+			<ChevronRight v-else
+				:size="20" />
+		</template>
+	</ButtonVue>
 </template>
 
 <script>
-import MenuDown from 'vue-material-design-icons/MenuDown'
+import ButtonVue from '../ButtonVue/index.js'
+import { t } from '../../l10n.js'
+
+import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
+import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
+
 export default {
 	name: 'AppNavigationIconCollapsible',
 
 	components: {
-		MenuDown,
+		ButtonVue,
+		ChevronRight,
+		ChevronDown,
 	},
 
 	props: {
 		open: {
 			type: Boolean,
 			default: true,
+		},
+	},
+
+	emits: ['click'],
+
+	computed: {
+		labelButton() {
+			return open ? t('Close') : t('Open')
 		},
 	},
 
@@ -59,28 +80,12 @@ export default {
 .icon-collapse {
 	position: absolute;
 	z-index: 105; // above a, under button
-	width: 44px;
-	height: 44px;
-	margin: 0;
-	padding: 0;
-	transition: opacity var(--animation-quick) ease-in-out;
-	-webkit-transform: rotate(-90deg);
-	-ms-transform: rotate(-90deg);
-	transform: rotate(-90deg);
 	color: var(--color-main-text);
-	border: none;
-	border-radius: 0;
-	outline: none !important;
-	background-color: transparent;
-	box-shadow: none;
 
 	&:hover{
 		color: var(--color-primary);
 	}
-	&--rotated {
-		-webkit-transform: rotate(0deg);
-		-ms-transform: rotate(0deg);
-		transform: rotate(0deg);
+	&--open {
 		color: var(--color-main-text);
 		&:hover{
 			color: var(--color-primary);

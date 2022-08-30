@@ -59,10 +59,10 @@ If you want to use [vue-devtools](https://github.com/vuejs/vue-devtools) in Fire
 
 ```diff
 diff --git a/lib/public/AppFramework/Http/ContentSecurityPolicy.php b/lib/public/AppFramework/Http/ContentSecurityPolicy.php
-index 3a9ab8f8c1..4bc2b4a4d0 100644
+index 0e3a6a705d..416b8b0fb9 100644
 --- a/lib/public/AppFramework/Http/ContentSecurityPolicy.php
 +++ b/lib/public/AppFramework/Http/ContentSecurityPolicy.php
-@@ -42,9 +42,9 @@ namespace OCP\AppFramework\Http;
+@@ -41,9 +41,9 @@ namespace OCP\AppFramework\Http;
   */
  class ContentSecurityPolicy extends EmptyContentSecurityPolicy {
         /** @var bool Whether inline JS snippets are allowed */
@@ -71,9 +71,9 @@ index 3a9ab8f8c1..4bc2b4a4d0 100644
         /** @var bool Whether eval in JS scripts is allowed */
 -       protected $evalScriptAllowed = false;
 +       protected $evalScriptAllowed = true;
+        /** @var bool Whether strict-dynamic should be set */
+        protected $strictDynamicAllowed = false;
         /** @var array Domains from which scripts can get loaded */
-        protected $allowedScriptDomains = [
-                '\'self\'',
 ```
 
 ## Releasing a new version
@@ -85,9 +85,24 @@ index 3a9ab8f8c1..4bc2b4a4d0 100644
 - Add the change log content from the 'Changelog' action on Github to `CHANGELOG.md`;
 - Commit and push;
 - Get your PR reviewed and merged;
+- Create a milestone with the follow up version at https://github.com/nextcloud/nextcloud-vue/milestones
+- Move all open tickets and PRs to the follow up
+- Close the milestone of the version you release
 - Create a release on github with the version as tag (e.g `v4.0.1`) and add the changelog content as description (https://github.com/nextcloud/nextcloud-vue/releases);
   ![image](https://user-images.githubusercontent.com/14975046/124442568-2a952500-dd7d-11eb-82a2-402f9170231a.png)
 
 <a href="https://www.netlify.com">
   <img src="https://www.netlify.com/img/global/badges/netlify-dark.svg"/>
 </a>
+
+### Releasing a pre-release
+
+A pre-release can be built in the same way as described above, however it requires manual adjustments to avoid that npm ships the pre-release to all users:
+
+1. Retag latest to the last stable release
+
+    npm dist-tag add @nextcloud/vue@5.4.0 latest
+  
+2. Tag the new pre-release as next
+
+    npm dist-tag add @nextcloud/vue@6.0.0-beta.2 next

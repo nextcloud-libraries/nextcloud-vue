@@ -1,0 +1,169 @@
+# 
+# Translators:
+# Slobodan Simić <slsimic@gmail.com>, 2020
+# aleksandar jevtic, 2022
+# 
+msgid ""
+msgstr ""
+"Last-Translator: aleksandar jevtic, 2022\n"
+"Language-Team: Serbian (https://www.transifex.com/nextcloud/teams/64236/sr/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: sr\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "{tag} (invisible)"
+msgstr "{tag} (nevidljivo)"
+
+msgid "{tag} (restricted)"
+msgstr "{tag} (ograničeno)"
+
+msgid "Actions"
+msgstr "Radnje"
+
+msgid "Activities"
+msgstr "Aktivnosti"
+
+msgid "Animals & Nature"
+msgstr "Životinje i Priroda"
+
+msgid "Avatar of {displayName}"
+msgstr "Avatar za {displayName}"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "Avatar za {displayName}, {status}"
+
+msgid "Cancel changes"
+msgstr "Otkaži izmene"
+
+msgid "Change title"
+msgstr "Izmeni naziv"
+
+msgid "Choose"
+msgstr "Изаберите"
+
+msgid "Close"
+msgstr "Затвори"
+
+msgid "Close modal"
+msgstr "Zatvori modal"
+
+msgid "Close navigation"
+msgstr "Zatvori navigaciju"
+
+msgid "Close sidebar"
+msgstr "Zatvori bočnu traku"
+
+msgid "Confirm changes"
+msgstr "Potvrdite promene"
+
+msgid "Custom"
+msgstr "Po meri"
+
+msgid "Edit item"
+msgstr "Uredi stavku"
+
+msgid "External documentation for {title}"
+msgstr "Eksterna dokumentacija za {title}"
+
+msgid "Favorite"
+msgstr "Omiljeni"
+
+msgid "Flags"
+msgstr "Zastave"
+
+msgid "Food & Drink"
+msgstr "Hrana i Piće"
+
+msgid "Frequently used"
+msgstr "Često korišćeno"
+
+msgid "Global"
+msgstr "Globalno"
+
+msgid "Go back to the list"
+msgstr "Natrag na listu"
+
+msgid "items"
+msgstr "stavke"
+
+msgid "Message limit of {count} characters reached"
+msgstr "Dostignuto je ograničenje za poruke od {count} znakova"
+
+msgid "More {dashboardItemType} …"
+msgstr "Više  {dashboardItemType} …"
+
+msgid "Next"
+msgstr "Следеће"
+
+msgid "No emoji found"
+msgstr "Nije pronađen nijedan emodži"
+
+msgid "No results"
+msgstr "Нема резултата"
+
+msgid "Objects"
+msgstr "Objekti"
+
+msgid "Open"
+msgstr "Otvori"
+
+msgid "Open navigation"
+msgstr "Otvori navigaciju"
+
+msgid "Pause slideshow"
+msgstr "Паузирај слајд шоу"
+
+msgid "People & Body"
+msgstr "Ljudi i Telo"
+
+msgid "Pick an emoji"
+msgstr "Izaberi emodži"
+
+msgid "Please select a time zone:"
+msgstr "Molimo izaberite vremensku zonu:"
+
+msgid "Previous"
+msgstr "Претходно"
+
+msgid "Search"
+msgstr "Pretraži"
+
+msgid "Search results"
+msgstr "Rezultati pretrage"
+
+msgid "Select a tag"
+msgstr "Изаберите ознаку"
+
+msgid "Settings"
+msgstr "Поставке"
+
+msgid "Settings navigation"
+msgstr "Navigacija u podešavanjima"
+
+msgid "Smileys & Emotion"
+msgstr "Smajli i Emocije"
+
+msgid "Start slideshow"
+msgstr "Покрени слајд шоу"
+
+msgid "Submit"
+msgstr "Prihvati"
+
+msgid "Symbols"
+msgstr "Simboli"
+
+msgid "Travel & Places"
+msgstr "Putovanja i Mesta"
+
+msgid "Type to search time zone"
+msgstr "Ukucaj da pretražiš vremenske zone"
+
+msgid "Unable to search the group"
+msgstr "Nije moguće pretražiti grupu"
+
+msgid "Undo changes"
+msgstr "Poništi promene"
+
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr ""
+"Napišite poruku, @ da pomenete nekoga, : za automatsko dovršavanje emodžija…"

@@ -24,7 +24,6 @@
 ### General description
 
 This component displays contenteditable div with automated `@` [at] autocompletion and `:` [colon] emoji autocompletion.
-Note you need to register the [tooltip directive](https://nextcloud-vue-components.netlify.app/#/Directives) in your entry file.
 
 ### Examples
 
@@ -123,7 +122,7 @@ export default {
 
 <template>
 	<div ref="contenteditable"
-		v-tooltip="tooltip"
+		v-tooltip="tooltipString"
 		:class="{
 			'rich-contenteditable__input--empty': isEmptyValue,
 			'rich-contenteditable__input--multiline': multiline,
@@ -144,17 +143,22 @@ export default {
 </template>
 
 <script>
-import Tribute from 'tributejs/dist/tribute.esm'
+import { t } from '../../l10n.js'
+import AutoCompleteResult from './AutoCompleteResult.vue'
+import richEditor from '../../mixins/richEditor/index.js'
+import Tooltip from '../../directives/Tooltip/index.js'
+import { emojiSearch, addRecent } from '../../functions/emoji/index.js'
+
+import Tribute from 'tributejs/dist/tribute.esm.js'
 import debounce from 'debounce'
 import stringLength from 'string-length'
 
-import { t } from '../../l10n'
-import AutoCompleteResult from './AutoCompleteResult'
-import richEditor from '../../mixins/richEditor/index'
-import { emojiSearch, addRecent } from '../../functions/emoji'
-
 export default {
 	name: 'RichContenteditable',
+
+	directives: {
+		tooltip: Tooltip,
+	},
 
 	mixins: [richEditor],
 
@@ -223,6 +227,12 @@ export default {
 			default: true,
 		},
 	},
+
+	emits: [
+		'submit',
+		'paste',
+		'update:value',
+	],
 
 	data() {
 		return {
@@ -310,13 +320,13 @@ export default {
 		 *
 		 * @return {string}
 		 */
-		tooltip() {
+		tooltipString() {
 			if (!this.isOverMaxlength) {
 				return null
 			}
 			return {
 				content: t('Message limit of {count} characters reached', { count: this.maxlength }),
-				show: true,
+				shown: true,
 				trigger: 'manual',
 			}
 		},
@@ -619,7 +629,7 @@ export default {
 	max-width: 200px;
 	padding: 4px;
 	// Show maximum 5 entries and a half to show scroll
-	max-height: 34.5px * 5 + 29.5px / 2;
+	max-height: 34.5px * 5 + math.div(29.5px, 2);
 
 	&__item {
 		border-radius: 8px;

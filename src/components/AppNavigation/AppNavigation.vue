@@ -3,7 +3,7 @@
  -
  - @author Christoph Wurst <christoph@winzerhof-wurst.at>
  - @author John Molakvoæ <skjnldsv@protonmail.com>
- - @author Marco Ambrosini <marcoambrosini@pm.me>
+ - @author Marco Ambrosini <marcoambrosini@icloud.com>
  -
  - @license GNU AGPL version 3 or any later version
  -
@@ -72,9 +72,10 @@ emit('toggle-navigation', {
 </template>
 
 <script>
+import AppNavigationToggle from '../AppNavigationToggle/index.js'
+import isMobile from '../../mixins/isMobile/index.js'
+
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
-import AppNavigationToggle from '../AppNavigationToggle/AppNavigationToggle'
-import isMobile from '../../mixins/isMobile'
 
 export default {
 	name: 'AppNavigation',
@@ -145,6 +146,7 @@ export default {
 	position: -webkit-sticky;
 	top: $header-height;
 	left: 0;
+	padding: 4px;
 	// Above appcontent
 	z-index: 1800;
 	height: calc(100vh - #{$header-height});
@@ -183,6 +185,13 @@ export default {
 @media only screen and (max-width: $breakpoint-mobile) {
 	.app-navigation:not(.app-navigation--close) {
 		margin-left: - $navigation-width;
+	}
+}
+
+// Put the toggle behind appsidebar on small screens
+@media only screen and (max-width: math.div($breakpoint-mobile, 2)) {
+	.app-navigation {
+		z-index: 1400;
 	}
 }
 

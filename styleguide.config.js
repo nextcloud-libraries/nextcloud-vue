@@ -1,6 +1,6 @@
 const path = require('path')
 const { merge } = require('webpack-merge')
-const webpackConfig = require('./webpack.dev.js')
+const webpackConfig = require('./webpack.config.js')
 
 const newConfig = Object.assign({}, webpackConfig, {
 	externals: {},
@@ -69,6 +69,7 @@ module.exports = {
 				'src/components/AppSidebar*/*.vue',
 				'src/components/Breadcrumb*/*.vue',
 				'src/components/Content/*.vue',
+				'src/components/Dashboard*/*.vue',
 				'src/components/Multiselect*/*.vue',
 				'src/components/PopoverMenu/!(PopoverMenu).vue',
 				'src/components/ListItem*/*.vue',
@@ -77,6 +78,7 @@ module.exports = {
 				'src/components/RichContenteditable/!(RichContenteditable).vue',
 				'src/components/Settings*/*.vue',
 				'src/components/UserBubble/UserBubbleDiv.vue',
+				'src/components/InputField/InputField.vue',
 			],
 			sections: [
 				{
@@ -123,6 +125,12 @@ module.exports = {
 					name: 'Breadcrumbs',
 					components: [
 						'src/components/Breadcrumb*/*.vue',
+					],
+				},
+				{
+					name: 'Dashboard',
+					components: [
+						'src/components/Dashboard*/*.vue',
 					],
 				},
 				{

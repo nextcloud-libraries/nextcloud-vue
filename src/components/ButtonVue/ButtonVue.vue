@@ -1,7 +1,7 @@
 <!--
- - @copyright Copyright (c) 2020 Marco Ambrosini <marcoambrosini@pm.me>
+ - @copyright Copyright (c) 2020 Marco Ambrosini <marcoambrosini@icloud.com>
  -
- - @author Marco Ambrosini <marcoambrosini@pm.me>
+ - @author Marco Ambrosini <marcoambrosini@icloud.com>
  -
  - @license GNU AGPL version 3 or any later version
  -
@@ -48,7 +48,7 @@ It can be used with one or multiple actions.
 		<p>Tertiary</p>
 		<p>Secondary</p>
 		<p>Primary</p>
-		<Button
+		<ButtonVue
 			:disabled="disabled"
 			:readonly="readonly"
 			type="tertiary-no-background">
@@ -57,8 +57,8 @@ It can be used with one or multiple actions.
 					:size="20" />
 			</template>
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
-		</Button>
-		<Button
+		</ButtonVue>
+		<ButtonVue
 			:disabled="disabled"
 			:readonly="readonly"
 			type="tertiary">
@@ -67,8 +67,8 @@ It can be used with one or multiple actions.
 					:size="20" />
 			</template>
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
-		</Button>
-		<Button
+		</ButtonVue>
+		<ButtonVue
 			:disabled="disabled"
 			:readonly="readonly">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
@@ -77,8 +77,8 @@ It can be used with one or multiple actions.
 					:size="20" />
 			</template>
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
-		</Button>
-		<Button
+		</ButtonVue>
+		<ButtonVue
 			:disabled="disabled"
 			:readonly="readonly"
 			type="primary">
@@ -87,12 +87,12 @@ It can be used with one or multiple actions.
 					:size="20" />
 			</template>
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
-		</Button>
+		</ButtonVue>
 	</div>
 
 	<!-- Wide button -->
 	<h5>Wide button</h5>
-	<Button
+	<ButtonVue
 		:disabled="disabled"
 		:readonly="readonly"
 		:wide="true"
@@ -103,7 +103,7 @@ It can be used with one or multiple actions.
 				:size="20" />
 		</template>
 		Example text
-	</Button>
+	</ButtonVue>
 
 	<!-- Special buttons -->
 	<h5>Special buttons</h5>
@@ -112,7 +112,7 @@ It can be used with one or multiple actions.
 		<p>Warning</p>
 		<p>Error</p>
 		<p> - </p>
-		<Button
+		<ButtonVue
 			:disabled="disabled"
 			:readonly="readonly"
 			type="success">
@@ -121,8 +121,8 @@ It can be used with one or multiple actions.
 					:size="20" />
 			</template>
 			Example text
-		</Button>
-		<Button
+		</ButtonVue>
+		<ButtonVue
 			:disabled="disabled"
 			:readonly="readonly"
 			type="warning">
@@ -132,8 +132,8 @@ It can be used with one or multiple actions.
 					:size="20" />
 			</template>
 			Example text
-		</Button>
-		<Button
+		</ButtonVue>
+		<ButtonVue
 			:disabled="disabled"
 			:readonly="readonly"
 			type="error">
@@ -142,7 +142,7 @@ It can be used with one or multiple actions.
 					:size="20" />
 			</template>
 			Example text
-		</Button>
+		</ButtonVue>
 		<p> - </p>
 	</div>
 </div>
@@ -198,8 +198,8 @@ button {
 </docs>
 
 <template>
-	<button class="button-vue"
-		v-bind="$attrs"
+	<root-element class="button-vue"
+		v-bind="rootElement"
 		:class="buttonClassObject"
 		:aria-label="ariaLabel"
 		:type="nativeType"
@@ -220,12 +220,12 @@ button {
 				<slot />
 			</span>
 		</span>
-	</button>
+	</root-element>
 </template>
 <script>
 
 export default {
-	name: 'Button',
+	name: 'ButtonVue',
 
 	props: {
 		/**
@@ -238,13 +238,13 @@ export default {
 
 		/**
 		 * Specifies the button type
-		 * Accepted values: primary, secondary, tertiary, error, warning, success. If left empty,
+		 * Accepted values: primary, secondary, tertiary, tertiary-no-background, tertiary-on-primary, error, warning, success. If left empty,
 		 * the default button style will be applied.
 		 */
 		type: {
 			type: String,
 			validator(value) {
-				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'error', 'warning', 'success'].indexOf(value) !== -1
+				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].indexOf(value) !== -1
 			},
 			default: 'secondary',
 		},
@@ -281,6 +281,33 @@ export default {
 			type: String,
 			default: null,
 		},
+
+		/**
+		 * Providing the href attribute turns the button component into an `a`
+		 * element.
+		 */
+		href: {
+			type: String,
+			default: null,
+		},
+
+		/**
+		 * Providing the to attribute turns the button component into a `router-link`
+		 * element. Takes precedence over the href attribute.
+		 */
+		to: {
+			type: [String, Object],
+			default: null,
+		},
+
+		/**
+		 * Pass in `true` if you want the matching behaviour of `router-link` to
+		 * be non-inclusive: https://router.vuejs.org/api/#exact
+		 */
+		exact: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -300,6 +327,31 @@ export default {
 	},
 
 	computed: {
+		// Determines whether the root element is an a,
+		// a router-link or a button
+		rootElement() {
+			if (this.to) {
+				return {
+					is: 'router-link',
+					tag: 'button',
+					to: this.to,
+					exact: this.exact,
+					...this.$attrs,
+				}
+			}
+			if (this.href) {
+				return {
+					is: 'a',
+					href: this.href,
+					...this.$attrs,
+				}
+			}
+			return {
+				is: 'button',
+				...this.$attrs,
+			}
+		},
+
 		hasText() {
 			return this.slots?.default !== undefined
 				&& this.slots?.default[0]?.text
@@ -418,7 +470,7 @@ export default {
 	& * {
 		cursor: pointer;
 	}
-	border-radius: $clickable-area / 2;
+	border-radius: math.div($clickable-area, 2);
 	transition: background-color 0.1s linear !important;
 	transition: border 0.1s linear;
 
@@ -511,6 +563,12 @@ export default {
 		&.button-vue--vue-tertiary-no-background {
 			opacity: 1;
 		}
+		&.button-vue--vue-tertiary-on-primary {
+			box-shadow: 0 0 0 2px var(--color-primary-text);
+			border-radius: var(--border-radius);
+			opacity: 1;
+			background-color: transparent;
+		}
 		&.button-vue--vue-success {
 			background-color: var(--color-success-hover);
 		}
@@ -565,6 +623,18 @@ export default {
 		color: var(--color-main-text);
 		background-color: transparent;
 		opacity: .7;
+		&:hover:not(:disabled) {
+			background-color: transparent;
+			opacity: 1;
+		}
+	}
+
+	// Tertiary on primary color (like the header)
+	&--vue-tertiary-on-primary {
+		color: var(--color-primary-text);
+		background-color: transparent;
+		opacity: .7;
+
 		&:hover:not(:disabled) {
 			background-color: transparent;
 			opacity: 1;

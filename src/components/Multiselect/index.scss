@@ -48,9 +48,14 @@
 	}
 
 	// loading state
-	&.icon-loading-small::after {
-		left: 100%;
-		margin-left: -24px;
+	.loading-icon {
+		position: absolute;
+		right: 1px;
+		top: 1px;
+		width: 48px;
+		height: 35px;
+		background: var(--color-main-background);
+		z-index: 3;
 	}
 
 	// multiple selected options display

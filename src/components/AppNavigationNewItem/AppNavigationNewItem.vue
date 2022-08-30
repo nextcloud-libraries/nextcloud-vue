@@ -40,9 +40,10 @@
 		class="app-navigation-entry">
 		<!-- New Item -->
 		<div class="app-navigation-entry-div" @click="handleNewItem">
-			<div :class="{ 'icon-loading-small': loading, [icon]: !loading }"
+			<div :class="{ [icon]: !loading }"
 				class="app-navigation-entry-icon">
-				<slot v-if="!loading" name="icon" />
+				<LoadingIcon v-if="loading" />
+				<slot v-else name="icon" />
 			</div>
 
 			<span v-if="!newItemActive" class="app-navigation-new-item__title" :title="title">
@@ -62,21 +63,21 @@
 </template>
 
 <script>
-import { directive as ClickOutside } from 'v-click-outside'
+import InputConfirmCancel from '../AppNavigationItem/InputConfirmCancel.vue'
+import LoadingIcon from '../LoadingIcon/index.js'
 
-import isMobile from '../../mixins/isMobile'
-import InputConfirmCancel from '../AppNavigationItem/InputConfirmCancel'
+import { directive as ClickOutside } from 'v-click-outside'
 
 export default {
 	name: 'AppNavigationNewItem',
 
 	components: {
 		InputConfirmCancel,
+		LoadingIcon,
 	},
 	directives: {
 		ClickOutside,
 	},
-	mixins: [isMobile],
 
 	props: {
 		/**
@@ -118,6 +119,8 @@ export default {
 			default: '',
 		},
 	},
+
+	emits: ['new-item'],
 
 	data() {
 		return {

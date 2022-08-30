@@ -55,13 +55,13 @@ export default {
 </template>
 
 <script>
-import Multiselect from '../Multiselect'
 import {
 	getReadableTimezoneName,
 	getSortedTimezoneList,
 } from './timezone.js'
 import getTimezoneManager from './timezoneDataProviderService.js'
-import { t } from '../../l10n'
+import Multiselect from '../Multiselect/index.js'
+import { t } from '../../l10n.js'
 
 export default {
 	name: 'TimezonePicker',
@@ -84,6 +84,7 @@ export default {
 			default: 'floating',
 		},
 	},
+	emits: ['input'],
 	computed: {
 		placeholder() {
 			return t('Type to search time zone')
@@ -121,7 +122,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .multiselect__tags {
+:deep(.multiselect__tags) {
 	border: none !important; // Remove the Multiselect border
 }
 </style>

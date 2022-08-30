@@ -123,7 +123,7 @@ $bubble-avatar-size: $bubble-height - 2 * $bubble-padding;
 		user-select: none;
 		padding-right: $bubble-padding * 3;
 		padding-left: $bubble-padding;
-		border-radius: $bubble-height / 2;
+		border-radius: math.div($bubble-height, 2);
 		background-color: var(--color-background-dark);
 	}
 
@@ -131,7 +131,7 @@ $bubble-avatar-size: $bubble-height - 2 * $bubble-padding;
 		position: relative;
 		width: $bubble-avatar-size;
 		height: $bubble-avatar-size;
-		border-radius: $bubble-avatar-size / 2;
+		border-radius: math.div($bubble-avatar-size, 2);
 		background-color: var(--color-background-darker);
 		background-repeat: no-repeat;
 		background-position: center;

@@ -21,15 +21,33 @@
   -->
 
 <template>
-	<a v-tooltip="title" class="app-details-toggle icon-confirm" href="#" />
+	<ButtonVue v-tooltip="title" :aria-label="title" class="app-details-toggle">
+		<template #icon>
+			<ArrowRight :size="20" />
+		</template>
+	</ButtonVue>
 </template>
 
 <script>
+import ButtonVue from '../ButtonVue/index.js'
+import { t } from '../../l10n.js'
+import Tooltip from '../../directives/Tooltip/index.js'
+
 import { emit } from '@nextcloud/event-bus'
 
-import { t } from '../../l10n'
+import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+
 export default {
 	name: 'AppDetailsToggle',
+
+	directives: {
+		tooltip: Tooltip,
+	},
+
+	components: {
+		ButtonVue,
+		ArrowRight,
+	},
 
 	computed: {
 		title() {

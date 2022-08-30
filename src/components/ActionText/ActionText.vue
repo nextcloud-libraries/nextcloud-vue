@@ -2,7 +2,7 @@
   - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
-  - @author Marco Ambrosini <marcoambrosini@pm.me>
+  - @author Marco Ambrosini <marcoambrosini@icloud.com>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import ActionTextMixin from '../../mixins/actionText'
+import ActionTextMixin from '../../mixins/actionText.js'
 
 export default {
 	name: 'ActionText',

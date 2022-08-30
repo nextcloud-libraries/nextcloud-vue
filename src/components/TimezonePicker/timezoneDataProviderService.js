@@ -19,10 +19,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import { getTimezoneManager } from '@nextcloud/calendar-js'
-
 import tzData from '../../../resources/timezones/zones.json'
 import logger from '../../utils/logger.js'
+
+import { getTimezoneManager } from '@nextcloud/calendar-js'
 
 const timezoneManager = getTimezoneManager()
 let initialized = false

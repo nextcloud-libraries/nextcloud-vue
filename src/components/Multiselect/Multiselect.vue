@@ -163,18 +163,19 @@ export default {
 		v-model="localValue"
 		v-bind="$attrs"
 		:class="[
-			{
-				'icon-loading-small': loading
-			},
 			multiple ? 'multiselect--multiple': 'multiselect--single'
 		]"
 		:options="options"
 		:limit="maxOptions"
+		:loading="loading"
+		:aria-expanded="ariaExpanded.toString()"
 		:close-on-select="willCloseOnSelect"
 		:multiple="multiple"
 		:label="label"
 		:track-by="trackBy"
 		tag-placeholder="create"
+		@close="ariaExpanded = false"
+		@open="ariaExpanded = true"
 		v-on="$listeners">
 		<!-- This is the scope to format the list of available options in the dropdown
 			Two templates to avoid registering the slot unnecessary -->
@@ -214,24 +215,31 @@ export default {
 		</template>
 
 		<template #noResult>
-			<span>{{ t('No results') }}</span>
+			<slot name="noResult">
+				<span>{{ t('No results') }}</span>
+			</slot>
+		</template>
+		<template #loading>
+			<LoadingIcon v-if="loading" />
 		</template>
 	</VueMultiselect>
 </template>
 
 <script>
-import VueMultiselect from 'vue-multiselect'
+import EllipsisedOption from './EllipsisedOption.vue'
+import ListItemIcon from '../ListItemIcon/index.js'
+import LoadingIcon from '../LoadingIcon/index.js'
+import Tooltip from '../../directives/Tooltip/index.js'
+import l10n from '../../mixins/l10n.js'
 
-import EllipsisedOption from './EllipsisedOption'
-import l10n from '../../mixins/l10n'
-import ListItemIcon from '../ListItemIcon'
-import Tooltip from '../../directives/Tooltip'
+import VueMultiselect from 'vue-multiselect'
 
 export default {
 	name: 'Multiselect',
 	components: {
 		EllipsisedOption,
 		ListItemIcon,
+		LoadingIcon,
 		VueMultiselect,
 	},
 	directives: {
@@ -340,9 +348,15 @@ export default {
 		},
 	},
 
+	emits: [
+		'change',
+		'update:value',
+	],
+
 	data() {
 		return {
 			elWidth: 0,
+			ariaExpanded: false,
 		}
 	},
 	computed: {

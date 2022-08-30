@@ -2,7 +2,7 @@
   - @copyright Copyright (c) 2019 Nextcloud et al.
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
-  - @author Marco Ambrosini <marcoambrosini@pm.me>
+  - @author Marco Ambrosini <marcoambrosini@icloud.com>
   - @author Kristof Hamann
   - @author Joas Schilling <coding@schilljs.com>
   -

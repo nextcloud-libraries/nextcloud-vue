@@ -12,7 +12,7 @@ msgstr ""
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (invisível)"
@@ -38,14 +38,23 @@ msgstr "Avatar de {displayName}, {status}"
 msgid "Cancel changes"
 msgstr "Cancelar alterações"
 
+msgid "Change title"
+msgstr "Alterar título"
+
 msgid "Choose"
 msgstr "Escolher"
 
 msgid "Close"
 msgstr "Fechar"
 
+msgid "Close modal"
+msgstr "Fechar modal"
+
 msgid "Close navigation"
 msgstr "Fechar navegação"
+
+msgid "Close sidebar"
+msgstr "Fechar barra lateral"
 
 msgid "Confirm changes"
 msgstr "Confirmar alterações"
@@ -58,6 +67,9 @@ msgstr "Editar item"
 
 msgid "External documentation for {title}"
 msgstr "Documentação externa para {title}"
+
+msgid "Favorite"
+msgstr "Favorito"
 
 msgid "Flags"
 msgstr "Bandeiras"
@@ -74,8 +86,14 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Volte para a lista"
 
+msgid "items"
+msgstr "itens"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Limite de mensagem de {count} caracteres atingido"
+
+msgid "More {dashboardItemType} …"
+msgstr "Mais {dashboardItemType} …"
 
 msgid "Next"
 msgstr "Próximo"
@@ -88,6 +106,9 @@ msgstr "Sem resultados"
 
 msgid "Objects"
 msgstr "Objetos"
+
+msgid "Open"
+msgstr "Aberto"
 
 msgid "Open navigation"
 msgstr "Abrir navegação"

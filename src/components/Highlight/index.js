@@ -20,6 +20,6 @@
  *
  */
 
-import Highlight from './Highlight'
+import Highlight from './Highlight.vue'
 
 export default Highlight

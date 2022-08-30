@@ -20,6 +20,6 @@
  *
  */
 
-import ListItemIcon from './ListItemIcon'
+import ListItemIcon from './ListItemIcon.vue'
 
 export default ListItemIcon

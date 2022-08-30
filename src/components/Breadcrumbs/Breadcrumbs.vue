@@ -37,7 +37,7 @@ is dropped on a creadcrumb.
 			<Breadcrumbs @dropped="dropped">
 				<Breadcrumb title="Home" href="/" @dropped="droppedOnCrumb">
 					<template #icon>
-						<Folder :size="20" decorative />
+						<Folder :size="20" />
 					</template>
 				</Breadcrumb>
 				<Breadcrumb title="Folder 1" href="/Folder 1" />
@@ -62,12 +62,12 @@ is dropped on a creadcrumb.
 					</ActionButton>
 				</Breadcrumb>
 				<template #actions>
-					<Button>
+					<ButtonVue>
 						<template #icon>
 							<Plus :size="20" />
 						</template>
 						New
-					</Button>
+					</ButtonVue>
 				</template>
 			</Breadcrumbs>
 		</div>
@@ -123,16 +123,18 @@ export default {
 </docs>
 
 <script>
-import Vue from 'vue'
-import debounce from 'debounce'
-import Actions from '../Actions'
-import ActionRouter from '../ActionRouter'
-import ActionLink from '../ActionLink'
-import ValidateSlot from '../../utils/ValidateSlot'
-import Breadcrumb from '../Breadcrumb'
+import Actions from '../Actions/index.js'
+import ActionRouter from '../ActionRouter/index.js'
+import ActionLink from '../ActionLink/index.js'
+import Breadcrumb from '../Breadcrumb/index.js'
+import ValidateSlot from '../../utils/ValidateSlot.js'
+
 import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 
-import IconFolder from 'vue-material-design-icons/Folder'
+import IconFolder from 'vue-material-design-icons/Folder.vue'
+
+import debounce from 'debounce'
+import Vue from 'vue'
 
 const crumbClass = 'vue-crumb'
 
@@ -154,6 +156,7 @@ export default {
 			default: 'icon-home',
 		},
 	},
+	emits: ['dropped'],
 	data() {
 		return {
 			/**
@@ -465,10 +468,10 @@ export default {
 	/**
 	 * The render function to display the component
 	 *
-	 * @param {Function} createElement The function to create VNodes
+	 * @param {Function} h The function to create VNodes
 	 * @return {VNodes} The created VNodes
 	 */
-	render(createElement) {
+	render(h) {
 		// Get the breadcrumbs
 		const breadcrumbs = this.$slots.default || []
 
@@ -496,7 +499,7 @@ export default {
 		// The Actions menu
 		if (this.hiddenCrumbs.length) {
 			// Use a breadcrumb component for the hidden breadcrumbs
-			crumbs.push(createElement('Breadcrumb', {
+			crumbs.push(h('Breadcrumb', {
 				class: 'dropdown',
 
 				props: this.menuBreadcrumbProps,
@@ -530,13 +533,13 @@ export default {
 					element = 'ActionRouter'
 					path = to
 				}
-				const folderIcon = createElement('IconFolder', {
+				const folderIcon = h('IconFolder', {
 					props: {
 						size: 20,
 					},
 					slot: 'icon',
 				})
-				return createElement(element, {
+				return h(element, {
 					class: crumbClass,
 					props: {
 						to,
@@ -568,13 +571,13 @@ export default {
 		this.hideCrumbs(crumbs2, crumbs1.length)
 
 		const wrapper = []
-		wrapper.push(createElement('div', { class: 'breadcrumb__crumbs' }, crumbs))
+		wrapper.push(h('div', { class: 'breadcrumb__crumbs' }, crumbs))
 		// Append the actions slot if it is populated
 		if (this.$slots.actions) {
-			wrapper.push(createElement('div', { class: 'breadcrumb__actions', ref: 'breadcrumb__actions' }, this.$slots.actions))
+			wrapper.push(h('div', { class: 'breadcrumb__actions', ref: 'breadcrumb__actions' }, this.$slots.actions))
 		}
 
-		return createElement('div', { class: ['breadcrumb', { 'breadcrumb--collapsed': (this.hiddenCrumbs.length === breadcrumbs.length - 2) }], ref: 'container' }, wrapper)
+		return h('div', { class: ['breadcrumb', { 'breadcrumb--collapsed': (this.hiddenCrumbs.length === breadcrumbs.length - 2) }], ref: 'container' }, wrapper)
 	},
 }
 </script>

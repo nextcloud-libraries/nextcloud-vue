@@ -42,13 +42,14 @@
 </template>
 
 <script>
+import Multiselect from '../../components/Multiselect/index.js'
+import { t } from '../../l10n.js'
+import l10n from '../../mixins/l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
+
 import axios from '@nextcloud/axios'
-import Multiselect from '../../components/Multiselect/Multiselect'
-import GenRandomId from '../../utils/GenRandomId'
-import { generateOcsUrl } from '@nextcloud/router'
 import { showError } from '@nextcloud/dialogs'
-import l10n from '../../mixins/l10n'
-import { t } from '../../l10n'
+import { generateOcsUrl } from '@nextcloud/router'
 
 export default {
 	name: 'SettingsSelectGroup',
@@ -98,6 +99,10 @@ export default {
 			default: false,
 		},
 	},
+	emits: [
+		'input',
+		'error',
+	],
 	data() {
 		return {
 			groups: {},

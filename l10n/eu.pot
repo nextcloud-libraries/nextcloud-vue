@@ -36,14 +36,23 @@ msgstr "{displayName} -(e)n irudia, {status}"
 msgid "Cancel changes"
 msgstr "Ezeztatu aldaketak"
 
+msgid "Change title"
+msgstr "Aldatu titulua"
+
 msgid "Choose"
 msgstr "Aukeratu"
 
 msgid "Close"
 msgstr "Itxi"
 
+msgid "Close modal"
+msgstr "Itxi modala"
+
 msgid "Close navigation"
 msgstr "Itxi nabigazioa"
+
+msgid "Close sidebar"
+msgstr "Itxi albo-barra"
 
 msgid "Confirm changes"
 msgstr "Baieztatu aldaketak"
@@ -56,6 +65,9 @@ msgstr "Editatu elementua"
 
 msgid "External documentation for {title}"
 msgstr "Kanpoko dokumentazioa {title}(r)entzat"
+
+msgid "Favorite"
+msgstr "Gogokoa"
 
 msgid "Flags"
 msgstr "Banderak"
@@ -72,8 +84,14 @@ msgstr "Globala"
 msgid "Go back to the list"
 msgstr "Bueltatu zerrendara"
 
+msgid "items"
+msgstr "elementuak"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Mezuaren {count} karaketere-limitera heldu zara"
+
+msgid "More {dashboardItemType} …"
+msgstr "{dashboardItemType} gehiago…"
 
 msgid "Next"
 msgstr "Hurrengoa"
@@ -86,6 +104,9 @@ msgstr "Emaitzarik ez"
 
 msgid "Objects"
 msgstr "Objektuak"
+
+msgid "Open"
+msgstr "Ireki"
 
 msgid "Open navigation"
 msgstr "Ireki nabigazioa"

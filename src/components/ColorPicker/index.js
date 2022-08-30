@@ -1,7 +1,7 @@
 /**
- * @copyright Copyright (c) 2019 Marco Ambrosini <marcoambrosini@pm.me>
+ * @copyright Copyright (c) 2019 Marco Ambrosini <marcoambrosini@icloud.com>
  *
- * @author Marco Ambrosini <marcoambrosini@pm.me>
+ * @author Marco Ambrosini <marcoambrosini@icloud.com>
  *
  * @license AGPL-3.0-or-later
  *
@@ -20,6 +20,6 @@
  *
  */
 
-import ColorPicker from './ColorPicker'
+import ColorPicker from './ColorPicker.vue'
 
 export default ColorPicker

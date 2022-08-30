@@ -36,7 +36,7 @@ include a standard-header like it's used by the files app.
 		subtitle="last edited 3 weeks ago">
 		<AppSidebarTab icon="icon-settings" name="Settings" id="settings-tab">
 			<template #icon>
-				<Cog :size="20" decorative />
+				<Cog :size="20" />
 			</template>
 			Settings tab content
 		</AppSidebarTab>
@@ -146,14 +146,6 @@ include a standard-header like it's used by the files app.
 					'app-sidebar-header--compact': compact,
 				}"
 				class="app-sidebar-header">
-				<!-- close sidebar button -->
-				<a v-tooltip.auto="closeTranslated"
-					href="#"
-					class="app-sidebar__close"
-					@click.prevent="closeSidebar">
-					<Close class="app-sidebar__close-icon" :size="20" decorative />
-				</a>
-
 				<!-- container for figure and description, allows easy switching to compact mode -->
 				<div class="app-sidebar-header__info">
 					<!-- sidebar header illustration/figure -->
@@ -165,7 +157,9 @@ include a standard-header like it's used by the files app.
 						:style="{
 							backgroundImage: `url(${background})`
 						}"
-						@click="onFigureClick">
+						tabindex="0"
+						@click="onFigureClick"
+						@keydown.enter="onFigureClick">
 						<slot class="app-sidebar-header__background" name="header" />
 					</div>
 
@@ -181,19 +175,17 @@ include a standard-header like it's used by the files app.
 						<!-- favourite icon -->
 						<div v-if="canStar || $slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
 							<slot name="tertiary-actions">
-								<a v-if="canStar"
+								<ButtonVue v-if="canStar"
+									:aria-label="favoriteTranslated"
 									class="app-sidebar-header__star"
+									type="secondary"
 									@click.prevent="toggleStarred">
-									<span v-if="starLoading" class="icon-loading-small" />
-									<Star v-else
-										:class="{
-											'star--starred': isStarred,
-											'star--star': !isStarred,
-										}"
-										class="star"
-										:size="20"
-										decorative />
-								</a>
+									<template #icon>
+										<LoadingIcon v-if="starLoading" />
+										<Star v-else-if="isStarred" :size="20" />
+										<StarOutline v-else :size="20" />
+									</template>
+								</ButtonVue>
 							</slot>
 						</div>
 
@@ -205,6 +197,7 @@ include a standard-header like it's used by the files app.
 									v-linkify="{text: title, linkify: linkifyTitle}"
 									v-tooltip.auto="titleTooltip"
 									class="app-sidebar-header__maintitle"
+									:tabindex="titleEditable ? 0 : undefined"
 									@click.self="editTitle">
 									{{ title }}
 								</h2>
@@ -220,8 +213,13 @@ include a standard-header like it's used by the files app.
 											:value="title"
 											@keydown.esc="onDismissEditing"
 											@input="onTitleInput">
-										<button class="icon-confirm"
-											type="submit" />
+										<ButtonVue type="tertiary-no-background"
+											:aria-label="changeTitleTranslated"
+											native-type="submit">
+											<template #icon>
+												<ArrowRight :size="20" />
+											</template>
+										</ButtonVue>
 									</form>
 								</template>
 								<!-- header main menu -->
@@ -240,6 +238,17 @@ include a standard-header like it's used by the files app.
 						</div>
 					</div>
 				</div>
+
+				<ButtonVue v-tooltip.auto="closeTranslated"
+					:aria-label="closeTranslated"
+					type="tertiary"
+					class="app-sidebar__close"
+					@click.prevent="closeSidebar">
+					<template #icon>
+						<Close :size="20" />
+					</template>
+				</ButtonVue>
+
 				<div v-if="$slots['description'] && !empty" class="app-sidebar-header__description">
 					<slot name="description" />
 				</div>
@@ -252,23 +261,32 @@ include a standard-header like it's used by the files app.
 				<slot />
 			</AppSidebarTabs>
 
-			<EmptyContent v-if="loading" icon="icon-loading" />
+			<EmptyContent v-if="loading">
+				<template #icon>
+					<LoadingIcon :size="64" />
+				</template>
+			</EmptyContent>
 		</aside>
 	</transition>
 </template>
 
 <script>
-import Actions from '../Actions'
-import Focus from '../../directives/Focus'
-import Linkify from '../../directives/Linkify'
-import Tooltip from '../../directives/Tooltip'
-import AppSidebarTabs from './AppSidebarTabs'
-import EmptyContent from '../EmptyContent/EmptyContent'
-import { t } from '../../l10n'
-import { directive as ClickOutside } from 'v-click-outside'
+import AppSidebarTabs from './AppSidebarTabs.vue'
+import Actions from '../Actions/index.js'
+import LoadingIcon from '../LoadingIcon/index.js'
+import ButtonVue from '../ButtonVue/index.js'
+import EmptyContent from '../EmptyContent/index.js'
+import Focus from '../../directives/Focus/index.js'
+import Linkify from '../../directives/Linkify/index.js'
+import Tooltip from '../../directives/Tooltip/index.js'
+import { t } from '../../l10n.js'
 
-import Close from 'vue-material-design-icons/Close'
-import Star from 'vue-material-design-icons/Star'
+import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+import Close from 'vue-material-design-icons/Close.vue'
+import Star from 'vue-material-design-icons/Star.vue'
+import StarOutline from 'vue-material-design-icons/StarOutline.vue'
+
+import { directive as ClickOutside } from 'v-click-outside'
 
 export default {
 	name: 'AppSidebar',
@@ -276,9 +294,13 @@ export default {
 	components: {
 		Actions,
 		AppSidebarTabs,
+		ArrowRight,
+		ButtonVue,
+		LoadingIcon,
 		EmptyContent,
 		Close,
 		Star,
+		StarOutline,
 	},
 
 	directives: {
@@ -395,9 +417,26 @@ export default {
 		},
 	},
 
+	emits: [
+		'close',
+		'closing',
+		'closed',
+		'opening',
+		'opened',
+		'figure-click',
+		'update:starred',
+		'update:titleEditable',
+		'update:title',
+		'update:active',
+		'submit-title',
+		'dismiss-editing',
+	],
+
 	data() {
 		return {
-			closeTranslated: t('Close'),
+			changeTitleTranslated: t('Change title'),
+			closeTranslated: t('Close sidebar'),
+			favoriteTranslated: t('Favorite'),
 			isStarred: this.starred,
 		}
 	},
@@ -572,6 +611,7 @@ $sidebar-min-width: 300px;
 $sidebar-max-width: 500px;
 
 $desc-vertical-padding: 18px;
+$desc-vertical-padding-compact: 10px;
 $desc-input-padding: 7px;
 
 // title and subtitle
@@ -611,17 +651,12 @@ $top-buttons-spacing: 6px;
 			width: $clickable-area;
 			height: $clickable-area;
 			opacity: $opacity_normal;
-			border-radius: $clickable-area / 2;
+			border-radius: math.div($clickable-area, 2);
 			&:hover,
 			&:active,
 			&:focus {
 				opacity: $opacity_full;
 				background-color: $action-background-hover;
-			}
-
-			.app-sidebar__close-icon {
-				width: $clickable-area;
-				height: $clickable-area;
 			}
 		}
 
@@ -634,7 +669,7 @@ $top-buttons-spacing: 6px;
 					z-index: 2;
 					width: $desc-height + $desc-vertical-padding;
 					height: $desc-height + $desc-vertical-padding;
-					margin: $desc-vertical-padding / 2;
+					margin: math.div($desc-vertical-padding, 2);
 					border-radius: 3px;
 					flex: 0 0 auto;
 				}
@@ -643,6 +678,7 @@ $top-buttons-spacing: 6px;
 					flex: 1 1 auto;
 					min-width: 0;
 					padding-right: 2 * $clickable-area + $top-buttons-spacing;
+					padding-top: $desc-vertical-padding-compact;
 
 					&.app-sidebar-header__desc--without-actions {
 						padding-right: #{$clickable-area + $top-buttons-spacing};
@@ -651,8 +687,9 @@ $top-buttons-spacing: 6px;
 					.app-sidebar-header__tertiary-actions {
 						z-index: 3; // above star
 						position: absolute;
-						top: $desc-vertical-padding / 2;
+						top: math.div($desc-vertical-padding, 2);
 						left: -1 * $clickable-area;
+						gap: 0; // override gap
 					}
 					.app-sidebar-header__menu {
 						top: $top-buttons-spacing;
@@ -707,11 +744,13 @@ $top-buttons-spacing: 6px;
 			display: flex;
 			flex-direction: row;
 			justify-content: center;
-			padding: #{$desc-vertical-padding} #{$top-buttons-spacing} #{$desc-vertical-padding} #{$desc-vertical-padding / 2};
+			align-items: center;
+			padding: #{$desc-vertical-padding} #{$top-buttons-spacing} #{$desc-vertical-padding} #{math.div($desc-vertical-padding, 2)};
+			gap: 0 4px;
 
 			// custom overrides
 			&--with-tertiary-action {
-				padding-left: 0;
+				padding-left: 6px;
 			}
 
 			&--editable .app-sidebar-header__maintitle-form,
@@ -730,6 +769,15 @@ $top-buttons-spacing: 6px;
 				width: $clickable-area;
 				justify-content: center;
 				flex: 0 0 auto;
+
+				.app-sidebar-header__star {
+					// Override default Button component styles
+					box-shadow: none;
+					&:hover {
+						box-shadow: none;
+						background-color: var(--color-background-hover);
+					}
+				}
 			}
 
 			// titles
@@ -743,6 +791,7 @@ $top-buttons-spacing: 6px;
 				.app-sidebar-header__maintitle-container {
 					display: flex;
 					align-items: center;
+					min-height: $clickable-area;
 
 					// main title
 					.app-sidebar-header__maintitle {
@@ -752,7 +801,7 @@ $top-buttons-spacing: 6px;
 						line-height: $desc-title-height;
 
 						// Needs 'deep' as the link is generated by the linkify directive
-						&::v-deep .linkified {
+						&:deep(.linkified) {
 							cursor: pointer;
 							text-decoration: underline;
 							margin: 0;
@@ -762,10 +811,7 @@ $top-buttons-spacing: 6px;
 					.app-sidebar-header__maintitle-form {
 						display: flex;
 						flex: 1 1 auto;
-
-						& .icon-confirm {
-							margin: 0;
-						}
+						align-items: center;
 
 						input.app-sidebar-header__maintitle-input {
 							flex: 1 1 auto;
@@ -780,7 +826,7 @@ $top-buttons-spacing: 6px;
 					.app-sidebar-header__menu {
 						height: $clickable-area;
 						width: $clickable-area;
-						border-radius: $clickable-area / 2;
+						border-radius: math.div($clickable-area, 2);
 						background-color: $action-background-hover;
 						margin-left: 5px;
 					}
@@ -803,38 +849,6 @@ $top-buttons-spacing: 6px;
 					font-size: var(--default-font-size);
 				}
 			}
-
-			// favourite
-			.app-sidebar-header__star {
-				display: block;
-				width: $clickable-area;
-				height: $clickable-area;
-
-				.icon-loading-small {
-					display: block;
-					width: $clickable-area;
-					height: $clickable-area;
-				}
-
-				.star {
-					width: $clickable-area;
-					height: $clickable-area;
-					&--star {
-						color: #000;
-						opacity: .5;
-						&:hover {
-							color: #FC0;
-						}
-					}
-					&--starred {
-						color: #FC0;
-						&:hover {
-							color: #000;
-							opacity: .5;
-						}
-					}
-				}
-			}
 		}
 
 		// sidebar description slot
@@ -843,6 +857,13 @@ $top-buttons-spacing: 6px;
 			align-items: center;
 			margin: 0 10px;
 		}
+	}
+}
+
+// Make the sidebar full-width on small screens
+@media only screen and (max-width: math.div($breakpoint-mobile, 2)) {
+	.app-sidebar {
+		width: 100vw;
 	}
 }
 

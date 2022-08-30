@@ -1,7 +1,7 @@
 <!--
- - @copyright Copyright (c) 2019 Marco Ambrosini <marcoambrosini@pm.me>
+ - @copyright Copyright (c) 2019 Marco Ambrosini <marcoambrosini@icloud.com>
  -
- - @author Marco Ambrosini <marcoambrosini@pm.me>
+ - @author Marco Ambrosini <marcoambrosini@icloud.com>
  -
  - @license GNU AGPL version 3 or any later version
  -
@@ -38,7 +38,7 @@ actual pickers:
 <template>
 	<div class="container0">
 		<ColorPicker v-model="color">
-			<button> Click Me </button>
+			<ButtonVue> Click Me </ButtonVue>
 		</ColorPicker>
 		<div :style="{'background-color': color}" class="color0" />
 	</div>
@@ -71,8 +71,8 @@ export default {
 ```vue
 <template>
 	<div class="container1">
-		<button @click="open = !open"> Click Me </button>
-		<ColorPicker :value="color" @input="updateColor" :open.sync="open">
+		<ButtonVue @click="open = !open"> Click Me </ButtonVue>
+		<ColorPicker :value="color" @input="updateColor" :shown.sync="open">
 			<div :style="{'background-color': color}" class="color1" />
 		</ColorPicker>
 	</div>
@@ -124,9 +124,7 @@ export default {
 						type="button"
 						@click="pickColor(color)">
 						<Check v-if="color === currentColor"
-							:size="20"
-							title=""
-							decorative />
+							:size="20" />
 					</button>
 				</div>
 				<Chrome v-if="advanced"
@@ -141,13 +139,13 @@ export default {
 					class="color-picker__navigation-button back"
 					type="button"
 					@click="handleBack">
-					<ArrowLeft :size="20" title="" decorative />
+					<ArrowLeft :size="20" />
 				</button>
 				<button v-if="!advanced"
 					class="color-picker__navigation-button more-settings"
 					type="button"
 					@click="handleMoreSettings">
-					<DotsHorizontal :size="20" title="" decorative />
+					<DotsHorizontal :size="20" />
 				</button>
 				<button v-if="advanced"
 					class="color-picker__navigation-button confirm"
@@ -161,15 +159,15 @@ export default {
 </template>
 
 <script>
-import ArrowLeft from 'vue-material-design-icons/ArrowLeft'
-import Check from 'vue-material-design-icons/Check'
-import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal'
+import Popover from '../Popover/index.js'
+import l10n from '../../mixins/l10n.js'
+import GenColors from '../../utils/GenColors.js'
+
+import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
+import Check from 'vue-material-design-icons/Check.vue'
+import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 import { Chrome } from 'vue-color'
-
-import GenColors from '../../utils/GenColors'
-import l10n from '../../mixins/l10n'
-import Popover from '../Popover'
 
 export default {
 	name: 'ColorPicker',
@@ -193,6 +191,14 @@ export default {
 			required: true,
 		},
 	},
+
+	emits: [
+		'submit',
+		'close',
+		'update:open',
+		'update:value',
+		'input',
+	],
 
 	data() {
 		return {
@@ -281,7 +287,7 @@ export default {
 	justify-content: space-between;
 	box-sizing: content-box !important;
 	width: 176px;
-	padding: 4px;
+	padding: 8px;
 	border-radius: 3px;
 	height: 196px;
 
@@ -301,12 +307,16 @@ export default {
 			padding: 0;
 			color: white;
 			border: none;
-			border-radius: 17px;
+			border-radius: 50%;
 			font-size: 16px;
 			&:hover {
 				opacity: .6;
 			}
 			&--active {
+				width: 38px;
+				height: 38px;
+				min-height: 38px;
+				transition: all 100ms ease-in-out;
 				opacity: 1 !important;
 			}
 		}
@@ -330,7 +340,7 @@ export default {
 			padding: 0;
 			margin: 0;
 			border: none;
-			border-radius: $clickable-area / 2;
+			border-radius: math.div($clickable-area, 2);
 			background: none;
 			justify-self: flex-end;
 			opacity: $opacity_normal;
@@ -359,7 +369,7 @@ export default {
 	}
 }
 
-::v-deep .vc {
+:deep() .vc {
 	&-chrome {
 		width: 176px;
 		height: 13;

@@ -2,7 +2,7 @@
  - @copyright Copyright (c) 2019 Christoph Wurst <christoph@winzerhof-wurst.at>
  -
  - @author Christoph Wurst <christoph@winzerhof-wurst.at>
- - @author Marco Ambrosini <marcoambrosini@pm.me>
+ - @author Marco Ambrosini <marcoambrosini@icloud.com>
  - @author John Molakvoæ <skjnldsv@protonmail.com>
  -
  - @license GNU AGPL version 3 or any later version
@@ -28,6 +28,10 @@ This components provides a wrapper around the main app's content.
 
 Single-column layouts can just use the default slot. A resizable column
 can be added by providing content to the named slot `list`.
+
+### CSS variables
+In the css section some css variables are declared and will be available for
+all the children of the AppContent component
 
 ### Examples
 
@@ -107,15 +111,15 @@ The list size must be between the min and the max width value.
 </template>
 
 <script>
-import 'splitpanes/dist/splitpanes.css'
+import AppDetailsToggle from './AppDetailsToggle.vue'
+import isMobile from '../../mixins/isMobile/index.js'
 
-import { emit } from '@nextcloud/event-bus'
 import { getBuilder } from '@nextcloud/browser-storage'
-import { Splitpanes, Pane } from 'splitpanes'
-import Hammer from 'hammerjs'
+import { emit } from '@nextcloud/event-bus'
 
-import AppDetailsToggle from './AppDetailsToggle'
-import isMobile from '../../mixins/isMobile'
+import Hammer from 'hammerjs'
+import 'splitpanes/dist/splitpanes.css'
+import { Splitpanes, Pane } from 'splitpanes'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 
@@ -189,6 +193,8 @@ export default {
 			default: true,
 		},
 	},
+
+	emits: ['update:showDetails'],
 
 	data() {
 		return {
@@ -325,11 +331,15 @@ export default {
 	// Overriding server styles TODO: cleanup!
 	margin: 0 !important;
 	background-color: var(--color-main-background);
+
+	// Variables
+	// the whitespace between the topbar content and its edges
+	--topbar-margin: $topbar-margin;
 }
 
 // Mobile list/details handling
 .app-content-wrapper--mobile {
-	&.app-content-wrapper--show-list ::v-deep {
+	&.app-content-wrapper--show-list :deep() {
 		.app-content-list {
 			display: block;
 		}
@@ -337,7 +347,7 @@ export default {
 			display: none;
 		}
 	}
-	&.app-content-wrapper--show-details ::v-deep {
+	&.app-content-wrapper--show-details :deep() {
 		.app-content-list {
 			display: none;
 		}
@@ -347,7 +357,7 @@ export default {
 	}
 }
 
-::v-deep .splitpanes.default-theme {
+:deep(.splitpanes.default-theme) {
 	.app-content-list {
 		max-width: none;
 	}

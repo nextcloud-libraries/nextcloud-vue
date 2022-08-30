@@ -1,7 +1,7 @@
 <!--
   - @copyright Copyright (c) 2019 Jonas Sulzer <jonas@violoncello.ch>
   -
-  - @author Marco Ambrosini <marcoambrosini@pm.me>
+  - @author Marco Ambrosini <marcoambrosini@icloud.com>
   - @author Jonas Sulzer <jonas@violoncello.ch>
   -
   - @license GNU AGPL version 3 or any later version
@@ -71,7 +71,7 @@ This component has the following slot:
 <template>
 	<Popover :is="isPopoverComponent"
 		trigger="hover focus"
-		:open="open"
+		:shown="open"
 		class="user-bubble__wrapper"
 		@update:open="onOpenChange">
 		<!-- Main userbubble structure -->
@@ -111,15 +111,15 @@ This component has the following slot:
 </template>
 
 <script>
-import Popover from '../Popover'
-import UserBubbleDiv from './UserBubbleDiv'
-import Avatar from '../Avatar'
+import UserBubbleDiv from './UserBubbleDiv.vue'
+import Avatar from '../Avatar/index.js'
+import Popover from '../Popover/index.js'
 
 export default {
 	name: 'UserBubble',
 	components: {
-		Popover,
 		Avatar,
+		Popover,
 		UserBubbleDiv,
 	},
 	props: {
@@ -196,6 +196,10 @@ export default {
 			default: 2,
 		},
 	},
+	emits: [
+		'click',
+		'update:open',
+	],
 	computed: {
 		/**
 		 * If userbubble is empty, let's NOT

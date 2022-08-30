@@ -3,12 +3,12 @@
 # Philipp Fischbeck <pfischbeck@googlemail.com>, 2020
 # ProfDrJones <jones@fs.cs.hm.edu>, 2020
 # Gustav Gyges, 2021
-# Mario Siegmann <mario_siegmann@web.de>, 2021
-# Mark Ziegler <mark.ziegler@rakekniven.de>, 2021
+# Mark Ziegler <mark.ziegler@rakekniven.de>, 2022
+# Mario Siegmann <mario_siegmann@web.de>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2021\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2022\n"
 "Language-Team: German (Germany) (https://www.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -38,14 +38,23 @@ msgstr "Avatar von {displayName}, {status}"
 msgid "Cancel changes"
 msgstr "Änderungen verwerfen"
 
+msgid "Change title"
+msgstr "Titel ändern"
+
 msgid "Choose"
 msgstr "Auswählen"
 
 msgid "Close"
 msgstr "Schließen"
 
+msgid "Close modal"
+msgstr "Modal schließen"
+
 msgid "Close navigation"
 msgstr "Navigation schließen"
+
+msgid "Close sidebar"
+msgstr "Seitenleiste schließen"
 
 msgid "Confirm changes"
 msgstr "Änderungen bestätigen"
@@ -58,6 +67,9 @@ msgstr "Objekt bearbeiten"
 
 msgid "External documentation for {title}"
 msgstr "Externe Dokumentation für {title}"
+
+msgid "Favorite"
+msgstr "Favorit"
 
 msgid "Flags"
 msgstr "Flaggen"
@@ -74,8 +86,14 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Zurück zur Liste"
 
+msgid "items"
+msgstr "Elemente"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
+
+msgid "More {dashboardItemType} …"
+msgstr "Mehr {dashboardItemType} …"
 
 msgid "Next"
 msgstr "Weiter"
@@ -88,6 +106,9 @@ msgstr "Keine Ergebnisse"
 
 msgid "Objects"
 msgstr "Objekte"
+
+msgid "Open"
+msgstr "Öffnen"
 
 msgid "Open navigation"
 msgstr "Navigation öffnen"

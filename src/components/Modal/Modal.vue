@@ -22,40 +22,156 @@
 
 <docs>
 
-```vue
-<template>
-	<div>
-		<button @click="showModal">Show Modal</button>
-		<modal v-if="modal" @close="closeModal" size="small">
-			<div class="modal__content">Hello world</div>
-		</modal>
-	</div>
-</template>
-<style scoped>
+	```vue
+	<template>
+		<div>
+			<ButtonVue @click="showModal">Show Modal</ButtonVue>
+			<modal
+				v-if="modal"
+				@close="closeModal"
+				size="small"
+				title="Title"
+				:outTransition="true"
+				:hasNext="true"
+				:hasPrevious="true">
+				<div class="modal__content">Hello world</div>
+			</modal>
+		</div>
+	</template>
+	<style scoped>
 	.modal__content {
 		margin: 50px;
 		text-align: center;
 	}
 
-</style>
-<script>
-export default {
-	data() {
-		return {
-			modal: false
-		}
-	},
-	methods: {
-		showModal() {
-			this.modal = true
+	</style>
+	<script>
+	export default {
+		data() {
+			return {
+				modal: false
+			}
 		},
-		closeModal() {
-			this.modal = false
+		methods: {
+			showModal() {
+				this.modal = true
+			},
+			closeModal() {
+				this.modal = false
+			}
 		}
 	}
-}
-</script>
-```
+	</script>
+	```
+
+	### Modal with more properties
+
+	```vue
+	<template>
+		<div>
+			<ButtonVue @click="showModal">Show Modal with fields</ButtonVue>
+			<modal
+				v-if="modal"
+				@close="closeModal"
+				size="large"
+				title="Title inside modal">
+				<div class="modal__content">
+					<h2>Please enter your name</h2>
+					<TextField label="First Name" :value.sync="firstName" />
+					<TextField label="Last Name" :value.sync="lastName" />
+					<ButtonVue
+						:disabled="!this.firstName || !this.lastName"
+						@click="closeModal"
+						type="primary">
+						Submit
+					</ButtonVue>
+				</div>
+			</modal>
+		</div>
+	</template>
+	<style scoped>
+	.modal__content {
+		margin: 50px;
+		text-align: center;
+	}
+
+	.input-field {
+		margin: 12px 0px;
+	}
+
+	</style>
+	<script>
+	import ButtonVue from '../ButtonVue/index.js'
+	import TextField from '../TextField/index.js'
+	export default {
+		components: {
+			ButtonVue,
+			TextField,
+		},
+		data() {
+			return {
+				modal: false,
+				firstName: '',
+				lastName: '',
+			}
+		},
+		methods: {
+			showModal() {
+				this.firstName = ''
+				this.lastName = ''
+				this.modal = true
+			},
+			closeModal() {
+				this.modal = false
+			}
+		}
+	}
+	</script>
+	```
+
+	### Usage of popover in modal
+
+	* Set container property to .modal-mask to inject popover context of the modal:
+
+	```vue
+	<template>
+		<div>
+			<ButtonVue @click="showModal">Show Modal</ButtonVue>
+			<modal v-if="modal" @close="closeModal" size="small">
+				<EmojiPicker container=".modal-mask" @select="select">
+					<ButtonVue>Select emoji {{ emoji }}</ButtonVue>
+				</EmojiPicker>
+			</modal>
+		</div>
+	</template>
+	<style scoped>
+		.modal__content {
+			margin: 50px;
+			text-align: center;
+		}
+	</style>
+	<script>
+	export default {
+		data() {
+			return {
+				emoji: '😛',
+				modal: false
+			}
+		},
+		methods: {
+			showModal() {
+				this.modal = true
+			},
+			closeModal() {
+				this.modal = false
+			},
+			select(emoji) {
+				this.emoji = emoji
+			},
+		},
+	}
+	</script>
+	```
 
 </docs>
 <template>
@@ -64,17 +180,15 @@ export default {
 			class="modal-mask"
 			:class="{ 'modal-mask--dark': dark }"
 			:style="cssVariables"
-			@click="handleMouseMove"
-			@mousemove="handleMouseMove"
-			@touchmove="handleMouseMove">
+			role="dialog"
+			:aria-labelledby="'modal-title-' + randId"
+			:aria-describedby="'modal-description-' + randId">
 			<!-- Header -->
 			<transition name="fade-visibility">
-				<div v-show="!clearView"
-					:class="{
-						invisible: clearView
-					}"
-					class="modal-header">
-					<div v-if="title.trim() !== ''" class="modal-title">
+				<div class="modal-header">
+					<div v-if="title.trim() !== ''"
+						:id="'modal-title-' + randId"
+						class="modal-title">
 						{{ title }}
 					</div>
 					<div class="icons-menu">
@@ -88,14 +202,10 @@ export default {
 							<!-- Play/pause icons -->
 							<Play v-if="!playing"
 								:size="iconSize"
-								class="play-pause-icons__play"
-								title=""
-								decorative />
+								class="play-pause-icons__play" />
 							<Pause v-else
 								:size="iconSize"
-								class="play-pause-icons__pause"
-								title=""
-								decorative />
+								class="play-pause-icons__pause" />
 							<span class="hidden-visually">
 								{{ playPauseTitle }}
 							</span>
@@ -122,14 +232,14 @@ export default {
 						</Actions>
 
 						<!-- Close modal -->
-						<Actions v-if="canClose" class="header-close">
-							<ActionButton @click="close">
-								<template #icon>
-									<Close :size="iconSize" title="" decorative />
-								</template>
-								{{ t('Close') }}
-							</ActionButton>
-						</Actions>
+						<ButtonVue v-if="canClose && !closeButtonContained"
+							type="tertiary"
+							class="header-close"
+							:aria-label="closeButtonAriaLabel">
+							<template #icon>
+								<Close :size="iconSize" />
+							</template>
+						</ButtonVue>
 					</div>
 				</div>
 			</transition>
@@ -145,44 +255,50 @@ export default {
 					@mousedown.self="close">
 					<!-- Navigation button -->
 					<transition name="fade-visibility">
-						<a v-show="hasPrevious && !clearView"
+						<ButtonVue v-show="hasPrevious"
+							type="tertiary-no-background"
 							class="prev"
-							href="#"
 							:class="{
-								invisible: clearView || !hasPrevious
+								invisible: !hasPrevious
 							}"
-							@click.prevent.stop="previous">
-							<span class="icon-previous">
-								<ChevronLeft :size="40" title="" decorative />
-								<span class="hidden-visually">
-									{{ t('Previous') }}
-								</span>
-							</span>
-						</a>
+							:aria-label="prevButtonAriaLabel"
+							@click="previous">
+							<template #icon>
+								<ChevronLeft :size="40" />
+							</template>
+						</ButtonVue>
 					</transition>
 
 					<!-- Content -->
-					<div class="modal-container">
+					<div :id="'modal-description-' + randId" class="modal-container">
+						<!-- Close modal -->
+						<ButtonVue v-if="canClose && closeButtonContained"
+							type="tertiary"
+							class="modal-container__close"
+							:aria-label="closeButtonAriaLabel"
+							@click="close">
+							<template #icon>
+								<Close :size="20" />
+							</template>
+						</ButtonVue>
 						<!-- @slot Modal content to render -->
 						<slot />
 					</div>
 
 					<!-- Navigation button -->
 					<transition name="fade-visibility">
-						<a v-show="hasNext && !clearView"
+						<ButtonVue v-show="hasNext"
+							type="tertiary-no-background"
 							class="next"
-							href="#"
 							:class="{
-								invisible: clearView || !hasNext
+								invisible: !hasNext
 							}"
-							@click.prevent.stop="next">
-							<span class="icon-next">
-								<ChevronRight :size="40" title="" decorative />
-								<span class="hidden-visually">
-									{{ t('Next') }}
-								</span>
-							</span>
-						</a>
+							:aria-label="nextButtonAriaLabel"
+							@click="next">
+							<template #icon>
+								<ChevronRight :size="40" />
+							</template>
+						</ButtonVue>
 					</transition>
 				</div>
 			</transition>
@@ -191,31 +307,33 @@ export default {
 </template>
 
 <script>
+import Actions from '../Actions/index.js'
+import Tooltip from '../../directives/Tooltip/index.js'
+import l10n from '../../mixins/l10n.js'
+import Timer from '../../utils/Timer.js'
+import { t } from '../../l10n.js'
+import ButtonVue from '../../components/ButtonVue/index.js'
+import GenRandomId from '../../utils/GenRandomId.js'
+
+import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue'
+import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
+import Close from 'vue-material-design-icons/Close.vue'
+import Pause from 'vue-material-design-icons/Pause.vue'
+import Play from 'vue-material-design-icons/Play.vue'
+
 import Hammer from 'hammerjs'
-import ChevronLeft from 'vue-material-design-icons/ChevronLeft'
-import ChevronRight from 'vue-material-design-icons/ChevronRight'
-import Close from 'vue-material-design-icons/Close'
-import Pause from 'vue-material-design-icons/Pause'
-import Play from 'vue-material-design-icons/Play'
-
-import Actions from '../Actions'
-import ActionButton from '../ActionButton'
-import l10n from '../../mixins/l10n'
-import { t } from '../../l10n'
-import Tooltip from '../../directives/Tooltip'
-import Timer from '../../utils/Timer'
-
+import { createFocusTrap } from 'focus-trap'
 export default {
 	name: 'Modal',
 
 	components: {
-		ActionButton,
 		Actions,
 		ChevronLeft,
 		ChevronRight,
 		Close,
 		Pause,
 		Play,
+		ButtonVue,
 	},
 
 	directives: {
@@ -259,10 +377,6 @@ export default {
 		enableSlideshow: {
 			type: Boolean,
 			default: false,
-		},
-		clearViewDelay: {
-			type: Number,
-			default: 5000,
 		},
 		/**
 		 * Declare the slide interval
@@ -322,17 +436,40 @@ export default {
 			type: String,
 			default: 'body',
 		},
+
+		/**
+		 * Pass in false if you want the modal 'close' button to be displayed
+		 * outside the modal boundaries, in the top right corner of the window
+		 */
+		closeButtonContained: {
+			type: Boolean,
+			default: true,
+		},
+
+		/**
+		 * Additional elements to add to the focus trap
+		 */
+		additionalTrapElements: {
+			type: Array,
+			default: () => [],
+		},
 	},
+
+	emits: [
+		'previous',
+		'next',
+		'close',
+	],
 
 	data() {
 		return {
 			mc: null,
 			showModal: false,
-			clearView: false,
-			clearViewTimeout: null,
 			playing: false,
 			slideshowTimeout: null,
 			iconSize: 24,
+			focusTrap: null,
+			randId: GenRandomId(),
 		}
 	},
 
@@ -348,6 +485,16 @@ export default {
 				'--slideshow-duration': this.slideshowDelay + 'ms',
 				'--icon-size': this.iconSize + 'px',
 			}
+		},
+
+		closeButtonAriaLabel() {
+			return t('Close modal')
+		},
+		prevButtonAriaLabel() {
+			return t('Previous')
+		},
+		nextButtonAriaLabel() {
+			return t('Next')
 		},
 	},
 
@@ -366,6 +513,12 @@ export default {
 				}
 			}
 		},
+		additionalTrapElements(elements) {
+			if (this.focusTrap) {
+				const contentContainer = this.$refs.mask
+				this.focusTrap.updateContainerElements([contentContainer, ...elements])
+			}
+		},
 	},
 
 	beforeMount() {
@@ -380,8 +533,7 @@ export default {
 		this.showModal = true
 
 		// init clear view
-		this.handleMouseMove()
-
+		this.useFocusTrap()
 		this.mc = new Hammer(this.$refs.mask)
 		this.mc.on('swipeleft swiperight', e => {
 			this.handleSwipe(e)
@@ -397,6 +549,7 @@ export default {
 
 	},
 	destroyed() {
+		this.clearFocusTrap()
 		this.$el.remove()
 	},
 
@@ -448,7 +601,7 @@ export default {
 				this.previous(e)
 				break
 			case 13: // enter key
-			case 39: // rigth arrow
+			case 39: // right arrow
 				this.next(e)
 				break
 			case 27: // escape key
@@ -465,15 +618,6 @@ export default {
 					// swiping to right to go back to the previous item
 					this.previous(e)
 				}
-			}
-		},
-		handleMouseMove() {
-			if (this.clearViewDelay > 0) {
-				this.clearView = false
-				clearTimeout(this.clearViewTimeout)
-				this.clearViewTimeout = setTimeout(() => {
-					this.clearView = true
-				}, this.clearViewDelay)
 			}
 		},
 
@@ -524,6 +668,24 @@ export default {
 				this.slideshowTimeout.clear()
 			}
 		},
+		/**
+		 * Add focus trap for accessibility.
+		 */
+		useFocusTrap() {
+			const contentContainer = this.$refs.mask
+			// wait until all children are mounted and available in the DOM before focusTrap can be added
+			this.$nextTick(() => {
+				this.focusTrap = createFocusTrap(contentContainer, {
+					allowOutsideClick: true,
+				})
+				this.focusTrap.activate()
+			})
+		},
+		clearFocusTrap() {
+			this.focusTrap?.deactivate()
+			this.focusTrap = null
+		},
+
 	},
 }
 </script>
@@ -579,7 +741,7 @@ export default {
 	}
 
 	// On wider screens the title can be centered
-	@media only screen and (min-width: $breakpoint-mobile / 2) {
+	@media only screen and (min-width: math.div($breakpoint-mobile, 2)) {
 		.modal-title {
 			padding-left: #{$clickable-area * 3}; // maximum actions is 3
 			text-align: center;
@@ -598,7 +760,7 @@ export default {
 			align-items: center;
 			justify-content: center;
 			box-sizing: border-box;
-			margin: ($header-height - $clickable-area) / 2;
+			margin: math.div($header-height - $clickable-area, 2);
 			padding: 0;
 		}
 
@@ -616,7 +778,7 @@ export default {
 				.play-pause-icons__play,
 				.play-pause-icons__pause {
 					opacity: $opacity_full;
-					border-radius: $clickable-area / 2;
+					border-radius: math.div($clickable-area, 2);
 					background-color: $icon-focus-bg;
 				}
 			}
@@ -625,14 +787,14 @@ export default {
 				box-sizing: border-box;
 				width: $clickable-area;
 				height: $clickable-area;
-				margin: ($header-height - $clickable-area) / 2;
+				margin: math.div($header-height - $clickable-area, 2);
 				cursor: pointer;
 				opacity: $opacity_normal;
 			}
 		}
 
 		.header-actions {
-			margin: ($header-height - $clickable-area) / 2;
+			margin: math.div($header-height - $clickable-area, 2);
 			color: white;
 		}
 
@@ -645,13 +807,13 @@ export default {
 			background-size: 22px;
 		}
 
-		::v-deep button {
+		:deep(button) {
 			// force white instead of default main text
 			color: #fff;
 		}
 
 		// Force the Actions menu icon to be the same size as other icons
-		&::v-deep .action-item__menutoggle {
+		&:deep(.action-item__menutoggle) {
 			padding: 0;
 			span, svg {
 				width: var(--icon-size);
@@ -700,19 +862,9 @@ export default {
 		right: 0;
 	}
 
-	// buttons/icons
-	.icon-next,
-	.icon-previous {
-		box-sizing: border-box;
-		width: $clickable-area;
-		height: $clickable-area;
-		color: white;
-		background-image: none;
-		display: flex;
-	}
-
 	/* Content */
 	.modal-container {
+		position: relative;
 		display: block;
 		overflow: auto; // avoids unecessary hacks if the content should be bigger than the modal
 		padding: 0;
@@ -720,13 +872,18 @@ export default {
 		border-radius: var(--border-radius-large);
 		background-color: var(--color-main-background);
 		box-shadow: 0 0 40px rgba(0, 0, 0, .2);
+		&__close {
+			position: absolute;
+			top: 4px;
+			right: 4px;
+		}
 	}
 
 	// Sizing
 	&--small {
 		.modal-container {
-			width: 390px;
-			max-width: 95%;
+			width: 400px;
+			max-width: 90%;
 			max-height: 90%;
 		}
 	}
@@ -755,8 +912,8 @@ export default {
 	}
 
 	// Make modal full screen on mobile
-	@media only screen and (max-width: $breakpoint-mobile / 2) {
-		&:not(&--small) .modal-container {
+	@media only screen and (max-width: math.div($breakpoint-mobile, 2)) {
+		.modal-container {
 			max-width: initial;
 			width: 100%;
 			max-height: initial;

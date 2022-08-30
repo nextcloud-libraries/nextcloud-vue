@@ -3,15 +3,15 @@
 # javier san felipe <jsanfe@gmail.com>, 2020
 # Maira Belmonte <mairabelmonte@gmail.com>, 2020
 # Mateo Riofrio <materiochi123@gmail.com>, 2021
-# Next Cloud <nextcloud.translator.es@cgj.es>, 2021
+# Next Cloud <nextcloud.translator.es@cgj.es>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Next Cloud <nextcloud.translator.es@cgj.es>, 2021\n"
+"Last-Translator: Next Cloud <nextcloud.translator.es@cgj.es>, 2022\n"
 "Language-Team: Spanish (https://www.transifex.com/nextcloud/teams/64236/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (invisible)"
@@ -37,11 +37,17 @@ msgstr "Avatar de {displayName}, {status}"
 msgid "Cancel changes"
 msgstr "Cancelar cambios"
 
+msgid "Change title"
+msgstr "Cambiar título"
+
 msgid "Choose"
 msgstr "Elegir"
 
 msgid "Close"
 msgstr "Cerrar"
+
+msgid "Close modal"
+msgstr "Cerrar modal"
 
 msgid "Close navigation"
 msgstr "Cerrar navegación"
@@ -58,6 +64,9 @@ msgstr "Editar elemento"
 msgid "External documentation for {title}"
 msgstr "Documentacion externa de {title}"
 
+msgid "Favorite"
+msgstr "Favorito"
+
 msgid "Flags"
 msgstr "Banderas"
 
@@ -73,8 +82,14 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Volver a la lista"
 
+msgid "items"
+msgstr "elementos"
+
 msgid "Message limit of {count} characters reached"
 msgstr "El mensaje ha alcanzado el límite de {count} caracteres"
+
+msgid "More {dashboardItemType} …"
+msgstr "Más {dashboardItemType} ..."
 
 msgid "Next"
 msgstr "Siguiente"
@@ -87,6 +102,9 @@ msgstr " Ningún resultado"
 
 msgid "Objects"
 msgstr "Objetos"
+
+msgid "Open"
+msgstr "Abrir"
 
 msgid "Open navigation"
 msgstr "Abrir navegación"
@@ -145,5 +163,7 @@ msgstr "No es posible buscar en el grupo"
 msgid "Undo changes"
 msgstr "Deshacer cambios"
 
-msgid "Write message, @ to mention someone …"
-msgstr "Escriba un mensaje, @ para mencionar a alguien..."
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr ""
+"Escribe un mensaje, @ para mencionar a alguien, : para autocompletado de "
+"emoji ..."

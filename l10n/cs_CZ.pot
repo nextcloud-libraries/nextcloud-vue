@@ -1,10 +1,10 @@
 # 
 # Translators:
-# Pavel Borecki <pavel.borecki@gmail.com>, 2021
+# Pavel Borecki <pavel.borecki@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2021\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2022\n"
 "Language-Team: Czech (Czech Republic) (https://www.transifex.com/nextcloud/teams/64236/cs_CZ/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: cs_CZ\n"
@@ -34,14 +34,23 @@ msgstr "Zástupný obrázek uživatele {displayName}, {status}"
 msgid "Cancel changes"
 msgstr "Zrušit změny"
 
+msgid "Change title"
+msgstr "Změnit nadpis"
+
 msgid "Choose"
 msgstr "Zvolit"
 
 msgid "Close"
 msgstr "Zavřít"
 
+msgid "Close modal"
+msgstr "Zavřít dialogové okno"
+
 msgid "Close navigation"
 msgstr "Zavřít navigaci"
+
+msgid "Close sidebar"
+msgstr "Zavřít postranní panel"
 
 msgid "Confirm changes"
 msgstr "Potvrdit změny"
@@ -54,6 +63,9 @@ msgstr "Upravit položku"
 
 msgid "External documentation for {title}"
 msgstr "Externí dokumentace k {title}"
+
+msgid "Favorite"
+msgstr "Oblíbené"
 
 msgid "Flags"
 msgstr "Příznaky"
@@ -70,8 +82,14 @@ msgstr "Globální"
 msgid "Go back to the list"
 msgstr "Jít zpět na seznam"
 
+msgid "items"
+msgstr "položky"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Dosaženo limitu počtu ({count}) znaků zprávy"
+
+msgid "More {dashboardItemType} …"
+msgstr "Další {dashboardItemType} …"
 
 msgid "Next"
 msgstr "Následující"
@@ -84,6 +102,9 @@ msgstr "Nic nenalezeno"
 
 msgid "Objects"
 msgstr "Objekty"
+
+msgid "Open"
+msgstr "Otevřít"
 
 msgid "Open navigation"
 msgstr "Otevřít navigaci"

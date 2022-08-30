@@ -1,11 +1,11 @@
 # 
 # Translators:
 # asbot10 <richard@asbot.tech>, 2020
-# Balázs Meskó <meskobalazs@mailbox.org>, 2021
+# Balázs Meskó <meskobalazs@mailbox.org>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>, 2021\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>, 2022\n"
 "Language-Team: Hungarian (Hungary) (https://www.transifex.com/nextcloud/teams/64236/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: hu_HU\n"
@@ -29,6 +29,9 @@ msgstr "Állatok és természet"
 msgid "Avatar of {displayName}"
 msgstr "{displayName} profilképe"
 
+msgid "Avatar of {displayName}, {status}"
+msgstr "{displayName} profilképe, {status}"
+
 msgid "Cancel changes"
 msgstr "Változtatások elvetése"
 
@@ -38,11 +41,20 @@ msgstr "Válassszon"
 msgid "Close"
 msgstr "Bezárás"
 
+msgid "Close modal"
+msgstr "Ablak bezárása"
+
+msgid "Close navigation"
+msgstr "Navigáció bezárása"
+
 msgid "Confirm changes"
 msgstr "Változtatások megerősítése"
 
 msgid "Custom"
 msgstr "Egyéni"
+
+msgid "Edit item"
+msgstr "Elem szerkesztése"
 
 msgid "External documentation for {title}"
 msgstr "Külső dokumentáció ehhez: {title}"
@@ -59,8 +71,17 @@ msgstr "Gyakran használt"
 msgid "Global"
 msgstr "Globális"
 
+msgid "Go back to the list"
+msgstr "Ugrás vissza a listához"
+
+msgid "items"
+msgstr "elemek"
+
 msgid "Message limit of {count} characters reached"
 msgstr "{count} karakteres üzenetkorlát elérve"
+
+msgid "More {dashboardItemType} …"
+msgstr "Több {dashboardItemType}…"
 
 msgid "Next"
 msgstr "Következő"
@@ -73,6 +94,12 @@ msgstr "Nincs találat"
 
 msgid "Objects"
 msgstr "Tárgyak"
+
+msgid "Open"
+msgstr "Megnyitás"
+
+msgid "Open navigation"
+msgstr "Navigáció megnyitása"
 
 msgid "Pause slideshow"
 msgstr "Diavetítés szüneteltetése"
@@ -125,5 +152,10 @@ msgstr "Gépeljen az időzóna kereséséhez"
 msgid "Unable to search the group"
 msgstr "A csoport nem kereshető"
 
-msgid "Write message, @ to mention someone …"
-msgstr "Írjon üzenetet, @ valaki megemlítéséhez…"
+msgid "Undo changes"
+msgstr "Változtatások visszavonása"
+
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr ""
+"Írjon üzenetet, @ valaki megemlítéséhez, : az emodzsik automatikus "
+"kiegészítéséhez…"

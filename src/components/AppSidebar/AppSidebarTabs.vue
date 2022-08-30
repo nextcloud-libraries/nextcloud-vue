@@ -28,6 +28,7 @@
 		<!-- tabs navigation -->
 		<!-- 33 and 34 code is for page up and page down -->
 		<nav v-if="hasMultipleTabs"
+			role="tablist"
 			class="app-sidebar-tabs__nav"
 			@keydown.left.exact.prevent="focusPreviousTab"
 			@keydown.right.exact.prevent="focusNextTab"
@@ -42,7 +43,7 @@
 						:class="{ active: activeTab === tab.id }"
 						:data-id="tab.id"
 						:href="`#tab-${tab.id}`"
-						:tabindex="activeTab === tab.id ? null : -1"
+						:tabindex="activeTab === tab.id ? undefined : -1"
 						role="tab"
 						@click.prevent="setActive(tab.id)">
 						<span class="app-sidebar-tabs__tab-icon">
@@ -64,9 +65,9 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import VNodes from '../VNodes/index.js'
 
-import VNodes from '../VNodes/VNodes'
+import Vue from 'vue'
 
 const IsValidString = function(value) {
 	return value && typeof value === 'string' && value.trim() !== ''
@@ -93,6 +94,8 @@ export default {
 			default: '',
 		},
 	},
+
+	emits: ['update:active'],
 
 	data() {
 		return {

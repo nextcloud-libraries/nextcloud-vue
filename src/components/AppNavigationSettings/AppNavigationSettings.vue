@@ -28,7 +28,7 @@
 			<button class="settings-button"
 				type="button"
 				@click="toggleMenu">
-				<Cog class="settings-button__icon" :size="20" decorative />
+				<Cog class="settings-button__icon" :size="20" />
 				<span class="settings-button__label">{{ title }}</span>
 			</button>
 		</div>
@@ -41,11 +41,12 @@
 </template>
 
 <script>
-import { directive as ClickOutside } from 'v-click-outside'
-import { t } from '../../l10n'
-import { excludeClickOutsideClasses } from '../../mixins'
+import { t } from '../../l10n.js'
+import { excludeClickOutsideClasses } from '../../mixins/index.js'
 
-import Cog from 'vue-material-design-icons/Cog'
+import Cog from 'vue-material-design-icons/Cog.vue'
+
+import { directive as ClickOutside } from 'v-click-outside'
 
 export default {
 	directives: {
@@ -101,7 +102,7 @@ export default {
 			background-color: var(--color-main-background);
 			box-shadow: none;
 			border: 0;
-			border-radius: 0;
+			border-radius: var(--border-radius-large);
 			text-align: left;
 			font-weight: normal;
 			font-size: 100%;
@@ -112,6 +113,7 @@ export default {
 			&:hover,
 			&:focus {
 				background-color: var(--color-background-hover);
+				border-radius: var(--border-radius-large);
 			}
 
 			&__icon {

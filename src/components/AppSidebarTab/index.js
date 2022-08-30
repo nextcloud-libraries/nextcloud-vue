@@ -18,6 +18,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import AppSidebarTab from './AppSidebarTab'
+import AppSidebarTab from './AppSidebarTab.vue'
 
 export default AppSidebarTab

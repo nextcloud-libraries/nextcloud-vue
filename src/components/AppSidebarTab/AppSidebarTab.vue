@@ -32,6 +32,9 @@
 		tabindex="0"
 		role="tabpanel"
 		@scroll="onScroll">
+		<h3 class="hidden-visually">
+			{{ name }}
+		</h3>
 		<slot />
 	</section>
 </template>
@@ -59,6 +62,11 @@ export default {
 		},
 	},
 
+	emits: [
+		'bottom-reached',
+		'scroll',
+	],
+
 	computed: {
 		// TODO: implement a better way to force pass a prop fromm Sidebar
 		isActive() {
@@ -73,9 +81,7 @@ export default {
 				/**
 				 * Bottom scroll is reached
 				 */
-				// Todo: Adjust for next major release
-				// eslint-disable-next-line vue/custom-event-name-casing
-				this.$emit('bottomReached', event)
+				this.$emit('bottom-reached', event)
 			}
 			this.$emit('scroll', event)
 		},

@@ -49,6 +49,28 @@ export default {
 </script>
 ```
 
+### Example with confirm button
+```vue
+<template>
+	<span>
+		<DatetimePicker
+			v-model="time"
+			type="datetime"
+			confirm />
+		{{ time }}
+	</span>
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				time: null,
+			}
+		},
+	}
+</script>
+```
+
 ### Range picker
 ```vue
 <template>
@@ -144,6 +166,10 @@ export default {
 </template>
 
 <script>
+import TimezonePicker from '../TimezonePicker/index.js'
+import Popover from '../Popover/index.js'
+import l10n from '../../mixins/l10n.js'
+
 import {
 	getFirstDay,
 	getDayNames,
@@ -152,12 +178,8 @@ import {
 	getMonthNames,
 	getMonthNamesShort,
 } from '@nextcloud/l10n'
+
 import DatePicker from 'vue2-datepicker'
-
-import Popover from '../Popover/index'
-import TimezonePicker from '../TimezonePicker'
-
-import l10n from '../../mixins/l10n'
 
 const formatMap = {
 	date: 'YYYY-MM-DD',
@@ -245,6 +267,11 @@ export default {
 			default: false,
 		},
 	},
+
+	emits: [
+		'update:value',
+		'update:timezone-id',
+	],
 
 	data() {
 		return {

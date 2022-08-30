@@ -2,6 +2,103 @@
 
 All notable changes to this project will be documented in this file.
 
+## v6.0.0-beta.2 (2022-08-11)
+
+#### :bug: Bug Fix
+
+* [#3017](https://github.com/nextcloud/nextcloud-vue/pull/3017) Fix icon-class, re-add default-icon support for Actions ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#3006](https://github.com/nextcloud/nextcloud-vue/pull/3006) Fix single button action icon attribute ([@PVince81](https://github.com/PVince81))
+
+## v6.0.0-beta.1 (2022-08-11)
+
+#### :boom: Breaking Change
+* [#2980](https://github.com/nextcloud/nextcloud-vue/pull/2980) Bump @nextcloud/eslint-config from 8.0.0 to 8.1.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* ~~[#2911](https://github.com/nextcloud/nextcloud-vue/pull/2911) Use render function in Actions component ([@raimund-schluessler](https://github.com/raimund-schluessler))~~ No more breaking after [#3006](https://github.com/nextcloud/nextcloud-vue/pull/3006) in beta.2
+* [#2929](https://github.com/nextcloud/nextcloud-vue/pull/2929) Bump vue from 2.6.14 to 2.7.8 ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2923](https://github.com/nextcloud/nextcloud-vue/pull/2923) Enforce setting section ids ([@nickvergessen](https://github.com/nickvergessen))
+
+#### :rocket: Enhancement
+* [#2911](https://github.com/nextcloud/nextcloud-vue/pull/2911) Use render function in Actions component ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2998](https://github.com/nextcloud/nextcloud-vue/pull/2998) Import tooltip directive only locally ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2983](https://github.com/nextcloud/nextcloud-vue/pull/2983) Simplify webpack configuration ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2973](https://github.com/nextcloud/nextcloud-vue/pull/2973) Allow to filter the available tags ([@nickvergessen](https://github.com/nickvergessen))
+* [#2868](https://github.com/nextcloud/nextcloud-vue/pull/2868) Create TextField component ([@marcoambrosini](https://github.com/marcoambrosini))
+* [#2856](https://github.com/nextcloud/nextcloud-vue/pull/2856) Fix ListItem css & add compact mode ([@jotoeri](https://github.com/jotoeri))
+
+#### :bug: Bug Fix
+* [#2533](https://github.com/nextcloud/nextcloud-vue/pull/2533) [MultiSelect] pass the #noResult slot to the underlying component ([@eneiluj](https://github.com/eneiluj))
+* [#2999](https://github.com/nextcloud/nextcloud-vue/pull/2999) Also export tooltip options ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2997](https://github.com/nextcloud/nextcloud-vue/pull/2997) Fix regressions from floating-vue migration ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2991](https://github.com/nextcloud/nextcloud-vue/pull/2991) Fix Actions styling in Breadcrumbs ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2984](https://github.com/nextcloud/nextcloud-vue/pull/2984) Fix button import in modal example ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2981](https://github.com/nextcloud/nextcloud-vue/pull/2981) Add aria-label to single action button ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2911](https://github.com/nextcloud/nextcloud-vue/pull/2911) Use render function in Actions component ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2961](https://github.com/nextcloud/nextcloud-vue/pull/2961) Fix focusing last action with page-down ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2946](https://github.com/nextcloud/nextcloud-vue/pull/2946) Make sure modal ids are unique ([@nickvergessen](https://github.com/nickvergessen))
+* [#2883](https://github.com/nextcloud/nextcloud-vue/pull/2883) Do not treat an avatar as a button if there is no menu ([@danxuliu](https://github.com/danxuliu))
+* [#2929](https://github.com/nextcloud/nextcloud-vue/pull/2929) Bump vue from 2.6.14 to 2.7.8 ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2938](https://github.com/nextcloud/nextcloud-vue/pull/2938) Revert "Bump vue-styleguidist from 4.48.0 to 4.50.0" ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2912](https://github.com/nextcloud/nextcloud-vue/pull/2912) Fix missing icon in actions custom icon slot ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2856](https://github.com/nextcloud/nextcloud-vue/pull/2856) Fix ListItem css & add compact mode ([@jotoeri](https://github.com/jotoeri))
+* [#2894](https://github.com/nextcloud/nextcloud-vue/pull/2894) Add more explicit title to the sidebar close button ([@juliushaertl](https://github.com/juliushaertl))
+
+
+## v6.0.0-alpha.0 (2022-07-27)
+
+#### :boom: Breaking Changes
+* [#2600](https://github.com/nextcloud/nextcloud-vue/pull/2600) Migrate to floating-vue ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2867](https://github.com/nextcloud/nextcloud-vue/pull/2867) Accessible EmptyContent component ([@Pytal](https://github.com/Pytal))
+* [#2630](https://github.com/nextcloud/nextcloud-vue/pull/2630) show the action buttons on top of the modal always by default ([@szaimen](https://github.com/szaimen))
+* [#1946](https://github.com/nextcloud/nextcloud-vue/pull/1946) Properly align appnavigationtoggle ([@marcoambrosini](https://github.com/marcoambrosini))
+* [#2738](https://github.com/nextcloud/nextcloud-vue/pull/2738) Move close button within modal boundaries ([@marcoambrosini](https://github.com/marcoambrosini))
+* [#2720](https://github.com/nextcloud/nextcloud-vue/pull/2720) Add icon slot to AppNavigationNew component ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2603](https://github.com/nextcloud/nextcloud-vue/pull/2603) Comply with eslint for event name ([@artonge](https://github.com/artonge))
+* [#2704](https://github.com/nextcloud/nextcloud-vue/pull/2704) Put the children of AppNavigationItem outside of the main item ([@raimund-schluessler](https://github.com/raimund-schluessler))
+
+#### :rocket: Enhancements
+* [#2875](https://github.com/nextcloud/nextcloud-vue/pull/2875) Adjust loading icon style, replace `fillColor` prop ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2879](https://github.com/nextcloud/nextcloud-vue/pull/2879) Turn the button into router-link when to is there ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2565](https://github.com/nextcloud/nextcloud-vue/pull/2565) Improve SettingsInputText component ([@quentinguidee](https://github.com/quentinguidee))
+* [#2808](https://github.com/nextcloud/nextcloud-vue/pull/2808) Add a11y utility ([@Pytal](https://github.com/Pytal))
+* [#2715](https://github.com/nextcloud/nextcloud-vue/pull/2715) Augment keyboard accessibility of AppSidebar ([@Pytal](https://github.com/Pytal))
+* [#2757](https://github.com/nextcloud/nextcloud-vue/pull/2757) Alternative style for CheckboxRadioSwitch (radio type) ([@eneiluj](https://github.com/eneiluj))
+* [#2779](https://github.com/nextcloud/nextcloud-vue/pull/2779) Keep text in `InputConfirmCancel` static ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2776](https://github.com/nextcloud/nextcloud-vue/pull/2776) Improve CheckboxRadioSwitch accessibility ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2727](https://github.com/nextcloud/nextcloud-vue/pull/2727) Add material design loading icon ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2747](https://github.com/nextcloud/nextcloud-vue/pull/2747) make the sidebare full-width on small screens ([@szaimen](https://github.com/szaimen))
+* [#2630](https://github.com/nextcloud/nextcloud-vue/pull/2630) show the action buttons on top of the modal always by default ([@szaimen](https://github.com/szaimen))
+* [#2738](https://github.com/nextcloud/nextcloud-vue/pull/2738) Move close button within modal boundaries ([@marcoambrosini](https://github.com/marcoambrosini))
+* [#2577](https://github.com/nextcloud/nextcloud-vue/pull/2577) Add ColorPicker feedback on selection ([@quentinguidee](https://github.com/quentinguidee))
+* [#2719](https://github.com/nextcloud/nextcloud-vue/pull/2719) Add title section to settingsdialog ([@marcoambrosini](https://github.com/marcoambrosini))
+* [#2718](https://github.com/nextcloud/nextcloud-vue/pull/2718) Add actions slot to dashboard widget item ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2571](https://github.com/nextcloud/nextcloud-vue/pull/2571) Use large border-radius in AppNavigation ([@quentinguidee](https://github.com/quentinguidee))
+* [#2713](https://github.com/nextcloud/nextcloud-vue/pull/2713) Use large border-radius in Action Button ([@GretaD](https://github.com/GretaD))
+* [#2704](https://github.com/nextcloud/nextcloud-vue/pull/2704) Put the children of AppNavigationItem outside of the main item ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2552](https://github.com/nextcloud/nextcloud-vue/pull/2552) Make emojis selectable by tab ([@skjnldsv](https://github.com/skjnldsv))
+* [#2668](https://github.com/nextcloud/nextcloud-vue/pull/2668) Merge Dashboard components into repository ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2654](https://github.com/nextcloud/nextcloud-vue/pull/2654) add handle keyboard focus for accessibility ([@vanpertsch](https://github.com/vanpertsch))
+* [#2629](https://github.com/nextcloud/nextcloud-vue/pull/2629) small cleanup of small modal size ([@szaimen](https://github.com/szaimen))
+
+#### :bug: Fixed bugs
+* [#2878](https://github.com/nextcloud/nextcloud-vue/pull/2878) Fix single action validation ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2877](https://github.com/nextcloud/nextcloud-vue/pull/2877) Bring back AppNavigationToggle tooltip ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2895](https://github.com/nextcloud/nextcloud-vue/pull/2895) Fix issues with Multiselect component ([@nickvergessen](https://github.com/nickvergessen))
+* [#2882](https://github.com/nextcloud/nextcloud-vue/pull/2882) Fix box shadow colour of "tertiary-on-primary" button ([@danxuliu](https://github.com/danxuliu))
+* [#2871](https://github.com/nextcloud/nextcloud-vue/pull/2871) Add a button style for being used on primary like in the header ([@nickvergessen](https://github.com/nickvergessen))
+* [#2865](https://github.com/nextcloud/nextcloud-vue/pull/2865) Make captions real headings for improved a11y ([@nickvergessen](https://github.com/nickvergessen))
+* [#2855](https://github.com/nextcloud/nextcloud-vue/pull/2855) Fix invalid setting section IDs ([@nickvergessen](https://github.com/nickvergessen))
+* [#2695](https://github.com/nextcloud/nextcloud-vue/pull/2695) Change Prev/next links to buttons ([@vanpertsch](https://github.com/vanpertsch))
+* [#2845](https://github.com/nextcloud/nextcloud-vue/pull/2845) Add headline to sidebar sections to improve landmarks ([@nickvergessen](https://github.com/nickvergessen))
+* [#2846](https://github.com/nextcloud/nextcloud-vue/pull/2846) Fix HTML validation of AppNavigationToggle ([@nickvergessen](https://github.com/nickvergessen))
+* [#2840](https://github.com/nextcloud/nextcloud-vue/pull/2840) Fix invalid tabindex and role ([@nickvergessen](https://github.com/nickvergessen))
+* [#2841](https://github.com/nextcloud/nextcloud-vue/pull/2841) Remove invalid test-attr ([@nickvergessen](https://github.com/nickvergessen))
+* [#2833](https://github.com/nextcloud/nextcloud-vue/pull/2833) Fix vue material design icons HTML validation ([@nickvergessen](https://github.com/nickvergessen))
+* [#1946](https://github.com/nextcloud/nextcloud-vue/pull/1946) Properly align appnavigationtoggle ([@marcoambrosini](https://github.com/marcoambrosini))
+* [#2738](https://github.com/nextcloud/nextcloud-vue/pull/2738) Move close button within modal boundaries ([@marcoambrosini](https://github.com/marcoambrosini))
+* [#2576](https://github.com/nextcloud/nextcloud-vue/pull/2576) Increase padding of ColorPicker ([@quentinguidee](https://github.com/quentinguidee))
+* [#2638](https://github.com/nextcloud/nextcloud-vue/pull/2638) Fix lifecycle hook name in Avatar ([@raimund-schluessler](https://github.com/raimund-schluessler))
+* [#2628](https://github.com/nextcloud/nextcloud-vue/pull/2628) Fix styleguide serve ([@raimund-schluessler](https://github.com/raimund-schluessler))
+
 ## [v5.3.1](https://github.com/nextcloud/nextcloud-vue/tree/v5.3.1) (2022-04-08)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v5.3.0...v5.3.1)

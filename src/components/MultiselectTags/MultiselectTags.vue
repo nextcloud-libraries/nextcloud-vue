@@ -21,7 +21,7 @@
   -->
 
 <docs>
-## Single tag selector
+### Single tag selector
 
 ```vue
 <template>
@@ -42,7 +42,7 @@ export default {
 </script>
 ```
 
-## Multiple tag selector
+### Multiple tag selector
 ```vue
 <template>
 	<div class="wrapper">
@@ -61,17 +61,74 @@ export default {
 }
 </script>
 ```
+
+### Custom filter
+Because of compatibility reasons only 5 tag entries are shown by default. If you want to show all available tags set the `filter` function-prop to `null`:
+```vue
+<template>
+	<div class="wrapper">
+		<MultiselectTags v-model="value" :filter="null" />
+		{{ value }}
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			value: [1, 2]
+		}
+	}
+}
+</script>
+```
+
+It's also possible to apply any custom filter logic by setting the `filter` function-prop to any custom function receiving the tag element and the index:
+```vue
+<template>
+	<div class="wrapper">
+		<MultiselectTags v-model="value" :filter="customFilter" />
+		{{ value }}
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			value: [3]
+		}
+	},
+	methods: {
+		/**
+		* Implement your custom filter logic to filter tags delivered
+		* by the server
+		*
+		* @param {object} the tag object
+		* @param {int} the index of the object inside the collection
+		*/
+		customFilter(element, index) {
+			/*
+			* Tag objects returned by the server will have the
+			* following properties (see also api.js):
+			* id, displayName, canAssign, userAssignable, userVisible
+			*/
+			return element.id >= 2 && element.displayName !== '' && element.canAssign && element.userAssignable && element.userVisible
+		}
+	}
+}
+</script>
+```
 </docs>
 
 <template>
 	<Multiselect :value="inputValue"
-		:options="tags"
-		:options-limit="5"
+		:options="availableOptions"
 		:placeholder="label"
 		track-by="id"
 		:custom-label="tagLabel"
 		:multiple="multiple"
-		:close-on-select="multiple"
+		:close-on-select="!multiple"
 		:tag-width="60"
 		:disabled="disabled"
 		@input="update">
@@ -85,10 +142,10 @@ export default {
 </template>
 
 <script>
-import l10n from '../../mixins/l10n'
-import Multiselect from '../Multiselect'
-import { searchTags } from './api'
-import { t } from '../../l10n'
+import { searchTags } from './api.js'
+import Multiselect from '../Multiselect/index.js'
+import l10n from '../../mixins/l10n.js'
+import { t } from '../../l10n.js'
 
 export default {
 	name: 'MultiselectTags',
@@ -113,7 +170,12 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+		filter: {
+			type: Function,
+			default: (_element, index) => index < 5,
+		},
 	},
+	emits: ['input'],
 	data() {
 		return {
 			tags: [],
@@ -122,6 +184,12 @@ export default {
 	computed: {
 		inputValue() {
 			return this.getValueObject()
+		},
+		availableOptions() {
+			if (this.filter) {
+				return this.tags.filter(this.filter)
+			}
+			return this.tags
 		},
 	},
 	async beforeCreate() {

@@ -3,7 +3,7 @@
  -
  - @author Christoph Wurst <christoph@winzerhof-wurst.at>
  - @author John Molakvoæ <skjnldsv@protonmail.com>
- - @author Marco Ambrosini <marcoambrosini@pm.me>
+ - @author Marco Ambrosini <marcoambrosini@icloud.com>
  -
  - @license GNU AGPL version 3 or any later version
  -
@@ -22,34 +22,36 @@
  -
  -->
 <template>
-	<Actions class="app-navigation-toggle">
-		<ActionButton :aria-expanded="open ? 'true' : 'false'"
-			aria-controls="app-navigation-vue"
-			@click="toggleNavigation">
-			<template #icon>
-				<Menu :size="20"
-					title=""
-					decorative />
-			</template>
-			{{ label }}
-		</ActionButton>
-	</Actions>
+	<ButtonVue v-tooltip.auto="label"
+		class="app-navigation-toggle"
+		type="tertiary"
+		:aria-expanded="open ? 'true' : 'false'"
+		:aria-label="label"
+		aria-controls="app-navigation-vue"
+		@click="toggleNavigation">
+		<template #icon>
+			<MenuIcon :size="20" />
+		</template>
+	</ButtonVue>
 </template>
 
 <script>
-import Actions from '../Actions/Actions'
-import ActionButton from '../ActionButton/ActionButton'
-import { t } from '../../l10n'
+import ButtonVue from '../ButtonVue/index.js'
+import Tooltip from '../../directives/Tooltip/index.js'
+import { t } from '../../l10n.js'
 
-import Menu from 'vue-material-design-icons/Menu'
+import MenuIcon from 'vue-material-design-icons/Menu.vue'
 
 export default {
 	name: 'AppNavigationToggle',
 
+	directives: {
+		tooltip: Tooltip,
+	},
+
 	components: {
-		Actions,
-		ActionButton,
-		Menu,
+		ButtonVue,
+		MenuIcon,
 	},
 
 	props: {
@@ -58,6 +60,8 @@ export default {
 			required: true,
 		},
 	},
+
+	emits: ['update:open'],
 
 	computed: {
 		label() {
@@ -76,8 +80,8 @@ export default {
 
 button.app-navigation-toggle {
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: $topbar-margin;
+	right: - $topbar-margin;
 	margin-right: - $clickable-area;
 }
 

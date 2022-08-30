@@ -245,7 +245,7 @@ li {
 		span[class*=' icon-'] {
 			/* Keep padding to define the width to
 				assure correct position of a possible text */
-			padding: #{$clickable-area / 2} 0 #{$clickable-area / 2} $clickable-area;
+			padding: #{math.div($clickable-area, 2)} 0 #{math.div($clickable-area, 2)} $clickable-area;
 		}
 
 		// If no icons set, force left margin to align

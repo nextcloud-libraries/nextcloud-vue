@@ -34,6 +34,27 @@
 	<avatar url="https://nextcloud.com/wp-content/themes/next/assets/img/common/nextcloud-square-logo.png" />
 ```
 
+### Avatar with material design icon
+
+```
+ <template>
+	<avatar>
+		<template #icon>
+			<AccountMultiple :size="20" />
+		</template>
+	</AppNavigationNew>
+ </template>
+ <script>
+ import AccountMultiple from 'vue-material-design-icons/AccountMultiple'
+
+ export default {
+	components: {
+		AccountMultiple,
+	},
+ }
+ </script>
+```
+
 </docs>
 <template>
 	<div ref="main"
@@ -45,17 +66,20 @@
 		}"
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper"
-		:tabindex="disableMenu ? '-1' : '0'"
+		:tabindex="hasMenu ? '0' : undefined"
 		:aria-label="avatarAriaLabel"
-		:role="disableMenu ? '' : 'button'"
-		v-on="!disableMenu ? { click: toggleMenu } : {}"
+		:role="hasMenu ? 'button' : undefined"
+		v-on="hasMenu ? { click: toggleMenu } : {}"
 		@keydown.enter="toggleMenu">
-		<!-- Avatar icon or image -->
-		<div v-if="iconClass" :class="iconClass" class="avatar-class-icon" />
-		<img v-else-if="isAvatarLoaded && !userDoesNotExist"
-			:src="avatarUrlLoaded"
-			:srcset="avatarSrcSetLoaded"
-			alt="">
+		<!-- @slot Icon slot -->
+		<slot name="icon">
+			<!-- Avatar icon or image -->
+			<div v-if="iconClass" :class="iconClass" class="avatar-class-icon" />
+			<img v-else-if="isAvatarLoaded && !userDoesNotExist"
+				:src="avatarUrlLoaded"
+				:srcset="avatarSrcSetLoaded"
+				alt="">
+		</slot>
 
 		<!-- Contact menu -->
 		<Popover v-if="hasMenu"
@@ -66,12 +90,10 @@
 			@after-hide="handlePopoverAfterHide">
 			<PopoverMenu ref="popoverMenu" :menu="menu" />
 			<template #trigger>
-				<div v-if="contactsMenuLoading" class="icon-loading" />
+				<LoadingIcon v-if="contactsMenuLoading" />
 				<DotsHorizontal v-else
 					:size="20"
-					class="icon-more"
-					title=""
-					decorative />
+					class="icon-more" />
 			</template>
 		</Popover>
 
@@ -84,28 +106,30 @@
 			:class="'avatardiv__user-status--' + userStatus.status" />
 
 		<!-- Show the letter if no avatar nor icon class -->
-		<div v-if="userDoesNotExist && !iconClass" class="unknown">
+		<div v-if="userDoesNotExist && !(iconClass || $slots.icon)" class="unknown">
 			{{ initials }}
 		</div>
 	</div>
 </template>
 
 <script>
-import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal'
+import Popover from '../Popover/index.js'
+import PopoverMenu from '../PopoverMenu/index.js'
+import LoadingIcon from '../LoadingIcon/index.js'
+import Tooltip from '../../directives/Tooltip/index.js'
+import usernameToColor from '../../functions/usernameToColor/index.js'
+import { userStatus } from '../../mixins/index.js'
+import { t } from '../../l10n.js'
+
+import { getCurrentUser } from '@nextcloud/auth'
+import axios from '@nextcloud/axios'
+import { subscribe, unsubscribe } from '@nextcloud/event-bus'
+import { getBuilder } from '@nextcloud/browser-storage'
+import { generateUrl } from '@nextcloud/router'
+
+import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 import { directive as ClickOutside } from 'v-click-outside'
-import { generateUrl } from '@nextcloud/router'
-import { getBuilder } from '@nextcloud/browser-storage'
-import { getCurrentUser } from '@nextcloud/auth'
-import { subscribe, unsubscribe } from '@nextcloud/event-bus'
-import axios from '@nextcloud/axios'
-
-import PopoverMenu from '../PopoverMenu'
-import Tooltip from '../../directives/Tooltip'
-import usernameToColor from '../../functions/usernameToColor'
-import { userStatus } from '../../mixins'
-import { t } from '../../l10n'
-import Popover from '../Popover/Popover'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 
@@ -134,11 +158,12 @@ export default {
 	name: 'Avatar',
 
 	directives: {
-		tooltip: Tooltip,
 		ClickOutside,
+		tooltip: Tooltip,
 	},
 	components: {
 		DotsHorizontal,
+		LoadingIcon,
 		Popover,
 		PopoverMenu,
 	},
@@ -441,7 +466,7 @@ export default {
 		}
 	},
 
-	beforeDestroyed() {
+	beforeDestroy() {
 		if (this.showUserStatus && this.user && !this.isNoUser) {
 			unsubscribe('user_status:status.updated', this.handleUserStatusUpdated)
 		}
@@ -629,21 +654,13 @@ export default {
 
 	&--with-menu {
 		cursor: pointer;
-		::v-deep .trigger {
+		:deep(.v-popper) {
 			position: absolute;
 			top: 0;
 			left: 0;
 		}
-		.icon-more, .icon-loading {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: var(--size);
-			height: var(--size);
-			cursor: pointer;
-			background: none;
-		}
 		.icon-more {
+			cursor: pointer;
 			opacity: 0;
 		}
 		&:focus,
@@ -678,6 +695,11 @@ export default {
 		height: 100%;
 		// Keep ratio
 		object-fit: cover;
+	}
+
+	.material-design-icon {
+		width: var(--size);
+		height: var(--size);
 	}
 
 	.avatardiv__user-status {

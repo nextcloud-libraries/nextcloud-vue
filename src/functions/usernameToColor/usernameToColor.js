@@ -19,9 +19,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import GenColors from '../../utils/GenColors.js'
 
 import md5 from 'md5'
-import GenColors from '../../utils/GenColors'
 
 /**
  * Originally taken from https://github.com/nextcloud/server/blob/master/core/js/placeholder.js

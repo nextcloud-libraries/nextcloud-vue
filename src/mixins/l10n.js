@@ -1,4 +1,4 @@
-import { n, t } from '../l10n'
+import { n, t } from '../l10n.js'
 
 export default {
 	methods: {

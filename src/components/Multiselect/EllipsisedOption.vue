@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div class="name-parts" :title="name">
+	<span class="name-parts" :title="name">
 		<Highlight class="name-parts__first"
 			:text="part1"
 			:search="search"
@@ -31,11 +31,11 @@
 			:text="part2"
 			:search="search"
 			:highlight="highlight2" />
-	</div>
+	</span>
 </template>
 <script>
-import Highlight from '../Highlight'
-import FindRanges from '../../utils/FindRanges'
+import Highlight from '../Highlight/index.js'
+import FindRanges from '../../utils/FindRanges.js'
 
 export default {
 	name: 'EllipsisedOption',

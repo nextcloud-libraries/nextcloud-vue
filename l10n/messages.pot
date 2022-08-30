@@ -26,13 +26,22 @@ msgstr ""
 msgid "Cancel changes"
 msgstr ""
 
+msgid "Change title"
+msgstr ""
+
 msgid "Choose"
 msgstr ""
 
 msgid "Close"
 msgstr ""
 
+msgid "Close modal"
+msgstr ""
+
 msgid "Close navigation"
+msgstr ""
+
+msgid "Close sidebar"
 msgstr ""
 
 msgid "Confirm changes"
@@ -45,6 +54,9 @@ msgid "Edit item"
 msgstr ""
 
 msgid "External documentation for {title}"
+msgstr ""
+
+msgid "Favorite"
 msgstr ""
 
 msgid "Flags"
@@ -62,7 +74,13 @@ msgstr ""
 msgid "Go back to the list"
 msgstr ""
 
+msgid "items"
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
+msgstr ""
+
+msgid "More {dashboardItemType} …"
 msgstr ""
 
 msgid "Next"
@@ -75,6 +93,9 @@ msgid "No results"
 msgstr ""
 
 msgid "Objects"
+msgstr ""
+
+msgid "Open"
 msgstr ""
 
 msgid "Open navigation"

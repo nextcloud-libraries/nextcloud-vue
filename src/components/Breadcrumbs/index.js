@@ -20,6 +20,6 @@
  *
  */
 
-import Breadcrumbs from './Breadcrumbs'
+import Breadcrumbs from './Breadcrumbs.vue'
 
 export default Breadcrumbs

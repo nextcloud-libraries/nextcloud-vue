@@ -2,7 +2,7 @@
   - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
-  - @author Marco Ambrosini <marcoambrosini@pm.me>
+  - @author Marco Ambrosini <marcoambrosini@icloud.com>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -56,8 +56,8 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 </template>
 
 <script>
-import ActionGlobalMixin from '../../mixins/actionGlobal'
-import GenRandomId from '../../utils/GenRandomId'
+import ActionGlobalMixin from '../../mixins/actionGlobal.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 export default {
 	name: 'ActionCheckbox',
@@ -98,6 +98,13 @@ export default {
 			default: false,
 		},
 	},
+
+	emits: [
+		'change',
+		'check',
+		'uncheck',
+		'update:checked',
+	],
 
 	computed: {
 		/**

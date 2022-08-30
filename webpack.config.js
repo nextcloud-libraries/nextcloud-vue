@@ -4,12 +4,13 @@ const glob = require('glob')
 const md5 = require('md5')
 const path = require('path')
 
+const buildMode = process.env.NODE_ENV
+const isDev = buildMode === 'development'
+
 const { DefinePlugin } = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const BabelLoaderExcludeNodeModulesExcept = require('babel-loader-exclude-node-modules-except')
 const nodeExternals = require('webpack-node-externals')
-const StyleLintPlugin = require('stylelint-webpack-plugin')
-const ESLintPlugin = require('eslint-webpack-plugin')
 
 // scope variable
 // fallback for cypress testing
@@ -56,6 +57,13 @@ const translations = fs
 	})
 
 module.exports = {
+	mode: buildMode,
+	devtool: isDev ? false : 'source-map',
+	devServer: {
+		historyApiFallback: true,
+		noInfo: true,
+		overlay: true,
+	},
 	entry: {
 		ncvuecomponents: path.join(__dirname, 'src', 'index.js'),
 		...glob.sync('src/components/*/index.js').reduce((acc, item) => {
@@ -111,7 +119,7 @@ module.exports = {
 					{
 						loader: 'sass-loader',
 						options: {
-							additionalData: `$scope_version:${SCOPE_VERSION}; @import 'variables'; @import 'material-icons';`,
+							additionalData: `@use 'sass:math'; $scope_version:${SCOPE_VERSION}; @import 'variables'; @import 'material-icons';`,
 							/**
 							 * ! needed for resolve-url-loader
 							 */
@@ -146,10 +154,6 @@ module.exports = {
 	},
 	plugins: [
 		new VueLoaderPlugin(),
-		new StyleLintPlugin({
-			files: ['src/**/*.vue', 'src/**/*.scss', 'src/**/*.css'],
-		}),
-		new ESLintPlugin(),
 		new DefinePlugin({
 			SCOPE_VERSION,
 			TRANSLATIONS: JSON.stringify(translations),

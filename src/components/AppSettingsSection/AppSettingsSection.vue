@@ -1,7 +1,7 @@
 <!--
- - @copyright Copyright (c) 2020 Marco Ambrosini <marcoambrosini@pm.me>
+ - @copyright Copyright (c) 2020 Marco Ambrosini <marcoambrosini@icloud.com>
  -
- - @author Marco Ambrosini <marcoambrosini@pm.me>
+ - @author Marco Ambrosini <marcoambrosini@icloud.com>
  -
  - @license GNU AGPL version 3 or any later version
  -
@@ -18,12 +18,11 @@
  - You should have received a copy of the GNU Affero General Public License
  - along with this program. If not, see <http://www.gnu.org/licenses/>.
  -
- -->`
+ -->
 
 <template>
-	<div :id="id" class="app-settings-section">
-		<h3 :id="title"
-			class="app-settings-section__title">
+	<div :id="htmlId" class="app-settings-section">
+		<h3 class="app-settings-section__title">
 			{{ title }}
 		</h3>
 		<slot />
@@ -39,11 +38,20 @@ export default {
 			type: String,
 			required: true,
 		},
+
+		id: {
+			type: String,
+			required: true,
+			validator(id) {
+				// Only alphanumeric, dash and underscore
+				return /^[a-z0-9\-_]+$/.test(id)
+			},
+		},
 	},
 	computed: {
 		// generate an id for each settingssection based on the title without whitespaces
-		id() {
-			return 'settings-section_' + this.title.replace(/\s+/g, '')
+		htmlId() {
+			return 'settings-section_' + this.id
 		},
 	},
 }
@@ -55,6 +63,8 @@ export default {
 	margin-bottom: 80px;
 	&__title {
 		font-size: 20px;
+		margin: 0;
+		padding: 20px 0;
 		font-weight: bold;
 		overflow: hidden;
 		white-space: nowrap;

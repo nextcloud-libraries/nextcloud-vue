@@ -2,7 +2,7 @@
   - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
-  - @author Marco Ambrosini <marcoambrosini@pm.me>
+  - @author Marco Ambrosini <marcoambrosini@icloud.com>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -25,20 +25,97 @@
 This component is made to be used inside of the [Actions](#Actions) component slots.
 
 ```vue
-	<Actions>
-		<ActionButton icon="icon-delete" @click="alert('Delete')">Delete</ActionButton>
-		<ActionButton icon="icon-delete" :close-after-click="true" @click="alert('Delete and close menu')">Delete and close</ActionButton>
-		<ActionButton icon="icon-delete" :disabled="true" @click="alert('Disabled')">Disabled button</ActionButton>
-	</Actions>
+	<template>
+		<Actions>
+			<ActionButton @click="showMessage('Delete')">
+				<template #icon>
+					<Delete :size="20" />
+				</template>
+				Delete
+			</ActionButton>
+			<ActionButton :close-after-click="true" @click="showMessage('Delete and close menu')">
+				<template #icon>
+					<Delete :size="20" />
+				</template>
+				Delete and close
+			</ActionButton>
+			<ActionButton :disabled="true" @click="showMessage('Disabled')">
+				<template #icon>
+					<Delete :size="20" />
+				</template>
+				Disabled button
+			</ActionButton>
+		</Actions>
+	</template>
+	<script>
+	import Delete from 'vue-material-design-icons/Delete'
+
+	export default {
+		components: {
+			Delete,
+		},
+		methods: {
+			showMessage(msg) {
+				alert(msg)
+			},
+		},
+	}
+	</script>
 ```
 
 If you're using a long text you can specify a title
 
 ```vue
-	<Actions>
-		<ActionButton icon="icon-add" @click="alert('Add')">Add new</ActionButton>
-		<ActionButton icon="icon-delete" title="Long button" @click="alert('Delete')">This button is associated with a very long text.\nAnd with new lines too.</ActionButton>
-	</Actions>
+	<template>
+		<Actions>
+			<ActionButton icon="icon-add" @click="showMessage('Add')">
+				Add new
+			</ActionButton>
+			<ActionButton title="Long button" @click="showMessage('Delete')">
+				<template #icon>
+					<Delete :size="20" />
+				</template>
+				This button is associated with a very long text.\nAnd with new lines too.
+			</ActionButton>
+		</Actions>
+	</template>
+	<script>
+	import Delete from 'vue-material-design-icons/Delete'
+
+	export default {
+		components: {
+			Delete,
+		},
+		methods: {
+			showMessage(msg) {
+				alert(msg)
+			},
+		},
+	}
+	</script>
+
+```
+
+Action icon attribute with a single action
+
+```vue
+	<template>
+		<Actions>
+			<ActionButton icon="icon-add" @click="showMessage('Add')">
+				Add new
+			</ActionButton>
+		</Actions>
+	</template>
+	<script>
+	export default {
+		methods: {
+			showMessage(msg) {
+				alert(msg)
+			},
+		},
+	}
+	</script>
+
 ```
 
 You can also use a custom icon, for example from the vue-material-design-icons library:
@@ -48,19 +125,13 @@ You can also use a custom icon, for example from the vue-material-design-icons l
 	<Actions>
 		<ActionButton>
 			<template #icon>
-				<HandBackLeft
-					:size="20"
-					decorative
-					title="" />
+				<HandBackLeft :size="20" />
 			</template>
 			Raise left hand
 		</ActionButton>
 		<ActionButton>
 			<template #icon>
-				<HandBackRight
-					:size="20"
-					decorative
-					title="" />
+				<HandBackRight :size="20" />
 			</template>
 			Raise right hand
 		</ActionButton>
@@ -81,10 +152,11 @@ export default {
 </docs>
 
 <template>
-	<li class="action" :class="{ 'action--disabled': disabled }">
+	<li class="action" role="presentation" :class="{ 'action--disabled': disabled }">
 		<button class="action-button"
 			:class="{ focusable: isFocusable }"
 			:aria-label="ariaLabel"
+			role="menuitem"
 			type="button"
 			@click="onClick">
 			<!-- @slot Manually provide icon -->
@@ -122,7 +194,7 @@ export default {
 </template>
 
 <script>
-import ActionTextMixin from '../../mixins/actionText'
+import ActionTextMixin from '../../mixins/actionText.js'
 
 /**
  * Button component to be used in Actions

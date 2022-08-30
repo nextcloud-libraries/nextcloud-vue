@@ -19,6 +19,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import ActionTextEditable from './ActionTextEditable'
+import ActionTextEditable from './ActionTextEditable.vue'
 
 export default ActionTextEditable

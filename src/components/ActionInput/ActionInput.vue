@@ -2,7 +2,7 @@
   - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
-  - @author Marco Ambrosini <marcoambrosini@pm.me>
+  - @author Marco Ambrosini <marcoambrosini@icloud.com>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -109,11 +109,11 @@ For the multiselect component, all events will be passed through. Please see the
 <script>
 import DatetimePicker from '../DatetimePicker/index.js'
 import Multiselect from '../Multiselect/index.js'
+import NcDateTimePickerNative from '../NcDateTimePickerNative/NcDateTimePickerNative'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
-import ArrowRight from 'vue-material-design-icons/ArrowRight'
-import NcDateTimePickerNative from '../NcDateTimePickerNative/NcDateTimePickerNative'
+import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 
 export default {
 	name: 'ActionInput',
@@ -182,6 +182,13 @@ export default {
 			default: '',
 		},
 	},
+
+	emits: [
+		'input',
+		'submit',
+		'change',
+		'update:value',
+	],
 
 	computed: {
 		isIconUrl() {
@@ -309,7 +316,7 @@ $input-margin: 4px;
 
 	font-weight: normal;
 
-	&::v-deep .material-design-icon {
+	&:deep(.material-design-icon) {
 		width: $clickable-area;
 		height: $clickable-area;
 		opacity: $opacity_full;
@@ -349,7 +356,7 @@ $input-margin: 4px;
 		min-height: 0;
 		/* Keep padding to define the width to
 			assure correct position of a possible text */
-		padding: #{$clickable-area / 2} 0 #{$clickable-area / 2} $clickable-area;
+		padding: #{math.div($clickable-area, 2)} 0 #{math.div($clickable-area, 2)} $clickable-area;
 
 		background-position: #{$icon-margin} center;
 		background-size: $icon-size;
@@ -443,10 +450,8 @@ $input-margin: 4px;
 		}
 	}
 
-	&__picker::v-deep {
-		.mx-input {
-			margin: 0;
-		}
+	&__picker :deep(.mx-input) {
+		margin: 0;
 	}
 
 	&__multi {

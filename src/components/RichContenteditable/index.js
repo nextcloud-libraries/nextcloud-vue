@@ -20,6 +20,6 @@
  *
  */
 
-import RichContenteditable from './RichContenteditable'
+import RichContenteditable from './RichContenteditable.vue'
 
 export default RichContenteditable

@@ -32,8 +32,8 @@
 	```vue
 	<template>
 		<div>
-			<EmojiPicker @select="select">
-				<button> Click Me </button>
+			<EmojiPicker @select="select" style="display: inline-block">
+				<ButtonVue> Click Me </ButtonVue>
 			</EmojiPicker>
 			<span>selected emoji: {{ emoji }}</span>
 		</div>
@@ -62,8 +62,9 @@
 			<EmojiPicker
 				:close-on-select="false"
 				:show-preview="true"
-				@select="select">
-				<button> Click Me </button>
+				@select="select"
+				style="display: inline-block">
+				<ButtonVue> Click Me </ButtonVue>
 			</EmojiPicker>
 			<span>selected emoji: {{ emoji }}</span>
 		</div>
@@ -87,16 +88,17 @@
 </docs>
 
 <template>
-	<Popover :open.sync="open"
+	<Popover :shown.sync="open"
 		:container="container"
-		popover-class="emoji-popover"
-		popover-inner-class="popover-emoji-picker-inner"
 		v-bind="$attrs"
-		v-on="$listeners">
+		v-on="$listeners"
+		@after-show="afterShow"
+		@after-hide="afterHide">
 		<template #trigger>
 			<slot />
 		</template>
-		<Picker :auto-focus="true"
+		<Picker ref="picker"
+			:auto-focus="true"
 			color="var(--color-primary)"
 			:data="emojiIndex"
 			:emoji="previewFallbackEmoji"
@@ -113,10 +115,11 @@
 </template>
 
 <script>
+import Popover from '../Popover/index.js'
+import { t } from '../../l10n.js'
+
 import { Picker, EmojiIndex } from 'emoji-mart-vue-fast'
 import data from 'emoji-mart-vue-fast/data/all.json'
-import Popover from '../Popover'
-import { t } from '../../l10n'
 
 export default {
 	name: 'EmojiPicker',
@@ -169,6 +172,10 @@ export default {
 			default: 'body',
 		},
 	},
+	emits: [
+		'select',
+		'select-data',
+	],
 	data() {
 		return {
 			emojiIndex: new EmojiIndex(data),
@@ -208,12 +215,49 @@ export default {
 			/**
 			 * Emits a object with more data about the picked emoji
 			 */
-			// Todo: Adjust for next major release
-			// eslint-disable-next-line vue/custom-event-name-casing
-			this.$emit('selectData', emojiObject)
+			this.$emit('select-data', emojiObject)
 
 			if (this.closeOnSelect) {
 				this.open = false
+			}
+		},
+		afterShow() {
+			// add focus trap in modal
+			const picker = this.$refs.picker
+			picker.$el.addEventListener('keydown', this.checkKeyEvent)
+			// set focus on input search field
+			const input = picker.$refs.search.$el.querySelector('input')
+			if (input) {
+				input.focus()
+			}
+		},
+		afterHide() {
+			// remove keydown listner if popover is hidden
+			const picker = this.$refs.picker
+			picker.$el.removeEventListener('keydown', this.checkKeyEvent)
+		},
+		checkKeyEvent(event) {
+			if (event.key !== 'Tab') {
+				return
+			}
+			const picker = this.$refs.picker
+			const focusableList = picker.$el.querySelectorAll(
+				'button, input'
+			)
+			const last = focusableList.length - 1
+			// escape early if only 1 or no elements to focus
+			if (focusableList.length <= 1) {
+				event.preventDefault()
+				return
+			}
+			if (event.shiftKey === false && event.target === focusableList[last]) {
+				// Jump to first item when pressing tab on the latest item
+				event.preventDefault()
+				focusableList[0].focus()
+			} else if (event.shiftKey === true && event.target === focusableList[0]) {
+				// Jump to the last item if pressing shift+tab on the first item
+				event.preventDefault()
+				focusableList[last].focus()
 			}
 		},
 	},
@@ -222,22 +266,6 @@ export default {
 
 <style lang="scss">
 @import '~emoji-mart-vue-fast/css/emoji-mart.css';
-
-.emoji-popover {
-	& .tooltip-arrow,
-	&[x-placement^='top'] {
-		margin-left: 0 !important;
-	}
-	& .tooltip-arrow,
-	&[x-placement^='bottom'] {
-		margin-top: 0 !important;
-	}
-
-	// Remove the extra padding from VTooltip
-	.popover-emoji-picker-inner {
-		padding: 0;
-	}
-}
 
 .emoji-mart {
 	background-color: var(--color-main-background) !important;
@@ -253,6 +281,7 @@ export default {
 		font-size: inherit;
 		height: 36px;
 		width: auto;
+
 		* {
 			cursor: pointer !important;
 		}
@@ -271,6 +300,11 @@ export default {
 		color: inherit !important;
 	}
 
+	.emoji-mart-search input:focus-visible {
+		box-shadow: inset 0 0 0 2px var(--color-primary);
+		outline: none;
+	}
+
 	.emoji-mart-bar {
 		&:first-child {
 			border-top-left-radius: var(--border-radius) !important;
@@ -283,6 +317,10 @@ export default {
 			border-radius: 0;
 			padding: 12px 4px;
 			height: auto;
+			&:focus-visible {
+				/* box-shadow: inset 0 0 0 2px var(--color-primary); */
+				outline: 2px solid var(--color-primary-element);
+			}
 		}
 	}
 
@@ -309,8 +347,18 @@ export default {
 			flex-basis: calc(100% / 8);
 			text-align: center;
 
-			&:hover::before {
+			&:hover::before,
+			&.emoji-mart-emoji-selected::before{
+				background-color: var(--color-background-hover) !important;
+				outline: 2px solid var(--color-primary-element);
+			}
+		}
+		button {
+
+			&:focus-visible {
 				background-color: var(--color-background-hover);
+				border: 2px solid var(--color-primary-element) !important;
+				border-radius: 50%;
 			}
 		}
 	}

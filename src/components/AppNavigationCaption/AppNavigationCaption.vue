@@ -7,14 +7,42 @@
 	</template>
 </AppNavigationCaption>
 ```
+
+### Element with a slot for custom actions icon
+```
+<template>
+	<AppNavigationCaption
+		title="Your caption goes here">
+		<template #actionsTriggerIcon>
+			<PlusIcon slot="icon" :size="20" />
+		</template>
+		<template #actions>
+			<ActionButton icon="icon-edit">Rename</ActionButton>
+			<ActionButton icon="icon-delete">Delete</ActionButton>
+			<ActionButton icon="icon-confirm">Validate</ActionButton>
+			<ActionButton icon="icon-download">Download</ActionButton>
+		</template>
+	</AppNavigationCaption>
+</template>
+<script>
+	import PlusIcon from 'vue-material-design-icons/Plus'
+
+	export default {
+		components: {
+			PlusIcon
+		}
+	}
+</script>
+```
+
 </docs>
 
 <template>
 	<li class="app-navigation-caption">
 		<!-- Title of the caption -->
-		<div class="app-navigation-caption__title">
+		<h2 class="app-navigation-caption__title">
 			{{ title }}
-		</div>
+		</h2>
 
 		<!-- Actions -->
 		<div v-if="hasActions"
@@ -22,13 +50,16 @@
 			<Actions v-bind="$attrs">
 				<!-- @slot Slot for the actions menu -->
 				<slot name="actions" />
+				<template #icon>
+					<slot name="actionsTriggerIcon" />
+				</template>
 			</Actions>
 		</div>
 	</li>
 </template>
 
 <script>
-import Actions from '../Actions/Actions'
+import Actions from '../Actions/index.js'
 
 export default {
 	name: 'AppNavigationCaption',
@@ -57,11 +88,12 @@ export default {
 .app-navigation-caption {
 	display: flex;
 	justify-content: space-between;
-	padding: 0 8px 0 $clickable-area / 2;
+	padding: 0 8px 0 math.div($clickable-area, 2);
 
 	&__title {
 		font-weight: bold;
 		color: var(--color-primary-element);
+		font-size: var(--default-font-size);
 		line-height: $clickable-area;
 		white-space: nowrap;
 		overflow: hidden;
@@ -78,6 +110,6 @@ export default {
 
 // extra top space if it's not the first item on the list
 .app-navigation-caption:not(:first-child) {
-	margin-top: $clickable-area / 2;
+	margin-top: math.div($clickable-area, 2);
 }
 </style>

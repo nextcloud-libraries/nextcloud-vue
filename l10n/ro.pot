@@ -1,0 +1,154 @@
+# 
+# Translators:
+# Mădălin Vasiliu <contact@madalinvasiliu.com>, 2022
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Mădălin Vasiliu <contact@madalinvasiliu.com>, 2022\n"
+"Language-Team: Romanian (https://www.transifex.com/nextcloud/teams/64236/ro/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+
+msgid "{tag} (invisible)"
+msgstr "{tag} (invizibil)"
+
+msgid "{tag} (restricted)"
+msgstr "{tag} (restricționat)"
+
+msgid "Actions"
+msgstr "Acțiuni"
+
+msgid "Activities"
+msgstr "Activități"
+
+msgid "Animals & Nature"
+msgstr "Animale și natură"
+
+msgid "Avatar of {displayName}"
+msgstr "Avatarul lui {displayName}"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "Avatarul lui {displayName}, {status}"
+
+msgid "Cancel changes"
+msgstr "Anulează modificările"
+
+msgid "Choose"
+msgstr "Alegeți"
+
+msgid "Close"
+msgstr "Închideți"
+
+msgid "Close navigation"
+msgstr "Închideți navigarea"
+
+msgid "Confirm changes"
+msgstr "Confirmați modificările"
+
+msgid "Custom"
+msgstr "Personalizat"
+
+msgid "Edit item"
+msgstr "Editați elementul"
+
+msgid "External documentation for {title}"
+msgstr "Documentație externă pentru {title}"
+
+msgid "Flags"
+msgstr "Marcaje"
+
+msgid "Food & Drink"
+msgstr "Alimente și băuturi"
+
+msgid "Frequently used"
+msgstr "Utilizate frecvent"
+
+msgid "Global"
+msgstr "Global"
+
+msgid "Go back to the list"
+msgstr "Întoarceți-vă la listă"
+
+msgid "items"
+msgstr "articole"
+
+msgid "Message limit of {count} characters reached"
+msgstr "Limita mesajului de {count} caractere a fost atinsă"
+
+msgid "More {what} …"
+msgstr "Mai mult {what} ..."
+
+msgid "Next"
+msgstr "Următorul"
+
+msgid "No emoji found"
+msgstr "Nu s-a găsit niciun emoji"
+
+msgid "No results"
+msgstr "Nu există rezultate"
+
+msgid "Objects"
+msgstr "Obiecte"
+
+msgid "Open navigation"
+msgstr "Deschideți navigația"
+
+msgid "Pause slideshow"
+msgstr "Pauză prezentare de diapozitive"
+
+msgid "People & Body"
+msgstr "Oameni și corp"
+
+msgid "Pick an emoji"
+msgstr "Alege un emoji"
+
+msgid "Please select a time zone:"
+msgstr "Vă rugăm să selectați un fus orar:"
+
+msgid "Previous"
+msgstr "Anterior"
+
+msgid "Search"
+msgstr "Căutare"
+
+msgid "Search results"
+msgstr "Rezultatele căutării"
+
+msgid "Select a tag"
+msgstr "Selectați o etichetă"
+
+msgid "Settings"
+msgstr "Setări"
+
+msgid "Settings navigation"
+msgstr "Navigare setări"
+
+msgid "Smileys & Emotion"
+msgstr "Zâmbete și emoții"
+
+msgid "Start slideshow"
+msgstr "Începeți prezentarea de diapozitive"
+
+msgid "Submit"
+msgstr "Trimiteți"
+
+msgid "Symbols"
+msgstr "Simboluri"
+
+msgid "Travel & Places"
+msgstr "Călătorii și locuri"
+
+msgid "Type to search time zone"
+msgstr "Tastați pentru a căuta fusul orar"
+
+msgid "Unable to search the group"
+msgstr "Imposibilitatea de a căuta în grup"
+
+msgid "Undo changes"
+msgstr "Anularea modificărilor"
+
+msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgstr ""
+"Scrieți un mesaj, @ pentru a menționa pe cineva, : pentru autocompletare "
+"emoji ..."

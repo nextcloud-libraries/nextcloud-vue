@@ -2,7 +2,7 @@
   - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
-  - @author Marco Ambrosini <marcoambrosini@pm.me>
+  - @author Marco Ambrosini <marcoambrosini@icloud.com>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -26,11 +26,34 @@ This component is made to be used inside of the [Actions](#Actions) component sl
 All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 
 ```
-<Actions>
-	<ActionTextEditable icon="icon-edit" value="This is a textarea" />
-	<ActionTextEditable icon="icon-edit" :disabled="true" value="This is a disabled textarea" />
-	<ActionTextEditable icon="icon-edit" title="Please edit the text" value="This is a textarea with title" />
-</Actions>
+<template>
+	<Actions>
+		<ActionTextEditable value="This is a textarea">
+			<template #icon>
+				<Pencil :size="20" />
+			</template>
+		</ActionTextEditable>
+		<ActionTextEditable :disabled="true" value="This is a disabled textarea">
+			<template #icon>
+				<Pencil :size="20" />
+			</template>
+		</ActionTextEditable>
+		<ActionTextEditable title="Please edit the text" value="This is a textarea with title">
+			<template #icon>
+				<Pencil :size="20" />
+			</template>
+		</ActionTextEditable>
+	</Actions>
+</template>
+<script>
+import Pencil from 'vue-material-design-icons/Pencil'
+
+export default {
+	components: {
+		Pencil,
+	},
+}
+</script>
 ```
 </docs>
 
@@ -38,10 +61,12 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 	<li class="action" :class="{ 'action--disabled': disabled }">
 		<span class="action-text-editable"
 			@click="onClick">
-			<!-- icon -->
-			<span :class="[isIconUrl ? 'action-text-editable__icon--url' : icon]"
-				:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
-				class="action-text-editable__icon" />
+			<!-- @slot Manually provide icon -->
+			<slot name="icon">
+				<span :class="[isIconUrl ? 'action-text-editable__icon--url' : icon]"
+					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+					class="action-text-editable__icon" />
+			</slot>
 
 			<!-- form and input -->
 			<form ref="form"
@@ -64,7 +89,7 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 				<!-- allow the custom font to inject a ::before
 					not possible on input[type=submit] -->
 				<label v-show="!disabled" :for="id" class="action-text-editable__label">
-					<ArrowRight :size="20" title="" decorative />
+					<ArrowRight :size="20" />
 				</label>
 			</form>
 		</span>
@@ -72,9 +97,10 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 </template>
 
 <script>
-import ArrowRight from 'vue-material-design-icons/ArrowRight'
-import ActionTextMixin from '../../mixins/actionText'
-import GenRandomId from '../../utils/GenRandomId'
+import ActionTextMixin from '../../mixins/actionText.js'
+import GenRandomId from '../../utils/GenRandomId.js'
+
+import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 
 export default {
 	name: 'ActionTextEditable',
@@ -109,6 +135,12 @@ export default {
 			default: '',
 		},
 	},
+
+	emits: [
+		'input',
+		'update:value',
+		'submit',
+	],
 
 	computed: {
 		/**
@@ -200,10 +232,20 @@ $input-margin: 4px;
 		min-height: 0;
 		/* Keep padding to define the width to
 			assure correct position of a possible text */
-		padding: #{$clickable-area / 2} 0 #{$clickable-area / 2} $clickable-area;
+		padding: #{math.div($clickable-area, 2)} 0 #{math.div($clickable-area, 2)} $clickable-area;
 
 		background-position: #{$icon-margin} center;
 		background-size: $icon-size;
+	}
+
+	&:deep(.material-design-icon) {
+		width: $clickable-area;
+		height: $clickable-area;
+		opacity: $opacity_full;
+
+		.material-design-icon__svg {
+			vertical-align: middle;
+		}
 	}
 
 	// Forms & text inputs

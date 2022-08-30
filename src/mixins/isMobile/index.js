@@ -20,7 +20,7 @@
  *
  */
 
-import { IsMobileState } from '../../utils/IsMobileState'
+import { IsMobileState } from '../../utils/IsMobileState.js'
 
 export default {
 	data() {

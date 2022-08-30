@@ -24,12 +24,14 @@
 ### Basic use
 
 Use this component to display a message about an empty content.
-An icon and a title are mandatory.
-Providing an additional description is strongly advised.
+Providing an icon, title, and a description is strongly advised.
 
 ```
-<EmptyContent icon="icon-comment">
+<EmptyContent>
 	No comments
+	<template #icon>
+		<Comment />
+	</template>
 	<template #desc>No comments in here</template>
 </EmptyContent>
 ```
@@ -37,17 +39,21 @@ Providing an additional description is strongly advised.
 <template>
 	<EmptyContent>
 		Network error
-		<template #icon><Airplane /></template>
+		<template #icon>
+			<Airplane />
+		</template>
 		<template #desc>Unable to load the list</template>
 	</EmptyContent>
 </template>
 
 <script>
 import Airplane from 'vue-material-design-icons/Airplane'
+import Comment from 'vue-material-design-icons/Comment'
 
 export default {
 	components: {
-		Airplane
+		Airplane,
+		Comment,
 	}
 }
 </script>
@@ -57,15 +63,15 @@ export default {
 
 <template>
 	<div class="empty-content" role="note">
-		<div class="empty-content__icon" :class="icon" role="img">
-			<!-- @slot Optional icon slot -->
+		<div v-if="hasIcon" class="empty-content__icon">
+			<!-- @slot Optional material design icon -->
 			<slot name="icon" />
 		</div>
-		<h2 class="empty-content__title">
-			<!-- @slot Mandatory title -->
+		<h2 v-if="hasTitle" class="empty-content__title">
+			<!-- @slot Optional title -->
 			<slot />
 		</h2>
-		<p v-show="$slots.desc">
+		<p v-if="hasDescription">
 			<!-- @slot Optional description -->
 			<slot name="desc" />
 		</p>
@@ -75,13 +81,29 @@ export default {
 <script>
 export default {
 	name: 'EmptyContent',
-	props: {
-		/**
-		 * The main icon illustration
-		 */
-		icon: {
-			type: String,
-			default: '',
+
+	data() {
+		return {
+			/**
+			 * Making sure the slots are reactive
+			 */
+			slots: this.$slots,
+		}
+	},
+
+	computed: {
+		hasIcon() {
+			return this.slots.icon !== undefined
+		},
+
+		hasTitle() {
+			return this.slots?.default !== undefined
+				&& this.slots?.default[0]?.text
+		},
+
+		hasDescription() {
+			return this.slots?.desc !== undefined
+				&& this.slots?.desc[0]?.text
 		},
 	},
 }
@@ -106,7 +128,7 @@ export default {
 		background-position: center;
 		background-size: 64px;
 
-		::v-deep svg {
+		:deep(svg) {
 			width: 64px;
 			height: 64px;
 		}
@@ -117,5 +139,4 @@ export default {
 		text-align: center;
 	}
 }
-
 </style>

@@ -1,0 +1,20 @@
+name: Transifex
+on: pull_request
+
+jobs:
+  auto-approve-merge:
+    if: github.event.pull_request.user.login == 'transifex-integration[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: hmarr/auto-approve-action@v2
+        with:
+          github-token: ${{ secrets.COMMAND_BOT_PAT }}
+
+      - uses: pascalgn/automerge-action@v0.15.3
+        env:
+          MERGE_DELETE_BRANCH: true
+          MERGE_LABELS: ''
+          MERGE_RETRIES: 6
+          MERGE_RETRY_SLEEP: 30000
+          GITHUB_TOKEN: ${{ secrets.COMMAND_BOT_PAT }}

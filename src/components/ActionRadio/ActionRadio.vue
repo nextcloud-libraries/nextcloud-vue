@@ -2,7 +2,7 @@
   - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
-  - @author Marco Ambrosini <marcoambrosini@pm.me>
+  - @author Marco Ambrosini <marcoambrosini@icloud.com>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -59,8 +59,8 @@ So that only one of each name set can be selected at the same time.
 </template>
 
 <script>
-import ActionGlobalMixin from '../../mixins/actionGlobal'
-import GenRandomId from '../../utils/GenRandomId'
+import ActionGlobalMixin from '../../mixins/actionGlobal.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 export default {
 	name: 'ActionRadio',
@@ -111,6 +111,11 @@ export default {
 			default: false,
 		},
 	},
+
+	emits: [
+		'update:checked',
+		'change',
+	],
 
 	computed: {
 		/**

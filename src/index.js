@@ -19,7 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import * as NcComponents from './components'
+import * as NcComponents from './components/index.js'
 
 /**
  * @param {object} Vue The vue instance
@@ -38,6 +38,7 @@ export default {
 	install,
 	...NcComponents,
 }
-export * from './components'
-export * from './directives'
-export * from './mixins'
+export * from './components/index.js'
+export * from './directives/index.js'
+export * from './mixins/index.js'
+export * from './a11y/index.js'

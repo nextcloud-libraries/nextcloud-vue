@@ -35,14 +35,23 @@ msgstr "Awatar {displayName}, {status}"
 msgid "Cancel changes"
 msgstr "Anuluj zmiany"
 
+msgid "Change title"
+msgstr "Zmień tytuł"
+
 msgid "Choose"
 msgstr "Wybierz"
 
 msgid "Close"
 msgstr "Zamknij"
 
+msgid "Close modal"
+msgstr "Zamknij modal"
+
 msgid "Close navigation"
 msgstr "Zamknij nawigację"
+
+msgid "Close sidebar"
+msgstr "Zamknij pasek boczny"
 
 msgid "Confirm changes"
 msgstr "Potwierdź zmiany"
@@ -55,6 +64,9 @@ msgstr "Edytuj element"
 
 msgid "External documentation for {title}"
 msgstr "Dokumentacja zewnętrzna dla {title}"
+
+msgid "Favorite"
+msgstr "Ulubiony"
 
 msgid "Flags"
 msgstr "Flagi"
@@ -71,8 +83,14 @@ msgstr "Globalnie"
 msgid "Go back to the list"
 msgstr "Powrót do listy"
 
+msgid "items"
+msgstr "elementy"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Przekroczono limit wiadomości wynoszący {count} znaków"
+
+msgid "More {dashboardItemType} …"
+msgstr "Więcej {dashboardItemType}…"
 
 msgid "Next"
 msgstr "Następny"
@@ -85,6 +103,9 @@ msgstr "Brak wyników"
 
 msgid "Objects"
 msgstr "Obiekty"
+
+msgid "Open"
+msgstr "Otwórz"
 
 msgid "Open navigation"
 msgstr "Otwórz nawigację"

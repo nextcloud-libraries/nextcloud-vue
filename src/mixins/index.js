@@ -20,8 +20,8 @@
  *
  */
 
-export { default as excludeClickOutsideClasses } from './excludeClickOutsideClasses'
-export { default as isFullscreen } from './isFullscreen'
-export { default as isMobile } from './isMobile'
-export { default as richEditor } from './richEditor'
-export { default as userStatus } from './userStatus'
+export { default as excludeClickOutsideClasses } from './excludeClickOutsideClasses/index.js'
+export { default as isFullscreen } from './isFullscreen/index.js'
+export { default as isMobile } from './isMobile/index.js'
+export { default as richEditor } from './richEditor/index.js'
+export { default as userStatus } from './userStatus.js'

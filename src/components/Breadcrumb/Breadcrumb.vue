@@ -51,6 +51,7 @@ This component is meant to be used inside a Breadcrumbs component.
 		</element>
 		<Actions v-if="$slots.default"
 			ref="actions"
+			type="tertiary"
 			:force-menu="forceMenu"
 			:open="open"
 			:menu-title="title"
@@ -69,10 +70,10 @@ This component is meant to be used inside a Breadcrumbs component.
 </template>
 
 <script>
-import Actions from '../Actions'
-import GenRandomId from '../../utils/GenRandomId'
+import Actions from '../Actions/index.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
-import ChevronRight from 'vue-material-design-icons/ChevronRight'
+import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
 
 export default {
 	name: 'Breadcrumb',
@@ -132,6 +133,10 @@ export default {
 			default: false,
 		},
 	},
+	emits: [
+		'update:open',
+		'dropped',
+	],
 	data() {
 		return {
 			/**
@@ -246,7 +251,7 @@ export default {
 		font-weight: bold;
 
 		> a,
-		> a::v-deep * {
+		> a:deep(*) {
 			cursor: default;
 		}
 
@@ -297,43 +302,20 @@ export default {
 
 	// Adjust action item appearance for crumbs with actions
 	// to match other crumbs
-	&::v-deep .action-item {
+	&:deep() .action-item {
 		// Adjustments necessary to correctly shrink on small screens
 		max-width: 100%;
-		.trigger {
-			max-width: 100%;
-		}
 
-		&__menutoggle--with-title,
-		&--single--with-title {
-			// Adjustments necessary to correctly shrink on small screens
-			max-width: 100%;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-			width: 100%;
-			display: inline-block;
+		.button-vue {
+			padding: 0 4px 0 16px;
 
-			background-color: unset;
-			border: none;
-
-			&:hover,
-			&:focus,
-			&:active {
-				background-color: var(--color-background-dark) !important;
-				color: var(--color-main-text);
-			}
-
-			// Show the icon on the right
-			padding-right: 44px;
-			padding-left: 14px;
-			& > span.material-design-icon {
-				right: 0;
-				left: unset;
+			&__wrapper {
+				flex-direction: row-reverse;
 			}
 		}
+
 		// Adjust the background of the last crumb when the action is open
-		&.action-item--open .action-item__menutoggle--with-title {
+		&.action-item--open .action-item__menutoggle {
 			background-color: var(--color-background-dark);
 			color: var(--color-main-text);
 		}
