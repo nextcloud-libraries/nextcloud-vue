@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v6.0.0-beta.5](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.5) (2022-08-30)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.4...v6.0.0-beta.5)
+
+### :boom: Breaking changes
+
+- Fix emptyContent once more [\#3106](https://github.com/nextcloud/nextcloud-vue/pull/3106) ([jotoeri](https://github.com/jotoeri))
+- Fix EmptyContent Reactivity [\#3090](https://github.com/nextcloud/nextcloud-vue/pull/3090) ([jotoeri](https://github.com/jotoeri))
+
+### :rocket: Enhancements
+
+- Improve multiselect [\#3100](https://github.com/nextcloud/nextcloud-vue/pull/3100) ([CarlSchwan](https://github.com/CarlSchwan))
+- 🥛 Make app navigation semi-transparent [\#3057](https://github.com/nextcloud/nextcloud-vue/pull/3057) ([GretaD](https://github.com/GretaD))
+- Make unread counter primary colour [\#3070](https://github.com/nextcloud/nextcloud-vue/pull/3070) ([GretaD](https://github.com/GretaD))
+
+### Closed pull requests
+
+- Add aria-modal to Modal dialog [\#3113](https://github.com/nextcloud/nextcloud-vue/pull/3113) ([PVince81](https://github.com/PVince81))
+- Fix contrast of next/prev modal buttons [\#3080](https://github.com/nextcloud/nextcloud-vue/pull/3080) ([Pytal](https://github.com/Pytal))
+
 ## [v6.0.0-beta.4](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.4) (2022-08-23)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.3...v6.0.0-beta.4)
