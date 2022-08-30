@@ -20,8 +20,8 @@
  *
  */
 import ScopeComponent from '../../utils/ScopeComponent'
-import DateTimePickerNative from './DateTimePickerNative'
+import NcDateTimePickerNative from './NcDateTimePickerNative'
 
-ScopeComponent(DateTimePickerNative)
+ScopeComponent(NcDateTimePickerNative)
 
-export default DateTimePickerNative
+export default NcDateTimePickerNative

@@ -66,7 +66,7 @@ For the multiselect component, all events will be passed through. Please see the
 					@input="onInput"
 					@change="onChange" />
 
-				<DateTimePickerNative v-else-if="isNativePicker"
+				<NcDateTimePickerNative v-else-if="isNativePicker"
 					:value="value"
 					:type="isNativeDatePickerType"
 					v-bind="$attrs"
@@ -113,7 +113,7 @@ import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight'
-import DateTimePickerNative from '../DateTimePickerNative/DateTimePickerNative'
+import NcDateTimePickerNative from '../NcDateTimePickerNative/NcDateTimePickerNative'
 
 export default {
 	name: 'ActionInput',
@@ -122,7 +122,7 @@ export default {
 		ArrowRight,
 		DatetimePicker,
 		Multiselect,
-		DateTimePickerNative,
+		NcDateTimePickerNative,
 	},
 
 	mixins: [ActionGlobalMixin],
