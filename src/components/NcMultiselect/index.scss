@@ -16,24 +16,6 @@
 		z-index: 2 !important;
 	}
 
-	// active state, force the input to be shown, we don't want
-	// the placeholder or the currently selected options
-	&.multiselect--active {
-		/* Opened: force display the input */
-		input.multiselect__input {
-			opacity: $opacity_full !important;
-			cursor: text !important;
-			// remove border radius on bottom opening
-			border-radius: var(--border-radius) var(--border-radius) 0 0;
-			display: block !important;
-		}
-
-		/* multiselect__limit hidden if active */
-		.multiselect__limit {
-			display: none;
-		}
-	}
-
 	// Remove radius on top opening
 	&.multiselect--active.multiselect--above {
 		input.multiselect__input {
@@ -65,12 +47,16 @@
 		display: flex;
 		flex-wrap: nowrap;
 		overflow: hidden;
-		border: 1px solid var(--color-border-dark);
+		border: 2px solid var(--color-border-dark);
 		cursor: pointer;
 		position: relative;
-		border-radius: 3px;
-		min-height: 34px;
+		border-radius: var(--border-radius-large);
+		min-height: 44px;
 		height: 100%;
+
+		&:focus, &:hover {
+			border-color: var(--color-primary);
+		}
 
 		/* tag wrapper */
 		.multiselect__tags-wrap {
@@ -141,6 +127,7 @@
 			// Align content and make the flow smoother
 			display: flex;
 			align-items: center;
+			font-size: var(--default-font-size);
 
 			// Anything inside will trigger the select opening
 			&, * {
@@ -165,14 +152,33 @@
 			position: relative !important;
 			margin: 0;
 			opacity: 0;
-			/* let's leave it on top of tags but hide it */
-			height: 100% !important;
 			border: none;
 			/* override hide to force show the placeholder */
 			/* only when not active */
 			cursor: pointer;
 			/* override inline styling of the lib */
-			padding: 7px 6px !important;
+			padding: 7px 4px !important;
+			display: none;
+		font-size: var(--default-font-size);
+		}
+	}
+
+	// active state, force the input to be shown, we don't want
+	// the placeholder or the currently selected options
+	&.multiselect--active {
+		/* Opened: force display the input */
+		input.multiselect__input {
+			opacity: $opacity_full !important;
+			cursor: text !important;
+			// remove border radius on bottom opening
+			border-radius: var(--border-radius) var(--border-radius) 0 0;
+			display: block !important;
+			padding: 12px 15px !important;
+			height: 40px !important;
+		}
+
+		/* multiselect__limit hidden if active */
+		.multiselect__limit {
 			display: none;
 		}
 	}
