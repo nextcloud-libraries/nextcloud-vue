@@ -79,7 +79,7 @@ describe('NcActions.vue', () => {
 						default: [
 							'<NcActionButton>Test1</NcActionButton>',
 							'<NcActionButton>Test2</NcActionButton>',
-							'<NcActionButton>Test3</ActionButton>',
+							'<NcActionButton>Test3</NcActionButton>',
 						],
 					},
 					stubs: {
