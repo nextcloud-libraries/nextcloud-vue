@@ -97,6 +97,8 @@ export default {
 		:type="isPasswordHidden ? 'password' : 'text'"
 		:show-trailing-button="true"
 		:helper-text="computedHelperText"
+		:error="computedError"
+		:success="computedSuccess"
 		:minlength="rules.minlength"
 		:trailing-button-label="trailingButtonLabel"
 		v-on="$listeners"
@@ -290,16 +292,16 @@ export default {
 			isPasswordHidden: true,
 			internalHelpMessage: '',
 			passwordPolicy: defaultPasswordPolicy,
-			isValid: true,
+			isValid: null,
 		}
 	},
 
 	computed: {
 		computedError() {
-			return this.error || !this.isValid
+			return this.error || this.isValid === false
 		},
 		computedSuccess() {
-			return this.success && this.isValid
+			return this.success || this.isValid === true
 		},
 		computedHelperText() {
 			if (this.helperText.length > 0) {
@@ -358,7 +360,7 @@ export default {
 					return
 				}
 
-				this.internalHelpMessage = data.reason
+				this.internalHelpMessage = data.ocs.data.reason
 				/**
 				 * Triggers when the internal password_policy detect that the
 				 * password entered is invalid.

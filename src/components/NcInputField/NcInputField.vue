@@ -396,6 +396,8 @@ export default {
 
 		&__icon {
 			margin-right: 8px;
+			align-self: start;
+			margin-top: 4px;
 		}
 
 		&--error {
