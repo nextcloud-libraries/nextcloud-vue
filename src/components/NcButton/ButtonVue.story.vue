@@ -49,6 +49,10 @@ const types = [
 				</template>
 				Wide
 			</NcButton>
+
+			<template #controls>
+				<HstSelect v-model="state.type" :options="types" title="Type" />
+			</template>
 		</Variant>
 	</Story>
 </template>

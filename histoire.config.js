@@ -8,15 +8,6 @@ export default defineConfig({
 	],
 	theme: {
 		title: '@nextcloud/vue',
-		// favicon: '/my-favicon.svg',
-		// logo: {
-		// 	square: '/src/img/logo-square.svg',
-		// 	light: '/src/img/logo-light.svg',
-		// 	dark: '/src/img/logo-dark.svg',
-		// },
-		// colors: {
-		// 	primary: defaultColors.cyan,
-		// },
 		logoHref: 'https://github.com/nextcloud/nextcloud-vue',
 	},
 })
