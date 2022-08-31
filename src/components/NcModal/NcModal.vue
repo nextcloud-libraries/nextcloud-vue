@@ -856,7 +856,7 @@ export default {
 		height: 35vw;
 		position: absolute;
 		transition: opacity 250ms,
-		visibility 250ms;
+			visibility 250ms;
 		color: var(--color-primary-text);
 
 		&:focus-visible {
