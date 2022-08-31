@@ -37,9 +37,6 @@
 			<template #subtitle>
 				In this slot you can put both text and other components such as icons
 			</template>
-			<NcCounterBubble #counter>
-				7
-			</NcCounterBubble>
 			<template #indicator>
 				<!-- Color dot -->
 				<CheckboxBlankCircle :size="16" fill-color="#0082c9" />
@@ -69,9 +66,6 @@
 			<template #subtitle>
 				In this slot you can put both text and other components such as icons
 			</template>
-			<NcCounterBubble #counter>
-				7
-			</NcCounterBubble>
 			<template #actions>
 				<NcActionButton>
 					Button one
@@ -93,9 +87,6 @@
 			<template #subtitle>
 				In this slot you can put both text and other components such as icons
 			</template>
-			<NcCounterBubble #counter>
-				7
-			</NcCounterBubble>
 			<template #indicator>
 				<!-- Color dot -->
 				<CheckboxBlankCircle :size="16" fill-color="#0082c9"/>
@@ -122,9 +113,6 @@
 			<template #subtitle>
 				In this slot you can put both text and other components such as icons
 			</template>
-			<NcCounterBubble #counter>
-				7
-			</NcCounterBubble>
 			<template #indicator>
 				<!-- Color dot -->
 				<CheckboxBlankCircle :size="16" fill-color="#0082c9"/>
