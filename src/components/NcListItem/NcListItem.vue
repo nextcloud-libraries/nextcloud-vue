@@ -21,102 +21,127 @@
 <docs>
 
 ### Default Usage
-```
-<ul>
-	<NcListItem
-		:title="'Title of the element'"
-		:bold="false"
-		:details="'1h'"
-		:counter-number="44"
-		counterType="highlighted">
-		<template #icon>
-			<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
-		</template>
-		<template #subtitle>
-			In this slot you can put both text and other components such as icons
-		</template>
-		<NcCounterBubble #counter>
-			7
-		</NcCounterBubble>
-		<template #actions>
-			<NcActionButton>
-				Button one
-			</NcActionButton>
-			<NcActionButton>
-				Button two
-			</NcActionButton>
-			<NcActionButton>
-				Button three
-			</NcActionButton>
-		</template>
-	</NcListItem>
-	<NcListItem
-		:title="'Title of the element'"
-		:bold="false"
-		:force-display-actions="true"
-		:details="'1h'"
-		:counter-number="44"
-		counterType="highlighted">
-		<template #icon>
-			<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
-		</template>
-		<template #subtitle>
-			In this slot you can put both text and other components such as icons
-		</template>
-		<NcCounterBubble #counter>
-			7
-		</NcCounterBubble>
-		<template #actions>
-			<NcActionButton>
-				Button one
-			</NcActionButton>
-			<NcActionButton>
-				Button two
-			</NcActionButton>
-			<NcActionButton>
-				Button three
-			</NcActionButton>
-		</template>
-	</NcListItem>
-	<NcListItem
-		:title="'Title of the element'"
-		:bold="false">
-		<template #icon>
-			<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
-		</template>
-		<template #subtitle>
-			In this slot you can put both text and other components such as icons
-		</template>
-		<NcCounterBubble #counter>
-			7
-		</NcCounterBubble>
-		<template #actions>
-			<NcActionButton>
-				Button one
-			</NcActionButton>
-			<NcActionButton>
-				Button two
-			</NcActionButton>
-			<NcActionButton>
-				Button three
-			</NcActionButton>
-		</template>
-	</NcListItem>
-	<NcListItem
-		:title="'Title of the element'"
-		:bold="false"
-		:details="'1h'">
-		<template #icon>
-			<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
-		</template>
-		<template #subtitle>
-			In this slot you can put both text and other components such as icons
-		</template>
-		<NcCounterBubble #counter>
-			7
-		</NcCounterBubble>
-	</NcListItem>
-</ul>
+
+```vue
+<template>
+	<ul>
+		<NcListItem
+			:title="'Title of the element'"
+			:bold="false"
+			:details="'1h'"
+			:counter-number="44"
+			counterType="highlighted">
+			<template #icon>
+				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
+			</template>
+			<template #subtitle>
+				In this slot you can put both text and other components such as icons
+			</template>
+			<NcCounterBubble #counter>
+				7
+			</NcCounterBubble>
+			<template #indicator>
+				<!-- Color dot -->
+				<CheckboxBlankCircle :size="16" fill-color="#0082c9" />
+			</template>
+			<template #actions>
+				<NcActionButton>
+					Button one
+				</NcActionButton>
+				<NcActionButton>
+					Button two
+				</NcActionButton>
+				<NcActionButton>
+					Button three
+				</NcActionButton>
+			</template>
+		</NcListItem>
+		<NcListItem
+			:title="'Title of the element'"
+			:bold="false"
+			:force-display-actions="true"
+			:details="'1h'"
+			:counter-number="44"
+			counterType="highlighted">
+			<template #icon>
+				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
+			</template>
+			<template #subtitle>
+				In this slot you can put both text and other components such as icons
+			</template>
+			<NcCounterBubble #counter>
+				7
+			</NcCounterBubble>
+			<template #actions>
+				<NcActionButton>
+					Button one
+				</NcActionButton>
+				<NcActionButton>
+					Button two
+				</NcActionButton>
+				<NcActionButton>
+					Button three
+				</NcActionButton>
+			</template>
+		</NcListItem>
+		<NcListItem
+			:title="'Title of the element'"
+			:bold="false">
+			<template #icon>
+				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
+			</template>
+			<template #subtitle>
+				In this slot you can put both text and other components such as icons
+			</template>
+			<NcCounterBubble #counter>
+				7
+			</NcCounterBubble>
+			<template #indicator>
+				<!-- Color dot -->
+				<CheckboxBlankCircle :size="16" fill-color="#0082c9"/>
+			</template>
+			<template #actions>
+				<NcActionButton>
+					Button one
+				</NcActionButton>
+				<NcActionButton>
+					Button two
+				</NcActionButton>
+				<NcActionButton>
+					Button three
+				</NcActionButton>
+			</template>
+		</NcListItem>
+		<NcListItem
+			:title="'Title of the element'"
+			:bold="false"
+			:details="'1h'">
+			<template #icon>
+				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
+			</template>
+			<template #subtitle>
+				In this slot you can put both text and other components such as icons
+			</template>
+			<NcCounterBubble #counter>
+				7
+			</NcCounterBubble>
+			<template #indicator>
+				<!-- Color dot -->
+				<CheckboxBlankCircle :size="16" fill-color="#0082c9"/>
+			</template>
+		</NcListItem>
+	</ul>
+</template>
+
+<script>
+	import CheckboxBlankCircle from 'vue-material-design-icons/CheckboxBlankCircle'
+
+	export default {
+		components: {
+			CheckboxBlankCircle,
+		}
+	}
+</script>
 
 ```
 
@@ -233,12 +258,18 @@
 								<slot name="subtitle" />
 							</span>
 
-							<!-- Counter -->
-							<span v-if="showCounter" class="line-two__counter">
+							<!-- Counter and indicator -->
+							<span v-if="showAdditionalElements" class="line-two__additional_elements">
 								<NcCounterBubble v-if="counterNumber != 0"
+									class="line-two__counter"
 									:type="counterType">
 									{{ counterNumber }}
 								</NcCounterBubble>
+
+								<span v-if="hasIndicator" class="line-two__indicator">
+									<!-- @slot This slot is used for some indicator in form of icon -->
+									<slot name="indicator" />
+								</span>
 							</span>
 						</div>
 					</div>
@@ -419,6 +450,7 @@ export default {
 			hasSubtitle: false,
 			displayActionsOnHoverFocus: false,
 			menuOpen: false,
+			hasIndicator: false,
 		}
 	},
 
@@ -448,7 +480,7 @@ export default {
 			return !this.hasSubtitle && !this.showDetails
 		},
 
-		showCounter() {
+		showAdditionalElements() {
 			return !this.displayActionsOnHoverFocus || this.forceDisplayActions
 		},
 
@@ -550,6 +582,9 @@ export default {
 			}
 			if (this.hasSubtitle !== !!this.$slots.subtitle) {
 				this.hasSubtitle = !!this.$slots.subtitle
+			}
+			if (this.hasIndicator !== !!this.$slots.indicator) {
+				this.hasIndicator = !!this.$slots.indicator
 			}
 		},
 	},
@@ -672,8 +707,14 @@ export default {
 		color: var(--color-text-lighter);
 	}
 
-	&__counter {
+	&__additional_elements {
 		margin: 2px 4px 0 4px;
+		display: flex;
+		align-items: center;
+	}
+
+	&__indicator {
+		margin: 0 5px;
 	}
 }
 
