@@ -101,9 +101,9 @@ export default {
 		:success="computedSuccess"
 		:minlength="rules.minlength"
 		:trailing-button-label="trailingButtonLabel"
+		:disabled="disabled"
 		v-on="$listeners"
 		@trailing-button-click="togglePasswordVisibility"
-		:disabled="disabled"
 		@input="handleInput">
 		<!-- Default slot for the leading icon -->
 		<slot />
@@ -278,6 +278,24 @@ export default {
 		disabled: {
 			type: Boolean,
 			default: false,
+		},
+
+		/**
+		 * Mark the password field as required
+		 */
+		required: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Name of the text field
+		 *
+		 * This is the key that will be send when sending a form
+		 */
+		name: {
+			type: String,
+			default: undefined,
 		},
 	},
 

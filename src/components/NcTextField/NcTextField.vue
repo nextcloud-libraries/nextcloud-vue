@@ -273,6 +273,107 @@ export default {
 			type: String,
 			default: '',
 		},
+
+		/**
+		 * Disable the text field
+		 */
+		disabled: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Name of the text field
+		 *
+		 * This is the key that will be send when sending a form
+		 */
+		name: {
+			type: String,
+			default: undefined,
+		},
+
+		/**
+		 * Helps the browser identify the type of text field and to provide
+		 * better autocompletion.
+		 */
+		autocomplete: {
+			type: String,
+			validator: (value) => [
+				'on',
+				'off',
+				'name',
+				'honorific-prefix',
+				'given-name',
+				'additional-name',
+				'family-name',
+				'honorific-suffix',
+				'nickname',
+				'email',
+				'username',
+				'organization-title',
+				'organization',
+				'street-address',
+				'address-line1',
+				'address-line2',
+				'address-line3',
+				'address-level4',
+				'address-level3',
+				'address-level2',
+				'address-level1',
+				'country',
+				'country-name',
+				'postal-code',
+				'cc-name',
+				'cc-given-name',
+				'cc-additional-name',
+				'cc-family-name',
+				'cc-number',
+				'cc-exp',
+				'language',
+				'bday',
+				'bday-day',
+				'bday-month',
+				'bday-year',
+				'sex',
+				'tel',
+				'impp',
+				'url',
+				'photo',
+			].includes(value),
+			default: 'on',
+		},
+
+		/**
+		 * Define hows the mobile browser should capitalize the text input
+		 */
+		autocapitalize: {
+			type: String,
+			default: 'sentences',
+			validator: (value) => [
+				'none',
+				'off',
+				'on',
+				'sentences',
+				'words',
+				'characters',
+			].includes(value),
+		},
+
+		/**
+		 * Allow to disable spellchecking
+		 */
+		spellcheck: {
+			type: Boolean,
+			default: true,
+		},
+
+		/**
+		 * Mark the text field as required
+		 */
+		required: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	emits: [
