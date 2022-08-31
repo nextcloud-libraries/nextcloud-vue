@@ -263,7 +263,7 @@ include a standard-header like it's used by the files app.
 
 			<NcEmptyContent v-if="loading">
 				<template #icon>
-					<LoadingIcon :size="64" />
+					<NcLoadingIcon :size="64" />
 				</template>
 			</NcEmptyContent>
 		</aside>
