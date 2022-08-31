@@ -215,7 +215,7 @@
 						:class="{ 'list-item-content__main--oneline': oneLine }">
 
 						<!-- First line, title and details -->
-						<div class="line-one">
+						<div v-if="!$slots.indicator" class="line-one">
 							<span class="line-one__title">
 								{{ title }}
 							</span>
@@ -240,6 +240,17 @@
 									{{ counterNumber }}
 								</NcCounterBubble>
 							</span>
+						</div>
+					</div>
+
+					<div v-if="$slots.indicator && showDetails" class="list-item-content__secondary">
+						<span class="line-one__details">
+							{{ details }}
+						</span>
+						<!-- List item indicator -->
+						<div class="list-item-indicator">
+							<!-- @slot This slot is used for the icon as indicator of the list item -->
+							<slot name="indicator" />
 						</div>
 					</div>
 
