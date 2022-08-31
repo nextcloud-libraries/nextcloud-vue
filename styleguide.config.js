@@ -16,7 +16,7 @@ module.exports = {
 	require: [
 		path.join(__dirname, 'styleguide/global.requires.js'),
 		path.join(__dirname, 'styleguide/assets/icons.css'),
-		path.join(__dirname, 'styleguide/assets/additional.scss'),
+		path.join(__dirname, 'styleguide/assets/additional.css'),
 	],
 	pagePerSection: true,
 	minimize: true,

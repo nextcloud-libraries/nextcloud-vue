@@ -23,14 +23,13 @@
 import { mount } from '@cypress/vue'
 import sanitize from 'sanitize-filename'
 
-// import Vue from 'vue'
 import NcAppSidebar from '../../../../src/components/NcAppSidebar/NcAppSidebar.vue'
 import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'
 
-// // Server CSS styles
-import '../../../../styleguide/assets/server.css'
+// Server CSS styles
 import '../../../../styleguide/assets/icons.css'
-import '../../../../styleguide/assets/variables.css'
+import '../../../../styleguide/assets/additional.css'
+
 /**
  * We need this custom style because we run the AppSidebar component without a Content component,
  * which applies this rule:
