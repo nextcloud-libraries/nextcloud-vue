@@ -570,7 +570,9 @@ export default {
 	flex: 0 0 auto;
 	justify-content: flex-start;
 	padding: 8px;
-	border-radius: var(--border-radius-pill);
+	// Fix for border-radius being too large for 3-line entries like in Mail
+	// 44px avatar size / 2 + 8px padding, and 2px for better visual quality
+	border-radius: 32px;
 	margin: 2px 0;
 	width: 100%;
 	cursor: pointer;
