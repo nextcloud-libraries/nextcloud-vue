@@ -20,6 +20,4 @@
  *
  */
 
-import NcButton from './NcButton.vue'
-
-export default NcButton
+export { default } from './NcButton.vue'

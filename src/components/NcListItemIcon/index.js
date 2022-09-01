@@ -20,6 +20,4 @@
  *
  */
 
-import NcListItemIcon from './NcListItemIcon.vue'
-
-export default NcListItemIcon
+export { default } from './NcListItemIcon.vue'

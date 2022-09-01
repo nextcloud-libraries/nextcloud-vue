@@ -20,6 +20,4 @@
  *
  */
 
-import NcAppSettingsSection from './NcAppSettingsSection.vue'
-
-export default NcAppSettingsSection
+export { default } from './NcAppSettingsSection.vue'

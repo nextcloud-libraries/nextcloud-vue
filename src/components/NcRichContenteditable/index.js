@@ -20,6 +20,4 @@
  *
  */
 
-import NcRichContenteditable from './NcRichContenteditable.vue'
-
-export default NcRichContenteditable
+export { default } from './NcRichContenteditable.vue'

@@ -19,6 +19,5 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import NcActions from './NcActions.vue'
 
-export default NcActions
+export { default } from './NcActions.vue'

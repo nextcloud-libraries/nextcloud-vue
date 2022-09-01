@@ -19,6 +19,5 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import NcActionButton from './NcActionButton.vue'
 
-export default NcActionButton
+export { default } from './NcActionButton.vue'

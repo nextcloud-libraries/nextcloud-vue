@@ -20,6 +20,4 @@
  *
  */
 
-import NcCounterBubble from './NcCounterBubble.vue'
-
-export default NcCounterBubble
+export { default } from './NcCounterBubble.vue'

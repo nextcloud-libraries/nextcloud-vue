@@ -19,6 +19,5 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import NcAppNavigationIconBullet from './NcAppNavigationIconBullet.vue'
 
-export default NcAppNavigationIconBullet
+export { default } from './NcAppNavigationIconBullet.vue'

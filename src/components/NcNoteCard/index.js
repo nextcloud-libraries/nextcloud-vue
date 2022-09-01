@@ -19,6 +19,5 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import NcNoteCard from './NcNoteCard.vue'
 
-export default NcNoteCard
+export { default } from './NcNoteCard.vue'

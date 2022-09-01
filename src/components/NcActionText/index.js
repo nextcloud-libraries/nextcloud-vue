@@ -19,6 +19,5 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import NcActionText from './NcActionText.vue'
 
-export default NcActionText
+export { default } from './NcActionText.vue'

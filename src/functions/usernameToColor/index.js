@@ -20,6 +20,4 @@
  *
  */
 
-import usernameToColor from './usernameToColor.js'
-
-export default usernameToColor
+export { default } from './usernameToColor.js'

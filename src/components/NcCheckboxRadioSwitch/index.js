@@ -20,6 +20,4 @@
  *
  */
 
-import NcCheckboxRadioSwitch from './NcCheckboxRadioSwitch.vue'
-
-export default NcCheckboxRadioSwitch
+export { default } from './NcCheckboxRadioSwitch.vue'

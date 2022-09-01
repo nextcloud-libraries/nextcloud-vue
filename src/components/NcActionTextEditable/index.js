@@ -19,6 +19,5 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import NcActionTextEditable from './NcActionTextEditable.vue'
 
-export default NcActionTextEditable
+export { default } from './NcActionTextEditable.vue'

@@ -19,6 +19,5 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import NcActionLink from './NcActionLink.vue'
 
-export default NcActionLink
+export { default } from './NcActionLink.vue'

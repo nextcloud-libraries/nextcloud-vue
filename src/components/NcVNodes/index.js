@@ -20,6 +20,4 @@
  *
  */
 
-import NcVNodes from './NcVNodes.vue'
-
-export default NcVNodes
+export { default } from './NcVNodes.vue'

@@ -19,6 +19,5 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import NcSettingsSection from './NcSettingsSection.vue'
 
-export default NcSettingsSection
+export { default } from './NcSettingsSection.vue'

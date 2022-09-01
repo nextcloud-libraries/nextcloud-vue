@@ -19,6 +19,5 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import NcAppNavigationItem from './NcAppNavigationItem.vue'
 
-export default NcAppNavigationItem
+export { default } from './NcAppNavigationItem.vue'

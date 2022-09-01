@@ -20,6 +20,4 @@
  *
  */
 
-import NcUserBubble from './NcUserBubble.vue'
-
-export default NcUserBubble
+export { default } from './NcUserBubble.vue'

@@ -20,6 +20,4 @@
  *
  */
 
-import NcAvatar from './NcAvatar.vue'
-
-export default NcAvatar
+export { default } from './NcAvatar.vue'

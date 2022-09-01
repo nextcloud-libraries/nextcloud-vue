@@ -20,6 +20,4 @@
  *
  */
 
-import NcHighlight from './NcHighlight.vue'
-
-export default NcHighlight
+export { default } from './NcHighlight.vue'

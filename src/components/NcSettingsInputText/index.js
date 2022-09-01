@@ -19,6 +19,5 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import NcSettingsInputText from './NcSettingsInputText.vue'
 
-export default NcSettingsInputText
+export { default } from './NcSettingsInputText.vue'

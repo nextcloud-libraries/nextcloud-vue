@@ -20,6 +20,4 @@
  *
  */
 
-import NcBreadcrumbs from './NcBreadcrumbs.vue'
-
-export default NcBreadcrumbs
+export { default } from './NcBreadcrumbs.vue'
