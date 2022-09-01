@@ -87,7 +87,9 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 		:arrow-padding="10"
 		v-bind="$attrs"
 		:popper-class="popoverBaseClass"
-		v-on="$listeners">
+		v-on="$listeners"
+		@apply-show="afterShow"
+		@apply-hide="afterHide">
 		<!-- This will be the popover target (for the events and position) -->
 		<slot name="trigger" />
 		<!-- This will be the content of the popover -->
@@ -125,24 +127,6 @@ export default {
 		'after-show',
 		'after-hide',
 	],
-
-	mounted() {
-		this.$watch(
-			() => {
-				// required because v-tooltip doesn't provide events
-				// and @show is too early
-				// see https://github.com/Akryum/v-tooltip/issues/661
-				return this.$refs.popover.$refs.popper.isShown
-			},
-			(val) => {
-				if (val) {
-					this.afterShow()
-				} else {
-					this.afterHide()
-				}
-			}
-		)
-	},
 
 	beforeDestroy() {
 		this.clearFocusTrap()
