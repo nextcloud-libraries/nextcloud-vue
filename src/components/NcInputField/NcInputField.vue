@@ -24,14 +24,13 @@
 		<label v-if="!labelOutside && label !== undefined"
 			class="input-field__label"
 			:class="{ 'input-field__label--hidden': !labelVisible }"
-			:for="inputName">
+			:for="computedId">
 			{{ label }}
 		</label>
 		<div class="input-field__main-wrapper">
 			<input v-bind="$attrs"
 				:id="computedId"
 				ref="input"
-				:name="inputName"
 				class="input-field__input"
 				:type="type"
 				:disabled="disabled"
