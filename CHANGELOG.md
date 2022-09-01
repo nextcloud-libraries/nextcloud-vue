@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.0.0-beta.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.0) (2022-09-01)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.6...v7.0.0-beta.0)
+
+### :boom: Breaking changes
+
+- This component library release requires Nextcloud 25 or later
+- We changed the container layout to adapt to the design changes with Nextcloud 25
+- The body is no longer the main scroll area but instead the app content
+	- Please do careful testing of your user interface, especially in regards to the following components and scroll behaviour:
+		- NcContent
+		- NcAppNavigation
+		- NcAppContent
+		- NcAppSidebar
+
+#### Migration guide
+
+- Scroll listeners need to be adapted to watch for the scroll on the NcAppContent container instead of the main document
+- If you are using sticky headers in your app you might need to adjust the css top property as the app content container is now the scrollable element. For any contained sticky that had a header height top spacing before you should be able to set that to 0
+
+
 ## [v6.0.0-beta.6](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.6) (2022-09-01)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.5...v6.0.0-beta.6)
