@@ -1,5 +1,5 @@
 /**
- * @copyright 2022 Christopher Ng <chrng8@gmail.com>
+ * @copyright 2022 Raimund Schlüßler <raimund.schluessler@mailbox.org>
  *
  * @author Christopher Ng <chrng8@gmail.com>
  *
