@@ -200,10 +200,10 @@
 <template>
 	<!-- This wrapper can be either a router link or a `<li>` -->
 	<nav-element class="list-item__wrapper"
+		:class="{ 'list-item__wrapper--active' : active }"
 		v-bind="navElement">
 		<a :id="anchorId"
 			ref="list-item"
-			:class="{ 'list-item--active' : active }"
 			:href="href"
 			:target="href === '#' ? undefined : '_blank'"
 			:rel="href === '#' ? undefined : 'noopener noreferrer'"
@@ -581,9 +581,17 @@ export default {
 
 <style lang="scss" scoped>
 
-.list-item__wrapper{
+.list-item__wrapper {
 	position: relative;
 	width: 100%;
+
+	&--active,
+	&:active,
+	&.active {
+		.list-item {
+			background-color: var(--color-primary-light);
+		}
+	}
 }
 
 // NcListItem
@@ -602,11 +610,6 @@ export default {
 	&:hover,
 	&:focus {
 		background-color: var(--color-background-hover);
-	}
-	&--active,
-	&:active,
-	&:active ~ .app-navigation-entry__utils {
-		background-color: var(--color-primary-light);
 	}
 
 	&-content__wrapper {
