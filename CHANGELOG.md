@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v6.0.0-beta.6](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.6) (2022-09-01)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.5...v6.0.0-beta.6)
+
+### :rocket: Enhancements
+
+- Make the app content list 300px min [\#3142](https://github.com/nextcloud/nextcloud-vue/pull/3142) ([ChristophWurst](https://github.com/ChristophWurst))
+
+### :bug: Fixed bugs
+
+- Ensure proper actions menu styling [\#3111](https://github.com/nextcloud/nextcloud-vue/pull/3111) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
+### Closed pull requests
+
+- Simplify exports [\#3141](https://github.com/nextcloud/nextcloud-vue/pull/3141) ([Pytal](https://github.com/Pytal))
+- Improve text fields [\#3140](https://github.com/nextcloud/nextcloud-vue/pull/3140) ([CarlSchwan](https://github.com/CarlSchwan))
+- Remove unused \#counter template from ListItem docs [\#3137](https://github.com/nextcloud/nextcloud-vue/pull/3137) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Polish password field component [\#3135](https://github.com/nextcloud/nextcloud-vue/pull/3135) ([CarlSchwan](https://github.com/CarlSchwan))
+- Add slot for dot indicator in NcListItem.vue [\#3132](https://github.com/nextcloud/nextcloud-vue/pull/3132) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+- Add missing tab in NcModal CSS [\#3130](https://github.com/nextcloud/nextcloud-vue/pull/3130) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Use correct Nc components prefix everywhere [\#3122](https://github.com/nextcloud/nextcloud-vue/pull/3122) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Update variables.css from nextcloud server [\#3112](https://github.com/nextcloud/nextcloud-vue/pull/3112) ([vinicius73](https://github.com/vinicius73))
+
+
 ## [v6.0.0-beta.5](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.5) (2022-08-30)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.4...v6.0.0-beta.5)
