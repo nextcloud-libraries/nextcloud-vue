@@ -367,7 +367,7 @@ export default {
 		transition: none;
 
 		&-list {
-			min-width: 200px;
+			min-width: 300px;
 			position: sticky;
 			top: var(--header-height);
 
