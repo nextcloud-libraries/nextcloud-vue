@@ -1003,6 +1003,7 @@ export default {
 						boundary: this.boundariesElement,
 						container: this.container,
 						popoverBaseClass: 'action-item__popper',
+						noAutoFocus: true,
 					},
 					// For some reason the popover component
 					// does not react to props given under the 'props' key,
@@ -1015,6 +1016,7 @@ export default {
 						boundary: this.boundariesElement,
 						container: this.container,
 						popoverBaseClass: 'action-item__popper',
+						noAutoFocus: true,
 					},
 					on: {
 						show: this.openMenu,
