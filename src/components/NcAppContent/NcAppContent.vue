@@ -71,7 +71,7 @@ The list size must be between the min and the max width value.
 </docs>
 
 <template>
-	<main id="app-content-vue" class="app-content no-snapper">
+	<main id="app-content-vue" class="app-content no-snapper" :class="{ 'app-content--has-list': hasList }">
 		<template v-if="hasList">
 			<!-- Mobile view does not allow resizeable panes -->
 			<div v-if="isMobile"
@@ -323,18 +323,27 @@ export default {
 <style lang="scss" scoped>
 
 .app-content {
-	position: relative;
+	position: initial;
 	z-index: 1000;
 	flex-basis: 100vw;
-	min-width: 0;
-	min-height: 100%;
+	height: 100%;
 	// Overriding server styles TODO: cleanup!
 	margin: 0 !important;
 	background-color: var(--color-main-background);
 
+	&:not(.app-content--has-list) {
+		overflow: auto;
+	}
+
 	// Variables
 	// the whitespace between the topbar content and its edges
 	--topbar-margin: $topbar-margin;
+}
+
+.app-content-wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
 }
 
 // Mobile list/details handling
@@ -377,7 +386,7 @@ export default {
 		}
 
 		&-details {
-			overflow-y: scroll;
+			overflow-y: auto;
 
 			@media only screen and (max-width: $breakpoint-mobile) {
 				min-width: 100%;

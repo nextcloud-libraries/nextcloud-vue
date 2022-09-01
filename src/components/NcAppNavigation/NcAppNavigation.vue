@@ -142,14 +142,13 @@ export default {
 	will-change: transform;
 	transition: transform var(--animation-quick), margin var(--animation-quick);
 	width: $navigation-width;
-	position: sticky;
-	position: -webkit-sticky;
-	top: $header-height;
+	position: relative;
+	top: 0;
 	left: 0;
 	padding: 4px;
 	// Above appcontent
 	z-index: 1800;
-	height: calc(100vh - #{$header-height});
+	height: 100%;
 	box-sizing: border-box;
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -162,9 +161,10 @@ export default {
 	background-color:  var(--color-main-background-blur, var(--color-main-background));
 	-webkit-backdrop-filter: var(--filter-background-blur, none);
 	backdrop-filter: var(--filter-background-blur, none);
+
 	&--close {
-		margin-left: - $navigation-width;
 		transform: translateX(-100%);
+		position: absolute;
 	}
 
 	//list of navigation items
@@ -184,7 +184,7 @@ export default {
 // When on mobile, we make the navigation slide over the appcontent
 @media only screen and (max-width: $breakpoint-mobile) {
 	.app-navigation:not(.app-navigation--close) {
-		margin-left: - $navigation-width;
+		position: absolute;
 	}
 }
 
