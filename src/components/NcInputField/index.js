@@ -20,6 +20,4 @@
  *
  */
 
-import NcInputField from './NcInputField.vue'
-
-export default NcInputField
+export { default } from './NcInputField.vue'

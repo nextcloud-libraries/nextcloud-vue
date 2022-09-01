@@ -18,6 +18,5 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import NcEmojiPicker from './NcEmojiPicker.vue'
 
-export default NcEmojiPicker
+export { default } from './NcEmojiPicker.vue'

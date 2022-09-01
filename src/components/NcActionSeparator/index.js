@@ -19,6 +19,5 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import NcActionSeparator from './NcActionSeparator.vue'
 
-export default NcActionSeparator
+export { default } from './NcActionSeparator.vue'

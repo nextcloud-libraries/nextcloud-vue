@@ -20,6 +20,4 @@
  *
  */
 
-import NcAppNavigationCounter from './NcAppNavigationCounter.vue'
-
-export default NcAppNavigationCounter
+export { default } from './NcAppNavigationCounter.vue'

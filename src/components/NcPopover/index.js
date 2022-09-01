@@ -20,6 +20,4 @@
  *
  */
 
-import NcPopover from './NcPopover.vue'
-
-export default NcPopover
+export { default } from './NcPopover.vue'

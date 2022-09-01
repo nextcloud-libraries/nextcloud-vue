@@ -20,6 +20,4 @@
  *
  */
 
-import NcProgressBar from './NcProgressBar.vue'
-
-export default NcProgressBar
+export { default } from './NcProgressBar.vue'

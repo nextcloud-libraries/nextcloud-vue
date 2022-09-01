@@ -18,6 +18,5 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import NcAppSidebarTab from './NcAppSidebarTab.vue'
 
-export default NcAppSidebarTab
+export { default } from './NcAppSidebarTab.vue'

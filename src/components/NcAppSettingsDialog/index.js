@@ -20,6 +20,4 @@
  *
  */
 
-import NcAppSettingsDialog from './NcAppSettingsDialog.vue'
-
-export default NcAppSettingsDialog
+export { default } from './NcAppSettingsDialog.vue'

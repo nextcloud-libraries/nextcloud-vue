@@ -20,6 +20,4 @@
  *
  */
 
-import NcPasswordField from './NcPasswordField.vue'
-
-export default NcPasswordField
+export { default } from './NcPasswordField.vue'

@@ -19,6 +19,5 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import NcActionRadio from './NcActionRadio.vue'
 
-export default NcActionRadio
+export { default } from './NcActionRadio.vue'

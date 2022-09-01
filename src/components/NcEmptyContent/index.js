@@ -19,6 +19,5 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import NcEmptyContent from './NcEmptyContent.vue'
 
-export default NcEmptyContent
+export { default } from './NcEmptyContent.vue'

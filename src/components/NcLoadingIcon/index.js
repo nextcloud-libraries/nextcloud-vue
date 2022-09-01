@@ -20,6 +20,4 @@
  *
  */
 
-import NcLoadingIcon from './NcLoadingIcon.vue'
-
-export default NcLoadingIcon
+export { default } from './NcLoadingIcon.vue'

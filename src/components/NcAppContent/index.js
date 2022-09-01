@@ -18,6 +18,5 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import NcAppContent from './NcAppContent.vue'
 
-export default NcAppContent
+export { default } from './NcAppContent.vue'

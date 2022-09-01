@@ -20,6 +20,4 @@
  *
  */
 
-import NcColorPicker from './NcColorPicker.vue'
-
-export default NcColorPicker
+export { default } from './NcColorPicker.vue'
