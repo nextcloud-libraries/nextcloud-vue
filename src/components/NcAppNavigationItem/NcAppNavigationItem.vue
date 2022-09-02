@@ -111,108 +111,111 @@ Just set the `pinned` prop.
 </docs>
 
 <template>
-	<li :id="id"
-		:class="{
-			'app-navigation-entry--opened': opened,
-			'app-navigation-entry--pinned': pinned,
-			'app-navigation-entry--collapsible': collapsible,
-		}"
-		class="app-navigation-entry-wrapper"
-		@mouseover="handleMouseover"
-		@mouseleave="handleMouseleave">
-		<nav-element v-bind="navElement"
+	<router-link :to="to"
+		v-slot="{ navigate, isActive }"
+		custom>
+		<li :id="id"
 			:class="{
-				'app-navigation-entry--no-icon': !isIconShown,
-				'app-navigation-entry--editing': editingActive,
-				'app-navigation-entry--deleted': undo,
-				'active': isActive,
+				'app-navigation-entry--opened': opened,
+				'app-navigation-entry--pinned': pinned,
+				'app-navigation-entry--collapsible': collapsible,
 			}"
-			class="app-navigation-entry">
-			<!-- Icon and title -->
-			<a v-if="!undo"
-				class="app-navigation-entry-link"
-				:aria-description="ariaDescription"
-				href="#"
-				:aria-expanded="opened.toString()"
-				@focus="handleFocus"
-				@blur="handleBlur"
-				@keydown.tab.exact="handleTab"
-				@keydown.esc="hideActions"
-				@click="onClick">
+			class="app-navigation-entry-wrapper"
+			@mouseover="handleMouseover"
+			@mouseleave="handleMouseleave">
+			<div :class="{
+					'app-navigation-entry--no-icon': !isIconShown,
+					'app-navigation-entry--editing': editingActive,
+					'app-navigation-entry--deleted': undo,
+					'active': (to && isActive),
+				}"
+				class="app-navigation-entry">
+				<!-- Icon and title -->
+				<a v-if="!undo"
+					class="app-navigation-entry-link"
+					:aria-description="ariaDescription"
+					href="#"
+					:aria-expanded="opened.toString()"
+					@focus="handleFocus"
+					@blur="handleBlur"
+					@keydown.tab.exact="handleTab"
+					@keydown.esc="hideActions"
+					@click="($event) => onClick($event, navigate)">
 
-				<!-- icon if not collapsible -->
-				<!-- never show the icon over the collapsible if mobile -->
-				<div :class="{ [icon]: icon && isIconShown }"
-					class="app-navigation-entry-icon">
-					<NcLoadingIcon v-if="loading" />
-					<slot v-else-if="isIconShown" name="icon" />
-				</div>
-				<span v-if="!editingActive" class="app-navigation-entry__title" :title="title">
-					{{ title }}
-				</span>
-				<div v-if="editingActive" class="editingContainer">
-					<NcInputConfirmCancel ref="editingInput"
-						v-model="editingValue"
-						:placeholder="editPlaceholder !== '' ? editPlaceholder : title"
-						@cancel="cancelEditing"
-						@confirm="handleEditingDone" />
-				</div>
-			</a>
+					<!-- icon if not collapsible -->
+					<!-- never show the icon over the collapsible if mobile -->
+					<div :class="{ [icon]: icon && isIconShown }"
+						class="app-navigation-entry-icon">
+						<NcLoadingIcon v-if="loading" />
+						<slot v-else-if="isIconShown" name="icon" />
+					</div>
+					<span v-if="!editingActive" class="app-navigation-entry__title" :title="title">
+						{{ title }}
+					</span>
+					<div v-if="editingActive" class="editingContainer">
+						<NcInputConfirmCancel ref="editingInput"
+							v-model="editingValue"
+							:placeholder="editPlaceholder !== '' ? editPlaceholder : title"
+							@cancel="cancelEditing"
+							@confirm="handleEditingDone" />
+					</div>
+				</a>
 
-			<NcAppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
-			<!-- undo entry -->
-			<div v-if="undo" class="app-navigation-entry__deleted">
-				<div class="app-navigation-entry__deleted-description">
-					{{ title }}
+				<NcAppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
+				<!-- undo entry -->
+				<div v-if="undo" class="app-navigation-entry__deleted">
+					<div class="app-navigation-entry__deleted-description">
+						{{ title }}
+					</div>
 				</div>
-			</div>
 
-			<!-- Counter and Actions -->
-			<div v-if="hasUtils && !editingActive" class="app-navigation-entry__utils">
-				<div v-if="$slots.counter && (!displayActionsOnHoverFocus || forceDisplayActions)"
-					class="app-navigation-entry__counter-wrapper">
-					<slot name="counter" />
-				</div>
-				<NcActions v-show="displayActionsOnHoverFocus || forceDisplayActions"
-					ref="actions"
-					menu-align="right"
-					:container="'#' + id"
-					:placement="menuPlacement"
-					:open="menuOpen"
-					:force-menu="forceMenu"
-					:default-icon="menuIcon"
-					@update:open="onMenuToggle">
-					<template #icon>
-						<!-- @slot Slot for the custom menu icon -->
-						<slot name="menu-icon" />
-					</template>
-					<NcActionButton v-if="editable && !editingActive"
-						:aria-label="editButtonAriaLabel"
-						@click="handleEdit">
+				<!-- Counter and Actions -->
+				<div v-if="hasUtils && !editingActive" class="app-navigation-entry__utils">
+					<div v-if="$slots.counter && (!displayActionsOnHoverFocus || forceDisplayActions || (to && isActive))"
+						class="app-navigation-entry__counter-wrapper">
+						<slot name="counter" />
+					</div>
+					<NcActions v-show="displayActionsOnHoverFocus || forceDisplayActions || (to && isActive)"
+						ref="actions"
+						menu-align="right"
+						:container="'#' + id"
+						:placement="menuPlacement"
+						:open="menuOpen"
+						:force-menu="forceMenu"
+						:default-icon="menuIcon"
+						@update:open="onMenuToggle">
 						<template #icon>
-							<Pencil :size="20" />
+							<!-- @slot Slot for the custom menu icon -->
+							<slot name="menu-icon" />
 						</template>
-						{{ editLabel }}
-					</NcActionButton>
-					<NcActionButton v-if="undo"
-						:aria-label="undoButtonAriaLabel"
-						@click="handleUndo">
-						<template #icon>
-							<Undo :size="20" />
-						</template>
-					</NcActionButton>
-					<slot name="actions" />
-				</NcActions>
-			</div>
+						<NcActionButton v-if="editable && !editingActive"
+							:aria-label="editButtonAriaLabel"
+							@click="handleEdit">
+							<template #icon>
+								<Pencil :size="20" />
+							</template>
+							{{ editLabel }}
+						</NcActionButton>
+						<NcActionButton v-if="undo"
+							:aria-label="undoButtonAriaLabel"
+							@click="handleUndo">
+							<template #icon>
+								<Undo :size="20" />
+							</template>
+						</NcActionButton>
+						<slot name="actions" />
+					</NcActions>
+				</div>
 
-			<!-- Anything (virtual) that should be mounted in the component, like a related modal -->
-			<slot name="extra" />
-		</nav-element>
-		<!-- Children elements -->
-		<ul v-if="canHaveChildren && hasChildren" class="app-navigation-entry__children">
-			<slot />
-		</ul>
-	</li>
+				<!-- Anything (virtual) that should be mounted in the component, like a related modal -->
+				<slot name="extra" />
+			</div>
+			<!-- Children elements -->
+			<ul v-if="canHaveChildren && hasChildren" class="app-navigation-entry__children">
+				<slot />
+			</ul>
+		</li>
+	</router-link>
 </template>
 
 <script>
@@ -469,25 +472,6 @@ export default {
 			}
 		},
 
-		// This is used to decide which outer element type to use
-		navElement() {
-			if (this.to) {
-				return {
-					is: 'router-link',
-					tag: 'div',
-					to: this.to,
-					exact: this.exact,
-				}
-			}
-			return {
-				is: 'div',
-			}
-		},
-
-		isActive() {
-			return this.to && this.$route === this.to
-		},
-
 		editButtonAriaLabel() {
 			return this.editLabel ? this.editLabel : t('Edit item')
 		},
@@ -531,7 +515,10 @@ export default {
 		},
 
 		// forward click event
-		onClick(event) {
+		onClick(event, navigate) {
+			if (this.to) {
+				navigate(event)
+			}
 			this.$emit('click', event)
 		},
 
