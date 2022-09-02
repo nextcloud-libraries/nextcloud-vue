@@ -38,7 +38,7 @@ For the multiselect component, all events will be passed through. Please see the
 
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }">
-		<span :class="{ 'action-input--picker': isDatePickerType , 'action-input-picker--disabled': disabled}"
+		<span :class="{ 'action-input--picker': datePickerType , 'action-input-picker--disabled': disabled}"
 			class="action-input"
 			@mouseleave="onLeave">
 			<!-- @slot Manually provide icon -->
@@ -54,17 +54,25 @@ For the multiselect component, all events will be passed through. Please see the
 				:disabled="disabled"
 				@submit.prevent="onSubmit">
 
-				<NcDatetimePicker v-if="isDatePickerType"
+				<NcDatetimePicker v-if="datePickerType"
 					ref="datetimepicker"
 					:value="value"
 					:placeholder="text"
 					:disabled="disabled"
-					:type="isDatePickerType"
+					:type="datePickerType"
 					:input-class="['mx-input', { focusable: isFocusable }]"
 					class="action-input__picker"
 					v-bind="$attrs"
 					@input="onInput"
 					@change="onChange" />
+
+				<NcDateTimePickerNative v-else-if="isNativePicker"
+					:id="idNativeDateTimePicker"
+					:value="value"
+					:type="nativeDatePickerType"
+					v-bind="$attrs"
+					@input="$emit('input', $event)"
+					@change="$emit('change', $event)" />
 
 				<NcMultiselect v-else-if="isMultiselectType"
 					:value="value"
@@ -106,6 +114,7 @@ import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+import NcDateTimePickerNative from '../NcDateTimePickerNative/index.js'
 
 export default {
 	name: 'NcActionInput',
@@ -114,6 +123,7 @@ export default {
 		ArrowRight,
 		NcDatetimePicker,
 		NcMultiselect,
+		NcDateTimePickerNative,
 	},
 
 	mixins: [ActionGlobalMixin],
@@ -146,6 +156,20 @@ export default {
 					'text', 'time', 'url', 'week', 'color',
 					'email'].indexOf(type) > -1
 			},
+		},
+		/**
+		 * id attribute for the native date time picker
+		 */
+		idNativeDateTimePicker: {
+			type: String,
+			default: 'date-time-picker_id',
+		},
+		/**
+		 * Flag to use a native date time picker
+		 */
+		isNativePicker: {
+			type: Boolean,
+			default: false,
 		},
 		/**
 		 * value attribute of the input field
@@ -190,15 +214,29 @@ export default {
 			return this.type === 'multiselect'
 		},
 
-		isDatePickerType() {
+		nativeDatePickerType() {
 			switch (this.type) {
 			case 'date':
 			case 'month':
 			case 'time':
-				return this.type
-
+			case 'week':
 			case 'datetime-local':
-				return 'datetime'
+				return this.type
+			}
+			return false
+		},
+
+		datePickerType() {
+			if (!this.isNativePicker) {
+				switch (this.type) {
+				case 'date':
+				case 'month':
+				case 'time':
+					return this.type
+
+				case 'datetime-local':
+					return 'datetime'
+				}
 			}
 			return false
 		},
