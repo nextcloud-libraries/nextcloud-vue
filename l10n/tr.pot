@@ -67,6 +67,9 @@ msgstr "Özel"
 msgid "Edit item"
 msgstr "Ögeyi düzenle"
 
+msgid "Error getting related resources"
+msgstr "İlgili kaynaklar alınırken sorun çıktı"
+
 msgid "External documentation for {title}"
 msgstr "{title} için dış belgeler"
 
@@ -115,6 +118,9 @@ msgstr "Nesneler"
 msgid "Open"
 msgstr "Aç"
 
+msgid "Open link to \"{resourceTitle}\""
+msgstr "\"{resourceTitle}\" bağlantısını aç"
+
 msgid "Open navigation"
 msgstr "Gezinmeyi aç"
 
@@ -135,6 +141,9 @@ msgstr "Lütfen bir saat dilimi seçin:"
 
 msgid "Previous"
 msgstr "Önceki"
+
+msgid "Related resources"
+msgstr "İlgili kaynaklar"
 
 msgid "Search"
 msgstr "Arama"
