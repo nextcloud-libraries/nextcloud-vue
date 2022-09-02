@@ -778,8 +778,8 @@ export default {
 /* counter and actions */
 .app-navigation-entry__utils {
 	display: flex;
-	width: $clickable-area;
-	align-items: center;
+	min-width: $clickable-area;
+	justify-content: center;
 	flex: 0 1 auto;
 }
 
