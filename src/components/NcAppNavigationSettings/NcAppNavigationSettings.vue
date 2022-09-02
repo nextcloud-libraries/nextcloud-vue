@@ -87,6 +87,7 @@ export default {
 <style lang="scss" scoped>
 #app-settings {
 	margin-top: auto;
+	padding: calc(var(--default-grid-baseline, 4px) * 2);
 
 	&__header {
 		box-sizing: border-box;
@@ -101,7 +102,7 @@ export default {
 			background-color: var(--color-main-background);
 			box-shadow: none;
 			border: 0;
-			border-radius: var(--border-radius-large);
+			border-radius: var(--border-radius-pill);
 			text-align: left;
 			font-weight: normal;
 			font-size: 100%;
@@ -112,7 +113,6 @@ export default {
 			&:hover,
 			&:focus {
 				background-color: var(--color-background-hover);
-				border-radius: var(--border-radius-large);
 			}
 
 			&__icon {
@@ -132,7 +132,6 @@ export default {
 	&__content {
 		display: block;
 		padding: 10px;
-		background-color: var(--color-main-background);
 		/* restrict height of settings and make scrollable */
 		max-height: 300px;
 		overflow-y: auto;

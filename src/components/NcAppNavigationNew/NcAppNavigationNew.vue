@@ -88,7 +88,7 @@ export default {
 /* 'New' button */
 .app-navigation-new {
 	display: block;
-	padding: 10px;
+	padding: calc(var(--default-grid-baseline, 4px) * 2);
 	button {
 		width: 100%;
 	}

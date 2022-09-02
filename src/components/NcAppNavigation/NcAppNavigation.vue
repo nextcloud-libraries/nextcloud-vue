@@ -145,7 +145,7 @@ export default {
 	position: relative;
 	top: 0;
 	left: 0;
-	padding: 4px;
+	padding: 0px;
 	// Above appcontent
 	z-index: 1800;
 	height: 100%;
@@ -178,6 +178,7 @@ export default {
 		box-sizing: border-box;
 		display: flex;
 		flex-direction: column;
+		padding: calc(var(--default-grid-baseline, 4px) * 2);
 	}
 }
 
