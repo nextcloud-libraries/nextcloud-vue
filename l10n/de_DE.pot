@@ -5,10 +5,11 @@
 # Gustav Gyges, 2021
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2022
 # Mario Siegmann <mario_siegmann@web.de>, 2022
+# Moritz Hofmann <moritz.hofmann2005@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2022\n"
+"Last-Translator: Moritz Hofmann <moritz.hofmann2005@gmail.com>, 2022\n"
 "Language-Team: German (Germany) (https://www.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -68,6 +69,9 @@ msgstr "Benutzerdefiniert"
 msgid "Edit item"
 msgstr "Objekt bearbeiten"
 
+msgid "Error getting related resources"
+msgstr "Fehler beim Abrufen verwandter Ressourcen"
+
 msgid "External documentation for {title}"
 msgstr "Externe Dokumentation für {title}"
 
@@ -116,6 +120,9 @@ msgstr "Objekte"
 msgid "Open"
 msgstr "Öffnen"
 
+msgid "Open link to \"{resourceTitle}\""
+msgstr "Link zu \"{resourceTitle}\" öffnen"
+
 msgid "Open navigation"
 msgstr "Navigation öffnen"
 
@@ -136,6 +143,9 @@ msgstr "Bitte eine Zeitzone auswählen:"
 
 msgid "Previous"
 msgstr "Vorherige"
+
+msgid "Related resources"
+msgstr "Ähnliche Ressourcen"
 
 msgid "Search"
 msgstr "Suche"
