@@ -117,9 +117,7 @@ Just set the `pinned` prop.
 			'app-navigation-entry--pinned': pinned,
 			'app-navigation-entry--collapsible': collapsible,
 		}"
-		class="app-navigation-entry-wrapper"
-		@mouseover="handleMouseover"
-		@mouseleave="handleMouseleave">
+		class="app-navigation-entry-wrapper">
 		<nav-element v-bind="navElement"
 			:class="{
 				'app-navigation-entry--no-icon': !isIconShown,
@@ -137,7 +135,6 @@ Just set the `pinned` prop.
 				@focus="handleFocus"
 				@blur="handleBlur"
 				@keydown.tab.exact="handleTab"
-				@keydown.esc="hideActions"
 				@click="onClick">
 
 				<!-- icon if not collapsible -->
@@ -168,13 +165,16 @@ Just set the `pinned` prop.
 			</div>
 
 			<!-- Counter and Actions -->
-			<div v-if="hasUtils && !editingActive" class="app-navigation-entry__utils">
-				<div v-if="$slots.counter && (!displayActionsOnHoverFocus || forceDisplayActions)"
+			<div v-if="hasUtils && !editingActive"
+				class="app-navigation-entry__utils"
+				:class="{'app-navigation-entry__utils--display-actions': forceDisplayActions || menuOpenLocalValue}">
+				<div v-if="$slots.counter"
 					class="app-navigation-entry__counter-wrapper">
 					<slot name="counter" />
 				</div>
-				<NcActions v-show="displayActionsOnHoverFocus || forceDisplayActions"
+				<NcActions v-if="$slots.actions || (editable && !editingActive) || undo"
 					ref="actions"
+					class="app-navigation-entry__actions"
 					menu-align="right"
 					:container="'#' + id"
 					:placement="menuPlacement"
@@ -429,11 +429,7 @@ export default {
 			 * Tracks the open state of the actions menu
 			 */
 			menuOpenLocalValue: false,
-			hovered: false,
 			focused: false,
-			hasActions: false,
-			displayActionsOnHoverFocus: false,
-
 		}
 	},
 
@@ -501,13 +497,6 @@ export default {
 		open(newVal) {
 			this.opened = newVal
 		},
-
-		menuOpenLocalValue(open) {
-			// A click outside both the menu and the root element hides the actions again
-			if (!open && !this.hovered) {
-				this.hideActions()
-			}
-		},
 	},
 
 	created() {
@@ -560,37 +549,6 @@ export default {
 
 		updateSlotInfo() {
 			this.hasChildren = !!this.$slots.default
-			if (this.hasActions !== !!this.$slots.actions) {
-				this.hasActions = !!this.$slots.actions
-			}
-		},
-
-		// Display the actions menu on hover or focus
-		showActions() {
-			if (this.hasActions) {
-				this.displayActionsOnHoverFocus = true
-			}
-			this.hovered = false
-		},
-
-		// Hide the actions menu
-		hideActions() {
-			this.displayActionsOnHoverFocus = false
-		},
-
-		handleMouseover() {
-			this.showActions()
-			this.hovered = true
-		},
-
-		/**
-		 * Hide the actions on mouseleave unless the menu is open
-		 */
-		handleMouseleave() {
-			if (!this.menuOpenLocalValue) {
-				this.hideActions()
-			}
-			this.hovered = false
 		},
 
 		/**
@@ -598,7 +556,6 @@ export default {
 		 */
 		handleFocus() {
 			this.focused = true
-			this.showActions()
 		},
 
 		handleBlur() {
@@ -612,12 +569,15 @@ export default {
 		 * @param {Event} e the keydown event
 		 */
 		handleTab(e) {
-			if (this.focused && this.hasActions) {
+			// If there is no actions menu, do nothing.
+			if (!this.$refs.actions) {
+				return
+			}
+			if (this.focused) {
 				e.preventDefault()
 				this.$refs.actions.$refs.menuButton.$el.focus()
 				this.focused = false
 			} else {
-				this.hideActions()
 				this.$refs.actions.$refs.menuButton.$el.blur()
 			}
 		},
@@ -666,6 +626,18 @@ export default {
 	&:hover {
 		.app-navigation-entry__children {
 			background-color: var(--color-main-background);
+		}
+	}
+
+	// Show the actions on active
+	&.active,
+	// Always show the undo button
+	&.app-navigation-entry--deleted,
+	&:focus,
+	&:focus-within,
+	&:hover {
+		.app-navigation-entry__utils .app-navigation-entry__actions {
+			display: inline-block;
 		}
 	}
 
@@ -778,18 +750,24 @@ export default {
 /* counter and actions */
 .app-navigation-entry__utils {
 	display: flex;
-	width: $clickable-area;
+	min-width: $clickable-area;
 	align-items: center;
 	flex: 0 1 auto;
-}
-
-/* counter */
-.app-navigation-entry__counter-wrapper {
-	// Add slightly more space to the right of the counter
-	margin-right: 2px;
-	display: flex;
-	align-items: center;
-	flex: 0 1 auto;
+	&#{&}--display-actions .action-item.app-navigation-entry__actions {
+		display: inline-block;
+	}
+	/* counter */
+	.app-navigation-entry__counter-wrapper {
+		// Add slightly more space to the right of the counter
+		margin-right: 2px;
+		display: flex;
+		align-items: center;
+		flex: 0 1 auto;
+	}
+	/* actions */
+	.action-item.app-navigation-entry__actions {
+		display: none;
+	}
 }
 
 // STATES
