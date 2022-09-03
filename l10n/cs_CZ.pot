@@ -64,6 +64,9 @@ msgstr "Uživatelsky určené"
 msgid "Edit item"
 msgstr "Upravit položku"
 
+msgid "Error getting related resources"
+msgstr "Chyba při získávání souvisejících prostředků"
+
 msgid "External documentation for {title}"
 msgstr "Externí dokumentace k {title}"
 
@@ -112,6 +115,9 @@ msgstr "Objekty"
 msgid "Open"
 msgstr "Otevřít"
 
+msgid "Open link to \"{resourceTitle}\""
+msgstr "Otevřít odkaz na „{resourceTitle}“"
+
 msgid "Open navigation"
 msgstr "Otevřít navigaci"
 
@@ -132,6 +138,9 @@ msgstr "Vyberte časovou zónu:"
 
 msgid "Previous"
 msgstr "Předchozí"
+
+msgid "Related resources"
+msgstr "Související prostředky"
 
 msgid "Search"
 msgstr "Hledat"
