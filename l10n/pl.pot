@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Artur Skoczylas <art.skoczylas@gmail.com>, 2020
+# 781a1b025aac2249bbf52ec77cbcded3_dc68cbf, 2022
 # Valdnet, 2022
-# Karol Guzik, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Karol Guzik, 2022\n"
+"Last-Translator: Valdnet, 2022\n"
 "Language-Team: Polish (https://www.transifex.com/nextcloud/teams/64236/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
@@ -66,6 +66,9 @@ msgstr "Zwyczajne"
 msgid "Edit item"
 msgstr "Edytuj element"
 
+msgid "Error getting related resources"
+msgstr "Błąd podczas pobierania powiązanych zasobów"
+
 msgid "External documentation for {title}"
 msgstr "Dokumentacja zewnętrzna dla {title}"
 
@@ -114,6 +117,9 @@ msgstr "Obiekty"
 msgid "Open"
 msgstr "Otwórz"
 
+msgid "Open link to \"{resourceTitle}\""
+msgstr "Otwórz link do \"{resourceTitle}\""
+
 msgid "Open navigation"
 msgstr "Otwórz nawigację"
 
@@ -134,6 +140,9 @@ msgstr "Wybierz strefę czasową:"
 
 msgid "Previous"
 msgstr "Poprzedni"
+
+msgid "Related resources"
+msgstr "Powiązane zasoby"
 
 msgid "Search"
 msgstr "Szukaj"
