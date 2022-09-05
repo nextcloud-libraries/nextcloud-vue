@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.6...v6.0.0-beta.7)
+
+### :bug: Fixed bugs
+- AppNavigationItem actions visibility [\#3169](https://github.com/nextcloud/nextcloud-vue/pull/3169) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Actions positioning [\#3170](https://github.com/nextcloud/nextcloud-vue/pull/3170) ([juliushaertl](https://github.com/juliushaertl))
+- .active state of app list items [\#3147](https://github.com/nextcloud/nextcloud-vue/pull/3147) ([ChristophWurst](https://github.com/ChristophWurst))
+
+### Closed pull requests
+- Use events provided by floating-vue [\#3149](https://github.com/nextcloud/nextcloud-vue/pull/3149) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
 ## [v6.0.0-beta.6](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.6) (2022-09-01)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.5...v6.0.0-beta.6)
