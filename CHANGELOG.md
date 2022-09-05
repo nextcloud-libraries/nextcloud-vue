@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.0.0-beta.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.1) (2022-09-05)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.7...v7.0.0-beta.1)
+
+### :rocket: Enhancements
+
+- Fix for border-radius being too large for 3-line entries like in Mail [\#3136](https://github.com/nextcloud/nextcloud-vue/pull/3136) ([jancborchardt](https://github.com/jancborchardt))
+- Add related resources panel component [\#3081](https://github.com/nextcloud/nextcloud-vue/pull/3081) ([Pytal](https://github.com/Pytal))
+- Add a native datetime picker [\#3063](https://github.com/nextcloud/nextcloud-vue/pull/3063) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+- Always show NcAppSettingsDialog title [\#3074](https://github.com/nextcloud/nextcloud-vue/pull/3074) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
+### :bug: Fixed bugs
+
+- AppNavigationItem actions visibility [\#3165](https://github.com/nextcloud/nextcloud-vue/pull/3165) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Spacing in app navigation and make the setting pill style [\#3158](https://github.com/nextcloud/nextcloud-vue/pull/3158) ([juliushaertl](https://github.com/juliushaertl))
+- Actions positioning [\#3157](https://github.com/nextcloud/nextcloud-vue/pull/3157) ([juliushaertl](https://github.com/juliushaertl))
+- .active state of app list items [\#3147](https://github.com/nextcloud/nextcloud-vue/pull/3147) ([ChristophWurst](https://github.com/ChristophWurst))
+
+### Closed pull requests
+
+- Use events provided by floating-vue [\#3149](https://github.com/nextcloud/nextcloud-vue/pull/3149) ([raimund-schluessler](https://github.com/raimund-schluessler))
 ## [v7.0.0-beta.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.0) (2022-09-01)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.6...v7.0.0-beta.0)
