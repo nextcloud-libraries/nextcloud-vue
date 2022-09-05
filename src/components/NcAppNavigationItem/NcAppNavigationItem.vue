@@ -755,6 +755,7 @@ export default {
 	min-width: $clickable-area;
 	align-items: center;
 	flex: 0 1 auto;
+	justify-content: flex-end;
 	&#{&}--display-actions .action-item.app-navigation-entry__actions {
 		display: inline-block;
 	}
