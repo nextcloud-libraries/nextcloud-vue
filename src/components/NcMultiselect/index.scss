@@ -6,7 +6,7 @@
 	padding: 0 !important;
 	display: inline-block;
 	/* override this rule with your width styling if you need */
-	min-width: 160px;
+	min-width: 260px;
 	position: relative;
 	background-color: var(--color-main-background);
 
@@ -52,7 +52,8 @@
 		position: relative;
 		border-radius: var(--border-radius-large);
 		min-height: 44px;
-		height: 100%;
+		height: 44px;
+		padding: 8px 12px !important;
 
 		&:focus, &:hover {
 			border-color: var(--color-primary);
@@ -65,7 +66,7 @@
 			overflow: hidden;
 			max-width: 100%;
 			position: relative;
-			padding: 3px $space-between;
+			gap: $space-between;
 			flex: 1 1;
 			flex-wrap: nowrap;
 			/* no tags or simple select? Show input directly
@@ -83,26 +84,23 @@
 			/* selected tag */
 			.multiselect__tag {
 				line-height: 20px;
-				padding: 3px 5px;
+				padding: 2px 5px;
 				background-image: none;
 				color: var(--color-main-text);
 				border: 1px solid var(--color-border-dark);
 				display: inline-flex;
 				align-items: center;
-				border-radius: 3px;
+				border-radius: var(--border-radius);
 				/* require to override the default width
 				and force the tag to shring properly */
 				min-width: 0;
 				max-width: fit-content;
 				max-width: -moz-fit-content;
-				margin: 2px 1px;
+				margin: 0;
 				/* css hack, detect if more than two tags
 				if so, flex-basis is set to half */
 				&:only-child {
 					flex: 0 1 auto;
-				}
-				&:not(:last-child) {
-					margin-right: $space-between;
 				}
 				/* ellipsis the groups to be sure
 				we display at least two of them */
@@ -118,8 +116,6 @@
 		or default placeholder if search disabled*/
 		.multiselect__single,
 		.multiselect__placeholder {
-			padding: 7px 6px; // like the input
-			flex: 0 0 100%;
 			z-index: 1; /* above input */
 			background-color: var(--color-main-background);
 			line-height: 18px; // 32px - 2*6px (padding) - 2*1px (border)
@@ -149,7 +145,7 @@
 		/* default multiselect input for search and placeholder */
 		input.multiselect__input {
 			width: 100% !important;
-			position: relative !important;
+			height: auto !important;
 			margin: 0;
 			opacity: 0;
 			border: none;
@@ -157,9 +153,11 @@
 			/* only when not active */
 			cursor: pointer;
 			/* override inline styling of the lib */
-			padding: 7px 4px !important;
 			display: none;
-		font-size: var(--default-font-size);
+			height: 40px;
+			min-height: 26px;
+			padding: 0 !important;
+			font-size: var(--default-font-size);
 		}
 	}
 
@@ -173,8 +171,6 @@
 			// remove border radius on bottom opening
 			border-radius: var(--border-radius) var(--border-radius) 0 0;
 			display: block !important;
-			padding: 12px 15px !important;
-			height: 40px !important;
 		}
 
 		/* multiselect__limit hidden if active */
