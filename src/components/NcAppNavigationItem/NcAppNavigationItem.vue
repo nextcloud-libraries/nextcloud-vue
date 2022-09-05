@@ -46,17 +46,19 @@ Wrap the children in a template. If you have more than 2 actions, a popover menu
 button will be automatically created.
 
 ```
-<NcAppNavigationItem title="Item with actions" icon="icon-category-enabled">
-	<template #actions>
-		<NcActionButton icon="icon-edit" @click="alert('Edit')">
-			Edit
-		</NcActionButton>
-		<NcActionButton icon="icon-delete" @click="alert('Delete')">
-			Delete
-		</NcActionButton>
-		<NcActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
-	</template>
-</NcAppNavigationItem>
+<div id="app-navigation-vue"><!-- Just a wrapper necessary in the docs. Not needed when NcAppNavigation is correctly used as parent. -->
+	<NcAppNavigationItem title="Item with actions" icon="icon-category-enabled">
+		<template #actions>
+			<NcActionButton icon="icon-edit" @click="alert('Edit')">
+				Edit
+			</NcActionButton>
+			<NcActionButton icon="icon-delete" @click="alert('Delete')">
+				Delete
+			</NcActionButton>
+			<NcActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
+		</template>
+	</NcAppNavigationItem>
+</div>
 ```
 
 ### Element with counter
