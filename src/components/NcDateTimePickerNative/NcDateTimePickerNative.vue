@@ -144,6 +144,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 			:value="formattedValue"
 			:min="formattedMin"
 			:max="formattedMax"
+			v-bind="$attrs"
 			v-on="listeners">
 	</div>
 </template>
@@ -154,6 +155,7 @@ const inputDateTypes = ['date', 'datetime-local', 'month', 'time', 'week']
 
 export default {
 	name: 'NcDateTimePickerNative',
+	inheritAttrs: false,
 
 	props: {
 		/**
@@ -195,7 +197,7 @@ export default {
 		 * default type: null
 		 */
 		min: {
-			type: Date,
+			type: [Date, Boolean],
 			default: null,
 		},
 		/**
@@ -203,7 +205,7 @@ export default {
 		 * default type: null
 		 */
 		max: {
-			type: Date,
+			type: [Date, Boolean],
 			default: null,
 		},
 		/**
