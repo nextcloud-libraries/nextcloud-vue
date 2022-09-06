@@ -204,13 +204,7 @@ button {
 		:aria-label="ariaLabel"
 		:type="nativeType"
 		:disabled="disabled"
-		v-on="$listeners"
-		@keydown.enter="makeActive"
-		@keyup.enter="makeInactive"
-		@click="handleClick"
-		@blur="handleBlur"
-		@keyup.tab.exact="handleTabUp"
-		@keyup.shift.tab="handleTabUp">
+		v-on="$listeners">
 		<span class="button-vue__wrapper">
 			<span v-if="hasIcon" class="button-vue__icon">
 				<!-- @slot The material design icon slot -->
@@ -313,13 +307,6 @@ export default {
 	data() {
 		return {
 			/**
-			 * Keeps track of whether the element's focus status is due to having
-			 * tabbed to it. We use this to display a thick 'focus outline' only
-			 * when the user is navigating with the keyboard.
-			 */
-			tabbed: false,
-
-			/**
 			 * Making sure the slots are reactive
 			 */
 			slots: this.$slots,
@@ -386,7 +373,6 @@ export default {
 				'button-vue--icon-and-text': this.iconAndText,
 				[`button-vue--vue-${this.type}`]: this.type,
 				'button-vue--wide': this.wide,
-				'button-vue--tabbed': this.tabbed,
 			}
 		},
 	},
@@ -407,43 +393,6 @@ export default {
 			},
 			this)
 		}
-	},
-
-	methods: {
-		/**
-		 * Removes the tabbed state of the button.
-		 */
-		handleClick() {
-			this.tabbed = false
-		},
-
-		/**
-		 * When the tab key is lifted, the button has been "tabbed in",
-		 * see comments on the `tabbed` variable declared in the data.
-		 */
-		handleTabUp() {
-			this.tabbed = true
-		},
-
-		/**
-		 * Everytime the button is blurred, we remove the tabbed state.
-		 */
-		handleBlur() {
-			this.tabbed = false
-		},
-
-		/**
-		 * When the button is reached via keyboard navigation and pressed using
-		 * the enter key, we slightly change the styles to provide an "active-like"
-		 * feedback. When using the mouse this is achieved with the ripple effect.
-		 */
-		makeActive() {
-			this.tabbed = false
-		},
-
-		makeInactive() {
-			this.tabbed = true
-		},
 	},
 }
 
@@ -548,35 +497,12 @@ export default {
 		width: 100%;
 	}
 
-	// We use box-shadow around our buttons instead of an outline, so that the added "border"
-	// coincides with the border of the element. It's not possible to add a border-radius to
-	// the outline
-	&--tabbed, &:focus-visible {
-		box-shadow: 0 0 0 2px var(--color-main-text);
-		background-color: var(--color-primary-light-hover);
-		&.button-vue--vue-primary {
-			background-color: var(--color-primary-hover);
-		}
-		&.button-vue--vue-secondary {
-			box-shadow: 0 0 0 2px var(--color-main-text);
-		}
-		&.button-vue--vue-tertiary-no-background {
-			opacity: 1;
-		}
+	&:focus-visible {
+		outline: 2px solid var(--color-main-text) !important;
 		&.button-vue--vue-tertiary-on-primary {
-			box-shadow: 0 0 0 2px var(--color-primary-text);
+			outline: 2px solid var(--color-primary-text);
 			border-radius: var(--border-radius);
-			opacity: 1;
 			background-color: transparent;
-		}
-		&.button-vue--vue-success {
-			background-color: var(--color-success-hover);
-		}
-		&.button-vue--vue-warning {
-			background-color: var(--color-warning-hover);
-		}
-		&.button-vue--vue-error {
-			background-color: var(--color-error-hover);
 		}
 	}
 
@@ -620,10 +546,8 @@ export default {
 	&--vue-tertiary-no-background {
 		color: var(--color-main-text);
 		background-color: transparent;
-		opacity: .7;
 		&:hover:not(:disabled) {
 			background-color: transparent;
-			opacity: 1;
 		}
 	}
 
@@ -631,11 +555,9 @@ export default {
 	&--vue-tertiary-on-primary {
 		color: var(--color-primary-text);
 		background-color: transparent;
-		opacity: .7;
 
 		&:hover:not(:disabled) {
 			background-color: transparent;
-			opacity: 1;
 		}
 	}
 
