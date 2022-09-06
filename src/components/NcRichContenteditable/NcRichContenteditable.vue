@@ -567,7 +567,7 @@ export default {
 	word-break: break-word;
 	color: var(--color-main-text);
 	border: 1px solid var(--color-border-dark);
-	border-radius: var(--border-radius);
+	border-radius: var(--border-radius-large);
 	outline: none;
 	background-color: var(--color-main-background);
 	font-family: var(--font-face);
