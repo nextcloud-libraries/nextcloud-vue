@@ -173,6 +173,7 @@ export default {
 				'email',
 				'tel',
 				'url',
+				'search',
 			].includes(value),
 		},
 
