@@ -179,6 +179,7 @@ export default {
 
 <style scoped>
 	button.menuitem {
+		border-radius: var(--border-radius-large) !important;
 		text-align: left;
 	}
 
@@ -196,8 +197,8 @@ export default {
 	}
 
 	.menuitem.active {
-		box-shadow: inset 2px 0 var(--color-primary);
-		border-radius: 0;
+		border-left: 4px solid var(--color-primary);
+		border-radius: 0 var(--border-radius-large) var(--border-radius-large) 0 !important;
 	}
 </style>
 
@@ -216,7 +217,6 @@ li {
 		cursor: pointer;
 		line-height: $clickable-area;
 		border: 0;
-		border-radius: 0; // otherwise Safari will cut the border-radius area
 		background-color: transparent;
 		display: flex;
 		align-items: flex-start;
