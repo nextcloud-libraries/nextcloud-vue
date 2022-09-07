@@ -139,7 +139,6 @@ export default {
 <style lang="scss" scoped>
 
 .app-navigation {
-	will-change: transform;
 	transition: transform var(--animation-quick), margin var(--animation-quick);
 	width: $navigation-width;
 	position: relative;
