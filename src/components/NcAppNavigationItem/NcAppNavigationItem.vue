@@ -178,7 +178,7 @@ Just set the `pinned` prop.
 					ref="actions"
 					class="app-navigation-entry__actions"
 					container="#app-navigation-vue"
-					boundaries-element="#content-vue"
+					:boundaries-element="actionsBoundariesElement"
 					:placement="menuPlacement"
 					:open="menuOpen"
 					:force-menu="forceMenu"
@@ -492,6 +492,9 @@ export default {
 
 		undoButtonAriaLabel() {
 			return t('Undo changes')
+		},
+		actionsBoundariesElement() {
+			return document.querySelector('#content-vue') || undefined
 		},
 	},
 
