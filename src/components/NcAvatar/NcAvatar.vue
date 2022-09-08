@@ -43,11 +43,11 @@
 			<AccountMultiple :size="20" />
 		</template>
 	</NcAvatar>
- </template>
- <script>
- import AccountMultiple from 'vue-material-design-icons/AccountMultiple'
+</template>
+<script>
+import AccountMultiple from 'vue-material-design-icons/AccountMultiple'
 
- export default {
+export default {
 	components: {
 		AccountMultiple,
 	},
@@ -55,6 +55,29 @@
  </script>
 ```
 
+### Avatar with preloaded status
+```
+ <template>
+	<NcAvatar user="janedoe"
+		display-name="Jane Doe"
+		:preloaded-user-status="status">
+	</NcAvatar>
+</template>
+<script>
+
+export default {
+	data() {
+		return {
+			status: {
+				icon: '',
+				status: 'dnd',
+				message: 'Not busy',
+			},
+		}
+	},
+ }
+ </script>
+```
 </docs>
 <template>
 	<div ref="main"
