@@ -46,6 +46,9 @@ msgstr "タイトルを変更"
 msgid "Choose"
 msgstr "選択"
 
+msgid "Clear text"
+msgstr "テキストをクリア"
+
 msgid "Close"
 msgstr "閉じる"
 
@@ -67,6 +70,9 @@ msgstr "カスタム"
 msgid "Edit item"
 msgstr "編集"
 
+msgid "Error getting related resources"
+msgstr "関連リソースの取得エラー"
+
 msgid "External documentation for {title}"
 msgstr "{title} のための添付文書"
 
@@ -87,6 +93,9 @@ msgstr "全体"
 
 msgid "Go back to the list"
 msgstr "リストに戻る"
+
+msgid "Hide password"
+msgstr "パスワードを非表示"
 
 msgid "items"
 msgstr "アイテム"
@@ -112,8 +121,14 @@ msgstr "物"
 msgid "Open"
 msgstr "開く"
 
+msgid "Open link to \"{resourceTitle}\""
+msgstr "\"{resourceTitle}\"のリンクを開く"
+
 msgid "Open navigation"
 msgstr "ナビゲーションを開く"
+
+msgid "Password is secure"
+msgstr "パスワードは保護されています"
 
 msgid "Pause slideshow"
 msgstr "スライドショーを一時停止"
@@ -130,6 +145,9 @@ msgstr "タイムゾーンを選んで下さい："
 msgid "Previous"
 msgstr "前"
 
+msgid "Related resources"
+msgstr "関連リソース"
+
 msgid "Search"
 msgstr "検索"
 
@@ -144,6 +162,9 @@ msgstr "設定"
 
 msgid "Settings navigation"
 msgstr "ナビゲーション設定"
+
+msgid "Show password"
+msgstr "パスワードを表示"
 
 msgid "Smileys & Emotion"
 msgstr "感情表現"
