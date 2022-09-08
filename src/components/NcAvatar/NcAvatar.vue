@@ -321,9 +321,9 @@ export default {
 			}
 
 			if (this.hasStatus && this.showUserStatus && this.showUserStatusCompact) {
-				return t('Avatar of {displayName}, {status}', { displayName: this.displayName || this.userId, status: this.userStatus.status })
+				return t('Avatar of {displayName}, {status}', { displayName: this.displayName ?? this.user, status: this.userStatus.status })
 			}
-			return t('Avatar of {displayName}', { displayName: this.displayName || this.userId })
+			return t('Avatar of {displayName}', { displayName: this.displayName ?? this.user })
 		},
 
 		canDisplayUserStatus() {
@@ -378,7 +378,7 @@ export default {
 
 			if (!this.iconClass && !this.avatarSrcSetLoaded) {
 				const rgb = usernameToColor(this.getUserIdentifier)
-				style.backgroundColor = 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')'
+				style.backgroundColor = 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', 0.1)'
 			}
 			return style
 		},
@@ -559,9 +559,11 @@ export default {
 		 * @return {string}
 		 */
 		avatarUrlGenerator(user, size) {
-			let url = '/avatar/{user}/{size}'
+			const darkTheme = window.getComputedStyle(this.$el)
+				.getPropertyValue('--background-invert-if-dark') === 'invert(100%)'
+			let url = '/avatar/{user}/{size}' + (darkTheme ? '/dark' : '')
 			if (this.isGuest) {
-				url = '/avatar/guest/{user}/{size}'
+				url = '/avatar/guest/{user}/{size}' + (darkTheme ? '/dark' : '')
 			}
 
 			let avatarUrl = generateUrl(
