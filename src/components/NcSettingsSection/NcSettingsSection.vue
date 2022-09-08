@@ -33,15 +33,16 @@ This component is to be used in the settings section of nextcloud.
 	<NcSettingsSection
 		title="Two-Factor Authentication"
 		description="Two-factor authentication can be enforced for all users and specific groups."
-		doc-url="https://docs.nextcloud.com/server/19/go.php?to=admin-2fa">
-		Your settings here
+		doc-url="https://docs.nextcloud.com/server/19/go.php?to=admin-2fa"
+		:limit-width="true">
+		<p>Your settings here</p>
 	</NcSettingsSection>
 </template>
 ```
 </docs>
 
 <template>
-	<div class="settings-section">
+	<div class="settings-section" :class="{'settings-section--limit-width': limitWidth}">
 		<h2 class="settings-section__title">
 			{{ title }}
 			<a v-if="hasDocUrl"
@@ -85,6 +86,16 @@ export default {
 			type: String,
 			default: '',
 		},
+		/**
+		 * Limit the width of the setting's content
+		 *
+		 * By default only the title and description have a limit, use this
+		 * property to also apply this to the rest of the content.
+		 */
+		limitWidth: {
+			type: Boolean,
+			default: true,
+		},
 	},
 
 	data() {
@@ -108,6 +119,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$maxWidth: 900px;
+
 .settings-section {
 	display: block;
 	margin-bottom: auto;
@@ -117,12 +130,17 @@ export default {
 		border-bottom: 1px solid var(--color-border);
 	}
 
+	&--limit-width > * {
+		max-width: $maxWidth;
+	}
+
 	&__title {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
 		font-size: 20px;
 		font-weight: bold;
+		max-width: $maxWidth;
 	}
 
 	&__info {
@@ -145,6 +163,7 @@ export default {
 		margin-top: -.2em;
 		margin-bottom: 1em;
 		opacity: $opacity_normal;
+		max-width: $maxWidth;
 	}
 }
 
