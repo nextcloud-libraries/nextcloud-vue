@@ -309,7 +309,9 @@ export default {
 		-webkit-appearance: textfield !important;
 		-moz-appearance: textfield !important;
 
-		&:hover:not([disabled]) {
+		&:active:not([disabled]),
+		&:hover:not([disabled]),
+		&:focus:not([disabled]) {
 			border-color: var(--color-primary-element);
 		}
 
