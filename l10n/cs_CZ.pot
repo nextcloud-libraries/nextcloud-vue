@@ -130,6 +130,24 @@ msgstr "Pozastavit prezentaci"
 msgid "People & Body"
 msgstr "Lidé a tělo"
 
+msgid "Pick a date"
+msgstr "Vyberte datum"
+
+msgid "Pick a date and a time"
+msgstr "Vyberte datum a čas"
+
+msgid "Pick a month"
+msgstr "Vyberte měsíc"
+
+msgid "Pick a time"
+msgstr "Vyberte čas"
+
+msgid "Pick a week"
+msgstr "Vyberte týden"
+
+msgid "Pick a year"
+msgstr "Vyberte rok"
+
 msgid "Pick an emoji"
 msgstr "Vybrat emoji"
 
