@@ -147,8 +147,12 @@ module.exports = {
 				]),
 			},
 			{
-				test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/i,
+				test: /\.(png|jpg|gif|eot|ttf|woff|woff2)$/i,
 				loader: 'url-loader',
+			},
+			{
+				test: /\.svg/,
+				type: 'asset/inline'
 			},
 		],
 	},
