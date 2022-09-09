@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.0.0-beta.2](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.2) (2022-09-09)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.0.0-beta.1...v7.0.0-beta.2)
+
+### :bug: Fixed bugs
+
+- Fix loading avatar status [\#3204](https://github.com/nextcloud/nextcloud-vue/pull/3204) ([CarlSchwan](https://github.com/CarlSchwan))
+- Fix overwriting placeholder property in NcDatetimePicker [\#3202](https://github.com/nextcloud/nextcloud-vue/pull/3202) ([Chartman123](https://github.com/Chartman123))
+- Fix scrolling in styleguide [\#3200](https://github.com/nextcloud/nextcloud-vue/pull/3200) ([marcoambrosini](https://github.com/marcoambrosini))
+- Right-align nav item utils [\#3178](https://github.com/nextcloud/nextcloud-vue/pull/3178) ([ChristophWurst](https://github.com/ChristophWurst))
+- Fix active and focus frame [\#3201](https://github.com/nextcloud/nextcloud-vue/pull/3201) ([CarlSchwan](https://github.com/CarlSchwan))
+- Fix app navigation backdrop blur [\#3189](https://github.com/nextcloud/nextcloud-vue/pull/3189) ([ChristophWurst](https://github.com/ChristophWurst))
+
+### Closed pull requests
+
+- Fix NcAppNavigationItem, pass correct boundaries-element NcActions [\#3197](https://github.com/nextcloud/nextcloud-vue/pull/3197) ([eneiluj](https://github.com/eneiluj))
+- Limit max width of the settings [\#3192](https://github.com/nextcloud/nextcloud-vue/pull/3192) ([CarlSchwan](https://github.com/CarlSchwan))
+- Fix the NcPopoverMenu component [\#3191](https://github.com/nextcloud/nextcloud-vue/pull/3191) ([CarlSchwan](https://github.com/CarlSchwan))
+- fix comments border-radius [\#3175](https://github.com/nextcloud/nextcloud-vue/pull/3175) ([szaimen](https://github.com/szaimen))
+- \[PoC\] Use github source css for styleguide [\#3139](https://github.com/nextcloud/nextcloud-vue/pull/3139) ([skjnldsv](https://github.com/skjnldsv))
+- Use dark themed avatar on dark theme [\#3119](https://github.com/nextcloud/nextcloud-vue/pull/3119) ([CarlSchwan](https://github.com/CarlSchwan))
+
+
 ## [v7.0.0-beta.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.1) (2022-09-05)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.7...v7.0.0-beta.1)
