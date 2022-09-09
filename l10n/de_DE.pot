@@ -3,13 +3,13 @@
 # Philipp Fischbeck <pfischbeck@googlemail.com>, 2020
 # ProfDrJones <jones@fs.cs.hm.edu>, 2020
 # Gustav Gyges, 2021
-# Mark Ziegler <mark.ziegler@rakekniven.de>, 2022
 # Mario Siegmann <mario_siegmann@web.de>, 2022
 # Moritz Hofmann <moritz.hofmann2005@gmail.com>, 2022
+# Mark Ziegler <mark.ziegler@rakekniven.de>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Moritz Hofmann <moritz.hofmann2005@gmail.com>, 2022\n"
+"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2022\n"
 "Language-Team: German (Germany) (https://www.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -135,6 +135,24 @@ msgstr "Diashow pausieren"
 msgid "People & Body"
 msgstr "Menschen & Körper"
 
+msgid "Pick a date"
+msgstr "Ein Datum auswählen"
+
+msgid "Pick a date and a time"
+msgstr "Datum und Uhrzeit auswählen"
+
+msgid "Pick a month"
+msgstr "Einen Monat auswählen"
+
+msgid "Pick a time"
+msgstr "Eine Uhrzeit auswählen"
+
+msgid "Pick a week"
+msgstr "Eine Woche auswählen"
+
+msgid "Pick a year"
+msgstr "Ein Jahr auswählen"
+
 msgid "Pick an emoji"
 msgstr "Ein Emoji auswählen"
 
@@ -145,7 +163,7 @@ msgid "Previous"
 msgstr "Vorherige"
 
 msgid "Related resources"
-msgstr "Ähnliche Ressourcen"
+msgstr "Verwandte Ressourcen"
 
 msgid "Search"
 msgstr "Suche"
