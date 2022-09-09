@@ -58,5 +58,6 @@ export default {
 ul {
 	display: flex;
 	flex-direction: column;
+	gap: 4px;
 }
 </style>
