@@ -708,7 +708,8 @@ export default {
 		 * @return {boolean}
 		 */
 		isValidSingleAction(action) {
-			return ['NcActionButton', 'NcActionLink', 'NcActionRouter'].includes(action?.componentOptions?.tag)
+			const componentName = action?.componentOptions?.Ctor?.extendOptions?.name ?? action?.componentOptions?.tag
+			return ['NcActionButton', 'NcActionLink', 'NcActionRouter'].includes(componentName)
 		},
 
 		// MENU STATE MANAGEMENT
