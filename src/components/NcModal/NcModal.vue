@@ -433,10 +433,10 @@ export default {
 		},
 
 		/**
-		 * Selector for the modal container
+		 * Selector for the modal container, pass `null` to prevent automatic container mounting
 		 */
 		container: {
-			type: String,
+			type: [String, null],
 			default: 'body',
 		},
 
@@ -552,14 +552,15 @@ export default {
 			this.handleSwipe(e)
 		})
 
-		if (this.container === 'body') {
-			// force mount the component to body
-			document.body.insertBefore(this.$el, document.body.lastChild)
-		} else {
-			const container = document.querySelector(this.container)
-			container.appendChild(this.$el)
+		if (this.container) {
+			if (this.container === 'body') {
+				// force mount the component to body
+				document.body.insertBefore(this.$el, document.body.lastChild)
+			} else {
+				const container = document.querySelector(this.container)
+				container.appendChild(this.$el)
+			}
 		}
-
 	},
 	destroyed() {
 		this.clearFocusTrap()
