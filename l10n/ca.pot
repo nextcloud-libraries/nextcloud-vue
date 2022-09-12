@@ -3,12 +3,13 @@
 # Carles Ferrando Garcia <carles.ferrando@gnuescultura.eu>, 2020
 # Toni Hermoso Pulido <toniher@softcatala.cat>, 2020
 # David Jacovkis <david@freeknowledge.eu>, 2020
-# Marc Riera <marcriera@softcatala.org>, 2021
 # Omar Macías Molina <omar.maciasmolina@gmail.com>, 2022
+# Marc Riera <marcriera@softcatala.org>, 2022
+# Papa Nates, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Omar Macías Molina <omar.maciasmolina@gmail.com>, 2022\n"
+"Last-Translator: Papa Nates, 2022\n"
 "Language-Team: Catalan (https://www.transifex.com/nextcloud/teams/64236/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ca\n"
@@ -38,14 +39,26 @@ msgstr "Avatar de {displayName}, {status}"
 msgid "Cancel changes"
 msgstr "Cancel·la els canvis"
 
+msgid "Change title"
+msgstr "Canviar títol"
+
 msgid "Choose"
 msgstr "Tria"
+
+msgid "Clear text"
+msgstr "Netejar text"
 
 msgid "Close"
 msgstr "Tanca"
 
+msgid "Close modal"
+msgstr "Tancar el mode"
+
 msgid "Close navigation"
-msgstr "Tancar la navegació"
+msgstr "Tanca la navegació"
+
+msgid "Close sidebar"
+msgstr "Tancar la barra lateral"
 
 msgid "Confirm changes"
 msgstr "Confirmeu els canvis"
@@ -56,8 +69,14 @@ msgstr "Personalitzat"
 msgid "Edit item"
 msgstr "Edita l'element"
 
+msgid "Error getting related resources"
+msgstr "Error obtenint els recursos relacionats"
+
 msgid "External documentation for {title}"
 msgstr "Documentació externa per a {title}"
+
+msgid "Favorite"
+msgstr "Preferit"
 
 msgid "Flags"
 msgstr "Marques"
@@ -74,8 +93,17 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Torna a la llista"
 
+msgid "Hide password"
+msgstr "Amagar contrasenya"
+
+msgid "items"
+msgstr "elements"
+
 msgid "Message limit of {count} characters reached"
 msgstr "S'ha arribat al límit de {count} caràcters per missatge"
+
+msgid "More {dashboardItemType} …"
+msgstr "Més {dashboardItemType} …"
 
 msgid "Next"
 msgstr "Següent"
@@ -89,14 +117,41 @@ msgstr "Sense resultats"
 msgid "Objects"
 msgstr "Objectes"
 
+msgid "Open"
+msgstr "Obrir"
+
+msgid "Open link to \"{resourceTitle}\""
+msgstr "Obrir enllaç a \"{resourceTitle}\""
+
 msgid "Open navigation"
-msgstr "Obrir la navegació"
+msgstr "Obre la navegació"
+
+msgid "Password is secure"
+msgstr "Contrasenya segura<br>"
 
 msgid "Pause slideshow"
 msgstr "Atura la presentació"
 
 msgid "People & Body"
 msgstr "Persones i cos"
+
+msgid "Pick a date"
+msgstr "Seleccioni un dia "
+
+msgid "Pick a date and a time"
+msgstr "Seleccioni un dia i hora"
+
+msgid "Pick a month"
+msgstr "Seleccioni un mes"
+
+msgid "Pick a time"
+msgstr "Seleccioni una hora"
+
+msgid "Pick a week"
+msgstr "Seleccioni una setmana"
+
+msgid "Pick a year"
+msgstr "Seleccioni un any"
 
 msgid "Pick an emoji"
 msgstr "Trieu un emoji"
@@ -107,6 +162,9 @@ msgstr "Seleccioneu una zona horària:"
 msgid "Previous"
 msgstr "Anterior"
 
+msgid "Related resources"
+msgstr "Recursos relacionats"
+
 msgid "Search"
 msgstr "Cerca"
 
@@ -114,13 +172,16 @@ msgid "Search results"
 msgstr "Resultats de cerca"
 
 msgid "Select a tag"
-msgstr "Selecciona una etiqueta"
+msgstr "Seleccioneu una etiqueta"
 
 msgid "Settings"
 msgstr "Paràmetres"
 
 msgid "Settings navigation"
 msgstr "Navegació d'opcions"
+
+msgid "Show password"
+msgstr "Mostrar contrasenya"
 
 msgid "Smileys & Emotion"
 msgstr "Cares i emocions"
@@ -144,7 +205,7 @@ msgid "Unable to search the group"
 msgstr "No es pot cercar el grup"
 
 msgid "Undo changes"
-msgstr "Desfer canvis"
+msgstr "Desfés els canvis"
 
 msgid "Write message, @ to mention someone, : for emoji autocompletion …"
 msgstr ""
