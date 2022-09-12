@@ -274,6 +274,8 @@ export default {
 
 					<!-- Content -->
 					<div :id="'modal-description-' + randId" class="modal-container">
+						<!-- @slot Modal content to render -->
+						<slot />
 						<!-- Close modal -->
 						<NcButton v-if="canClose && closeButtonContained"
 							type="tertiary"
@@ -284,8 +286,6 @@ export default {
 								<Close :size="20" />
 							</template>
 						</NcButton>
-						<!-- @slot Modal content to render -->
-						<slot />
 					</div>
 
 					<!-- Navigation button -->
