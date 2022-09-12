@@ -230,11 +230,13 @@ export default {
 			default: '',
 		},
 		/**
-		 * The type of elements to show more.
+		 * The text of show more button.
+		 *
+		 * Expected to be in the form "More {itemName} …"
 		 */
-		showMoreText: {
+		showMoreLabel: {
 			type: String,
-			default: t('items'),
+			default: t('More items …'),
 		},
 		/**
 		 * A boolean to put the widget in a loading state.
@@ -306,10 +308,6 @@ export default {
 
 		showMore() {
 			return this.showMoreUrl && this.items.length >= this.maxItemNumber
-		},
-
-		showMoreLabel() {
-			return t('More {dashboardItemType} …', { dashboardItemType: this.showMoreText })
 		},
 	},
 }
