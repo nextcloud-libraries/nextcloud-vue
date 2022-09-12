@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.0.0-beta.3](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.3) (2022-09-12)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.0.0-beta.2...v7.0.0-beta.3)
+
+### :bug: Fixed bugs
+
+- Fix single action detection [\#3212](https://github.com/nextcloud/nextcloud-vue/pull/3212) ([st3iny](https://github.com/st3iny))
+
+### Closed pull requests
+
+- Fix a word puzzle in NcDashboardWidget component [\#3225](https://github.com/nextcloud/nextcloud-vue/pull/3225) ([CarlSchwan](https://github.com/CarlSchwan))
+
+
 ## [v7.0.0-beta.2](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.2) (2022-09-09)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.0.0-beta.1...v7.0.0-beta.2)
