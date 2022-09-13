@@ -121,6 +121,7 @@ export default {
 <template>
 	<NcInputField v-bind="$props"
 		ref="inputField"
+		:autofocus="$attrs.autofocus"
 		:trailing-button-label="clearTextLabel"
 		v-on="$listeners"
 		@input="handleInput">

@@ -95,6 +95,7 @@ export default {
 <template>
 	<NcInputField v-bind="$props"
 		ref="inputField"
+		:autofocus="$attrs.autofocus"
 		:type="isPasswordHidden ? 'password' : 'text'"
 		:show-trailing-button="true"
 		:helper-text="computedHelperText"
