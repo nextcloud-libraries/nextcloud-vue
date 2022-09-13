@@ -668,12 +668,8 @@ export default {
 	}
 
 	&:not(&--unknown) {
-		// White background for avatars with transparency
-		background-color: #fff !important;
-		body.theme--dark & {
-			// And black background in dark mode, as it shines through on hover of the menu
-			background-color: #000 !important;
-		}
+		// White/black background for avatars with transparency
+		background-color: var(--color-main-background) !important;
 		box-shadow: 0 0 5px rgba(0, 0, 0, 0.05) inset;
 	}
 
