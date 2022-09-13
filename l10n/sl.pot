@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Goran Kavrecic <goran.kavrecic@indea.si>, 2021
-# Matej Urbančič <>, 2021
 # Marko <marko.ambrozic@gmail.com>, 2022
+# Matej Urbančič <>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Marko <marko.ambrozic@gmail.com>, 2022\n"
+"Last-Translator: Matej Urbančič <>, 2022\n"
 "Language-Team: Slovenian (https://www.transifex.com/nextcloud/teams/64236/sl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sl\n"
@@ -42,6 +42,9 @@ msgstr "Spremeni naziv"
 msgid "Choose"
 msgstr "Izbor"
 
+msgid "Clear text"
+msgstr "Počisti besedilo"
+
 msgid "Close"
 msgstr "Zapri"
 
@@ -61,7 +64,10 @@ msgid "Custom"
 msgstr "Po meri"
 
 msgid "Edit item"
-msgstr "Uredi postavko"
+msgstr "Uredi predmet"
+
+msgid "Error getting related resources"
+msgstr "Napaka pridobivanja povezanih virov"
 
 msgid "External documentation for {title}"
 msgstr "Zunanja dokumentacija za {title}"
@@ -84,14 +90,14 @@ msgstr "Splošno"
 msgid "Go back to the list"
 msgstr "Vrni se na seznam"
 
-msgid "items"
-msgstr "Postavke"
+msgid "Hide password"
+msgstr "Skrij geslo"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Dosežena omejitev {count} znakov na sporočilo."
 
-msgid "More {dashboardItemType} …"
-msgstr "Več {dashboardItemType} …"
+msgid "More items …"
+msgstr "Več predmetov ..."
 
 msgid "Next"
 msgstr "Naslednji"
@@ -108,14 +114,38 @@ msgstr "Predmeti"
 msgid "Open"
 msgstr "Odpri"
 
+msgid "Open link to \"{resourceTitle}\""
+msgstr "Odpri povezavo do »{resourceTitle}«"
+
 msgid "Open navigation"
-msgstr "Odpri navigacijo"
+msgstr "Odpri krmarjenje"
+
+msgid "Password is secure"
+msgstr "Geslo je varno"
 
 msgid "Pause slideshow"
 msgstr "Ustavi predstavitev"
 
 msgid "People & Body"
 msgstr "Ljudje in Telo"
+
+msgid "Pick a date"
+msgstr "Izbor datuma"
+
+msgid "Pick a date and a time"
+msgstr "Izbor datuma in časa"
+
+msgid "Pick a month"
+msgstr "Izbor meseca"
+
+msgid "Pick a time"
+msgstr "Izbor časa"
+
+msgid "Pick a week"
+msgstr "Izbor tedna"
+
+msgid "Pick a year"
+msgstr "Izbor leta"
 
 msgid "Pick an emoji"
 msgstr "Izbor izrazne ikone"
@@ -125,6 +155,9 @@ msgstr "Izbor časovnega pasu:"
 
 msgid "Previous"
 msgstr "Predhodni"
+
+msgid "Related resources"
+msgstr "Povezani viri"
 
 msgid "Search"
 msgstr "Iskanje"
@@ -140,6 +173,9 @@ msgstr "Nastavitve"
 
 msgid "Settings navigation"
 msgstr "Krmarjenje nastavitev"
+
+msgid "Show password"
+msgstr "Pokaži geslo"
 
 msgid "Smileys & Emotion"
 msgstr "Izrazne ikone"
@@ -167,4 +203,5 @@ msgstr "Razveljavi spremembe"
 
 msgid "Write message, @ to mention someone, : for emoji autocompletion …"
 msgstr ""
-"Napišite sporočilo, @ da nekoga omenite, : za samodejno ponudbo emotikonov …"
+"Napišite sporočilo, za omembo pred ime postavite@, začnite z : za "
+"vstavljanje izraznih ikon …"
