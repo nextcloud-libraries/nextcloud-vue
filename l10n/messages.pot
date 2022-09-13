@@ -80,13 +80,10 @@ msgstr ""
 msgid "Hide password"
 msgstr ""
 
-msgid "items"
-msgstr ""
-
 msgid "Message limit of {count} characters reached"
 msgstr ""
 
-msgid "More {dashboardItemType} …"
+msgid "More items …"
 msgstr ""
 
 msgid "Next"
