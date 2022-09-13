@@ -63,6 +63,7 @@ export default {
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
 import { showError } from '@nextcloud/dialogs'
+import { t } from '../../l10n.js'
 
 import NcResource from './NcResource.vue'
 
