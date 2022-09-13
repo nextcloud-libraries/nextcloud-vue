@@ -765,7 +765,7 @@ export default {
 	/* counter */
 	.app-navigation-entry__counter-wrapper {
 		// Add slightly more space to the right of the counter
-		margin-right: calc(var(--default-grid-baseline) * 2);
+		margin-right: calc(var(--default-grid-baseline) * 2); /* same as NcAppNavigationCaption */
 		display: flex;
 		align-items: center;
 		flex: 0 1 auto;
