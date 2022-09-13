@@ -22,18 +22,16 @@
 
 <template>
 	<li class="resource">
-		<div v-tooltip="tooltip" class="resource__desc">
-			<h5>{{ title }}</h5>
-			<p v-if="subtitle">
-				{{ subtitle }}
-			</p>
-		</div>
-		<NcButton :aria-label="labelTranslated"
+		<NcButton class="resource__button"
+			:aria-label="labelTranslated"
 			type="tertiary"
 			:href="url">
 			<template #icon>
-				<ArrowRight :size="20" />
+				<div class="resource__icon">
+					<img :src="icon">
+				</div>
 			</template>
+			{{ title }}
 		</NcButton>
 	</li>
 </template>
@@ -43,13 +41,10 @@ import NcButton from '../NcButton/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import { t } from '../../l10n.js'
 
-import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-
 export default {
 	name: 'NcResource',
 
 	components: {
-		ArrowRight,
 		NcButton,
 	},
 
@@ -58,6 +53,10 @@ export default {
 	},
 
 	props: {
+		icon: {
+			type: String,
+			required: true,
+		},
 		title: {
 			type: String,
 			required: true,
@@ -90,22 +89,31 @@ export default {
 	align-items: center;
 	height: 44px;
 
-	&__desc {
-		padding: 8px;
-		line-height: 1.2em;
-		position: relative;
-		flex: 1 1;
-		min-width: 0;
+	// Override default NcButton styles
+	&__button {
+		width: 100%;
+		justify-content: flex-start;
+		padding: 0;
 
-		h5 {
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			overflow: hidden;
-			max-width: inherit;
+		&:deep(.button-vue__text) {
+			font-weight: normal;
+			margin-left: 2px;
 		}
+	}
 
-		p {
-			color: var(--color-text-maxcontrast);
+	&__icon {
+		width: 32px;
+		height: 32px;
+		background-color: var(--color-text-maxcontrast);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		img {
+			width: 16px;
+			height: 16px;
+			filter: var(--background-invert-if-dark);
 		}
 	}
 }

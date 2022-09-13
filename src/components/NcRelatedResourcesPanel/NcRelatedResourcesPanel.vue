@@ -47,11 +47,13 @@ export default {
 	<div v-if="appEnabled && isVisible" class="related-resources">
 		<div class="related-resources__header">
 			<h5>{{ headerTranslated }}</h5>
+			<p>{{ descriptionTranslated }}</p>
 		</div>
 
 		<NcResource v-for="resource in resources"
 			:key="resource.itemId"
 			class="related-resources__entry"
+			:icon="resource.icon"
 			:title="resource.title"
 			:subtitle="resource.subtitle"
 			:tooltip="resource.tooltip"
@@ -108,6 +110,7 @@ export default {
 		return {
 			appEnabled: OC?.appswebroots?.related_resources !== undefined,
 			headerTranslated: t('Related resources'),
+			descriptionTranslated: t('Anything shared with the same group of people will show up here'),
 			loading: false,
 			resources: [],
 		}
@@ -188,13 +191,15 @@ export default {
 <style lang="scss" scoped>
 .related-resources {
 	&__header {
-		display: flex;
-		height: 44px;
-		align-items: center;
-	}
+		margin: 0 0 10px 46px;
 
-	&__entry {
-		padding-left: 36px;
+		h5 {
+			font-weight: bold;
+		}
+
+		p {
+			color: var(--color-text-maxcontrast);
+		}
 	}
 }
 </style>

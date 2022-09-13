@@ -88,6 +88,20 @@ window.OC = {
 			return aa.length - bb.length
 		},
 	},
+	coreApps: [
+		'',
+		'admin',
+		'log',
+		'core/search',
+		'core',
+		'3rdparty',
+	],
+	appswebroots: {
+		calendar: '/apps/calendar',
+		deck: '/apps/deck',
+		files: '/apps/files',
+		spreed: '/apps/spreed',
+	},
 	webroot: '',
 }
 window.OCA = {}
