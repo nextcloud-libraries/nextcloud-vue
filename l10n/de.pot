@@ -2,17 +2,17 @@
 # Translators:
 # Philipp Fischbeck <pfischbeck@googlemail.com>, 2020
 # Andreas Eitel <github-aneitel@online.de>, 2020
-# Mark Ziegler <mark.ziegler@rakekniven.de>, 2020
 # Bernd Lukasik, 2021
 # Gustav Gyges, 2021
 # Mario Siegmann <mario_siegmann@web.de>, 2021
 # Joachim Sokolowski, 2022
 # Markus Eckstein, 2022
 # Jasper vom Felde, 2022
+# Mark Ziegler <mark.ziegler@rakekniven.de>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Jasper vom Felde, 2022\n"
+"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2022\n"
 "Language-Team: German (https://www.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -48,6 +48,9 @@ msgstr "Titel ändern"
 msgid "Choose"
 msgstr "Auswählen"
 
+msgid "Clear text"
+msgstr "Klartext"
+
 msgid "Close"
 msgstr "Schließen"
 
@@ -68,6 +71,9 @@ msgstr "Benutzerdefiniert"
 
 msgid "Edit item"
 msgstr "Objekt bearbeiten"
+
+msgid "Error getting related resources"
+msgstr "Fehler beim Abrufen verwandter Ressourcen"
 
 msgid "External documentation for {title}"
 msgstr "Externe Dokumentation für {title}"
@@ -90,14 +96,14 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Zurück zur Liste"
 
-msgid "items"
-msgstr "Elemente"
+msgid "Hide password"
+msgstr "Passwort verbergen"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
 
-msgid "More {dashboardItemType} …"
-msgstr "Mehr {dashboardItemType} …"
+msgid "More items …"
+msgstr "Weitere Elemente …"
 
 msgid "Next"
 msgstr "Weiter"
@@ -114,14 +120,38 @@ msgstr "Gegenstände"
 msgid "Open"
 msgstr "Öffnen"
 
+msgid "Open link to \"{resourceTitle}\""
+msgstr "Link zu \"{resourceTitle}\" öffnen"
+
 msgid "Open navigation"
 msgstr "Navigation öffnen"
+
+msgid "Password is secure"
+msgstr "Passwort ist sicher"
 
 msgid "Pause slideshow"
 msgstr "Diashow pausieren"
 
 msgid "People & Body"
 msgstr "Menschen & Körper"
+
+msgid "Pick a date"
+msgstr "Ein Datum auswählen"
+
+msgid "Pick a date and a time"
+msgstr "Datum und Uhrzeit auswählen"
+
+msgid "Pick a month"
+msgstr "Einen Monat auswählen"
+
+msgid "Pick a time"
+msgstr "Eine Uhrzeit auswählen"
+
+msgid "Pick a week"
+msgstr "Eine Woche auswählen"
+
+msgid "Pick a year"
+msgstr "Ein Jahr auswählen"
 
 msgid "Pick an emoji"
 msgstr "Ein Emoji auswählen"
@@ -131,6 +161,9 @@ msgstr "Bitte wählen Sie eine Zeitzone:"
 
 msgid "Previous"
 msgstr "Vorherige"
+
+msgid "Related resources"
+msgstr "Verwandte Ressourcen"
 
 msgid "Search"
 msgstr "Suche"
@@ -146,6 +179,9 @@ msgstr "Einstellungen"
 
 msgid "Settings navigation"
 msgstr "Einstellungen für die Navigation"
+
+msgid "Show password"
+msgstr "Passwort anzeigen"
 
 msgid "Smileys & Emotion"
 msgstr "Smileys & Emotionen"
