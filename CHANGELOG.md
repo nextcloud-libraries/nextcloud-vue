@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.0.0-beta.4](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.4) (2022-09-14)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.0.0-beta.3...v7.0.0-beta.4)
+
+### :rocket: Enhancements
+
+- Add gap between nav entry [\#3235](https://github.com/nextcloud/nextcloud-vue/pull/3235) ([CarlSchwan](https://github.com/CarlSchwan))
+
+### :bug: Fixed bugs
+
+- Fix NcEmptyContent used inside NcModal [\#3253](https://github.com/nextcloud/nextcloud-vue/pull/3253) ([nickvergessen](https://github.com/nickvergessen))
+- Add proper margin to the counter [\#3250](https://github.com/nextcloud/nextcloud-vue/pull/3250) ([marcoambrosini](https://github.com/marcoambrosini))
+- Fix avatar border color [\#3244](https://github.com/nextcloud/nextcloud-vue/pull/3244) ([nickvergessen](https://github.com/nickvergessen))
+
+### Closed pull requests
+
+- Fix multiselect background color spilling outside the component [\#3252](https://github.com/nextcloud/nextcloud-vue/pull/3252) ([ChristophWurst](https://github.com/ChristophWurst))
+- Update design of related resources panel [\#3236](https://github.com/nextcloud/nextcloud-vue/pull/3236) ([Pytal](https://github.com/Pytal))
+
+
 ## [v7.0.0-beta.3](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.3) (2022-09-12)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.0.0-beta.2...v7.0.0-beta.3)
