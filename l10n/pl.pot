@@ -27,6 +27,10 @@ msgstr "Aktywność"
 msgid "Animals & Nature"
 msgstr "Zwierzęta i natura"
 
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+"Tutaj pojawi się wszystko, co zostało udostępnione tej samej grupie osób"
+
 msgid "Avatar of {displayName}"
 msgstr "Awatar {displayName}"
 
@@ -93,14 +97,11 @@ msgstr "Powrót do listy"
 msgid "Hide password"
 msgstr "Ukryj hasło"
 
-msgid "items"
-msgstr "elementy"
-
 msgid "Message limit of {count} characters reached"
 msgstr "Przekroczono limit wiadomości wynoszący {count} znaków"
 
-msgid "More {dashboardItemType} …"
-msgstr "Więcej {dashboardItemType}…"
+msgid "More items …"
+msgstr "Więcej elementów…"
 
 msgid "Next"
 msgstr "Następny"
