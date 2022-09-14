@@ -127,6 +127,11 @@ export default {
 	flex-direction: column;
 	margin-top: 20vh;
 
+	.modal-wrapper & {
+		margin-top: 5vh;
+		margin-bottom: 5vh;
+	}
+
 	&__icon {
 		display: flex;
 		align-items: center;
@@ -152,6 +157,11 @@ export default {
 
 	&__action {
 		margin-top: 8px;
+
+		.modal-wrapper & {
+			margin-top: 20px;
+			display: flex;
+		}
 	}
 }
 </style>
