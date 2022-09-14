@@ -762,7 +762,7 @@ export default {
 	/* counter */
 	.app-navigation-entry__counter-wrapper {
 		// Add slightly more space to the right of the counter
-		margin-right: 2px;
+		margin-right: calc(var(--default-grid-baseline) * 2);
 		display: flex;
 		align-items: center;
 		flex: 0 1 auto;
