@@ -17,6 +17,9 @@ msgstr ""
 msgid "Animals & Nature"
 msgstr ""
 
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+
 msgid "Avatar of {displayName}"
 msgstr ""
 

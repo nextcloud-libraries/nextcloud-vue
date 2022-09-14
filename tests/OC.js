@@ -16,5 +16,21 @@ export default {
 		naturalSortCompare(a, b) {
 			return 0
 		}
-	}
+	},
+
+	coreApps: [
+		'',
+		'admin',
+		'log',
+		'core/search',
+		'core',
+		'3rdparty',
+	],
+
+	appswebroots: {
+		calendar: '/apps/calendar',
+		deck: '/apps/deck',
+		files: '/apps/files',
+		spreed: '/apps/spreed',
+	},
 }
