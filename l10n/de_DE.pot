@@ -4,12 +4,12 @@
 # ProfDrJones <jones@fs.cs.hm.edu>, 2020
 # Gustav Gyges, 2021
 # Moritz Hofmann <moritz.hofmann2005@gmail.com>, 2022
-# Mark Ziegler <mark.ziegler@rakekniven.de>, 2022
 # Mario Siegmann <mario_siegmann@web.de>, 2022
+# Mark Ziegler <mark.ziegler@rakekniven.de>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2022\n"
+"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2022\n"
 "Language-Team: German (Germany) (https://www.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -29,6 +29,11 @@ msgstr "Aktivitäten"
 
 msgid "Animals & Nature"
 msgstr "Tiere & Natur"
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+"Alles, was mit derselben Gruppe von Personen geteilt wird, wird hier "
+"angezeigt"
 
 msgid "Avatar of {displayName}"
 msgstr "Avatar von {displayName}"
