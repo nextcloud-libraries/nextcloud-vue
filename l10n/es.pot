@@ -4,10 +4,11 @@
 # Maira Belmonte <mairabelmonte@gmail.com>, 2020
 # Mateo Riofrio <materiochi123@gmail.com>, 2021
 # Next Cloud <nextcloud.translator.es@cgj.es>, 2022
+# Julio C. Ortega, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Next Cloud <nextcloud.translator.es@cgj.es>, 2022\n"
+"Last-Translator: Julio C. Ortega, 2022\n"
 "Language-Team: Spanish (https://www.transifex.com/nextcloud/teams/64236/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es\n"
@@ -28,6 +29,11 @@ msgstr "Actividades"
 msgid "Animals & Nature"
 msgstr "Animales y naturaleza"
 
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+"Cualquier cosa que sea compartida con el mismo grupo de personas se mostrará"
+" aquí"
+
 msgid "Avatar of {displayName}"
 msgstr "Avatar de {displayName}"
 
@@ -43,6 +49,9 @@ msgstr "Cambiar título"
 msgid "Choose"
 msgstr "Elegir"
 
+msgid "Clear text"
+msgstr "Limpiar texto"
+
 msgid "Close"
 msgstr "Cerrar"
 
@@ -52,6 +61,9 @@ msgstr "Cerrar modal"
 msgid "Close navigation"
 msgstr "Cerrar navegación"
 
+msgid "Close sidebar"
+msgstr "Cerrar barra lateral"
+
 msgid "Confirm changes"
 msgstr "Confirmar cambios"
 
@@ -60,6 +72,9 @@ msgstr "Personalizado"
 
 msgid "Edit item"
 msgstr "Editar elemento"
+
+msgid "Error getting related resources"
+msgstr "Se encontró un error al obtener los recursos relacionados"
 
 msgid "External documentation for {title}"
 msgstr "Documentacion externa de {title}"
@@ -82,14 +97,14 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Volver a la lista"
 
-msgid "items"
-msgstr "elementos"
+msgid "Hide password"
+msgstr "Ocultar contraseña"
 
 msgid "Message limit of {count} characters reached"
 msgstr "El mensaje ha alcanzado el límite de {count} caracteres"
 
-msgid "More {dashboardItemType} …"
-msgstr "Más {dashboardItemType} ..."
+msgid "More items …"
+msgstr "Más ítems..."
 
 msgid "Next"
 msgstr "Siguiente"
@@ -106,14 +121,38 @@ msgstr "Objetos"
 msgid "Open"
 msgstr "Abrir"
 
+msgid "Open link to \"{resourceTitle}\""
+msgstr "Abrir enlace a \"{resourceTitle}\""
+
 msgid "Open navigation"
 msgstr "Abrir navegación"
+
+msgid "Password is secure"
+msgstr "La contraseña es segura"
 
 msgid "Pause slideshow"
 msgstr "Pausar la presentación "
 
 msgid "People & Body"
 msgstr "Personas y cuerpos"
+
+msgid "Pick a date"
+msgstr "Seleccione una fecha"
+
+msgid "Pick a date and a time"
+msgstr "Seleccione una fecha y hora"
+
+msgid "Pick a month"
+msgstr "Seleccione un mes"
+
+msgid "Pick a time"
+msgstr "Seleccione una hora"
+
+msgid "Pick a week"
+msgstr "Seleccione una semana"
+
+msgid "Pick a year"
+msgstr "Seleccione un año"
 
 msgid "Pick an emoji"
 msgstr "Elegir un emoji"
@@ -123,6 +162,9 @@ msgstr "Por favor elige un huso de horario:"
 
 msgid "Previous"
 msgstr "Anterior"
+
+msgid "Related resources"
+msgstr "Recursos relacionados"
 
 msgid "Search"
 msgstr "Buscar"
@@ -138,6 +180,9 @@ msgstr "Ajustes"
 
 msgid "Settings navigation"
 msgstr "Navegación por ajustes"
+
+msgid "Show password"
+msgstr "Mostrar contraseña"
 
 msgid "Smileys & Emotion"
 msgstr "Smileys y emoticonos"
