@@ -3,13 +3,13 @@
 # Philipp Fischbeck <pfischbeck@googlemail.com>, 2020
 # ProfDrJones <jones@fs.cs.hm.edu>, 2020
 # Gustav Gyges, 2021
-# Mario Siegmann <mario_siegmann@web.de>, 2022
 # Moritz Hofmann <moritz.hofmann2005@gmail.com>, 2022
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2022
+# Mario Siegmann <mario_siegmann@web.de>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2022\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2022\n"
 "Language-Team: German (Germany) (https://www.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -96,14 +96,11 @@ msgstr "Zurück zur Liste"
 msgid "Hide password"
 msgstr "Passwort verbergen"
 
-msgid "items"
-msgstr "Elemente"
-
 msgid "Message limit of {count} characters reached"
 msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
 
-msgid "More {dashboardItemType} …"
-msgstr "Mehr {dashboardItemType} …"
+msgid "More items …"
+msgstr "Weitere Elemente …"
 
 msgid "Next"
 msgstr "Weiter"
