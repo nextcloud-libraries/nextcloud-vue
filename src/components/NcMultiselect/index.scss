@@ -8,7 +8,6 @@
 	/* override this rule with your width styling if you need */
 	min-width: 260px;
 	position: relative;
-	background-color: var(--color-main-background);
 
 	/* Force single multiselect value to be shown when not active */
 	&:not(.multiselect--active) .multiselect__single {
@@ -54,6 +53,7 @@
 		min-height: 44px;
 		height: 44px;
 		padding: 8px 12px !important;
+		background-color: var(--color-main-background);
 
 		&:focus, &:hover {
 			border-color: var(--color-primary);
