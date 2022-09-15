@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v6.0.0-beta.8](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.8) (2022-09-14)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.7...v6.0.0-beta.8)
+
+### :bug: Fixed bugs
+
+- Fix single action detection [\#3212](https://github.com/nextcloud/nextcloud-vue/pull/3212) ([st3iny](https://github.com/st3iny))
+- Fix overwriting placeholder property in NcDatetimePicker [\#3202](https://github.com/nextcloud/nextcloud-vue/pull/3202) ([Chartman123](https://github.com/Chartman123))
+- Adjust appnavigation settings border radius [\#3186](https://github.com/nextcloud/nextcloud-vue/pull/3186) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Right-align nav item utils [\#3178](https://github.com/nextcloud/nextcloud-vue/pull/3178) ([ChristophWurst](https://github.com/ChristophWurst))
+- Make NcMultiselect pixel perfect [\#3174](https://github.com/nextcloud/nextcloud-vue/pull/3174) ([CarlSchwan](https://github.com/CarlSchwan))
+
+### Closed pull requests
+
+- Fix a word puzzle in NcDashboardWidget component [\#3225](https://github.com/nextcloud/nextcloud-vue/pull/3225) ([CarlSchwan](https://github.com/CarlSchwan))
+- Fix active and focus frame [\#3201](https://github.com/nextcloud/nextcloud-vue/pull/3201) ([CarlSchwan](https://github.com/CarlSchwan))
+
+
+## [v6.0.0-beta.7](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.7) (2022-09-05)
+
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.6...v6.0.0-beta.7)
 
 ### :bug: Fixed bugs
