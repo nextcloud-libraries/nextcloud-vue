@@ -91,13 +91,13 @@ export default {
 
 	// Override default NcButton styles
 	&__button {
-		width: 100%;
-		justify-content: flex-start;
-		padding: 0;
+		width: 100% !important;
+		justify-content: flex-start !important;
+		padding: 0 !important;
 
 		&:deep(.button-vue__text) {
-			font-weight: normal;
-			margin-left: 2px;
+			font-weight: normal !important;
+			margin-left: 2px !important;
 		}
 	}
 
