@@ -87,10 +87,11 @@ export default {
 <style lang="scss" scoped>
 #app-settings {
 	margin-top: auto;
-	padding: calc(var(--default-grid-baseline, 4px) * 2);
+	padding: $app-navigation-settings-margin;
 
 	&__header {
 		box-sizing: border-box;
+		margin: 0 $app-navigation-settings-margin $app-navigation-settings-margin $app-navigation-settings-margin;
 
 		.settings-button {
 			display: flex;
@@ -132,6 +133,10 @@ export default {
 	&__content {
 		display: block;
 		padding: 10px;
+
+		/* prevent scrolled contents from stopping too early */
+		margin-bottom: -$app-navigation-settings-margin;
+
 		/* restrict height of settings and make scrollable */
 		max-height: 300px;
 		overflow-y: auto;
