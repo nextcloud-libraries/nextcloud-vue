@@ -476,6 +476,8 @@ export default {
 
 	mounted() {
 		this.loadAvatarUrl()
+		subscribe('settings:avatar:updated', this.loadAvatarUrl)
+		subscribe('settings:display-name:updated', this.loadAvatarUrl)
 		if (this.showUserStatus && this.user && !this.isNoUser) {
 			if (!this.preloadedUserStatus) {
 				this.fetchUserStatus(this.user)
@@ -490,6 +492,8 @@ export default {
 	},
 
 	beforeDestroy() {
+		unsubscribe('settings:avatar:updated', this.loadAvatarUrl)
+		unsubscribe('settings:display-name:updated', this.loadAvatarUrl)
 		if (this.showUserStatus && this.user && !this.isNoUser) {
 			unsubscribe('user_status:status.updated', this.handleUserStatusUpdated)
 		}
