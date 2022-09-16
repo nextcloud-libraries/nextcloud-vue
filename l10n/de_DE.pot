@@ -32,7 +32,7 @@ msgstr "Tiere & Natur"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
-"Alles, was mit derselben Gruppe von Personen geteilt wird, wird hier "
+"Alles, das mit derselben Gruppe von Personen geteilt wird, wird hier "
 "angezeigt"
 
 msgid "Avatar of {displayName}"
