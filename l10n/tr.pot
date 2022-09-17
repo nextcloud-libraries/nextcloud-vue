@@ -28,6 +28,9 @@ msgstr "Etkinlikler"
 msgid "Animals & Nature"
 msgstr "Hayvanlar ve Doğa"
 
+msgid "Anything shared with the same group of people will show up here"
+msgstr "Aynı kişi grubu ile paylaşılan herşey burada görüntülenir"
+
 msgid "Avatar of {displayName}"
 msgstr "{displayName} avatarı"
 
@@ -94,14 +97,11 @@ msgstr "Listeye dön"
 msgid "Hide password"
 msgstr "Parolayı gizle"
 
-msgid "items"
-msgstr "ögeler"
-
 msgid "Message limit of {count} characters reached"
 msgstr "{count} karakter ileti sınırına ulaşıldı"
 
-msgid "More {dashboardItemType} …"
-msgstr "Diğer {dashboardItemType} ögeleri…"
+msgid "More items …"
+msgstr "Diğer ögeler…"
 
 msgid "Next"
 msgstr "Sonraki"
