@@ -136,7 +136,7 @@ export default {
 			:class="'avatardiv__user-status--' + userStatus.status" />
 
 		<!-- Show the letter if no avatar nor icon class -->
-		<div v-if="userDoesNotExist && !(iconClass || $slots.icon)" class="unknown">
+		<div v-if="userDoesNotExist && !(iconClass || $slots.icon)" :style="initialsStyle" class="unknown">
 			{{ initials }}
 		</div>
 	</div>
@@ -411,6 +411,12 @@ export default {
 				style.backgroundColor = 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', 0.1)'
 			}
 			return style
+		},
+		initialsStyle() {
+			const { r, g, b } = usernameToColor(this.getUserIdentifier)
+			return {
+				color: `rgb(${r}, ${g}, ${b})`,
+			}
 		},
 		tooltip() {
 			if (this.disableTooltip) {
@@ -718,7 +724,6 @@ export default {
 		width: 100%;
 		text-align: center;
 		font-weight: normal;
-		color: var(--color-main-background);
 	}
 
 	img {
