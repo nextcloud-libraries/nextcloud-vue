@@ -78,6 +78,13 @@ export default {
  }
  </script>
 ```
+
+### Avatar for non-users
+
+```vue
+	<NcAvatar display-name="Robbie Hyeon-Jeong" :is-no-user="true" />
+```
+
 </docs>
 <template>
 	<div ref="main"
