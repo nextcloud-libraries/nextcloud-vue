@@ -169,10 +169,11 @@ export default {
 			type: String,
 			default: 'text',
 			validator: (value) => [
-				'text',
-				'password',
 				'email',
+				'password',
+				'search',
 				'tel',
+				'text',
 				'url',
 			].includes(value),
 		},
