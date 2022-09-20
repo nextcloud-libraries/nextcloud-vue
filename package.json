@@ -54,7 +54,7 @@
 		"floating-vue": "^1.0.0-beta.18",
 		"focus-trap": "^7.0.0",
 		"hammerjs": "^2.0.8",
-		"linkify-string": "^3.0.4",
+		"linkify-string": "^4.0.0",
 		"md5": "^2.3.0",
 		"splitpanes": "^2.4.1",
 		"string-length": "^5.0.1",
