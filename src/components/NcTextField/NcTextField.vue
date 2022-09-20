@@ -127,7 +127,8 @@ export default {
 		@input="handleInput">
 		<!-- Default slot for the leading icon -->
 		<slot />
-		<template slot="trailing-button-icon">
+		<!-- Trailing icon slot, except for search type input as the browser already adds a trailing close icon -->
+		<template v-if="type !== 'search'" slot="trailing-button-icon">
 			<Close v-if="trailingButtonIcon === 'close'" :size="20" />
 			<ArrowRight v-else-if="trailingButtonIcon === 'arrowRight'" :size="20" />
 		</template>
@@ -174,6 +175,7 @@ export default {
 				'email',
 				'tel',
 				'url',
+				'search',
 			].includes(value),
 		},
 
