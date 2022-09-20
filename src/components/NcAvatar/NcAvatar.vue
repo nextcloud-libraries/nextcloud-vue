@@ -85,6 +85,27 @@ export default {
 	<NcAvatar display-name="Robbie Hyeon-Jeong" :is-no-user="true" />
 ```
 
+### Avatar on complex background
+
+```
+<template>
+	<div class="avatar-background">
+		<NcAvatar class="avatar" :is-no-user="true" display-name="Cecilia Rohese" />
+	</div>
+</template>
+<style scoped>
+.avatar-background {
+	width: 80px;
+	height: 60px;
+	background: linear-gradient(to bottom, #0057b8 0%, #0057b8 49.99%, #ffd700 50%, #ffd700 100%);
+}
+
+.avatar {
+	margin: 15px 25px;
+}
+</style>
+```
+
 </docs>
 <template>
 	<div ref="main"
@@ -136,8 +157,12 @@ export default {
 			:class="'avatardiv__user-status--' + userStatus.status" />
 
 		<!-- Show the letter if no avatar nor icon class -->
-		<div v-if="userDoesNotExist && !(iconClass || $slots.icon)" :style="initialsStyle" class="unknown">
-			{{ initials }}
+		<div v-if="userDoesNotExist && !(iconClass || $slots.icon)"
+			:style="initialsWrapperStyle"
+			class="avatardiv__initials-wrapper">
+			<div :style="initialsStyle" class="unknown">
+				{{ initials }}
+			</div>
 		</div>
 	</div>
 </template>
@@ -405,12 +430,13 @@ export default {
 				lineHeight: this.size + 'px',
 				fontSize: Math.round(this.size * 0.55) + 'px',
 			}
-
-			if (!this.iconClass && !this.avatarSrcSetLoaded) {
-				const rgb = usernameToColor(this.getUserIdentifier)
-				style.backgroundColor = 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', 0.1)'
-			}
 			return style
+		},
+		initialsWrapperStyle() {
+			const { r, g, b } = usernameToColor(this.getUserIdentifier)
+			return {
+				backgroundColor: `rgba(${r}, ${g}, ${b}, 0.1)`,
+			}
 		},
 		initialsStyle() {
 			const { r, g, b } = usernameToColor(this.getUserIdentifier)
@@ -681,7 +707,7 @@ export default {
 
 	&--unknown {
 		position: relative;
-		background-color: var(--color-text-maxcontrast);
+		background-color: var(--color-main-background);
 	}
 
 	&:not(&--unknown) {
@@ -716,14 +742,21 @@ export default {
 		}
 	}
 
-	> .unknown {
-		position: absolute;
-		top: 0;
-		left: 0;
-		display: block;
-		width: 100%;
-		text-align: center;
-		font-weight: normal;
+	.avatardiv__initials-wrapper {
+		height: var(--size);
+		width: var(--size);
+		background-color: var(--color-main-background);
+		border-radius: 50%;
+
+		.unknown {
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: block;
+			width: 100%;
+			text-align: center;
+			font-weight: normal;
+		}
 	}
 
 	img {
