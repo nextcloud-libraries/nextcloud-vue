@@ -639,7 +639,7 @@ export default {
 
 	&--unknown {
 		position: relative;
-		background-color: var(--color-text-maxcontrast);
+		background-color: var(--color-main-background);
 	}
 
 	&:not(&--unknown) {
