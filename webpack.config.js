@@ -4,13 +4,16 @@ const glob = require('glob')
 const md5 = require('md5')
 const path = require('path')
 
-const buildMode = process.env.NODE_ENV
-const isDev = buildMode === 'development'
-
 const { DefinePlugin } = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const BabelLoaderExcludeNodeModulesExcept = require('babel-loader-exclude-node-modules-except')
 const nodeExternals = require('webpack-node-externals')
+
+const { dependencies } = require('./package.json')
+
+const buildMode = process.env.NODE_ENV
+const isDev = buildMode === 'development'
+const libraryTarget = process.env.LIBRARY_TARGET ?? 'umd'
 
 // scope variable
 // fallback for cypress testing
@@ -56,7 +59,7 @@ const translations = fs
 		}
 	})
 
-module.exports = {
+const config = {
 	mode: buildMode,
 	devtool: isDev ? false : 'source-map',
 	devServer: {
@@ -100,8 +103,10 @@ module.exports = {
 		path: path.resolve(__dirname, './dist'),
 		publicPath: '/dist/',
 		filename: '[name].js',
-		libraryTarget: 'umd',
-		library: ['NextcloudVue', '[name]'],
+		library: {
+			type: libraryTarget,
+			name: ['NextcloudVue', '[name]'],
+		},
 		umdNamedDefine: true,
 	},
 	externals: [nodeExternals()],
@@ -174,3 +179,25 @@ module.exports = {
 		},
 	},
 }
+
+if (libraryTarget !== 'umd') {
+	config.experiments = {
+		outputModule: true,
+	}
+
+	config.optimization = {
+		minimize: false,
+	}
+
+	config.entry = {
+		index: path.join(__dirname, 'src', 'index.js'),
+	}
+
+	config.output.filename = `[name].${libraryTarget}.js`
+
+	config.externals = [...config.externals, ...Object.keys(dependencies)]
+
+	delete config.output.library.name
+}
+
+module.exports = config

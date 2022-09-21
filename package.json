@@ -15,7 +15,8 @@
 	"scripts": {
 		"dev": "webpack --node-env development --progress",
 		"watch": "webpack --node-env development --progress --watch",
-		"build": "webpack --node-env production --progress",
+		"build": "webpack --node-env production --progress && npm run build:module",
+		"build:module": "LIBRARY_TARGET=module npx webpack --node-env production --progress",
 		"l10n:extract": "node build/extract-l10n.js",
 		"lint": "eslint --ext .js,.vue src",
 		"lint:fix": "eslint --ext .js,.vue src --fix",
@@ -30,6 +31,7 @@
 		"cypress:update-snapshots": "cypress run-ct --env type=base --config screenshotsFolder=cypress/snapshots/base"
 	},
 	"main": "dist/ncvuecomponents.js",
+	"module": "dist/index.module.js",
 	"files": [
 		"CHANGELOG.md",
 		"LICENSE",
