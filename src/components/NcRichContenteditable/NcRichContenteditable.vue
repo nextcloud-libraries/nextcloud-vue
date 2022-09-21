@@ -147,7 +147,7 @@ import { t } from '../../l10n.js'
 import NcAutoCompleteResult from './NcAutoCompleteResult.vue'
 import richEditor from '../../mixins/richEditor/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
-import { emojiSearch, addRecent } from '../../functions/emoji/index.js'
+import { emojiSearch, emojiAddRecent } from '../../functions/emoji/index.js'
 
 import Tribute from 'tributejs/dist/tribute.esm.js'
 import debounce from 'debounce'
@@ -265,7 +265,7 @@ export default {
 				noMatchTemplate: () => t('No emoji found'),
 				// Display raw emoji along with its name
 				selectTemplate: (item) => {
-					addRecent(item.original)
+					emojiAddRecent(item.original)
 					return item.original.native
 				},
 				// Pass the search results as values

@@ -39,8 +39,8 @@ export const emojiSearch = function(query, maxResults = 10) {
 	return frequently.get(maxResults).map((id) => index.emoji(id)) || []
 }
 
-export const addRecent = function(id) {
+export const emojiAddRecent = function(id) {
 	frequently.add(id)
 }
 
-export default { emojiSearch, addRecent }
+export default { emojiSearch, emojiAddRecent }
