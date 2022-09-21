@@ -37,7 +37,7 @@ const translations = fs
 		for (const key in json.translations['']) {
 			if (key !== '') {
 				// Plural
-				if ('msgid_plural'in json.translations[''][key]) {
+				if ('msgid_plural' in json.translations[''][key]) {
 					translations[json.translations[''][key].msgid] = {
 						pluralId: json.translations[''][key].msgid_plural,
 						msgstr: json.translations[''][key].msgstr,
@@ -66,6 +66,7 @@ module.exports = {
 	},
 	entry: {
 		ncvuecomponents: path.join(__dirname, 'src', 'index.js'),
+		install: path.join(__dirname, 'src', 'install.js'),
 		...glob.sync('src/components/*/index.js').reduce((acc, item) => {
 			const name = item
 				.replace('/index.js', '')
@@ -152,7 +153,7 @@ module.exports = {
 			},
 			{
 				test: /\.svg/,
-				type: 'asset/inline'
+				type: 'asset/inline',
 			},
 		],
 	},
