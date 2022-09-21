@@ -48,7 +48,7 @@
 				@input="handleInput">
 
 			<!-- Leading icon -->
-			<div class="input-field__icon input-field__icon--leading">
+			<div v-show="hasLeadingIcon" class="input-field__icon input-field__icon--leading">
 				<!-- Leading material design icon in the text field, set the size to 18 -->
 				<slot />
 			</div>
