@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.0.0-beta.5](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.5) (2022-09-21)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.8...v7.0.0-beta.5)
+
+### :rocket: Enhancements
+
+- Add styleguide example for non-user avatar [\#3270](https://github.com/nextcloud/nextcloud-vue/pull/3270) ([ChristophWurst](https://github.com/ChristophWurst))
+- Live refresh image and displayname based avatar on update [\#3266](https://github.com/nextcloud/nextcloud-vue/pull/3266) ([Pytal](https://github.com/Pytal))
+- Forward the autofocus attribute to input field component [\#3245](https://github.com/nextcloud/nextcloud-vue/pull/3245) ([kesselb](https://github.com/kesselb))
+- Allow 'search' as type prop for NcTextField [\#3190](https://github.com/nextcloud/nextcloud-vue/pull/3190) ([artonge](https://github.com/artonge))
+
+### :bug: Fixed bugs
+
+- Fix non-user avatar on complex background [\#3272](https://github.com/nextcloud/nextcloud-vue/pull/3272) ([ChristophWurst](https://github.com/ChristophWurst))
+- Fix initials color of new non-user avatars [\#3271](https://github.com/nextcloud/nextcloud-vue/pull/3271) ([ChristophWurst](https://github.com/ChristophWurst))
+- Mark resource button styles as important to fix styles in some contexts [\#3259](https://github.com/nextcloud/nextcloud-vue/pull/3259) ([Pytal](https://github.com/Pytal))
+- Make app navigation settings pixel perfect-ish [\#3256](https://github.com/nextcloud/nextcloud-vue/pull/3256) ([ChristophWurst](https://github.com/ChristophWurst))
+- Move the close button to the end of the content [\#3230](https://github.com/nextcloud/nextcloud-vue/pull/3230) ([marcoambrosini](https://github.com/marcoambrosini))
+
+### Closed pull requests
+
+- Allow opting out of automatic NcModal remounting [\#3219](https://github.com/nextcloud/nextcloud-vue/pull/3219) ([Pytal](https://github.com/Pytal))
+
+
 ## [v7.0.0-beta.4](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.4) (2022-09-14)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.0.0-beta.3...v7.0.0-beta.4)
