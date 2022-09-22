@@ -26,15 +26,19 @@ npm i --save @nextcloud/vue
 To use a component, just import it:
 
 ```js
-import { AppNavigation } from '@nextcloud/vue'
+import { NcAppNavigation, NcActions, NcActionButton } from '@nextcloud/vue'
 ```
 
-Depending on which components you use, you might want to only import individual (separately bundled) components:
+### Registering all components.
+
+> Be careful, this will registry all components, even the ones not being used.
 
 ```js
-import Avatar from '@nextcloud/vue/dist/Components/Avatar'
-```
+import Vue from 'vue'
+import NcComponents from '@nextcloud/vue/dist/install.js'
 
+Vue.use(NcComponents)
+```
 
 ## Development setup
 
@@ -102,7 +106,7 @@ A pre-release can be built in the same way as described above, however it requir
 1. Retag latest to the last stable release
 
     npm dist-tag add @nextcloud/vue@5.4.0 latest
-  
+
 2. Tag the new pre-release as next
 
     npm dist-tag add @nextcloud/vue@6.0.0-beta.2 next
