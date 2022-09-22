@@ -85,7 +85,6 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 	<Dropdown ref="popover"
 		:distance="10"
 		:arrow-padding="10"
-		v-bind="$attrs"
 		:popper-class="popoverBaseClass"
 		v-on="$listeners"
 		@apply-show="afterShow"
