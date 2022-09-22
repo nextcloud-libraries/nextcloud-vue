@@ -355,10 +355,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	.native-datetime-picker{
-		display: flex;;
+	.native-datetime-picker {
+		display: flex;
 		flex-direction: column;
 	}
+
 	.native-datetime-picker .native-datetime-picker--input {
 		width: 100%;
 		flex: 0 0 auto;
