@@ -16,17 +16,17 @@ const getCompareSnapshotsPlugin = require('cypress-visual-regression/dist/plugin
 const webpack = require('@cypress/webpack-preprocessor')
 const { startDevServer } = require('@cypress/webpack-dev-server')
 
-const webpackOptions = require('../../webpack.config.js')
-webpackOptions.externals = {}
+module.exports = async (on, config) => {
+	const webpackOptions = await require('../../webpack.config.js')()
+	webpackOptions.externals = {}
 
-const options = {
-	// send in the options from your webpack.config.js, so it works the same
-	// as your app's code
-	webpackOptions,
-	watchOptions: {},
-}
+	const options = {
+		// send in the options from your webpack.config.js, so it works the same
+		// as your app's code
+		webpackOptions,
+		watchOptions: {},
+	}
 
-module.exports = (on, config) => {
 	getCompareSnapshotsPlugin(on, config)
 	on('file:preprocessor', webpack(options))
 
