@@ -1003,18 +1003,6 @@ export default {
 						container: this.container,
 						popoverBaseClass: 'action-item__popper',
 					},
-					// For some reason the popover component
-					// does not react to props given under the 'props' key,
-					// so we use both 'attrs' and 'props'
-					attrs: {
-						delay: 0,
-						handleResize: true,
-						shown: this.opened,
-						placement: this.placement,
-						boundary: this.boundariesElement,
-						container: this.container,
-						popoverBaseClass: 'action-item__popper',
-					},
 					on: {
 						show: this.openMenu,
 						'after-show': this.onOpen,

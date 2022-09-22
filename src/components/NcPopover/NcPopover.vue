@@ -85,7 +85,7 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 	<Dropdown ref="popover"
 		:distance="10"
 		:arrow-padding="10"
-		v-bind="$attrs"
+		v-bind="$props"
 		:popper-class="popoverBaseClass"
 		v-on="$listeners"
 		@apply-show="afterShow"
@@ -120,6 +120,36 @@ export default {
 		focusTrap: {
 			type: Boolean,
 			default: true,
+		},
+
+		delay: {
+			type: Number,
+			default: 0,
+		},
+
+		handleResize: {
+			type: Boolean,
+			default: true,
+		},
+
+		shown: {
+			type: Boolean,
+			default: false,
+		},
+
+		placement: {
+			type: String,
+			default: 'auto',
+		},
+
+		boundary: {
+			type: String,
+			default: 'scrollParent',
+		},
+
+		container: {
+			type: String,
+			default: 'body',
 		},
 	},
 
