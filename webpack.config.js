@@ -1,16 +1,18 @@
-const fs = require('fs')
-const gettextParser = require('gettext-parser')
 const glob = require('glob')
 const md5 = require('md5')
 const path = require('path')
-
-const buildMode = process.env.NODE_ENV
-const isDev = buildMode === 'development'
+const { loadTranslations } = require('./resources/translations.js')
 
 const { DefinePlugin } = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const BabelLoaderExcludeNodeModulesExcept = require('babel-loader-exclude-node-modules-except')
 const nodeExternals = require('webpack-node-externals')
+
+const buildMode = process.env.NODE_ENV
+const isDev = buildMode === 'development'
+const libraryTarget = process.env.LIBRARY_TARGET ?? 'umd'
+
+const { dependencies } = require('./package.json')
 
 // scope variable
 // fallback for cypress testing
@@ -20,43 +22,7 @@ const SCOPE_VERSION = JSON.stringify(versionHash)
 
 console.info('This build version hash is', versionHash, '\n')
 
-// https://github.com/alexanderwallin/node-gettext#usage
-// https://github.com/alexanderwallin/node-gettext#load-and-add-translations-from-mo-or-po-files
-const translations = fs
-	.readdirSync('./l10n')
-	.filter(name => name !== 'messages.pot' && name.endsWith('.pot'))
-	.map(file => {
-		const path = './l10n/' + file
-		const locale = file.slice(0, -'.pot'.length)
-
-		const po = fs.readFileSync(path)
-		const json = gettextParser.po.parse(po)
-
-		// Compress translations Content
-		const translations = {}
-		for (const key in json.translations['']) {
-			if (key !== '') {
-				// Plural
-				if ('msgid_plural'in json.translations[''][key]) {
-					translations[json.translations[''][key].msgid] = {
-						pluralId: json.translations[''][key].msgid_plural,
-						msgstr: json.translations[''][key].msgstr,
-					}
-					continue
-				}
-
-				// Singular
-				translations[json.translations[''][key].msgid] = json.translations[''][key].msgstr[0]
-			}
-		}
-
-		return {
-			locale,
-			translations,
-		}
-	})
-
-module.exports = {
+const config = {
 	mode: buildMode,
 	devtool: isDev ? false : 'source-map',
 	devServer: {
@@ -66,6 +32,7 @@ module.exports = {
 	},
 	entry: {
 		ncvuecomponents: path.join(__dirname, 'src', 'index.js'),
+		install: path.join(__dirname, 'src', 'install.js'),
 		...glob.sync('src/components/*/index.js').reduce((acc, item) => {
 			const name = item
 				.replace('/index.js', '')
@@ -99,8 +66,10 @@ module.exports = {
 		path: path.resolve(__dirname, './dist'),
 		publicPath: '/dist/',
 		filename: '[name].js',
-		libraryTarget: 'umd',
-		library: ['NextcloudVue', '[name]'],
+		library: {
+			type: libraryTarget,
+			name: ['NextcloudVue', '[name]'],
+		},
 		umdNamedDefine: true,
 	},
 	externals: [nodeExternals()],
@@ -152,16 +121,12 @@ module.exports = {
 			},
 			{
 				test: /\.svg/,
-				type: 'asset/inline'
+				type: 'asset/inline',
 			},
 		],
 	},
 	plugins: [
 		new VueLoaderPlugin(),
-		new DefinePlugin({
-			SCOPE_VERSION,
-			TRANSLATIONS: JSON.stringify(translations),
-		}),
 	],
 	resolve: {
 		extensions: ['*', '.js', '.vue'],
@@ -172,4 +137,31 @@ module.exports = {
 			'/core/css/../fonts': path.join(__dirname, 'styleguide/assets/fonts'),
 		},
 	},
+}
+
+module.exports = async () => {
+	const translations = await loadTranslations(path.resolve(__dirname, './l10n'))
+
+	config.plugins.push(new DefinePlugin({
+		SCOPE_VERSION,
+		TRANSLATIONS: JSON.stringify(translations),
+	}))
+
+	if (libraryTarget !== 'umd') {
+		config.experiments = {
+			outputModule: true,
+		}
+
+		config.entry = {
+			index: path.join(__dirname, 'src', 'index.js'),
+		}
+
+		config.output.filename = `[name].${libraryTarget}.js`
+
+		config.externals = [...config.externals, ...Object.keys(dependencies)]
+
+		delete config.output.library.name
+	}
+
+	return config
 }
