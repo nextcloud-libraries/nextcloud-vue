@@ -337,7 +337,7 @@ export default {
 
 	// Variables
 	// the whitespace between the topbar content and its edges
-	--topbar-margin: $topbar-margin;
+	--topbar-margin: #{$topbar-margin};
 }
 
 .app-content-wrapper {
