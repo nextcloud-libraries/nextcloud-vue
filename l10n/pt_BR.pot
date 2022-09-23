@@ -29,6 +29,10 @@ msgstr "Atividades"
 msgid "Animals & Nature"
 msgstr "Animais & Natureza"
 
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+"Qualquer coisa compartilhada com o mesmo grupo de pessoas aparecerá aqui"
+
 msgid "Avatar of {displayName}"
 msgstr "Avatar de {displayName}"
 
@@ -43,6 +47,9 @@ msgstr "Alterar título"
 
 msgid "Choose"
 msgstr "Escolher"
+
+msgid "Clear text"
+msgstr "Texto claro"
 
 msgid "Close"
 msgstr "Fechar"
@@ -65,6 +72,9 @@ msgstr "Personalizado"
 msgid "Edit item"
 msgstr "Editar item"
 
+msgid "Error getting related resources"
+msgstr "Erro ao obter recursos relacionados"
+
 msgid "External documentation for {title}"
 msgstr "Documentação externa para {title}"
 
@@ -86,14 +96,14 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Volte para a lista"
 
-msgid "items"
-msgstr "itens"
+msgid "Hide password"
+msgstr "Ocultar a senha"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Limite de mensagem de {count} caracteres atingido"
 
-msgid "More {dashboardItemType} …"
-msgstr "Mais {dashboardItemType} …"
+msgid "More items …"
+msgstr "Mais itens …"
 
 msgid "Next"
 msgstr "Próximo"
@@ -110,14 +120,38 @@ msgstr "Objetos"
 msgid "Open"
 msgstr "Aberto"
 
+msgid "Open link to \"{resourceTitle}\""
+msgstr "Abrir link para \"{resourceTitle}\""
+
 msgid "Open navigation"
 msgstr "Abrir navegação"
+
+msgid "Password is secure"
+msgstr "A senha é segura"
 
 msgid "Pause slideshow"
 msgstr "Pausar apresentação de slides"
 
 msgid "People & Body"
 msgstr "Pessoas & Corpo"
+
+msgid "Pick a date"
+msgstr "Escolha uma data"
+
+msgid "Pick a date and a time"
+msgstr "Escolha uma data e um horário"
+
+msgid "Pick a month"
+msgstr "Escolha um mês"
+
+msgid "Pick a time"
+msgstr "Escolha um horário"
+
+msgid "Pick a week"
+msgstr "Escolha uma semana"
+
+msgid "Pick a year"
+msgstr "Escolha um ano"
 
 msgid "Pick an emoji"
 msgstr "Escolha um emoji"
@@ -127,6 +161,9 @@ msgstr "Selecione um fuso horário: "
 
 msgid "Previous"
 msgstr "Anterior"
+
+msgid "Related resources"
+msgstr "Recursos relacionados"
 
 msgid "Search"
 msgstr "Pesquisar"
@@ -142,6 +179,9 @@ msgstr "Configurações"
 
 msgid "Settings navigation"
 msgstr "Navegação de configurações"
+
+msgid "Show password"
+msgstr "Mostrar senha"
 
 msgid "Smileys & Emotion"
 msgstr "Smiles & Emoções"
