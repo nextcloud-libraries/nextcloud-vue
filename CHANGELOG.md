@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.0.0-beta.6](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.6) (2022-09-26)
+
+#### :rocket: Enhancement
+* [#3283](https://github.com/nextcloud/nextcloud-vue/pull/3283) Enables ESM Modules ([@vinicius73](https://github.com/vinicius73))
+
+#### :bug: Bug Fix
+* [#3261](https://github.com/nextcloud/nextcloud-vue/pull/3261) Fix SCSS to CSS variable assignment ([@susnux](https://github.com/susnux))
+
 ## [v7.0.0-beta.5](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.5) (2022-09-21)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.8...v7.0.0-beta.5)
