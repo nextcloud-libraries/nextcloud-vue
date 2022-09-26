@@ -125,7 +125,7 @@ export default {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	margin-top: 20vh;
+	margin-top: 5vh;
 
 	.modal-wrapper & {
 		margin-top: 5vh;
