@@ -25,6 +25,9 @@ msgstr "Aktivity"
 msgid "Animals & Nature"
 msgstr "Zvířata a příroda"
 
+msgid "Anything shared with the same group of people will show up here"
+msgstr "Cokoli nasdíleného ve stejné skupiny lidí se zobrazí zde"
+
 msgid "Avatar of {displayName}"
 msgstr "Zástupný obrázek uživatele {displayName}"
 
