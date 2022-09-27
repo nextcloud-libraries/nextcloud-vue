@@ -188,11 +188,11 @@ export default {
 			<!-- Header -->
 			<transition name="fade-visibility">
 				<div class="modal-header">
-					<div v-if="title.trim() !== ''"
+					<h2 v-if="title.trim() !== ''"
 						:id="'modal-title-' + randId"
 						class="modal-title">
 						{{ title }}
-					</div>
+					</h2>
 					<div class="icons-menu">
 						<!-- Play-pause toggle -->
 						<button v-if="hasNext && enableSlideshow"
@@ -751,6 +751,7 @@ export default {
 		text-overflow: ellipsis;
 		color: #fff;
 		font-size: $icon-margin;
+		margin-bottom: 0;
 	}
 
 	// On wider screens the title can be centered
