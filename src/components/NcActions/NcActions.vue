@@ -940,6 +940,7 @@ export default {
 					attrs: {
 						'aria-label': action?.componentOptions?.propsData?.ariaLabel || action?.componentOptions?.children?.[0]?.text,
 					},
+					ref: action?.data?.ref,
 					props: {
 						// If it has a title, we use a secondary button
 						type: this.type || (title ? 'secondary' : 'tertiary'),
