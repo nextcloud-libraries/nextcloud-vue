@@ -167,7 +167,7 @@ export default {
 	}
 
 	//list of navigation items
-	ul,
+	& > ul,
 	&__list {
 		position: relative;
 		height: 100%;
