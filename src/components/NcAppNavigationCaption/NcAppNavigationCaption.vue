@@ -88,7 +88,7 @@ export default {
 .app-navigation-caption {
 	display: flex;
 	justify-content: space-between;
-	padding: 0 8px 0 math.div($clickable-area, 2);
+	padding: 0 calc(var(--default-grid-baseline, 4px) * 2) 0 calc(var(--default-grid-baseline, 4px) * 3);
 
 	&__title {
 		font-weight: bold;
