@@ -676,7 +676,7 @@ export default {
 	}
 
 	&__details {
-		color: var(--color-text-lighter);
+		color: var(--color-text-maxcontrast);
 		margin: 0 8px;
 		font-weight: normal;
 	}
@@ -697,7 +697,7 @@ export default {
 		cursor: pointer;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		color: var(--color-text-lighter);
+		color: var(--color-text-maxcontrast);
 	}
 
 	&__additional_elements {
