@@ -85,8 +85,9 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 	<Dropdown ref="popover"
 		:distance="10"
 		:arrow-padding="10"
-		v-bind="$attrs"
 		:popper-class="popoverBaseClass"
+		:container="dropdownContainer"
+		v-bind="$attrs"
 		v-on="$listeners"
 		@apply-show="afterShow"
 		@apply-hide="afterHide">
@@ -102,11 +103,16 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 <script>
 import { Dropdown } from 'floating-vue'
 import { createFocusTrap } from 'focus-trap'
+import { NC_KEY_POPOVER_CONTAINER } from '../../providers/index.js'
 
 export default {
 	name: 'NcPopover',
 	components: {
 		Dropdown,
+	},
+
+	inject: {
+		$container: { from: NC_KEY_POPOVER_CONTAINER, default: 'body' },
 	},
 
 	props: {
@@ -121,12 +127,25 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+		/**
+		 * Define popover container
+		 */
+		container: {
+			type: String,
+			default: undefined,
+		},
 	},
 
 	emits: [
 		'after-show',
 		'after-hide',
 	],
+
+	computed: {
+		dropdownContainer() {
+			return this.container || this.$container
+		},
+	},
 
 	beforeDestroy() {
 		this.clearFocusTrap()

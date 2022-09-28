@@ -169,7 +169,7 @@ export default {
 		 */
 		container: {
 			type: String,
-			default: 'body',
+			default: undefined,
 		},
 	},
 	emits: [

@@ -33,6 +33,7 @@ const config = {
 	entry: {
 		ncvuecomponents: path.join(__dirname, 'src', 'index.js'),
 		install: path.join(__dirname, 'src', 'install.js'),
+		providers: path.join(__dirname, 'src', 'providers', 'index.js'),
 		...glob.sync('src/components/*/index.js').reduce((acc, item) => {
 			const name = item
 				.replace('/index.js', '')

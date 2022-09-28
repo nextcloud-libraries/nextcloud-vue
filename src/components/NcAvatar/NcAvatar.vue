@@ -349,7 +349,7 @@ export default {
 		 */
 		menuContainer: {
 			type: String,
-			default: 'body',
+			default: undefined,
 		},
 
 		ariaLabel: {
