@@ -25,7 +25,7 @@
 ### Basic user avatar
 
 ```vue
-	<NcAvatar user="janedoe" display-name="Jane Doe" />
+	<NcAvatar user="willywonka" display-name="Willy Wonka" />
 ```
 
 ### Avatar with image
@@ -428,7 +428,7 @@ export default {
 			const style = {
 				'--size': this.size + 'px',
 				lineHeight: this.size + 'px',
-				fontSize: Math.round(this.size * 0.55) + 'px',
+				fontSize: Math.round(this.size * 0.45) + 'px',
 			}
 			return style
 		},
