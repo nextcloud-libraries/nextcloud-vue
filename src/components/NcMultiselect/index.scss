@@ -54,6 +54,7 @@
 		height: 44px;
 		padding: 8px 12px !important;
 		background-color: var(--color-main-background);
+		box-sizing: border-box;
 
 		&:focus, &:hover {
 			border-color: var(--color-primary);
