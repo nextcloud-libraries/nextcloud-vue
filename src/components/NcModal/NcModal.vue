@@ -733,6 +733,7 @@ export default {
 	justify-content: center;
 	width: 100%;
 	height: $header-height;
+	overflow: hidden;
 	transition: opacity 250ms,
 		visibility 250ms;
 
@@ -756,7 +757,7 @@ export default {
 	}
 
 	// On wider screens the title can be centered
-	@media only screen and (min-width: math.div($breakpoint-mobile, 2)) {
+	@media only screen and (min-width: $breakpoint-mobile) {
 		.modal-title {
 			padding-left: #{$clickable-area * 3}; // maximum actions is 3
 			text-align: center;
