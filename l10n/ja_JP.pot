@@ -7,10 +7,11 @@
 # Kosugi_kun, 2022
 # かたかめ, 2022
 # T.S, 2022
+# 佐々木 優 <m4549071758@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: T.S, 2022\n"
+"Last-Translator: 佐々木 優 <m4549071758@gmail.com>, 2022\n"
 "Language-Team: Japanese (Japan) (https://www.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ja_JP\n"
@@ -30,6 +31,9 @@ msgstr "アクティビティ"
 
 msgid "Animals & Nature"
 msgstr "動物と自然"
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr "同じグループで共有しているものは、全てここに表示されます"
 
 msgid "Avatar of {displayName}"
 msgstr "{displayName} のアバター"
@@ -97,14 +101,11 @@ msgstr "リストに戻る"
 msgid "Hide password"
 msgstr "パスワードを非表示"
 
-msgid "items"
-msgstr "アイテム"
-
 msgid "Message limit of {count} characters reached"
 msgstr "{count} 文字のメッセージ上限に達しています"
 
-msgid "More {dashboardItemType} …"
-msgstr "{dashboardItemType} をさらに表示…"
+msgid "More items …"
+msgstr "他のアイテム"
 
 msgid "Next"
 msgstr "次"
