@@ -128,7 +128,7 @@ export default {
 		<!-- Default slot for the leading icon -->
 		<slot />
 		<!-- Trailing icon slot, except for search type input as the browser already adds a trailing close icon -->
-		<template v-if="type !== 'search'" slot="trailing-button-icon">
+		<template v-if="type !== 'search'" #trailing-button-icon>
 			<Close v-if="trailingButtonIcon === 'close'" :size="20" />
 			<ArrowRight v-else-if="trailingButtonIcon === 'arrowRight'" :size="20" />
 		</template>
