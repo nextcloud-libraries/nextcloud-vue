@@ -106,6 +106,40 @@ export default {
 </style>
 ```
 
+* Using advanced fields including HEX, RGB, and HSL:
+
+```vue
+<template>
+	<div class="container0">
+		<NcColorPicker v-model="color"
+			:advanced-fields="true">
+			<NcButton> Click Me </NcButton>
+		</NcColorPicker>
+		<div :style="{'background-color': color}" class="color0" />
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			color: '#0082c9'
+		}
+	}
+}
+</script>
+<style>
+.container0 {
+	display: flex;
+}
+
+.color0 {
+	width: 100px;
+	height: 40px;
+	margin-left: 20px;
+	border-radius: 6px;
+}
+</style>
+```
 </docs>
 
 <template>
@@ -113,7 +147,8 @@ export default {
 		<template #trigger>
 			<slot />
 		</template>
-		<div class="color-picker">
+		<div class="color-picker"
+			:class="{ 'color-picker--advanced-fields': advancedFields }">
 			<transition name="slide" mode="out-in">
 				<div v-if="!advanced" class="color-picker__simple">
 					<button v-for="(color, index) in palette"
@@ -131,7 +166,7 @@ export default {
 					v-model="currentColor"
 					class="color-picker__advanced"
 					:disable-alpha="true"
-					:disable-fields="true"
+					:disable-fields="!advancedFields"
 					@input="pickColor" />
 			</transition>
 			<div class="color-picker__navigation">
@@ -189,6 +224,13 @@ export default {
 		value: {
 			type: String,
 			required: true,
+		},
+		/**
+		 * Set to `true` to enable advanced fields including HEX, RGB, and HSL
+		 */
+		advancedFields: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -289,11 +331,14 @@ export default {
 	width: 176px;
 	padding: 8px;
 	border-radius: 3px;
-	height: 196px;
+
+	&--advanced-fields {
+		width: 264px;
+	}
 
 	&__simple {
 		display: grid;
-		grid-template-columns: repeat(4, $clickable-area);
+		grid-template-columns: repeat(auto-fit, $clickable-area);
 		grid-auto-rows: $clickable-area;
 
 		&-color-circle {
@@ -371,8 +416,7 @@ export default {
 
 :deep() .vc {
 	&-chrome {
-		width: 176px;
-		height: 13;
+		width: unset;
 		&-color-wrap {
 			width: 30px;
 			height: 30px;
