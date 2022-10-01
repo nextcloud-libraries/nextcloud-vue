@@ -199,6 +199,7 @@ export default {
 	data() {
 		return {
 			contentHeight: 0,
+			appContentWrapperWidth: 0,
 
 			hasList: false,
 			listPaneSize: this.restorePaneConfig(),
@@ -224,9 +225,17 @@ export default {
 			}
 		},
 
+		getSidebarSize() {
+			return (300 * 100) / parseFloat(appContentWrapperWidth)
+		},
+
+		getMaxPaneSize() {
+			return 100 - this.getSidebarSize
+		}
+
 		detailsPaneSize() {
 			if (this.listPaneSize) {
-				return 100 - this.listPaneSize
+				return this.getMaxPaneSize - this.listPaneSize
 			}
 			return this.paneDefaults.details.size
 		},
@@ -242,9 +251,9 @@ export default {
 				// set the inverse values of the details column
 				// based on the provided (or default) values of the list column
 				details: {
-					size: 100 - this.listSize,
-					min: 100 - this.listMaxWidth,
-					max: 100 - this.listMinWidth,
+					size: this.getMaxPaneSize - this.listSize,
+					min: this.getMaxPaneSize - this.listMaxWidth,
+					max: this.getMaxPaneSize - this.listMinWidth,
 				},
 			}
 		},
@@ -262,6 +271,13 @@ export default {
 
 		this.checkListSlot()
 		this.restorePaneConfig()
+
+		const appContentWrapper = document.querySelector('#app-content-wrapper')
+		this.appContentWrapperWidth = appContentWrapper.width
+		const observer = new ResizeObserver((entries) => {
+			this.appContentWrapperWidth = appContentWrapper.width
+		})
+		observer.observe(appContentWrapper)
 	},
 
 	beforeDestroy() {
@@ -387,6 +403,7 @@ export default {
 
 		&-details {
 			overflow-y: auto;
+			width: calc()
 
 			@media only screen and (max-width: $breakpoint-mobile) {
 				min-width: 100%;
