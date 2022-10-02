@@ -330,6 +330,7 @@ export default {
 	// Overriding server styles TODO: cleanup!
 	margin: 0 !important;
 	background-color: var(--color-main-background);
+	min-width: 0;
 
 	&:not(.app-content--has-list) {
 		overflow: auto;
