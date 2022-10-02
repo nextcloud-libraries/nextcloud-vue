@@ -219,6 +219,10 @@ export default {
 		},
 	},
 
+	emits: [
+		'input',
+	],
+
 	computed: {
 		formattedValue() {
 			return this.formatValue(this.value)
