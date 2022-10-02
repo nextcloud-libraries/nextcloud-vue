@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Mădălin Vasiliu <contact@madalinvasiliu.com>, 2022
+# Petre T, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mădălin Vasiliu <contact@madalinvasiliu.com>, 2022\n"
+"Last-Translator: Petre T, 2022\n"
 "Language-Team: Romanian (https://www.transifex.com/nextcloud/teams/64236/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ro\n"
@@ -25,6 +26,10 @@ msgstr "Activități"
 msgid "Animals & Nature"
 msgstr "Animale și natură"
 
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+"Tot ceea ce este partajat cu același grup de persoane va fi afișat aici"
+
 msgid "Avatar of {displayName}"
 msgstr "Avatarul lui {displayName}"
 
@@ -39,6 +44,9 @@ msgstr "Modificați titlul"
 
 msgid "Choose"
 msgstr "Alegeți"
+
+msgid "Clear text"
+msgstr "Șterge textul"
 
 msgid "Close"
 msgstr "Închideți"
@@ -61,6 +69,9 @@ msgstr "Personalizat"
 msgid "Edit item"
 msgstr "Editați elementul"
 
+msgid "Error getting related resources"
+msgstr " Eroare la returnarea resurselor legate"
+
 msgid "External documentation for {title}"
 msgstr "Documentație externă pentru {title}"
 
@@ -82,14 +93,14 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Întoarceți-vă la listă"
 
-msgid "items"
-msgstr "articole"
+msgid "Hide password"
+msgstr "Ascunde parola"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Limita mesajului de {count} caractere a fost atinsă"
 
-msgid "More {dashboardItemType} …"
-msgstr "Mai multe {dashboardItemType} …"
+msgid "More items …"
+msgstr "Mai multe articole ..."
 
 msgid "Next"
 msgstr "Următorul"
@@ -106,14 +117,38 @@ msgstr "Obiecte"
 msgid "Open"
 msgstr "Deschideți"
 
+msgid "Open link to \"{resourceTitle}\""
+msgstr "Deschide legătura la \"{resourceTitle}\""
+
 msgid "Open navigation"
 msgstr "Deschideți navigația"
+
+msgid "Password is secure"
+msgstr "Parola este sigură"
 
 msgid "Pause slideshow"
 msgstr "Pauză prezentare de diapozitive"
 
 msgid "People & Body"
 msgstr "Oameni și corp"
+
+msgid "Pick a date"
+msgstr "Alege o dată"
+
+msgid "Pick a date and a time"
+msgstr "Alege o dată și un timp"
+
+msgid "Pick a month"
+msgstr "Alege o lună"
+
+msgid "Pick a time"
+msgstr "Alege un timp"
+
+msgid "Pick a week"
+msgstr "Alege o săptămână"
+
+msgid "Pick a year"
+msgstr "Alege un an"
 
 msgid "Pick an emoji"
 msgstr "Alege un emoji"
@@ -123,6 +158,9 @@ msgstr "Vă rugăm să selectați un fus orar:"
 
 msgid "Previous"
 msgstr "Anterior"
+
+msgid "Related resources"
+msgstr "Resurse legate"
 
 msgid "Search"
 msgstr "Căutare"
@@ -138,6 +176,9 @@ msgstr "Setări"
 
 msgid "Settings navigation"
 msgstr "Navigare setări"
+
+msgid "Show password"
+msgstr "Arată parola"
 
 msgid "Smileys & Emotion"
 msgstr "Zâmbete și emoții"
