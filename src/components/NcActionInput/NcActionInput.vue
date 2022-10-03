@@ -87,6 +87,7 @@ For the multiselect component, all events will be passed through. Please see the
 					<input :id="id" type="submit" class="action-input__submit">
 
 					<input :type="type"
+						:inputmode="inputmode"
 						:value="value"
 						:placeholder="text"
 						:disabled="disabled"
@@ -143,6 +144,16 @@ export default {
 		icon: {
 			type: String,
 			default: '',
+		},
+		/**
+		 * inputmode attribute of the input field
+		 */
+		inputmode: {
+			type: String,
+			default: 'text',
+			validator(value) {
+				return ['text', 'none', 'numeric', 'email', 'url'].includes(value)
+			},
 		},
 		/**
 		 * type attribute of the input field

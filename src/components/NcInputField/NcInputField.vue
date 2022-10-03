@@ -33,6 +33,7 @@
 				ref="input"
 				class="input-field__input"
 				:type="type"
+				:inputmode="inputmode"
 				:disabled="disabled"
 				:placeholder="computedPlaceholder"
 				:aria-describedby="helperText.length > 0 ? `${inputName}-helper-text` : ''"
@@ -113,6 +114,17 @@ export default {
 		value: {
 			type: String,
 			required: true,
+		},
+
+		/**
+		 * inputmode attribute of the input field
+		 */
+		inputmode: {
+			type: String,
+			default: 'text',
+			validator(value) {
+				return ['text', 'none', 'numeric', 'email', 'url'].includes(value)
+			},
 		},
 
 		/**
