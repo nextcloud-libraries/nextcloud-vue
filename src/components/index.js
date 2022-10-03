@@ -78,3 +78,4 @@ export { default as NcRichContenteditable } from './NcRichContenteditable/index.
 export { default as NcSettingsSection } from './NcSettingsSection/index.js'
 export { default as NcTextField } from './NcTextField/index.js'
 export { default as NcUserBubble } from './NcUserBubble/index.js'
+export { default as NcVirtualScroller } from './NcVirtualScroller/index.js'
