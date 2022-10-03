@@ -79,6 +79,65 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 	</NcPopover>
 </template>
 ```
+
+### Custom Popover container for all components three
+
+If you want to define the popover container all components three, use the provider `NC_KEY_POPOVER_CONTAINER`.
+
+Check https://github.com/nextcloud/nextcloud-vue/pull/3308 for more details.
+
+```
+<template>
+	<div :id="randomID">
+		<NcActions type="primary" menu-title="Choose a type">
+			<NcActionButton close-after-click @click="select("")">
+				<template #icon>
+					<Delete :size="20" />
+				</template>
+				Remove
+			</NcActionButton>
+		</NcActions>
+
+		<hr />
+
+		<NcEmojiPicker
+			show-preview
+			close-on-select
+			@select="select"
+			style="display: inline-block">
+			<NcButton> Choose a Emoji </NcButton>
+		</NcEmojiPicker>
+		<span>selected emoji: {{ emoji }}</span>
+	</div>
+</template>
+
+<script>
+import { NC_KEY_POPOVER_CONTAINER } from '../../providers/index.js'
+
+const randomHash = () => (Math.ceil((Math.random() * 100000) + 1000)).toString(16)
+
+export default {
+	data() {
+		return {
+			randomID: `custom-container-${randomHash()}`,
+			emoji: '',
+		}
+	},
+
+	provide () {
+		return {
+			[NC_KEY_POPOVER_CONTAINER]: `#${this.randomID}`,
+		}
+	},
+
+	methods: {
+		select(emoji) {
+			this.emoji = emoji
+		},
+	},
+}
+</script>
+```
 </docs>
 
 <template>
