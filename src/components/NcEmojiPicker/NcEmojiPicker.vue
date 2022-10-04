@@ -91,6 +91,7 @@
 	<NcPopover :shown.sync="open"
 		:container="container"
 		v-bind="$attrs"
+		:no-auto-focus="true"
 		v-on="$listeners"
 		@after-show="afterShow"
 		@after-hide="afterHide">
@@ -98,7 +99,7 @@
 			<slot />
 		</template>
 		<Picker ref="picker"
-			:auto-focus="true"
+			:auto-focus="false"
 			color="var(--color-primary)"
 			:data="emojiIndex"
 			:emoji="previewFallbackEmoji"
@@ -221,21 +222,25 @@ export default {
 				this.open = false
 			}
 		},
+
 		afterShow() {
 			// add focus trap in modal
 			const picker = this.$refs.picker
 			picker.$el.addEventListener('keydown', this.checkKeyEvent)
+
 			// set focus on input search field
 			const input = picker.$refs.search.$el.querySelector('input')
 			if (input) {
 				input.focus()
 			}
 		},
+
 		afterHide() {
 			// remove keydown listner if popover is hidden
 			const picker = this.$refs.picker
 			picker.$el.removeEventListener('keydown', this.checkKeyEvent)
 		},
+
 		checkKeyEvent(event) {
 			if (event.key !== 'Tab') {
 				return
