@@ -371,6 +371,24 @@ export default {
 		},
 
 		/**
+		 * The minlength property defines the minimum number of characters
+		 * (as UTF-16 code units) the user can enter
+		 */
+		minlength: {
+			type: Number,
+			default: 0,
+		},
+
+		/**
+		 * The maxlength property defines the maximum number of characters
+		 * (as UTF-16 code units) the user can enter
+		 */
+		maxlength: {
+			type: Number,
+			default: null,
+		},
+
+		/**
 		 * Allow to disable spellchecking
 		 */
 		spellcheck: {
