@@ -95,7 +95,6 @@ export default {
 <template>
 	<NcInputField v-bind="$props"
 		ref="inputField"
-		:autofocus="$attrs.autofocus"
 		:type="isPasswordHidden ? 'password' : 'text'"
 		:show-trailing-button="true"
 		:helper-text="computedHelperText"
@@ -215,6 +214,15 @@ export default {
 		helperText: {
 			type: String,
 			default: '',
+		},
+
+		/**
+		 * The autofocus property defines whether the input should
+		 * automatically receive focus on page load
+		 */
+		autofocus: {
+			type: Boolean,
+			default: false,
 		},
 
 		/**
