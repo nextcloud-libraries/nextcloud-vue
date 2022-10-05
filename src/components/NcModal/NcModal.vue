@@ -325,7 +325,7 @@ import Pause from 'vue-material-design-icons/Pause.vue'
 import Play from 'vue-material-design-icons/Play.vue'
 
 import Hammer from 'hammerjs'
-import { createFocusTrap } from 'focus-trap'
+import { createFocusTrap } from '@nextcloud/focus-trap'
 export default {
 	name: 'NcModal',
 
