@@ -102,7 +102,7 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 
 <script>
 import { Dropdown } from 'floating-vue'
-import { createFocusTrap } from 'focus-trap'
+import { createFocusTrap } from '@nextcloud/focus-trap'
 
 export default {
 	name: 'NcPopover',
