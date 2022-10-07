@@ -169,7 +169,7 @@ Just set the `pinned` prop.
 			<!-- Counter and Actions -->
 			<div v-if="hasUtils && !editingActive"
 				class="app-navigation-entry__utils"
-				:class="{'app-navigation-entry__utils--display-actions': forceDisplayActions || menuOpenLocalValue}">
+				:class="{'app-navigation-entry__utils--display-actions': forceDisplayActions || menuOpenLocalValue || menuOpen }">
 				<div v-if="$slots.counter"
 					class="app-navigation-entry__counter-wrapper">
 					<slot name="counter" />
