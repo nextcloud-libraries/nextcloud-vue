@@ -88,6 +88,7 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 		v-bind="$attrs"
 		:popper-class="popoverBaseClass"
 		v-on="$listeners"
+		@show="onShow"
 		@apply-show="afterShow"
 		@apply-hide="afterHide">
 		<!-- This will be the popover target (for the events and position) -->
@@ -120,6 +121,11 @@ export default {
 		focusTrap: {
 			type: Boolean,
 			default: true,
+		},
+
+		noAutoFocus: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -170,6 +176,20 @@ export default {
 				console.warn(err)
 			}
 		},
+		/**
+		 * Prevent the floating-vue popover to override the focus
+		 * TODO: remove once disabling auto-focus is released
+		 *
+		 * @see https://github.com/Akryum/floating-vue/pull/894
+		 */
+		onShow() {
+			/** @type {HTMLElement} */
+			const popperNode = this.$refs?.popover?.$refs?.popper?.$_popperNode
+			if (this.noAutoFocus && popperNode) {
+				popperNode.focus = () => {}
+			}
+		},
+
 		afterShow() {
 			/**
 			 * Triggered after the tooltip was visually displayed.
@@ -178,8 +198,10 @@ export default {
 			 * run earlier than this where there is no guarantee that the
 			 * tooltip is already visible and in the DOM.
 			 */
-			this.$emit('after-show')
-			this.useFocusTrap()
+			this.$nextTick(() => {
+				this.$emit('after-show')
+				this.useFocusTrap()
+			})
 		},
 		afterHide() {
 			/**
