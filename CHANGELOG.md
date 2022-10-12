@@ -2,118 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v7.0.0-beta.6](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.6) (2022-09-26)
-
-#### :rocket: Enhancement
-* [#3283](https://github.com/nextcloud/nextcloud-vue/pull/3283) Enables ESM Modules ([@vinicius73](https://github.com/vinicius73))
-
-#### :bug: Bug Fix
-* [#3261](https://github.com/nextcloud/nextcloud-vue/pull/3261) Fix SCSS to CSS variable assignment ([@susnux](https://github.com/susnux))
-
-## [v7.0.0-beta.5](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.5) (2022-09-21)
-
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.8...v7.0.0-beta.5)
-
-### :rocket: Enhancements
-
-- Add styleguide example for non-user avatar [\#3270](https://github.com/nextcloud/nextcloud-vue/pull/3270) ([ChristophWurst](https://github.com/ChristophWurst))
-- Live refresh image and displayname based avatar on update [\#3266](https://github.com/nextcloud/nextcloud-vue/pull/3266) ([Pytal](https://github.com/Pytal))
-- Forward the autofocus attribute to input field component [\#3245](https://github.com/nextcloud/nextcloud-vue/pull/3245) ([kesselb](https://github.com/kesselb))
-- Allow 'search' as type prop for NcTextField [\#3190](https://github.com/nextcloud/nextcloud-vue/pull/3190) ([artonge](https://github.com/artonge))
-
-### :bug: Fixed bugs
-
-- Fix non-user avatar on complex background [\#3272](https://github.com/nextcloud/nextcloud-vue/pull/3272) ([ChristophWurst](https://github.com/ChristophWurst))
-- Fix initials color of new non-user avatars [\#3271](https://github.com/nextcloud/nextcloud-vue/pull/3271) ([ChristophWurst](https://github.com/ChristophWurst))
-- Mark resource button styles as important to fix styles in some contexts [\#3259](https://github.com/nextcloud/nextcloud-vue/pull/3259) ([Pytal](https://github.com/Pytal))
-- Make app navigation settings pixel perfect-ish [\#3256](https://github.com/nextcloud/nextcloud-vue/pull/3256) ([ChristophWurst](https://github.com/ChristophWurst))
-- Move the close button to the end of the content [\#3230](https://github.com/nextcloud/nextcloud-vue/pull/3230) ([marcoambrosini](https://github.com/marcoambrosini))
-
-### Closed pull requests
-
-- Allow opting out of automatic NcModal remounting [\#3219](https://github.com/nextcloud/nextcloud-vue/pull/3219) ([Pytal](https://github.com/Pytal))
-
-
-## [v7.0.0-beta.4](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.4) (2022-09-14)
-
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.0.0-beta.3...v7.0.0-beta.4)
-
-### :rocket: Enhancements
-
-- Add gap between nav entry [\#3235](https://github.com/nextcloud/nextcloud-vue/pull/3235) ([CarlSchwan](https://github.com/CarlSchwan))
-
-### :bug: Fixed bugs
-
-- Fix NcEmptyContent used inside NcModal [\#3253](https://github.com/nextcloud/nextcloud-vue/pull/3253) ([nickvergessen](https://github.com/nickvergessen))
-- Add proper margin to the counter [\#3250](https://github.com/nextcloud/nextcloud-vue/pull/3250) ([marcoambrosini](https://github.com/marcoambrosini))
-- Fix avatar border color [\#3244](https://github.com/nextcloud/nextcloud-vue/pull/3244) ([nickvergessen](https://github.com/nickvergessen))
-
-### Closed pull requests
-
-- Fix multiselect background color spilling outside the component [\#3252](https://github.com/nextcloud/nextcloud-vue/pull/3252) ([ChristophWurst](https://github.com/ChristophWurst))
-- Update design of related resources panel [\#3236](https://github.com/nextcloud/nextcloud-vue/pull/3236) ([Pytal](https://github.com/Pytal))
-
-
-## [v7.0.0-beta.3](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.3) (2022-09-12)
-
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.0.0-beta.2...v7.0.0-beta.3)
-
-### :bug: Fixed bugs
-
-- Fix single action detection [\#3212](https://github.com/nextcloud/nextcloud-vue/pull/3212) ([st3iny](https://github.com/st3iny))
-
-### Closed pull requests
-
-- Fix a word puzzle in NcDashboardWidget component [\#3225](https://github.com/nextcloud/nextcloud-vue/pull/3225) ([CarlSchwan](https://github.com/CarlSchwan))
-
-
-## [v7.0.0-beta.2](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.2) (2022-09-09)
-
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.0.0-beta.1...v7.0.0-beta.2)
-
-### :bug: Fixed bugs
-
-- Fix loading avatar status [\#3204](https://github.com/nextcloud/nextcloud-vue/pull/3204) ([CarlSchwan](https://github.com/CarlSchwan))
-- Fix overwriting placeholder property in NcDatetimePicker [\#3202](https://github.com/nextcloud/nextcloud-vue/pull/3202) ([Chartman123](https://github.com/Chartman123))
-- Fix scrolling in styleguide [\#3200](https://github.com/nextcloud/nextcloud-vue/pull/3200) ([marcoambrosini](https://github.com/marcoambrosini))
-- Right-align nav item utils [\#3178](https://github.com/nextcloud/nextcloud-vue/pull/3178) ([ChristophWurst](https://github.com/ChristophWurst))
-- Fix active and focus frame [\#3201](https://github.com/nextcloud/nextcloud-vue/pull/3201) ([CarlSchwan](https://github.com/CarlSchwan))
-- Fix app navigation backdrop blur [\#3189](https://github.com/nextcloud/nextcloud-vue/pull/3189) ([ChristophWurst](https://github.com/ChristophWurst))
-
-### Closed pull requests
-
-- Fix NcAppNavigationItem, pass correct boundaries-element NcActions [\#3197](https://github.com/nextcloud/nextcloud-vue/pull/3197) ([eneiluj](https://github.com/eneiluj))
-- Limit max width of the settings [\#3192](https://github.com/nextcloud/nextcloud-vue/pull/3192) ([CarlSchwan](https://github.com/CarlSchwan))
-- Fix the NcPopoverMenu component [\#3191](https://github.com/nextcloud/nextcloud-vue/pull/3191) ([CarlSchwan](https://github.com/CarlSchwan))
-- fix comments border-radius [\#3175](https://github.com/nextcloud/nextcloud-vue/pull/3175) ([szaimen](https://github.com/szaimen))
-- \[PoC\] Use github source css for styleguide [\#3139](https://github.com/nextcloud/nextcloud-vue/pull/3139) ([skjnldsv](https://github.com/skjnldsv))
-- Use dark themed avatar on dark theme [\#3119](https://github.com/nextcloud/nextcloud-vue/pull/3119) ([CarlSchwan](https://github.com/CarlSchwan))
-
-
-## [v7.0.0-beta.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.1) (2022-09-05)
-
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.7...v7.0.0-beta.1)
-
-### :rocket: Enhancements
-
-- Fix for border-radius being too large for 3-line entries like in Mail [\#3136](https://github.com/nextcloud/nextcloud-vue/pull/3136) ([jancborchardt](https://github.com/jancborchardt))
-- Add related resources panel component [\#3081](https://github.com/nextcloud/nextcloud-vue/pull/3081) ([Pytal](https://github.com/Pytal))
-- Add a native datetime picker [\#3063](https://github.com/nextcloud/nextcloud-vue/pull/3063) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
-- Always show NcAppSettingsDialog title [\#3074](https://github.com/nextcloud/nextcloud-vue/pull/3074) ([raimund-schluessler](https://github.com/raimund-schluessler))
-
-### :bug: Fixed bugs
-
-- AppNavigationItem actions visibility [\#3165](https://github.com/nextcloud/nextcloud-vue/pull/3165) ([raimund-schluessler](https://github.com/raimund-schluessler))
-- Spacing in app navigation and make the setting pill style [\#3158](https://github.com/nextcloud/nextcloud-vue/pull/3158) ([juliushaertl](https://github.com/juliushaertl))
-- Actions positioning [\#3157](https://github.com/nextcloud/nextcloud-vue/pull/3157) ([juliushaertl](https://github.com/juliushaertl))
-- .active state of app list items [\#3147](https://github.com/nextcloud/nextcloud-vue/pull/3147) ([ChristophWurst](https://github.com/ChristophWurst))
-
-### Closed pull requests
-
-- Use events provided by floating-vue [\#3149](https://github.com/nextcloud/nextcloud-vue/pull/3149) ([raimund-schluessler](https://github.com/raimund-schluessler))
-## [v7.0.0-beta.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0-beta.0) (2022-09-01)
-
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.6...v7.0.0-beta.0)
+## v7.0.0 - 2022-10-12
 
 ### :boom: Breaking changes
 
@@ -130,6 +19,60 @@ All notable changes to this project will be documented in this file.
 
 - Scroll listeners need to be adapted to watch for the scroll on the NcAppContent container instead of the main document
 - If you are using sticky headers in your app you might need to adjust the css top property as the app content container is now the scrollable element. For any contained sticky that had a header height top spacing before you should be able to set that to 0
+
+### :rocket: Enhancements
+
+- Add advanced fields to color picker [#3324](https://github.com/nextcloud/nextcloud-vue/pull/3324) ([@Pytal](https://github.com/Pytal))
+- Enables ESM Modules [#3283](https://github.com/nextcloud/nextcloud-vue/pull/3283) ([@vinicius73](https://github.com/vinicius73))
+- Add styleguide example for non-user avatar [\#3270](https://github.com/nextcloud/nextcloud-vue/pull/3270) ([ChristophWurst](https://github.com/ChristophWurst))
+- Live refresh image and displayname based avatar on update [\#3266](https://github.com/nextcloud/nextcloud-vue/pull/3266) ([Pytal](https://github.com/Pytal))
+- Forward the autofocus attribute to input field component [\#3245](https://github.com/nextcloud/nextcloud-vue/pull/3245) ([kesselb](https://github.com/kesselb))
+- Allow 'search' as type prop for NcTextField [\#3190](https://github.com/nextcloud/nextcloud-vue/pull/3190) ([artonge](https://github.com/artonge))
+- Add gap between nav entry [\#3235](https://github.com/nextcloud/nextcloud-vue/pull/3235) ([CarlSchwan](https://github.com/CarlSchwan))
+- Fix for border-radius being too large for 3-line entries like in Mail [\#3136](https://github.com/nextcloud/nextcloud-vue/pull/3136) ([jancborchardt](https://github.com/jancborchardt))
+- Add related resources panel component [\#3081](https://github.com/nextcloud/nextcloud-vue/pull/3081) ([Pytal](https://github.com/Pytal))
+- Add a native datetime picker [\#3063](https://github.com/nextcloud/nextcloud-vue/pull/3063) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+- Always show NcAppSettingsDialog title [\#3074](https://github.com/nextcloud/nextcloud-vue/pull/3074) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
+### :bug: Fixed bugs
+
+- Also use menuOpen state in NcAppNavigationItem [#3350](https://github.com/nextcloud/nextcloud-vue/pull/3350) ([@st3iny](https://github.com/st3iny))
+- Update cypress base snapshots after changes to server [#3352](https://github.com/nextcloud/nextcloud-vue/pull/3352) ([@raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix app content growing too wide [#3329](https://github.com/nextcloud/nextcloud-vue/pull/3329) ([@st3iny](https://github.com/st3iny))
+- Fix SCSS to CSS variable assignment [#3261](https://github.com/nextcloud/nextcloud-vue/pull/3261) ([@susnux](https://github.com/susnux))
+- Fix non-user avatar on complex background [\#3272](https://github.com/nextcloud/nextcloud-vue/pull/3272) ([ChristophWurst](https://github.com/ChristophWurst))
+- Fix initials color of new non-user avatars [\#3271](https://github.com/nextcloud/nextcloud-vue/pull/3271) ([ChristophWurst](https://github.com/ChristophWurst))
+- Mark resource button styles as important to fix styles in some contexts [\#3259](https://github.com/nextcloud/nextcloud-vue/pull/3259) ([Pytal](https://github.com/Pytal))
+- Make app navigation settings pixel perfect-ish [\#3256](https://github.com/nextcloud/nextcloud-vue/pull/3256) ([ChristophWurst](https://github.com/ChristophWurst))
+- Move the close button to the end of the content [\#3230](https://github.com/nextcloud/nextcloud-vue/pull/3230) ([marcoambrosini](https://github.com/marcoambrosini))
+- Fix NcEmptyContent used inside NcModal [\#3253](https://github.com/nextcloud/nextcloud-vue/pull/3253) ([nickvergessen](https://github.com/nickvergessen))
+- Add proper margin to the counter [\#3250](https://github.com/nextcloud/nextcloud-vue/pull/3250) ([marcoambrosini](https://github.com/marcoambrosini))
+- Fix avatar border color [\#3244](https://github.com/nextcloud/nextcloud-vue/pull/3244) ([nickvergessen](https://github.com/nickvergessen))
+- Fix single action detection [\#3212](https://github.com/nextcloud/nextcloud-vue/pull/3212) ([st3iny](https://github.com/st3iny))
+- Fix loading avatar status [\#3204](https://github.com/nextcloud/nextcloud-vue/pull/3204) ([CarlSchwan](https://github.com/CarlSchwan))
+- Fix overwriting placeholder property in NcDatetimePicker [\#3202](https://github.com/nextcloud/nextcloud-vue/pull/3202) ([Chartman123](https://github.com/Chartman123))
+- Fix scrolling in styleguide [\#3200](https://github.com/nextcloud/nextcloud-vue/pull/3200) ([marcoambrosini](https://github.com/marcoambrosini))
+- Right-align nav item utils [\#3178](https://github.com/nextcloud/nextcloud-vue/pull/3178) ([ChristophWurst](https://github.com/ChristophWurst))
+- Fix active and focus frame [\#3201](https://github.com/nextcloud/nextcloud-vue/pull/3201) ([CarlSchwan](https://github.com/CarlSchwan))
+- Fix app navigation backdrop blur [\#3189](https://github.com/nextcloud/nextcloud-vue/pull/3189) ([ChristophWurst](https://github.com/ChristophWurst))
+- AppNavigationItem actions visibility [\#3165](https://github.com/nextcloud/nextcloud-vue/pull/3165) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Spacing in app navigation and make the setting pill style [\#3158](https://github.com/nextcloud/nextcloud-vue/pull/3158) ([juliushaertl](https://github.com/juliushaertl))
+- Actions positioning [\#3157](https://github.com/nextcloud/nextcloud-vue/pull/3157) ([juliushaertl](https://github.com/juliushaertl))
+- .active state of app list items [\#3147](https://github.com/nextcloud/nextcloud-vue/pull/3147) ([ChristophWurst](https://github.com/ChristophWurst))
+
+### Closed pull requests
+
+- Allow opting out of automatic NcModal remounting [\#3219](https://github.com/nextcloud/nextcloud-vue/pull/3219) ([Pytal](https://github.com/Pytal))
+- Fix multiselect background color spilling outside the component [\#3252](https://github.com/nextcloud/nextcloud-vue/pull/3252) ([ChristophWurst](https://github.com/ChristophWurst))
+- Update design of related resources panel [\#3236](https://github.com/nextcloud/nextcloud-vue/pull/3236) ([Pytal](https://github.com/Pytal))
+- Fix a word puzzle in NcDashboardWidget component [\#3225](https://github.com/nextcloud/nextcloud-vue/pull/3225) ([CarlSchwan](https://github.com/CarlSchwan))
+- Fix NcAppNavigationItem, pass correct boundaries-element NcActions [\#3197](https://github.com/nextcloud/nextcloud-vue/pull/3197) ([eneiluj](https://github.com/eneiluj))
+- Limit max width of the settings [\#3192](https://github.com/nextcloud/nextcloud-vue/pull/3192) ([CarlSchwan](https://github.com/CarlSchwan))
+- Fix the NcPopoverMenu component [\#3191](https://github.com/nextcloud/nextcloud-vue/pull/3191) ([CarlSchwan](https://github.com/CarlSchwan))
+- fix comments border-radius [\#3175](https://github.com/nextcloud/nextcloud-vue/pull/3175) ([szaimen](https://github.com/szaimen))
+- \[PoC\] Use github source css for styleguide [\#3139](https://github.com/nextcloud/nextcloud-vue/pull/3139) ([skjnldsv](https://github.com/skjnldsv))
+- Use dark themed avatar on dark theme [\#3119](https://github.com/nextcloud/nextcloud-vue/pull/3119) ([CarlSchwan](https://github.com/CarlSchwan))
+- Use events provided by floating-vue [\#3149](https://github.com/nextcloud/nextcloud-vue/pull/3149) ([raimund-schluessler](https://github.com/raimund-schluessler))
 
 
 ## v6.0.0 (unreleased)
