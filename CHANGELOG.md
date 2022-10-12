@@ -14,11 +14,15 @@ All notable changes to this project will be documented in this file.
 		- NcAppNavigation
 		- NcAppContent
 		- NcAppSidebar
+- Properties and slot names of NcEmptyContent changed. Also, everything outside a slot is ignored now
+- Inside NcActions, only Vue components are considered as children
 
 #### Migration guide
 
 - Scroll listeners need to be adapted to watch for the scroll on the NcAppContent container instead of the main document
 - If you are using sticky headers in your app you might need to adjust the css top property as the app content container is now the scrollable element. For any contained sticky that had a header height top spacing before you should be able to set that to 0
+- Make sure that everything in NcEmptyContent is in one of the supported slots
+- Make sure that NcActions contain only Vue components. If they contain plain HTML, move this into a separate Vue component
 
 ### :rocket: Enhancements
 
