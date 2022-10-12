@@ -3,13 +3,13 @@
 # Carles Ferrando Garcia <carles.ferrando@gnuescultura.eu>, 2020
 # Toni Hermoso Pulido <toniher@softcatala.cat>, 2020
 # David Jacovkis <david@freeknowledge.eu>, 2020
-# Omar Macías Molina <omar.maciasmolina@gmail.com>, 2022
 # Marc Riera <marcriera@softcatala.org>, 2022
 # Papa Nates, 2022
+# omar.maciasmolina <omar.maciasmolina@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Papa Nates, 2022\n"
+"Last-Translator: omar.maciasmolina <omar.maciasmolina@gmail.com>, 2022\n"
 "Language-Team: Catalan (https://www.transifex.com/nextcloud/teams/64236/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ca\n"
@@ -29,6 +29,10 @@ msgstr "Activitats"
 
 msgid "Animals & Nature"
 msgstr "Animals i natura"
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+"Qualsevol cosa compartida amb el mateix grup de persones es mostrarà aquí"
 
 msgid "Avatar of {displayName}"
 msgstr "Avatar de {displayName}"
@@ -96,14 +100,11 @@ msgstr "Torna a la llista"
 msgid "Hide password"
 msgstr "Amagar contrasenya"
 
-msgid "items"
-msgstr "elements"
-
 msgid "Message limit of {count} characters reached"
 msgstr "S'ha arribat al límit de {count} caràcters per missatge"
 
-msgid "More {dashboardItemType} …"
-msgstr "Més {dashboardItemType} …"
+msgid "More items …"
+msgstr "Més artícles..."
 
 msgid "Next"
 msgstr "Següent"
