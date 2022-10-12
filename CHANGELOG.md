@@ -2,37 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v6.0.0-beta.8](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.8) (2022-09-14)
+## v6.0.0 (2022-10-12)
 
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.7...v6.0.0-beta.8)
-
-### :bug: Fixed bugs
-
-- Fix single action detection [\#3212](https://github.com/nextcloud/nextcloud-vue/pull/3212) ([st3iny](https://github.com/st3iny))
-- Fix overwriting placeholder property in NcDatetimePicker [\#3202](https://github.com/nextcloud/nextcloud-vue/pull/3202) ([Chartman123](https://github.com/Chartman123))
-- Adjust appnavigation settings border radius [\#3186](https://github.com/nextcloud/nextcloud-vue/pull/3186) ([raimund-schluessler](https://github.com/raimund-schluessler))
-- Right-align nav item utils [\#3178](https://github.com/nextcloud/nextcloud-vue/pull/3178) ([ChristophWurst](https://github.com/ChristophWurst))
-- Make NcMultiselect pixel perfect [\#3174](https://github.com/nextcloud/nextcloud-vue/pull/3174) ([CarlSchwan](https://github.com/CarlSchwan))
-
-### Closed pull requests
-
-- Fix a word puzzle in NcDashboardWidget component [\#3225](https://github.com/nextcloud/nextcloud-vue/pull/3225) ([CarlSchwan](https://github.com/CarlSchwan))
-- Fix active and focus frame [\#3201](https://github.com/nextcloud/nextcloud-vue/pull/3201) ([CarlSchwan](https://github.com/CarlSchwan))
-
-
-## [v6.0.0-beta.7](https://github.com/nextcloud/nextcloud-vue/tree/v6.0.0-beta.7) (2022-09-05)
-
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0-beta.6...v6.0.0-beta.7)
-
-### :bug: Fixed bugs
-- AppNavigationItem actions visibility [\#3169](https://github.com/nextcloud/nextcloud-vue/pull/3169) ([raimund-schluessler](https://github.com/raimund-schluessler))
-- Actions positioning [\#3170](https://github.com/nextcloud/nextcloud-vue/pull/3170) ([juliushaertl](https://github.com/juliushaertl))
-- .active state of app list items [\#3147](https://github.com/nextcloud/nextcloud-vue/pull/3147) ([ChristophWurst](https://github.com/ChristophWurst))
-
-### Closed pull requests
-- Use events provided by floating-vue [\#3149](https://github.com/nextcloud/nextcloud-vue/pull/3149) ([raimund-schluessler](https://github.com/raimund-schluessler))
-
-## v6.0.0 (unreleased)
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v5.3.1...v6.0.0)
 
 ### :boom: Breaking Changes
 * [#2600](https://github.com/nextcloud/nextcloud-vue/pull/2600) Migrate to floating-vue ([@raimund-schluessler](https://github.com/raimund-schluessler))
@@ -44,7 +16,6 @@ All notable changes to this project will be documented in this file.
 * [#2603](https://github.com/nextcloud/nextcloud-vue/pull/2603) Comply with eslint for event name ([@artonge](https://github.com/artonge))
 * [#2704](https://github.com/nextcloud/nextcloud-vue/pull/2704) Put the children of AppNavigationItem outside of the main item ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#2980](https://github.com/nextcloud/nextcloud-vue/pull/2980) Bump @nextcloud/eslint-config from 8.0.0 to 8.1.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
-* ~~[#2911](https://github.com/nextcloud/nextcloud-vue/pull/2911) Use render function in Actions component ([@raimund-schluessler](https://github.com/raimund-schluessler))~~ No more breaking after [#3006](https://github.com/nextcloud/nextcloud-vue/pull/3006) in beta.2
 * [#2929](https://github.com/nextcloud/nextcloud-vue/pull/2929) Bump vue from 2.6.14 to 2.7.8 ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#2923](https://github.com/nextcloud/nextcloud-vue/pull/2923) Enforce setting section ids ([@nickvergessen](https://github.com/nickvergessen))
 * [\#3058](https://github.com/nextcloud/nextcloud-vue/pull/3058) Add Nc prefix to all components ([raimund-schluessler](https://github.com/raimund-schluessler))
@@ -92,6 +63,14 @@ All notable changes to this project will be documented in this file.
 * [\#3142](https://github.com/nextcloud/nextcloud-vue/pull/3142) Make the app content list 300px min ([ChristophWurst](https://github.com/ChristophWurst))
 
 ### :bug: Fixed bugs
+* [\#3212](https://github.com/nextcloud/nextcloud-vue/pull/3212) Fix single action detection ([st3iny](https://github.com/st3iny))
+* [\#3202](https://github.com/nextcloud/nextcloud-vue/pull/3202) Fix overwriting placeholder property in NcDatetimePicker ([Chartman123](https://github.com/Chartman123))
+* [\#3186](https://github.com/nextcloud/nextcloud-vue/pull/3186) Adjust appnavigation settings border radius ([raimund-schluessler](https://github.com/raimund-schluessler))
+* [\#3178](https://github.com/nextcloud/nextcloud-vue/pull/3178) Right-align nav item utils ([ChristophWurst](https://github.com/ChristophWurst))
+* [\#3174](https://github.com/nextcloud/nextcloud-vue/pull/3174) Make NcMultiselect pixel perfect ([CarlSchwan](https://github.com/CarlSchwan))
+* [\#3169](https://github.com/nextcloud/nextcloud-vue/pull/3169) AppNavigationItem actions visibility ([raimund-schluessler](https://github.com/raimund-schluessler))
+* [\#3170](https://github.com/nextcloud/nextcloud-vue/pull/3170) Actions positioning ([juliushaertl](https://github.com/juliushaertl))
+* [\#3147](https://github.com/nextcloud/nextcloud-vue/pull/3147) .active state of app list items ([ChristophWurst](https://github.com/ChristophWurst))
 * [#2878](https://github.com/nextcloud/nextcloud-vue/pull/2878) Fix single action validation ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#2877](https://github.com/nextcloud/nextcloud-vue/pull/2877) Bring back AppNavigationToggle tooltip ([@raimund-schluessler](https://github.com/raimund-schluessler))
 * [#2895](https://github.com/nextcloud/nextcloud-vue/pull/2895) Fix issues with Multiselect component ([@nickvergessen](https://github.com/nickvergessen))
@@ -150,6 +129,9 @@ All notable changes to this project will be documented in this file.
 * [\#3111](https://github.com/nextcloud/nextcloud-vue/pull/3111) Ensure proper actions menu styling ([raimund-schluessler](https://github.com/raimund-schluessler))
 
 ### Closed pull requests
+* [\#3225](https://github.com/nextcloud/nextcloud-vue/pull/3225) Fix a word puzzle in NcDashboardWidget component ([CarlSchwan](https://github.com/CarlSchwan))
+* [\#3201](https://github.com/nextcloud/nextcloud-vue/pull/3201) Fix active and focus frame ([CarlSchwan](https://github.com/CarlSchwan))
+* [\#3149](https://github.com/nextcloud/nextcloud-vue/pull/3149) Use events provided by floating-vue ([raimund-schluessler](https://github.com/raimund-schluessler))
 * [\#3019](https://github.com/nextcloud/nextcloud-vue/pull/3019) Add note about pre-releases to the readme ([juliushaertl](https://github.com/juliushaertl))
 * [\#3089](https://github.com/nextcloud/nextcloud-vue/pull/3089) Fix EmptyContent comments example in docs ([Pytal](https://github.com/Pytal))
 * [\#3072](https://github.com/nextcloud/nextcloud-vue/pull/3072) Remove debug log statement ([st3iny](https://github.com/st3iny))
