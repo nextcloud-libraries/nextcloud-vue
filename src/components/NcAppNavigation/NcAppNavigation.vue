@@ -137,8 +137,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .app-navigation {
+	// Set scoped variable override
+	// Using --color-text-maxcontrast as a fallback evaluates to an invalid value as it references itself in this scope instead of the variable defined higher up
+	--color-text-maxcontrast: var(--color-text-maxcontrast-background-blur, var(--color-text-maxcontrast-default));
+
 	transition: transform var(--animation-quick), margin var(--animation-quick);
 	width: $navigation-width;
 	position: relative;
