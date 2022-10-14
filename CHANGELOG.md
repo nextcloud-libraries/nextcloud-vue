@@ -10,6 +10,10 @@ All notable changes to this project will be documented in this file.
 
 - use @nextcloud/focus-trap instead of focus-trap [\#3347](https://github.com/nextcloud/nextcloud-vue/pull/3347) ([vinicius73](https://github.com/vinicius73))
 
+### :rocket: Enhancements
+
+- Migrate to use `:deep` selector instead of deprecated `::v-deep` [\#3348](https://github.com/nextcloud/nextcloud-vue/pull/3348) ([susnux](https://github.com/susnux))
+
 ## [v7.0.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0) - 2022-10-12
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0...v7.0.0)
