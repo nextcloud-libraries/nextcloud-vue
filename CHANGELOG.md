@@ -2,7 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
-## v7.0.0 - 2022-10-12
+## [v7.0.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.1) (2022-10-14)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.0.0...v7.0.1)
+
+### :bug: Fixed bugs
+
+- use @nextcloud/focus-trap instead of focus-trap [\#3347](https://github.com/nextcloud/nextcloud-vue/pull/3347) ([vinicius73](https://github.com/vinicius73))
+
+## [v7.0.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.0) - 2022-10-12
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v6.0.0...v7.0.0)
 
 ### :boom: Breaking changes
 
