@@ -325,9 +325,9 @@ export default {
 				box-shadow: inset 0 -1px 0 var(--color-background-darker);
 			}
 			&.active {
-				color: var(--color-text-light);
-				border-bottom-color: var(--color-text-light);
-				box-shadow: inset 0 -1px 0 var(--color-text-light);
+				color: var(--color-main-text);
+				border-bottom-color: var(--color-main-text);
+				box-shadow: inset 0 -1px 0 var(--color-main-text);
 				font-weight: bold;
 			}
 			// differentiate the two for accessibility purpose

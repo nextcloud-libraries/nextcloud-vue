@@ -122,7 +122,7 @@ export default {
 
 <style lang="scss" scoped>
 .notecard {
-	color: var(--color-text-light) !important;
+	color: var(--color-main-text) !important;
 	background-color: var(--note-background) !important;
 	border-inline-start: 4px solid var(--note-theme);
 	border-radius: var(--border-radius);

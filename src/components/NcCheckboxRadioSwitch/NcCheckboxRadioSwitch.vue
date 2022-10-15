@@ -493,7 +493,7 @@ $spacing: 4px;
 	&--disabled &__label {
 		opacity: $opacity_disabled;
 		.checkbox-radio-switch__icon {
-			color: var(--color-text-light)
+			color: var(--color-main-text)
 		}
 	}
 

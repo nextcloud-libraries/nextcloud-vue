@@ -245,7 +245,7 @@ export default {
 	}
 
 	&__lineone {
-		color: var(--color-text-light);
+		color: var(--color-main-text);
 	}
 	&__linetwo {
 		opacity: $opacity_normal;
