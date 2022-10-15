@@ -284,7 +284,7 @@ $input-margin: 4px;
 		padding: 7px 6px;
 
 		opacity: $opacity_full;
-		color: var(--color-text-lighter);
+		color: var(--color-text-maxcontrast);
 		border: 0;
 		border-radius: 50%;
 		/* Avoid background under border */

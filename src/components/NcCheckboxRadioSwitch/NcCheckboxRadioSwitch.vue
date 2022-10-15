@@ -504,7 +504,7 @@ $spacing: 4px;
 
 	// Switch specific rules
 	&-switch:not(&--checked) &__icon {
-		color: var(--color-text-lighter);
+		color: var(--color-text-maxcontrast);
 	}
 
 	// If switch is checked AND disabled, use the fade primary colour

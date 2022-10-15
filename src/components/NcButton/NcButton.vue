@@ -187,7 +187,7 @@ h5 {
 p {
 	text-align: center;
 	margin: 4px 0 12px 0;
-	color: var(--color-text-lighter)
+	color: var(--color-text-maxcontrast)
 }
 
 button {
