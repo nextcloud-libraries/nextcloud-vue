@@ -439,7 +439,7 @@ export default {
 	}
 
 	// Default button type
-	background-color: var(--color-primary-element-lighter);
+	background-color: var(--color-primary-element-lighter), var(--color-primary-element-light);
 	color: var(--color-primary-light-text);
 	&:hover:not(:disabled) {
 		background-color: var(--color-primary-light-hover);
@@ -448,7 +448,7 @@ export default {
 	// Back to the default color for this button when active
 	// TODO: add ripple effect
 	&:active {
-		background-color: var(--color-primary-element-lighter);
+		background-color: var(--color-primary-element-lighter), var(--color-primary-element-light);
 	}
 
 	&__wrapper {
