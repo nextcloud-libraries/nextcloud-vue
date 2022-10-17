@@ -2,10 +2,11 @@
 # Translators:
 # ButterflyOfFire, 2020
 # Anouar Fadili, 2022
+# Ali Mohamed, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Anouar Fadili, 2022\n"
+"Last-Translator: Ali Mohamed, 2022\n"
 "Language-Team: Arabic (https://www.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
@@ -26,6 +27,9 @@ msgstr "النشاطات"
 msgid "Animals & Nature"
 msgstr "الحيوانات والطبيعة"
 
+msgid "Anything shared with the same group of people will show up here"
+msgstr "أي مادة تمت مشاركتها مع نفس المجموعة من الأشخاص سيتم عرضها هنا"
+
 msgid "Avatar of {displayName}"
 msgstr "صورة {displayName} الرمزية"
 
@@ -35,14 +39,26 @@ msgstr "صورة {displayName} الرمزية، {status}"
 msgid "Cancel changes"
 msgstr "إلغاء التغييرات"
 
+msgid "Change title"
+msgstr "تغيير العنوان"
+
 msgid "Choose"
 msgstr "إختيار"
+
+msgid "Clear text"
+msgstr "مسح النص"
 
 msgid "Close"
 msgstr "أغلق"
 
+msgid "Close modal"
+msgstr "قفل الشرط"
+
 msgid "Close navigation"
 msgstr "إغلاق المتصفح"
+
+msgid "Close sidebar"
+msgstr "قفل الشريط الجانبي"
 
 msgid "Confirm changes"
 msgstr "تأكيد التغييرات"
@@ -53,8 +69,14 @@ msgstr "مخصص"
 msgid "Edit item"
 msgstr "تعديل عنصر"
 
+msgid "Error getting related resources"
+msgstr "خطأ في تحصيل مصادر ذات علاقة"
+
 msgid "External documentation for {title}"
 msgstr "الوثائق الخارجية لـ{title}"
+
+msgid "Favorite"
+msgstr "مفضلة"
 
 msgid "Flags"
 msgstr "الأعلام"
@@ -71,8 +93,14 @@ msgstr "عالمي"
 msgid "Go back to the list"
 msgstr "العودة إلى القائمة"
 
+msgid "Hide password"
+msgstr "إخفاء كلمة السر"
+
 msgid "Message limit of {count} characters reached"
 msgstr "تم الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
+
+msgid "More items …"
+msgstr "عناصر أخرى ..."
 
 msgid "Next"
 msgstr "التالي"
@@ -86,14 +114,41 @@ msgstr "ليس هناك أية نتيجة"
 msgid "Objects"
 msgstr "الأشياء"
 
+msgid "Open"
+msgstr "فتح"
+
+msgid "Open link to \"{resourceTitle}\""
+msgstr "فتح رابط إلى \"{resourceTitle}\""
+
 msgid "Open navigation"
 msgstr "فتح المتصفح"
+
+msgid "Password is secure"
+msgstr "كلمة السر مُؤمّنة"
 
 msgid "Pause slideshow"
 msgstr "إيقاف العرض مؤقتًا"
 
 msgid "People & Body"
 msgstr "الناس والجسم"
+
+msgid "Pick a date"
+msgstr "اختر التاريخ"
+
+msgid "Pick a date and a time"
+msgstr "اختر اليوم و الوقت"
+
+msgid "Pick a month"
+msgstr "اختر الشهر"
+
+msgid "Pick a time"
+msgstr "اختر الوقت"
+
+msgid "Pick a week"
+msgstr "إختر الأسبوع"
+
+msgid "Pick a year"
+msgstr "إختر السنة"
 
 msgid "Pick an emoji"
 msgstr "اختر رمزًا تعبيريًا"
@@ -103,6 +158,9 @@ msgstr "الرجاء تحديد المنطقة الزمنية:"
 
 msgid "Previous"
 msgstr "السابق"
+
+msgid "Related resources"
+msgstr "مصادر ذات صلة"
 
 msgid "Search"
 msgstr "بحث"
@@ -118,6 +176,9 @@ msgstr "الإعدادات"
 
 msgid "Settings navigation"
 msgstr "إعدادات المتصفح"
+
+msgid "Show password"
+msgstr "أعرض كلمة السر"
 
 msgid "Smileys & Emotion"
 msgstr "الوجوه و الرموز التعبيرية"
