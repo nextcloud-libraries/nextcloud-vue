@@ -121,7 +121,6 @@ export default {
 <template>
 	<NcInputField v-bind="$props"
 		ref="inputField"
-		:autofocus="$attrs.autofocus"
 		:trailing-button-label="clearTextLabel"
 		v-on="$listeners"
 		@input="handleInput">
@@ -360,6 +359,33 @@ export default {
 				'words',
 				'characters',
 			].includes(value),
+		},
+
+		/**
+		 * The autofocus property defines whether the input should
+		 * automatically receive focus on page load
+		 */
+		autofocus: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * The minlength property defines the minimum number of characters
+		 * (as UTF-16 code units) the user can enter
+		 */
+		minlength: {
+			type: Number,
+			default: 0,
+		},
+
+		/**
+		 * The maxlength property defines the maximum number of characters
+		 * (as UTF-16 code units) the user can enter
+		 */
+		maxlength: {
+			type: Number,
+			default: null,
 		},
 
 		/**
