@@ -40,6 +40,9 @@ actual pickers:
 		<NcColorPicker v-model="color">
 			<NcButton> Click Me </NcButton>
 		</NcColorPicker>
+		<NcColorPicker v-model="color" :palette="customPalette">
+			<NcButton> Click Me for a custom palette </NcButton>
+		</NcColorPicker>
 		<div :style="{'background-color': color}" class="color0" />
 	</div>
 </template>
@@ -47,7 +50,20 @@ actual pickers:
 export default {
 	data() {
 		return {
-			color: '#0082c9'
+			color: '#0082c9',
+			customPalette: [
+				'#E40303',
+				'#FF8C00',
+				'#FFED00',
+				'#008026',
+				'#24408E',
+				'#732982',
+				'#5BCEFA',
+				'#F5A9B8',
+				'#FFFFFF',
+				'#F5A9B8',
+				'#5BCEFA',
+			],
 		}
 	}
 }
@@ -55,12 +71,12 @@ export default {
 <style>
 .container0 {
 	display: flex;
+	gap: 20px;
 }
 
 .color0 {
 	width: 100px;
 	height: 40px;
-	margin-left: 20px;
 	border-radius: 6px;
 }
 </style>
@@ -204,6 +220,11 @@ import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 import { Chrome } from 'vue-color'
 
+const rgbToHex = function(color) {
+	const hex = color.toString(16)
+	return hex.length === 1 ? '0' + hex : hex
+}
+
 export default {
 	name: 'NcColorPicker',
 
@@ -225,12 +246,26 @@ export default {
 			type: String,
 			required: true,
 		},
+
 		/**
 		 * Set to `true` to enable advanced fields including HEX, RGB, and HSL
 		 */
 		advancedFields: {
 			type: Boolean,
 			default: false,
+		},
+
+		/**
+		 * Provide a custom array of hexadecimal colors to show
+		 */
+		palette: {
+			type: Array,
+			default: () => GenColors(4).map(color => {
+				return '#' + rgbToHex(color.r) + rgbToHex(color.g) + rgbToHex(color.b)
+			}),
+			validator(palette) {
+				return palette.every(color => /^#([a-f0-9]{3}|[a-f0-9]{6})$/i.test(color))
+			},
 		},
 	},
 
@@ -246,9 +281,6 @@ export default {
 		return {
 			currentColor: this.value,
 			advanced: false,
-			palette: GenColors(4).map(color => {
-				return '#' + this.rgbToHex(color.r) + this.rgbToHex(color.g) + this.rgbToHex(color.b)
-			}),
 		}
 	},
 
@@ -311,10 +343,6 @@ export default {
 			this.$emit('input', color)
 
 		},
-		rgbToHex(color) {
-			const hex = color.toString(16)
-			return hex.length === 1 ? '0' + hex : hex
-		},
 	},
 }
 
@@ -351,7 +379,7 @@ export default {
 			margin: auto;
 			padding: 0;
 			color: white;
-			border: none;
+			border: 1px solid rgba(0, 0, 0, 0.25);
 			border-radius: 50%;
 			font-size: 16px;
 			&:hover {
