@@ -130,6 +130,7 @@ export default {
 		<template v-if="type !== 'search'" #trailing-button-icon>
 			<Close v-if="trailingButtonIcon === 'close'" :size="20" />
 			<ArrowRight v-else-if="trailingButtonIcon === 'arrowRight'" :size="20" />
+			<Undo v-else-if="trailingButtonIcon === 'undo'" :size="20" />
 		</template>
 	</NcInputField>
 </template>
@@ -140,6 +141,7 @@ import NcInputField from '../NcInputField/NcInputField.vue'
 
 import Close from 'vue-material-design-icons/Close.vue'
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+import Undo from 'vue-material-design-icons/UndoVariant.vue'
 
 import { t } from '../../l10n.js'
 
@@ -150,6 +152,7 @@ export default {
 		NcInputField,
 		Close,
 		ArrowRight,
+		Undo,
 	},
 
 	props: {
@@ -229,7 +232,7 @@ export default {
 
 		/**
 		 * Specifies which material design icon should be used for the trailing
-		 * button. Values can be `close` anbd `arrowRight`.
+		 * button. Value can be `close`, `arrowRight`, or `undo`.
 		 */
 		trailingButtonIcon: {
 			type: String,
@@ -237,6 +240,7 @@ export default {
 			validator: (value) => [
 				'close',
 				'arrowRight',
+				'undo',
 			].includes(value),
 		},
 
