@@ -1,16 +1,18 @@
 # 
 # Translators:
 # SleepyJesse <Jesse_Xu@live.com>, 2020
-# Jianming Liang <fuufuukun@163.com>, 2020
+# ffk_jan <fuufuukun@163.com>, 2020
 # Pascal Janus <pascal_janus@163.com>, 2020
 # Toms Project <tom@projectoms.com>, 2020
 # tranxde, 2020
-# ous 50, 2021
+# ous50, 2021
 # Jack Frost, 2022
+# berlin2123 <berlinli222@163.com>, 2022
+# Mmmm Heee, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Jack Frost, 2022\n"
+"Last-Translator: Mmmm Heee, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/nextcloud/teams/64236/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_CN\n"
@@ -31,6 +33,9 @@ msgstr "活动"
 msgid "Animals & Nature"
 msgstr "动物 & 自然"
 
+msgid "Anything shared with the same group of people will show up here"
+msgstr "与同组用户分享的所有内容都会显示于此"
+
 msgid "Avatar of {displayName}"
 msgstr "{displayName}的头像"
 
@@ -40,14 +45,26 @@ msgstr "{displayName}的头像，{status}"
 msgid "Cancel changes"
 msgstr "取消更改"
 
+msgid "Change title"
+msgstr "更改标题"
+
 msgid "Choose"
 msgstr "选择"
+
+msgid "Clear text"
+msgstr "清除文本"
 
 msgid "Close"
 msgstr "关闭"
 
+msgid "Close modal"
+msgstr "关闭窗口"
+
 msgid "Close navigation"
 msgstr "关闭导航"
+
+msgid "Close sidebar"
+msgstr "关闭侧边栏"
 
 msgid "Confirm changes"
 msgstr "确认更改"
@@ -58,8 +75,14 @@ msgstr "自定义"
 msgid "Edit item"
 msgstr "编辑项目"
 
+msgid "Error getting related resources"
+msgstr "获取相关资源时出错"
+
 msgid "External documentation for {title}"
 msgstr "{title}的外部文档"
+
+msgid "Favorite"
+msgstr "喜爱"
 
 msgid "Flags"
 msgstr "旗帜"
@@ -76,8 +99,14 @@ msgstr "全局"
 msgid "Go back to the list"
 msgstr "返回至列表"
 
+msgid "Hide password"
+msgstr "隐藏密码"
+
 msgid "Message limit of {count} characters reached"
 msgstr "已达到 {count} 个字符的消息限制"
+
+msgid "More items …"
+msgstr "更多项目…"
 
 msgid "Next"
 msgstr "下一个"
@@ -91,14 +120,41 @@ msgstr "无结果"
 msgid "Objects"
 msgstr "物体"
 
+msgid "Open"
+msgstr "打开"
+
+msgid "Open link to \"{resourceTitle}\""
+msgstr "打开\"{resourceTitle}\"的连接"
+
 msgid "Open navigation"
 msgstr "开启导航"
+
+msgid "Password is secure"
+msgstr "密码安全"
 
 msgid "Pause slideshow"
 msgstr "暂停幻灯片"
 
 msgid "People & Body"
 msgstr "人 & 身体"
+
+msgid "Pick a date"
+msgstr "选择日期"
+
+msgid "Pick a date and a time"
+msgstr "选择日期和时间"
+
+msgid "Pick a month"
+msgstr "选择月份"
+
+msgid "Pick a time"
+msgstr "选择时间"
+
+msgid "Pick a week"
+msgstr "选择星期"
+
+msgid "Pick a year"
+msgstr "选择年份"
 
 msgid "Pick an emoji"
 msgstr "选择一个表情"
@@ -108,6 +164,9 @@ msgstr "请选择一个时区："
 
 msgid "Previous"
 msgstr "上一个"
+
+msgid "Related resources"
+msgstr "相关资源"
 
 msgid "Search"
 msgstr "搜索"
@@ -123,6 +182,9 @@ msgstr "设置"
 
 msgid "Settings navigation"
 msgstr "设置向导"
+
+msgid "Show password"
+msgstr "显示密码"
 
 msgid "Smileys & Emotion"
 msgstr "笑脸 & 情感"
