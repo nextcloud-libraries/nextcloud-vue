@@ -626,10 +626,8 @@ $top-buttons-spacing: 6px;
 	app-content will be shrinked properly
 */
 .app-sidebar {
-	position: -webkit-sticky; // Safari support
-	position: sticky;
 	z-index: 1500;
-	top: var(--header-height);
+	top: 0;
 	right: 0;
 	display: flex;
 	overflow-x: hidden;
