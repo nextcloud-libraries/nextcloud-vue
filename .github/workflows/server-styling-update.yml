@@ -14,10 +14,11 @@ jobs:
 
       - name: Download css
         run: |
-          cd nextcloud-vue/styleguide/assets
-          curl https://nextcloud.github.io/server/apps/theming/css/default.css --output default.css
-          # Fix icons css import
-          curl https://nextcloud.github.io/server/core/css/server.css | sed 's|../../dist/icons.css|icons.css|g' > server.css
+          cd styleguide/assets
+          # Fix img css import
+          curl https://nextcloud.github.io/server/apps/theming/css/default.css | sed 's|/core/img|./img|g' > default.css
+          # Fix icons and img css import
+          curl https://nextcloud.github.io/server/core/css/server.css | sed 's|../../dist/icons.css|./icons.css|g' | sed 's|../img|./img|g' > server.css
           curl https://nextcloud.github.io/server/dist/icons.css --output icons.css
 
       - name: Create Pull Request
@@ -30,6 +31,7 @@ jobs:
           signoff: true
           branch: automated/noid/server-styling-update
           title: Automated styling update from server
+          add-paths: styleguide/assets
           body: |
             Auto-generated update of our locally cached css styling from
              * https://nextcloud.github.io/server/apps/theming/css/default.css

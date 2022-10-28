@@ -450,11 +450,11 @@ code {
 }
 
 .ui-icon-circle-triangle-e {
-  background-image: url("../img/actions/play-next.svg?v=1");
+  background-image: url("./img/actions/play-next.svg?v=1");
 }
 
 .ui-icon-circle-triangle-w {
-  background-image: url("../img/actions/play-previous.svg?v=1");
+  background-image: url("./img/actions/play-previous.svg?v=1");
 }
 
 /* ---- jQuery UI datepicker ---- */
@@ -487,10 +487,10 @@ code {
   opacity: 0.5;
 }
 .ui-widget.ui-datepicker .ui-widget-header .ui-icon.ui-icon-circle-triangle-e {
-  background: url("../img/actions/arrow-right.svg") center center no-repeat;
+  background: url("./img/actions/arrow-right.svg") center center no-repeat;
 }
 .ui-widget.ui-datepicker .ui-widget-header .ui-icon.ui-icon-circle-triangle-w {
-  background: url("../img/actions/arrow-left.svg") center center no-repeat;
+  background: url("./img/actions/arrow-left.svg") center center no-repeat;
 }
 .ui-widget.ui-datepicker .ui-widget-header .ui-state-hover .ui-icon {
   opacity: 1;
@@ -1018,7 +1018,7 @@ span.ui-icon {
 
 div.crumb {
   display: inline-flex;
-  background-image: url("../img/breadcrumb.svg?v=1");
+  background-image: url("./img/breadcrumb.svg?v=1");
   background-repeat: no-repeat;
   background-position: right center;
   height: 44px;
@@ -1048,7 +1048,7 @@ div.crumb.crumbmenu .popovermenu ul {
   padding-right: 5px;
 }
 div.crumb.crumbmenu .popovermenu ul li.canDrop span:first-child {
-  background-image: url("../img/filetypes/folder-drag-accept.svg?v=1") !important;
+  background-image: url("./img/filetypes/folder-drag-accept.svg?v=1") !important;
 }
 div.crumb.crumbmenu .popovermenu .in-breadcrumb {
   display: none;
@@ -1193,7 +1193,7 @@ fieldset.warning legend + p, fieldset.update legend + p {
  * SVG COLOR API
  *
  * @param string $icon the icon filename
- * @param string $dir the icon folder within /core/img if $core or app name
+ * @param string $dir the icon folder within /co./img if $core or app name
  * @param string $color the desired color in hexadecimal
  * @param int $version the version of the file
  * @param bool [$core] search icon in core
@@ -1674,10 +1674,10 @@ input[type=checkbox].checkbox + label:before, input[type=radio].checkbox + label
   background-position: center;
 }
 input[type=checkbox].checkbox:checked + label:before, input[type=radio].checkbox:checked + label:before {
-  background-image: url("../img/actions/checkbox-mark.svg");
+  background-image: url("./img/actions/checkbox-mark.svg");
 }
 input[type=checkbox].checkbox:indeterminate + label:before, input[type=radio].checkbox:indeterminate + label:before {
-  background-image: url("../img/actions/checkbox-mixed.svg");
+  background-image: url("./img/actions/checkbox-mixed.svg");
 }
 input[type=checkbox].radio--white + label:before, input[type=checkbox].radio--white:focus + label:before, input[type=checkbox].checkbox--white + label:before, input[type=checkbox].checkbox--white:focus + label:before, input[type=radio].radio--white + label:before, input[type=radio].radio--white:focus + label:before, input[type=radio].checkbox--white + label:before, input[type=radio].checkbox--white:focus + label:before {
   border-color: #bababa;
@@ -1707,10 +1707,10 @@ input[type=checkbox].checkbox--white:checked + label:before, input[type=checkbox
   /* Override default checked */
   border-color: #fff !important;
   /* Override default checked */
-  background-image: url("../img/actions/checkbox-mark-white.svg");
+  background-image: url("./img/actions/checkbox-mark-white.svg");
 }
 input[type=checkbox].checkbox--white:indeterminate + label:before, input[type=radio].checkbox--white:indeterminate + label:before {
-  background-image: url("../img/actions/checkbox-mixed-white.svg");
+  background-image: url("./img/actions/checkbox-mixed-white.svg");
 }
 input[type=checkbox].checkbox--white:disabled + label:before, input[type=radio].checkbox--white:disabled + label:before {
   opacity: 0.7;
@@ -2390,7 +2390,7 @@ label.infield {
 }
 #header .logo {
   display: inline-flex;
-  background-image: var(--image-logoheader, var(--image-logo, url("../img/logo/logo.svg")));
+  background-image: var(--image-logoheader, var(--image-logo, url("./img/logo/logo.svg")));
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -2652,7 +2652,7 @@ header .emptycontent [class*=icon-] {
  * SVG COLOR API
  *
  * @param string $icon the icon filename
- * @param string $dir the icon folder within /core/img if $core or app name
+ * @param string $dir the icon folder within /co./img if $core or app name
  * @param string $color the desired color in hexadecimal
  * @param int $version the version of the file
  * @param bool [$core] search icon in core
@@ -2668,7 +2668,7 @@ header .emptycontent [class*=icon-] {
 }
 
 .icon-breadcrumb {
-  background-image: url("../img/breadcrumb.svg?v=1");
+  background-image: url("./img/breadcrumb.svg?v=1");
 }
 
 /* LOADING ------------------------------------------------------------------ */
@@ -2733,16 +2733,16 @@ header .emptycontent [class*=icon-] {
 
 /* Css replaced elements don't have ::after nor ::before */
 audio.icon-loading, canvas.icon-loading, embed.icon-loading, iframe.icon-loading, img.icon-loading, input.icon-loading, object.icon-loading, video.icon-loading {
-  background-image: url("../img/loading.gif");
+  background-image: url("./img/loading.gif");
 }
 audio.icon-loading-dark, canvas.icon-loading-dark, embed.icon-loading-dark, iframe.icon-loading-dark, img.icon-loading-dark, input.icon-loading-dark, object.icon-loading-dark, video.icon-loading-dark {
-  background-image: url("../img/loading-dark.gif");
+  background-image: url("./img/loading-dark.gif");
 }
 audio.icon-loading-small, canvas.icon-loading-small, embed.icon-loading-small, iframe.icon-loading-small, img.icon-loading-small, input.icon-loading-small, object.icon-loading-small, video.icon-loading-small {
-  background-image: url("../img/loading-small.gif");
+  background-image: url("./img/loading-small.gif");
 }
 audio.icon-loading-small-dark, canvas.icon-loading-small-dark, embed.icon-loading-small-dark, iframe.icon-loading-small-dark, img.icon-loading-small-dark, input.icon-loading-small-dark, object.icon-loading-small-dark, video.icon-loading-small-dark {
-  background-image: url("../img/loading-small-dark.gif");
+  background-image: url("./img/loading-small-dark.gif");
 }
 
 @keyframes rotate {
@@ -2843,7 +2843,7 @@ audio.icon-loading-small-dark, canvas.icon-loading-small-dark, embed.icon-loadin
  * SVG COLOR API
  *
  * @param string $icon the icon filename
- * @param string $dir the icon folder within /core/img if $core or app name
+ * @param string $dir the icon folder within /co./img if $core or app name
  * @param string $color the desired color in hexadecimal
  * @param int $version the version of the file
  * @param bool [$core] search icon in core
@@ -4942,14 +4942,6 @@ kbd {
 }
 .toastify.dialogs.toast-undo {
   border-left: 3px solid var(--color-success);
-}
-
-/* dark theme overrides for Nextcloud 24 and earlier */
-.theme--dark .toastify.dialogs .toast-close {
-  /* close icon style */
-}
-.theme--dark .toastify.dialogs .toast-close.toast-close::before {
-  background-image: url("./close-dark.svg");
 }
 
 #body-public {
