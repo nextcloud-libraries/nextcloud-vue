@@ -1,5 +1,5 @@
-@import url('https://nextcloud.github.io/server/apps/theming/css/default.css');
-@import url('https://nextcloud.github.io/server/core/css/server.css');
+@import 'default.css';
+@import 'server.css';
 
 div[data-preview] * {
 	box-sizing: border-box;
