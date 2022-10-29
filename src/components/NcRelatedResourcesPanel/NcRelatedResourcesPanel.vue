@@ -131,13 +131,25 @@ export default {
 			return false
 		},
 
+		isFiles() {
+			return this.fileInfo?.id !== undefined
+		},
+
 		url() {
-			if (this.fileInfo?.id !== undefined) {
-				return generateOcsUrl('/apps/related_resources/related/files/{fileId}?format=json', { fileId: this.fileInfo.id })
+			let providerId = null
+			let itemId = null
+
+			if (this.isFiles) {
+				providerId = 'files'
+				itemId = this.fileInfo.id
+			} else {
+				providerId = this.providerId
+				itemId = this.itemId
 			}
-			return generateOcsUrl('/apps/related_resources/related/{providerId}/{itemId}?format=json', {
-				providerId: this.providerId,
-				itemId: this.itemId,
+
+			return generateOcsUrl('/apps/related_resources/related/{providerId}?itemId={itemId}&format=json', {
+				providerId,
+				itemId,
 			})
 		},
 	},
