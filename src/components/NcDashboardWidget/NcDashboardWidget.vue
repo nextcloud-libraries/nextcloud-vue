@@ -56,6 +56,41 @@ export default {
 </script>
 ```
 
+### Showing items and a half empty content message
+```vue
+<template>
+	<NcDashboardWidget :items="items"
+		:show-items-and-empty-content="true"
+		:half-empty-content-message="'No unread items'">
+		<template #default="{ item }">
+			{{ item.title }}
+		</template>
+	</NcDashboardWidget>
+</template>
+
+<script>
+const myItems = [
+	{
+		title: 'first',
+		content: 'blabla',
+	},
+	{
+		title: 'second',
+		content: 'fuzzfuzz',
+	},
+]
+export default {
+	name: 'MyDashboardWidget',
+	props: [],
+	data() {
+		return {
+			items: myItems
+		}
+	},
+}
+</script>
+```
+
 ### Complete example using NcDashboardWidgetItem
 
 ```vue
