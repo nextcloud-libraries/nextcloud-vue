@@ -148,7 +148,7 @@ export default {
 			<slot />
 		</template>
 		<div class="color-picker"
-			:class="{ 'color-picker--advanced-fields': advancedFields }">
+			:class="{ 'color-picker--advanced-fields': advanced && advancedFields }">
 			<transition name="slide" mode="out-in">
 				<div v-if="!advanced" class="color-picker__simple">
 					<button v-for="(color, index) in palette"
