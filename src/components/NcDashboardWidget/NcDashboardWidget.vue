@@ -140,7 +140,7 @@ export default {
 	<div class="dashboard-widget">
 		<!-- This element is shown if we have items, but want to show a general message as well.
 		Can be used e.g. to show "No mentions" on top of the item list. -->
-		<NcEmptyContent v-if="showHalfNcArea"
+		<NcEmptyContent v-if="showHalfEmptyContentArea"
 			:description="halfEmptyContentString"
 			class="half-screen">
 			<template #icon>
