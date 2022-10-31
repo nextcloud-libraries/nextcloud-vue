@@ -56,6 +56,41 @@ export default {
 </script>
 ```
 
+### Showing items and a half empty content message
+```vue
+<template>
+	<NcDashboardWidget :items="items"
+		:show-items-and-empty-content="true"
+		:half-empty-content-message="'No unread items'">
+		<template #default="{ item }">
+			{{ item.title }}
+		</template>
+	</NcDashboardWidget>
+</template>
+
+<script>
+const myItems = [
+	{
+		title: 'first',
+		content: 'blabla',
+	},
+	{
+		title: 'second',
+		content: 'fuzzfuzz',
+	},
+]
+export default {
+	name: 'MyDashboardWidget',
+	props: [],
+	data() {
+		return {
+			items: myItems
+		}
+	},
+}
+</script>
+```
+
 ### Complete example using NcDashboardWidgetItem
 
 ```vue
@@ -140,7 +175,7 @@ export default {
 	<div class="dashboard-widget">
 		<!-- This element is shown if we have items, but want to show a general message as well.
 		Can be used e.g. to show "No mentions" on top of the item list. -->
-		<NcEmptyContent v-if="showHalfNcArea"
+		<NcEmptyContent v-if="showHalfEmptyContentArea"
 			:description="halfEmptyContentString"
 			class="half-screen">
 			<template #icon>
