@@ -138,24 +138,6 @@ msgstr "暂停幻灯片"
 msgid "People & Body"
 msgstr "人 & 身体"
 
-msgid "Pick a date"
-msgstr "选择日期"
-
-msgid "Pick a date and a time"
-msgstr "选择日期和时间"
-
-msgid "Pick a month"
-msgstr "选择月份"
-
-msgid "Pick a time"
-msgstr "选择时间"
-
-msgid "Pick a week"
-msgstr "选择星期"
-
-msgid "Pick a year"
-msgstr "选择年份"
-
 msgid "Pick an emoji"
 msgstr "选择一个表情"
 
