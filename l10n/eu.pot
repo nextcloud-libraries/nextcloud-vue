@@ -27,6 +27,9 @@ msgstr "Jarduerak"
 msgid "Animals & Nature"
 msgstr "Animaliak eta Natura"
 
+msgid "Anything shared with the same group of people will show up here"
+msgstr "Pertsona-talde berarekin partekatutako edozer agertuko da hemen"
+
 msgid "Avatar of {displayName}"
 msgstr "{displayName}-(e)n irudia"
 
@@ -41,6 +44,9 @@ msgstr "Aldatu titulua"
 
 msgid "Choose"
 msgstr "Aukeratu"
+
+msgid "Clear text"
+msgstr "Garbitu testua"
 
 msgid "Close"
 msgstr "Itxi"
@@ -63,6 +69,9 @@ msgstr "Pertsonalizatua"
 msgid "Edit item"
 msgstr "Editatu elementua"
 
+msgid "Error getting related resources"
+msgstr "Errorea erlazionatutako baliabideak lortzerakoan"
+
 msgid "External documentation for {title}"
 msgstr "Kanpoko dokumentazioa {title}(r)entzat"
 
@@ -84,14 +93,14 @@ msgstr "Globala"
 msgid "Go back to the list"
 msgstr "Bueltatu zerrendara"
 
-msgid "items"
-msgstr "elementuak"
+msgid "Hide password"
+msgstr "Ezkutatu pasahitza"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Mezuaren {count} karaketere-limitera heldu zara"
 
-msgid "More {dashboardItemType} …"
-msgstr "{dashboardItemType} gehiago…"
+msgid "More items …"
+msgstr "Elementu gehiago …"
 
 msgid "Next"
 msgstr "Hurrengoa"
@@ -108,8 +117,14 @@ msgstr "Objektuak"
 msgid "Open"
 msgstr "Ireki"
 
+msgid "Open link to \"{resourceTitle}\""
+msgstr "Ireki esteka: \"{resourceTitle}\""
+
 msgid "Open navigation"
 msgstr "Ireki nabigazioa"
+
+msgid "Password is secure"
+msgstr "Pasahitza segurua da"
 
 msgid "Pause slideshow"
 msgstr "Pausatu diaporama"
@@ -118,13 +133,16 @@ msgid "People & Body"
 msgstr "Jendea eta gorputza"
 
 msgid "Pick an emoji"
-msgstr "Aukeratu emoji bat"
+msgstr "Hautatu emoji bat"
 
 msgid "Please select a time zone:"
 msgstr "Mesedez hautatu ordu-zona bat:"
 
 msgid "Previous"
 msgstr "Aurrekoa"
+
+msgid "Related resources"
+msgstr "Erlazionatutako baliabideak"
 
 msgid "Search"
 msgstr "Bilatu"
@@ -140,6 +158,9 @@ msgstr "Ezarpenak"
 
 msgid "Settings navigation"
 msgstr "Nabigazio ezarpenak"
+
+msgid "Show password"
+msgstr "Erakutsi pasahitza"
 
 msgid "Smileys & Emotion"
 msgstr "Smileyak eta emozioa"
