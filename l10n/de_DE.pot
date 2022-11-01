@@ -137,24 +137,6 @@ msgstr "Diashow pausieren"
 msgid "People & Body"
 msgstr "Menschen & Körper"
 
-msgid "Pick a date"
-msgstr "Ein Datum auswählen"
-
-msgid "Pick a date and a time"
-msgstr "Datum und Uhrzeit auswählen"
-
-msgid "Pick a month"
-msgstr "Einen Monat auswählen"
-
-msgid "Pick a time"
-msgstr "Eine Uhrzeit auswählen"
-
-msgid "Pick a week"
-msgstr "Eine Woche auswählen"
-
-msgid "Pick a year"
-msgstr "Ein Jahr auswählen"
-
 msgid "Pick an emoji"
 msgstr "Ein Emoji auswählen"
 
