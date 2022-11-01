@@ -42,7 +42,7 @@
 export default {
 	data() {
 		return {
-			time: null,
+			time: new Date('2022-10-10 10:10:10'),
 		}
 	},
 }
@@ -168,7 +168,7 @@ export default {
 <script>
 import NcTimezonePicker from '../NcTimezonePicker/index.js'
 import NcPopover from '../NcPopover/index.js'
-import { t } from '../../l10n.js'
+import l10n from '../../mixins/l10n.js'
 
 import {
 	getFirstDay,
@@ -199,6 +199,7 @@ export default {
 		NcTimezonePicker,
 	},
 
+	mixins: [l10n],
 	inheritAttrs: false,
 
 	props: {
@@ -312,21 +313,21 @@ export default {
 		 */
 		defaultPlaceholder() {
 			if (this.type === 'time') {
-				return t('Pick a time')
+				return this.t('Pick a time')
 			}
 			if (this.type === 'month') {
-				return t('Pick a month')
+				return this.t('Pick a month')
 			}
 			if (this.type === 'year') {
-				return t('Pick a year')
+				return this.t('Pick a year')
 			}
 			if (this.type === 'week') {
-				return t('Pick a week')
+				return this.t('Pick a week')
 			}
 			if (this.type === 'date') {
-				return t('Pick a date')
+				return this.t('Pick a date')
 			}
-			return t('Pick a date and a time')
+			return this.t('Pick a date and a time')
 		},
 
 		/**
