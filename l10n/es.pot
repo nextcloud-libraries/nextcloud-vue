@@ -136,24 +136,6 @@ msgstr "Pausar la presentación "
 msgid "People & Body"
 msgstr "Personas y cuerpos"
 
-msgid "Pick a date"
-msgstr "Seleccione una fecha"
-
-msgid "Pick a date and a time"
-msgstr "Seleccione una fecha y hora"
-
-msgid "Pick a month"
-msgstr "Seleccione un mes"
-
-msgid "Pick a time"
-msgstr "Seleccione una hora"
-
-msgid "Pick a week"
-msgstr "Seleccione una semana"
-
-msgid "Pick a year"
-msgstr "Seleccione un año"
-
 msgid "Pick an emoji"
 msgstr "Elegir un emoji"
 
