@@ -132,24 +132,6 @@ msgstr "إيقاف العرض مؤقتًا"
 msgid "People & Body"
 msgstr "الناس والجسم"
 
-msgid "Pick a date"
-msgstr "اختر التاريخ"
-
-msgid "Pick a date and a time"
-msgstr "اختر اليوم و الوقت"
-
-msgid "Pick a month"
-msgstr "اختر الشهر"
-
-msgid "Pick a time"
-msgstr "اختر الوقت"
-
-msgid "Pick a week"
-msgstr "إختر الأسبوع"
-
-msgid "Pick a year"
-msgstr "إختر السنة"
-
 msgid "Pick an emoji"
 msgstr "اختر رمزًا تعبيريًا"
 
