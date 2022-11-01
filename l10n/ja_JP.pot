@@ -137,24 +137,6 @@ msgstr "スライドショーを一時停止"
 msgid "People & Body"
 msgstr "様々な人と体の部位"
 
-msgid "Pick a date"
-msgstr "日付を選択してください"
-
-msgid "Pick a date and a time"
-msgstr "日付と時刻を選択してください"
-
-msgid "Pick a month"
-msgstr "月を選択してください"
-
-msgid "Pick a time"
-msgstr "時間を選択してください"
-
-msgid "Pick a week"
-msgstr "週を選択してください"
-
-msgid "Pick a year"
-msgstr "年を選択してください"
-
 msgid "Pick an emoji"
 msgstr "絵文字を選択"
 
