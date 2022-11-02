@@ -36,6 +36,7 @@ jobs:
             Auto-generated update of our locally cached css styling from
              * https://nextcloud.github.io/server/apps/theming/css/default.css
              * https://nextcloud.github.io/server/core/css/server.css
+             * https://nextcloud.github.io/server/dist/icons.css
           labels: |
             dependencies
             3. to review
