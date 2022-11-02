@@ -186,30 +186,32 @@ export default {
 					@input="pickColor" />
 			</transition>
 			<div class="color-picker__navigation">
-				<button v-if="advanced"
-					class="color-picker__navigation-button back"
-					type="button"
+				<NcButton v-if="advanced"
+					type="tertiary"
 					@click="handleBack">
-					<ArrowLeft :size="20" />
-				</button>
-				<button v-if="!advanced"
-					class="color-picker__navigation-button more-settings"
-					type="button"
+					<template #icon>
+						<ArrowLeft :size="20" />
+					</template>
+				</NcButton>
+				<NcButton v-if="!advanced"
+					type="tertiary"
 					@click="handleMoreSettings">
-					<DotsHorizontal :size="20" />
-				</button>
-				<button v-if="advanced"
-					class="color-picker__navigation-button confirm"
-					type="button"
+					<template #icon>
+						<DotsHorizontal :size="20" />
+					</template>
+				</NcButton>
+				<NcButton v-if="advanced"
+					type="primary"
 					@click="handleConfirm">
 					{{ t('Choose') }}
-				</button>
+				</NcButton>
 			</div>
 		</div>
 	</NcPopover>
 </template>
 
 <script>
+import NcButton from '../NcButton/index.js'
 import NcPopover from '../NcPopover/index.js'
 import l10n from '../../mixins/l10n.js'
 import GenColors from '../../utils/GenColors.js'
@@ -233,6 +235,7 @@ export default {
 		Check,
 		Chrome,
 		DotsHorizontal,
+		NcButton,
 		NcPopover,
 	},
 
@@ -404,47 +407,14 @@ export default {
 		flex-direction: row;
 		justify-content: space-between;
 		margin-top: 10px;
-		&-button {
-			display: flex;
-			align-content: center;
-			justify-content: center;
-			min-width: $clickable-area;
-			height: $clickable-area;
-			padding: 0;
-			margin: 0;
-			border: none;
-			border-radius: math.div($clickable-area, 2);
-			background: none;
-			justify-self: flex-end;
-			opacity: $opacity_normal;
-
-			&:focus,
-			&:hover {
-				background-color: $icon-focus-bg;
-				opacity: $opacity_full;
-			}
-
-			&.confirm {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				padding: 4px 8px;
-				color: white !important;
-				background-color: var(--color-primary);
-				&:hover {
-					background-color: var(--color-primary-element-light);
-				}
-			}
-			&.more-settings {
-				margin-left: auto;
-			}
-		}
 	}
 }
 
 :deep() .vc {
 	&-chrome {
 		width: unset;
+		background-color: var(--color-main-background);
+
 		&-color-wrap {
 			width: 30px;
 			height: 30px;
@@ -458,6 +428,14 @@ export default {
 
 		&-body {
 			padding: 14px 0 0 0;
+			background-color: var(--color-main-background);
+			.vc-input__input {
+				box-shadow: none;
+			}
+		}
+
+		&-toggle-btn {
+			filter: var(--background-invert-if-dark);
 		}
 
 		&-saturation {
