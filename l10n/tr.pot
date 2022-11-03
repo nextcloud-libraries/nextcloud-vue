@@ -133,24 +133,6 @@ msgstr "Slayt sunumunu duraklat"
 msgid "People & Body"
 msgstr "İnsanlar ve Beden"
 
-msgid "Pick a date"
-msgstr "Bir tarih seçin"
-
-msgid "Pick a date and a time"
-msgstr "Bir tarih ve saat seçin"
-
-msgid "Pick a month"
-msgstr "Bir ay seçin"
-
-msgid "Pick a time"
-msgstr "Bir saat seçin"
-
-msgid "Pick a week"
-msgstr "Bir hafta seçin"
-
-msgid "Pick a year"
-msgstr "Bir yıl seçin"
-
 msgid "Pick an emoji"
 msgstr "Bir emoji seçin"
 
