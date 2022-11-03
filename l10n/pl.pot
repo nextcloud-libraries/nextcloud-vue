@@ -133,24 +133,6 @@ msgstr "Wstrzymaj pokaz slajdów"
 msgid "People & Body"
 msgstr "Ludzie i ciało"
 
-msgid "Pick a date"
-msgstr "Wybierz datę"
-
-msgid "Pick a date and a time"
-msgstr "Wybierz datę i godzinę"
-
-msgid "Pick a month"
-msgstr "Wybierz miesiąc"
-
-msgid "Pick a time"
-msgstr "Wybierz czas"
-
-msgid "Pick a week"
-msgstr "Wybierz tydzień"
-
-msgid "Pick a year"
-msgstr "Wybierz rok"
-
 msgid "Pick an emoji"
 msgstr "Wybierz emoji"
 
