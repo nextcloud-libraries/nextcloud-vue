@@ -8,14 +8,14 @@
 # Ludovici t <ludovic.tourtelier@e-c.bzh>, 2020
 # Framboise Pi, 2021
 # Boris Alet, 2021
-# Mer0me <postmaster@merome.net>, 2021
 # Cédric JARRIGE <jarrige.cedric@gmail.com>, 2022
-# Arnaud Wallon <arnaud@netbeat.be>, 2022
 # salixor, 2022
+# Jean-Claude Richard <jcr-conseil@otherway.eu>, 2022
+# Mer0me <postmaster@merome.net>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: salixor, 2022\n"
+"Last-Translator: Mer0me <postmaster@merome.net>, 2022\n"
 "Language-Team: French (https://www.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -36,6 +36,10 @@ msgstr "Activités"
 msgid "Animals & Nature"
 msgstr "Animaux & Nature"
 
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+"Tout ce qui est partagé avec le même groupe de personnes apparaîtra ici"
+
 msgid "Avatar of {displayName}"
 msgstr "Avatar de {displayName}"
 
@@ -45,8 +49,14 @@ msgstr "Avatar de {displayName}, {status}"
 msgid "Cancel changes"
 msgstr "Annuler les modifications"
 
+msgid "Change title"
+msgstr "Modifier le titre"
+
 msgid "Choose"
 msgstr "Choisir"
+
+msgid "Clear text"
+msgstr "Effacer le texte"
 
 msgid "Close"
 msgstr "Fermer"
@@ -57,6 +67,9 @@ msgstr "Fermer la fenêtre"
 msgid "Close navigation"
 msgstr "Fermer la navigation"
 
+msgid "Close sidebar"
+msgstr "Fermer la barre latérale"
+
 msgid "Confirm changes"
 msgstr "Confirmer les modifications"
 
@@ -66,8 +79,14 @@ msgstr "Personnalisé"
 msgid "Edit item"
 msgstr "Éditer l'élément"
 
+msgid "Error getting related resources"
+msgstr "Erreur à la récupération des ressources liées"
+
 msgid "External documentation for {title}"
 msgstr "Documentation externe pour {title}"
+
+msgid "Favorite"
+msgstr "Favori"
 
 msgid "Flags"
 msgstr "Drapeaux"
@@ -84,14 +103,14 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Retourner à la liste"
 
-msgid "items"
-msgstr "éléments"
+msgid "Hide password"
+msgstr "Cacher le mot de passe"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Limite de messages de {count} caractères atteinte"
 
-msgid "More {dashboardItemType} …"
-msgstr "Plus de {dashboardItemType} …"
+msgid "More items …"
+msgstr "Plus d'éléments..."
 
 msgid "Next"
 msgstr "Suivant"
@@ -108,8 +127,14 @@ msgstr "Objets"
 msgid "Open"
 msgstr "Ouvrir"
 
+msgid "Open link to \"{resourceTitle}\""
+msgstr "Ouvrir le lien vers \"{resourceTitle}\""
+
 msgid "Open navigation"
 msgstr "Ouvrir la navigation"
+
+msgid "Password is secure"
+msgstr "Le mot de passe est sécurisé"
 
 msgid "Pause slideshow"
 msgstr "Mettre le diaporama en pause"
@@ -126,6 +151,9 @@ msgstr "Sélectionnez un fuseau horaire : "
 msgid "Previous"
 msgstr "Précédent"
 
+msgid "Related resources"
+msgstr "Ressources liées"
+
 msgid "Search"
 msgstr "Chercher"
 
@@ -140,6 +168,9 @@ msgstr "Paramètres"
 
 msgid "Settings navigation"
 msgstr "Navigation dans les paramètres"
+
+msgid "Show password"
+msgstr "Afficher le mot de passe"
 
 msgid "Smileys & Emotion"
 msgstr "Smileys & Émotions"
