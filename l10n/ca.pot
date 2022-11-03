@@ -136,24 +136,6 @@ msgstr "Atura la presentació"
 msgid "People & Body"
 msgstr "Persones i cos"
 
-msgid "Pick a date"
-msgstr "Seleccioni un dia "
-
-msgid "Pick a date and a time"
-msgstr "Seleccioni un dia i hora"
-
-msgid "Pick a month"
-msgstr "Seleccioni un mes"
-
-msgid "Pick a time"
-msgstr "Seleccioni una hora"
-
-msgid "Pick a week"
-msgstr "Seleccioni una setmana"
-
-msgid "Pick a year"
-msgstr "Seleccioni un any"
-
 msgid "Pick an emoji"
 msgstr "Trieu un emoji"
 
