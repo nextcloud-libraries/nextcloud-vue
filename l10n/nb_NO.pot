@@ -4,10 +4,11 @@
 # sverre.vikan <sverre.vikan@gmail.com>, 2020
 # Martin Tøndel, 2021
 # Ari Selseng <ari@selseng.net>, 2022
+# Hans Bøhn Andreassen, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ari Selseng <ari@selseng.net>, 2022\n"
+"Last-Translator: Hans Bøhn Andreassen, 2022\n"
 "Language-Team: Norwegian Bokmål (Norway) (https://www.transifex.com/nextcloud/teams/64236/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nb_NO\n"
@@ -28,6 +29,9 @@ msgstr "Aktiviteter"
 msgid "Animals & Nature"
 msgstr "Dyr og natur"
 
+msgid "Anything shared with the same group of people will show up here"
+msgstr "Alt som er delt med den samme gruppen vil vises her"
+
 msgid "Avatar of {displayName}"
 msgstr "Avataren til {displayName}"
 
@@ -42,6 +46,9 @@ msgstr "Endre tittel"
 
 msgid "Choose"
 msgstr "Velg"
+
+msgid "Clear text"
+msgstr "Fjern tekst"
 
 msgid "Close"
 msgstr "Lukk"
@@ -64,6 +71,9 @@ msgstr "Tilpasset"
 msgid "Edit item"
 msgstr "Rediger"
 
+msgid "Error getting related resources"
+msgstr "Feil ved henting av relaterte ressurser"
+
 msgid "External documentation for {title}"
 msgstr "Ekstern dokumentasjon for {title}"
 
@@ -85,14 +95,14 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Gå tilbake til listen"
 
-msgid "items"
-msgstr "enheter"
+msgid "Hide password"
+msgstr "Skjul passord"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Karakter begrensing {count} nådd i melding"
 
-msgid "More {dashboardItemType} …"
-msgstr "Mer {dashboardItemType} …"
+msgid "More items …"
+msgstr "Flere gjenstander..."
 
 msgid "Next"
 msgstr "Neste"
@@ -109,8 +119,14 @@ msgstr "Objekter"
 msgid "Open"
 msgstr "Åpne"
 
+msgid "Open link to \"{resourceTitle}\""
+msgstr "Åpne link til \"{resourceTitle}\""
+
 msgid "Open navigation"
 msgstr "Åpne navigasjon"
+
+msgid "Password is secure"
+msgstr "Passordet er sikkert"
 
 msgid "Pause slideshow"
 msgstr "Pause lysbildefremvisning"
@@ -127,6 +143,9 @@ msgstr "Vennligst velg tidssone"
 msgid "Previous"
 msgstr "Forrige"
 
+msgid "Related resources"
+msgstr "Relaterte ressurser"
+
 msgid "Search"
 msgstr "Søk"
 
@@ -141,6 +160,9 @@ msgstr "Innstillinger"
 
 msgid "Settings navigation"
 msgstr "Navigasjonsinstillinger"
+
+msgid "Show password"
+msgstr "Vis passord"
 
 msgid "Smileys & Emotion"
 msgstr "Smilefjes og følelser"
