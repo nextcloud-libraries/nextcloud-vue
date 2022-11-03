@@ -3,13 +3,16 @@
 # Gabriel Ekström <gabriel.ekstrom06@gmail.com>, 2020
 # Erik Lennartsson, 2020
 # efef6ec5b435a041fce803c7f8af77d2_2341d43, 2020
-# victor, 2021
+# f90ece83ebc6bad1c1e52843719995d7_72bd7dc, 2021
 # Tim Ragnwald, 2021
 # Viktor G.W., 2022
+# Magnus Höglund, 2022
+# Tommie Bergman <tommie.bergman@gmail.com>, 2022
+# Max Bäckström, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Viktor G.W., 2022\n"
+"Last-Translator: Max Bäckström, 2022\n"
 "Language-Team: Swedish (https://www.transifex.com/nextcloud/teams/64236/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sv\n"
@@ -30,6 +33,9 @@ msgstr "Aktiviteter"
 msgid "Animals & Nature"
 msgstr "Djur & Natur"
 
+msgid "Anything shared with the same group of people will show up here"
+msgstr "Något som delats med samma grupp av personer kommer att visas här"
+
 msgid "Avatar of {displayName}"
 msgstr "{displayName}s avatar"
 
@@ -39,14 +45,26 @@ msgstr "{displayName}s avatar, {status}"
 msgid "Cancel changes"
 msgstr "Avbryt ändringar"
 
+msgid "Change title"
+msgstr "Ändra titel"
+
 msgid "Choose"
 msgstr "Välj"
+
+msgid "Clear text"
+msgstr "Ta bort text"
 
 msgid "Close"
 msgstr "Stäng"
 
+msgid "Close modal"
+msgstr "Stäng modal"
+
 msgid "Close navigation"
 msgstr "Stäng navigering"
+
+msgid "Close sidebar"
+msgstr "Stäng sidopanel"
 
 msgid "Confirm changes"
 msgstr "Bekräfta ändringar"
@@ -57,8 +75,14 @@ msgstr "Anpassad"
 msgid "Edit item"
 msgstr "Ändra"
 
+msgid "Error getting related resources"
+msgstr "Problem att hämta relaterade resurser"
+
 msgid "External documentation for {title}"
 msgstr "Extern dokumentation för {title}"
+
+msgid "Favorite"
+msgstr "Favorit"
 
 msgid "Flags"
 msgstr "Flaggor"
@@ -75,8 +99,14 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Gå tillbaka till listan"
 
+msgid "Hide password"
+msgstr "Göm lössenordet"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Meddelandegräns {count} tecken används"
+
+msgid "More items …"
+msgstr "Fler objekt"
 
 msgid "Next"
 msgstr "Nästa"
@@ -90,8 +120,17 @@ msgstr "Inga resultat"
 msgid "Objects"
 msgstr "Objekt"
 
+msgid "Open"
+msgstr "Öppna"
+
+msgid "Open link to \"{resourceTitle}\""
+msgstr "Öppna länk till \"{resourceTitle}\""
+
 msgid "Open navigation"
 msgstr "Öppna navigering"
+
+msgid "Password is secure"
+msgstr "Lössenordet är säkert"
 
 msgid "Pause slideshow"
 msgstr "Pausa bildspelet"
@@ -108,6 +147,9 @@ msgstr "Välj tidszon:"
 msgid "Previous"
 msgstr "Föregående"
 
+msgid "Related resources"
+msgstr "Relaterade resurser"
+
 msgid "Search"
 msgstr "Sök"
 
@@ -122,6 +164,9 @@ msgstr "Inställningar"
 
 msgid "Settings navigation"
 msgstr "Inställningsmeny"
+
+msgid "Show password"
+msgstr "Visa lössenordet"
 
 msgid "Smileys & Emotion"
 msgstr "Selfies & Känslor"
