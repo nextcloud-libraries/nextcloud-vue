@@ -228,6 +228,8 @@ export default {
 		return {
 			tribute: null,
 			autocompleteOptions: {
+				// Allow spaces in the middle of mentions
+				allowSpaces: true,
 				fillAttr: 'id',
 				// Search against id and label (display name)
 				lookup: result => `${result.id} ${result.label}`,
