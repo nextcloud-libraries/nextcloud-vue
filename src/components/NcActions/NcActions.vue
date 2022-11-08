@@ -1179,7 +1179,7 @@ export default {
 .v-popper--theme-dropdown.v-popper__popper.action-item__popper .v-popper__inner {
 	border-radius: var(--border-radius-large);
 	padding: 4px;
-	max-height: calc(100vh - 16px);
+	max-height: calc(50vh - 16px);
 	overflow: auto;
 }
 </style>
