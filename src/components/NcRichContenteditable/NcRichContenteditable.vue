@@ -171,7 +171,7 @@ export default {
 
 		placeholder: {
 			type: String,
-			default: t('Write message, @ to mention someone, : for emoji autocompletion …'),
+			default: t('Write message, use "@" to mention someone, use ":" for emoji autocompletion …'),
 		},
 
 		autoComplete: {
