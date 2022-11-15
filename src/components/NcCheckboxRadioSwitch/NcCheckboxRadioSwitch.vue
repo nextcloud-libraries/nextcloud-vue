@@ -493,7 +493,7 @@ $spacing: 4px;
 	&--disabled &__label {
 		opacity: $opacity_disabled;
 		.checkbox-radio-switch__icon {
-			color: var(--color-text-light)
+			color: var(--color-main-text)
 		}
 	}
 
@@ -504,7 +504,7 @@ $spacing: 4px;
 
 	// Switch specific rules
 	&-switch:not(&--checked) &__icon {
-		color: var(--color-text-lighter);
+		color: var(--color-text-maxcontrast);
 	}
 
 	// If switch is checked AND disabled, use the fade primary colour

@@ -598,7 +598,7 @@ export default {
 
 	&--disabled {
 		opacity: $opacity_disabled;
-		color: var(--color-text-lighter);
+		color: var(--color-text-maxcontrast);
 		border: 1px solid var(--color-background-darker);
 		border-radius: var(--border-radius);
 		background-color: var(--color-background-dark);

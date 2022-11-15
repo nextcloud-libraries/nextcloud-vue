@@ -173,7 +173,7 @@ export default {
 		}
 
 		.hint {
-			color: var(--color-text-lighter);
+			color: var(--color-text-maxcontrast);
 			margin-left: 8px;
 		}
 	}

@@ -147,7 +147,7 @@ $input-margin: 5px;
 		&:hover {
 			outline: none;
 			background-color: var(--color-main-background);
-			color: var(--color-text-light);
+			color: var(--color-main-text);
 			border-color: var(--color-primary-element);
 		}
 	}
