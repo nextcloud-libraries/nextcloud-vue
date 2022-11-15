@@ -102,7 +102,8 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 
 <script>
 import { Dropdown } from 'floating-vue'
-import { createFocusTrap } from '@nextcloud/focus-trap'
+import { createFocusTrap } from 'focus-trap'
+import { getTrapStack } from '../../utils/focusTrap.js'
 
 export default {
 	name: 'NcPopover',
@@ -155,11 +156,13 @@ export default {
 				return
 			}
 
+			// Init focus trap
 			this.$focusTrap = createFocusTrap(el, {
 				// Prevents to lose focus using esc key
 				// Focus will be release when popover be hide
 				escapeDeactivates: false,
 				allowOutsideClick: true,
+				trapStack: getTrapStack(),
 			})
 			this.$focusTrap.activate()
 		},
