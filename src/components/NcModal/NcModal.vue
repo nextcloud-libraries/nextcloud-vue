@@ -21,7 +21,6 @@
   -->
 
 <docs>
-
 ```vue
 <template>
 	<div>
@@ -38,13 +37,6 @@
 		</NcModal>
 	</div>
 </template>
-<style scoped>
-.modal__content {
-	margin: 50px;
-	text-align: center;
-}
-
-</style>
 <script>
 export default {
 	data() {
@@ -62,6 +54,12 @@ export default {
 	}
 }
 </script>
+<style scoped>
+.modal__content {
+	margin: 50px;
+	text-align: center;
+}
+</style>
 ```
 
 ### Modal with more properties
@@ -125,9 +123,7 @@ export default {
 .input-field {
 	margin: 12px 0px;
 }
-
 </style>
-
 ```
 
 ### Usage of popover in modal
@@ -145,12 +141,6 @@ export default {
 		</NcModal>
 	</div>
 </template>
-<style scoped>
-	.modal__content {
-		margin: 50px;
-		text-align: center;
-	}
-</style>
 <script>
 export default {
 	data() {
@@ -172,6 +162,12 @@ export default {
 	},
 }
 </script>
+<style scoped>
+.modal__content {
+	margin: 50px;
+	text-align: center;
+}
+</style>
 ```
 </docs>
 
@@ -310,13 +306,14 @@ export default {
 </template>
 
 <script>
-import NcActions from '../NcActions/index.js'
-import Tooltip from '../../directives/Tooltip/index.js'
-import l10n from '../../mixins/l10n.js'
-import Timer from '../../utils/Timer.js'
+import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
-import NcButton from '../../components/NcButton/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
+import l10n from '../../mixins/l10n.js'
+import NcActions from '../NcActions/index.js'
+import NcButton from '../../components/NcButton/index.js'
+import Timer from '../../utils/Timer.js'
+import Tooltip from '../../directives/Tooltip/index.js'
 
 import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue'
 import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
@@ -324,8 +321,9 @@ import Close from 'vue-material-design-icons/Close.vue'
 import Pause from 'vue-material-design-icons/Pause.vue'
 import Play from 'vue-material-design-icons/Play.vue'
 
+import { createFocusTrap } from 'focus-trap'
 import Hammer from 'hammerjs'
-import { createFocusTrap } from '@nextcloud/focus-trap'
+
 export default {
 	name: 'NcModal',
 
@@ -689,8 +687,10 @@ export default {
 			const contentContainer = this.$refs.mask
 			// wait until all children are mounted and available in the DOM before focusTrap can be added
 			this.$nextTick(() => {
+				// Init focus trap
 				this.focusTrap = createFocusTrap(contentContainer, {
 					allowOutsideClick: true,
+					trapStack: getTrapStack(),
 				})
 				this.focusTrap.activate()
 			})
