@@ -25,6 +25,9 @@ msgstr "Activities"
 msgid "Animals & Nature"
 msgstr "Animals & Nature"
 
+msgid "Anything shared with the same group of people will show up here"
+msgstr "Anything shared with the same group of people will show up here"
+
 msgid "Avatar of {displayName}"
 msgstr "Avatar of {displayName}"
 
@@ -39,6 +42,9 @@ msgstr "Change title"
 
 msgid "Choose"
 msgstr "Choose"
+
+msgid "Clear text"
+msgstr "Clear text"
 
 msgid "Close"
 msgstr "Close"
@@ -61,6 +67,9 @@ msgstr "Custom"
 msgid "Edit item"
 msgstr "Edit item"
 
+msgid "Error getting related resources"
+msgstr "Error getting related resources"
+
 msgid "External documentation for {title}"
 msgstr "External documentation for {title}"
 
@@ -82,14 +91,14 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Go back to the list"
 
-msgid "items"
-msgstr "items"
+msgid "Hide password"
+msgstr "Hide password"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Message limit of {count} characters reached"
 
-msgid "More {dashboardItemType} …"
-msgstr "More {dashboardItemType} …"
+msgid "More items …"
+msgstr "More items …"
 
 msgid "Next"
 msgstr "Next"
@@ -106,8 +115,14 @@ msgstr "Objects"
 msgid "Open"
 msgstr "Open"
 
+msgid "Open link to \"{resourceTitle}\""
+msgstr "Open link to \"{resourceTitle}\""
+
 msgid "Open navigation"
 msgstr "Open navigation"
+
+msgid "Password is secure"
+msgstr "Password is secure"
 
 msgid "Pause slideshow"
 msgstr "Pause slideshow"
@@ -124,6 +139,9 @@ msgstr "Please select a time zone:"
 msgid "Previous"
 msgstr "Previous"
 
+msgid "Related resources"
+msgstr "Related resources"
+
 msgid "Search"
 msgstr "Search"
 
@@ -138,6 +156,9 @@ msgstr "Settings"
 
 msgid "Settings navigation"
 msgstr "Settings navigation"
+
+msgid "Show password"
+msgstr "Show password"
 
 msgid "Smileys & Emotion"
 msgstr "Smileys & Emotion"
@@ -163,5 +184,9 @@ msgstr "Unable to search the group"
 msgid "Undo changes"
 msgstr "Undo changes"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
-msgstr "Write message, @ to mention someone, : for emoji autocompletion …"
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
+msgstr ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
