@@ -1,4 +1,4 @@
-/*
+/**
  * @copyright 2020 Georg Ehrke <oc.list@georgehrke.com>
  *
  * @author 2020 Georg Ehrke <oc.list@georgehrke.com>
