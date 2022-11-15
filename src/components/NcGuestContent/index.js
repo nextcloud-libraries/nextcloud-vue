@@ -1,4 +1,4 @@
-/*
+/**
  * @copyright 2022 Christoph Wurst <christoph@winzerhof-wurst.at>
  *
  * @author 2022 Christoph Wurst <christoph@winzerhof-wurst.at>
