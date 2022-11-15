@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.1.0-beta.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.2-beta.0) (2022-11-15)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.0.1...v7.0.2-beta.0)
+
+### :rocket: Enhancements
+
+- Widen container prop type passed to NcPopover [\#3462](https://github.com/nextcloud/nextcloud-vue/pull/3462) ([Pytal](https://github.com/Pytal))
+- Allow querying for resources with complex item ids [\#3404](https://github.com/nextcloud/nextcloud-vue/pull/3404) ([Pytal](https://github.com/Pytal))
+- Allow to provide a custom palette to the ColorPicker [\#3384](https://github.com/nextcloud/nextcloud-vue/pull/3384) ([skjnldsv](https://github.com/skjnldsv))
+- Export NcMentionBubble and NcAutoCompleteResult [\#3373](https://github.com/nextcloud/nextcloud-vue/pull/3373) ([vinicius73](https://github.com/vinicius73))
+- Add guest content component [\#3369](https://github.com/nextcloud/nextcloud-vue/pull/3369) ([ChristophWurst](https://github.com/ChristophWurst))
+
+### :bug: Fixed bugs
+
+- Define global focus trap [\#3478](https://github.com/nextcloud/nextcloud-vue/pull/3478) ([skjnldsv](https://github.com/skjnldsv))
+- fix the size of the popper element [\#3445](https://github.com/nextcloud/nextcloud-vue/pull/3445) ([szaimen](https://github.com/szaimen))
+- fix sidebar scrolling for small displays [\#3444](https://github.com/nextcloud/nextcloud-vue/pull/3444) ([szaimen](https://github.com/szaimen))
+- Fix dark themed color picker and use button component [\#3411](https://github.com/nextcloud/nextcloud-vue/pull/3411) ([Pytal](https://github.com/Pytal))
+- Fix password\_policy fallback handling [\#3408](https://github.com/nextcloud/nextcloud-vue/pull/3408) ([nickvergessen](https://github.com/nickvergessen))
+- Fix missing half-empty dashboard empty content view [\#3407](https://github.com/nextcloud/nextcloud-vue/pull/3407) ([nickvergessen](https://github.com/nickvergessen))
+- Fix DateTimePicker example and translation [\#3405](https://github.com/nextcloud/nextcloud-vue/pull/3405) ([skjnldsv](https://github.com/skjnldsv))
+- Fix outdated variables [\#3367](https://github.com/nextcloud/nextcloud-vue/pull/3367) ([jancborchardt](https://github.com/jancborchardt))
+- Comment placeholder wording fix [\#3454](https://github.com/nextcloud/nextcloud-vue/pull/3454) ([Jerome-Herbinet](https://github.com/Jerome-Herbinet))
+- Expand color picker width only when using advanced fields [\#3410](https://github.com/nextcloud/nextcloud-vue/pull/3410) ([Pytal](https://github.com/Pytal))
+- Fix empty content height in NcDashboardWidget in N in N in N [\#3372](https://github.com/nextcloud/nextcloud-vue/pull/3372) ([CarlSchwan](https://github.com/CarlSchwan))
+
 ## [v7.0.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.1) (2022-10-14)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.0.0...v7.0.1)
