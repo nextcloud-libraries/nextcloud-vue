@@ -169,7 +169,7 @@ export default {
 		 * Selector for the popover container
 		 */
 		container: {
-			type: String,
+			type: [String, Object, Element, Boolean],
 			default: 'body',
 		},
 	},
