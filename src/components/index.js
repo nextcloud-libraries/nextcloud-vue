@@ -63,6 +63,8 @@ export { default as NcDateTimePickerNative } from './NcDateTimePickerNative/inde
 export { default as NcEmojiPicker } from './NcEmojiPicker/index.js'
 export { default as NcEmptyContent } from './NcEmptyContent/index.js'
 export { default as NcGuestContent } from './NcGuestContent/index.js'
+// Not exported on purpose
+// export { default as NcInputField } from './NcInputField/index.js'
 export { default as NcListItem } from './NcListItem/index.js'
 export { default as NcListItemIcon } from './NcListItemIcon/index.js'
 export { default as NcLoadingIcon } from './NcLoadingIcon/index.js'
