@@ -21,6 +21,7 @@
 
 <docs>
 ### Description
+See [NcInputField](#/Components/NcFields?id=ncinputfield) for a list of all available props.
 
 General purpose text field component.
 Note: the inner html `input` element inherits all the attributes from the
@@ -31,7 +32,7 @@ and `minlength`.
 <template>
 	<div class="wrapper">
 		<NcTextField :value.sync="text1"
-			label="Leading icon and trailing button"
+			label="Leading icon and clear trailing button"
 			trailing-button-icon="close"
 			:show-trailing-button="text1 !== ''"
 			@trailing-button-click="clearText">
@@ -119,7 +120,7 @@ export default {
 </docs>
 
 <template>
-	<NcInputField v-bind="$props"
+	<NcInputField v-bind="{...$attrs, ...$props }"
 		ref="inputField"
 		:autofocus="$attrs.autofocus"
 		:trailing-button-label="clearTextLabel"
@@ -127,6 +128,7 @@ export default {
 		@input="handleInput">
 		<!-- Default slot for the leading icon -->
 		<slot />
+
 		<!-- Trailing icon slot, except for search type input as the browser already adds a trailing close icon -->
 		<template v-if="type !== 'search'" #trailing-button-icon>
 			<Close v-if="trailingButtonIcon === 'close'" :size="20" />
@@ -153,80 +155,11 @@ export default {
 		ArrowRight,
 	},
 
+	// Allow forwarding all attributes
+	inheritAttrs: false,
+
 	props: {
-		/**
-		 * The value of the input field
-		 */
-		value: {
-			type: String,
-			required: true,
-		},
-
-		/**
-		 * The type of the input element, it can be `text`, `password`,
-		 * `email`, `tel` and `url`.
-		 */
-		type: {
-			type: String,
-			default: 'text',
-			validator: (value) => [
-				'text',
-				'password',
-				'email',
-				'tel',
-				'url',
-				'search',
-			].includes(value),
-		},
-
-		/**
-		 * The hidden input label for accessibility purposes. This will also
-		 * be used as a placeholder unless the placeholder prop is populated
-		 * with a different string. This is required if an external label is
-		 * not provided.
-		 */
-		label: {
-			type: String,
-			default: undefined,
-		},
-
-		/**
-		 * Pass in true if you want to use an external label. This is useful
-		 * if you need a label that looks different from the one provided by
-		 * this component
-		 */
-		labelOutside: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * We normally have the lable hidden visually and use it for
-		 * accessibility only. If you want to have the label visible just above
-		 * the input field pass in true to this prop.
-		 */
-		labelVisible: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * The placeholder of the input. This defaults as the string that's
-		 * passed into the label prop. In order to remove the placeholder,
-		 * pass in an empty string.
-		 */
-		placeholder: {
-			type: String,
-			default: undefined,
-		},
-
-		/**
-		 * Controls whether to display the trailing button.
-		 */
-		showTrailingButton: {
-			type: Boolean,
-			default: false,
-		},
+		...NcInputField.props,
 
 		/**
 		 * Specifies which material design icon should be used for the trailing
@@ -385,7 +318,7 @@ export default {
 
 	computed: {
 		clearTextLabel() {
-			return t('Clear text')
+			return this.trailingButtonLabel || t('Clear text')
 		},
 	},
 

@@ -22,6 +22,7 @@
 
 <docs>
 ### Description
+See [NcInputField](#/Components/NcFields?id=ncinputfield) for a list of all available props.
 
 General purpose password field component.
 
@@ -93,7 +94,7 @@ export default {
 </docs>
 
 <template>
-	<NcInputField v-bind="$props"
+	<NcInputField v-bind="{...$attrs, ...$props }"
 		ref="inputField"
 		:autofocus="$attrs.autofocus"
 		:type="isPasswordHidden ? 'password' : 'text'"
@@ -102,8 +103,6 @@ export default {
 		:error="computedError"
 		:success="computedSuccess"
 		:minlength="rules.minlength"
-		:trailing-button-label="trailingButtonLabel"
-		:disabled="disabled"
 		v-on="$listeners"
 		@trailing-button-click="togglePasswordVisibility"
 		@input="handleInput">
@@ -139,73 +138,11 @@ export default {
 		EyeOff,
 	},
 
+	// Allow forwarding all attributes
+	inheritAttrs: false,
+
 	props: {
-		/**
-		 * The value of the input field
-		 */
-		value: {
-			type: String,
-			required: true,
-		},
-
-		/**
-		 * The hidden input label for accessibility purposes. This will also
-		 * be used as a placeholder unless the placeholder prop is populated
-		 * with a different string. This is required if an external label is
-		 * not provided.
-		 */
-		label: {
-			type: String,
-			default: undefined,
-		},
-
-		/**
-		 * Pass in true if you want to use an external label. This is useful
-		 * if you need a label that looks different from the one provided by
-		 * this component
-		 */
-		labelOutside: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * We normally have the lable hidden visually and use it for
-		 * accessibility only. If you want to have the label visible just above
-		 * the input field pass in true to this prop.
-		 */
-		labelVisible: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * The placeholder of the input. This defaults as the string that's
-		 * passed into the label prop. In order to remove the placeholder,
-		 * pass in an empty string.
-		 */
-		placeholder: {
-			type: String,
-			default: undefined,
-		},
-
-		/**
-		 * Toggles the success state of the component. Adds a checkmark icon.
-		 * this cannot be used together with canClear.
-		 */
-		success: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Toggles the error state of the component. Adds an error icon.
-		 * this cannot be used together with canClear.
-		 */
-		error: {
-			type: Boolean,
-			default: false,
-		},
+		...NcInputField.props,
 
 		/**
 		 * Additional error message
@@ -233,71 +170,6 @@ export default {
 		maxlength: {
 			type: Number,
 			default: null,
-		},
-
-		/**
-		 * Helps the browser identify the type of password field and to provide
-		 * autocompletion for the password. Allowed values are off, on, new-password
-		 * old-password
-		 *
-		 * By default try to autocomplete with the current password
-		 */
-		autocomplete: {
-			type: String,
-			validator: (value) => [
-				'new-password',
-				'current-password',
-				'one-time-code',
-				'on',
-				'off',
-			].includes(value),
-			default: 'current-password',
-		},
-
-		/**
-		 * Check if the user entered a valid password using the password_policy
-		 * app if available.
-		 *
-		 * Warning: this doesn't replace server side checking and will do nothing
-		 * if the password_policy app is disabled.
-		 */
-		checkPasswordStrength: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Id of the input field. To use when using an external label
-		 */
-		id: {
-			type: String,
-			default: '',
-		},
-
-		/**
-		 * Disable the password field
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Mark the password field as required
-		 */
-		required: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Name of the text field
-		 *
-		 * This is the key that will be send when sending a form
-		 */
-		name: {
-			type: String,
-			default: undefined,
 		},
 	},
 
@@ -329,12 +201,14 @@ export default {
 			}
 			return this.internalHelpMessage
 		},
+
 		rules() {
 			const { minlength, passwordPolicy } = this
 			return {
 				minlength: minlength ?? passwordPolicy?.minLength,
 			}
 		},
+
 		trailingButtonLabel() {
 			return this.isPasswordHidden ? t('Show password') : t('Hide password')
 		},
