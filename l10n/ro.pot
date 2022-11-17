@@ -2,10 +2,11 @@
 # Translators:
 # Mădălin Vasiliu <contact@madalinvasiliu.com>, 2022
 # Petre T, 2022
+# Mihai Michael, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Petre T, 2022\n"
+"Last-Translator: Mihai Michael, 2022\n"
 "Language-Team: Romanian (https://www.transifex.com/nextcloud/teams/64236/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ro\n"
@@ -186,7 +187,9 @@ msgstr "Imposibilitatea de a căuta în grup"
 msgid "Undo changes"
 msgstr "Anularea modificărilor"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
 msgstr ""
-"Scrieți un mesaj, @ pentru a menționa pe cineva, : pentru autocompletare "
-"emoji ..."
+"Scrie un mesaj, folosește \"@\" pentru a menționa pe cineva, folosește \":\""
+" pentru autocompletarea cu emoji ..."
