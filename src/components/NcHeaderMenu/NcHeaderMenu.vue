@@ -88,7 +88,7 @@ export default {
 			:id="`header-menu-${id}`"
 			class="header-menu__wrapper"
 			role="menu">
-			<div class="header-menu__content">
+			<div ref="content" class="header-menu__content">
 				<!-- @slot Main content -->
 				<slot />
 			</div>
@@ -98,7 +98,10 @@ export default {
 
 <script>
 import { directive as ClickOutside } from 'v-click-outside'
+import { createFocusTrap } from 'focus-trap'
+
 import excludeClickOutsideClasses from '../../mixins/excludeClickOutsideClasses/index.js'
+import { getTrapStack } from '../../utils/focusTrap.js'
 
 export default {
 	name: 'NcHeaderMenu',
@@ -146,24 +149,24 @@ export default {
 
 	data() {
 		return {
+			focusTrap: null,
 			opened: this.open,
+			shortcutsDisabled: window.OCP?.Accessibility?.disableKeyboardShortcuts?.(),
+
 			clickOutsideConfig: {
 				handler: this.closeMenu,
 				middleware: this.clickOutsideMiddleware,
 			},
-			shortcutsDisabled: window.OCP?.Accessibility?.disableKeyboardShortcuts?.(),
 		}
 	},
 
 	watch: {
 		open(newVal) {
 			this.opened = newVal
+			// Wait for component to finish rendering
 			this.$nextTick(() => {
-				if (this.opened) {
-					this.openMenu()
-				} else {
-					this.closeMenu()
-				}
+				// Trigger events
+				this.opened ? this.openMenu() : this.closeMenu()
 			})
 		},
 	},
@@ -199,6 +202,9 @@ export default {
 			this.opened = false
 			this.$emit('close')
 			this.$emit('update:open', false)
+
+			// Kill focus trap
+			this.clearFocusTrap()
 		},
 
 		/**
@@ -212,6 +218,17 @@ export default {
 			this.opened = true
 			this.$emit('open')
 			this.$emit('update:open', true)
+
+			/**
+			 * Triggered after the tooltip was visually displayed.
+			 *
+			 * This is different from the 'show' and 'apply-show' which
+			 * run earlier than this where there is no guarantee that the
+			 * tooltip is already visible and in the DOM.
+			 */
+			this.$nextTick(() => {
+				this.useFocusTrap()
+			})
 		},
 
 		onKeyDown(event) {
@@ -229,7 +246,34 @@ export default {
 				/** we do NOT fire a close event to differentiate cancel and close */
 				this.opened = false
 				this.$emit('update:open', false)
+
+				// Kill focus trap
+				this.clearFocusTrap()
 			}
+		},
+
+		/**
+		 * Add focus trap for accessibility.
+		 */
+		async useFocusTrap() {
+			// wait until all children are mounted and available
+			// in the DOM before focusTrap can be added
+			await this.$nextTick()
+
+			if (this.focusTrap) {
+				return
+			}
+			// Init focus trap
+			const contentContainer = this.$refs.content
+			this.focusTrap = createFocusTrap(contentContainer, {
+				allowOutsideClick: true,
+				trapStack: getTrapStack(),
+			})
+			this.focusTrap.activate()
+		},
+		clearFocusTrap() {
+			this.focusTrap?.deactivate()
+			this.focusTrap = null
 		},
 	},
 }
