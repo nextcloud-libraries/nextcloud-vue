@@ -19,6 +19,19 @@
   - along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 
+<docs>
+### Description
+
+This component is used by the other Fields components.
+It extends and styles an HTMLInputElement.
+
+You cannot use it as is. This is here for documentation purposes.
+See the other field components.
+
+For a list of all available props and attributes, please check the [HTMLInputElement documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attributes)
+
+</docs>
+
 <template>
 	<div class="input-field">
 		<label v-if="!labelOutside && label !== undefined"
@@ -116,11 +129,19 @@ export default {
 		},
 
 		/**
-		 * The input element type
+		 * The type of the input element
 		 */
 		type: {
 			type: String,
-			required: true,
+			default: 'text',
+			validator: (value) => [
+				'text',
+				'password',
+				'email',
+				'tel',
+				'url',
+				'search',
+			].includes(value),
 		},
 
 		/**
@@ -144,7 +165,7 @@ export default {
 		},
 
 		/**
-		 * We normally have the lable hidden visually and use it for
+		 * We normally have the label hidden visually and use it for
 		 * accessibility only. If you want to have the label visible just above
 		 * the input field pass in true to this prop.
 		 */

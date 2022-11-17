@@ -80,7 +80,7 @@ module.exports = async () => {
 					'src/components/NcRichContenteditable/!(NcRichContenteditable).vue',
 					'src/components/NcSettings*/*.vue',
 					'src/components/NcUserBubble/NcUserBubbleDiv.vue',
-					'src/components/NcInputField/NcInputField.vue',
+					'src/components/Nc*Field/*.vue',
 				],
 				sections: [
 					{
@@ -133,6 +133,12 @@ module.exports = async () => {
 						name: 'NcDashboard',
 						components: [
 							'src/components/NcDashboard*/*.vue',
+						],
+					},
+					{
+						name: 'NcFields',
+						components: [
+							'src/components/Nc*Field/*.vue',
 						],
 					},
 					{
