@@ -159,16 +159,17 @@ export default {
 
 	props: {
 		/**
-		 * value attribute of the input field
-		 * required
+		 * The date is – like the `Date` object in JavaScript – tied to UTC.
+		 * The selected time zone does not have an influence of the selected time and date value.
+		 * You have to translate the time yourself when you want to factor in time zones.
 		 */
 		value: {
-			type: [Date, String],
+			type: Date,
 			required: true,
 		},
+
 		/**
 		 * id attribute of the input field
-		 * required
 		 */
 		id: {
 			type: String,
