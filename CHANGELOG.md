@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.1.0-beta.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.1.0-beta.1) (2022-11-18)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.1.0-beta.0...v7.1.0-beta.1)
+
+### :rocket: Enhancements
+
+- Extend NcInputField props and forward $attrs to NcPasswordField and NcTextField [\#3485](https://github.com/nextcloud/nextcloud-vue/pull/3485) ([skjnldsv](https://github.com/skjnldsv))
+- Move loadState to data for better mockability [\#3502](https://github.com/nextcloud/nextcloud-vue/pull/3502) ([skjnldsv](https://github.com/skjnldsv))
+
+### :bug: Fixed bugs
+
+- Fix value type for DateTimePickerNative [\#3491](https://github.com/nextcloud/nextcloud-vue/pull/3491) ([skjnldsv](https://github.com/skjnldsv))
+
 ## [v7.1.0-beta.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.2-beta.0) (2022-11-15)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.0.1...v7.0.2-beta.0)
