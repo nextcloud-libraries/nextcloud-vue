@@ -45,20 +45,12 @@ export default {
 	},
 
 	props: {
-		option: {
-			type: [String, Object],
-			required: true,
-			default: '',
-		},
-		label: {
-			type: String,
-			default: '',
-		},
-		search: {
-			type: String,
-			default: '',
-		},
 		name: {
+			type: String,
+			default: '',
+		},
+
+		search: {
 			type: String,
 			default: '',
 		},
@@ -123,6 +115,7 @@ export default {
 .name-parts {
 	display: flex;
 	max-width: 100%;
+	cursor: inherit;
 	&__first {
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -131,6 +124,7 @@ export default {
 	&__last {
 		// prevent whitespace from being trimmed
 		white-space: pre;
+		cursor: inherit;
 		strong {
 			font-weight: bold;
 		}

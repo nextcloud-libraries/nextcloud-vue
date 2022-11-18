@@ -1,4 +1,3 @@
-
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -60,6 +59,8 @@ export { default as NcDashboardWidget } from './NcDashboardWidget/index.js'
 export { default as NcDashboardWidgetItem } from './NcDashboardWidgetItem/index.js'
 export { default as NcDatetimePicker } from './NcDatetimePicker/index.js'
 export { default as NcDateTimePickerNative } from './NcDateTimePickerNative/index.js'
+// Not exported on purpose
+// export { default as NcEllipsisedOption } from './NcEllipsisedOption/index.js'
 export { default as NcEmojiPicker } from './NcEmojiPicker/index.js'
 export { default as NcEmptyContent } from './NcEmptyContent/index.js'
 export { default as NcGuestContent } from './NcGuestContent/index.js'
@@ -78,6 +79,7 @@ export { default as NcPopoverMenu } from './NcPopoverMenu/index.js'
 export { default as NcProgressBar } from './NcProgressBar/index.js'
 export { default as NcRelatedResourcesPanel } from './NcRelatedResourcesPanel/index.js'
 export { default as NcRichContenteditable, NcAutoCompleteResult, NcMentionBubble } from './NcRichContenteditable/index.js'
+export { default as NcSelect } from './NcSelect/index.js'
 export { default as NcSettingsSection } from './NcSettingsSection/index.js'
 export { default as NcTextField } from './NcTextField/index.js'
 export { default as NcUserBubble } from './NcUserBubble/index.js'
