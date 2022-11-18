@@ -123,6 +123,10 @@ const config = {
 				test: /\.svg/,
 				type: 'asset/inline',
 			},
+			{
+				resourceQuery: /raw/,
+				type: 'asset/source',
+			},
 		],
 	},
 	plugins: [

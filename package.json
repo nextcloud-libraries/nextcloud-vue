@@ -79,6 +79,7 @@
 		"@cypress/webpack-dev-server": "^1.8.4",
 		"@cypress/webpack-preprocessor": "5.15.5",
 		"@fontsource/roboto": "^4.5.8",
+		"@mdi/svg": "^7.0.96",
 		"@nextcloud/babel-config": "^1.0.0",
 		"@nextcloud/browserslist-config": "^2.3.0",
 		"@nextcloud/eslint-config": "^8.1.3",
