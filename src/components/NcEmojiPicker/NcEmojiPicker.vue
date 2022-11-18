@@ -19,79 +19,77 @@
  - along with this program. If not, see <http://www.gnu.org/licenses/>.
  -
  -->
+
 <docs>
+### General description
 
-	### General description
+This component allows the user to pick an emoji.
 
-	This component allows the user to pick an emoji.
+### Usage
 
-	### Usage
+* Listen to the select event and pass in an HTML element that will be treated as a trigger:
 
-	* Listen to the select event and pass in an HTML element that will be treated as a trigger:
-
-	```vue
-	<template>
-		<div>
-			<NcEmojiPicker @select="select" style="display: inline-block">
-				<NcButton> Click Me </NcButton>
-			</NcEmojiPicker>
-			<span>selected emoji: {{ emoji }}</span>
-		</div>
-	</template>
-	<script>
-		export default {
-			data() {
-				return {
-					emoji: '',
-				}
+```vue
+<template>
+	<div>
+		<NcEmojiPicker @select="select" style="display: inline-block">
+			<NcButton> Click Me </NcButton>
+		</NcEmojiPicker>
+		<span>selected emoji: {{ emoji }}</span>
+	</div>
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				emoji: '',
+			}
+		},
+		methods: {
+			select(emoji) {
+				this.emoji = emoji
 			},
-			methods: {
-				select(emoji) {
-					this.emoji = emoji
-				},
-			},
-		}
-	</script>
-	```
+		},
+	}
+</script>
+```
 
-	* Showing a preview and keeping it open after a user selected an emoji
+* Showing a preview and keeping it open after a user selected an emoji
 
-	```vue
-	<template>
-		<div>
-			<NcEmojiPicker
-				:close-on-select="false"
-				:show-preview="true"
-				@select="select"
-				style="display: inline-block">
-				<NcButton> Click Me </NcButton>
-			</NcEmojiPicker>
-			<span>selected emoji: {{ emoji }}</span>
-		</div>
-	</template>
-	<script>
-		export default {
-			data() {
-				return {
-					emoji: '',
-				}
+```vue
+<template>
+	<div>
+		<NcEmojiPicker
+			:close-on-select="false"
+			:show-preview="true"
+			@select="select"
+			style="display: inline-block">
+			<NcButton> Click Me </NcButton>
+		</NcEmojiPicker>
+		<span>selected emoji: {{ emoji }}</span>
+	</div>
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				emoji: '',
+			}
+		},
+		methods: {
+			select(emoji) {
+				this.emoji = emoji
 			},
-			methods: {
-				select(emoji) {
-					this.emoji = emoji
-				},
-			},
-		}
-	</script>
-	```
-
+		},
+	}
+</script>
+```
 </docs>
 
 <template>
 	<NcPopover :shown.sync="open"
 		:container="container"
 		v-bind="$attrs"
-		:no-auto-focus="true"
 		v-on="$listeners"
 		@after-show="afterShow"
 		@after-hide="afterHide">
@@ -99,7 +97,7 @@
 			<slot />
 		</template>
 		<Picker ref="picker"
-			:auto-focus="false"
+			:auto-focus="false /* We manage the input focus ourselves */"
 			color="var(--color-primary)"
 			:data="emojiIndex"
 			:emoji="previewFallbackEmoji"

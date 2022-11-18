@@ -86,9 +86,9 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 		:distance="10"
 		:arrow-padding="10"
 		v-bind="$attrs"
+		:no-auto-focus="true /* Handled by the focus trap */"
 		:popper-class="popoverBaseClass"
 		v-on="$listeners"
-		@show="onShow"
 		@apply-show="afterShow"
 		@apply-hide="afterHide">
 		<!-- This will be the popover target (for the events and position) -->
@@ -122,11 +122,6 @@ export default {
 		focusTrap: {
 			type: Boolean,
 			default: true,
-		},
-
-		noAutoFocus: {
-			type: Boolean,
-			default: false,
 		},
 	},
 
@@ -166,6 +161,7 @@ export default {
 			})
 			this.$focusTrap.activate()
 		},
+
 		/**
 		 * Remove focus trap
 		 *
@@ -177,19 +173,6 @@ export default {
 				this.$focusTrap = null
 			} catch (err) {
 				console.warn(err)
-			}
-		},
-		/**
-		 * Prevent the floating-vue popover to override the focus
-		 * TODO: remove once disabling auto-focus is released
-		 *
-		 * @see https://github.com/Akryum/floating-vue/pull/894
-		 */
-		onShow() {
-			/** @type {HTMLElement} */
-			const popperNode = this.$refs?.popover?.$refs?.popper?.$_popperNode
-			if (this.noAutoFocus && popperNode) {
-				popperNode.focus = () => {}
 			}
 		},
 
