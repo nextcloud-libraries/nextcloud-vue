@@ -126,8 +126,6 @@ import { generateOcsUrl } from '@nextcloud/router'
 import { t } from '../../l10n.js'
 import logger from '../../utils/logger.js'
 
-const defaultPasswordPolicy = loadState('core', 'capabilities', {}).password_policy || null
-
 export default {
 	name: 'NcPasswordField',
 
@@ -194,7 +192,7 @@ export default {
 		return {
 			isPasswordHidden: true,
 			internalHelpMessage: '',
-			passwordPolicy: defaultPasswordPolicy,
+			passwordPolicy: loadState('core', 'capabilities', {}).password_policy || null,
 			isValid: null,
 		}
 	},
