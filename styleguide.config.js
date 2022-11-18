@@ -65,22 +65,23 @@ module.exports = async () => {
 				components: 'src/components/*/*.vue',
 				sectionDepth: 1,
 				ignore: [
+					'src/components/Nc*Field/*.vue',
+					'src/components/Nc*Picker/*.vue',
 					'src/components/NcAction*/*.vue',
 					'src/components/NcAppContent*/*.vue',
 					'src/components/NcAppNavigation*/*.vue',
+					'src/components/NcAppSettings*/*.vue',
 					'src/components/NcAppSidebar*/*.vue',
 					'src/components/NcBreadcrumb*/*.vue',
 					'src/components/NcContent/*.vue',
 					'src/components/NcDashboard*/*.vue',
+					'src/components/NcListItem*/*.vue',
 					'src/components/NcMultiselect*/*.vue',
 					'src/components/NcPopoverMenu/!(NcPopoverMenu).vue',
-					'src/components/NcListItem*/*.vue',
-					'src/components/NcAppSettings*/*.vue',
-					'src/components/Nc*Picker/*.vue',
 					'src/components/NcRichContenteditable/!(NcRichContenteditable).vue',
+					'src/components/NcSelect*/*.vue',
 					'src/components/NcSettings*/*.vue',
 					'src/components/NcUserBubble/NcUserBubbleDiv.vue',
-					'src/components/Nc*Field/*.vue',
 				],
 				sections: [
 					{
@@ -145,6 +146,12 @@ module.exports = async () => {
 						name: 'NcListItems',
 						components: [
 							'src/components/NcListItem*/*.vue',
+						],
+					},
+					{
+						name: 'NcSelect',
+						components: [
+							'src/components/NcSelect*/*.vue',
 						],
 					},
 					{
