@@ -48,10 +48,10 @@ It might be used for list rendering or within the multiselect for example
 ### With actions
 ```vue
 <NcListItemIcon title="Test user 1" subtitle="callmetest@domain.com">
-	<Actions>
-		<ActionButton icon="icon-edit" @click="alert('Edit')">Edit</ActionButton>
-		<ActionButton icon="icon-delete" @click="alert('Delete')">Delete</ActionButton>
-	</Actions>
+	<NcActions>
+		<NcActionButton icon="icon-edit" @click="alert('Edit')">Edit</NcActionButton>
+		<NcActionButton icon="icon-delete" @click="alert('Delete')">Delete</NcActionButton>
+	</NcActions>
 </NcListItemIcon>
 ```
 </docs>
