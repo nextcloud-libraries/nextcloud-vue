@@ -704,6 +704,7 @@ export default {
 	flex: 0 1 auto;
 	flex-direction: column;
 	width: 100%;
+	gap: var(--default-grid-baseline, 4px);
 
 	.app-navigation-entry {
 		display: inline-flex;
