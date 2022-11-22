@@ -1,12 +1,14 @@
 # 
 # Translators:
-# george k <norhorn@gmail.com>, 2020
+# George Kitsoukakis <norhorn@gmail.com>, 2020
 # Efstathios Iosifidis <iefstathios@gmail.com>, 2021
 # Gerasimos Theotokatos, 2021
+# Nik Pap, 2022
+# Georgia Konstantiou, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Gerasimos Theotokatos, 2021\n"
+"Last-Translator: Georgia Konstantiou, 2022\n"
 "Language-Team: Greek (https://www.transifex.com/nextcloud/teams/64236/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: el\n"
@@ -27,20 +29,38 @@ msgstr "Δραστηριότητες"
 msgid "Animals & Nature"
 msgstr "Ζώα & Φύση"
 
+msgid "Anything shared with the same group of people will show up here"
+msgstr "Οτιδήποτε μοιράζεται με την ίδια ομάδα ατόμων θα εμφανίζεται εδώ"
+
 msgid "Avatar of {displayName}"
 msgstr "Άβαταρ του {displayName}"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "Άβαταρ του {displayName}, {status}"
 
 msgid "Cancel changes"
 msgstr "Ακύρωση αλλαγών"
 
+msgid "Change title"
+msgstr "Αλλαγή τίτλου"
+
 msgid "Choose"
 msgstr "Επιλογή"
+
+msgid "Clear text"
+msgstr "Εκκαθάριση κειμένου"
 
 msgid "Close"
 msgstr "Κλείσιμο"
 
+msgid "Close modal"
+msgstr "Βοηθητικό κλείσιμο"
+
 msgid "Close navigation"
 msgstr "Κλείσιμο πλοήγησης"
+
+msgid "Close sidebar"
+msgstr "Κλείσιμο πλευρικής μπάρας"
 
 msgid "Confirm changes"
 msgstr "Επιβεβαίωση αλλαγών"
@@ -51,8 +71,14 @@ msgstr "Προσαρμογή"
 msgid "Edit item"
 msgstr "Επεξεργασία"
 
+msgid "Error getting related resources"
+msgstr "Σφάλμα λήψης σχετικών πόρων"
+
 msgid "External documentation for {title}"
 msgstr "Εξωτερική τεκμηρίωση για {title}"
+
+msgid "Favorite"
+msgstr "Αγαπημένα"
 
 msgid "Flags"
 msgstr "Σημαίες"
@@ -69,8 +95,14 @@ msgstr "Καθολικό"
 msgid "Go back to the list"
 msgstr "Επιστροφή στην αρχική λίστα "
 
+msgid "Hide password"
+msgstr "Απόκρυψη κωδικού πρόσβασης"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Συμπληρώθηκε το όριο των {count} χαρακτήρων του μηνύματος"
+
+msgid "More items …"
+msgstr "Περισσότερα στοιχεία …"
 
 msgid "Next"
 msgstr "Επόμενο"
@@ -84,8 +116,17 @@ msgstr "Κανένα αποτέλεσμα"
 msgid "Objects"
 msgstr "Αντικείμενα"
 
+msgid "Open"
+msgstr "Άνοιγμα"
+
+msgid "Open link to \"{resourceTitle}\""
+msgstr "Άνοιγμα συνδέσμου στο \"{resourceTitle}\""
+
 msgid "Open navigation"
 msgstr "Άνοιγμα πλοήγησης"
+
+msgid "Password is secure"
+msgstr "Ο κωδικός πρόσβασης είναι ασφαλής"
 
 msgid "Pause slideshow"
 msgstr "Παύση προβολής διαφανειών"
@@ -102,6 +143,9 @@ msgstr "Παρακαλούμε επιλέξτε μια ζώνη ώρας:"
 msgid "Previous"
 msgstr "Προηγούμενο"
 
+msgid "Related resources"
+msgstr "Σχετικοί πόροι"
+
 msgid "Search"
 msgstr "Αναζήτηση"
 
@@ -116,6 +160,9 @@ msgstr "Ρυθμίσεις"
 
 msgid "Settings navigation"
 msgstr "Πλοήγηση ρυθμίσεων"
+
+msgid "Show password"
+msgstr "Εμφάνιση κωδικού πρόσβασης"
 
 msgid "Smileys & Emotion"
 msgstr "Φατσούλες & Συναίσθημα"
@@ -141,5 +188,9 @@ msgstr "Δεν είναι δυνατή η αναζήτηση της ομάδας
 msgid "Undo changes"
 msgstr "Αναίρεση Αλλαγών"
 
-msgid "Write message, @ to mention someone …"
-msgstr "Γράψτε ένα μήνυμα, και με το σύμβολο @, μνημονεύστε κάποιον …"
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
+msgstr ""
+"Γράψτε μήνυμα, χρησιμοποιείστε \"@\" για να αναφέρετε κάποιον, "
+"χρησιμοποιείστε \":\" για αυτόματη συμπλήρωση emoji …"
