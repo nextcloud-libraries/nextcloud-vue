@@ -15,6 +15,7 @@
 	"scripts": {
 		"dev": "webpack --node-env development --progress",
 		"watch": "webpack --node-env development --progress --watch",
+		"watch:module": "LIBRARY_TARGET=module webpack --node-env development --progress --watch",
 		"build": "webpack --node-env production --progress && npm run build:module",
 		"build:module": "LIBRARY_TARGET=module webpack --node-env production --progress",
 		"l10n:extract": "node build/extract-l10n.js",
