@@ -6,10 +6,11 @@
 # Marc Riera <marcriera@softcatala.org>, 2022
 # Papa Nates, 2022
 # omar.maciasmolina <omar.maciasmolina@gmail.com>, 2022
+# v v <e670006006@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: omar.maciasmolina <omar.maciasmolina@gmail.com>, 2022\n"
+"Last-Translator: v v <e670006006@gmail.com>, 2022\n"
 "Language-Team: Catalan (https://www.transifex.com/nextcloud/teams/64236/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ca\n"
@@ -190,7 +191,9 @@ msgstr "No es pot cercar el grup"
 msgid "Undo changes"
 msgstr "Desfés els canvis"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
 msgstr ""
-"Escriu un missatge, @ per esmentar algú, : per a la compleció automàtica "
-"d'emojis..."
+"Escriu missatge, fes servir \"@\" per esmentar algú, fes servir \":\" per "
+"autocompletar emojis..."
