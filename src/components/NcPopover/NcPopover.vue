@@ -103,7 +103,7 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 <script>
 import { Dropdown } from 'floating-vue'
 import { createFocusTrap } from 'focus-trap'
-import { getTrapStack } from '../../utils/focusTrap.js'
+import { getTrapStack } from '../../a11y/focusTrap.js'
 
 export default {
 	name: 'NcPopover',

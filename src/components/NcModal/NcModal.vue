@@ -306,7 +306,7 @@ export default {
 </template>
 
 <script>
-import { getTrapStack } from '../../utils/focusTrap.js'
+import { getTrapStack } from '../../a11y/focusTrap.js'
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import l10n from '../../mixins/l10n.js'
