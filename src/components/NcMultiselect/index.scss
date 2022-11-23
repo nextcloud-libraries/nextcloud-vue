@@ -269,14 +269,14 @@
 
 		.multiselect__content-wrapper li > span {
 			&::before {
-				background-image: var(--icon-checkmark-000);
+				background-image: var(--icon-checkmark-dark);
 			}
 
 			/* add the prop tag-placeholder="create" to add the +
 			icon on top of an unknown-and-ready-to-be-created entry */
 			&[data-select='create'] {
 				&::before {
-					background-image: var(--icon-add-000);
+					background-image: var(--icon-add-dark);
 					visibility: visible;
 				}
 			}
