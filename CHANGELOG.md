@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.1.0-beta.2](https://github.com/nextcloud/nextcloud-vue/tree/v7.1.0-beta.2) (2022-11-23)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.1.0-beta.1...v7.1.0-beta.2)
+
+### :bug: Fixed bugs
+
+- Fix multiselect checkmark and plus icon [\#3513](https://github.com/nextcloud/nextcloud-vue/pull/3513) ([skjnldsv](https://github.com/skjnldsv))
+- Make gap in NcAppNavigation consistent in nested lists [\#3506](https://github.com/nextcloud/nextcloud-vue/pull/3506) ([juliushaertl](https://github.com/juliushaertl))
+
+### Closed pull requests
+
+- Finish emoji focus cleaning [\#3504](https://github.com/nextcloud/nextcloud-vue/pull/3504) ([skjnldsv](https://github.com/skjnldsv))
+
 ## [v7.1.0-beta.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.1.0-beta.1) (2022-11-18)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.1.0-beta.0...v7.1.0-beta.1)
