@@ -29,6 +29,7 @@ For the multiselect component, all events will be passed through. Please see the
 <NcActions>
 	<NcActionInput icon="icon-edit" value="This is an input" />
 	<NcActionInput icon="icon-edit">This is the placeholder</NcActionInput>
+	<NcActionInput icon="icon-edit" label="Visible label">Input with visible label</NcActionInput>
 	<NcActionInput icon="icon-close" :disabled="true" value="This is a disabled input" />
 	<NcActionInput icon="icon-edit" type="date">Please pick a date</NcActionInput>
 	<NcActionInput icon="icon-edit" type="multiselect" :options="['Apple', 'Banana', 'Cherry']">Please pick a fruit</NcActionInput>
@@ -84,23 +85,33 @@ For the multiselect component, all events will be passed through. Please see the
 					v-on="$listeners" />
 
 				<template v-else>
-					<input :id="id" type="submit" class="action-input__submit">
-
-					<input :type="type"
-						:value="value"
-						:placeholder="text"
-						:disabled="disabled"
-						:aria-label="ariaLabel"
-						v-bind="$attrs"
-						:class="{ focusable: isFocusable }"
-						class="action-input__input"
-						@input="onInput"
-						@change="onChange">
-					<!-- allow the custom font to inject a ::before
-						not possible on input[type=submit] -->
-					<label v-show="!disabled" :for="id" class="action-input__label">
-						<ArrowRight :size="20" />
-					</label>
+					<div class="action-input__container">
+						<label v-if="label"
+							class="action-input__text-label"
+							:class="{ 'action-input__text-label--hidden': !labelVisible }"
+							:for="inputId">
+							{{ label }}
+						</label>
+						<div class="action-input__input-container">
+							<input :id="inputId"
+								:type="type"
+								:value="value"
+								:placeholder="text"
+								:disabled="disabled"
+								:aria-label="ariaLabel"
+								v-bind="$attrs"
+								:class="{ focusable: isFocusable }"
+								class="action-input__input"
+								@input="onInput"
+								@change="onChange">
+							<!-- allow the custom font to inject a ::before
+								not possible on input[type=submit] -->
+							<input :id="id" type="submit" class="action-input__submit">
+							<label v-show="!disabled" :for="id" class="action-input__icon-label">
+								<ArrowRight :size="20" />
+							</label>
+						</div>
+					</div>
 				</template>
 			</form>
 		</span>
@@ -138,6 +149,14 @@ export default {
 			validator: id => id.trim() !== '',
 		},
 		/**
+		 * id attribute of the text input element
+		 */
+		inputId: {
+			type: String,
+			default: () => 'action-input-' + GenRandomId(),
+			validator: id => id.trim() !== '',
+		},
+		/**
 		 * Icon to show with the action, can be either a CSS class or an URL
 		 */
 		icon: {
@@ -170,6 +189,21 @@ export default {
 		isNativePicker: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * The visible input label for accessibility purposes.
+		 */
+		label: {
+			type: String,
+			default: null,
+		},
+		/**
+		 * If you want to hide the label just above the
+		 * input field, pass in `false` to this prop.
+		 */
+		labelVisible: {
+			type: Boolean,
+			default: true,
 		},
 		/**
 		 * value attribute of the input field
@@ -392,7 +426,29 @@ $input-margin: 4px;
 		overflow: hidden;
 	}
 
-	&__label {
+	&__container {
+		width: 100%;
+	}
+
+	&__input-container {
+		display: flex;
+	}
+
+	&__text-label {
+		padding: 4px 0;
+		display: block;
+
+		&--hidden {
+			position: absolute;
+			left: -10000px;
+			top: auto;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+		}
+	}
+
+	&__icon-label {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -434,12 +490,12 @@ $input-margin: 4px;
 		/* only show confirm borders if input is not focused */
 		&:not(:active):not(:hover):not(:focus) {
 			&:invalid {
-				& + .action-input__label {
+				& + .action-input__icon-label {
 					border-color: var(--color-error);
 					border-left-color: transparent;
 				}
 			}
-			&:not(:disabled) + .action-input__label {
+			&:not(:disabled) + .action-input__icon-label {
 				&:active,
 				&:hover,
 				&:focus {
@@ -451,7 +507,7 @@ $input-margin: 4px;
 		&:active,
 		&:hover,
 		&:focus {
-			&:not(:disabled) + .action-input__label {
+			&:not(:disabled) + .action-input__icon-label {
 				/* above previous input */
 				z-index: 2;
 
