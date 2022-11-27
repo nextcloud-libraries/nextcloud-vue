@@ -28,7 +28,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 <docs>
 ### Single action
 
-```
+```vue
 <template>
 	<NcActions>
 		<NcActionButton @click="actionDelete">
@@ -57,7 +57,7 @@ export default {
 
 ### Multiple actions
 
-```
+```vue
 <template>
 	<NcActions>
 		<NcActionButton @click="showMessage('Edit')">
