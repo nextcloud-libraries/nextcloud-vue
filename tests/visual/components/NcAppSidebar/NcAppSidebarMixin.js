@@ -20,7 +20,6 @@
  *
  */
 
-import { mount } from '@cypress/vue'
 import sanitize from 'sanitize-filename'
 
 import NcAppSidebar from '../../../../src/components/NcAppSidebar/NcAppSidebar.vue'
@@ -96,7 +95,7 @@ export default function(compact) {
 							}
 
 							it('Renders ' + fileName, () => {
-								mount(NcAppSidebar, defaultOptions)
+								cy.mount(NcAppSidebar, defaultOptions)
 								cy.get('.app-sidebar-header').compareSnapshot(fileName)
 							})
 						})

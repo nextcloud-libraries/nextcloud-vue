@@ -1,5 +1,5 @@
 // ***********************************************************
-// This example support/index.js is processed and
+// This example support/component.js is processed and
 // loaded automatically before your test files.
 //
 // This is a great place to put global configuration and
@@ -13,4 +13,16 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-import './commands'
+import { mount } from 'cypress/vue2'
+import compareSnapshotCommand from 'cypress-visual-regression/dist/command.js'
+
+compareSnapshotCommand()
+
+const Cypress = window.Cypress
+
+Cypress.Commands.add('mount', mount)
+
+if (global.process === undefined) global.process = {}
+global.process.env = {
+	...Cypress.env(),
+}

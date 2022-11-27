@@ -8,31 +8,10 @@
 // https://on.cypress.io/plugins-guide
 // ***********************************************************
 
-// This function is called when a project is opened or re-opened (e.g. due to
-// the project's config changing)
+import getCompareSnapshotsPlugin from 'cypress-visual-regression/dist/plugin.js'
 
-const getCompareSnapshotsPlugin = require('cypress-visual-regression/dist/plugin')
-
-const webpack = require('@cypress/webpack-preprocessor')
-const { startDevServer } = require('@cypress/webpack-dev-server')
-
-module.exports = async (on, config) => {
-	const webpackOptions = await require('../../webpack.config.js')()
-	webpackOptions.externals = {}
-
-	const options = {
-		// send in the options from your webpack.config.js, so it works the same
-		// as your app's code
-		webpackOptions,
-		watchOptions: {},
-	}
-
+export default async (on, config) => {
 	getCompareSnapshotsPlugin(on, config)
-	on('file:preprocessor', webpack(options))
-
-	on('dev-server:start', (options) => {
-		return startDevServer({ options, webpackConfig: webpackOptions })
-	  })
 
 	// Disable spell checking to prevent rendering differences
 	on('before:browser:launch', (browser, launchOptions) => {
