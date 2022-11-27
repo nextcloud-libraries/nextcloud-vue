@@ -3,7 +3,7 @@
  *
  * @author Azul <azul@riseup.net>
  *
- * @license GNU AGPL version 3 or any later version
+ * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -22,6 +22,8 @@
 
 import { mount } from '@vue/test-utils'
 import { emit } from '@nextcloud/event-bus'
+import { describe, expect, it } from 'vitest'
+
 import NcAppNavigation from '../../../../src/components/NcAppNavigation/NcAppNavigation.vue'
 
 describe('NcAppNavigation.vue', () => {
@@ -36,14 +38,14 @@ describe('NcAppNavigation.vue', () => {
 	describe('toggle via event bus', () => {
 		it('toggle to turn it off', () => {
 			const wrapper = mount(NcAppNavigation)
-			emit('toggle-navigation', {open: undefined})
+			emit('toggle-navigation', { open: undefined })
 			expect(wrapper.vm.$data.open).toBe(false)
 		})
 
 		it('toggle with open: false keeps it closed', () => {
 			const wrapper = mount(NcAppNavigation)
-			emit('toggle-navigation', {open: false})
-			emit('toggle-navigation', {open: false})
+			emit('toggle-navigation', { open: false })
+			emit('toggle-navigation', { open: false })
 			expect(wrapper.vm.$data.open).toBe(false)
 		})
 

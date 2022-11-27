@@ -20,11 +20,7 @@
  *
  */
 
+import { vi } from 'vitest'
 import OC from './OC.js'
-// eslint-disable-next-line node/no-unpublished-import
-import 'regenerator-runtime/runtime'
 
-global.OC = OC
-
-global.TRANSLATIONS = []
-global.SCOPE_VERSION = 1
+vi.stubGlobal('OC', OC)
