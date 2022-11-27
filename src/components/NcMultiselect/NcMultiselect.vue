@@ -245,7 +245,7 @@ import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import l10n from '../../mixins/l10n.js'
 
-import VueMultiselect from 'vue-multiselect'
+import { Multiselect as VueMultiselect } from 'vue-multiselect'
 
 if (!PRODUCTION) {
 	console.warn('NcMultiselect usage has been deprecated. Use NcSelect instead.')
@@ -474,7 +474,7 @@ export default {
 		 */
 		updateWidth() {
 			// width of the tags wrapper minus the padding
-			if (this.$el && this.$el.querySelector('.multiselect__tags-wrap')) {
+			if (this.$el && this.$el.querySelector !== undefined && this.$el.querySelector('.multiselect__tags-wrap')) {
 				this.elWidth = this.$el.querySelector('.multiselect__tags-wrap').offsetWidth - 10
 			}
 		},

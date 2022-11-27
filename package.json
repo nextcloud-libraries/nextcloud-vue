@@ -13,11 +13,9 @@
 	"author": "John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>",
 	"license": "AGPL-3.0",
 	"scripts": {
-		"dev": "webpack --node-env development --progress",
-		"watch": "webpack --node-env development --progress --watch",
-		"watch:module": "LIBRARY_TARGET=module webpack --node-env development --progress --watch",
-		"build": "webpack --node-env production --progress && npm run build:module",
-		"build:module": "LIBRARY_TARGET=module webpack --node-env production --progress",
+		"build": "vite build --mode production",
+		"dev": "vite build --mode development",
+		"watch": "vite build --watch --mode development",
 		"l10n:extract": "node build/extract-l10n.js",
 		"lint": "eslint --ext .js,.vue src",
 		"lint:fix": "eslint --ext .js,.vue src --fix",
@@ -31,18 +29,25 @@
 		"cypress:gui": "cypress open --component",
 		"cypress:update-snapshots": "cypress run --component --spec cypress/visual/**/*.cy.js --env type=base --config screenshotsFolder=cypress/snapshots/base"
 	},
-	"main": "dist/ncvuecomponents.js",
-	"module": "dist/index.module.js",
+	"main": "dist/index.cjs",
+	"module": "dist/index.mjs",
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.cjs"
+	},
 	"files": [
 		"CHANGELOG.md",
 		"LICENSE",
 		"README.md",
 		"dist"
 	],
+	"peerDependencies": {
+		"vue": "^2.7.14"
+	},
 	"dependencies": {
 		"@floating-ui/dom": "^1.1.0",
 		"@nextcloud/auth": "^2.0.0",
-		"@nextcloud/axios": "^2.0.0",
+		"@nextcloud/axios": "^2.2.0",
 		"@nextcloud/browser-storage": "^0.2.0",
 		"@nextcloud/calendar-js": "^5.0.3",
 		"@nextcloud/capabilities": "^1.0.4",
@@ -66,7 +71,6 @@
 		"striptags": "^3.2.0",
 		"tributejs": "^5.1.3",
 		"v-click-outside": "^3.2.0",
-		"vue": "^2.7.14",
 		"vue-color": "^2.8.1",
 		"vue-material-design-icons": "^5.1.2",
 		"vue-multiselect": "^2.1.6",
@@ -78,71 +82,33 @@
 		"npm": "^7.0.0 || ^8.0.0"
 	},
 	"devDependencies": {
-		"@cypress/vue2": "^2.0.1",
+		"@cypress/vite-dev-server": "^4.0.1",
+		"@cypress/vue": "^2.2.4",
 		"@fontsource/roboto": "^4.5.8",
 		"@mdi/svg": "^7.0.96",
 		"@nextcloud/babel-config": "^1.0.0",
 		"@nextcloud/browserslist-config": "^2.3.0",
 		"@nextcloud/eslint-config": "^8.1.3",
 		"@nextcloud/stylelint-config": "^2.3.0",
-		"@nextcloud/webpack-vue-config": "github:nextcloud/webpack-vue-config#master",
-		"@vue/test-utils": "^1.3.0",
+		"@vitejs/plugin-vue2": "^2.0.1",
+		"@vitest/coverage-c8": "^0.25.3",
+		"@vue/compiler-sfc": "^2.7.14",
 		"@vue/tsconfig": "^0.1.3",
-		"@vue/vue2-jest": "^29.0.0",
-		"babel-jest": "^29.0.1",
-		"babel-loader-exclude-node-modules-except": "^1.2.1",
+		"babel-loader": "^8.2.5",
+		"browserslist-to-esbuild": "^1.2.0",
+		"css-loader": "~6.7.1",
 		"cypress": "^12.3.0",
 		"cypress-visual-regression": "^1.5.0",
 		"eslint-plugin-cypress": "^2.11.1",
-		"file-loader": "^6.2.0",
-		"gettext-extractor": "^3.5.4",
+		"gettext-extractor": "^3.6.0",
 		"gettext-parser": "^6.0.0",
 		"glob": "^8.0.3",
-		"jest": "^29.0.1",
-		"jest-environment-jsdom": "29.4.1",
-		"jest-serializer-vue": "^3.1.0",
-		"jest-transform-stub": "^2.0.0",
-		"resolve-url-loader": "^5.0.0",
+		"rollup-plugin-inject-process-env": "^1.3.1",
+		"rollup-plugin-node-externals": "^5.0.2",
 		"sanitize-filename": "^1.6.3",
-		"url-loader": "^4.1.1",
-		"vue-eslint-parser": "^9.0.3",
-		"vue-styleguidist": "~4.56.2",
-		"vue-template-compiler": "^2.7.14",
-		"webpack-node-externals": "^3.0.0"
-	},
-	"jest": {
-		"moduleFileExtensions": [
-			"js",
-			"vue"
-		],
-		"testEnvironment": "jsdom",
-		"transform": {
-			"^.+\\.js$": "babel-jest",
-			"^.+\\.vue$": "@vue/vue2-jest",
-			".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
-		},
-		"transformIgnorePatterns": [
-			"/node_modules/(?!vue-material-design-icons)"
-		],
-		"snapshotSerializers": [
-			"<rootDir>/node_modules/jest-serializer-vue"
-		],
-		"setupFilesAfterEnv": [
-			"./tests/setup.js"
-		],
-		"coverageDirectory": "./coverage/",
-		"collectCoverage": false,
-		"collectCoverageFrom": [
-			"<rootDir>/src/**/*.{js,vue}",
-			"!**/node_modules/**"
-		],
-		"coverageReporters": [
-			"json",
-			"text",
-			"html",
-			"lcov",
-			"clover"
-		]
+		"sass": "^1.56.2",
+		"vite": "^3.2.4",
+		"vue-eslint-parser": "^9.1.0"
 	},
 	"browserslist": [
 		"extends @nextcloud/browserslist-config"
