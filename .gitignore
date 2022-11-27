@@ -20,6 +20,9 @@ yarn-error.log*
 # Unit test / coverage reports
 coverage
 
+# genereated file
+docs/components
+
 # Docs compiled build
 styleguide/build/
 styleguide/index.html
