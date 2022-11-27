@@ -4,7 +4,7 @@
  *
  * @author Raimund Schlüßler <raimund.schluessler@mailbox.org>
  *
- * @license GNU AGPL version 3 or any later version
+ * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -22,35 +22,34 @@
  */
 
 import { mount } from '@vue/test-utils'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import Vue from 'vue'
 import NcAppSidebarTabs from '../../../../src/components/NcAppSidebar/NcAppSidebarTabs.vue'
 import NcAppSidebarTab from '../../../../src/components/NcAppSidebarTab/NcAppSidebarTab.vue'
 import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'
 
-let onWarning
-let consoleDebug
-
-let wrapper
-
 const initialConsole = { ...console }
 
 describe('NcAppSidebarTabs.vue', () => {
 	'use strict'
-	beforeEach(() => {
-		onWarning = jest.fn()
-		consoleDebug = jest.fn()
-		Vue.config.warnHandler = onWarning
-		global.console = { ...console, debug: consoleDebug }
+
+	beforeEach((ctx) => {
+		ctx.onWarning = vi.fn()
+		ctx.consoleDebug = vi.fn()
+		Vue.config.warnHandler = ctx.onWarning
+		global.console = { ...console, debug: ctx.consoleDebug }
 	})
+
 	afterEach(() => {
 		Vue.config.warnHandler = () => null
 		global.console = initialConsole
 	})
+
 	describe('when using the component without tabs', () => {
 		describe('with only one div', () => {
-			beforeEach(() => {
-				wrapper = mount(NcAppSidebarTabs, {
+			beforeEach((ctx) => {
+				ctx.wrapper = mount(NcAppSidebarTabs, {
 					propsData: {
 						title: 'Sidebar title.',
 					},
@@ -59,17 +58,22 @@ describe('NcAppSidebarTabs.vue', () => {
 					},
 				})
 			})
-			it('Issues no warning nor logs to console.', () => {
+
+			it('does not display the nav element', ({wrapper}) => {
+				expect(wrapper.find('nav').exists()).toBe(false)
+			})
+			it('Issues no warning nor logs to console.', ({ consoleDebug, onWarning }) => {
 				expect(onWarning).toHaveBeenCalledTimes(0)
 				expect(consoleDebug).toHaveBeenCalledTimes(0)
 			})
-			it('does not display the nav element', () => {
+			it('does not display the nav element', ({ wrapper }) => {
 				expect(wrapper.find('nav').exists()).toBe(false)
 			})
 		})
+
 		describe('with div and secondary action', () => {
-			beforeEach(() => {
-				wrapper = mount(NcAppSidebarTabs, {
+			beforeEach((ctx) => {
+				ctx.wrapper = mount(NcAppSidebarTabs, {
 					propsData: {
 						title: 'Sidebar title.',
 					},
@@ -83,19 +87,16 @@ describe('NcAppSidebarTabs.vue', () => {
 					},
 				})
 			})
-			it('Issues no warning.', () => {
+			it('Issues no warning.', ({ onWarning }) => {
 				expect(onWarning).toHaveBeenCalledTimes(0)
 			})
 		})
-
-		it('does not display the nav element', () => {
-			expect(wrapper.find('nav').exists()).toBe(false)
-		})
 	})
+
 	describe('when only children of type AppSidebarTab is used', () => {
 		describe('when 3 children of type AppSidebarTab are used', () => {
-			beforeEach(() => {
-				wrapper = mount(NcAppSidebarTabs, {
+			beforeEach((ctx) => {
+				ctx.wrapper = mount(NcAppSidebarTabs, {
 					slots: {
 						default: [
 							'<nc-app-sidebar-tab id="first" icon="icon-details" name="Tab1">Tab1</nc-app-sidebar-tab>',
@@ -109,57 +110,58 @@ describe('NcAppSidebarTabs.vue', () => {
 					},
 				})
 			})
-			it('Issues no warning.', () => {
+
+			it('Issues no warning.', ({ onWarning }) => {
 				expect(onWarning).toHaveBeenCalledTimes(0)
 			})
-			it('display the nav element', () => {
+			it('display the nav element', ({ wrapper }) => {
 				expect(wrapper.find('nav').exists()).toBe(true)
 			})
-			it('display all the 3 elements in li', () => {
+			it('display all the 3 elements in li', ({ wrapper }) => {
 				const liList = wrapper.findAll('nav>ul>li')
 				expect(liList.length).toEqual(3)
 			})
-			it('emit "update:active" event with the selected tab id when clicking on a tab', () => {
+			it('emit "update:active" event with the selected tab id when clicking on a tab', ({ wrapper }) => {
 				const lastLink = wrapper.find('nav>ul>li:last-of-type>a')
 				lastLink.trigger('click')
 				expect(wrapper.emitted('update:active')[0]).toEqual(['last'])
 			})
-			it('emit "update:active" event with the first tab id when keydown pageup is pressed', () => {
+			it('emit "update:active" event with the first tab id when keydown pageup is pressed', ({ wrapper }) => {
 				const lastLink = wrapper.find('nav>ul>li:last-of-type>a')
-				lastLink.trigger('keydown.pageup')
+				lastLink.trigger('keydown', { keyCode: 33 })
 				expect(wrapper.emitted('update:active')[0]).toEqual(['first'])
 			})
-			it('emit "update:active" event with the last tab id when keydown pagedown is pressed', () => {
+			it('emit "update:active" event with the last tab id when keydown pagedown is pressed', ({ wrapper }) => {
 				const lastLink = wrapper.find('nav>ul>li:last-of-type>a')
-				lastLink.trigger('keydown.pagedown')
+				lastLink.trigger('keydown', { keyCode: 34 })
 				expect(wrapper.emitted('update:active')[0]).toEqual(['last'])
 			})
 			describe('when we select the first element', () => {
-				beforeEach(() => {
-					wrapper.setData({ activeTab: 'first' })
+				beforeEach((ctx) => {
+					ctx.wrapper.setData({ activeTab: 'first' })
 				})
-				it('does not emit "update:active" event when keydown left is pressed', () => {
+				it('does not emit "update:active" event when keydown left is pressed', ({ wrapper }) => {
 					expect(wrapper.emitted('update:active')).toBeFalsy()
 					const firstLink = wrapper.find('nav>ul>li>a')
 					firstLink.trigger('keydown.left')
 					expect(wrapper.emitted('update:active')).toBeFalsy()
 				})
-				it('emit "update:active" event with the next tab id when keydown right is pressed', () => {
+				it('emit "update:active" event with the next tab id when keydown right is pressed', ({ wrapper }) => {
 					const firstLink = wrapper.find('nav>ul>li>a')
 					firstLink.trigger('keydown.right')
 					expect(wrapper.emitted('update:active')[0]).toEqual(['second'])
 				})
 			})
 			describe('when we select the last element', () => {
-				beforeEach(() => {
-					wrapper.setData({ activeTab: 'last' })
+				beforeEach((ctx) => {
+					ctx.wrapper.setData({ activeTab: 'last' })
 				})
-				it('emit "update:active" event with the previous tab id when keydown left is pressed', () => {
+				it('emit "update:active" event with the previous tab id when keydown left is pressed', ({ wrapper }) => {
 					const lastLink = wrapper.find('nav>ul>li:last-of-type>a')
 					lastLink.trigger('keydown.left')
 					expect(wrapper.emitted('update:active')[0]).toEqual(['second'])
 				})
-				it('does not emit "update:active" event when keydown right is pressed', () => {
+				it('does not emit "update:active" event when keydown right is pressed', ({ wrapper }) => {
 					expect(wrapper.emitted('update:active')).toBeFalsy()
 					const lastLink = wrapper.find('nav>ul>li:last-of-type>a')
 					lastLink.trigger('keydown.right')
@@ -167,9 +169,10 @@ describe('NcAppSidebarTabs.vue', () => {
 				})
 			})
 		})
+	
 		describe('when they is only 1 child of type AppSidebarTab are used', () => {
-			beforeEach(() => {
-				wrapper = mount(NcAppSidebarTabs, {
+			beforeEach((ctx) => {
+				ctx.wrapper = mount(NcAppSidebarTabs, {
 					slots: {
 						default: [
 							'<nc-app-sidebar-tab id="1" icon="icon-details" name="Tab1">Tab1</nc-app-sidebar-tab>',
@@ -181,16 +184,16 @@ describe('NcAppSidebarTabs.vue', () => {
 					},
 				})
 			})
-			it('Issues no warning.', () => {
+			it('Issues no warning.', ({ onWarning }) => {
 				expect(onWarning).toHaveBeenCalledTimes(0)
 			})
-			it('does not display the nav element', () => {
+			it('does not display the nav element', ({ wrapper }) => {
 				expect(wrapper.find('nav').exists()).toBe(false)
 			})
 		})
 	})
 	describe('when tabs and other elements are mixed', () => {
-		it('Issues a warning and logs to console .', () => {
+		it('Issues a warning and logs to console .', ({ consoleDebug, onWarning }) => {
 			mount(NcAppSidebarTabs, {
 				slots: {
 					default: [

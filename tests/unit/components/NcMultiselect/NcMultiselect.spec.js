@@ -3,7 +3,7 @@
  *
  * @author Raimund Schlüßler <raimund.schluessler@mailbox.org>
  *
- * @license GNU AGPL version 3 or any later version
+ * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -21,13 +21,15 @@
  */
 
 import { mount } from '@vue/test-utils'
+import { describe, expect, it, vi } from 'vitest'
+
 import NcMultiselect from '../../../../src/components/NcMultiselect/NcMultiselect.vue'
 
 describe('NcMultiselect.vue', () => {
 	'use strict'
 
 	it('Test that the input function is only called once on select', () => {
-		const onInput = jest.fn()
+		const onInput = vi.fn()
 		const wrapper = mount(NcMultiselect, {
 			propsData: {
 				label: 'name',
@@ -39,7 +41,7 @@ describe('NcMultiselect.vue', () => {
 			},
 			listeners: {
 				input: onInput
-			}
+			},
 		})
 		wrapper.trigger('click')
 		wrapper.find('li.multiselect__element .multiselect__option').trigger('click')

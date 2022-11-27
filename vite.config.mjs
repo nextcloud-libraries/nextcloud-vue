@@ -62,8 +62,9 @@ export default defineConfig({
 		},
 	},
 	test: {
-		environment: 'happy-dom',
+		environment: 'jsdom',
 		setupFiles: resolve(__dirname, './tests/setup.js'),
+		env: processEnvironment,
 	},
 	build: {
 		target: browserslistToEsbuild(),
