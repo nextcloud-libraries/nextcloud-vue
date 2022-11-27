@@ -19,9 +19,22 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import * as NcComponents from './components/index.js'
 
 export * from './components/index.js'
 export * from './functions/index.js'
 export * from './directives/index.js'
 export * from './mixins/index.js'
 export * from './a11y/index.js'
+
+// Vue plugin to install all components using `Vue.use(NextcloudVue)`
+export const NextcloudVue = {
+	/**
+	 * @param {object} Vue The vue instance
+	 */
+	install: Vue => {
+		Object.values(NcComponents).forEach(component => {
+			Vue.component(component.name, component)
+		})
+	},
+}
