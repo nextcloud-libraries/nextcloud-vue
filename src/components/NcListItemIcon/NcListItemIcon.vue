@@ -48,10 +48,10 @@ It might be used for list rendering or within the multiselect for example
 ### With actions
 ```vue
 <NcListItemIcon title="Test user 1" subtitle="callmetest@domain.com">
-	<Actions>
-		<ActionButton icon="icon-edit" @click="alert('Edit')">Edit</ActionButton>
-		<ActionButton icon="icon-delete" @click="alert('Delete')">Delete</ActionButton>
-	</Actions>
+	<NcActions>
+		<NcActionButton icon="icon-edit" @click="alert('Edit')">Edit</NcActionButton>
+		<NcActionButton icon="icon-delete" @click="alert('Delete')">Delete</NcActionButton>
+	</NcActions>
 </NcListItemIcon>
 ```
 </docs>
@@ -84,13 +84,24 @@ It might be used for list rendering or within the multiselect for example
 
 		<!-- @slot use this slot to add a custom icon or actions -->
 		<slot />
-		<span v-if="hasIcon && !hasSlot" class="icon option__icon" :class="icon" />
+		<template v-if="!hasSlot">
+			<NcIconSvgWrapper v-if="hasIconSvg"
+				class="option__icon"
+				:svg="iconSvg"
+				:title="iconTitle" />
+			<span v-else-if="hasIcon"
+				class="icon option__icon"
+				:class="icon"
+				:aria-label="iconTitle" />
+		</template>
 	</span>
 </template>
 
 <script>
 import NcAvatar from '../NcAvatar/index.js'
 import NcHighlight from '../NcHighlight/index.js'
+import NcIconSvgWrapper from './NcIconSvgWrapper.vue'
+
 import { userStatus } from '../../mixins/index.js'
 
 // global margin, ^2 ratio
@@ -103,8 +114,12 @@ export default {
 	components: {
 		NcAvatar,
 		NcHighlight,
+		NcIconSvgWrapper,
 	},
-	mixins: [userStatus],
+
+	mixins: [
+		userStatus,
+	],
 
 	props: {
 		/**
@@ -128,6 +143,22 @@ export default {
 		 * Icon class to be displayed at the end of the component
 		 */
 		icon: {
+			type: String,
+			default: '',
+		},
+
+		/**
+		 * SVG icon to be displayed at the end of the component
+		 */
+		iconSvg: {
+			type: String,
+			default: '',
+		},
+
+		/**
+		 * Descriptive title for the icon
+		 */
+		iconTitle: {
 			type: String,
 			default: '',
 		},
@@ -194,6 +225,11 @@ export default {
 		hasIcon() {
 			return this.icon !== ''
 		},
+
+		hasIconSvg() {
+			return this.iconSvg !== ''
+		},
+
 		hasSlot() {
 			return !!this.$slots.default
 		},
@@ -201,6 +237,7 @@ export default {
 		isValidSubtitle() {
 			return this.subtitle?.trim?.() !== ''
 		},
+
 		isSizeBigEnough() {
 			return this.avatarSize >= defaultSize
 		},
@@ -231,6 +268,7 @@ export default {
 	align-items: center;
 	width: 100%;
 	height: var(--height);
+	cursor: inherit;
 
 	&__avatar {
 		margin-right: var(--margin);
@@ -247,9 +285,11 @@ export default {
 	&__lineone {
 		color: var(--color-main-text);
 	}
+
 	&__linetwo {
-		opacity: $opacity_normal;
+		color: var(--color-text-maxcontrast);
 	}
+
 	&__lineone,
 	&__linetwo {
 		overflow: hidden;
@@ -262,13 +302,22 @@ export default {
 	}
 
 	&__icon {
-		flex: 0 0 $clickable-area;
 		width: $clickable-area;
 		height: $clickable-area;
-		opacity: $opacity_disabled;
-		background-position: center;
-		background-size: 16px;
+		color: var(--color-text-maxcontrast);
+		&.icon {
+			flex: 0 0 $clickable-area;
+			opacity: $opacity_normal;
+			background-position: center;
+			background-size: 16px;
+		}
+	}
+
+	&__details,
+	&__lineone,
+	&__linetwo,
+	&__icon {
+		cursor: inherit;
 	}
 }
-
 </style>

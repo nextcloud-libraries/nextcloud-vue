@@ -21,6 +21,13 @@
   -->
 <docs>
 ## NcMultiselect
+
+![status](https://img.shields.io/badge/status-deprecated-red?style=for-the-badge)
+
+**Use [NcSelect](#/Components/NcSelect?id=ncselect-1) instead**
+
+---
+
 We're wrapping the awesome vue-multiselect library to add our own styling and default props/methods
 You can use all the properties from https://vue-multiselect.js.org that are not declared/overrided here.
 
@@ -199,9 +206,7 @@ export default {
 				is defined in the parent -->
 			<NcEllipsisedOption v-else-if="!$scopedSlots['option']"
 				:name="getOptionLabel(scope.option)"
-				:option="scope.option"
-				:search="scope.search"
-				:label="label" />
+				:search="scope.search" />
 
 			<!-- Passing the singleLabel slot -->
 			<slot v-else name="option" v-bind="scope" />
@@ -234,7 +239,7 @@ export default {
 </template>
 
 <script>
-import NcEllipsisedOption from './NcEllipsisedOption.vue'
+import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
 import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'

@@ -21,6 +21,14 @@
   -->
 
 <docs>
+## NcMultiselectTags
+
+![status](https://img.shields.io/badge/status-deprecated-red?style=for-the-badge)
+
+**Use [NcSelectTags](#/Components/NcSelect?id=ncselecttags) instead**
+
+---
+
 ### Single tag selector
 
 ```vue
