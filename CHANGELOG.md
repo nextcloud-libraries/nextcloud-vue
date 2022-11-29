@@ -2,38 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v7.1.0-beta.2](https://github.com/nextcloud/nextcloud-vue/tree/v7.1.0-beta.2) (2022-11-23)
+## [v7.1.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.1.0) (2022-11-29)
 
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.1.0-beta.1...v7.1.0-beta.2)
-
-### :bug: Fixed bugs
-
-- Fix multiselect checkmark and plus icon [\#3513](https://github.com/nextcloud/nextcloud-vue/pull/3513) ([skjnldsv](https://github.com/skjnldsv))
-- Make gap in NcAppNavigation consistent in nested lists [\#3506](https://github.com/nextcloud/nextcloud-vue/pull/3506) ([juliushaertl](https://github.com/juliushaertl))
-
-### Closed pull requests
-
-- Finish emoji focus cleaning [\#3504](https://github.com/nextcloud/nextcloud-vue/pull/3504) ([skjnldsv](https://github.com/skjnldsv))
-
-## [v7.1.0-beta.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.1.0-beta.1) (2022-11-18)
-
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.1.0-beta.0...v7.1.0-beta.1)
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.0.1...v7.1.0)
 
 ### :rocket: Enhancements
 
+- Add accessible NcSelect and NcSelectTags components [\#3435](https://github.com/nextcloud/nextcloud-vue/pull/3435) ([Pytal](https://github.com/Pytal))
 - Extend NcInputField props and forward $attrs to NcPasswordField and NcTextField [\#3485](https://github.com/nextcloud/nextcloud-vue/pull/3485) ([skjnldsv](https://github.com/skjnldsv))
 - Move loadState to data for better mockability [\#3502](https://github.com/nextcloud/nextcloud-vue/pull/3502) ([skjnldsv](https://github.com/skjnldsv))
-
-### :bug: Fixed bugs
-
-- Fix value type for DateTimePickerNative [\#3491](https://github.com/nextcloud/nextcloud-vue/pull/3491) ([skjnldsv](https://github.com/skjnldsv))
-
-## [v7.1.0-beta.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.2-beta.0) (2022-11-15)
-
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.0.1...v7.0.2-beta.0)
-
-### :rocket: Enhancements
-
 - Widen container prop type passed to NcPopover [\#3462](https://github.com/nextcloud/nextcloud-vue/pull/3462) ([Pytal](https://github.com/Pytal))
 - Allow querying for resources with complex item ids [\#3404](https://github.com/nextcloud/nextcloud-vue/pull/3404) ([Pytal](https://github.com/Pytal))
 - Allow to provide a custom palette to the ColorPicker [\#3384](https://github.com/nextcloud/nextcloud-vue/pull/3384) ([skjnldsv](https://github.com/skjnldsv))
@@ -42,6 +19,9 @@ All notable changes to this project will be documented in this file.
 
 ### :bug: Fixed bugs
 
+- Fix multiselect checkmark and plus icon [\#3513](https://github.com/nextcloud/nextcloud-vue/pull/3513) ([skjnldsv](https://github.com/skjnldsv))
+- Make gap in NcAppNavigation consistent in nested lists [\#3506](https://github.com/nextcloud/nextcloud-vue/pull/3506) ([juliushaertl](https://github.com/juliushaertl))
+- Fix value type for DateTimePickerNative [\#3491](https://github.com/nextcloud/nextcloud-vue/pull/3491) ([skjnldsv](https://github.com/skjnldsv))
 - Define global focus trap [\#3478](https://github.com/nextcloud/nextcloud-vue/pull/3478) ([skjnldsv](https://github.com/skjnldsv))
 - fix the size of the popper element [\#3445](https://github.com/nextcloud/nextcloud-vue/pull/3445) ([szaimen](https://github.com/szaimen))
 - fix sidebar scrolling for small displays [\#3444](https://github.com/nextcloud/nextcloud-vue/pull/3444) ([szaimen](https://github.com/szaimen))
@@ -53,6 +33,10 @@ All notable changes to this project will be documented in this file.
 - Comment placeholder wording fix [\#3454](https://github.com/nextcloud/nextcloud-vue/pull/3454) ([Jerome-Herbinet](https://github.com/Jerome-Herbinet))
 - Expand color picker width only when using advanced fields [\#3410](https://github.com/nextcloud/nextcloud-vue/pull/3410) ([Pytal](https://github.com/Pytal))
 - Fix empty content height in NcDashboardWidget in N in N in N [\#3372](https://github.com/nextcloud/nextcloud-vue/pull/3372) ([CarlSchwan](https://github.com/CarlSchwan))
+
+### Closed pull requests
+
+- Finish emoji focus cleaning [\#3504](https://github.com/nextcloud/nextcloud-vue/pull/3504) ([skjnldsv](https://github.com/skjnldsv))
 
 ## [v7.0.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.0.1) (2022-10-14)
 
