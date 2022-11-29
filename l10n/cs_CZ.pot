@@ -70,6 +70,9 @@ msgstr "Upravit položku"
 msgid "Error getting related resources"
 msgstr "Chyba při získávání souvisejících prostředků"
 
+msgid "Error parsing svg"
+msgstr "Chyba při zpracovávání svg"
+
 msgid "External documentation for {title}"
 msgstr "Externí dokumentace k {title}"
 
