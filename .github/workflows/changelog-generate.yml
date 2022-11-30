@@ -21,6 +21,7 @@ jobs:
           exclude_types: draft
           view_top: 1
 
+      # Returns the version without a leading v
       - name: Get new version
         id: future_version
         uses: Saionaro/extract-package-version@v1.0.6
@@ -28,7 +29,7 @@ jobs:
       - name: Generate changelog between ${{ steps.last_version.outputs.tag_name }} and v${{ steps.future_version.outputs.version }}
         uses: docker://ferrarimarco/github-changelog-generator
         # If we have a version change
-        if: contains(steps.last_version.outputs.tag_name, steps.future_version.outputs.version) == false
+        if: steps.last_version.outputs.tag_name != format('{{v{0}}}', steps.future_version.outputs.version)
         with:
           args: >
             -t ${{ secrets.GITHUB_TOKEN }}
