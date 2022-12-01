@@ -23,8 +23,8 @@
 		"test:coverage": "vitest run --coverage",
 		"stylelint": "stylelint src/**/*.vue src/**/*.scss src/**/*.css",
 		"stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix",
-		"styleguide": "concurrently \"vue-docgen --watch\" \"cd styleguide && npx vitepress dev\"",
-		"styleguide:build": "vue-docgen && cd styleguide && npx vitepress build",
+		"styleguide": "concurrently \"vue-docgen --watch\" \"cd styleguide && npm ci && npx vitepress dev\"",
+		"styleguide:build": "vue-docgen && cd styleguide && npm ci && npx vitepress build",
 		"cypress": "cypress run --component",
 		"cypress:gui": "cypress open --component",
 		"cypress:update-snapshots": "cypress run --component --env type=base --config screenshotsFolder=cypress/snapshots/base"
