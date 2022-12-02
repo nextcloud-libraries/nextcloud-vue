@@ -23,7 +23,10 @@
 <docs>
 ### General description
 
-This components provides a wrapper around a guest page content.
+This components provides a wrapper around guest page content.
+It should be used as the main wrapper for public pages, similar to `NcContent`.
+
+It can't be used multiple times on the same page.
 
 ### Usage
 
