@@ -49,6 +49,12 @@ This components provides a wrapper around a guest page content.
  */
 export default {
 	name: 'NcGuestContent',
+	mounted() {
+		document.getElementById('content').classList.add('nc-guest-content')
+	},
+	destroyed() {
+		document.getElementById('content').classList.remove('nc-guest-content')
+	},
 }
 </script>
 
@@ -66,7 +72,7 @@ export default {
 </style>
 
 <style lang="scss">
-#content {
+#content.nc-guest-content {
 	// Enable scrolling
 	overflow: auto;
 
