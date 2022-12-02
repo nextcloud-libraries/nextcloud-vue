@@ -73,6 +73,9 @@ msgstr "Ögeyi düzenle"
 msgid "Error getting related resources"
 msgstr "İlgili kaynaklar alınırken sorun çıktı"
 
+msgid "Error parsing svg"
+msgstr "svg işlenirken sorun çıktı"
+
 msgid "External documentation for {title}"
 msgstr "{title} için dış belgeler"
 
