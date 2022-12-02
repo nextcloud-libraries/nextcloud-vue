@@ -74,6 +74,9 @@ msgstr "Επεξεργασία"
 msgid "Error getting related resources"
 msgstr "Σφάλμα λήψης σχετικών πόρων"
 
+msgid "Error parsing svg"
+msgstr "Σφάλμα ανάλυσης svg"
+
 msgid "External documentation for {title}"
 msgstr "Εξωτερική τεκμηρίωση για {title}"
 
