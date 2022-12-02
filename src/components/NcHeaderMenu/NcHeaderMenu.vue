@@ -161,13 +161,12 @@ export default {
 	},
 
 	watch: {
-		open(newVal) {
-			this.opened = newVal
-			// Wait for component to finish rendering
-			this.$nextTick(() => {
-				// Trigger events
-				this.opened ? this.openMenu() : this.closeMenu()
-			})
+		open(open) {
+			if (open) {
+				this.openMenu()
+			} else {
+				this.closeMenu()
+			}
 		},
 	},
 
@@ -193,62 +192,51 @@ export default {
 
 		/**
 		 * Close the current menu
+		 *
+		 * @param {boolean} cancelled emit a cancel event instead of close
 		 */
-		closeMenu() {
-			if (!this.opened) {
-				return
-			}
-
+		closeMenu(cancelled = false) {
+			// Close the menu
 			this.opened = false
-			this.$emit('close')
+			this.$emit(cancelled ? 'cancel' : 'close')
 			this.$emit('update:open', false)
 
 			// Kill focus trap
 			this.clearFocusTrap()
+
+			// Wait for component to finish rendering
+			this.$nextTick(() => {
+				this.$emit('closed')
+			})
 		},
 
 		/**
 		 * Open the current menu
 		 */
 		openMenu() {
-			if (this.opened) {
-				return
-			}
-
+			// Open the menu
 			this.opened = true
 			this.$emit('open')
 			this.$emit('update:open', true)
 
-			/**
-			 * Triggered after the tooltip was visually displayed.
-			 *
-			 * This is different from the 'show' and 'apply-show' which
-			 * run earlier than this where there is no guarantee that the
-			 * tooltip is already visible and in the DOM.
-			 */
+			// Wait for component to finish rendering
 			this.$nextTick(() => {
 				this.useFocusTrap()
+				this.$emit('opened')
 			})
 		},
 
 		onKeyDown(event) {
-			if (this.shortcutsDisabled) {
+			if (this.shortcutsDisabled || !this.opened) {
 				return
 			}
 
-			// If opened and escape pressed, close
-			if (event.key === 'Escape' && this.opened) {
+			// If escape have been pressed, we close
+			if (event.key === 'Escape') {
 				event.preventDefault()
 
-				/** user cancelled the menu by pressing escape */
-				this.$emit('cancel')
-
-				/** we do NOT fire a close event to differentiate cancel and close */
-				this.opened = false
-				this.$emit('update:open', false)
-
-				// Kill focus trap
-				this.clearFocusTrap()
+				/** User cancelled the menu by pressing escape */
+				this.closeMenu(true)
 			}
 		},
 
