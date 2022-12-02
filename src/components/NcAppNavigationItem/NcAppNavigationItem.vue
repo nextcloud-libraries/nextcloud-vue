@@ -682,6 +682,8 @@ export default {
 			width: $clickable-area;
 			height: $clickable-area;
 			background-size: $icon-size $icon-size;
+			background-repeat: no-repeat;
+			background-position: $icon-margin center;
 		}
 
 		.app-navigation-entry__title {
