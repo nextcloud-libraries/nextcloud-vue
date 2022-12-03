@@ -330,6 +330,7 @@ export default {
 				return {
 					is: 'a',
 					href: this.href,
+					role: 'button',
 					...this.$attrs,
 				}
 			}
