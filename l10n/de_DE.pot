@@ -4,12 +4,12 @@
 # ProfDrJones <jones@fs.cs.hm.edu>, 2020
 # Gustav Gyges, 2021
 # Moritz Hofmann <moritz.hofmann2005@gmail.com>, 2022
-# Mario Siegmann <mario_siegmann@web.de>, 2022
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2022
+# Mario Siegmann <mario_siegmann@web.de>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2022\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2022\n"
 "Language-Team: German (Germany) (https://www.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -76,6 +76,9 @@ msgstr "Objekt bearbeiten"
 
 msgid "Error getting related resources"
 msgstr "Fehler beim Abrufen verwandter Ressourcen"
+
+msgid "Error parsing svg"
+msgstr "Fehler beim Einlesen der SVG"
 
 msgid "External documentation for {title}"
 msgstr "Externe Dokumentation für {title}"
