@@ -202,7 +202,6 @@ button {
 		v-bind="rootElement"
 		:class="buttonClassObject"
 		:aria-label="ariaLabel"
-		:type="nativeType"
 		:disabled="disabled"
 		v-on="$listeners">
 		<span class="button-vue__wrapper">
@@ -321,6 +320,7 @@ export default {
 				return {
 					is: 'router-link',
 					tag: 'button',
+					type: this.nativeType,
 					to: this.to,
 					exact: this.exact,
 					...this.$attrs,
@@ -335,6 +335,7 @@ export default {
 			}
 			return {
 				is: 'button',
+				type: this.nativeType,
 				...this.$attrs,
 			}
 		},
