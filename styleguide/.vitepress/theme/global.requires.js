@@ -1,9 +1,13 @@
+/*
+ * Provide some nextcloud-server functions when using components on the vitepress documentation
+ */
+
 /* eslint-disable-next-line */
 import 'core-js/stable'
 /* eslint-disable-next-line */
 import 'regenerator-runtime/runtime'
 import Vue from 'vue'
-import VTooltip from './../src/directives/Tooltip'
+import VTooltip from '../../../src/directives/Tooltip'
 
 /**
  * From server util.js

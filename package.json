@@ -17,7 +17,7 @@
 		"dev": "vite build --mode development",
 		"watch": "vite build --watch --mode development",
 		"l10n:extract": "node build/extract-l10n.js",
-		"lint": "eslint --ext .mjs,.js,.vue src styleguide",
+		"lint": "eslint --ext .mjs,.js,.vue src",
 		"lint:fix": "eslint --ext .js,.vue src --fix",
 		"test": "vitest run",
 		"test:coverage": "vitest run --coverage",
