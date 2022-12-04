@@ -352,7 +352,7 @@ export default {
 		},
 
 		/**
-		 * Id for the <a> element
+		 * Id for the `<a>` element
 		 */
 		anchorId: {
 			type: String,

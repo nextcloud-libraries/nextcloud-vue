@@ -374,7 +374,8 @@ export default {
 				/**
 				 * Event emitted when something is dropped on the breadcrumb.
 				 *
-				 * @type {null}
+				 * @param {Event} e the drop DOM event
+				 * @param {string} path The path of the breadcrumb
 				 */
 				this.$emit('dropped', e, path)
 			}
