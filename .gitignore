@@ -20,9 +20,6 @@ yarn-error.log*
 # Unit test / coverage reports
 coverage
 
-# vitepress stuff
-styleguide/package-lock.json
-
 # genereated file
 docs/components
 

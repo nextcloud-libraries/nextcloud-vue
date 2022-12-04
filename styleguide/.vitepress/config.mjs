@@ -84,14 +84,26 @@ export default defineConfig({
   },
 
   srcDir: '../docs',
+  outDir: './build',
 
   markdown: {
-    highlight: (str, language, attr) => hljs.highlight(str, { language: language === 'vue' || language === '' ? 'xml' : language}).value
+    highlight: (str, language, attr) => `<pre ${attr} v-pre><code>${hljs.highlight(str, { language: language === 'vue' || language === '' ? 'xml' : language}).value}</code></pre>`
   },
 
   vite: {
     root: docsPath,
     plugins: [ SearchPlugin() ],
-
+    resolve: {
+      alias: [
+        {
+          find: 'vue/server-renderer',
+          replacement: "node_modules/vue/server-renderer/index.mjs"
+        },
+        {
+          find: '@vue/server-renderer',
+          replacement: "node_modules/@vue/server-renderer/dist/server-renderer.esm-bundler.js"
+        }
+      ]
+    }
   }
 })
