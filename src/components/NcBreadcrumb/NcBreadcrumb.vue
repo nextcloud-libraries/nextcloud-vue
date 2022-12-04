@@ -191,8 +191,8 @@ export default {
 			}
 			/**
 			 * Event emitted when something is dropped on the breadcrumb.
-			 *
-			 * @type {null}
+			 * @param {Event} event The DOM drop event
+			 * @param {(string|object)} to The `to` prop or, if not set, the `href` prop
 			 */
 			this.$emit('dropped', e, this.to || this.href)
 			this.$parent.$emit('dropped', e, this.to || this.href)
