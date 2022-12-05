@@ -87,6 +87,8 @@ export default defineConfig({
 
 	srcDir: '../docs',
 	outDir: './build',
+	// TODO: configure netlify to use build dir as root, then remove this option & index.html
+	base: '/build/',
 
 	markdown: {
 		highlight: (str, language, attr) => `<pre ${attr} v-pre><code>${hljs.highlight(str, { language: language === 'vue' || language === '' ? 'xml' : language }).value}</code></pre>`
