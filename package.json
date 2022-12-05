@@ -79,7 +79,7 @@
 	"devDependencies": {
 		"@cypress/vue": "^2.2.4",
 		"@cypress/webpack-dev-server": "^1.8.4",
-		"@cypress/webpack-preprocessor": "5.15.5",
+		"@cypress/webpack-preprocessor": "5.15.6",
 		"@fontsource/roboto": "^4.5.8",
 		"@mdi/svg": "^7.0.96",
 		"@nextcloud/babel-config": "^1.0.0",
