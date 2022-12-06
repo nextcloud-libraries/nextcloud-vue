@@ -2,7 +2,8 @@ import * as path from "path";
 import * as fs from 'fs'
 import { fileURLToPath } from "url";
 import { defineConfig } from "vitepress";
-import { SearchPlugin } from 'vitepress-plugin-search'
+// Not supported with vite4, wait for next release "vitepress-plugin-search": "^1.0.4-alpha.16",
+// import { SearchPlugin } from 'vitepress-plugin-search'
 import PackageJSON from '../../package.json'
 import hljs from 'highlight.js/lib/common'
 
@@ -85,10 +86,10 @@ export default defineConfig({
 		],
 	},
 
-	srcDir: '../docs',
-	outDir: './build',
-	// TODO: configure netlify to use build dir as root, then remove this option & index.html
-	base: '/build/',
+	outDir: '../styleguide',
+	vite: {
+		plugins: [vueDocsPlugin /*, SearchPlugin()*/],
+	},
 
 	markdown: {
 		highlight: (str, language, attr) => `<pre ${attr} v-pre><code>${hljs.highlight(str, { language: language === 'vue' || language === '' ? 'xml' : language }).value}</code></pre>`

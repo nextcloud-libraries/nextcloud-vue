@@ -97,7 +97,7 @@ export default {
 </template>
 
 <script>
-import { directive as ClickOutside } from 'v-click-outside'
+import { directive as ClickOutside } from 'click-outside-vue3'
 import { createFocusTrap } from 'focus-trap'
 
 import excludeClickOutsideClasses from '../../mixins/excludeClickOutsideClasses/index.js'

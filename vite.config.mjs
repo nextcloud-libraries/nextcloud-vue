@@ -1,5 +1,5 @@
 import md5 from 'md5'
-import vue from '@vitejs/plugin-vue2'
+import vue from '@vitejs/plugin-vue'
 import { externals } from 'rollup-plugin-node-externals'
 import browserslistToEsbuild from 'browserslist-to-esbuild'
 import injectProcessEnv from 'rollup-plugin-inject-process-env'

@@ -373,7 +373,7 @@ export default {
 		return {
 			elWidth: 0,
 			ariaExpanded: false,
-			scoping: { [`data-v-${SCOPE_VERSION}`]: '' },
+			scoping: { [`data-v-${process.env.SCOPE_VERSION}`]: '' },
 		}
 	},
 	computed: {
