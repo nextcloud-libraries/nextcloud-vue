@@ -123,6 +123,14 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+		/**
+		 * Set element to return focus to after focus trap deactivation
+		 *
+		 * @type {import('focus-trap').Options['setReturnFocus']}
+		 */
+		setReturnFocus: {
+			required: false,
+		},
 	},
 
 	emits: [
@@ -157,6 +165,7 @@ export default {
 				// Focus will be release when popover be hide
 				escapeDeactivates: false,
 				allowOutsideClick: true,
+				setReturnFocus: this.setReturnFocus,
 				trapStack: getTrapStack(),
 			})
 			this.$focusTrap.activate()
