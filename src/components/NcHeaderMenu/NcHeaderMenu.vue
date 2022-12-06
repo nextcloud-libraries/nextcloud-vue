@@ -242,12 +242,10 @@ export default {
 
 		/**
 		 * Add focus trap for accessibility.
+		 * Shall only be used when all children are mounted
+		 * and available in the DOM. We use $nextTick for that.
 		 */
 		async useFocusTrap() {
-			// wait until all children are mounted and available
-			// in the DOM before focusTrap can be added
-			await this.$nextTick()
-
 			if (this.focusTrap) {
 				return
 			}
