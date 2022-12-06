@@ -60,11 +60,6 @@ export default defineConfig({
 			},
 		},
 	},
-	test: {
-		environment: 'jsdom',
-		setupFiles: resolve(__dirname, './tests/setup.js'),
-		env: processEnvironment,
-	},
 	build: {
 		target: browserslistToEsbuild(),
 		sourcemap: true,
@@ -76,9 +71,6 @@ export default defineConfig({
 			external: [
 				...Object.keys(loadJSON('./package.json').peerDependencies),
 			],
-			output: {
-				chunkFileNames: (n) => n.isEntry ? n.name : `common/${n.name}${n.name.endsWith('.es') ? 'm' : ''}.js`,
-			},
 		},
 		lib: {
 			name: 'NextcloudVue',
@@ -87,5 +79,10 @@ export default defineConfig({
 				return `${entry}.${format === 'es' ? 'esm' : format}.js`
 			},
 		},
+	},
+	test: {
+		environment: 'jsdom',
+		setupFiles: resolve(__dirname, './tests/setup.js'),
+		env: processEnvironment,
 	},
 })

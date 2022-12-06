@@ -129,6 +129,7 @@ export default {
 		 */
 		setReturnFocus: {
 			required: false,
+			type: Object,
 		},
 	},
 

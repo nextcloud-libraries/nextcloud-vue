@@ -5,13 +5,13 @@ import { defineConfig } from "vitepress";
 // Not supported with vite4, wait for next release "vitepress-plugin-search": "^1.0.4-alpha.16",
 // import { SearchPlugin } from 'vitepress-plugin-search'
 import PackageJSON from '../../package.json'
-import hljs from 'highlight.js/lib/common'
+import vueLiveMd from './vue-live-md-it.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const version = PackageJSON.version
-const docsPath = path.resolve(__dirname, '../docs')
+const docsPath = path.resolve(__dirname, '..')
 
 /**
  * Generate list of all components grouped by functionality for sidebar menu
@@ -47,6 +47,18 @@ function getComponents() {
 				].map(file => ({ text: file, link: `/components/${file}` }))
 			}
 		})
+}
+
+
+// Plugin for stripping out <docs> sections from vue files
+const vueDocsPlugin = {
+	name: 'vue-i18n',
+	transform(code, id) {
+		if (!/vue&type=doc/.test(id)) {
+			return
+		}
+		return 'export default ""'
+	},
 }
 
 export default defineConfig({
@@ -92,23 +104,8 @@ export default defineConfig({
 	},
 
 	markdown: {
-		highlight: (str, language, attr) => `<pre ${attr} v-pre><code>${hljs.highlight(str, { language: language === 'vue' || language === '' ? 'xml' : language }).value}</code></pre>`
+		config(md){
+			md.use(vueLiveMd)
+		},
 	},
-
-	vite: {
-		root: docsPath,
-		plugins: [SearchPlugin()],
-		resolve: {
-			alias: [
-				{
-					find: 'vue/server-renderer',
-					replacement: "node_modules/vue/server-renderer/index.mjs"
-				},
-				{
-					find: '@vue/server-renderer',
-					replacement: "node_modules/@vue/server-renderer/dist/server-renderer.esm-bundler.js"
-				}
-			]
-		}
-	}
 })

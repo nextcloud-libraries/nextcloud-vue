@@ -40,10 +40,12 @@ General purpose multiselect component.
 </template>
 
 <script>
-import GenRandomId from '../../utils/GenRandomId.js'
-
 const getRandomId = () => {
-	return `select-${GenRandomId()}`
+	const id = Math.random()
+                .toString(36)
+                .replace(/[^a-z]+/g, '')
+                .slice(0, length || 5)
+	return `select-${id}`
 }
 
 const selectArray = [
@@ -202,10 +204,12 @@ parent container is limited to `350px`
 </template>
 
 <script>
-import GenRandomId from '../../utils/GenRandomId.js'
-
 const getRandomId = () => {
-	return `select-${GenRandomId()}`
+	const id = Math.random()
+                .toString(36)
+                .replace(/[^a-z]+/g, '')
+                .slice(0, length || 5)
+	return `select-${id}`
 }
 
 const data1 = {
@@ -318,10 +322,12 @@ export default {
 import AccountGroup from '@mdi/svg/svg/account-group.svg?raw'
 import Email from '@mdi/svg/svg/email.svg?raw'
 
-import GenRandomId from '../../utils/GenRandomId.js'
-
 const getRandomId = () => {
-	return `select-${GenRandomId()}`
+	const id = Math.random()
+                .toString(36)
+                .replace(/[^a-z]+/g, '')
+                .slice(0, length || 5)
+	return `select-${id}`
 }
 
 const selectArray = [

@@ -23,8 +23,8 @@
 		"test:coverage": "vitest run --coverage",
 		"stylelint": "stylelint src/**/*.vue src/**/*.scss src/**/*.css",
 		"stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix",
-		"styleguide": "concurrently \"vue-docgen --watch\" \"cd styleguide && npm ci && npx vitepress dev\"",
-		"styleguide:build": "vue-docgen && cd styleguide && npm ci && npx vitepress build",
+		"styleguide": "npm run build && concurrently \"vue-docgen --watch\" \"vitepress dev docs\"",
+		"styleguide:build": "npm run build && vue-docgen && vitepress build docs",
 		"cypress": "cypress run --component",
 		"cypress:gui": "cypress open --component",
 		"cypress:update-snapshots": "cypress run --component --spec cypress/visual/**/*.cy.js --env type=base --config screenshotsFolder=cypress/snapshots/base"
@@ -113,7 +113,8 @@
 		"vitest": "^0.25.7",
 		"vitepress": "^1.0.0-alpha.31",
 		"vue-docgen-cli": "^4.56.1",
-		"vue-eslint-parser": "^9.1.0"
+		"vue-eslint-parser": "^9.1.0",
+		"vue-live": "^2.3.2"
 	},
 	"browserslist": [
 		"extends @nextcloud/browserslist-config"

@@ -421,14 +421,14 @@ export default {
 				<SelectColor :size="20" />
 			</template>
 
-			<NcActionButton v-if="current" close-after-click @click="define(undefined)">
+			<NcActionButton v-if="current" close-after-click @click="define()">
 				<template #icon>
 					<Delete :size="20" />
 				</template>
 				Remove
 			</NcActionButton>
 
-			<NcActionButton close-after-click @click="define(row)" v-for="row in types" :key="`type-icon--${row}`">
+			<NcActionButton v-for="row in types" close-after-click @click="define(row)" :key="`type-icon--${row}`">
 				<template #icon>
 					<CheckboxMarkedCircleOutline v-if="row === current" :size="20" />
 					<SelectColor v-else :size="20" />
@@ -438,14 +438,14 @@ export default {
 		</NcActions>
 
 		<NcActions :type="current" menu-title="Choose a type">
-			<NcActionButton v-if="current" close-after-click @click="define(undefined)">
+			<NcActionButton v-if="current" close-after-click @click="define()">
 				<template #icon>
 					<Delete :size="20" />
 				</template>
 				Remove
 			</NcActionButton>
 
-			<NcActionButton close-after-click @click="define(row)" v-for="row in types" :key="`type-text--${row}`">
+			<NcActionButton v-for="row in types" close-after-click @click="define(row)" :key="`type-text--${row}`">
 				<template #icon>
 					<CheckboxMarkedCircleOutline v-if="row === current" :size="20" />
 					<SelectColor v-else :size="20" />
@@ -459,14 +459,14 @@ export default {
 				<SelectColor :size="20" />
 			</template>
 
-			<NcActionButton v-if="current" close-after-click @click="define(undefined)">
+			<NcActionButton v-if="current" close-after-click @click="define()">
 				<template #icon>
 					<Delete :size="20" />
 				</template>
 				Remove
 			</NcActionButton>
 
-			<NcActionButton close-after-click @click="define(row)" v-for="row in types" :key="`type-icon-text--${row}`">
+			<NcActionButton v-for="row in types" close-after-click @click="define(row)" :key="`type-icon-text--${row}`">
 				<template #icon>
 					<CheckboxMarkedCircleOutline v-if="row === current" :size="20" />
 					<SelectColor v-else :size="20" />
@@ -504,7 +504,7 @@ export default {
 		}
 	},
 	methods: {
-		define(row) {
+		define(row = undefined) {
 			this.current = row
 		}
 	}
@@ -633,7 +633,7 @@ export default {
 		 */
 		boundariesElement: {
 			type: Element,
-			default: () => document.querySelector('body'),
+			default: () => document?.querySelector('body'),
 		},
 
 		/**
@@ -777,7 +777,7 @@ export default {
 		// this will prevent issues with input being unfocused
 		// on mouse move
 		onMouseFocusAction(event) {
-			if (document.activeElement === event.target) {
+			if (document?.activeElement === event.target) {
 				return
 			}
 

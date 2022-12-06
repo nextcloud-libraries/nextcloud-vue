@@ -30,7 +30,7 @@ General purpose button component. See props for different options.
 ### Custom icon slot
 To be used with `vue-material-design-icons` only. For icon classes use the `default-icon` slot.
 It can be used with one or multiple actions.
-```
+```vue
 <template>
 <div class="wrapper">
 	<!-- Style selector -->

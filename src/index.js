@@ -19,7 +19,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import * as NcComponents from './components/index.js'
+import * as components from './components/index.js'
+import * as directives from './directives/index.js'
 
 export * from './components/index.js'
 export * from './functions/index.js'
@@ -27,14 +28,23 @@ export * from './directives/index.js'
 export * from './mixins/index.js'
 export * from './a11y/index.js'
 
-// Vue plugin to install all components using `Vue.use(NextcloudVue)`
-export const NextcloudVue = {
+export const NcComponents = components
+export const NcDirectives = directives
+
+// Vue plugin to install all components using `app.use(NcVuePlugin)`
+export const NcVuePlugin = {
 	/**
-	 * @param {object} Vue The vue instance
+	 * @param {object} app The vue application
+	 * @param {object} options Options to pass to `app.vue()`
 	 */
-	install: Vue => {
-		Object.values(NcComponents).forEach(component => {
-			Vue.component(component.name, component)
+	install(app, options) {
+		Object.keys(components).forEach(key => {
+			// eslint-disable-next-line import/namespace
+			app.component(components[key]?.name || key, components[key])
+		})
+		Object.keys(directives).forEach(key => {
+			// eslint-disable-next-line import/namespace
+			app.directive(directives[key]?.name || key, directives[key])
 		})
 	},
 }

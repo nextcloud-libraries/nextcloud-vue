@@ -41,7 +41,6 @@ You can use all the properties from https://vue-multiselect.js.org that are not 
 </template>
 
 <script>
-import NcMultiselect from '../index'
 export default {
 	data() {
 		return { value1: '2', value2: ['2'], options: ['0', '1', '2', '3', '4'] }
@@ -73,7 +72,6 @@ You can either use the exact object or the track-by key to match against your op
 </template>
 
 <script>
-import NcMultiselect from '../index'
 const options = [
 	{ id: 1, label: 'Option 1' },
 	{ id: 2, label: 'Option 2' },
@@ -101,7 +99,6 @@ export default {
 </template>
 
 <script>
-import NcMultiselect from '../index'
 export default {
 	data() {
 		return {
@@ -136,8 +133,6 @@ Example here: `displayName`
 </template>
 
 <script>
-import NcMultiselect from '../index'
-
 // Building fake data for the docs
 const options = ['admin', 'user1', 'user2', 'guest', 'group1']
 const formattedOptions = options.map(item => {

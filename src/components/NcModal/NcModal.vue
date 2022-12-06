@@ -87,14 +87,7 @@ export default {
 	</div>
 </template>
 <script>
-import NcButton from '../NcButton/index.js'
-import NcTextField from '../NcTextField/index.js'
-
 export default {
-	components: {
-		NcButton,
-		NcTextField,
-	},
 	data() {
 		return {
 			modal: false,
@@ -553,9 +546,9 @@ export default {
 		if (this.container) {
 			if (this.container === 'body') {
 				// force mount the component to body
-				document.body.insertBefore(this.$el, document.body.lastChild)
+				document?.body.insertBefore(this.$el, document?.body.lastChild)
 			} else {
-				const container = document.querySelector(this.container)
+				const container = document?.querySelector(this.container)
 				container.appendChild(this.$el)
 			}
 		}

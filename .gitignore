@@ -24,8 +24,7 @@ coverage
 docs/components
 
 # Docs compiled build
-styleguide/build/
-styleguide/index.html
+styleguide/*
 
 # Cypress files
 cypress/videos
