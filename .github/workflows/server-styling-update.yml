@@ -16,7 +16,7 @@ jobs:
         run: |
           cd styleguide/assets
           # Fix img css import
-          curl https://nextcloud.github.io/server/apps/theming/css/default.css | sed 's|/core/img|./img|g' > default.css
+          curl https://nextcloud.github.io/server/apps/theming/css/default.css | sed 's|/apps/theming/img|./img|g' > default.css
           # Fix icons and img css import
           curl https://nextcloud.github.io/server/core/css/server.css | sed 's|../../dist/icons.css|./icons.css|g' | sed 's|../img|./img|g' > server.css
           curl https://nextcloud.github.io/server/dist/icons.css --output icons.css
