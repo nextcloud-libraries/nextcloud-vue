@@ -796,7 +796,7 @@ export default {
 	--vs-state-disabled-cursor: not-allowed;
 
 	/* Borders */
-	--vs-border-color: var(--color-border-dark);
+	--vs-border-color: var(--color-border-maxcontrast);
 	--vs-border-width: 2px;
 	--vs-border-style: solid;
 	--vs-border-radius: var(--border-radius-large);
