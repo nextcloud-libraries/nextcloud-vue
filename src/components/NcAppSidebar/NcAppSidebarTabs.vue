@@ -282,6 +282,7 @@ export default {
 .app-sidebar-tabs {
 	display: flex;
 	flex-direction: column;
+	min-height: 0;
 	flex: 1 1 100%;
 
 	&__nav {
