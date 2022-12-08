@@ -321,7 +321,7 @@ export default {
 		font-size: var(--default-font-size);
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
-		border: 2px solid var(--color-border-dark);
+		border: 2px solid var(--color-border-maxcontrast);
 		height: 36px !important;
 		border-radius: var(--border-radius-large);
 		text-overflow: ellipsis;
