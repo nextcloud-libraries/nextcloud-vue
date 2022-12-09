@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.2.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.2.0) (2022-12-09)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.1.0...v7.2.0)
+
+### :rocket: Enhancements
+
+- Add NcHeaderMenu [\#3489](https://github.com/nextcloud/nextcloud-vue/pull/3489) ([skjnldsv](https://github.com/skjnldsv))
+
+### :bug: Fixed bugs
+
+- Add button role for NcButton with href [\#3532](https://github.com/nextcloud/nextcloud-vue/pull/3532) ([Pytal](https://github.com/Pytal))
+- Fix focus returning to top of page instead of actions toggle button [\#3530](https://github.com/nextcloud/nextcloud-vue/pull/3530) ([Pytal](https://github.com/Pytal))
+- Fix icon repeat and position for AppNavigationItem [\#3539](https://github.com/nextcloud/nextcloud-vue/pull/3539) ([skjnldsv](https://github.com/skjnldsv))
+- Fix jsdoc: Add missing documentation for events [\#3545](https://github.com/nextcloud/nextcloud-vue/pull/3545) ([susnux](https://github.com/susnux))
+- Increase input field border contrast [\#3551](https://github.com/nextcloud/nextcloud-vue/pull/3551) ([Pytal](https://github.com/Pytal))
+- Increase NcSelect border contrast [\#3552](https://github.com/nextcloud/nextcloud-vue/pull/3552) ([Pytal](https://github.com/Pytal))
+- Revert "fix sidebar scrolling for small displays" [\#3559](https://github.com/nextcloud/nextcloud-vue/pull/3559) ([skjnldsv](https://github.com/skjnldsv))
+- Scope global \#content styles via extra class [\#3537](https://github.com/nextcloud/nextcloud-vue/pull/3537) ([st3iny](https://github.com/st3iny))
+
 ## [v7.1.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.1.0) (2022-11-29)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.0.1...v7.1.0)
@@ -760,7 +779,7 @@ Releasing this patch to re-trigger an npm package build since last release githu
 - Bump ini from 1.3.5 to 1.3.7 - [\#1631](https://github.com/nextcloud/nextcloud-vue/issues/1631) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
 - Bump vue2-datepicker from 3.8.1 to 3.8.2 - [\#1624](https://github.com/nextcloud/nextcloud-vue/issues/1624) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
 - Bump vue-color from 2.7.1 to 2.8.0 - [\#1635](https://github.com/nextcloud/nextcloud-vue/issues/1635) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
-- Bump vue-eslint-parser from 7.1.1 to 7.3.0 - [\#1619](https://github.com/nextcloud/nextcloud-vue/issues/1619) [\#1636](https://github.com/nextcloud/nextcloud-vue/issues/1636) ([Julius Härtl](jus@bitgrid.net))
+- Bump vue-eslint-parser from 7.2.0 to 7.3.0 - [\#1619](https://github.com/nextcloud/nextcloud-vue/issues/1619) [\#1636](https://github.com/nextcloud/nextcloud-vue/issues/1636) ([Julius Härtl](jus@bitgrid.net))
 - Bump vue-styleguidist from 4.34.1 to 4.34.2 - [\#1622](https://github.com/nextcloud/nextcloud-vue/issues/1622) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
 - Bump @vue/test-utils from 1.1.1 to 1.1.2 - [\#1637](https://github.com/nextcloud/nextcloud-vue/issues/1637) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
 - Bump webpack-merge from 5.4.0 to 5.7.0 - [\#1625](https://github.com/nextcloud/nextcloud-vue/issues/1625) [\#1632](https://github.com/nextcloud/nextcloud-vue/issues/1632) [\#1634](https://github.com/nextcloud/nextcloud-vue/issues/1634) ([dependabot[bot]](49699333+dependabot[bot]@users.noreply.github.com))
