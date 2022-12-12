@@ -6,10 +6,11 @@
 # Juliano Beltran, 2021
 # Flávio Veras <flaviove@gmail.com>, 2022
 # Vinicius Reis, 2022
+# Caio Facchinato <caiofs@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Vinicius Reis, 2022\n"
+"Last-Translator: Caio Facchinato <caiofs@gmail.com>, 2022\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_BR\n"
@@ -75,6 +76,9 @@ msgstr "Editar item"
 
 msgid "Error getting related resources"
 msgstr "Erro ao obter recursos relacionados"
+
+msgid "Error parsing svg"
+msgstr "Erro ao analisar svg"
 
 msgid "External documentation for {title}"
 msgstr "Documentação externa para {title}"
@@ -190,6 +194,9 @@ msgstr "Não foi possível pesquisar o grupo"
 msgid "Undo changes"
 msgstr "Desfazer modificações"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
 msgstr ""
-"Escreva mensagem, @ para mencionar alguém, : para autocompleção emoji..."
+"Escreva mensagens, use \"@\" para mencionar algum, use \":\" for "
+"autocompletar emoji …"
