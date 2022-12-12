@@ -28,6 +28,11 @@ function expand() {
 </script>
 
 <style>
+#content-vue {
+  position: relative;
+  height: 300px;
+}
+
 .preview-code {
   display: flex;
   flex-flow: column wrap;
