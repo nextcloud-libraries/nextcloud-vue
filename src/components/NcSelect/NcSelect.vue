@@ -487,7 +487,6 @@ export default {
 			'select--no-wrap': noWrap,
 		}"
 		v-bind="propsToForward"
-		v-on="$listeners"
 		@search="searchString => search = searchString">
 		<template #open-indicator="{ attributes }">
 			<ChevronDown v-bind="attributes"
@@ -519,7 +518,7 @@ export default {
 		<template #no-options>
 			{{ t('No results') }}
 		</template>
-		<template v-for="(_, name) in $scopedSlots" #[name]="data">
+		<template v-for="(_, name) in $slots" #[name]="data">
 			<!-- @slot Any combination of slots from https://vue-select.org/api/slots.html -->
 			<slot :name="name" v-bind="data" />
 		</template>
@@ -891,6 +890,7 @@ export default {
 			const propsToForward = {
 				...initialPropsToForward,
 				calculatePosition: this.localCalculatePosition,
+				...this.$attrs,
 				label: this.localLabel,
 			}
 
