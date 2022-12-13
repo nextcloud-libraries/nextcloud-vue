@@ -14,7 +14,7 @@ jobs:
 
       - name: Download css
         run: |
-          cd styleguide/assets
+          cd docs/.vitepress/theme/assets
           # Fix img css import
           curl https://nextcloud.github.io/server/apps/theming/css/default.css | sed 's|/apps/theming/img|./img|g' > default.css
           # Fix icons and img css import
