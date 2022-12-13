@@ -115,6 +115,7 @@ export default {
 			'avatardiv--unknown': userDoesNotExist,
 			'avatardiv--with-menu': hasMenu
 		}"
+		:title="title"
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper"
 		:tabindex="hasMenu ? '0' : undefined"
@@ -325,6 +326,18 @@ export default {
 			type: String,
 			default: null,
 		},
+
+		/**
+		 * Declares a native tooltip when not null
+		 *
+		 * requires disableTooltip not to be set to true
+		 * requires tooltipMessage not to be provided
+		 */
+		title: {
+			type: String,
+			default: null,
+		},
+
 		/**
 		 * Declares username is not a user's name, when true.
 		 * Prevents loading user's avatar from server and forces generating colored initials,
@@ -445,7 +458,7 @@ export default {
 			}
 		},
 		tooltip() {
-			if (this.disableTooltip) {
+			if (this.disableTooltip || this.title) {
 				return false
 			}
 			if (this.tooltipMessage) {

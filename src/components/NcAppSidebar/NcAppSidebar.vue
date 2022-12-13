@@ -195,7 +195,8 @@ include a standard-header like it's used by the files app.
 								<!-- main title -->
 								<h2 v-show="!titleEditable"
 									v-linkify="{text: title, linkify: linkifyTitle}"
-									v-tooltip.auto="titleTooltip"
+									:aria-label="titleTooltip"
+									:title="titleTooltip"
 									class="app-sidebar-header__maintitle"
 									:tabindex="titleEditable ? 0 : undefined"
 									@click.self="editTitle">
@@ -231,7 +232,8 @@ include a standard-header like it's used by the files app.
 							</div>
 							<!-- secondary title -->
 							<p v-if="subtitle.trim() !== ''"
-								v-tooltip.auto="subtitleTooltip"
+								:aria-label="subtitleTooltip"
+								:title="subtitleTooltip"
 								class="app-sidebar-header__subtitle">
 								{{ subtitle }}
 							</p>
@@ -239,7 +241,7 @@ include a standard-header like it's used by the files app.
 					</div>
 				</div>
 
-				<NcButton v-tooltip.auto="closeTranslated"
+				<NcButton :title="closeTranslated"
 					:aria-label="closeTranslated"
 					type="tertiary"
 					class="app-sidebar__close"

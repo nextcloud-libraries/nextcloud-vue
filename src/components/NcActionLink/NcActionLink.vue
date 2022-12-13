@@ -53,6 +53,7 @@ export default {
 			:href="href"
 			:aria-label="ariaLabel"
 			:target="target"
+			:title="title"
 			class="action-link focusable"
 			rel="nofollow noreferrer noopener"
 			@click="onClick">
@@ -132,6 +133,13 @@ export default {
 			validator: value => {
 				return ['_blank', '_self', '_parent', '_top'].indexOf(value) > -1
 			},
+		},
+		/**
+		 * Declares a native tooltip when not null
+		 */
+		title: {
+			type: String,
+			default: null,
 		},
 	},
 }

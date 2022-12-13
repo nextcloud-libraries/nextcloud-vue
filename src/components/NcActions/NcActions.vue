@@ -939,6 +939,7 @@ export default {
 					],
 					attrs: {
 						'aria-label': action?.componentOptions?.propsData?.ariaLabel || action?.componentOptions?.children?.[0]?.text,
+						title: action?.componentOptions?.propsData?.title,
 					},
 					ref: action?.data?.ref,
 					props: {
