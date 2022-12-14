@@ -21,6 +21,7 @@
  */
 
 export { default as NcActionButton } from './NcActionButton/index.js'
+export { default as NcActionButtonGroup } from './NcActionButtonGroup/index.js'
 export { default as NcActionCaption } from './NcActionCaption/index.js'
 export { default as NcActionCheckbox } from './NcActionCheckbox/index.js'
 export { default as NcActionInput } from './NcActionInput/index.js'
