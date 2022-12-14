@@ -1,8 +1,9 @@
 import md5 from 'md5'
 import vue from '@vitejs/plugin-vue'
-import { externals } from 'rollup-plugin-node-externals'
+import replace from '@rollup/plugin-replace'
+import commonjs from '@rollup/plugin-commonjs'
 import browserslistToEsbuild from 'browserslist-to-esbuild'
-import injectProcessEnv from 'rollup-plugin-inject-process-env'
+import { externals } from 'rollup-plugin-node-externals'
 import { loadTranslations } from './resources/translations.mjs'
 import { fileURLToPath, URL } from 'url'
 import { dirname, resolve } from 'path'
@@ -21,9 +22,9 @@ const SCOPE_VERSION = md5(appVersion).slice(0, 7)
 
 console.info('This build version hash is', SCOPE_VERSION, '\n')
 
-const processEnvironment = {
-	TRANSLATIONS: loadTranslations(resolve(__dirname, './l10n')),
-	SCOPE_VERSION,
+const globalVariables = {
+	TRANSLATIONS: JSON.stringify(loadTranslations(resolve(__dirname, './l10n'))),
+	SCOPE_VERSION: JSON.stringify(SCOPE_VERSION),
 }
 
 // Plugin for stripping out <docs> sections from vue files
@@ -65,16 +66,29 @@ export default defineConfig({
 		sourcemap: true,
 		rollupOptions: {
 			plugins: [
+				commonjs(),
 				externals(),
-				injectProcessEnv(processEnvironment),
+				replace({
+					preventAssignment: true,
+					delimiters: ['\\b', '\\b'],
+					include: 'src/**/*',
+					values: globalVariables,
+				}),
 			],
 			external: [
 				...Object.keys(loadJSON('./package.json').peerDependencies),
+				...Object.keys(loadJSON('./package.json').dependencies),
 			],
+			output: {
+				globals: {
+					vue: 'vue',
+				},
+			},
 		},
 		lib: {
 			name: 'NextcloudVue',
 			entry: resolve(__dirname, 'src/index.js'),
+			formats: ['es', 'cjs'],
 			fileName: (format, entry) => {
 				return `${entry}.${format === 'es' ? 'esm' : format}.js`
 			},
@@ -83,6 +97,5 @@ export default defineConfig({
 	test: {
 		environment: 'jsdom',
 		setupFiles: resolve(__dirname, './tests/setup.js'),
-		env: processEnvironment,
 	},
 })

@@ -238,7 +238,6 @@ import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import l10n from '../../mixins/l10n.js'
-
 import { Multiselect as VueMultiselect } from 'vue-multiselect'
 
 if (!PRODUCTION) {
@@ -368,7 +367,7 @@ export default {
 		return {
 			elWidth: 0,
 			ariaExpanded: false,
-			scoping: { [`data-v-${process.env.SCOPE_VERSION}`]: '' },
+			scoping: { [`data-v-${SCOPE_VERSION}`]: '' },
 		}
 	},
 	computed: {

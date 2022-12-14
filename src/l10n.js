@@ -4,37 +4,35 @@ const gtBuilder = getGettextBuilder()
 	.detectLocale()
 
 // Decompress Translations to gettext format and add to gtBuilder
-if (Array.isArray(process.env.TRANSLATIONS)) {
-	process.env.TRANSLATIONS.forEach((lang) => {
-		const translations = {}
+TRANSLATIONS.forEach((lang) => {
+	const translations = {}
 
-		for (const key in lang.translations) {
-		// Plural
-			if (lang.translations[key].pluralId) {
-				translations[key] = {
-					msgid: key,
-					msgid_plural: lang.translations[key].pluralId,
-					msgstr: lang.translations[key].msgstr,
-				}
-				continue
-			}
-
-			// Singular
+	for (const key in lang.translations) {
+	// Plural
+		if (lang.translations[key].pluralId) {
 			translations[key] = {
 				msgid: key,
-				msgstr: [
-					lang.translations[key],
-				],
+				msgid_plural: lang.translations[key].pluralId,
+				msgstr: lang.translations[key].msgstr,
 			}
+			continue
 		}
 
-		gtBuilder.addTranslation(lang.locale, {
-			translations: {
-				'': translations,
-			},
-		})
+		// Singular
+		translations[key] = {
+			msgid: key,
+			msgstr: [
+				lang.translations[key],
+			],
+		}
+	}
+
+	gtBuilder.addTranslation(lang.locale, {
+		translations: {
+			'': translations,
+		},
 	})
-}
+})
 
 const gt = gtBuilder.build()
 
