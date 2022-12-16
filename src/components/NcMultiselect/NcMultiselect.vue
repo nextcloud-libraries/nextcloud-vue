@@ -247,6 +247,10 @@ import l10n from '../../mixins/l10n.js'
 
 import VueMultiselect from 'vue-multiselect'
 
+if (!PRODUCTION) {
+	console.warn('NcMultiselect usage has been deprecated. Use NcSelect instead.')
+}
+
 export default {
 	name: 'NcMultiselect',
 	components: {
