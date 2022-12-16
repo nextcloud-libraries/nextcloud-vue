@@ -147,6 +147,7 @@ module.exports = async () => {
 	const translations = await loadTranslations(path.resolve(__dirname, './l10n'))
 
 	config.plugins.push(new DefinePlugin({
+		PRODUCTION: JSON.stringify(!isDev),
 		SCOPE_VERSION,
 		TRANSLATIONS: JSON.stringify(translations),
 	}))
