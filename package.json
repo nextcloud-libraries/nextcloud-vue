@@ -93,7 +93,7 @@
 		"babel-loader-exclude-node-modules-except": "^1.0.3",
 		"css-loader": "~6.7.1",
 		"cypress": "^9.7.0",
-		"cypress-visual-regression": "^1.5.0",
+		"cypress-visual-regression": "^2.0.1",
 		"eslint-plugin-cypress": "^2.11.1",
 		"file-loader": "^6.2.0",
 		"gettext-extractor": "^3.5.4",
