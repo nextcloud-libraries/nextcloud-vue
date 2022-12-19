@@ -471,9 +471,9 @@ $spacing: 4px;
 		position: relative;
 		align-items: center;
 		user-select: none;
-		height: $clickable-area;
+		min-height: $clickable-area;
 		border-radius: $clickable-area;
-		padding: 0 $icon-margin;
+		padding: 4px $icon-margin;
 		margin: 0 #{-$icon-margin};
 
 		&, * {
