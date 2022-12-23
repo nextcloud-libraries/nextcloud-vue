@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.3.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.3.0) (2022-12-23)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.2.0...v7.3.0)
+
+### :rocket: Enhancements
+
+- Add title prop to components for native tooltips [\#3569](https://github.com/nextcloud/nextcloud-vue/pull/3569) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+- Allow accessible labels for NcActionInput [\#3517](https://github.com/nextcloud/nextcloud-vue/pull/3517) ([Pytal](https://github.com/Pytal))
+
+### :bug: Fixed bugs
+
+- Fix CheckboxHeight [\#3584](https://github.com/nextcloud/nextcloud-vue/pull/3584) ([jotoeri](https://github.com/jotoeri))
+- Add more space for unread counter so its aligned with action menu [\#3572](https://github.com/nextcloud/nextcloud-vue/pull/3572) ([GretaD](https://github.com/GretaD))
+
+
 ## [v7.2.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.2.0) (2022-12-09)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.1.0...v7.2.0)
