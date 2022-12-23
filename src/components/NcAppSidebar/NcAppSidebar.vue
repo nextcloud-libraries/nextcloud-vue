@@ -612,7 +612,7 @@ export default {
 $sidebar-min-width: 300px;
 $sidebar-max-width: 500px;
 
-$desc-vertical-padding: 18px;
+$desc-vertical-padding: 8px;
 $desc-vertical-padding-compact: 10px;
 $desc-input-padding: 7px;
 
@@ -621,7 +621,7 @@ $desc-title-height: 30px;
 $desc-subtitle-height: 22px;
 $desc-height: $desc-title-height + $desc-subtitle-height;
 
-$top-buttons-spacing: 6px;
+$top-buttons-spacing: 8px;
 
 /*
 	Sidebar: to be used within #content
