@@ -73,6 +73,9 @@ msgstr "Edytuj element"
 msgid "Error getting related resources"
 msgstr "Błąd podczas pobierania powiązanych zasobów"
 
+msgid "Error parsing svg"
+msgstr "Błąd podczas analizowania svg"
+
 msgid "External documentation for {title}"
 msgstr "Dokumentacja zewnętrzna dla {title}"
 
