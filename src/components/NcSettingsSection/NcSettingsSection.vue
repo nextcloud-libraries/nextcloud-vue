@@ -49,6 +49,7 @@ This component is to be used in the settings section of nextcloud.
 				:href="docUrl"
 				class="settings-section__info"
 				role="note"
+				:aria-label="docTitleTranslated"
 				:title="docTitleTranslated">
 				<HelpCircle :size="20" />
 			</a>
