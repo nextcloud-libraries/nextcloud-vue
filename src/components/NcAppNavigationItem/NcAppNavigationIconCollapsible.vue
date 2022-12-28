@@ -63,7 +63,7 @@ export default {
 
 	computed: {
 		labelButton() {
-			return open ? t('Close') : t('Open')
+			return this.open ? t('Collapse menu') : t('Open menu')
 		},
 	},
 
