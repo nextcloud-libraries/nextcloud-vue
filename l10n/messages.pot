@@ -38,9 +38,6 @@ msgstr ""
 msgid "Clear text"
 msgstr ""
 
-msgid "Close"
-msgstr ""
-
 msgid "Close modal"
 msgstr ""
 
@@ -48,6 +45,9 @@ msgid "Close navigation"
 msgstr ""
 
 msgid "Close sidebar"
+msgstr ""
+
+msgid "Collapse menu"
 msgstr ""
 
 msgid "Confirm changes"
@@ -107,10 +107,10 @@ msgstr ""
 msgid "Objects"
 msgstr ""
 
-msgid "Open"
+msgid "Open link to \"{resourceTitle}\""
 msgstr ""
 
-msgid "Open link to \"{resourceTitle}\""
+msgid "Open menu"
 msgstr ""
 
 msgid "Open navigation"
