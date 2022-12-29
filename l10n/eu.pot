@@ -3,10 +3,11 @@
 # Asier Iturralde Sarasola <asier.iturralde@gmail.com>, 2020
 # Thadah D. Denyse <juchuf@gmail.com>, 2021
 # Unai Tolosa Pontesta <utolosa002@gmail.com>, 2022
+# Alexander Gabilondo <alexgabi@disroot.org>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Unai Tolosa Pontesta <utolosa002@gmail.com>, 2022\n"
+"Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>, 2022\n"
 "Language-Team: Basque (https://www.transifex.com/nextcloud/teams/64236/eu/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: eu\n"
@@ -71,6 +72,9 @@ msgstr "Editatu elementua"
 
 msgid "Error getting related resources"
 msgstr "Errorea erlazionatutako baliabideak lortzerakoan"
+
+msgid "Error parsing svg"
+msgstr "Errore bat gertatu da svg-a analizatzean"
 
 msgid "External documentation for {title}"
 msgstr "Kanpoko dokumentazioa {title}(r)entzat"
@@ -186,5 +190,9 @@ msgstr "Ezin izan da taldea bilatu"
 msgid "Undo changes"
 msgstr "Aldaketak desegin"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
-msgstr "Idatzi mezua, @ norbait aipatzeko, : emojia automatikoki idazteko"
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
+msgstr ""
+"Idatzi mezua, erabili \"@\" norbait aipatzeko, erabili \":\" emojiak "
+"automatikoki osatzeko..."
