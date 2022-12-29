@@ -104,6 +104,13 @@ export default {
 		 * @return {string}
 		 */
 		genSelectTemplate(value) {
+			// The value returned by this function will replace the trigger '@'
+			// and the search text, so when there is no match we simply return
+			// '@' and the text.
+			if (typeof value === 'undefined') {
+				return `${this.autocompleteTribute.current.collection.trigger}${this.autocompleteTribute.current.mentionText}`
+			}
+
 			const data = this.userData[value]
 
 			// Fallback to @mention in case no data matches
