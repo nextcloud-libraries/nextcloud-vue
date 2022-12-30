@@ -6,13 +6,13 @@
 # Toms Project <tom@projectoms.com>, 2020
 # tranxde, 2020
 # ous50, 2021
-# Jack Frost, 2022
 # berlin2123 <berlinli222@163.com>, 2022
 # Mmmm Heee, 2022
+# ii ii, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mmmm Heee, 2022\n"
+"Last-Translator: ii ii, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/nextcloud/teams/64236/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_CN\n"
@@ -77,6 +77,9 @@ msgstr "编辑项目"
 
 msgid "Error getting related resources"
 msgstr "获取相关资源时出错"
+
+msgid "Error parsing svg"
+msgstr "解析 svg 时出错"
 
 msgid "External documentation for {title}"
 msgstr "{title}的外部文档"
@@ -192,5 +195,7 @@ msgstr "无法搜索分组"
 msgid "Undo changes"
 msgstr "撤销更改"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
-msgstr "写信息，@ 提到某人，: 用于表情符号自动完成 ..."
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
+msgstr "写信息，使用\"@\"来提及某人，使用\":\"进行表情符号自动完成 ..."
