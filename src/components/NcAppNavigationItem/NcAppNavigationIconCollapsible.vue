@@ -77,7 +77,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.icon-collapse {
+.button-vue.icon-collapse {
 	position: absolute;
 	z-index: 105; // above a, under button
 	color: var(--color-main-text);
