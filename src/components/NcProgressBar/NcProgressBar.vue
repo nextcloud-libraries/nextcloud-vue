@@ -102,12 +102,15 @@ export default {
 
 .progress-bar {
 	display: block;
+	height: var(--progress-bar-height);
 	width: 100%;
-	background: var(--color-background-dark);
+	overflow: hidden;
 	border: 0;
 	padding: 0;
-	height: var(--progress-bar-height);
+	background: var(--color-background-dark);
 	border-radius: calc(var(--progress-bar-height) / 2);
+
+	// Browser specific rules
 	&::-webkit-progress-bar {
 		height: var(--progress-bar-height);
 	}
