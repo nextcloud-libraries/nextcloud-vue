@@ -115,11 +115,11 @@ export default {
 		height: var(--progress-bar-height);
 	}
 	&::-webkit-progress-value {
-		background: linear-gradient(40deg, var(--color-primary-element) 0%, var(--color-primary-element-light) 100%);
+		background: var(--gradient-primary-background);
 		border-radius: calc(var(--progress-bar-height) / 2);
 	}
 	&::-moz-progress-bar {
-		background: linear-gradient(40deg, var(--color-primary-element) 0%, var(--color-primary-element-light) 100%);
+		background: var(--gradient-primary-background);
 		border-radius: calc(var(--progress-bar-height) / 2);
 	}
 	&--error {
