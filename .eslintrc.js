@@ -1,6 +1,7 @@
 module.exports = {
 	globals: {
 		EMOJIS: true,
+		PRODUCTION: true,
 		SCOPE_VERSION: true,
 		TRANSLATIONS: true,
 		oc_userconfig: true,

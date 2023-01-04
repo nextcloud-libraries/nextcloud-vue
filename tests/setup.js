@@ -26,5 +26,6 @@ import 'regenerator-runtime/runtime'
 
 global.OC = OC
 
-global.TRANSLATIONS = []
+global.PRODUCTION = false
 global.SCOPE_VERSION = 1
+global.TRANSLATIONS = []

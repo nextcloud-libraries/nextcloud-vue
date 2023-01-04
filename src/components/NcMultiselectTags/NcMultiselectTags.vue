@@ -155,6 +155,10 @@ import NcMultiselect from '../NcMultiselect/index.js'
 import l10n from '../../mixins/l10n.js'
 import { t } from '../../l10n.js'
 
+if (!PRODUCTION) {
+	console.warn('NcMultiselectTags usage has been deprecated. Use NcSelectTags instead.')
+}
+
 export default {
 	name: 'NcMultiselectTags',
 	components: {
