@@ -89,6 +89,7 @@ prevent the user from collapsing the items.
 	</template>
 </NcAppNavigationItem>
 ```
+
 ### Editable element
 Add the prop `:editable=true` and an edit placeholder if you need it. By default
 the placeholder is the previous title of the element.
@@ -97,6 +98,7 @@ the placeholder is the previous title of the element.
 <NcAppNavigationItem title="Editable Item" :editable="true"
 	editPlaceholder="your_placeholder_here" icon="icon-folder" @update:title="function(value){alert(value)}" />
 ```
+
 ### Undo element
 Just set the `undo` and `title` props. When clicking the undo button, an `undo` event is emitted.
 
@@ -104,6 +106,16 @@ Just set the `undo` and `title` props. When clicking the undo button, an `undo` 
 <NcAppNavigationItem :undo="true" title="Deleted important entry" @undo="alert('undo delete')"  />
 
 ```
+
+### Link element
+Href that start by http will be treated as external and opened in a new tab
+```
+<div>
+	<NcAppNavigationItem title="Files" href="/index.php/apps/files" />
+	<NcAppNavigationItem title="Nextcloud" href="https://nextcloud.com" />
+</div>
+```
+
 ### Pinned element
 Just set the `pinned` prop.
 ```
@@ -132,8 +144,9 @@ Just set the `pinned` prop.
 			<a v-if="!undo"
 				class="app-navigation-entry-link"
 				:aria-description="ariaDescription"
-				href="#"
 				:aria-expanded="opened.toString()"
+				:href="href || '#'"
+				:target="isExternal(href) ? '_blank' : ''"
 				@focus="handleFocus"
 				@blur="handleBlur"
 				@keydown.tab.exact="handleTab"
@@ -294,6 +307,15 @@ export default {
 		to: {
 			type: [String, Object],
 			default: '',
+		},
+
+		/**
+		 * A direct link. This will be used as the `href` attribute.
+		 * This will ignore any `to` prop being defined.
+		 */
+		href: {
+			type: String,
+			default: null,
 		},
 
 		/**
@@ -469,7 +491,7 @@ export default {
 
 		// This is used to decide which outer element type to use
 		navElement() {
-			if (this.to) {
+			if (this.to && !this.href) {
 				return {
 					is: 'router-link',
 					tag: 'div',
@@ -585,6 +607,14 @@ export default {
 			} else {
 				this.$refs.actions.$refs.menuButton.$el.blur()
 			}
+		},
+
+		/**
+		 * Is this an external link
+		 */
+		isExternal(href) {
+			// Match any protocol
+			return href.match(/[a-z]+:\/\//i)
 		},
 	},
 }
