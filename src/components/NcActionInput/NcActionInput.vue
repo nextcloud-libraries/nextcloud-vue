@@ -39,7 +39,11 @@ For the multiselect component, all events will be passed through. Please see the
 
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }">
-		<span :class="{ 'action-input--picker': datePickerType , 'action-input-picker--disabled': disabled}"
+		<span :class="{
+				'action-input--picker': datePickerType,
+				'action-input-picker--disabled': disabled,
+				'action-input--visible-label': labelVisible && label,
+			}"
 			class="action-input"
 			@mouseleave="onLeave">
 			<!-- @slot Manually provide icon -->
@@ -490,12 +494,12 @@ $input-margin: 4px;
 		/* only show confirm borders if input is not focused */
 		&:not(:active):not(:hover):not(:focus) {
 			&:invalid {
-				& + .action-input__icon-label {
+				& ~ .action-input__icon-label {
 					border-color: var(--color-error);
 					border-left-color: transparent;
 				}
 			}
-			&:not(:disabled) + .action-input__icon-label {
+			&:not(:disabled) ~ .action-input__icon-label {
 				&:active,
 				&:hover,
 				&:focus {
@@ -507,7 +511,7 @@ $input-margin: 4px;
 		&:active,
 		&:hover,
 		&:focus {
-			&:not(:disabled) + .action-input__icon-label {
+			&:not(:disabled) ~ .action-input__icon-label {
 				/* above previous input */
 				z-index: 2;
 
@@ -534,7 +538,7 @@ li:last-child > .action-input {
 }
 
 // same for first item
-li:first-child > .action-input {
+li:first-child > .action-input:not(.action-input--visible-label) {
 	padding-top: $icon-margin - $input-margin;
 }
 
