@@ -102,21 +102,24 @@ export default {
 
 .progress-bar {
 	display: block;
+	height: var(--progress-bar-height);
 	width: 100%;
-	background: var(--color-background-dark);
+	overflow: hidden;
 	border: 0;
 	padding: 0;
-	height: var(--progress-bar-height);
+	background: var(--color-background-dark);
 	border-radius: calc(var(--progress-bar-height) / 2);
+
+	// Browser specific rules
 	&::-webkit-progress-bar {
 		height: var(--progress-bar-height);
 	}
 	&::-webkit-progress-value {
-		background: linear-gradient(40deg, var(--color-primary-element) 0%, var(--color-primary-element-light) 100%);
+		background: var(--gradient-primary-background);
 		border-radius: calc(var(--progress-bar-height) / 2);
 	}
 	&::-moz-progress-bar {
-		background: linear-gradient(40deg, var(--color-primary-element) 0%, var(--color-primary-element-light) 100%);
+		background: var(--gradient-primary-background);
 		border-radius: calc(var(--progress-bar-height) / 2);
 	}
 	&--error {
