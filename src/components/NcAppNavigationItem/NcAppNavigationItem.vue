@@ -33,7 +33,7 @@
 
 ```vue
 	<template>
-		<NcAppNavigationItem title="My title">
+		<NcAppNavigationItem name="My title">
 			<template #icon>
 				<Check :size="20" />
 			</template>
@@ -52,7 +52,7 @@
 * With a spinning loader instead of the icon:
 
 ```
-<NcAppNavigationItem title="Loading Item" :loading="true" />
+<NcAppNavigationItem name="Loading Item" :loading="true" />
 ```
 
 ### Element with actions
@@ -62,7 +62,7 @@ button will be automatically created.
 ```vue
 	<template>
 		<div id="app-navigation-vue"><!-- Just a wrapper necessary in the docs. Not needed when NcAppNavigation is correctly used as parent. -->
-			<NcAppNavigationItem title="Item with actions">
+			<NcAppNavigationItem name="Item with actions">
 				<template #icon>
 					<Check :size="20" />
 				</template>
@@ -79,7 +79,7 @@ button will be automatically created.
 						</template>
 						Delete
 					</NcActionButton>
-					<NcActionLink title="Link" href="https://nextcloud.com">
+					<NcActionLink name="Link" href="https://nextcloud.com">
 						<template #icon>
 							<OpenInNew :size="20" />
 						</template>
@@ -110,7 +110,7 @@ Just nest the counter in a template within `<NcAppNavigationItem>` and add `#cou
 
 ```vue
 	<template>
-		<NcAppNavigationItem title="Item with counter">
+		<NcAppNavigationItem name="Item with counter">
 			<template #icon>
 				<Folder :size="20" />
 			</template>
@@ -138,24 +138,24 @@ Wrap the children in a template with the `slot` property and use the prop `allow
 prevent the user from collapsing the items.
 
 ```
-<NcAppNavigationItem title="Item with children" :allowCollapse="true" :open="true">
+<NcAppNavigationItem name="Item with children" :allowCollapse="true" :open="true">
 	<template>
-		<NcAppNavigationItem title="AppNavigationItemChild1" />
-		<NcAppNavigationItem title="AppNavigationItemChild2" />
-		<NcAppNavigationItem title="AppNavigationItemChild3" />
-		<NcAppNavigationItem title="AppNavigationItemChild4" />
+		<NcAppNavigationItem name="AppNavigationItemChild1" />
+		<NcAppNavigationItem name="AppNavigationItemChild2" />
+		<NcAppNavigationItem name="AppNavigationItemChild3" />
+		<NcAppNavigationItem name="AppNavigationItemChild4" />
 	</template>
 </NcAppNavigationItem>
 ```
 
 ### Editable element
 Add the prop `:editable=true` and an edit placeholder if you need it. By default
-the placeholder is the previous title of the element.
+the placeholder is the previous name of the element.
 
 ```vue
 	<template>
-		<NcAppNavigationItem title="Editable Item" :editable="true"
-			editPlaceholder="your_placeholder_here" @update:title="function(value){alert(value)}">
+		<NcAppNavigationItem name="Editable Item" :editable="true"
+			editPlaceholder="your_placeholder_here" @update:name="function(value){alert(value)}">
 			<template #icon>
 				<Folder :size="20" />
 			</template>
@@ -173,10 +173,10 @@ the placeholder is the previous title of the element.
 ```
 
 ### Undo element
-Just set the `undo` and `title` props. When clicking the undo button, an `undo` event is emitted.
+Just set the `undo` and `name` props. When clicking the undo button, an `undo` event is emitted.
 
 ```
-<NcAppNavigationItem :undo="true" title="Deleted important entry" @undo="alert('undo delete')"  />
+<NcAppNavigationItem :undo="true" name="Deleted important entry" @undo="alert('undo delete')"  />
 
 ```
 
@@ -184,17 +184,21 @@ Just set the `undo` and `title` props. When clicking the undo button, an `undo` 
 Href that start by http will be treated as external and opened in a new tab
 ```
 <div>
-	<NcAppNavigationItem title="Files" href="/index.php/apps/files" />
-	<NcAppNavigationItem title="Nextcloud" href="https://nextcloud.com" />
+	<NcAppNavigationItem name="Files" href="/index.php/apps/files" />
+	<NcAppNavigationItem name="Nextcloud" href="https://nextcloud.com" />
 </div>
+```
+
+### Custom title
+```
+<NcAppNavigationItem name="Nextcloud" title="Open the Nextcloud website" href="https://nextcloud.com" />
 ```
 
 ### Pinned element
 Just set the `pinned` prop.
 ```
-<NcAppNavigationItem title="Pinned item" :pinned="true" />
+<NcAppNavigationItem name="Pinned item" :pinned="true" />
 ```
-
 </docs>
 
 <template>
@@ -213,17 +217,18 @@ Just set the `pinned` prop.
 				'active': isActive,
 			}"
 			class="app-navigation-entry">
-			<!-- Icon and title -->
+			<!-- Icon and name -->
 			<a v-if="!undo"
 				class="app-navigation-entry-link"
 				:aria-description="ariaDescription"
 				:aria-expanded="opened.toString()"
 				:href="href || '#'"
 				:target="isExternal(href) ? '_blank' : ''"
-				@focus="handleFocus"
+				:title="title || nameTitleFallback"
 				@blur="handleBlur"
-				@keydown.tab.exact="handleTab"
-				@click="onClick">
+				@click="onClick"
+				@focus="handleFocus"
+				@keydown.tab.exact="handleTab">
 
 				<!-- icon if not collapsible -->
 				<!-- never show the icon over the collapsible if mobile -->
@@ -232,13 +237,13 @@ Just set the `pinned` prop.
 					<NcLoadingIcon v-if="loading" />
 					<slot v-else-if="isIconShown" name="icon" />
 				</div>
-				<span v-if="!editingActive" class="app-navigation-entry__title" :title="title">
-					{{ title }}
+				<span v-if="!editingActive" class="app-navigation-entry__title">
+					{{ nameTitleFallback }}
 				</span>
 				<div v-if="editingActive" class="editingContainer">
 					<NcInputConfirmCancel ref="editingInput"
 						v-model="editingValue"
-						:placeholder="editPlaceholder !== '' ? editPlaceholder : title"
+						:placeholder="editPlaceholder !== '' ? editPlaceholder : nameTitleFallback"
 						@cancel="cancelEditing"
 						@confirm="handleEditingDone" />
 				</div>
@@ -248,7 +253,7 @@ Just set the `pinned` prop.
 			<!-- undo entry -->
 			<div v-if="undo" class="app-navigation-entry__deleted">
 				<div class="app-navigation-entry__deleted-description">
-					{{ title }}
+					{{ nameTitleFallback }}
 				</div>
 			</div>
 
@@ -338,11 +343,25 @@ export default {
 
 	props: {
 		/**
-		 * The title of the element.
+		 * The main text content of the entry.
+		 * Previously called `title`, now deprecated
+		 */
+		name: {
+			type: String,
+			// TODO: Make it required in the next major release (see title prop)
+			default: '',
+		},
+
+		/**
+		 * The title attribute of the element.
+		 *
+		 * ⚠ Using this prop as the main content text is DEPRECATED
+		 * Please use `name` instead. If you were planning to define the
+		 * html element title attribute, this is the proper way.
 		 */
 		title: {
 			type: String,
-			required: true,
+			default: null,
 		},
 
 		/**
@@ -409,7 +428,7 @@ export default {
 		},
 
 		/**
-		 * Makes the title of the item editable by providing an `ActionButton`
+		 * Makes the name of the item editable by providing an `ActionButton`
 		 * component that toggles a form
 		 */
 		editable: {
@@ -511,7 +530,7 @@ export default {
 	emits: [
 		'update:menuOpen',
 		'update:open',
-		'update:title',
+		'update:name',
 		'click',
 		'undo',
 	],
@@ -531,6 +550,17 @@ export default {
 	},
 
 	computed: {
+		/**
+		 * TODO: drop on the 8.0.0 major, see title/name prop
+		 */
+		nameTitleFallback() {
+			if (!this.name) {
+				console.warn('The `name` prop is required. Please migrate away from the deprecated `title` prop.')
+				return this.title
+			}
+			return this.name
+		},
+
 		collapsible() {
 			return this.allowCollapse && !!this.$slots.default
 		},
@@ -626,7 +656,7 @@ export default {
 
 		// Edition methods
 		handleEdit() {
-			this.editingValue = this.title
+			this.editingValue = this.nameTitleFallback
 			this.editingActive = true
 			this.onMenuToggle(false)
 			this.$nextTick(() => {
@@ -637,7 +667,9 @@ export default {
 			this.editingActive = false
 		},
 		handleEditingDone() {
+			// @deprecated, please use `name` instead
 			this.$emit('update:title', this.editingValue)
+			this.$emit('update:name', this.editingValue)
 			this.editingValue = ''
 			this.editingActive = false
 		},
