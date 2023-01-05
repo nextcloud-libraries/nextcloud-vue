@@ -614,7 +614,7 @@ export default {
 		 */
 		isExternal(href) {
 			// Match any protocol
-			return href.match(/[a-z]+:\/\//i)
+			return href && href.match(/[a-z]+:\/\//i)
 		},
 	},
 }
