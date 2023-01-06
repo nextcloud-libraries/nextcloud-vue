@@ -20,7 +20,7 @@
  *
  */
 
-import { mount } from '@cypress/vue'
+import { mount } from '@cypress/vue2'
 import sanitize from 'sanitize-filename'
 
 import NcAppSidebar from '../../../../src/components/NcAppSidebar/NcAppSidebar.vue'

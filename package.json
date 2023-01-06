@@ -77,7 +77,7 @@
 		"npm": "^7.0.0 || ^8.0.0"
 	},
 	"devDependencies": {
-		"@cypress/vue": "^2.2.4",
+		"@cypress/vue2": "^2.0.1",
 		"@cypress/webpack-dev-server": "^1.8.4",
 		"@cypress/webpack-preprocessor": "5.16.1",
 		"@fontsource/roboto": "^4.5.8",
