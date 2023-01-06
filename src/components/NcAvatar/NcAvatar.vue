@@ -384,10 +384,12 @@ export default {
 	},
 	computed: {
 		avatarAriaLabel() {
+			if (!this.hasMenu) {
+				return
+			}
 			if (this.ariaLabel !== null) {
 				return this.ariaLabel
 			}
-
 			if (this.hasStatus && this.showUserStatus && this.showUserStatusCompact) {
 				return t('Avatar of {displayName}, {status}', { displayName: this.displayName ?? this.user, status: this.userStatus.status })
 			}
