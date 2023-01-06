@@ -1,38 +1,81 @@
 <docs>
-```
-<NcAppNavigationCaption
-	title="Your caption goes here">
-	<template #actions>
-		<NcActionButton icon="icon-add"/>
+```vue
+	<template>
+		<NcAppNavigationCaption
+			title="Your caption goes here">
+			<template #actions>
+				<NcActionButton>
+					<template #icon>
+						<Plus :size="20" />
+					</template>
+				</NcActionButton>
+			</template>
+		</NcAppNavigationCaption>
 	</template>
-</NcAppNavigationCaption>
-```
-
-### Element with a slot for custom actions icon
-```
-<template>
-	<NcAppNavigationCaption
-		title="Your caption goes here">
-		<template #actionsTriggerIcon>
-			<PlusIcon slot="icon" :size="20" />
-		</template>
-		<template #actions>
-			<NcActionButton icon="icon-edit">Rename</NcActionButton>
-			<NcActionButton icon="icon-delete">Delete</NcActionButton>
-			<NcActionButton icon="icon-confirm">Validate</NcActionButton>
-			<NcActionButton icon="icon-download">Download</NcActionButton>
-		</template>
-	</NcAppNavigationCaption>
-</template>
-<script>
-	import PlusIcon from 'vue-material-design-icons/Plus'
+	<script>
+	import Plus from 'vue-material-design-icons/Plus'
 
 	export default {
 		components: {
-			PlusIcon
-		}
+			Plus,
+		},
 	}
-</script>
+	</script>
+```
+
+### Element with a slot for custom actions icon
+```vue
+	<template>
+		<NcAppNavigationCaption
+			title="Your caption goes here">
+			<template #actionsTriggerIcon>
+				<Plus slot="icon" :size="20" />
+			</template>
+			<template #actions>
+				<NcActionButton>
+					<template #icon>
+						<Pencil :size="20" />
+					</template>
+					Rename
+				</NcActionButton>
+				<NcActionButton>
+					<template #icon>
+						<Delete :size="20" />
+					</template>
+					Delete
+				</NcActionButton>
+				<NcActionButton>
+					<template #icon>
+						<ArrowRight :size="20" />
+					</template>
+					Validate
+				</NcActionButton>
+				<NcActionButton>
+					<template #icon>
+						<Download :size="20" />
+					</template>
+					Download
+				</NcActionButton>
+			</template>
+		</NcAppNavigationCaption>
+	</template>
+	<script>
+		import ArrowRight from 'vue-material-design-icons/ArrowRight'
+		import Delete from 'vue-material-design-icons/Delete'
+		import Download from 'vue-material-design-icons/Download'
+		import Pencil from 'vue-material-design-icons/Pencil'
+		import Plus from 'vue-material-design-icons/Plus'
+
+		export default {
+			components: {
+				ArrowRight,
+				Delete,
+				Download,
+				Pencil,
+				Plus,
+			}
+		}
+	</script>
 ```
 
 </docs>
