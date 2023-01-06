@@ -25,15 +25,56 @@
 This component is made to be used inside of the [NcActions](#NcActions) component slots.
 All undocumented attributes will be bound to the input, the datepicker or the multiselect component, e.g. `maxlength`, `not-before`.
 For the multiselect component, all events will be passed through. Please see the multiselect component's documentation for more details and examples.
-```
-<NcActions>
-	<NcActionInput icon="icon-edit" value="This is an input" />
-	<NcActionInput icon="icon-edit">This is the placeholder</NcActionInput>
-	<NcActionInput icon="icon-edit" label="Visible label">Input with visible label</NcActionInput>
-	<NcActionInput icon="icon-close" :disabled="true" value="This is a disabled input" />
-	<NcActionInput icon="icon-edit" type="date">Please pick a date</NcActionInput>
-	<NcActionInput icon="icon-edit" type="multiselect" :options="['Apple', 'Banana', 'Cherry']">Please pick a fruit</NcActionInput>
-</NcActions>
+```vue
+	<template>
+		<NcActions>
+			<NcActionInput value="This is an input">
+				<template #icon>
+					<Pencil :size="20" />
+				</template>
+			</NcActionInput>
+			<NcActionInput>
+				<template #icon>
+					<Pencil :size="20" />
+				</template>
+				This is the placeholder
+			</NcActionInput>
+			<NcActionInput label="Visible label">
+				<template #icon>
+					<Pencil :size="20" />
+				</template>
+				Input with visible label
+			</NcActionInput>
+			<NcActionInput :disabled="true" value="This is a disabled input">
+				<template #icon>
+					<Close :size="20" />
+				</template>
+			</NcActionInput>
+			<NcActionInput type="date">
+				<template #icon>
+					<Pencil :size="20" />
+				</template>
+				Please pick a date
+			</NcActionInput>
+			<NcActionInput type="multiselect" :options="['Apple', 'Banana', 'Cherry']">
+				<template #icon>
+					<Pencil :size="20" />
+				</template>
+				Please pick a fruit
+			</NcActionInput>
+		</NcActions>
+	</template>
+	<script>
+	import Close from 'vue-material-design-icons/Close'
+	import Pencil from 'vue-material-design-icons/Pencil'
+
+	export default {
+		components: {
+			Close,
+			Pencil,
+		},
+	}
+	</script>
 ```
 </docs>
 
