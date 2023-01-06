@@ -83,8 +83,7 @@ It might be used for list rendering or within the multiselect for example
 		</div>
 
 		<!-- @slot use this slot to add a custom icon or actions -->
-		<slot />
-		<template v-if="!hasSlot">
+		<slot>
 			<NcIconSvgWrapper v-if="hasIconSvg"
 				class="option__icon"
 				:svg="iconSvg"
@@ -93,7 +92,7 @@ It might be used for list rendering or within the multiselect for example
 				class="icon option__icon"
 				:class="icon"
 				:aria-label="iconTitle" />
-		</template>
+		</slot>
 	</span>
 </template>
 
@@ -228,10 +227,6 @@ export default {
 
 		hasIconSvg() {
 			return this.iconSvg !== ''
-		},
-
-		hasSlot() {
-			return !!this.$slots.default
 		},
 
 		isValidSubtitle() {
