@@ -31,30 +31,39 @@ It includes the Navigation, the App content and the Sidebar.
 ### Standard usage
 
 ```vue
-<template>
-	<NcContent app-name="forms">
-		<NcAppNavigation>
-			<template #list>
-				<NcAppNavigationNew text="Create article" />
-				<NcAppNavigationItem title="My title" icon="icon-category-enabled" />
-			</template>
-		</NcAppNavigation>
-		<NcAppContent>
-			<h2>Your main app content here</h2>
-			<NcButton @click="opened = !opened">Toggle sidebar</NcButton>
-		</NcAppContent>
-		<NcAppSidebar v-if="opened" title="cat-picture.jpg" @close="opened=false"></AppSidebar>
-	</NcContent>
-</template>
-<script>
-export default {
-	data() {
-		return {
-			opened: false,
+	<template>
+		<NcContent app-name="forms">
+			<NcAppNavigation>
+				<template #list>
+					<NcAppNavigationNew text="Create article" />
+					<NcAppNavigationItem title="My title">
+						<template #icon>
+							<Check :size="20" />
+						</template>
+					</NcAppNavigationItem>
+				</template>
+			</NcAppNavigation>
+			<NcAppContent>
+				<h2>Your main app content here</h2>
+				<NcButton @click="opened = !opened">Toggle sidebar</NcButton>
+			</NcAppContent>
+			<NcAppSidebar v-if="opened" title="cat-picture.jpg" @close="opened=false"></AppSidebar>
+		</NcContent>
+	</template>
+	<script>
+	import Check from 'vue-material-design-icons/Check'
+
+	export default {
+		components: {
+			Check,
+		},
+		data() {
+			return {
+				opened: false,
+			}
 		}
 	}
-}
-</script>
+	</script>
 ```
 
 </docs>
