@@ -24,7 +24,7 @@ jobs:
       # Returns the version without a leading v
       - name: Get new version
         id: future_version
-        uses: Saionaro/extract-package-version@v1.0.6
+        uses: Saionaro/extract-package-version@v1.1.1
 
       - name: Generate changelog between ${{ steps.last_version.outputs.tag_name }} and v${{ steps.future_version.outputs.version }}
         uses: docker://ferrarimarco/github-changelog-generator
