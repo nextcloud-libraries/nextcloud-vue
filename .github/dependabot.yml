@@ -14,3 +14,13 @@ updates:
     labels:
     - 3. to review
     - dependencies
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: daily
+      timezone: Europe/Paris
+    open-pull-requests-limit: 10
+    labels:
+    - 3. to review
+    - dependencies
