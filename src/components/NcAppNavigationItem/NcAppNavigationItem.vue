@@ -31,9 +31,23 @@
 
 * With an icon:
 
-```
-<NcAppNavigationItem title="My title" icon="icon-category-enabled" />
+```vue
+	<template>
+		<NcAppNavigationItem title="My title">
+			<template #icon>
+				<Check :size="20" />
+			</template>
+		</NcAppNavigationItem>
+	</template>
+	<script>
+	import Check from 'vue-material-design-icons/Check'
 
+	export default {
+		components: {
+			Check,
+		},
+	}
+	</script>
 ```
 * With a spinning loader instead of the icon:
 
@@ -45,33 +59,77 @@
 Wrap the children in a template. If you have more than 2 actions, a popover menu and a menu
 button will be automatically created.
 
-```
-<div id="app-navigation-vue"><!-- Just a wrapper necessary in the docs. Not needed when NcAppNavigation is correctly used as parent. -->
-	<NcAppNavigationItem title="Item with actions" icon="icon-category-enabled">
-		<template #actions>
-			<NcActionButton icon="icon-edit" @click="alert('Edit')">
-				Edit
-			</NcActionButton>
-			<NcActionButton icon="icon-delete" @click="alert('Delete')">
-				Delete
-			</NcActionButton>
-			<NcActionLink icon="icon-external" title="Link" href="https://nextcloud.com" />
-		</template>
-	</NcAppNavigationItem>
-</div>
+```vue
+	<template>
+		<div id="app-navigation-vue"><!-- Just a wrapper necessary in the docs. Not needed when NcAppNavigation is correctly used as parent. -->
+			<NcAppNavigationItem title="Item with actions">
+				<template #icon>
+					<Check :size="20" />
+				</template>
+				<template #actions>
+					<NcActionButton @click="alert('Edit')">
+						<template #icon>
+							<Pencil :size="20" />
+						</template>
+						Edit
+					</NcActionButton>
+					<NcActionButton @click="alert('Delete')">
+						<template #icon>
+							<Delete :size="20" />
+						</template>
+						Delete
+					</NcActionButton>
+					<NcActionLink title="Link" href="https://nextcloud.com">
+						<template #icon>
+							<OpenInNew :size="20" />
+						</template>
+					</NcActionLink>
+				</template>
+			</NcAppNavigationItem>
+		</div>
+	</template>
+	<script>
+	import Check from 'vue-material-design-icons/Check'
+	import Delete from 'vue-material-design-icons/Delete'
+	import OpenInNew from 'vue-material-design-icons/OpenInNew'
+	import Pencil from 'vue-material-design-icons/Pencil'
+
+	export default {
+		components: {
+			Check,
+			Delete,
+			OpenInNew,
+			Pencil,
+		},
+	}
+	</script>
 ```
 
 ### Element with counter
 Just nest the counter in a template within `<NcAppNavigationItem>` and add `#counter` to it.
 
-```
-<NcAppNavigationItem title="Item with counter" icon="icon-folder">
-	<template #counter>
-		<NcCounterBubble>
-			99+
-		</NcCounterBubble>
+```vue
+	<template>
+		<NcAppNavigationItem title="Item with counter">
+			<template #icon>
+				<Folder :size="20" />
+			</template>
+			<template #counter>
+				<NcCounterBubble>
+					99+
+				</NcCounterBubble>
+			</template>
+		</NcAppNavigationItem>
 	</template>
-</NcAppNavigationItem>
+	<script>
+	import Folder from 'vue-material-design-icons/Folder'
+
+	export default {
+		components: {
+			Folder,
+		},
+	}
+	</script>
 ```
 
 ### Element with children
@@ -94,9 +152,24 @@ prevent the user from collapsing the items.
 Add the prop `:editable=true` and an edit placeholder if you need it. By default
 the placeholder is the previous title of the element.
 
-```
-<NcAppNavigationItem title="Editable Item" :editable="true"
-	editPlaceholder="your_placeholder_here" icon="icon-folder" @update:title="function(value){alert(value)}" />
+```vue
+	<template>
+		<NcAppNavigationItem title="Editable Item" :editable="true"
+			editPlaceholder="your_placeholder_here" @update:title="function(value){alert(value)}">
+			<template #icon>
+				<Folder :size="20" />
+			</template>
+		</NcAppNavigationItem>
+	</template>
+	<script>
+	import Folder from 'vue-material-design-icons/Folder'
+
+	export default {
+		components: {
+			Folder,
+		},
+	}
+	</script>
 ```
 
 ### Undo element
