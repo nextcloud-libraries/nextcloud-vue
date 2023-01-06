@@ -34,23 +34,28 @@ include a standard-header like it's used by the files app.
 	<NcAppSidebar
 		title="cat-picture.jpg"
 		subtitle="last edited 3 weeks ago">
-		<NcAppSidebarTab icon="icon-settings" name="Settings" id="settings-tab">
+		<NcAppSidebarTab name="Settings" id="settings-tab">
 			<template #icon>
 				<Cog :size="20" />
 			</template>
 			Settings tab content
 		</NcAppSidebarTab>
-		<NcAppSidebarTab icon="icon-share" name="Sharing" id="share-tab">
+		<NcAppSidebarTab name="Sharing" id="share-tab">
+			<template #icon>
+				<ShareVariant :size="20" />
+			</template>
 			Sharing tab content
 		</NcAppSidebarTab>
 	</NcAppSidebar>
 </template>
 <script>
 	import Cog from 'vue-material-design-icons/Cog'
+	import ShareVariant from 'vue-material-design-icons/ShareVariant'
 
 	export default {
 		components: {
 			Cog,
+			ShareVariant,
 		},
 	}
 </script>
@@ -121,15 +126,26 @@ include a standard-header like it's used by the files app.
 ### Empty sidebar for e.g. empty content component.
 
 ```vue
-<template>
-	<NcAppSidebar
-		title="cat-picture.jpg"
-		:empty="true">
-		<NcEmptyContent icon="icon-search">
-			Content not found.
-		</NcEmptyContent>
-	</NcAppSidebar>
-</template>
+	<template>
+		<NcAppSidebar
+			title="cat-picture.jpg"
+			:empty="true">
+			<NcEmptyContent title="Content not found.">
+				<template #icon>
+					<Magnify :size="20" />
+				</template>
+			</NcEmptyContent>
+		</NcAppSidebar>
+	</template>
+	<script>
+	import Magnify from 'vue-material-design-icons/Magnify'
+
+	export default {
+		components: {
+			Magnify,
+		},
+	}
+	</script>
 ```
 </docs>
 
