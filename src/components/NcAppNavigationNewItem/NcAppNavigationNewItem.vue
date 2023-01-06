@@ -24,13 +24,43 @@
 # Usage
 
 ### New Item element
-```
-<NcAppNavigationNewItem title="New Item" icon="icon-add" @new-item="function(value){alert(value)}" />
+```vue
+	<template>
+		<NcAppNavigationNewItem title="New Item" @new-item="function(value){alert(value)}">
+			<template #icon>
+				<Plus :size="20" />
+			</template>
+		</NcAppNavigationNewItem>
+	</template>
+	<script>
+	import Plus from 'vue-material-design-icons/Plus'
+
+	export default {
+		components: {
+			Plus,
+		},
+	}
+	</script>
 ```
 
 ### New Item element with a loading animation instead of the icon
-```
-<NcAppNavigationNewItem title="New Item" icon="icon-add" :loading="true" />
+```vue
+	<template>
+		<NcAppNavigationNewItem title="New Item" :loading="true">
+			<template #icon>
+				<Plus :size="20" />
+			</template>
+		</NcAppNavigationNewItem>
+	</template>
+	<script>
+	import Plus from 'vue-material-design-icons/Plus'
+
+	export default {
+		components: {
+			Plus,
+		},
+	}
+	</script>
 ```
 </docs>
 <template>
