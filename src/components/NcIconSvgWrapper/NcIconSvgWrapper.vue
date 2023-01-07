@@ -20,19 +20,84 @@
   -
 -->
 
+<docs>
+### Description
+
+Render raw SVG string icons.
+
+### Example
+
+```vue
+<template>
+	<div class="grid">
+		<NcButton>
+			<template #icon>
+				<NcIconSvgWrapper :svg="closeSvg" title="Close" />
+			</template>
+		</NcButton>
+		<NcButton>
+			<template #icon>
+				<NcIconSvgWrapper :svg="cogSvg" title="Cog" />
+			</template>
+		</NcButton>
+		<NcButton>
+			<template #icon>
+				<NcIconSvgWrapper :svg="plusSvg" title="Plus" />
+			</template>
+		</NcButton>
+		<NcButton>
+			<template #icon>
+				<NcIconSvgWrapper :svg="sendSvg" title="Send" />
+			</template>
+		</NcButton>
+		<NcButton>
+			<template #icon>
+				<NcIconSvgWrapper :svg="starSvg" title="Star" />
+			</template>
+		</NcButton>
+	</div>
+</template>
+
+<script>
+import closeSvg from '@mdi/svg/svg/close.svg?raw'
+import cogSvg from '@mdi/svg/svg/cog.svg?raw'
+import plusSvg from '@mdi/svg/svg/plus.svg?raw'
+import sendSvg from '@mdi/svg/svg/send.svg?raw'
+import starSvg from '@mdi/svg/svg/star.svg?raw'
+
+export default {
+	data() {
+		return {
+			closeSvg,
+			cogSvg,
+			plusSvg,
+			sendSvg,
+			starSvg,
+		}
+	},
+}
+</script>
+
+<style>
+.grid {
+	display: grid;
+	grid-template-columns: repeat(5, max-content);
+	gap: 10px;
+}
+</style>
+```
+</docs>
+
 <template>
 	<span class="icon-vue"
 		role="img"
 		:aria-hidden="!title"
 		:aria-label="title"
-		v-html="htmlString" /> <!-- eslint-disable-line vue/no-v-html -->
+		v-html="cleanSvg" /> <!-- eslint-disable-line vue/no-v-html -->
 </template>
 
 <script>
 import { sanitizeSVG } from '@skjnldsv/sanitize-svg'
-
-import { t } from '../../l10n.js'
-import logger from '../../utils/logger.js'
 
 export default {
 	name: 'NcIconSvgWrapper',
@@ -51,13 +116,11 @@ export default {
 	data() {
 		return {
 			cleanSvg: '',
-			htmlString: '',
 		}
 	},
 
 	async beforeMount() {
 		await this.sanitizeSVG()
-		this.renderHtmlString()
 	},
 
 	methods: {
@@ -66,32 +129,6 @@ export default {
 				return
 			}
 			this.cleanSvg = await sanitizeSVG(this.svg)
-		},
-
-		renderHtmlString() {
-			if (!this.cleanSvg) {
-				return
-			}
-
-			const parser = new DOMParser()
-			const parsedDocument = parser.parseFromString(this.cleanSvg, 'image/svg+xml')
-
-			const errorNode = parsedDocument.querySelector('parsererror')
-			if (errorNode) {
-				logger.error(t('Error parsing svg'), errorNode)
-			}
-			const element = parsedDocument.documentElement
-			element.classList.add('icon-vue__svg')
-
-			if (this.title) {
-				const titleElement = document.createElement('title')
-				titleElement.textContent = this.title
-				if (element.firstElementChild) {
-					element.firstElementChild.prepend(titleElement)
-				}
-			}
-
-			this.htmlString = element.outerHTML
 		},
 	},
 }
@@ -106,7 +143,7 @@ export default {
 	height: 44px;
 	opacity: 1;
 
-	&:deep(.icon-vue__svg) {
+	&:deep(svg) {
 		fill: currentColor;
 		max-width: 20px;
 		max-height: 20px;
