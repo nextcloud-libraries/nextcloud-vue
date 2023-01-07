@@ -62,9 +62,6 @@ msgstr ""
 msgid "Error getting related resources"
 msgstr ""
 
-msgid "Error parsing svg"
-msgstr ""
-
 msgid "External documentation for {title}"
 msgstr ""
 
