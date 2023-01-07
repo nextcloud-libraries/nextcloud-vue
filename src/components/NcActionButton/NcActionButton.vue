@@ -82,7 +82,10 @@ If you're using a long text you can specify a title
 ```vue
 	<template>
 		<NcActions>
-			<NcActionButton icon="icon-add" @click="showMessage('Add')">
+			<NcActionButton @click="showMessage('Add')">
+				<template #icon>
+					<Plus :size="20" />
+				</template>
 				Add new
 			</NcActionButton>
 			<NcActionButton title="Long button" @click="showMessage('Delete')">
@@ -95,10 +98,12 @@ If you're using a long text you can specify a title
 	</template>
 	<script>
 	import Delete from 'vue-material-design-icons/Delete'
+	import Plus from 'vue-material-design-icons/Plus'
 
 	export default {
 		components: {
 			Delete,
+			Plus,
 		},
 		methods: {
 			showMessage(msg) {
@@ -115,13 +120,21 @@ Action icon attribute with a single action
 ```vue
 	<template>
 		<NcActions>
-			<NcActionButton icon="icon-add" @click="showMessage('Add')">
+			<NcActionButton @click="showMessage('Add')">
+				<template #icon>
+					<Plus :size="20" />
+				</template>
 				Add new
 			</NcActionButton>
 		</NcActions>
 	</template>
 	<script>
+	import Plus from 'vue-material-design-icons/Plus'
+
 	export default {
+		components: {
+			Plus,
+		},
 		methods: {
 			showMessage(msg) {
 				alert(msg)

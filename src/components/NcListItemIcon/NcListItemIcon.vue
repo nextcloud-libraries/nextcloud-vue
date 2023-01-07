@@ -30,29 +30,97 @@ It might be used for list rendering or within the multiselect for example
 <NcListItemIcon title="User 1" subtitle="Hidden subtitle because size is too small" :avatar-size="24" />
 ```
 ```vue
-<NcListItemIcon title="User 1" :avatar-size="44" icon="icon-user" />
+	<template>
+		<NcListItemIcon title="User 1" :avatar-size="44">
+			<template>
+				<Account :size="20" />
+			</template>
+		</NcListItemIcon>
+	</template>
+	<script>
+	import Account from 'vue-material-design-icons/Account'
+
+	export default {
+		components: {
+			Account,
+		},
+	}
+	</script>
 ```
 
 ### With icon
 ```vue
-<NcListItemIcon title="Group 1" subtitle="13 members" icon="icon-group" :is-no-user="true" />
+	<template>
+		<NcListItemIcon title="Group 1" subtitle="13 members" :is-no-user="true">
+			<template>
+				<AccountMultiple :size="20" />
+			</template>
+		</NcListItemIcon>
+	</template>
+	<script>
+	import AccountMultiple from 'vue-material-design-icons/AccountMultiple'
+
+	export default {
+		components: {
+			AccountMultiple,
+		},
+	}
+	</script>
 ```
 
 ### Searching
 ```vue
-<NcListItemIcon title="Test user 1" subtitle="callmetest@domain.com" search="test" />
-<NcListItemIcon title="Testing admin" subtitle="testme@example.com" search="test" />
-<NcListItemIcon title="Test group 2" subtitle="loremipsum@domain.com" icon="icon-group" :is-no-user="true" search="test" />
+	<template>
+		<NcListItemIcon title="Test user 1" subtitle="callmetest@domain.com" search="test" />
+		<NcListItemIcon title="Testing admin" subtitle="testme@example.com" search="test" />
+		<NcListItemIcon title="Test group 2" subtitle="loremipsum@domain.com" :is-no-user="true" search="test">
+			<template>
+				<AccountMultiple :size="20" />
+			</template>
+		</NcListItemIcon>
+	</template>
+	<script>
+	import AccountMultiple from 'vue-material-design-icons/AccountMultiple'
+
+	export default {
+		components: {
+			AccountMultiple,
+		},
+	}
+	</script>
 ```
 
 ### With actions
 ```vue
-<NcListItemIcon title="Test user 1" subtitle="callmetest@domain.com">
-	<NcActions>
-		<NcActionButton icon="icon-edit" @click="alert('Edit')">Edit</NcActionButton>
-		<NcActionButton icon="icon-delete" @click="alert('Delete')">Delete</NcActionButton>
-	</NcActions>
-</NcListItemIcon>
+	<template>
+		<NcListItemIcon title="Test user 1" subtitle="callmetest@domain.com">
+			<NcActions>
+				<NcActionButton @click="alert('Edit')">
+					<template #icon>
+						<Pencil :size="20" />
+					</template>
+					Edit
+				</NcActionButton>
+				<NcActionButton @click="alert('Delete')">
+					<template #icon>
+						<Delete :size="20" />
+					</template>
+					Delete
+				</NcActionButton>
+			</NcActions>
+		</NcListItemIcon>
+	</template>
+	<script>
+	import Delete from 'vue-material-design-icons/Delete'
+	import Pencil from 'vue-material-design-icons/Pencil'
+
+	export default {
+		components: {
+			Delete,
+			Pencil,
+		},
+	}
+	</script>
 ```
 </docs>
 
