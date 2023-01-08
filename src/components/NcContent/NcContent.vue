@@ -47,7 +47,7 @@ It includes the Navigation, the App content and the Sidebar.
 				<h2>Your main app content here</h2>
 				<NcButton @click="opened = !opened">Toggle sidebar</NcButton>
 			</NcAppContent>
-			<NcAppSidebar v-if="opened" title="cat-picture.jpg" @close="opened=false"></AppSidebar>
+			<NcAppSidebar v-if="opened" title="cat-picture.jpg" @close="opened=false"></NcAppSidebar>
 		</NcContent>
 	</template>
 	<script>
