@@ -568,7 +568,7 @@ export default {
 	white-space: pre-wrap;
 	word-break: break-word;
 	color: var(--color-main-text);
-	border: 1px solid var(--color-border-dark);
+	border: 2px solid var(--color-border-dark);
 	border-radius: var(--border-radius-large);
 	outline: none;
 	background-color: var(--color-main-background);
@@ -601,7 +601,7 @@ export default {
 	&--disabled {
 		opacity: $opacity_disabled;
 		color: var(--color-text-maxcontrast);
-		border: 1px solid var(--color-background-darker);
+		border: 2px solid var(--color-background-darker);
 		border-radius: var(--border-radius);
 		background-color: var(--color-background-dark);
 	}
