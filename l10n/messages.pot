@@ -8,9 +8,6 @@ msgstr ""
 msgid "{tag} (restricted)"
 msgstr ""
 
-msgid "Actions"
-msgstr ""
-
 msgid "Activities"
 msgstr ""
 
@@ -84,6 +81,9 @@ msgid "Go back to the list"
 msgstr ""
 
 msgid "Hide password"
+msgstr ""
+
+msgid "L10n update test"
 msgstr ""
 
 msgid "Message limit of {count} characters reached"
