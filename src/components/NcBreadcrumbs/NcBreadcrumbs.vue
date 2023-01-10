@@ -470,7 +470,7 @@ export default {
 	 * The render function to display the component
 	 *
 	 * @param {Function} h The function to create VNodes
-	 * @return {VNodes} The created VNodes
+	 * @return {object|undefined} The created VNode
 	 */
 	render(h) {
 		// Get the breadcrumbs
@@ -482,6 +482,7 @@ export default {
 		}
 
 		// Add the root icon to the first breadcrumb
+		// eslint-disable-next-line import/no-named-as-default-member
 		Vue.set(breadcrumbs[0].componentOptions.propsData, 'icon', this.rootIcon)
 
 		// The array of all created VNodes

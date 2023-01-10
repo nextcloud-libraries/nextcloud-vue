@@ -314,7 +314,7 @@ export default {
 		 * Returns Object with string values of a Date
 		 *
 		 * @param {Date} value The selected value
-		 * @return {object}
+		 * @return {object|undefined}
 		 */
 		getReadableDate(value) {
 			if (value instanceof Date) {
@@ -331,7 +331,7 @@ export default {
 		 * Returns preformatted value for the input field
 		 *
 		 * @param {Date} value The selected value
-		 * @return {string}
+		 * @return {string|undefined}
 		 */
 		formatValue(value) {
 			if (value instanceof Date) {
