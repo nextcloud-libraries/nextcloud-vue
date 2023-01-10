@@ -5,6 +5,12 @@ const webpackConfig = require('./webpack.config.js')
 module.exports = async () => {
 	const base = await webpackConfig()
 	const newConfig = Object.assign({}, base, {
+		// Necessary, because vue-styleguidist runs an old version of webpack-dev-server
+		devServer: {
+			historyApiFallback: true,
+			noInfo: true,
+			overlay: true,
+		},
 		externals: {},
 		module: {
 			// Ignore eslint
