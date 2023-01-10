@@ -616,7 +616,7 @@ export default {
 		 */
 		ariaLabel: {
 			type: String,
-			default: t('Actions'),
+			default: t('L10n update test'),
 		},
 
 		/**
