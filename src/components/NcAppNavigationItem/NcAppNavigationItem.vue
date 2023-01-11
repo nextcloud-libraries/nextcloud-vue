@@ -716,6 +716,9 @@ export default {
 
 		/**
 		 * Is this an external link
+		 *
+		 * @param {string} href The link to check
+		 * @return {boolean} Whether it is external or not
 		 */
 		isExternal(href) {
 			// Match any protocol

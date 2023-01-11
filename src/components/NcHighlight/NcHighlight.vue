@@ -211,7 +211,7 @@ export default {
 	 * The render function to display the component
 	 *
 	 * @param {Function} h The function to create VNodes
-	 * @return {VNodes} The created VNodes
+	 * @return {object} The created VNode
 	 */
 	render(h) {
 		if (!this.ranges.length) {

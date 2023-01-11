@@ -362,7 +362,7 @@ export default {
 		/**
 		 * Returns the proper Material icon depending on the select case
 		 *
-		 * @return {Component}
+		 * @return {object}
 		 */
 		checkboxRadioIconElement() {
 			if (this.type === TYPE_RADIO) {

@@ -893,7 +893,7 @@ export default {
 	 * The render function to display the component
 	 *
 	 * @param {Function} h The function to create VNodes
-	 * @return {VNodes} The created VNodes
+	 * @return {object|undefined} The created VNode
 	 */
 	render(h) {
 		/**
@@ -922,7 +922,7 @@ export default {
 		/**
 		 * Render the provided action
 		 *
-		 * @param {VNode} action the action to render
+		 * @param {object} action the action to render
 		 * @return {Function} the vue render function
 		 */
 		const renderInlineAction = (action) => {
@@ -980,7 +980,7 @@ export default {
 		/**
 		 * Render the actions popover
 		 *
-		 * @param {VNode} actions the actions to render within
+		 * @param {Array} actions the actions to render within
 		 * @return {Function} the vue render function
 		 */
 		const renderActionsPopover = (actions) => {
@@ -1132,7 +1132,8 @@ export default {
 			},
 			[
 				renderActionsPopover(actions),
-			])
+			]
+		)
 	},
 }
 </script>

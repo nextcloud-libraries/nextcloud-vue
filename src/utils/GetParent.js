@@ -24,9 +24,9 @@
 /**
  * Get the first parent component matching the provided name
  *
- * @param {object} context the context to search from (usualy this)
+ * @param {object} context the context to search from (usually this)
  * @param {string} name the parent name
- * @return {object} the parent component
+ * @return {object|undefined} the parent component
  */
 const GetParent = function(context, name) {
 	let parent = context.$parent

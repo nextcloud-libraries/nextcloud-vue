@@ -29,7 +29,7 @@ export default {
 	 *
 	 * @param {Function} h The function to create VNodes
 	 * @param {object} context The context object of the functional component
-	 * @return {VNodes} The created VNodes
+	 * @return {object} The created VNode
 	 */
 	render(h, context) {
 		return context.props.vnodes
