@@ -3,15 +3,17 @@
 # Random_R, 2021
 # Gabriele <ravo1986@gmail.com>, 2021
 # Vincenzo Reale <vinx.reale@gmail.com>, 2021
-# Schuster Lorenz, 2022
+# lollos78, 2022
+# Gianluca Montalbano, 2022
+# Giacomo Bertolotti <giacomo.chappo@hotmail.it>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Schuster Lorenz, 2022\n"
+"Last-Translator: Giacomo Bertolotti <giacomo.chappo@hotmail.it>, 2023\n"
 "Language-Team: Italian (https://www.transifex.com/nextcloud/teams/64236/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (invisibile)"
@@ -28,6 +30,11 @@ msgstr "Attività"
 msgid "Animals & Nature"
 msgstr "Animali e natura"
 
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+"Tutto ciò che è stato condiviso con lo stesso gruppo di persone viene "
+"visualizzato qui"
+
 msgid "Avatar of {displayName}"
 msgstr "Avatar di {displayName}"
 
@@ -37,14 +44,26 @@ msgstr "Avatar di {displayName}, {status}"
 msgid "Cancel changes"
 msgstr "Annulla modifiche"
 
+msgid "Change title"
+msgstr "Modifica il titolo"
+
 msgid "Choose"
 msgstr "Scegli"
+
+msgid "Clear text"
+msgstr "Cancella il testo"
 
 msgid "Close"
 msgstr "Chiudi"
 
+msgid "Close modal"
+msgstr "Chiudi il messaggio modale"
+
 msgid "Close navigation"
 msgstr "Chiudi la navigazione"
+
+msgid "Close sidebar"
+msgstr "Chiudi la barra laterale"
 
 msgid "Confirm changes"
 msgstr "Conferma modifiche"
@@ -55,8 +74,17 @@ msgstr "Personalizzato"
 msgid "Edit item"
 msgstr "Modifica l'elemento"
 
+msgid "Error getting related resources"
+msgstr "Errore nell'ottenere risorse correlate"
+
+msgid "Error parsing svg"
+msgstr "Errore nell'analizzare l'svg"
+
 msgid "External documentation for {title}"
 msgstr "Documentazione esterna per {title}"
+
+msgid "Favorite"
+msgstr "Preferito"
 
 msgid "Flags"
 msgstr "Bandiere"
@@ -73,8 +101,14 @@ msgstr "Globale"
 msgid "Go back to the list"
 msgstr "Torna all'elenco"
 
+msgid "Hide password"
+msgstr "Nascondi la password"
+
 msgid "Message limit of {count} characters reached"
 msgstr "Limite dei messaggi di {count} caratteri raggiunto"
+
+msgid "More items …"
+msgstr "Più elementi ..."
 
 msgid "Next"
 msgstr "Successivo"
@@ -88,8 +122,17 @@ msgstr "Nessun risultato"
 msgid "Objects"
 msgstr "Oggetti"
 
+msgid "Open"
+msgstr "Apri"
+
+msgid "Open link to \"{resourceTitle}\""
+msgstr "Apri il link a \"{resourceTitle}\""
+
 msgid "Open navigation"
 msgstr "Apri la navigazione"
+
+msgid "Password is secure"
+msgstr "La password è sicura"
 
 msgid "Pause slideshow"
 msgstr "Presentazione in pausa"
@@ -106,6 +149,9 @@ msgstr "Si prega di selezionare un fuso orario:"
 msgid "Previous"
 msgstr "Precedente"
 
+msgid "Related resources"
+msgstr "Risorse correlate"
+
 msgid "Search"
 msgstr "Cerca"
 
@@ -120,6 +166,9 @@ msgstr "Impostazioni"
 
 msgid "Settings navigation"
 msgstr "Navigazione delle impostazioni"
+
+msgid "Show password"
+msgstr "Mostra la password"
 
 msgid "Smileys & Emotion"
 msgstr "Faccine ed emozioni"
@@ -145,7 +194,9 @@ msgstr "Impossibile cercare il gruppo"
 msgid "Undo changes"
 msgstr "Cancella i cambiamenti"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
 msgstr ""
-"Scrivi un messaggio, @ per menzionare qualcuno, : per il completamento "
-"automatico delle emoji ..."
+"Scrivi un messaggio, \"@\" per menzionare qualcuno, \":\" per il "
+"completamento automatico delle emoji ..."
