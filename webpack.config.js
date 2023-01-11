@@ -4,7 +4,6 @@ const webpackRules = require('@nextcloud/webpack-vue-config/rules')
 const glob = require('glob')
 const md5 = require('md5')
 const path = require('path')
-const { loadTranslations } = require('./resources/translations.js')
 
 const { DefinePlugin } = require('webpack')
 const BabelLoaderExcludeNodeModulesExcept = require('babel-loader-exclude-node-modules-except')
@@ -14,6 +13,7 @@ const buildMode = process.env.NODE_ENV
 const isDev = buildMode === 'development'
 const libraryTarget = process.env.LIBRARY_TARGET ?? 'umd'
 
+const { loadTranslations } = require('./resources/translations.js')
 const { dependencies } = require('./package.json')
 
 // scope variable
@@ -25,8 +25,9 @@ const SCOPE_VERSION = JSON.stringify(versionHash)
 console.info('This build version hash is', versionHash, '\n')
 
 webpackConfig.entry = {
-	index: path.join(__dirname, 'src', 'index.js'),
+	install: path.join(__dirname, 'src', 'install.js'),
 	ncvuecomponents: path.join(__dirname, 'src', 'index.js'),
+
 	...glob.sync('src/components/*/index.js').reduce((acc, item) => {
 		const name = item
 			.replace('/index.js', '')
@@ -34,6 +35,7 @@ webpackConfig.entry = {
 		acc[name] = path.join(__dirname, item)
 		return acc
 	}, {}),
+
 	...glob.sync('src/directives/*/index.js').reduce((acc, item) => {
 		const name = item
 			.replace('/index.js', '')
@@ -41,6 +43,7 @@ webpackConfig.entry = {
 		acc[name] = path.join(__dirname, item)
 		return acc
 	}, {}),
+
 	...glob.sync('src/functions/*/index.js').reduce((acc, item) => {
 		const name = item
 			.replace('/index.js', '')
@@ -48,6 +51,7 @@ webpackConfig.entry = {
 		acc[name] = path.join(__dirname, item)
 		return acc
 	}, {}),
+
 	...glob.sync('src/mixins/*/index.js').reduce((acc, item) => {
 		const name = item
 			.replace('/index.js', '')
@@ -57,11 +61,11 @@ webpackConfig.entry = {
 	}, {}),
 }
 
+webpackConfig.devtool = isDev ? false : 'source-map'
 webpackConfig.output = {
 	path: path.resolve(__dirname, './dist'),
 	publicPath: '/dist/',
-	filename: `[name].${libraryTarget}.js`,
-	libraryTarget: 'umd',
+	filename: '[name].js',
 	library: {
 		type: libraryTarget,
 		name: ['NextcloudVue', '[name]'],
@@ -117,15 +121,15 @@ module.exports = async () => {
 			outputModule: true,
 		}
 
+		webpackConfig.entry = {
+			index: path.join(__dirname, 'src', 'index.js'),
+		}
 		webpackConfig.output.filename = `[name].${libraryTarget}.js`
 
 		webpackConfig.externals = [...webpackConfig.externals, ...Object.keys(dependencies)]
 
 		delete webpackConfig.output.library.name
 	}
-
-	// Do not minimize
-	webpackConfig.optimization.minimize = false
 
 	return webpackConfig
 }
