@@ -33,8 +33,6 @@ export default {
 	/**
 	 * The render function to display the component
 	 *
-	 * @param {Function} h The function to create VNodes
-	 * @param {object} context The context object of the functional component
 	 * @return {object} The created VNode
 	 */
 	render() {

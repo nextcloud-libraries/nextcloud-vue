@@ -212,7 +212,6 @@ export default {
 	/**
 	 * The render function to display the component
 	 *
-	 * @param {Function} h The function to create VNodes
 	 * @return {object} The created VNode
 	 */
 	render() {
