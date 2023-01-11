@@ -2,18 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v7.4.0-beta.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.4.0-beta.0) (2023-01-11)
+## [v7.4.1-beta.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.4.0-beta.1) (2023-01-11)
 
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.3.0...v7.4.0-beta.0)
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.3.0...v7.4.0-beta.1)
 
 ### :rocket: Enhancements
 
-- Use common webpack config [\#3633](https://github.com/nextcloud/nextcloud-vue/pull/3633) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - Add NcIconSvgWrapper to public API [\#3630](https://github.com/nextcloud/nextcloud-vue/pull/3630) ([Pytal](https://github.com/Pytal))
 - feat\(AppNavigationItem\): Add href support [\#3612](https://github.com/nextcloud/nextcloud-vue/pull/3612) ([skjnldsv](https://github.com/skjnldsv))
 - Add `NcSavingIndicatorIcon` [\#3575](https://github.com/nextcloud/nextcloud-vue/pull/3575) ([susnux](https://github.com/susnux))
 - feat\(AppNavigationItem\): Allow native title attribute control [\#3617](https://github.com/nextcloud/nextcloud-vue/pull/3617) ([skjnldsv](https://github.com/skjnldsv))
-
 
 ### :bug: Fixed bugs
 
@@ -27,10 +25,6 @@ All notable changes to this project will be documented in this file.
 
 ### Closed pull requests
 
-- Fix lint errors [\#3640](https://github.com/nextcloud/nextcloud-vue/pull/3640) ([raimund-schluessler](https://github.com/raimund-schluessler))
-- Fix minor typo in NcContent docs [\#3632](https://github.com/nextcloud/nextcloud-vue/pull/3632) ([raimund-schluessler](https://github.com/raimund-schluessler))
-- Simplify NcListItemIcon default slot usage [\#3620](https://github.com/nextcloud/nextcloud-vue/pull/3620) ([raimund-schluessler](https://github.com/raimund-schluessler))
-- Use material design icons in documentation everywhere [\#3619](https://github.com/nextcloud/nextcloud-vue/pull/3619) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - Add console warning messages for deprecated multiselect components [\#3573](https://github.com/nextcloud/nextcloud-vue/pull/3573) ([Pytal](https://github.com/Pytal))
 
 ## [v7.3.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.3.0) (2022-12-23)
