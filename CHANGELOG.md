@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.4.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.4.0) (2023-01-11)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.3.0...v7.4.0)
+
+### :rocket: Enhancements
+
+- Use common webpack config [\#3633](https://github.com/nextcloud/nextcloud-vue/pull/3633) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Add NcIconSvgWrapper to public API [\#3630](https://github.com/nextcloud/nextcloud-vue/pull/3630) ([Pytal](https://github.com/Pytal))
+- feat\(AppNavigationItem\): Add href support [\#3612](https://github.com/nextcloud/nextcloud-vue/pull/3612) ([skjnldsv](https://github.com/skjnldsv))
+- Add `NcSavingIndicatorIcon` [\#3575](https://github.com/nextcloud/nextcloud-vue/pull/3575) ([susnux](https://github.com/susnux))
+
+### :bug: Fixed bugs
+
+- Do not add aria-label when avatar is not interactive [\#3618](https://github.com/nextcloud/nextcloud-vue/pull/3618) ([Pytal](https://github.com/Pytal))
+- Fix action input styles [\#3614](https://github.com/nextcloud/nextcloud-vue/pull/3614) ([Pytal](https://github.com/Pytal))
+- fix\(ProgressBar\): Fix progress rounded corners [\#3613](https://github.com/nextcloud/nextcloud-vue/pull/3613) ([skjnldsv](https://github.com/skjnldsv))
+- fix\(NcAppNavigationItem\): Make sure that icon-collapse styles take precendense over NcButton styles [\#3608](https://github.com/nextcloud/nextcloud-vue/pull/3608) ([juliushaertl](https://github.com/juliushaertl))
+- Fix appNavigationItem collapse labels [\#3598](https://github.com/nextcloud/nextcloud-vue/pull/3598) ([skjnldsv](https://github.com/skjnldsv))
+
+### Closed pull requests
+
+- Adjust border thickness of NcRichContenteditable [\#3637](https://github.com/nextcloud/nextcloud-vue/pull/3637) ([Chartman123](https://github.com/Chartman123))
+- Fix minor typo in NcContent docs [\#3632](https://github.com/nextcloud/nextcloud-vue/pull/3632) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Simplify NcListItemIcon default slot usage [\#3620](https://github.com/nextcloud/nextcloud-vue/pull/3620) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Use material design icons in documentation everywhere [\#3619](https://github.com/nextcloud/nextcloud-vue/pull/3619) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- feat\(AppNavigationItem\): Allow native title attribute control [\#3617](https://github.com/nextcloud/nextcloud-vue/pull/3617) ([skjnldsv](https://github.com/skjnldsv))
+- Create `aria-label` for icon link [\#3597](https://github.com/nextcloud/nextcloud-vue/pull/3597) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+- Add console warning messages for deprecated multiselect components [\#3573](https://github.com/nextcloud/nextcloud-vue/pull/3573) ([Pytal](https://github.com/Pytal))
+
 ## [v7.3.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.3.0) (2022-12-23)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.2.0...v7.3.0)
