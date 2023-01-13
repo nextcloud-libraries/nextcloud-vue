@@ -305,10 +305,12 @@ export default {
 		overflow: hidden;
 		color: var(--color-text-maxcontrast);
 		padding: 12px;
+		min-width: $clickable-area;
 		max-width: 100%;
 		border-radius: var(--border-radius-pill);
 		align-items: center;
 		display: inline-flex;
+		justify-content: center;
 
 		> span {
 			overflow: hidden;
