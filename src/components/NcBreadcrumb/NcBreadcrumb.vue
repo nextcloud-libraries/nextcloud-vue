@@ -43,7 +43,9 @@ This component is meant to be used inside a Breadcrumbs component.
 			v-if="(title || icon) && !$slots.default"
 			:exact="exact"
 			:to="to"
-			:href="href">
+			:href="href"
+			v-bind="$attrs"
+			v-on="$listeners">
 			<!-- @slot Slot for passing a material design icon. Precedes the icon and title prop. -->
 			<slot name="icon">
 				<span v-if="icon" :class="icon" class="icon" />
@@ -93,6 +95,7 @@ export default {
 
 		/**
 		 * Route Location the link should navigate to when clicked on.
+		 *
 		 * @see https://v3.router.vuejs.org/api/#to
 		 */
 		to: {
@@ -101,7 +104,8 @@ export default {
 		},
 
 		/**
-		 * Route Location the link should navigate to when clicked on.
+		 * Match the complete route attributes (query and hash included)
+		 *
 		 * @see https://v3.router.vuejs.org/api/#exact
 		 */
 		exact: {
