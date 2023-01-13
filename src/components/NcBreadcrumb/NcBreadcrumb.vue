@@ -41,6 +41,7 @@ This component is meant to be used inside a Breadcrumbs component.
 		@dragleave="dragLeave">
 		<element :is="tag"
 			v-if="(title || icon) && !$slots.default"
+			:exact="exact"
 			:to="to"
 			:href="href">
 			<!-- @slot Slot for passing a material design icon. Precedes the icon and title prop. -->
@@ -89,14 +90,25 @@ export default {
 			type: String,
 			required: true,
 		},
+
 		/**
-		 * The router-link to prop [https://router.vuejs.org/api/#to](https://router.vuejs.org/api/#to)
-		 * If set, the breadcrumbs will be rendered by router-link.
+		 * Route Location the link should navigate to when clicked on.
+		 * @see https://v3.router.vuejs.org/api/#to
 		 */
 		to: {
 			type: [String, Object],
 			default: undefined,
 		},
+
+		/**
+		 * Route Location the link should navigate to when clicked on.
+		 * @see https://v3.router.vuejs.org/api/#exact
+		 */
+		exact: {
+			type: Boolean,
+			default: false,
+		},
+
 		/**
 		 * Set this prop if your app doesn't use vue-router, breadcrumbs will show as normal links.
 		 */
@@ -104,6 +116,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Set a css icon-class to show an icon instead of the title text.
 		 */
@@ -111,6 +124,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Disable dropping on this breadcrumb.
 		 */
@@ -118,6 +132,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Force the actions to display in a three dot menu
 		 */
@@ -125,6 +140,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Open state of the Actions menu
 		 */
