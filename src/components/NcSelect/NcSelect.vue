@@ -62,6 +62,21 @@ const selectArray = [
 	},
 
 	{
+		title: 'Simple (top placement)',
+		props: {
+			inputId: getRandomId(),
+			placement: 'top',
+			options: [
+				'foo',
+				'bar',
+				'baz',
+				'qux',
+				'quux',
+			],
+		},
+	},
+
+	{
 		title: 'Multiple (with placeholder)',
 		props: {
 			inputId: getRandomId(),
@@ -508,6 +523,14 @@ export default {
 <script>
 import VueSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css'
+import {
+	autoUpdate,
+	computePosition,
+	flip,
+	limitShift,
+	offset,
+	shift,
+} from '@floating-ui/dom'
 
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import Close from 'vue-material-design-icons/Close.vue'
@@ -536,6 +559,32 @@ export default {
 	props: {
 		// Add VueSelect props to $props
 		...VueSelect.props,
+
+		/**
+		 * Append the dropdown element to the end of the body
+		 * and size/position it dynamically.
+		 *
+		 * @see https://vue-select.org/api/props.html#appendtobody
+		 */
+		appendToBody: {
+			type: Boolean,
+			default: true,
+		},
+
+		/**
+		 * When `appendToBody` is true, this function is responsible for
+		 * positioning the drop down list.
+		 *
+		 * If a function is returned from `calculatePosition`, it will
+		 * be called when the drop down list is removed from the DOM.
+		 * This allows for any garbage collection you may need to do.
+		 *
+		 * @see https://vue-select.org/api/props.html#calculateposition
+		 */
+		calculatePosition: {
+			type: Function,
+			default: null,
+		},
 
 		/**
 		 * Close the dropdown when selecting an option
@@ -674,6 +723,16 @@ export default {
 		},
 
 		/**
+		 * When `appendToBody` is true, this sets the placement of the dropdown
+		 *
+		 * @type {'bottom' | 'top'}
+		 */
+		placement: {
+			type: String,
+			default: 'bottom',
+		},
+
+		/**
 		 * Enable the user selector with avatars
 		 *
 		 * Objects must contain the data expected by the
@@ -723,6 +782,66 @@ export default {
 	},
 
 	computed: {
+		localCalculatePosition() {
+			if (this.calculatePosition !== null) {
+				return this.calculatePosition
+			}
+
+			return (dropdownMenu, component, { width }) => {
+				dropdownMenu.style.width = width
+
+				const addClass = {
+					name: 'addClass',
+					fn(_middlewareArgs) {
+						dropdownMenu.classList.add('vs__dropdown-menu--floating')
+						return {}
+					},
+				}
+
+				const togglePlacementClass = {
+					name: 'togglePlacementClass',
+					fn({ placement }) {
+						component.$el.classList.toggle(
+							'select--drop-up',
+							placement === 'top',
+						)
+						dropdownMenu.classList.toggle(
+							'vs__dropdown-menu--floating-placement-top',
+							placement === 'top',
+						)
+						return {}
+					},
+				}
+
+				const updatePosition = () => {
+					computePosition(component.$refs.toggle, dropdownMenu, {
+						placement: this.placement,
+						middleware: [
+							offset(-1),
+							addClass,
+							togglePlacementClass,
+							// Match popperjs default collision prevention behavior by appending the following middleware in order
+							flip(),
+							shift({ limiter: limitShift() }),
+						],
+					}).then(({ x, y }) => {
+						Object.assign(dropdownMenu.style, {
+							left: `${x}px`,
+							top: `${y}px`,
+						})
+					})
+				}
+
+				const cleanup = autoUpdate(
+					component.$refs.toggle,
+					dropdownMenu,
+					updatePosition,
+				)
+
+				return cleanup
+			}
+		},
+
 		localFilterBy() {
 			if (this.filterBy !== null) {
 				return this.filterBy
@@ -752,10 +871,12 @@ export default {
 		propsToForward() {
 			const {
 				// Custom overrides of vue-select props
+				calculatePosition,
 				filterBy,
 				label,
 				// Props handled by the component itself
 				noWrap,
+				placement,
 				userSelect,
 				// Props to forward
 				...initialPropsToForward
@@ -763,6 +884,7 @@ export default {
 
 			const propsToForward = {
 				...initialPropsToForward,
+				calculatePosition: this.localCalculatePosition,
 				label: this.localLabel,
 			}
 
@@ -776,8 +898,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.select {
+<style lang="scss">
+:root {
 	/* Set custom vue-select CSS variables */
 
 	/* Search Input */
@@ -826,26 +948,54 @@ export default {
 
 	/* Transitions */
 	--vs-transition-duration: 0ms;
+}
 
+.v-select.select {
 	/* Override default vue-select styles */
 	min-height: $clickable-area;
 	min-width: 260px;
 	margin: 0;
 
+	.vs__selected {
+		min-height: 36px;
+		padding: 0 0.5em;
+	}
+
+	.vs__clear {
+		margin-right: 2px;
+	}
+
 	&--no-wrap {
-		&:deep(.vs__selected-options) {
+		.vs__selected-options {
 			flex-wrap: nowrap;
 			overflow: auto;
 		}
 	}
 
-	&:deep(.vs__selected) {
-		min-height: 36px;
-		padding: 0 0.5em;
+	&--drop-up {
+		&.vs--open {
+			.vs__dropdown-toggle {
+				border-radius: 0 0 var(--vs-border-radius) var(--vs-border-radius);
+				border-top-color: transparent;
+				border-bottom-color: var(--vs-border-color);
+			}
+		}
 	}
+}
 
-	&:deep(.vs__clear) {
-		margin-right: 2px;
+.vs__dropdown-menu {
+	&--floating {
+		width: max-content;
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		&-placement-top {
+			border-radius: var(--vs-border-radius) var(--vs-border-radius) 0 0;
+			border-top-style: var(--vs-border-style);
+			border-bottom-style: none;
+			box-shadow: 0px -1px 1px 0px var(--color-box-shadow);
+		}
 	}
 }
 </style>
