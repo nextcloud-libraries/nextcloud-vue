@@ -40,6 +40,7 @@
 		"dist"
 	],
 	"dependencies": {
+		"@floating-ui/dom": "^1.1.0",
 		"@nextcloud/auth": "^2.0.0",
 		"@nextcloud/axios": "^2.0.0",
 		"@nextcloud/browser-storage": "^0.2.0",
