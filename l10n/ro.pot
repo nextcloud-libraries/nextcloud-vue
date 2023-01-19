@@ -3,10 +3,11 @@
 # Mădălin Vasiliu <contact@madalinvasiliu.com>, 2022
 # Petre T, 2022
 # Mihai Michael, 2022
+# Daniel Rosca, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mihai Michael, 2022\n"
+"Last-Translator: Daniel Rosca, 2023\n"
 "Language-Team: Romanian (https://www.transifex.com/nextcloud/teams/64236/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ro\n"
@@ -72,6 +73,9 @@ msgstr "Editați elementul"
 
 msgid "Error getting related resources"
 msgstr " Eroare la returnarea resurselor legate"
+
+msgid "Error parsing svg"
+msgstr "Eroare de analizare a svg"
 
 msgid "External documentation for {title}"
 msgstr "Documentație externă pentru {title}"
