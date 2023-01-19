@@ -105,6 +105,11 @@ webpackRules.RULE_JS.exclude = BabelLoaderExcludeNodeModulesExcept([
 	'tributejs',
 ])
 
+webpackRules.RULE_RAW_SVG = {
+	resourceQuery: /raw/,
+	type: 'asset/source',
+}
+
 webpackConfig.module.rules = Object.values(webpackRules)
 
 module.exports = async () => {
