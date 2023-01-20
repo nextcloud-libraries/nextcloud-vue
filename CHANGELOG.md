@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.5.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.5.0) (2023-01-19)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.4.0...v7.5.0)
+
+### :rocket: Enhancements
+
+- Set placement of select dropdown [\#3656](https://github.com/nextcloud/nextcloud-vue/pull/3656) ([Pytal](https://github.com/Pytal))
+- Breadcrumb: add exact prop and fix style [\#3654](https://github.com/nextcloud/nextcloud-vue/pull/3654) ([skjnldsv](https://github.com/skjnldsv))
+
 ## [v7.4.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.4.0) (2023-01-11)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.3.0...v7.4.0)
@@ -24,7 +33,7 @@ All notable changes to this project will be documented in this file.
 - Create `aria-label` for icon link [\#3597](https://github.com/nextcloud/nextcloud-vue/pull/3597) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
 
 ### Closed pull requests
-	
+
 - Add console warning messages for deprecated multiselect components [\#3573](https://github.com/nextcloud/nextcloud-vue/pull/3573) ([Pytal](https://github.com/Pytal))
 
 ## [v7.3.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.3.0) (2022-12-23)
