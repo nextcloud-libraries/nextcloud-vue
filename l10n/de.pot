@@ -2,17 +2,18 @@
 # Translators:
 # Philipp Fischbeck <pfischbeck@googlemail.com>, 2020
 # Andreas Eitel <github-aneitel@online.de>, 2020
-# Bernd Lukasik, 2021
+# Mario Siegmann <mario_siegmann@web.de>, 2020
+# kachelkaiser, 2021
 # Gustav Gyges, 2021
-# Mario Siegmann <mario_siegmann@web.de>, 2021
 # Joachim Sokolowski, 2022
 # Markus Eckstein, 2022
 # Jasper vom Felde, 2022
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2022
+# Jan Käkenmeister, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2022\n"
+"Last-Translator: Jan Käkenmeister, 2023\n"
 "Language-Team: German (https://www.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -32,6 +33,11 @@ msgstr "Aktivitäten"
 
 msgid "Animals & Nature"
 msgstr "Tiere & Natur"
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+"Alles, das mit derselben Gruppe von Personen geteilt wird, wird hier "
+"angezeigt"
 
 msgid "Avatar of {displayName}"
 msgstr "Avatar von {displayName}"
@@ -74,6 +80,9 @@ msgstr "Objekt bearbeiten"
 
 msgid "Error getting related resources"
 msgstr "Fehler beim Abrufen verwandter Ressourcen"
+
+msgid "Error parsing svg"
+msgstr "Fehler beim Einlesen der SVG"
 
 msgid "External documentation for {title}"
 msgstr "Externe Dokumentation für {title}"
@@ -135,24 +144,6 @@ msgstr "Diashow pausieren"
 msgid "People & Body"
 msgstr "Menschen & Körper"
 
-msgid "Pick a date"
-msgstr "Ein Datum auswählen"
-
-msgid "Pick a date and a time"
-msgstr "Datum und Uhrzeit auswählen"
-
-msgid "Pick a month"
-msgstr "Einen Monat auswählen"
-
-msgid "Pick a time"
-msgstr "Eine Uhrzeit auswählen"
-
-msgid "Pick a week"
-msgstr "Eine Woche auswählen"
-
-msgid "Pick a year"
-msgstr "Ein Jahr auswählen"
-
 msgid "Pick an emoji"
 msgstr "Ein Emoji auswählen"
 
@@ -207,7 +198,9 @@ msgstr "Die Gruppe konnte nicht durchsucht werden"
 msgid "Undo changes"
 msgstr "Änderungen rückgängig machen"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
 msgstr ""
-"Nachricht schreiben, @, um jemanden zu erwähnen, : für die automatische "
-"Vervollständigung von Emojis … "
+"Nachricht schreiben, \"@\" um jemanden zu erwähnen, \":\" für die "
+"automatische Vervollständigung von Emojis …"
