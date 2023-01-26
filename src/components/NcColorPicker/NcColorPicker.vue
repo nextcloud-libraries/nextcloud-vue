@@ -188,6 +188,7 @@ export default {
 			<div class="color-picker__navigation">
 				<NcButton v-if="advanced"
 					type="tertiary"
+					:aria-label="ariaBack"
 					@click="handleBack">
 					<template #icon>
 						<ArrowLeft :size="20" />
@@ -195,6 +196,7 @@ export default {
 				</NcButton>
 				<NcButton v-if="!advanced"
 					type="tertiary"
+					:aria-label="ariaMore"
 					@click="handleMoreSettings">
 					<template #icon>
 						<DotsHorizontal :size="20" />
@@ -213,7 +215,7 @@ export default {
 <script>
 import NcButton from '../NcButton/index.js'
 import NcPopover from '../NcPopover/index.js'
-import l10n from '../../mixins/l10n.js'
+import { t } from '../../l10n.js'
 import GenColors from '../../utils/GenColors.js'
 
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
@@ -238,8 +240,6 @@ export default {
 		NcButton,
 		NcPopover,
 	},
-
-	mixins: [l10n],
 
 	props: {
 		/**
@@ -284,6 +284,8 @@ export default {
 		return {
 			currentColor: this.value,
 			advanced: false,
+			ariaBack: t('Back'),
+			ariaMore: t('More options'),
 		}
 	},
 
@@ -294,6 +296,8 @@ export default {
 	},
 
 	methods: {
+		t,
+
 		/**
 		 * Submit a picked colour and close picker
 		 */

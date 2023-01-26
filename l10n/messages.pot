@@ -26,6 +26,9 @@ msgstr ""
 msgid "Avatar of {displayName}, {status}"
 msgstr ""
 
+msgid "Back"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr ""
 
@@ -90,6 +93,9 @@ msgid "Message limit of {count} characters reached"
 msgstr ""
 
 msgid "More items …"
+msgstr ""
+
+msgid "More options"
 msgstr ""
 
 msgid "Next"
