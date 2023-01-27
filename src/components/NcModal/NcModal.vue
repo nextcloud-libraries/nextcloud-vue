@@ -612,7 +612,6 @@ export default {
 			case 37: // left arrow
 				this.previous(e)
 				break
-			case 13: // enter key
 			case 39: // right arrow
 				this.next(e)
 				break
