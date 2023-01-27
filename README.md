@@ -52,7 +52,58 @@ If you want to work on improving the components it’s best to run the latest co
     - In the repository of an app do `npm link @nextcloud/vue` (you need to re-link any time you do `npm ci` in the app)
 4. Then build the app with: `npm run build` (or watch for changes with `npm run watch`)
 
-### Styleguide
+## Translations
+
+This library uses translated strings.
+When you edit/create a translated string, you need to run `npm run l10n:extract` to update the source files.
+Our awesome translation community will then be notified and a bot will sync those changes automatically.
+
+Nonetheless, it requires a bit of caution.
+When you implement a translated string, import the `translate` or `translatePlural` and add it in your methods like so:
+```vue
+<template>
+	<element>
+ 		{{ t('Choose') }} 
+	</element>
+</template>
+
+<script>
+import { translate as t } from '@nextcloud/l10n'
+
+export default {
+	methods: {
+		t,
+	},
+}
+</script>
+```
+
+Please note that using a translated string as an attribute will _NOT_ work.
+But it will work if it's within an element (like the example above)
+```vue
+<template>
+	<element :prop="t('This will not work')" />
+</template>
+```
+
+You will instead have to define the string in the data section and use the relevant variable reference.
+```vue
+<template>
+	<element :prop="chooseProp" />
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			chooseProp: t('Choose'),
+		},
+	}
+}
+</script>
+```
+
+## Styleguide
 
 When developing new components or extending compnents, make sure to also have some bits of related documentation like examples, where applicable.
 To test components and the documentation in that context, you can run `npm run styleguide` to run a local server that serves the style guide
