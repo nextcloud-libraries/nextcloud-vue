@@ -7,10 +7,11 @@
 # Papa Nates, 2022
 # omar.maciasmolina <omar.maciasmolina@gmail.com>, 2022
 # v v <e670006006@gmail.com>, 2022
+# Carles Sadurní <transifex@puntnet.org>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: v v <e670006006@gmail.com>, 2022\n"
+"Last-Translator: Carles Sadurní <transifex@puntnet.org>, 2023\n"
 "Language-Team: Catalan (https://www.transifex.com/nextcloud/teams/64236/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ca\n"
@@ -76,6 +77,9 @@ msgstr "Edita l'element"
 
 msgid "Error getting related resources"
 msgstr "Error obtenint els recursos relacionats"
+
+msgid "Error parsing svg"
+msgstr "Error en l'anàlisi del svg"
 
 msgid "External documentation for {title}"
 msgstr "Documentació externa per a {title}"
