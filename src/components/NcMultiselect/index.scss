@@ -52,7 +52,7 @@
 		border-radius: var(--border-radius-large);
 		min-height: 44px;
 		height: 44px;
-		padding: 8px 12px !important;
+		padding: 8px 0 8px 12px !important;
 		background-color: var(--color-main-background);
 		box-sizing: border-box;
 
@@ -145,7 +145,7 @@
 		}
 		/* default multiselect input for search and placeholder */
 		input.multiselect__input {
-			width: 100% !important;
+			width: calc(100% - 22px) !important;
 			height: auto !important;
 			margin: 0;
 			opacity: 0;
