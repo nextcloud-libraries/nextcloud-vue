@@ -709,8 +709,7 @@ export default {
 		 * @return {boolean}
 		 */
 		isValidSingleAction(action) {
-			const componentName = action?.componentOptions?.Ctor?.extendOptions?.name ?? action?.componentOptions?.tag
-			return ['NcActionButton', 'NcActionLink', 'NcActionRouter'].includes(componentName)
+			return ['NcActionButton', 'NcActionLink', 'NcActionRouter'].includes(action?.type?.name)
 		},
 		isAction(vnode) {
 			return vnode?.type?.name?.startsWith?.('NcAction')
@@ -940,6 +939,7 @@ export default {
 			const icon = action?.children?.icon?.()?.[0] || h('span', { class: ['icon', action?.componentOptions?.propsData?.icon] })
 			const title = this.forceTitle ? this.menuTitle : ''
 			const clickListener = action?.props?.onClick
+			const text = action?.children.default?.()?.[0]?.children?.trim()
 
 			return withDirectives(h(resolveComponent('NcButton'),
 				{
@@ -948,8 +948,8 @@ export default {
 						action?.data?.staticClass,
 						action?.data?.class,
 					],
-					'aria-label': action?.componentOptions?.propsData?.ariaLabel || action?.componentOptions?.children?.[0]?.text,
-					title: action?.componentOptions?.propsData?.title,
+					'aria-label': action?.props?.['aria-label'] || text,
+					title: action?.props?.title,
 					ref: action?.data?.ref,
 					// If it has a title, we use a secondary button
 					type: this.type || (title ? 'secondary' : 'tertiary'),
@@ -971,7 +971,7 @@ export default {
 					default: () => title,
 					icon: () => icon,
 				},
-			), [[Tooltip, action.children.default?.()?.[0]?.children?.trim(), '', { auto: true }]])
+			), [[Tooltip, text, '', { auto: true }]])
 		}
 
 		/**
