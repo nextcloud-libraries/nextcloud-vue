@@ -1,4 +1,4 @@
-import { h, onMounted, ref, defineComponent } from "vue"
+import { h, onMounted, ref, defineComponent, markRaw } from "vue"
 import { VueLive } from "vue-live";
 import layout from "./vue-live-layout.vue";
 
@@ -9,13 +9,13 @@ export default defineComponent({
 		const props = {...attrs}
 		onMounted(async () => {
 			const NcComponents = (await import('../../../../dist/index.esm.js')).NcComponents
+			props.components = markRaw({...NcComponents})
 			if ("requires" in props) {
-				props.requires = {}
+				props.requires = markRaw({})
 				await Promise.allSettled(Object.keys(attrs.requires).map(async (key) => {
 					props.requires[key] = (await attrs.requires[key]).default
 				}))
 			}
-			props.components = {...NcComponents}
 			ready.value = true
 		})
 		// return the render function

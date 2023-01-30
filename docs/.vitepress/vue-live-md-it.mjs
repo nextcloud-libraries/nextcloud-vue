@@ -25,7 +25,7 @@ function addVueLive(md, opts) {
 		// put all requires into a "requires" object
 		// add this as a prop
 		const imports = getImports(code)
-		const requires = imports.map(mod => `'${mod[1]}': import('../../node_modules/${mod[1]}${mod[1].startsWith('vue-material-design') ? '.vue' : ''}')`)
+		const requires = imports.map(mod => `"${mod[1]}": import("../../node_modules/${mod[1]}${mod[1].startsWith('vue-material-design') ? '.vue' : ''}")`)
 		const langArray = lang.split(' ')
 		const langClean = langArray[0]
 		const codeClean = md.utils.escapeHtml(code).replace(/\`/g, '\\`').replace(/\$/g, '\\$')
@@ -34,7 +34,7 @@ function addVueLive(md, opts) {
 		const markdownGenerated = `<vue-live ${jsx}
       :layoutProps="{lang:'${langClean}'}" 
       :code="\`${codeClean}\`"
-	  :requires="{${requires.join(',')}}"
+	  :requires='{${requires.join(',')}}'
       ${editorProps ? ` :editorProps="${editorProps}"` : ''}
        />`
 		return markdownGenerated

@@ -2,8 +2,7 @@ import * as path from "path";
 import * as fs from 'fs'
 import { fileURLToPath } from "url";
 import { defineConfig } from "vitepress";
-// Not supported with vite4, wait for next release "vitepress-plugin-search": "^1.0.4-alpha.16",
-// import { SearchPlugin } from 'vitepress-plugin-search'
+import { SearchPlugin } from 'vitepress-plugin-search'
 import PackageJSON from '../../package.json'
 import vueLiveMd from './vue-live-md-it.mjs'
 
@@ -100,7 +99,7 @@ export default defineConfig({
 
 	outDir: '../styleguide',
 	vite: {
-		plugins: [vueDocsPlugin /*, SearchPlugin()*/],
+		plugins: [vueDocsPlugin, SearchPlugin()],
 	},
 
 	markdown: {

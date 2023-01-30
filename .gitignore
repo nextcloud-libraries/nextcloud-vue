@@ -22,6 +22,7 @@ coverage
 
 # genereated file
 docs/components
+docs/.vitepress
 
 # Docs compiled build
 styleguide/*

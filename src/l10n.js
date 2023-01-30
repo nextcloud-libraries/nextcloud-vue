@@ -1,10 +1,11 @@
-import { getGettextBuilder } from '@nextcloud/l10n/dist/gettext.js'
+import { getGettextBuilder } from '@nextcloud/l10n/gettext'
 
 const gtBuilder = getGettextBuilder()
 	.detectLocale()
 
 // Decompress Translations to gettext format and add to gtBuilder
-TRANSLATIONS.forEach((lang) => {
+const translations = TRANSLATIONS
+translations.forEach((lang) => {
 	const translations = {}
 
 	for (const key in lang.translations) {
