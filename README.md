@@ -18,7 +18,7 @@ We will try to maintain this repository the best we can, but some example might 
 ### Install the library
 
 ```bash
-npm i --save @nextcloud/vue
+npm i --save @nextcloud/vuesdf
 ```
 
 ### Usage
