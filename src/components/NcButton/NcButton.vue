@@ -422,8 +422,9 @@ export default {
 		cursor: pointer;
 	}
 	border-radius: math.div($clickable-area, 2);
-	transition: background-color 0.1s linear !important;
-	transition: border 0.1s linear;
+	transition-property: color, border-color, background-color;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
 
 	// No outline feedback for focus. Handled with a toggled class in js (see data)
 	&:focus {
