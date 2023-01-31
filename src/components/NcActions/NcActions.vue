@@ -28,7 +28,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 <docs>
 ### Single action
 
-```
+```vue
 <template>
 	<NcActions>
 		<NcActionButton @click="actionDelete">
@@ -57,7 +57,7 @@ export default {
 
 ### Multiple actions
 
-```
+```vue
 <template>
 	<NcActions>
 		<NcActionButton @click="showMessage('Edit')">
@@ -102,7 +102,7 @@ export default {
 
 ### Multiple actions with 2 items inline
 
-```
+```vue
 <template>
 	<NcActions :inline="2">
 		<NcActionButton @click="showMessage('Add')">
@@ -155,7 +155,7 @@ export default {
 
 ### Multiple actions with custom icon
 
-```
+```vue
 <template>
 	<NcActions>
 		<template #icon>
@@ -203,7 +203,7 @@ export default {
 
 ### With menu title
 
-```
+```vue
 <template>
 	<NcActions menu-title="Object management">
 		<template #icon>
@@ -253,7 +253,7 @@ export default {
 ```
 
 ### Various icons styles
-```
+```vue
 <template>
 	<NcActions :primary="true">
 		<NcActionButton>
@@ -283,7 +283,7 @@ export default {
 </script>
 ```
 
-```
+```vue
 <template>
 	<NcActions :primary="true" menu-title="Object management">
 		<template #icon>
@@ -337,7 +337,7 @@ export default {
 ### Custom icon slot
 To be used with `vue-material-design-icons` only. For icon classes use the `default-icon` slot.
 It can be used with one or multiple actions.
-```
+```vue
 <template>
 	<div style="display: flex;align-items: center;">
 		<NcButton @click="toggled = !toggled">Toggle multiple action</NcButton>
@@ -381,7 +381,7 @@ export default {
 ```
 
 ### Custom icon slot in child elements
-```
+```vue
 <template>
 	<NcActions :primary="true">
 		<NcActionButton>
@@ -413,7 +413,7 @@ export default {
 
 ### Type variants
 
-```
+```vue
 <template>
 	<div>
 		<NcActions :type="current">
@@ -421,14 +421,14 @@ export default {
 				<SelectColor :size="20" />
 			</template>
 
-			<NcActionButton v-if="current" close-after-click @click="define(undefined)">
+			<NcActionButton v-if="current" close-after-click @click="define()">
 				<template #icon>
 					<Delete :size="20" />
 				</template>
 				Remove
 			</NcActionButton>
 
-			<NcActionButton close-after-click @click="define(row)" v-for="row in types" :key="`type-icon--${row}`">
+			<NcActionButton v-for="row in types" close-after-click @click="define(row)" :key="`type-icon--${row}`">
 				<template #icon>
 					<CheckboxMarkedCircleOutline v-if="row === current" :size="20" />
 					<SelectColor v-else :size="20" />
@@ -438,14 +438,14 @@ export default {
 		</NcActions>
 
 		<NcActions :type="current" menu-title="Choose a type">
-			<NcActionButton v-if="current" close-after-click @click="define(undefined)">
+			<NcActionButton v-if="current" close-after-click @click="define()">
 				<template #icon>
 					<Delete :size="20" />
 				</template>
 				Remove
 			</NcActionButton>
 
-			<NcActionButton close-after-click @click="define(row)" v-for="row in types" :key="`type-text--${row}`">
+			<NcActionButton v-for="row in types" close-after-click @click="define(row)" :key="`type-text--${row}`">
 				<template #icon>
 					<CheckboxMarkedCircleOutline v-if="row === current" :size="20" />
 					<SelectColor v-else :size="20" />
@@ -459,14 +459,14 @@ export default {
 				<SelectColor :size="20" />
 			</template>
 
-			<NcActionButton v-if="current" close-after-click @click="define(undefined)">
+			<NcActionButton v-if="current" close-after-click @click="define()">
 				<template #icon>
 					<Delete :size="20" />
 				</template>
 				Remove
 			</NcActionButton>
 
-			<NcActionButton close-after-click @click="define(row)" v-for="row in types" :key="`type-icon-text--${row}`">
+			<NcActionButton v-for="row in types" close-after-click @click="define(row)" :key="`type-icon-text--${row}`">
 				<template #icon>
 					<CheckboxMarkedCircleOutline v-if="row === current" :size="20" />
 					<SelectColor v-else :size="20" />
@@ -504,7 +504,7 @@ export default {
 		}
 	},
 	methods: {
-		define(row) {
+		define(row = undefined) {
 			this.current = row
 		}
 	}
