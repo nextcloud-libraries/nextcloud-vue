@@ -1,4 +1,4 @@
-import { getGettextBuilder } from '@nextcloud/l10n/dist/gettext.js'
+import { getGettextBuilder } from '@nextcloud/l10n/gettext'
 
 const gtBuilder = getGettextBuilder()
 	.detectLocale()
