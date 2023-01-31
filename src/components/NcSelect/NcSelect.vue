@@ -965,6 +965,15 @@ export default {
 		margin-right: 2px;
 	}
 
+	&.vs--open .vs__dropdown-toggle {
+		border-color: var(--color-primary);
+		border-bottom-color: transparent;
+	}
+
+	&:not(.vs--open) .vs__dropdown-toggle:hover {
+		border-color: var(--color-primary);
+	}
+
 	&--no-wrap {
 		.vs__selected-options {
 			flex-wrap: nowrap;
@@ -984,6 +993,8 @@ export default {
 }
 
 .vs__dropdown-menu {
+	border-color: var(--color-primary);
+
 	&--floating {
 		width: max-content;
 		position: absolute;
@@ -996,6 +1007,10 @@ export default {
 			border-bottom-style: none;
 			box-shadow: 0px -1px 1px 0px var(--color-box-shadow);
 		}
+	}
+
+	.vs__no-options {
+		color: var(--color-text-lighter)
 	}
 }
 </style>
