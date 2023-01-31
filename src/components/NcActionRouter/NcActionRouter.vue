@@ -28,7 +28,7 @@
 			class="action-router focusable"
 			:aria-label="ariaLabel"
 			rel="nofollow noreferrer noopener"
-			@click.native="onClick">
+			@click="onClick">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
 				<span :class="[isIconUrl ? 'action-router__icon--url' : icon]"

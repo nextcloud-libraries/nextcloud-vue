@@ -33,24 +33,24 @@
 			@keydown.left.exact.prevent="focusPreviousTab"
 			@keydown.right.exact.prevent="focusNextTab"
 			@keydown.tab.exact.prevent="focusActiveTabContent"
-			@keydown.33.exact.prevent="focusFirstTab"
-			@keydown.34.exact.prevent="focusLastTab">
+			@keydown.page-up.exact.prevent="focusFirstTab"
+			@keydown.page-down.exact.prevent="focusLastTab">
 			<ul>
-				<li v-for="tab in tabs" :key="tab.id" class="app-sidebar-tabs__tab">
-					<a :id="tab.id"
-						:aria-controls="`tab-${tab.id}`"
-						:aria-selected="activeTab === tab.id"
-						:class="{ active: activeTab === tab.id }"
-						:data-id="tab.id"
-						:href="`#tab-${tab.id}`"
-						:tabindex="activeTab === tab.id ? undefined : -1"
+				<li v-for="{props, children} in tabs" :key="props?.id" class="app-sidebar-tabs__tab">
+					<a :id="props?.id"
+						:aria-controls="`tab-${props?.id}`"
+						:aria-selected="activeTab === props?.id"
+						:class="{ active: activeTab === props?.id }"
+						:data-id="props?.id"
+						:href="`#tab-${props?.id}`"
+						:tabindex="activeTab === props?.id ? undefined : -1"
 						role="tab"
-						@click.prevent="setActive(tab.id)">
+						@click.prevent="setActive(props?.id)">
 						<span class="app-sidebar-tabs__tab-icon">
-							<NcVNodes v-if="hasMdIcon(tab)" :vnodes="tab.$slots.icon[0]" />
-							<span v-else :class="tab.icon" />
+							<NcVNodes v-if="children?.icon" :vnodes="children?.icon()" />
+							<span v-else :class="props?.icon" />
 						</span>
-						{{ tab.name }}
+						{{ props?.name }}
 					</a>
 				</li>
 			</ul>
@@ -67,7 +67,7 @@
 <script>
 import NcVNodes from '../NcVNodes/index.js'
 
-import Vue from 'vue'
+import { warn, Fragment } from 'vue'
 
 const IsValidString = function(value) {
 	return value && typeof value === 'string' && value.trim() !== ''
@@ -107,10 +107,6 @@ export default {
 			 * The id of the currently active tab.
 			 */
 			activeTab: '',
-			/**
-			 * Dummy array to react on slot changes.
-			 */
-			children: [],
 		}
 	},
 
@@ -119,7 +115,7 @@ export default {
 			return this.tabs.length > 1
 		},
 		currentTabIndex() {
-			return this.tabs.findIndex(tab => tab.id === this.activeTab)
+			return this.tabs.findIndex(tab => tab.props.id === this.activeTab)
 		},
 	},
 
@@ -130,18 +126,14 @@ export default {
 				this.updateActive()
 			}
 		},
-
-		children() {
-			this.updateTabs()
-		},
 	},
 
 	mounted() {
 		// Init the tabs list
 		this.updateTabs()
-
-		// Let's make the children list reactive
-		this.children = this.$children
+	},
+	beforeUpdate() {
+		this.updateTabs()
 	},
 
 	methods: {
@@ -162,7 +154,7 @@ export default {
 		 */
 		focusPreviousTab() {
 			if (this.currentTabIndex > 0) {
-				this.setActive(this.tabs[this.currentTabIndex - 1].id)
+				this.setActive(this.tabs[this.currentTabIndex - 1].props.id)
 			}
 			this.focusActiveTab() // focus nav item
 		},
@@ -173,7 +165,7 @@ export default {
 		 */
 		focusNextTab() {
 			if (this.currentTabIndex < this.tabs.length - 1) {
-				this.setActive(this.tabs[this.currentTabIndex + 1].id)
+				this.setActive(this.tabs[this.currentTabIndex + 1].props.id)
 			}
 			this.focusActiveTab() // focus nav item
 		},
@@ -183,7 +175,7 @@ export default {
 		 * and emit to the parent component
 		 */
 		focusFirstTab() {
-			this.setActive(this.tabs[0].id)
+			this.setActive(this.tabs[0].props.id)
 			this.focusActiveTab() // focus nav item
 		},
 
@@ -192,7 +184,7 @@ export default {
 		 * and emit to the parent component
 		 */
 		focusLastTab() {
-			this.setActive(this.tabs[this.tabs.length - 1].id)
+			this.setActive(this.tabs[this.tabs.length - 1].props.id)
 			this.focusActiveTab() // focus nav item
 		},
 
@@ -216,15 +208,15 @@ export default {
 		 */
 		updateActive() {
 			this.activeTab = this.active
-				&& this.tabs.findIndex(tab => tab.id === this.active) !== -1
+				&& this.tabs.findIndex(tab => tab.props.id === this.active) !== -1
 				? this.active
 				: this.tabs.length > 0
-					? this.tabs[0].id
+					? this.tabs[0].props.id
 					: ''
 		},
 
-		hasMdIcon(tab) {
-			return tab?.$slots?.icon
+		isElement(vnode) {
+			return (typeof vnode?.type) !== 'symbol'
 		},
 
 		/**
@@ -237,35 +229,50 @@ export default {
 			}
 
 			// Find all valid children (AppSidebarTab, other components, text nodes, etc.)
-			const children = this.$slots.default.filter(elem => elem.tag || elem.text.trim())
+			const children = []
+			// We have to iterate over all slot elements
+			this.$slots.default?.().forEach(vnode => {
+				if (this.isElement(vnode)) {
+					children.push(vnode)
+					return
+				}
+				// If we encounter a Fragment, we have to check its children too
+				if (vnode?.type === Fragment) {
+					vnode?.children?.forEach?.(child => {
+						if (this.isElement(child)) {
+							children.push(child)
+						}
+					})
+				}
+
+			})
 
 			// Find all valid instances of AppSidebarTab
 			const invalidTabs = []
-			const tabs = children.reduce((tabs, tabNode) => {
-				const tab = tabNode.componentInstance
+			const tabs = children.reduce((tabs, tab) => {
 				// Make sure all required props are provided and valid
-				if (IsValidString(tab?.name)
-					&& IsValidStringWithoutSpaces(tab?.id)
-					&& (IsValidStringWithoutSpaces(tab?.icon) || tab?.$slots?.icon)) {
+				if (IsValidString(tab.props?.name)
+					&& IsValidStringWithoutSpaces(tab.props?.id)
+					&& (IsValidStringWithoutSpaces(tab.props?.icon) || tab.children?.icon)) {
 					tabs.push(tab)
 				} else {
-					invalidTabs.push(tabNode)
+					invalidTabs.push(tab)
 				}
 				return tabs
 			}, [])
 
 			// Tabs are optional, but you can use either tabs or non-tab-content only
 			if (tabs.length !== 0 && tabs.length !== children.length) {
-				Vue.util.warn('Mixing tabs and non-tab-content is not possible.')
+				warn('Mixing tabs and non-tab-content is not possible.')
 				invalidTabs.map(invalid => console.debug('Ignoring invalid tab', invalid))
 			}
 
 			// We sort the tabs by their order or by their name
 			this.tabs = tabs.sort((a, b) => {
-				const orderA = a.order || 0
-				const orderB = b.order || 0
+				const orderA = a.props?.order || 0
+				const orderB = b.props?.order || 0
 				if (orderA === orderB) {
-					return OC.Util.naturalSortCompare(a.name, b.name)
+					return OC.Util.naturalSortCompare(a.props?.name, b.props?.name)
 				}
 				return orderA - orderB
 			})

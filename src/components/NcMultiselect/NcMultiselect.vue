@@ -41,7 +41,6 @@ You can use all the properties from https://vue-multiselect.js.org that are not 
 </template>
 
 <script>
-import NcMultiselect from '../index'
 export default {
 	data() {
 		return { value1: '2', value2: ['2'], options: ['0', '1', '2', '3', '4'] }
@@ -73,7 +72,6 @@ You can either use the exact object or the track-by key to match against your op
 </template>
 
 <script>
-import NcMultiselect from '../index'
 const options = [
 	{ id: 1, label: 'Option 1' },
 	{ id: 2, label: 'Option 2' },
@@ -101,7 +99,6 @@ export default {
 </template>
 
 <script>
-import NcMultiselect from '../index'
 export default {
 	data() {
 		return {
@@ -136,8 +133,6 @@ Example here: `displayName`
 </template>
 
 <script>
-import NcMultiselect from '../index'
-
 // Building fake data for the docs
 const options = ['admin', 'user1', 'user2', 'guest', 'group1']
 const formattedOptions = options.map(item => {
@@ -176,7 +171,7 @@ export default {
 	-->
 	<VueMultiselect ref="VueMultiselect"
 		v-model="localValue"
-		v-bind="$attrs"
+		v-bind="{ ...$attrs, ...scoping }"
 		:class="[
 			multiple ? 'multiselect--multiple': 'multiselect--single'
 		]"
@@ -190,21 +185,20 @@ export default {
 		:track-by="trackBy"
 		tag-placeholder="create"
 		@close="ariaExpanded = false"
-		@open="ariaExpanded = true"
-		v-on="$listeners">
+		@open="ariaExpanded = true">
 		<!-- This is the scope to format the list of available options in the dropdown
 			Two templates to avoid registering the slot unnecessary -->
 		<template #option="scope">
 			<!-- Avatar display select slot override.
 				You CANNOT use this scope, we will replace it by this -->
-			<NcListItemIcon v-if="userSelect && !$scopedSlots['option']"
+			<NcListItemIcon v-if="userSelect && !$slots['option']"
 				v-bind="scope.option"
 				:title="scope.option[label]"
 				:search="scope.search" />
 
 			<!-- Ellipsis in the middle if no option slot
 				is defined in the parent -->
-			<NcEllipsisedOption v-else-if="!$scopedSlots['option']"
+			<NcEllipsisedOption v-else-if="!$slots['option']"
 				:name="getOptionLabel(scope.option)"
 				:search="scope.search" />
 
@@ -223,7 +217,7 @@ export default {
 
 		<!-- Passing the singleLabel slot, this is used to format the selected
 			option on NON-multiple multiselects -->
-		<template v-for="(_, slot) of $scopedSlots" #[slot]="scope">
+		<template v-for="(_, slot) of $slots" #[slot]="scope">
 			<slot :name="slot" v-bind="scope" />
 		</template>
 
@@ -244,8 +238,7 @@ import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import l10n from '../../mixins/l10n.js'
-
-import VueMultiselect from 'vue-multiselect'
+import { Multiselect as VueMultiselect } from 'vue-multiselect'
 
 if (!PRODUCTION) {
 	console.warn('NcMultiselect usage has been deprecated. Use NcSelect instead.')
@@ -374,6 +367,7 @@ export default {
 		return {
 			elWidth: 0,
 			ariaExpanded: false,
+			scoping: { [`data-v-${SCOPE_VERSION}`]: '' },
 		}
 	},
 	computed: {
@@ -437,7 +431,7 @@ export default {
 		this.updateWidth()
 		window.addEventListener('resize', this.updateWidth)
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		window.removeEventListener('resize', this.updateWidth)
 	},
 
@@ -474,8 +468,8 @@ export default {
 		 */
 		updateWidth() {
 			// width of the tags wrapper minus the padding
-			if (this.$el && this.$el.querySelector('.multiselect__tags-wrap')) {
-				this.elWidth = this.$el.querySelector('.multiselect__tags-wrap').offsetWidth - 10
+			if (this.$refs.VueMultiselect?.$el?.querySelector('.multiselect__tags-wrap')) {
+				this.elWidth = this.$refs.VueMultiselect?.$el?.querySelector('.multiselect__tags-wrap').offsetWidth - 10
 			}
 		},
 	},

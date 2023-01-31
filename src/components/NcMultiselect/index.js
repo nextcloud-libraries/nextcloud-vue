@@ -21,8 +21,5 @@
  */
 import './index.scss'
 import NcMultiselect from './NcMultiselect.vue'
-import ScopeComponent from '../../utils/ScopeComponent.js'
-
-ScopeComponent(NcMultiselect)
 
 export default NcMultiselect

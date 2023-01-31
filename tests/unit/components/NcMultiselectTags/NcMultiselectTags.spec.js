@@ -3,7 +3,7 @@
  *
  * @author Robin Windey <ro.windey@gmail.com>
  *
- * @license GNU AGPL version 3 or any later version
+ * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,14 +20,16 @@
  *
  */
 
+import { afterEach, expect, describe, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { searchTags } from '../../../../src/components/NcMultiselectTags/api.js'
+
 import NcMultiselectTags from '../../../../src/components/NcMultiselectTags/NcMultiselectTags.vue'
 
-jest.mock('../../../../src/components/NcMultiselectTags/api.js')
+vi.mock('../../../../src/components/NcMultiselectTags/api.js')
 
 afterEach(() => {
-	jest.clearAllMocks()
+	vi.clearAllMocks()
 })
 
 describe('NcMultiselectTags.vue', () => {

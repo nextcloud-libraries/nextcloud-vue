@@ -97,7 +97,7 @@ export default {
 </template>
 
 <script>
-import { directive as ClickOutside } from 'v-click-outside'
+import { directive as ClickOutside } from 'click-outside-vue3'
 import { createFocusTrap } from 'focus-trap'
 
 import excludeClickOutsideClasses from '../../mixins/excludeClickOutsideClasses/index.js'
@@ -142,7 +142,9 @@ export default {
 
 	emits: [
 		'close',
+		'closed',
 		'open',
+		'opened',
 		'update:open',
 		'cancel',
 	],
@@ -173,7 +175,7 @@ export default {
 	mounted() {
 		document.addEventListener('keydown', this.onKeyDown)
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		document.removeEventListener('keydown', this.onKeyDown)
 	},
 

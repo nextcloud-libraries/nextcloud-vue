@@ -150,7 +150,7 @@ include a standard-header like it's used by the files app.
 </docs>
 
 <template>
-	<transition appear
+	<Transition appear
 		name="slide-right"
 		@before-enter="onBeforeEnter"
 		@after-enter="onAfterEnter"
@@ -285,7 +285,7 @@ include a standard-header like it's used by the files app.
 				</template>
 			</NcEmptyContent>
 		</aside>
-	</transition>
+	</Transition>
 </template>
 
 <script>
@@ -304,7 +304,7 @@ import Close from 'vue-material-design-icons/Close.vue'
 import Star from 'vue-material-design-icons/Star.vue'
 import StarOutline from 'vue-material-design-icons/StarOutline.vue'
 
-import { directive as ClickOutside } from 'v-click-outside'
+import { directive as ClickOutside } from 'click-outside-vue3'
 
 export default {
 	name: 'NcAppSidebar',
@@ -467,7 +467,7 @@ export default {
 			return this.$slots.header || this.background
 		},
 		hasFigureClickListener() {
-			return this.$listeners['figure-click']
+			return this.$attrs['figure-click']
 		},
 	},
 
@@ -477,7 +477,7 @@ export default {
 		},
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		// Make sure that the 'closed' event is dispatched even if this element is destroyed before the 'after-leave' event is received.
 		this.$emit('closed')
 	},
@@ -891,12 +891,12 @@ $top-buttons-spacing: 6px;
 }
 
 .slide-right-enter-to,
-.slide-right-leave {
+.slide-right-leave-from {
 	min-width: $sidebar-min-width;
 	max-width: $sidebar-max-width;
 }
 
-.slide-right-enter,
+.slide-right-enter-from,
 .slide-right-leave-to {
 	min-width: 0 !important;
 	max-width: 0 !important;

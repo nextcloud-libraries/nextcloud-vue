@@ -26,8 +26,8 @@ import NcAppSidebar from '../../../src/components/NcAppSidebar/NcAppSidebar.vue'
 import NcActionButton from '../../../src/components/NcActionButton/NcActionButton.vue'
 
 // Server CSS styles
-import '../../../styleguide/assets/icons.css'
-import '../../../styleguide/assets/additional.css'
+import '../../../docs/.vitepress/theme/assets/icons.css'
+import '../../../docs/.vitepress/theme/assets/additional.css'
 
 /**
  * We need this custom style because we run the AppSidebar component without a Content component,

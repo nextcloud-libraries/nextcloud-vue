@@ -1,31 +1,7 @@
 import { defineConfig } from 'cypress'
-import { DefinePlugin } from 'webpack'
 import getCompareSnapshotsPlugin  from 'cypress-visual-regression/dist/plugin'
-import path from 'path'
-import webpackConfig from '@nextcloud/webpack-vue-config'
-import webpackRules from '@nextcloud/webpack-vue-config/rules'
 
-import { loadTranslations } from './resources/translations'
-
-const SCOPE_VERSION = Date.now()
-webpackRules.RULE_SCSS.use.push({
-	loader: 'sass-loader',
-	options: {
-		additionalData: `@use 'sass:math'; $scope_version:${SCOPE_VERSION}; @import 'variables'; @import 'material-icons';`,
-		/**
-		 * ! needed for resolve-url-loader
-		 */
-		sourceMap: true,
-		sassOptions: {
-			sourceMapContents: false,
-			includePaths: [
-				path.resolve(__dirname, './src/assets'),
-			],
-		},
-	},
-})
-
-webpackConfig.module.rules = Object.values(webpackRules)
+import viteConfig from './vite.config.mjs'
 
 export default defineConfig({
 	projectId: '3paxvy',
@@ -67,17 +43,8 @@ export default defineConfig({
 
 		devServer: {
 			framework: 'vue',
-			bundler: 'webpack',
-			webpackConfig: async () => {
-				const translations = await loadTranslations(path.resolve(__dirname, './l10n'))
-				webpackConfig.plugins.push(new DefinePlugin({
-					PRODUCTION: false,
-					SCOPE_VERSION,
-					TRANSLATIONS: JSON.stringify(translations),
-				}))
-
-				return webpackConfig
-			},
+			bundler: 'vite',
+			viteConfig,
 		},
 	},
 })

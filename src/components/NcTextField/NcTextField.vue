@@ -123,7 +123,6 @@ export default {
 	<NcInputField v-bind="{...$attrs, ...$props }"
 		ref="inputField"
 		:trailing-button-label="clearTextLabel"
-		v-on="$listeners"
 		@input="handleInput">
 		<!-- Default slot for the leading icon -->
 		<slot />

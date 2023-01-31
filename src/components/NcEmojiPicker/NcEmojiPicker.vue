@@ -87,10 +87,9 @@ This component allows the user to pick an emoji.
 </docs>
 
 <template>
-	<NcPopover :shown.sync="open"
+	<NcPopover v-model="open"
 		:container="container"
 		v-bind="$attrs"
-		v-on="$listeners"
 		@after-show="afterShow"
 		@after-hide="afterHide">
 		<template #trigger>
@@ -268,7 +267,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~emoji-mart-vue-fast/css/emoji-mart.css';
+@import '~/emoji-mart-vue-fast/css/emoji-mart.css';
 
 .emoji-mart {
 	background-color: var(--color-main-background) !important;

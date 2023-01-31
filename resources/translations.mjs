@@ -19,17 +19,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-const { join, basename } = require('path')
-const fs = require('fs/promises')
-const gettextParser = require('gettext-parser')
+import { join, basename } from 'path'
+import { po } from 'gettext-parser'
+import fs from 'fs'
 
 // https://github.com/alexanderwallin/node-gettext#usage
 // https://github.com/alexanderwallin/node-gettext#load-and-add-translations-from-mo-or-po-files
-const parseFile = async (fileName) => {
+const parseFile = (fileName) => {
 	const locale = basename(fileName).slice(0, -'.pot'.length)
-	const po = await fs.readFile(fileName)
 
-	const json = gettextParser.po.parse(po)
+	const json = po.parse(fs.readFileSync(fileName))
 
 	// Compress translations Content
 	const translations = {}
@@ -55,17 +54,10 @@ const parseFile = async (fileName) => {
 	}
 }
 
-const loadTranslations = async (baseDir) => {
-	const files = await fs.readdir(baseDir)
-
-	const promises = files
+export const loadTranslations = (baseDir) => {
+	return fs
+		.readdirSync(baseDir)
 		.filter(name => name !== 'messages.pot' && name.endsWith('.pot'))
 		.map(file => join(baseDir, file))
 		.map(parseFile)
-
-	return Promise.all(promises)
-}
-
-module.exports = {
-	loadTranslations,
 }

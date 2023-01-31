@@ -32,11 +32,11 @@
 				<span class="settings-button__label">{{ title }}</span>
 			</button>
 		</div>
-		<transition name="slide-up">
+		<Transition name="slide-up">
 			<div v-show="open" id="app-settings__content">
 				<slot />
 			</div>
-		</transition>
+		</Transition>
 	</div>
 </template>
 
@@ -46,7 +46,7 @@ import { excludeClickOutsideClasses } from '../../mixins/index.js'
 
 import Cog from 'vue-material-design-icons/Cog.vue'
 
-import { directive as ClickOutside } from 'v-click-outside'
+import { directive as ClickOutside } from 'click-outside-vue3'
 
 export default {
 	directives: {
@@ -151,7 +151,7 @@ export default {
 	overflow-y: hidden !important;
 }
 
-.slide-up-enter,
+.slide-up-enter-from,
 .slide-up-leave-to {
 	max-height: 0 !important;
 	padding: 0 10px !important;

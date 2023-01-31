@@ -137,7 +137,7 @@ export default {
 		:value="localValue"
 		@search="searchString => search = searchString"
 		@input="handleInput"
-		v-on="{ ...$listeners, input: () => {} }">
+		v-on="{ input: () => {} }">
 		<!-- Do not forward input event listener to NcSelect as we emit custom input events programmatically -->
 		<template #option="option">
 			<NcEllipsisedOption :name="getOptionLabel(option)"
@@ -147,7 +147,7 @@ export default {
 			<NcEllipsisedOption :name="getOptionLabel(selectedOption)"
 				:search="search" />
 		</template>
-		<template v-for="(_, name) in $scopedSlots" #[name]="data">
+		<template v-for="(_, name) in $slots" #[name]="data">
 			<!-- @slot Any combination of slots from https://vue-select.org/api/slots.html -->
 			<slot :name="name" v-bind="data" />
 		</template>
@@ -286,7 +286,7 @@ export default {
 				...propsToForward
 			} = this.$props
 
-			return propsToForward
+			return { propsToForward, ...this.$attrs }
 		},
 	},
 

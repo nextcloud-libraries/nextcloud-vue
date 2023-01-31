@@ -3,6 +3,10 @@
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
+ * @copyright Copyright (c) 2022 Raimund Schlüßler <raimund.schluessler@mailbox.org>
+ *
+ * @author Raimund Schlüßler <raimund.schluessler@mailbox.org>
+ *
  * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,25 +23,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
-import { IsMobileState } from '../../utils/IsMobileState.js'
-
 export default {
-	data() {
-		return {
-			isMobile: false,
-		}
-	},
-	mounted() {
-		IsMobileState.$on('changed', this.onIsMobileChanged)
-		this.isMobile = IsMobileState.isMobile
-	},
-	beforeDestroy() {
-		IsMobileState.$off('changed', this.onIsMobileChanged)
-	},
-	methods: {
-		onIsMobileChanged(val) {
-			this.isMobile = val
-		},
-	},
+	inject: ['isMobile'],
 }

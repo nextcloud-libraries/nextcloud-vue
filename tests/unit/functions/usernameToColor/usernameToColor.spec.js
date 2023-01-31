@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest'
+
 import usernameToColor from '../../../../src/functions/usernameToColor/index'
 
 const rgbToHex = (color) => {

@@ -39,19 +39,18 @@ This component is meant to be used inside a Breadcrumbs component.
 		@dragover.prevent="() => {}"
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
-		<element :is="tag"
+		<component :is="tag"
 			v-if="(title || icon) && !$slots.default"
 			:exact="exact"
 			:to="to"
 			:href="href"
-			v-bind="$attrs"
-			v-on="$listeners">
+			v-bind="$attrs">
 			<!-- @slot Slot for passing a material design icon. Precedes the icon and title prop. -->
 			<slot name="icon">
 				<span v-if="icon" :class="icon" class="icon" />
 				<span v-else>{{ title }}</span>
 			</slot>
-		</element>
+		</component>
 		<NcActions v-if="$slots.default"
 			ref="actions"
 			type="tertiary"

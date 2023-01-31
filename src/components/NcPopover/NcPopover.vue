@@ -88,7 +88,6 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 		v-bind="$attrs"
 		:no-auto-focus="true /* Handled by the focus trap */"
 		:popper-class="popoverBaseClass"
-		v-on="$listeners"
 		@apply-show="afterShow"
 		@apply-hide="afterHide">
 		<!-- This will be the popover target (for the events and position) -->
@@ -130,6 +129,8 @@ export default {
 		 */
 		setReturnFocus: {
 			required: false,
+			type: Object,
+			default: undefined,
 		},
 	},
 
@@ -138,7 +139,7 @@ export default {
 		'after-hide',
 	],
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.clearFocusTrap()
 	},
 

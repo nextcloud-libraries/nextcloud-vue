@@ -28,7 +28,7 @@ export default {
 		 * an element
 		 */
 		excludeClickOutsideClasses: {
-			type: String | Array,
+			type: [String, Array],
 			default: () => [],
 		},
 	},

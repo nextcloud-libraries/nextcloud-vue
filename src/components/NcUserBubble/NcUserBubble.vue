@@ -249,10 +249,7 @@ export default {
 		},
 
 		popoverEmpty() {
-			if ('default' in this.$slots) {
-				return false
-			}
-			return true
+			return !this.$slots.default
 		},
 
 		styles() {

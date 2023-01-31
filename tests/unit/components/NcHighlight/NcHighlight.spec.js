@@ -3,7 +3,7 @@
  *
  * @author Raimund Schlüßler <raimund.schluessler@mailbox.org>
  *
- * @license GNU AGPL version 3 or any later version
+ * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -21,6 +21,8 @@
  */
 
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
+
 import NcHighlight from '../../../../src/components/NcHighlight/NcHighlight.vue'
 
 describe('NcHighlight.vue', () => {
@@ -29,7 +31,7 @@ describe('NcHighlight.vue', () => {
 	describe('validate given ranges', () => {
 		it('should ensure ranges are well formed (start before end)', () => {
 			const wrapper = mount(NcHighlight, {
-				propsData: {
+				props: {
 					text: 'Highlight me',
 					search: 'me',
 					highlight: [
@@ -47,7 +49,7 @@ describe('NcHighlight.vue', () => {
 
 		it('should discard ranges completely out of bound', () => {
 			const wrapper = mount(NcHighlight, {
-				propsData: {
+				props: {
 					text: 'Highlight me',
 					search: 'me',
 					highlight: [
@@ -67,7 +69,7 @@ describe('NcHighlight.vue', () => {
 
 		it('should limit ranges to the string length', () => {
 			const wrapper = mount(NcHighlight, {
-				propsData: {
+				props: {
 					text: 'Highlight me',
 					search: 'me',
 					highlight: [
@@ -91,7 +93,7 @@ describe('NcHighlight.vue', () => {
 
 		it('should sort ranges ascendingly', () => {
 			const wrapper = mount(NcHighlight, {
-				propsData: {
+				props: {
 					text: 'Highlight me',
 					search: 'me',
 					highlight: [
@@ -115,7 +117,7 @@ describe('NcHighlight.vue', () => {
 
 		it('should merge overlapping or adjacent ranges', () => {
 			const wrapper = mount(NcHighlight, {
-				propsData: {
+				props: {
 					text: 'Highlight me',
 					search: 'me',
 					highlight: [

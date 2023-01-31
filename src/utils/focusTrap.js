@@ -19,8 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-// eslint-disable-next-line import/named
-import { FocusTrap } from 'focus-trap'
+/** @typedef {import('focus-trap').FocusTrap} FocusTrap */
 
 /**
  * Return the default global focus trap stack
