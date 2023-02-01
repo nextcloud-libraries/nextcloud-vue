@@ -36,10 +36,9 @@ export default defineConfig({
 	env: {
 		failSilently: false,
 		type: 'actual',
+		screenshotsFolder: './cypress/snapshots/actual',
+		trashAssetsBeforeRuns: true,
 	},
-
-	screenshotsFolder: 'cypress/snapshots/actual',
-	trashAssetsBeforeRuns: true,
 
 	component: {
 		setupNodeEvents(on, config) {
