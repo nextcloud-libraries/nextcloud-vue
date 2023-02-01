@@ -5,10 +5,11 @@
 # alex6480 <alexander@svorre.dk>, 2021
 # Kaspar Brygger, 2022
 # Martin Jensen, 2022
+# Jens Peter Nielsen <mail@jp-nielsen.dk>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Martin Jensen, 2022\n"
+"Last-Translator: Jens Peter Nielsen <mail@jp-nielsen.dk>, 2023\n"
 "Language-Team: Danish (https://www.transifex.com/nextcloud/teams/64236/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: da\n"
@@ -73,6 +74,9 @@ msgstr "Rediger emne"
 
 msgid "Error getting related resources"
 msgstr "Kunne ikke hente tilknyttede data"
+
+msgid "Error parsing svg"
+msgstr "Fejl ved analysering af svg"
 
 msgid "External documentation for {title}"
 msgstr "Ekstern dokumentation for {title}"
@@ -188,5 +192,9 @@ msgstr "Kan ikke søge på denne gruppe"
 msgid "Undo changes"
 msgstr "Fortryd ændringer"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
-msgstr "Skriv besked, bruge @ til at nævne personer, : til emoji valg ..."
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
+msgstr ""
+"Skriv besked, brug \"@\" for at nævne nogen, brug \":\" til emoji-"
+"autofuldførelse ..."
