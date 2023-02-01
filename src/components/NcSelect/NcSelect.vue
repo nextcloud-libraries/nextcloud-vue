@@ -521,8 +521,8 @@ export default {
 </template>
 
 <script>
-import VueSelect from 'vue-select'
-import 'vue-select/dist/vue-select.css'
+import VueSelect from '@nextcloud/vue-select'
+import '@nextcloud/vue-select/dist/vue-select.css'
 import {
 	autoUpdate,
 	computePosition,
