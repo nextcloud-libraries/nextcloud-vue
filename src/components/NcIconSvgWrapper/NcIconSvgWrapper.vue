@@ -30,27 +30,27 @@ Render raw SVG string icons.
 ```vue
 <template>
 	<div class="grid">
-		<NcButton>
+		<NcButton aria-label="Close">
 			<template #icon>
 				<NcIconSvgWrapper :svg="closeSvg" title="Close" />
 			</template>
 		</NcButton>
-		<NcButton>
+		<NcButton aria-label="Settings">
 			<template #icon>
 				<NcIconSvgWrapper :svg="cogSvg" title="Cog" />
 			</template>
 		</NcButton>
-		<NcButton>
+		<NcButton aria-label="Add">
 			<template #icon>
 				<NcIconSvgWrapper :svg="plusSvg" title="Plus" />
 			</template>
 		</NcButton>
-		<NcButton>
+		<NcButton aria-label="Send">
 			<template #icon>
 				<NcIconSvgWrapper :svg="sendSvg" title="Send" />
 			</template>
 		</NcButton>
-		<NcButton>
+		<NcButton aria-label="Star">
 			<template #icon>
 				<NcIconSvgWrapper :svg="starSvg" title="Star" />
 			</template>
