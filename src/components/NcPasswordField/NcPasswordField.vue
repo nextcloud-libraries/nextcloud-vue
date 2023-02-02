@@ -98,6 +98,7 @@ export default {
 		ref="inputField"
 		:type="isPasswordHidden ? 'password' : 'text'"
 		:show-trailing-button="true"
+		:trailing-button-label="trailingButtonLabelPassword"
 		:helper-text="computedHelperText"
 		:error="computedError"
 		:success="computedSuccess"
@@ -218,7 +219,7 @@ export default {
 			}
 		},
 
-		trailingButtonLabel() {
+		trailingButtonLabelPassword() {
 			return this.isPasswordHidden ? t('Show password') : t('Hide password')
 		},
 	},
