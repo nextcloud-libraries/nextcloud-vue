@@ -268,7 +268,7 @@
 						@click.prevent.stop="">
 						<NcActions ref="actions"
 							menu-align="right"
-							:aria-label="actionsAriaLabel"
+							:aria-label="computedActionsAriaLabel"
 							@update:open="handleActionsUpdateOpen">
 							<!-- @slot Provide the actions for the right side quick menu -->
 							<slot name="actions" />
@@ -281,7 +281,7 @@
 					@click.prevent.stop="">
 					<NcActions ref="actions"
 						menu-align="right"
-						:aria-label="actionsAriaLabel"
+						:aria-label="computedActionsAriaLabel"
 						@update:open="handleActionsUpdateOpen">
 						<!-- @slot Provide the actions for the right side quick menu -->
 						<slot name="actions" />
@@ -300,6 +300,7 @@
 <script>
 import NcActions from '../NcActions/index.js'
 import NcCounterBubble from '../NcCounterBubble/index.js'
+import { t } from '../../l10n.js'
 
 export default {
 	name: 'NcListItem',
@@ -475,6 +476,10 @@ export default {
 		showDetails() {
 			return this.hasDetails && (!this.displayActionsOnHoverFocus || this.forceDisplayActions)
 		},
+
+		computedActionsAriaLabel() {
+			return this.actionsAriaLabel || t('Actions for item with title "{title}"', { title: this.title })
+		}
 
 	},
 
