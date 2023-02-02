@@ -84,6 +84,12 @@
 			<template #icon>
 				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
+			<template #title>
+				<span style="display: flex; color: var(--color-primary);">
+					Title of the element with content
+					<div class="icon-edit" />
+				</span>
+			</template>
 			<template #subtitle>
 				In this slot you can put both text and other components such as icons
 			</template>
@@ -169,6 +175,12 @@
 		<template #icon>
 			<div class="icon-edit" />
 		</template>
+		<template #title>
+			<span style="display: flex; color: var(--color-primary);">
+				Title of the element with content
+				<div class="icon-edit" />
+			</span>
+		</template>
 		<template #subtitle>
 			This one is with subtitle
 		</template>
@@ -230,7 +242,8 @@
 						<!-- First line, title and details -->
 						<div class="line-one">
 							<span class="line-one__title">
-								{{ title }}
+								<!-- @slot Slot for the first line of the component. prop 'title' is a fallback if no slots provided -->
+								<slot name="title">{{ title }}</slot>
 							</span>
 							<span v-if="showDetails"
 								class="line-one__details">
@@ -596,6 +609,7 @@ export default {
 
 // NcListItem
 .list-item {
+	box-sizing: border-box;
 	display: block;
 	position: relative;
 	flex: 0 0 auto;
