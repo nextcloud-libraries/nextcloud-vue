@@ -8,6 +8,7 @@
 					<template #icon>
 						<Plus :size="20" />
 					</template>
+					This is an action
 				</NcActionButton>
 			</template>
 		</NcAppNavigationCaption>
