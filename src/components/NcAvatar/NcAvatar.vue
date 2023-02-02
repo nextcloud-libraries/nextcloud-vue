@@ -109,13 +109,12 @@ export default {
 </docs>
 <template>
 	<div ref="main"
-		v-tooltip="tooltip"
 		v-click-outside="closeMenu"
 		:class="{
 			'avatardiv--unknown': userDoesNotExist,
 			'avatardiv--with-menu': hasMenu
 		}"
-		:title="title"
+		:title="tooltip"
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper"
 		:tabindex="hasMenu ? '0' : undefined"
@@ -172,7 +171,6 @@ export default {
 import NcPopover from '../NcPopover/index.js'
 import NcPopoverMenu from '../NcPopoverMenu/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
-import Tooltip from '../../directives/Tooltip/index.js'
 import usernameToColor from '../../functions/usernameToColor/index.js'
 import { userStatus } from '../../mixins/index.js'
 import { t } from '../../l10n.js'
@@ -215,7 +213,6 @@ export default {
 
 	directives: {
 		ClickOutside,
-		tooltip: Tooltip,
 	},
 	components: {
 		DotsHorizontal,
@@ -328,17 +325,6 @@ export default {
 		},
 
 		/**
-		 * Declares a native tooltip when not null
-		 *
-		 * requires disableTooltip not to be set to true
-		 * requires tooltipMessage not to be provided
-		 */
-		title: {
-			type: String,
-			default: null,
-		},
-
-		/**
 		 * Declares username is not a user's name, when true.
 		 * Prevents loading user's avatar from server and forces generating colored initials,
 		 * i.e. if the user is a group
@@ -364,11 +350,6 @@ export default {
 			type: [String, Object, Element, Boolean],
 			default: 'body',
 		},
-
-		ariaLabel: {
-			type: String,
-			default: null,
-		},
 	},
 	data() {
 		return {
@@ -386,9 +367,6 @@ export default {
 		avatarAriaLabel() {
 			if (!this.hasMenu) {
 				return
-			}
-			if (this.ariaLabel !== null) {
-				return this.ariaLabel
 			}
 			if (this.hasStatus && this.showUserStatus && this.showUserStatusCompact) {
 				return t('Avatar of {displayName}, {status}', { displayName: this.displayName ?? this.user, status: this.userStatus.status })
@@ -460,7 +438,7 @@ export default {
 			}
 		},
 		tooltip() {
-			if (this.disableTooltip || this.title) {
+			if (this.disableTooltip) {
 				return false
 			}
 			if (this.tooltipMessage) {
