@@ -658,6 +658,15 @@ export default {
 		},
 
 		/**
+		 * Display a visible border around dropdown options
+		 * which have keyboard focus
+		 */
+		keyboardFocusBorder: {
+			type: Boolean,
+			default: true,
+		},
+
+		/**
 		 * Key of the displayed label for object options
 		 *
 		 * Defaults to `'label'`
@@ -941,6 +950,9 @@ export default {
 	/* Active State */
 	--vs-dropdown-option--active-bg: var(--color-background-hover);
 	--vs-dropdown-option--active-color: var(--color-main-text);
+
+	/* Keyboard Focus State */
+	--vs-dropdown-option--kb-focus-box-shadow: inset 0px 0px 0px 2px var(--vs-border-color);
 
 	/* Deselect State */
 	--vs-dropdown-option--deselect-bg: var(--color-error);
