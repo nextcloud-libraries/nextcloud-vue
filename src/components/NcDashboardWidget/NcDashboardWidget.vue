@@ -354,6 +354,7 @@ export default {
 	margin-top: 0;
 	padding-top: 5vh;
 	&.half-screen {
+		padding-top: 0;
 		margin-top: 0;
 		margin-bottom: 1vh;
 	}
