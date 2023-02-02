@@ -583,13 +583,10 @@ export default {
 		},
 
 		hasUtils() {
-			if (this.editing) {
-				return false
-			} else if (this.$slots.actions || this.$slots.counter || this.editable || this.undo) {
+			if (this.$slots.actions || this.$slots.counter || this.editable || this.undo) {
 				return true
-			} else {
-				return false
 			}
+			return false
 		},
 
 		// This is used to decide which outer element type to use
