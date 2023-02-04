@@ -479,7 +479,7 @@ export default {
 
 		computedActionsAriaLabel() {
 			return this.actionsAriaLabel || t('Actions for item with title "{title}"', { title: this.title })
-		}
+		},
 
 	},
 
