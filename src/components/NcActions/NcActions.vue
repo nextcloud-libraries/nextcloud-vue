@@ -1169,6 +1169,10 @@ export default {
 		--open-background-color: var(--color-success-hover);
 	}
 
+	&.action-item--tertiary-no-background {
+		--open-background-color: transparent;
+	}
+
 	&.action-item--open .action-item__menutoggle {
 		opacity: $opacity_full;
 		background-color: var(--open-background-color);
