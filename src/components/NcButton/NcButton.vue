@@ -49,6 +49,7 @@ It can be used with one or multiple actions.
 		<p>Secondary</p>
 		<p>Primary</p>
 		<NcButton
+			aria-label="Example text"
 			:disabled="disabled"
 			:readonly="readonly"
 			type="tertiary-no-background">
@@ -59,6 +60,7 @@ It can be used with one or multiple actions.
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</NcButton>
 		<NcButton
+			aria-label="Example text"
 			:disabled="disabled"
 			:readonly="readonly"
 			type="tertiary">
@@ -69,6 +71,7 @@ It can be used with one or multiple actions.
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</NcButton>
 		<NcButton
+			aria-label="Example text"
 			:disabled="disabled"
 			:readonly="readonly">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
@@ -79,6 +82,7 @@ It can be used with one or multiple actions.
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</NcButton>
 		<NcButton
+			aria-label="Example text"
 			:disabled="disabled"
 			:readonly="readonly"
 			type="primary">
