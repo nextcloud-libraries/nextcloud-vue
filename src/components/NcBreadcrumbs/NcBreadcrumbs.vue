@@ -487,19 +487,22 @@ export default {
 
 		// The array of all created VNodes
 		let crumbs = []
-		/**
-		 * We show the first half of the breadcrumbs before the Actions dropdown menu
-		 * which shows the hidden breadcrumbs.
-		 */
-		const crumbs1 = this.hiddenCrumbs.length
-			? breadcrumbs.slice(0, Math.round(breadcrumbs.length / 2))
-			: breadcrumbs
-		// Add the breadcrumbs to the array of the created VNodes, check if hiding them is necessary.
-		crumbs = crumbs.concat(crumbs1)
-		this.hideCrumbs(crumbs1)
 
-		// The Actions menu
-		if (this.hiddenCrumbs.length) {
+		if (!this.hiddenCrumbs.length) {
+			// We don't hide any breadcrumbs.
+			crumbs = breadcrumbs
+			// But we need to check if some are already hidden, and show them.
+			this.hideCrumbs(crumbs)
+		} else {
+			/**
+			 * We show the first half of the breadcrumbs before the Actions dropdown menu
+			 * which shows the hidden breadcrumbs.
+			 */
+			// Add the breadcrumbs to the array of the created VNodes, check if hiding them is necessary.
+			crumbs = breadcrumbs.slice(0, Math.round(breadcrumbs.length / 2))
+			this.hideCrumbs(crumbs)
+
+			// The Actions menu
 			// Use a breadcrumb component for the hidden breadcrumbs
 			crumbs.push(h('NcBreadcrumb', {
 				class: 'dropdown',
@@ -564,16 +567,15 @@ export default {
 				)
 			}))
 			)
-		}
-		// The second half of the breadcrumbs
-		const crumbs2 = this.hiddenCrumbs.length
-			? breadcrumbs.slice(Math.round(breadcrumbs.length / 2))
-			: []
-		crumbs = crumbs.concat(crumbs2)
-		this.hideCrumbs(crumbs2, crumbs1.length)
 
-		const wrapper = []
-		wrapper.push(h('div', { class: 'breadcrumb__crumbs' }, crumbs))
+			// The second half of the breadcrumbs
+			const crumbs2 = breadcrumbs.slice(Math.round(breadcrumbs.length / 2))
+			crumbs = crumbs.concat(crumbs2)
+			// One crumb is the Actions dropdown, so subtract one.
+			this.hideCrumbs(crumbs2, crumbs.length - 1)
+		}
+
+		const wrapper = [h('div', { class: 'breadcrumb__crumbs' }, crumbs)]
 		// Append the actions slot if it is populated
 		if (this.$slots.actions) {
 			wrapper.push(h('div', { class: 'breadcrumb__actions', ref: 'breadcrumb__actions' }, this.$slots.actions))
