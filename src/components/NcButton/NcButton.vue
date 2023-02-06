@@ -418,7 +418,8 @@ export default {
 
 	// Cursor pointer on element and all children
 	cursor: pointer;
-	& * {
+	& *,
+	span {
 		cursor: pointer;
 	}
 	border-radius: math.div($clickable-area, 2);
