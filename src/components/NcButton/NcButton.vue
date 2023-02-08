@@ -49,6 +49,7 @@ It can be used with one or multiple actions.
 		<p>Secondary</p>
 		<p>Primary</p>
 		<NcButton
+			aria-label="Example text"
 			:disabled="disabled"
 			:readonly="readonly"
 			type="tertiary-no-background">
@@ -59,6 +60,7 @@ It can be used with one or multiple actions.
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</NcButton>
 		<NcButton
+			aria-label="Example text"
 			:disabled="disabled"
 			:readonly="readonly"
 			type="tertiary">
@@ -69,6 +71,7 @@ It can be used with one or multiple actions.
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</NcButton>
 		<NcButton
+			aria-label="Example text"
 			:disabled="disabled"
 			:readonly="readonly">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
@@ -79,6 +82,7 @@ It can be used with one or multiple actions.
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</NcButton>
 		<NcButton
+			aria-label="Example text"
 			:disabled="disabled"
 			:readonly="readonly"
 			type="primary">
@@ -197,24 +201,6 @@ button {
 ```
 </docs>
 
-<template>
-	<root-element class="button-vue"
-		v-bind="rootElement"
-		:class="buttonClassObject"
-		:aria-label="ariaLabel"
-		:disabled="disabled"
-		v-on="$listeners">
-		<span class="button-vue__wrapper">
-			<span v-if="hasIcon" class="button-vue__icon">
-				<!-- @slot The material design icon slot -->
-				<slot name="icon" />
-			</span>
-			<span v-if="hasText" class="button-vue__text">
-				<slot />
-			</span>
-		</span>
-	</root-element>
-</template>
 <script>
 
 export default {
@@ -303,98 +289,81 @@ export default {
 		},
 	},
 
-	data() {
-		return {
-			/**
-			 * Making sure the slots are reactive
-			 */
-			slots: this.$slots,
-		}
-	},
-
-	computed: {
+	methods: {
 		// Determines whether the root element is an a,
 		// a router-link or a button
 		rootElement() {
 			if (this.to) {
-				return {
-					is: 'router-link',
-					tag: 'button',
-					type: this.nativeType,
-					to: this.to,
-					exact: this.exact,
-					...this.$attrs,
-				}
+				return 'router-link'
 			}
 			if (this.href) {
-				return {
-					is: 'a',
-					href: this.href,
-					role: 'button',
-					...this.$attrs,
-				}
+				return 'a'
 			}
-			return {
-				is: 'button',
-				type: this.nativeType,
-				...this.$attrs,
-			}
-		},
-
-		hasText() {
-			return this.slots?.default !== undefined
-				&& this.slots?.default[0]?.text
-		},
-
-		hasIcon() {
-			return this.slots.icon !== undefined
-		},
-
-		iconOnly() {
-			return this.hasIcon && !this.hasText
-		},
-
-		textOnly() {
-			return !this.hasIcon && this.hasText
-		},
-
-		iconAndText() {
-			return this.hasIcon && this.hasText
-		},
-
-		text() {
-			return this.hasText ? this.slots.default[0].text.trim() : null
-		},
-
-		// Classes applied to the button element
-		buttonClassObject() {
-			return {
-				// If icon only, some additional css rules are required
-				'button-vue--icon-only': this.iconOnly,
-				'button-vue--text-only': this.textOnly,
-				'button-vue--icon-and-text': this.iconAndText,
-				[`button-vue--vue-${this.type}`]: this.type,
-				'button-vue--wide': this.wide,
-			}
+			return 'button'
 		},
 	},
 
-	beforeUpdate() {
-		// $slots is not reactive, this make sure we are able to detect changes
-		this.slots = this.$slots
-	},
+	/**
+	 * The render function to display the component
+	 *
+	 * @param {Function} h The function to create VNodes
+	 * @return {object|undefined} The created VNode
+	 */
+	render(h) {
+		const text = this.$slots.default?.[0]?.text.trim()
 
-	mounted() {
+		const hasText = !!text
+		const hasIcon = this.$slots?.icon
+
 		/**
 		 * Always fill either the text prop or the ariaLabel one.
 		 */
-		if (!this.text && !this.ariaLabel) {
+		if (!text && !this.ariaLabel) {
 			console.warn('You need to fill either the text or the ariaLabel props in the button component.', {
-				text: this.text,
+				text,
 				ariaLabel: this.ariaLabel,
 			},
 			this)
 		}
+
+		return h(this.rootElement(),
+			{
+				class: [
+					'button-vue',
+					{
+						'button-vue--icon-only': hasIcon && !hasText,
+						'button-vue--text-only': hasText && !hasIcon,
+						'button-vue--icon-and-text': hasIcon && hasText,
+						[`button-vue--vue-${this.type}`]: this.type,
+						'button-vue--wide': this.wide,
+					},
+				],
+				attrs: {
+					'aria-label': this.ariaLabel,
+					disabled: this.disabled,
+					type: this.href ? null : this.nativeType,
+					role: this.href ? 'button' : null,
+					href: (!this.to && this.href) ? this.href : null,
+					...this.$attrs,
+				},
+				props: {
+					to: this.to ? this.to : null,
+					exact: this.exact,
+				},
+				on: {
+					...this.$listeners,
+				},
+				nativeOn: {
+					...this.$listeners,
+				},
+			},
+			[
+				h('span', { class: 'button-vue__wrapper' }, [
+					hasIcon ? h('span', { class: 'button-vue__icon' }, [this.$slots.icon]) : null,
+					hasText ? h('span', { class: 'button-vue__text' }, [text]) : null,
+				]),
+			]
+		)
 	},
 }
 
