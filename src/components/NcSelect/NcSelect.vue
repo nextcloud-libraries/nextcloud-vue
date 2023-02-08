@@ -942,6 +942,7 @@ export default {
 	/* Dropdown */
 	--vs-dropdown-bg: var(--color-main-background);
 	--vs-dropdown-color: var(--color-main-text);
+	--vs-dropdown-z-index: 9999;
 	--vs-dropdown-box-shadow: 0px 2px 2px 0px var(--color-box-shadow);
 
 	/* Options */
