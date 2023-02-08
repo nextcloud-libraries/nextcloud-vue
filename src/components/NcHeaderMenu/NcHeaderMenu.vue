@@ -69,7 +69,8 @@ export default {
 		:class="{ 'header-menu--opened': opened }"
 		class="header-menu">
 		<!-- Open trigger icon -->
-		<a class="header-menu__trigger"
+		<a ref="trigger"
+			class="header-menu__trigger"
 			href="#"
 			:aria-label="ariaLabel"
 			:aria-controls="`header-menu-${id}`"
@@ -254,6 +255,7 @@ export default {
 			this.focusTrap = createFocusTrap(contentContainer, {
 				allowOutsideClick: true,
 				trapStack: getTrapStack(),
+				fallbackFocus: this.$refs.trigger,
 			})
 			this.focusTrap.activate()
 		},
