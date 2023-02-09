@@ -178,7 +178,7 @@ export default {
 		v-model="localValue"
 		v-bind="$attrs"
 		:class="[
-			multiple ? 'multiselect--multiple': 'multiselect--single'
+			multiple ? 'multiselect--multiple' : 'multiselect--single'
 		]"
 		:options="options"
 		:limit="maxOptions"
