@@ -908,8 +908,11 @@ export default {
 </script>
 
 <style lang="scss">
-:root {
-	/* Set custom vue-select CSS variables */
+body {
+	/**
+	 * Set custom vue-select CSS variables.
+	 * Needs to be on the body (not :root) for theming to apply (see nextcloud/server#36462)
+	 */
 
 	/* Search Input */
 	--vs-search-input-color: var(--color-main-text);
