@@ -267,6 +267,7 @@ Just set the `pinned` prop.
 				</div>
 				<NcActions v-if="$slots.actions || (editable && !editingActive) || undo"
 					ref="actions"
+					:inline="inlineActions"
 					class="app-navigation-entry__actions"
 					container="#app-navigation-vue"
 					:boundaries-element="actionsBoundariesElement"
@@ -524,6 +525,14 @@ export default {
 		forceDisplayActions: {
 			type: Boolean,
 			default: false,
+		},
+
+		/**
+		 * Number of action items outside the menu
+		 */
+		inlineActions: {
+			type: Number,
+			default: 0,
 		},
 	},
 
