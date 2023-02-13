@@ -619,6 +619,14 @@ export default {
 		},
 
 		/**
+		 * Sets the maximum number of options to display in the dropdown list
+		 */
+		limit: {
+			type: Number,
+			default: null,
+		},
+
+		/**
 		 * Disable the component
 		 *
 		 * @see https://vue-select.org/api/props.html#disabled
