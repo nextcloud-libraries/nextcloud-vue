@@ -131,7 +131,7 @@ export default {
 			type: String,
 			default: '_self',
 			validator: value => {
-				return ['_blank', '_self', '_parent', '_top'].indexOf(value) > -1
+				return value && (!value.startsWith('_') || ['_blank', '_self', '_parent', '_top'].indexOf(value) > -1)
 			},
 		},
 		/**
