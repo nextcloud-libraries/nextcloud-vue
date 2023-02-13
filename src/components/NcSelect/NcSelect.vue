@@ -669,7 +669,8 @@ export default {
 		/**
 		 * Key of the displayed label for object options
 		 *
-		 * Defaults to `'label'`
+		 * Defaults to the internal vue-select string documented at the link
+		 * below
 		 *
 		 * Enabling `userSelect` will automatically set this to `'displayName'`
 		 * unless this prop is set explicitly
@@ -855,7 +856,6 @@ export default {
 			if (this.filterBy !== null) {
 				return this.filterBy
 			}
-
 			if (this.userSelect) {
 				return (option, label, search) => {
 					return (`${label} ${option.subtitle}` || '')
@@ -863,27 +863,22 @@ export default {
 						.indexOf(search.toLocaleLowerCase()) > -1
 				}
 			}
-			return null
+			return VueSelect.props.filterBy.default
 		},
 
 		localLabel() {
 			if (this.label !== null) {
 				return this.label
 			}
-
 			if (this.userSelect) {
 				return 'displayName'
 			}
-			return 'label'
+			return VueSelect.props.label.default
 		},
 
 		propsToForward() {
 			const {
-				// Custom overrides of vue-select props
-				calculatePosition,
-				filterBy,
-				label,
-				// Props handled by the component itself
+				// Props handled by this component
 				noWrap,
 				placement,
 				userSelect,
@@ -893,12 +888,10 @@ export default {
 
 			const propsToForward = {
 				...initialPropsToForward,
+				// Custom overrides of vue-select props
 				calculatePosition: this.localCalculatePosition,
+				filterBy: this.localFilterBy,
 				label: this.localLabel,
-			}
-
-			if (this.localFilterBy) {
-				propsToForward.filterBy = this.localFilterBy
 			}
 
 			return propsToForward
