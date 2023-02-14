@@ -87,8 +87,7 @@ export default {
 	line-height: 1em;
 	padding: 4px 6px;
 	border-radius: var(--border-radius-pill);
-	// since -lighter is not present in the new version it will only apply to the old one and -light for the newer
-	background-color: var(--color-primary-element-lighter, var(--color-primary-element-light));
+	background-color: var(--color-primary-element-light);
 	font-weight: bold;
 	color: var(--color-primary-element);
 
