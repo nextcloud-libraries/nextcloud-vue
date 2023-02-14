@@ -67,11 +67,11 @@ export default {
 ```
 
 ### Custom filter
-Because of compatibility reasons only 5 tag entries are shown by default. If you want to show all available tags set the `optionsFilter` function-prop to `null`:
+Because of compatibility reasons only 5 tag entries are shown by default. If you want to show all available tags set the `limit` prop to `null`:
 ```vue
 <template>
 	<div class="wrapper">
-		<NcSelectTags v-model="value" :options-filter="null" />
+		<NcSelectTags v-model="value" :limit="null" />
 		{{ value }}
 	</div>
 </template>
@@ -193,6 +193,17 @@ export default {
 		},
 
 		/**
+		 * Sets the maximum number of tags to display in the dropdown list
+		 *
+		 * Because of compatibility reasons only 5 tag entries are shown by
+		 * default
+		 */
+		limit: {
+			type: Number,
+			default: 5,
+		},
+
+		/**
 		 * Allow selection of multiple options
 		 *
 		 * This prop automatically sets the internal `closeOnSelect` prop to
@@ -210,7 +221,7 @@ export default {
 		 */
 		optionsFilter: {
 			type: Function,
-			default: (_element, index) => index < 5,
+			default: null,
 		},
 
 		/**
@@ -280,7 +291,7 @@ export default {
 
 		propsToForward() {
 			const {
-				// Props handled by the component itself
+				// Props handled by this component
 				optionsFilter,
 				// Props to forward
 				...propsToForward
