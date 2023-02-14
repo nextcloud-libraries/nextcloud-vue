@@ -56,7 +56,7 @@ This component is meant to be used inside a DashboardWidget component.
 					{{ subText }}
 				</p>
 			</div>
-			<NcActions v-if="gotMenu" :force-menu="forceMenu" menu-align="right">
+			<NcActions v-if="gotMenu" :force-menu="forceMenu">
 				<!-- @slot This slot can be used to provide actions for each dashboard widget item. -->
 				<slot name="actions">
 					<NcActionButton v-for="(m, menuItemId) in itemMenu"
