@@ -267,7 +267,6 @@
 						class="list-item-content__actions"
 						@click.prevent.stop="">
 						<NcActions ref="actions"
-							menu-align="right"
 							:aria-label="computedActionsAriaLabel"
 							@update:open="handleActionsUpdateOpen">
 							<!-- @slot Provide the actions for the right side quick menu -->
@@ -280,7 +279,6 @@
 					class="list-item-content__actions"
 					@click.prevent.stop="">
 					<NcActions ref="actions"
-						menu-align="right"
 						:aria-label="computedActionsAriaLabel"
 						@update:open="handleActionsUpdateOpen">
 						<!-- @slot Provide the actions for the right side quick menu -->
