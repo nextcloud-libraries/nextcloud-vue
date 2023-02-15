@@ -110,6 +110,15 @@ webpackRules.RULE_RAW_SVG = {
 	type: 'asset/source',
 }
 
+webpackRules.RULE_NODE_MJS = {
+	test: /\.m?js$/,
+	include: /node_modules/,
+	type: 'javascript/auto',
+	resolve: {
+		fullySpecified: false
+	}
+}
+
 webpackConfig.module.rules = Object.values(webpackRules)
 
 module.exports = async () => {
