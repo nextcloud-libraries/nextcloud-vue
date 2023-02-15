@@ -176,8 +176,9 @@ export default {
 
 		autoComplete: {
 			type: Function,
-			required: true,
+			default: () => [],
 		},
+
 		menuContainer: {
 			type: Element,
 			default: () => document.body,
