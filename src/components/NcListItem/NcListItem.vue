@@ -661,6 +661,19 @@ export default {
 	}
 }
 
+// Add more contrast for active entry
+[data-themes*="highcontrast"] {
+	.list-item__wrapper {
+		&--active,
+		&:active,
+		&.active {
+			.list-item {
+				background-color: var(--color-primary-light-hover);
+			}
+		}
+	}
+}
+
 .line-one {
 	display: flex;
 	align-items: center;

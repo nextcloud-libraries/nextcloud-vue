@@ -185,6 +185,13 @@ export default {
 	}
 }
 
+// add extra border for high contrast mode
+[data-themes*="highcontrast"] {
+	.app-navigation {
+		border-right: 1px solid var(--color-border);
+	}
+}
+
 // When on mobile, we make the navigation slide over the appcontent
 @media only screen and (max-width: $breakpoint-mobile) {
 	.app-navigation:not(.app-navigation--close) {
