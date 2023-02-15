@@ -21,12 +21,15 @@
   -->
 
 <docs>
+For showing the modal you can use either `v-show` or `v-if` on the `NcModal`,
+depending on whether you require the Modal to stay within the DOM or not.
+
 ```vue
 <template>
 	<div>
 		<NcButton @click="showModal">Show Modal</NcButton>
 		<NcModal
-			v-if="modal"
+			v-show="modal"
 			@close="closeModal"
 			size="small"
 			title="Title"
@@ -563,6 +566,9 @@ export default {
 	destroyed() {
 		this.clearFocusTrap()
 		this.$el.remove()
+	},
+	updated() {
+		this.showModal = this.$refs.mask.style.display !== 'none'
 	},
 
 	methods: {
