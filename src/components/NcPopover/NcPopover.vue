@@ -126,10 +126,11 @@ export default {
 		/**
 		 * Set element to return focus to after focus trap deactivation
 		 *
-		 * @type {import('focus-trap').Options['setReturnFocus']}
+		 * @type {import('focus-trap').FocusTargetValueOrFalse}
 		 */
 		setReturnFocus: {
-			required: false,
+			default: undefined,
+			type: [Object, String, Function, Boolean],
 		},
 	},
 
