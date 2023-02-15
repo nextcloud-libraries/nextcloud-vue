@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.6.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.6.0) (2023-02-15)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.5.0...v7.6.0)
+
+### :rocket: Enhancements
+
+- Add keyboard focus border to select options [\#3711](https://github.com/nextcloud/nextcloud-vue/pull/3711) ([Pytal](https://github.com/Pytal))
+
+### :bug: Fixed bugs
+
+- Fix tag search [\#3747](https://github.com/nextcloud/nextcloud-vue/pull/3747) ([Pytal](https://github.com/Pytal))
+- Fix throw when header menu contains no tabbable nodes [\#3733](https://github.com/nextcloud/nextcloud-vue/pull/3733) ([Pytal](https://github.com/Pytal))
+- Fix hidden select [\#3732](https://github.com/nextcloud/nextcloud-vue/pull/3732) ([Pytal](https://github.com/Pytal))
+- fix\(package\): export more components to main package [\#3729](https://github.com/nextcloud/nextcloud-vue/pull/3729) ([juliushaertl](https://github.com/juliushaertl))
+- Fix `NcButton` cursor style [\#3728](https://github.com/nextcloud/nextcloud-vue/pull/3728) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Use proper default actions aria label in `NcListItem` [\#3714](https://github.com/nextcloud/nextcloud-vue/pull/3714) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix dashboard padding with half-empty content view [\#3712](https://github.com/nextcloud/nextcloud-vue/pull/3712) ([nickvergessen](https://github.com/nickvergessen))
+- Fix setting trailingButtonLabel for PasswordField [\#3710](https://github.com/nextcloud/nextcloud-vue/pull/3710) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix NcAppNavigationItem hasUtils computed [\#3709](https://github.com/nextcloud/nextcloud-vue/pull/3709) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- fix\(ncselect\): Fix styling if a custom theme is applied [\#3707](https://github.com/nextcloud/nextcloud-vue/pull/3707) ([susnux](https://github.com/susnux))
+- Fix: update transition styles for NcButton [\#3697](https://github.com/nextcloud/nextcloud-vue/pull/3697) ([Antreesy](https://github.com/Antreesy))
+- Fix keyboard navigation of modal slides [\#3690](https://github.com/nextcloud/nextcloud-vue/pull/3690) ([Pytal](https://github.com/Pytal))
+- Add aria-labels to colorpicker buttons [\#3680](https://github.com/nextcloud/nextcloud-vue/pull/3680) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
+### Closed pull requests
+
+- Remove outdated and unused menu-align attributes [\#3749](https://github.com/nextcloud/nextcloud-vue/pull/3749) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Allow custom target names for the link target [\#3745](https://github.com/nextcloud/nextcloud-vue/pull/3745) ([susnux](https://github.com/susnux))
+- Remove last usage of ´--color-primary-element-lighter` [\#3742](https://github.com/nextcloud/nextcloud-vue/pull/3742) ([susnux](https://github.com/susnux))
+- Allow inline actions for appnavigationitem [\#3741](https://github.com/nextcloud/nextcloud-vue/pull/3741) ([marcoambrosini](https://github.com/marcoambrosini))
+- Add missing space in NcMultiselect ternary expression [\#3739](https://github.com/nextcloud/nextcloud-vue/pull/3739) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Move NcButton to render function [\#3726](https://github.com/nextcloud/nextcloud-vue/pull/3726) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Simplify the render function of NcBreadcrumbs [\#3725](https://github.com/nextcloud/nextcloud-vue/pull/3725) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- No background for `tertiary-no-background` `NcActions` [\#3724](https://github.com/nextcloud/nextcloud-vue/pull/3724) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Add missing trailing comma [\#3718](https://github.com/nextcloud/nextcloud-vue/pull/3718) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Add aria-labels to example buttons in docs [\#3713](https://github.com/nextcloud/nextcloud-vue/pull/3713) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Adjust style of NcSelect to match other input elements [\#3701](https://github.com/nextcloud/nextcloud-vue/pull/3701) ([susnux](https://github.com/susnux))
+- Small cleanup of the NcActions docs [\#3700](https://github.com/nextcloud/nextcloud-vue/pull/3700) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- chore\(l10n\): update l10n readme [\#3686](https://github.com/nextcloud/nextcloud-vue/pull/3686) ([skjnldsv](https://github.com/skjnldsv))
+- Replace custom toolip with native one on Avatar component [\#3678](https://github.com/nextcloud/nextcloud-vue/pull/3678) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+
 ## [v7.5.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.5.0) (2023-01-19)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.4.0...v7.5.0)
