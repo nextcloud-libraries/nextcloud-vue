@@ -21,12 +21,15 @@
   -->
 
 <docs>
+For showing the modal you can use either `:show.sync="showModal"` or `v-if` on the `NcModal`,
+depending on whether you require the Modal to stay within the DOM or not. Do not mix both, as this will break the out transition animation.
+
 ```vue
 <template>
 	<div>
 		<NcButton @click="showModal">Show Modal</NcButton>
 		<NcModal
-			v-if="modal"
+			:show.sync="modal"
 			@close="closeModal"
 			size="small"
 			title="Title"
@@ -134,8 +137,8 @@ export default {
 <template>
 	<div>
 		<NcButton @click="showModal">Show Modal</NcButton>
-		<NcModal v-if="modal" @close="closeModal" size="small">
-			<NcEmojiPicker container=".modal-mask" @select="select">
+		<NcModal v-if="modal" @close="closeModal" size="small" class="emoji-modal">
+			<NcEmojiPicker container=".emoji-modal" @select="select">
 				<NcButton>Select emoji {{ emoji }}</NcButton>
 			</NcEmojiPicker>
 		</NcModal>
@@ -172,8 +175,12 @@ export default {
 </docs>
 
 <template>
-	<transition name="fade">
-		<div ref="mask"
+	<transition name="fade"
+		appear
+		@after-enter="useFocusTrap"
+		@before-leave="clearFocusTrap">
+		<div v-show="showModal"
+			ref="mask"
 			class="modal-mask"
 			:class="{ 'modal-mask--dark': dark }"
 			:style="cssVariables"
@@ -182,7 +189,7 @@ export default {
 			:aria-labelledby="'modal-title-' + randId"
 			:aria-describedby="'modal-description-' + randId">
 			<!-- Header -->
-			<transition name="fade-visibility">
+			<transition name="fade-visibility" appear>
 				<div class="modal-header">
 					<h2 v-if="title.trim() !== ''"
 						:id="'modal-title-' + randId"
@@ -244,7 +251,7 @@ export default {
 			</transition>
 
 			<!-- Content wrapper -->
-			<transition :name="modalTransitionName">
+			<transition :name="modalTransitionName" appear>
 				<div v-show="showModal"
 					:class="[
 						`modal-wrapper--${size}`,
@@ -253,7 +260,7 @@ export default {
 					class="modal-wrapper"
 					@mousedown.self="close">
 					<!-- Navigation button -->
-					<transition name="fade-visibility">
+					<transition name="fade-visibility" appear>
 						<NcButton v-show="hasPrevious"
 							type="tertiary-no-background"
 							class="prev"
@@ -285,7 +292,7 @@ export default {
 					</div>
 
 					<!-- Navigation button -->
-					<transition name="fade-visibility">
+					<transition name="fade-visibility" appear>
 						<NcButton v-show="hasNext"
 							type="tertiary-no-background"
 							class="next"
@@ -464,27 +471,36 @@ export default {
 			type: Number,
 			default: 0,
 		},
+
+		show: {
+			type: Boolean,
+			default: undefined,
+		},
 	},
 
 	emits: [
 		'previous',
 		'next',
 		'close',
+		'update:show',
 	],
 
 	data() {
 		return {
 			mc: null,
-			showModal: false,
 			playing: false,
 			slideshowTimeout: null,
 			iconSize: 24,
 			focusTrap: null,
 			randId: GenRandomId(),
+			internalShow: true,
 		}
 	},
 
 	computed: {
+		showModal() {
+			return (this.show === undefined) ? this.internalShow : this.show
+		},
 		modalTransitionName() {
 			return `modal-${this.outTransition ? 'out' : 'in'}`
 		},
@@ -541,8 +557,6 @@ export default {
 		this.mc.destroy()
 	},
 	mounted() {
-		this.showModal = true
-
 		// init clear view
 		this.useFocusTrap()
 		this.mc = new Hammer(this.$refs.mask)
@@ -594,7 +608,9 @@ export default {
 		close(data) {
 			// do not fire event if forbidden
 			if (this.canClose) {
-				this.showModal = false
+				// We set internalShow here, so the out transitions properly run before the component is destroyed
+				this.internalShow = false
+				this.$emit('update:show', false)
 
 				// delay closing for animation
 				setTimeout(() => {
@@ -682,19 +698,28 @@ export default {
 		/**
 		 * Add focus trap for accessibility.
 		 */
-		useFocusTrap() {
+		async useFocusTrap() {
+			// Don't do anything if the modal is hidden,
+			// or we have a focus trap already
+			if (!this.showModal || this.focusTrap) {
+				return
+			}
+
 			const contentContainer = this.$refs.mask
 			// wait until all children are mounted and available in the DOM before focusTrap can be added
-			this.$nextTick(() => {
-				// Init focus trap
-				this.focusTrap = createFocusTrap(contentContainer, {
-					allowOutsideClick: true,
-					trapStack: getTrapStack(),
-				})
-				this.focusTrap.activate()
+			await this.$nextTick()
+
+			// Init focus trap
+			this.focusTrap = createFocusTrap(contentContainer, {
+				allowOutsideClick: true,
+				trapStack: getTrapStack(),
 			})
+			this.focusTrap.activate()
 		},
 		clearFocusTrap() {
+			if (!this.focusTrap) {
+				return
+			}
 			this.focusTrap?.deactivate()
 			this.focusTrap = null
 		},
