@@ -26,12 +26,13 @@
 	<div>
 		<NcButton @click="showModal">Show Modal</NcButton>
 		<NcModal
-			v-if="modal"
+			v-show="modal"
 			@close="closeModal"
 			size="small"
 			title="Title"
 			:outTransition="true"
 			:hasNext="true"
+			:show.sync="modal"
 			:hasPrevious="true">
 			<div class="modal__content">Hello world</div>
 		</NcModal>
@@ -464,12 +465,22 @@ export default {
 			type: Number,
 			default: 0,
 		},
+
+		/**
+		 * Whether the modal is to be shown.
+		 * Needs to be provided if NcModal is toggled with v-show.
+		 */
+		show: {
+			type: Boolean,
+			default: undefined,
+		},
 	},
 
 	emits: [
 		'previous',
 		'next',
 		'close',
+		'update:show',
 	],
 
 	data() {
@@ -530,6 +541,15 @@ export default {
 				this.focusTrap.updateContainerElements([contentContainer, ...elements])
 			}
 		},
+
+		/**
+		 * Watch the external show prop to update the internal showModal value
+		 *
+		 * @param {boolean} show whether the modal should be shown
+		 */
+		show(show) {
+			this.showModal = show
+		},
 	},
 
 	beforeMount() {
@@ -541,7 +561,11 @@ export default {
 		this.mc.destroy()
 	},
 	mounted() {
-		this.showModal = true
+		// Don't show the modal if the external show prop is exactly false.
+		if (this.show !== false) {
+			this.showModal = true
+			this.$emit('update:show', true)
+		}
 
 		// init clear view
 		this.useFocusTrap()
@@ -595,6 +619,7 @@ export default {
 			// do not fire event if forbidden
 			if (this.canClose) {
 				this.showModal = false
+				this.$emit('update:show', false)
 
 				// delay closing for animation
 				setTimeout(() => {
