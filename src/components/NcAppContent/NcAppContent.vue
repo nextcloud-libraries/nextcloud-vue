@@ -381,7 +381,7 @@ export default {
 			position: sticky;
 			top: var(--header-height);
 
-			@media only screen and (max-width: $breakpoint-mobile) {
+			@media only screen and (width < $breakpoint-mobile) {
 				display: none;
 			}
 		}
@@ -389,7 +389,7 @@ export default {
 		&-details {
 			overflow-y: auto;
 
-			@media only screen and (max-width: $breakpoint-mobile) {
+			@media only screen and (width < $breakpoint-mobile) {
 				min-width: 100%;
 			}
 		}
