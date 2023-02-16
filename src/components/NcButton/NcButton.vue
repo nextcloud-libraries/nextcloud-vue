@@ -353,9 +353,12 @@ export default {
 				on: {
 					...this.$listeners,
 				},
-				nativeOn: {
-					...this.$listeners,
-				},
+				// nativeOn is only valid on components
+				...(this.rootElement() === 'router-link' && {
+					nativeOn: {
+						...this.$listeners,
+					},
+				}),
 			},
 			[
 				h('span', { class: 'button-vue__wrapper' }, [
