@@ -289,7 +289,7 @@ export default {
 		},
 	},
 
-	methods: {
+	computed: {
 		// Determines whether the root element is an a,
 		// a router-link or a button
 		rootElement() {
@@ -326,7 +326,7 @@ export default {
 			this)
 		}
 
-		return h(this.rootElement(),
+		return h(this.rootElement,
 			{
 				class: [
 					'button-vue',
@@ -354,7 +354,7 @@ export default {
 					...this.$listeners,
 				},
 				// nativeOn is only valid on components
-				...(this.rootElement() === 'router-link' && {
+				...(this.rootElement === 'router-link' && {
 					nativeOn: {
 						...this.$listeners,
 					},
