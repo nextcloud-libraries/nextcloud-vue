@@ -348,6 +348,7 @@ export default {
 				},
 				props: {
 					to: this.to ? this.to : null,
+					tag: this.to ? 'button' : null,
 					exact: this.exact,
 				},
 				on: {
