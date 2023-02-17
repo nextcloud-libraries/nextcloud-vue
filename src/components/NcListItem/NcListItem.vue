@@ -427,7 +427,10 @@ export default {
 		},
 	},
 
-	emits: ['click'],
+	emits: [
+		'click',
+		'update:menuOpen',
+	],
 
 	data() {
 		return {
