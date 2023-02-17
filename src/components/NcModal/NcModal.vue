@@ -90,14 +90,7 @@ export default {
 	</div>
 </template>
 <script>
-import NcButton from '../NcButton/index.js'
-import NcTextField from '../NcTextField/index.js'
-
 export default {
-	components: {
-		NcButton,
-		NcTextField,
-	},
 	data() {
 		return {
 			modal: false,
