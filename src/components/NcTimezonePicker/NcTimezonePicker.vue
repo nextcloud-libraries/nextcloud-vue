@@ -41,17 +41,15 @@ export default {
 </docs>
 
 <template>
-	<NcMultiselect :value="selectedTimezone"
+	<NcSelect :value="selectedTimezone"
 		:options="options"
 		:multiple="false"
-		:group-select="false"
+		:clearable="false"
 		:placeholder="placeholder"
-		group-values="regions"
-		group-label="continent"
-		track-by="timezoneId"
+		:selectable="isSelectable"
+		:filter-by="filterBy"
 		label="label"
-		open-direction="above"
-		@input="change" />
+		@option:selected="change" />
 </template>
 
 <script>
@@ -60,13 +58,13 @@ import {
 	getSortedTimezoneList,
 } from './timezone.js'
 import getTimezoneManager from './timezoneDataProviderService.js'
-import NcMultiselect from '../NcMultiselect/index.js'
+import NcSelect from '../NcSelect/index.js'
 import { t } from '../../l10n.js'
 
 export default {
 	name: 'NcTimezonePicker',
 	components: {
-		NcMultiselect,
+		NcSelect,
 	},
 	props: {
 		/**
@@ -103,7 +101,21 @@ export default {
 		},
 		options() {
 			const timezoneManager = getTimezoneManager()
-			return getSortedTimezoneList(timezoneManager.listAllTimezones(), this.additionalTimezones)
+			const timezoneList = getSortedTimezoneList(timezoneManager.listAllTimezones(), this.additionalTimezones)
+			/**
+			 * Since NcSelect does not support groups,
+			 * we create an object with the grouped timezones and continent labels.
+			 */
+			let timezonesGrouped = []
+			Object.values(timezoneList).forEach(group => {
+				// Add an entry as group label
+				timezonesGrouped.push({
+					label: group.continent,
+					timezoneId: `tz-group__${group.continent}`,
+				})
+				timezonesGrouped = timezonesGrouped.concat(group.regions)
+			})
+			return timezonesGrouped
 		},
 	},
 	methods: {
@@ -117,12 +129,33 @@ export default {
 			 */
 			this.$emit('input', newValue.timezoneId)
 		},
+
+		/**
+		 * Returns whether this is a continent label,
+		 * or an actual timezone. Continent labels are not selectable.
+		 *
+		 * @param {string} option The option
+		 * @return {boolean}
+		 */
+		isSelectable(option) {
+			return !option.timezoneId.startsWith('tz-group__')
+		},
+
+		/**
+		 * Function to filter the timezone list.
+		 * We search in the timezoneId, so both continent and region names can be matched.
+		 *
+		 * @param {object} option The timezone option
+		 * @param {string} label The label of the timezone
+		 * @param {string} search The search string
+		 * @return {boolean}
+		 */
+		filterBy(option, label, search) {
+			// We split the search term in case one searches "continent region".
+			const terms = search.trim().split(' ')
+			// Every search term must be found.
+			return terms.every(term => option.timezoneId.toLowerCase().includes(term.toLowerCase()))
+		},
 	},
 }
 </script>
-
-<style lang="scss" scoped>
-:deep(.multiselect__tags) {
-	border: none !important; // Remove the Multiselect border
-}
-</style>
