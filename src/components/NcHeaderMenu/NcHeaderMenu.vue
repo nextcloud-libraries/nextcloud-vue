@@ -143,7 +143,9 @@ export default {
 
 	emits: [
 		'close',
+		'closed',
 		'open',
+		'opened',
 		'update:open',
 		'cancel',
 	],
