@@ -148,7 +148,7 @@ export default {
 </docs>
 
 <template>
-	<element :is="wrapperElement"
+	<component :is="wrapperElement"
 		:class="{
 			['checkbox-radio-switch-' + type]: type,
 			'checkbox-radio-switch--checked': isChecked,
@@ -171,7 +171,7 @@ export default {
 				class="checkbox-radio-switch__input"
 				@change="onToggle">
 			<NcLoadingIcon v-if="loading" class="checkbox-radio-switch__icon" />
-			<icon :is="checkboxRadioIconElement"
+			<component :is="checkboxRadioIconElement"
 				v-else-if="!buttonVariant"
 				:size="size"
 				class="checkbox-radio-switch__icon" />
@@ -179,7 +179,7 @@ export default {
 			<!-- @slot The checkbox/radio label -->
 			<slot />
 		</label>
-	</element>
+	</component>
 </template>
 
 <script>
