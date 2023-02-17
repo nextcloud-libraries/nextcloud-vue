@@ -36,7 +36,7 @@ This component is made to be used inside of the [NcAppNavigationItem](#NcAppNavi
 
 ### AppNavigationItem example
 ```
-<NcAppNavigationItem  title="Entry 2" :pinned="true">
+<NcAppNavigationItem  name="Entry 2" :pinned="true">
 	<template #icon>
 		<NcAppNavigationIconBullet color="0082c9" />
 	</template>
