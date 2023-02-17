@@ -69,16 +69,17 @@ This component has the following slot:
 
 </docs>
 <template>
-	<NcPopover :is="isPopoverComponent"
+	<component :is="isPopoverComponent"
 		trigger="hover focus"
 		:shown="open"
 		class="user-bubble__wrapper"
 		@update:open="onOpenChange">
 		<!-- Main userbubble structure -->
 		<template #trigger>
-			<div v-bind="isLinkComponent"
+			<component :is="isLinkComponent"
 				class="user-bubble__content"
 				:style="styles.content"
+				:href="hasUrl ? url : null"
 				:class="primary ? 'user-bubble__content--primary' : ''"
 				@click="onClick">
 				<!-- NcAvatar -->
@@ -102,12 +103,12 @@ This component has the following slot:
 				<span v-if="$slots.title" class="user-bubble__secondary">
 					<slot name="title" />
 				</span>
-			</div>
+			</component>
 		</template>
 
 		<!-- @slot Main Popover content on userbubble hover/focus -->
 		<slot />
-	</NcPopover>
+	</component>
 </template>
 
 <script>
@@ -241,11 +242,12 @@ export default {
 			return !!this.avatarImage
 		},
 
+		hasUrl() {
+			return this.url && this.url.trim() !== ''
+		},
+
 		isLinkComponent() {
-			if (this.url && this.url.trim() !== '') {
-				return { is: 'a', href: this.url }
-			}
-			return { is: 'div' }
+			return this.hasUrl ? 'a' : 'div'
 		},
 
 		popoverEmpty() {
