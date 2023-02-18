@@ -1003,7 +1003,7 @@ body {
 			.vs__dropdown-toggle {
 				border-radius: 0 0 var(--vs-border-radius) var(--vs-border-radius);
 				border-top-color: transparent;
-				border-bottom-color: var(--vs-border-color);
+				border-bottom-color: var(--color-primary);
 			}
 		}
 	}
