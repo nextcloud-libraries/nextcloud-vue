@@ -7,11 +7,12 @@
 # Kosugi_kun, 2022
 # かたかめ, 2022
 # T.S, 2022
-# 佐々木 優 <m4549071758@gmail.com>, 2022
+# m4549071758 <m4549071758@gmail.com>, 2022
+# 39abde2b72cc6b7a96a9f849ccb160a4_6b69dfc, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: 佐々木 優 <m4549071758@gmail.com>, 2022\n"
+"Last-Translator: 39abde2b72cc6b7a96a9f849ccb160a4_6b69dfc, 2023\n"
 "Language-Team: Japanese (Japan) (https://www.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ja_JP\n"
@@ -76,6 +77,9 @@ msgstr "編集"
 
 msgid "Error getting related resources"
 msgstr "関連リソースの取得エラー"
+
+msgid "Error parsing svg"
+msgstr "svgの解析エラー"
 
 msgid "External documentation for {title}"
 msgstr "{title} のための添付文書"
@@ -191,5 +195,7 @@ msgstr "グループを検索できません"
 msgid "Undo changes"
 msgstr "変更を取り消し"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
-msgstr "メッセージを書く、@で誰かを紹介する、: で絵文字を自動補完する ..."
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
+msgstr "メッセージを記入、\"@\"でメンション、\"：\"で絵文字の自動補完 ..."
