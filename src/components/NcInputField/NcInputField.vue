@@ -50,12 +50,13 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 				:placeholder="computedPlaceholder"
 				:aria-describedby="helperText.length > 0 ? `${inputName}-helper-text` : ''"
 				aria-live="polite"
-				:class="{
-					'input-field__input--trailing-icon': showTrailingButton || hasTrailingIcon,
-					'input-field__input--leading-icon': hasLeadingIcon,
-					'input-field__input--success': success,
-					'input-field__input--error': error,
-				}"
+				:class="[inputClass,
+					{
+						'input-field__input--trailing-icon': showTrailingButton || hasTrailingIcon,
+						'input-field__input--leading-icon': hasLeadingIcon,
+						'input-field__input--success': success,
+						'input-field__input--error': error,
+					}]"
 				:value="value"
 				v-on="$listeners"
 				@input="handleInput">
@@ -141,6 +142,7 @@ export default {
 				'tel',
 				'url',
 				'search',
+				'number',
 			].includes(value),
 		},
 
@@ -237,6 +239,14 @@ export default {
 		disabled: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Class to add to the input field.
+		 * Necessary to use NcInputField in the NcActionInput component.
+		 */
+		inputClass: {
+			type: [Object, String],
+			default: '',
 		},
 	},
 
