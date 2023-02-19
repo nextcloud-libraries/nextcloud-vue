@@ -72,7 +72,7 @@ module.exports = async () => {
 				sectionDepth: 1,
 				ignore: [
 					'src/components/Nc*Field/*.vue',
-					'src/components/Nc*Picker/*.vue',
+					'src/components/Nc*Picker*/*.vue',
 					'src/components/NcAction*/*.vue',
 					'src/components/NcAppContent*/*.vue',
 					'src/components/NcAppNavigation*/*.vue',
@@ -169,7 +169,7 @@ module.exports = async () => {
 					{
 						name: 'NcPickers',
 						components: [
-							'src/components/Nc*Picker/*.vue',
+							'src/components/Nc*Picker*/*.vue',
 						],
 					},
 					{
