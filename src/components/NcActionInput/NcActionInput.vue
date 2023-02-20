@@ -80,6 +80,18 @@ For the multiselect component, all events will be passed through. Please see the
 				</template>
 				Please pick a fruit
 			</NcActionInput>
+			<NcActionInput
+				v-model="multiSelected"
+				type="multiselect"
+				label="label"
+				track-by="id"
+				:multiple="true"
+				:options="[{label:'Apple', id: 'apple'}, {label:'Banana', id: 'banana'}, {label:'Cherry', id: 'cherry'}]">
+				<template #icon>
+					<Pencil :size="20" />
+				</template>
+				Please pick a fruit object
+			</NcActionInput>
 		</NcActions>
 	</template>
 	<script>
@@ -99,6 +111,7 @@ For the multiselect component, all events will be passed through. Please see the
 			return {
 				color: '#0082C9',
 				text: 'This is the input text',
+				multiSelected: [],
 			}
 		},
 	}
@@ -115,12 +128,14 @@ For the multiselect component, all events will be passed through. Please see the
 			}"
 			class="action-input"
 			@mouseleave="onLeave">
-			<!-- @slot Manually provide icon -->
-			<slot name="icon">
-				<span :class="[isIconUrl ? 'action-input__icon--url' : icon]"
-					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
-					class="action-input__icon" />
-			</slot>
+			<span class="action-input__icon-wrapper">
+				<!-- @slot Manually provide icon -->
+				<slot name="icon">
+					<span :class="[isIconUrl ? 'action-input__icon--url' : icon]"
+						:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+						class="action-input__icon" />
+				</slot>
+			</span>
 
 			<!-- form and input -->
 			<form ref="form"
@@ -150,10 +165,11 @@ For the multiselect component, all events will be passed through. Please see the
 					@input="$emit('input', $event)"
 					@change="$emit('change', $event)" />
 
-				<NcMultiselect v-else-if="isMultiselectType"
+				<NcSelect v-else-if="isMultiselectType"
 					:value="value"
 					:placeholder="text"
 					:disabled="disabled"
+					:append-to-body="false"
 					:class="{ focusable: isFocusable }"
 					class="action-input__multi"
 					v-bind="$attrs"
@@ -195,7 +211,7 @@ For the multiselect component, all events will be passed through. Please see the
 
 <script>
 import NcDatetimePicker from '../NcDatetimePicker/index.js'
-import NcMultiselect from '../NcMultiselect/index.js'
+import NcSelect from '../NcSelect/index.js'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
@@ -208,7 +224,7 @@ export default {
 	components: {
 		ArrowRight,
 		NcDatetimePicker,
-		NcMultiselect,
+		NcSelect,
 		NcDateTimePickerNative,
 	},
 
@@ -436,13 +452,20 @@ $input-margin: 4px;
 
 	font-weight: normal;
 
-	&:deep(.material-design-icon) {
-		width: $clickable-area;
-		height: $clickable-area;
-		opacity: $opacity_full;
+	&__icon-wrapper {
+		display: flex;
+		align-self: center;
+		align-items: center;
+		justify-content: center;
 
-		.material-design-icon__svg {
-			vertical-align: middle;
+		&:deep(.material-design-icon) {
+			width: $clickable-area;
+			height: $clickable-area;
+			opacity: $opacity_full;
+
+			.material-design-icon__svg {
+				vertical-align: middle;
+			}
 		}
 	}
 
