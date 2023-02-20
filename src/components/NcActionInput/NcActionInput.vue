@@ -80,6 +80,18 @@ For the multiselect component, all events will be passed through. Please see the
 				</template>
 				Please pick a fruit
 			</NcActionInput>
+			<NcActionInput
+				v-model="multiSelected"
+				type="multiselect"
+				label="label"
+				track-by="id"
+				:multiple="true"
+				:options="[{label:'Apple', id: 'apple'}, {label:'Banana', id: 'banana'}, {label:'Cherry', id: 'cherry'}]">
+				<template #icon>
+					<Pencil :size="20" />
+				</template>
+				Please pick a fruit object
+			</NcActionInput>
 		</NcActions>
 	</template>
 	<script>
@@ -99,6 +111,7 @@ For the multiselect component, all events will be passed through. Please see the
 			return {
 				color: '#0082C9',
 				text: 'This is the input text',
+				multiSelected: [],
 			}
 		},
 	}
