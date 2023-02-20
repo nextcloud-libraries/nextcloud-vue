@@ -80,6 +80,17 @@ For the multiselect component, all events will be passed through. Please see the
 				</template>
 				Please pick a fruit
 			</NcActionInput>
+			<NcActionInput
+				type="multiselect"
+				label="label"
+				track-by="id"
+				:multiple="true"
+				:options="[{label:'Apple', id: 'apple'}, {label:'Banana', id: 'banana'}, {label:'Cherry', id: 'cherry'}]">
+				<template #icon>
+					<Pencil :size="20" />
+				</template>
+				Please pick a fruit object
+			</NcActionInput>
 		</NcActions>
 	</template>
 	<script>
@@ -149,7 +160,7 @@ For the multiselect component, all events will be passed through. Please see the
 					@input="$emit('input', $event)"
 					@change="$emit('change', $event)" />
 
-				<NcMultiselect v-else-if="isMultiselectType"
+				<NcSelect v-else-if="isMultiselectType"
 					:value="value"
 					:placeholder="text"
 					:disabled="disabled"
@@ -194,12 +205,12 @@ For the multiselect component, all events will be passed through. Please see the
 
 <script>
 import NcDatetimePicker from '../NcDatetimePicker/index.js'
-import NcMultiselect from '../NcMultiselect/index.js'
+import NcDateTimePickerNative from '../NcDateTimePickerNative/index.js'
+import NcSelect from '../NcSelect/index.js'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-import NcDateTimePickerNative from '../NcDateTimePickerNative/index.js'
 
 export default {
 	name: 'NcActionInput',
@@ -207,8 +218,8 @@ export default {
 	components: {
 		ArrowRight,
 		NcDatetimePicker,
-		NcMultiselect,
 		NcDateTimePickerNative,
+		NcSelect,
 	},
 
 	mixins: [ActionGlobalMixin],
