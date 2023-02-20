@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.6.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.6.1) (2023-02-20)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.6.0...v7.6.1)
+
+### :rocket: Enhancements
+
+- RichContent autocomplete not required [\#3757](https://github.com/nextcloud/nextcloud-vue/pull/3757) ([jotoeri](https://github.com/jotoeri))
+
+### :bug: Fixed bugs
+
+- Fix hover for ActionInput datepicker native [\#3786](https://github.com/nextcloud/nextcloud-vue/pull/3786) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix focused select border color with top placement [\#3782](https://github.com/nextcloud/nextcloud-vue/pull/3782) ([Pytal](https://github.com/Pytal))
+- Fix NcButton router-link [\#3777](https://github.com/nextcloud/nextcloud-vue/pull/3777) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix nativeOn is only valid on components error, make rootElement computed [\#3771](https://github.com/nextcloud/nextcloud-vue/pull/3771) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Don't regard 1024px width viewport as mobile [\#3768](https://github.com/nextcloud/nextcloud-vue/pull/3768) ([mejo-](https://github.com/mejo-))
+- NcPopover: Fix `setReturnFocus` property [\#3761](https://github.com/nextcloud/nextcloud-vue/pull/3761) ([susnux](https://github.com/susnux))
+- fix: Add a webpackrule to resolve module js files in `node\_modules` [\#3754](https://github.com/nextcloud/nextcloud-vue/pull/3754) ([susnux](https://github.com/susnux))
+
+### Closed pull requests
+
+- Show NcDateTimePickerNative in NcPickers section [\#3787](https://github.com/nextcloud/nextcloud-vue/pull/3787) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Add examples for more ActionInput types [\#3785](https://github.com/nextcloud/nextcloud-vue/pull/3785) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Migrate from deprecated `title` to `name` prop in docs [\#3776](https://github.com/nextcloud/nextcloud-vue/pull/3776) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Use component with :is [\#3774](https://github.com/nextcloud/nextcloud-vue/pull/3774) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Adjust emits option [\#3773](https://github.com/nextcloud/nextcloud-vue/pull/3773) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Add node-polyfill-webpack-plugin [\#3752](https://github.com/nextcloud/nextcloud-vue/pull/3752) ([GretaD](https://github.com/GretaD))
+
 ## [v7.6.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.6.0) (2023-02-15)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.5.0...v7.6.0)
