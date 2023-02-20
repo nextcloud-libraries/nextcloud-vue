@@ -382,6 +382,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.mx-datepicker :deep(.mx-input-wrapper .mx-input) {
+	background-clip: border-box;
+}
+
 .datetime-picker-inline-icon {
 	opacity: .3;
 	border: none;
