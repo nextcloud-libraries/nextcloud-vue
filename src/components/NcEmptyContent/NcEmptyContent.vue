@@ -46,13 +46,21 @@ export default {
 }
 </script>
 ```
+
+You can also customize the title using the `#title` slot
+and add actions.
+
 ```
 <template>
 	<NcEmptyContent
-		title="No comments"
 		description="No comments in here">
 		<template #icon>
 			<Comment />
+		</template>
+		<template #title>
+			<h1 class="empty-content__title">
+				No Comments
+			</h1>
 		</template>
 		<template #action>
 			<NcButton type="primary">
@@ -80,9 +88,11 @@ export default {
 			<!-- @slot Optional material design icon -->
 			<slot name="icon" />
 		</div>
-		<h2 v-if="hasTitle" class="empty-content__title">
-			{{ title }}
-		</h2>
+		<slot name="title">
+			<h2 v-if="hasTitle" class="empty-content__title">
+				{{ title }}
+			</h2>
+		</slot>
 		<p v-if="hasDescription">
 			{{ description }}
 		</p>
