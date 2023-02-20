@@ -28,18 +28,30 @@ For the multiselect component, all events will be passed through. Please see the
 ```vue
 	<template>
 		<NcActions>
-			<NcActionInput value="This is an input">
+			<NcActionInput :value.sync="text">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
 			</NcActionInput>
-			<NcActionInput>
+			<NcActionInput :value.sync="text">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
 				This is the placeholder
 			</NcActionInput>
-			<NcActionInput label="Visible label">
+			<NcActionInput type="password" :value.sync="text">
+				<template #icon>
+					<Key :size="20" />
+				</template>
+				Password placeholder
+			</NcActionInput>
+			<NcActionInput type="color" :value.sync="color">
+				<template #icon>
+					<Eyedropper :size="20" />
+				</template>
+				Color placeholder
+			</NcActionInput>
+			<NcActionInput label="Visible label" :value.sync="text">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
@@ -49,6 +61,12 @@ For the multiselect component, all events will be passed through. Please see the
 				<template #icon>
 					<Close :size="20" />
 				</template>
+			</NcActionInput>
+			<NcActionInput type="date" isNativePicker :value="new Date()">
+				<template #icon>
+					<Pencil :size="20" />
+				</template>
+				Please pick a date
 			</NcActionInput>
 			<NcActionInput type="date">
 				<template #icon>
@@ -66,12 +84,22 @@ For the multiselect component, all events will be passed through. Please see the
 	</template>
 	<script>
 	import Close from 'vue-material-design-icons/Close'
+	import Eyedropper from 'vue-material-design-icons/Eyedropper'
+	import Key from 'vue-material-design-icons/Key'
 	import Pencil from 'vue-material-design-icons/Pencil'
 
 	export default {
 		components: {
 			Close,
+			Eyedropper,
+			Key,
 			Pencil,
+		},
+		data() {
+			return {
+				color: '#0082C9',
+				text: 'This is the input text',
+			}
 		},
 	}
 	</script>
