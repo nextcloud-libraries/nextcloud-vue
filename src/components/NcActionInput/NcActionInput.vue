@@ -135,7 +135,7 @@ For the multiselect component, all events will be passed through. Please see the
 					:disabled="disabled"
 					:type="datePickerType"
 					:input-class="['mx-input', { focusable: isFocusable }]"
-					class="action-input__picker"
+					class="action-input__datetimepicker"
 					v-bind="$attrs"
 					@input="onInput"
 					@change="onChange" />
@@ -145,6 +145,7 @@ For the multiselect component, all events will be passed through. Please see the
 					:value="value"
 					:type="nativeDatePickerType"
 					:class="{ focusable: isFocusable }"
+					class="action-input__datetimepicker"
 					v-bind="$attrs"
 					@input="$emit('input', $event)"
 					@change="$emit('change', $event)" />
@@ -591,8 +592,12 @@ $input-margin: 4px;
 		}
 	}
 
-	&__picker :deep(.mx-input) {
-		margin: 0;
+	&__datetimepicker {
+		width: 100%;
+
+		:deep(.mx-input) {
+			margin: 0;
+		}
 	}
 
 	&__multi {
