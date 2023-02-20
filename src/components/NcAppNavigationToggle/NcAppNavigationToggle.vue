@@ -30,7 +30,8 @@
 		aria-controls="app-navigation-vue"
 		@click="toggleNavigation">
 		<template #icon>
-			<MenuIcon :size="20" />
+			<MenuOpenIcon v-if="open" :size="20" />
+			<MenuIcon v-else :size="20" />
 		</template>
 	</NcButton>
 </template>
@@ -41,6 +42,7 @@ import Tooltip from '../../directives/Tooltip/index.js'
 import { t } from '../../l10n.js'
 
 import MenuIcon from 'vue-material-design-icons/Menu.vue'
+import MenuOpenIcon from 'vue-material-design-icons/MenuOpen.vue'
 
 export default {
 	name: 'NcAppNavigationToggle',
@@ -52,6 +54,7 @@ export default {
 	components: {
 		NcButton,
 		MenuIcon,
+		MenuOpenIcon,
 	},
 
 	props: {
