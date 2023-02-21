@@ -168,7 +168,7 @@ export default {
 
 		matchTimezoneId(timezoneId, terms) {
 			return terms.every(term => timezoneId.toLowerCase().includes(term.toLowerCase()))
-		}
+		},
 	},
 }
 </script>
