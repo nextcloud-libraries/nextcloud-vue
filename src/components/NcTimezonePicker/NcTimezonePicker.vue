@@ -112,6 +112,7 @@ export default {
 				timezonesGrouped.push({
 					label: group.continent,
 					timezoneId: `tz-group__${group.continent}`,
+					regions: group.regions,
 				})
 				timezonesGrouped = timezonesGrouped.concat(group.regions)
 			})
@@ -151,11 +152,23 @@ export default {
 		 * @return {boolean}
 		 */
 		filterBy(option, label, search) {
-			// We split the search term in case one searches "continent region".
+			// We split the search term in case one searches "<continent> <region>".
 			const terms = search.trim().split(' ')
-			// Every search term must be found.
-			return terms.every(term => option.timezoneId.toLowerCase().includes(term.toLowerCase()))
+
+			// For the continent labels, we have to check if one region matches every search term.
+			if (option.timezoneId.startsWith('tz-group__')) {
+				return option.regions.some(region => {
+					return this.matchTimezoneId(region.timezoneId, terms)
+				})
+			}
+
+			// For a region, every search term must be found.
+			return this.matchTimezoneId(option.timezoneId, terms)
 		},
+
+		matchTimezoneId(timezoneId, terms) {
+			return terms.every(term => timezoneId.toLowerCase().includes(term.toLowerCase()))
+		}
 	},
 }
 </script>
