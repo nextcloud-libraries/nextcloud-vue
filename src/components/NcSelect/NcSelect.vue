@@ -1022,12 +1022,15 @@ body {
 	 * There is an upstream pull request, if it is merged and released remove this fix
 	 * https://github.com/sagalbot/vue-select/pull/1756
 	 */
-	.vs__selected-options {
-		min-width: 0;
-		.vs__selected {
+	&:not(.select--no-wrap) {
+		.vs__selected-options {
 			min-width: 0;
+			.vs__selected {
+				min-width: 0;
+			}
 		}
 	}
+
 	&.vs--single {
 		&.vs--loading,
 		&.vs--open {
