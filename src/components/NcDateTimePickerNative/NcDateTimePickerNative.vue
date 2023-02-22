@@ -140,6 +140,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 		<label :class="{ 'hidden-visually': hideLabel }" :for="id">{{ label }}</label>
 		<input :id="id"
 			class="native-datetime-picker--input"
+			:class="inputClass"
 			:type="type"
 			:value="formattedValue"
 			:min="formattedMin"
@@ -217,6 +218,14 @@ export default {
 		hideLabel: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Class to add to the input field.
+		 * Necessary to use NcDateTimePickerNative in the NcActionInput component.
+		 */
+		inputClass: {
+			type: [Object, String],
+			default: '',
 		},
 	},
 

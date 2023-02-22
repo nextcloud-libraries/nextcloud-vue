@@ -159,7 +159,7 @@ For the multiselect component, all events will be passed through. Please see the
 					:id="idNativeDateTimePicker"
 					:value="value"
 					:type="nativeDatePickerType"
-					:class="{ focusable: isFocusable }"
+					:input-class="{ focusable: isFocusable }"
 					class="action-input__datetimepicker"
 					v-bind="$attrs"
 					@input="$emit('input', $event)"
