@@ -1007,6 +1007,36 @@ body {
 			}
 		}
 	}
+
+	// Hide search from dom if unused to prevent unneeded flex wrap
+	.vs__search[readonly] {
+		position: absolute;
+	}
+	// If search if hidden, ensure that the height of the search is the same
+	.vs__selected-options {
+		min-height: 40px; // 36px search height + 4px search margin
+	}
+
+	/**
+	 * Fix overlow of selected options
+	 * There is an upstream pull request, if it is merged and released remove this fix
+	 * https://github.com/sagalbot/vue-select/pull/1756
+	 */
+	.vs__selected-options {
+		min-width: 0;
+		.vs__selected {
+			min-width: 0;
+		}
+	}
+	&.vs--single {
+		&.vs--loading,
+		&.vs--open {
+			.vs__selected {
+				// Fix `max-width` for `position: absolute`
+				max-width: 100%;
+			}
+		}
+	}
 }
 
 .vs__dropdown-menu {
