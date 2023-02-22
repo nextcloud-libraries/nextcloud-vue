@@ -184,23 +184,47 @@ For the multiselect component, all events will be passed through. Please see the
 							{{ label }}
 						</label>
 						<div class="action-input__input-container">
-							<input :id="inputId"
-								:type="type"
+							<NcPasswordField v-if="type==='password'"
+								:id="inputId"
 								:value="value"
-								:placeholder="text"
+								:label="text"
 								:disabled="disabled"
-								:aria-label="ariaLabel"
+								:input-class="{ focusable: isFocusable }"
+								trailing-button-icon="arrowRight"
+								:show-trailing-button="value !== '' && !disabled"
 								v-bind="$attrs"
-								:class="{ focusable: isFocusable }"
-								class="action-input__input"
+								v-on="$listeners"
+								@trailing-button-click="$refs.form.requestSubmit()"
 								@input="onInput"
-								@change="onChange">
-							<!-- allow the custom font to inject a ::before
-								not possible on input[type=submit] -->
-							<input :id="id" type="submit" class="action-input__submit">
-							<label v-show="!disabled" :for="id" class="action-input__icon-label">
-								<ArrowRight :size="20" />
-							</label>
+								@change="onChange" />
+
+							<NcColorPicker v-else-if="type==='color'"
+								:id="inputId"
+								:value="value"
+								class="colorpicker__trigger"
+								v-bind="$attrs"
+								v-on="$listeners"
+								@input="onInput"
+								@submit="$refs.form.requestSubmit()">
+								<button :style="{'background-color': value}"
+									class="colorpicker__preview"
+									:class="{ focusable: isFocusable }" />
+							</NcColorPicker>
+
+							<NcTextField v-else
+								:id="inputId"
+								:value="value"
+								:label="text"
+								:disabled="disabled"
+								:input-class="{ focusable: isFocusable }"
+								:type="type"
+								trailing-button-icon="arrowRight"
+								:show-trailing-button="value !== '' && !disabled"
+								v-bind="$attrs"
+								v-on="$listeners"
+								@trailing-button-click="$refs.form.requestSubmit()"
+								@input="onInput"
+								@change="onChange" />
 						</div>
 					</div>
 				</template>
@@ -211,21 +235,22 @@ For the multiselect component, all events will be passed through. Please see the
 
 <script>
 import NcDatetimePicker from '../NcDatetimePicker/index.js'
+import NcDateTimePickerNative from '../NcDateTimePickerNative/index.js'
+import NcPasswordField from '../NcPasswordField/index.js'
 import NcSelect from '../NcSelect/index.js'
+import NcTextField from '../NcTextField/index.js'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
-
-import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-import NcDateTimePickerNative from '../NcDateTimePickerNative/index.js'
 
 export default {
 	name: 'NcActionInput',
 
 	components: {
-		ArrowRight,
 		NcDatetimePicker,
-		NcSelect,
 		NcDateTimePickerNative,
+		NcPasswordField,
+		NcSelect,
+		NcTextField,
 	},
 
 	mixins: [ActionGlobalMixin],
@@ -515,21 +540,27 @@ $input-margin: 4px;
 		padding-right: $icon-margin;
 	}
 
-	&__submit {
-		position: absolute;
-		left: -10000px;
-		top: auto;
-		width: 1px;
-		height: 1px;
-		overflow: hidden;
-	}
-
 	&__container {
 		width: 100%;
 	}
 
 	&__input-container {
 		display: flex;
+
+		.colorpicker {
+			&__trigger,
+			&__preview {
+				width: 100%;
+			}
+
+			&__preview {
+				width: 100%;
+				height: 36px;
+				border-radius: var(--border-radius-large);
+				border: 2px solid var(--color-border-maxcontrast);
+				box-shadow: none !important;
+			}
+		}
 	}
 
 	&__text-label {
@@ -543,75 +574,6 @@ $input-margin: 4px;
 			width: 1px;
 			height: 1px;
 			overflow: hidden;
-		}
-	}
-
-	&__icon-label {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		width: #{$clickable-area - $input-margin * 2};
-		height: #{$clickable-area - $input-margin * 2};
-		box-sizing: border-box;
-		margin: 0 0 0 -8px;
-		padding: 7px 6px;
-
-		opacity: $opacity_full;
-		color: var(--color-text-maxcontrast);
-		border: 1px solid var(--color-border-dark);
-		border-left-color: transparent;
-		border-radius: 0 var(--border-radius) var(--border-radius) 0;
-		/* Avoid background under border */
-		background-color: var(--color-main-background);
-		background-clip: padding-box;
-
-		&, * {
-			cursor: pointer;
-		}
-	}
-
-	/* Inputs inside popover supports text, submit & reset */
-	&__input {
-		flex: 1 1 auto;
-
-		min-width: $clickable-area * 3;
-		min-height: #{$clickable-area - $input-margin * 2}; /* twice the element margin-y */
-		max-height: #{$clickable-area - $input-margin * 2}; /* twice the element margin-y */
-		margin: 0;
-
-		// if disabled, change cursor
-		&:disabled {
-			cursor: default;
-		}
-
-		/* only show confirm borders if input is not focused */
-		&:not(:active):not(:hover):not(:focus) {
-			&:invalid {
-				& ~ .action-input__icon-label {
-					border-color: var(--color-error);
-					border-left-color: transparent;
-				}
-			}
-			&:not(:disabled) ~ .action-input__icon-label {
-				&:active,
-				&:hover,
-				&:focus {
-					border-color: var(--color-primary-element);
-					border-radius: var(--border-radius);
-				}
-			}
-		}
-		&:active,
-		&:hover,
-		&:focus {
-			&:not(:disabled) ~ .action-input__icon-label {
-				/* above previous input */
-				z-index: 2;
-
-				border-color: var(--color-primary-element);
-				border-left-color: transparent;
-			}
 		}
 	}
 
