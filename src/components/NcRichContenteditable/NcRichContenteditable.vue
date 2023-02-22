@@ -148,6 +148,7 @@ import NcAutoCompleteResult from './NcAutoCompleteResult.vue'
 import richEditor from '../../mixins/richEditor/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import { emojiSearch, emojiAddRecent } from '../../functions/emoji/index.js'
+import { linkProviderSearch, getLink } from '../../functions/linkPicker/index.js'
 
 import Tribute from 'tributejs/dist/tribute.esm.js'
 import debounce from 'debounce'
@@ -227,6 +228,14 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+
+		/**
+		 * Enable or disable link autocompletion
+		 */
+		linkAutocomplete: {
+			type: Boolean,
+			default: true,
+		},
 	},
 
 	emits: [
@@ -277,6 +286,25 @@ export default {
 				containerClass: 'tribute-container-emoji',
 				// Class added to each list item
 				itemClass: 'tribute-container-emoji__item',
+			},
+			linkOptions: {
+				trigger: '/',
+				// Don't use the tribute search function at all
+				// We pass search results as values (see below)
+				lookup: (result, query) => query,
+				// Where to inject the menu popup
+				menuContainer: this.menuContainer,
+				// Popup mention autocompletion templates
+				menuItemTemplate: item => `<img class="tribute-container-link__item__icon" src="${item.original.icon_url}"> <span class="tribute-container-link__item__label">${item.original.title}</span>`,
+				// Hide if no results
+				noMatchTemplate: () => t('No link provider found'),
+				selectTemplate: this.getLink,
+				// Pass the search results as values
+				values: (text, cb) => cb(linkProviderSearch(text)),
+				// Class added to the menu container
+				containerClass: 'tribute-container-link',
+				// Class added to each list item
+				itemClass: 'tribute-container-link__item',
 			},
 
 			// Represent the raw untrimmed text of the contenteditable
@@ -367,6 +395,11 @@ export default {
 			this.emojiTribute.attach(this.$el)
 		}
 
+		if (this.linkAutocomplete) {
+			this.linkTribute = new Tribute(this.linkOptions)
+			this.linkTribute.attach(this.$el)
+		}
+
 		// Update default value
 		this.updateContent(this.value)
 
@@ -381,9 +414,40 @@ export default {
 		if (this.emojiTribute) {
 			this.emojiTribute.detach(this.$el)
 		}
+		if (this.linkTribute) {
+			this.linkTribute.detach(this.$el)
+		}
 	},
 
 	methods: {
+		getLink(item) {
+			// there is no way to get a tribute result asynchronously
+			// so we immediately insert a node and replace it when the result comes
+			getLink(item.original.id)
+				.then(link => {
+					// replace dummy temp element by a text node which contains the link
+					const tmpElem = document.getElementById('tmp-link-result-node')
+					const newElem = document.createTextNode(link)
+					tmpElem.replaceWith(newElem)
+					this.setCursorAfter(newElem)
+					this.updateValue(this.$refs.contenteditable.innerHTML)
+				})
+				.catch((error) => {
+					console.debug('Link picker promise rejected:', error)
+					const tmpElem = document.getElementById('tmp-link-result-node')
+					this.setCursorAfter(tmpElem)
+					tmpElem.remove()
+				})
+			return '<span id="tmp-link-result-node"></span>'
+		},
+		setCursorAfter(element) {
+			const range = document.createRange()
+			range.setEndAfter(element)
+			range.collapse()
+			const selection = window.getSelection()
+			selection.removeAllRanges()
+			selection.addRange(range)
+		},
 		/**
 		 * Re-emit the input event to the parent
 		 *
@@ -527,7 +591,7 @@ export default {
 			// Prevent submitting if autocompletion menu
 			// is opened or length is over maxlength
 			if (this.multiline || this.isOverMaxlength
-				|| this.autocompleteTribute.isActive || this.emojiTribute.isActive) {
+				|| this.autocompleteTribute.isActive || this.emojiTribute.isActive || this.linkTribute.isActive) {
 				return
 			}
 
@@ -611,7 +675,7 @@ export default {
 </style>
 
 <style lang="scss">
-.tribute-container, .tribute-container-emoji {
+.tribute-container, .tribute-container-emoji, .tribute-container-link {
 	z-index: 9000;
 	overflow: auto;
 	min-width: 250px;
@@ -627,12 +691,12 @@ export default {
 	box-shadow: 0 1px 5px var(--color-box-shadow);
 }
 
-.tribute-container-emoji {
+.tribute-container-emoji, .tribute-container-link {
 	min-width: 200px;
 	max-width: 200px;
 	padding: 4px;
 	// Show maximum 5 entries and a half to show scroll
-	max-height: 34.5px * 5 + math.div(29.5px, 2);
+	max-height: 35px * 5 + math.div(35px, 2) !important;
 
 	&__item {
 		border-radius: 8px;
@@ -661,6 +725,28 @@ export default {
 		background: var(--color-primary-light);
 		&, * {
 			cursor: pointer;
+		}
+	}
+}
+
+.tribute-container-link {
+	min-width: 200px;
+	max-width: 300px;
+	&__item {
+		display: flex;
+		align-items: center;
+		&__label {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		&__icon {
+			margin: auto 0;
+			width: 20px;
+			height: 20px;
+			object-fit: contain;
+			padding-right: 8px;
+			filter: var(--background-invert-if-dark);
 		}
 	}
 }

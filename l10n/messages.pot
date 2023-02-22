@@ -107,6 +107,9 @@ msgstr ""
 msgid "No emoji found"
 msgstr ""
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr ""
 
