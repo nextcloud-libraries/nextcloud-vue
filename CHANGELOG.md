@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.7.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.7.0) (2023-02-22)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.6.1...v7.7.0)
+
+### :rocket: Enhancements
+
+- Allow to add class to native datepicker input [\#3806](https://github.com/nextcloud/nextcloud-vue/pull/3806) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- NcAppNavigation - change toggle icon for opened sidebar [\#3800](https://github.com/nextcloud/nextcloud-vue/pull/3800) ([Antreesy](https://github.com/Antreesy))
+- Use `NcSelect` for `NcTimezonePicker` [\#3781](https://github.com/nextcloud/nextcloud-vue/pull/3781) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Allow using v-show for `NcModal`, fix modal-wrapper transition [\#3769](https://github.com/nextcloud/nextcloud-vue/pull/3769) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Add link picker in RichContentEditable with tribute [\#3708](https://github.com/nextcloud/nextcloud-vue/pull/3708) ([julien-nc](https://github.com/julien-nc))
+
+### :bug: Fixed bugs
+
+- fix\(NcSelect\): Do not squash selected items with `no-wrap` set [\#3811](https://github.com/nextcloud/nextcloud-vue/pull/3811) ([susnux](https://github.com/susnux))
+- Allow value of type array for NcActionInput [\#3804](https://github.com/nextcloud/nextcloud-vue/pull/3804) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix prop type check for NcPopover setReturnFocus [\#3803](https://github.com/nextcloud/nextcloud-vue/pull/3803) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Show round corners for scrolling NcActions [\#3797](https://github.com/nextcloud/nextcloud-vue/pull/3797) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Make datetimepicker full width in NcActionInput [\#3796](https://github.com/nextcloud/nextcloud-vue/pull/3796) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix clipped background color for NcDatetimePicker [\#3794](https://github.com/nextcloud/nextcloud-vue/pull/3794) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Use `NcSelect` for `NcActionInput` type multiselect [\#3760](https://github.com/nextcloud/nextcloud-vue/pull/3760) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
+### Closed pull requests
+
+- Add missing trailing comma [\#3805](https://github.com/nextcloud/nextcloud-vue/pull/3805) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Use `NcTextField` for `NcActionInput` [\#3784](https://github.com/nextcloud/nextcloud-vue/pull/3784) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- `NcSelect`: Selected options should not overflow the container [\#3759](https://github.com/nextcloud/nextcloud-vue/pull/3759) ([susnux](https://github.com/susnux))
+
 ## [v7.6.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.6.1) (2023-02-20)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.6.0...v7.6.1)
