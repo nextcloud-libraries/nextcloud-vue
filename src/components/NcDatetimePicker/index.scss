@@ -15,9 +15,15 @@ $cell_height: 32px;
 		// input
 		.mx-input {
 			width: 100%;
-			border: 1px solid var(--color-border);
+			border: 2px solid var(--color-border-maxcontrast);
 			background-color: var(--color-main-background);
 			background-clip: content-box;
+			
+			&:active:not(.disabled),
+			&:hover:not(.disabled),
+			&:focus:not(.disabled) {
+				border-color: var(--color-primary-element);
+			}
 		}
 
 		&:disabled,
