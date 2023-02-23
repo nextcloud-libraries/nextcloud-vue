@@ -122,7 +122,6 @@ For the multiselect component, all events will be passed through. Please see the
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }">
 		<span :class="{
-				'action-input--picker': datePickerType,
 				'action-input-picker--disabled': disabled,
 				'action-input--visible-label': labelVisible && label,
 			}"
@@ -469,6 +468,7 @@ $input-margin: 4px;
 	cursor: pointer;
 	white-space: nowrap;
 
+	opacity: $opacity_normal;
 	color: var(--color-main-text);
 	border: 0;
 	border-radius: 0; // otherwise Safari will cut the border-radius area
@@ -476,6 +476,11 @@ $input-margin: 4px;
 	box-shadow: none;
 
 	font-weight: normal;
+
+	&:hover,
+	&:focus {
+		opacity: $opacity_full;
+	}
 
 	&__icon-wrapper {
 		display: flex;
@@ -491,26 +496,6 @@ $input-margin: 4px;
 			.material-design-icon__svg {
 				vertical-align: middle;
 			}
-		}
-	}
-
-	// do not change the opacity of the datepicker
-	&:not(.action-input--picker) {
-		opacity: $opacity_normal;
-		&:hover,
-		&:focus {
-			opacity: $opacity_full;
-		}
-	}
-
-	// only change for the icon then
-	&--picker {
-		.action-input__icon {
-			opacity: $opacity_normal;
-		}
-		&:hover .action-input__icon,
-		&:focus .action-input__icon {
-			opacity: $opacity_full;
 		}
 	}
 
