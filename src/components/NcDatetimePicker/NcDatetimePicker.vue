@@ -140,13 +140,16 @@ export default {
 		@select-year="handleSelectYear"
 		@select-month="handleSelectMonth"
 		@update:value="$emit('update:value', value)">
-		<template v-if="showTimezoneSelect" #icon-calendar>
-			<NcPopover :open.sync="showTimezonePopover"
+		<template #icon-calendar>
+			<NcPopover v-if="showTimezoneSelect"
+				:open.sync="showTimezonePopover"
 				open-class="timezone-popover-wrapper">
 				<template #trigger>
-					<button class="datetime-picker-inline-icon icon-timezone icon"
+					<button class="datetime-picker-inline-icon"
 						:class="{'datetime-picker-inline-icon--highlighted': highlightTimezone}"
-						@mousedown.stop.prevent="() => {}" />
+						@mousedown.stop.prevent="() => {}">
+						<Web :size="20" />
+					</button>
 				</template>
 
 				<div class="timezone-popover-wrapper__title">
@@ -158,6 +161,7 @@ export default {
 					class="timezone-popover-wrapper__timezone-select"
 					@input="$emit('update:timezone-id', arguments[0])" />
 			</NcPopover>
+			<CalendarBlank v-else :size="20" />
 		</template>
 		<template v-for="(_, slot) of $scopedSlots" #[slot]="scope">
 			<slot :name="slot" v-bind="scope" />
@@ -169,6 +173,9 @@ export default {
 import NcTimezonePicker from '../NcTimezonePicker/index.js'
 import NcPopover from '../NcPopover/index.js'
 import l10n from '../../mixins/l10n.js'
+
+import CalendarBlank from 'vue-material-design-icons/CalendarBlank.vue'
+import Web from 'vue-material-design-icons/Web.vue'
 
 import {
 	getFirstDay,
@@ -194,9 +201,11 @@ export default {
 	name: 'NcDatetimePicker',
 
 	components: {
+		CalendarBlank,
 		DatePicker,
 		NcPopover,
 		NcTimezonePicker,
+		Web,
 	},
 
 	mixins: [l10n],
@@ -391,7 +400,8 @@ export default {
 	border: none;
 	background-color: transparent;
 	border-radius: 0;
-	padding: 6px !important;
+	padding: 0 !important;
+	margin: 0;
 
 	&--highlighted {
 		opacity: .7;
