@@ -1,5 +1,5 @@
 <!--
- - @copyright Copyright (c) 2020 Raimund Schlüßler <raimund.schluessler@mailbox.org>
+ - @copyright Copyright (c) 2023 Raimund Schlüßler <raimund.schluessler@mailbox.org>
  -
  - @author Raimund Schlüßler <raimund.schluessler@mailbox.org>
  -
@@ -23,16 +23,23 @@
 <script>
 export default {
 	name: 'NcVNodes',
-	functional: true,
+	props: {
+		/**
+		 * The vnodes to render
+		 */
+		vnodes: {
+			type: [Array, Object],
+			default: () => [],
+		},
+	},
 	/**
 	 * The render function to display the component
 	 *
 	 * @param {Function} h The function to create VNodes
-	 * @param {object} context The context object of the functional component
 	 * @return {object} The created VNode
 	 */
-	render(h, context) {
-		return context.props.vnodes
+	render(h) {
+		return this.vnodes
 	},
 }
 </script>
