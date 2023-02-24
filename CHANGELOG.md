@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.7.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.7.1) (2023-02-24)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.7.0...v7.7.1)
+
+### :bug: Fixed bugs
+
+- fix\(NcSelect\): Do not squash selected items with `no-wrap` set [\#3811](https://github.com/nextcloud/nextcloud-vue/pull/3811) ([susnux](https://github.com/susnux))
+
+### Closed pull requests
+
+- Unify datetimepicker opacity in NcActionInput [\#3814](https://github.com/nextcloud/nextcloud-vue/pull/3814) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Adjust `NcDatetimePicker` styling [\#3813](https://github.com/nextcloud/nextcloud-vue/pull/3813) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Use `NcTextField` for `NcActionInput` [\#3784](https://github.com/nextcloud/nextcloud-vue/pull/3784) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
 ## [v7.7.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.7.0) (2023-02-22)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.6.1...v7.7.0)
