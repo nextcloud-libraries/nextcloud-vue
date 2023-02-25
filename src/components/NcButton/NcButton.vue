@@ -289,20 +289,6 @@ export default {
 		},
 	},
 
-	computed: {
-		// Determines whether the root element is an a,
-		// a router-link or a button
-		rootElement() {
-			if (this.to) {
-				return 'router-link'
-			}
-			if (this.href) {
-				return 'a'
-			}
-			return 'button'
-		},
-	},
-
 	/**
 	 * The render function to display the component
 	 *
@@ -326,7 +312,7 @@ export default {
 			this)
 		}
 
-		return h(this.rootElement,
+		const renderButton = ({ navigate, isActive, isExactActive } = {}) => h((this.to || !this.href) ? 'button' : 'a',
 			{
 				class: [
 					'button-vue',
@@ -336,6 +322,8 @@ export default {
 						'button-vue--icon-and-text': hasIcon && hasText,
 						[`button-vue--vue-${this.type}`]: this.type,
 						'button-vue--wide': this.wide,
+						active: isActive,
+						'router-link-exact-active': isExactActive,
 					},
 				],
 				attrs: {
@@ -346,20 +334,14 @@ export default {
 					href: (!this.to && this.href) ? this.href : null,
 					...this.$attrs,
 				},
-				props: {
-					to: this.to ? this.to : null,
-					tag: this.to ? 'button' : null,
-					exact: this.exact,
-				},
 				on: {
 					...this.$listeners,
-				},
-				// nativeOn is only valid on components
-				...(this.rootElement === 'router-link' && {
-					nativeOn: {
-						...this.$listeners,
+					click: ($event) => {
+						// We have to both navigate and call the listeners click handler
+						this.$listeners?.click?.($event)
+						navigate?.($event)
 					},
-				}),
+				},
 			},
 			[
 				h('span', { class: 'button-vue__wrapper' }, [
@@ -368,6 +350,22 @@ export default {
 				]),
 			]
 		)
+
+		// If we have a router-link, we wrap the button in it
+		if (this.to) {
+			return h('router-link', {
+				props: {
+					custom: true,
+					to: this.to,
+					exact: this.exact,
+				},
+				scopedSlots: {
+					default: renderButton,
+				},
+			})
+		}
+		// Otherwise we simply return the button
+		return renderButton()
 	},
 }
 
