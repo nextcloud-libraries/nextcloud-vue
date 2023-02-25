@@ -1044,6 +1044,7 @@ body {
 
 .vs__dropdown-menu {
 	border-color: var(--color-primary);
+	padding: 4px;
 
 	&--floating {
 		width: max-content;
@@ -1057,6 +1058,10 @@ body {
 			border-bottom-style: none;
 			box-shadow: 0px -1px 1px 0px var(--color-box-shadow);
 		}
+	}
+
+	.vs__dropdown-option {
+		border-radius: 6px;
 	}
 
 	.vs__no-options {
