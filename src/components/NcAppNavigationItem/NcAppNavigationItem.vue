@@ -230,7 +230,7 @@ Just set the `pinned` prop.
 					:target="isExternal(href) ? '_blank' : ''"
 					:title="title || nameTitleFallback"
 					@blur="handleBlur"
-					@click="(event) => { onClick(event); navigate(event) }"
+					@click="(event) => onClick(event, navigate)"
 					@focus="handleFocus"
 					@keydown.tab.exact="handleTab">
 
@@ -648,7 +648,9 @@ export default {
 		},
 
 		// forward click event
-		onClick(event) {
+		onClick(event, navigate) {
+			// Navigate is only defined if it is a router-link
+			navigate?.()
 			this.$emit('click', event)
 		},
 
