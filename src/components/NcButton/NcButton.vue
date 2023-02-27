@@ -310,7 +310,7 @@ export default {
 	 * @return {object|undefined} The created VNode
 	 */
 	render(h) {
-		const text = this.$slots.default?.[0]?.text.trim()
+		const text = this.$slots.default?.[0]?.text?.trim?.()
 
 		const hasText = !!text
 		const hasIcon = this.$slots?.icon
