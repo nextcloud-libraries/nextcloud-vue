@@ -936,7 +936,7 @@ export default {
 	&--large {
 		.modal-container {
 			max-width: 90%;
-			width: 900px;
+			width: 1000px;
 			max-height: 90%;
 		}
 	}
