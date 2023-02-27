@@ -950,4 +950,12 @@ export default {
 	}
 }
 
+// Add more contrast for active entry
+[data-themes*="highcontrast"] {
+	.app-navigation-entry {
+		&:active {
+			background-color: var(--color-primary-light-hover) !important;
+		}
+	}
+}
 </style>
