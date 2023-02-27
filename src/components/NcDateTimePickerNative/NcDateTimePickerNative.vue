@@ -377,5 +377,6 @@ export default {
 	.native-datetime-picker .native-datetime-picker--input {
 		width: 100%;
 		flex: 0 0 auto;
+		padding-right: 4px;
 	}
 </style>
