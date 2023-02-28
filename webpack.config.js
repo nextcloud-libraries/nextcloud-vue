@@ -1,7 +1,7 @@
 const webpackConfig = require('@nextcloud/webpack-vue-config')
 const webpackRules = require('@nextcloud/webpack-vue-config/rules')
 
-const glob = require('glob')
+const { globSync } = require('glob')
 const md5 = require('md5')
 const path = require('path')
 
@@ -28,7 +28,7 @@ webpackConfig.entry = {
 	install: path.join(__dirname, 'src', 'install.js'),
 	ncvuecomponents: path.join(__dirname, 'src', 'index.js'),
 
-	...glob.sync('src/components/*/index.js').reduce((acc, item) => {
+	...globSync('src/components/*/index.js').reduce((acc, item) => {
 		const name = item
 			.replace('/index.js', '')
 			.replace('src/components/', 'Components/')
@@ -36,7 +36,7 @@ webpackConfig.entry = {
 		return acc
 	}, {}),
 
-	...glob.sync('src/directives/*/index.js').reduce((acc, item) => {
+	...globSync('src/directives/*/index.js').reduce((acc, item) => {
 		const name = item
 			.replace('/index.js', '')
 			.replace('src/directives/', 'Directives/')
@@ -44,7 +44,7 @@ webpackConfig.entry = {
 		return acc
 	}, {}),
 
-	...glob.sync('src/functions/*/index.js').reduce((acc, item) => {
+	...globSync('src/functions/*/index.js').reduce((acc, item) => {
 		const name = item
 			.replace('/index.js', '')
 			.replace('src/functions/', 'Functions/')
@@ -52,7 +52,7 @@ webpackConfig.entry = {
 		return acc
 	}, {}),
 
-	...glob.sync('src/mixins/*/index.js').reduce((acc, item) => {
+	...globSync('src/mixins/*/index.js').reduce((acc, item) => {
 		const name = item
 			.replace('/index.js', '')
 			.replace('src/mixins/', 'Mixins/')
