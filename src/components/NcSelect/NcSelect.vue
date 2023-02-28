@@ -1008,13 +1008,14 @@ body {
 		}
 	}
 
-	// Hide search from dom if unused to prevent unneeded flex wrap
-	.vs__search[readonly] {
-		position: absolute;
-	}
-	// If search if hidden, ensure that the height of the search is the same
 	.vs__selected-options {
+		// If search is hidden, ensure that the height of the search is the same
 		min-height: 40px; // 36px search height + 4px search margin
+
+		// Hide search from dom if unused to prevent unneeded flex wrap
+		.vs__selected ~ .vs__search[readonly] {
+			position: absolute;
+		}
 	}
 
 	/**
