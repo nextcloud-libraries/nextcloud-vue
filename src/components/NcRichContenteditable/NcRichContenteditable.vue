@@ -628,7 +628,7 @@ export default {
 	overflow-y: auto;
 	width: auto;
 	margin: 0;
-	padding: 6px;
+	padding: 8px;
 	cursor: text;
 	white-space: pre-wrap;
 	word-break: break-word;
@@ -646,6 +646,7 @@ export default {
 	&--empty:before {
 		content: attr(placeholder);
 		color: var(--color-text-maxcontrast);
+		position: absolute;
 	}
 
 	&[contenteditable='false']:not(&--disabled) {
