@@ -504,7 +504,7 @@ export default {
 			selection.addRange(newRange)
 
 			// Propagate data
-			this.updateValue(event.target.innerHTML)
+			this.updateValue(this.$refs.contenteditable.innerHTML)
 		},
 
 		/**
@@ -549,6 +549,7 @@ export default {
 
 			// fix backspace bug in FF
 			// https://bugzilla.mozilla.org/show_bug.cgi?id=685445
+			// https://bugzilla.mozilla.org/show_bug.cgi?id=1665167
 			const selection = window.getSelection()
 			const node = event.target
 			if (!selection.isCollapsed || !selection.rangeCount) {
