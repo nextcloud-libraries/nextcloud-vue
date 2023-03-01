@@ -84,7 +84,7 @@ export function sortProviders(providerList) {
  * Helper function to search a provider from a search query
  * Result is a sorted list of providers
  *
- * @param {string} query
+ * @param {string} query The search query
  * @param {number} limit (optional) max number of results
  * @return {Array} the sorted/filtered provider list
  */
@@ -109,7 +109,7 @@ export function searchProvider(query, limit = null) {
 /**
  * Update the "last used timestamp" on the server side and then locally in the frontend
  *
- * @param providerId
+ * @param {number} providerId The id of the search provider
  */
 export function touchProvider(providerId) {
 	const timestamp = Math.floor(Date.now() / 1000)

@@ -39,9 +39,9 @@ const throwing = (msg) =>
 
 /**
  *
- * @param root0
- * @param root0.block
- * @param root0.inline
+ * @param {object} root0 The object to destructure
+ * @param {Array} root0.block The array containing blocks
+ * @param {Array} root0.inline The array containline inline
  */
 function ignore({ block = [], inline = [] } = {}) {
 	if (block.length) {

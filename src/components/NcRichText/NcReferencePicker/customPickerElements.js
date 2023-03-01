@@ -9,8 +9,8 @@ if (!window._vue_richtext_custom_picker_elements) {
 class NcCustomPickerRenderResult {
 
 	/**
-	 * @param {HTMLElement} element
-	 * @param {object} object
+	 * @param {HTMLElement} element The HTML element
+	 * @param {object} object The object
 	 */
 	constructor(element, object) {
 		this.element = element

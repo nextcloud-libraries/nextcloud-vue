@@ -9,9 +9,9 @@ export const remarkPlaceholder = function() {
 
 		/**
 		 *
-		 * @param node
-		 * @param index
-		 * @param parent
+		 * @param {object} node The node
+		 * @param {number} index The index of the node
+		 * @param {object} parent The parent node
 		 */
 		function visitor(node, index, parent) {
 			const placeholders = node.value.split(/(\{[a-z\-_.0-9]+\})/ig)

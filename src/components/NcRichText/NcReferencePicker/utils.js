@@ -1,8 +1,8 @@
 let mytimer = 0
 /**
  *
- * @param callback
- * @param ms
+ * @param {Function} callback The callback to call after the delay
+ * @param {number} ms The delay in milli-seconds
  */
 export function delay(callback, ms) {
 	return function() {
@@ -16,7 +16,7 @@ export function delay(callback, ms) {
 }
 /**
  *
- * @param str
+ * @param {string} str The url
  */
 export function isUrl(str) {
 	try {
