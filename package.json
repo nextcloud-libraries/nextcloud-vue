@@ -132,7 +132,7 @@
 			".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
 		},
 		"transformIgnorePatterns": [
-			"/node_modules/(?!vue-material-design-icons)"
+			"/node_modules/(?!(.*)/)"
 		],
 		"snapshotSerializers": [
 			"<rootDir>/node_modules/jest-serializer-vue"
