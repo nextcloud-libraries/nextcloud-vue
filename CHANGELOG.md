@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.7.2](https://github.com/nextcloud/nextcloud-vue/tree/v7.7.2) (2023-02-28)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.7.1...v7.7.2)
+
+### :bug: Fixed bugs
+
+- Fix circular dependency with `@nextcloud/vue-richtext` [\#3834](https://github.com/nextcloud/nextcloud-vue/pull/3834) ([julien-nc](https://github.com/julien-nc))
+- Fix `NcRichContenteditable` placeholder position [\#3832](https://github.com/nextcloud/nextcloud-vue/pull/3832) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Don't fail if `NcButton` default slot contains not only text [\#3827](https://github.com/nextcloud/nextcloud-vue/pull/3827) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Adjust `NcDateTimePickerNative` icon position [\#3826](https://github.com/nextcloud/nextcloud-vue/pull/3826) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
+### Closed pull requests
+
+- Only hide search input in `NcSelect` if disabled and an element was selected [\#3833](https://github.com/nextcloud/nextcloud-vue/pull/3833) ([susnux](https://github.com/susnux))
+- Make `NcSelect` dropdown options rounded [\#3818](https://github.com/nextcloud/nextcloud-vue/pull/3818) ([Pytal](https://github.com/Pytal))
+- Make `NcVNodes` component non-functional [\#3816](https://github.com/nextcloud/nextcloud-vue/pull/3816) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix high contrast mode optimization [\#3756](https://github.com/nextcloud/nextcloud-vue/pull/3756) ([susnux](https://github.com/susnux))
+
 ## [v7.7.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.7.1) (2023-02-24)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.7.0...v7.7.1)
