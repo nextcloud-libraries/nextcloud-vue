@@ -148,7 +148,7 @@ import NcAutoCompleteResult from './NcAutoCompleteResult.vue'
 import richEditor from '../../mixins/richEditor/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import { emojiSearch, emojiAddRecent } from '../../functions/emoji/index.js'
-import { linkProviderSearch, getLink } from '../../functions/linkPicker/index.js'
+import { searchProvider, getLinkWithPicker } from '../NcRichText/index.js'
 
 import Tribute from 'tributejs/dist/tribute.esm.js'
 import debounce from 'debounce'
@@ -300,7 +300,7 @@ export default {
 				noMatchTemplate: () => t('No link provider found'),
 				selectTemplate: this.getLink,
 				// Pass the search results as values
-				values: (text, cb) => cb(linkProviderSearch(text)),
+				values: (text, cb) => cb(searchProvider(text)),
 				// Class added to the menu container
 				containerClass: 'tribute-container-link',
 				// Class added to each list item
@@ -423,7 +423,7 @@ export default {
 		getLink(item) {
 			// there is no way to get a tribute result asynchronously
 			// so we immediately insert a node and replace it when the result comes
-			getLink(item.original.id)
+			getLinkWithPicker(item.original.id)
 				.then(link => {
 					// replace dummy temp element by a text node which contains the link
 					const tmpElem = document.getElementById('tmp-link-result-node')
