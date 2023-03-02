@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.8.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.8.0) (2023-03-02)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.7.2...v7.8.0)
+
+### Closed pull requests
+
+- Merge `@nextcloud/vue-richtext` into `@nextcloud/vue` [\#3841](https://github.com/nextcloud/nextcloud-vue/pull/3841) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
 ## [v7.7.2](https://github.com/nextcloud/nextcloud-vue/tree/v7.7.2) (2023-02-28)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.7.1...v7.7.2)
