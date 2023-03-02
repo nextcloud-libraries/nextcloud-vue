@@ -85,6 +85,7 @@ module.exports = async () => {
 					'src/components/NcMultiselect*/*.vue',
 					'src/components/NcPopoverMenu/!(NcPopoverMenu).vue',
 					'src/components/NcRichContenteditable/!(NcRichContenteditable).vue',
+					'src/components/NcRichText*/*.vue',
 					'src/components/NcSelect*/*.vue',
 					'src/components/NcSettings*/*.vue',
 					'src/components/NcUserBubble/NcUserBubbleDiv.vue',
@@ -170,6 +171,12 @@ module.exports = async () => {
 						name: 'NcPickers',
 						components: [
 							'src/components/Nc*Picker*/*.vue',
+						],
+					},
+					{
+						name: 'NcRichText',
+						components: [
+							'src/components/NcRichText/NcRichText.vue',
 						],
 					},
 					{
