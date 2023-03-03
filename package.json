@@ -132,7 +132,7 @@
 			".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
 		},
 		"transformIgnorePatterns": [
-			"/node_modules/(?!(.*)/)"
+			"/node_modules/(?!(vue-material-design-icons)|(unist*)|(unified)|(bail)|(remark*)|(is-*)|(trough)|(vfile)|(mdast*)|(micromark)|(decode-named-character-reference)|(trim-lines)|(rehype*)|(hast-*)|(property-information)|(space-separated-tokens)|(comma-separated-tokens)|(web-namespaces))"
 		],
 		"snapshotSerializers": [
 			"<rootDir>/node_modules/jest-serializer-vue"
