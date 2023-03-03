@@ -38,7 +38,7 @@
 
 <script>
 import NcReferencePicker from './NcReferencePicker.vue'
-import { isCustomPickerElementRegistered } from './customPickerElements.js'
+import { getCustomPickerElementSize, isCustomPickerElementRegistered } from './customPickerElements.js'
 import NcButton from '../../NcButton/index.js'
 import NcModal from '../../NcModal/index.js'
 import { t } from '../../../l10n.js'
@@ -103,7 +103,7 @@ export default {
 		},
 		modalSize() {
 			return this.isProviderSelected && isCustomPickerElementRegistered(this.selectedProvider.id)
-				? 'large'
+				? (getCustomPickerElementSize(this.selectedProvider.id) ?? 'large')
 				: 'normal'
 		},
 		showModalTitle() {

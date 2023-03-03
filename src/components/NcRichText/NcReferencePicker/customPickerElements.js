@@ -23,7 +23,15 @@ const isCustomPickerElementRegistered = (id) => {
 	return !!window._vue_richtext_custom_picker_elements[id]
 }
 
-const registerCustomPickerElement = (id, callback, onDestroy = (el) => {}) => {
+const getCustomPickerElementSize = (id) => {
+	const size = window._vue_richtext_custom_picker_elements[id]?.size
+	if (['small', 'normal', 'large', 'full'].includes(size)) {
+		return size
+	}
+	return null
+}
+
+const registerCustomPickerElement = (id, callback, onDestroy = (el) => {}, size = 'large') => {
 	if (window._vue_richtext_custom_picker_elements[id]) {
 		console.error('Custom reference picker element for id ' + id + ' already registered')
 		return
@@ -33,6 +41,7 @@ const registerCustomPickerElement = (id, callback, onDestroy = (el) => {}) => {
 		id,
 		callback,
 		onDestroy,
+		size,
 	}
 }
 
@@ -61,4 +70,5 @@ export {
 	renderCustomPickerElement,
 	destroyCustomPickerElement,
 	isCustomPickerElementRegistered,
+	getCustomPickerElementSize,
 }
