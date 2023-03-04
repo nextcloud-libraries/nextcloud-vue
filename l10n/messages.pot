@@ -20,6 +20,9 @@ msgstr ""
 msgid "Animals & Nature"
 msgstr ""
 
+msgid "Any link"
+msgstr ""
+
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
 
@@ -65,6 +68,9 @@ msgstr ""
 msgid "Edit item"
 msgstr ""
 
+msgid "Enter link"
+msgstr ""
+
 msgid "Error getting related resources"
 msgstr ""
 
@@ -90,6 +96,9 @@ msgid "Go back to the list"
 msgstr ""
 
 msgid "Hide password"
+msgstr ""
+
+msgid "Load more \"{options}\"\""
 msgstr ""
 
 msgid "Message limit of {count} characters reached"
@@ -143,6 +152,9 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
+msgid "Raw link {options}"
+msgstr ""
+
 msgid "Related resources"
 msgstr ""
 
@@ -150,6 +162,9 @@ msgid "Search"
 msgstr ""
 
 msgid "Search results"
+msgstr ""
+
+msgid "Select a link provider"
 msgstr ""
 
 msgid "Select a tag"
@@ -168,6 +183,9 @@ msgid "Smileys & Emotion"
 msgstr ""
 
 msgid "Start slideshow"
+msgstr ""
+
+msgid "Start typing to search"
 msgstr ""
 
 msgid "Submit"

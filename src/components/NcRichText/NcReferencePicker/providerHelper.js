@@ -1,5 +1,7 @@
 import { isCustomPickerElementRegistered } from './customPickerElements.js'
 
+import { t } from '../../../l10n.js'
+
 import axios from '@nextcloud/axios'
 import { loadState } from '@nextcloud/initial-state'
 import { generateOcsUrl, imagePath } from '@nextcloud/router'
@@ -8,8 +10,7 @@ export const anyLinkProviderId = 'any-link'
 
 const anyLinkProvider = {
 	id: anyLinkProviderId,
-	// TODO translate
-	title: 'Any link',
+	title: t('Any link'),
 	icon_url: imagePath('core', 'filetypes/link.svg'),
 }
 

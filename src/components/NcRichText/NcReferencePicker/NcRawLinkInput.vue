@@ -33,6 +33,7 @@ import { isUrl, delay } from './utils.js'
 import NcEmptyContent from '../../NcEmptyContent/index.js'
 import NcLoadingIcon from '../../NcLoadingIcon/index.js'
 import NcTextField from '../../NcTextField/index.js'
+import { t } from '../../../l10n.js'
 
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
@@ -66,8 +67,7 @@ export default {
 			loading: false,
 			reference: null,
 			abortController: null,
-			// TODO translate?
-			inputPlaceholder: 'Enter link',
+			inputPlaceholder: t('Enter link'),
 		}
 	},
 	computed: {

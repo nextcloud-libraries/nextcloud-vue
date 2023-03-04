@@ -41,6 +41,7 @@ import { isUrl } from './utils.js'
 import NcEmptyContent from '../../NcEmptyContent/index.js'
 import NcHighlight from '../../NcHighlight/index.js'
 import NcMultiselect from '../../NcMultiselect/index.js'
+import { t } from '../../../l10n.js'
 
 import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
 
@@ -60,8 +61,7 @@ export default {
 		return {
 			selectedProvider: null,
 			query: '',
-			// TODO translate?
-			multiselectPlaceholder: 'Select a link provider',
+			multiselectPlaceholder: t('Select a link provider'),
 		}
 	},
 	computed: {
