@@ -8,9 +8,6 @@
 				@trailing-button-click="onClear"
 				@update:value="onInput"
 				@keyup.native.enter="onSubmit">
-				<template #trailing-button-icon>
-					<CloseIcon :size="16" />
-				</template>
 				<NcLoadingIcon v-if="loading" :size="16" />
 				<LinkVariantIcon v-else :size="16" />
 			</NcTextField>
