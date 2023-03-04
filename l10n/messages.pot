@@ -20,6 +20,9 @@ msgstr ""
 msgid "Animals & Nature"
 msgstr ""
 
+msgid "Any link"
+msgstr ""
+
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
 
@@ -63,6 +66,9 @@ msgid "Custom"
 msgstr ""
 
 msgid "Edit item"
+msgstr ""
+
+msgid "Enter link"
 msgstr ""
 
 msgid "Error getting related resources"
