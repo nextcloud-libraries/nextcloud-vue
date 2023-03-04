@@ -118,8 +118,6 @@ export default {
 		}
 
 	},
-	beforeDestroy() {
-	},
 	methods: {
 		onEscapePressed() {
 			if (this.selectedProvider !== null) {
