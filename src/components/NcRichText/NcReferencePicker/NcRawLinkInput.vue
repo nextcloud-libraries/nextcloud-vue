@@ -60,6 +60,9 @@ export default {
 			required: true,
 		},
 	},
+	emits: [
+		'submit',
+	],
 	data() {
 		return {
 			inputValue: '',

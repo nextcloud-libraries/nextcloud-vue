@@ -75,6 +75,13 @@ export default {
 			default: true,
 		},
 	},
+	emits: [
+		'cancel',
+		'cancel-raw-link',
+		'cancel-search',
+		'provider-selected',
+		'submit',
+	],
 	data() {
 		return {
 			MODES,

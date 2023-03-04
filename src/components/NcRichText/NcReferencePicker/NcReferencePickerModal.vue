@@ -80,6 +80,10 @@ export default {
 			default: false,
 		},
 	},
+	emits: [
+		'cancel',
+		'submit',
+	],
 	data() {
 		return {
 			show: true,
