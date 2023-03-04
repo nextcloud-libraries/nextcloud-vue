@@ -92,6 +92,9 @@ msgstr ""
 msgid "Hide password"
 msgstr ""
 
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr ""
 
@@ -143,6 +146,9 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
+msgid "Raw link {options}"
+msgstr ""
+
 msgid "Related resources"
 msgstr ""
 
@@ -171,6 +177,9 @@ msgid "Smileys & Emotion"
 msgstr ""
 
 msgid "Start slideshow"
+msgstr ""
+
+msgid "Start typing to search"
 msgstr ""
 
 msgid "Submit"

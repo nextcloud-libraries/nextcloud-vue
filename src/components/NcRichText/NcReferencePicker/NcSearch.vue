@@ -19,7 +19,7 @@
 				<div v-if="option.isRawLink" class="custom-option">
 					<LinkVariantIcon class="option-simple-icon" :size="20" />
 					<span class="option-text">
-						Raw link {{ option.resourceUrl }}
+						{{ t('Raw link {options}', { options: option.resourceUrl }) }}
 					</span>
 				</div>
 				<NcSearchResult v-else-if="option.resourceUrl"
@@ -38,17 +38,17 @@
 					<span v-if="option.isLoading" class="option-simple-icon icon-loading-small" />
 					<DotsHorizontalIcon v-else class="option-simple-icon" :size="20" />
 					<span class="option-text">
-						Load more "{{ option.name }}"
+						{{ t('Load more "{options}""', { options: option.name }) }}
 					</span>
 				</span>
 			</template>
 			<template #noOptions>
 				<MagnifyIcon class="option-simple-icon" :size="20" />
-				Start typing to search
+				{{ t('Start typing to search') }}
 			</template>
 			<template #noResult>
 				<MagnifyIcon class="option-simple-icon" :size="20" />
-				Start typing to search
+				{{ t('Start typing to search') }}
 			</template>
 		</NcMultiselect>
 		<NcEmptyContent v-if="showEmptyContent"
@@ -68,6 +68,8 @@ import NcSearchResult from './NcSearchResult.vue'
 import { isUrl, delay } from './utils.js'
 import NcEmptyContent from '../../NcEmptyContent/index.js'
 import NcMultiselect from '../../NcMultiselect/index.js'
+
+import { t } from '../../../l10n.js'
 
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
@@ -120,10 +122,7 @@ export default {
 	},
 	computed: {
 		mySearchPlaceholder() {
-			return this.searchPlaceholder
-				? this.searchPlaceholder
-				// TODO translate?
-				: 'Search'
+			return this.searchPlaceholder || t('Search')
 		},
 		searchProviderIds() {
 			return this.provider.search_providers_ids
@@ -179,6 +178,7 @@ export default {
 		this.cancelSearchRequests()
 	},
 	methods: {
+		t,
 		resetResults() {
 			const resultsBySearchProvider = {}
 			this.searchProviderIds.forEach(pid => {
