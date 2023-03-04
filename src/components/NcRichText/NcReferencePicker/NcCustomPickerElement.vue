@@ -16,6 +16,10 @@ export default {
 			required: true,
 		},
 	},
+	emits: [
+		'cancel',
+		'submit',
+	],
 	data() {
 		return {
 			isRegistered: isCustomPickerElementRegistered(this.provider.id),

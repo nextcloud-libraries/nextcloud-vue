@@ -52,6 +52,10 @@ export default {
 		NcEmptyContent,
 		LinkVariantIcon,
 	},
+	emits: [
+		'select-provider',
+		'submit',
+	],
 	data() {
 		return {
 			selectedProvider: null,

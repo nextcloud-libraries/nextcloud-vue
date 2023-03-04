@@ -105,6 +105,9 @@ export default {
 			default: null,
 		},
 	},
+	emits: [
+		'submit',
+	],
 	data() {
 		return {
 			searchQuery: '',
