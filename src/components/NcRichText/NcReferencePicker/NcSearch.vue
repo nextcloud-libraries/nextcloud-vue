@@ -319,7 +319,7 @@ export default {
 
 		// multiselect dropdown is wider than the select input
 		// this avoids overflow
-		::v-deep .multiselect__content-wrapper {
+		:deep(.multiselect__content-wrapper) {
 			width: calc(100% - 4px) !important;
 		}
 	}
