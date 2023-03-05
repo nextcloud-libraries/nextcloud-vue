@@ -32,7 +32,7 @@ export const remarkAutolink = function({ autolink, useMarkdown }) {
 		}
 
 		visit(tree, (node) => node.type === 'text', (node, index, parent) => {
-			let parsed = parseUrl(node.value, Link)
+			let parsed = parseUrl(node.value)
 			parsed = parsed.map((n) => {
 				if (typeof n === 'string') {
 					return u('text', n)
@@ -49,7 +49,7 @@ export const remarkAutolink = function({ autolink, useMarkdown }) {
 	}
 }
 
-export const parseUrl = (text, linkComponent) => {
+export const parseUrl = (text) => {
 	let match = URL_PATTERN_AUTOLINK.exec(text)
 	const list = []
 	let start = 0
