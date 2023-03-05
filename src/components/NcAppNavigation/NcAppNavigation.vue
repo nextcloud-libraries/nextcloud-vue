@@ -186,7 +186,7 @@ export default {
 }
 
 // add extra border for high contrast mode
-[data-themes*="highcontrast"] {
+[data-themes*='highcontrast'] {
 	.app-navigation {
 		border-right: 1px solid var(--color-border);
 	}

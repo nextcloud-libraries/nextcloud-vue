@@ -665,7 +665,7 @@ export default {
 }
 
 // Add more contrast for active entry
-[data-themes*="highcontrast"] {
+[data-themes*='highcontrast'] {
 	.list-item__wrapper {
 		&--active,
 		&:active,
