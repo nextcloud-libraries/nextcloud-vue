@@ -3,24 +3,23 @@ import { URL_PATTERN_AUTOLINK } from './helpers.js'
 import { visit, SKIP } from 'unist-util-visit'
 import { u } from 'unist-builder'
 
-const Link = {
-	name: 'Link',
-	functional: true,
+const NcLink = {
+	name: 'NcLink',
 	props: {
 		href: {
 			type: String,
 			required: true,
 		},
 	},
-	render(h, { data, props }) {
+	render(h) {
 		return h('a', {
 			attrs: {
-				href: props.href,
+				href: this.href,
 				rel: 'noopener noreferrer',
 				target: '_blank',
 				class: 'rich-text--external-link',
 			},
-		}, [props.href.trim()])
+		}, [this.href.trim()])
 	},
 }
 
@@ -67,7 +66,7 @@ export const parseUrl = (text) => {
 			textAfter = lastChar
 		}
 		list.push(textBefore)
-		list.push({ component: Link, props: { href } })
+		list.push({ component: NcLink, props: { href } })
 		if (textAfter) {
 			list.push(textAfter)
 		}
