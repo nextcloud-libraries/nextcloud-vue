@@ -39,6 +39,7 @@
 <script>
 import NcButton from '../NcButton/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
+
 import { t } from '../../l10n.js'
 
 export default {
@@ -79,6 +80,10 @@ export default {
 		return {
 			labelTranslated: t('Open link to "{resourceTitle}"', { resourceTitle: this.title }),
 		}
+	},
+
+	methods: {
+		t,
 	},
 }
 </script>
