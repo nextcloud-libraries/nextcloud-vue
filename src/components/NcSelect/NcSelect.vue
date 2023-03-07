@@ -1044,29 +1044,30 @@ body {
 }
 
 .vs__dropdown-menu {
-	border-color: var(--color-primary);
-	padding: 4px;
+	border-color: var(--color-primary) !important;
+	padding: 4px !important;
 
 	&--floating {
+		/* Fallback styles overidden by programmatically set inline styles */
 		width: max-content;
 		position: absolute;
 		top: 0;
 		left: 0;
 
 		&-placement-top {
-			border-radius: var(--vs-border-radius) var(--vs-border-radius) 0 0;
-			border-top-style: var(--vs-border-style);
-			border-bottom-style: none;
-			box-shadow: 0px -1px 1px 0px var(--color-box-shadow);
+			border-radius: var(--vs-border-radius) var(--vs-border-radius) 0 0 !important;
+			border-top-style: var(--vs-border-style) !important;
+			border-bottom-style: none !important;
+			box-shadow: 0px -1px 1px 0px var(--color-box-shadow) !important;
 		}
 	}
 
 	.vs__dropdown-option {
-		border-radius: 6px;
+		border-radius: 6px !important;
 	}
 
 	.vs__no-options {
-		color: var(--color-text-lighter)
+		color: var(--color-text-lighter) !important;
 	}
 }
 </style>
