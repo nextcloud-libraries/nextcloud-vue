@@ -21,52 +21,7 @@
   -
   -->
 
-<!-- Follows the tab aria guidelines
-	https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-1/tabs.html -->
-<template>
-	<div class="app-sidebar-tabs">
-		<!-- tabs navigation -->
-		<!-- 33 and 34 code is for page up and page down -->
-		<nav v-if="hasMultipleTabs"
-			role="tablist"
-			class="app-sidebar-tabs__nav"
-			@keydown.left.exact.prevent="focusPreviousTab"
-			@keydown.right.exact.prevent="focusNextTab"
-			@keydown.tab.exact.prevent="focusActiveTabContent"
-			@keydown.33.exact.prevent="focusFirstTab"
-			@keydown.34.exact.prevent="focusLastTab">
-			<ul>
-				<li v-for="tab in tabs" :key="tab.id" class="app-sidebar-tabs__tab">
-					<a :id="tab.id"
-						:aria-controls="`tab-${tab.id}`"
-						:aria-selected="activeTab === tab.id"
-						:class="{ active: activeTab === tab.id }"
-						:data-id="tab.id"
-						:href="`#tab-${tab.id}`"
-						:tabindex="activeTab === tab.id ? undefined : -1"
-						role="tab"
-						@click.prevent="setActive(tab.id)">
-						<span class="app-sidebar-tabs__tab-icon">
-							<NcVNodes v-if="hasMdIcon(tab)" :vnodes="tab.$slots.icon[0]" />
-							<span v-else :class="tab.icon" />
-						</span>
-						{{ tab.name }}
-					</a>
-				</li>
-			</ul>
-		</nav>
-
-		<!-- tabs content -->
-		<div :class="{'app-sidebar-tabs__content--multiple': hasMultipleTabs}"
-			class="app-sidebar-tabs__content">
-			<slot />
-		</div>
-	</div>
-</template>
-
 <script>
-import NcVNodes from '../NcVNodes/index.js'
-
 import Vue from 'vue'
 
 const IsValidString = function(value) {
@@ -79,11 +34,6 @@ const IsValidStringWithoutSpaces = function(value) {
 
 export default {
 	name: 'NcAppSidebarTabs',
-
-	components: {
-		// Component to render the material design icon (vnodes)
-		NcVNodes,
-	},
 
 	props: {
 		/**
@@ -103,45 +53,13 @@ export default {
 			 * The tab component instances to build the tab navbar from.
 			 */
 			tabs: [],
-			/**
-			 * The id of the currently active tab.
-			 */
-			activeTab: '',
-			/**
-			 * Dummy array to react on slot changes.
-			 */
-			children: [],
 		}
 	},
 
 	computed: {
-		hasMultipleTabs() {
-			return this.tabs.length > 1
-		},
 		currentTabIndex() {
-			return this.tabs.findIndex(tab => tab.id === this.activeTab)
+			return this.tabs.findIndex(tab => tab.componentOptions.propsData.id === this.active)
 		},
-	},
-
-	watch: {
-		active(active) {
-			// Prevent running it twice
-			if (active !== this.activeTab) {
-				this.updateActive()
-			}
-		},
-
-		children() {
-			this.updateTabs()
-		},
-	},
-
-	mounted() {
-		// Init the tabs list
-		this.updateTabs()
-
-		// Let's make the children list reactive
-		this.children = this.$children
 	},
 
 	methods: {
@@ -150,10 +68,11 @@ export default {
 		 * Set the current active tab
 		 *
 		 * @param {string} id the id of the tab
+		 * @param {object} $event The click event
 		 */
-		setActive(id) {
-			this.activeTab = id
-			this.$emit('update:active', this.activeTab)
+		setActive(id, $event) {
+			$event?.preventDefault()
+			this.$emit('update:active', id)
 		},
 
 		/**
@@ -162,7 +81,7 @@ export default {
 		 */
 		focusPreviousTab() {
 			if (this.currentTabIndex > 0) {
-				this.setActive(this.tabs[this.currentTabIndex - 1].id)
+				this.setActive(this.tabs[this.currentTabIndex - 1].componentOptions.propsData.id)
 			}
 			this.focusActiveTab() // focus nav item
 		},
@@ -173,7 +92,7 @@ export default {
 		 */
 		focusNextTab() {
 			if (this.currentTabIndex < this.tabs.length - 1) {
-				this.setActive(this.tabs[this.currentTabIndex + 1].id)
+				this.setActive(this.tabs[this.currentTabIndex + 1].componentOptions.propsData.id)
 			}
 			this.focusActiveTab() // focus nav item
 		},
@@ -183,7 +102,7 @@ export default {
 		 * and emit to the parent component
 		 */
 		focusFirstTab() {
-			this.setActive(this.tabs[0].id)
+			this.setActive(this.tabs[0].componentOptions.propsData.id)
 			this.focusActiveTab() // focus nav item
 		},
 
@@ -192,7 +111,7 @@ export default {
 		 * and emit to the parent component
 		 */
 		focusLastTab() {
-			this.setActive(this.tabs[this.tabs.length - 1].id)
+			this.setActive(this.tabs[this.tabs.length - 1].componentOptions.propsData.id)
 			this.focusActiveTab() // focus nav item
 		},
 
@@ -200,7 +119,10 @@ export default {
 		 * Focus the current active tab
 		 */
 		focusActiveTab() {
-			this.$el.querySelector('#' + this.activeTab).focus()
+			// We have to wait until the component finished rendering
+			this.$nextTick(
+				() => this.$el.querySelector('#' + this.active).focus()
+			)
 		},
 
 		/**
@@ -208,73 +130,157 @@ export default {
 		 * see aria accessibility guidelines
 		 */
 		focusActiveTabContent() {
-			this.$el.querySelector('#tab-' + this.activeTab).focus()
+			// We have to wait until the component finished rendering
+			this.$nextTick(
+				() => this.$el.querySelector('#tab-' + this.active).focus()
+			)
 		},
 
-		/**
-		 * Update the current active tab
-		 */
-		updateActive() {
-			this.activeTab = this.active
-				&& this.tabs.findIndex(tab => tab.id === this.active) !== -1
-				? this.active
-				: this.tabs.length > 0
-					? this.tabs[0].id
-					: ''
-		},
-
-		hasMdIcon(tab) {
-			return tab?.$slots?.icon
-		},
-
-		/**
-		 * Manually update the sidebar tabs according to $slots.default
-		 */
-		updateTabs() {
-			if (!this.$slots.default) {
-				this.tabs = []
+		onKeydown($event) {
+			$event.preventDefault()
+			// Ensure the key event is 'exact'
+			if (['ctrl', 'shift', 'alt', 'meta'].some(modifier => $event[`${modifier}Key`])) {
 				return
 			}
-
-			// Find all valid children (AppSidebarTab, other components, text nodes, etc.)
-			const children = this.$slots.default.filter(elem => elem.tag || elem.text.trim())
-
-			// Find all valid instances of AppSidebarTab
-			const invalidTabs = []
-			const tabs = children.reduce((tabs, tabNode) => {
-				const tab = tabNode.componentInstance
-				// Make sure all required props are provided and valid
-				if (IsValidString(tab?.name)
-					&& IsValidStringWithoutSpaces(tab?.id)
-					&& (IsValidStringWithoutSpaces(tab?.icon) || tab?.$slots?.icon)) {
-					tabs.push(tab)
-				} else {
-					invalidTabs.push(tabNode)
-				}
-				return tabs
-			}, [])
-
-			// Tabs are optional, but you can use either tabs or non-tab-content only
-			if (tabs.length !== 0 && tabs.length !== children.length) {
-				Vue.util.warn('Mixing tabs and non-tab-content is not possible.')
-				invalidTabs.map(invalid => console.debug('Ignoring invalid tab', invalid))
+			// Left
+			if ($event.keyCode === 37) {
+				this.focusPreviousTab()
 			}
-
-			// We sort the tabs by their order or by their name
-			this.tabs = tabs.sort((a, b) => {
-				const orderA = a.order || 0
-				const orderB = b.order || 0
-				if (orderA === orderB) {
-					return OC.Util.naturalSortCompare(a.name, b.name)
-				}
-				return orderA - orderB
-			})
-
-			// Init active tab if exists
-			if (this.tabs.length > 0) {
-				this.updateActive()
+			// Right
+			if ($event.keyCode === 39) {
+				this.focusNextTab()
+			}
+			// Tab
+			if ($event.keyCode === 9) {
+				this.focusActiveTabContent()
+			}
+			// Page-Up
+			if ($event.keyCode === 33) {
+				this.focusFirstTab()
+			}
+			// Page-Down
+			if ($event.keyCode === 34) {
+				this.focusLastTab()
 			}
 		},
+	},
+
+	/**
+	 * The render function to display the component
+	 *
+	 * @param {Function} h The function to create VNodes
+	 * @return {object|undefined} The created VNode
+	 */
+	render(h) {
+		/**
+		 * Follows the tab aria guidelines
+		 * https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-1/tabs.html
+		 */
+		 if (!this.$slots.default) {
+			this.tabs = []
+			return
+		}
+
+		// Find all valid children (AppSidebarTab, other components, text nodes, etc.)
+		const children = this.$slots.default.filter(elem => elem.tag || elem.text.trim())
+
+		// Find all valid instances of AppSidebarTab
+		const invalidTabs = []
+		let tabs = children.reduce((tabs, tab) => {
+			const tabProps = tab?.componentOptions?.propsData
+			// Make sure all required props are provided and valid
+			if (IsValidString(tabProps?.name)
+				&& IsValidStringWithoutSpaces(tabProps?.id)
+				&& (IsValidStringWithoutSpaces(tabProps?.icon) || tab?.data?.scopedSlots?.icon)) {
+				tabs.push(tab)
+			} else {
+				invalidTabs.push(tab)
+			}
+			return tabs
+		}, [])
+
+		// Tabs are optional, but you can use either tabs or non-tab-content only
+		if (tabs.length !== 0 && tabs.length !== children.length) {
+			Vue.util.warn('Mixing tabs and non-tab-content is not possible.')
+			invalidTabs.map(invalid => console.debug('Ignoring invalid tab', invalid))
+		}
+
+		// We sort the tabs by their order or by their name
+		tabs = tabs.sort((a, b) => {
+			const orderA = a.componentOptions.propsData.order || 0
+			const orderB = b.componentOptions.propsData.order || 0
+			if (orderA === orderB) {
+				return OC.Util.naturalSortCompare(a.componentOptions.propsData.name, b.componentOptions.propsData.name)
+			}
+			return orderA - orderB
+		})
+
+		let active = this.active
+		// If the active tab id is invalid, we initialize it
+		if (!tabs.some(tab => tab.componentOptions.propsData.id === active)) {
+			active = tabs.length > 0
+				? tabs[0].componentOptions.propsData.id
+				: ''
+			this.setActive(active)
+		}
+
+		this.tabs = tabs
+
+		const elements = []
+		// tabs navigation
+		if (tabs.length > 1) {
+			elements.push(h('nav',
+				{
+					class: 'app-sidebar-tabs__nav',
+					attrs: {
+						role: 'tablist',
+					},
+					on: {
+						keydown: this.onKeydown,
+					},
+				},
+				[h('ul', {},
+					tabs.map(tab => {
+						const tabProps = tab.componentOptions.propsData
+						const isActive = (active === tabProps.id)
+						return h('li',
+							{
+								class: 'app-sidebar-tabs__tab',
+							},
+							[h('a',
+								{
+									class: { active: isActive },
+									attrs: {
+										id: tabProps.id,
+										'aria-controls': `tab-${tabProps.id}`,
+										'aria-selected': isActive,
+										'data-id': tabProps.id,
+										href: `#tab-${tabProps.id}`,
+										tabindex: isActive ? undefined : -1,
+										role: 'tab',
+									},
+									on: {
+										click: ($event) => this.setActive(tabProps.id, $event),
+									},
+								},
+								[
+									h('span',
+										{ class: 'app-sidebar-tabs__tab-icon' },
+										[tab.data.scopedSlots?.icon?.() || h('span', { class: tabProps.icon })]
+									),
+									tabProps.name,
+								]
+							)]
+						)
+					})
+				)]
+			))
+		}
+
+		// tabs content
+		elements.push(h('div', { class: ['app-sidebar-tabs__content', { 'app-sidebar-tabs__content--multiple': tabs.length > 1 }] }, this.$slots.default))
+
+		return h('div', { class: 'app-sidebar-tabs' }, elements)
 	},
 }
 </script>

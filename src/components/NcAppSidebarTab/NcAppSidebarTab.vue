@@ -70,7 +70,7 @@ export default {
 	computed: {
 		// TODO: implement a better way to force pass a prop fromm Sidebar
 		isActive() {
-			return this.$parent.activeTab === this.id
+			return this.$parent.active === this.id
 		},
 	},
 

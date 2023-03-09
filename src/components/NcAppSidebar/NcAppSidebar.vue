@@ -31,31 +31,47 @@ include a standard-header like it's used by the files app.
 
 ```vue
 <template>
-	<NcAppSidebar
-		title="cat-picture.jpg"
-		subtitle="last edited 3 weeks ago">
-		<NcAppSidebarTab name="Settings" id="settings-tab">
-			<template #icon>
-				<Cog :size="20" />
-			</template>
-			Settings tab content
-		</NcAppSidebarTab>
-		<NcAppSidebarTab name="Sharing" id="share-tab">
-			<template #icon>
-				<ShareVariant :size="20" />
-			</template>
-			Sharing tab content
-		</NcAppSidebarTab>
-	</NcAppSidebar>
+	<div>
+		<NcButton @click="show = !show">Toggle sidebar tab</NcButton>
+		<NcAppSidebar
+			title="cat-picture.jpg"
+			subtitle="last edited 3 weeks ago">
+			<NcAppSidebarTab v-if="show" name="Details" id="details-tab">
+				<template #icon>
+					<InformationOutline :size="20" />
+				</template>
+				Details tab content
+			</NcAppSidebarTab>
+			<NcAppSidebarTab name="Settings" id="settings-tab">
+				<template #icon>
+					<Cog :size="20" />
+				</template>
+				Settings tab content
+			</NcAppSidebarTab>
+			<NcAppSidebarTab name="Sharing" id="share-tab">
+				<template #icon>
+					<ShareVariant :size="20" />
+				</template>
+				Sharing tab content
+			</NcAppSidebarTab>
+		</NcAppSidebar>
+	</div>
 </template>
 <script>
 	import Cog from 'vue-material-design-icons/Cog'
+	import InformationOutline from 'vue-material-design-icons/InformationOutline'
 	import ShareVariant from 'vue-material-design-icons/ShareVariant'
 
 	export default {
 		components: {
 			Cog,
+			InformationOutline,
 			ShareVariant,
+		},
+		data() {
+			return {
+				show: true,
+			}
 		},
 	}
 </script>
@@ -274,7 +290,7 @@ include a standard-header like it's used by the files app.
 
 			<NcAppSidebarTabs v-show="!loading"
 				ref="tabs"
-				:active="active"
+				:active="activeTab"
 				@update:active="onUpdateActive">
 				<slot />
 			</NcAppSidebarTabs>
@@ -456,6 +472,7 @@ export default {
 			closeTranslated: t('Close sidebar'),
 			favoriteTranslated: t('Favorite'),
 			isStarred: this.starred,
+			activeTab: this.active,
 		}
 	},
 
@@ -474,6 +491,9 @@ export default {
 	watch: {
 		starred() {
 			this.isStarred = this.starred
+		},
+		active(active) {
+			this.activeTab = active
 		},
 	},
 
@@ -619,7 +639,10 @@ export default {
 			 *
 			 * @type {string}
 			 */
-			this.$emit('update:active', activeTab)
+			if (this.activeTab !== activeTab) {
+				this.activeTab = activeTab
+				this.$emit('update:active', activeTab)
+			}
 		},
 	},
 }

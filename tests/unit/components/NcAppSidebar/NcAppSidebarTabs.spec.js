@@ -96,6 +96,10 @@ describe('NcAppSidebarTabs.vue', () => {
 		describe('when 3 children of type AppSidebarTab are used', () => {
 			beforeEach(() => {
 				wrapper = mount(NcAppSidebarTabs, {
+					// If we don't set the prop on mount, an 'update:active' event will be emitted after mounting
+					propsData: {
+						active: 'first',
+					},
 					slots: {
 						default: [
 							'<nc-app-sidebar-tab id="first" icon="icon-details" name="Tab1">Tab1</nc-app-sidebar-tab>',
@@ -136,7 +140,7 @@ describe('NcAppSidebarTabs.vue', () => {
 			})
 			describe('when we select the first element', () => {
 				beforeEach(() => {
-					wrapper.setData({ activeTab: 'first' })
+					wrapper.setProps({ active: 'first' })
 				})
 				it('does not emit "update:active" event when keydown left is pressed', () => {
 					expect(wrapper.emitted('update:active')).toBeFalsy()
@@ -152,7 +156,7 @@ describe('NcAppSidebarTabs.vue', () => {
 			})
 			describe('when we select the last element', () => {
 				beforeEach(() => {
-					wrapper.setData({ activeTab: 'last' })
+					wrapper.setProps({ active: 'last' })
 				})
 				it('emit "update:active" event with the previous tab id when keydown left is pressed', () => {
 					const lastLink = wrapper.find('nav>ul>li:last-of-type>a')
