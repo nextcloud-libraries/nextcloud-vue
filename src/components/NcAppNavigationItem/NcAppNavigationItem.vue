@@ -209,99 +209,104 @@ Just set the `pinned` prop.
 			'app-navigation-entry--collapsible': collapsible,
 		}"
 		class="app-navigation-entry-wrapper">
-		<nav-element v-bind="navElement"
-			:class="{
-				'app-navigation-entry--no-icon': !isIconShown,
-				'app-navigation-entry--editing': editingActive,
-				'app-navigation-entry--deleted': undo,
-				'active': isActive,
-			}"
-			class="app-navigation-entry">
-			<!-- Icon and name -->
-			<a v-if="!undo"
-				class="app-navigation-entry-link"
-				:aria-description="ariaDescription"
-				:aria-expanded="opened.toString()"
-				:href="href || '#'"
-				:target="isExternal(href) ? '_blank' : ''"
-				:title="title || nameTitleFallback"
-				@blur="handleBlur"
-				@click="onClick"
-				@focus="handleFocus"
-				@keydown.tab.exact="handleTab">
+		<component :is="isRouterLink ? 'router-link' : 'NcVNodes'"
+			v-slot="{ navigate, isActive }"
+			:custom="isRouterLink ? true : false"
+			:to="to"
+			:exact="isRouterLink ? exact : null">
+			<div :class="{
+					'app-navigation-entry--no-icon': !isIconShown,
+					'app-navigation-entry--editing': editingActive,
+					'app-navigation-entry--deleted': undo,
+					'active': isActive && to,
+				}"
+				class="app-navigation-entry">
+				<!-- Icon and name -->
+				<a v-if="!undo"
+					class="app-navigation-entry-link"
+					:aria-description="ariaDescription"
+					:aria-expanded="opened.toString()"
+					:href="href || '#'"
+					:target="isExternal(href) ? '_blank' : ''"
+					:title="title || nameTitleFallback"
+					@blur="handleBlur"
+					@click="(event) => onClick(event, navigate)"
+					@focus="handleFocus"
+					@keydown.tab.exact="handleTab">
 
-				<!-- icon if not collapsible -->
-				<!-- never show the icon over the collapsible if mobile -->
-				<div :class="{ [icon]: icon && isIconShown }"
-					class="app-navigation-entry-icon">
-					<NcLoadingIcon v-if="loading" />
-					<slot v-else-if="isIconShown" name="icon" />
-				</div>
-				<span v-if="!editingActive" class="app-navigation-entry__title">
-					{{ nameTitleFallback }}
-				</span>
-				<div v-if="editingActive" class="editingContainer">
-					<NcInputConfirmCancel ref="editingInput"
-						v-model="editingValue"
-						:placeholder="editPlaceholder !== '' ? editPlaceholder : nameTitleFallback"
-						@cancel="cancelEditing"
-						@confirm="handleEditingDone" />
-				</div>
-			</a>
+					<!-- icon if not collapsible -->
+					<!-- never show the icon over the collapsible if mobile -->
+					<div :class="{ [icon]: icon && isIconShown }"
+						class="app-navigation-entry-icon">
+						<NcLoadingIcon v-if="loading" />
+						<slot v-else-if="isIconShown" name="icon" />
+					</div>
+					<span v-if="!editingActive" class="app-navigation-entry__title">
+						{{ nameTitleFallback }}
+					</span>
+					<div v-if="editingActive" class="editingContainer">
+						<NcInputConfirmCancel ref="editingInput"
+							v-model="editingValue"
+							:placeholder="editPlaceholder !== '' ? editPlaceholder : nameTitleFallback"
+							@cancel="cancelEditing"
+							@confirm="handleEditingDone" />
+					</div>
+				</a>
 
-			<NcAppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
-			<!-- undo entry -->
-			<div v-if="undo" class="app-navigation-entry__deleted">
-				<div class="app-navigation-entry__deleted-description">
-					{{ nameTitleFallback }}
+				<NcAppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
+				<!-- undo entry -->
+				<div v-if="undo" class="app-navigation-entry__deleted">
+					<div class="app-navigation-entry__deleted-description">
+						{{ nameTitleFallback }}
+					</div>
 				</div>
-			</div>
 
-			<!-- Counter and Actions -->
-			<div v-if="hasUtils && !editingActive"
-				class="app-navigation-entry__utils"
-				:class="{'app-navigation-entry__utils--display-actions': forceDisplayActions || menuOpenLocalValue || menuOpen }">
-				<div v-if="$slots.counter"
-					class="app-navigation-entry__counter-wrapper">
-					<slot name="counter" />
-				</div>
-				<NcActions v-if="$slots.actions || (editable && !editingActive) || undo"
-					ref="actions"
-					:inline="inlineActions"
-					class="app-navigation-entry__actions"
-					container="#app-navigation-vue"
-					:boundaries-element="actionsBoundariesElement"
-					:placement="menuPlacement"
-					:open="menuOpen"
-					:force-menu="forceMenu"
-					:default-icon="menuIcon"
-					@update:open="onMenuToggle">
-					<template #icon>
-						<!-- @slot Slot for the custom menu icon -->
-						<slot name="menu-icon" />
-					</template>
-					<NcActionButton v-if="editable && !editingActive"
-						:aria-label="editButtonAriaLabel"
-						@click="handleEdit">
+				<!-- Counter and Actions -->
+				<div v-if="hasUtils && !editingActive"
+					class="app-navigation-entry__utils"
+					:class="{'app-navigation-entry__utils--display-actions': forceDisplayActions || menuOpenLocalValue || menuOpen }">
+					<div v-if="$slots.counter"
+						class="app-navigation-entry__counter-wrapper">
+						<slot name="counter" />
+					</div>
+					<NcActions v-if="$slots.actions || (editable && !editingActive) || undo"
+						ref="actions"
+						:inline="inlineActions"
+						class="app-navigation-entry__actions"
+						container="#app-navigation-vue"
+						:boundaries-element="actionsBoundariesElement"
+						:placement="menuPlacement"
+						:open="menuOpen"
+						:force-menu="forceMenu"
+						:default-icon="menuIcon"
+						@update:open="onMenuToggle">
 						<template #icon>
-							<Pencil :size="20" />
+							<!-- @slot Slot for the custom menu icon -->
+							<slot name="menu-icon" />
 						</template>
-						{{ editLabel }}
-					</NcActionButton>
-					<NcActionButton v-if="undo"
-						:aria-label="undoButtonAriaLabel"
-						@click="handleUndo">
-						<template #icon>
-							<Undo :size="20" />
-						</template>
-					</NcActionButton>
-					<slot name="actions" />
-				</NcActions>
-			</div>
+						<NcActionButton v-if="editable && !editingActive"
+							:aria-label="editButtonAriaLabel"
+							@click="handleEdit">
+							<template #icon>
+								<Pencil :size="20" />
+							</template>
+							{{ editLabel }}
+						</NcActionButton>
+						<NcActionButton v-if="undo"
+							:aria-label="undoButtonAriaLabel"
+							@click="handleUndo">
+							<template #icon>
+								<Undo :size="20" />
+							</template>
+						</NcActionButton>
+						<slot name="actions" />
+					</NcActions>
+				</div>
 
-			<!-- Anything (virtual) that should be mounted in the component, like a related modal -->
-			<slot name="extra" />
-		</nav-element>
+				<!-- Anything (virtual) that should be mounted in the component, like a related modal -->
+				<slot name="extra" />
+			</div>
+		</component>
 		<!-- Children elements -->
 		<ul v-if="canHaveChildren && hasChildren" class="app-navigation-entry__children">
 			<slot />
@@ -315,6 +320,7 @@ import { directive as ClickOutside } from 'v-click-outside'
 import NcActions from '../NcActions/index.js'
 import NcActionButton from '../NcActionButton/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
+import NcVNodes from '../NcVNodes/index.js'
 import NcAppNavigationIconCollapsible from './NcAppNavigationIconCollapsible.vue'
 import isMobile from '../../mixins/isMobile/index.js'
 import NcInputConfirmCancel from './NcInputConfirmCancel.vue'
@@ -330,9 +336,10 @@ export default {
 	components: {
 		NcActions,
 		NcActionButton,
-		NcLoadingIcon,
 		NcAppNavigationIconCollapsible,
 		NcInputConfirmCancel,
+		NcLoadingIcon,
+		NcVNodes,
 		Pencil,
 		Undo,
 	},
@@ -399,7 +406,7 @@ export default {
 		 */
 		to: {
 			type: [String, Object],
-			default: '',
+			default: null,
 		},
 
 		/**
@@ -570,6 +577,10 @@ export default {
 			return this.name
 		},
 
+		isRouterLink() {
+			return this.to && !this.href
+		},
+
 		collapsible() {
 			return this.allowCollapse && !!this.$slots.default
 		},
@@ -596,25 +607,6 @@ export default {
 				return true
 			}
 			return false
-		},
-
-		// This is used to decide which outer element type to use
-		navElement() {
-			if (this.to && !this.href) {
-				return {
-					is: 'router-link',
-					tag: 'div',
-					to: this.to,
-					exact: this.exact,
-				}
-			}
-			return {
-				is: 'div',
-			}
-		},
-
-		isActive() {
-			return this.to && this.$route === this.to
 		},
 
 		editButtonAriaLabel() {
@@ -656,7 +648,9 @@ export default {
 		},
 
 		// forward click event
-		onClick(event) {
+		onClick(event, navigate) {
+			// Navigate is only defined if it is a router-link
+			navigate?.()
 			this.$emit('click', event)
 		},
 

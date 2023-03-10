@@ -199,71 +199,88 @@
 
 <template>
 	<!-- This wrapper can be either a router link or a `<li>` -->
-	<nav-element class="list-item__wrapper"
-		:class="{ 'list-item__wrapper--active' : active }"
-		v-bind="navElement">
-		<a :id="anchorId"
-			ref="list-item"
-			:href="href"
-			:target="href === '#' ? undefined : '_blank'"
-			:rel="href === '#' ? undefined : 'noopener noreferrer'"
-			class="list-item"
-			:aria-label="linkAriaLabel"
-			@mouseover="handleMouseover"
-			@mouseleave="handleMouseleave"
-			@focus="handleFocus"
-			@blur="handleBlur"
-			@keydown.tab.exact="handleTab"
-			@click="onClick"
-			@keydown.esc="hideActions">
+	<component :is="to ? 'router-link' : 'NcVNodes'"
+		v-slot="{ navigate, isActive }"
+		:custom="to ? true : null"
+		:to="to"
+		:exact="to ? exact : null"
+		@click="to ? navigate : null">
+		<li class="list-item__wrapper"
+			:class="{ 'list-item__wrapper--active' : isActive }">
+			<a :id="anchorId"
+				ref="list-item"
+				:href="href"
+				:target="href === '#' ? undefined : '_blank'"
+				:rel="href === '#' ? undefined : 'noopener noreferrer'"
+				class="list-item"
+				:aria-label="linkAriaLabel"
+				@mouseover="handleMouseover"
+				@mouseleave="handleMouseleave"
+				@focus="handleFocus"
+				@blur="handleBlur"
+				@keydown.tab.exact="handleTab"
+				@click="onClick"
+				@keydown.esc="hideActions">
 
-			<div class="list-item-content__wrapper"
-				:class="{ 'list-item-content__wrapper--compact': compact }">
-				<!-- @slot This slot is used for the NcAvatar or icon -->
-				<slot name="icon" />
+				<div class="list-item-content__wrapper"
+					:class="{ 'list-item-content__wrapper--compact': compact }">
+					<!-- @slot This slot is used for the NcAvatar or icon -->
+					<slot name="icon" />
 
-				<!-- Main content -->
-				<div class="list-item-content">
-					<div class="list-item-content__main"
-						:class="{ 'list-item-content__main--oneline': oneLine }">
+					<!-- Main content -->
+					<div class="list-item-content">
+						<div class="list-item-content__main"
+							:class="{ 'list-item-content__main--oneline': oneLine }">
 
-						<!-- First line, title and details -->
-						<div class="line-one">
-							<span class="line-one__title">
-								{{ title }}
-							</span>
-							<span v-if="showDetails"
-								class="line-one__details">
-								{{ details }}
-							</span>
+							<!-- First line, title and details -->
+							<div class="line-one">
+								<span class="line-one__title">
+									{{ title }}
+								</span>
+								<span v-if="showDetails"
+									class="line-one__details">
+									{{ details }}
+								</span>
+							</div>
+
+							<!-- Second line, subtitle and counter -->
+							<div class="line-two"
+								:class="{'line-one--bold': bold}">
+								<span v-if="hasSubtitle" class="line-two__subtitle">
+									<!-- @slot Slot for the second line of the component -->
+									<slot name="subtitle" />
+								</span>
+
+								<!-- Counter and indicator -->
+								<span v-if="showAdditionalElements" class="line-two__additional_elements">
+									<NcCounterBubble v-if="counterNumber != 0"
+										class="line-two__counter"
+										:type="counterType">
+										{{ counterNumber }}
+									</NcCounterBubble>
+
+									<span v-if="hasIndicator" class="line-two__indicator">
+										<!-- @slot This slot is used for some indicator in form of icon -->
+										<slot name="indicator" />
+									</span>
+								</span>
+							</div>
 						</div>
 
-						<!-- Second line, subtitle and counter -->
-						<div class="line-two"
-							:class="{'line-one--bold': bold}">
-							<span v-if="hasSubtitle" class="line-two__subtitle">
-								<!-- @slot Slot for the second line of the component -->
-								<slot name="subtitle" />
-							</span>
-
-							<!-- Counter and indicator -->
-							<span v-if="showAdditionalElements" class="line-two__additional_elements">
-								<NcCounterBubble v-if="counterNumber != 0"
-									class="line-two__counter"
-									:type="counterType">
-									{{ counterNumber }}
-								</NcCounterBubble>
-
-								<span v-if="hasIndicator" class="line-two__indicator">
-									<!-- @slot This slot is used for some indicator in form of icon -->
-									<slot name="indicator" />
-								</span>
-							</span>
+						<!-- Actions -->
+						<div v-show="displayActionsOnHoverFocus && !forceDisplayActions"
+							class="list-item-content__actions"
+							@click.prevent.stop="">
+							<NcActions ref="actions"
+								:aria-label="computedActionsAriaLabel"
+								@update:open="handleActionsUpdateOpen">
+								<!-- @slot Provide the actions for the right side quick menu -->
+								<slot name="actions" />
+							</NcActions>
 						</div>
 					</div>
-
 					<!-- Actions -->
-					<div v-show="displayActionsOnHoverFocus && !forceDisplayActions"
+					<div v-show="forceDisplayActions"
 						class="list-item-content__actions"
 						@click.prevent.stop="">
 						<NcActions ref="actions"
@@ -274,25 +291,14 @@
 						</NcActions>
 					</div>
 				</div>
-				<!-- Actions -->
-				<div v-show="forceDisplayActions"
-					class="list-item-content__actions"
-					@click.prevent.stop="">
-					<NcActions ref="actions"
-						:aria-label="computedActionsAriaLabel"
-						@update:open="handleActionsUpdateOpen">
-						<!-- @slot Provide the actions for the right side quick menu -->
-						<slot name="actions" />
-					</NcActions>
-				</div>
-			</div>
 
-			<!-- @slot Extra elements below the item -->
-			<div v-if="$slots.extra" class="list-item__extra">
-				<slot name="extra" />
-			</div>
-		</a>
-	</nav-element>
+				<!-- @slot Extra elements below the item -->
+				<div v-if="$slots.extra" class="list-item__extra">
+					<slot name="extra" />
+				</div>
+			</a>
+		</li>
+	</component>
 </template>
 
 <script>
@@ -339,7 +345,7 @@ export default {
 		 */
 		to: {
 			type: [String, Object],
-			default: '',
+			default: null,
 		},
 
 		/**
@@ -448,22 +454,6 @@ export default {
 
 		hasDetails() {
 			return this.details !== ''
-		},
-
-		// This is used to decide which outer element type to use
-		// li or router-link
-		navElement() {
-			if (this.to !== '') {
-				return {
-					is: 'router-link',
-					tag: 'li',
-					to: this.to,
-					exact: this.exact,
-				}
-			}
-			return {
-				is: 'li',
-			}
 		},
 
 		oneLine() {
