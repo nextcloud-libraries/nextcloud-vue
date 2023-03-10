@@ -650,7 +650,7 @@ export default {
 		// forward click event
 		onClick(event, navigate) {
 			// Navigate is only defined if it is a router-link
-			navigate?.()
+			navigate?.(event)
 			this.$emit('click', event)
 		},
 
