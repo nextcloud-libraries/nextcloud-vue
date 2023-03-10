@@ -40,24 +40,26 @@ open prop on this component;
 
 ```vue
 <template>
-	<NcPopover>
-		<template #trigger>
-			<NcButton>I am the trigger</NcButton>
-		</template>
-		<template>
-			<form tabindex="0" @submit.prevent>
-				<h2>this is some content</h2>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
-					Vestibulum eget placerat velit.
-				</p>
-				<label>
-					Label element
-					<input type="text" placeholder="input element" />
-				</label>
-			</form>
-		</template>
-	</NcPopover>
+	<div style="display: flex">
+		<NcPopover>
+			<template #trigger>
+				<NcButton>I am the trigger</NcButton>
+			</template>
+			<template>
+				<form tabindex="0" @submit.prevent>
+					<h2>this is some content</h2>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/>
+						Vestibulum eget placerat velit.
+					</p>
+					<label>
+						Label element
+						<input type="text" placeholder="input element"/>
+					</label>
+				</form>
+			</template>
+		</NcPopover>
+	</div>
 </template>
 ```
 
@@ -69,14 +71,16 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 
 ```vue
 <template>
-	<NcPopover :focus-trap="false">
-		<template #trigger>
-			<NcButton>Click me!</NcButton>
-		</template>
-		<template>
-			Hi! 🚀
-		</template>
-	</NcPopover>
+	<div style="display: flex">
+		<NcPopover :focus-trap="false">
+			<template #trigger>
+				<NcButton>Click me!</NcButton>
+			</template>
+			<template>
+				Hi! 🚀
+			</template>
+		</NcPopover>
+	</div>
 </template>
 ```
 
@@ -84,14 +88,16 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 
 ```vue
 <template>
-	<NcPopover container="body" :popper-hide-triggers="(triggers) => [...triggers, 'click']">
-		<template #trigger>
-			<NcButton>I am the trigger</NcButton>
-		</template>
-		<template #default>
-			<NcButton>Click on the button will close NcPopover</NcButton>
-		</template>
-	</NcPopover>
+	<div style="display: flex">
+		<NcPopover container="body" :popper-hide-triggers="(triggers) => [...triggers, 'click']">
+			<template #trigger>
+				<NcButton>I am the trigger</NcButton>
+			</template>
+			<template #default>
+				<NcButton>Click on the button will close NcPopover</NcButton>
+			</template>
+		</NcPopover>
+	</div>
 </template>
 ```
 </docs>
