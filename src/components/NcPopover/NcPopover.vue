@@ -79,6 +79,21 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 	</NcPopover>
 </template>
 ```
+
+#### With passing props to `floating-vue`'s `Dropdown`:
+
+```vue
+<template>
+	<NcPopover container="body" :popper-hide-triggers="(triggers) => [...triggers, 'click']">
+		<template #trigger>
+			<NcButton>I am the trigger</NcButton>
+		</template>
+		<template #default>
+			<NcButton>Click on the button will close NcPopover</NcButton>
+		</template>
+	</NcPopover>
+</template>
+```
 </docs>
 
 <template>
@@ -107,9 +122,12 @@ import { getTrapStack } from '../../utils/focusTrap.js'
 
 export default {
 	name: 'NcPopover',
+
 	components: {
 		Dropdown,
 	},
+
+	inheritAttrs: false,
 
 	props: {
 		popoverBaseClass: {
