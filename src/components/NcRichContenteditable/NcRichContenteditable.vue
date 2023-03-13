@@ -337,6 +337,7 @@ export default {
 		'submit',
 		'paste',
 		'update:value',
+		'smart-picker-submit',
 	],
 
 	data() {
@@ -585,21 +586,30 @@ export default {
 			// there is no way to get a tribute result asynchronously
 			// so we immediately insert a node and replace it when the result comes
 			getLinkWithPicker(item.original.id)
-				.then(link => {
-					// replace dummy temp element by a text node which contains the link
-					const tmpElem = document.getElementById('tmp-link-result-node')
-					const newElem = document.createTextNode(link)
-					tmpElem.replaceWith(newElem)
-					this.setCursorAfter(newElem)
-					this.updateValue(this.$refs.contenteditable.innerHTML)
+				.then(result => {
+					// replace dummy temp element by a text node which contains the picker result
+					const tmpElem = document.getElementById('tmp-smart-picker-result-node')
+					const eventData = {
+						result,
+						insertText: true,
+					}
+					this.$emit('smart-picker-submit', eventData)
+					if (eventData.insertText) {
+						const newElem = document.createTextNode(result)
+						tmpElem.replaceWith(newElem)
+						this.setCursorAfter(newElem)
+						this.updateValue(this.$refs.contenteditable.innerHTML)
+					} else {
+						tmpElem.remove()
+					}
 				})
 				.catch((error) => {
 					console.debug('Smart picker promise rejected:', error)
-					const tmpElem = document.getElementById('tmp-link-result-node')
+					const tmpElem = document.getElementById('tmp-smart-picker-result-node')
 					this.setCursorAfter(tmpElem)
 					tmpElem.remove()
 				})
-			return '<span id="tmp-link-result-node"></span>'
+			return '<span id="tmp-smart-picker-result-node"></span>'
 		},
 		setCursorAfter(element) {
 			const range = document.createRange()
