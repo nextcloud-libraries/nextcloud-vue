@@ -1,6 +1,10 @@
 <template>
 	<div class="result">
-		<img class="result--image"
+		<div v-if="entry.icon"
+			:class="{ [entry.icon]: true, rounded: entry.rounded }"
+			class="result--icon-class" />
+		<img v-else
+			class="result--image"
 			:class="{ rounded: entry.rounded }"
 			:src="entry.thumbnailUrl">
 		<div class="result--content">
@@ -49,6 +53,7 @@ export default {
 	height: 44px;
 	overflow: hidden;
 
+	&--icon-class,
 	&--image {
 		width: 40px;
 		min-width: 40px;
