@@ -315,8 +315,6 @@ Just set the `pinned` prop.
 </template>
 
 <script>
-import { directive as ClickOutside } from 'v-click-outside'
-
 import NcActions from '../NcActions/index.js'
 import NcActionButton from '../NcActionButton/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
@@ -342,9 +340,6 @@ export default {
 		NcVNodes,
 		Pencil,
 		Undo,
-	},
-	directives: {
-		ClickOutside,
 	},
 
 	mixins: [isMobile],

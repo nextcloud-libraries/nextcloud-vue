@@ -23,50 +23,38 @@
 export default {
 	props: {
 		/**
+		 * A query-selector or an array of query-selectors
+		 * to be ignored when clicking outside an element
+		 */
+		excludeClickOutsideSelectors: {
+			type: [String, Array],
+			default: () => [],
+		},
+
+		/**
 		 * A class-name or an array of class-names
 		 * to be ignored when clicking outside
 		 * an element
+		 *
+		 * @deprecated since 7.9.0, use `excludeClickOutsideSelectors` instead
 		 */
 		excludeClickOutsideClasses: {
 			type: [String, Array],
 			default: () => [],
 		},
 	},
-	methods: {
-		/**
-		 * Middleware Handler for V-Click-Outside
-		 *
-		 * @param {Event} event The click event
-		 * @return {boolean}
-		 */
-		clickOutsideMiddleware(event) {
-			const excludedClassList = Array.isArray(this.excludeClickOutsideClasses)
+	computed: {
+		clickOutsideOptions() {
+			const excludedQuerySelectors = Array.isArray(this.excludeClickOutsideSelectors)
+				? this.excludeClickOutsideSelectors
+				: [this.excludeClickOutsideSelectors]
+
+			// TODO: Drop if prop is removed
+			const excludeClickOutsideClasses = Array.isArray(this.excludeClickOutsideClasses)
 				? this.excludeClickOutsideClasses
 				: [this.excludeClickOutsideClasses]
 
-			// No need to iterate through all parents
-			// if class-list is empty
-			if (excludedClassList.length === 0) {
-				return true
-			}
-
-			return !this.hasNodeOrAnyParentClass(event.target, excludedClassList)
-		},
-		/**
-		 * Checks if given node or any of it's parents have a class of classArray
-		 *
-		 * @param {Element} node Node to test
-		 * @param {Array} classArray List of classes to check for
-		 * @return {boolean}
-		 */
-		hasNodeOrAnyParentClass(node, classArray) {
-			for (const className of classArray) {
-				if (node?.classList?.contains(className)) {
-					return true
-				}
-			}
-
-			return !!node.parentElement && this.hasNodeOrAnyParentClass(node.parentElement, classArray)
+			return { ignored: [...excludedQuerySelectors, ...excludeClickOutsideClasses.map(cls => `.${cls}`)] }
 		},
 	},
 }
