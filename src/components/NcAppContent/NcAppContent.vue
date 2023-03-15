@@ -120,10 +120,10 @@ import isMobile from '../../mixins/isMobile/index.js'
 
 import { getBuilder } from '@nextcloud/browser-storage'
 import { emit } from '@nextcloud/event-bus'
-
-import Hammer from 'hammerjs'
-import 'splitpanes/dist/splitpanes.css'
+import { useSwipe } from '@vueuse/core'
 import { Splitpanes, Pane } from 'splitpanes'
+
+import 'splitpanes/dist/splitpanes.css'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 
@@ -214,8 +214,9 @@ export default {
 	data() {
 		return {
 			contentHeight: 0,
-
 			hasList: false,
+
+			swiping: {},
 			listPaneSize: this.restorePaneConfig(),
 		}
 	},
@@ -271,33 +272,35 @@ export default {
 
 	mounted() {
 		if (this.allowSwipeNavigation) {
-			this.mc = new Hammer(this.$el, { cssProps: { userSelect: 'text' } })
-			this.mc.on('swipeleft swiperight', this.handleSwipe)
+			this.swiping = useSwipe(this.$el, {
+				onSwipeEnd: this.handleSwipe,
+			})
 		}
 
 		this.checkListSlot()
 		this.restorePaneConfig()
 	},
 
-	beforeDestroy() {
-		this.mc.off('swipeleft swiperight', this.handleSwipe)
-	},
-
 	methods: {
-		// handle the swipe event
-		handleSwipe(e) {
+		/**
+		 * handle the swipe event
+		 *
+		 * @param {TouchEvent} e The touch event
+		 * @param {import('@vueuse/core').SwipeDirection} direction The swipe direction of the event
+		 */
+		handleSwipe(e, direction) {
 			const minSwipeX = 70
-			const touchzone = 40
-			const startX = e.srcEvent.pageX - e.deltaX
-			const hasEnoughDistance = Math.abs(e.deltaX) > minSwipeX
-			if (hasEnoughDistance && startX < touchzone) {
-				emit('toggle-navigation', {
-					open: true,
-				})
-			} else if (hasEnoughDistance && startX < touchzone + 300) {
-				emit('toggle-navigation', {
-					open: false,
-				})
+			const touchZone = 300
+			if (Math.abs(this.swiping.lengthX) > minSwipeX) {
+				if (this.swiping.coordsStart.x < (touchZone / 2) && direction === 'right') {
+					emit('toggle-navigation', {
+						open: true,
+					})
+				} else if (this.swiping.coordsStart.x < touchZone * 1.5 && direction === 'left') {
+					emit('toggle-navigation', {
+						open: false,
+					})
+				}
 			}
 		},
 
