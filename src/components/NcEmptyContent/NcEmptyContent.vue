@@ -80,6 +80,34 @@ export default {
 }
 </script>
 ```
+
+Similar to the `#title` slot, you could also use the `#description` slot.
+The content will be rendered within a paragraph so you can use any inline element,
+like a link.
+
+```
+<template>
+	<NcEmptyContent
+		title="No comments">
+		<template #icon>
+			<Comment />
+		</template>
+		<template #description>
+			<a href="https://en.wikipedia.org/wiki/Comment">What is even a comment?</a>
+		</template>
+	</NcEmptyContent>
+</template>
+
+<script>
+import Comment from 'vue-material-design-icons/Comment'
+
+export default {
+	components: {
+		Comment,
+	},
+}
+</script>
+```
 </docs>
 
 <template>
@@ -94,7 +122,10 @@ export default {
 			</h2>
 		</slot>
 		<p v-if="hasDescription">
-			{{ description }}
+			<!-- @slot Optional formatted description rendered inside a paragraph -->
+			<slot name="description">
+				{{ description }}
+			</slot>
 		</p>
 		<div v-if="$slots.action" class="empty-content__action">
 			<!-- @slot Optional slot for a button or the like -->
@@ -123,8 +154,11 @@ export default {
 		hasTitle() {
 			return this.title !== ''
 		},
+		/**
+		 * Check if a description is given as either property or slot
+		 */
 		hasDescription() {
-			return this.description !== ''
+			return this.description !== '' || this.$slots.description?.[0]
 		},
 	},
 }
