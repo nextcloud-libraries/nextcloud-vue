@@ -2,8 +2,9 @@
  * @copyright Copyright (c) 2022 Raimund Schlüßler <raimund.schluessler@mailbox.org>
  *
  * @author Raimund Schlüßler <raimund.schluessler@mailbox.org>
+ * @author Ferdinand Thiessen <rpm@fthiessen.de>
  *
- * @license GNU AGPL version 3 or any later version
+ * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,31 +25,30 @@ import { mount } from '@vue/test-utils'
 
 import NcActions from '../../../../src/components/NcActions/NcActions.vue'
 import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'
+import TestCompositionApi from './TestCompositionApi.vue'
 
 let wrapper
 
 describe('NcActions.vue', () => {
 	'use strict'
 	describe('when using the component with', () => {
-		describe('two NcActionButtons', () => {
-			beforeEach(() => {
-				wrapper = mount(NcActions, {
-					slots: {
-						default: [
-							'<NcActionButton>Test1</NcActionButton>',
-							'<NcActionButton>Test2</NcActionButton>',
-						],
-					},
-					stubs: {
-						// used to register custom components
-						NcActionButton,
-					},
-				})
+		it('no actions elements', () => {
+			wrapper = mount(NcActions, {
+				slots: {
+					default: [],
+				},
 			})
-			it('shows the menu toggle.', () => {
-				expect(wrapper.find('.action-item__menutoggle').exists()).toBe(true)
-			})
+			expect(wrapper.html()).toBe('')
 		})
+
+		/**
+		 * Ensure NcActions work with Composition API components (nextcloud/nextcloud-vue#3719)
+		 */
+		it('composition API', () => {
+			wrapper = mount(TestCompositionApi)
+			expect(wrapper.find('.action-item__menutoggle').exists()).toBe(true)
+		})
+
 		describe('one NcActionButton', () => {
 			beforeEach(() => {
 				wrapper = mount(NcActions, {
@@ -68,6 +68,26 @@ describe('NcActions.vue', () => {
 			})
 			it('shows the menu toggle when forced.', async () => {
 				await wrapper.setProps({ forceMenu: true })
+				expect(wrapper.find('.action-item__menutoggle').exists()).toBe(true)
+			})
+		})
+
+		describe('two NcActionButtons', () => {
+			beforeEach(() => {
+				wrapper = mount(NcActions, {
+					slots: {
+						default: [
+							'<NcActionButton>Test1</NcActionButton>',
+							'<NcActionButton>Test2</NcActionButton>',
+						],
+					},
+					stubs: {
+						// used to register custom components
+						NcActionButton,
+					},
+				})
+			})
+			it('shows the menu toggle.', () => {
 				expect(wrapper.find('.action-item__menutoggle').exists()).toBe(true)
 			})
 		})
