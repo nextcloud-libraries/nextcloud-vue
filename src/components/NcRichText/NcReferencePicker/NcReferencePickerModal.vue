@@ -41,6 +41,7 @@ import NcReferencePicker from './NcReferencePicker.vue'
 import { isCustomPickerElementRegistered } from './customPickerElements.js'
 import NcButton from '../../NcButton/index.js'
 import NcModal from '../../NcModal/index.js'
+import { t } from '../../../l10n.js'
 
 import { emit } from '@nextcloud/event-bus'
 
@@ -88,9 +89,9 @@ export default {
 		return {
 			show: true,
 			selectedProvider: this.initialProvider,
-			backButtonTitle: 'Back to provider selection',
-			closeButtonTitle: 'Close',
-			closeButtonLabel: 'Close link picker',
+			backButtonTitle: t('Back to provider selection'),
+			closeButtonTitle: t('Close'),
+			closeButtonLabel: t('Close smart picker'),
 		}
 	},
 	computed: {
@@ -111,7 +112,7 @@ export default {
 		modalTitle() {
 			return this.isProviderSelected
 				? this.selectedProvider.title
-				: 'Link picker'
+				: t('Smart picker')
 		},
 	},
 	mounted() {
