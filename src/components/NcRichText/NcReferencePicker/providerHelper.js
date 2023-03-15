@@ -43,7 +43,7 @@ export function getProviders() {
 		// avoid providers with no associated search provider and no custom component registered
 		const keep = (!!p.search_providers_ids && p.search_providers_ids.length > 0) || isCustomPickerElementRegistered(p.id)
 		if (!keep) {
-			console.debug('[link picker]', p.id, 'reference provider is discoverable but does not have any related search provider or custom picker component registered')
+			console.debug('[smart picker]', p.id, 'reference provider is discoverable but does not have any related search provider or custom picker component registered')
 		}
 		return keep
 	})

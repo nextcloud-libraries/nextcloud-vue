@@ -433,7 +433,7 @@ export default {
 					this.updateValue(this.$refs.contenteditable.innerHTML)
 				})
 				.catch((error) => {
-					console.debug('Link picker promise rejected:', error)
+					console.debug('Smart picker promise rejected:', error)
 					const tmpElem = document.getElementById('tmp-link-result-node')
 					this.setCursorAfter(tmpElem)
 					tmpElem.remove()

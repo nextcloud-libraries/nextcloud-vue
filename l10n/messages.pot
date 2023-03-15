@@ -35,6 +35,9 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr ""
 
@@ -47,6 +50,9 @@ msgstr ""
 msgid "Clear text"
 msgstr ""
 
+msgid "Close"
+msgstr ""
+
 msgid "Close modal"
 msgstr ""
 
@@ -54,6 +60,9 @@ msgid "Close navigation"
 msgstr ""
 
 msgid "Close sidebar"
+msgstr ""
+
+msgid "Close smart picker"
 msgstr ""
 
 msgid "Collapse menu"
@@ -177,6 +186,9 @@ msgid "Settings navigation"
 msgstr ""
 
 msgid "Show password"
+msgstr ""
+
+msgid "Smart picker"
 msgstr ""
 
 msgid "Smileys & Emotion"
