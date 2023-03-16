@@ -42,11 +42,11 @@
 
 <script>
 import { t } from '../../l10n.js'
-import { excludeClickOutsideClasses } from '../../mixins/index.js'
+import { clickOutsideOptions } from '../../mixins/index.js'
 
 import Cog from 'vue-material-design-icons/Cog.vue'
 
-import { directive as ClickOutside } from 'v-click-outside'
+import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 
 export default {
 	directives: {
@@ -56,7 +56,7 @@ export default {
 		Cog,
 	},
 	mixins: [
-		excludeClickOutsideClasses,
+		clickOutsideOptions,
 	],
 	props: {
 		title: {
@@ -68,11 +68,15 @@ export default {
 	data() {
 		return {
 			open: false,
-			clickOutsideConfig: {
-				handler: this.closeMenu,
-				middleware: this.clickOutsideMiddleware,
-			},
 		}
+	},
+	computed: {
+		clickOutsideConfig() {
+			return [
+				this.closeMenu,
+				this.clickOutsideOptions
+			]
+		},
 	},
 	methods: {
 		toggleMenu() {

@@ -304,7 +304,7 @@ import Close from 'vue-material-design-icons/Close.vue'
 import Star from 'vue-material-design-icons/Star.vue'
 import StarOutline from 'vue-material-design-icons/StarOutline.vue'
 
-import { directive as ClickOutside } from 'v-click-outside'
+import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 
 export default {
 	name: 'NcAppSidebar',

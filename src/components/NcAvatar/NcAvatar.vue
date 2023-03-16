@@ -175,15 +175,14 @@ import usernameToColor from '../../functions/usernameToColor/index.js'
 import { userStatus } from '../../mixins/index.js'
 import { t } from '../../l10n.js'
 
-import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
+import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
+
+import { getCurrentUser } from '@nextcloud/auth'
 import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { getBuilder } from '@nextcloud/browser-storage'
 import { generateUrl } from '@nextcloud/router'
-
-import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
-
-import { directive as ClickOutside } from 'v-click-outside'
+import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 

@@ -98,10 +98,10 @@ export default {
 </template>
 
 <script>
-import { directive as ClickOutside } from 'v-click-outside'
+import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
 
-import excludeClickOutsideClasses from '../../mixins/excludeClickOutsideClasses/index.js'
+import { clickOutsideOptions } from '../../mixins/index.js'
 import { getTrapStack } from '../../utils/focusTrap.js'
 
 export default {
@@ -112,7 +112,7 @@ export default {
 	},
 
 	mixins: [
-		excludeClickOutsideClasses,
+		clickOutsideOptions,
 	],
 
 	props: {
@@ -155,12 +155,16 @@ export default {
 			focusTrap: null,
 			opened: this.open,
 			shortcutsDisabled: window.OCP?.Accessibility?.disableKeyboardShortcuts?.(),
-
-			clickOutsideConfig: {
-				handler: this.closeMenu,
-				middleware: this.clickOutsideMiddleware,
-			},
 		}
+	},
+
+	computed: {
+		clickOutsideConfig() {
+			return [
+				this.closeMenu,
+				this.clickOutsideOptions,
+			]
+		},
 	},
 
 	watch: {
