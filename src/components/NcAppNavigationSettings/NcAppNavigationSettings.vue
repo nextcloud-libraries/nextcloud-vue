@@ -74,7 +74,7 @@ export default {
 		clickOutsideConfig() {
 			return [
 				this.closeMenu,
-				this.clickOutsideOptions
+				this.clickOutsideOptions,
 			]
 		},
 	},
