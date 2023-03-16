@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.8.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.8.1) (2023-03-15)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.8.0...v7.8.1)
+
+### :bug: Fixed bugs
+
+- feat\(NcRichText\): Support icon class for smart picker integrations [\#3882](https://github.com/nextcloud/nextcloud-vue/pull/3882) ([nickvergessen](https://github.com/nickvergessen))
+- Fix navigate handler call [\#3878](https://github.com/nextcloud/nextcloud-vue/pull/3878) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix select styles [\#3854](https://github.com/nextcloud/nextcloud-vue/pull/3854) ([Pytal](https://github.com/Pytal))
+
+### Closed pull requests
+
+- Call the link picker "smart picker" and translate more strings [\#3888](https://github.com/nextcloud/nextcloud-vue/pull/3888) ([julien-nc](https://github.com/julien-nc))
+- Adjust excludeClickOutsideClasses type definition [\#3863](https://github.com/nextcloud/nextcloud-vue/pull/3863) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Remove unused parseUrl parameter [\#3862](https://github.com/nextcloud/nextcloud-vue/pull/3862) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Make NcLink non-functional [\#3861](https://github.com/nextcloud/nextcloud-vue/pull/3861) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Use single quotes in SCSS code [\#3860](https://github.com/nextcloud/nextcloud-vue/pull/3860) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Remove superfluous input close icon template [\#3859](https://github.com/nextcloud/nextcloud-vue/pull/3859) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Translate strings in `NcRich\*` components [\#3858](https://github.com/nextcloud/nextcloud-vue/pull/3858) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Don't use deprecated v-deep [\#3857](https://github.com/nextcloud/nextcloud-vue/pull/3857) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Remove empty beforeDestroy block in `NcReferencePicker` [\#3856](https://github.com/nextcloud/nextcloud-vue/pull/3856) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Add emits event sections for `NcRichText\*` components [\#3855](https://github.com/nextcloud/nextcloud-vue/pull/3855) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Only transform necessary packages for jest [\#3849](https://github.com/nextcloud/nextcloud-vue/pull/3849) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Migrate from `router-link`'s `tag` prop to `v-slot` [\#3775](https://github.com/nextcloud/nextcloud-vue/pull/3775) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
 ## [v7.8.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.8.0) (2023-03-02)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.7.2...v7.8.0)
