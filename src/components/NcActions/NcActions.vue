@@ -902,7 +902,7 @@ export default {
 		 * become problematic later on.
 		 */
 		const actions = (this.$slots.default || []).filter(
-			action => action?.componentOptions?.tag
+			action => action?.componentOptions?.tag || action?.componentOptions?.Ctor?.extendOptions?.name
 		)
 
 		/**
