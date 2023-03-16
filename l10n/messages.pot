@@ -80,7 +80,7 @@ msgstr ""
 msgid "Enter link"
 msgstr ""
 
-msgid "Error getting related resources"
+msgid "Error getting related resources. Please contact your system administrator if you have any questions."
 msgstr ""
 
 msgid "External documentation for {title}"

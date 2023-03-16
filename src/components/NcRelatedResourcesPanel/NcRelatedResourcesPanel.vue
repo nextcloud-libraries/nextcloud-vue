@@ -47,7 +47,7 @@ export default {
 	<div v-if="appEnabled && isVisible" class="related-resources">
 		<div class="related-resources__header">
 			<h5>{{ headerTranslated }}</h5>
-			<p>{{ descriptionTranslated }}</p>
+			<p>{{ description }}</p>
 		</div>
 
 		<NcResource v-for="resource in resources"
@@ -64,10 +64,10 @@ export default {
 <script>
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
-import { showError } from '@nextcloud/dialogs'
-import { t } from '../../l10n.js'
 
 import NcResource from './NcResource.vue'
+
+import { t } from '../../l10n.js'
 
 export default {
 	name: 'NcRelatedResourcesPanel',
@@ -103,6 +103,7 @@ export default {
 	},
 
 	emits: [
+		'has-error',
 		'has-resources',
 	],
 
@@ -110,15 +111,25 @@ export default {
 		return {
 			appEnabled: OC?.appswebroots?.related_resources !== undefined,
 			headerTranslated: t('Related resources'),
-			descriptionTranslated: t('Anything shared with the same group of people will show up here'),
 			loading: false,
+			error: null,
 			resources: [],
 		}
 	},
 
 	computed: {
 		isVisible() {
-			return !this.loading && this.resources.length > 0
+			if (this.loading) {
+				return false
+			}
+			return this.error ?? this.resources.length > 0
+		},
+
+		description() {
+			if (this.error) {
+				return t('Error getting related resources. Please contact your system administrator if you have any questions.')
+			}
+			return t('Anything shared with the same group of people will show up here')
 		},
 
 		hasResourceInfo() {
@@ -164,6 +175,14 @@ export default {
 		fileInfo() {
 			this.fetchRelatedResources()
 		},
+		error(error) {
+			/**
+			 * Emitted when the error value changes
+			 *
+			 * @type {boolean}
+			 */
+			this.$emit('has-error', Boolean(error))
+		},
 		resources(resources) {
 			/**
 			 * Emitted when the resources value changes
@@ -179,19 +198,21 @@ export default {
 	},
 
 	methods: {
+		t,
 		async fetchRelatedResources() {
 			if (!this.appEnabled || !this.hasResourceInfo) {
 				return
 			}
 
 			this.loading = true
+			this.error = null
 			this.resources = []
 			try {
 				const response = await axios.get(this.url)
 				this.resources = response.data.ocs?.data
 			} catch (e) {
+				this.error = e
 				console.error(e)
-				showError(t('Error getting related resources'))
 			} finally {
 				this.loading = false
 			}
