@@ -304,6 +304,7 @@
 <script>
 import NcActions from '../NcActions/index.js'
 import NcCounterBubble from '../NcCounterBubble/index.js'
+import NcVNodes from '../NcVNodes/index.js'
 import { t } from '../../l10n.js'
 
 export default {
@@ -312,6 +313,7 @@ export default {
 	components: {
 		NcActions,
 		NcCounterBubble,
+		NcVNodes,
 	},
 
 	props: {
