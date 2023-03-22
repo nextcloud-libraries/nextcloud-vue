@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.8.2](https://github.com/nextcloud/nextcloud-vue/tree/v7.8.2) (2023-03-22)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.8.1...v7.8.2)
+
+### :bug: Fixed bugs
+
+- Fix missing NcVNodes import in NcListItem [\#3907](https://github.com/nextcloud/nextcloud-vue/pull/3907) ([julien-nc](https://github.com/julien-nc))
+- Fix doubling attrs in `NcPopover` and improve docs [\#3876](https://github.com/nextcloud/nextcloud-vue/pull/3876) ([ShGKme](https://github.com/ShGKme))
+
+### Closed pull requests
+
+- Add missing trailing comma [\#3898](https://github.com/nextcloud/nextcloud-vue/pull/3898) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
 ## [v7.8.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.8.1) (2023-03-15)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.8.0...v7.8.1)
