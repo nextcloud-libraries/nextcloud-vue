@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.8.3](https://github.com/nextcloud/nextcloud-vue/tree/v7.8.3) (2023-03-23)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.8.2...v7.8.3)
+
+### :bug: Fixed bugs
+
+- fix\(NcRichContenteditable\): prevent tribute from opening on keyup [\#3917](https://github.com/nextcloud/nextcloud-vue/pull/3917) ([skjnldsv](https://github.com/skjnldsv))
+- fix\(NcRichContenteditable\): Fix pasting XML and HTML content [\#3915](https://github.com/nextcloud/nextcloud-vue/pull/3915) ([nickvergessen](https://github.com/nickvergessen))
+
+
 ## [v7.8.2](https://github.com/nextcloud/nextcloud-vue/tree/v7.8.2) (2023-03-22)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.8.1...v7.8.2)
