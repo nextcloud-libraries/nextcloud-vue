@@ -84,7 +84,7 @@ export default {
 
 <template>
 	<div class="empty-content" role="note">
-		<div v-if="$slots.icon" class="empty-content__icon">
+		<div v-if="$slots.icon" class="empty-content__icon" aria-hidden="true">
 			<!-- @slot Optional material design icon -->
 			<slot name="icon" />
 		</div>
