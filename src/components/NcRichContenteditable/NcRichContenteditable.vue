@@ -488,13 +488,13 @@ export default {
 			// If no selection, replace the whole data
 			if (!selection.rangeCount) {
 				this.updateValue(html)
+				return
 			}
 
 			// Generate text and insert
-			const text = this.parseContent(html)
 			const range = selection.getRangeAt(0)
 			selection.deleteFromDocument()
-			range.insertNode(document.createTextNode(text))
+			range.insertNode(document.createTextNode(html))
 
 			// Put cursor at the end of the selection
 			const newRange = document.createRange()
