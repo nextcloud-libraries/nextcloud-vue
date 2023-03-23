@@ -139,7 +139,8 @@ export default {
 		@keydown.delete="onDelete"
 		@keydown.enter.exact="onEnter"
 		@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
-		@paste="onPaste" />
+		@paste="onPaste"
+		@keyup.stop.prevent.capture="onKeyUp" />
 </template>
 
 <script>
@@ -619,6 +620,10 @@ export default {
 		debouncedAutoComplete: debounce(async function(search, callback) {
 			this.autoComplete(search, callback)
 		}, 100),
+
+		onKeyUp(event) {
+			// prevent tribute from opening on keyup
+		},
 	},
 }
 </script>
