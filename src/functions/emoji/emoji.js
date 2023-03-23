@@ -33,7 +33,11 @@ import { EmojiIndex, frequently } from 'emoji-mart-vue-fast'
 export const emojiSearch = function(query, maxResults = 10) {
 	const index = new EmojiIndex(data)
 	if (query) {
-		return index.search(query, maxResults) || []
+		let results = index.search(`:${query}`, maxResults)
+		if (results.length < maxResults) {
+			results = results.concat(index.search(query, maxResults - results.length))
+		}
+		return results
 	}
 
 	return frequently.get(maxResults).map((id) => index.emoji(id)) || []
