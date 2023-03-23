@@ -482,16 +482,16 @@ export default {
 				return
 			}
 
-			const html = clipboardData.getData('text')
+			const text = clipboardData.getData('text')
 			const selection = window.getSelection()
 
 			// If no selection, replace the whole data
 			if (!selection.rangeCount) {
-				this.updateValue(html)
+				this.updateValue(text)
+				return
 			}
 
 			// Generate text and insert
-			const text = this.parseContent(html)
 			const range = selection.getRangeAt(0)
 			selection.deleteFromDocument()
 			range.insertNode(document.createTextNode(text))
