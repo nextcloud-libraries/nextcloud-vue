@@ -388,17 +388,13 @@ export default {
 
 	mounted() {
 		this.autocompleteTribute = new Tribute(this.autocompleteOptions)
-		this.autocompleteTribute.attach(this.$el)
-
 		if (this.emojiAutocomplete) {
 			this.emojiTribute = new Tribute(this.emojiOptions)
-			this.emojiTribute.attach(this.$el)
 		}
-
 		if (this.linkAutocomplete) {
 			this.linkTribute = new Tribute(this.linkOptions)
-			this.linkTribute.attach(this.$el)
 		}
+		this.attachTribute()
 
 		// Update default value
 		this.updateContent(this.value)
@@ -408,18 +404,33 @@ export default {
 		this.$refs.contenteditable.contentEditable = this.canEdit
 	},
 	beforeDestroy() {
-		if (this.autocompleteTribute) {
-			this.autocompleteTribute.detach(this.$el)
-		}
-		if (this.emojiTribute) {
-			this.emojiTribute.detach(this.$el)
-		}
-		if (this.linkTribute) {
-			this.linkTribute.detach(this.$el)
-		}
+		this.detachTribute()
 	},
 
 	methods: {
+		attachTribute() {
+			if (this.autocompleteTribute) {
+				this.autocompleteTribute.attach(this.$el)
+			}
+			if (this.emojiTribute) {
+				this.emojiTribute.attach(this.$el)
+			}
+			if (this.linkTribute) {
+				this.linkTribute.attach(this.$el)
+			}
+		},
+		detachTribute() {
+			if (this.autocompleteTribute) {
+				this.autocompleteTribute.detach(this.$el)
+			}
+			if (this.emojiTribute) {
+				this.emojiTribute.detach(this.$el)
+			}
+			if (this.linkTribute) {
+				this.linkTribute.detach(this.$el)
+			}
+		},
+
 		getLink(item) {
 			// there is no way to get a tribute result asynchronously
 			// so we immediately insert a node and replace it when the result comes
@@ -485,9 +496,26 @@ export default {
 			const html = clipboardData.getData('text')
 			const selection = window.getSelection()
 
+			// [1/3] Fix tribute on pasting text
+			//
+			// Pasting content will pop up tribute automatically,
+			// when the message starts with a trigger
+			// : for emojis, @ for mentions, / for link picker
+			// So we detach tribute before pasting and then
+			// attach it again afterwards, so the opened tribute
+			// doesn't eat the rest of your message until you press
+			// Enter and just "autocomplete" the tribute that has
+			// been actively hanging in the top left of the screen
+			this.detachTribute()
+
 			// If no selection, replace the whole data
 			if (!selection.rangeCount) {
 				this.updateValue(html)
+
+				// [2/3] Fix tribute on pasting text
+				//
+				// Re-attach the tribute handlers
+				this.attachTribute()
 				return
 			}
 
@@ -505,6 +533,11 @@ export default {
 
 			// Propagate data
 			this.updateValue(this.$refs.contenteditable.innerHTML)
+
+			// [3/3] Fix tribute on pasting text
+			//
+			// Re-attach the tribute handlers
+			this.attachTribute()
 		},
 
 		/**
