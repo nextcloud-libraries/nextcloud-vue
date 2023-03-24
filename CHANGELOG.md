@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.8.4](https://github.com/nextcloud/nextcloud-vue/tree/v7.8.4) (2023-03-24)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.8.3...v7.8.4)
+
+### :bug: Fixed bugs
+
+- Fix styles inheritance in `NcAvatar` when being mounted [\#3925](https://github.com/nextcloud/nextcloud-vue/pull/3925) ([Antreesy](https://github.com/Antreesy))
+- fix\(NcRichContenteditable\): Fix tribute emoji complete interfering unexpectedly aka. 🇨🇨  [\#3924](https://github.com/nextcloud/nextcloud-vue/pull/3924) ([nickvergessen](https://github.com/nickvergessen))
+- feat\(Emoji\): Suggest emojis based on text smiles [\#3923](https://github.com/nextcloud/nextcloud-vue/pull/3923) ([mejo-](https://github.com/mejo-))
+- fix\(NcListItem\): Bring back correct href for router-link links [\#3922](https://github.com/nextcloud/nextcloud-vue/pull/3922) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
 ## [v7.8.3](https://github.com/nextcloud/nextcloud-vue/tree/v7.8.3) (2023-03-23)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.8.2...v7.8.3)
@@ -10,7 +21,6 @@ All notable changes to this project will be documented in this file.
 
 - fix\(NcRichContenteditable\): prevent tribute from opening on keyup [\#3917](https://github.com/nextcloud/nextcloud-vue/pull/3917) ([skjnldsv](https://github.com/skjnldsv))
 - fix\(NcRichContenteditable\): Fix pasting XML and HTML content [\#3915](https://github.com/nextcloud/nextcloud-vue/pull/3915) ([nickvergessen](https://github.com/nickvergessen))
-
 
 ## [v7.8.2](https://github.com/nextcloud/nextcloud-vue/tree/v7.8.2) (2023-03-22)
 
