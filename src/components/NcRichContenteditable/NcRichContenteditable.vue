@@ -418,7 +418,7 @@ export default {
 		 * Populate the list of text smiles we want to offer via Tribute.
 		 * We add the colon `:)` and colon-dash `:-)` version for each of them.
 		 */
-		const smilesCharacters = ['D', 'P', 'S', 'X', ')', '(', '/']
+		const smilesCharacters = ['d', 'D', 'p', 'P', 's', 'S', 'x', 'X', ')', '(', '|', '/']
 		this.textSmiles = []
 		smilesCharacters.forEach((char) => {
 			this.textSmiles.push(':' + char)
