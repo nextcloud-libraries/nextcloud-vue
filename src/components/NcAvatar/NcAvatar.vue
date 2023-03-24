@@ -617,7 +617,7 @@ export default {
 		 * @return {string}
 		 */
 		avatarUrlGenerator(user, size) {
-			const darkTheme = window.getComputedStyle(this.$el)
+			const darkTheme = window.getComputedStyle(document.body)
 				.getPropertyValue('--background-invert-if-dark') === 'invert(100%)'
 			let url = '/avatar/{user}/{size}' + (darkTheme ? '/dark' : '')
 			if (this.isGuest) {
