@@ -247,6 +247,7 @@ export default {
 
 	data() {
 		return {
+			textSmiles: [],
 			tribute: null,
 			autocompleteOptions: {
 				// Allow spaces in the middle of mentions
@@ -273,16 +274,41 @@ export default {
 				// Where to inject the menu popup
 				menuContainer: this.menuContainer,
 				// Popup mention autocompletion templates
-				menuItemTemplate: item => `<span class="tribute-container-emoji__item__emoji">${item.original.native}</span> :${item.original.short_name}`,
+				menuItemTemplate: item => {
+					if (this.textSmiles.includes(item.original)) {
+						// Display the raw text string for :), :-D, … for non emoji results,
+						// instead of trying to show an image and their name.
+						return item.original
+					}
+
+					return `<span class="tribute-container-emoji__item__emoji">${item.original.native}</span> :${item.original.short_name}`
+				},
 				// Hide if no results
 				noMatchTemplate: () => t('No emoji found'),
 				// Display raw emoji along with its name
 				selectTemplate: (item) => {
+					if (this.textSmiles.includes(item.original)) {
+						// Replace the selection with the raw text string for :), :-D, … for non emoji results
+						return item.original
+					}
+
 					emojiAddRecent(item.original)
 					return item.original.native
 				},
 				// Pass the search results as values
-				values: (text, cb) => cb(emojiSearch(text)),
+				values: (text, cb) => {
+					const emojiResults = emojiSearch(text)
+					if (this.textSmiles.includes(':' + text)) {
+						/**
+						 * Prepend text smiles to the search results so that Tribute
+						 * is not interfering with normal writing, aka. "Cocos Island Meme".
+						 * E.g. `:)` and `:-)` got replaced by the flag of Cocos Island,
+						 * when submitting the input with Enter after writing them
+						 */
+						emojiResults.unshift(':' + text)
+					}
+					cb(emojiResults)
+				},
 				// Class added to the menu container
 				containerClass: 'tribute-container-emoji',
 				// Class added to each list item
@@ -388,6 +414,17 @@ export default {
 	},
 
 	mounted() {
+		/**
+		 * Populate the list of text smiles we want to offer via Tribute.
+		 * We add the colon `:)` and colon-dash `:-)` version for each of them.
+		 */
+		const smilesCharacters = ['d', 'D', 'p', 'P', 's', 'S', 'x', 'X', ')', '(', '|', '/']
+		this.textSmiles = []
+		smilesCharacters.forEach((char) => {
+			this.textSmiles.push(':' + char)
+			this.textSmiles.push(':-' + char)
+		})
+
 		this.autocompleteTribute = new Tribute(this.autocompleteOptions)
 		this.autocompleteTribute.attach(this.$el)
 
