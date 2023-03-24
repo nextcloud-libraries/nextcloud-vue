@@ -200,16 +200,15 @@
 <template>
 	<!-- This wrapper can be either a router link or a `<li>` -->
 	<component :is="to ? 'router-link' : 'NcVNodes'"
-		v-slot="{ navigate, isActive }"
+		v-slot="{ href: routerLinkHref, navigate, isActive }"
 		:custom="to ? true : null"
 		:to="to"
-		:exact="to ? exact : null"
-		@click="to ? navigate : null">
+		:exact="to ? exact : null">
 		<li class="list-item__wrapper"
 			:class="{ 'list-item__wrapper--active' : isActive }">
 			<a :id="anchorId"
 				ref="list-item"
-				:href="href"
+				:href="routerLinkHref || href"
 				:target="href === '#' ? undefined : '_blank'"
 				:rel="href === '#' ? undefined : 'noopener noreferrer'"
 				class="list-item"
@@ -219,7 +218,7 @@
 				@focus="handleFocus"
 				@blur="handleBlur"
 				@keydown.tab.exact="handleTab"
-				@click="onClick"
+				@click="onClick($event, navigate, routerLinkHref)"
 				@keydown.esc="hideActions">
 
 				<div class="list-item-content__wrapper"
@@ -497,8 +496,14 @@ export default {
 	methods: {
 
 		// forward click event
-		onClick(event) {
+		onClick(event, navigate, routerLinkHref) {
+			// Navigate is only defined if it is a router-link
+			navigate?.(event)
 			this.$emit('click', event)
+			// Prevent default link behaviour if it's a router-link
+			if (routerLinkHref) {
+				event.preventDefault()
+			}
 		},
 
 		handleMouseover() {

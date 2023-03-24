@@ -210,7 +210,7 @@ Just set the `pinned` prop.
 		}"
 		class="app-navigation-entry-wrapper">
 		<component :is="isRouterLink ? 'router-link' : 'NcVNodes'"
-			v-slot="{ navigate, isActive }"
+			v-slot="{ href: routerLinkHref, navigate, isActive }"
 			:custom="isRouterLink ? true : false"
 			:to="to"
 			:exact="isRouterLink ? exact : null">
@@ -226,11 +226,11 @@ Just set the `pinned` prop.
 					class="app-navigation-entry-link"
 					:aria-description="ariaDescription"
 					:aria-expanded="opened.toString()"
-					:href="href || '#'"
+					:href="href || routerLinkHref || '#'"
 					:target="isExternal(href) ? '_blank' : ''"
 					:title="title || nameTitleFallback"
 					@blur="handleBlur"
-					@click="(event) => onClick(event, navigate)"
+					@click="onClick($event, navigate, routerLinkHref)"
 					@focus="handleFocus"
 					@keydown.tab.exact="handleTab">
 
@@ -643,10 +643,14 @@ export default {
 		},
 
 		// forward click event
-		onClick(event, navigate) {
+		onClick(event, navigate, routerLinkHref) {
 			// Navigate is only defined if it is a router-link
 			navigate?.(event)
 			this.$emit('click', event)
+			// Prevent default link behaviour if it's a router-link
+			if (routerLinkHref) {
+				event.preventDefault()
+			}
 		},
 
 		// Edition methods
