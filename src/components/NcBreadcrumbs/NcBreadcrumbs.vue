@@ -175,7 +175,7 @@ export default {
 			 */
 			menuBreadcrumbProps: {
 				// Don't show a title for this breadcrumb, only the Actions menu
-				title: '',
+				name: '',
 				forceMenu: true,
 				// Don't allow dropping directly on the actions breadcrumb
 				disableDrop: true,
@@ -531,6 +531,10 @@ export default {
 				const to = crumb.componentOptions.propsData.to
 				const href = crumb.componentOptions.propsData.href
 				const disabled = crumb.componentOptions.propsData.disableDrop
+				const title = crumb.componentOptions.propsData.title
+				// TODO: Remove this fallback once nameTitleFallback is removed from NcBreadcrumb
+				const name = crumb.componentOptions.propsData.name || title
+
 				// Decide whether to show the breadcrumbs as ActionRouter or ActionLink
 				let element = 'NcActionLink'
 				let path = href
@@ -547,8 +551,9 @@ export default {
 				return h(element, {
 					class: crumbClass,
 					props: {
-						to,
 						href,
+						title,
+						to,
 					},
 					// Prevent the breadcrumbs from being draggable
 					attrs: {
@@ -563,7 +568,7 @@ export default {
 						dragleave: ($event) => this.dragLeave($event, disabled),
 					},
 				},
-				[crumb.componentOptions.propsData.title, folderIcon]
+				[folderIcon, name]
 				)
 			}))
 			)

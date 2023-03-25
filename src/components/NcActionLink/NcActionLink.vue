@@ -53,7 +53,7 @@ export default {
 			:href="href"
 			:aria-label="ariaLabel"
 			:target="target"
-			:title="title"
+			:title="title || nameTitleFallback"
 			class="action-link focusable"
 			rel="nofollow noreferrer noopener"
 			@click="onClick">
@@ -65,10 +65,10 @@ export default {
 					class="action-link__icon" />
 			</slot>
 
-			<!-- long text with title -->
-			<p v-if="title">
+			<!-- long text with name -->
+			<p v-if="nameTitleFallback">
 				<strong class="action-link__title">
-					{{ title }}
+					{{ nameTitleFallback }}
 				</strong>
 				<br>
 				<!-- white space is shown on longtext, so we can't
@@ -133,13 +133,6 @@ export default {
 			validator: value => {
 				return value && (!value.startsWith('_') || ['_blank', '_self', '_parent', '_top'].indexOf(value) > -1)
 			},
-		},
-		/**
-		 * Declares a native tooltip when not null
-		 */
-		title: {
-			type: String,
-			default: null,
 		},
 	},
 }

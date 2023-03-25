@@ -927,8 +927,14 @@ export default {
 		 */
 		const renderInlineAction = (action) => {
 			const icon = action?.data?.scopedSlots?.icon()?.[0] || h('span', { class: ['icon', action?.componentOptions?.propsData?.icon] })
-			const title = this.forceTitle ? this.menuTitle : ''
+			const buttonText = this.forceTitle ? this.menuTitle : ''
 			const clickListener = action?.componentOptions?.listeners?.click
+
+			const text = action?.componentOptions?.children?.[0]?.text
+			const ariaLabel = action?.componentOptions?.propsData?.ariaLabel || text
+			// TODO: drop on the 8.0.0 major, see NcActionMixin title/name prop
+			const name = action?.componentOptions?.propsData?.nameTitleFallback
+			const title = action?.componentOptions?.propsData?.title || name
 
 			return h('NcButton',
 				{
@@ -938,13 +944,13 @@ export default {
 						action?.data?.class,
 					],
 					attrs: {
-						'aria-label': action?.componentOptions?.propsData?.ariaLabel || action?.componentOptions?.children?.[0]?.text,
-						title: action?.componentOptions?.propsData?.title,
+						'aria-label': ariaLabel,
+						title,
 					},
 					ref: action?.data?.ref,
 					props: {
-						// If it has a title, we use a secondary button
-						type: this.type || (title ? 'secondary' : 'tertiary'),
+						// If it has a meuTitle, we use a secondary button
+						type: this.type || (buttonText ? 'secondary' : 'tertiary'),
 						disabled: this.disabled || action?.componentOptions?.propsData?.disabled,
 						...action?.componentOptions?.propsData,
 					},
@@ -972,7 +978,7 @@ export default {
 				},
 				[
 					h('template', { slot: 'icon' }, [icon]),
-					title,
+					buttonText,
 				],
 			)
 		}

@@ -40,16 +40,17 @@ This component is meant to be used inside a Breadcrumbs component.
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
 		<component :is="tag"
-			v-if="(title || icon) && !$slots.default"
+			v-if="(nameTitleFallback || icon) && !$slots.default"
 			:exact="exact"
 			:to="to"
 			:href="href"
+			:title="title || nameTitleFallback"
 			v-bind="$attrs"
 			v-on="$listeners">
 			<!-- @slot Slot for passing a material design icon. Precedes the icon and title prop. -->
 			<slot name="icon">
 				<span v-if="icon" :class="icon" class="icon" />
-				<span v-else>{{ title }}</span>
+				<span v-else>{{ nameTitleFallback }}</span>
 			</slot>
 		</component>
 		<NcActions v-if="$slots.default"
@@ -57,7 +58,7 @@ This component is meant to be used inside a Breadcrumbs component.
 			type="tertiary"
 			:force-menu="forceMenu"
 			:open="open"
-			:menu-title="title"
+			:menu-title="nameTitleFallback"
 			:force-title="true"
 			:container="`.vue-crumb[${crumbId}]`"
 			@update:open="onOpenChange">
@@ -86,11 +87,24 @@ export default {
 	},
 	props: {
 		/**
-		 * The displayed title of the breadcrumb.
+		 * The main text content of the entry.
+		 * Previously called `title`, now deprecated
+		 */
+		name: {
+			type: String,
+			// TODO: Make it required in the next major release (see title prop)
+			default: '',
+		},
+		/**
+		 * The title attribute of the element.
+		 *
+		 * ⚠ Using this prop as the main content text is DEPRECATED
+		 * Please use `name` instead. If you were planning to define the
+		 * html element title attribute, this is the proper way.
 		 */
 		title: {
 			type: String,
-			required: true,
+			default: null,
 		},
 
 		/**
@@ -171,6 +185,16 @@ export default {
 		}
 	},
 	computed: {
+		/**
+		 * TODO: drop on the 8.0.0 major, see title/name prop
+		 */
+		nameTitleFallback() {
+			if (!this.name) {
+				console.warn('The `name` prop is required. Please migrate away from the deprecated `title` prop.')
+				return this.title
+			}
+			return this.name
+		},
 		/**
 		 * Determines which element tag to use
 		 *
@@ -271,24 +295,17 @@ export default {
 		max-width: 210px;
 		font-weight: bold;
 
-		> a,
-		> a:deep(*) {
-			cursor: default;
-		}
-
 		// Don't show breadcrumb separator for last crumb
 		.vue-crumb__separator {
 			display: none;
 		}
 	}
 
-	// Hover and focus effect for crumbs, but not the last one
-	&:not(:last-child) > a {
-		&:hover,
-		&:focus {
-			background-color: var(--color-background-dark);
-			color: var(--color-main-text);
-		}
+	// Hover and focus effect for crumbs
+	& > a:hover,
+	& > a:focus {
+		background-color: var(--color-background-dark);
+		color: var(--color-main-text);
 	}
 
 	&--hidden {

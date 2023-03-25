@@ -33,10 +33,10 @@
 					class="action-text__icon" />
 			</slot>
 
-			<!-- long text with title -->
-			<p v-if="title">
+			<!-- long text with name -->
+			<p v-if="nameTitleFallback">
 				<strong class="action-text__title">
-					{{ title }}
+					{{ nameTitleFallback }}
 				</strong>
 				<br>
 				<!-- white space is shown on longtext, so we can't

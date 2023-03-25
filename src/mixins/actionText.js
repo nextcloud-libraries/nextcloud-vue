@@ -34,11 +34,24 @@ export default {
 			default: '',
 		},
 		/**
-		 * Title to show next to the icon
+		 * The main text content of the entry.
+		 * Previously called `title`, now deprecated
+		 */
+		name: {
+			type: String,
+			// TODO: Make it required in the next major release (see title prop)
+			default: '',
+		},
+		/**
+		 * The title attribute of the element.
+		 *
+		 * ⚠ Using this prop as the main content text is DEPRECATED
+		 * Please use `name` instead. If you were planning to define the
+		 * html element title attribute, this is the proper way.
 		 */
 		title: {
 			type: String,
-			default: '',
+			default: null,
 		},
 		/**
 		 * Whether we close the Actions menu after the click
@@ -61,6 +74,17 @@ export default {
 	],
 
 	computed: {
+		/**
+		 * TODO: drop on the 8.0.0 major, see title/name prop
+		 */
+		nameTitleFallback() {
+			if (!this.name) {
+				console.warn('The `name` prop is required. Please migrate away from the deprecated `title` prop.')
+				return this.title
+			}
+			return this.name
+		},
+
 		isIconUrl() {
 			try {
 				return new URL(this.icon)

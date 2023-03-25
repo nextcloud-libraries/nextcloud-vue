@@ -88,7 +88,7 @@ If you're using a long text you can specify a title
 				</template>
 				Add new
 			</NcActionButton>
-			<NcActionButton title="Long button" @click="showMessage('Delete')">
+			<NcActionButton name="Long button" @click="showMessage('Delete')">
 				<template #icon>
 					<Delete :size="20" />
 				</template>
@@ -183,6 +183,7 @@ export default {
 		<button class="action-button"
 			:class="{ focusable: isFocusable }"
 			:aria-label="ariaLabel"
+			:title="title || nameTitleFallback"
 			role="menuitem"
 			type="button"
 			@click="onClick">
@@ -193,10 +194,10 @@ export default {
 					class="action-button__icon" />
 			</slot>
 
-			<!-- long text with title -->
-			<p v-if="title">
+			<!-- long text with name -->
+			<p v-if="nameTitleFallback">
 				<strong class="action-button__title">
-					{{ title }}
+					{{ nameTitleFallback }}
 				</strong>
 				<br>
 				<!-- white space is shown on longtext, so we can't
