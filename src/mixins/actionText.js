@@ -39,8 +39,8 @@ export default {
 		 */
 		name: {
 			type: String,
-			// TODO: Make it required in the next major release (see title prop)
-			default: '',
+			// TODO: Make the default an empty string in the next major release (see title prop)
+			default: null,
 		},
 		/**
 		 * The title attribute of the element.
@@ -51,7 +51,7 @@ export default {
 		 */
 		title: {
 			type: String,
-			default: null,
+			default: '',
 		},
 		/**
 		 * Whether we close the Actions menu after the click
@@ -78,8 +78,8 @@ export default {
 		 * TODO: drop on the 8.0.0 major, see title/name prop
 		 */
 		nameTitleFallback() {
-			if (!this.name) {
-				console.warn('The `name` prop is required. Please migrate away from the deprecated `title` prop.')
+			if (this.name === null && this.title) {
+				console.warn('The `title` prop was renamed. Please use the `name` prop instead if you intend to set the main content text.')
 				return this.title
 			}
 			return this.name

@@ -183,7 +183,7 @@ export default {
 		<button class="action-button"
 			:class="{ focusable: isFocusable }"
 			:aria-label="ariaLabel"
-			:title="title || nameTitleFallback"
+			:title="title"
 			role="menuitem"
 			type="button"
 			@click="onClick">

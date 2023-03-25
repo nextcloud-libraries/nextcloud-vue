@@ -35,16 +35,30 @@ is dropped on a creadcrumb.
 	<div>
 		<div class="container">
 			<NcBreadcrumbs @dropped="dropped">
-				<NcBreadcrumb title="Home" href="/" @dropped="droppedOnCrumb">
+				<NcBreadcrumb name="Home"
+					title="Title of the Home folder"
+					href="/"
+					@dropped="droppedOnCrumb">
 					<template #icon>
 						<Folder :size="20" />
 					</template>
 				</NcBreadcrumb>
-				<NcBreadcrumb title="Folder 1" href="/Folder 1" />
-				<NcBreadcrumb title="Folder 2" href="/Folder 1/Folder 2" :disable-drop="true" />
-				<NcBreadcrumb title="Folder 3" href="/Folder 1/Folder 2/Folder 3" />
-				<NcBreadcrumb title="Folder 4" href="/Folder 1/Folder 2/Folder 3/Folder 4" />
-				<NcBreadcrumb title="Folder 5" href="/Folder 1/Folder 2/Folder 3/Folder 4/Folder 5" :disable-drop="true">
+				<NcBreadcrumb name="Folder 1"
+					title="Folder 1"
+					href="/Folder 1" />
+				<NcBreadcrumb name="Folder 2"
+					href="/Folder 1/Folder 2"
+					:disable-drop="true" />
+				<NcBreadcrumb name="Folder 3"
+					title="Folder 3"
+					href="/Folder 1/Folder 2/Folder 3" />
+				<NcBreadcrumb name="Folder 4"
+					title="Folder 4"
+					href="/Folder 1/Folder 2/Folder 3/Folder 4" />
+				<NcBreadcrumb name="Folder 5"
+					title="Folder 5"
+					href="/Folder 1/Folder 2/Folder 3/Folder 4/Folder 5"
+					:disable-drop="true">
 					<template #menu-icon>
 						<MenuDown :size="20" />
 					</template>
@@ -174,7 +188,7 @@ export default {
 			 * that show the ellipsised breadcrumbs
 			 */
 			menuBreadcrumbProps: {
-				// Don't show a title for this breadcrumb, only the Actions menu
+				// Don't show a name for this breadcrumb, only the Actions menu
 				name: '',
 				forceMenu: true,
 				// Don't allow dropping directly on the actions breadcrumb
@@ -553,6 +567,7 @@ export default {
 					props: {
 						href,
 						title,
+						name: '', // TODO: Remove this once nameTitleFallback is removed from actionText.js mixin
 						to,
 					},
 					// Prevent the breadcrumbs from being draggable

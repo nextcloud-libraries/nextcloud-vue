@@ -932,10 +932,6 @@ export default {
 
 			const text = action?.componentOptions?.children?.[0]?.text
 			const ariaLabel = action?.componentOptions?.propsData?.ariaLabel || text
-			// TODO: drop on the 8.0.0 major, see NcActionMixin title/name prop
-			const name = action?.componentOptions?.propsData?.nameTitleFallback
-			const title = action?.componentOptions?.propsData?.title || name
-
 			return h('NcButton',
 				{
 					class: [
@@ -945,11 +941,11 @@ export default {
 					],
 					attrs: {
 						'aria-label': ariaLabel,
-						title,
+						title: action?.componentOptions?.propsData?.title,
 					},
 					ref: action?.data?.ref,
 					props: {
-						// If it has a meuTitle, we use a secondary button
+						// If it has a menuTitle, we use a secondary button
 						type: this.type || (buttonText ? 'secondary' : 'tertiary'),
 						disabled: this.disabled || action?.componentOptions?.propsData?.disabled,
 						...action?.componentOptions?.propsData,

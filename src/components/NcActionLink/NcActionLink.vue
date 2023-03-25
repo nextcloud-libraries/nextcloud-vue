@@ -53,7 +53,7 @@ export default {
 			:href="href"
 			:aria-label="ariaLabel"
 			:target="target"
-			:title="title || nameTitleFallback"
+			:title="title"
 			class="action-link focusable"
 			rel="nofollow noreferrer noopener"
 			@click="onClick">

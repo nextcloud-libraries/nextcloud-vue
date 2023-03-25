@@ -44,7 +44,7 @@ This component is meant to be used inside a Breadcrumbs component.
 			:exact="exact"
 			:to="to"
 			:href="href"
-			:title="title || nameTitleFallback"
+			:title="title"
 			v-bind="$attrs"
 			v-on="$listeners">
 			<!-- @slot Slot for passing a material design icon. Precedes the icon and title prop. -->
@@ -59,6 +59,7 @@ This component is meant to be used inside a Breadcrumbs component.
 			:force-menu="forceMenu"
 			:open="open"
 			:menu-title="nameTitleFallback"
+			:title="title"
 			:force-title="true"
 			:container="`.vue-crumb[${crumbId}]`"
 			@update:open="onOpenChange">
@@ -93,7 +94,7 @@ export default {
 		name: {
 			type: String,
 			// TODO: Make it required in the next major release (see title prop)
-			default: '',
+			default: null,
 		},
 		/**
 		 * The title attribute of the element.
@@ -189,7 +190,7 @@ export default {
 		 * TODO: drop on the 8.0.0 major, see title/name prop
 		 */
 		nameTitleFallback() {
-			if (!this.name) {
+			if (this.name === null) {
 				console.warn('The `name` prop is required. Please migrate away from the deprecated `title` prop.')
 				return this.title
 			}

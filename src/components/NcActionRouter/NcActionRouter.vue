@@ -26,7 +26,7 @@
 		<router-link :to="to"
 			:aria-label="ariaLabel"
 			:exact="exact"
-			:title="title || nameTitleFallback"
+			:title="title"
 			class="action-router focusable"
 			rel="nofollow noreferrer noopener"
 			@click.native="onClick">

@@ -36,7 +36,7 @@ It includes the Navigation, the App content and the Sidebar.
 			<NcAppNavigation>
 				<template #list>
 					<NcAppNavigationNew text="Create article" />
-					<NcAppNavigationItem title="My title">
+					<NcAppNavigationItem name="My navigation" title="My title">
 						<template #icon>
 							<Check :size="20" />
 						</template>
