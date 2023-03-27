@@ -238,6 +238,8 @@ export default {
 }
 </script>
 <style scoped>
+@import './richtext.scss';
+
 a:not(.rich-text--component) {
 	text-decoration: underline;
 }
