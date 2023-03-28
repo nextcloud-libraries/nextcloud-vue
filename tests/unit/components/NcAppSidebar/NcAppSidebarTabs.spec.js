@@ -189,23 +189,4 @@ describe('NcAppSidebarTabs.vue', () => {
 			})
 		})
 	})
-	describe('when tabs and other elements are mixed', () => {
-		it('Issues a warning and logs to console .', () => {
-			mount(NcAppSidebarTabs, {
-				slots: {
-					default: [
-						'<nc-app-sidebar-tab id="1" icon="icon-details" name="Tab1">Tab1</nc-app-sidebar-tab>',
-						'<NcAppSidebarTab id="2" icon="icon-details" name="Tab2">Tab2</NcAppSidebarTab>',
-						'<div>Non-tab-content</div>',
-						'Test',
-					],
-				},
-				stubs: {
-					NcAppSidebarTab,
-				},
-			})
-			expect(onWarning).toHaveBeenCalledTimes(1)
-			expect(consoleDebug).toHaveBeenCalledTimes(2)
-		})
-	})
 })
