@@ -986,6 +986,12 @@ export default {
 			const ariaLabel = action?.componentOptions?.propsData?.ariaLabel || text
 			const buttonText = this.forceTitle ? text : ''
 
+			let title = action?.componentOptions?.propsData?.title
+			// Show a default title for single actions if none is present
+			if (!(this.forceTitle || title)) {
+				title = text
+			}
+
 			return h('NcButton',
 				{
 					class: [
@@ -995,7 +1001,7 @@ export default {
 					],
 					attrs: {
 						'aria-label': ariaLabel,
-						title: action?.componentOptions?.propsData?.title,
+						title,
 					},
 					ref: action?.data?.ref,
 					props: {
