@@ -660,6 +660,7 @@ export default {
 
 		onKeyUp(event) {
 			// prevent tribute from opening on keyup
+			event.stopImmediatePropagation()
 		},
 	},
 }
