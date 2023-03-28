@@ -152,6 +152,17 @@ describe('Foo', () => {
 		expect(wrapper.find('a').attributes('href')).toEqual('https://example.com:444')
 	})
 
+	it('properly recognizes an url with an IP address and inserts a link', async() => {
+		const wrapper = mount(NcRichText, {
+			propsData: {
+				text: 'Testwith a link to https://127.0.0.1/status.php - go visit it',
+				autolink: true
+			}
+		})
+		expect(wrapper.text()).toEqual('Testwith a link to https://127.0.0.1/status.php - go visit it')
+		expect(wrapper.find('a').attributes('href')).toEqual('https://127.0.0.1/status.php')
+	})
+
 	it('properly formats markdown', async() => {
 		const wrapper = mount(NcRichText, {
 			propsData: {
