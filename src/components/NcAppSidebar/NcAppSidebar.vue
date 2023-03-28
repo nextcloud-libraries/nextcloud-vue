@@ -31,53 +31,47 @@ include a standard-header like it's used by the files app.
 
 ```vue
 <template>
-	<div>
-		<NcCheckboxRadioSwitch :checked.sync="hideFirstTab">
-			The first tab is hidden
-		</NcCheckboxRadioSwitch>
-		<NcAppSidebar
-			title="cat-picture.jpg"
-			subtitle="last edited 3 weeks ago">
-			<NcAppSidebarTab v-if="!hideFirstTab" name="Fist tab" id="first-tab">
-				<template #icon>
-					<Cog :size="20" />
-				</template>
-				New tab
-			</NcAppSidebarTab>
-			<NcAppSidebarTab name="Settings" id="settings-tab">
-				<template #icon>
-					<Cog :size="20" />
-				</template>
-				Settings tab content
-			</NcAppSidebarTab>
-			<NcAppSidebarTab name="Sharing" id="share-tab">
-				<template #icon>
-					<ShareVariant :size="20" />
-				</template>
-				Sharing tab content
-			</NcAppSidebarTab>
-		</NcAppSidebar>
-	</div>
+	<NcAppSidebar
+		title="cat-picture.jpg"
+		subtitle="last edited 3 weeks ago">
+		<NcAppSidebarTab name="Search" id="search-tab">
+			<template #icon>
+				<Magnify :size="20" />
+			</template>
+			Search tab content
+		</NcAppSidebarTab>
+		<NcAppSidebarTab name="Settings" id="settings-tab">
+			<template #icon>
+				<Cog :size="20" />
+			</template>
+			Settings tab content
+		</NcAppSidebarTab>
+		<NcAppSidebarTab name="Sharing" id="share-tab">
+			<template #icon>
+				<ShareVariant :size="20" />
+			</template>
+			Sharing tab content
+		</NcAppSidebarTab>
+	</NcAppSidebar>
 </template>
 <script>
+	import Magnify from 'vue-material-design-icons/Magnify'
 	import Cog from 'vue-material-design-icons/Cog'
 	import ShareVariant from 'vue-material-design-icons/ShareVariant'
 
 	export default {
 		components: {
+			Magnify,
 			Cog,
 			ShareVariant,
-		},
-		data() {
-			return {
-				hideFirstTab: true,
-			}
 		},
 	}
 </script>
 ```
 
 ### One tab
+
+Single tab is rendered without navigation.
 
 ```vue
 <template>
@@ -89,7 +83,7 @@ include a standard-header like it's used by the files app.
 				<template #icon>
 					<Cog :size="20" />
 				</template>
-				New tab
+				Single tab content
 			</NcAppSidebarTab>
 		</NcAppSidebar>
 	</div>
@@ -105,18 +99,117 @@ export default {
 </script>
 ```
 
-### One or two tabs with condition
+### Dynamic tabs
 
 ```vue
 <template>
 	<div>
-		<NcCheckboxRadioSwitch :checked.sync="hideFirstTab">
-			The first tab is hidden
-		</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch :checked.sync="showTabs[0]">Show search tab</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch :checked.sync="showTabs[1]">Show settings tab</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch :checked.sync="showTabs[2]">Show sharing tab</NcCheckboxRadioSwitch>
 		<NcAppSidebar
 			title="cat-picture.jpg"
 			subtitle="last edited 3 weeks ago">
-			<NcAppSidebarTab v-if="!hideFirstTab" name="Settings" id="settings-tab">
+			<NcAppSidebarTab v-if="showTabs[0]" name="Search" id="search-tab">
+				<template #icon>
+					<Magnify :size="20" />
+				</template>
+				Search tab content
+			</NcAppSidebarTab>
+			<NcAppSidebarTab v-if="showTabs[1]" name="Settings" id="settings-tab">
+				<template #icon>
+					<Cog :size="20" />
+				</template>
+				Settings
+			</NcAppSidebarTab>
+			<NcAppSidebarTab v-if="showTabs[2]" name="Sharing" id="share-tab">
+				<template #icon>
+					<ShareVariant :size="20" />
+				</template>
+				Sharing tab content
+			</NcAppSidebarTab>
+		</NcAppSidebar>
+	</div>
+</template>
+<script>
+import Magnify from 'vue-material-design-icons/Magnify'
+import Cog from 'vue-material-design-icons/Cog'
+import ShareVariant from 'vue-material-design-icons/ShareVariant'
+
+export default {
+	components: {
+		Magnify,
+		Cog,
+		ShareVariant,
+	},
+	data() {
+		return {
+			showTabs: [true, true, false],
+		}
+	},
+}
+</script>
+```
+
+### Custom order
+
+```vue
+<template>
+	<NcAppSidebar
+		title="cat-picture.jpg"
+		subtitle="last edited 3 weeks ago">
+		<NcAppSidebarTab name="Search" id="search-tab" order="3">
+			<template #icon>
+				<Magnify :size="20" />
+			</template>
+			Search tab content
+		</NcAppSidebarTab>
+		<NcAppSidebarTab name="Settings" id="settings-tab" order="2">
+			<template #icon>
+				<Cog :size="20" />
+			</template>
+			Settings tab content
+		</NcAppSidebarTab>
+		<NcAppSidebarTab name="Sharing" id="share-tab" order="1">
+			<template #icon>
+				<ShareVariant :size="20" />
+			</template>
+			Sharing tab content
+		</NcAppSidebarTab>
+	</NcAppSidebar>
+</template>
+<script>
+import Magnify from 'vue-material-design-icons/Magnify'
+import Cog from 'vue-material-design-icons/Cog'
+import ShareVariant from 'vue-material-design-icons/ShareVariant'
+
+export default {
+	components: {
+		Magnify,
+		Cog,
+		ShareVariant,
+	},
+}
+</script>
+```
+
+### Activating tab programmatically
+
+```vue
+<template>
+	<div>
+		<NcMultiselect v-model="active" :options="['search-tab', 'settings-tab', 'share-tab']" />
+		<NcAppSidebar
+			title="cat-picture.jpg"
+			subtitle="last edited 3 weeks ago"
+			:active.sync="active">
+			<NcAppSidebarTab name="Search" id="search-tab">
+				<template #icon>
+					<Magnify :size="20" />
+				</template>
+				Search tab content
+			</NcAppSidebarTab>
+			<NcAppSidebarTab name="Settings" id="settings-tab">
 				<template #icon>
 					<Cog :size="20" />
 				</template>
@@ -132,17 +225,19 @@ export default {
 	</div>
 </template>
 <script>
+import Magnify from 'vue-material-design-icons/Magnify'
 import Cog from 'vue-material-design-icons/Cog'
 import ShareVariant from 'vue-material-design-icons/ShareVariant'
 
 export default {
 	components: {
+		Magnify,
 		Cog,
 		ShareVariant,
 	},
 	data() {
 		return {
-			hideFirstTab: true,
+			active: 'search-tab',
 		}
 	},
 }

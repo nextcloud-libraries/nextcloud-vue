@@ -60,6 +60,7 @@
 		<!-- tabs content -->
 		<div :class="{'app-sidebar-tabs__content--multiple': hasMultipleTabs}"
 			class="app-sidebar-tabs__content">
+			<!-- @slot Tabs content - NcAppSidebarTab components or any content if there is no tabs -->
 			<slot />
 		</div>
 	</div>
@@ -72,7 +73,6 @@ export default {
 	name: 'NcAppSidebarTabs',
 
 	components: {
-		// Component to render the material design icon (vnodes)
 		NcVNodes,
 	},
 
@@ -100,22 +100,28 @@ export default {
 	data() {
 		return {
 			/**
-			 * The tab component instances to build the tab navbar from.
+			 * Tab descriptions from the passed NcSidebarTab components' props to build the tab navbar from.
 			 */
 			tabs: [],
 			/**
-			 * The id of the currently active tab.
+			 * Local active (open) tab's ID. It allows to use component without active.sync
 			 */
 			activeTab: '',
 		}
 	},
 
 	computed: {
+		/**
+		 * Has multiple tabs. If only one tab - its content is shown without navigation
+		 *
+		 * @return {boolean}
+		 */
 		hasMultipleTabs() {
 			return this.tabs.length > 1
 		},
+
 		currentTabIndex() {
-			return this.tabs.findIndex(tab => tab.id === this.activeTab)
+			return this.tabs.findIndex((tab) => tab.id === this.activeTab)
 		},
 	},
 
@@ -137,6 +143,9 @@ export default {
 		 */
 		setActive(id) {
 			this.activeTab = id
+			/**
+			 * @property {string} active - active tab's id
+			 */
 			this.$emit('update:active', this.activeTab)
 		},
 
@@ -148,7 +157,7 @@ export default {
 			if (this.currentTabIndex > 0) {
 				this.setActive(this.tabs[this.currentTabIndex - 1].id)
 			}
-			this.focusActiveTab() // focus nav item
+			this.focusActiveTab()
 		},
 
 		/**
@@ -159,7 +168,7 @@ export default {
 			if (this.currentTabIndex < this.tabs.length - 1) {
 				this.setActive(this.tabs[this.currentTabIndex + 1].id)
 			}
-			this.focusActiveTab() // focus nav item
+			this.focusActiveTab()
 		},
 
 		/**
@@ -168,7 +177,7 @@ export default {
 		 */
 		focusFirstTab() {
 			this.setActive(this.tabs[0].id)
-			this.focusActiveTab() // focus nav item
+			this.focusActiveTab()
 		},
 
 		/**
@@ -177,7 +186,7 @@ export default {
 		 */
 		focusLastTab() {
 			this.setActive(this.tabs[this.tabs.length - 1].id)
-			this.focusActiveTab() // focus nav item
+			this.focusActiveTab()
 		},
 
 		/**
@@ -210,7 +219,7 @@ export default {
 		/**
 		 * Register child tab in the tabs
 		 *
-		 * @param {object} tab - tab props (only the "id" is used actually)
+		 * @param {object} tab child tab passed to slot
 		 */
 		registerTab(tab) {
 			this.tabs.push(tab)
@@ -226,9 +235,9 @@ export default {
 		},
 
 		/**
-		 * Unregister child tab in the tabs
+		 * Unregister child tab from the tabs
 		 *
-		 * @param {string} id - tab's id
+		 * @param {string} id tab's id
 		 */
 		unregisterTab(id) {
 			const tabIndex = this.tabs.findIndex((tab) => tab.id === id)

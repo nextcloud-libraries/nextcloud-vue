@@ -35,6 +35,7 @@
 		<h3 class="hidden-visually">
 			{{ name }}
 		</h3>
+		<!-- @slot Tab panel content -->
 		<slot />
 	</section>
 </template>
@@ -52,14 +53,26 @@ export default {
 			type: String,
 			required: true,
 		},
+
+		/**
+		 * Tab title in navigation
+		 */
 		name: {
 			type: String,
 			required: true,
 		},
+
+		/**
+		 * Tab icon's html class in navigation. Used if #icon slot is not provided
+		 */
 		icon: {
 			type: String,
 			default: '',
 		},
+
+		/**
+		 * Tab order in navigation. If not provided, name is used.
+		 */
 		order: {
 			type: Number,
 			default: 0,
@@ -74,16 +87,24 @@ export default {
 	expose: ['id', 'name', 'icon', 'order', 'renderIcon'],
 
 	computed: {
+		/**
+		 * Is the current tab an active tab, that should be shown?
+		 *
+		 * @return {boolean}
+		 */
 		isActive() {
 			return this.getActiveTab() === this.id
 		},
 	},
 
 	created() {
+		// As the tab is created - register it in the tabs component
+		// It's better to provide computed tab object, not component instance as it easy
 		this.registerTab(this)
 	},
 
 	beforeDestroy() {
+		// Unregister the tab from tabs
 		this.unregisterTab(this.id)
 	},
 
@@ -93,9 +114,14 @@ export default {
 			if (this.$el.scrollHeight - this.$el.scrollTop === this.$el.clientHeight) {
 				/**
 				 * Bottom scroll is reached
+				 *
+				 * @property {Event} event Native scroll event
 				 */
 				this.$emit('bottom-reached', event)
 			}
+			/**
+			 * @property {Event} event Native scroll event
+			 */
 			this.$emit('scroll', event)
 		},
 
