@@ -238,6 +238,7 @@ export default {
 }
 </script>
 <style scoped>
+/* stylelint-disable-next-line scss/at-import-partial-extension */
 @import './richtext.scss';
 
 a:not(.rich-text--component) {
