@@ -170,6 +170,9 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
+msgid "Search emoji"
+msgstr ""
+
 msgid "Search results"
 msgstr ""
 
