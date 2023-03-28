@@ -153,6 +153,59 @@ export default {
 </script>
 ```
 
+### Multiple actions with 2 items inline AND forced titles
+
+```vue
+<template>
+	<NcActions :force-title="true" :inline="2">
+		<NcActionButton @click="showMessage('Add')">
+			<template #icon>
+				<Plus :size="20" />
+			</template>
+			Add
+		</NcActionButton>
+		<NcActionButton @click="showMessage('Edit')">
+			<template #icon>
+				<Pencil :size="20" />
+			</template>
+			Edit
+		</NcActionButton>
+		<NcActionButton @click="showMessage('Delete')">
+			<template #icon>
+				<Delete :size="20" />
+			</template>
+			Delete
+		</NcActionButton>
+		<NcActionLink href="https://nextcloud.com">
+			<template #icon>
+				<OpenInNew :size="20" />
+			</template>
+			Link
+		</NcActionLink>
+	</NcActions>
+</template>
+<script>
+import Plus from 'vue-material-design-icons/Plus'
+import Delete from 'vue-material-design-icons/Delete'
+import OpenInNew from 'vue-material-design-icons/OpenInNew'
+import Pencil from 'vue-material-design-icons/Pencil'
+
+export default {
+	components: {
+		Delete,
+		OpenInNew,
+		Pencil,
+		Plus,
+	},
+	methods: {
+		showMessage(msg) {
+			alert(msg)
+		},
+	},
+}
+</script>
+```
+
 ### Multiple actions with custom icon
 
 ```vue
@@ -927,7 +980,7 @@ export default {
 		 */
 		const renderInlineAction = (action) => {
 			const icon = action?.data?.scopedSlots?.icon()?.[0] || h('span', { class: ['icon', action?.componentOptions?.propsData?.icon] })
-			const title = this.forceTitle ? this.menuTitle : ''
+			const text = this.forceTitle ? action.componentOptions?.children?.[0]?.text : ''
 			const clickListener = action?.componentOptions?.listeners?.click
 
 			return h('NcButton',
@@ -938,13 +991,13 @@ export default {
 						action?.data?.class,
 					],
 					attrs: {
-						'aria-label': action?.componentOptions?.propsData?.ariaLabel || action?.componentOptions?.children?.[0]?.text,
+						'aria-label': action?.componentOptions?.propsData?.ariaLabel || text,
 						title: action?.componentOptions?.propsData?.title,
 					},
 					ref: action?.data?.ref,
 					props: {
 						// If it has a title, we use a secondary button
-						type: this.type || (title ? 'secondary' : 'tertiary'),
+						type: this.type || (text.trim() ? 'secondary' : 'tertiary'),
 						disabled: this.disabled || action?.componentOptions?.propsData?.disabled,
 						...action?.componentOptions?.propsData,
 					},
@@ -972,7 +1025,7 @@ export default {
 				},
 				[
 					h('template', { slot: 'icon' }, [icon]),
-					title,
+					text.trim(),
 				],
 			)
 		}
@@ -1139,9 +1192,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// Inline buttons
 .action-items {
 	display: flex;
 	align-items: center;
+
+	// Spacing between buttons
+	& > button {
+		margin-right: math.div($icon-margin, 2);
+	}
 }
 
 .action-item {
