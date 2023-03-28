@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.8.5](https://github.com/nextcloud/nextcloud-vue/tree/v7.8.5) (2023-03-28)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.8.4...v7.8.5)
+
+### :bug: Fixed bugs
+
+- fix\(NcRichContenteditable\): Completely stop event propagation for keyup events [\#3937](https://github.com/nextcloud/nextcloud-vue/pull/3937) ([nickvergessen](https://github.com/nickvergessen))
+- fix\(NcRichText\): Match IP addresses as links [\#3935](https://github.com/nextcloud/nextcloud-vue/pull/3935) ([nickvergessen](https://github.com/nickvergessen))
+- fix\(NcRichText\): Fix NcRichText style [\#3932](https://github.com/nextcloud/nextcloud-vue/pull/3932) ([julien-nc](https://github.com/julien-nc))
+
 ## [v7.8.4](https://github.com/nextcloud/nextcloud-vue/tree/v7.8.4) (2023-03-24)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.8.3...v7.8.4)
