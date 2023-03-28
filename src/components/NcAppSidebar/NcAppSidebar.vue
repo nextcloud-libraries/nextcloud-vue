@@ -31,22 +31,33 @@ include a standard-header like it's used by the files app.
 
 ```vue
 <template>
-	<NcAppSidebar
-		title="cat-picture.jpg"
-		subtitle="last edited 3 weeks ago">
-		<NcAppSidebarTab name="Settings" id="settings-tab">
-			<template #icon>
-				<Cog :size="20" />
-			</template>
-			Settings tab content
-		</NcAppSidebarTab>
-		<NcAppSidebarTab name="Sharing" id="share-tab">
-			<template #icon>
-				<ShareVariant :size="20" />
-			</template>
-			Sharing tab content
-		</NcAppSidebarTab>
-	</NcAppSidebar>
+	<div>
+		<NcCheckboxRadioSwitch :checked.sync="hideFirstTab">
+			The first tab is hidden
+		</NcCheckboxRadioSwitch>
+		<NcAppSidebar
+			title="cat-picture.jpg"
+			subtitle="last edited 3 weeks ago">
+			<NcAppSidebarTab v-if="!hideFirstTab" name="Fist tab" id="first-tab">
+				<template #icon>
+					<Cog :size="20" />
+				</template>
+				New tab
+			</NcAppSidebarTab>
+			<NcAppSidebarTab name="Settings" id="settings-tab">
+				<template #icon>
+					<Cog :size="20" />
+				</template>
+				Settings tab content
+			</NcAppSidebarTab>
+			<NcAppSidebarTab name="Sharing" id="share-tab">
+				<template #icon>
+					<ShareVariant :size="20" />
+				</template>
+				Sharing tab content
+			</NcAppSidebarTab>
+		</NcAppSidebar>
+	</div>
 </template>
 <script>
 	import Cog from 'vue-material-design-icons/Cog'
@@ -57,7 +68,84 @@ include a standard-header like it's used by the files app.
 			Cog,
 			ShareVariant,
 		},
+		data() {
+			return {
+				hideFirstTab: true,
+			}
+		},
 	}
+</script>
+```
+
+### One tab
+
+```vue
+<template>
+	<div>
+		<NcAppSidebar
+			title="cat-picture.jpg"
+			subtitle="last edited 3 weeks ago">
+			<NcAppSidebarTab name="Settings" id="settings-tab">
+				<template #icon>
+					<Cog :size="20" />
+				</template>
+				New tab
+			</NcAppSidebarTab>
+		</NcAppSidebar>
+	</div>
+</template>
+<script>
+import Cog from 'vue-material-design-icons/Cog'
+
+export default {
+	components: {
+		Cog,
+	},
+}
+</script>
+```
+
+### One or two tabs with condition
+
+```vue
+<template>
+	<div>
+		<NcCheckboxRadioSwitch :checked.sync="hideFirstTab">
+			The first tab is hidden
+		</NcCheckboxRadioSwitch>
+		<NcAppSidebar
+			title="cat-picture.jpg"
+			subtitle="last edited 3 weeks ago">
+			<NcAppSidebarTab v-if="!hideFirstTab" name="Settings" id="settings-tab">
+				<template #icon>
+					<Cog :size="20" />
+				</template>
+				Settings
+			</NcAppSidebarTab>
+			<NcAppSidebarTab name="Sharing" id="share-tab">
+				<template #icon>
+					<ShareVariant :size="20" />
+				</template>
+				Sharing tab content
+			</NcAppSidebarTab>
+		</NcAppSidebar>
+	</div>
+</template>
+<script>
+import Cog from 'vue-material-design-icons/Cog'
+import ShareVariant from 'vue-material-design-icons/ShareVariant'
+
+export default {
+	components: {
+		Cog,
+		ShareVariant,
+	},
+	data() {
+		return {
+			hideFirstTab: true,
+		}
+	},
+}
 </script>
 ```
 

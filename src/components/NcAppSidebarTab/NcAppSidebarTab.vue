@@ -40,8 +40,12 @@
 </template>
 
 <script>
+import { h } from 'vue'
+
 export default {
 	name: 'NcAppSidebarTab',
+
+	inject: ['registerTab', 'unregisterTab', 'getActiveTab'],
 
 	props: {
 		id: {
@@ -67,11 +71,20 @@ export default {
 		'scroll',
 	],
 
+	expose: ['id', 'name', 'icon', 'order', 'renderIcon'],
+
 	computed: {
-		// TODO: implement a better way to force pass a prop fromm Sidebar
 		isActive() {
-			return this.$parent.activeTab === this.id
+			return this.getActiveTab() === this.id
 		},
+	},
+
+	created() {
+		this.registerTab(this)
+	},
+
+	beforeDestroy() {
+		this.unregisterTab(this.id)
 	},
 
 	methods: {
@@ -84,6 +97,15 @@ export default {
 				this.$emit('bottom-reached', event)
 			}
 			this.$emit('scroll', event)
+		},
+
+		/**
+		 * Render tab's icon from slot or icon prop
+		 *
+		 * @return {import('vue').VNode|import('vue').VNode[]}
+		 */
+		renderIcon() {
+			return this.$slots.icon || this.$scopedSlots.icon?.() || h('span', { staticClass: this.icon })
 		},
 	},
 }
