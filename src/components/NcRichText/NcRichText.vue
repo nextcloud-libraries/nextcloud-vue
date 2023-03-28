@@ -39,6 +39,8 @@ export default {
 		return {
 			text: `Hello {username}. The file {file} was added by {username}. Go visit https://nextcloud.com
 
+Local IP: http://127.0.0.1/status.php should be clickable
+
 Some examples for markdown syntax: **bold text** *italic text* ~~strikethrough~~`,
 			autolink: true,
 			useMarkdown: true,
