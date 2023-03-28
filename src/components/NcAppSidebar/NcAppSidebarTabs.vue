@@ -33,6 +33,8 @@
 			@keydown.left.exact.prevent="focusPreviousTab"
 			@keydown.right.exact.prevent="focusNextTab"
 			@keydown.tab.exact.prevent="focusActiveTabContent"
+			@keydown.home.exact.prevent="focusFirstTab"
+			@keydown.end.exact.prevent="focusLastTab"
 			@keydown.33.exact.prevent="focusFirstTab"
 			@keydown.34.exact.prevent="focusLastTab">
 			<ul>
@@ -43,7 +45,7 @@
 						:class="{ active: activeTab === tab.id }"
 						:data-id="tab.id"
 						:href="`#tab-${tab.id}`"
-						:tabindex="activeTab === tab.id ? undefined : -1"
+						:tabindex="activeTab === tab.id ? 0 : -1"
 						role="tab"
 						@click.prevent="setActive(tab.id)">
 						<span class="app-sidebar-tabs__tab-icon">
