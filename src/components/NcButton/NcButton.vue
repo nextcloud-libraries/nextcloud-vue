@@ -430,6 +430,7 @@ export default {
 		display: inline-flex;
 		align-items: center;
 		justify-content: space-around;
+		width: 100%;
 	}
 
 	&__icon {
@@ -446,6 +447,9 @@ export default {
 		font-weight: bold;
 		margin-bottom: 1px;
 		padding: 2px 0;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
 	}
 
 	// Icon-only button
