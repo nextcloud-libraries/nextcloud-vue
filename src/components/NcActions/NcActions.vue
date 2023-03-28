@@ -992,7 +992,7 @@ export default {
 					],
 					attrs: {
 						'aria-label': action?.componentOptions?.propsData?.ariaLabel || text,
-						title: action?.componentOptions?.propsData?.title,
+						title: action?.componentOptions?.propsData?.title || text,
 					},
 					ref: action?.data?.ref,
 					props: {
@@ -1001,14 +1001,6 @@ export default {
 						disabled: this.disabled || action?.componentOptions?.propsData?.disabled,
 						...action?.componentOptions?.propsData,
 					},
-					directives: [{
-						name: 'tooltip',
-						value: action?.componentOptions?.children?.[0]?.text,
-						modifiers: {
-							auto: true,
-						},
-
-					}],
 					on: {
 						focus: this.onFocus,
 						blur: this.onBlur,
