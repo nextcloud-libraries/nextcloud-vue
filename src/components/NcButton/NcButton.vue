@@ -429,7 +429,7 @@ export default {
 	&__wrapper {
 		display: inline-flex;
 		align-items: center;
-		justify-content: space-around;
+		justify-content: center;
 		width: 100%;
 	}
 
