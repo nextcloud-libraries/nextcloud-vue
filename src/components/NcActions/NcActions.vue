@@ -620,6 +620,14 @@ export default {
 		},
 
 		/**
+		 * aria-hidden attribute for the icon slot
+		 */
+		ariaHidden: {
+			type: Boolean,
+			default: null,
+		},
+
+		/**
 		 * Wanted direction of the menu
 		 */
 		placement: {
@@ -946,6 +954,7 @@ export default {
 						// If it has a title, we use a secondary button
 						type: this.type || (title ? 'secondary' : 'tertiary'),
 						disabled: this.disabled || action?.componentOptions?.propsData?.disabled,
+						ariaHidden: this.ariaHidden,
 						...action?.componentOptions?.propsData,
 					},
 					directives: [{
@@ -1030,6 +1039,7 @@ export default {
 						props: {
 							type: this.triggerBtnType,
 							disabled: this.disabled,
+							ariaHidden: this.ariaHidden,
 						},
 						slot: 'trigger',
 						ref: 'menuButton',

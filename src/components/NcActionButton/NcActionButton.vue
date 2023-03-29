@@ -190,6 +190,7 @@ export default {
 			<slot name="icon">
 				<span :class="[isIconUrl ? 'action-button__icon--url' : icon]"
 					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+					:aria-hidden="ariaHidden"
 					class="action-button__icon" />
 			</slot>
 
@@ -238,6 +239,13 @@ export default {
 		disabled: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * aria-hidden attribute for the icon slot
+		 */
+		ariaHidden: {
+			type: Boolean,
+			default: null,
 		},
 	},
 	computed: {

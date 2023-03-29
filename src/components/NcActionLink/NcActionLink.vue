@@ -62,6 +62,7 @@ export default {
 			<slot name="icon">
 				<span :class="[isIconUrl ? 'action-link__icon--url' : icon]"
 					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+					:aria-hidden="ariaHidden"
 					class="action-link__icon" />
 			</slot>
 
@@ -139,6 +140,13 @@ export default {
 		 */
 		title: {
 			type: String,
+			default: null,
+		},
+		/**
+		 * aria-hidden attribute for the icon slot
+		 */
+		ariaHidden: {
+			type: Boolean,
 			default: null,
 		},
 	},

@@ -287,6 +287,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * aria-hidden attribute for the icon slot
+		 */
+		ariaHidden: {
+			type: Boolean,
+			default: null,
+		},
 	},
 
 	/**
@@ -345,7 +352,16 @@ export default {
 			},
 			[
 				h('span', { class: 'button-vue__wrapper' }, [
-					hasIcon ? h('span', { class: 'button-vue__icon' }, [this.$slots.icon]) : null,
+					hasIcon
+						? h('span', {
+							class: 'button-vue__icon',
+							attrs: {
+								'aria-hidden': this.ariaHidden,
+							},
+						},
+						[this.$slots.icon],
+						)
+						: null,
 					hasText ? h('span', { class: 'button-vue__text' }, [text]) : null,
 				]),
 			]
