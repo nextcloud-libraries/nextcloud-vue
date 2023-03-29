@@ -44,9 +44,11 @@ export const prepareTextNode = ({ h, context }, text) => {
 				return entry
 			}
 			const { component, props } = entry
+			// do not override class of NcLink
+			const componentClass = component.name === 'NcLink' ? undefined : 'rich-text--component'
 			return h(component, {
 				props,
-				class: 'rich-text--component',
+				class: componentClass,
 			})
 		})
 	}

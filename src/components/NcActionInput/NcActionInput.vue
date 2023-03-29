@@ -132,6 +132,7 @@ For the multiselect component, all events will be passed through. Please see the
 				<slot name="icon">
 					<span :class="[isIconUrl ? 'action-input__icon--url' : icon]"
 						:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+						:aria-hidden="ariaHidden"
 						class="action-input__icon" />
 				</slot>
 			</span>
@@ -340,6 +341,13 @@ export default {
 		ariaLabel: {
 			type: String,
 			default: '',
+		},
+		/**
+		 * aria-hidden attribute for the icon slot
+		 */
+		ariaHidden: {
+			type: Boolean,
+			default: null,
 		},
 	},
 

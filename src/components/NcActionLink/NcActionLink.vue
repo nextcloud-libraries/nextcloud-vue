@@ -62,6 +62,7 @@ export default {
 			<slot name="icon">
 				<span :class="[isIconUrl ? 'action-link__icon--url' : icon]"
 					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+					:aria-hidden="ariaHidden"
 					class="action-link__icon" />
 			</slot>
 
@@ -133,6 +134,20 @@ export default {
 			validator: value => {
 				return value && (!value.startsWith('_') || ['_blank', '_self', '_parent', '_top'].indexOf(value) > -1)
 			},
+		},
+		/**
+		 * Declares a native tooltip when not null
+		 */
+		title: {
+			type: String,
+			default: null,
+		},
+		/**
+		 * aria-hidden attribute for the icon slot
+		 */
+		ariaHidden: {
+			type: Boolean,
+			default: null,
 		},
 	},
 }

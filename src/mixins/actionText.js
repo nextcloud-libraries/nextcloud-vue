@@ -67,6 +67,13 @@ export default {
 			type: String,
 			default: '',
 		},
+		/**
+		 * aria-hidden attribute for the icon slot
+		 */
+		ariaHidden: {
+			type: Boolean,
+			default: null,
+		},
 	},
 
 	emits: [

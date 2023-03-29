@@ -287,6 +287,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * aria-hidden attribute for the icon slot
+		 */
+		ariaHidden: {
+			type: Boolean,
+			default: null,
+		},
 	},
 
 	/**
@@ -345,7 +352,16 @@ export default {
 			},
 			[
 				h('span', { class: 'button-vue__wrapper' }, [
-					hasIcon ? h('span', { class: 'button-vue__icon' }, [this.$slots.icon]) : null,
+					hasIcon
+						? h('span', {
+							class: 'button-vue__icon',
+							attrs: {
+								'aria-hidden': this.ariaHidden,
+							},
+						},
+						[this.$slots.icon],
+						)
+						: null,
 					hasText ? h('span', { class: 'button-vue__text' }, [text]) : null,
 				]),
 			]
@@ -429,7 +445,8 @@ export default {
 	&__wrapper {
 		display: inline-flex;
 		align-items: center;
-		justify-content: space-around;
+		justify-content: center;
+		width: 100%;
 	}
 
 	&__icon {
@@ -446,6 +463,9 @@ export default {
 		font-weight: bold;
 		margin-bottom: 1px;
 		padding: 2px 0;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
 	}
 
 	// Icon-only button

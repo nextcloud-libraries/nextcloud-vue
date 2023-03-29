@@ -33,6 +33,8 @@
 			@keydown.left.exact.prevent="focusPreviousTab"
 			@keydown.right.exact.prevent="focusNextTab"
 			@keydown.tab.exact.prevent="focusActiveTabContent"
+			@keydown.home.exact.prevent="focusFirstTab"
+			@keydown.end.exact.prevent="focusLastTab"
 			@keydown.33.exact.prevent="focusFirstTab"
 			@keydown.34.exact.prevent="focusLastTab">
 			<ul>
@@ -43,12 +45,11 @@
 						:class="{ active: activeTab === tab.id }"
 						:data-id="tab.id"
 						:href="`#tab-${tab.id}`"
-						:tabindex="activeTab === tab.id ? undefined : -1"
+						:tabindex="activeTab === tab.id ? 0 : -1"
 						role="tab"
 						@click.prevent="setActive(tab.id)">
 						<span class="app-sidebar-tabs__tab-icon">
-							<NcVNodes v-if="hasMdIcon(tab)" :vnodes="tab.$slots.icon[0]" />
-							<span v-else :class="tab.icon" />
+							<NcVNodes :vnodes="tab.renderIcon()" />
 						</span>
 						{{ tab.name }}
 					</a>
@@ -59,6 +60,7 @@
 		<!-- tabs content -->
 		<div :class="{'app-sidebar-tabs__content--multiple': hasMultipleTabs}"
 			class="app-sidebar-tabs__content">
+			<!-- @slot Tabs content - NcAppSidebarTab components or any content if there is no tabs -->
 			<slot />
 		</div>
 	</div>
@@ -67,22 +69,20 @@
 <script>
 import NcVNodes from '../NcVNodes/index.js'
 
-import Vue from 'vue'
-
-const IsValidString = function(value) {
-	return value && typeof value === 'string' && value.trim() !== ''
-}
-
-const IsValidStringWithoutSpaces = function(value) {
-	return IsValidString(value) && value.indexOf(' ') === -1
-}
-
 export default {
 	name: 'NcAppSidebarTabs',
 
 	components: {
-		// Component to render the material design icon (vnodes)
 		NcVNodes,
+	},
+
+	provide() {
+		return {
+			registerTab: this.registerTab,
+			unregisterTab: this.unregisterTab,
+			// Getter as an alternative to Vue 2.7 computed(() => this.activeTab)
+			getActiveTab: () => this.activeTab,
+		}
 	},
 
 	props: {
@@ -100,26 +100,28 @@ export default {
 	data() {
 		return {
 			/**
-			 * The tab component instances to build the tab navbar from.
+			 * Tab descriptions from the passed NcSidebarTab components' props to build the tab navbar from.
 			 */
 			tabs: [],
 			/**
-			 * The id of the currently active tab.
+			 * Local active (open) tab's ID. It allows to use component without active.sync
 			 */
 			activeTab: '',
-			/**
-			 * Dummy array to react on slot changes.
-			 */
-			children: [],
 		}
 	},
 
 	computed: {
+		/**
+		 * Has multiple tabs. If only one tab - its content is shown without navigation
+		 *
+		 * @return {boolean}
+		 */
 		hasMultipleTabs() {
 			return this.tabs.length > 1
 		},
+
 		currentTabIndex() {
-			return this.tabs.findIndex(tab => tab.id === this.activeTab)
+			return this.tabs.findIndex((tab) => tab.id === this.activeTab)
 		},
 	},
 
@@ -130,18 +132,6 @@ export default {
 				this.updateActive()
 			}
 		},
-
-		children() {
-			this.updateTabs()
-		},
-	},
-
-	mounted() {
-		// Init the tabs list
-		this.updateTabs()
-
-		// Let's make the children list reactive
-		this.children = this.$children
 	},
 
 	methods: {
@@ -153,6 +143,9 @@ export default {
 		 */
 		setActive(id) {
 			this.activeTab = id
+			/**
+			 * @property {string} active - active tab's id
+			 */
 			this.$emit('update:active', this.activeTab)
 		},
 
@@ -164,7 +157,7 @@ export default {
 			if (this.currentTabIndex > 0) {
 				this.setActive(this.tabs[this.currentTabIndex - 1].id)
 			}
-			this.focusActiveTab() // focus nav item
+			this.focusActiveTab()
 		},
 
 		/**
@@ -175,7 +168,7 @@ export default {
 			if (this.currentTabIndex < this.tabs.length - 1) {
 				this.setActive(this.tabs[this.currentTabIndex + 1].id)
 			}
-			this.focusActiveTab() // focus nav item
+			this.focusActiveTab()
 		},
 
 		/**
@@ -184,7 +177,7 @@ export default {
 		 */
 		focusFirstTab() {
 			this.setActive(this.tabs[0].id)
-			this.focusActiveTab() // focus nav item
+			this.focusActiveTab()
 		},
 
 		/**
@@ -193,7 +186,7 @@ export default {
 		 */
 		focusLastTab() {
 			this.setActive(this.tabs[this.tabs.length - 1].id)
-			this.focusActiveTab() // focus nav item
+			this.focusActiveTab()
 		},
 
 		/**
@@ -216,62 +209,42 @@ export default {
 		 */
 		updateActive() {
 			this.activeTab = this.active
-				&& this.tabs.findIndex(tab => tab.id === this.active) !== -1
+			&& this.tabs.some(tab => tab.id === this.active)
 				? this.active
 				: this.tabs.length > 0
 					? this.tabs[0].id
 					: ''
 		},
 
-		hasMdIcon(tab) {
-			return tab?.$slots?.icon
+		/**
+		 * Register child tab in the tabs
+		 *
+		 * @param {object} tab child tab passed to slot
+		 */
+		registerTab(tab) {
+			this.tabs.push(tab)
+			this.tabs.sort((a, b) => {
+				if (a.order === b.order) {
+					return OC.Util.naturalSortCompare(a.name, b.name)
+				}
+				return a.order - b.order
+			})
+			if (!this.activeTab) {
+				this.updateActive()
+			}
 		},
 
 		/**
-		 * Manually update the sidebar tabs according to $slots.default
+		 * Unregister child tab from the tabs
+		 *
+		 * @param {string} id tab's id
 		 */
-		updateTabs() {
-			if (!this.$slots.default) {
-				this.tabs = []
-				return
+		unregisterTab(id) {
+			const tabIndex = this.tabs.findIndex((tab) => tab.id === id)
+			if (tabIndex !== -1) {
+				this.tabs.splice(tabIndex, 1)
 			}
-
-			// Find all valid children (AppSidebarTab, other components, text nodes, etc.)
-			const children = this.$slots.default.filter(elem => elem.tag || elem.text.trim())
-
-			// Find all valid instances of AppSidebarTab
-			const invalidTabs = []
-			const tabs = children.reduce((tabs, tabNode) => {
-				const tab = tabNode.componentInstance
-				// Make sure all required props are provided and valid
-				if (IsValidString(tab?.name)
-					&& IsValidStringWithoutSpaces(tab?.id)
-					&& (IsValidStringWithoutSpaces(tab?.icon) || tab?.$slots?.icon)) {
-					tabs.push(tab)
-				} else {
-					invalidTabs.push(tabNode)
-				}
-				return tabs
-			}, [])
-
-			// Tabs are optional, but you can use either tabs or non-tab-content only
-			if (tabs.length !== 0 && tabs.length !== children.length) {
-				Vue.util.warn('Mixing tabs and non-tab-content is not possible.')
-				invalidTabs.map(invalid => console.debug('Ignoring invalid tab', invalid))
-			}
-
-			// We sort the tabs by their order or by their name
-			this.tabs = tabs.sort((a, b) => {
-				const orderA = a.order || 0
-				const orderB = b.order || 0
-				if (orderA === orderB) {
-					return OC.Util.naturalSortCompare(a.name, b.name)
-				}
-				return orderA - orderB
-			})
-
-			// Init active tab if exists
-			if (this.tabs.length > 0) {
+			if (this.activeTab === id) {
 				this.updateActive()
 			}
 		},
