@@ -109,12 +109,27 @@ This component allows the user to pick an emoji.
 			:show-preview="showPreview"
 			:title="previewFallbackTitle"
 			v-bind="$attrs"
-			@select="select" />
+			@select="select">
+			<template #searchTemplate="slotProps">
+				<NcTextField ref="search"
+					class="search"
+					:value.sync="search"
+					:label="t('Search')"
+					:label-visible="true"
+					:placeholder="i18n.search"
+					trailing-button-icon="close"
+					:trailing-button-label="t('Clear search')"
+					:show-trailing-button="search !== ''"
+					@trailing-button-click="clearSearch(); slotProps.onSearch(search);"
+					@update:value="slotProps.onSearch(search)" />
+			</template>
+		</Picker>
 	</NcPopover>
 </template>
 
 <script>
 import NcPopover from '../NcPopover/index.js'
+import NcTextField from '../NcTextField/index.js'
 import { t } from '../../l10n.js'
 
 import { Picker, EmojiIndex } from 'emoji-mart-vue-fast'
@@ -123,8 +138,9 @@ import data from 'emoji-mart-vue-fast/data/all.json'
 export default {
 	name: 'NcEmojiPicker',
 	components: {
-		Picker,
 		NcPopover,
+		NcTextField,
+		Picker,
 	},
 	props: {
 		/**
@@ -178,8 +194,9 @@ export default {
 	data() {
 		return {
 			emojiIndex: new EmojiIndex(data),
+			search: '',
 			i18n: {
-				search: t('Search'),
+				search: t('Search emoji'),
 				notfound: t('No emoji found'),
 				categories: {
 					search: t('Search results'),
@@ -205,6 +222,16 @@ export default {
 		},
 	},
 	methods: {
+		t,
+
+		clearSearch() {
+			this.search = ''
+			const input = this.$refs.search?.$refs.inputField?.$refs.input
+			if (input) {
+				input.focus()
+			}
+		},
+
 		select(emojiObject) {
 			/**
 			 * Emits a string containing the emoji e.g. '👩🏿‍💻'
@@ -227,7 +254,7 @@ export default {
 			picker.$el.addEventListener('keydown', this.checkKeyEvent)
 
 			// set focus on input search field
-			const input = picker.$refs.search.$el.querySelector('input')
+			const input = this.$refs.search?.$refs.inputField?.$refs.input
 			if (input) {
 				input.focus()
 			}
@@ -366,5 +393,14 @@ export default {
 		}
 	}
 
+}
+
+.search {
+	padding: 0 8px 4px 8px;
+	.input-field__label {
+		// Match styles in emoji-mart-vue-fast
+		padding: 5px 4px;
+		font-weight: 500;
+	}
 }
 </style>
