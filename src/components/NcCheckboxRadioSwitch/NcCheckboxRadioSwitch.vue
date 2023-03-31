@@ -85,9 +85,48 @@ export default {
 ```vue
 <template>
 	<div>
-		<NcCheckboxRadioSwitch :checked.sync="sharingPermission" value="r" name="sharing_permission_radio" type="radio" :button-variant="true" button-variant-grouped="vertical">Default permission read</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="sharingPermission" value="rw" name="sharing_permission_radio" type="radio" :button-variant="true" button-variant-grouped="vertical">Default permission read+write</NcCheckboxRadioSwitch>
-		<br>
+		<h4>Horizontal</h4>
+		<div style="display: flex">
+			<NcCheckboxRadioSwitch
+				:button-variant="true"
+				:checked.sync="sharingPermission"
+				value="r"
+				name="sharing_permission_radio"
+				type="radio"
+				button-variant-grouped="horizontal">
+				Default permission read
+			</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch
+				:button-variant="true"
+				:checked.sync="sharingPermission"
+				value="rw"
+				name="sharing_permission_radio"
+				type="radio"
+				button-variant-grouped="horizontal">
+				Default permission read+write
+			</NcCheckboxRadioSwitch>
+		</div>
+		<h4>Vertically</h4>
+		<div>
+			<NcCheckboxRadioSwitch
+				:button-variant="true"
+				:checked.sync="sharingPermission"
+				value="r"
+				name="sharing_permission_radio"
+				type="radio"
+				button-variant-grouped="vertical">
+				Default permission read
+			</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch
+				:button-variant="true"
+				:checked.sync="sharingPermission"
+				value="rw"
+				name="sharing_permission_radio"
+				type="radio"
+				button-variant-grouped="vertical">
+				Default permission read+write
+			</NcCheckboxRadioSwitch>
+		</div>
 		sharingPermission: {{ sharingPermission }}
 	</div>
 </template>
