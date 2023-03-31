@@ -128,7 +128,7 @@ export default {
 		:clearable="clearable"
 		:format="format ? format : formatTypeMap"
 		:formatter="formatter"
-		:lang="lang"
+		:lang="lang ? lang : defaultLang"
 		:minute-step="minuteStep"
 		:placeholder="placeholder ? placeholder : defaultPlaceholder"
 		:popup-class="{ 'show-week-number': showWeekNumber }"
@@ -237,6 +237,11 @@ export default {
 			default: null,
 		},
 
+		lang: {
+			type: Object,
+			default: null,
+		},
+
 		/**
 		 * The value to initialize, but also two-way bind the selected date. The date is – like the `Date` object in
 		 * JavaScript – tied to UTC. The selected time zone does not have an influence of the selected time and date
@@ -300,7 +305,7 @@ export default {
 		 *
 		 * @return {object}
 		 */
-		lang() {
+		defaultLang() {
 			return {
 				formatLocale: {
 					months: getMonthNames(),
