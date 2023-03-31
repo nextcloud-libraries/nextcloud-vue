@@ -565,6 +565,10 @@ $spacing: 4px;
 		color: var(--color-primary-element-light);
 	}
 
+	$border-radius: calc(var(--default-clickable-area) / 2);
+	// keep inner border width in mind
+	$border-radius-outer: calc($border-radius + 2px);
+
 	&--button-variant &__label {
 		display: flex;
 		flex-direction: column;
@@ -577,7 +581,7 @@ $spacing: 4px;
 	}
 
 	&--button-variant:not(&--checked) &__icon > * {
-		color: var(--color-text-main);
+		color: var(--color-main-text);
 	}
 	&--button-variant &__icon {
 		flex-basis: 100%;
@@ -588,18 +592,19 @@ $spacing: 4px;
 		}
 	}
 
-	&--button-variant:not(&--button-variant-v-grouped):not(&--button-variant-h-grouped) {
-		border-radius: var(--border-radius-large);
+	&--button-variant:not(&--button-variant-v-grouped):not(&--button-variant-h-grouped),
+	&--button-variant &__label {
+		border-radius: $border-radius;
 	}
 
 	&--button-variant-v-grouped {
 		&:first-of-type {
-			border-top-left-radius: var(--border-radius-large);
-			border-top-right-radius: var(--border-radius-large);
+			border-top-left-radius: $border-radius-outer;
+			border-top-right-radius: $border-radius-outer;
 		}
 		&:last-of-type {
-			border-bottom-left-radius: var(--border-radius-large);
-			border-bottom-right-radius: var(--border-radius-large);
+			border-bottom-left-radius: $border-radius-outer;
+			border-bottom-right-radius: $border-radius-outer;
 		}
 
 		// remove borders between elements
@@ -609,21 +614,16 @@ $spacing: 4px;
 		&:not(:first-of-type) {
 			border-top: 0!important;
 		}
-		& + &.checkbox-radio-switch--checked {
-			// as the selected element has all borders:
-			// small trick to cover the previous bottom border (only if there is one)
-			margin-top: -2px;
-		}
 	}
 
 	&--button-variant-h-grouped {
 		&:first-of-type {
-			border-top-left-radius: var(--border-radius-large);
-			border-bottom-left-radius: var(--border-radius-large);
+			border-top-left-radius: $border-radius-outer;
+			border-bottom-left-radius: $border-radius-outer;
 		}
 		&:last-of-type {
-			border-top-right-radius: var(--border-radius-large);
-			border-bottom-right-radius: var(--border-radius-large);
+			border-top-right-radius: $border-radius-outer;
+			border-bottom-right-radius: $border-radius-outer;
 		}
 
 		// remove borders between elements
@@ -633,11 +633,6 @@ $spacing: 4px;
 		&:not(:first-of-type) {
 			border-left: 0!important;
 		}
-		& + &.checkbox-radio-switch--checked {
-			// as the selected element has all borders:
-			// small trick to cover the previous bottom border (only if there is one)
-			margin-left: -2px;
-		}
 	}
 
 	&--button-variant.checkbox-radio-switch {
@@ -645,8 +640,8 @@ $spacing: 4px;
 		// better than setting border-radius on labels (producing a small gap)
 		overflow: hidden;
 
-		&:focus-within {
-			border: 2px solid var(--color-primary);
+		&__label {
+			text-overflow: ellipsis;
 		}
 
 		&--checked {

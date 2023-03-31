@@ -265,6 +265,7 @@ export default {
 			justify-content: stretch;
 		}
 	}
+
 	&__tab {
 		display: block;
 		flex: 1 1;
