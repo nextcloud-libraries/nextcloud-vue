@@ -2,8 +2,9 @@
   - @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Ferdinand Thiessen <opensource@fthiessen.de>
   -
-  - @license GNU AGPL version 3 or any later version
+  - @license AGPL-3.0-or-later
   -
   - This program is free software: you can redistribute it and/or modify
   - it under the terms of the GNU Affero General Public License as
@@ -107,7 +108,7 @@ export default {
 			</NcCheckboxRadioSwitch>
 		</div>
 		<h4>Vertically</h4>
-		<div>
+		<div style="width: fit-content">
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
 				:checked.sync="sharingPermission"
@@ -209,11 +210,20 @@ export default {
 			class="checkbox-radio-switch__input"
 			@change="onToggle">
 		<label :for="id" class="checkbox-radio-switch__label">
-			<NcLoadingIcon v-if="loading" class="checkbox-radio-switch__icon" />
-			<component :is="checkboxRadioIconElement"
-				v-else-if="!buttonVariant"
-				:size="size"
-				class="checkbox-radio-switch__icon" />
+			<div class="checkbox-radio-switch__icon">
+				<!-- @slot The checkbox/radio icon, you can use it for adding an icon to the button variant
+						@binding {bool} checked The input checked state
+						@binding {bool} loading The loading state
+				-->
+				<slot name="icon"
+					:checked="isChecked"
+					:loading="loading">
+					<NcLoadingIcon v-if="loading" />
+					<component :is="checkboxRadioIconElement"
+						v-else-if="!buttonVariant"
+						:size="size" />
+				</slot>
+			</div>
 
 			<!-- @slot The checkbox/radio label -->
 			<slot />
@@ -519,7 +529,7 @@ $spacing: 4px;
 		}
 	}
 
-	&__icon {
+	&__icon > * {
 		margin-right: $spacing;
 		// Remove the left margin of material design icons to align text
 		margin-left: -2px;
@@ -530,7 +540,7 @@ $spacing: 4px;
 
 	&--disabled &__label {
 		opacity: $opacity_disabled;
-		.checkbox-radio-switch__icon {
+		.checkbox-radio-switch__icon > * {
 			color: var(--color-main-text)
 		}
 	}
@@ -546,19 +556,36 @@ $spacing: 4px;
 	}
 
 	// Switch specific rules
-	&-switch:not(&--checked) &__icon {
+	&-switch:not(&--checked) &__icon > * {
 		color: var(--color-text-maxcontrast);
 	}
 
 	// If switch is checked AND disabled, use the fade primary colour
-	&-switch.checkbox-radio-switch--disabled.checkbox-radio-switch--checked &__icon {
+	&-switch.checkbox-radio-switch--disabled.checkbox-radio-switch--checked &__icon > * {
 		color: var(--color-primary-element-light);
 	}
 
 	&--button-variant &__label {
-		border-radius: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 		width: 100%;
 		margin: 0;
+	}
+	&--button-variant:not(&--button-variant-h-grouped) &__label {
+		align-items: flex-start;
+	}
+
+	&--button-variant:not(&--checked) &__icon > * {
+		color: var(--color-text-main);
+	}
+	&--button-variant &__icon {
+		flex-basis: 100%;
+
+		// Hide icon container if empty to remove virtual padding
+		&:empty {
+			display: none;
+		}
 	}
 
 	&--button-variant:not(&--button-variant-v-grouped):not(&--button-variant-h-grouped) {
