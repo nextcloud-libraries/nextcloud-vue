@@ -199,16 +199,16 @@ export default {
 		}"
 		:style="cssVars"
 		class="checkbox-radio-switch">
+		<input :id="id"
+			:checked="isChecked"
+			:disabled="disabled"
+			:indeterminate="indeterminate"
+			:name="name"
+			:type="inputType"
+			:value="value"
+			class="checkbox-radio-switch__input"
+			@change="onToggle">
 		<label :for="id" class="checkbox-radio-switch__label">
-			<input :id="id"
-				:checked="isChecked"
-				:disabled="disabled"
-				:indeterminate="indeterminate"
-				:name="name"
-				:type="inputType"
-				:value="value"
-				class="checkbox-radio-switch__input"
-				@change="onToggle">
 			<NcLoadingIcon v-if="loading" class="checkbox-radio-switch__icon" />
 			<component :is="checkboxRadioIconElement"
 				v-else-if="!buttonVariant"
@@ -507,7 +507,6 @@ $spacing: 4px;
 
 	&__label {
 		display: flex;
-		position: relative;
 		align-items: center;
 		user-select: none;
 		min-height: $clickable-area;
@@ -536,9 +535,14 @@ $spacing: 4px;
 		}
 	}
 
-	&:not(&--disabled) &__label:hover,
-	&:not(&--disabled) &__label:focus-within {
-		background-color: var(--color-primary-light);
+	&:not(&--disabled, &--checked):focus-within &__label,
+	&:not(&--disabled, &--checked) &__label:hover {
+		background-color: var(--color-background-hover);
+	}
+
+	&--checked:not(&--disabled):focus-within &__label,
+	&--checked:not(&--disabled) &__label:hover {
+		background-color: var(--color-primary-light-hover);
 	}
 
 	// Switch specific rules
@@ -571,9 +575,12 @@ $spacing: 4px;
 			border-bottom-right-radius: var(--border-radius-large);
 		}
 
-		// avoid double borders between elements
-		& + &:not(&.checkbox-radio-switch--checked) {
-			border-top: 0;
+		// remove borders between elements
+		&:not(:last-of-type) {
+			border-bottom: 0!important;
+		}
+		&:not(:first-of-type) {
+			border-top: 0!important;
 		}
 		& + &.checkbox-radio-switch--checked {
 			// as the selected element has all borders:
@@ -592,9 +599,12 @@ $spacing: 4px;
 			border-bottom-right-radius: var(--border-radius-large);
 		}
 
-		// avoid double borders between elements
-		& + &:not(&.checkbox-radio-switch--checked) {
-			border-left: 0;
+		// remove borders between elements
+		&:not(:last-of-type) {
+			border-right: 0!important;
+		}
+		&:not(:first-of-type) {
+			border-left: 0!important;
 		}
 		& + &.checkbox-radio-switch--checked {
 			// as the selected element has all borders:
@@ -608,16 +618,15 @@ $spacing: 4px;
 		// better than setting border-radius on labels (producing a small gap)
 		overflow: hidden;
 
+		&:focus-within {
+			border: 2px solid var(--color-primary);
+		}
+
 		&--checked {
 			font-weight: bold;
-			border: 2px solid var(--color-primary-element-light);
-
-			&:hover {
-				border: 2px solid var(--color-primary);
-			}
 
 			label {
-				background-color: var(--color-background-dark);
+				background-color: var(--color-primary-light);
 			}
 		}
 	}
