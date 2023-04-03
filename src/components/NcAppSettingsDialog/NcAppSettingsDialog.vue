@@ -123,6 +123,15 @@ export default {
 			type: String,
 			default: '',
 		},
+
+		/**
+		 * Additional elements to add to the focus trap
+		 */
+		additionalTrapElements: {
+			type: Array,
+			default: () => [],
+		},
+
 	},
 
 	emits: ['update:open'],
@@ -311,6 +320,7 @@ export default {
 				attrs: {
 					container: this.container,
 					size: 'large',
+					additionalTrapElements: this.additionalTrapElements,
 				},
 				on: {
 					close: () => { this.handleCloseModal() },
