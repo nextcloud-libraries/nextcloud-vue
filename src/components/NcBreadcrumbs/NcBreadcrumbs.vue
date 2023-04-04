@@ -35,16 +35,30 @@ is dropped on a creadcrumb.
 	<div>
 		<div class="container">
 			<NcBreadcrumbs @dropped="dropped">
-				<NcBreadcrumb title="Home" href="/" @dropped="droppedOnCrumb">
+				<NcBreadcrumb name="Home"
+					title="Title of the Home folder"
+					href="/"
+					@dropped="droppedOnCrumb">
 					<template #icon>
 						<Folder :size="20" />
 					</template>
 				</NcBreadcrumb>
-				<NcBreadcrumb title="Folder 1" href="/Folder 1" />
-				<NcBreadcrumb title="Folder 2" href="/Folder 1/Folder 2" :disable-drop="true" />
-				<NcBreadcrumb title="Folder 3" href="/Folder 1/Folder 2/Folder 3" />
-				<NcBreadcrumb title="Folder 4" href="/Folder 1/Folder 2/Folder 3/Folder 4" />
-				<NcBreadcrumb title="Folder 5" href="/Folder 1/Folder 2/Folder 3/Folder 4/Folder 5" :disable-drop="true">
+				<NcBreadcrumb name="Folder 1"
+					title="Folder 1"
+					href="/Folder 1" />
+				<NcBreadcrumb name="Folder 2"
+					href="/Folder 1/Folder 2"
+					:disable-drop="true" />
+				<NcBreadcrumb name="Folder 3"
+					title="Folder 3"
+					href="/Folder 1/Folder 2/Folder 3" />
+				<NcBreadcrumb name="Folder 4"
+					title="Folder 4"
+					href="/Folder 1/Folder 2/Folder 3/Folder 4" />
+				<NcBreadcrumb name="Folder 5"
+					title="Folder 5"
+					href="/Folder 1/Folder 2/Folder 3/Folder 4/Folder 5"
+					:disable-drop="true">
 					<template #menu-icon>
 						<MenuDown :size="20" />
 					</template>
@@ -174,8 +188,8 @@ export default {
 			 * that show the ellipsised breadcrumbs
 			 */
 			menuBreadcrumbProps: {
-				// Don't show a title for this breadcrumb, only the Actions menu
-				title: '',
+				// Don't show a name for this breadcrumb, only the Actions menu
+				name: '',
 				forceMenu: true,
 				// Don't allow dropping directly on the actions breadcrumb
 				disableDrop: true,
@@ -531,6 +545,10 @@ export default {
 				const to = crumb.componentOptions.propsData.to
 				const href = crumb.componentOptions.propsData.href
 				const disabled = crumb.componentOptions.propsData.disableDrop
+				const title = crumb.componentOptions.propsData.title
+				// TODO: Remove this fallback once nameTitleFallback is removed from NcBreadcrumb
+				const name = crumb.componentOptions.propsData.name || title
+
 				// Decide whether to show the breadcrumbs as ActionRouter or ActionLink
 				let element = 'NcActionLink'
 				let path = href
@@ -547,8 +565,10 @@ export default {
 				return h(element, {
 					class: crumbClass,
 					props: {
-						to,
 						href,
+						title,
+						name: '', // TODO: Remove this once nameTitleFallback is removed from actionText.js mixin
+						to,
 					},
 					// Prevent the breadcrumbs from being draggable
 					attrs: {
@@ -563,7 +583,7 @@ export default {
 						dragleave: ($event) => this.dragLeave($event, disabled),
 					},
 				},
-				[crumb.componentOptions.propsData.title, folderIcon]
+				[folderIcon, name]
 				)
 			}))
 			)

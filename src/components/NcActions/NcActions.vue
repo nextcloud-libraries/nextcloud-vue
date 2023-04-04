@@ -153,6 +153,58 @@ export default {
 </script>
 ```
 
+### Multiple actions with 2 items inline AND forced titles
+
+```vue
+<template>
+	<NcActions :force-title="true" :inline="2">
+		<NcActionButton @click="showMessage('Add')">
+			<template #icon>
+				<Plus :size="20" />
+			</template>
+			Add
+		</NcActionButton>
+		<NcActionButton @click="showMessage('Edit')">
+			<template #icon>
+				<Pencil :size="20" />
+			</template>
+			Edit
+		</NcActionButton>
+		<NcActionButton @click="showMessage('Delete')">
+			<template #icon>
+				<Delete :size="20" />
+			</template>
+			Delete
+		</NcActionButton>
+		<NcActionLink href="https://nextcloud.com">
+			<template #icon>
+				<OpenInNew :size="20" />
+			</template>
+			Link
+		</NcActionLink>
+	</NcActions>
+</template>
+<script>
+import Plus from 'vue-material-design-icons/Plus'
+import Delete from 'vue-material-design-icons/Delete'
+import OpenInNew from 'vue-material-design-icons/OpenInNew'
+import Pencil from 'vue-material-design-icons/Pencil'
+export default {
+	components: {
+		Delete,
+		OpenInNew,
+		Pencil,
+		Plus,
+	},
+	methods: {
+		showMessage(msg) {
+			alert(msg)
+		},
+	},
+}
+</script>
+```
+
 ### Multiple actions with custom icon
 
 ```vue
@@ -934,9 +986,19 @@ export default {
 		 * @return {Function} the vue render function
 		 */
 		const renderInlineAction = (action) => {
-			const icon = action?.data?.scopedSlots?.icon()?.[0] || h('span', { class: ['icon', action?.componentOptions?.propsData?.icon] })
-			const title = this.forceTitle ? this.menuTitle : ''
+			const icon = action?.data?.scopedSlots?.icon()?.[0]
+				|| h('span', { class: ['icon', action?.componentOptions?.propsData?.icon] })
 			const clickListener = action?.componentOptions?.listeners?.click
+
+			const text = action?.componentOptions?.children?.[0]?.text?.trim?.()
+			const ariaLabel = action?.componentOptions?.propsData?.ariaLabel || text
+			const buttonText = this.forceTitle ? text : ''
+
+			let title = action?.componentOptions?.propsData?.title
+			// Show a default title for single actions if none is present
+			if (!(this.forceTitle || title)) {
+				title = text
+			}
 
 			return h('NcButton',
 				{
@@ -946,25 +1008,17 @@ export default {
 						action?.data?.class,
 					],
 					attrs: {
-						'aria-label': action?.componentOptions?.propsData?.ariaLabel || action?.componentOptions?.children?.[0]?.text,
-						title: action?.componentOptions?.propsData?.title,
+						'aria-label': ariaLabel,
+						title,
 					},
 					ref: action?.data?.ref,
 					props: {
-						// If it has a title, we use a secondary button
-						type: this.type || (title ? 'secondary' : 'tertiary'),
+						// If it has a menuTitle, we use a secondary button
+						type: this.type || (buttonText ? 'secondary' : 'tertiary'),
 						disabled: this.disabled || action?.componentOptions?.propsData?.disabled,
 						ariaHidden: this.ariaHidden,
 						...action?.componentOptions?.propsData,
 					},
-					directives: [{
-						name: 'tooltip',
-						value: action?.componentOptions?.children?.[0]?.text,
-						modifiers: {
-							auto: true,
-						},
-
-					}],
 					on: {
 						focus: this.onFocus,
 						blur: this.onBlur,
@@ -981,7 +1035,7 @@ export default {
 				},
 				[
 					h('template', { slot: 'icon' }, [icon]),
-					title,
+					buttonText,
 				],
 			)
 		}
@@ -1149,9 +1203,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// Inline buttons
 .action-items {
 	display: flex;
 	align-items: center;
+
+	// Spacing between buttons
+	& > button {
+		margin-right: math.div($icon-margin, 2);
+	}
 }
 
 .action-item {

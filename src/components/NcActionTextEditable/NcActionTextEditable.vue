@@ -38,7 +38,7 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 				<Pencil :size="20" />
 			</template>
 		</NcActionTextEditable>
-		<NcActionTextEditable title="Please edit the text" value="This is a textarea with title">
+		<NcActionTextEditable name="Please edit the text" value="This is a textarea with title">
 			<template #icon>
 				<Pencil :size="20" />
 			</template>
@@ -75,9 +75,9 @@ export default {
 				@submit.prevent="onSubmit">
 				<input :id="id" type="submit" class="action-text-editable__submit">
 
-				<!-- title -->
-				<strong v-if="title" class="action-text__title">
-					{{ title }}
+				<!-- name -->
+				<strong v-if="nameTitleFallback" class="action-text__title">
+					{{ nameTitleFallback }}
 				</strong>
 
 				<textarea :disabled="disabled"

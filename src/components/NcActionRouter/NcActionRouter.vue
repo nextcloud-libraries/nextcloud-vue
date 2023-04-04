@@ -24,9 +24,10 @@
 <template>
 	<li class="action">
 		<router-link :to="to"
-			:exact="exact"
-			class="action-router focusable"
 			:aria-label="ariaLabel"
+			:exact="exact"
+			:title="title"
+			class="action-router focusable"
 			rel="nofollow noreferrer noopener"
 			@click.native="onClick">
 			<!-- @slot Manually provide icon -->
@@ -36,10 +37,10 @@
 					class="action-router__icon" />
 			</slot>
 
-			<!-- long text with title -->
-			<p v-if="title">
+			<!-- long text with name -->
+			<p v-if="nameTitleFallback">
 				<strong class="action-router__title">
-					{{ title }}
+					{{ nameTitleFallback }}
 				</strong>
 				<br>
 				<!-- white space is shown on longtext, so we can't
