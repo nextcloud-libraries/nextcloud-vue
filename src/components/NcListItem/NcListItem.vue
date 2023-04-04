@@ -494,14 +494,23 @@ export default {
 	},
 
 	methods: {
-
-		// forward click event
+		/**
+		 * Handle link click
+		 *
+		 * @param {PointerEvent} event - Native click event
+		 * @param {Function} [navigate] - VueRouter link's navigate if any
+		 * @param {string} [routerLinkHref] - VueRouter link's href
+		 */
 		onClick(event, navigate, routerLinkHref) {
-			// Navigate is only defined if it is a router-link
-			navigate?.(event)
+			// Always forward native event
 			this.$emit('click', event)
-			// Prevent default link behaviour if it's a router-link
+			// Do not navigate with control keys - it is opening in a new tab
+			if (event.metaKey || event.altKey || event.ctrlKey || event.shiftKey) {
+				return
+			}
+			// Prevent default link behaviour if it's a router-link and navigate manually
 			if (routerLinkHref) {
+				navigate?.(event)
 				event.preventDefault()
 			}
 		},
