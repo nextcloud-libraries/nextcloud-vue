@@ -116,7 +116,7 @@
 		"sanitize-filename": "^1.6.3",
 		"url-loader": "^4.1.1",
 		"vue-eslint-parser": "^9.0.3",
-		"vue-styleguidist": "~4.64.1",
+		"vue-styleguidist": "~4.65.3",
 		"vue-template-compiler": "^2.7.14",
 		"webpack-node-externals": "^3.0.0"
 	},
