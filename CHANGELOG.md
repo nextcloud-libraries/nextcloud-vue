@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.9.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.9.0) (2023-04-04)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.8.5...v7.9.0)
+
+### :rocket: Enhancements
+
+- Add additionalTrapElements prop to settingsDialog [\#3947](https://github.com/nextcloud/nextcloud-vue/pull/3947) ([hamza221](https://github.com/hamza221))
+- enh\(NcDatetimePicker\): convert lang computed value to prop [\#3941](https://github.com/nextcloud/nextcloud-vue/pull/3941) ([st3iny](https://github.com/st3iny))
+- Add `aria-hidden` to icons of different components [\#3931](https://github.com/nextcloud/nextcloud-vue/pull/3931) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+- Add accessible search field to emoji picker [\#3900](https://github.com/nextcloud/nextcloud-vue/pull/3900) ([Pytal](https://github.com/Pytal))
+
+### :bug: Fixed bugs
+
+- fix\(NcButton\): ellipsis text on small width [\#3936](https://github.com/nextcloud/nextcloud-vue/pull/3936) ([skjnldsv](https://github.com/skjnldsv))
+- fix\(NcBreadcrumb\): cursor and native title and inline actions rendering text [\#3927](https://github.com/nextcloud/nextcloud-vue/pull/3927) ([skjnldsv](https://github.com/skjnldsv))
+
 ## [v7.8.5](https://github.com/nextcloud/nextcloud-vue/tree/v7.8.5) (2023-03-28)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.8.4...v7.8.5)
