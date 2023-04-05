@@ -72,6 +72,10 @@ The list size must be between the min and the max width value.
 
 <template>
 	<main id="app-content-vue" class="app-content no-snapper" :class="{ 'app-content--has-list': hasList }">
+		<h1 v-if="pageHeading" class="hidden-visually">
+			{{ pageHeading }}
+		</h1>
+
 		<template v-if="hasList">
 			<!-- Mobile view does not allow resizeable panes -->
 			<div v-if="isMobile"
@@ -191,6 +195,14 @@ export default {
 		showDetails: {
 			type: Boolean,
 			default: true,
+		},
+
+		/**
+		 * Specify the `<h1>` page heading
+		 */
+		pageHeading: {
+			type: String,
+			default: null,
 		},
 	},
 
