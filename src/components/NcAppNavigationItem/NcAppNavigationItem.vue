@@ -747,6 +747,18 @@ export default {
 		flex-wrap: wrap;
 		box-sizing: border-box;
 		width: 100%;
+		
+		&.app-navigation-entry__settings-quota {
+			.app-navigation-entry:hover {
+				background-color: transparent;
+				a {
+					cursor: default;
+					* {
+					cursor: default;
+					}
+				}
+			}
+		}
 
 		&.app-navigation-entry--collapsible:not(.app-navigation-entry--opened) > ul {
 			// NO ANIMATE because if not really hidden, we can still tab through it
