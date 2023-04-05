@@ -610,6 +610,9 @@ $spacing: 4px;
 		// remove borders between elements
 		&:not(:last-of-type) {
 			border-bottom: 0!important;
+			.checkbox-radio-switch__label {
+				margin-bottom: 2px;
+			}
 		}
 		&:not(:first-of-type) {
 			border-top: 0!important;
@@ -629,6 +632,9 @@ $spacing: 4px;
 		// remove borders between elements
 		&:not(:last-of-type) {
 			border-right: 0!important;
+			.checkbox-radio-switch__label {
+				margin-right: 2px;
+			}
 		}
 		&:not(:first-of-type) {
 			border-left: 0!important;
