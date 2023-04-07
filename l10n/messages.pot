@@ -62,7 +62,7 @@ msgstr ""
 msgid "Close sidebar"
 msgstr ""
 
-msgid "Close smart picker"
+msgid "Close Smart Picker"
 msgstr ""
 
 msgid "Collapse menu"
@@ -176,10 +176,10 @@ msgstr ""
 msgid "Search results"
 msgstr ""
 
-msgid "Select a link provider"
+msgid "Select a tag"
 msgstr ""
 
-msgid "Select a tag"
+msgid "Select provider"
 msgstr ""
 
 msgid "Settings"
@@ -191,7 +191,7 @@ msgstr ""
 msgid "Show password"
 msgstr ""
 
-msgid "Smart picker"
+msgid "Smart Picker"
 msgstr ""
 
 msgid "Smileys & Emotion"

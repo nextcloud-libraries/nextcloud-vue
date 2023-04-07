@@ -91,7 +91,7 @@ export default {
 			selectedProvider: this.initialProvider,
 			backButtonTitle: t('Back to provider selection'),
 			closeButtonTitle: t('Close'),
-			closeButtonLabel: t('Close smart picker'),
+			closeButtonLabel: t('Close Smart Picker'),
 		}
 	},
 	computed: {
@@ -112,7 +112,7 @@ export default {
 		modalTitle() {
 			return this.isProviderSelected
 				? this.selectedProvider.title
-				: t('Smart picker')
+				: t('Smart Picker')
 		},
 	},
 	mounted() {

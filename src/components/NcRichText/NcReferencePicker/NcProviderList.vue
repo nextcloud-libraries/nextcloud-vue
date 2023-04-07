@@ -61,7 +61,7 @@ export default {
 		return {
 			selectedProvider: null,
 			query: '',
-			multiselectPlaceholder: t('Select a link provider'),
+			multiselectPlaceholder: t('Select provider'),
 		}
 	},
 	computed: {
