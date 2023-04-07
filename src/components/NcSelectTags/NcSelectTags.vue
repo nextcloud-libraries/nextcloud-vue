@@ -22,6 +22,29 @@
 -->
 
 <docs>
+### Editable
+```vue
+<template>
+	<div class="wrapper">
+		<NcSelectTags :editable="true"
+			:file-id="1" />
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+
+		}
+	},
+	methods: {
+
+	},
+}
+</script>
+```
+
 ### Single tag selector
 
 ```vue
@@ -136,6 +159,9 @@ export default {
 		:close-on-select="!multiple"
 		:value="localValue"
 		@search="searchString => search = searchString"
+		@option:selected="handleSelect"
+		@option:created="handleCreate"
+		@option:deselected="handleDeselect"
 		@input="handleInput"
 		v-on="{ ...$listeners, input: () => {} }">
 		<!-- Do not forward input event listener to NcSelect as we emit custom input events programmatically -->
@@ -155,10 +181,13 @@ export default {
 </template>
 
 <script>
+/* eslint-disable */
+import VueSelect from '@nextcloud/vue-select'
+
 import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
 import NcSelect from '../NcSelect/index.js'
 
-import { searchTags } from './api.js'
+import api from './mixins/api.js'
 import { t } from '../../l10n.js'
 
 export default {
@@ -169,9 +198,48 @@ export default {
 		NcSelect,
 	},
 
+	mixins: [
+		api,
+	],
+
 	props: {
 		// Add NcSelect prop defaults and populate $props
 		...NcSelect.props,
+
+		/**
+		 * User defined function for adding Options
+		 *
+		 * Defaults to the internal vue-select function documented at the link
+		 * below
+		 *
+		 * Enabling `editable` will automatically set this to create a tag
+		 * object unless this prop is set explicitly
+		 *
+		 * @see https://vue-select.org/api/props.html#createoption
+		 */
+		createOption: {
+			type: Function,
+			default: null,
+		},
+
+		// TODO Handle systemtags here or create a separate component with duplicated code?
+		// TODO Add prop to passthrough `value` directly as alternative?
+		/**
+		 * NOTE Cannot use NcSelectTags with custom props for editable
+		 *      systemtags due to conflicting handling of internal and external
+		 *      state
+		 */
+
+		/**
+		 * Enable selection, creation, and deletion of tags for the file with
+		 * id `fileId`
+		 *
+		 * Requires the `fileId` prop to be set if `true`
+		 */
+		editable: {
+			type: Boolean,
+			default: false,
+		},
 
 		/**
 		 * Callback to generate the label text
@@ -190,6 +258,16 @@ export default {
 				}
 				return displayName
 			},
+		},
+
+		/**
+		 * The id of the file
+		 *
+		 * Required if `editable` is `true`
+		 */
+		fileId: {
+			type: [String, Number],
+			default: null,
 		},
 
 		/**
@@ -235,6 +313,22 @@ export default {
 		},
 
 		/**
+		 * Enable/disable creating options from searchEl.
+		 *
+		 * Defaults to the internal vue-select boolean documented at the link
+		 * below
+		 *
+		 * Enabling `editable` will automatically set this to `true`
+		 * unless this prop is set explicitly
+		 *
+		 * @see https://vue-select.org/api/props.html#taggable
+		 */
+		taggable: {
+			type: Boolean,
+			default: null,
+		},
+
+		/**
 		 * Currently selected value
 		 */
 		value: {
@@ -265,6 +359,7 @@ export default {
 		return {
 			search: '',
 			tags: [],
+			selectedTags: [],
 		}
 	},
 
@@ -276,7 +371,37 @@ export default {
 			return this.tags
 		},
 
+		localCreateOption() {
+			if (this.createOption !== null) {
+				return this.createOption
+			}
+			if (this.editable) {
+				return (displayName) => {
+					return {
+						displayName,
+						userVisible: true,
+						userAssignable: true,
+						canAssign: true,
+					}
+				}
+			}
+			return VueSelect.props.createOption.default
+		},
+
+		localTaggable() {
+			if (this.taggable !== null) {
+				return this.taggable
+			}
+			if (this.editable) {
+				return true
+			}
+			return VueSelect.props.taggable.default
+		},
+
 		localValue() {
+			if (this.fileId) {
+				return this.selectedTags
+			}
 			if (this.tags.length === 0) {
 				return []
 			}
@@ -292,33 +417,98 @@ export default {
 		propsToForward() {
 			const {
 				// Props handled by this component
+				editable,
+				fileId,
 				optionsFilter,
 				// Props to forward
-				...propsToForward
+				...initialPropsToForward
 			} = this.$props
+
+			const propsToForward = {
+				...initialPropsToForward,
+				// Custom overrides of vue-select props
+				createOption: this.localCreateOption,
+				taggable: this.localTaggable,
+			}
 
 			return propsToForward
 		},
 	},
 
-	async beforeCreate() {
+	async created() {
 		try {
-			const result = await searchTags()
-			this.tags = result
+			const tags = await this.searchTags()
+			this.tags = tags
+			if (this.fileId) {
+				const selectedTags = await this.searchSelectedTags()
+				this.selectedTags = selectedTags
+			}
 		} catch (error) {
-			console.error('Loading systemtags failed', error)
+			console.error('Loading tags failed', error)
 		}
 	},
 
 	methods: {
+		async handleSelect(tags) {
+			if (!this.editable || !this.fileId) {
+				return
+			}
+			const selectedTag = tags[tags.length - 1]
+			try {
+				await this.selectTag(selectedTag)
+				this.selectedTags.push(selectedTag)
+			} catch (error) {
+				console.error('Selecting tag failed', error)
+			}
+		},
+
+		async handleCreate(tag) {
+			if (!this.editable || !this.fileId) {
+				return
+			}
+			console.log(tag)
+
+			try {
+				const id = await this.createTag(tag)
+				// Add id in available tags
+				this.tags.push({ ...tag, id })
+				// Add to selected tags
+				this.value.push(this.tags[this.tags.length - 1])
+				// Emit input event with selected ids
+				this.$emit('input', this.localValue.map(({ id }) => id))
+			} catch (error) {
+				this.tags.pop()
+				console.error('Creating tag failed', error)
+			}
+		},
+
+		async handleDeselect(tag) {
+			if (!this.editable || !this.fileId) {
+				return
+			}
+			console.log(tag)
+			this.$emit('input', this.localValue
+				.flter(selectedTag => selectedTag.id !== tag.id)
+				.map(({ id }) => id)
+			)
+			try {
+				await this.deleteTag(tag)
+			} catch (error) {
+				console.error('Deleting tag failed', error)
+			}
+		},
+
 		handleInput(value) {
+			// TODO Handle editable input?
+			console.log('NcSelect @input', value)
+
 			if (this.multiple) {
 				/**
 				 * Emitted on input events of the multiselect field
 				 *
 				 * @type {number|number[]}
 				 */
-				this.$emit('input', value.map(element => element.id))
+				this.$emit('input', value.map(({ id }) => id))
 			} else {
 				if (value === null) {
 					this.$emit('input', null)

@@ -20,9 +20,6 @@
  *
  */
 
-import axios from '@nextcloud/axios'
-import { generateRemoteUrl } from '@nextcloud/router'
-
 const xmlToJson = (xml) => {
 	let obj = {}
 
@@ -67,7 +64,7 @@ const parseXml = (xml) => {
 	return dom
 }
 
-const xmlToTagList = (xml) => {
+export const xmlToTagList = (xml) => {
 	const json = xmlToJson(parseXml(xml))
 	const list = json['d:multistatus']['d:response']
 	const result = []
@@ -88,28 +85,44 @@ const xmlToTagList = (xml) => {
 	return result
 }
 
-const searchTags = async function() {
-	if (window.NextcloudVueDocs) {
-		return Promise.resolve(xmlToTagList(window.NextcloudVueDocs.tags))
+/**
+ * @param {string} url url
+ *
+ * @return {number} id
+ */
+export const parseIdFromLocation = (url) => {
+	const queryPos = url.indexOf('?')
+	if (queryPos > 0) {
+		url = url.substring(0, queryPos)
 	}
 
-	const result = await axios({
-		method: 'PROPFIND',
-		url: generateRemoteUrl('dav') + '/systemtags/',
-		data: `<?xml version="1.0"?>
-					<d:propfind  xmlns:d="DAV:" xmlns:oc="http://owncloud.org/ns">
-					  <d:prop>
-						<oc:id />
-						<oc:display-name />
-						<oc:user-visible />
-						<oc:user-assignable />
-						<oc:can-assign />
-					  </d:prop>
-					</d:propfind>`,
-	})
-	return xmlToTagList(result.data)
+	const parts = url.split('/')
+	let result
+	do {
+		result = parts[parts.length - 1]
+		parts.pop()
+		// note: first result can be empty when there is a trailing slash,
+		// so we take the part before that
+	} while (!result && parts.length > 0)
+
+	return Number(result)
 }
 
-export {
-	searchTags,
+/**
+ * @param {object} initialTag tag
+ *
+ * @return {object} formatted tag
+ */
+export const formatTag = (initialTag) => {
+	const tag = { ...initialTag }
+	if (typeof tag.id === 'string') {
+		tag.id = Number(tag.id)
+	}
+	if (tag.name && !tag.displayName) {
+		return tag
+	}
+	tag.name = tag.displayName
+	delete tag.displayName
+
+	return tag
 }
