@@ -153,7 +153,6 @@ export default {
 
 <style lang="scss" scoped>
 .reference-picker-modal--content {
-	padding: 12px 16px 16px 16px;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -175,7 +174,7 @@ export default {
 
 	> h2 {
 		display: flex;
-		margin-bottom: 20px;
+		margin: 12px 0 20px 0;
 		.icon {
 			margin-right: 8px;
 		}

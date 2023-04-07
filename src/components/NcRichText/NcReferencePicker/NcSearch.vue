@@ -1,8 +1,8 @@
 <template>
-	<div class="search" :class="{ 'with-empty-content': showEmptyContent }">
+	<div class="smart-picker-search" :class="{ 'with-empty-content': showEmptyContent }">
 		<NcMultiselect ref="search-select"
 			v-model="selectedResult"
-			class="search--select"
+			class="smart-picker-search--select"
 			track-by="resourceUrl"
 			:placeholder="mySearchPlaceholder"
 			:options="options"
@@ -52,7 +52,7 @@
 			</template>
 		</NcMultiselect>
 		<NcEmptyContent v-if="showEmptyContent"
-			class="search--empty-content">
+			class="smart-picker-search--empty-content">
 			<template #icon>
 				<img v-if="provider.icon_url"
 					class="provider-icon"
@@ -273,10 +273,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.search {
+.smart-picker-search {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	padding: 0 16px 16px 16px;
 	&.with-empty-content {
 		min-height: 350px;
 	}
