@@ -569,7 +569,6 @@ export default {
 <script>
 import NcButton from '../NcButton/index.js'
 import NcPopover from '../NcPopover/index.js'
-import Tooltip from '../../directives/Tooltip/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { t } from '../../l10n.js'
 
@@ -588,10 +587,6 @@ const focusableSelector = '.focusable'
  */
 export default {
 	name: 'NcActions',
-
-	directives: {
-		tooltip: Tooltip,
-	},
 
 	components: {
 		NcButton,
