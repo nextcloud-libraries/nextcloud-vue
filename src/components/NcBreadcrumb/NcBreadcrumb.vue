@@ -41,11 +41,8 @@ This component is meant to be used inside a Breadcrumbs component.
 		@dragleave="dragLeave">
 		<component :is="tag"
 			v-if="(nameTitleFallback || icon) && !$slots.default"
-			:exact="exact"
-			:to="to"
-			:href="href"
 			:title="title"
-			v-bind="$attrs"
+			v-bind="{ ...$attrs, ...to && { to, exact }, ...!to && { href } }"
 			v-on="$listeners">
 			<!-- @slot Slot for passing a material design icon. Precedes the icon and title prop. -->
 			<slot name="icon">
