@@ -107,6 +107,7 @@ describe('NcAppSidebarTabs.vue', () => {
 					// used to register custom components
 						NcAppSidebarTab,
 					},
+					attachTo: document.body,
 				})
 			})
 			it('Issues no warning.', () => {
