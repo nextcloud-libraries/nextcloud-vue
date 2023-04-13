@@ -41,11 +41,8 @@ This component is meant to be used inside a Breadcrumbs component.
 		@dragleave="dragLeave">
 		<component :is="tag"
 			v-if="(nameTitleFallback || icon) && !$slots.default"
-			:exact="exact"
-			:to="to"
-			:href="href"
 			:title="title"
-			v-bind="$attrs"
+			v-bind="linkAttributes"
 			v-on="$listeners">
 			<!-- @slot Slot for passing a material design icon. Precedes the icon and title prop. -->
 			<slot name="icon">
@@ -203,6 +200,14 @@ export default {
 		 */
 		tag() {
 			return this.to ? 'router-link' : 'a'
+		},
+
+		/**
+		 * The attributes to pass to `router-link` or `a`
+		 */
+		linkAttributes() {
+			// If it's a router-link, we pass `to` and `exact`, otherwise only `href`
+			return this.to ? { to: this.to, exact: this.exact, ...this.$attrs } : { href: this.href, ...this.$attrs }
 		},
 	},
 	methods: {
