@@ -295,8 +295,8 @@ $externalMargin: 8px;
 		opacity: .85;
 
 		// header is filled with primary or image background
-		filter: var(--background-image-invert-if-bright);
-		color: #fff !important;
+		filter: none !important;
+		color: var(--color-primary-text) !important;
 	}
 
 	&--opened &__trigger,
