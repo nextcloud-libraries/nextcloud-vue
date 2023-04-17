@@ -295,6 +295,10 @@ export default {
 		},
 	},
 
+	created() {
+		this.validateLabel()
+	},
+
 	methods: {
 		handleInput(event) {
 			this.$emit('update:value', event.target.value)
