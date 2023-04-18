@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.10.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.10.0) (2023-04-18)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.9.0...v7.10.0)
+
+### :rocket: Enhancements
+
+- adjust sidebar to go full-screen earlier at 768px [\#3972](https://github.com/nextcloud/nextcloud-vue/pull/3972) ([szaimen](https://github.com/szaimen))
+- feat\(NcSelectTags\): Disable internal v-model and options handling [\#3968](https://github.com/nextcloud/nextcloud-vue/pull/3968) ([Pytal](https://github.com/Pytal))
+- Remove the smart picker modal padding [\#3962](https://github.com/nextcloud/nextcloud-vue/pull/3962) ([julien-nc](https://github.com/julien-nc))
+- Adjust some smart picker strings [\#3961](https://github.com/nextcloud/nextcloud-vue/pull/3961) ([julien-nc](https://github.com/julien-nc))
+
+### :bug: Fixed bugs
+
+- fix\(NcHeaderMenu\): fix unnecessary filter invert [\#3974](https://github.com/nextcloud/nextcloud-vue/pull/3974) ([skjnldsv](https://github.com/skjnldsv))
+- Don't overwrite router-link href in NcBreadcrumb [\#3973](https://github.com/nextcloud/nextcloud-vue/pull/3973) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
+### Closed pull requests
+
+- Split Bootstrap version reference in Tooltip .scss [\#3979](https://github.com/nextcloud/nextcloud-vue/pull/3979) ([danxuliu](https://github.com/danxuliu))
+- Remove unused tooltip directive [\#3967](https://github.com/nextcloud/nextcloud-vue/pull/3967) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Add placeholder for heading inside of app content [\#3957](https://github.com/nextcloud/nextcloud-vue/pull/3957) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+- Fix native open in a new tab in components with a custom router link [\#3954](https://github.com/nextcloud/nextcloud-vue/pull/3954) ([ShGKme](https://github.com/ShGKme))
+
 ## [v7.9.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.9.0) (2023-04-04)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.8.5...v7.9.0)
