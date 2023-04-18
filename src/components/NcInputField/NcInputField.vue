@@ -34,7 +34,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 
 <template>
 	<div class="input-field">
-		<label v-if="!labelOutside && label !== undefined"
+		<label v-if="!labelOutside && isValidLabel"
 			class="input-field__label"
 			:class="{ 'input-field__label--hidden': !labelVisible }"
 			:for="computedId">
@@ -283,20 +283,13 @@ export default {
 				return this.hasPlaceholder ? this.placeholder : this.label
 			}
 		},
-	},
-
-	watch: {
-		label() {
-			this.validateLabel()
+		isValidLabel() {
+			const isValidLabel = this.label || this.labelOutside
+			if (!isValidLabel) {
+				console.warn('You need to add a label to the NcInputField component. Either use the prop label or use an external one, as per the example in the documentation.')
+			}
+			return isValidLabel
 		},
-
-		labelOutside() {
-			this.validateLabel()
-		},
-	},
-
-	created() {
-		this.validateLabel()
 	},
 
 	methods: {
@@ -306,12 +299,6 @@ export default {
 
 		handleTrailingButtonClick(event) {
 			this.$emit('trailing-button-click', event)
-		},
-
-		validateLabel() {
-			if (!this.label && !this.labelOutside) {
-				console.warn('You need to add a label to the NcInputField component. Either use the prop label or use an external one, as per the example in the documentation.')
-			}
 		},
 	},
 }
