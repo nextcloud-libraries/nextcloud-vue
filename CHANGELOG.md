@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 
 ### :bug: Fixed bugs
 
+- Fix inverted validate label check in NcInputField [\#3980](https://github.com/nextcloud/nextcloud-vue/pull/3980) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - fix\(NcHeaderMenu\): fix unnecessary filter invert [\#3974](https://github.com/nextcloud/nextcloud-vue/pull/3974) ([skjnldsv](https://github.com/skjnldsv))
 - Don't overwrite router-link href in NcBreadcrumb [\#3973](https://github.com/nextcloud/nextcloud-vue/pull/3973) ([raimund-schluessler](https://github.com/raimund-schluessler))
 
