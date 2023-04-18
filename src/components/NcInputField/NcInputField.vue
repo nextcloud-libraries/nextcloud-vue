@@ -310,7 +310,7 @@ export default {
 
 		validateLabel() {
 			if (!this.label && !this.labelOutside) {
-				throw new Error('You need to add a label to the NcInputField component. Either use the prop label or use an external one, as per the example in the documentation.')
+				console.warn('You need to add a label to the NcInputField component. Either use the prop label or use an external one, as per the example in the documentation.')
 			}
 		},
 	},
