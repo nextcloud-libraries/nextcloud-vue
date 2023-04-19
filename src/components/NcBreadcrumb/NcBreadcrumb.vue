@@ -29,7 +29,7 @@ This component is meant to be used inside a Breadcrumbs component.
 </docs>
 
 <template>
-	<div ref="crumb"
+	<li ref="crumb"
 		class="vue-crumb"
 		:class="{'vue-crumb--hovered': hovering}"
 		:[crumbId]="''"
@@ -68,7 +68,7 @@ This component is meant to be used inside a Breadcrumbs component.
 			<slot />
 		</NcActions>
 		<ChevronRight class="vue-crumb__separator" :size="20" />
-	</div>
+	</li>
 </template>
 
 <script>

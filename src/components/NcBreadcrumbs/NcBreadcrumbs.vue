@@ -523,6 +523,12 @@ export default {
 
 				props: this.menuBreadcrumbProps,
 
+				attrs: {
+					// Hide the dropdown menu from screen-readers,
+					// since the crumbs in the menu are still in the list.
+					'aria-hidden': true,
+				},
+
 				// Add a ref to the Actions menu
 				ref: 'actionsBreadcrumb',
 				key: 'actions-breadcrumb-1',
@@ -595,7 +601,7 @@ export default {
 			this.hideCrumbs(crumbs2, crumbs.length - 1)
 		}
 
-		const wrapper = [h('div', { class: 'breadcrumb__crumbs' }, crumbs)]
+		const wrapper = [h('nav', {}, [h('ul', { class: 'breadcrumb__crumbs' }, crumbs)])]
 		// Append the actions slot if it is populated
 		if (this.$slots.actions) {
 			wrapper.push(h('div', { class: 'breadcrumb__actions', ref: 'breadcrumb__actions' }, this.$slots.actions))
