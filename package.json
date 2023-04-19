@@ -54,7 +54,7 @@
 		"@nextcloud/router": "^2.0.0",
 		"@nextcloud/vue-select": "^3.21.2",
 		"@skjnldsv/sanitize-svg": "^1.0.2",
-		"@vueuse/components": "^9.13.0",
+		"@vueuse/components": "^10.0.2",
 		"clone": "^2.1.2",
 		"debounce": "1.2.1",
 		"emoji-mart-vue-fast": "^12.0.1",
