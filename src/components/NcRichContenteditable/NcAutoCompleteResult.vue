@@ -67,6 +67,10 @@ export default {
 			type: String,
 			required: true,
 		},
+		iconUrl: {
+			type: String,
+			default: null,
+		},
 		source: {
 			type: String,
 			required: true,
@@ -78,6 +82,10 @@ export default {
 	},
 	computed: {
 		avatarUrl() {
+			if (this.iconUrl) {
+				return this.iconUrl
+			}
+
 			return this.id && this.source === 'users'
 				? this.getAvatarUrl(this.id, 44)
 				: null
