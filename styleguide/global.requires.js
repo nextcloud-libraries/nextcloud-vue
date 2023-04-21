@@ -113,10 +113,10 @@ Vue.prototype.OCA = window.OCA
 window.NextcloudVueDocs = {
 	tags: [
 		{
-			id: 7,
-			displayName: 'tag1',
+			id: 1,
+			displayName: 'secret',
 			userVisible: true,
-			userAssignable: true,
+			userAssignable: false,
 			canAssign: true,
 		},
 		{
@@ -141,13 +141,6 @@ window.NextcloudVueDocs = {
 			canAssign: true,
 		},
 		{
-			id: 1,
-			displayName: 'secret',
-			userVisible: true,
-			userAssignable: false,
-			canAssign: true,
-		},
-		{
 			id: 5,
 			displayName: 'test',
 			userVisible: true,
@@ -161,7 +154,15 @@ window.NextcloudVueDocs = {
 			userAssignable: false,
 			canAssign: true,
 		},
+		{
+			id: 7,
+			displayName: 'tag1',
+			userVisible: true,
+			userAssignable: true,
+			canAssign: true,
+		},
 	],
+	lastUsedTagIds: [7, 2, 3, 4, 1, 5, 6],
 }
 
 Vue.directive('tooltip', VTooltip)

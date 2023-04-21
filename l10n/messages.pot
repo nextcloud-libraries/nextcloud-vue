@@ -86,6 +86,9 @@ msgstr ""
 msgid "External documentation for {title}"
 msgstr ""
 
+msgid "Failed to load last used tags"
+msgstr ""
+
 msgid "Failed to load tags"
 msgstr ""
 

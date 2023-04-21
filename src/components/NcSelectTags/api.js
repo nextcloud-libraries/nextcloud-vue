@@ -21,7 +21,9 @@
  *
  */
 
+import axios from '@nextcloud/axios'
 import camelCase from 'camelcase'
+import { generateUrl } from '@nextcloud/router'
 
 import { davClient } from './davClient.js'
 import logger from '../../utils/logger.js'
@@ -61,5 +63,20 @@ export const fetchTags = async () => {
 	} catch (error) {
 		logger.error(t('Failed to load tags'), { error })
 		throw new Error(t('Failed to load tags'))
+	}
+}
+
+export const fetchLastUsedTagIds = async () => {
+	if (window.NextcloudVueDocs) {
+		return window.NextcloudVueDocs.lastUsedTagIds
+	}
+
+	const url = generateUrl('/apps/systemtags/lastused')
+	try {
+		const { data: lastUsedTagIds } = await axios.get(url)
+		return lastUsedTagIds.map(Number)
+	} catch (error) {
+		logger.error(t('Failed to load last used tags'), { error })
+		throw new Error(t('Failed to load last used tags'))
 	}
 }
