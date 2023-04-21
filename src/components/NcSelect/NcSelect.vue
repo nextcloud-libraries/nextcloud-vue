@@ -1040,6 +1040,9 @@ body {
 				max-width: 100%;
 			}
 		}
+		.vs__selected-options {
+			flex-wrap: nowrap;
+		}
 	}
 }
 
