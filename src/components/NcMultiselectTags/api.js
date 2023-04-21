@@ -90,7 +90,7 @@ const xmlToTagList = (xml) => {
 
 const searchTags = async function() {
 	if (window.NextcloudVueDocs) {
-		return Promise.resolve(xmlToTagList(window.NextcloudVueDocs.tags))
+		return window.NextcloudVueDocs.tags
 	}
 
 	const result = await axios({

@@ -159,7 +159,7 @@ export default {
 import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
 import NcSelect from '../NcSelect/index.js'
 
-import { searchTags } from './api.js'
+import { fetchTags } from './api.js'
 import { t } from '../../l10n.js'
 
 export default {
@@ -337,7 +337,7 @@ export default {
 			return
 		}
 		try {
-			const result = await searchTags()
+			const result = await fetchTags()
 			this.availableTags = result
 		} catch (error) {
 			console.error('Loading systemtags failed', error)
