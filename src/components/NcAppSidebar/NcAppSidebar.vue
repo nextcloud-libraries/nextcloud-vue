@@ -198,7 +198,7 @@ export default {
 ```vue
 <template>
 	<div>
-		<NcMultiselect v-model="active" :options="['search-tab', 'settings-tab', 'share-tab']" />
+		<NcSelect v-model="active" :options="['search-tab', 'settings-tab', 'share-tab']" />
 		<NcAppSidebar
 			title="cat-picture.jpg"
 			subtitle="last edited 3 weeks ago"
