@@ -156,10 +156,12 @@ export default {
 </template>
 
 <script>
+import { showError } from '@nextcloud/dialogs'
+
 import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
 import NcSelect from '../NcSelect/index.js'
 
-import { searchTags } from './api.js'
+import { fetchLastUsedTagIds, fetchTags } from './api.js'
 import { t } from '../../l10n.js'
 
 export default {
@@ -286,7 +288,7 @@ export default {
 	data() {
 		return {
 			search: '',
-			availableTags: [],
+			sortedTags: [],
 		}
 	},
 
@@ -328,7 +330,7 @@ export default {
 			if (!this.fetchTags) {
 				return this.options
 			}
-			return this.availableTags
+			return this.sortedTags
 		},
 	},
 
@@ -337,10 +339,28 @@ export default {
 			return
 		}
 		try {
-			const result = await searchTags()
-			this.availableTags = result
+			const tags = await fetchTags()
+			const lastUsedOrder = await fetchLastUsedTagIds()
+
+			const lastUsedTags = []
+			const remainingTags = []
+
+			for (const tag of tags) {
+				if (lastUsedOrder.includes(tag.id)) {
+					lastUsedTags.push(tag)
+					continue
+				}
+				remainingTags.push(tag)
+			}
+
+			const sortByLastUsed = (a, b) => {
+				return lastUsedOrder.indexOf(a.id) - lastUsedOrder.indexOf(b.id)
+			}
+			lastUsedTags.sort(sortByLastUsed)
+
+			this.sortedTags = [...lastUsedTags, ...remainingTags]
 		} catch (error) {
-			console.error('Loading systemtags failed', error)
+			showError(t('Failed to load tags'))
 		}
 	},
 

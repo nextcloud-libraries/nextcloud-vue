@@ -55,6 +55,7 @@
 		"@nextcloud/vue-select": "^3.21.2",
 		"@skjnldsv/sanitize-svg": "^1.0.2",
 		"@vueuse/components": "^10.0.2",
+		"camelcase": "^7.0.1",
 		"clone": "^2.1.2",
 		"debounce": "1.2.1",
 		"emoji-mart-vue-fast": "^12.0.1",
@@ -81,7 +82,8 @@
 		"vue-color": "^2.8.1",
 		"vue-material-design-icons": "^5.1.2",
 		"vue-multiselect": "^2.1.6",
-		"vue2-datepicker": "^3.11.0"
+		"vue2-datepicker": "^3.11.0",
+		"webdav": "^5.0.0-r3"
 	},
 	"engines": {
 		"node": "^16.0.0",
