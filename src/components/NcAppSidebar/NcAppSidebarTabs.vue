@@ -233,9 +233,7 @@ export default {
 				}
 				return a.order - b.order
 			})
-			if (!this.activeTab) {
-				this.updateActive()
-			}
+			this.updateActive()
 		},
 
 		/**
