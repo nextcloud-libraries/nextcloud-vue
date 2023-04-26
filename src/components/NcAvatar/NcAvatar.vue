@@ -136,7 +136,7 @@ export default {
 		<NcPopover v-if="hasMenu"
 			placement="auto"
 			:container="menuContainer"
-			:open="contactsMenuOpenState"
+			:shown="contactsMenuOpenState"
 			@after-show="handlePopoverAfterShow"
 			@after-hide="handlePopoverAfterHide">
 			<NcPopoverMenu ref="popoverMenu" :menu="menu" />

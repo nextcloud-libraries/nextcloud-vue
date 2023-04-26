@@ -142,7 +142,7 @@ export default {
 		@update:value="$emit('update:value', value)">
 		<template #icon-calendar>
 			<NcPopover v-if="showTimezoneSelect"
-				:open.sync="showTimezonePopover"
+				:shown.sync="showTimezonePopover"
 				open-class="timezone-popover-wrapper">
 				<template #trigger>
 					<button class="datetime-picker-inline-icon"
