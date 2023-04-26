@@ -33,6 +33,11 @@ For the multiselect component, all events will be passed through. Please see the
 					<Pencil :size="20" />
 				</template>
 			</NcActionInput>
+			<NcActionInput :value.sync="text" :show-trailing-button="false">
+				<template #icon>
+					<Pencil :size="20" />
+				</template>
+			</NcActionInput>
 			<NcActionInput :value.sync="text">
 				<template #icon>
 					<Pencil :size="20" />
@@ -40,6 +45,12 @@ For the multiselect component, all events will be passed through. Please see the
 				This is the placeholder
 			</NcActionInput>
 			<NcActionInput type="password" :value.sync="text">
+				<template #icon>
+					<Key :size="20" />
+				</template>
+				Password placeholder
+			</NcActionInput>
+			<NcActionInput type="password" :value.sync="text" :show-trailing-button="false">
 				<template #icon>
 					<Key :size="20" />
 				</template>
@@ -191,7 +202,7 @@ For the multiselect component, all events will be passed through. Please see the
 								:disabled="disabled"
 								:input-class="{ focusable: isFocusable }"
 								trailing-button-icon="arrowRight"
-								:show-trailing-button="value !== '' && !disabled"
+								:show-trailing-button="showTrailingButton && value !== '' && !disabled"
 								v-bind="$attrs"
 								v-on="$listeners"
 								@trailing-button-click="$refs.form.requestSubmit()"
@@ -219,7 +230,7 @@ For the multiselect component, all events will be passed through. Please see the
 								:input-class="{ focusable: isFocusable }"
 								:type="type"
 								trailing-button-icon="arrowRight"
-								:show-trailing-button="value !== '' && !disabled"
+								:show-trailing-button="showTrailingButton && value !== '' && !disabled"
 								v-bind="$attrs"
 								v-on="$listeners"
 								@trailing-button-click="$refs.form.requestSubmit()"
@@ -348,6 +359,13 @@ export default {
 		ariaHidden: {
 			type: Boolean,
 			default: null,
+		},
+		/**
+		 * Attribute forwarded to the underlining NcPasswordField and NcTextField
+		 */
+		showTrailingButton: {
+			type: Boolean,
+			default: true,
 		},
 	},
 
