@@ -432,6 +432,7 @@ export default {
 		.timezone-popover-wrapper {
 			&__title {
 				padding: 4px 0;
+				padding-left: 14px; // Left-align with NcSelect text
 			}
 
 			// We overwrite the border radius of the input to account for the popover border-radius minus the padding
