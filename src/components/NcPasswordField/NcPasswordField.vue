@@ -97,7 +97,7 @@ export default {
 	<NcInputField v-bind="{...$attrs, ...$props }"
 		ref="inputField"
 		:type="isPasswordHidden ? 'password' : 'text'"
-		:show-trailing-button="true"
+		:show-trailing-button="showTrailingButton && true"
 		:trailing-button-label="trailingButtonLabelPassword"
 		:helper-text="computedHelperText"
 		:error="computedError"
@@ -180,6 +180,14 @@ export default {
 		maxlength: {
 			type: Number,
 			default: null,
+		},
+
+		/**
+		 * Controls whether to display the trailing button.
+		 */
+		showTrailingButton: {
+			type: Boolean,
+			default: true,
 		},
 	},
 
