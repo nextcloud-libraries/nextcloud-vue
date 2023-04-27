@@ -143,7 +143,7 @@ export default {
 		<template #icon-calendar>
 			<NcPopover v-if="showTimezoneSelect"
 				:shown.sync="showTimezonePopover"
-				open-class="timezone-popover-wrapper">
+				popover-base-class="timezone-select__popper">
 				<template #trigger>
 					<button class="datetime-picker-inline-icon"
 						:class="{'datetime-picker-inline-icon--highlighted': highlightTimezone}"
@@ -416,5 +416,48 @@ export default {
 	&:hover {
 		opacity: 1;
 	}
+}
+</style>
+
+<style lang="scss">
+// We overwrite the popover base class, so we can style
+// the popover for the timezone select only.
+.v-popper--theme-dropdown.v-popper__popper.timezone-select__popper .v-popper__wrapper {
+	border-radius: var(--border-radius-large);
+
+	.v-popper__inner {
+		padding: 4px;
+		border-radius: var(--border-radius-large);
+
+		.timezone-popover-wrapper {
+			&__title {
+				padding: 4px 0;
+				padding-left: 14px; // Left-align with NcSelect text
+			}
+
+			// We overwrite the border radius of the input to account for the popover border-radius minus the padding
+			&__timezone-select.v-select {
+				.vs__dropdown-toggle {
+					border-radius: calc(var(--border-radius-large) - 4px);
+				}
+
+				&.vs--open {
+					.vs__dropdown-toggle {
+						border-bottom-left-radius: 0;
+						border-bottom-right-radius: 0;
+					}
+					&.select--drop-up .vs__dropdown-toggle {
+						border-radius: 0 0 calc(var(--border-radius-large) - 4px) calc(var(--border-radius-large) - 4px);
+					}
+				}
+			}
+		}
+	}
+}
+
+// TODO: This should be scoped or targeted by a specific selector, but the NcSelect component does not allow this yet.
+.vs__dropdown-menu--floating {
+	// Higher z-index than the popover in which the NcSelect is located.
+	z-index: 100001;
 }
 </style>
