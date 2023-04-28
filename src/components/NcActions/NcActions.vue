@@ -604,6 +604,17 @@ export default {
 		},
 
 		/**
+		 * This disables the internal open management,
+		 * so the actions menu only respects the `open` prop.
+		 * This is e.g. necessary for the NcAvatar component
+		 * to only open the actions menu after loading it's entries has finished.
+		 */
+		manualOpen: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * Force the actions to display in a three dot menu
 		 */
 		forceMenu: {
@@ -717,7 +728,6 @@ export default {
 	},
 
 	emits: [
-		'update:open',
 		'open',
 		'update:open',
 		'close',
@@ -809,7 +819,6 @@ export default {
 			this.$emit('close')
 
 			// close everything
-			this.opened = false
 			this.focusIndex = 0
 
 			// focus back the menu button
@@ -1074,6 +1083,7 @@ export default {
 						placement: this.placement,
 						boundary: this.boundariesElement,
 						container: this.container,
+						...this.manualOpen && { triggers: [] },
 						popoverBaseClass: 'action-item__popper',
 					},
 					on: {
