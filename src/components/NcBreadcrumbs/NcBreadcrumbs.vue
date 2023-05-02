@@ -623,7 +623,7 @@ export default {
 		flex-shrink: 1;
 	}
 
-	& #{&}__crumbs {
+	nav {
 		flex-shrink: 1;
 		max-width: 100%;
 		/**
@@ -631,6 +631,10 @@ export default {
 		 * two times the width of a crumb with an icon (first crumb and hidden crumbs actions).
 		 */
 		min-width: 228px;
+	}
+
+	& #{&}__crumbs {
+		max-width: 100%;
 	}
 
 	& #{&}__crumbs,
