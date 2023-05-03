@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.11.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.0) (2023-05-03)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.10.0...v7.11.0)
+
+### :rocket: Enhancements
+
+- feat\(NcRichContenteditable\): Allow to pass in an icon URL [\#3984](https://github.com/nextcloud/nextcloud-vue/pull/3984) ([nickvergessen](https://github.com/nickvergessen))
+
+### :bug: Fixed bugs
+
+- Properly style timezone select in NcDatetimePicker [\#4014](https://github.com/nextcloud/nextcloud-vue/pull/4014) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- fix\(NcAvatar\): Use correct prop to track "open" aka. "shown" state [\#4009](https://github.com/nextcloud/nextcloud-vue/pull/4009) ([nickvergessen](https://github.com/nickvergessen))
+- feat\(NcRichContenteditable\): Support iconUrl on mention bubbles [\#4007](https://github.com/nextcloud/nextcloud-vue/pull/4007) ([nickvergessen](https://github.com/nickvergessen))
+- NcAppSidebarTabs: fix activating the tab being added [\#4004](https://github.com/nextcloud/nextcloud-vue/pull/4004) ([ShGKme](https://github.com/ShGKme))
+- Disable wrap on overflow [\#3996](https://github.com/nextcloud/nextcloud-vue/pull/3996) ([Pytal](https://github.com/Pytal))
+
+### Closed pull requests
+
+- Adjust breadcrumb CSS to new html structure [\#4026](https://github.com/nextcloud/nextcloud-vue/pull/4026) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Add aria-hidden attr to the whole navigation depending on a sidebar state [\#4016](https://github.com/nextcloud/nextcloud-vue/pull/4016) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+- Allow to override showTrailingButton from an NcAction [\#4010](https://github.com/nextcloud/nextcloud-vue/pull/4010) ([artonge](https://github.com/artonge))
+- Use NcSelect in NcAppSidebar example [\#4003](https://github.com/nextcloud/nextcloud-vue/pull/4003) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Improve breadcrumbs accessibility [\#3990](https://github.com/nextcloud/nextcloud-vue/pull/3990) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Update CHANGELOG for 7.10.0 [\#3986](https://github.com/nextcloud/nextcloud-vue/pull/3986) ([Pytal](https://github.com/Pytal))
+
 ## [v7.10.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.10.0) (2023-04-18)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.9.0...v7.10.0)
