@@ -83,7 +83,7 @@ export default {
 				: null
 		},
 		mentionText() {
-			return this.id.indexOf(' ') === -1
+			return !this.id.includes(' ') && !this.id.includes('/')
 				? `@${this.id}`
 				: `@"${this.id}"`
 		},

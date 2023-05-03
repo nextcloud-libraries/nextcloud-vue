@@ -116,7 +116,7 @@ export default {
 			// Fallback to @mention in case no data matches
 			if (!data) {
 				// return `@${value}`
-				return value.indexOf(' ') === -1
+				return !value.includes(' ') && !value.includes('/')
 					? `@${value}`
 					: `@"${value}"`
 			}
