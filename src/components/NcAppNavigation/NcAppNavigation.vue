@@ -59,15 +59,16 @@ emit('toggle-navigation', {
 		role="navigation"
 		:class="{'app-navigation--close':!open }">
 		<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
-		<slot />
+		<div :aria-hidden="ariaHidden" class="app-navigation__content">
+			<slot />
+			<!-- List for Navigation li-items -->
+			<ul class="app-navigation__list">
+				<slot name="list" />
+			</ul>
 
-		<!-- List for Navigation li-items -->
-		<ul class="app-navigation__list">
-			<slot name="list" />
-		</ul>
-
-		<!-- Footer for e.g. AppNavigationSettings -->
-		<slot name="footer" />
+			<!-- Footer for e.g. AppNavigationSettings -->
+			<slot name="footer" />
+		</div>
 	</div>
 </template>
 
@@ -90,6 +91,11 @@ export default {
 		return {
 			open: true,
 		}
+	},
+	computed: {
+		ariaHidden() {
+			return this.open ? 'false' : 'true'
+		},
 	},
 
 	watch: {
@@ -156,10 +162,6 @@ export default {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	display: flex;
-	flex-direction: column;
-	flex-grow: 0;
-	flex-shrink: 0;
 	background-color:  var(--color-main-background-blur, var(--color-main-background));
 	-webkit-backdrop-filter: var(--filter-background-blur, none);
 	backdrop-filter: var(--filter-background-blur, none);
@@ -182,6 +184,13 @@ export default {
 		flex-direction: column;
 		gap: var(--default-grid-baseline, 4px);
 		padding: calc(var(--default-grid-baseline, 4px) * 2);
+	}
+	&__content {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		flex-grow: 0;
+		flex-shrink: 0;
 	}
 }
 
