@@ -162,6 +162,8 @@ export default {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	flex-grow: 0;
+	flex-shrink: 0;
 	background-color:  var(--color-main-background-blur, var(--color-main-background));
 	-webkit-backdrop-filter: var(--filter-background-blur, none);
 	backdrop-filter: var(--filter-background-blur, none);
@@ -189,8 +191,6 @@ export default {
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		flex-grow: 0;
-		flex-shrink: 0;
 	}
 }
 
