@@ -39,7 +39,7 @@ export default {
 	},
 	computed: {
 		isVisible() {
-			return this.loading || this.referenceData
+			return this.loading || this.displayedReferences
 		},
 		values() {
 			return this.referenceData
