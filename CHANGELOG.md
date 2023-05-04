@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.11.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.1) (2023-05-04)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.0...v7.11.1)
+
+### :bug: Fixed bugs
+
+- fix\(NcRichContenteditable\): Also quote ids containing a slash [\#4031](https://github.com/nextcloud/nextcloud-vue/pull/4031) ([nickvergessen](https://github.com/nickvergessen))
+
 ## [v7.11.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.0) (2023-05-03)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.10.0...v7.11.0)
