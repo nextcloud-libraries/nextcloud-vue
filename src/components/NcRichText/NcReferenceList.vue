@@ -1,6 +1,6 @@
 <template>
-	<div class="widgets--list" :class="{'icon-loading': loading }">
-		<div v-for="reference in displayedReferences" :key="reference.openGraphObject.id">
+	<div v-if="isVisible" class="widgets--list" :class="{'icon-loading': loading }">
+		<div v-for="reference in displayedReferences" :key="reference?.openGraphObject?.id">
 			<NcReferenceWidget :reference="reference" />
 		</div>
 	</div>
@@ -38,6 +38,9 @@ export default {
 		}
 	},
 	computed: {
+		isVisible() {
+			return this.loading || this.referenceData
+		},
 		values() {
 			return this.referenceData
 				? this.referenceData
