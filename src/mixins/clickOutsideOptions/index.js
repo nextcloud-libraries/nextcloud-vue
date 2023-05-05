@@ -54,7 +54,7 @@ export default {
 				? this.excludeClickOutsideClasses
 				: [this.excludeClickOutsideClasses]
 
-			return { ignored: [...excludedQuerySelectors, ...excludeClickOutsideClasses.map(cls => `.${cls}`)] }
+			return { ignore: [...excludedQuerySelectors, ...excludeClickOutsideClasses.map(cls => `.${cls}`)] }
 		},
 	},
 }
