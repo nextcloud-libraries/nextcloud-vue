@@ -91,7 +91,7 @@ export default {
 				: null
 		},
 		haveStatus() {
-			return this.status?.icon || this.status?.status
+			return this.status?.icon || (this.status?.status && this.status?.status !== 'offline')
 		},
 	},
 

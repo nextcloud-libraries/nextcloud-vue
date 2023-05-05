@@ -90,10 +90,36 @@ export default {
 						clearAt: null,
 						icon: '🎡',
 						message: 'Having space in my name',
-						status: 'in space',
+						status: 'online',
 					},
 					subline: 'Visiting London',
-				}
+				},
+				'Test Offline': {
+					icon: 'icon-user',
+					id: 'Test Offline',
+					label: 'Test Offline',
+					source: 'users',
+					status: {
+						clearAt: null,
+						icon: null,
+						message: null,
+						status: 'offline',
+					},
+					subline: null,
+				},
+				'Test DND': {
+					icon: 'icon-user',
+					id: 'Test DND',
+					label: 'Test DND',
+					source: 'users',
+					status: {
+						clearAt: null,
+						icon: null,
+						message: 'Out sick',
+						status: 'dnd',
+					},
+					subline: 'Out sick',
+				},
 			}
 		}
 	},
