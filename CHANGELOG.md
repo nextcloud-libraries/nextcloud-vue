@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.11.2](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.2) (2023-05-05)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.1...v7.11.2)
+
+### :bug: Fixed bugs
+
+- fix: Fix regression to still display references [\#4039](https://github.com/nextcloud/nextcloud-vue/pull/4039) ([juliushaertl](https://github.com/juliushaertl))
+- fix: Avoid showing the reference list if no results were found [\#4036](https://github.com/nextcloud/nextcloud-vue/pull/4036) ([juliushaertl](https://github.com/juliushaertl))
+- fix\(NcAppNavigation\): fix flex element styles causing resizing sidebar [\#4035](https://github.com/nextcloud/nextcloud-vue/pull/4035) ([ShGKme](https://github.com/ShGKme))
+
 ## [v7.11.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.1) (2023-05-04)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.0...v7.11.1)
