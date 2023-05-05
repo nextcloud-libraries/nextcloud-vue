@@ -158,19 +158,19 @@ export default {
 	<NcAppSidebar
 		title="cat-picture.jpg"
 		subtitle="last edited 3 weeks ago">
-		<NcAppSidebarTab name="Search" id="search-tab" :order="3">
+		<NcAppSidebarTab name="Search" id="search-tab" order="3">
 			<template #icon>
 				<Magnify :size="20" />
 			</template>
 			Search tab content
 		</NcAppSidebarTab>
-		<NcAppSidebarTab name="Settings" id="settings-tab" :order="2">
+		<NcAppSidebarTab name="Settings" id="settings-tab" order="2">
 			<template #icon>
 				<Cog :size="20" />
 			</template>
 			Settings tab content
 		</NcAppSidebarTab>
-		<NcAppSidebarTab name="Sharing" id="share-tab" :order="1">
+		<NcAppSidebarTab name="Sharing" id="share-tab" order="1">
 			<template #icon>
 				<ShareVariant :size="20" />
 			</template>
