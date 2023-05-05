@@ -2,9 +2,8 @@
   - @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
-  - @author Ferdinand Thiessen <opensource@fthiessen.de>
   -
-  - @license AGPL-3.0-or-later
+  - @license GNU AGPL version 3 or any later version
   -
   - This program is free software: you can redistribute it and/or modify
   - it under the terms of the GNU Affero General Public License as
@@ -86,48 +85,9 @@ export default {
 ```vue
 <template>
 	<div>
-		<h4>Horizontal</h4>
-		<div style="display: flex">
-			<NcCheckboxRadioSwitch
-				:button-variant="true"
-				:checked.sync="sharingPermission"
-				value="r"
-				name="sharing_permission_radio"
-				type="radio"
-				button-variant-grouped="horizontal">
-				Default permission read
-			</NcCheckboxRadioSwitch>
-			<NcCheckboxRadioSwitch
-				:button-variant="true"
-				:checked.sync="sharingPermission"
-				value="rw"
-				name="sharing_permission_radio"
-				type="radio"
-				button-variant-grouped="horizontal">
-				Default permission read+write
-			</NcCheckboxRadioSwitch>
-		</div>
-		<h4>Vertically</h4>
-		<div style="width: fit-content">
-			<NcCheckboxRadioSwitch
-				:button-variant="true"
-				:checked.sync="sharingPermission"
-				value="r"
-				name="sharing_permission_radio"
-				type="radio"
-				button-variant-grouped="vertical">
-				Default permission read
-			</NcCheckboxRadioSwitch>
-			<NcCheckboxRadioSwitch
-				:button-variant="true"
-				:checked.sync="sharingPermission"
-				value="rw"
-				name="sharing_permission_radio"
-				type="radio"
-				button-variant-grouped="vertical">
-				Default permission read+write
-			</NcCheckboxRadioSwitch>
-		</div>
+		<NcCheckboxRadioSwitch :checked.sync="sharingPermission" value="r" name="sharing_permission_radio" type="radio" :button-variant="true" button-variant-grouped="vertical">Default permission read</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch :checked.sync="sharingPermission" value="rw" name="sharing_permission_radio" type="radio" :button-variant="true" button-variant-grouped="vertical">Default permission read+write</NcCheckboxRadioSwitch>
+		<br>
 		sharingPermission: {{ sharingPermission }}
 	</div>
 </template>
@@ -200,30 +160,21 @@ export default {
 		}"
 		:style="cssVars"
 		class="checkbox-radio-switch">
-		<input :id="id"
-			:checked="isChecked"
-			:disabled="disabled"
-			:indeterminate="indeterminate"
-			:name="name"
-			:type="inputType"
-			:value="value"
-			class="checkbox-radio-switch__input"
-			@change="onToggle">
 		<label :for="id" class="checkbox-radio-switch__label">
-			<div class="checkbox-radio-switch__icon">
-				<!-- @slot The checkbox/radio icon, you can use it for adding an icon to the button variant
-						@binding {bool} checked The input checked state
-						@binding {bool} loading The loading state
-				-->
-				<slot name="icon"
-					:checked="isChecked"
-					:loading="loading">
-					<NcLoadingIcon v-if="loading" />
-					<component :is="checkboxRadioIconElement"
-						v-else-if="!buttonVariant"
-						:size="size" />
-				</slot>
-			</div>
+			<input :id="id"
+				:checked="isChecked"
+				:disabled="disabled"
+				:indeterminate="indeterminate"
+				:name="name"
+				:type="inputType"
+				:value="value"
+				class="checkbox-radio-switch__input"
+				@change="onToggle">
+			<NcLoadingIcon v-if="loading" class="checkbox-radio-switch__icon" />
+			<component :is="checkboxRadioIconElement"
+				v-else-if="!buttonVariant"
+				:size="size"
+				class="checkbox-radio-switch__icon" />
 
 			<!-- @slot The checkbox/radio label -->
 			<slot />
@@ -517,6 +468,7 @@ $spacing: 4px;
 
 	&__label {
 		display: flex;
+		position: relative;
 		align-items: center;
 		user-select: none;
 		min-height: $clickable-area;
@@ -529,7 +481,7 @@ $spacing: 4px;
 		}
 	}
 
-	&__icon > * {
+	&__icon {
 		margin-right: $spacing;
 		// Remove the left margin of material design icons to align text
 		margin-left: -2px;
@@ -540,104 +492,75 @@ $spacing: 4px;
 
 	&--disabled &__label {
 		opacity: $opacity_disabled;
-		.checkbox-radio-switch__icon > * {
+		.checkbox-radio-switch__icon {
 			color: var(--color-main-text)
 		}
 	}
 
-	&:not(&--disabled, &--checked):focus-within &__label,
-	&:not(&--disabled, &--checked) &__label:hover {
-		background-color: var(--color-background-hover);
-	}
-
-	&--checked:not(&--disabled):focus-within &__label,
-	&--checked:not(&--disabled) &__label:hover {
-		background-color: var(--color-primary-light-hover);
+	&:not(&--disabled) &__label:hover,
+	&:not(&--disabled) &__label:focus-within {
+		background-color: var(--color-primary-light);
 	}
 
 	// Switch specific rules
-	&-switch:not(&--checked) &__icon > * {
+	&-switch:not(&--checked) &__icon {
 		color: var(--color-text-maxcontrast);
 	}
 
 	// If switch is checked AND disabled, use the fade primary colour
-	&-switch.checkbox-radio-switch--disabled.checkbox-radio-switch--checked &__icon > * {
+	&-switch.checkbox-radio-switch--disabled.checkbox-radio-switch--checked &__icon {
 		color: var(--color-primary-element-light);
 	}
 
-	$border-radius: calc(var(--default-clickable-area) / 2);
-	// keep inner border width in mind
-	$border-radius-outer: calc($border-radius + 2px);
-
 	&--button-variant &__label {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
+		border-radius: 0;
 		width: 100%;
 		margin: 0;
 	}
-	&--button-variant:not(&--button-variant-h-grouped) &__label {
-		align-items: flex-start;
-	}
 
-	&--button-variant:not(&--checked) &__icon > * {
-		color: var(--color-main-text);
-	}
-	&--button-variant &__icon {
-		flex-basis: 100%;
-
-		// Hide icon container if empty to remove virtual padding
-		&:empty {
-			display: none;
-		}
-	}
-
-	&--button-variant:not(&--button-variant-v-grouped):not(&--button-variant-h-grouped),
-	&--button-variant &__label {
-		border-radius: $border-radius;
+	&--button-variant:not(&--button-variant-v-grouped):not(&--button-variant-h-grouped) {
+		border-radius: var(--border-radius-large);
 	}
 
 	&--button-variant-v-grouped {
 		&:first-of-type {
-			border-top-left-radius: $border-radius-outer;
-			border-top-right-radius: $border-radius-outer;
+			border-top-left-radius: var(--border-radius-large);
+			border-top-right-radius: var(--border-radius-large);
 		}
 		&:last-of-type {
-			border-bottom-left-radius: $border-radius-outer;
-			border-bottom-right-radius: $border-radius-outer;
+			border-bottom-left-radius: var(--border-radius-large);
+			border-bottom-right-radius: var(--border-radius-large);
 		}
 
-		// remove borders between elements
-		&:not(:last-of-type) {
-			border-bottom: 0!important;
-			.checkbox-radio-switch__label {
-				margin-bottom: 2px;
-			}
+		// avoid double borders between elements
+		& + &:not(&.checkbox-radio-switch--checked) {
+			border-top: 0;
 		}
-		&:not(:first-of-type) {
-			border-top: 0!important;
+		& + &.checkbox-radio-switch--checked {
+			// as the selected element has all borders:
+			// small trick to cover the previous bottom border (only if there is one)
+			margin-top: -2px;
 		}
 	}
 
 	&--button-variant-h-grouped {
 		&:first-of-type {
-			border-top-left-radius: $border-radius-outer;
-			border-bottom-left-radius: $border-radius-outer;
+			border-top-left-radius: var(--border-radius-large);
+			border-bottom-left-radius: var(--border-radius-large);
 		}
 		&:last-of-type {
-			border-top-right-radius: $border-radius-outer;
-			border-bottom-right-radius: $border-radius-outer;
+			border-top-right-radius: var(--border-radius-large);
+			border-bottom-right-radius: var(--border-radius-large);
 		}
 
-		// remove borders between elements
-		&:not(:last-of-type) {
-			border-right: 0!important;
-			.checkbox-radio-switch__label {
-				margin-right: 2px;
-			}
+		// avoid double borders between elements
+		& + &:not(&.checkbox-radio-switch--checked) {
+			border-left: 0;
 		}
-		&:not(:first-of-type) {
-			border-left: 0!important;
+		& + &.checkbox-radio-switch--checked {
+			// as the selected element has all borders:
+			// small trick to cover the previous bottom border (only if there is one)
+			margin-left: -2px;
 		}
 	}
 
@@ -646,15 +569,16 @@ $spacing: 4px;
 		// better than setting border-radius on labels (producing a small gap)
 		overflow: hidden;
 
-		&__label {
-			text-overflow: ellipsis;
-		}
-
 		&--checked {
 			font-weight: bold;
+			border: 2px solid var(--color-primary-element-light);
+
+			&:hover {
+				border: 2px solid var(--color-primary);
+			}
 
 			label {
-				background-color: var(--color-primary-light);
+				background-color: var(--color-background-dark);
 			}
 		}
 	}

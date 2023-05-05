@@ -3,9 +3,8 @@
   - @copyright Copyright (c) 2020 Simon Belbeoch <simon.belbeoch@gmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
-  - @author Ferdinand Thiessen <opensource@fthiessen.de>
   -
-  - @license AGPL-3.0-or-later
+  - @license GNU AGPL version 3 or any later version
   -
   - This program is free software: you can redistribute it and/or modify
   - it under the terms of the GNU Affero General Public License as
@@ -38,25 +37,24 @@
 			@keydown.end.exact.prevent="focusLastTab"
 			@keydown.33.exact.prevent="focusFirstTab"
 			@keydown.34.exact.prevent="focusLastTab">
-			<NcCheckboxRadioSwitch v-for="tab in tabs"
-				:key="tab.id"
-				:aria-controls="`tab-${tab.id}`"
-				:aria-selected="activeTab === tab.id"
-				:button-variant="true"
-				:checked="activeTab === tab.id"
-				:data-id="tab.id"
-				:tabindex="activeTab === tab.id ? 0 : -1"
-				button-variant-grouped="horizontal"
-				class="app-sidebar-tabs__tab"
-				:class="{ active: tab.id === activeTab }"
-				role="tab"
-				type="radio"
-				@update:checked="setActive(tab.id)">
-				{{ tab.name }}
-				<template #icon>
-					<NcVNodes :vnodes="tab.renderIcon()" />
-				</template>
-			</NcCheckboxRadioSwitch>
+			<ul>
+				<li v-for="tab in tabs" :key="tab.id" class="app-sidebar-tabs__tab">
+					<a :id="tab.id"
+						:aria-controls="`tab-${tab.id}`"
+						:aria-selected="activeTab === tab.id"
+						:class="{ active: activeTab === tab.id }"
+						:data-id="tab.id"
+						:href="`#tab-${tab.id}`"
+						:tabindex="activeTab === tab.id ? 0 : -1"
+						role="tab"
+						@click.prevent="setActive(tab.id)">
+						<span class="app-sidebar-tabs__tab-icon">
+							<NcVNodes :vnodes="tab.renderIcon()" />
+						</span>
+						{{ tab.name }}
+					</a>
+				</li>
+			</ul>
 		</nav>
 
 		<!-- tabs content -->
@@ -70,13 +68,11 @@
 
 <script>
 import NcVNodes from '../NcVNodes/index.js'
-import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/index.js'
 
 export default {
 	name: 'NcAppSidebarTabs',
 
 	components: {
-		NcCheckboxRadioSwitch,
 		NcVNodes,
 	},
 
@@ -197,7 +193,7 @@ export default {
 		 * Focus the current active tab
 		 */
 		focusActiveTab() {
-			this.$el.querySelector(`[data-id="${this.activeTab}"]`).focus()
+			this.$el.querySelector('#' + this.activeTab).focus()
 		},
 
 		/**
@@ -261,16 +257,74 @@ export default {
 	flex: 1 1 100%;
 
 	&__nav {
-		display: flex;
-		justify-content: stretch;
 		margin-top: 10px;
-		padding: 0 4px;
+		ul {
+			display: flex;
+			justify-content: stretch;
+		}
+	}
+	&__tab {
+		display: block;
+		flex: 1 1;
+		min-width: 0;
+		text-align: center;
+		a {
+			position: relative;
+			display: block;
+			overflow: hidden;
+			padding: 25px 5px 5px 5px;
+			transition: color var(--animation-quick), opacity var(--animation-quick), border-color var(--animation-quick);
+			text-align: center;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			opacity: $opacity_normal;
+			color: var(--color-main-text);
+			border-bottom: 1px solid var(--color-border);
+
+			&:hover,
+			&:focus,
+			&:active,
+			&.active {
+				opacity: $opacity_full;
+				.app-sidebar-tabs__tab-icon {
+					opacity: $opacity_full;
+				}
+			}
+			&:not(.active):hover,
+			&:not(.active):focus {
+				border-bottom-color: var(--color-background-darker);
+				box-shadow: inset 0 -1px 0 var(--color-background-darker);
+			}
+			&.active {
+				color: var(--color-main-text);
+				border-bottom-color: var(--color-main-text);
+				box-shadow: inset 0 -1px 0 var(--color-main-text);
+				font-weight: bold;
+			}
+			// differentiate the two for accessibility purpose
+			// make sure the user knows she's focusing the navigation
+			// and can use arrows/home/pageup...
+			&:focus {
+				border-bottom-color: var(--color-primary-element);
+				box-shadow: inset 0 -1px 0 var(--color-primary-element);
+			}
+		}
 	}
 
-	&__tab {
-		flex: 1 1;
-		&.active {
-			color: var(--color-primary);
+	&__tab-icon {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 25px;
+		transition: opacity var(--animation-quick);
+		opacity: $opacity_normal;
+
+		& > span {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-size: 16px;
 		}
 	}
 
