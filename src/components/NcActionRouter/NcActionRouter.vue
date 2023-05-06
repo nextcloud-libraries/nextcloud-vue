@@ -38,9 +38,9 @@
 			</slot>
 
 			<!-- long text with name -->
-			<p v-if="nameTitleFallback">
+			<p v-if="name">
 				<strong class="action-router__title">
-					{{ nameTitleFallback }}
+					{{ name }}
 				</strong>
 				<br>
 				<!-- white space is shown on longtext, so we can't

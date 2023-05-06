@@ -40,14 +40,14 @@ This component is meant to be used inside a Breadcrumbs component.
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
 		<component :is="tag"
-			v-if="(nameTitleFallback || icon) && !$slots.default"
+			v-if="(name || icon) && !$slots.default"
 			:title="title"
 			v-bind="linkAttributes"
 			v-on="$listeners">
 			<!-- @slot Slot for passing a material design icon. Precedes the icon and title prop. -->
 			<slot name="icon">
 				<span v-if="icon" :class="icon" class="icon" />
-				<span v-else>{{ nameTitleFallback }}</span>
+				<span v-else>{{ name }}</span>
 			</slot>
 		</component>
 		<NcActions v-if="$slots.default"
@@ -55,7 +55,7 @@ This component is meant to be used inside a Breadcrumbs component.
 			type="tertiary"
 			:force-menu="forceMenu"
 			:open="open"
-			:menu-title="nameTitleFallback"
+			:menu-title="name"
 			:title="title"
 			:force-title="true"
 			:container="`.vue-crumb[${crumbId}]`"
@@ -86,19 +86,13 @@ export default {
 	props: {
 		/**
 		 * The main text content of the entry.
-		 * Previously called `title`, now deprecated
 		 */
 		name: {
 			type: String,
-			// TODO: Make it required in the next major release (see title prop)
-			default: null,
+			required: true,
 		},
 		/**
 		 * The title attribute of the element.
-		 *
-		 * ⚠ Using this prop as the main content text is DEPRECATED
-		 * Please use `name` instead. If you were planning to define the
-		 * html element title attribute, this is the proper way.
 		 */
 		title: {
 			type: String,
@@ -183,16 +177,6 @@ export default {
 		}
 	},
 	computed: {
-		/**
-		 * TODO: drop on the 8.0.0 major, see title/name prop
-		 */
-		nameTitleFallback() {
-			if (this.name === null) {
-				console.warn('The `name` prop is required. Please migrate away from the deprecated `title` prop.')
-				return this.title
-			}
-			return this.name
-		},
 		/**
 		 * Determines which element tag to use
 		 *

@@ -552,8 +552,7 @@ export default {
 				const href = crumb.componentOptions.propsData.href
 				const disabled = crumb.componentOptions.propsData.disableDrop
 				const title = crumb.componentOptions.propsData.title
-				// TODO: Remove this fallback once nameTitleFallback is removed from NcBreadcrumb
-				const name = crumb.componentOptions.propsData.name || title
+				const name = crumb.componentOptions.propsData.name
 
 				// Decide whether to show the breadcrumbs as ActionRouter or ActionLink
 				let element = 'NcActionLink'
@@ -573,7 +572,6 @@ export default {
 					props: {
 						href,
 						title,
-						name: '', // TODO: Remove this once nameTitleFallback is removed from actionText.js mixin
 						to,
 					},
 					// Prevent the breadcrumbs from being draggable
