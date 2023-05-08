@@ -52,7 +52,9 @@
 				role="tab"
 				type="radio"
 				@update:checked="setActive(tab.id)">
-				{{ tab.name }}
+				<span class="app-sidebar-tabs__tab-caption">
+					{{ tab.name }}
+				</span>
 				<template #icon>
 					<NcVNodes :vnodes="tab.renderIcon()" />
 				</template>
@@ -271,6 +273,15 @@ export default {
 		flex: 1 1;
 		&.active {
 			color: var(--color-primary);
+		}
+
+		&-caption {
+			flex: 0 1 100%;
+			width: 100%;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			text-align: center;
 		}
 	}
 
