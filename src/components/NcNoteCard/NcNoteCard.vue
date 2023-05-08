@@ -20,9 +20,10 @@
 
 <docs>
 This component is made to display additional information to the user. It is
-available in three versions:
+available in four versions:
 
 - success: Display a successful message
+- info: Display an informational message
 - warning: Display a warning to the user. This indicate that the action they want
 - error: Display an error message. For example
 
@@ -40,6 +41,10 @@ When using an error type,
 
 	<NcNoteCard type="success">
 		<p>You won</p>
+	</NcNoteCard>
+
+	<NcNoteCard type="info">
+		<p>For your information</p>
 	</NcNoteCard>
 </div>
 ```
@@ -66,6 +71,7 @@ When using an error type,
 import CheckboxMarkedCircle from 'vue-material-design-icons/CheckboxMarkedCircle.vue'
 import AlertDecagram from 'vue-material-design-icons/AlertDecagram.vue'
 import Alert from 'vue-material-design-icons/Alert.vue'
+import Information from 'vue-material-design-icons/Information.vue'
 
 export default {
 	name: 'NcNoteCard',
@@ -77,7 +83,7 @@ export default {
 		type: {
 			type: String,
 			default: 'warning',
-			validator: type => ['success', 'warning', 'error'].includes(type),
+			validator: type => ['success', 'info', 'warning', 'error'].includes(type),
 		},
 		showAlert: {
 			type: Boolean,
@@ -98,6 +104,8 @@ export default {
 				return AlertDecagram
 			case 'success':
 				return CheckboxMarkedCircle
+			case 'info':
+				return Information
 			case 'warning':
 				return Alert
 			default:
@@ -110,6 +118,8 @@ export default {
 				return 'var(--color-error)'
 			case 'success':
 				return 'var(--color-success)'
+			case 'info':
+				return 'var(--color-info)'
 			case 'warning':
 				return 'var(--color-warning)'
 			default:
@@ -141,6 +151,11 @@ export default {
 	&--success {
 		--note-background: rgba(var(--color-success-rgb), 0.1);
 		--note-theme: var(--color-success);
+	}
+
+	&--info {
+		--note-background: rgba(var(--color-info-rgb), 0.1);
+		--note-theme: var(--color-info);
 	}
 
 	&--error {
