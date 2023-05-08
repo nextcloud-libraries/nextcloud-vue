@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+# Changelog
+
+## [v7.11.3](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.3) (2023-05-08)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.2...v7.11.3)
+
+### :bug: Fixed bugs
+
+- fix\(NcAppSidebarTabs\): Revert major UI change (moved to version 8.0.x) [\#4044](https://github.com/nextcloud/nextcloud-vue/pull/4044) ([skjnldsv](https://github.com/skjnldsv))
+- fix\(NcRichContenteditable\): Fix avatar overlayed with empty space whe… [\#4043](https://github.com/nextcloud/nextcloud-vue/pull/4043) ([nickvergessen](https://github.com/nickvergessen))
+
+### Closed pull requests
+
+- Fix regression of click-outside-options mixin not working since using `@vueuse` [\#4046](https://github.com/nextcloud/nextcloud-vue/pull/4046) ([susnux](https://github.com/susnux))
+
 ## [v7.11.2](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.2) (2023-05-05)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.1...v7.11.2)
