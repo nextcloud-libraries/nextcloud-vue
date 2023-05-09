@@ -181,7 +181,7 @@ For the multiselect component, all events will be passed through. Please see the
 					:placeholder="text"
 					:disabled="disabled"
 					:append-to-body="false"
-					:class="{ focusable: isFocusable }"
+					:input-class="{ focusable: isFocusable }"
 					class="action-input__multi"
 					v-bind="$attrs"
 					v-on="$listeners" />
