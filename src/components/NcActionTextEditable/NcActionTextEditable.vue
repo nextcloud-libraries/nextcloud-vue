@@ -207,7 +207,6 @@ $input-margin: 4px;
 	cursor: pointer;
 	white-space: nowrap;
 
-	opacity: $opacity_normal;
 	color: var(--color-main-text);
 	border: 0;
 	border-radius: 0; // otherwise Safari will cut the border-radius area
@@ -216,11 +215,6 @@ $input-margin: 4px;
 
 	font-weight: normal;
 	line-height: $clickable-area;
-
-	&:hover,
-	&:focus {
-		opacity: $opacity_full;
-	}
 
 	& > span {
 		cursor: pointer;
@@ -283,8 +277,6 @@ $input-margin: 4px;
 		margin: 0;
 		padding: 7px 6px;
 
-		opacity: $opacity_full;
-		color: var(--color-text-maxcontrast);
 		border: 0;
 		border-radius: 50%;
 		/* Avoid background under border */
@@ -299,6 +291,8 @@ $input-margin: 4px;
 	/* Inputs inside popover supports text, submit & reset */
 	&__textarea {
 		flex: 1 1 auto;
+		color: inherit;
+		border-color: var(--color-border-maxcontrast);
 
 		min-height: #{$clickable-area * 2 - $input-margin * 2}; /* twice the element margin-y */
 		max-height: #{$clickable-area * 3 - $input-margin * 2}; /* twice the element margin-y */

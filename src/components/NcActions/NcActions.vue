@@ -1239,7 +1239,6 @@ export default {
 	}
 
 	&.action-item--open .action-item__menutoggle {
-		opacity: $opacity_full;
 		background-color: var(--open-background-color);
 	}
 }
