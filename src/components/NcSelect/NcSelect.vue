@@ -483,6 +483,11 @@ export default {
 		v-bind="propsToForward"
 		v-on="$listeners"
 		@search="searchString => search = searchString">
+		<template #search="{ attributes, events }">
+			<input :class="['vs__search', inputClass]"
+				v-bind="attributes"
+				v-on="events">
+		</template>
 		<template #open-indicator="{ attributes }">
 			<ChevronDown v-bind="attributes"
 				fill-color="var(--vs-controls-color)"
@@ -652,6 +657,16 @@ export default {
 		 */
 		filterBy: {
 			type: Function,
+			default: null,
+		},
+
+		/**
+		 * Class for the `input`
+		 *
+		 * Necessary for use in NcActionInput
+		 */
+		inputClass: {
+			type: [String, Object],
 			default: null,
 		},
 
@@ -887,6 +902,7 @@ export default {
 		propsToForward() {
 			const {
 				// Props handled by this component
+				inputClass,
 				noWrap,
 				placement,
 				userSelect,
