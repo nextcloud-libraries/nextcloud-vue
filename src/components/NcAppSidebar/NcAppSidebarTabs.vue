@@ -272,7 +272,7 @@ export default {
 	&__tab {
 		flex: 1 1;
 		&.active {
-			color: var(--color-primary);
+			color: var(--color-primary-element);
 		}
 
 		&-caption {

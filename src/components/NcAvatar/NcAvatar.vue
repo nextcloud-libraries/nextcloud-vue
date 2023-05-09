@@ -793,8 +793,8 @@ export default {
 			background-color: var(--color-background-hover);
 		}
 		.acli.active & {
-			border-color: var(--color-primary-light);
-			background-color: var(--color-primary-light);
+			border-color: var(--color-primary-element-light);
+			background-color: var(--color-primary-element-light);
 		}
 
 		&--online{
