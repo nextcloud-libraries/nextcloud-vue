@@ -1219,7 +1219,7 @@ export default {
 	}
 
 	&.action-item--secondary {
-		--open-background-color: var(--color-primary-light-hover);
+		--open-background-color: var(--color-primary-element-light-hover);
 	}
 
 	&.action-item--error {

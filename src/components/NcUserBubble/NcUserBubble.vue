@@ -303,7 +303,7 @@ export default {
 		background-color: var(--color-background-dark);
 
 		&--primary {
-			color: var(--color-primary-text);
+			color: var(--color-primary-element-text);
 			background-color: var(--color-primary-element);
 		}
 

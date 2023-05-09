@@ -147,8 +147,8 @@ export default {
 	overflow: auto;
 
 	&:focus {
-		border-color: var(--color-primary);
-		box-shadow: 0 0 0.2em var(--color-primary);
+		border-color: var(--color-primary-element);
+		box-shadow: 0 0 0.2em var(--color-primary-element);
 		outline: 0;
 	}
 

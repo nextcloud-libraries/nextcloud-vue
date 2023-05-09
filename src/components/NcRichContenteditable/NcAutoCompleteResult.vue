@@ -115,8 +115,8 @@ $autocomplete-padding: 10px;
 	padding: $autocomplete-padding;
 
 	.highlight & {
-		color: var(--color-main-text);
-		background: var(--color-primary-light);
+		color: var(--color-primary-element-light-text);
+		background: var(--color-primary-element-light);
 		&, * {
 			cursor: pointer;
 		}

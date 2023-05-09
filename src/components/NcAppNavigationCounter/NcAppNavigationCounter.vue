@@ -77,8 +77,8 @@ export default {
 
 	&--highlighted {
 		padding: 4px 6px;
-		color: var(--color-primary-text);
-		background-color: var(--color-primary);
+		color: var(--color-primary-element-text);
+		background-color: var(--color-primary-element);
 	}
 }
 

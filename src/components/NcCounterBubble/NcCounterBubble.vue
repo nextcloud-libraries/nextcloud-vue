@@ -92,12 +92,12 @@ export default {
 	color: var(--color-primary-element);
 
 	&--highlighted {
-		color: var(--color-primary-text);
-		background-color: var(--color-primary);
+		color: var(--color-primary-element-text);
+		background-color: var(--color-primary-element);
 	}
 
 	&--outlined {
-		color: var(--color-primary);
+		color: var(--color-primary-element);
 		background: transparent;
 		box-shadow: inset 0 0 0 2px;
 	}
