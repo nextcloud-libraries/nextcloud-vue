@@ -76,8 +76,8 @@ export default {
 				<input :id="id" type="submit" class="action-text-editable__submit">
 
 				<!-- name -->
-				<strong v-if="nameTitleFallback" class="action-text__title">
-					{{ nameTitleFallback }}
+				<strong v-if="name" class="action-text__title">
+					{{ name }}
 				</strong>
 
 				<textarea :disabled="disabled"

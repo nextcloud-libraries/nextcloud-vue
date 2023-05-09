@@ -228,7 +228,7 @@ Just set the `pinned` prop.
 					:aria-expanded="opened.toString()"
 					:href="href || routerLinkHref || '#'"
 					:target="isExternal(href) ? '_blank' : ''"
-					:title="title || nameTitleFallback"
+					:title="title || name"
 					@blur="handleBlur"
 					@click="onClick($event, navigate, routerLinkHref)"
 					@focus="handleFocus"
@@ -242,12 +242,12 @@ Just set the `pinned` prop.
 						<slot v-else-if="isIconShown" name="icon" />
 					</div>
 					<span v-if="!editingActive" class="app-navigation-entry__title">
-						{{ nameTitleFallback }}
+						{{ name }}
 					</span>
 					<div v-if="editingActive" class="editingContainer">
 						<NcInputConfirmCancel ref="editingInput"
 							v-model="editingValue"
-							:placeholder="editPlaceholder !== '' ? editPlaceholder : nameTitleFallback"
+							:placeholder="editPlaceholder !== '' ? editPlaceholder : name"
 							@cancel="cancelEditing"
 							@confirm="handleEditingDone" />
 					</div>
@@ -257,7 +257,7 @@ Just set the `pinned` prop.
 				<!-- undo entry -->
 				<div v-if="undo" class="app-navigation-entry__deleted">
 					<div class="app-navigation-entry__deleted-description">
-						{{ nameTitleFallback }}
+						{{ name }}
 					</div>
 				</div>
 
@@ -347,20 +347,14 @@ export default {
 	props: {
 		/**
 		 * The main text content of the entry.
-		 * Previously called `title`, now deprecated
 		 */
 		name: {
 			type: String,
-			// TODO: Make it required in the next major release (see title prop)
-			default: '',
+			required: true,
 		},
 
 		/**
 		 * The title attribute of the element.
-		 *
-		 * ⚠ Using this prop as the main content text is DEPRECATED
-		 * Please use `name` instead. If you were planning to define the
-		 * html element title attribute, this is the proper way.
 		 */
 		title: {
 			type: String,
@@ -561,17 +555,6 @@ export default {
 	},
 
 	computed: {
-		/**
-		 * TODO: drop on the 8.0.0 major, see title/name prop
-		 */
-		nameTitleFallback() {
-			if (!this.name) {
-				console.warn('The `name` prop is required. Please migrate away from the deprecated `title` prop.')
-				return this.title
-			}
-			return this.name
-		},
-
 		isRouterLink() {
 			return this.to && !this.href
 		},
@@ -665,7 +648,7 @@ export default {
 
 		// Edition methods
 		handleEdit() {
-			this.editingValue = this.nameTitleFallback
+			this.editingValue = this.name
 			this.editingActive = true
 			this.onMenuToggle(false)
 			this.$nextTick(() => {
@@ -676,8 +659,6 @@ export default {
 			this.editingActive = false
 		},
 		handleEditingDone() {
-			// @deprecated, please use `name` instead
-			this.$emit('update:title', this.editingValue)
 			this.$emit('update:name', this.editingValue)
 			this.editingValue = ''
 			this.editingActive = false
