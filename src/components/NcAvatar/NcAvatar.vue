@@ -135,7 +135,7 @@ export default {
 
 		<!-- Contact menu -->
 		<!-- We show a button if the menu is not loaded yet. -->
-		<NcButton v-if="hasMenu && menu.length==0"
+		<NcButton v-if="hasMenu && !menu.length"
 			:aria-label="t('Open contact menu')"
 			type="tertiary-no-background"
 			class="action-item action-item__menutoggle">
