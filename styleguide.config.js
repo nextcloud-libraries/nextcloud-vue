@@ -36,7 +36,7 @@ module.exports = async () => {
 				proxy: {
 					// redirect to the guest avatar endpoint
 					'/index.php/avatar': {
-						target: 'https://nextcloud.com/wp-content/themes/next/assets/img/common/nextcloud-square-logo.png',
+						target: 'https://raw.githubusercontent.com/nextcloud/promo/master/nextcloud-icon.png',
 						changeOrigin: true,
 						ignorePath: true,
 						secure: false,
