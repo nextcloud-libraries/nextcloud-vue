@@ -193,9 +193,6 @@ export default {
 
 		width: 1px;
 		height: 1px;
-		&:focus + .action-checkbox__label {
-			opacity: $opacity_full;
-		}
 	}
 
 	&__label {
@@ -206,7 +203,6 @@ export default {
 		padding: 0 !important;
 		padding-right: $icon-margin !important;
 
-		opacity: $opacity_normal;
 		// checkbox-width is 12px, border is 2
 		// (44 - 14 - 2) / 2 = 14
 		&::before {
@@ -218,13 +214,6 @@ export default {
 		&,
 		.action-checkbox__label {
 			cursor: pointer;
-		}
-	}
-
-	&:not(.action-checkbox--disabled):hover,
-	&:not(.action-checkbox--disabled):focus {
-		.action-checkbox__label {
-			opacity: $opacity_full;
 		}
 	}
 }

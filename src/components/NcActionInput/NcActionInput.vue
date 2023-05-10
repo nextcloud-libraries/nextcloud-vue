@@ -494,7 +494,6 @@ $input-margin: 4px;
 	cursor: pointer;
 	white-space: nowrap;
 
-	opacity: $opacity_normal;
 	color: var(--color-main-text);
 	border: 0;
 	border-radius: 0; // otherwise Safari will cut the border-radius area
@@ -502,11 +501,6 @@ $input-margin: 4px;
 	box-shadow: none;
 
 	font-weight: normal;
-
-	&:hover,
-	&:focus {
-		opacity: $opacity_full;
-	}
 
 	&__icon-wrapper {
 		display: flex;
