@@ -945,6 +945,9 @@ body {
 	--vs-state-disabled-color: var(--color-text-maxcontrast);
 	--vs-state-disabled-controls-color: var(--color-text-maxcontrast);
 	--vs-state-disabled-cursor: not-allowed;
+	--vs-disabled-bg: var(--color-background-dark);
+	--vs-disabled-color: var(--color-text-maxcontrast);
+	--vs-disabled-cursor: not-allowed;
 
 	/* Borders */
 	--vs-border-color: var(--color-border-maxcontrast);
@@ -998,13 +1001,13 @@ body {
 		margin-right: 2px;
 	}
 
-	&.vs--open .vs__dropdown-toggle {
-		border-color: var(--color-primary);
+	&.vs--open .vs__dropdown-toggle:not([disabled]) {
+		border-color: var(--color-primary-element);
 		border-bottom-color: transparent;
 	}
 
-	&:not(.vs--open) .vs__dropdown-toggle:hover {
-		border-color: var(--color-primary);
+	&:not(.vs--open) .vs__dropdown-toggle:hover:not([disabled]) {
+		border-color: var(--color-primary-element);
 	}
 
 	&--no-wrap {
@@ -1019,7 +1022,7 @@ body {
 			.vs__dropdown-toggle {
 				border-radius: 0 0 var(--vs-border-radius) var(--vs-border-radius);
 				border-top-color: transparent;
-				border-bottom-color: var(--color-primary);
+				border-bottom-color: var(--color-primary-element);
 			}
 		}
 	}
