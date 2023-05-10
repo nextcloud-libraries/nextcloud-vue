@@ -83,7 +83,6 @@ module.exports = async () => {
 					'src/components/NcDashboard*/*.vue',
 					'src/components/NcListItem*/*.vue',
 					'src/components/NcMultiselect*/*.vue',
-					'src/components/NcPopoverMenu/!(NcPopoverMenu).vue',
 					'src/components/NcRichContenteditable/!(NcRichContenteditable).vue',
 					'src/components/NcRichText*/*.vue',
 					'src/components/NcSelect*/*.vue',
