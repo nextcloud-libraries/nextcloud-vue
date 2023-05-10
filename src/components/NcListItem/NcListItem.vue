@@ -244,7 +244,7 @@
 
 							<!-- Second line, subtitle and counter -->
 							<div class="line-two"
-								:class="{'line-one--bold': bold}">
+								:class="{'line-two--bold': bold}">
 								<span v-if="hasSubtitle" class="line-two__subtitle">
 									<!-- @slot Slot for the second line of the component -->
 									<slot name="subtitle" />
