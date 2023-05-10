@@ -63,7 +63,7 @@ When you implement a translated string, import the `translate` or `translatePlur
 ```vue
 <template>
 	<element>
- 		{{ t('Choose') }} 
+		{{ t('Choose') }}
 	</element>
 </template>
 
@@ -105,13 +105,16 @@ export default {
 
 ## Styleguide
 
-When developing new components or extending compnents, make sure to also have some bits of related documentation like examples, where applicable.
+When developing new components or extending components, make sure to also have some bits of related documentation like examples, where applicable.
 To test components and the documentation in that context, you can run `npm run styleguide` to run a local server that serves the style guide
 with all the components.
 
 ### Using vue-devtools in Firefox
 
-If you want to use [vue-devtools](https://github.com/vuejs/vue-devtools) in Firefox, you need to patch your nextcloud instance as follow:
+If you want to use [vue-devtools](https://github.com/vuejs/vue-devtools) in Firefox, you need to:
+
+* Either enable the [HMR Enabler](https://github.com/nextcloud/hmr_enabler) app …
+* … or patch your nextcloud instance as follows:
 
 ```diff
 diff --git a/lib/public/AppFramework/Http/ContentSecurityPolicy.php b/lib/public/AppFramework/Http/ContentSecurityPolicy.php
@@ -138,13 +141,13 @@ index 0e3a6a705d..416b8b0fb9 100644
 - Checkout a new branch with the tag name (e.g `v4.0.1`): `git checkout -b v<version>`;
 - Run `npm version patch --no-git-tag-version` (`npm version minor --no-git-tag-version` if minor). This will return a new version name, make sure it matches what you expect;
 - Commit, push and create PR;
-- Add the change log content from the 'Changelog' action on Github to `CHANGELOG.md`;
+- Add the change log content from the 'Changelog' action on GitHub to `CHANGELOG.md`;
 - Commit and push;
 - Get your PR reviewed and merged;
-- Create a milestone with the follow up version at https://github.com/nextcloud/nextcloud-vue/milestones
-- Move all open tickets and PRs to the follow up
+- Create a milestone with the follow-up version at https://github.com/nextcloud/nextcloud-vue/milestones
+- Move all open tickets and PRs to the follow-up
 - Close the milestone of the version you release
-- Create a release on github with the version as tag (e.g `v4.0.1`) and add the changelog content as description (https://github.com/nextcloud/nextcloud-vue/releases);
+- Create a release on GitHub with the version as tag (e.g `v4.0.1`) and add the changelog content as description (https://github.com/nextcloud/nextcloud-vue/releases);
   ![image](https://user-images.githubusercontent.com/14975046/124442568-2a952500-dd7d-11eb-82a2-402f9170231a.png)
 
 <a href="https://www.netlify.com">
