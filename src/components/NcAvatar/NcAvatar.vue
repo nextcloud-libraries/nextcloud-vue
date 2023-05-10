@@ -112,7 +112,8 @@ export default {
 		v-click-outside="closeMenu"
 		:class="{
 			'avatardiv--unknown': userDoesNotExist,
-			'avatardiv--with-menu': hasMenu
+			'avatardiv--with-menu': hasMenu,
+			'avatardiv--with-menu-loading': contactsMenuLoading
 		}"
 		:title="tooltip"
 		:style="avatarStyle"
@@ -120,7 +121,7 @@ export default {
 		:tabindex="hasMenu ? '0' : undefined"
 		:aria-label="avatarAriaLabel"
 		:role="hasMenu ? 'button' : undefined"
-		v-on="hasMenu ? { click: toggleMenu } : {}"
+		@click="toggleMenu"
 		@keydown.enter="toggleMenu">
 		<!-- @slot Icon slot -->
 		<slot name="icon">
@@ -133,20 +134,32 @@ export default {
 		</slot>
 
 		<!-- Contact menu -->
-		<NcPopover v-if="hasMenu"
-			placement="auto"
-			:container="menuContainer"
-			:shown="contactsMenuOpenState"
-			@after-show="handlePopoverAfterShow"
-			@after-hide="handlePopoverAfterHide">
-			<NcPopoverMenu ref="popoverMenu" :menu="menu" />
-			<template #trigger>
+		<!-- We show a button if the menu is not loaded yet. -->
+		<NcButton v-if="hasMenu && menu.length==0"
+			:aria-label="t('Open contact menu')"
+			type="tertiary-no-background"
+			class="action-item action-item__menutoggle">
+			<template #icon>
 				<NcLoadingIcon v-if="contactsMenuLoading" />
-				<DotsHorizontal v-else
-					:size="20"
-					class="icon-more" />
+				<DotsHorizontal v-else :size="20" />
 			</template>
-		</NcPopover>
+		</NcButton>
+		<NcActions v-else-if="hasMenu"
+			force-menu
+			manual-open
+			type="tertiary-no-background"
+			:container="menuContainer"
+			:open="contactsMenuOpenState">
+			<NcActionLink v-for="(item, key) in menu"
+				:key="key"
+				:href="item.href"
+				:icon="item.icon">
+				{{ item.text }}
+			</NcActionLink>
+			<template v-if="contactsMenuLoading" #icon>
+				<NcLoadingIcon />
+			</template>
+		</NcActions>
 
 		<!-- Avatar status -->
 		<div v-if="showUserStatusIconOnAvatar" class="avatardiv__user-status avatardiv__user-status--icon">
@@ -168,8 +181,9 @@ export default {
 </template>
 
 <script>
-import NcPopover from '../NcPopover/index.js'
-import NcPopoverMenu from '../NcPopoverMenu/index.js'
+import NcActions from '../NcActions/index.js'
+import NcActionLink from '../NcActionLink/index.js'
+import NcButton from '../NcButton/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import usernameToColor from '../../functions/usernameToColor/index.js'
 import { userStatus } from '../../mixins/index.js'
@@ -215,9 +229,10 @@ export default {
 	},
 	components: {
 		DotsHorizontal,
+		NcActions,
+		NcActionLink,
+		NcButton,
 		NcLoadingIcon,
-		NcPopover,
-		NcPopoverMenu,
 	},
 	mixins: [userStatus],
 	props: {
@@ -331,15 +346,6 @@ export default {
 		isNoUser: {
 			type: Boolean,
 			default: false,
-		},
-
-		/**
-		 * Choose the avatar menu alignment.
-		 * Possible values are `left`, `center`, `right`.
-		 */
-		menuPosition: {
-			type: String,
-			default: 'center',
 		},
 
 		/**
@@ -467,7 +473,7 @@ export default {
 				return {
 					href: item.hyperlink,
 					icon: item.icon,
-					longtext: item.title,
+					text: item.title,
 				}
 			})
 
@@ -531,16 +537,7 @@ export default {
 	},
 
 	methods: {
-		handlePopoverAfterShow() {
-			const links = this.$refs.popoverMenu.$el.getElementsByTagName('a')
-			if (links.length) {
-				links[0].focus()
-			}
-		},
-		handlePopoverAfterHide() {
-			// bring focus back to the trigger
-			this.$refs.main.focus()
-		},
+		t,
 		handleUserStatusUpdated(state) {
 			if (this.user === state.userId) {
 				this.userStatus = {
@@ -710,27 +707,37 @@ export default {
 
 	&--with-menu {
 		cursor: pointer;
-		:deep(.v-popper) {
+		.action-item {
 			position: absolute;
 			top: 0;
 			left: 0;
 		}
-		.icon-more {
+		:deep(.action-item__menutoggle) {
 			cursor: pointer;
 			opacity: 0;
 		}
 		&:focus,
-		&:hover {
-			.icon-more {
+		&:hover,
+		&#{&}-loading {
+			:deep(.action-item__menutoggle) {
 				opacity: 1;
 			}
 			img {
 				opacity: 0.3;
 			}
 		}
-		.icon-more,
+		:deep(.action-item__menutoggle),
 		img {
 			transition: opacity var(--animation-quick);
+		}
+		:deep() {
+			.button-vue,
+			.button-vue__icon {
+				height: var(--size);
+				min-height: var(--size);
+				width: var(--size) !important;
+				min-width: var(--size);
+			}
 		}
 	}
 
