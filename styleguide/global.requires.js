@@ -46,7 +46,7 @@ window.OC = {
 		}
 	},
 	generateUrl() {
-		return 'https://nextcloud.com/wp-content/themes/next/assets/img/common/nextcloud-square-logo.png'
+		return 'https://raw.githubusercontent.com/nextcloud/promo/master/nextcloud-icon.png'
 	},
 	getLanguage() {
 		return 'en'
