@@ -4,6 +4,37 @@ All notable changes to this project will be documented in this file.
 
 # Changelog
 
+## [v7.11.4](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.4) (2023-05-11)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.3...v7.11.4)
+
+### :boom: Breaking changes
+
+- Remove deprecated popovermenu component [\#4081](https://github.com/nextcloud/nextcloud-vue/pull/4081) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Migrate from deprecated title prop [\#4052](https://github.com/nextcloud/nextcloud-vue/pull/4052) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
+### :rocket: Enhancements
+
+- Emit event when NcAppContent list pane is resized [\#4071](https://github.com/nextcloud/nextcloud-vue/pull/4071) ([julien-nc](https://github.com/julien-nc))
+
+### :bug: Fixed bugs
+
+- Fix NcListItem wrong bold class [\#4083](https://github.com/nextcloud/nextcloud-vue/pull/4083) ([julien-nc](https://github.com/julien-nc))
+- fix\(styleguide\): Fix URL replacement to not be 404 [\#4080](https://github.com/nextcloud/nextcloud-vue/pull/4080) ([nickvergessen](https://github.com/nickvergessen))
+- fix\(NcSelect\): Fix disabled state of NcSelect with dark mode [\#4079](https://github.com/nextcloud/nextcloud-vue/pull/4079) ([nickvergessen](https://github.com/nickvergessen))
+- fix\(readme\): Fix some typos and mention HMR enabler app [\#4078](https://github.com/nextcloud/nextcloud-vue/pull/4078) ([nickvergessen](https://github.com/nickvergessen))
+- fix\(NcSelect\): Action input usage [\#4066](https://github.com/nextcloud/nextcloud-vue/pull/4066) ([Pytal](https://github.com/Pytal))
+- fix\(NcRichContenteditable\): Fix avatar overlayed with empty space whe… [\#4043](https://github.com/nextcloud/nextcloud-vue/pull/4043) ([nickvergessen](https://github.com/nickvergessen))
+
+### Closed pull requests
+
+- Minor avatar cleanup [\#4082](https://github.com/nextcloud/nextcloud-vue/pull/4082) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix styles for long tab names in `NcAppSidebarTabs` [\#4064](https://github.com/nextcloud/nextcloud-vue/pull/4064) ([Antreesy](https://github.com/Antreesy))
+- chore\(release\): Release version to 7.11.3 [\#4062](https://github.com/nextcloud/nextcloud-vue/pull/4062) ([nickvergessen](https://github.com/nickvergessen))
+- enh\(NcActions\): Readability [\#4049](https://github.com/nextcloud/nextcloud-vue/pull/4049) ([Pytal](https://github.com/Pytal))
+- Fix regression of click-outside-options mixin not working since using `@vueuse` [\#4046](https://github.com/nextcloud/nextcloud-vue/pull/4046) ([susnux](https://github.com/susnux))
+- Use `NcActions` component for `NcAvatar` [\#4017](https://github.com/nextcloud/nextcloud-vue/pull/4017) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
 ## [v7.11.3](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.3) (2023-05-08)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.2...v7.11.3)
