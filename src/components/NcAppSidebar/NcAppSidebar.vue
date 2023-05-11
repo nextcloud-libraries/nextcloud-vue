@@ -1064,6 +1064,7 @@ $top-buttons-spacing: 6px;
 @media only screen and (max-width: 768px) {
 	.app-sidebar {
 		width: 100vw;
+		max-width: 100vw;
 	}
 }
 
