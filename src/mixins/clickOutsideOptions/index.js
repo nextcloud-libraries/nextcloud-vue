@@ -36,7 +36,7 @@ export default {
 			const excludedQuerySelectors = Array.isArray(this.excludeClickOutsideSelectors)
 				? this.excludeClickOutsideSelectors
 				: [this.excludeClickOutsideSelectors]
-			
+
 			return { ignore: excludedQuerySelectors }
 		},
 	},
