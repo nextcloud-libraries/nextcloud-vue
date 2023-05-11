@@ -955,10 +955,11 @@ export default {
 		.modal-container {
 			max-width: initial;
 			width: 100%;
-			max-height: initial;
-			height: calc(100% - var(--header-height));
+			max-height: calc(100% - var(--header-height));
+			height: unset;
 			position: absolute;
-			top: $header-height;
+			top: unset;
+			bottom: 0;
 			border-radius: 0;
 		}
 	}
