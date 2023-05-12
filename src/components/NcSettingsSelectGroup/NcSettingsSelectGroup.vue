@@ -28,35 +28,47 @@ Simple group selection option
 
 ```vue
 <template>
-	<NcSettingsSelectGroup
-		label="Group selection in admin settings">
-	</NcSettingsSelectGroup>
+	<div>
+		<NcSettingsSelectGroup
+			v-model="groups"
+			label="Group selection in admin settings">
+		</NcSettingsSelectGroup>
+
+		Selected groups: {{ JSON.stringify(groups) }}
+	</div>
 </template>
+
+<script>
+export default {
+	data() {
+		return {
+			groups: ['admin'],
+		}
+	},
+}
+</script>
 ```
 </docs>
 
 <template>
-	<NcMultiselect :value="inputValue"
+	<NcSelect v-model="inputValue"
 		:options="groupsArray"
 		:options-limit="5"
 		:placeholder="label"
-		track-by="id"
 		label="displayname"
-		class="multiselect-vue"
 		:multiple="true"
 		:close-on-select="false"
-		:tag-width="60"
 		:disabled="disabled"
 		@input="update"
-		@search-change="findGroup">
+		@search="findGroup">
 		<template #noResult>
 			<span>{{ t( 'No results') }}</span>
 		</template>
-	</NcMultiselect>
+	</NcSelect>
 </template>
 
 <script>
-import NcMultiselect from '../../components/NcMultiselect/index.js'
+import NcSelect from '../../components/NcSelect/index.js'
 import { t } from '../../l10n.js'
 import l10n from '../../mixins/l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
@@ -68,7 +80,7 @@ import { generateOcsUrl } from '@nextcloud/router'
 export default {
 	name: 'NcSettingsSelectGroup',
 	components: {
-		NcMultiselect,
+		NcSelect,
 	},
 	mixins: [l10n],
 	props: {
@@ -117,7 +129,7 @@ export default {
 	},
 	computed: {
 		inputValue() {
-			return this.getValueObject
+			return this.value
 		},
 		getValueObject() {
 			return this.value.filter((group) => group !== '' && typeof group !== 'undefined').map(
@@ -143,7 +155,7 @@ export default {
 		async findGroup(query) {
 			try {
 				query = typeof query === 'string' ? encodeURI(query) : ''
-				const response = await axios.get(generateOcsUrl(`cloud/groups/details?search=${query}&limit=10`, 2))
+				const response = await this.searchGroups(query)
 
 				if (Object.keys(response.data.ocs.data.groups).length > 0) {
 					response.data.ocs.data.groups.forEach((element) => {
@@ -159,6 +171,28 @@ export default {
 			}
 			return false
 		},
+
+		async searchGroups(query) {
+			if (window.NextcloudVueDocs) {
+				return Promise.resolve(
+					{
+						data: {
+							ocs: {
+								data: {
+									groups: [
+										{id: 'admin', displayname: 'admin'},
+										{id: 'test', displayname: 'Test group'},
+									]
+								}
+							}
+						}
+					}
+
+				)
+			}
+
+			return await axios.get(generateOcsUrl(`cloud/groups/details?search=${query}&limit=10`, 2))
+		}
 	},
 }
 </script>
