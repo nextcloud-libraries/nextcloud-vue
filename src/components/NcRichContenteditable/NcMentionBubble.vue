@@ -108,7 +108,7 @@ $bubble-avatar-size: $bubble-height - 2 * $bubble-padding;
 
 .mention-bubble {
 	&--primary &__content {
-		color: var(--color-primary-text);
+		color: var(--color-primary-element-text);
 		background-color: var(--color-primary-element);
 	}
 

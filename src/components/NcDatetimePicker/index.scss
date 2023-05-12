@@ -75,7 +75,7 @@ $cell_height: 32px;
 	.mx-datepicker-btn-confirm {
 		background-color: var(--color-primary-element);
 		border-color: var(--color-primary-element);
-		color: var(--color-primary-text) !important;
+		color: var(--color-primary-element-text) !important;
 		opacity: 1 !important;
 	}
 
@@ -150,7 +150,7 @@ $cell_height: 32px;
 				font-weight: bold;
 				&:hover,
 				&:focus {
-					color: var(--color-primary-text);
+					color: var(--color-primary-element-text);
 				}
 			}
 			&.in-range,
@@ -177,7 +177,7 @@ $cell_height: 32px;
 			&.active,
 			&.in-range {
 				opacity: $opacity_full;
-				color: var(--color-primary-text);
+				color: var(--color-primary-element-text);
 				background-color: var(--color-primary-element);
 				font-weight: bold;
 			}
@@ -382,7 +382,7 @@ $cell_height: 32px;
 				}
 			}
 			&.mx-active-week {
-				color: var(--color-primary-text);
+				color: var(--color-primary-element-text);
 				background-color: var(--color-primary-element);
 				// Remove cell feedback on selected rows
 				td {
@@ -411,7 +411,7 @@ $cell_height: 32px;
 		.mx-time-item {
 			&.active,
 			&:hover {
-				color: var(--color-primary-text);
+				color: var(--color-primary-element-text);
 				background-color: var(--color-primary-element);
 			}
 

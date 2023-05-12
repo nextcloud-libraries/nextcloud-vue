@@ -430,10 +430,10 @@ export default {
 	}
 
 	// Default button type
-	color: var(--color-primary-light-text);
-	background-color: var(--color-primary-light);
+	color: var(--color-primary-element-light-text);
+	background-color: var(--color-primary-element-light);
 	&:hover:not(:disabled) {
-		background-color: var(--color-primary-light-hover);
+		background-color: var(--color-primary-element-light-hover);
 	}
 
 	// Back to the default color for this button when active
@@ -495,7 +495,7 @@ export default {
 	&:focus-visible {
 		outline: 2px solid var(--color-main-text) !important;
 		&.button-vue--vue-tertiary-on-primary {
-			outline: 2px solid var(--color-primary-text);
+			outline: 2px solid var(--color-primary-element-text);
 			border-radius: var(--border-radius);
 			background-color: transparent;
 		}
@@ -506,7 +506,7 @@ export default {
 	// Primary
 	&--vue-primary {
 		background-color: var(--color-primary-element);
-		color: var(--color-primary-text);
+		color: var(--color-primary-element-text);
 		&:hover:not(:disabled) {
 			background-color: var(--color-primary-element-hover);
 		}
@@ -519,11 +519,11 @@ export default {
 
 	// Secondary
 	&--vue-secondary {
-		color: var(--color-primary-light-text);
-		background-color: var(--color-primary-light);
+		color: var(--color-primary-element-light-text);
+		background-color: var(--color-primary-element-light);
 		&:hover:not(:disabled) {
-			color: var(--color-primary-light-text);
-			background-color: var(--color-primary-light-hover);
+			color: var(--color-primary-element-light-text);
+			background-color: var(--color-primary-element-light-hover);
 		}
 	}
 
@@ -548,7 +548,7 @@ export default {
 
 	// Tertiary on primary color (like the header)
 	&--vue-tertiary-on-primary {
-		color: var(--color-primary-text);
+		color: var(--color-primary-element-text);
 		background-color: transparent;
 
 		&:hover:not(:disabled) {

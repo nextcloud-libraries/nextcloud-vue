@@ -601,7 +601,7 @@ export default {
 	&:active,
 	&.active {
 		.list-item {
-			background-color: var(--color-primary-light);
+			background-color: var(--color-primary-element-light);
 		}
 	}
 }
@@ -677,7 +677,7 @@ export default {
 		&:active,
 		&.active {
 			.list-item {
-				background-color: var(--color-primary-light-hover);
+				background-color: var(--color-primary-element-light-hover);
 			}
 		}
 	}

@@ -792,8 +792,8 @@ export default {
 
 	.highlight {
 		opacity: 1;
-		color: var(--color-main-text);
-		background: var(--color-primary-light);
+		color: var(--color-primary-element-light-text);
+		background: var(--color-primary-element-light);
 		&, * {
 			cursor: pointer;
 		}

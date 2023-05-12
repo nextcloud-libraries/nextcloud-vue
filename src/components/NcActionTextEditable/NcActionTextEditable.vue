@@ -318,7 +318,7 @@ $input-margin: 4px;
 				&:hover,
 				&:focus {
 					background-color: var(--color-primary-element);
-					color: var(--color-primary-text);
+					color: var(--color-primary-element-text);
 				}
 			}
 		}

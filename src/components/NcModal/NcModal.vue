@@ -877,11 +877,11 @@ export default {
 		position: absolute;
 		transition: opacity 250ms,
 			visibility 250ms;
-		color: var(--color-primary-text);
+		color: var(--color-primary-element-text);
 
 		&:focus-visible {
 			// Override NcButton focus styles
-			box-shadow: 0 0 0 2px var(--color-primary-text);
+			box-shadow: 0 0 0 2px var(--color-primary-element-text);
 			background-color: var(--color-box-shadow);
 		}
 

@@ -123,7 +123,7 @@ export default defineComponent({
 	emits: ['click'],
 	computed: {
 		indicatorColor() {
-			return this.error ? 'var(--color-error)' : (this.saving ? 'var(--color-primary)' : 'none')
+			return this.error ? 'var(--color-error)' : (this.saving ? 'var(--color-primary-element)' : 'none')
 		},
 	},
 })

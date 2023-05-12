@@ -1066,7 +1066,7 @@ body {
 }
 
 .vs__dropdown-menu {
-	border-color: var(--color-primary) !important;
+	border-color: var(--color-primary-element) !important;
 	padding: 4px !important;
 
 	&--floating {
