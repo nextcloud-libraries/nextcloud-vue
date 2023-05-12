@@ -83,12 +83,12 @@ export default {
 	color: var(--color-main-text);
 
 	&:hover{
-		color: var(--color-primary);
+		color: var(--color-primary-element);
 	}
 	&--open {
 		color: var(--color-main-text);
 		&:hover{
-			color: var(--color-primary);
+			color: var(--color-primary-element);
 		}
 	}
 }

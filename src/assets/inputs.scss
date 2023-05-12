@@ -78,7 +78,7 @@ textarea {
 	/* Primary action button, use sparingly */
 	&.primary {
 		cursor: pointer;
-		color: var(--color-primary-text);
+		color: var(--color-primary-element-text);
 		border-color: var(--color-primary-element);
 		background-color: var(--color-primary-element);
 
@@ -90,13 +90,13 @@ textarea {
 				background-color: var(--color-primary-element-light);
 			}
 			&:active {
-				color: var(--color-primary-text-dark);
+				color: var(--color-primary-element-text-dark);
 			}
 		}
 
 		&:disabled {
 			cursor: default;
-			color: var(--color-primary-text-dark);
+			color: var(--color-primary-element-text-dark);
 			// opacity is already defined to .5 if disabled
 			background-color: var(--color-primary-element);
 		}

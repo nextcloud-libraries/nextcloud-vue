@@ -98,7 +98,7 @@ This component allows the user to pick an emoji.
 		</template>
 		<Picker ref="picker"
 			:auto-focus="false /* We manage the input focus ourselves */"
-			color="var(--color-primary)"
+			color="var(--color-primary-element)"
 			:data="emojiIndex"
 			:emoji="previewFallbackEmoji"
 			:i18n="i18n"
@@ -331,7 +331,7 @@ export default {
 	}
 
 	.emoji-mart-search input:focus-visible {
-		box-shadow: inset 0 0 0 2px var(--color-primary);
+		box-shadow: inset 0 0 0 2px var(--color-primary-element);
 		outline: none;
 	}
 
@@ -348,7 +348,7 @@ export default {
 			padding: 12px 4px;
 			height: auto;
 			&:focus-visible {
-				/* box-shadow: inset 0 0 0 2px var(--color-primary); */
+				/* box-shadow: inset 0 0 0 2px var(--color-primary-element); */
 				outline: 2px solid var(--color-primary-element);
 			}
 		}

@@ -197,7 +197,7 @@ export default {
 	}
 
 	.menuitem.active {
-		border-left: 4px solid var(--color-primary);
+		border-left: 4px solid var(--color-primary-element);
 		border-radius: 0 var(--border-radius-large) var(--border-radius-large) 0 !important;
 	}
 </style>
