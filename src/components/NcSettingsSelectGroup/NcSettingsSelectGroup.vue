@@ -125,7 +125,7 @@ export default {
 	},
 	computed: {
 		inputValue() {
-			return this.getValueObject()
+			return this.getValueObject
 		},
 		getValueObject() {
 			return this.value.filter((group) => group !== '' && typeof group !== 'undefined').map(
