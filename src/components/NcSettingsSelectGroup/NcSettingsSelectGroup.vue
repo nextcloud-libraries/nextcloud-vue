@@ -21,6 +21,20 @@
   -
   -->
 
+<docs>
+Simple group selection option
+
+### Examples
+
+```vue
+<template>
+	<NcSettingsSelectGroup
+		label="Group selection in admin settings">
+	</NcSettingsSelectGroup>
+</template>
+```
+</docs>
+
 <template>
 	<NcMultiselect :value="inputValue"
 		:options="groupsArray"
