@@ -887,8 +887,7 @@ export default {
 	&.app-navigation-entry--no-icon,
 	&:hover, &:focus {
 		a .app-navigation-entry-icon {
-			// hides the icon
-			visibility: hidden;
+			visibility: visible;
 		}
 		.icon-collapse {
 			//shows the triangle button
