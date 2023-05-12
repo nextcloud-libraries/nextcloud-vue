@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 # Changelog
 
+## [v7.11.4](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.4) (2023-05-12)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.3...v7.11.4)
+
+### :rocket: Enhancements
+
+- feat\(NcActions\): Improve readability of action menu entries [\#4049](https://github.com/nextcloud/nextcloud-vue/pull/4049) ([Pytal](https://github.com/Pytal))
+- feat\(NcReferencePickerModal\): Allow setting modal size when registering a custom picker component [\#3866](https://github.com/nextcloud/nextcloud-vue/pull/3866) ([julien-nc](https://github.com/julien-nc))
+
+### :bug: Fixed bugs
+
+- fix\(NcListItem\): Fix wrong bold class [\#4083](https://github.com/nextcloud/nextcloud-vue/pull/4083) ([julien-nc](https://github.com/julien-nc))
+- fix\(NcSelect\): Fix disabled state of NcSelect with dark mode [\#4079](https://github.com/nextcloud/nextcloud-vue/pull/4079) ([nickvergessen](https://github.com/nickvergessen))
+- fix\(NcSelect\): Action input usage [\#4066](https://github.com/nextcloud/nextcloud-vue/pull/4066) ([Pytal](https://github.com/Pytal))
+
 ## [v7.11.3](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.3) (2023-05-08)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.2...v7.11.3)
