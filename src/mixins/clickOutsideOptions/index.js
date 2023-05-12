@@ -30,18 +30,6 @@ export default {
 			type: [String, Array],
 			default: () => [],
 		},
-
-		/**
-		 * A class-name or an array of class-names
-		 * to be ignored when clicking outside
-		 * an element
-		 *
-		 * @deprecated since 7.9.0, use `excludeClickOutsideSelectors` instead
-		 */
-		excludeClickOutsideClasses: {
-			type: [String, Array],
-			default: () => [],
-		},
 	},
 	computed: {
 		clickOutsideOptions() {
@@ -49,12 +37,7 @@ export default {
 				? this.excludeClickOutsideSelectors
 				: [this.excludeClickOutsideSelectors]
 
-			// TODO: Drop if prop is removed
-			const excludeClickOutsideClasses = Array.isArray(this.excludeClickOutsideClasses)
-				? this.excludeClickOutsideClasses
-				: [this.excludeClickOutsideClasses]
-
-			return { ignore: [...excludedQuerySelectors, ...excludeClickOutsideClasses.map(cls => `.${cls}`)] }
+			return { ignore: excludedQuerySelectors }
 		},
 	},
 }
