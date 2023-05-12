@@ -81,10 +81,7 @@ export default {
 	position: absolute;
 	z-index: 105; // above a, under button
 	color: var(--color-main-text);
-
-	&:hover{
-		color: var(--color-primary-element);
-	}
+	right: 0;
 	&--open {
 		color: var(--color-main-text);
 		&:hover{
