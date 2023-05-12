@@ -50,7 +50,9 @@ This component is to be used in the settings section of nextcloud.
 				class="settings-section__info"
 				role="note"
 				:aria-label="docTitleTranslated"
-				:title="docTitleTranslated">
+				:title="docTitleTranslated"
+				target="_blank"
+				rel="noreferrer nofollow">
 				<HelpCircle :size="20" />
 			</a>
 		</h2>
