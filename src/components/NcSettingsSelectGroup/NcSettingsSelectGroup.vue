@@ -81,14 +81,6 @@ export default {
 		},
 
 		/**
-		 * hint of the select group input
-		 */
-		hint: {
-			type: String,
-			default: '',
-		},
-
-		/**
 		 * id attribute of the select group element
 		 */
 		id: {
