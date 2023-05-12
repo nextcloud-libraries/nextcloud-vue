@@ -484,6 +484,15 @@ export default {
 	},
 
 	methods: {
+		/**
+		 * Focus the richContenteditable
+		 *
+		 * @public
+		 */
+		focus() {
+			this.$refs.contenteditable.focus()
+		},
+
 		getLink(item) {
 			// there is no way to get a tribute result asynchronously
 			// so we immediately insert a node and replace it when the result comes
