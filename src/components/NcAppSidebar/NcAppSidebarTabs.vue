@@ -56,7 +56,9 @@
 					{{ tab.name }}
 				</span>
 				<template #icon>
-					<NcVNodes :vnodes="tab.renderIcon()" />
+					<NcVNodes :vnodes="tab.renderIcon()">
+						<span :class="tab.icon" />
+					</NcVNodes>
 				</template>
 			</NcCheckboxRadioSwitch>
 		</nav>
