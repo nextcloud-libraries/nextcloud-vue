@@ -38,7 +38,6 @@
 
 <script>
 import NcButton from '../NcButton/index.js'
-import Tooltip from '../../directives/Tooltip/index.js'
 
 import { t } from '../../l10n.js'
 
@@ -49,10 +48,6 @@ export default {
 		NcButton,
 	},
 
-	directives: {
-		Tooltip,
-	},
-
 	props: {
 		icon: {
 			type: String,
@@ -61,14 +56,6 @@ export default {
 		title: {
 			type: String,
 			required: true,
-		},
-		subtitle: {
-			type: String,
-			default: null,
-		},
-		tooltip: {
-			type: String,
-			default: null,
 		},
 		url: {
 			type: String,
