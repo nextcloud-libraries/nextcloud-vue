@@ -27,6 +27,9 @@
 		<div id="app-settings__header">
 			<button class="settings-button"
 				type="button"
+				:aria-expanded="open ? 'true' : 'false'"
+				aria-controls="app-settings__content"
+				:aria-label="ariaLabel"
 				@click="toggleMenu">
 				<Cog class="settings-button__icon" :size="20" />
 				<span class="settings-button__label">{{ title }}</span>
@@ -76,6 +79,9 @@ export default {
 				this.closeMenu,
 				this.clickOutsideOptions,
 			]
+		},
+		ariaLabel() {
+			return t('Open settings menu')
 		},
 	},
 	methods: {
