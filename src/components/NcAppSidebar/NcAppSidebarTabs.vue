@@ -49,7 +49,9 @@
 						role="tab"
 						@click.prevent="setActive(tab.id)">
 						<span class="app-sidebar-tabs__tab-icon">
-							<NcVNodes :vnodes="tab.renderIcon()" />
+							<NcVNodes :vnodes="tab.renderIcon()">
+								<span :class="tab.icon" />
+							</NcVNodes>
 						</span>
 						{{ tab.name }}
 					</a>
