@@ -153,11 +153,11 @@ export default {
 </script>
 ```
 
-### Multiple actions with 2 items inline AND forced titles
+### Multiple actions with 2 items inline AND forced names
 
 ```vue
 <template>
-	<NcActions :force-title="true" :inline="2">
+	<NcActions :force-name="true" :inline="2">
 		<NcActionButton @click="showMessage('Add')">
 			<template #icon>
 				<Plus :size="20" />
@@ -253,11 +253,11 @@ export default {
 </script>
 ```
 
-### With menu title
+### With menu name
 
 ```vue
 <template>
-	<NcActions menu-title="Object management">
+	<NcActions menu-name="Object management">
 		<template #icon>
 			<Pencil :size="20" />
 		</template>
@@ -337,7 +337,7 @@ export default {
 
 ```vue
 <template>
-	<NcActions :primary="true" menu-title="Object management">
+	<NcActions :primary="true" menu-name="Object management">
 		<template #icon>
 			<Plus :size="20" />
 		</template>
@@ -489,7 +489,7 @@ export default {
 			</NcActionButton>
 		</NcActions>
 
-		<NcActions :type="current" menu-title="Choose a type">
+		<NcActions :type="current" menu-name="Choose a type">
 			<NcActionButton v-if="current" close-after-click @click="define()">
 				<template #icon>
 					<Delete :size="20" />
@@ -506,7 +506,7 @@ export default {
 			</NcActionButton>
 		</NcActions>
 
-		<NcActions :type="current"  menu-title="Choose a type">
+		<NcActions :type="current"  menu-name="Choose a type">
 			<template #icon>
 				<SelectColor :size="20" />
 			</template>
@@ -623,17 +623,17 @@ export default {
 		},
 
 		/**
-		 * Force the title to show for single actions
+		 * Force the name to show for single actions
 		 */
-		forceTitle: {
+		forceName: {
 			type: Boolean,
 			default: false,
 		},
 
 		/**
-		 * Specify the menu title
+		 * Specify the menu name
 		 */
-		menuTitle: {
+		menuName: {
 			type: String,
 			default: null,
 		},
@@ -748,8 +748,8 @@ export default {
 			// If requested, we use a primary button
 			return this.type || (this.primary
 				? 'primary'
-				// If it has a title, we use a secondary button
-				: this.menuTitle ? 'secondary' : 'tertiary')
+				// If it has a name, we use a secondary button
+				: this.menuName ? 'secondary' : 'tertiary')
 		},
 	},
 
@@ -996,11 +996,11 @@ export default {
 
 			const text = action?.componentOptions?.children?.[0]?.text?.trim?.()
 			const ariaLabel = action?.componentOptions?.propsData?.ariaLabel || text
-			const buttonText = this.forceTitle ? text : ''
+			const buttonText = this.forceName ? text : ''
 
 			let title = action?.componentOptions?.propsData?.title
 			// Show a default title for single actions if none is present
-			if (!(this.forceTitle || title)) {
+			if (!(this.forceName || title)) {
 				title = text
 			}
 
@@ -1017,7 +1017,7 @@ export default {
 					},
 					ref: action?.data?.ref,
 					props: {
-						// If it has a menuTitle, we use a secondary button
+						// If it has a menuName, we use a secondary button
 						type: this.type || (buttonText ? 'secondary' : 'tertiary'),
 						disabled: this.disabled || action?.componentOptions?.propsData?.disabled,
 						ariaHidden: this.ariaHidden,
@@ -1114,7 +1114,7 @@ export default {
 						},
 					}, [
 						h('template', { slot: 'icon' }, [triggerIcon]),
-						this.menuTitle,
+						this.menuName,
 					]),
 					h('div', {
 						class: {

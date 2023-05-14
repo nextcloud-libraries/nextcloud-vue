@@ -26,7 +26,7 @@
 <template>
 	<ul>
 		<NcListItem
-			:title="'Title of the element'"
+			:name="'Name of the element'"
 			:bold="false"
 			:details="'1h'"
 			:counter-number="44"
@@ -34,7 +34,7 @@
 			<template #icon>
 				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
-			<template #subtitle>
+			<template #subname>
 				In this slot you can put both text and other components such as icons
 			</template>
 			<template #indicator>
@@ -54,7 +54,7 @@
 			</template>
 		</NcListItem>
 		<NcListItem
-			:title="'Title of the element'"
+			:name="'Name of the element'"
 			:bold="false"
 			:force-display-actions="true"
 			:details="'1h'"
@@ -63,7 +63,7 @@
 			<template #icon>
 				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
-			<template #subtitle>
+			<template #subname>
 				In this slot you can put both text and other components such as icons
 			</template>
 			<template #actions>
@@ -79,12 +79,12 @@
 			</template>
 		</NcListItem>
 		<NcListItem
-			:title="'Title of the element'"
+			:name="'Name of the element'"
 			:bold="false">
 			<template #icon>
 				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
-			<template #subtitle>
+			<template #subname>
 				In this slot you can put both text and other components such as icons
 			</template>
 			<template #indicator>
@@ -104,13 +104,13 @@
 			</template>
 		</NcListItem>
 		<NcListItem
-			:title="'Title of the element'"
+			:name="'Name of the element'"
 			:bold="false"
 			:details="'1h'">
 			<template #icon>
 				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
-			<template #subtitle>
+			<template #subname>
 				In this slot you can put both text and other components such as icons
 			</template>
 			<template #indicator>
@@ -137,14 +137,14 @@
 ```
 <ul style="width: 350px;">
 	<NcListItem
-		:title="'Title of the element'"
+		:name="'Name of the element'"
 		:counter-number="1"
 		:compact="true" >
 		<template #icon>
 			<div class="icon-edit" />
 		</template>
-		<template #subtitle>
-			This one is with subtitle
+		<template #subname>
+			This one is with subname
 		</template>
 		<template #actions>
 			<NcActionButton>
@@ -156,21 +156,21 @@
 		</template>
 	</NcListItem>
 	<NcListItem
-		:title="'Title of the element'"
+		:name="'Name of the element'"
 		:compact="true" >
 		<template #icon>
 			<div class="icon-edit" />
 		</template>
 	</NcListItem>
 	<NcListItem
-		:title="'Title of the element'"
+		:name="'Name of the element'"
 		:counter-number="3"
 		:compact="true" >
 		<template #icon>
 			<div class="icon-edit" />
 		</template>
-		<template #subtitle>
-			This one is with subtitle
+		<template #subname>
+			This one is with subname
 		</template>
 		<template #actions>
 			<NcActionButton>
@@ -182,14 +182,14 @@
 		</template>
 	</NcListItem>
 	<NcListItem
-		:title="'Title of the element'"
+		:name="'Name of the element'"
 		:compact="true"
 		:counter-number="4"
 		href="https://nextcloud.com">
 		<template #icon>
 			<div class="icon-edit" />
 		</template>
-		<template #subtitle>
+		<template #subname>
 			This one is with an external link
 		</template>
 	</NcListItem>
@@ -231,10 +231,10 @@
 						<div class="list-item-content__main"
 							:class="{ 'list-item-content__main--oneline': oneLine }">
 
-							<!-- First line, title and details -->
+							<!-- First line, name and details -->
 							<div class="line-one">
-								<span class="line-one__title">
-									{{ title }}
+								<span class="line-one__name">
+									{{ name }}
 								</span>
 								<span v-if="showDetails"
 									class="line-one__details">
@@ -242,12 +242,12 @@
 								</span>
 							</div>
 
-							<!-- Second line, subtitle and counter -->
+							<!-- Second line, subname and counter -->
 							<div class="line-two"
 								:class="{'line-two--bold': bold}">
-								<span v-if="hasSubtitle" class="line-two__subtitle">
+								<span v-if="hasSubname" class="line-two__subname">
 									<!-- @slot Slot for the second line of the component -->
-									<slot name="subtitle" />
+									<slot name="subname" />
 								</span>
 
 								<!-- Counter and indicator -->
@@ -325,9 +325,9 @@ export default {
 		},
 
 		/**
-		 * Title (first line of text)
+		 * Name (first line of text)
 		 */
-		title: {
+		name: {
 			type: String,
 			required: true,
 		},
@@ -366,7 +366,7 @@ export default {
 		},
 
 		/**
-		 * Make subtitle bold
+		 * Make subname bold
 		 */
 		bold: {
 			type: Boolean,
@@ -444,7 +444,7 @@ export default {
 			hovered: false,
 			focused: false,
 			hasActions: false,
-			hasSubtitle: false,
+			hasSubname: false,
 			displayActionsOnHoverFocus: false,
 			menuOpen: false,
 			hasIndicator: false,
@@ -458,7 +458,7 @@ export default {
 		},
 
 		oneLine() {
-			return !this.hasSubtitle && !this.showDetails
+			return !this.hasSubname && !this.showDetails
 		},
 
 		showAdditionalElements() {
@@ -470,7 +470,7 @@ export default {
 		},
 
 		computedActionsAriaLabel() {
-			return this.actionsAriaLabel || t('Actions for item with title "{title}"', { title: this.title })
+			return this.actionsAriaLabel || t('Actions for item with name "{name}"', { name: this.name })
 		},
 
 	},
@@ -575,13 +575,13 @@ export default {
 			this.$emit('update:menuOpen', e)
 		},
 
-		// Check if subtitle and actions slots are populated
+		// Check if subname and actions slots are populated
 		checkSlots() {
 			if (this.hasActions !== !!this.$slots.actions) {
 				this.hasActions = !!this.$slots.actions
 			}
-			if (this.hasSubtitle !== !!this.$slots.subtitle) {
-				this.hasSubtitle = !!this.$slots.subtitle
+			if (this.hasSubname !== !!this.$slots.subname) {
+				this.hasSubname = !!this.$slots.subname
 			}
 			if (this.hasIndicator !== !!this.$slots.indicator) {
 				this.hasIndicator = !!this.$slots.indicator
@@ -691,7 +691,7 @@ export default {
 	margin: 0 auto 0 0;
 	overflow: hidden;
 
-	&__title {
+	&__name {
 		overflow: hidden;
 		flex-grow: 1;
 		cursor: pointer;
@@ -716,7 +716,7 @@ export default {
 		font-weight: bold;
 	}
 
-	&__subtitle {
+	&__subname {
 		overflow: hidden;
 		flex-grow: 1;
 		cursor: pointer;

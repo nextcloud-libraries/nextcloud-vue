@@ -77,7 +77,7 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 	</script>
 ```
 
-If you're using a long text you can specify a title
+If you're using a long text you can specify a name
 
 ```vue
 	<template>
@@ -197,7 +197,7 @@ export default {
 
 			<!-- long text with name -->
 			<p v-if="name">
-				<strong class="action-button__title">
+				<strong class="action-button__name">
 					{{ name }}
 				</strong>
 				<br>

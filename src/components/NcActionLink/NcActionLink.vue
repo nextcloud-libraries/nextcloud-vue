@@ -68,7 +68,7 @@ export default {
 
 			<!-- long text with name -->
 			<p v-if="name">
-				<strong class="action-link__title">
+				<strong class="action-link__name">
 					{{ name }}
 				</strong>
 				<br>

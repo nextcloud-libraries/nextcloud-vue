@@ -21,42 +21,42 @@
  -->
 <docs>
 Just nest the `AppSettingSections` component into `NcAppSettingsDialog`,
-providing the section's title prop. You can put your settings within each
+providing the section's name prop. You can put your settings within each
 `NcAppSettingsSection` component.
 
 ```vue
 <template>
 	<div>
 		<NcButton @click="settingsOpen = true">Show Settings</NcButton>
-		<NcAppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" title="Application settings">
-			<NcAppSettingsSection id="asci-title-1" title="Example title 1">
+		<NcAppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" name="Application settings">
+			<NcAppSettingsSection id="asci-name-1" name="Example name 1">
 				Some example content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-2" title="Example title 2">
+			<NcAppSettingsSection id="asci-name-2" name="Example name 2">
 				Some more content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-3" title="Example title 3">
+			<NcAppSettingsSection id="asci-name-3" name="Example name 3">
 				Some example content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-4" title="Example title 4">
+			<NcAppSettingsSection id="asci-name-4" name="Example name 4">
 				Some more content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-5" title="Example title 5">
+			<NcAppSettingsSection id="asci-name-5" name="Example name 5">
 				Some example content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-6" title="Example title 6">
+			<NcAppSettingsSection id="asci-name-6" name="Example name 6">
 				Some more content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-7" title="Example title 7">
+			<NcAppSettingsSection id="asci-name-7" name="Example name 7">
 				Some example content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-8" title="Example title 8">
+			<NcAppSettingsSection id="asci-name-8" name="Example name 8">
 				Some more content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-9" title="Example title 9">
+			<NcAppSettingsSection id="asci-name-9" name="Example name 9">
 				Some more content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-10" title="Example title 10">
+			<NcAppSettingsSection id="asci-name-10" name="Example name 10">
 				Some more content
 			</NcAppSettingsSection>
 		</NcAppSettingsDialog>
@@ -117,9 +117,9 @@ export default {
 		},
 
 		/**
-		 * Title of the settings
+		 * Name of the settings
 		 */
-		title: {
+		name: {
 			type: String,
 			default: '',
 		},
@@ -192,20 +192,20 @@ export default {
 			const navigationItems = slots.filter(vNode => vNode.componentOptions).map(vNode => {
 				return {
 					id: vNode.componentOptions.propsData?.id,
-					title: vNode.componentOptions.propsData?.title,
+					name: vNode.componentOptions.propsData?.name,
 				}
 			})
-			const navigationTitles = slots.map(item => item.title)
+			const navigationNames = slots.map(item => item.name)
 			const navigationIds = slots.map(item => item.id)
 
-			// Check for the uniqueness of section titles
+			// Check for the uniqueness of section names
 			navigationItems.forEach((element, index) => {
-				const newTitlesArray = [...navigationTitles]
+				const newNamesArray = [...navigationNames]
 				const newIdArray = [...navigationIds]
-				newTitlesArray.splice(index, 1)
+				newNamesArray.splice(index, 1)
 				newIdArray.splice(index, 1)
-				if (newTitlesArray.includes(element.title)) {
-					throw new Error(`Duplicate section title found: ${element}. Settings navigation sections must have unique section titles.`)
+				if (newNamesArray.includes(element.name)) {
+					throw new Error(`Duplicate section name found: ${element}. Settings navigation sections must have unique section names.`)
 				}
 				if (newIdArray.includes(element.id)) {
 					throw new Error(`Duplicate section id found: ${element}. Settings navigation sections must have unique section ids.`)
@@ -309,7 +309,7 @@ export default {
 				click: () => this.handleSettingsNavigationClick(item.id),
 				keydown: () => this.handleLinkKeydown(event, item.id),
 			},
-		}, item.title)])
+		}, item.name)])
 
 		// Return value of the render function
 		if (this.open) {
@@ -332,12 +332,12 @@ export default {
 						class: 'app-settings',
 					},
 				}, [
-					// app-settings title
+					// app-settings name
 					h('h2', {
 						attrs: {
-							class: 'app-settings__title',
+							class: 'app-settings__name',
 						},
-					}, this.title),
+					}, this.name),
 
 					// app-settings navigation + content
 					h(
@@ -379,7 +379,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	min-width: 0;
-	&__title {
+	&__name {
 		min-height: $clickable-area;
 		height: $clickable-area;
 		line-height: $clickable-area;

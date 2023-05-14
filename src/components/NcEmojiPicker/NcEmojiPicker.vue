@@ -107,7 +107,7 @@ This component allows the user to pick an emoji.
 			:per-line="8"
 			:picker-styles="{ width: '320px' }"
 			:show-preview="showPreview"
-			:title="previewFallbackTitle"
+			:title="previewFallbackName"
 			v-bind="$attrs"
 			@select="select">
 			<template #searchTemplate="slotProps">
@@ -167,7 +167,7 @@ export default {
 		/**
 		 * The fallback text in the preview section
 		 */
-		previewFallbackTitle: {
+		previewFallbackName: {
 			type: String,
 			default: t('Pick an emoji'),
 		},

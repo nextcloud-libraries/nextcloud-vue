@@ -32,7 +32,7 @@ depending on whether you require the Modal to stay within the DOM or not. Do not
 			:show.sync="modal"
 			@close="closeModal"
 			size="small"
-			title="Title"
+			name="Name"
 			:outTransition="true"
 			:hasNext="true"
 			:hasPrevious="true">
@@ -74,7 +74,7 @@ export default {
 		<NcModal
 			v-if="modal"
 			@close="closeModal"
-			title="Title inside modal">
+			name="Name inside modal">
 			<div class="modal__content">
 				<h2>Please enter your name</h2>
 				<NcTextField label="First Name" :value.sync="firstName" />
@@ -179,20 +179,20 @@ export default {
 			:style="cssVariables"
 			role="dialog"
 			aria-modal="true"
-			:aria-labelledby="'modal-title-' + randId"
+			:aria-labelledby="'modal-name-' + randId"
 			:aria-describedby="'modal-description-' + randId">
 			<!-- Header -->
 			<transition name="fade-visibility" appear>
 				<div class="modal-header">
-					<h2 v-if="title.trim() !== ''"
-						:id="'modal-title-' + randId"
-						class="modal-title">
-						{{ title }}
+					<h2 v-if="name.trim() !== ''"
+						:id="'modal-name-' + randId"
+						class="modal-name">
+						{{ name }}
 					</h2>
 					<div class="icons-menu">
 						<!-- Play-pause toggle -->
 						<button v-if="hasNext && enableSlideshow"
-							v-tooltip.auto="playPauseTitle"
+							v-tooltip.auto="playPauseName"
 							:class="{ 'play-pause-icons--paused': slideshowPaused }"
 							class="play-pause-icons"
 							type="button"
@@ -205,7 +205,7 @@ export default {
 								:size="iconSize"
 								class="play-pause-icons__pause" />
 							<span class="hidden-visually">
-								{{ playPauseTitle }}
+								{{ playPauseName }}
 							</span>
 
 							<!-- Progress circle, css animated -->
@@ -345,9 +345,9 @@ export default {
 
 	props: {
 		/**
-		 * Title to be shown with the modal
+		 * Name to be shown with the modal
 		 */
-		title: {
+		name: {
 			type: String,
 			default: '',
 		},
@@ -497,7 +497,7 @@ export default {
 		modalTransitionName() {
 			return `modal-${this.outTransition ? 'out' : 'in'}`
 		},
-		playPauseTitle() {
+		playPauseName() {
 			return this.playing ? t('Pause slideshow') : t('Start slideshow')
 		},
 		cssVariables() {
@@ -760,7 +760,7 @@ export default {
 		visibility: hidden;
 	}
 
-	.modal-title {
+	.modal-name {
 		overflow-x: hidden;
 		box-sizing: border-box;
 		width: 100%;
@@ -773,9 +773,9 @@ export default {
 		margin-bottom: 0;
 	}
 
-	// On wider screens the title can be centered
+	// On wider screens the name can be centered
 	@media only screen and (min-width: $breakpoint-mobile) {
-		.modal-title {
+		.modal-name {
 			padding-left: #{$clickable-area * 3}; // maximum actions is 3
 			text-align: center;
 		}

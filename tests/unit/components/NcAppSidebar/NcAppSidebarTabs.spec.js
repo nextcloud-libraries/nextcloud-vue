@@ -52,7 +52,7 @@ describe('NcAppSidebarTabs.vue', () => {
 			beforeEach(() => {
 				wrapper = mount(NcAppSidebarTabs, {
 					propsData: {
-						title: 'Sidebar title.',
+						name: 'Sidebar name.',
 					},
 					slots: {
 						default: ['<div />'],
@@ -71,7 +71,7 @@ describe('NcAppSidebarTabs.vue', () => {
 			beforeEach(() => {
 				wrapper = mount(NcAppSidebarTabs, {
 					propsData: {
-						title: 'Sidebar title.',
+						name: 'Sidebar name.',
 					},
 					slots: {
 						default: '<div />',

@@ -44,7 +44,7 @@ This component is meant to be used inside a Breadcrumbs component.
 			:title="title"
 			v-bind="linkAttributes"
 			v-on="$listeners">
-			<!-- @slot Slot for passing a material design icon. Precedes the icon and title prop. -->
+			<!-- @slot Slot for passing a material design icon. Precedes the icon and name prop. -->
 			<slot name="icon">
 				<span v-if="icon" :class="icon" class="icon" />
 				<span v-else>{{ name }}</span>
@@ -55,9 +55,9 @@ This component is meant to be used inside a Breadcrumbs component.
 			type="tertiary"
 			:force-menu="forceMenu"
 			:open="open"
-			:menu-title="name"
+			:menu-name="name"
 			:title="title"
-			:force-title="true"
+			:force-name="true"
 			:container="`.vue-crumb[${crumbId}]`"
 			@update:open="onOpenChange">
 			<template #icon>
@@ -128,7 +128,7 @@ export default {
 		},
 
 		/**
-		 * Set a css icon-class to show an icon instead of the title text.
+		 * Set a css icon-class to show an icon instead of the name text.
 		 */
 		icon: {
 			type: String,

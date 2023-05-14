@@ -24,7 +24,7 @@
 ### General description
 
 This component provides a way to include the standardised sidebar.
-The standard properties like title, subtitle, starred, etc. allow to automatically
+The standard properties like name, subname, starred, etc. allow to automatically
 include a standard-header like it's used by the files app.
 
 ### Standard usage
@@ -32,8 +32,8 @@ include a standard-header like it's used by the files app.
 ```vue
 <template>
 	<NcAppSidebar
-		title="cat-picture.jpg"
-		subtitle="last edited 3 weeks ago">
+		name="cat-picture.jpg"
+		subname="last edited 3 weeks ago">
 		<NcAppSidebarTab name="Search" id="search-tab">
 			<template #icon>
 				<Magnify :size="20" />
@@ -77,8 +77,8 @@ Single tab is rendered without navigation.
 <template>
 	<div>
 		<NcAppSidebar
-			title="cat-picture.jpg"
-			subtitle="last edited 3 weeks ago">
+			name="cat-picture.jpg"
+			subname="last edited 3 weeks ago">
 			<NcAppSidebarTab name="Settings" id="settings-tab">
 				<template #icon>
 					<Cog :size="20" />
@@ -108,8 +108,8 @@ export default {
 		<NcCheckboxRadioSwitch :checked.sync="showTabs[1]">Show settings tab</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch :checked.sync="showTabs[2]">Show sharing tab</NcCheckboxRadioSwitch>
 		<NcAppSidebar
-			title="cat-picture.jpg"
-			subtitle="last edited 3 weeks ago">
+			name="cat-picture.jpg"
+			subname="last edited 3 weeks ago">
 			<NcAppSidebarTab v-if="showTabs[0]" name="Search" id="search-tab">
 				<template #icon>
 					<Magnify :size="20" />
@@ -156,8 +156,8 @@ export default {
 ```vue
 <template>
 	<NcAppSidebar
-		title="cat-picture.jpg"
-		subtitle="last edited 3 weeks ago">
+		name="cat-picture.jpg"
+		subname="last edited 3 weeks ago">
 		<NcAppSidebarTab name="Search" id="search-tab" :order="3">
 			<template #icon>
 				<Magnify :size="20" />
@@ -200,8 +200,8 @@ export default {
 	<div>
 		<NcSelect v-model="active" :options="['search-tab', 'settings-tab', 'share-tab']" />
 		<NcAppSidebar
-			title="cat-picture.jpg"
-			subtitle="last edited 3 weeks ago"
+			name="cat-picture.jpg"
+			subname="last edited 3 weeks ago"
 			:active.sync="active">
 			<NcAppSidebarTab name="Search" id="search-tab">
 				<template #icon>
@@ -244,15 +244,15 @@ export default {
 </script>
 ```
 
-### Editable title
+### Editable name
 
 ```vue
 <template>
 	<NcAppSidebar
-		:title.sync="title"
-		:title-editable="true"
-		title-placeholder="Filename"
-		subtitle="last edited 3 weeks ago">
+		:name.sync="name"
+		:name-editable="true"
+		name-placeholder="Filename"
+		subname="last edited 3 weeks ago">
 		<!-- Insert your slots and tabs here -->
 	</NcAppSidebar>
 </template>
@@ -260,23 +260,23 @@ export default {
 	export default {
 		data() {
 			return {
-				title: 'cat-picture.jpg',
+				name: 'cat-picture.jpg',
 			}
 		},
 	}
 </script>
 ```
 
-### Editable title after click with custom tertiary action
+### Editable name after click with custom tertiary action
 
 ```vue
 <template>
 	<NcAppSidebar
-		:title="title"
-		:title-editable.sync="titleEditable"
-		:title-placeholder="titlePlaceholder"
-		:subtitle="subtitle"
-		@update:title="titleUpdate">
+		:name="name"
+		:name-editable.sync="nameEditable"
+		:name-placeholder="namePlaceholder"
+		:subname="subname"
+		@update:name="nameUpdate">
 		<template #tertiary-actions>
 			<form>
 				<input type="checkbox" @click="toggledCheckbox"/>
@@ -288,15 +288,15 @@ export default {
 	export default {
 		data() {
 			return {
-				title: 'cat-picture.jpg',
-				titlePlaceholder: 'Filename',
-				subtitle: 'last edited 3 weeks ago',
-				titleEditable: false
+				name: 'cat-picture.jpg',
+				namePlaceholder: 'Filename',
+				subname: 'last edited 3 weeks ago',
+				nameEditable: false
 			}
 		},
 		methods: {
-			titleUpdate(e) {
-				this.title = e
+			nameUpdate(e) {
+				this.name = e
 			},
 			toggledCheckbox() {
 				alert('toggle')
@@ -311,9 +311,9 @@ export default {
 ```vue
 	<template>
 		<NcAppSidebar
-			title="cat-picture.jpg"
+			name="cat-picture.jpg"
 			:empty="true">
-			<NcEmptyContent title="Content not found.">
+			<NcEmptyContent name="Content not found.">
 				<template #icon>
 					<Magnify :size="20" />
 				</template>
@@ -366,8 +366,8 @@ export default {
 					<div v-if="!empty"
 						:class="{
 							'app-sidebar-header__desc--with-tertiary-action': canStar || $slots['tertiary-actions'],
-							'app-sidebar-header__desc--editable': titleEditable && !subtitle,
-							'app-sidebar-header__desc--with-subtitle--editable': titleEditable && subtitle,
+							'app-sidebar-header__desc--editable': nameEditable && !subname,
+							'app-sidebar-header__desc--with-subname--editable': nameEditable && subname,
 							'app-sidebar-header__desc--without-actions': !$slots['secondary-actions'],
 						}"
 						class="app-sidebar-header__desc">
@@ -388,33 +388,33 @@ export default {
 							</slot>
 						</div>
 
-						<!-- title -->
-						<div class="app-sidebar-header__title-container">
-							<div class="app-sidebar-header__maintitle-container">
-								<!-- main title -->
-								<h2 v-show="!titleEditable"
-									v-linkify="{text: title, linkify: linkifyTitle}"
-									:aria-label="titleTooltip"
-									:title="titleTooltip"
-									class="app-sidebar-header__maintitle"
-									:tabindex="titleEditable ? 0 : undefined"
-									@click.self="editTitle">
-									{{ title }}
+						<!-- name -->
+						<div class="app-sidebar-header__name-container">
+							<div class="app-sidebar-header__mainname-container">
+								<!-- main name -->
+								<h2 v-show="!nameEditable"
+									v-linkify="{text: name, linkify: linkifyName}"
+									:aria-label="title"
+									:title="title"
+									class="app-sidebar-header__mainname"
+									:tabindex="nameEditable ? 0 : undefined"
+									@click.self="editName">
+									{{ name }}
 								</h2>
-								<template v-if="titleEditable">
-									<form v-click-outside="() => onSubmitTitle()"
-										class="app-sidebar-header__maintitle-form"
-										@submit.prevent="onSubmitTitle">
-										<input ref="titleInput"
+								<template v-if="nameEditable">
+									<form v-click-outside="() => onSubmitName()"
+										class="app-sidebar-header__mainname-form"
+										@submit.prevent="onSubmitName">
+										<input ref="nameInput"
 											v-focus
-											class="app-sidebar-header__maintitle-input"
+											class="app-sidebar-header__mainname-input"
 											type="text"
-											:placeholder="titlePlaceholder"
-											:value="title"
+											:placeholder="namePlaceholder"
+											:value="name"
 											@keydown.esc="onDismissEditing"
-											@input="onTitleInput">
+											@input="onNameInput">
 										<NcButton type="tertiary-no-background"
-											:aria-label="changeTitleTranslated"
+											:aria-label="changeNameTranslated"
 											native-type="submit">
 											<template #icon>
 												<ArrowRight :size="20" />
@@ -429,12 +429,12 @@ export default {
 									<slot name="secondary-actions" />
 								</NcActions>
 							</div>
-							<!-- secondary title -->
-							<p v-if="subtitle.trim() !== ''"
-								:aria-label="subtitleTooltip"
-								:title="subtitleTooltip"
-								class="app-sidebar-header__subtitle">
-								{{ subtitle }}
+							<!-- secondary name -->
+							<p v-if="subname.trim() !== ''"
+								:aria-label="subtitle"
+								:title="subtitle"
+								class="app-sidebar-header__subname">
+								{{ subname }}
 							</p>
 						</div>
 					</div>
@@ -516,28 +516,31 @@ export default {
 			type: String,
 			default: '',
 		},
-		title: {
+		name: {
 			type: String,
 			default: '',
 			required: true,
 		},
 
 		/**
-		 * Allow to edit the sidebar title.
+		 * Allow to edit the sidebar name.
 		 */
-		titleEditable: {
+		nameEditable: {
 			type: Boolean,
 			default: false,
 		},
-		titlePlaceholder: {
+		namePlaceholder: {
 			type: String,
 			default: '',
 		},
+		subname: {
+			type: String,
+			default: '',
+		},
+		/**
+		 * Title to display for the subname.
+		 */
 		subtitle: {
-			type: String,
-			default: '',
-		},
-		subtitleTooltip: {
 			type: String,
 			default: '',
 		},
@@ -599,20 +602,18 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-
 		/**
-		 * Linkify the title
+		 * Linkify the name
 		 */
-		linkifyTitle: {
+		linkifyName: {
 			type: Boolean,
 			default: false,
 		},
-
 		/**
-		 * Tooltip to display for the title.
+		 * Title to display for the name.
 		 * Can be set to the same text in case it's too long.
 		 */
-		titleTooltip: {
+		title: {
 			type: String,
 			default: '',
 		},
@@ -626,16 +627,16 @@ export default {
 		'opened',
 		'figure-click',
 		'update:starred',
-		'update:titleEditable',
-		'update:title',
+		'update:nameEditable',
+		'update:name',
 		'update:active',
-		'submit-title',
+		'submit-name',
 		'dismiss-editing',
 	],
 
 	data() {
 		return {
-			changeTitleTranslated: t('Change title'),
+			changeNameTranslated: t('Change name'),
 			closeTranslated: t('Close sidebar'),
 			favoriteTranslated: t('Favorite'),
 			isStarred: this.starred,
@@ -741,56 +742,56 @@ export default {
 			this.$emit('update:starred', this.isStarred)
 		},
 
-		editTitle() {
+		editName() {
 			/**
-			 * Emitted when the titleEditable value changes
+			 * Emitted when the nameEditable value changes
 			 *
 			 * @type {boolean}
 			 */
-			this.$emit('update:titleEditable', true)
-			// Focus the title input
-			if (this.titleEditable) {
+			this.$emit('update:nameEditable', true)
+			// Focus the name input
+			if (this.nameEditable) {
 				this.$nextTick(
-					() => this.$refs.titleInput.focus()
+					() => this.$refs.nameInput.focus()
 				)
 			}
 		},
 
 		/**
-		 * Emit title change event to parent component
+		 * Emit name change event to parent component
 		 *
 		 * @param {Event} event input event
 		 */
-		onTitleInput(event) {
+		onNameInput(event) {
 			/**
-			 * Emitted when the title value changes
+			 * Emitted when the name value changes
 			 *
 			 * @type {string|Date}
 			 */
-			this.$emit('update:title', event.target.value)
+			this.$emit('update:name', event.target.value)
 		},
 
 		/**
-		 * Emit when the title form edit confirm button is pressed in order
-		 * to change the title.
+		 * Emit when the name form edit confirm button is pressed in order
+		 * to change the name.
 		 *
 		 * @param {Event} event submit event
 		 */
-		onSubmitTitle(event) {
+		onSubmitName(event) {
 			// Disable editing
-			this.$emit('update:titleEditable', false)
+			this.$emit('update:nameEditable', false)
 			/**
-			 * Emitted when the title edit input has been submitted
+			 * Emitted when the name edit input has been submitted
 			 *
 			 * @type {Event}
 			 */
-			this.$emit('submit-title', event)
+			this.$emit('submit-name', event)
 		},
 		onDismissEditing() {
 			// Disable editing
-			this.$emit('update:titleEditable', false)
+			this.$emit('update:nameEditable', false)
 			/**
-			 * Emitted when the title edit has been cancelled
+			 * Emitted when the name edit has been cancelled
 			 *
 			 * @type {Event}
 			 */
@@ -815,10 +816,10 @@ $desc-vertical-padding: 18px;
 $desc-vertical-padding-compact: 10px;
 $desc-input-padding: 7px;
 
-// title and subtitle
-$desc-title-height: 30px;
-$desc-subtitle-height: 22px;
-$desc-height: $desc-title-height + $desc-subtitle-height;
+// name and subname
+$desc-name-height: 30px;
+$desc-subname-height: 22px;
+$desc-height: $desc-name-height + $desc-subname-height;
 
 $top-buttons-spacing: 6px;
 
@@ -953,13 +954,13 @@ $top-buttons-spacing: 6px;
 				padding-left: 6px;
 			}
 
-			&--editable .app-sidebar-header__maintitle-form,
-			&--with-subtitle--editable .app-sidebar-header__maintitle-form {
+			&--editable .app-sidebar-header__mainname-form,
+			&--with-subname--editable .app-sidebar-header__mainname-form {
 				margin-top: -2px;
 				margin-bottom: -2px;
 			}
 
-			&--with-subtitle--editable .app-sidebar-header__subtitle {
+			&--with-subname--editable .app-sidebar-header__subname {
 				margin-top: -2px;
 			}
 
@@ -980,25 +981,25 @@ $top-buttons-spacing: 6px;
 				}
 			}
 
-			// titles
-			.app-sidebar-header__title-container {
+			// names
+			.app-sidebar-header__name-container {
 				flex: 1 1 auto;
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
 				min-width: 0;
 
-				.app-sidebar-header__maintitle-container {
+				.app-sidebar-header__mainname-container {
 					display: flex;
 					align-items: center;
 					min-height: $clickable-area;
 
-					// main title
-					.app-sidebar-header__maintitle {
+					// main name
+					.app-sidebar-header__mainname {
 						padding: 0;
 						min-height: 30px;
 						font-size: 20px;
-						line-height: $desc-title-height;
+						line-height: $desc-name-height;
 
 						// Needs 'deep' as the link is generated by the linkify directive
 						&:deep(.linkified) {
@@ -1008,12 +1009,12 @@ $top-buttons-spacing: 6px;
 						}
 					}
 
-					.app-sidebar-header__maintitle-form {
+					.app-sidebar-header__mainname-form {
 						display: flex;
 						flex: 1 1 auto;
 						align-items: center;
 
-						input.app-sidebar-header__maintitle-input {
+						input.app-sidebar-header__mainname-input {
 							flex: 1 1 auto;
 							margin: 0;
 							padding: $desc-input-padding;
@@ -1032,9 +1033,9 @@ $top-buttons-spacing: 6px;
 					}
 				}
 
-				// shared between main and subtitle
-				.app-sidebar-header__maintitle,
-				.app-sidebar-header__subtitle {
+				// shared between main and subname
+				.app-sidebar-header__mainname,
+				.app-sidebar-header__subname {
 					overflow: hidden;
 					width: 100%;
 					margin: 0;
@@ -1042,8 +1043,8 @@ $top-buttons-spacing: 6px;
 					text-overflow: ellipsis;
 				}
 
-				// subtitle
-				.app-sidebar-header__subtitle {
+				// subname
+				.app-sidebar-header__subname {
 					padding: 0;
 					opacity: $opacity_normal;
 					font-size: var(--default-font-size);

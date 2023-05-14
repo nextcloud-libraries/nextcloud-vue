@@ -31,7 +31,7 @@
 					<img :src="icon">
 				</div>
 			</template>
-			{{ title }}
+			{{ name }}
 		</NcButton>
 	</li>
 </template>
@@ -53,7 +53,7 @@ export default {
 			type: String,
 			required: true,
 		},
-		title: {
+		name: {
 			type: String,
 			required: true,
 		},
@@ -65,7 +65,7 @@ export default {
 
 	data() {
 		return {
-			labelTranslated: t('Open link to "{resourceTitle}"', { resourceTitle: this.title }),
+			labelTranslated: t('Open link to "{resourceName}"', { resourceName: this.name }),
 		}
 	},
 

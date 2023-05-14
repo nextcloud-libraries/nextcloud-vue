@@ -11,7 +11,7 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
-msgid "Actions for item with title \"{title}\""
+msgid "Actions for item with name \"{name}\""
 msgstr ""
 
 msgid "Activities"
@@ -41,7 +41,7 @@ msgstr ""
 msgid "Cancel changes"
 msgstr ""
 
-msgid "Change title"
+msgid "Change name"
 msgstr ""
 
 msgid "Choose"
@@ -83,7 +83,7 @@ msgstr ""
 msgid "Error getting related resources. Please contact your system administrator if you have any questions."
 msgstr ""
 
-msgid "External documentation for {title}"
+msgid "External documentation for {name}"
 msgstr ""
 
 msgid "Favorite"
@@ -134,7 +134,7 @@ msgstr ""
 msgid "Objects"
 msgstr ""
 
-msgid "Open link to \"{resourceTitle}\""
+msgid "Open link to \"{resourceName}\""
 msgstr ""
 
 msgid "Open menu"

@@ -23,8 +23,8 @@
 					<CloseIcon />
 				</template>
 			</NcButton>
-			<h2 v-if="showModalTitle">
-				{{ modalTitle }}
+			<h2 v-if="showModalName">
+				{{ modalName }}
 			</h2>
 			<NcReferencePicker ref="referencePicker"
 				:initial-provider="initialProvider"
@@ -106,10 +106,10 @@ export default {
 				? (getCustomPickerElementSize(this.selectedProvider.id) ?? 'large')
 				: 'normal'
 		},
-		showModalTitle() {
+		showModalName() {
 			return !this.isProviderSelected || !isCustomPickerElementRegistered(this.selectedProvider.id)
 		},
-		modalTitle() {
+		modalName() {
 			return this.isProviderSelected
 				? this.selectedProvider.title
 				: t('Smart Picker')

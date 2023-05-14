@@ -32,9 +32,9 @@
 			</div>
 		</div>
 
-		<!-- Title and subtitle -->
+		<!-- Label and subline -->
 		<span class="autocomplete-result__content">
-			<span class="autocomplete-result__title">
+			<span class="autocomplete-result__label">
 				{{ label }}
 			</span>
 			<span v-if="subline" class="autocomplete-result__subline">
@@ -180,7 +180,7 @@ $autocomplete-padding: 10px;
 		padding-left: $autocomplete-padding;
 	}
 
-	&__title,
+	&__label,
 	&__subline {
 		white-space: nowrap;
 		overflow: hidden;

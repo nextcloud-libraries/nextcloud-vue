@@ -36,7 +36,7 @@
 
 			<!-- long text with name -->
 			<p v-if="name">
-				<strong class="action-text__title">
+				<strong class="action-text__name">
 					{{ name }}
 				</strong>
 				<br>

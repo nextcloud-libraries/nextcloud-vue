@@ -53,7 +53,7 @@ export default {
 		},
 
 		/**
-		 * Tab title in navigation
+		 * Tab name in navigation
 		 */
 		name: {
 			type: String,

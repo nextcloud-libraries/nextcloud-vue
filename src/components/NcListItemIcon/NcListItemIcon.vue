@@ -20,18 +20,18 @@
   -
   -->
 <docs>
-## This is used to display a avatar-title/subtitle + icon layout
+## This is used to display a avatar-name/subname + icon layout
 It might be used for list rendering or within the multiselect for example
 
 > **Note:** Any binding will be forwarded on the Avatar component root
 
 ```vue
-<NcListItemIcon title="User 1" />
-<NcListItemIcon title="User 1" subtitle="Hidden subtitle because size is too small" :avatar-size="24" />
+<NcListItemIcon name="User 1" />
+<NcListItemIcon name="User 1" subname="Hidden subname because size is too small" :avatar-size="24" />
 ```
 ```vue
 	<template>
-		<NcListItemIcon title="User 1" :avatar-size="44">
+		<NcListItemIcon name="User 1" :avatar-size="44">
 			<template>
 				<Account :size="20" />
 			</template>
@@ -51,7 +51,7 @@ It might be used for list rendering or within the multiselect for example
 ### With icon
 ```vue
 	<template>
-		<NcListItemIcon title="Group 1" subtitle="13 members" :is-no-user="true">
+		<NcListItemIcon name="Group 1" subname="13 members" :is-no-user="true">
 			<template>
 				<AccountMultiple :size="20" />
 			</template>
@@ -71,9 +71,9 @@ It might be used for list rendering or within the multiselect for example
 ### Searching
 ```vue
 	<template>
-		<NcListItemIcon title="Test user 1" subtitle="callmetest@domain.com" search="test" />
-		<NcListItemIcon title="Testing admin" subtitle="testme@example.com" search="test" />
-		<NcListItemIcon title="Test group 2" subtitle="loremipsum@domain.com" :is-no-user="true" search="test">
+		<NcListItemIcon name="Test user 1" subname="callmetest@domain.com" search="test" />
+		<NcListItemIcon name="Testing admin" subname="testme@example.com" search="test" />
+		<NcListItemIcon name="Test group 2" subname="loremipsum@domain.com" :is-no-user="true" search="test">
 			<template>
 				<AccountMultiple :size="20" />
 			</template>
@@ -93,7 +93,7 @@ It might be used for list rendering or within the multiselect for example
 ### With actions
 ```vue
 	<template>
-		<NcListItemIcon title="Test user 1" subtitle="callmetest@domain.com">
+		<NcListItemIcon name="Test user 1" subname="callmetest@domain.com">
 			<NcActions>
 				<NcActionButton @click="alert('Edit')">
 					<template #icon>
@@ -132,17 +132,17 @@ It might be used for list rendering or within the multiselect for example
 		<NcAvatar v-bind="$attrs"
 			:disable-menu="true"
 			:disable-tooltip="true"
-			:display-name="displayName || title"
+			:display-name="displayName || name"
 			:is-no-user="isNoUser"
 			:size="avatarSize"
 			class="option__avatar" />
 		<div class="option__details">
 			<NcHighlight class="option__lineone"
-				:text="title"
+				:text="name"
 				:search="search" />
-			<NcHighlight v-if="isValidSubtitle && isSizeBigEnough"
+			<NcHighlight v-if="isValidSubname && isSizeBigEnough"
 				class="option__linetwo"
-				:text="subtitle"
+				:text="subname"
 				:search="search" />
 			<span v-else-if="hasStatus">
 				<span>{{ userStatus.icon }}</span>
@@ -155,11 +155,11 @@ It might be used for list rendering or within the multiselect for example
 			<NcIconSvgWrapper v-if="hasIconSvg"
 				class="option__icon"
 				:svg="iconSvg"
-				:title="iconTitle" />
+				:name="iconName" />
 			<span v-else-if="hasIcon"
 				class="icon option__icon"
 				:class="icon"
-				:aria-label="iconTitle" />
+				:aria-label="iconName" />
 		</slot>
 	</span>
 </template>
@@ -192,7 +192,7 @@ export default {
 		/**
 		 * Default first line text
 		 */
-		title: {
+		name: {
 			type: String,
 			required: true,
 		},
@@ -201,7 +201,7 @@ export default {
 		 * Secondary optional line
 		 * Only visible on size of 32 and above
 		 */
-		subtitle: {
+		subname: {
 			type: String,
 			default: '',
 		},
@@ -223,15 +223,15 @@ export default {
 		},
 
 		/**
-		 * Descriptive title for the icon
+		 * Descriptive name for the icon
 		 */
-		iconTitle: {
+		iconName: {
 			type: String,
 			default: '',
 		},
 
 		/**
-		 * Search within the highlight of title/subtitle
+		 * Search within the highlight of name/subname
 		 */
 		search: {
 			type: String,
@@ -258,7 +258,7 @@ export default {
 
 		/**
 		 * See the [Avatar](#Avatar) displayName prop
-		 * Fallback to title
+		 * Fallback to name
 		 */
 		displayName: {
 			type: String,
@@ -297,8 +297,8 @@ export default {
 			return this.iconSvg !== ''
 		},
 
-		isValidSubtitle() {
-			return this.subtitle?.trim?.() !== ''
+		isValidSubname() {
+			return this.subname?.trim?.() !== ''
 		},
 
 		isSizeBigEnough() {
@@ -317,8 +317,8 @@ export default {
 	},
 
 	beforeMount() {
-		// If we don't have a subtitle and if this is a user
-		if (!this.isNoUser && !this.subtitle) {
+		// If we don't have a subname and if this is a user
+		if (!this.isNoUser && !this.subname) {
 			this.fetchUserStatus(this.user)
 		}
 	},

@@ -30,9 +30,9 @@ General purpose multiselect component.
 ```vue
 <template>
 	<div class="grid">
-		<div v-for="{ title, props } in selectArray"
+		<div v-for="{ name, props } in selectArray"
 			class="container">
-			<label :for="props.inputId">{{ title }}</label>
+			<label :for="props.inputId">{{ name }}</label>
 			<NcSelect v-bind="props"
 				v-model="props.value" />
 		</div>
@@ -48,7 +48,7 @@ const getRandomId = () => {
 
 const selectArray = [
 	{
-		title: 'Simple',
+		name: 'Simple',
 		props: {
 			inputId: getRandomId(),
 			options: [
@@ -62,7 +62,7 @@ const selectArray = [
 	},
 
 	{
-		title: 'Simple (top placement)',
+		name: 'Simple (top placement)',
 		props: {
 			inputId: getRandomId(),
 			placement: 'top',
@@ -77,7 +77,7 @@ const selectArray = [
 	},
 
 	{
-		title: 'Multiple (with placeholder)',
+		name: 'Multiple (with placeholder)',
 		props: {
 			inputId: getRandomId(),
 			multiple: true,
@@ -93,7 +93,7 @@ const selectArray = [
 	},
 
 	{
-		title: 'Multiple (objects, pre-selected, stay open on select)',
+		name: 'Multiple (objects, pre-selected, stay open on select)',
 		props: {
 			inputId: getRandomId(),
 			multiple: true,
@@ -187,13 +187,13 @@ parent container is limited to `350px`
 <template>
 	<div class="grid">
 		<div class="container">
-			<label :for="data1.props.inputId">{{ data1.title }}</label>
+			<label :for="data1.props.inputId">{{ data1.name }}</label>
 			<NcSelect :no-wrap="false"
 				v-bind="data1.props"
 				v-model="data1.props.value" />
 		</div>
 		<div class="container">
-			<label :for="data2.props.inputId">{{ data2.title }}</label>
+			<label :for="data2.props.inputId">{{ data2.name }}</label>
 			<NcSelect :no-wrap="true"
 				v-bind="data2.props"
 				v-model="data2.props.value" />
@@ -209,7 +209,7 @@ const getRandomId = () => {
 }
 
 const data1 = {
-	title: 'Wrapped (Default)',
+	name: 'Wrapped (Default)',
 	props: {
 		inputId: getRandomId(),
 		multiple: true,
@@ -242,7 +242,7 @@ const data1 = {
 }
 
 const data2 = {
-	title: 'Not wrapped',
+	name: 'Not wrapped',
 	props: {
 		inputId: getRandomId(),
 		multiple: true,
@@ -305,9 +305,9 @@ export default {
 ```vue
 <template>
 	<div class="grid">
-		<div v-for="{ title, props } in selectArray"
+		<div v-for="{ name, props } in selectArray"
 			class="container">
-			<label :for="props.inputId">{{ title }}</label>
+			<label :for="props.inputId">{{ name }}</label>
 			<NcSelect v-bind="props"
 				v-model="props.value" />
 		</div>
@@ -326,7 +326,7 @@ const getRandomId = () => {
 
 const selectArray = [
 	{
-		title: 'User select',
+		name: 'User select',
 		props: {
 			inputId: getRandomId(),
 			userSelect: true,
@@ -387,7 +387,7 @@ const selectArray = [
 	},
 
 	{
-		title: 'Multiple user select (stay open on select)',
+		name: 'Multiple user select (stay open on select)',
 		props: {
 			inputId: getRandomId(),
 			userSelect: true,
@@ -497,7 +497,7 @@ export default {
 		<template #option="option">
 			<NcListItemIcon v-if="userSelect"
 				v-bind="option"
-				:title="option[localLabel]"
+				:name="option[localLabel]"
 				:search="search" />
 			<NcEllipsisedOption v-else
 				:name="String(option[localLabel])"
@@ -506,7 +506,7 @@ export default {
 		<template #selected-option="selectedOption">
 			<NcListItemIcon v-if="userSelect"
 				v-bind="selectedOption"
-				:title="selectedOption[localLabel]"
+				:name="selectedOption[localLabel]"
 				:search="search" />
 			<NcEllipsisedOption v-else
 				:name="String(selectedOption[localLabel])"

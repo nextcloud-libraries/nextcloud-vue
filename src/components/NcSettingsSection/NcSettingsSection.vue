@@ -31,7 +31,7 @@ This component is to be used in the settings section of nextcloud.
 ```vue
 <template>
 	<NcSettingsSection
-		title="Two-Factor Authentication"
+		name="Two-Factor Authentication"
 		description="Two-factor authentication can be enforced for all users and specific groups."
 		doc-url="https://docs.nextcloud.com/server/19/go.php?to=admin-2fa"
 		:limit-width="true">
@@ -43,14 +43,14 @@ This component is to be used in the settings section of nextcloud.
 
 <template>
 	<div class="settings-section" :class="{'settings-section--limit-width': limitWidth}">
-		<h2 class="settings-section__title">
-			{{ title }}
+		<h2 class="settings-section__name">
+			{{ name }}
 			<a v-if="hasDocUrl"
 				:href="docUrl"
 				class="settings-section__info"
 				role="note"
-				:aria-label="docTitleTranslated"
-				:title="docTitleTranslated"
+				:aria-label="docNameTranslated"
+				:title="docNameTranslated"
 				target="_blank"
 				rel="noreferrer nofollow">
 				<HelpCircle :size="20" />
@@ -77,7 +77,7 @@ export default {
 	},
 
 	props: {
-		title: {
+		name: {
 			type: String,
 			required: true,
 		},
@@ -92,7 +92,7 @@ export default {
 		/**
 		 * Limit the width of the setting's content
 		 *
-		 * By default only the title and description have a limit, use this
+		 * By default only the name and description have a limit, use this
 		 * property to also apply this to the rest of the content.
 		 */
 		limitWidth: {
@@ -103,8 +103,8 @@ export default {
 
 	data() {
 		return {
-			docTitleTranslated: t('External documentation for {title}', {
-				title: this.title,
+			docNameTranslated: t('External documentation for {name}', {
+				name: this.name,
 			}),
 		}
 	},
@@ -137,7 +137,7 @@ $maxWidth: 900px;
 		max-width: $maxWidth;
 	}
 
-	&__title {
+	&__name {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;

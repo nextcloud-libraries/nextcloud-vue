@@ -24,12 +24,12 @@
 ### Basic use
 
 Use this component to display a message about an empty content.
-Providing an icon, title, and a description is strongly advised.
+Providing an icon, name, and a description is strongly advised.
 
 ```
 <template>
 	<NcEmptyContent
-		title="No comments">
+		name="No comments">
 		<template #icon>
 			<Comment />
 		</template>
@@ -47,7 +47,7 @@ export default {
 </script>
 ```
 
-You can also customize the title using the `#title` slot
+You can also customize the name using the `#name` slot
 and add actions.
 
 ```
@@ -57,8 +57,8 @@ and add actions.
 		<template #icon>
 			<Comment />
 		</template>
-		<template #title>
-			<h1 class="empty-content__title">
+		<template #name>
+			<h1 class="empty-content__name">
 				No Comments
 			</h1>
 		</template>
@@ -88,9 +88,9 @@ export default {
 			<!-- @slot Optional material design icon -->
 			<slot name="icon" />
 		</div>
-		<slot name="title">
-			<h2 v-if="hasTitle" class="empty-content__title">
-				{{ title }}
+		<slot name="name">
+			<h2 v-if="hasName" class="empty-content__name">
+				{{ name }}
 			</h2>
 		</slot>
 		<p v-if="hasDescription">
@@ -108,7 +108,7 @@ export default {
 	name: 'NcEmptyContent',
 
 	props: {
-		title: {
+		name: {
 			type: String,
 			default: '',
 		},
@@ -120,8 +120,8 @@ export default {
 	},
 
 	computed: {
-		hasTitle() {
-			return this.title !== ''
+		hasName() {
+			return this.name !== ''
 		},
 		hasDescription() {
 			return this.description !== ''
@@ -160,7 +160,7 @@ export default {
 		}
 	}
 
-	&__title {
+	&__name {
 		margin-bottom: 10px;
 		text-align: center;
 	}

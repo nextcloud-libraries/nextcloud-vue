@@ -34,7 +34,7 @@ This component is made to be used in the Nextcloud top header.
 			<div>
 				<input placeholder="Search for files, comments, contacts..." type="search" style="width: 99%;" />
 				<NcEmptyContent
-					title="Search"
+					name="Search"
 					description="Start typing to search">
 					<template #icon>
 						<Magnify />
