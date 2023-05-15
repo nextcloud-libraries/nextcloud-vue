@@ -3,6 +3,7 @@
   -
   - @author Julius Härtl <jus@bitgrid.net>
   - @author Greta Doci <gretadoci@gmail.com>
+  - @author Ferdinand Thiessen <opensource@fthiessen.de>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -21,28 +22,51 @@
   -
   -->
 
+<docs>
+```vue
 <template>
-	<NcMultiselect :value="inputValue"
-		:options="groupsArray"
-		:options-limit="5"
-		:placeholder="label"
-		track-by="id"
-		label="displayname"
-		class="multiselect-vue"
-		:multiple="true"
-		:close-on-select="false"
-		:tag-width="60"
-		:disabled="disabled"
-		@input="update"
-		@search-change="findGroup">
-		<template #noResult>
-			<span>{{ t( 'No results') }}</span>
-		</template>
-	</NcMultiselect>
+	<section>
+		<NcSettingsSelectGroup v-model="groups" placeholder="Select user groups" label="The hidden label" />
+		<NcSettingsSelectGroup v-model="groups" :disabled="true" label="Also a fallback for the placeholder" />
+		<div>You have selected: <code>{{ groups }}</code></div>
+	</section>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			groups: []
+		}
+	}
+}
+</script>
+<style scoped>
+section * {
+	padding: 6px 0px;
+}
+</style>
+```
+</docs>
+
+<template>
+	<div>
+		<label v-if="label" :for="id" class="hidden-visually">{{ label }}</label>
+		<NcSelect :value="inputValue"
+			:options="groupsArray"
+			:placeholder="placeholder || label"
+			:input-id="id"
+			:limit="5"
+			label="displayname"
+			:multiple="true"
+			:close-on-select="false"
+			:disabled="disabled"
+			@input="update"
+			@search="findGroup" />
+	</div>
 </template>
 
 <script>
-import NcMultiselect from '../../components/NcMultiselect/index.js'
+import NcSelect from '../../components/NcSelect/index.js'
 import { t } from '../../l10n.js'
 import l10n from '../../mixins/l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
@@ -54,12 +78,12 @@ import { generateOcsUrl } from '@nextcloud/router'
 export default {
 	name: 'NcSettingsSelectGroup',
 	components: {
-		NcMultiselect,
+		NcSelect,
 	},
 	mixins: [l10n],
 	props: {
 		/**
-		 * label of the select group element
+		 * The text of the label element of the select group input
 		 */
 		label: {
 			type: String,
@@ -67,9 +91,10 @@ export default {
 		},
 
 		/**
-		 * hint of the select group input
+		 * Placeholder for the input element
+		 * For backwards compatibility it falls back to the `label` value
 		 */
-		hint: {
+		placeholder: {
 			type: String,
 			default: '',
 		},
@@ -85,6 +110,7 @@ export default {
 
 		/**
 		 * value of the select group input
+		 * A list of group IDs can be provided
 		 */
 		value: {
 			type: Array,
@@ -111,7 +137,7 @@ export default {
 	},
 	computed: {
 		inputValue() {
-			return this.getValueObject()
+			return this.getValueObject
 		},
 		getValueObject() {
 			return this.value.filter((group) => group !== '' && typeof group !== 'undefined').map(
@@ -131,8 +157,10 @@ export default {
 		},
 	},
 	methods: {
-		update() {
-			this.$emit('input', this.inputValue.map((element) => element.id))
+		update(updatedValue) {
+			const value = updatedValue.map((element) => element.id)
+			/** Emitted when the groups selection changes<br />**Payload:** `value` (`Array`) - *Ids of selected groups */
+			this.$emit('input', value)
 		},
 		async findGroup(query) {
 			try {
@@ -148,6 +176,7 @@ export default {
 					return true
 				}
 			} catch (error) {
+				/** Emitted if groups could not be queried.<br />**Payload:** `error` (`object`) - The Axios error */
 				this.$emit('error', error)
 				showError(t('Unable to search the group'))
 			}
