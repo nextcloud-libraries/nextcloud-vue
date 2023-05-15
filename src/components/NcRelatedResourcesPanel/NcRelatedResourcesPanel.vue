@@ -55,8 +55,6 @@ export default {
 			class="related-resources__entry"
 			:icon="resource.icon"
 			:title="resource.title"
-			:subtitle="resource.subtitle"
-			:tooltip="resource.tooltip"
 			:url="resource.url" />
 	</div>
 </template>
