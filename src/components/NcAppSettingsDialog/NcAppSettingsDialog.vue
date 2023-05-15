@@ -384,7 +384,7 @@ export default {
 		position: relative;
 	}
 	&__navigation {
-		min-width: 400px;
+		min-width: 300px;
 		margin-right: 20px;
 		overflow-x: hidden;
 		overflow-y: auto;
