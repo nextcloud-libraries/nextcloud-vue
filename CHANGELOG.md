@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 # Changelog
 
+## [v7.11.5](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.5) (2023-05-15)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.4...v7.11.5)
+
+### :bug: Fixed bugs
+
+- fix\(NcAppSidebarTabs\): Fix rendering tabs with CSS icon in OCA.Files.Sidebar [\#4112](https://github.com/nextcloud/nextcloud-vue/pull/4112) ([ShGKme](https://github.com/ShGKme))
+- fix\(NcAppNavigationItem\): Left panel dropdown improvement [\#4105](https://github.com/nextcloud/nextcloud-vue/pull/4105) ([Jerome-Herbinet](https://github.com/Jerome-Herbinet))
+- fix\(NcSettingsSection\): Add target blank and no ref info [\#4100](https://github.com/nextcloud/nextcloud-vue/pull/4100) ([Rello](https://github.com/Rello))
+- fix: Use the color-primary-element* variables in components [\#4098](https://github.com/nextcloud/nextcloud-vue/pull/4098) ([szaimon](https://github.com/szaimon))
+
 ## [v7.11.4](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.4) (2023-05-12)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.3...v7.11.4)
