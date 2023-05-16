@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 # Changelog
 
+## [v7.11.6](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.6) (2023-05-16)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.5...v7.11.6)
+
+### :bug: Fixed bugs
+
+- fix\(NcResource\): Fix item alignment in the right sidebar [\#4124](https://github.com/nextcloud/nextcloud-vue/pull/4124) ([Pytal](https://github.com/Pytal))
+
 ## [v7.11.5](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.5) (2023-05-15)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.4...v7.11.5)
