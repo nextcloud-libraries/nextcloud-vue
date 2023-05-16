@@ -41,8 +41,6 @@
 </template>
 
 <script>
-import { h } from 'vue'
-
 export default {
 	name: 'NcAppSidebarTab',
 
@@ -126,12 +124,12 @@ export default {
 		},
 
 		/**
-		 * Render tab's icon from slot or icon prop
+		 * Render tab's icon slot if any
 		 *
-		 * @return {import('vue').VNode|import('vue').VNode[]}
+		 * @return {import('vue').VNode[]}
 		 */
 		renderIcon() {
-			return this.$slots.icon || this.$scopedSlots.icon?.() || h('span', { staticClass: this.icon })
+			return this.$scopedSlots.icon?.()
 		},
 	},
 }

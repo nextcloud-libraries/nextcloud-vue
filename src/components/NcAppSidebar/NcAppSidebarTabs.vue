@@ -56,7 +56,9 @@
 					{{ tab.name }}
 				</span>
 				<template #icon>
-					<NcVNodes :vnodes="tab.renderIcon()" />
+					<NcVNodes :vnodes="tab.renderIcon()">
+						<span class="app-sidebar-tabs__tab-icon" :class="tab.icon" />
+					</NcVNodes>
 				</template>
 			</NcCheckboxRadioSwitch>
 		</nav>
@@ -282,6 +284,13 @@ export default {
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			text-align: center;
+		}
+
+		&-icon {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-size: 20px;
 		}
 	}
 
