@@ -32,27 +32,27 @@ Render raw SVG string icons.
 	<div class="grid">
 		<NcButton aria-label="Close">
 			<template #icon>
-				<NcIconSvgWrapper :svg="closeSvg" title="Close" />
+				<NcIconSvgWrapper :svg="closeSvg" name="Close" />
 			</template>
 		</NcButton>
 		<NcButton aria-label="Settings">
 			<template #icon>
-				<NcIconSvgWrapper :svg="cogSvg" title="Cog" />
+				<NcIconSvgWrapper :svg="cogSvg" name="Cog" />
 			</template>
 		</NcButton>
 		<NcButton aria-label="Add">
 			<template #icon>
-				<NcIconSvgWrapper :svg="plusSvg" title="Plus" />
+				<NcIconSvgWrapper :svg="plusSvg" name="Plus" />
 			</template>
 		</NcButton>
 		<NcButton aria-label="Send">
 			<template #icon>
-				<NcIconSvgWrapper :svg="sendSvg" title="Send" />
+				<NcIconSvgWrapper :svg="sendSvg" name="Send" />
 			</template>
 		</NcButton>
 		<NcButton aria-label="Star">
 			<template #icon>
-				<NcIconSvgWrapper :svg="starSvg" title="Star" />
+				<NcIconSvgWrapper :svg="starSvg" name="Star" />
 			</template>
 		</NcButton>
 	</div>
@@ -91,8 +91,8 @@ export default {
 <template>
 	<span class="icon-vue"
 		role="img"
-		:aria-hidden="!title"
-		:aria-label="title"
+		:aria-hidden="!name"
+		:aria-label="name"
 		v-html="cleanSvg" /> <!-- eslint-disable-line vue/no-v-html -->
 </template>
 
@@ -107,7 +107,7 @@ export default {
 			type: String,
 			default: '',
 		},
-		title: {
+		name: {
 			type: String,
 			default: '',
 		},

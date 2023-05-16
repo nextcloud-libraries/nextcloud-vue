@@ -11,7 +11,7 @@
 			class="widget-default">
 			<img v-if="reference.openGraphObject.thumb" class="widget-default--image" :src="reference.openGraphObject.thumb">
 			<div class="widget-default--details">
-				<p class="widget-default--title">{{ reference.openGraphObject.name }}</p>
+				<p class="widget-default--name">{{ reference.openGraphObject.name }}</p>
 				<p class="widget-default--description" :style="descriptionStyle">{{ reference.openGraphObject.description }}</p>
 				<p class="widget-default--link">{{ compactLink }}</p>
 			</div>
@@ -158,7 +158,7 @@ export default {
 		background-repeat: no-repeat;
 	}
 
-	&--title {
+	&--name {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;

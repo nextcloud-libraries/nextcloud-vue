@@ -26,9 +26,9 @@
 					class="search-result"
 					:entry="option"
 					:query="searchQuery" />
-				<span v-else-if="option.isCustomGroupTitle" class="custom-option group-title">
+				<span v-else-if="option.isCustomGroupTitle" class="custom-option group-name">
 					<img v-if="provider.icon_url"
-						class="provider-icon group-title-icon"
+						class="provider-icon group-name-icon"
 						:src="provider.icon_url">
 					<span class="option-text">
 						<strong>{{ option.name }}</strong>
@@ -149,7 +149,7 @@ export default {
 			const results = []
 			this.searchProviderIds.forEach(pid => {
 				if (this.resultsBySearchProvider[pid].entries.length > 0) {
-					// don't show group title entry if there is only one search provider and one result
+					// don't show group name entry if there is only one search provider and one result
 					if (this.searchProviderIds.length > 1 || this.resultsBySearchProvider[pid].entries.length > 1) {
 						results.push({
 							name: this.resultsBySearchProvider[pid].name,
@@ -301,7 +301,7 @@ export default {
 			width: 100%;
 		}
 
-		.group-title-icon,
+		.group-name-icon,
 		.option-simple-icon {
 			width: 20px;
 			height: 20px;

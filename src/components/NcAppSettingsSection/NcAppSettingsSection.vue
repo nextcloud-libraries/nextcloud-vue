@@ -22,8 +22,8 @@
 
 <template>
 	<div :id="htmlId" class="app-settings-section">
-		<h3 class="app-settings-section__title">
-			{{ title }}
+		<h3 class="app-settings-section__name">
+			{{ name }}
 		</h3>
 		<slot />
 	</div>
@@ -34,7 +34,7 @@ export default {
 	name: 'NcAppSettingsSection',
 
 	props: {
-		title: {
+		name: {
 			type: String,
 			required: true,
 		},
@@ -49,7 +49,7 @@ export default {
 		},
 	},
 	computed: {
-		// generate an id for each settingssection based on the title without whitespaces
+		// generate an id for each settingssection based on the name without whitespaces
 		htmlId() {
 			return 'settings-section_' + this.id
 		},
@@ -61,7 +61,7 @@ export default {
 <style lang="scss" scoped>
 .app-settings-section {
 	margin-bottom: 80px;
-	&__title {
+	&__name {
 		font-size: 20px;
 		margin: 0;
 		padding: 20px 0;

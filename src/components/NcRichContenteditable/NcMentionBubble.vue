@@ -31,7 +31,7 @@
 					class="mention-bubble__icon" />
 
 				<!-- Title -->
-				<span role="heading" class="mention-bubble__title" :title="label" />
+				<span role="heading" class="mention-bubble__title" :title="title" />
 			</span>
 
 			<!-- Selectable text for copy/paste -->
@@ -51,7 +51,7 @@ export default {
 			type: String,
 			required: true,
 		},
-		label: {
+		title: {
 			type: String,
 			required: true,
 		},
@@ -156,7 +156,7 @@ $bubble-avatar-size: $bubble-height - 2 * $bubble-padding;
 		margin-left: $bubble-padding;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		// Put label in ::before so it is not selectable
+		// Put title in ::before so it is not selectable
 		&::before {
 			content: attr(title);
 		}

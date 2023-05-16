@@ -41,7 +41,7 @@ This component has the following slot:
 </p>
 ```
 
-### Example with title slot
+### Example with name slot
 
 ```vue
 <template>
@@ -50,7 +50,7 @@ This component has the following slot:
 	:size="30"
 	display-name="Administrator"
 	user="admin">
-	<template #title>
+	<template #name>
 		<a href="#"
 			title="Remove user"
 			class="icon-close"
@@ -94,14 +94,14 @@ This component has the following slot:
 					v-bind="$props"
 					class="user-bubble__avatar" />
 
-				<!-- Title -->
-				<span class="user-bubble__title">
+				<!-- Name -->
+				<span class="user-bubble__name">
 					{{ displayName || user }}
 				</span>
 
-				<!-- @slot Optional slot just after the title -->
-				<span v-if="$slots.title" class="user-bubble__secondary">
-					<slot name="title" />
+				<!-- @slot Optional slot just after the name -->
+				<span v-if="$slots.name" class="user-bubble__secondary">
+					<slot name="name" />
 				</span>
 			</component>
 		</template>
@@ -317,15 +317,15 @@ export default {
 		align-self: center;
 	}
 
-	&__title {
+	&__name {
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
 	}
 
-	&__title,
+	&__name,
 	&__secondary {
-		// proper spacing between avatar, title & slot
+		// proper spacing between avatar, name & slot
 		padding: 0;
 		padding-left: 4px;
 	}

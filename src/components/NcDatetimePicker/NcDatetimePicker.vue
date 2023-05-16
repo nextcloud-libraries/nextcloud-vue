@@ -152,7 +152,7 @@ export default {
 					</button>
 				</template>
 
-				<div class="timezone-popover-wrapper__title">
+				<div class="timezone-popover-wrapper__label">
 					<strong>
 						{{ t('Please select a time zone:') }}
 					</strong>
@@ -430,7 +430,7 @@ export default {
 		border-radius: var(--border-radius-large);
 
 		.timezone-popover-wrapper {
-			&__title {
+			&__label {
 				padding: 4px 0;
 				padding-left: 14px; // Left-align with NcSelect text
 			}

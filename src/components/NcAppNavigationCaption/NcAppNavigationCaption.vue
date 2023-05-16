@@ -2,7 +2,7 @@
 ```vue
 	<template>
 		<NcAppNavigationCaption
-			title="Your caption goes here">
+			name="Your caption goes here">
 			<template #actions>
 				<NcActionButton>
 					<template #icon>
@@ -28,7 +28,7 @@
 ```vue
 	<template>
 		<NcAppNavigationCaption
-			title="Your caption goes here">
+			name="Your caption goes here">
 			<template #actionsTriggerIcon>
 				<Plus slot="icon" :size="20" />
 			</template>
@@ -83,9 +83,9 @@
 
 <template>
 	<li class="app-navigation-caption">
-		<!-- Title of the caption -->
-		<h2 class="app-navigation-caption__title">
-			{{ title }}
+		<!-- Name of the caption -->
+		<h2 class="app-navigation-caption__name">
+			{{ name }}
 		</h2>
 
 		<!-- Actions -->
@@ -112,7 +112,7 @@ export default {
 		NcActions,
 	},
 	props: {
-		title: {
+		name: {
 			type: String,
 			required: true,
 		},
@@ -134,7 +134,7 @@ export default {
 	justify-content: space-between;
 	padding: 0 calc(var(--default-grid-baseline, 4px) * 2) 0 calc(var(--default-grid-baseline, 4px) * 3);
 
-	&__title {
+	&__name {
 		font-weight: bold;
 		color: var(--color-primary-element);
 		font-size: var(--default-font-size);

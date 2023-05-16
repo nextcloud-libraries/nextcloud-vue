@@ -23,15 +23,15 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 
 ```vue
 	<NcActions>
-		<NcActionCaption title="Test caption" />
-		<NcActionCaption title="Test caption 2" />
+		<NcActionCaption name="Test caption" />
+		<NcActionCaption name="Test caption 2" />
 	</NcActions>
 ```
 </docs>
 
 <template>
 	<li class="app-navigation-caption">
-		{{ title }}
+		{{ name }}
 	</li>
 </template>
 
@@ -42,7 +42,7 @@ export default {
 		/**
 		 * The caption's text
 		 */
-		title: {
+		name: {
 			type: String,
 			required: true,
 		},

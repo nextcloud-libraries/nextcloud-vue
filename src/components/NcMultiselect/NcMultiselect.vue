@@ -118,7 +118,7 @@ export default {
 ### User layout
 By specifying `:user-select="true"`, you can benefit from a fully formatted layout.
 The singleLabel slot here is optional of course and here for demonstration purposes
-The NcListItemIcon title will be provided by the option key refering to the `label` prop.
+The NcListItemIcon name will be provided by the option key refering to the `label` prop.
 Example here: `displayName`
 
 > **Note:** Any extra binding from the object will be added as attribute (`$attrs`) on the NcListItemIcon component used here
@@ -130,7 +130,7 @@ Example here: `displayName`
 		:user-select="true"
 		style="width: 250px">
 		<template #singleLabel="{ option }">
-			<NcListItemIcon v-bind="option" :title="option.displayName" :avatar-size="24" :no-margin="true" />
+			<NcListItemIcon v-bind="option" :name="option.displayName" :avatar-size="24" :no-margin="true" />
 		</template>
 	</NcMultiselect>
 </template>
@@ -199,7 +199,7 @@ export default {
 				You CANNOT use this scope, we will replace it by this -->
 			<NcListItemIcon v-if="userSelect && !$scopedSlots['option']"
 				v-bind="scope.option"
-				:title="scope.option[label]"
+				:name="scope.option[label]"
 				:search="scope.search" />
 
 			<!-- Ellipsis in the middle if no option slot

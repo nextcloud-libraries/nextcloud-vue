@@ -27,7 +27,7 @@ This should be used sparingly for accessibility.
 <template>
 	<div style="display: flex; align-items: center;">
 		<NcActions>
-			<NcActionButtonGroup title="Text alignment">
+			<NcActionButtonGroup name="Text alignment">
 				<NcActionButton aria-label="Align left"
 					@click="showMessage('Align left')">
 					<template #icon>
@@ -82,8 +82,8 @@ export default {
 
 <template>
 	<li class="nc-button-group-base">
-		<div v-if="title">
-			{{ title }}
+		<div v-if="name">
+			{{ name }}
 		</div>
 		<ul class="nc-button-group-content">
 			<slot />
@@ -101,9 +101,9 @@ export default defineComponent({
 	name: 'NcActionButtonGroup',
 	props: {
 		/**
-		 * Optional title shown below the button group
+		 * Optional text shown below the button group
 		 */
-		title: {
+		name: {
 			required: false,
 			default: undefined,
 			type: String,

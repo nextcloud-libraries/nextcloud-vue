@@ -8,7 +8,7 @@
 			:class="{ rounded: entry.rounded }"
 			:src="entry.thumbnailUrl">
 		<div class="result--content">
-			<span class="result--content--title">
+			<span class="result--content--name">
 				<NcHighlight :search="query" :text="entry.title" />
 			</span>
 			<span class="result--content--subline">
@@ -71,7 +71,7 @@ export default {
 		padding-left: 10px;
 		overflow: hidden;
 
-		&--title,
+		&--name,
 		&--subline {
 			overflow: hidden;
 			text-overflow: ellipsis;

@@ -26,7 +26,7 @@
 ### New Item element
 ```vue
 	<template>
-		<NcAppNavigationNewItem title="New Item" @new-item="function(value){alert(value)}">
+		<NcAppNavigationNewItem name="New Item" @new-item="function(value){alert(value)}">
 			<template #icon>
 				<Plus :size="20" />
 			</template>
@@ -46,7 +46,7 @@
 ### New Item element with a loading animation instead of the icon
 ```vue
 	<template>
-		<NcAppNavigationNewItem title="New Item" :loading="true">
+		<NcAppNavigationNewItem name="New Item" :loading="true">
 			<template #icon>
 				<Plus :size="20" />
 			</template>
@@ -76,15 +76,15 @@
 				<slot v-else name="icon" />
 			</div>
 
-			<span v-if="!newItemActive" class="app-navigation-new-item__title" :title="title">
-				{{ title }}
+			<span v-if="!newItemActive" class="app-navigation-new-item__name" :title="name">
+				{{ name }}
 			</span>
 
 			<!-- new Item input -->
 			<div v-if="newItemActive" class="newItemContainer">
 				<NcInputConfirmCancel ref="newItemInput"
 					v-model="newItemValue"
-					:placeholder="editPlaceholder !== '' ? editPlaceholder : title"
+					:placeholder="editPlaceholder !== '' ? editPlaceholder : name"
 					@cancel="cancelNewItem"
 					@confirm="handleNewItemDone" />
 			</div>
@@ -106,9 +106,9 @@ export default {
 
 	props: {
 		/**
-		 * The title of the element.
+		 * The name of the element.
 		 */
-		title: {
+		name: {
 			type: String,
 			required: true,
 		},
@@ -176,7 +176,7 @@ export default {
 </script>
 
 <style lang="scss">
-.app-navigation-new-item__title {
+.app-navigation-new-item__name {
 	overflow: hidden;
 	max-width: 100%;
 	white-space: nowrap;

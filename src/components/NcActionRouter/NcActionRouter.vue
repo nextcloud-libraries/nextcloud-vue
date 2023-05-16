@@ -39,7 +39,7 @@
 
 			<!-- long text with name -->
 			<p v-if="name">
-				<strong class="action-router__title">
+				<strong class="action-router__name">
 					{{ name }}
 				</strong>
 				<br>

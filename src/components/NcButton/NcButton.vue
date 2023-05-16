@@ -76,7 +76,6 @@ It can be used with one or multiple actions.
 			:readonly="readonly">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
-					title=""
 					:size="20" />
 			</template>
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
@@ -103,7 +102,6 @@ It can be used with one or multiple actions.
 		text="Example text">
 		<template #icon>
 			<Video
-				title=""
 				:size="20" />
 		</template>
 		Example text
@@ -132,7 +130,6 @@ It can be used with one or multiple actions.
 			type="warning">
 			<template #icon>
 				<Video
-					title=""
 					:size="20" />
 			</template>
 			Example text
@@ -252,8 +249,8 @@ export default {
 
 		/**
 		 * Always try to provide an aria-label to your button. Make it more
-		 * specific than the button's title by provide some more context. E.g. if
-		 * the title of the button is "send" in the Mail app, the aria label could
+		 * specific than the button's name by provide some more context. E.g. if
+		 * the name of the button is "send" in the Mail app, the aria label could
 		 * be "Send email".
 		 */
 		ariaLabel: {

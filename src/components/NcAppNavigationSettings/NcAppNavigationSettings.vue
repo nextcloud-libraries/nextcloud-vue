@@ -29,7 +29,7 @@
 				type="button"
 				@click="toggleMenu">
 				<Cog class="settings-button__icon" :size="20" />
-				<span class="settings-button__label">{{ title }}</span>
+				<span class="settings-button__label">{{ name }}</span>
 			</button>
 		</div>
 		<transition name="slide-up">
@@ -59,7 +59,7 @@ export default {
 		clickOutsideOptions,
 	],
 	props: {
-		title: {
+		name: {
 			type: String,
 			required: false,
 			default: t('Settings'),

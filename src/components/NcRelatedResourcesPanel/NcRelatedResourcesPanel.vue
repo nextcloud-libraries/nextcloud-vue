@@ -54,7 +54,7 @@ export default {
 			:key="resource.itemId"
 			class="related-resources__entry"
 			:icon="resource.icon"
-			:title="resource.title"
+			:name="resource.title"
 			:url="resource.url" />
 	</div>
 </template>

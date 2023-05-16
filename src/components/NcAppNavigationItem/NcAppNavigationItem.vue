@@ -33,7 +33,7 @@
 
 ```vue
 	<template>
-		<NcAppNavigationItem name="My title">
+		<NcAppNavigationItem name="My name">
 			<template #icon>
 				<Check :size="20" />
 			</template>
@@ -241,7 +241,7 @@ Just set the `pinned` prop.
 						<NcLoadingIcon v-if="loading" />
 						<slot v-else-if="isIconShown" name="icon" />
 					</div>
-					<span v-if="!editingActive" class="app-navigation-entry__title">
+					<span v-if="!editingActive" class="app-navigation-entry__name">
 						{{ name }}
 					</span>
 					<div v-if="editingActive" class="editingContainer">
@@ -814,7 +814,7 @@ export default {
 			background-position: $icon-margin center;
 		}
 
-		.app-navigation-entry__title {
+		.app-navigation-entry__name {
 			overflow: hidden;
 			max-width: 100%;
 			white-space: nowrap;
