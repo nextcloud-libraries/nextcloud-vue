@@ -322,7 +322,7 @@ import Pause from 'vue-material-design-icons/Pause.vue'
 import Play from 'vue-material-design-icons/Play.vue'
 
 import { createFocusTrap } from 'focus-trap'
-import Hammer from 'hammerjs'
+import { useSwipe } from '@vueuse/core'
 
 export default {
 	name: 'NcModal',
@@ -552,9 +552,8 @@ export default {
 	mounted() {
 		// init clear view
 		this.useFocusTrap()
-		this.mc = new Hammer(this.$refs.mask)
-		this.mc.on('swipeleft swiperight', e => {
-			this.handleSwipe(e)
+		useSwipe(this.$refs.mask, {
+			onSwipeEnd: this.handleSwipe,
 		})
 
 		if (this.container) {
@@ -629,12 +628,19 @@ export default {
 				break
 			}
 		},
-		handleSwipe(e) {
+
+		/**
+		 * handle the swipe event
+		 *
+		 * @param {TouchEvent} e The touch event
+		 * @param {import('@vueuse/core').SwipeDirection} direction Swipe direction
+		 */
+		handleSwipe(e, direction) {
 			if (this.enableSwipe) {
-				if (e.type === 'swipeleft') {
+				if (direction === 'left') {
 					// swiping to left to go to the next item
 					this.next(e)
-				} else if (e.type === 'swiperight') {
+				} else if (direction === 'right') {
 					// swiping to right to go back to the previous item
 					this.previous(e)
 				}
