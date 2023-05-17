@@ -143,6 +143,9 @@ msgstr ""
 msgid "Open navigation"
 msgstr ""
 
+msgid "Open settings menu"
+msgstr ""
+
 msgid "Password is secure"
 msgstr ""
 
