@@ -292,6 +292,11 @@ export default {
 			justify-content: center;
 			background-size: 20px;
 		}
+
+		// Override max-width to use all available space
+		:deep(.checkbox-radio-switch__label) {
+			max-width: unset;
+		}
 	}
 
 	&__content {

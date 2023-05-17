@@ -142,6 +142,76 @@ export default {
 </script>
 ```
 
+### Radio set with button style and icons
+```vue
+<template>
+	<div>
+		<h4>Horizontal</h4>
+		<div style="display: flex">
+			<NcCheckboxRadioSwitch
+				:button-variant="true"
+				:checked.sync="enableSettings"
+				value="y"
+				name="sharing_permission_radio"
+				type="radio"
+				button-variant-grouped="horizontal">
+				Enable settings
+				<template #icon><CheckIcon :size="20"></template>
+			</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch
+				:button-variant="true"
+				:checked.sync="enableSettings"
+				value="n"
+				name="sharing_permission_radio"
+				type="radio"
+				button-variant-grouped="horizontal">
+				Disable settings
+				<template #icon><CancelIcon :size="20"></template>
+			</NcCheckboxRadioSwitch>
+		</div>
+		<h4>Vertically</h4>
+		<div style="width: fit-content">
+			<NcCheckboxRadioSwitch
+				:button-variant="true"
+				:checked.sync="enableSettings"
+				value="y"
+				name="sharing_permission_radio"
+				type="radio"
+				button-variant-grouped="vertical">
+				Enable settings
+				<template #icon><CheckIcon :size="20"></template>
+			</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch
+				:button-variant="true"
+				:checked.sync="enableSettings"
+				value="n"
+				name="sharing_permission_radio"
+				type="radio"
+				button-variant-grouped="vertical">
+				Disable settings
+				<template #icon><CancelIcon :size="20"></template>
+			</NcCheckboxRadioSwitch>
+		</div>
+		Settings enabled: {{ enableSettings === 'y' ? 'yes' : 'no' }}
+	</div>
+</template>
+<script>
+import CheckIcon from 'vue-material-design-icons/Check.vue'
+import CancelIcon from 'vue-material-design-icons/Cancel.vue'
+export default {
+	components: {
+		CheckIcon,
+		CancelIcon,
+	},
+	data() {
+		return {
+			enableSettings: 'n',
+		}
+	}
+}
+</script>
+```
+
 ### Standard checkbox set
 ```vue
 <template>
@@ -226,7 +296,7 @@ export default {
 			</div>
 
 			<!-- @slot The checkbox/radio label -->
-			<slot />
+			<span class="checkbox-radio-switch__label-text"><slot /></span>
 		</label>
 	</component>
 </template>
@@ -502,8 +572,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$spacing: 4px;
-
 .checkbox-radio-switch {
 	display: flex;
 
@@ -518,11 +586,16 @@ $spacing: 4px;
 	&__label {
 		display: flex;
 		align-items: center;
+		flex-direction: row;
+		gap: 4px;
 		user-select: none;
 		min-height: $clickable-area;
 		border-radius: $clickable-area;
 		padding: 4px $icon-margin;
-		margin: 0 #{-$icon-margin};
+		// Set to 100% to make text overflow work on button style
+		width: 100%;
+		// but restrict to content so plain checkboxes / radio switches do not expand
+		max-width: fit-content;
 
 		&, * {
 			cursor: pointer;
@@ -530,9 +603,6 @@ $spacing: 4px;
 	}
 
 	&__icon > * {
-		margin-right: $spacing;
-		// Remove the left margin of material design icons to align text
-		margin-left: -2px;
 		color: var(--color-primary-element);
 		width: var(--icon-size);
 		height: var(--icon-size);
@@ -569,27 +639,35 @@ $spacing: 4px;
 	// keep inner border width in mind
 	$border-radius-outer: calc($border-radius + 2px);
 
-	&--button-variant &__label {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		width: 100%;
-		margin: 0;
-	}
-	&--button-variant:not(&--button-variant-h-grouped) &__label {
-		align-items: flex-start;
+	&--button-variant.checkbox-radio-switch {
+		border: 2px solid var(--color-border-dark);
+		overflow: hidden;
+
+		&--checked {
+			font-weight: bold;
+
+			label {
+				background-color: var(--color-primary-element-light);
+			}
+		}
 	}
 
+	// Text overflow of button style
+	&--button-variant &__label-text {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 100%;
+	}
+
+	// Set icon color for non active elements to main text color
 	&--button-variant:not(&--checked) &__icon > * {
 		color: var(--color-main-text);
 	}
-	&--button-variant &__icon {
-		flex-basis: 100%;
 
-		// Hide icon container if empty to remove virtual padding
-		&:empty {
-			display: none;
-		}
+	// Hide icon container if empty to remove virtual padding
+	&--button-variant &__icon:empty {
+		display: none;
 	}
 
 	&--button-variant:not(&--button-variant-v-grouped):not(&--button-variant-h-grouped),
@@ -597,6 +675,12 @@ $spacing: 4px;
 		border-radius: $border-radius;
 	}
 
+	/* Special rules for vertical button groups */
+	&--button-variant-v-grouped &__label {
+		flex-basis: 100%;
+		// vertically grouped buttons should all have the same width
+		max-width: unset;
+	}
 	&--button-variant-v-grouped {
 		&:first-of-type {
 			border-top-left-radius: $border-radius-outer;
@@ -619,6 +703,7 @@ $spacing: 4px;
 		}
 	}
 
+	/* Special rules for horizontal button groups */
 	&--button-variant-h-grouped {
 		&:first-of-type {
 			border-top-left-radius: $border-radius-outer;
@@ -640,23 +725,15 @@ $spacing: 4px;
 			border-left: 0!important;
 		}
 	}
-
-	&--button-variant.checkbox-radio-switch {
-		border: 2px solid var(--color-border-dark);
-		// better than setting border-radius on labels (producing a small gap)
-		overflow: hidden;
-
-		&__label {
-			text-overflow: ellipsis;
-		}
-
-		&--checked {
-			font-weight: bold;
-
-			label {
-				background-color: var(--color-primary-element-light);
-			}
-		}
+	&--button-variant-h-grouped &__label-text {
+		text-align: center;
+	}
+	&--button-variant-h-grouped &__label {
+		flex-direction: column;
+		justify-content: center;
+		width: 100%;
+		margin: 0;
+		gap: 0;
 	}
 }
 </style>
