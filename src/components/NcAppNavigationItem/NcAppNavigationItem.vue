@@ -137,15 +137,59 @@ Just nest the counter in a template within `<NcAppNavigationItem>` and add `#cou
 Wrap the children in a template with the `slot` property and use the prop `allowCollapse` to choose wether to allow or
 prevent the user from collapsing the items.
 
-```
-<NcAppNavigationItem name="Item with children" :allowCollapse="true" :open="true">
+```vue
 	<template>
-		<NcAppNavigationItem name="AppNavigationItemChild1" />
-		<NcAppNavigationItem name="AppNavigationItemChild2" />
-		<NcAppNavigationItem name="AppNavigationItemChild3" />
-		<NcAppNavigationItem name="AppNavigationItemChild4" />
+		<NcAppNavigationItem name="Item with children" :allowCollapse="true" :open="true">
+			<template #icon>
+				<Folder :size="20" />
+			</template>
+			<template #counter>
+				<NcCounterBubble>
+					99+
+				</NcCounterBubble>
+			</template>
+			<template #actions>
+				<NcActionButton @click="alert('Edit')">
+					<template #icon>
+						<Pencil :size="20" />
+					</template>
+					Edit
+				</NcActionButton>
+				<NcActionButton @click="alert('Delete')">
+					<template #icon>
+						<Delete :size="20" />
+					</template>
+					Delete
+				</NcActionButton>
+				<NcActionLink name="Link" href="https://nextcloud.com">
+					<template #icon>
+						<OpenInNew :size="20" />
+					</template>
+				</NcActionLink>
+			</template>		
+			<template>
+				<NcAppNavigationItem name="AppNavigationItemChild1" />
+				<NcAppNavigationItem name="AppNavigationItemChild2" />
+				<NcAppNavigationItem name="AppNavigationItemChild3" />
+				<NcAppNavigationItem name="AppNavigationItemChild4" />
+			</template>
+		</NcAppNavigationItem>
 	</template>
-</NcAppNavigationItem>
+	<script>
+	import Folder from 'vue-material-design-icons/Folder'
+	import Delete from 'vue-material-design-icons/Delete'
+	import OpenInNew from 'vue-material-design-icons/OpenInNew'
+	import Pencil from 'vue-material-design-icons/Pencil'
+
+	export default {
+		components: {
+			Folder,
+			Delete,
+			OpenInNew,
+			Pencil,
+		},
+	}
+	</script>	
 ```
 
 ### Editable element
@@ -253,7 +297,6 @@ Just set the `pinned` prop.
 					</div>
 				</a>
 
-				<NcAppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
 				<!-- undo entry -->
 				<div v-if="undo" class="app-navigation-entry__deleted">
 					<div class="app-navigation-entry__deleted-description">
@@ -302,6 +345,7 @@ Just set the `pinned` prop.
 						<slot name="actions" />
 					</NcActions>
 				</div>
+				<NcAppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
 
 				<!-- Anything (virtual) that should be mounted in the component, like a related modal -->
 				<slot name="extra" />
@@ -878,11 +922,12 @@ export default {
 }
 
 /* Makes the icon of the collapsible element disappear
-*  When hovering on the root element */
+ * When hovering on the root element
+ */
 .app-navigation-entry--collapsible {
-	//shows the triangle button
+	// hides the triangle button
 	.icon-collapse {
-		visibility: hidden;
+		display: none;
 	}
 	&.app-navigation-entry--no-icon,
 	&:hover, &:focus {
@@ -890,8 +935,8 @@ export default {
 			visibility: visible;
 		}
 		.icon-collapse {
-			//shows the triangle button
-			visibility: visible;
+			// shows the triangle button
+			display: initial;
 		}
 		// prevent the icon of children elements from being hidden
 		// by the previous rule
