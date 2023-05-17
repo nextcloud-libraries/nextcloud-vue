@@ -246,6 +246,24 @@ export default {
 	},
 
 	methods: {
+		/**
+		 * Focus the input element
+		 *
+		 * @public
+		 */
+		focus() {
+			this.$refs.inputField.focus()
+		},
+
+		/**
+		 * Select all the text in the input
+		 *
+		 * @public
+		 */
+		select() {
+			this.$refs.inputField.select()
+		},
+
 		handleInput(event) {
 			/**
 			 * Triggers when the value inside the password field is
