@@ -245,7 +245,7 @@ For the multiselect component, all events will be passed through. Please see the
 </template>
 
 <script>
-import NcDatetimePicker from '../NcDatetimePicker/index.js'
+const NcDatetimePicker = () => import('../NcDatetimePicker/index.js')
 import NcDateTimePickerNative from '../NcDateTimePickerNative/index.js'
 import NcPasswordField from '../NcPasswordField/index.js'
 import NcSelect from '../NcSelect/index.js'
