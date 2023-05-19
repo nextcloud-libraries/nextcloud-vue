@@ -166,7 +166,7 @@ prevent the user from collapsing the items.
 						<OpenInNew :size="20" />
 					</template>
 				</NcActionLink>
-			</template>		
+			</template>
 			<template>
 				<NcAppNavigationItem name="AppNavigationItemChild1" />
 				<NcAppNavigationItem name="AppNavigationItemChild2" />
@@ -189,7 +189,7 @@ prevent the user from collapsing the items.
 			Pencil,
 		},
 	}
-	</script>	
+	</script>
 ```
 
 ### Editable element
