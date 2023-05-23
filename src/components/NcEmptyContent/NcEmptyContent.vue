@@ -48,7 +48,8 @@ export default {
 ```
 
 You can also customize the name using the `#name` slot
-and add actions.
+and add actions. But to keep the style consistent across Nextcloud
+consider only using header elements as the root elements for the name slot.
 
 ```
 <template>
@@ -59,13 +60,41 @@ and add actions.
 		</template>
 		<template #name>
 			<h1 class="empty-content__name">
-				No Comments
+				No comments
 			</h1>
 		</template>
 		<template #action>
 			<NcButton type="primary">
 				Add a comment!
 			</NcButton>
+		</template>
+	</NcEmptyContent>
+</template>
+
+<script>
+import Comment from 'vue-material-design-icons/Comment'
+
+export default {
+	components: {
+		Comment,
+	},
+}
+</script>
+```
+
+Similar to the `#name` slot, you could also use the `#description` slot.
+The content will be rendered within a paragraph so you can use any inline element,
+like a link.
+
+```
+<template>
+	<NcEmptyContent
+		name="No comments">
+		<template #icon>
+			<Comment />
+		</template>
+		<template #description>
+			<a href="https://en.wikipedia.org/wiki/Comment">What is even a comment?</a>
 		</template>
 	</NcEmptyContent>
 </template>
@@ -88,13 +117,17 @@ export default {
 			<!-- @slot Optional material design icon -->
 			<slot name="icon" />
 		</div>
+		<!-- @slot Optional name if not set as property, shall be enclosed by a header element -->
 		<slot name="name">
 			<h2 v-if="hasName" class="empty-content__name">
 				{{ name }}
 			</h2>
 		</slot>
 		<p v-if="hasDescription">
-			{{ description }}
+			<!-- @slot Optional formatted description rendered inside a paragraph -->
+			<slot name="description">
+				{{ description }}
+			</slot>
 		</p>
 		<div v-if="$slots.action" class="empty-content__action">
 			<!-- @slot Optional slot for a button or the like -->
@@ -123,8 +156,11 @@ export default {
 		hasName() {
 			return this.name !== ''
 		},
+		/**
+		 * Check if a description is given as either property or slot
+		 */
 		hasDescription() {
-			return this.description !== ''
+			return this.description !== '' || this.$slots.description?.[0]
 		},
 	},
 }
