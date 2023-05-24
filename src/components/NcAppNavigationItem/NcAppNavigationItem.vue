@@ -787,7 +787,7 @@ export default {
 		background-color: var(--color-primary-element) !important;
 
 		// overwrite active text color
-		.app-navigation-entry-link, .app-navigation-entry-div {
+		.app-navigation-entry-link, .app-navigation-entry-button {
 			color: var(--color-primary-element-text) !important;
 		}
 	}
@@ -822,13 +822,13 @@ export default {
 	}
 
 	&:not(.app-navigation-entry--editing) {
-		.app-navigation-entry-link, .app-navigation-entry-div {
+		.app-navigation-entry-link, .app-navigation-entry-button {
 			padding-right: $icon-margin;
 		}
 	}
 
 	// Main entry link
-	.app-navigation-entry-link, .app-navigation-entry-div {
+	.app-navigation-entry-link, .app-navigation-entry-button {
 		z-index: 100; /* above the bullet to allow click*/
 		display: flex;
 		overflow: hidden;

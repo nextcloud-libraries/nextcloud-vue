@@ -69,26 +69,26 @@
 		}"
 		class="app-navigation-entry">
 		<!-- New Item -->
-		<div class="app-navigation-entry-div" @click="handleNewItem">
-			<div :class="{ [icon]: !loading }"
+		<button class="app-navigation-entry-button" @click="handleNewItem">
+			<span :class="{ [icon]: !loading }"
 				class="app-navigation-entry-icon">
 				<NcLoadingIcon v-if="loading" />
 				<slot v-else name="icon" />
-			</div>
+			</span>
 
 			<span v-if="!newItemActive" class="app-navigation-new-item__name" :title="name">
 				{{ name }}
 			</span>
 
 			<!-- new Item input -->
-			<div v-if="newItemActive" class="newItemContainer">
+			<span v-if="newItemActive" class="newItemContainer">
 				<NcInputConfirmCancel ref="newItemInput"
 					v-model="newItemValue"
 					:placeholder="editPlaceholder !== '' ? editPlaceholder : name"
 					@cancel="cancelNewItem"
 					@confirm="handleNewItemDone" />
-			</div>
-		</div>
+			</span>
+		</button>
 	</li>
 </template>
 
