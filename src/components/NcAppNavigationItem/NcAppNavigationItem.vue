@@ -902,31 +902,6 @@ export default {
 	}
 }
 
-/* Makes the icon of the collapsible element disappear
- * When hovering on the root element
- */
-.app-navigation-entry--collapsible {
-	// hides the triangle button
-	.icon-collapse {
-		display: none;
-	}
-	&.app-navigation-entry--no-icon,
-	&:hover, &:focus {
-		a .app-navigation-entry-icon {
-			visibility: visible;
-		}
-		.icon-collapse {
-			// shows the triangle button
-			display: initial;
-		}
-		// prevent the icon of children elements from being hidden
-		// by the previous rule
-		.app-navigation-entry__children li:not(.app-navigation-entry--collapsible) a :first-child {
-			visibility: visible;
-		}
-	}
-}
-
 /* counter and actions */
 .app-navigation-entry__utils {
 	display: flex;
