@@ -45,8 +45,8 @@ module.exports = async () => {
 			},
 		}),
 
-		exampleMode: 'expand',
-		usageMode: 'expand',
+		exampleMode: 'collapse',
+		usageMode: 'collapse',
 
 		components: 'src/components/*/*.vue',
 		getComponentPathLine(componentPath) {
