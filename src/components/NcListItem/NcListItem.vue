@@ -601,7 +601,15 @@ export default {
 	&:active,
 	&.active {
 		.list-item {
-			background-color: var(--color-primary-element-light);
+			background-color: var(--color-primary-element);
+		}
+		
+		.line-one__name, .line-one__details {
+			color: var(--color-primary-element-text) !important;
+		}
+
+		.line-two__subname {
+			color: var(--color-primary-element-text) !important;
 		}
 	}
 }
@@ -667,19 +675,6 @@ export default {
 
 	&__extra {
 		margin-top: 4px;
-	}
-}
-
-// Add more contrast for active entry
-[data-themes*='highcontrast'] {
-	.list-item__wrapper {
-		&--active,
-		&:active,
-		&.active {
-			.list-item {
-				background-color: var(--color-primary-element-light-hover);
-			}
-		}
 	}
 }
 
