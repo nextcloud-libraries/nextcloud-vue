@@ -153,11 +153,11 @@ export default {
 </script>
 ```
 
-### Multiple actions with 2 items inline AND forced names
+### Multiple actions with 2 items inline AND forced titles
 
 ```vue
 <template>
-	<NcActions :force-name="true" :inline="2">
+	<NcActions :force-title="true" :inline="2">
 		<NcActionButton @click="showMessage('Add')">
 			<template #icon>
 				<Plus :size="20" />
@@ -623,9 +623,9 @@ export default {
 		},
 
 		/**
-		 * Force the name to show for single actions
+		 * Force the title to show for single actions
 		 */
-		forceName: {
+		forceTitle: {
 			type: Boolean,
 			default: false,
 		},
@@ -996,11 +996,11 @@ export default {
 
 			const text = action?.componentOptions?.children?.[0]?.text?.trim?.()
 			const ariaLabel = action?.componentOptions?.propsData?.ariaLabel || text
-			const buttonText = this.forceName ? text : ''
+			const buttonText = this.forceTitle ? text : ''
 
 			let title = action?.componentOptions?.propsData?.title
 			// Show a default title for single actions if none is present
-			if (!(this.forceName || title)) {
+			if (!(this.forceTitle || title)) {
 				title = text
 			}
 
