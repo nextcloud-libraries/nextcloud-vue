@@ -259,7 +259,6 @@ Just set the `pinned` prop.
 			:to="to"
 			:exact="isRouterLink ? exact : null">
 			<div :class="{
-					'app-navigation-entry--no-icon': !isIconShown,
 					'app-navigation-entry--editing': editingActive,
 					'app-navigation-entry--deleted': undo,
 					'active': isActive && to,
@@ -280,10 +279,10 @@ Just set the `pinned` prop.
 
 					<!-- icon if not collapsible -->
 					<!-- never show the icon over the collapsible if mobile -->
-					<div :class="{ [icon]: icon && isIconShown }"
+					<div :class="{ [icon]: icon }"
 						class="app-navigation-entry-icon">
 						<NcLoadingIcon v-if="loading" />
-						<slot v-else-if="isIconShown" name="icon" />
+						<slot v-else name="icon" />
 					</div>
 					<span v-if="!editingActive" class="app-navigation-entry__title">
 						{{ nameTitleFallback }}
@@ -622,13 +621,6 @@ export default {
 
 		collapsible() {
 			return this.allowCollapse && !!this.$slots.default
-		},
-
-		// is the icon shown?
-		// we don't show it on mobile if the entry is collapsible
-		// we show the collapse toggle directly!
-		isIconShown() {
-			return !this.collapsible || (this.collapsible && !this.isMobile)
 		},
 
 		// Checks if the component is already a children of another
