@@ -811,7 +811,12 @@ export default {
 	// When .active class is applied, change color background of link and utils. The
 	// !important prevents the focus state to override the active state.
 	&.active {
-		background-color: var(--color-primary-element-light) !important;
+		background-color: var(--color-primary-element) !important;
+
+		// overwrite active text color
+		.app-navigation-entry-link, .app-navigation-entry-div {
+			color: var(--color-primary-element-text) !important;
+		}
 	}
 	&:focus-within,
 	&:hover {
