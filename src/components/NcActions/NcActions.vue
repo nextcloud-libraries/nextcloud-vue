@@ -969,6 +969,16 @@ export default {
 			action => action?.componentOptions?.tag || action?.componentOptions?.Ctor?.extendOptions?.name
 		)
 
+		const isNavLink = (action) => {
+			const componentName = action?.componentOptions?.Ctor?.extendOptions?.name ?? action?.componentOptions?.tag
+			return (
+				componentName === 'NcActionLink'
+				&& action?.componentOptions?.propsData?.href?.startsWith(window.location.origin)
+			)
+		}
+		// Automatically detect whether all actions are website navigation links
+		const isNav = actions.every(isNavLink)
+
 		/**
 		 * Filter and list actions that are allowed to be displayed inline
 		 */
@@ -1103,7 +1113,7 @@ export default {
 						slot: 'trigger',
 						ref: 'menuButton',
 						attrs: {
-							'aria-haspopup': 'menu',
+							'aria-haspopup': isNav ? null : 'menu',
 							'aria-label': this.ariaLabel,
 							'aria-controls': this.opened ? this.randomId : null,
 							'aria-expanded': this.opened.toString(),
@@ -1133,7 +1143,7 @@ export default {
 							attrs: {
 								id: this.randomId,
 								tabindex: '-1',
-								role: 'menu',
+								role: isNav ? null : 'menu',
 							},
 						}, [
 							actions,
