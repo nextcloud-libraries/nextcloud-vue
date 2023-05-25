@@ -89,7 +89,7 @@ export default {
 	border-radius: var(--border-radius-pill);
 	background-color: var(--color-primary-element-light);
 	font-weight: bold;
-	color: var(--color-primary-element);
+	color: var(--color-primary-element-light-text);
 
 	&--highlighted {
 		color: var(--color-primary-element-text);
