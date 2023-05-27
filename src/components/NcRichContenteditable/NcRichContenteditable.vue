@@ -725,7 +725,6 @@ export default {
 	&--empty:before {
 		content: attr(placeholder);
 		color: var(--color-text-maxcontrast);
-		position: absolute;
 	}
 
 	&[contenteditable='false']:not(&--disabled) {
