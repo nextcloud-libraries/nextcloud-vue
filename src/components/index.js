@@ -20,6 +20,7 @@
  *
  */
 
+export { default as NcActionAccordion } from './NcActionAccordion/index.js'
 export { default as NcActionButton } from './NcActionButton/index.js'
 export { default as NcActionButtonGroup } from './NcActionButtonGroup/index.js'
 export { default as NcActionCaption } from './NcActionCaption/index.js'

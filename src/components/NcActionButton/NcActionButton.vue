@@ -219,6 +219,8 @@ export default {
 			<!-- fake slot to gather inner text -->
 			<slot v-if="false" />
 		</button>
+		<!-- @slot For internal purpose only -->
+		<slot name="content" />
 	</li>
 </template>
 
