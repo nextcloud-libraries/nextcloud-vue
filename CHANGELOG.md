@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
+## v8 **Unreleased** (beta)
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.2...v8.0.0-beta.1)
+
+### :boom: Breaking changes
+- The deprecated `NcPopoverMenu` component was removed [\#4088](https://github.com/nextcloud/nextcloud-vue/pull/4088) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- The deprecated `NcAppNavigationCounter` component was removed [\#4096](https://github.com/nextcloud/nextcloud-vue/pull/4096) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- The deprecated `title` property was removed and the `name` propery is now required for `NcActions*`, `NcAppNavigationItem` and `NcBreadcrumb*` [\#4052](https://github.com/nextcloud/nextcloud-vue/pull/4052) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- The deprecated `excludeClickOutsideClasses` property was removed from `clickOutsideOptions` [\#4052](https://github.com/nextcloud/nextcloud-vue/pull/4052) ([raimund-schluessler](https://github.com/raimund-schluessler))
+
+### :rocket: Enhancements
+- feat\(NcNoteCard\): Add new 'info' version to display informational messaged [\#4063](https://github.com/nextcloud/nextcloud-vue/pull/4063) ([moan0s](https://github.com/moan0s))
+- feat\(NcEmptyContent\): Add slot for description [\#3895](https://github.com/nextcloud/nextcloud-vue/pull/3895) ([susnux](https://github.com/susnux))
+- feat\(NcActions\): Improve readability of action menu entries [\#4049](https://github.com/nextcloud/nextcloud-vue/pull/4049) ([Pytal](https://github.com/Pytal))
+- feat\(NcReferencePickerModal\): Allow setting modal size when registering a custom picker component [\#3866](https://github.com/nextcloud/nextcloud-vue/pull/3866) ([julien-nc](https://github.com/julien-nc))
+- feat: Migrate `NcAvatar` to use `NcActions` [\#4017](https://github.com/nextcloud/nextcloud-vue/pull/4017) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- feat\(a11y\): Export a11y activation util [\#4166](https://github.com/nextcloud/nextcloud-vue/pull/4166) ([Pytal](https://github.com/Pytal))
+
+### :bug: Fixed bugs
+- fix\(NcAppNavigationSettings\): Add `aria-expanded` attribute to settings accordion button [\#4109](https://github.com/nextcloud/nextcloud-vue/pull/4109) ([Fenn-CS](https://github.com/Fenn-CS))
+- fix\(clickOutsideOptions\): Fix handling of ignored css selectors [\#4046](https://github.com/nextcloud/nextcloud-vue/pull/4046) ([susnux](https://github.com/susnux))
+- fix\(NcResource\): Fix item alignment in the right sidebar [\#4121](https://github.com/nextcloud/nextcloud-vue/pull/4121) ([Pytal](https://github.com/Pytal))
+- fix\(NcAppSidebarTabs\): Fix rendering tabs with CSS icon [\#4111](https://github.com/nextcloud/nextcloud-vue/pull/4111) ([ShGKme](https://github.com/ShGKme))
+- fix\(NcAppNavigationItem\): Left panel dropdown improvement [\#4103](https://github.com/nextcloud/nextcloud-vue/pull/4103) ([Jerome-Herbinet](https://github.com/Jerome-Herbinet))
+- fix\(NcSettingsSection\): Add target blank and no ref info [\#4099](https://github.com/nextcloud/nextcloud-vue/pull/4099) ([Rello](https://github.com/Rello))
+- fix: Use the color-primary-element* variables in components [\#4067](https://github.com/nextcloud/nextcloud-vue/pull/4067) ([szaimon](https://github.com/szaimon))
+- fix\(NcListItem\): Fix wrong bold class [\#4083](https://github.com/nextcloud/nextcloud-vue/pull/4083) ([julien-nc](https://github.com/julien-nc))
+- fix\(NcSelect\): Fix disabled state of NcSelect with dark mode [\#4079](https://github.com/nextcloud/nextcloud-vue/pull/4079) ([nickvergessen](https://github.com/nickvergessen))
+- fix\(NcSelect\): Action input usage [\#4066](https://github.com/nextcloud/nextcloud-vue/pull/4066) ([Pytal](https://github.com/Pytal))
+- fix\(NcRichContenteditable\): Fix avatar overlayed with empty space whe… [\#4043](https://github.com/nextcloud/nextcloud-vue/pull/4043) ([nickvergessen](https://github.com/nickvergessen))
+
 ## [v7.11.2](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.2) (2023-05-05)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.1...v7.11.2)
