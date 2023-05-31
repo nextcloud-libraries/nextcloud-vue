@@ -55,6 +55,7 @@ section * {
 		<NcSelect :value="inputValue"
 			:options="groupsArray"
 			:placeholder="placeholder || label"
+			:filter-by="filterGroups"
 			:input-id="id"
 			:limit="5"
 			label="displayname"
@@ -241,6 +242,17 @@ export default {
 				showError(t('Unable to search the group'))
 			}
 			return false
+		},
+
+		/**
+		 * Custom filter function for `NcSelect` to filter by ID *and* display name
+		 *
+		 * @param {object} option One of the groups
+		 * @param {string} label The label property of the group
+		 * @param {string} search The current search string
+		 */
+		filterGroups(option, label, search) {
+			return `${label || ''} ${option.id}`.toLocaleLowerCase().indexOf(search.toLocaleLowerCase()) > -1
 		},
 
 		/**
