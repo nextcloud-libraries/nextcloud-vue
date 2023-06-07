@@ -424,12 +424,13 @@ export default {
 		}
 
 		&--error {
-			color: var(--color-error-text);
+			color: var(--color-error);
 		}
 
 		&--success {
-			color: var(--color-success-text);
+			color: var(--color-success);
 		}
 	}
 }
+
 </style>
