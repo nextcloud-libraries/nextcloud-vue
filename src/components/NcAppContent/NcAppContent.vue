@@ -373,7 +373,7 @@ export default {
 .app-content-wrapper--mobile {
 	&.app-content-wrapper--show-list :deep() {
 		.app-content-list {
-			display: block;
+			display: flex;
 		}
 		.app-content-details {
 			display: none;
