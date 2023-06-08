@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 # Changelog
 
+## [v7.12.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.12.0) (2023-06-08)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.6...v7.12.0)
+
+### :rocket: Enhancements
+* make navigation-collapsible always visible [\#4161](https://github.com/nextcloud/nextcloud-vue/pull/4161) ([szaimen](https://github.com/szaimen))
+* enh\(NcActions\): Navigation link actions [\#4160](https://github.com/nextcloud/nextcloud-vue/pull/4160) ([Pytal](https://github.com/Pytal))
+* Export dist a11y activation util [\#4167](https://github.com/nextcloud/nextcloud-vue/pull/4167) ([Pytal](https://github.com/Pytal))
+* feat: Add slot for description of `NcEmptyContent` [\#4170](https://github.com/nextcloud/nextcloud-vue/pull/4170) ([susnux](https://github.com/susnux))
+
+### :bug: Fixed bugs
+* Fix alignment of nav contents [\#4148](https://github.com/nextcloud/nextcloud-vue/pull/4148) ([pulsejet](https://github.com/pulsejet))
+* fix toggle overlapping other stuff [\#4149](https://github.com/nextcloud/nextcloud-vue/pull/4149) ([szaimen](https://github.com/szaimen))
+* Use `display: flex` in app-content-list on mobile as well [\#4192](https://github.com/nextcloud/nextcloud-vue/pull/4192) ([mejo-](https://github.com/mejo-))
+
 ## [v7.11.6](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.6) (2023-05-16)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.5...v7.11.6)
