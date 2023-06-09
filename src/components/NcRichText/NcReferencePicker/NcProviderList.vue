@@ -102,9 +102,7 @@ export default {
 .provider-list {
 	width: 100%;
 	min-height: 350px;
-	// multiselect dropdown is wider than the select input
-	// this avoids overflow
-	padding-right: 2px;
+	padding: 0 16px 16px 16px;
 	display: flex;
 	flex-direction: column;
 
