@@ -583,6 +583,10 @@ export default {
 		height: var(--icon-size);
 	}
 
+	&__input:focus-visible + label {
+		outline: 2px solid var(--color-primary-element) !important;
+	}
+
 	&__label {
 		display: flex;
 		align-items: center;
