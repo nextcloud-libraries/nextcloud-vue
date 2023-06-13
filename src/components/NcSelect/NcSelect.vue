@@ -642,6 +642,19 @@ export default {
 		},
 
 		/**
+		 * Determines whether the dropdown should be open.
+		 * Receives the component instance as the only argument.
+		 *
+		 * @see https://vue-select.org/api/props.html#dropdownshouldopen
+		 */
+		dropdownShouldOpen: {
+			type: Function,
+			default: ({ noDrop, open }) => {
+				return noDrop ? false : open
+			},
+		},
+
+		/**
 		 * Callback to determine if the provided option should
 		 * match the current search text. Used to determine
 		 * if the option should be displayed.
