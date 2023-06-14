@@ -1014,7 +1014,7 @@ body {
 		margin-right: 2px;
 	}
 
-	&.vs--open .vs__dropdown-toggle:not([disabled]) {
+	&.vs--open .vs__dropdown-toggle {
 		border-color: var(--color-primary-element);
 		border-bottom-color: transparent;
 	}
