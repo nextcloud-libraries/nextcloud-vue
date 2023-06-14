@@ -58,7 +58,7 @@
 		"@vueuse/core": "^10.1.2",
 		"clone": "^2.1.2",
 		"debounce": "1.2.1",
-		"emoji-mart-vue-fast": "^12.0.1",
+		"emoji-mart-vue-fast": "^15.0.0",
 		"escape-html": "^1.0.3",
 		"floating-vue": "^1.0.0-beta.19",
 		"focus-trap": "^7.1.0",
