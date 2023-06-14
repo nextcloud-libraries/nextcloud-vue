@@ -955,11 +955,11 @@ body {
 	--vs-line-height: var(--default-line-height);
 
 	/* Disabled State */
-	--vs-state-disabled-bg: var(--color-background-dark);
+	--vs-state-disabled-bg: var(--color-background-hover);
 	--vs-state-disabled-color: var(--color-text-maxcontrast);
 	--vs-state-disabled-controls-color: var(--color-text-maxcontrast);
 	--vs-state-disabled-cursor: not-allowed;
-	--vs-disabled-bg: var(--color-background-dark);
+	--vs-disabled-bg: var(--color-background-hover);
 	--vs-disabled-color: var(--color-text-maxcontrast);
 	--vs-disabled-cursor: not-allowed;
 
@@ -1025,6 +1025,11 @@ body {
 	}
 
 	&.vs--disabled {
+		.vs__search,
+		.vs__selected {
+			color: var(--color-text-maxcontrast);
+		}
+
 		.vs__clear,
 		.vs__deselect {
 			display: none;
