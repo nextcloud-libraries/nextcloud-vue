@@ -1006,7 +1006,7 @@ body {
 		border-bottom-color: transparent;
 	}
 
-	&:not(.vs--open) .vs__dropdown-toggle:hover:not([disabled]) {
+	&:not(.vs--disabled, .vs--open) .vs__dropdown-toggle:hover {
 		border-color: var(--color-primary-element);
 	}
 
