@@ -1010,6 +1010,13 @@ body {
 		border-color: var(--color-primary-element);
 	}
 
+	&.vs--disabled {
+		.vs__clear,
+		.vs__deselect {
+			display: none;
+		}
+	}
+
 	&--no-wrap {
 		.vs__selected-options {
 			flex-wrap: nowrap;
