@@ -546,13 +546,12 @@ export default {
 	},
 	beforeDestroy() {
 		window.removeEventListener('keydown', this.handleKeydown)
-		this.mc.off('swipeleft swiperight')
-		this.mc.destroy()
+		this.mc.stop()
 	},
 	mounted() {
 		// init clear view
 		this.useFocusTrap()
-		useSwipe(this.$refs.mask, {
+		this.mc = useSwipe(this.$refs.mask, {
 			onSwipeEnd: this.handleSwipe,
 		})
 
