@@ -335,52 +335,52 @@ const selectArray = [
 					id: '0-john',
 					displayName: 'John',
 					isNoUser: false,
-					subtitle: 'john@example.org',
+					subname: 'john@example.org',
 					icon: '',
 				},
 				{
 					id: '0-emma',
 					displayName: 'Emma',
 					isNoUser: false,
-					subtitle: 'emma@example.org',
+					subname: 'emma@example.org',
 					icon: '',
 				},
 				{
 					id: '0-olivia',
 					displayName: 'Olivia',
 					isNoUser: false,
-					subtitle: 'olivia@example.org',
+					subname: 'olivia@example.org',
 					icon: '',
 				},
 				{
 					id: '0-noah',
 					displayName: 'Noah',
 					isNoUser: false,
-					subtitle: 'noah@example.org',
+					subname: 'noah@example.org',
 					icon: '',
 				},
 				{
 					id: '0-oliver',
 					displayName: 'Oliver',
 					isNoUser: false,
-					subtitle: 'oliver@example.org',
+					subname: 'oliver@example.org',
 					icon: '',
 				},
 				{
 					id: '1-admin',
 					displayName: 'Admin',
 					isNoUser: true,
-					subtitle: null,
+					subname: null,
 					iconSvg: AccountGroup,
-					iconTitle: 'Group icon',
+					iconName: 'Group icon',
 				},
 				{
 					id: '2-org@example.org',
 					displayName: 'Organization',
 					isNoUser: true,
-					subtitle: 'org@example.org',
+					subname: 'org@example.org',
 					iconSvg: Email,
-					iconTitle: 'Email icon',
+					iconName: 'Email icon',
 				},
 			],
 		},
@@ -398,52 +398,52 @@ const selectArray = [
 					id: '0-john',
 					displayName: 'John',
 					isNoUser: false,
-					subtitle: 'john@example.org',
+					subname: 'john@example.org',
 					icon: '',
 				},
 				{
 					id: '0-emma',
 					displayName: 'Emma',
 					isNoUser: false,
-					subtitle: 'emma@example.org',
+					subname: 'emma@example.org',
 					icon: '',
 				},
 				{
 					id: '0-olivia',
 					displayName: 'Olivia',
 					isNoUser: false,
-					subtitle: 'olivia@example.org',
+					subname: 'olivia@example.org',
 					icon: '',
 				},
 				{
 					id: '0-noah',
 					displayName: 'Noah',
 					isNoUser: false,
-					subtitle: 'noah@example.org',
+					subname: 'noah@example.org',
 					icon: '',
 				},
 				{
 					id: '0-oliver',
 					displayName: 'Oliver',
 					isNoUser: false,
-					subtitle: 'oliver@example.org',
+					subname: 'oliver@example.org',
 					icon: '',
 				},
 				{
 					id: '1-admin',
 					displayName: 'Admin',
 					isNoUser: true,
-					subtitle: null,
+					subname: null,
 					iconSvg: AccountGroup,
-					iconTitle: 'Group icon',
+					iconName: 'Group icon',
 				},
 				{
 					id: '2-org@example.org',
 					displayName: 'Organization',
 					isNoUser: true,
-					subtitle: 'org@example.org',
+					subname: 'org@example.org',
 					iconSvg: Email,
-					iconTitle: 'Email icon',
+					iconName: 'Email icon',
 				},
 			],
 		},
@@ -663,7 +663,7 @@ export default {
 		 * below
 		 *
 		 * Enabling `userSelect` will automatically set this to filter by the
-		 * `displayName` and `subtitle` properties of the user option object
+		 * `displayName` and `subname` properties of the user option object
 		 * unless this prop is set explicitly
 		 *
 		 * @see https://vue-select.org/api/props.html#filterby
@@ -782,7 +782,8 @@ export default {
 		 * Enable the user selector with avatars
 		 *
 		 * Objects must contain the data expected by the
-		 * [NcAvatar](#/Components/NcAvatar) component
+		 * [NcListItemIcon](#/Components/NcListItemIcon) and
+		 * [NcAvatar](#/Components/NcAvatar) components
 		 */
 		userSelect: {
 			type: Boolean,
@@ -894,7 +895,7 @@ export default {
 			}
 			if (this.userSelect) {
 				return (option, label, search) => {
-					return (`${label} ${option.subtitle}` || '')
+					return (`${label} ${option.subname}` || '')
 						.toLocaleLowerCase()
 						.indexOf(search.toLocaleLowerCase()) > -1
 				}
