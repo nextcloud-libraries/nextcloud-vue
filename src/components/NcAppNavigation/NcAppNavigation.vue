@@ -113,8 +113,6 @@ export default {
 		})
 	},
 	unmounted() {
-		this.mc.off('swipeleft swiperight')
-		this.mc.destroy()
 		unsubscribe('toggle-navigation', this.toggleNavigationByEventBus)
 	},
 
