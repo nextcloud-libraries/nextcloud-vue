@@ -64,14 +64,14 @@ export default {
 				Test01: {
 					icon: 'icon-user',
 					id: 'Test01',
-					label: 'Test01',
+					title: 'Test01',
 					source: 'users',
 					primary: true,
 				},
 				Test02: {
 					icon: 'icon-user',
 					id: 'Test02',
-					label: 'Test02',
+					title: 'Test02',
 					source: 'users',
 					status: {
 						clearAt: null,
@@ -81,10 +81,10 @@ export default {
 					},
 					subline: 'Visiting London',
 				},
-				'Test 03': {
+				'Test@User': {
 					icon: 'icon-user',
-					id: 'Test 03',
-					label: 'Test 03',
+					id: 'Test@User',
+					title: 'Test 03',
 					source: 'users',
 					status: {
 						clearAt: null,
@@ -97,7 +97,7 @@ export default {
 				'Test Offline': {
 					icon: 'icon-user',
 					id: 'Test Offline',
-					label: 'Test Offline',
+					title: 'Test Offline',
 					source: 'users',
 					status: {
 						clearAt: null,
@@ -110,7 +110,7 @@ export default {
 				'Test DND': {
 					icon: 'icon-user',
 					id: 'Test DND',
-					label: 'Test DND',
+					title: 'Test DND',
 					source: 'users',
 					status: {
 						clearAt: null,
@@ -279,8 +279,8 @@ export default {
 				// Allow spaces in the middle of mentions
 				allowSpaces: true,
 				fillAttr: 'id',
-				// Search against id and label (display name)
-				lookup: result => `${result.id} ${result.label}`,
+				// Search against id and title (display name)
+				lookup: result => `${result.id} ${result.title}`,
 				// Where to inject the menu popup
 				menuContainer: this.menuContainer,
 				// Popup mention autocompletion templates
@@ -348,7 +348,7 @@ export default {
 				// Where to inject the menu popup
 				menuContainer: this.menuContainer,
 				// Popup mention autocompletion templates
-				menuItemTemplate: item => `<img class="tribute-container-link__item__icon" src="${item.original.icon_url}"> <span class="tribute-container-link__item__label">${item.original.title}</span>`,
+				menuItemTemplate: item => `<img class="tribute-container-link__item__icon" src="${item.original.icon_url}"> <span class="tribute-container-link__item__title">${item.original.title}</span>`,
 				// Hide if no results
 				noMatchTemplate: () => t('No link provider found'),
 				selectTemplate: this.getLink,
@@ -815,7 +815,7 @@ export default {
 	&__item {
 		display: flex;
 		align-items: center;
-		&__label {
+		&__title {
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
