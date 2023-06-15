@@ -86,9 +86,9 @@ export default {
 					},
 					subline: 'Visiting London',
 				},
-				'Test 03': {
+				'Test@User': {
 					icon: 'icon-user',
-					id: 'Test 03',
+					id: 'Test@User',
 					label: 'Test 03',
 					source: 'users',
 					status: {
@@ -148,7 +148,7 @@ export default {
 					component: 'NcUserBubble',
 					props: {
 						displayName: 'Test 03',
-						user: 'Test 03',
+						user: 'Test@User',
 					},
 				},
 				'user-4': {
@@ -173,7 +173,7 @@ export default {
 			return this.message
 					.replace('@Test01', '{user-1}')
 					.replace('@Test02', '{user-2}')
-					.replace('@Test 03', '{user-3}')
+					.replace('@Test@User', '{user-3}')
 					.replace('@"Test Offline"', '{user-4}')
 					.replace('@"Test DND"', '{user-5}')
 		},
