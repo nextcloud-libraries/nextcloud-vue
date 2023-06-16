@@ -9,6 +9,12 @@ This repo contains the various Vue.js components that Nextcloud uses for its int
 
 A list of available components with examples to try out is available in the [documentation](https://nextcloud-vue-components.netlify.app).
 
+The documentation is built from the latest development branch, for stable releases the documentation can be found matching the latest minor version:
+
+- [master](https://nextcloud-vue-components.netlify.app).
+- [7.x.x](https://stable7--nextcloud-vue-components.netlify.app/)
+- [6.x.x](https://stable6--nextcloud-vue-components.netlify.app/)
+
 ## Getting started
 
 ### App example
