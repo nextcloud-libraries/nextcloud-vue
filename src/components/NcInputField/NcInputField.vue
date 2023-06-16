@@ -48,7 +48,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 				:type="type"
 				:disabled="disabled"
 				:placeholder="computedPlaceholder"
-				:aria-describedby="helperText.length > 0 ? `${inputName}-helper-text` : ''"
+				:aria-describedby="ariaDescribedby"
 				aria-live="polite"
 				:class="[inputClass,
 					{
@@ -283,12 +283,24 @@ export default {
 				return this.hasPlaceholder ? this.placeholder : this.label
 			}
 		},
+
 		isValidLabel() {
 			const isValidLabel = this.label || this.labelOutside
 			if (!isValidLabel) {
 				console.warn('You need to add a label to the NcInputField component. Either use the prop label or use an external one, as per the example in the documentation.')
 			}
 			return isValidLabel
+		},
+
+		ariaDescribedby() {
+			const ariaDescribedby = []
+			if (this.helperText.length > 0) {
+				ariaDescribedby.push(`${this.inputName}-helper-text`)
+			}
+			if (this.$attrs['aria-describedby']) {
+				ariaDescribedby.push(this.$attrs['aria-describedby'])
+			}
+			return ariaDescribedby.join(' ') || null
 		},
 	},
 
