@@ -915,6 +915,7 @@ export default {
 		transition: transform 300ms ease;
 		border-radius: var(--border-radius-large);
 		background-color: var(--color-main-background);
+		color: var(--color-main-text);
 		box-shadow: 0 0 40px rgba(0, 0, 0, .2);
 		&__close {
 			position: absolute;
