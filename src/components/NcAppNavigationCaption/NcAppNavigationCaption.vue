@@ -132,7 +132,6 @@ export default {
 .app-navigation-caption {
 	display: flex;
 	justify-content: space-between;
-	padding: 0 calc(var(--default-grid-baseline, 4px) * 2) 0 calc(var(--default-grid-baseline, 4px) * 3);
 
 	&__name {
 		font-weight: bold;
@@ -145,6 +144,8 @@ export default {
 		opacity: $opacity_normal;
 		box-shadow: none !important;
 		flex-shrink: 0;
+		// padding to align the name with the icon of app navigation items
+		padding: 0 calc(var(--default-grid-baseline, 4px) * 2) 0 calc(var(--default-grid-baseline, 4px) * 3);
 	}
 
 	&__actions {
