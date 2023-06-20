@@ -113,7 +113,7 @@ export default {
 	// Browser specific rules
 	&::-webkit-progress-bar {
 		height: var(--progress-bar-height);
-		background-color: var(--color-background-dark)
+		background-color: transparent;
 	}
 	&::-webkit-progress-value {
 		background: var(--gradient-primary-background);
