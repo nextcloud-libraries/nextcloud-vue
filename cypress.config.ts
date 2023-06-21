@@ -1,14 +1,15 @@
 import { defineConfig } from 'cypress'
-import { DefinePlugin } from 'webpack'
-import getCompareSnapshotsPlugin  from 'cypress-visual-regression/dist/plugin'
+import webpack from 'webpack'
+import getCompareSnapshotsPlugin from 'cypress-visual-regression/dist/plugin.js'
 import path from 'path'
 import webpackConfig from '@nextcloud/webpack-vue-config'
-import webpackRules from '@nextcloud/webpack-vue-config/rules'
+import webpackRules from '@nextcloud/webpack-vue-config/rules.js'
 
-import { loadTranslations } from './resources/translations'
+import { loadTranslations } from './build/translations.js'
 
-const SCOPE_VERSION = Date.now()
-webpackRules.RULE_SCSS.use.push({
+const SCOPE_VERSION = Date.now();
+
+(webpackRules.RULE_SCSS.use as webpack.RuleSetUse[]).push({
 	loader: 'sass-loader',
 	options: {
 		additionalData: `@use 'sass:math'; $scope_version:${SCOPE_VERSION}; @import 'variables'; @import 'material-icons';`,
@@ -72,7 +73,7 @@ export default defineConfig({
 			bundler: 'webpack',
 			webpackConfig: async () => {
 				const translations = await loadTranslations(path.resolve(__dirname, './l10n'))
-				webpackConfig.plugins.push(new DefinePlugin({
+				webpackConfig.plugins.push(new webpack.DefinePlugin({
 					PRODUCTION: false,
 					SCOPE_VERSION,
 					TRANSLATIONS: JSON.stringify(translations),
