@@ -415,7 +415,7 @@ export default {
 	},
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 /* stylelint-disable-next-line scss/at-import-partial-extension */
 @import './richtext.scss';
 
