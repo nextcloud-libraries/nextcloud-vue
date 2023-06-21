@@ -277,7 +277,7 @@ $arrow-width: 10px;
 		.v-popper__inner {
 			padding: 0;
 			color: var(--color-main-text);
-			border-radius: var(--border-radius);
+			border-radius: var(--border-radius-large);
 			overflow: hidden;
 			background: var(--color-main-background);
 		}
