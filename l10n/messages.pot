@@ -8,6 +8,9 @@ msgstr ""
 msgid "{tag} (restricted)"
 msgstr ""
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr ""
 
@@ -177,6 +180,14 @@ msgid "Search emoji"
 msgstr ""
 
 msgid "Search results"
+msgstr ""
+
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
 msgstr ""
 
 msgid "Select a tag"
