@@ -127,6 +127,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	overflow-y: auto;
+	padding: 0 16px 16px 16px;
 
 	.input-wrapper {
 		width: 100%;
