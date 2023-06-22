@@ -1,21 +1,23 @@
 <template>
 	<div class="smart-picker-search" :class="{ 'with-empty-content': showEmptyContent }">
-		<NcMultiselect ref="search-select"
+		<NcSelect ref="search-select"
 			v-model="selectedResult"
 			class="smart-picker-search--select"
-			track-by="resourceUrl"
+			input-id="search-select-input"
+			label="name"
 			:placeholder="mySearchPlaceholder"
 			:options="options"
-			:internal-search="false"
-			:clear-on-select="false"
+			:append-to-body="false"
 			:close-on-select="false"
-			:preserve-search="true"
+			:clear-search-on-select="false"
+			:clear-search-on-blur="() => false"
+			:filterable="false"
+			:autoscroll="true"
+			:reset-on-options-change="false"
 			:loading="searching"
-			:multiple="false"
-			:option-height="60"
-			@search-change="onSearchInput"
+			@search="onSearchInput"
 			@input="onSelectResultSelected">
-			<template #option="{option}">
+			<template #option="option">
 				<div v-if="option.isRawLink" class="custom-option">
 					<LinkVariantIcon class="option-simple-icon" :size="20" />
 					<span class="option-text">
@@ -42,20 +44,16 @@
 					</span>
 				</span>
 			</template>
-			<template #noOptions>
-				<MagnifyIcon class="option-simple-icon" :size="20" />
-				{{ t('Start typing to search') }}
+			<template #no-options>
+				{{ noOptionsText }}
 			</template>
-			<template #noResult>
-				<MagnifyIcon class="option-simple-icon" :size="20" />
-				{{ t('Start typing to search') }}
-			</template>
-		</NcMultiselect>
+		</NcSelect>
 		<NcEmptyContent v-if="showEmptyContent"
 			class="smart-picker-search--empty-content">
 			<template #icon>
 				<img v-if="provider.icon_url"
 					class="provider-icon"
+					:alt="providerIconAlt"
 					:src="provider.icon_url">
 				<LinkVariantIcon v-else />
 			</template>
@@ -67,7 +65,7 @@
 import NcSearchResult from './NcSearchResult.vue'
 import { isUrl, delay } from './utils.js'
 import NcEmptyContent from '../../NcEmptyContent/index.js'
-import NcMultiselect from '../../NcMultiselect/index.js'
+import NcSelect from '../../NcSelect/index.js'
 
 import { t } from '../../../l10n.js'
 
@@ -76,7 +74,6 @@ import { generateOcsUrl } from '@nextcloud/router'
 
 import DotsHorizontalIcon from 'vue-material-design-icons/DotsHorizontal.vue'
 import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
-import MagnifyIcon from 'vue-material-design-icons/Magnify.vue'
 
 const LIMIT = 5
 
@@ -85,9 +82,8 @@ export default {
 	components: {
 		LinkVariantIcon,
 		DotsHorizontalIcon,
-		MagnifyIcon,
 		NcEmptyContent,
-		NcMultiselect,
+		NcSelect,
 		NcSearchResult,
 	},
 	props: {
@@ -118,6 +114,8 @@ export default {
 			searching: false,
 			searchingMoreOf: null,
 			abortController: null,
+			noOptionsText: t('Start typing to search'),
+			providerIconAlt: t('Provider icon'),
 		}
 	},
 	computed: {
@@ -189,14 +187,16 @@ export default {
 			this.resultsBySearchProvider = resultsBySearchProvider
 		},
 		focus() {
-			this.$refs['search-select']?.$el?.focus()
+			setTimeout(() => {
+				this.$refs['search-select']?.$el?.querySelector('#search-select-input')?.focus()
+			}, 300)
 		},
 		cancelSearchRequests() {
 			if (this.abortController) {
 				this.abortController.abort()
 			}
 		},
-		onSearchInput(query) {
+		onSearchInput(query, loading) {
 			this.searchQuery = query
 			delay(() => {
 				this.updateSearch()
@@ -208,16 +208,17 @@ export default {
 					this.cancelSearchRequests()
 					this.$emit('submit', item.resourceUrl)
 				} else if (item.isMore) {
-					this.searchMoreOf(item.providerId)
+					this.searchMoreOf(item.providerId).then(() => {
+						// allow clicking twice on the same "more" item
+						this.selectedResult = null
+					})
 				}
 			}
-			// avoid showing something in the singleLabel slot (selected item)
-			this.selectedResult = null
 		},
 		searchMoreOf(searchProviderId) {
 			this.searchingMoreOf = searchProviderId
 			this.cancelSearchRequests()
-			this.searchProviders(searchProviderId)
+			return this.searchProviders(searchProviderId)
 		},
 		updateSearch() {
 			this.cancelSearchRequests()
@@ -227,7 +228,7 @@ export default {
 				return
 			}
 
-			this.searchProviders()
+			return this.searchProviders()
 		},
 		searchProviders(searchProviderId = null) {
 			this.abortController = new AbortController()
@@ -279,7 +280,7 @@ export default {
 	flex-direction: column;
 	padding: 0 16px 16px 16px;
 	&.with-empty-content {
-		min-height: 350px;
+		min-height: 400px;
 	}
 
 	&--empty-content {
@@ -319,12 +320,6 @@ export default {
 			overflow: hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
-		}
-
-		// multiselect dropdown is wider than the select input
-		// this avoids overflow
-		:deep(.multiselect__content-wrapper) {
-			width: calc(100% - 4px) !important;
 		}
 	}
 }

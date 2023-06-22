@@ -164,6 +164,9 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
+msgid "Provider icon"
+msgstr ""
+
 msgid "Raw link {options}"
 msgstr ""
 
