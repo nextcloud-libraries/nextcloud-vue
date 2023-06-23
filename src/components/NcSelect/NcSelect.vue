@@ -779,6 +779,15 @@ export default {
 		},
 
 		/**
+		 * If false, the focused dropdown option will not be reset when filtered
+		 * options change
+		 */
+		resetFocusOnOptionsChange: {
+			type: Boolean,
+			default: true,
+		},
+
+		/**
 		 * Enable the user selector with avatars
 		 *
 		 * Objects must contain the data expected by the
@@ -1040,6 +1049,10 @@ body {
 		.vs__selected-options {
 			flex-wrap: nowrap;
 			overflow: auto;
+			min-width: unset;
+			.vs__selected {
+				min-width: unset;
+			}
 		}
 	}
 
@@ -1060,20 +1073,6 @@ body {
 		// Hide search from dom if unused to prevent unneeded flex wrap
 		.vs__selected ~ .vs__search[readonly] {
 			position: absolute;
-		}
-	}
-
-	/**
-	 * Fix overlow of selected options
-	 * There is an upstream pull request, if it is merged and released remove this fix
-	 * https://github.com/sagalbot/vue-select/pull/1756
-	 */
-	&:not(.select--no-wrap) {
-		.vs__selected-options {
-			min-width: 0;
-			.vs__selected {
-				min-width: 0;
-			}
 		}
 	}
 
