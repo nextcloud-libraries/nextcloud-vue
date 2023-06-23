@@ -26,20 +26,50 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 
 ```
 <template>
-	<NcActions>
-		<NcActionLink href="https://nextcloud.com">
-			<template #icon>
-				<OpenInNew :size="20" />
-			</template>
-			Nextcloud website
-		</NcActionLink>
-	</NcActions>
+	<div style="display: flex; align-items: center;">
+		<NcActions>
+			<NcActionLink href="https://nextcloud.com">
+				<template #icon>
+					<OpenInNew :size="20" />
+				</template>
+				Nextcloud website
+			</NcActionLink>
+		</NcActions>
+
+		<NcActions>
+			<NcActionLink href="https://www.gnu.org/licenses/gpl.odt"
+				  download="AGPL License text.odt">
+				<template #icon>
+					<Download :size="20" />
+				</template>
+				Download AGPL license text
+			</NcActionLink>
+		</NcActions>
+
+		<NcActions>
+			<NcActionLink href="https://nextcloud.com">
+				<template #icon>
+					<OpenInNew :size="20" />
+				</template>
+				Nextcloud website
+			</NcActionLink>
+			<NcActionLink href="https://www.gnu.org/licenses/gpl.odt"
+				  download="AGPL License text.odt">
+				<template #icon>
+					<Download :size="20" />
+				</template>
+				Download AGPL license text
+			</NcActionLink>
+		</NcActions>
+	</div>
 </template>
 <script>
+import Download from 'vue-material-design-icons/Download'
 import OpenInNew from 'vue-material-design-icons/OpenInNew'
 
 export default {
 	components: {
+		Download,
 		OpenInNew,
 	},
 }
