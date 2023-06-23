@@ -139,6 +139,7 @@ export default {
 		},
 		rawLinkEntry() {
 			return {
+				id: 'rawLinkEntry',
 				resourceUrl: this.searchQuery,
 				isRawLink: true,
 			}
@@ -150,14 +151,22 @@ export default {
 					// don't show group name entry if there is only one search provider and one result
 					if (this.searchProviderIds.length > 1 || this.resultsBySearchProvider[pid].entries.length > 1) {
 						results.push({
+							id: 'groupTitle-' + pid,
 							name: this.resultsBySearchProvider[pid].name,
 							isCustomGroupTitle: true,
 							providerId: pid,
 						})
 					}
-					results.push(...this.resultsBySearchProvider[pid].entries)
+					const providerEntriesWithId = this.resultsBySearchProvider[pid].entries.map((entry, index) => {
+						return {
+							id: 'provider-' + pid + '-entry-' + index,
+							...entry,
+						}
+					})
+					results.push(...providerEntriesWithId)
 					if (this.resultsBySearchProvider[pid].isPaginated) {
 						results.push({
+							id: 'moreOf-' + pid,
 							name: this.resultsBySearchProvider[pid].name,
 							isMore: true,
 							providerId: pid,
