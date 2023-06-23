@@ -11,6 +11,7 @@
 			:close-on-select="false"
 			:clear-search-on-select="false"
 			:clear-search-on-blur="() => false"
+			:reset-focus-on-options-change="false"
 			:filterable="false"
 			:autoscroll="true"
 			:reset-on-options-change="false"
