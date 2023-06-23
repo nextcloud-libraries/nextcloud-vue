@@ -1,32 +1,33 @@
 <template>
 	<div class="provider-list">
-		<NcMultiselect ref="provider-select"
+		<NcSelect ref="provider-select"
 			v-model="selectedProvider"
 			class="provider-list--select"
-			track-by="id"
+			input-id="provider-select-input"
 			label="title"
 			:placeholder="multiselectPlaceholder"
 			:options="options"
-			:internal-search="false"
-			:clear-on-select="true"
-			:preserve-search="true"
-			:option-height="44"
-			@search-change="query = $event"
+			:append-to-body="false"
+			:clear-search-on-select="true"
+			:clear-search-on-blur="() => false"
+			:filterable="false"
+			@search="onSearch"
 			@input="onProviderSelected">
-			<template #option="{option}">
+			<template #option="option">
 				<div v-if="option.isLink" class="provider">
 					<LinkVariantIcon class="link-icon" :size="20" />
 					<span>{{ option.title }}</span>
 				</div>
 				<div v-else class="provider">
 					<img class="provider-icon"
-						:src="option.icon_url">
+						:src="option.icon_url"
+						:alt="providerIconAlt">
 					<NcHighlight class="option-text"
 						:search="query"
 						:text="option.title" />
 				</div>
 			</template>
-		</NcMultiselect>
+		</NcSelect>
 		<NcEmptyContent class="provider-list--empty-content">
 			<template #icon>
 				<LinkVariantIcon />
@@ -40,7 +41,7 @@ import { searchProvider } from './providerHelper.js'
 import { isUrl } from './utils.js'
 import NcEmptyContent from '../../NcEmptyContent/index.js'
 import NcHighlight from '../../NcHighlight/index.js'
-import NcMultiselect from '../../NcMultiselect/index.js'
+import NcSelect from '../../NcSelect/index.js'
 import { t } from '../../../l10n.js'
 
 import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
@@ -48,7 +49,7 @@ import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
 export default {
 	name: 'NcProviderList',
 	components: {
-		NcMultiselect,
+		NcSelect,
 		NcHighlight,
 		NcEmptyContent,
 		LinkVariantIcon,
@@ -62,6 +63,7 @@ export default {
 			selectedProvider: null,
 			query: '',
 			multiselectPlaceholder: t('Select provider'),
+			providerIconAlt: t('Provider icon'),
 		}
 	},
 	computed: {
@@ -80,9 +82,9 @@ export default {
 	},
 	methods: {
 		focus() {
-			this.$nextTick(() => {
-				this.$refs['provider-select']?.$el?.focus()
-			})
+			setTimeout(() => {
+				this.$refs['provider-select']?.$el?.querySelector('#provider-select-input')?.focus()
+			}, 300)
 		},
 		onProviderSelected(p) {
 			if (p !== null) {
@@ -94,6 +96,9 @@ export default {
 				this.selectedProvider = null
 			}
 		},
+		onSearch(query, loading) {
+			this.query = query
+		},
 	},
 }
 </script>
@@ -101,7 +106,7 @@ export default {
 <style lang="scss" scoped>
 .provider-list {
 	width: 100%;
-	min-height: 350px;
+	min-height: 400px;
 	padding: 0 16px 16px 16px;
 	display: flex;
 	flex-direction: column;
