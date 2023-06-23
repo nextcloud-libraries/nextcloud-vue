@@ -27,11 +27,11 @@
  *
  * @return {boolean}
  */
-export const isA11yActivation = (event) => {
+export const isA11yActivation = (event: Event) => {
 	if (event.type === 'click') {
 		return true
 	}
-	if (event.type === 'keydown' && event.key === 'Enter') {
+	if (event.type === 'keydown' && (event as KeyboardEvent).key === 'Enter') {
 		return true
 	}
 	return false
