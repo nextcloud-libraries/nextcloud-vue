@@ -180,7 +180,8 @@ export default {
 			role="dialog"
 			aria-modal="true"
 			:aria-labelledby="'modal-name-' + randId"
-			:aria-describedby="'modal-description-' + randId">
+			:aria-describedby="'modal-description-' + randId"
+			tabindex="-1">
 			<!-- Header -->
 			<transition name="fade-visibility" appear>
 				<div class="modal-header">
@@ -707,11 +708,14 @@ export default {
 			// wait until all children are mounted and available in the DOM before focusTrap can be added
 			await this.$nextTick()
 
-			// Init focus trap
-			this.focusTrap = createFocusTrap(contentContainer, {
+			const options = {
 				allowOutsideClick: true,
+				fallbackFocus: contentContainer,
 				trapStack: getTrapStack(),
-			})
+			}
+
+			// Init focus trap
+			this.focusTrap = createFocusTrap(contentContainer, options)
 			this.focusTrap.activate()
 		},
 		clearFocusTrap() {
