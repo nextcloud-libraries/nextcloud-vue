@@ -50,6 +50,9 @@ msgstr ""
 msgid "Choose"
 msgstr ""
 
+msgid "Clear search"
+msgstr ""
+
 msgid "Clear text"
 msgstr ""
 
@@ -135,6 +138,9 @@ msgid "No results"
 msgstr ""
 
 msgid "Objects"
+msgstr ""
+
+msgid "Open contact menu"
 msgstr ""
 
 msgid "Open link to \"{resourceName}\""
