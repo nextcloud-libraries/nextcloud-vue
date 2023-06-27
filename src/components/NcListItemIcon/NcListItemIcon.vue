@@ -249,7 +249,7 @@ export default {
 
 		/**
 		 * Disable the margins of this component.
-		 * Useful for integration in Multiselect for example
+		 * Useful for integration in `NcSelect` for example
 		 */
 		noMargin: {
 			type: Boolean,
