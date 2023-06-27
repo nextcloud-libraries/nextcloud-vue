@@ -82,6 +82,49 @@ export default {
 </script>
 ```
 
+### Standard checkbox set
+```vue
+<template>
+	<div>
+		<NcCheckboxRadioSwitch :disabled="true" :checked.sync="sharingPermission" value="r" name="sharing_permission">Permission read</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch :checked.sync="sharingPermission" value="w" name="sharing_permission">Permission write</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch :checked.sync="sharingPermission" value="d" name="sharing_permission">Permission delete</NcCheckboxRadioSwitch>
+		<br>
+		sharingPermission: {{ sharingPermission }}
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			sharingPermission: ['r', 'd'],
+		}
+	}
+}
+</script>
+```
+
+### Standard switch
+```vue
+<template>
+	<div>
+		<NcCheckboxRadioSwitch :checked.sync="sharingEnabled" type="switch">Enable sharing</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch :checked.sync="sharingEnabled" type="switch" :disabled="true">Enable sharing (disabled)</NcCheckboxRadioSwitch>
+		<br>
+		sharingEnabled: {{ sharingEnabled }}
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			sharingEnabled: true,
+		}
+	},
+}
+</script>
+```
+
 ### Standard radio set with alternative button style
 ```vue
 <template>
@@ -212,45 +255,72 @@ export default {
 </script>
 ```
 
-### Standard checkbox set
+### Checkbox buttons
+Sometimes you need to toggle a state, using a button is not good as it does not show the current state for accessibility.
+Therefor you can use a checkbox with the button styling:
+
 ```vue
 <template>
 	<div>
-		<NcCheckboxRadioSwitch :disabled="true" :checked.sync="sharingPermission" value="r" name="sharing_permission">Permission read</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="sharingPermission" value="w" name="sharing_permission">Permission write</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="sharingPermission" value="d" name="sharing_permission">Permission delete</NcCheckboxRadioSwitch>
-		<br>
-		sharingPermission: {{ sharingPermission }}
+		<h4>Checkbox buttons</h4>
+		<div style="display: flex; gap: 12px;">
+			<NcCheckboxRadioSwitch
+				:button-variant="buttonVariant"
+				:disabled="disabled"
+				:checked.sync="isStarred"
+				type="checkbox">
+				Favorite
+			</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch
+				:button-variant="buttonVariant"
+				:disabled="disabled"
+				:checked.sync="isStarred"
+				type="checkbox">
+				<template #icon>
+					<IconStar v-if="isStarred" :size="20" />
+					<IconStarOutline v-else :size="20" />
+				</template>
+				Favorite
+			</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch
+				:button-variant="buttonVariant"
+				:disabled="disabled"
+				:checked.sync="isStarred"
+				icon-only
+				type="checkbox">
+				<template #icon>
+					<IconStar v-if="isStarred" :size="20" />
+					<IconStarOutline v-else :size="20" />
+				</template>
+				Favorite
+			</NcCheckboxRadioSwitch>
+		</div>
+		<hr />
+		<NcCheckboxRadioSwitch :checked.sync="disabled" type="checkbox">Disabled</NcCheckboxRadioSwitch>
+		<div style="display: flex; gap: 6px;">
+			<NcCheckboxRadioSwitch :checked.sync="buttonVariant" value="primary" name="button_variant" type="radio">Primary</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch :checked.sync="buttonVariant" value="secondary" name="button_variant" type="radio">Secondary</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch :checked.sync="buttonVariant" value="tertiary" name="button_variant" type="radio">Tertiary</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch :checked.sync="buttonVariant" value="tertiary-no-background" name="button_variant" type="radio">Tertiary without background</NcCheckboxRadioSwitch>
+		</div>
 	</div>
 </template>
 <script>
+import IconStar from 'vue-material-design-icons/Star.vue'
+import IconStarOutline from 'vue-material-design-icons/StarOutline.vue'
+
 export default {
+	components: {
+		IconStar,
+		IconStarOutline
+	},
 	data() {
 		return {
-			sharingPermission: ['r', 'd'],
+			isStarred: false,
+			buttonVariant: 'tertiary',
+			disabled: false,
 		}
 	}
-}
-</script>
-```
-
-### Standard switch
-```vue
-<template>
-	<div>
-		<NcCheckboxRadioSwitch :checked.sync="sharingEnabled" type="switch">Enable sharing</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="sharingEnabled" type="switch" :disabled="true">Enable sharing (disabled)</NcCheckboxRadioSwitch>
-		<br>
-		sharingEnabled: {{ sharingEnabled }}
-	</div>
-</template>
-<script>
-export default {
-	data() {
-		return {
-			sharingEnabled: true,
-		}
-	},
 }
 </script>
 ```
@@ -265,8 +335,10 @@ export default {
 			'checkbox-radio-switch--disabled': disabled,
 			'checkbox-radio-switch--indeterminate': indeterminate,
 			'checkbox-radio-switch--button-variant': buttonVariant,
-			'checkbox-radio-switch--button-variant-v-grouped': buttonVariant && buttonVariantGrouped === 'vertical',
-			'checkbox-radio-switch--button-variant-h-grouped': buttonVariant && buttonVariantGrouped === 'horizontal',
+			[`checkbox-radio-switch--button-variant-${buttonVariant === true ? 'secondary' : buttonVariant}`]: buttonVariant,
+			'checkbox-radio-switch--button-variant-grouped': buttonVariant && buttonVariantGrouped !== 'no',
+			'checkbox-radio-switch--button-variant-grouped-v': buttonVariant && buttonVariantGrouped === 'vertical',
+			'checkbox-radio-switch--button-variant-grouped-h': buttonVariant && buttonVariantGrouped === 'horizontal',
 		}"
 		:style="cssVars"
 		class="checkbox-radio-switch">
@@ -279,7 +351,7 @@ export default {
 			:value="value"
 			class="checkbox-radio-switch__input"
 			@change="onToggle">
-		<label :for="id" class="checkbox-radio-switch__label">
+		<label :for="id" class="checkbox-radio-switch__label" :title="labelTitle">
 			<div class="checkbox-radio-switch__icon">
 				<!-- @slot The checkbox/radio icon, you can use it for adding an icon to the button variant
 						@binding {bool} checked The input checked state
@@ -296,7 +368,7 @@ export default {
 			</div>
 
 			<!-- @slot The checkbox/radio label -->
-			<span class="checkbox-radio-switch__label-text"><slot /></span>
+			<span class="checkbox-radio-switch__label-text" :class="{ 'hidden-visually': buttonVariant && iconOnly }"><slot /></span>
 		</label>
 	</component>
 </template>
@@ -339,6 +411,15 @@ export default {
 		},
 
 		/**
+		 * Use the label only for acessibility and only show the icon
+		 * Only used with `buttonVariant`
+		 */
+		iconOnly: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * Input name. Required for radio, optional for checkbox
 		 */
 		name: {
@@ -357,10 +438,13 @@ export default {
 
 		/**
 		 * Toggle the alternative button style
+		 *
+		 * Can be either `false` or any of the available `NcButton` types.
 		 */
 		buttonVariant: {
-			type: Boolean,
+			type: [Boolean, String],
 			default: false,
+			validator: variant => typeof variant === 'boolean' || ['primary', 'secondary', 'tertiary', 'tertiary-no-background'].includes(variant),
 		},
 
 		/**
@@ -508,6 +592,17 @@ export default {
 			}
 			return CheckboxBlankOutline
 		},
+
+		/**
+		 * The label text is invisible but should be provided for the title
+		 */
+		labelTitle() {
+			if (this.iconOnly) {
+				const slot = this.$slots?.default?.[0]
+				if (slot) return (slot.text || '').trim()
+			}
+			return null
+		},
 	},
 
 	mounted() {
@@ -595,7 +690,8 @@ export default {
 		user-select: none;
 		min-height: $clickable-area;
 		border-radius: $clickable-area;
-		padding: 4px $icon-margin;
+		padding-block: 4px;
+		padding-inline: $icon-margin;
 		// Set to 100% to make text overflow work on button style
 		width: 100%;
 		// but restrict to content so plain checkboxes / radio switches do not expand
@@ -614,8 +710,12 @@ export default {
 
 	&--disabled &__label {
 		opacity: $opacity_disabled;
-		.checkbox-radio-switch__icon > * {
-			color: var(--color-main-text)
+		// Gives a wash out effect
+		filter: saturate($opacity_normal);
+
+		cursor: default;
+		&, * {
+			cursor: default;
 		}
 	}
 
@@ -643,49 +743,94 @@ export default {
 	// keep inner border width in mind
 	$border-radius-outer: calc($border-radius + 2px);
 
-	&--button-variant.checkbox-radio-switch {
-		border: 2px solid var(--color-border-dark);
+	/*
+	 * The button variant
+	 */
+	&--button-variant {
 		overflow: hidden;
 
-		&--checked {
-			font-weight: bold;
+		@mixin variant-style($name, $background, $color, $hover) {
+			&-#{$name}:not(&-grouped).checkbox-radio-switch {
+				&:focus-within label {
+					background-color: $background!important;
+				}
+				label {
+					background-color: $background;
+					color: $color;
+					* * {
+						color: $color;
+					}
+				}
+				&:not(&--disabled) label:hover,
+				&:not(&--disabled):focus-within label:hover {
+					background-color: $hover!important;
+				}
+			}
+		}
 
-			label {
-				background-color: var(--color-primary-element-light);
+		@include variant-style(primary, var(--color-primary-element), var(--color-primary-element-text), var(--color-primary-element-hover));
+		@include variant-style(secondary, var(--color-primary-element-light), var(--color-primary-element-light-text), var(--color-primary-element-light-hover));
+		@include variant-style(tertiary, var(--color-main-background), var(--color-main-text), var(--color-background-hover));
+		@include variant-style(tertiary-no-background, transparent, var(--color-main-text), unset);
+
+		&:not(&-grouped) {
+			border-radius: $border-radius;
+			.checkbox-radio-switch {
+				&__label {
+					// Reduce padding to allow icon only buttons
+					padding-inline: 10px;
+				}
+				&__input:focus-visible + label {
+					outline-offset: -2px;
+					outline-color: var(--color-main-text)!important;
+				}
+			}
+		}
+
+		.checkbox-radio-switch {
+			&__label {
+				border-radius: $border-radius;
+			}
+
+			// Text overflow of button style
+			&__label-text {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				width: 100%;
+			}
+
+			// Hide icon container if empty to remove virtual padding
+			&__icon:empty {
+				display: none;
+			}
+		}
+
+		&-grouped.checkbox-radio-switch {
+			border: 2px solid var(--color-border-dark);
+
+			&--checked {
+				font-weight: bold;
+
+				label {
+					background-color: var(--color-primary-element-light);
+				}
 			}
 		}
 	}
 
-	// Text overflow of button style
-	&--button-variant &__label-text {
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		width: 100%;
-	}
-
 	// Set icon color for non active elements to main text color
-	&--button-variant:not(&--checked) &__icon > * {
+	&--button-variant-grouped:not(&--checked) &__icon > * {
 		color: var(--color-main-text);
 	}
 
-	// Hide icon container if empty to remove virtual padding
-	&--button-variant &__icon:empty {
-		display: none;
-	}
-
-	&--button-variant:not(&--button-variant-v-grouped):not(&--button-variant-h-grouped),
-	&--button-variant &__label {
-		border-radius: $border-radius;
-	}
-
 	/* Special rules for vertical button groups */
-	&--button-variant-v-grouped &__label {
+	&--button-variant-grouped-v &__label {
 		flex-basis: 100%;
 		// vertically grouped buttons should all have the same width
 		max-width: unset;
 	}
-	&--button-variant-v-grouped {
+	&--button-variant-grouped-v {
 		&:first-of-type {
 			border-top-left-radius: $border-radius-outer;
 			border-top-right-radius: $border-radius-outer;
@@ -708,7 +853,7 @@ export default {
 	}
 
 	/* Special rules for horizontal button groups */
-	&--button-variant-h-grouped {
+	&--button-variant-grouped-h {
 		&:first-of-type {
 			border-top-left-radius: $border-radius-outer;
 			border-bottom-left-radius: $border-radius-outer;
@@ -729,10 +874,10 @@ export default {
 			border-left: 0!important;
 		}
 	}
-	&--button-variant-h-grouped &__label-text {
+	&--button-variant-grouped-h &__label-text {
 		text-align: center;
 	}
-	&--button-variant-h-grouped &__label {
+	&--button-variant-grouped-h &__label {
 		flex-direction: column;
 		justify-content: center;
 		width: 100%;
