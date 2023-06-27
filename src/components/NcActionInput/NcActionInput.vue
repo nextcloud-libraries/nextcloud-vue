@@ -23,8 +23,8 @@
 
 <docs>
 This component is made to be used inside of the [NcActions](#NcActions) component slots.
-All undocumented attributes will be bound to the input, the datepicker or the multiselect component, e.g. `maxlength`, `not-before`.
-For the multiselect component, all events will be passed through. Please see the multiselect component's documentation for more details and examples.
+All undocumented attributes will be bound to the input, the datepicker or the select component, e.g. `maxlength`, `not-before`.
+For the `NcSelect` component, all events will be passed through. Please see the `NcSelect` component's documentation for more details and examples.
 ```vue
 	<template>
 		<NcActions>
