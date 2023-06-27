@@ -32,6 +32,7 @@ include a standard-header like it's used by the files app.
 ```vue
 <template>
 	<NcAppSidebar
+		:starred="starred"
 		name="cat-picture.jpg"
 		subname="last edited 3 weeks ago">
 		<NcAppSidebarTab name="Search" id="search-tab">
@@ -64,6 +65,11 @@ include a standard-header like it's used by the files app.
 			Magnify,
 			Cog,
 			ShareVariant,
+		},
+		data() {
+			return {
+				starred: false,
+			}
 		},
 	}
 </script>
@@ -374,17 +380,20 @@ export default {
 						<!-- favourite icon -->
 						<div v-if="canStar || $slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
 							<slot name="tertiary-actions">
-								<NcButton v-if="canStar"
-									:aria-label="favoriteTranslated"
+								<NcCheckboxRadioSwitch v-if="canStar"
+									:checked="isStarred"
+									icon-only
 									class="app-sidebar-header__star"
-									type="secondary"
-									@click.prevent="toggleStarred">
+									type="checkbox"
+									button-variant="secondary"
+									@update:checked="toggleStarred">
 									<template #icon>
 										<NcLoadingIcon v-if="starLoading" />
 										<Star v-else-if="isStarred" :size="20" />
 										<StarOutline v-else :size="20" />
 									</template>
-								</NcButton>
+									{{ favoriteTranslated }}
+								</NcCheckboxRadioSwitch>
 							</slot>
 						</div>
 
@@ -472,13 +481,14 @@ export default {
 </template>
 
 <script>
-import NcAppSidebarTabs from './NcAppSidebarTabs.vue'
-import NcActions from '../NcActions/index.js'
-import NcLoadingIcon from '../NcLoadingIcon/index.js'
-import NcButton from '../NcButton/index.js'
-import NcEmptyContent from '../NcEmptyContent/index.js'
 import Focus from '../../directives/Focus/index.js'
 import Linkify from '../../directives/Linkify/index.js'
+import NcActions from '../NcActions/index.js'
+import NcAppSidebarTabs from './NcAppSidebarTabs.vue'
+import NcButton from '../NcButton/index.js'
+import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/index.js'
+import NcEmptyContent from '../NcEmptyContent/index.js'
+import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import { t } from '../../l10n.js'
 
@@ -493,13 +503,14 @@ export default {
 	name: 'NcAppSidebar',
 
 	components: {
+		ArrowRight,
+		Close,
 		NcActions,
 		NcAppSidebarTabs,
-		ArrowRight,
 		NcButton,
-		NcLoadingIcon,
+		NcCheckboxRadioSwitch,
 		NcEmptyContent,
-		Close,
+		NcLoadingIcon,
 		Star,
 		StarOutline,
 	},
