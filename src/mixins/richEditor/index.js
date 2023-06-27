@@ -66,8 +66,8 @@ export default {
 						return Linkify(part)
 					}
 
-					// Extracting the id, nuking the " and @
-					const id = part.replace(/@|&quot;/gi, '')
+					// Extracting the id, nuking the leading @ and all "
+					const id = part.slice(1).replace(/&quot;/gi, '')
 					// Compiling template and prepend with the space we removed during the split
 					return ' ' + this.genSelectTemplate(id)
 				})

@@ -6,10 +6,13 @@ All notable changes to this project will be documented in this file.
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.2...v8.0.0-beta.1)
 
 ### :boom: Breaking changes
-- The deprecated `NcPopoverMenu` component was removed [\#4088](https://github.com/nextcloud/nextcloud-vue/pull/4088) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- The deprecated `NcPopoverMenu` component was removed [\#4081](https://github.com/nextcloud/nextcloud-vue/pull/4081) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - The deprecated `NcAppNavigationCounter` component was removed [\#4096](https://github.com/nextcloud/nextcloud-vue/pull/4096) ([raimund-schluessler](https://github.com/raimund-schluessler))
-- The deprecated `title` property was removed and the `name` propery is now required for `NcActions*`, `NcAppNavigationItem` and `NcBreadcrumb*` [\#4052](https://github.com/nextcloud/nextcloud-vue/pull/4052) ([raimund-schluessler](https://github.com/raimund-schluessler))
-- The deprecated `excludeClickOutsideClasses` property was removed from `clickOutsideOptions` [\#4052](https://github.com/nextcloud/nextcloud-vue/pull/4052) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- The deprecated `excludeClickOutsideClasses` property was removed from `clickOutsideOptions` [\#4088](https://github.com/nextcloud/nextcloud-vue/pull/4088) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- The deprecated `title` property was removed, every occurrence of `title` was renamed to `name` [\#4106](https://github.com/nextcloud/nextcloud-vue/pull/4106) ([raimund-schluessler](https://github.com/raimund-schluessler)),[\#4052](https://github.com/nextcloud/nextcloud-vue/pull/4052) ([raimund-schluessler](https://github.com/raimund-schluessler))
+  - `label` property was renamed to `name` for `NcMentionBubble`
+  - `name` propery is now required for `NcActions*`, `NcAppNavigationItem` and `NcBreadcrumb*`
+  - See linked pull request for full migration guide
 
 ### :rocket: Enhancements
 - feat\(NcNoteCard\): Add new 'info' version to display informational messaged [\#4063](https://github.com/nextcloud/nextcloud-vue/pull/4063) ([moan0s](https://github.com/moan0s))

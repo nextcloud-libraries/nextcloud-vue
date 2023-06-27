@@ -32,10 +32,10 @@
 			</div>
 		</div>
 
-		<!-- Label and subline -->
+		<!-- Title and subline -->
 		<span class="autocomplete-result__content">
-			<span class="autocomplete-result__label">
-				{{ label }}
+			<span class="autocomplete-result__title" :title="title">
+				{{ title }}
 			</span>
 			<span v-if="subline" class="autocomplete-result__subline">
 				{{ subline }}
@@ -51,7 +51,7 @@ export default {
 	name: 'NcAutoCompleteResult',
 
 	props: {
-		label: {
+		title: {
 			type: String,
 			required: true,
 		},
@@ -180,7 +180,7 @@ $autocomplete-padding: 10px;
 		padding-left: $autocomplete-padding;
 	}
 
-	&__label,
+	&__title,
 	&__subline {
 		white-space: nowrap;
 		overflow: hidden;
