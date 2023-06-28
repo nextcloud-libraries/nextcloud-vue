@@ -272,7 +272,7 @@ export default {
 			}
 			const picker = this.$refs.picker
 			const focusableList = picker.$el.querySelectorAll(
-				'button, input'
+				'button, input',
 			)
 			const last = focusableList.length - 1
 			// escape early if only 1 or no elements to focus

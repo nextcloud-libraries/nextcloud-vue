@@ -355,7 +355,7 @@ export default {
 								},
 								ref: 'settingsScroller',
 							}, this.$slots.default),
-						]
+						],
 					),
 				]),
 			])

@@ -752,7 +752,7 @@ export default {
 			// Focus the name input
 			if (this.nameEditable) {
 				this.$nextTick(
-					() => this.$refs.nameInput.focus()
+					() => this.$refs.nameInput.focus(),
 				)
 			}
 		},
