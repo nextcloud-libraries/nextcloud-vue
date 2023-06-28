@@ -33,13 +33,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 </docs>
 
 <template>
-	<div class="input-field">
-		<label v-if="!labelOutside && isValidLabel"
-			class="input-field__label"
-			:class="{ 'input-field__label--hidden': !labelVisible }"
-			:for="computedId">
-			{{ label }}
-		</label>
+	<div class="input-field" :class="{ 'input-field--disabled': disabled }">
 		<div class="input-field__main-wrapper">
 			<input v-bind="$attrs"
 				:id="computedId"
@@ -54,12 +48,23 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 					{
 						'input-field__input--trailing-icon': showTrailingButton || hasTrailingIcon,
 						'input-field__input--leading-icon': hasLeadingIcon,
+						'input-field__input--label-outside': labelOutside,
 						'input-field__input--success': success,
 						'input-field__input--error': error,
 					}]"
 				:value="value"
 				v-on="$listeners"
 				@input="handleInput">
+			<!-- Label -->
+			<label v-if="!labelOutside && isValidLabel"
+				class="input-field__label"
+				:class="[{
+					'input-field__label--trailing-icon': showTrailingButton || hasTrailingIcon,
+					'input-field__label--leading-icon': hasLeadingIcon,
+				}]"
+				:for="computedId">
+				{{ label }}
+			</label>
 
 			<!-- Leading icon -->
 			<div v-show="hasLeadingIcon" class="input-field__icon input-field__icon--leading">
@@ -84,8 +89,8 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 			<!-- Success and error icons -->
 			<div v-else-if="success || error"
 				class="input-field__icon input-field__icon--trailing">
-				<Check v-if="success" :size="18" />
-				<AlertCircle v-else-if="error" :size="18" />
+				<Check v-if="success" :size="20" style="color: var(--color-success-text);" />
+				<AlertCircle v-else-if="error" :size="20" style="color: var(--color-error-text);" />
 			</div>
 		</div>
 		<p v-if="helperText.length > 0"
@@ -147,9 +152,9 @@ export default {
 		},
 
 		/**
-		 * The hidden input label for accessibility purposes. This will also
-		 * be used as a placeholder unless the placeholder prop is populated
-		 * with a different string.
+		 * The input label, always provide one for accessibility purposes.
+		 * This will also be used as a placeholder unless the placeholder
+		 * prop is populated with a different string.
 		 */
 		label: {
 			type: String,
@@ -162,16 +167,6 @@ export default {
 		 * this component
 		 */
 		labelOutside: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * We normally have the label hidden visually and use it for
-		 * accessibility only. If you want to have the label visible just above
-		 * the input field pass in true to this prop.
-		 */
-		labelVisible: {
 			type: Boolean,
 			default: false,
 		},
@@ -277,11 +272,7 @@ export default {
 		},
 
 		computedPlaceholder() {
-			if (this.labelVisible) {
-				return this.hasPlaceholder ? this.placeholder : ''
-			} else {
-				return this.hasPlaceholder ? this.placeholder : this.label
-			}
+			return this.hasPlaceholder ? this.placeholder : this.label
 		},
 
 		isValidLabel() {
@@ -340,26 +331,40 @@ export default {
 	position: relative;
 	width: 100%;
 	border-radius: var(--border-radius-large);
+	margin-block-start: 6px; // for the label in active state
 
 	&__main-wrapper {
-		height: 36px;
+		height: 38px; // 44px - 6px margin
 		position: relative;
+	}
+
+	&--disabled {
+		opacity: 0.7;
+		filter: saturate(0.7);
 	}
 
 	&__input {
 		margin: 0;
-		padding: 0 12px;
+		padding-inline: 10px 6px; // align with label 8px margin label + 4px padding label - 2px border input
+		height: 38px !important;
+		width: 100%;
+
 		font-size: var(--default-font-size);
+		text-overflow: ellipsis;
+
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
 		border: 2px solid var(--color-border-maxcontrast);
-		height: 36px !important;
 		border-radius: var(--border-radius-large);
-		text-overflow: ellipsis;
+
 		cursor: pointer;
-		width: 100%;
 		-webkit-appearance: textfield !important;
 		-moz-appearance: textfield !important;
+
+		// Center text if external label is used
+		&--label-outside {
+			padding-block: 0;
+		}
 
 		&:active:not([disabled]),
 		&:hover:not([disabled]),
@@ -367,18 +372,41 @@ export default {
 			border-color: var(--color-primary-element);
 		}
 
+		// Hide placeholder while not focussed -> show label instead (only if internal label is used)
+		&:not(:focus,&--label-outside)::placeholder {
+			opacity: 0;
+		}
+
 		&:focus {
 			cursor: text;
+		}
+
+		&:disabled {
+			cursor: default;
 		}
 
 		&:focus-visible {
 			box-shadow: unset !important; // Override server rules
 		}
 
+		&--leading-icon {
+			padding-inline-start: 32px;
+		}
+
+		&--trailing-icon {
+			padding-inline-end: 32px;
+		}
+
 		&--success {
 			border-color: var(--color-success) !important; //Override hover border color
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
+			}
+
+			// Align label text color with border color (on hover / focus)
+			&:focus + .input-field__label,
+			&:hover:not(:placeholder-shown) + .input-field__label {
+				color: var(--color-success-text);
 			}
 		}
 
@@ -387,28 +415,66 @@ export default {
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 			}
+
+			// Align label text color with border color (on hover / focus)
+			&:focus + .input-field__label,
+			&:hover:not(:placeholder-shown) + .input-field__label {
+				color: var(--color-error-text);
+			}
 		}
 
-		&--leading-icon {
-			padding-left: 28px;
-		}
-
-		&--trailing-icon {
-			padding-right: 28px;
+		// Align label text color with border color (on hover / focus)
+		&:not(&--success, &--error) {
+			&:focus + .input-field__label,
+			&:hover:not(:placeholder-shown) + .input-field__label {
+				color: var(--color-primary-element);
+			}
 		}
 	}
 
 	&__label {
-		padding: 4px 0;
-		display: block;
+		position: absolute;
+		margin-inline: 12px 0;
+		// fix height and line height to center label
+		height: 17px;
+		max-width: fit-content;
+		line-height: 1;
+		inset-block-start: 12px;
+		inset-inline: 0;
+		// Fix color so that users do not think the input already has content
+		color: var(--color-text-maxcontrast);
+		// only one line labels are allowed
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		// forward events to input
+		pointer-events: none;
+		// Position transition
+		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick), background-color var(--animation-quick) var(--animation-slow);
 
-		&--hidden {
-			position: absolute;
-			left: -10000px;
-			top: auto;
-			width: 1px;
-			height: 1px;
-			overflow: hidden;
+		&--leading-icon {
+			// 32px icon + 2px border
+			margin-inline-start: 34px;
+		}
+
+		&--trailing-icon {
+			// 32px icon + 2px border
+			margin-inline-end: 34px;
+		}
+	}
+
+	&__input:focus + &__label,
+	&__input:not(:placeholder-shown) + &__label {
+		inset-block-start: -6px;
+		font-size: 13px; // minimum allowed font size for accessibility
+		background-color: var(--color-main-background);
+		height: 14px;
+		padding-inline: 4px;
+		margin-inline-start: 8px;
+
+		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick);
+		&--leading-icon {
+			margin-inline-start: 30px;
 		}
 	}
 
@@ -420,21 +486,22 @@ export default {
 		align-items: center;
 		justify-content: center;
 		opacity: 0.7;
+
 		&--leading {
-			bottom: 2px;
-			left: 2px;
+			inset-block-end: 3px;
+			inset-inline-start: 2px;
 		}
 
 		&--trailing {
-			bottom: 2px;
-			right: 2px;
+			inset-block-end: 3px;
+			inset-inline-end: 2px;
 		}
 	}
 
 	&__clear-button.button-vue {
 		position: absolute;
-		top: 2px;
-		right: 1px;
+		inset-block-end: 3px;
+		inset-inline-end: 2px;
 		min-width: unset;
 		min-height: unset;
 		height: 32px;
@@ -443,14 +510,12 @@ export default {
 	}
 
 	&__helper-text-message {
-		padding: 4px 0;
+		padding-block: 4px;
 		display: flex;
 		align-items: center;
 
 		&__icon {
-			margin-right: 8px;
-			align-self: start;
-			margin-top: 4px;
+			margin-inline-end: 8px;
 		}
 
 		&--error {

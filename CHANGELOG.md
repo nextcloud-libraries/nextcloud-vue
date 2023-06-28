@@ -21,6 +21,8 @@ All notable changes to this project will be documented in this file.
   - `name` propery is now required for `NcActions*`, `NcAppNavigationItem` and `NcBreadcrumb*`
   - See linked pull request for full migration guide
 - chore: Drop `install` entry point and replace it with an Vue Plugin [\#4349](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4349) ([susnux](https://github.com/susnux))
+- `NcInputField`: The `labelVisible` property was removed for accessibility it is required to always show a label.
+  You can still use the `labelOutside` property to remove the inner label from the component.
 
 ### :rocket: Enhancements
 - enh\(NcDatetime\): New component for displaying timestamps as time relative from now [\#4219](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4219) ([susnux](https://github.com/susnux))
