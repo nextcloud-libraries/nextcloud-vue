@@ -114,6 +114,7 @@
     "jest-transform-stub": "^2.0.0",
     "resolve-url-loader": "^5.0.0",
     "sanitize-filename": "^1.6.3",
+    "ts-node": "^10.9.1",
     "typescript": "^5.0.4",
     "url-loader": "^4.1.1",
     "vue-eslint-parser": "^9.0.3",
@@ -121,40 +122,6 @@
     "vue-template-compiler": "^2.7.14",
     "webpack-merge": "^5.9.0",
     "webpack-node-externals": "^3.0.0"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "vue"
-    ],
-    "testEnvironment": "jsdom",
-    "transform": {
-      "^.+\\.js$": "babel-jest",
-      "^.+\\.vue$": "@vue/vue2-jest",
-      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
-    },
-    "transformIgnorePatterns": [
-      "/node_modules/(?!(vue-material-design-icons)|(unist*)|(unified)|(bail)|(remark*)|(is-*)|(trough)|(vfile)|(mdast*)|(micromark)|(decode-named-character-reference)|(trim-lines)|(rehype*)|(hast-*)|(property-information)|(space-separated-tokens)|(comma-separated-tokens)|(web-namespaces))"
-    ],
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/jest-serializer-vue"
-    ],
-    "setupFilesAfterEnv": [
-      "./tests/setup.js"
-    ],
-    "coverageDirectory": "./coverage/",
-    "collectCoverage": false,
-    "collectCoverageFrom": [
-      "<rootDir>/src/**/*.{js,vue}",
-      "!**/node_modules/**"
-    ],
-    "coverageReporters": [
-      "json",
-      "text",
-      "html",
-      "lcov",
-      "clover"
-    ]
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
