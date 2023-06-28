@@ -23,6 +23,10 @@
 
 <docs>
 This component is made to be used inside of the [NcActions](#NcActions) component slots.
+
+It is recommended to not only provide a placeholder, but also a label.
+The label should describe what input is expected and the placehold what format the input should have.
+
 All undocumented attributes will be bound to the input, the datepicker or the select component, e.g. `maxlength`, `not-before`.
 For the `NcSelect` component, all events will be passed through. Please see the `NcSelect` component's documentation for more details and examples.
 ```vue
@@ -33,18 +37,18 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 					<Pencil :size="20" />
 				</template>
 			</NcActionInput>
-			<NcActionInput :value.sync="text" :show-trailing-button="false">
+			<NcActionInput :value.sync="text" :show-trailing-button="false" label="Input without trailing button">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
 			</NcActionInput>
-			<NcActionInput :value.sync="text">
+			<NcActionInput :value.sync="text" label="Input with placeholder">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
 				This is the placeholder
 			</NcActionInput>
-			<NcActionInput type="password" :value.sync="text">
+			<NcActionInput type="password" :value.sync="text" label="Password with visible label">
 				<template #icon>
 					<Key :size="20" />
 				</template>
@@ -56,7 +60,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 				</template>
 				Password placeholder
 			</NcActionInput>
-			<NcActionInput type="color" :value.sync="color">
+			<NcActionInput type="color" :value.sync="color" label="Favorite color">
 				<template #icon>
 					<Eyedropper :size="20" />
 				</template>
@@ -68,7 +72,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 				</template>
 				Input with visible label
 			</NcActionInput>
-			<NcActionInput :disabled="true" value="This is a disabled input">
+			<NcActionInput :disabled="true" label="This is a disabled input">
 				<template #icon>
 					<Close :size="20" />
 				</template>
@@ -157,6 +161,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 				<NcDatetimePicker v-if="datePickerType"
 					ref="datetimepicker"
 					:value="value"
+					style="z-index: 99999999999;"
 					:placeholder="text"
 					:disabled="disabled"
 					:type="datePickerType"
@@ -186,59 +191,60 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 					v-bind="$attrs"
 					v-on="$listeners" />
 
-				<template v-else>
-					<div class="action-input__container">
-						<label v-if="label"
-							class="action-input__text-label"
-							:class="{ 'action-input__text-label--hidden': !labelVisible }"
-							:for="inputId">
-							{{ label }}
-						</label>
-						<div class="action-input__input-container">
-							<NcPasswordField v-if="type==='password'"
-								:id="inputId"
-								:value="value"
-								:label="text"
-								:disabled="disabled"
-								:input-class="{ focusable: isFocusable }"
-								trailing-button-icon="arrowRight"
-								:show-trailing-button="showTrailingButton && !disabled"
-								v-bind="$attrs"
-								v-on="$listeners"
-								@trailing-button-click="$refs.form.requestSubmit()"
-								@input="onInput"
-								@change="onChange" />
+				<NcPasswordField v-else-if="type==='password'"
+					:id="inputId"
+					:value="value"
+					:label="label"
+					:label-outside="!label"
+					:placeholder="text"
+					:disabled="disabled"
+					:input-class="{ focusable: isFocusable }"
+					trailing-button-icon="arrowRight"
+					:show-trailing-button="showTrailingButton && !disabled"
+					v-bind="$attrs"
+					v-on="$listeners"
+					@trailing-button-click="$refs.form.requestSubmit()"
+					@input="onInput"
+					@change="onChange" />
 
-							<NcColorPicker v-else-if="type==='color'"
-								:id="inputId"
-								:value="value"
-								class="colorpicker__trigger"
-								v-bind="$attrs"
-								v-on="$listeners"
-								@input="onInput"
-								@submit="$refs.form.requestSubmit()">
-								<button :style="{'background-color': value}"
-									class="colorpicker__preview"
-									:class="{ focusable: isFocusable }" />
-							</NcColorPicker>
-
-							<NcTextField v-else
-								:id="inputId"
-								:value="value"
-								:label="text"
-								:disabled="disabled"
-								:input-class="{ focusable: isFocusable }"
-								:type="type"
-								trailing-button-icon="arrowRight"
-								:show-trailing-button="showTrailingButton && !disabled"
-								v-bind="$attrs"
-								v-on="$listeners"
-								@trailing-button-click="$refs.form.requestSubmit()"
-								@input="onInput"
-								@change="onChange" />
-						</div>
+				<div v-else-if="type === 'color'" class="action-input__container">
+					<label v-if="label && type === 'color'"
+						class="action-input__text-label"
+						:class="{ 'action-input__text-label--hidden': !labelVisible }"
+						:for="inputId">
+						{{ label }}
+					</label>
+					<div class="action-input__input-container">
+						<NcColorPicker id="inputId"
+							:value="value"
+							class="colorpicker__trigger"
+							v-bind="$attrs"
+							v-on="$listeners"
+							@input="onInput"
+							@submit="$refs.form.requestSubmit()">
+							<button :style="{'background-color': value}"
+								class="colorpicker__preview"
+								:class="{ focusable: isFocusable }" />
+						</NcColorPicker>
 					</div>
-				</template>
+				</div>
+
+				<NcTextField v-else
+					:id="inputId"
+					:value="value"
+					:label="label"
+					:label-outside="!label"
+					:placeholder="text"
+					:disabled="disabled"
+					:input-class="{ focusable: isFocusable }"
+					:type="type"
+					trailing-button-icon="arrowRight"
+					:show-trailing-button="showTrailingButton && !disabled"
+					v-bind="$attrs"
+					v-on="$listeners"
+					@trailing-button-click="$refs.form.requestSubmit()"
+					@input="onInput"
+					@change="onChange" />
 			</form>
 		</span>
 	</li>
