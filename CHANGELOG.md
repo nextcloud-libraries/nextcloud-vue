@@ -3,18 +3,27 @@
 All notable changes to this project will be documented in this file.
 
 ## v8 **Unreleased** (beta)
-[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.2...v8.0.0-beta.1)
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.2...v8.0.0-beta.2)
 
 ### :boom: Breaking changes
+- Update node engines to next LTS (node 20 / npm 9)
+- The deprecated `NcMultiselect` and `NcMultiselectTags` components were removed [\#4281](https://github.com/nextcloud/nextcloud-vue/pull/4281) ([susnux](https://github.com/susnux))
+  - Migration: Use the `NcSelect` and `NcSelectTags` components instead
 - The deprecated `NcPopoverMenu` component was removed [\#4081](https://github.com/nextcloud/nextcloud-vue/pull/4081) ([raimund-schluessler](https://github.com/raimund-schluessler))
+  - Migration: Use the `NcActions` component instead
 - The deprecated `NcAppNavigationCounter` component was removed [\#4096](https://github.com/nextcloud/nextcloud-vue/pull/4096) ([raimund-schluessler](https://github.com/raimund-schluessler))
+  - Migration: Use the `NcCounterBubble` component instead
 - The deprecated `excludeClickOutsideClasses` property was removed from `clickOutsideOptions` [\#4088](https://github.com/nextcloud/nextcloud-vue/pull/4088) ([raimund-schluessler](https://github.com/raimund-schluessler))
-- The deprecated `title` property was removed, every occurrence of `title` was renamed to `name` [\#4106](https://github.com/nextcloud/nextcloud-vue/pull/4106) ([raimund-schluessler](https://github.com/raimund-schluessler)),[\#4052](https://github.com/nextcloud/nextcloud-vue/pull/4052) ([raimund-schluessler](https://github.com/raimund-schluessler))
+  - Migration: Use the `excludeClickOutsideSelectors` property, which takes an array of css selectors, instead
+- The `label` property of `NcAutoCompleteResult` was renamed to `title` [\#4222](https://github.com/nextcloud/nextcloud-vue/pull/4222) ([susnux](https://github.com/susnux))
+- The deprecated `title` property was removed, every occurrence of `title` was renamed to `name` [\#4106](https://github.com/nextcloud/nextcloud-vue/pull/4106) ([raimund-schluessler](https://github.com/raimund-schluessler)), [\#4052](https://github.com/nextcloud/nextcloud-vue/pull/4052) ([raimund-schluessler](https://github.com/raimund-schluessler))
   - `label` property was renamed to `name` for `NcMentionBubble`
   - `name` propery is now required for `NcActions*`, `NcAppNavigationItem` and `NcBreadcrumb*`
   - See linked pull request for full migration guide
 
 ### :rocket: Enhancements
+- enh\(NcDatetime\): New component for displaying timestamps as time relative from now [\#4219](https://github.com/nextcloud/nextcloud-vue/pull/4219) ([susnux](https://github.com/susnux))
+- feat\(NcInputField\): Append custom aria-describedby to input field [\#4225](https://github.com/nextcloud/nextcloud-vue/pull/4225) ([Pytal](https://github.com/Pytal))
 - feat\(NcNoteCard\): Add new 'info' version to display informational messaged [\#4063](https://github.com/nextcloud/nextcloud-vue/pull/4063) ([moan0s](https://github.com/moan0s))
 - feat\(NcEmptyContent\): Add slot for description [\#3895](https://github.com/nextcloud/nextcloud-vue/pull/3895) ([susnux](https://github.com/susnux))
 - feat\(NcActions\): Improve readability of action menu entries [\#4049](https://github.com/nextcloud/nextcloud-vue/pull/4049) ([Pytal](https://github.com/Pytal))
@@ -23,6 +32,23 @@ All notable changes to this project will be documented in this file.
 - feat\(a11y\): Export a11y activation util [\#4166](https://github.com/nextcloud/nextcloud-vue/pull/4166) ([Pytal](https://github.com/Pytal))
 
 ### :bug: Fixed bugs
+- fix\(NcSettingsSelectGroup\): Migrate from deprecated `NcMultiselect` to `NcSelect` [\#4120](https://github.com/nextcloud/nextcloud-vue/pull/4120) ([susnux](https://github.com/susnux))
+- fix\(NcRichtext\): Migrate from deprecated `NcMultiselect` to `NcSelect` [\#4247](https://github.com/nextcloud/nextcloud-vue/pull/4247) ([julien-nc](https://github.com/julien-nc))
+- fix\(NcAppNavigation\): Prevent tabbing into closed navigation [\#3114](https://github.com/nextcloud/nextcloud-vue/pull/3114) ([PVince81](https://github.com/PVince81))
+- fix\(NcDatetimePicker\): Make sure all l10n strings are extracted [\#4272](https://github.com/nextcloud/nextcloud-vue/pull/4272) ([susnux](https://github.com/susnux))
+- fix\(NcAppNavigationCaption\): Align actions with other navigation action [\#4220](https://github.com/nextcloud/nextcloud-vue/pull/4220) ([susnux](https://github.com/susnux))
+- fix\(NcInputField\): Increase input field helper text contrast [\#4188](https://github.com/nextcloud/nextcloud-vue/pull/4188) ([Pytal](https://github.com/Pytal))
+- fix\(NcSelect\): Hide clear and deselect button when disabled [\#4212](https://github.com/nextcloud/nextcloud-vue/pull/4212) ([Pytal](https://github.com/Pytal))
+- fix\(NcSelect\): Fix disabled colors to distinguish the disabled state from the regular state [\#4217](https://github.com/nextcloud/nextcloud-vue/pull/4217) ([Pytal](https://github.com/Pytal))
+- fix\(NcProviderList\): Add padding around provider list [\#4175](https://github.com/nextcloud/nextcloud-vue/pull/4175) ([juliushaertl](https://github.com/juliushaertl))
+- fix\(NcModal\): Fix focus-trap fallback if content is empty [\#4266](https://github.com/nextcloud/nextcloud-vue/pull/4266) ([skjnldsv](https://github.com/skjnldsv))
+- fix\(NcActionInput\): Show trailing button even for empty input [\#4251](https://github.com/nextcloud/nextcloud-vue/pull/4251) ([susnux](https://github.com/susnux))
+- fix\(NcRichContenteditable\): Fix mentioning users with `@` in username [\#4222](https://github.com/nextcloud/nextcloud-vue/pull/4222) ([susnux](https://github.com/susnux))
+- fix\(NcProgressBar\): Fix design on chromium browsers [\#4238](https://github.com/nextcloud/nextcloud-vue/pull/4238) ([szaimon](https://github.com/szaimon))
+- fix\(NcReferencePicker\): Fix padding in the *any link* preview component [\#4248](https://github.com/nextcloud/nextcloud-vue/pull/4248) ([julien-nc](https://github.com/julien-nc))
+- fix\(NcModal\): Set background **and** text color [\#4221](https://github.com/nextcloud/nextcloud-vue/pull/4221) ([susnux](https://github.com/))
+- fix\(NcSelect\): Keep dropdown open while loading [\#4209](https://github.com/nextcloud/nextcloud-vue/pull/4166) ([Pytal](https://github.com/Pytal))
+- fix\(NcCheckboxRadioSwitch\): Add focus-visible style [\#4176](https://github.com/nextcloud/nextcloud-vue/pull/4176) ([Fenn-CS](https://github.com/Fenn-CS))
 - fix\(NcAppNavigationSettings\): Add `aria-expanded` attribute to settings accordion button [\#4109](https://github.com/nextcloud/nextcloud-vue/pull/4109) ([Fenn-CS](https://github.com/Fenn-CS))
 - fix\(clickOutsideOptions\): Fix handling of ignored css selectors [\#4046](https://github.com/nextcloud/nextcloud-vue/pull/4046) ([susnux](https://github.com/susnux))
 - fix\(NcResource\): Fix item alignment in the right sidebar [\#4121](https://github.com/nextcloud/nextcloud-vue/pull/4121) ([Pytal](https://github.com/Pytal))
@@ -33,7 +59,7 @@ All notable changes to this project will be documented in this file.
 - fix\(NcListItem\): Fix wrong bold class [\#4083](https://github.com/nextcloud/nextcloud-vue/pull/4083) ([julien-nc](https://github.com/julien-nc))
 - fix\(NcSelect\): Fix disabled state of NcSelect with dark mode [\#4079](https://github.com/nextcloud/nextcloud-vue/pull/4079) ([nickvergessen](https://github.com/nickvergessen))
 - fix\(NcSelect\): Action input usage [\#4066](https://github.com/nextcloud/nextcloud-vue/pull/4066) ([Pytal](https://github.com/Pytal))
-- fix\(NcRichContenteditable\): Fix avatar overlayed with empty space whe… [\#4043](https://github.com/nextcloud/nextcloud-vue/pull/4043) ([nickvergessen](https://github.com/nickvergessen))
+- fix\(NcRichContenteditable\): Fix avatar overlayed with empty space when offline [\#4043](https://github.com/nextcloud/nextcloud-vue/pull/4043) ([nickvergessen](https://github.com/nickvergessen))
 
 ## [v7.11.2](https://github.com/nextcloud/nextcloud-vue/tree/v7.11.2) (2023-05-05)
 
