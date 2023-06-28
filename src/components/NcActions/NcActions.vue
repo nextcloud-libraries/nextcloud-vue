@@ -966,7 +966,7 @@ export default {
 		 * become problematic later on.
 		 */
 		const actions = (this.$slots.default || []).filter(
-			action => action?.componentOptions?.tag || action?.componentOptions?.Ctor?.extendOptions?.name
+			action => action?.componentOptions?.tag || action?.componentOptions?.Ctor?.extendOptions?.name,
 		)
 
 		const isNavLink = (action) => {
@@ -1211,7 +1211,7 @@ export default {
 			},
 			[
 				renderActionsPopover(actions),
-			]
+			],
 		)
 	},
 }

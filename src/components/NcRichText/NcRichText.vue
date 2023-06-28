@@ -212,7 +212,7 @@ export default {
 								props: placeholder.props,
 								class: 'rich-text--component',
 							},
-							children
+							children,
 						)
 					},
 					prefix: false,

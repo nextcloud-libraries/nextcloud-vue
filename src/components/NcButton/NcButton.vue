@@ -361,7 +361,7 @@ export default {
 						: null,
 					hasText ? h('span', { class: 'button-vue__text' }, [text]) : null,
 				]),
-			]
+			],
 		)
 
 		// If we have a router-link, we wrap the button in it

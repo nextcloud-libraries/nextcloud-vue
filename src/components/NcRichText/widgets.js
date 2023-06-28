@@ -1,4 +1,3 @@
-
 if (!window._vue_richtext_widgets) {
 	window._vue_richtext_widgets = {}
 }

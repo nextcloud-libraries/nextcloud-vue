@@ -587,9 +587,9 @@ export default {
 						dragleave: ($event) => this.dragLeave($event, disabled),
 					},
 				},
-				[folderIcon, name]
+				[folderIcon, name],
 				)
-			}))
+			})),
 			)
 
 			// The second half of the breadcrumbs
