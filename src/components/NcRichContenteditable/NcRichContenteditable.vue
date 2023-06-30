@@ -160,8 +160,8 @@ export default {
 		aria-multiline="true"
 		class="rich-contenteditable__input"
 		role="textbox"
+		v-on="listeners"
 		@input="onInput"
-		v-on="$listeners"
 		@keydown.delete="onDelete"
 		@keydown.enter.exact="onEnter"
 		@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
@@ -422,6 +422,23 @@ export default {
 		 */
 		canEdit() {
 			return this.contenteditable && !this.disabled
+		},
+
+		/**
+		 * Proxied native event handlers without custom event handlers
+		 *
+		 * @return {Record<string, Function>}
+		 */
+		listeners() {
+			/**
+			 * All component's event handlers are set as native event handlers with by v-on directive.
+			 * The component also raised custom events manually by $emit for corresponding events.
+			 * As a result, it triggers handlers twice.
+			 * The v-on="listeners" directive should only set proxied native events handler without custom events
+			 */
+			const listeners = { ...this.$listeners }
+			delete listeners.paste
+			return listeners
 		},
 	},
 
