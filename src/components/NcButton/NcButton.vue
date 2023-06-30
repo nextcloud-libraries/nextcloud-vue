@@ -271,6 +271,14 @@ export default {
 		},
 
 		/**
+		 * Providing the download attribute with href downloads file when clicking.
+		 */
+		download: {
+			type: String,
+			default: null,
+		},
+
+		/**
 		 * Providing the to attribute turns the button component into a `router-link`
 		 * element. Takes precedence over the href attribute.
 		 */
@@ -339,6 +347,9 @@ export default {
 					type: this.href ? null : this.nativeType,
 					role: this.href ? 'button' : null,
 					href: (!this.to && this.href) ? this.href : null,
+					target: (!this.to && this.href) ? '_self' : null,
+					rel: (!this.to && this.href) ? 'nofollow noreferrer noopener' : null,
+					download: (!this.to && this.href && this.download) ? this.download : null,
 					...this.$attrs,
 				},
 				on: {
