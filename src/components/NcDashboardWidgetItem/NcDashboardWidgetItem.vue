@@ -52,9 +52,9 @@ This component is meant to be used inside a DashboardWidget component.
 				<h3 :title="mainText">
 					{{ mainText }}
 				</h3>
-				<p class="message" :title="subText">
+				<span class="message" :title="subText">
 					{{ subText }}
-				</p>
+				</span>
 			</div>
 			<NcActions v-if="gotMenu" :force-menu="forceMenu">
 				<!-- @slot This slot can be used to provide actions for each dashboard widget item. -->
