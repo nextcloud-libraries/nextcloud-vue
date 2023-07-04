@@ -19,15 +19,19 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-const { join, basename } = require('path')
-const fs = require('fs/promises')
-const gettextParser = require('gettext-parser')
 
 // https://github.com/alexanderwallin/node-gettext#usage
 // https://github.com/alexanderwallin/node-gettext#load-and-add-translations-from-mo-or-po-files
 const parseFile = async (fileName) => {
+	// We need to import dependencies dynamically to support this module to be imported by vite and to be required by Cypress
+	// If we use require, vite will fail with 'Dynamic require of "path" is not supported'
+	// If we convert it to an ES module, webpack and vite are fine but Cypress will fail because it can not handle ES imports in Typescript configs in commonjs packages
+	const { basename } = await import('path')
+	const { readFile } = await import('fs/promises')
+	const gettextParser = await import('gettext-parser')
+
 	const locale = basename(fileName).slice(0, -'.pot'.length)
-	const po = await fs.readFile(fileName)
+	const po = await readFile(fileName)
 
 	const json = gettextParser.po.parse(po)
 
@@ -56,7 +60,9 @@ const parseFile = async (fileName) => {
 }
 
 const loadTranslations = async (baseDir) => {
-	const files = await fs.readdir(baseDir)
+	const { join } = await import('path')
+	const { readdir } = await import('fs/promises')
+	const files = await readdir(baseDir)
 
 	const promises = files
 		.filter(name => name !== 'messages.pot' && name.endsWith('.pot'))
