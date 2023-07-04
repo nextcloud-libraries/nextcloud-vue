@@ -257,12 +257,14 @@ export default {
 
 ### Checkbox buttons
 Sometimes you need to toggle a state, using a button is not good as it does not show the current state for accessibility.
-Therefor you can use a checkbox with the button styling:
+
+For that purpose you can use a checkbox with the button styling like the `NcButton` component, you can use the same types
+except the `'primary'`, which will be used for the *checked* state of the button.
 
 ```vue
 <template>
 	<div>
-		<h4>Checkbox buttons</h4>
+		<h4>Checkbox buttons ({{ isStarred ? 'checked' : 'unchecked'}})</h4>
 		<div style="display: flex; gap: 12px;">
 			<NcCheckboxRadioSwitch
 				:button-variant="buttonVariant"
@@ -298,7 +300,6 @@ Therefor you can use a checkbox with the button styling:
 		<hr />
 		<NcCheckboxRadioSwitch :checked.sync="disabled" type="checkbox">Disabled</NcCheckboxRadioSwitch>
 		<div style="display: flex; gap: 6px;">
-			<NcCheckboxRadioSwitch :checked.sync="buttonVariant" value="primary" name="button_variant" type="radio">Primary</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch :checked.sync="buttonVariant" value="secondary" name="button_variant" type="radio">Secondary</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch :checked.sync="buttonVariant" value="tertiary" name="button_variant" type="radio">Tertiary</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch :checked.sync="buttonVariant" value="tertiary-no-background" name="button_variant" type="radio">Tertiary without background</NcCheckboxRadioSwitch>
@@ -329,17 +330,7 @@ export default {
 
 <template>
 	<component :is="wrapperElement"
-		:class="{
-			['checkbox-radio-switch-' + type]: type,
-			'checkbox-radio-switch--checked': isChecked,
-			'checkbox-radio-switch--disabled': disabled,
-			'checkbox-radio-switch--indeterminate': indeterminate,
-			'checkbox-radio-switch--button-variant': buttonVariant,
-			[`checkbox-radio-switch--button-variant-${buttonVariant === true ? 'secondary' : buttonVariant}`]: buttonVariant,
-			'checkbox-radio-switch--button-variant-grouped': buttonVariant && buttonVariantGrouped !== 'no',
-			'checkbox-radio-switch--button-variant-grouped-v': buttonVariant && buttonVariantGrouped === 'vertical',
-			'checkbox-radio-switch--button-variant-grouped-h': buttonVariant && buttonVariantGrouped === 'horizontal',
-		}"
+		:class="componentClasses"
 		:style="cssVars"
 		class="checkbox-radio-switch">
 		<input :id="id"
@@ -439,12 +430,16 @@ export default {
 		/**
 		 * Toggle the alternative button style
 		 *
-		 * Can be either `false` or any of the available `NcButton` types.
+		 * Can be either `false` or one of the NcButton types `secondary`, `tertiary` or `tertiary-no-background`.
+		 * Please note that `primary` is not possible, because it will be used for the checked state of the button.
+		 *
+		 * @values secondary, tertiary, tertiary-no-background, false
 		 */
 		buttonVariant: {
 			type: [Boolean, String],
 			default: false,
-			validator: variant => typeof variant === 'boolean' || ['primary', 'secondary', 'tertiary', 'tertiary-no-background'].includes(variant),
+			// `true` is accepted to keep backwards compatibility with nextcloud-vue 7.x
+			validator: variant => typeof variant === 'boolean' || ['secondary', 'tertiary', 'tertiary-no-background'].includes(variant),
 		},
 
 		/**
@@ -533,6 +528,26 @@ export default {
 		},
 
 		/**
+		 * CSS classes of the checkbox-radio-switch component
+		 */
+		componentClasses() {
+			// Always show primary style if checked. True is for backwards compatibility.
+			const realVariant = this.isChecked ? 'primary' : this.sanitizedButtonVariant
+
+			return {
+				[`checkbox-radio-switch-${this.type}`]: this.type,
+				'checkbox-radio-switch--checked': this.isChecked,
+				'checkbox-radio-switch--disabled': this.disabled,
+				'checkbox-radio-switch--indeterminate': this.indeterminate,
+				'checkbox-radio-switch--button-variant': this.buttonVariant,
+				[`checkbox-radio-switch--button-variant-${realVariant}`]: this.buttonVariant,
+				'checkbox-radio-switch--button-variant-grouped': this.buttonVariant && this.buttonVariantGrouped !== 'no',
+				'checkbox-radio-switch--button-variant-grouped-v': this.buttonVariant && this.buttonVariantGrouped === 'vertical',
+				'checkbox-radio-switch--button-variant-grouped-h': this.buttonVariant && this.buttonVariantGrouped === 'horizontal',
+			}
+		},
+
+		/**
 		 * Return the input type.
 		 * Switch is not an official type
 		 *
@@ -602,6 +617,17 @@ export default {
 				if (slot) return (slot.text || '').trim()
 			}
 			return null
+		},
+
+		/**
+		 * Sanitize `buttonVariant` as prop validation can not be enforced
+		 */
+		sanitizedButtonVariant() {
+			if (['secondary', 'tertiary', 'tertiary-no-background'].includes(this.buttonVariant)) {
+				return this.buttonVariant
+			}
+			// Fallback to secondary for backwards compatibility with nextcloud-vue 7.x
+			return 'secondary'
 		},
 	},
 
