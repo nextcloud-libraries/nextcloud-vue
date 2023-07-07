@@ -46,6 +46,33 @@ export default {
 }
 </script>
 ```
+#### With custom svg
+
+```
+<template>
+	<NcEmptyContent
+		name="No files in here">
+		<template #icon>
+			<NcIconSvgWrapper :svg="folderSvg" />
+		</template>
+	</NcEmptyContent>
+</template>
+
+<script>
+import folderSvg from '@mdi/svg/svg/folder.svg?raw'
+
+export default {
+	components: {
+		Comment,
+	},
+	data() {
+		return {
+			folderSvg,
+		}
+	},
+}
+</script>
+```
 
 You can also customize the name using the `#name` slot
 and add actions. But to keep the style consistent across Nextcloud
@@ -193,6 +220,8 @@ export default {
 		:deep(svg) {
 			width: 64px;
 			height: 64px;
+			max-width: 64px;
+			max-height: 64px;
 		}
 	}
 
