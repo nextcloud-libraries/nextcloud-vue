@@ -139,8 +139,8 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 44px;
-	height: 44px;
+	min-width: 44px;
+	min-height: 44px;
 	opacity: 1;
 
 	&:deep(svg) {
