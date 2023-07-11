@@ -540,7 +540,6 @@ export default {
 		color: var(--color-main-text);
 		background-color: transparent;
 		&:hover:not(:disabled) {
-			background-color: var(--color);
 			background-color: var(--color-background-hover);
 		}
 	}
