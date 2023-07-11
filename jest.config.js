@@ -21,7 +21,9 @@
  */
 
 const ignorePatterns = [
+	'ansi-regex',
 	'bail',
+	'char-regex',
 	'comma-separated-tokens',
 	'decode-named-character-reference',
 	'escape-string-regexp',
@@ -33,6 +35,9 @@ const ignorePatterns = [
 	'rehype-*',
 	'remark-*',
 	'space-separated-tokens',
+	'string-length',
+	'strip-ansi',
+	'tributejs',
 	'trim-lines',
 	'trough',
 	'unified',
@@ -61,6 +66,10 @@ module.exports = {
 	transformIgnorePatterns: [
 		'/node_modules/(?!(' + ignorePatterns.join('|') + '))',
 	],
+
+	moduleNameMapper: {
+		'\\.(css|scss)$': 'jest-transform-stub',
+	},
 
 	snapshotSerializers: [
 		'<rootDir>/node_modules/jest-serializer-vue',
