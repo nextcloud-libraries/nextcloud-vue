@@ -162,6 +162,8 @@ export default {
 		role="textbox"
 		v-on="listeners"
 		@input="onInput"
+		@compositionstart="isComposing = true"
+		@compositionend="isComposing = false"
 		@keydown.delete="onDelete"
 		@keydown.enter.exact="onEnter"
 		@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
@@ -364,6 +366,9 @@ export default {
 			// serves no other purpose than to check whether the
 			// content is empty or not
 			localValue: this.value,
+
+			// Is in text composition session in IME
+			isComposing: false,
 		}
 	},
 
@@ -672,17 +677,20 @@ export default {
 				event.preventDefault()
 			}
 		},
-
 		/**
 		 * Enter key pressed. Submits if not multiline
 		 *
 		 * @param {Event} event the keydown event
 		 */
 		onEnter(event) {
-			// Prevent submitting if autocompletion menu
-			// is opened or length is over maxlength
-			if (this.multiline || this.isOverMaxlength
-				|| this.autocompleteTribute.isActive || this.emojiTribute.isActive || this.linkTribute.isActive) {
+			// Prevent submitting if multiline
+			// or length is over maxlength
+			// or autocompletion menu is opened
+			// or in a text composition session with IME
+			if (this.multiline
+				|| this.isOverMaxlength
+				|| this.autocompleteTribute.isActive || this.emojiTribute.isActive || this.linkTribute.isActive
+				|| this.isComposing) {
 				return
 			}
 
