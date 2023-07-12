@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 # Changelog
 
+## [v7.12.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.12.1) (2023-07-11)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.12.0...v7.12.1)
+
+### :bug: Fixed bugs
+* [stable7] fix(NcProviderList): Add padding around provider list [\#4202](https://github.com/nextcloud/nextcloud-vue/pull/4202)
+* [stable7] fix(NcSelect): Hide clear and deselect when disabled [\#4216](https://github.com/nextcloud/nextcloud-vue/pull/4216)
+* [stable7] fix(NcSelect): Styles on state change [\#4215](https://github.com/nextcloud/nextcloud-vue/pull/4215)
+* [stable7] adjust border-radius of ncpopover [\#4240](https://github.com/nextcloud/nextcloud-vue/pull/4240)
+* [stable7] fix progress-bar on chromium browsers [\#4239](https://github.com/nextcloud/nextcloud-vue/pull/4239)
+* [stable7] fix(NcActionInput): Show trailing button even for empty input [\#4253](https://github.com/nextcloud/nextcloud-vue/pull/4253)
+* [stable7] NcDatetimePicker: Make sure all l10n strings are extracted [\#4273](https://github.com/nextcloud/nextcloud-vue/pull/4273)
+* [stable7] fix(NcModal): fix focus-trap fallback [\#4270](https://github.com/nextcloud/nextcloud-vue/pull/4270) ([skjnldsv](https://github.com/skjnldsv))
+* [stable7] Input Fields and RichContenteditable: add focus and select methods [\#4278](https://github.com/nextcloud/nextcloud-vue/pull/4278)
+* [stable7] Add links to documentation for other versions [\#4279](https://github.com/nextcloud/nextcloud-vue/pull/4279) ([susnux](https://github.com/susnux))
+* [stable7] `NcActionLink` - provide download attributes for single action button in `NcAction` [\#4293](https://github.com/nextcloud/nextcloud-vue/pull/)4293
+* [stable7] Remove doubling proxied event handlers in `NcRichContenteditable` [\#4295](https://github.com/nextcloud/nextcloud-vue/pull/4295)
+* [stable7] Fix/remove margin below message in widget item [\#4297](https://github.com/nextcloud/nextcloud-vue/pull/4297) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+* [stable7] fix: NcIconSvgWrapper size [\#4313](https://github.com/nextcloud/nextcloud-vue/pull/4313)
+
 ## [v7.12.0](https://github.com/nextcloud/nextcloud-vue/tree/v7.12.0) (2023-06-08)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.11.6...v7.12.0)
