@@ -8,13 +8,10 @@ const path = require('path')
 const { DefinePlugin } = require('webpack')
 const BabelLoaderExcludeNodeModulesExcept = require('babel-loader-exclude-node-modules-except')
 const nodeExternals = require('webpack-node-externals')
+const { loadTranslations } = require('./build/translations.js')
 
 const buildMode = process.env.NODE_ENV
 const isDev = buildMode === 'development'
-const libraryTarget = process.env.LIBRARY_TARGET ?? 'umd'
-
-const { loadTranslations } = require('./resources/translations.js')
-const { dependencies } = require('./package.json')
 
 // scope variable
 // fallback for cypress testing
@@ -26,7 +23,7 @@ console.info('This build version hash is', versionHash, '\n')
 
 webpackConfig.entry = {
 	install: path.join(__dirname, 'src', 'install.js'),
-	ncvuecomponents: path.join(__dirname, 'src', 'index.js'),
+	index: path.join(__dirname, 'src', 'index.js'),
 
 	...globSync('src/components/*/index.js').reduce((acc, item) => {
 		const name = item
@@ -67,7 +64,7 @@ webpackConfig.output = {
 	publicPath: '/dist/',
 	filename: '[name].js',
 	library: {
-		type: libraryTarget,
+		type: 'umd',
 		name: ['NextcloudVue', '[name]'],
 	},
 	umdNamedDefine: true,
@@ -115,7 +112,7 @@ webpackRules.RULE_NODE_MJS = {
 	include: /node_modules/,
 	type: 'javascript/auto',
 	resolve: {
-		fullySpecified: false
+		fullySpecified: false,
 	}
 }
 
@@ -129,21 +126,6 @@ module.exports = async () => {
 		SCOPE_VERSION,
 		TRANSLATIONS: JSON.stringify(translations),
 	}))
-
-	if (libraryTarget !== 'umd') {
-		webpackConfig.experiments = {
-			outputModule: true,
-		}
-
-		webpackConfig.entry = {
-			index: path.join(__dirname, 'src', 'index.js'),
-		}
-		webpackConfig.output.filename = `[name].${libraryTarget}.js`
-
-		webpackConfig.externals = [...webpackConfig.externals, ...Object.keys(dependencies)]
-
-		delete webpackConfig.output.library.name
-	}
 
 	return webpackConfig
 }

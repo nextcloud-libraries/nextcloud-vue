@@ -295,7 +295,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~emoji-mart-vue-fast/css/emoji-mart.css';
+@import 'emoji-mart-vue-fast/css/emoji-mart.css';
 
 .emoji-mart {
 	background-color: var(--color-main-background) !important;
