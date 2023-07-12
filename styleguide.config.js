@@ -15,7 +15,7 @@ module.exports = async () => {
 		module: {
 			// Ignore eslint
 			rules: base.module.rules.filter(
-				rule => rule.use !== 'eslint-loader'
+				rule => rule.use !== 'eslint-loader',
 			),
 		},
 	})
@@ -41,6 +41,11 @@ module.exports = async () => {
 						ignorePath: true,
 						secure: false,
 					},
+				},
+			},
+			resolve: {
+				alias: {
+					vue: 'vue/dist/vue.js',
 				},
 			},
 		}),

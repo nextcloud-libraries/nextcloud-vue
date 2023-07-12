@@ -66,8 +66,8 @@ export default defineConfig((env) => {
 		},
 		// For backwards compatibility we include the css within the js files
 		inlineCSS: true,
-		// Disable polyfills
-		coreJS: false,
+		// Build CommonJS files for backwards compatibility
+		libraryFormats: ['es', 'cjs'],
 		replace: {
 			PRODUCTION: JSON.stringify(env.mode === 'production'),
 			SCOPE_VERSION,
