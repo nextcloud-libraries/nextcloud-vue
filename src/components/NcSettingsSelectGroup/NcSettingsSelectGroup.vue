@@ -111,9 +111,6 @@ export default {
 	},
 	computed: {
 		inputValue() {
-			return this.getValueObject()
-		},
-		getValueObject() {
 			return this.value.filter((group) => group !== '' && typeof group !== 'undefined').map(
 				(id) => {
 					if (typeof this.groups[id] === 'undefined') {
