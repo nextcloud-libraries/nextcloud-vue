@@ -23,7 +23,6 @@ console.info('This build version hash is', versionHash, '\n')
 
 webpackConfig.entry = {
 	install: path.join(__dirname, 'src', 'install.js'),
-	index: path.join(__dirname, 'src', 'index.js'),
 
 	...globSync('src/components/*/index.js').reduce((acc, item) => {
 		const name = item
