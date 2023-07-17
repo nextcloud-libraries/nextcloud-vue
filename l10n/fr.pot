@@ -82,7 +82,7 @@ msgid "Close Smart Picker"
 msgstr ""
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Réduire le menu"
 
 msgid "Confirm changes"
 msgstr "Confirmer les modifications"
