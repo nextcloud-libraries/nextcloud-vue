@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Pavel Borecki <pavel.borecki@gmail.com>, 2022
+# Joas Schilling, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2022\n"
-"Language-Team: Czech (Czech Republic) (https://www.transifex.com/nextcloud/teams/64236/cs_CZ/)\n"
+"Last-Translator: Joas Schilling, 2023\n"
+"Language-Team: Czech (Czech Republic) (https://app.transifex.com/nextcloud/teams/64236/cs_CZ/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: cs_CZ\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
@@ -16,14 +16,23 @@ msgstr "{tag} (neviditelné)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (omezené)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "Akce"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "Aktivity"
 
 msgid "Animals & Nature"
 msgstr "Zvířata a příroda"
+
+msgid "Any link"
+msgstr ""
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Cokoli nasdíleného stejné skupině lidí se zobrazí zde"
@@ -34,14 +43,23 @@ msgstr "Zástupný obrázek uživatele {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Zástupný obrázek uživatele {displayName}, {status}"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "Zrušit změny"
 
-msgid "Change title"
-msgstr "Změnit nadpis"
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "Zvolit"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear text"
 msgstr "Čitelný text"
@@ -58,6 +76,12 @@ msgstr "Zavřít navigaci"
 msgid "Close sidebar"
 msgstr "Zavřít postranní panel"
 
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "Potvrdit změny"
 
@@ -67,14 +91,16 @@ msgstr "Uživatelsky určené"
 msgid "Edit item"
 msgstr "Upravit položku"
 
-msgid "Error getting related resources"
-msgstr "Chyba při získávání souvisejících prostředků"
+msgid "Enter link"
+msgstr ""
 
-msgid "Error parsing svg"
-msgstr "Chyba při zpracovávání svg"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
 
-msgid "External documentation for {title}"
-msgstr "Externí dokumentace k {title}"
+msgid "External documentation for {name}"
+msgstr ""
 
 msgid "Favorite"
 msgstr "Oblíbené"
@@ -97,11 +123,17 @@ msgstr "Jít zpět na seznam"
 msgid "Hide password"
 msgstr "Skrýt heslo"
 
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "Dosaženo limitu počtu ({count}) znaků zprávy"
 
 msgid "More items …"
 msgstr "Další položky…"
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "Následující"
@@ -109,20 +141,29 @@ msgstr "Následující"
 msgid "No emoji found"
 msgstr "Nenalezeno žádné emoji"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "Nic nenalezeno"
 
 msgid "Objects"
 msgstr "Objekty"
 
-msgid "Open"
-msgstr "Otevřít"
+msgid "Open contact menu"
+msgstr ""
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "Otevřít odkaz na „{resourceTitle}“"
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "Otevřít navigaci"
+
+msgid "Open settings menu"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "Heslo je bezpečné"
@@ -133,6 +174,24 @@ msgstr "Pozastavit prezentaci"
 msgid "People & Body"
 msgstr "Lidé a tělo"
 
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
 msgid "Pick an emoji"
 msgstr "Vybrat emoji"
 
@@ -142,17 +201,38 @@ msgstr "Vyberte časovou zónu:"
 msgid "Previous"
 msgstr "Předchozí"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
 msgid "Related resources"
 msgstr "Související prostředky"
 
 msgid "Search"
 msgstr "Hledat"
 
+msgid "Search emoji"
+msgstr ""
+
 msgid "Search results"
 msgstr "Výsledky hledání"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "Vybrat štítek"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "Nastavení"
@@ -163,11 +243,17 @@ msgstr "Pohyb po nastavení"
 msgid "Show password"
 msgstr "Zobrazit heslo"
 
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "Úsměvy a emoce"
 
 msgid "Start slideshow"
 msgstr "Spustit prezentaci"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "Odeslat"
