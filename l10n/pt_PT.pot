@@ -263,7 +263,7 @@ msgid "Submit"
 msgstr "Submeter"
 
 msgid "Symbols"
-msgstr ""
+msgstr "Símbolos"
 
 msgid "Travel & Places"
 msgstr ""
