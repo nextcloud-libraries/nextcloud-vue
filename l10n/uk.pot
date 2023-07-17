@@ -160,7 +160,7 @@ msgid "Open link to \"{resourceName}\""
 msgstr "Відкрити посилання на \"{resourceName}\""
 
 msgid "Open menu"
-msgstr ""
+msgstr "Відкрити меню"
 
 msgid "Open navigation"
 msgstr "Відкрити навігацію"
