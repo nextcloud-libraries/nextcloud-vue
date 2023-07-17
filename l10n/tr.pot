@@ -205,7 +205,7 @@ msgid "Previous"
 msgstr "Önceki"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "Sağlayıcı ikonu"
 
 msgid "Raw link {options}"
 msgstr ""
