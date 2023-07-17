@@ -190,10 +190,10 @@ msgid "Pick a time"
 msgstr "Виберіть час"
 
 msgid "Pick a week"
-msgstr "Вибрати тиждень"
+msgstr "Виберіть тиждень"
 
 msgid "Pick a year"
-msgstr "Вибрати рік"
+msgstr "Виберіть рік"
 
 msgid "Pick an emoji"
 msgstr "Виберіть емоційку"
