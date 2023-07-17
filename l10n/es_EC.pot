@@ -211,13 +211,13 @@ msgid "Raw link {options}"
 msgstr "Enlace directo {options}"
 
 msgid "Related resources"
-msgstr ""
+msgstr "Recursos relacionados"
 
 msgid "Search"
-msgstr ""
+msgstr "Buscar"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "Buscar emoji"
 
 msgid "Search results"
 msgstr ""
