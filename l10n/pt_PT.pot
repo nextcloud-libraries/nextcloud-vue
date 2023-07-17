@@ -269,13 +269,13 @@ msgid "Travel & Places"
 msgstr "Viagem e Lugares"
 
 msgid "Type to search time zone"
-msgstr ""
+msgstr "Digite para pesquisar o fuso horário "
 
 msgid "Unable to search the group"
 msgstr "Não é possível pesquisar o grupo"
 
 msgid "Undo changes"
-msgstr ""
+msgstr "Anular alterações"
 
 msgid ""
 "Write message, use \"@\" to mention someone, use \":\" for emoji "
