@@ -256,7 +256,7 @@ msgid "Start slideshow"
 msgstr "Slayt sunumunu başlat"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Aramak için yazmaya başlayın"
 
 msgid "Submit"
 msgstr "Gönder"
