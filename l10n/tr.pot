@@ -103,7 +103,7 @@ msgstr ""
 " var ise lütfen sistem yöneticiniz ile iletişime geçiniz "
 
 msgid "External documentation for {name}"
-msgstr ""
+msgstr "{name} için harici dökümantasyon"
 
 msgid "Favorite"
 msgstr "Sık kullanılanlara ekle"
