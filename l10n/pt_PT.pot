@@ -188,13 +188,13 @@ msgid "Pick a month"
 msgstr "Escolha um mês"
 
 msgid "Pick a time"
-msgstr ""
+msgstr "Escolha um horário"
 
 msgid "Pick a week"
-msgstr ""
+msgstr "Escolha uma semana"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "Escolha um ano"
 
 msgid "Pick an emoji"
 msgstr ""
