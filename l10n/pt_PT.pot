@@ -257,10 +257,10 @@ msgid "Start slideshow"
 msgstr "Iniciar diaporama"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Comece a digitar para pesquisar"
 
 msgid "Submit"
-msgstr ""
+msgstr "Submeter"
 
 msgid "Symbols"
 msgstr ""
