@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Joas Schilling, 2023
+# Martin Bonde <Martin@maboni.dk>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Joas Schilling, 2023\n"
+"Last-Translator: Martin Bonde <Martin@maboni.dk>, 2023\n"
 "Language-Team: Danish (https://app.transifex.com/nextcloud/teams/64236/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: da\n"
@@ -17,13 +18,13 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (begrænset)"
 
 msgid "a few seconds ago"
-msgstr ""
+msgstr "et par sekunder siden"
 
 msgid "Actions"
 msgstr "Handlinger"
 
 msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgstr "Handlinger for element med navnet \"{name}\""
 
 msgid "Activities"
 msgstr "Aktiviteter"
@@ -32,7 +33,7 @@ msgid "Animals & Nature"
 msgstr "Dyr & Natur"
 
 msgid "Any link"
-msgstr ""
+msgstr "Ethvert link"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Alt der deles med samme gruppe af personer vil vises her"
@@ -44,22 +45,22 @@ msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar af {displayName}, {status}"
 
 msgid "Back"
-msgstr ""
+msgstr "Tilbage"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Tilbage til udbydervalg"
 
 msgid "Cancel changes"
 msgstr "Annuller ændringer"
 
 msgid "Change name"
-msgstr ""
+msgstr "Ændre navn"
 
 msgid "Choose"
 msgstr "Vælg"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Ryd søgning"
 
 msgid "Clear text"
 msgstr "Ryd tekst"
