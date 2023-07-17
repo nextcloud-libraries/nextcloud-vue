@@ -11,10 +11,10 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "{tag} (invisible)"
-msgstr ""
+msgstr "{tag} (invisible)"
 
 msgid "{tag} (restricted)"
-msgstr ""
+msgstr "{tag} (restricted)"
 
 msgid "a few seconds ago"
 msgstr ""
