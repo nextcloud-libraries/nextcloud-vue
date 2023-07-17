@@ -208,7 +208,7 @@ msgid "Provider icon"
 msgstr "Sağlayıcı ikonu"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Ham bağlantı {options}"
 
 msgid "Related resources"
 msgstr "İlgili kaynaklar"
