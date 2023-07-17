@@ -197,10 +197,10 @@ msgid "Pick a year"
 msgstr "Escolha um ano"
 
 msgid "Pick an emoji"
-msgstr ""
+msgstr "Escolha um emoji"
 
 msgid "Please select a time zone:"
-msgstr ""
+msgstr "Por favor, selecione um fuso horário: "
 
 msgid "Previous"
 msgstr "Anterior"
