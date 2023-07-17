@@ -236,7 +236,7 @@ msgid "Select a tag"
 msgstr "Selecionar uma etiqueta"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Escolha de fornecedor"
 
 msgid "Settings"
 msgstr "Definições"
