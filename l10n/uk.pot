@@ -193,7 +193,7 @@ msgid "Pick a week"
 msgstr "Вибрати тиждень"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "Вибрати рік"
 
 msgid "Pick an emoji"
 msgstr "Виберіть емоційку"
