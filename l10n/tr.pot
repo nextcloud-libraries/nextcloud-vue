@@ -235,7 +235,7 @@ msgid "Select a tag"
 msgstr "Bir etiket seçin"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Sağlayıcı seçin"
 
 msgid "Settings"
 msgstr "Ayarlar"
