@@ -160,13 +160,13 @@ msgid "Open link to \"{resourceName}\""
 msgstr ""
 
 msgid "Open menu"
-msgstr ""
+msgstr "Menüyü aç"
 
 msgid "Open navigation"
 msgstr "Gezinmeyi aç"
 
 msgid "Open settings menu"
-msgstr ""
+msgstr "Ayarlar menüsünü aç"
 
 msgid "Password is secure"
 msgstr "Parola güvenli"
