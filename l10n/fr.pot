@@ -165,7 +165,7 @@ msgid "Open navigation"
 msgstr "Ouvrir la navigation"
 
 msgid "Open settings menu"
-msgstr ""
+msgstr "Ouvrir le menu Paramètres"
 
 msgid "Password is secure"
 msgstr "Le mot de passe est sécurisé"
