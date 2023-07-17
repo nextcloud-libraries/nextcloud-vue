@@ -1,18 +1,11 @@
 # 
 # Translators:
-# Gabriel Ekström <gabriel.ekstrom06@gmail.com>, 2020
-# efef6ec5b435a041fce803c7f8af77d2_2341d43, 2020
-# f90ece83ebc6bad1c1e52843719995d7_72bd7dc, 2021
-# Tim Ragnwald, 2021
-# Tommie Bergman <tommie.bergman@gmail.com>, 2022
-# Max Bäckström, 2022
-# Magnus Höglund, 2022
-# Erik Lennartsson, 2023
+# Joas Schilling, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Erik Lennartsson, 2023\n"
-"Language-Team: Swedish (https://www.transifex.com/nextcloud/teams/64236/sv/)\n"
+"Last-Translator: Joas Schilling, 2023\n"
+"Language-Team: Swedish (https://app.transifex.com/nextcloud/teams/64236/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -23,14 +16,23 @@ msgstr "{tag} (osynlig)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (begränsad)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "Åtgärder"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "Aktiviteter"
 
 msgid "Animals & Nature"
 msgstr "Djur & Natur"
+
+msgid "Any link"
+msgstr ""
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Något som delats med samma grupp av personer kommer att visas här"
@@ -41,14 +43,23 @@ msgstr "{displayName}s avatar"
 msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName}s avatar, {status}"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "Avbryt ändringar"
 
-msgid "Change title"
-msgstr "Ändra titel"
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "Välj"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear text"
 msgstr "Ta bort text"
@@ -65,6 +76,12 @@ msgstr "Stäng navigering"
 msgid "Close sidebar"
 msgstr "Stäng sidopanel"
 
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "Bekräfta ändringar"
 
@@ -74,14 +91,16 @@ msgstr "Anpassad"
 msgid "Edit item"
 msgstr "Ändra"
 
-msgid "Error getting related resources"
-msgstr "Problem att hämta relaterade resurser"
+msgid "Enter link"
+msgstr ""
 
-msgid "Error parsing svg"
-msgstr "Fel vid inläsning av svg"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
 
-msgid "External documentation for {title}"
-msgstr "Extern dokumentation för {title}"
+msgid "External documentation for {name}"
+msgstr ""
 
 msgid "Favorite"
 msgstr "Favorit"
@@ -104,11 +123,17 @@ msgstr "Gå tillbaka till listan"
 msgid "Hide password"
 msgstr "Göm lössenordet"
 
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "Meddelandegräns {count} tecken används"
 
 msgid "More items …"
 msgstr "Fler objekt"
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "Nästa"
@@ -116,20 +141,29 @@ msgstr "Nästa"
 msgid "No emoji found"
 msgstr "Hittade inga emojis"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "Inga resultat"
 
 msgid "Objects"
 msgstr "Objekt"
 
-msgid "Open"
-msgstr "Öppna"
+msgid "Open contact menu"
+msgstr ""
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "Öppna länk till \"{resourceTitle}\""
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "Öppna navigering"
+
+msgid "Open settings menu"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "Lössenordet är säkert"
@@ -140,6 +174,24 @@ msgstr "Pausa bildspelet"
 msgid "People & Body"
 msgstr "Kropp & Själ"
 
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
 msgid "Pick an emoji"
 msgstr "Välj en emoji"
 
@@ -149,17 +201,38 @@ msgstr "Välj tidszon:"
 msgid "Previous"
 msgstr "Föregående"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
 msgid "Related resources"
 msgstr "Relaterade resurser"
 
 msgid "Search"
 msgstr "Sök"
 
+msgid "Search emoji"
+msgstr ""
+
 msgid "Search results"
 msgstr "Sökresultat"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "Välj en tag"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "Inställningar"
@@ -170,11 +243,17 @@ msgstr "Inställningsmeny"
 msgid "Show password"
 msgstr "Visa lössenordet"
 
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "Selfies & Känslor"
 
 msgid "Start slideshow"
 msgstr "Starta bildspelet"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "Skicka"
