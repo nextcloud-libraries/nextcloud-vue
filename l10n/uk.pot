@@ -211,7 +211,7 @@ msgid "Raw link {options}"
 msgstr "Пряме посилання {options}"
 
 msgid "Related resources"
-msgstr ""
+msgstr "Пов'язані ресурси"
 
 msgid "Search"
 msgstr "Пошук"
