@@ -238,10 +238,10 @@ msgid "Select provider"
 msgstr "Seleccionar proveedor"
 
 msgid "Settings"
-msgstr ""
+msgstr "Configuraciones"
 
 msgid "Settings navigation"
-msgstr ""
+msgstr "Navegación de configuraciones"
 
 msgid "Show password"
 msgstr ""
