@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Joas Schilling, 2023
+# Mario Siegmann <mario_siegmann@web.de>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Joas Schilling, 2023\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2023\n"
 "Language-Team: German (Germany) (https://app.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -17,13 +18,13 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (eingeschränkt)"
 
 msgid "a few seconds ago"
-msgstr ""
+msgstr "vor ein paar Sekunden"
 
 msgid "Actions"
 msgstr "Aktionen"
 
 msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgstr "Aktionen für Element mit dem Namen \"{name}“"
 
 msgid "Activities"
 msgstr "Aktivitäten"
@@ -32,7 +33,7 @@ msgid "Animals & Nature"
 msgstr "Tiere & Natur"
 
 msgid "Any link"
-msgstr ""
+msgstr "Irgendein Link"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
@@ -46,22 +47,22 @@ msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar von {displayName}, {status}"
 
 msgid "Back"
-msgstr ""
+msgstr "Zurück"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Zurück zur Anbieterauswahl"
 
 msgid "Cancel changes"
 msgstr "Änderungen verwerfen"
 
 msgid "Change name"
-msgstr ""
+msgstr "Namen ändern"
 
 msgid "Choose"
 msgstr "Auswählen"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Suche leeren"
 
 msgid "Clear text"
 msgstr "Klartext"
@@ -79,10 +80,10 @@ msgid "Close sidebar"
 msgstr "Seitenleiste schließen"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Intelligente Auswahl schließen"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Menü einklappen"
 
 msgid "Confirm changes"
 msgstr "Änderungen bestätigen"
@@ -94,15 +95,17 @@ msgid "Edit item"
 msgstr "Objekt bearbeiten"
 
 msgid "Enter link"
-msgstr ""
+msgstr "Link eingeben"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"Fehler beim Abrufen verwandter Ressourcen. Bei Fragen wenden Sie sich bitte "
+"an Ihren Systemadministrator."
 
 msgid "External documentation for {name}"
-msgstr ""
+msgstr "Externe Dokumentation für {name}"
 
 msgid "Favorite"
 msgstr "Favorit"
@@ -126,7 +129,7 @@ msgid "Hide password"
 msgstr "Passwort verbergen"
 
 msgid "Load more \"{options}\"\""
-msgstr ""
+msgstr "Weitere \"{options}“ laden"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
@@ -135,7 +138,7 @@ msgid "More items …"
 msgstr "Weitere Elemente …"
 
 msgid "More options"
-msgstr ""
+msgstr "Mehr Optionen"
 
 msgid "Next"
 msgstr "Weiter"
@@ -144,7 +147,7 @@ msgid "No emoji found"
 msgstr "Kein Emoji gefunden"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "Kein Linkanbieter gefunden"
 
 msgid "No results"
 msgstr "Keine Ergebnisse"
@@ -153,19 +156,19 @@ msgid "Objects"
 msgstr "Objekte"
 
 msgid "Open contact menu"
-msgstr ""
+msgstr "Kontaktmenü öffnen"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "Link zu \"{resourceName}“ öffnen"
 
 msgid "Open menu"
-msgstr ""
+msgstr "Menü öffnen"
 
 msgid "Open navigation"
 msgstr "Navigation öffnen"
 
 msgid "Open settings menu"
-msgstr ""
+msgstr "Einstellungsmenü öffnen"
 
 msgid "Password is secure"
 msgstr "Passwort ist sicher"
@@ -177,22 +180,22 @@ msgid "People & Body"
 msgstr "Menschen & Körper"
 
 msgid "Pick a date"
-msgstr ""
+msgstr "Ein Datum auswählen"
 
 msgid "Pick a date and a time"
-msgstr ""
+msgstr "Datum und Uhrzeit auswählen"
 
 msgid "Pick a month"
-msgstr ""
+msgstr "Einen Monat auswählen"
 
 msgid "Pick a time"
-msgstr ""
+msgstr "Eine Uhrzeit auswählen"
 
 msgid "Pick a week"
-msgstr ""
+msgstr "Eine Woche auswählen"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "Ein Jahr auswählen"
 
 msgid "Pick an emoji"
 msgstr "Ein Emoji auswählen"
@@ -204,10 +207,10 @@ msgid "Previous"
 msgstr "Vorherige"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "Anbietersymbol"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Unverarbeiteter Link {Optionen}"
 
 msgid "Related resources"
 msgstr "Verwandte Ressourcen"
@@ -216,7 +219,7 @@ msgid "Search"
 msgstr "Suche"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "Emoji suchen"
 
 msgid "Search results"
 msgstr "Suchergebnisse"
@@ -224,11 +227,11 @@ msgstr "Suchergebnisse"
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "Sek. zuvor"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "Sekunden zuvor"
 
 msgid "Select a tag"
 msgstr "Schlagwort auswählen"
@@ -255,7 +258,7 @@ msgid "Start slideshow"
 msgstr "Diashow starten"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Mit der Eingabe beginnen, um zu suchen"
 
 msgid "Submit"
 msgstr "Einreichen"
