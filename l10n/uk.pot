@@ -217,7 +217,7 @@ msgid "Search"
 msgstr "Пошук"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "Шукати емоційки"
 
 msgid "Search results"
 msgstr "Результати пошуку"
@@ -225,7 +225,7 @@ msgstr "Результати пошуку"
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "секунд тому"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
