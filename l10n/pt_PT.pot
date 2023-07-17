@@ -212,10 +212,10 @@ msgid "Raw link {options}"
 msgstr "Link inicial {options}"
 
 msgid "Related resources"
-msgstr ""
+msgstr "Recursos relacionados"
 
 msgid "Search"
-msgstr ""
+msgstr "Pesquisar"
 
 msgid "Search emoji"
 msgstr ""
