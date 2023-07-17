@@ -220,12 +220,12 @@ msgid "Search emoji"
 msgstr "Buscar emoji"
 
 msgid "Search results"
-msgstr ""
+msgstr "Resultados de búsqueda"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "hace {x} segundos"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
