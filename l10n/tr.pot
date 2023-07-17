@@ -136,7 +136,7 @@ msgid "More items …"
 msgstr "Diğer ögeler…"
 
 msgid "More options"
-msgstr ""
+msgstr "Daha fazla seçenek"
 
 msgid "Next"
 msgstr "Sonraki"
@@ -145,7 +145,7 @@ msgid "No emoji found"
 msgstr "Herhangi bir emoji bulunamadı"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "Bağlantı sağlayıcısı bulunamadı"
 
 msgid "No results"
 msgstr "Herhangi bir sonuç bulunamadı"
