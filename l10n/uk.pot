@@ -166,7 +166,7 @@ msgid "Open navigation"
 msgstr "Відкрити навігацію"
 
 msgid "Open settings menu"
-msgstr ""
+msgstr "Відкрити меню налаштувань"
 
 msgid "Password is secure"
 msgstr "Пароль безпечний"
