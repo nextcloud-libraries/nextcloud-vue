@@ -247,7 +247,7 @@ msgid "Show password"
 msgstr "Parolayı görüntüle"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "Akıllı Seçim"
 
 msgid "Smileys & Emotion"
 msgstr "İfadeler ve Duygular"
