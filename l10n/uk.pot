@@ -181,13 +181,13 @@ msgid "Pick a date"
 msgstr "Вибрати дату"
 
 msgid "Pick a date and a time"
-msgstr "Вибрати дату та час"
+msgstr "Виберіть дату та час"
 
 msgid "Pick a month"
-msgstr "Вибрати місяць"
+msgstr "Виберіть місяць"
 
 msgid "Pick a time"
-msgstr "Вибрати час"
+msgstr "Виберіть час"
 
 msgid "Pick a week"
 msgstr "Вибрати тиждень"
