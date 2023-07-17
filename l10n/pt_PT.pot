@@ -170,7 +170,7 @@ msgid "Open settings menu"
 msgstr "Abrir menu de configurações"
 
 msgid "Password is secure"
-msgstr ""
+msgstr "A senha é segura"
 
 msgid "Pause slideshow"
 msgstr "Pausar diaporama"
