@@ -229,7 +229,7 @@ msgstr "sn. önce"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "saniye önce"
 
 msgid "Select a tag"
 msgstr "Bir etiket seçin"
