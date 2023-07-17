@@ -205,7 +205,7 @@ msgid "Previous"
 msgstr "Назад"
 
 msgid "Provider icon"
-msgstr "Надана піктограма"
+msgstr "Піктограма постачальника"
 
 msgid "Raw link {options}"
 msgstr "Пряме посилання {options}"
