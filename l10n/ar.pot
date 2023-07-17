@@ -1,13 +1,11 @@
 # 
 # Translators:
-# ButterflyOfFire, 2020
-# Anouar Fadili, 2022
-# Ali Mohamed, 2022
+# Joas Schilling, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ali Mohamed, 2022\n"
-"Language-Team: Arabic (https://www.transifex.com/nextcloud/teams/64236/ar/)\n"
+"Last-Translator: Joas Schilling, 2023\n"
+"Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
@@ -18,14 +16,23 @@ msgstr "{tag} (غير مرئي)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (مقيد)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "الإجراءات"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "النشاطات"
 
 msgid "Animals & Nature"
 msgstr "الحيوانات والطبيعة"
+
+msgid "Any link"
+msgstr ""
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "أي مادة تمت مشاركتها مع نفس المجموعة من الأشخاص سيتم عرضها هنا"
@@ -36,14 +43,23 @@ msgstr "صورة {displayName} الرمزية"
 msgid "Avatar of {displayName}, {status}"
 msgstr "صورة {displayName} الرمزية، {status}"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "إلغاء التغييرات"
 
-msgid "Change title"
-msgstr "تغيير العنوان"
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "إختيار"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear text"
 msgstr "مسح النص"
@@ -60,6 +76,12 @@ msgstr "إغلاق المتصفح"
 msgid "Close sidebar"
 msgstr "قفل الشريط الجانبي"
 
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "تأكيد التغييرات"
 
@@ -69,11 +91,16 @@ msgstr "مخصص"
 msgid "Edit item"
 msgstr "تعديل عنصر"
 
-msgid "Error getting related resources"
-msgstr "خطأ في تحصيل مصادر ذات صلة"
+msgid "Enter link"
+msgstr ""
 
-msgid "External documentation for {title}"
-msgstr "الوثائق الخارجية لـ{title}"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+
+msgid "External documentation for {name}"
+msgstr ""
 
 msgid "Favorite"
 msgstr "مفضلة"
@@ -96,11 +123,17 @@ msgstr "العودة إلى القائمة"
 msgid "Hide password"
 msgstr "إخفاء كلمة السر"
 
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "تم الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
 
 msgid "More items …"
 msgstr "عناصر أخرى ..."
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "التالي"
@@ -108,20 +141,29 @@ msgstr "التالي"
 msgid "No emoji found"
 msgstr "لم يتم العثور على أي رمز تعبيري"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "ليس هناك أية نتيجة"
 
 msgid "Objects"
 msgstr "الأشياء"
 
-msgid "Open"
-msgstr "فتح"
+msgid "Open contact menu"
+msgstr ""
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "فتح رابط إلى \"{resourceTitle}\""
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "فتح المتصفح"
+
+msgid "Open settings menu"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "كلمة السر مُؤمّنة"
@@ -132,6 +174,24 @@ msgstr "إيقاف العرض مؤقتًا"
 msgid "People & Body"
 msgstr "الناس والجسم"
 
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
 msgid "Pick an emoji"
 msgstr "اختر رمزًا تعبيريًا"
 
@@ -141,17 +201,38 @@ msgstr "الرجاء تحديد المنطقة الزمنية:"
 msgid "Previous"
 msgstr "السابق"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
 msgid "Related resources"
 msgstr "مصادر ذات صلة"
 
 msgid "Search"
 msgstr "بحث"
 
+msgid "Search emoji"
+msgstr ""
+
 msgid "Search results"
 msgstr "نتائج البحث"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "اختر علامة"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "الإعدادات"
@@ -162,11 +243,17 @@ msgstr "إعدادات المتصفح"
 msgid "Show password"
 msgstr "أعرض كلمة السر"
 
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "الوجوه و الرموز التعبيرية"
 
 msgid "Start slideshow"
 msgstr "بدء العرض"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "إرسال"
@@ -186,6 +273,7 @@ msgstr "تعذر البحث في المجموعة"
 msgid "Undo changes"
 msgstr "التراجع عن التغييرات"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
 msgstr ""
-"اكتب رسالة، @ للإشارة إلى شخص ما، : للإكمال التلقائي للرموز التعبيرية ..."
