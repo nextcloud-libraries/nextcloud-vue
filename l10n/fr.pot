@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Joas Schilling, 2023
+# Ldm Public <ldmpub@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Joas Schilling, 2023\n"
+"Last-Translator: Ldm Public <ldmpub@gmail.com>, 2023\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -17,7 +18,7 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (restreint)"
 
 msgid "a few seconds ago"
-msgstr ""
+msgstr "il y a quelques instants"
 
 msgid "Actions"
 msgstr "Actions"
@@ -45,7 +46,7 @@ msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar de {displayName}, {status}"
 
 msgid "Back"
-msgstr ""
+msgstr "Retour"
 
 msgid "Back to provider selection"
 msgstr ""
@@ -60,7 +61,7 @@ msgid "Choose"
 msgstr "Choisir"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Effacer la recherche"
 
 msgid "Clear text"
 msgstr "Effacer le texte"
@@ -158,7 +159,7 @@ msgid "Open link to \"{resourceName}\""
 msgstr ""
 
 msgid "Open menu"
-msgstr ""
+msgstr "Ouvrir le menu"
 
 msgid "Open navigation"
 msgstr "Ouvrir la navigation"
@@ -176,13 +177,13 @@ msgid "People & Body"
 msgstr "Personnes & Corps"
 
 msgid "Pick a date"
-msgstr ""
+msgstr "Sélectionner une date"
 
 msgid "Pick a date and a time"
 msgstr ""
 
 msgid "Pick a month"
-msgstr ""
+msgstr "Sélectionner un mois"
 
 msgid "Pick a time"
 msgstr ""
@@ -191,7 +192,7 @@ msgid "Pick a week"
 msgstr ""
 
 msgid "Pick a year"
-msgstr ""
+msgstr "Sélectionner une année"
 
 msgid "Pick an emoji"
 msgstr "Choisissez un émoji"
