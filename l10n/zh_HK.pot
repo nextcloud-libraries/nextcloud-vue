@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Café Tango, 2022
+# Joas Schilling, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Café Tango, 2022\n"
-"Language-Team: Chinese (Hong Kong) (https://www.transifex.com/nextcloud/teams/64236/zh_HK/)\n"
+"Last-Translator: Joas Schilling, 2023\n"
+"Language-Team: Chinese (Hong Kong) (https://app.transifex.com/nextcloud/teams/64236/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_HK\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -16,14 +16,23 @@ msgstr "{tag} (隱藏)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (受限)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "動作"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "活動"
 
 msgid "Animals & Nature"
 msgstr "動物與自然"
+
+msgid "Any link"
+msgstr ""
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "與同一組人共享的任何內容都會顯示在此處"
@@ -34,14 +43,23 @@ msgstr "{displayName} 的頭像"
 msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName} 的頭像，{status}"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "取消更改"
 
-msgid "Change title"
-msgstr "更改標題"
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "選擇"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear text"
 msgstr "清除文本"
@@ -58,6 +76,12 @@ msgstr "關閉導航"
 msgid "Close sidebar"
 msgstr "關閉側邊欄"
 
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "確認更改"
 
@@ -67,14 +91,16 @@ msgstr "自定義"
 msgid "Edit item"
 msgstr "編輯項目"
 
-msgid "Error getting related resources"
-msgstr "獲取相關資源出錯"
+msgid "Enter link"
+msgstr ""
 
-msgid "Error parsing svg"
-msgstr "解析 svg 時出錯"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
 
-msgid "External documentation for {title}"
-msgstr "{title} 的外部文檔"
+msgid "External documentation for {name}"
+msgstr ""
 
 msgid "Favorite"
 msgstr "喜愛"
@@ -97,11 +123,17 @@ msgstr "返回清單"
 msgid "Hide password"
 msgstr "隱藏密碼"
 
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "已達到訊息最多 {count} 字元限制"
 
 msgid "More items …"
 msgstr "更多項目 …"
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "下一個"
@@ -109,20 +141,29 @@ msgstr "下一個"
 msgid "No emoji found"
 msgstr "未找到表情符號"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "無結果"
 
 msgid "Objects"
 msgstr "物件"
 
-msgid "Open"
-msgstr "打開"
+msgid "Open contact menu"
+msgstr ""
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "打開指向 “{resourceTitle}” 的鏈結"
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "開啟導航"
+
+msgid "Open settings menu"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "密碼是安全的"
@@ -133,6 +174,24 @@ msgstr "暫停幻燈片"
 msgid "People & Body"
 msgstr "人物"
 
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
 msgid "Pick an emoji"
 msgstr "選擇表情符號"
 
@@ -142,17 +201,38 @@ msgstr "請選擇時區："
 msgid "Previous"
 msgstr "上一個"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
 msgid "Related resources"
 msgstr "相關資源"
 
 msgid "Search"
 msgstr "搜尋"
 
+msgid "Search emoji"
+msgstr ""
+
 msgid "Search results"
 msgstr "搜尋結果"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "選擇標籤"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "設定"
@@ -163,11 +243,17 @@ msgstr "設定值導覽"
 msgid "Show password"
 msgstr "顯示密碼"
 
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "表情"
 
 msgid "Start slideshow"
 msgstr "開始幻燈片"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "提交"
