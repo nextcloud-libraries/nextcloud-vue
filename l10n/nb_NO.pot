@@ -1,15 +1,11 @@
 # 
 # Translators:
-# Ole Jakob Brustad <ole.jakob@brustadbuss.no>, 2020
-# sverre.vikan <sverre.vikan@gmail.com>, 2020
-# Martin Tøndel, 2021
-# Hans Bøhn Andreassen, 2022
-# Ari Selseng <ari@selseng.net>, 2023
+# Joas Schilling, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ari Selseng <ari@selseng.net>, 2023\n"
-"Language-Team: Norwegian Bokmål (Norway) (https://www.transifex.com/nextcloud/teams/64236/nb_NO/)\n"
+"Last-Translator: Joas Schilling, 2023\n"
+"Language-Team: Norwegian Bokmål (Norway) (https://app.transifex.com/nextcloud/teams/64236/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nb_NO\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,14 +16,23 @@ msgstr "{tag} (usynlig)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (beskyttet)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "Handlinger"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "Aktiviteter"
 
 msgid "Animals & Nature"
 msgstr "Dyr og natur"
+
+msgid "Any link"
+msgstr ""
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Alt som er delt med den samme gruppen vil vises her"
@@ -38,14 +43,23 @@ msgstr "Avataren til {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName}'s avatar, {status}"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "Avbryt endringer"
 
-msgid "Change title"
-msgstr "Endre tittel"
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "Velg"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear text"
 msgstr "Fjern tekst"
@@ -62,6 +76,12 @@ msgstr "Lukk navigasjon"
 msgid "Close sidebar"
 msgstr "Lukk sidepanel"
 
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "Bekreft endringer"
 
@@ -71,14 +91,16 @@ msgstr "Tilpasset"
 msgid "Edit item"
 msgstr "Rediger"
 
-msgid "Error getting related resources"
-msgstr "Feil ved henting av relaterte ressurser"
+msgid "Enter link"
+msgstr ""
 
-msgid "Error parsing svg"
-msgstr "Feil ved parsing av svg"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
 
-msgid "External documentation for {title}"
-msgstr "Ekstern dokumentasjon for {title}"
+msgid "External documentation for {name}"
+msgstr ""
 
 msgid "Favorite"
 msgstr "Favoritt"
@@ -101,11 +123,17 @@ msgstr "Gå tilbake til listen"
 msgid "Hide password"
 msgstr "Skjul passord"
 
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "Karakter begrensing {count} nådd i melding"
 
 msgid "More items …"
 msgstr "Flere gjenstander..."
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "Neste"
@@ -113,20 +141,29 @@ msgstr "Neste"
 msgid "No emoji found"
 msgstr "Fant ingen emoji"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "Ingen resultater"
 
 msgid "Objects"
 msgstr "Objekter"
 
-msgid "Open"
-msgstr "Åpne"
+msgid "Open contact menu"
+msgstr ""
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "Åpne link til \"{resourceTitle}\""
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "Åpne navigasjon"
+
+msgid "Open settings menu"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "Passordet er sikkert"
@@ -137,6 +174,24 @@ msgstr "Pause lysbildefremvisning"
 msgid "People & Body"
 msgstr "Mennesker og kropp"
 
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
 msgid "Pick an emoji"
 msgstr "Velg en emoji"
 
@@ -146,17 +201,38 @@ msgstr "Vennligst velg tidssone"
 msgid "Previous"
 msgstr "Forrige"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
 msgid "Related resources"
 msgstr "Relaterte ressurser"
 
 msgid "Search"
 msgstr "Søk"
 
+msgid "Search emoji"
+msgstr ""
+
 msgid "Search results"
 msgstr "Søkeresultater"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "Velg en merkelapp"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "Innstillinger"
@@ -167,11 +243,17 @@ msgstr "Navigasjonsinstillinger"
 msgid "Show password"
 msgstr "Vis passord"
 
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "Smilefjes og følelser"
 
 msgid "Start slideshow"
 msgstr "Start lysbildefremvisning"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "Send"
