@@ -17,7 +17,7 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (restricted)"
 
 msgid "a few seconds ago"
-msgstr ""
+msgstr "hace unos segundos"
 
 msgid "Actions"
 msgstr "Acciones"
