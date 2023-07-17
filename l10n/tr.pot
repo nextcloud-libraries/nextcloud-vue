@@ -48,7 +48,7 @@ msgid "Back"
 msgstr "Geri"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Sağlayıcı seçimine geri gidin"
 
 msgid "Cancel changes"
 msgstr "Değişiklikleri iptal et"
