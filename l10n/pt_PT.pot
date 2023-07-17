@@ -251,7 +251,7 @@ msgid "Smart Picker"
 msgstr "Smart Picker"
 
 msgid "Smileys & Emotion"
-msgstr ""
+msgstr "Sorrisos e Emoções"
 
 msgid "Start slideshow"
 msgstr "Iniciar diaporama"
