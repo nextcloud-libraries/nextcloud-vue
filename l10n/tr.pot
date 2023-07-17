@@ -181,10 +181,10 @@ msgid "Pick a date"
 msgstr "Bir tarih seçin"
 
 msgid "Pick a date and a time"
-msgstr ""
+msgstr "Bir tarih ve saat seçin"
 
 msgid "Pick a month"
-msgstr ""
+msgstr "Bir ay seçin"
 
 msgid "Pick a time"
 msgstr ""
