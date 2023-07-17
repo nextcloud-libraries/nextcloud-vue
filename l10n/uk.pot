@@ -256,7 +256,7 @@ msgid "Start slideshow"
 msgstr "Почати показ слайдів"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Почніть вводити для пошуку"
 
 msgid "Submit"
 msgstr "Надіслати"
