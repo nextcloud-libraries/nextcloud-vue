@@ -266,7 +266,7 @@ msgid "Symbols"
 msgstr "Símbolos"
 
 msgid "Travel & Places"
-msgstr ""
+msgstr "Viagem e Lugares"
 
 msgid "Type to search time zone"
 msgstr ""
