@@ -265,10 +265,10 @@ msgid "Symbols"
 msgstr "Símbolos"
 
 msgid "Travel & Places"
-msgstr ""
+msgstr "Viajes y Lugares"
 
 msgid "Type to search time zone"
-msgstr ""
+msgstr "Escribe para buscar la zona horaria"
 
 msgid "Unable to search the group"
 msgstr ""
