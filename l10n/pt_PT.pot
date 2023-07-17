@@ -226,11 +226,11 @@ msgstr "Resultados da pesquisa"
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "seg. atrás"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "segundos atrás"
 
 msgid "Select a tag"
 msgstr "Selecionar uma etiqueta"
