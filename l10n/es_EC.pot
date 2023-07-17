@@ -244,10 +244,10 @@ msgid "Settings navigation"
 msgstr "Navegación de configuraciones"
 
 msgid "Show password"
-msgstr ""
+msgstr "Mostrar contraseña"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "Selector inteligente"
 
 msgid "Smileys & Emotion"
 msgstr ""
