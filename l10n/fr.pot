@@ -94,7 +94,7 @@ msgid "Edit item"
 msgstr "Éditer l'élément"
 
 msgid "Enter link"
-msgstr ""
+msgstr "Saisissez le lien"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
