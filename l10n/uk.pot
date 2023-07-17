@@ -190,7 +190,7 @@ msgid "Pick a time"
 msgstr "Вибрати час"
 
 msgid "Pick a week"
-msgstr ""
+msgstr "Вибрати тиждень"
 
 msgid "Pick a year"
 msgstr ""
