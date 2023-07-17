@@ -1,14 +1,11 @@
 # 
 # Translators:
-# Mădălin Vasiliu <contact@madalinvasiliu.com>, 2022
-# Petre T, 2022
-# Mihai Michael, 2022
-# Daniel Rosca, 2023
+# Joas Schilling, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Daniel Rosca, 2023\n"
-"Language-Team: Romanian (https://www.transifex.com/nextcloud/teams/64236/ro/)\n"
+"Last-Translator: Joas Schilling, 2023\n"
+"Language-Team: Romanian (https://app.transifex.com/nextcloud/teams/64236/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
@@ -19,14 +16,23 @@ msgstr "{tag} (invizibil)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (restricționat)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "Acțiuni"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "Activități"
 
 msgid "Animals & Nature"
 msgstr "Animale și natură"
+
+msgid "Any link"
+msgstr ""
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
@@ -38,14 +44,23 @@ msgstr "Avatarul lui {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatarul lui {displayName}, {status}"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "Anulează modificările"
 
-msgid "Change title"
-msgstr "Modificați titlul"
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "Alegeți"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear text"
 msgstr "Șterge textul"
@@ -62,6 +77,12 @@ msgstr "Închideți navigarea"
 msgid "Close sidebar"
 msgstr "Închide bara laterală"
 
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "Confirmați modificările"
 
@@ -71,14 +92,16 @@ msgstr "Personalizat"
 msgid "Edit item"
 msgstr "Editați elementul"
 
-msgid "Error getting related resources"
-msgstr " Eroare la returnarea resurselor legate"
+msgid "Enter link"
+msgstr ""
 
-msgid "Error parsing svg"
-msgstr "Eroare de analizare a svg"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
 
-msgid "External documentation for {title}"
-msgstr "Documentație externă pentru {title}"
+msgid "External documentation for {name}"
+msgstr ""
 
 msgid "Favorite"
 msgstr "Favorit"
@@ -101,11 +124,17 @@ msgstr "Întoarceți-vă la listă"
 msgid "Hide password"
 msgstr "Ascunde parola"
 
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "Limita mesajului de {count} caractere a fost atinsă"
 
 msgid "More items …"
 msgstr "Mai multe articole ..."
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "Următorul"
@@ -113,20 +142,29 @@ msgstr "Următorul"
 msgid "No emoji found"
 msgstr "Nu s-a găsit niciun emoji"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "Nu există rezultate"
 
 msgid "Objects"
 msgstr "Obiecte"
 
-msgid "Open"
-msgstr "Deschideți"
+msgid "Open contact menu"
+msgstr ""
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "Deschide legătura la \"{resourceTitle}\""
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "Deschideți navigația"
+
+msgid "Open settings menu"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "Parola este sigură"
@@ -137,6 +175,24 @@ msgstr "Pauză prezentare de diapozitive"
 msgid "People & Body"
 msgstr "Oameni și corp"
 
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
 msgid "Pick an emoji"
 msgstr "Alege un emoji"
 
@@ -146,17 +202,38 @@ msgstr "Vă rugăm să selectați un fus orar:"
 msgid "Previous"
 msgstr "Anterior"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
 msgid "Related resources"
 msgstr "Resurse legate"
 
 msgid "Search"
 msgstr "Căutare"
 
+msgid "Search emoji"
+msgstr ""
+
 msgid "Search results"
 msgstr "Rezultatele căutării"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "Selectați o etichetă"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "Setări"
@@ -167,11 +244,17 @@ msgstr "Navigare setări"
 msgid "Show password"
 msgstr "Arată parola"
 
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "Zâmbete și emoții"
 
 msgid "Start slideshow"
 msgstr "Începeți prezentarea de diapozitive"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "Trimiteți"

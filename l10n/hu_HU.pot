@@ -1,13 +1,11 @@
 # 
 # Translators:
-# asbot10 <richard@asbot.tech>, 2020
-# János Schrempf <schrempf.janos@gmail.com>, 2022
-# Balázs Meskó <meskobalazs@mailbox.org>, 2023
+# Joas Schilling, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>, 2023\n"
-"Language-Team: Hungarian (Hungary) (https://www.transifex.com/nextcloud/teams/64236/hu_HU/)\n"
+"Last-Translator: Joas Schilling, 2023\n"
+"Language-Team: Hungarian (Hungary) (https://app.transifex.com/nextcloud/teams/64236/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: hu_HU\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -18,14 +16,23 @@ msgstr "{tag} (láthatatlan)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (korlátozott)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "Műveletek"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "Tevékenységek"
 
 msgid "Animals & Nature"
 msgstr "Állatok és természet"
+
+msgid "Any link"
+msgstr ""
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Minden, amit ugyanazzal a csoporttal oszt meg, itt fog megjelenni"
@@ -36,14 +43,23 @@ msgstr "{displayName} profilképe"
 msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName} profilképe, {status}"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "Változtatások elvetése"
 
-msgid "Change title"
-msgstr "Cím megváltoztatása"
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "Válassszon"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear text"
 msgstr "Szöveg törlése"
@@ -60,6 +76,12 @@ msgstr "Navigáció bezárása"
 msgid "Close sidebar"
 msgstr "Oldalsáv bezárása"
 
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "Változtatások megerősítése"
 
@@ -69,14 +91,16 @@ msgstr "Egyéni"
 msgid "Edit item"
 msgstr "Elem szerkesztése"
 
-msgid "Error getting related resources"
-msgstr "Hiba a kapcsolódó erőforrások lekérésekor"
+msgid "Enter link"
+msgstr ""
 
-msgid "Error parsing svg"
-msgstr "Hiba az SVG feldolgozásakor"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
 
-msgid "External documentation for {title}"
-msgstr "Külső dokumentáció ehhez: {title}"
+msgid "External documentation for {name}"
+msgstr ""
 
 msgid "Favorite"
 msgstr "Kedvenc"
@@ -99,11 +123,17 @@ msgstr "Ugrás vissza a listához"
 msgid "Hide password"
 msgstr "Jelszó elrejtése"
 
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "{count} karakteres üzenetkorlát elérve"
 
 msgid "More items …"
 msgstr "További elemek..."
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "Következő"
@@ -111,20 +141,29 @@ msgstr "Következő"
 msgid "No emoji found"
 msgstr "Nem található emodzsi"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "Nincs találat"
 
 msgid "Objects"
 msgstr "Tárgyak"
 
-msgid "Open"
-msgstr "Megnyitás"
+msgid "Open contact menu"
+msgstr ""
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "A(z) „{resourceTitle}” hivatkozásának megnyitása"
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "Navigáció megnyitása"
+
+msgid "Open settings menu"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "A jelszó biztonságos"
@@ -135,6 +174,24 @@ msgstr "Diavetítés szüneteltetése"
 msgid "People & Body"
 msgstr "Emberek és test"
 
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
 msgid "Pick an emoji"
 msgstr "Válasszon egy emodzsit"
 
@@ -144,17 +201,38 @@ msgstr "Válasszon időzónát:"
 msgid "Previous"
 msgstr "Előző"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
 msgid "Related resources"
 msgstr "Kapcsolódó erőforrások"
 
 msgid "Search"
 msgstr "Keresés"
 
+msgid "Search emoji"
+msgstr ""
+
 msgid "Search results"
 msgstr "Találatok"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "Válasszon címkét"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "Beállítások"
@@ -165,11 +243,17 @@ msgstr "Navigáció a beállításokban"
 msgid "Show password"
 msgstr "Jelszó megjelenítése"
 
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "Mosolyok és érzelmek"
 
 msgid "Start slideshow"
 msgstr "Diavetítés indítása"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "Beküldés"

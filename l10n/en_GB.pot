@@ -1,12 +1,11 @@
 # 
 # Translators:
-# Andi Chandler <andi@gowling.com>, 2022
-# Café Tango, 2022
+# Joas Schilling, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Café Tango, 2022\n"
-"Language-Team: English (United Kingdom) (https://www.transifex.com/nextcloud/teams/64236/en_GB/)\n"
+"Last-Translator: Joas Schilling, 2023\n"
+"Language-Team: English (United Kingdom) (https://app.transifex.com/nextcloud/teams/64236/en_GB/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: en_GB\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -17,14 +16,23 @@ msgstr "{tag} (invisible)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (restricted)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "Actions"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "Activities"
 
 msgid "Animals & Nature"
 msgstr "Animals & Nature"
+
+msgid "Any link"
+msgstr ""
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Anything shared with the same group of people will show up here"
@@ -35,14 +43,23 @@ msgstr "Avatar of {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar of {displayName}, {status}"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "Cancel changes"
 
-msgid "Change title"
-msgstr "Change title"
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "Choose"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear text"
 msgstr "Clear text"
@@ -59,6 +76,12 @@ msgstr "Close navigation"
 msgid "Close sidebar"
 msgstr "Close sidebar"
 
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "Confirm changes"
 
@@ -68,14 +91,16 @@ msgstr "Custom"
 msgid "Edit item"
 msgstr "Edit item"
 
-msgid "Error getting related resources"
-msgstr "Error getting related resources"
+msgid "Enter link"
+msgstr ""
 
-msgid "Error parsing svg"
-msgstr "Error parsing svg"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
 
-msgid "External documentation for {title}"
-msgstr "External documentation for {title}"
+msgid "External documentation for {name}"
+msgstr ""
 
 msgid "Favorite"
 msgstr "Favourite"
@@ -98,11 +123,17 @@ msgstr "Go back to the list"
 msgid "Hide password"
 msgstr "Hide password"
 
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "Message limit of {count} characters reached"
 
 msgid "More items …"
 msgstr "More items …"
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "Next"
@@ -110,20 +141,29 @@ msgstr "Next"
 msgid "No emoji found"
 msgstr "No emoji found"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "No results"
 
 msgid "Objects"
 msgstr "Objects"
 
-msgid "Open"
-msgstr "Open"
+msgid "Open contact menu"
+msgstr ""
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "Open link to \"{resourceTitle}\""
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "Open navigation"
+
+msgid "Open settings menu"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "Password is secure"
@@ -134,6 +174,24 @@ msgstr "Pause slideshow"
 msgid "People & Body"
 msgstr "People & Body"
 
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
 msgid "Pick an emoji"
 msgstr "Pick an emoji"
 
@@ -143,17 +201,38 @@ msgstr "Please select a time zone:"
 msgid "Previous"
 msgstr "Previous"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
 msgid "Related resources"
 msgstr "Related resources"
 
 msgid "Search"
 msgstr "Search"
 
+msgid "Search emoji"
+msgstr ""
+
 msgid "Search results"
 msgstr "Search results"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "Select a tag"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "Settings"
@@ -164,11 +243,17 @@ msgstr "Settings navigation"
 msgid "Show password"
 msgstr "Show password"
 
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "Smileys & Emotion"
 
 msgid "Start slideshow"
 msgstr "Start slideshow"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "Submit"

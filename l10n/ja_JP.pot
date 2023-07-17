@@ -1,19 +1,11 @@
 # 
 # Translators:
-# YANO Tetsu <tetuyano+transi@gmail.com>, 2021
-# Katsumi Sasaki <tripper@kidnappers.gr.jp>, 2021
-# hiroshisuga <suga0330@gmail.com>, 2021
-# 焼きすぎた鮭, 2021
-# Kosugi_kun, 2022
-# かたかめ, 2022
-# T.S, 2022
-# m4549071758 <m4549071758@gmail.com>, 2022
-# 39abde2b72cc6b7a96a9f849ccb160a4_6b69dfc, 2023
+# Joas Schilling, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: 39abde2b72cc6b7a96a9f849ccb160a4_6b69dfc, 2023\n"
-"Language-Team: Japanese (Japan) (https://www.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
+"Last-Translator: Joas Schilling, 2023\n"
+"Language-Team: Japanese (Japan) (https://app.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ja_JP\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -24,14 +16,23 @@ msgstr "{タグ} (不可視)"
 msgid "{tag} (restricted)"
 msgstr "{タグ} (制限付)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "操作"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "アクティビティ"
 
 msgid "Animals & Nature"
 msgstr "動物と自然"
+
+msgid "Any link"
+msgstr ""
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "同じグループで共有しているものは、全てここに表示されます"
@@ -42,14 +43,23 @@ msgstr "{displayName} のアバター"
 msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName}, {status} のアバター"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "変更をキャンセル"
 
-msgid "Change title"
-msgstr "タイトルを変更"
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "選択"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear text"
 msgstr "テキストをクリア"
@@ -66,6 +76,12 @@ msgstr "ナビゲーションを閉じる"
 msgid "Close sidebar"
 msgstr "サイドバーを閉じる"
 
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "変更を承認"
 
@@ -75,14 +91,16 @@ msgstr "カスタム"
 msgid "Edit item"
 msgstr "編集"
 
-msgid "Error getting related resources"
-msgstr "関連リソースの取得エラー"
+msgid "Enter link"
+msgstr ""
 
-msgid "Error parsing svg"
-msgstr "svgの解析エラー"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
 
-msgid "External documentation for {title}"
-msgstr "{title} のための添付文書"
+msgid "External documentation for {name}"
+msgstr ""
 
 msgid "Favorite"
 msgstr "お気に入り"
@@ -105,11 +123,17 @@ msgstr "リストに戻る"
 msgid "Hide password"
 msgstr "パスワードを非表示"
 
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "{count} 文字のメッセージ上限に達しています"
 
 msgid "More items …"
 msgstr "他のアイテム"
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "次"
@@ -117,20 +141,29 @@ msgstr "次"
 msgid "No emoji found"
 msgstr "絵文字が見つかりません"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "なし"
 
 msgid "Objects"
 msgstr "物"
 
-msgid "Open"
-msgstr "開く"
+msgid "Open contact menu"
+msgstr ""
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "\"{resourceTitle}\"のリンクを開く"
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "ナビゲーションを開く"
+
+msgid "Open settings menu"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "パスワードは保護されています"
@@ -141,6 +174,24 @@ msgstr "スライドショーを一時停止"
 msgid "People & Body"
 msgstr "様々な人と体の部位"
 
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
 msgid "Pick an emoji"
 msgstr "絵文字を選択"
 
@@ -150,17 +201,38 @@ msgstr "タイムゾーンを選んで下さい："
 msgid "Previous"
 msgstr "前"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
 msgid "Related resources"
 msgstr "関連リソース"
 
 msgid "Search"
 msgstr "検索"
 
+msgid "Search emoji"
+msgstr ""
+
 msgid "Search results"
 msgstr "検索結果"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "タグを選択"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "設定"
@@ -171,11 +243,17 @@ msgstr "ナビゲーション設定"
 msgid "Show password"
 msgstr "パスワードを表示"
 
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "感情表現"
 
 msgid "Start slideshow"
 msgstr "スライドショーを開始"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "提出"

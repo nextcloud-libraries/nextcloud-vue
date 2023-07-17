@@ -1,17 +1,11 @@
 # 
 # Translators:
-# Alex <kekcuha@gmail.com>, 2020
-# Andrey Atapin <atab74@gmail.com>, 2020
-# Nikita Epifanov, 2021
-# Dmitry Plakhov <dim5x@yahoo.com>, 2021
-# Влад <integration.into.society@gmail.com>, 2022
-# Вадим Фещенко, 2022
-# Алексей Хрусталёв, 2022
+# Joas Schilling, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Алексей Хрусталёв, 2022\n"
-"Language-Team: Russian (https://www.transifex.com/nextcloud/teams/64236/ru/)\n"
+"Last-Translator: Joas Schilling, 2023\n"
+"Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
@@ -22,8 +16,14 @@ msgstr "{tag} (невидимое)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (ограниченное)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "Действия "
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "События"
@@ -31,17 +31,38 @@ msgstr "События"
 msgid "Animals & Nature"
 msgstr "Животные и природа "
 
+msgid "Any link"
+msgstr ""
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+
 msgid "Avatar of {displayName}"
 msgstr "Аватар {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
 msgstr "Фотография {displayName}, {status}"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "Отменить изменения"
 
+msgid "Change name"
+msgstr ""
+
 msgid "Choose"
 msgstr "Выберите"
+
+msgid "Clear search"
+msgstr ""
+
+msgid "Clear text"
+msgstr ""
 
 msgid "Close"
 msgstr "Закрыть"
@@ -52,6 +73,15 @@ msgstr "Закрыть модальное окно"
 msgid "Close navigation"
 msgstr "Закрыть навигацию"
 
+msgid "Close sidebar"
+msgstr ""
+
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "Подтвердить изменения"
 
@@ -61,8 +91,19 @@ msgstr "Пользовательское"
 msgid "Edit item"
 msgstr "Изменить элемент"
 
-msgid "External documentation for {title}"
-msgstr "Внешняя документация для {title}"
+msgid "Enter link"
+msgstr ""
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+
+msgid "External documentation for {name}"
+msgstr ""
+
+msgid "Favorite"
+msgstr ""
 
 msgid "Flags"
 msgstr "Флаги"
@@ -79,14 +120,20 @@ msgstr "Глобальный"
 msgid "Go back to the list"
 msgstr "Вернуться к списку"
 
-msgid "items"
-msgstr "элементов"
+msgid "Hide password"
+msgstr ""
+
+msgid "Load more \"{options}\"\""
+msgstr ""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Достигнуто ограничение на количество символов в {count}"
 
-msgid "More {dashboardItemType} …"
-msgstr "Больше {dashboardItemType} …"
+msgid "More items …"
+msgstr ""
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "Следующее"
@@ -94,23 +141,56 @@ msgstr "Следующее"
 msgid "No emoji found"
 msgstr "Эмодзи не найдено"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "Результаты отсуствуют"
 
 msgid "Objects"
 msgstr "Объекты"
 
-msgid "Open"
-msgstr "Открыть"
+msgid "Open contact menu"
+msgstr ""
+
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "Открыть навигацию"
+
+msgid "Open settings menu"
+msgstr ""
+
+msgid "Password is secure"
+msgstr ""
 
 msgid "Pause slideshow"
 msgstr "Приостановить показ слйдов"
 
 msgid "People & Body"
 msgstr "Люди и тело"
+
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
 
 msgid "Pick an emoji"
 msgstr "Выберите эмодзи"
@@ -121,14 +201,38 @@ msgstr "Пожалуйста, выберите часовой пояс:"
 msgid "Previous"
 msgstr "Предыдущее"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
+msgid "Related resources"
+msgstr ""
+
 msgid "Search"
 msgstr "Поиск"
+
+msgid "Search emoji"
+msgstr ""
 
 msgid "Search results"
 msgstr "Результаты поиска"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "Выберите метку"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "Параметры"
@@ -136,11 +240,20 @@ msgstr "Параметры"
 msgid "Settings navigation"
 msgstr "Навигация по настройкам"
 
+msgid "Show password"
+msgstr ""
+
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "Смайлики и эмоции"
 
 msgid "Start slideshow"
 msgstr "Начать показ слайдов"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "Утвердить"
@@ -160,7 +273,7 @@ msgstr "Невозможно найти группу"
 msgid "Undo changes"
 msgstr "Отменить изменения"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
 msgstr ""
-"Напишите сообщение, @ - чтобы упомянуть кого-то, : - для автозаполнения "
-"эмодзи …"

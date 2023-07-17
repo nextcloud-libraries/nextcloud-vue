@@ -1,14 +1,12 @@
 # 
 # Translators:
-# O St <oleksiy.stasevych@gmail.com>, 2020
-# Dmytro Ratynchuk <ratynchuk@gmail.com>, 2021
-# Vlad Anisimov <uniss@ua.fm>, 2021
-# Vitaliy <gviabcua@gmail.com>, 2022
+# Joas Schilling, 2023
+# O St <oleksiy.stasevych@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Vitaliy <gviabcua@gmail.com>, 2022\n"
-"Language-Team: Ukrainian (https://www.transifex.com/nextcloud/teams/64236/uk/)\n"
+"Last-Translator: O St <oleksiy.stasevych@gmail.com>, 2023\n"
+"Language-Team: Ukrainian (https://app.transifex.com/nextcloud/teams/64236/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
@@ -19,8 +17,14 @@ msgstr "{tag} (невидимий)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (обмежений)"
 
+msgid "a few seconds ago"
+msgstr "декілька секунд тому"
+
 msgid "Actions"
 msgstr "Дії"
+
+msgid "Actions for item with name \"{name}\""
+msgstr "Дії для об'єкту \"{name}\""
 
 msgid "Activities"
 msgstr "Діяльність"
@@ -28,20 +32,35 @@ msgstr "Діяльність"
 msgid "Animals & Nature"
 msgstr "Тварини та природа"
 
+msgid "Any link"
+msgstr "Будь-яке посилання"
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr "Будь-що доступне для цієї же групи людей буде показано тут"
+
 msgid "Avatar of {displayName}"
 msgstr "Аватар {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
 msgstr "Аватар {displayName}, {status}"
 
+msgid "Back"
+msgstr "Назад"
+
+msgid "Back to provider selection"
+msgstr "Назад до вибору постачальника"
+
 msgid "Cancel changes"
 msgstr "Скасувати зміни"
 
-msgid "Change title"
+msgid "Change name"
 msgstr "Змінити назву"
 
 msgid "Choose"
-msgstr "ВиберітьВиберіть"
+msgstr "Виберіть"
+
+msgid "Clear search"
+msgstr "Очистити пошук"
 
 msgid "Clear text"
 msgstr "Очистити текст"
@@ -58,6 +77,12 @@ msgstr "Закрити навігацію"
 msgid "Close sidebar"
 msgstr "Закрити бічну панель"
 
+msgid "Close Smart Picker"
+msgstr "Закрити асистент вибору"
+
+msgid "Collapse menu"
+msgstr "Згорнути меню"
+
 msgid "Confirm changes"
 msgstr "Підтвердити зміни"
 
@@ -67,11 +92,21 @@ msgstr "Власне"
 msgid "Edit item"
 msgstr "Редагувати елемент"
 
-msgid "External documentation for {title}"
-msgstr "Зовнішня документація для {title}"
+msgid "Enter link"
+msgstr "Зазначте посилання"
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+"Помилка під час отримання пов'язаних ресурсів. Будь ласка, сконтактуйте з "
+"системним адміністратором, якщо у вас виникли запитання."
+
+msgid "External documentation for {name}"
+msgstr "Зовнішня документація для {name}"
 
 msgid "Favorite"
-msgstr "Улюблений"
+msgstr "Із зірочкою"
 
 msgid "Flags"
 msgstr "Прапори"
@@ -91,14 +126,17 @@ msgstr "Повернутися до списку"
 msgid "Hide password"
 msgstr "Приховати пароль"
 
-msgid "items"
-msgstr "елементи"
+msgid "Load more \"{options}\"\""
+msgstr "Завантажити більше \"{options}\""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Вичерпано ліміт у {count} символів для повідомлення"
 
-msgid "More {dashboardItemType} …"
-msgstr "Більше {dashboardItemType}…"
+msgid "More items …"
+msgstr "Більше об'єктів..."
+
+msgid "More options"
+msgstr "Більше об'єктів"
 
 msgid "Next"
 msgstr "Вперед"
@@ -106,17 +144,29 @@ msgstr "Вперед"
 msgid "No emoji found"
 msgstr "Емоційки відсутні"
 
+msgid "No link provider found"
+msgstr "Не наведено посилання"
+
 msgid "No results"
 msgstr "Відсутні результати"
 
 msgid "Objects"
 msgstr "Об'єкти"
 
-msgid "Open"
-msgstr "Відкрити"
+msgid "Open contact menu"
+msgstr "Відкрити меню контактів"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "Відкрити посилання на \"{resourceName}\""
+
+msgid "Open menu"
+msgstr "Відкрити меню"
 
 msgid "Open navigation"
 msgstr "Відкрити навігацію"
+
+msgid "Open settings menu"
+msgstr "Відкрити меню налаштувань"
 
 msgid "Password is secure"
 msgstr "Пароль безпечний"
@@ -127,6 +177,24 @@ msgstr "Пауза у показі слайдів"
 msgid "People & Body"
 msgstr "Люди та жести"
 
+msgid "Pick a date"
+msgstr "Вибрати дату"
+
+msgid "Pick a date and a time"
+msgstr "Виберіть дату та час"
+
+msgid "Pick a month"
+msgstr "Виберіть місяць"
+
+msgid "Pick a time"
+msgstr "Виберіть час"
+
+msgid "Pick a week"
+msgstr "Виберіть тиждень"
+
+msgid "Pick a year"
+msgstr "Виберіть рік"
+
 msgid "Pick an emoji"
 msgstr "Виберіть емоційку"
 
@@ -136,14 +204,38 @@ msgstr "Виберіть часовий пояс:"
 msgid "Previous"
 msgstr "Назад"
 
+msgid "Provider icon"
+msgstr "Піктограма постачальника"
+
+msgid "Raw link {options}"
+msgstr "Пряме посилання {options}"
+
+msgid "Related resources"
+msgstr "Пов'язані ресурси"
+
 msgid "Search"
 msgstr "Пошук"
+
+msgid "Search emoji"
+msgstr "Шукати емоційки"
 
 msgid "Search results"
 msgstr "Результати пошуку"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "с тому"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "с тому"
+
 msgid "Select a tag"
 msgstr "Виберіть позначку"
+
+msgid "Select provider"
+msgstr "Виберіть постачальника"
 
 msgid "Settings"
 msgstr "Налаштування"
@@ -154,11 +246,17 @@ msgstr "Навігація у налаштуваннях"
 msgid "Show password"
 msgstr "Показати пароль"
 
+msgid "Smart Picker"
+msgstr "Асистент вибору"
+
 msgid "Smileys & Emotion"
 msgstr "Смайли та емоції"
 
 msgid "Start slideshow"
 msgstr "Почати показ слайдів"
+
+msgid "Start typing to search"
+msgstr "Почніть вводити для пошуку"
 
 msgid "Submit"
 msgstr "Надіслати"
@@ -178,6 +276,7 @@ msgstr "Неможливо шукати в групі"
 msgid "Undo changes"
 msgstr "Скасувати зміни"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
-msgstr ""
-"Напишіть повідомлення, @, щоб згадати когось, : для автозаповнення емодзі…"
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
+msgstr "Додайте \"@\", щоби згадати коористувача або \":\" для вибору емоційки..."
