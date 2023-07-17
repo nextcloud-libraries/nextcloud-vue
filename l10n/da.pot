@@ -1,16 +1,11 @@
 # 
 # Translators:
-# Thomas Nielsen <thsnielsen@gmail.com>, 2020
-# Peter Jespersen <flywheel@illogical.dk>, 2020
-# alex6480 <alexander@svorre.dk>, 2021
-# Kaspar Brygger, 2022
-# Martin Jensen, 2022
-# Jens Peter Nielsen <mail@jp-nielsen.dk>, 2023
+# Joas Schilling, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Jens Peter Nielsen <mail@jp-nielsen.dk>, 2023\n"
-"Language-Team: Danish (https://www.transifex.com/nextcloud/teams/64236/da/)\n"
+"Last-Translator: Joas Schilling, 2023\n"
+"Language-Team: Danish (https://app.transifex.com/nextcloud/teams/64236/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -21,14 +16,23 @@ msgstr "{tag} (usynlig)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (begrænset)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "Handlinger"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "Aktiviteter"
 
 msgid "Animals & Nature"
 msgstr "Dyr & Natur"
+
+msgid "Any link"
+msgstr ""
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Alt der deles med samme gruppe af personer vil vises her"
@@ -39,14 +43,23 @@ msgstr "Avatar af {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar af {displayName}, {status}"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "Annuller ændringer"
 
-msgid "Change title"
-msgstr "Ret titel"
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "Vælg"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear text"
 msgstr "Ryd tekst"
@@ -63,6 +76,12 @@ msgstr "Luk navigation"
 msgid "Close sidebar"
 msgstr "Luk sidepanel"
 
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "Bekræft ændringer"
 
@@ -72,14 +91,16 @@ msgstr "Brugerdefineret"
 msgid "Edit item"
 msgstr "Rediger emne"
 
-msgid "Error getting related resources"
-msgstr "Kunne ikke hente tilknyttede data"
+msgid "Enter link"
+msgstr ""
 
-msgid "Error parsing svg"
-msgstr "Fejl ved analysering af svg"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
 
-msgid "External documentation for {title}"
-msgstr "Ekstern dokumentation for {title}"
+msgid "External documentation for {name}"
+msgstr ""
 
 msgid "Favorite"
 msgstr "Favorit"
@@ -102,11 +123,17 @@ msgstr "Tilbage til listen"
 msgid "Hide password"
 msgstr "Skjul kodeord"
 
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "Begrænsning på {count} tegn er nået"
 
 msgid "More items …"
 msgstr "Mere ..."
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "Videre"
@@ -114,20 +141,29 @@ msgstr "Videre"
 msgid "No emoji found"
 msgstr "Ingen emoji fundet"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "Ingen resultater"
 
 msgid "Objects"
 msgstr "Objekter"
 
-msgid "Open"
-msgstr "Åbn"
+msgid "Open contact menu"
+msgstr ""
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "Åbn link til \"{resourceTitle}\""
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "Åbn navigation"
+
+msgid "Open settings menu"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "Kodeordet er sikkert"
@@ -138,6 +174,24 @@ msgstr "Suspender fremvisning"
 msgid "People & Body"
 msgstr "Mennesker & Menneskekroppen"
 
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
 msgid "Pick an emoji"
 msgstr "Vælg en emoji"
 
@@ -147,17 +201,38 @@ msgstr "Vælg venligst en tidszone:"
 msgid "Previous"
 msgstr "Forrige"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
 msgid "Related resources"
 msgstr "Relaterede emner"
 
 msgid "Search"
 msgstr "Søg"
 
+msgid "Search emoji"
+msgstr ""
+
 msgid "Search results"
 msgstr "Søgeresultater"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "Vælg et mærke"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "Indstillinger"
@@ -168,11 +243,17 @@ msgstr "Naviger i indstillinger"
 msgid "Show password"
 msgstr "Vis kodeord"
 
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "Smileys & Emotion"
 
 msgid "Start slideshow"
 msgstr "Start fremvisning"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "Send"
