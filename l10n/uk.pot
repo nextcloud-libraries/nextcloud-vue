@@ -103,7 +103,7 @@ msgstr ""
 "системним адміністратором, якщо у вас виникли запитання."
 
 msgid "External documentation for {name}"
-msgstr ""
+msgstr "Зовнішня документація для {name}"
 
 msgid "Favorite"
 msgstr "Із зірочкою"
