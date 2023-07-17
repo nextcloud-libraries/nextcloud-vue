@@ -259,10 +259,10 @@ msgid "Start typing to search"
 msgstr "Comienza a escribir para buscar"
 
 msgid "Submit"
-msgstr ""
+msgstr "Enviar"
 
 msgid "Symbols"
-msgstr ""
+msgstr "Símbolos"
 
 msgid "Travel & Places"
 msgstr ""
