@@ -145,7 +145,7 @@ msgid "No emoji found"
 msgstr "Емоційки відсутні"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "Не наведено посилання"
 
 msgid "No results"
 msgstr "Відсутні результати"
