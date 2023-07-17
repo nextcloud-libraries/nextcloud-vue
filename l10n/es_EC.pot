@@ -271,10 +271,10 @@ msgid "Type to search time zone"
 msgstr "Escribe para buscar la zona horaria"
 
 msgid "Unable to search the group"
-msgstr ""
+msgstr "No se puede buscar en el grupo"
 
 msgid "Undo changes"
-msgstr ""
+msgstr "Deshacer cambios"
 
 msgid ""
 "Write message, use \"@\" to mention someone, use \":\" for emoji "
