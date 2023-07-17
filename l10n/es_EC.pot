@@ -232,10 +232,10 @@ msgid "seconds ago"
 msgstr "Segundos atrás"
 
 msgid "Select a tag"
-msgstr ""
+msgstr "Seleccionar una etiqueta"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Seleccionar proveedor"
 
 msgid "Settings"
 msgstr ""
