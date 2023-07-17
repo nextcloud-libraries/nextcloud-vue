@@ -127,7 +127,7 @@ msgid "Hide password"
 msgstr "Приховати пароль"
 
 msgid "Load more \"{options}\"\""
-msgstr ""
+msgstr "Завантажити більше \"{options}\""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Вичерпано ліміт у {count} символів для повідомлення"
