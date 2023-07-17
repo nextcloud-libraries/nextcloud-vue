@@ -250,10 +250,10 @@ msgid "Smart Picker"
 msgstr "Selector inteligente"
 
 msgid "Smileys & Emotion"
-msgstr ""
+msgstr "Caritas y Emociones"
 
 msgid "Start slideshow"
-msgstr ""
+msgstr "Iniciar presentación de diapositivas"
 
 msgid "Start typing to search"
 msgstr ""
