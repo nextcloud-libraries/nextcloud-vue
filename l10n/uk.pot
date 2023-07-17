@@ -208,7 +208,7 @@ msgid "Provider icon"
 msgstr "Надана піктограма"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Пряме посилання {options}"
 
 msgid "Related resources"
 msgstr ""
