@@ -1,12 +1,11 @@
 # 
 # Translators:
-# Slobodan Simić <slsimic@gmail.com>, 2020
-# aleksandar jevtic, 2022
+# Joas Schilling, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: aleksandar jevtic, 2022\n"
-"Language-Team: Serbian (https://www.transifex.com/nextcloud/teams/64236/sr/)\n"
+"Last-Translator: Joas Schilling, 2023\n"
+"Language-Team: Serbian (https://app.transifex.com/nextcloud/teams/64236/sr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sr\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
@@ -17,8 +16,14 @@ msgstr "{tag} (nevidljivo)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (ograničeno)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "Radnje"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "Aktivnosti"
@@ -26,20 +31,38 @@ msgstr "Aktivnosti"
 msgid "Animals & Nature"
 msgstr "Životinje i Priroda"
 
+msgid "Any link"
+msgstr ""
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+
 msgid "Avatar of {displayName}"
 msgstr "Avatar za {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar za {displayName}, {status}"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "Otkaži izmene"
 
-msgid "Change title"
-msgstr "Izmeni naziv"
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "Изаберите"
+
+msgid "Clear search"
+msgstr ""
+
+msgid "Clear text"
+msgstr ""
 
 msgid "Close"
 msgstr "Затвори"
@@ -53,6 +76,12 @@ msgstr "Zatvori navigaciju"
 msgid "Close sidebar"
 msgstr "Zatvori bočnu traku"
 
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "Potvrdite promene"
 
@@ -62,8 +91,16 @@ msgstr "Po meri"
 msgid "Edit item"
 msgstr "Uredi stavku"
 
-msgid "External documentation for {title}"
-msgstr "Eksterna dokumentacija za {title}"
+msgid "Enter link"
+msgstr ""
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+
+msgid "External documentation for {name}"
+msgstr ""
 
 msgid "Favorite"
 msgstr "Omiljeni"
@@ -83,14 +120,20 @@ msgstr "Globalno"
 msgid "Go back to the list"
 msgstr "Natrag na listu"
 
-msgid "items"
-msgstr "stavke"
+msgid "Hide password"
+msgstr ""
+
+msgid "Load more \"{options}\"\""
+msgstr ""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Dostignuto je ograničenje za poruke od {count} znakova"
 
-msgid "More {dashboardItemType} …"
-msgstr "Više  {dashboardItemType} …"
+msgid "More items …"
+msgstr ""
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "Следеће"
@@ -98,23 +141,56 @@ msgstr "Следеће"
 msgid "No emoji found"
 msgstr "Nije pronađen nijedan emodži"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "Нема резултата"
 
 msgid "Objects"
 msgstr "Objekti"
 
-msgid "Open"
-msgstr "Otvori"
+msgid "Open contact menu"
+msgstr ""
+
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "Otvori navigaciju"
+
+msgid "Open settings menu"
+msgstr ""
+
+msgid "Password is secure"
+msgstr ""
 
 msgid "Pause slideshow"
 msgstr "Паузирај слајд шоу"
 
 msgid "People & Body"
 msgstr "Ljudi i Telo"
+
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
 
 msgid "Pick an emoji"
 msgstr "Izaberi emodži"
@@ -125,14 +201,38 @@ msgstr "Molimo izaberite vremensku zonu:"
 msgid "Previous"
 msgstr "Претходно"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
+msgid "Related resources"
+msgstr ""
+
 msgid "Search"
 msgstr "Pretraži"
+
+msgid "Search emoji"
+msgstr ""
 
 msgid "Search results"
 msgstr "Rezultati pretrage"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "Изаберите ознаку"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "Поставке"
@@ -140,11 +240,20 @@ msgstr "Поставке"
 msgid "Settings navigation"
 msgstr "Navigacija u podešavanjima"
 
+msgid "Show password"
+msgstr ""
+
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "Smajli i Emocije"
 
 msgid "Start slideshow"
 msgstr "Покрени слајд шоу"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "Prihvati"
@@ -164,6 +273,7 @@ msgstr "Nije moguće pretražiti grupu"
 msgid "Undo changes"
 msgstr "Poništi promene"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
 msgstr ""
-"Napišite poruku, @ da pomenete nekoga, : za automatsko dovršavanje emodžija…"
