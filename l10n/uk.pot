@@ -178,7 +178,7 @@ msgid "People & Body"
 msgstr "Люди та жести"
 
 msgid "Pick a date"
-msgstr ""
+msgstr "Вибрати дату"
 
 msgid "Pick a date and a time"
 msgstr ""
