@@ -235,7 +235,7 @@ msgid "Select a tag"
 msgstr "Виберіть позначку"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Виберіть постачальника"
 
 msgid "Settings"
 msgstr "Налаштування"
@@ -247,7 +247,7 @@ msgid "Show password"
 msgstr "Показати пароль"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "Асистент вибору"
 
 msgid "Smileys & Emotion"
 msgstr "Смайли та емоції"
