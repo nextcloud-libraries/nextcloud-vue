@@ -1,14 +1,11 @@
 # 
 # Translators:
-# O St <oleksiy.stasevych@gmail.com>, 2020
-# Dmytro Ratynchuk <ratynchuk@gmail.com>, 2021
-# Vlad Anisimov <uniss@ua.fm>, 2021
-# Vitaliy <gviabcua@gmail.com>, 2022
+# Joas Schilling, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Vitaliy <gviabcua@gmail.com>, 2022\n"
-"Language-Team: Ukrainian (https://www.transifex.com/nextcloud/teams/64236/uk/)\n"
+"Last-Translator: Joas Schilling, 2023\n"
+"Language-Team: Ukrainian (https://app.transifex.com/nextcloud/teams/64236/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
@@ -19,8 +16,14 @@ msgstr "{tag} (невидимий)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (обмежений)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "Дії"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "Діяльність"
@@ -28,20 +31,35 @@ msgstr "Діяльність"
 msgid "Animals & Nature"
 msgstr "Тварини та природа"
 
+msgid "Any link"
+msgstr ""
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+
 msgid "Avatar of {displayName}"
 msgstr "Аватар {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
 msgstr "Аватар {displayName}, {status}"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "Скасувати зміни"
 
-msgid "Change title"
-msgstr "Змінити назву"
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "ВиберітьВиберіть"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear text"
 msgstr "Очистити текст"
@@ -58,6 +76,12 @@ msgstr "Закрити навігацію"
 msgid "Close sidebar"
 msgstr "Закрити бічну панель"
 
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "Підтвердити зміни"
 
@@ -67,8 +91,16 @@ msgstr "Власне"
 msgid "Edit item"
 msgstr "Редагувати елемент"
 
-msgid "External documentation for {title}"
-msgstr "Зовнішня документація для {title}"
+msgid "Enter link"
+msgstr ""
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+
+msgid "External documentation for {name}"
+msgstr ""
 
 msgid "Favorite"
 msgstr "Улюблений"
@@ -91,14 +123,17 @@ msgstr "Повернутися до списку"
 msgid "Hide password"
 msgstr "Приховати пароль"
 
-msgid "items"
-msgstr "елементи"
+msgid "Load more \"{options}\"\""
+msgstr ""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Вичерпано ліміт у {count} символів для повідомлення"
 
-msgid "More {dashboardItemType} …"
-msgstr "Більше {dashboardItemType}…"
+msgid "More items …"
+msgstr ""
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "Вперед"
@@ -106,17 +141,29 @@ msgstr "Вперед"
 msgid "No emoji found"
 msgstr "Емоційки відсутні"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "Відсутні результати"
 
 msgid "Objects"
 msgstr "Об'єкти"
 
-msgid "Open"
-msgstr "Відкрити"
+msgid "Open contact menu"
+msgstr ""
+
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "Відкрити навігацію"
+
+msgid "Open settings menu"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "Пароль безпечний"
@@ -127,6 +174,24 @@ msgstr "Пауза у показі слайдів"
 msgid "People & Body"
 msgstr "Люди та жести"
 
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
 msgid "Pick an emoji"
 msgstr "Виберіть емоційку"
 
@@ -136,14 +201,38 @@ msgstr "Виберіть часовий пояс:"
 msgid "Previous"
 msgstr "Назад"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
+msgid "Related resources"
+msgstr ""
+
 msgid "Search"
 msgstr "Пошук"
+
+msgid "Search emoji"
+msgstr ""
 
 msgid "Search results"
 msgstr "Результати пошуку"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "Виберіть позначку"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "Налаштування"
@@ -154,11 +243,17 @@ msgstr "Навігація у налаштуваннях"
 msgid "Show password"
 msgstr "Показати пароль"
 
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "Смайли та емоції"
 
 msgid "Start slideshow"
 msgstr "Почати показ слайдів"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "Надіслати"
@@ -178,6 +273,7 @@ msgstr "Неможливо шукати в групі"
 msgid "Undo changes"
 msgstr "Скасувати зміни"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
 msgstr ""
-"Напишіть повідомлення, @, щоб згадати когось, : для автозаповнення емодзі…"
