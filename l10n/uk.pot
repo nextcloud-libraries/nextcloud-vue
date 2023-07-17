@@ -104,7 +104,7 @@ msgid "External documentation for {name}"
 msgstr ""
 
 msgid "Favorite"
-msgstr "Улюблений"
+msgstr "Із зірочкою"
 
 msgid "Flags"
 msgstr "Прапори"
