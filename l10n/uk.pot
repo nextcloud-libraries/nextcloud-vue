@@ -157,7 +157,7 @@ msgid "Open contact menu"
 msgstr "Відкрити меню контактів"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "Відкрити посилання на \"{resourceName}\""
 
 msgid "Open menu"
 msgstr ""
