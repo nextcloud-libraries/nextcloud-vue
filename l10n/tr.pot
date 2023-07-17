@@ -217,7 +217,7 @@ msgid "Search"
 msgstr "Arama"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "Emoji ara"
 
 msgid "Search results"
 msgstr "Arama sonuçları"
