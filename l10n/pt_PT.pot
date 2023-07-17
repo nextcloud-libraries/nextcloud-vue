@@ -209,7 +209,7 @@ msgid "Provider icon"
 msgstr "Icon do fornecedor"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Link inicial {options}"
 
 msgid "Related resources"
 msgstr ""
