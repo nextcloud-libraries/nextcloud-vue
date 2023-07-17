@@ -1,14 +1,11 @@
 # 
 # Translators:
-# Kemal Oktay Aktoğan <oktay454@disroot.org>, 2020
-# abc Def <hdogan1974@gmail.com>, 2020
-# Hüseyin Fahri Uzun <mail@fahriuzun.com>, 2021
-# Kaya Zeren <kayazeren@gmail.com>, 2022
+# Joas Schilling, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2022\n"
-"Language-Team: Turkish (https://www.transifex.com/nextcloud/teams/64236/tr/)\n"
+"Last-Translator: Joas Schilling, 2023\n"
+"Language-Team: Turkish (https://app.transifex.com/nextcloud/teams/64236/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -19,14 +16,23 @@ msgstr "{tag} (görünmez)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (kısıtlı)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "İşlemler"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "Etkinlikler"
 
 msgid "Animals & Nature"
 msgstr "Hayvanlar ve Doğa"
+
+msgid "Any link"
+msgstr ""
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Aynı kişi grubu ile paylaşılan herşey burada görüntülenir"
@@ -37,14 +43,23 @@ msgstr "{displayName} avatarı"
 msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName}, {status} avatarı"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "Değişiklikleri iptal et"
 
-msgid "Change title"
-msgstr "Başlığı değiştir"
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "Seçin"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear text"
 msgstr "Metni temizle"
@@ -61,6 +76,12 @@ msgstr "Gezinmeyi kapat"
 msgid "Close sidebar"
 msgstr "Yan çubuğu kapat"
 
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "Değişiklikleri onayla"
 
@@ -70,14 +91,16 @@ msgstr "Özel"
 msgid "Edit item"
 msgstr "Ögeyi düzenle"
 
-msgid "Error getting related resources"
-msgstr "İlgili kaynaklar alınırken sorun çıktı"
+msgid "Enter link"
+msgstr ""
 
-msgid "Error parsing svg"
-msgstr "svg işlenirken sorun çıktı"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
 
-msgid "External documentation for {title}"
-msgstr "{title} için dış belgeler"
+msgid "External documentation for {name}"
+msgstr ""
 
 msgid "Favorite"
 msgstr "Sık kullanılanlara ekle"
@@ -100,11 +123,17 @@ msgstr "Listeye dön"
 msgid "Hide password"
 msgstr "Parolayı gizle"
 
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "{count} karakter ileti sınırına ulaşıldı"
 
 msgid "More items …"
 msgstr "Diğer ögeler…"
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "Sonraki"
@@ -112,20 +141,29 @@ msgstr "Sonraki"
 msgid "No emoji found"
 msgstr "Herhangi bir emoji bulunamadı"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "Herhangi bir sonuç bulunamadı"
 
 msgid "Objects"
 msgstr "Nesneler"
 
-msgid "Open"
-msgstr "Aç"
+msgid "Open contact menu"
+msgstr ""
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "\"{resourceTitle}\" bağlantısını aç"
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "Gezinmeyi aç"
+
+msgid "Open settings menu"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "Parola güvenli"
@@ -136,6 +174,24 @@ msgstr "Slayt sunumunu duraklat"
 msgid "People & Body"
 msgstr "İnsanlar ve Beden"
 
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
 msgid "Pick an emoji"
 msgstr "Bir emoji seçin"
 
@@ -145,17 +201,38 @@ msgstr "Lütfen bir saat dilimi seçin:"
 msgid "Previous"
 msgstr "Önceki"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
 msgid "Related resources"
 msgstr "İlgili kaynaklar"
 
 msgid "Search"
 msgstr "Arama"
 
+msgid "Search emoji"
+msgstr ""
+
 msgid "Search results"
 msgstr "Arama sonuçları"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "Bir etiket seçin"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "Ayarlar"
@@ -166,11 +243,17 @@ msgstr "Gezinme ayarları"
 msgid "Show password"
 msgstr "Parolayı görüntüle"
 
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "İfadeler ve Duygular"
 
 msgid "Start slideshow"
 msgstr "Slayt sunumunu başlat"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "Gönder"
