@@ -133,10 +133,10 @@ msgid "Message limit of {count} characters reached"
 msgstr "Вичерпано ліміт у {count} символів для повідомлення"
 
 msgid "More items …"
-msgstr ""
+msgstr "Більше об'єктів..."
 
 msgid "More options"
-msgstr ""
+msgstr "Більше об'єктів"
 
 msgid "Next"
 msgstr "Вперед"
