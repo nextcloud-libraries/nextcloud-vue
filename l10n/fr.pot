@@ -135,7 +135,7 @@ msgid "More items …"
 msgstr "Plus d'éléments..."
 
 msgid "More options"
-msgstr ""
+msgstr "Plus d'options"
 
 msgid "Next"
 msgstr "Suivant"
