@@ -242,7 +242,7 @@ msgid "Settings"
 msgstr "Definições"
 
 msgid "Settings navigation"
-msgstr ""
+msgstr "Navegação de configurações"
 
 msgid "Show password"
 msgstr ""
