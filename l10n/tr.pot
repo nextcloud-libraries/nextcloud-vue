@@ -78,7 +78,7 @@ msgid "Close sidebar"
 msgstr "Yan çubuğu kapat"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Akıllı Seçim'i kapat"
 
 msgid "Collapse menu"
 msgstr "Menüyü daralt"
