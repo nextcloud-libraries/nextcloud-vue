@@ -206,7 +206,7 @@ msgid "Previous"
 msgstr "Anterior"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "Icon do fornecedor"
 
 msgid "Raw link {options}"
 msgstr ""
