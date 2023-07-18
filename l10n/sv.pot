@@ -227,7 +227,7 @@ msgstr "sek. sedan"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "sekunder sedan"
 
 msgid "Select a tag"
 msgstr "Välj en tag"
