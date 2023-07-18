@@ -164,7 +164,7 @@ msgid "Open navigation"
 msgstr "Öppna navigering"
 
 msgid "Open settings menu"
-msgstr ""
+msgstr "Öppna inställningsmenyn"
 
 msgid "Password is secure"
 msgstr "Lössenordet är säkert"
