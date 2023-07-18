@@ -203,7 +203,7 @@ msgid "Previous"
 msgstr "Föregående"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "Leverantörsikon"
 
 msgid "Raw link {options}"
 msgstr ""
