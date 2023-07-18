@@ -158,7 +158,7 @@ msgid "Open link to \"{resourceName}\""
 msgstr "Öppna länken till \"{resourceName}\""
 
 msgid "Open menu"
-msgstr ""
+msgstr "Öppna menyn"
 
 msgid "Open navigation"
 msgstr "Öppna navigering"
