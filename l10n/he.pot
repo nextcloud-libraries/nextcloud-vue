@@ -185,13 +185,13 @@ msgid "Pick a month"
 msgstr "נא לבחור חודש"
 
 msgid "Pick a time"
-msgstr ""
+msgstr "נא לבחור שעה"
 
 msgid "Pick a week"
-msgstr ""
+msgstr "נא לבחור שבוע"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "נא לבחור שנה"
 
 msgid "Pick an emoji"
 msgstr "נא לבחור אמוג׳י"
