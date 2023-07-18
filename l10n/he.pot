@@ -158,10 +158,10 @@ msgid "Open link to \"{resourceName}\""
 msgstr "פתיחת קישור אל „{resourceName}”"
 
 msgid "Open menu"
-msgstr ""
+msgstr "פתיחת תפריט"
 
 msgid "Open navigation"
-msgstr ""
+msgstr "פתיחת ניווט"
 
 msgid "Open settings menu"
 msgstr ""
