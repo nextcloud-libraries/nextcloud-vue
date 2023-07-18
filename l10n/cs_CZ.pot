@@ -152,7 +152,7 @@ msgid "Objects"
 msgstr "Objekty"
 
 msgid "Open contact menu"
-msgstr ""
+msgstr "Otevřít nabídku kontaktů"
 
 msgid "Open link to \"{resourceName}\""
 msgstr ""
