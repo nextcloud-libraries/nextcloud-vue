@@ -191,7 +191,7 @@ msgid "Pick a week"
 msgstr "Välj vecka"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "Välj år"
 
 msgid "Pick an emoji"
 msgstr "Välj en emoji"
