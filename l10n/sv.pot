@@ -215,7 +215,7 @@ msgid "Search"
 msgstr "Sök"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "Sök emoji"
 
 msgid "Search results"
 msgstr "Sökresultat"
