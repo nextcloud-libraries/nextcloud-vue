@@ -152,7 +152,7 @@ msgid "Objects"
 msgstr "Objekt"
 
 msgid "Open contact menu"
-msgstr ""
+msgstr "Öppna kontaktmenyn"
 
 msgid "Open link to \"{resourceName}\""
 msgstr ""
