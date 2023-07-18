@@ -185,7 +185,7 @@ msgid "Pick a month"
 msgstr "Välj månad"
 
 msgid "Pick a time"
-msgstr ""
+msgstr "Välj tid"
 
 msgid "Pick a week"
 msgstr ""
