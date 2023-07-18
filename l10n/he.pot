@@ -197,13 +197,13 @@ msgid "Pick an emoji"
 msgstr "נא לבחור אמוג׳י"
 
 msgid "Please select a time zone:"
-msgstr ""
+msgstr "נא לבחור אזור זמן:"
 
 msgid "Previous"
 msgstr "הקודם"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "סמל ספר"
 
 msgid "Raw link {options}"
 msgstr ""
