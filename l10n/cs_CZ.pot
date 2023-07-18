@@ -206,7 +206,7 @@ msgid "Provider icon"
 msgstr "Ikona poskytovatele"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Holý odkaz {options}"
 
 msgid "Related resources"
 msgstr "Související prostředky"
@@ -215,7 +215,7 @@ msgid "Search"
 msgstr "Hledat"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "Hledat emoji"
 
 msgid "Search results"
 msgstr "Výsledky hledání"
