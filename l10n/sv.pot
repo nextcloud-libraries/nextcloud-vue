@@ -99,6 +99,8 @@ msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"Det gick inte att hämta relaterade resurser. Kontakta din "
+"systemadministratör om du har några frågor."
 
 msgid "External documentation for {name}"
 msgstr "Extern dokumentation för {name}"
