@@ -233,7 +233,7 @@ msgid "Select a tag"
 msgstr "Vybrat štítek"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Vybrat poskytovatele"
 
 msgid "Settings"
 msgstr "Nastavení"
@@ -245,7 +245,7 @@ msgid "Show password"
 msgstr "Zobrazit heslo"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "Inteligentní výběr"
 
 msgid "Smileys & Emotion"
 msgstr "Úsměvy a emoce"
