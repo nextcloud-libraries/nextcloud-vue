@@ -134,7 +134,7 @@ msgid "More items …"
 msgstr "פריטים נוספים…"
 
 msgid "More options"
-msgstr ""
+msgstr "אפשרויות נוספות"
 
 msgid "Next"
 msgstr "הבא"
@@ -143,7 +143,7 @@ msgid "No emoji found"
 msgstr "לא נמצא אמוג׳י"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "לא נמצא ספק קישורים"
 
 msgid "No results"
 msgstr "אין תוצאות"
@@ -152,7 +152,7 @@ msgid "Objects"
 msgstr "חפצים"
 
 msgid "Open contact menu"
-msgstr ""
+msgstr "פתיחת תפריט קשר"
 
 msgid "Open link to \"{resourceName}\""
 msgstr ""
