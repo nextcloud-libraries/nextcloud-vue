@@ -125,7 +125,7 @@ msgid "Hide password"
 msgstr "Skrýt heslo"
 
 msgid "Load more \"{options}\"\""
-msgstr ""
+msgstr "Načíst více „{options}“"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Dosaženo limitu počtu ({count}) znaků zprávy"
