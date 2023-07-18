@@ -1,7 +1,7 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2023 Ferdinand Thiessen <opensource@fthiessen.de>
  *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Ferdinand Thiessen <opensource@fthiessen.de>
  *
  * @license AGPL-3.0-or-later
  *
@@ -20,9 +20,16 @@
  *
  */
 
-export * from './components/index.js'
-export * from './functions/index.js'
-export * from './directives/index.js'
-export * from './mixins/index.js'
+import { describe, expect, it } from '@jest/globals'
+import { createLocalVue, mount } from '@vue/test-utils'
 
-export { NextcloudVuePlugin } from './plugin.ts'
+import { NextcloudVuePlugin } from '../../src/plugin'
+
+describe('Nextcloud Vue Plugin', () => {
+	it('can be installed', () => {
+		const localVue = createLocalVue()
+		localVue.use(NextcloudVuePlugin)
+		const wrapper = mount({ render: (h) => h('NcButton', { props: { ariaLabel: 'button' } }) }, { localVue })
+		expect(wrapper.vm.$el.tagName).not.toBe('NCBUTTON') // If it could no be installed it would be 'NCBUTTON', otherwise it would be 'A' or 'BUTTON'
+	})
+})
