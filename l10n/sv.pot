@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Joas Schilling, 2023
+# Magnus Höglund, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Joas Schilling, 2023\n"
+"Last-Translator: Magnus Höglund, 2023\n"
 "Language-Team: Swedish (https://app.transifex.com/nextcloud/teams/64236/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sv\n"
@@ -17,13 +18,13 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (begränsad)"
 
 msgid "a few seconds ago"
-msgstr ""
+msgstr "några sekunder sedan"
 
 msgid "Actions"
 msgstr "Åtgärder"
 
 msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgstr "Åtgärder för objekt med namn \"{name}\""
 
 msgid "Activities"
 msgstr "Aktiviteter"
@@ -32,7 +33,7 @@ msgid "Animals & Nature"
 msgstr "Djur & Natur"
 
 msgid "Any link"
-msgstr ""
+msgstr "Vilken länk som helst"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Något som delats med samma grupp av personer kommer att visas här"
@@ -44,22 +45,22 @@ msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName}s avatar, {status}"
 
 msgid "Back"
-msgstr ""
+msgstr "Tillbaka"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Tillbaka till leverantörsval"
 
 msgid "Cancel changes"
 msgstr "Avbryt ändringar"
 
 msgid "Change name"
-msgstr ""
+msgstr "Ändra namn"
 
 msgid "Choose"
 msgstr "Välj"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Rensa sökning"
 
 msgid "Clear text"
 msgstr "Ta bort text"
