@@ -78,10 +78,10 @@ msgid "Close sidebar"
 msgstr "Zavřít postranní panel"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Zavřít inteligentní výběr"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Sbalit nabídku"
 
 msgid "Confirm changes"
 msgstr "Potvrdit změny"
@@ -93,7 +93,7 @@ msgid "Edit item"
 msgstr "Upravit položku"
 
 msgid "Enter link"
-msgstr ""
+msgstr "Zadat odkaz"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
