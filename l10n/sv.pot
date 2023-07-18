@@ -176,7 +176,7 @@ msgid "People & Body"
 msgstr "Kropp & Själ"
 
 msgid "Pick a date"
-msgstr ""
+msgstr "Välj ett datum"
 
 msgid "Pick a date and a time"
 msgstr ""
