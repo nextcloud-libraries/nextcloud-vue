@@ -105,7 +105,7 @@ msgid "External documentation for {name}"
 msgstr "תיעוד חיצוני עבור {name}"
 
 msgid "Favorite"
-msgstr ""
+msgstr "למועדפים"
 
 msgid "Flags"
 msgstr "דגלים"
