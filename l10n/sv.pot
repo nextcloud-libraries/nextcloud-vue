@@ -208,7 +208,7 @@ msgid "Provider icon"
 msgstr "Leverantörsikon"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Oformaterad länk {options}"
 
 msgid "Related resources"
 msgstr "Relaterade resurser"
