@@ -101,7 +101,7 @@ msgid ""
 msgstr ""
 
 msgid "External documentation for {name}"
-msgstr ""
+msgstr "Extern dokumentation för {name}"
 
 msgid "Favorite"
 msgstr "Favorit"
