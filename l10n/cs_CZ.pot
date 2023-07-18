@@ -155,10 +155,10 @@ msgid "Open contact menu"
 msgstr "Otevřít nabídku kontaktů"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "Otevřít odkaz na „{resourceName}“"
 
 msgid "Open menu"
-msgstr ""
+msgstr "Otevřít nabídku"
 
 msgid "Open navigation"
 msgstr "Otevřít navigaci"
