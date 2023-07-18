@@ -125,7 +125,7 @@ msgid "Hide password"
 msgstr "Göm lössenordet"
 
 msgid "Load more \"{options}\"\""
-msgstr "Ladda mer \"{options}\"\""
+msgstr "Ladda fler \"{options}\"\""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Meddelandegräns {count} tecken används"
