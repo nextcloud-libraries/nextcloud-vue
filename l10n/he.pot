@@ -99,6 +99,7 @@ msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"שגיאה בקבלת המשאבים הקשורים. נא ליצור קשר עם הנהלת המערכת אם יש לך שאלות."
 
 msgid "External documentation for {name}"
 msgstr "תיעוד חיצוני עבור {name}"
