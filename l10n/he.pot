@@ -179,10 +179,10 @@ msgid "Pick a date"
 msgstr "נא לבחור תאריך"
 
 msgid "Pick a date and a time"
-msgstr ""
+msgstr "נא לבחור תאריך ושעה"
 
 msgid "Pick a month"
-msgstr ""
+msgstr "נא לבחור חודש"
 
 msgid "Pick a time"
 msgstr ""
