@@ -254,7 +254,7 @@ msgid "Start slideshow"
 msgstr "Starta bildspelet"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Börja skriva för att söka"
 
 msgid "Submit"
 msgstr "Skicka"
