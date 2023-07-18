@@ -196,6 +196,66 @@ button {
 }
 </style>
 ```
+
+### Pressed state
+It is possible to make the button stateful by adding a pressed state, e.g. if you like to create a favorite button.
+The button will have the required `aria` attribute for accessibility and visual style (`primary` when pressed, and the configured type otherwise).
+
+```vue
+<template>
+	<div>
+		<div style="display: flex; gap: 12px;">
+			<NcButton :pressed.sync="isFavorite" :aria-label="ariaLabel" type="tertiary-no-background">
+				<template #icon>
+					<IconStar v-if="isFavorite" :size="20" />
+					<IconStarOutline v-else :size="20" />
+				</template>
+			</NcButton>
+			<NcButton :pressed.sync="isFavorite" :aria-label="ariaLabel" type="tertiary">
+				<template #icon>
+					<IconStar v-if="isFavorite" :size="20" />
+					<IconStarOutline v-else :size="20" />
+				</template>
+			</NcButton>
+			<NcButton :pressed.sync="isFavorite" :aria-label="ariaLabel">
+				<template #icon>
+					<IconStar v-if="isFavorite" :size="20" />
+					<IconStarOutline v-else :size="20" />
+				</template>
+			</NcButton>
+		</div>
+		<div>
+			It is {{ isFavorite ? 'a' : 'not a' }} favorite.
+		</div>
+	</div>
+</template>
+<script>
+import IconStar from 'vue-material-design-icons/Star.vue'
+import IconStarOutline from 'vue-material-design-icons/StarOutline.vue'
+
+export default {
+	components: {
+		IconStar,
+		IconStarOutline,
+	},
+	data() {
+		return {
+			isFavorite: false,
+		}
+	},
+	computed: {
+		ariaLabel() {
+			return this.isFavorite ? 'Remove as favorite' : 'Add as favorite'
+		},
+	},
+	methods: {
+		toggleFavorite() {
+			this.isFavorite = !this.isFavorite
+		},
+	},
+}
+</script>
+```
 </docs>
 
 <script>
@@ -299,6 +359,35 @@ export default {
 			type: Boolean,
 			default: null,
 		},
+
+		/**
+		 * The pressed state of the button if it has a checked state
+		 * This will add the `aria-pressed` attribute and for the button to have the primary style in checked state.
+		 */
+		pressed: {
+			type: Boolean,
+			default: null,
+		},
+	},
+
+	emits: ['update:pressed', 'click'],
+
+	computed: {
+		/**
+		 * The real type to be used for the button, enforces `primary` for pressed state and, if stateful button, any other type for not pressed state
+		 * Otherwise the type property is used.
+		 */
+		realType() {
+			// Force *primary* when pressed
+			if (this.pressed) {
+				return 'primary'
+			}
+			// If not pressed but button is configured as stateful button then the type must not be primary
+			if (this.pressed === false && this.type === 'primary') {
+				return 'secondary'
+			}
+			return this.type
+		},
 	},
 
 	/**
@@ -332,7 +421,7 @@ export default {
 						'button-vue--icon-only': hasIcon && !hasText,
 						'button-vue--text-only': hasText && !hasIcon,
 						'button-vue--icon-and-text': hasIcon && hasText,
-						[`button-vue--vue-${this.type}`]: this.type,
+						[`button-vue--vue-${this.realType}`]: this.realType,
 						'button-vue--wide': this.wide,
 						active: isActive,
 						'router-link-exact-active': isExactActive,
@@ -340,6 +429,7 @@ export default {
 				],
 				attrs: {
 					'aria-label': this.ariaLabel,
+					'aria-pressed': this.pressed,
 					disabled: this.disabled,
 					type: this.href ? null : this.nativeType,
 					role: this.href ? 'button' : null,
@@ -352,6 +442,15 @@ export default {
 				on: {
 					...this.$listeners,
 					click: ($event) => {
+						// Update pressed prop on click if it is set
+						if (typeof this.pressed === 'boolean') {
+							/**
+							 * Update the current pressed state of the button (if the `pressed` property was configured)
+							 *
+							 * @property {boolean} newValue The new `pressed`-state
+							 */
+							this.$emit('update:pressed', !this.pressed)
+						}
 						// We have to both navigate and call the listeners click handler
 						this.$listeners?.click?.($event)
 						navigate?.($event)
