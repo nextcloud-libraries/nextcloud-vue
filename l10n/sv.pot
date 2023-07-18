@@ -245,7 +245,7 @@ msgid "Show password"
 msgstr "Visa lössenordet"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "Smart Picker"
 
 msgid "Smileys & Emotion"
 msgstr "Selfies & Känslor"
