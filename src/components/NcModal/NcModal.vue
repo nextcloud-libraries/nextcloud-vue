@@ -271,8 +271,6 @@ export default {
 
 					<!-- Content -->
 					<div :id="'modal-description-' + randId" class="modal-container">
-						<!-- @slot Modal content to render -->
-						<slot />
 						<!-- Close modal -->
 						<NcButton v-if="canClose && closeButtonContained"
 							type="tertiary"
@@ -283,6 +281,10 @@ export default {
 								<Close :size="20" />
 							</template>
 						</NcButton>
+						<div class="modal-container__content">
+							<!-- @slot Modal content to render -->
+							<slot />
+						</div>
 					</div>
 
 					<!-- Navigation button -->
@@ -913,18 +915,23 @@ export default {
 	/* Content */
 	.modal-container {
 		position: relative;
-		display: block;
-		overflow: auto; // avoids unecessary hacks if the content should be bigger than the modal
+		display: flex;
 		padding: 0;
 		transition: transform 300ms ease;
 		border-radius: var(--border-radius-large);
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
 		box-shadow: 0 0 40px rgba(0, 0, 0, .2);
+
 		&__close {
 			position: absolute;
 			top: 4px;
 			right: 4px;
+		}
+
+		&__content {
+			width: 100%;
+			overflow: auto; // avoids unecessary hacks if the content should be bigger than the modal
 		}
 	}
 
