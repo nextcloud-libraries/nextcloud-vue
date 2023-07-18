@@ -206,16 +206,16 @@ msgid "Provider icon"
 msgstr "סמל ספק"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "קישור גולמי {options}"
 
 msgid "Related resources"
-msgstr ""
+msgstr "משאבים קשורים"
 
 msgid "Search"
 msgstr "חיפוש"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "חיפוש אמוג׳י"
 
 msgid "Search results"
 msgstr "תוצאות חיפוש"
