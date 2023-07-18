@@ -164,10 +164,10 @@ msgid "Open navigation"
 msgstr "פתיחת ניווט"
 
 msgid "Open settings menu"
-msgstr ""
+msgstr "פתיחת תפריט הגדרות"
 
 msgid "Password is secure"
-msgstr ""
+msgstr "הסיסמה מאובטחת"
 
 msgid "Pause slideshow"
 msgstr "השהיית מצגת"
@@ -176,7 +176,7 @@ msgid "People & Body"
 msgstr "אנשים וגוף"
 
 msgid "Pick a date"
-msgstr ""
+msgstr "נא לבחור תאריך"
 
 msgid "Pick a date and a time"
 msgstr ""
