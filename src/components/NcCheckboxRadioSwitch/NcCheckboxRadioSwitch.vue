@@ -499,7 +499,9 @@ $spacing: 4px;
 
 	&:not(&--disabled) &__label:hover,
 	&:not(&--disabled) &__label:focus-within {
-		background-color: var(--color-primary-element-light);
+		border-color: var(--color-primary-element);
+		outline: 2px solid var(--color-main-text);
+		box-shadow: 0 0 0 4px var(--color-main-background);
 	}
 
 	// Switch specific rules
