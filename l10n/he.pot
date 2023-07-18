@@ -203,7 +203,7 @@ msgid "Previous"
 msgstr "הקודם"
 
 msgid "Provider icon"
-msgstr "סמל ספר"
+msgstr "סמל ספק"
 
 msgid "Raw link {options}"
 msgstr ""
