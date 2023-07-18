@@ -93,7 +93,7 @@ msgid "Edit item"
 msgstr "Ändra"
 
 msgid "Enter link"
-msgstr ""
+msgstr "Ange länk"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
