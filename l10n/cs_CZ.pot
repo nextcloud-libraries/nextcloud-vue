@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Joas Schilling, 2023
+# Pavel Borecki <pavel.borecki@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Joas Schilling, 2023\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2023\n"
 "Language-Team: Czech (Czech Republic) (https://app.transifex.com/nextcloud/teams/64236/cs_CZ/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: cs_CZ\n"
@@ -17,13 +18,13 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (omezené)"
 
 msgid "a few seconds ago"
-msgstr ""
+msgstr "před několika sekundami"
 
 msgid "Actions"
 msgstr "Akce"
 
 msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgstr "Akce pro položku s názvem „{name}“"
 
 msgid "Activities"
 msgstr "Aktivity"
@@ -32,7 +33,7 @@ msgid "Animals & Nature"
 msgstr "Zvířata a příroda"
 
 msgid "Any link"
-msgstr ""
+msgstr "Jakýkoli odkaz"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Cokoli nasdíleného stejné skupině lidí se zobrazí zde"
@@ -44,22 +45,22 @@ msgid "Avatar of {displayName}, {status}"
 msgstr "Zástupný obrázek uživatele {displayName}, {status}"
 
 msgid "Back"
-msgstr ""
+msgstr "Zpět"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Zpět na výběr poskytovatele"
 
 msgid "Cancel changes"
 msgstr "Zrušit změny"
 
 msgid "Change name"
-msgstr ""
+msgstr "Změnit název"
 
 msgid "Choose"
 msgstr "Zvolit"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Vyčistit vyhledávání"
 
 msgid "Clear text"
 msgstr "Čitelný text"
