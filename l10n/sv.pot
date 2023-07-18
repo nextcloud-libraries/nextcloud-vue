@@ -78,7 +78,7 @@ msgid "Close sidebar"
 msgstr "Stäng sidopanel"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Stäng Smart Picker"
 
 msgid "Collapse menu"
 msgstr ""
