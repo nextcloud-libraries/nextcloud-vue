@@ -81,7 +81,7 @@ msgid "Close Smart Picker"
 msgstr "Stäng Smart Picker"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Komprimera menyn"
 
 msgid "Confirm changes"
 msgstr "Bekräfta ändringar"
