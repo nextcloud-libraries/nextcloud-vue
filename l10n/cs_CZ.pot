@@ -254,7 +254,7 @@ msgid "Start slideshow"
 msgstr "Spustit prezentaci"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Vyhledávejte psaním"
 
 msgid "Submit"
 msgstr "Odeslat"
