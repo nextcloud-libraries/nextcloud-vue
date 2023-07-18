@@ -116,7 +116,7 @@ msgid "Frequently used"
 msgstr "בשימוש תדיר"
 
 msgid "Global"
-msgstr ""
+msgstr "כללי"
 
 msgid "Go back to the list"
 msgstr "חזרה לרשימה"
