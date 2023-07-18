@@ -179,7 +179,7 @@ msgid "Pick a date"
 msgstr "Välj ett datum"
 
 msgid "Pick a date and a time"
-msgstr ""
+msgstr "Välj datum och tid"
 
 msgid "Pick a month"
 msgstr ""
