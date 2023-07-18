@@ -233,7 +233,7 @@ msgid "Select a tag"
 msgstr "Välj en tag"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Välj leverantör"
 
 msgid "Settings"
 msgstr "Inställningar"
