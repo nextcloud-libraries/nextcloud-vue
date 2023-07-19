@@ -118,10 +118,10 @@ msgid "Frequently used"
 msgstr "شائعة الاستعمال"
 
 msgid "Global"
-msgstr "عالمي"
+msgstr "شامل"
 
 msgid "Go back to the list"
-msgstr "العودة إلى القائمة"
+msgstr "عودة إلى القائمة"
 
 msgid "Hide password"
 msgstr "إخفاء كلمة السر"
