@@ -128,7 +128,7 @@ msgid "Hide password"
 msgstr "Parolayı gizle"
 
 msgid "Load more \"{options}\"\""
-msgstr ""
+msgstr "Başka \"{options}\"\" yükle"
 
 msgid "Message limit of {count} characters reached"
 msgstr "{count} karakter ileti sınırına ulaşıldı"
