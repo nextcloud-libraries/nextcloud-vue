@@ -147,7 +147,7 @@ msgid "No emoji found"
 msgstr "No hay ningún emoji"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "No se encontró ningún proveedor de enlaces"
 
 msgid "No results"
 msgstr " Ningún resultado"
@@ -156,7 +156,7 @@ msgid "Objects"
 msgstr "Objetos"
 
 msgid "Open contact menu"
-msgstr ""
+msgstr "Abrir menú de contactos"
 
 msgid "Open link to \"{resourceName}\""
 msgstr ""
