@@ -168,7 +168,7 @@ msgid "Open navigation"
 msgstr "Abrir navegación"
 
 msgid "Open settings menu"
-msgstr ""
+msgstr "Abrir menú de ajustes"
 
 msgid "Password is secure"
 msgstr "La contraseña es segura"
@@ -180,7 +180,7 @@ msgid "People & Body"
 msgstr "Personas y cuerpos"
 
 msgid "Pick a date"
-msgstr ""
+msgstr "Seleccione una fecha"
 
 msgid "Pick a date and a time"
 msgstr ""
