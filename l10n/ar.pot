@@ -154,7 +154,7 @@ msgid "Objects"
 msgstr "الأشياء"
 
 msgid "Open contact menu"
-msgstr ""
+msgstr "إفتَح قائمة جهات الاتصال"
 
 msgid "Open link to \"{resourceName}\""
 msgstr ""
