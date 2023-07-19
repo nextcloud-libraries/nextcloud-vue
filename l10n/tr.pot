@@ -176,7 +176,7 @@ msgid "Pause slideshow"
 msgstr "Slayt sunumunu duraklat"
 
 msgid "People & Body"
-msgstr "İnsanlar ve Beden"
+msgstr "İnsanlar ve beden"
 
 msgid "Pick a date"
 msgstr "Bir tarih seçin"
