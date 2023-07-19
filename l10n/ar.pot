@@ -196,7 +196,7 @@ msgid "Pick a year"
 msgstr "إختَر السنة"
 
 msgid "Pick an emoji"
-msgstr "اختر رمزًا تعبيريًا"
+msgstr "إختَر رمز إيموجي emoji"
 
 msgid "Please select a time zone:"
 msgstr "الرجاء تحديد المنطقة الزمنية:"
