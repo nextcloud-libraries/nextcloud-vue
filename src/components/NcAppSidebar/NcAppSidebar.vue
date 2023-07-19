@@ -32,6 +32,7 @@ include a standard-header like it's used by the files app.
 ```vue
 <template>
 	<NcAppSidebar
+		:starred="starred"
 		name="cat-picture.jpg"
 		subname="last edited 3 weeks ago">
 		<NcAppSidebarTab name="Search" id="search-tab">
@@ -64,6 +65,11 @@ include a standard-header like it's used by the files app.
 			Magnify,
 			Cog,
 			ShareVariant,
+		},
+		data() {
+			return {
+				starred: false,
+			}
 		},
 	}
 </script>
@@ -376,6 +382,7 @@ export default {
 							<slot name="tertiary-actions">
 								<NcButton v-if="canStar"
 									:aria-label="favoriteTranslated"
+									:pressed="isStarred"
 									class="app-sidebar-header__star"
 									type="secondary"
 									@click.prevent="toggleStarred">
@@ -974,7 +981,7 @@ $top-buttons-spacing: 6px;
 				.app-sidebar-header__star {
 					// Override default Button component styles
 					box-shadow: none;
-					&:hover {
+					&:not([aria-pressed='true']):hover {
 						box-shadow: none;
 						background-color: var(--color-background-hover);
 					}
