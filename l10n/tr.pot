@@ -104,7 +104,7 @@ msgstr ""
 " sistem yöneticiniz ile görüşün "
 
 msgid "External documentation for {name}"
-msgstr "{name} için harici dokümantasyon"
+msgstr "{name} için dış belgeler"
 
 msgid "Favorite"
 msgstr "Sık kullanılanlara ekle"
