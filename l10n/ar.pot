@@ -124,7 +124,7 @@ msgid "Go back to the list"
 msgstr "عودة إلى القائمة"
 
 msgid "Hide password"
-msgstr "إخفاء كلمة السر"
+msgstr "إخفاء كلمة المرور"
 
 msgid "Load more \"{options}\"\""
 msgstr ""
