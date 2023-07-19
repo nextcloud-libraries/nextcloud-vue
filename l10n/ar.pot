@@ -256,13 +256,13 @@ msgid "Start slideshow"
 msgstr "إبدإ العرض"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "إبدإ كتابة مفردات البحث"
 
 msgid "Submit"
 msgstr "إرسال"
 
 msgid "Symbols"
-msgstr "الرموز"
+msgstr "رموز"
 
 msgid "Travel & Places"
 msgstr "السفر والأماكن"
