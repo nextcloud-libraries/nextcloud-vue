@@ -94,7 +94,7 @@ msgid "Edit item"
 msgstr "Ögeyi düzenle"
 
 msgid "Enter link"
-msgstr "Bağlantı giriniz"
+msgstr "Bağlantıyı yazın"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
