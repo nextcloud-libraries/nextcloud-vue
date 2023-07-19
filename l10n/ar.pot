@@ -87,7 +87,7 @@ msgid "Confirm changes"
 msgstr "تأكيد التغييرات"
 
 msgid "Custom"
-msgstr "مخصص"
+msgstr "مُخصَّص"
 
 msgid "Edit item"
 msgstr "تعديل عنصر"
