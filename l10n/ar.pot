@@ -160,7 +160,7 @@ msgid "Open link to \"{resourceName}\""
 msgstr "إفتَح الرابط إلى \"{resourceName}\""
 
 msgid "Open menu"
-msgstr ""
+msgstr "إفتَح القائمة"
 
 msgid "Open navigation"
 msgstr "فتح المتصفح"
