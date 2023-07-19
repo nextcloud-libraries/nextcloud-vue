@@ -80,10 +80,10 @@ msgid "Close sidebar"
 msgstr "Cerrar barra lateral"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Cerrar selector inteligente"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Ocultar menú"
 
 msgid "Confirm changes"
 msgstr "Confirmar cambios"
