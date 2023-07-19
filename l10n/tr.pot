@@ -2,10 +2,11 @@
 # Translators:
 # Joas Schilling, 2023
 # Aliberk Sandıkçı, 2023
+# Kaya Zeren <kayazeren@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Aliberk Sandıkçı, 2023\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2023\n"
 "Language-Team: Turkish (https://app.transifex.com/nextcloud/teams/64236/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: tr\n"
@@ -24,7 +25,7 @@ msgid "Actions"
 msgstr "İşlemler"
 
 msgid "Actions for item with name \"{name}\""
-msgstr "{name} adındaki öge için işlemler"
+msgstr "{name} ögesi için işlemler"
 
 msgid "Activities"
 msgstr "Etkinlikler"
