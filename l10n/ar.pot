@@ -106,7 +106,7 @@ msgid "External documentation for {name}"
 msgstr "التوثيق الخارجي لـ {name}"
 
 msgid "Favorite"
-msgstr "مفضلة"
+msgstr "المُفضَّلة"
 
 msgid "Flags"
 msgstr "الأعلام"
