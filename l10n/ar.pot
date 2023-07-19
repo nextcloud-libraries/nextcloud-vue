@@ -193,7 +193,7 @@ msgid "Pick a week"
 msgstr "إختَر أسبُوعاً"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "إختَر سنةً"
 
 msgid "Pick an emoji"
 msgstr "اختر رمزًا تعبيريًا"
