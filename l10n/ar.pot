@@ -127,7 +127,7 @@ msgid "Hide password"
 msgstr "إخفاء كلمة المرور"
 
 msgid "Load more \"{options}\"\""
-msgstr ""
+msgstr "حمّل \"{options}\"\" أكثر"
 
 msgid "Message limit of {count} characters reached"
 msgstr "تم الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
