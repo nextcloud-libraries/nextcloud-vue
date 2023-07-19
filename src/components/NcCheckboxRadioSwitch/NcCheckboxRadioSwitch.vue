@@ -497,7 +497,10 @@ $spacing: 4px;
 		}
 	}
 
-	&:not(&--disabled) &__label:hover,
+	&:not(&--disabled) &__label:hover {
+		background-color: var(--color-primary-element-light);
+	}
+
 	&:not(&--disabled) &__label:focus-within {
 		outline: 2px solid var(--color-main-text);
 		box-shadow: 0 0 0 4px var(--color-main-background);
