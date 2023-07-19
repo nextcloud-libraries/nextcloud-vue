@@ -232,7 +232,7 @@ msgid "seconds ago"
 msgstr "ثوان مضت"
 
 msgid "Select a tag"
-msgstr "اختر علامة"
+msgstr "إختَر سِمَةً tag"
 
 msgid "Select provider"
 msgstr ""
