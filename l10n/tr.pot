@@ -55,7 +55,7 @@ msgid "Cancel changes"
 msgstr "Değişiklikleri iptal et"
 
 msgid "Change name"
-msgstr "İsmi değiştir"
+msgstr "Adı değiştir"
 
 msgid "Choose"
 msgstr "Seçin"
