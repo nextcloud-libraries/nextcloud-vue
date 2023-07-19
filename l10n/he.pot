@@ -224,7 +224,7 @@ msgstr "תוצאות חיפוש"
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "לפני מספר שניות"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
