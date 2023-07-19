@@ -184,10 +184,10 @@ msgid "Pick a date and a time"
 msgstr "إختَر التاريخ و الوقت"
 
 msgid "Pick a month"
-msgstr "إختَر شهراً"
+msgstr "إختَر الشهر"
 
 msgid "Pick a time"
-msgstr "إختَر وقتاً"
+msgstr "إختَر الوقت"
 
 msgid "Pick a week"
 msgstr "إختَر أسبُوعاً"
