@@ -166,10 +166,10 @@ msgid "Open navigation"
 msgstr "إفتَح المتصفح"
 
 msgid "Open settings menu"
-msgstr ""
+msgstr "إفتَح قائمة الإعدادات"
 
 msgid "Password is secure"
-msgstr "كلمة السر مُؤمّنة"
+msgstr "كلمة المرور مُؤمّنة"
 
 msgid "Pause slideshow"
 msgstr "إيقاف العرض مؤقتًا"
