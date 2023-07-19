@@ -163,7 +163,7 @@ msgid "Open menu"
 msgstr "إفتَح القائمة"
 
 msgid "Open navigation"
-msgstr "فتح المتصفح"
+msgstr "إفتَح المتصفح"
 
 msgid "Open settings menu"
 msgstr ""
