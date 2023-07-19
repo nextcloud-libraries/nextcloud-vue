@@ -268,7 +268,7 @@ msgid "Travel & Places"
 msgstr "سفر و أماكن"
 
 msgid "Type to search time zone"
-msgstr "اكتب للبحث عن منطقة زمنية"
+msgstr "أكتُب للبحث عن منطقة زمنية"
 
 msgid "Unable to search the group"
 msgstr "تعذر البحث في المجموعة"
