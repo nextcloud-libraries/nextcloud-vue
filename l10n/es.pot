@@ -101,6 +101,8 @@ msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"Error al obtener recursos relacionados. Por favor, contacta a tu "
+"administrador del sistema si tienes alguna pregunta."
 
 msgid "External documentation for {name}"
 msgstr ""
