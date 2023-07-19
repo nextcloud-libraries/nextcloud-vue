@@ -96,7 +96,11 @@ export default function(compact) {
 
 							it('Renders ' + fileName, () => {
 								cy.mount(NcAppSidebar, defaultOptions)
-								cy.get('.app-sidebar-header').compareSnapshot(fileName)
+								cy.get('.app-sidebar-header')
+									// Ensure cursor is not displayed to prevent flaky tests (flashing input cursor)
+									.invoke('css', 'caret-color', 'transparent')
+									// Compare to "golden" standard
+									.compareSnapshot(fileName)
 							})
 						})
 					})
