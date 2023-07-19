@@ -136,7 +136,7 @@ msgid "More items …"
 msgstr "عناصر أخرى ..."
 
 msgid "More options"
-msgstr ""
+msgstr "خيارات أخرى ..."
 
 msgid "Next"
 msgstr "التالي"
