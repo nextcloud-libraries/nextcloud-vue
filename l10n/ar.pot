@@ -265,7 +265,7 @@ msgid "Symbols"
 msgstr "رموز"
 
 msgid "Travel & Places"
-msgstr "السفر والأماكن"
+msgstr "سفر و أماكن"
 
 msgid "Type to search time zone"
 msgstr "اكتب للبحث عن منطقة زمنية"
