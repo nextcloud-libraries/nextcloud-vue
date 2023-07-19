@@ -210,7 +210,7 @@ msgid "Provider icon"
 msgstr "Ícono del proveedor"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Enlace directo {options}"
 
 msgid "Related resources"
 msgstr "Recursos relacionados"
@@ -219,7 +219,7 @@ msgid "Search"
 msgstr "Buscar"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "Buscar emoji"
 
 msgid "Search results"
 msgstr "Resultados de la búsqueda"
@@ -227,7 +227,7 @@ msgstr "Resultados de la búsqueda"
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "hace segundos"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
