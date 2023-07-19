@@ -157,7 +157,7 @@ msgid "Open contact menu"
 msgstr "إفتَح قائمة جهات الاتصال"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "إفتَح الرابط إلى \"{resourceName}\""
 
 msgid "Open menu"
 msgstr ""
