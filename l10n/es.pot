@@ -258,7 +258,7 @@ msgid "Start slideshow"
 msgstr "Iniciar la presentación"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Comience a escribir para buscar"
 
 msgid "Submit"
 msgstr "Enviar"
