@@ -172,7 +172,7 @@ msgid "Password is secure"
 msgstr "كلمة المرور مُؤمّنة"
 
 msgid "Pause slideshow"
-msgstr "إيقاف العرض مؤقتًا"
+msgstr "تجميد عرض الشرائح"
 
 msgid "People & Body"
 msgstr "الناس والجسم"
