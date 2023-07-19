@@ -208,7 +208,7 @@ msgid "Provider icon"
 msgstr "أيقونة المُزوِّد"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr " الرابط الخام raw link ـ {options}"
 
 msgid "Related resources"
 msgstr "مصادر ذات صلة"
