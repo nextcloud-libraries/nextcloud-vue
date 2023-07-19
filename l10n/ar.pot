@@ -253,7 +253,7 @@ msgid "Smileys & Emotion"
 msgstr "وجوهٌ ضاحكة و مشاعر"
 
 msgid "Start slideshow"
-msgstr "بدء العرض"
+msgstr "إبدإ العرض"
 
 msgid "Start typing to search"
 msgstr ""
