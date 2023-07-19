@@ -151,7 +151,7 @@ msgid "No results"
 msgstr "ليس هناك أية نتيجة"
 
 msgid "Objects"
-msgstr "الأشياء"
+msgstr "أشياء"
 
 msgid "Open contact menu"
 msgstr "إفتَح قائمة جهات الاتصال"
