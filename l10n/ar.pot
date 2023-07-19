@@ -250,7 +250,7 @@ msgid "Smart Picker"
 msgstr "اللاقط الذكي smart picker"
 
 msgid "Smileys & Emotion"
-msgstr "الوجوه و الرموز التعبيرية"
+msgstr "الوجوه و المشاعر"
 
 msgid "Start slideshow"
 msgstr "بدء العرض"
