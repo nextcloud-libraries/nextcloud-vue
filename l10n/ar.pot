@@ -130,7 +130,7 @@ msgid "Load more \"{options}\"\""
 msgstr "حمّل \"{options}\"\" أكثر"
 
 msgid "Message limit of {count} characters reached"
-msgstr "تم الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
+msgstr "تمّ الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
 
 msgid "More items …"
 msgstr "عناصر أخرى ..."
