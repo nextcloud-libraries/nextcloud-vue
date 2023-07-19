@@ -81,7 +81,7 @@ msgid "Close Smart Picker"
 msgstr "أغلِق اللاقط الذكي Smart Picker"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "طَيّ القائمة"
 
 msgid "Confirm changes"
 msgstr "تأكيد التغييرات"
