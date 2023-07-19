@@ -183,10 +183,10 @@ msgid "Pick a date"
 msgstr "Seleccione una fecha"
 
 msgid "Pick a date and a time"
-msgstr ""
+msgstr "Seleccione una fecha y hora"
 
 msgid "Pick a month"
-msgstr ""
+msgstr "Seleccione un mes"
 
 msgid "Pick a time"
 msgstr ""
