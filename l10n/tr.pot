@@ -2,10 +2,11 @@
 # Translators:
 # Joas Schilling, 2023
 # Aliberk Sandıkçı, 2023
+# Kaya Zeren <kayazeren@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Aliberk Sandıkçı, 2023\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2023\n"
 "Language-Team: Turkish (https://app.transifex.com/nextcloud/teams/64236/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: tr\n"
@@ -48,13 +49,13 @@ msgid "Back"
 msgstr "Geri"
 
 msgid "Back to provider selection"
-msgstr "Sağlayıcı seçimine geri gidin"
+msgstr "Sağlayıcı seçimine dön"
 
 msgid "Cancel changes"
 msgstr "Değişiklikleri iptal et"
 
 msgid "Change name"
-msgstr "İsmi değiştir"
+msgstr "Adı değiştir"
 
 msgid "Choose"
 msgstr "Seçin"
@@ -78,7 +79,7 @@ msgid "Close sidebar"
 msgstr "Yan çubuğu kapat"
 
 msgid "Close Smart Picker"
-msgstr "Akıllı Seçim'i kapat"
+msgstr "Akıllı seçimi kapat"
 
 msgid "Collapse menu"
 msgstr "Menüyü daralt"
@@ -93,17 +94,17 @@ msgid "Edit item"
 msgstr "Ögeyi düzenle"
 
 msgid "Enter link"
-msgstr "Bağlantı giriniz"
+msgstr "Bağlantıyı yazın"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
-"İlgili kaynaklara ulaşırken hata ile karşılaşıldı. Eğer herhangi bir sorunuz"
-" var ise lütfen sistem yöneticiniz ile iletişime geçiniz "
+"İlgili kaynaklara ulaşılırken sorun çıktı. Herhangi bir sorunuz varsa lütfen"
+" sistem yöneticiniz ile görüşün "
 
 msgid "External documentation for {name}"
-msgstr "{name} için harici dokümantasyon"
+msgstr "{name} için dış belgeler"
 
 msgid "Favorite"
 msgstr "Sık kullanılanlara ekle"
@@ -112,7 +113,7 @@ msgid "Flags"
 msgstr "Bayraklar"
 
 msgid "Food & Drink"
-msgstr "Yeme ve İçme"
+msgstr "Yeme ve içme"
 
 msgid "Frequently used"
 msgstr "Sık kullanılanlar"
@@ -127,7 +128,7 @@ msgid "Hide password"
 msgstr "Parolayı gizle"
 
 msgid "Load more \"{options}\"\""
-msgstr ""
+msgstr "Diğer \"{options}\""
 
 msgid "Message limit of {count} characters reached"
 msgstr "{count} karakter ileti sınırına ulaşıldı"
@@ -136,7 +137,7 @@ msgid "More items …"
 msgstr "Diğer ögeler…"
 
 msgid "More options"
-msgstr "Daha fazla seçenek"
+msgstr "Diğer seçenekler"
 
 msgid "Next"
 msgstr "Sonraki"
@@ -175,7 +176,7 @@ msgid "Pause slideshow"
 msgstr "Slayt sunumunu duraklat"
 
 msgid "People & Body"
-msgstr "İnsanlar ve Beden"
+msgstr "İnsanlar ve beden"
 
 msgid "Pick a date"
 msgstr "Bir tarih seçin"
@@ -205,7 +206,7 @@ msgid "Previous"
 msgstr "Önceki"
 
 msgid "Provider icon"
-msgstr "Sağlayıcı ikonu"
+msgstr "Sağlayıcı simgesi"
 
 msgid "Raw link {options}"
 msgstr "Ham bağlantı {options}"
@@ -247,10 +248,10 @@ msgid "Show password"
 msgstr "Parolayı görüntüle"
 
 msgid "Smart Picker"
-msgstr "Akıllı Seçim"
+msgstr "Akıllı seçim"
 
 msgid "Smileys & Emotion"
-msgstr "İfadeler ve Duygular"
+msgstr "İfadeler ve duygular"
 
 msgid "Start slideshow"
 msgstr "Slayt sunumunu başlat"
@@ -265,7 +266,7 @@ msgid "Symbols"
 msgstr "Simgeler"
 
 msgid "Travel & Places"
-msgstr "Gezi ve Yerler"
+msgstr "Gezi ve yerler"
 
 msgid "Type to search time zone"
 msgstr "Saat dilimi aramak için yazmaya başlayın"

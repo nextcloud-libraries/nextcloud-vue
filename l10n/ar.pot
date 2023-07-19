@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Joas Schilling, 2023
+# Ali <alimahwer@yahoo.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Joas Schilling, 2023\n"
+"Last-Translator: Ali <alimahwer@yahoo.com>, 2023\n"
 "Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
@@ -17,93 +18,95 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (مقيد)"
 
 msgid "a few seconds ago"
-msgstr ""
+msgstr "منذ عدة ثوانٍ مضت"
 
 msgid "Actions"
 msgstr "الإجراءات"
 
 msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgstr "إجراءات على العنصر المُسمَّى \"{name}\""
 
 msgid "Activities"
-msgstr "النشاطات"
+msgstr "الحركات"
 
 msgid "Animals & Nature"
 msgstr "الحيوانات والطبيعة"
 
 msgid "Any link"
-msgstr ""
+msgstr "أيَّ رابطٍ"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "أي مادة تمت مشاركتها مع نفس المجموعة من الأشخاص سيتم عرضها هنا"
 
 msgid "Avatar of {displayName}"
-msgstr "صورة {displayName} الرمزية"
+msgstr "الرمز التجسيدي avatar ـ {displayName}  "
 
 msgid "Avatar of {displayName}, {status}"
-msgstr "صورة {displayName} الرمزية، {status}"
+msgstr "الرمز التجسيدي لـ {displayName}، {status}"
 
 msgid "Back"
-msgstr ""
+msgstr "عودة"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "عودة إلى اختيار المُزوِّد"
 
 msgid "Cancel changes"
 msgstr "إلغاء التغييرات"
 
 msgid "Change name"
-msgstr ""
+msgstr "تغيير الاسم"
 
 msgid "Choose"
-msgstr "إختيار"
+msgstr "إختَر"
 
 msgid "Clear search"
-msgstr ""
+msgstr "محو البحث"
 
 msgid "Clear text"
-msgstr "مسح النص"
+msgstr "محو النص"
 
 msgid "Close"
-msgstr "أغلق"
+msgstr "أغلِق"
 
 msgid "Close modal"
-msgstr "قفل الشرط"
+msgstr "أغلِق النافذة الصُّورِية"
 
 msgid "Close navigation"
-msgstr "إغلاق المتصفح"
+msgstr "أغلِق المُتصفِّح"
 
 msgid "Close sidebar"
 msgstr "قفل الشريط الجانبي"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "أغلِق اللاقط الذكي Smart Picker"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "طَيّ القائمة"
 
 msgid "Confirm changes"
 msgstr "تأكيد التغييرات"
 
 msgid "Custom"
-msgstr "مخصص"
+msgstr "مُخصَّص"
 
 msgid "Edit item"
 msgstr "تعديل عنصر"
 
 msgid "Enter link"
-msgstr ""
+msgstr "أدخِل الرابط"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"خطأ في الحصول على الموارد ذات الصلة. يرجى الاتصال بمشرف النظام عندك إذا كان "
+"لديك أيّ أسئلة."
 
 msgid "External documentation for {name}"
-msgstr ""
+msgstr "التوثيق الخارجي لـ {name}"
 
 msgid "Favorite"
-msgstr "مفضلة"
+msgstr "المُفضَّلة"
 
 msgid "Flags"
 msgstr "الأعلام"
@@ -112,88 +115,88 @@ msgid "Food & Drink"
 msgstr "الطعام والشراب"
 
 msgid "Frequently used"
-msgstr "كثيرا ما تستخدم"
+msgstr "شائعة الاستعمال"
 
 msgid "Global"
-msgstr "عالمي"
+msgstr "شامل"
 
 msgid "Go back to the list"
-msgstr "العودة إلى القائمة"
+msgstr "عودة إلى القائمة"
 
 msgid "Hide password"
-msgstr "إخفاء كلمة السر"
+msgstr "إخفاء كلمة المرور"
 
 msgid "Load more \"{options}\"\""
-msgstr ""
+msgstr "حمّل \"{options}\"\" أكثر"
 
 msgid "Message limit of {count} characters reached"
-msgstr "تم الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
+msgstr "تمّ الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
 
 msgid "More items …"
 msgstr "عناصر أخرى ..."
 
 msgid "More options"
-msgstr ""
+msgstr "خيارات أخرى ..."
 
 msgid "Next"
 msgstr "التالي"
 
 msgid "No emoji found"
-msgstr "لم يتم العثور على أي رمز تعبيري"
+msgstr "لم يتم العثور على أي إيموجي emoji"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "لا يوجد أيّ مزود روابط link provider"
 
 msgid "No results"
 msgstr "ليس هناك أية نتيجة"
 
 msgid "Objects"
-msgstr "الأشياء"
+msgstr "أشياء"
 
 msgid "Open contact menu"
-msgstr ""
+msgstr "إفتَح قائمة جهات الاتصال"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "إفتَح الرابط إلى \"{resourceName}\""
 
 msgid "Open menu"
-msgstr ""
+msgstr "إفتَح القائمة"
 
 msgid "Open navigation"
-msgstr "فتح المتصفح"
+msgstr "إفتَح المتصفح"
 
 msgid "Open settings menu"
-msgstr ""
+msgstr "إفتَح قائمة الإعدادات"
 
 msgid "Password is secure"
-msgstr "كلمة السر مُؤمّنة"
+msgstr "كلمة المرور مُؤمّنة"
 
 msgid "Pause slideshow"
-msgstr "إيقاف العرض مؤقتًا"
+msgstr "تجميد عرض الشرائح"
 
 msgid "People & Body"
-msgstr "الناس والجسم"
+msgstr "ناس و أجسام"
 
 msgid "Pick a date"
-msgstr ""
+msgstr "إختَر التاريخ"
 
 msgid "Pick a date and a time"
-msgstr ""
+msgstr "إختَر التاريخ و الوقت"
 
 msgid "Pick a month"
-msgstr ""
+msgstr "إختَر الشهر"
 
 msgid "Pick a time"
-msgstr ""
+msgstr "إختَر الوقت"
 
 msgid "Pick a week"
-msgstr ""
+msgstr "إختَر الأسبوع"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "إختَر السنة"
 
 msgid "Pick an emoji"
-msgstr "اختر رمزًا تعبيريًا"
+msgstr "إختَر رمز إيموجي emoji"
 
 msgid "Please select a time zone:"
 msgstr "الرجاء تحديد المنطقة الزمنية:"
@@ -202,10 +205,10 @@ msgid "Previous"
 msgstr "السابق"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "أيقونة المُزوِّد"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr " الرابط الخام raw link ـ {options}"
 
 msgid "Related resources"
 msgstr "مصادر ذات صلة"
@@ -214,7 +217,7 @@ msgid "Search"
 msgstr "بحث"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "بحث عن إيموجي emoji"
 
 msgid "Search results"
 msgstr "نتائج البحث"
@@ -222,58 +225,60 @@ msgstr "نتائج البحث"
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "ثانية مضت"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "ثوان مضت"
 
 msgid "Select a tag"
-msgstr "اختر علامة"
+msgstr "إختَر سِمَةً tag"
 
 msgid "Select provider"
-msgstr ""
+msgstr "إختَر مٌزوِّداً"
 
 msgid "Settings"
 msgstr "الإعدادات"
 
 msgid "Settings navigation"
-msgstr "إعدادات المتصفح"
+msgstr "إعدادات التّصفُّح"
 
 msgid "Show password"
-msgstr "أعرض كلمة السر"
+msgstr "أظهِر كلمة المرور"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "اللاقط الذكي smart picker"
 
 msgid "Smileys & Emotion"
-msgstr "الوجوه و الرموز التعبيرية"
+msgstr "وجوهٌ ضاحكة و مشاعر"
 
 msgid "Start slideshow"
-msgstr "بدء العرض"
+msgstr "إبدإ العرض"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "إبدإ كتابة مفردات البحث"
 
 msgid "Submit"
 msgstr "إرسال"
 
 msgid "Symbols"
-msgstr "الرموز"
+msgstr "رموز"
 
 msgid "Travel & Places"
-msgstr "السفر والأماكن"
+msgstr "سفر و أماكن"
 
 msgid "Type to search time zone"
-msgstr "اكتب للبحث عن منطقة زمنية"
+msgstr "أكتُب للبحث عن منطقة زمنية"
 
 msgid "Unable to search the group"
-msgstr "تعذر البحث في المجموعة"
+msgstr "تعذّر البحث في المجموعة"
 
 msgid "Undo changes"
-msgstr "التراجع عن التغييرات"
+msgstr "تراجع عن التغييرات"
 
 msgid ""
 "Write message, use \"@\" to mention someone, use \":\" for emoji "
 "autocompletion …"
 msgstr ""
+"أكتُب رسالةً؛ إستعمِل \"@\" للإشارة إلى شخص ما، و استخدم \":\" للإكمال "
+"التلقائي لرموز الإيموجي ..."
