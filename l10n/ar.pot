@@ -241,7 +241,7 @@ msgid "Settings"
 msgstr "الإعدادات"
 
 msgid "Settings navigation"
-msgstr "إعدادات المتصفح"
+msgstr "إعدادات التّصفُّح"
 
 msgid "Show password"
 msgstr "أعرض كلمة السر"
