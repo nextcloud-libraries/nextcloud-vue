@@ -49,7 +49,7 @@ msgid "Back"
 msgstr "Geri"
 
 msgid "Back to provider selection"
-msgstr "Sağlayıcı seçimine geri gidin"
+msgstr "Sağlayıcı seçimine dön"
 
 msgid "Cancel changes"
 msgstr "Değişiklikleri iptal et"
