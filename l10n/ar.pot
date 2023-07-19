@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Joas Schilling, 2023
+# Ali <alimahwer@yahoo.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Joas Schilling, 2023\n"
+"Last-Translator: Ali <alimahwer@yahoo.com>, 2023\n"
 "Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
@@ -17,67 +18,67 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (مقيد)"
 
 msgid "a few seconds ago"
-msgstr ""
+msgstr "منذ عدة ثوانٍ مضت"
 
 msgid "Actions"
 msgstr "الإجراءات"
 
 msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgstr "إجراءات على العنصر المُسمَّى \"{name}\""
 
 msgid "Activities"
-msgstr "النشاطات"
+msgstr "الحركات"
 
 msgid "Animals & Nature"
 msgstr "الحيوانات والطبيعة"
 
 msgid "Any link"
-msgstr ""
+msgstr "أيَّ رابطٍ"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "أي مادة تمت مشاركتها مع نفس المجموعة من الأشخاص سيتم عرضها هنا"
 
 msgid "Avatar of {displayName}"
-msgstr "صورة {displayName} الرمزية"
+msgstr "الرمز التجسيدي avatar ـ {displayName}  "
 
 msgid "Avatar of {displayName}, {status}"
-msgstr "صورة {displayName} الرمزية، {status}"
+msgstr "الرمز التجسيدي لـ {displayName}، {status}"
 
 msgid "Back"
-msgstr ""
+msgstr "عودة"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "عودة إلى اختيار المُزوِّد"
 
 msgid "Cancel changes"
 msgstr "إلغاء التغييرات"
 
 msgid "Change name"
-msgstr ""
+msgstr "تغيير الاسم"
 
 msgid "Choose"
-msgstr "إختيار"
+msgstr "إختَر"
 
 msgid "Clear search"
-msgstr ""
+msgstr "محو البحث"
 
 msgid "Clear text"
-msgstr "مسح النص"
+msgstr "محو النص"
 
 msgid "Close"
-msgstr "أغلق"
+msgstr "أغلِق"
 
 msgid "Close modal"
-msgstr "قفل الشرط"
+msgstr "أغلِق النافذة الصُّورِية"
 
 msgid "Close navigation"
-msgstr "إغلاق المتصفح"
+msgstr "أغلِق المُتصفِّح"
 
 msgid "Close sidebar"
 msgstr "قفل الشريط الجانبي"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "أغلِق اللاقط الذكي Smart Picker"
 
 msgid "Collapse menu"
 msgstr ""
