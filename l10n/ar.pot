@@ -115,7 +115,7 @@ msgid "Food & Drink"
 msgstr "الطعام والشراب"
 
 msgid "Frequently used"
-msgstr "كثيرا ما تستخدم"
+msgstr "شائعة الاستعمال"
 
 msgid "Global"
 msgstr "عالمي"
