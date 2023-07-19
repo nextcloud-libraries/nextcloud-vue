@@ -247,7 +247,7 @@ msgid "Show password"
 msgstr "أظهِر كلمة المرور"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "اللاقط الذكي smart picker"
 
 msgid "Smileys & Emotion"
 msgstr "الوجوه و الرموز التعبيرية"
