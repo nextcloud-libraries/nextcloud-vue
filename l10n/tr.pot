@@ -266,7 +266,7 @@ msgid "Symbols"
 msgstr "Simgeler"
 
 msgid "Travel & Places"
-msgstr "Gezi ve Yerler"
+msgstr "Gezi ve yerler"
 
 msgid "Type to search time zone"
 msgstr "Saat dilimi aramak için yazmaya başlayın"
