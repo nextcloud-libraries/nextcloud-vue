@@ -159,10 +159,10 @@ msgid "Open contact menu"
 msgstr "Abrir menú de contactos"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "Abrir enlace a \"{resourceName}\""
 
 msgid "Open menu"
-msgstr ""
+msgstr "Abrir menú"
 
 msgid "Open navigation"
 msgstr "Abrir navegación"
