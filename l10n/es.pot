@@ -237,7 +237,7 @@ msgid "Select a tag"
 msgstr "Seleccione una etiqueta"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Seleccione proveedor"
 
 msgid "Settings"
 msgstr "Ajustes"
@@ -249,7 +249,7 @@ msgid "Show password"
 msgstr "Mostrar contraseña"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "Selector inteligente"
 
 msgid "Smileys & Emotion"
 msgstr "Smileys y emoticonos"
