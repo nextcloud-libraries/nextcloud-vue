@@ -103,7 +103,7 @@ msgstr ""
 "لديك أيّ أسئلة."
 
 msgid "External documentation for {name}"
-msgstr ""
+msgstr "التوثيق الخارجي لـ {name}"
 
 msgid "Favorite"
 msgstr "مفضلة"
