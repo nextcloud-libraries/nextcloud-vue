@@ -235,7 +235,7 @@ msgid "Select a tag"
 msgstr "إختَر سِمَةً tag"
 
 msgid "Select provider"
-msgstr ""
+msgstr "إختَر مٌزوِّداً"
 
 msgid "Settings"
 msgstr "الإعدادات"
