@@ -105,7 +105,7 @@ msgstr ""
 "administrador del sistema si tienes alguna pregunta."
 
 msgid "External documentation for {name}"
-msgstr ""
+msgstr "Documentación externa para {name}"
 
 msgid "Favorite"
 msgstr "Favorito"
@@ -129,7 +129,7 @@ msgid "Hide password"
 msgstr "Ocultar contraseña"
 
 msgid "Load more \"{options}\"\""
-msgstr ""
+msgstr "Cargar más \"{options}\""
 
 msgid "Message limit of {count} characters reached"
 msgstr "El mensaje ha alcanzado el límite de {count} caracteres"
@@ -138,7 +138,7 @@ msgid "More items …"
 msgstr "Más ítems..."
 
 msgid "More options"
-msgstr ""
+msgstr "Más opciones"
 
 msgid "Next"
 msgstr "Siguiente"
