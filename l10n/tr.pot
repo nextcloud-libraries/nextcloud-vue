@@ -248,10 +248,10 @@ msgid "Show password"
 msgstr "Parolayı görüntüle"
 
 msgid "Smart Picker"
-msgstr "Akıllı Seçim"
+msgstr "Akıllı seçim"
 
 msgid "Smileys & Emotion"
-msgstr "İfadeler ve Duygular"
+msgstr "İfadeler ve duygular"
 
 msgid "Start slideshow"
 msgstr "Slayt sunumunu başlat"
