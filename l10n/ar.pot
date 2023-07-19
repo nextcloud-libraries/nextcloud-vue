@@ -142,7 +142,7 @@ msgid "Next"
 msgstr "التالي"
 
 msgid "No emoji found"
-msgstr "لم يتم العثور على أي رمز تعبيري"
+msgstr "لم يتم العثور على أي إيموجي emoji"
 
 msgid "No link provider found"
 msgstr ""
