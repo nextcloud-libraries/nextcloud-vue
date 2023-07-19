@@ -190,7 +190,7 @@ msgid "Pick a time"
 msgstr "إختَر الوقت"
 
 msgid "Pick a week"
-msgstr "إختَر أسبُوعاً"
+msgstr "إختَر الأسبوع"
 
 msgid "Pick a year"
 msgstr "إختَر سنةً"
