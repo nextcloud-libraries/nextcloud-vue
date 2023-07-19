@@ -189,13 +189,13 @@ msgid "Pick a month"
 msgstr "Seleccione un mes"
 
 msgid "Pick a time"
-msgstr ""
+msgstr "Seleccione una hora"
 
 msgid "Pick a week"
-msgstr ""
+msgstr "Seleccione una semana"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "Seleccione un año"
 
 msgid "Pick an emoji"
 msgstr "Elegir un emoji"
@@ -207,7 +207,7 @@ msgid "Previous"
 msgstr "Anterior"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "Ícono del proveedor"
 
 msgid "Raw link {options}"
 msgstr ""
