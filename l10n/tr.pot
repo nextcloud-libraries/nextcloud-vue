@@ -113,7 +113,7 @@ msgid "Flags"
 msgstr "Bayraklar"
 
 msgid "Food & Drink"
-msgstr "Yeme ve İçme"
+msgstr "Yeme ve içme"
 
 msgid "Frequently used"
 msgstr "Sık kullanılanlar"
