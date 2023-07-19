@@ -175,7 +175,7 @@ msgid "Pause slideshow"
 msgstr "تجميد عرض الشرائح"
 
 msgid "People & Body"
-msgstr "الناس والجسم"
+msgstr "ناس و أجسام"
 
 msgid "Pick a date"
 msgstr "إختَر التاريخ"
