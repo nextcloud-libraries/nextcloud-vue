@@ -244,7 +244,7 @@ msgid "Settings navigation"
 msgstr "إعدادات التّصفُّح"
 
 msgid "Show password"
-msgstr "أعرض كلمة السر"
+msgstr "أظهِر كلمة المرور"
 
 msgid "Smart Picker"
 msgstr ""
