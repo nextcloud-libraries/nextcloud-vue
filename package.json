@@ -29,7 +29,7 @@
     "styleguide:build": "vue-styleguidist build",
     "cypress": "TZ=UTC cypress run --component",
     "cypress:gui": "TZ=UTC cypress open --component",
-    "cypress:update-snapshots": "TZ=UTC cypress run --component --spec cypress/visual/**/*.cy.js --env type=base --config screenshotsFolder=cypress/snapshots/base"
+    "cypress:update-snapshots": "TZ=UTC cypress run --component --spec \"cypress/visual/**/*.cy.js\" --env type=base --config screenshotsFolder=cypress/snapshots/base"
   },
   "main": "dist/index.cjs",
   "exports": {
