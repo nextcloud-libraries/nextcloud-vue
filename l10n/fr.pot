@@ -2,10 +2,11 @@
 # Translators:
 # Joas Schilling, 2023
 # Ldm Public <ldmpub@gmail.com>, 2023
+# Transifex Bot <>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ldm Public <ldmpub@gmail.com>, 2023\n"
+"Last-Translator: Transifex Bot <>, 2023\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
