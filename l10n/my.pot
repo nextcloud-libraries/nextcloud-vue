@@ -1,11 +1,12 @@
 # 
 # Translators:
-# Htike Aung Kyaw <htikeagkyaw@gmail.com>, 2021
+# Joas Schilling, 2023
+# Transifex Bot <>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Htike Aung Kyaw <htikeagkyaw@gmail.com>, 2021\n"
-"Language-Team: Burmese (https://www.transifex.com/nextcloud/teams/64236/my/)\n"
+"Last-Translator: Transifex Bot <>, 2023\n"
+"Language-Team: Burmese (https://app.transifex.com/nextcloud/teams/64236/my/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: my\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -16,8 +17,14 @@ msgstr "{tag} (ကွယ်ဝှက်ထား)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (ကန့်သတ်)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "လုပ်ဆောင်ချက်များ"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "ပြုလုပ်ဆောင်တာများ"
@@ -25,17 +32,56 @@ msgstr "ပြုလုပ်ဆောင်တာများ"
 msgid "Animals & Nature"
 msgstr "တိရစ္ဆာန်များနှင့် သဘာဝ"
 
+msgid "Any link"
+msgstr ""
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+
 msgid "Avatar of {displayName}"
 msgstr "{displayName} ၏ ကိုယ်ပွား"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
 
 msgid "Cancel changes"
 msgstr "ပြောင်းလဲမှုများ ပယ်ဖျက်ရန်"
 
+msgid "Change name"
+msgstr ""
+
 msgid "Choose"
 msgstr "ရွေးချယ်ရန်"
 
+msgid "Clear search"
+msgstr ""
+
+msgid "Clear text"
+msgstr ""
+
 msgid "Close"
 msgstr "ပိတ်ရန်"
+
+msgid "Close modal"
+msgstr ""
+
+msgid "Close navigation"
+msgstr ""
+
+msgid "Close sidebar"
+msgstr ""
+
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
 
 msgid "Confirm changes"
 msgstr "ပြောင်းလဲမှုများ အတည်ပြုရန်"
@@ -43,8 +89,22 @@ msgstr "ပြောင်းလဲမှုများ အတည်ပြု�
 msgid "Custom"
 msgstr "အလိုကျချိန်ညှိမှု"
 
-msgid "External documentation for {title}"
-msgstr "{title} အတွက် ပြင်ပ စာရွက်စာတမ်း"
+msgid "Edit item"
+msgstr ""
+
+msgid "Enter link"
+msgstr ""
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+
+msgid "External documentation for {name}"
+msgstr ""
+
+msgid "Favorite"
+msgstr ""
 
 msgid "Flags"
 msgstr "အလံများ"
@@ -58,8 +118,23 @@ msgstr "မကြာခဏအသုံးပြုသော"
 msgid "Global"
 msgstr "ကမ္ဘာလုံးဆိုင်ရာ"
 
+msgid "Go back to the list"
+msgstr ""
+
+msgid "Hide password"
+msgstr ""
+
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "ကန့်သတ် စာလုံးရေ {count} လုံး ပြည့်ပါပြီ"
+
+msgid "More items …"
+msgstr ""
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "နောက်သို့ဆက်ရန်"
@@ -67,17 +142,56 @@ msgstr "နောက်သို့ဆက်ရန်"
 msgid "No emoji found"
 msgstr "အီမိုဂျီ ရှာဖွေမတွေ့နိုင်ပါ"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "ရလဒ်မရှိပါ"
 
 msgid "Objects"
 msgstr "အရာဝတ္ထုများ"
 
+msgid "Open contact menu"
+msgstr ""
+
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
+
+msgid "Open navigation"
+msgstr ""
+
+msgid "Open settings menu"
+msgstr ""
+
+msgid "Password is secure"
+msgstr ""
+
 msgid "Pause slideshow"
 msgstr "စလိုက်ရှိုး ခေတ္တရပ်ရန်"
 
 msgid "People & Body"
 msgstr "လူပုဂ္ဂိုလ်များနှင့် ခန္ဓာကိုယ်"
+
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
 
 msgid "Pick an emoji"
 msgstr "အီမိုဂျီရွေးရန်"
@@ -88,14 +202,38 @@ msgstr "ဒေသစံတော်ချိန် ရွေးချယ်ပ�
 msgid "Previous"
 msgstr "ယခင်"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
+msgid "Related resources"
+msgstr ""
+
 msgid "Search"
 msgstr "ရှာဖွေရန်"
+
+msgid "Search emoji"
+msgstr ""
 
 msgid "Search results"
 msgstr "ရှာဖွေမှု ရလဒ်များ"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "tag ရွေးချယ်ရန်"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "ချိန်ညှိချက်များ"
@@ -103,11 +241,20 @@ msgstr "ချိန်ညှိချက်များ"
 msgid "Settings navigation"
 msgstr "ချိန်ညှိချက်အညွှန်း"
 
+msgid "Show password"
+msgstr ""
+
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "စမိုင်လီများနှင့် အီမိုရှင်း"
 
 msgid "Start slideshow"
 msgstr "စလိုက်ရှိုးအား စတင်ရန်"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "တင်သွင်းရန်"
@@ -124,5 +271,10 @@ msgstr "ဒေသစံတော်ချိန်များ ရှာဖွ�
 msgid "Unable to search the group"
 msgstr "အဖွဲ့အား ရှာဖွေ၍ မရနိုင်ပါ"
 
-msgid "Write message, @ to mention someone …"
-msgstr "စာရေးသားရန်၊ တစ်စုံတစ်ဦးအား @ အသုံးပြု ရည်ညွှန်းရန်..."
+msgid "Undo changes"
+msgstr ""
+
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
+msgstr ""

@@ -1,16 +1,12 @@
 # 
 # Translators:
-# Roeland Jago Douma, 2020
-# Arjan van S, 2020
-# Robin Slot, 2020
-# André Koot <meneer@tken.net>, 2021
-# Nico Vromans, 2021
-# Marc Hoeve <mrhoeve@gmail.com>, 2022
+# Joas Schilling, 2023
+# Transifex Bot <>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Marc Hoeve <mrhoeve@gmail.com>, 2022\n"
-"Language-Team: Dutch (https://www.transifex.com/nextcloud/teams/64236/nl/)\n"
+"Last-Translator: Transifex Bot <>, 2023\n"
+"Language-Team: Dutch (https://app.transifex.com/nextcloud/teams/64236/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -21,8 +17,14 @@ msgstr "{tag} (onzichtbaar)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (beperkt)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "Acties"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "Activiteiten"
@@ -30,23 +32,56 @@ msgstr "Activiteiten"
 msgid "Animals & Nature"
 msgstr "Dieren & Natuur"
 
+msgid "Any link"
+msgstr ""
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+
 msgid "Avatar of {displayName}"
 msgstr "Avatar van {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar van {displayName}, {status}"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "Wijzigingen annuleren"
+
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "Kies"
 
+msgid "Clear search"
+msgstr ""
+
+msgid "Clear text"
+msgstr ""
+
 msgid "Close"
 msgstr "Sluiten"
 
+msgid "Close modal"
+msgstr ""
+
 msgid "Close navigation"
 msgstr "Navigatie sluiten"
+
+msgid "Close sidebar"
+msgstr ""
+
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
 
 msgid "Confirm changes"
 msgstr "Wijzigingen bevestigen"
@@ -57,8 +92,19 @@ msgstr "Aangepast"
 msgid "Edit item"
 msgstr "Item bewerken"
 
-msgid "External documentation for {title}"
-msgstr "Externe documentatie voor {title}"
+msgid "Enter link"
+msgstr ""
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+
+msgid "External documentation for {name}"
+msgstr ""
+
+msgid "Favorite"
+msgstr ""
 
 msgid "Flags"
 msgstr "Vlaggen"
@@ -75,8 +121,20 @@ msgstr "Globaal"
 msgid "Go back to the list"
 msgstr "Ga terug naar de lijst"
 
+msgid "Hide password"
+msgstr ""
+
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "Berichtlimiet van {count} karakters bereikt"
+
+msgid "More items …"
+msgstr ""
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "Volgende"
@@ -84,20 +142,56 @@ msgstr "Volgende"
 msgid "No emoji found"
 msgstr "Geen emoji gevonden"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "Geen resultaten"
 
 msgid "Objects"
 msgstr "Objecten"
 
+msgid "Open contact menu"
+msgstr ""
+
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
+
 msgid "Open navigation"
 msgstr "Navigatie openen"
+
+msgid "Open settings menu"
+msgstr ""
+
+msgid "Password is secure"
+msgstr ""
 
 msgid "Pause slideshow"
 msgstr "Pauzeer diavoorstelling"
 
 msgid "People & Body"
 msgstr "Mensen & Lichaam"
+
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
 
 msgid "Pick an emoji"
 msgstr "Kies een emoji"
@@ -108,14 +202,38 @@ msgstr "Selecteer een tijdzone:"
 msgid "Previous"
 msgstr "Vorige"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
+msgid "Related resources"
+msgstr ""
+
 msgid "Search"
 msgstr "Zoeken"
+
+msgid "Search emoji"
+msgstr ""
 
 msgid "Search results"
 msgstr "Zoekresultaten"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "Selecteer een label"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "Instellingen"
@@ -123,11 +241,20 @@ msgstr "Instellingen"
 msgid "Settings navigation"
 msgstr "Instellingen navigatie"
 
+msgid "Show password"
+msgstr ""
+
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "Smileys & Emotie"
 
 msgid "Start slideshow"
 msgstr "Start diavoorstelling"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "Verwerken"
@@ -147,6 +274,7 @@ msgstr "Kan niet in de groep zoeken"
 msgid "Undo changes"
 msgstr "Wijzigingen ongedaan maken"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
 msgstr ""
-"Schrijf bericht, @ om iemand te noemen, : voor emoji auto-aanvullen ..."
