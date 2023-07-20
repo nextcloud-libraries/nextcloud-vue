@@ -22,8 +22,6 @@ const SCOPE_VERSION = JSON.stringify(versionHash)
 console.info('This build version hash is', versionHash, '\n')
 
 webpackConfig.entry = {
-	install: path.join(__dirname, 'src', 'install.js'),
-
 	...globSync('src/components/*/index.js').reduce((acc, item) => {
 		const name = item
 			.replace('/index.js', '')

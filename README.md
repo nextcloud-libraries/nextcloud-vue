@@ -37,13 +37,13 @@ import { NcAppNavigation, NcActions, NcActionButton } from '@nextcloud/vue'
 
 ### Registering all components.
 
-> Be careful, this will registry all components, even the ones not being used.
+> Be careful, this will registry all components and directives, even the ones not being used.
 
 ```js
 import Vue from 'vue'
-import NcComponents from '@nextcloud/vue/dist/install.js'
+import { NextcloudVuePlugin } from '@nextcloud/vue'
 
-Vue.use(NcComponents)
+Vue.use(NextcloudVuePlugin)
 ```
 
 ## Development setup

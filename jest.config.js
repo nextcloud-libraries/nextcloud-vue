@@ -3,7 +3,7 @@
  *
  * @author Marco Ambrosini <marcoambrosini@pm.me>
  *
- * @license GNU AGPL version 3 or any later version
+ * @license AGPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -49,19 +49,20 @@ const ignorePatterns = [
 
 module.exports = {
 	moduleFileExtensions: [
-	  'js',
-	  'vue',
+		'js',
+		'ts',
+		'vue',
 	],
 
 	testEnvironment: 'jsdom',
 	setupFilesAfterEnv: [
-	  './tests/setup.js',
+		'./tests/setup.js',
 	],
 
 	transform: {
-	  '^.+\\.js$': 'babel-jest',
-	  '^.+\\.vue$': '@vue/vue2-jest',
-	  '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
+		'^.+\\.(j|t)s$': 'babel-jest',
+		'^.+\\.vue$': '@vue/vue2-jest',
+		'.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
 	},
 	transformIgnorePatterns: [
 		'/node_modules/(?!(' + ignorePatterns.join('|') + '))',
@@ -72,20 +73,20 @@ module.exports = {
 	},
 
 	snapshotSerializers: [
-	  '<rootDir>/node_modules/jest-serializer-vue',
+		'<rootDir>/node_modules/jest-serializer-vue',
 	],
 
 	coverageDirectory: './coverage/',
 	collectCoverage: false,
 	collectCoverageFrom: [
-	  '<rootDir>/src/**/*.{js,vue}',
-	  '!**/node_modules/**',
+		'<rootDir>/src/**/*.{js,ts,vue}',
+		'!**/node_modules/**',
 	],
 	coverageReporters: [
-	  'json',
-	  'text',
-	  'html',
-	  'lcov',
-	  'clover',
+		'json',
+		'text',
+		'html',
+		'lcov',
+		'clover',
 	],
 }
