@@ -1,0 +1,279 @@
+# 
+# Translators:
+# Transifex Bot <>, 2023
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Transifex Bot <>, 2023\n"
+"Language-Team: Georgian (Georgia) (https://app.transifex.com/nextcloud/teams/64236/ka_GE/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ka_GE\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "{tag} (invisible)"
+msgstr ""
+
+msgid "{tag} (restricted)"
+msgstr ""
+
+msgid "a few seconds ago"
+msgstr ""
+
+msgid "Actions"
+msgstr ""
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
+
+msgid "Activities"
+msgstr ""
+
+msgid "Animals & Nature"
+msgstr ""
+
+msgid "Any link"
+msgstr ""
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+
+msgid "Avatar of {displayName}"
+msgstr ""
+
+msgid "Avatar of {displayName}, {status}"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
+msgid "Cancel changes"
+msgstr ""
+
+msgid "Change name"
+msgstr ""
+
+msgid "Choose"
+msgstr ""
+
+msgid "Clear search"
+msgstr ""
+
+msgid "Clear text"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Close modal"
+msgstr ""
+
+msgid "Close navigation"
+msgstr ""
+
+msgid "Close sidebar"
+msgstr ""
+
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
+msgid "Confirm changes"
+msgstr ""
+
+msgid "Custom"
+msgstr ""
+
+msgid "Edit item"
+msgstr ""
+
+msgid "Enter link"
+msgstr ""
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+
+msgid "External documentation for {name}"
+msgstr ""
+
+msgid "Favorite"
+msgstr ""
+
+msgid "Flags"
+msgstr ""
+
+msgid "Food & Drink"
+msgstr ""
+
+msgid "Frequently used"
+msgstr ""
+
+msgid "Global"
+msgstr ""
+
+msgid "Go back to the list"
+msgstr ""
+
+msgid "Hide password"
+msgstr ""
+
+msgid "Load more \"{options}\"\""
+msgstr ""
+
+msgid "Message limit of {count} characters reached"
+msgstr ""
+
+msgid "More items …"
+msgstr ""
+
+msgid "More options"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "No emoji found"
+msgstr ""
+
+msgid "No link provider found"
+msgstr ""
+
+msgid "No results"
+msgstr ""
+
+msgid "Objects"
+msgstr ""
+
+msgid "Open contact menu"
+msgstr ""
+
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
+
+msgid "Open navigation"
+msgstr ""
+
+msgid "Open settings menu"
+msgstr ""
+
+msgid "Password is secure"
+msgstr ""
+
+msgid "Pause slideshow"
+msgstr ""
+
+msgid "People & Body"
+msgstr ""
+
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
+msgid "Pick an emoji"
+msgstr ""
+
+msgid "Please select a time zone:"
+msgstr ""
+
+msgid "Previous"
+msgstr ""
+
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
+msgid "Related resources"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Search emoji"
+msgstr ""
+
+msgid "Search results"
+msgstr ""
+
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
+msgid "Select a tag"
+msgstr ""
+
+msgid "Select provider"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Settings navigation"
+msgstr ""
+
+msgid "Show password"
+msgstr ""
+
+msgid "Smart Picker"
+msgstr ""
+
+msgid "Smileys & Emotion"
+msgstr ""
+
+msgid "Start slideshow"
+msgstr ""
+
+msgid "Start typing to search"
+msgstr ""
+
+msgid "Submit"
+msgstr ""
+
+msgid "Symbols"
+msgstr ""
+
+msgid "Travel & Places"
+msgstr ""
+
+msgid "Type to search time zone"
+msgstr ""
+
+msgid "Unable to search the group"
+msgstr ""
+
+msgid "Undo changes"
+msgstr ""
+
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
+msgstr ""
