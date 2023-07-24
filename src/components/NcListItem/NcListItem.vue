@@ -267,7 +267,8 @@
 						</div>
 
 						<!-- Actions -->
-						<div v-show="displayActionsOnHoverFocus && !forceDisplayActions"
+						<div v-if="!forceDisplayActions"
+							v-show="displayActionsOnHoverFocus"
 							class="list-item-content__actions"
 							@click.prevent.stop="">
 							<NcActions ref="actions"
@@ -279,7 +280,7 @@
 						</div>
 					</div>
 					<!-- Actions -->
-					<div v-show="forceDisplayActions"
+					<div v-if="forceDisplayActions"
 						class="list-item-content__actions"
 						@click.prevent.stop="">
 						<NcActions ref="actions"
