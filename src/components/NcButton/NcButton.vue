@@ -197,6 +197,41 @@ button {
 </style>
 ```
 
+### Alignment
+Sometimes it is required to change the icon alignment on the button, like for switching between pages as in following example:
+
+```vue
+<template>
+	<div>
+		<div style="display: flex; gap: 12px;">
+			<NcButton aria-label="Previous" type="tertiary">
+				<template #icon>
+					<IconLeft :size="20" />
+				</template>
+				Previous page
+			</NcButton>
+			<NcButton alignment="end-reverse" aria-label="Previous" type="primary">
+				<template #icon>
+					<IconRight :size="20" />
+				</template>
+				Next page
+			</NcButton>
+		</div>
+	</div>
+</template>
+<script>
+import IconLeft from 'vue-material-design-icons/ArrowLeft.vue'
+import IconRight from 'vue-material-design-icons/ArrowRight.vue'
+
+export default {
+	components: {
+		IconLeft,
+		IconRight,
+	},
+}
+</script>
+```
+
 ### Pressed state
 It is possible to make the button stateful by adding a pressed state, e.g. if you like to create a favorite button.
 The button will have the required `aria` attribute for accessibility and visual style (`primary` when pressed, and the configured type otherwise).
@@ -264,6 +299,17 @@ export default {
 	name: 'NcButton',
 
 	props: {
+		/**
+		 * Set the text and icon alignment
+		 *
+		 * @default 'center'
+		 */
+		alignment: {
+			type: String,
+			default: 'center',
+			validator: (alignment) => ['start', 'start-reverse', 'center', 'end', 'end-reverse'].includes(alignment),
+		},
+
 		/**
 		 * Toggles the disabled state of the button on and off.
 		 */
@@ -388,6 +434,20 @@ export default {
 			}
 			return this.type
 		},
+
+		/**
+		 * The flexbox alignment of the button content
+		 */
+		flexAlignment() {
+			return this.alignment.split('-')[0]
+		},
+
+		/**
+		 * If the button content should be reversed (icon on the end)
+		 */
+		isReverseAligned() {
+			return this.alignment.includes('-')
+		},
 	},
 
 	/**
@@ -423,6 +483,8 @@ export default {
 						'button-vue--icon-and-text': hasIcon && hasText,
 						[`button-vue--vue-${this.realType}`]: this.realType,
 						'button-vue--wide': this.wide,
+						[`button-vue--${this.flexAlignment}`]: this.flexAlignment !== 'center',
+						'button-vue--reverse': this.isReverseAligned,
 						active: isActive,
 						'router-link-exact-active': isExactActive,
 					},
@@ -556,6 +618,20 @@ export default {
 		width: 100%;
 	}
 
+	&--end &__wrapper {
+		justify-content: end;
+	}
+	&--start &__wrapper {
+		justify-content: start;
+	}
+	&--reverse &__wrapper {
+		flex-direction: row-reverse;
+	}
+
+	&--reverse#{&}--icon-and-text {
+		padding-inline: calc(var(--default-grid-baseline) * 4) var(--default-grid-baseline);
+	}
+
 	&__icon {
 		height: $clickable-area;
 		width: $clickable-area;
@@ -591,7 +667,8 @@ export default {
 
 	// Icon and text button
 	&--icon-and-text {
-		padding: 0 16px 0 4px;
+		padding-block: 0;
+		padding-inline: var(--default-grid-baseline) calc(var(--default-grid-baseline) * 4);
 	}
 
 	// Wide button spans the whole width of the container
