@@ -76,7 +76,7 @@
     "remark-external-links": "^9.0.1",
     "remark-parse": "^10.0.1",
     "remark-rehype": "^10.1.0",
-    "splitpanes": "^2.4.1",
+    "splitpanes": "^3.1.5",
     "string-length": "^5.0.1",
     "striptags": "^3.2.0",
     "tributejs": "^5.1.3",
