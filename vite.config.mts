@@ -1,5 +1,5 @@
 import type { Plugin } from 'vite'
-import { createLibConfig } from '@susnux/nextcloud-vite-config'
+import { createLibConfig } from '@nextcloud/vite-config'
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 
