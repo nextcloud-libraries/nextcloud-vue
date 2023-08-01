@@ -84,6 +84,43 @@ This component allows the user to pick an emoji.
 	}
 </script>
 ```
+
+* Allow unselecting a previously set emoji.
+
+```vue
+<template>
+	<div>
+		<NcEmojiPicker
+			:show-preview="true"
+			:allow-unselect="true"
+			:selected-emoji="emoji"
+			@select="select"
+			@unselect="unselect"
+			style="display: inline-block">
+			<NcButton> Click Me </NcButton>
+		</NcEmojiPicker>
+		<span>selected emoji: {{ emoji }}</span>
+	</div>
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				emoji: '',
+			}
+		},
+		methods: {
+			select(emoji) {
+				this.emoji = emoji
+			},
+			unselect() {
+				this.emoji = ''
+			},
+		},
+	}
+</script>
+```
+
 </docs>
 
 <template>
@@ -123,6 +160,23 @@ This component allows the user to pick an emoji.
 					@trailing-button-click="clearSearch(); slotProps.onSearch(search);"
 					@update:value="slotProps.onSearch(search)" />
 			</template>
+			<template v-if="allowUnselect && selectedEmoji" #customCategory>
+				<div class="emoji-mart-category-label">
+					<h3 class="emoji-mart-category-label">
+						{{ t('Selected') }}
+					</h3>
+				</div>
+				<Emoji class="emoji-selected"
+					:data="emojiIndex"
+					:emoji="selectedEmoji"
+					:size="32"
+					@click="unselect" />
+				<Emoji class="emoji-delete"
+					:data="emojiIndex"
+					emoji=":x:"
+					:size="10"
+					@click="unselect" />
+			</template>
 		</Picker>
 	</NcPopover>
 </template>
@@ -132,7 +186,7 @@ import NcPopover from '../NcPopover/index.js'
 import NcTextField from '../NcTextField/index.js'
 import { t } from '../../l10n.js'
 
-import { Picker, EmojiIndex } from 'emoji-mart-vue-fast'
+import { Picker, Emoji, EmojiIndex } from 'emoji-mart-vue-fast'
 import data from 'emoji-mart-vue-fast/data/all.json'
 
 export default {
@@ -140,6 +194,7 @@ export default {
 	components: {
 		NcPopover,
 		NcTextField,
+		Emoji,
 		Picker,
 	},
 	props: {
@@ -156,6 +211,20 @@ export default {
 		showPreview: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Allow unselecting the selected emoji
+		 */
+		allowUnselect: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Selected emoji to allow unselecting
+		 */
+		selectedEmoji: {
+			type: String,
+			default: '',
 		},
 		/**
 		 * The fallback emoji in the preview section
@@ -190,6 +259,7 @@ export default {
 	emits: [
 		'select',
 		'select-data',
+		'unselect',
 	],
 	data() {
 		return {
@@ -246,6 +316,10 @@ export default {
 			if (this.closeOnSelect) {
 				this.open = false
 			}
+		},
+
+		unselect() {
+			this.$emit('unselect')
 		},
 
 		afterShow() {
@@ -402,5 +476,22 @@ export default {
 		padding: 5px 4px;
 		font-weight: 500;
 	}
+}
+
+</style>
+
+<style scoped>
+.row-selected span {
+	vertical-align: middle;
+}
+
+.row-selected button {
+	vertical-align: middle;
+}
+
+.emoji-delete {
+	vertical-align: top;
+	margin-left: -21px;
+	margin-top: -3px;
 }
 </style>

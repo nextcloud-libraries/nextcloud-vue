@@ -223,6 +223,9 @@ msgstr ""
 msgid "Select provider"
 msgstr ""
 
+msgid "Selected"
+msgstr ""
+
 msgid "Settings"
 msgstr ""
 
