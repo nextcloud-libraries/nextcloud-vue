@@ -83,7 +83,7 @@
     "unified": "^10.1.2",
     "unist-builder": "^4.0.0",
     "unist-util-visit": "^5.0.0",
-    "vue": "^2.7.14",
+    "vue": "^3.3.4",
     "vue-color": "^2.8.1",
     "vue-material-design-icons": "^5.1.2",
     "vue2-datepicker": "^3.11.0"
