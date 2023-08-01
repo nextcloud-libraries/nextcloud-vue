@@ -150,10 +150,10 @@ index 0e3a6a705d..416b8b0fb9 100644
 - Add the change log content from the 'Changelog' action on GitHub to `CHANGELOG.md`;
 - Commit and push;
 - Get your PR reviewed and merged;
-- Create a milestone with the follow-up version at https://github.com/nextcloud/nextcloud-vue/milestones
+- Create a milestone with the follow-up version at https://github.com/nextcloud-libraries/nextcloud-vue/milestones
 - Move all open tickets and PRs to the follow-up
 - Close the milestone of the version you release
-- Create a release on GitHub with the version as tag (e.g `v4.0.1`) and add the changelog content as description (https://github.com/nextcloud/nextcloud-vue/releases);
+- Create a release on GitHub with the version as tag (e.g `v4.0.1`) and add the changelog content as description (https://github.com/nextcloud-libraries/nextcloud-vue/releases);
   ![image](https://user-images.githubusercontent.com/14975046/124442568-2a952500-dd7d-11eb-82a2-402f9170231a.png)
 
 <a href="https://www.netlify.com">

@@ -209,7 +209,7 @@ module.exports = async () => {
 
 		ribbon: {
 			text: 'Fork me on GitHub',
-			url: 'https://github.com/nextcloud/nextcloud-vue',
+			url: 'https://github.com/nextcloud-libraries/nextcloud-vue',
 		},
 
 		// see https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.js
