@@ -13,12 +13,9 @@
   "author": "John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>",
   "license": "AGPL-3.0",
   "scripts": {
-    "dev": "webpack --node-env development --progress && npm run dev:module",
-    "dev:module": "vite build --mode development",
-    "watch": "webpack --node-env development --progress --watch",
-    "watch:module": "vite build --mode development --watch",
-    "build": "webpack --node-env production --progress && npm run build:module",
-    "build:module": "vite --mode production build",
+    "build": "vite build --mode production ",
+    "dev": "vite build --mode development",
+    "dev:watch": "vite build --mode development --watch",
     "l10n:extract": "node build/extract-l10n.js",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix",
@@ -38,7 +35,22 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
-    "./dist/*": "./dist/*"
+    "./dist/Components/*.js": {
+      "import": "./dist/Components/*.mjs",
+      "require": "./dist/Components/*.cjs"
+    },
+    "./dist/Directives/*.js": {
+      "import": "./dist/Directives/*.mjs",
+      "require": "./dist/Directives/*.cjs"
+    },
+    "./dist/Functions/*.js": {
+      "import": "./dist/Functions/*.mjs",
+      "require": "./dist/Functions/*.cjs"
+    },
+    "./dist/Mixins/*.js": {
+      "import": "./dist/Mixins/*.mjs",
+      "require": "./dist/Mixins/*.cjs"
+    }
   },
   "files": [
     "CHANGELOG.md",
@@ -131,8 +143,7 @@
     "vue-styleguidist": "~4.72.0",
     "vue-template-compiler": "^2.7.14",
     "webpack": "^5.88.1",
-    "webpack-merge": "^5.9.0",
-    "webpack-node-externals": "^3.0.0"
+    "webpack-merge": "^5.9.0"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
