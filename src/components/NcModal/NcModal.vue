@@ -882,11 +882,13 @@ export default {
 		z-index: 10000;
 		// ignore display: none
 		display: flex !important;
-		height: 35vw;
+		height: 35vh;
+		min-height: 300px;
 		position: absolute;
 		transition: opacity 250ms,
 			visibility 250ms;
-		color: var(--color-primary-element-text);
+		// hover the mask
+		color: white;
 
 		&:focus-visible {
 			// Override NcButton focus styles
