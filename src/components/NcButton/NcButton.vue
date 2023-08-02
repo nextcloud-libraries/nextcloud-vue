@@ -3,7 +3,7 @@
  -
  - @author Marco Ambrosini <marcoambrosini@icloud.com>
  -
- - @license GNU AGPL version 3 or any later version
+ - @license AGPL-3.0-or-later
  -
  - This program is free software: you can redistribute it and/or modify
  - it under the terms of the GNU Affero General Public License as
@@ -52,44 +52,44 @@ It can be used with one or multiple actions.
 			aria-label="Example text"
 			:disabled="disabled"
 			:readonly="readonly"
+			:text="buttonText"
 			type="tertiary-no-background">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
 					:size="20" />
 			</template>
-			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</NcButton>
 		<NcButton
 			aria-label="Example text"
 			:disabled="disabled"
 			:readonly="readonly"
+			:text="buttonText"
 			type="tertiary">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
 					:size="20" />
 			</template>
-			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</NcButton>
 		<NcButton
 			aria-label="Example text"
 			:disabled="disabled"
+			:text="buttonText"
 			:readonly="readonly">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
 					:size="20" />
 			</template>
-			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</NcButton>
 		<NcButton
 			aria-label="Example text"
 			:disabled="disabled"
 			:readonly="readonly"
+			:text="buttonText"
 			type="primary">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
 					:size="20" />
 			</template>
-			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</NcButton>
 	</div>
 
@@ -117,32 +117,32 @@ It can be used with one or multiple actions.
 		<NcButton
 			:disabled="disabled"
 			:readonly="readonly"
+			text="Example text"
 			type="success">
 			<template #icon>
 				<Video
 					:size="20" />
 			</template>
-			Example text
 		</NcButton>
 		<NcButton
 			:disabled="disabled"
 			:readonly="readonly"
+			text="Example text"
 			type="warning">
 			<template #icon>
 				<Video
 					:size="20" />
 			</template>
-			Example text
 		</NcButton>
 		<NcButton
 			:disabled="disabled"
 			:readonly="readonly"
+			text="Example text"
 			type="error">
 			<template #icon>
 				<Video
 					:size="20" />
 			</template>
-			Example text
 		</NcButton>
 		<p> - </p>
 	</div>
@@ -162,6 +162,11 @@ export default {
 			disabled: false,
 			readonly: false,
 			style: 'icontext',
+		}
+	},
+	computed: {
+		buttonText() {
+			return this.style.indexOf('text') !== -1 ? 'Example text' : ''
 		}
 	}
 }
@@ -203,45 +208,39 @@ Sometimes it is required to change the icon alignment on the button, like for sw
 ```vue
 <template>
 	<div style="display: flex; flex-direction: column; gap: 12px;">
-		<NcButton aria-label="center (default)" type="secondary" wide>
+		<NcButton text="center (default)" type="secondary" wide>
 			<template #icon>
 				<IconLeft :size="20" />
 			</template>
-			center (default)
 		</NcButton>
-		<NcButton alignment="center-reverse" aria-label="center-reverse" type="secondary" wide>
+		<NcButton alignment="center-reverse" text="center-reverse" type="secondary" wide>
 			<template #icon>
 				<IconRight :size="20" />
 			</template>
-			center-reverse
 		</NcButton>
 		<div style="display: flex; gap: 12px;">
 			<div style="display: flex; flex-direction: column; gap: 12px; flex: 1">
-				<NcButton alignment="start" aria-label="start" type="secondary" wide>
+				<NcButton alignment="start" text="start" type="secondary" wide>
 					<template #icon>
 						<IconLeft :size="20" />
 					</template>
-					start
 				</NcButton>
-				<NcButton alignment="start-reverse" aria-label="start-reverse" type="secondary" wide>
+				<NcButton alignment="start-reverse" text="start-reverse" type="secondary" wide>
 					<template #icon>
 						<IconRight :size="20" />
 					</template>
-					start-reverse
 				</NcButton>
 			</div>
 			<div style="display: flex; flex-direction: column; gap: 12px; flex: 1">
-				<NcButton alignment="end" aria-label="end" type="secondary" wide>
+				<NcButton alignment="end" text="end" type="secondary" wide>
 					<template #icon>
 						<IconLeft :size="20" />
 					</template>
-					end
 				</NcButton>
-				<NcButton alignment="end-reverse" aria-label="end-reverse" type="secondary" wide>
+				<NcButton alignment="end-reverse" text="end-reverse" type="secondary" wide>
 					<template #icon>
 						<IconRight :size="20" />
 					</template>
-					end-reverse
 				</NcButton>
 			</div>
 		</div>
@@ -319,6 +318,119 @@ export default {
 }
 </script>
 ```
+
+### Usage example: Sorting table columns
+The standard way to implement sortable table column headers should be like this:
+
+```vue
+<template>
+	<table>
+		<thead>
+			<tr>
+				<th :aria-sorted="sortedName" class="row-name">
+					<NcButton alignment="start-reverse"
+						:wide="true"
+						text="Name"
+						text-classes="table-header-text"
+						type="tertiary-no-background"
+						@click="sortName">
+						<template #icon>
+							<IconDown v-if="sortedName === 'ascending'" class="sort-icon" :size="20" />
+							<IconUp v-else-if="sortedName === 'descending'" class="sort-icon" :size="20" />
+						</template>
+					</NcButton>
+				</th>
+				<th :aria-sorted="sortedSize" class="row-size">
+					<NcButton alignment="end"
+						:wide="true"
+						text="Size"
+						text-classes="table-header-text"
+						type="tertiary-no-background"
+						@click="sortSize">
+						<template #icon>
+							<IconDown v-if="sortedSize === 'ascending'" class="sort-icon" :size="20" />
+							<IconUp v-else-if="sortedSize === 'descending'" class="sort-icon" :size="20" />
+						</template>
+					</NcButton>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="row-name">Lorem ipsum</td>
+				<td class="row-size">8 MiB</td>
+			</tr>
+		</tbody>
+	</table>
+</template>
+<script>
+import IconUp from 'vue-material-design-icons/MenuUp.vue'
+import IconDown from 'vue-material-design-icons/MenuDown.vue'
+export default {
+	components: {
+		IconUp,
+		IconDown,
+	},
+	data() {
+		return {
+			sortedName: null,
+			sortedSize: null,
+		}
+	},
+	methods: {
+		sortName() {
+			if (this.sortedName === 'ascending') {
+				this.sortedName = 'descending'
+			} else if (this.sortedName === 'descending') {
+				this.sortedName = null
+			} else {
+				this.sortedName = 'ascending'
+			}
+		},
+		sortSize() {
+			if (this.sortedSize === 'ascending') {
+				this.sortedSize = 'descending'
+			} else if (this.sortedSize === 'descending') {
+				this.sortedSize = null
+			} else {
+				this.sortedSize = 'ascending'
+			}
+		},
+	},
+}
+</script>
+<style scoped>
+table {
+	table-layout: fixed;
+	width: 300px;
+}
+
+td.row-name {
+	padding-inline-start: 16px;
+}
+
+td.row-size {
+	text-align: right;
+	padding-inline-end: 16px;
+}
+
+/* Use `:deep(.table-header-text)` instead, `v-deep` is deprecated and only used for Vue 2.6 compatibility */
+::v-deep .table-header-text { /* stylelint-disable-line selector-pseudo-element-no-unknown */
+	font-weight: normal !important;
+	color: var(--color-text-maxcontrast);
+}
+
+.sort-icon {
+	color: var(--color-text-maxcontrast);
+	position: relative;
+	inset-inline: -10px;
+}
+
+.row-size .sort-icon {
+	inset-inline: 10px;
+}
+</style>
+```
 </docs>
 
 <script>
@@ -339,11 +451,57 @@ export default {
 		},
 
 		/**
+		 * aria-hidden attribute for the icon slot
+		 */
+		 ariaHidden: {
+			type: Boolean,
+			default: null,
+		},
+
+		/**
+		 * Always try to provide an aria-label to your button. Make it more
+		 * specific than the button's name by provide some more context. E.g. if
+		 * the name of the button is "send" in the Mail app, the aria label could
+		 * be "Send email".
+		 */
+		 ariaLabel: {
+			type: String,
+			default: null,
+		},
+
+		/**
 		 * Toggles the disabled state of the button on and off.
 		 */
 		disabled: {
 			type: Boolean,
 			default: false,
+		},
+
+		/**
+		 * The text of the button, for icon only buttons you should at least provide the `aria-label` property.
+		 */
+		text: {
+			type: String,
+			default: '',
+		},
+
+		/**
+		 * Additional classes to inject on the text wrapper to allow for custom styling
+		 *
+		 * @example
+		 * ```vue
+		 * <NcButton text="hello" text-classes="my-button-text" />
+		 * <!-- ... -->
+		 * <style>
+		 * :deep(.my-button-text) {
+		 *     text-align: right;
+		 * }
+		 * </style>
+		 * ```
+		 */
+		textClasses: {
+			type: [String, Array, Object],
+			default: '',
 		},
 
 		/**
@@ -382,17 +540,6 @@ export default {
 		},
 
 		/**
-		 * Always try to provide an aria-label to your button. Make it more
-		 * specific than the button's name by provide some more context. E.g. if
-		 * the name of the button is "send" in the Mail app, the aria label could
-		 * be "Send email".
-		 */
-		ariaLabel: {
-			type: String,
-			default: null,
-		},
-
-		/**
 		 * Providing the href attribute turns the button component into an `a`
 		 * element.
 		 */
@@ -426,13 +573,6 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-		/**
-		 * aria-hidden attribute for the icon slot
-		 */
-		ariaHidden: {
-			type: Boolean,
-			default: null,
-		},
 
 		/**
 		 * The pressed state of the button if it has a checked state
@@ -447,6 +587,12 @@ export default {
 	emits: ['update:pressed', 'click'],
 
 	computed: {
+		/**
+		 * Classes for the text of the button
+		 */
+		additionalTextClasses() {
+			return ['button-vue__text', this.textClasses]
+		},
 		/**
 		 * The real type to be used for the button, enforces `primary` for pressed state and, if stateful button, any other type for not pressed state
 		 * Otherwise the type property is used.
@@ -485,15 +631,16 @@ export default {
 	 * @return {object|undefined} The created VNode
 	 */
 	render(h) {
-		const text = this.$slots.default?.[0]?.text?.trim?.()
-
+		/** @slot **deprecated** Use the `text` property instead */
+		const text = this.text || this.$slots.default?.[0]?.text?.trim?.()
 		const hasText = !!text
+		/** @slot The icon slot can be used to provide a custom icon component */
 		const hasIcon = this.$slots?.icon
 
 		/**
 		 * Always fill either the text prop or the ariaLabel one.
 		 */
-		if (!text && !this.ariaLabel) {
+		if (!hasText && !this.ariaLabel) {
 			console.warn('You need to fill either the text or the ariaLabel props in the button component.', {
 				text,
 				ariaLabel: this.ariaLabel,
@@ -518,7 +665,7 @@ export default {
 					},
 				],
 				attrs: {
-					'aria-label': this.ariaLabel,
+					'aria-label': this.ariaLabel || text,
 					'aria-pressed': this.pressed,
 					disabled: this.disabled,
 					type: this.href ? null : this.nativeType,
@@ -559,7 +706,7 @@ export default {
 						[this.$slots.icon],
 						)
 						: null,
-					hasText ? h('span', { class: 'button-vue__text' }, [text]) : null,
+					hasText ? h('span', { class: this.additionalTextClasses }, [text]) : null,
 				]),
 			],
 		)
