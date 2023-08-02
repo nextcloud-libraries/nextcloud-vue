@@ -377,6 +377,16 @@ export default {
 			opacity: 0;
 		}
 
+		// Align label text color with border color
+		&:not(:placeholder-shown) + .input-field__label {
+			color: var(--color-text-maxcontrast);
+		}
+
+		&:focus + .input-field__label,
+		&:hover:not(&--success, &--error):not(:placeholder-shown) + .input-field__label {
+			color: var(--color-primary-element);
+		}
+
 		&:focus {
 			cursor: text;
 		}
@@ -394,12 +404,24 @@ export default {
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 			}
+
+			// Align label text color with border color
+			&:focus + .input-field__label,
+			&:hover:not(:placeholder-shown) + .input-field__label {
+				color: var(--color-success-text);
+			}
 		}
 
 		&--error {
 			border-color: var(--color-error) !important; //Override hover border color
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
+			}
+
+			// Align label text color with border color
+			&:focus + .input-field__label,
+			&:hover:not(:placeholder-shown) + .input-field__label {
+				color: var(--color-error-text);
 			}
 		}
 
@@ -444,32 +466,6 @@ export default {
 	&__input:not(:placeholder-shown) + &__label {
 		inset-block-start: -4px;
 		font-size: 13px; // minimum allowed font size for accessibility
-	}
-
-	// Align label text color with border color
-	&__input {
-		&:not(:placeholder-shown) + .input-field__label {
-			color: var(--color-text-maxcontrast);
-		}
-
-		&:focus + .input-field__label,
-		&:hover:not(&--success, &--error):not(:placeholder-shown) + .input-field__label {
-			color: var(--color-primary-element);
-		}
-
-		&--success {
-			&:focus + .input-field__label,
-			&:hover:not(:placeholder-shown) + .input-field__label {
-				color: var(--color-success-text);
-			}
-		}
-
-		&--error {
-			&:focus + .input-field__label,
-			&:hover:not(:placeholder-shown) + .input-field__label {
-				color: var(--color-error-text);
-			}
-		}
 	}
 
 	&__icon {
