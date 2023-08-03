@@ -113,7 +113,7 @@ msgstr ""
 msgid "Hide password"
 msgstr ""
 
-msgid "Load more \"{options}\"\""
+msgid "Load more \"{options}\""
 msgstr ""
 
 msgid "Message limit of {count} characters reached"
