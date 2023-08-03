@@ -41,7 +41,7 @@
 					<span v-if="option.isLoading" class="option-simple-icon icon-loading-small" />
 					<DotsHorizontalIcon v-else class="option-simple-icon" :size="20" />
 					<span class="option-text">
-						{{ t('Load more "{options}""', { options: option.name }) }}
+						{{ t('Load more "{options}"', { options: option.name }) }}
 					</span>
 				</span>
 			</template>
