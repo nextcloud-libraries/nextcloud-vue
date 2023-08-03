@@ -202,20 +202,48 @@ Sometimes it is required to change the icon alignment on the button, like for sw
 
 ```vue
 <template>
-	<div>
+	<div style="display: flex; flex-direction: column; gap: 12px;">
+		<NcButton aria-label="center (default)" type="secondary" wide>
+			<template #icon>
+				<IconLeft :size="20" />
+			</template>
+			center (default)
+		</NcButton>
+		<NcButton alignment="center-reverse" aria-label="center-reverse" type="secondary" wide>
+			<template #icon>
+				<IconRight :size="20" />
+			</template>
+			center-reverse
+		</NcButton>
 		<div style="display: flex; gap: 12px;">
-			<NcButton aria-label="Previous" type="tertiary">
-				<template #icon>
-					<IconLeft :size="20" />
-				</template>
-				Previous page
-			</NcButton>
-			<NcButton alignment="end-reverse" aria-label="Previous" type="primary">
-				<template #icon>
-					<IconRight :size="20" />
-				</template>
-				Next page
-			</NcButton>
+			<div style="display: flex; flex-direction: column; gap: 12px; flex: 1">
+				<NcButton alignment="start" aria-label="start" type="secondary" wide>
+					<template #icon>
+						<IconLeft :size="20" />
+					</template>
+					start
+				</NcButton>
+				<NcButton alignment="start-reverse" aria-label="start-reverse" type="secondary" wide>
+					<template #icon>
+						<IconRight :size="20" />
+					</template>
+					start-reverse
+				</NcButton>
+			</div>
+			<div style="display: flex; flex-direction: column; gap: 12px; flex: 1">
+				<NcButton alignment="end" aria-label="end" type="secondary" wide>
+					<template #icon>
+						<IconLeft :size="20" />
+					</template>
+					end
+				</NcButton>
+				<NcButton alignment="end-reverse" aria-label="end-reverse" type="secondary" wide>
+					<template #icon>
+						<IconRight :size="20" />
+					</template>
+					end-reverse
+				</NcButton>
+			</div>
 		</div>
 	</div>
 </template>
@@ -307,7 +335,7 @@ export default {
 		alignment: {
 			type: String,
 			default: 'center',
-			validator: (alignment) => ['start', 'start-reverse', 'center', 'end', 'end-reverse'].includes(alignment),
+			validator: (alignment) => ['start', 'start-reverse', 'center', 'center-reverse', 'end', 'end-reverse'].includes(alignment),
 		},
 
 		/**
