@@ -180,12 +180,6 @@ module.exports = async () => {
 						],
 					},
 					{
-						name: 'NcMultiselect',
-						components: [
-							'src/components/NcMultiselect*/*.vue',
-						],
-					},
-					{
 						name: 'NcPickers',
 						components: [
 							'src/components/Nc*Picker*/*.vue',
