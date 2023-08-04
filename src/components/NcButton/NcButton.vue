@@ -541,8 +541,8 @@ export default {
 							 */
 							this.$emit('update:pressed', !this.pressed)
 						}
-						// We have to both navigate and call the listeners click handler
-						this.$listeners?.click?.($event)
+						// We have to both navigate and emit the click event
+						this.$emit('click', $event)
 						navigate?.($event)
 					},
 				},
