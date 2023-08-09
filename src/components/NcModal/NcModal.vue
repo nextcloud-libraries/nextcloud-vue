@@ -616,18 +616,26 @@ export default {
 			}
 		},
 
-		// Key Handlers
-		handleKeydown(e) {
-			switch (e.keyCode) {
-			case 37: // left arrow
-				this.previous(e)
-				break
-			case 39: // right arrow
-				this.next(e)
-				break
-			case 27: // escape key
-				this.close(e)
-				break
+		/**
+		 * @param {KeyboardEvent} event - keyboard event
+		 */
+		handleKeydown(event) {
+			if (event.key === 'Escape') {
+				return this.close(event)
+			}
+
+			const arrowHandlers = {
+				ArrowLeft: this.previous,
+				ArrowRight: this.next,
+			}
+			if (arrowHandlers[event.key]) {
+				// Ignore arrow navigation, if there is a current focus outside the modal.
+				// For example, when the focus is in Sidebar or NcActions's items,
+				// arrow navigation should not be intercept by modal slider
+				if (document.activeElement && !this.$el.contains(document.activeElement)) {
+					return
+				}
+				return arrowHandlers[event.key](event)
 			}
 		},
 
@@ -714,6 +722,9 @@ export default {
 				allowOutsideClick: true,
 				fallbackFocus: contentContainer,
 				trapStack: getTrapStack(),
+				// Esc can be used without stop in content or additionalTrapElements where it should not deacxtivate modal's focus trap.
+				// Focus trap is deactivated on modal close anyway.
+				escapeDeactivates: false,
 			}
 
 			// Init focus trap
