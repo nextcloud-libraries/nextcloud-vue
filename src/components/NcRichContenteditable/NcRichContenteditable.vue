@@ -35,7 +35,6 @@ This component displays contenteditable div with automated `@` [at] autocompleti
 			:auto-complete="autoComplete"
 			:maxlength="100"
 			:user-data="userData"
-			placeholder="Try mentioning user @Test01 or inserting emoji :smile"
 			@submit="onSubmit" />
 		<br>
 
@@ -45,7 +44,6 @@ This component displays contenteditable div with automated `@` [at] autocompleti
 			:maxlength="400"
 			:multiline="true"
 			:user-data="userData"
-			placeholder="Try mentioning user @Test01 or inserting emoji :smile"
 			@submit="onSubmit" />
 
 		<h5>Output - raw</h5>
@@ -222,7 +220,7 @@ export default {
 
 		placeholder: {
 			type: String,
-			default: t('Write message, use "@" to mention someone, use ":" for emoji autocompletion …'),
+			default: t('Write a message …'),
 		},
 
 		autoComplete: {
