@@ -118,4 +118,17 @@ describe('NcRichContenteditable', () => {
 		expect(handlers.paste).toHaveBeenCalledTimes(1)
 		expect(handlers.blur).toHaveBeenCalledTimes(1)
 	})
+
+	it('should has accessible placeholder from placeholder prop', async () => {
+		const PLACEHOLDER = 'TEST_PLACEHOLDER'
+		const { wrapper } = mountNcRichContenteditable({
+			propsData: {
+				placeholder: PLACEHOLDER,
+			},
+		})
+		// Accessible placeholder
+		expect(wrapper.attributes('aria-placeholder')).toBe(PLACEHOLDER)
+		// Used in CSS for visible placeholder
+		expect(wrapper.attributes('placeholder')).toBe(PLACEHOLDER)
+	})
 })

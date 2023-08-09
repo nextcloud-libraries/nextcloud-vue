@@ -157,6 +157,7 @@ export default {
 		}"
 		:contenteditable="canEdit"
 		:placeholder="placeholder"
+		:aria-placeholder="placeholder"
 		aria-multiline="true"
 		class="rich-contenteditable__input"
 		role="textbox"
