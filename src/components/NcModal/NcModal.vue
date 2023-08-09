@@ -717,7 +717,7 @@ export default {
 			}
 
 			// Init focus trap
-			this.focusTrap = createFocusTrap(contentContainer, options)
+			this.focusTrap = createFocusTrap([contentContainer, ...this.additionalTrapElements], options)
 			this.focusTrap.activate()
 		},
 		clearFocusTrap() {
