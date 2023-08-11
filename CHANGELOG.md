@@ -16,14 +16,6 @@ All notable changes to this project will be documented in this file.
 - [stable7] fix(NcListItem) - define a single place for NcActions to render by @backportbot-nextcloud in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4363
 - [stable7] enh(emoji-picker): allow unselecting set emoji by @max-nextcloud in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4383
 
-### Closed pull requests
-
-- fix\(NcButton\): correctly emit click event [\#4398](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4398) ([raimund-schluessler](https://github.com/raimund-schluessler))
-- fix\(ci\): Set github user after project was moved [\#4387](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4387) ([susnux](https://github.com/susnux))
-- chore: Fix URLs after package was transfered [\#4377](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4377) ([susnux](https://github.com/susnux))
-- fix\(cypress\): Escape glob pattern in cypress script to remove warning [\#4354](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4354) ([susnux](https://github.com/susnux))
-- feat\(NcButton\): Add `pressed` state for stateful buttons [\#4344](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4344) ([susnux](https://github.com/susnux))
-
 ## [v7.12.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.12.1) (2023-07-11)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.12.0...v7.12.1)
