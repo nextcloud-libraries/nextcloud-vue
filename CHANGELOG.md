@@ -4,6 +4,34 @@ All notable changes to this project will be documented in this file.
 
 # Changelog
 
+## [v7.12.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.12.2) (2023-08-11)
+
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.12.1...v7.12.2)
+
+### :boom: Breaking changes
+
+- chore: Drop `install` entry point and replace it with an Vue Plugin [\#4349](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4349) ([susnux](https://github.com/susnux))
+
+### :rocket: Enhancements
+
+- fix\(NcButton\): Improve alignment documentation to show all variants. [\#4392](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4392) ([susnux](https://github.com/susnux))
+- NcButton: Add alignment property to change icon and text ordering [\#4366](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4366) ([susnux](https://github.com/susnux))
+
+### :bug: Fixed bugs
+
+- fix\(l10n\): Remove quoting character  [\#4396](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4396) ([rakekniven](https://github.com/rakekniven))
+- fix\(NcModal\): prev/next color and sizing fix [\#4368](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4368) ([skjnldsv](https://github.com/skjnldsv))
+- fix\(NcListItem\) - define a single place for NcActions to render [\#4356](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4356) ([Antreesy](https://github.com/Antreesy))
+- fix\(NcModal\): Close button should be visible even if modal content is scrolled [\#4350](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4350) ([susnux](https://github.com/susnux))
+
+### Closed pull requests
+
+- fix\(NcButton\): correctly emit click event [\#4398](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4398) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- fix\(ci\): Set github user after project was moved [\#4387](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4387) ([susnux](https://github.com/susnux))
+- chore: Fix URLs after package was transfered [\#4377](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4377) ([susnux](https://github.com/susnux))
+- fix\(cypress\): Escape glob pattern in cypress script to remove warning [\#4354](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4354) ([susnux](https://github.com/susnux))
+- feat\(NcButton\): Add `pressed` state for stateful buttons [\#4344](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4344) ([susnux](https://github.com/susnux))
+
 ## [v7.12.1](https://github.com/nextcloud/nextcloud-vue/tree/v7.12.1) (2023-07-11)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-vue/compare/v7.12.0...v7.12.1)
