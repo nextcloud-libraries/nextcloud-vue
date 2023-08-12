@@ -3,6 +3,7 @@
   "include": ["./src/**/*.ts"],
   "exclude": ["./src/**/*.cy.ts"],
   "compilerOptions": {
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "target": "ESNext",

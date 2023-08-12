@@ -21,7 +21,8 @@ import * as NcDirectives from './directives/index.js'
 export const NextcloudVuePlugin: PluginObject<never> = {
 	install(Vue) {
 		// Install components
-		Object.entries(NcComponents as { [key: string]: DefineComponent }).forEach(([name, component]) => {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		Object.entries(NcComponents as any as { [key: string]: DefineComponent }).forEach(([name, component]) => {
 			Vue.component(component.name || name, component)
 		})
 
