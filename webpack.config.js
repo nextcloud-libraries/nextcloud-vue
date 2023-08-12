@@ -110,8 +110,11 @@ webpackRules.RULE_NODE_MJS = {
 	type: 'javascript/auto',
 	resolve: {
 		fullySpecified: false,
-	}
+	},
 }
+
+// Support vue + Typescript
+webpackRules.RULE_TS.use = ['babel-loader', { loader: 'ts-loader', options: { appendTsSuffixTo: [/\.vue$/] } }]
 
 webpackConfig.module.rules = Object.values(webpackRules)
 
