@@ -75,9 +75,39 @@ export default {
 ```
 </docs>
 
+<template>
+	<NcDialog v-if="open"
+		:additional-trap-elements="additionalTrapElements"
+		:container="container"
+		:name="name"
+		:navigation-classes="['app-settings__navigation']"
+		class="app-settings"
+		size="large"
+		@update:open="handleCloseModal">
+		<template v-if="showNavigation" #navigation="{ isCollapsed }">
+			<ul v-if="!isCollapsed"
+				:aria-label="settingsNavigationAriaLabel"
+				class="navigation-list"
+				role="tablist">
+				<li v-for="item in navigationItems" :key="item.id">
+					<a :class="item.class"
+						:aria-selected="item.id === selectedSection"
+						role="tab"
+						tabindex="0"
+						@click="handleSettingsNavigationClick(item.id)"
+						@keydown="handleLinkKeydown($event, item.id)"
+						v-text="item.name" />
+				</li>
+			</ul>
+		</template>
+		<div ref="scroller" class="app-settings__content">
+			<slot />
+		</div>
+	</NcDialog>
+</template>
+
 <script>
-import NcModal from '../NcModal/index.js'
-import isMobile from '../../mixins/isMobile/index.js'
+import { NcDialog } from '../NcDialog/index.ts'
 import { t } from '../../l10n.js'
 
 import debounce from 'debounce'
@@ -87,10 +117,8 @@ export default {
 	name: 'NcAppSettingsDialog',
 
 	components: {
-		NcModal,
+		NcDialog,
 	},
-
-	mixins: [isMobile],
 
 	props: {
 		/**
@@ -140,59 +168,31 @@ export default {
 		return {
 			selectedSection: '',
 			linkClicked: false,
-			addedScrollListener: false,
-			scroller: null,
 		}
 	},
 
 	computed: {
-
-		hasNavigation() {
-			if (this.isMobile || !this.showNavigation) {
-				return false
-			} else {
-				return true
-			}
-		},
-
 		settingsNavigationAriaLabel() {
 			return t('Settings navigation')
 		},
-	},
-
-	mounted() {
-		// Select first settings section
-		this.selectedSection = this.$slots.default[0].componentOptions.propsData.id
-	},
-
-	updated() {
-		// Check that the scroller element has been mounted
-		if (!this.$refs.settingsScroller) {
-			return
-		}
-		// Get the scroller element
-		this.scroller = this.$refs.settingsScroller
-		if (!this.addedScrollListener) {
-			this.scroller.addEventListener('scroll', this.handleScroll)
-			this.addedScrollListener = true
-		}
-
-	},
-
-	methods: {
 
 		/**
 		 * Builds the settings navigation menu
 		 *
-		 * @param {object} slots The default slots object passed from the render function.
 		 * @return {Array} the navigation items
 		 */
-		getSettingsNavigation(slots) {
+		navigationItems() {
+			const slots = this.$slots.default || []
+
 			// Array of navigationitems strings
 			const navigationItems = slots.filter(vNode => vNode.componentOptions).map(vNode => {
 				return {
 					id: vNode.componentOptions.propsData?.id,
 					name: vNode.componentOptions.propsData?.name,
+					class: {
+						'navigation-list__link': true,
+						'navigation-list__link--active': vNode.componentOptions.propsData?.id === this.selectedSection,
+					},
 				}
 			})
 			const navigationNames = slots.map(item => item.name)
@@ -213,7 +213,14 @@ export default {
 			})
 			return navigationItems
 		},
+	},
 
+	mounted() {
+		// Select first settings section
+		this.selectedSection = this.$slots.default[0].componentOptions.propsData.id
+	},
+
+	methods: {
 		/**
 		 * Scrolls the content to the selected settings section.absolute
 		 *
@@ -223,7 +230,7 @@ export default {
 			this.linkClicked = true
 			document.getElementById('settings-section_' + item).scrollIntoView({
 				behavior: 'smooth',
-				inline: 'nearest',
+				block: 'start',
 			})
 			this.selectedSection = item
 			setTimeout(() => {
@@ -232,11 +239,8 @@ export default {
 		},
 
 		handleCloseModal() {
+			this.$refs.scroller.scrollTop = 0
 			this.$emit('update:open', false)
-			// Remove scroll listener each time the modal is closed
-			this.scroller.removeEventListener('scroll', this.handleScroll)
-			this.addedScrollListener = false
-			this.scroller.scrollTop = 0
 		},
 
 		handleScroll() {
@@ -259,154 +263,22 @@ export default {
 			}
 		},
 	},
-
-	render(h) {
-		/**
-		 * Build the navigation
-		 *
-		 * @return {object} the navigation
-		 */
-		const createAppSettingsNavigation = () => {
-			if (this.hasNavigation) {
-				return [h('div', {
-					attrs: {
-						class: 'app-settings__navigation',
-						role: 'tablist',
-						'aria-label': this.settingsNavigationAriaLabel,
-					},
-				}, [h('ul', {
-					attrs: {
-						class: 'navigation-list',
-						role: 'tablist',
-					},
-				}, this.getSettingsNavigation(this.$slots.default).map(item => {
-					return createListElement(item)
-				}))])]
-			} else {
-				return []
-			}
-		}
-
-		/**
-		 * Build each list element in the navigation
-		 *
-		 * @param {object} item the navigation item
-		 * @return {object} the list element
-		 */
-		const createListElement = (item) => h('li', {}, [h('a', {
-			class: {
-				'navigation-list__link': true,
-				'navigation-list__link--active': item.id === this.selectedSection,
-			},
-
-			attrs: {
-				role: 'tab',
-				'aria-selected': item.id === this.selectedSection,
-				tabindex: '0',
-			},
-
-			on: {
-				click: () => this.handleSettingsNavigationClick(item.id),
-				keydown: () => this.handleLinkKeydown(event, item.id),
-			},
-		}, item.name)])
-
-		// Return value of the render function
-		if (this.open) {
-			return h('NcModal', {
-				class: [
-					'app-settings-modal',
-				],
-				attrs: {
-					container: this.container,
-					size: 'large',
-					additionalTrapElements: this.additionalTrapElements,
-				},
-				on: {
-					close: () => { this.handleCloseModal() },
-				},
-			}, [
-				// main app-settings root element
-				h('div', {
-					attrs: {
-						class: 'app-settings',
-					},
-				}, [
-					// app-settings name
-					h('h2', {
-						attrs: {
-							class: 'app-settings__name',
-						},
-					}, this.name),
-
-					// app-settings navigation + content
-					h(
-						'div',
-						{
-							attrs: {
-								class: 'app-settings__wrapper',
-							},
-						},
-						[
-							...createAppSettingsNavigation(),
-							h('div', {
-								attrs: {
-									class: 'app-settings__content',
-								},
-								ref: 'settingsScroller',
-							}, this.$slots.default),
-						],
-					),
-				]),
-			])
-		} else {
-			return undefined
-		}
-	},
 }
 
 </script>
 
 <style lang="scss" scoped>
-
-.app-settings-modal :deep(.modal-wrapper .modal-container) {
-	display: flex;
-	overflow: hidden;
-}
-
 .app-settings {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	min-width: 0;
-	&__name {
-		min-height: $clickable-area;
-		height: $clickable-area;
-		line-height: $clickable-area;
-		padding-top: 4px; // Same as the close button top spacing
-		text-align: center;
-	}
-	&__wrapper {
-		display: flex;
-		width: 100%;
-		overflow: hidden;
-		height: 100%;
-		position: relative;
-	}
-	&__navigation {
-		min-width: 200px;
-		margin-right: 20px;
-		overflow-x: hidden;
-		overflow-y: auto;
-		position: relative;
-		height: 100%;
-	}
 	&__content {
-		max-width: 100vw;
 		overflow-y: auto;
 		overflow-x: hidden;
 		padding: 24px;
 		width: 100%;
+		height: 100%;
+	}
+
+	:deep(.modal-container) {
+		height: 90%;
 	}
 }
 
@@ -415,6 +287,7 @@ export default {
 	box-sizing: border-box;
 	overflow-y: auto;
 	padding: 12px;
+
 	&__link {
 		display: block;
 		font-size: 16px;
@@ -430,10 +303,11 @@ export default {
 		overflow: hidden;
 		background-color: transparent;
 		border: none;
-		&:hover,
-		&:focus {
+
+		&:hover, &:focus {
 			background-color: var(--color-background-hover);
 		}
+
 		&--active {
 			background-color: var(--color-primary-element-light) !important;
 		}
