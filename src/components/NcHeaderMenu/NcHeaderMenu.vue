@@ -350,4 +350,14 @@ $externalMargin: 8px;
 	}
 }
 
+@media only screen and (max-width: math.div($breakpoint-mobile, 2)) {
+	.header-menu {
+		width: $clickable-area;
+
+		&__trigger {
+			width: $clickable-area;
+		}
+	}
+}
+
 </style>
