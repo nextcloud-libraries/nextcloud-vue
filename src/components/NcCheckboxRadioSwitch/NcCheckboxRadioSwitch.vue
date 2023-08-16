@@ -644,7 +644,7 @@ export default {
 	$border-radius-outer: calc($border-radius + 2px);
 
 	&--button-variant.checkbox-radio-switch {
-		border: 2px solid var(--color-border-dark);
+		border: 2px solid var(--color-border-maxcontrast);
 		overflow: hidden;
 
 		&--checked {
