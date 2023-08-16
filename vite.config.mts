@@ -70,7 +70,7 @@ export default defineConfig((env) => {
 		libraryFormats: ['es', 'cjs'],
 		replace: {
 			PRODUCTION: JSON.stringify(env.mode === 'production'),
-			SCOPE_VERSION,
+			SCOPE_VERSION: JSON.stringify(SCOPE_VERSION),
 			TRANSLATIONS: ';' + JSON.stringify(TRANSLATIONS),
 		},
 	})
