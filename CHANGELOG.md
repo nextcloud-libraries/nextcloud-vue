@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 ## v8 **Unreleased** (beta)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.11.2...v8.0.0-beta.2)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.12.2...v8.0.0-beta.3)
 
 ### :boom: Breaking changes
 - Update node engines to next LTS (node 20 / npm 9)
@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
   - `label` property was renamed to `name` for `NcMentionBubble`
   - `name` propery is now required for `NcActions*`, `NcAppNavigationItem` and `NcBreadcrumb*`
   - See linked pull request for full migration guide
+- chore: Drop `install` entry point and replace it with an Vue Plugin [\#4349](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4349) ([susnux](https://github.com/susnux))
 
 ### :rocket: Enhancements
 - enh\(NcDatetime\): New component for displaying timestamps as time relative from now [\#4219](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4219) ([susnux](https://github.com/susnux))
@@ -30,6 +31,7 @@ All notable changes to this project will be documented in this file.
 - feat\(NcReferencePickerModal\): Allow setting modal size when registering a custom picker component [\#3866](https://github.com/nextcloud-libraries/nextcloud-vue/pull/3866) ([julien-nc](https://github.com/julien-nc))
 - feat: Migrate `NcAvatar` to use `NcActions` [\#4017](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4017) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - feat\(a11y\): Export a11y activation util [\#4166](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4166) ([Pytal](https://github.com/Pytal))
+- NcButton: Add alignment property to change icon and text ordering [\#4366](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4366) ([susnux](https://github.com/susnux))
 
 ### :bug: Fixed bugs
 - fix\(NcSettingsSelectGroup\): Migrate from deprecated `NcMultiselect` to `NcSelect` [\#4120](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4120) ([susnux](https://github.com/susnux))
@@ -60,6 +62,16 @@ All notable changes to this project will be documented in this file.
 - fix\(NcSelect\): Fix disabled state of NcSelect with dark mode [\#4079](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4079) ([nickvergessen](https://github.com/nickvergessen))
 - fix\(NcSelect\): Action input usage [\#4066](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4066) ([Pytal](https://github.com/Pytal))
 - fix\(NcRichContenteditable\): Fix avatar overlayed with empty space when offline [\#4043](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4043) ([nickvergessen](https://github.com/nickvergessen))
+- fix\(l10n\): Add language mappings like server does so gettext uses the same locale [\#4412](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4412) ([susnux](https://github.com/susnux))
+- fix\(l10n\): Remove quoting character  [\#4396](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4396) ([rakekniven](https://github.com/rakekniven))
+- fix\(NcModal\): prev/next color and sizing fix [\#4368](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4368) ([skjnldsv](https://github.com/skjnldsv))
+- fix\(NcListItem\) - define a single place for NcActions to render [\#4356](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4356) ([Antreesy](https://github.com/Antreesy))
+- fix\(NcModal\): Close button should be visible even if modal content is scrolled [\#4350](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4350) ([susnux](https://github.com/susnux))
+- fix\(NcButton\): Improve alignment documentation to show all variants. [\#4392](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4392) ([susnux](https://github.com/susnux))
+- try to fix header size on mobile [\#4420](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4420) ([szaimen](https://github.com/szaimen))
+- fix\(NcButton\): correctly emit click event [\#4398](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4398) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- feat\(NcButton\): Add `pressed` state for stateful buttons [\#4344](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4344) ([susnux](https://github.com/susnux))
+- NcCheckboxRadioSwitch - adjust border color [\#4427](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4427) ([szaimen](https://github.com/szaimen)) 
 
 ## [v7.11.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.11.2) (2023-05-05)
 
