@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 ## v8 **Unreleased** (beta)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.12.2...v8.0.0-beta.3)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.11.2...v8.0.0-beta.3)
 
 ### :boom: Breaking changes
 - Update node engines to next LTS (node 20 / npm 9)
@@ -72,6 +72,8 @@ All notable changes to this project will be documented in this file.
 - fix\(NcButton\): correctly emit click event [\#4398](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4398) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - feat\(NcButton\): Add `pressed` state for stateful buttons [\#4344](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4344) ([susnux](https://github.com/susnux))
 - NcCheckboxRadioSwitch - adjust border color [\#4427](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4427) ([szaimen](https://github.com/szaimen)) 
+- fix\(NcRichContenteditable\): Add aria-placeholder [\#4407](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4407) ([ShGKme](https://github.com/ShGKme))
+- fix\(NcModal\): Fix modal focus trap with additional elements and arrow navigation [\#4406](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4406) ([ShGKme](https://github.com/ShGKme))
 
 ## [v7.11.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.11.2) (2023-05-05)
 
