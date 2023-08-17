@@ -1018,6 +1018,8 @@ body {
 	.vs__selected {
 		min-height: 36px;
 		padding: 0 0.5em;
+		border: 2px var(--vs-selected-border-style) var(--color-border-maxcontrast)!important;
+		border-radius: calc(var(--vs-border-radius) - 4px)!important;
 	}
 
 	.vs__clear {
