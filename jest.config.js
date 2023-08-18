@@ -26,6 +26,7 @@ const ignorePatterns = [
 	'char-regex',
 	'comma-separated-tokens',
 	'decode-named-character-reference',
+	'devlop', // ESM dependency of unified
 	'escape-string-regexp',
 	'hast-*',
 	'is-*',
