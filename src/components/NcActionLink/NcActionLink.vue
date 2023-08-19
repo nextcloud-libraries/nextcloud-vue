@@ -86,6 +86,7 @@ export default {
 			:title="title"
 			class="action-link focusable"
 			rel="nofollow noreferrer noopener"
+			role="menuitem"
 			@click="onClick">
 
 			<!-- @slot Manually provide icon -->
