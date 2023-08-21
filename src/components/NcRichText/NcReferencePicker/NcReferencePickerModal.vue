@@ -17,6 +17,7 @@
 			</NcButton>
 			<NcButton :aria-label="closeButtonLabel"
 				:title="closeButtonTitle"
+				type="tertiary"
 				class="close-button"
 				@click="onCancel">
 				<template #icon>
