@@ -251,7 +251,9 @@
 								</span>
 
 								<!-- Counter and indicator -->
-								<span v-if="showAdditionalElements" class="line-two__additional_elements">
+								<span v-if="counterNumber != 0 || hasIndicator"
+									v-show="showAdditionalElements"
+									class="line-two__additional_elements">
 									<NcCounterBubble v-if="counterNumber != 0"
 										class="line-two__counter"
 										:type="counterType">
@@ -407,7 +409,7 @@ export default {
 		},
 
 		/**
-		 * If different from from 0 this component will display the
+		 * If different from 0 this component will display the
 		 * NcCounterBubble component
 		 */
 		 counterNumber: {
