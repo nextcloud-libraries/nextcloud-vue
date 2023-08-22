@@ -38,7 +38,7 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
-    "./dist/": "./dist/"
+    "./dist/*": "./dist/*"
   },
   "files": [
     "CHANGELOG.md",
