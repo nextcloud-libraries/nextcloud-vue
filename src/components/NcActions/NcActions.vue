@@ -670,7 +670,11 @@ export default {
 		},
 
 		/**
-		 * Aria label for the actions menu
+		 * Aria label for the actions menu.
+		 *
+		 * If `menuName` is defined this will not be used to prevent
+		 * any accessible name conflicts. This ensures that the
+		 * element can be activated via voice input.
 		 */
 		ariaLabel: {
 			type: String,
@@ -1114,7 +1118,7 @@ export default {
 						ref: 'menuButton',
 						attrs: {
 							'aria-haspopup': isNav ? null : 'menu',
-							'aria-label': this.ariaLabel,
+							'aria-label': this.menuName ? null : this.ariaLabel,
 							'aria-controls': this.opened ? this.randomId : null,
 							'aria-expanded': this.opened.toString(),
 						},
