@@ -76,11 +76,14 @@ export default {
 				<input :id="id" type="submit" class="action-text-editable__submit">
 
 				<!-- name -->
-				<strong v-if="name" class="action-text__name">
+				<label v-if="name"
+					class="action-text-editable__name"
+					:for="computedId">
 					{{ name }}
-				</strong>
+				</label>
 
-				<textarea :disabled="disabled"
+				<textarea :id="computedId"
+					:disabled="disabled"
 					:value="value"
 					v-bind="$attrs"
 					:class="['action-text-editable__textarea', { focusable: isFocusable }]"
@@ -150,6 +153,10 @@ export default {
 		 */
 		isFocusable() {
 			return !this.disabled
+		},
+
+		computedId() {
+			return GenRandomId()
 		},
 	},
 
@@ -347,5 +354,4 @@ li:last-child > .action-text-editable {
 li:first-child > .action-text-editable {
 	margin-top: $icon-margin - $input-margin;
 }
-
 </style>
