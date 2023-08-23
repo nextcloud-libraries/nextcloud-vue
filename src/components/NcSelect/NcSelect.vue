@@ -526,7 +526,7 @@ export default {
 </template>
 
 <script>
-import VueSelect from '@nextcloud/vue-select'
+import { VueSelect } from '@nextcloud/vue-select'
 import '@nextcloud/vue-select/dist/vue-select.css'
 import {
 	autoUpdate,
