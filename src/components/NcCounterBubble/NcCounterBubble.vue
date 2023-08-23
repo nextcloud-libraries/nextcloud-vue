@@ -62,6 +62,16 @@ export default {
 				return ['highlighted', 'outlined', ''].indexOf(value) !== -1
 			},
 		},
+
+		/**
+		 * Specifies whether the component is used within a component that is
+		 * active and therefore has a primary background. Inverts the color of
+		 * this component when that is the case.
+		 */
+		active: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	computed: {
@@ -69,6 +79,7 @@ export default {
 			return {
 				'counter-bubble__counter--highlighted': this.type === 'highlighted',
 				'counter-bubble__counter--outlined': this.type === 'outlined',
+				active: this.active,
 			}
 		},
 	},
@@ -91,14 +102,28 @@ export default {
 	font-weight: bold;
 	color: var(--color-primary-element-light-text);
 
+	& .active {
+		color: var(--color-main-background);
+		background-color: var(--color-primary-element-light);
+	}
+
 	&--highlighted {
 		color: var(--color-primary-element-text);
 		background-color: var(--color-primary-element);
 	}
 
+	&--highlighted,.active {
+		color: var(--color-primary-element);
+		background-color: var(--color-main-background);
+	}
+
 	&--outlined {
 		color: var(--color-primary-element);
 		background: transparent;
+		box-shadow: inset 0 0 0 2px;
+	}
+	&--outlined,.active {
+		color: var(--color-main-background);
 		box-shadow: inset 0 0 0 2px;
 	}
 }

@@ -26,11 +26,13 @@
 <template>
 	<ul>
 		<NcListItem
-			:name="'Name of the element'"
+			:name="'This is an active element'"
 			:bold="false"
+			:active="true"
 			:details="'1h'"
 			:counter-number="44"
-			counterType="highlighted">
+			counterType="highlighted"
+			class="active">
 			<template #icon>
 				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
@@ -39,7 +41,7 @@
 			</template>
 			<template #indicator>
 				<!-- Color dot -->
-				<CheckboxBlankCircle :size="16" fill-color="#0082c9" />
+				<CheckboxBlankCircle :size="16" fill-color="#fff" />
 			</template>
 			<template #actions>
 				<NcActionButton>
@@ -205,7 +207,7 @@
 		:to="to"
 		:exact="to ? exact : null">
 		<li class="list-item__wrapper"
-			:class="{ 'list-item__wrapper--active' : isActive }">
+			:class="{ 'list-item__wrapper--active' : isActive || active }">
 			<a :id="anchorId"
 				ref="list-item"
 				:href="routerLinkHref || href"
@@ -255,6 +257,7 @@
 									v-show="showAdditionalElements"
 									class="line-two__additional_elements">
 									<NcCounterBubble v-if="counterNumber != 0"
+										:active="isActive || active"
 										class="line-two__counter"
 										:type="counterType">
 										{{ counterNumber }}
@@ -274,6 +277,7 @@
 							class="list-item-content__actions"
 							@click.prevent.stop="">
 							<NcActions ref="actions"
+								:primary="isActive || active"
 								:aria-label="computedActionsAriaLabel"
 								@update:open="handleActionsUpdateOpen">
 								<!-- @slot Provide the actions for the right side quick menu -->
@@ -286,6 +290,7 @@
 						class="list-item-content__actions"
 						@click.prevent.stop="">
 						<NcActions ref="actions"
+							:primary="isActive || active"
 							:aria-label="computedActionsAriaLabel"
 							@update:open="handleActionsUpdateOpen">
 							<!-- @slot Provide the actions for the right side quick menu -->
@@ -604,7 +609,15 @@ export default {
 	&:active,
 	&.active {
 		.list-item {
-			background-color: var(--color-primary-element-light);
+			background-color: var(--color-primary-element);
+		}
+
+		.line-one__name, .line-one__details {
+			color: var(--color-primary-element-text) !important;
+		}
+
+		.line-two__subname {
+			color: var(--color-primary-element-text) !important;
 		}
 	}
 }
@@ -670,19 +683,6 @@ export default {
 
 	&__extra {
 		margin-top: 4px;
-	}
-}
-
-// Add more contrast for active entry
-[data-themes*='highcontrast'] {
-	.list-item__wrapper {
-		&--active,
-		&:active,
-		&.active {
-			.list-item {
-				background-color: var(--color-primary-element-light-hover);
-			}
-		}
 	}
 }
 

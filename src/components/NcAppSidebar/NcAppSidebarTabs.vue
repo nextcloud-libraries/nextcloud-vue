@@ -311,4 +311,8 @@ export default {
 		}
 	}
 }
+
+:deep(.checkbox-radio-switch--button-variant.checkbox-radio-switch) {
+	border: unset;
+}
 </style>
