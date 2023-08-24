@@ -41,7 +41,7 @@ export default {
 
 Local IP: http://127.0.0.1/status.php should be clickable
 
-Some examples for markdown syntax: **bold text** *italic text* ~~strikethrough~~`,
+Some examples for markdown syntax: **bold text** *italic text* \`inline code\``,
 			autolink: true,
 			useMarkdown: true,
 			args: {
@@ -217,7 +217,11 @@ export default {
 					},
 					prefix: false,
 				})
-				.processSync(this.text)
+				.processSync(this.useMarkdown
+					? this.text.slice().replace(/\n{2,}/g, (match) => {
+						return '\n\u00A0'.repeat(match.length - 1) + '\n'
+					})
+					: this.text)
 				.result
 
 			return h('div', { class: 'rich-text--wrapper' }, [
