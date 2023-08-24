@@ -604,6 +604,11 @@ export default {
 		&, * {
 			cursor: pointer;
 		}
+
+		&-text:empty {
+			// hide text if empty to ensure checkbox outline is a circle instead of oval
+			display: none;
+		}
 	}
 
 	&__icon > * {
@@ -627,6 +632,12 @@ export default {
 	&--checked:not(&--disabled):focus-within &__label,
 	&--checked:not(&--disabled) &__label:hover {
 		background-color: var(--color-primary-element-light-hover);
+	}
+
+	&-checkbox, &-switch {
+		.checkbox-radio-switch__label {
+			padding: 4px 10px; // we use 24x24px sized MDI icons for checkbox and radiobutton -> (44px - 24 px) / 2 = 10px
+		}
 	}
 
 	// Switch specific rules
