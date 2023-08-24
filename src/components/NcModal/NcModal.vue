@@ -252,7 +252,7 @@ export default {
 						spreadNavigation ? 'modal-wrapper--spread-navigation' : ''
 					]"
 					class="modal-wrapper"
-					@mousedown.self="close">
+					@mousedown.self="handleClickModalWrapper">
 					<!-- Navigation button -->
 					<transition name="fade-visibility" appear>
 						<NcButton v-show="hasPrevious"
@@ -420,6 +420,7 @@ export default {
 				return ['small', 'normal', 'large', 'full'].includes(size)
 			},
 		},
+
 		/**
 		 * Declare if the modal can be closed
 		 */
@@ -427,6 +428,16 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+
+		/**
+		 * Close the modal if the user clicked outside of the modal
+		 * Only relevant if `canClose` is set to true.
+		 */
+		closeOnClickOutside: {
+			type: Boolean,
+			default: true,
+		},
+
 		/** Makes the modal backdrop black if true  */
 		dark: {
 			type: Boolean,
@@ -613,6 +624,18 @@ export default {
 					 */
 					this.$emit('close', data)
 				}, 300)
+			}
+		},
+
+		/**
+		 * Handle click on modal wrapper
+		 * If `closeOnClickOutside` is set the modal will be closed
+		 *
+		 * @param {MouseEvent} event The click event
+		 */
+		handleClickModalWrapper(event) {
+			if (this.closeOnClickOutside) {
+				this.close(event)
 			}
 		},
 
