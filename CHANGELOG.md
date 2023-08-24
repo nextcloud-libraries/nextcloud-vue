@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 # Changelog
 
+## [v7.12.3](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.12.3) (2023-08-24)
+
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.12.2...v7.12.3)
+
+## :bug: Fixed bugs
+* [stable7] try to fix header size on mobile by @szaimen in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4421
+* [stable7] fix(NcListItem): remove empty wrapper for additional elements from DOM if not needed by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4446
+* [stable7] Prevent accessible name conflicts on action menu by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4450
+* [stable7] fix(NcBreadcrumbs): adjust component for vue filepicker by @raimund-schluessler in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4452
+* [stable7] fix: Rename name to title by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4455
+* [stable7] fix(NcListItem): don't force blur action menu on tab by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4459
+* [stable7] fix(NcRichText): keep newlines in rendered Markdown by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4462
+
 ## [v7.12.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.12.2) (2023-08-11)
 
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.12.1...v7.12.2)
