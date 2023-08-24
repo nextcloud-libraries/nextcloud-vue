@@ -143,17 +143,20 @@ index 0e3a6a705d..416b8b0fb9 100644
 
 ## Releasing a new version
 
-- Pull the latest changes from `master` or `stableX`;
-- Checkout a new branch with the tag name (e.g `v4.0.1`): `git checkout -b v<version>`;
-- Run `npm version patch --no-git-tag-version` (`npm version minor --no-git-tag-version` if minor). This will return a new version name, make sure it matches what you expect;
-- Commit, push and create PR;
-- Add the change log content from the 'Changelog' action on GitHub to `CHANGELOG.md`;
-- Commit and push;
-- Get your PR reviewed and merged;
+- Pull the latest changes from `master` or `stableX`
+- Checkout a new branch with the tag name (e.g `v4.0.1`): `git checkout -b v<version>`
+- Run `npm version patch --no-git-tag-version` (`npm version minor --no-git-tag-version` if minor).
+  This will return a new version name, make sure it matches what you expect
+- Generate the changelog content from the [release](https://github.com/nextcloud-libraries/nextcloud-vue/releases) page.
+  Create a draft release, select the previous tag, click `generate` then paste the content to the `CHANGELOG.md` file
+  1. use the the version as tag AND title (e.g `v4.0.1`)
+  2. add the changelog content as description (https://github.com/nextcloud-libraries/nextcloud-vue/releases)
+- Commit, push and create PR
+- Get your PR reviewed and merged
 - Create a milestone with the follow-up version at https://github.com/nextcloud-libraries/nextcloud-vue/milestones
 - Move all open tickets and PRs to the follow-up
 - Close the milestone of the version you release
-- Create a release on GitHub with the version as tag (e.g `v4.0.1`) and add the changelog content as description (https://github.com/nextcloud-libraries/nextcloud-vue/releases);
+- Publish the previously drafted release on GitHub
   ![image](https://user-images.githubusercontent.com/14975046/124442568-2a952500-dd7d-11eb-82a2-402f9170231a.png)
 
 <a href="https://www.netlify.com">
