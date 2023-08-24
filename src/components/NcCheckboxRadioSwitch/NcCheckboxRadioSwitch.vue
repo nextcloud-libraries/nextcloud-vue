@@ -271,14 +271,12 @@ export default {
 		:style="cssVars"
 		class="checkbox-radio-switch">
 		<input :id="id"
-			:checked="isChecked"
+			class="checkbox-radio-switch__input"
 			:disabled="disabled"
-			:indeterminate="indeterminate"
-			:name="name"
 			:type="inputType"
 			:value="value"
-			class="checkbox-radio-switch__input"
-			@change="onToggle">
+			v-bind="inputProps"
+			v-on="inputListeners">
 		<label :for="id" class="checkbox-radio-switch__label">
 			<div class="checkbox-radio-switch__icon">
 				<!-- @slot The checkbox/radio icon, you can use it for adding an icon to the button variant
@@ -317,6 +315,7 @@ import ToggleSwitch from 'vue-material-design-icons/ToggleSwitch.vue'
 export const TYPE_CHECKBOX = 'checkbox'
 export const TYPE_RADIO = 'radio'
 export const TYPE_SWITCH = 'switch'
+export const TYPE_BUTTON = 'button'
 
 export default {
 	name: 'NcCheckboxRadioSwitch',
@@ -339,7 +338,8 @@ export default {
 		},
 
 		/**
-		 * Input name. Required for radio, optional for checkbox
+		 * Input name. Required for radio, optional for checkbox, and ignored
+		 * for button.
 		 */
 		name: {
 			type: String,
@@ -347,12 +347,20 @@ export default {
 		},
 
 		/**
-		 * Type of the input. checkbox, radio or switch
+		 * Type of the input. checkbox, radio, switch, or button.
+		 *
+		 * Only use button when used in a `tablist` container and the
+		 * `tab` role is set.
 		 */
 		type: {
 			type: String,
 			default: 'checkbox',
-			validator: type => type === TYPE_CHECKBOX || type === TYPE_RADIO || type === TYPE_SWITCH,
+			validator: type => [
+				TYPE_CHECKBOX,
+				TYPE_RADIO,
+				TYPE_SWITCH,
+				TYPE_BUTTON,
+			].includes(type),
 		},
 
 		/**
@@ -426,6 +434,28 @@ export default {
 	emits: ['update:checked'],
 
 	computed: {
+		inputProps() {
+			if (this.type === TYPE_BUTTON) {
+				return null
+			}
+			return {
+				checked: this.isChecked,
+				indeterminate: this.indeterminate,
+				name: this.name,
+			}
+		},
+
+		inputListeners() {
+			if (this.type === TYPE_BUTTON) {
+				return {
+					click: this.onToggle,
+				}
+			}
+			return {
+				change: this.onToggle,
+			}
+		},
+
 		/**
 		 * Icon size
 		 *
@@ -455,8 +485,13 @@ export default {
 		 * @return {string}
 		 */
 		inputType() {
-			if (this.type === TYPE_RADIO) {
-				return TYPE_RADIO
+			const nativeTypes = [
+				TYPE_CHECKBOX,
+				TYPE_RADIO,
+				TYPE_BUTTON,
+			]
+			if (nativeTypes.includes(this.type)) {
+				return this.type
 			}
 			return TYPE_CHECKBOX
 		},
