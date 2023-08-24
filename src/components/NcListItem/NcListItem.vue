@@ -574,7 +574,6 @@ export default {
 				this.focused = false
 			} else {
 				this.displayActionsOnHoverFocus = false
-				this.$refs.actions.$refs.menuButton.$el.blur()
 			}
 		},
 
