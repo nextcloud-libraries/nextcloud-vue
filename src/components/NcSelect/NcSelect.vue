@@ -984,6 +984,9 @@ body {
 	/* Selected */
 	--vs-selected-bg: var(--color-background-dark);
 	--vs-selected-color: var(--color-main-text);
+	--vs-selected-border-color: var(--vs-border-color);
+	--vs-selected-border-style: var(--vs-border-style);
+	--vs-selected-border-width: var(--vs-border-width);
 
 	/* Dropdown */
 	--vs-dropdown-bg: var(--color-main-background);
@@ -1018,8 +1021,7 @@ body {
 	.vs__selected {
 		min-height: 36px;
 		padding: 0 0.5em;
-		border: 2px var(--vs-selected-border-style) var(--color-border-maxcontrast)!important;
-		border-radius: calc(var(--vs-border-radius) - 4px)!important;
+		border-radius: calc(var(--vs-border-radius) - 4px) !important;
 	}
 
 	.vs__clear {
