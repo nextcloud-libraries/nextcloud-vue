@@ -24,6 +24,9 @@
 See [NcInputField](#/Components/NcFields?id=ncinputfield) for a list of all available props.
 
 General purpose text field component.
+It is recommended to not only provide a placeholder, but also a label.
+The label should describe what input is expected and the placehold what format the input should have.
+
 Note: the inner html `input` element inherits all the attributes from the
 NcTextField component so you can add things like `autocomplete`, `maxlength`
 and `minlength`.
@@ -36,32 +39,39 @@ and `minlength`.
 			trailing-button-icon="close"
 			:show-trailing-button="text1 !== ''"
 			@trailing-button-click="clearText">
-			<Magnify :size="16" />
+			<Magnify :size="20" />
+		</NcTextField>
+		<NcTextField :value.sync="text4"
+			label="Internal label"
+			placeholder="That can be used together with placeholder"
+			trailing-button-icon="close"
+			:show-trailing-button="text4 !== ''"
+			@trailing-button-click="clearText">
+			<Lock :size="20" />
 		</NcTextField>
 		<NcTextField :value.sync="text2"
 			label="Success state"
+			placeholder="Placeholders are possible"
 			:success="true"
 			@trailing-button-click="clearText">
 		</NcTextField>
 		<NcTextField :value.sync="text3"
 			label="Error state"
+			placeholder="Enter something valid"
 			:error="true"
 			@trailing-button-click="clearText">
 		</NcTextField>
-		<NcTextField :value.sync="text4"
-			label="Internal label"
-			placeholder="That can be used together with placeholder"
-			:label-visible="true"
-			trailing-button-icon="close"
-			:show-trailing-button="text4 !== ''"
-			@trailing-button-click="clearText">
-			<Lock :size="16" />
-		</NcTextField>
+		<NcTextField label="Disabled"
+			:disabled="true" />
+		<NcTextField label="Disabled + Success"
+			:success="true"
+			:disabled="true" />
 		<div class="external-label">
 			<label for="textField">External label</label>
 			<NcTextField :value.sync="text5"
 				id="textField"
 				:label-outside="true"
+				placeholder="Input with external label"
 				@trailing-button-click="clearText" />
 		</div>
 	</div>

@@ -33,23 +33,25 @@ General purpose password field component.
 			label="Old password" />
 		<div class="external-label">
 			<label for="textField">New password</label>
-			<NcPasswordField :value.sync="text2"
-				id="textField"
-				:label-outside="true" />
+			<NcPasswordField id="textField"
+				:value.sync="text2"
+				:label-outside="true"
+				placeholder="Min. 12 characters" />
 		</div>
 		<div class="external-label">
 			<label for="textField2">New password</label>
-			<NcPasswordField :value.sync="text3"
+			<NcPasswordField id="textField2"
+				:value.sync="text3"
 				:error="true"
-				id="textField2"
 				:label-outside="true"
+				placeholder="Min. 12 characters"
 				helper-text="Password is insecure" />
 		</div>
 
 		<NcPasswordField :value.sync="text4"
 			label="Good new password"
-			:label-visible="true"
 			:success="true"
+			placeholder="Min. 12 characters"
 			helper-text="Password is secure" />
 
 		<NcPasswordField :value.sync="text5"
