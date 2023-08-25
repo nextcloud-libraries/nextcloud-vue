@@ -15,11 +15,6 @@ jobs:
       head_ref: ${{ steps.comment-branch.outputs.head_ref }}
 
     steps:
-      - name: Check actor permission
-        uses: skjnldsv/check-actor-permission@v2
-        with:
-          require: write
-
       - name: Add reaction on start
         uses: peter-evans/create-or-update-comment@v3
         with:
