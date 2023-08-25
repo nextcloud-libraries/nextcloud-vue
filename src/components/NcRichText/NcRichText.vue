@@ -218,9 +218,13 @@ export default {
 					prefix: false,
 				})
 				.processSync(this.useMarkdown
-					? this.text.slice().replace(/\n{2,}/g, (match) => {
-						return '\n\u00A0'.repeat(match.length - 1) + '\n'
-					})
+				// In order to correctly show newlines in Markdown,
+				// each newline contains a non-breaking space
+					? this.text.slice()
+						.replace(/\n>\n/g, '\n>\u00A0\n')
+						.replace(/\n{2,}/g, (match) => {
+							return '\n' + '\n\u00A0\n'.repeat(match.length - 1)
+						})
 					: this.text)
 				.result
 
