@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 ## v8 **Unreleased** (beta)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.11.2...v8.0.0-beta.3)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.11.2...v8.0.0-beta.4)
 
 ### :boom: Breaking changes
 - Update node engines to next LTS (node 20 / npm 9)
@@ -34,6 +34,12 @@ All notable changes to this project will be documented in this file.
 - feat: Migrate `NcAvatar` to use `NcActions` [\#4017](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4017) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - feat\(a11y\): Export a11y activation util [\#4166](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4166) ([Pytal](https://github.com/Pytal))
 - NcButton: Add alignment property to change icon and text ordering [\#4366](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4366) ([susnux](https://github.com/susnux))
+- Add accessible label to textarea [\#4448](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4448) ([Pytal](https://github.com/Pytal))
+- Remove border from sidebar tabs [\#4449](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4449) ([marcoambrosini](https://github.com/marcoambrosini))
+- Make smart picker modal close button tertiary [\#4441](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4441) ([julien-nc](https://github.com/julien-nc))
+- Add menuitem role to action link [\#4436](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4436) ([Pytal](https://github.com/Pytal))
+- feat\(NcModal\): Allow to configure if the modal is closed when clicked outside [\#4454](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4454) ([susnux](https://github.com/susnux))
+- Feature: Add visible inner label for `NcInputField` on border [\#4394](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4394) ([susnux](https://github.com/susnux))
 
 ### :bug: Fixed bugs
 - fix\(NcSettingsSelectGroup\): Migrate from deprecated `NcMultiselect` to `NcSelect` [\#4120](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4120) ([susnux](https://github.com/susnux))
@@ -73,9 +79,20 @@ All notable changes to this project will be documented in this file.
 - try to fix header size on mobile [\#4420](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4420) ([szaimen](https://github.com/szaimen))
 - fix\(NcButton\): correctly emit click event [\#4398](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4398) ([raimund-schluessler](https://github.com/raimund-schluessler))
 - feat\(NcButton\): Add `pressed` state for stateful buttons [\#4344](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4344) ([susnux](https://github.com/susnux))
-- NcCheckboxRadioSwitch - adjust border color [\#4427](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4427) ([szaimen](https://github.com/szaimen)) 
+- NcCheckboxRadioSwitch - adjust border color [\#4427](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4427) ([szaimen](https://github.com/szaimen))
 - fix\(NcRichContenteditable\): Add aria-placeholder [\#4407](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4407) ([ShGKme](https://github.com/ShGKme))
 - fix\(NcModal\): Fix modal focus trap with additional elements and arrow navigation [\#4406](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4406) ([ShGKme](https://github.com/ShGKme))
+- Fix contrast for selected item [\#4434](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4434) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter))
+- fix\(`NcListItem`\) - remove empty wrapper for additional elements from DOM if not needed [\#4438](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4438) ([Antreesy](https://github.com/Antreesy))
+- fix: `exports` field of package used deprecated syntax [\#4437](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4437) ([susnux](https://github.com/susnux))
+- Prevent accessible name conflicts on action menu [\#4447](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4447) ([Pytal](https://github.com/Pytal))
+- fix: adjust active element visibility in nclistitem [\#4158](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4158) ([szaimen](https://github.com/szaimen))
+- fix: adjust breadcrumbs component [\#4416](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4416) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- fix\(NcSelect\): Use named export of VueSelect to prevent issues when imported in ESM projects [\#4451](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4451) ([susnux](https://github.com/susnux))
+- fix\(NcCheckboxRadioSwitch\): If no text is provided the element should be a circle [\#4453](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4453) ([susnux](https://github.com/susnux))
+- fix\(`NcListItem`\) don't force blur action menu on tab [\#4458](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4458) ([Antreesy](https://github.com/Antreesy))
+- fix\(`NcRichText`\) - keep newlines in rendered Markdown  [\#4461](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4461) ([Antreesy](https://github.com/Antreesy))
+- fix\(`NcRichText`\) - don't populate a first newline to properly parse blockqoute tags [\#4470](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4470) ([Antreesy](https://github.com/Antreesy))
 
 ## [v7.11.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.11.2) (2023-05-05)
 
