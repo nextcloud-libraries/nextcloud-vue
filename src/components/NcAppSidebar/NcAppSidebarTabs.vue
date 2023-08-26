@@ -28,7 +28,7 @@
 	<div class="app-sidebar-tabs">
 		<!-- tabs navigation -->
 		<!-- 33 and 34 code is for page up and page down -->
-		<nav v-if="hasMultipleTabs"
+		<div v-if="hasMultipleTabs"
 			role="tablist"
 			class="app-sidebar-tabs__nav"
 			@keydown.left.exact.prevent="focusPreviousTab"
@@ -50,7 +50,7 @@
 				class="app-sidebar-tabs__tab"
 				:class="{ active: tab.id === activeTab }"
 				role="tab"
-				type="radio"
+				type="button"
 				@update:checked="setActive(tab.id)">
 				<span class="app-sidebar-tabs__tab-caption">
 					{{ tab.name }}
@@ -61,7 +61,7 @@
 					</NcVNodes>
 				</template>
 			</NcCheckboxRadioSwitch>
-		</nav>
+		</div>
 
 		<!-- tabs content -->
 		<div :class="{'app-sidebar-tabs__content--multiple': hasMultipleTabs}"
