@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 ## v8 **Unreleased** (beta)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.11.2...v8.0.0-beta.4)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.11.2...v8.0.0-beta.5)
 
 ### :boom: Breaking changes
 - Update node engines to next LTS (node 20 / npm 9)
@@ -93,6 +93,8 @@ All notable changes to this project will be documented in this file.
 - fix\(`NcListItem`\) don't force blur action menu on tab [\#4458](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4458) ([Antreesy](https://github.com/Antreesy))
 - fix\(`NcRichText`\) - keep newlines in rendered Markdown  [\#4461](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4461) ([Antreesy](https://github.com/Antreesy))
 - fix\(`NcRichText`\) - don't populate a first newline to properly parse blockqoute tags [\#4470](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4470) ([Antreesy](https://github.com/Antreesy))
+- fix\(a11y\): Remove nav and radios in sidebar tabs [\#4456](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4456) ([Pytal](https://github.com/Pytal))
+- fix\(NcSelect\): Do not add border to single select option [\#4475](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4475) ([Pytal](https://github.com/Pytal))
 
 ## [v7.11.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.11.2) (2023-05-05)
 
