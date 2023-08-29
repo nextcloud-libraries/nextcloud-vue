@@ -30,6 +30,7 @@ This component displays contenteditable div with automated `@` [at] autocompleti
 ```vue
 <template>
 	<div>
+		<h2>Default with auto complete</h2>
 		<NcRichContenteditable
 			:value.sync="message"
 			:auto-complete="autoComplete"
@@ -39,6 +40,7 @@ This component displays contenteditable div with automated `@` [at] autocompleti
 			@submit="onSubmit" />
 		<br>
 
+		<h2>Multiline</h2>
 		<NcRichContenteditable
 			:value.sync="message"
 			:auto-complete="autoComplete"
@@ -47,6 +49,35 @@ This component displays contenteditable div with automated `@` [at] autocompleti
 			:user-data="userData"
 			placeholder="Try mentioning user @Test01 or inserting emoji :smile"
 			@submit="onSubmit" />
+		<br>
+
+		<h2>Show default description</h2>
+		<NcRichContenteditable
+			:value.sync="message"
+			:auto-complete="autoComplete"
+			:maxlength="400"
+			:multiline="true"
+			:user-data="userData"
+			placeholder="Write a message..."
+			show-default-description
+			@submit="onSubmit">
+		</NcRichContenteditable>
+		<br>
+
+		<h2>Custom description</h2>
+		<NcRichContenteditable
+			:value.sync="message"
+			:auto-complete="autoComplete"
+			:maxlength="400"
+			:multiline="true"
+			:user-data="userData"
+			placeholder="Write a message..."
+			@submit="onSubmit">
+			<template #description>
+				Markdown available: <strong>**bold**</strong>, <i>_italic_</i>, <code>`mono`</code>
+			</template>
+		</NcRichContenteditable>
+
 		<br>
 		<br>
 		{{ JSON.stringify(message) }}
@@ -147,29 +178,39 @@ export default {
 </docs>
 
 <template>
-	<div ref="contenteditable"
-		v-tooltip="tooltipString"
-		:class="{
-			'rich-contenteditable__input--empty': isEmptyValue,
-			'rich-contenteditable__input--multiline': multiline,
-			'rich-contenteditable__input--overflow': isOverMaxlength,
-			'rich-contenteditable__input--disabled': disabled,
-		}"
-		:contenteditable="canEdit"
-		:placeholder="placeholder"
-		:aria-placeholder="placeholder"
-		aria-multiline="true"
-		class="rich-contenteditable__input"
-		role="textbox"
-		v-on="listeners"
-		@input="onInput"
-		@compositionstart="isComposing = true"
-		@compositionend="isComposing = false"
-		@keydown.delete="onDelete"
-		@keydown.enter.exact="onEnter"
-		@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
-		@paste="onPaste"
-		@keyup.stop.prevent.capture="onKeyUp" />
+	<div class="rich-contenteditable">
+		<div ref="contenteditable"
+			v-tooltip="tooltipString"
+			:class="{
+				'rich-contenteditable__input--empty': isEmptyValue,
+				'rich-contenteditable__input--multiline': multiline,
+				'rich-contenteditable__input--overflow': isOverMaxlength,
+				'rich-contenteditable__input--disabled': disabled,
+			}"
+			:contenteditable="canEdit"
+			:data-placeholder="placeholder"
+			:aria-placeholder="placeholder"
+			aria-multiline="true"
+			:aria-describedby="hasDescription() ? descriptionId : undefined "
+			class="rich-contenteditable__input"
+			role="textbox"
+			v-bind="$attrs"
+			v-on="listeners"
+			@input="onInput"
+			@compositionstart="isComposing = true"
+			@compositionend="isComposing = false"
+			@keydown.delete="onDelete"
+			@keydown.enter.exact="onEnter"
+			@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
+			@paste="onPaste"
+			@keyup.stop.prevent.capture="onKeyUp" />
+		<div v-if="hasDescription()" :id="descriptionId" class="rich-contenteditable__description">
+			<!-- @slot description - input's description. You can also use `description` prop -->
+			<slot name="description">
+				{{ descriptionWithDefault }}
+			</slot>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -178,11 +219,19 @@ import NcAutoCompleteResult from './NcAutoCompleteResult.vue'
 import richEditor from '../../mixins/richEditor/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import { emojiSearch, emojiAddRecent } from '../../functions/emoji/index.js'
+import genRandomId from '../../utils/GenRandomId.js'
 import { searchProvider, getLinkWithPicker } from '../NcRichText/index.js'
 
 import Tribute from 'tributejs/dist/tribute.esm.js'
 import debounce from 'debounce'
 import stringLength from 'string-length'
+
+/**
+ * TODO: Vue 3 migration:
+ * class and style inheritance
+ * - It is needed to set implicitly $attrs.class on the root element and add inputClasses prop
+ * - See: https://v3-migration.vuejs.org/breaking-changes/attrs-includes-class-style.html
+ */
 
 export default {
 	name: 'NcRichContenteditable',
@@ -193,6 +242,8 @@ export default {
 
 	mixins: [richEditor],
 
+	inheritAttrs: false,
+
 	props: {
 		value: {
 			type: String,
@@ -202,7 +253,21 @@ export default {
 
 		placeholder: {
 			type: String,
-			default: t('Write message, use "@" to mention someone, use ":" for emoji autocompletion …'),
+			default: t('Write a message…'),
+		},
+
+		/**
+		 * Description
+		 * You can also you #description slot for custom content
+		 */
+		description: {
+			type: String,
+			default: '',
+		},
+
+		showDefaultDescription: {
+			type: Boolean,
+			default: false,
 		},
 
 		autoComplete: {
@@ -370,6 +435,9 @@ export default {
 
 			// Is in text composition session in IME
 			isComposing: false,
+
+			// ID for ariaDescribedBy
+			descriptionId: `NcRichContenteditable__${genRandomId()}__description`,
 		}
 	},
 
@@ -446,6 +514,11 @@ export default {
 			delete listeners.paste
 			return listeners
 		},
+
+		descriptionWithDefault() {
+			const defaultDescription = this.showDefaultDescription ? t('Write message, use "@" to mention someone, use ":" for emoji autocompletion …') : ''
+			return this.description || defaultDescription
+		},
 	},
 
 	watch: {
@@ -475,16 +548,16 @@ export default {
 		})
 
 		this.autocompleteTribute = new Tribute(this.autocompleteOptions)
-		this.autocompleteTribute.attach(this.$el)
+		this.autocompleteTribute.attach(this.$refs.contenteditable)
 
 		if (this.emojiAutocomplete) {
 			this.emojiTribute = new Tribute(this.emojiOptions)
-			this.emojiTribute.attach(this.$el)
+			this.emojiTribute.attach(this.$refs.contenteditable)
 		}
 
 		if (this.linkAutocomplete) {
 			this.linkTribute = new Tribute(this.linkOptions)
-			this.linkTribute.attach(this.$el)
+			this.linkTribute.attach(this.$refs.contenteditable)
 		}
 
 		// Update default value
@@ -496,13 +569,13 @@ export default {
 	},
 	beforeDestroy() {
 		if (this.autocompleteTribute) {
-			this.autocompleteTribute.detach(this.$el)
+			this.autocompleteTribute.detach(this.$refs.contenteditable)
 		}
 		if (this.emojiTribute) {
-			this.emojiTribute.detach(this.$el)
+			this.emojiTribute.detach(this.$refs.contenteditable)
 		}
 		if (this.linkTribute) {
-			this.linkTribute.detach(this.$el)
+			this.linkTribute.detach(this.$refs.contenteditable)
 		}
 	},
 
@@ -723,25 +796,43 @@ export default {
 			// prevent tribute from opening on keyup
 			event.stopImmediatePropagation()
 		},
+
+		hasDescription() {
+			return !!this.$slots.description || this.descriptionWithDefault
+		},
 	},
 }
 </script>
 
 <style lang="scss" scoped>
+.rich-contenteditable {
+	background-color: var(--color-main-background);
+	border: 2px solid var(--color-border-dark);
+	border-radius: var(--border-radius-large);
+	width: auto;
+
+	&:focus-within,
+	&:focus-within &__description{
+		border-color: var(--color-primary-element);
+	}
+}
+
 // Standalone styling, independent from server
 .rich-contenteditable__input {
-	overflow-y: auto;
-	width: auto;
+	// Reset global server styles for div[contenteditable]
+	background-color: initial;
+	border: none;
+	border-radius: unset;
 	margin: 0;
+	width: 100%;
+
+	overflow-y: auto;
 	padding: 8px;
 	cursor: text;
 	white-space: pre-wrap;
 	word-break: break-word;
 	color: var(--color-main-text);
-	border: 2px solid var(--color-border-dark);
-	border-radius: var(--border-radius-large);
 	outline: none;
-	background-color: var(--color-main-background);
 	font-family: var(--font-face);
 	font-size: inherit;
 	min-height: $clickable-area;
@@ -749,7 +840,7 @@ export default {
 
 	// Cannot use :empty because of firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=1513303
 	&--empty:before {
-		content: attr(placeholder);
+		content: attr(data-placeholder);
 		color: var(--color-text-maxcontrast);
 		position: absolute;
 	}
@@ -778,6 +869,12 @@ export default {
 	}
 }
 
+.rich-contenteditable__description {
+	border-top: 2px solid var(--color-border-dark);
+	background-color: var(--color-background-dark);
+	border-radius: 0 0 var(--border-radius-large) var(--border-radius-large);
+	padding: 8px;
+}
 </style>
 
 <style lang="scss">
