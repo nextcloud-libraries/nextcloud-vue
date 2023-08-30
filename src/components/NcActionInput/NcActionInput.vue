@@ -32,7 +32,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 ```vue
 	<template>
 		<NcActions>
-			<NcActionInput :value.sync="text">
+			<NcActionInput :value.sync="text" :label-outside="true" label="Label outside the input">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
@@ -138,7 +138,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 	<li class="action" :class="{ 'action--disabled': disabled }">
 		<span :class="{
 				'action-input-picker--disabled': disabled,
-				'action-input--visible-label': labelVisible && label,
+				'action-input--visible-label': labelOutside && label,
 			}"
 			class="action-input"
 			@mouseleave="onLeave">
@@ -157,94 +157,104 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 				class="action-input__form"
 				:disabled="disabled"
 				@submit.prevent="onSubmit">
-
-				<NcDatetimePicker v-if="datePickerType"
-					ref="datetimepicker"
-					:value="value"
-					style="z-index: 99999999999;"
-					:placeholder="text"
-					:disabled="disabled"
-					:type="datePickerType"
-					:input-class="['mx-input', { focusable: isFocusable }]"
-					class="action-input__datetimepicker"
-					v-bind="$attrs"
-					@input="onInput"
-					@change="onChange" />
-
-				<NcDateTimePickerNative v-else-if="isNativePicker"
-					:id="idNativeDateTimePicker"
-					:value="value"
-					:type="nativeDatePickerType"
-					:input-class="{ focusable: isFocusable }"
-					class="action-input__datetimepicker"
-					v-bind="$attrs"
-					@input="$emit('input', $event)"
-					@change="$emit('change', $event)" />
-
-				<NcSelect v-else-if="isMultiselectType"
-					:value="value"
-					:placeholder="text"
-					:disabled="disabled"
-					:append-to-body="false"
-					:input-class="{ focusable: isFocusable }"
-					class="action-input__multi"
-					v-bind="$attrs"
-					v-on="$listeners" />
-
-				<NcPasswordField v-else-if="type==='password'"
-					:id="inputId"
-					:value="value"
-					:label="label"
-					:label-outside="!label"
-					:placeholder="text"
-					:disabled="disabled"
-					:input-class="{ focusable: isFocusable }"
-					trailing-button-icon="arrowRight"
-					:show-trailing-button="showTrailingButton && !disabled"
-					v-bind="$attrs"
-					v-on="$listeners"
-					@trailing-button-click="$refs.form.requestSubmit()"
-					@input="onInput"
-					@change="onChange" />
-
-				<div v-else-if="type === 'color'" class="action-input__container">
-					<label v-if="label && type === 'color'"
+				<div class="action-input__container">
+					<label v-if="label && labelOutside"
 						class="action-input__text-label"
-						:class="{ 'action-input__text-label--hidden': !labelVisible }"
+						:class="{ 'action-input__text-label--hidden': !labelOutside}"
 						:for="inputId">
 						{{ label }}
 					</label>
 					<div class="action-input__input-container">
-						<NcColorPicker id="inputId"
+
+						<NcDatetimePicker v-if="datePickerType"
+							ref="datetimepicker"
 							:value="value"
-							class="colorpicker__trigger"
+							style="z-index: 99999999999;"
+							:placeholder="text"
+							:disabled="disabled"
+							:type="datePickerType"
+							:input-class="['mx-input', { focusable: isFocusable }]"
+							class="action-input__datetimepicker"
+							v-bind="$attrs"
+							@input="onInput"
+							@change="onChange" />
+
+						<NcDateTimePickerNative v-else-if="isNativePicker"
+							:id="idNativeDateTimePicker"
+							:value="value"
+							:type="nativeDatePickerType"
+							:input-class="{ focusable: isFocusable }"
+							class="action-input__datetimepicker"
+							v-bind="$attrs"
+							@input="$emit('input', $event)"
+							@change="$emit('change', $event)" />
+
+						<NcSelect v-else-if="isMultiselectType"
+							:value="value"
+							:placeholder="text"
+							:disabled="disabled"
+							:append-to-body="false"
+							:input-class="{ focusable: isFocusable }"
+							class="action-input__multi"
+							v-bind="$attrs"
+							v-on="$listeners" />
+
+						<NcPasswordField v-else-if="type==='password'"
+							:id="inputId"
+							:value="value"
+							:label="label"
+							:label-outside="!label || labelOutside"
+							:placeholder="text"
+							:disabled="disabled"
+							:input-class="{ focusable: isFocusable }"
+							trailing-button-icon="arrowRight"
+							:show-trailing-button="showTrailingButton && !disabled"
 							v-bind="$attrs"
 							v-on="$listeners"
+							@trailing-button-click="$refs.form.requestSubmit()"
 							@input="onInput"
-							@submit="$refs.form.requestSubmit()">
-							<button :style="{'background-color': value}"
-								class="colorpicker__preview"
-								:class="{ focusable: isFocusable }" />
-						</NcColorPicker>
+							@change="onChange" />
+
+						<div v-else-if="type === 'color'" class="action-input__container">
+							<label v-if="label && type === 'color'"
+								class="action-input__text-label"
+								:class="{ 'action-input__text-label--hidden': !labelOutside}"
+								:for="inputId">
+								{{ label }}
+							</label>
+							<div class="action-input__input-container">
+								<NcColorPicker id="inputId"
+									:value="value"
+									class="colorpicker__trigger"
+									v-bind="$attrs"
+									v-on="$listeners"
+									@input="onInput"
+									@submit="$refs.form.requestSubmit()">
+									<button :style="{'background-color': value}"
+										class="colorpicker__preview"
+										:class="{ focusable: isFocusable }" />
+								</NcColorPicker>
+							</div>
+						</div>
+
+						<NcTextField v-else
+							:id="inputId"
+							:value="value"
+							:label="label"
+							:label-outside="!label || labelOutside"
+							:placeholder="text"
+							:disabled="disabled"
+							:input-class="{ focusable: isFocusable }"
+							:type="type"
+							trailing-button-icon="arrowRight"
+							:show-trailing-button="showTrailingButton && !disabled"
+							v-bind="$attrs"
+							v-on="$listeners"
+							@trailing-button-click="$refs.form.requestSubmit()"
+							@input="onInput"
+							@change="onChange" />
 					</div>
 				</div>
-
-				<NcTextField v-else
-					:id="inputId"
-					:value="value"
-					:label="label"
-					:label-outside="!label"
-					:placeholder="text"
-					:disabled="disabled"
-					:input-class="{ focusable: isFocusable }"
-					:type="type"
-					trailing-button-icon="arrowRight"
-					:show-trailing-button="showTrailingButton && !disabled"
-					v-bind="$attrs"
-					v-on="$listeners"
-					@trailing-button-click="$refs.form.requestSubmit()"
-					@input="onInput"
-					@change="onChange" />
 			</form>
 		</span>
 	</li>
@@ -331,10 +341,10 @@ export default {
 			default: null,
 		},
 		/**
-		 * If you want to hide the label just above the
-		 * input field, pass in `false` to this prop.
+		 * If you want to show the label just above the
+		 * input field, pass in `true` to this prop.
 		 */
-		labelVisible: {
+		labelOutside: {
 			type: Boolean,
 			default: true,
 		},
