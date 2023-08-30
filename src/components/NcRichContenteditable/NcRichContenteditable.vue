@@ -47,16 +47,26 @@ This component displays contenteditable div with automated `@` [at] autocompleti
 			:user-data="userData"
 			placeholder="Try mentioning user @Test01 or inserting emoji :smile"
 			@submit="onSubmit" />
-		<br>
-		<br>
+
+		<h5>Output - raw</h5>
 		{{ JSON.stringify(message) }}
+
+		<h5>Output - preformatted</h5>
+		<p class="pre-line">{{ message }}</p>
+
+		<h5>Output - in NcRichText with markdown support</h5>
+		<NcRichText :text="message" use-markdown />
 	</div>
 </template>
 <script>
+	import NcRichText from "../NcRichText/NcRichText.vue";
+
 export default {
+	components: {NcRichText},
+
 	data() {
 		return {
-			message: 'Lorem ipsum dolor sit amet.',
+			message: '**Lorem ipsum** dolor sit amet.',
 
 			// You need to provide this for the inline
 			// mention to understand what to display or not.
@@ -142,6 +152,16 @@ export default {
 	}
 }
 </script>
+<style lang="scss" scoped>
+	h5 {
+		font-weight: bold;
+		margin: 40px 0 20px 0;
+	}
+
+	.pre-line {
+		white-space: pre-line;
+	}
+</style>
 ```
 
 </docs>
