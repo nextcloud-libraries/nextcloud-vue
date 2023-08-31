@@ -415,6 +415,14 @@ export default {
 		},
 
 		/**
+		 * Required state
+		 */
+		required: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * Loading state
 		 */
 		loading: {
@@ -441,6 +449,7 @@ export default {
 			return {
 				checked: this.isChecked,
 				indeterminate: this.indeterminate,
+				required: this.required,
 				name: this.name,
 			}
 		},
@@ -609,6 +618,7 @@ export default {
 <style lang="scss" scoped>
 .checkbox-radio-switch {
 	display: flex;
+	align-items: center;
 
 	&__input {
 		position: absolute;
@@ -616,6 +626,8 @@ export default {
 		opacity: 0 !important; // We need !important, or it gets overwritten by server style
 		width: var(--icon-size);
 		height: var(--icon-size);
+		// Same as label padding
+		margin: 4px $icon-margin;
 	}
 
 	&__input:focus-visible + label {
