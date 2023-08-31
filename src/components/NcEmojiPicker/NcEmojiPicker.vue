@@ -189,6 +189,29 @@ import { t } from '../../l10n.js'
 import { Picker, Emoji, EmojiIndex } from 'emoji-mart-vue-fast'
 import data from 'emoji-mart-vue-fast/data/all.json'
 
+// Shared emoji index for all NcEmojiPicker instances
+// Will be initialized on the first NcEmojiPicker creating
+let emojiIndex
+
+const i18n = {
+	search: t('Search emoji'),
+	notfound: t('No emoji found'),
+	categories: {
+		search: t('Search results'),
+		recent: t('Frequently used'),
+		smileys: t('Smileys & Emotion'),
+		people: t('People & Body'),
+		nature: t('Animals & Nature'),
+		foods: t('Food & Drink'),
+		activity: t('Activities'),
+		places: t('Travel & Places'),
+		objects: t('Objects'),
+		symbols: t('Symbols'),
+		flags: t('Flags'),
+		custom: t('Custom'),
+	},
+}
+
 export default {
 	name: 'NcEmojiPicker',
 	components: {
@@ -261,28 +284,23 @@ export default {
 		'select-data',
 		'unselect',
 	],
+
+	setup() {
+		// If this is the first instance of NcEmojiPicker - setup EmojiIndex
+		if (!emojiIndex) {
+			emojiIndex = new EmojiIndex(data)
+		}
+
+		return {
+			// Non-reactive constants
+			emojiIndex,
+			i18n,
+		}
+	},
+
 	data() {
 		return {
-			emojiIndex: new EmojiIndex(data),
 			search: '',
-			i18n: {
-				search: t('Search emoji'),
-				notfound: t('No emoji found'),
-				categories: {
-					search: t('Search results'),
-					recent: t('Frequently used'),
-					smileys: t('Smileys & Emotion'),
-					people: t('People & Body'),
-					nature: t('Animals & Nature'),
-					foods: t('Food & Drink'),
-					activity: t('Activities'),
-					places: t('Travel & Places'),
-					objects: t('Objects'),
-					symbols: t('Symbols'),
-					flags: t('Flags'),
-					custom: t('Custom'),
-				},
-			},
 			open: false,
 		}
 	},
