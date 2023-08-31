@@ -681,12 +681,6 @@ export default {
 		background-color: var(--color-primary-element-light-hover);
 	}
 
-	&-checkbox, &-switch {
-		.checkbox-radio-switch__label {
-			padding: 4px 10px; // we use 24x24px sized MDI icons for checkbox and radiobutton -> (44px - 24 px) / 2 = 10px
-		}
-	}
-
 	// Switch specific rules
 	&-switch:not(&--checked) &__icon > * {
 		color: var(--color-text-maxcontrast);
