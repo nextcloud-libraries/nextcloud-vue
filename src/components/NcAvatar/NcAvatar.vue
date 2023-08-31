@@ -700,6 +700,7 @@ export default {
 	&--unknown {
 		position: relative;
 		background-color: var(--color-main-background);
+		white-space: normal;
 	}
 
 	&:not(&--unknown) {
