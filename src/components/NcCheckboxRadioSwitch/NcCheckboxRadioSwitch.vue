@@ -415,6 +415,14 @@ export default {
 		},
 
 		/**
+		 * Required state
+		 */
+		required: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * Loading state
 		 */
 		loading: {
@@ -441,6 +449,7 @@ export default {
 			return {
 				checked: this.isChecked,
 				indeterminate: this.indeterminate,
+				required: this.required,
 				name: this.name,
 			}
 		},
