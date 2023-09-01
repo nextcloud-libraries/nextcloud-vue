@@ -220,8 +220,8 @@ export default {
 		:deep(svg) {
 			width: 64px;
 			height: 64px;
-			max-width: 64px;
-			max-height: 64px;
+			max-width: 64px !important;
+			max-height: 64px !important;
 		}
 	}
 
