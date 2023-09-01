@@ -418,7 +418,7 @@ export default {
 											type="text"
 											:placeholder="namePlaceholder"
 											:value="name"
-											@keydown.esc="onDismissEditing"
+											@keydown.esc.stop="onDismissEditing"
 											@input="onNameInput">
 										<NcButton type="tertiary-no-background"
 											:aria-label="changeNameTranslated"
