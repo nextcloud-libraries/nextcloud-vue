@@ -1,7 +1,7 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2023 Raimund Schlüßler <raimund.schluessler@mailbox.org>
  *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Raimund Schlüßler <raimund.schluessler@mailbox.org>
  *
  * @license AGPL-3.0-or-later
  *
@@ -20,11 +20,21 @@
  *
  */
 
-export * from './components/index.js'
+import { Fragment, Comment } from 'vue'
 
-// Not yet adjusted for vue3
-// export * from './functions/index.js'
-// export * from './directives/index.js'
-// export * from './mixins/index.js'
+/**
+ * Checks whether a slot is populated
+ */
+const isSlotPopulated = function(vnodes) {
+	return vnodes?.some(child => {
+		if (child.type === Comment) {
+			return false
+		}
+		if (child.type === Fragment && !isSlotPopulated(child.children)) {
+			return false
+		}
+		return true
+	})
+}
 
-export { NextcloudVuePlugin } from './plugin.ts'
+export default isSlotPopulated

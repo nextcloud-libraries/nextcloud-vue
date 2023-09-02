@@ -35,11 +35,11 @@ It can be used with one or multiple actions.
 <div class="wrapper">
 	<!-- Style selector -->
 	<div class="grid">
-		<NcCheckboxRadioSwitch :checked.sync="style" value="text" name="style" type="radio">Text only</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="style" value="icon" name="style" type="radio">Icon only</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="style" value="icontext" name="style" type="radio">Icon and text</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="disabled" type="checkbox">Disabled</NcCheckboxRadioSwitch>
-		<!--<NcCheckboxRadioSwitch :checked.sync="readonly" type="checkbox">Read-only</NcCheckboxRadioSwitch>-->
+		<NcCheckboxRadioSwitch v-model:checked="style" value="text" name="style" type="radio">Text only</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="style" value="icon" name="style" type="radio">Icon only</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="style" value="icontext" name="style" type="radio">Icon and text</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="disabled" type="checkbox">Disabled</NcCheckboxRadioSwitch>
+		<!--<NcCheckboxRadioSwitch v-model:checked="readonly" type="checkbox">Read-only</NcCheckboxRadioSwitch>-->
 	</div>
 
 	<h5>Standard buttons</h5>
@@ -268,19 +268,19 @@ The button will have the required `aria` attribute for accessibility and visual 
 <template>
 	<div>
 		<div style="display: flex; gap: 12px;">
-			<NcButton :pressed.sync="isFavorite" :aria-label="ariaLabel" type="tertiary-no-background">
+			<NcButton v-model:pressed="isFavorite" :aria-label="ariaLabel" type="tertiary-no-background">
 				<template #icon>
 					<IconStar v-if="isFavorite" :size="20" />
 					<IconStarOutline v-else :size="20" />
 				</template>
 			</NcButton>
-			<NcButton :pressed.sync="isFavorite" :aria-label="ariaLabel" type="tertiary">
+			<NcButton v-model:pressed="isFavorite" :aria-label="ariaLabel" type="tertiary">
 				<template #icon>
 					<IconStar v-if="isFavorite" :size="20" />
 					<IconStarOutline v-else :size="20" />
 				</template>
 			</NcButton>
-			<NcButton :pressed.sync="isFavorite" :aria-label="ariaLabel">
+			<NcButton v-model:pressed="isFavorite" :aria-label="ariaLabel">
 				<template #icon>
 					<IconStar v-if="isFavorite" :size="20" />
 					<IconStarOutline v-else :size="20" />
@@ -322,6 +322,9 @@ export default {
 </docs>
 
 <script>
+import isSlotPopulated from '../../utils/isSlotPopulated.js'
+
+import { h, resolveComponent } from 'vue'
 
 export default {
 	name: 'NcButton',
@@ -419,14 +422,6 @@ export default {
 		},
 
 		/**
-		 * Pass in `true` if you want the matching behaviour of `router-link` to
-		 * be non-inclusive: https://router.vuejs.org/api/#exact
-		 */
-		exact: {
-			type: Boolean,
-			default: false,
-		},
-		/**
 		 * aria-hidden attribute for the icon slot
 		 */
 		ariaHidden: {
@@ -481,14 +476,14 @@ export default {
 	/**
 	 * The render function to display the component
 	 *
-	 * @param {Function} h The function to create VNodes
 	 * @return {object|undefined} The created VNode
 	 */
-	render(h) {
-		const text = this.$slots.default?.[0]?.text?.trim?.()
+	render() {
+		const text = this.$slots.default?.()?.[0]?.children?.trim?.()
+			|| this.$slots.default?.()?.[0]?.children?.[0]?.children?.trim?.()
 
-		const hasText = !!text
-		const hasIcon = this.$slots?.icon
+		const hasText = isSlotPopulated(this.$slots.default?.()) && !!text
+		const hasIcon = isSlotPopulated(this.$slots.icon?.())
 
 		/**
 		 * Always fill either the text prop or the ariaLabel one.
@@ -501,7 +496,7 @@ export default {
 			this)
 		}
 
-		const renderButton = ({ navigate, isActive, isExactActive } = {}) => h((this.to || !this.href) ? 'button' : 'a',
+		const renderButton = ({ navigate, isActive } = {}) => h((this.to || !this.href) ? 'button' : 'a',
 			{
 				class: [
 					'button-vue',
@@ -514,37 +509,30 @@ export default {
 						[`button-vue--${this.flexAlignment}`]: this.flexAlignment !== 'center',
 						'button-vue--reverse': this.isReverseAligned,
 						active: isActive,
-						'router-link-exact-active': isExactActive,
 					},
 				],
-				attrs: {
-					'aria-label': this.ariaLabel,
-					'aria-pressed': this.pressed,
-					disabled: this.disabled,
-					type: this.href ? null : this.nativeType,
-					role: this.href ? 'button' : null,
-					href: (!this.to && this.href) ? this.href : null,
-					target: (!this.to && this.href) ? '_self' : null,
-					rel: (!this.to && this.href) ? 'nofollow noreferrer noopener' : null,
-					download: (!this.to && this.href && this.download) ? this.download : null,
-					...this.$attrs,
-				},
-				on: {
-					...this.$listeners,
-					click: ($event) => {
-						// Update pressed prop on click if it is set
-						if (typeof this.pressed === 'boolean') {
-							/**
-							 * Update the current pressed state of the button (if the `pressed` property was configured)
-							 *
-							 * @property {boolean} newValue The new `pressed`-state
-							 */
-							this.$emit('update:pressed', !this.pressed)
-						}
-						// We have to both navigate and emit the click event
-						this.$emit('click', $event)
-						navigate?.($event)
-					},
+				'aria-label': this.ariaLabel,
+				'aria-pressed': this.pressed,
+				disabled: this.disabled,
+				type: this.href ? null : this.nativeType,
+				role: this.href ? 'button' : null,
+				href: (!this.to && this.href) ? this.href : null,
+				target: (!this.to && this.href) ? '_self' : null,
+				rel: (!this.to && this.href) ? 'nofollow noreferrer noopener' : null,
+				download: (!this.to && this.href && this.download) ? this.download : null,
+				onClick: ($event) => {
+					// Update pressed prop on click if it is set
+					if (typeof this.pressed === 'boolean') {
+						/**
+						 * Update the current pressed state of the button (if the `pressed` property was configured)
+						 *
+						 * @property {boolean} newValue The new `pressed`-state
+						 */
+						this.$emit('update:pressed', !this.pressed)
+					}
+					// We have to both navigate and emit the click event
+					this.$emit('click', $event)
+					navigate?.($event)
 				},
 			},
 			[
@@ -556,7 +544,7 @@ export default {
 								'aria-hidden': this.ariaHidden,
 							},
 						},
-						[this.$slots.icon],
+						[this.$slots.icon?.()],
 						)
 						: null,
 					hasText ? h('span', { class: 'button-vue__text' }, [text]) : null,
@@ -566,15 +554,11 @@ export default {
 
 		// If we have a router-link, we wrap the button in it
 		if (this.to) {
-			return h('router-link', {
-				props: {
-					custom: true,
-					to: this.to,
-					exact: this.exact,
-				},
-				scopedSlots: {
-					default: renderButton,
-				},
+			return h(resolveComponent('router-link'), {
+				custom: true,
+				to: this.to,
+			}, {
+				default: renderButton,
 			})
 		}
 		// Otherwise we simply return the button

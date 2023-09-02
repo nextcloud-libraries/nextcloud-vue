@@ -67,9 +67,13 @@ module.exports = async () => {
 				usageMode: 'hide',
 			},
 			{
-				name: 'Latest version',
+				name: 'Latest version: v8.x (Nextcloud 28)',
 				href: 'https://nextcloud-vue-components.netlify.app',
 				sections: [
+					{
+						name: 'next v9.x (Nextcloud 28 + Vue 3)',
+						href: 'https://next--nextcloud-vue-components.netlify.app',
+					},
 					{
 						name: 'v7.x (Nextcloud 25 - 27)',
 						href: 'https://stable7--nextcloud-vue-components.netlify.app',
@@ -80,10 +84,10 @@ module.exports = async () => {
 					},
 				],
 			},
-			{
-				name: 'Directives',
-				content: 'docs/directives.md',
-			},
+			// {
+			// 	name: 'Directives',
+			// 	content: 'docs/directives.md',
+			// },
 			{
 				name: 'Components',
 				content: 'docs/components.md',
@@ -101,102 +105,122 @@ module.exports = async () => {
 					'src/components/NcContent/*.vue',
 					'src/components/NcDashboard*/*.vue',
 					'src/components/NcListItem*/*.vue',
-					'src/components/NcMultiselect*/*.vue',
 					'src/components/NcRichContenteditable/!(NcRichContenteditable).vue',
 					'src/components/NcRichText*/*.vue',
 					'src/components/NcSelect*/*.vue',
 					'src/components/NcSettings*/*.vue',
 					'src/components/NcUserBubble/NcUserBubbleDiv.vue',
+
+					// Not yet adjusted for vue3
+					'src/components/NcAvatar*/*.vue',
+					'src/components/NcCounterBubble*/*.vue',
+					'src/components/NcDatetime*/*.vue',
+					'src/components/NcEllipsisedOption*/*.vue',
+					'src/components/NcEmptyContent*/*.vue',
+					'src/components/NcGuestContent*/*.vue',
+					'src/components/NcHeaderMenu*/*.vue',
+					'src/components/NcHighlight*/*.vue',
+					'src/components/NcIconSvgWrapper*/*.vue',
+					'src/components/NcModal*/*.vue',
+					'src/components/NcNoteCard*/*.vue',
+					'src/components/NcPopover*/*.vue',
+					'src/components/NcProgressBar*/*.vue',
+					'src/components/NcRelatedResourcesPanel*/*.vue',
+					'src/components/NcRichContenteditable*/*.vue',
+					'src/components/NcSavingIndicatorIcon*/*.vue',
+					'src/components/NcUserBubble*/*.vue',
+					'src/components/NcVNodes*/*.vue',
 				],
+				// Not yet adjusted for vue3
 				sections: [
-					{
-						name: 'NcActions',
-						components: [
-							// Put Actions component first
-							'src/components/NcActions/*.vue',
-							'src/components/NcAction[A-Z]*/*.vue',
-						],
-					},
-					{
-						name: 'App containers',
-						components: [
-							'src/components/NcContent/*.vue',
-						],
-						sections: [
-							{
-								name: 'NcAppNavigation',
-								components: [
-									'src/components/NcAppNavigation*/*.vue',
-								],
-							},
-							{
-								name: 'NcAppContent',
-								components: [
-									'src/components/NcAppContent*/*.vue',
-								],
-							},
-							{
-								name: 'NcAppSidebar',
-								components: [
-									'src/components/NcAppSidebar*/*.vue',
-								],
-							},
-							{
-								name: 'NcAppSettings',
-								components: [
-									'src/components/NcAppSettings*/*.vue',
-								],
-							},
-						],
-					},
-					{
-						name: 'NcBreadcrumbs',
-						components: [
-							'src/components/NcBreadcrumb*/*.vue',
-						],
-					},
-					{
-						name: 'NcDashboard',
-						components: [
-							'src/components/NcDashboard*/*.vue',
-						],
-					},
-					{
-						name: 'NcFields',
-						components: [
-							'src/components/Nc*Field/*.vue',
-						],
-					},
-					{
-						name: 'NcListItems',
-						components: [
-							'src/components/NcListItem*/*.vue',
-						],
-					},
-					{
-						name: 'NcSelect',
-						components: [
-							'src/components/NcSelect*/*.vue',
-						],
-					},
-					{
-						name: 'NcPickers',
-						components: [
-							'src/components/Nc*Picker*/*.vue',
-						],
-					},
-					{
-						name: 'NcRichText',
-						components: [
-							'src/components/NcRichText/NcRichText.vue',
-						],
-					},
-					{
-						name: 'NcSettings',
-						components: [
-							'src/components/NcSettings*/*.vue',
-						],
-					},
+				// 	{
+				// 		name: 'NcActions',
+				// 		components: [
+				// 			// Put Actions component first
+				// 			'src/components/NcActions/*.vue',
+				// 			'src/components/NcAction[A-Z]*/*.vue',
+				// 		],
+				// 	},
+				// 	{
+				// 		name: 'App containers',
+				// 		components: [
+				// 			'src/components/NcContent/*.vue',
+				// 		],
+				// 		sections: [
+				// 			{
+				// 				name: 'NcAppNavigation',
+				// 				components: [
+				// 					'src/components/NcAppNavigation*/*.vue',
+				// 				],
+				// 			},
+				// 			{
+				// 				name: 'NcAppContent',
+				// 				components: [
+				// 					'src/components/NcAppContent*/*.vue',
+				// 				],
+				// 			},
+				// 			{
+				// 				name: 'NcAppSidebar',
+				// 				components: [
+				// 					'src/components/NcAppSidebar*/*.vue',
+				// 				],
+				// 			},
+				// 			{
+				// 				name: 'NcAppSettings',
+				// 				components: [
+				// 					'src/components/NcAppSettings*/*.vue',
+				// 				],
+				// 			},
+				// 		],
+				// 	},
+				// 	{
+				// 		name: 'NcBreadcrumbs',
+				// 		components: [
+				// 			'src/components/NcBreadcrumb*/*.vue',
+				// 		],
+				// 	},
+				// 	{
+				// 		name: 'NcDashboard',
+				// 		components: [
+				// 			'src/components/NcDashboard*/*.vue',
+				// 		],
+				// 	},
+				// 	{
+				// 		name: 'NcFields',
+				// 		components: [
+				// 			'src/components/Nc*Field/*.vue',
+				// 		],
+				// 	},
+				// 	{
+				// 		name: 'NcListItems',
+				// 		components: [
+				// 			'src/components/NcListItem*/*.vue',
+				// 		],
+				// 	},
+				// 	{
+				// 		name: 'NcSelect',
+				// 		components: [
+				// 			'src/components/NcSelect*/*.vue',
+				// 		],
+				// 	},
+				// 	{
+				// 		name: 'NcPickers',
+				// 		components: [
+				// 			'src/components/Nc*Picker*/*.vue',
+				// 		],
+				// 	},
+				// 	{
+				// 		name: 'NcRichText',
+				// 		components: [
+				// 			'src/components/NcRichText/NcRichText.vue',
+				// 		],
+				// 	},
+				// 	{
+				// 		name: 'NcSettings',
+				// 		components: [
+				// 			'src/components/NcSettings*/*.vue',
+				// 		],
+				// 	},
 				],
 			},
 		],
