@@ -67,7 +67,7 @@ module.exports = async () => {
 				usageMode: 'hide',
 			},
 			{
-				name: 'Latest version',
+				name: 'Latest version: v8.x (Nextcloud 28)',
 				href: 'https://nextcloud-vue-components.netlify.app',
 				sections: [
 					{
