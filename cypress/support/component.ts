@@ -13,8 +13,8 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-import './commands'
-import { mount } from '@cypress/vue2'
+import './commands.ts'
+import { mount } from '@cypress/vue'
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.

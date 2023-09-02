@@ -25,7 +25,7 @@ import NcButton from '../../../../src/components/NcButton/NcButton.vue'
 
 describe('NcButton', () => {
 	it('emits update:pressed', async () => {
-		const wrapper = shallowMount(NcButton, { propsData: { pressed: true, ariaLabel: 'button' } })
+		const wrapper = shallowMount(NcButton, { props: { pressed: true, ariaLabel: 'button' } })
 		wrapper.findComponent('button').trigger('click')
 		expect(wrapper.emitted('update:pressed')?.length).toBe(1)
 		expect(wrapper.emitted('update:pressed')[0]).toEqual([false])
@@ -38,7 +38,7 @@ describe('NcButton', () => {
 	})
 
 	it('does not emit update:pressed when not configured', async () => {
-		const wrapper = shallowMount(NcButton, { propsData: { ariaLabel: 'button' } })
+		const wrapper = shallowMount(NcButton, { props: { ariaLabel: 'button' } })
 		wrapper.findComponent('button').trigger('click')
 		expect(wrapper.emitted('update:pressed')).toBe(undefined)
 	})

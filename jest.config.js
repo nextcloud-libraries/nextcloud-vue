@@ -24,6 +24,7 @@ const ignorePatterns = [
 	'ansi-regex',
 	'bail',
 	'char-regex',
+	'character-*',
 	'comma-separated-tokens',
 	'decode-named-character-reference',
 	'devlop', // ESM dependency of unified
@@ -56,17 +57,32 @@ module.exports = {
 	],
 
 	testEnvironment: 'jsdom',
+    testEnvironmentOptions: {
+		customExportConditions: ["node", "node-addons"],
+	 },
 	setupFilesAfterEnv: [
 		'./tests/setup.js',
 	],
 
 	transform: {
 		'^.+\\.(j|t)s$': 'babel-jest',
-		'^.+\\.vue$': '@vue/vue2-jest',
+		'^.+\\.vue$': '@vue/vue3-jest',
 		'.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
 	},
 	transformIgnorePatterns: [
 		'/node_modules/(?!(' + ignorePatterns.join('|') + '))',
+	],
+	// Temporarily exclude not yet migrated vue2 components
+	testPathIgnorePatterns: [
+		"/node_modules/",
+		"<rootDir>/tests/unit/components/NcActions",
+		"<rootDir>/tests/unit/components/NcAppNavigation",
+		"<rootDir>/tests/unit/components/NcAppSidebar",
+		"<rootDir>/tests/unit/components/NcHighlight",
+		"<rootDir>/tests/unit/components/NcModal",
+		"<rootDir>/tests/unit/components/NcRichContenteditable",
+		"<rootDir>/tests/unit/components/NcRichText",
+		"<rootDir>/tests/unit/mixins/",
 	],
 
 	moduleNameMapper: {
