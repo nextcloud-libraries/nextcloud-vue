@@ -769,6 +769,39 @@ export default {
 		},
 
 		/**
+		 * Customized component's response to keydown events while the search input has focus
+		 *
+		 * @see https://vue-select.org/guide/keydown.html#mapkeydown
+		 */
+		mapKeydown: {
+			type: Function,
+			/**
+			 * Patched Vue-Select keydown events handlers map to stop Escape propagation in open select
+			 *
+			 * @param {Record<number, Function>} map - Mapped keyCode to handlers { <keyCode>:<callback> }
+			 * @param {import('@nextcloud/vue-select').VueSelect} vm - VueSelect instance
+			 * @return {Record<number, Function>} patched keydown event handlers
+			 */
+			default(map, vm) {
+				return {
+					...map,
+					/**
+					 * Patched Escape handler to stop propagation from open select
+					 *
+					 * @param {KeyboardEvent} event - default keydown event handler
+					 */
+					27: (event) => {
+						if (vm.open) {
+							event.stopPropagation()
+						}
+						// Default VueSelect's handler
+						map[27](event)
+					},
+				}
+			},
+		},
+
+		/**
 		 * When `appendToBody` is true, this sets the placement of the dropdown
 		 *
 		 * @type {'bottom' | 'top'}
