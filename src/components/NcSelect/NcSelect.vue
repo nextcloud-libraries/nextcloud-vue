@@ -749,7 +749,7 @@ export default {
 		/**
 		 * Array of options
 		 *
-		 * @type {Array<string | number | { [key: string | number]: any }>}
+		 * @type {Array<string | number | Record<string | number, any>>}
 		 *
 		 * @see https://vue-select.org/api/props.html#options
 		 */
@@ -804,7 +804,7 @@ export default {
 		 *
 		 * The `v-model` directive may be used for two-way data binding
 		 *
-		 * @type {string | number | { [key: string | number]: any } | Array<any>}
+		 * @type {string | number | Record<string | number, any> | Array<any>}
 		 *
 		 * @see https://vue-select.org/api/props.html#value
 		 */
