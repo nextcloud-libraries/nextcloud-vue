@@ -165,9 +165,17 @@ export default {
 
 	beforeDestroy() {
 		this.clearFocusTrap()
+		this.clearEscapeStopPropagation()
 	},
 
 	methods: {
+		/**
+		 * @return {HTMLElement|undefined}
+		 */
+		getPopoverContentElement() {
+			return this.$refs.popover?.$refs.popperContent?.$el
+		},
+
 		/**
 		 * Add focus trap for accessibility.
 		 */
@@ -178,7 +186,7 @@ export default {
 				return
 			}
 
-			const el = this.$refs.popover?.$refs.popperContent?.$el
+			const el = this.getPopoverContentElement()
 
 			if (!el) {
 				return
@@ -210,6 +218,35 @@ export default {
 			}
 		},
 
+		/**
+		 * Add stopPropagation for Escape.
+		 * It prevents global Escape handling after closing popover.
+		 *
+		 * Manual event handling is used here instead of v-on because there is no direct access to the node.
+		 * Alternative - wrap <template #popover> in a div wrapper.
+		 */
+		addEscapeStopPropagation() {
+			const el = this.getPopoverContentElement()
+			el?.addEventListener('keydown', this.stopKeydownEscapeHandler)
+		},
+
+		/**
+		 * Remove stop Escape handler
+		 */
+		clearEscapeStopPropagation() {
+			const el = this.getPopoverContentElement()
+			el?.removeEventListener('keydown', this.stopKeydownEscapeHandler)
+		},
+
+		/**
+		 * @param {KeyboardEvent} event - native keydown event
+		 */
+		stopKeydownEscapeHandler(event) {
+			if (event.type === 'keydown' && event.key === 'Escape') {
+				event.stopPropagation()
+			}
+		},
+
 		afterShow() {
 			/**
 			 * Triggered after the tooltip was visually displayed.
@@ -221,6 +258,7 @@ export default {
 			this.$nextTick(() => {
 				this.$emit('after-show')
 				this.useFocusTrap()
+				this.addEscapeStopPropagation()
 			})
 		},
 		afterHide() {
@@ -229,6 +267,7 @@ export default {
 			 */
 			this.$emit('after-hide')
 			this.clearFocusTrap()
+			this.clearEscapeStopPropagation()
 		},
 	},
 }
