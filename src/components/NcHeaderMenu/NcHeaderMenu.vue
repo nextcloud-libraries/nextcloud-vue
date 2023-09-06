@@ -68,10 +68,9 @@ export default {
 		v-click-outside="clickOutsideConfig"
 		:class="{ 'header-menu--opened': opened }"
 		class="header-menu">
-		<!-- Open trigger icon -->
-		<a ref="trigger"
-			class="header-menu__trigger"
-			href="#"
+		<!-- Trigger -->
+		<button ref="trigger"
+			class="header-menu__trigger button-vue"
 			:aria-label="ariaLabel"
 			:aria-controls="`header-menu-${id}`"
 			:aria-expanded="opened.toString()"
@@ -79,7 +78,7 @@ export default {
 			<!-- @slot Icon trigger slot. Make sure the svg path
 				is at least 16px. Usually mdi icon works at 20px -->
 			<slot name="trigger" />
-		</a>
+		</button>
 
 		<!-- Visual triangle -->
 		<div v-show="opened" class="header-menu__carret" />
@@ -293,6 +292,8 @@ $externalMargin: 8px;
 		padding: 0;
 		cursor: pointer;
 		opacity: .85;
+		background-color: transparent;
+		border: none;
 
 		// header is filled with primary or image background
 		filter: none !important;
