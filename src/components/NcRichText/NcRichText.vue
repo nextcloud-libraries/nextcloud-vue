@@ -76,7 +76,7 @@ import markdown from 'remark-parse'
 import breaks from 'remark-breaks'
 import remark2rehype from 'remark-rehype'
 import rehype2react from 'rehype-react'
-import remarkExternalLinks from 'remark-external-links'
+import rehypeExternalLinks from 'rehype-external-links'
 
 export default {
 	name: 'NcRichText',
@@ -176,10 +176,6 @@ export default {
 					autolink: this.autolink,
 					useMarkdown: this.useMarkdown,
 				})
-				.use(remarkExternalLinks, {
-					target: '_blank',
-					rel: ['noopener noreferrer'],
-				})
 				.use(breaks)
 				.use(remark2rehype, {
 					handlers: {
@@ -190,6 +186,10 @@ export default {
 				})
 				// .use(rehypeAddClasses, this.markdownCssClasses)
 				.use(remarkPlaceholder)
+				.use(rehypeExternalLinks, {
+					target: '_blank',
+					rel: ['noopener noreferrer'],
+				})
 				.use(rehype2react, {
 					createElement: (tag, attrs, children) => {
 						if (!tag.startsWith('#')) {
