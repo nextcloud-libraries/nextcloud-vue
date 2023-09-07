@@ -21,6 +21,10 @@
   -
   -->
 <docs>
+### General description
+
+This component displays rich text with optional autolink or [Markdown support](https://www.markdownguide.org/basic-syntax/).
+
 ```vue
 <template>
 	<div>
@@ -29,6 +33,7 @@
 		<NcCheckboxRadioSwitch :checked.sync="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
 
 		<NcRichText
+			:class="{'plain-text': !useMarkdown }"
 			:text="text" :autolink="autolink" :arguments="args"
 			:use-markdown="useMarkdown" />
 	</div>
@@ -37,11 +42,16 @@
 export default {
 	data() {
 		return {
-			text: `Hello {username}. The file {file} was added by {username}. Go visit https://nextcloud.com
+			text: `## Hello everyone 🎉
+The file {file} was added by {username}. Visit https://nextcloud.com to check it!
 
-Local IP: http://127.0.0.1/status.php should be clickable
+Some examples for markdown syntax:
+1. **bold text**
+2. _italic text_
+3. example of \`inline code\`
 
-Some examples for markdown syntax: **bold text** *italic text* \`inline code\``,
+> blockquote example
+`,
 			autolink: true,
 			useMarkdown: true,
 			args: {
@@ -60,7 +70,11 @@ Some examples for markdown syntax: **bold text** *italic text* \`inline code\``,
 <style lang="scss">
 textarea {
 	width: 100%;
-	height: 100px;
+	height: 200px;
+}
+
+.plain-text {
+	white-space: pre-line;
 }
 </style>
 ```
