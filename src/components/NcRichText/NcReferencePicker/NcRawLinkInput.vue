@@ -137,16 +137,11 @@ export default {
 		display: flex;
 	}
 
-	&--empty-content {
-		margin-top: auto !important;
-		margin-bottom: auto !important;
-
-		.provider-icon {
-			width: 150px;
-			height: 150px;
-			object-fit: contain;
-			filter: var(--background-invert-if-dark);
-		}
+	&--empty-content .provider-icon {
+		width: 150px;
+		height: 150px;
+		object-fit: contain;
+		filter: var(--background-invert-if-dark);
 	}
 
 	&--input {
