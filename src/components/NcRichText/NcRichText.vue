@@ -78,6 +78,159 @@ textarea {
 }
 </style>
 ```
+
+### Usage with NcRichContenteditable
+
+See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation for more information
+
+```vue
+<template>
+	<div>
+		<NcRichContenteditable :value.sync="message"
+			:auto-complete="autoComplete"
+			:maxlength="100"
+			:user-data="userData"
+			placeholder="Try mentioning user @Test01 or inserting emoji :smile"
+			@submit="onSubmit" />
+
+		<NcCheckboxRadioSwitch :checked.sync="autolink" type="checkbox">Autolink</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch :checked.sync="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
+
+		<NcRichText :text="text"
+			:autolink="autolink"
+			:arguments="userMentions"
+			:use-markdown="useMarkdown" />
+	</div>
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				message: '',
+				autolink: true,
+				useMarkdown: true,
+				userData: {
+					Test01: {
+						icon: 'icon-user',
+						id: 'Test01',
+						label: 'Test01',
+						source: 'users',
+						primary: true,
+					},
+					Test02: {
+						icon: 'icon-user',
+						id: 'Test02',
+						label: 'Test02',
+						source: 'users',
+						status: {
+							clearAt: null,
+							icon: '🎡',
+							message: 'Visiting London',
+							status: 'away',
+						},
+						subline: 'Visiting London',
+					},
+					'Test 03': {
+						icon: 'icon-user',
+						id: 'Test 03',
+						label: 'Test 03',
+						source: 'users',
+						status: {
+							clearAt: null,
+							icon: '🎡',
+							message: 'Having space in my name',
+							status: 'online',
+						},
+						subline: 'Visiting London',
+					},
+					'Test Offline': {
+						icon: 'icon-user',
+						id: 'Test Offline',
+						label: 'Test Offline',
+						source: 'users',
+						status: {
+							clearAt: null,
+							icon: null,
+							message: null,
+							status: 'offline',
+						},
+						subline: null,
+					},
+					'Test DND': {
+						icon: 'icon-user',
+						id: 'Test DND',
+						label: 'Test DND',
+						source: 'users',
+						status: {
+							clearAt: null,
+							icon: null,
+							message: 'Out sick',
+							status: 'dnd',
+						},
+						subline: 'Out sick',
+					},
+				},
+				userMentions: {
+					'user-1': {
+						component: 'NcUserBubble',
+						props: {
+							displayName: 'Test01',
+							user: 'Test01',
+							primary: true,
+						},
+					},
+					'user-2': {
+						component: 'NcUserBubble',
+						props: {
+							displayName: 'Test02',
+							user: 'Test02',
+						},
+					},
+					'user-3': {
+						component: 'NcUserBubble',
+						props: {
+							displayName: 'Test 03',
+							user: 'Test 03',
+						},
+					},
+					'user-4': {
+						component: 'NcUserBubble',
+						props: {
+							displayName: 'Test Offline',
+							user: 'Test Offline',
+						},
+					},
+					'user-5': {
+						component: 'NcUserBubble',
+						props: {
+							displayName: 'Test DND',
+							user: 'Test DND',
+						},
+					},
+				},
+			}
+		},
+		computed: {
+			text() {
+				return this.message
+						.replace('@Test01', '{user-1}')
+						.replace('@Test02', '{user-2}')
+						.replace('@Test 03', '{user-3}')
+						.replace('@"Test Offline"', '{user-4}')
+						.replace('@"Test DND"', '{user-5}')
+			},
+		},
+		methods: {
+			autoComplete(search, callback) {
+				callback(Object.values(this.userData))
+			},
+			onSubmit() {
+				alert(this.message)
+			}
+		}
+	}
+</script>
+```
 </docs>
 
 <script>
