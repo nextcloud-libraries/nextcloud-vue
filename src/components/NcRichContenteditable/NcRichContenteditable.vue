@@ -27,6 +27,8 @@ This component displays contenteditable div with automated `@` [at] autocompleti
 
 ### Examples
 
+Try mentioning user @Test01 or inserting emoji :smile
+
 ```vue
 <template>
 	<div>
@@ -55,21 +57,16 @@ This component displays contenteditable div with automated `@` [at] autocompleti
 		<p class="pre-line">{{ message }}</p>
 
 		<h5>Output - in NcRichText with markdown support</h5>
-		<NcRichText :text="message" use-markdown />
+		<NcRichText :text="text" :arguments="userMentions" autolink use-markdown />
 	</div>
 </template>
 <script>
-	import NcRichText from "../NcRichText/NcRichText.vue";
-
 export default {
-	components: {NcRichText},
-
 	data() {
 		return {
 			message: '**Lorem ipsum** dolor sit amet.',
-
-			// You need to provide this for the inline
-			// mention to understand what to display or not.
+			// You need to provide this for the inline mention to understand what to display or not.
+			// Key should be a string with leading '@', like @Test02 or @"Test Offline"
 			userData: {
 				Test01: {
 					icon: 'icon-user',
@@ -130,8 +127,58 @@ export default {
 					},
 					subline: 'Out sick',
 				},
+			},
+			// To display user bubbles in NcRichText, special format of data should be provided:
+			// Key should be in curly brackets without '@' and ' ' symbols, like {user-2}
+			userMentions: {
+				'user-1': {
+					component: 'NcUserBubble',
+					props: {
+						displayName: 'Test01',
+						user: 'Test01',
+						primary: true,
+					},
+				},
+				'user-2': {
+					component: 'NcUserBubble',
+					props: {
+						displayName: 'Test02',
+						user: 'Test02',
+					},
+				},
+				'user-3': {
+					component: 'NcUserBubble',
+					props: {
+						displayName: 'Test 03',
+						user: 'Test@User',
+					},
+				},
+				'user-4': {
+					component: 'NcUserBubble',
+					props: {
+						displayName: 'Test Offline',
+						user: 'Test Offline',
+					},
+				},
+				'user-5': {
+					component: 'NcUserBubble',
+					props: {
+						displayName: 'Test DND',
+						user: 'Test DND',
+					},
+				},
 			}
 		}
+	},
+	computed: {
+		text() {
+			return this.message
+					.replace('@Test01', '{user-1}')
+					.replace('@Test02', '{user-2}')
+					.replace('@Test@User', '{user-3}')
+					.replace('@"Test Offline"', '{user-4}')
+					.replace('@"Test DND"', '{user-5}')
+		},
 	},
 	methods: {
 		/**
