@@ -38,7 +38,6 @@ module.exports = {
 		'src/components/NcIconSvgWrapper*/*.vue',
 		'src/components/NcModal*/*.vue',
 		'src/components/NcNoteCard*/*.vue',
-		'src/components/NcPopover*/*.vue',
 		'src/components/NcProgressBar*/*.vue',
 		'src/components/NcRelatedResourcesPanel*/*.vue',
 		'src/components/NcRich*/**/*.vue',
