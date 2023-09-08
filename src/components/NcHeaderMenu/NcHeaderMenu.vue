@@ -75,6 +75,7 @@ export default {
 			ref="trigger"
 			class="header-menu__trigger button-vue"
 			:aria-label="ariaLabel"
+			:aria-describedby="description ? descriptionId : null"
 			:aria-controls="`header-menu-${id}`"
 			:aria-expanded="opened.toString()"
 			@click.prevent="toggleMenu">
@@ -82,6 +83,12 @@ export default {
 				is at least 16px. Usually mdi icon works at 20px -->
 			<slot name="trigger" />
 		</button>
+
+		<span v-if="description"
+			:id="descriptionId"
+			class="header-menu__description hidden-visually">
+			{{ description }}
+		</span>
 
 		<!-- Visual triangle -->
 		<div v-show="opened" class="header-menu__carret" />
@@ -152,6 +159,15 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Additional visually hidden description text for the menu
+		 * open button
+		 */
+		description: {
+			type: String,
+			default: null,
+		},
 	},
 
 	emits: [
@@ -169,6 +185,7 @@ export default {
 			opened: this.open,
 			shortcutsDisabled: window.OCP?.Accessibility?.disableKeyboardShortcuts?.(),
 			triggerId: GenRandomId(),
+			descriptionId: GenRandomId(),
 		}
 	},
 
