@@ -32,8 +32,8 @@ Please have a look at proper usage and recommendations: https://material.io/comp
 ```vue
 <template>
 	<div>
-		<NcCheckboxRadioSwitch :checked.sync="sharingEnabled">Enable sharing</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="sharingEnabled" :disabled="true">Enable sharing (disabled)</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="sharingEnabled">Enable sharing</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="sharingEnabled" :disabled="true">Enable sharing (disabled)</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch :checked="sharingEnabled" :loading="loading" @update:checked="onToggle">Enable sharing (with request loading)</NcCheckboxRadioSwitch>
 		<br>
 		sharingEnabled: {{ sharingEnabled }}
@@ -65,8 +65,8 @@ export default {
 ```vue
 <template>
 	<div>
-		<NcCheckboxRadioSwitch :checked.sync="sharingPermission" value="r" name="sharing_permission_radio" type="radio">Default permission read</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="sharingPermission" value="rw" name="sharing_permission_radio" type="radio">Default permission read+write</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="sharingPermission" value="r" name="sharing_permission_radio" type="radio">Default permission read</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="sharingPermission" value="rw" name="sharing_permission_radio" type="radio">Default permission read+write</NcCheckboxRadioSwitch>
 		<br>
 		sharingPermission: {{ sharingPermission }}
 	</div>
@@ -90,7 +90,7 @@ export default {
 		<div style="display: flex">
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
-				:checked.sync="sharingPermission"
+				v-model:checked="sharingPermission"
 				value="r"
 				name="sharing_permission_radio"
 				type="radio"
@@ -99,7 +99,7 @@ export default {
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
-				:checked.sync="sharingPermission"
+				v-model:checked="sharingPermission"
 				value="rw"
 				name="sharing_permission_radio"
 				type="radio"
@@ -111,7 +111,7 @@ export default {
 		<div style="width: fit-content">
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
-				:checked.sync="sharingPermission"
+				v-model:checked="sharingPermission"
 				value="r"
 				name="sharing_permission_radio"
 				type="radio"
@@ -120,7 +120,7 @@ export default {
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
-				:checked.sync="sharingPermission"
+				v-model:checked="sharingPermission"
 				value="rw"
 				name="sharing_permission_radio"
 				type="radio"
@@ -150,7 +150,7 @@ export default {
 		<div style="display: flex">
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
-				:checked.sync="enableSettings"
+				v-model:checked="enableSettings"
 				value="y"
 				name="sharing_permission_radio"
 				type="radio"
@@ -160,7 +160,7 @@ export default {
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
-				:checked.sync="enableSettings"
+				v-model:checked="enableSettings"
 				value="n"
 				name="sharing_permission_radio"
 				type="radio"
@@ -173,7 +173,7 @@ export default {
 		<div style="width: fit-content">
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
-				:checked.sync="enableSettings"
+				v-model:checked="enableSettings"
 				value="y"
 				name="sharing_permission_radio"
 				type="radio"
@@ -183,7 +183,7 @@ export default {
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
-				:checked.sync="enableSettings"
+				v-model:checked="enableSettings"
 				value="n"
 				name="sharing_permission_radio"
 				type="radio"
@@ -216,9 +216,9 @@ export default {
 ```vue
 <template>
 	<div>
-		<NcCheckboxRadioSwitch :disabled="true" :checked.sync="sharingPermission" value="r" name="sharing_permission">Permission read</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="sharingPermission" value="w" name="sharing_permission">Permission write</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="sharingPermission" value="d" name="sharing_permission">Permission delete</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch :disabled="true" v-model:checked="sharingPermission" value="r" name="sharing_permission">Permission read</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="sharingPermission" value="w" name="sharing_permission">Permission write</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="sharingPermission" value="d" name="sharing_permission">Permission delete</NcCheckboxRadioSwitch>
 		<br>
 		sharingPermission: {{ sharingPermission }}
 	</div>
@@ -238,8 +238,8 @@ export default {
 ```vue
 <template>
 	<div>
-		<NcCheckboxRadioSwitch :checked.sync="sharingEnabled" type="switch">Enable sharing</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="sharingEnabled" type="switch" :disabled="true">Enable sharing (disabled)</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="sharingEnabled" type="switch">Enable sharing</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="sharingEnabled" type="switch" :disabled="true">Enable sharing (disabled)</NcCheckboxRadioSwitch>
 		<br>
 		sharingEnabled: {{ sharingEnabled }}
 	</div>
@@ -383,7 +383,7 @@ export default {
 		},
 
 		/**
-		 * Checked state. To be used with `:value.sync`
+		 * Checked state. To be used with `v-model:value`
 		 */
 		checked: {
 			type: [Boolean, Array, String],

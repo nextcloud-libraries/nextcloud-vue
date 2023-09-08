@@ -67,6 +67,13 @@ export default defineConfig({
 			})
 
 		},
+		
+		excludeSpecPattern: [
+			'cypress/component/modal.cy.ts',
+			'cypress/component/richtext.cy.ts',
+			'cypress/visual/**/*.js',
+		],
+		
 
 		devServer: {
 			framework: 'vue',

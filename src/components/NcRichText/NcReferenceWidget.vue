@@ -180,7 +180,7 @@ export default {
 		text-overflow: ellipsis;
 		display: -webkit-box;
 		-webkit-line-clamp: 3;
-		line-clamp: 3;
+		line-clamp: 3; /* stylelint-disable-line property-no-unknown */
 		-webkit-box-orient: vertical;
 	}
 

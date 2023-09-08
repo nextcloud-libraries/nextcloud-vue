@@ -1,4 +1,4 @@
-import type { DefineComponent, Directive, PluginObject } from 'vue'
+import type { DefineComponent, Directive, Plugin } from 'vue'
 
 import * as NcComponents from './components/index.js'
 import * as NcDirectives from './directives/index.js'
@@ -8,26 +8,25 @@ import * as NcDirectives from './directives/index.js'
  * @example
  * ```js
  * import { NextcloudVuePlugin } from '@nextcloud/vue'
- * import Vue from 'vue'
+ * import { createApp } from 'vue'
  *
- * // ...
+ * const app = createApp({})
  *
- * Vue.use(NextcloudVuePlugin)
- * new Vue({
- *     // options
+ * app.use(NextcloudVuePlugin, {
+ *   // optional options
  * })
  * ```
  */
-export const NextcloudVuePlugin: PluginObject<never> = {
-	install(Vue) {
+export const NextcloudVuePlugin: Plugin = {
+	install(app) {
 		// Install components
 		Object.entries(NcComponents as { [key: string]: DefineComponent }).forEach(([name, component]) => {
-			Vue.component(component.name || name, component)
+			app.component(component.name || name, component)
 		})
 
 		// Install directives
 		Object.entries(NcDirectives as { [key: string]: Directive }).forEach(([name, directive]) => {
-			Vue.directive(name, directive)
+			app.directive(name, directive)
 		})
 	},
 }

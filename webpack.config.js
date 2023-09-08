@@ -22,7 +22,10 @@ const SCOPE_VERSION = JSON.stringify(versionHash)
 console.info('This build version hash is', versionHash, '\n')
 
 webpackConfig.entry = {
-	...globSync('src/components/*/index.js').reduce((acc, item) => {
+	// Only include NcButton yet, change back to 
+	// ...globSync('src/components/*/index.js').reduce((acc, item) => {
+	// later
+	...globSync('src/components/NcButton/index.js').reduce((acc, item) => {
 		const name = item
 			.replace('/index.js', '')
 			.replace('src/components/', 'Components/')
@@ -30,29 +33,30 @@ webpackConfig.entry = {
 		return acc
 	}, {}),
 
-	...globSync('src/directives/*/index.js').reduce((acc, item) => {
-		const name = item
-			.replace('/index.js', '')
-			.replace('src/directives/', 'Directives/')
-		acc[name] = path.join(__dirname, item)
-		return acc
-	}, {}),
+	// Temporarily exclude not yet migrated vue2 components
+	// ...globSync('src/directives/*/index.js').reduce((acc, item) => {
+	// 	const name = item
+	// 		.replace('/index.js', '')
+	// 		.replace('src/directives/', 'Directives/')
+	// 	acc[name] = path.join(__dirname, item)
+	// 	return acc
+	// }, {}),
 
-	...globSync('src/functions/*/index.js').reduce((acc, item) => {
-		const name = item
-			.replace('/index.js', '')
-			.replace('src/functions/', 'Functions/')
-		acc[name] = path.join(__dirname, item)
-		return acc
-	}, {}),
+	// ...globSync('src/functions/*/index.js').reduce((acc, item) => {
+	// 	const name = item
+	// 		.replace('/index.js', '')
+	// 		.replace('src/functions/', 'Functions/')
+	// 	acc[name] = path.join(__dirname, item)
+	// 	return acc
+	// }, {}),
 
-	...globSync('src/mixins/*/index.js').reduce((acc, item) => {
-		const name = item
-			.replace('/index.js', '')
-			.replace('src/mixins/', 'Mixins/')
-		acc[name] = path.join(__dirname, item)
-		return acc
-	}, {}),
+	// ...globSync('src/mixins/*/index.js').reduce((acc, item) => {
+	// 	const name = item
+	// 		.replace('/index.js', '')
+	// 		.replace('src/mixins/', 'Mixins/')
+	// 	acc[name] = path.join(__dirname, item)
+	// 	return acc
+	// }, {}),
 }
 
 webpackConfig.devtool = isDev ? false : 'source-map'
