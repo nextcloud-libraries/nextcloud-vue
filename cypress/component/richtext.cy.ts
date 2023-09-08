@@ -401,7 +401,7 @@ describe('NcRichText', () => {
 					},
 				})
 
-				cy.get('blockquote').should('have.text', '\nline 1\n\nline 3\n')
+				cy.get('blockquote').should('have.text', '\nline 1\nline 3\n')
 			})
 
 			it('blockquote (with nested blockquote)', () => {
