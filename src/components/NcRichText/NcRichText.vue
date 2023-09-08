@@ -217,18 +217,10 @@ export default {
 					},
 					prefix: false,
 				})
-				.processSync(this.useMarkdown
-				// In order to correctly show newlines in Markdown,
-				// each newline contains a non-breaking space
-					? this.text.slice()
-						.replace(/\n>\n/g, '\n>\u00A0\n')
-						.replace(/\n{2,}/g, (match) => {
-							return '\n' + '\n\u00A0\n'.repeat(match.length - 1)
-						})
-					: this.text)
+				.processSync(this.text)
 				.result
 
-			return h('div', { class: 'rich-text--wrapper' }, [
+			return h('div', { class: 'rich-text--wrapper rich-text--wrapper-markdown' }, [
 				renderedMarkdown,
 				this.referenceLimit > 0
 					? h('div', { class: 'rich-text--reference-widget' }, [
@@ -239,11 +231,9 @@ export default {
 		},
 	},
 	render(h) {
-		if (!this.useMarkdown) {
-			return this.renderPlaintext(h)
-		}
-
-		return this.renderMarkdown(h)
+		return this.useMarkdown
+			? this.renderMarkdown(h)
+			: this.renderPlaintext(h)
 	},
 }
 </script>
