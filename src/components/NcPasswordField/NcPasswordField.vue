@@ -29,32 +29,32 @@ General purpose password field component.
 ```
 <template>
 	<div class="wrapper">
-		<NcPasswordField :value.sync="text1"
+		<NcPasswordField v-model:value="text1"
 			label="Old password" />
 		<div class="external-label">
 			<label for="textField">New password</label>
-			<NcPasswordField id="textField"
-				:value.sync="text2"
+			<NcPasswordField v-model:value="text2"
+				id="textField"
 				:label-outside="true"
 				placeholder="Min. 12 characters" />
 		</div>
 		<div class="external-label">
 			<label for="textField2">New password</label>
-			<NcPasswordField id="textField2"
-				:value.sync="text3"
+			<NcPasswordField v-model:value="text3"
+				id="textField2"
 				:error="true"
 				:label-outside="true"
 				placeholder="Min. 12 characters"
 				helper-text="Password is insecure" />
 		</div>
 
-		<NcPasswordField :value.sync="text4"
+		<NcPasswordField v-model:value="text4"
 			label="Good new password"
 			:success="true"
 			placeholder="Min. 12 characters"
 			helper-text="Password is secure" />
 
-		<NcPasswordField :value.sync="text5"
+		<NcPasswordField v-model:value="text5"
 			:disabled="true"
 			label="Disabled" />
 	</div>
@@ -96,7 +96,7 @@ export default {
 </docs>
 
 <template>
-	<NcInputField v-bind="{...$attrs, ...$props }"
+	<NcInputField v-bind="$props"
 		ref="inputField"
 		:type="isPasswordHidden ? 'password' : 'text'"
 		:show-trailing-button="showTrailingButton && true"
@@ -105,7 +105,6 @@ export default {
 		:error="computedError"
 		:success="computedSuccess"
 		:minlength="rules.minlength"
-		v-on="$listeners"
 		@trailing-button-click="togglePasswordVisibility"
 		@input="handleInput">
 		<!-- Default slot for the leading icon -->
@@ -137,9 +136,6 @@ export default {
 		Eye,
 		EyeOff,
 	},
-
-	// Allow forwarding all attributes
-	inheritAttrs: false,
 
 	props: {
 		...NcInputField.props,

@@ -184,12 +184,12 @@ module.exports = async () => {
 				// 			'src/components/NcDashboard*/*.vue',
 				// 		],
 				// 	},
-				// 	{
-				// 		name: 'NcFields',
-				// 		components: [
-				// 			'src/components/Nc*Field/*.vue',
-				// 		],
-				// 	},
+					{
+						name: 'NcFields',
+						components: [
+							'src/components/Nc*Field/*.vue',
+						],
+					},
 				// 	{
 				// 		name: 'NcListItems',
 				// 		components: [
