@@ -114,7 +114,6 @@ module.exports = async () => {
 					// Not yet adjusted for vue3
 					'src/components/NcAvatar*/*.vue',
 					'src/components/NcCounterBubble*/*.vue',
-					'src/components/NcDatetime*/*.vue',
 					'src/components/NcEllipsisedOption*/*.vue',
 					'src/components/NcEmptyContent*/*.vue',
 					'src/components/NcGuestContent*/*.vue',

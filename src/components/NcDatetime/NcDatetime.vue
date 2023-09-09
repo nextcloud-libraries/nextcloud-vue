@@ -241,7 +241,7 @@ export default {
 		}
 	},
 
-	destroyed() {
+	unmounted() {
 		// ensure interval is cleared
 		window.clearInterval(this.intervalId)
 	},
