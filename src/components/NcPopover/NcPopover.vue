@@ -45,7 +45,7 @@ open prop on this component;
 			<template #trigger>
 				<NcButton>I am the trigger</NcButton>
 			</template>
-			<template>
+			<template #default>
 				<form tabindex="0" @submit.prevent>
 					<h2>this is some content</h2>
 					<p>
@@ -76,7 +76,7 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 			<template #trigger>
 				<NcButton>Click me!</NcButton>
 			</template>
-			<template>
+			<template #default>
 				Hi! 🚀
 			</template>
 		</NcPopover>
@@ -106,10 +106,8 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 	<Dropdown ref="popover"
 		:distance="10"
 		:arrow-padding="10"
-		v-bind="$attrs"
 		:no-auto-focus="true /* Handled by the focus trap */"
 		:popper-class="popoverBaseClass"
-		v-on="$listeners"
 		@apply-show="afterShow"
 		@apply-hide="afterHide">
 		<!-- This will be the popover target (for the events and position) -->
@@ -163,7 +161,7 @@ export default {
 		'after-hide',
 	],
 
-	beforeDestroy() {
+	beforeUnmount() {
 		this.clearFocusTrap()
 	},
 
