@@ -34,7 +34,6 @@ module.exports = {
 		'src/components/NcEmptyContent*/*.vue',
 		'src/components/NcGuestContent*/*.vue',
 		'src/components/NcHeaderMenu*/*.vue',
-		'src/components/NcHighlight*/*.vue',
 		'src/components/NcIconSvgWrapper*/*.vue',
 		'src/components/NcModal*/*.vue',
 		'src/components/NcNoteCard*/*.vue',
