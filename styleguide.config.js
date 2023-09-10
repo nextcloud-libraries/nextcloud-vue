@@ -59,6 +59,8 @@ module.exports = async () => {
 			return `import ${name} from '@nextcloud/vue/dist/Components/${name}'`
 		},
 
+		enhancePreviewApp: path.resolve(__dirname, 'styleguide/preview.js'),
+
 		sections: [
 			{
 				name: 'Introduction',
@@ -84,10 +86,10 @@ module.exports = async () => {
 					},
 				],
 			},
-			// {
-			// 	name: 'Directives',
-			// 	content: 'docs/directives.md',
-			// },
+			{
+				name: 'Directives',
+				content: 'docs/directives.md',
+			},
 			{
 				name: 'Components',
 				content: 'docs/components.md',

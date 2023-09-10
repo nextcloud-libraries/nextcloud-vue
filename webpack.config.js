@@ -33,14 +33,13 @@ webpackConfig.entry = {
 		return acc
 	}, {}),
 
-	// Temporarily exclude not yet migrated vue2 components
-	// ...globSync('src/directives/*/index.js').reduce((acc, item) => {
-	// 	const name = item
-	// 		.replace('/index.js', '')
-	// 		.replace('src/directives/', 'Directives/')
-	// 	acc[name] = path.join(__dirname, item)
-	// 	return acc
-	// }, {}),
+	...globSync('src/directives/*/index.js').reduce((acc, item) => {
+		const name = item
+			.replace('/index.js', '')
+			.replace('src/directives/', 'Directives/')
+		acc[name] = path.join(__dirname, item)
+		return acc
+	}, {}),
 
 	// ...globSync('src/functions/*/index.js').reduce((acc, item) => {
 	// 	const name = item
