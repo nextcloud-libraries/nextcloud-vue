@@ -78,7 +78,6 @@ module.exports = {
 		"<rootDir>/tests/unit/components/NcActions",
 		"<rootDir>/tests/unit/components/NcAppNavigation",
 		"<rootDir>/tests/unit/components/NcAppSidebar",
-		"<rootDir>/tests/unit/components/NcHighlight",
 		"<rootDir>/tests/unit/components/NcModal",
 		"<rootDir>/tests/unit/components/NcRichContenteditable",
 		"<rootDir>/tests/unit/components/NcRichText",
