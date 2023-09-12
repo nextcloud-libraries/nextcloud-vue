@@ -29,7 +29,6 @@ module.exports = {
 		'src/components/NcSettings*/*.vue',
 		'src/components/NcAvatar*/*.vue',
 		'src/components/NcCounterBubble*/*.vue',
-		'src/components/NcDatetime*/*.vue',
 		'src/components/NcEllipsisedOption*/*.vue',
 		'src/components/NcEmptyContent*/*.vue',
 		'src/components/NcGuestContent*/*.vue',
