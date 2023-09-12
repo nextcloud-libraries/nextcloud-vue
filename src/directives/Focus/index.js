@@ -21,7 +21,7 @@
  */
 
 export const directive = {
-	inserted(el) {
+	mounted(el) {
 		el.focus()
 	},
 }
