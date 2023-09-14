@@ -1,4 +1,4 @@
-import { Tooltip } from '../src/directives/index.js'
+import { Tooltip } from '../src/directives/index.ts'
 
 // The export here MUST be default or module.export
 // this is what is imported by the styleguide

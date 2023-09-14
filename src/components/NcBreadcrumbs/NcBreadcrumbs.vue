@@ -142,7 +142,7 @@ import NcActionButton from '../NcActionButton/index.js'
 import NcActionRouter from '../NcActionRouter/index.js'
 import NcActionLink from '../NcActionLink/index.js'
 import NcBreadcrumb from '../NcBreadcrumb/index.js'
-import isSlotPopulated from '../../utils/isSlotPopulated.js'
+import isSlotPopulated from '../../utils/isSlotPopulated.ts'
 
 import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 

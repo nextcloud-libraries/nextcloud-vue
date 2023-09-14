@@ -20,11 +20,11 @@
  *
  */
 
-export * from './components/index.js'
+export * from './components/index'
 
 export * from './composables/index.js'
 export * from './functions/index.js'
 export * from './directives/index.js'
 export * from './mixins/index.js'
 
-export { NextcloudVuePlugin } from './plugin.ts'
+export { NextcloudVuePlugin } from './plugin'

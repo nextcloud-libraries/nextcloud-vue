@@ -34,6 +34,7 @@
   "main": "dist/index.cjs",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
@@ -113,14 +114,15 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-import-assertions": "^7.22.5",
-    "@babel/preset-typescript": "^7.22.5",
+    "@babel/plugin-transform-typescript": "^7.23.6",
+    "@babel/preset-typescript": "^7.22.15",
     "@cypress/vue": "^6.0.0",
     "@fontsource/roboto": "^5.0.0",
     "@mdi/js": "^7.3.67",
     "@mdi/svg": "^7.0.96",
     "@nextcloud/babel-config": "^1.0.0",
     "@nextcloud/browserslist-config": "^3.0.0",
-    "@nextcloud/eslint-config": "github:nextcloud-libraries/eslint-config#fe67f6b84e3c13eb0ea2478f44939abc2fe7c99c",
+    "@nextcloud/eslint-config": "github:nextcloud-libraries/eslint-config#9b4f321f25612cde492211e91e369685d9cf7b42",
     "@nextcloud/stylelint-config": "^2.3.1",
     "@nextcloud/vite-config": "github:nextcloud-libraries/nextcloud-vite-config#vue3",
     "@nextcloud/webpack-vue-config": "github:nextcloud/webpack-vue-config#1f4277c6ab14be63810f425ef6b762d8ca59697b",

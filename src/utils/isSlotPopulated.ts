@@ -20,18 +20,22 @@
  *
  */
 
-import { Fragment, Comment, Text } from 'vue'
+import { Fragment, Comment, Text, type VNode, type VNodeNormalizedChildren } from 'vue'
 
 /**
  * Checks whether a slot is populated
  *
- * @param {Array} vnodes The array of vnodes to check
+ * @param vnodes The array of vnodes to check
  */
-const isSlotPopulated = function(vnodes) {
-	return !!vnodes?.some(node => {
-		if (node.type === Comment) return false
-		if (node.type === Fragment && !isSlotPopulated(node.children)) return false
-		if (node.type === Text && !node.children.trim()) return false
+const isSlotPopulated = function(vnodes?: VNode[] | VNodeNormalizedChildren) {
+	return Array.isArray(vnodes) && vnodes.some(node => {
+		if (node === null) return false
+		if (typeof node === 'object') {
+			const vnode = node as VNode
+			if (vnode.type === Comment) return false
+			if (vnode.type === Fragment && !isSlotPopulated(vnode.children)) return false
+			if (vnode.type === Text && !(vnode.children as string).trim()) return false
+		}
 		return true
 	})
 }
