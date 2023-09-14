@@ -1,6 +1,7 @@
 import type { Plugin } from 'vite'
 import { createLibConfig } from '@nextcloud/vite-config'
-import { resolve } from 'path'
+import { globSync } from 'glob'
+import { join, resolve } from 'node:path'
 import { defineConfig } from 'vite'
 
 import md5 from 'md5'
@@ -17,6 +18,38 @@ const TRANSLATIONS = await loadTranslations(resolve(__dirname, './l10n'))
 
 // Entry points which we build using vite
 const entryPoints = {
+	...globSync('src/components/*/index.js').reduce((acc, item) => {
+		const name = item
+			.replace('/index.js', '')
+			.replace('src/components/', 'Components/')
+		acc[name] = join(__dirname, item)
+		return acc
+	}, {}),
+
+	...globSync('src/directives/*/index.js').reduce((acc, item) => {
+		const name = item
+			.replace('/index.js', '')
+			.replace('src/directives/', 'Directives/')
+		acc[name] = join(__dirname, item)
+		return acc
+	}, {}),
+
+	...globSync('src/functions/*/index.js').reduce((acc, item) => {
+		const name = item
+			.replace('/index.js', '')
+			.replace('src/functions/', 'Functions/')
+		acc[name] = join(__dirname, item)
+		return acc
+	}, {}),
+
+	...globSync('src/mixins/*/index.js').reduce((acc, item) => {
+		const name = item
+			.replace('/index.js', '')
+			.replace('src/mixins/', 'Mixins/')
+		acc[name] = join(__dirname, item)
+		return acc
+	}, {}),
+
 	index: resolve(__dirname, 'src/index.js'),
 }
 
@@ -33,10 +66,6 @@ const vueDocsPlugin: Plugin = {
 
 // Customizations for the vite config
 const overrides = defineConfig({
-	build: {
-		// Vite is run second so do not remove webpack files
-		emptyOutDir: false,
-	},
 	plugins: [
 		vueDocsPlugin,
 	],
