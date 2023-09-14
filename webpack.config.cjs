@@ -61,7 +61,7 @@ webpackRules.RULE_NODE_MJS = {
 	type: 'javascript/auto',
 	resolve: {
 		fullySpecified: false,
-	}
+	},
 }
 
 webpackConfig.module.rules = Object.values(webpackRules)

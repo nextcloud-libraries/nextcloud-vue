@@ -1,7 +1,7 @@
 import type { DefineComponent, Directive, Plugin } from 'vue'
 
-import * as NcComponents from './components/index.js'
-import * as NcDirectives from './directives/index.js'
+import * as NcComponents from './components/index'
+import * as NcDirectives from './directives/index'
 
 /**
  * Install all Nextcloud Vue components and directives globally
@@ -20,7 +20,7 @@ import * as NcDirectives from './directives/index.js'
 export const NextcloudVuePlugin: Plugin = {
 	install(app) {
 		// Install components
-		Object.entries(NcComponents as { [key: string]: DefineComponent }).forEach(([name, component]) => {
+		Object.entries(NcComponents).forEach(([name, component]) => {
 			app.component(component.name || name, component)
 		})
 

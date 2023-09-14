@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 
-import isSlotPopulated from '../../../src/utils/isSlotPopulated.js'
-
+import isSlotPopulated from '../../../src/utils/isSlotPopulated'
+import { describe, expect, it } from '@jest/globals'
 
 const IsSlotPopulatedTest = {
 	name: 'IsSlotPopulatedTest',
