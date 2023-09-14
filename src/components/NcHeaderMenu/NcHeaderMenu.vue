@@ -64,14 +64,18 @@ export default {
 </docs>
 
 <template>
-	<div :id="id"
+	<component :is="wrapperTag"
+		:id="id"
 		v-click-outside="clickOutsideConfig"
+		:aria-labelledby="isNav ? triggerId : null"
 		:class="{ 'header-menu--opened': opened }"
 		class="header-menu">
 		<!-- Trigger -->
-		<button ref="trigger"
+		<button :id="triggerId"
+			ref="trigger"
 			class="header-menu__trigger button-vue"
 			:aria-label="ariaLabel"
+			:aria-describedby="description ? descriptionId : null"
 			:aria-controls="`header-menu-${id}`"
 			:aria-expanded="opened.toString()"
 			@click.prevent="toggleMenu">
@@ -80,26 +84,32 @@ export default {
 			<slot name="trigger" />
 		</button>
 
+		<span v-if="description"
+			:id="descriptionId"
+			class="header-menu__description hidden-visually">
+			{{ description }}
+		</span>
+
 		<!-- Visual triangle -->
 		<div v-show="opened" class="header-menu__carret" />
 
 		<!-- Menu opened content -->
 		<div v-show="opened"
 			:id="`header-menu-${id}`"
-			class="header-menu__wrapper"
-			role="menu">
+			class="header-menu__wrapper">
 			<div ref="content" class="header-menu__content">
 				<!-- @slot Main content -->
 				<slot />
 			</div>
 		</div>
-	</div>
+	</component>
 </template>
 
 <script>
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
 
+import GenRandomId from '../../utils/GenRandomId.js'
 import { clickOutsideOptions } from '../../mixins/index.js'
 import { getTrapStack } from '../../utils/focusTrap.js'
 
@@ -138,6 +148,26 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Pass `true` if the header menu is used for website navigation
+		 *
+		 * The wrapper tag will be set to `nav` and its `aria-labelledby`
+		 * will be associated with the menu open button
+		 */
+		isNav: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Additional visually hidden description text for the menu
+		 * open button
+		 */
+		description: {
+			type: String,
+			default: null,
+		},
 	},
 
 	emits: [
@@ -154,10 +184,16 @@ export default {
 			focusTrap: null,
 			opened: this.open,
 			shortcutsDisabled: window.OCP?.Accessibility?.disableKeyboardShortcuts?.(),
+			triggerId: GenRandomId(),
+			descriptionId: GenRandomId(),
 		}
 	},
 
 	computed: {
+		wrapperTag() {
+			return this.isNav ? 'nav' : 'div'
+		},
+
 		clickOutsideConfig() {
 			return [
 				this.closeMenu,
@@ -360,5 +396,4 @@ $externalMargin: 8px;
 		}
 	}
 }
-
 </style>
