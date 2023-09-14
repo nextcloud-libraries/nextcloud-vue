@@ -76,7 +76,7 @@ import markdown from 'remark-parse'
 import breaks from 'remark-breaks'
 import remark2rehype from 'remark-rehype'
 import rehype2react from 'rehype-react'
-import remarkExternalLinks from 'remark-external-links'
+import rehypeExternalLinks from 'rehype-external-links'
 
 export default {
 	name: 'NcRichText',
@@ -176,10 +176,6 @@ export default {
 					autolink: this.autolink,
 					useMarkdown: this.useMarkdown,
 				})
-				.use(remarkExternalLinks, {
-					target: '_blank',
-					rel: ['noopener noreferrer'],
-				})
 				.use(breaks)
 				.use(remark2rehype, {
 					handlers: {
@@ -190,8 +186,18 @@ export default {
 				})
 				// .use(rehypeAddClasses, this.markdownCssClasses)
 				.use(remarkPlaceholder)
+				.use(rehypeExternalLinks, {
+					target: '_blank',
+					rel: ['noopener noreferrer'],
+				})
 				.use(rehype2react, {
 					createElement: (tag, attrs, children) => {
+						// unescape special symbol "<" for simple text nodes
+						children = children?.map(child => typeof child === 'string'
+							? child.replace(/&lt;/gmi, '<')
+							: child,
+						)
+
 						if (!tag.startsWith('#')) {
 							return h(tag, attrs, children)
 						}
@@ -217,18 +223,15 @@ export default {
 					},
 					prefix: false,
 				})
-				.processSync(this.useMarkdown
-				// In order to correctly show newlines in Markdown,
-				// each newline contains a non-breaking space
-					? this.text.slice()
-						.replace(/\n>\n/g, '\n>\u00A0\n')
-						.replace(/\n{2,}/g, (match) => {
-							return '\n' + '\n\u00A0\n'.repeat(match.length - 1)
-						})
-					: this.text)
+				.processSync(this.text
+					// escape special symbol "<" to not treat text as HTML
+					.replace(/</gmi, '&lt;')
+					// unescape special symbol ">" to parse blockquotes
+					.replace(/&gt;/gmi, '>')
+				)
 				.result
 
-			return h('div', { class: 'rich-text--wrapper' }, [
+			return h('div', { class: 'rich-text--wrapper rich-text--wrapper-markdown' }, [
 				renderedMarkdown,
 				this.referenceLimit > 0
 					? h('div', { class: 'rich-text--reference-widget' }, [
@@ -239,11 +242,9 @@ export default {
 		},
 	},
 	render(h) {
-		if (!this.useMarkdown) {
-			return this.renderPlaintext(h)
-		}
-
-		return this.renderMarkdown(h)
+		return this.useMarkdown
+			? this.renderMarkdown(h)
+			: this.renderPlaintext(h)
 	},
 }
 </script>

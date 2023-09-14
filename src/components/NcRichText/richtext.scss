@@ -132,3 +132,41 @@
 		}
 	}
 }
+
+.rich-text--wrapper-markdown {
+	div > *:first-child,
+	blockquote > *:first-child{
+		margin-top: 0 !important;
+	}
+	div > *:last-child ,
+	blockquote > *:last-child {
+		margin-bottom: 0 !important;
+	}
+
+	h1, h2, h3, h4, h5, h6, p, ul, ol, blockquote, pre {
+		margin-top: 0;
+		margin-bottom: 1em;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: bold;
+	}
+
+	h1 {
+		font-size: 30px;
+	}
+
+	ul, ol {
+		padding-left: 15px;
+	}
+
+	ul {
+		list-style-type: disc;
+	}
+
+	blockquote {
+		padding-left: 13px;
+		border-left: 2px solid var(--color-border-dark);
+		color: var(--color-text-lighter);
+	}
+}
