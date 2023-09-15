@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 ## v8 **Unreleased** (beta)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.11.2...v8.0.0-beta.5)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.11.2...v8.0.0-beta.6)
 
 ### :boom: Breaking changes
 - Update node engines to next LTS (node 20 / npm 9)
@@ -23,6 +23,7 @@ All notable changes to this project will be documented in this file.
 - chore: Drop `install` entry point and replace it with an Vue Plugin [\#4349](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4349) ([susnux](https://github.com/susnux))
 - `NcInputField`: The `labelVisible` property was removed for accessibility it is required to always show a label.
   You can still use the `labelOutside` property to remove the inner label from the component.
+- feat(NcEmptyContent)!: make empty content centered by default instead of 20vh margin [\#4506](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4506) ([ShGKme](https://github.com/ShGKme))
 
 ### :rocket: Enhancements
 - enh\(NcDatetime\): New component for displaying timestamps as time relative from now [\#4219](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4219) ([susnux](https://github.com/susnux))
@@ -40,6 +41,12 @@ All notable changes to this project will be documented in this file.
 - Add menuitem role to action link [\#4436](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4436) ([Pytal](https://github.com/Pytal))
 - feat\(NcModal\): Allow to configure if the modal is closed when clicked outside [\#4454](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4454) ([susnux](https://github.com/susnux))
 - Feature: Add visible inner label for `NcInputField` on border [\#4394](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4394) ([susnux](https://github.com/susnux))
+- Bring back label outside of the input for NcActionInput [\#4484](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4484) ([juliushaertl](https://github.com/juliushaertl))
+- feat(`NcRichContenteditable`) - add different output appearance in examples  [\#4485](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4485) ([Antreesy](https://github.com/Antreesy))
+- perf(NcEmojiPicker): decrease mounting time and memory by moving large constants initialization and storing out from instance's reactive data [\#4479](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4479) ([ShGKme](https://github.com/ShGKme))
+- enh(NcAppNavigationCaption): Forward listeners [\#4494](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4494) ([Pytal](https://github.com/Pytal))
+- enh(a11y): Use button as header menu trigger [\#4481](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4481) ([Pytal](https://github.com/Pytal))
+- enh(a11y): Add nav to header menu [\#4487](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4487) ([Pytal](https://github.com/Pytal))
 
 ### :bug: Fixed bugs
 - fix\(NcSettingsSelectGroup\): Migrate from deprecated `NcMultiselect` to `NcSelect` [\#4120](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4120) ([susnux](https://github.com/susnux))
@@ -95,6 +102,12 @@ All notable changes to this project will be documented in this file.
 - fix\(`NcRichText`\) - don't populate a first newline to properly parse blockqoute tags [\#4470](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4470) ([Antreesy](https://github.com/Antreesy))
 - fix\(a11y\): Remove nav and radios in sidebar tabs [\#4456](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4456) ([Pytal](https://github.com/Pytal))
 - fix\(NcSelect\): Do not add border to single select option [\#4475](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4475) ([Pytal](https://github.com/Pytal))
+- feat and fix: `NcCheckboxRadioSwitch` `required` prop and input position fix [\#4488](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4488) ([skjnldsv](https://github.com/skjnldsv))
+- Align NcCheckboxRadioSwitch labels [\#4490](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4490) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- fix(EmptyContent): svg max size [\#4496](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4496) ([skjnldsv](https://github.com/skjnldsv))
+- fix(NcRichContenteditable): make the default placeholder short [\#4408](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4408) ([ShGKme](https://github.com/ShGKme))
+- Stop propagation of keyboard navigation in a number of components [\#4501](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4501) ([ShGKme](https://github.com/ShGKme))
+- fix(NcRichText) - don't strip `<tag>`-like content when parsing markdown [\#4486](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4486) ([Antreesy](https://github.com/Antreesy))
 
 ## [v7.11.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.11.2) (2023-05-05)
 
