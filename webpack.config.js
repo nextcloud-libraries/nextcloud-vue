@@ -1,13 +1,13 @@
+// config for the styleguide
+
 const webpackConfig = require('@nextcloud/webpack-vue-config')
 const webpackRules = require('@nextcloud/webpack-vue-config/rules')
 
-const { globSync } = require('glob')
 const md5 = require('md5')
 const path = require('path')
 
 const { DefinePlugin } = require('webpack')
 const BabelLoaderExcludeNodeModulesExcept = require('babel-loader-exclude-node-modules-except')
-const nodeExternals = require('webpack-node-externals')
 const { loadTranslations } = require('./build/translations.js')
 
 const buildMode = process.env.NODE_ENV
@@ -19,58 +19,7 @@ const appVersion = JSON.stringify(process.env.npm_package_version || 'nextcloud-
 const versionHash = md5(appVersion).slice(0, 7)
 const SCOPE_VERSION = JSON.stringify(versionHash)
 
-console.info('This build version hash is', versionHash, '\n')
-
-webpackConfig.entry = {
-	// Only include NcButton yet, change back to 
-	// ...globSync('src/components/*/index.js').reduce((acc, item) => {
-	// later
-	...globSync('src/components/NcButton/index.js').reduce((acc, item) => {
-		const name = item
-			.replace('/index.js', '')
-			.replace('src/components/', 'Components/')
-		acc[name] = path.join(__dirname, item)
-		return acc
-	}, {}),
-
-	...globSync('src/directives/*/index.js').reduce((acc, item) => {
-		const name = item
-			.replace('/index.js', '')
-			.replace('src/directives/', 'Directives/')
-		acc[name] = path.join(__dirname, item)
-		return acc
-	}, {}),
-
-	// ...globSync('src/functions/*/index.js').reduce((acc, item) => {
-	// 	const name = item
-	// 		.replace('/index.js', '')
-	// 		.replace('src/functions/', 'Functions/')
-	// 	acc[name] = path.join(__dirname, item)
-	// 	return acc
-	// }, {}),
-
-	// ...globSync('src/mixins/*/index.js').reduce((acc, item) => {
-	// 	const name = item
-	// 		.replace('/index.js', '')
-	// 		.replace('src/mixins/', 'Mixins/')
-	// 	acc[name] = path.join(__dirname, item)
-	// 	return acc
-	// }, {}),
-}
-
 webpackConfig.devtool = isDev ? false : 'source-map'
-webpackConfig.output = {
-	path: path.resolve(__dirname, './dist'),
-	publicPath: '/dist/',
-	filename: '[name].js',
-	library: {
-		type: 'umd',
-		name: ['NextcloudVue', '[name]'],
-	},
-	umdNamedDefine: true,
-}
-
-webpackConfig.externals = [nodeExternals()]
 
 webpackRules.RULE_SCSS = {
 	test: /\.scss$/,
