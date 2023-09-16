@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 # Changelog
 
+## [v7.12.5](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.12.5) (2023-09-16)
+
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.12.4...v7.12.5)
+
+### :rocket: Enhancements
+- feat(NcRichContenteditable) - add different output appearance in examples by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4505
+
+### :bug: Fixed bugs
+- perf(NcEmojiPicker): decrease mounting time and memory by moving large constants initialization and storing out from instance's reactive data by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4493
+- fix(NcRichText): don't strip `<tag>`-like content when parsing markdown [\#4486](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4486) ([Antreesy](https://github.com/Antreesy))
+- fix(NcRichContenteditable): make the default placeholder short [\#4408](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4408) ([ShGKme](https://github.com/ShGKme))
+
 ## [v7.12.4](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.12.4) (2023-08-25)
 
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.12.3...v7.12.4)
