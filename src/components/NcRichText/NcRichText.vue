@@ -21,6 +21,10 @@
   -
   -->
 <docs>
+### General description
+
+This component displays rich text with optional autolink or [Markdown support](https://www.markdownguide.org/basic-syntax/).
+
 ```vue
 <template>
 	<div>
@@ -29,6 +33,7 @@
 		<NcCheckboxRadioSwitch :checked.sync="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
 
 		<NcRichText
+			:class="{'plain-text': !useMarkdown }"
 			:text="text" :autolink="autolink" :arguments="args"
 			:use-markdown="useMarkdown" />
 	</div>
@@ -37,11 +42,16 @@
 export default {
 	data() {
 		return {
-			text: `Hello {username}. The file {file} was added by {username}. Go visit https://nextcloud.com
+			text: `## Hello everyone 🎉
+The file {file} was added by {username}. Visit https://nextcloud.com to check it!
 
-Local IP: http://127.0.0.1/status.php should be clickable
+Some examples for markdown syntax:
+1. **bold text**
+2. _italic text_
+3. example of \`inline code\`
 
-Some examples for markdown syntax: **bold text** *italic text* \`inline code\``,
+> blockquote example
+`,
 			autolink: true,
 			useMarkdown: true,
 			args: {
@@ -60,9 +70,166 @@ Some examples for markdown syntax: **bold text** *italic text* \`inline code\``,
 <style lang="scss">
 textarea {
 	width: 100%;
-	height: 100px;
+	height: 200px;
+}
+
+.plain-text {
+	white-space: pre-line;
 }
 </style>
+```
+
+### Usage with NcRichContenteditable
+
+See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation for more information
+
+```vue
+<template>
+	<div>
+		<NcRichContenteditable :value.sync="message"
+			:auto-complete="autoComplete"
+			:maxlength="100"
+			:user-data="userData"
+			placeholder="Try mentioning user @Test01 or inserting emoji :smile"
+			@submit="onSubmit" />
+
+		<NcCheckboxRadioSwitch :checked.sync="autolink" type="checkbox">Autolink</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch :checked.sync="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
+
+		<NcRichText :text="text"
+			:autolink="autolink"
+			:arguments="userMentions"
+			:use-markdown="useMarkdown" />
+	</div>
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				message: '',
+				autolink: true,
+				useMarkdown: true,
+				userData: {
+					Test01: {
+						icon: 'icon-user',
+						id: 'Test01',
+						label: 'Test01',
+						source: 'users',
+						primary: true,
+					},
+					Test02: {
+						icon: 'icon-user',
+						id: 'Test02',
+						label: 'Test02',
+						source: 'users',
+						status: {
+							clearAt: null,
+							icon: '🎡',
+							message: 'Visiting London',
+							status: 'away',
+						},
+						subline: 'Visiting London',
+					},
+					'Test@User': {
+						icon: 'icon-user',
+						id: 'Test@User',
+						label: 'Test 03',
+						source: 'users',
+						status: {
+							clearAt: null,
+							icon: '🎡',
+							message: 'Having space in my name',
+							status: 'online',
+						},
+						subline: 'Visiting London',
+					},
+					'Test Offline': {
+						icon: 'icon-user',
+						id: 'Test Offline',
+						label: 'Test Offline',
+						source: 'users',
+						status: {
+							clearAt: null,
+							icon: null,
+							message: null,
+							status: 'offline',
+						},
+						subline: null,
+					},
+					'Test DND': {
+						icon: 'icon-user',
+						id: 'Test DND',
+						label: 'Test DND',
+						source: 'users',
+						status: {
+							clearAt: null,
+							icon: null,
+							message: 'Out sick',
+							status: 'dnd',
+						},
+						subline: 'Out sick',
+					},
+				},
+				userMentions: {
+					'user-1': {
+						component: 'NcUserBubble',
+						props: {
+							displayName: 'Test01',
+							user: 'Test01',
+							primary: true,
+						},
+					},
+					'user-2': {
+						component: 'NcUserBubble',
+						props: {
+							displayName: 'Test02',
+							user: 'Test02',
+						},
+					},
+					'user-3': {
+						component: 'NcUserBubble',
+						props: {
+							displayName: 'Test 03',
+							user: 'Test@User',
+						},
+					},
+					'user-4': {
+						component: 'NcUserBubble',
+						props: {
+							displayName: 'Test Offline',
+							user: 'Test Offline',
+						},
+					},
+					'user-5': {
+						component: 'NcUserBubble',
+						props: {
+							displayName: 'Test DND',
+							user: 'Test DND',
+						},
+					},
+				},
+			}
+		},
+		computed: {
+			text() {
+				return this.message
+						.replace('@Test01', '{user-1}')
+						.replace('@Test02', '{user-2}')
+						.replace('@Test@User', '{user-3}')
+						.replace('@"Test Offline"', '{user-4}')
+						.replace('@"Test DND"', '{user-5}')
+			},
+		},
+		methods: {
+			autoComplete(search, callback) {
+				callback(Object.values(this.userData))
+			},
+			onSubmit() {
+				alert(this.message)
+			}
+		}
+	}
+</script>
 ```
 </docs>
 
@@ -76,7 +243,7 @@ import markdown from 'remark-parse'
 import breaks from 'remark-breaks'
 import remark2rehype from 'remark-rehype'
 import rehype2react from 'rehype-react'
-import remarkExternalLinks from 'remark-external-links'
+import rehypeExternalLinks from 'rehype-external-links'
 
 export default {
 	name: 'NcRichText',
@@ -176,10 +343,6 @@ export default {
 					autolink: this.autolink,
 					useMarkdown: this.useMarkdown,
 				})
-				.use(remarkExternalLinks, {
-					target: '_blank',
-					rel: ['noopener noreferrer'],
-				})
 				.use(breaks)
 				.use(remark2rehype, {
 					handlers: {
@@ -190,8 +353,18 @@ export default {
 				})
 				// .use(rehypeAddClasses, this.markdownCssClasses)
 				.use(remarkPlaceholder)
+				.use(rehypeExternalLinks, {
+					target: '_blank',
+					rel: ['noopener noreferrer'],
+				})
 				.use(rehype2react, {
 					createElement: (tag, attrs, children) => {
+						// unescape special symbol "<" for simple text nodes
+						children = children?.map(child => typeof child === 'string'
+							? child.replace(/&lt;/gmi, '<')
+							: child,
+						)
+
 						if (!tag.startsWith('#')) {
 							return h(tag, attrs, children)
 						}
@@ -217,18 +390,15 @@ export default {
 					},
 					prefix: false,
 				})
-				.processSync(this.useMarkdown
-				// In order to correctly show newlines in Markdown,
-				// each newline contains a non-breaking space
-					? this.text.slice()
-						.replace(/\n>\n/g, '\n>\u00A0\n')
-						.replace(/\n{2,}/g, (match) => {
-							return '\n' + '\n\u00A0\n'.repeat(match.length - 1)
-						})
-					: this.text)
+				.processSync(this.text
+					// escape special symbol "<" to not treat text as HTML
+					.replace(/</gmi, '&lt;')
+					// unescape special symbol ">" to parse blockquotes
+					.replace(/&gt;/gmi, '>')
+				)
 				.result
 
-			return h('div', { class: 'rich-text--wrapper' }, [
+			return h('div', { class: 'rich-text--wrapper rich-text--wrapper-markdown' }, [
 				renderedMarkdown,
 				this.referenceLimit > 0
 					? h('div', { class: 'rich-text--reference-widget' }, [
@@ -239,15 +409,13 @@ export default {
 		},
 	},
 	render(h) {
-		if (!this.useMarkdown) {
-			return this.renderPlaintext(h)
-		}
-
-		return this.renderMarkdown(h)
+		return this.useMarkdown
+			? this.renderMarkdown(h)
+			: this.renderPlaintext(h)
 	},
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 /* stylelint-disable-next-line scss/at-import-partial-extension */
 @import './richtext.scss';
 
