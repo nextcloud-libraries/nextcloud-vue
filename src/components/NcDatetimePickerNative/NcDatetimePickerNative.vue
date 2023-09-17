@@ -34,12 +34,13 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 ```vue
 <template>
 	<span>
-		<NcDateTimePickerNative
+		<NcDatetimePickerNative
 			v-model="value"
 			:id="id"
 			:label="label"
 			type="datetime-local" />
 	</span>
+	The date selected is {{ value }}
 </template>
 <script>
 	export default {
@@ -47,7 +48,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 			return {
 				value: new Date(),
 				id: 'date-time-picker',
-				label: 'please select a new date',
+				label: 'Please select a new date',
 			}
 		},
 	}
@@ -58,7 +59,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 ```vue
 <template>
 	<span>
-		<NcDateTimePickerNative
+		<NcDatetimePickerNative
 			v-model="value"
 			:id="id"
 			:min="yesterdayDate"
@@ -74,7 +75,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 			return {
 				value: new Date(),
 				id: 'date-time-picker',
-				label: 'please select a new date',
+				label: 'Please select a new date',
 				yesterdayDate: new Date(new Date().setDate(new Date().getDate() - 1)),
 				someDate: new Date(new Date().setDate(new Date().getDate() + 7)),
 			}
@@ -87,7 +88,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 ```vue
 <template>
 	<span>
-		<NcDateTimePickerNative
+		<NcDatetimePickerNative
 			v-model="value"
 			:id="id"
 			:label="label"
@@ -101,7 +102,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 			return {
 				value: new Date(),
 				id: 'date-time-picker',
-				label: 'please select a new date',
+				label: 'Please select a new date',
 			}
 		},
 	}
@@ -112,7 +113,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 ```vue
 <template>
 	<span>
-		<NcDateTimePickerNative
+		<NcDatetimePickerNative
 			v-model="value"
 			:id="id"
 			:label="label"
@@ -126,7 +127,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 			return {
 				value: new Date(),
 				id: 'date-time-picker',
-				label: 'please select a new date',
+				label: 'Please select a new date',
 			}
 		},
 	}
@@ -146,7 +147,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 			:min="formattedMin"
 			:max="formattedMax"
 			v-bind="$attrs"
-			v-on="listeners">
+			@input="onInput">
 	</div>
 </template>
 
@@ -155,7 +156,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 const inputDateTypes = ['date', 'datetime-local', 'month', 'time', 'week']
 
 export default {
-	name: 'NcDateTimePickerNative',
+	name: 'NcDatetimePickerNative',
 	inheritAttrs: false,
 
 	props: {
@@ -164,7 +165,7 @@ export default {
 		 * The selected time zone does not have an influence of the selected time and date value.
 		 * You have to translate the time yourself when you want to factor in time zones.
 		 */
-		value: {
+		modelValue: {
 			type: Date,
 			required: true,
 		},
@@ -221,7 +222,7 @@ export default {
 		},
 		/**
 		 * Class to add to the input field.
-		 * Necessary to use NcDateTimePickerNative in the NcActionInput component.
+		 * Necessary to use NcDatetimePickerNative in the NcActionInput component.
 		 */
 		inputClass: {
 			type: [Object, String],
@@ -230,12 +231,12 @@ export default {
 	},
 
 	emits: [
-		'input',
+		'update:modelValue',
 	],
 
 	computed: {
 		formattedValue() {
-			return this.formatValue(this.value)
+			return this.formatValue(this.modelValue)
 		},
 		formattedMin() {
 			if (this.min) {
@@ -249,76 +250,71 @@ export default {
 			}
 			return false
 		},
-		listeners() {
-			return {
-				...this.$listeners,
+	},
+
+	methods: {
+		/**
+		 * Handle the input event
+		 *
+		 * @param {InputEvent} $event input event payload
+		 * @return {Date|string} new chosen Date() or an empty string
+		 */
+		onInput($event) {
+			if (isNaN($event.target.valueAsNumber)) {
 				/**
-				 * Handle the input event
+				 * Emitted when the input value changes
 				 *
-				 * @param {InputEvent} $event input event payload
-				 * @return {Date|string} new chosen Date() or an empty string
+				 * @return {string} empty string
 				 */
-				input: ($event) => {
-					if (isNaN($event.target.valueAsNumber)) {
-						/**
-						 * Emitted when the input value changes
-						 *
-						 * @return {string} empty string
-						 */
-						return this.$emit('input', '')
-					}
-					if (this.type === 'time') {
-						const time = $event.target.value
-						if (this.value === '') {
-							// this case is because of Chrome bug
-							const { yyyy, MM, dd } = this.getReadableDate(new Date())
-							/**
-							 * Emitted when the input value changes
-							 *
-							 * @return {Date} new chosen Date()
-							 */
-							return this.$emit('input', new Date(`${yyyy}-${MM}-${dd}T${time}`))
-						}
-						const { yyyy, MM, dd } = this.getReadableDate(this.value)
-						/**
-						 * Emitted when the input value changes
-						 *
-						 * @return {Date} new chosen Date()
-						 */
-						return this.$emit('input', new Date(`${yyyy}-${MM}-${dd}T${time}`))
-					} else if (this.type === 'month') {
-						const MM = (new Date($event.target.value).getMonth() + 1).toString().padStart(2, '0')
-						if (this.value === '') {
-							const { yyyy, dd, hh, mm } = this.getReadableDate(new Date())
-							/**
-							 * Emitted when the input value changes
-							 *
-							 * @return {Date} new chosen Date()
-							 */
-							return this.$emit('input', new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`))
-						}
-						const { yyyy, dd, hh, mm } = this.getReadableDate(this.value)
-						/**
-						 * Emitted when the input value changes
-						 *
-						 * @return {Date} new chosen Date()
-						 */
-						return this.$emit('input', new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`))
-					}
-					const timezoneOffsetSeconds = new Date($event.target.valueAsNumber).getTimezoneOffset() * 1000 * 60
-					const inputDateWithTimezone = $event.target.valueAsNumber + timezoneOffsetSeconds
+				return this.$emit('update:modelValue', '')
+			}
+			if (this.type === 'time') {
+				const time = $event.target.value
+				if (this.modelValue === '') {
+					// this case is because of Chrome bug
+					const { yyyy, MM, dd } = this.getReadableDate(new Date())
 					/**
 					 * Emitted when the input value changes
 					 *
 					 * @return {Date} new chosen Date()
 					 */
-					return this.$emit('input', new Date(inputDateWithTimezone))
-				},
+					return this.$emit('update:modelValue', new Date(`${yyyy}-${MM}-${dd}T${time}`))
+				}
+				const { yyyy, MM, dd } = this.getReadableDate(this.modelValue)
+				/**
+				 * Emitted when the input value changes
+				 *
+				 * @return {Date} new chosen Date()
+				 */
+				return this.$emit('update:modelValue', new Date(`${yyyy}-${MM}-${dd}T${time}`))
+			} else if (this.type === 'month') {
+				const MM = (new Date($event.target.value).getMonth() + 1).toString().padStart(2, '0')
+				if (this.modelValue === '') {
+					const { yyyy, dd, hh, mm } = this.getReadableDate(new Date())
+					/**
+					 * Emitted when the input value changes
+					 *
+					 * @return {Date} new chosen Date()
+					 */
+					return this.$emit('update:modelValue', new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`))
+				}
+				const { yyyy, dd, hh, mm } = this.getReadableDate(this.value)
+				/**
+				 * Emitted when the input value changes
+				 *
+				 * @return {Date} new chosen Date()
+				 */
+				return this.$emit('update:modelValue', new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`))
 			}
+			const timezoneOffsetSeconds = new Date($event.target.valueAsNumber).getTimezoneOffset() * 1000 * 60
+			const inputDateWithTimezone = $event.target.valueAsNumber + timezoneOffsetSeconds
+			/**
+			 * Emitted when the input value changes
+			 *
+			 * @return {Date} new chosen Date()
+			 */
+			return this.$emit('update:modelValue', new Date(inputDateWithTimezone))
 		},
-	},
-
-	methods: {
 		/**
 		 * Returns Object with string values of a Date
 		 *

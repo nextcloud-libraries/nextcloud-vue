@@ -62,7 +62,7 @@ export { default as NcButton } from './NcButton/index.js'
 // export { default as NcDashboardWidgetItem } from './NcDashboardWidgetItem/index.js'
 export { default as NcDatetime } from './NcDatetime/index.js'
 // export { default as NcDatetimePicker } from './NcDatetimePicker/index.js'
-// export { default as NcDateTimePickerNative } from './NcDateTimePickerNative/index.js'
+export { default as NcDatetimePickerNative } from './NcDatetimePickerNative/index.js'
 // Not exported on purpose
 // export { default as NcEllipsisedOption } from './NcEllipsisedOption/index.js'
 
