@@ -31,19 +31,19 @@
 	</div>
 	<br />
 	<div style="display: flex; justify-content: space-around;">
-		<NcCheckboxRadioSwitch :checked.sync="savingState"
+		<NcCheckboxRadioSwitch v-model:checked="savingState"
 			value="saved"
 			name="saving_radio"
 			type="radio">
 			Saved
 		</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="savingState"
+		<NcCheckboxRadioSwitch v-model:checked="savingState"
 			value="saving"
 			name="saving_radio"
 			type="radio">
 			Saving
 		</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="savingState"
+		<NcCheckboxRadioSwitch v-model:checked="savingState"
 			value="error"
 			name="saving_radio"
 			type="radio">
