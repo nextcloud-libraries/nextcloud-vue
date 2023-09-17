@@ -212,7 +212,7 @@ export default {
 </template>
 
 <script>
-import NcButton from '../NcButton/index.js'
+import NcButton from '../NcButton/index.ts'
 import NcPopover from '../NcPopover/index.js'
 import { t } from '../../l10n.js'
 import { defaultPalette } from '../../utils/GenColors.js'

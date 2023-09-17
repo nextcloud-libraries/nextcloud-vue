@@ -337,7 +337,7 @@ import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import NcActions from '../NcActions/index.js'
-import NcButton from '../../components/NcButton/index.js'
+import NcButton from '../NcButton/index.ts'
 import Timer from '../../utils/Timer.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 

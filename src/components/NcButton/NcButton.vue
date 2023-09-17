@@ -438,7 +438,7 @@ import type { PropType } from 'vue'
 
 import { defineComponent, h, resolveComponent } from 'vue'
 
-import isSlotPopulated from '../../utils/isSlotPopulated.js'
+import isSlotPopulated from '../../utils/isSlotPopulated'
 
 const BUTTON_ALIGNMENT = ['start', 'start-reverse', 'center', 'center-reverse', 'end', 'end-reverse'] as const
 const BUTTON_TYPES = ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'] as const
@@ -452,7 +452,7 @@ export default defineComponent({
 		 * Set the text and icon alignment
 		 *
 		 * @default 'center'
-		 * @values 'start', 'start-reverse', 'center', 'center-reverse', 'end', 'end-reverse'
+		 * @type {'start' | 'start-reverse' | 'center' | 'center-reverse' | 'end' | 'end-reverse'}
 		 */
 		alignment: {
 			type: String as PropType<typeof BUTTON_ALIGNMENT[number]>,
@@ -475,7 +475,7 @@ export default defineComponent({
 		 * If left empty, the default button style will be applied.
 		 *
 		 * @default 'secondary'
-		 * @values primary, secondary, tertiary, tertiary-no-background, tertiary-on-primary, error, warning, success
+		 * @type {'primary' | 'secondary' | 'tertiary' | 'tertiary-no-background' | 'tertiary-on-primary' | 'error' | 'warning' | 'success'}
 		 */
 		type: {
 			type: String as PropType<typeof BUTTON_TYPES[number]>,
@@ -489,7 +489,7 @@ export default defineComponent({
 		 * Specifies the button native type
 		 * If left empty, the default "button" type will be used.
 		 *
-		 * @values 'submit', 'reset', 'button'
+		 * @type {'submit' | 'reset' | 'button'}
 		 */
 		nativeType: {
 			type: String as PropType<typeof NATIVE_TYPES[number]>,

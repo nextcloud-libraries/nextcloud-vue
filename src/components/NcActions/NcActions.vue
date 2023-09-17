@@ -797,10 +797,10 @@ p {
 </docs>
 
 <script>
-import NcButton from '../NcButton/index.js'
+import NcButton from '../NcButton/index.ts'
 import NcPopover from '../NcPopover/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
-import isSlotPopulated from '../../utils/isSlotPopulated.js'
+import isSlotPopulated from '../../utils/isSlotPopulated.ts'
 import { t } from '../../l10n.js'
 
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
@@ -1036,7 +1036,7 @@ export default {
 		},
 
 		// MENU STATE MANAGEMENT
-		openMenu(e) {
+		openMenu() {
 			if (this.opened) {
 				return
 			}
@@ -1298,7 +1298,7 @@ export default {
 						disabled: this.disabled || action?.props?.disabled,
 						onFocus: this.onFocus,
 						onBlur: this.onBlur,
-					}
+					},
 				),
 				{
 					default: () => buttonText,

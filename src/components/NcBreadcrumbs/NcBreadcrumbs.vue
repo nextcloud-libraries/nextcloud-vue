@@ -321,7 +321,7 @@ export default {
 		 * @return {number} The total width
 		 */
 		getTotalWidth(breadcrumbs) {
-			return breadcrumbs.reduce((width, crumb, index) => width + this.getWidth(crumb.$el), 0)
+			return breadcrumbs.reduce((width, crumb) => width + this.getWidth(crumb.$el), 0)
 		},
 		/**
 		 * Calculates the width of the provided element

@@ -72,5 +72,10 @@ module.exports = () => {
 		SCOPE_VERSION,
 	}))
 
+	webpackConfig.resolve.extensionAlias = {
+		'.js': ['.ts', '.js'],
+		'.mjs': ['.mts', '.mjs'],
+	}
+
 	return webpackConfig
 }

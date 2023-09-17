@@ -111,7 +111,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 </template>
 
 <script>
-import NcButton from '../NcButton/index.js'
+import NcButton from '../NcButton/index.ts'
 import GenRandomId from '../../utils/GenRandomId.js'
 
 import AlertCircle from 'vue-material-design-icons/AlertCircleOutline.vue'

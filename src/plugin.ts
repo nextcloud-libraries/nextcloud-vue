@@ -1,4 +1,4 @@
-import type { DefineComponent, Directive, Plugin } from 'vue'
+import type { Directive, Plugin } from 'vue'
 
 import * as NcComponents from './components/index'
 import * as NcDirectives from './directives/index'

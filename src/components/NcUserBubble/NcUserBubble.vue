@@ -170,7 +170,7 @@ export default {
 			validator: (url) => {
 				try {
 					url = new URL(url, url?.startsWith?.('/') ? window.location.href : undefined)
-					return true
+					return !!url
 				} catch (error) {
 					return false
 				}

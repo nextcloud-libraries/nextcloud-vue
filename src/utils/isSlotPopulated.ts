@@ -20,7 +20,8 @@
  *
  */
 
-import { Fragment, Comment, Text, type VNode, type VNodeNormalizedChildren } from 'vue'
+import type { VNode, VNodeNormalizedChildren } from 'vue'
+import { Fragment, Comment, Text } from 'vue'
 
 /**
  * Checks whether a slot is populated

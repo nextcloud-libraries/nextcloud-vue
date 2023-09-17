@@ -1,13 +1,13 @@
 {
   "extends": "@vue/tsconfig/tsconfig.json",
-  "include": ["./src/**/*.ts", "./src/**/*.vue"],
+  "include": ["./src/**/*.ts", "./src/**/*.vue", "**/*.ts"],
   "exclude": ["./src/**/*.cy.ts"],
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "target": "ESNext",
-    "module": "esnext",
+    "module": "ESNext",
     "declaration": true,
     "strict": true,
     "noImplicitAny": false,
@@ -15,6 +15,13 @@
   },
   "vueCompilerOptions": {
     "target": 3.3,
-    "rootDir": "./src"
+    "rootDir": "./src",
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "ES2015",
+      "target": "ES2015",
+      "moduleResolution": "node"
+    }
   }
 }

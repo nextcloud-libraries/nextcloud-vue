@@ -38,7 +38,7 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 
 <script>
 import { defineComponent } from 'vue'
-import NcButton from '../NcButton/index.js'
+import NcButton from '../NcButton/index.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 
 export default defineComponent({
