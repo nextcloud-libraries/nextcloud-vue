@@ -26,10 +26,7 @@ export const remarkPlaceholder = function() {
 					})
 				})
 
-			node = u('element', { tagName: 'span' }, [
-				...placeholders,
-			])
-			parent.children[index] = node
+			parent.children.splice(index, 1, ...placeholders)
 		}
 	}
 }

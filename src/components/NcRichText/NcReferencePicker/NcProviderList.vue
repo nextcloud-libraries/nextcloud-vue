@@ -111,11 +111,6 @@ export default {
 	display: flex;
 	flex-direction: column;
 
-	&--empty-content {
-		margin-top: auto !important;
-		margin-bottom: auto !important;
-	}
-
 	&--select {
 		width: 100%;
 
