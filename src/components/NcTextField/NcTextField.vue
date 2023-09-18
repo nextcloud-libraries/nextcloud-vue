@@ -34,7 +34,7 @@ and `minlength`.
 ```
 <template>
 	<div class="wrapper">
-		<NcTextField :value.sync="text1"
+		<NcTextField v-model:value="text1"
 			label="Leading icon and clear trailing button"
 			trailing-button-icon="close"
 			:show-trailing-button="text1 !== ''"
@@ -49,26 +49,28 @@ and `minlength`.
 			@trailing-button-click="clearText">
 			<Lock :size="20" />
 		</NcTextField>
-		<NcTextField :value.sync="text2"
+		<NcTextField v-model:value="text2"
 			label="Success state"
 			placeholder="Placeholders are possible"
 			:success="true"
 			@trailing-button-click="clearText">
 		</NcTextField>
-		<NcTextField :value.sync="text3"
+		<NcTextField v-model:value="text3"
 			label="Error state"
 			placeholder="Enter something valid"
 			:error="true"
 			@trailing-button-click="clearText">
 		</NcTextField>
-		<NcTextField label="Disabled"
+		<NcTextField :value=""
+			label="Disabled"
 			:disabled="true" />
-		<NcTextField label="Disabled + Success"
+		<NcTextField :value=""
+			label="Disabled + Success"
 			:success="true"
 			:disabled="true" />
 		<div class="external-label">
 			<label for="textField">External label</label>
-			<NcTextField :value.sync="text5"
+			<NcTextField v-model:value="text5"
 				id="textField"
 				:label-outside="true"
 				placeholder="Input with external label"
@@ -130,10 +132,9 @@ export default {
 </docs>
 
 <template>
-	<NcInputField v-bind="{...$attrs, ...$props }"
+	<NcInputField v-bind="$props"
 		ref="inputField"
 		:trailing-button-label="clearTextLabel"
-		v-on="$listeners"
 		@input="handleInput">
 		<!-- Default slot for the leading icon -->
 		<slot />
@@ -166,9 +167,6 @@ export default {
 		ArrowRight,
 		Undo,
 	},
-
-	// Allow forwarding all attributes
-	inheritAttrs: false,
 
 	props: {
 		...NcInputField.props,

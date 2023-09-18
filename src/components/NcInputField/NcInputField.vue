@@ -33,7 +33,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 </docs>
 
 <template>
-	<div class="input-field" :class="{ 'input-field--disabled': disabled }">
+	<div class="input-field" :class="[{ 'input-field--disabled': disabled }, $props.class ]">
 		<div class="input-field__main-wrapper">
 			<input v-bind="$attrs"
 				:id="computedId"
@@ -53,7 +53,6 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 						'input-field__input--error': error,
 					}]"
 				:value="value"
-				v-on="$listeners"
 				@input="handleInput">
 			<!-- Label -->
 			<label v-if="!labelOutside && isValidLabel"
@@ -110,6 +109,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 <script>
 import NcButton from '../NcButton/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
+import isSlotPopulated from '../../utils/isSlotPopulated.js'
 
 import AlertCircle from 'vue-material-design-icons/AlertCircleOutline.vue'
 import Check from 'vue-material-design-icons/Check.vue'
@@ -236,6 +236,13 @@ export default {
 			default: false,
 		},
 		/**
+		 * Class to add to the root component.
+		 */
+		class: {
+			type: [Object, String, Array],
+			default: '',
+		},
+		/**
 		 * Class to add to the input field.
 		 * Necessary to use NcInputField in the NcActionInput component.
 		 */
@@ -260,7 +267,7 @@ export default {
 		},
 
 		hasLeadingIcon() {
-			return this.$slots.default
+			return isSlotPopulated(this.$slots.default?.())
 		},
 
 		hasTrailingIcon() {
