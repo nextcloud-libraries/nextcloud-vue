@@ -52,7 +52,11 @@ General purpose password field component.
 			label="Good new password"
 			:success="true"
 			placeholder="Min. 12 characters"
-			helper-text="Password is secure" />
+			helper-text="Password is secure">
+			<template #icon>
+				<Lock :size="20" />
+			</template>
+		</NcPasswordField>
 
 		<NcPasswordField v-model:value="text5"
 			:disabled="true"
@@ -60,6 +64,8 @@ General purpose password field component.
 	</div>
 </template>
 <script>
+import Lock from 'vue-material-design-icons/Lock'
+
 export default {
 	data() {
 		return {
@@ -69,6 +75,10 @@ export default {
 			text4: '',
 			text5: '',
 		}
+	},
+
+	components: {
+		Lock,
 	},
 }
 </script>
@@ -107,8 +117,10 @@ export default {
 		:minlength="rules.minlength"
 		@trailing-button-click="togglePasswordVisibility"
 		@input="handleInput">
-		<!-- Default slot for the leading icon -->
-		<slot />
+		<template v-if="!!$slots.icon" #icon>
+			<!-- Default slot for the leading icon -->
+			<slot name="icon" />
+		</template>
 		<template #trailing-button-icon>
 			<Eye v-if="isPasswordHidden" :size="18" />
 			<EyeOff v-else :size="18" />

@@ -47,7 +47,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 				:class="[inputClass,
 					{
 						'input-field__input--trailing-icon': showTrailingButton || hasTrailingIcon,
-						'input-field__input--leading-icon': hasLeadingIcon,
+						'input-field__input--leading-icon': !!$slots.icon,
 						'input-field__input--label-outside': labelOutside,
 						'input-field__input--success': success,
 						'input-field__input--error': error,
@@ -59,16 +59,16 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 				class="input-field__label"
 				:class="[{
 					'input-field__label--trailing-icon': showTrailingButton || hasTrailingIcon,
-					'input-field__label--leading-icon': hasLeadingIcon,
+					'input-field__label--leading-icon': !!$slots.icon,
 				}]"
 				:for="computedId">
 				{{ label }}
 			</label>
 
 			<!-- Leading icon -->
-			<div v-show="hasLeadingIcon" class="input-field__icon input-field__icon--leading">
+			<div v-show="!!$slots.icon" class="input-field__icon input-field__icon--leading">
 				<!-- Leading material design icon in the text field, set the size to 18 -->
-				<slot />
+				<slot name="icon" />
 			</div>
 
 			<!-- trailing button -->
@@ -109,7 +109,6 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 <script>
 import NcButton from '../NcButton/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
-import isSlotPopulated from '../../utils/isSlotPopulated.js'
 
 import AlertCircle from 'vue-material-design-icons/AlertCircleOutline.vue'
 import Check from 'vue-material-design-icons/Check.vue'
@@ -264,10 +263,6 @@ export default {
 
 		inputName() {
 			return 'input' + GenRandomId()
-		},
-
-		hasLeadingIcon() {
-			return isSlotPopulated(this.$slots.default?.())
 		},
 
 		hasTrailingIcon() {
