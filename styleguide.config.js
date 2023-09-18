@@ -56,7 +56,7 @@ module.exports = async () => {
 		components: 'src/components/*/*.vue',
 		getComponentPathLine(componentPath) {
 			const name = path.basename(componentPath, '.vue')
-			return `import ${name} from '@nextcloud/vue/dist/Components/${name}'`
+			return `import ${name} from '@nextcloud/vue/dist/Components/${name}.js'`
 		},
 
 		enhancePreviewApp: path.resolve(__dirname, 'styleguide/preview.js'),
@@ -106,6 +106,7 @@ module.exports = async () => {
 					'src/components/NcBreadcrumb*/*.vue',
 					'src/components/NcContent/*.vue',
 					'src/components/NcDashboard*/*.vue',
+					'src/components/NcEllipsisedOption*/*.vue',
 					'src/components/NcListItem*/*.vue',
 					'src/components/NcRichContenteditable/!(NcRichContenteditable).vue',
 					'src/components/NcRichText*/*.vue',
@@ -115,18 +116,11 @@ module.exports = async () => {
 
 					// Not yet adjusted for vue3
 					'src/components/NcAvatar*/*.vue',
-					'src/components/NcCounterBubble*/*.vue',
-					'src/components/NcEllipsisedOption*/*.vue',
 					'src/components/NcEmptyContent*/*.vue',
-					'src/components/NcGuestContent*/*.vue',
 					'src/components/NcHeaderMenu*/*.vue',
-					'src/components/NcIconSvgWrapper*/*.vue',
 					'src/components/NcModal*/*.vue',
-					'src/components/NcNoteCard*/*.vue',
-					'src/components/NcProgressBar*/*.vue',
 					'src/components/NcRelatedResourcesPanel*/*.vue',
 					'src/components/NcRichContenteditable*/*.vue',
-					'src/components/NcSavingIndicatorIcon*/*.vue',
 					'src/components/NcUserBubble*/*.vue',
 					'src/components/NcVNodes*/*.vue',
 				],
