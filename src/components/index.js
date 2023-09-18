@@ -67,7 +67,7 @@ export { default as NcDateTimePickerNative } from './NcDateTimePickerNative/inde
 // export { default as NcEllipsisedOption } from './NcEllipsisedOption/index.js'
 
 export { default as NcEmojiPicker } from './NcEmojiPicker/index.js'
-// export { default as NcEmptyContent } from './NcEmptyContent/index.js'
+export { default as NcEmptyContent } from './NcEmptyContent/index.js'
 export { default as NcGuestContent } from './NcGuestContent/index.js'
 // export { default as NcHeaderMenu } from './NcHeaderMenu/index.js'
 export { default as NcHighlight } from './NcHighlight/index.js'

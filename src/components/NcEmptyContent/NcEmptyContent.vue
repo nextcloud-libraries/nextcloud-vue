@@ -146,11 +146,11 @@ export default {
 		</div>
 		<!-- @slot Optional name if not set as property, shall be enclosed by a header element -->
 		<slot name="name">
-			<h2 v-if="hasName" class="empty-content__name">
+			<h2 v-if="name !== ''" class="empty-content__name">
 				{{ name }}
 			</h2>
 		</slot>
-		<p v-if="hasDescription">
+		<p v-if="description !== '' || $slots.description">
 			<!-- @slot Optional formatted description rendered inside a paragraph -->
 			<slot name="description">
 				{{ description }}
@@ -186,18 +186,6 @@ export default {
 			default: '',
 		},
 	},
-
-	computed: {
-		hasName() {
-			return this.name !== ''
-		},
-		/**
-		 * Check if a description is given as either property or slot
-		 */
-		hasDescription() {
-			return this.description !== '' || this.$slots.description?.[0]
-		},
-	},
 }
 </script>
 
@@ -228,8 +216,8 @@ export default {
 		background-size: 64px;
 
 		:deep(svg) {
-			width: 64px;
-			height: 64px;
+			width: 64px !important;
+			height: 64px !important;
 			max-width: 64px !important;
 			max-height: 64px !important;
 		}
