@@ -111,6 +111,7 @@ module.exports = async () => {
 					'src/components/NcSelect*/*.vue',
 					'src/components/NcSettings*/*.vue',
 					'src/components/NcUserBubble/NcUserBubbleDiv.vue',
+					'src/components/NcTextArea/*.vue',
 				],
 				sections: [
 					{
@@ -169,6 +170,7 @@ module.exports = async () => {
 						name: 'NcFields',
 						components: [
 							'src/components/Nc*Field/*.vue',
+							'src/components/NcTextArea/*.vue',
 						],
 					},
 					{
