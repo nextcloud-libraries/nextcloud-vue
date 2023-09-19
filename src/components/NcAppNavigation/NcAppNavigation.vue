@@ -57,10 +57,11 @@ emit('toggle-navigation', {
 	<div id="app-navigation-vue"
 		class="app-navigation"
 		role="navigation"
-		:inert="!open || null"
 		:class="{'app-navigation--close':!open }">
 		<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
-		<div :aria-hidden="ariaHidden" class="app-navigation__content">
+		<div :aria-hidden="ariaHidden"
+			class="app-navigation__content"
+			:inert="!open || null">
 			<slot />
 			<!-- List for Navigation li-items -->
 			<ul class="app-navigation__list">
