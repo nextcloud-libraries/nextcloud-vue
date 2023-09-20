@@ -89,7 +89,7 @@
     "rehype-react": "^7.1.2",
     "remark-breaks": "^3.0.2",
     "remark-parse": "^11.0.0",
-    "remark-rehype": "^10.1.0",
+    "remark-rehype": "^11.0.0",
     "splitpanes": "^2.4.1",
     "string-length": "^5.0.1",
     "striptags": "^3.2.0",
