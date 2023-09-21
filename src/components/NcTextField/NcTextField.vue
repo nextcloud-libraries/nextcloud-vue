@@ -39,7 +39,9 @@ and `minlength`.
 			trailing-button-icon="close"
 			:show-trailing-button="text1 !== ''"
 			@trailing-button-click="clearText">
-			<Magnify :size="20" />
+			<template #icon>
+				<Magnify :size="20" />
+			</template>
 		</NcTextField>
 		<NcTextField :value.sync="text4"
 			label="Internal label"
@@ -47,7 +49,9 @@ and `minlength`.
 			trailing-button-icon="close"
 			:show-trailing-button="text4 !== ''"
 			@trailing-button-click="clearText">
-			<Lock :size="20" />
+			<template #icon>
+				<Lock :size="20" />
+			</template>
 		</NcTextField>
 		<NcTextField v-model:value="text2"
 			label="Success state"
@@ -136,8 +140,10 @@ export default {
 		ref="inputField"
 		:trailing-button-label="clearTextLabel"
 		@input="handleInput">
-		<!-- Default slot for the leading icon -->
-		<slot />
+		<template v-if="!!$slots.icon" #icon>
+			<!-- Default slot for the leading icon -->
+			<slot name="icon" />
+		</template>
 
 		<!-- Trailing icon slot, except for search type input as the browser already adds a trailing close icon -->
 		<template v-if="type !== 'search'" #trailing-button-icon>
