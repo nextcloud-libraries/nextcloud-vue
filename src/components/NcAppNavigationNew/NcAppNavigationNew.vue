@@ -47,6 +47,7 @@
 	<div class="app-navigation-new">
 		<NcButton :id="buttonId"
 			:disabled="disabled"
+			:type="type"
 			@click="$emit('click')">
 			<template #icon>
 				<slot name="icon" />
@@ -77,6 +78,10 @@ export default {
 		text: {
 			type: String,
 			required: true,
+		},
+		type: {
+			type: String,
+			default: 'primary',
 		},
 	},
 
