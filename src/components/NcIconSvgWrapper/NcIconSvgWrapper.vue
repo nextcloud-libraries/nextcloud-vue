@@ -113,22 +113,12 @@ export default {
 		},
 	},
 
-	data() {
-		return {
-			cleanSvg: '',
-		}
-	},
-
-	async beforeMount() {
-		await this.sanitizeSVG()
-	},
-
-	methods: {
-		async sanitizeSVG() {
+	computed: {
+		cleanSvg() {
 			if (!this.svg) {
 				return
 			}
-			this.cleanSvg = await DOMPurify.sanitize(this.svg)
+			return DOMPurify.sanitize(this.svg)
 		},
 	},
 }
