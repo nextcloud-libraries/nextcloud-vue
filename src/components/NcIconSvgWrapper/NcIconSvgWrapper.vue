@@ -97,7 +97,7 @@ export default {
 </template>
 
 <script>
-import { sanitizeSVG } from '@skjnldsv/sanitize-svg'
+import DOMPurify from 'dompurify'
 
 export default {
 	name: 'NcIconSvgWrapper',
@@ -128,7 +128,7 @@ export default {
 			if (!this.svg) {
 				return
 			}
-			this.cleanSvg = await sanitizeSVG(this.svg)
+			this.cleanSvg = await DOMPurify.sanitize(this.svg)
 		},
 	},
 }
