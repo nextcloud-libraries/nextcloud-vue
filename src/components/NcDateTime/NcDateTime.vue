@@ -33,7 +33,7 @@ Without any optional parameters the timestamp is displayed as a relative datetim
 
 ```vue
 <template>
-	<NcDatetime :timestamp="timestamp" />
+	<NcDateTime :timestamp="timestamp" />
 </template>
 <script>
 	export default {
@@ -52,7 +52,7 @@ If you do not want the seconds to be counted up until minutes are reached you ca
 
 ```vue
 <template>
-	<NcDatetime :timestamp="timestamp" :ignore-seconds="true" />
+	<NcDateTime :timestamp="timestamp" :ignore-seconds="true" />
 </template>
 <script>
 	export default {
@@ -74,13 +74,13 @@ It is also possible to disable relative time by setting the `relativeTime` prope
 <template>
 	<div>
 		<h4>Short relative time</h4>
-		<NcDatetime :timestamp="timestamp" relative-time="short" />
+		<NcDateTime :timestamp="timestamp" relative-time="short" />
 
 		<h4>Custom title format</h4>
-		<NcDatetime :timestamp="timestamp" :format="timeFormat" />
+		<NcDateTime :timestamp="timestamp" :format="timeFormat" />
 
 		<h4>Without relative time</h4>
-		<NcDatetime :timestamp="timestamp" :format="timeFormat" :relative-time="false" />
+		<NcDateTime :timestamp="timestamp" :format="timeFormat" :relative-time="false" />
 	</div>
 </template>
 <script>
@@ -123,7 +123,7 @@ const FEW_SECONDS_AGO = {
 }
 
 export default {
-	name: 'NcDatetime',
+	name: 'NcDateTime',
 
 	props: {
 		/**

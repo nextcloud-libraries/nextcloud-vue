@@ -21,15 +21,15 @@
  */
 
 import { mount } from '@vue/test-utils'
-import NcDatetime from '../../../../src/components/NcDatetime/NcDatetime.vue'
+import NcDateTime from '../../../../src/components/NcDateTime/NcDateTime.vue'
 
-describe('NcDatetime.vue', () => {
+describe('NcDateTime.vue', () => {
 	'use strict'
 
 	it('Sets the title property correctly', () => {
 		const time = Date.UTC(2023, 5, 23, 14, 30)
 		Date.now = jest.fn(() => new Date(time).valueOf())
-		const wrapper = mount(NcDatetime, {
+		const wrapper = mount(NcDateTime, {
 			propsData: {
 				timestamp: time,
 			},
@@ -42,7 +42,7 @@ describe('NcDatetime.vue', () => {
 	it('Can set format of the title property', () => {
 		const time = Date.UTC(2023, 5, 23, 14, 30)
 		Date.now = jest.fn(() => new Date(time).valueOf())
-		const wrapper = mount(NcDatetime, {
+		const wrapper = mount(NcDateTime, {
 			propsData: {
 				timestamp: time,
 				format: { dateStyle: 'long' },
@@ -56,7 +56,7 @@ describe('NcDatetime.vue', () => {
 	it('Can disable relative time', () => {
 		const time = Date.UTC(2023, 5, 23, 14, 30)
 		Date.now = jest.fn(() => new Date(time).valueOf())
-		const wrapper = mount(NcDatetime, {
+		const wrapper = mount(NcDateTime, {
 			propsData: {
 				timestamp: time,
 				relativeTime: false,
@@ -83,7 +83,7 @@ describe('NcDatetime.vue', () => {
 		it('', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30)
 			Date.now = jest.fn(() => new Date(time).valueOf())
-			const wrapper = mount(NcDatetime, {
+			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
 				},
@@ -98,7 +98,7 @@ describe('NcDatetime.vue', () => {
 		it('works with currentTime == timestamp', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30)
 			Date.now = jest.fn(() => new Date(time).valueOf())
-			const wrapper = mount(NcDatetime, {
+			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
 				},
@@ -112,7 +112,7 @@ describe('NcDatetime.vue', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
 			let currentTime = Date.UTC(2023, 5, 23, 14, 30, 33)
 			Date.now = jest.fn(() => new Date(currentTime).valueOf())
-			const wrapper = mount(NcDatetime, {
+			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
 				},
@@ -130,7 +130,7 @@ describe('NcDatetime.vue', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
 			const currentTime = Date.UTC(2023, 5, 23, 14, 30, 33)
 			Date.now = jest.fn(() => new Date(currentTime).valueOf())
-			const wrapper = mount(NcDatetime, {
+			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
 					relativeTime: 'short',
@@ -145,7 +145,7 @@ describe('NcDatetime.vue', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
 			const currentTime = Date.UTC(2023, 5, 23, 14, 33, 30)
 			Date.now = jest.fn(() => new Date(currentTime).valueOf())
-			const wrapper = mount(NcDatetime, {
+			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
 				},
@@ -159,7 +159,7 @@ describe('NcDatetime.vue', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
 			const currentTime = Date.UTC(2023, 5, 23, 17, 30, 30)
 			Date.now = jest.fn(() => new Date(currentTime).valueOf())
-			const wrapper = mount(NcDatetime, {
+			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
 				},
@@ -173,7 +173,7 @@ describe('NcDatetime.vue', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
 			const currentTime = Date.UTC(2023, 6, 13, 14, 30, 30)
 			Date.now = jest.fn(() => new Date(currentTime).valueOf())
-			const wrapper = mount(NcDatetime, {
+			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
 				},
@@ -189,12 +189,12 @@ describe('NcDatetime.vue', () => {
 			const currentTime = Date.UTC(2024, 6, 13, 14, 30, 30)
 			Date.now = jest.fn(() => new Date(currentTime).valueOf())
 
-			const wrapper = mount(NcDatetime, {
+			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
 				},
 			})
-			const wrapper2 = mount(NcDatetime, {
+			const wrapper2 = mount(NcDateTime, {
 				propsData: {
 					timestamp: time2,
 				},
