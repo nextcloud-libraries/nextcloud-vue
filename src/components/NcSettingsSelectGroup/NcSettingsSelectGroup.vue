@@ -64,6 +64,9 @@ section * {
 			:disabled="disabled"
 			@input="update"
 			@search="onSearch" />
+		<div v-show="hasError" class="select-group-error">
+			{{ errorMessage }}
+		</div>
 	</div>
 </template>
 
@@ -74,7 +77,6 @@ import l10n from '../../mixins/l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
 import axios from '@nextcloud/axios'
-import { showError } from '@nextcloud/dialogs'
 import { generateOcsUrl } from '@nextcloud/router'
 import { debounce } from 'debounce'
 
@@ -137,9 +139,17 @@ export default {
 			/** Temporary store to cache groups */
 			groups: {},
 			randId: GenRandomId(),
+			errorMessage: '',
 		}
 	},
 	computed: {
+		/**
+		 * If the error message should be shown
+		 */
+		hasError() {
+			return this.errorMessage !== ''
+		},
+
 		/**
 		 * Validate input value and only return valid strings (group IDs)
 		 *
@@ -231,6 +241,13 @@ export default {
 				query = typeof query === 'string' ? encodeURI(query) : ''
 				const response = await axios.get(generateOcsUrl(`cloud/groups/details?search=${query}&limit=10`, 2))
 
+				// No network error, so reset any error after 5 seconds
+				if (this.errorMessage !== '') {
+					window.setTimeout(() => {
+						this.errorMessage = ''
+					}, 5000)
+				}
+
 				if (Object.keys(response.data.ocs.data.groups).length > 0) {
 					const newGroups = Object.fromEntries(response.data.ocs.data.groups.map((element) => [element.id, element]))
 					this.groups = { ...this.groups, ...newGroups }
@@ -239,7 +256,7 @@ export default {
 			} catch (error) {
 				/** Emitted if groups could not be queried.<br />**Payload:** `error` (`object`) - The Axios error */
 				this.$emit('error', error)
-				showError(t('Unable to search the group'))
+				this.errorMessage = t('Unable to search the group')
 			}
 			return false
 		},
@@ -264,3 +281,11 @@ export default {
 	},
 }
 </script>
+
+<style scoped lang="scss">
+.select-group-error {
+	color: var(--color-error);
+	font-size: 13px;
+	padding-inline-start: var(--border-radius-large);
+}
+</style>
