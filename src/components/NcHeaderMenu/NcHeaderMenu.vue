@@ -64,22 +64,31 @@ export default {
 </docs>
 
 <template>
-	<div :id="id"
+	<component :is="wrapperTag"
+		:id="id"
 		v-click-outside="clickOutsideConfig"
+		:aria-labelledby="isNav ? triggerId : null"
 		:class="{ 'header-menu--opened': opened }"
 		class="header-menu">
-		<!-- Open trigger icon -->
-		<a ref="trigger"
-			class="header-menu__trigger"
-			href="#"
+		<!-- Trigger -->
+		<button :id="triggerId"
+			ref="trigger"
+			class="header-menu__trigger button-vue"
 			:aria-label="ariaLabel"
+			:aria-describedby="description ? descriptionId : null"
 			:aria-controls="`header-menu-${id}`"
 			:aria-expanded="opened.toString()"
 			@click.prevent="toggleMenu">
 			<!-- @slot Icon trigger slot. Make sure the svg path
 				is at least 16px. Usually mdi icon works at 20px -->
 			<slot name="trigger" />
-		</a>
+		</button>
+
+		<span v-if="description"
+			:id="descriptionId"
+			class="header-menu__description hidden-visually">
+			{{ description }}
+		</span>
 
 		<!-- Visual triangle -->
 		<div v-show="opened" class="header-menu__carret" />
@@ -87,20 +96,20 @@ export default {
 		<!-- Menu opened content -->
 		<div v-show="opened"
 			:id="`header-menu-${id}`"
-			class="header-menu__wrapper"
-			role="menu">
+			class="header-menu__wrapper">
 			<div ref="content" class="header-menu__content">
 				<!-- @slot Main content -->
 				<slot />
 			</div>
 		</div>
-	</div>
+	</component>
 </template>
 
 <script>
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
 
+import GenRandomId from '../../utils/GenRandomId.js'
 import { clickOutsideOptions } from '../../mixins/index.js'
 import { getTrapStack } from '../../utils/focusTrap.js'
 
@@ -139,6 +148,26 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Pass `true` if the header menu is used for website navigation
+		 *
+		 * The wrapper tag will be set to `nav` and its `aria-labelledby`
+		 * will be associated with the menu open button
+		 */
+		isNav: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Additional visually hidden description text for the menu
+		 * open button
+		 */
+		description: {
+			type: String,
+			default: null,
+		},
 	},
 
 	emits: [
@@ -155,10 +184,16 @@ export default {
 			focusTrap: null,
 			opened: this.open,
 			shortcutsDisabled: window.OCP?.Accessibility?.disableKeyboardShortcuts?.(),
+			triggerId: GenRandomId(),
+			descriptionId: GenRandomId(),
 		}
 	},
 
 	computed: {
+		wrapperTag() {
+			return this.isNav ? 'nav' : 'div'
+		},
+
 		clickOutsideConfig() {
 			return [
 				this.closeMenu,
@@ -293,6 +328,8 @@ $externalMargin: 8px;
 		padding: 0;
 		cursor: pointer;
 		opacity: .85;
+		background-color: transparent;
+		border: none;
 
 		// header is filled with primary or image background
 		filter: none !important;
@@ -359,5 +396,4 @@ $externalMargin: 8px;
 		}
 	}
 }
-
 </style>
