@@ -131,8 +131,6 @@ export default {
 		Dropdown,
 	},
 
-	inheritAttrs: false,
-
 	props: {
 		popoverBaseClass: {
 			type: String,
