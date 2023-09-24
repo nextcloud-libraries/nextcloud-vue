@@ -60,6 +60,7 @@
     "dist"
   ],
   "dependencies": {
+    "@ckpack/vue-color": "^1.5.0",
     "@floating-ui/dom": "^1.1.0",
     "@nextcloud/auth": "^2.0.0",
     "@nextcloud/axios": "^2.0.0",

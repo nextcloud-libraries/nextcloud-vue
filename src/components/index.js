@@ -52,10 +52,8 @@
 // export { default as NcBreadcrumb } from './NcBreadcrumb/index.js'
 // export { default as NcBreadcrumbs } from './NcBreadcrumbs/index.js'
 export { default as NcButton } from './NcButton/index.js'
-
-// Not yet adjusted for vue3
 export { default as NcCheckboxRadioSwitch } from './NcCheckboxRadioSwitch/index.js'
-// export { default as NcColorPicker } from './NcColorPicker/index.js'
+export { default as NcColorPicker } from './NcColorPicker/index.js'
 // export { default as NcContent } from './NcContent/index.js'
 export { default as NcCounterBubble } from './NcCounterBubble/index.js'
 // export { default as NcDashboardWidget } from './NcDashboardWidget/index.js'

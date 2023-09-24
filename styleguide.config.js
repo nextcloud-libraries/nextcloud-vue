@@ -200,6 +200,7 @@ module.exports = async () => {
 						name: 'NcPickers',
 						components: [
 							//'src/components/Nc*Picker*/*.vue',
+							'src/components/NcColorPicker/*.vue',
 							'src/components/NcDateTimePickerNative*/*.vue',
 						],
 					},
