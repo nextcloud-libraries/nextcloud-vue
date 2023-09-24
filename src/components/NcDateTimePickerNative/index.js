@@ -20,9 +20,9 @@
  *
  */
 
-import NcDatetimePickerNative from './NcDatetimePickerNative.vue'
+import NcDateTimePickerNative from './NcDateTimePickerNative.vue'
 import ScopeComponent from '../../utils/ScopeComponent.js'
 
-ScopeComponent(NcDatetimePickerNative)
+ScopeComponent(NcDateTimePickerNative)
 
-export default NcDatetimePickerNative
+export default NcDateTimePickerNative

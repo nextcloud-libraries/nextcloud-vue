@@ -62,7 +62,7 @@ export { default as NcCounterBubble } from './NcCounterBubble/index.js'
 // export { default as NcDashboardWidgetItem } from './NcDashboardWidgetItem/index.js'
 export { default as NcDateTime } from './NcDateTime/index.js'
 // export { default as NcDateTimePicker } from './NcDateTimePicker/index.js'
-export { default as NcDatetimePickerNative } from './NcDatetimePickerNative/index.js'
+export { default as NcDateTimePickerNative } from './NcDateTimePickerNative/index.js'
 // Not exported on purpose
 // export { default as NcEllipsisedOption } from './NcEllipsisedOption/index.js'
 
