@@ -201,6 +201,7 @@ module.exports = async () => {
 						components: [
 							//'src/components/Nc*Picker*/*.vue',
 							'src/components/NcDateTimePickerNative*/*.vue',
+							'src/components/NcEmojiPicker/*.vue',
 						],
 					},
 				// 	{

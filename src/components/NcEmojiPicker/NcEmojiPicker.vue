@@ -124,10 +124,8 @@ This component allows the user to pick an emoji.
 </docs>
 
 <template>
-	<NcPopover :shown.sync="open"
+	<NcPopover v-model:shown="open"
 		:container="container"
-		v-bind="$attrs"
-		v-on="$listeners"
 		@after-show="afterShow"
 		@after-hide="afterHide">
 		<template #trigger>
@@ -149,8 +147,8 @@ This component allows the user to pick an emoji.
 			@select="select">
 			<template #searchTemplate="slotProps">
 				<NcTextField ref="search"
+					v-model:value="search"
 					class="search"
-					:value.sync="search"
 					:label="t('Search')"
 					:label-visible="true"
 					:placeholder="i18n.search"
@@ -186,7 +184,7 @@ import NcPopover from '../NcPopover/index.js'
 import NcTextField from '../NcTextField/index.js'
 import { t } from '../../l10n.js'
 
-import { Picker, Emoji, EmojiIndex } from 'emoji-mart-vue-fast'
+import { Picker, Emoji, EmojiIndex } from 'emoji-mart-vue-fast/src'
 import data from 'emoji-mart-vue-fast/data/all.json'
 
 // Shared emoji index for all NcEmojiPicker instances
@@ -393,6 +391,7 @@ export default {
 	background-color: var(--color-main-background) !important;
 	border: 0;
 	color: var(--color-main-text) !important;
+	display: flex !important;
 
 	// default style reset
 	button {

@@ -28,6 +28,7 @@ const ignorePatterns = [
 	'comma-separated-tokens',
 	'decode-named-character-reference',
 	'devlop', // ESM dependency of unified
+	'emoji-mart-vue-fast/src',
 	'escape-string-regexp',
 	'hast-*',
 	'is-*',
