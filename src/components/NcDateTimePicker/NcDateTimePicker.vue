@@ -32,7 +32,7 @@
 ```vue
 <template>
 	<span>
-		<NcDatetimePicker
+		<NcDateTimePicker
 			v-model="time"
 			type="datetime" />
 		{{ time }}
@@ -53,7 +53,7 @@ export default {
 ```vue
 <template>
 	<span>
-		<NcDatetimePicker
+		<NcDateTimePicker
 			v-model="time"
 			type="datetime"
 			confirm />
@@ -75,7 +75,7 @@ export default {
 ```vue
 <template>
 	<span>
-		<NcDatetimePicker
+		<NcDateTimePicker
 			v-model="time"
 			range
 			type="date" />
@@ -101,7 +101,7 @@ picked time zone, but you will have to convert it yourself when necessary.
 ```vue
 <template>
 	<span>
-		<NcDatetimePicker
+		<NcDateTimePicker
 			v-model="time"
 			type="datetime"
 			:show-timezone-select="true"
@@ -200,7 +200,7 @@ const formatMap = {
 }
 
 export default {
-	name: 'NcDatetimePicker',
+	name: 'NcDateTimePicker',
 
 	components: {
 		CalendarBlank,

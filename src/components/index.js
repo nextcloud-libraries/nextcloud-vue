@@ -60,8 +60,8 @@ export { default as NcCheckboxRadioSwitch } from './NcCheckboxRadioSwitch/index.
 export { default as NcCounterBubble } from './NcCounterBubble/index.js'
 // export { default as NcDashboardWidget } from './NcDashboardWidget/index.js'
 // export { default as NcDashboardWidgetItem } from './NcDashboardWidgetItem/index.js'
-export { default as NcDatetime } from './NcDatetime/index.js'
-// export { default as NcDatetimePicker } from './NcDatetimePicker/index.js'
+export { default as NcDateTime } from './NcDateTime/index.js'
+// export { default as NcDateTimePicker } from './NcDateTimePicker/index.js'
 export { default as NcDatetimePickerNative } from './NcDatetimePickerNative/index.js'
 // Not exported on purpose
 // export { default as NcEllipsisedOption } from './NcEllipsisedOption/index.js'

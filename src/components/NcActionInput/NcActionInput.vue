@@ -166,7 +166,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 					</label>
 					<div class="action-input__input-container">
 
-						<NcDatetimePicker v-if="datePickerType"
+						<NcDateTimePicker v-if="datePickerType"
 							ref="datetimepicker"
 							:value="value"
 							style="z-index: 99999999999;"
@@ -261,7 +261,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 </template>
 
 <script>
-import NcDatetimePicker from '../NcDatetimePicker/index.js'
+import NcDateTimePicker from '../NcDateTimePicker/index.js'
 import NcDateTimePickerNative from '../NcDateTimePickerNative/index.js'
 import NcPasswordField from '../NcPasswordField/index.js'
 import NcSelect from '../NcSelect/index.js'
@@ -273,7 +273,7 @@ export default {
 	name: 'NcActionInput',
 
 	components: {
-		NcDatetimePicker,
+		NcDateTimePicker,
 		NcDateTimePickerNative,
 		NcPasswordField,
 		NcSelect,
