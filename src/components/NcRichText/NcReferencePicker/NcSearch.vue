@@ -293,11 +293,6 @@ export default {
 		min-height: 400px;
 	}
 
-	&--empty-content {
-		margin-top: auto !important;
-		margin-bottom: auto !important;
-	}
-
 	.provider-icon {
 		width: 150px;
 		height: 150px;

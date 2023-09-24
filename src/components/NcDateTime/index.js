@@ -1,7 +1,7 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright 2023 Ferdinand Thiessen <opensource@fthiessen.de>
  *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Ferdinand Thiessen <opensource@fthiessen.de>
  *
  * @license AGPL-3.0-or-later
  *
@@ -19,10 +19,5 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import './index.scss'
-import NcDatetimePicker from './NcDatetimePicker.vue'
-import ScopeComponent from '../../utils/ScopeComponent.js'
 
-ScopeComponent(NcDatetimePicker)
-
-export default NcDatetimePicker
+export { default } from './NcDateTime.vue'

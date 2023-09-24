@@ -749,7 +749,7 @@ export default {
 		/**
 		 * Array of options
 		 *
-		 * @type {Array<string | number | { [key: string | number]: any }>}
+		 * @type {Array<string | number | Record<string | number, any>>}
 		 *
 		 * @see https://vue-select.org/api/props.html#options
 		 */
@@ -766,6 +766,39 @@ export default {
 		placeholder: {
 			type: String,
 			default: '',
+		},
+
+		/**
+		 * Customized component's response to keydown events while the search input has focus
+		 *
+		 * @see https://vue-select.org/guide/keydown.html#mapkeydown
+		 */
+		mapKeydown: {
+			type: Function,
+			/**
+			 * Patched Vue-Select keydown events handlers map to stop Escape propagation in open select
+			 *
+			 * @param {Record<number, Function>} map - Mapped keyCode to handlers { <keyCode>:<callback> }
+			 * @param {import('@nextcloud/vue-select').VueSelect} vm - VueSelect instance
+			 * @return {Record<number, Function>} patched keydown event handlers
+			 */
+			default(map, vm) {
+				return {
+					...map,
+					/**
+					 * Patched Escape handler to stop propagation from open select
+					 *
+					 * @param {KeyboardEvent} event - default keydown event handler
+					 */
+					27: (event) => {
+						if (vm.open) {
+							event.stopPropagation()
+						}
+						// Default VueSelect's handler
+						map[27](event)
+					},
+				}
+			},
 		},
 
 		/**
@@ -804,7 +837,7 @@ export default {
 		 *
 		 * The `v-model` directive may be used for two-way data binding
 		 *
-		 * @type {string | number | { [key: string | number]: any } | Array<any>}
+		 * @type {string | number | Record<string | number, any> | Array<any>}
 		 *
 		 * @see https://vue-select.org/api/props.html#value
 		 */

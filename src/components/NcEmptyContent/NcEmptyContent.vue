@@ -168,11 +168,19 @@ export default {
 	name: 'NcEmptyContent',
 
 	props: {
+		/**
+		 * A header message about an empty content shown
+		 * @example 'No comments'
+		 */
 		name: {
 			type: String,
 			default: '',
 		},
 
+		/**
+		 * Desription of the empty content
+		 * @example 'No comments yet, start the conversation!'
+		 */
 		description: {
 			type: String,
 			default: '',
@@ -198,7 +206,9 @@ export default {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	margin-top: 20vh;
+	justify-content: center;
+	/* In case of using in a flex container - flex in advance */
+	flex-grow: 1;
 
 	.modal-wrapper & {
 		margin-top: 5vh;

@@ -30,7 +30,7 @@
 <template>
 	<div class="app-navigation-input-confirm">
 		<form @submit.prevent="confirm"
-			@keydown.esc.exact.prevent="cancel"
+			@keydown.esc.exact.stop.prevent="cancel"
 			@click.stop.prevent>
 			<input ref="input"
 				v-model="valueModel"

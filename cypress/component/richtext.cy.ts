@@ -6,6 +6,19 @@ import NcRichText from '../../src/components/NcRichText/NcRichText.vue'
 
 describe('NcRichText', () => {
 	describe('renders with markdown', () => {
+		describe('normal text', () => {
+			it('XML-like text (escaped and unescaped)', () => {
+				mount(NcRichText, {
+					propsData: {
+						text: '<span>text&lt;/span&gt;',
+						useMarkdown: true,
+					},
+				})
+
+				cy.get('p').should('have.text', '<span>text</span>')
+			})
+		})
+
 		describe('headings', () => {
 			it('heading (with hash (#) syntax divided with space from text)', () => {
 				const testCases = [
@@ -274,6 +287,17 @@ describe('NcRichText', () => {
 
 				cy.get('code').should('have.text', 'inline code')
 			})
+
+			it('inline code (with ignored bold, italic, XML-like syntax))', () => {
+				mount(NcRichText, {
+					propsData: {
+						text: '`inline code **bold text** _italic text_ <span>text&lt;/span&gt;`',
+						useMarkdown: true,
+					},
+				})
+
+				cy.get('code').should('have.text', 'inline code **bold text** _italic text_ <span>text</span>')
+			})
 		})
 
 		describe('multiline code', () => {
@@ -333,23 +357,34 @@ describe('NcRichText', () => {
 				cy.get('code').should('have.text', 'line 1\nline 2\nline 3\n')
 			})
 
-			it('multiline code (with ignored bold, italic, inline code syntax)', () => {
+			it('multiline code (with ignored bold, italic, inline code, XML-like syntax)', () => {
 				mount(NcRichText, {
 					propsData: {
-						text: '```\n**bold text**\n_italic text_\n`inline code`\n```',
+						text: '```\n**bold text**\n_italic text_\n`inline code`\n<span>text&lt;/span&gt;\n```',
 						useMarkdown: true,
 					},
 				})
 
-				cy.get('pre').should('have.text', '**bold text**\n_italic text_\n`inline code`\n')
+				cy.get('pre').should('have.text', '**bold text**\n_italic text_\n`inline code`\n<span>text</span>\n')
 			})
 		})
 
 		describe('blockquote', () => {
-			it('blockquote (with greater then (gt >) syntax)', () => {
+			it('blockquote (with greater then (>) syntax - normal)', () => {
 				mount(NcRichText, {
 					propsData: {
 						text: '> blockquote',
+						useMarkdown: true,
+					},
+				})
+
+				cy.get('blockquote').should('have.text', '\nblockquote\n')
+			})
+
+			it('blockquote (with greater then (&gt;) syntax - escaped)', () => {
+				mount(NcRichText, {
+					propsData: {
+						text: '&gt; blockquote',
 						useMarkdown: true,
 					},
 				})
@@ -401,7 +436,7 @@ describe('NcRichText', () => {
 					},
 				})
 
-				cy.get('blockquote').should('have.text', '\nline 1\n\nline 3\n')
+				cy.get('blockquote').should('have.text', '\nline 1\nline 3\n')
 			})
 
 			it('blockquote (with nested blockquote)', () => {

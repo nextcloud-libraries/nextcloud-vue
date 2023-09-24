@@ -97,7 +97,7 @@ export default {
 </template>
 
 <script>
-import { sanitizeSVG } from '@skjnldsv/sanitize-svg'
+import DOMPurify from 'dompurify'
 
 export default {
 	name: 'NcIconSvgWrapper',
@@ -113,22 +113,12 @@ export default {
 		},
 	},
 
-	data() {
-		return {
-			cleanSvg: '',
-		}
-	},
-
-	async beforeMount() {
-		await this.sanitizeSVG()
-	},
-
-	methods: {
-		async sanitizeSVG() {
+	computed: {
+		cleanSvg() {
 			if (!this.svg) {
 				return
 			}
-			this.cleanSvg = await sanitizeSVG(this.svg)
+			return DOMPurify.sanitize(this.svg)
 		},
 	},
 }
@@ -145,6 +135,8 @@ export default {
 
 	&:deep(svg) {
 		fill: currentColor;
+		width: 20px;
+		height: 20px;
 		max-width: 20px;
 		max-height: 20px;
 	}

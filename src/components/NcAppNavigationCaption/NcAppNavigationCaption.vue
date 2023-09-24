@@ -91,7 +91,8 @@
 		<!-- Actions -->
 		<div v-if="hasActions"
 			class="app-navigation-caption__actions">
-			<NcActions v-bind="$attrs">
+			<NcActions v-bind="$attrs"
+				v-on="$listeners">
 				<!-- @slot Slot for the actions menu -->
 				<slot name="actions" />
 				<template #icon>
@@ -111,11 +112,21 @@ export default {
 	components: {
 		NcActions,
 	},
+
+	inheritAttrs: false,
+
 	props: {
 		name: {
 			type: String,
 			required: true,
 		},
+
+		/**
+		 * Any [NcActions](#/Components/NcActions?id=ncactions-1) prop
+		 */
+		// Not an actual prop but needed to show in vue-styleguidist docs
+		// eslint-disable-next-line
+		' ': {},
 	},
 
 	computed: {
