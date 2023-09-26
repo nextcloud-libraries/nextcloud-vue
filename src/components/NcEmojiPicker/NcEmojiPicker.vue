@@ -169,11 +169,13 @@ This component allows the user to pick an emoji.
 				<Emoji class="emoji-selected"
 					:data="emojiIndex"
 					:emoji="selectedEmoji"
+					:native="true"
 					:size="32"
 					@click="unselect" />
 				<Emoji class="emoji-delete"
 					:data="emojiIndex"
 					emoji=":x:"
+					:native="true"
 					:size="10"
 					@click="unselect" />
 			</template>
