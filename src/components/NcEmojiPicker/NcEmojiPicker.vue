@@ -489,12 +489,7 @@ export default {
 }
 
 .search {
-	padding: 0 8px 4px 8px;
-	.input-field__label {
-		// Match styles in emoji-mart-vue-fast
-		padding: 5px 4px;
-		font-weight: 500;
-	}
+	padding: 4px 8px;
 }
 
 </style>
