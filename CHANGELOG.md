@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 # Changelog
 
+## [v7.12.6](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.12.6) (2023-09-26)
+
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.12.5...v7.12.6)
+
+### :bug: Fixed bugs
+- fix(NcEmojiPicker): Set type to `native` for selected emoji by @mejo- in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4579
+
 ## [v7.12.5](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.12.5) (2023-09-16)
 
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.12.4...v7.12.5)
