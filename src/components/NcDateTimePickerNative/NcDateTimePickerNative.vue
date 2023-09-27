@@ -34,7 +34,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 ```vue
 <template>
 	<span>
-		<NcDatetimePickerNative
+		<NcDateTimePickerNative
 			v-model="value"
 			:id="id"
 			:label="label"
@@ -59,7 +59,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 ```vue
 <template>
 	<span>
-		<NcDatetimePickerNative
+		<NcDateTimePickerNative
 			v-model="value"
 			:id="id"
 			:min="yesterdayDate"
@@ -88,7 +88,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 ```vue
 <template>
 	<span>
-		<NcDatetimePickerNative
+		<NcDateTimePickerNative
 			v-model="value"
 			:id="id"
 			:label="label"
@@ -113,7 +113,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 ```vue
 <template>
 	<span>
-		<NcDatetimePickerNative
+		<NcDateTimePickerNative
 			v-model="value"
 			:id="id"
 			:label="label"
@@ -156,7 +156,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 const inputDateTypes = ['date', 'datetime-local', 'month', 'time', 'week']
 
 export default {
-	name: 'NcDatetimePickerNative',
+	name: 'NcDateTimePickerNative',
 	inheritAttrs: false,
 
 	props: {
@@ -222,7 +222,7 @@ export default {
 		},
 		/**
 		 * Class to add to the input field.
-		 * Necessary to use NcDatetimePickerNative in the NcActionInput component.
+		 * Necessary to use NcDateTimePickerNative in the NcActionInput component.
 		 */
 		inputClass: {
 			type: [Object, String],
