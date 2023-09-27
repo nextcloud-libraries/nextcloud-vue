@@ -1265,7 +1265,9 @@ export default {
 	&.action-item--open .action-item__menutoggle {
 		background-color: var(--open-background-color);
 		outline: 2px solid var(--color-main-text);
-		box-shadow: 0 0 0 4px var(--color-main-background);
+		outline-offset: -4px;
+		border: 2px solid var(--color-main-background);
+		height: 44px;
 	}
 }
 </style>
