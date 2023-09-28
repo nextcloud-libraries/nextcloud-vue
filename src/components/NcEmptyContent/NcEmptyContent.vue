@@ -228,8 +228,8 @@ export default {
 		background-size: 64px;
 
 		:deep(svg) {
-			width: 64px;
-			height: 64px;
+			width: 64px !important;
+			height: 64px !important;
 			max-width: 64px !important;
 			max-height: 64px !important;
 		}
