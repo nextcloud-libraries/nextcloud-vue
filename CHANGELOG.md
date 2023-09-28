@@ -24,6 +24,7 @@ All notable changes to this project will be documented in this file.
 - `NcInputField`: The `labelVisible` property was removed for accessibility it is required to always show a label.
   You can still use the `labelOutside` property to remove the inner label from the component.
 - feat(NcEmptyContent)!: make empty content centered by default instead of 20vh margin [\#4506](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4506) ([ShGKme](https://github.com/ShGKme))
+- chore!: Rename `Datetime` to `DateTime` in component names [\#4560](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4560) ([susnux](https://github.com/susnux))
 
 ### :rocket: Enhancements
 - enh\(NcDatetime\): New component for displaying timestamps as time relative from now [\#4219](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4219) ([susnux](https://github.com/susnux))
@@ -108,6 +109,11 @@ All notable changes to this project will be documented in this file.
 - fix(NcRichContenteditable): make the default placeholder short [\#4408](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4408) ([ShGKme](https://github.com/ShGKme))
 - Stop propagation of keyboard navigation in a number of components [\#4501](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4501) ([ShGKme](https://github.com/ShGKme))
 - fix(NcRichText) - don't strip `<tag>`-like content when parsing markdown [\#4486](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4486) ([Antreesy](https://github.com/Antreesy))
+- fix(NcAppNavigation): Make the navigation toggle accessible again when closed [\#4546](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4546) ([susnux](https://github.com/susnux))
+- fix: Replace sanitize-svg with dompurify [\#4557](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4557) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- fix(NcEmojiPicker): Do not set padding for the search input label [\#4577](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4577) ([susnux](https://github.com/susnux))
+- fix(NcEmojiPicker): Set type to `native` for selected emoji [\#4575](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4575) ([mejo-](https://github.com/mejo-))
+- fix: also export NcSettings* components [\#4586](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4586) ([raimund-schluessler](https://github.com/raimund-schluessler))
 
 ## [v7.11.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.11.2) (2023-05-05)
 
