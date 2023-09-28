@@ -183,18 +183,19 @@ module.exports = async () => {
 							'src/components/Nc*Field/*.vue',
 						],
 					},
-				// 	{
-				// 		name: 'NcListItems',
-				// 		components: [
-				// 			'src/components/NcListItem*/*.vue',
-				// 		],
-				// 	},
-				// 	{
-				// 		name: 'NcSelect',
-				// 		components: [
-				// 			'src/components/NcSelect*/*.vue',
-				// 		],
-				// 	},
+					{
+						name: 'NcListItems',
+						components: [
+							//'src/components/NcListItem*/*.vue',
+							'src/components/NcListItemIcon/*.vue',
+						],
+					},
+					{
+						name: 'NcSelect',
+						components: [
+							'src/components/NcSelect*/*.vue',
+						],
+					},
 					{
 						name: 'NcPickers',
 						components: [
@@ -210,12 +211,12 @@ module.exports = async () => {
 				// 			'src/components/NcRichText/NcRichText.vue',
 				// 		],
 				// 	},
-				// 	{
-				// 		name: 'NcSettings',
-				// 		components: [
-				// 			'src/components/NcSettings*/*.vue',
-				// 		],
-				// 	},
+				 	{
+						name: 'NcSettings',
+						components: [
+							'src/components/NcSettings*/*.vue',
+						],
+					},
 				],
 			},
 		],

@@ -481,8 +481,8 @@ export default {
 			'select--no-wrap': noWrap,
 		}"
 		v-bind="propsToForward"
-		v-on="$listeners"
-		@search="searchString => search = searchString">
+		@search="search = $event"
+		@update:model-value="$emit('update:modelValue', $event)">
 		<template #search="{ attributes, events }">
 			<input :class="['vs__search', inputClass]"
 				v-bind="attributes"
@@ -518,7 +518,7 @@ export default {
 		<template #no-options>
 			{{ t('No results') }}
 		</template>
-		<template v-for="(_, name) in $scopedSlots" #[name]="data">
+		<template v-for="(_, name) in $slots" #[name]="data">
 			<!-- @slot Any combination of slots from https://vue-select.org/api/slots.html -->
 			<slot :name="name" v-bind="data" />
 		</template>
@@ -526,8 +526,11 @@ export default {
 </template>
 
 <script>
-import { VueSelect } from '@nextcloud/vue-select'
-import '@nextcloud/vue-select/dist/vue-select.css'
+// TODO: Use @nextcloud/vue-select once a vue 3 version is available.
+// Until then, all @nextcloud/vue-select specific improvements won't be available.
+// E.g. the `limit` prop has no effect, currently.
+import VueSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css'
 import {
 	autoUpdate,
 	computePosition,
@@ -545,6 +548,8 @@ import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
 import l10n from '../../mixins/l10n.js'
+
+import { h } from 'vue'
 
 export default {
 	name: 'NcSelect',
@@ -610,14 +615,12 @@ export default {
 			type: Object,
 			default: () => ({
 				Deselect: {
-					render: createElement => createElement(Close, {
-						props: {
-							size: 20,
-							fillColor: 'var(--vs-controls-color)',
-						},
-						style: {
-							cursor: 'pointer',
-						},
+					render: () => h(Close, {
+						size: 20,
+						fillColor: 'var(--vs-controls-color)',
+						style: [
+							{ cursor: 'pointer' },
+						],
 					}),
 				},
 			}),
@@ -841,7 +844,7 @@ export default {
 		 *
 		 * @see https://vue-select.org/api/props.html#value
 		 */
-		value: {
+		modelValue: {
 			type: [String, Number, Object, Array],
 			default: null,
 		},
@@ -862,6 +865,7 @@ export default {
 		 */
 		// Not an actual event but needed to show in vue-styleguidist docs
 		' ',
+		'update:modelValue',
 	],
 
 	data() {
