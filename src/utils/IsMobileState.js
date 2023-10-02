@@ -23,7 +23,7 @@
 
 import Vue from 'vue'
 
-export const IsMobileState = new Vue({
+export const IsMobileState = /* @__PURE__ */ new Vue({
 	data() {
 		return {
 			isMobile: false,
