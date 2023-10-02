@@ -82,6 +82,9 @@ export default {
 		type: {
 			type: String,
 			default: 'primary',
+			validator(value) {
+				return ['primary', 'secondary', 'tertiary'].indexOf(value) !== -1
+			},
 		},
 	},
 
