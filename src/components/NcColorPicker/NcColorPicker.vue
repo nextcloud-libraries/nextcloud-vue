@@ -161,26 +161,24 @@ export default {
 		<div class="color-picker"
 			:class="{ 'color-picker--advanced-fields': advanced && advancedFields }">
 			<Transition name="slide" mode="out-in">
-				<div>
-					<div v-if="!advanced" class="color-picker__simple">
-						<button v-for="(color, index) in palette"
-							:key="index"
-							:style="{'background-color': color }"
-							class="color-picker__simple-color-circle"
-							:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }"
-							type="button"
-							@click="pickColor(color)">
-							<Check v-if="color === currentColor"
-								:size="20" />
-						</button>
-					</div>
-					<Chrome v-if="advanced"
-						v-model="currentColor"
-						class="color-picker__advanced"
-						:disable-alpha="true"
-						:disable-fields="!advancedFields"
-						@update:modelValue="pickColor" />
+				<div v-if="!advanced" class="color-picker__simple">
+					<button v-for="(color, index) in palette"
+						:key="index"
+						:style="{'background-color': color }"
+						class="color-picker__simple-color-circle"
+						:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }"
+						type="button"
+						@click="pickColor(color)">
+						<Check v-if="color === currentColor"
+							:size="20" />
+					</button>
 				</div>
+				<Chrome v-else
+					v-model="currentColor"
+					class="color-picker__advanced"
+					:disable-alpha="true"
+					:disable-fields="!advancedFields"
+					@update:modelValue="pickColor" />
 			</Transition>
 			<div class="color-picker__navigation">
 				<NcButton v-if="advanced"
