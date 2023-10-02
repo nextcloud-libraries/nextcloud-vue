@@ -337,6 +337,13 @@ const selectArray = [
 					isNoUser: false,
 					subname: 'john@example.org',
 					icon: '',
+					// Example of how to show the user status within the option
+					user: '0-john',
+					preloadedUserStatus: {
+						icon: '',
+						status: 'online',
+						message: 'I am online',
+					},
 				},
 				{
 					id: '0-emma',

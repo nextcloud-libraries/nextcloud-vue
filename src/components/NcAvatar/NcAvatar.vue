@@ -167,7 +167,8 @@ export default {
 		</div>
 		<div v-else-if="canDisplayUserStatus"
 			class="avatardiv__user-status"
-			:class="'avatardiv__user-status--' + userStatus.status" />
+			:class="'avatardiv__user-status--' + userStatus.status"
+			v-bind="userStatusRole" />
 
 		<!-- Show the letter if no avatar nor icon class -->
 		<div v-if="userDoesNotExist && !(iconClass || $slots.icon)"
@@ -370,15 +371,31 @@ export default {
 	},
 	computed: {
 		avatarAriaLabel() {
+			// aria-label is only allowed on interactive elements
 			if (!this.hasMenu) {
 				return
 			}
-			if (this.hasStatus && this.showUserStatus && this.showUserStatusCompact) {
-				return t('Avatar of {displayName}, {status}', { displayName: this.displayName ?? this.user, status: this.userStatus.status })
+			if (this.canDisplayUserStatus || this.showUserStatusIconOnAvatar) {
+				return t('Avatar of {displayName}, {status}', { displayName: this.displayName ?? this.user, status: this.userStatus.status === 'dnd' ? t('do not disturb') : this.userStatus.status })
 			}
 			return t('Avatar of {displayName}', { displayName: this.displayName ?? this.user })
 		},
-
+		/**
+		 * If the avatar has no menu no aria-label is assigned, but for accessibility we still need the status to be accessible
+		 * So this sets `role=img` on the status indicator (div with background) and the required `alt` and `aria-label` attributes.
+		 */
+		userStatusRole() {
+			// only needed if non-interactive, otherwise the aria-label is set
+			if (this.hasMenu) {
+				return
+			}
+			const label = t('User status: {status}', { status: this.userStatus.status === 'dnd' ? t('do not disturb') : this.userStatus.status })
+			return {
+				role: 'img',
+				'aria-label': label,
+				alt: label,
+			}
+		},
 		canDisplayUserStatus() {
 			return this.showUserStatus
 				&& this.hasStatus

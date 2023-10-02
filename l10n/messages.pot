@@ -80,6 +80,9 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
+msgid "do not disturb"
+msgstr ""
+
 msgid "Edit item"
 msgstr ""
 
@@ -263,6 +266,9 @@ msgid "Unable to search the group"
 msgstr ""
 
 msgid "Undo changes"
+msgstr ""
+
+msgid "User status: {status}"
 msgstr ""
 
 msgid "Write a message …"
