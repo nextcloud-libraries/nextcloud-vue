@@ -21,6 +21,7 @@
  */
 
 const ignorePatterns = [
+	'@ckpack/vue-color',
 	'ansi-regex',
 	'bail',
 	'char-regex',

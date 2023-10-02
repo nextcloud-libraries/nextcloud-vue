@@ -82,13 +82,13 @@ export default {
 </style>
 ```
 
-* Using v-bind for both color and open state and emitting an event that updates the color
+* Using v-model for both color and open state and emitting an event that updates the color
 
 ```vue
 <template>
 	<div class="container1">
 		<NcButton @click="open = !open"> Click Me </NcButton>
-		<NcColorPicker :value="color" @input="updateColor" :shown.sync="open">
+		<NcColorPicker v-model="color" v-model:shown="open">
 			<div :style="{'background-color': color}" class="color1" />
 		</NcColorPicker>
 	</div>
@@ -99,11 +99,6 @@ export default {
 		return {
 			color: '#0082c9',
 			open: false
-		}
-	},
-	methods: {
-		updateColor(e) {
-			this.color = e
 		}
 	}
 }
@@ -159,13 +154,13 @@ export default {
 </docs>
 
 <template>
-	<NcPopover v-bind="$attrs" v-on="$listeners" @apply-hide="handleClose">
+	<NcPopover @apply-hide="handleClose">
 		<template #trigger>
 			<slot />
 		</template>
 		<div class="color-picker"
 			:class="{ 'color-picker--advanced-fields': advanced && advancedFields }">
-			<transition name="slide" mode="out-in">
+			<Transition name="slide" mode="out-in">
 				<div v-if="!advanced" class="color-picker__simple">
 					<button v-for="(color, index) in palette"
 						:key="index"
@@ -178,13 +173,13 @@ export default {
 							:size="20" />
 					</button>
 				</div>
-				<Chrome v-if="advanced"
+				<Chrome v-else
 					v-model="currentColor"
 					class="color-picker__advanced"
 					:disable-alpha="true"
 					:disable-fields="!advancedFields"
-					@input="pickColor" />
-			</transition>
+					@update:modelValue="pickColor" />
+			</Transition>
 			<div class="color-picker__navigation">
 				<NcButton v-if="advanced"
 					type="tertiary"
@@ -222,14 +217,15 @@ import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
 import Check from 'vue-material-design-icons/Check.vue'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
-import { Chrome } from 'vue-color'
+import { Chrome } from '@ckpack/vue-color'
+import { defineComponent } from 'vue'
 
 const rgbToHex = function(color) {
 	const hex = color.toString(16)
 	return hex.length === 1 ? '0' + hex : hex
 }
 
-export default {
+export default defineComponent({
 	name: 'NcColorPicker',
 
 	components: {
@@ -245,7 +241,7 @@ export default {
 		/**
 		 * A HEX color that represents the initial value of the picker
 		 */
-		value: {
+		modelValue: {
 			type: String,
 			required: true,
 		},
@@ -276,13 +272,13 @@ export default {
 		'submit',
 		'close',
 		'update:open',
-		'update:value',
+		'update:modelValue',
 		'input',
 	],
 
 	data() {
 		return {
-			currentColor: this.value,
+			currentColor: this.modelValue,
 			advanced: false,
 			ariaBack: t('Back'),
 			ariaMore: t('More options'),
@@ -290,7 +286,7 @@ export default {
 	},
 
 	watch: {
-		value(color) {
+		modelValue(color) {
 			this.currentColor = color
 		},
 	},
@@ -342,7 +338,7 @@ export default {
 			/**
 			 * Emits a hexadecimal string e.g. '#ffffff'
 			 */
-			this.$emit('update:value', color)
+			this.$emit('update:modelValue', color)
 
 			/**
 			 * Emits a hexadecimal string e.g. '#ffffff'
@@ -351,7 +347,7 @@ export default {
 
 		},
 	},
-}
+})
 
 </script>
 
@@ -456,7 +452,7 @@ export default {
 }
 
 .slide {
-	&-enter {
+	&-enter-from {
 		transform: translateX(-50%);
 		opacity: 0;
 	}
@@ -464,7 +460,7 @@ export default {
 		transform: translateX(0);
 		opacity: 1;
 	}
-	&-leave {
+	&-leave-from {
 		transform: translateX(0);
 		opacity: 1;
 	}
