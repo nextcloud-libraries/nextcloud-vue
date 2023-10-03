@@ -1,10 +1,11 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Ali <alimahwer@yahoo.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2023\n"
+"Last-Translator: Ali <alimahwer@yahoo.com>, 2023\n"
 "Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
@@ -126,7 +127,7 @@ msgid "Hide password"
 msgstr "إخفاء كلمة المرور"
 
 msgid "Load more \"{options}\""
-msgstr ""
+msgstr "تحميل المزيد من \"{options}\" "
 
 msgid "Message limit of {count} characters reached"
 msgstr "تمّ الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
@@ -237,7 +238,7 @@ msgid "Select provider"
 msgstr "إختَر مٌزوِّداً"
 
 msgid "Selected"
-msgstr ""
+msgstr "مُحدّدة"
 
 msgid "Settings"
 msgstr "الإعدادات"
@@ -279,4 +280,4 @@ msgid "Undo changes"
 msgstr "تراجع عن التغييرات"
 
 msgid "Write a message …"
-msgstr ""
+msgstr "أكتُب رسالة ..."
