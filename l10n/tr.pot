@@ -1,12 +1,10 @@
 # 
 # Translators:
-# Joas Schilling, 2023
-# Aliberk Sandıkçı, 2023
-# Kaya Zeren <kayazeren@gmail.com>, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2023\n"
+"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2023\n"
 "Language-Team: Turkish (https://app.transifex.com/nextcloud/teams/64236/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: tr\n"
@@ -127,8 +125,8 @@ msgstr "Listeye dön"
 msgid "Hide password"
 msgstr "Parolayı gizle"
 
-msgid "Load more \"{options}\"\""
-msgstr "Diğer \"{options}\""
+msgid "Load more \"{options}\""
+msgstr ""
 
 msgid "Message limit of {count} characters reached"
 msgstr "{count} karakter ileti sınırına ulaşıldı"
@@ -238,6 +236,9 @@ msgstr "Bir etiket seçin"
 msgid "Select provider"
 msgstr "Sağlayıcı seçin"
 
+msgid "Selected"
+msgstr ""
+
 msgid "Settings"
 msgstr "Ayarlar"
 
@@ -277,9 +278,5 @@ msgstr "Grupta arama yapılamadı"
 msgid "Undo changes"
 msgstr "Değişiklikleri geri al"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
+msgid "Write a message …"
 msgstr ""
-"İleti yazın, birini anmak için @, otomatik emoji tamamlamak için \":\" "
-"kullanın…"
