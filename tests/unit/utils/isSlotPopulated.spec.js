@@ -1,4 +1,5 @@
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 
 import isSlotPopulated from '../../../src/utils/isSlotPopulated.js'
 

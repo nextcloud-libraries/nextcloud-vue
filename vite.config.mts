@@ -3,6 +3,7 @@ import { createLibConfig } from '@nextcloud/vite-config'
 import { globSync } from 'glob'
 import { join, resolve } from 'node:path'
 import { defineConfig } from 'vite'
+import { configDefaults } from 'vitest/config'
 
 import md5 from 'md5'
 import * as url from 'url'
@@ -90,6 +91,20 @@ const overrides = defineConfig({
 				],
 			},
 		},
+	},
+	test: {
+		environment: 'happy-dom',
+		setupFiles: resolve(__dirname, './tests/setup.js'),
+		exclude:[
+			...configDefaults.exclude,
+			'./tests/unit/components/NcActions',
+			'./tests/unit/components/NcAppNavigation',
+			'./tests/unit/components/NcAppSidebar',
+			'./tests/unit/components/NcModal',
+			'./tests/unit/components/NcRichContenteditable',
+			'./tests/unit/components/NcRichText',
+			'./tests/unit/mixins/*',
+		],
 	},
 })
 

@@ -21,6 +21,7 @@
  */
 
 import { mount } from '@vue/test-utils'
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 import NcDateTime from '../../../../src/components/NcDateTime/NcDateTime.vue'
 
 describe('NcDateTime.vue', () => {
@@ -28,7 +29,7 @@ describe('NcDateTime.vue', () => {
 
 	it('Sets the title property correctly', () => {
 		const time = Date.UTC(2023, 5, 23, 14, 30)
-		Date.now = jest.fn(() => new Date(time).valueOf())
+		Date.now = vi.fn(() => new Date(time).valueOf())
 		const wrapper = mount(NcDateTime, {
 			props: {
 				timestamp: time,
@@ -41,7 +42,7 @@ describe('NcDateTime.vue', () => {
 
 	it('Can set format of the title property', () => {
 		const time = Date.UTC(2023, 5, 23, 14, 30)
-		Date.now = jest.fn(() => new Date(time).valueOf())
+		Date.now = vi.fn(() => new Date(time).valueOf())
 		const wrapper = mount(NcDateTime, {
 			props: {
 				timestamp: time,
@@ -55,7 +56,7 @@ describe('NcDateTime.vue', () => {
 
 	it('Can disable relative time', () => {
 		const time = Date.UTC(2023, 5, 23, 14, 30)
-		Date.now = jest.fn(() => new Date(time).valueOf())
+		Date.now = vi.fn(() => new Date(time).valueOf())
 		const wrapper = mount(NcDateTime, {
 			props: {
 				timestamp: time,
@@ -82,7 +83,7 @@ describe('NcDateTime.vue', () => {
 		 */
 		it('', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30)
-			Date.now = jest.fn(() => new Date(time).valueOf())
+			Date.now = vi.fn(() => new Date(time).valueOf())
 			const wrapper = mount(NcDateTime, {
 				props: {
 					timestamp: time,
@@ -97,7 +98,7 @@ describe('NcDateTime.vue', () => {
 	describe('Shows relative time', () => {
 		it('works with currentTime == timestamp', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30)
-			Date.now = jest.fn(() => new Date(time).valueOf())
+			Date.now = vi.fn(() => new Date(time).valueOf())
 			const wrapper = mount(NcDateTime, {
 				props: {
 					timestamp: time,
@@ -111,7 +112,7 @@ describe('NcDateTime.vue', () => {
 		it('shows seconds from now (updating)', async () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
 			let currentTime = Date.UTC(2023, 5, 23, 14, 30, 33)
-			Date.now = jest.fn(() => new Date(currentTime).valueOf())
+			Date.now = vi.fn(() => new Date(currentTime).valueOf())
 			const wrapper = mount(NcDateTime, {
 				props: {
 					timestamp: time,
@@ -129,7 +130,7 @@ describe('NcDateTime.vue', () => {
 		it('shows seconds from now - also as short variant', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
 			const currentTime = Date.UTC(2023, 5, 23, 14, 30, 33)
-			Date.now = jest.fn(() => new Date(currentTime).valueOf())
+			Date.now = vi.fn(() => new Date(currentTime).valueOf())
 			const wrapper = mount(NcDateTime, {
 				props: {
 					timestamp: time,
@@ -144,7 +145,7 @@ describe('NcDateTime.vue', () => {
 		it('shows minutes from now', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
 			const currentTime = Date.UTC(2023, 5, 23, 14, 33, 30)
-			Date.now = jest.fn(() => new Date(currentTime).valueOf())
+			Date.now = vi.fn(() => new Date(currentTime).valueOf())
 			const wrapper = mount(NcDateTime, {
 				props: {
 					timestamp: time,
@@ -158,7 +159,7 @@ describe('NcDateTime.vue', () => {
 		it('shows hours from now', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
 			const currentTime = Date.UTC(2023, 5, 23, 17, 30, 30)
-			Date.now = jest.fn(() => new Date(currentTime).valueOf())
+			Date.now = vi.fn(() => new Date(currentTime).valueOf())
 			const wrapper = mount(NcDateTime, {
 				props: {
 					timestamp: time,
@@ -172,7 +173,7 @@ describe('NcDateTime.vue', () => {
 		it('shows weeks from now', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
 			const currentTime = Date.UTC(2023, 6, 13, 14, 30, 30)
-			Date.now = jest.fn(() => new Date(currentTime).valueOf())
+			Date.now = vi.fn(() => new Date(currentTime).valueOf())
 			const wrapper = mount(NcDateTime, {
 				props: {
 					timestamp: time,
@@ -187,7 +188,7 @@ describe('NcDateTime.vue', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
 			const time2 = Date.UTC(2022, 5, 23, 14, 30, 30)
 			const currentTime = Date.UTC(2024, 6, 13, 14, 30, 30)
-			Date.now = jest.fn(() => new Date(currentTime).valueOf())
+			Date.now = vi.fn(() => new Date(currentTime).valueOf())
 
 			const wrapper = mount(NcDateTime, {
 				props: {

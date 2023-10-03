@@ -1,4 +1,5 @@
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import NcRichContenteditable from '../../../../src/components/NcRichContenteditable/NcRichContenteditable.vue'
 import Tribute from 'tributejs/dist/tribute.esm.js'
 

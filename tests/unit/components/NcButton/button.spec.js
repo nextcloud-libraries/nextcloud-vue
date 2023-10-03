@@ -21,6 +21,7 @@
  */
 
 import { shallowMount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import NcButton from '../../../../src/components/NcButton/NcButton.vue'
 
 describe('NcButton', () => {
