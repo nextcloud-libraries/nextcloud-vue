@@ -1,11 +1,10 @@
 # 
 # Translators:
-# Joas Schilling, 2023
-# O St <oleksiy.stasevych@gmail.com>, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: O St <oleksiy.stasevych@gmail.com>, 2023\n"
+"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2023\n"
 "Language-Team: Ukrainian (https://app.transifex.com/nextcloud/teams/64236/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: uk\n"
@@ -126,8 +125,8 @@ msgstr "Повернутися до списку"
 msgid "Hide password"
 msgstr "Приховати пароль"
 
-msgid "Load more \"{options}\"\""
-msgstr "Завантажити більше \"{options}\""
+msgid "Load more \"{options}\""
+msgstr ""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Вичерпано ліміт у {count} символів для повідомлення"
@@ -237,6 +236,9 @@ msgstr "Виберіть позначку"
 msgid "Select provider"
 msgstr "Виберіть постачальника"
 
+msgid "Selected"
+msgstr ""
+
 msgid "Settings"
 msgstr "Налаштування"
 
@@ -276,7 +278,5 @@ msgstr "Неможливо шукати в групі"
 msgid "Undo changes"
 msgstr "Скасувати зміни"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr "Додайте \"@\", щоби згадати коористувача або \":\" для вибору емоційки..."
+msgid "Write a message …"
+msgstr ""
