@@ -1,11 +1,10 @@
 # 
 # Translators:
-# Joas Schilling, 2023
-# Yaron Shahrabani <sh.yaron@gmail.com>, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>, 2023\n"
+"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2023\n"
 "Language-Team: Hebrew (https://app.transifex.com/nextcloud/teams/64236/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: he\n"
@@ -125,8 +124,8 @@ msgstr "חזרה לרשימה"
 msgid "Hide password"
 msgstr "הסתרת סיסמה"
 
-msgid "Load more \"{options}\"\""
-msgstr "טעינת „{options}” נוספות"
+msgid "Load more \"{options}\""
+msgstr ""
 
 msgid "Message limit of {count} characters reached"
 msgstr "הגעת למגבלה של {count} תווים"
@@ -236,6 +235,9 @@ msgstr "בחירת תגית"
 msgid "Select provider"
 msgstr "בחירת ספק"
 
+msgid "Selected"
+msgstr ""
+
 msgid "Settings"
 msgstr "הגדרות"
 
@@ -275,9 +277,5 @@ msgstr "לא ניתן לחפש בקבוצה"
 msgid "Undo changes"
 msgstr "ביטול שינויים"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
+msgid "Write a message …"
 msgstr ""
-"כאן ניתן לכתוב הודעה, אפשר להשתמש ב־„@” כדי לאזכר מישהו, ב־„:” להשלמה "
-"אוטומטית של אמוג׳י…"
