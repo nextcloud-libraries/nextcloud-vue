@@ -1,11 +1,10 @@
 # 
 # Translators:
-# Joas Schilling, 2023
-# Ali <alimahwer@yahoo.com>, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ali <alimahwer@yahoo.com>, 2023\n"
+"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2023\n"
 "Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
@@ -126,8 +125,8 @@ msgstr "عودة إلى القائمة"
 msgid "Hide password"
 msgstr "إخفاء كلمة المرور"
 
-msgid "Load more \"{options}\"\""
-msgstr "حمّل \"{options}\"\" أكثر"
+msgid "Load more \"{options}\""
+msgstr ""
 
 msgid "Message limit of {count} characters reached"
 msgstr "تمّ الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
@@ -237,6 +236,9 @@ msgstr "إختَر سِمَةً tag"
 msgid "Select provider"
 msgstr "إختَر مٌزوِّداً"
 
+msgid "Selected"
+msgstr ""
+
 msgid "Settings"
 msgstr "الإعدادات"
 
@@ -276,9 +278,5 @@ msgstr "تعذّر البحث في المجموعة"
 msgid "Undo changes"
 msgstr "تراجع عن التغييرات"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
+msgid "Write a message …"
 msgstr ""
-"أكتُب رسالةً؛ إستعمِل \"@\" للإشارة إلى شخص ما، و استخدم \":\" للإكمال "
-"التلقائي لرموز الإيموجي ..."
