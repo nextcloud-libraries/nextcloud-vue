@@ -71,7 +71,7 @@ export default {
 		:class="{ 'header-menu--opened': opened }"
 		class="header-menu">
 		<!-- Trigger -->
-		<button :id="triggerId"
+		<button :id="isNav ? triggerId : null"
 			ref="trigger"
 			class="header-menu__trigger button-vue"
 			:aria-label="ariaLabel"
