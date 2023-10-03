@@ -1,10 +1,11 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Magnus Höglund, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2023\n"
+"Last-Translator: Magnus Höglund, 2023\n"
 "Language-Team: Swedish (https://app.transifex.com/nextcloud/teams/64236/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sv\n"
@@ -126,7 +127,7 @@ msgid "Hide password"
 msgstr "Göm lössenordet"
 
 msgid "Load more \"{options}\""
-msgstr ""
+msgstr "Ladda fler \"{options}\""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Meddelandegräns {count} tecken används"
@@ -237,7 +238,7 @@ msgid "Select provider"
 msgstr "Välj leverantör"
 
 msgid "Selected"
-msgstr ""
+msgstr "Vald"
 
 msgid "Settings"
 msgstr "Inställningar"
@@ -279,4 +280,4 @@ msgid "Undo changes"
 msgstr "Ångra ändringar"
 
 msgid "Write a message …"
-msgstr ""
+msgstr "Skriv ett meddelande …"
