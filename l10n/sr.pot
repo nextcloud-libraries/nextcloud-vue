@@ -280,4 +280,4 @@ msgid "Undo changes"
 msgstr "Poništi promene"
 
 msgid "Write a message …"
-msgstr "Напишите поруку"
+msgstr "Напишите поруку…"
