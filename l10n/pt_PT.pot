@@ -1,11 +1,10 @@
 # 
 # Translators:
-# Joas Schilling, 2023
-# Manuel Martins, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Manuel Martins, 2023\n"
+"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2023\n"
 "Language-Team: Portuguese (Portugal) (https://app.transifex.com/nextcloud/teams/64236/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_PT\n"
@@ -127,8 +126,8 @@ msgstr "Voltar para a lista"
 msgid "Hide password"
 msgstr "Ocultar a senha"
 
-msgid "Load more \"{options}\"\""
-msgstr "Obter mais \"{options}\"\""
+msgid "Load more \"{options}\""
+msgstr ""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Atingido o limite de {count} carateres da mensagem."
@@ -238,6 +237,9 @@ msgstr "Selecionar uma etiqueta"
 msgid "Select provider"
 msgstr "Escolha de fornecedor"
 
+msgid "Selected"
+msgstr ""
+
 msgid "Settings"
 msgstr "Definições"
 
@@ -277,9 +279,5 @@ msgstr "Não é possível pesquisar o grupo"
 msgid "Undo changes"
 msgstr "Anular alterações"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
+msgid "Write a message …"
 msgstr ""
-"Escreva a mensagem, use \"@\" para mencionar alguém, use \":\" para obter um"
-" emoji …"
