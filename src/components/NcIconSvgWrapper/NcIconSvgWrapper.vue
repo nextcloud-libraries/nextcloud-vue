@@ -91,8 +91,8 @@ export default {
 <template>
 	<span class="icon-vue"
 		role="img"
-		:aria-hidden="!name"
-		:aria-label="name"
+		:aria-hidden="!name ? true : undefined"
+		:aria-label="name || undefined"
 		v-html="cleanSvg" /> <!-- eslint-disable-line vue/no-v-html -->
 </template>
 
