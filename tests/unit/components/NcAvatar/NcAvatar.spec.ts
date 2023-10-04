@@ -24,8 +24,6 @@ import { mount } from '@vue/test-utils'
 import NcAvatar from '../../../../src/components/NcAvatar/NcAvatar.vue'
 
 describe('NcAvatar.vue', () => {
-	'use strict'
-
 	it('aria label is set to include status if status is shown visually', async () => {
 		const status = {
 			icon: '',
@@ -33,17 +31,17 @@ describe('NcAvatar.vue', () => {
 			message: 'doing nothing',
 		}
 
-		const wrapper = await mount(NcAvatar, {
+		const wrapper = mount(NcAvatar, {
 			propsData: {
 				user: 'janedoe',
 				displayName: 'J. Doe',
 				preloadedUserStatus: status,
 			},
 		})
+		await new Promise(process.nextTick)
 
 		expect(wrapper.find('.avatardiv__user-status').exists()).toBe(true)
-		expect(wrapper.element.hasAttribute('aria-label')).toBe(true)
-		expect(wrapper.element.getAttribute('aria-label')).toBe('Avatar of J. Doe, online')
+		expect(wrapper.attributes('aria-label')).toBe('Avatar of J. Doe, online')
 	})
 
 	it('aria label is set to include status even if status is do-not-disturb', async () => {
@@ -53,7 +51,7 @@ describe('NcAvatar.vue', () => {
 			message: 'Playing DnD',
 		}
 
-		const wrapper = await mount(NcAvatar, {
+		const wrapper = mount(NcAvatar, {
 			propsData: {
 				user: 'janedoe',
 				displayName: 'J. Doe',
@@ -61,9 +59,10 @@ describe('NcAvatar.vue', () => {
 			},
 		})
 
+		await new Promise(process.nextTick)
+
 		expect(wrapper.find('.avatardiv__user-status').exists()).toBe(true)
-		expect(wrapper.element.hasAttribute('aria-label')).toBe(true)
-		expect(wrapper.element.getAttribute('aria-label')).toBe('Avatar of J. Doe, do not disturb')
+		expect(wrapper.attributes('aria-label')).toBe('Avatar of J. Doe, do not disturb')
 	})
 
 	it('aria label is does not include status if status not shown', async () => {
@@ -73,7 +72,7 @@ describe('NcAvatar.vue', () => {
 			message: 'Idle',
 		}
 
-		const wrapper = await mount(NcAvatar, {
+		const wrapper = mount(NcAvatar, {
 			propsData: {
 				user: 'janedoe',
 				displayName: 'J. Doe',
@@ -82,8 +81,9 @@ describe('NcAvatar.vue', () => {
 			},
 		})
 
+		await new Promise(process.nextTick)
+
 		expect(wrapper.find('.avatardiv__user-status').exists()).toBe(false)
-		expect(wrapper.element.hasAttribute('aria-label')).toBe(true)
-		expect(wrapper.element.getAttribute('aria-label')).toBe('Avatar of J. Doe')
+		expect(wrapper.attributes('aria-label')).toBe('Avatar of J. Doe')
 	})
 })

@@ -121,8 +121,10 @@ export default {
 		:tabindex="hasMenu ? '0' : undefined"
 		:aria-label="avatarAriaLabel"
 		:role="hasMenu ? 'button' : undefined"
-		@click="toggleMenu"
-		@keydown.enter="toggleMenu">
+		v-on="hasMenu ? {
+			click: toggleMenu,
+			keydown: toggleMenu,
+		} : null">
 		<!-- @slot Icon slot -->
 		<slot name="icon">
 			<!-- Avatar icon or image -->
@@ -565,8 +567,12 @@ export default {
 			}
 		},
 
-		async toggleMenu() {
-			if (!this.hasMenu) {
+		/**
+		 * Toggle the popover menu on click or enter
+		 * @param {KeyboardEvent|MouseEvent} event the UI event
+		 */
+		async toggleMenu(event) {
+			if (event.type === 'keydown' && event.key !== 'Enter') {
 				return
 			}
 			if (!this.contactsMenuOpenState) {
