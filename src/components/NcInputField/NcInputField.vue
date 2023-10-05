@@ -155,6 +155,8 @@ export default {
 		 * The input label, always provide one for accessibility purposes.
 		 * This will also be used as a placeholder unless the placeholder
 		 * prop is populated with a different string.
+		 *
+		 * Note: If the background color is not `--color-main-background` consider using an external label instead (see `labelOutside`).
 		 */
 		label: {
 			type: String,
@@ -345,7 +347,7 @@ export default {
 
 	&__input {
 		margin: 0;
-		padding-inline: 10px 6px; // align with label 8px margin label + 4px padding label - 2px border input
+		padding-inline: 12px 6px; // align with label 8px margin label + 6px padding label - 2px border input
 		height: 38px !important;
 		width: 100%;
 
@@ -434,7 +436,7 @@ export default {
 
 	&__label {
 		position: absolute;
-		margin-inline: 12px 0;
+		margin-inline: 14px 0;
 		// fix height and line height to center label
 		height: 17px;
 		max-width: fit-content;
@@ -465,16 +467,19 @@ export default {
 
 	&__input:focus + &__label,
 	&__input:not(:placeholder-shown) + &__label {
-		inset-block-start: -6px;
+		inset-block-start: -8px;
 		font-size: 13px; // minimum allowed font size for accessibility
+		font-weight: 500;
+		border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0;
 		background-color: var(--color-main-background);
-		height: 14px;
-		padding-inline: 4px;
-		margin-inline-start: 8px;
+		height: 16px;
+		padding-inline: 5px;
+		padding-block-start: 2px;
+		margin-inline-start: 9px;
 
 		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick);
 		&--leading-icon {
-			margin-inline-start: 30px;
+			margin-inline-start: 29px;
 		}
 	}
 
