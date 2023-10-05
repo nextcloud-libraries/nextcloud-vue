@@ -91,25 +91,43 @@ export default {
 <template>
 	<span class="icon-vue"
 		role="img"
-		:aria-hidden="!name"
-		:aria-label="name"
+		:aria-hidden="!name ? true : undefined"
+		:aria-label="name || undefined"
 		v-html="cleanSvg" /> <!-- eslint-disable-line vue/no-v-html -->
 </template>
 
 <script>
+import Vue from 'vue'
 import DOMPurify from 'dompurify'
 
 export default {
 	name: 'NcIconSvgWrapper',
 
 	props: {
+		/**
+		 * Raw SVG string to render
+		 */
 		svg: {
 			type: String,
 			default: '',
 		},
+
+		/**
+		 * Label of the icon, used in aria-label
+		 */
 		name: {
 			type: String,
 			default: '',
+		},
+
+		/**
+		 * By default MDI icons have an ID on the `<svg>` element. It leads to dupliated IDs on a web-page.
+		 * This component removes the ID on the received SVG.
+		 * Use this prop to disable this behavior and to not remove the ID.
+		 */
+		keepId: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -118,7 +136,21 @@ export default {
 			if (!this.svg) {
 				return
 			}
-			return DOMPurify.sanitize(this.svg)
+
+			const svg = DOMPurify.sanitize(this.svg)
+
+			const svgDocument = new DOMParser().parseFromString(svg, 'image/svg+xml')
+
+			if (svgDocument.querySelector('parsererror')) {
+				Vue.util.warn('SVG is not valid')
+				return ''
+			}
+
+			if (!this.keepId && svgDocument.documentElement.id) {
+				svgDocument.documentElement.removeAttribute('id')
+			}
+
+			return svgDocument.documentElement.outerHTML
 		},
 	},
 }
