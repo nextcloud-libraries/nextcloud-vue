@@ -119,16 +119,6 @@ export default {
 			type: String,
 			default: '',
 		},
-
-		/**
-		 * By default MDI icons have an ID on the `<svg>` element. It leads to dupliated IDs on a web-page.
-		 * This component removes the ID on the received SVG.
-		 * Use this prop to disable this behavior and to not remove the ID.
-		 */
-		keepId: {
-			type: Boolean,
-			default: false,
-		},
 	},
 
 	computed: {
@@ -146,7 +136,7 @@ export default {
 				return ''
 			}
 
-			if (!this.keepId && svgDocument.documentElement.id) {
+			if (svgDocument.documentElement.id) {
 				svgDocument.documentElement.removeAttribute('id')
 			}
 
