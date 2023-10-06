@@ -20,6 +20,8 @@
  *
  */
 
+import { describe, expect, it } from 'vitest'
+
 import FindRanges from '../../../src/utils/FindRanges'
 
 describe('FindRanges.js', () => {

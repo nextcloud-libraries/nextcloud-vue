@@ -21,6 +21,7 @@
  */
 
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import NcModal from '../../../../src/components/NcModal/NcModal.vue'
 
 describe('NcModal', () => {
