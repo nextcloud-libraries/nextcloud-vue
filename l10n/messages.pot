@@ -35,6 +35,9 @@ msgstr ""
 msgid "Avatar of {displayName}, {status}"
 msgstr ""
 
+msgid "away"
+msgstr ""
+
 msgid "Back"
 msgstr ""
 
@@ -141,6 +144,12 @@ msgid "No results"
 msgstr ""
 
 msgid "Objects"
+msgstr ""
+
+msgid "offline"
+msgstr ""
+
+msgid "online"
 msgstr ""
 
 msgid "Open contact menu"

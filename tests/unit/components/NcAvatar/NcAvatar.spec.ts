@@ -21,6 +21,7 @@
  */
 
 import { mount } from '@vue/test-utils'
+import { nextTick } from 'vue'
 import NcAvatar from '../../../../src/components/NcAvatar/NcAvatar.vue'
 
 describe('NcAvatar.vue', () => {
@@ -38,7 +39,7 @@ describe('NcAvatar.vue', () => {
 				preloadedUserStatus: status,
 			},
 		})
-		await new Promise(process.nextTick)
+		await nextTick()
 
 		expect(wrapper.find('.avatardiv__user-status').exists()).toBe(true)
 		expect(wrapper.attributes('aria-label')).toBe('Avatar of J. Doe, online')
@@ -59,7 +60,7 @@ describe('NcAvatar.vue', () => {
 			},
 		})
 
-		await new Promise(process.nextTick)
+		await nextTick()
 
 		expect(wrapper.find('.avatardiv__user-status').exists()).toBe(true)
 		expect(wrapper.attributes('aria-label')).toBe('Avatar of J. Doe, do not disturb')
@@ -81,7 +82,7 @@ describe('NcAvatar.vue', () => {
 			},
 		})
 
-		await new Promise(process.nextTick)
+		await nextTick()
 
 		expect(wrapper.find('.avatardiv__user-status').exists()).toBe(false)
 		expect(wrapper.attributes('aria-label')).toBe('Avatar of J. Doe')

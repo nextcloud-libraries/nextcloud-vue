@@ -378,9 +378,20 @@ export default {
 				return
 			}
 			if (this.canDisplayUserStatus || this.showUserStatusIconOnAvatar) {
-				return t('Avatar of {displayName}, {status}', { displayName: this.displayName ?? this.user, status: this.userStatus.status === 'dnd' ? t('do not disturb') : this.userStatus.status })
+				return t('Avatar of {displayName}, {status}', { displayName: this.displayName ?? this.user, status: this.userStatusText })
 			}
 			return t('Avatar of {displayName}', { displayName: this.displayName ?? this.user })
+		},
+		/** Translated current user status */
+		userStatusText() {
+			switch (this.userStatus.status) {
+			// TRANSLATORS: User status if the user is currently away from keyboard
+			case 'away': return t('away')
+			case 'dnd': return t('do not disturb')
+			case 'online': return t('online')
+			case 'offline': return t('offline')
+			default: return this.userStatus.status
+			}
 		},
 		/**
 		 * If the avatar has no menu no aria-label is assigned, but for accessibility we still need the status to be accessible
@@ -391,7 +402,7 @@ export default {
 			if (this.hasMenu) {
 				return
 			}
-			const label = t('User status: {status}', { status: this.userStatus.status === 'dnd' ? t('do not disturb') : this.userStatus.status })
+			const label = t('User status: {status}', { status: this.userStatusText })
 			return {
 				role: 'img',
 				'aria-label': label,
