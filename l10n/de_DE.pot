@@ -81,7 +81,7 @@ msgid "Close sidebar"
 msgstr "Seitenleiste schließen"
 
 msgid "Close Smart Picker"
-msgstr "Intelligente Auswahl schließen"
+msgstr "Smart Picker schließen"
 
 msgid "Collapse menu"
 msgstr "Menü einklappen"
