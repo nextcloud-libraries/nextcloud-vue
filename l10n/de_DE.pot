@@ -253,7 +253,7 @@ msgid "Show password"
 msgstr "Passwort anzeigen"
 
 msgid "Smart Picker"
-msgstr "Intelligente Auswahl"
+msgstr "Smart Picker"
 
 msgid "Smileys & Emotion"
 msgstr "Smileys & Emotionen"
