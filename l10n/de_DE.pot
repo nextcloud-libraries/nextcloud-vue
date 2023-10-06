@@ -93,7 +93,7 @@ msgid "Custom"
 msgstr "Benutzerdefiniert"
 
 msgid "Edit item"
-msgstr "Objekt bearbeiten"
+msgstr "Element bearbeiten"
 
 msgid "Enter link"
 msgstr "Link eingeben"
