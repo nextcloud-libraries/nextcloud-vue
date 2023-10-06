@@ -25,6 +25,7 @@ All notable changes to this project will be documented in this file.
   You can still use the `labelOutside` property to remove the inner label from the component.
 - feat(NcEmptyContent)!: make empty content centered by default instead of 20vh margin [\#4506](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4506) ([ShGKme](https://github.com/ShGKme))
 - chore!: Rename `Datetime` to `DateTime` in component names [\#4560](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4560) ([susnux](https://github.com/susnux))
+- feat(NcIconSvgWrapper)!: remove ID from svg [\#4607](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4607) ([ShGKme](https://github.com/ShGKme))
 
 ### :rocket: Enhancements
 - enh\(NcDatetime\): New component for displaying timestamps as time relative from now [\#4219](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4219) ([susnux](https://github.com/susnux))
@@ -114,6 +115,16 @@ All notable changes to this project will be documented in this file.
 - fix(NcEmojiPicker): Do not set padding for the search input label [\#4577](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4577) ([susnux](https://github.com/susnux))
 - fix(NcEmojiPicker): Set type to `native` for selected emoji [\#4575](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4575) ([mejo-](https://github.com/mejo-))
 - fix: also export NcSettings* components [\#4586](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4586) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- fix(NcSettingsSection): remove incorrect role=note on doc link [\#4594](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4594) ([ShGKme](https://github.com/ShGKme))
+- fix(utils): Make `isMobileState` PURE so it can be treeshaken if not used [\#4595](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4595) ([susnux](https://github.com/susnux))
+- allow type property for NcAppNavigationNew [\#4555](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4555) ([dartcafe](https://github.com/dartcafe))
+- fix(EmptyContent): ensure proper custom icon size [\#4584](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4584) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Properly align AppNavigationToggle with first navigation item [\#3278](https://github.com/nextcloud-libraries/nextcloud-vue/pull/3278) ([susnux](https://github.com/susnux))
+- fix: Remove unused id from trigger [\#4602](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4602) ([Pytal](https://github.com/Pytal))
+- fix(NcSelect): make id truly uniqual [\#4606](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4606) ([ShGKme](https://github.com/ShGKme))
+- fix: handling of empty values in NcDateTimePickerNative [\#4540](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4540) ([st3iny](https://github.com/st3iny))
+- fix(NcIconSvgWrapper): remove new keepId prop [\#4609](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4609) ([ShGKme](https://github.com/ShGKme))
+- fix(NcInputField): Adjust styling of the internal label [\#4578](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4578) ([susnux](https://github.com/susnux))
 
 ## [v7.11.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.11.2) (2023-05-05)
 
