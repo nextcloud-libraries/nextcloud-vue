@@ -308,13 +308,19 @@ $cell_height: 32px;
 				justify-content: center;
 				width: $cell_height;
 				padding: 0; // leave the centering to flex
-				background-repeat: no-repeat;
-				background-size: 16px;
-				background-position: center;
 
-				// Hide original icons
 				> i {
-					display: none;
+					// Hide original icons
+					&::after, &::before {
+						content: none;
+					}
+					background-repeat: no-repeat;
+					background-size: 16px;
+					background-position: center;
+					filter: var(--background-invert-if-dark);
+					display: inline-block;
+					width: 32px;
+					height: 32px;
 				}
 			}
 			&.mx-btn-text {
@@ -326,32 +332,20 @@ $cell_height: 32px;
 			display: flex;
 		}
 
-		.mx-btn-icon-double-left {
+		.mx-btn-icon-double-left > i {
 			background-image: url('./chevron-double-left.svg');
-			body.theme--dark & {
-				background-image: url('./chevron-double-left-light.svg');
-			}
 		}
 
-		.mx-btn-icon-left {
+		.mx-btn-icon-left > i {
 			background-image: url('./chevron-left.svg');
-			body.theme--dark & {
-				background-image: url('./chevron-left-light.svg');
-			}
 		}
 
-		.mx-btn-icon-right {
+		.mx-btn-icon-right > i {
 			background-image: url('./chevron-right.svg');
-			body.theme--dark & {
-				background-image: url('./chevron-right-light.svg');
-			}
 		}
 
-		.mx-btn-icon-double-right {
+		.mx-btn-icon-double-right > i {
 			background-image: url('./chevron-double-right.svg');
-			body.theme--dark & {
-				background-image: url('./chevron-double-right-light.svg');
-			}
 		}
 
 		button.mx-btn-icon-right {
