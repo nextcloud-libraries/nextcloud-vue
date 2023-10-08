@@ -127,15 +127,14 @@ It might be used for list rendering or within the multiselect for example
 <template>
 	<span :id="id"
 		class="option"
-		:style="cssVars"
-		v-on="$listeners">
-		<NcAvatar v-bind="$attrs"
+		:style="cssVars">
+		<!-- <NcAvatar v-bind="$attrs"
 			:disable-menu="true"
 			:disable-tooltip="true"
 			:display-name="displayName || name"
 			:is-no-user="isNoUser"
 			:size="avatarSize"
-			class="option__avatar" />
+			class="option__avatar" /> -->
 		<div class="option__details">
 			<NcHighlight class="option__lineone"
 				:text="name"
@@ -165,7 +164,8 @@ It might be used for list rendering or within the multiselect for example
 </template>
 
 <script>
-import NcAvatar from '../NcAvatar/index.js'
+// TODO: bring back avatar once migrated
+// import NcAvatar from '../NcAvatar/index.js'
 import NcHighlight from '../NcHighlight/index.js'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 
@@ -179,7 +179,7 @@ export default {
 	name: 'NcListItemIcon',
 
 	components: {
-		NcAvatar,
+		// NcAvatar,
 		NcHighlight,
 		NcIconSvgWrapper,
 	},

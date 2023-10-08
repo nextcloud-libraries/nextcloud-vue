@@ -134,12 +134,9 @@ export default {
 	<NcSelect v-bind="propsToForward"
 		:options="availableOptions"
 		:close-on-select="!multiple"
-		:value="passthru ? value : localValue"
-		@search="searchString => search = searchString"
-		v-on="{
-			...$listeners,
-			input: passthru ? $listeners.input : handleInput,
-		}">
+		:model-value="localValue"
+		@search="search = $event"
+		@update:model-value="handleInput">
 		<template #option="option">
 			<NcEllipsisedOption :name="getOptionLabel(option)"
 				:search="search" />
@@ -148,7 +145,7 @@ export default {
 			<NcEllipsisedOption :name="getOptionLabel(selectedOption)"
 				:search="search" />
 		</template>
-		<template v-for="(_, name) in $scopedSlots" #[name]="data">
+		<template v-for="(_, name) in $slots" #[name]="data">
 			<!-- @slot Any combination of slots from https://vue-select.org/api/slots.html -->
 			<slot :name="name" v-bind="data" />
 		</template>
@@ -259,7 +256,7 @@ export default {
 		/**
 		 * Currently selected value
 		 */
-		value: {
+		modelValue: {
 			type: [Number, Array],
 			default: null,
 		},
@@ -275,7 +272,7 @@ export default {
 	},
 
 	emits: [
-		'input',
+		'update:modelValue',
 		/**
 		 * All events from https://vue-select.org/api/events.html
 		 */
@@ -299,15 +296,18 @@ export default {
 		},
 
 		localValue() {
+			if (this.passthru) {
+				return this.modelValue
+			}
 			if (this.tags.length === 0) {
 				return []
 			}
 			if (this.multiple) {
-				return this.value
+				return this.modelValue
 					.filter(tag => tag !== '')
 					.map(id => this.tags.find(tag2 => tag2.id === id))
 			} else {
-				return this.tags.find(tag => tag.id === this.value)
+				return this.tags.find(tag => tag.id === this.modelValue)
 			}
 		},
 
@@ -346,18 +346,22 @@ export default {
 
 	methods: {
 		handleInput(value) {
+			if (this.passthru) {
+				this.$emit('update:modelValue', value)
+				return
+			}
 			if (this.multiple) {
 				/**
 				 * Emitted on input events of the multiselect field
 				 *
 				 * @type {number|number[]}
 				 */
-				this.$emit('input', value.map(element => element.id))
+				this.$emit('update:modelValue', value.map(element => element.id))
 			} else {
 				if (value === null) {
-					this.$emit('input', null)
+					this.$emit('update:modelValue', null)
 				} else {
-					this.$emit('input', value.id)
+					this.$emit('update:modelValue', value.id)
 				}
 			}
 		},

@@ -52,7 +52,7 @@ section * {
 <template>
 	<div>
 		<label v-if="label" :for="id" class="hidden-visually">{{ label }}</label>
-		<NcSelect :value="inputValue"
+		<NcSelect :model-value="inputValue"
 			:options="groupsArray"
 			:placeholder="placeholder || label"
 			:filter-by="filterGroups"
@@ -62,7 +62,7 @@ section * {
 			:multiple="true"
 			:close-on-select="false"
 			:disabled="disabled"
-			@input="update"
+			@update:model-value="update"
 			@search="onSearch" />
 		<div v-show="hasError" class="select-group-error">
 			{{ errorMessage }}
@@ -117,7 +117,7 @@ export default {
 		 * value of the select group input
 		 * A list of group IDs can be provided
 		 */
-		value: {
+		modelValue: {
 			type: Array,
 			default: () => [],
 		},
@@ -156,7 +156,7 @@ export default {
 		 * @return {string[]}
 		 */
 		filteredValue() {
-			return this.value.filter((group) => group !== '' && typeof group === 'string')
+			return this.modelValue.filter((group) => group !== '' && typeof group === 'string')
 		},
 
 		/**
@@ -183,7 +183,7 @@ export default {
 		 * @return {object[]}
 		 */
 		groupsArray() {
-			return Object.values(this.groups).filter(g => !this.value.includes(g.id))
+			return Object.values(this.groups).filter(g => !this.modelValue.includes(g.id))
 		},
 	},
 	watch: {
@@ -227,7 +227,7 @@ export default {
 		update(updatedValue) {
 			const value = updatedValue.map((element) => element.id)
 			/** Emitted when the groups selection changes<br />**Payload:** `value` (`Array`) - *Ids of selected groups */
-			this.$emit('input', value)
+			this.$emit('update:modelValue', value)
 		},
 
 		/**
