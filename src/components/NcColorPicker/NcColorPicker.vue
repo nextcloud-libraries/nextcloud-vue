@@ -178,7 +178,7 @@ export default {
 					class="color-picker__advanced"
 					:disable-alpha="true"
 					:disable-fields="!advancedFields"
-					@update:modelValue="pickColor" />
+					@update:model-value="pickColor" />
 			</Transition>
 			<div class="color-picker__navigation">
 				<NcButton v-if="advanced"
