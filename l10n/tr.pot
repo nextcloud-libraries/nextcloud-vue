@@ -1,7 +1,6 @@
 # 
 # Translators:
-# Joas Schilling, 2023
-# Aliberk Sandıkçı, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Kaya Zeren <kayazeren@gmail.com>, 2023
 # 
 msgid ""
@@ -127,7 +126,7 @@ msgstr "Listeye dön"
 msgid "Hide password"
 msgstr "Parolayı gizle"
 
-msgid "Load more \"{options}\"\""
+msgid "Load more \"{options}\""
 msgstr "Diğer \"{options}\""
 
 msgid "Message limit of {count} characters reached"
@@ -238,6 +237,9 @@ msgstr "Bir etiket seçin"
 msgid "Select provider"
 msgstr "Sağlayıcı seçin"
 
+msgid "Selected"
+msgstr "Seçilmiş"
+
 msgid "Settings"
 msgstr "Ayarlar"
 
@@ -277,9 +279,5 @@ msgstr "Grupta arama yapılamadı"
 msgid "Undo changes"
 msgstr "Değişiklikleri geri al"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
-"İleti yazın, birini anmak için @, otomatik emoji tamamlamak için \":\" "
-"kullanın…"
+msgid "Write a message …"
+msgstr "Bir ileti yazın…"

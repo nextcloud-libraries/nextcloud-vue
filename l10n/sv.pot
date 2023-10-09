@@ -1,6 +1,6 @@
 # 
 # Translators:
-# Joas Schilling, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Magnus Höglund, 2023
 # 
 msgid ""
@@ -126,8 +126,8 @@ msgstr "Gå tillbaka till listan"
 msgid "Hide password"
 msgstr "Göm lössenordet"
 
-msgid "Load more \"{options}\"\""
-msgstr "Ladda fler \"{options}\"\""
+msgid "Load more \"{options}\""
+msgstr "Ladda fler \"{options}\""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Meddelandegräns {count} tecken används"
@@ -237,6 +237,9 @@ msgstr "Välj en tag"
 msgid "Select provider"
 msgstr "Välj leverantör"
 
+msgid "Selected"
+msgstr "Vald"
+
 msgid "Settings"
 msgstr "Inställningar"
 
@@ -276,9 +279,5 @@ msgstr "Kunde inte söka i gruppen"
 msgid "Undo changes"
 msgstr "Ångra ändringar"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
-"Skriv meddelande, använd \"@\" för att nämna någon, använd \":\" för "
-"automatiska emojiförslag ..."
+msgid "Write a message …"
+msgstr "Skriv ett meddelande …"

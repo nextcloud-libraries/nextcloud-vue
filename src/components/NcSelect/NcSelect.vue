@@ -548,6 +548,7 @@ import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
 import l10n from '../../mixins/l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 import { h } from 'vue'
 
@@ -802,6 +803,16 @@ export default {
 					},
 				}
 			},
+		},
+
+		/**
+		 * A unique identifier used to generate IDs and DOM attributes. Must be unique for every instance of the component.
+		 *
+		 * @see https://vue-select.org/api/props.html#uid
+		 */
+		uid: {
+			type: String,
+			default: () => '-' + GenRandomId(),
 		},
 
 		/**

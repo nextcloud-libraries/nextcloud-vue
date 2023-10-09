@@ -1,6 +1,6 @@
 # 
 # Translators:
-# Joas Schilling, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Andi Chandler <andi@gowling.com>, 2023
 # 
 msgid ""
@@ -126,8 +126,8 @@ msgstr "Go back to the list"
 msgid "Hide password"
 msgstr "Hide password"
 
-msgid "Load more \"{options}\"\""
-msgstr "Load more \"{options}\"\""
+msgid "Load more \"{options}\""
+msgstr "Load more \"{options}\""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Message limit of {count} characters reached"
@@ -237,6 +237,9 @@ msgstr "Select a tag"
 msgid "Select provider"
 msgstr "Select provider"
 
+msgid "Selected"
+msgstr "Selected"
+
 msgid "Settings"
 msgstr "Settings"
 
@@ -276,9 +279,5 @@ msgstr "Unable to search the group"
 msgid "Undo changes"
 msgstr "Undo changes"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
+msgid "Write a message …"
+msgstr "Write a message …"

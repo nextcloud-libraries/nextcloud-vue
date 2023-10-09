@@ -357,10 +357,6 @@ export default {
 	&:not(.app-content--has-list) {
 		overflow: auto;
 	}
-
-	// Variables
-	// the whitespace between the topbar content and its edges
-	--topbar-margin: #{$topbar-margin};
 }
 
 .app-content-wrapper {
