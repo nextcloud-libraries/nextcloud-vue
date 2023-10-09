@@ -1,32 +1,5 @@
 import { defineConfig } from 'cypress'
-import webpack from 'webpack'
-import getCompareSnapshotsPlugin from 'cypress-visual-regression/dist/plugin.js'
-import path from 'path'
-import webpackConfig from '@nextcloud/webpack-vue-config'
-import webpackRules from '@nextcloud/webpack-vue-config/rules.js'
-
-import { loadTranslations } from './build/translations.js'
-
-const SCOPE_VERSION = Date.now();
-
-(webpackRules.RULE_SCSS.use as webpack.RuleSetUse[]).push({
-	loader: 'sass-loader',
-	options: {
-		additionalData: `@use 'sass:math'; $scope_version:${SCOPE_VERSION}; @import 'variables'; @import 'material-icons';`,
-		/**
-		 * ! needed for resolve-url-loader
-		 */
-		sourceMap: true,
-		sassOptions: {
-			sourceMapContents: false,
-			includePaths: [
-				path.resolve(__dirname, './src/assets'),
-			],
-		},
-	},
-})
-
-webpackConfig.module.rules = Object.values(webpackRules)
+import getCompareSnapshotsPlugin from 'cypress-visual-regression/dist/plugin'
 
 export default defineConfig({
 	projectId: '3paxvy',
@@ -67,27 +40,17 @@ export default defineConfig({
 			})
 
 		},
-		
+
 		excludeSpecPattern: [
 			'cypress/component/modal.cy.ts',
 			'cypress/component/richtext.cy.ts',
 			'cypress/visual/**/*.js',
 		],
-		
+
 
 		devServer: {
 			framework: 'vue',
-			bundler: 'webpack',
-			webpackConfig: async () => {
-				const translations = await loadTranslations(path.resolve(__dirname, './l10n'))
-				webpackConfig.plugins.push(new webpack.DefinePlugin({
-					PRODUCTION: false,
-					SCOPE_VERSION,
-					TRANSLATIONS: JSON.stringify(translations),
-				}))
-
-				return webpackConfig
-			},
+			bundler: 'vite',
 		},
 	},
 })
