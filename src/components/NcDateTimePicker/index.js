@@ -19,10 +19,5 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import './index.scss'
-import NcDateTimePicker from './NcDateTimePicker.vue'
-import ScopeComponent from '../../utils/ScopeComponent.js'
 
-ScopeComponent(NcDateTimePicker)
-
-export default NcDateTimePicker
+export { default } from './NcDateTimePicker.vue'
