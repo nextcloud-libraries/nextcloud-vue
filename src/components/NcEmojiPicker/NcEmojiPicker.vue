@@ -186,7 +186,7 @@ import NcPopover from '../NcPopover/index.js'
 import NcTextField from '../NcTextField/index.js'
 import { t } from '../../l10n.js'
 
-import { Picker, Emoji, EmojiIndex } from 'emoji-mart-vue-fast/src'
+import { Picker, Emoji, EmojiIndex } from 'emoji-mart-vue-fast/src/index.js'
 import data from 'emoji-mart-vue-fast/data/all.json'
 
 // Shared emoji index for all NcEmojiPicker instances

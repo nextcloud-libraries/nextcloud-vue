@@ -131,8 +131,9 @@ export default {
 		},
 	},
 	emits: [
-		'input',
 		'error',
+		'input',
+		'update:modelValue',
 	],
 	data() {
 		return {
