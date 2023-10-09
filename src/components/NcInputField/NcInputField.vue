@@ -436,7 +436,7 @@ export default {
 		position: absolute;
 		margin-inline: 12px 0;
 		// fix height and line height to center label
-		height: 17px;
+		height: 25px;
 		max-width: fit-content;
 		line-height: 1;
 		inset-block-start: 12px;
@@ -468,7 +468,7 @@ export default {
 		inset-block-start: -6px;
 		font-size: 13px; // minimum allowed font size for accessibility
 		background-color: var(--color-main-background);
-		height: 14px;
+		height: 18px;
 		padding-inline: 4px;
 		margin-inline-start: 8px;
 
