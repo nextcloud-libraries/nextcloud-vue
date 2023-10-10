@@ -207,11 +207,9 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:placeholder="text"
 							:disabled="disabled"
 							:input-class="{ focusable: isFocusable }"
-							trailing-button-icon="arrowRight"
 							:show-trailing-button="showTrailingButton && !disabled"
 							v-bind="$attrs"
 							v-on="$listeners"
-							@trailing-button-click="$refs.form.requestSubmit()"
 							@input="onInput"
 							@change="onChange" />
 
@@ -247,6 +245,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:input-class="{ focusable: isFocusable }"
 							:type="type"
 							trailing-button-icon="arrowRight"
+							:trailing-button-label="trailingButtonLabel"
 							:show-trailing-button="showTrailingButton && !disabled"
 							v-bind="$attrs"
 							v-on="$listeners"
@@ -268,6 +267,7 @@ import NcSelect from '../NcSelect/index.js'
 import NcTextField from '../NcTextField/index.js'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
+import { t } from '../../l10n.js'
 
 export default {
 	name: 'NcActionInput',
@@ -377,11 +377,18 @@ export default {
 			default: null,
 		},
 		/**
-		 * Attribute forwarded to the underlining NcPasswordField and NcTextField
+		 * Attribute forwarded to the underlying NcPasswordField and NcTextField
 		 */
 		showTrailingButton: {
 			type: Boolean,
 			default: true,
+		},
+		/**
+		 * Trailing button label forwarded to the underlying NcTextField
+		 */
+		trailingButtonLabel: {
+			type: String,
+			default: t('Submit'),
 		},
 	},
 
