@@ -609,6 +609,12 @@ export default {
 	&.active {
 		.list-item {
 			background-color: var(--color-primary-element);
+			&:active,
+			&:hover,
+			&:focus,
+			&:focus-visible {
+				background-color: var(--color-primary-element-hover);
+			}
 		}
 
 		.line-one__name, .line-one__details {
@@ -627,7 +633,7 @@ export default {
 	position: relative;
 	flex: 0 0 auto;
 	justify-content: flex-start;
-	padding: 8px;
+	padding: 8px 10px;
 	// Fix for border-radius being too large for 3-line entries like in Mail
 	// 44px avatar size / 2 + 8px padding, and 2px for better visual quality
 	border-radius: 32px;
@@ -636,8 +642,10 @@ export default {
 	cursor: pointer;
 	transition: background-color var(--animation-quick) ease-in-out;
 	list-style: none;
+	&:active,
 	&:hover,
-	&:focus {
+	&:focus,
+	&:focus-visible {
 		background-color: var(--color-background-hover);
 	}
 
