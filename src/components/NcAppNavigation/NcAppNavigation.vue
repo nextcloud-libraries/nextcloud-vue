@@ -54,15 +54,16 @@ emit('toggle-navigation', {
 </docs>
 
 <template>
-	<div id="app-navigation-vue"
-		ref="appNavigationContainer"
+	<div ref="appNavigationContainer"
 		class="app-navigation"
-		role="navigation"
 		:class="{'app-navigation--close':!open }">
 		<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
-		<div :aria-hidden="ariaHidden"
+		<nav id="app-navigation-vue"
+			:aria-hidden="open ? 'false' : 'true'"
+			:aria-label="ariaLabel || undefined"
+			:aria-labelledby="ariaLabelledby || undefined"
 			class="app-navigation__content"
-			:inert="!open || null">
+			:inert="!open || undefined">
 			<slot />
 			<!-- List for Navigation li-items -->
 			<ul class="app-navigation__list">
@@ -71,7 +72,7 @@ emit('toggle-navigation', {
 
 			<!-- Footer for e.g. AppNavigationSettings -->
 			<slot name="footer" />
-		</div>
+		</nav>
 	</div>
 </template>
 
@@ -93,16 +94,29 @@ export default {
 
 	mixins: [isMobile],
 
+	props: {
+		/**
+		 * The aria label to describe the navigation
+		 */
+		ariaLabel: {
+			type: String,
+			default: '',
+		},
+
+		/**
+		 * aria-labelledby attribute to describe the navigation
+		 */
+		ariaLabelledby: {
+			type: String,
+			default: '',
+		},
+	},
+
 	data() {
 		return {
 			open: true,
 			focusTrap: null,
 		}
-	},
-	computed: {
-		ariaHidden() {
-			return this.open ? 'false' : 'true'
-		},
 	},
 
 	watch: {
@@ -124,6 +138,7 @@ export default {
 
 		this.focusTrap = createFocusTrap(this.$refs.appNavigationContainer, {
 			allowOutsideClick: true,
+			fallbackFocus: this.$refs.appNavigationContainer,
 			trapStack: getTrapStack(),
 			escapeDeactivates: false,
 		})
