@@ -97,7 +97,7 @@ export default {
 	<NcInputField v-bind="{...$attrs, ...$props }"
 		ref="inputField"
 		:type="isPasswordHidden ? 'password' : 'text'"
-		:show-trailing-button="showTrailingButton && true"
+		:show-trailing-button="showTrailingButton"
 		:trailing-button-label="trailingButtonLabelPassword"
 		:helper-text="computedHelperText"
 		:error="computedError"
