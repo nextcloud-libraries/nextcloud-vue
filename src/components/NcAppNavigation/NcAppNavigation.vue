@@ -55,6 +55,7 @@ emit('toggle-navigation', {
 
 <template>
 	<div id="app-navigation-vue"
+		ref="appNavigationContainer"
 		class="app-navigation"
 		role="navigation"
 		:class="{'app-navigation--close':!open }">
@@ -77,8 +78,11 @@ emit('toggle-navigation', {
 <script>
 import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
 import isMobile from '../../mixins/isMobile/index.js'
+import { getTrapStack } from '../../utils/focusTrap.js'
 
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
+
+import { createFocusTrap } from 'focus-trap'
 
 export default {
 	name: 'NcAppNavigation',
@@ -92,6 +96,7 @@ export default {
 	data() {
 		return {
 			open: true,
+			focusTrap: null,
 		}
 	},
 	computed: {
@@ -103,6 +108,10 @@ export default {
 	watch: {
 		isMobile() {
 			this.open = !this.isMobile
+			this.toggleFocusTrap()
+		},
+		open() {
+			this.toggleFocusTrap()
 		},
 	},
 
@@ -112,9 +121,17 @@ export default {
 		emit('navigation-toggled', {
 			open: this.open,
 		})
+
+		this.focusTrap = createFocusTrap(this.$refs.appNavigationContainer, {
+			allowOutsideClick: true,
+			trapStack: getTrapStack(),
+			escapeDeactivates: false,
+		})
+		this.toggleFocusTrap()
 	},
 	unmounted() {
 		unsubscribe('toggle-navigation', this.toggleNavigationByEventBus)
+		this.focusTrap.deactivate()
 	},
 
 	methods: {
@@ -135,8 +152,20 @@ export default {
 			// We wait for 1.5 times the animation length to give the animation time to really finish.
 			}, 1.5 * animationLength)
 		},
+
 		toggleNavigationByEventBus({ open }) {
 			this.toggleNavigation(open)
+		},
+
+		/**
+		 * Activate focus trap if it is currently needed, otherwise deactivate
+		 */
+		toggleFocusTrap() {
+			if (this.isMobile && this.open) {
+				this.focusTrap.activate()
+			} else {
+				this.focusTrap.deactivate()
+			}
 		},
 	},
 }
