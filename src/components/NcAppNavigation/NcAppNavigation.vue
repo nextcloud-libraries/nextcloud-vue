@@ -63,7 +63,8 @@ emit('toggle-navigation', {
 			:aria-label="ariaLabel || undefined"
 			:aria-labelledby="ariaLabelledby || undefined"
 			class="app-navigation__content"
-			:inert="!open || undefined">
+			:inert="!open || undefined"
+			@keydown.esc="handleEsc">
 			<slot />
 			<!-- List for Navigation li-items -->
 			<ul class="app-navigation__list">
@@ -180,6 +181,12 @@ export default {
 				this.focusTrap.activate()
 			} else {
 				this.focusTrap.deactivate()
+			}
+		},
+
+		handleEsc() {
+			if (this.isMobile) {
+				this.toggleNavigation(false)
 			}
 		},
 	},

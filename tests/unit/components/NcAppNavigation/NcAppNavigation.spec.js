@@ -102,6 +102,25 @@ describe('NcAppNavigation.vue', () => {
 
 			expect(wrapper.classes(NAVIGATION_CLOSE__CLASS)).toBeFalsy()
 		})
+
+		it('closes by ESC key on mobile', async () => {
+			IsMobileState.isMobile = true
+			const wrapper = mount(NcAppNavigation)
+			const navigation = findNavigation(wrapper)
+
+			await navigation.trigger('keydown', { key: 'Escape' })
+
+			expect(wrapper.classes(NAVIGATION_CLOSE__CLASS)).toBeTruthy()
+		})
+
+		it("doesn't close by ESC key on desktop", async () => {
+			const wrapper = mount(NcAppNavigation)
+			const navigation = findNavigation(wrapper)
+
+			await navigation.trigger('keydown', { key: 'Escape' })
+
+			expect(wrapper.classes(NAVIGATION_CLOSE__CLASS)).toBeFalsy()
+		})
 	})
 
 	describe('focus trap', () => {
