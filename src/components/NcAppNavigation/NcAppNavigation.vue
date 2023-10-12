@@ -58,7 +58,15 @@ emit('toggle-navigation', {
 		class="app-navigation"
 		role="navigation"
 		:class="{'app-navigation--close':!open }">
-		<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
+		<div v-if="hasTopBar()" class="app-navigation__top-bar">
+			<NcAppNavigationToggle class="app-navigation__toggle--in-top-bar" :open="open" @update:open="toggleNavigation" />
+			<div class="app-navigation__top-bar-content">
+				<!-- @slot The top bar of navigation for primary buttons search inputs and etc. Reserves space for the toggle button. -->
+				<slot name="top-bar" />
+			</div>
+		</div>
+		<NcAppNavigationToggle v-else :open="open" @update:open="toggleNavigation" />
+
 		<div :aria-hidden="ariaHidden"
 			class="app-navigation__content"
 			:inert="!open || null">
@@ -138,6 +146,10 @@ export default {
 		toggleNavigationByEventBus({ open }) {
 			this.toggleNavigation(open)
 		},
+
+		hasTopBar() {
+			return !!this.$slots['top-bar']
+		},
 	},
 }
 </script>
@@ -178,6 +190,26 @@ export default {
 	&--close {
 		transform: translateX(-100%);
 		position: absolute;
+	}
+
+	&__top-bar {
+		display: flex;
+		flex-direction: row;
+		gap: calc(var(--default-grid-baseline) * 2);
+		height: var(--default-clickable-area);
+
+		&-content {
+			flex-grow: 1;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0 var(--app-navigation-padding);
+		}
+
+		.app-navigation__toggle--in-top-bar {
+			position: static;
+		}
 	}
 
 	//list of navigation items
