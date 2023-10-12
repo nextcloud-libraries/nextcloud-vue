@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Joas Schilling, 2023
-# Transifex Bot <>, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Miguel Anxo Bouzada <mbouzada@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2023\n"
+"Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>, 2023\n"
 "Language-Team: Galician (https://app.transifex.com/nextcloud/teams/64236/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: gl\n"
@@ -18,13 +18,13 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (restrinxido)"
 
 msgid "a few seconds ago"
-msgstr ""
+msgstr "hai uns segundos"
 
 msgid "Actions"
 msgstr "Accións"
 
 msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgstr "Accións para o elemento co nome «{name}»"
 
 msgid "Activities"
 msgstr "Actividades"
@@ -33,55 +33,55 @@ msgid "Animals & Nature"
 msgstr "Animais e natureza"
 
 msgid "Any link"
-msgstr ""
+msgstr "Calquera ligazón"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr ""
+msgstr "Todo o que se comparta co mesmo grupo de persoas aparecerá aquí"
 
 msgid "Avatar of {displayName}"
-msgstr ""
+msgstr "Avatar de {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
-msgstr ""
+msgstr "Avatar de {displayName}, {status}"
 
 msgid "Back"
-msgstr ""
+msgstr "Atrás"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Volver á selección do provedor"
 
 msgid "Cancel changes"
 msgstr "Cancelar os cambios"
 
 msgid "Change name"
-msgstr ""
+msgstr "Cambiar o nome"
 
 msgid "Choose"
 msgstr "Escoller"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Limpar a busca"
 
 msgid "Clear text"
-msgstr ""
+msgstr "Limpar o texto"
 
 msgid "Close"
 msgstr "Pechar"
 
 msgid "Close modal"
-msgstr ""
+msgstr "Pechar a modal"
 
 msgid "Close navigation"
-msgstr ""
+msgstr "Pechar a navegación"
 
 msgid "Close sidebar"
-msgstr ""
+msgstr "Pechar a barra lateral"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Pechar o Selector intelixente"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Contraer o menú"
 
 msgid "Confirm changes"
 msgstr "Confirma os cambios"
@@ -90,21 +90,23 @@ msgid "Custom"
 msgstr "Personalizado"
 
 msgid "Edit item"
-msgstr ""
+msgstr "Editar o elemento"
 
 msgid "Enter link"
-msgstr ""
+msgstr "Introducir a ligazón"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"Produciuse un erro ao obter os recursos relacionados. Póñase en contacto coa"
+" administración do seu sistema se ten algunha dúbida."
 
 msgid "External documentation for {name}"
-msgstr ""
+msgstr "Documentación externa para {name}"
 
 msgid "Favorite"
-msgstr ""
+msgstr "Favorito"
 
 msgid "Flags"
 msgstr "Bandeiras"
@@ -116,25 +118,25 @@ msgid "Frequently used"
 msgstr "Usado con frecuencia"
 
 msgid "Global"
-msgstr ""
+msgstr "Global"
 
 msgid "Go back to the list"
-msgstr ""
+msgstr "Volver á lista"
 
 msgid "Hide password"
-msgstr ""
+msgstr "Agochar o contrasinal"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+msgid "Load more \"{options}\""
+msgstr "Cargar máis «{options}»"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Acadouse o límite de {count} caracteres por mensaxe"
 
 msgid "More items …"
-msgstr ""
+msgstr "Máis elementos…"
 
 msgid "More options"
-msgstr ""
+msgstr "Máis opcións"
 
 msgid "Next"
 msgstr "Seguinte"
@@ -143,7 +145,7 @@ msgid "No emoji found"
 msgstr "Non se atopou ningún «emoji»"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "Non se atopou ningún provedor de ligazóns"
 
 msgid "No results"
 msgstr "Sen resultados"
@@ -152,22 +154,22 @@ msgid "Objects"
 msgstr "Obxectos"
 
 msgid "Open contact menu"
-msgstr ""
+msgstr "Abrir o menú de contactos"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "Abrir a ligazón a «{resourceName}»"
 
 msgid "Open menu"
-msgstr ""
+msgstr "Abrir o menú"
 
 msgid "Open navigation"
-msgstr ""
+msgstr "Abrir a navegación"
 
 msgid "Open settings menu"
-msgstr ""
+msgstr "Abrir o menú de axustes"
 
 msgid "Password is secure"
-msgstr ""
+msgstr "O contrasinal é seguro"
 
 msgid "Pause slideshow"
 msgstr "Pausar o diaporama"
@@ -176,46 +178,46 @@ msgid "People & Body"
 msgstr "Persoas e corpo"
 
 msgid "Pick a date"
-msgstr ""
+msgstr "Escolla unha data"
 
 msgid "Pick a date and a time"
-msgstr ""
+msgstr "Escolle unha data e unha hora"
 
 msgid "Pick a month"
-msgstr ""
+msgstr "Escolla un mes"
 
 msgid "Pick a time"
-msgstr ""
+msgstr "Escolla unha hora"
 
 msgid "Pick a week"
-msgstr ""
+msgstr "Escolla unha semana"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "Escolla un ano"
 
 msgid "Pick an emoji"
 msgstr "Escolla un «emoji»"
 
 msgid "Please select a time zone:"
-msgstr ""
+msgstr "Escolla un fuso horario:"
 
 msgid "Previous"
 msgstr "Anterir"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "Icona do provedor"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Ligazón sen procesar {options}"
 
 msgid "Related resources"
-msgstr ""
+msgstr "Recursos relacionados"
 
 msgid "Search"
 msgstr "Buscar"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "Buscar «emoji»"
 
 msgid "Search results"
 msgstr "Resultados da busca"
@@ -223,17 +225,20 @@ msgstr "Resultados da busca"
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "segs. atrás"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "segundos atrás"
 
 msgid "Select a tag"
 msgstr "Seleccione unha etiqueta"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Seleccionar provedor"
+
+msgid "Selected"
+msgstr "Seleccionado"
 
 msgid "Settings"
 msgstr "Axustes"
@@ -242,10 +247,10 @@ msgid "Settings navigation"
 msgstr "Navegación polos axustes"
 
 msgid "Show password"
-msgstr ""
+msgstr "Amosar o contrasinal"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "Selector intelixente"
 
 msgid "Smileys & Emotion"
 msgstr "Sorrisos e emocións"
@@ -254,7 +259,7 @@ msgid "Start slideshow"
 msgstr "Iniciar o diaporama"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Comece a escribir para buscar"
 
 msgid "Submit"
 msgstr "Enviar"
@@ -266,15 +271,13 @@ msgid "Travel & Places"
 msgstr "Viaxes e lugares"
 
 msgid "Type to search time zone"
-msgstr ""
+msgstr "Escriba para buscar o fuso horario"
 
 msgid "Unable to search the group"
 msgstr "Non foi posíbel buscar o grupo"
 
 msgid "Undo changes"
-msgstr ""
+msgstr "Desfacer os cambios"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
+msgid "Write a message …"
+msgstr "Escribir unha mensaxe…"
