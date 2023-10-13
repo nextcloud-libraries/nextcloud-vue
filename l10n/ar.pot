@@ -295,4 +295,4 @@ msgid "User status: {status}"
 msgstr "حالة المستخدِم: {status}"
 
 msgid "Write a message …"
-msgstr "أكتُب رسالة ..."
+msgstr "أكتُب رسالةً ..."
