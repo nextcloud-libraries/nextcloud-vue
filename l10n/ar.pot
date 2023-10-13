@@ -39,7 +39,7 @@ msgid "Anything shared with the same group of people will show up here"
 msgstr "أي مادة تمت مشاركتها مع نفس المجموعة من الأشخاص سيتم عرضها هنا"
 
 msgid "Avatar of {displayName}"
-msgstr "الرمز التجسيدي avatar ـ {displayName}  "
+msgstr "الرمز التجسيدي avatar لــ {displayName}  "
 
 msgid "Avatar of {displayName}, {status}"
 msgstr "الرمز التجسيدي لـ {displayName}، {status}"
