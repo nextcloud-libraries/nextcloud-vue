@@ -32,41 +32,41 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 ```vue
 	<template>
 		<NcActions>
-			<NcActionInput :value.sync="text" :label-outside="true" label="Label outside the input">
+			<NcActionInput v-model="text" :label-outside="true" label="Label outside the input">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
 			</NcActionInput>
-			<NcActionInput :value.sync="text" :show-trailing-button="false" label="Input without trailing button">
+			<NcActionInput v-model="text" :show-trailing-button="false" label="Input without trailing button">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
 			</NcActionInput>
-			<NcActionInput :value.sync="text" label="Input with placeholder">
+			<NcActionInput v-model="text" label="Input with placeholder">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
 				This is the placeholder
 			</NcActionInput>
-			<NcActionInput type="password" :value.sync="text" label="Password with visible label">
+			<NcActionInput type="password" v-model="text" label="Password with visible label">
 				<template #icon>
 					<Key :size="20" />
 				</template>
 				Password placeholder
 			</NcActionInput>
-			<NcActionInput type="password" :value.sync="text" :show-trailing-button="false">
+			<NcActionInput type="password" v-model="text" :show-trailing-button="false">
 				<template #icon>
 					<Key :size="20" />
 				</template>
 				Password placeholder
 			</NcActionInput>
-			<NcActionInput type="color" :value.sync="color" label="Favorite color">
+			<NcActionInput type="color" v-model="color" label="Favorite color">
 				<template #icon>
 					<Eyedropper :size="20" />
 				</template>
 				Color placeholder
 			</NcActionInput>
-			<NcActionInput label="Visible label" :value.sync="text">
+			<NcActionInput label="Visible label" v-model="text">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
@@ -77,7 +77,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 					<Close :size="20" />
 				</template>
 			</NcActionInput>
-			<NcActionInput type="date" isNativePicker :value="new Date()">
+			<NcActionInput type="date" isNativePicker :model-value="new Date()">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
@@ -168,7 +168,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 
 						<NcDateTimePicker v-if="datePickerType"
 							ref="datetimepicker"
-							:value="value"
+							:model-value="modelValue"
 							style="z-index: 99999999999;"
 							:placeholder="text"
 							:disabled="disabled"
@@ -181,7 +181,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 
 						<NcDateTimePickerNative v-else-if="isNativePicker"
 							:id="idNativeDateTimePicker"
-							:value="value"
+							:model-value="modelValue"
 							:type="nativeDatePickerType"
 							:input-class="{ focusable: isFocusable }"
 							class="action-input__datetimepicker"
@@ -190,18 +190,17 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							@change="$emit('change', $event)" />
 
 						<NcSelect v-else-if="isMultiselectType"
-							:value="value"
+							:model-value="modelValue"
 							:placeholder="text"
 							:disabled="disabled"
 							:append-to-body="false"
 							:input-class="{ focusable: isFocusable }"
 							class="action-input__multi"
-							v-bind="$attrs"
-							v-on="$listeners" />
+							v-bind="$attrs" />
 
 						<NcPasswordField v-else-if="type==='password'"
 							:id="inputId"
-							:value="value"
+							:model-value="modelValue"
 							:label="label"
 							:label-outside="!label || labelOutside"
 							:placeholder="text"
@@ -209,7 +208,6 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:input-class="{ focusable: isFocusable }"
 							:show-trailing-button="showTrailingButton && !disabled"
 							v-bind="$attrs"
-							v-on="$listeners"
 							@input="onInput"
 							@change="onChange" />
 
@@ -222,13 +220,12 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							</label>
 							<div class="action-input__input-container">
 								<NcColorPicker id="inputId"
-									:value="value"
+									:model-value="modelValue"
 									class="colorpicker__trigger"
 									v-bind="$attrs"
-									v-on="$listeners"
 									@input="onInput"
 									@submit="$refs.form.requestSubmit()">
-									<button :style="{'background-color': value}"
+									<button :style="{'background-color': modelValue}"
 										class="colorpicker__preview"
 										:class="{ focusable: isFocusable }" />
 								</NcColorPicker>
@@ -237,7 +234,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 
 						<NcTextField v-else
 							:id="inputId"
-							:value="value"
+							:model-value="modelValue"
 							:label="label"
 							:label-outside="!label || labelOutside"
 							:placeholder="text"
@@ -248,7 +245,6 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:trailing-button-label="trailingButtonLabel"
 							:show-trailing-button="showTrailingButton && !disabled"
 							v-bind="$attrs"
-							v-on="$listeners"
 							@trailing-button-click="$refs.form.requestSubmit()"
 							@input="onInput"
 							@change="onChange" />
@@ -351,7 +347,7 @@ export default {
 		/**
 		 * value attribute of the input field
 		 */
-		value: {
+		modelValue: {
 			type: [String, Date, Number, Array],
 			default: '',
 		},
@@ -396,7 +392,7 @@ export default {
 		'input',
 		'submit',
 		'change',
-		'update:value',
+		'update:modelValue',
 	],
 
 	computed: {
@@ -464,11 +460,11 @@ export default {
 			this.$emit('input', event)
 			/**
 			 * Emitted when the inputs value changes
-			 * ! DatetimePicker only send the value
+			 * ! DateTimePicker only send the value
 			 *
 			 * @type {string|Date}
 			 */
-			this.$emit('update:value', event.target ? event.target.value : event)
+			this.$emit('update:modelValue', event.target ? event.target.value : event)
 		},
 		onSubmit(event) {
 			event.preventDefault()

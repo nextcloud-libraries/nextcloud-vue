@@ -126,16 +126,15 @@ module.exports = async () => {
 					'src/components/NcUserBubble*/*.vue',
 					'src/components/NcVNodes*/*.vue',
 				],
-				// Not yet adjusted for vue3
 				sections: [
-				// 	{
-				// 		name: 'NcActions',
-				// 		components: [
-				// 			// Put Actions component first
-				// 			'src/components/NcActions/*.vue',
-				// 			'src/components/NcAction[A-Z]*/*.vue',
-				// 		],
-				// 	},
+					{
+						name: 'NcActions',
+						components: [
+							// Put Actions component first
+							'src/components/NcActions/*.vue',
+							'src/components/NcAction[A-Z]*/*.vue',
+						],
+					},
 				// 	{
 				// 		name: 'App containers',
 				// 		components: [

@@ -25,11 +25,10 @@
 	<li class="action">
 		<router-link :to="to"
 			:aria-label="ariaLabel"
-			:exact="exact"
 			:title="title"
 			class="action-router focusable"
 			rel="nofollow noreferrer noopener"
-			@click.native="onClick">
+			@click="onClick">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
 				<span :class="[isIconUrl ? 'action-router__icon--url' : icon]"
@@ -81,13 +80,6 @@ export default {
 			type: [String, Object],
 			default: '',
 			required: true,
-		},
-		/**
-		 * router-link exact prop [https://router.vuejs.org/api/#exact](https://router.vuejs.org/api/#exact)
-		 */
-		exact: {
-			type: Boolean,
-			default: false,
 		},
 	},
 }
