@@ -29,18 +29,18 @@ General purpose password field component.
 ```
 <template>
 	<div class="wrapper">
-		<NcPasswordField v-model:value="text1"
+		<NcPasswordField v-model="text1"
 			label="Old password" />
 		<div class="external-label">
 			<label for="textField">New password</label>
-			<NcPasswordField v-model:value="text2"
+			<NcPasswordField v-model="text2"
 				id="textField"
 				:label-outside="true"
 				placeholder="Min. 12 characters" />
 		</div>
 		<div class="external-label">
 			<label for="textField2">New password</label>
-			<NcPasswordField v-model:value="text3"
+			<NcPasswordField v-model="text3"
 				id="textField2"
 				:error="true"
 				:label-outside="true"
@@ -48,7 +48,7 @@ General purpose password field component.
 				helper-text="Password is insecure" />
 		</div>
 
-		<NcPasswordField v-model:value="text4"
+		<NcPasswordField v-model="text4"
 			label="Good new password"
 			:success="true"
 			placeholder="Min. 12 characters"
@@ -58,7 +58,7 @@ General purpose password field component.
 			</template>
 		</NcPasswordField>
 
-		<NcPasswordField v-model:value="text5"
+		<NcPasswordField v-model="text5"
 			:disabled="true"
 			label="Disabled" />
 	</div>
@@ -116,7 +116,7 @@ export default {
 		:success="computedSuccess"
 		:minlength="rules.minlength"
 		@trailing-button-click="togglePasswordVisibility"
-		@input="handleInput">
+		@update:model-value="handleInput">
 		<template v-if="!!$slots.icon" #icon>
 			<!-- Default slot for the leading icon -->
 			<slot name="icon" />
@@ -204,7 +204,7 @@ export default {
 	emits: [
 		'valid',
 		'invalid',
-		'update:value',
+		'update:modelValue',
 	],
 
 	data() {
@@ -243,7 +243,7 @@ export default {
 	},
 
 	watch: {
-		value(newValue) {
+		modelValue(newValue) {
 			if (this.checkPasswordStrength) {
 				if (this.passwordPolicy === null) {
 					return
@@ -281,7 +281,7 @@ export default {
 			 *
 			 * @property {string} The new value
 			 */
-			this.$emit('update:value', event.target.value)
+			this.$emit('update:modelValue', event)
 		},
 		togglePasswordVisibility() {
 			this.isPasswordHidden = !this.isPasswordHidden

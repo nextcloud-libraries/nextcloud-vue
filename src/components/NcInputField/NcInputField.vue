@@ -52,7 +52,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 						'input-field__input--success': success,
 						'input-field__input--error': error,
 					}]"
-				:value="value"
+				:value="modelValue"
 				@input="handleInput">
 			<!-- Label -->
 			<label v-if="!labelOutside && isValidLabel"
@@ -128,7 +128,7 @@ export default {
 		/**
 		 * The value of the input field
 		 */
-		value: {
+		modelValue: {
 			type: String,
 			required: true,
 		},
@@ -252,7 +252,7 @@ export default {
 	},
 
 	emits: [
-		'update:value',
+		'update:modelValue',
 		'trailing-button-click',
 	],
 
@@ -317,7 +317,7 @@ export default {
 		},
 
 		handleInput(event) {
-			this.$emit('update:value', event.target.value)
+			this.$emit('update:modelValue', event.target.value)
 		},
 
 		handleTrailingButtonClick(event) {
