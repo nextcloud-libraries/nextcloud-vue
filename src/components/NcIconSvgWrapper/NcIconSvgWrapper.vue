@@ -90,19 +90,13 @@ export default {
 
 <template>
 	<span v-if="!cleanSvg"
-		class="icon-vue"
-		role="img"
-		:aria-hidden="!name ? true : undefined"
-		:aria-label="name || undefined">
+		v-bind="attributes">
 		<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 			<path :d="path" />
 		</svg>
 	</span>
 	<span v-else
-		class="icon-vue"
-		role="img"
-		:aria-hidden="!name ? true : undefined"
-		:aria-label="name || undefined"
+		v-bind="attributes"
 		v-html="cleanSvg" /> <!-- eslint-disable-line vue/no-v-html -->
 </template>
 
@@ -159,6 +153,14 @@ export default {
 			}
 
 			return svgDocument.documentElement.outerHTML
+		},
+		attributes() {
+			return {
+				class: 'icon-vue',
+				role: 'img',
+				'aria-hidden': !this.name ? true : undefined,
+				'aria-label': this.name || undefined,
+			}
 		},
 	},
 }
