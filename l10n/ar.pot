@@ -21,7 +21,7 @@ msgid "a few seconds ago"
 msgstr "منذ عدة ثوانٍ مضت"
 
 msgid "Actions"
-msgstr "الإجراءات"
+msgstr "إجراءات"
 
 msgid "Actions for item with name \"{name}\""
 msgstr "إجراءات على العنصر المُسمَّى \"{name}\""
