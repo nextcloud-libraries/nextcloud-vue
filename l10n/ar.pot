@@ -42,7 +42,7 @@ msgid "Avatar of {displayName}"
 msgstr "الرمز التجسيدي avatar لــ {displayName}  "
 
 msgid "Avatar of {displayName}, {status}"
-msgstr "الرمز التجسيدي لـ {displayName}، {status}"
+msgstr "الرمز التجسيدي  avatar لــ {displayName}، {status}"
 
 msgid "away"
 msgstr "غير موجود"
@@ -63,7 +63,7 @@ msgid "Choose"
 msgstr "إختَر"
 
 msgid "Clear search"
-msgstr "محو البحث"
+msgstr "مَحْوُ البحث"
 
 msgid "Clear text"
 msgstr "محو النص"
