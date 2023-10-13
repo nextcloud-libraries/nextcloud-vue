@@ -44,6 +44,9 @@ msgstr "الرمز التجسيدي avatar ـ {displayName}  "
 msgid "Avatar of {displayName}, {status}"
 msgstr "الرمز التجسيدي لـ {displayName}، {status}"
 
+msgid "away"
+msgstr "غير موجود"
+
 msgid "Back"
 msgstr "عودة"
 
@@ -88,6 +91,9 @@ msgstr "تأكيد التغييرات"
 
 msgid "Custom"
 msgstr "مُخصَّص"
+
+msgid "do not disturb"
+msgstr "يُرجى عدم الإزعاج"
 
 msgid "Edit item"
 msgstr "تعديل عنصر"
@@ -152,6 +158,12 @@ msgstr "ليس هناك أية نتيجة"
 
 msgid "Objects"
 msgstr "أشياء"
+
+msgid "offline"
+msgstr "غير متصل"
+
+msgid "online"
+msgstr "مُتّصِلٌ"
 
 msgid "Open contact menu"
 msgstr "إفتَح قائمة جهات الاتصال"
@@ -278,6 +290,9 @@ msgstr "تعذّر البحث في المجموعة"
 
 msgid "Undo changes"
 msgstr "تراجع عن التغييرات"
+
+msgid "User status: {status}"
+msgstr "حالة المستخدِم: {status}"
 
 msgid "Write a message …"
 msgstr "أكتُب رسالة ..."
