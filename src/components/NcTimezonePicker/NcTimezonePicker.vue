@@ -26,6 +26,7 @@
 <template>
 	<span>
 		<NcTimezonePicker v-model="tz" />
+		{{ tz }}
 	</span>
 </template>
 <script>
@@ -41,7 +42,7 @@ export default {
 </docs>
 
 <template>
-	<NcSelect :value="selectedTimezone"
+	<NcSelect :model-value="selectedTimezone"
 		:options="options"
 		:multiple="false"
 		:clearable="false"
@@ -77,26 +78,26 @@ export default {
 		/**
 		 * The selected timezone. Use v-model for two-way binding. The default timezone is floating, which means a time independent of timezone. See https://icalendar.org/CalDAV-Access-RFC-4791/7-3-date-and-floating-time.html for details.
 		 */
-		value: {
+		modelValue: {
 			type: String,
 			default: 'floating',
 		},
 	},
-	emits: ['input'],
+	emits: ['update:modelValue'],
 	computed: {
 		placeholder() {
 			return t('Type to search time zone')
 		},
 		selectedTimezone() {
 			for (const additionalTimezone of this.additionalTimezones) {
-				if (additionalTimezone.timezoneId === this.value) {
+				if (additionalTimezone.timezoneId === this.modelValue) {
 					return additionalTimezone
 				}
 			}
 
 			return {
-				label: getReadableTimezoneName(this.value),
-				timezoneId: this.value,
+				label: getReadableTimezoneName(this.modelValue),
+				timezoneId: this.modelValue,
 			}
 		},
 		options() {
@@ -128,7 +129,7 @@ export default {
 			/**
 			 * Two-way binding of the value prop. Use v-model="selectedTimezone" for two-way binding
 			 */
-			this.$emit('input', newValue.timezoneId)
+			this.$emit('update:modelValue', newValue.timezoneId)
 		},
 
 		/**

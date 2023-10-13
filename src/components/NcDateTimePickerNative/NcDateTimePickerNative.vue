@@ -152,10 +152,11 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 </template>
 
 <script>
+import ScopeComponent from '../../utils/ScopeComponent.js'
 
 const inputDateTypes = ['date', 'datetime-local', 'month', 'time', 'week']
 
-export default {
+export default ScopeComponent({
 	name: 'NcDateTimePickerNative',
 	inheritAttrs: false,
 
@@ -361,7 +362,7 @@ export default {
 			}
 		},
 	},
-}
+})
 </script>
 
 <style lang="scss" scoped>

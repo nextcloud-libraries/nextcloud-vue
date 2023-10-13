@@ -21,7 +21,7 @@
   -->
 
 <docs>
-> We're wrapping the awesome datepicker library here https://github.com/mengxiong10/vue2-datepicker
+> We're wrapping the awesome datepicker library here https://github.com/mengxiong10/vue-datepicker-next
 > Please check there for all the available options.
 
 ### Defaults
@@ -105,7 +105,7 @@ picked time zone, but you will have to convert it yourself when necessary.
 			v-model="time"
 			type="datetime"
 			:show-timezone-select="true"
-			:timezone-id.sync="tz" /><br>
+			v-model:timezone-id="tz" /><br>
 		{{ time }} | {{ tz }}
 	</span>
 </template>
@@ -134,15 +134,13 @@ export default {
 		:popup-class="{ 'show-week-number': showWeekNumber }"
 		:show-week-number="showWeekNumber"
 		:type="type"
-		:value="value"
-		v-bind="$attrs"
-		v-on="$listeners"
+		:value="modelValue"
 		@select-year="handleSelectYear"
 		@select-month="handleSelectMonth"
-		@update:value="$emit('update:value', value)">
+		@update:value="$emit('update:modelValue', $event)">
 		<template #icon-calendar>
 			<NcPopover v-if="showTimezoneSelect"
-				:shown.sync="showTimezonePopover"
+				v-model:shown="showTimezonePopover"
 				popover-base-class="timezone-select__popper">
 				<template #trigger>
 					<button class="datetime-picker-inline-icon"
@@ -157,13 +155,13 @@ export default {
 						{{ t('Please select a time zone:') }}
 					</strong>
 				</div>
-				<NcTimezonePicker v-model="tzVal"
+				<NcTimezonePicker :model-value="tzVal"
 					class="timezone-popover-wrapper__timezone-select"
-					@input="$emit('update:timezone-id', arguments[0])" />
+					@update:model-value="$emit('update:timezone-id', $event)" />
 			</NcPopover>
 			<CalendarBlank v-else :size="20" />
 		</template>
-		<template v-for="(_, slot) of $scopedSlots" #[slot]="scope">
+		<template v-for="(_, slot) of $slots" #[slot]="scope">
 			<slot :name="slot" v-bind="scope" />
 		</template>
 	</DatePicker>
@@ -175,6 +173,7 @@ import { t } from '../../l10n.js'
 import NcTimezonePicker from '../NcTimezonePicker/index.js'
 import NcPopover from '../NcPopover/index.js'
 import l10n from '../../mixins/l10n.js'
+import ScopeComponent from '../../utils/ScopeComponent.js'
 
 import CalendarBlank from 'vue-material-design-icons/CalendarBlank.vue'
 import Web from 'vue-material-design-icons/Web.vue'
@@ -188,7 +187,8 @@ import {
 	getMonthNamesShort,
 } from '@nextcloud/l10n'
 
-import DatePicker from 'vue2-datepicker'
+import DatePicker from 'vue-datepicker-next'
+import './index.scss'
 
 const formatMap = {
 	date: 'YYYY-MM-DD',
@@ -199,7 +199,7 @@ const formatMap = {
 	week: 'w',
 }
 
-export default {
+export default ScopeComponent({
 	name: 'NcDateTimePicker',
 
 	components: {
@@ -211,7 +211,6 @@ export default {
 	},
 
 	mixins: [l10n],
-	inheritAttrs: false,
 
 	props: {
 		clearable: {
@@ -250,12 +249,12 @@ export default {
 		 * value. You have to translate the time yourself when you want to factor in time zones.
 		 */
 		// eslint-disable-next-line
-		value: {
+		modelValue: {
 			default: () => new Date(),
 		},
 
 		/**
-		 * The preselected IANA time zone ID for the time zone picker, only relevant in combination with `:show-timezone-select="true"`. Example: `Europe/Berlin`. The prop supports two-way binding through the .sync modifier.
+		 * The preselected IANA time zone ID for the time zone picker, only relevant in combination with `:show-timezone-select="true"`. Example: `Europe/Berlin`. The prop supports two-way binding through v-model directive.
 		 */
 		timezoneId: {
 			type: String,
@@ -289,7 +288,7 @@ export default {
 	},
 
 	emits: [
-		'update:value',
+		'update:modelValue',
 		'update:timezone-id',
 	],
 
@@ -394,7 +393,8 @@ export default {
 			this.showTimezonePopover = !this.showTimezonePopover
 		},
 	},
-}
+})
+
 </script>
 
 <style lang="scss" scoped>
