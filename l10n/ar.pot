@@ -15,7 +15,7 @@ msgid "{tag} (invisible)"
 msgstr "{tag} (غير مرئي)"
 
 msgid "{tag} (restricted)"
-msgstr "{tag} (مقيد)"
+msgstr "{tag} (مُقيّد)"
 
 msgid "a few seconds ago"
 msgstr "منذ عدة ثوانٍ مضت"
