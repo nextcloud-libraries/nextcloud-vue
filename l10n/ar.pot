@@ -289,7 +289,7 @@ msgid "Unable to search the group"
 msgstr "تعذّر البحث في المجموعة"
 
 msgid "Undo changes"
-msgstr "تراجع عن التغييرات"
+msgstr "تراجَع عن التغييرات"
 
 msgid "User status: {status}"
 msgstr "حالة المستخدِم: {status}"
