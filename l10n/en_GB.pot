@@ -44,6 +44,9 @@ msgstr "Avatar of {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar of {displayName}, {status}"
 
+msgid "away"
+msgstr "away"
+
 msgid "Back"
 msgstr "Back"
 
@@ -88,6 +91,9 @@ msgstr "Confirm changes"
 
 msgid "Custom"
 msgstr "Custom"
+
+msgid "do not disturb"
+msgstr "do not disturb"
 
 msgid "Edit item"
 msgstr "Edit item"
@@ -152,6 +158,12 @@ msgstr "No results"
 
 msgid "Objects"
 msgstr "Objects"
+
+msgid "offline"
+msgstr "offline"
+
+msgid "online"
+msgstr "online"
 
 msgid "Open contact menu"
 msgstr "Open contact menu"
@@ -278,6 +290,9 @@ msgstr "Unable to search the group"
 
 msgid "Undo changes"
 msgstr "Undo changes"
+
+msgid "User status: {status}"
+msgstr "User status: {status}"
 
 msgid "Write a message …"
 msgstr "Write a message …"
