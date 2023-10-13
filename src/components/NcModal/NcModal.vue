@@ -977,26 +977,30 @@ export default {
 		}
 	}
 
+	// We allow 90% max-height, but we need to ensure the header does not overlap the modal
+	// as the modal is centered, we need the space on top and bottom
+	$max-modal-height: min(90%, calc(100% - 2 * var(--header-height)));
+
 	// Sizing
 	&--small {
 		.modal-container {
 			width: 400px;
 			max-width: 90%;
-			max-height: 90%;
+			max-height: $max-modal-height;
 		}
 	}
 	&--normal {
 		.modal-container {
 			max-width: 90%;
 			width: 600px;
-			max-height: 90%;
+			max-height: $max-modal-height;
 		}
 	}
 	&--large {
 		.modal-container {
 			max-width: 90%;
 			width: 900px;
-			max-height: 90%;
+			max-height: $max-modal-height;
 		}
 	}
 	&--full {
