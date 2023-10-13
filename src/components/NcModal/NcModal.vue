@@ -966,6 +966,8 @@ export default {
 		box-shadow: 0 0 40px rgba(0, 0, 0, .2);
 
 		&__close {
+			// Ensure the close button is always ontop of the content
+			z-index: 1;
 			position: absolute;
 			top: 4px;
 			right: 4px;
@@ -973,13 +975,14 @@ export default {
 
 		&__content {
 			width: 100%;
+			min-height: 52px; // At least the close button shall fit in
 			overflow: auto; // avoids unecessary hacks if the content should be bigger than the modal
 		}
 	}
 
 	// We allow 90% max-height, but we need to ensure the header does not overlap the modal
 	// as the modal is centered, we need the space on top and bottom
-	$max-modal-height: min(90%, calc(100% - 2 * var(--header-height)));
+	$max-modal-height: min(90%, calc(100% - 2 * $header-height));
 
 	// Sizing
 	&--small {
