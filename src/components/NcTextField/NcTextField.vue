@@ -34,7 +34,7 @@ and `minlength`.
 ```
 <template>
 	<div class="wrapper">
-		<NcTextField v-model:value="text1"
+		<NcTextField v-model="text1"
 			label="Leading icon and clear trailing button"
 			trailing-button-icon="close"
 			:show-trailing-button="text1 !== ''"
@@ -43,7 +43,7 @@ and `minlength`.
 				<Magnify :size="20" />
 			</template>
 		</NcTextField>
-		<NcTextField :value.sync="text4"
+		<NcTextField v-model="text4"
 			label="Internal label"
 			placeholder="That can be used together with placeholder"
 			trailing-button-icon="close"
@@ -53,28 +53,28 @@ and `minlength`.
 				<Lock :size="20" />
 			</template>
 		</NcTextField>
-		<NcTextField v-model:value="text2"
+		<NcTextField v-model="text2"
 			label="Success state"
 			placeholder="Placeholders are possible"
 			:success="true"
 			@trailing-button-click="clearText">
 		</NcTextField>
-		<NcTextField v-model:value="text3"
+		<NcTextField v-model="text3"
 			label="Error state"
 			placeholder="Enter something valid"
 			:error="true"
 			@trailing-button-click="clearText">
 		</NcTextField>
-		<NcTextField :value=""
+		<NcTextField :model-value=""
 			label="Disabled"
 			:disabled="true" />
-		<NcTextField :value=""
+		<NcTextField :model-value=""
 			label="Disabled + Success"
 			:success="true"
 			:disabled="true" />
 		<div class="external-label">
 			<label for="textField">External label</label>
-			<NcTextField v-model:value="text5"
+			<NcTextField v-model="text5"
 				id="textField"
 				:label-outside="true"
 				placeholder="Input with external label"
@@ -139,7 +139,7 @@ export default {
 	<NcInputField v-bind="$props"
 		ref="inputField"
 		:trailing-button-label="clearTextLabel"
-		@input="handleInput">
+		@update:model-value="handleInput">
 		<template v-if="!!$slots.icon" #icon>
 			<!-- Default slot for the leading icon -->
 			<slot name="icon" />
@@ -193,7 +193,7 @@ export default {
 	},
 
 	emits: [
-		'update:value',
+		'update:modelValue',
 	],
 
 	computed: {
@@ -222,7 +222,7 @@ export default {
 		},
 
 		handleInput(event) {
-			this.$emit('update:value', event.target.value)
+			this.$emit('update:modelValue', event)
 		},
 	},
 }

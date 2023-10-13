@@ -147,7 +147,7 @@ This component allows the user to pick an emoji.
 			@select="select">
 			<template #searchTemplate="slotProps">
 				<NcTextField ref="search"
-					v-model:value="search"
+					v-model="search"
 					class="search"
 					:label="t('Search')"
 					:label-visible="true"
