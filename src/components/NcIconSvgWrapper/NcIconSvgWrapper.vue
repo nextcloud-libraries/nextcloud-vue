@@ -47,12 +47,12 @@ Render raw SVG string icons.
 		</NcButton>
 		<NcButton aria-label="Send">
 			<template #icon>
-				<NcIconSvgWrapper :svg="sendSvg" name="Send" />
+				<NcIconSvgWrapper :path="mdiSend" name="Send" />
 			</template>
 		</NcButton>
 		<NcButton aria-label="Star">
 			<template #icon>
-				<NcIconSvgWrapper :svg="starSvg" name="Star" />
+				<NcIconSvgWrapper :path="mdiStar" name="Star" />
 			</template>
 		</NcButton>
 	</div>
@@ -62,8 +62,8 @@ Render raw SVG string icons.
 import closeSvg from '@mdi/svg/svg/close.svg?raw'
 import cogSvg from '@mdi/svg/svg/cog.svg?raw'
 import plusSvg from '@mdi/svg/svg/plus.svg?raw'
-import sendSvg from '@mdi/svg/svg/send.svg?raw'
-import starSvg from '@mdi/svg/svg/star.svg?raw'
+import { mdiSend } from '@mdi/js'
+import { mdiStar } from '@mdi/js'
 
 export default {
 	data() {
@@ -71,8 +71,8 @@ export default {
 			closeSvg,
 			cogSvg,
 			plusSvg,
-			sendSvg,
-			starSvg,
+			mdiSend,
+			mdiStar,
 		}
 	},
 }
@@ -89,10 +89,14 @@ export default {
 </docs>
 
 <template>
-	<span class="icon-vue"
-		role="img"
-		:aria-hidden="!name ? true : undefined"
-		:aria-label="name || undefined"
+	<span v-if="!cleanSvg"
+		v-bind="attributes">
+		<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			<path :d="path" />
+		</svg>
+	</span>
+	<span v-else
+		v-bind="attributes"
 		v-html="cleanSvg" /> <!-- eslint-disable-line vue/no-v-html -->
 </template>
 
@@ -119,11 +123,19 @@ export default {
 			type: String,
 			default: '',
 		},
+
+		/**
+		 * Raw SVG path to render. Takes precedence over the SVG string in the `svg` prop.
+		 */
+		path: {
+			type: String,
+			default: '',
+		},
 	},
 
 	computed: {
 		cleanSvg() {
-			if (!this.svg) {
+			if (!this.svg || this.path) {
 				return
 			}
 
@@ -141,6 +153,14 @@ export default {
 			}
 
 			return svgDocument.documentElement.outerHTML
+		},
+		attributes() {
+			return {
+				class: 'icon-vue',
+				role: 'img',
+				'aria-hidden': !this.name ? true : undefined,
+				'aria-label': this.name || undefined,
+			}
 		},
 	},
 }

@@ -44,6 +44,9 @@ msgstr "{displayName}s avatar"
 msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName}s avatar, {status}"
 
+msgid "away"
+msgstr "borta"
+
 msgid "Back"
 msgstr "Tillbaka"
 
@@ -88,6 +91,9 @@ msgstr "Bekräfta ändringar"
 
 msgid "Custom"
 msgstr "Anpassad"
+
+msgid "do not disturb"
+msgstr "stör ej"
 
 msgid "Edit item"
 msgstr "Ändra"
@@ -152,6 +158,12 @@ msgstr "Inga resultat"
 
 msgid "Objects"
 msgstr "Objekt"
+
+msgid "offline"
+msgstr "offline"
+
+msgid "online"
+msgstr "online"
 
 msgid "Open contact menu"
 msgstr "Öppna kontaktmenyn"
@@ -278,6 +290,9 @@ msgstr "Kunde inte söka i gruppen"
 
 msgid "Undo changes"
 msgstr "Ångra ändringar"
+
+msgid "User status: {status}"
+msgstr "Användarstatus: {status}"
 
 msgid "Write a message …"
 msgstr "Skriv ett meddelande …"

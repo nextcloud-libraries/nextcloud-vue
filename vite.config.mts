@@ -98,6 +98,7 @@ const overrides = defineConfig({
 		exclude:[
 			...configDefaults.exclude,
 			'./tests/unit/components/NcActions',
+			'./tests/unit/components/NcAvatar',
 			'./tests/unit/components/NcAppNavigation',
 			'./tests/unit/components/NcAppSidebar',
 			'./tests/unit/components/NcModal',

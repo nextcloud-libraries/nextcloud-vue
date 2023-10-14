@@ -44,6 +44,9 @@ msgstr "Avatar za {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar za {displayName}, {status}"
 
+msgid "away"
+msgstr "одсутан"
+
 msgid "Back"
 msgstr "Назад"
 
@@ -88,6 +91,9 @@ msgstr "Potvrdite promene"
 
 msgid "Custom"
 msgstr "Po meri"
+
+msgid "do not disturb"
+msgstr "не узнемиравај"
 
 msgid "Edit item"
 msgstr "Uredi stavku"
@@ -152,6 +158,12 @@ msgstr "Нема резултата"
 
 msgid "Objects"
 msgstr "Objekti"
+
+msgid "offline"
+msgstr "ван мреже"
+
+msgid "online"
+msgstr "на мрежи"
 
 msgid "Open contact menu"
 msgstr "Отвори мени контаката"
@@ -278,6 +290,9 @@ msgstr "Nije moguće pretražiti grupu"
 
 msgid "Undo changes"
 msgstr "Poništi promene"
+
+msgid "User status: {status}"
+msgstr "Статус корисника: {status}"
 
 msgid "Write a message …"
 msgstr "Напишите поруку…"

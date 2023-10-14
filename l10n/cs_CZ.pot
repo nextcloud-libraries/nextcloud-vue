@@ -43,6 +43,9 @@ msgstr "Zástupný obrázek uživatele {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Zástupný obrázek uživatele {displayName}, {status}"
 
+msgid "away"
+msgstr "pryč"
+
 msgid "Back"
 msgstr "Zpět"
 
@@ -87,6 +90,9 @@ msgstr "Potvrdit změny"
 
 msgid "Custom"
 msgstr "Uživatelsky určené"
+
+msgid "do not disturb"
+msgstr "nerušit"
 
 msgid "Edit item"
 msgstr "Upravit položku"
@@ -151,6 +157,12 @@ msgstr "Nic nenalezeno"
 
 msgid "Objects"
 msgstr "Objekty"
+
+msgid "offline"
+msgstr "offline"
+
+msgid "online"
+msgstr "online"
 
 msgid "Open contact menu"
 msgstr "Otevřít nabídku kontaktů"
@@ -277,6 +289,9 @@ msgstr "Nedaří se hledat skupinu"
 
 msgid "Undo changes"
 msgstr "Vzít změny zpět"
+
+msgid "User status: {status}"
+msgstr "Stav uživatele: {status}"
 
 msgid "Write a message …"
 msgstr "Napsat zprávu…"
