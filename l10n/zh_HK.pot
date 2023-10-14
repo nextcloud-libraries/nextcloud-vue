@@ -131,7 +131,7 @@ msgid "Hide password"
 msgstr "隱藏密碼"
 
 msgid "Load more \"{options}\""
-msgstr "載入更多「{options}」"
+msgstr "載入更多 \"{options}\""
 
 msgid "Message limit of {count} characters reached"
 msgstr "已達到訊息最多 {count} 字元限制"
