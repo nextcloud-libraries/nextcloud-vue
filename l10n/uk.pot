@@ -41,7 +41,7 @@ msgid "Change title"
 msgstr "Змінити назву"
 
 msgid "Choose"
-msgstr "ВиберітьВиберіть"
+msgstr "Виберіть"
 
 msgid "Clear text"
 msgstr "Очистити текст"
@@ -71,7 +71,7 @@ msgid "External documentation for {title}"
 msgstr "Зовнішня документація для {title}"
 
 msgid "Favorite"
-msgstr "Улюблений"
+msgstr "Із зірочкою"
 
 msgid "Flags"
 msgstr "Прапори"

@@ -16,13 +16,13 @@ msgid "{tag} (invisible)"
 msgstr "{tag} (غير مرئي)"
 
 msgid "{tag} (restricted)"
-msgstr "{tag} (مقيد)"
+msgstr "{tag} (مُقيّد)"
 
 msgid "Actions"
-msgstr "الإجراءات"
+msgstr "إجراءات"
 
 msgid "Activities"
-msgstr "النشاطات"
+msgstr "الحركات"
 
 msgid "Animals & Nature"
 msgstr "الحيوانات والطبيعة"
@@ -31,10 +31,10 @@ msgid "Anything shared with the same group of people will show up here"
 msgstr "أي مادة تمت مشاركتها مع نفس المجموعة من الأشخاص سيتم عرضها هنا"
 
 msgid "Avatar of {displayName}"
-msgstr "صورة {displayName} الرمزية"
+msgstr "الرمز التجسيدي avatar لــ {displayName}  "
 
 msgid "Avatar of {displayName}, {status}"
-msgstr "صورة {displayName} الرمزية، {status}"
+msgstr "الرمز التجسيدي  avatar لــ {displayName}، {status}"
 
 msgid "Cancel changes"
 msgstr "إلغاء التغييرات"
@@ -43,19 +43,19 @@ msgid "Change title"
 msgstr "تغيير العنوان"
 
 msgid "Choose"
-msgstr "إختيار"
+msgstr "إختَر"
 
 msgid "Clear text"
-msgstr "مسح النص"
+msgstr "مَحْوُ النص"
 
 msgid "Close"
-msgstr "أغلق"
+msgstr "أغلِق"
 
 msgid "Close modal"
-msgstr "قفل الشرط"
+msgstr "أغلِق النافذة الصُّورِية"
 
 msgid "Close navigation"
-msgstr "إغلاق المتصفح"
+msgstr "أغلِق المُتصفِّح"
 
 msgid "Close sidebar"
 msgstr "قفل الشريط الجانبي"
@@ -64,7 +64,7 @@ msgid "Confirm changes"
 msgstr "تأكيد التغييرات"
 
 msgid "Custom"
-msgstr "مخصص"
+msgstr "مُخصَّص"
 
 msgid "Edit item"
 msgstr "تعديل عنصر"
@@ -76,7 +76,7 @@ msgid "External documentation for {title}"
 msgstr "الوثائق الخارجية لـ{title}"
 
 msgid "Favorite"
-msgstr "مفضلة"
+msgstr "المُفضَّلة"
 
 msgid "Flags"
 msgstr "الأعلام"
@@ -85,19 +85,19 @@ msgid "Food & Drink"
 msgstr "الطعام والشراب"
 
 msgid "Frequently used"
-msgstr "كثيرا ما تستخدم"
+msgstr "شائعة الاستعمال"
 
 msgid "Global"
-msgstr "عالمي"
+msgstr "شامل"
 
 msgid "Go back to the list"
-msgstr "العودة إلى القائمة"
+msgstr "عودة إلى القائمة"
 
 msgid "Hide password"
-msgstr "إخفاء كلمة السر"
+msgstr "إخفاء كلمة المرور"
 
 msgid "Message limit of {count} characters reached"
-msgstr "تم الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
+msgstr "تمّ الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
 
 msgid "More items …"
 msgstr "عناصر أخرى ..."
@@ -106,13 +106,13 @@ msgid "Next"
 msgstr "التالي"
 
 msgid "No emoji found"
-msgstr "لم يتم العثور على أي رمز تعبيري"
+msgstr "لم يتم العثور على أي إيموجي emoji"
 
 msgid "No results"
 msgstr "ليس هناك أية نتيجة"
 
 msgid "Objects"
-msgstr "الأشياء"
+msgstr "أشياء"
 
 msgid "Open"
 msgstr "فتح"
@@ -121,19 +121,19 @@ msgid "Open link to \"{resourceTitle}\""
 msgstr "فتح رابط إلى \"{resourceTitle}\""
 
 msgid "Open navigation"
-msgstr "فتح المتصفح"
+msgstr "إفتَح المتصفح"
 
 msgid "Password is secure"
-msgstr "كلمة السر مُؤمّنة"
+msgstr "كلمة المرور مُؤمّنة"
 
 msgid "Pause slideshow"
-msgstr "إيقاف العرض مؤقتًا"
+msgstr "تجميد عرض الشرائح"
 
 msgid "People & Body"
-msgstr "الناس والجسم"
+msgstr "ناس و أجسام"
 
 msgid "Pick an emoji"
-msgstr "اختر رمزًا تعبيريًا"
+msgstr "إختَر رمز إيموجي emoji"
 
 msgid "Please select a time zone:"
 msgstr "الرجاء تحديد المنطقة الزمنية:"
@@ -151,41 +151,42 @@ msgid "Search results"
 msgstr "نتائج البحث"
 
 msgid "Select a tag"
-msgstr "اختر علامة"
+msgstr "إختَر سِمَةً tag"
 
 msgid "Settings"
 msgstr "الإعدادات"
 
 msgid "Settings navigation"
-msgstr "إعدادات المتصفح"
+msgstr "إعدادات التّصفُّح"
 
 msgid "Show password"
-msgstr "أعرض كلمة السر"
+msgstr "أظهِر كلمة المرور"
 
 msgid "Smileys & Emotion"
-msgstr "الوجوه و الرموز التعبيرية"
+msgstr "وجوهٌ ضاحكة و مشاعر"
 
 msgid "Start slideshow"
-msgstr "بدء العرض"
+msgstr "إبدإ العرض"
 
 msgid "Submit"
 msgstr "إرسال"
 
 msgid "Symbols"
-msgstr "الرموز"
+msgstr "رموز"
 
 msgid "Travel & Places"
-msgstr "السفر والأماكن"
+msgstr "سفر و أماكن"
 
 msgid "Type to search time zone"
-msgstr "اكتب للبحث عن منطقة زمنية"
+msgstr "أكتُب للبحث عن منطقة زمنية"
 
 msgid "Unable to search the group"
-msgstr "تعذر البحث في المجموعة"
+msgstr "تعذّر البحث في المجموعة"
 
 msgid "Undo changes"
-msgstr "التراجع عن التغييرات"
+msgstr "تراجَع عن التغييرات"
 
 msgid "Write message, @ to mention someone, : for emoji autocompletion …"
 msgstr ""
 "اكتب رسالة، @ للإشارة إلى شخص ما، : للإكمال التلقائي للرموز التعبيرية ..."
+

@@ -1,21 +1,15 @@
-# 
+#
 # Translators:
-# YANO Tetsu <tetuyano+transi@gmail.com>, 2021
-# Katsumi Sasaki <tripper@kidnappers.gr.jp>, 2021
-# hiroshisuga <suga0330@gmail.com>, 2021
-# 焼きすぎた鮭, 2021
-# Kosugi_kun, 2022
-# かたかめ, 2022
-# T.S, 2022
-# m4549071758 <m4549071758@gmail.com>, 2022
-# 39abde2b72cc6b7a96a9f849ccb160a4_6b69dfc, 2023
-# 
+# Joas Schilling, 2023
+# Transifex Bot <>, 2023
+#
 msgid ""
 msgstr ""
-"Last-Translator: 39abde2b72cc6b7a96a9f849ccb160a4_6b69dfc, 2023\n"
-"Language-Team: Japanese (Japan) (https://www.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: Transifex Bot <>, 2023\n"
+"Language-Team: Japanese (Japan) (https://app.transifex.com/nextcloud/"
+"teams/64236/ja_JP/)\n"
 "Language: ja_JP\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "{tag} (invisible)"

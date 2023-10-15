@@ -72,7 +72,7 @@ msgid "Custom"
 msgstr "Benutzerdefiniert"
 
 msgid "Edit item"
-msgstr "Objekt bearbeiten"
+msgstr "Element bearbeiten"
 
 msgid "Error getting related resources"
 msgstr "Fehler beim Abrufen verwandter Ressourcen"
