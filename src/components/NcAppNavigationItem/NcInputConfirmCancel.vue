@@ -48,7 +48,7 @@
 			</NcButton>
 
 			<NcButton native-type="reset"
-				type="tertiary"
+				:type="primary ? 'primary' : 'tertiary'"
 				:aria-label="labelCancel"
 				@click.stop.prevent="cancel">
 				<template #icon>
@@ -75,10 +75,19 @@ export default {
 	},
 
 	props: {
+		/**
+		 * If this element is used on a primary element set to true for primary styling.
+		 */
+		primary: {
+			default: false,
+			type: Boolean,
+		},
+
 		placeholder: {
 			default: '',
 			type: String,
 		},
+
 		value: {
 			default: '',
 			type: String,
