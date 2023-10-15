@@ -44,6 +44,9 @@ msgstr "{displayName} avatarı"
 msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName}, {status} avatarı"
 
+msgid "away"
+msgstr "Uzakta"
+
 msgid "Back"
 msgstr "Geri"
 
@@ -88,6 +91,9 @@ msgstr "Değişiklikleri onayla"
 
 msgid "Custom"
 msgstr "Özel"
+
+msgid "do not disturb"
+msgstr "Rahatsız etmeyin"
 
 msgid "Edit item"
 msgstr "Ögeyi düzenle"
@@ -152,6 +158,12 @@ msgstr "Herhangi bir sonuç bulunamadı"
 
 msgid "Objects"
 msgstr "Nesneler"
+
+msgid "offline"
+msgstr "Çevrim dışı"
+
+msgid "online"
+msgstr "Çevrim içi"
 
 msgid "Open contact menu"
 msgstr "İletişim menüsünü aç"
@@ -278,6 +290,9 @@ msgstr "Grupta arama yapılamadı"
 
 msgid "Undo changes"
 msgstr "Değişiklikleri geri al"
+
+msgid "User status: {status}"
+msgstr "Kullanıcı durumu: {status}"
 
 msgid "Write a message …"
 msgstr "Bir ileti yazın…"
