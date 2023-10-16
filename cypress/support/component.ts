@@ -13,6 +13,11 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
+// setup styles
+import '../../styleguide/assets/default.css'
+import '../../styleguide/assets/additional.css'
+import '../../styleguide/assets/icons.css'
+
 import './commands.ts'
 import { mount } from '@cypress/vue'
 

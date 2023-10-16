@@ -394,7 +394,7 @@ export default {
 					// escape special symbol "<" to not treat text as HTML
 					.replace(/</gmi, '&lt;')
 					// unescape special symbol ">" to parse blockquotes
-					.replace(/&gt;/gmi, '>')
+					.replace(/&gt;/gmi, '>'),
 				)
 				.result
 
