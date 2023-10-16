@@ -291,6 +291,7 @@ Just set the `pinned` prop.
 						<NcInputConfirmCancel ref="editingInput"
 							v-model="editingValue"
 							:placeholder="editPlaceholder !== '' ? editPlaceholder : name"
+							:primary="isActive && to"
 							@cancel="cancelEditing"
 							@confirm="handleEditingDone" />
 					</div>
@@ -319,6 +320,7 @@ Just set the `pinned` prop.
 						:boundaries-element="actionsBoundariesElement"
 						:placement="menuPlacement"
 						:open="menuOpen"
+						:type="isActive && to ? 'primary' : null"
 						:force-menu="forceMenu"
 						:default-icon="menuIcon"
 						@update:open="onMenuToggle">

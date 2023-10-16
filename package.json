@@ -28,7 +28,7 @@
     "styleguide:build": "vue-styleguidist build",
     "cypress": "TZ=UTC cypress run --component",
     "cypress:gui": "TZ=UTC cypress open --component",
-    "cypress:update-snapshots": "TZ=UTC cypress run --component --spec \"cypress/visual/**/*.cy.js\" --env type=base --config screenshotsFolder=cypress/snapshots/base"
+    "cypress:update-snapshots": "TZ=UTC cypress run --component --spec \"cypress/visual/**/*.cy.{t,j}s\" --env type=base --config screenshotsFolder=cypress/snapshots/base"
   },
   "main": "dist/index.cjs",
   "exports": {
@@ -143,6 +143,7 @@
     "url-loader": "^4.1.1",
     "vite": "^4.3.9",
     "vue-eslint-parser": "^9.0.3",
+    "vue-router": "^3.6.5",
     "vue-styleguidist": "~4.72.0",
     "vue-template-compiler": "^2.7.14",
     "webpack": "^5.88.1",
