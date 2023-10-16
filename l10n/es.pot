@@ -2,10 +2,11 @@
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # FranciscoFJ <dev-ooo@satel-sa.com>, 2023
+# Julio C. Ortega, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: FranciscoFJ <dev-ooo@satel-sa.com>, 2023\n"
+"Last-Translator: Julio C. Ortega, 2023\n"
 "Language-Team: Spanish (https://app.transifex.com/nextcloud/teams/64236/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es\n"
@@ -45,6 +46,9 @@ msgstr "Avatar de {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar de {displayName}, {status}"
+
+msgid "away"
+msgstr "ausente"
 
 msgid "Back"
 msgstr "Atrás"
@@ -90,6 +94,9 @@ msgstr "Confirmar cambios"
 
 msgid "Custom"
 msgstr "Personalizado"
+
+msgid "do not disturb"
+msgstr "no molestar"
 
 msgid "Edit item"
 msgstr "Editar elemento"
@@ -154,6 +161,12 @@ msgstr " Ningún resultado"
 
 msgid "Objects"
 msgstr "Objetos"
+
+msgid "offline"
+msgstr "fuera de línea"
+
+msgid "online"
+msgstr "en línea"
 
 msgid "Open contact menu"
 msgstr "Abrir menú de contactos"
@@ -280,6 +293,9 @@ msgstr "No es posible buscar en el grupo"
 
 msgid "Undo changes"
 msgstr "Deshacer cambios"
+
+msgid "User status: {status}"
+msgstr "Estatus del usuario: {status}"
 
 msgid "Write a message …"
 msgstr "Escribe un mensaje …"
