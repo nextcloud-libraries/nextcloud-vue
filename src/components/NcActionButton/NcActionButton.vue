@@ -179,7 +179,7 @@ export default {
 </docs>
 
 <template>
-	<li class="action" role="presentation" :class="{ 'action--disabled': disabled }">
+	<li class="action" :class="{ 'action--disabled': disabled }">
 		<button class="action-button"
 			:class="{ focusable: isFocusable }"
 			:aria-label="ariaLabel"
