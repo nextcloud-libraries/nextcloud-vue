@@ -1,17 +1,15 @@
-# 
+#
 # Translators:
-# Ole Jakob Brustad <ole.jakob@brustadbuss.no>, 2020
-# sverre.vikan <sverre.vikan@gmail.com>, 2020
-# Martin Tøndel, 2021
-# Hans Bøhn Andreassen, 2022
-# Ari Selseng <ari@selseng.net>, 2023
-# 
+# Joas Schilling, 2023
+# Transifex Bot <>, 2023
+#
 msgid ""
 msgstr ""
-"Last-Translator: Ari Selseng <ari@selseng.net>, 2023\n"
-"Language-Team: Norwegian Bokmål (Norway) (https://www.transifex.com/nextcloud/teams/64236/nb_NO/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: Transifex Bot <>, 2023\n"
+"Language-Team: Norwegian Bokmål (Norway) (https://app.transifex.com/"
+"nextcloud/teams/64236/nb_NO/)\n"
 "Language: nb_NO\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
@@ -195,5 +193,5 @@ msgid ""
 "Write message, use \"@\" to mention someone, use \":\" for emoji "
 "autocompletion …"
 msgstr ""
-"Skriv melding, bruk \"@\" for å nevne noen, bruk \":\" for autofullføring av"
-" emoji..."
+"Skriv melding, bruk \"@\" for å nevne noen, bruk \":\" for autofullføring av "
+"emoji..."

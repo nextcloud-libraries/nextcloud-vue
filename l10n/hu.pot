@@ -1,15 +1,15 @@
-# 
+#
 # Translators:
-# asbot10 <richard@asbot.tech>, 2020
-# János Schrempf <schrempf.janos@gmail.com>, 2022
-# Balázs Meskó <meskobalazs@mailbox.org>, 2023
-# 
+# Joas Schilling, 2023
+# Transifex Bot <>, 2023
+#
 msgid ""
 msgstr ""
-"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>, 2023\n"
-"Language-Team: Hungarian (Hungary) (https://www.transifex.com/nextcloud/teams/64236/hu_HU/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: Transifex Bot <>, 2023\n"
+"Language-Team: Hungarian (Hungary) (https://app.transifex.com/nextcloud/"
+"teams/64236/hu_HU/)\n"
 "Language: hu_HU\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
@@ -193,5 +193,5 @@ msgid ""
 "Write message, use \"@\" to mention someone, use \":\" for emoji "
 "autocompletion …"
 msgstr ""
-"Írjon egy üzenetet, használja a „@”-ot valaki megemlítéséhet, illetve a "
-"„:”-ot az emodzsik automatikus kiegészítéséhez…"
+"Írjon egy üzenetet, használja a „@”-ot valaki megemlítéséhet, illetve a „:”-"
+"ot az emodzsik automatikus kiegészítéséhez…"

@@ -86,7 +86,7 @@ msgid "Flags"
 msgstr "Bayraklar"
 
 msgid "Food & Drink"
-msgstr "Yeme ve İçme"
+msgstr "Yeme ve içme"
 
 msgid "Frequently used"
 msgstr "Sık kullanılanlar"
@@ -134,7 +134,7 @@ msgid "Pause slideshow"
 msgstr "Slayt sunumunu duraklat"
 
 msgid "People & Body"
-msgstr "İnsanlar ve Beden"
+msgstr "İnsanlar ve beden"
 
 msgid "Pick an emoji"
 msgstr "Bir emoji seçin"
@@ -167,7 +167,7 @@ msgid "Show password"
 msgstr "Parolayı görüntüle"
 
 msgid "Smileys & Emotion"
-msgstr "İfadeler ve Duygular"
+msgstr "İfadeler ve duygular"
 
 msgid "Start slideshow"
 msgstr "Slayt sunumunu başlat"
@@ -179,7 +179,7 @@ msgid "Symbols"
 msgstr "Simgeler"
 
 msgid "Travel & Places"
-msgstr "Gezi ve Yerler"
+msgstr "Gezi ve yerler"
 
 msgid "Type to search time zone"
 msgstr "Saat dilimi aramak için yazmaya başlayın"

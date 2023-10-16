@@ -13,10 +13,10 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "{tag} (invisible)"
-msgstr "{tag} (隱藏)"
+msgstr "{tag}（隱藏）"
 
 msgid "{tag} (restricted)"
-msgstr "{tag} (受限)"
+msgstr "{tag}（受限）"
 
 msgid "Actions"
 msgstr "動作"

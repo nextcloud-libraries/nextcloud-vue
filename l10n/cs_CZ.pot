@@ -192,5 +192,6 @@ msgid ""
 "autocompletion …"
 msgstr ""
 "Napište zprávu – pokud chcete někoho zmínit, napište před jeho uživatelským "
-"jménem „@“ (zavináč); automatické doplňování emotikonů zahájíte napsáním „:“"
-" (dvojtečky)…"
+"jménem „@“ (zavináč); automatické doplňování emotikonů zahájíte napsáním "
+"„:“ (dvojtečky)…"
+
