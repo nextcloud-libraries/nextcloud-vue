@@ -106,6 +106,7 @@ module.exports = async () => {
 					'src/components/NcBreadcrumb*/*.vue',
 					'src/components/NcContent/*.vue',
 					'src/components/NcDashboard*/*.vue',
+					'src/components/NcDialog*/*.vue',
 					'src/components/NcEllipsisedOption*/*.vue',
 					'src/components/NcListItem*/*.vue',
 					'src/components/NcRichContenteditable/!(NcRichContenteditable).vue',
@@ -177,6 +178,12 @@ module.exports = async () => {
 				// 			'src/components/NcDashboard*/*.vue',
 				// 		],
 				// 	},
+					// {
+					// 	name: 'NcDialog',
+					// 	components: [
+					// 		'src/components/NcDialog*/*.vue',
+					// 	],
+					// },
 					{
 						name: 'NcFields',
 						components: [
