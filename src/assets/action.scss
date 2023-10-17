@@ -96,7 +96,8 @@
 		}
 
 		// long text area
-		p {
+		&__longtext-wrapper,
+		&__longtext {
 			max-width: 220px;
 			line-height: 1.6em;
 

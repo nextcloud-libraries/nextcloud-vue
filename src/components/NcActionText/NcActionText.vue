@@ -35,7 +35,8 @@
 			</slot>
 
 			<!-- long text with name -->
-			<p v-if="name">
+			<span v-if="name"
+				class="action-text__longtext-wrapper">
 				<strong class="action-text__name">
 					{{ name }}
 				</strong>
@@ -43,12 +44,12 @@
 				<!-- white space is shown on longtext, so we can't
 				put {{ text }} on a new line for code readability -->
 				<span class="action-text__longtext" v-text="text" />
-			</p>
+			</span>
 
 			<!-- long text only -->
 			<!-- white space is shown on longtext, so we can't
 			put {{ text }} on a new line for code readability -->
-			<p v-else-if="isLongText"
+			<span v-else-if="isLongText"
 				class="action-text__longtext"
 				v-text="text" />
 

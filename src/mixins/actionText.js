@@ -58,7 +58,7 @@ export default {
 		 */
 		ariaLabel: {
 			type: String,
-			default: '',
+			default: null,
 		},
 		/**
 		 * aria-hidden attribute for the icon slot

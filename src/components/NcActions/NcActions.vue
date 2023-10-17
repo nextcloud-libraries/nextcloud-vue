@@ -1074,6 +1074,9 @@ export default {
 						},
 					})
 			)
+			const ariaExpandedForTrigger = () => {
+				return (isNav || this.opened) ? this.opened.toString() : null
+			}
 			return h('NcPopover',
 				{
 					ref: 'popover',
@@ -1120,7 +1123,7 @@ export default {
 							'aria-haspopup': isNav ? null : 'menu',
 							'aria-label': this.menuName ? null : this.ariaLabel,
 							'aria-controls': this.opened ? this.randomId : null,
-							'aria-expanded': this.opened.toString(),
+							'aria-expanded': ariaExpandedForTrigger(),
 						},
 						on: {
 							focus: this.onFocus,
