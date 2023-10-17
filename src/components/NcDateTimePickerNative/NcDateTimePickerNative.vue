@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2022 Julia Kirschenheuter <julia.kirschenheuter@nextcloud.com>
   -
   - @author Julia Kirschenheuter <julia.kirschenheuter@nextcloud.com>
+  - @author Richard Steinmetz <richard@steinmetz.cloud>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -33,14 +34,15 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 #### Usage: type='datetime-local'
 ```vue
 <template>
-	<span>
+	<div>
+		<span>Picked date: {{ value || 'null' }}</span>
 		<NcDateTimePickerNative
 			v-model="value"
 			:id="id"
 			:label="label"
 			type="datetime-local" />
-	</span>
-	The date selected is {{ value }}
+		The date selected is {{ value }}
+	</div>
 </template>
 <script>
 	export default {
@@ -58,7 +60,8 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 #### Usage: type='datetime-local' with min date and max date
 ```vue
 <template>
-	<span>
+	<div>
+		<span>Picked date: {{ value || 'null' }}</span>
 		<NcDateTimePickerNative
 			v-model="value"
 			:id="id"
@@ -66,7 +69,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 			:max="someDate"
 			:label="label"
 			type="datetime-local" />
-	</span>
+	</div>
 </template>
 
 <script>
@@ -87,13 +90,14 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 #### Usage: type='week'
 ```vue
 <template>
-	<span>
+	<div>
+		<span>Picked date: {{ value || 'null' }}</span>
 		<NcDateTimePickerNative
 			v-model="value"
 			:id="id"
 			:label="label"
 			type="week" />
-	</span>
+	</div>
 </template>
 
 <script>
@@ -112,13 +116,14 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 #### Usage: type='month'
 ```vue
 <template>
-	<span>
+	<div>
+		<span>Picked date: {{ value || 'null' }}</span>
 		<NcDateTimePickerNative
 			v-model="value"
 			:id="id"
 			:label="label"
 			type="month" />
-	</span>
+	</div>
 </template>
 
 <script>
@@ -165,10 +170,11 @@ export default ScopeComponent({
 		 * The date is – like the `Date` object in JavaScript – tied to UTC.
 		 * The selected time zone does not have an influence of the selected time and date value.
 		 * You have to translate the time yourself when you want to factor in time zones.
+		 * Pass null to clear the input field.
 		 */
 		modelValue: {
 			type: Date,
-			required: true,
+			default: null,
 		},
 
 		/**
@@ -258,16 +264,16 @@ export default ScopeComponent({
 		 * Handle the input event
 		 *
 		 * @param {InputEvent} $event input event payload
-		 * @return {Date|string} new chosen Date() or an empty string
+		 * @return {Date|null} new chosen Date() or null
 		 */
 		onInput($event) {
 			if (isNaN($event.target.valueAsNumber)) {
 				/**
 				 * Emitted when the input value changes
 				 *
-				 * @return {string} empty string
+				 * @return {null} null value
 				 */
-				return this.$emit('update:modelValue', '')
+				return this.$emit('update:modelValue', null)
 			}
 			if (this.type === 'time') {
 				const time = $event.target.value

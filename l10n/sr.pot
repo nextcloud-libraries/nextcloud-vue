@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Joas Schilling, 2023
-# Transifex Bot <>, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Иван Пешић, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2023\n"
+"Last-Translator: Иван Пешић, 2023\n"
 "Language-Team: Serbian (https://app.transifex.com/nextcloud/teams/64236/sr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sr\n"
@@ -18,13 +18,13 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (ograničeno)"
 
 msgid "a few seconds ago"
-msgstr ""
+msgstr "пре неколико секунди"
 
 msgid "Actions"
 msgstr "Radnje"
 
 msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgstr "Радње за ставку под називом „{name}”"
 
 msgid "Activities"
 msgstr "Aktivnosti"
@@ -33,10 +33,10 @@ msgid "Animals & Nature"
 msgstr "Životinje i Priroda"
 
 msgid "Any link"
-msgstr ""
+msgstr "Било који линк"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr ""
+msgstr "Све што се дели са истом групом људи ће се појавити овде"
 
 msgid "Avatar of {displayName}"
 msgstr "Avatar za {displayName}"
@@ -44,26 +44,29 @@ msgstr "Avatar za {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar za {displayName}, {status}"
 
+msgid "away"
+msgstr "одсутан"
+
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Назад на избор пружаоца"
 
 msgid "Cancel changes"
 msgstr "Otkaži izmene"
 
 msgid "Change name"
-msgstr ""
+msgstr "Измени назив"
 
 msgid "Choose"
 msgstr "Изаберите"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Обриши претрагу"
 
 msgid "Clear text"
-msgstr ""
+msgstr "Обриши текст"
 
 msgid "Close"
 msgstr "Затвори"
@@ -78,10 +81,10 @@ msgid "Close sidebar"
 msgstr "Zatvori bočnu traku"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Затвори паметни бирач"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Сажми мени"
 
 msgid "Confirm changes"
 msgstr "Potvrdite promene"
@@ -89,19 +92,24 @@ msgstr "Potvrdite promene"
 msgid "Custom"
 msgstr "Po meri"
 
+msgid "do not disturb"
+msgstr "не узнемиравај"
+
 msgid "Edit item"
 msgstr "Uredi stavku"
 
 msgid "Enter link"
-msgstr ""
+msgstr "Унесите линк"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"Грешка код прибављања везаних ресурса. Молимо вас да се обратите "
+"администратору ако имате питања."
 
 msgid "External documentation for {name}"
-msgstr ""
+msgstr "Спољна документација за {name}"
 
 msgid "Favorite"
 msgstr "Omiljeni"
@@ -122,19 +130,19 @@ msgid "Go back to the list"
 msgstr "Natrag na listu"
 
 msgid "Hide password"
-msgstr ""
+msgstr "Сакриј лозинку"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+msgid "Load more \"{options}\""
+msgstr "Учитај још „{options}”"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Dostignuto je ograničenje za poruke od {count} znakova"
 
 msgid "More items …"
-msgstr ""
+msgstr "Још ставки..."
 
 msgid "More options"
-msgstr ""
+msgstr "Још опција"
 
 msgid "Next"
 msgstr "Следеће"
@@ -143,7 +151,7 @@ msgid "No emoji found"
 msgstr "Nije pronađen nijedan emodži"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "Није пронађен ниједан пружалац линка"
 
 msgid "No results"
 msgstr "Нема резултата"
@@ -151,23 +159,29 @@ msgstr "Нема резултата"
 msgid "Objects"
 msgstr "Objekti"
 
+msgid "offline"
+msgstr "ван мреже"
+
+msgid "online"
+msgstr "на мрежи"
+
 msgid "Open contact menu"
-msgstr ""
+msgstr "Отвори мени контаката"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "Отвори линк на „{resourceName}”"
 
 msgid "Open menu"
-msgstr ""
+msgstr "Отвори мени"
 
 msgid "Open navigation"
 msgstr "Otvori navigaciju"
 
 msgid "Open settings menu"
-msgstr ""
+msgstr "Отвори мени подешавања"
 
 msgid "Password is secure"
-msgstr ""
+msgstr "Лозинка је безбедна"
 
 msgid "Pause slideshow"
 msgstr "Паузирај слајд шоу"
@@ -176,22 +190,22 @@ msgid "People & Body"
 msgstr "Ljudi i Telo"
 
 msgid "Pick a date"
-msgstr ""
+msgstr "Изаберите датум"
 
 msgid "Pick a date and a time"
-msgstr ""
+msgstr "Изаберите датум и време"
 
 msgid "Pick a month"
-msgstr ""
+msgstr "Изаберите месец"
 
 msgid "Pick a time"
-msgstr ""
+msgstr "Изаберите време"
 
 msgid "Pick a week"
-msgstr ""
+msgstr "Изаберите недељу"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "Изаберите годину"
 
 msgid "Pick an emoji"
 msgstr "Izaberi emodži"
@@ -203,19 +217,19 @@ msgid "Previous"
 msgstr "Претходно"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "Икона пружаоца"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Сирови линк {options}"
 
 msgid "Related resources"
-msgstr ""
+msgstr "Повезани ресурси"
 
 msgid "Search"
 msgstr "Pretraži"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "Претражи емођи"
 
 msgid "Search results"
 msgstr "Rezultati pretrage"
@@ -223,17 +237,20 @@ msgstr "Rezultati pretrage"
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "сек. раније"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "секунди раније"
 
 msgid "Select a tag"
 msgstr "Изаберите ознаку"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Изаберите пружаоца"
+
+msgid "Selected"
+msgstr "Изабрано"
 
 msgid "Settings"
 msgstr "Поставке"
@@ -242,10 +259,10 @@ msgid "Settings navigation"
 msgstr "Navigacija u podešavanjima"
 
 msgid "Show password"
-msgstr ""
+msgstr "Прикажи лозинку"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "Паметни бирач"
 
 msgid "Smileys & Emotion"
 msgstr "Smajli i Emocije"
@@ -254,7 +271,7 @@ msgid "Start slideshow"
 msgstr "Покрени слајд шоу"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Покрените претрагу куцањем"
 
 msgid "Submit"
 msgstr "Prihvati"
@@ -274,7 +291,8 @@ msgstr "Nije moguće pretražiti grupu"
 msgid "Undo changes"
 msgstr "Poništi promene"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
+msgid "User status: {status}"
+msgstr "Статус корисника: {status}"
+
+msgid "Write a message …"
+msgstr "Напишите поруку…"

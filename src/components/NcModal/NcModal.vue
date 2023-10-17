@@ -288,9 +288,6 @@ export default {
 						<NcButton v-show="hasPrevious"
 							type="tertiary-no-background"
 							class="prev"
-							:class="{
-								invisible: !hasPrevious
-							}"
 							:aria-label="prevButtonAriaLabel"
 							@click="previous">
 							<template #icon>
@@ -322,9 +319,6 @@ export default {
 						<NcButton v-show="hasNext"
 							type="tertiary-no-background"
 							class="next"
-							:class="{
-								invisible: !hasNext
-							}"
 							:aria-label="nextButtonAriaLabel"
 							@click="next">
 							<template #icon>
@@ -826,14 +820,7 @@ export default {
 	width: 100%;
 	height: $header-height;
 	overflow: hidden;
-	transition: opacity 250ms,
-		visibility 250ms;
-
-	// replace display by visibility
-	&.invisible[style*='display:none'],
-	&.invisible[style*='display: none'] {
-		visibility: hidden;
-	}
+	transition: opacity 250ms, visibility 250ms;
 
 	.modal-name {
 		overflow-x: hidden;
@@ -946,13 +933,10 @@ export default {
 	.prev,
 	.next {
 		z-index: 10000;
-		// ignore display: none
-		display: flex !important;
 		height: 35vh;
 		min-height: 300px;
 		position: absolute;
-		transition: opacity 250ms,
-			visibility 250ms;
+		transition: opacity 250ms;
 		// hover the mask
 		color: white;
 
@@ -961,16 +945,8 @@ export default {
 			box-shadow: 0 0 0 2px var(--color-primary-element-text);
 			background-color: var(--color-box-shadow);
 		}
-
-		// we want to keep the elements on page
-		// even if hidden to avoid having a unbalanced
-		// centered content
-		// replace display by visibility
-		&.invisible[style*='display:none'],
-		&.invisible[style*='display: none'] {
-			visibility: hidden;
-		}
 	}
+
 	.prev {
 		left: 2px;
 	}
@@ -990,6 +966,8 @@ export default {
 		box-shadow: 0 0 40px rgba(0, 0, 0, .2);
 
 		&__close {
+			// Ensure the close button is always ontop of the content
+			z-index: 1;
 			position: absolute;
 			top: 4px;
 			right: 4px;
@@ -997,30 +975,35 @@ export default {
 
 		&__content {
 			width: 100%;
+			min-height: 52px; // At least the close button shall fit in
 			overflow: auto; // avoids unecessary hacks if the content should be bigger than the modal
 		}
 	}
+
+	// We allow 90% max-height, but we need to ensure the header does not overlap the modal
+	// as the modal is centered, we need the space on top and bottom
+	$max-modal-height: min(90%, calc(100% - 2 * $header-height));
 
 	// Sizing
 	&--small {
 		.modal-container {
 			width: 400px;
 			max-width: 90%;
-			max-height: 90%;
+			max-height: $max-modal-height;
 		}
 	}
 	&--normal {
 		.modal-container {
 			max-width: 90%;
 			width: 600px;
-			max-height: 90%;
+			max-height: $max-modal-height;
 		}
 	}
 	&--large {
 		.modal-container {
 			max-width: 90%;
 			width: 900px;
-			max-height: 90%;
+			max-height: $max-modal-height;
 		}
 	}
 	&--full {

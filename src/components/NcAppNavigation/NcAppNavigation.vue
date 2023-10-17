@@ -142,6 +142,14 @@ export default {
 }
 </script>
 
+<style lang="scss">
+.app-navigation,
+.app-content {
+	/** Distance of the app naviation toggle and the first navigation item to the top edge of the app content container */
+	--app-navigation-padding: #{$app-navigation-padding};
+}
+</style>
+
 <style lang="scss" scoped>
 .app-navigation {
 	// Set scoped variable override
@@ -184,7 +192,7 @@ export default {
 		display: flex;
 		flex-direction: column;
 		gap: var(--default-grid-baseline, 4px);
-		padding: calc(var(--default-grid-baseline, 4px) * 2);
+		padding: var(--app-navigation-padding);
 	}
 	&__content {
 		height: 100%;

@@ -1,10 +1,10 @@
 # 
 # Translators:
-# Diego Rochina ALFALYD, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Diego Rochina ALFALYD, 2023\n"
+"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2023\n"
 "Language-Team: Spanish (Ecuador) (https://app.transifex.com/nextcloud/teams/64236/es_EC/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es_EC\n"
@@ -126,8 +126,8 @@ msgstr "Volver a la lista"
 msgid "Hide password"
 msgstr "Ocultar contraseña"
 
-msgid "Load more \"{options}\"\""
-msgstr "Cargar más \"{options}\""
+msgid "Load more \"{options}\""
+msgstr ""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Se ha alcanzado el límite de caracteres del mensaje {count}"
@@ -237,6 +237,9 @@ msgstr "Seleccionar una etiqueta"
 msgid "Select provider"
 msgstr "Seleccionar proveedor"
 
+msgid "Selected"
+msgstr ""
+
 msgid "Settings"
 msgstr "Configuraciones"
 
@@ -276,9 +279,5 @@ msgstr "No se puede buscar en el grupo"
 msgid "Undo changes"
 msgstr "Deshacer cambios"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
+msgid "Write a message …"
 msgstr ""
-"Escribir mensaje, usar \"@\" para mencionar a alguien, usar \":\" para "
-"autocompletar emojis..."

@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Joas Schilling, 2023
-# Transifex Bot <>, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Alexander Gabilondo <alexgabi@disroot.org>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2023\n"
+"Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>, 2023\n"
 "Language-Team: Basque (https://app.transifex.com/nextcloud/teams/64236/eu/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: eu\n"
@@ -18,13 +18,13 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (mugatua)"
 
 msgid "a few seconds ago"
-msgstr ""
+msgstr "duela segundo batzuk"
 
 msgid "Actions"
 msgstr "Ekintzak"
 
 msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgstr "\"{name}\" izeneko elementuaren ekintzak"
 
 msgid "Activities"
 msgstr "Jarduerak"
@@ -33,7 +33,7 @@ msgid "Animals & Nature"
 msgstr "Animaliak eta Natura"
 
 msgid "Any link"
-msgstr ""
+msgstr "Edozein esteka"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Pertsona-talde berarekin partekatutako edozer agertuko da hemen"
@@ -45,22 +45,22 @@ msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName} -(e)n irudia, {status}"
 
 msgid "Back"
-msgstr ""
+msgstr "Atzera"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Itzuli hornitzaileen hautapenera"
 
 msgid "Cancel changes"
 msgstr "Ezeztatu aldaketak"
 
 msgid "Change name"
-msgstr ""
+msgstr "Aldatu izena"
 
 msgid "Choose"
 msgstr "Aukeratu"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Garbitu bilaketa"
 
 msgid "Clear text"
 msgstr "Garbitu testua"
@@ -78,10 +78,10 @@ msgid "Close sidebar"
 msgstr "Itxi albo-barra"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Itxi hautatzaile adimenduna"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Tolestu menua"
 
 msgid "Confirm changes"
 msgstr "Baieztatu aldaketak"
@@ -93,15 +93,17 @@ msgid "Edit item"
 msgstr "Editatu elementua"
 
 msgid "Enter link"
-msgstr ""
+msgstr "Sartu esteka"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"Errore bat gertatu da erlazionatutako baliabideak eskuratzean. Jarri "
+"harremanetan zure sistemaren administratzailearekin galderarik baduzu."
 
 msgid "External documentation for {name}"
-msgstr ""
+msgstr "{name}-ren kanpoko dokumentazioa"
 
 msgid "Favorite"
 msgstr "Gogokoa"
@@ -124,8 +126,8 @@ msgstr "Bueltatu zerrendara"
 msgid "Hide password"
 msgstr "Ezkutatu pasahitza"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+msgid "Load more \"{options}\""
+msgstr "Kargatu \"{options}\" gehiago"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Mezuaren {count} karaketere-limitera heldu zara"
@@ -134,7 +136,7 @@ msgid "More items …"
 msgstr "Elementu gehiago …"
 
 msgid "More options"
-msgstr ""
+msgstr "Aukera gehiago"
 
 msgid "Next"
 msgstr "Hurrengoa"
@@ -143,7 +145,7 @@ msgid "No emoji found"
 msgstr "Ez da emojirik aurkitu"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "Ez da aurkitu esteka-hornitzailerik"
 
 msgid "No results"
 msgstr "Emaitzarik ez"
@@ -152,19 +154,19 @@ msgid "Objects"
 msgstr "Objektuak"
 
 msgid "Open contact menu"
-msgstr ""
+msgstr "Ireki kontaktuen menua"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "Ireki \"{resourceName}\" esteka"
 
 msgid "Open menu"
-msgstr ""
+msgstr "Ireki menua"
 
 msgid "Open navigation"
 msgstr "Ireki nabigazioa"
 
 msgid "Open settings menu"
-msgstr ""
+msgstr "Ireki ezarpenen menua"
 
 msgid "Password is secure"
 msgstr "Pasahitza segurua da"
@@ -176,22 +178,22 @@ msgid "People & Body"
 msgstr "Jendea eta gorputza"
 
 msgid "Pick a date"
-msgstr ""
+msgstr "Aukeratu data bat"
 
 msgid "Pick a date and a time"
-msgstr ""
+msgstr "Aukeratu data eta ordu bat"
 
 msgid "Pick a month"
-msgstr ""
+msgstr "Aukeratu hilabete bat"
 
 msgid "Pick a time"
-msgstr ""
+msgstr "Aukeratu ordu bat"
 
 msgid "Pick a week"
-msgstr ""
+msgstr "Aukeratu aste bat"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "Aukeratu urte bat"
 
 msgid "Pick an emoji"
 msgstr "Hautatu emoji bat"
@@ -203,10 +205,10 @@ msgid "Previous"
 msgstr "Aurrekoa"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "Hornitzailearen ikonoa"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Formaturik gabeko esteka {aukerak}"
 
 msgid "Related resources"
 msgstr "Erlazionatutako baliabideak"
@@ -215,7 +217,7 @@ msgid "Search"
 msgstr "Bilatu"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "Bilatu emojiak"
 
 msgid "Search results"
 msgstr "Bilaketa emaitzak"
@@ -223,17 +225,20 @@ msgstr "Bilaketa emaitzak"
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "duela seg."
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "duela segundo"
 
 msgid "Select a tag"
 msgstr "Hautatu etiketa bat"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Hautatu hornitzailea"
+
+msgid "Selected"
+msgstr "Hautatuta"
 
 msgid "Settings"
 msgstr "Ezarpenak"
@@ -245,7 +250,7 @@ msgid "Show password"
 msgstr "Erakutsi pasahitza"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "Hautatzaile adimenduna"
 
 msgid "Smileys & Emotion"
 msgstr "Smileyak eta emozioa"
@@ -254,7 +259,7 @@ msgid "Start slideshow"
 msgstr "Hasi diaporama"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Hasi idazten bilatzeko"
 
 msgid "Submit"
 msgstr "Bidali"
@@ -274,9 +279,5 @@ msgstr "Ezin izan da taldea bilatu"
 msgid "Undo changes"
 msgstr "Aldaketak desegin"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
-"Idatzi mezua, erabili \"@\" norbait aipatzeko, erabili \":\" emojiak "
-"automatikoki osatzeko..."
+msgid "Write a message …"
+msgstr "Idatzi mezu bat…"

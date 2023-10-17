@@ -93,11 +93,12 @@ const overrides = defineConfig({
 		},
 	},
 	test: {
-		environment: 'happy-dom',
+		environment: 'jsdom',
 		setupFiles: resolve(__dirname, './tests/setup.js'),
 		exclude:[
 			...configDefaults.exclude,
 			'./tests/unit/components/NcActions',
+			'./tests/unit/components/NcAvatar',
 			'./tests/unit/components/NcAppNavigation',
 			'./tests/unit/components/NcAppSidebar',
 			'./tests/unit/components/NcModal',

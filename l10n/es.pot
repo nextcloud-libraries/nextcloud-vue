@@ -1,6 +1,7 @@
 # 
 # Translators:
-# Joas Schilling, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# FranciscoFJ <dev-ooo@satel-sa.com>, 2023
 # Julio C. Ortega, 2023
 # 
 msgid ""
@@ -45,6 +46,9 @@ msgstr "Avatar de {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar de {displayName}, {status}"
+
+msgid "away"
+msgstr "ausente"
 
 msgid "Back"
 msgstr "Atrás"
@@ -91,6 +95,9 @@ msgstr "Confirmar cambios"
 msgid "Custom"
 msgstr "Personalizado"
 
+msgid "do not disturb"
+msgstr "no molestar"
+
 msgid "Edit item"
 msgstr "Editar elemento"
 
@@ -128,7 +135,7 @@ msgstr "Volver a la lista"
 msgid "Hide password"
 msgstr "Ocultar contraseña"
 
-msgid "Load more \"{options}\"\""
+msgid "Load more \"{options}\""
 msgstr "Cargar más \"{options}\""
 
 msgid "Message limit of {count} characters reached"
@@ -154,6 +161,12 @@ msgstr " Ningún resultado"
 
 msgid "Objects"
 msgstr "Objetos"
+
+msgid "offline"
+msgstr "fuera de línea"
+
+msgid "online"
+msgstr "en línea"
 
 msgid "Open contact menu"
 msgstr "Abrir menú de contactos"
@@ -239,6 +252,9 @@ msgstr "Seleccione una etiqueta"
 msgid "Select provider"
 msgstr "Seleccione proveedor"
 
+msgid "Selected"
+msgstr "Seleccionado"
+
 msgid "Settings"
 msgstr "Ajustes"
 
@@ -278,9 +294,8 @@ msgstr "No es posible buscar en el grupo"
 msgid "Undo changes"
 msgstr "Deshacer cambios"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
-"Escribir mensaje, utilice \"@\" para mencionar a alguien, utilice \":\" para"
-" autocompletado de emojis ..."
+msgid "User status: {status}"
+msgstr "Estatus del usuario: {status}"
+
+msgid "Write a message …"
+msgstr "Escribe un mensaje …"

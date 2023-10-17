@@ -179,7 +179,7 @@ export default {
 </docs>
 
 <template>
-	<li class="action" role="presentation" :class="{ 'action--disabled': disabled }">
+	<li class="action" :class="{ 'action--disabled': disabled }">
 		<button class="action-button"
 			:class="{ focusable: isFocusable }"
 			:aria-label="ariaLabel"
@@ -196,7 +196,8 @@ export default {
 			</slot>
 
 			<!-- long text with name -->
-			<p v-if="name">
+			<span v-if="name"
+				class="action-button__longtext-wrapper">
 				<strong class="action-button__name">
 					{{ name }}
 				</strong>
@@ -204,12 +205,12 @@ export default {
 				<!-- white space is shown on longtext, so we can't
 					put {{ text }} on a new line for code readability -->
 				<span class="action-button__longtext" v-text="text" />
-			</p>
+			</span>
 
 			<!-- long text only -->
 			<!-- white space is shown on longtext, so we can't
 				put {{ text }} on a new line for code readability -->
-			<p v-else-if="isLongText"
+			<span v-else-if="isLongText"
 				class="action-button__longtext"
 				v-text="text" />
 

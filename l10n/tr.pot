@@ -1,7 +1,6 @@
 # 
 # Translators:
-# Joas Schilling, 2023
-# Aliberk Sandıkçı, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Kaya Zeren <kayazeren@gmail.com>, 2023
 # 
 msgid ""
@@ -44,6 +43,9 @@ msgstr "{displayName} avatarı"
 
 msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName}, {status} avatarı"
+
+msgid "away"
+msgstr "Uzakta"
 
 msgid "Back"
 msgstr "Geri"
@@ -90,6 +92,9 @@ msgstr "Değişiklikleri onayla"
 msgid "Custom"
 msgstr "Özel"
 
+msgid "do not disturb"
+msgstr "Rahatsız etmeyin"
+
 msgid "Edit item"
 msgstr "Ögeyi düzenle"
 
@@ -127,7 +132,7 @@ msgstr "Listeye dön"
 msgid "Hide password"
 msgstr "Parolayı gizle"
 
-msgid "Load more \"{options}\"\""
+msgid "Load more \"{options}\""
 msgstr "Diğer \"{options}\""
 
 msgid "Message limit of {count} characters reached"
@@ -153,6 +158,12 @@ msgstr "Herhangi bir sonuç bulunamadı"
 
 msgid "Objects"
 msgstr "Nesneler"
+
+msgid "offline"
+msgstr "Çevrim dışı"
+
+msgid "online"
+msgstr "Çevrim içi"
 
 msgid "Open contact menu"
 msgstr "İletişim menüsünü aç"
@@ -238,6 +249,9 @@ msgstr "Bir etiket seçin"
 msgid "Select provider"
 msgstr "Sağlayıcı seçin"
 
+msgid "Selected"
+msgstr "Seçilmiş"
+
 msgid "Settings"
 msgstr "Ayarlar"
 
@@ -277,9 +291,8 @@ msgstr "Grupta arama yapılamadı"
 msgid "Undo changes"
 msgstr "Değişiklikleri geri al"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
-"İleti yazın, birini anmak için @, otomatik emoji tamamlamak için \":\" "
-"kullanın…"
+msgid "User status: {status}"
+msgstr "Kullanıcı durumu: {status}"
+
+msgid "Write a message …"
+msgstr "Bir ileti yazın…"

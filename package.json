@@ -28,7 +28,7 @@
     "styleguide:build": "vue-styleguidist build",
     "cypress": "TZ=UTC cypress run --component",
     "cypress:gui": "TZ=UTC cypress open --component",
-    "cypress:update-snapshots": "TZ=UTC cypress run --component --spec \"cypress/visual/**/*.cy.js\" --env type=base --config screenshotsFolder=cypress/snapshots/base"
+    "cypress:update-snapshots": "TZ=UTC cypress run --component --spec \"cypress/visual/**/*.cy.{t,j}s\" --env type=base --config screenshotsFolder=cypress/snapshots/base"
   },
   "main": "dist/index.cjs",
   "exports": {
@@ -86,9 +86,9 @@
     "node-polyfill-webpack-plugin": "^2.0.1",
     "rehype-external-links": "^3.0.0",
     "rehype-react": "^7.1.2",
-    "remark-breaks": "^3.0.2",
-    "remark-parse": "^10.0.1",
-    "remark-rehype": "^10.1.0",
+    "remark-breaks": "^4.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.0.0",
     "splitpanes": "^3.1.5",
     "string-length": "^5.0.1",
     "striptags": "^3.2.0",
@@ -113,6 +113,7 @@
     "@babel/preset-typescript": "^7.22.5",
     "@cypress/vue": "^6.0.0",
     "@fontsource/roboto": "^5.0.0",
+    "@mdi/js": "^7.3.67",
     "@mdi/svg": "^7.0.96",
     "@nextcloud/babel-config": "^1.0.0",
     "@nextcloud/browserslist-config": "^3.0.0",
@@ -130,7 +131,7 @@
     "gettext-extractor": "^3.7.2",
     "gettext-parser": "^7.0.0",
     "glob": "^10.0.0",
-    "happy-dom": "^12.9.0",
+    "jsdom": "^22.1.0",
     "resolve-url-loader": "^5.0.0",
     "sanitize-filename": "^1.6.3",
     "ts-node": "^10.9.1",
@@ -139,6 +140,7 @@
     "vite": "^4.3.9",
     "vitest": "^0.34.6",
     "vue-eslint-parser": "^9.0.3",
+    "vue-router": "^3.6.5",
     "vue-styleguidist": "~4.72.0",
     "webpack": "^5.88.1",
     "webpack-merge": "^5.9.0"

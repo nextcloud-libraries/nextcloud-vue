@@ -1,6 +1,7 @@
 # 
 # Translators:
-# Joas Schilling, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Mark Ziegler <mark.ziegler@rakekniven.de>, 2023
 # Mario Siegmann <mario_siegmann@web.de>, 2023
 # 
 msgid ""
@@ -46,6 +47,9 @@ msgstr "Avatar von {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar von {displayName}, {status}"
 
+msgid "away"
+msgstr "Abwesend"
+
 msgid "Back"
 msgstr "Zurück"
 
@@ -80,7 +84,7 @@ msgid "Close sidebar"
 msgstr "Seitenleiste schließen"
 
 msgid "Close Smart Picker"
-msgstr "Intelligente Auswahl schließen"
+msgstr "Smart Picker schließen"
 
 msgid "Collapse menu"
 msgstr "Menü einklappen"
@@ -91,8 +95,11 @@ msgstr "Änderungen bestätigen"
 msgid "Custom"
 msgstr "Benutzerdefiniert"
 
+msgid "do not disturb"
+msgstr "Bitte nicht stören"
+
 msgid "Edit item"
-msgstr "Objekt bearbeiten"
+msgstr "Element bearbeiten"
 
 msgid "Enter link"
 msgstr "Link eingeben"
@@ -102,7 +109,7 @@ msgid ""
 " you have any questions."
 msgstr ""
 "Fehler beim Abrufen verwandter Ressourcen. Bei Fragen wenden Sie sich bitte "
-"an Ihren Systemadministrator."
+"an Ihre Systemadministration."
 
 msgid "External documentation for {name}"
 msgstr "Externe Dokumentation für {name}"
@@ -128,8 +135,8 @@ msgstr "Zurück zur Liste"
 msgid "Hide password"
 msgstr "Passwort verbergen"
 
-msgid "Load more \"{options}\"\""
-msgstr "Weitere \"{options}“ laden"
+msgid "Load more \"{options}\""
+msgstr "Weitere \"{options}\" laden"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
@@ -154,6 +161,12 @@ msgstr "Keine Ergebnisse"
 
 msgid "Objects"
 msgstr "Objekte"
+
+msgid "offline"
+msgstr "Offline"
+
+msgid "online"
+msgstr "Online"
 
 msgid "Open contact menu"
 msgstr "Kontaktmenü öffnen"
@@ -239,6 +252,9 @@ msgstr "Schlagwort auswählen"
 msgid "Select provider"
 msgstr "Anbieter auswählen"
 
+msgid "Selected"
+msgstr "Ausgewählt"
+
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -249,7 +265,7 @@ msgid "Show password"
 msgstr "Passwort anzeigen"
 
 msgid "Smart Picker"
-msgstr "Intelligente Auswahl"
+msgstr "Smart Picker"
 
 msgid "Smileys & Emotion"
 msgstr "Smileys & Emotionen"
@@ -278,9 +294,8 @@ msgstr "Die Gruppe kann nicht durchsucht werden"
 msgid "Undo changes"
 msgstr "Änderungen rückgängig machen"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
-"Nachricht schreiben, \"@\" um jemanden zu erwähnen, \":\" für die "
-"automatische Vervollständigung von Emojis …"
+msgid "User status: {status}"
+msgstr "Benutzerstatus: {status}"
+
+msgid "Write a message …"
+msgstr "Nachricht schreiben …"

@@ -48,8 +48,6 @@ This component is to be used in the settings section of nextcloud.
 			<a v-if="hasDocUrl"
 				:href="docUrl"
 				class="settings-section__info"
-				role="note"
-				:aria-label="docNameTranslated"
 				:title="docNameTranslated"
 				target="_blank"
 				rel="noreferrer nofollow">

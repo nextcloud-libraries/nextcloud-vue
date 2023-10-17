@@ -121,8 +121,10 @@ export default {
 		:tabindex="hasMenu ? '0' : undefined"
 		:aria-label="avatarAriaLabel"
 		:role="hasMenu ? 'button' : undefined"
-		@click="toggleMenu"
-		@keydown.enter="toggleMenu">
+		v-on="hasMenu ? {
+			click: toggleMenu,
+			keydown: toggleMenu,
+		} : null">
 		<!-- @slot Icon slot -->
 		<slot name="icon">
 			<!-- Avatar icon or image -->
@@ -167,7 +169,8 @@ export default {
 		</div>
 		<div v-else-if="canDisplayUserStatus"
 			class="avatardiv__user-status"
-			:class="'avatardiv__user-status--' + userStatus.status" />
+			:class="'avatardiv__user-status--' + userStatus.status"
+			v-bind="userStatusRole" />
 
 		<!-- Show the letter if no avatar nor icon class -->
 		<div v-if="userDoesNotExist && !(iconClass || $slots.icon)"
@@ -370,15 +373,42 @@ export default {
 	},
 	computed: {
 		avatarAriaLabel() {
+			// aria-label is only allowed on interactive elements
 			if (!this.hasMenu) {
 				return
 			}
-			if (this.hasStatus && this.showUserStatus && this.showUserStatusCompact) {
-				return t('Avatar of {displayName}, {status}', { displayName: this.displayName ?? this.user, status: this.userStatus.status })
+			if (this.canDisplayUserStatus || this.showUserStatusIconOnAvatar) {
+				return t('Avatar of {displayName}, {status}', { displayName: this.displayName ?? this.user, status: this.userStatusText })
 			}
 			return t('Avatar of {displayName}', { displayName: this.displayName ?? this.user })
 		},
-
+		/** Translated current user status */
+		userStatusText() {
+			switch (this.userStatus.status) {
+			// TRANSLATORS: User status if the user is currently away from keyboard
+			case 'away': return t('away')
+			case 'dnd': return t('do not disturb')
+			case 'online': return t('online')
+			case 'offline': return t('offline')
+			default: return this.userStatus.status
+			}
+		},
+		/**
+		 * If the avatar has no menu no aria-label is assigned, but for accessibility we still need the status to be accessible
+		 * So this sets `role=img` on the status indicator (div with background) and the required `alt` and `aria-label` attributes.
+		 */
+		userStatusRole() {
+			// only needed if non-interactive, otherwise the aria-label is set
+			if (this.hasMenu) {
+				return
+			}
+			const label = t('User status: {status}', { status: this.userStatusText })
+			return {
+				role: 'img',
+				'aria-label': label,
+				alt: label,
+			}
+		},
 		canDisplayUserStatus() {
 			return this.showUserStatus
 				&& this.hasStatus
@@ -548,8 +578,12 @@ export default {
 			}
 		},
 
-		async toggleMenu() {
-			if (!this.hasMenu) {
+		/**
+		 * Toggle the popover menu on click or enter
+		 * @param {KeyboardEvent|MouseEvent} event the UI event
+		 */
+		async toggleMenu(event) {
+			if (event.type === 'keydown' && event.key !== 'Enter') {
 				return
 			}
 			if (!this.contactsMenuOpenState) {

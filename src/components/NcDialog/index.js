@@ -1,8 +1,7 @@
 /**
- * @copyright Copyright (c) 2019 Kristof Hamann, Paul Schwörer
+ * @copyright 2023 Ferdinand Thiessen <opensource@fthiessen.de>
  *
- * @author Kristof Hamann
- * @author Paul Schwörer
+ * @author Ferdinand Thiessen <opensource@fthiessen.de>
  *
  * @license AGPL-3.0-or-later
  *
@@ -21,29 +20,4 @@
  *
  */
 
-import Vue from 'vue'
-
-export const IsMobileState = /* @__PURE__ */ new Vue({
-	data() {
-		return {
-			isMobile: false,
-		}
-	},
-	watch: {
-		isMobile(val) {
-			this.$emit('changed', val)
-		},
-	},
-	created() {
-		window.addEventListener('resize', this.handleWindowResize)
-		this.handleWindowResize()
-	},
-	beforeDestroy() {
-		window.removeEventListener('resize', this.handleWindowResize)
-	},
-	methods: {
-		handleWindowResize() {
-			this.isMobile = document.documentElement.clientWidth < 1024
-		},
-	},
-})
+export { default } from './NcDialog.vue'

@@ -1,6 +1,6 @@
 # 
 # Translators:
-# Joas Schilling, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Andi Chandler <andi@gowling.com>, 2023
 # 
 msgid ""
@@ -43,6 +43,9 @@ msgstr "Avatar of {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar of {displayName}, {status}"
+
+msgid "away"
+msgstr "away"
 
 msgid "Back"
 msgstr "Back"
@@ -89,6 +92,9 @@ msgstr "Confirm changes"
 msgid "Custom"
 msgstr "Custom"
 
+msgid "do not disturb"
+msgstr "do not disturb"
+
 msgid "Edit item"
 msgstr "Edit item"
 
@@ -126,8 +132,8 @@ msgstr "Go back to the list"
 msgid "Hide password"
 msgstr "Hide password"
 
-msgid "Load more \"{options}\"\""
-msgstr "Load more \"{options}\"\""
+msgid "Load more \"{options}\""
+msgstr "Load more \"{options}\""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Message limit of {count} characters reached"
@@ -152,6 +158,12 @@ msgstr "No results"
 
 msgid "Objects"
 msgstr "Objects"
+
+msgid "offline"
+msgstr "offline"
+
+msgid "online"
+msgstr "online"
 
 msgid "Open contact menu"
 msgstr "Open contact menu"
@@ -237,6 +249,9 @@ msgstr "Select a tag"
 msgid "Select provider"
 msgstr "Select provider"
 
+msgid "Selected"
+msgstr "Selected"
+
 msgid "Settings"
 msgstr "Settings"
 
@@ -276,9 +291,8 @@ msgstr "Unable to search the group"
 msgid "Undo changes"
 msgstr "Undo changes"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
+msgid "User status: {status}"
+msgstr "User status: {status}"
+
+msgid "Write a message …"
+msgstr "Write a message …"

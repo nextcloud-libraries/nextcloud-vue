@@ -2,8 +2,9 @@
  - @copyright Copyright (c) 2020 Marco Ambrosini <marcoambrosini@icloud.com>
  -
  - @author Marco Ambrosini <marcoambrosini@icloud.com>
+ - @author Ferdinand Thiessen <opensource@fthiessen.de>
  -
- - @license GNU AGPL version 3 or any later version
+ - @license AGPL-3.0-or-later
  -
  - This program is free software: you can redistribute it and/or modify
  - it under the terms of the GNU Affero General Public License as
@@ -75,8 +76,35 @@ export default {
 ```
 </docs>
 
+<template>
+	<NcDialog v-if="open"
+		v-bind="dialogProperties"
+		@update:open="handleCloseModal">
+		<template #navigation="{ isCollapsed }">
+			<ul :aria-label="settingsNavigationAriaLabel"
+				:class="{ 'navigation-list': true, 'navigation-list--collapsed': isCollapsed }"
+				role="tablist">
+				<li v-for="item in getNavigationItems" :key="item.id">
+					<a :aria-selected="item.id === selectedSection"
+						:class="{
+							'navigation-list__link': true,
+							'navigation-list__link--active': item.id === selectedSection,
+						}"
+						role="tab"
+						tabindex="0"
+						@click="handleSettingsNavigationClick(item.id)"
+						@keydown.enter="handleSettingsNavigationClick(item.id)">{{ item.name }}</a>
+				</li>
+			</ul>
+		</template>
+		<div ref="settingsScroller">
+			<slot />
+		</div>
+	</NcDialog>
+</template>
+
 <script>
-import NcModal from '../NcModal/index.js'
+import NcDialog from '../NcDialog/index.js'
 import isMobile from '../../mixins/isMobile/index.js'
 import { t } from '../../l10n.js'
 
@@ -87,7 +115,7 @@ export default {
 	name: 'NcAppSettingsDialog',
 
 	components: {
-		NcModal,
+		NcDialog,
 	},
 
 	mixins: [isMobile],
@@ -146,6 +174,17 @@ export default {
 	},
 
 	computed: {
+		dialogProperties() {
+			return {
+				additionalTrapElements: this.additionalTrapElements,
+				class: 'app-settings',
+				container: this.container,
+				contentClasses: 'app-settings__content',
+				size: 'large',
+				name: this.name,
+				navigationClasses: 'app-settings__navigation',
+			}
+		},
 
 		hasNavigation() {
 			if (this.isMobile || !this.showNavigation) {
@@ -157,6 +196,10 @@ export default {
 
 		settingsNavigationAriaLabel() {
 			return t('Settings navigation')
+		},
+
+		getNavigationItems() {
+			return this.getSettingsNavigation(this.$slots.default)
 		},
 	},
 
@@ -180,7 +223,6 @@ export default {
 	},
 
 	methods: {
-
 		/**
 		 * Builds the settings navigation menu
 		 *
@@ -231,7 +273,11 @@ export default {
 			}, 1000)
 		},
 
-		handleCloseModal() {
+		handleCloseModal(isOpen) {
+			if (isOpen) {
+				return
+			}
+
 			this.$emit('update:open', false)
 			// Remove scroll listener each time the modal is closed
 			this.scroller.removeEventListener('scroll', this.handleScroll)
@@ -252,147 +298,13 @@ export default {
 				document.activeElement.blur()
 			}
 		}, 300),
-
-		handleLinkKeydown(keyDownEvent, item) {
-			if (keyDownEvent.code === 'Enter') {
-				this.handleSettingsNavigationClick(item)
-			}
-		},
-	},
-
-	render(h) {
-		/**
-		 * Build the navigation
-		 *
-		 * @return {object} the navigation
-		 */
-		const createAppSettingsNavigation = () => {
-			if (this.hasNavigation) {
-				return [h('div', {
-					attrs: {
-						class: 'app-settings__navigation',
-						role: 'tablist',
-						'aria-label': this.settingsNavigationAriaLabel,
-					},
-				}, [h('ul', {
-					attrs: {
-						class: 'navigation-list',
-						role: 'tablist',
-					},
-				}, this.getSettingsNavigation(this.$slots.default).map(item => {
-					return createListElement(item)
-				}))])]
-			} else {
-				return []
-			}
-		}
-
-		/**
-		 * Build each list element in the navigation
-		 *
-		 * @param {object} item the navigation item
-		 * @return {object} the list element
-		 */
-		const createListElement = (item) => h('li', {}, [h('a', {
-			class: {
-				'navigation-list__link': true,
-				'navigation-list__link--active': item.id === this.selectedSection,
-			},
-
-			attrs: {
-				role: 'tab',
-				'aria-selected': item.id === this.selectedSection,
-				tabindex: '0',
-			},
-
-			on: {
-				click: () => this.handleSettingsNavigationClick(item.id),
-				keydown: () => this.handleLinkKeydown(event, item.id),
-			},
-		}, item.name)])
-
-		// Return value of the render function
-		if (this.open) {
-			return h('NcModal', {
-				class: [
-					'app-settings-modal',
-				],
-				attrs: {
-					container: this.container,
-					size: 'large',
-					additionalTrapElements: this.additionalTrapElements,
-				},
-				on: {
-					close: () => { this.handleCloseModal() },
-				},
-			}, [
-				// main app-settings root element
-				h('div', {
-					attrs: {
-						class: 'app-settings',
-					},
-				}, [
-					// app-settings name
-					h('h2', {
-						attrs: {
-							class: 'app-settings__name',
-						},
-					}, this.name),
-
-					// app-settings navigation + content
-					h(
-						'div',
-						{
-							attrs: {
-								class: 'app-settings__wrapper',
-							},
-						},
-						[
-							...createAppSettingsNavigation(),
-							h('div', {
-								attrs: {
-									class: 'app-settings__content',
-								},
-								ref: 'settingsScroller',
-							}, this.$slots.default),
-						],
-					),
-				]),
-			])
-		} else {
-			return undefined
-		}
 	},
 }
 
 </script>
 
 <style lang="scss" scoped>
-
-.app-settings-modal :deep(.modal-wrapper .modal-container) {
-	display: flex;
-	overflow: hidden;
-}
-
 .app-settings {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	min-width: 0;
-	&__name {
-		min-height: $clickable-area;
-		height: $clickable-area;
-		line-height: $clickable-area;
-		padding-top: 4px; // Same as the close button top spacing
-		text-align: center;
-	}
-	&__wrapper {
-		display: flex;
-		width: 100%;
-		overflow: hidden;
-		height: 100%;
-		position: relative;
-	}
 	&__navigation {
 		min-width: 200px;
 		margin-right: 20px;
@@ -415,6 +327,13 @@ export default {
 	box-sizing: border-box;
 	overflow-y: auto;
 	padding: 12px;
+
+	&--collapsed {
+		display: flex;
+		flex-direction: row;
+		gap: 6px;
+	}
+
 	&__link {
 		display: block;
 		font-size: 16px;
