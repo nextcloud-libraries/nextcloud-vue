@@ -60,6 +60,8 @@ export { default as NcDashboardWidgetItem } from './NcDashboardWidgetItem/index.
 export { default as NcDateTime } from './NcDateTime/index.js'
 export { default as NcDateTimePicker } from './NcDateTimePicker/index.js'
 export { default as NcDateTimePickerNative } from './NcDateTimePickerNative/index.js'
+export { default as NcDialog } from './NcDialog/index.js'
+export { default as NcDialogButton } from './NcDialogButton/index.js'
 // Not exported on purpose
 // export { default as NcEllipsisedOption } from './NcEllipsisedOption/index.js'
 export { default as NcEmojiPicker } from './NcEmojiPicker/index.js'
