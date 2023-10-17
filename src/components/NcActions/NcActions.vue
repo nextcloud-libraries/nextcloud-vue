@@ -1075,13 +1075,7 @@ export default {
 					})
 			)
 			const ariaExpandedForTrigger = () => {
-				if (isNav) {
-					return this.opened.toString()
-				}
-				if (this.opened) {
-					return this.opened.toString()
-				}
-				return null
+				return (isNav || this.opened) ? this.opened.toString() : null
 			}
 			return h('NcPopover',
 				{
