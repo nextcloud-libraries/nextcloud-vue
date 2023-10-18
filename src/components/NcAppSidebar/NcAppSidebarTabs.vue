@@ -41,7 +41,7 @@
 			<NcCheckboxRadioSwitch v-for="tab in tabs"
 				:key="tab.id"
 				:aria-controls="`tab-${tab.id}`"
-				:aria-selected="activeTab === tab.id"
+				:aria-selected="String(activeTab === tab.id)"
 				:button-variant="true"
 				:checked="activeTab === tab.id"
 				:data-id="tab.id"
