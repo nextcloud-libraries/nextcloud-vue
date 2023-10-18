@@ -130,9 +130,10 @@ export default {
 </docs>
 
 <template>
-	<NcInputField v-bind="{...$attrs, ...$props }"
-		ref="inputField"
-		:trailing-button-label="clearTextLabel"
+	<NcInputField ref="inputField"
+		:trailing-button-label="trailingButtonLabel"
+		:type="type"
+		v-bind="$attrs"
 		v-on="$listeners"
 		@input="handleInput">
 		<!-- Default slot for the leading icon -->
@@ -171,11 +172,39 @@ export default {
 	inheritAttrs: false,
 
 	props: {
-		...NcInputField.props,
+		/**
+		 * Any NcInputField props
+		 */
+		// Not an actual prop but needed to show in vue-styleguidist docs
+		// eslint-disable-next-line
+		' ': {},
+
+		trailingButtonLabel: {
+			type: String,
+			default: t('Clear text'),
+		},
+
+		/**
+		 * The type of the input element
+		 * @type {'text'|'email'|'tel'|'url'|'search'|'number'}
+		 */
+		type: {
+			type: String,
+			default: 'text',
+			validator: (value) => [
+				'text',
+				'email',
+				'tel',
+				'url',
+				'search',
+				'number',
+			].includes(value),
+		},
 
 		/**
 		 * Specifies which material design icon should be used for the trailing
 		 * button. Value can be `close`, `arrowRight`, or `undo`.
+		 * @type {'close'|'arrowRight'|'undo'}
 		 */
 		trailingButtonIcon: {
 			type: String,
@@ -193,8 +222,6 @@ export default {
 	],
 
 	computed: {
-		clearTextLabel() {
-			return this.trailingButtonLabel || t('Clear text')
 		},
 	},
 
