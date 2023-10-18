@@ -71,18 +71,22 @@ export default {
 		:class="{ 'header-menu--opened': opened }"
 		class="header-menu">
 		<!-- Trigger -->
-		<button :id="isNav ? triggerId : null"
+		<div :id="isNav ? triggerId : null"
 			ref="trigger"
 			class="header-menu__trigger button-vue"
+			role="button"
+			tabindex="0"
 			:aria-label="ariaLabel"
 			:aria-describedby="description ? descriptionId : null"
 			:aria-controls="`header-menu-${id}`"
 			:aria-expanded="opened.toString()"
-			@click.prevent="toggleMenu">
+			@keydown.enter.stop="toggleMenu"
+			@keydown.space.stop="toggleMenu"
+			@click.stop="toggleMenu">
 			<!-- @slot Icon trigger slot. Make sure the svg path
 				is at least 16px. Usually mdi icon works at 20px -->
 			<slot name="trigger" />
-		</button>
+		</div>
 
 		<span v-if="description"
 			:id="descriptionId"
