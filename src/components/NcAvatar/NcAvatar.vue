@@ -108,7 +108,7 @@ export default {
 
 </docs>
 <template>
-	<div ref="main"
+	<span ref="main"
 		v-click-outside="closeMenu"
 		:class="{
 			'avatardiv--unknown': userDoesNotExist,
@@ -128,7 +128,7 @@ export default {
 		<!-- @slot Icon slot -->
 		<slot name="icon">
 			<!-- Avatar icon or image -->
-			<div v-if="iconClass" :class="iconClass" class="avatar-class-icon" />
+			<span v-if="iconClass" :class="iconClass" class="avatar-class-icon" />
 			<img v-else-if="isAvatarLoaded && !userDoesNotExist"
 				:src="avatarUrlLoaded"
 				:srcset="avatarSrcSetLoaded"
@@ -164,23 +164,23 @@ export default {
 		</NcActions>
 
 		<!-- Avatar status -->
-		<div v-if="showUserStatusIconOnAvatar" class="avatardiv__user-status avatardiv__user-status--icon">
+		<span v-if="showUserStatusIconOnAvatar" class="avatardiv__user-status avatardiv__user-status--icon">
 			{{ userStatus.icon }}
-		</div>
-		<div v-else-if="canDisplayUserStatus"
+		</span>
+		<span v-else-if="canDisplayUserStatus"
 			class="avatardiv__user-status"
 			:class="'avatardiv__user-status--' + userStatus.status"
 			v-bind="userStatusRole" />
 
 		<!-- Show the letter if no avatar nor icon class -->
-		<div v-if="userDoesNotExist && !(iconClass || $slots.icon)"
+		<span v-if="userDoesNotExist && !(iconClass || $slots.icon)"
 			:style="initialsWrapperStyle"
 			class="avatardiv__initials-wrapper">
-			<div :style="initialsStyle" class="unknown">
+			<span :style="initialsStyle" class="unknown">
 				{{ initials }}
-			</div>
-		</div>
-	</div>
+			</span>
+		</span>
+	</span>
 </template>
 
 <script>
@@ -395,7 +395,7 @@ export default {
 		},
 		/**
 		 * If the avatar has no menu no aria-label is assigned, but for accessibility we still need the status to be accessible
-		 * So this sets `role=img` on the status indicator (div with background) and the required `alt` and `aria-label` attributes.
+		 * So this sets `role=img` on the status indicator (span with background) and the required `alt` and `aria-label` attributes.
 		 */
 		userStatusRole() {
 			// only needed if non-interactive, otherwise the aria-label is set
@@ -777,6 +777,7 @@ export default {
 	}
 
 	.avatardiv__initials-wrapper {
+		display: block;
 		height: var(--size);
 		width: var(--size);
 		background-color: var(--color-main-background);
@@ -855,6 +856,7 @@ export default {
 }
 
 .avatar-class-icon {
+	display: block;
 	border-radius: 50%;
 	background-color: var(--color-background-darker);
 	height: 100%;
