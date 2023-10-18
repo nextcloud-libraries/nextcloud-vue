@@ -294,7 +294,7 @@ export default {
 		}
 
 		// Override max-width to use all available space
-		:deep(.checkbox-radio-switch__label) {
+		:deep(.checkbox-radio-switch__content) {
 			max-width: unset;
 		}
 	}
