@@ -44,7 +44,7 @@
 				:aria-selected="String(activeTab === tab.id)"
 				:button-variant="true"
 				:checked="activeTab === tab.id"
-				:data-id="tab.id"
+				:wrapper-id="`tab-button-${tab.id}`"
 				:tabindex="activeTab === tab.id ? 0 : -1"
 				button-variant-grouped="horizontal"
 				class="app-sidebar-tabs__tab"
@@ -201,7 +201,7 @@ export default {
 		 * Focus the current active tab
 		 */
 		focusActiveTab() {
-			this.$el.querySelector(`[data-id="${this.activeTab}"]`).focus()
+			this.$el.querySelector(`#tab-button-${this.activeTab}`).focus()
 		},
 
 		/**

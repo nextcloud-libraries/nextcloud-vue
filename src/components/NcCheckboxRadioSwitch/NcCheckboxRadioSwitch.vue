@@ -259,6 +259,7 @@ export default {
 
 <template>
 	<component :is="wrapperElement"
+		:id="wrapperId"
 		:class="{
 			['checkbox-radio-switch-' + type]: type,
 			'checkbox-radio-switch--checked': isChecked,
@@ -321,7 +322,6 @@ export default {
 	mixins: [l10n],
 
 	props: {
-
 		/**
 		 * Unique id attribute of the input
 		 */
@@ -329,6 +329,14 @@ export default {
 			type: String,
 			default: () => 'checkbox-radio-switch-' + GenRandomId(),
 			validator: id => id.trim() !== '',
+		},
+
+		/**
+		 * Unique id attribute of the wrapper element
+		 */
+		wrapperId: {
+			type: String,
+			default: null,
 		},
 
 		/**

@@ -27,7 +27,7 @@
 	<section :id="`tab-${id}`"
 		:class="{'app-sidebar__tab--active': isActive}"
 		:aria-hidden="!isActive"
-		:aria-labelledby="id"
+		:aria-labelledby="`tab-button-${id}`"
 		class="app-sidebar__tab"
 		tabindex="0"
 		role="tabpanel"
