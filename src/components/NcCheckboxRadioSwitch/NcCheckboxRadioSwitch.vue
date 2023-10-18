@@ -593,9 +593,11 @@ export default {
 .checkbox-radio-switch {
 	display: flex;
 	align-items: center;
+	color: var(--color-main-text);
 	background-color: transparent;
 	font-size: var(--default-font-size);
-	padding: unset;
+	line-height: var(--default-line-height);
+	padding: 0;
 
 	&__input {
 		position: absolute;

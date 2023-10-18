@@ -204,8 +204,6 @@ export default {
 	max-width: fit-content;
 
 	&__text {
-		line-height: 1.5;
-
 		&:empty {
 			// hide text if empty to ensure checkbox outline is a circle instead of oval
 			display: none;
