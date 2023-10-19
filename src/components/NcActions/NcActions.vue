@@ -1101,7 +1101,6 @@ export default {
 						boundary: this.boundariesElement,
 						container: this.container,
 						...this.manualOpen && { triggers: [] },
-						popoverBaseClass: 'action-item__popper',
 					},
 					on: {
 						show: this.openMenu,
