@@ -1000,12 +1000,13 @@ export default {
 		/**
 		 * Render the provided action
 		 *
-		 * @param {object} action the action to render
+		 * @param {import('vue').VNode} action the action to render
 		 * @return {Function} the vue render function
 		 */
 		const renderInlineAction = (action) => {
 			const icon = action?.data?.scopedSlots?.icon()?.[0]
 				|| h('span', { class: ['icon', action?.componentOptions?.propsData?.icon] })
+			const attrs = action?.data?.attrs || {}
 			const clickListener = action?.componentOptions?.listeners?.click
 
 			const text = action?.componentOptions?.children?.[0]?.text?.trim?.()
@@ -1026,6 +1027,7 @@ export default {
 						action?.data?.class,
 					],
 					attrs: {
+						...attrs,
 						'aria-label': ariaLabel,
 						title,
 					},
