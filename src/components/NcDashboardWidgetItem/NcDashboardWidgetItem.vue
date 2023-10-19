@@ -31,7 +31,7 @@ This component is meant to be used inside a DashboardWidget component.
 <template>
 	<div @mouseover="hovered = true" @mouseleave="hovered = false">
 		<component :is="targetUrl ? 'a' : 'div'"
-			:href="targetUrl"
+			:href="targetUrl || undefined"
 			:target="targetUrl ? '_blank' : undefined"
 			:class="{ 'item-list__entry': true, 'item-list__entry--has-actions-menu': gotMenu }"
 			@click="onLinkClick">
