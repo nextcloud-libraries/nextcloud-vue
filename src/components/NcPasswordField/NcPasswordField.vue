@@ -96,10 +96,9 @@ export default {
 </docs>
 
 <template>
-	<NcInputField v-bind="{...$attrs, ...$props }"
+	<NcInputField v-bind="propsAndAttrsToForward"
 		ref="inputField"
 		:type="isPasswordHidden ? 'password' : 'text'"
-		:show-trailing-button="showTrailingButton"
 		:trailing-button-label="trailingButtonLabelPassword"
 		:helper-text="computedHelperText"
 		:error="computedError"
@@ -129,6 +128,8 @@ import { generateOcsUrl } from '@nextcloud/router'
 import { t } from '../../l10n.js'
 import logger from '../../utils/logger.js'
 
+const NcInputFieldProps = new Set(Object.keys(NcInputField.props))
+
 export default {
 	name: 'NcPasswordField',
 
@@ -142,17 +143,31 @@ export default {
 	inheritAttrs: false,
 
 	props: {
+		/**
+		 * Any [NcInputField](#/Components/NcFields?id=ncinputfield) props
+		 */
+		// Not an actual prop but needed to show in vue-styleguidist docs
+		// eslint-disable-next-line
+		' ': {},
+
+		// Reuse all the props from NcInputField for better typing and documentation
 		...NcInputField.props,
 
+		// Redefined props
+
 		/**
-		 * Additional error message
-		 *
-		 * This will be displayed beneath the input field
+		 * Controls whether to display the trailing button.
 		 */
-		helperText: {
-			type: String,
-			default: '',
+		 showTrailingButton: {
+			type: Boolean,
+			default: true,
 		},
+
+		// Removed NcInputField props, defined only by this component
+
+		trailingButtonLabel: undefined,
+
+		// Custom props
 
 		/**
 		 * Check if the user entered a valid password using the password_policy
@@ -182,14 +197,6 @@ export default {
 		maxlength: {
 			type: Number,
 			default: null,
-		},
-
-		/**
-		 * Controls whether to display the trailing button.
-		 */
-		showTrailingButton: {
-			type: Boolean,
-			default: true,
 		},
 	},
 
@@ -231,6 +238,17 @@ export default {
 
 		trailingButtonLabelPassword() {
 			return this.isPasswordHidden ? t('Show password') : t('Hide password')
+		},
+
+		propsAndAttrsToForward() {
+			return {
+				// Proxy all the HTML attributes
+				...this.$attrs,
+				// Proxy original NcInputField's props
+				...Object.fromEntries(
+					Object.entries(this.$props).filter(([key]) => NcInputFieldProps.has(key)),
+				),
+			}
 		},
 	},
 
