@@ -932,7 +932,11 @@ export default {
 		focusFirstAction(event) {
 			if (this.opened) {
 				this.preventIfEvent(event)
-				this.focusIndex = 0
+				// In case a button is considered aria-selected we will use this one as a initial focus
+				const firstSelectedIndex = [...this.$refs.menu.querySelectorAll(focusableSelector)].findIndex((button) => {
+					return button.parentElement.getAttribute('aria-selected')
+				})
+				this.focusIndex = firstSelectedIndex > -1 ? firstSelectedIndex : 0
 				this.focusAction()
 			}
 		},
