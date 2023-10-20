@@ -128,6 +128,21 @@ import { generateOcsUrl } from '@nextcloud/router'
 import { t } from '../../l10n.js'
 import logger from '../../utils/logger.js'
 
+/**
+ * @typedef PasswordPolicy
+ * @property {object} api - The URLs to the password_policy app methods
+ * @property {string} api.generate - The URL to the password generator
+ * @property {string} api.validate - The URL to the password validator
+ * @property {boolean} enforceNonCommonPassword - Whether to enforce non common passwords
+ * @property {boolean} enforceNumericCharacters - Whether to enforce numeric characters
+ * @property {boolean} enforceSpecialCharacters - Whether to enforce special characters
+ * @property {boolean} enforceUpperLowerCase - Whether to enforce upper and lower case
+ * @property {number} minLength - The minimum length of the password
+ */
+
+/** @type {PasswordPolicy|null} */
+const passwordPolicy = loadState('core', 'capabilities', {}).password_policy || null
+
 const NcInputFieldProps = new Set(Object.keys(NcInputField.props))
 
 export default {
@@ -210,7 +225,6 @@ export default {
 		return {
 			isPasswordHidden: true,
 			internalHelpMessage: '',
-			passwordPolicy: loadState('core', 'capabilities', {}).password_policy || null,
 			isValid: null,
 		}
 	},
@@ -230,7 +244,7 @@ export default {
 		},
 
 		rules() {
-			const { minlength, passwordPolicy } = this
+			const { minlength } = this
 			return {
 				minlength: minlength ?? passwordPolicy?.minLength,
 			}
@@ -255,12 +269,10 @@ export default {
 	watch: {
 		value(newValue) {
 			if (this.checkPasswordStrength) {
-				if (this.passwordPolicy === null) {
+				if (passwordPolicy === null) {
 					return
 				}
-				if (this.passwordPolicy) {
-					this.checkPassword(newValue)
-				}
+				this.checkPassword(newValue)
 			}
 		},
 	},
