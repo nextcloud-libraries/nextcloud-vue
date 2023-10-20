@@ -258,7 +258,7 @@ export default {
 </docs>
 
 <template>
-	<component :is="wrapperElement"
+	<component :is="computedWrapperElement"
 		:id="wrapperId"
 		:class="{
 			['checkbox-radio-switch-' + type]: type,
@@ -431,6 +431,18 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Wrapping element tag
+		 *
+		 * When `type` is set to `button` this will be ignored
+		 *
+		 * Defaults to `span`
+		 */
+		wrapperElement: {
+			type: String,
+			default: null,
+		},
 	},
 
 	emits: ['update:checked'],
@@ -440,9 +452,12 @@ export default {
 			return this.type === TYPE_BUTTON
 		},
 
-		wrapperElement() {
+		computedWrapperElement() {
 			if (this.isButtonType) {
 				return 'button'
+			}
+			if (this.wrapperElement !== null) {
+				return this.wrapperElement
 			}
 			return 'span'
 		},
