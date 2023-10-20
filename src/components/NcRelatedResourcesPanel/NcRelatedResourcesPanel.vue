@@ -90,6 +90,20 @@ export default {
 			default: null,
 		},
 		/**
+		 * Limits to specific resource type. i.e. any provider id implemented with `\OCA\RelatedResources\IRelatedResourceProvider::getProviderId()`
+		 */
+		resourceType: {
+			type: String,
+			default: null,
+		},
+		/**
+		 * Set the maximum number of resources to load
+		 */
+		limit: {
+			type: Number,
+			default: null,
+		},
+		/**
 		 * Only used by the files sidebar
 		 *
 		 * File info is passed when registered with `OCA.Sharing.ShareTabSections.registerSection()`
@@ -156,9 +170,11 @@ export default {
 				itemId = this.itemId
 			}
 
-			return generateOcsUrl('/apps/related_resources/related/{providerId}?itemId={itemId}&format=json', {
+			return generateOcsUrl('/apps/related_resources/related/{providerId}?itemId={itemId}&resourceType={resourceType}&limit={limit}&format=json', {
 				providerId,
 				itemId,
+				resourceType: this.resourceType,
+				limit: this.limit,
 			})
 		},
 	},
