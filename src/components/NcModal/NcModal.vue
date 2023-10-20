@@ -668,6 +668,11 @@ export default {
 		 */
 		handleKeydown(event) {
 			if (event.key === 'Escape') {
+				const trapStack = getTrapStack()
+				// Only close the most recent focus trap modal
+				if (trapStack.length > 0 && trapStack[trapStack.length - 1] !== this.focusTrap) {
+					return
+				}
 				return this.close(event)
 			}
 
