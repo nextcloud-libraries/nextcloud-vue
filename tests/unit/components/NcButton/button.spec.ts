@@ -24,6 +24,14 @@ import { shallowMount } from '@vue/test-utils'
 import NcButton from '../../../../src/components/NcButton/NcButton.vue'
 
 describe('NcButton', () => {
+	let consoleError: jest.SpyInstance
+
+	beforeAll(() => {
+		consoleError = jest.spyOn(console, 'error')
+	})
+	afterEach(() => jest.resetAllMocks())
+	afterAll(() => jest.restoreAllMocks())
+
 	it('emits update:pressed', async () => {
 		const wrapper = shallowMount(NcButton, { propsData: { pressed: true, ariaLabel: 'button' } })
 		wrapper.find('button').trigger('click')
@@ -78,5 +86,23 @@ describe('NcButton', () => {
 		expect(textSpan.exists()).toBe(true)
 		expect(textSpan.classes()).toEqual(['button-vue__text', 'my-class'])
 		expect(textSpan.text()).toBe('Hello')
+	})
+
+	it('default slot is deprecated', async () => {
+		consoleError.mockImplementation(() => {})
+
+		const version = (await import('../../../../package.json')).version
+		const wrapper = shallowMount(NcButton, { propsData: { ariaLabel: 'button' }, slots: { default: 'Hello' } })
+		const textSpan = wrapper.find('.button-vue__text')
+
+		if (version.match(/8\.0\.0-beta/)) {
+			expect(textSpan.exists()).toBe(true)
+			expect(textSpan.text()).toBe('Hello')
+			expect(consoleError).toBeCalled()
+			expect(consoleError.mock.calls[0][0]).toMatch(/NcButton.+default.+slot.+deprecated/)
+		} else {
+			// If this fails: You forgot to remove the button default slot handling when preparing the stable release!
+			expect(textSpan.exists()).toBe(false)
+		}
 	})
 })

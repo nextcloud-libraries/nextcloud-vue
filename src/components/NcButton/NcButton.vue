@@ -434,6 +434,7 @@ td.row-size {
 </docs>
 
 <script>
+import Vue from 'vue'
 
 export default {
 	name: 'NcButton',
@@ -622,6 +623,13 @@ export default {
 		isReverseAligned() {
 			return this.alignment.includes('-')
 		},
+	},
+
+	mounted() {
+		// TODO: Remove with stable release
+		if (this.$slots.default && this.$slots.default[0]?.text && this.$slots.default?.isComment !== true) {
+			Vue.util.warn('[NcButton] Using the default slot for setting the button text is deprecated and will be removed in the future. Use the `text` property instead.', this)
+		}
 	},
 
 	/**
