@@ -132,6 +132,11 @@ import NcDialogButton from '../NcDialogButton/index.js'
 
 export default defineComponent({
 	name: 'NcDialog',
+
+	components: {
+		NcModal,
+	},
+
 	props: {
 		/** Name of the dialog (the heading) */
 		name: {
@@ -334,7 +339,6 @@ export default defineComponent({
 
 		return {
 			NcDialogButton,
-			NcModal,
 
 			handleButtonClose,
 			handleClosing,
