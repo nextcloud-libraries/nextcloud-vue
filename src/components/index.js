@@ -92,3 +92,4 @@ export { default as NcSettingsSelectGroup } from './NcSettingsSelectGroup/index.
 export { default as NcTextField } from './NcTextField/index.js'
 export { default as NcTimezonePicker } from './NcTimezonePicker/index.js'
 export { default as NcUserBubble } from './NcUserBubble/index.js'
+export { default as NcTextArea } from './NcTextArea/index.js'
