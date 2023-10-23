@@ -80,7 +80,7 @@ This component has the following slot:
 				class="user-bubble__content"
 				:style="styles.content"
 				:href="hasUrl ? url : null"
-				:class="primary ? 'user-bubble__content--primary' : ''"
+				:class="{ 'user-bubble__content--primary': primary }"
 				@click="onClick">
 				<!-- NcAvatar -->
 				<NcAvatar :url="isCustomAvatar && isAvatarUrl ? avatarImage : undefined"
