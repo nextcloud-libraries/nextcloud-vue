@@ -102,6 +102,7 @@ module.exports = async () => {
 					'src/components/NcAppSettings*/*.vue',
 					'src/components/NcAppSidebar*/*.vue',
 					'src/components/NcBreadcrumb*/*.vue',
+					'src/components/NcCheckboxRadioSwitch/NcCheckboxContent.vue',
 					'src/components/NcContent/*.vue',
 					'src/components/NcDashboard*/*.vue',
 					'src/components/NcDialog*/*.vue',
