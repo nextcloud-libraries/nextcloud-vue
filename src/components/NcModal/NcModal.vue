@@ -279,7 +279,7 @@ export default {
 				<div v-show="showModal"
 					:class="[
 						`modal-wrapper--${size}`,
-						spreadNavigation ? 'modal-wrapper--spread-navigation' : ''
+						{ 'modal-wrapper--spread-navigation': spreadNavigation },
 					]"
 					class="modal-wrapper"
 					@mousedown.self="handleClickModalWrapper">
