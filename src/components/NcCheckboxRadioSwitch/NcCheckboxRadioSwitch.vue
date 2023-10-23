@@ -287,6 +287,7 @@ export default {
 			icon-class="checkbox-radio-switch__icon"
 			text-class="checkbox-radio-switch__text"
 			:type="type"
+			:indeterminate="indeterminate"
 			:button-variant="buttonVariant"
 			:is-checked="isChecked"
 			:loading="loading"
