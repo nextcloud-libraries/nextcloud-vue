@@ -134,6 +134,7 @@ export default defineComponent({
 	name: 'NcDialog',
 
 	components: {
+		NcDialogButton,
 		NcModal,
 	},
 
@@ -338,8 +339,6 @@ export default defineComponent({
 		}))
 
 		return {
-			NcDialogButton,
-
 			handleButtonClose,
 			handleClosing,
 			handleClosed,
