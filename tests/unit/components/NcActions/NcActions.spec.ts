@@ -28,13 +28,11 @@ import NcActions from '../../../../src/components/NcActions/NcActions.vue'
 import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'
 import TestCompositionApi from './TestCompositionApi.vue'
 
-let wrapper
-
 describe('NcActions.vue', () => {
 	'use strict'
 	describe('when using the component with', () => {
 		it('no actions elements', () => {
-			wrapper = mount(NcActions, {
+			const wrapper = mount(NcActions, {
 				slots: {
 					default: [],
 				},
@@ -46,11 +44,36 @@ describe('NcActions.vue', () => {
 		 * Ensure NcActions work with Composition API components (nextcloud/nextcloud-vue#3719)
 		 */
 		it('composition API', () => {
-			wrapper = mount(TestCompositionApi)
+			const wrapper = mount(TestCompositionApi)
 			expect(wrapper.find('.action-item__menutoggle').exists()).toBe(true)
 		})
 
+		it('keeps attributes on the children', () => {
+			const wrapper = mount(NcActions, {
+				slots: {
+					default: [
+						'<NcActionButton data-test-id="button-test1">Test1</NcActionButton>',
+						'<NcActionButton data-test-id="button-test2">Test2</NcActionButton>',
+					],
+				},
+				propsData: {
+					inline: 1,
+				},
+				stubs: {
+					// used to register custom components
+					NcActionButton,
+				},
+			})
+
+			const buttons = wrapper.findAllComponents({ name: 'NcButton' })
+			expect(buttons).toHaveLength(2)
+			expect(buttons.at(0).attributes('data-test-id')).toBe('button-test1')
+			expect(buttons.at(1).classes('action-item__menutoggle')).toBe(true)
+		})
+
 		describe('one NcActionButton', () => {
+			let wrapper
+
 			beforeEach(() => {
 				wrapper = mount(NcActions, {
 					slots: {
@@ -74,6 +97,8 @@ describe('NcActions.vue', () => {
 		})
 
 		describe('two NcActionButtons', () => {
+			let wrapper
+
 			beforeEach(() => {
 				wrapper = mount(NcActions, {
 					slots: {
@@ -94,6 +119,8 @@ describe('NcActions.vue', () => {
 		})
 
 		describe('3 ActionButton with one inline', () => {
+			let wrapper
+
 			beforeEach(() => {
 				wrapper = mount(NcActions, {
 					slots: {

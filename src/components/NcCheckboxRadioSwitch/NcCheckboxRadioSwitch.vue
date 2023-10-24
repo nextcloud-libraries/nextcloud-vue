@@ -258,7 +258,8 @@ export default {
 </docs>
 
 <template>
-	<component :is="wrapperElement"
+	<component :is="computedWrapperElement"
+		:id="wrapperId"
 		:class="{
 			['checkbox-radio-switch-' + type]: type,
 			'checkbox-radio-switch--checked': isChecked,
@@ -267,67 +268,56 @@ export default {
 			'checkbox-radio-switch--button-variant': buttonVariant,
 			'checkbox-radio-switch--button-variant-v-grouped': buttonVariant && buttonVariantGrouped === 'vertical',
 			'checkbox-radio-switch--button-variant-h-grouped': buttonVariant && buttonVariantGrouped === 'horizontal',
+			'button-vue': isButtonType,
 		}"
+		class="checkbox-radio-switch"
 		:style="cssVars"
-		class="checkbox-radio-switch">
-		<input :id="id"
+		:type="isButtonType ? 'button' : null"
+		v-on="isButtonType ? listeners : null">
+		<input v-if="!isButtonType"
+			:id="id"
 			class="checkbox-radio-switch__input"
 			:disabled="disabled"
 			:type="inputType"
 			:value="value"
 			v-bind="inputProps"
-			v-on="inputListeners">
-		<label :for="id" class="checkbox-radio-switch__label">
-			<div class="checkbox-radio-switch__icon">
-				<!-- @slot The checkbox/radio icon, you can use it for adding an icon to the button variant
-						@binding {bool} checked The input checked state
-						@binding {bool} loading The loading state
-				-->
-				<slot name="icon"
-					:checked="isChecked"
-					:loading="loading">
-					<NcLoadingIcon v-if="loading" />
-					<component :is="checkboxRadioIconElement"
-						v-else-if="!buttonVariant"
-						:size="size" />
-				</slot>
-			</div>
+			v-on="listeners">
+		<NcCheckboxContent :id="id"
+			class="checkbox-radio-switch__content"
+			icon-class="checkbox-radio-switch__icon"
+			text-class="checkbox-radio-switch__text"
+			:type="type"
+			:indeterminate="indeterminate"
+			:button-variant="buttonVariant"
+			:is-checked="isChecked"
+			:loading="loading"
+			:size="size">
+			<template #icon>
+				<!-- @slot The checkbox/radio icon, you can use it for adding an icon to the button variant -->
+				<slot name="icon" />
+			</template>
 
 			<!-- @slot The checkbox/radio label -->
-			<span class="checkbox-radio-switch__label-text"><slot /></span>
-		</label>
+			<slot />
+		</NcCheckboxContent>
 	</component>
 </template>
 
 <script>
-import NcLoadingIcon from '../NcLoadingIcon/index.js'
+import NcCheckboxContent, { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxContent.vue'
 import GenRandomId from '../../utils/GenRandomId.js'
 import l10n from '../../mixins/l10n.js'
-
-import CheckboxBlankOutline from 'vue-material-design-icons/CheckboxBlankOutline.vue'
-import MinusBox from 'vue-material-design-icons/MinusBox.vue'
-import CheckboxMarked from 'vue-material-design-icons/CheckboxMarked.vue'
-import RadioboxMarked from 'vue-material-design-icons/RadioboxMarked.vue'
-import RadioboxBlank from 'vue-material-design-icons/RadioboxBlank.vue'
-import ToggleSwitchOff from 'vue-material-design-icons/ToggleSwitchOff.vue'
-import ToggleSwitch from 'vue-material-design-icons/ToggleSwitch.vue'
-
-export const TYPE_CHECKBOX = 'checkbox'
-export const TYPE_RADIO = 'radio'
-export const TYPE_SWITCH = 'switch'
-export const TYPE_BUTTON = 'button'
 
 export default {
 	name: 'NcCheckboxRadioSwitch',
 
 	components: {
-		NcLoadingIcon,
+		NcCheckboxContent,
 	},
 
 	mixins: [l10n],
 
 	props: {
-
 		/**
 		 * Unique id attribute of the input
 		 */
@@ -335,6 +325,14 @@ export default {
 			type: String,
 			default: () => 'checkbox-radio-switch-' + GenRandomId(),
 			validator: id => id.trim() !== '',
+		},
+
+		/**
+		 * Unique id attribute of the wrapper element
+		 */
+		wrapperId: {
+			type: String,
+			default: null,
 		},
 
 		/**
@@ -432,18 +430,36 @@ export default {
 
 		/**
 		 * Wrapping element tag
+		 *
+		 * When `type` is set to `button` this will be ignored
+		 *
+		 * Defaults to `span`
 		 */
 		wrapperElement: {
 			type: String,
-			default: 'span',
+			default: null,
 		},
 	},
 
 	emits: ['update:checked'],
 
 	computed: {
+		isButtonType() {
+			return this.type === TYPE_BUTTON
+		},
+
+		computedWrapperElement() {
+			if (this.isButtonType) {
+				return 'button'
+			}
+			if (this.wrapperElement !== null) {
+				return this.wrapperElement
+			}
+			return 'span'
+		},
+
 		inputProps() {
-			if (this.type === TYPE_BUTTON) {
+			if (this.isButtonType) {
 				return null
 			}
 			return {
@@ -454,8 +470,8 @@ export default {
 			}
 		},
 
-		inputListeners() {
-			if (this.type === TYPE_BUTTON) {
+		listeners() {
+			if (this.isButtonType) {
 				return {
 					click: this.onToggle,
 				}
@@ -468,7 +484,7 @@ export default {
 		/**
 		 * Icon size
 		 *
-		 @return {number}
+		 * @return {number}
 		 */
 		size() {
 			return this.type === TYPE_SWITCH
@@ -520,37 +536,6 @@ export default {
 				return this.checked === this.value
 			}
 			return this.checked === true
-		},
-
-		/**
-		 * Returns the proper Material icon depending on the select case
-		 *
-		 * @return {object}
-		 */
-		checkboxRadioIconElement() {
-			if (this.type === TYPE_RADIO) {
-				if (this.isChecked) {
-					return RadioboxMarked
-				}
-				return RadioboxBlank
-			}
-
-			// Switch
-			if (this.type === TYPE_SWITCH) {
-				if (this.isChecked) {
-					return ToggleSwitch
-				}
-				return ToggleSwitchOff
-			}
-
-			// Checkbox
-			if (this.indeterminate) {
-				return MinusBox
-			}
-			if (this.isChecked) {
-				return CheckboxMarked
-			}
-			return CheckboxBlankOutline
 		},
 	},
 
@@ -619,6 +604,11 @@ export default {
 .checkbox-radio-switch {
 	display: flex;
 	align-items: center;
+	color: var(--color-main-text);
+	background-color: transparent;
+	font-size: var(--default-font-size);
+	line-height: var(--default-line-height);
+	padding: 0;
 
 	&__input {
 		position: absolute;
@@ -630,64 +620,34 @@ export default {
 		margin: 4px $icon-margin;
 	}
 
-	&__input:focus-visible + label {
+	&__input:focus-visible + &__content {
 		outline: 2px solid var(--color-primary-element) !important;
 	}
 
-	&__label {
-		display: flex;
-		align-items: center;
-		flex-direction: row;
-		gap: 4px;
-		user-select: none;
-		min-height: $clickable-area;
-		border-radius: $clickable-area;
-		padding: 4px $icon-margin;
-		// Set to 100% to make text overflow work on button style
-		width: 100%;
-		// but restrict to content so plain checkboxes / radio switches do not expand
-		max-width: fit-content;
-
-		&, * {
-			cursor: pointer;
-		}
-
-		&-text:empty {
-			// hide text if empty to ensure checkbox outline is a circle instead of oval
-			display: none;
-		}
-	}
-
-	&__icon > * {
-		color: var(--color-primary-element);
-		width: var(--icon-size);
-		height: var(--icon-size);
-	}
-
-	&--disabled &__label {
+	&--disabled &__content {
 		opacity: $opacity_disabled;
-		.checkbox-radio-switch__icon > * {
+		:deep(.checkbox-radio-switch__icon) > * {
 			color: var(--color-main-text)
 		}
 	}
 
-	&:not(&--disabled, &--checked):focus-within &__label,
-	&:not(&--disabled, &--checked) &__label:hover {
+	&:not(&--disabled, &--checked):focus-within &__content,
+	&:not(&--disabled, &--checked) &__content:hover {
 		background-color: var(--color-background-hover);
 	}
 
-	&--checked:not(&--disabled):focus-within &__label,
-	&--checked:not(&--disabled) &__label:hover {
+	&--checked:not(&--disabled):focus-within &__content,
+	&--checked:not(&--disabled) &__content:hover {
 		background-color: var(--color-primary-element-light-hover);
 	}
 
 	// Switch specific rules
-	&-switch:not(&--checked) &__icon > * {
+	&-switch:not(&--checked) :deep(.checkbox-radio-switch__icon) > * {
 		color: var(--color-text-maxcontrast);
 	}
 
 	// If switch is checked AND disabled, use the fade primary colour
-	&-switch.checkbox-radio-switch--disabled.checkbox-radio-switch--checked &__icon > * {
+	&-switch.checkbox-radio-switch--disabled.checkbox-radio-switch--checked :deep(.checkbox-radio-switch__icon) > * {
 		color: var(--color-primary-element-light);
 	}
 
@@ -702,14 +662,14 @@ export default {
 		&--checked {
 			font-weight: bold;
 
-			label {
+			.checkbox-radio-switch__content {
 				background-color: var(--color-primary-element-light);
 			}
 		}
 	}
 
 	// Text overflow of button style
-	&--button-variant &__label-text {
+	&--button-variant :deep(.checkbox-radio-switch__text) {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
@@ -717,22 +677,22 @@ export default {
 	}
 
 	// Set icon color for non active elements to main text color
-	&--button-variant:not(&--checked) &__icon > * {
+	&--button-variant:not(&--checked) :deep(.checkbox-radio-switch__icon) > * {
 		color: var(--color-main-text);
 	}
 
 	// Hide icon container if empty to remove virtual padding
-	&--button-variant &__icon:empty {
+	&--button-variant :deep(.checkbox-radio-switch__icon:empty) {
 		display: none;
 	}
 
 	&--button-variant:not(&--button-variant-v-grouped):not(&--button-variant-h-grouped),
-	&--button-variant &__label {
+	&--button-variant &__content {
 		border-radius: $border-radius;
 	}
 
 	/* Special rules for vertical button groups */
-	&--button-variant-v-grouped &__label {
+	&--button-variant-v-grouped &__content {
 		flex-basis: 100%;
 		// vertically grouped buttons should all have the same width
 		max-width: unset;
@@ -750,7 +710,7 @@ export default {
 		// remove borders between elements
 		&:not(:last-of-type) {
 			border-bottom: 0!important;
-			.checkbox-radio-switch__label {
+			.checkbox-radio-switch__content {
 				margin-bottom: 2px;
 			}
 		}
@@ -773,7 +733,7 @@ export default {
 		// remove borders between elements
 		&:not(:last-of-type) {
 			border-right: 0!important;
-			.checkbox-radio-switch__label {
+			.checkbox-radio-switch__content {
 				margin-right: 2px;
 			}
 		}
@@ -781,10 +741,10 @@ export default {
 			border-left: 0!important;
 		}
 	}
-	&--button-variant-h-grouped &__label-text {
+	&--button-variant-h-grouped :deep(.checkbox-radio-switch__text) {
 		text-align: center;
 	}
-	&--button-variant-h-grouped &__label {
+	&--button-variant-h-grouped &__content {
 		flex-direction: column;
 		justify-content: center;
 		width: 100%;

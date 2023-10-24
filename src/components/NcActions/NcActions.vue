@@ -932,7 +932,11 @@ export default {
 		focusFirstAction(event) {
 			if (this.opened) {
 				this.preventIfEvent(event)
-				this.focusIndex = 0
+				// In case a button is considered aria-selected we will use this one as a initial focus
+				const firstSelectedIndex = [...this.$refs.menu.querySelectorAll(focusableSelector)].findIndex((button) => {
+					return button.parentElement.getAttribute('aria-selected')
+				})
+				this.focusIndex = firstSelectedIndex > -1 ? firstSelectedIndex : 0
 				this.focusAction()
 			}
 		},
@@ -1000,12 +1004,13 @@ export default {
 		/**
 		 * Render the provided action
 		 *
-		 * @param {object} action the action to render
+		 * @param {import('vue').VNode} action the action to render
 		 * @return {Function} the vue render function
 		 */
 		const renderInlineAction = (action) => {
 			const icon = action?.data?.scopedSlots?.icon()?.[0]
 				|| h('span', { class: ['icon', action?.componentOptions?.propsData?.icon] })
+			const attrs = action?.data?.attrs || {}
 			const clickListener = action?.componentOptions?.listeners?.click
 
 			const text = action?.componentOptions?.children?.[0]?.text?.trim?.()
@@ -1026,6 +1031,7 @@ export default {
 						action?.data?.class,
 					],
 					attrs: {
+						...attrs,
 						'aria-label': ariaLabel,
 						title,
 					},
@@ -1101,7 +1107,6 @@ export default {
 						boundary: this.boundariesElement,
 						container: this.container,
 						...this.manualOpen && { triggers: [] },
-						popoverBaseClass: 'action-item__popper',
 					},
 					on: {
 						show: this.openMenu,

@@ -954,14 +954,19 @@ export default {
 		},
 
 		localFilterBy() {
+			// Match the email notation like "Jane <j.doe@example.com>" with the email address as matching group
+			const EMAIL_NOTATION = /[^<]*<([^>]+)/
+
 			if (this.filterBy !== null) {
 				return this.filterBy
 			}
 			if (this.userSelect) {
 				return (option, label, search) => {
-					return (`${label} ${option.subname}` || '')
-						.toLocaleLowerCase()
-						.indexOf(search.toLocaleLowerCase()) > -1
+					const match = search.match(EMAIL_NOTATION)
+					return (match && option.subname?.toLocaleLowerCase?.()?.indexOf(match[1].toLocaleLowerCase()) > -1)
+						|| (`${label} ${option.subname}`
+							.toLocaleLowerCase()
+							.indexOf(search.toLocaleLowerCase()) > -1)
 				}
 			}
 			return VueSelect.props.filterBy.default

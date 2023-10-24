@@ -270,7 +270,7 @@ Just set the `pinned` prop.
 					:aria-description="ariaDescription"
 					:aria-expanded="opened.toString()"
 					:href="href || routerLinkHref || '#'"
-					:target="isExternal(href) ? '_blank' : ''"
+					:target="isExternal(href) ? '_blank' : undefined"
 					:title="title || name"
 					@blur="handleBlur"
 					@click="onClick($event, navigate, routerLinkHref)"
