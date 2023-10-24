@@ -279,7 +279,7 @@ export default {
 				<div v-show="showModal"
 					:class="[
 						`modal-wrapper--${size}`,
-						spreadNavigation ? 'modal-wrapper--spread-navigation' : ''
+						{ 'modal-wrapper--spread-navigation': spreadNavigation },
 					]"
 					class="modal-wrapper"
 					@mousedown.self="handleClickModalWrapper">
@@ -668,6 +668,11 @@ export default {
 		 */
 		handleKeydown(event) {
 			if (event.key === 'Escape') {
+				const trapStack = getTrapStack()
+				// Only close the most recent focus trap modal
+				if (trapStack.length > 0 && trapStack[trapStack.length - 1] !== this.focusTrap) {
+					return
+				}
 				return this.close(event)
 			}
 

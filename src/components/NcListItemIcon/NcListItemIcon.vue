@@ -132,11 +132,11 @@ It might be used for list rendering or within the multiselect for example
 		<div class="option__details">
 			<NcHighlight class="option__lineone"
 				:text="name"
-				:search="search" />
+				:search="searchParts[0]" />
 			<NcHighlight v-if="isValidSubname && isSizeBigEnough"
 				class="option__linetwo"
 				:text="subname"
-				:search="search" />
+				:search="searchParts[1]" />
 			<span v-else-if="hasStatus">
 				<span>{{ userStatus.icon }}</span>
 				<span>{{ userStatus.message }}</span>
@@ -307,6 +307,21 @@ export default {
 				'--height': this.avatarSize + 2 * margin + 'px',
 				'--margin': this.margin + 'px',
 			}
+		},
+
+		/**
+		 * Seperates the search property into two parts, the first one is the search part on the name, the second on the subname.
+		 * @return {[string, string]}
+		 */
+		searchParts() {
+			// Match the email notation like "Jane <j.doe@example.com>" with the email address as matching group
+			const EMAIL_NOTATION = /^([^<]*)<([^>]+)>?$/
+
+			const match = this.search.match(EMAIL_NOTATION)
+			if (this.isNoUser || !match) {
+				return [this.search, this.search]
+			}
+			return [match[1].trim(), match[2]]
 		},
 	},
 

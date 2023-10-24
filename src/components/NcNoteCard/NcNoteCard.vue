@@ -53,7 +53,7 @@ When using an error type,
 <template>
 	<div class="notecard"
 		:class="`notecard--${type}`"
-		:role="shouldShowAlert ? 'alert' : ''">
+		:role="shouldShowAlert ? 'alert' : 'note'">
 		<component :is="icon"
 			class="notecard__icon"
 			:class="{'notecard__icon--heading': heading}"
