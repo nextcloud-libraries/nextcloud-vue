@@ -29,18 +29,16 @@ It extends and styles an HTMLTextAreaElement.
 ```
 <template>
 	<div class="wrapper">
-		<NcTextArea label="Text area"
+		<NcTextArea v-model="text"
+			label="Text area"
 			placeholder="Placeholders are possible"
-			helper-text="This is a regular helper text." >
-		</NcTextArea>
+			helper-text="This is a regular helper text." />
 		<NcTextArea label="Success state"
-			:success="true">
-		</NcTextArea>
+			:success="true" />
 		<NcTextArea label="Error state"
 			placeholder="Enter something valid"
 			helper-text="Helper texts will be styled accordingly."
-			:error="true">
-		</NcTextArea>
+			:error="true" />
 		<NcTextArea label="Disabled"
 			:disabled="true" />
 		<NcTextArea label="Disabled + Success"
@@ -55,9 +53,18 @@ It extends and styles an HTMLTextAreaElement.
 		<NcTextArea label="Custom size and no resize"
 			resize="none"
 			rows="5" />
-		</NcTextArea>
 	</div>
 </template>
+
+<script>
+export default {
+	data() {
+		return {
+			text: 'This is text.',
+		}
+	},
+}
+</script>
 
 <style lang="scss" scoped>
 .wrapper {
@@ -100,8 +107,7 @@ It extends and styles an HTMLTextAreaElement.
 						'textarea__input--error': error,
 					}]"
 				:style="{ resize: resize }"
-				:value="value"
-				v-on="$listeners"
+				:value="modelValue"
 				@input="handleInput" />
 			<!-- Label -->
 			<label v-if="!labelOutside && isValidLabel"
@@ -144,7 +150,7 @@ export default {
 		/**
 		 * The value of the input field
 		 */
-		value: {
+		modelValue: {
 			type: String,
 			required: true,
 		},
@@ -233,11 +239,11 @@ export default {
 			type: String,
 			default: 'both',
 			validator: (value) => ['both', 'vertical', 'horizontal', 'none'].includes(value),
-		}
+		},
 	},
 
 	emits: [
-		'update:value',
+		'update:modelValue',
 	],
 
 	computed: {
@@ -297,7 +303,7 @@ export default {
 		},
 
 		handleInput(event) {
-			this.$emit('update:value', event.target.value)
+			this.$emit('update:modelValue', event.target.value)
 		},
 	},
 }

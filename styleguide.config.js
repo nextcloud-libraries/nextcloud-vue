@@ -190,7 +190,7 @@ module.exports = async () => {
 						name: 'NcFields',
 						components: [
 							'src/components/Nc*Field/*.vue',
-							// 'src/components/NcTextArea/*.vue',
+							'src/components/NcTextArea/*.vue',
 						],
 					},
 					{

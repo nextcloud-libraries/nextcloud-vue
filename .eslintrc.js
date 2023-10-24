@@ -28,7 +28,6 @@ module.exports = {
 		'src/components/NcModal*/*.vue',
 		'src/components/NcRelatedResourcesPanel*/*.vue',
 		'src/components/NcRich*/**/*.vue',
-		'src/components/NcTextArea/NcTextArea.vue',
 		'src/components/NcUserBubble*/*.vue',
 		'src/components/NcVNodes*/*.vue',
 		'src/utils/IsMobileState.js',
