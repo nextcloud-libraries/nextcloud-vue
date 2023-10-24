@@ -58,7 +58,10 @@ import ToggleSwitch from 'vue-material-design-icons/ToggleSwitch.vue'
 
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
-import { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxRadioSwitch.vue'
+export const TYPE_CHECKBOX = 'checkbox'
+export const TYPE_RADIO = 'radio'
+export const TYPE_SWITCH = 'switch'
+export const TYPE_BUTTON = 'button'
 
 export default {
 	name: 'NcCheckboxContent',

@@ -303,14 +303,9 @@ export default {
 </template>
 
 <script>
-import NcCheckboxContent from './NcCheckboxContent.vue'
+import NcCheckboxContent, { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxContent.vue'
 import GenRandomId from '../../utils/GenRandomId.js'
 import l10n from '../../mixins/l10n.js'
-
-export const TYPE_CHECKBOX = 'checkbox'
-export const TYPE_RADIO = 'radio'
-export const TYPE_SWITCH = 'switch'
-export const TYPE_BUTTON = 'button'
 
 export default {
 	name: 'NcCheckboxRadioSwitch',
