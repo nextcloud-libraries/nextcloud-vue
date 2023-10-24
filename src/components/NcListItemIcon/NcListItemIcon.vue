@@ -32,9 +32,7 @@ It might be used for list rendering or within the multiselect for example
 ```vue
 	<template>
 		<NcListItemIcon name="User 1" :avatar-size="44">
-			<template>
-				<Account :size="20" />
-			</template>
+			<Account :size="20" />
 		</NcListItemIcon>
 	</template>
 	<script>
@@ -52,9 +50,7 @@ It might be used for list rendering or within the multiselect for example
 ```vue
 	<template>
 		<NcListItemIcon name="Group 1" subname="13 members" :is-no-user="true">
-			<template>
-				<AccountMultiple :size="20" />
-			</template>
+			<AccountMultiple :size="20" />
 		</NcListItemIcon>
 	</template>
 	<script>
@@ -74,9 +70,7 @@ It might be used for list rendering or within the multiselect for example
 		<NcListItemIcon name="Test user 1" subname="callmetest@domain.com" search="test" />
 		<NcListItemIcon name="Testing admin" subname="testme@example.com" search="test" />
 		<NcListItemIcon name="Test group 2" subname="loremipsum@domain.com" :is-no-user="true" search="test">
-			<template>
-				<AccountMultiple :size="20" />
-			</template>
+			<AccountMultiple :size="20" />
 		</NcListItemIcon>
 	</template>
 	<script>
