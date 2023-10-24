@@ -129,6 +129,14 @@ export default {
 		},
 
 		/**
+		 * Indeterminate state
+		 */
+		indeterminate: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * Loading state
 		 */
 		loading: {
