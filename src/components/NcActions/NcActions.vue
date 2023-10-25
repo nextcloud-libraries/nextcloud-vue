@@ -575,7 +575,7 @@ import { t } from '../../l10n.js'
 
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
-import { h, Fragment, resolveComponent, warn } from 'vue'
+import { h, Fragment, warn } from 'vue'
 
 const focusableSelector = '.focusable'
 
@@ -1031,7 +1031,7 @@ export default {
 				title = text
 			}
 
-			return h(resolveComponent('NcButton'),
+			return h(NcButton,
 				{
 					class: 'action-item action-item--single',
 					'aria-label': ariaLabel,
@@ -1071,12 +1071,12 @@ export default {
 				? this.$slots.icon?.()
 				: (this.defaultIcon
 					? h('span', { class: ['icon', this.defaultIcon] })
-					: h(resolveComponent('DotsHorizontal'), { size: 20 })
+					: h(DotsHorizontal, { size: 20 })
 				)
 			const ariaExpandedForTrigger = () => {
 				return (isNav || this.opened) ? this.opened.toString() : null
 			}
-			return h(resolveComponent('NcPopover'),
+			return h(NcPopover,
 				{
 					ref: 'popover',
 					delay: 0,
@@ -1093,7 +1093,7 @@ export default {
 					onHide: this.closeMenu,
 				},
 				{
-					trigger: () => h(resolveComponent('NcButton'), {
+					trigger: () => h(NcButton, {
 						class: 'action-item__menutoggle',
 						type: this.triggerBtnType,
 						disabled: this.disabled,
