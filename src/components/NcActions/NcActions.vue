@@ -575,7 +575,7 @@ import { t } from '../../l10n.js'
 
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
-import { h, Fragment, warn } from 'vue'
+import { h, Fragment, warn, mergeProps } from 'vue'
 
 const focusableSelector = '.focusable'
 
@@ -1020,9 +1020,7 @@ export default {
 		 */
 		const renderInlineAction = (action) => {
 			const icon = action?.children?.icon?.()?.[0] || h('span', { class: ['icon', action?.props?.icon] })
-			const clickListener = action?.props?.onClick
 			const text = action?.children?.default?.()?.[0]?.children?.trim()
-			const ariaLabel = action?.props?.['aria-label'] || text
 			const buttonText = this.forceName ? text : ''
 
 			let title = action?.props?.title
@@ -1032,27 +1030,20 @@ export default {
 			}
 
 			return h(NcButton,
-				{
-					...action?.props,
-					class: ['action-item action-item--single', action?.props?.class],
-					'aria-label': ariaLabel,
-					title,
-					// If it has a menuName, we use a secondary button
-					type: this.type || (buttonText ? 'secondary' : 'tertiary'),
-					disabled: this.disabled || action?.props?.disabled,
-					ariaHidden: this.ariaHidden,
-					onFocus: this.onFocus,
-					onBlur: this.onBlur,
-					// If we have a click listener,
-					// we bind it to execute on click and forward the click event
-					...(!!clickListener && {
-						onClick: (event) => {
-							if (clickListener) {
-								clickListener(event)
-							}
-						},
-					}),
-				},
+				mergeProps(
+					action?.props,
+					{
+						class: 'action-item action-item--single',
+						'aria-label': action?.props?.['aria-label'] || text,
+						title,
+						// If it has a menuName, we use a secondary button
+						type: this.type || (buttonText ? 'secondary' : 'tertiary'),
+						disabled: this.disabled || action?.props?.disabled,
+						ariaHidden: this.ariaHidden,
+						onFocus: this.onFocus,
+						onBlur: this.onBlur,
+					}
+				),
 				{
 					default: () => buttonText,
 					icon: () => icon,
