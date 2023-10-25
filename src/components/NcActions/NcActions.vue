@@ -782,7 +782,7 @@ export default {
 			return ['NcActionButton', 'NcActionLink', 'NcActionRouter'].includes(action?.type?.name)
 		},
 		isAction(vnode) {
-			return vnode?.type?.name?.startsWith?.('NcAction')
+			return vnode.type?.name?.startsWith?.('NcAction')
 		},
 
 		// MENU STATE MANAGEMENT
@@ -979,8 +979,8 @@ export default {
 				return
 			}
 			// If we encounter a Fragment, we have to check its children too
-			if (vnode?.type === Fragment) {
-				vnode?.children?.forEach?.(child => {
+			if (vnode.type === Fragment) {
+				vnode.children?.forEach?.(child => {
 					if (this.isAction(child)) {
 						actions.push(child)
 					}
