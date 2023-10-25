@@ -704,7 +704,7 @@ export default {
 		 */
 		boundariesElement: {
 			type: Element,
-			default: () => document?.querySelector('body'),
+			default: () => document.querySelector('body'),
 		},
 
 		/**
