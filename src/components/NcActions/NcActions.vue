@@ -1031,16 +1031,17 @@ export default {
 				title = text
 			}
 
+			const classes = action?.props?.class ? [action?.props?.class, 'action-item action-item--single'] : 'action-item action-item--single'
 			return h(NcButton,
 				{
-					class: 'action-item action-item--single',
+					...action?.props,
+					class: classes,
 					'aria-label': ariaLabel,
 					title,
 					// If it has a menuName, we use a secondary button
 					type: this.type || (buttonText ? 'secondary' : 'tertiary'),
 					disabled: this.disabled || action?.props?.disabled,
 					ariaHidden: this.ariaHidden,
-					...action?.props,
 					onFocus: this.onFocus,
 					onBlur: this.onBlur,
 					// If we have a click listener,
