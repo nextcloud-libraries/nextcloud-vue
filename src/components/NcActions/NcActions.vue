@@ -1031,11 +1031,10 @@ export default {
 				title = text
 			}
 
-			const classes = action?.props?.class ? [action?.props?.class, 'action-item action-item--single'] : 'action-item action-item--single'
 			return h(NcButton,
 				{
 					...action?.props,
-					class: classes,
+					class: ['action-item action-item--single', action?.props?.class],
 					'aria-label': ariaLabel,
 					title,
 					// If it has a menuName, we use a secondary button
