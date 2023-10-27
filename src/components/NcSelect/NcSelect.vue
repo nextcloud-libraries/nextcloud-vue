@@ -1067,6 +1067,9 @@ body {
 
 	/* Transitions */
 	--vs-transition-duration: 0ms;
+
+	/* Actions */
+	--vs-actions-padding: 0 8px 0 4px;
 }
 
 .v-select.select {
@@ -1076,9 +1079,17 @@ body {
 	margin: 0;
 
 	.vs__selected {
-		min-height: 36px;
+		height: 32px;
 		padding: 0 0.5em;
 		border-radius: calc(var(--vs-border-radius) - 4px) !important;
+	}
+
+	.vs__search, .vs__search:focus {
+		margin: 2px 0 0;
+	}
+
+	.vs__dropdown-toggle {
+		padding: 0;
 	}
 
 	.vs__clear {
