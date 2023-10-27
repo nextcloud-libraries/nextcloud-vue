@@ -28,7 +28,7 @@ Use this component to display the related resources of a given item.
 ```
 <template>
 	<NcRelatedResourcesPanel provider-id="talk"
-							 :header="t('Related resources')"
+							 header="Related resources for talk"
 		:item-id="conversationId" />
 </template>
 
@@ -119,7 +119,6 @@ export default {
 		header: {
 			type: String,
 			default: t('Related resources'),
-
 		},
 	},
 
