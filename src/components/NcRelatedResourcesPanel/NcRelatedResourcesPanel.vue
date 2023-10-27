@@ -28,6 +28,7 @@ Use this component to display the related resources of a given item.
 ```
 <template>
 	<NcRelatedResourcesPanel provider-id="talk"
+							 :header="t('Related resources')"
 		:item-id="conversationId" />
 </template>
 
@@ -46,7 +47,7 @@ export default {
 <template>
 	<div v-if="appEnabled && isVisible" class="related-resources">
 		<div class="related-resources__header">
-			<h5>{{ headerTranslated }}</h5>
+			<h5>{{ header }}</h5>
 			<p>{{ description }}</p>
 		</div>
 
@@ -112,6 +113,14 @@ export default {
 			type: Object,
 			default: null,
 		},
+		/**
+		 * Make the header name dynamic
+		 */
+		header: {
+			type: String,
+			default: t('Related resources'),
+
+		},
 	},
 
 	emits: [
@@ -122,7 +131,6 @@ export default {
 	data() {
 		return {
 			appEnabled: OC?.appswebroots?.related_resources !== undefined,
-			headerTranslated: t('Related resources'),
 			loading: false,
 			error: null,
 			resources: [],
