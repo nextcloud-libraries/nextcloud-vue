@@ -336,7 +336,7 @@ export default {
 	margin-block-start: 6px; // for the label in active state
 
 	&__main-wrapper {
-		height: 38px; // 44px - 6px margin
+		height: var(--default-clickable-area);
 		position: relative;
 	}
 
@@ -348,7 +348,7 @@ export default {
 	&__input {
 		margin: 0;
 		padding-inline: 12px 6px; // align with label 8px margin label + 6px padding label - 2px border input
-		height: 38px !important;
+		height: var(--default-clickable-area) !important;
 		width: 100%;
 
 		font-size: var(--default-font-size);
@@ -392,11 +392,11 @@ export default {
 		}
 
 		&--leading-icon {
-			padding-inline-start: 32px;
+			padding-inline-start: var(--default-clickable-area);
 		}
 
 		&--trailing-icon {
-			padding-inline-end: 32px;
+			padding-inline-end: var(--default-clickable-area);
 		}
 
 		&--success {
@@ -441,7 +441,7 @@ export default {
 		height: 17px;
 		max-width: fit-content;
 		line-height: 1;
-		inset-block-start: 12px;
+		inset-block-start: 14px;
 		inset-inline: 0;
 		// Fix color so that users do not think the input already has content
 		color: var(--color-text-maxcontrast);
@@ -455,13 +455,11 @@ export default {
 		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick), background-color var(--animation-quick) var(--animation-slow);
 
 		&--leading-icon {
-			// 32px icon + 2px border
-			margin-inline-start: 34px;
+			margin-inline-start: var(--default-clickable-area);
 		}
 
 		&--trailing-icon {
-			// 32px icon + 2px border
-			margin-inline-end: 34px;
+			margin-inline-end: var(--default-clickable-area);
 		}
 	}
 
@@ -479,26 +477,26 @@ export default {
 
 		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick);
 		&--leading-icon {
-			margin-inline-start: 29px;
+			margin-inline-start: 41px;
 		}
 	}
 
 	&__icon {
 		position: absolute;
-		height: 32px;
-		width: 32px;
+		height: var(--default-clickable-area);
+		width: var(--default-clickable-area);
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		opacity: 0.7;
 
 		&--leading {
-			inset-block-end: 3px;
+			inset-block-end: 0;
 			inset-inline-start: 2px;
 		}
 
 		&--trailing {
-			inset-block-end: 3px;
+			inset-block-end: 0;
 			inset-inline-end: 2px;
 		}
 	}
