@@ -146,9 +146,9 @@ export default {
 		</div>
 		<!-- @slot Optional name if not set as property, shall be enclosed by a header element -->
 		<slot name="name">
-			<h2 v-if="hasName" class="empty-content__name">
+			<span v-if="hasName" class="empty-content__name">
 				{{ name }}
-			</h2>
+			</span>
 		</slot>
 		<p v-if="hasDescription">
 			<!-- @slot Optional formatted description rendered inside a paragraph -->
@@ -238,6 +238,9 @@ export default {
 	&__name {
 		margin-bottom: 10px;
 		text-align: center;
+		font-weight: bold;
+		font-size: 20px;
+		line-height: 30px;
 	}
 
 	&__action {
