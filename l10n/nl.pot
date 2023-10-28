@@ -285,7 +285,7 @@ msgid "Travel & Places"
 msgstr "Reizen & Plaatsen"
 
 msgid "Type to search time zone"
-msgstr "Type om de tijdzone te zoeken"
+msgstr "Type om een tijdzone te zoeken"
 
 msgid "Unable to search the group"
 msgstr "Kan niet zoeken in de groep"
