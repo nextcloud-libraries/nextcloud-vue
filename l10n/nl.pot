@@ -294,7 +294,7 @@ msgid "Undo changes"
 msgstr "Wijzigingen ongedaan maken"
 
 msgid "User status: {status}"
-msgstr "Status gebruiker: {status}"
+msgstr "Gebruikers status: {status}"
 
 msgid "Write a message …"
 msgstr "Schrijf een bericht..."
