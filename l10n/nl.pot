@@ -288,7 +288,7 @@ msgid "Type to search time zone"
 msgstr "Type om de tijdzone te zoeken"
 
 msgid "Unable to search the group"
-msgstr "Kan niet in de groep zoeken"
+msgstr "Kan niet zoeken in de groep"
 
 msgid "Undo changes"
 msgstr "Wijzigingen ongedaan maken"
