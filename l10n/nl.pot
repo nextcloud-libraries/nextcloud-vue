@@ -144,7 +144,7 @@ msgid "More items …"
 msgstr "Meer items..."
 
 msgid "More options"
-msgstr "Meer opties..."
+msgstr "Meer opties"
 
 msgid "Next"
 msgstr "Volgende"
