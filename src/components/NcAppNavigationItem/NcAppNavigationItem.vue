@@ -51,8 +51,13 @@
 ```
 * With a spinning loader instead of the icon:
 
-```
+```vue
 <NcAppNavigationItem name="Loading Item" :loading="true" />
+```
+* With an active state (only needed when not using `vue-router` and the `to` property, otherwise this is set automatically)
+
+```vue
+	<NcAppNavigationItem name="Current page" :active="true" />
 ```
 
 ### Element with actions
@@ -261,12 +266,13 @@ Just set the `pinned` prop.
 			<div :class="{
 					'app-navigation-entry--editing': editingActive,
 					'app-navigation-entry--deleted': undo,
-					'active': isActive && to,
+					'active': (isActive && to) || active,
 				}"
 				class="app-navigation-entry">
 				<!-- Icon and name -->
 				<a v-if="!undo"
 					class="app-navigation-entry-link"
+					:aria-current="active || (isActive && to) ? 'page' : undefined"
 					:aria-description="ariaDescription"
 					:aria-expanded="hasChildren ? opened.toString() : undefined"
 					:href="href || routerLinkHref || '#'"
@@ -390,6 +396,15 @@ export default {
 	mixins: [isMobile],
 
 	props: {
+		/**
+		 * If you are not using vue-router you can use the property to set this item as the active navigation entry.
+		 * When using vue-router and the `to` property this is set automatically.
+		 */
+		active: {
+			type: Boolean,
+			default: false,
+		},
+
 		/**
 		 * The main text content of the entry.
 		 */
