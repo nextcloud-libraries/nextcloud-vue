@@ -268,7 +268,7 @@ Just set the `pinned` prop.
 				<a v-if="!undo"
 					class="app-navigation-entry-link"
 					:aria-description="ariaDescription"
-					:aria-expanded="opened.toString()"
+					:aria-expanded="hasChildren ? opened.toString() : undefined"
 					:href="href || routerLinkHref || '#'"
 					:target="isExternal(href) ? '_blank' : undefined"
 					:title="title || name"
