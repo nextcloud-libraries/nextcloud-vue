@@ -233,7 +233,7 @@ export default {
 			type: String,
 			default: 'both',
 			validator: (value) => ['both', 'vertical', 'horizontal', 'none'].includes(value),
-		}
+		},
 	},
 
 	emits: [
