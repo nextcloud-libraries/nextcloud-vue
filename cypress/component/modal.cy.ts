@@ -1,11 +1,12 @@
-import { mount } from 'cypress/vue2'
+import { mount } from 'cypress/vue'
 import NcModal from '../../src/components/NcModal/NcModal.vue'
 import type { Component } from 'vue'
+import { h } from 'vue'
 
 describe('NcModal', () => {
 	it('close button is visible when content is scrolled', () => {
 		mount(NcModal, {
-			propsData: {
+			props: {
 				show: true,
 				size: 'small',
 				name: 'Name',
@@ -13,10 +14,10 @@ describe('NcModal', () => {
 			slots: {
 				// Create two div as children, first is 100vh = overflows the content, second just gets some data attribute so we can scroll into view
 				default: {
-					render: (h) =>
+					render: () =>
 						h('div', [
-							h('div', { style: 'height: 100vh;' }),
-							h('div', { attrs: { 'data-cy': 'bottom' } }),
+							h('div', { style: { height: '100vh' } }),
+							h('div', { 'data-cy': 'bottom' }),
 						]),
 				} as Component,
 			},

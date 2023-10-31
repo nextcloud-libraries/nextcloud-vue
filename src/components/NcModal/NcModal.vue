@@ -21,7 +21,7 @@
   -->
 
 <docs>
-For showing the modal you can use either `:show.sync="showModal"` or `v-if` on the `NcModal`,
+For showing the modal you can use either `v-model:show="showModal"` or `v-if` on the `NcModal`,
 depending on whether you require the Modal to stay within the DOM or not. Do not mix both, as this will break the out transition animation.
 
 ```vue
@@ -29,7 +29,7 @@ depending on whether you require the Modal to stay within the DOM or not. Do not
 	<div>
 		<NcButton @click="showModal">Show Modal</NcButton>
 		<NcModal
-			:show.sync="modal"
+			v-model:show="modal"
 			@close="closeModal"
 			size="small"
 			name="Name"
@@ -79,10 +79,10 @@ export default {
 			<div class="modal__content">
 				<h2>Please enter your name</h2>
 				<div class="form-group">
-					<NcTextField label="First Name" :value.sync="firstName" />
+					<NcTextField label="First Name" v-model="firstName" />
 				</div>
 				<div class="form-group">
-					<NcTextField label="Last Name" :value.sync="lastName" />
+					<NcTextField label="Last Name" v-model="lastName" />
 				</div>
 				<div class="form-group">
 					<label for="pizza">What is the most important pizza item?</label>
@@ -582,7 +582,7 @@ export default {
 	beforeMount() {
 		window.addEventListener('keydown', this.handleKeydown)
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		window.removeEventListener('keydown', this.handleKeydown)
 		this.mc.stop()
 	},
@@ -603,7 +603,7 @@ export default {
 			}
 		}
 	},
-	destroyed() {
+	unmounted() {
 		this.clearFocusTrap()
 		this.$el.remove()
 	},
@@ -1041,12 +1041,12 @@ export default {
 	transition: opacity 250ms;
 }
 
-.fade-enter,
+.fade-enter-from,
 .fade-leave-to {
 	opacity: 0;
 }
 
-.fade-visibility-enter,
+.fade-visibility-enter-from,
 .fade-visibility-leave-to {
 	visibility: hidden;
 	opacity: 0;
@@ -1059,9 +1059,9 @@ export default {
 	transition: opacity 250ms;
 }
 
-.modal-in-enter,
+.modal-in-enter-from,
 .modal-in-leave-to,
-.modal-out-enter,
+.modal-out-enter-from,
 .modal-out-leave-to {
 	opacity: 0;
 }
