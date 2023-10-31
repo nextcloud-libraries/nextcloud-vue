@@ -44,6 +44,9 @@ msgstr "Avatar de {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar de {displayName}, {status}"
 
+msgid "away"
+msgstr "ausente"
+
 msgid "Back"
 msgstr "Atrás"
 
@@ -88,6 +91,9 @@ msgstr "Confirma os cambios"
 
 msgid "Custom"
 msgstr "Personalizado"
+
+msgid "do not disturb"
+msgstr "non molestar"
 
 msgid "Edit item"
 msgstr "Editar o elemento"
@@ -152,6 +158,12 @@ msgstr "Sen resultados"
 
 msgid "Objects"
 msgstr "Obxectos"
+
+msgid "offline"
+msgstr "desconectado"
+
+msgid "online"
+msgstr "conectado"
 
 msgid "Open contact menu"
 msgstr "Abrir o menú de contactos"
@@ -278,6 +290,9 @@ msgstr "Non foi posíbel buscar o grupo"
 
 msgid "Undo changes"
 msgstr "Desfacer os cambios"
+
+msgid "User status: {status}"
+msgstr "Estado do usuario: {status}"
 
 msgid "Write a message …"
 msgstr "Escribir unha mensaxe…"

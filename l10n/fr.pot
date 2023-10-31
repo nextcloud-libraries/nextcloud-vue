@@ -1,12 +1,12 @@
 # 
 # Translators:
-# Joas Schilling, 2023
-# Ldm Public <ldmpub@gmail.com>, 2023
-# Transifex Bot <>, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Rémi LEBLOND, 2023
+# Mordecai, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2023\n"
+"Last-Translator: Mordecai, 2023\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -25,7 +25,7 @@ msgid "Actions"
 msgstr "Actions"
 
 msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgstr "Actions de l'entrée avec le nom \"{name}\""
 
 msgid "Activities"
 msgstr "Activités"
@@ -34,7 +34,7 @@ msgid "Animals & Nature"
 msgstr "Animaux & Nature"
 
 msgid "Any link"
-msgstr ""
+msgstr "N'importe quel lien"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
@@ -46,11 +46,14 @@ msgstr "Avatar de {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar de {displayName}, {status}"
 
+msgid "away"
+msgstr "absent"
+
 msgid "Back"
 msgstr "Retour"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Revenir à la sélection du fournisseur"
 
 msgid "Cancel changes"
 msgstr "Annuler les modifications"
@@ -80,7 +83,7 @@ msgid "Close sidebar"
 msgstr "Fermer la barre latérale"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Fermer le sélecteur intelligent"
 
 msgid "Collapse menu"
 msgstr "Réduire le menu"
@@ -90,6 +93,9 @@ msgstr "Confirmer les modifications"
 
 msgid "Custom"
 msgstr "Personnalisé"
+
+msgid "do not disturb"
+msgstr "ne pas déranger"
 
 msgid "Edit item"
 msgstr "Éditer l'élément"
@@ -101,6 +107,8 @@ msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"Erreur lors de la récupération des ressources liées. Contactez votre "
+"administrateur système pour répondre à vos éventuelles questions."
 
 msgid "External documentation for {name}"
 msgstr "Documentation externe pour {name}"
@@ -126,8 +134,8 @@ msgstr "Retourner à la liste"
 msgid "Hide password"
 msgstr "Cacher le mot de passe"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+msgid "Load more \"{options}\""
+msgstr "Charger d'avantage \"{options}\""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Limite de messages de {count} caractères atteinte"
@@ -145,7 +153,7 @@ msgid "No emoji found"
 msgstr "Pas d’émoji trouvé"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "Aucun fournisseur de lien trouvé"
 
 msgid "No results"
 msgstr "Aucun résultat"
@@ -153,11 +161,17 @@ msgstr "Aucun résultat"
 msgid "Objects"
 msgstr "Objets"
 
+msgid "offline"
+msgstr "hors ligne"
+
+msgid "online"
+msgstr "en ligne"
+
 msgid "Open contact menu"
 msgstr "Ouvrir le menu Contact"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "Ouvrir le lien vers \"{resourceName}\""
 
 msgid "Open menu"
 msgstr "Ouvrir le menu"
@@ -205,10 +219,10 @@ msgid "Previous"
 msgstr "Précédent"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "Icône du fournisseur"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Lien brut {options}"
 
 msgid "Related resources"
 msgstr "Ressources liées"
@@ -225,17 +239,20 @@ msgstr "Résultats de recherche"
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "il y a sec."
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "il y a secondes"
 
 msgid "Select a tag"
 msgstr "Sélectionnez une balise"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Sélectionner un fournisseur"
+
+msgid "Selected"
+msgstr "sélectionné"
 
 msgid "Settings"
 msgstr "Paramètres"
@@ -247,7 +264,7 @@ msgid "Show password"
 msgstr "Afficher le mot de passe"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "Sélecteur intelligent"
 
 msgid "Smileys & Emotion"
 msgstr "Smileys & Émotions"
@@ -256,7 +273,7 @@ msgid "Start slideshow"
 msgstr "Démarrer le diaporama"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Commencez à écrire pour rechercher"
 
 msgid "Submit"
 msgstr "Valider"
@@ -276,9 +293,8 @@ msgstr "Impossible de chercher le groupe"
 msgid "Undo changes"
 msgstr "Annuler les changements"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
-"Écrire un message, utiliser \"@\" pour mentionner une personne, \":\" pour "
-"l'autocomplétion des émojis..."
+msgid "User status: {status}"
+msgstr "Statut de l'utilisateur : {status}"
+
+msgid "Write a message …"
+msgstr "Ecrire un message..."

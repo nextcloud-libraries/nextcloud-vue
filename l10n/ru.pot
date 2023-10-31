@@ -2,10 +2,11 @@
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Max Smith <sevinfolds@gmail.com>, 2023
+# ashed <craysy@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Max Smith <sevinfolds@gmail.com>, 2023\n"
+"Last-Translator: ashed <craysy@gmail.com>, 2023\n"
 "Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
@@ -43,6 +44,9 @@ msgstr "Аватар {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
 msgstr "Фотография {displayName}, {status}"
+
+msgid "away"
+msgstr "отсутствие"
 
 msgid "Back"
 msgstr "Назад"
@@ -88,6 +92,9 @@ msgstr "Подтвердить изменения"
 
 msgid "Custom"
 msgstr "Пользовательское"
+
+msgid "do not disturb"
+msgstr "не беспокоить"
 
 msgid "Edit item"
 msgstr "Изменить элемент"
@@ -152,6 +159,12 @@ msgstr "Результаты отсуствуют"
 
 msgid "Objects"
 msgstr "Объекты"
+
+msgid "offline"
+msgstr "офлайн"
+
+msgid "online"
+msgstr "онлайн"
 
 msgid "Open contact menu"
 msgstr "Открыть меню контакта"
@@ -278,6 +291,9 @@ msgstr "Невозможно найти группу"
 
 msgid "Undo changes"
 msgstr "Отменить изменения"
+
+msgid "User status: {status}"
+msgstr "Статус пользователя: {status}"
 
 msgid "Write a message …"
 msgstr "Напиши сообщение …"
