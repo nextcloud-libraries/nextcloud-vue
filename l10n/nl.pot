@@ -1,11 +1,12 @@
 # 
 # Translators:
-# Joas Schilling, 2023
-# Transifex Bot <>, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Joost <joho500@hotmail.com>, 2023
+# Sean Molenaar <smillerdev@me.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2023\n"
+"Last-Translator: Sean Molenaar <smillerdev@me.com>, 2023\n"
 "Language-Team: Dutch (https://app.transifex.com/nextcloud/teams/64236/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nl\n"
@@ -18,13 +19,13 @@ msgid "{tag} (restricted)"
 msgstr "{tag} (beperkt)"
 
 msgid "a few seconds ago"
-msgstr ""
+msgstr "enkele seconden terug"
 
 msgid "Actions"
 msgstr "Acties"
 
 msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgstr "Actie voor item met naam \"{name}\""
 
 msgid "Activities"
 msgstr "Activiteiten"
@@ -33,10 +34,11 @@ msgid "Animals & Nature"
 msgstr "Dieren & Natuur"
 
 msgid "Any link"
-msgstr ""
+msgstr "Elke link"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
+"Alles dat gedeeld is met dezelfde groep mensen zal hier getoond worden"
 
 msgid "Avatar of {displayName}"
 msgstr "Avatar van {displayName}"
@@ -44,44 +46,47 @@ msgstr "Avatar van {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar van {displayName}, {status}"
 
+msgid "away"
+msgstr "weg"
+
 msgid "Back"
-msgstr ""
+msgstr "Terug"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Terug naar provider selectie"
 
 msgid "Cancel changes"
 msgstr "Wijzigingen annuleren"
 
 msgid "Change name"
-msgstr ""
+msgstr "Verander naam"
 
 msgid "Choose"
 msgstr "Kies"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Wis zoekopdracht"
 
 msgid "Clear text"
-msgstr ""
+msgstr "Wis tekst"
 
 msgid "Close"
 msgstr "Sluiten"
 
 msgid "Close modal"
-msgstr ""
+msgstr "Sluit modal"
 
 msgid "Close navigation"
 msgstr "Navigatie sluiten"
 
 msgid "Close sidebar"
-msgstr ""
+msgstr "Sluit sidebar"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Sluit Slimme Kiezer"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Klap menu in"
 
 msgid "Confirm changes"
 msgstr "Wijzigingen bevestigen"
@@ -89,22 +94,27 @@ msgstr "Wijzigingen bevestigen"
 msgid "Custom"
 msgstr "Aangepast"
 
+msgid "do not disturb"
+msgstr "niet storen"
+
 msgid "Edit item"
 msgstr "Item bewerken"
 
 msgid "Enter link"
-msgstr ""
+msgstr "Voer link in"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"Fout bij het verkrijgen van resources. Neem a.u.b. contact op met uw "
+"systeembeheerder als u vragen heeft."
 
 msgid "External documentation for {name}"
-msgstr ""
+msgstr "Externe documentatie voor {name}"
 
 msgid "Favorite"
-msgstr ""
+msgstr "Favoriet"
 
 msgid "Flags"
 msgstr "Vlaggen"
@@ -122,19 +132,19 @@ msgid "Go back to the list"
 msgstr "Ga terug naar de lijst"
 
 msgid "Hide password"
-msgstr ""
+msgstr "Verberg wachtwoord"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+msgid "Load more \"{options}\""
+msgstr "Laad meer \"{options}\""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Berichtlimiet van {count} karakters bereikt"
 
 msgid "More items …"
-msgstr ""
+msgstr "Meer items..."
 
 msgid "More options"
-msgstr ""
+msgstr "Meer opties"
 
 msgid "Next"
 msgstr "Volgende"
@@ -143,7 +153,7 @@ msgid "No emoji found"
 msgstr "Geen emoji gevonden"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "Geen link provider gevonden"
 
 msgid "No results"
 msgstr "Geen resultaten"
@@ -151,23 +161,29 @@ msgstr "Geen resultaten"
 msgid "Objects"
 msgstr "Objecten"
 
+msgid "offline"
+msgstr "offline"
+
+msgid "online"
+msgstr "online"
+
 msgid "Open contact menu"
-msgstr ""
+msgstr "Open contactenmenu"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "Open link naar \"{resourceName}\""
 
 msgid "Open menu"
-msgstr ""
+msgstr "Open menu"
 
 msgid "Open navigation"
 msgstr "Navigatie openen"
 
 msgid "Open settings menu"
-msgstr ""
+msgstr "Open instellingenmenu"
 
 msgid "Password is secure"
-msgstr ""
+msgstr "Wachtwoord is veilig"
 
 msgid "Pause slideshow"
 msgstr "Pauzeer diavoorstelling"
@@ -176,22 +192,22 @@ msgid "People & Body"
 msgstr "Mensen & Lichaam"
 
 msgid "Pick a date"
-msgstr ""
+msgstr "Selecteer een datum"
 
 msgid "Pick a date and a time"
-msgstr ""
+msgstr "Selecteer een datum en tijd"
 
 msgid "Pick a month"
-msgstr ""
+msgstr "Selecteer een maand"
 
 msgid "Pick a time"
-msgstr ""
+msgstr "Selecteer een tijd"
 
 msgid "Pick a week"
-msgstr ""
+msgstr "Selecteer een week"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "Selecteer een jaar"
 
 msgid "Pick an emoji"
 msgstr "Kies een emoji"
@@ -203,19 +219,19 @@ msgid "Previous"
 msgstr "Vorige"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "Provider icon"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Basis link {options}"
 
 msgid "Related resources"
-msgstr ""
+msgstr "Gerelateerde bronnen"
 
 msgid "Search"
 msgstr "Zoeken"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "Zoek emoji"
 
 msgid "Search results"
 msgstr "Zoekresultaten"
@@ -223,17 +239,20 @@ msgstr "Zoekresultaten"
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "sec. geleden"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "seconden geleden"
 
 msgid "Select a tag"
 msgstr "Selecteer een label"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Selecteer provider"
+
+msgid "Selected"
+msgstr "Geselecteerd"
 
 msgid "Settings"
 msgstr "Instellingen"
@@ -242,10 +261,10 @@ msgid "Settings navigation"
 msgstr "Instellingen navigatie"
 
 msgid "Show password"
-msgstr ""
+msgstr "Toon wachtwoord"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "Slimme Kiezer"
 
 msgid "Smileys & Emotion"
 msgstr "Smileys & Emotie"
@@ -254,7 +273,7 @@ msgid "Start slideshow"
 msgstr "Start diavoorstelling"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Start met typen om te zoeken"
 
 msgid "Submit"
 msgstr "Verwerken"
@@ -266,15 +285,16 @@ msgid "Travel & Places"
 msgstr "Reizen & Plaatsen"
 
 msgid "Type to search time zone"
-msgstr "Type om de tijdzone te zoeken"
+msgstr "Type om een tijdzone te zoeken"
 
 msgid "Unable to search the group"
-msgstr "Kan niet in de groep zoeken"
+msgstr "Kan niet zoeken in de groep"
 
 msgid "Undo changes"
 msgstr "Wijzigingen ongedaan maken"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
+msgid "User status: {status}"
+msgstr "Gebruikers status: {status}"
+
+msgid "Write a message …"
+msgstr "Schrijf een bericht..."
