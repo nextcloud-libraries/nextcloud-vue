@@ -979,9 +979,11 @@ export default {
 
 		const isNavLink = (action) => {
 			const componentName = action?.componentOptions?.Ctor?.extendOptions?.name ?? action?.componentOptions?.tag
+			const href = action?.componentOptions?.propsData?.href
 			return (
 				componentName === 'NcActionLink'
-				&& action?.componentOptions?.propsData?.href?.startsWith(window.location.origin)
+					&& !href?.startsWith('#')
+					&& new URL(href, window.location.origin).origin === window.location.origin
 			)
 		}
 		// Automatically detect whether all actions are website navigation links
