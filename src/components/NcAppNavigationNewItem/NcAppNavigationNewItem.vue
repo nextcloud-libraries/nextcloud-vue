@@ -175,7 +175,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .app-navigation-new-item__name {
 	overflow: hidden;
 	max-width: 100%;

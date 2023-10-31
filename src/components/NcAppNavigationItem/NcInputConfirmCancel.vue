@@ -130,7 +130,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 $input-height: 34px;
 $input-padding: 7px;
 $input-margin: 5px;
