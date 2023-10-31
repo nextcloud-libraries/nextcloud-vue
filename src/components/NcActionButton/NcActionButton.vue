@@ -211,7 +211,7 @@ export default {
 			<!-- default text display -->
 			<span v-else class="action-button__text">{{ text }}</span>
 
-			<!-- default text display -->
+			<!-- right arrow icon when there is a sub-menu -->
 			<ChevronRightIcon v-if="isMenu" class="action-button__menu-icon" />
 
 			<!-- fake slot to gather inner text -->
