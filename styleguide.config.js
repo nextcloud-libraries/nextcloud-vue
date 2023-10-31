@@ -118,7 +118,6 @@ module.exports = async () => {
 					'src/components/NcUserBubble/NcUserBubbleDiv.vue',
 
 					// Not yet adjusted for vue3
-					'src/components/NcHeaderMenu*/*.vue',
 					'src/components/NcRelatedResourcesPanel*/*.vue',
 					'src/components/NcRichContenteditable*/*.vue',
 					'src/components/NcUserBubble*/*.vue',

@@ -68,7 +68,7 @@ export { default as NcDialogButton } from './NcDialogButton/index.js'
 export { default as NcEmojiPicker } from './NcEmojiPicker/index.js'
 export { default as NcEmptyContent } from './NcEmptyContent/index.js'
 export { default as NcGuestContent } from './NcGuestContent/index.js'
-// export { default as NcHeaderMenu } from './NcHeaderMenu/index.js'
+export { default as NcHeaderMenu } from './NcHeaderMenu/index.js'
 export { default as NcHighlight } from './NcHighlight/index.js'
 export { default as NcIconSvgWrapper } from './NcIconSvgWrapper/index.js'
 // Not exported on purpose as it is only meant as a base component
