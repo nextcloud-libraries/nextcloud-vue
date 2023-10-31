@@ -47,7 +47,7 @@ export { default as NcActionTextEditable } from './NcActionTextEditable/index.js
 // export { default as NcAppSettingsSection } from './NcAppSettingsSection/index.js'
 // export { default as NcAppSidebar } from './NcAppSidebar/index.js'
 // export { default as NcAppSidebarTab } from './NcAppSidebarTab/index.js'
-// export { default as NcAvatar } from './NcAvatar/index.js'
+export { default as NcAvatar } from './NcAvatar/index.js'
 // export { default as NcBreadcrumb } from './NcBreadcrumb/index.js'
 // export { default as NcBreadcrumbs } from './NcBreadcrumbs/index.js'
 export { default as NcButton } from './NcButton/index.js'

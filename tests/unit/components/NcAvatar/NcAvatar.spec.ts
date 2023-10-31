@@ -21,6 +21,7 @@
  */
 
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import { nextTick } from 'vue'
 import NcAvatar from '../../../../src/components/NcAvatar/NcAvatar.vue'
 
@@ -33,7 +34,7 @@ describe('NcAvatar.vue', () => {
 		}
 
 		const wrapper = mount(NcAvatar, {
-			propsData: {
+			props: {
 				user: 'janedoe',
 				displayName: 'J. Doe',
 				preloadedUserStatus: status,
@@ -53,7 +54,7 @@ describe('NcAvatar.vue', () => {
 		}
 
 		const wrapper = mount(NcAvatar, {
-			propsData: {
+			props: {
 				user: 'janedoe',
 				displayName: 'J. Doe',
 				preloadedUserStatus: status,
@@ -74,7 +75,7 @@ describe('NcAvatar.vue', () => {
 		}
 
 		const wrapper = mount(NcAvatar, {
-			propsData: {
+			props: {
 				user: 'janedoe',
 				displayName: 'J. Doe',
 				preloadedUserStatus: status,

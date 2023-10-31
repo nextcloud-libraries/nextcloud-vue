@@ -124,7 +124,7 @@ export default {
 		v-on="hasMenu ? {
 			click: toggleMenu,
 			keydown: toggleMenu,
-		} : null">
+		} : {}">
 		<!-- @slot Icon slot -->
 		<slot name="icon">
 			<!-- Avatar icon or image -->
@@ -558,7 +558,7 @@ export default {
 		}
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		unsubscribe('settings:avatar:updated', this.loadAvatarUrl)
 		unsubscribe('settings:display-name:updated', this.loadAvatarUrl)
 		if (this.showUserStatus && this.user && !this.isNoUser) {
