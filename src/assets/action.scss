@@ -126,5 +126,13 @@
 			max-width: 100%;
 			display: inline-block;
 		}
+
+		&__menu-icon {
+			// Push to the right
+			margin-left: auto;
+			// Align with right end of the button
+			// This is the padding-right
+			margin-right: -$icon-margin;
+		}
 	}
 }
