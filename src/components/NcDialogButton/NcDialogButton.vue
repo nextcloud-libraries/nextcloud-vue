@@ -44,6 +44,11 @@ import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 export default defineComponent({
 	name: 'NcDialogButton',
 
+	components: {
+		NcButton,
+		NcIconSvgWrapper,
+	},
+
 	props: {
 		/**
 		 * The function that will be called when the button is pressed
@@ -95,12 +100,7 @@ export default defineComponent({
 			emit('click', e)
 		}
 
-		return {
-			NcButton,
-			NcIconSvgWrapper,
-
-			handleClick,
-		}
+		return { handleClick }
 	},
 })
 </script>
