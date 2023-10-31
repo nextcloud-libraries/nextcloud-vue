@@ -100,7 +100,6 @@ const overrides = defineConfig({
 			'./tests/unit/components/NcAvatar',
 			'./tests/unit/components/NcAppNavigation',
 			'./tests/unit/components/NcAppSidebar',
-			'./tests/unit/components/NcModal',
 			'./tests/unit/components/NcRichContenteditable',
 			'./tests/unit/components/NcRichText',
 			'./tests/unit/mixins/*',

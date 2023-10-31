@@ -24,7 +24,6 @@ module.exports = {
 		'src/components/NcDashboard*/*.vue',
 		'src/components/NcAvatar*/*.vue',
 		'src/components/NcHeaderMenu*/*.vue',
-		'src/components/NcModal*/*.vue',
 		'src/components/NcRelatedResourcesPanel*/*.vue',
 		'src/components/NcRich*/**/*.vue',
 		'src/components/NcUserBubble*/*.vue',
