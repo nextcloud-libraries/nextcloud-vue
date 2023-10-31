@@ -115,7 +115,7 @@
 		&__longtext {
 			cursor: pointer;
 			// allow the use of `\n`
-			white-space: pre-wrap;
+			white-space: pre-wrap !important;
 		}
 
 		&__name {
