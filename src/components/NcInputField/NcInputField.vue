@@ -371,7 +371,13 @@ export default {
 		&:active:not([disabled]),
 		&:hover:not([disabled]),
 		&:focus:not([disabled]) {
-			border-color: var(--color-primary-element);
+			border-color: 2px solid var(--color-main-text) !important;
+			box-shadow: 0 0 0 2px var(--color-main-background) !important;
+		}
+
+		&:focus + .input-field__label,
+		&:hover:not(:placeholder-shown) + .input-field__label {
+			color: var(--color-main-text);
 		}
 
 		// Hide placeholder while not focussed -> show label instead (only if internal label is used)
@@ -404,32 +410,12 @@ export default {
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 			}
-
-			// Align label text color with border color (on hover / focus)
-			&:focus + .input-field__label,
-			&:hover:not(:placeholder-shown) + .input-field__label {
-				color: var(--color-success-text);
-			}
 		}
 
 		&--error {
 			border-color: var(--color-error) !important; //Override hover border color
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
-			}
-
-			// Align label text color with border color (on hover / focus)
-			&:focus + .input-field__label,
-			&:hover:not(:placeholder-shown) + .input-field__label {
-				color: var(--color-error-text);
-			}
-		}
-
-		// Align label text color with border color (on hover / focus)
-		&:not(&--success, &--error) {
-			&:focus + .input-field__label,
-			&:hover:not(:placeholder-shown) + .input-field__label {
-				color: var(--color-primary-element);
 			}
 		}
 	}
