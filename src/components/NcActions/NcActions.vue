@@ -570,10 +570,12 @@ export default {
 import NcButton from '../NcButton/index.js'
 import NcPopover from '../NcPopover/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
+import isSlotPopulated from '../../utils/isSlotPopulated.js'
 import { t } from '../../l10n.js'
 
-import Vue from 'vue'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
+
+import { h, Fragment, warn, mergeProps } from 'vue'
 
 const focusableSelector = '.focusable'
 
@@ -777,8 +779,10 @@ export default {
 		 * @return {boolean}
 		 */
 		isValidSingleAction(action) {
-			const componentName = action?.componentOptions?.Ctor?.extendOptions?.name ?? action?.componentOptions?.tag
-			return ['NcActionButton', 'NcActionLink', 'NcActionRouter'].includes(componentName)
+			return ['NcActionButton', 'NcActionLink', 'NcActionRouter'].includes(action?.type?.name)
+		},
+		isAction(vnode) {
+			return vnode.type?.name?.startsWith?.('NcAction')
 		},
 
 		// MENU STATE MANAGEMENT
@@ -808,7 +812,7 @@ export default {
 
 			this.opened = false
 
-			this.$refs.popover.clearFocusTrap({ returnFocus })
+			this.$refs.popover?.clearFocusTrap({ returnFocus })
 
 			/**
 			 * Event emitted when the popover menu open state is changed
@@ -841,7 +845,7 @@ export default {
 		// this will prevent issues with input being unfocused
 		// on mouse move
 		onMouseFocusAction(event) {
-			if (document.activeElement === event.target) {
+			if (document?.activeElement === event.target) {
 				return
 			}
 
@@ -964,18 +968,25 @@ export default {
 	/**
 	 * The render function to display the component
 	 *
-	 * @param {Function} h The function to create VNodes
 	 * @return {object|undefined} The created VNode
 	 */
-	render(h) {
-		/**
-		 * Filter the Actions, so that we only get allowed components.
-		 * This also ensure that we don't get 'text' elements, which would
-		 * become problematic later on.
-		 */
-		const actions = (this.$slots.default || []).filter(
-			action => action?.componentOptions?.tag || action?.componentOptions?.Ctor?.extendOptions?.name,
-		)
+	render() {
+		const actions = []
+		// We have to iterate over all slot elements
+		this.$slots.default?.().forEach(vnode => {
+			if (this.isAction(vnode)) {
+				actions.push(vnode)
+				return
+			}
+			// If we encounter a Fragment, we have to check its children too
+			if (vnode.type === Fragment) {
+				vnode.children?.forEach?.(child => {
+					if (this.isAction(child)) {
+						actions.push(child)
+					}
+				})
+			}
+		})
 
 		const isNavLink = (action) => {
 			const componentName = action?.componentOptions?.Ctor?.extendOptions?.name ?? action?.componentOptions?.tag
@@ -992,7 +1003,7 @@ export default {
 		 */
 		let inlineActions = actions.filter(this.isValidSingleAction)
 		if (this.forceMenu && inlineActions.length > 0 && this.inline > 0) {
-			Vue.util.warn('Specifying forceMenu will ignore any inline actions rendering.')
+			warn('Specifying forceMenu will ignore any inline actions rendering.')
 			inlineActions = []
 		}
 
@@ -1008,59 +1019,35 @@ export default {
 		 * @return {Function} the vue render function
 		 */
 		const renderInlineAction = (action) => {
-			const icon = action?.data?.scopedSlots?.icon()?.[0]
-				|| h('span', { class: ['icon', action?.componentOptions?.propsData?.icon] })
-			const attrs = action?.data?.attrs || {}
-			const clickListener = action?.componentOptions?.listeners?.click
-
-			const text = action?.componentOptions?.children?.[0]?.text?.trim?.()
-			const ariaLabel = action?.componentOptions?.propsData?.ariaLabel || text
+			const icon = action?.children?.icon?.()?.[0] || h('span', { class: ['icon', action?.props?.icon] })
+			const text = action?.children?.default?.()?.[0]?.children?.trim()
 			const buttonText = this.forceName ? text : ''
 
-			let title = action?.componentOptions?.propsData?.title
+			let title = action?.props?.title
 			// Show a default title for single actions if none is present
 			if (!(this.forceName || title)) {
 				title = text
 			}
 
-			return h('NcButton',
-				{
-					class: [
-						'action-item action-item--single',
-						action?.data?.staticClass,
-						action?.data?.class,
-					],
-					attrs: {
-						...attrs,
-						'aria-label': ariaLabel,
+			return h(NcButton,
+				mergeProps(
+					action?.props,
+					{
+						class: 'action-item action-item--single',
+						'aria-label': action?.props?.['aria-label'] || text,
 						title,
-					},
-					ref: action?.data?.ref,
-					props: {
 						// If it has a menuName, we use a secondary button
 						type: this.type || (buttonText ? 'secondary' : 'tertiary'),
-						disabled: this.disabled || action?.componentOptions?.propsData?.disabled,
+						disabled: this.disabled || action?.props?.disabled,
 						ariaHidden: this.ariaHidden,
-						...action?.componentOptions?.propsData,
-					},
-					on: {
-						focus: this.onFocus,
-						blur: this.onBlur,
-						// If we have a click listener,
-						// we bind it to execute on click and forward the click event
-						...(!!clickListener && {
-							click: (event) => {
-								if (clickListener) {
-									clickListener(event)
-								}
-							},
-						}),
-					},
+						onFocus: this.onFocus,
+						onBlur: this.onBlur,
+					}
+				),
+				{
+					default: () => buttonText,
+					icon: () => icon,
 				},
-				[
-					h('template', { slot: 'icon' }, [icon]),
-					buttonText,
-				],
 			)
 		}
 
@@ -1071,97 +1058,66 @@ export default {
 		 * @return {Function} the vue render function
 		 */
 		const renderActionsPopover = (actions) => {
-			const triggerIcon = this.$slots.icon?.[0] || (
-				this.defaultIcon
+			const triggerIcon = isSlotPopulated(this.$slots.icon?.())
+				? this.$slots.icon?.()
+				: (this.defaultIcon
 					? h('span', { class: ['icon', this.defaultIcon] })
-					: h('DotsHorizontal', {
-						props: {
-							size: 20,
-						},
-					})
-			)
+					: h(DotsHorizontal, { size: 20 })
+				)
 			const ariaExpandedForTrigger = () => {
 				return (isNav || this.opened) ? this.opened.toString() : null
 			}
-			return h('NcPopover',
+			return h(NcPopover,
 				{
 					ref: 'popover',
-					props: {
-						delay: 0,
-						handleResize: true,
-						shown: this.opened,
-						placement: this.placement,
-						boundary: this.boundariesElement,
-						container: this.container,
-						popoverBaseClass: 'action-item__popper',
-						setReturnFocus: this.$refs.menuButton?.$el,
-					},
-					// For some reason the popover component
-					// does not react to props given under the 'props' key,
-					// so we use both 'attrs' and 'props'
-					attrs: {
-						delay: 0,
-						handleResize: true,
-						shown: this.opened,
-						placement: this.placement,
-						boundary: this.boundariesElement,
-						container: this.container,
-						...this.manualOpen && { triggers: [] },
-					},
-					on: {
-						show: this.openMenu,
-						'after-show': this.onOpen,
-						hide: this.closeMenu,
-					},
+					delay: 0,
+					handleResize: true,
+					shown: this.opened,
+					placement: this.placement,
+					boundary: this.boundariesElement,
+					container: this.container,
+					...this.manualOpen && { triggers: [] },
+					popoverBaseClass: 'action-item__popper',
+					setReturnFocus: this.$refs.menuButton?.$el,
+					onShow: this.openMenu,
+					onAfterShow: this.onOpen,
+					onHide: this.closeMenu,
 				},
-				[
-					h('NcButton', {
+				{
+					trigger: () => h(NcButton, {
 						class: 'action-item__menutoggle',
-						props: {
-							type: this.triggerBtnType,
-							disabled: this.disabled,
-							ariaHidden: this.ariaHidden,
-						},
-						slot: 'trigger',
+						type: this.triggerBtnType,
+						disabled: this.disabled,
+						ariaHidden: this.ariaHidden,
 						ref: 'menuButton',
-						attrs: {
-							'aria-haspopup': isNav ? null : 'menu',
-							'aria-label': this.menuName ? null : this.ariaLabel,
-							'aria-controls': this.opened ? this.randomId : null,
-							'aria-expanded': ariaExpandedForTrigger(),
-						},
-						on: {
-							focus: this.onFocus,
-							blur: this.onBlur,
-						},
-					}, [
-						h('template', { slot: 'icon' }, [triggerIcon]),
-						this.menuName,
-					]),
-					h('div', {
+						'aria-haspopup': isNav ? null : 'menu',
+						'aria-label': this.menuName ? null : this.ariaLabel,
+						'aria-controls': this.opened ? this.randomId : null,
+						'aria-expanded': ariaExpandedForTrigger(),
+						onFocus: this.onFocus,
+						onBlur: this.onBlur,
+					}, {
+						icon: () => triggerIcon,
+						default: () => this.menuName,
+					}),
+					default: () => h('div', {
 						class: {
 							open: this.opened,
 						},
-						attrs: {
-							tabindex: '-1',
-						},
-						on: {
-							keydown: this.onKeydown,
-							mousemove: this.onMouseFocusAction,
-						},
+						tabindex: '-1',
+						onKeydown: this.onKeydown,
+						onMousemove: this.onMouseFocusAction,
 						ref: 'menu',
 					}, [
 						h('ul', {
-							attrs: {
-								id: this.randomId,
-								tabindex: '-1',
-								role: isNav ? null : 'menu',
-							},
+							id: this.randomId,
+							tabindex: '-1',
+							role: isNav ? null : 'menu',
 						}, [
 							actions,
 						]),
 					]),
-				],
+				},
 			)
 		}
 
