@@ -26,35 +26,32 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 
 ```vue
 	<template>
-		<div style="display: flex; align-items: center;">
-			<NcActions>
-				<NcActionButton @click="showMessage('Delete')">
-					<template #icon>
-						<Delete :size="20" />
-					</template>
-					Delete
-				</NcActionButton>
-				<NcActionButton :close-after-click="true" @click="showMessage('Delete and close menu')">
-					<template #icon>
-						<Delete :size="20" />
-					</template>
-					Delete and close
-				</NcActionButton>
-				<NcActionButton :close-after-click="true" @click="focusInput">
-					<template #icon>
-						<Plus :size="20" />
-					</template>
-					Create
-				</NcActionButton>
-				<NcActionButton :disabled="true" @click="showMessage('Disabled')">
-					<template #icon>
-						<Delete :size="20" />
-					</template>
-					Disabled button
-				</NcActionButton>
-			</NcActions>
-			<input ref="input" />
-		</div>
+		<NcActions>
+			<NcActionButton @click="showMessage('Delete')">
+				<template #icon>
+					<Delete :size="20" />
+				</template>
+				Delete
+			</NcActionButton>
+			<NcActionButton :close-after-click="true" @click="showMessage('Delete and close menu')">
+				<template #icon>
+					<Delete :size="20" />
+				</template>
+				Delete and close
+			</NcActionButton>
+			<NcActionButton :is-menu="true">
+				<template #icon>
+					<Plus :size="20" />
+				</template>
+				Create
+			</NcActionButton>
+			<NcActionButton :disabled="true" @click="showMessage('Disabled')">
+				<template #icon>
+					<Delete :size="20" />
+				</template>
+				Disabled button
+			</NcActionButton>
+		</NcActions>
 	</template>
 	<script>
 	import Delete from 'vue-material-design-icons/Delete'
@@ -68,9 +65,6 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 		methods: {
 			showMessage(msg) {
 				alert(msg)
-			},
-			focusInput() {
-				this.$nextTick(() => this.$refs.input.focus())
 			},
 		},
 	}
@@ -217,6 +211,9 @@ export default {
 			<!-- default text display -->
 			<span v-else class="action-button__text">{{ text }}</span>
 
+			<!-- right arrow icon when there is a sub-menu -->
+			<ChevronRightIcon v-if="isMenu" class="action-button__menu-icon" />
+
 			<!-- fake slot to gather inner text -->
 			<slot v-if="false" />
 		</button>
@@ -224,6 +221,7 @@ export default {
 </template>
 
 <script>
+import ChevronRightIcon from 'vue-material-design-icons/ChevronRight.vue'
 import ActionTextMixin from '../../mixins/actionText.js'
 
 /**
@@ -232,6 +230,9 @@ import ActionTextMixin from '../../mixins/actionText.js'
 export default {
 	name: 'NcActionButton',
 
+	components: {
+		ChevronRightIcon,
+	},
 	mixins: [ActionTextMixin],
 
 	props: {
@@ -242,12 +243,22 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * aria-hidden attribute for the icon slot
 		 */
 		ariaHidden: {
 			type: Boolean,
 			default: null,
+		},
+
+		/**
+		 * If this is a menu, a chevron icon will
+		 * be added at the end of the line
+		 */
+		isMenu: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	computed: {
