@@ -22,7 +22,6 @@ module.exports = {
 		'src/components/NcBreadcrumb*/*.vue',
 		'src/components/NcContent/*.vue',
 		'src/components/NcDashboard*/*.vue',
-		'src/components/NcAvatar*/*.vue',
 		'src/components/NcHeaderMenu*/*.vue',
 		'src/components/NcRelatedResourcesPanel*/*.vue',
 		'src/components/NcRich*/**/*.vue',
