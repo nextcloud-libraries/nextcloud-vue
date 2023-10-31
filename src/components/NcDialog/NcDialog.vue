@@ -30,7 +30,7 @@ This component uses the `NcModal` under the hood for allowing users to create ge
 <template>
 	<div>
 		<NcButton @click="showDialog = true">Show dialog</NcButton>
-		<NcDialog :open.sync="showDialog" name="Confirmation" message="Are you sure to proceed?" :buttons="buttons" />
+		<NcDialog v-model:open="showDialog" name="Confirmation" message="Are you sure to proceed?" :buttons="buttons" />
 		<p>Last response: {{ lastResponse }}</p>
 	</div>
 </template>
