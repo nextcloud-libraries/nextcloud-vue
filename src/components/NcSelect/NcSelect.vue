@@ -1143,6 +1143,9 @@ body {
 			.vs__selected {
 				// Fix `max-width` for `position: absolute`
 				max-width: 100%;
+				// Fix color to be accessible
+				opacity: 1;
+				color: var(--color-text-maxcontrast);
 			}
 		}
 		.vs__selected-options {
