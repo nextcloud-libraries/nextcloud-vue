@@ -19,7 +19,6 @@ module.exports = {
 		'src/components/NcAppNavigation*/*.vue',
 		'src/components/NcAppSettings*/*.vue',
 		'src/components/NcAppSidebar*/*.vue',
-		'src/components/NcBreadcrumb*/*.vue',
 		'src/components/NcContent/*.vue',
 		'src/components/NcDashboard*/*.vue',
 		'src/components/NcRelatedResourcesPanel*/*.vue',
