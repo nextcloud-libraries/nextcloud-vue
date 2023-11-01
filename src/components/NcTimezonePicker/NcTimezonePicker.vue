@@ -41,7 +41,8 @@ export default {
 </docs>
 
 <template>
-	<NcSelect :value="selectedTimezone"
+	<NcSelect :uid="uid"
+		:value="selectedTimezone"
 		:options="options"
 		:multiple="false"
 		:clearable="false"
@@ -58,6 +59,7 @@ import {
 	getSortedTimezoneList,
 } from './timezone.js'
 import getTimezoneManager from './timezoneDataProviderService.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 import NcSelect from '../NcSelect/index.js'
 import { t } from '../../l10n.js'
 
@@ -80,6 +82,13 @@ export default {
 		value: {
 			type: String,
 			default: 'floating',
+		},
+		/**
+		 * ID of the inner vue-select element, can be used for labels like: `vs-${uid}__combobox`
+		 */
+		uid: {
+			type: [String, Number],
+			default: () => `tz-${GenRandomId(5)}`,
 		},
 	},
 	emits: ['input'],
