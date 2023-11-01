@@ -192,8 +192,7 @@ module.exports = async () => {
 					{
 						name: 'NcListItems',
 						components: [
-							//'src/components/NcListItem*/*.vue',
-							'src/components/NcListItemIcon/*.vue',
+							'src/components/NcListItem*/*.vue',
 						],
 					},
 					{

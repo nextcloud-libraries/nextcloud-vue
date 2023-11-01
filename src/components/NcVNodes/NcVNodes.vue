@@ -35,11 +35,10 @@ export default {
 	/**
 	 * The render function to display the component
 	 *
-	 * @param {Function} h The function to create VNodes
 	 * @return {object} The created VNode
 	 */
-	render(h) {
-		return this.vnodes || this.$slots?.default || this.$scopedSlots?.default?.()
+	render() {
+		return this.vnodes || this.$slots?.default?.({})
 	},
 }
 </script>

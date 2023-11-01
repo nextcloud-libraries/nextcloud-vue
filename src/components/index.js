@@ -74,8 +74,7 @@ export { default as NcIconSvgWrapper } from './NcIconSvgWrapper/index.js'
 // Not exported on purpose as it is only meant as a base component
 // export { default as NcInputField } from './NcInputField/index.js'
 
-// Not yet adjusted for vue3
-// export { default as NcListItem } from './NcListItem/index.js'
+export { default as NcListItem } from './NcListItem/index.js'
 export { default as NcListItemIcon } from './NcListItemIcon/index.js'
 export { default as NcLoadingIcon } from './NcLoadingIcon/index.js'
 export { default as NcModal } from './NcModal/index.js'
