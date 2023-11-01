@@ -28,8 +28,8 @@ Providing an icon, name, and a description is strongly advised.
 
 ```
 <template>
-	<NcEmptyContent
-		name="No comments">
+	<NcEmptyContent name="No comments"
+		description="Start writing comments and they will appear here.">
 		<template #icon>
 			<Comment />
 		</template>
@@ -150,7 +150,7 @@ export default {
 				{{ name }}
 			</span>
 		</slot>
-		<p v-if="hasDescription">
+		<p v-if="hasDescription" class="empty-content__description">
 			<!-- @slot Optional formatted description rendered inside a paragraph -->
 			<slot name="description">
 				{{ description }}
@@ -241,6 +241,10 @@ export default {
 		font-weight: bold;
 		font-size: 20px;
 		line-height: 30px;
+	}
+
+	&__description {
+		color: var(--color-text-maxcontrast);
 	}
 
 	&__action {
