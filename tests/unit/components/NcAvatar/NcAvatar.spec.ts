@@ -20,7 +20,7 @@
  *
  */
 
-import { mount } from '@vue/test-utils'
+import { mount, shallowMount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 import NcAvatar from '../../../../src/components/NcAvatar/NcAvatar.vue'
 
@@ -86,5 +86,49 @@ describe('NcAvatar.vue', () => {
 
 		expect(wrapper.find('.avatardiv__user-status').exists()).toBe(false)
 		expect(wrapper.attributes('aria-label')).toBe('Avatar of J. Doe')
+	})
+
+	it('should display initials for user id', async () => {
+		const wrapper = shallowMount(NcAvatar, {
+			propsData: {
+				user: 'Jane Doe',
+				isNoUser: true,
+			},
+		})
+		await nextTick()
+		expect(wrapper.text()).toBe('JD')
+	})
+
+	it('should display initials for display name property over user id', async () => {
+		const wrapper = shallowMount(NcAvatar, {
+			propsData: {
+				displayName: 'No User',
+				user: 'I am a group',
+				isNoUser: true,
+			},
+		})
+		await nextTick()
+		expect(wrapper.text()).toBe('NU')
+	})
+
+	describe('Fallback initials', () => {
+		it.each`
+			displayName             | initials | case
+			${''}                   | ${'?'}   | ${'empty user'}
+			${'Jane Doe'}           | ${'JD'}  | ${'display name property'}
+			${'Jane (Doe)'}         | ${'JD'}  | ${'special characters in name'}
+			${'jane doe'}           | ${'JD'}  | ${'lower case name'}
+			${'Jane Some Name Doe'} | ${'JD'}  | ${'middle names'}
+			${'Ümit Öçal'}          | ${'ÜÖ'}  | ${'non ascii characters'}
+			${'ジェーン ドー'}        | ${'ジド'} | ${'non latin characters'}
+		`('should display initials for $case ("$displayName" -> "$initials")', async ({ displayName, initials }) => {
+			const wrapper = shallowMount(NcAvatar, {
+				propsData: {
+					displayName,
+				},
+			})
+			await nextTick()
+			expect(wrapper.text()).toBe(initials)
+		})
 	})
 })
