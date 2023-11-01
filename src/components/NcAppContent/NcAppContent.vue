@@ -388,6 +388,8 @@ export default {
 :deep(.splitpanes.default-theme) {
 	.app-content-list {
 		max-width: none;
+		/* Thin scrollbar is hard to catch on resizable columns */
+		scrollbar-width: auto;
 	}
 
 	.splitpanes__pane {
