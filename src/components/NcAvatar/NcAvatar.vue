@@ -474,7 +474,7 @@ export default {
 		},
 		tooltip() {
 			if (this.disableTooltip) {
-				return false
+				return null
 			}
 			if (this.tooltipMessage) {
 				return this.tooltipMessage
