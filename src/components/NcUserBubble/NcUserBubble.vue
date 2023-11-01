@@ -166,10 +166,10 @@ export default {
 		url: {
 			type: String,
 			default: undefined,
-			validator: url => {
+			validator: (url) => {
 				try {
-					url = new URL(url)
-					return !!url
+					url = new URL(url, url?.startsWith?.('/') ? window.location.href : undefined)
+					return true
 				} catch (error) {
 					return false
 				}
