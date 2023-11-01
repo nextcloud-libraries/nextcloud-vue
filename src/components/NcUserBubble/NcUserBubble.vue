@@ -36,7 +36,7 @@ This component has the following slot:
 
 ```vue
 <p>
-	Some text before <NcUserBubble user="admin" display-name="Admin Example" :url="'/test'">@admin@foreign-host.com</NcUserBubble> and after the bubble.
+	Some text before <NcUserBubble user="admin" display-name="Admin Example" url="/test">@admin@foreign-host.com</NcUserBubble> and after the bubble.
 	<NcUserBubble avatar-image="icon-group" display-name="test group xyz" :primary="true">Hey there!</NcUserBubble>
 </p>
 ```
@@ -58,7 +58,15 @@ This component has the following slot:
 	</template>
 </NcUserBubble>
 </template>
-
+<script>
+export default {
+	methods: {
+		alert() {
+			alert('Removed')
+		},
+	},
+}
+</script>
 <style>
 .icon-close {
 	display: block;
