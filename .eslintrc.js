@@ -15,7 +15,6 @@ module.exports = {
 		'cypress',
 	],
 	ignorePatterns: [
-		'src/components/NcDashboard*/*.vue',
 		'src/components/NcRich*/**/*.vue',
 	],
 	parserOptions: {

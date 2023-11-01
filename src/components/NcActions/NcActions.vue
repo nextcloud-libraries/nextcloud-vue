@@ -1224,20 +1224,19 @@ export default {
 	render() {
 		const actions = []
 		// We have to iterate over all slot elements
-		this.$slots.default?.().forEach(vnode => {
-			if (this.isAction(vnode)) {
-				actions.push(vnode)
-				return
-			}
-			// If we encounter a Fragment, we have to check its children too
-			if (vnode.type === Fragment) {
-				vnode.children?.forEach?.(child => {
-					if (this.isAction(child)) {
-						actions.push(child)
-					}
-				})
-			}
-		})
+		const findActions = (vnodes, actions) => {
+			vnodes.forEach(vnode => {
+				if (this.isAction(vnode)) {
+					actions.push(vnode)
+					return
+				}
+				// If we encounter a Fragment, we have to check its children too
+				if (vnode.type === Fragment) {
+					findActions(vnode.children, actions)
+				}
+			})
+		}
+		findActions(this.$slots.default?.(), actions)
 
 		const getActionName = (action) => action?.type?.name
 

@@ -168,12 +168,12 @@ module.exports = async () => {
 							'src/components/NcBreadcrumb*/*.vue',
 						],
 					},
-				// 	{
-				// 		name: 'NcDashboard',
-				// 		components: [
-				// 			'src/components/NcDashboard*/*.vue',
-				// 		],
-				// 	},
+					{
+						name: 'NcDashboard',
+						components: [
+							'src/components/NcDashboard*/*.vue',
+						],
+					},
 					{
 						name: 'NcDialog',
 						components: [
