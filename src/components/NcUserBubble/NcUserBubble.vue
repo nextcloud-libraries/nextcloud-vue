@@ -123,6 +123,7 @@ export default {
 import NcUserBubbleDiv from './NcUserBubbleDiv.vue'
 import NcAvatar from '../NcAvatar/index.js'
 import NcPopover from '../NcPopover/index.js'
+import Vue from 'vue'
 
 export default {
 	name: 'NcUserBubble',
@@ -151,7 +152,7 @@ export default {
 		 */
 		displayName: {
 			type: String,
-			required: true,
+			default: undefined,
 		},
 		/**
 		 * Whether or not to display the user-status
@@ -277,6 +278,11 @@ export default {
 				},
 			}
 		},
+	},
+	mounted() {
+		if (!this.displayName && !this.user) {
+			Vue.util.warn('[NcUserBubble] At least `displayName` or `user` property should be set.')
+		}
 	},
 	methods: {
 		onOpenChange(state) {
