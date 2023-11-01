@@ -10,12 +10,13 @@ export default defineConfig({
 	env: {
 		failSilently: false,
 		type: 'actual',
-		screenshotsFolder: './cypress/snapshots/actual',
 		SNAPSHOT_BASE_DIRECTORY: './cypress/snapshots/base',
 		SNAPSHOT_DIFF_DIRECTORY: './cypress/snapshots/diff',
 		INTEGRATION_FOLDER: 'cypress/visual/',
 		trashAssetsBeforeRuns: true,
 	},
+
+	screenshotsFolder: './cypress/snapshots/actual',
 
 	component: {
 		setupNodeEvents(on, config) {

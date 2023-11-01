@@ -28,7 +28,7 @@ Use this component to display the related resources of a given item.
 ```
 <template>
 	<NcRelatedResourcesPanel provider-id="talk"
-							 header="Related resources for talk"
+		header="Related resources for talk"
 		:item-id="conversationId" />
 </template>
 
@@ -48,7 +48,7 @@ export default {
 	<div v-if="appEnabled && isVisible" class="related-resources">
 		<div class="related-resources__header">
 			<h5>{{ header }}</h5>
-			<p>{{ description }}</p>
+			<p>{{ subline }}</p>
 		</div>
 
 		<NcResource v-for="resource in resources"
@@ -120,6 +120,17 @@ export default {
 			type: String,
 			default: t('Related resources'),
 		},
+		description: {
+			type: String,
+			default: t('Anything shared with the same group of people will show up here'),
+		},
+		/**
+		 * If this element is used on a primary element set to true for primary styling.
+		 */
+		primary: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	emits: [
@@ -143,12 +154,11 @@ export default {
 			}
 			return this.error ?? this.resources.length > 0
 		},
-
-		description() {
+		subline() {
 			if (this.error) {
 				return t('Error getting related resources. Please contact your system administrator if you have any questions.')
 			}
-			return t('Anything shared with the same group of people will show up here')
+			return this.description
 		},
 
 		hasResourceInfo() {
