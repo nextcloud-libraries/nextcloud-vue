@@ -92,7 +92,7 @@ export default {
 }
 </script>
 
- <style lang="scss" scoped>
+<style lang="scss" scoped>
 /* 'New' button */
 .app-navigation-new {
 	display: block;
