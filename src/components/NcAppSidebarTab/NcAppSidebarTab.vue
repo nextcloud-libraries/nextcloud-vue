@@ -27,7 +27,8 @@
 	<section :id="`tab-${id}`"
 		:class="{'app-sidebar__tab--active': isActive}"
 		:aria-hidden="!isActive"
-		:aria-labelledby="`tab-button-${id}`"
+		:aria-label="isTablistShown() ? undefined : name"
+		:aria-labelledby="isTablistShown() ? `tab-button-${id}` : undefined"
 		class="app-sidebar__tab"
 		tabindex="0"
 		role="tabpanel"
@@ -44,7 +45,7 @@
 export default {
 	name: 'NcAppSidebarTab',
 
-	inject: ['registerTab', 'unregisterTab', 'getActiveTab'],
+	inject: ['registerTab', 'unregisterTab', 'getActiveTab', 'isTablistShown'],
 
 	props: {
 		id: {

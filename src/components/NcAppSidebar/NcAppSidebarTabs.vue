@@ -36,8 +36,8 @@
 			@keydown.tab.exact.prevent.stop="focusActiveTabContent"
 			@keydown.home.exact.prevent.stop="focusFirstTab"
 			@keydown.end.exact.prevent.stop="focusLastTab"
-			@keydown.33.exact.prevent.stop="focusFirstTab"
-			@keydown.34.exact.prevent.stop="focusLastTab">
+			@keydown.page-up.exact.prevent.stop="focusFirstTab"
+			@keydown.page-down.exact.prevent.stop="focusLastTab">
 			<NcCheckboxRadioSwitch v-for="tab in tabs"
 				:key="tab.id"
 				:aria-controls="`tab-${tab.id}`"
@@ -90,6 +90,8 @@ export default {
 			unregisterTab: this.unregisterTab,
 			// Getter as an alternative to Vue 2.7 computed(() => this.activeTab)
 			getActiveTab: () => this.activeTab,
+			// Used to check whether the tab header is shown so the tabs can reference the tab header for `aria-labelledby` or not
+			isTablistShown: () => this.hasMultipleTabs,
 		}
 	},
 
