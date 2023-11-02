@@ -32,6 +32,7 @@
 <script>
 export default {
 	name: 'NcAppSettingsSection',
+	inject: ['registerSection', 'unregisterSection'],
 
 	props: {
 		name: {
@@ -53,6 +54,24 @@ export default {
 		htmlId() {
 			return 'settings-section_' + this.id
 		},
+	},
+	// Reactive changes for section navigation
+	watch: {
+		id(newId, oldId) {
+			this.unregisterSection(oldId)
+			this.registerSection(newId, this.name)
+		},
+		name(newName) {
+			this.unregisterSection(this.id)
+			this.registerSection(this.id, newName)
+		},
+	},
+	mounted() {
+		// register section for navigation
+		this.registerSection(this.id, this.name)
+	},
+	beforeDestroy() {
+		this.unregisterSection(this.id)
 	},
 }
 

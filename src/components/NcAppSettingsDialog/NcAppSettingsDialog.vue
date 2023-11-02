@@ -84,16 +84,18 @@ export default {
 			<ul :aria-label="settingsNavigationAriaLabel"
 				:class="{ 'navigation-list': true, 'navigation-list--collapsed': isCollapsed }"
 				role="tablist">
-				<li v-for="item in getNavigationItems" :key="item.id">
-					<a :aria-selected="item.id === selectedSection"
+				<li v-for="section in sections" :key="section.id">
+					<a :aria-selected="section.id === selectedSection"
 						:class="{
 							'navigation-list__link': true,
-							'navigation-list__link--active': item.id === selectedSection,
+							'navigation-list__link--active': section.id === selectedSection,
 						}"
 						role="tab"
 						tabindex="0"
-						@click="handleSettingsNavigationClick(item.id)"
-						@keydown.enter="handleSettingsNavigationClick(item.id)">{{ item.name }}</a>
+						@click="handleSettingsNavigationClick(section.id)"
+						@keydown.enter="handleSettingsNavigationClick(section.id)">
+						{{ section.name }}
+					</a>
 				</li>
 			</ul>
 		</template>
@@ -119,6 +121,12 @@ export default {
 	},
 
 	mixins: [isMobile],
+	provide() {
+		return {
+			registerSection: this.registerSection,
+			unregisterSection: this.registerSection,
+		}
+	},
 
 	props: {
 		/**
@@ -170,6 +178,11 @@ export default {
 			linkClicked: false,
 			addedScrollListener: false,
 			scroller: null,
+			/**
+			 * Currently registered settings sections
+			 * @type {{ id: string, name: string }}
+			 */
+			sections: [],
 		}
 	},
 
@@ -197,10 +210,6 @@ export default {
 		settingsNavigationAriaLabel() {
 			return t('Settings navigation')
 		},
-
-		getNavigationItems() {
-			return this.getSettingsNavigation(this.$slots.default)
-		},
 	},
 
 	mounted() {
@@ -224,36 +233,33 @@ export default {
 
 	methods: {
 		/**
-		 * Builds the settings navigation menu
-		 *
-		 * @param {object} slots The default slots object passed from the render function.
-		 * @return {Array} the navigation items
+		 * Called when a new section is registered
+		 * @param {string} id The section ID
+		 * @param {string} name The section name
 		 */
-		getSettingsNavigation(slots) {
-			// Array of navigationitems strings
-			const navigationItems = slots.filter(vNode => vNode.componentOptions).map(vNode => {
-				return {
-					id: vNode.componentOptions.propsData?.id,
-					name: vNode.componentOptions.propsData?.name,
-				}
-			})
-			const navigationNames = slots.map(item => item.name)
-			const navigationIds = slots.map(item => item.id)
-
+		registerSection(id, name) {
 			// Check for the uniqueness of section names
-			navigationItems.forEach((element, index) => {
-				const newNamesArray = [...navigationNames]
-				const newIdArray = [...navigationIds]
-				newNamesArray.splice(index, 1)
-				newIdArray.splice(index, 1)
-				if (newNamesArray.includes(element.name)) {
-					throw new Error(`Duplicate section name found: ${element}. Settings navigation sections must have unique section names.`)
+			if (this.sections.some(({ id: otherId }) => id === otherId)) {
+				throw new Error(`Duplicate section id found: ${id}. Settings navigation sections must have unique section ids.`)
+			}
+			if (this.sections.some(({ name: otherName }) => name === otherName)) {
+				throw new Error(`Duplicate section name found: ${name}. Settings navigation sections must have unique section names.`)
 				}
-				if (newIdArray.includes(element.id)) {
-					throw new Error(`Duplicate section id found: ${element}. Settings navigation sections must have unique section ids.`)
-				}
+
+			const newSections = [...this.sections, { id, name }]
+			// Sort sections by order in slots
+			this.sections = newSections.sort(({ id: idA }, { id: idB }) => {
+				const indexOf = (id) => this.$slots.default.indexOf(vnode => vnode?.componentOptions?.propsData?.id === id)
+				return indexOf(idA) - indexOf(idB)
 			})
-			return navigationItems
+		},
+
+		/**
+		 * Called when a new section is unregistered
+		 * @param {string} id The section ID
+		 */
+		unregisterSection(id) {
+			this.sections = this.sections.filter(({ id: otherId }) => id === otherId)
 		},
 
 		/**
