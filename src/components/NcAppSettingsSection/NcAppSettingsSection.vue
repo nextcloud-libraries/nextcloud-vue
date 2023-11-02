@@ -26,6 +26,8 @@
 			{{ name }}
 		</h3>
 		<slot />
+		<!-- @slot Optonal icon to for the secion in the navigation -->
+		<slot v-if="false" name="icon" />
 	</div>
 </template>
 
@@ -59,16 +61,16 @@ export default {
 	watch: {
 		id(newId, oldId) {
 			this.unregisterSection(oldId)
-			this.registerSection(newId, this.name)
+			this.registerSection(newId, this.name, this.$slots?.icon)
 		},
 		name(newName) {
 			this.unregisterSection(this.id)
-			this.registerSection(this.id, newName)
+			this.registerSection(this.id, newName, this.$slots?.icon)
 		},
 	},
 	mounted() {
 		// register section for navigation
-		this.registerSection(this.id, this.name)
+		this.registerSection(this.id, this.name, this.$slots?.icon)
 	},
 	beforeDestroy() {
 		this.unregisterSection(this.id)

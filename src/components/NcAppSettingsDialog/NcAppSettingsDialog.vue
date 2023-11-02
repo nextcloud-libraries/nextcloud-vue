@@ -74,6 +74,69 @@ export default {
 }
 </script>
 ```
+
+You can also add icons to the section navigation:
+
+```vue
+<template>
+	<div>
+		<NcButton @click="settingsOpen = true">Show Settings</NcButton>
+		<NcAppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" name="Application settings">
+			<NcAppSettingsSection id="asci-name-1" name="Instagram">
+				<template #icon>
+					<Instagram :size="20" />
+				</template>
+				<p style="height: 100vh;">
+					Instagram setting
+				</p>
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-2" name="Mastodon">
+				<template #icon>
+					<Mastodon :size="20" />
+				</template>
+				<p style="height: 100vh;">
+					Mastodon setting
+				</p>
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-3" name="Twitch">
+				<template #icon>
+					<Twitch :size="20" />
+				</template>
+				<p style="height: 100vh;">
+					Twitch setting
+				</p>
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-4" name="Twitter">
+				<template #icon>
+					<Twitter :size="20" />
+				</template>
+				Twitter setting
+			</NcAppSettingsSection>
+		</NcAppSettingsDialog>
+	</div>
+</template>
+
+<script>
+import Instagram from 'vue-material-design-icons/Instagram.vue'
+import Mastodon from 'vue-material-design-icons/Mastodon.vue'
+import Twitch from 'vue-material-design-icons/Twitch.vue'
+import Twitter from 'vue-material-design-icons/Twitter.vue'
+
+export default {
+	components: {
+		Instagram,
+		Mastodon,
+		Twitch,
+		Twitter,
+	},
+	data() {
+		return {
+			settingsOpen: false,
+		}
+	},
+}
+</script>
+```
 </docs>
 
 <template>
@@ -89,12 +152,18 @@ export default {
 						:class="{
 							'navigation-list__link': true,
 							'navigation-list__link--active': section.id === selectedSection,
+							'navigation-list__link--icon': hasNavigationIcons,
 						}"
 						role="tab"
 						tabindex="0"
 						@click="handleSettingsNavigationClick(section.id)"
 						@keydown.enter="handleSettingsNavigationClick(section.id)">
-						{{ section.name }}
+						<div v-if="hasNavigationIcons" class="navigation-list__link-icon">
+							<NcVNodes v-if="section.icon" :vnodes="section.icon" />
+						</div>
+						<span class="navigation-list__link-text">
+							{{ section.name }}
+						</span>
 					</a>
 				</li>
 			</ul>
@@ -107,6 +176,7 @@ export default {
 
 <script>
 import NcDialog from '../NcDialog/index.js'
+import NcVNodes from '../NcVNodes/index.js'
 import isMobile from '../../mixins/isMobile/index.js'
 import { t } from '../../l10n.js'
 
@@ -118,6 +188,7 @@ export default {
 
 	components: {
 		NcDialog,
+		NcVNodes,
 	},
 
 	mixins: [isMobile],
@@ -180,7 +251,7 @@ export default {
 			scroller: null,
 			/**
 			 * Currently registered settings sections
-			 * @type {{ id: string, name: string }}
+			 * @type {{ id: string, name: string, icon?: VNode[]  }}
 			 */
 			sections: [],
 		}
@@ -197,6 +268,13 @@ export default {
 				name: this.name,
 				navigationClasses: 'app-settings__navigation',
 			}
+		},
+
+		/**
+		 * Check if one or more navigation entries provide icons
+		 */
+		hasNavigationIcons() {
+			return this.sections.some(({ icon }) => !!icon)
 		},
 
 		hasNavigation() {
@@ -236,17 +314,18 @@ export default {
 		 * Called when a new section is registered
 		 * @param {string} id The section ID
 		 * @param {string} name The section name
+		 * @param {import('vue').VNode[]|undefined} icon Optional icon component
 		 */
-		registerSection(id, name) {
+		registerSection(id, name, icon) {
 			// Check for the uniqueness of section names
 			if (this.sections.some(({ id: otherId }) => id === otherId)) {
 				throw new Error(`Duplicate section id found: ${id}. Settings navigation sections must have unique section ids.`)
 			}
 			if (this.sections.some(({ name: otherName }) => name === otherName)) {
 				throw new Error(`Duplicate section name found: ${name}. Settings navigation sections must have unique section names.`)
-				}
+			}
 
-			const newSections = [...this.sections, { id, name }]
+			const newSections = [...this.sections, { id, name, icon }]
 			// Sort sections by order in slots
 			this.sections = newSections.sort(({ id: idA }, { id: idB }) => {
 				const indexOf = (id) => this.$slots.default.indexOf(vnode => vnode?.componentOptions?.propsData?.id === id)
@@ -341,7 +420,8 @@ export default {
 	}
 
 	&__link {
-		display: block;
+		display: flex;
+		align-content: center;
 		font-size: 16px;
 		height: $clickable-area;
 		margin: 4px 0;
@@ -355,12 +435,27 @@ export default {
 		overflow: hidden;
 		background-color: transparent;
 		border: none;
+
 		&:hover,
 		&:focus {
 			background-color: var(--color-background-hover);
 		}
+
 		&--active {
 			background-color: var(--color-primary-element-light) !important;
+		}
+
+		&--icon {
+			padding-inline-start: 8px;
+			gap: 4px;
+		}
+
+		&-icon {
+			display: flex;
+			justify-content: center;
+			align-content: center;
+			width: 36px;
+			max-width: 36px;
 		}
 	}
 }
