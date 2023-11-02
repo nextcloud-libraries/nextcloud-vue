@@ -173,10 +173,10 @@ export default {
 			v-bind="userStatusRole" />
 
 		<!-- Show the letter if no avatar nor icon class -->
-		<span v-if="userDoesNotExist && !(iconClass || $slots.icon)"
+		<span v-if="showInitials"
 			:style="initialsWrapperStyle"
 			class="avatardiv__initials-wrapper">
-			<span :style="initialsStyle" class="unknown">
+			<span :style="initialsStyle" class="avatardiv__initials">
 				{{ initials }}
 			</span>
 		</span>
@@ -421,7 +421,11 @@ export default {
 				&& this.userStatus.status !== 'dnd'
 				&& this.userStatus.icon
 		},
-		getUserIdentifier() {
+		/**
+		 * The user identifier, either the display name if set or the user property
+		 * If both properties are not set an empty string is returned
+		 */
+		userIdentifier() {
 			if (this.isDisplayNameDefined) {
 				return this.displayName
 			}
@@ -448,10 +452,14 @@ export default {
 			}
 			return !(this.user === getCurrentUser()?.uid || this.userDoesNotExist || this.url)
 		},
-		shouldShowPlaceholder() {
-			return this.allowPlaceholder && (
-				this.userDoesNotExist)
+
+		/**
+		 * True if initials should be shown as the user icon fallback
+		 */
+		showInitials() {
+			return this.allowPlaceholder && this.userDoesNotExist && !(this.iconClass || this.$slots.icon)
 		},
+
 		avatarStyle() {
 			const style = {
 				'--size': this.size + 'px',
@@ -461,13 +469,13 @@ export default {
 			return style
 		},
 		initialsWrapperStyle() {
-			const { r, g, b } = usernameToColor(this.getUserIdentifier)
+			const { r, g, b } = usernameToColor(this.userIdentifier)
 			return {
 				backgroundColor: `rgba(${r}, ${g}, ${b}, 0.1)`,
 			}
 		},
 		initialsStyle() {
-			const { r, g, b } = usernameToColor(this.getUserIdentifier)
+			const { r, g, b } = usernameToColor(this.userIdentifier)
 			return {
 				color: `rgb(${r}, ${g}, ${b})`,
 			}
@@ -482,21 +490,33 @@ export default {
 
 			return this.displayName
 		},
+
+		/**
+		 * Get the (max. two) initials of the user as uppcase string
+		 */
 		initials() {
-			let initials
-			if (this.shouldShowPlaceholder) {
-				const user = this.getUserIdentifier
-				const idx = user.indexOf(' ')
+			let initials = '?'
+			if (this.showInitials) {
+				const user = this.userIdentifier.trim()
 				if (user === '') {
-					initials = '?'
-				} else {
-					initials = String.fromCodePoint(user.codePointAt(0))
-					if (idx !== -1) {
-						initials = initials.concat(String.fromCodePoint(user.codePointAt(idx + 1)))
-					}
+					return '?'
+				}
+
+				/**
+				 * Filtered user name, without special characters so only letters and numbers are allowed (prevent e.g. '(' as an initial)
+				 * \p{L}: Letters of all languages
+				 * \p{N}: Numbers of all languages
+				 * \s: White space for breaking the string
+				 * @type {string}
+				 */
+				const filtered = user.match(/[\p{L}\p{N}\s]/gu).join('')
+				const idx = filtered.lastIndexOf(' ')
+				initials = String.fromCodePoint(filtered.codePointAt(0))
+				if (idx !== -1) {
+					initials = initials.concat(String.fromCodePoint(filtered.codePointAt(idx + 1)))
 				}
 			}
-			return initials.toUpperCase()
+			return initials.toLocaleUpperCase()
 		},
 		menu() {
 			const actions = this.contactsMenuActions.map((item) => {
@@ -783,7 +803,7 @@ export default {
 		background-color: var(--color-main-background);
 		border-radius: 50%;
 
-		.unknown {
+		.avatardiv__initials {
 			position: absolute;
 			top: 0;
 			left: 0;
