@@ -406,7 +406,6 @@ export default {
 			return {
 				role: 'img',
 				'aria-label': label,
-				alt: label,
 			}
 		},
 		canDisplayUserStatus() {
