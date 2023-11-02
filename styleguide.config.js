@@ -164,12 +164,12 @@ module.exports = async () => {
 				// 			},
 				// 		],
 				// 	},
-				// 	{
-				// 		name: 'NcBreadcrumbs',
-				// 		components: [
-				// 			'src/components/NcBreadcrumb*/*.vue',
-				// 		],
-				// 	},
+					{
+						name: 'NcBreadcrumbs',
+						components: [
+							'src/components/NcBreadcrumb*/*.vue',
+						],
+					},
 				// 	{
 				// 		name: 'NcDashboard',
 				// 		components: [

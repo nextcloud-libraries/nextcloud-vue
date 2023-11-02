@@ -42,8 +42,7 @@ This component is meant to be used inside a Breadcrumbs component.
 		<component :is="tag"
 			v-if="(name || icon) && !$slots.default"
 			:title="title"
-			v-bind="linkAttributes"
-			v-on="$listeners">
+			v-bind="linkAttributes">
 			<!-- @slot Slot for passing a material design icon. Precedes the icon and name prop. -->
 			<slot name="icon">
 				<span v-if="icon" :class="icon" class="icon" />
@@ -107,16 +106,6 @@ export default {
 		to: {
 			type: [String, Object],
 			default: undefined,
-		},
-
-		/**
-		 * Match the complete route attributes (query and hash included)
-		 *
-		 * @see https://v3.router.vuejs.org/api/#exact
-		 */
-		exact: {
-			type: Boolean,
-			default: false,
 		},
 
 		/**
@@ -190,8 +179,8 @@ export default {
 		 * The attributes to pass to `router-link` or `a`
 		 */
 		linkAttributes() {
-			// If it's a router-link, we pass `to` and `exact`, otherwise only `href`
-			return this.to ? { to: this.to, exact: this.exact, ...this.$attrs } : { href: this.href, ...this.$attrs }
+			// If it's a router-link, we pass `to`, otherwise `href`
+			return this.to ? { to: this.to, ...this.$attrs } : { href: this.href, ...this.$attrs }
 		},
 	},
 	methods: {
