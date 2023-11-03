@@ -620,8 +620,11 @@ export default {
 		margin: 4px $icon-margin;
 	}
 
-	&__input:focus-visible + &__content {
-		outline: 2px solid var(--color-primary-element) !important;
+	&__input:focus-visible + &__content,
+	&__input:focus-visible {
+		outline: 2px solid var(--color-main-text);
+		border-color: var(--color-main-background);
+		outline-offset: -2px;
 	}
 
 	&--disabled &__content {
