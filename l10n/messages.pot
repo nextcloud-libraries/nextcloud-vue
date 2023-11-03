@@ -56,6 +56,9 @@ msgstr ""
 msgid "Clear search"
 msgstr ""
 
+msgid "Clear selected"
+msgstr ""
+
 msgid "Clear text"
 msgstr ""
 
@@ -81,6 +84,9 @@ msgid "Confirm changes"
 msgstr ""
 
 msgid "Custom"
+msgstr ""
+
+msgid "Deselect {option}"
 msgstr ""
 
 msgid "do not disturb"
@@ -216,6 +222,9 @@ msgid "Search"
 msgstr ""
 
 msgid "Search emoji"
+msgstr ""
+
+msgid "Search for options"
 msgstr ""
 
 msgid "Search results"
