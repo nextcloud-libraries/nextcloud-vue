@@ -45,21 +45,21 @@ const entryPoints = {
 	// 	return acc
 	// }, {}),
 
-	// ...globSync('src/functions/*/index.js').reduce((acc, item) => {
-	// 	const name = item
-	// 		.replace('/index.js', '')
-	// 		.replace('src/functions/', 'Functions/')
-	// 	acc[name] = join(__dirname, item)
-	// 	return acc
-	// }, {}),
+	...globSync('src/functions/*/index.js').reduce((acc, item) => {
+		const name = item
+			.replace('/index.js', '')
+			.replace('src/functions/', 'Functions/')
+		acc[name] = join(__dirname, item)
+		return acc
+	}, {}),
 
-	// ...globSync('src/mixins/*/index.js').reduce((acc, item) => {
-	// 	const name = item
-	// 		.replace('/index.js', '')
-	// 		.replace('src/mixins/', 'Mixins/')
-	// 	acc[name] = join(__dirname, item)
-	// 	return acc
-	// }, {}),
+	...globSync('src/mixins/*/index.js').reduce((acc, item) => {
+		const name = item
+			.replace('/index.js', '')
+			.replace('src/mixins/', 'Mixins/')
+		acc[name] = join(__dirname, item)
+		return acc
+	}, {}),
 
 	index: resolve(__dirname, 'src/index.js'),
 }

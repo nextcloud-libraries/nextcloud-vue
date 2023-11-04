@@ -19,13 +19,11 @@ module.exports = {
 		'src/components/NcAppNavigation*/*.vue',
 		'src/components/NcAppSettings*/*.vue',
 		'src/components/NcAppSidebar*/*.vue',
-		'src/components/NcContent/*.vue',
 		'src/components/NcDashboard*/*.vue',
 		'src/components/NcRelatedResourcesPanel*/*.vue',
 		'src/components/NcRich*/**/*.vue',
 		'src/components/NcUserBubble*/*.vue',
 		'src/components/NcVNodes*/*.vue',
-		'src/utils/IsMobileState.js',
 	],
 	parserOptions: {
 		babelOptions: {

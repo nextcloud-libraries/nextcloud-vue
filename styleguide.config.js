@@ -132,11 +132,11 @@ module.exports = async () => {
 							'src/components/NcAction[A-Z]*/*.vue',
 						],
 					},
-				// 	{
-				// 		name: 'App containers',
-				// 		components: [
-				// 			'src/components/NcContent/*.vue',
-				// 		],
+					{
+						name: 'App containers',
+						components: [
+							'src/components/NcContent/*.vue',
+						],
 				// 		sections: [
 				// 			{
 				// 				name: 'NcAppNavigation',
@@ -163,7 +163,7 @@ module.exports = async () => {
 				// 				],
 				// 			},
 				// 		],
-				// 	},
+					},
 					{
 						name: 'NcBreadcrumbs',
 						components: [

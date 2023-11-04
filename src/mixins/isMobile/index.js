@@ -19,25 +19,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
-import { IsMobileState } from '../../utils/IsMobileState.js'
-
 export default {
-	data() {
-		return {
-			isMobile: false,
-		}
-	},
-	mounted() {
-		IsMobileState.$on('changed', this.onIsMobileChanged)
-		this.isMobile = IsMobileState.isMobile
-	},
-	beforeDestroy() {
-		IsMobileState.$off('changed', this.onIsMobileChanged)
-	},
-	methods: {
-		onIsMobileChanged(val) {
-			this.isMobile = val
-		},
-	},
+	inject: ['isMobile'],
 }

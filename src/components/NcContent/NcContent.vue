@@ -33,6 +33,7 @@ It includes the Navigation, the App content and the Sidebar.
 ```vue
 	<template>
 		<NcContent app-name="forms">
+		<!-- TODO: bring back when migrated
 			<NcAppNavigation>
 				<template #list>
 					<NcAppNavigationNew text="Create article" />
@@ -48,6 +49,7 @@ It includes the Navigation, the App content and the Sidebar.
 				<NcButton @click="opened = !opened">Toggle sidebar</NcButton>
 			</NcAppContent>
 			<NcAppSidebar v-if="opened" name="cat-picture.jpg" @close="opened=false"></NcAppSidebar>
+		-->
 		</NcContent>
 	</template>
 	<script>
@@ -64,6 +66,13 @@ It includes the Navigation, the App content and the Sidebar.
 		}
 	}
 	</script>
+	<style>
+	/* adjustment to show NcContent in the docs */
+	#content-vue {
+		position: initial;
+		height: 500px;
+	}
+	</style>
 ```
 
 </docs>
@@ -77,11 +86,40 @@ It includes the Navigation, the App content and the Sidebar.
 </template>
 
 <script>
+import { computed } from 'vue'
+
 export default {
+	provide() {
+		return {
+			isMobile: computed(() => this.isMobile),
+			isFullscreen: computed(() => this.isFullscreen),
+		}
+	},
 	props: {
 		appName: {
 			type: String,
 			required: true,
+		},
+	},
+	data() {
+		return {
+			isMobile: false,
+			isFullscreen: false,
+		}
+	},
+	created() {
+		window.addEventListener('resize', this.handleWindowResize)
+		this.handleWindowResize()
+	},
+	beforeUnmount() {
+		window.removeEventListener('resize', this.handleWindowResize)
+	},
+	methods: {
+		handleWindowResize() {
+			this.isMobile = document.documentElement.clientWidth < 1024
+			// if the window height is equal to the screen height,
+			// we're in full screen mode
+			this.isFullscreen = (window.outerHeight === screen.height)
 		},
 	},
 }
@@ -90,8 +128,6 @@ export default {
 <style lang="scss" scoped>
 .content {
 	box-sizing: border-box;
-	margin: var(--body-container-margin);
-	margin-top: 50px;
 	display: flex;
 	width: calc(100% - var(--body-container-margin) * 2);
 	border-radius: var(--body-container-radius);
