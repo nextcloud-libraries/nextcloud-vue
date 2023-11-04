@@ -99,7 +99,7 @@ export default {
 					:style="styles.avatar"
 					:disable-tooltip="true"
 					:disable-menu="true"
-					v-bind="$props"
+					:show-user-status="showUserStatus"
 					class="user-bubble__avatar" />
 
 				<!-- Name -->
