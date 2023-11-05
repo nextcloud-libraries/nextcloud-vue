@@ -15,7 +15,6 @@ module.exports = {
 		'cypress',
 	],
 	ignorePatterns: [
-		'src/components/NcAppContent*/*.vue',
 		'src/components/NcAppNavigation*/*.vue',
 		'src/components/NcAppSettings*/*.vue',
 		'src/components/NcAppSidebar*/*.vue',

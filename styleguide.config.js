@@ -137,19 +137,19 @@ module.exports = async () => {
 						components: [
 							'src/components/NcContent/*.vue',
 						],
-				// 		sections: [
+						sections: [
 				// 			{
 				// 				name: 'NcAppNavigation',
 				// 				components: [
 				// 					'src/components/NcAppNavigation*/*.vue',
 				// 				],
 				// 			},
-				// 			{
-				// 				name: 'NcAppContent',
-				// 				components: [
-				// 					'src/components/NcAppContent*/*.vue',
-				// 				],
-				// 			},
+							{
+								name: 'NcAppContent',
+								components: [
+									'src/components/NcAppContent*/*.vue',
+								],
+							},
 				// 			{
 				// 				name: 'NcAppSidebar',
 				// 				components: [
@@ -162,7 +162,7 @@ module.exports = async () => {
 				// 					'src/components/NcAppSettings*/*.vue',
 				// 				],
 				// 			},
-				// 		],
+						],
 					},
 					{
 						name: 'NcBreadcrumbs',

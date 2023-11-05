@@ -44,10 +44,12 @@ It includes the Navigation, the App content and the Sidebar.
 					</NcAppNavigationItem>
 				</template>
 			</NcAppNavigation>
+		-->
 			<NcAppContent>
 				<h2>Your main app content here</h2>
 				<NcButton @click="opened = !opened">Toggle sidebar</NcButton>
 			</NcAppContent>
+		<!-- TODO: bring back when migrated
 			<NcAppSidebar v-if="opened" name="cat-picture.jpg" @close="opened=false"></NcAppSidebar>
 		-->
 		</NcContent>

@@ -38,23 +38,41 @@ all the children of the NcAppContent component
 #### Usage: Single-column content
 ```vue
 <template>
-	<NcAppContent>
-		<h2>Single-column main content</h2>
-	</NcAppContent>
+	<NcContent app-name="forms">
+		<NcAppContent>
+			<h2>Single-column main content</h2>
+		</NcAppContent>
+	</NcContent>
 </template>
+<style>
+/* adjustment to show NcContent in the docs */
+#content-vue {
+	position: initial;
+	height: 300px;
+}
+</style>
 ```
 
 #### Usage: Two resizable columns
 ```vue
 <template>
-	<NcAppContent>
-		<template #list>
-			<div>Resizable list content</div>
-		</template>
+	<NcContent app-name="forms">
+		<NcAppContent>
+			<template #list>
+				<div>Resizable list content</div>
+			</template>
 
-		<div>Main content</div>
-	</NcAppContent>
+			<div>Main content</div>
+		</NcAppContent>
+	</NcContent>
 </template>
+<style>
+/* adjustment to show NcContent in the docs */
+#content-vue {
+	position: initial;
+	height: 300px;
+}
+</style>
 ```
 
 #### Overriding Defaults
@@ -62,11 +80,22 @@ The default, min and max sizes (in percent) of the resizable list column can be 
 The list size must be between the min and the max width value.
 
 ```
-<NcAppContent
-	:list-size="35"
-	:list-min-width="20"
-	:list-max-width="45"
->...</NcAppContent>
+<template>
+	<NcContent app-name="forms">
+		<NcAppContent
+			:list-size="35"
+			:list-min-width="20"
+			:list-max-width="45"
+		>...</NcAppContent>
+	</NcContent>
+</template>
+<style>
+/* adjustment to show NcContent in the docs */
+#content-vue {
+	position: initial;
+	height: 300px;
+}
+</style>
 ```
 </docs>
 
@@ -81,7 +110,7 @@ The list size must be between the min and the max width value.
 			<div v-if="isMobile"
 				:class="showDetails ? 'app-content-wrapper--show-details' : 'app-content-wrapper--show-list'"
 				class="app-content-wrapper app-content-wrapper--mobile">
-				<NcAppDetailsToggle v-if="hasList && showDetails" @click.native.stop.prevent="hideDetails" />
+				<NcAppDetailsToggle v-if="hasList && showDetails" @click.stop.prevent="hideDetails" />
 
 				<slot name="list" />
 				<slot />
