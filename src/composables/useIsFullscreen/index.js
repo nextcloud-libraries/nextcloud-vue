@@ -2,6 +2,7 @@
  * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Grigorii K. Shartsev <me@shgk.me>
  *
  * @license AGPL-3.0-or-later
  *
@@ -20,16 +21,30 @@
  *
  */
 
-import { isFullscreenState } from '../../composables/useIsFullscreen/index.js'
+import { readonly, ref } from 'vue'
 
-export default {
-	computed: {
-		/**
-		 * @deprecated Is to be removed in v9.0.0 with Vue 3 migration.
-		 *             Use `composables/useIsFullscreen` instead.
-		 */
-		isFullscreen() {
-			return isFullscreenState.value
-		},
-	},
+// if the window height is equal to the screen height,
+// we're in full screen mode
+const checkIfIsFullscreen = () => window.outerHeight === screen.height
+
+const isFullscreen = ref(checkIfIsFullscreen())
+
+window.addEventListener('resize', () => {
+	isFullscreen.value = checkIfIsFullscreen()
+})
+
+/**
+ * Use global isFullscreen state, based on the screen height check
+ *
+ * @return {import('vue').DeepReadonly<import('vue').Ref<boolean>>}
+ */
+export function useIsFullscreen() {
+	return readonly(isFullscreen)
 }
+
+/**
+ * @deprecated Is to be removed in v9.0.0 with Vue 3 migration.
+ *             Use `composables/useIsFullscreen` instead.
+ *             Defined and exported only for isFullscreen mixin.
+ */
+export const isFullscreenState = readonly(isFullscreen)
