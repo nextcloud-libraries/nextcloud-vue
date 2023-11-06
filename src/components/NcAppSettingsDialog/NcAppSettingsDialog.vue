@@ -177,7 +177,7 @@ export default {
 <script>
 import NcDialog from '../NcDialog/index.js'
 import NcVNodes from '../NcVNodes/index.js'
-import isMobile from '../../mixins/isMobile/index.js'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { t } from '../../l10n.js'
 
 import debounce from 'debounce'
@@ -191,7 +191,6 @@ export default {
 		NcVNodes,
 	},
 
-	mixins: [isMobile],
 	provide() {
 		return {
 			registerSection: this.registerSection,
@@ -242,6 +241,12 @@ export default {
 	},
 
 	emits: ['update:open'],
+
+	setup() {
+		return {
+			isMobile: useIsMobile(),
+		}
+	},
 
 	data() {
 		return {
