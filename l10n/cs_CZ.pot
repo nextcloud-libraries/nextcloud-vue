@@ -64,6 +64,9 @@ msgstr "Zvolit"
 msgid "Clear search"
 msgstr "Vyčistit vyhledávání"
 
+msgid "Clear selected"
+msgstr "Vyčistit vybrané"
+
 msgid "Clear text"
 msgstr "Čitelný text"
 
@@ -90,6 +93,9 @@ msgstr "Potvrdit změny"
 
 msgid "Custom"
 msgstr "Uživatelsky určené"
+
+msgid "Deselect {option}"
+msgstr "Zrušit výběr {option}"
 
 msgid "do not disturb"
 msgstr "nerušit"
@@ -229,6 +235,9 @@ msgstr "Hledat"
 
 msgid "Search emoji"
 msgstr "Hledat emoji"
+
+msgid "Search for options"
+msgstr "Hledat předvolby"
 
 msgid "Search results"
 msgstr "Výsledky hledání"
