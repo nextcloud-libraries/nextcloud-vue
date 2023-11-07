@@ -239,6 +239,9 @@ msgstr "Hledat emoji"
 msgid "Search for options"
 msgstr "Hledat předvolby"
 
+msgid "Search for time zone"
+msgstr "Vyhledat časové pásmo"
+
 msgid "Search results"
 msgstr "Výsledky hledání"
 
