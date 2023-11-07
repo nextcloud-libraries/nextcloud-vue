@@ -227,6 +227,9 @@ msgstr ""
 msgid "Search for options"
 msgstr ""
 
+msgid "Search for time zone"
+msgstr ""
+
 msgid "Search results"
 msgstr ""
 
