@@ -423,11 +423,8 @@ export default {
 	&__label {
 		position: absolute;
 		margin-inline: 14px 0;
-		// fix height and line height to center label
-		height: 17px;
 		max-width: fit-content;
-		line-height: 1;
-		inset-block-start: 14px;
+		inset-block-start: 11px;
 		inset-inline: 0;
 		// Fix color so that users do not think the input already has content
 		color: var(--color-text-maxcontrast);
@@ -451,14 +448,12 @@ export default {
 
 	&__input:focus + &__label,
 	&__input:not(:placeholder-shown) + &__label {
-		inset-block-start: -8px;
+		inset-block-start: -10px;
 		font-size: 13px; // minimum allowed font size for accessibility
 		font-weight: 500;
 		border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0;
 		background-color: var(--color-main-background);
-		height: 16px;
 		padding-inline: 5px;
-		padding-block-start: 2px;
 		margin-inline-start: 9px;
 
 		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick);
