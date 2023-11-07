@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 # Changelog
 
+## [v7.12.7](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.12.7) (2023-11-07)
+
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.12.6...v7.12.7)
+
+### :bug: Fixed bugs
+- fix: handling of empty values in NcDateTimePickerNative by @st3iny in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4610
+- fix: invert datepicker buttons on dark mode by @raimund-schluessler in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4635
+- fix(NcAppContent): Set normal scrollbar width on resizeable NcAppContentList by @mejo- in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4747
+
+### Other Changes
+* fix(NcActionInput): Set default trailing button label by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4634
+
 ## [v7.12.6](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.12.6) (2023-09-26)
 
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.12.5...v7.12.6)
