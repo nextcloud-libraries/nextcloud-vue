@@ -243,6 +243,9 @@ msgstr "Emoji suchen"
 msgid "Search for options"
 msgstr "Nach Optionen suchen"
 
+msgid "Search for time zone"
+msgstr "Nach Zeitzone suchen"
+
 msgid "Search results"
 msgstr "Suchergebnisse"
 
