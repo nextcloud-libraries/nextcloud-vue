@@ -336,7 +336,7 @@ export default {
 	margin-block-start: 6px; // for the label in active state
 
 	&__main-wrapper {
-		height: 38px; // 44px - 6px margin
+		height: var(--default-clickable-area);
 		position: relative;
 	}
 
@@ -348,7 +348,7 @@ export default {
 	&__input {
 		margin: 0;
 		padding-inline: 12px 6px; // align with label 8px margin label + 6px padding label - 2px border input
-		height: 38px !important;
+		height: var(--default-clickable-area) !important;
 		width: 100%;
 
 		font-size: var(--default-font-size);
@@ -371,7 +371,13 @@ export default {
 		&:active:not([disabled]),
 		&:hover:not([disabled]),
 		&:focus:not([disabled]) {
-			border-color: var(--color-primary-element);
+			border-color: 2px solid var(--color-main-text) !important;
+			box-shadow: 0 0 0 2px var(--color-main-background) !important;
+		}
+
+		&:focus + .input-field__label,
+		&:hover:not(:placeholder-shown) + .input-field__label {
+			color: var(--color-main-text);
 		}
 
 		// Hide placeholder while not focussed -> show label instead (only if internal label is used)
@@ -392,23 +398,17 @@ export default {
 		}
 
 		&--leading-icon {
-			padding-inline-start: 32px;
+			padding-inline-start: var(--default-clickable-area);
 		}
 
 		&--trailing-icon {
-			padding-inline-end: 32px;
+			padding-inline-end: var(--default-clickable-area);
 		}
 
 		&--success {
 			border-color: var(--color-success) !important; //Override hover border color
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
-			}
-
-			// Align label text color with border color (on hover / focus)
-			&:focus + .input-field__label,
-			&:hover:not(:placeholder-shown) + .input-field__label {
-				color: var(--color-success-text);
 			}
 		}
 
@@ -417,31 +417,14 @@ export default {
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 			}
-
-			// Align label text color with border color (on hover / focus)
-			&:focus + .input-field__label,
-			&:hover:not(:placeholder-shown) + .input-field__label {
-				color: var(--color-error-text);
-			}
-		}
-
-		// Align label text color with border color (on hover / focus)
-		&:not(&--success, &--error) {
-			&:focus + .input-field__label,
-			&:hover:not(:placeholder-shown) + .input-field__label {
-				color: var(--color-primary-element);
-			}
 		}
 	}
 
 	&__label {
 		position: absolute;
 		margin-inline: 14px 0;
-		// fix height and line height to center label
-		height: 17px;
 		max-width: fit-content;
-		line-height: 1;
-		inset-block-start: 12px;
+		inset-block-start: 11px;
 		inset-inline: 0;
 		// Fix color so that users do not think the input already has content
 		color: var(--color-text-maxcontrast);
@@ -455,50 +438,46 @@ export default {
 		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick), background-color var(--animation-quick) var(--animation-slow);
 
 		&--leading-icon {
-			// 32px icon + 2px border
-			margin-inline-start: 34px;
+			margin-inline-start: var(--default-clickable-area);
 		}
 
 		&--trailing-icon {
-			// 32px icon + 2px border
-			margin-inline-end: 34px;
+			margin-inline-end: var(--default-clickable-area);
 		}
 	}
 
 	&__input:focus + &__label,
 	&__input:not(:placeholder-shown) + &__label {
-		inset-block-start: -8px;
+		inset-block-start: -10px;
 		font-size: 13px; // minimum allowed font size for accessibility
 		font-weight: 500;
 		border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0;
 		background-color: var(--color-main-background);
-		height: 16px;
 		padding-inline: 5px;
-		padding-block-start: 2px;
 		margin-inline-start: 9px;
 
 		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick);
 		&--leading-icon {
-			margin-inline-start: 29px;
+			margin-inline-start: 41px;
 		}
 	}
 
 	&__icon {
 		position: absolute;
-		height: 32px;
-		width: 32px;
+		height: var(--default-clickable-area);
+		width: var(--default-clickable-area);
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		opacity: 0.7;
 
 		&--leading {
-			inset-block-end: 3px;
+			inset-block-end: 0;
 			inset-inline-start: 2px;
 		}
 
 		&--trailing {
-			inset-block-end: 3px;
+			inset-block-end: 0;
 			inset-inline-end: 2px;
 		}
 	}
