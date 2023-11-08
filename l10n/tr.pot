@@ -65,6 +65,9 @@ msgstr "Seçin"
 msgid "Clear search"
 msgstr "Aramayı temizle"
 
+msgid "Clear selected"
+msgstr "Seçilmişleri temizle"
+
 msgid "Clear text"
 msgstr "Metni temizle"
 
@@ -91,6 +94,9 @@ msgstr "Değişiklikleri onayla"
 
 msgid "Custom"
 msgstr "Özel"
+
+msgid "Deselect {option}"
+msgstr "{option} bırak"
 
 msgid "do not disturb"
 msgstr "Rahatsız etmeyin"
@@ -230,6 +236,12 @@ msgstr "Arama"
 
 msgid "Search emoji"
 msgstr "Emoji ara"
+
+msgid "Search for options"
+msgstr "Seçenek ara"
+
+msgid "Search for time zone"
+msgstr "Saat dilimi ara"
 
 msgid "Search results"
 msgstr "Arama sonuçları"
