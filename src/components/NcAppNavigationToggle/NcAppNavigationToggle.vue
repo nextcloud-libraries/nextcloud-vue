@@ -84,8 +84,7 @@ export default {
 button.app-navigation-toggle {
 	position: absolute;
 	top: var(--app-navigation-padding);
-	right: calc(0px - var(--app-navigation-padding));
-	margin-right: - $clickable-area;
+	left: var(--app-navigation-padding);
 }
 
 </style>

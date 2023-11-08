@@ -57,7 +57,9 @@ emit('toggle-navigation', {
 	<div ref="appNavigationContainer"
 		class="app-navigation"
 		:class="{'app-navigation--close':!open }">
-		<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
+		<div class="app-navigation__toggle-wrapper">
+			<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
+		</div>
 		<nav id="app-navigation-vue"
 			:aria-hidden="open ? 'false' : 'true'"
 			:aria-label="ariaLabel || undefined"
@@ -206,8 +208,11 @@ export default {
 	// Set scoped variable override
 	// Using --color-text-maxcontrast as a fallback evaluates to an invalid value as it references itself in this scope instead of the variable defined higher up
 	--color-text-maxcontrast: var(--color-text-maxcontrast-background-blur, var(--color-text-maxcontrast-default));
+	// Left padding + toggle button + right padding from NcAppContent
+	--app-navigation-toggle-width: calc(var(--app-navigation-padding) + var(--default-clickable-area) + var(--default-grid-baseline));
 	transition: transform var(--animation-quick), margin var(--animation-quick);
 	width: $navigation-width;
+	max-width: calc(100vw - var(--app-navigation-toggle-width));
 	position: relative;
 	top: 0;
 	left: 0;
@@ -231,7 +236,15 @@ export default {
 		position: absolute;
 	}
 
-	//list of navigation items
+	&__toggle-wrapper {
+		position: absolute;
+		top: 0;
+		left: 100%;
+		// "app-navigation-padding (default-clickable-area) default-clickable-area" to fit AppContentHeader margin
+		width: var(--app-navigation-toggle-width);
+		height: calc(var(--app-navigation-padding) * 2 + var(--default-clickable-area));
+	}
+
 	&__content > ul,
 	&__list {
 		position: relative;
@@ -264,13 +277,11 @@ export default {
 	.app-navigation:not(.app-navigation--close) {
 		position: absolute;
 	}
-}
 
-// Put the toggle behind appsidebar on small screens
-@media only screen and (max-width: 768px) {
-	.app-navigation {
-		z-index: 1400;
+	.app-navigation__toggle-wrapper {
+		background: inherit;
+		backdrop-filter: var(--filter-background-blur, none);
+		border-radius: 0 var(--border-radius-large) var(--border-radius-large) 0;
 	}
 }
-
 </style>
