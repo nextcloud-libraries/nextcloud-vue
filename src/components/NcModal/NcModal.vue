@@ -546,7 +546,7 @@ export default {
 		},
 
 		closeButtonAriaLabel() {
-			return t('Close modal')
+			return t('Close')
 		},
 		prevButtonAriaLabel() {
 			return t('Previous')
