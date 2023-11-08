@@ -29,19 +29,22 @@ This should be used sparingly for accessibility.
 		<NcActions>
 			<NcActionButtonGroup name="Text alignment">
 				<NcActionButton aria-label="Align left"
-					@click="showMessage('Align left')">
+					:pressed="alignment === 'l'"
+					@click="alignment = 'l'">
 					<template #icon>
 						<AlignLeft :size="20" />
 					</template>
 				</NcActionButton>
 				<NcActionButton aria-label="Align center"
-					@click="showMessage('Align center')">
+					:pressed="alignment === 'c'"
+					@click="alignment = 'c'">
 					<template #icon>
 						<AlignCenter :size="20" />
 					</template>
 				</NcActionButton>
 				<NcActionButton aria-label="Align right"
-					@click="showMessage('Align Right')">
+					:pressed="alignment === 'r'"
+					@click="alignment = 'r'">
 					<template #icon>
 						<AlignRight :size="20" />
 					</template>
@@ -69,6 +72,9 @@ export default {
 		AlignRight,
 		AlignCenter,
 		Plus,
+	},
+	data() {
+		return { alignment: 'l' }
 	},
 	methods: {
 		showMessage(msg) {
@@ -141,6 +147,7 @@ export default defineComponent({
 
 	ul.nc-button-group-content {
 		display: flex;
+		gap: 4px; // required for the focus-visible outline
 		justify-content: space-between;
 		li {
 			flex: 1 1;
@@ -152,6 +159,20 @@ export default defineComponent({
 			width: 100%;
 			display: flex;
 			justify-content: center;
+
+			&.action-button--active {
+				background-color: var(--color-primary-element);
+				border-radius: var(--border-radius-large);
+				color: var(--color-primary-element-text);
+
+				&:hover, &:focus, &:focus-within {
+					background-color: var(--color-primary-element-hover);
+				}
+			}
+
+			.action-button__pressed-icon {
+				display: none;
+			}
 		}
 	}
 }
