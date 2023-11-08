@@ -54,14 +54,17 @@ emit('toggle-navigation', {
 </docs>
 
 <template>
-	<div id="app-navigation-vue"
+	<div ref="appNavigationContainer"
 		class="app-navigation"
-		role="navigation"
 		:class="{'app-navigation--close':!open }">
 		<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
-		<div :aria-hidden="ariaHidden"
+		<nav id="app-navigation-vue"
+			:aria-hidden="open ? 'false' : 'true'"
+			:aria-label="ariaLabel || undefined"
+			:aria-labelledby="ariaLabelledby || undefined"
 			class="app-navigation__content"
-			:inert="!open || null">
+			:inert="!open || undefined"
+			@keydown.esc="handleEsc">
 			<slot />
 			<!-- List for Navigation li-items -->
 			<ul class="app-navigation__list">
@@ -70,15 +73,18 @@ emit('toggle-navigation', {
 
 			<!-- Footer for e.g. AppNavigationSettings -->
 			<slot name="footer" />
-		</div>
+		</nav>
 	</div>
 </template>
 
 <script>
 import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
 import isMobile from '../../mixins/isMobile/index.js'
+import { getTrapStack } from '../../utils/focusTrap.js'
 
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
+
+import { createFocusTrap } from 'focus-trap'
 
 export default {
 	name: 'NcAppNavigation',
@@ -89,20 +95,38 @@ export default {
 
 	mixins: [isMobile],
 
+	props: {
+		/**
+		 * The aria label to describe the navigation
+		 */
+		ariaLabel: {
+			type: String,
+			default: '',
+		},
+
+		/**
+		 * aria-labelledby attribute to describe the navigation
+		 */
+		ariaLabelledby: {
+			type: String,
+			default: '',
+		},
+	},
+
 	data() {
 		return {
 			open: true,
+			focusTrap: null,
 		}
-	},
-	computed: {
-		ariaHidden() {
-			return this.open ? 'false' : 'true'
-		},
 	},
 
 	watch: {
 		isMobile() {
 			this.open = !this.isMobile
+			this.toggleFocusTrap()
+		},
+		open() {
+			this.toggleFocusTrap()
 		},
 	},
 
@@ -112,9 +136,18 @@ export default {
 		emit('navigation-toggled', {
 			open: this.open,
 		})
+
+		this.focusTrap = createFocusTrap(this.$refs.appNavigationContainer, {
+			allowOutsideClick: true,
+			fallbackFocus: this.$refs.appNavigationContainer,
+			trapStack: getTrapStack(),
+			escapeDeactivates: false,
+		})
+		this.toggleFocusTrap()
 	},
 	unmounted() {
 		unsubscribe('toggle-navigation', this.toggleNavigationByEventBus)
+		this.focusTrap.deactivate()
 	},
 
 	methods: {
@@ -135,8 +168,26 @@ export default {
 			// We wait for 1.5 times the animation length to give the animation time to really finish.
 			}, 1.5 * animationLength)
 		},
+
 		toggleNavigationByEventBus({ open }) {
 			this.toggleNavigation(open)
+		},
+
+		/**
+		 * Activate focus trap if it is currently needed, otherwise deactivate
+		 */
+		toggleFocusTrap() {
+			if (this.isMobile && this.open) {
+				this.focusTrap.activate()
+			} else {
+				this.focusTrap.deactivate()
+			}
+		},
+
+		handleEsc() {
+			if (this.isMobile) {
+				this.toggleNavigation(false)
+			}
 		},
 	},
 }
