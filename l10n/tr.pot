@@ -74,9 +74,6 @@ msgstr "Metni temizle"
 msgid "Close"
 msgstr "Kapat"
 
-msgid "Close modal"
-msgstr "Üste açılan pencereyi kapat"
-
 msgid "Close navigation"
 msgstr "Gezinmeyi kapat"
 
