@@ -80,11 +80,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 button.app-navigation-toggle {
 	position: absolute;
 	top: var(--app-navigation-padding);
-	left: var(--app-navigation-padding);
+	right: calc(0px - var(--app-navigation-padding));
+	margin-right: - $clickable-area;
+	background-color: var(--color-main-background);
 }
-
 </style>

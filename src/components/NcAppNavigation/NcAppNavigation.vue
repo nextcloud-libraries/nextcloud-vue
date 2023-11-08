@@ -208,11 +208,10 @@ export default {
 	// Set scoped variable override
 	// Using --color-text-maxcontrast as a fallback evaluates to an invalid value as it references itself in this scope instead of the variable defined higher up
 	--color-text-maxcontrast: var(--color-text-maxcontrast-background-blur, var(--color-text-maxcontrast-default));
-	// Left padding + toggle button + right padding from NcAppContent
-	--app-navigation-toggle-width: calc(var(--app-navigation-padding) + var(--default-clickable-area) + var(--default-grid-baseline));
 	transition: transform var(--animation-quick), margin var(--animation-quick);
 	width: $navigation-width;
-	max-width: calc(100vw - var(--app-navigation-toggle-width));
+	// Left toggle button padding + toggle button + right padding from NcAppContent
+	max-width: calc(100vw - (var(--app-navigation-padding) + var(--default-clickable-area) + var(--default-grid-baseline)));
 	position: relative;
 	top: 0;
 	left: 0;
@@ -234,15 +233,6 @@ export default {
 	&--close {
 		transform: translateX(-100%);
 		position: absolute;
-	}
-
-	&__toggle-wrapper {
-		position: absolute;
-		top: 0;
-		left: 100%;
-		// "app-navigation-padding (default-clickable-area) default-clickable-area" to fit AppContentHeader margin
-		width: var(--app-navigation-toggle-width);
-		height: calc(var(--app-navigation-padding) * 2 + var(--default-clickable-area));
 	}
 
 	&__content > ul,
@@ -276,12 +266,6 @@ export default {
 @media only screen and (max-width: $breakpoint-mobile) {
 	.app-navigation:not(.app-navigation--close) {
 		position: absolute;
-	}
-
-	.app-navigation__toggle-wrapper {
-		background: inherit;
-		backdrop-filter: var(--filter-background-blur, none);
-		border-radius: 0 var(--border-radius-large) var(--border-radius-large) 0;
 	}
 }
 </style>
