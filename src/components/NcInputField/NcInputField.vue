@@ -75,7 +75,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 			<!-- trailing button -->
 			<NcButton v-if="showTrailingButton"
 				type="tertiary-no-background"
-				class="input-field__clear-button"
+				class="input-field__trailing-button"
 				:aria-label="trailingButtonLabel"
 				:disabled="disabled"
 				@click="handleTrailingButtonClick">
@@ -482,14 +482,10 @@ export default {
 		}
 	}
 
-	&__clear-button.button-vue {
+	&__trailing-button.button-vue {
 		position: absolute;
-		inset-block-end: 3px;
-		inset-inline-end: 2px;
-		min-width: unset;
-		min-height: unset;
-		height: 32px;
-		width: 32px !important;
+		top: 0;
+		right: 0;
 		border-radius: var(--border-radius-large);
 	}
 
