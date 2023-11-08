@@ -65,9 +65,6 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-msgid "Close modal"
-msgstr ""
-
 msgid "Close navigation"
 msgstr ""
 
