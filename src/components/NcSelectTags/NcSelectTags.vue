@@ -260,7 +260,7 @@ export default {
 		 * Currently selected value
 		 */
 		value: {
-			type: [Number, Array],
+			type: [Number, Array, Object],
 			default: null,
 		},
 
