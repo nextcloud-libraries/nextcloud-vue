@@ -2,8 +2,8 @@
 
 All notable changes to this project will be documented in this file.
 
-## v8 **Unreleased** (beta)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.11.2...v8.0.0-beta.10)
+## [v8.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.0.0) (2023-11-08)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.11.2...v8.0.0)
 
 ### :boom: Breaking changes
 - Update node engines to next LTS (node 20 / npm 9)
@@ -28,6 +28,8 @@ All notable changes to this project will be documented in this file.
 - feat(NcIconSvgWrapper)!: remove ID from svg [\#4607](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4607) ([ShGKme](https://github.com/ShGKme))
 
 ### :rocket: Enhancements
+- feat(NcAppSettingsDialog): Allow to add icons to the navigation sections [\#4745](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4745) ([susnux](https://github.com/susnux))
+- feat(NcButton): Allow to format text of button [\#4367](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4367) ([susnux](https://github.com/susnux))
 - enh\(NcDatetime\): New component for displaying timestamps as time relative from now [\#4219](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4219) ([susnux](https://github.com/susnux))
 - feat\(NcInputField\): Append custom aria-describedby to input field [\#4225](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4225) ([Pytal](https://github.com/Pytal))
 - feat\(NcNoteCard\): Add new 'info' version to display informational messaged [\#4063](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4063) ([moan0s](https://github.com/moan0s))
@@ -55,12 +57,12 @@ All notable changes to this project will be documented in this file.
 - enh(NcAppSidebarTabs): Make tab navigation accessible [\#4663](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4663) ([Pytal](https://github.com/Pytal))
 - Add the resource type on RelatedResourcesPanel [\#4662](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4662) ([GretaD](https://github.com/GretaD))
 - feat(NcTextArea): implement new textarea component [\#4605](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4605) ([st3iny](https://github.com/st3iny))
-- Add header prop to NcRelatedResourcesPanel by @GretaD in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4703
-- feat(NcAppNavigationItem): Add `active` property to set active state & use `aria-current` by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4716
-- feat(NcActionButton): support menu styling  by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4724
-- Made description dynamic on related resources by @GretaD in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4729
-- fix(NcTimezonePicker): Allow to set ID of inner select component by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4734
-- Allow preventing link insertion in RichContentEditable by @julien-nc in https://github.com/nextcloud-libraries/nextcloud-vue/pull/3890
+- Add header prop to NcRelatedResourcesPanel [\#4703](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4703) ([GretaD](https://github.com/GretaD)
+- feat(NcAppNavigationItem): Add `active` property to set active state & use `aria-current` [\#4716](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4716) ([susnux](https://github.com/susnux)
+- feat(NcActionButton): support menu styling  [\#4724](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4724) ([skjnldsv](https://github.com/skjnldsv)
+- Made description dynamic on related resources [\#4729](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4729) ([GretaD](https://github.com/GretaD)
+- fix(NcTimezonePicker): Allow to set ID of inner select component [\#4734](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4734) ([susnux](https://github.com/susnux)
+- Allow preventing link insertion in RichContentEditable [\#3890](https://github.com/nextcloud-libraries/nextcloud-vue/pull/3890) ([julien-nc](https://github.com/julien-nc)
 
 ### :bug: Fixed bugs
 - fix\(NcSettingsSelectGroup\): Migrate from deprecated `NcMultiselect` to `NcSelect` [\#4120](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4120) ([susnux](https://github.com/susnux))
@@ -156,21 +158,35 @@ All notable changes to this project will be documented in this file.
 - fix(NcDialog): NcModal registration [\#4682](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4682) ([Pytal](https://github.com/Pytal))
 - fix: remove empty attributes values [\#4686](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4686) ([ShGKme](https://github.com/ShGKme))
 - fix(dialog): fix component registration [\#4685](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4685) ([ShGKme](https://github.com/ShGKme))
-- fix(NcCheckboxRadioSwitch): fix circular import by @raimund-schluessler in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4691
-- fix(NcCheckboxRadioSwitch): forward indeterminate prop by @raimund-schluessler in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4690
-- Change heading in EmptyContent to `span` by @JuliaKirschenheuter in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4702
-- fix(NcRelatedResourcesPanel): t is not defined by @raimund-schluessler in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4705
-- fix(NcAppNavigationItem): Do not include `aria-expanded` attribute if there are no children by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4715
-- fix(NcDialog): register components in NcDialogButton by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4725
-- fix(NcActions): Detect navigation menu links correctly by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4707
-- fix(NcSelect): Ensure selected option has enough contrast when the menu is opened by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4733
-- fix(NcEmptyContent): Fix regression that changed the color of the description text by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4735
-- fix(NcAppContent): Set normal scrollbar width on resizeable NcAppContentList by @mejo- in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4710
-- fix(NcAvatar): Improve initials generation to filter out special characters by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4737
-- fix(NcAvatar): remove alt attr from span[role=img] by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4748
-- fix(NcSidebarTab): Ensure there is an `aria-label` if the `aria-labelledby` element does not exist by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4736
-- add scoped to all ncappnavigation components by @szaimen in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4730
-- Create outline for `focus-within` on RadioSwitch by @JuliaKirschenheuter in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4699
+- fix(NcCheckboxRadioSwitch): fix circular import [\#4691](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4691) ([raimund-schluessler](https://github.com/raimund-schluessler)
+- fix(NcCheckboxRadioSwitch): forward indeterminate prop [\#4690](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4690) ([raimund-schluessler](https://github.com/raimund-schluessler)
+- Change heading in EmptyContent to `span` [\#4702](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4702) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter)
+- fix(NcRelatedResourcesPanel): t is not defined [\#4705](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4705) ([raimund-schluessler](https://github.com/raimund-schluessler)
+- fix(NcAppNavigationItem): Do not include `aria-expanded` attribute if there are no children [\#4715](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4715) ([susnux](https://github.com/susnux)
+- fix(NcDialog): register components in NcDialogButton [\#4725](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4725) ([ShGKme](https://github.com/ShGKme)
+- fix(NcActions): Detect navigation menu links correctly [\#4707](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4707) ([Pytal](https://github.com/Pytal)
+- fix(NcSelect): Ensure selected option has enough contrast when the menu is opened [\#4733](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4733) ([susnux](https://github.com/susnux)
+- fix(NcEmptyContent): Fix regression that changed the color of the description text [\#4735](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4735) ([susnux](https://github.com/susnux)
+- fix(NcAppContent): Set normal scrollbar width on resizeable NcAppContentList [\#4710](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4710) ([mejo-](https://github.com/mejo-)
+- fix(NcAvatar): Improve initials generation to filter out special characters [\#4737](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4737) ([susnux](https://github.com/susnux)
+- fix(NcAvatar): remove alt attr from span[role=img] [\#4748](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4748) ([ShGKme](https://github.com/ShGKme)
+- fix(NcSidebarTab): Ensure there is an `aria-label` if the `aria-labelledby` element does not exist [\#4736](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4736) ([susnux](https://github.com/susnux)
+- add scoped to all ncappnavigation components [\#4730](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4730) ([szaimen](https://github.com/szaimen)
+- Create outline for `focus-within` on RadioSwitch [\#4699](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4699) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter)
+- fix: NcUserBubble properties [\#4743](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4743) ([susnux](https://github.com/susnux)
+- fix(NcUserBubble): only forward necessary props [\#4756](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4756) ([raimund-schluessler](https://github.com/raimund-schluessler)
+- fix(NcInputField): Bring input field height to 44px and fixes its focus feedback [\#4718](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4718) ([marcoambrosini](https://github.com/marcoambrosini)
+- fix(NcTimezonePicker): Add correct `aria-label` [\#4762](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4762) ([susnux](https://github.com/susnux)
+- Fix input field trailing button alignment [\#4770](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4770) ([marcoambrosini](https://github.com/marcoambrosini)
+- fix(NcSelectTags): Allow object type value [\#4771](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4771) ([Pytal](https://github.com/Pytal)
+- fix(NcAppNavigation): Ensure `--app-navigation-padding` is set also on app-content [\#4776](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4776) ([susnux](https://github.com/susnux)
+- fix(NcAppNavigation): add focus trap on mobile and improve a11y [\#4633](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4633) ([ShGKme](https://github.com/ShGKme)
+- fix(NcAppNavigation): small screen support [\#4767](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4767) ([ShGKme](https://github.com/ShGKme)
+### Other Changes
+- Updates for project Nextcloud vue library [\#4757](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4757) ([transifex-integration](https://github.com/transifex-integration)
+- Change styles for focused Select [\#4728](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4728) ([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter)
+- feat(NcActions): focus the first action again if no action have a focus after render [\#4775](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4775) ([skjnldsv](https://github.com/skjnldsv)
+- fix(NcAppNavigation): remove background square connecting toggle and navigation [\#4779](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4779) ([ShGKme](https://github.com/ShGKme)
 
 ## [v7.11.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.11.2) (2023-05-05)
 
