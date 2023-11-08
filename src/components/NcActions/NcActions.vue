@@ -1175,6 +1175,18 @@ export default {
 			return renderInlineAction(inlineActions[0])
 		}
 
+		// If we completely re-render the children
+		// we need to focus the first action again
+		// Mostly used when clicking a menu item
+		this.$nextTick(() => {
+			if (this.opened && this.$refs.menu) {
+				const isAnyActive = this.$refs.menu.querySelector('li.active') || []
+				if (isAnyActive.length === 0) {
+					this.focusFirstAction()
+				}
+			}
+		})
+
 		/**
 		 * If we some inline actions to render, render them, then the menu
 		 */
