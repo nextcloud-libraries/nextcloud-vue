@@ -142,7 +142,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .app-navigation,
 .app-content {
 	/** Distance of the app naviation toggle and the first navigation item to the top edge of the app content container */
