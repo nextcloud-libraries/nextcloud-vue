@@ -26,13 +26,12 @@
 <template>
 	<ul>
 		<NcListItem
-			:name="'This is an active element'"
+			:name="'This is an active element with highlighted counter'"
 			:bold="false"
 			:active="true"
 			:details="'1h'"
 			:counter-number="44"
-			counterType="highlighted"
-			class="active">
+			counterType="highlighted">
 			<template #icon>
 				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
@@ -56,12 +55,118 @@
 			</template>
 		</NcListItem>
 		<NcListItem
-			:name="'Name of the element'"
+			:name="'This is an active element with outlined counter'"
+			:bold="false"
+			:active="true"
+			:details="'1h'"
+			:counter-number="44"
+			counterType="outlined">
+			<template #icon>
+				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
+			</template>
+			<template #subname>
+				In this slot you can put both text and other components such as icons
+			</template>
+			<template #indicator>
+				<!-- Color dot -->
+				<CheckboxBlankCircle :size="16" fill-color="#fff" />
+			</template>
+			<template #actions>
+				<NcActionButton>
+					Button one
+				</NcActionButton>
+				<NcActionButton>
+					Button two
+				</NcActionButton>
+				<NcActionButton>
+					Button three
+				</NcActionButton>
+			</template>
+		</NcListItem>
+		<NcListItem
+			:name="'This is an active element with normal counter'"
+			:bold="false"
+			:active="true"
+			:details="'1h'"
+			:counter-number="44">
+			<template #icon>
+				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
+			</template>
+			<template #subname>
+				In this slot you can put both text and other components such as icons
+			</template>
+			<template #indicator>
+				<!-- Color dot -->
+				<CheckboxBlankCircle :size="16" fill-color="#fff" />
+			</template>
+			<template #actions>
+				<NcActionButton>
+					Button one
+				</NcActionButton>
+				<NcActionButton>
+					Button two
+				</NcActionButton>
+				<NcActionButton>
+					Button three
+				</NcActionButton>
+			</template>
+		</NcListItem>
+		<NcListItem
+			:name="'Name of the element with highlighted counter'"
 			:bold="false"
 			:force-display-actions="true"
 			:details="'1h'"
 			:counter-number="44"
 			counterType="highlighted">
+			<template #icon>
+				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
+			</template>
+			<template #subname>
+				In this slot you can put both text and other components such as icons
+			</template>
+			<template #actions>
+				<NcActionButton>
+					Button one
+				</NcActionButton>
+				<NcActionButton>
+					Button two
+				</NcActionButton>
+				<NcActionButton>
+					Button three
+				</NcActionButton>
+			</template>
+		</NcListItem>
+		<NcListItem
+			:name="'Name of the element with outlined counter'"
+			:bold="false"
+			:force-display-actions="true"
+			:details="'1h'"
+			:counter-number="44"
+			counterType="outlined">
+			<template #icon>
+				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
+			</template>
+			<template #subname>
+				In this slot you can put both text and other components such as icons
+			</template>
+			<template #actions>
+				<NcActionButton>
+					Button one
+				</NcActionButton>
+				<NcActionButton>
+					Button two
+				</NcActionButton>
+				<NcActionButton>
+					Button three
+				</NcActionButton>
+			</template>
+		</NcListItem>
+		<NcListItem
+			:name="'Name of the element with normal counter'"
+			:bold="false"
+			:force-display-actions="true"
+			:details="'1h'"
+			:counter-number="44">
 			<template #icon>
 				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
