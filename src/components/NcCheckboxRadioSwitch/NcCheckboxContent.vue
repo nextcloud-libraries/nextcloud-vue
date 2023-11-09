@@ -23,8 +23,16 @@
 <template>
 	<component :is="wrapperElement"
 		:for="!isButtonType ? id : null"
-		class="checkbox-content">
-		<span :class="['checkbox-content__icon', iconClass]"
+		class="checkbox-content"
+		:class="{
+			['checkbox-content-' + type]: true,
+			'checkbox-content--button-variant': buttonVariant,
+		}">
+		<span :class="{
+				'checkbox-content__icon': true,
+				'checkbox-content__icon--checked': isChecked,
+				[iconClass]: true
+			}"
 			:aria-hidden="true">
 			<!-- @slot The checkbox/radio icon, you can use it for adding an icon to the button variant
 					@binding {bool} checked The input checked state
@@ -222,9 +230,24 @@ export default {
 	}
 
 	&__icon > * {
-		color: var(--color-primary-element);
 		width: var(--icon-size);
 		height: var(--icon-size);
+	}
+
+	&--button-variant {
+		.checkbox-content__icon:not(.checkbox-content__icon--checked) > * {
+			color: var(--color-primary-element);
+		}
+
+		.checkbox-content__icon--checked > * {
+			color: var(--color-primary-element-text);
+		}
+	}
+
+	&:not(&--button-variant) {
+		.checkbox-content__icon > * {
+			color: var(--color-primary-element);
+		}
 	}
 
 	&, * {
