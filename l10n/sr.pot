@@ -274,7 +274,7 @@ msgid "Smart Picker"
 msgstr "Паметни бирач"
 
 msgid "Smileys & Emotion"
-msgstr "Smajli i Emocije"
+msgstr "Смајлији и емоције"
 
 msgid "Start slideshow"
 msgstr "Покрени слајд шоу"
@@ -283,7 +283,7 @@ msgid "Start typing to search"
 msgstr "Покрените претрагу куцањем"
 
 msgid "Submit"
-msgstr "Prihvati"
+msgstr "Поднеси"
 
 msgid "Symbols"
 msgstr "Simboli"
