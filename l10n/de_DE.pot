@@ -77,9 +77,6 @@ msgstr "Klartext"
 msgid "Close"
 msgstr "Schließen"
 
-msgid "Close modal"
-msgstr "Modal schließen"
-
 msgid "Close navigation"
 msgstr "Navigation schließen"
 
