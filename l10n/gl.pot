@@ -65,14 +65,14 @@ msgstr "Escoller"
 msgid "Clear search"
 msgstr "Limpar a busca"
 
+msgid "Clear selected"
+msgstr "Limpar o seleccionado"
+
 msgid "Clear text"
 msgstr "Limpar o texto"
 
 msgid "Close"
 msgstr "Pechar"
-
-msgid "Close modal"
-msgstr "Pechar a modal"
 
 msgid "Close navigation"
 msgstr "Pechar a navegación"
@@ -91,6 +91,9 @@ msgstr "Confirma os cambios"
 
 msgid "Custom"
 msgstr "Personalizado"
+
+msgid "Deselect {option}"
+msgstr "Desmarcar {opción}"
 
 msgid "do not disturb"
 msgstr "non molestar"
@@ -230,6 +233,12 @@ msgstr "Buscar"
 
 msgid "Search emoji"
 msgstr "Buscar «emoji»"
+
+msgid "Search for options"
+msgstr "Buscar por opcións"
+
+msgid "Search for time zone"
+msgstr "Buscar por fuso horario"
 
 msgid "Search results"
 msgstr "Resultados da busca"
