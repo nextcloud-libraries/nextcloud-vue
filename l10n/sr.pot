@@ -265,7 +265,7 @@ msgid "Settings"
 msgstr "Поставке"
 
 msgid "Settings navigation"
-msgstr "Navigacija u podešavanjima"
+msgstr "Кретање по подешавањима"
 
 msgid "Show password"
 msgstr "Прикажи лозинку"
