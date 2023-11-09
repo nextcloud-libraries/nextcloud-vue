@@ -12,25 +12,25 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 msgid "{tag} (invisible)"
-msgstr "{tag} (nevidljivo)"
+msgstr "{tag} (невидљиво)"
 
 msgid "{tag} (restricted)"
-msgstr "{tag} (ograničeno)"
+msgstr "{tag} (ограничено)"
 
 msgid "a few seconds ago"
 msgstr "пре неколико секунди"
 
 msgid "Actions"
-msgstr "Radnje"
+msgstr "Радње"
 
 msgid "Actions for item with name \"{name}\""
 msgstr "Радње за ставку под називом „{name}”"
 
 msgid "Activities"
-msgstr "Aktivnosti"
+msgstr "Активности"
 
 msgid "Animals & Nature"
-msgstr "Životinje i Priroda"
+msgstr "Животиње и природа"
 
 msgid "Any link"
 msgstr "Било који линк"
@@ -39,7 +39,7 @@ msgid "Anything shared with the same group of people will show up here"
 msgstr "Све што се дели са истом групом људи ће се појавити овде"
 
 msgid "Avatar of {displayName}"
-msgstr "Avatar za {displayName}"
+msgstr "Аватар за {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar za {displayName}, {status}"
@@ -54,7 +54,7 @@ msgid "Back to provider selection"
 msgstr "Назад на избор пружаоца"
 
 msgid "Cancel changes"
-msgstr "Otkaži izmene"
+msgstr "Откажи измене"
 
 msgid "Change name"
 msgstr "Измени назив"
@@ -65,20 +65,20 @@ msgstr "Изаберите"
 msgid "Clear search"
 msgstr "Обриши претрагу"
 
+msgid "Clear selected"
+msgstr "Обриши изабрано"
+
 msgid "Clear text"
 msgstr "Обриши текст"
 
 msgid "Close"
 msgstr "Затвори"
 
-msgid "Close modal"
-msgstr "Zatvori modal"
-
 msgid "Close navigation"
-msgstr "Zatvori navigaciju"
+msgstr "Затвори навигацију"
 
 msgid "Close sidebar"
-msgstr "Zatvori bočnu traku"
+msgstr "Затвори бочну траку"
 
 msgid "Close Smart Picker"
 msgstr "Затвори паметни бирач"
@@ -87,16 +87,19 @@ msgid "Collapse menu"
 msgstr "Сажми мени"
 
 msgid "Confirm changes"
-msgstr "Potvrdite promene"
+msgstr "Потврдите измене"
 
 msgid "Custom"
-msgstr "Po meri"
+msgstr "Произвољно"
+
+msgid "Deselect {option}"
+msgstr "Уклони избор {option}"
 
 msgid "do not disturb"
 msgstr "не узнемиравај"
 
 msgid "Edit item"
-msgstr "Uredi stavku"
+msgstr "Уреди ставку"
 
 msgid "Enter link"
 msgstr "Унесите линк"
@@ -112,22 +115,22 @@ msgid "External documentation for {name}"
 msgstr "Спољна документација за {name}"
 
 msgid "Favorite"
-msgstr "Omiljeni"
+msgstr "Омиљени"
 
 msgid "Flags"
-msgstr "Zastave"
+msgstr "Заставе"
 
 msgid "Food & Drink"
-msgstr "Hrana i Piće"
+msgstr "Храна и пиће"
 
 msgid "Frequently used"
-msgstr "Često korišćeno"
+msgstr "Често коришћено"
 
 msgid "Global"
-msgstr "Globalno"
+msgstr "Глобално"
 
 msgid "Go back to the list"
-msgstr "Natrag na listu"
+msgstr "Назад на листу"
 
 msgid "Hide password"
 msgstr "Сакриј лозинку"
@@ -136,7 +139,7 @@ msgid "Load more \"{options}\""
 msgstr "Учитај још „{options}”"
 
 msgid "Message limit of {count} characters reached"
-msgstr "Dostignuto je ograničenje za poruke od {count} znakova"
+msgstr "Достигнуто је ограничење величине поруке од {count} карактера"
 
 msgid "More items …"
 msgstr "Још ставки..."
@@ -148,7 +151,7 @@ msgid "Next"
 msgstr "Следеће"
 
 msgid "No emoji found"
-msgstr "Nije pronađen nijedan emodži"
+msgstr "Није пронађен ниједан емођи"
 
 msgid "No link provider found"
 msgstr "Није пронађен ниједан пружалац линка"
@@ -157,7 +160,7 @@ msgid "No results"
 msgstr "Нема резултата"
 
 msgid "Objects"
-msgstr "Objekti"
+msgstr "Предмети"
 
 msgid "offline"
 msgstr "ван мреже"
@@ -175,7 +178,7 @@ msgid "Open menu"
 msgstr "Отвори мени"
 
 msgid "Open navigation"
-msgstr "Otvori navigaciju"
+msgstr "Отвори навигацију"
 
 msgid "Open settings menu"
 msgstr "Отвори мени подешавања"
@@ -187,7 +190,7 @@ msgid "Pause slideshow"
 msgstr "Паузирај слајд шоу"
 
 msgid "People & Body"
-msgstr "Ljudi i Telo"
+msgstr "Људи и тело"
 
 msgid "Pick a date"
 msgstr "Изаберите датум"
@@ -208,10 +211,10 @@ msgid "Pick a year"
 msgstr "Изаберите годину"
 
 msgid "Pick an emoji"
-msgstr "Izaberi emodži"
+msgstr "Изаберите емођи"
 
 msgid "Please select a time zone:"
-msgstr "Molimo izaberite vremensku zonu:"
+msgstr "Молимо вас да изаберете временску зону:"
 
 msgid "Previous"
 msgstr "Претходно"
@@ -226,13 +229,19 @@ msgid "Related resources"
 msgstr "Повезани ресурси"
 
 msgid "Search"
-msgstr "Pretraži"
+msgstr "Претражи"
 
 msgid "Search emoji"
 msgstr "Претражи емођи"
 
+msgid "Search for options"
+msgstr "Претрага опција"
+
+msgid "Search for time zone"
+msgstr "Претрага временске зоне"
+
 msgid "Search results"
-msgstr "Rezultati pretrage"
+msgstr "Резултати претраге"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
