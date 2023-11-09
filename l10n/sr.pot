@@ -295,7 +295,7 @@ msgid "Type to search time zone"
 msgstr "Куцајте да претражите временске зоне"
 
 msgid "Unable to search the group"
-msgstr "Nije moguće pretražiti grupu"
+msgstr "Група не може да се претражи"
 
 msgid "Undo changes"
 msgstr "Poništi promene"
