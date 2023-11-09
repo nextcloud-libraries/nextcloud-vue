@@ -286,13 +286,13 @@ msgid "Submit"
 msgstr "Поднеси"
 
 msgid "Symbols"
-msgstr "Simboli"
+msgstr "Симболи"
 
 msgid "Travel & Places"
-msgstr "Putovanja i Mesta"
+msgstr "Путовање и места"
 
 msgid "Type to search time zone"
-msgstr "Ukucaj da pretražiš vremenske zone"
+msgstr "Куцајте да претражите временске зоне"
 
 msgid "Unable to search the group"
 msgstr "Nije moguće pretražiti grupu"
