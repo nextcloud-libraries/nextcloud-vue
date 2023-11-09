@@ -130,6 +130,8 @@ export default {
 		},
 	},
 	methods: {
+		t,
+
 		change(newValue) {
 			if (!newValue) {
 				return
