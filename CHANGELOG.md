@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v8.0.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.0.1) (2023-11-09)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.0.0...v8.0.1)
+
+### :bug: Fixed bugs
+* fix(NcModal): Adjust `aria-label` of close button by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4778
+* fix(NcCounterBubble): Fix color of highlighted/outlined items when no… by @nickvergessen in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4781
+* fix(NcTimezonePicker): add missing `t` method by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4790
+* fix(NcCheckboxRadioSwitch): Fix contrast of Radio switches using butt… by @nickvergessen in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4791
+
+### Other Changes
+* Updates for project Nextcloud vue library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4780
+* Updates for project Nextcloud vue library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4784
+
 ## [v8.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.0.0) (2023-11-08)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.11.2...v8.0.0)
 
