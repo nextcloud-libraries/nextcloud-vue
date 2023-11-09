@@ -298,7 +298,7 @@ msgid "Unable to search the group"
 msgstr "Група не може да се претражи"
 
 msgid "Undo changes"
-msgstr "Poništi promene"
+msgstr "Поништи измене"
 
 msgid "User status: {status}"
 msgstr "Статус корисника: {status}"
