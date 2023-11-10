@@ -338,7 +338,7 @@ export default {
 		 * @param {string} id The section ID
 		 */
 		unregisterSection(id) {
-			this.sections = this.sections.filter(({ id: otherId }) => id === otherId)
+			this.sections = this.sections.filter(({ id: otherId }) => id !== otherId)
 		},
 
 		/**
