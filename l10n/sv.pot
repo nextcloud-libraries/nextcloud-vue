@@ -65,14 +65,14 @@ msgstr "Välj"
 msgid "Clear search"
 msgstr "Rensa sökning"
 
+msgid "Clear selected"
+msgstr "Rensa val"
+
 msgid "Clear text"
 msgstr "Ta bort text"
 
 msgid "Close"
 msgstr "Stäng"
-
-msgid "Close modal"
-msgstr "Stäng modal"
 
 msgid "Close navigation"
 msgstr "Stäng navigering"
@@ -91,6 +91,9 @@ msgstr "Bekräfta ändringar"
 
 msgid "Custom"
 msgstr "Anpassad"
+
+msgid "Deselect {option}"
+msgstr "Avmarkera {option}"
 
 msgid "do not disturb"
 msgstr "stör ej"
@@ -230,6 +233,12 @@ msgstr "Sök"
 
 msgid "Search emoji"
 msgstr "Sök emoji"
+
+msgid "Search for options"
+msgstr "Sök efter alternativ"
+
+msgid "Search for time zone"
+msgstr "Sök efter tidszon"
 
 msgid "Search results"
 msgstr "Sökresultat"
