@@ -290,11 +290,6 @@ export default {
 		},
 	},
 
-	mounted() {
-		// Select first settings section
-		this.selectedSection = this.$slots.default[0].componentOptions.propsData.id
-	},
-
 	updated() {
 		// Check that the scroller element has been mounted
 		if (!this.$refs.settingsScroller) {
@@ -331,6 +326,11 @@ export default {
 				const indexOf = (id) => this.$slots.default.findIndex(vnode => vnode?.componentOptions?.propsData?.id === id)
 				return indexOf(idA) - indexOf(idB)
 			})
+
+			// Make the first registered section selected
+			if (this.sections.length === 1) {
+				this.selectedSection = this.sections[0].id
+			}
 		},
 
 		/**
@@ -339,6 +339,10 @@ export default {
 		 */
 		unregisterSection(id) {
 			this.sections = this.sections.filter(({ id: otherId }) => id !== otherId)
+			// If the selected section is removed, select the first section or none
+			if (this.selectedSection === id) {
+				this.selectedSection = this.sections[0]?.id ?? ''
+			}
 		},
 
 		/**
