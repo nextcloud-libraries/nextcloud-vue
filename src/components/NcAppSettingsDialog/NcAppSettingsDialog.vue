@@ -328,7 +328,7 @@ export default {
 			const newSections = [...this.sections, { id, name, icon }]
 			// Sort sections by order in slots
 			this.sections = newSections.sort(({ id: idA }, { id: idB }) => {
-				const indexOf = (id) => this.$slots.default.indexOf(vnode => vnode?.componentOptions?.propsData?.id === id)
+				const indexOf = (id) => this.$slots.default.findIndex(vnode => vnode?.componentOptions?.propsData?.id === id)
 				return indexOf(idA) - indexOf(idB)
 			})
 		},
