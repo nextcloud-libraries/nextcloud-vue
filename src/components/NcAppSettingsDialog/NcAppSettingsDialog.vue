@@ -195,7 +195,7 @@ export default {
 	provide() {
 		return {
 			registerSection: this.registerSection,
-			unregisterSection: this.registerSection,
+			unregisterSection: this.unregisterSection,
 		}
 	},
 
