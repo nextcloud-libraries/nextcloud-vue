@@ -536,8 +536,9 @@ export default {
 // TODO: Use @nextcloud/vue-select once a vue 3 version is available.
 // Until then, all @nextcloud/vue-select specific improvements won't be available.
 // E.g. the `limit` prop has no effect, currently.
-import VueSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css'
+
+import VueSelect from 'vue-select'
 import {
 	autoUpdate,
 	computePosition,
@@ -546,6 +547,7 @@ import {
 	offset,
 	shift,
 } from '@floating-ui/dom'
+import { t } from '../../l10n.js'
 
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import Close from 'vue-material-design-icons/Close.vue'
@@ -577,6 +579,32 @@ export default {
 	props: {
 		// Add VueSelect props to $props
 		...VueSelect.props,
+
+		/**
+		 * `aria-label` for the clear input button
+		 */
+		ariaLabelClearSelected: {
+			type: String,
+			default: t('Clear selected'),
+		},
+
+		/**
+		 * `aria-label` for the search input
+		 */
+		ariaLabelCombobox: {
+			type: String,
+			default: t('Search for options'),
+		},
+
+		/**
+		 * Allows to customize the `aria-label` for the deselect-option button
+		 * The default is "Deselect " + optionLabel
+		 * @type {(optionLabel: string) => string}
+		 */
+		ariaLabelDeselectOption: {
+			type: Function,
+			default: (optionLabel) => t('Deselect {option}', { option: optionLabel }),
+		},
 
 		/**
 		 * Append the dropdown element to the end of the body
@@ -1089,12 +1117,14 @@ body {
 	}
 
 	&.vs--open .vs__dropdown-toggle {
-		border-color: var(--color-primary-element);
+		outline: 2px solid var(--color-main-background);
+		border-color: var(--color-main-text);
 		border-bottom-color: transparent;
 	}
 
 	&:not(.vs--disabled, .vs--open) .vs__dropdown-toggle:hover {
-		border-color: var(--color-primary-element);
+		outline: 2px solid var(--color-main-background);
+		border-color: var(--color-main-text);
 	}
 
 	&.vs--disabled {
@@ -1125,7 +1155,7 @@ body {
 			.vs__dropdown-toggle {
 				border-radius: 0 0 var(--vs-border-radius) var(--vs-border-radius);
 				border-top-color: transparent;
-				border-bottom-color: var(--color-primary-element);
+				border-bottom-color: var(--color-main-text);
 			}
 		}
 	}
@@ -1158,8 +1188,10 @@ body {
 }
 
 .vs__dropdown-menu {
-	border-color: var(--color-primary-element) !important;
+	border-color: var(--color-main-text) !important;
+	outline: 2px solid var(--color-main-background);
 	padding: 4px !important;
+	box-shadow: none;
 
 	&--floating {
 		/* Fallback styles overidden by programmatically set inline styles */
@@ -1172,7 +1204,6 @@ body {
 			border-radius: var(--vs-border-radius) var(--vs-border-radius) 0 0 !important;
 			border-top-style: var(--vs-border-style) !important;
 			border-bottom-style: none !important;
-			box-shadow: 0px -1px 1px 0px var(--color-box-shadow) !important;
 		}
 	}
 

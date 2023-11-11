@@ -36,7 +36,7 @@ This component has the following slot:
 
 ```vue
 <p>
-	Some text before <NcUserBubble user="admin" display-name="Admin Example" :url="'/test'">@admin@foreign-host.com</NcUserBubble> and after the bubble.
+	Some text before <NcUserBubble user="admin" display-name="Admin Example" url="/test">@admin@foreign-host.com</NcUserBubble> and after the bubble.
 	<NcUserBubble avatar-image="icon-group" display-name="test group xyz" :primary="true">Hey there!</NcUserBubble>
 </p>
 ```
@@ -58,7 +58,15 @@ This component has the following slot:
 	</template>
 </NcUserBubble>
 </template>
-
+<script>
+export default {
+	methods: {
+		alert() {
+			alert('Removed')
+		},
+	},
+}
+</script>
 <style>
 .icon-close {
 	display: block;
@@ -91,7 +99,7 @@ This component has the following slot:
 					:style="styles.avatar"
 					:disable-tooltip="true"
 					:disable-menu="true"
-					v-bind="$props"
+					:show-user-status="showUserStatus"
 					class="user-bubble__avatar" />
 
 				<!-- Name -->
@@ -115,6 +123,7 @@ This component has the following slot:
 import NcUserBubbleDiv from './NcUserBubbleDiv.vue'
 import NcAvatar from '../NcAvatar/index.js'
 import NcPopover from '../NcPopover/index.js'
+import Vue from 'vue'
 
 export default {
 	name: 'NcUserBubble',
@@ -143,7 +152,7 @@ export default {
 		 */
 		displayName: {
 			type: String,
-			required: true,
+			default: undefined,
 		},
 		/**
 		 * Whether or not to display the user-status
@@ -158,10 +167,10 @@ export default {
 		url: {
 			type: String,
 			default: undefined,
-			validator: url => {
+			validator: (url) => {
 				try {
-					url = new URL(url)
-					return !!url
+					url = new URL(url, url?.startsWith?.('/') ? window.location.href : undefined)
+					return true
 				} catch (error) {
 					return false
 				}
@@ -269,6 +278,11 @@ export default {
 				},
 			}
 		},
+	},
+	mounted() {
+		if (!this.displayName && !this.user) {
+			Vue.util.warn('[NcUserBubble] At least `displayName` or `user` property should be set.')
+		}
 	},
 	methods: {
 		onOpenChange(state) {
