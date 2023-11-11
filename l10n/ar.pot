@@ -36,7 +36,7 @@ msgid "Any link"
 msgstr "أيَّ رابطٍ"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr "أي مادة تمت مشاركتها مع نفس المجموعة من الأشخاص سيتم عرضها هنا"
+msgstr "أيّ مادة تمت مشاركتها مع نفس المجموعة من الأشخاص سيتم عرضها هنا"
 
 msgid "Avatar of {displayName}"
 msgstr "الرمز التجسيدي avatar لــ {displayName}  "
