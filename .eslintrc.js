@@ -22,8 +22,6 @@ module.exports = {
 		'src/components/NcContent/*.vue',
 		'src/components/NcDashboard*/*.vue',
 		'src/components/NcRich*/**/*.vue',
-		'src/components/NcUserBubble*/*.vue',
-		'src/components/NcVNodes*/*.vue',
 		'src/utils/IsMobileState.js',
 	],
 	parserOptions: {

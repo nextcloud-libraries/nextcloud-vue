@@ -116,11 +116,10 @@ module.exports = async () => {
 					'src/components/NcSettings*/*.vue',
 					'src/components/NcTextArea/*.vue',
 					'src/components/NcUserBubble/NcUserBubbleDiv.vue',
+					'src/components/NcVNodes*/*.vue',
 
 					// Not yet adjusted for vue3
 					'src/components/NcRichContenteditable*/*.vue',
-					'src/components/NcUserBubble*/*.vue',
-					'src/components/NcVNodes*/*.vue',
 				],
 				sections: [
 					{

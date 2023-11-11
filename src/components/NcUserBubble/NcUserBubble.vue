@@ -77,7 +77,7 @@ export default {
 
 </docs>
 <template>
-	<component :is="isPopoverComponent"
+	<component :is="!!$slots.default ? 'NcPopover' : 'NcUserBubbleDiv'"
 		trigger="hover focus"
 		:shown="open"
 		class="user-bubble__wrapper"
@@ -108,7 +108,7 @@ export default {
 				</span>
 
 				<!-- @slot Optional slot just after the name -->
-				<span v-if="$slots.name" class="user-bubble__secondary">
+				<span v-if="!!$slots.name" class="user-bubble__secondary">
 					<slot name="name" />
 				</span>
 			</component>
@@ -212,20 +212,6 @@ export default {
 	],
 	computed: {
 		/**
-		 * If userbubble is empty, let's NOT
-		 * use the Popover component
-		 * We need a component instead of a simple div here,
-		 * because otherwise the trigger template will not be shown.
-		 *
-		 * @return {string} 'Popover' or 'UserBubbleDiv'
-		 */
-		isPopoverComponent() {
-			return !this.popoverEmpty
-				? 'NcPopover'
-				: 'NcUserBubbleDiv'
-		},
-
-		/**
 		 * Is the provided avatar url valid or not
 		 *
 		 * @return {boolean}
@@ -257,13 +243,6 @@ export default {
 
 		isLinkComponent() {
 			return this.hasUrl ? 'a' : 'div'
-		},
-
-		popoverEmpty() {
-			if ('default' in this.$slots) {
-				return false
-			}
-			return true
 		},
 
 		styles() {
