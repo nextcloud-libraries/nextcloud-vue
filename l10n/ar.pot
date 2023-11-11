@@ -66,7 +66,7 @@ msgid "Clear search"
 msgstr "مَحْوُ البحث"
 
 msgid "Clear selected"
-msgstr "محو المُحدّد"
+msgstr "مَحْوُ المُحدّد"
 
 msgid "Clear text"
 msgstr "مَحْوُ النص"
