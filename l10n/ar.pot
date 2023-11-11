@@ -65,14 +65,14 @@ msgstr "إختَر"
 msgid "Clear search"
 msgstr "مَحْوُ البحث"
 
+msgid "Clear selected"
+msgstr "محو المُحدّد"
+
 msgid "Clear text"
 msgstr "مَحْوُ النص"
 
 msgid "Close"
 msgstr "أغلِق"
-
-msgid "Close modal"
-msgstr "أغلِق النافذة الصُّورِية"
 
 msgid "Close navigation"
 msgstr "أغلِق المُتصفِّح"
@@ -91,6 +91,9 @@ msgstr "تأكيد التغييرات"
 
 msgid "Custom"
 msgstr "مُخصَّص"
+
+msgid "Deselect {option}"
+msgstr "إلغاء تحديد {option}"
 
 msgid "do not disturb"
 msgstr "يُرجى عدم الإزعاج"
@@ -230,6 +233,12 @@ msgstr "بحث"
 
 msgid "Search emoji"
 msgstr "بحث عن إيموجي emoji"
+
+msgid "Search for options"
+msgstr "البحث عن خيارات"
+
+msgid "Search for time zone"
+msgstr "البحث عن منطقة زمنية"
 
 msgid "Search results"
 msgstr "نتائج البحث"
