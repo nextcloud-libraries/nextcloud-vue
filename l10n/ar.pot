@@ -250,7 +250,7 @@ msgstr "ثانية مضت"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr "ثواٍن مضت"
+msgstr "ثوانٍ مضت"
 
 msgid "Select a tag"
 msgstr "إختَر سِمَةً tag"
