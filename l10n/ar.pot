@@ -27,7 +27,7 @@ msgid "Actions for item with name \"{name}\""
 msgstr "إجراءات على العنصر المُسمَّى \"{name}\""
 
 msgid "Activities"
-msgstr "الحركات"
+msgstr "سجل الحركات"
 
 msgid "Animals & Nature"
 msgstr "الحيوانات والطبيعة"
