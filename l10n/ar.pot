@@ -190,7 +190,7 @@ msgid "Pause slideshow"
 msgstr "تجميد عرض الشرائح"
 
 msgid "People & Body"
-msgstr "ناس و أجسام"
+msgstr "أشخاص و أجسام"
 
 msgid "Pick a date"
 msgstr "إختَر التاريخ"
