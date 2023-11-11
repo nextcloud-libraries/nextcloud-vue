@@ -348,7 +348,7 @@ export default {
 
 			// If the current section is unregistered, set the first section as selected
 			if (this.selectedSection === id) {
-				this.selectedSection = this.sections?.[0]?.id ?? ''
+				this.selectedSection = this.sections[0]?.id ?? ''
 			}
 		},
 

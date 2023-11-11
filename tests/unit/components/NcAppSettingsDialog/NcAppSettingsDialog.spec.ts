@@ -22,7 +22,7 @@
 
 import { mount } from '@vue/test-utils'
 import NcAppSettingsDialog from '../../../../src/components/NcAppSettingsDialog/NcAppSettingsDialog.vue'
-import { defineComponent, inject, onMounted } from 'vue'
+import { defineComponent, inject, nextTick, onMounted } from 'vue'
 
 /**
  * Mocked AppSettingsSection that just registers it self
@@ -32,6 +32,7 @@ const MockSection = defineComponent({
 	setup(props) {
 		const register = inject<(id: string, name: string)=> void>('registerSection')
 		onMounted(() => register?.(props.id, 'test_name'))
+		return (h) => h('li', ['empty'])
 	},
 })
 
@@ -46,8 +47,10 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 			},
 		})
 
-		expect(wrapper.vm.$data.sections).toHaveLength(1)
-		expect(wrapper.vm.$data.sections[0]).toEqual({ id: 'test_id', name: 'test_name' })
+		await nextTick()
+
+		expect(wrapper.findAll('[role="tab"]')).toHaveLength(1)
+		expect(wrapper.find('[role="tab"]').text()).toBe('test_name')
 	})
 
 	it('can register a new section', async () => {
@@ -59,8 +62,9 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 		})
 
 		wrapper.vm.registerSection('test_id', 'test_name')
-		expect(wrapper.vm.$data.sections).toHaveLength(1)
-		expect(wrapper.vm.$data.sections[0]).toEqual({ id: 'test_id', name: 'test_name' })
+		await nextTick()
+		expect(wrapper.findAll('[role="tab"]')).toHaveLength(1)
+		expect(wrapper.find('[role="tab"]').text()).toBe('test_name')
 	})
 
 	it('warn on register a already registered section name', async () => {
@@ -76,12 +80,14 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 
 		// First call should be OK
 		wrapper.vm.registerSection('test_id', 'test_name')
-		expect(wrapper.vm.$data.sections).toHaveLength(1)
+		await nextTick()
+		expect(wrapper.findAll('[role="tab"]')).toHaveLength(1)
 		expect(spy).not.toHaveBeenCalled()
 
 		// Second one should unregister first and replace with this one, but show an error
 		wrapper.vm.registerSection('test_id_2', 'test_name')
-		expect(wrapper.vm.$data.sections).toHaveLength(2)
+		await nextTick()
+		expect(wrapper.findAll('[role="tab"]')).toHaveLength(2)
 		expect(spy).toHaveBeenCalled()
 	})
 
@@ -95,10 +101,13 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 
 		// First call should be OK
 		wrapper.vm.registerSection('test_id', 'test_name')
-		expect(wrapper.vm.$data.sections).toHaveLength(1)
+		await nextTick()
+		expect(wrapper.findAll('[role="tab"]')).toHaveLength(1)
+
 		// Second one should unregister first and replace with this one, but show an error
 		expect(() => wrapper.vm.registerSection('test_id', 'test_other_name')).toThrow()
-		expect(wrapper.vm.$data.sections).toHaveLength(1)
+		await nextTick()
+		expect(wrapper.findAll('[role="tab"]')).toHaveLength(1)
 	})
 
 	it('can unregister a section', async () => {
@@ -111,9 +120,12 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 
 		wrapper.vm.registerSection('test_id', 'test_name')
 		wrapper.vm.registerSection('test_id2', 'test_name2')
-		expect(wrapper.vm.$data.sections).toHaveLength(2)
+		await nextTick()
+		expect(wrapper.findAll('[role="tab"]')).toHaveLength(2)
+
 		wrapper.vm.unregisterSection('test_id')
-		expect(wrapper.vm.$data.sections).toHaveLength(1)
-		expect(wrapper.vm.$data.sections[0]).toEqual({ id: 'test_id2', name: 'test_name2' })
+		await nextTick()
+		expect(wrapper.findAll('[role="tab"]')).toHaveLength(1)
+		expect(wrapper.find('[role="tab"]').text()).toBe('test_name2')
 	})
 })
