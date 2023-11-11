@@ -27,7 +27,7 @@ msgid "Actions for item with name \"{name}\""
 msgstr "إجراءات على العنصر المُسمَّى \"{name}\""
 
 msgid "Activities"
-msgstr "الحركات"
+msgstr "سجل الحركات"
 
 msgid "Animals & Nature"
 msgstr "الحيوانات والطبيعة"
@@ -36,7 +36,7 @@ msgid "Any link"
 msgstr "أيَّ رابطٍ"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr "أي مادة تمت مشاركتها مع نفس المجموعة من الأشخاص سيتم عرضها هنا"
+msgstr "أيّ مادة تمت مشاركتها مع نفس المجموعة من الأشخاص سيتم عرضها هنا"
 
 msgid "Avatar of {displayName}"
 msgstr "الرمز التجسيدي avatar لــ {displayName}  "
@@ -65,14 +65,14 @@ msgstr "إختَر"
 msgid "Clear search"
 msgstr "مَحْوُ البحث"
 
+msgid "Clear selected"
+msgstr "مَحْوُ المُحدّد"
+
 msgid "Clear text"
 msgstr "مَحْوُ النص"
 
 msgid "Close"
 msgstr "أغلِق"
-
-msgid "Close modal"
-msgstr "أغلِق النافذة الصُّورِية"
 
 msgid "Close navigation"
 msgstr "أغلِق المُتصفِّح"
@@ -91,6 +91,9 @@ msgstr "تأكيد التغييرات"
 
 msgid "Custom"
 msgstr "مُخصَّص"
+
+msgid "Deselect {option}"
+msgstr "إلغاء تحديد {option}"
 
 msgid "do not disturb"
 msgstr "يُرجى عدم الإزعاج"
@@ -187,7 +190,7 @@ msgid "Pause slideshow"
 msgstr "تجميد عرض الشرائح"
 
 msgid "People & Body"
-msgstr "ناس و أجسام"
+msgstr "أشخاص و أجسام"
 
 msgid "Pick a date"
 msgstr "إختَر التاريخ"
@@ -229,7 +232,13 @@ msgid "Search"
 msgstr "بحث"
 
 msgid "Search emoji"
-msgstr "بحث عن إيموجي emoji"
+msgstr "البحث عن إيموجي emoji"
+
+msgid "Search for options"
+msgstr "البحث عن خيارات"
+
+msgid "Search for time zone"
+msgstr "البحث عن منطقة زمنية"
 
 msgid "Search results"
 msgstr "نتائج البحث"
@@ -241,7 +250,7 @@ msgstr "ثانية مضت"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr "ثوان مضت"
+msgstr "ثوانٍ مضت"
 
 msgid "Select a tag"
 msgstr "إختَر سِمَةً tag"
