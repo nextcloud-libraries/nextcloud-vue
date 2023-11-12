@@ -641,6 +641,11 @@ export default {
 
 	&--checked:not(&--disabled):focus-within &__content,
 	&--checked:not(&--disabled) &__content:hover {
+		background-color: var(--color-primary-element-hover);
+	}
+
+	&--checked:not(&--button-variant):not(&--disabled):focus-within &__content,
+	&--checked:not(&--button-variant):not(&--disabled) &__content:hover {
 		background-color: var(--color-primary-element-light-hover);
 	}
 
@@ -666,7 +671,8 @@ export default {
 			font-weight: bold;
 
 			.checkbox-radio-switch__content {
-				background-color: var(--color-primary-element-light);
+				background-color: var(--color-primary-element);
+				color: var(--color-primary-element-text);
 			}
 		}
 	}

@@ -112,9 +112,12 @@ export default defineConfig((env) => {
 	const createConfig = createLibConfig(entryPoints, {
 		// Add our overrides to the config
 		config: overrides,
-		// Packages with paths imports should be added here to mark them as external as well
+		// By default all dependencies are external, but no path imports
 		nodeExternalsOptions: {
-			include: [/^vue-material-design-icons\//, /^@nextcloud\/.+\//, /^@mdi\/svg\//],
+			// Packages with paths imports should be added here to mark them as external as well
+			include: [/^@nextcloud\/.+\//, /^@mdi\/svg\//],
+			// Make sure to not provide uncompiled vue files as dependencies, this will break unit tests
+			exclude: [/\.vue(\?|$)/],
 		},
 		// For backwards compatibility we include the css within the js files
 		inlineCSS: true,
