@@ -182,14 +182,14 @@ export default {
 		// Reuse all the props from NcInputField for better typing and documentation
 		...NcInputField.props,
 
-		// Redefined props
-
 		/**
-		 * Label of the trailing button
+		 * The `aria-label` to set on the trailing button
+		 * If no explicit value is set it will default to the one matching the `trailingButtonIcon`:
+		 * @default 'Clear text'|'Save changes'|'Undo changes'
 		 */
 		trailingButtonLabel: {
 			type: String,
-			default: t('Clear text'),
+			default: '',
 		},
 
 		// Custom props
@@ -216,6 +216,12 @@ export default {
 
 	computed: {
 		propsAndAttrsToForward() {
+			const predefinedLabels = {
+				undo: t('Undo changes'),
+				close: t('Clear text'),
+				arrowRight: t('Save changes'),
+			}
+
 			return {
 				// Proxy all the HTML attributes
 				...this.$attrs,
@@ -223,6 +229,8 @@ export default {
 				...Object.fromEntries(
 					Object.entries(this.$props).filter(([key]) => NcInputFieldProps.has(key)),
 				),
+				// Adjust aria-label for predefined trailing buttons
+				trailingButtonLabel: this.trailingButtonLabel || predefinedLabels[this.trailingButtonIcon],
 			}
 		},
 	},
