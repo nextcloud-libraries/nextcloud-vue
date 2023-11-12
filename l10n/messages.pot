@@ -215,6 +215,9 @@ msgstr ""
 msgid "Related resources"
 msgstr ""
 
+msgid "Save changes"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
