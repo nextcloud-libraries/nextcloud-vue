@@ -42,14 +42,15 @@ export default {
 </docs>
 
 <template>
-	<NcSelect :uid="uid"
-		:model-value="selectedTimezone"
-		:options="options"
-		:multiple="false"
+	<NcSelect :aria-label-combobox="t('Search for time zone')"
 		:clearable="false"
+		:filter-by="filterBy"
+		:model-value="selectedTimezone"
+		:multiple="false"
+		:options="options"
 		:placeholder="placeholder"
 		:selectable="isSelectable"
-		:filter-by="filterBy"
+		:uid="uid"
 		label="label"
 		@option:selected="change" />
 </template>
@@ -130,6 +131,8 @@ export default {
 		},
 	},
 	methods: {
+		t,
+
 		change(newValue) {
 			if (!newValue) {
 				return

@@ -112,7 +112,7 @@ export default {
 		background-color: var(--color-primary-element);
 	}
 
-	&--highlighted,.active {
+	&--highlighted.active {
 		color: var(--color-primary-element);
 		background-color: var(--color-main-background);
 	}
@@ -122,7 +122,7 @@ export default {
 		background: transparent;
 		box-shadow: inset 0 0 0 2px;
 	}
-	&--outlined,.active {
+	&--outlined.active {
 		color: var(--color-main-background);
 		box-shadow: inset 0 0 0 2px;
 	}

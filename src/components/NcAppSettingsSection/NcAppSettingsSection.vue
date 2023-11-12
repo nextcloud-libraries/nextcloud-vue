@@ -26,12 +26,15 @@
 			{{ name }}
 		</h3>
 		<slot />
+		<!-- @slot Optonal icon to for the secion in the navigation -->
+		<slot v-if="false" name="icon" />
 	</div>
 </template>
 
 <script>
 export default {
 	name: 'NcAppSettingsSection',
+	inject: ['registerSection', 'unregisterSection'],
 
 	props: {
 		name: {
@@ -53,6 +56,24 @@ export default {
 		htmlId() {
 			return 'settings-section_' + this.id
 		},
+	},
+	// Reactive changes for section navigation
+	watch: {
+		id(newId, oldId) {
+			this.unregisterSection(oldId)
+			this.registerSection(newId, this.name, this.$slots?.icon)
+		},
+		name(newName) {
+			this.unregisterSection(this.id)
+			this.registerSection(this.id, newName, this.$slots?.icon)
+		},
+	},
+	mounted() {
+		// register section for navigation
+		this.registerSection(this.id, this.name, this.$slots?.icon)
+	},
+	beforeDestroy() {
+		this.unregisterSection(this.id)
 	},
 }
 

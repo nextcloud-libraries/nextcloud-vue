@@ -486,6 +486,7 @@ export default {
 	<VueSelect class="select"
 		:class="{
 			'select--no-wrap': noWrap,
+			'user-select': userSelect,
 		}"
 		v-bind="propsToForward"
 		@search="search = $event"
@@ -504,6 +505,7 @@ export default {
 		<template #option="option">
 			<NcListItemIcon v-if="userSelect"
 				v-bind="option"
+				:avatar-size="24"
 				:name="option[localLabel]"
 				:search="search" />
 			<NcEllipsisedOption v-else
@@ -513,6 +515,7 @@ export default {
 		<template #selected-option="selectedOption">
 			<NcListItemIcon v-if="userSelect"
 				v-bind="selectedOption"
+				:avatar-size="24"
 				:name="selectedOption[localLabel]"
 				:search="search" />
 			<NcEllipsisedOption v-else
@@ -1067,10 +1070,10 @@ body {
 	--vs-border-radius: var(--border-radius-large);
 
 	/* Component Controls: Clear, Open Indicator */
-	--vs-controls-color: var(--color-text-maxcontrast);
+	--vs-controls-color: var(--color-main-text);
 
 	/* Selected */
-	--vs-selected-bg: var(--color-background-dark);
+	--vs-selected-bg: var(--color-background-hover);
 	--vs-selected-color: var(--color-main-text);
 	--vs-selected-border-color: var(--vs-border-color);
 	--vs-selected-border-style: var(--vs-border-style);
@@ -1098,6 +1101,9 @@ body {
 
 	/* Transitions */
 	--vs-transition-duration: 0ms;
+
+	/* Actions */
+	--vs-actions-padding: 0 8px 0 4px;
 }
 
 .v-select.select {
@@ -1107,9 +1113,19 @@ body {
 	margin: 0;
 
 	.vs__selected {
-		min-height: 36px;
-		padding: 0 0.5em;
-		border-radius: calc(var(--vs-border-radius) - 4px) !important;
+		height: 32px;
+		padding: 0 8px 0 12px;
+		border-radius: 18px !important;
+		background: var(--color-primary-element-light);
+		border: none;
+	}
+
+	.vs__search, .vs__search:focus {
+		margin: 2px 0 0;
+	}
+
+	.vs__dropdown-toggle {
+		padding: 0;
 	}
 
 	.vs__clear {
@@ -1215,4 +1231,10 @@ body {
 		color: var(--color-text-lighter) !important;
 	}
 }
+
+// Selected users require slightly different padding
+.user-select .vs__selected {
+	padding: 0 2px !important;
+}
+
 </style>
