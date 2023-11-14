@@ -81,7 +81,7 @@ emit('toggle-navigation', {
 
 <script>
 import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
-import isMobile from '../../mixins/isMobile/index.js'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { getTrapStack } from '../../utils/focusTrap.js'
 
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
@@ -95,7 +95,11 @@ export default {
 		NcAppNavigationToggle,
 	},
 
-	mixins: [isMobile],
+	setup() {
+		return {
+			isMobile: useIsMobile(),
+		}
+	},
 
 	props: {
 		/**
