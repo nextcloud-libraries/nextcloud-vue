@@ -116,7 +116,7 @@ The list size must be between the min and the max width value.
 
 <script>
 import NcAppDetailsToggle from './NcAppDetailsToggle.vue'
-import isMobile from '../../mixins/isMobile/index.js'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
 
 import { getBuilder } from '@nextcloud/browser-storage'
 import { emit } from '@nextcloud/event-bus'
@@ -139,8 +139,6 @@ export default {
 		Pane,
 		Splitpanes,
 	},
-
-	mixins: [isMobile],
 
 	props: {
 		/**
@@ -210,6 +208,12 @@ export default {
 		'update:showDetails',
 		'resize:list',
 	],
+
+	setup() {
+		return {
+			isMobile: useIsMobile(),
+		}
+	},
 
 	data() {
 		return {

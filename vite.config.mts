@@ -61,6 +61,14 @@ const entryPoints = {
 	// 	return acc
 	// }, {}),
 
+	...globSync('src/composables/*/index.js').reduce((acc, item) => {
+		const name = item
+			.replace('/index.js', '')
+			.replace('src/composables/', 'Composables/')
+		acc[name] = join(__dirname, item)
+		return acc
+	}, {}),
+
 	index: resolve(__dirname, 'src/index.js'),
 }
 

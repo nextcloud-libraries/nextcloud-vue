@@ -25,7 +25,12 @@ import { afterEach, describe, expect, it } from 'vitest'
 import { emit } from '@nextcloud/event-bus'
 import { nextTick } from 'vue'
 import NcAppNavigation from '../../../../src/components/NcAppNavigation/NcAppNavigation.vue'
-import { IsMobileState } from '../../../../src/utils/IsMobileState.js'
+
+const resizeWindowWidth = async (width) => {
+	jest.spyOn(document.documentElement, 'clientWidth', 'get').mockReturnValue(width)
+	window.dispatchEvent(new window.Event('resize'))
+	await nextTick()
+}
 
 const NAVIGATION__SELECTOR = 'nav'
 const TOGGLE_BUTTON__SELECTOR = 'button[aria-controls="app-navigation-vue"]'
@@ -77,35 +82,39 @@ describe('NcAppNavigation.vue', () => {
 	})
 
 	describe('toggle via mobile state', () => {
-		afterEach(() => {
-			IsMobileState.isMobile = false
+		beforeEach(async () => {
+			await resizeWindowWidth(1024)
 		})
 
 		it('closes on switch to mobile', async () => {
 			const wrapper = mount(NcAppNavigation)
 
-			IsMobileState.isMobile = true
+			expect(wrapper.classes(NAVIGATION_CLOSE__CLASS)).toBeFalsy()
+
+			await resizeWindowWidth(1023)
 			await nextTick()
 
 			expect(wrapper.classes(NAVIGATION_CLOSE__CLASS)).toBeTruthy()
 		})
 
 		it('opens on switch to desktop', async () => {
-			IsMobileState.isMobile = true
 			const wrapper = mount(NcAppNavigation)
 			const togglebutton = findToggleButton(wrapper)
+			await resizeWindowWidth(1023)
+
+			expect(wrapper.classes(NAVIGATION_CLOSE__CLASS)).toBeTruthy()
 
 			// Close
 			await togglebutton.trigger('click')
 			// Switch to desktop
-			IsMobileState.isMobile = false
+			await resizeWindowWidth(1024)
 			await nextTick()
 
 			expect(wrapper.classes(NAVIGATION_CLOSE__CLASS)).toBeFalsy()
 		})
 
 		it('closes by ESC key on mobile', async () => {
-			IsMobileState.isMobile = true
+			await resizeWindowWidth(1023)
 			const wrapper = mount(NcAppNavigation)
 			const navigation = findNavigation(wrapper)
 

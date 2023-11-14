@@ -227,6 +227,9 @@ msgstr "Holý odkaz {options}"
 msgid "Related resources"
 msgstr "Související prostředky"
 
+msgid "Save changes"
+msgstr "Uložit změny"
+
 msgid "Search"
 msgstr "Hledat"
 
