@@ -1,9 +1,10 @@
 import { isRef, nextTick } from 'vue'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it, vi } from 'vitest'
 import { useIsMobile } from '../../../src/composables/useIsMobile/index.js'
 
 const resizeWindowWidth = async (width) => {
-	jest.spyOn(document.documentElement, 'clientWidth', 'get').mockReturnValue(width)
+	vi.spyOn(document.documentElement, 'clientWidth', 'get').mockReturnValue(width)
 	window.dispatchEvent(new window.Event('resize'))
 	await nextTick()
 }
