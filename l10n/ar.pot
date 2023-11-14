@@ -228,6 +228,9 @@ msgstr " الرابط الخام raw link ـ {options}"
 msgid "Related resources"
 msgstr "مصادر ذات صلة"
 
+msgid "Save changes"
+msgstr "حفظ التغييرات"
+
 msgid "Search"
 msgstr "بحث"
 
