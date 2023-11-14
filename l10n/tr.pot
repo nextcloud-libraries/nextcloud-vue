@@ -228,6 +228,9 @@ msgstr "Ham bağlantı {options}"
 msgid "Related resources"
 msgstr "İlgili kaynaklar"
 
+msgid "Save changes"
+msgstr "Değişiklikleri kaydet"
+
 msgid "Search"
 msgstr "Arama"
 
