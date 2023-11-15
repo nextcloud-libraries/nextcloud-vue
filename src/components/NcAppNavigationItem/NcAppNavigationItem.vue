@@ -371,7 +371,7 @@ import NcActionButton from '../NcActionButton/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import NcVNodes from '../NcVNodes/index.js'
 import NcAppNavigationIconCollapsible from './NcAppNavigationIconCollapsible.vue'
-import isMobile from '../../mixins/isMobile/index.js'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import NcInputConfirmCancel from './NcInputConfirmCancel.vue'
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
@@ -392,8 +392,6 @@ export default {
 		Pencil,
 		Undo,
 	},
-
-	mixins: [isMobile],
 
 	props: {
 		/**
@@ -599,6 +597,12 @@ export default {
 		'click',
 		'undo',
 	],
+
+	setup() {
+		return {
+			isMobile: useIsMobile(),
+		}
+	},
 
 	data() {
 		return {

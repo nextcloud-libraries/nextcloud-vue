@@ -231,6 +231,9 @@ msgstr "Unverarbeiteter Link {Optionen}"
 msgid "Related resources"
 msgstr "Verwandte Ressourcen"
 
+msgid "Save changes"
+msgstr "Änderungen speichern"
+
 msgid "Search"
 msgstr "Suche"
 
