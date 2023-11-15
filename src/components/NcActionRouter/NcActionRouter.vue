@@ -34,7 +34,8 @@
 			<slot name="icon">
 				<span :class="[isIconUrl ? 'action-router__icon--url' : icon]"
 					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
-					class="action-router__icon" />
+					class="action-router__icon"
+					aria-hidden="true" />
 			</slot>
 
 			<!-- long text with name -->

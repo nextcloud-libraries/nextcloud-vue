@@ -93,7 +93,7 @@ export default {
 			<slot name="icon">
 				<span :class="[isIconUrl ? 'action-link__icon--url' : icon]"
 					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
-					:aria-hidden="ariaHidden"
+					aria-hidden="true"
 					class="action-link__icon" />
 			</slot>
 
@@ -175,7 +175,9 @@ export default {
 			default: null,
 		},
 		/**
-		 * aria-hidden attribute for the icon slot
+		 * @deprecated To be removed in @nextcloud/vue 9. Migration guide: remove ariaHidden prop from NcAction* components.
+		 * @todo Add a check in @nextcloud/vue 9 that this prop is not provided,
+		 * otherwise root element will inherit incorrect aria-hidden.
 		 */
 		ariaHidden: {
 			type: Boolean,

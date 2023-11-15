@@ -912,7 +912,9 @@ export default {
 		},
 
 		/**
-		 * aria-hidden attribute for the icon slot
+		 * @deprecated To be removed in @nextcloud/vue 9. Migration guide: remove ariaHidden prop from NcAction* components.
+		 * @todo Add a check in @nextcloud/vue 9 that this prop is not provided,
+		 * otherwise root element will inherit incorrect aria-hidden.
 		 */
 		ariaHidden: {
 			type: Boolean,
@@ -1272,7 +1274,6 @@ export default {
 						// If it has a menuName, we use a secondary button
 						type: this.type || (buttonText ? 'secondary' : 'tertiary'),
 						disabled: this.disabled || action?.componentOptions?.propsData?.disabled,
-						ariaHidden: this.ariaHidden,
 						...action?.componentOptions?.propsData,
 					},
 					on: {
@@ -1352,7 +1353,6 @@ export default {
 						props: {
 							type: this.triggerBtnType,
 							disabled: this.disabled,
-							ariaHidden: this.ariaHidden,
 						},
 						slot: 'trigger',
 						ref: 'menuButton',
