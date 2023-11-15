@@ -271,6 +271,26 @@ export default {
 		justify-content: stretch;
 		margin: 10px 8px 0 8px;
 		border-bottom: 1px solid var(--color-border);
+
+		// Override checkbox-radio-switch styles so that it looks like tabs
+		& :deep(.checkbox-radio-switch--button-variant) {
+			border: unset !important;
+			border-radius: 0 !important;
+			.checkbox-content {
+				padding: var(--default-grid-baseline);
+				border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0 !important;
+				margin: 0 !important;
+				border-bottom: var(--default-grid-baseline) solid transparent !important;
+				.checkbox-content__icon--checked > * {
+					color: var(--color-main-text) !important;
+				}
+			}
+			&.checkbox-radio-switch--checked .checkbox-radio-switch__content{
+				background: transparent !important;
+				color: var(--color-main-text) !important;
+				border-bottom: var(--default-grid-baseline) solid var(--color-primary-element) !important;
+			}
+		}
 	}
 
 	&__tab {
@@ -311,26 +331,6 @@ export default {
 		&--multiple > :not(section) {
 			display: none;
 		}
-	}
-}
-
-// Override checkbox-radio-switch styles so that it looks like tabs
-:deep(.checkbox-radio-switch--button-variant) {
-	border: unset !important;
-	border-radius: 0 !important;
-	.checkbox-content {
-		padding: var(--default-grid-baseline);
-		border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0 !important;
-		margin: 0 !important;
-		border-bottom: var(--default-grid-baseline) solid transparent !important;
-		.checkbox-content__icon--checked > * {
-			color: var(--color-main-text) !important;
-		}
-	}
-	&.checkbox-radio-switch--checked .checkbox-radio-switch__content{
-		background: transparent !important;
-		color: var(--color-main-text) !important;
-		border-bottom: var(--default-grid-baseline) solid var(--color-primary-element) !important;
 	}
 }
 </style>
