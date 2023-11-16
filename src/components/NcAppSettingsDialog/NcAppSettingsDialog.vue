@@ -395,6 +395,9 @@ export default {
 
 <style lang="scss" scoped>
 .app-settings {
+	&:deep(.dialog) {
+		min-height: 256px;
+	}
 	&__navigation {
 		min-width: 200px;
 		margin-right: 20px;
@@ -409,6 +412,7 @@ export default {
 		overflow-x: hidden;
 		padding: 24px;
 		width: 100%;
+		min-height: 256px;
 	}
 }
 

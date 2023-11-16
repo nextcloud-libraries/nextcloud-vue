@@ -323,8 +323,7 @@ export default {
 
 	&__content {
 		position: relative;
-		// take full available height
-		min-height: 0;
+		min-height: 256px;
 		height: 100%;
 		// force the use of the tab component if more than one tab
 		// you can just put raw content if you don't use tabs
