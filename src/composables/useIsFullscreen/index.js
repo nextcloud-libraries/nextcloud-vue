@@ -41,10 +41,3 @@ window.addEventListener('resize', () => {
 export function useIsFullscreen() {
 	return readonly(isFullscreen)
 }
-
-/**
- * @deprecated Is to be removed in v9.0.0 with Vue 3 migration.
- *             Use `composables/useIsFullscreen` instead.
- *             Defined and exported only for isFullscreen mixin.
- */
-export const isFullscreenState = readonly(isFullscreen)
