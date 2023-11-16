@@ -1,7 +1,6 @@
 /**
- * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2023 Grigorii K. Shartsev <me@shgk.me>
  *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
  * @author Grigorii K. Shartsev <me@shgk.me>
  *
  * @license AGPL-3.0-or-later
