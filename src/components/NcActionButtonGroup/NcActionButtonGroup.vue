@@ -81,11 +81,11 @@ export default {
 </docs>
 
 <template>
-	<li class="nc-button-group-base">
-		<div v-if="name">
+	<li class="nc-button-group-base" :role="isInSemanticMenu && 'presentation'">
+		<div v-if="name" :id="labelId">
 			{{ name }}
 		</div>
-		<ul class="nc-button-group-content">
+		<ul class="nc-button-group-content" role="group" :aria-labelledby="name ? labelId : undefined">
 			<slot />
 		</ul>
 	</li>
@@ -93,12 +93,21 @@ export default {
 
 <script>
 import { defineComponent } from 'vue'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 /**
  * A wrapper for allowing inlining NcAction components within the action menu
  */
 export default defineComponent({
 	name: 'NcActionButtonGroup',
+
+	inject: {
+		isInSemanticMenu: {
+			from: 'NcActions:isSemanticMenu',
+			default: false,
+		},
+	},
+
 	props: {
 		/**
 		 * Optional text shown below the button group
@@ -107,6 +116,12 @@ export default defineComponent({
 			required: false,
 			default: undefined,
 			type: String,
+		},
+	},
+
+	computed: {
+		labelId() {
+			return `nc-action-button-group-${GenRandomId()}`
 		},
 	},
 })
