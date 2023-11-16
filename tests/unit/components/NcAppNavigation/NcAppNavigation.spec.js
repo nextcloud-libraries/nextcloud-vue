@@ -21,13 +21,13 @@
  */
 
 import { mount } from '@vue/test-utils'
-import { afterEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { emit } from '@nextcloud/event-bus'
 import { nextTick } from 'vue'
 import NcAppNavigation from '../../../../src/components/NcAppNavigation/NcAppNavigation.vue'
 
 const resizeWindowWidth = async (width) => {
-	jest.spyOn(document.documentElement, 'clientWidth', 'get').mockReturnValue(width)
+	vi.spyOn(document.documentElement, 'clientWidth', 'get').mockReturnValue(width)
 	window.dispatchEvent(new window.Event('resize'))
 	await nextTick()
 }
@@ -133,9 +133,9 @@ describe('NcAppNavigation.vue', () => {
 		})
 	})
 
-	describe('focus trap', () => {
-		// TODO
-	})
+	// describe('focus trap', () => {
+	// 	// TODO
+	// })
 
 	describe('accessibility', () => {
 		it('has navigation role', () => {
@@ -183,7 +183,7 @@ describe('NcAppNavigation.vue', () => {
 
 		it('has aria-label from corresponding prop on navigation', () => {
 			const wrapper = mount(NcAppNavigation, {
-				propsData: { ariaLabel: 'Navigation' },
+				props: { ariaLabel: 'Navigation' },
 			})
 			const navigation = findNavigation(wrapper)
 			expect(navigation.attributes('aria-label')).toBe('Navigation')
@@ -191,7 +191,7 @@ describe('NcAppNavigation.vue', () => {
 
 		it('has aria-labelledby from corresponding prop on navigation', () => {
 			const wrapper = mount(NcAppNavigation, {
-				propsData: { ariaLabelledby: 'navHeaderId' },
+				props: { ariaLabelledby: 'navHeaderId' },
 			})
 			const navigation = findNavigation(wrapper)
 			expect(navigation.attributes('aria-labelledby')).toBe('navHeaderId')

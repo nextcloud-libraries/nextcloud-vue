@@ -161,7 +161,7 @@ export default {
 	overflow-y: hidden !important;
 }
 
-.slide-up-enter,
+.slide-up-enter-from,
 .slide-up-leave-to {
 	max-height: 0 !important;
 	padding: 0 10px !important;

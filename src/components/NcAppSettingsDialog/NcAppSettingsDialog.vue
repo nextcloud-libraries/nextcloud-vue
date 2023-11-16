@@ -29,7 +29,7 @@ providing the section's name prop. You can put your settings within each
 <template>
 	<div>
 		<NcButton @click="settingsOpen = true">Show Settings</NcButton>
-		<NcAppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" name="Application settings">
+		<NcAppSettingsDialog v-model:open="settingsOpen" :show-navigation="true" name="Application settings">
 			<NcAppSettingsSection id="asci-name-1" name="Example name 1">
 				Some example content
 			</NcAppSettingsSection>
@@ -81,7 +81,7 @@ You can also add icons to the section navigation:
 <template>
 	<div>
 		<NcButton @click="settingsOpen = true">Show Settings</NcButton>
-		<NcAppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" name="Application settings">
+		<NcAppSettingsDialog v-model:open="settingsOpen" :show-navigation="true" name="Application settings">
 			<NcAppSettingsSection id="asci-name-1" name="Instagram">
 				<template #icon>
 					<Instagram :size="20" />
@@ -297,7 +297,7 @@ export default {
 
 	mounted() {
 		// Select first settings section
-		this.selectedSection = this.$slots.default[0].componentOptions.propsData.id
+		this.selectedSection = this.$slots.default?.()[0]?.props?.id
 	},
 
 	updated() {
@@ -333,7 +333,7 @@ export default {
 			const newSections = [...this.sections, { id, name, icon }]
 			// Sort sections by order in slots
 			this.sections = newSections.sort(({ id: idA }, { id: idB }) => {
-				const indexOf = (id) => this.$slots.default.indexOf(vnode => vnode?.componentOptions?.propsData?.id === id)
+				const indexOf = (id) => this.$slots.default?.().indexOf(vnode => vnode?.props?.id === id)
 				return indexOf(idA) - indexOf(idB)
 			})
 		},
