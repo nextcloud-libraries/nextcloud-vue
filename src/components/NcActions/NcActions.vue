@@ -564,6 +564,236 @@ export default {
 </script>
 ```
 
+### Use cases
+
+```vue
+<template>
+	<div>
+		<h2>Application menu</h2>
+		Uses buttons, button groups, links and router links, separators, text. May have checkboxes and radio buttons.
+		<p>
+			<NcActions aria-label="Email menu" type="tertiary">
+				<NcActionButtonGroup>
+					<NcActionButton>
+						<template #icon>
+							<StarOutline :size="20" />
+						</template>
+						Favorite
+					</NcActionButton>
+					<NcActionButton>
+						<template #icon>
+							<EmailUnread :size="20" />
+						</template>
+						Unread
+					</NcActionButton>
+					<NcActionButton>
+						<template #icon>
+							<Bookmark :size="20" />
+						</template>
+						Important
+					</NcActionButton>
+				</NcActionButtonGroup>
+				<NcActionText>
+					<template #icon>
+						<ClockOutlineIcon :size="20" />
+					</template>
+					{{ new Date().toLocaleDateString('en-US') }}
+				</NcActionText>
+				<NcActionSeparator />
+				<NcActionButton>
+					<template #icon>
+						<AlertOctagonIcon :size="20" />
+					</template>
+					Mark as spam
+				</NcActionButton>
+				<NcActionCheckbox :checked.sync="selected">
+					Select
+				</NcActionCheckbox>
+				<NcActionButton>
+					<template #icon>
+						<OpenInNewIcon :size="20" />
+					</template>
+					Move thread
+				</NcActionButton>
+				<NcActionLink href="#">
+					<template #icon>
+						<DownloadIcon :size="20" />
+					</template>
+					Download message
+				</NcActionLink>
+			</NcActions>
+		</p>
+
+		<h2>Menu in menubar</h2>
+		Same as application menu. Separator can be used to make groups of radio buttons as well.
+		<p>
+			<NcActions aria-label="Text settings" type="tertiary">
+				<template #icon>
+					<FormatTitle :size="20" />
+				</template>
+				<NcActionButtonGroup name="Allignment">
+					<NcActionButton aria-label="Left">
+						<template #icon>
+							<FormatAlignLeft :size="20" />
+						</template>
+					</NcActionButton>
+					<NcActionButton aria-label="Center">
+						<template #icon>
+							<FormatAlignCenter :size="20" />
+						</template>
+					</NcActionButton>
+					<NcActionButton aria-label="Right">
+						<template #icon>
+							<FormatAlignRight :size="20" />
+						</template>
+					</NcActionButton>
+				</NcActionButtonGroup>
+				<NcActionSeparator />
+				<NcActionCheckbox :checked.sync="checked.bold" value="bold">
+					<template #icon>
+						<FormatBold :size="20" />
+					</template>
+					Bold
+				</NcActionCheckbox>
+				<NcActionCheckbox :checked.sync="checked.italic" value="italic">
+					<template #icon>
+						<FormatItalic :size="20" />
+					</template>
+					Italic
+				</NcActionCheckbox>
+				<NcActionCheckbox :checked.sync="checked.underline" value="underline">
+					<template #icon>
+						<FormatUnderline :size="20" />
+					</template>
+					Underline
+				</NcActionCheckbox>
+				<NcActionSeparator />
+				<NcActionRadio name="color" :checked.sync="color.black" value="Black">Black</NcActionRadio>
+				<NcActionRadio name="color" :checked.sync="color.blue" value="Blue">Blue</NcActionRadio>
+				<NcActionRadio name="color" :checked.sync="color.red" value="Red">Red</NcActionRadio>
+				<NcActionRadio name="color" :checked.sync="color.green" value="Green">Green</NcActionRadio>
+			</NcActions>
+		</p>
+
+		<h2>Navigation</h2>
+		Uses links or router links. May use text elements, captions and separators.
+		<p>
+			<NcActions aria-label="Applications navigation" :inline="2" type="tertiary">
+				<NcActionLink href="/apps/dashboard" icon="icon-category-dashboard-white">
+					Dashboard
+				</NcActionLink>
+				<NcActionLink href="/apps/files" icon="icon-files-white">
+					Files
+				</NcActionLink>
+				<NcActionLink href="/apps/spreed" icon="icon-talk-white">
+					Talk
+				</NcActionLink>
+				<NcActionLink href="/apps/contacts" icon="icon-contacts-white">
+					Contacts
+				</NcActionLink>
+				<NcActionLink href="/apps/spreed" icon="icon-circles-white">
+					Circles
+				</NcActionLink>
+			</NcActions>
+		</p>
+
+		<h2>Popover</h2>
+		Has any elements, including text input element, or no buttons.
+		<p>
+			<NcActions aria-label="Group management">
+				<NcActionInput trailing-button-label="Submit" label="Rename group">
+					<template #icon>
+						<Pencil :size="20" />
+					</template>
+				</NcActionInput>
+				<NcActionButton>
+					<template #icon>
+						<Delete :size="20" />
+					</template>
+					Remove group
+				</NcActionButton>
+			</NcActions>
+		</p>
+	</div>
+</template>
+
+<script>
+// Common icons
+import Pencil from 'vue-material-design-icons/Pencil'
+import Delete from 'vue-material-design-icons/Delete'
+
+// Email icons
+import StarOutline from 'vue-material-design-icons/StarOutline'
+import EmailUnread from 'vue-material-design-icons/Email'
+import Bookmark from 'vue-material-design-icons/Bookmark'
+import ClockOutlineIcon from 'vue-material-design-icons/ClockOutline'
+import AlertOctagonIcon from 'vue-material-design-icons/AlertOctagon'
+import CheckIcon from 'vue-material-design-icons/Check'
+import OpenInNewIcon from 'vue-material-design-icons/OpenInNew'
+import DownloadIcon from 'vue-material-design-icons/Download'
+
+// Formating icons
+import FormatTitle from 'vue-material-design-icons/FormatTitle.vue'
+import FormatAlignLeft from 'vue-material-design-icons/FormatAlignLeft.vue'
+import FormatAlignCenter from 'vue-material-design-icons/FormatAlignCenter.vue'
+import FormatAlignRight from 'vue-material-design-icons/FormatAlignRight.vue'
+import FormatBold from 'vue-material-design-icons/FormatBold.vue'
+import FormatItalic from 'vue-material-design-icons/FormatItalic.vue'
+import FormatUnderline from 'vue-material-design-icons/FormatUnderline.vue'
+
+export default {
+	components: {
+		// Common icons
+		Pencil,
+		Delete,
+
+		// Email icons
+		StarOutline,
+		EmailUnread,
+		Bookmark,
+		ClockOutlineIcon,
+		AlertOctagonIcon,
+		CheckIcon,
+		OpenInNewIcon,
+		DownloadIcon,
+
+		// Formating icons
+		FormatTitle,
+		FormatAlignLeft,
+		FormatAlignCenter,
+		FormatAlignRight,
+		FormatBold,
+		FormatItalic,
+		FormatUnderline,
+	},
+
+	data() {
+		return {
+			selected: false,
+			// Formating
+			checked: {
+				bold: true,
+				italic: false,
+				underline: false,
+			},
+			color: {
+				black: true,
+				blue: false,
+				red: false,
+				green: false,
+			},
+		}
+	},
+}
+</script>
+
+<style scoped>
+p {
+	margin: 1rem 0;
+}
+</style>
+```
+
 </docs>
 
 <script>
