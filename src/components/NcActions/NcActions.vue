@@ -1154,8 +1154,7 @@ export default {
 		focusPreviousAction(event) {
 			if (this.opened) {
 				if (this.focusIndex === 0) {
-					// First element overflows to body-navigation (no preventDefault!) and closes Actions-menu
-					this.closeMenu()
+					this.focusLastAction(event)
 				} else {
 					this.preventIfEvent(event)
 					this.focusIndex = this.focusIndex - 1
@@ -1167,8 +1166,7 @@ export default {
 			if (this.opened) {
 				const indexLength = this.$refs.menu.querySelectorAll(focusableSelector).length - 1
 				if (this.focusIndex === indexLength) {
-					// Last element overflows to body-navigation (no preventDefault!) and closes Actions-menu
-					this.closeMenu()
+					this.focusFirstAction(event)
 				} else {
 					this.preventIfEvent(event)
 					this.focusIndex = this.focusIndex + 1
