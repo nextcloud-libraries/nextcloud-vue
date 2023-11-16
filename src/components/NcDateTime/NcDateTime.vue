@@ -197,7 +197,7 @@ export default {
 					return formatter.format(Math.round(minutes), 'minute')
 				}
 				const hours = minutes / 60
-				if (Math.abs(hours) <= 72) {
+				if (Math.abs(hours) <= 24) {
 					return formatter.format(Math.round(hours), 'hour')
 				}
 				const days = hours / 24
