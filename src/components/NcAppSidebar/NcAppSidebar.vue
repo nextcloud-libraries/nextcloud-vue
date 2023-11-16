@@ -34,7 +34,9 @@ include a standard-header like it's used by the files app.
 	<NcAppSidebar
 		:starred="starred"
 		name="cat-picture.jpg"
-		subname="last edited 3 weeks ago">
+		subname="last edited 3 weeks ago"
+		background="https://nextcloud.com/wp-content/uploads/2022/08/nextcloud-logo-icon.svg"
+		@figure-click="figureClick">
 		<NcAppSidebarTab name="Search" id="search-tab">
 			<template #icon>
 				<Magnify :size="20" />
@@ -70,6 +72,11 @@ include a standard-header like it's used by the files app.
 			return {
 				starred: false,
 			}
+		},
+		methods: {
+			figureClick() {
+				alert('figure clicked')
+			},
 		},
 	}
 </script>
@@ -632,7 +639,7 @@ export default {
 		'closed',
 		'opening',
 		'opened',
-		'figure-click',
+		// 'figure-click', not emitted on purpose to make "hasFigureClickListener" work
 		'update:starred',
 		'update:name-editable',
 		'update:name',
@@ -655,7 +662,7 @@ export default {
 			return this.isStarred !== null
 		},
 		hasFigureClickListener() {
-			return this.$attrs['figure-click']
+			return !!this.$attrs.onFigureClick
 		},
 	},
 
@@ -729,7 +736,7 @@ export default {
 			 *
 			 * @type {Event}
 			 */
-			this.$emit('figure-click', e)
+			this.$attrs.onFigureClick(e)
 		},
 
 		/**
