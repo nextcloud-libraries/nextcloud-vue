@@ -102,7 +102,7 @@ export default {
 		this.registerTab(this)
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		// Unregister the tab from tabs
 		this.unregisterTab(this.id)
 	},
@@ -130,7 +130,7 @@ export default {
 		 * @return {import('vue').VNode[]}
 		 */
 		renderIcon() {
-			return this.$scopedSlots.icon?.()
+			return this.$slots.icon
 		},
 	},
 }

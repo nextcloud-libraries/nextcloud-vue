@@ -110,9 +110,9 @@ export default {
 ```vue
 <template>
 	<div>
-		<NcCheckboxRadioSwitch :checked.sync="showTabs[0]">Show search tab</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="showTabs[1]">Show settings tab</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="showTabs[2]">Show sharing tab</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="showTabs[0]">Show search tab</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="showTabs[1]">Show settings tab</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="showTabs[2]">Show sharing tab</NcCheckboxRadioSwitch>
 		<NcAppSidebar
 			name="cat-picture.jpg"
 			subname="last edited 3 weeks ago">
@@ -208,7 +208,7 @@ export default {
 		<NcAppSidebar
 			name="cat-picture.jpg"
 			subname="last edited 3 weeks ago"
-			:active.sync="active">
+			v-model:active="active">
 			<NcAppSidebarTab name="Search" id="search-tab">
 				<template #icon>
 					<Magnify :size="20" />
@@ -255,7 +255,7 @@ export default {
 ```vue
 <template>
 	<NcAppSidebar
-		:name.sync="name"
+		v-model:name="name"
 		:name-editable="true"
 		name-placeholder="Filename"
 		subname="last edited 3 weeks ago">
@@ -279,7 +279,7 @@ export default {
 <template>
 	<NcAppSidebar
 		:name="name"
-		:name-editable.sync="nameEditable"
+		v-model:name-editable="nameEditable"
 		:name-placeholder="namePlaceholder"
 		:subname="subname"
 		@update:name="nameUpdate">
@@ -347,14 +347,14 @@ export default {
 		@after-leave="onAfterLeave">
 		<aside id="app-sidebar-vue" class="app-sidebar">
 			<header :class="{
-					'app-sidebar-header--with-figure': hasFigure,
+					'app-sidebar-header--with-figure': !!$slots.header || background,
 					'app-sidebar-header--compact': compact,
 				}"
 				class="app-sidebar-header">
 				<!-- container for figure and description, allows easy switching to compact mode -->
 				<div class="app-sidebar-header__info">
 					<!-- sidebar header illustration/figure -->
-					<div v-if="hasFigure && !empty"
+					<div v-if="(!!$slots.header || background) && !empty"
 						:class="{
 							'app-sidebar-header__figure--with-action': hasFigureClickListener
 						}"
@@ -371,14 +371,14 @@ export default {
 					<!-- sidebar details -->
 					<div v-if="!empty"
 						:class="{
-							'app-sidebar-header__desc--with-tertiary-action': canStar || $slots['tertiary-actions'],
+							'app-sidebar-header__desc--with-tertiary-action': canStar || !!$slots['tertiary-actions'],
 							'app-sidebar-header__desc--editable': nameEditable && !subname,
 							'app-sidebar-header__desc--with-subname--editable': nameEditable && subname,
 							'app-sidebar-header__desc--without-actions': !$slots['secondary-actions'],
 						}"
 						class="app-sidebar-header__desc">
 						<!-- favourite icon -->
-						<div v-if="canStar || $slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
+						<div v-if="canStar || !!$slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
 							<slot name="tertiary-actions">
 								<NcButton v-if="canStar"
 									:aria-label="favoriteTranslated"
@@ -457,7 +457,7 @@ export default {
 					</template>
 				</NcButton>
 
-				<div v-if="$slots['description'] && !empty" class="app-sidebar-header__description">
+				<div v-if="!!$slots.description && !empty" class="app-sidebar-header__description">
 					<slot name="description" />
 				</div>
 			</header>
@@ -634,7 +634,7 @@ export default {
 		'opened',
 		'figure-click',
 		'update:starred',
-		'update:nameEditable',
+		'update:name-editable',
 		'update:name',
 		'update:active',
 		'submit-name',
@@ -654,11 +654,8 @@ export default {
 		canStar() {
 			return this.isStarred !== null
 		},
-		hasFigure() {
-			return this.$slots.header || this.background
-		},
 		hasFigureClickListener() {
-			return this.$listeners['figure-click']
+			return this.$attrs['figure-click']
 		},
 	},
 
@@ -668,7 +665,7 @@ export default {
 		},
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		// Make sure that the 'closed' event is dispatched even if this element is destroyed before the 'after-leave' event is received.
 		this.$emit('closed')
 	},
@@ -749,18 +746,17 @@ export default {
 			this.$emit('update:starred', this.isStarred)
 		},
 
-		editName() {
+		async editName() {
 			/**
 			 * Emitted when the nameEditable value changes
 			 *
 			 * @type {boolean}
 			 */
-			this.$emit('update:nameEditable', true)
+			await this.$emit('update:name-editable', true)
 			// Focus the name input
 			if (this.nameEditable) {
-				this.$nextTick(
-					() => this.$refs.nameInput.focus(),
-				)
+				await this.$nextTick()
+				this.$refs.nameInput.focus()
 			}
 		},
 
@@ -786,7 +782,7 @@ export default {
 		 */
 		onSubmitName(event) {
 			// Disable editing
-			this.$emit('update:nameEditable', false)
+			this.$emit('update:name-editable', false)
 			/**
 			 * Emitted when the name edit input has been submitted
 			 *
@@ -796,7 +792,7 @@ export default {
 		},
 		onDismissEditing() {
 			// Disable editing
-			this.$emit('update:nameEditable', false)
+			this.$emit('update:name-editable', false)
 			/**
 			 * Emitted when the name edit has been cancelled
 			 *
