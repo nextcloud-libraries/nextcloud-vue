@@ -1112,11 +1112,15 @@ export default {
 		 * @param {object} event The keydown event
 		 */
 		onKeydown(event) {
-			if (event.key === 'ArrowUp' || (event.key === 'Tab' && event.shiftKey)) {
+			if (event.key === 'Tab') {
+				this.closeMenu()
+			}
+
+			if (event.key === 'ArrowUp') {
 				this.focusPreviousAction(event)
 			}
 
-			if (event.key === 'ArrowDown' || (event.key === 'Tab' && !event.shiftKey)) {
+			if (event.key === 'ArrowDown') {
 				this.focusNextAction(event)
 			}
 
