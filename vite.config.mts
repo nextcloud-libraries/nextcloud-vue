@@ -3,7 +3,6 @@ import { createLibConfig } from '@nextcloud/vite-config'
 import { globSync } from 'glob'
 import { join, resolve } from 'node:path'
 import { defineConfig } from 'vite'
-import { configDefaults } from 'vitest/config'
 
 import md5 from 'md5'
 import * as url from 'url'
@@ -27,39 +26,29 @@ const entryPoints = {
 		return acc
 	}, {}),
 
-	// while migrating the components this is commented out and only the button is included
-
-	...globSync('src/components/NcButton/index.js').reduce((acc, item) => {
+	...globSync('src/components/*/index.js').reduce((acc, item) => {
 		const name = item
-	 		.replace('/index.js', '')
+			.replace('/index.js', '')
 			.replace('src/components/', 'Components/')
 		acc[name] = join(__dirname, item)
 		return acc
 	}, {}),
 
-	// ...globSync('src/components/*/index.js').reduce((acc, item) => {
-	// 	const name = item
-	// 		.replace('/index.js', '')
-	// 		.replace('src/components/', 'Components/')
-	// 	acc[name] = join(__dirname, item)
-	// 	return acc
-	// }, {}),
+	...globSync('src/functions/*/index.js').reduce((acc, item) => {
+		const name = item
+			.replace('/index.js', '')
+			.replace('src/functions/', 'Functions/')
+		acc[name] = join(__dirname, item)
+		return acc
+	}, {}),
 
-	// ...globSync('src/functions/*/index.js').reduce((acc, item) => {
-	// 	const name = item
-	// 		.replace('/index.js', '')
-	// 		.replace('src/functions/', 'Functions/')
-	// 	acc[name] = join(__dirname, item)
-	// 	return acc
-	// }, {}),
-
-	// ...globSync('src/mixins/*/index.js').reduce((acc, item) => {
-	// 	const name = item
-	// 		.replace('/index.js', '')
-	// 		.replace('src/mixins/', 'Mixins/')
-	// 	acc[name] = join(__dirname, item)
-	// 	return acc
-	// }, {}),
+	...globSync('src/mixins/*/index.js').reduce((acc, item) => {
+		const name = item
+			.replace('/index.js', '')
+			.replace('src/mixins/', 'Mixins/')
+		acc[name] = join(__dirname, item)
+		return acc
+	}, {}),
 
 	...globSync('src/composables/*/index.js').reduce((acc, item) => {
 		const name = item
@@ -103,12 +92,6 @@ const overrides = defineConfig({
 	test: {
 		environment: 'jsdom',
 		setupFiles: resolve(__dirname, './tests/setup.js'),
-		exclude:[
-			...configDefaults.exclude,
-			'./tests/unit/components/NcRichContenteditable',
-			'./tests/unit/components/NcRichText',
-			'./tests/unit/mixins/*',
-		],
 	},
 })
 

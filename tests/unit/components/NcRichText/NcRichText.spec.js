@@ -2,10 +2,12 @@ import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import NcRichText from '../../../../src/components/NcRichText/NcRichText.vue'
 
+import { h } from 'vue'
+
 describe('Foo', () => {
 	it('renders a message and responds correctly to props changes', async() => {
 		const wrapper = mount(NcRichText, {
-			propsData: {
+			props: {
 				text: 'Test {placeholder}'
 			}
 		})
@@ -16,12 +18,12 @@ describe('Foo', () => {
 	it('properly inserts a child component', async() => {
 		const MyComponent = {
 			name: 'MyComponent',
-			render: (createElement) => {
-				return createElement('div', 'MYCOMPONENT')
+			render: () => {
+				return h('div', 'MYCOMPONENT')
 			}
 		}
 		const wrapper = mount(NcRichText, {
-			propsData: {
+			props: {
 				text: 'Test {placeholder}',
 				arguments: {
 					placeholder: {
@@ -39,12 +41,12 @@ describe('Foo', () => {
 		const MyComponent = {
 			name: 'MyComponent',
 			props: ['username'],
-			render: (createElement) => {
-				return createElement('div', 'MYCOMPONENT')
+			render: () => {
+				return h('div', 'MYCOMPONENT')
 			}
 		}
 		const wrapper = mount(NcRichText, {
-			propsData: {
+			props: {
 				text: 'Test {placeholder}',
 				arguments: {
 					placeholder: {
@@ -61,7 +63,7 @@ describe('Foo', () => {
 		expect(wrapper.findComponent(MyComponent).exists()).toBe(true)
 		expect(wrapper.findComponent(MyComponent).vm.username).toBe('Jane')
 	})
-	test.each([
+	it.each([
 		['Fallback {placeholder}', {}, 'Fallback {placeholder}'],
 		['{placeholder} fallback', {}, '{placeholder} fallback'],
 		['Test {placeholder} {placeholder}', {}, 'Test {placeholder} {placeholder}'],
@@ -75,7 +77,7 @@ describe('Foo', () => {
 		['Test {placeholderA} {placeholderA} {placeholderB}', { placeholderA: 'A', placeholderB: 'B' }, 'Test A A B']
 	])('text: %s', (text, attrs, result) => {
 		const wrapper = mount(NcRichText, {
-			propsData: {
+			props: {
 				text,
 				arguments: attrs
 			}
@@ -85,7 +87,7 @@ describe('Foo', () => {
 
 	it('properly inserts a link', async() => {
 		const wrapper = mount(NcRichText, {
-			propsData: {
+			props: {
 				text: 'Testwith a link to https://example.com - go visit it',
 				autolink: true
 			}
@@ -97,7 +99,7 @@ describe('Foo', () => {
 
 	it('properly inserts a newline', async() => {
 		const wrapper = mount(NcRichText, {
-			propsData: {
+			props: {
 				text: 'Testwith a link to https://example.com \n go visit it',
 				autolink: true
 			}
@@ -110,7 +112,7 @@ describe('Foo', () => {
 
 	it('properly inserts a link with brackets', async() => {
 		const wrapper = mount(NcRichText, {
-			propsData: {
+			props: {
 				text: 'Test with a link to (https://example.com) - go visit it',
 				autolink: true
 			}
@@ -121,7 +123,7 @@ describe('Foo', () => {
 
 	it('properly inserts a link containing brackets', async() => {
 		const wrapper = mount(NcRichText, {
-			propsData: {
+			props: {
 				text: 'Test with a link to (https://example.com/Link%20(Sub)) - go visit it',
 				autolink: true,
 			}
@@ -132,7 +134,7 @@ describe('Foo', () => {
 
 	it('properly inserts a link containing brackets with markdown', async() => {
 		const wrapper = mount(NcRichText, {
-			propsData: {
+			props: {
 				text: 'Test with a link to (https://example.com/Link%20(Sub)) - go visit it',
 				autolink: true,
 				useMarkdown: true,
@@ -144,7 +146,7 @@ describe('Foo', () => {
 
 	it('properly recognizes an url with a custom port and inserts a link', async() => {
 		const wrapper = mount(NcRichText, {
-			propsData: {
+			props: {
 				text: 'Testwith a link to https://example.com:444 - go visit it',
 				autolink: true
 			}
@@ -155,7 +157,7 @@ describe('Foo', () => {
 
 	it('properly recognizes an url with an IP address and inserts a link', async() => {
 		const wrapper = mount(NcRichText, {
-			propsData: {
+			props: {
 				text: 'Testwith a link to https://127.0.0.1/status.php - go visit it',
 				autolink: true
 			}
@@ -166,7 +168,7 @@ describe('Foo', () => {
 
 	it('properly formats markdown', async() => {
 		const wrapper = mount(NcRichText, {
-			propsData: {
+			props: {
 				text: '**Testwith** a link *to* [Link](https://example:1337) - go visit it',
 				autolink: false,
 				useMarkdown: true
@@ -180,7 +182,7 @@ describe('Foo', () => {
 
 	it('formats markdown is disabled', async() => {
 		const wrapper = mount(NcRichText, {
-			propsData: {
+			props: {
 				text: '**Testwith** a ~~link~~ *to* [Link](https://example:1337) - go visit it',
 				autolink: true,
 				useMarkdown: false

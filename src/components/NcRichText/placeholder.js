@@ -23,6 +23,7 @@ export const remarkPlaceholder = function() {
 					const [, component] = matches
 					return u('element', {
 						tagName: `#${component}`,
+						children: [],
 					})
 				})
 
@@ -44,7 +45,7 @@ export const prepareTextNode = ({ h, context }, text) => {
 			// do not override class of NcLink
 			const componentClass = component.name === 'NcLink' ? undefined : 'rich-text--component'
 			return h(component, {
-				props,
+				...props,
 				class: componentClass,
 			})
 		})

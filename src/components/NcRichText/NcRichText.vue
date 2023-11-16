@@ -29,8 +29,8 @@ This component displays rich text with optional autolink or [Markdown support](h
 <template>
 	<div>
 		<textarea v-model="text" />
-		<NcCheckboxRadioSwitch :checked.sync="autolink" type="checkbox">Autolink</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="autolink" type="checkbox">Autolink</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
 
 		<NcRichText
 			:class="{'plain-text': !useMarkdown }"
@@ -86,15 +86,15 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 ```vue
 <template>
 	<div>
-		<NcRichContenteditable :value.sync="message"
+		<NcRichContenteditable v-model="message"
 			:auto-complete="autoComplete"
 			:maxlength="100"
 			:user-data="userData"
 			placeholder="Try mentioning user @Test01 or inserting emoji :smile"
 			@submit="onSubmit" />
 
-		<NcCheckboxRadioSwitch :checked.sync="autolink" type="checkbox">Autolink</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="autolink" type="checkbox">Autolink</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
 
 		<NcRichText :text="text"
 			:autolink="autolink"
@@ -244,6 +244,7 @@ import breaks from 'remark-breaks'
 import remark2rehype from 'remark-rehype'
 import rehype2react from 'rehype-react'
 import rehypeExternalLinks from 'rehype-external-links'
+import { Fragment, h, resolveComponent } from 'vue'
 
 export default {
 	name: 'NcRichText',
@@ -304,7 +305,7 @@ export default {
 		},
 	},
 	methods: {
-		renderPlaintext(h) {
+		renderPlaintext() {
 			const context = this
 			const placeholders = this.text.split(/(\{[a-z\-_.0-9]+\})/ig).map(function(entry, index, list) {
 				const matches = entry.match(/^\{([a-z\-_.0-9]+)\}$/i)
@@ -317,8 +318,8 @@ export default {
 				const argument = context.arguments[argumentId]
 				if (typeof argument === 'object') {
 					const { component, props } = argument
-					return h(component, {
-						props,
+					return h((typeof component === 'string') ? resolveComponent(component) : component, {
+						...props,
 						class: 'rich-text--component',
 					})
 				}
@@ -331,12 +332,12 @@ export default {
 				h('div', {}, placeholders.flat()),
 				this.referenceLimit > 0
 					? h('div', { class: 'rich-text--reference-widget' }, [
-						h(NcReferenceList, { props: { text: this.text, referenceData: this.references } }),
+						h(NcReferenceList, { text: this.text, referenceData: this.references }),
 					])
 					: null,
 			])
 		},
-		renderMarkdown(h) {
+		renderMarkdown() {
 			const renderedMarkdown = unified()
 				.use(markdown)
 				.use(remarkAutolink, {
@@ -358,37 +359,10 @@ export default {
 					rel: ['noopener noreferrer'],
 				})
 				.use(rehype2react, {
-					createElement: (tag, attrs, children) => {
-						// unescape special symbol "<" for simple text nodes
-						children = children?.map(child => typeof child === 'string'
-							? child.replace(/&lt;/gmi, '<')
-							: child,
-						)
-
-						if (!tag.startsWith('#')) {
-							return h(tag, attrs, children)
-						}
-
-						const placeholder = this.arguments[tag.slice(1)]
-						if (!placeholder) {
-							return h('span', { ...{ attrs }, ...{ class: 'rich-text--fallback' } }, [`{${tag.slice(1)}}`])
-						}
-
-						if (!placeholder.component) {
-							return h('span', attrs, [placeholder])
-						}
-
-						return h(
-							placeholder.component,
-							{
-								attrs,
-								props: placeholder.props,
-								class: 'rich-text--component',
-							},
-							children,
-						)
-					},
-					prefix: false,
+					Fragment,
+					jsx: this.createElement,
+					jsxs: this.createElement,
+					elementAttributeNameCase: 'html',
 				})
 				.processSync(this.text
 					// escape special symbol "<" to not treat text as HTML
@@ -402,16 +376,53 @@ export default {
 				renderedMarkdown,
 				this.referenceLimit > 0
 					? h('div', { class: 'rich-text--reference-widget' }, [
-						h(NcReferenceList, { props: { text: this.text, referenceData: this.references } }),
+						h(NcReferenceList, { text: this.text, referenceData: this.references }),
 					])
 					: null,
 			])
 		},
+		createElement(type, props, key) {
+			// Modified code from vue/jsx-runtime
+			if (key) {
+				props.key = key
+			}
+			// Children should be always an array
+			let children = props.children ?? []
+			delete props.children
+
+			// unescape special symbol "<" for simple text nodes
+			if (typeof children === 'string') {
+				children = children.replace(/&lt;/gmi, '<')
+			}
+
+			if (!String(type).startsWith('#')) {
+				return h(type, props, children)
+			}
+
+			const placeholder = this.arguments[type.slice(1)]
+			if (!placeholder) {
+				return h('span', { ...props, class: 'rich-text--fallback' }, [`{${type.slice(1)}}`])
+			}
+
+			if (!placeholder.component) {
+				return h('span', { ...props }, [placeholder])
+			}
+
+			return h(
+				(typeof placeholder.component === 'string') ? resolveComponent(placeholder.component) : placeholder.component,
+				{
+					...props,
+					...placeholder.props,
+					class: 'rich-text--component',
+				},
+				children,
+			)
+		},
 	},
-	render(h) {
+	render() {
 		return this.useMarkdown
-			? this.renderMarkdown(h)
-			: this.renderPlaintext(h)
+			? this.renderMarkdown()
+			: this.renderPlaintext()
 	},
 }
 </script>

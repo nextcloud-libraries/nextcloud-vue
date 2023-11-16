@@ -2,6 +2,7 @@ import { URL_PATTERN_AUTOLINK } from './helpers.js'
 
 import { visit, SKIP } from 'unist-util-visit'
 import { u } from 'unist-builder'
+import { h } from 'vue'
 
 const NcLink = {
 	name: 'NcLink',
@@ -11,14 +12,12 @@ const NcLink = {
 			required: true,
 		},
 	},
-	render(h) {
+	render() {
 		return h('a', {
-			attrs: {
-				href: this.href,
-				rel: 'noopener noreferrer',
-				target: '_blank',
-				class: 'rich-text--external-link',
-			},
+			href: this.href,
+			rel: 'noopener noreferrer',
+			target: '_blank',
+			class: 'rich-text--external-link',
 		}, [this.href.trim()])
 	},
 }
