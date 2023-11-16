@@ -26,6 +26,6 @@ export * from './composables/index.js'
 // Not yet adjusted for vue3
 // export * from './functions/index.js'
 export * from './directives/index.js'
-// export * from './mixins/index.js'
+export * from './mixins/index.js'
 
 export { NextcloudVuePlugin } from './plugin.ts'

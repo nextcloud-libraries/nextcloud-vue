@@ -21,11 +21,14 @@
  */
 
 import { shallowMount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import richEditor from '../../../src/mixins/richEditor/index.js'
+
+import { h } from 'vue'
 
 const TestEditor = {
 	mixins: [richEditor],
-	render: (h) => h('div'),
+	render: () => h('div'),
 }
 
 describe('richEditor.js', () => {
@@ -33,7 +36,7 @@ describe('richEditor.js', () => {
 
 	describe('renderContent', () => {
 		it('sanitizes the input', () => {
-			const editor = shallowMount(TestEditor, { propsData: { userData: {} } })
+			const editor = shallowMount(TestEditor, { props: { userData: {} } })
 			const input = 'Some <table>html</table>'
 			const output = editor.vm.renderContent(input)
 
@@ -41,7 +44,7 @@ describe('richEditor.js', () => {
 		})
 
 		it('converts newline to hard line breaks', () => {
-			const editor = shallowMount(TestEditor, { propsData: { userData: {} } })
+			const editor = shallowMount(TestEditor, { props: { userData: {} } })
 			const input = 'hard\nbreak'
 			const output = editor.vm.renderContent(input)
 
@@ -49,7 +52,7 @@ describe('richEditor.js', () => {
 		})
 
 		it('no duplicated ampersand (from Linkify)', () => {
-			const editor = shallowMount(TestEditor, { propsData: { userData: {} } })
+			const editor = shallowMount(TestEditor, { props: { userData: {} } })
 			const input = 'hello &'
 			const output = editor.vm.renderContent(input)
 
@@ -57,7 +60,7 @@ describe('richEditor.js', () => {
 		})
 
 		it('keeps mentions without user data', () => {
-			const editor = shallowMount(TestEditor, { propsData: { userData: {} } })
+			const editor = shallowMount(TestEditor, { props: { userData: {} } })
 			const input = 'hello @foobar'
 			const output = editor.vm.renderContent(input)
 
@@ -66,7 +69,7 @@ describe('richEditor.js', () => {
 
 		it('keeps mentions with user data', () => {
 			const editor = shallowMount(TestEditor, {
-				propsData: {
+				props: {
 					userData: {
 						jdoe: {
 							id: 'jdoe',
@@ -84,7 +87,7 @@ describe('richEditor.js', () => {
 		})
 
 		it('keep mentions with special characters', () => {
-			const editor = shallowMount(TestEditor, { propsData: { userData: {} } })
+			const editor = shallowMount(TestEditor, { props: { userData: {} } })
 			const input = 'hello @foo@bar - hello @"bar @ foo"'
 			const output = editor.vm.renderContent(input)
 

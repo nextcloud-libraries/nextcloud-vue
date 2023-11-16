@@ -117,9 +117,6 @@ module.exports = async () => {
 					'src/components/NcTextArea/*.vue',
 					'src/components/NcUserBubble/NcUserBubbleDiv.vue',
 					'src/components/NcVNodes*/*.vue',
-
-					// Not yet adjusted for vue3
-					'src/components/NcRichContenteditable*/*.vue',
 				],
 				sections: [
 					{
@@ -209,12 +206,12 @@ module.exports = async () => {
 							'src/components/Nc*Picker*/*.vue',
 						],
 					},
-				// 	{
-				// 		name: 'NcRichText',
-				// 		components: [
-				// 			'src/components/NcRichText/NcRichText.vue',
-				// 		],
-				// 	},
+					{
+						name: 'NcRichText',
+						components: [
+							'src/components/NcRichText/NcRichText.vue',
+						],
+					},
 				 	{
 						name: 'NcSettings',
 						components: [

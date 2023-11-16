@@ -1,7 +1,7 @@
 import NcReferencePickerModal from './NcReferencePickerModal.vue'
 import { getProvider } from './providerHelper.js'
 
-import Vue from 'vue'
+import { createApp } from 'vue'
 
 /**
  * Creates a reference picker modal and return a promise which provides the result
@@ -21,14 +21,12 @@ export async function getLinkWithPicker(providerId = null, isInsideViewer = unde
 			? null
 			: (getProvider(providerId) ?? null)
 
-		const View = Vue.extend(NcReferencePickerModal)
-		const view = new View({
-			propsData: {
-				initialProvider,
-				isInsideViewer,
-			},
-		}).$mount(modalElement)
+		const view = createApp(NcReferencePickerModal, {
+			initialProvider,
+			isInsideViewer,
+		}).mount(modalElement)
 
+		// TODO adjust this for vue3
 		view.$on('cancel', () => {
 			view.$destroy()
 			reject(new Error('User cancellation'))

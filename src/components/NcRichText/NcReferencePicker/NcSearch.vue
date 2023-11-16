@@ -182,7 +182,7 @@ export default {
 	mounted() {
 		this.resetResults()
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		this.cancelSearchRequests()
 	},
 	methods: {
