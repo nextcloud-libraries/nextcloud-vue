@@ -273,7 +273,7 @@ export default {
 		class="checkbox-radio-switch"
 		:style="cssVars"
 		:type="isButtonType ? 'button' : null"
-		v-on="isButtonType ? listeners : null">
+		v-on="isButtonType ? listeners : {}">
 		<input v-if="!isButtonType"
 			:id="id"
 			class="checkbox-radio-switch__input"
