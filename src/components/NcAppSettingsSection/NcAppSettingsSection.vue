@@ -61,18 +61,18 @@ export default {
 	watch: {
 		id(newId, oldId) {
 			this.unregisterSection(oldId)
-			this.registerSection(newId, this.name, this.$slots?.icon)
+			this.registerSection(newId, this.name, this.$slots?.icon?.())
 		},
 		name(newName) {
 			this.unregisterSection(this.id)
-			this.registerSection(this.id, newName, this.$slots?.icon)
+			this.registerSection(this.id, newName, this.$slots?.icon?.())
 		},
 	},
 	mounted() {
 		// register section for navigation
-		this.registerSection(this.id, this.name, this.$slots?.icon)
+		this.registerSection(this.id, this.name, this.$slots?.icon?.())
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		this.unregisterSection(this.id)
 	},
 }

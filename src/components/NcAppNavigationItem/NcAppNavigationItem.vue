@@ -106,6 +106,11 @@ button will be automatically created.
 			OpenInNew,
 			Pencil,
 		},
+		methods: {
+			alert(msg) {
+				alert(msg)
+			},
+		},
 	}
 	</script>
 ```
@@ -172,7 +177,7 @@ prevent the user from collapsing the items.
 					</template>
 				</NcActionLink>
 			</template>
-			<template>
+			<template #default>
 				<NcAppNavigationItem name="AppNavigationItemChild1" />
 				<NcAppNavigationItem name="AppNavigationItemChild2" />
 				<NcAppNavigationItem name="AppNavigationItemChild3" />
@@ -192,6 +197,11 @@ prevent the user from collapsing the items.
 			Delete,
 			OpenInNew,
 			Pencil,
+		},
+		methods: {
+			alert(msg) {
+				alert(msg)
+			},
 		},
 	}
 	</script>
@@ -217,6 +227,11 @@ the placeholder is the previous name of the element.
 		components: {
 			Folder,
 		},
+		methods: {
+			alert(msg) {
+				alert(msg)
+			},
+		},
 	}
 	</script>
 ```
@@ -224,9 +239,19 @@ the placeholder is the previous name of the element.
 ### Undo element
 Just set the `undo` and `name` props. When clicking the undo button, an `undo` event is emitted.
 
-```
-<NcAppNavigationItem :undo="true" name="Deleted important entry" @undo="alert('undo delete')"  />
-
+```vue
+	<template>
+		<NcAppNavigationItem :undo="true" name="Deleted important entry" @undo="alert('undo delete')" />
+	</template>
+	<script>
+	export default {
+		methods: {
+			alert(msg) {
+				alert(msg)
+			},
+		},
+	}
+	</script>
 ```
 
 ### Link element
@@ -255,14 +280,12 @@ Just set the `pinned` prop.
 		:class="{
 			'app-navigation-entry--opened': opened,
 			'app-navigation-entry--pinned': pinned,
-			'app-navigation-entry--collapsible': collapsible,
+			'app-navigation-entry--collapsible': allowCollapse && !!$slots.default,
 		}"
 		class="app-navigation-entry-wrapper">
 		<component :is="isRouterLink ? 'router-link' : 'NcVNodes'"
 			v-slot="{ href: routerLinkHref, navigate, isActive }"
-			:custom="isRouterLink ? true : false"
-			:to="to"
-			:exact="isRouterLink ? exact : null">
+			v-bind="{ ...isRouterLink && { custom: true, to } }">
 			<div :class="{
 					'app-navigation-entry--editing': editingActive,
 					'app-navigation-entry--deleted': undo,
@@ -274,7 +297,7 @@ Just set the `pinned` prop.
 					class="app-navigation-entry-link"
 					:aria-current="active || (isActive && to) ? 'page' : undefined"
 					:aria-description="ariaDescription"
-					:aria-expanded="hasChildren ? opened.toString() : undefined"
+					:aria-expanded="!!$slots.default ? opened.toString() : undefined"
 					:href="href || routerLinkHref || '#'"
 					:target="isExternal(href) ? '_blank' : undefined"
 					:title="title || name"
@@ -311,14 +334,14 @@ Just set the `pinned` prop.
 				</div>
 
 				<!-- Counter and Actions -->
-				<div v-if="hasUtils && !editingActive"
+				<div v-if="(!!$slots.actions || !!$slots.counter || editable || undo) && !editingActive"
 					class="app-navigation-entry__utils"
 					:class="{'app-navigation-entry__utils--display-actions': forceDisplayActions || menuOpenLocalValue || menuOpen }">
-					<div v-if="$slots.counter"
+					<div v-if="!!$slots.counter"
 						class="app-navigation-entry__counter-wrapper">
 						<slot name="counter" />
 					</div>
-					<NcActions v-if="$slots.actions || (editable && !editingActive) || undo"
+					<NcActions v-if="!!$slots.actions || (editable && !editingActive) || undo"
 						ref="actions"
 						:inline="inlineActions"
 						class="app-navigation-entry__actions"
@@ -352,14 +375,14 @@ Just set the `pinned` prop.
 						<slot name="actions" />
 					</NcActions>
 				</div>
-				<NcAppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
+				<NcAppNavigationIconCollapsible v-if="allowCollapse && !!$slots.default" :open="opened" @click.prevent.stop="toggleCollapse" />
 
 				<!-- Anything (virtual) that should be mounted in the component, like a related modal -->
 				<slot name="extra" />
 			</div>
 		</component>
 		<!-- Children elements -->
-		<ul v-if="canHaveChildren && hasChildren" class="app-navigation-entry__children">
+		<ul v-if="canHaveChildren && !!$slots.default" class="app-navigation-entry__children">
 			<slot />
 		</ul>
 	</li>
@@ -465,14 +488,6 @@ export default {
 			default: null,
 		},
 
-		/**
-		 * Pass in `true` if you want the matching behaviour to
-		 * be non-inclusive: https://router.vuejs.org/api/#exact
-		 */
-		exact: {
-			type: Boolean,
-			default: false,
-		},
 		/**
 		 * Gives the possibility to collapse the children elements into the
 		 * parent element (true) or expands the children elements (false).
@@ -609,7 +624,6 @@ export default {
 			editingValue: '',
 			opened: this.open, // Collapsible state
 			editingActive: false,
-			hasChildren: false,
 			/**
 			 * Tracks the open state of the actions menu
 			 */
@@ -623,10 +637,6 @@ export default {
 			return this.to && !this.href
 		},
 
-		collapsible() {
-			return this.allowCollapse && !!this.$slots.default
-		},
-
 		// Checks if the component is already a children of another
 		// instance of AppNavigationItem
 		canHaveChildren() {
@@ -635,13 +645,6 @@ export default {
 			} else {
 				return true
 			}
-		},
-
-		hasUtils() {
-			if (this.$slots.actions || this.$slots.counter || this.editable || this.undo) {
-				return true
-			}
-			return false
 		},
 
 		editButtonAriaLabel() {
@@ -660,14 +663,6 @@ export default {
 		open(newVal) {
 			this.opened = newVal
 		},
-	},
-
-	created() {
-		this.updateSlotInfo()
-	},
-
-	beforeUpdate() {
-		this.updateSlotInfo()
 	},
 
 	methods: {
@@ -724,10 +719,6 @@ export default {
 		// Undo methods
 		handleUndo() {
 			this.$emit('undo')
-		},
-
-		updateSlotInfo() {
-			this.hasChildren = !!this.$slots.default
 		},
 
 		/**

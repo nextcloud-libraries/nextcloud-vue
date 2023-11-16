@@ -47,7 +47,9 @@ It includes the Navigation, the App content and the Sidebar.
 				<h2>Your main app content here</h2>
 				<NcButton @click="opened = !opened">Toggle sidebar</NcButton>
 			</NcAppContent>
+			<!-- Todo: Bring back once migrated
 			<NcAppSidebar v-if="opened" name="cat-picture.jpg" @close="opened=false"></NcAppSidebar>
+			-->
 		</NcContent>
 	</template>
 	<script>
@@ -90,8 +92,6 @@ export default {
 <style lang="scss" scoped>
 .content {
 	box-sizing: border-box;
-	margin: var(--body-container-margin);
-	margin-top: 50px;
 	display: flex;
 	width: calc(100% - var(--body-container-margin) * 2);
 	border-radius: var(--body-container-radius);

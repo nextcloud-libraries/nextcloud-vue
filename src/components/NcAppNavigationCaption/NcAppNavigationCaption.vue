@@ -89,10 +89,9 @@
 		</h2>
 
 		<!-- Actions -->
-		<div v-if="hasActions"
+		<div v-if="!!$slots.actions"
 			class="app-navigation-caption__actions">
-			<NcActions v-bind="$attrs"
-				v-on="$listeners">
+			<NcActions v-bind="$attrs">
 				<!-- @slot Slot for the actions menu -->
 				<slot name="actions" />
 				<template #icon>
@@ -127,13 +126,6 @@ export default {
 		// Not an actual prop but needed to show in vue-styleguidist docs
 		// eslint-disable-next-line
 		' ': {},
-	},
-
-	computed: {
-		// Check if the actions slot is populated
-		hasActions() {
-			return !!this.$slots.actions
-		},
 	},
 }
 </script>
