@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v8.1.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.1.0) (2023-11-14)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.0.1...v8.1.0)
+
+### :rocket: Enhancements
+* feat: introduce `useIsMobile` and `useIsFullscreen` composables [\#4761](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4761) [\(@ShGKme\)](https://github.com/@ShGKme)
+
+### :bug: Fixed bugs
+* Fix tabs appearance [\#4815](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4815) [\(@marcoambrosini\)](https://github.com/@marcoambrosini)
+* fix(NcTextField): Align default label for trailing button with used icon [\#4805](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4805) [\(@susnux\)](https://github.com/@susnux)
+* fix single-select design [\#4817](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4817) [\(@szaimen\)](https://github.com/@szaimen)
+
+### Other Changes
+* Update translations
+
+
 ## [v8.0.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.0.1) (2023-11-09)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.0.0...v8.0.1)
 

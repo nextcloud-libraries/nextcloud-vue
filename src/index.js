@@ -22,6 +22,7 @@
 
 export * from './components/index.js'
 
+export * from './composables/index.js'
 // Not yet adjusted for vue3
 // export * from './functions/index.js'
 export * from './directives/index.js'

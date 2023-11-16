@@ -170,6 +170,20 @@ describe('NcDateTime.vue', () => {
 			expect(wrapper.element.textContent).toContain('3 hours')
 		})
 
+		it('shows days from now', () => {
+			const time = Date.UTC(2023, 5, 21, 20, 30, 30)
+			const currentTime = Date.UTC(2023, 5, 23, 17, 30, 30)
+			Date.now = vi.fn(() => new Date(currentTime).valueOf())
+			const wrapper = mount(NcDateTime, {
+				props: {
+					timestamp: time,
+				},
+			})
+
+			expect(wrapper.vm.currentTime).toEqual(currentTime)
+			expect(wrapper.element.textContent).toContain('2 days')
+		})
+
 		it('shows weeks from now', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
 			const currentTime = Date.UTC(2023, 6, 13, 14, 30, 30)
