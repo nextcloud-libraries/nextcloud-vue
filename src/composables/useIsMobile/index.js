@@ -43,10 +43,3 @@ window.addEventListener('resize', () => {
 export function useIsMobile() {
 	return readonly(isMobile)
 }
-
-/**
- * @deprecated Is to be removed in v9.0.0 with Vue 3 migration.
- *             Use `composables/useIsMobile` instead.
- *             Defined and exported only for isMobile mixin.
- */
-export const isMobileState = readonly(isMobile)
