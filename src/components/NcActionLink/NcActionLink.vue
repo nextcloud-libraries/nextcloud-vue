@@ -78,7 +78,7 @@ export default {
 </docs>
 
 <template>
-	<li class="action">
+	<li class="action" :role="isInSemanticMenu && 'presentation'">
 		<a :download="download"
 			:href="href"
 			:aria-label="ariaLabel"
@@ -86,7 +86,7 @@ export default {
 			:title="title"
 			class="action-link focusable"
 			rel="nofollow noreferrer noopener"
-			role="menuitem"
+			:role="isInSemanticMenu && 'menuitem'"
 			@click="onClick">
 
 			<!-- @slot Manually provide icon -->
@@ -132,6 +132,13 @@ export default {
 	name: 'NcActionLink',
 
 	mixins: [ActionTextMixin],
+
+	inject: {
+		isInSemanticMenu: {
+			from: 'NcActions:isSemanticMenu',
+			default: false,
+		},
+	},
 
 	props: {
 		/**

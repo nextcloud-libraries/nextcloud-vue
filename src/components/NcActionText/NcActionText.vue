@@ -22,7 +22,7 @@
   -->
 
 <template>
-	<li class="action">
+	<li class="action" :role="isInSemanticMenu && 'presentation'">
 		<span class="action-text"
 			@click="onClick">
 			<!-- @slot Manually provide icon -->
@@ -70,6 +70,12 @@ export default {
 
 	mixins: [ActionTextMixin],
 
+	inject: {
+		isInSemanticMenu: {
+			from: 'NcActions:isSemanticMenu',
+			default: false,
+		},
+	},
 }
 </script>
 

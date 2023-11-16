@@ -81,7 +81,7 @@ export default {
 </docs>
 
 <template>
-	<li class="nc-button-group-base">
+	<li class="nc-button-group-base" :role="isInSemanticMenu && 'presentation'">
 		<div v-if="name" :id="labelId">
 			{{ name }}
 		</div>
@@ -100,6 +100,14 @@ import GenRandomId from '../../utils/GenRandomId.js'
  */
 export default defineComponent({
 	name: 'NcActionButtonGroup',
+
+	inject: {
+		isInSemanticMenu: {
+			from: 'NcActions:isSemanticMenu',
+			default: false,
+		},
+	},
+
 	props: {
 		/**
 		 * Optional text shown below the button group

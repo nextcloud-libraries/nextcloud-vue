@@ -173,12 +173,12 @@ export default {
 </docs>
 
 <template>
-	<li class="action" :class="{ 'action--disabled': disabled }">
+	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
 		<button class="action-button"
 			:class="{ focusable: isFocusable }"
 			:aria-label="ariaLabel"
 			:title="title"
-			role="menuitem"
+			:role="isInSemanticMenu && 'menuitem'"
 			type="button"
 			@click="onClick">
 			<!-- @slot Manually provide icon -->
@@ -235,6 +235,13 @@ export default {
 	},
 	mixins: [ActionTextMixin],
 
+	inject: {
+		isInSemanticMenu: {
+			from: 'NcActions:isSemanticMenu',
+			default: false,
+		},
+	},
+
 	props: {
 		/**
 		 * disabled state of the action button
@@ -263,6 +270,7 @@ export default {
 			default: false,
 		},
 	},
+
 	computed: {
 		/**
 		 * determines if the action is focusable

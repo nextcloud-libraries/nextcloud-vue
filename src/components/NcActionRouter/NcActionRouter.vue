@@ -22,13 +22,14 @@
   -->
 
 <template>
-	<li class="action">
-		<router-link :to="to"
+	<li class="action" :role="isInSemanticMenu && 'presentation'">
+		<RouterLink :to="to"
 			:aria-label="ariaLabel"
 			:exact="exact"
 			:title="title"
 			class="action-router focusable"
 			rel="nofollow noreferrer noopener"
+			:role="isInSemanticMenu && 'menuitem'"
 			@click.native="onClick">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
@@ -62,7 +63,7 @@
 
 			<!-- fake slot to gather inner text -->
 			<slot v-if="false" />
-		</router-link>
+		</RouterLink>
 	</li>
 </template>
 
@@ -73,6 +74,13 @@ export default {
 	name: 'NcActionRouter',
 
 	mixins: [ActionTextMixin],
+
+	inject: {
+		isInSemanticMenu: {
+			from: 'NcActions:isSemanticMenu',
+			default: false,
+		},
+	},
 
 	props: {
 		/**

@@ -802,7 +802,7 @@ import NcPopover from '../NcPopover/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { t } from '../../l10n.js'
 
-import Vue from 'vue'
+import Vue, { computed } from 'vue'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 const focusableSelector = '.focusable'
@@ -822,6 +822,21 @@ export default {
 		NcButton,
 		DotsHorizontal,
 		NcPopover,
+	},
+
+	provide() {
+		return {
+			/**
+			 * NcActions can be used as:
+			 * - Application menu (has menu role)
+			 * - Navigation (has no specific role, should be used an element with navigation role)
+			 * - Popover with plain text or text inputs (has no specific role)
+			 * Depending on the usage (used items), the menu and its items should have different roles for a11y.
+			 * Provide the role for NcAction* components in the NcActions content.
+			 * @type {import('vue').ComputedRef<boolean>}
+			 */
+			'NcActions:isSemanticMenu': computed(() => this.isSemanticMenu),
+		}
 	},
 
 	props: {
@@ -976,6 +991,7 @@ export default {
 			opened: this.open,
 			focusIndex: 0,
 			randomId: `menu-${GenRandomId()}`,
+			isSemanticMenu: false,
 		}
 	},
 
@@ -1209,17 +1225,18 @@ export default {
 			action => action?.componentOptions?.tag || action?.componentOptions?.Ctor?.extendOptions?.name,
 		)
 
-		const isNavLink = (action) => {
-			const componentName = action?.componentOptions?.Ctor?.extendOptions?.name ?? action?.componentOptions?.tag
-			const href = action?.componentOptions?.propsData?.href
-			return (
-				componentName === 'NcActionLink'
-					&& !href?.startsWith('#')
-					&& new URL(href, window.location.origin).origin === window.location.origin
-			)
-		}
-		// Automatically detect whether all actions are website navigation links
-		const isNav = actions.every(isNavLink)
+		const getActionName = (action) => action?.componentOptions?.Ctor?.extendOptions?.name ?? action?.componentOptions?.tag
+
+		const menuItemsActions = ['NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio']
+		const textInputActions = ['NcActionInput', 'NcActionTextEditable']
+		// Link actions could be a part of menu, but are without buttons they are considered navigation
+		// const linkActions = ['NcActionLink', 'NcActionRouter']
+
+		const hasNoTextInputActions = actions.every(action => !textInputActions.includes(getActionName(action)))
+		const hasSomeMenuItemAction = actions.some(action => menuItemsActions.includes(getActionName(action)))
+
+		// We consider the NcActions to have role="menu" if it consists some button-like action and not text inputs
+		this.isSemanticMenu = hasSomeMenuItemAction && hasNoTextInputActions
 
 		/**
 		 * Filter and list actions that are allowed to be displayed inline
@@ -1313,9 +1330,6 @@ export default {
 						},
 					})
 			)
-			const ariaExpandedForTrigger = () => {
-				return (isNav || this.opened) ? this.opened.toString() : null
-			}
 			return h('NcPopover',
 				{
 					ref: 'popover',
@@ -1357,10 +1371,11 @@ export default {
 						slot: 'trigger',
 						ref: 'menuButton',
 						attrs: {
-							'aria-haspopup': isNav ? null : 'menu',
+							'aria-haspopup': this.isSemanticMenu ? null : 'menu',
 							'aria-label': this.menuName ? null : this.ariaLabel,
 							'aria-controls': this.opened ? this.randomId : null,
-							'aria-expanded': ariaExpandedForTrigger(),
+							// Do not add aria-expanded="true" when it is closed
+							'aria-expanded': this.opened ? 'true' : undefined,
 						},
 						on: {
 							focus: this.onFocus,
@@ -1387,7 +1402,7 @@ export default {
 							attrs: {
 								id: this.randomId,
 								tabindex: '-1',
-								role: isNav ? null : 'menu',
+								role: this.isSemanticMenu ? 'menu' : undefined,
 							},
 						}, [
 							actions,
