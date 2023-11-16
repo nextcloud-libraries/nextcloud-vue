@@ -1200,6 +1200,9 @@ body {
 		.vs__selected-options {
 			flex-wrap: nowrap;
 		}
+		.vs__selected {
+			background: unset !important;
+		}
 	}
 }
 

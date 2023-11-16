@@ -77,8 +77,8 @@ import l10n from '../../mixins/l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
 import axios from '@nextcloud/axios'
+import debounce from 'debounce'
 import { generateOcsUrl } from '@nextcloud/router'
-import { debounce } from 'debounce'
 
 export default {
 	name: 'NcSettingsSelectGroup',
