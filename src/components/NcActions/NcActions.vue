@@ -1112,24 +1112,23 @@ export default {
 		 * @param {object} event The keydown event
 		 */
 		onKeydown(event) {
-			// Up or Shift+Tab
-			if (event.keyCode === 38 || (event.keyCode === 9 && event.shiftKey)) {
+			if (event.key === 'ArrowUp' || (event.key === 'Tab' && event.shiftKey)) {
 				this.focusPreviousAction(event)
 			}
-			// Down or Tab
-			if (event.keyCode === 40 || (event.keyCode === 9 && !event.shiftKey)) {
+
+			if (event.key === 'ArrowDown' || (event.key === 'Tab' && !event.shiftKey)) {
 				this.focusNextAction(event)
 			}
-			// Page-Up
-			if (event.keyCode === 33) {
+
+			if (event.key === 'PageUp') {
 				this.focusFirstAction(event)
 			}
-			// Page-Down
-			if (event.keyCode === 34) {
+
+			if (event.key === 'PageDown') {
 				this.focusLastAction(event)
 			}
-			// Esc
-			if (event.keyCode === 27) {
+
+			if (event.key === 'Escape') {
 				this.closeMenu()
 				event.preventDefault()
 			}
