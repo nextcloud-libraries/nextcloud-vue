@@ -1,10 +1,11 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# O St <oleksiy.stasevych@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2023\n"
+"Last-Translator: O St <oleksiy.stasevych@gmail.com>, 2023\n"
 "Language-Team: Ukrainian (https://app.transifex.com/nextcloud/teams/64236/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: uk\n"
@@ -43,6 +44,9 @@ msgstr "Аватар {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Аватар {displayName}, {status}"
 
+msgid "away"
+msgstr "відсутній"
+
 msgid "Back"
 msgstr "Назад"
 
@@ -61,14 +65,14 @@ msgstr "Виберіть"
 msgid "Clear search"
 msgstr "Очистити пошук"
 
+msgid "Clear selected"
+msgstr "Очистити вибране"
+
 msgid "Clear text"
 msgstr "Очистити текст"
 
 msgid "Close"
 msgstr "Закрити"
-
-msgid "Close modal"
-msgstr "Закрити модаль"
 
 msgid "Close navigation"
 msgstr "Закрити навігацію"
@@ -87,6 +91,12 @@ msgstr "Підтвердити зміни"
 
 msgid "Custom"
 msgstr "Власне"
+
+msgid "Deselect {option}"
+msgstr "Зняти вибір {option}"
+
+msgid "do not disturb"
+msgstr "не турбувати"
 
 msgid "Edit item"
 msgstr "Редагувати елемент"
@@ -126,7 +136,7 @@ msgid "Hide password"
 msgstr "Приховати пароль"
 
 msgid "Load more \"{options}\""
-msgstr ""
+msgstr "Завантажити більше \"{options}\""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Вичерпано ліміт у {count} символів для повідомлення"
@@ -151,6 +161,12 @@ msgstr "Відсутні результати"
 
 msgid "Objects"
 msgstr "Об'єкти"
+
+msgid "offline"
+msgstr "не в мережі"
+
+msgid "online"
+msgstr "в мережі"
 
 msgid "Open contact menu"
 msgstr "Відкрити меню контактів"
@@ -212,11 +228,20 @@ msgstr "Пряме посилання {options}"
 msgid "Related resources"
 msgstr "Пов'язані ресурси"
 
+msgid "Save changes"
+msgstr "Зберегти зміни"
+
 msgid "Search"
 msgstr "Пошук"
 
 msgid "Search emoji"
 msgstr "Шукати емоційки"
+
+msgid "Search for options"
+msgstr "Шукати параметри"
+
+msgid "Search for time zone"
+msgstr "Шукати часові зони"
 
 msgid "Search results"
 msgstr "Результати пошуку"
@@ -237,7 +262,7 @@ msgid "Select provider"
 msgstr "Виберіть постачальника"
 
 msgid "Selected"
-msgstr ""
+msgstr "Вибрано"
 
 msgid "Settings"
 msgstr "Налаштування"
@@ -278,5 +303,8 @@ msgstr "Неможливо шукати в групі"
 msgid "Undo changes"
 msgstr "Скасувати зміни"
 
+msgid "User status: {status}"
+msgstr "Статус користувача: {status}"
+
 msgid "Write a message …"
-msgstr ""
+msgstr "Написати повідомлення ..."
