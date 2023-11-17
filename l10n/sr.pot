@@ -228,6 +228,9 @@ msgstr "Сирови линк {options}"
 msgid "Related resources"
 msgstr "Повезани ресурси"
 
+msgid "Save changes"
+msgstr "Сачувај измене"
+
 msgid "Search"
 msgstr "Претражи"
 
