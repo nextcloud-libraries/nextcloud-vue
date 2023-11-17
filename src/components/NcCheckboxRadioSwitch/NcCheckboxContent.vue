@@ -252,6 +252,7 @@ export default {
 
 	&, * {
 		cursor: pointer;
+		flex-shrink: 0;
 	}
 }
 </style>
