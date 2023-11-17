@@ -2,6 +2,7 @@
  * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Grigorii K. Shartsev <me@shgk.me>
  *
  * @license AGPL-3.0-or-later
  *
@@ -24,17 +25,23 @@
  * Originally taken from https://github.com/nextcloud/server/blob/master/core/js/placeholder.js
  */
 
+import { t } from '../l10n.js'
+
 class Color {
 
 	/**
 	 * @param {number} r The red value
 	 * @param {number} g The green value
 	 * @param {number} b The blue value
+	 * @param {string} [name] The name of the color
 	 */
-	constructor(r, g, b) {
+	constructor(r, g, b, name) {
 		this.r = r
 		this.g = g
 		this.b = b
+		if (name) {
+			this.name = name
+		}
 	}
 
 }
@@ -89,9 +96,9 @@ function GenColors(steps) {
 		steps = 6
 	}
 
-	const red = new Color(182, 70, 157)
-	const yellow = new Color(221, 203, 85)
-	const blue = new Color(0, 130, 201) // Nextcloud blue
+	const red = new Color(182, 70, 157, t('Purple'))
+	const yellow = new Color(221, 203, 85, t('Gold'))
+	const blue = new Color(0, 130, 201, t('Nextcloud blue'))
 
 	const palette1 = mixPalette(steps, red, yellow)
 	const palette2 = mixPalette(steps, yellow, blue)

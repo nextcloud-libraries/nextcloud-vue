@@ -2,6 +2,7 @@
  - @copyright Copyright (c) 2019 Marco Ambrosini <marcoambrosini@icloud.com>
  -
  - @author Marco Ambrosini <marcoambrosini@icloud.com>
+ - @author Grigorii K. Shartsev <me@shgk.me>
  -
  - @license GNU AGPL version 3 or any later version
  -
@@ -165,17 +166,17 @@ export default {
 		</template>
 		<div class="color-picker"
 			:class="{ 'color-picker--advanced-fields': advanced && advancedFields }">
-			<transition name="slide" mode="out-in">
+			<Transition name="slide" mode="out-in">
 				<div v-if="!advanced" class="color-picker__simple">
-					<button v-for="(color, index) in palette"
+					<button v-for="({ color, name }, index) in normalizedPalette"
 						:key="index"
-						:style="{'background-color': color }"
+						:style="{ backgroundColor: color }"
 						class="color-picker__simple-color-circle"
 						:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }"
+						:aria-label="name"
 						type="button"
 						@click="pickColor(color)">
-						<Check v-if="color === currentColor"
-							:size="20" />
+						<Check v-if="color === currentColor" :size="20" />
 					</button>
 				</div>
 				<Chrome v-if="advanced"
@@ -184,7 +185,7 @@ export default {
 					:disable-alpha="true"
 					:disable-fields="!advancedFields"
 					@input="pickColor" />
-			</transition>
+			</Transition>
 			<div class="color-picker__navigation">
 				<NcButton v-if="advanced"
 					type="tertiary"
@@ -224,10 +225,21 @@ import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 import { Chrome } from 'vue-color'
 
-const rgbToHex = function(color) {
-	const hex = color.toString(16)
-	return hex.length === 1 ? '0' + hex : hex
+/**
+ * Convert RGB object to a HEX string color
+ *
+ * @param {object} color - The color to convert
+ * @param {string} [color.r] - Red value
+ * @param {string} [color.g] - Green value
+ * @param {string} [color.b] - Blue value
+ * @return {string} The hex value
+ */
+export function rgbToHex({ r, g, b }) {
+	const toHex = (number) => number.toString(16).padStart(2, '0')
+	return `#${toHex(r)}${toHex(g)}${toHex(b)}`
 }
+
+const HEX_REGEX = /^#([a-f0-9]{3}|[a-f0-9]{6})$/i
 
 export default {
 	name: 'NcColorPicker',
@@ -259,16 +271,20 @@ export default {
 		},
 
 		/**
-		 * Provide a custom array of hexadecimal colors to show
+		 * Provide a custom array of colors to show.
+		 * Can be either an array of string hexadecimal colors,
+		 * or an array of object with a `color` property with hexadecimal color string,
+		 * and a `name` property for accessibility.
+		 *
+		 * @type {string[] | {color: string, name: string}[]}
 		 */
 		palette: {
 			type: Array,
-			default: () => GenColors(4).map(color => {
-				return '#' + rgbToHex(color.r) + rgbToHex(color.g) + rgbToHex(color.b)
-			}),
-			validator(palette) {
-				return palette.every(color => /^#([a-f0-9]{3}|[a-f0-9]{6})$/i.test(color))
-			},
+			default: () => GenColors(4).map(item => ({ color: rgbToHex(item), name: item.name })),
+			validator: (palette) => palette.every(item =>
+				(typeof item === 'string' && HEX_REGEX.test(item))
+				|| (typeof item === 'object' && item.color && HEX_REGEX.test(item.color)),
+			),
 		},
 	},
 
@@ -287,6 +303,17 @@ export default {
 			ariaBack: t('Back'),
 			ariaMore: t('More options'),
 		}
+	},
+
+	computed: {
+		normalizedPalette() {
+			return this.palette.map((item) => ({
+				color: typeof item === 'object' ? item.color : item,
+				name: typeof item === 'object' && item.name
+					? item.name
+					: t('A color with a HEX value {hex}', { hex: item.color }),
+			}))
+		},
 	},
 
 	watch: {
