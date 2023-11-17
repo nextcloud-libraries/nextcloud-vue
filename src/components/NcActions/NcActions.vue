@@ -992,6 +992,8 @@ export default {
 			focusIndex: 0,
 			randomId: `menu-${GenRandomId()}`,
 			isSemanticMenu: false,
+			isSemanticNavigation: false,
+			isSemanticPopoverLike: false,
 		}
 	},
 
@@ -1112,24 +1114,27 @@ export default {
 		 * @param {object} event The keydown event
 		 */
 		onKeydown(event) {
-			// Up or Shift+Tab
-			if (event.keyCode === 38 || (event.keyCode === 9 && event.shiftKey)) {
+			if (event.key === 'Tab' && !this.isSemanticPopoverLike) {
+				this.closeMenu(false)
+			}
+
+			if (event.key === 'ArrowUp') {
 				this.focusPreviousAction(event)
 			}
-			// Down or Tab
-			if (event.keyCode === 40 || (event.keyCode === 9 && !event.shiftKey)) {
+
+			if (event.key === 'ArrowDown') {
 				this.focusNextAction(event)
 			}
-			// Page-Up
-			if (event.keyCode === 33) {
+
+			if (event.key === 'PageUp') {
 				this.focusFirstAction(event)
 			}
-			// Page-Down
-			if (event.keyCode === 34) {
+
+			if (event.key === 'PageDown') {
 				this.focusLastAction(event)
 			}
-			// Esc
-			if (event.keyCode === 27) {
+
+			if (event.key === 'Escape') {
 				this.closeMenu()
 				event.preventDefault()
 			}
@@ -1155,8 +1160,7 @@ export default {
 		focusPreviousAction(event) {
 			if (this.opened) {
 				if (this.focusIndex === 0) {
-					// First element overflows to body-navigation (no preventDefault!) and closes Actions-menu
-					this.closeMenu()
+					this.focusLastAction(event)
 				} else {
 					this.preventIfEvent(event)
 					this.focusIndex = this.focusIndex - 1
@@ -1168,8 +1172,7 @@ export default {
 			if (this.opened) {
 				const indexLength = this.$refs.menu.querySelectorAll(focusableSelector).length - 1
 				if (this.focusIndex === indexLength) {
-					// Last element overflows to body-navigation (no preventDefault!) and closes Actions-menu
-					this.closeMenu()
+					this.focusFirstAction(event)
 				} else {
 					this.preventIfEvent(event)
 					this.focusIndex = this.focusIndex + 1
@@ -1229,14 +1232,18 @@ export default {
 
 		const menuItemsActions = ['NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio']
 		const textInputActions = ['NcActionInput', 'NcActionTextEditable']
-		// Link actions could be a part of menu, but are without buttons they are considered navigation
-		// const linkActions = ['NcActionLink', 'NcActionRouter']
+		const linkActions = ['NcActionLink', 'NcActionRouter']
 
-		const hasNoTextInputActions = actions.every(action => !textInputActions.includes(getActionName(action)))
-		const hasSomeMenuItemAction = actions.some(action => menuItemsActions.includes(getActionName(action)))
+		const hasTextInputAction = actions.some(action => textInputActions.includes(getActionName(action)))
+		const hasMenuItemAction = actions.some(action => menuItemsActions.includes(getActionName(action)))
+		const hasLinkAction = actions.some(action => linkActions.includes(getActionName(action)))
 
 		// We consider the NcActions to have role="menu" if it consists some button-like action and not text inputs
-		this.isSemanticMenu = hasSomeMenuItemAction && hasNoTextInputActions
+		this.isSemanticMenu = hasMenuItemAction && !hasTextInputAction
+		// We consider the NcActions to be navigation if it consists some link-like action
+		this.isSemanticNavigation = hasLinkAction && !hasMenuItemAction && !hasTextInputAction
+		// If it is no a manu and not a navigation, it is a popover with items: a form or just a text
+		this.isSemanticPopoverLike = !this.isSemanticMenu && !this.isSemanticNavigation
 
 		/**
 		 * Filter and list actions that are allowed to be displayed inline
@@ -1341,7 +1348,10 @@ export default {
 						boundary: this.boundariesElement,
 						container: this.container,
 						popoverBaseClass: 'action-item__popper',
-						setReturnFocus: this.$refs.menuButton?.$el,
+						// Menu and navigation should not have focus trap
+						// Tab should close the menu and move focus to the next UI element
+						setReturnFocus: !this.isSemanticPopoverLike ? null : this.$refs.menuButton?.$el,
+						focusTrap: this.isSemanticPopoverLike,
 					},
 					// For some reason the popover component
 					// does not react to props given under the 'props' key,
