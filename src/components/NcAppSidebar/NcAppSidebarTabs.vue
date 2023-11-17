@@ -56,9 +56,9 @@
 					{{ tab.name }}
 				</span>
 				<template #icon>
-					<component :is="tab.renderIcon()">
+					<NcVNodes :vnodes="tab.renderIcon()">
 						<span class="app-sidebar-tabs__tab-icon" :class="tab.icon" />
-					</component>
+					</NcVNodes>
 				</template>
 			</NcCheckboxRadioSwitch>
 		</div>
@@ -73,6 +73,7 @@
 </template>
 
 <script>
+import NcVNodes from '../NcVNodes/index.js'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/index.js'
 
 export default {
@@ -80,6 +81,7 @@ export default {
 
 	components: {
 		NcCheckboxRadioSwitch,
+		NcVNodes,
 	},
 
 	provide() {

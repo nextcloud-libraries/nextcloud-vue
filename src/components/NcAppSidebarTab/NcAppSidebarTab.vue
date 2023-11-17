@@ -130,7 +130,7 @@ export default {
 		 * @return {import('vue').VNode[]}
 		 */
 		renderIcon() {
-			return this.$slots.icon
+			return this.$slots.icon?.()
 		},
 	},
 }
