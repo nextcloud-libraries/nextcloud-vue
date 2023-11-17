@@ -44,7 +44,7 @@ export default defineConfig({
 
 		excludeSpecPattern: [
 			'cypress/component/richtext.cy.ts',
-			'cypress/visual/**/*.{j,t}s',
+			'cypress/visual/AppNavigationItem.cy.ts',
 		],
 
 
