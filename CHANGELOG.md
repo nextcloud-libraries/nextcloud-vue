@@ -2,20 +2,48 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v8.1.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.1.0) (2023-11-14)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.0.1...v8.1.0)
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [v8.2.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.2.0) (2023-11-17)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.2.0...v8.1.0)
 
 ### :rocket: Enhancements
-* feat: introduce `useIsMobile` and `useIsFullscreen` composables [\#4761](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4761) [\(@ShGKme\)](https://github.com/@ShGKme)
+* feat(NcColorPicker): palette now can have color names [\#4611](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4611) [\(ShGKme\)](https://github.com/ShGKme)
 
 ### :bug: Fixed bugs
-* Fix tabs appearance [\#4815](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4815) [\(@marcoambrosini\)](https://github.com/@marcoambrosini)
-* fix(NcTextField): Align default label for trailing button with used icon [\#4805](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4805) [\(@susnux\)](https://github.com/@susnux)
-* fix single-select design [\#4817](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4817) [\(@szaimen\)](https://github.com/@szaimen)
+* fix: export composables [\#4829](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4829) [\(raimund-schluessler\)](https://github.com/raimund-schluessler)
+* fix(NcAppSidebarTabs): override tabs styles only tablist navigation [\#4823](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4823) [\(ShGKme\)](https://github.com/ShGKme)
+* Improve relative time handling [\#4832](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4832) [\(nickvergessen\)](https://github.com/nickvergessen)
+* fix(cypress): delete unused files [\#4837](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4837) [\(raimund-schluessler\)](https://github.com/raimund-schluessler)
+* fix(NcActions): fix role and aria attributes [\#4835](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4835) [\(ShGKme\)](https://github.com/ShGKme)
+* fix(NcAppSettingsDialog): `unregisterSection` should remove the section instead of remove all other [\#4798](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4798) [\(susnux\)](https://github.com/susnux)
+* fix(NcRichcontenteditable): remove placeholder attr [\#4843](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4843) [\(ShGKme\)](https://github.com/ShGKme)
+* fix(NcDateTime): Also use months for relative date time [\#4845](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4845) [\(nickvergessen\)](https://github.com/nickvergessen)
+* fix(NcActions): adjust keyboard navigation [\#4841](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4841) [\(ShGKme\)](https://github.com/ShGKme)
+* fix checkbox sizing [\#4760](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4760) [\(szaimen\)](https://github.com/szaimen)
+* fix(NcActions): only search for items to focus on in the current menu [\#4846](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4846) [\(ShGKme\)](https://github.com/ShGKme)
+* Create scrollable content via `min-height` over sidebar and settings … [\#4825](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4825) [\(JuliaKirschenheuter\)](https://github.com/JuliaKirschenheuter)
+* Create scrollable content via `min-height` over sidebar and settings dialog on small screens [\#4836](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4836) [\(JuliaKirschenheuter\)](https://github.com/JuliaKirschenheuter)
+* Correct styles for focused NcTextArea [\#4848](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4848) [\(JuliaKirschenheuter\)](https://github.com/JuliaKirschenheuter)
 
 ### Other Changes
 * Update translations
 
+## [v8.1.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.1.0) (2023-11-14)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.0.1...v8.1.0)
+
+### :rocket: Enhancements
+* feat: introduce `useIsMobile` and `useIsFullscreen` composables [\#4761](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4761) [\(@ShGKme\)](https://github.com/ShGKme)
+
+### :bug: Fixed bugs
+* Fix tabs appearance [\#4815](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4815) [\(@marcoambrosini\)](https://github.com/marcoambrosini)
+* fix(NcTextField): Align default label for trailing button with used icon [\#4805](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4805) [\(@susnux\)](https://github.com/susnux)
+* fix single-select design [\#4817](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4817) [\(@szaimen\)](https://github.com/szaimen)
+
+### Other Changes
+* Update translations
 
 ## [v8.0.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.0.1) (2023-11-09)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.0.0...v8.0.1)
