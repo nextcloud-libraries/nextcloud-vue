@@ -168,16 +168,19 @@ export default {
 			:class="{ 'color-picker--advanced-fields': advanced && advancedFields }">
 			<Transition name="slide" mode="out-in">
 				<div v-if="!advanced" class="color-picker__simple">
-					<button v-for="({ color, name }, index) in normalizedPalette"
+					<label v-for="({ color, name }, index) in normalizedPalette"
 						:key="index"
 						:style="{ backgroundColor: color }"
 						class="color-picker__simple-color-circle"
 						:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }"
-						:aria-label="name"
-						type="button"
-						@click="pickColor(color)">
+						:aria-label="name">
 						<Check v-if="color === currentColor" :size="20" />
-					</button>
+						<input type="radio"
+							class="hidden-visually"
+							:name="`color-picker-${uid}`"
+							:checked="color === currentColor"
+							@click="pickColor(color)">
+					</label>
 				</div>
 				<Chrome v-if="advanced"
 					v-model="currentColor"
@@ -218,6 +221,7 @@ import NcButton from '../NcButton/index.js'
 import NcPopover from '../NcPopover/index.js'
 import { t } from '../../l10n.js'
 import GenColors from '../../utils/GenColors.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
 import Check from 'vue-material-design-icons/Check.vue'
@@ -313,6 +317,10 @@ export default {
 					? item.name
 					: t('A color with a HEX value {hex}', { hex: item.color }),
 			}))
+		},
+
+		uid() {
+			return GenRandomId()
 		},
 	},
 
@@ -416,6 +424,9 @@ export default {
 			border: 1px solid rgba(0, 0, 0, 0.25);
 			border-radius: 50%;
 			font-size: 16px;
+			&:focus-within {
+				outline: 2px solid var(--color-main-text);
+			}
 			&:hover {
 				opacity: .6;
 			}
