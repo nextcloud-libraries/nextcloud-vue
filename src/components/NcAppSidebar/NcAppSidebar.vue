@@ -641,7 +641,7 @@ export default {
 		'opened',
 		// 'figure-click', not emitted on purpose to make "hasFigureClickListener" work
 		'update:starred',
-		'update:name-editable',
+		'update:nameEditable',
 		'update:name',
 		'update:active',
 		'submit-name',
@@ -736,6 +736,7 @@ export default {
 			 *
 			 * @type {Event}
 			 */
+			this.$emit('figure-click', e)
 			this.$attrs.onFigureClick(e)
 		},
 
@@ -759,7 +760,7 @@ export default {
 			 *
 			 * @type {boolean}
 			 */
-			await this.$emit('update:name-editable', true)
+			this.$emit('update:nameEditable', true)
 			// Focus the name input
 			if (this.nameEditable) {
 				await this.$nextTick()
@@ -789,7 +790,7 @@ export default {
 		 */
 		onSubmitName(event) {
 			// Disable editing
-			this.$emit('update:name-editable', false)
+			this.$emit('update:nameEditable', false)
 			/**
 			 * Emitted when the name edit input has been submitted
 			 *
@@ -799,7 +800,7 @@ export default {
 		},
 		onDismissEditing() {
 			// Disable editing
-			this.$emit('update:name-editable', false)
+			this.$emit('update:nameEditable', false)
 			/**
 			 * Emitted when the name edit has been cancelled
 			 *
