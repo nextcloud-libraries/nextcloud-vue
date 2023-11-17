@@ -221,7 +221,6 @@ export default {
 			'rich-contenteditable__input--disabled': disabled,
 		}"
 		:contenteditable="canEdit"
-		:placeholder="placeholder"
 		:aria-placeholder="placeholder"
 		aria-multiline="true"
 		class="rich-contenteditable__input"
@@ -824,7 +823,7 @@ export default {
 
 	// Cannot use :empty because of firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=1513303
 	&--empty:before {
-		content: attr(placeholder);
+		content: attr(aria-placeholder);
 		color: var(--color-text-maxcontrast);
 		position: absolute;
 	}

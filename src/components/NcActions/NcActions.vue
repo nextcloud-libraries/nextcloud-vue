@@ -564,6 +564,236 @@ export default {
 </script>
 ```
 
+### Use cases
+
+```vue
+<template>
+	<div>
+		<h2>Application menu</h2>
+		Uses buttons, button groups, links and router links, separators, text. May have checkboxes and radio buttons.
+		<p>
+			<NcActions aria-label="Email menu" type="tertiary">
+				<NcActionButtonGroup>
+					<NcActionButton>
+						<template #icon>
+							<StarOutline :size="20" />
+						</template>
+						Favorite
+					</NcActionButton>
+					<NcActionButton>
+						<template #icon>
+							<EmailUnread :size="20" />
+						</template>
+						Unread
+					</NcActionButton>
+					<NcActionButton>
+						<template #icon>
+							<Bookmark :size="20" />
+						</template>
+						Important
+					</NcActionButton>
+				</NcActionButtonGroup>
+				<NcActionText>
+					<template #icon>
+						<ClockOutlineIcon :size="20" />
+					</template>
+					{{ new Date().toLocaleDateString('en-US') }}
+				</NcActionText>
+				<NcActionSeparator />
+				<NcActionButton>
+					<template #icon>
+						<AlertOctagonIcon :size="20" />
+					</template>
+					Mark as spam
+				</NcActionButton>
+				<NcActionCheckbox :checked.sync="selected">
+					Select
+				</NcActionCheckbox>
+				<NcActionButton>
+					<template #icon>
+						<OpenInNewIcon :size="20" />
+					</template>
+					Move thread
+				</NcActionButton>
+				<NcActionLink href="#">
+					<template #icon>
+						<DownloadIcon :size="20" />
+					</template>
+					Download message
+				</NcActionLink>
+			</NcActions>
+		</p>
+
+		<h2>Menu in menubar</h2>
+		Same as application menu. Separator can be used to make groups of radio buttons as well.
+		<p>
+			<NcActions aria-label="Text settings" type="tertiary">
+				<template #icon>
+					<FormatTitle :size="20" />
+				</template>
+				<NcActionButtonGroup name="Allignment">
+					<NcActionButton aria-label="Left">
+						<template #icon>
+							<FormatAlignLeft :size="20" />
+						</template>
+					</NcActionButton>
+					<NcActionButton aria-label="Center">
+						<template #icon>
+							<FormatAlignCenter :size="20" />
+						</template>
+					</NcActionButton>
+					<NcActionButton aria-label="Right">
+						<template #icon>
+							<FormatAlignRight :size="20" />
+						</template>
+					</NcActionButton>
+				</NcActionButtonGroup>
+				<NcActionSeparator />
+				<NcActionCheckbox :checked.sync="checked.bold" value="bold">
+					<template #icon>
+						<FormatBold :size="20" />
+					</template>
+					Bold
+				</NcActionCheckbox>
+				<NcActionCheckbox :checked.sync="checked.italic" value="italic">
+					<template #icon>
+						<FormatItalic :size="20" />
+					</template>
+					Italic
+				</NcActionCheckbox>
+				<NcActionCheckbox :checked.sync="checked.underline" value="underline">
+					<template #icon>
+						<FormatUnderline :size="20" />
+					</template>
+					Underline
+				</NcActionCheckbox>
+				<NcActionSeparator />
+				<NcActionRadio name="color" :checked.sync="color.black" value="Black">Black</NcActionRadio>
+				<NcActionRadio name="color" :checked.sync="color.blue" value="Blue">Blue</NcActionRadio>
+				<NcActionRadio name="color" :checked.sync="color.red" value="Red">Red</NcActionRadio>
+				<NcActionRadio name="color" :checked.sync="color.green" value="Green">Green</NcActionRadio>
+			</NcActions>
+		</p>
+
+		<h2>Navigation</h2>
+		Uses links or router links. May use text elements, captions and separators.
+		<p>
+			<NcActions aria-label="Applications navigation" :inline="2" type="tertiary">
+				<NcActionLink href="/apps/dashboard" icon="icon-category-dashboard-white">
+					Dashboard
+				</NcActionLink>
+				<NcActionLink href="/apps/files" icon="icon-files-white">
+					Files
+				</NcActionLink>
+				<NcActionLink href="/apps/spreed" icon="icon-talk-white">
+					Talk
+				</NcActionLink>
+				<NcActionLink href="/apps/contacts" icon="icon-contacts-white">
+					Contacts
+				</NcActionLink>
+				<NcActionLink href="/apps/spreed" icon="icon-circles-white">
+					Circles
+				</NcActionLink>
+			</NcActions>
+		</p>
+
+		<h2>Popover</h2>
+		Has any elements, including text input element, or no buttons.
+		<p>
+			<NcActions aria-label="Group management">
+				<NcActionInput trailing-button-label="Submit" label="Rename group">
+					<template #icon>
+						<Pencil :size="20" />
+					</template>
+				</NcActionInput>
+				<NcActionButton>
+					<template #icon>
+						<Delete :size="20" />
+					</template>
+					Remove group
+				</NcActionButton>
+			</NcActions>
+		</p>
+	</div>
+</template>
+
+<script>
+// Common icons
+import Pencil from 'vue-material-design-icons/Pencil'
+import Delete from 'vue-material-design-icons/Delete'
+
+// Email icons
+import StarOutline from 'vue-material-design-icons/StarOutline'
+import EmailUnread from 'vue-material-design-icons/Email'
+import Bookmark from 'vue-material-design-icons/Bookmark'
+import ClockOutlineIcon from 'vue-material-design-icons/ClockOutline'
+import AlertOctagonIcon from 'vue-material-design-icons/AlertOctagon'
+import CheckIcon from 'vue-material-design-icons/Check'
+import OpenInNewIcon from 'vue-material-design-icons/OpenInNew'
+import DownloadIcon from 'vue-material-design-icons/Download'
+
+// Formating icons
+import FormatTitle from 'vue-material-design-icons/FormatTitle.vue'
+import FormatAlignLeft from 'vue-material-design-icons/FormatAlignLeft.vue'
+import FormatAlignCenter from 'vue-material-design-icons/FormatAlignCenter.vue'
+import FormatAlignRight from 'vue-material-design-icons/FormatAlignRight.vue'
+import FormatBold from 'vue-material-design-icons/FormatBold.vue'
+import FormatItalic from 'vue-material-design-icons/FormatItalic.vue'
+import FormatUnderline from 'vue-material-design-icons/FormatUnderline.vue'
+
+export default {
+	components: {
+		// Common icons
+		Pencil,
+		Delete,
+
+		// Email icons
+		StarOutline,
+		EmailUnread,
+		Bookmark,
+		ClockOutlineIcon,
+		AlertOctagonIcon,
+		CheckIcon,
+		OpenInNewIcon,
+		DownloadIcon,
+
+		// Formating icons
+		FormatTitle,
+		FormatAlignLeft,
+		FormatAlignCenter,
+		FormatAlignRight,
+		FormatBold,
+		FormatItalic,
+		FormatUnderline,
+	},
+
+	data() {
+		return {
+			selected: false,
+			// Formating
+			checked: {
+				bold: true,
+				italic: false,
+				underline: false,
+			},
+			color: {
+				black: true,
+				blue: false,
+				red: false,
+				green: false,
+			},
+		}
+	},
+}
+</script>
+
+<style scoped>
+p {
+	margin: 1rem 0;
+}
+</style>
+```
+
 </docs>
 
 <script>
@@ -575,7 +805,7 @@ import { t } from '../../l10n.js'
 
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
-import { h, Fragment, warn, mergeProps } from 'vue'
+import { computed, h, Fragment, warn, mergeProps } from 'vue'
 
 const focusableSelector = '.focusable'
 
@@ -594,6 +824,21 @@ export default {
 		NcButton,
 		DotsHorizontal,
 		NcPopover,
+	},
+
+	provide() {
+		return {
+			/**
+			 * NcActions can be used as:
+			 * - Application menu (has menu role)
+			 * - Navigation (has no specific role, should be used an element with navigation role)
+			 * - Popover with plain text or text inputs (has no specific role)
+			 * Depending on the usage (used items), the menu and its items should have different roles for a11y.
+			 * Provide the role for NcAction* components in the NcActions content.
+			 * @type {import('vue').ComputedRef<boolean>}
+			 */
+			'NcActions:isSemanticMenu': computed(() => this.isSemanticMenu),
+		}
 	},
 
 	props: {
@@ -684,7 +929,9 @@ export default {
 		},
 
 		/**
-		 * aria-hidden attribute for the icon slot
+		 * @deprecated To be removed in @nextcloud/vue 9. Migration guide: remove ariaHidden prop from NcAction* components.
+		 * @todo Add a check in @nextcloud/vue 9 that this prop is not provided,
+		 * otherwise root element will inherit incorrect aria-hidden.
 		 */
 		ariaHidden: {
 			type: Boolean,
@@ -746,6 +993,9 @@ export default {
 			opened: this.open,
 			focusIndex: 0,
 			randomId: `menu-${GenRandomId()}`,
+			isSemanticMenu: false,
+			isSemanticNavigation: false,
+			isSemanticPopoverLike: false,
 		}
 	},
 
@@ -850,7 +1100,7 @@ export default {
 			}
 
 			const menuItem = event.target.closest('li')
-			if (menuItem) {
+			if (menuItem && this.$refs.menu.contains(menuItem)) {
 				const focusableItem = menuItem.querySelector(focusableSelector)
 				if (focusableItem) {
 					const focusList = this.$refs.menu.querySelectorAll(focusableSelector)
@@ -868,24 +1118,27 @@ export default {
 		 * @param {object} event The keydown event
 		 */
 		onKeydown(event) {
-			// Up or Shift+Tab
-			if (event.keyCode === 38 || (event.keyCode === 9 && event.shiftKey)) {
+			if (event.key === 'Tab' && !this.isSemanticPopoverLike) {
+				this.closeMenu(false)
+			}
+
+			if (event.key === 'ArrowUp') {
 				this.focusPreviousAction(event)
 			}
-			// Down or Tab
-			if (event.keyCode === 40 || (event.keyCode === 9 && !event.shiftKey)) {
+
+			if (event.key === 'ArrowDown') {
 				this.focusNextAction(event)
 			}
-			// Page-Up
-			if (event.keyCode === 33) {
+
+			if (event.key === 'PageUp') {
 				this.focusFirstAction(event)
 			}
-			// Page-Down
-			if (event.keyCode === 34) {
+
+			if (event.key === 'PageDown') {
 				this.focusLastAction(event)
 			}
-			// Esc
-			if (event.keyCode === 27) {
+
+			if (event.key === 'Escape') {
 				this.closeMenu()
 				event.preventDefault()
 			}
@@ -911,8 +1164,7 @@ export default {
 		focusPreviousAction(event) {
 			if (this.opened) {
 				if (this.focusIndex === 0) {
-					// First element overflows to body-navigation (no preventDefault!) and closes Actions-menu
-					this.closeMenu()
+					this.focusLastAction(event)
 				} else {
 					this.preventIfEvent(event)
 					this.focusIndex = this.focusIndex - 1
@@ -924,8 +1176,7 @@ export default {
 			if (this.opened) {
 				const indexLength = this.$refs.menu.querySelectorAll(focusableSelector).length - 1
 				if (this.focusIndex === indexLength) {
-					// Last element overflows to body-navigation (no preventDefault!) and closes Actions-menu
-					this.closeMenu()
+					this.focusFirstAction(event)
 				} else {
 					this.preventIfEvent(event)
 					this.focusIndex = this.focusIndex + 1
@@ -988,16 +1239,22 @@ export default {
 			}
 		})
 
-		const isNavLink = (action) => {
-			const href = action?.props?.href
-			return (
-				action?.type?.name === 'NcActionLink'
-					&& !href?.startsWith('#')
-					&& new URL(href, window.location.origin).origin === window.location.origin
-			)
-		}
-		// Automatically detect whether all actions are website navigation links
-		const isNav = actions.every(isNavLink)
+		const getActionName = (action) => action?.type?.name
+
+		const menuItemsActions = ['NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio']
+		const textInputActions = ['NcActionInput', 'NcActionTextEditable']
+		const linkActions = ['NcActionLink', 'NcActionRouter']
+
+		const hasTextInputAction = actions.some(action => textInputActions.includes(getActionName(action)))
+		const hasMenuItemAction = actions.some(action => menuItemsActions.includes(getActionName(action)))
+		const hasLinkAction = actions.some(action => linkActions.includes(getActionName(action)))
+
+		// We consider the NcActions to have role="menu" if it consists some button-like action and not text inputs
+		this.isSemanticMenu = hasMenuItemAction && !hasTextInputAction
+		// We consider the NcActions to be navigation if it consists some link-like action
+		this.isSemanticNavigation = hasLinkAction && !hasMenuItemAction && !hasTextInputAction
+		// If it is no a manu and not a navigation, it is a popover with items: a form or just a text
+		this.isSemanticPopoverLike = !this.isSemanticMenu && !this.isSemanticNavigation
 
 		/**
 		 * Filter and list actions that are allowed to be displayed inline
@@ -1040,7 +1297,6 @@ export default {
 						// If it has a menuName, we use a secondary button
 						type: this.type || (buttonText ? 'secondary' : 'tertiary'),
 						disabled: this.disabled || action?.props?.disabled,
-						ariaHidden: this.ariaHidden,
 						onFocus: this.onFocus,
 						onBlur: this.onBlur,
 					}
@@ -1065,9 +1321,6 @@ export default {
 					? h('span', { class: ['icon', this.defaultIcon] })
 					: h(DotsHorizontal, { size: 20 })
 				)
-			const ariaExpandedForTrigger = () => {
-				return (isNav || this.opened) ? this.opened.toString() : null
-			}
 			return h(NcPopover,
 				{
 					ref: 'popover',
@@ -1091,10 +1344,11 @@ export default {
 						disabled: this.disabled,
 						ariaHidden: this.ariaHidden,
 						ref: 'menuButton',
-						'aria-haspopup': isNav ? null : 'menu',
+						'aria-haspopup': this.isSemanticMenu ? null : 'menu',
 						'aria-label': this.menuName ? null : this.ariaLabel,
 						'aria-controls': this.opened ? this.randomId : null,
-						'aria-expanded': ariaExpandedForTrigger(),
+						// Do not add aria-expanded="true" when it is closed
+						'aria-expanded': this.opened ? 'true' : null,
 						onFocus: this.onFocus,
 						onBlur: this.onBlur,
 					}, {
@@ -1113,7 +1367,7 @@ export default {
 						h('ul', {
 							id: this.randomId,
 							tabindex: '-1',
-							role: isNav ? null : 'menu',
+							role: this.isSemanticMenu ? 'menu' : null,
 						}, [
 							actions,
 						]),

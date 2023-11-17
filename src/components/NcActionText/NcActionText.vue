@@ -22,14 +22,14 @@
   -->
 
 <template>
-	<li class="action">
+	<li class="action" :role="isInSemanticMenu && 'presentation'">
 		<span class="action-text"
 			@click="onClick">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
 				<span v-if="icon !== ''"
 					:class="[isIconUrl ? 'action-text__icon--url' : icon]"
-					:aria-hidden="ariaHidden"
+					aria-hidden="true"
 					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
 					class="action-text__icon" />
 			</slot>
@@ -70,6 +70,12 @@ export default {
 
 	mixins: [ActionTextMixin],
 
+	inject: {
+		isInSemanticMenu: {
+			from: 'NcActions:isSemanticMenu',
+			default: false,
+		},
+	},
 }
 </script>
 

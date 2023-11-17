@@ -345,7 +345,8 @@ export default {
 		&:active:not([disabled]),
 		&:hover:not([disabled]),
 		&:focus:not([disabled]) {
-			border-color: var(--color-primary-element);
+			border-color: 2px solid var(--color-main-text) !important;
+			box-shadow: 0 0 0 2px var(--color-main-background) !important;
 		}
 
 		// Hide placeholder while not focussed -> show label instead (only if internal label is used)

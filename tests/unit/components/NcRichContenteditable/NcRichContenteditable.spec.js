@@ -127,9 +127,6 @@ describe('NcRichContenteditable', () => {
 				placeholder: PLACEHOLDER,
 			},
 		})
-		// Accessible placeholder
 		expect(wrapper.attributes('aria-placeholder')).toBe(PLACEHOLDER)
-		// Used in CSS for visible placeholder
-		expect(wrapper.attributes('placeholder')).toBe(PLACEHOLDER)
 	})
 })
