@@ -736,6 +736,7 @@ export default {
 			 *
 			 * @type {Event}
 			 */
+			// eslint-disable-next-line vue/require-explicit-emits
 			this.$emit('figure-click', e)
 			this.$attrs.onFigureClick(e)
 		},
