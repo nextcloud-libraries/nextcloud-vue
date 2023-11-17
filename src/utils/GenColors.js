@@ -24,15 +24,19 @@
  * Originally taken from https://github.com/nextcloud/server/blob/master/core/js/placeholder.js
  */
 
-/**
- * @param {number} r The red value
- * @param {number} g The green value
- * @param {number} b The blue value
- */
-function Color(r, g, b) {
-	this.r = r
-	this.g = g
-	this.b = b
+class Color {
+
+	/**
+	 * @param {number} r The red value
+	 * @param {number} g The green value
+	 * @param {number} b The blue value
+	 */
+	constructor(r, g, b) {
+		this.r = r
+		this.g = g
+		this.b = b
+	}
+
 }
 
 /**
@@ -54,8 +58,8 @@ function stepCalc(steps, ends) {
  * Create a color palette from two colors
  *
  * @param {number} steps The number of steps the palette has
- * @param {string} color1 The first color
- * @param {string} color2 The second color
+ * @param {Color} color1 The first color
+ * @param {Color} color2 The second color
  * @return {Array} The created palette array
  */
 function mixPalette(steps, color1, color2) {
@@ -63,9 +67,9 @@ function mixPalette(steps, color1, color2) {
 	palette.push(color1)
 	const step = stepCalc(steps, [color1, color2])
 	for (let i = 1; i < steps; i++) {
-		const r = parseInt(color1.r + step[0] * i, 10)
-		const g = parseInt(color1.g + step[1] * i, 10)
-		const b = parseInt(color1.b + step[2] * i, 10)
+		const r = Math.floor(color1.r + step[0] * i)
+		const g = Math.floor(color1.g + step[1] * i)
+		const b = Math.floor(color1.b + step[2] * i)
 		palette.push(new Color(r, g, b))
 	}
 	return palette
