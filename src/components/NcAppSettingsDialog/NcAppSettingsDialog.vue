@@ -145,6 +145,7 @@ export default {
 		@update:open="handleCloseModal">
 		<template #navigation="{ isCollapsed }">
 			<ul :aria-label="settingsNavigationAriaLabel"
+				v-show="!isCollapsed"
 				:class="{ 'navigation-list': true, 'navigation-list--collapsed': isCollapsed }"
 				role="tablist">
 				<li v-for="section in sections" :key="section.id">
