@@ -1096,7 +1096,7 @@ export default {
 			}
 
 			const menuItem = event.target.closest('li')
-			if (menuItem) {
+			if (menuItem && this.$refs.menu.contains(menuItem)) {
 				const focusableItem = menuItem.querySelector(focusableSelector)
 				if (focusableItem) {
 					const focusList = this.$refs.menu.querySelectorAll(focusableSelector)
