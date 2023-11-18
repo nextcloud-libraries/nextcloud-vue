@@ -354,14 +354,14 @@ export default {
 		@after-leave="onAfterLeave">
 		<aside id="app-sidebar-vue" class="app-sidebar">
 			<header :class="{
-					'app-sidebar-header--with-figure': isSlotPopulated($slots?.header?.()) || background,
+					'app-sidebar-header--with-figure': isSlotPopulated($slots.header?.()) || background,
 					'app-sidebar-header--compact': compact,
 				}"
 				class="app-sidebar-header">
 				<!-- container for figure and description, allows easy switching to compact mode -->
 				<div class="app-sidebar-header__info">
 					<!-- sidebar header illustration/figure -->
-					<div v-if="(isSlotPopulated($slots?.header?.()) || background) && !empty"
+					<div v-if="(isSlotPopulated($slots.header?.()) || background) && !empty"
 						:class="{
 							'app-sidebar-header__figure--with-action': hasFigureClickListener
 						}"
@@ -378,14 +378,14 @@ export default {
 					<!-- sidebar details -->
 					<div v-if="!empty"
 						:class="{
-							'app-sidebar-header__desc--with-tertiary-action': canStar || isSlotPopulated($slots?.['tertiary-actions']?.()),
+							'app-sidebar-header__desc--with-tertiary-action': canStar || isSlotPopulated($slots['tertiary-actions']?.()),
 							'app-sidebar-header__desc--editable': nameEditable && !subname,
 							'app-sidebar-header__desc--with-subname--editable': nameEditable && subname,
-							'app-sidebar-header__desc--without-actions': !isSlotPopulated($slots?.['secondary-actions']?.()),
+							'app-sidebar-header__desc--without-actions': !isSlotPopulated($slots['secondary-actions']?.()),
 						}"
 						class="app-sidebar-header__desc">
 						<!-- favourite icon -->
-						<div v-if="canStar || isSlotPopulated($slots?.['tertiary-actions']?.())" class="app-sidebar-header__tertiary-actions">
+						<div v-if="canStar || isSlotPopulated($slots['tertiary-actions']?.())" class="app-sidebar-header__tertiary-actions">
 							<slot name="tertiary-actions">
 								<NcButton v-if="canStar"
 									:aria-label="favoriteTranslated"
@@ -437,7 +437,7 @@ export default {
 									</form>
 								</template>
 								<!-- header main menu -->
-								<NcActions v-if="isSlotPopulated($slots?.['secondary-actions']?.())"
+								<NcActions v-if="isSlotPopulated($slots['secondary-actions']?.())"
 									class="app-sidebar-header__menu"
 									:force-menu="forceMenu">
 									<slot name="secondary-actions" />
@@ -464,7 +464,7 @@ export default {
 					</template>
 				</NcButton>
 
-				<div v-if="isSlotPopulated($slots?.description?.()) && !empty" class="app-sidebar-header__description">
+				<div v-if="isSlotPopulated($slots.description?.()) && !empty" class="app-sidebar-header__description">
 					<slot name="description" />
 				</div>
 			</header>
@@ -741,7 +741,6 @@ export default {
 			 */
 			// eslint-disable-next-line vue/require-explicit-emits
 			this.$emit('figure-click', e)
-			this.$attrs.onFigureClick(e)
 		},
 
 		/**
