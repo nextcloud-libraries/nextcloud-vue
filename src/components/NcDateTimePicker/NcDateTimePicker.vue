@@ -174,7 +174,6 @@ import { t } from '../../l10n.js'
 
 import NcTimezonePicker from '../NcTimezonePicker/index.js'
 import NcPopover from '../NcPopover/index.js'
-import l10n from '../../mixins/l10n.js'
 
 import CalendarBlank from 'vue-material-design-icons/CalendarBlank.vue'
 import Web from 'vue-material-design-icons/Web.vue'
@@ -210,7 +209,6 @@ export default {
 		Web,
 	},
 
-	mixins: [l10n],
 	inheritAttrs: false,
 
 	props: {
@@ -358,6 +356,8 @@ export default {
 	},
 
 	methods: {
+		t,
+
 		handleSelectYear(year) {
 			const value = this.$refs.datepicker.currentValue
 			if (value) {

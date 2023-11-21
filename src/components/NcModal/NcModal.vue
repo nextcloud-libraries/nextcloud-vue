@@ -336,7 +336,6 @@ export default {
 import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
-import l10n from '../../mixins/l10n.js'
 import NcActions from '../NcActions/index.js'
 import NcButton from '../../components/NcButton/index.js'
 import Timer from '../../utils/Timer.js'
@@ -367,8 +366,6 @@ export default {
 	directives: {
 		tooltip: Tooltip,
 	},
-
-	mixins: [l10n],
 
 	props: {
 		/**
@@ -609,6 +606,8 @@ export default {
 	},
 
 	methods: {
+		t,
+
 		// Events emitters
 		previous(event) {
 			// do not send the event if nothing is available

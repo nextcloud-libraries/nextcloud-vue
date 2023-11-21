@@ -73,7 +73,6 @@ section * {
 <script>
 import NcSelect from '../../components/NcSelect/index.js'
 import { t } from '../../l10n.js'
-import l10n from '../../mixins/l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
 import axios from '@nextcloud/axios'
@@ -85,7 +84,7 @@ export default {
 	components: {
 		NcSelect,
 	},
-	mixins: [l10n],
+
 	props: {
 		/**
 		 * The text of the label element of the select group input
@@ -219,6 +218,8 @@ export default {
 		}
 	},
 	methods: {
+		t,
+
 		/**
 		 * Called when a new group is selected or previous group is deselected to emit the update event
 		 *
