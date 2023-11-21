@@ -144,9 +144,9 @@ export default {
 		v-bind="dialogProperties"
 		@update:open="handleCloseModal">
 		<template #navigation="{ isCollapsed }">
-			<ul :aria-label="settingsNavigationAriaLabel"
-				v-show="!isCollapsed"
-				:class="{ 'navigation-list': true, 'navigation-list--collapsed': isCollapsed }"
+			<ul v-if="!isCollapsed"
+				:aria-label="settingsNavigationAriaLabel"
+				class="navigation-list"
 				role="tablist">
 				<li v-for="section in sections" :key="section.id">
 					<a :aria-selected="section.id === selectedSection"
@@ -405,20 +405,19 @@ export default {
 	&:deep(.dialog) {
 		min-height: 256px;
 	}
-	&__navigation {
+	:deep &__navigation {
 		min-width: 200px;
 		margin-right: 20px;
 		overflow-x: hidden;
 		overflow-y: auto;
 		position: relative;
-		height: 100%;
 	}
-	&__content {
-		max-width: 100vw;
+	:deep &__content {
+		box-sizing: border-box;
+
 		overflow-y: auto;
 		overflow-x: hidden;
-		padding: 24px;
-		width: 100%;
+		padding-inline: 20px;
 		min-height: 256px;
 	}
 }
@@ -428,12 +427,6 @@ export default {
 	box-sizing: border-box;
 	overflow-y: auto;
 	padding: 12px;
-
-	&--collapsed {
-		display: flex;
-		flex-direction: row;
-		gap: 6px;
-	}
 
 	&__link {
 		display: flex;
