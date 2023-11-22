@@ -119,7 +119,7 @@ export default {
 
 	data() {
 		return {
-			open: true,
+			open: !this.isMobile,
 			focusTrap: null,
 		}
 	},

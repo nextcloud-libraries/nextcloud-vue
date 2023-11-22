@@ -39,6 +39,11 @@ const findNavigation = (wrapper) => wrapper.get(NAVIGATION__SELECTOR)
 const findToggleButton = (wrapper) => wrapper.get(TOGGLE_BUTTON__SELECTOR)
 
 describe('NcAppNavigation.vue', () => {
+	beforeEach(async () => {
+		// Emulate desktop size
+		await resizeWindowWidth(1024)
+	})
+
 	describe('by default', () => {
 		it('is open', () => {
 			const wrapper = mount(NcAppNavigation)
@@ -81,10 +86,6 @@ describe('NcAppNavigation.vue', () => {
 	})
 
 	describe('toggle via mobile state', () => {
-		beforeEach(async () => {
-			await resizeWindowWidth(1024)
-		})
-
 		it('closes on switch to mobile', async () => {
 			const wrapper = mount(NcAppNavigation)
 
