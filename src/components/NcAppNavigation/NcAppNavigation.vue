@@ -93,12 +93,6 @@ export default {
 		NcAppNavigationToggle,
 	},
 
-	setup() {
-		return {
-			isMobile: useIsMobile(),
-		}
-	},
-
 	props: {
 		/**
 		 * The aria label to describe the navigation
@@ -117,9 +111,15 @@ export default {
 		},
 	},
 
+	setup() {
+		return {
+			isMobile: useIsMobile(),
+		}
+	},
+
 	data() {
 		return {
-			open: true,
+			open: !this.isMobile,
 			focusTrap: null,
 		}
 	},
