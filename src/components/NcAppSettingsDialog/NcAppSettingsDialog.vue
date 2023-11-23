@@ -406,7 +406,7 @@ export default {
 		min-height: 256px;
 	}
 	&__navigation {
-		min-width: 200px;
+		min-width: 300px;
 		margin-right: 20px;
 		overflow-x: hidden;
 		overflow-y: auto;
