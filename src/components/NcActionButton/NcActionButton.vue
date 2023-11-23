@@ -174,7 +174,7 @@ export default {
 
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
-		<button class="action-button"
+		<button class="action-button button-vue"
 			:class="{ focusable: isFocusable }"
 			:aria-label="ariaLabel"
 			:title="title"
