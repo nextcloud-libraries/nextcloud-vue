@@ -17,6 +17,9 @@ msgstr "{tag} (غير مرئي)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (مُقيّد)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "لون بالقيمة الست عشرية {hex}"
+
 msgid "a few seconds ago"
 msgstr "منذ عدة ثوانٍ مضت"
 
@@ -132,6 +135,9 @@ msgstr "شامل"
 msgid "Go back to the list"
 msgstr "عودة إلى القائمة"
 
+msgid "Gold"
+msgstr "ذهبي"
+
 msgid "Hide password"
 msgstr "إخفاء كلمة المرور"
 
@@ -149,6 +155,9 @@ msgstr "خيارات أخرى ..."
 
 msgid "Next"
 msgstr "التالي"
+
+msgid "Nextcloud blue"
+msgstr "أزرق نكست كلاود"
 
 msgid "No emoji found"
 msgstr "لم يتم العثور على أي إيموجي emoji"
@@ -221,6 +230,9 @@ msgstr "السابق"
 
 msgid "Provider icon"
 msgstr "أيقونة المُزوِّد"
+
+msgid "Purple"
+msgstr "بنفسجي"
 
 msgid "Raw link {options}"
 msgstr " الرابط الخام raw link ـ {options}"

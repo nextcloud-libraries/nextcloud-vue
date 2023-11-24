@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Joas Schilling, 2023
-# Transifex Bot <>, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Sveinn í Felli <sv1@fellsnet.is>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2023\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>, 2023\n"
 "Language-Team: Icelandic (https://app.transifex.com/nextcloud/teams/64236/is/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: is\n"
@@ -17,14 +17,17 @@ msgstr "{tag} (ósýnilegt)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (takmarkað)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "Litur með HEX-gildi {hex}"
+
 msgid "a few seconds ago"
-msgstr ""
+msgstr "fyrir örfáum sekúndum síðan"
 
 msgid "Actions"
 msgstr "Aðgerðir"
 
 msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgstr "Aðgerð fyrir atriði með heitið \"{name}\""
 
 msgid "Activities"
 msgstr "Aðgerðir"
@@ -33,78 +36,89 @@ msgid "Animals & Nature"
 msgstr "Dýr og náttúra"
 
 msgid "Any link"
-msgstr ""
+msgstr "Einhver tengill"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr ""
+msgstr "Allt sem deilt er með sama hópi fólks mun birtast hér"
 
 msgid "Avatar of {displayName}"
-msgstr ""
+msgstr "Auðkennismynd fyrir {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
-msgstr ""
+msgstr "Auðkennismynd fyrir {displayName}, {status}"
+
+msgid "away"
+msgstr "í burtu"
 
 msgid "Back"
-msgstr ""
+msgstr "Til baka"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Til baka í val á þjónustuveitu"
 
 msgid "Cancel changes"
-msgstr ""
+msgstr "Hætta við breytingar"
 
 msgid "Change name"
-msgstr ""
+msgstr "Breyta nafni"
 
 msgid "Choose"
 msgstr "Velja"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Hreinsa leit"
+
+msgid "Clear selected"
+msgstr "Hreinsa valið"
 
 msgid "Clear text"
-msgstr ""
+msgstr "Hreinsa texta"
 
 msgid "Close"
 msgstr "Loka"
 
-msgid "Close modal"
-msgstr ""
-
 msgid "Close navigation"
-msgstr ""
+msgstr "Loka leiðsagnarsleða"
 
 msgid "Close sidebar"
-msgstr ""
+msgstr "Loka hliðarstiku"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Loka snjall-veljara"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Fella valmynd saman"
 
 msgid "Confirm changes"
-msgstr ""
+msgstr "Staðfesta breytingar"
 
 msgid "Custom"
 msgstr "Sérsniðið"
 
+msgid "Deselect {option}"
+msgstr "Afvelja {option}"
+
+msgid "do not disturb"
+msgstr "ekki ónáða"
+
 msgid "Edit item"
-msgstr ""
+msgstr "Breyta atriði"
 
 msgid "Enter link"
-msgstr ""
+msgstr "Settu inn tengil"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"Villa við að sækja tengd tilföng. Hafðu samband við kerfisstjórann þinn ef "
+"þú ert með einhverjar spurningar."
 
 msgid "External documentation for {name}"
-msgstr ""
+msgstr "Utanaðkomandi leiðbeiningar fyrir {name}"
 
 msgid "Favorite"
-msgstr ""
+msgstr "Eftirlæti"
 
 msgid "Flags"
 msgstr "Flögg"
@@ -116,34 +130,40 @@ msgid "Frequently used"
 msgstr "Oftast notað"
 
 msgid "Global"
-msgstr ""
+msgstr "Almennt"
 
 msgid "Go back to the list"
-msgstr ""
+msgstr "Fara til baka í listann"
+
+msgid "Gold"
+msgstr "Gull"
 
 msgid "Hide password"
-msgstr ""
+msgstr "Fela lykilorð"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+msgid "Load more \"{options}\""
+msgstr "Hlaða inn fleiri \"{options}\""
 
 msgid "Message limit of {count} characters reached"
-msgstr ""
+msgstr "Takmörkum {count} stafa náð"
 
 msgid "More items …"
-msgstr ""
+msgstr "Fleiri atriði …"
 
 msgid "More options"
-msgstr ""
+msgstr "Fleiri valkostir"
 
 msgid "Next"
 msgstr "Næsta"
+
+msgid "Nextcloud blue"
+msgstr "Nextcloud blátt"
 
 msgid "No emoji found"
 msgstr "Ekkert tjáningartákn fannst"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "Engin tenglaveita fannst"
 
 msgid "No results"
 msgstr "Engar niðurstöður"
@@ -151,23 +171,29 @@ msgstr "Engar niðurstöður"
 msgid "Objects"
 msgstr "Hlutir"
 
+msgid "offline"
+msgstr "ónettengt"
+
+msgid "online"
+msgstr "nettengt"
+
 msgid "Open contact menu"
-msgstr ""
+msgstr "Opna valmynd tengiliða"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "Opna tengil í \"{resourceName}\""
 
 msgid "Open menu"
-msgstr ""
+msgstr "Opna valmynd"
 
 msgid "Open navigation"
-msgstr ""
+msgstr "Opna leiðsagnarsleða"
 
 msgid "Open settings menu"
-msgstr ""
+msgstr "Opna stillingavalmynd"
 
 msgid "Password is secure"
-msgstr ""
+msgstr "Lykilorðið er öruggt"
 
 msgid "Pause slideshow"
 msgstr "Gera hlé á skyggnusýningu"
@@ -176,46 +202,58 @@ msgid "People & Body"
 msgstr "Fólk og líkami"
 
 msgid "Pick a date"
-msgstr ""
+msgstr "Veldu dagsetningu"
 
 msgid "Pick a date and a time"
-msgstr ""
+msgstr "Veldu dagsetningu og tíma"
 
 msgid "Pick a month"
-msgstr ""
+msgstr "Veldu mánuð"
 
 msgid "Pick a time"
-msgstr ""
+msgstr "Veldu tíma"
 
 msgid "Pick a week"
-msgstr ""
+msgstr "Veldu viku"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "Veldu ár"
 
 msgid "Pick an emoji"
 msgstr "Veldu tjáningartákn"
 
 msgid "Please select a time zone:"
-msgstr ""
+msgstr "Veldu tímabelti:"
 
 msgid "Previous"
 msgstr "Fyrri"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "Táknmynd þjónustuveitu"
+
+msgid "Purple"
+msgstr "Purpurablátt"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Hrár tengill {options}"
 
 msgid "Related resources"
-msgstr ""
+msgstr "Tengd tilföng"
+
+msgid "Save changes"
+msgstr "Vista breytingar"
 
 msgid "Search"
 msgstr "Leita"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "Leita að tjáningartákni"
+
+msgid "Search for options"
+msgstr "Leita að valkostum"
+
+msgid "Search for time zone"
+msgstr "Leita að tímabelti"
 
 msgid "Search results"
 msgstr "Leitarniðurstöður"
@@ -223,29 +261,32 @@ msgstr "Leitarniðurstöður"
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "sek. síðan"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "sekúndum síðan"
 
 msgid "Select a tag"
 msgstr "Veldu merki"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Veldu þjónustuveitu"
+
+msgid "Selected"
+msgstr "Valið"
 
 msgid "Settings"
 msgstr "Stillingar"
 
 msgid "Settings navigation"
-msgstr ""
+msgstr "Flakk um stillingar"
 
 msgid "Show password"
-msgstr ""
+msgstr "Birta lykilorð"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "Snjall-veljari"
 
 msgid "Smileys & Emotion"
 msgstr "Broskallar og tilfinningar"
@@ -254,10 +295,10 @@ msgid "Start slideshow"
 msgstr "Byrja skyggnusýningu"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Byrjaðu að skrifa til að leita"
 
 msgid "Submit"
-msgstr ""
+msgstr "Senda inn"
 
 msgid "Symbols"
 msgstr "Tákn"
@@ -266,15 +307,16 @@ msgid "Travel & Places"
 msgstr "Staðir og ferðalög"
 
 msgid "Type to search time zone"
-msgstr ""
+msgstr "Skrifaðu til að leita að tímabelti"
 
 msgid "Unable to search the group"
 msgstr "Get ekki leitað í hópnum"
 
 msgid "Undo changes"
-msgstr ""
+msgstr "Afturkalla breytingar"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
+msgid "User status: {status}"
+msgstr "Staða notanda: {status}"
+
+msgid "Write a message …"
+msgstr "Skrifaðu skilaboð …"
