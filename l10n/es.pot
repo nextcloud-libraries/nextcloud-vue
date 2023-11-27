@@ -3,10 +3,11 @@
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # FranciscoFJ <dev-ooo@satel-sa.com>, 2023
 # Julio C. Ortega, 2023
+# Next Cloud <nextcloud.translator.es@cgj.es>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Julio C. Ortega, 2023\n"
+"Last-Translator: Next Cloud <nextcloud.translator.es@cgj.es>, 2023\n"
 "Language-Team: Spanish (https://app.transifex.com/nextcloud/teams/64236/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es\n"
@@ -17,6 +18,9 @@ msgstr "{tag} (invisible)"
 
 msgid "{tag} (restricted)"
 msgstr "{tag} (restringido)"
+
+msgid "A color with a HEX value {hex}"
+msgstr "Un color con un valor HEX {hex}"
 
 msgid "a few seconds ago"
 msgstr "hace unos pocos segundos"
@@ -68,14 +72,14 @@ msgstr "Elegir"
 msgid "Clear search"
 msgstr "Limpiar búsqueda"
 
+msgid "Clear selected"
+msgstr "Limpiar selección"
+
 msgid "Clear text"
 msgstr "Limpiar texto"
 
 msgid "Close"
 msgstr "Cerrar"
-
-msgid "Close modal"
-msgstr "Cerrar modal"
 
 msgid "Close navigation"
 msgstr "Cerrar navegación"
@@ -94,6 +98,9 @@ msgstr "Confirmar cambios"
 
 msgid "Custom"
 msgstr "Personalizado"
+
+msgid "Deselect {option}"
+msgstr "Deseleccionar {option}"
 
 msgid "do not disturb"
 msgstr "no molestar"
@@ -132,6 +139,9 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Volver a la lista"
 
+msgid "Gold"
+msgstr "Oro"
+
 msgid "Hide password"
 msgstr "Ocultar contraseña"
 
@@ -149,6 +159,9 @@ msgstr "Más opciones"
 
 msgid "Next"
 msgstr "Siguiente"
+
+msgid "Nextcloud blue"
+msgstr "Azul Nextcloud"
 
 msgid "No emoji found"
 msgstr "No hay ningún emoji"
@@ -222,17 +235,29 @@ msgstr "Anterior"
 msgid "Provider icon"
 msgstr "Ícono del proveedor"
 
+msgid "Purple"
+msgstr "Morado"
+
 msgid "Raw link {options}"
 msgstr "Enlace directo {options}"
 
 msgid "Related resources"
 msgstr "Recursos relacionados"
 
+msgid "Save changes"
+msgstr "Guardar cambios"
+
 msgid "Search"
 msgstr "Buscar"
 
 msgid "Search emoji"
 msgstr "Buscar emoji"
+
+msgid "Search for options"
+msgstr "Buscar opciones"
+
+msgid "Search for time zone"
+msgstr "Buscar husos horarios"
 
 msgid "Search results"
 msgstr "Resultados de la búsqueda"

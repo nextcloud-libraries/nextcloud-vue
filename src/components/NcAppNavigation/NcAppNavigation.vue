@@ -57,9 +57,6 @@ emit('toggle-navigation', {
 	<div ref="appNavigationContainer"
 		class="app-navigation"
 		:class="{'app-navigation--close':!open }">
-		<div class="app-navigation__toggle-wrapper">
-			<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
-		</div>
 		<nav id="app-navigation-vue"
 			:aria-hidden="open ? 'false' : 'true'"
 			:aria-label="ariaLabel || undefined"
@@ -76,6 +73,7 @@ emit('toggle-navigation', {
 			<!-- Footer for e.g. AppNavigationSettings -->
 			<slot name="footer" />
 		</nav>
+		<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
 	</div>
 </template>
 
@@ -121,7 +119,7 @@ export default {
 
 	data() {
 		return {
-			open: true,
+			open: !this.isMobile,
 			focusTrap: null,
 		}
 	},

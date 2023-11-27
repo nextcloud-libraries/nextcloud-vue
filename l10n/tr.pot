@@ -17,6 +17,9 @@ msgstr "{tag} (görünmez)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (kısıtlı)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "{hex} onaltılık değeri ile bir renk "
+
 msgid "a few seconds ago"
 msgstr "birkaç saniye önce"
 
@@ -132,6 +135,9 @@ msgstr "Evrensel"
 msgid "Go back to the list"
 msgstr "Listeye dön"
 
+msgid "Gold"
+msgstr "Altın"
+
 msgid "Hide password"
 msgstr "Parolayı gizle"
 
@@ -149,6 +155,9 @@ msgstr "Diğer seçenekler"
 
 msgid "Next"
 msgstr "Sonraki"
+
+msgid "Nextcloud blue"
+msgstr "Nextcloud mavi"
 
 msgid "No emoji found"
 msgstr "Herhangi bir emoji bulunamadı"
@@ -221,6 +230,9 @@ msgstr "Önceki"
 
 msgid "Provider icon"
 msgstr "Sağlayıcı simgesi"
+
+msgid "Purple"
+msgstr "Mor"
 
 msgid "Raw link {options}"
 msgstr "Ham bağlantı {options}"

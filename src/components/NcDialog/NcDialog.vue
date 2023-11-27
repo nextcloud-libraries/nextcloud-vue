@@ -272,7 +272,7 @@ export default defineComponent({
 		/**
 		 * We use the dialog width to decide if we collapse the navigation (flex direction row)
 		 */
-		const { width: dialogWidth } = useElementSize(wrapper)
+		const { width: dialogWidth } = useElementSize(wrapper, { width: 900 })
 
 		/**
 		 * Whether the navigation is collapsed due to dialog and window size
