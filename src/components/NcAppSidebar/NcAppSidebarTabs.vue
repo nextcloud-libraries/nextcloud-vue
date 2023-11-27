@@ -282,12 +282,12 @@ export default {
 				margin: 0 !important;
 				border-bottom: var(--default-grid-baseline) solid transparent !important;
 				.checkbox-content__icon--checked > * {
-					color: var(--color-main-text) !important;
+					color: var(--color-primary-element-text) !important;
 				}
 			}
 			&.checkbox-radio-switch--checked .checkbox-radio-switch__content{
 				background: transparent !important;
-				color: var(--color-main-text) !important;
+				color: var(--color-primary-element-text) !important;
 				border-bottom: var(--default-grid-baseline) solid var(--color-primary-element) !important;
 			}
 		}

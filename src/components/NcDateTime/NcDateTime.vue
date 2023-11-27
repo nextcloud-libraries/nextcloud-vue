@@ -205,8 +205,12 @@ export default {
 					return formatter.format(Math.round(days), 'day')
 				}
 				const weeks = days / 7
-				if (Math.abs(weeks) <= 52) {
+				if (Math.abs(weeks) <= 4) {
 					return formatter.format(Math.round(weeks), 'week')
+				}
+				const months = days / 30
+				if (Math.abs(months) <= 12) {
+					return formatter.format(Math.round(months), 'month')
 				}
 				return formatter.format(Math.round(days / 365), 'year')
 			}

@@ -144,7 +144,8 @@ export default {
 		v-bind="dialogProperties"
 		@update:open="handleCloseModal">
 		<template #navigation="{ isCollapsed }">
-			<ul :aria-label="settingsNavigationAriaLabel"
+			<ul v-show="!isCollapsed"
+				:aria-label="settingsNavigationAriaLabel"
 				:class="{ 'navigation-list': true, 'navigation-list--collapsed': isCollapsed }"
 				role="tablist">
 				<li v-for="section in sections" :key="section.id">
@@ -181,6 +182,7 @@ import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { t } from '../../l10n.js'
 
 import debounce from 'debounce'
+import { warn } from 'vue'
 
 export default {
 
@@ -194,7 +196,7 @@ export default {
 	provide() {
 		return {
 			registerSection: this.registerSection,
-			unregisterSection: this.registerSection,
+			unregisterSection: this.unregisterSection,
 		}
 	},
 
@@ -256,7 +258,7 @@ export default {
 			scroller: null,
 			/**
 			 * Currently registered settings sections
-			 * @type {{ id: string, name: string, icon?: VNode[]  }}
+			 * @type {{ id: string, name: string, icon?: import('vue').VNode[] }[]}
 			 */
 			sections: [],
 		}
@@ -295,11 +297,6 @@ export default {
 		},
 	},
 
-	mounted() {
-		// Select first settings section
-		this.selectedSection = this.$slots.default?.()[0]?.props?.id
-	},
-
 	updated() {
 		// Check that the scroller element has been mounted
 		if (!this.$refs.settingsScroller) {
@@ -327,23 +324,33 @@ export default {
 				throw new Error(`Duplicate section id found: ${id}. Settings navigation sections must have unique section ids.`)
 			}
 			if (this.sections.some(({ name: otherName }) => name === otherName)) {
-				throw new Error(`Duplicate section name found: ${name}. Settings navigation sections must have unique section names.`)
+				warn(`Duplicate section name found: ${name}. Settings navigation sections must have unique section names.`)
 			}
 
 			const newSections = [...this.sections, { id, name, icon }]
 			// Sort sections by order in slots
 			this.sections = newSections.sort(({ id: idA }, { id: idB }) => {
-				const indexOf = (id) => this.$slots.default?.().indexOf(vnode => vnode?.props?.id === id)
+				const indexOf = (id) => this.$slots.default?.().indexOf(vnode => vnode?.props?.id === id) ?? -1
 				return indexOf(idA) - indexOf(idB)
 			})
+
+			// If this is the first section registered, set it as selected
+			if (this.sections.length === 1) {
+				this.selectedSection = id
+			}
 		},
 
 		/**
-		 * Called when a new section is unregistered
+		 * Called when a section is unregistered to remove it from dialog
 		 * @param {string} id The section ID
 		 */
 		unregisterSection(id) {
-			this.sections = this.sections.filter(({ id: otherId }) => id === otherId)
+			this.sections = this.sections.filter(({ id: otherId }) => id !== otherId)
+
+			// If the current section is unregistered, set the first section as selected
+			if (this.selectedSection === id) {
+				this.selectedSection = this.sections[0]?.id ?? ''
+			}
 		},
 
 		/**

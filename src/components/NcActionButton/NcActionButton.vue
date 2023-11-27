@@ -173,19 +173,19 @@ export default {
 </docs>
 
 <template>
-	<li class="action" :class="{ 'action--disabled': disabled }">
+	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
 		<button class="action-button"
 			:class="{ focusable: isFocusable }"
 			:aria-label="ariaLabel"
 			:title="title"
-			role="menuitem"
+			:role="isInSemanticMenu && 'menuitem'"
 			type="button"
 			@click="onClick">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
 				<span :class="[isIconUrl ? 'action-button__icon--url' : icon]"
 					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
-					:aria-hidden="ariaHidden"
+					aria-hidden="true"
 					class="action-button__icon" />
 			</slot>
 
@@ -235,6 +235,13 @@ export default {
 	},
 	mixins: [ActionTextMixin],
 
+	inject: {
+		isInSemanticMenu: {
+			from: 'NcActions:isSemanticMenu',
+			default: false,
+		},
+	},
+
 	props: {
 		/**
 		 * disabled state of the action button
@@ -245,7 +252,9 @@ export default {
 		},
 
 		/**
-		 * aria-hidden attribute for the icon slot
+		 * @deprecated To be removed in @nextcloud/vue 9. Migration guide: remove ariaHidden prop from NcAction* components.
+		 * @todo Add a check in @nextcloud/vue 9 that this prop is not provided,
+		 * otherwise root element will inherit incorrect aria-hidden.
 		 */
 		ariaHidden: {
 			type: Boolean,
@@ -261,6 +270,7 @@ export default {
 			default: false,
 		},
 	},
+
 	computed: {
 		/**
 		 * determines if the action is focusable

@@ -2,6 +2,7 @@
  * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Grigorii K. Shartsev <me@shgk.me>
  *
  * @license AGPL-3.0-or-later
  *
@@ -24,15 +25,25 @@
  * Originally taken from https://github.com/nextcloud/server/blob/master/core/js/placeholder.js
  */
 
-/**
- * @param {number} r The red value
- * @param {number} g The green value
- * @param {number} b The blue value
- */
-function Color(r, g, b) {
-	this.r = r
-	this.g = g
-	this.b = b
+import { t } from '../l10n.js'
+
+class Color {
+
+	/**
+	 * @param {number} r The red value
+	 * @param {number} g The green value
+	 * @param {number} b The blue value
+	 * @param {string} [name] The name of the color
+	 */
+	constructor(r, g, b, name) {
+		this.r = r
+		this.g = g
+		this.b = b
+		if (name) {
+			this.name = name
+		}
+	}
+
 }
 
 /**
@@ -54,8 +65,8 @@ function stepCalc(steps, ends) {
  * Create a color palette from two colors
  *
  * @param {number} steps The number of steps the palette has
- * @param {string} color1 The first color
- * @param {string} color2 The second color
+ * @param {Color} color1 The first color
+ * @param {Color} color2 The second color
  * @return {Array} The created palette array
  */
 function mixPalette(steps, color1, color2) {
@@ -63,9 +74,9 @@ function mixPalette(steps, color1, color2) {
 	palette.push(color1)
 	const step = stepCalc(steps, [color1, color2])
 	for (let i = 1; i < steps; i++) {
-		const r = parseInt(color1.r + step[0] * i, 10)
-		const g = parseInt(color1.g + step[1] * i, 10)
-		const b = parseInt(color1.b + step[2] * i, 10)
+		const r = Math.floor(color1.r + step[0] * i)
+		const g = Math.floor(color1.g + step[1] * i)
+		const b = Math.floor(color1.b + step[2] * i)
 		palette.push(new Color(r, g, b))
 	}
 	return palette
@@ -85,9 +96,9 @@ function GenColors(steps) {
 		steps = 6
 	}
 
-	const red = new Color(182, 70, 157)
-	const yellow = new Color(221, 203, 85)
-	const blue = new Color(0, 130, 201) // Nextcloud blue
+	const red = new Color(182, 70, 157, t('Purple'))
+	const yellow = new Color(221, 203, 85, t('Gold'))
+	const blue = new Color(0, 130, 201, t('Nextcloud blue'))
 
 	const palette1 = mixPalette(steps, red, yellow)
 	const palette2 = mixPalette(steps, yellow, blue)
