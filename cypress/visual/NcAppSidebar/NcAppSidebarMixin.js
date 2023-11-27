@@ -79,7 +79,7 @@ export default function(compact) {
 							`)
 
 							const defaultOptions = {
-								propsData: {
+								props: {
 									name,
 									subname,
 									starred: star,

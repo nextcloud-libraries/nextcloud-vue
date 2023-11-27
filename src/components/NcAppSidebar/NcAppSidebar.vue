@@ -34,7 +34,9 @@ include a standard-header like it's used by the files app.
 	<NcAppSidebar
 		:starred="starred"
 		name="cat-picture.jpg"
-		subname="last edited 3 weeks ago">
+		subname="last edited 3 weeks ago"
+		background="https://nextcloud.com/wp-content/uploads/2022/08/nextcloud-logo-icon.svg"
+		@figure-click="figureClick">
 		<NcAppSidebarTab name="Search" id="search-tab">
 			<template #icon>
 				<Magnify :size="20" />
@@ -70,6 +72,11 @@ include a standard-header like it's used by the files app.
 			return {
 				starred: false,
 			}
+		},
+		methods: {
+			figureClick() {
+				alert('figure clicked')
+			},
 		},
 	}
 </script>
@@ -110,9 +117,9 @@ export default {
 ```vue
 <template>
 	<div>
-		<NcCheckboxRadioSwitch :checked.sync="showTabs[0]">Show search tab</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="showTabs[1]">Show settings tab</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="showTabs[2]">Show sharing tab</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="showTabs[0]">Show search tab</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="showTabs[1]">Show settings tab</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model:checked="showTabs[2]">Show sharing tab</NcCheckboxRadioSwitch>
 		<NcAppSidebar
 			name="cat-picture.jpg"
 			subname="last edited 3 weeks ago">
@@ -208,7 +215,7 @@ export default {
 		<NcAppSidebar
 			name="cat-picture.jpg"
 			subname="last edited 3 weeks ago"
-			:active.sync="active">
+			v-model:active="active">
 			<NcAppSidebarTab name="Search" id="search-tab">
 				<template #icon>
 					<Magnify :size="20" />
@@ -255,7 +262,7 @@ export default {
 ```vue
 <template>
 	<NcAppSidebar
-		:name.sync="name"
+		v-model:name="name"
 		:name-editable="true"
 		name-placeholder="Filename"
 		subname="last edited 3 weeks ago">
@@ -279,7 +286,7 @@ export default {
 <template>
 	<NcAppSidebar
 		:name="name"
-		:name-editable.sync="nameEditable"
+		v-model:name-editable="nameEditable"
 		:name-placeholder="namePlaceholder"
 		:subname="subname"
 		@update:name="nameUpdate">
@@ -347,14 +354,14 @@ export default {
 		@after-leave="onAfterLeave">
 		<aside id="app-sidebar-vue" class="app-sidebar">
 			<header :class="{
-					'app-sidebar-header--with-figure': hasFigure,
+					'app-sidebar-header--with-figure': isSlotPopulated($slots.header?.()) || background,
 					'app-sidebar-header--compact': compact,
 				}"
 				class="app-sidebar-header">
 				<!-- container for figure and description, allows easy switching to compact mode -->
 				<div class="app-sidebar-header__info">
 					<!-- sidebar header illustration/figure -->
-					<div v-if="hasFigure && !empty"
+					<div v-if="(isSlotPopulated($slots.header?.()) || background) && !empty"
 						:class="{
 							'app-sidebar-header__figure--with-action': hasFigureClickListener
 						}"
@@ -371,14 +378,14 @@ export default {
 					<!-- sidebar details -->
 					<div v-if="!empty"
 						:class="{
-							'app-sidebar-header__desc--with-tertiary-action': canStar || $slots['tertiary-actions'],
+							'app-sidebar-header__desc--with-tertiary-action': canStar || isSlotPopulated($slots['tertiary-actions']?.()),
 							'app-sidebar-header__desc--editable': nameEditable && !subname,
 							'app-sidebar-header__desc--with-subname--editable': nameEditable && subname,
-							'app-sidebar-header__desc--without-actions': !$slots['secondary-actions'],
+							'app-sidebar-header__desc--without-actions': !isSlotPopulated($slots['secondary-actions']?.()),
 						}"
 						class="app-sidebar-header__desc">
 						<!-- favourite icon -->
-						<div v-if="canStar || $slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
+						<div v-if="canStar || isSlotPopulated($slots['tertiary-actions']?.())" class="app-sidebar-header__tertiary-actions">
 							<slot name="tertiary-actions">
 								<NcButton v-if="canStar"
 									:aria-label="favoriteTranslated"
@@ -430,7 +437,7 @@ export default {
 									</form>
 								</template>
 								<!-- header main menu -->
-								<NcActions v-if="$slots['secondary-actions']"
+								<NcActions v-if="isSlotPopulated($slots['secondary-actions']?.())"
 									class="app-sidebar-header__menu"
 									:force-menu="forceMenu">
 									<slot name="secondary-actions" />
@@ -457,7 +464,7 @@ export default {
 					</template>
 				</NcButton>
 
-				<div v-if="$slots['description'] && !empty" class="app-sidebar-header__description">
+				<div v-if="isSlotPopulated($slots.description?.()) && !empty" class="app-sidebar-header__description">
 					<slot name="description" />
 				</div>
 			</header>
@@ -488,6 +495,7 @@ import Focus from '../../directives/Focus/index.js'
 import Linkify from '../../directives/Linkify/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import { t } from '../../l10n.js'
+import isSlotPopulated from '../../utils/isSlotPopulated.js'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import Close from 'vue-material-design-icons/Close.vue'
@@ -632,7 +640,7 @@ export default {
 		'closed',
 		'opening',
 		'opened',
-		'figure-click',
+		// 'figure-click', not emitted on purpose to make "hasFigureClickListener" work
 		'update:starred',
 		'update:nameEditable',
 		'update:name',
@@ -654,11 +662,8 @@ export default {
 		canStar() {
 			return this.isStarred !== null
 		},
-		hasFigure() {
-			return this.$slots.header || this.background
-		},
 		hasFigureClickListener() {
-			return this.$listeners['figure-click']
+			return !!this.$attrs.onFigureClick
 		},
 	},
 
@@ -668,12 +673,14 @@ export default {
 		},
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		// Make sure that the 'closed' event is dispatched even if this element is destroyed before the 'after-leave' event is received.
 		this.$emit('closed')
 	},
 
 	methods: {
+		isSlotPopulated,
+
 		onBeforeEnter(element) {
 			/**
 			 * The sidebar is opening and the transition is in progress
@@ -732,6 +739,7 @@ export default {
 			 *
 			 * @type {Event}
 			 */
+			// eslint-disable-next-line vue/require-explicit-emits
 			this.$emit('figure-click', e)
 		},
 
@@ -749,7 +757,7 @@ export default {
 			this.$emit('update:starred', this.isStarred)
 		},
 
-		editName() {
+		async editName() {
 			/**
 			 * Emitted when the nameEditable value changes
 			 *
@@ -758,9 +766,8 @@ export default {
 			this.$emit('update:nameEditable', true)
 			// Focus the name input
 			if (this.nameEditable) {
-				this.$nextTick(
-					() => this.$refs.nameInput.focus(),
-				)
+				await this.$nextTick()
+				this.$refs.nameInput.focus()
 			}
 		},
 

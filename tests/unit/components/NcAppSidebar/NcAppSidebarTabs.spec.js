@@ -24,7 +24,6 @@
 import { mount } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import Vue from 'vue'
 import NcAppSidebarTabs from '../../../../src/components/NcAppSidebar/NcAppSidebarTabs.vue'
 import NcAppSidebarTab from '../../../../src/components/NcAppSidebarTab/NcAppSidebarTab.vue'
 import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'
@@ -36,13 +35,11 @@ describe('NcAppSidebarTabs.vue', () => {
 
 	beforeEach((ctx) => {
 		ctx.onWarning = vi.fn()
-		ctx.consoleDebug = vi.fn()
-		Vue.config.warnHandler = ctx.onWarning
-		global.console = { ...console, debug: ctx.consoleDebug }
+		ctx.onDebug = vi.fn()
+		global.console = { ...console, debug: ctx.onDebug, warn: ctx.onWarning }
 	})
 
 	afterEach(() => {
-		Vue.config.warnHandler = () => null
 		global.console = initialConsole
 	})
 
@@ -50,7 +47,7 @@ describe('NcAppSidebarTabs.vue', () => {
 		describe('with only one div', () => {
 			beforeEach((ctx) => {
 				ctx.wrapper = mount(NcAppSidebarTabs, {
-					propsData: {
+					props: {
 						name: 'Sidebar name.',
 					},
 					slots: {
@@ -59,12 +56,12 @@ describe('NcAppSidebarTabs.vue', () => {
 				})
 			})
 
-			it('does not display the nav element', ({wrapper}) => {
+			it('does not display the nav element', ({ wrapper }) => {
 				expect(wrapper.find('nav').exists()).toBe(false)
 			})
-			it('Issues no warning nor logs to console.', ({ consoleDebug, onWarning }) => {
+			it('Issues no warning nor logs to console.', ({ onDebug, onWarning }) => {
 				expect(onWarning).toHaveBeenCalledTimes(0)
-				expect(consoleDebug).toHaveBeenCalledTimes(0)
+				expect(onDebug).toHaveBeenCalledTimes(0)
 			})
 			it('does not display the tablist element', ({ wrapper }) => {
 				expect(wrapper.find('div[role="tablist"]').exists()).toBe(false)
@@ -74,16 +71,18 @@ describe('NcAppSidebarTabs.vue', () => {
 		describe('with div and secondary action', () => {
 			beforeEach((ctx) => {
 				ctx.wrapper = mount(NcAppSidebarTabs, {
-					propsData: {
+					props: {
 						name: 'Sidebar name.',
 					},
 					slots: {
 						default: '<div />',
 						'secondary-actions': ['<NcActionButton icon="icon-delete">Test</NcActionButton>'],
 					},
-					stubs: {
-						// used to register custom components
-						NcActionButton,
+					global: {
+						stubs: {
+							// used to register custom components
+							NcActionButton,
+						},
 					},
 				})
 			})
@@ -91,15 +90,11 @@ describe('NcAppSidebarTabs.vue', () => {
 				expect(onWarning).toHaveBeenCalledTimes(0)
 			})
 		})
-
-		it('does not display the tablist element', () => {
-			expect(wrapper.find('div[role="tablist"]').exists()).toBe(false)
-		})
 	})
 	describe('when only children of type AppSidebarTab is used', () => {
 		describe('when 3 children of type AppSidebarTab are used', () => {
-			beforeEach(() => {
-				wrapper = mount(NcAppSidebarTabs, {
+			beforeEach((ctx) => {
+				ctx.wrapper = mount(NcAppSidebarTabs, {
 					slots: {
 						default: [
 							'<nc-app-sidebar-tab id="first" icon="icon-details" name="Tab1">Tab1</nc-app-sidebar-tab>',
@@ -107,9 +102,11 @@ describe('NcAppSidebarTabs.vue', () => {
 							'<nc-app-sidebar-tab id="last" icon="icon-details" name="Tab2">Tab2</nc-app-sidebar-tab>',
 						],
 					},
-					stubs: {
-					// used to register custom components
-						NcAppSidebarTab,
+					global: {
+						stubs: {
+							// used to register custom components
+							NcAppSidebarTab,
+						},
 					},
 					attachTo: document.body,
 				})
@@ -131,12 +128,12 @@ describe('NcAppSidebarTabs.vue', () => {
 			})
 			it('emit "update:active" event with the first tab id when keydown pageup is pressed', ({ wrapper }) => {
 				const lastLink = wrapper.find('div[role="tablist"]>button.checkbox-radio-switch:last-of-type')
-				lastLink.trigger('keydown.pageup')
+				lastLink.trigger('keydown.page-up')
 				expect(wrapper.emitted('update:active')[0]).toEqual(['first'])
 			})
 			it('emit "update:active" event with the last tab id when keydown pagedown is pressed', ({ wrapper }) => {
 				const lastLink = wrapper.find('div[role="tablist"]>button.checkbox-radio-switch:last-of-type')
-				lastLink.trigger('keydown.pagedown')
+				lastLink.trigger('keydown.page-down')
 				expect(wrapper.emitted('update:active')[0]).toEqual(['last'])
 			})
 			describe('when we select the first element', () => {
@@ -180,9 +177,11 @@ describe('NcAppSidebarTabs.vue', () => {
 							'<nc-app-sidebar-tab id="1" icon="icon-details" name="Tab1">Tab1</nc-app-sidebar-tab>',
 						],
 					},
-					stubs: {
-						// used to register custom components
-						NcAppSidebarTab,
+					global: {
+						stubs: {
+							// used to register custom components
+							NcAppSidebarTab,
+						},
 					},
 				})
 			})

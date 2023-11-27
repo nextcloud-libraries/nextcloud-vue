@@ -105,7 +105,6 @@ const overrides = defineConfig({
 		setupFiles: resolve(__dirname, './tests/setup.js'),
 		exclude:[
 			...configDefaults.exclude,
-			'./tests/unit/components/NcAppSidebar',
 			'./tests/unit/components/NcRichContenteditable',
 			'./tests/unit/components/NcRichText',
 			'./tests/unit/mixins/*',

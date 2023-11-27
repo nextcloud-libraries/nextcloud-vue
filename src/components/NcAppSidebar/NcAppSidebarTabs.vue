@@ -114,7 +114,7 @@ export default {
 			 */
 			tabs: [],
 			/**
-			 * Local active (open) tab's ID. It allows to use component without active.sync
+			 * Local active (open) tab's ID. It allows to use component without v-model:active
 			 */
 			activeTab: '',
 		}
