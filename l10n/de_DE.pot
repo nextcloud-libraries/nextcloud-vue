@@ -18,6 +18,9 @@ msgstr "{tag} (unsichtbar)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (eingeschränkt)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "Eine Farbe mit einem HEX-Wert {hex}"
+
 msgid "a few seconds ago"
 msgstr "vor ein paar Sekunden"
 
@@ -135,6 +138,9 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Zurück zur Liste"
 
+msgid "Gold"
+msgstr "Gold"
+
 msgid "Hide password"
 msgstr "Passwort verbergen"
 
@@ -152,6 +158,9 @@ msgstr "Mehr Optionen"
 
 msgid "Next"
 msgstr "Weiter"
+
+msgid "Nextcloud blue"
+msgstr "Nextcloud-Blau"
 
 msgid "No emoji found"
 msgstr "Kein Emoji gefunden"
@@ -224,6 +233,9 @@ msgstr "Vorherige"
 
 msgid "Provider icon"
 msgstr "Anbietersymbol"
+
+msgid "Purple"
+msgstr "Lila"
 
 msgid "Raw link {options}"
 msgstr "Unverarbeiteter Link {Optionen}"

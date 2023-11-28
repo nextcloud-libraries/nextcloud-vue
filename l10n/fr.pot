@@ -3,10 +3,11 @@
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Rémi LEBLOND, 2023
 # Mordecai, 2023
+# Jaxom Kaplan, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mordecai, 2023\n"
+"Last-Translator: Jaxom Kaplan, 2023\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -17,6 +18,9 @@ msgstr "{tag} (invisible)"
 
 msgid "{tag} (restricted)"
 msgstr "{tag} (restreint)"
+
+msgid "A color with a HEX value {hex}"
+msgstr "Une couleur de valeur HEX {hex}"
 
 msgid "a few seconds ago"
 msgstr "il y a quelques instants"
@@ -67,14 +71,14 @@ msgstr "Choisir"
 msgid "Clear search"
 msgstr "Effacer la recherche"
 
+msgid "Clear selected"
+msgstr "Vider la sélection"
+
 msgid "Clear text"
 msgstr "Effacer le texte"
 
 msgid "Close"
 msgstr "Fermer"
-
-msgid "Close modal"
-msgstr "Fermer la fenêtre"
 
 msgid "Close navigation"
 msgstr "Fermer la navigation"
@@ -93,6 +97,9 @@ msgstr "Confirmer les modifications"
 
 msgid "Custom"
 msgstr "Personnalisé"
+
+msgid "Deselect {option}"
+msgstr "Désélectionner {option}"
 
 msgid "do not disturb"
 msgstr "ne pas déranger"
@@ -131,6 +138,9 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Retourner à la liste"
 
+msgid "Gold"
+msgstr "Doré"
+
 msgid "Hide password"
 msgstr "Cacher le mot de passe"
 
@@ -148,6 +158,9 @@ msgstr "Plus d'options"
 
 msgid "Next"
 msgstr "Suivant"
+
+msgid "Nextcloud blue"
+msgstr "Bleu Nextcloud"
 
 msgid "No emoji found"
 msgstr "Pas d’émoji trouvé"
@@ -221,17 +234,29 @@ msgstr "Précédent"
 msgid "Provider icon"
 msgstr "Icône du fournisseur"
 
+msgid "Purple"
+msgstr "Violet"
+
 msgid "Raw link {options}"
 msgstr "Lien brut {options}"
 
 msgid "Related resources"
 msgstr "Ressources liées"
 
+msgid "Save changes"
+msgstr "Sauvegarder les changements"
+
 msgid "Search"
 msgstr "Chercher"
 
 msgid "Search emoji"
 msgstr "Rechercher un emoji"
+
+msgid "Search for options"
+msgstr "Rechercher les options"
+
+msgid "Search for time zone"
+msgstr "Rechercher le fuseau horaire"
 
 msgid "Search results"
 msgstr "Résultats de recherche"
