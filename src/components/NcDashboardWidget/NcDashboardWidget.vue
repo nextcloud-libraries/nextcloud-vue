@@ -138,7 +138,7 @@ const myItemMenu = {
 	'hide': {
 		text: 'Hide',
 		icon: 'icon-toggle',
-	}
+	},
 }
 export default {
 	name: 'MyDashboardWidget',
