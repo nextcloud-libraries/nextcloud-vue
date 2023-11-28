@@ -609,6 +609,7 @@ export default {
 	font-size: var(--default-font-size);
 	line-height: var(--default-line-height);
 	padding: 0;
+	position: relative;
 
 	&__input {
 		position: absolute;
