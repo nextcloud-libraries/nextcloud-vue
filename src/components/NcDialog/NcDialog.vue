@@ -45,15 +45,15 @@ export default {
 			lastResponse: 'None',
 			buttons: [
 				{
+					label: 'Cancel',
+					icon: IconCancel,
+					callback: () => { this.lastResponse = 'Pressed "Cancel"' },
+				},
+				{
 					label: 'Ok',
 					type: 'primary',
 					icon: IconCheck,
 					callback: () => { this.lastResponse = 'Pressed "Ok"' },
-				},
-				{
-					label: 'Cancel',
-					icon: IconCancel,
-					callback: () => { this.lastResponse = 'Pressed "Cancel"' },
 				}
 			]
 		}
@@ -106,7 +106,9 @@ export default {
 				<!-- Main dialog content -->
 				<div class="dialog__content" :class="contentClasses">
 					<slot>
-						<p>{{ message }}</p>
+						<p class="dialog__text">
+							{{ message }}
+						</p>
 					</slot>
 				</div>
 			</div>
@@ -440,6 +442,12 @@ export default defineComponent({
 		flex: 1;
 		min-height: 0;
 		overflow: auto;
+	}
+
+	// In case only text content is show
+	&__text {
+		// Also add padding to the bottom to make it more readable
+		padding-block-end: 6px;
 	}
 
 	&__actions {
