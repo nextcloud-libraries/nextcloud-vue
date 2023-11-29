@@ -288,6 +288,7 @@ Just set the `pinned` prop.
 					<div :class="{ [icon]: icon }"
 						class="app-navigation-entry-icon">
 						<NcLoadingIcon v-if="loading" />
+						<!-- @slot Slot for the optional leading icon -->
 						<slot v-else name="icon" />
 					</div>
 					<span v-if="!editingActive" class="app-navigation-entry__name">
@@ -316,6 +317,7 @@ Just set the `pinned` prop.
 					:class="{'app-navigation-entry__utils--display-actions': forceDisplayActions || menuOpenLocalValue || menuOpen }">
 					<div v-if="$slots.counter"
 						class="app-navigation-entry__counter-wrapper">
+						<!-- @slot Slot for the `NcCounterBubble` -->
 						<slot name="counter" />
 					</div>
 					<NcActions v-if="$slots.actions || (editable && !editingActive) || undo"
@@ -349,17 +351,19 @@ Just set the `pinned` prop.
 								<Undo :size="20" />
 							</template>
 						</NcActionButton>
+						<!-- @slot Slot for additional `NcAction*` -->
 						<slot name="actions" />
 					</NcActions>
 				</div>
 				<NcAppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
 
-				<!-- Anything (virtual) that should be mounted in the component, like a related modal -->
+				<!-- @slot Slot for anything (virtual) that should be mounted in the component, like a related modal -->
 				<slot name="extra" />
 			</div>
 		</component>
 		<!-- Children elements -->
 		<ul v-if="canHaveChildren && hasChildren" class="app-navigation-entry__children">
+			<!-- @slot Slot for children -->
 			<slot />
 		</ul>
 	</li>
