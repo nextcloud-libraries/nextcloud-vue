@@ -33,18 +33,32 @@
 
 ```vue
 	<template>
-		<NcAppNavigationItem name="My name">
-			<template #icon>
-				<Check :size="20" />
-			</template>
-		</NcAppNavigationItem>
+		<ul>
+			<NcAppNavigationItem name="With icon slot">
+				<template #icon>
+					<Check :size="20" />
+				</template>
+			</NcAppNavigationItem>
+			<NcAppNavigationItem name="With icon class" icon="icon-group-white" />
+			<NcAppNavigationItem name="With svg icon" :icon="iconAccountSvg" />
+			<NcAppNavigationItem name="With @mdi/js icon" :icon="mdiAbacus" />
+		</ul>
 	</template>
 	<script>
+	import { mdiAbacus } from '@mdi/js'
+
 	import Check from 'vue-material-design-icons/Check'
+	import iconAccountSvg from '@mdi/svg/svg/account.svg?raw'
 
 	export default {
 		components: {
 			Check,
+		},
+		data() {
+			return {
+				iconAccountSvg,
+				mdiAbacus,
+			}
 		},
 	}
 	</script>
@@ -285,10 +299,14 @@ Just set the `pinned` prop.
 
 					<!-- icon if not collapsible -->
 					<!-- never show the icon over the collapsible if mobile -->
-					<div :class="{ [icon]: icon }"
-						class="app-navigation-entry-icon">
+					<div class="app-navigation-entry-icon">
 						<NcLoadingIcon v-if="loading" />
-						<slot v-else name="icon" />
+						<!-- @slot Slot for the optional leading icon -->
+						<slot v-else name="icon">
+							<NcIconSvgWrapper v-if="iconPath" :path="iconPath" />
+							<NcIconSvgWrapper v-else-if="iconSvg" :svg="iconSvg" />
+							<span v-else :class="{ [icon]: icon }" />
+						</slot>
 					</div>
 					<span v-if="!editingActive" class="app-navigation-entry__name">
 						{{ name }}
@@ -369,6 +387,7 @@ Just set the `pinned` prop.
 import NcActions from '../NcActions/index.js'
 import NcActionButton from '../NcActionButton/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcVNodes from '../NcVNodes/index.js'
 import NcAppNavigationIconCollapsible from './NcAppNavigationIconCollapsible.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
@@ -386,6 +405,7 @@ export default {
 		NcActions,
 		NcActionButton,
 		NcAppNavigationIconCollapsible,
+		NcIconSvgWrapper,
 		NcInputConfirmCancel,
 		NcLoadingIcon,
 		NcVNodes,
@@ -429,8 +449,8 @@ export default {
 		},
 
 		/**
-		 * Refers to the icon on the left, this prop accepts a class
-		 * like 'icon-category-enabled'.
+		 * Refers to the icon on the left
+		 * Either pass an icon as raw SVG string, path from `@mdi/js` or icon class like 'icon-category-enabled'.
 		 */
 		icon: {
 			type: String,
@@ -619,6 +639,20 @@ export default {
 	},
 
 	computed: {
+		/**
+		 * Check if icon property might be an SVG as it starts with < which is not a valid class nor a valid path
+		 */
+		iconSvg() {
+			return this.icon.startsWith('<') ? this.icon : undefined
+		},
+
+		/**
+		 * Check if icon property is not an SVG and contains a space so it is not an css class
+		 */
+		iconPath() {
+			return !this.iconSvg && this.icon.includes(' ') ? this.icon : undefined
+		},
+
 		isRouterLink() {
 			return this.to && !this.href
 		},
