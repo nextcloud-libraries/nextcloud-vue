@@ -172,11 +172,11 @@ export default {
 						:key="index"
 						:style="{ backgroundColor: color }"
 						class="color-picker__simple-color-circle"
-						:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }"
-						:aria-label="name">
+						:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }">
 						<Check v-if="color === currentColor" :size="20" />
 						<input type="radio"
 							class="hidden-visually"
+							:aria-label="name"
 							:name="`color-picker-${uid}`"
 							:checked="color === currentColor"
 							@click="pickColor(color)">
