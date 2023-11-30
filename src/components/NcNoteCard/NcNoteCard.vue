@@ -30,23 +30,42 @@ available in four versions:
 When using an error type,
 
 ```vue
-<div>
-	<NcNoteCard type="warning">
-		<p>This is dangerous</p>
-	</NcNoteCard>
+<template>
+	<div>
+		<NcNoteCard type="warning">
+			<p>This is dangerous</p>
+		</NcNoteCard>
 
-	<NcNoteCard type="error" heading="Error">
-		<p>The server is not happy and reported the following error</p>
-	</NcNoteCard>
+		<NcNoteCard type="error" heading="Error">
+			<p>The server is not happy and reported the following error</p>
+		</NcNoteCard>
 
-	<NcNoteCard type="success">
-		<p>You won</p>
-	</NcNoteCard>
+		<NcNoteCard type="success">
+			<p>You won</p>
+		</NcNoteCard>
 
-	<NcNoteCard type="info">
-		<p>For your information</p>
-	</NcNoteCard>
-</div>
+		<NcNoteCard type="info">
+			<p>For your information</p>
+		</NcNoteCard>
+
+		<NcNoteCard type="warning">
+			<template #icon>
+				<Cog :size="20"/>
+			</template>
+			<p>Custom icon usage</p>
+		</NcNoteCard>
+	</div>
+</template>
+
+<script>
+	import Cog from 'vue-material-design-icons/Cog.vue'
+
+	export default {
+		components: {
+			Cog,
+		},
+	}
+</script>
 ```
 </docs>
 
@@ -54,10 +73,13 @@ When using an error type,
 	<div class="notecard"
 		:class="`notecard--${type}`"
 		:role="shouldShowAlert ? 'alert' : 'note'">
-		<component :is="icon"
-			class="notecard__icon"
-			:class="{'notecard__icon--heading': heading}"
-			:fill-color="color" />
+		<!-- @slot Manually provide icon -->
+		<slot name="icon">
+			<component :is="icon"
+				class="notecard__icon"
+				:class="{'notecard__icon--heading': heading}"
+				:fill-color="color" />
+		</slot>
 		<div>
 			<h2 v-if="heading">
 				{{ heading }}
