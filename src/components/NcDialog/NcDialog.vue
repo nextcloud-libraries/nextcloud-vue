@@ -182,7 +182,7 @@ export default defineComponent({
 		/**
 		 * Size of the underlying NcModal
 		 * @default 'small'
-		 * @values 'small', 'normal', 'large', 'full'
+		 * @type {'small'|'normal'|'large'|'full'}
 		 */
 		size: {
 			type: String,

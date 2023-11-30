@@ -78,7 +78,7 @@ export default defineComponent({
 
 		/**
 		 * The button type, see NcButton
-		 * @values 'primary', 'secondary', 'error', 'warning', 'success'
+		 * @type {'primary'|'secondary'|'error'|'warning'|'success'}
 		 */
 		type: {
 			type: String,
