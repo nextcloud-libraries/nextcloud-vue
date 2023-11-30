@@ -377,7 +377,7 @@ export default defineComponent({
 	overflow: hidden;
 
 	&__modal {
-		:deep(.modal-container) {
+		:deep(.modal-wrapper .modal-container) {
 			display: flex !important;
 			padding-block: 4px 8px; // 4px to align with close button, 8px block-end to allow the actions a margin of 4px for the focus visible outline
 			padding-inline: 12px 8px; // Same as with padding-block, we need the actions to have a margin of 4px for the button outline
