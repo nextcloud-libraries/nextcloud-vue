@@ -754,6 +754,11 @@ export default {
 		background-color: var(--color-background-hover);
 	}
 
+	&:focus-visible {
+		outline: 2px solid var(--color-main-text);
+		border: 2px solid var(--color-main-background);
+	}
+
 	&-content__wrapper {
 		display: flex;
 		align-items: center;
