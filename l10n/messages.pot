@@ -14,6 +14,10 @@ msgstr ""
 msgid "a few seconds ago"
 msgstr ""
 
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr ""
+
 msgid "Actions"
 msgstr ""
 
@@ -45,6 +49,14 @@ msgid "Back"
 msgstr ""
 
 msgid "Back to provider selection"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
 msgstr ""
 
 msgid "Cancel changes"
@@ -86,6 +98,10 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr ""
+
 msgid "Deselect {option}"
 msgstr ""
 
@@ -105,6 +121,10 @@ msgid "External documentation for {name}"
 msgstr ""
 
 msgid "Favorite"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
 msgstr ""
 
 msgid "Flags"
@@ -129,6 +149,10 @@ msgid "Hide password"
 msgstr ""
 
 msgid "Load more \"{options}\""
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
 msgstr ""
 
 msgid "Message limit of {count} characters reached"
@@ -159,6 +183,10 @@ msgid "Objects"
 msgstr ""
 
 msgid "offline"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
 msgstr ""
 
 msgid "online"
@@ -225,6 +253,10 @@ msgid "Raw link {options}"
 msgstr ""
 
 msgid "Related resources"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
 msgstr ""
 
 msgid "Save changes"
@@ -302,6 +334,10 @@ msgid "Undo changes"
 msgstr ""
 
 msgid "User status: {status}"
+msgstr ""
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
 msgstr ""
 
 msgid "Write a message …"
