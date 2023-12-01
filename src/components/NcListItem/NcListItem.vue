@@ -708,6 +708,7 @@ export default {
 .list-item__wrapper {
 	position: relative;
 	width: 100%;
+	padding: 2px; // for inner focus-visible outline
 
 	&--active,
 	&:active,
@@ -738,11 +739,11 @@ export default {
 	position: relative;
 	flex: 0 0 auto;
 	justify-content: flex-start;
-	padding: 8px 10px;
+	padding: 6px 8px;
 	// Fix for border-radius being too large for 3-line entries like in Mail
 	// 44px avatar size / 2 + 8px padding, and 2px for better visual quality
 	border-radius: 32px;
-	margin: 2px 0;
+	border: 2px solid transparent; // to prevent resizing on focus-visible
 	width: 100%;
 	cursor: pointer;
 	transition: background-color var(--animation-quick) ease-in-out;
@@ -755,8 +756,8 @@ export default {
 	}
 
 	&:focus-visible {
+		border: 2px solid var(--color-main-background); // to also add contrast on active state
 		outline: 2px solid var(--color-main-text);
-		border: 2px solid var(--color-main-background);
 	}
 
 	&-content__wrapper {
