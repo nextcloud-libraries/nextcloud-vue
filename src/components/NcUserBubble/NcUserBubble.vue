@@ -123,7 +123,7 @@ export default {
 import NcUserBubbleDiv from './NcUserBubbleDiv.vue'
 import NcAvatar from '../NcAvatar/index.js'
 import NcPopover from '../NcPopover/index.js'
-import Vue from 'vue'
+import { warn } from 'vue'
 
 export default {
 	name: 'NcUserBubble',
@@ -260,7 +260,7 @@ export default {
 	},
 	mounted() {
 		if (!this.displayName && !this.user) {
-			Vue.util.warn('[NcUserBubble] At least `displayName` or `user` property should be set.')
+			warn('[NcUserBubble] At least `displayName` or `user` property should be set.')
 		}
 	},
 	methods: {
