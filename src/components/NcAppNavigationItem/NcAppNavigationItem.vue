@@ -815,6 +815,10 @@ export default {
 		.app-navigation-entry__children {
 			background-color: var(--color-main-background);
 		}
+
+		.app-navigation-entry__utils {
+			display: flex;
+		}
 	}
 
 	// Show the actions on active
@@ -915,7 +919,7 @@ export default {
 
 /* counter and actions */
 .app-navigation-entry__utils {
-	display: flex;
+   	display: none;
 	min-width: $clickable-area;
 	align-items: center;
 	flex: 0 1 auto;
