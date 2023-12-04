@@ -9,16 +9,8 @@ Tribute.mockImplementation(() => ({
 	detach: jest.fn(),
 }))
 
-/**
- * Mount NcRichContentEditable
- *
- * @param {object} options mount options
- * @param {object} options.propsData mount options.propsData
- * @param {object} options.listeners mount options.listeners
- * @param {object} options.attrs mount options.attrs
- * @return {object}
- */
-function mountNcRichContenteditable({ propsData, listeners, attrs } = {}) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const mountNcRichContenteditable = ({ propsData, listeners, attrs }: any = {}) => {
 	let currentValue = propsData?.value
 
 	const wrapper = mount(NcRichContenteditable, {
@@ -41,13 +33,16 @@ function mountNcRichContenteditable({ propsData, listeners, attrs } = {}) {
 
 	const getCurrentValue = () => currentValue
 
+	const contentEditable = () => wrapper.find('[contenteditable="true"')
+
 	const inputValue = async (newValue) => {
-		wrapper.element.innerHTML += newValue
-		await wrapper.trigger('input')
+		contentEditable().element.innerHTML += newValue
+		await contentEditable().trigger('input')
 	}
 
 	return {
 		wrapper,
+		contentEditable,
 		getCurrentValue,
 		inputValue,
 	}
@@ -55,46 +50,46 @@ function mountNcRichContenteditable({ propsData, listeners, attrs } = {}) {
 
 describe('NcRichContenteditable', () => {
 	it('should update value during input', async () => {
-		const { wrapper, inputValue } = mountNcRichContenteditable()
+		const { inputValue, wrapper } = mountNcRichContenteditable()
 		const TEST_TEXT = 'Test Text'
 		await inputValue('Test Text')
 		expect(wrapper.emitted('update:value')).toBeDefined()
-		expect(wrapper.emitted('update:value').at(-1)[0]).toBe(TEST_TEXT)
+		expect(wrapper.emitted('update:value')?.at(-1)?.[0]).toBe(TEST_TEXT)
 	})
 
 	it('should not emit "submit" during input', async () => {
-		const { wrapper, inputValue } = mountNcRichContenteditable()
+		const { inputValue, wrapper } = mountNcRichContenteditable()
 		await inputValue('Test Text')
 		expect(wrapper.emitted('submit')).not.toBeDefined()
 	})
 
 	it('should emit "paste" on past', async () => {
-		const { wrapper } = mountNcRichContenteditable()
-		await wrapper.trigger('paste', { clipboardData: { getData: () => 'PASTED_TEXT', files: [], items: {} } })
+		const { contentEditable, wrapper } = mountNcRichContenteditable()
+		await contentEditable().trigger('paste', { clipboardData: { getData: () => 'PASTED_TEXT', files: [], items: {} } })
 		expect(wrapper.emitted('paste')).toBeDefined()
 		expect(wrapper.emitted('paste')).toHaveLength(1)
 	})
 
 	it('should emit "submit" on Enter', async () => {
-		const { wrapper, inputValue } = mountNcRichContenteditable()
+		const { contentEditable, inputValue, wrapper } = mountNcRichContenteditable()
 
 		await inputValue('Test Text')
 
-		await wrapper.trigger('keydown', { keyCode: 13 }) // Enter
+		await contentEditable().trigger('keydown', { keyCode: 13 }) // Enter
 
 		expect(wrapper.emitted('submit')).toBeDefined()
 		expect(wrapper.emitted('submit')).toHaveLength(1)
 	})
 
 	it('should not emit "submit" on Enter during composition session', async () => {
-		const { wrapper, inputValue } = mountNcRichContenteditable()
+		const { contentEditable, inputValue, wrapper } = mountNcRichContenteditable()
 
-		await wrapper.trigger('compositionstart')
+		await contentEditable().trigger('compositionstart')
 		await inputValue('猫')
-		await wrapper.trigger('keydown', { keyCode: 13 }) // Enter
-		await wrapper.trigger('compositionend')
+		await contentEditable().trigger('keydown', { keyCode: 13 }) // Enter
+		await contentEditable().trigger('compositionend')
 		await inputValue(' - means "Cat"')
-		await wrapper.trigger('keydown', { keyCode: 13 }) // Enter
+		await contentEditable().trigger('keydown', { keyCode: 13 }) // Enter
 
 		expect(wrapper.emitted('submit')).toBeDefined()
 		expect(wrapper.emitted('submit')).toHaveLength(1)
@@ -106,13 +101,13 @@ describe('NcRichContenteditable', () => {
 			paste: jest.fn(),
 			blur: jest.fn(),
 		}
-		const { wrapper } = mountNcRichContenteditable({
+		const { contentEditable } = mountNcRichContenteditable({
 			listeners: handlers,
 		})
 
-		await wrapper.trigger('focus')
-		await wrapper.trigger('paste', { clipboardData: { getData: () => 'PASTED_TEXT', files: [], items: {} } })
-		await wrapper.trigger('blur')
+		await contentEditable().trigger('focus')
+		await contentEditable().trigger('paste', { clipboardData: { getData: () => 'PASTED_TEXT', files: [], items: {} } })
+		await contentEditable().trigger('blur')
 
 		expect(handlers.focus).toHaveBeenCalledTimes(1)
 		expect(handlers.paste).toHaveBeenCalledTimes(1)
@@ -121,11 +116,11 @@ describe('NcRichContenteditable', () => {
 
 	it('should has accessible placeholder from placeholder prop', async () => {
 		const PLACEHOLDER = 'TEST_PLACEHOLDER'
-		const { wrapper } = mountNcRichContenteditable({
+		const { contentEditable } = mountNcRichContenteditable({
 			propsData: {
 				placeholder: PLACEHOLDER,
 			},
 		})
-		expect(wrapper.attributes('aria-placeholder')).toBe(PLACEHOLDER)
+		expect(contentEditable().attributes('aria-placeholder')).toBe(PLACEHOLDER)
 	})
 })
