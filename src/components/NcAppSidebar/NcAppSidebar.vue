@@ -345,7 +345,7 @@ export default {
 		@after-enter="onAfterEnter"
 		@before-leave="onBeforeLeave"
 		@after-leave="onAfterLeave">
-		<aside id="app-sidebar-vue" class="app-sidebar">
+		<aside id="app-sidebar-vue" ref="sidebar" class="app-sidebar">
 			<header :class="{
 					'app-sidebar-header--with-figure': hasFigure,
 					'app-sidebar-header--compact': compact,
@@ -447,7 +447,8 @@ export default {
 					</div>
 				</div>
 
-				<NcButton :title="closeTranslated"
+				<NcButton ref="closeButton"
+					:title="closeTranslated"
 					:aria-label="closeTranslated"
 					type="tertiary"
 					class="app-sidebar__close"
@@ -487,6 +488,8 @@ import NcEmptyContent from '../NcEmptyContent/index.js'
 import Focus from '../../directives/Focus/index.js'
 import Linkify from '../../directives/Linkify/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
+import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
+import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
@@ -495,6 +498,7 @@ import Star from 'vue-material-design-icons/Star.vue'
 import StarOutline from 'vue-material-design-icons/StarOutline.vue'
 
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
+import { createFocusTrap } from 'focus-trap'
 
 export default {
 	name: 'NcAppSidebar',
@@ -641,12 +645,19 @@ export default {
 		'dismiss-editing',
 	],
 
+	setup() {
+		return {
+			isMobile: useIsSmallMobile(),
+		}
+	},
+
 	data() {
 		return {
 			changeNameTranslated: t('Change name'),
 			closeTranslated: t('Close sidebar'),
 			favoriteTranslated: t('Favorite'),
 			isStarred: this.starred,
+			focusTrap: null,
 		}
 	},
 
@@ -666,14 +677,54 @@ export default {
 		starred() {
 			this.isStarred = this.starred
 		},
+
+		isMobile() {
+			this.toggleFocusTrap()
+		},
+	},
+
+	mounted() {
+		this.toggleFocusTrap()
 	},
 
 	beforeDestroy() {
 		// Make sure that the 'closed' event is dispatched even if this element is destroyed before the 'after-leave' event is received.
 		this.$emit('closed')
+		this.focusTrap?.deactivate()
 	},
 
 	methods: {
+		initFocusTrap() {
+			if (this.focusTrap) {
+				return
+			}
+
+			this.focusTrap = createFocusTrap([
+				// The sidebar itself
+				this.$refs.sidebar,
+				// Nextcloud Server header navigarion
+				document.querySelector('#header'),
+			], {
+				allowOutsideClick: true,
+				fallbackFocus: this.$refs.closeButton,
+				trapStack: getTrapStack(),
+				escapeDeactivates: false,
+			})
+		},
+
+		/**
+		 * Activate focus trap if it is currently needed, otherwise deactivate
+		 */
+		 toggleFocusTrap() {
+			console.debug('toggleFocusTrap', this.isMobile)
+			if (this.isMobile) {
+				this.initFocusTrap()
+				this.focusTrap.activate()
+			} else {
+				this.focusTrap?.deactivate()
+			}
+		},
+
 		onBeforeEnter(element) {
 			/**
 			 * The sidebar is opening and the transition is in progress
