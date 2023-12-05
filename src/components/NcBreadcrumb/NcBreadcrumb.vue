@@ -83,6 +83,7 @@ export default {
 		NcActions,
 		ChevronRight,
 	},
+	inheritAttrs: false,
 	props: {
 		/**
 		 * The main text content of the entry.
