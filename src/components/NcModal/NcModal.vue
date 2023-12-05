@@ -205,7 +205,7 @@ export default {
 		<div v-show="showModal"
 			ref="mask"
 			class="modal-mask"
-			:class="{ 'modal-mask--dark': dark }"
+			:class="{ 'modal-mask--dark': dark || !closeButtonContained || hasPrevious || hasNext }"
 			:style="cssVariables"
 			role="dialog"
 			aria-modal="true"
