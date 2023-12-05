@@ -36,7 +36,7 @@ const isSmallMobile = ref(isLessThanBreakpoint(MOBILE_SMALL_BREAKPOINT))
 window.addEventListener('resize', () => {
 	isMobile.value = isLessThanBreakpoint(MOBILE_BREAKPOINT)
 	isSmallMobile.value = isLessThanBreakpoint(MOBILE_SMALL_BREAKPOINT)
-})
+}, { passive: true })
 
 /**
  * Use global isMobile state
