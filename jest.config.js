@@ -63,6 +63,7 @@ module.exports = {
 	transform: {
 		'^.+\\.(j|t)s$': 'babel-jest',
 		'^.+\\.vue$': '@vue/vue2-jest',
+		'.+\\?raw$': 'jest-raw-loader',
 		'.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
 	},
 	transformIgnorePatterns: [
@@ -71,6 +72,7 @@ module.exports = {
 
 	moduleNameMapper: {
 		'\\.(css|scss)$': 'jest-transform-stub',
+		'\\?raw$': 'jest-raw-loader',
 	},
 
 	snapshotSerializers: [
