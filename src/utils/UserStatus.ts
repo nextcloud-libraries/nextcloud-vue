@@ -29,7 +29,7 @@ import invisibleSvg from '../assets/status-icons/user-status-invisible.svg?raw'
 
 type Status = 'online' | 'away' | 'dnd' | 'invisible' | 'offline'
 
-const getUserStatusText = (status: Status): string => {
+export const getUserStatusText = (status: Status): string => {
 	switch (status) {
 	// TRANSLATORS: User status if the user is currently away from keyboard
 	case 'away': return t('away')

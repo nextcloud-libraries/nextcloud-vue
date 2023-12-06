@@ -190,7 +190,7 @@ import NcButton from '../NcButton/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import usernameToColor from '../../functions/usernameToColor/index.js'
-import { getUserStatusIcon, getUserStatusIconName } from '../../utils/UserStatus.ts'
+import { getUserStatusIcon, getUserStatusIconName, getUserStatusText } from '../../utils/UserStatus.ts'
 import { userStatus } from '../../mixins/index.js'
 import { t } from '../../l10n.js'
 
@@ -381,13 +381,15 @@ export default {
 				return
 			}
 			if (this.canDisplayUserStatus || this.showUserStatusIconOnAvatar) {
-				return t('Avatar of {displayName}, {status}', { displayName: this.displayName ?? this.user, status: this.userStatusText })
+				return t('Avatar of {displayName}, {status}', { displayName: this.displayName ?? this.user, status: getUserStatusText(this.userStatus.status) })
 			}
 			return t('Avatar of {displayName}', { displayName: this.displayName ?? this.user })
 		},
+
 		userStatusIcon() {
 			return getUserStatusIcon(this.userStatus.status)
 		},
+
 		/**
 		 * If the avatar has no menu no aria-label is assigned, but for accessibility we still need the status to be accessible
 		 * So this sets the required accessible label for the user status icon.
