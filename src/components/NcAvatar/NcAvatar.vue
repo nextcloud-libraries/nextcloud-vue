@@ -167,10 +167,10 @@ export default {
 		<span v-if="showUserStatusIconOnAvatar" class="avatardiv__user-status avatardiv__user-status--icon">
 			{{ userStatus.icon }}
 		</span>
-		<span v-else-if="canDisplayUserStatus"
+		<NcIconSvgWrapper v-else-if="canDisplayUserStatus"
 			class="avatardiv__user-status"
-			:class="'avatardiv__user-status--' + userStatus.status"
-			v-bind="userStatusRole" />
+			:svg="userStatusIcon"
+			:name="userStatusIconName" />
 
 		<!-- Show the letter if no avatar nor icon class -->
 		<span v-if="showInitials"
@@ -188,7 +188,9 @@ import NcActions from '../NcActions/index.js'
 import NcActionLink from '../NcActionLink/index.js'
 import NcButton from '../NcButton/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import usernameToColor from '../../functions/usernameToColor/index.js'
+import { getUserStatusIcon, getUserStatusIconName, getUserStatusText } from '../../utils/UserStatus.ts'
 import { userStatus } from '../../mixins/index.js'
 import { t } from '../../l10n.js'
 
@@ -236,6 +238,7 @@ export default {
 		NcActionLink,
 		NcButton,
 		NcLoadingIcon,
+		NcIconSvgWrapper,
 	},
 	mixins: [userStatus],
 	props: {
@@ -378,35 +381,25 @@ export default {
 				return
 			}
 			if (this.canDisplayUserStatus || this.showUserStatusIconOnAvatar) {
-				return t('Avatar of {displayName}, {status}', { displayName: this.displayName ?? this.user, status: this.userStatusText })
+				return t('Avatar of {displayName}, {status}', { displayName: this.displayName ?? this.user, status: getUserStatusText(this.userStatus.status) })
 			}
 			return t('Avatar of {displayName}', { displayName: this.displayName ?? this.user })
 		},
-		/** Translated current user status */
-		userStatusText() {
-			switch (this.userStatus.status) {
-			// TRANSLATORS: User status if the user is currently away from keyboard
-			case 'away': return t('away')
-			case 'dnd': return t('do not disturb')
-			case 'online': return t('online')
-			case 'offline': return t('offline')
-			default: return this.userStatus.status
-			}
+
+		userStatusIcon() {
+			return getUserStatusIcon(this.userStatus.status)
 		},
+
 		/**
 		 * If the avatar has no menu no aria-label is assigned, but for accessibility we still need the status to be accessible
-		 * So this sets `role=img` on the status indicator (span with background) and the required `alt` and `aria-label` attributes.
+		 * So this sets the required accessible label for the user status icon.
 		 */
-		userStatusRole() {
+		userStatusIconName() {
 			// only needed if non-interactive, otherwise the aria-label is set
 			if (this.hasMenu) {
 				return
 			}
-			const label = t('User status: {status}', { status: this.userStatusText })
-			return {
-				role: 'img',
-				'aria-label': label,
-			}
+			return getUserStatusIconName(this.userStatus.status)
 		},
 		canDisplayUserStatus() {
 			return this.showUserStatus
@@ -827,9 +820,12 @@ export default {
 	}
 
 	.avatardiv__user-status {
+		box-sizing: border-box;
 		position: absolute;
 		right: -4px;
 		bottom: -4px;
+		min-height: 18px;
+		min-width: 18px;
 		max-height: 18px;
 		max-width: 18px;
 		height: 40%;
@@ -852,16 +848,6 @@ export default {
 			background-color: var(--color-primary-element-light);
 		}
 
-		&--online{
-			background-image: url('../../assets/status-icons/user-status-online.svg');
-		}
-		&--dnd{
-			background-image: url('../../assets/status-icons/user-status-dnd.svg');
-			background-color: #ffffff;
-		}
-		&--away{
-			background-image: url('../../assets/status-icons/user-status-away.svg');
-		}
 		&--icon {
 			border: none;
 			background-color: transparent;
