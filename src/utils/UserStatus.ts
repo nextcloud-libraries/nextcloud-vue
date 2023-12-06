@@ -31,11 +31,10 @@ type Status = 'online' | 'away' | 'dnd' | 'invisible' | 'offline'
 
 export const getUserStatusText = (status: Status): string => {
 	switch (status) {
-	// TRANSLATORS: User status if the user is currently away from keyboard
-	case 'away': return t('away')
+	case 'away': return t('away') // TRANSLATORS: User status if the user is currently away from keyboard
 	case 'dnd': return t('do not disturb')
 	case 'online': return t('online')
-	case 'invisible': return t('inviisble')
+	case 'invisible': return t('invisble')
 	case 'offline': return t('offline')
 	default: return status
 	}
