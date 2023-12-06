@@ -53,7 +53,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 						'input-field__input--error': error,
 						'input-field__input--pill': pill,
 					}]"
-				:value="value"
+				:value="value.toString()"
 				v-on="$listeners"
 				@input="handleInput">
 			<!-- Label -->
@@ -132,9 +132,10 @@ export default {
 	props: {
 		/**
 		 * The value of the input field
+		 * If type is 'number' and a number is passed as value than the type of `update:value` will also be 'number'
 		 */
 		value: {
-			type: String,
+			type: [String, Number],
 			required: true,
 		},
 
@@ -331,7 +332,7 @@ export default {
 		},
 
 		handleInput(event) {
-			this.$emit('update:value', event.target.value)
+			this.$emit('update:value', this.type === 'number' && typeof this.value === 'number' ? parseFloat(event.target.value, 10) : event.target.value)
 		},
 
 		handleTrailingButtonClick(event) {
