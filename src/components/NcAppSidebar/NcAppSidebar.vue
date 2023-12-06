@@ -345,7 +345,10 @@ export default {
 		@after-enter="onAfterEnter"
 		@before-leave="onBeforeLeave"
 		@after-leave="onAfterLeave">
-		<aside id="app-sidebar-vue" ref="sidebar" class="app-sidebar">
+		<aside id="app-sidebar-vue"
+			ref="sidebar"
+			class="app-sidebar"
+			@keydown.esc.stop="isMobile && closeSidebar()">
 			<header :class="{
 					'app-sidebar-header--with-figure': hasFigure,
 					'app-sidebar-header--compact': compact,
