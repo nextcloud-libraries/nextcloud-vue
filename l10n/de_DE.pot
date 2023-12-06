@@ -50,6 +50,7 @@ msgstr "Avatar von {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar von {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
 msgstr "Abwesend"
 
@@ -143,6 +144,9 @@ msgstr "Gold"
 
 msgid "Hide password"
 msgstr "Passwort verbergen"
+
+msgid "invisble"
+msgstr "Unsichtbar"
 
 msgid "Load more \"{options}\""
 msgstr "Weitere \"{options}\" laden"
