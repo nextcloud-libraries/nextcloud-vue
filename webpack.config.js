@@ -8,7 +8,6 @@ const path = require('path')
 
 const { DefinePlugin } = require('webpack')
 const BabelLoaderExcludeNodeModulesExcept = require('babel-loader-exclude-node-modules-except')
-const { loadTranslations } = require('./build/translations.js')
 
 const buildMode = process.env.NODE_ENV
 const isDev = buildMode === 'development'
@@ -67,13 +66,10 @@ webpackRules.RULE_NODE_MJS = {
 
 webpackConfig.module.rules = Object.values(webpackRules)
 
-module.exports = async () => {
-	const translations = await loadTranslations(path.resolve(__dirname, './l10n'))
-
+module.exports = () => {
 	webpackConfig.plugins.push(new DefinePlugin({
 		PRODUCTION: JSON.stringify(!isDev),
 		SCOPE_VERSION,
-		TRANSLATIONS: JSON.stringify(translations),
 	}))
 
 	return webpackConfig

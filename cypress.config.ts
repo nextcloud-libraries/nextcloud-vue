@@ -5,8 +5,6 @@ import path from 'path'
 import webpackConfig from '@nextcloud/webpack-vue-config'
 import webpackRules from '@nextcloud/webpack-vue-config/rules.js'
 
-import { loadTranslations } from './build/translations.js'
-
 const SCOPE_VERSION = Date.now();
 
 (webpackRules.RULE_SCSS.use as webpack.RuleSetUse[]).push({
@@ -73,11 +71,9 @@ export default defineConfig({
 			framework: 'vue',
 			bundler: 'webpack',
 			webpackConfig: async () => {
-				const translations = await loadTranslations(path.resolve(__dirname, './l10n'))
 				webpackConfig.plugins.push(new webpack.DefinePlugin({
 					PRODUCTION: false,
 					SCOPE_VERSION,
-					TRANSLATIONS: JSON.stringify(translations),
 				}))
 
 				return webpackConfig
