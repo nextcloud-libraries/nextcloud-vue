@@ -1022,7 +1022,7 @@ export default {
 	}
 
 	// Make modal full screen on mobile
-	@media only screen and (max-width: math.div($breakpoint-mobile, 2)) {
+	@media only screen and (max-width: $breakpoint-small-mobile) {
 		.modal-container {
 			max-width: initial;
 			width: 100%;

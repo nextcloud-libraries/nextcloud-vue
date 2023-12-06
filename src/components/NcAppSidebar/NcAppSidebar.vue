@@ -1069,7 +1069,7 @@ $top-buttons-spacing: 6px;
 }
 
 // Make the sidebar full-width on small screens
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: $breakpoint-small-mobile) {
 	.app-sidebar {
 		width: 100vw;
 		max-width: 100vw;
