@@ -47,6 +47,7 @@ msgstr "الرمز التجسيدي avatar لــ {displayName}  "
 msgid "Avatar of {displayName}, {status}"
 msgstr "الرمز التجسيدي  avatar لــ {displayName}، {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
 msgstr "غير موجود"
 
@@ -140,6 +141,9 @@ msgstr "ذهبي"
 
 msgid "Hide password"
 msgstr "إخفاء كلمة المرور"
+
+msgid "invisible"
+msgstr "غير مرئي"
 
 msgid "Load more \"{options}\""
 msgstr "تحميل المزيد من \"{options}\" "
