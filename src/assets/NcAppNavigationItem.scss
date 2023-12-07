@@ -44,6 +44,10 @@
 		.app-navigation-entry__children {
 			background-color: var(--color-main-background);
 		}
+
+		.app-navigation-entry__hide-utils {
+			display: flex;
+		}
 	}
 
 	// Show the actions on active
@@ -164,6 +168,11 @@
 	.action-item.app-navigation-entry__actions {
 		display: none;
 	}
+}
+
+/* hide utils when not necessary */
+.app-navigation-entry__hide-utils {
+	display: none;
 }
 
 // STATES
