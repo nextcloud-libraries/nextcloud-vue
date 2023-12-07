@@ -1,12 +1,12 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Mark Ziegler <mark.ziegler@rakekniven.de>, 2023
 # Mario Siegmann <mario_siegmann@web.de>, 2023
+# Mark Ziegler <mark.ziegler@rakekniven.de>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2023\n"
+"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2023\n"
 "Language-Team: German (Germany) (https://app.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -73,7 +73,7 @@ msgid "Clear search"
 msgstr "Suche leeren"
 
 msgid "Clear selected"
-msgstr "Ausgewählte löschen"
+msgstr "Auswahl leeren"
 
 msgid "Clear text"
 msgstr "Klartext"
@@ -145,7 +145,7 @@ msgstr "Gold"
 msgid "Hide password"
 msgstr "Passwort verbergen"
 
-msgid "invisble"
+msgid "invisible"
 msgstr "Unsichtbar"
 
 msgid "Load more \"{options}\""
@@ -164,7 +164,7 @@ msgid "Next"
 msgstr "Weiter"
 
 msgid "Nextcloud blue"
-msgstr "Nextcloud-Blau"
+msgstr "Nextcloud Blau"
 
 msgid "No emoji found"
 msgstr "Kein Emoji gefunden"
