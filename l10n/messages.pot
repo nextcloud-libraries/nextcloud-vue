@@ -129,7 +129,7 @@ msgstr ""
 msgid "Hide password"
 msgstr ""
 
-msgid "invisble"
+msgid "invisible"
 msgstr ""
 
 msgid "Load more \"{options}\""
