@@ -919,7 +919,7 @@ export default {
 
 /* counter and actions */
 .app-navigation-entry__utils {
-   	display: none;
+   	display: flex;
 	min-width: $clickable-area;
 	align-items: center;
 	flex: 0 1 auto;
