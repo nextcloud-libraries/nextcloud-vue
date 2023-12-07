@@ -462,7 +462,10 @@ export default {
 			default: true,
 		},
 
-		/** Makes the modal backdrop black if true  */
+		/**
+		 * Makes the modal backdrop black if true
+		 * Will be overwritten if some buttons are shown outside
+		 */
 		dark: {
 			type: Boolean,
 			default: false,
