@@ -205,7 +205,7 @@ export default {
 		<div v-show="showModal"
 			ref="mask"
 			class="modal-mask"
-			:class="{ 'modal-mask--dark': dark }"
+			:class="{ 'modal-mask--dark': dark || !closeButtonContained || hasPrevious || hasNext }"
 			:style="cssVariables"
 			role="dialog"
 			aria-modal="true"
@@ -462,7 +462,10 @@ export default {
 			default: true,
 		},
 
-		/** Makes the modal backdrop black if true  */
+		/**
+		 * Makes the modal backdrop black if true
+		 * Will be overwritten if some buttons are shown outside
+		 */
 		dark: {
 			type: Boolean,
 			default: false,

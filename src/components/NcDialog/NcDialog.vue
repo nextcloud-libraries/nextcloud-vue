@@ -96,11 +96,14 @@ export default {
 		@close="handleClosed"
 		@update:show="handleClosing">
 		<!-- The dialog name / header -->
-		<h2 class="dialog__name" v-text="name" />
+		<h2 :id="navigationId" class="dialog__name" v-text="name" />
 		<div class="dialog" :class="dialogClasses">
 			<div ref="wrapper" :class="['dialog__wrapper', { 'dialog__wrapper--collapsed': isNavigationCollapsed }]">
 				<!-- When the navigation is collapsed (too small dialog) it is displayed above the main content, otherwise on the inline start -->
-				<nav v-if="hasNavigation" class="dialog__navigation" :class="navigationClasses">
+				<nav v-if="hasNavigation"
+					class="dialog__navigation"
+					:class="navigationClasses"
+					:aria-labelledby="navigationId">
 					<slot name="navigation" :is-collapsed="isNavigationCollapsed" />
 				</nav>
 				<!-- Main dialog content -->
@@ -131,6 +134,8 @@ import { computed, defineComponent, ref } from 'vue'
 
 import NcModal from '../NcModal/index.js'
 import NcDialogButton from '../NcDialogButton/index.js'
+
+import GenRandomId from '../../utils/GenRandomId.js'
 
 export default defineComponent({
 	name: 'NcDialog',
@@ -288,6 +293,11 @@ export default defineComponent({
 		const hasNavigation = computed(() => slots?.navigation !== undefined)
 
 		/**
+		 * The unique id of the nav element
+		 */
+		const navigationId = ref(GenRandomId())
+
+		/**
 		 * If the underlaying modal is shown
 		 */
 		const showModal = ref(true)
@@ -345,6 +355,7 @@ export default defineComponent({
 			handleClosing,
 			handleClosed,
 			hasNavigation,
+			navigationId,
 			isNavigationCollapsed,
 			modalProps,
 			wrapper,

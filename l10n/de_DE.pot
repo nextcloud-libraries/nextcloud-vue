@@ -24,6 +24,10 @@ msgstr "Eine Farbe mit einem HEX-Wert {hex}"
 msgid "a few seconds ago"
 msgstr "vor ein paar Sekunden"
 
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
+
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -60,6 +64,14 @@ msgstr "Zurück"
 msgid "Back to provider selection"
 msgstr "Zurück zur Anbieterauswahl"
 
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Blau Violett"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Boston-Blau"
+
 msgid "Cancel changes"
 msgstr "Änderungen verwerfen"
 
@@ -73,7 +85,7 @@ msgid "Clear search"
 msgstr "Suche leeren"
 
 msgid "Clear selected"
-msgstr "Ausgewählte löschen"
+msgstr "Auswahl leeren"
 
 msgid "Clear text"
 msgstr "Klartext"
@@ -98,6 +110,10 @@ msgstr "Änderungen bestätigen"
 
 msgid "Custom"
 msgstr "Benutzerdefiniert"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Sintflut"
 
 msgid "Deselect {option}"
 msgstr "{option} abwählen"
@@ -124,6 +140,10 @@ msgstr "Externe Dokumentation für {name}"
 msgid "Favorite"
 msgstr "Favorit"
 
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Feldspat"
+
 msgid "Flags"
 msgstr "Flaggen"
 
@@ -145,11 +165,15 @@ msgstr "Gold"
 msgid "Hide password"
 msgstr "Passwort verbergen"
 
-msgid "invisble"
+msgid "invisible"
 msgstr "Unsichtbar"
 
 msgid "Load more \"{options}\""
 msgstr "Weitere \"{options}\" laden"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Seemann"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
@@ -164,7 +188,7 @@ msgid "Next"
 msgstr "Weiter"
 
 msgid "Nextcloud blue"
-msgstr "Nextcloud-Blau"
+msgstr "Nextcloud Blau"
 
 msgid "No emoji found"
 msgstr "Kein Emoji gefunden"
@@ -181,6 +205,10 @@ msgstr "Objekte"
 msgid "offline"
 msgstr "Offline"
 
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Olivin"
+
 msgid "online"
 msgstr "Online"
 
@@ -195,9 +223,6 @@ msgstr "Menü öffnen"
 
 msgid "Open navigation"
 msgstr "Navigation öffnen"
-
-msgid "Open settings menu"
-msgstr "Einstellungsmenü öffnen"
 
 msgid "Password is secure"
 msgstr "Passwort ist sicher"
@@ -246,6 +271,10 @@ msgstr "Unverarbeiteter Link {Optionen}"
 
 msgid "Related resources"
 msgstr "Verwandte Ressourcen"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Rosiges Braun"
 
 msgid "Save changes"
 msgstr "Änderungen speichern"
@@ -324,6 +353,10 @@ msgstr "Änderungen rückgängig machen"
 
 msgid "User status: {status}"
 msgstr "Benutzerstatus: {status}"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Whiskey"
 
 msgid "Write a message …"
 msgstr "Nachricht schreiben …"
