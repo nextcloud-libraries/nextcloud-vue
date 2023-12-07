@@ -193,9 +193,6 @@ msgstr "إفتَح القائمة"
 msgid "Open navigation"
 msgstr "إفتَح المتصفح"
 
-msgid "Open settings menu"
-msgstr "إفتَح قائمة الإعدادات"
-
 msgid "Password is secure"
 msgstr "كلمة المرور مُؤمّنة"
 
