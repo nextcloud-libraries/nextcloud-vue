@@ -47,6 +47,7 @@ msgstr "Avatar de {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar de {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
 msgstr "ausente"
 
@@ -141,6 +142,9 @@ msgstr "Ouro"
 msgid "Hide password"
 msgstr "Agochar o contrasinal"
 
+msgid "invisible"
+msgstr "invisíbel"
+
 msgid "Load more \"{options}\""
 msgstr "Cargar máis «{options}»"
 
@@ -188,9 +192,6 @@ msgstr "Abrir o menú"
 
 msgid "Open navigation"
 msgstr "Abrir a navegación"
-
-msgid "Open settings menu"
-msgstr "Abrir o menú de axustes"
 
 msgid "Password is secure"
 msgstr "O contrasinal é seguro"
