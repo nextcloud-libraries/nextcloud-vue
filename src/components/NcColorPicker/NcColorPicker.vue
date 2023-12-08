@@ -220,7 +220,8 @@ export default {
 import NcButton from '../NcButton/index.js'
 import NcPopover from '../NcPopover/index.js'
 import { t } from '../../l10n.js'
-import GenColors from '../../utils/GenColors.js'
+import { defaultPalette } from '../../utils/GenColors.js'
+
 import GenRandomId from '../../utils/GenRandomId.js'
 
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
@@ -284,7 +285,7 @@ export default {
 		 */
 		palette: {
 			type: Array,
-			default: () => GenColors(4).map(item => ({ color: rgbToHex(item), name: item.name })),
+			default: () => defaultPalette.map(item => ({ color: rgbToHex(item), name: item.name })),
 			validator: (palette) => palette.every(item =>
 				(typeof item === 'string' && HEX_REGEX.test(item))
 				|| (typeof item === 'object' && item.color && HEX_REGEX.test(item.color)),
