@@ -271,7 +271,7 @@ msgstr "مصادر ذات صلة"
 
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
-msgstr "بُنِّي وردي"
+msgstr "بُنِّي زهري"
 
 msgid "Save changes"
 msgstr "حفظ التغييرات"
