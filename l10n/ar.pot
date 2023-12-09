@@ -67,7 +67,7 @@ msgstr "العنف الأزرق"
 
 #. TRANSLATORS: A color name for RGB(55, 148, 172)
 msgid "Boston Blue"
-msgstr "زُرق بوسطن"
+msgstr "سماوي مطفي"
 
 msgid "Cancel changes"
 msgstr "إلغاء التغييرات"
