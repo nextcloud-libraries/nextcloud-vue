@@ -23,6 +23,10 @@ msgstr "{hex} onaltılık değeri ile bir renk "
 msgid "a few seconds ago"
 msgstr "birkaç saniye önce"
 
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Akapulko"
+
 msgid "Actions"
 msgstr "İşlemler"
 
@@ -47,6 +51,7 @@ msgstr "{displayName} avatarı"
 msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName}, {status} avatarı"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
 msgstr "Uzakta"
 
@@ -55,6 +60,14 @@ msgstr "Geri"
 
 msgid "Back to provider selection"
 msgstr "Sağlayıcı seçimine dön"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Mavi mor"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Boston mavisi"
 
 msgid "Cancel changes"
 msgstr "Değişiklikleri iptal et"
@@ -95,6 +108,10 @@ msgstr "Değişiklikleri onayla"
 msgid "Custom"
 msgstr "Özel"
 
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Sel"
+
 msgid "Deselect {option}"
 msgstr "{option} bırak"
 
@@ -120,6 +137,10 @@ msgstr "{name} için dış belgeler"
 msgid "Favorite"
 msgstr "Sık kullanılanlara ekle"
 
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Feldispat"
+
 msgid "Flags"
 msgstr "Bayraklar"
 
@@ -141,8 +162,15 @@ msgstr "Altın"
 msgid "Hide password"
 msgstr "Parolayı gizle"
 
+msgid "invisible"
+msgstr "görünmez"
+
 msgid "Load more \"{options}\""
 msgstr "Diğer \"{options}\""
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Denizci"
 
 msgid "Message limit of {count} characters reached"
 msgstr "{count} karakter ileti sınırına ulaşıldı"
@@ -174,6 +202,10 @@ msgstr "Nesneler"
 msgid "offline"
 msgstr "Çevrim dışı"
 
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Zeytinlik"
+
 msgid "online"
 msgstr "Çevrim içi"
 
@@ -188,9 +220,6 @@ msgstr "Menüyü aç"
 
 msgid "Open navigation"
 msgstr "Gezinmeyi aç"
-
-msgid "Open settings menu"
-msgstr "Ayarlar menüsünü aç"
 
 msgid "Password is secure"
 msgstr "Parola güvenli"
@@ -239,6 +268,10 @@ msgstr "Ham bağlantı {options}"
 
 msgid "Related resources"
 msgstr "İlgili kaynaklar"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Kırmızımsı kahverengi"
 
 msgid "Save changes"
 msgstr "Değişiklikleri kaydet"
@@ -317,6 +350,10 @@ msgstr "Değişiklikleri geri al"
 
 msgid "User status: {status}"
 msgstr "Kullanıcı durumu: {status}"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Viski"
 
 msgid "Write a message …"
 msgstr "Bir ileti yazın…"
