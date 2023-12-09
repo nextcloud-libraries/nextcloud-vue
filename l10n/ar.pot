@@ -25,7 +25,7 @@ msgstr "منذ عدة ثوانٍ مضت"
 
 #. TRANSLATORS: A color name for RGB(110, 166, 143)
 msgid "Acapulco"
-msgstr "آكابولكو"
+msgstr "بازلائي مطفي"
 
 msgid "Actions"
 msgstr "إجراءات"
