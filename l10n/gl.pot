@@ -23,6 +23,10 @@ msgstr "Unha cor cun valor HEX {hex}"
 msgid "a few seconds ago"
 msgstr "hai uns segundos"
 
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
+
 msgid "Actions"
 msgstr "Accións"
 
@@ -56,6 +60,14 @@ msgstr "Atrás"
 
 msgid "Back to provider selection"
 msgstr "Volver á selección do provedor"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Azul violeta"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Azul Boston"
 
 msgid "Cancel changes"
 msgstr "Cancelar os cambios"
@@ -96,6 +108,10 @@ msgstr "Confirma os cambios"
 msgid "Custom"
 msgstr "Personalizado"
 
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Diluvio"
+
 msgid "Deselect {option}"
 msgstr "Desmarcar {opción}"
 
@@ -120,6 +136,10 @@ msgstr "Documentación externa para {name}"
 
 msgid "Favorite"
 msgstr "Favorito"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Feldespato"
 
 msgid "Flags"
 msgstr "Bandeiras"
@@ -147,6 +167,10 @@ msgstr "invisíbel"
 
 msgid "Load more \"{options}\""
 msgstr "Cargar máis «{options}»"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Marino"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Acadouse o límite de {count} caracteres por mensaxe"
@@ -177,6 +201,10 @@ msgstr "Obxectos"
 
 msgid "offline"
 msgstr "desconectado"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Olivina"
 
 msgid "online"
 msgstr "conectado"
@@ -240,6 +268,10 @@ msgstr "Ligazón sen procesar {options}"
 
 msgid "Related resources"
 msgstr "Recursos relacionados"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Pardo rosado"
 
 msgid "Save changes"
 msgstr "Gardar os cambios"
@@ -318,6 +350,10 @@ msgstr "Desfacer os cambios"
 
 msgid "User status: {status}"
 msgstr "Estado do usuario: {status}"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Whisky"
 
 msgid "Write a message …"
 msgstr "Escribir unha mensaxe…"
