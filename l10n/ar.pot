@@ -23,6 +23,10 @@ msgstr "لون بالقيمة الست عشرية {hex}"
 msgid "a few seconds ago"
 msgstr "منذ عدة ثوانٍ مضت"
 
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "بازلائي مطفي"
+
 msgid "Actions"
 msgstr "إجراءات"
 
@@ -56,6 +60,14 @@ msgstr "عودة"
 
 msgid "Back to provider selection"
 msgstr "عودة إلى اختيار المُزوِّد"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "بنفسجي مشعشع"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "سماوي مطفي"
 
 msgid "Cancel changes"
 msgstr "إلغاء التغييرات"
@@ -96,6 +108,10 @@ msgstr "تأكيد التغييرات"
 msgid "Custom"
 msgstr "مُخصَّص"
 
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "بنفسجي مطفي"
+
 msgid "Deselect {option}"
 msgstr "إلغاء تحديد {option}"
 
@@ -120,6 +136,10 @@ msgstr "التوثيق الخارجي لـ {name}"
 
 msgid "Favorite"
 msgstr "المُفضَّلة"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "وردي صخري"
 
 msgid "Flags"
 msgstr "الأعلام"
@@ -147,6 +167,10 @@ msgstr "غير مرئي"
 
 msgid "Load more \"{options}\""
 msgstr "تحميل المزيد من \"{options}\" "
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "أزرق بحري"
 
 msgid "Message limit of {count} characters reached"
 msgstr "تمّ الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
@@ -177,6 +201,10 @@ msgstr "أشياء"
 
 msgid "offline"
 msgstr "غير متصل"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "زيتي"
 
 msgid "online"
 msgstr "مُتّصِلٌ"
@@ -240,6 +268,10 @@ msgstr " الرابط الخام raw link ـ {options}"
 
 msgid "Related resources"
 msgstr "مصادر ذات صلة"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "بُنِّي زهري"
 
 msgid "Save changes"
 msgstr "حفظ التغييرات"
@@ -318,6 +350,10 @@ msgstr "تراجَع عن التغييرات"
 
 msgid "User status: {status}"
 msgstr "حالة المستخدِم: {status}"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "نبيذي"
 
 msgid "Write a message …"
 msgstr "أكتُب رسالةً ..."

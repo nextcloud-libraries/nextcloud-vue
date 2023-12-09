@@ -1,12 +1,12 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Mario Siegmann <mario_siegmann@web.de>, 2023
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2023
+# Mario Siegmann <mario_siegmann@web.de>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2023\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2023\n"
 "Language-Team: German (Germany) (https://app.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -23,6 +23,10 @@ msgstr "Eine Farbe mit einem HEX-Wert {hex}"
 
 msgid "a few seconds ago"
 msgstr "vor ein paar Sekunden"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
 
 msgid "Actions"
 msgstr "Aktionen"
@@ -59,6 +63,14 @@ msgstr "Zurück"
 
 msgid "Back to provider selection"
 msgstr "Zurück zur Anbieterauswahl"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Blau Violett"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Boston-Blau"
 
 msgid "Cancel changes"
 msgstr "Änderungen verwerfen"
@@ -99,6 +111,10 @@ msgstr "Änderungen bestätigen"
 msgid "Custom"
 msgstr "Benutzerdefiniert"
 
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Sintflut"
+
 msgid "Deselect {option}"
 msgstr "{option} abwählen"
 
@@ -123,6 +139,10 @@ msgstr "Externe Dokumentation für {name}"
 
 msgid "Favorite"
 msgstr "Favorit"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Feldspat"
 
 msgid "Flags"
 msgstr "Flaggen"
@@ -150,6 +170,10 @@ msgstr "Unsichtbar"
 
 msgid "Load more \"{options}\""
 msgstr "Weitere \"{options}\" laden"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Seemann"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
@@ -180,6 +204,10 @@ msgstr "Objekte"
 
 msgid "offline"
 msgstr "Offline"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Olivin"
 
 msgid "online"
 msgstr "Online"
@@ -243,6 +271,10 @@ msgstr "Unverarbeiteter Link {Optionen}"
 
 msgid "Related resources"
 msgstr "Verwandte Ressourcen"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Rosiges Braun"
 
 msgid "Save changes"
 msgstr "Änderungen speichern"
@@ -321,6 +353,10 @@ msgstr "Änderungen rückgängig machen"
 
 msgid "User status: {status}"
 msgstr "Benutzerstatus: {status}"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Whiskey"
 
 msgid "Write a message …"
 msgstr "Nachricht schreiben …"
