@@ -139,7 +139,7 @@ msgstr "المُفضَّلة"
 
 #. TRANSLATORS: A color name for RGB(201, 136, 121)
 msgid "Feldspar"
-msgstr "أحمر صخري"
+msgstr "وردي صخري"
 
 msgid "Flags"
 msgstr "الأعلام"
