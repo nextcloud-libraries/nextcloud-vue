@@ -502,6 +502,7 @@ import StarOutline from 'vue-material-design-icons/StarOutline.vue'
 
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
+import { provide, ref } from 'vue'
 
 export default {
 	name: 'NcAppSidebar',
@@ -649,8 +650,11 @@ export default {
 	],
 
 	setup() {
+		const sidebar = ref(undefined)
+		provide('TOP_LAYER_CONTAINER', sidebar)
 		return {
 			isMobile: useIsSmallMobile(),
+			sidebar,
 		}
 	},
 

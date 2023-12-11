@@ -109,6 +109,7 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 		v-bind="$attrs"
 		:no-auto-focus="true /* Handled by the focus trap */"
 		:popper-class="popoverBaseClass"
+		:container="resultContainer"
 		v-on="$listeners"
 		@apply-show="afterShow"
 		@apply-hide="afterHide">
@@ -125,6 +126,7 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 import { Dropdown } from 'floating-vue'
 import { createFocusTrap } from 'focus-trap'
 import { getTrapStack } from '../../utils/focusTrap.js'
+import { inject } from 'vue'
 
 export default {
 	name: 'NcPopover',
@@ -156,12 +158,39 @@ export default {
 			default: undefined,
 			type: [HTMLElement, SVGElement, String, Boolean],
 		},
+
+		/**
+		 * Set the container to append the popover to.
+		 * If not set, the popover will be appended to the body.
+		 * Or to the popover container.
+		 *
+		 * @type {string|HTMLElement}
+		 */
+		container: {
+			type: [String, HTMLElement],
+			default: undefined,
+		},
 	},
 
 	emits: [
 		'after-show',
 		'after-hide',
 	],
+
+	setup() {
+		const popoverContainer = inject('TOP_LAYER_CONTAINER', undefined)
+		return {
+			popoverContainer,
+		}
+	},
+
+	computed: {
+		resultContainer() {
+			// If both container and popoverContainer are undefined
+			// the popover will be appended to the body by default
+			return this.container || this.popoverContainer
+		},
+	},
 
 	beforeDestroy() {
 		this.clearFocusTrap()

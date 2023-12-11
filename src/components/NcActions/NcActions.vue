@@ -957,7 +957,7 @@ export default {
 		 */
 		container: {
 			type: [String, Object, Element, Boolean],
-			default: 'body',
+			default: undefined,
 		},
 
 		/**
