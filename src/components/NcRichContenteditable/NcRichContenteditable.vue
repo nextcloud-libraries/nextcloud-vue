@@ -232,6 +232,7 @@ export default {
 			role="textbox"
 			v-bind="$attrs"
 			v-on="listeners"
+			@focus="moveCursorToEnd"
 			@input="onInput"
 			@compositionstart="isComposing = true"
 			@compositionend="isComposing = false"
@@ -645,6 +646,17 @@ export default {
 			const range = document.createRange()
 			range.setEndAfter(element)
 			range.collapse()
+			const selection = window.getSelection()
+			selection.removeAllRanges()
+			selection.addRange(range)
+		},
+		moveCursorToEnd() {
+			if (!document.createRange) {
+				return
+			}
+			const range = document.createRange()
+			range.selectNodeContents(this.$refs.contenteditable)
+			range.collapse(false)
 			const selection = window.getSelection()
 			selection.removeAllRanges()
 			selection.addRange(range)
