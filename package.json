@@ -51,6 +51,10 @@
     "./dist/Mixins/*.js": {
       "import": "./dist/Mixins/*.mjs",
       "require": "./dist/Mixins/*.cjs"
+    },
+    "./dist/Composables/*.js": {
+      "import": "./dist/Composables/*.mjs",
+      "require": "./dist/Composables/*.cjs"
     }
   },
   "files": [
