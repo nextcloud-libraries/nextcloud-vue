@@ -1384,8 +1384,7 @@ export default {
 							'aria-haspopup': this.isSemanticMenu ? 'menu' : null,
 							'aria-label': this.menuName ? null : this.ariaLabel,
 							'aria-controls': this.opened ? this.randomId : null,
-							// Do not add aria-expanded="true" when it is closed
-							'aria-expanded': this.opened ? 'true' : undefined,
+							'aria-expanded': this.opened ? 'true' : 'false',
 						},
 						on: {
 							focus: this.onFocus,
