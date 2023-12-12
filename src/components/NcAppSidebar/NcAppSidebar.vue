@@ -722,7 +722,6 @@ export default {
 		 * Activate focus trap if it is currently needed, otherwise deactivate
 		 */
 		 toggleFocusTrap() {
-			console.debug('toggleFocusTrap', this.isMobile)
 			if (this.isMobile) {
 				this.initFocusTrap()
 				this.focusTrap.activate()
