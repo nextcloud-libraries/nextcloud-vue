@@ -24,12 +24,7 @@ import { mount } from '@vue/test-utils'
 import { emit } from '@nextcloud/event-bus'
 import { nextTick } from 'vue'
 import NcAppNavigation from '../../../../src/components/NcAppNavigation/NcAppNavigation.vue'
-
-const resizeWindowWidth = async (width) => {
-	jest.spyOn(document.documentElement, 'clientWidth', 'get').mockReturnValue(width)
-	window.dispatchEvent(new window.Event('resize'))
-	await nextTick()
-}
+import { resizeWindowWidth } from '../../testing-utils.ts'
 
 const NAVIGATION__SELECTOR = 'nav'
 const TOGGLE_BUTTON__SELECTOR = 'button[aria-controls="app-navigation-vue"]'
