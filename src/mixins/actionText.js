@@ -78,7 +78,7 @@ export default {
 	computed: {
 		isIconUrl() {
 			try {
-				return new URL(this.icon)
+				return new URL(this.icon, this.icon.startsWith('/') ? window.location.origin : undefined)
 			} catch (error) {
 				return false
 			}
