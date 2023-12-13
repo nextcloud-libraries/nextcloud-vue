@@ -1,7 +1,6 @@
+import 'core-js/stable/index.js'
 /* eslint-disable-next-line */
-import 'core-js/stable'
-/* eslint-disable-next-line */
-import 'regenerator-runtime/runtime'
+import 'regenerator-runtime/runtime.js'
 
 import axios from '@nextcloud/axios'
 

@@ -1,5 +1,5 @@
 {
-  "extends": "@vue/tsconfig",
+  "extends": "@vue/tsconfig/tsconfig.json",
   "include": ["./src/**/*.ts"],
   "exclude": ["./src/**/*.cy.ts"],
   "compilerOptions": {

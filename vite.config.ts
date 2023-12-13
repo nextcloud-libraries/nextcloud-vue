@@ -5,12 +5,8 @@ import { join, resolve } from 'node:path'
 import { defineConfig } from 'vite'
 
 import md5 from 'md5'
-import * as url from 'url'
 
 import l10nPlugin from './build/l10n-plugin.mts'
-
-// `__dirname` not available on ES modules by default
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 
 const appVersion = JSON.stringify(process.env.npm_package_version || 'nextcloud-vue')
 const SCOPE_VERSION = md5(appVersion).slice(0, 7) as string

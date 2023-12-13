@@ -12,6 +12,7 @@
   "bugs": "https://github.com/nextcloud-libraries/nextcloud-vue/issues",
   "author": "John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>",
   "license": "AGPL-3.0",
+  "type": "module",
   "scripts": {
     "build": "vite build --mode production ",
     "dev": "vite build --mode development",
@@ -24,8 +25,8 @@
     "test:coverage": "TZ=UTC vitest run --coverage",
     "stylelint": "stylelint src/**/*.vue src/**/*.scss src/**/*.css",
     "stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix",
-    "styleguide": "vue-styleguidist server",
-    "styleguide:build": "vue-styleguidist build",
+    "styleguide": "vue-styleguidist --config styleguide.config.cjs server",
+    "styleguide:build": "vue-styleguidist --config styleguide.config.cjs build",
     "cypress": "TZ=UTC cypress run --component",
     "cypress:gui": "TZ=UTC cypress open --component",
     "cypress:update-snapshots": "TZ=UTC cypress run --component --spec \"cypress/visual/**/*.cy.{t,j}s\" --env type=base --config screenshotsFolder=cypress/snapshots/base"
@@ -137,7 +138,7 @@
     "jsdom": "^22.1.0",
     "resolve-url-loader": "^5.0.0",
     "sanitize-filename": "^1.6.3",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.0.4",
     "url-loader": "^4.1.1",
     "vite": "^5.0.10",
