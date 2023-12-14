@@ -738,6 +738,7 @@ export default {
 
 // NcListItem
 .list-item {
+	box-sizing: border-box;
 	display: block;
 	position: relative;
 	flex: 0 0 auto;
