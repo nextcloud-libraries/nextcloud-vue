@@ -514,6 +514,7 @@ export default {
 <script>
 import '@nextcloud/vue-select/dist/vue-select.css'
 
+import Vue from 'vue'
 import { VueSelect } from '@nextcloud/vue-select'
 import {
 	autoUpdate,
@@ -559,10 +560,12 @@ export default {
 
 		/**
 		 * `aria-label` for the search input
+		 *
+		 * A descriptive `inputLabel` is preferred as this is not visible.
 		 */
 		ariaLabelCombobox: {
 			type: String,
-			default: t('Search for options'),
+			default: null,
 		},
 
 		/**
@@ -703,6 +706,8 @@ export default {
 
 		/**
 		 * Visible label for the input element
+		 *
+		 * @todo Set default for @nextcloud/vue 9
 		 */
 		inputLabel: {
 			type: String,
@@ -1017,6 +1022,16 @@ export default {
 			return propsToForward
 		},
 	},
+
+	mounted() {
+		if (!this.labelOutside && !this.inputLabel && !this.ariaLabelCombobox) {
+			Vue.util.warn('[NcSelect] An `inputLabel` or `ariaLabelCombobox` should be set.')
+		}
+		if (this.inputLabel && this.ariaLabelCombobox) {
+			Vue.util.warn('[NcSelect] Only one of `inputLabel` or `ariaLabelCombobox` should to be set.')
+		}
+	},
+
 	methods: {
 		t,
 	},
