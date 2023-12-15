@@ -351,7 +351,7 @@ $externalMargin: 8px;
 		position: fixed;
 		z-index: 2000;
 		top: 50px;
-		right: 0;
+		inset-inline-end: 0;
 		box-sizing: border-box;
 		margin: 0 $externalMargin;
 		padding: 8px;
@@ -366,7 +366,7 @@ $externalMargin: 8px;
 		position: absolute;
 		z-index: 2001; // Because __wrapper is 2000.
 		bottom: 0;
-		left: calc(50% - 10px);
+		inset-inline-start: calc(50% - 10px);
 		width: 0;
 		height: 0;
 		content: ' ';
