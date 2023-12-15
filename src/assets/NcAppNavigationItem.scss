@@ -29,6 +29,10 @@
 	&.active {
 		background-color: var(--color-primary-element) !important;
 
+		&:hover {
+			background-color: var(--color-primary-element-hover) !important;
+		}
+
 		// overwrite active text color
 		.app-navigation-entry-link, .app-navigation-entry-button {
 			color: var(--color-primary-element-text) !important;
