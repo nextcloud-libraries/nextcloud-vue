@@ -549,6 +549,7 @@ export default {
 	props: {
 		// Add VueSelect props to $props
 		...VueSelect.props,
+		...VueSelect.mixins.reduce((allProps, mixin) => ({ ...allProps, ...mixin.props }), {}),
 
 		/**
 		 * `aria-label` for the clear input button
@@ -1000,17 +1001,14 @@ export default {
 		},
 
 		propsToForward() {
-			const {
-				// Props handled by this component
-				inputClass,
-				inputLabel,
-				noWrap,
-				placement,
-				userSelect,
-				// Props to forward
-				...initialPropsToForward
-			} = this.$props
-
+			const vueSelectKeys = [
+				...Object.keys(VueSelect.props),
+				...VueSelect.mixins.flatMap(mixin => Object.keys(mixin.props ?? {})),
+			]
+			const initialPropsToForward = Object.fromEntries(
+				Object.entries(this.$props)
+					.filter(([key, _value]) => vueSelectKeys.includes(key)),
+			)
 			const propsToForward = {
 				...initialPropsToForward,
 				// Custom overrides of vue-select props
@@ -1018,7 +1016,6 @@ export default {
 				filterBy: this.localFilterBy,
 				label: this.localLabel,
 			}
-
 			return propsToForward
 		},
 	},
