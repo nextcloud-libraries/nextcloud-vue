@@ -491,6 +491,12 @@ export default {
 		v-bind="propsToForward"
 		v-on="$listeners"
 		@search="searchString => search = searchString">
+		<template v-if="!labelOutside && inputLabel" #header>
+			<label :for="inputId"
+				class="select__label">
+				{{ inputLabel }}
+			</label>
+		</template>
 		<template #search="{ attributes, events }">
 			<input :class="['vs__search', inputClass]"
 				v-bind="attributes"
@@ -719,12 +725,26 @@ export default {
 
 		/**
 		 * Input element id
-		 *
-		 * @see https://vue-select.org/api/props.html#inputid
 		 */
 		inputId: {
 			type: String,
+			default: () => `select-input-${GenRandomId()}`,
+		},
+
+		/**
+		 * Visible label for the input element
+		 */
+		inputLabel: {
+			type: String,
 			default: null,
+		},
+
+		/**
+		 * Pass true if you are using an external label
+		 */
+		labelOutside: {
+			type: Boolean,
+			default: false,
 		},
 
 		/**
@@ -1008,6 +1028,7 @@ export default {
 			const {
 				// Props handled by this component
 				inputClass,
+				inputLabel,
 				noWrap,
 				placement,
 				userSelect,
@@ -1105,6 +1126,11 @@ body {
 	min-height: $clickable-area;
 	min-width: 260px;
 	margin: 0;
+
+	.select__label {
+		display: block;
+		margin-bottom: 2px;
+	}
 
 	.vs__selected {
 		height: 32px;
@@ -1233,5 +1259,4 @@ body {
 .user-select .vs__selected {
 	padding: 0 2px !important;
 }
-
 </style>
