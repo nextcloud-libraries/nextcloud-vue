@@ -30,9 +30,8 @@ General purpose multiselect component.
 ```vue
 <template>
 	<div class="grid">
-		<div v-for="{ name, props } in selectArray"
+		<div v-for="{ props } in selectArray"
 			class="container">
-			<label :for="props.inputId">{{ name }}</label>
 			<NcSelect v-bind="props"
 				v-model="props.value" />
 		</div>
@@ -40,17 +39,10 @@ General purpose multiselect component.
 </template>
 
 <script>
-import GenRandomId from '../../utils/GenRandomId.js'
-
-const getRandomId = () => {
-	return `select-${GenRandomId()}`
-}
-
 const selectArray = [
 	{
-		name: 'Simple',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'Simple',
 			options: [
 				'foo',
 				'bar',
@@ -62,9 +54,8 @@ const selectArray = [
 	},
 
 	{
-		name: 'Simple (top placement)',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'Simple (top placement)',
 			placement: 'top',
 			options: [
 				'foo',
@@ -77,9 +68,8 @@ const selectArray = [
 	},
 
 	{
-		name: 'Multiple (with placeholder)',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'Multiple (with placeholder)',
 			multiple: true,
 			placeholder: 'Select multiple options',
 			options: [
@@ -93,9 +83,8 @@ const selectArray = [
 	},
 
 	{
-		name: 'Multiple (objects, pre-selected, stay open on select)',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'Multiple (objects, pre-selected, stay open on select)',
 			multiple: true,
 			closeOnSelect: false,
 			options: [
@@ -187,13 +176,11 @@ parent container is limited to `350px`
 <template>
 	<div class="grid">
 		<div class="container">
-			<label :for="data1.props.inputId">{{ data1.name }}</label>
 			<NcSelect :no-wrap="false"
 				v-bind="data1.props"
 				v-model="data1.props.value" />
 		</div>
 		<div class="container">
-			<label :for="data2.props.inputId">{{ data2.name }}</label>
 			<NcSelect :no-wrap="true"
 				v-bind="data2.props"
 				v-model="data2.props.value" />
@@ -202,16 +189,9 @@ parent container is limited to `350px`
 </template>
 
 <script>
-import GenRandomId from '../../utils/GenRandomId.js'
-
-const getRandomId = () => {
-	return `select-${GenRandomId()}`
-}
-
 const data1 = {
-	name: 'Wrapped (Default)',
 	props: {
-		inputId: getRandomId(),
+		inputLabel: 'Wrapped (Default)',
 		multiple: true,
 		closeOnSelect: false,
 		options: [
@@ -242,9 +222,8 @@ const data1 = {
 }
 
 const data2 = {
-	name: 'Not wrapped',
 	props: {
-		inputId: getRandomId(),
+		inputLabel: 'Not wrapped',
 		multiple: true,
 		closeOnSelect: false,
 		options: [
@@ -305,9 +284,8 @@ export default {
 ```vue
 <template>
 	<div class="grid">
-		<div v-for="{ name, props } in selectArray"
+		<div v-for="{ props } in selectArray"
 			class="container">
-			<label :for="props.inputId">{{ name }}</label>
 			<NcSelect v-bind="props"
 				v-model="props.value" />
 		</div>
@@ -318,17 +296,10 @@ export default {
 import AccountGroup from '@mdi/svg/svg/account-group.svg?raw'
 import Email from '@mdi/svg/svg/email.svg?raw'
 
-import GenRandomId from '../../utils/GenRandomId.js'
-
-const getRandomId = () => {
-	return `select-${GenRandomId()}`
-}
-
 const selectArray = [
 	{
-		name: 'User select',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'User select',
 			userSelect: true,
 			options: [
 				{
@@ -394,9 +365,8 @@ const selectArray = [
 	},
 
 	{
-		name: 'Multiple user select (stay open on select)',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'Multiple user select (stay open on select)',
 			userSelect: true,
 			multiple: true,
 			closeOnSelect: false,
