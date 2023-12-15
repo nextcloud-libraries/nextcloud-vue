@@ -20,7 +20,7 @@
     "l10n:extract": "node build/extract-l10n.js",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix",
-    "test": "TZ=UTC jest --verbose",
+    "test": "TZ=UTC jest --verbose --color",
     "test:coverage": "TZ=UTC jest --verbose --coverage --no-cache",
     "stylelint": "stylelint src/**/*.vue src/**/*.scss src/**/*.css",
     "stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix",
