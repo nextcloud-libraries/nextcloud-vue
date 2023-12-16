@@ -19,7 +19,6 @@ jobs:
       matrix:
         # run x copies of the current job in parallel
         containers: [1, 2]
-        node-version: [16]
 
     name: Runner ${{ matrix.containers }}
 
@@ -30,8 +29,8 @@ jobs:
         uses: skjnldsv/read-package-engines-version-actions@v2
         id: versions
         with:
-          fallbackNode: '^14'
-          fallbackNpm: '^7'
+          fallbackNode: '^20'
+          fallbackNpm: '^9'
 
       - name: Set up node ${{ steps.versions.outputs.nodeVersion }}
         uses: actions/setup-node@v4
@@ -65,5 +64,5 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: snapshots
+          name: snapshots-${{ matrix.containers }}
           path: cypress/snapshots
