@@ -33,6 +33,7 @@ Try mentioning user @Test01 or inserting emoji :smile
 <template>
 	<div>
 		<NcRichContenteditable
+			label="Write a comment"
 			:value.sync="message"
 			:auto-complete="autoComplete"
 			:maxlength="100"
@@ -212,28 +213,40 @@ export default {
 </docs>
 
 <template>
-	<div ref="contenteditable"
-		v-tooltip="tooltipString"
-		:class="{
-			'rich-contenteditable__input--empty': isEmptyValue,
-			'rich-contenteditable__input--multiline': multiline,
-			'rich-contenteditable__input--overflow': isOverMaxlength,
-			'rich-contenteditable__input--disabled': disabled,
-		}"
-		:contenteditable="canEdit"
-		:aria-placeholder="placeholder"
-		aria-multiline="true"
-		class="rich-contenteditable__input"
-		role="textbox"
-		v-on="listeners"
-		@input="onInput"
-		@compositionstart="isComposing = true"
-		@compositionend="isComposing = false"
-		@keydown.delete="onDelete"
-		@keydown.enter.exact="onEnter"
-		@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
-		@paste="onPaste"
-		@keyup.stop.prevent.capture="onKeyUp" />
+	<div class="rich-contenteditable">
+		<div :id="id"
+			ref="contenteditable"
+			v-tooltip="tooltipString"
+			:class="{
+				'rich-contenteditable__input--empty': isEmptyValue,
+				'rich-contenteditable__input--multiline': multiline,
+				'rich-contenteditable__input--has-label': label,
+				'rich-contenteditable__input--overflow': isOverMaxlength,
+				'rich-contenteditable__input--disabled': disabled,
+			}"
+			:contenteditable="canEdit"
+			:aria-labelledby="label ? labelId : undefined"
+			:aria-placeholder="placeholder"
+			aria-multiline="true"
+			class="rich-contenteditable__input"
+			role="textbox"
+			v-bind="$attrs"
+			v-on="listeners"
+			@focus="moveCursorToEnd"
+			@input="onInput"
+			@compositionstart="isComposing = true"
+			@compositionend="isComposing = false"
+			@keydown.delete="onDelete"
+			@keydown.enter.exact="onEnter"
+			@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
+			@paste="onPaste"
+			@keyup.stop.prevent.capture="onKeyUp" />
+		<div v-if="label"
+			:id="labelId"
+			class="rich-contenteditable__label">
+			{{ label }}
+		</div>
+	</div>
 </template>
 
 <script>
@@ -247,6 +260,7 @@ import { searchProvider, getLinkWithPicker } from '../NcRichText/index.js'
 import Tribute from 'tributejs/dist/tribute.esm.js'
 import debounce from 'debounce'
 import stringLength from 'string-length'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 export default {
 	name: 'NcRichContenteditable',
@@ -257,7 +271,25 @@ export default {
 
 	mixins: [richEditor],
 
+	inheritAttrs: false,
+
 	props: {
+		/**
+		 * The ID attribute of the content editable
+		 */
+		id: {
+			type: String,
+			default: () => GenRandomId(7),
+		},
+
+		/**
+		 * Visual label of the contenteditable
+		 */
+		label: {
+			type: String,
+			default: '',
+		},
+
 		value: {
 			type: String,
 			default: '',
@@ -341,6 +373,7 @@ export default {
 
 	data() {
 		return {
+			labelId: `rich-label-${GenRandomId(5)}`,
 			textSmiles: [],
 			tribute: null,
 			autocompleteOptions: {
@@ -445,8 +478,7 @@ export default {
 		 * @return {boolean}
 		 */
 		isEmptyValue() {
-			return !this.localValue
-				|| (this.localValue && this.localValue.trim() === '')
+			return !this.localValue || this.localValue.trim() === ''
 		},
 
 		/**
@@ -540,16 +572,16 @@ export default {
 		})
 
 		this.autocompleteTribute = new Tribute(this.autocompleteOptions)
-		this.autocompleteTribute.attach(this.$el)
+		this.autocompleteTribute.attach(this.$refs.contenteditable)
 
 		if (this.emojiAutocomplete) {
 			this.emojiTribute = new Tribute(this.emojiOptions)
-			this.emojiTribute.attach(this.$el)
+			this.emojiTribute.attach(this.$refs.contenteditable)
 		}
 
 		if (this.linkAutocomplete) {
 			this.linkTribute = new Tribute(this.linkOptions)
-			this.linkTribute.attach(this.$el)
+			this.linkTribute.attach(this.$refs.contenteditable)
 		}
 
 		// Update default value
@@ -561,13 +593,13 @@ export default {
 	},
 	beforeDestroy() {
 		if (this.autocompleteTribute) {
-			this.autocompleteTribute.detach(this.$el)
+			this.autocompleteTribute.detach(this.$refs.contenteditable)
 		}
 		if (this.emojiTribute) {
-			this.emojiTribute.detach(this.$el)
+			this.emojiTribute.detach(this.$refs.contenteditable)
 		}
 		if (this.linkTribute) {
-			this.linkTribute.detach(this.$el)
+			this.linkTribute.detach(this.$refs.contenteditable)
 		}
 	},
 
@@ -614,6 +646,17 @@ export default {
 			const range = document.createRange()
 			range.setEndAfter(element)
 			range.collapse()
+			const selection = window.getSelection()
+			selection.removeAllRanges()
+			selection.addRange(range)
+		},
+		moveCursorToEnd() {
+			if (!document.createRange) {
+				return
+			}
+			const range = document.createRange()
+			range.selectNodeContents(this.$refs.contenteditable)
+			range.collapse(false)
 			const selection = window.getSelection()
 			selection.removeAllRanges()
 			selection.addRange(range)
@@ -803,52 +846,93 @@ export default {
 
 <style lang="scss" scoped>
 // Standalone styling, independent from server
-.rich-contenteditable__input {
-	overflow-y: auto;
+.rich-contenteditable {
+	position: relative;
 	width: auto;
-	margin: 0;
-	padding: 8px;
-	cursor: text;
-	white-space: pre-wrap;
-	word-break: break-word;
-	color: var(--color-main-text);
-	border: 2px solid var(--color-border-dark);
-	border-radius: var(--border-radius-large);
-	outline: none;
-	background-color: var(--color-main-background);
-	font-family: var(--font-face);
-	font-size: inherit;
-	min-height: $clickable-area;
-	max-height: $clickable-area * 5.5;
 
-	// Cannot use :empty because of firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=1513303
-	&--empty:before {
-		content: attr(aria-placeholder);
-		color: var(--color-text-maxcontrast);
+	&__label {
 		position: absolute;
-	}
-
-	&[contenteditable='false']:not(&--disabled) {
-		cursor: default;
-		background-color: transparent;
-		color: var(--color-main-text);
-		border-color: transparent;
-		opacity: 1;
-		border-radius: 0;
-	}
-
-	&--multiline {
-		min-height: $clickable-area * 3;
-		// No max for mutiline
-		max-height: none;
-	}
-
-	&--disabled {
-		opacity: $opacity_disabled;
+		margin-inline: 14px 0;
+		max-width: fit-content;
+		inset-block-start: 11px;
+		inset-inline: 0;
+		// Fix color so that users do not think the input already has content
 		color: var(--color-text-maxcontrast);
-		border: 2px solid var(--color-background-darker);
-		border-radius: var(--border-radius);
-		background-color: var(--color-background-dark);
+		// only one line labels are allowed
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		// forward events to input
+		pointer-events: none;
+		// Position transition
+		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick), background-color var(--animation-quick) var(--animation-slow);
+	}
+
+	&__input:focus + &__label,
+	&__input:not(&__input--empty) + &__label {
+		inset-block-start: -10px;
+		font-size: 13px; // minimum allowed font size for accessibility
+		font-weight: 500;
+		border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0;
+		background-color: var(--color-main-background);
+		padding-inline: 5px;
+		margin-inline-start: 9px;
+
+		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick);
+	}
+
+	&__input {
+		overflow-y: auto;
+		width: auto;
+		margin: 0;
+		padding: 8px;
+		cursor: text;
+		white-space: pre-wrap;
+		word-break: break-word;
+		color: var(--color-main-text);
+		border: 2px solid var(--color-border-dark);
+		border-radius: var(--border-radius-large);
+		outline: none;
+		background-color: var(--color-main-background);
+		font-family: var(--font-face);
+		font-size: inherit;
+		min-height: $clickable-area;
+		max-height: $clickable-area * 5.5;
+
+		&--has-label {
+			margin-top: 10px;
+		}
+
+		// Cannot use :empty because of firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=1513303
+		&--empty:focus:before,
+		&--empty:not(&--has-label):before {
+			content: attr(aria-placeholder);
+			color: var(--color-text-maxcontrast);
+			position: absolute;
+		}
+
+		&[contenteditable='false']:not(&--disabled) {
+			cursor: default;
+			background-color: transparent;
+			color: var(--color-main-text);
+			border-color: transparent;
+			opacity: 1;
+			border-radius: 0;
+		}
+
+		&--multiline {
+			min-height: $clickable-area * 3;
+			// No max for mutiline
+			max-height: none;
+		}
+
+		&--disabled {
+			opacity: $opacity_disabled;
+			color: var(--color-text-maxcontrast);
+			border: 2px solid var(--color-background-darker);
+			border-radius: var(--border-radius);
+			background-color: var(--color-background-dark);
+		}
 	}
 }
 

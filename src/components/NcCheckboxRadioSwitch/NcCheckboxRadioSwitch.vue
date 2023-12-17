@@ -260,6 +260,7 @@ export default {
 <template>
 	<component :is="computedWrapperElement"
 		:id="wrapperId"
+		:aria-label="isButtonType && ariaLabel ? ariaLabel : undefined"
 		:class="{
 			['checkbox-radio-switch-' + type]: type,
 			'checkbox-radio-switch--checked': isChecked,
@@ -276,6 +277,7 @@ export default {
 		v-on="isButtonType ? listeners : {}">
 		<input v-if="!isButtonType"
 			:id="id"
+			:aria-label="ariaLabel || undefined"
 			class="checkbox-radio-switch__input"
 			:disabled="disabled"
 			:type="inputType"
@@ -342,6 +344,15 @@ export default {
 		name: {
 			type: String,
 			default: null,
+		},
+
+		/**
+		 * Required if no text is set.
+		 * The aria-label is forwarded to the input or button.
+		 */
+		ariaLabel: {
+			type: String,
+			default: '',
 		},
 
 		/**
@@ -609,6 +620,7 @@ export default {
 	font-size: var(--default-font-size);
 	line-height: var(--default-line-height);
 	padding: 0;
+	position: relative;
 
 	&__input {
 		position: absolute;

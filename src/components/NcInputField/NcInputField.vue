@@ -51,6 +51,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 						'input-field__input--label-outside': labelOutside,
 						'input-field__input--success': success,
 						'input-field__input--error': error,
+						'input-field__input--pill': pill,
 					}]"
 				:value="modelValue"
 				@input="handleInput">
@@ -75,6 +76,9 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 			<NcButton v-if="showTrailingButton"
 				type="tertiary-no-background"
 				class="input-field__trailing-button"
+				:class="[{
+					'input-field__trailing-button--pill': pill,
+				}]"
 				:aria-label="trailingButtonLabel"
 				:disabled="disabled"
 				@click="handleTrailingButtonClick">
@@ -236,6 +240,16 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Specifies whether the input should have a pill form.
+		 * By default, input has rounded corners.
+		 */
+		pill: {
+			type: Boolean,
+			default: false,
+		},
+
 		/**
 		 * Class to add to the root component.
 		 */
@@ -420,6 +434,10 @@ export default {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 			}
 		}
+
+		&--pill {
+			border-radius: var(--border-radius-pill);
+		}
 	}
 
 	&__label {
@@ -484,11 +502,17 @@ export default {
 		}
 	}
 
-	&__trailing-button.button-vue {
-		position: absolute;
-		top: 0;
-		right: 0;
-		border-radius: var(--border-radius-large);
+	&__trailing-button {
+		&.button-vue {
+			position: absolute;
+			top: 0;
+			right: 0;
+			border-radius: var(--border-radius-large);
+		}
+
+		&--pill.button-vue {
+			border-radius: var(--border-radius-pill);
+		}
 	}
 
 	&__helper-text-message {

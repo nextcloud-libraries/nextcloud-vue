@@ -45,15 +45,15 @@ export default {
 			lastResponse: 'None',
 			buttons: [
 				{
+					label: 'Cancel',
+					icon: IconCancel,
+					callback: () => { this.lastResponse = 'Pressed "Cancel"' },
+				},
+				{
 					label: 'Ok',
 					type: 'primary',
 					icon: IconCheck,
 					callback: () => { this.lastResponse = 'Pressed "Ok"' },
-				},
-				{
-					label: 'Cancel',
-					icon: IconCancel,
-					callback: () => { this.lastResponse = 'Pressed "Cancel"' },
 				}
 			]
 		}
@@ -96,17 +96,22 @@ export default {
 		@close="handleClosed"
 		@update:show="handleClosing">
 		<!-- The dialog name / header -->
-		<h2 class="dialog__name" v-text="name" />
+		<h2 :id="navigationId" class="dialog__name" v-text="name" />
 		<div class="dialog" :class="dialogClasses">
 			<div ref="wrapper" :class="['dialog__wrapper', { 'dialog__wrapper--collapsed': isNavigationCollapsed }]">
 				<!-- When the navigation is collapsed (too small dialog) it is displayed above the main content, otherwise on the inline start -->
-				<nav v-if="hasNavigation" class="dialog__navigation" :class="navigationClasses">
+				<nav v-if="hasNavigation"
+					class="dialog__navigation"
+					:class="navigationClasses"
+					:aria-labelledby="navigationId">
 					<slot name="navigation" :is-collapsed="isNavigationCollapsed" />
 				</nav>
 				<!-- Main dialog content -->
 				<div class="dialog__content" :class="contentClasses">
 					<slot>
-						<p>{{ message }}</p>
+						<p class="dialog__text">
+							{{ message }}
+						</p>
 					</slot>
 				</div>
 			</div>
@@ -129,6 +134,8 @@ import { computed, defineComponent, ref } from 'vue'
 
 import NcModal from '../NcModal/index.js'
 import NcDialogButton from '../NcDialogButton/index.js'
+
+import GenRandomId from '../../utils/GenRandomId.js'
 
 export default defineComponent({
 	name: 'NcDialog',
@@ -180,7 +187,7 @@ export default defineComponent({
 		/**
 		 * Size of the underlying NcModal
 		 * @default 'small'
-		 * @values 'small', 'normal', 'large', 'full'
+		 * @type {'small'|'normal'|'large'|'full'}
 		 */
 		size: {
 			type: String,
@@ -286,6 +293,11 @@ export default defineComponent({
 		const hasNavigation = computed(() => slots?.navigation !== undefined)
 
 		/**
+		 * The unique id of the nav element
+		 */
+		const navigationId = ref(GenRandomId())
+
+		/**
 		 * If the underlaying modal is shown
 		 */
 		const showModal = ref(true)
@@ -343,6 +355,7 @@ export default defineComponent({
 			handleClosing,
 			handleClosed,
 			hasNavigation,
+			navigationId,
 			isNavigationCollapsed,
 			modalProps,
 			wrapper,
@@ -353,7 +366,7 @@ export default defineComponent({
 
 <style lang="scss">
 /** When having the small dialog style we override the modal styling so dialogs look more dialog like */
-@media only screen and (max-width: math.div($breakpoint-mobile, 2)) {
+@media only screen and (max-width: $breakpoint-small-mobile) {
 	.dialog__modal .modal-wrapper--small .modal-container {
 		width: fit-content;
 		height: unset;
@@ -375,7 +388,7 @@ export default defineComponent({
 	overflow: hidden;
 
 	&__modal {
-		:deep(.modal-container) {
+		:deep(.modal-wrapper .modal-container) {
 			display: flex !important;
 			padding-block: 4px 8px; // 4px to align with close button, 8px block-end to allow the actions a margin of 4px for the focus visible outline
 			padding-inline: 12px 8px; // Same as with padding-block, we need the actions to have a margin of 4px for the button outline
@@ -440,6 +453,12 @@ export default defineComponent({
 		flex: 1;
 		min-height: 0;
 		overflow: auto;
+	}
+
+	// In case only text content is show
+	&__text {
+		// Also add padding to the bottom to make it more readable
+		padding-block-end: 6px;
 	}
 
 	&__actions {

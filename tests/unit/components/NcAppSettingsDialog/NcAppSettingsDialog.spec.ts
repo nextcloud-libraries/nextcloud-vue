@@ -21,9 +21,10 @@
  */
 
 import { mount } from '@vue/test-utils'
-import { describe, expect, it, vi } from 'vitest'
+import { beforeAll, describe, expect, it, vi } from 'vitest'
 import NcAppSettingsDialog from '../../../../src/components/NcAppSettingsDialog/NcAppSettingsDialog.vue'
 import { defineComponent, h, inject, nextTick, onMounted } from 'vue'
+import { resizeWindowWidth } from '../../testing-utils'
 
 /**
  * Mocked AppSettingsSection that just registers it self
@@ -38,6 +39,10 @@ const MockSection = defineComponent({
 })
 
 describe('NcAppSettingsDialog: Sections registration', () => {
+	beforeAll(async () => {
+		await resizeWindowWidth(1024)
+	})
+
 	it('injects register function to children', async () => {
 		const wrapper = mount(NcAppSettingsDialog, {
 			slots: {
@@ -45,6 +50,7 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 			},
 			props: {
 				open: true,
+				showNavigation: true,
 			},
 		})
 
@@ -59,6 +65,7 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 		const wrapper = mount<Vue & { registerSection: any }>(NcAppSettingsDialog, {
 			props: {
 				open: true,
+				showNavigation: true,
 			},
 		})
 
@@ -73,6 +80,7 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 		const wrapper = mount<Vue & { registerSection: any }>(NcAppSettingsDialog, {
 			props: {
 				open: true,
+				showNavigation: true,
 			},
 		})
 
@@ -97,6 +105,7 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 		const wrapper = mount<Vue & { registerSection: any }>(NcAppSettingsDialog, {
 			props: {
 				open: true,
+				showNavigation: true,
 			},
 		})
 
@@ -116,6 +125,7 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 		const wrapper = mount<Vue & { registerSection: any, unregisterSection: any }>(NcAppSettingsDialog, {
 			props: {
 				open: true,
+				showNavigation: true,
 			},
 		})
 

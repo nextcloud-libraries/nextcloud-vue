@@ -1,13 +1,8 @@
 import { isRef, nextTick } from 'vue'
 import { mount } from '@vue/test-utils'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { useIsMobile } from '../../../src/composables/useIsMobile/index.js'
-
-const resizeWindowWidth = async (width) => {
-	vi.spyOn(document.documentElement, 'clientWidth', 'get').mockReturnValue(width)
-	window.dispatchEvent(new window.Event('resize'))
-	await nextTick()
-}
+import { resizeWindowWidth } from '../testing-utils.ts'
 
 describe('useIsMobile', () => {
 	it('should return ref', () => {

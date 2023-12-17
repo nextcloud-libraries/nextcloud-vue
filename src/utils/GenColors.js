@@ -21,10 +21,6 @@
  *
  */
 
-/**
- * Originally taken from https://github.com/nextcloud/server/blob/master/core/js/placeholder.js
- */
-
 import { t } from '../l10n.js'
 
 class Color {
@@ -83,6 +79,57 @@ function mixPalette(steps, color1, color2) {
 }
 
 /**
+ * Like GenColor(4) but with labels
+ */
+export const defaultPalette = [
+	new Color(182, 70, 157, t('Purple')),
+	new Color(
+		191, 103, 139,
+		t('Rosy brown'), // TRANSLATORS: A color name for RGB(191, 103, 139)
+	),
+	new Color(
+		201, 136, 121,
+		t('Feldspar'), // TRANSLATORS: A color name for RGB(201, 136, 121)
+	),
+	new Color(
+		211, 169, 103,
+		t('Whiskey'), // TRANSLATORS: A color name for RGB(211, 169, 103)
+	),
+	new Color(
+		221, 203, 85,
+		t('Gold'),
+	),
+	new Color(
+		165, 184, 114,
+		t('Olivine'), // TRANSLATORS: A color name for RGB(165, 184, 114)
+	),
+	new Color(
+		110, 166, 143,
+		t('Acapulco'), // TRANSLATORS: A color name for RGB(110, 166, 143)
+	),
+	new Color(
+		55, 148, 172,
+		t('Boston Blue'), // TRANSLATORS: A color name for RGB(55, 148, 172)
+	),
+	new Color(
+		0, 130, 201,
+		t('Nextcloud blue'),
+	),
+	new Color(
+		45, 115, 190,
+		t('Mariner'), // TRANSLATORS: A color name for RGB(45, 115, 190)
+	),
+	new Color(
+		91, 100, 179,
+		t('Blue Violet'), // TRANSLATORS: A color name for RGB(91, 100, 179)
+	),
+	new Color(
+		136, 85, 168,
+		t('Deluge'), // TRANSLATORS: A color name for RGB(136, 85, 168)
+	),
+]
+
+/**
  * Generate colors from the official nextcloud color
  * You can provide how many colors you want (multiplied by 3)
  * if step = 6
@@ -91,9 +138,13 @@ function mixPalette(steps, color1, color2) {
  * @param {number} [steps] Number of steps to go from a color to another
  * @return {object[]}
  */
-function GenColors(steps) {
+export function GenColors(steps) {
 	if (!steps) {
 		steps = 6
+	}
+
+	if (steps === 4) {
+		return defaultPalette
 	}
 
 	const red = new Color(182, 70, 157, t('Purple'))
@@ -106,5 +157,3 @@ function GenColors(steps) {
 
 	return palette1.concat(palette2).concat(palette3)
 }
-
-export default GenColors

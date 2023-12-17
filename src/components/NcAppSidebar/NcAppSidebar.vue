@@ -352,7 +352,10 @@ export default {
 		@after-enter="onAfterEnter"
 		@before-leave="onBeforeLeave"
 		@after-leave="onAfterLeave">
-		<aside id="app-sidebar-vue" class="app-sidebar">
+		<aside id="app-sidebar-vue"
+			ref="sidebar"
+			class="app-sidebar"
+			@keydown.esc.stop="isMobile && closeSidebar()">
 			<header :class="{
 					'app-sidebar-header--with-figure': isSlotPopulated($slots.header?.()) || background,
 					'app-sidebar-header--compact': compact,
@@ -454,7 +457,8 @@ export default {
 					</div>
 				</div>
 
-				<NcButton :title="closeTranslated"
+				<NcButton ref="closeButton"
+					:title="closeTranslated"
 					:aria-label="closeTranslated"
 					type="tertiary"
 					class="app-sidebar__close"
@@ -494,6 +498,8 @@ import NcEmptyContent from '../NcEmptyContent/index.js'
 import Focus from '../../directives/Focus/index.js'
 import Linkify from '../../directives/Linkify/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
+import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
+import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
 import isSlotPopulated from '../../utils/isSlotPopulated.js'
 
@@ -503,6 +509,7 @@ import Star from 'vue-material-design-icons/Star.vue'
 import StarOutline from 'vue-material-design-icons/StarOutline.vue'
 
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
+import { createFocusTrap } from 'focus-trap'
 
 export default {
 	name: 'NcAppSidebar',
@@ -649,12 +656,19 @@ export default {
 		'dismiss-editing',
 	],
 
+	setup() {
+		return {
+			isMobile: useIsSmallMobile(),
+		}
+	},
+
 	data() {
 		return {
 			changeNameTranslated: t('Change name'),
 			closeTranslated: t('Close sidebar'),
 			favoriteTranslated: t('Favorite'),
 			isStarred: this.starred,
+			focusTrap: null,
 		}
 	},
 
@@ -671,15 +685,57 @@ export default {
 		starred() {
 			this.isStarred = this.starred
 		},
+
+		isMobile() {
+			this.toggleFocusTrap()
+		},
+	},
+
+	mounted() {
+		this.toggleFocusTrap()
 	},
 
 	beforeUnmount() {
 		// Make sure that the 'closed' event is dispatched even if this element is destroyed before the 'after-leave' event is received.
 		this.$emit('closed')
+		this.focusTrap?.deactivate()
 	},
 
 	methods: {
 		isSlotPopulated,
+
+		initFocusTrap() {
+			if (this.focusTrap) {
+				return
+			}
+
+			this.focusTrap = createFocusTrap([
+				// The sidebar itself
+				this.$refs.sidebar,
+				// Nextcloud Server header navigarion
+				document.querySelector('#header'),
+				// The app navigation toggle. Navigation can be opened above the sidebar
+				// Take the parent element, because the focus-trap requires a container with elements, not the element itself
+				document.querySelector('[aria-controls="app-navigation-vue"]')?.parentElement,
+			], {
+				allowOutsideClick: true,
+				fallbackFocus: this.$refs.closeButton,
+				trapStack: getTrapStack(),
+				escapeDeactivates: false,
+			})
+		},
+
+		/**
+		 * Activate focus trap if it is currently needed, otherwise deactivate
+		 */
+		 toggleFocusTrap() {
+			if (this.isMobile) {
+				this.initFocusTrap()
+				this.focusTrap.activate()
+			} else {
+				this.focusTrap?.deactivate()
+			}
+		},
 
 		onBeforeEnter(element) {
 			/**
@@ -1076,7 +1132,7 @@ $top-buttons-spacing: 6px;
 }
 
 // Make the sidebar full-width on small screens
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: $breakpoint-small-mobile) {
 	.app-sidebar {
 		width: 100vw;
 		max-width: 100vw;

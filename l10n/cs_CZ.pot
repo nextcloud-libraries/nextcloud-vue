@@ -46,6 +46,7 @@ msgstr "Zástupný obrázek uživatele {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Zástupný obrázek uživatele {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
 msgstr "pryč"
 
@@ -139,6 +140,9 @@ msgstr "Zlatá"
 
 msgid "Hide password"
 msgstr "Skrýt heslo"
+
+msgid "invisble"
+msgstr "neviditelné"
 
 msgid "Load more \"{options}\""
 msgstr "Načíst další „{options}“"

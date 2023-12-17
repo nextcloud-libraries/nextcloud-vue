@@ -6,6 +6,30 @@ All notable changes to this project will be documented in this file.
 
 All notable changes to this project will be documented in this file.
 
+## [v8.3.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.3.0) (2023-11-30)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.3.0...v8.2.0)
+
+### 🚀 Enhancements
+* feat(NcInputField): add optional pill form appearance to the component [\#4876](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4876) \([Antreesy](https://github.com/Antreesy)\)
+
+### 🐛 Fixed bugs
+* fix(NcCheckboxContent): Make sure text can wrap [\#4862](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4862) \([susnux](https://github.com/susnux)\)
+* fix(NcAppNavigation): make toggle button not the first element for focus-trap [\#4864](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4864) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcAppNavigation): closed on mobile initially [\#4869](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4869) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcAppSettingsDialog): Remove navigation instead of hiding and fix styles [\#4865](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4865) \([susnux](https://github.com/susnux)\)
+* Remove server styles from action menu [\#4875](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4875) \([marcoambrosini](https://github.com/marcoambrosini)\)
+* fix(NcCheckboxRadioSwitch): visually hidden input position [\#4882](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4882) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcDialog): Add slighly more padding on the bottom and fix example button order [\#4881](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4881) \([susnux](https://github.com/susnux)\)
+* docs(NcAppNavigation): Add docs for slots and remove private components from styleguide [\#4883](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4883) \([susnux](https://github.com/susnux)\)
+* fix(NcAppNavigationCaption): Make color `main-text` for accessibility [\#4885](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4885) \([susnux](https://github.com/susnux)\)
+* fix(NcColorPicker): correct aria-label [\#4889](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4889) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcActions): typo in aria-haspopup [\#4887](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4887) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcAppNavigation): replace custom `v-tooltip` with native `title` [\#4888](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4888) \([ShGKme](https://github.com/ShGKme)\)
+
+### Other Changes
+* chore(lint): use valid JSDoc for literal type union [\#4886](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4886) \([ShGKme](https://github.com/ShGKme)\)
+* Update translations
+
 ## [v8.2.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.2.0) (2023-11-17)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.2.0...v8.1.0)
 

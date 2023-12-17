@@ -171,6 +171,14 @@ export default {
 			type: String,
 			default: 'icon-home',
 		},
+
+		/**
+		 * Set the aria-label of the nav element.
+		 */
+		ariaLabel: {
+			type: String,
+			default: null,
+		},
 	},
 	emits: ['dropped'],
 	data() {
@@ -601,7 +609,7 @@ export default {
 			crumbs = crumbs.concat(crumbs2)
 		}
 
-		const wrapper = [h('nav', {}, [h('ul', { class: 'breadcrumb__crumbs' }, [crumbs])])]
+		const wrapper = [h('nav', { 'aria-label': this.ariaLabel }, [h('ul', { class: 'breadcrumb__crumbs' }, [crumbs])])]
 		// Append the actions slot if it is populated
 		if (isSlotPopulated(this.$slots.actions?.())) {
 			wrapper.push(h('div', { class: 'breadcrumb__actions', ref: 'breadcrumb__actions' }, this.$slots.actions?.()))
