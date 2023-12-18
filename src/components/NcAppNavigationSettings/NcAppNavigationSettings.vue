@@ -29,6 +29,7 @@
 				type="button"
 				:aria-expanded="open ? 'true' : 'false'"
 				aria-controls="app-settings__content"
+				:aria-label="inputAriaLabel"
 				@click="toggleMenu">
 				<Cog class="settings-button__icon" :size="20" />
 				<span class="settings-button__label">{{ name }}</span>
@@ -66,6 +67,11 @@ export default {
 			required: false,
 			default: t('Settings'),
 		},
+		inputAriaLabel: {
+			type: String,
+			required: false,
+			default: t('Open settings menu'),
+		}
 	},
 	data() {
 		return {
