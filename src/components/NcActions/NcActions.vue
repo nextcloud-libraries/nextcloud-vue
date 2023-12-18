@@ -606,7 +606,7 @@ export default {
 					</template>
 					Mark as spam
 				</NcActionButton>
-				<NcActionCheckbox :checked.sync="selected">
+				<NcActionCheckbox v-model:checked="selected">
 					Select
 				</NcActionCheckbox>
 				<NcActionButton>
@@ -649,29 +649,29 @@ export default {
 					</NcActionButton>
 				</NcActionButtonGroup>
 				<NcActionSeparator />
-				<NcActionCheckbox :checked.sync="checked.bold" value="bold">
+				<NcActionCheckbox v-model:checked="checked.bold" value="bold">
 					<template #icon>
 						<FormatBold :size="20" />
 					</template>
 					Bold
 				</NcActionCheckbox>
-				<NcActionCheckbox :checked.sync="checked.italic" value="italic">
+				<NcActionCheckbox v-model:checked="checked.italic" value="italic">
 					<template #icon>
 						<FormatItalic :size="20" />
 					</template>
 					Italic
 				</NcActionCheckbox>
-				<NcActionCheckbox :checked.sync="checked.underline" value="underline">
+				<NcActionCheckbox v-model:checked="checked.underline" value="underline">
 					<template #icon>
 						<FormatUnderline :size="20" />
 					</template>
 					Underline
 				</NcActionCheckbox>
 				<NcActionSeparator />
-				<NcActionRadio name="color" :checked.sync="color.black" value="Black">Black</NcActionRadio>
-				<NcActionRadio name="color" :checked.sync="color.blue" value="Blue">Blue</NcActionRadio>
-				<NcActionRadio name="color" :checked.sync="color.red" value="Red">Red</NcActionRadio>
-				<NcActionRadio name="color" :checked.sync="color.green" value="Green">Green</NcActionRadio>
+				<NcActionRadio name="color" v-model:checked="color.black" value="Black">Black</NcActionRadio>
+				<NcActionRadio name="color" v-model:checked="color.blue" value="Blue">Blue</NcActionRadio>
+				<NcActionRadio name="color" v-model:checked="color.red" value="Red">Red</NcActionRadio>
+				<NcActionRadio name="color" v-model:checked="color.green" value="Green">Green</NcActionRadio>
 			</NcActions>
 		</p>
 
