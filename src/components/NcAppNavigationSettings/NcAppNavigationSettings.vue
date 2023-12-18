@@ -29,17 +29,16 @@
 				type="button"
 				:aria-expanded="open ? 'true' : 'false'"
 				aria-controls="app-settings__content"
-				:aria-label="ariaLabel"
 				@click="toggleMenu">
 				<Cog class="settings-button__icon" :size="20" />
 				<span class="settings-button__label">{{ name }}</span>
 			</button>
 		</div>
-		<transition name="slide-up">
+		<Transition name="slide-up">
 			<div v-show="open" id="app-settings__content">
 				<slot />
 			</div>
-		</transition>
+		</Transition>
 	</div>
 </template>
 
@@ -79,9 +78,6 @@ export default {
 				this.closeMenu,
 				this.clickOutsideOptions,
 			]
-		},
-		ariaLabel() {
-			return t('Open settings menu')
 		},
 	},
 	methods: {

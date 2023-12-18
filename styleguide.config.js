@@ -141,6 +141,10 @@ module.exports = async () => {
 								components: [
 									'src/components/NcAppNavigation*/*.vue',
 								],
+								ignore: [
+									'src/components/NcAppNavigationItem/NcAppNavigationIconCollapsible.vue',
+									'src/components/NcAppNavigationItem/NcInputConfirmCancel.vue',
+								],
 							},
 							{
 								name: 'NcAppContent',

@@ -19,7 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import GenColors from '../../utils/GenColors.js'
+import { GenColors } from '../../utils/GenColors.js'
 
 import md5 from 'md5'
 

@@ -25,12 +25,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { emit } from '@nextcloud/event-bus'
 import { nextTick } from 'vue'
 import NcAppNavigation from '../../../../src/components/NcAppNavigation/NcAppNavigation.vue'
-
-const resizeWindowWidth = async (width) => {
-	vi.spyOn(document.documentElement, 'clientWidth', 'get').mockReturnValue(width)
-	window.dispatchEvent(new window.Event('resize'))
-	await nextTick()
-}
+import { resizeWindowWidth } from '../../testing-utils.ts'
 
 const NAVIGATION__SELECTOR = 'nav'
 const TOGGLE_BUTTON__SELECTOR = 'button[aria-controls="app-navigation-vue"]'

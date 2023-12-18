@@ -167,11 +167,11 @@ export default {
 						:key="index"
 						:style="{ backgroundColor: color }"
 						class="color-picker__simple-color-circle"
-						:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }"
-						:aria-label="name">
-						<Check v-if="color === currentColor" :size="20" />
+						:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }">
+						<Check v-if="color === currentColor" :size="20" :fill-color="contrastColor" />
 						<input type="radio"
 							class="hidden-visually"
+							:aria-label="name"
 							:name="`color-picker-${uid}`"
 							:checked="color === currentColor"
 							@click="pickColor(color)">
@@ -215,7 +215,8 @@ export default {
 import NcButton from '../NcButton/index.js'
 import NcPopover from '../NcPopover/index.js'
 import { t } from '../../l10n.js'
-import GenColors from '../../utils/GenColors.js'
+import { defaultPalette } from '../../utils/GenColors.js'
+
 import GenRandomId from '../../utils/GenRandomId.js'
 
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
@@ -280,7 +281,7 @@ export default defineComponent({
 		 */
 		palette: {
 			type: Array,
-			default: () => GenColors(4).map(item => ({ color: rgbToHex(item), name: item.name })),
+			default: () => defaultPalette.map(item => ({ color: rgbToHex(item), name: item.name })),
 			validator: (palette) => palette.every(item =>
 				(typeof item === 'string' && HEX_REGEX.test(item))
 				|| (typeof item === 'object' && item.color && HEX_REGEX.test(item.color)),
@@ -317,6 +318,11 @@ export default defineComponent({
 
 		uid() {
 			return GenRandomId()
+		},
+		contrastColor() {
+			const black = '#000000'
+			const white = '#FFFFFF'
+			return (this.calculateLuma(this.currentColor) > 0.5) ? black : white
 		},
 	},
 
@@ -380,6 +386,28 @@ export default defineComponent({
 			 */
 			this.$emit('input', color)
 
+		},
+
+		/**
+		 * Calculate luminance of provided hex color
+		 *
+		 * @param {string} color the hex color
+		 */
+		 calculateLuma(color) {
+			const [red, green, blue] = this.hexToRGB(color)
+			return (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255
+		},
+
+		/**
+		 * Convert hex color to RGB
+		 *
+		 * @param {string} hex the hex color
+		 */
+		 hexToRGB(hex) {
+			const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+			return result
+				? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)]
+				: null
 		},
 	},
 })

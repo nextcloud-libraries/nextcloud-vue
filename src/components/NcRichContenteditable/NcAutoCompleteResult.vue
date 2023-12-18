@@ -25,11 +25,14 @@
 		<div :class="[icon, `autocomplete-result__icon--${avatarUrl ? 'with-avatar' : ''}`]"
 			:style="avatarUrl ? { backgroundImage: `url(${avatarUrl})` } : null "
 			class="autocomplete-result__icon">
-			<div v-if="haveStatus"
-				:class="[`autocomplete-result__status--${status && status.icon ? 'icon' : status.status}`]"
-				class="autocomplete-result__status">
+			<span v-if="status.icon"
+				class="autocomplete-result__status autocomplete-result__status--icon">
 				{{ status && status.icon || '' }}
-			</div>
+			</span>
+			<NcIconSvgWrapper v-else-if="status.status && status.status !== 'offline'"
+				class="autocomplete-result__status"
+				:svg="userStatusIcon"
+				:name="userStatusIconName" />
 		</div>
 
 		<!-- Title and subline -->
@@ -47,8 +50,16 @@
 <script>
 import { generateUrl } from '@nextcloud/router'
 
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
+
+import { getUserStatusIcon, getUserStatusIconName } from '../../utils/UserStatus.ts'
+
 export default {
 	name: 'NcAutoCompleteResult',
+
+	components: {
+		NcIconSvgWrapper,
+	},
 
 	props: {
 		title: {
@@ -90,8 +101,11 @@ export default {
 				? this.getAvatarUrl(this.id, 44)
 				: null
 		},
-		haveStatus() {
-			return this.status?.icon || (this.status?.status && this.status?.status !== 'offline')
+		userStatusIcon() {
+			return getUserStatusIcon(this.status.status)
+		},
+		userStatusIconName() {
+			return getUserStatusIconName(this.status.status)
 		},
 	},
 
@@ -140,10 +154,12 @@ $autocomplete-padding: 10px;
 	}
 
 	&__status {
+		box-sizing: border-box;
 		position: absolute;
 		right: -4px;
 		bottom: -4px;
-		box-sizing: border-box;
+		min-width: 18px;
+		min-height: 18px;
 		width: 18px;
 		height: 18px;
 		border: 2px solid var(--color-main-background);
@@ -155,16 +171,6 @@ $autocomplete-padding: 10px;
 		background-size: 16px;
 		background-position: center;
 
-		&--online{
-			background-image: url('../../assets/status-icons/user-status-online.svg');
-		}
-		&--dnd{
-			background-image: url('../../assets/status-icons/user-status-dnd.svg');
-			background-color: #ffffff;
-		}
-		&--away{
-			background-image: url('../../assets/status-icons/user-status-away.svg');
-		}
 		&--icon {
 			border: none;
 			background-color: transparent;

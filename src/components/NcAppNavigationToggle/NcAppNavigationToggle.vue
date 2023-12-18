@@ -22,23 +22,24 @@
  -
  -->
 <template>
-	<NcButton v-tooltip.auto="label"
-		class="app-navigation-toggle"
-		type="tertiary"
-		:aria-expanded="open ? 'true' : 'false'"
-		:aria-label="label"
-		aria-controls="app-navigation-vue"
-		@click="toggleNavigation">
-		<template #icon>
-			<MenuOpenIcon v-if="open" :size="20" />
-			<MenuIcon v-else :size="20" />
-		</template>
-	</NcButton>
+	<div class="app-navigation-toggle-wrapper">
+		<NcButton class="app-navigation-toggle"
+			type="tertiary"
+			:aria-expanded="open ? 'true' : 'false'"
+			:aria-label="label"
+			:title="label"
+			aria-controls="app-navigation-vue"
+			@click="toggleNavigation">
+			<template #icon>
+				<MenuOpenIcon v-if="open" :size="20" />
+				<MenuIcon v-else :size="20" />
+			</template>
+		</NcButton>
+	</div>
 </template>
 
 <script>
 import NcButton from '../NcButton/index.js'
-import Tooltip from '../../directives/Tooltip/index.js'
 import { t } from '../../l10n.js'
 
 import MenuIcon from 'vue-material-design-icons/Menu.vue'
@@ -46,10 +47,6 @@ import MenuOpenIcon from 'vue-material-design-icons/MenuOpen.vue'
 
 export default {
 	name: 'NcAppNavigationToggle',
-
-	directives: {
-		tooltip: Tooltip,
-	},
 
 	components: {
 		NcButton,
@@ -80,11 +77,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
-button.app-navigation-toggle {
+.app-navigation-toggle-wrapper {
 	position: absolute;
 	top: var(--app-navigation-padding);
 	right: calc(0px - var(--app-navigation-padding));
 	margin-right: - $clickable-area;
+}
+
+button.app-navigation-toggle {
 	background-color: var(--color-main-background);
 }
 </style>

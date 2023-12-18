@@ -1,17 +1,19 @@
 <docs>
 ```vue
 	<template>
-		<NcAppNavigationCaption
-			name="Your caption goes here">
-			<template #actions>
-				<NcActionButton>
-					<template #icon>
-						<Plus :size="20" />
-					</template>
-					This is an action
-				</NcActionButton>
-			</template>
-		</NcAppNavigationCaption>
+		<ul>
+			<NcAppNavigationCaption
+				name="Your caption goes here">
+				<template #actions>
+					<NcActionButton>
+						<template #icon>
+							<Plus :size="20" />
+						</template>
+						This is an action
+					</NcActionButton>
+				</template>
+			</NcAppNavigationCaption>
+		</ul>
 	</template>
 	<script>
 	import Plus from 'vue-material-design-icons/Plus'
@@ -22,43 +24,51 @@
 		},
 	}
 	</script>
+	<style scoped>
+		/* mock the appnavigation */
+		ul {
+			background-color: #cce6f4;
+		}
+	</style>
 ```
 
 ### Element with a slot for custom actions icon
 ```vue
 	<template>
-		<NcAppNavigationCaption
-			name="Your caption goes here">
-			<template #actionsTriggerIcon>
-				<Plus slot="icon" :size="20" />
-			</template>
-			<template #actions>
-				<NcActionButton>
-					<template #icon>
-						<Pencil :size="20" />
-					</template>
-					Rename
-				</NcActionButton>
-				<NcActionButton>
-					<template #icon>
-						<Delete :size="20" />
-					</template>
-					Delete
-				</NcActionButton>
-				<NcActionButton>
-					<template #icon>
-						<ArrowRight :size="20" />
-					</template>
-					Validate
-				</NcActionButton>
-				<NcActionButton>
-					<template #icon>
-						<Download :size="20" />
-					</template>
-					Download
-				</NcActionButton>
-			</template>
-		</NcAppNavigationCaption>
+		<ul>
+			<NcAppNavigationCaption
+				name="Your caption goes here">
+				<template #actionsTriggerIcon>
+					<Plus slot="icon" :size="20" />
+				</template>
+				<template #actions>
+					<NcActionButton>
+						<template #icon>
+							<Pencil :size="20" />
+						</template>
+						Rename
+					</NcActionButton>
+					<NcActionButton>
+						<template #icon>
+							<Delete :size="20" />
+						</template>
+						Delete
+					</NcActionButton>
+					<NcActionButton>
+						<template #icon>
+							<ArrowRight :size="20" />
+						</template>
+						Validate
+					</NcActionButton>
+					<NcActionButton>
+						<template #icon>
+							<Download :size="20" />
+						</template>
+						Download
+					</NcActionButton>
+				</template>
+			</NcAppNavigationCaption>
+		</ul>
 	</template>
 	<script>
 		import ArrowRight from 'vue-material-design-icons/ArrowRight'
@@ -77,6 +87,12 @@
 			}
 		}
 	</script>
+	<style scoped>
+		/* mock the appnavigation */
+		ul {
+			background-color: #cce6f4;
+		}
+	</style>
 ```
 
 </docs>
@@ -138,13 +154,12 @@ export default {
 
 	&__name {
 		font-weight: bold;
-		color: var(--color-primary-element);
+		color: var(--color-main-text);
 		font-size: var(--default-font-size);
 		line-height: $clickable-area;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		opacity: $opacity_normal;
 		box-shadow: none !important;
 		flex-shrink: 0;
 		// padding to align the name with the icon of app navigation items

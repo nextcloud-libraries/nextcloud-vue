@@ -315,7 +315,7 @@
 			<a :id="anchorId"
 				ref="list-item"
 				:href="routerLinkHref || href"
-				:target="href === '#' ? undefined : '_blank'"
+				:target="target || (href === '#' ? undefined : '_blank')"
 				:rel="href === '#' ? undefined : 'noopener noreferrer'"
 				class="list-item"
 				:aria-label="linkAriaLabel"
@@ -462,6 +462,11 @@ export default {
 			default: '#',
 		},
 
+		target: {
+			type: String,
+			default: '',
+		},
+
 		/**
 		 * Id for the `<a>` element
 		 */
@@ -577,7 +582,6 @@ export default {
 		computedActionsAriaLabel() {
 			return this.actionsAriaLabel || t('Actions for item with name "{name}"', { name: this.name })
 		},
-
 	},
 
 	watch: {
@@ -726,6 +730,7 @@ export default {
 
 // NcListItem
 .list-item {
+	box-sizing: border-box;
 	display: block;
 	position: relative;
 	flex: 0 0 auto;

@@ -1343,7 +1343,7 @@ export default {
 						disabled: this.disabled,
 						ariaHidden: this.ariaHidden,
 						ref: 'menuButton',
-						'aria-haspopup': this.isSemanticMenu ? null : 'menu',
+						'aria-haspopup': this.isSemanticMenu ? 'menu' : null,
 						'aria-label': this.menuName ? null : this.ariaLabel,
 						'aria-controls': this.opened ? this.randomId : null,
 						// Do not add aria-expanded="true" when it is closed
