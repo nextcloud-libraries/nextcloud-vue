@@ -890,7 +890,7 @@ export default {
 		white-space: pre-wrap;
 		word-break: break-word;
 		color: var(--color-main-text);
-		border: 2px solid var(--color-border-dark);
+		border: 2px solid var(--color-border-maxcontrast);
 		border-radius: var(--border-radius-large);
 		outline: none;
 		background-color: var(--color-main-background);
