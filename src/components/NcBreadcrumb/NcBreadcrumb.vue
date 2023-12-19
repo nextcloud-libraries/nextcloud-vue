@@ -42,6 +42,7 @@ This component is meant to be used inside a Breadcrumbs component.
 		<component :is="tag"
 			v-if="(name || icon) && !$slots.default"
 			:title="title"
+			:aria-label="icon ? name : undefined"
 			v-bind="linkAttributes"
 			v-on="$listeners">
 			<!-- @slot Slot for passing a material design icon. Precedes the icon and name prop. -->
