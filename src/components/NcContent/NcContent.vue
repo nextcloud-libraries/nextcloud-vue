@@ -28,6 +28,8 @@ This component provides the default container of all apps.
 It _MUST_ be used as the main wrapper of your app.
 It includes the Navigation, the App content and the Sidebar.
 
+It also will set the skip content buttons needed for accessibility.
+
 ### Standard usage
 
 ```vue
@@ -72,22 +74,84 @@ It includes the Navigation, the App content and the Sidebar.
 	<div id="content-vue"
 		:class="`app-${appName.toLowerCase()}`"
 		class="content">
+		<!-- TODO: with vue3 the `selector` attribute needs to be changed to `to="#skip-actions"` -->
+		<Teleport selector="#skip-actions">
+			<div class="skip-actions">
+				<NcButton type="primary" href="#app-content-vue">
+					{{ t('Skip to main content') }}
+				</NcButton>
+				<NcButton v-show="hasAppNavigation"
+					type="primary"
+					href="#app-navigation-vue"
+					@click.prevent="openAppNavigation">
+					{{ t('Skip to app navigation') }}
+				</NcButton>
+			</div>
+		</Teleport>
 		<slot />
 	</div>
 </template>
 
 <script>
+import { emit } from '@nextcloud/event-bus'
+import { t } from '../../l10n.js'
+
+import NcButton from '../NcButton/NcButton.vue'
+// TODO: This is built-in for vue3 just drop the import
+import { Portal as Teleport } from '@linusborg/vue-simple-portal'
+
 export default {
+	name: 'NcContent',
+	components: {
+		NcButton,
+		Teleport,
+	},
+	provide() {
+		return {
+			'NcContent:setHasAppNavigation': this.setAppNavigation,
+		}
+	},
 	props: {
 		appName: {
 			type: String,
 			required: true,
 		},
 	},
+	data() {
+		return {
+			hasAppNavigation: false,
+		}
+	},
+	beforeMount() {
+		const container = document.getElementById('skip-actions')
+		if (container) {
+			// clear default buttons
+			container.innerHTML = ''
+		}
+	},
+	methods: {
+		t,
+		openAppNavigation() {
+			emit('toggle-navigation', { open: true })
+			this.$nextTick(() => {
+				window.location.hash = 'app-navigation-vue'
+				// we need to manually focus if the window location is already set to the app-navigation then it will not focus again
+				document.getElementById('app-navigation-vue').focus()
+			})
+		},
+		setAppNavigation(value) {
+			this.hasAppNavigation = value
+		},
+	},
 }
 </script>
 
 <style lang="scss" scoped>
+.skip-actions {
+	display: flex;
+	gap: 12px;
+}
+
 .content {
 	box-sizing: border-box;
 	margin: var(--body-container-margin);

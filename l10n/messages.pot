@@ -313,6 +313,12 @@ msgstr ""
 msgid "Show password"
 msgstr ""
 
+msgid "Skip to app navigation"
+msgstr ""
+
+msgid "Skip to main content"
+msgstr ""
+
 msgid "Smart Picker"
 msgstr ""
 
