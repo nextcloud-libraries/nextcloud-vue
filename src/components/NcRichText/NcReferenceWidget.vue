@@ -85,7 +85,7 @@ export default {
 		})
 		this.observer.observe(this.$el)
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		this.observer.disconnect()
 		destroyWidget(this.reference.richObjectType, this.$el)
 	},

@@ -31,7 +31,7 @@ export default {
 			this.renderElement()
 		}
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		if (this.isRegistered) {
 			destroyCustomPickerElement(this.provider.id, this.$el, this.renderResult)
 		}
