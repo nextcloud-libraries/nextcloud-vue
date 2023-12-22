@@ -371,12 +371,6 @@ export default {
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 			}
-
-			// Align label text color with border color (on hover / focus)
-			&:focus + .textarea__label,
-			&:hover:not(:placeholder-shown) + .textarea__label {
-				color: var(--color-success-text);
-			}
 		}
 
 		&--error {
@@ -384,31 +378,14 @@ export default {
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 			}
-
-			// Align label text color with border color (on hover / focus)
-			&:focus + .textarea__label,
-			&:hover:not(:placeholder-shown) + .textarea__label {
-				color: var(--color-error-text);
-			}
-		}
-
-		// Align label text color with border color (on hover / focus)
-		&:not(&--success, &--error) {
-			&:focus + .textarea__label,
-			&:hover:not(:placeholder-shown) + .textarea__label {
-				color: var(--color-primary-element);
-			}
 		}
 	}
 
 	&__label {
 		position: absolute;
 		margin-inline: 12px 0;
-		// fix height and line height to center label
-		height: 17px;
 		max-width: fit-content;
-		line-height: 1;
-		inset-block-start: 12px;
+		inset-block-start: 11px;
 		inset-inline: 0;
 		// Fix color so that users do not think the input already has content
 		color: var(--color-text-maxcontrast);
@@ -424,10 +401,11 @@ export default {
 
 	&__input:focus + &__label,
 	&__input:not(:placeholder-shown) + &__label {
-		inset-block-start: -6px;
+		inset-block-start: -10px;
 		font-size: 13px; // minimum allowed font size for accessibility
+		font-weight: 500;
+		color: var(--color-main-text);
 		background-color: var(--color-main-background);
-		height: 14px;
 		padding-inline: 4px;
 		margin-inline-start: 8px;
 

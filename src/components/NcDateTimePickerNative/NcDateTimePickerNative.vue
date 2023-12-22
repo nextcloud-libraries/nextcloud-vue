@@ -382,4 +382,18 @@ export default ScopeComponent({
 		flex: 0 0 auto;
 		padding-right: 4px;
 	}
+
+	[data-theme-light],
+	[data-themes*=light] {
+		.native-datetime-picker--input {
+			color-scheme: light;
+		}
+	}
+
+	[data-theme-dark],
+	[data-themes*=dark] {
+		.native-datetime-picker--input {
+			color-scheme: dark;
+		}
+	}
 </style>
