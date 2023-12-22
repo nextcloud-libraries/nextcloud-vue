@@ -14,9 +14,6 @@ module.exports = {
 	plugins: [
 		'cypress',
 	],
-	ignorePatterns: [
-		'src/components/NcRich*/**/*.vue',
-	],
 	parserOptions: {
 		babelOptions: {
 			plugins: [

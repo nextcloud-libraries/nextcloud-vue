@@ -34,7 +34,7 @@ Try mentioning user @Test01 or inserting emoji :smile
 	<div>
 		<NcRichContenteditable
 			label="Write a comment"
-			:value.sync="message"
+			v-model="message"
 			:auto-complete="autoComplete"
 			:maxlength="100"
 			:user-data="userData"
@@ -42,7 +42,7 @@ Try mentioning user @Test01 or inserting emoji :smile
 		<br>
 
 		<NcRichContenteditable
-			:value.sync="message"
+			v-model="message"
 			:auto-complete="autoComplete"
 			:maxlength="400"
 			:multiline="true"
@@ -213,7 +213,7 @@ export default {
 </docs>
 
 <template>
-	<div class="rich-contenteditable">
+	<div class="rich-contenteditable" :class="$props.class">
 		<div :id="id"
 			ref="contenteditable"
 			v-tooltip="tooltipString"
@@ -231,7 +231,6 @@ export default {
 			class="rich-contenteditable__input"
 			role="textbox"
 			v-bind="$attrs"
-			v-on="listeners"
 			@focus="moveCursorToEnd"
 			@input="onInput"
 			@compositionstart="isComposing = true"
@@ -290,7 +289,7 @@ export default {
 			default: '',
 		},
 
-		value: {
+		modelValue: {
 			type: String,
 			default: '',
 			required: true,
@@ -362,12 +361,20 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+
+		/**
+		 * CSS class to apply to the root element.
+		 */
+		class: {
+			type: [String, Array, Object],
+			default: '',
+		},
 	},
 
 	emits: [
 		'submit',
 		'paste',
-		'update:value',
+		'update:modelValue',
 		'smart-picker-submit',
 	],
 
@@ -464,7 +471,7 @@ export default {
 			// Represent the raw untrimmed text of the contenteditable
 			// serves no other purpose than to check whether the
 			// content is empty or not
-			localValue: this.value,
+			localValue: this.modelValue,
 
 			// Is in text composition session in IME
 			isComposing: false,
@@ -526,23 +533,6 @@ export default {
 		canEdit() {
 			return this.contenteditable && !this.disabled
 		},
-
-		/**
-		 * Proxied native event handlers without custom event handlers
-		 *
-		 * @return {Record<string, Function>}
-		 */
-		listeners() {
-			/**
-			 * All component's event handlers are set as native event handlers with by v-on directive.
-			 * The component also raised custom events manually by $emit for corresponding events.
-			 * As a result, it triggers handlers twice.
-			 * The v-on="listeners" directive should only set proxied native events handler without custom events
-			 */
-			const listeners = { ...this.$listeners }
-			delete listeners.paste
-			return listeners
-		},
 	},
 
 	watch: {
@@ -550,11 +540,11 @@ export default {
 		 * If the parent value change, we compare the plain text rendering
 		 * If it's different, we render everything and update the main content
 		 */
-		value() {
+		modelValue() {
 			const html = this.$refs.contenteditable.innerHTML
 			// Compare trimmed versions to be safe
-			if (this.value.trim() !== this.parseContent(html).trim()) {
-				this.updateContent(this.value)
+			if (this.modelValue.trim() !== this.parseContent(html).trim()) {
+				this.updateContent(this.modelValue)
 			}
 		},
 	},
@@ -585,13 +575,13 @@ export default {
 		}
 
 		// Update default value
-		this.updateContent(this.value)
+		this.updateContent(this.modelValue)
 
 		// Removes the contenteditable attribute at first load if the prop is
 		// set to false.
 		this.$refs.contenteditable.contentEditable = this.canEdit
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		if (this.autocompleteTribute) {
 			this.autocompleteTribute.detach(this.$refs.contenteditable)
 		}
@@ -728,7 +718,7 @@ export default {
 		updateValue(htmlOrText) {
 			const text = this.parseContent(htmlOrText)
 			this.localValue = text
-			this.$emit('update:value', text)
+			this.$emit('update:modelValue', text)
 		},
 
 		/**

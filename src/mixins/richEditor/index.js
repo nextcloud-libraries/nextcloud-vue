@@ -25,7 +25,7 @@ import Linkify from '../../utils/Linkify.js'
 
 import escapeHtml from 'escape-html'
 import stripTags from 'striptags'
-import Vue from 'vue'
+import { createApp } from 'vue'
 
 // Beginning or whitespace. Non-capturing group
 const MENTION_START = '(?:^|\\s)'
@@ -128,30 +128,27 @@ export default {
 		/**
 		 * Render a component and return its html content
 		 *
-		 * @param {object} propsData the props to pass to the component
+		 * @param {object} props the props to pass to the component
 		 * @param {object} component the component to render
 		 * @return {string} the rendered html
 		 */
-		renderComponentHtml(propsData, component) {
-			const View = Vue.extend(component)
-			const Item = new View({
-				propsData,
+		renderComponentHtml(props, component) {
+			const Item = createApp(component, {
+				...props,
 			})
 
 			// Prepare mountpoint
-			const wrapper = document.createElement('div')
 			const mount = document.createElement('div')
-			wrapper.style.display = 'none'
-			wrapper.appendChild(mount)
-			document.body.appendChild(wrapper)
+			mount.style.display = 'none'
+			document.body.appendChild(mount)
 
 			// Mount and get raw html
-			Item.$mount(mount)
-			const renderedHtml = wrapper.innerHTML
+			Item.mount(mount)
+			const renderedHtml = mount.innerHTML
 
 			// Destroy
-			Item.$destroy()
-			wrapper.remove()
+			Item.unmount()
+			mount.remove()
 
 			return renderedHtml
 		},

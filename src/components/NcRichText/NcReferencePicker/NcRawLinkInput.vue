@@ -2,12 +2,12 @@
 	<div class="raw-link">
 		<div class="input-wrapper">
 			<NcTextField ref="url-input"
-				:value.sync="inputValue"
+				v-model="inputValue"
 				:show-trailing-button="inputValue !== ''"
 				:label="inputPlaceholder"
 				@trailing-button-click="onClear"
-				@update:value="onInput"
-				@keyup.native.enter="onSubmit">
+				@update:model-value="onInput"
+				@keyup.enter="onSubmit">
 				<NcLoadingIcon v-if="loading" :size="16" />
 				<LinkVariantIcon v-else :size="16" />
 			</NcTextField>
