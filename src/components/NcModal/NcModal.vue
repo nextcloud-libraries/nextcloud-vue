@@ -937,6 +937,10 @@ export default {
 	width: 100%;
 	height: 100%;
 
+	:deep(*) {
+		box-sizing: border-box;
+	}
+
 	/* Navigation buttons */
 	.prev,
 	.next {
