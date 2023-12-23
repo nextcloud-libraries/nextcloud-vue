@@ -1,7 +1,7 @@
 <docs>
 ```vue
 	<template>
-		<ul>
+		<ul class="nav">
 			<NcAppNavigationCaption
 				name="Your caption goes here">
 				<template #actions>
@@ -26,7 +26,7 @@
 	</script>
 	<style scoped>
 		/* mock the appnavigation */
-		ul {
+		ul.nav {
 			background-color: #cce6f4;
 		}
 	</style>
@@ -35,7 +35,7 @@
 ### Element with a slot for custom actions icon
 ```vue
 	<template>
-		<ul>
+		<ul class="nav">
 			<NcAppNavigationCaption
 				name="Your caption goes here">
 				<template #actionsTriggerIcon>
@@ -89,7 +89,7 @@
 	</script>
 	<style scoped>
 		/* mock the appnavigation */
-		ul {
+		ul.nav {
 			background-color: #cce6f4;
 		}
 	</style>
