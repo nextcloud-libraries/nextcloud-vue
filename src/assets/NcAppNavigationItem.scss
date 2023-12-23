@@ -156,10 +156,12 @@
 	&#{&}--display-actions .action-item.app-navigation-entry__actions {
 		display: inline-block;
 	}
-	/* counter */
-	.app-navigation-entry__counter-wrapper {
+	&--add-spacing {
 		// Add slightly more space to the right of the counter
 		margin-right: calc(var(--default-grid-baseline) * 3);
+	}
+	/* counter */
+	.app-navigation-entry__counter-wrapper {
 		display: flex;
 		align-items: center;
 		flex: 0 1 auto;

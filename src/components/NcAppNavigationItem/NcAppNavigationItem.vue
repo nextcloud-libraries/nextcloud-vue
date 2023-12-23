@@ -314,7 +314,7 @@ Just set the `pinned` prop.
 				<!-- Counter and Actions -->
 				<div v-if="hasUtils && !editingActive"
 					class="app-navigation-entry__utils"
-					:class="{'app-navigation-entry__utils--display-actions': forceDisplayActions || menuOpenLocalValue || menuOpen }">
+					:class="{'app-navigation-entry__utils--display-actions': forceDisplayActions || menuOpenLocalValue || menuOpen, 'app-navigation-entry__utils--add-spacing': !hasChildren }">
 					<div v-if="$slots.counter"
 						class="app-navigation-entry__counter-wrapper">
 						<!-- @slot Slot for the `NcCounterBubble` -->
