@@ -33,11 +33,13 @@
 
 ```vue
 	<template>
-		<NcAppNavigationItem name="My name">
-			<template #icon>
-				<Check :size="20" />
-			</template>
-		</NcAppNavigationItem>
+		<ul>
+			<NcAppNavigationItem name="My name">
+				<template #icon>
+					<Check :size="20" />
+				</template>
+			</NcAppNavigationItem>
+		</ul>
 	</template>
 	<script>
 	import Check from 'vue-material-design-icons/Check'
@@ -52,12 +54,16 @@
 * With a spinning loader instead of the icon:
 
 ```vue
-<NcAppNavigationItem name="Loading Item" :loading="true" />
+<ul>
+	<NcAppNavigationItem name="Loading Item" :loading="true" />
+</ul>
 ```
 * With an active state (only needed when not using `vue-router` and the `to` property, otherwise this is set automatically)
 
 ```vue
+<ul>
 	<NcAppNavigationItem name="Current page" :active="true" />
+</ul>
 ```
 
 ### Element with actions
@@ -67,30 +73,32 @@ button will be automatically created.
 ```vue
 	<template>
 		<div id="app-navigation-vue"><!-- Just a wrapper necessary in the docs. Not needed when NcAppNavigation is correctly used as parent. -->
-			<NcAppNavigationItem name="Item with actions">
-				<template #icon>
-					<Check :size="20" />
-				</template>
-				<template #actions>
-					<NcActionButton @click="alert('Edit')">
-						<template #icon>
-							<Pencil :size="20" />
-						</template>
-						Edit
-					</NcActionButton>
-					<NcActionButton @click="alert('Delete')">
-						<template #icon>
-							<Delete :size="20" />
-						</template>
-						Delete
-					</NcActionButton>
-					<NcActionLink name="Link" href="https://nextcloud.com">
-						<template #icon>
-							<OpenInNew :size="20" />
-						</template>
-					</NcActionLink>
-				</template>
-			</NcAppNavigationItem>
+			<ul>
+				<NcAppNavigationItem name="Item with actions">
+					<template #icon>
+						<Check :size="20" />
+					</template>
+					<template #actions>
+						<NcActionButton @click="alert('Edit')">
+							<template #icon>
+								<Pencil :size="20" />
+							</template>
+							Edit
+						</NcActionButton>
+						<NcActionButton @click="alert('Delete')">
+							<template #icon>
+								<Delete :size="20" />
+							</template>
+							Delete
+						</NcActionButton>
+						<NcActionLink name="Link" href="https://nextcloud.com">
+							<template #icon>
+								<OpenInNew :size="20" />
+							</template>
+						</NcActionLink>
+					</template>
+				</NcAppNavigationItem>
+			</ul>
 		</div>
 	</template>
 	<script>
@@ -115,16 +123,18 @@ Just nest the counter in a template within `<NcAppNavigationItem>` and add `#cou
 
 ```vue
 	<template>
-		<NcAppNavigationItem name="Item with counter">
-			<template #icon>
-				<Folder :size="20" />
-			</template>
-			<template #counter>
-				<NcCounterBubble>
-					99+
-				</NcCounterBubble>
-			</template>
-		</NcAppNavigationItem>
+		<ul>
+			<NcAppNavigationItem name="Item with counter">
+				<template #icon>
+					<Folder :size="20" />
+				</template>
+				<template #counter>
+					<NcCounterBubble>
+						99+
+					</NcCounterBubble>
+				</template>
+			</NcAppNavigationItem>
+		</ul>
 	</template>
 	<script>
 	import Folder from 'vue-material-design-icons/Folder'
@@ -144,41 +154,43 @@ prevent the user from collapsing the items.
 
 ```vue
 	<template>
-		<NcAppNavigationItem name="Item with children" :allowCollapse="true" :open="true">
-			<template #icon>
-				<Folder :size="20" />
-			</template>
-			<template #counter>
-				<NcCounterBubble>
-					99+
-				</NcCounterBubble>
-			</template>
-			<template #actions>
-				<NcActionButton @click="alert('Edit')">
-					<template #icon>
-						<Pencil :size="20" />
-					</template>
-					Edit
-				</NcActionButton>
-				<NcActionButton @click="alert('Delete')">
-					<template #icon>
-						<Delete :size="20" />
-					</template>
-					Delete
-				</NcActionButton>
-				<NcActionLink name="Link" href="https://nextcloud.com">
-					<template #icon>
-						<OpenInNew :size="20" />
-					</template>
-				</NcActionLink>
-			</template>
-			<template>
-				<NcAppNavigationItem name="AppNavigationItemChild1" />
-				<NcAppNavigationItem name="AppNavigationItemChild2" />
-				<NcAppNavigationItem name="AppNavigationItemChild3" />
-				<NcAppNavigationItem name="AppNavigationItemChild4" />
-			</template>
-		</NcAppNavigationItem>
+		<ul>
+			<NcAppNavigationItem name="Item with children" :allowCollapse="true" :open="true">
+				<template #icon>
+					<Folder :size="20" />
+				</template>
+				<template #counter>
+					<NcCounterBubble>
+						99+
+					</NcCounterBubble>
+				</template>
+				<template #actions>
+					<NcActionButton @click="alert('Edit')">
+						<template #icon>
+							<Pencil :size="20" />
+						</template>
+						Edit
+					</NcActionButton>
+					<NcActionButton @click="alert('Delete')">
+						<template #icon>
+							<Delete :size="20" />
+						</template>
+						Delete
+					</NcActionButton>
+					<NcActionLink name="Link" href="https://nextcloud.com">
+						<template #icon>
+							<OpenInNew :size="20" />
+						</template>
+					</NcActionLink>
+				</template>
+				<template>
+					<NcAppNavigationItem name="AppNavigationItemChild1" />
+					<NcAppNavigationItem name="AppNavigationItemChild2" />
+					<NcAppNavigationItem name="AppNavigationItemChild3" />
+					<NcAppNavigationItem name="AppNavigationItemChild4" />
+				</template>
+			</NcAppNavigationItem>
+		</ul>
 	</template>
 	<script>
 	import Folder from 'vue-material-design-icons/Folder'
@@ -203,12 +215,14 @@ the placeholder is the previous name of the element.
 
 ```vue
 	<template>
-		<NcAppNavigationItem name="Editable Item" :editable="true"
-			editPlaceholder="your_placeholder_here" @update:name="function(value){alert(value)}">
-			<template #icon>
-				<Folder :size="20" />
-			</template>
-		</NcAppNavigationItem>
+		<ul>
+			<NcAppNavigationItem name="Editable Item" :editable="true"
+				editPlaceholder="your_placeholder_here" @update:name="function(value){alert(value)}">
+				<template #icon>
+					<Folder :size="20" />
+				</template>
+			</NcAppNavigationItem>
+		</ul>
 	</template>
 	<script>
 	import Folder from 'vue-material-design-icons/Folder'
@@ -225,28 +239,35 @@ the placeholder is the previous name of the element.
 Just set the `undo` and `name` props. When clicking the undo button, an `undo` event is emitted.
 
 ```
-<NcAppNavigationItem :undo="true" name="Deleted important entry" @undo="alert('undo delete')"  />
-
+<ul>
+	<NcAppNavigationItem :undo="true" name="Deleted important entry" @undo="alert('undo delete')"  />
+</ul>
 ```
 
 ### Link element
 Href that start by http will be treated as external and opened in a new tab
 ```
 <div>
-	<NcAppNavigationItem name="Files" href="/index.php/apps/files" />
-	<NcAppNavigationItem name="Nextcloud" href="https://nextcloud.com" />
+	<ul>
+		<NcAppNavigationItem name="Files" href="/index.php/apps/files" />
+		<NcAppNavigationItem name="Nextcloud" href="https://nextcloud.com" />
+	</ul>
 </div>
 ```
 
 ### Custom title
 ```
-<NcAppNavigationItem name="Nextcloud" title="Open the Nextcloud website" href="https://nextcloud.com" />
+<ul>
+	<NcAppNavigationItem name="Nextcloud" title="Open the Nextcloud website" href="https://nextcloud.com" />
+</ul>
 ```
 
 ### Pinned element
 Just set the `pinned` prop.
 ```
-<NcAppNavigationItem name="Pinned item" :pinned="true" />
+<ul>
+	<NcAppNavigationItem name="Pinned item" :pinned="true" />
+</ul>
 ```
 </docs>
 
@@ -298,7 +319,7 @@ Just set the `pinned` prop.
 						<NcInputConfirmCancel ref="editingInput"
 							v-model="editingValue"
 							:placeholder="editPlaceholder !== '' ? editPlaceholder : name"
-							:primary="isActive && to"
+							:primary="(isActive && to) || active"
 							@cancel="cancelEditing"
 							@confirm="handleEditingDone" />
 					</div>
@@ -328,7 +349,7 @@ Just set the `pinned` prop.
 						:boundaries-element="actionsBoundariesElement"
 						:placement="menuPlacement"
 						:open="menuOpen"
-						:type="isActive && to ? 'primary' : null"
+						:type="(isActive && to) || active ? 'primary' : null"
 						:force-menu="forceMenu"
 						:default-icon="menuIcon"
 						@update:open="onMenuToggle">
