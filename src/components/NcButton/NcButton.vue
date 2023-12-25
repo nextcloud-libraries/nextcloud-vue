@@ -35,11 +35,11 @@ It can be used with one or multiple actions.
 <div class="wrapper">
 	<!-- Style selector -->
 	<div class="grid">
-		<NcCheckboxRadioSwitch v-model:checked="style" value="text" name="style" type="radio">Text only</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model:checked="style" value="icon" name="style" type="radio">Icon only</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model:checked="style" value="icontext" name="style" type="radio">Icon and text</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model:checked="disabled" type="checkbox">Disabled</NcCheckboxRadioSwitch>
-		<!--<NcCheckboxRadioSwitch v-model:checked="readonly" type="checkbox">Read-only</NcCheckboxRadioSwitch>-->
+		<NcCheckboxRadioSwitch v-model="style" value="text" name="style" type="radio">Text only</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="style" value="icon" name="style" type="radio">Icon only</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="style" value="icontext" name="style" type="radio">Icon and text</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="disabled" type="checkbox">Disabled</NcCheckboxRadioSwitch>
+		<!--<NcCheckboxRadioSwitch v-model="readonly" type="checkbox">Read-only</NcCheckboxRadioSwitch>-->
 	</div>
 
 	<h5>Standard buttons</h5>

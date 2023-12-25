@@ -117,9 +117,9 @@ export default {
 ```vue
 <template>
 	<div>
-		<NcCheckboxRadioSwitch v-model:checked="showTabs[0]">Show search tab</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model:checked="showTabs[1]">Show settings tab</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model:checked="showTabs[2]">Show sharing tab</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="showTabs[0]">Show search tab</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="showTabs[1]">Show settings tab</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="showTabs[2]">Show sharing tab</NcCheckboxRadioSwitch>
 		<NcAppSidebar
 			name="cat-picture.jpg"
 			subname="last edited 3 weeks ago">

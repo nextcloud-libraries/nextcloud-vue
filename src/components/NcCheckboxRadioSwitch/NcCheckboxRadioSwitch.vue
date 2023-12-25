@@ -32,9 +32,9 @@ Please have a look at proper usage and recommendations: https://material.io/comp
 ```vue
 <template>
 	<div>
-		<NcCheckboxRadioSwitch v-model:checked="sharingEnabled">Enable sharing</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model:checked="sharingEnabled" :disabled="true">Enable sharing (disabled)</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked="sharingEnabled" :loading="loading" @update:checked="onToggle">Enable sharing (with request loading)</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingEnabled">Enable sharing</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingEnabled" :disabled="true">Enable sharing (disabled)</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch :model-value="sharingEnabled" :loading="loading" @update:model-value="onToggle">Enable sharing (with request loading)</NcCheckboxRadioSwitch>
 		<br>
 		sharingEnabled: {{ sharingEnabled }}
 	</div>
@@ -65,8 +65,8 @@ export default {
 ```vue
 <template>
 	<div>
-		<NcCheckboxRadioSwitch v-model:checked="sharingPermission" value="r" name="sharing_permission_radio" type="radio">Default permission read</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model:checked="sharingPermission" value="rw" name="sharing_permission_radio" type="radio">Default permission read+write</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingPermission" value="r" name="sharing_permission_radio" type="radio">Default permission read</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingPermission" value="rw" name="sharing_permission_radio" type="radio">Default permission read+write</NcCheckboxRadioSwitch>
 		<br>
 		sharingPermission: {{ sharingPermission }}
 	</div>
@@ -90,7 +90,7 @@ export default {
 		<div style="display: flex">
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
-				v-model:checked="sharingPermission"
+				v-model="sharingPermission"
 				value="r"
 				name="sharing_permission_radio"
 				type="radio"
@@ -99,7 +99,7 @@ export default {
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
-				v-model:checked="sharingPermission"
+				v-model="sharingPermission"
 				value="rw"
 				name="sharing_permission_radio"
 				type="radio"
@@ -111,7 +111,7 @@ export default {
 		<div style="width: fit-content">
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
-				v-model:checked="sharingPermission"
+				v-model="sharingPermission"
 				value="r"
 				name="sharing_permission_radio"
 				type="radio"
@@ -120,7 +120,7 @@ export default {
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
-				v-model:checked="sharingPermission"
+				v-model="sharingPermission"
 				value="rw"
 				name="sharing_permission_radio"
 				type="radio"
@@ -150,7 +150,7 @@ export default {
 		<div style="display: flex">
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
-				v-model:checked="enableSettings"
+				v-model="enableSettings"
 				value="y"
 				name="sharing_permission_radio"
 				type="radio"
@@ -160,7 +160,7 @@ export default {
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
-				v-model:checked="enableSettings"
+				v-model="enableSettings"
 				value="n"
 				name="sharing_permission_radio"
 				type="radio"
@@ -173,7 +173,7 @@ export default {
 		<div style="width: fit-content">
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
-				v-model:checked="enableSettings"
+				v-model="enableSettings"
 				value="y"
 				name="sharing_permission_radio"
 				type="radio"
@@ -183,7 +183,7 @@ export default {
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
 				:button-variant="true"
-				v-model:checked="enableSettings"
+				v-model="enableSettings"
 				value="n"
 				name="sharing_permission_radio"
 				type="radio"
@@ -216,9 +216,9 @@ export default {
 ```vue
 <template>
 	<div>
-		<NcCheckboxRadioSwitch :disabled="true" v-model:checked="sharingPermission" value="r" name="sharing_permission">Permission read</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model:checked="sharingPermission" value="w" name="sharing_permission">Permission write</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model:checked="sharingPermission" value="d" name="sharing_permission">Permission delete</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch :disabled="true" v-model="sharingPermission" value="r" name="sharing_permission">Permission read</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingPermission" value="w" name="sharing_permission">Permission write</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingPermission" value="d" name="sharing_permission">Permission delete</NcCheckboxRadioSwitch>
 		<br>
 		sharingPermission: {{ sharingPermission }}
 	</div>
@@ -238,8 +238,8 @@ export default {
 ```vue
 <template>
 	<div>
-		<NcCheckboxRadioSwitch v-model:checked="sharingEnabled" type="switch">Enable sharing</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model:checked="sharingEnabled" type="switch" :disabled="true">Enable sharing (disabled)</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch">Enable sharing</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch" :disabled="true">Enable sharing (disabled)</NcCheckboxRadioSwitch>
 		<br>
 		sharingEnabled: {{ sharingEnabled }}
 	</div>
@@ -394,7 +394,7 @@ export default {
 		/**
 		 * Checked state. To be used with `v-model:value`
 		 */
-		checked: {
+		modelValue: {
 			type: [Boolean, Array, String],
 			default: false,
 		},
@@ -541,18 +541,18 @@ export default {
 		 */
 		isChecked() {
 			if (this.value !== null) {
-				if (Array.isArray(this.checked)) {
-					return [...this.checked].indexOf(this.value) > -1
+				if (Array.isArray(this.modelValue)) {
+					return [...this.modelValue].indexOf(this.value) > -1
 				}
-				return this.checked === this.value
+				return this.modelValue === this.value
 			}
-			return this.checked === true
+			return this.modelValue === true
 		},
 	},
 
 	mounted() {
 		if (this.name && this.type === TYPE_CHECKBOX) {
-			if (!Array.isArray(this.checked)) {
+			if (!Array.isArray(this.modelValue)) {
 				throw new Error('When using groups of checkboxes, the updated value will be an array.')
 			}
 		}
@@ -563,8 +563,8 @@ export default {
 		}
 
 		// https://material.io/components/checkboxes#usage
-		if (typeof this.checked !== 'boolean' && this.type === TYPE_SWITCH) {
-			throw new Error('Switches can only be used with boolean as checked prop.')
+		if (typeof this.modelValue !== 'boolean' && this.type === TYPE_SWITCH) {
+			throw new Error('Switches can only be used with boolean as modelValue prop.')
 		}
 	},
 
@@ -576,19 +576,19 @@ export default {
 
 			// If this is a radio, there can only be one value
 			if (this.type === TYPE_RADIO) {
-				this.$emit('update:checked', this.value)
+				this.$emit('update:modelValue', this.value)
 				return
 			}
 
 			// If this is a radio, there can only be one value
 			if (this.type === TYPE_SWITCH) {
-				this.$emit('update:checked', !this.isChecked)
+				this.$emit('update:modelValue', !this.isChecked)
 				return
 			}
 
 			// If the initial value was a boolean, let's keep it that way
-			if (typeof this.checked === 'boolean') {
-				this.$emit('update:checked', !this.isChecked)
+			if (typeof this.modelValue === 'boolean') {
+				this.$emit('update:modelValue', !this.isChecked)
 				return
 			}
 
@@ -596,7 +596,7 @@ export default {
 			const values = this.getInputsSet()
 				.filter(input => input.checked)
 				.map(input => input.value)
-			this.$emit('update:checked', values)
+			this.$emit('update:modelValue', values)
 		},
 
 		/**

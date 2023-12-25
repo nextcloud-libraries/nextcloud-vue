@@ -28,7 +28,7 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 	<NcActions>
 		<NcActionCheckbox @change="alert('(un)checked !')">First choice</NcActionCheckbox>
 		<NcActionCheckbox value="second" @change="alert('(un)checked !')">Second choice</NcActionCheckbox>
-		<NcActionCheckbox :checked="true" @change="alert('(un)checked !')">Third choice (checked)</NcActionCheckbox>
+		<NcActionCheckbox :model-value="true" @change="alert('(un)checked !')">Third choice (checked)</NcActionCheckbox>
 		<NcActionCheckbox :disabled="true" @change="alert('(un)checked !')">Second choice (disabled)</NcActionCheckbox>
 	</NcActions>
 ```
@@ -40,7 +40,7 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 			<input :id="id"
 				ref="checkbox"
 				:disabled="disabled"
-				:checked="checked"
+				:checked="modelValue"
 				:value="value"
 				:class="{ focusable: isFocusable }"
 				type="checkbox"
@@ -84,7 +84,7 @@ export default {
 		/**
 		 * checked state of the the checkbox element
 		 */
-		checked: {
+		 modelValue: {
 			type: Boolean,
 			default: false,
 		},
@@ -110,7 +110,7 @@ export default {
 		'change',
 		'check',
 		'uncheck',
-		'update:checked',
+		'update:modelValue',
 	],
 
 	computed: {
@@ -130,7 +130,7 @@ export default {
 		 */
 		ariaChecked() {
 			if (this.isInSemanticMenu) {
-				return this.checked ? 'true' : 'false'
+				return this.modelValue ? 'true' : 'false'
 			}
 			return undefined
 		},
@@ -147,7 +147,7 @@ export default {
 			 *
 			 * @type {boolean}
 			 */
-			this.$emit('update:checked', this.$refs.checkbox.checked)
+			this.$emit('update:modelValue', this.$refs.checkbox.checked)
 
 			/**
 			 * Emitted when the checkbox state is changed

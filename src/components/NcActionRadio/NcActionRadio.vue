@@ -30,7 +30,7 @@ So that only one of each name set can be selected at the same time.
 	<NcActions>
 		<NcActionRadio @change="alert('(un)checked !')" name="uniqueId">First choice</NcActionRadio>
 		<NcActionRadio value="second" name="uniqueId" @change="alert('(un)checked !')">Second choice</NcActionRadio>
-		<NcActionRadio :checked="true" name="uniqueId" @change="alert('(un)checked !')">Third choice (checked)</NcActionRadio>
+		<NcActionRadio :model-value="true" name="uniqueId" @change="alert('(un)checked !')">Third choice (checked)</NcActionRadio>
 		<NcActionRadio :disabled="true" name="uniqueId" @change="alert('(un)checked !')">Second choice (disabled)</NcActionRadio>
 	</NcActions>
 ```
@@ -42,7 +42,7 @@ So that only one of each name set can be selected at the same time.
 			<input :id="id"
 				ref="radio"
 				:disabled="disabled"
-				:checked="checked"
+				:checked="modelValue"
 				:name="name"
 				:value="value"
 				:class="{ focusable: isFocusable }"
@@ -87,7 +87,7 @@ export default {
 		/**
 		 * checked state of the the radio element
 		 */
-		checked: {
+		modelValue: {
 			type: Boolean,
 			default: false,
 		},
@@ -120,8 +120,8 @@ export default {
 	},
 
 	emits: [
-		'update:checked',
 		'change',
+		'update:modelValue',
 	],
 
 	computed: {
@@ -141,7 +141,7 @@ export default {
 		 */
 		 ariaChecked() {
 			if (this.isInSemanticMenu) {
-				return this.checked ? 'true' : 'false'
+				return this.modelValue ? 'true' : 'false'
 			}
 			return undefined
 		},
@@ -158,7 +158,7 @@ export default {
 			 *
 			 * @type {boolean}
 			 */
-			this.$emit('update:checked', this.$refs.radio.checked)
+			this.$emit('update:modelValue', this.$refs.radio.checked)
 
 			/**
 			 * Emitted when the radio state is changed
