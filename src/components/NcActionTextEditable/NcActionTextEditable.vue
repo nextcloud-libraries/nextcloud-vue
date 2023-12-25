@@ -28,17 +28,17 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 ```
 <template>
 	<NcActions>
-		<NcActionTextEditable value="This is a textarea">
+		<NcActionTextEditable model-value="This is a textarea">
 			<template #icon>
 				<Pencil :size="20" />
 			</template>
 		</NcActionTextEditable>
-		<NcActionTextEditable :disabled="true" value="This is a disabled textarea">
+		<NcActionTextEditable :disabled="true" model-value="This is a disabled textarea">
 			<template #icon>
 				<Pencil :size="20" />
 			</template>
 		</NcActionTextEditable>
-		<NcActionTextEditable name="Please edit the text" value="This is a textarea with name">
+		<NcActionTextEditable name="Please edit the text" model-value="This is a textarea with name">
 			<template #icon>
 				<Pencil :size="20" />
 			</template>
@@ -84,7 +84,7 @@ export default {
 
 				<textarea :id="computedId"
 					:disabled="disabled"
-					:value="value"
+					:value="modelValue"
 					v-bind="$attrs"
 					:class="['action-text-editable__textarea', { focusable: isFocusable }]"
 					@input="onInput" />
@@ -133,7 +133,7 @@ export default {
 		/**
 		 * value attribute of the input field
 		 */
-		value: {
+		modelValue: {
 			type: String,
 			default: '',
 		},
@@ -141,7 +141,7 @@ export default {
 
 	emits: [
 		'input',
-		'update:value',
+		'update:modelValue',
 		'submit',
 	],
 
@@ -173,7 +173,7 @@ export default {
 			 *
 			 * @type {string|Date}
 			 */
-			this.$emit('update:value', event.target.value)
+			this.$emit('update:modelValue', event.target.value)
 		},
 		onSubmit(event) {
 			event.preventDefault()
