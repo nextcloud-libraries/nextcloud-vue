@@ -43,7 +43,7 @@
 				:aria-controls="`tab-${tab.id}`"
 				:aria-selected="String(activeTab === tab.id)"
 				:button-variant="true"
-				:checked="activeTab === tab.id"
+				:model-value="activeTab === tab.id"
 				:wrapper-id="`tab-button-${tab.id}`"
 				:tabindex="activeTab === tab.id ? 0 : -1"
 				button-variant-grouped="horizontal"
@@ -51,7 +51,7 @@
 				:class="{ active: tab.id === activeTab }"
 				role="tab"
 				type="button"
-				@update:checked="setActive(tab.id)">
+				@update:model-value="setActive(tab.id)">
 				<span class="app-sidebar-tabs__tab-caption">
 					{{ tab.name }}
 				</span>

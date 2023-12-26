@@ -29,8 +29,8 @@ This component displays rich text with optional autolink or [Markdown support](h
 <template>
 	<div>
 		<textarea v-model="text" />
-		<NcCheckboxRadioSwitch v-model:checked="autolink" type="checkbox">Autolink</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model:checked="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="autolink" type="checkbox">Autolink</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
 
 		<NcRichText
 			:class="{'plain-text': !useMarkdown }"
@@ -93,8 +93,8 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 			placeholder="Try mentioning user @Test01 or inserting emoji :smile"
 			@submit="onSubmit" />
 
-		<NcCheckboxRadioSwitch v-model:checked="autolink" type="checkbox">Autolink</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model:checked="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="autolink" type="checkbox">Autolink</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
 
 		<NcRichText :text="text"
 			:autolink="autolink"
