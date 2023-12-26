@@ -24,7 +24,7 @@
 
 ```vue
 <NcSettingsInputText label="Label" hint="Hint" />
-<NcSettingsInputText label="Label" value="Value" hint="Hint" disabled />
+<NcSettingsInputText label="Label" model-value="Value" hint="Hint" disabled />
 ```
 
 </docs>
@@ -37,7 +37,7 @@
 			<label :for="id" class="action-input__label">{{ label }}</label>
 			<input :id="id"
 				type="text"
-				:value="value"
+				:value="modelValue"
 				:disabled="disabled"
 				@input="onInput"
 				@change="onChange">
@@ -78,7 +78,7 @@ export default {
 		/**
 		 * value of the select group input
 		 */
-		value: {
+		modelValue: {
 			type: String,
 			default: '',
 		},
@@ -102,10 +102,10 @@ export default {
 	},
 
 	emits: [
-		'update:value',
+		'change',
 		'input',
 		'submit',
-		'change',
+		'update:modelValue',
 	],
 
 	data() {
@@ -130,7 +130,7 @@ export default {
 			 *
 			 * @type {string}
 			 */
-			this.$emit('update:value', event.target.value)
+			this.$emit('update:modelValue', event.target.value)
 		},
 		onSubmit(event) {
 			if (!this.disabled) {

@@ -88,16 +88,16 @@ export default {
 			type: String,
 		},
 
-		value: {
+		modelValue: {
 			default: '',
 			type: String,
 		},
 	},
 
 	emits: [
-		'input',
-		'confirm',
 		'cancel',
+		'confirm',
+		'update:modelValue',
 	],
 
 	data() {
@@ -109,9 +109,9 @@ export default {
 
 	computed: {
 		valueModel: {
-			get() { return this.value },
+			get() { return this.modelValue },
 			set(newValue) {
-				this.$emit('input', newValue)
+				this.$emit('update:modelValue', newValue)
 			},
 		},
 	},

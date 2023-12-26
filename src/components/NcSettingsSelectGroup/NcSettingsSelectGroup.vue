@@ -191,7 +191,7 @@ export default {
 		/**
 		 * If the value is changed, check that all groups are loaded so we show the correct display name
 		 */
-		value: {
+		modelValue: {
 			handler() {
 				const loadedGroupIds = Object.keys(this.groups)
 				const missing = this.filteredValue.filter(group => !loadedGroupIds.includes(group))
