@@ -308,7 +308,7 @@ export default {
 <script>
 import NcCheckboxContent, { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxContent.vue'
 import GenRandomId from '../../utils/GenRandomId.js'
-import l10n from '../../mixins/l10n.js'
+import { t, n } from '../../l10n.js'
 
 export default {
 	name: 'NcCheckboxRadioSwitch',
@@ -316,8 +316,6 @@ export default {
 	components: {
 		NcCheckboxContent,
 	},
-
-	mixins: [l10n],
 
 	props: {
 		/**
@@ -569,6 +567,9 @@ export default {
 	},
 
 	methods: {
+		t,
+		n,
+
 		onToggle() {
 			if (this.disabled) {
 				return
