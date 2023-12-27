@@ -2,9 +2,50 @@
 
 All notable changes to this project will be documented in this file.
 
-# Changelog
+## [v8.4.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.4.0) (2023-12-22)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.4.0...v8.3.0)
 
-All notable changes to this project will be documented in this file.
+### Notes
+* NcRichContenteditable: new visual label feature might break layout if you have custom contenteditable styles
+* `isMobile` and `isFullscreen` mixins are now deprecated, use `useIsMobile` and `useIsFullscreen` composables instead
+
+### 🚀 Enhancements
+* enh: Split translations by components to only include needed strings in app bundles by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4861
+* enh(NcCheckboxRadioSwitch): Allow to set `aria-label` by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4903
+* enh(NcRichContenteditable): Add optional visual label for content editable by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4907
+* enh(NcBreadcrumbs): Allow setting aria-label on nav by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4913
+* feat: add small mobile breakpoint by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4919
+* Add target prop for NcListItem by @Fenn-CS in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4923
+* Make modal mask dark if some icons are shown outside by @szaimen in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4916
+* enh: Add a full labelled color palette to be used as the default for the color picker by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4902
+
+### 🐛 Fixed bugs
+* fix(NcAppNavigationItem): fix style when using `active` prop by @raimund-schluessler in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4989
+* fix(NcDialog): Increase specificity for modal-content selector by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4897
+* Prevent NcBreadcrumb from automatically inheriting attributes by @JuliaKirschenheuter in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4918
+* fix(NcAvatar): Increase contrast of avatar status icon by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4912
+* fix(utils/UserStatus): typo in "invisible" translation key by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4931
+* enh(NcDialog): Label dialog nav by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4928
+* fix(NcAppNavigationSettings): remove incorrect aria-label by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4932
+* fix(NcAppSidebar): add focus trap on mobile by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4909
+* feat(NcRichContenteditable): put caret in the end when focus input by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4924
+* fix(package): specify exports for composables by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4951
+* fix(NcActions): provide `aria-expanded="false"` when menu is closed instead of removing it by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4946
+* fix(NcListItem): Ensure list item does not overflow wrapper by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4956
+* fix(NcActionX): Allow relative icon URL by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4955
+* fix(NcAppSettingsDialog): respect showNavigation prop by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4954
+* fix(NcAppNavigation): Bring back hover state for active element by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4960
+* enh(aria): changed check color to adhere to 3:1 ratio by @emoral435 in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4958
+* Use logical style for NcHeaderMenu by @ahangarha in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4965
+* Equalize `TextArea` styles with `TextField` styles by @JuliaKirschenheuter in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4971
+* Increase contrast on input field for `NcRichContenteditable` by @JuliaKirschenheuter in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4975
+* enh(breadcrumbs): changed aria label for voice control on a-tag by @emoral435 in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4973
+* Differentiate between dark and light theme for NcDateTimePickerNative by @JuliaKirschenheuter in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4981
+
+### Other Changes
+* refactor(NcAppSidebar): remove unneeded debug log by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4952
+* chore(ci): make Jest output colorful by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4966
+* Update translations
 
 ## [v8.3.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.3.0) (2023-11-30)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.3.0...v8.2.0)
@@ -27,7 +68,7 @@ All notable changes to this project will be documented in this file.
 * fix(NcAppNavigation): replace custom `v-tooltip` with native `title` [\#4888](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4888) \([ShGKme](https://github.com/ShGKme)\)
 
 ### Other Changes
-* chore(lint): use valid JSDoc for literal type union [\#4886](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4886) \([ShGKme](https://github.com/ShGKme)\)
+* chore(lint): use valid JSDoc for literal type union [\#4989](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4989) \([ShGKme](https://github.com/ShGKme)\)
 * Update translations
 
 ## [v8.2.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.2.0) (2023-11-17)
