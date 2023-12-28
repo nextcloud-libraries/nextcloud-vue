@@ -37,7 +37,8 @@
 				'checkbox-content__icon--checked': isChecked,
 				[iconClass]: true
 			}"
-			:aria-hidden="true">
+			:aria-hidden="true"
+			inert>
 			<!-- @slot The checkbox/radio icon, you can use it for adding an icon to the button variant
 					@binding {bool} checked The input checked state
 					@binding {bool} loading The loading state
@@ -52,7 +53,7 @@
 			</slot>
 		</span>
 
-		<span :class="['checkbox-content__text', textClass]">
+		<span v-if="$slots.default" :class="['checkbox-content__text', textClass]">
 			<!-- @slot The checkbox/radio label -->
 			<slot />
 		</span>
