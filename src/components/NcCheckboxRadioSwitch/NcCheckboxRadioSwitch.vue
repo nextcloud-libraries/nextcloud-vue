@@ -452,7 +452,7 @@ export default {
 		},
 	},
 
-	emits: ['update:checked'],
+	emits: ['update:modelValue'],
 
 	computed: {
 		isButtonType() {
