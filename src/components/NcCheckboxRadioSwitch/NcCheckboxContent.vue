@@ -30,6 +30,7 @@
 		:class="{
 			['checkbox-content-' + type]: true,
 			'checkbox-content--button-variant': buttonVariant,
+			'checkbox-content--has-text': !!$slots.default,
 		}">
 		<span :class="{
 				'checkbox-content__icon': true,
@@ -212,7 +213,7 @@ export default {
 	user-select: none;
 	min-height: $clickable-area;
 	border-radius: $clickable-area;
-	padding: 4px $icon-margin;
+	padding: 4px calc(($clickable-area - var(--icon-height)) / 2);
 	// Set to 100% to make text overflow work on button style
 	width: 100%;
 	// but restrict to content so plain checkboxes / radio switches do not expand
@@ -240,6 +241,10 @@ export default {
 		.checkbox-content__icon--checked > * {
 			color: var(--color-primary-element-text);
 		}
+	}
+
+	&--has-text {
+		padding-right: $icon-margin;
 	}
 
 	&:not(&--button-variant) {
