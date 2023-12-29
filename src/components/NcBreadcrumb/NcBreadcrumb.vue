@@ -31,7 +31,7 @@ This component is meant to be used inside a Breadcrumbs component.
 <template>
 	<li ref="crumb"
 		class="vue-crumb"
-		:class="{'vue-crumb--hovered': hovering}"
+		:class="[{'vue-crumb--hovered': hovering}, $props.class]"
 		:[crumbId]="''"
 		draggable="false"
 		@dragstart.prevent="() => {/** Prevent the breadcrumb from being draggable. */}"
@@ -148,6 +148,14 @@ export default {
 		open: {
 			type: Boolean,
 			default: false,
+		},
+
+		/**
+		 * CSS class to apply to the root element.
+		 */
+		class: {
+			type: [String, Array, Object],
+			default: '',
 		},
 	},
 	emits: [
