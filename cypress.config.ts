@@ -42,11 +42,6 @@ export default defineConfig({
 
 		},
 
-		excludeSpecPattern: [
-			'cypress/visual/AppNavigationItem.cy.ts',
-		],
-
-
 		devServer: {
 			framework: 'vue',
 			bundler: 'vite',
