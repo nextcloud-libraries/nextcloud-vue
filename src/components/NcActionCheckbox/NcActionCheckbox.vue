@@ -84,7 +84,7 @@ export default {
 		/**
 		 * checked state of the the checkbox element
 		 */
-		 modelValue: {
+		modelValue: {
 			type: Boolean,
 			default: false,
 		},
