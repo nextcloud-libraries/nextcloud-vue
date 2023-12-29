@@ -172,7 +172,6 @@ import { t } from '../../l10n.js'
 
 import NcTimezonePicker from '../NcTimezonePicker/index.js'
 import NcPopover from '../NcPopover/index.js'
-import l10n from '../../mixins/l10n.js'
 import ScopeComponent from '../../utils/ScopeComponent.js'
 
 import CalendarBlank from 'vue-material-design-icons/CalendarBlank.vue'
@@ -209,8 +208,6 @@ export default ScopeComponent({
 		NcTimezonePicker,
 		Web,
 	},
-
-	mixins: [l10n],
 
 	props: {
 		clearable: {
@@ -357,6 +354,8 @@ export default ScopeComponent({
 	},
 
 	methods: {
+		t,
+
 		handleSelectYear(year) {
 			const value = this.$refs.datepicker.currentValue
 			if (value) {
