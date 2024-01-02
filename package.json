@@ -121,7 +121,7 @@
     "@nextcloud/browserslist-config": "^3.0.0",
     "@nextcloud/eslint-config": "github:nextcloud-libraries/eslint-config#fe67f6b84e3c13eb0ea2478f44939abc2fe7c99c",
     "@nextcloud/stylelint-config": "^2.3.1",
-    "@nextcloud/vite-config": "github:nextcloud-libraries/nextcloud-vite-config#36ae8cf759a30e1b020d90a6c3585fa7b7734dc7",
+    "@nextcloud/vite-config": "github:nextcloud-libraries/nextcloud-vite-config#vue3",
     "@nextcloud/webpack-vue-config": "github:nextcloud/webpack-vue-config#1f4277c6ab14be63810f425ef6b762d8ca59697b",
     "@vue/test-utils": "^2.4.1",
     "@vue/tsconfig": "^0.4.0",
