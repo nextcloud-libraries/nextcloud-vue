@@ -1,11 +1,11 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Magnus Höglund, 2023
+# Magnus Höglund, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Magnus Höglund, 2023\n"
+"Last-Translator: Magnus Höglund, 2024\n"
 "Language-Team: Swedish (https://app.transifex.com/nextcloud/teams/64236/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sv\n"
@@ -22,6 +22,10 @@ msgstr "En färg med ett HEX-värde {hex}"
 
 msgid "a few seconds ago"
 msgstr "några sekunder sedan"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
 
 msgid "Actions"
 msgstr "Åtgärder"
@@ -47,6 +51,7 @@ msgstr "{displayName}s avatar"
 msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName}s avatar, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
 msgstr "borta"
 
@@ -55,6 +60,14 @@ msgstr "Tillbaka"
 
 msgid "Back to provider selection"
 msgstr "Tillbaka till leverantörsval"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Blåviolett"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Boston blå"
 
 msgid "Cancel changes"
 msgstr "Avbryt ändringar"
@@ -95,6 +108,10 @@ msgstr "Bekräfta ändringar"
 msgid "Custom"
 msgstr "Anpassad"
 
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Skyfallsblå"
+
 msgid "Deselect {option}"
 msgstr "Avmarkera {option}"
 
@@ -120,6 +137,10 @@ msgstr "Extern dokumentation för {name}"
 msgid "Favorite"
 msgstr "Favorit"
 
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Feldspat"
+
 msgid "Flags"
 msgstr "Flaggor"
 
@@ -141,8 +162,15 @@ msgstr "Guld"
 msgid "Hide password"
 msgstr "Göm lössenordet"
 
+msgid "invisible"
+msgstr "osynlig"
+
 msgid "Load more \"{options}\""
 msgstr "Ladda fler \"{options}\""
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Marinblå"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Meddelandegräns {count} tecken används"
@@ -174,6 +202,10 @@ msgstr "Objekt"
 msgid "offline"
 msgstr "offline"
 
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Olivin"
+
 msgid "online"
 msgstr "online"
 
@@ -188,9 +220,6 @@ msgstr "Öppna menyn"
 
 msgid "Open navigation"
 msgstr "Öppna navigering"
-
-msgid "Open settings menu"
-msgstr "Öppna inställningsmenyn"
 
 msgid "Password is secure"
 msgstr "Lössenordet är säkert"
@@ -239,6 +268,10 @@ msgstr "Oformaterad länk {options}"
 
 msgid "Related resources"
 msgstr "Relaterade resurser"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Rosa brun"
 
 msgid "Save changes"
 msgstr "Spara ändringar"
@@ -317,6 +350,10 @@ msgstr "Ångra ändringar"
 
 msgid "User status: {status}"
 msgstr "Användarstatus: {status}"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Whisky"
 
 msgid "Write a message …"
 msgstr "Skriv ett meddelande …"
