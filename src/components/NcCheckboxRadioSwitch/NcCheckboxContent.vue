@@ -21,8 +21,11 @@
 -->
 
 <template>
-	<component :is="wrapperElement"
-		:for="!isButtonType ? id : null"
+	<!--
+		label can't be used here because of shift+click firefox bug
+		https://bugzilla.mozilla.org/show_bug.cgi?id=559506
+	-->
+	<span :id="!isButtonType ? `${id}-label` : null"
 		class="checkbox-content"
 		:class="{
 			['checkbox-content-' + type]: true,
@@ -52,7 +55,7 @@
 			<!-- @slot The checkbox/radio label -->
 			<slot />
 		</span>
-	</component>
+	</span>
 </template>
 
 <script>
@@ -164,13 +167,6 @@ export default {
 	computed: {
 		isButtonType() {
 			return this.type === TYPE_BUTTON
-		},
-
-		wrapperElement() {
-			if (this.isButtonType) {
-				return 'span'
-			}
-			return 'label'
 		},
 
 		/**
