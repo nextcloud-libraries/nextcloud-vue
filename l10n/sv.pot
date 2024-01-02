@@ -67,7 +67,7 @@ msgstr "Blåviolett"
 
 #. TRANSLATORS: A color name for RGB(55, 148, 172)
 msgid "Boston Blue"
-msgstr "Boston blå"
+msgstr "Bostonblå"
 
 msgid "Cancel changes"
 msgstr "Avbryt ändringar"
