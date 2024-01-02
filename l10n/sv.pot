@@ -271,7 +271,7 @@ msgstr "Relaterade resurser"
 
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
-msgstr "Rosa brun"
+msgstr "Rosabrun"
 
 msgid "Save changes"
 msgstr "Spara ändringar"
