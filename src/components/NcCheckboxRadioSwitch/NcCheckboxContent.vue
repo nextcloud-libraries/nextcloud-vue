@@ -21,6 +21,10 @@
 -->
 
 <template>
+	<!--
+		label can't be used here because of shift+click firefox bug
+		https://bugzilla.mozilla.org/show_bug.cgi?id=559506
+	-->
 	<span :id="!isButtonType ? `${id}-label` : null"
 		class="checkbox-content"
 		:class="{
