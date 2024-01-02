@@ -511,6 +511,7 @@ export default {
 		cssVars() {
 			return {
 				'--icon-size': this.size + 'px',
+				'--icon-height': (this.type === TYPE_SWITCH ? 16 : this.size) + 'px',
 			}
 		},
 
