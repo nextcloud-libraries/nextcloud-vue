@@ -21,16 +21,16 @@
 -->
 
 <template>
-	<!--
-		label can't be used here because of shift+click firefox bug
-		https://bugzilla.mozilla.org/show_bug.cgi?id=559506
-	-->
-	<span :id="!isButtonType ? `${id}-label` : null"
+	<span :id="!isButtonType ? `${id}-label` : undefined"
 		class="checkbox-content"
 		:class="{
 			['checkbox-content-' + type]: true,
 			'checkbox-content--button-variant': buttonVariant,
 		}">
+		<!--
+			label can't be used here because of shift+click firefox bug
+			https://bugzilla.mozilla.org/show_bug.cgi?id=559506
+		-->
 		<span :class="{
 				'checkbox-content__icon': true,
 				'checkbox-content__icon--checked': isChecked,
