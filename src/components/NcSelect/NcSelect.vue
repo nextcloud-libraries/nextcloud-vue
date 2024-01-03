@@ -30,9 +30,8 @@ General purpose multiselect component.
 ```vue
 <template>
 	<div class="grid">
-		<div v-for="{ name, props } in selectArray"
+		<div v-for="{ props } in selectArray"
 			class="container">
-			<label :for="props.inputId">{{ name }}</label>
 			<NcSelect v-bind="props"
 				v-model="props.value" />
 		</div>
@@ -40,17 +39,10 @@ General purpose multiselect component.
 </template>
 
 <script>
-import GenRandomId from '../../utils/GenRandomId.js'
-
-const getRandomId = () => {
-	return `select-${GenRandomId()}`
-}
-
 const selectArray = [
 	{
-		name: 'Simple',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'Simple',
 			options: [
 				'foo',
 				'bar',
@@ -62,9 +54,8 @@ const selectArray = [
 	},
 
 	{
-		name: 'Simple (top placement)',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'Simple (top placement)',
 			placement: 'top',
 			options: [
 				'foo',
@@ -77,9 +68,8 @@ const selectArray = [
 	},
 
 	{
-		name: 'Multiple (with placeholder)',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'Multiple (with placeholder)',
 			multiple: true,
 			placeholder: 'Select multiple options',
 			options: [
@@ -93,9 +83,8 @@ const selectArray = [
 	},
 
 	{
-		name: 'Multiple (objects, pre-selected, stay open on select)',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'Multiple (objects, pre-selected, stay open on select)',
 			multiple: true,
 			closeOnSelect: false,
 			options: [
@@ -187,13 +176,11 @@ parent container is limited to `350px`
 <template>
 	<div class="grid">
 		<div class="container">
-			<label :for="data1.props.inputId">{{ data1.name }}</label>
 			<NcSelect :no-wrap="false"
 				v-bind="data1.props"
 				v-model="data1.props.value" />
 		</div>
 		<div class="container">
-			<label :for="data2.props.inputId">{{ data2.name }}</label>
 			<NcSelect :no-wrap="true"
 				v-bind="data2.props"
 				v-model="data2.props.value" />
@@ -202,16 +189,9 @@ parent container is limited to `350px`
 </template>
 
 <script>
-import GenRandomId from '../../utils/GenRandomId.js'
-
-const getRandomId = () => {
-	return `select-${GenRandomId()}`
-}
-
 const data1 = {
-	name: 'Wrapped (Default)',
 	props: {
-		inputId: getRandomId(),
+		inputLabel: 'Wrapped (Default)',
 		multiple: true,
 		closeOnSelect: false,
 		options: [
@@ -242,9 +222,8 @@ const data1 = {
 }
 
 const data2 = {
-	name: 'Not wrapped',
 	props: {
-		inputId: getRandomId(),
+		inputLabel: 'Not wrapped',
 		multiple: true,
 		closeOnSelect: false,
 		options: [
@@ -305,9 +284,8 @@ export default {
 ```vue
 <template>
 	<div class="grid">
-		<div v-for="{ name, props } in selectArray"
+		<div v-for="{ props } in selectArray"
 			class="container">
-			<label :for="props.inputId">{{ name }}</label>
 			<NcSelect v-bind="props"
 				v-model="props.value" />
 		</div>
@@ -318,17 +296,10 @@ export default {
 import AccountGroup from '@mdi/svg/svg/account-group.svg?raw'
 import Email from '@mdi/svg/svg/email.svg?raw'
 
-import GenRandomId from '../../utils/GenRandomId.js'
-
-const getRandomId = () => {
-	return `select-${GenRandomId()}`
-}
-
 const selectArray = [
 	{
-		name: 'User select',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'User select',
 			userSelect: true,
 			options: [
 				{
@@ -394,9 +365,8 @@ const selectArray = [
 	},
 
 	{
-		name: 'Multiple user select (stay open on select)',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'Multiple user select (stay open on select)',
 			userSelect: true,
 			multiple: true,
 			closeOnSelect: false,
@@ -491,6 +461,12 @@ export default {
 		v-bind="propsToForward"
 		v-on="$listeners"
 		@search="searchString => search = searchString">
+		<template v-if="!labelOutside && inputLabel" #header>
+			<label :for="inputId"
+				class="select__label">
+				{{ inputLabel }}
+			</label>
+		</template>
 		<template #search="{ attributes, events }">
 			<input :class="['vs__search', inputClass]"
 				v-bind="attributes"
@@ -538,6 +514,7 @@ export default {
 <script>
 import '@nextcloud/vue-select/dist/vue-select.css'
 
+import Vue from 'vue'
 import { VueSelect } from '@nextcloud/vue-select'
 import {
 	autoUpdate,
@@ -572,6 +549,7 @@ export default {
 	props: {
 		// Add VueSelect props to $props
 		...VueSelect.props,
+		...VueSelect.mixins.reduce((allProps, mixin) => ({ ...allProps, ...mixin.props }), {}),
 
 		/**
 		 * `aria-label` for the clear input button
@@ -583,10 +561,12 @@ export default {
 
 		/**
 		 * `aria-label` for the search input
+		 *
+		 * A descriptive `inputLabel` is preferred as this is not visible.
 		 */
 		ariaLabelCombobox: {
 			type: String,
-			default: t('Search for options'),
+			default: null,
 		},
 
 		/**
@@ -719,12 +699,28 @@ export default {
 
 		/**
 		 * Input element id
-		 *
-		 * @see https://vue-select.org/api/props.html#inputid
 		 */
 		inputId: {
 			type: String,
+			default: () => `select-input-${GenRandomId()}`,
+		},
+
+		/**
+		 * Visible label for the input element
+		 *
+		 * @todo Set default for @nextcloud/vue 9
+		 */
+		inputLabel: {
+			type: String,
 			default: null,
+		},
+
+		/**
+		 * Pass true if you are using an external label
+		 */
+		labelOutside: {
+			type: Boolean,
+			default: false,
 		},
 
 		/**
@@ -1005,16 +1001,14 @@ export default {
 		},
 
 		propsToForward() {
-			const {
-				// Props handled by this component
-				inputClass,
-				noWrap,
-				placement,
-				userSelect,
-				// Props to forward
-				...initialPropsToForward
-			} = this.$props
-
+			const vueSelectKeys = [
+				...Object.keys(VueSelect.props),
+				...VueSelect.mixins.flatMap(mixin => Object.keys(mixin.props ?? {})),
+			]
+			const initialPropsToForward = Object.fromEntries(
+				Object.entries(this.$props)
+					.filter(([key, _value]) => vueSelectKeys.includes(key)),
+			)
 			const propsToForward = {
 				...initialPropsToForward,
 				// Custom overrides of vue-select props
@@ -1022,10 +1016,19 @@ export default {
 				filterBy: this.localFilterBy,
 				label: this.localLabel,
 			}
-
 			return propsToForward
 		},
 	},
+
+	mounted() {
+		if (!this.labelOutside && !this.inputLabel && !this.ariaLabelCombobox) {
+			Vue.util.warn('[NcSelect] An `inputLabel` or `ariaLabelCombobox` should be set.')
+		}
+		if (this.inputLabel && this.ariaLabelCombobox) {
+			Vue.util.warn('[NcSelect] Only one of `inputLabel` or `ariaLabelCombobox` should to be set.')
+		}
+	},
+
 	methods: {
 		t,
 	},
@@ -1105,6 +1108,11 @@ body {
 	min-height: $clickable-area;
 	min-width: 260px;
 	margin: 0;
+
+	.select__label {
+		display: block;
+		margin-bottom: 2px;
+	}
 
 	.vs__selected {
 		height: 32px;
@@ -1233,5 +1241,4 @@ body {
 .user-select .vs__selected {
 	padding: 0 2px !important;
 }
-
 </style>
