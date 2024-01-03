@@ -120,14 +120,14 @@ export default defineComponent({
 		},
 	},
 
-	methods: {
-		t,
+	setup() {
+		return {
+			labelId: `nc-action-button-group-${GenRandomId()}`,
+		}
 	},
 
-	computed: {
-		labelId() {
-			return `nc-action-button-group-${GenRandomId()}`
-		},
+	methods: {
+		t,
 	},
 })
 </script>
