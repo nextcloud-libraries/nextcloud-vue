@@ -111,6 +111,12 @@
 			width: calc(100% - #{$clickable-area});
 			margin: auto;
 		}
+
+		&:focus-visible {
+			box-shadow: 0 0 0 4px var(--color-main-background);
+			outline: 2px solid var(--color-main-text);
+			border-radius: var(--border-radius-pill);
+		}
 	}
 }
 /* Second level nesting for lists */
