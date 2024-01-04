@@ -100,6 +100,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 				type="multiselect"
 				label="label"
 				track-by="id"
+				:open-on-hover="false"
 				:multiple="true"
 				:options="[{label:'Apple', id: 'apple'}, {label:'Banana', id: 'banana'}, {label:'Cherry', id: 'cherry'}]">
 				<template #icon>
@@ -173,7 +174,8 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:placeholder="text"
 							:disabled="disabled"
 							:type="datePickerType"
-							:input-class="['mx-input', { focusable: isFocusable }]"
+							:class="{ focusable: isFocusable && !openOnHover}"
+							:input-class="['mx-input', { focusable: isFocusable && openOnHover }]"
 							class="action-input__datetimepicker"
 							v-bind="$attrs"
 							@input="onInput"
@@ -183,7 +185,8 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:id="idNativeDateTimePicker"
 							:value="value"
 							:type="nativeDatePickerType"
-							:input-class="{ focusable: isFocusable }"
+							:class="{ focusable: isFocusable && !openOnHover}"
+							:input-class="{ focusable: isFocusable && openOnHover }"
 							class="action-input__datetimepicker"
 							v-bind="$attrs"
 							@input="$emit('input', $event)"
@@ -194,7 +197,8 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:placeholder="text"
 							:disabled="disabled"
 							:append-to-body="false"
-							:input-class="{ focusable: isFocusable }"
+							:class="{ focusable: isFocusable && !openOnHover}"
+							:input-class="{ focusable: isFocusable && openOnHover }"
 							class="action-input__multi"
 							v-bind="$attrs"
 							v-on="$listeners" />
@@ -391,6 +395,13 @@ export default {
 		trailingButtonLabel: {
 			type: String,
 			default: t('Submit'),
+		},
+		/**
+		 * Whether to open / focus the NcDatePicker and NcSelect components on hover.
+		 */
+		openOnHover: {
+			type: Boolean,
+			default: true,
 		},
 	},
 
