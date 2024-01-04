@@ -282,9 +282,6 @@ msgstr "Arama"
 msgid "Search emoji"
 msgstr "Emoji ara"
 
-msgid "Search for options"
-msgstr "Seçenek ara"
-
 msgid "Search for time zone"
 msgstr "Saat dilimi ara"
 

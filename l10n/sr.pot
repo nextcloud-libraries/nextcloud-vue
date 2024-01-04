@@ -17,8 +17,15 @@ msgstr "{tag} (невидљиво)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (ограничено)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "Боја са HEX вредности {hex}"
+
 msgid "a few seconds ago"
 msgstr "пре неколико секунди"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Акапулко"
 
 msgid "Actions"
 msgstr "Радње"
@@ -44,6 +51,7 @@ msgstr "Аватар за {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar za {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
 msgstr "одсутан"
 
@@ -52,6 +60,14 @@ msgstr "Назад"
 
 msgid "Back to provider selection"
 msgstr "Назад на избор пружаоца"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Плаво љубичаста"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Бостон плава"
 
 msgid "Cancel changes"
 msgstr "Откажи измене"
@@ -92,6 +108,10 @@ msgstr "Потврдите измене"
 msgid "Custom"
 msgstr "Произвољно"
 
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Поплава"
+
 msgid "Deselect {option}"
 msgstr "Уклони избор {option}"
 
@@ -117,6 +137,10 @@ msgstr "Спољна документација за {name}"
 msgid "Favorite"
 msgstr "Омиљени"
 
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Фелдспар"
+
 msgid "Flags"
 msgstr "Заставе"
 
@@ -132,11 +156,21 @@ msgstr "Глобално"
 msgid "Go back to the list"
 msgstr "Назад на листу"
 
+msgid "Gold"
+msgstr "Злато"
+
 msgid "Hide password"
 msgstr "Сакриј лозинку"
 
+msgid "invisible"
+msgstr "невидљиво"
+
 msgid "Load more \"{options}\""
 msgstr "Учитај још „{options}”"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Морнар"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Достигнуто је ограничење величине поруке од {count} карактера"
@@ -149,6 +183,9 @@ msgstr "Још опција"
 
 msgid "Next"
 msgstr "Следеће"
+
+msgid "Nextcloud blue"
+msgstr "Nextcloud плава"
 
 msgid "No emoji found"
 msgstr "Није пронађен ниједан емођи"
@@ -165,6 +202,10 @@ msgstr "Предмети"
 msgid "offline"
 msgstr "ван мреже"
 
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Маслинаста"
+
 msgid "online"
 msgstr "на мрежи"
 
@@ -179,9 +220,6 @@ msgstr "Отвори мени"
 
 msgid "Open navigation"
 msgstr "Отвори навигацију"
-
-msgid "Open settings menu"
-msgstr "Отвори мени подешавања"
 
 msgid "Password is secure"
 msgstr "Лозинка је безбедна"
@@ -222,11 +260,18 @@ msgstr "Претходно"
 msgid "Provider icon"
 msgstr "Икона пружаоца"
 
+msgid "Purple"
+msgstr "Пурпурна"
+
 msgid "Raw link {options}"
 msgstr "Сирови линк {options}"
 
 msgid "Related resources"
 msgstr "Повезани ресурси"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Роси браон"
 
 msgid "Save changes"
 msgstr "Сачувај измене"
@@ -236,9 +281,6 @@ msgstr "Претражи"
 
 msgid "Search emoji"
 msgstr "Претражи емођи"
-
-msgid "Search for options"
-msgstr "Претрага опција"
 
 msgid "Search for time zone"
 msgstr "Претрага временске зоне"
@@ -305,6 +347,10 @@ msgstr "Поништи измене"
 
 msgid "User status: {status}"
 msgstr "Статус корисника: {status}"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Виски"
 
 msgid "Write a message …"
 msgstr "Напишите поруку…"

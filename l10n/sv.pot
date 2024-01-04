@@ -282,9 +282,6 @@ msgstr "Sök"
 msgid "Search emoji"
 msgstr "Sök emoji"
 
-msgid "Search for options"
-msgstr "Sök efter alternativ"
-
 msgid "Search for time zone"
 msgstr "Sök efter tidszon"
 
