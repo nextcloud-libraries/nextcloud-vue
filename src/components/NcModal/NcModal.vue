@@ -336,7 +336,6 @@ export default {
 import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
-import l10n from '../../mixins/l10n.js'
 import NcActions from '../NcActions/index.js'
 import NcButton from '../../components/NcButton/index.js'
 import Timer from '../../utils/Timer.js'
@@ -367,8 +366,6 @@ export default {
 	directives: {
 		tooltip: Tooltip,
 	},
-
-	mixins: [l10n],
 
 	props: {
 		/**
@@ -510,6 +507,16 @@ export default {
 			type: Boolean,
 			default: undefined,
 		},
+
+		/**
+		 * Set element to return focus to after focus trap deactivation
+		 *
+		 * @type {import('focus-trap').FocusTargetValueOrFalse}
+		 */
+		setReturnFocus: {
+			default: undefined,
+			type: [HTMLElement, SVGElement, String, Boolean],
+		},
 	},
 
 	emits: [
@@ -612,6 +619,8 @@ export default {
 	},
 
 	methods: {
+		t,
+
 		// Events emitters
 		previous(event) {
 			// do not send the event if nothing is available
@@ -780,6 +789,7 @@ export default {
 				// Esc can be used without stop in content or additionalTrapElements where it should not deacxtivate modal's focus trap.
 				// Focus trap is deactivated on modal close anyway.
 				escapeDeactivates: false,
+				setReturnFocus: this.setReturnFocus,
 			}
 
 			// Init focus trap

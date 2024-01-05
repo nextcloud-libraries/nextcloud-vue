@@ -100,9 +100,9 @@
 <template>
 	<li class="app-navigation-caption">
 		<!-- Name of the caption -->
-		<h2 class="app-navigation-caption__name">
+		<span class="app-navigation-caption__name">
 			{{ name }}
-		</h2>
+		</span>
 
 		<!-- Actions -->
 		<div v-if="!!$slots.actions"
@@ -164,6 +164,7 @@ export default {
 		flex-shrink: 0;
 		// padding to align the name with the icon of app navigation items
 		padding: 0 calc(var(--default-grid-baseline, 4px) * 2) 0 calc(var(--default-grid-baseline, 4px) * 3);
+		margin-bottom: 12px;
 	}
 
 	&__actions {

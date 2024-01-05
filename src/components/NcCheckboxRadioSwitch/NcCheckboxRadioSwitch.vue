@@ -277,6 +277,7 @@ export default {
 		v-on="isButtonType ? listeners : {}">
 		<input v-if="!isButtonType"
 			:id="id"
+			:aria-labelledby="!isButtonType && !ariaLabel ? `${id}-label` : null"
 			:aria-label="ariaLabel || undefined"
 			class="checkbox-radio-switch__input"
 			:disabled="disabled"
@@ -293,7 +294,8 @@ export default {
 			:button-variant="buttonVariant"
 			:is-checked="isChecked"
 			:loading="loading"
-			:size="size">
+			:size="size"
+			@click.native="onToggle">
 			<template #icon>
 				<!-- @slot The checkbox/radio icon, you can use it for adding an icon to the button variant -->
 				<slot name="icon" />
@@ -308,7 +310,7 @@ export default {
 <script>
 import NcCheckboxContent, { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxContent.vue'
 import GenRandomId from '../../utils/GenRandomId.js'
-import l10n from '../../mixins/l10n.js'
+import { t, n } from '../../l10n.js'
 
 export default {
 	name: 'NcCheckboxRadioSwitch',
@@ -316,8 +318,6 @@ export default {
 	components: {
 		NcCheckboxContent,
 	},
-
-	mixins: [l10n],
 
 	props: {
 		/**
@@ -511,6 +511,7 @@ export default {
 		cssVars() {
 			return {
 				'--icon-size': this.size + 'px',
+				'--icon-height': (this.type === TYPE_SWITCH ? 16 : this.size) + 'px',
 			}
 		},
 
@@ -569,6 +570,9 @@ export default {
 	},
 
 	methods: {
+		t,
+		n,
+
 		onToggle() {
 			if (this.disabled) {
 				return

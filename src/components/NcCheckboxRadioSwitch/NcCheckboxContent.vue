@@ -21,19 +21,24 @@
 -->
 
 <template>
-	<component :is="wrapperElement"
-		:for="!isButtonType ? id : null"
+	<span :id="!isButtonType ? `${id}-label` : undefined"
 		class="checkbox-content"
 		:class="{
 			['checkbox-content-' + type]: true,
 			'checkbox-content--button-variant': buttonVariant,
+			'checkbox-content--has-text': !!$slots.default,
 		}">
+		<!--
+			label can't be used here because of shift+click firefox bug
+			https://bugzilla.mozilla.org/show_bug.cgi?id=559506
+		-->
 		<span :class="{
 				'checkbox-content__icon': true,
 				'checkbox-content__icon--checked': isChecked,
 				[iconClass]: true
 			}"
-			:aria-hidden="true">
+			:aria-hidden="true"
+			inert>
 			<!-- @slot The checkbox/radio icon, you can use it for adding an icon to the button variant
 					@binding {bool} checked The input checked state
 					@binding {bool} loading The loading state
@@ -48,11 +53,11 @@
 			</slot>
 		</span>
 
-		<span :class="['checkbox-content__text', textClass]">
+		<span v-if="$slots.default" :class="['checkbox-content__text', textClass]">
 			<!-- @slot The checkbox/radio label -->
 			<slot />
 		</span>
-	</component>
+	</span>
 </template>
 
 <script>
@@ -166,13 +171,6 @@ export default {
 			return this.type === TYPE_BUTTON
 		},
 
-		wrapperElement() {
-			if (this.isButtonType) {
-				return 'span'
-			}
-			return 'label'
-		},
-
 		/**
 		 * Returns the proper Material icon depending on the select case
 		 *
@@ -216,7 +214,7 @@ export default {
 	user-select: none;
 	min-height: $clickable-area;
 	border-radius: $clickable-area;
-	padding: 4px $icon-margin;
+	padding: 4px calc(($clickable-area - var(--icon-height)) / 2);
 	// Set to 100% to make text overflow work on button style
 	width: 100%;
 	// but restrict to content so plain checkboxes / radio switches do not expand
@@ -244,6 +242,10 @@ export default {
 		.checkbox-content__icon--checked > * {
 			color: var(--color-primary-element-text);
 		}
+	}
+
+	&--has-text {
+		padding-right: $icon-margin;
 	}
 
 	&:not(&--button-variant) {

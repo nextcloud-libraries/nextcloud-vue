@@ -94,6 +94,7 @@ export default {
 <script>
 import { defineComponent } from 'vue'
 import GenRandomId from '../../utils/GenRandomId.js'
+import { t } from '../../l10n.js'
 
 /**
  * A wrapper for allowing inlining NcAction components within the action menu
@@ -119,10 +120,14 @@ export default defineComponent({
 		},
 	},
 
-	computed: {
-		labelId() {
-			return `nc-action-button-group-${GenRandomId()}`
-		},
+	setup() {
+		return {
+			labelId: `nc-action-button-group-${GenRandomId()}`,
+		}
+	},
+
+	methods: {
+		t,
 	},
 })
 </script>
