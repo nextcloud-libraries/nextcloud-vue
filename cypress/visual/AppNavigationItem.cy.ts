@@ -1,6 +1,6 @@
-import { mount } from 'cypress/vue2'
-import Vue, { defineComponent } from 'vue'
-import VueRouter from 'vue-router'
+import { mount } from 'cypress/vue'
+import { defineComponent } from 'vue/dist/vue.esm-bundler.js'
+import { createRouter, createMemoryHistory} from 'vue-router'
 
 import NcAppNavigationItem from '../../src/components/NcAppNavigationItem/NcAppNavigationItem.vue'
 
@@ -17,21 +17,19 @@ describe('NcAppNavigationItem', () => {
 			components: { NcAppNavigationItem },
 		})
 
-		const router = new VueRouter({
+		const router = createRouter({
 			routes: [
-				{ path: '/' },
-				{ path: '/foo' },
+				{ path: '/', component: RouterComponent },
+				{ path: '/foo', component: RouterComponent },
 			],
+			history: createMemoryHistory(),
 		})
 
 		beforeEach(() => {
-			Vue.use(VueRouter)
-
 			mount(RouterComponent as never, {
 				extensions: {
 					plugins: [router],
 				},
-				router,
 			})
 		})
 
