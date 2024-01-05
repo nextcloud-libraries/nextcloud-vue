@@ -100,6 +100,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 				type="multiselect"
 				label="label"
 				track-by="id"
+				:append-to-body="true"
 				:multiple="true"
 				:options="[{label:'Apple', id: 'apple'}, {label:'Banana', id: 'banana'}, {label:'Cherry', id: 'cherry'}]">
 				<template #icon>
@@ -193,7 +194,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:value="value"
 							:placeholder="text"
 							:disabled="disabled"
-							:append-to-body="false"
+							:append-to-body="$attrs.appendToBody || $attrs['append-to-body'] || false"
 							:input-class="{ focusable: isFocusable }"
 							class="action-input__multi"
 							v-bind="$attrs"
