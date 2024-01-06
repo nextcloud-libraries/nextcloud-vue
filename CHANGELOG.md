@@ -6,6 +6,39 @@ All notable changes to this project will be documented in this file.
 
 All notable changes to this project will be documented in this file.
 
+## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0) (unreleased)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.4.0...v9.0.0)
+
+### :boom: Breaking changes
+* Migrated to vue 3, compatible with vue 3 only.
+* The `checked` prop was renamed to `modelValue`, the `update:checked` event was renamed to `update:modelValue`. This affects the following components.
+  - `NcActionCheckbox`
+  - `NcActionRadio`
+  - `NcCheckboxRadioSwitch`
+* The `value` prop was renamed to `modelValue`, the `update:value` or `input` events were renamed to `update:modelValue`. This affects the following components.
+  - `NcActionInput`
+  - `NcActionTextEditable`
+  - `NcColorPicker`
+  - `NcDateTimePicker`
+  - `NcDateTimePickerNative`
+  - `NcInputField`
+  - `NcPasswordField`
+  - `NcRichContenteditable`
+  - `NcSelect`
+  - `NcSelectTags`
+  - `NcSettingsInputText`
+  - `NcSettingsSelectGroup`
+  - `NcTextArea`
+  - `NcTextField`
+  - `NcTimezonePicker`
+* The `exact` prop was removed. This affects the following components:
+  - `NcActionRouter`
+  - `NcAppNavigationItem`
+  - `NcBreadcrumb`
+  - `NcListItem`
+* The `isFullscreen` and `isMobile` mixins were removed. Use the according composables instead.
+
+
 ## [v8.3.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.3.0) (2023-11-30)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.3.0...v8.2.0)
 
