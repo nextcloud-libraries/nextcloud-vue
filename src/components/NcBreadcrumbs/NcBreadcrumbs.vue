@@ -547,7 +547,6 @@ export default {
 				ref: 'actionsBreadcrumb',
 				key: 'actions-breadcrumb-1',
 				// Add handlers so the Actions menu opens on hover
-				onDragstart: this.dragStart,
 				onDragenter: () => { this.menuBreadcrumbProps.open = true },
 				onDragleave: this.closeActions,
 				// Make sure we keep the same open state

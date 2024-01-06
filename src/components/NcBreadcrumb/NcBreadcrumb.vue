@@ -159,8 +159,10 @@ export default {
 		},
 	},
 	emits: [
-		'update:open',
+		'dragenter',
+		'dragleave',
 		'dropped',
+		'update:open',
 	],
 	data() {
 		return {
@@ -239,6 +241,7 @@ export default {
 		 * @param {object} e The drag enter event
 		 */
 		dragEnter(e) {
+			this.$emit('dragenter', e)
 			/**
 			 * Don't do anything if dropping is disabled.
 			 */
@@ -253,6 +256,7 @@ export default {
 		 * @param {object} e The drag leave event
 		 */
 		dragLeave(e) {
+			this.$emit('dragleave', e)
 			/**
 			 * Don't do anything if dropping is disabled.
 			 */
