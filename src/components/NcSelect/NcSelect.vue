@@ -559,7 +559,6 @@ import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
 import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
-import l10n from '../../mixins/l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
 import { h } from 'vue'
@@ -574,10 +573,6 @@ export default {
 		NcLoadingIcon,
 		VueSelect,
 	},
-
-	mixins: [
-		l10n,
-	],
 
 	props: {
 		// Add VueSelect props to $props
@@ -1034,6 +1029,9 @@ export default {
 
 			return propsToForward
 		},
+	},
+	methods: {
+		t,
 	},
 }
 </script>

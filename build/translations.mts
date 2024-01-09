@@ -20,48 +20,27 @@
  *
  */
 
+import { join, basename } from 'path'
+import { readdir, readFile } from 'fs/promises'
+import { po as poParser } from 'gettext-parser'
+
 // https://github.com/alexanderwallin/node-gettext#usage
 // https://github.com/alexanderwallin/node-gettext#load-and-add-translations-from-mo-or-po-files
 const parseFile = async (fileName) => {
-	// We need to import dependencies dynamically to support this module to be imported by vite and to be required by Cypress
-	// If we use require, vite will fail with 'Dynamic require of "path" is not supported'
-	// If we convert it to an ES module, webpack and vite are fine but Cypress will fail because it can not handle ES imports in Typescript configs in commonjs packages
-	const { basename } = await import('path')
-	const { readFile } = await import('fs/promises')
-	const gettextParser = await import('gettext-parser')
-
 	const locale = basename(fileName).slice(0, -'.pot'.length)
 	const po = await readFile(fileName)
 
-	const json = gettextParser.po.parse(po)
-
-	// Compress translations Content
-	const translations = {}
-	for (const key in json.translations['']) {
-		if (key !== '') {
-			// Plural
-			if ('msgid_plural' in json.translations[''][key]) {
-				translations[json.translations[''][key].msgid] = {
-					pluralId: json.translations[''][key].msgid_plural,
-					msgstr: json.translations[''][key].msgstr,
-				}
-				continue
-			}
-
-			// Singular
-			translations[json.translations[''][key].msgid] = json.translations[''][key].msgstr[0]
-		}
-	}
-
-	return {
-		locale,
-		translations,
-	}
+	// compress translations
+	const json = Object.fromEntries(Object.entries(poParser.parse(po).translations[''])
+		// Remove not translated string to save space
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		.filter(([_id, value]) => value.msgstr.length > 0 || value.msgstr[0] !== '')
+		// Compress translations to remove duplicated information and reduce asset size
+		.map(([id, value]) => [id, { ...(value.msgid_plural ? { p: value.msgid_plural } : {}), v: value.msgstr }]))
+	return [locale, json] as const
 }
 
-const loadTranslations = async (baseDir) => {
-	const { join } = await import('path')
-	const { readdir } = await import('fs/promises')
+export const loadTranslations = async (baseDir: string) => {
 	const files = await readdir(baseDir)
 
 	const promises = files
@@ -69,9 +48,6 @@ const loadTranslations = async (baseDir) => {
 		.map(file => join(baseDir, file))
 		.map(parseFile)
 
-	return Promise.all(promises)
-}
-
-module.exports = {
-	loadTranslations,
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	return Object.fromEntries((await Promise.all(promises)).filter(([_locale, value]) => Object.keys(value).length > 0))
 }
