@@ -507,6 +507,16 @@ export default {
 			type: Boolean,
 			default: undefined,
 		},
+
+		/**
+		 * Set element to return focus to after focus trap deactivation
+		 *
+		 * @type {import('focus-trap').FocusTargetValueOrFalse}
+		 */
+		setReturnFocus: {
+			default: undefined,
+			type: [HTMLElement, SVGElement, String, Boolean],
+		},
 	},
 
 	emits: [
@@ -779,6 +789,7 @@ export default {
 				// Esc can be used without stop in content or additionalTrapElements where it should not deacxtivate modal's focus trap.
 				// Focus trap is deactivated on modal close anyway.
 				escapeDeactivates: false,
+				setReturnFocus: this.setReturnFocus,
 			}
 
 			// Init focus trap

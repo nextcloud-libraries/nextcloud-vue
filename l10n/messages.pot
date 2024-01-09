@@ -208,6 +208,9 @@ msgstr ""
 msgid "Open navigation"
 msgstr ""
 
+msgid "Options"
+msgstr ""
+
 msgid "Password is secure"
 msgstr ""
 
@@ -267,9 +270,6 @@ msgid "Search"
 msgstr ""
 
 msgid "Search emoji"
-msgstr ""
-
-msgid "Search for options"
 msgstr ""
 
 msgid "Search for time zone"

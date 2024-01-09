@@ -27,7 +27,7 @@
 ```vue
 <template>
 	<div class="wrapper">
-		<NcSelectTags v-model="value" :multiple="false" />
+		<NcSelectTags v-model="value" input-label="Tag" :multiple="false" />
 		{{ value }}
 	</div>
 </template>
@@ -47,7 +47,7 @@ export default {
 ```vue
 <template>
 	<div class="wrapper">
-		<NcSelectTags v-model="value" :multiple="true" />
+		<NcSelectTags v-model="value" input-label="Tags" :multiple="true" />
 		{{ value }}
 	</div>
 </template>
@@ -71,7 +71,7 @@ Because of compatibility reasons only 5 tag entries are shown by default. If you
 ```vue
 <template>
 	<div class="wrapper">
-		<NcSelectTags v-model="value" :limit="null" />
+		<NcSelectTags v-model="value" input-label="Tags" :limit="null" />
 		{{ value }}
 	</div>
 </template>
@@ -94,7 +94,7 @@ It's also possible to apply any custom filter logic by setting the `optionsFilte
 ```vue
 <template>
 	<div class="wrapper">
-		<NcSelectTags v-model="value" :options-filter="customFilter" />
+		<NcSelectTags v-model="value" input-label="Tags" :options-filter="customFilter" />
 		{{ value }}
 	</div>
 </template>
