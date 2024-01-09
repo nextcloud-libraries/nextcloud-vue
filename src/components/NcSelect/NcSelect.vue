@@ -841,7 +841,7 @@ export default {
 		 */
 		uid: {
 			type: String,
-			default: () => '-' + GenRandomId(),
+			default: () => GenRandomId(),
 		},
 
 		/**
