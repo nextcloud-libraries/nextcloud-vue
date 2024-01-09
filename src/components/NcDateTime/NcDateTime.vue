@@ -113,14 +113,8 @@ h4 {
 </template>
 
 <script>
-import { getCanonicalLocale } from '@nextcloud/l10n'
-import { t } from '../../l10n.js'
-
-const FEW_SECONDS_AGO = {
-	long: t('a few seconds ago'),
-	short: t('seconds ago'), // FOR TRANSLATORS: Shorter version of 'a few seconds ago'
-	narrow: t('sec. ago'), // FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
-}
+import { computed } from 'vue'
+import { useFormatDateTime } from '../../composables/useFormatDateTime.js'
 
 export default {
 	name: 'NcDateTime',
@@ -164,99 +158,13 @@ export default {
 		},
 	},
 
-	data() {
+	setup(props) {
+		const timestamp = computed(() => props.timestamp)
+		const { formattedTime, formattedFullTime } = useFormatDateTime(timestamp, props)
 		return {
-			/** Current time in ms */
-			currentTime: Date.now(),
-			/** ID of the current time interval */
-			intervalId: undefined,
+			formattedTime,
+			formattedFullTime,
 		}
-	},
-
-	computed: {
-		/** ECMA Date object of the timestamp */
-		dateObject() {
-			return new Date(this.timestamp)
-		},
-		/** Time string formatted for main text */
-		formattedTime() {
-			if (this.relativeTime !== false) {
-				const formatter = new Intl.RelativeTimeFormat(getCanonicalLocale(), { numeric: 'auto', style: this.relativeTime })
-
-				const diff = this.dateObject - new Date(this.currentTime)
-				const seconds = diff / 1000
-				if (Math.abs(seconds) <= 90) {
-					if (this.ignoreSeconds) {
-						return FEW_SECONDS_AGO[this.relativeTime]
-					} else {
-						return formatter.format(Math.round(seconds), 'second')
-					}
-				}
-				const minutes = seconds / 60
-				if (Math.abs(minutes) <= 90) {
-					return formatter.format(Math.round(minutes), 'minute')
-				}
-				const hours = minutes / 60
-				if (Math.abs(hours) <= 24) {
-					return formatter.format(Math.round(hours), 'hour')
-				}
-				const days = hours / 24
-				if (Math.abs(days) <= 6) {
-					return formatter.format(Math.round(days), 'day')
-				}
-				const weeks = days / 7
-				if (Math.abs(weeks) <= 4) {
-					return formatter.format(Math.round(weeks), 'week')
-				}
-				const months = days / 30
-				if (Math.abs(months) <= 12) {
-					return formatter.format(Math.round(months), 'month')
-				}
-				return formatter.format(Math.round(days / 365), 'year')
-			}
-			return this.formattedFullTime
-		},
-		formattedFullTime() {
-			const formatter = new Intl.DateTimeFormat(getCanonicalLocale(), this.format)
-			return formatter.format(this.dateObject)
-		},
-	},
-
-	watch: {
-		/**
-		 * Set or clear interval if relative time is dis/enabled
-		 *
-		 * @param {boolean} newValue The new value of the relativeTime property
-		 * @param {boolean} _oldValue The old value of the relativeTime property
-		 */
-		relativeTime(newValue, _oldValue) {
-			window.clearInterval(this.intervalId)
-			this.intervalId = undefined
-			if (newValue) {
-				this.intervalId = window.setInterval(this.setCurrentTime, 1000)
-			}
-		},
-	},
-
-	mounted() {
-		// Start the interval for setting the current time if relative time is enabled
-		if (this.relativeTime !== false) {
-			this.intervalId = window.setInterval(this.setCurrentTime, 1000)
-		}
-	},
-
-	destroyed() {
-		// ensure interval is cleared
-		window.clearInterval(this.intervalId)
-	},
-
-	methods: {
-		/**
-		 * Set `currentTime` to the current timestamp, required as Date.now() is not reactive.
-		 */
-		setCurrentTime() {
-			this.currentTime = Date.now()
-		},
 	},
 }
 </script>

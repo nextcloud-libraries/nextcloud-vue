@@ -22,13 +22,17 @@
 
 import { mount } from '@vue/test-utils'
 import NcDateTime from '../../../../src/components/NcDateTime/NcDateTime.vue'
+import { nextTick } from 'vue'
 
 describe('NcDateTime.vue', () => {
 	'use strict'
 
+	beforeAll(() => jest.useFakeTimers())
+	afterAll(() => jest.useRealTimers())
+
 	it('Sets the title property correctly', () => {
 		const time = Date.UTC(2023, 5, 23, 14, 30)
-		Date.now = jest.fn(() => new Date(time).valueOf())
+		jest.setSystemTime(new Date(time))
 		const wrapper = mount(NcDateTime, {
 			propsData: {
 				timestamp: time,
@@ -41,7 +45,7 @@ describe('NcDateTime.vue', () => {
 
 	it('Can set format of the title property', () => {
 		const time = Date.UTC(2023, 5, 23, 14, 30)
-		Date.now = jest.fn(() => new Date(time).valueOf())
+		jest.setSystemTime(new Date(time))
 		const wrapper = mount(NcDateTime, {
 			propsData: {
 				timestamp: time,
@@ -55,7 +59,7 @@ describe('NcDateTime.vue', () => {
 
 	it('Can disable relative time', () => {
 		const time = Date.UTC(2023, 5, 23, 14, 30)
-		Date.now = jest.fn(() => new Date(time).valueOf())
+		jest.setSystemTime(new Date(time))
 		const wrapper = mount(NcDateTime, {
 			propsData: {
 				timestamp: time,
@@ -82,7 +86,7 @@ describe('NcDateTime.vue', () => {
 		 */
 		it('', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30)
-			Date.now = jest.fn(() => new Date(time).valueOf())
+			jest.setSystemTime(time)
 			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
@@ -97,117 +101,107 @@ describe('NcDateTime.vue', () => {
 	describe('Shows relative time', () => {
 		it('works with currentTime == timestamp', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30)
-			Date.now = jest.fn(() => new Date(time).valueOf())
+			jest.setSystemTime(new Date(time))
 			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
 				},
 			})
 
-			expect(wrapper.vm.currentTime).toEqual(time)
 			expect(wrapper.element.textContent).toContain('now')
 		})
 
 		it('shows seconds from now (updating)', async () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
-			let currentTime = Date.UTC(2023, 5, 23, 14, 30, 33)
-			Date.now = jest.fn(() => new Date(currentTime).valueOf())
+			jest.setSystemTime(Date.UTC(2023, 5, 23, 14, 30, 33))
 			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
 				},
 			})
 
-			expect(wrapper.vm.currentTime).toEqual(currentTime)
 			expect(wrapper.element.textContent).toContain('3 seconds')
-			currentTime = Date.UTC(2023, 5, 23, 14, 30, 34)
-			// wait for timer
-			await new Promise((resolve) => setTimeout(resolve, 1100))
+			await jest.advanceTimersByTimeAsync(1020)
+			await nextTick()
 			expect(wrapper.element.textContent).toContain('4 seconds')
 		})
 
-		it('shows seconds from now - also as short variant', () => {
+		it('shows seconds from now - also as narrow variant', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
 			const currentTime = Date.UTC(2023, 5, 23, 14, 30, 33)
-			Date.now = jest.fn(() => new Date(currentTime).valueOf())
+			jest.setSystemTime(currentTime)
 			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
-					relativeTime: 'short',
+					relativeTime: 'narrow',
 				},
 			})
 
-			expect(wrapper.vm.currentTime).toEqual(currentTime)
-			expect(wrapper.element.textContent).toContain('3 sec.')
+			expect(wrapper.element.textContent).toContain('3s ago')
 		})
 
 		it('shows minutes from now', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
 			const currentTime = Date.UTC(2023, 5, 23, 14, 33, 30)
-			Date.now = jest.fn(() => new Date(currentTime).valueOf())
+			jest.setSystemTime(currentTime)
 			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
 				},
 			})
 
-			expect(wrapper.vm.currentTime).toEqual(currentTime)
 			expect(wrapper.element.textContent).toContain('3 minutes')
 		})
 
 		it('shows hours from now', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
 			const currentTime = Date.UTC(2023, 5, 23, 17, 30, 30)
-			Date.now = jest.fn(() => new Date(currentTime).valueOf())
+			jest.setSystemTime(currentTime)
 			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
 				},
 			})
 
-			expect(wrapper.vm.currentTime).toEqual(currentTime)
 			expect(wrapper.element.textContent).toContain('3 hours')
 		})
 
 		it('shows days from now', () => {
 			const time = Date.UTC(2023, 5, 21, 20, 30, 30)
 			const currentTime = Date.UTC(2023, 5, 23, 17, 30, 30)
-			Date.now = jest.fn(() => new Date(currentTime).valueOf())
+			jest.setSystemTime(currentTime)
 			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
 				},
 			})
 
-			expect(wrapper.vm.currentTime).toEqual(currentTime)
 			expect(wrapper.element.textContent).toContain('2 days')
 		})
 
 		it('shows weeks from now', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
 			const currentTime = Date.UTC(2023, 6, 13, 14, 30, 30)
-			Date.now = jest.fn(() => new Date(currentTime).valueOf())
+			jest.setSystemTime(currentTime)
 			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
 				},
 			})
 
-			expect(wrapper.vm.currentTime).toEqual(currentTime)
 			expect(wrapper.element.textContent).toContain('3 weeks')
 		})
 
 		it('shows months from now', () => {
 			const time = Date.UTC(2023, 1, 23, 14, 30, 30)
 			const currentTime = Date.UTC(2023, 6, 13, 14, 30, 30)
-			Date.now = jest.fn(() => new Date(currentTime).valueOf())
+			jest.setSystemTime(currentTime)
 			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
 				},
 			})
 
-			expect(wrapper.vm.currentTime).toEqual(currentTime)
 			expect(wrapper.element.textContent).toContain('5 months')
 		})
 
@@ -215,7 +209,7 @@ describe('NcDateTime.vue', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
 			const time2 = Date.UTC(2022, 5, 23, 14, 30, 30)
 			const currentTime = Date.UTC(2024, 6, 13, 14, 30, 30)
-			Date.now = jest.fn(() => new Date(currentTime).valueOf())
+			jest.setSystemTime(currentTime)
 
 			const wrapper = mount(NcDateTime, {
 				propsData: {
@@ -228,8 +222,6 @@ describe('NcDateTime.vue', () => {
 				},
 			})
 
-			expect(wrapper.vm.currentTime).toEqual(currentTime)
-			expect(wrapper2.vm.currentTime).toEqual(currentTime)
 			expect(wrapper.element.textContent).toContain('last year')
 			expect(wrapper2.element.textContent).toContain('2 years')
 		})
