@@ -1,6 +1,6 @@
 const path = require('path')
 const { merge } = require('webpack-merge')
-const webpackConfig = require('./webpack.config.js')
+const webpackConfig = require('./webpack.config.cjs')
 
 module.exports = async () => {
 	const base = await webpackConfig()
