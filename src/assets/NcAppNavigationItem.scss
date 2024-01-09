@@ -60,6 +60,10 @@
 		.app-navigation-entry__utils .app-navigation-entry__actions {
 			display: inline-block;
 		}
+
+		.app-navigation-entry__utils--has-children {
+			margin-right: 0;
+		}
 	}
 
 	/* hide deletion/collapse of subitems */
@@ -156,7 +160,7 @@
 	&#{&}--display-actions .action-item.app-navigation-entry__actions {
 		display: inline-block;
 	}
-	&--add-spacing {
+	&--has-children {
 		// Add slightly more space to the right of the counter
 		margin-right: calc(var(--default-grid-baseline) * 3);
 	}
@@ -170,6 +174,10 @@
 	.action-item.app-navigation-entry__actions {
 		display: none;
 	}
+}
+
+.active .app-navigation-entry__utils--has-children {
+	margin-right: 0;
 }
 
 // STATES
