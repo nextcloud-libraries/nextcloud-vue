@@ -208,6 +208,9 @@ msgstr ""
 msgid "Open navigation"
 msgstr ""
 
+msgid "Options"
+msgstr ""
+
 msgid "Password is secure"
 msgstr ""
 

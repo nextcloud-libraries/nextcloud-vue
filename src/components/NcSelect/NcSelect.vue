@@ -573,6 +573,14 @@ export default {
 		},
 
 		/**
+		 * `aria-label` for the listbox element
+		 */
+		ariaLabelListbox: {
+			type: String,
+			default: t('Options'),
+		},
+
+		/**
 		 * Allows to customize the `aria-label` for the deselect-option button
 		 * The default is "Deselect " + optionLabel
 		 * @type {(optionLabel: string) => string}
