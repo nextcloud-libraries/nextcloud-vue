@@ -277,6 +277,7 @@ export default {
 		v-on="isButtonType ? listeners : {}">
 		<input v-if="!isButtonType"
 			:id="id"
+			:aria-labelledby="!isButtonType && !ariaLabel ? `${id}-label` : null"
 			:aria-label="ariaLabel || undefined"
 			class="checkbox-radio-switch__input"
 			:disabled="disabled"
@@ -293,7 +294,8 @@ export default {
 			:button-variant="buttonVariant"
 			:is-checked="isChecked"
 			:loading="loading"
-			:size="size">
+			:size="size"
+			@click="onToggle">
 			<template #icon>
 				<!-- @slot The checkbox/radio icon, you can use it for adding an icon to the button variant -->
 				<slot name="icon" />
@@ -509,6 +511,7 @@ export default {
 		cssVars() {
 			return {
 				'--icon-size': this.size + 'px',
+				'--icon-height': (this.type === TYPE_SWITCH ? 16 : this.size) + 'px',
 			}
 		},
 

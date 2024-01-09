@@ -100,6 +100,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 				type="multiselect"
 				label="label"
 				track-by="id"
+				:append-to-body="true"
 				:multiple="true"
 				:options="[{label:'Apple', id: 'apple'}, {label:'Banana', id: 'banana'}, {label:'Cherry', id: 'cherry'}]">
 				<template #icon>
