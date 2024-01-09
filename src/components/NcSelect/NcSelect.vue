@@ -475,6 +475,9 @@ export default {
 		<template #open-indicator="{ attributes }">
 			<ChevronDown v-bind="attributes"
 				fill-color="var(--vs-controls-color)"
+				:style="{
+					cursor: !disabled ? 'pointer' : null,
+				}"
 				:size="26" />
 				<!-- Set size to 26 to make up for the increased padding of this icon -->
 		</template>
