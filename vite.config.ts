@@ -1,4 +1,4 @@
-import type { Plugin } from 'vite'
+import type { Plugin, UserConfigFn } from 'vite'
 import { createLibConfig } from '@nextcloud/vite-config'
 import { globSync } from 'glob'
 import { join, resolve } from 'node:path'
@@ -85,10 +85,6 @@ const overrides = defineConfig({
 			},
 		},
 	},
-	test: {
-		environment: 'jsdom',
-		setupFiles: resolve(__dirname, './tests/setup.js'),
-	},
 })
 
 // We need a callback config so we can access the vite build mode
@@ -115,4 +111,4 @@ export default defineConfig((env) => {
 	})
 
 	return createConfig(env)
-})
+}) as UserConfigFn
