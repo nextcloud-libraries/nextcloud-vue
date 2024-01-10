@@ -3,10 +3,11 @@
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Markus Eckstein, 2023
 # Andy Scherzinger <info@andy-scherzinger.de>, 2023
+# Mario Siegmann <mario_siegmann@web.de>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Andy Scherzinger <info@andy-scherzinger.de>, 2023\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2024\n"
 "Language-Team: German (https://app.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -223,6 +224,9 @@ msgstr "Menü öffnen"
 
 msgid "Open navigation"
 msgstr "Navigation öffnen"
+
+msgid "Options"
+msgstr "Optionen"
 
 msgid "Password is secure"
 msgstr "Passwort ist sicher"
