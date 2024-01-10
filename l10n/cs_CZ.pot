@@ -220,6 +220,9 @@ msgstr "Otevřít nabídku"
 msgid "Open navigation"
 msgstr "Otevřít navigaci"
 
+msgid "Options"
+msgstr "Možnosti"
+
 msgid "Password is secure"
 msgstr "Heslo je bezpečné"
 
