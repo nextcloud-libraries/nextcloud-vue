@@ -935,7 +935,7 @@ export default {
 
 				const addClass = {
 					name: 'addClass',
-					fn(_middlewareArgs) {
+					fn(/* middlewareArgs */) {
 						dropdownMenu.classList.add('vs__dropdown-menu--floating')
 						return {}
 					},
@@ -1021,6 +1021,7 @@ export default {
 			]
 			const initialPropsToForward = Object.fromEntries(
 				Object.entries(this.$props)
+					// eslint-disable-next-line @typescript-eslint/no-unused-vars
 					.filter(([key, _value]) => vueSelectKeys.includes(key)),
 			)
 			const propsToForward = {

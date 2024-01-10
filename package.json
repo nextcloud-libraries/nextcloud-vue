@@ -19,8 +19,8 @@
     "dev:watch": "vite build --mode development --watch",
     "watch": "npm run dev:watch",
     "l10n:extract": "node build/extract-l10n.mjs",
-    "lint": "eslint --ext .js,.vue src",
-    "lint:fix": "eslint --ext .js,.vue src --fix",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "test": "TZ=UTC vitest run",
     "test:coverage": "TZ=UTC vitest run --coverage",
     "stylelint": "stylelint src/**/*.vue src/**/*.scss src/**/*.css",
@@ -34,6 +34,7 @@
   "main": "dist/index.cjs",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
@@ -100,7 +101,6 @@
     "unified": "^11.0.4",
     "unist-builder": "^4.0.0",
     "unist-util-visit": "^5.0.0",
-    "vue": "^3.3.7",
     "vue-datepicker-next": "^1.0.3",
     "vue-select": "^4.0.0-beta.6"
   },
@@ -113,14 +113,15 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-import-assertions": "^7.22.5",
-    "@babel/preset-typescript": "^7.22.5",
+    "@babel/plugin-transform-typescript": "^7.23.6",
+    "@babel/preset-typescript": "^7.22.15",
     "@cypress/vue": "^6.0.0",
     "@fontsource/roboto": "^5.0.0",
     "@mdi/js": "^7.3.67",
     "@mdi/svg": "^7.0.96",
     "@nextcloud/babel-config": "^1.0.0",
     "@nextcloud/browserslist-config": "^3.0.0",
-    "@nextcloud/eslint-config": "github:nextcloud-libraries/eslint-config#fe67f6b84e3c13eb0ea2478f44939abc2fe7c99c",
+    "@nextcloud/eslint-config": "github:nextcloud-libraries/eslint-config#9b4f321f25612cde492211e91e369685d9cf7b42",
     "@nextcloud/stylelint-config": "^2.3.1",
     "@nextcloud/vite-config": "github:nextcloud-libraries/nextcloud-vite-config#vue3",
     "@nextcloud/webpack-vue-config": "github:nextcloud/webpack-vue-config#1f4277c6ab14be63810f425ef6b762d8ca59697b",
@@ -146,7 +147,7 @@
     "vue-eslint-parser": "^9.4.0",
     "vue-material-design-icons": "^5.2.0",
     "vue-router": "^4.2.5",
-    "vue-styleguidist": "~4.72.0",
+    "vue-styleguidist": "^4.72.4",
     "webpack": "^5.88.1",
     "webpack-merge": "^5.9.0"
   },

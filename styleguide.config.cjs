@@ -43,11 +43,6 @@ module.exports = async () => {
 					},
 				},
 			},
-			resolve: {
-				alias: {
-					vue: 'vue/dist/vue.js',
-				},
-			},
 		}),
 
 		exampleMode: 'collapse',

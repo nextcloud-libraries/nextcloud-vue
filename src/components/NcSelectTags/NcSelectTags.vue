@@ -312,14 +312,11 @@ export default {
 		},
 
 		propsToForward() {
-			const {
-				// Props handled by this component
-				fetchTags,
-				optionsFilter,
-				passthru,
-				// Props to forward
-				...propsToForward
-			} = this.$props
+			const propsToForward = { ...this.$props }
+			// Props handled by this component
+			delete propsToForward.fetchTags
+			delete propsToForward.optionsFilter
+			delete propsToForward.passthru
 
 			return propsToForward
 		},

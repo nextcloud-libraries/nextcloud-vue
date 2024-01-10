@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import NcButton from '../NcButton/index.js'
+import NcButton from '../NcButton/index.ts'
 
 import { t } from '../../l10n.js'
 

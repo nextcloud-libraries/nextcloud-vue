@@ -1,18 +1,18 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
+import { defineComponent } from 'vue'
 
-import isSlotPopulated from '../../../src/utils/isSlotPopulated.js'
+import isSlotPopulated from '../../../src/utils/isSlotPopulated'
 
-
-const IsSlotPopulatedTest = {
+const IsSlotPopulatedTest = defineComponent({
 	name: 'IsSlotPopulatedTest',
 	template: '<div><slot /></div>',
-	computed : {
+	computed: {
 		isDefaultPopulated() {
 			return isSlotPopulated(this.$slots.default?.())
 		},
 	},
-}
+})
 
 describe('isSlotPopulated.js', () => {
 	it('is not populated when a slot contains an empty array', () => {

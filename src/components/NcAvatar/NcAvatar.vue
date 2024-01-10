@@ -186,7 +186,7 @@ export default {
 <script>
 import NcActions from '../NcActions/index.js'
 import NcActionLink from '../NcActionLink/index.js'
-import NcButton from '../NcButton/index.js'
+import NcButton from '../NcButton/index.ts'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import usernameToColor from '../../functions/usernameToColor/index.js'

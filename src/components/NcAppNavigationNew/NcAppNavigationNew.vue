@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import NcButton from '../NcButton/index.js'
+import NcButton from '../NcButton/index.ts'
 
 export default {
 	components: {

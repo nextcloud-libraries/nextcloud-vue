@@ -1,7 +1,7 @@
 /**
- * @copyright Copyright (c) 2023 Raimund Schlüßler <raimund.schluessler@mailbox.org>
+ * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
- * @author Raimund Schlüßler <raimund.schluessler@mailbox.org>
+ * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license AGPL-3.0-or-later
  *
@@ -20,20 +20,11 @@
  *
  */
 
-import { Fragment, Comment, Text } from 'vue'
+export * from './components/index'
 
-/**
- * Checks whether a slot is populated
- *
- * @param {Array} vnodes The array of vnodes to check
- */
-const isSlotPopulated = function(vnodes) {
-	return !!vnodes?.some(node => {
-		if (node.type === Comment) return false
-		if (node.type === Fragment && !isSlotPopulated(node.children)) return false
-		if (node.type === Text && !node.children.trim()) return false
-		return true
-	})
-}
+export * from './composables/index.js'
+export * from './functions/index.js'
+export * from './directives/index.js'
+export * from './mixins/index.js'
 
-export default isSlotPopulated
+export { NextcloudVuePlugin } from './plugin'

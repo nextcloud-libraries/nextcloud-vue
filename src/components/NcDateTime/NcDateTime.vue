@@ -227,9 +227,8 @@ export default {
 		 * Set or clear interval if relative time is dis/enabled
 		 *
 		 * @param {boolean} newValue The new value of the relativeTime property
-		 * @param {boolean} _oldValue The old value of the relativeTime property
 		 */
-		relativeTime(newValue, _oldValue) {
+		relativeTime(newValue) {
 			window.clearInterval(this.intervalId)
 			this.intervalId = undefined
 			if (newValue) {

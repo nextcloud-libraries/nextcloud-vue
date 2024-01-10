@@ -238,7 +238,7 @@ export default {
 		/**
 		 * Add the hovering state on drag enter
 		 *
-		 * @param {object} e The drag enter event
+		 * @param {DragEvent} e The drag-enter event
 		 */
 		dragEnter(e) {
 			this.$emit('dragenter', e)
@@ -253,7 +253,7 @@ export default {
 		/**
 		 * Remove the hovering state on drag leave
 		 *
-		 * @param {object} e The drag leave event
+		 * @param {DragEvent} e The drag leave event
 		 */
 		dragLeave(e) {
 			this.$emit('dragleave', e)

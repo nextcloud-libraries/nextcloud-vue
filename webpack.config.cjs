@@ -61,7 +61,7 @@ webpackRules.RULE_NODE_MJS = {
 	type: 'javascript/auto',
 	resolve: {
 		fullySpecified: false,
-	}
+	},
 }
 
 webpackConfig.module.rules = Object.values(webpackRules)
@@ -71,6 +71,11 @@ module.exports = () => {
 		PRODUCTION: JSON.stringify(!isDev),
 		SCOPE_VERSION,
 	}))
+
+	webpackConfig.resolve.extensionAlias = {
+		'.js': ['.ts', '.js'],
+		'.mjs': ['.mts', '.mjs'],
+	}
 
 	return webpackConfig
 }
