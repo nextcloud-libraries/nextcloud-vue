@@ -127,7 +127,7 @@ export default {
 		:append-to-body="appendToBody"
 		:clearable="clearable"
 		:format="format ? format : formatTypeMap"
-		:formatter="formatter"
+		:formatter="internalFormatter"
 		:lang="lang ? lang : defaultLang"
 		:minute-step="minuteStep"
 		:placeholder="placeholder ? placeholder : defaultPlaceholder"
@@ -350,6 +350,32 @@ export default ScopeComponent({
 		 */
 		formatTypeMap() {
 			return formatMap[this.type] ?? formatMap.date
+		},
+
+		/**
+		 * The formatter used for the vue-datepicker to fix nextcloud-libraries/nextcloud-vue#5044
+		 */
+		internalFormatter() {
+			/**
+			 * Get the ISO week number of the date
+			 * @param {Date} date The date to format
+			 */
+			const getWeek = (date) => {
+				// Adjust to nearest Thursday
+				const firstThursday = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
+				firstThursday.setUTCDate(firstThursday.getUTCDate() + 4 - (firstThursday.getUTCDay() || 7))
+
+				const yearStart = new Date(Date.UTC(firstThursday.getUTCFullYear(), 0, 1))
+
+				// Full weeks to nearest Thursday
+				return Math.ceil((((firstThursday - yearStart) / 86400000) + 1) / 7)
+			}
+
+			return {
+				getWeek,
+				// allow to override it by users using the `formatter` prop
+				...(this.formatter ?? {}),
+			}
 		},
 	},
 
