@@ -1031,6 +1031,18 @@ export default {
 			return ['NcActionButton', 'NcActionLink', 'NcActionRouter'].includes(componentName)
 		},
 
+		/**
+		 * Check whether a icon prop value is an URL or not
+		 * @param {string} url The icon prop value
+		 */
+		isIconUrl(url) {
+			try {
+				return !!(new URL(url, url.startsWith('/') ? window.location.origin : undefined))
+			} catch (error) {
+				return false
+			}
+		},
+
 		// MENU STATE MANAGEMENT
 		openMenu(e) {
 			if (this.opened) {
@@ -1266,8 +1278,12 @@ export default {
 		 * @return {Function} the vue render function
 		 */
 		const renderInlineAction = (action) => {
-			const icon = action?.data?.scopedSlots?.icon()?.[0]
-				|| h('span', { class: ['icon', action?.componentOptions?.propsData?.icon] })
+			const iconProp = action?.componentOptions?.propsData?.icon
+			const icon = action?.data?.scopedSlots?.icon()?.[0] ?? (
+				this.isIconUrl(iconProp)
+					? h('img', { class: 'action-item__menutoggle__icon', attrs: { src: iconProp, alt: '' } })
+					: h('span', { class: ['icon', iconProp] })
+			)
 			const attrs = action?.data?.attrs || {}
 			const clickListener = action?.componentOptions?.listeners?.click
 
@@ -1540,6 +1556,12 @@ export default {
 
 	&.action-item--open .action-item__menutoggle {
 		background-color: var(--open-background-color);
+	}
+
+	&__menutoggle__icon {
+		width: 20px;
+		height: 20px;
+		object-fit: contain;
 	}
 }
 </style>
