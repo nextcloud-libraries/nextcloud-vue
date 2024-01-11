@@ -161,6 +161,9 @@ msgstr ""
 msgid "invisible"
 msgstr ""
 
+msgid "Keyboard navigation help"
+msgstr ""
+
 msgid "Load more \"{options}\""
 msgstr ""
 

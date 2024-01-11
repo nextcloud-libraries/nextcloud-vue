@@ -71,22 +71,33 @@ It also will set the skip content buttons needed for accessibility.
 </docs>
 
 <template>
-	<div id="content-vue"
-		:class="`app-${appName.toLowerCase()}`"
-		class="content">
+	<div id="content-vue" :class="['content', `app-${appName.toLowerCase()}`]">
 		<!-- TODO: with vue3 the `selector` attribute needs to be changed to `to="#skip-actions"` -->
 		<Teleport selector="#skip-actions">
-			<div class="skip-actions">
-				<NcButton type="primary" href="#app-content-vue">
-					{{ t('Skip to main content') }}
-				</NcButton>
-				<NcButton v-show="hasAppNavigation"
-					type="primary"
-					href="#app-navigation-vue"
-					@click.prevent="openAppNavigation">
-					{{ t('Skip to app navigation') }}
-				</NcButton>
+			<div class="vue-skip-actions">
+				<h2>{{ t('Keyboard navigation help') }}</h2>
+				<div class="vue-skip-actions__buttons">
+					<NcButton type="primary"
+						href="#app-content-vue"
+						@focusin="currentFocus = 'content'"
+						@mouseover="currentFocus = 'content'">
+						{{ t('Skip to main content') }}
+					</NcButton>
+					<NcButton v-show="hasAppNavigation"
+						type="primary"
+						href="#app-navigation-vue"
+						@click.prevent="openAppNavigation"
+						@focusin="currentFocus = 'navigation'"
+						@mouseover="currentFocus = 'navigation'">
+						{{ t('Skip to app navigation') }}
+					</NcButton>
+				</div>
+				<NcIconSvgWrapper v-show="!isMobile"
+					class="vue-skip-actions__image"
+					:svg="currentImage"
+					size="auto" />
 			</div>
+			&nbsp;<!-- TODO: Remove with vue3! This is a bug of vue-simple-portal that does not allow a single child, ref LinusBorg/vue-simple-portal#20 -->
 		</Teleport>
 		<slot />
 	</div>
@@ -94,16 +105,24 @@ It also will set the skip content buttons needed for accessibility.
 
 <script>
 import { emit } from '@nextcloud/event-bus'
+// TODO: This is built-in for vue3 just drop the import
+import { Portal as Teleport } from '@linusborg/vue-simple-portal'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { t } from '../../l10n.js'
 
 import NcButton from '../NcButton/NcButton.vue'
-// TODO: This is built-in for vue3 just drop the import
-import { Portal as Teleport } from '@linusborg/vue-simple-portal'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
+
+/* eslint-disable import/no-unresolved */
+import contentSvg from './content-selected.svg?raw'
+import navigationSvg from './navigation-selected.svg?raw'
+/* eslint-enable import/no-unresolved */
 
 export default {
 	name: 'NcContent',
 	components: {
 		NcButton,
+		NcIconSvgWrapper,
 		Teleport,
 	},
 	provide() {
@@ -117,10 +136,25 @@ export default {
 			required: true,
 		},
 	},
+	setup() {
+		const isMobile = useIsMobile()
+		return {
+			isMobile,
+		}
+	},
 	data() {
 		return {
 			hasAppNavigation: false,
+			currentFocus: 'content',
 		}
+	},
+	computed: {
+		currentImage() {
+			if (this.currentFocus === 'navigation') {
+				return navigationSvg
+			}
+			return contentSvg
+		},
 	},
 	beforeMount() {
 		const container = document.getElementById('skip-actions')
@@ -146,10 +180,38 @@ export default {
 }
 </script>
 
+<style lang="scss">
+// Remove server stylings and add a backdrop
+#skip-actions:focus-within {
+	top: 0!important;
+	left: 0!important;
+	width: 100vw;
+	height: 100vh;
+	padding: var(--body-container-margin)!important;
+	backdrop-filter: brightness(50%);
+}
+</style>
+
 <style lang="scss" scoped>
-.skip-actions {
-	display: flex;
-	gap: 12px;
+.vue-skip-actions {
+	background-color: var(--color-main-background);
+	border-radius: var(--border-radius-large);
+	padding: 22px;
+
+	&__buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+
+		> * {
+			// Ensure buttons are same width on smaller screens (container wrapped)
+			flex: 1 0 fit-content;
+		}
+	}
+
+	&__image {
+		margin-top: 12px;
+	}
 }
 
 .content {
