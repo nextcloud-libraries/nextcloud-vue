@@ -217,6 +217,15 @@ export default defineComponent({
 		},
 
 		/**
+		 * Close the dialog if the user clicked outside of the dialog
+		 * Only relevant if `canClose` is set to true.
+		 */
+		closeOnClickOutside: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * Declare if hiding the modal should be animated
 		 * @default false
 		 */
@@ -345,7 +354,7 @@ export default defineComponent({
 			show: props.open && showModal.value,
 			outTransition: props.outTransition,
 			class: 'dialog__modal',
-			closeOnClickOutside: false,
+			closeOnClickOutside: props.closeOnClickOutside,
 			enableSlideshow: false,
 			enableSwipe: false,
 		}))
