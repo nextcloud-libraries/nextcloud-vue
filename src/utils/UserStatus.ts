@@ -22,35 +22,16 @@
 
 import { t } from '../l10n.js'
 
-import onlineSvg from '../assets/status-icons/user-status-online.svg?raw'
-import awaySvg from '../assets/status-icons/user-status-away.svg?raw'
-import dndSvg from '../assets/status-icons/user-status-dnd.svg?raw'
-import invisibleSvg from '../assets/status-icons/user-status-invisible.svg?raw'
-
-type Status = 'online' | 'away' | 'dnd' | 'invisible' | 'offline'
+type Status = 'online' | 'away' | 'busy' | 'dnd' | 'invisible' | 'offline'
 
 export const getUserStatusText = (status: Status): string => {
 	switch (status) {
 	case 'away': return t('away') // TRANSLATORS: User status if the user is currently away from keyboard
+	case 'busy': return t('busy')
 	case 'dnd': return t('do not disturb')
 	case 'online': return t('online')
 	case 'invisible': return t('invisible')
 	case 'offline': return t('offline')
 	default: return status
 	}
-}
-
-export const getUserStatusIcon = (status: Status): null | string => {
-	const statusIconMap = {
-		online: onlineSvg,
-		away: awaySvg,
-		dnd: dndSvg,
-		invisible: invisibleSvg,
-	}
-
-	return statusIconMap[status] ?? null
-}
-
-export const getUserStatusIconName = (status: Status): string => {
-	return t('User status: {status}', { status: getUserStatusText(status) })
 }
