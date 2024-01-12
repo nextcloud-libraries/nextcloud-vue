@@ -301,8 +301,10 @@ export default {
 				<slot name="icon" />
 			</template>
 
-			<!-- @slot The checkbox/radio label -->
-			<slot />
+			<template v-if="!!$slots.default" #default>
+				<!-- @slot The checkbox/radio label -->
+				<slot />
+			</template>
 		</NcCheckboxContent>
 	</component>
 </template>
