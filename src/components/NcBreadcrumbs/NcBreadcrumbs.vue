@@ -529,92 +529,84 @@ export default {
 		}))
 
 		// The array of all created VNodes
-		let crumbs = []
-
-		if (!this.hiddenIndices.length) {
-			// We don't hide any breadcrumbs.
-			crumbs = breadcrumbs
-		} else {
+		const crumbs = [...breadcrumbs]
+		if (this.hiddenIndices.length) {
 			/**
 			 * We show the first half of the breadcrumbs before the Actions dropdown menu
 			 * which shows the hidden breadcrumbs.
 			 */
-			// Add the breadcrumbs to the array of the created VNodes, check if hiding them is necessary.
-			crumbs = breadcrumbs.slice(0, Math.round(breadcrumbs.length / 2))
+			 crumbs.splice(Math.round(breadcrumbs.length / 2), 0,
 
-			// The Actions menu
-			// Use a breadcrumb component for the hidden breadcrumbs
-			crumbs.push(h(NcBreadcrumb, {
-				class: 'dropdown',
-				...this.menuBreadcrumbProps,
-				// Hide the dropdown menu from screen-readers,
-				// since the crumbs in the menu are still in the list.
-				'aria-hidden': true,
-				// Add a ref to the Actions menu
-				ref: 'actionsBreadcrumb',
-				key: 'actions-breadcrumb-1',
-				// Add handlers so the Actions menu opens on hover
-				onDragenter: () => { this.menuBreadcrumbProps.open = true },
-				onDragleave: this.closeActions,
-				// Make sure we keep the same open state
-				// as the Actions component
-				'onUpdate:open': (open) => {
-					this.menuBreadcrumbProps.open = open
-				},
-			// Add all hidden breadcrumbs as ActionRouter or ActionLink
-			}, {
-				default: () => this.hiddenIndices.map(index => {
-					const crumb = breadcrumbs[index]
-					const {
-						// Get the parameters from the breadcrumb component props
-						to,
-						href,
-						disableDrop,
-						name,
-						// Props to forward
-						...propsToForward
-					} = crumb.props
-					// Do not forward the ref, otherwise it will be null if the hidden crumb gets destroyed
-					delete propsToForward.ref
-
-					// Decide whether to show the breadcrumbs as ActionButton, ActionRouter or ActionLink
-					let element = NcActionButton
-					let path = ''
-					if (href) {
-						element = NcActionLink
-						path = href
-					}
-					if (to) {
-						element = NcActionRouter
-						path = to
-					}
-					const folderIcon = h(IconFolder, {
-						size: 20,
-					})
-					return h(element, {
-						...propsToForward,
-						class: crumbClass,
-						href: href || null,
-						to: to || null,
-						// Prevent the breadcrumbs from being draggable
-						draggable: false,
-						// Add the drag and drop handlers
-						onDragstart: this.dragStart,
-						onDrop: ($event) => this.dropped($event, path, disableDrop),
-						onDragover: this.dragOver,
-						onDragenter: ($event) => this.dragEnter($event, disableDrop),
-						onDragleave: ($event) => this.dragLeave($event, disableDrop),
+				// The Actions menu
+				// Use a breadcrumb component for the hidden breadcrumbs
+				h(NcBreadcrumb, {
+					class: 'dropdown',
+					...this.menuBreadcrumbProps,
+					// Hide the dropdown menu from screen-readers,
+					// since the crumbs in the menu are still in the list.
+					'aria-hidden': true,
+					// Add a ref to the Actions menu
+					ref: 'actionsBreadcrumb',
+					key: 'actions-breadcrumb-1',
+					// Add handlers so the Actions menu opens on hover
+					onDragenter: () => { this.menuBreadcrumbProps.open = true },
+					onDragleave: this.closeActions,
+					// Make sure we keep the same open state
+					// as the Actions component
+					'onUpdate:open': (open) => {
+						this.menuBreadcrumbProps.open = open
 					},
-					{
-						default: () => name,
-						icon: () => folderIcon,
-					})
-				}),
-			}))
+				// Add all hidden breadcrumbs as ActionRouter or ActionLink
+				}, {
+					default: () => this.hiddenIndices.map(index => {
+						const crumb = breadcrumbs[index]
+						const {
+							// Get the parameters from the breadcrumb component props
+							to,
+							href,
+							disableDrop,
+							name,
+							// Props to forward
+							...propsToForward
+						} = crumb.props
+						// Do not forward the ref, otherwise it will be null if the hidden crumb gets destroyed
+						delete propsToForward.ref
 
-			// The second half of the breadcrumbs
-			const crumbs2 = breadcrumbs.slice(Math.round(breadcrumbs.length / 2))
-			crumbs = crumbs.concat(crumbs2)
+						// Decide whether to show the breadcrumbs as ActionButton, ActionRouter or ActionLink
+						let element = NcActionButton
+						let path = ''
+						if (href) {
+							element = NcActionLink
+							path = href
+						}
+						if (to) {
+							element = NcActionRouter
+							path = to
+						}
+						const folderIcon = h(IconFolder, {
+							size: 20,
+						})
+						return h(element, {
+							...propsToForward,
+							class: crumbClass,
+							href: href || null,
+							to: to || null,
+							// Prevent the breadcrumbs from being draggable
+							draggable: false,
+							// Add the drag and drop handlers
+							onDragstart: this.dragStart,
+							onDrop: ($event) => this.dropped($event, path, disableDrop),
+							onDragover: this.dragOver,
+							onDragenter: ($event) => this.dragEnter($event, disableDrop),
+							onDragleave: ($event) => this.dragLeave($event, disableDrop),
+						},
+						{
+							default: () => name,
+							icon: () => folderIcon,
+						})
+					}),
+				}),
+			)
 		}
 
 		const wrapper = [h('nav', { 'aria-label': this.ariaLabel }, [h('ul', { class: 'breadcrumb__crumbs' }, [crumbs])])]
