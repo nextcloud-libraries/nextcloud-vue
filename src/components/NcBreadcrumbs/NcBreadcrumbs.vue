@@ -269,7 +269,7 @@ export default {
 			const hiddenIndices = []
 			const availableWidth = this.$refs.container.offsetWidth
 			let totalWidth = this.getTotalWidth(breadcrumbs)
-			// If we have breadcumbs actions, we have to take their width into account too.
+			// If we have breadcrumbs actions, we have to take their width into account too.
 			if (this.$refs.breadcrumb__actions) {
 				totalWidth += this.$refs.breadcrumb__actions.offsetWidth
 			}
@@ -567,6 +567,8 @@ export default {
 						// Props to forward
 						...propsToForward
 					} = crumb.props
+					// Do not forward the ref, otherwise it will be null if the hidden crumb gets destroyed
+					delete propsToForward.ref
 
 					// Decide whether to show the breadcrumbs as ActionButton, ActionRouter or ActionLink
 					let element = NcActionButton
