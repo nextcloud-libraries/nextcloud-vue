@@ -66,10 +66,12 @@ export default {
 <template>
 	<component :is="wrapperTag"
 		:id="id"
+		ref="headerMenu"
 		v-click-outside="clickOutsideConfig"
 		:aria-labelledby="isNav ? triggerId : null"
 		:class="{ 'header-menu--opened': opened }"
-		class="header-menu">
+		class="header-menu"
+		v-on="listeners">
 		<!-- Trigger -->
 		<button :id="isNav ? triggerId : null"
 			ref="trigger"
@@ -200,6 +202,15 @@ export default {
 				this.clickOutsideOptions,
 			]
 		},
+
+		listeners() {
+			if (this.isNav) {
+				return {
+					focusout: this.onFocusOut,
+				}
+			}
+			return null
+		},
 	},
 
 	watch: {
@@ -283,12 +294,21 @@ export default {
 		},
 
 		/**
+		 * @param {FocusEvent} event The focus event
+		 */
+		onFocusOut(event) {
+			if (!this.$refs.headerMenu.contains(event.relatedTarget)) {
+				this.closeMenu()
+			}
+		},
+
+		/**
 		 * Add focus trap for accessibility.
 		 * Shall only be used when all children are mounted
 		 * and available in the DOM. We use $nextTick for that.
 		 */
 		async useFocusTrap() {
-			if (this.focusTrap) {
+			if (this.isNav || this.focusTrap) {
 				return
 			}
 			// Init focus trap
