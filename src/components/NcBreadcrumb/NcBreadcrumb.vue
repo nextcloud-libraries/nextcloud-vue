@@ -284,8 +284,8 @@ export default {
 	padding: 0;
 
 	&:last-child {
-		max-width: 210px;
 		font-weight: bold;
+		min-width: 0;
 
 		// Don't show breadcrumb separator for last crumb
 		.vue-crumb__separator {
@@ -340,6 +340,7 @@ export default {
 
 		.button-vue {
 			padding: 0 4px 0 16px;
+			max-width: 100%;
 
 			&__wrapper {
 				flex-direction: row-reverse;
