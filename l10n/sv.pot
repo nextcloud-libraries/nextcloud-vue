@@ -221,6 +221,9 @@ msgstr "Öppna menyn"
 msgid "Open navigation"
 msgstr "Öppna navigering"
 
+msgid "Options"
+msgstr "Alternativ"
+
 msgid "Password is secure"
 msgstr "Lössenordet är säkert"
 
