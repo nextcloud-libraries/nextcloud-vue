@@ -1,11 +1,11 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Valdnet, 2023
+# Valdnet, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Valdnet, 2023\n"
+"Last-Translator: Valdnet, 2024\n"
 "Language-Team: Polish (https://app.transifex.com/nextcloud/teams/64236/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
@@ -22,6 +22,10 @@ msgstr "Kolor o wartości HEX {hex}"
 
 msgid "a few seconds ago"
 msgstr "kilka sekund temu"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
 
 msgid "Actions"
 msgstr "Działania"
@@ -48,6 +52,7 @@ msgstr "Awatar {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Awatar {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
 msgstr "stąd"
 
@@ -56,6 +61,14 @@ msgstr "Wstecz"
 
 msgid "Back to provider selection"
 msgstr "Powrót do wyboru dostawcy"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Niebieski fiolet"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Błękit Bostonu"
 
 msgid "Cancel changes"
 msgstr "Anuluj zmiany"
@@ -96,6 +109,10 @@ msgstr "Potwierdź zmiany"
 msgid "Custom"
 msgstr "Zwyczajne"
 
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Potop"
+
 msgid "Deselect {option}"
 msgstr "Odznacz {option}"
 
@@ -121,6 +138,10 @@ msgstr "Dokumentacja zewnętrzna dla {name}"
 msgid "Favorite"
 msgstr "Ulubiony"
 
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Skaleń"
+
 msgid "Flags"
 msgstr "Flagi"
 
@@ -142,8 +163,15 @@ msgstr "Złote"
 msgid "Hide password"
 msgstr "Ukryj hasło"
 
+msgid "invisible"
+msgstr "niewidzialny"
+
 msgid "Load more \"{options}\""
 msgstr "Załaduj więcej \"{options}\""
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Marynarz"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Przekroczono limit wiadomości wynoszący {count} znaków"
@@ -175,6 +203,10 @@ msgstr "Obiekty"
 msgid "offline"
 msgstr "offline"
 
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Oliwin"
+
 msgid "online"
 msgstr "online"
 
@@ -190,8 +222,8 @@ msgstr "Otwórz menu"
 msgid "Open navigation"
 msgstr "Otwórz nawigację"
 
-msgid "Open settings menu"
-msgstr "Otwórz menu ustawień"
+msgid "Options"
+msgstr "Opcje"
 
 msgid "Password is secure"
 msgstr "Hasło jest bezpieczne"
@@ -241,6 +273,10 @@ msgstr "Link Raw {options}"
 msgid "Related resources"
 msgstr "Powiązane zasoby"
 
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Różowy brąz"
+
 msgid "Save changes"
 msgstr "Zapisz zmiany"
 
@@ -249,9 +285,6 @@ msgstr "Szukaj"
 
 msgid "Search emoji"
 msgstr "Szukaj emoji"
-
-msgid "Search for options"
-msgstr "Szukaj opcji"
 
 msgid "Search for time zone"
 msgstr "Szukaj strefy czasowej"
@@ -318,6 +351,10 @@ msgstr "Cofnij zmiany"
 
 msgid "User status: {status}"
 msgstr "Status użytkownika: {status}"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Whisky"
 
 msgid "Write a message …"
 msgstr "Napisać wiadomość…"
