@@ -202,7 +202,7 @@ export default {
 				// Is the menu open or not
 				open: false,
 			},
-			breadcrumbsRefs: {},
+			breadcrumbsRefs: [],
 		}
 	},
 	created() {
@@ -262,13 +262,11 @@ export default {
 			if (!this.$refs.container) {
 				return
 			}
-			// All breadcrumb components passed into the default slot
-			const breadcrumbs = Object.values(this.breadcrumbsRefs)
 
-			const nrCrumbs = breadcrumbs.length
+			const nrCrumbs = this.breadcrumbsRefs.length
 			const hiddenIndices = []
 			const availableWidth = this.$refs.container.offsetWidth
-			let totalWidth = this.getTotalWidth(breadcrumbs)
+			let totalWidth = this.getTotalWidth()
 			// If we have breadcrumbs actions, we have to take their width into account too.
 			if (this.$refs.breadcrumb__actions) {
 				totalWidth += this.$refs.breadcrumb__actions.offsetWidth
@@ -284,7 +282,7 @@ export default {
 				// We hide elements alternating to the left and right
 				const currentIndex = startIndex + ((i % 2) ? i + 1 : i) / 2 * Math.pow(-1, i + (nrCrumbs % 2))
 				// Calculate the remaining overflow width after hiding this breadcrumb
-				overflow -= this.getWidth(breadcrumbs[currentIndex]?.$el, currentIndex === (breadcrumbs.length - 1))
+				overflow -= this.getWidth(this.breadcrumbsRefs[currentIndex]?.$el, currentIndex === (this.breadcrumbsRefs.length - 1))
 				hiddenIndices.push(currentIndex)
 				i++
 			}
@@ -317,11 +315,10 @@ export default {
 		/**
 		 * Calculates the total width of all breadcrumbs
 		 *
-		 * @param {Array} breadcrumbs All breadcrumbs
 		 * @return {number} The total width
 		 */
-		getTotalWidth(breadcrumbs) {
-			return breadcrumbs.reduce((width, crumb, index) => width + this.getWidth(crumb?.$el, index === (breadcrumbs.length - 1)), 0)
+		getTotalWidth() {
+			return this.breadcrumbsRefs.reduce((width, crumb, index) => width + this.getWidth(crumb.$el, index === (this.breadcrumbsRefs.length - 1)), 0)
 		},
 		/**
 		 * Calculates the width of the provided element
@@ -464,8 +461,7 @@ export default {
 		 * add it to the array of all crumbs.
 		 */
 		hideCrumbs() {
-			const crumbs = Object.values(this.breadcrumbsRefs)
-			crumbs.forEach((crumb, i) => {
+			this.breadcrumbsRefs.forEach((crumb, i) => {
 				if (crumb?.$el?.classList) {
 					if (this.hiddenIndices.includes(i)) {
 						crumb.$el.classList.add(`${crumbClass}--hidden`)
@@ -520,7 +516,7 @@ export default {
 		 * and don't write to this.breadcrumbsRefs directly
 		 * to not trigger a myriad of re-renders.
 		 */
-		const breadcrumbsRefs = {}
+		const breadcrumbsRefs = []
 		// Add the breadcrumbs to the array of the created VNodes, check if hiding them is necessary.
 		breadcrumbs = breadcrumbs.map((crumb, index) => cloneVNode(crumb, {
 			ref: (crumb) => {
