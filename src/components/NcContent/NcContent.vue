@@ -74,8 +74,10 @@ It also will set the skip content buttons needed for accessibility.
 	<div id="content-vue" :class="['content', `app-${appName.toLowerCase()}`]">
 		<!-- TODO: with vue3 the `selector` attribute needs to be changed to `to="#skip-actions"` -->
 		<Teleport selector="#skip-actions">
-			<div class="vue-skip-actions">
-				<h2>{{ t('Keyboard navigation help') }}</h2>
+			<div class="vue-skip-actions__container">
+				<div class="vue-skip-actions__headline">
+					{{ t('Keyboard navigation help') }}
+				</div>
 				<div class="vue-skip-actions__buttons">
 					<NcButton type="primary"
 						href="#app-content-vue"
@@ -161,6 +163,8 @@ export default {
 		if (container) {
 			// clear default buttons
 			container.innerHTML = ''
+			// add class for scoping styles
+			container.classList.add('vue-skip-actions')
 		}
 	},
 	methods: {
@@ -182,7 +186,7 @@ export default {
 
 <style lang="scss">
 // Remove server stylings and add a backdrop
-#skip-actions:focus-within {
+#skip-actions.vue-skip-actions:focus-within {
 	top: 0!important;
 	left: 0!important;
 	width: 100vw;
@@ -194,9 +198,18 @@ export default {
 
 <style lang="scss" scoped>
 .vue-skip-actions {
-	background-color: var(--color-main-background);
-	border-radius: var(--border-radius-large);
-	padding: 22px;
+	&__container {
+		background-color: var(--color-main-background);
+		border-radius: var(--border-radius-large);
+		padding: 22px;
+	}
+
+	&__headline {
+		font-weight: bold;
+		font-size: 20px;
+		line-height: 30px;
+		margin-bottom: 12px;
+	}
 
 	&__buttons {
 		display: flex;
