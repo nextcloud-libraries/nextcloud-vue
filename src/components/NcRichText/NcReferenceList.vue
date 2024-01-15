@@ -34,6 +34,10 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		interactive: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		return {
@@ -60,7 +64,12 @@ export default {
 			return this.values[0] ?? null
 		},
 		displayedReferences() {
-			return this.values.slice(0, this.limit)
+			return this.values.slice(0, this.limit).map(reference => {
+				return {
+					...reference,
+					interactive: this.interactive,
+				}
+			})
 		},
 		fallbackReference() {
 			return {
