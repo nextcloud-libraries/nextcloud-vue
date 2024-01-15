@@ -172,5 +172,26 @@ describe('NcActions.vue', () => {
 				expect(wrapper.find('.action-item__menutoggle').exists()).toBe(true)
 			})
 		})
+
+		it('supports URL for inline actions', () => {
+			const wrapper = mount(NcActions, {
+				slots: {
+					default: [
+						'<NcActionButton icon="http://example.com/image.png">Test1</NcActionButton>',
+					],
+				},
+				global: {
+					stubs: {
+						// used to register custom components
+						NcActionButton,
+					},
+				},
+				props: {
+					inline: 1,
+				},
+			})
+		
+			expect(wrapper.find('img[src="http://example.com/image.png"').exists()).toBe(true)
+		})
 	})
 })

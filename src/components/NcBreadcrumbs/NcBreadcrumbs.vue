@@ -55,7 +55,7 @@ is dropped on a creadcrumb.
 				<NcBreadcrumb name="Folder 4"
 					title="Folder 4"
 					href="/Folder 1/Folder 2/Folder 3/Folder 4" />
-				<NcBreadcrumb name="Folder 5"
+				<NcBreadcrumb name="Folder 5 with an overflowing long name"
 					title="Folder 5"
 					href="/Folder 1/Folder 2/Folder 3/Folder 4/Folder 5"
 					:disable-drop="true">
@@ -284,7 +284,7 @@ export default {
 				// We hide elements alternating to the left and right
 				const currentIndex = startIndex + ((i % 2) ? i + 1 : i) / 2 * Math.pow(-1, i + (nrCrumbs % 2))
 				// Calculate the remaining overflow width after hiding this breadcrumb
-				overflow -= this.getWidth(breadcrumbs[currentIndex]?.$el)
+				overflow -= this.getWidth(breadcrumbs[currentIndex]?.$el, currentIndex === (breadcrumbs.length - 1))
 				hiddenIndices.push(currentIndex)
 				i++
 			}
@@ -321,24 +321,31 @@ export default {
 		 * @return {number} The total width
 		 */
 		getTotalWidth(breadcrumbs) {
-			return breadcrumbs.reduce((width, crumb) => width + this.getWidth(crumb.$el), 0)
+			return breadcrumbs.reduce((width, crumb, index) => width + this.getWidth(crumb?.$el, index === (breadcrumbs.length - 1)), 0)
 		},
 		/**
 		 * Calculates the width of the provided element
 		 *
 		 * @param {object} el The element
+		 * @param {boolean} isLast Is this the last crumb
 		 * @return {number} The width
 		 */
-		getWidth(el) {
+		getWidth(el, isLast) {
 			if (!el?.classList) return 0
 			const hide = el.classList.contains(`${crumbClass}--hidden`)
 			el.style.minWidth = 'auto'
+			// For the last crumb, we calculate with a max-width of 210px,
+			// but don't set it in CSS to allow it to grow.
+			if (isLast) {
+				el.style.maxWidth = '210px'
+			}
 			el.classList.remove(`${crumbClass}--hidden`)
 			const w = el.offsetWidth
 			if (hide) {
 				el.classList.add(`${crumbClass}--hidden`)
 			}
 			el.style.minWidth = ''
+			el.style.maxWidth = ''
 			return w
 		},
 		/**
@@ -630,9 +637,8 @@ export default {
 	display: inline-flex;
 	align-items: center;
 
-	&--collapsed  :deep(.vue-crumb:last-child) {
+	&--collapsed :deep(.vue-crumb:last-child) {
 		min-width: 100px;
-		flex-shrink: 1;
 	}
 
 	nav {

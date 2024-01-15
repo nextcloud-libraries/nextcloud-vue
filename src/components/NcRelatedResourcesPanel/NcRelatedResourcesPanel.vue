@@ -95,14 +95,14 @@ export default {
 		 */
 		resourceType: {
 			type: String,
-			default: null,
+			default: '',
 		},
 		/**
 		 * Set the maximum number of resources to load
 		 */
 		limit: {
 			type: Number,
-			default: null,
+			default: 0,
 		},
 		/**
 		 * Only used by the files sidebar
