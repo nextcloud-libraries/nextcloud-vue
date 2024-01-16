@@ -43,12 +43,18 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 		<NcButton v-if="(name || icon) && !$slots.default"
 			:title="title"
 			:aria-label="icon ? name : undefined"
+			type="tertiary"
 			v-bind="linkAttributes"
 			v-on="$listeners">
-			<slot name="icon">
-				<span v-if="icon" :class="icon" class="icon" />
-				<span v-else>{{ name }}</span>
-			</slot>
+			<template v-if="$slots.icon || icon" #icon>
+				<!-- @slot Slot for passing a material design icon. Precedes the icon and name prop. -->
+				<slot name="icon">
+					<span :class="icon" class="icon" />
+				</slot>
+			</template>
+			<template v-else #default>
+				{{ name }}
+			</template>
 		</NcButton>
 		<NcActions v-if="$slots.default"
 			ref="actions"
@@ -185,7 +191,12 @@ export default {
 		 */
 		linkAttributes() {
 			// If it's a router-link, we pass `to` and `exact`, if its an <a/> element, we pass `href`, otherwise we have a button
-			return this.to ? { to: this.to, exact: this.exact, ...this.$attrs } : (this.href ? { href: this.href, ...this.$attrs } : { type: 'tertiary', ...this.$attrs })
+			return this.to
+				? { to: this.to, exact: this.exact, ...this.$attrs }
+				: (this.href
+					? { href: this.href, ...this.$attrs }
+					: this.$attrs
+				)
 		},
 	},
 	methods: {
@@ -276,13 +287,43 @@ export default {
 	padding: 0;
 
 	&:last-child {
-		font-weight: bold;
 		min-width: 0;
 
 		// Don't show breadcrumb separator for last crumb
 		.vue-crumb__separator {
 			display: none;
 		}
+	}
+
+	// Necessary to hide hidden crumbs
+	&--hidden {
+		display: none;
+	}
+	&__separator {
+		padding: 0;
+		color: var(--color-text-maxcontrast);
+	}
+	// Necessary for indicating hovering for drag and drop
+	&#{&}--hovered :deep(.button-vue) {
+		background-color: var(--color-background-dark);
+		color: var(--color-main-text);
+	}
+	// Adjust button style
+	&:not(:last-child) :deep() .button-vue {
+		color: var(--color-text-maxcontrast);
+
+		&:hover,
+		&:focus {
+			background-color: var(--color-background-dark);
+			color: var(--color-main-text);
+		}
+
+		&__text {
+			font-weight: normal;
+		}
+	}
+	:deep(.button-vue__text) {
+		margin: 0;
 	}
 
 	// Adjust action item appearance for crumbs with actions
