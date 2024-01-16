@@ -25,6 +25,7 @@
 ### General description
 
 This component is meant to be used inside a Breadcrumbs component.
+Renders a button element when given no redirection props, otherwise, renders <a/> or <router-link/> elements
 
 </docs>
 
@@ -39,18 +40,16 @@ This component is meant to be used inside a Breadcrumbs component.
 		@dragover.prevent="() => {}"
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
-		<component :is="tag"
-			v-if="(name || icon) && !$slots.default"
+		<NcButton v-if="(name || icon) && !$slots.default"
 			:title="title"
 			:aria-label="icon ? name : undefined"
 			v-bind="linkAttributes"
 			v-on="$listeners">
-			<!-- @slot Slot for passing a material design icon. Precedes the icon and name prop. -->
 			<slot name="icon">
 				<span v-if="icon" :class="icon" class="icon" />
 				<span v-else>{{ name }}</span>
 			</slot>
-		</component>
+		</NcButton>
 		<NcActions v-if="$slots.default"
 			ref="actions"
 			type="tertiary"
@@ -75,6 +74,7 @@ This component is meant to be used inside a Breadcrumbs component.
 <script>
 import NcActions from '../NcActions/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
+import NcButton from '../NcButton/NcButton.vue'
 
 import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
 
@@ -83,6 +83,7 @@ export default {
 	components: {
 		NcActions,
 		ChevronRight,
+		NcButton,
 	},
 	inheritAttrs: false,
 	props: {
@@ -180,20 +181,11 @@ export default {
 	},
 	computed: {
 		/**
-		 * Determines which element tag to use
-		 *
-		 * @return {string} the tag
-		 */
-		tag() {
-			return this.to ? 'router-link' : 'a'
-		},
-
-		/**
 		 * The attributes to pass to `router-link` or `a`
 		 */
 		linkAttributes() {
-			// If it's a router-link, we pass `to` and `exact`, otherwise only `href`
-			return this.to ? { to: this.to, exact: this.exact, ...this.$attrs } : { href: this.href, ...this.$attrs }
+			// If it's a router-link, we pass `to` and `exact`, if its an <a/> element, we pass `href`, otherwise we have a button
+			return this.to ? { to: this.to, exact: this.exact, ...this.$attrs } : (this.href ? { href: this.href, ...this.$attrs } : { type: 'tertiary', ...this.$attrs })
 		},
 	},
 	methods: {
@@ -290,45 +282,6 @@ export default {
 		// Don't show breadcrumb separator for last crumb
 		.vue-crumb__separator {
 			display: none;
-		}
-	}
-
-	// Hover and focus effect for crumbs
-	& > a:hover,
-	& > a:focus {
-		background-color: var(--color-background-dark);
-		color: var(--color-main-text);
-	}
-
-	&--hidden {
-		display: none;
-	}
-
-	&#{&}--hovered > a {
-		background-color: var(--color-background-dark);
-		color: var(--color-main-text);
-	}
-
-	&__separator {
-		padding: 0;
-		color: var(--color-text-maxcontrast);
-	}
-
-	> a {
-		overflow: hidden;
-		color: var(--color-text-maxcontrast);
-		padding: 12px;
-		min-width: $clickable-area;
-		max-width: 100%;
-		border-radius: var(--border-radius-pill);
-		align-items: center;
-		display: inline-flex;
-		justify-content: center;
-
-		> span {
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
 		}
 	}
 
