@@ -360,6 +360,8 @@ export default {
 		 *
 		 * Only use button when used in a `tablist` container and the
 		 * `tab` role is set.
+		 *
+		 * @type {'checkbox'|'radio'|'switch'|'button'}
 		 */
 		type: {
 			type: String,
@@ -383,7 +385,8 @@ export default {
 		/**
 		 * Are the elements are all direct siblings?
 		 * If so they will be grouped horizontally or vertically
-		 * Possible values are `no`, `horizontal`, `vertical`.
+		 *
+		 * @type {'no'|'horizontal'|'vertical'}
 		 */
 		buttonVariantGrouped: {
 			type: String,
