@@ -268,6 +268,7 @@ export default {
 		dialogProperties() {
 			return {
 				additionalTrapElements: this.additionalTrapElements,
+				closeOnClickOutside: true,
 				class: 'app-settings',
 				container: this.container,
 				contentClasses: 'app-settings__content',

@@ -76,9 +76,13 @@ export default {
 	],
 
 	computed: {
+		/**
+		 * Check if icon prop is an URL
+		 * @return {boolean} Whether the icon prop is an URL
+		 */
 		isIconUrl() {
 			try {
-				return new URL(this.icon, this.icon.startsWith('/') ? window.location.origin : undefined)
+				return !!(new URL(this.icon, this.icon.startsWith('/') ? window.location.origin : undefined))
 			} catch (error) {
 				return false
 			}
