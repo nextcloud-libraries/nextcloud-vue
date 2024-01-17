@@ -29,10 +29,9 @@
 				class="autocomplete-result__status autocomplete-result__status--icon">
 				{{ status && status.icon || '' }}
 			</span>
-			<NcIconSvgWrapper v-else-if="status.status && status.status !== 'offline'"
+			<NcUserStatusIcon v-else-if="status.status && status.status !== 'offline'"
 				class="autocomplete-result__status"
-				:svg="userStatusIcon"
-				:name="userStatusIconName" />
+				:status="status.status" />
 		</div>
 
 		<!-- Title and subline -->
@@ -50,15 +49,13 @@
 <script>
 import { generateUrl } from '@nextcloud/router'
 
-import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
-
-import { getUserStatusIcon, getUserStatusIconName } from '../../utils/UserStatus.ts'
+import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
 
 export default {
 	name: 'NcAutoCompleteResult',
 
 	components: {
-		NcIconSvgWrapper,
+		NcUserStatusIcon,
 	},
 
 	props: {
@@ -100,12 +97,6 @@ export default {
 			return this.id && this.source === 'users'
 				? this.getAvatarUrl(this.id, 44)
 				: null
-		},
-		userStatusIcon() {
-			return getUserStatusIcon(this.status.status)
-		},
-		userStatusIconName() {
-			return getUserStatusIconName(this.status.status)
 		},
 	},
 

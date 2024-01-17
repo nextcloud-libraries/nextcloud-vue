@@ -20,5 +20,13 @@
 				"@babel/plugin-syntax-import-assertions"
 			]
 		}
+	},
+	"rules": {
+		"import/no-unresolved": [
+			"error",
+			{
+				"ignore": ["\\?raw$"]
+			}
+		]
 	}
 }

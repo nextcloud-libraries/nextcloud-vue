@@ -113,6 +113,8 @@ export default {
 		 *
 		 * Only use button when used in a `tablist` container and the
 		 * `tab` role is set.
+		 *
+		 * @type {'checkbox'|'radio'|'switch'|'button'}
 		 */
 		type: {
 			type: String,
