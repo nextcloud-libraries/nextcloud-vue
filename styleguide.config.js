@@ -114,6 +114,7 @@ module.exports = async () => {
 					'src/components/NcSettings*/*.vue',
 					'src/components/NcUserBubble/NcUserBubbleDiv.vue',
 					'src/components/NcTextArea/*.vue',
+					'src/components/NcPopover/NcPopoverTriggerProvider.vue',
 				],
 				sections: [
 					{
