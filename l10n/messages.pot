@@ -60,6 +60,9 @@ msgstr ""
 msgid "Boston Blue"
 msgstr ""
 
+msgid "busy"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr ""
 
