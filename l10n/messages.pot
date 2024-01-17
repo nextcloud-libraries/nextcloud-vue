@@ -115,6 +115,9 @@ msgstr ""
 msgid "Edit item"
 msgstr ""
 
+msgid "Emoji picker"
+msgstr ""
+
 msgid "Enter link"
 msgstr ""
 
