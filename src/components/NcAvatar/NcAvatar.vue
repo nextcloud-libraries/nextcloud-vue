@@ -167,10 +167,10 @@ export default {
 		<span v-if="showUserStatusIconOnAvatar" class="avatardiv__user-status avatardiv__user-status--icon">
 			{{ userStatus.icon }}
 		</span>
-		<NcIconSvgWrapper v-else-if="canDisplayUserStatus"
+		<NcUserStatusIcon v-else-if="canDisplayUserStatus"
 			class="avatardiv__user-status"
-			:svg="userStatusIcon"
-			:name="userStatusIconName" />
+			:status="userStatus.status"
+			:aria-hidden="String(hasMenu)" />
 
 		<!-- Show the letter if no avatar nor icon class -->
 		<span v-if="showInitials"
@@ -188,9 +188,9 @@ import NcActions from '../NcActions/index.js'
 import NcActionLink from '../NcActionLink/index.js'
 import NcButton from '../NcButton/index.ts'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
-import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
+import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
 import usernameToColor from '../../functions/usernameToColor/index.js'
-import { getUserStatusIcon, getUserStatusIconName, getUserStatusText } from '../../utils/UserStatus.ts'
+import { getUserStatusText } from '../../utils/UserStatus.ts'
 import { userStatus } from '../../mixins/index.js'
 import { t } from '../../l10n.js'
 
@@ -238,7 +238,7 @@ export default {
 		NcActionLink,
 		NcButton,
 		NcLoadingIcon,
-		NcIconSvgWrapper,
+		NcUserStatusIcon,
 	},
 	mixins: [userStatus],
 	props: {
@@ -385,26 +385,10 @@ export default {
 			}
 			return t('Avatar of {displayName}', { displayName: this.displayName ?? this.user })
 		},
-
-		userStatusIcon() {
-			return getUserStatusIcon(this.userStatus.status)
-		},
-
-		/**
-		 * If the avatar has no menu no aria-label is assigned, but for accessibility we still need the status to be accessible
-		 * So this sets the required accessible label for the user status icon.
-		 */
-		userStatusIconName() {
-			// only needed if non-interactive, otherwise the aria-label is set
-			if (this.hasMenu) {
-				return
-			}
-			return getUserStatusIconName(this.userStatus.status)
-		},
 		canDisplayUserStatus() {
 			return this.showUserStatus
 				&& this.hasStatus
-				&& ['online', 'away', 'dnd'].includes(this.userStatus.status)
+				&& ['online', 'away', 'busy', 'dnd'].includes(this.userStatus.status)
 		},
 		showUserStatusIconOnAvatar() {
 			return this.showUserStatus
