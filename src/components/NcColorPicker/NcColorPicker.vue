@@ -89,8 +89,8 @@ export default {
 <template>
 	<div class="container1">
 		<NcButton @click="open = !open"> Click Me </NcButton>
-		<NcColorPicker :value="color" @input="updateColor" :shown.sync="open">
-			<div :style="{'background-color': color}" class="color1" />
+		<NcColorPicker :value="color" @input="updateColor" :shown.sync="open" v-slot="{ attrs }">
+			<div v-bind="attrs" :style="{'background-color': color}" class="color1" />
 		</NcColorPicker>
 	</div>
 </template>
@@ -160,11 +160,16 @@ export default {
 </docs>
 
 <template>
-	<NcPopover v-bind="$attrs" v-on="$listeners" @apply-hide="handleClose">
-		<template #trigger>
-			<slot />
+	<NcPopover popup-role="dialog"
+		v-bind="$attrs"
+		v-on="$listeners"
+		@apply-hide="handleClose">
+		<template #trigger="slotProps">
+			<slot v-bind="slotProps" />
 		</template>
-		<div class="color-picker"
+		<div role="dialog"
+			class="color-picker"
+			:aria-label="t('Color picker')"
 			:class="{ 'color-picker--advanced-fields': advanced && advancedFields }">
 			<Transition name="slide" mode="out-in">
 				<div v-if="!advanced" class="color-picker__simple">

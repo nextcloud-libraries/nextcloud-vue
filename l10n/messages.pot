@@ -96,6 +96,9 @@ msgstr ""
 msgid "Collapse menu"
 msgstr ""
 
+msgid "Color picker"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr ""
 
