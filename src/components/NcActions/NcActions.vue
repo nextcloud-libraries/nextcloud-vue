@@ -1254,8 +1254,14 @@ export default {
 		this.isSemanticMenu = hasMenuItemAction && !hasTextInputAction
 		// We consider the NcActions to be navigation if it consists some link-like action
 		this.isSemanticNavigation = hasLinkAction && !hasMenuItemAction && !hasTextInputAction
-		// If it is no a manu and not a navigation, it is a popover with items: a form or just a text
+		// If it is not a menu and not a navigation, it is a popover with items: a form or just a text
 		this.isSemanticPopoverLike = !this.isSemanticMenu && !this.isSemanticNavigation
+
+		const popupRole = this.isSemanticMenu
+			? 'menu'
+			: hasTextInputAction
+				? 'dialog'
+				: 'true'
 
 		/**
 		 * Filter and list actions that are allowed to be displayed inline
@@ -1364,6 +1370,7 @@ export default {
 						boundary: this.boundariesElement,
 						container: this.container,
 						popoverBaseClass: 'action-item__popper',
+						popupRole,
 						// Menu and navigation should not have focus trap
 						// Tab should close the menu and move focus to the next UI element
 						setReturnFocus: !this.isSemanticPopoverLike ? null : this.$refs.menuButton?.$el,
@@ -1397,10 +1404,8 @@ export default {
 						slot: 'trigger',
 						ref: 'menuButton',
 						attrs: {
-							'aria-haspopup': this.isSemanticMenu ? 'menu' : null,
 							'aria-label': this.menuName ? null : this.ariaLabel,
 							'aria-controls': this.opened ? this.randomId : null,
-							'aria-expanded': this.opened ? 'true' : 'false',
 						},
 						on: {
 							focus: this.onFocus,
@@ -1427,7 +1432,8 @@ export default {
 							attrs: {
 								id: this.randomId,
 								tabindex: '-1',
-								role: this.isSemanticMenu ? 'menu' : undefined,
+								role: popupRole !== 'true' ? popupRole : undefined,
+								// TODO: allow to provide dialog aria-label
 							},
 						}, [
 							actions,
