@@ -72,6 +72,7 @@ function chunkify(t) {
 }
 
 window.OC = {
+	debug: true,
 	getCurrentUser() {
 		return {
 			uid: 'admin',
