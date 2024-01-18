@@ -1,12 +1,12 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Mario Siegmann <mario_siegmann@web.de>, 2024
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2024
+# Mario Siegmann <mario_siegmann@web.de>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2024\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2024\n"
 "Language-Team: German (Germany) (https://app.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -108,6 +108,9 @@ msgstr "Smart Picker schließen"
 msgid "Collapse menu"
 msgstr "Menü einklappen"
 
+msgid "Color picker"
+msgstr "Farbauswahl"
+
 msgid "Confirm changes"
 msgstr "Änderungen bestätigen"
 
@@ -126,6 +129,9 @@ msgstr "Bitte nicht stören"
 
 msgid "Edit item"
 msgstr "Element bearbeiten"
+
+msgid "Emoji picker"
+msgstr "Emoji-Auswahl"
 
 msgid "Enter link"
 msgstr "Link eingeben"
