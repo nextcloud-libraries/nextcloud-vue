@@ -620,7 +620,8 @@ export default {
 			this)
 		}
 
-		const renderButton = ({ navigate, isActive, isExactActive } = {}) => h((this.to || !this.href) ? 'button' : 'a',
+		const isLink = (this.to || this.href)
+		const renderButton = ({ href, navigate, isActive, isExactActive } = {}) => h(isLink ? 'a' : 'button',
 			{
 				class: [
 					'button-vue',
@@ -640,11 +641,11 @@ export default {
 					'aria-label': this.ariaLabel,
 					'aria-pressed': this.pressed,
 					disabled: this.disabled,
-					type: this.href ? null : this.nativeType,
-					role: this.href ? 'button' : null,
-					href: (!this.to && this.href) ? this.href : null,
-					target: (!this.to && this.href) ? '_self' : null,
-					rel: (!this.to && this.href) ? 'nofollow noreferrer noopener' : null,
+					type: isLink ? null : this.nativeType,
+					role: isLink ? 'button' : null,
+					href: this.to ? href : (this.href || null),
+					target: isLink ? '_self' : null,
+					rel: isLink ? 'nofollow noreferrer noopener' : null,
 					download: (!this.to && this.href && this.download) ? this.download : null,
 					// If this button is used as a popover trigger, we need to apply trigger attrs, e.g. aria attributes
 					...this.ncPopoverTriggerAttrs,
