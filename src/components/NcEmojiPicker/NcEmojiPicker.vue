@@ -126,10 +126,11 @@ This component allows the user to pick an emoji.
 <template>
 	<NcPopover v-model:shown="open"
 		:container="container"
+		popup-role="dialog"
 		@after-show="afterShow"
 		@after-hide="afterHide">
-		<template #trigger>
-			<slot />
+		<template #trigger="slotProps">
+			<slot v-bind="slotProps" />
 		</template>
 		<Picker ref="picker"
 			:auto-focus="false /* We manage the input focus ourselves */"
@@ -143,6 +144,8 @@ This component allows the user to pick an emoji.
 			:picker-styles="{ width: '320px' }"
 			:show-preview="showPreview"
 			:title="previewFallbackName"
+			role="dialog"
+			:aria-label="t('Emoji picker')"
 			v-bind="$attrs"
 			@select="select">
 			<template #searchTemplate="slotProps">

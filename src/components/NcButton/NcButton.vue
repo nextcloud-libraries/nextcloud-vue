@@ -447,6 +447,13 @@ const NATIVE_TYPES = ['submit', 'reset', 'button'] as const
 export default defineComponent({
 	name: 'NcButton',
 
+	inject: {
+		ncPopoverTriggerAttrs: {
+			from: 'NcPopover:trigger:attrs',
+			default: () => ({}),
+		},
+	},
+
 	props: {
 		/**
 		 * Set the text and icon alignment
@@ -619,7 +626,8 @@ export default defineComponent({
 			this)
 		}
 
-		const renderButton = ({ navigate, isActive }: {navigate?: (ev: Event) => void, isActive?: boolean } = {}) => h((this.to || !this.href) ? 'button' : 'a',
+		const isLink = (this.to || this.href)
+		const renderButton = ({ href, navigate, isActive }: {href?: string, navigate?: (ev: Event) => void, isActive?: boolean } = {}) => h(isLink ? 'a' : 'button',
 			{
 				class: [
 					'button-vue',
@@ -637,12 +645,14 @@ export default defineComponent({
 				'aria-label': this.ariaLabel,
 				'aria-pressed': this.pressed,
 				disabled: this.disabled,
-				type: this.href ? null : this.nativeType,
-				role: this.href ? 'button' : null,
-				href: (!this.to && this.href) ? this.href : null,
-				target: (!this.to && this.href) ? '_self' : null,
-				rel: (!this.to && this.href) ? 'nofollow noreferrer noopener' : null,
+				type: isLink ? null : this.nativeType,
+				role: isLink ? 'button' : null,
+				href: this.to ? href : (this.href || null),
+				target: isLink ? '_self' : null,
+				rel: isLink ? 'nofollow noreferrer noopener' : null,
 				download: (!this.to && this.href && this.download) ? this.download : null,
+				// If this button is used as a popover trigger, we need to apply trigger attrs, e.g. aria attributes
+				...this.ncPopoverTriggerAttrs,
 				onClick: ($event) => {
 					// Update pressed prop on click if it is set
 					if (typeof this.pressed === 'boolean') {
