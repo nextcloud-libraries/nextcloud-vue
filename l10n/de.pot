@@ -73,6 +73,9 @@ msgstr "Blau Violett"
 msgid "Boston Blue"
 msgstr "Boston-Blau"
 
+msgid "busy"
+msgstr "Beschäftigt"
+
 msgid "Cancel changes"
 msgstr "Änderungen verwerfen"
 
