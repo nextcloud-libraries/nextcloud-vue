@@ -438,6 +438,13 @@ td.row-size {
 export default {
 	name: 'NcButton',
 
+	inject: {
+		ncPopoverTriggerAttrs: {
+			from: 'NcPopover:trigger:attrs',
+			default: () => ({}),
+		},
+	},
+
 	props: {
 		/**
 		 * Set the text and icon alignment
@@ -639,6 +646,9 @@ export default {
 					target: (!this.to && this.href) ? '_self' : null,
 					rel: (!this.to && this.href) ? 'nofollow noreferrer noopener' : null,
 					download: (!this.to && this.href && this.download) ? this.download : null,
+					// If this button is used as a popover trigger, we need to apply trigger attrs, e.g. aria attributes
+					...this.ncPopoverTriggerAttrs,
+					// Inherit all the component attrs
 					...this.$attrs,
 				},
 				on: {

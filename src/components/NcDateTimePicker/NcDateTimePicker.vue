@@ -142,24 +142,29 @@ export default {
 		@update:value="$emit('update:value', value)">
 		<template #icon-calendar>
 			<NcPopover v-if="showTimezoneSelect"
+				popup-role="dialog"
 				:shown.sync="showTimezonePopover"
 				popover-base-class="timezone-select__popper">
-				<template #trigger>
+				<template #trigger="{ attrs }">
 					<button class="datetime-picker-inline-icon"
 						:class="{'datetime-picker-inline-icon--highlighted': highlightTimezone}"
+						v-bind="attrs"
 						@mousedown.stop.prevent="() => {}">
 						<Web :size="20" />
 					</button>
 				</template>
 
-				<div class="timezone-popover-wrapper__label">
-					<strong>
-						{{ t('Please select a time zone:') }}
-					</strong>
+				<div role="dialog"
+					:aria-labelledby="timezoneDialogHeaderId">
+					<div class="timezone-popover-wrapper__label">
+						<strong :id="timezoneDialogHeaderId">
+							{{ t('Please select a time zone:') }}
+						</strong>
+					</div>
+					<NcTimezonePicker v-model="tzVal"
+						class="timezone-popover-wrapper__timezone-select"
+						@input="$emit('update:timezone-id', arguments[0])" />
 				</div>
-				<NcTimezonePicker v-model="tzVal"
-					class="timezone-popover-wrapper__timezone-select"
-					@input="$emit('update:timezone-id', arguments[0])" />
 			</NcPopover>
 			<CalendarBlank v-else :size="20" />
 		</template>
@@ -171,6 +176,7 @@ export default {
 
 <script>
 import { t } from '../../l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 import NcTimezonePicker from '../NcTimezonePicker/index.js'
 import NcPopover from '../NcPopover/index.js'
@@ -290,6 +296,12 @@ export default {
 		'update:value',
 		'update:timezone-id',
 	],
+
+	setup() {
+		return {
+			timezoneDialogHeaderId: `timezone-dialog-header-${GenRandomId()}`,
+		}
+	},
 
 	data() {
 		return {
