@@ -79,19 +79,19 @@ It also will set the skip content buttons needed for accessibility.
 					{{ t('Keyboard navigation help') }}
 				</div>
 				<div class="vue-skip-actions__buttons">
-					<NcButton type="primary"
-						href="#app-content-vue"
-						@focusin="currentFocus = 'content'"
-						@mouseover="currentFocus = 'content'">
-						{{ t('Skip to main content') }}
-					</NcButton>
 					<NcButton v-show="hasAppNavigation"
-						type="primary"
+						type="tertiary"
 						href="#app-navigation-vue"
 						@click.prevent="openAppNavigation"
 						@focusin="currentFocus = 'navigation'"
 						@mouseover="currentFocus = 'navigation'">
 						{{ t('Skip to app navigation') }}
+					</NcButton>
+					<NcButton type="tertiary"
+						href="#app-content-vue"
+						@focusin="currentFocus = 'content'"
+						@mouseover="currentFocus = 'content'">
+						{{ t('Skip to main content') }}
 					</NcButton>
 				</div>
 				<NcIconSvgWrapper v-show="!isMobile"
@@ -147,7 +147,7 @@ export default {
 	data() {
 		return {
 			hasAppNavigation: false,
-			currentFocus: 'content',
+			currentFocus: '', // unknown
 		}
 	},
 	computed: {
@@ -179,6 +179,10 @@ export default {
 		},
 		setAppNavigation(value) {
 			this.hasAppNavigation = value
+			// If app navigation is available and no focus was set yet, set it to navigation as it is the first button
+			if (this.currentFocus === '') {
+				this.currentFocus = 'navigation'
+			}
 		},
 	},
 }
