@@ -103,7 +103,8 @@ export default {
 				<nav v-if="hasNavigation"
 					class="dialog__navigation"
 					:class="navigationClasses"
-					:aria-labelledby="navigationId">
+					:aria-label="navigationAriaLabelAttr"
+					:aria-labelledby="navigationAriaLabelledbyAttr">
 					<slot name="navigation" :is-collapsed="isNavigationCollapsed" />
 				</nav>
 				<!-- Main dialog content -->
@@ -255,6 +256,30 @@ export default defineComponent({
 		},
 
 		/**
+		 * aria-label for the dialog navigation.
+		 * Use it when you want to provide a more meaningful label than the dialog name.
+		 *
+		 * By default, navigation is labeled by the dialog name.
+		 */
+		navigationAriaLabel: {
+			type: String,
+			required: false,
+			default: '',
+		},
+
+		/**
+		 * aria-labelledby for the dialog navigation.
+		 * Use it when you have an implicit navigation label (e.g. a heading).
+		 *
+		 * By default, navigation is labeled by the dialog name.
+		 */
+		navigationAriaLabelledby: {
+			type: String,
+			required: false,
+			default: '',
+		},
+
+		/**
 		 * Optionally pass additionaly classes which will be set on the content wrapper for custom styling
 		 * @default ''
 		 */
@@ -305,6 +330,23 @@ export default defineComponent({
 		 * The unique id of the nav element
 		 */
 		const navigationId = ref(GenRandomId())
+
+		/**
+		 * aria-label attribute for the nav element
+		 */
+		const navigationAriaLabelAttr = computed(() => props.navigationAriaLabel || undefined)
+
+		/**
+		 * aria-labelledby attribute for the nav element
+		 */
+		const navigationAriaLabelledbyAttr = computed(() => {
+			if (props.navigationAriaLabel) {
+				// Not needed, already labelled by aria-label
+				return undefined
+			}
+			// Use dialog name as a fallback label for navigation
+			return props.navigationAriaLabelledby || navigationId.value
+		})
 
 		/**
 		 * If the underlaying modal is shown
@@ -365,6 +407,8 @@ export default defineComponent({
 			handleClosed,
 			hasNavigation,
 			navigationId,
+			navigationAriaLabelAttr,
+			navigationAriaLabelledbyAttr,
 			isNavigationCollapsed,
 			modalProps,
 			wrapper,

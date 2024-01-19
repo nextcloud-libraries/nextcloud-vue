@@ -141,6 +141,7 @@ export default {
 
 <template>
 	<NcDialog v-if="open"
+		:navigation-aria-label="settingsNavigationAriaLabel"
 		v-bind="dialogProperties"
 		@update:open="handleCloseModal">
 		<template v-if="hasNavigation" #navigation="{ isCollapsed }">
