@@ -29,22 +29,25 @@ This should be used sparingly for accessibility.
 		<NcActions>
 			<NcActionButtonGroup name="Text alignment">
 				<NcActionButton aria-label="Align left"
-					:pressed="alignment === 'l'"
-					@click="alignment = 'l'">
+					:model-value.sync="alignment"
+					model-behavior="radio"
+					value="l">
 					<template #icon>
 						<AlignLeft :size="20" />
 					</template>
 				</NcActionButton>
 				<NcActionButton aria-label="Align center"
-					:pressed="alignment === 'c'"
-					@click="alignment = 'c'">
+					:model-value.sync="alignment"
+					model-behavior="radio"
+					value="c">
 					<template #icon>
 						<AlignCenter :size="20" />
 					</template>
 				</NcActionButton>
 				<NcActionButton aria-label="Align right"
-					:pressed="alignment === 'r'"
-					@click="alignment = 'r'">
+					:model-value.sync="alignment"
+					model-behavior="radio"
+					value="r">
 					<template #icon>
 						<AlignRight :size="20" />
 					</template>

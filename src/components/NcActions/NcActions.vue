@@ -1303,6 +1303,11 @@ export default {
 				title = text
 			}
 
+			const propsToForward = { ...(action?.componentOptions?.propsData ?? {}) }
+			// not available on NcButton
+			delete propsToForward.modelValue
+			delete propsToForward.modelBehavior
+
 			return h('NcButton',
 				{
 					class: [
@@ -1320,11 +1325,14 @@ export default {
 						// If it has a menuName, we use a secondary button
 						type: this.type || (buttonText ? 'secondary' : 'tertiary'),
 						disabled: this.disabled || action?.componentOptions?.propsData?.disabled,
-						...action?.componentOptions?.propsData,
+						pressed: action?.componentOptions?.propsData?.modelValue,
+						...propsToForward,
 					},
 					on: {
 						focus: this.onFocus,
 						blur: this.onBlur,
+						// forward any pressed state from NcButton just like NcActionButton does
+						'update:pressed': action?.componentOptions?.listeners?.['update:modelValue'] ?? (() => {}),
 						// If we have a click listener,
 						// we bind it to execute on click and forward the click event
 						...(!!clickListener && {

@@ -139,17 +139,16 @@ describe('NcActions.vue', () => {
 				})
 			})
 			it('shows the first action outside.', () => {
-				expect(wrapper.findAll('.action-item').length).toBe(2)
 				expect(wrapper.findAll('button.action-item').length).toBe(1)
-				expect(wrapper.find('button.action-item').exists()).toBe(true)
+				expect(wrapper.find('button.action-item[aria-label="Test1"]').exists()).toBe(true)
 			})
 			it('shows the menu toggle.', () => {
 				expect(wrapper.find('.action-item__menutoggle').exists()).toBe(true)
 			})
 			it('shows the first two action outside on prop change.', async () => {
 				await wrapper.setProps({ inline: 2 })
-				expect(wrapper.findAll('.action-item').length).toBe(3)
 				expect(wrapper.findAll('button.action-item').length).toBe(2)
+				expect(wrapper.find('.action-item__menutoggle').exists()).toBe(true)
 			})
 			it('shows all actions outside on prop change.', async () => {
 				await wrapper.setProps({ inline: 3 })
