@@ -161,6 +161,9 @@ msgstr ""
 msgid "invisible"
 msgstr ""
 
+msgid "Keyboard navigation help"
+msgstr ""
+
 msgid "Load more \"{options}\""
 msgstr ""
 
@@ -311,6 +314,12 @@ msgid "Settings navigation"
 msgstr ""
 
 msgid "Show password"
+msgstr ""
+
+msgid "Skip to app navigation"
+msgstr ""
+
+msgid "Skip to main content"
 msgstr ""
 
 msgid "Smart Picker"
