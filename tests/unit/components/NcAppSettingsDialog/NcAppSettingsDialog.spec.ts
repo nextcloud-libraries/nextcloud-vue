@@ -56,8 +56,8 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 
 		await nextTick()
 
-		expect(wrapper.findAll('[role="tab"]')).toHaveLength(1)
-		expect(wrapper.find('[role="tab"]').text()).toBe('test_name')
+		expect(wrapper.findAll('nav a')).toHaveLength(1)
+		expect(wrapper.find('nav a').text()).toBe('test_name')
 	})
 
 	it('can register a new section', async () => {
@@ -71,8 +71,8 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 
 		wrapper.vm.registerSection('test_id', 'test_name')
 		await nextTick()
-		expect(wrapper.findAll('[role="tab"]')).toHaveLength(1)
-		expect(wrapper.find('[role="tab"]').text()).toBe('test_name')
+		expect(wrapper.findAll('nav a')).toHaveLength(1)
+		expect(wrapper.find('nav a').text()).toBe('test_name')
 	})
 
 	it('warn on register a already registered section name', async () => {
@@ -90,13 +90,13 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 		// First call should be OK
 		wrapper.vm.registerSection('test_id', 'test_name')
 		await nextTick()
-		expect(wrapper.findAll('[role="tab"]')).toHaveLength(1)
+		expect(wrapper.findAll('nav a')).toHaveLength(1)
 		expect(spy).not.toHaveBeenCalled()
 
 		// Second one should unregister first and replace with this one, but show an error
 		wrapper.vm.registerSection('test_id_2', 'test_name')
 		await nextTick()
-		expect(wrapper.findAll('[role="tab"]')).toHaveLength(2)
+		expect(wrapper.findAll('nav a')).toHaveLength(2)
 		expect(spy).toHaveBeenCalled()
 	})
 
@@ -112,12 +112,12 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 		// First call should be OK
 		wrapper.vm.registerSection('test_id', 'test_name')
 		await nextTick()
-		expect(wrapper.findAll('[role="tab"]')).toHaveLength(1)
+		expect(wrapper.findAll('nav a')).toHaveLength(1)
 
 		// Second one should unregister first and replace with this one, but show an error
 		expect(() => wrapper.vm.registerSection('test_id', 'test_other_name')).toThrow()
 		await nextTick()
-		expect(wrapper.findAll('[role="tab"]')).toHaveLength(1)
+		expect(wrapper.findAll('nav a')).toHaveLength(1)
 	})
 
 	it('can unregister a section', async () => {
@@ -132,11 +132,11 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 		wrapper.vm.registerSection('test_id', 'test_name')
 		wrapper.vm.registerSection('test_id2', 'test_name2')
 		await nextTick()
-		expect(wrapper.findAll('[role="tab"]')).toHaveLength(2)
+		expect(wrapper.findAll('nav a')).toHaveLength(2)
 
 		wrapper.vm.unregisterSection('test_id')
 		await nextTick()
-		expect(wrapper.findAll('[role="tab"]')).toHaveLength(1)
-		expect(wrapper.find('[role="tab"]').text()).toBe('test_name2')
+		expect(wrapper.findAll('nav a')).toHaveLength(1)
+		expect(wrapper.find('nav a').text()).toBe('test_name2')
 	})
 })

@@ -177,6 +177,9 @@ msgstr "Passwort verbergen"
 msgid "invisible"
 msgstr "Unsichtbar"
 
+msgid "Keyboard navigation help"
+msgstr "Tastatur-Navigationshilfe"
+
 msgid "Load more \"{options}\""
 msgstr "Weitere \"{options}\" laden"
 
@@ -329,6 +332,12 @@ msgstr "Einstellungen für die Navigation"
 
 msgid "Show password"
 msgstr "Passwort anzeigen"
+
+msgid "Skip to app navigation"
+msgstr "Zur App-Navigation springen"
+
+msgid "Skip to main content"
+msgstr "Zum Hauptinhalt springen"
 
 msgid "Smart Picker"
 msgstr "Smart Picker"

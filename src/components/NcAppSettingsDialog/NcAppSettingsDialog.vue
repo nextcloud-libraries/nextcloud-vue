@@ -141,23 +141,22 @@ export default {
 
 <template>
 	<NcDialog v-if="open"
+		:navigation-aria-label="settingsNavigationAriaLabel"
 		v-bind="dialogProperties"
 		@update:open="handleCloseModal">
 		<template v-if="hasNavigation" #navigation="{ isCollapsed }">
 			<ul v-if="!isCollapsed"
-				:aria-label="settingsNavigationAriaLabel"
-				class="navigation-list"
-				role="tablist">
+				class="navigation-list">
 				<li v-for="section in sections" :key="section.id">
-					<a :aria-selected="section.id === selectedSection"
+					<a :aria-current="`${section.id === selectedSection}`"
 						:class="{
 							'navigation-list__link': true,
 							'navigation-list__link--active': section.id === selectedSection,
 							'navigation-list__link--icon': hasNavigationIcons,
 						}"
-						role="tab"
+						:href="`#settings-section_${section.id}`"
 						tabindex="0"
-						@click="handleSettingsNavigationClick(section.id)"
+						@click.prevent="handleSettingsNavigationClick(section.id)"
 						@keydown.enter="handleSettingsNavigationClick(section.id)">
 						<div v-if="hasNavigationIcons" class="navigation-list__link-icon">
 							<NcVNodes v-if="section.icon" :vnodes="section.icon" />

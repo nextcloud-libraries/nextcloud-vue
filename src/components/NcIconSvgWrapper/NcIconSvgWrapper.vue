@@ -131,9 +131,27 @@ export default {
 			type: String,
 			default: '',
 		},
+
+		/**
+		 * Size of the icon to show. Only use if not using within an icon slot.
+		 * Defaults to 20px which is the Nextcloud icon size for all icon slots.
+		 * @default 20
+		 */
+		size: {
+			type: [Number, String],
+			default: 20,
+			validator: (value) => typeof value === 'number' || value === 'auto',
+		},
 	},
 
 	computed: {
+		/**
+		 * Icon size used in CSS
+		 */
+		iconSize() {
+			return typeof this.size === 'number' ? `${this.size}px` : this.size
+		},
+
 		cleanSvg() {
 			if (!this.svg || this.path) {
 				return
@@ -177,10 +195,10 @@ export default {
 
 	&:deep(svg) {
 		fill: currentColor;
-		width: 20px;
-		height: 20px;
-		max-width: 20px;
-		max-height: 20px;
+		width: v-bind('iconSize');
+		height: v-bind('iconSize');
+		max-width: v-bind('iconSize');
+		max-height: v-bind('iconSize');
 	}
 }
 </style>

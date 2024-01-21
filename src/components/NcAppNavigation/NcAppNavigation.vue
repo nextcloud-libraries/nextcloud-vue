@@ -78,19 +78,27 @@ emit('toggle-navigation', {
 </template>
 
 <script>
-import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { getTrapStack } from '../../utils/focusTrap.js'
-
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
-
 import { createFocusTrap } from 'focus-trap'
+
+import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
+import { warn } from 'vue'
 
 export default {
 	name: 'NcAppNavigation',
 
 	components: {
 		NcAppNavigationToggle,
+	},
+
+	// Injected from NcContent
+	inject: {
+		setHasAppNavigation: {
+			default: () => () => warn('NcAppNavigation is not mounted inside NcContent, this is probably an error.'),
+			from: 'NcContent:setHasAppNavigation',
+		},
 	},
 
 	props: {
@@ -135,6 +143,7 @@ export default {
 	},
 
 	mounted() {
+		this.setHasAppNavigation(true)
 		subscribe('toggle-navigation', this.toggleNavigationByEventBus)
 		// Emit an event with the initial state of the navigation
 		emit('navigation-toggled', {
@@ -150,6 +159,7 @@ export default {
 		this.toggleFocusTrap()
 	},
 	unmounted() {
+		this.setHasAppNavigation(false)
 		unsubscribe('toggle-navigation', this.toggleNavigationByEventBus)
 		this.focusTrap.deactivate()
 	},
@@ -161,6 +171,14 @@ export default {
 		 * @param {boolean} [state] set the state instead of inverting the current one
 		 */
 		toggleNavigation(state) {
+			// Early return if alreay in that state
+			if (this.open === state) {
+				emit('navigation-toggled', {
+					open: this.open,
+				})
+				return
+			}
+
 			this.open = (typeof state === 'undefined') ? !this.open : state
 			const bodyStyles = getComputedStyle(document.body)
 			const animationLength = parseInt(bodyStyles.getPropertyValue('--animation-quick')) || 100
