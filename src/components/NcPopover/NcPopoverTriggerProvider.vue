@@ -1,5 +1,5 @@
 <script>
-import Vue, { computed, defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
 	name: 'NcPopoverTriggerProvider',
@@ -29,16 +29,6 @@ export default defineComponent({
 				'aria-expanded': this.shown.toString(),
 			}
 		},
-	},
-
-	mounted() {
-		if (window.OC?.debug) {
-			const rootElement = this.$el
-			const innerElement = this.$el.querySelector('[aria-expanded][aria-haspopup]')
-			if (!rootElement.getAttribute('aria-expanded') && !innerElement) {
-				Vue.util.warn('It looks like you are using a custom button as a <NcPopover> or other popover #trigger. If you are not using <NcButton> as a trigger, you need to bind attrs from the #trigger slot props to your custom button. See <NcPopover> docs for an example.')
-			}
-		}
 	},
 
 	render() {

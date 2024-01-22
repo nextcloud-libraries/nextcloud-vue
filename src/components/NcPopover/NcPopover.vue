@@ -178,6 +178,7 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 </template>
 
 <script>
+import Vue from 'vue'
 import { Dropdown } from 'floating-vue'
 import { createFocusTrap } from 'focus-trap'
 import { getTrapStack } from '../../utils/focusTrap.js'
@@ -268,12 +269,32 @@ export default {
 		},
 	},
 
+	mounted() {
+		this.checkTriggerA11y()
+	},
+
 	beforeDestroy() {
 		this.clearFocusTrap()
 		this.clearEscapeStopPropagation()
 	},
 
 	methods: {
+		/**
+		 * Check if the trigger has all required a11y attributes.
+		 * Important to check custom trigger button.
+		 */
+		checkTriggerA11y() {
+			if (window.OC?.debug) {
+				// TODO: Vue 3: should be
+				// this.$refs.popover.$refs.popper.$refs.reference
+				const triggerContainer = this.$refs.popover.$refs.reference
+				const requiredTriggerButton = triggerContainer.querySelector('[aria-expanded][aria-haspopup]')
+				if (!requiredTriggerButton) {
+					Vue.util.warn('It looks like you are using a custom button as a <NcPopover> or other popover #trigger. If you are not using <NcButton> as a trigger, you need to bind attrs from the #trigger slot props to your custom button. See <NcPopover> docs for an example.')
+				}
+			}
+		},
+
 		/**
 		 * @return {HTMLElement|undefined}
 		 */
