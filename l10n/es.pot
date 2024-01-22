@@ -83,7 +83,7 @@ msgid "Change name"
 msgstr "Cambiar nombre"
 
 msgid "Choose"
-msgstr "Elegir"
+msgstr "Escoger"
 
 msgid "Clear search"
 msgstr "Limpiar búsqueda"
