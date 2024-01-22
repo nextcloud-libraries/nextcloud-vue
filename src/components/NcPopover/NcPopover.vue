@@ -123,7 +123,8 @@ See code example below.
 			Hi! 🚀
 		</NcPopover>
 	</div>
-````
+</template>
+```
 
 #### Provide role for the popover content
 
@@ -151,7 +152,7 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 		</NcPopover>
 	</div>
 </template>
-````
+```
 </docs>
 
 <template>
