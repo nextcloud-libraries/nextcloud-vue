@@ -73,6 +73,9 @@ msgstr "Violeta Azul"
 msgid "Boston Blue"
 msgstr "Azul Boston"
 
+msgid "busy"
+msgstr "ocupado"
+
 msgid "Cancel changes"
 msgstr "Cancelar cambios"
 
@@ -224,6 +227,9 @@ msgstr "Abrir menú"
 
 msgid "Open navigation"
 msgstr "Abrir navegación"
+
+msgid "Options"
+msgstr "Opciones"
 
 msgid "Password is secure"
 msgstr "La contraseña es segura"

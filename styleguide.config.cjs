@@ -105,6 +105,7 @@ module.exports = async () => {
 					'src/components/NcDialog*/*.vue',
 					'src/components/NcEllipsisedOption*/*.vue',
 					'src/components/NcListItem*/*.vue',
+					'src/components/NcPopover/NcPopoverTriggerProvider.vue',
 					'src/components/NcRichContenteditable/!(NcRichContenteditable).vue',
 					'src/components/NcRichText*/*.vue',
 					'src/components/NcSelect*/*.vue',

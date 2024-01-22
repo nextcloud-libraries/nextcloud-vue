@@ -96,6 +96,9 @@ msgstr ""
 msgid "Collapse menu"
 msgstr ""
 
+msgid "Color picker"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr ""
 
@@ -113,6 +116,9 @@ msgid "do not disturb"
 msgstr ""
 
 msgid "Edit item"
+msgstr ""
+
+msgid "Emoji picker"
 msgstr ""
 
 msgid "Enter link"
@@ -153,6 +159,9 @@ msgid "Hide password"
 msgstr ""
 
 msgid "invisible"
+msgstr ""
+
+msgid "Keyboard navigation help"
 msgstr ""
 
 msgid "Load more \"{options}\""
@@ -305,6 +314,12 @@ msgid "Settings navigation"
 msgstr ""
 
 msgid "Show password"
+msgstr ""
+
+msgid "Skip to app navigation"
+msgstr ""
+
+msgid "Skip to main content"
 msgstr ""
 
 msgid "Smart Picker"

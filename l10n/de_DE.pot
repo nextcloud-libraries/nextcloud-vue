@@ -1,7 +1,7 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Mark Ziegler <mark.ziegler@rakekniven.de>, 2023
+# Mark Ziegler <mark.ziegler@rakekniven.de>, 2024
 # Mario Siegmann <mario_siegmann@web.de>, 2024
 # 
 msgid ""
@@ -72,6 +72,9 @@ msgstr "Blau Violett"
 msgid "Boston Blue"
 msgstr "Boston-Blau"
 
+msgid "busy"
+msgstr "Beschäftigt"
+
 msgid "Cancel changes"
 msgstr "Änderungen verwerfen"
 
@@ -105,6 +108,9 @@ msgstr "Smart Picker schließen"
 msgid "Collapse menu"
 msgstr "Menü einklappen"
 
+msgid "Color picker"
+msgstr "Farbauswahl"
+
 msgid "Confirm changes"
 msgstr "Änderungen bestätigen"
 
@@ -123,6 +129,9 @@ msgstr "Bitte nicht stören"
 
 msgid "Edit item"
 msgstr "Element bearbeiten"
+
+msgid "Emoji picker"
+msgstr "Emoji-Auswahl"
 
 msgid "Enter link"
 msgstr "Link eingeben"
@@ -167,6 +176,9 @@ msgstr "Passwort verbergen"
 
 msgid "invisible"
 msgstr "Unsichtbar"
+
+msgid "Keyboard navigation help"
+msgstr "Tastatur-Navigationshilfe"
 
 msgid "Load more \"{options}\""
 msgstr "Weitere \"{options}\" laden"
@@ -320,6 +332,12 @@ msgstr "Einstellungen für die Navigation"
 
 msgid "Show password"
 msgstr "Passwort anzeigen"
+
+msgid "Skip to app navigation"
+msgstr "Zur App-Navigation springen"
+
+msgid "Skip to main content"
+msgstr "Zum Hauptinhalt springen"
 
 msgid "Smart Picker"
 msgstr "Smart Picker"

@@ -265,7 +265,7 @@ export default {
 			['checkbox-radio-switch-' + type]: type,
 			'checkbox-radio-switch--checked': isChecked,
 			'checkbox-radio-switch--disabled': disabled,
-			'checkbox-radio-switch--indeterminate': indeterminate,
+			'checkbox-radio-switch--indeterminate': hasIndeterminate ? indeterminate : false,
 			'checkbox-radio-switch--button-variant': buttonVariant,
 			'checkbox-radio-switch--button-variant-v-grouped': buttonVariant && buttonVariantGrouped === 'vertical',
 			'checkbox-radio-switch--button-variant-h-grouped': buttonVariant && buttonVariantGrouped === 'horizontal',
@@ -283,14 +283,17 @@ export default {
 			:disabled="disabled"
 			:type="inputType"
 			:value="value"
-			v-bind="inputProps"
+			:checked="isChecked"
+			:indeterminate.prop="hasIndeterminate ? indeterminate : null"
+			:required="required"
+			:name="name"
 			v-on="listeners">
 		<NcCheckboxContent :id="id"
 			class="checkbox-radio-switch__content"
 			icon-class="checkbox-radio-switch__icon"
 			text-class="checkbox-radio-switch__text"
 			:type="type"
-			:indeterminate="indeterminate"
+			:indeterminate="hasIndeterminate ? indeterminate : false"
 			:button-variant="buttonVariant"
 			:is-checked="isChecked"
 			:loading="loading"
@@ -474,18 +477,6 @@ export default {
 			return 'span'
 		},
 
-		inputProps() {
-			if (this.isButtonType) {
-				return null
-			}
-			return {
-				checked: this.isChecked,
-				indeterminate: this.indeterminate,
-				required: this.required,
-				name: this.name,
-			}
-		},
-
 		listeners() {
 			if (this.isButtonType) {
 				return {
@@ -553,6 +544,13 @@ export default {
 				return this.modelValue === this.value
 			}
 			return this.modelValue === true
+		},
+
+		hasIndeterminate() {
+			return [
+				TYPE_CHECKBOX,
+				TYPE_RADIO,
+			].includes(this.inputType)
 		},
 	},
 

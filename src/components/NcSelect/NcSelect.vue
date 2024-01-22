@@ -1225,9 +1225,13 @@ body {
 
 .vs__dropdown-menu {
 	border-color: var(--color-main-text) !important;
-	outline: 2px solid var(--color-main-background);
+	outline: none !important;
+	box-shadow:
+		-2px 0 0 var(--color-main-background), // Right
+		0 2px 0 var(--color-main-background), // Bottom
+		2px 0 0 var(--color-main-background), // Left
+		!important;
 	padding: 4px !important;
-	box-shadow: none;
 
 	&--floating {
 		/* Fallback styles overidden by programmatically set inline styles */
@@ -1240,6 +1244,11 @@ body {
 			border-radius: var(--vs-border-radius) var(--vs-border-radius) 0 0 !important;
 			border-top-style: var(--vs-border-style) !important;
 			border-bottom-style: none !important;
+			box-shadow:
+				0 -2px 0 var(--color-main-background), // Top
+				-2px 0 0 var(--color-main-background), // Right
+				2px 0 0 var(--color-main-background), // Left
+				!important
 		}
 	}
 

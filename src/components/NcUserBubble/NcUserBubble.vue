@@ -83,12 +83,13 @@ export default {
 		class="user-bubble__wrapper"
 		@update:open="onOpenChange">
 		<!-- Main userbubble structure -->
-		<template #trigger>
+		<template #trigger="{ attrs }">
 			<component :is="isLinkComponent"
 				class="user-bubble__content"
 				:style="styles.content"
 				:href="hasUrl ? url : null"
 				:class="{ 'user-bubble__content--primary': primary }"
+				v-bind="attrs"
 				@click="onClick">
 				<!-- NcAvatar -->
 				<NcAvatar :url="isCustomAvatar && isAvatarUrl ? avatarImage : undefined"

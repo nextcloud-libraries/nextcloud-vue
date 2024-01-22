@@ -1264,8 +1264,14 @@ export default {
 		this.isSemanticMenu = hasMenuItemAction && !hasTextInputAction
 		// We consider the NcActions to be navigation if it consists some link-like action
 		this.isSemanticNavigation = hasLinkAction && !hasMenuItemAction && !hasTextInputAction
-		// If it is no a manu and not a navigation, it is a popover with items: a form or just a text
+		// If it is not a menu and not a navigation, it is a popover with items: a form or just a text
 		this.isSemanticPopoverLike = !this.isSemanticMenu && !this.isSemanticNavigation
+
+		const popupRole = this.isSemanticMenu
+			? 'menu'
+			: hasTextInputAction
+				? 'dialog'
+				: 'true'
 
 		/**
 		 * Filter and list actions that are allowed to be displayed inline
@@ -1348,7 +1354,11 @@ export default {
 					container: this.container,
 					...this.manualOpen && { triggers: [] },
 					popoverBaseClass: 'action-item__popper',
-					setReturnFocus: this.$refs.menuButton?.$el,
+					popupRole,
+					// Menu and navigation should not have focus trap
+					// Tab should close the menu and move focus to the next UI element
+					setReturnFocus: !this.isSemanticPopoverLike ? null : this.$refs.menuButton?.$el,
+					focusTrap: this.isSemanticPopoverLike,
 					onShow: this.openMenu,
 					onAfterShow: this.onOpen,
 					onHide: this.closeMenu,
@@ -1360,11 +1370,8 @@ export default {
 						disabled: this.disabled,
 						ariaHidden: this.ariaHidden,
 						ref: 'menuButton',
-						'aria-haspopup': this.isSemanticMenu ? 'menu' : null,
 						'aria-label': this.menuName ? null : this.ariaLabel,
 						'aria-controls': this.opened ? this.randomId : null,
-						// Do not add aria-expanded="true" when it is closed
-						'aria-expanded': this.opened ? 'true' : null,
 						onFocus: this.onFocus,
 						onBlur: this.onBlur,
 					}, {
@@ -1383,7 +1390,8 @@ export default {
 						h('ul', {
 							id: this.randomId,
 							tabindex: '-1',
-							role: this.isSemanticMenu ? 'menu' : null,
+							role: popupRole !== 'true' ? popupRole : undefined,
+							// TODO: allow to provide dialog aria-label
 						}, [
 							actions,
 						]),

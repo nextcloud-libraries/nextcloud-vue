@@ -357,8 +357,8 @@ export default {
 	}
 
 	&--disabled {
-		opacity: 0.7;
-		filter: saturate(0.7);
+		opacity: 0.4;
+		filter: saturate(0.4);
 	}
 
 	&__input {
