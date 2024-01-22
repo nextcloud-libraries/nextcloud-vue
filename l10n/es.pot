@@ -161,7 +161,7 @@ msgid "Food & Drink"
 msgstr "Comida y bebida"
 
 msgid "Frequently used"
-msgstr "Usado con frecuenca"
+msgstr "Usado con frecuencia"
 
 msgid "Global"
 msgstr "Global"
