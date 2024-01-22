@@ -362,7 +362,7 @@ msgid "Travel & Places"
 msgstr "Viajes y lugares"
 
 msgid "Type to search time zone"
-msgstr "Escribe para buscar un huso de horario"
+msgstr "Escriba para buscar un huso horario"
 
 msgid "Unable to search the group"
 msgstr "No es posible buscar en el grupo"
