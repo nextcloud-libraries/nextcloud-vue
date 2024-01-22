@@ -2,6 +2,57 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v8.5.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.5.0) (2024-01-23)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.5.0...v8.4.0)
+
+### 🚀 Enhancements
+* enh(NcSelect): Add visible input label by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4963
+* feat(NcModal): Set return focus element on focus trap deactivation by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5025
+* Harmonize focus-visible styles for vue-navigation item with none-vue navigation item by @JuliaKirschenheuter in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5022
+* feat(NcActionInput): allow to append `NcSelect` to body by @raimund-schluessler in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5017
+* enh(NcSelect): Improve accessibility by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5036
+* enh: Make the date time formatting reusable for applications by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5046
+* enh(NcHeaderMenu): Close navigation header menu on focusout by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5064
+* enh(a11y): added aria-label that matches title attr on icon by @emoral435 in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5078
+* feat: Add NcUserStatusIcon by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5059
+* enh(breadcrumb): conditionally renders button when no redirection link given by @emoral435 in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5077
+* feat(NcPopover): provide a11y attributes to the trigger by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5086
+* feat(NcDialog): add navigationAriaLabel and navigationAriaLabelledBy props by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5083
+* enh(NcContent): Add skip content buttons by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4983
+* enh(NcInputField): Support numeric values - if numeric also emit numeric by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4926
+* feat(NcProgressBar): add circular progress bar by @raimund-schluessler in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5100
+* feat(NcReferenceList): Add support for a fallback reference widget by @mejo- in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5092
+* enh(NcEmojiPicker): Always show skin tone selector + save selection by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5103
+* feat(NcActionButton): Allow pressed state on NcActionButton - similar to NcButton by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4744
+
+### 🐛 Fixed bugs
+* fix(NcCheckboxRadioSwitch): fix shift+click on firefox by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4999
+* fix(NcCheckboxRadioSwitch): use correct padding by @raimund-schluessler in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5009
+* fix(NcCheckboxRadioSwitch): improve rendering and prevent unecessary elements by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5001
+* fix(NcAppNavigation): change h2 to span by @emoral435 in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5020
+* fix(NcDateTimePicker): Use ISO week numbers if `showWeekNumber` is set by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5045
+* fix(NcActions): In case of inline actions make sure to support icon as URL by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5053
+* fix(NcDialog): allow to close NcDialog on click outside by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5062
+* fix(NcRelatedResourcesPanel): Fix invalid URL query params by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5065
+* fix(NcBreadcrumbs): improve the breadcrumbs shrinking behaviour by @raimund-schluessler in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5069
+* fix(NcInput): input disabled appearance by @marcoambrosini in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5000
+* fix(NcButton): use `a` as tag for router-link by @raimund-schluessler in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5091
+* fix(NcSelect): remove visual gap on top of the list by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5095
+* Remove unneeded `tab`, `tablist` and `aria-selected` roles from navigation by @JuliaKirschenheuter in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5075
+* fix(NcCheckboxRadioSwitch): Fix invalid indeterminate checkbox semantics by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5096
+* Remove inaccessible opacity from SettingsSection by @JuliaKirschenheuter in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5109
+* fix(NcPopover): fix docs example by @raimund-schluessler in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5111
+* fix(NcPopover): check trigger a11y compatible with Vue 3 by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5110
+* fix(NcHeaderMenu): mouse in now pointer by @emoral435 in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5101
+* fix(NcActions): use new slots api by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5118
+* fix(NcButton): pressed state a11y by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5119
+* Fix additionalTrapElements to accept HTMLelements as well by @GretaD in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5120
+
+### Other Changes
+* refactor(NcCheckboxRadioSwitch): move comment to have a single root node by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5018
+* refactor(NcActionButtonGroup): replace computed of constant with constant by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5023
+* chore(docs): correct list types values for styleguidist in NcCheckboxRadioSwitch by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5079
+
 ## [v8.4.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.4.0) (2023-12-22)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.4.0...v8.3.0)
 
