@@ -378,4 +378,4 @@ msgid "Whiskey"
 msgstr "Whiskey"
 
 msgid "Write a message …"
-msgstr "Escribe un mensaje …"
+msgstr "Escriba un mensaje ..."
