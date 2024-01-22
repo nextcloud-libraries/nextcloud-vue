@@ -33,7 +33,7 @@ msgid "Actions"
 msgstr "Acciones"
 
 msgid "Actions for item with name \"{name}\""
-msgstr "Acciones para el elemento con nombre \"{name}\""
+msgstr "Acciones para el ítem con nombre \"{name}\""
 
 msgid "Activities"
 msgstr "Actividades"
@@ -46,8 +46,8 @@ msgstr "Cualquier enlace"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
-"Cualquier cosa que sea compartida con el mismo grupo de personas se mostrará"
-" aquí"
+"Cualquier cosa que esté compartida con el mismo grupo de personas se "
+"mostrará aquí"
 
 msgid "Avatar of {displayName}"
 msgstr "Avatar de {displayName}"
@@ -83,7 +83,7 @@ msgid "Change name"
 msgstr "Cambiar nombre"
 
 msgid "Choose"
-msgstr "Elegir"
+msgstr "Escoger"
 
 msgid "Clear search"
 msgstr "Limpiar búsqueda"
@@ -109,6 +109,9 @@ msgstr "Cerrar selector inteligente"
 msgid "Collapse menu"
 msgstr "Ocultar menú"
 
+msgid "Color picker"
+msgstr "Selector de color"
+
 msgid "Confirm changes"
 msgstr "Confirmar cambios"
 
@@ -128,6 +131,9 @@ msgstr "no molestar"
 msgid "Edit item"
 msgstr "Editar elemento"
 
+msgid "Emoji picker"
+msgstr "Selector de emojis"
+
 msgid "Enter link"
 msgstr "Ingrese enlace"
 
@@ -135,8 +141,8 @@ msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
-"Error al obtener recursos relacionados. Por favor, contacta a tu "
-"administrador del sistema si tienes alguna pregunta."
+"Error al obtener recursos relacionados. Por favor, contacte a su "
+"administrador del sistema si tiene alguna pregunta."
 
 msgid "External documentation for {name}"
 msgstr "Documentación externa para {name}"
@@ -155,7 +161,7 @@ msgid "Food & Drink"
 msgstr "Comida y bebida"
 
 msgid "Frequently used"
-msgstr "Usado con frecuenca"
+msgstr "Usado con frecuencia"
 
 msgid "Global"
 msgstr "Global"
@@ -172,6 +178,9 @@ msgstr "Ocultar contraseña"
 msgid "invisible"
 msgstr "invisible"
 
+msgid "Keyboard navigation help"
+msgstr "Ayuda de navegación del teclado"
+
 msgid "Load more \"{options}\""
 msgstr "Cargar más \"{options}\""
 
@@ -180,10 +189,10 @@ msgid "Mariner"
 msgstr "Marinero"
 
 msgid "Message limit of {count} characters reached"
-msgstr "El mensaje ha alcanzado el límite de {count} caracteres"
+msgstr "Se ha alcanzado el límite de {count} caracteres en el mensaje"
 
 msgid "More items …"
-msgstr "Más ítems..."
+msgstr "Más ítems ..."
 
 msgid "More options"
 msgstr "Más opciones"
@@ -195,7 +204,7 @@ msgid "Nextcloud blue"
 msgstr "Azul Nextcloud"
 
 msgid "No emoji found"
-msgstr "No hay ningún emoji"
+msgstr "No se encontró ningún emoji"
 
 msgid "No link provider found"
 msgstr "No se encontró ningún proveedor de enlaces"
@@ -238,7 +247,7 @@ msgid "Pause slideshow"
 msgstr "Pausar la presentación "
 
 msgid "People & Body"
-msgstr "Personas y cuerpos"
+msgstr "Personas y Cuerpo"
 
 msgid "Pick a date"
 msgstr "Seleccione una fecha"
@@ -262,7 +271,7 @@ msgid "Pick an emoji"
 msgstr "Elegir un emoji"
 
 msgid "Please select a time zone:"
-msgstr "Por favor elige un huso de horario:"
+msgstr "Por favor elija un huso horario:"
 
 msgid "Previous"
 msgstr "Anterior"
@@ -271,7 +280,7 @@ msgid "Provider icon"
 msgstr "Ícono del proveedor"
 
 msgid "Purple"
-msgstr "Morado"
+msgstr "Púrpura"
 
 msgid "Raw link {options}"
 msgstr "Enlace directo {options}"
@@ -293,7 +302,7 @@ msgid "Search emoji"
 msgstr "Buscar emoji"
 
 msgid "Search for time zone"
-msgstr "Buscar husos horarios"
+msgstr "Buscar huso horario"
 
 msgid "Search results"
 msgstr "Resultados de la búsqueda"
@@ -320,10 +329,16 @@ msgid "Settings"
 msgstr "Ajustes"
 
 msgid "Settings navigation"
-msgstr "Navegación por ajustes"
+msgstr "Navegación de ajustes"
 
 msgid "Show password"
 msgstr "Mostrar contraseña"
+
+msgid "Skip to app navigation"
+msgstr "Saltar a la navegación de apps"
+
+msgid "Skip to main content"
+msgstr "Saltar al contenido principal"
 
 msgid "Smart Picker"
 msgstr "Selector inteligente"
@@ -347,7 +362,7 @@ msgid "Travel & Places"
 msgstr "Viajes y lugares"
 
 msgid "Type to search time zone"
-msgstr "Escribe para buscar un huso de horario"
+msgstr "Escriba para buscar un huso horario"
 
 msgid "Unable to search the group"
 msgstr "No es posible buscar en el grupo"
@@ -363,4 +378,4 @@ msgid "Whiskey"
 msgstr "Whiskey"
 
 msgid "Write a message …"
-msgstr "Escribe un mensaje …"
+msgstr "Escriba un mensaje ..."
