@@ -204,7 +204,7 @@ msgid "Nextcloud blue"
 msgstr "Azul Nextcloud"
 
 msgid "No emoji found"
-msgstr "No hay ningún emoji"
+msgstr "No se encontró ningún emoji"
 
 msgid "No link provider found"
 msgstr "No se encontró ningún proveedor de enlaces"
