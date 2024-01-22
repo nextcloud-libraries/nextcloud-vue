@@ -192,7 +192,7 @@ msgid "Message limit of {count} characters reached"
 msgstr "Se ha alcanzado el límite de {count} caracteres en el mensaje"
 
 msgid "More items …"
-msgstr "Más ítems..."
+msgstr "Más ítems ..."
 
 msgid "More options"
 msgstr "Más opciones"
