@@ -46,8 +46,8 @@ msgstr "Cualquier enlace"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
-"Cualquier cosa que se comparta con el mismo grupo de personas se mostrará "
-"aquí"
+"Cualquier cosa que esté compartida con el mismo grupo de personas se "
+"mostrará aquí"
 
 msgid "Avatar of {displayName}"
 msgstr "Avatar de {displayName}"
