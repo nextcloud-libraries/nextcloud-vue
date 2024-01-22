@@ -271,7 +271,7 @@ msgid "Pick an emoji"
 msgstr "Elegir un emoji"
 
 msgid "Please select a time zone:"
-msgstr "Por favor elige un huso de horario:"
+msgstr "Por favor elija un huso horario:"
 
 msgid "Previous"
 msgstr "Anterior"
