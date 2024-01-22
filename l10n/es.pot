@@ -33,7 +33,7 @@ msgid "Actions"
 msgstr "Acciones"
 
 msgid "Actions for item with name \"{name}\""
-msgstr "Acciones para el elemento con nombre \"{name}\""
+msgstr "Acciones para el ítem con nombre \"{name}\""
 
 msgid "Activities"
 msgstr "Actividades"
