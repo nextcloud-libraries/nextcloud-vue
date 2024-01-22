@@ -302,7 +302,7 @@ msgid "Search emoji"
 msgstr "Buscar emoji"
 
 msgid "Search for time zone"
-msgstr "Buscar husos horarios"
+msgstr "Buscar huso horario"
 
 msgid "Search results"
 msgstr "Resultados de la búsqueda"
