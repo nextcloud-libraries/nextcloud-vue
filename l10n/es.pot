@@ -109,6 +109,9 @@ msgstr "Cerrar selector inteligente"
 msgid "Collapse menu"
 msgstr "Ocultar menú"
 
+msgid "Color picker"
+msgstr "Selector de color"
+
 msgid "Confirm changes"
 msgstr "Confirmar cambios"
 
@@ -127,6 +130,9 @@ msgstr "no molestar"
 
 msgid "Edit item"
 msgstr "Editar elemento"
+
+msgid "Emoji picker"
+msgstr "Selector de emojis"
 
 msgid "Enter link"
 msgstr "Ingrese enlace"
@@ -171,6 +177,9 @@ msgstr "Ocultar contraseña"
 
 msgid "invisible"
 msgstr "invisible"
+
+msgid "Keyboard navigation help"
+msgstr "Ayuda de navegación del teclado"
 
 msgid "Load more \"{options}\""
 msgstr "Cargar más \"{options}\""
@@ -324,6 +333,12 @@ msgstr "Navegación por ajustes"
 
 msgid "Show password"
 msgstr "Mostrar contraseña"
+
+msgid "Skip to app navigation"
+msgstr "Saltar a la navegación de apps"
+
+msgid "Skip to main content"
+msgstr "Saltar al contenido principal"
 
 msgid "Smart Picker"
 msgstr "Selector inteligente"
