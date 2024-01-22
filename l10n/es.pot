@@ -329,7 +329,7 @@ msgid "Settings"
 msgstr "Ajustes"
 
 msgid "Settings navigation"
-msgstr "Navegación por ajustes"
+msgstr "Navegación de ajustes"
 
 msgid "Show password"
 msgstr "Mostrar contraseña"
