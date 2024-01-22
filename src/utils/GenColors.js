@@ -23,7 +23,7 @@
 
 import { t } from '../l10n.js'
 
-class Color {
+export class Color {
 
 	/**
 	 * @param {number} r The red value
@@ -38,6 +38,11 @@ class Color {
 		if (name) {
 			this.name = name
 		}
+	}
+
+	get color() {
+		const toHex = (num) => `00${num.toString(16)}`.slice(-2)
+		return `#${toHex(this.r)}${toHex(this.g)}${toHex(this.b)}`
 	}
 
 }
