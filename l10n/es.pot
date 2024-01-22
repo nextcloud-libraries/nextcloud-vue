@@ -280,7 +280,7 @@ msgid "Provider icon"
 msgstr "Ícono del proveedor"
 
 msgid "Purple"
-msgstr "Morado"
+msgstr "Púrpura"
 
 msgid "Raw link {options}"
 msgstr "Enlace directo {options}"
