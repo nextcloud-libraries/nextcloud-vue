@@ -247,7 +247,7 @@ msgid "Pause slideshow"
 msgstr "Pausar la presentación "
 
 msgid "People & Body"
-msgstr "Personas y cuerpos"
+msgstr "Personas y Cuerpo"
 
 msgid "Pick a date"
 msgstr "Seleccione una fecha"
