@@ -189,7 +189,7 @@ msgid "Mariner"
 msgstr "Marinero"
 
 msgid "Message limit of {count} characters reached"
-msgstr "El mensaje ha alcanzado el límite de {count} caracteres"
+msgstr "Se ha alcanzado el límite de {count} caracteres en el mensaje"
 
 msgid "More items …"
 msgstr "Más ítems..."
