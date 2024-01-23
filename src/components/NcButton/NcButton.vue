@@ -261,26 +261,32 @@ export default {
 ```
 
 ### Pressed state
+
 It is possible to make the button stateful by adding a pressed state, e.g. if you like to create a favorite button.
 The button will have the required `aria` attribute for accessibility and visual style (`primary` when pressed, and the configured type otherwise).
+
+Do not change `text` or `aria-label` of the pressed/unpressed button. See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed
 
 ```vue
 <template>
 	<div>
 		<div style="display: flex; gap: 12px;">
-			<NcButton :pressed.sync="isFavorite" :aria-label="ariaLabel" type="tertiary-no-background">
+			<NcButton :pressed.sync="isFavorite" aria-label="Favorite" type="tertiary-no-background">
 				<template #icon>
 					<IconStar v-if="isFavorite" :size="20" />
 					<IconStarOutline v-else :size="20" />
 				</template>
 			</NcButton>
-			<NcButton :pressed.sync="isFavorite" :aria-label="ariaLabel" type="tertiary">
+
+			<NcButton :pressed.sync="isFavorite" type="tertiary">
 				<template #icon>
 					<IconStar v-if="isFavorite" :size="20" />
 					<IconStarOutline v-else :size="20" />
 				</template>
+				Favorite
 			</NcButton>
-			<NcButton :pressed.sync="isFavorite" :aria-label="ariaLabel">
+
+			<NcButton :pressed.sync="isFavorite" aria-label="Favorite">
 				<template #icon>
 					<IconStar v-if="isFavorite" :size="20" />
 					<IconStarOutline v-else :size="20" />
@@ -305,11 +311,6 @@ export default {
 		return {
 			isFavorite: false,
 		}
-	},
-	computed: {
-		ariaLabel() {
-			return this.isFavorite ? 'Remove as favorite' : 'Add as favorite'
-		},
 	},
 	methods: {
 		toggleFavorite() {
@@ -558,6 +559,8 @@ export default {
 		/**
 		 * The pressed state of the button if it has a checked state
 		 * This will add the `aria-pressed` attribute and for the button to have the primary style in checked state.
+		 *
+		 * Pressed state is not supported for links
 		 */
 		pressed: {
 			type: Boolean,
@@ -621,6 +624,9 @@ export default {
 		}
 
 		const isLink = (this.to || this.href)
+
+		const hasPressed = !isLink && typeof this.pressed === 'boolean'
+
 		const renderButton = ({ href, navigate, isActive, isExactActive } = {}) => h(isLink ? 'a' : 'button',
 			{
 				class: [
@@ -639,7 +645,7 @@ export default {
 				],
 				attrs: {
 					'aria-label': this.ariaLabel,
-					'aria-pressed': this.pressed,
+					'aria-pressed': hasPressed ? this.pressed.toString() : undefined,
 					disabled: this.disabled,
 					type: isLink ? null : this.nativeType,
 					role: isLink ? 'button' : null,
@@ -655,8 +661,7 @@ export default {
 				on: {
 					...this.$listeners,
 					click: ($event) => {
-						// Update pressed prop on click if it is set
-						if (typeof this.pressed === 'boolean') {
+						if (hasPressed) {
 							/**
 							 * Update the current pressed state of the button (if the `pressed` property was configured)
 							 *
