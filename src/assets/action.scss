@@ -22,7 +22,7 @@
  */
 
 @mixin action-active {
-	li {
+	li.action {
 		&.active {
 			background-color: var(--color-background-hover);
 			border-radius: 6px;
