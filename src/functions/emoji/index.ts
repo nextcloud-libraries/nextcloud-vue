@@ -20,6 +20,4 @@
  *
  */
 
-import { emojiSearch, emojiAddRecent } from './emoji.js'
-
-export { emojiSearch, emojiAddRecent }
+export * from './emoji'

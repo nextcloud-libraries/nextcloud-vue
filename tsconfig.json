@@ -4,7 +4,7 @@
   "exclude": ["./src/**/*.cy.ts"],
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "target": "ESNext",
     "module": "esnext",
     "declaration": true,

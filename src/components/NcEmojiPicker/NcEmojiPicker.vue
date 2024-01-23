@@ -201,9 +201,9 @@ This component allows the user to pick an emoji.
 </template>
 
 <script>
-import { getBuilder } from '@nextcloud/browser-storage'
 import { Picker, Emoji, EmojiIndex } from 'emoji-mart-vue-fast'
 import { t } from '../../l10n.js'
+import { getCurrentSkinTone, setCurrentSkinTone } from '../../functions/emoji/emoji.ts'
 import { Color } from '../../utils/GenColors.js'
 
 import data from 'emoji-mart-vue-fast/data/all.json'
@@ -216,8 +216,6 @@ import NcTextField from '../NcTextField/index.js'
 // Shared emoji index and skinTone for all NcEmojiPicker instances
 // Will be initialized on the first NcEmojiPicker creating
 let emojiIndex
-
-const storage = getBuilder('nextcloud-vue').persist(true).build()
 
 const i18n = {
 	search: t('Search emoji'),
@@ -340,8 +338,7 @@ export default {
 	},
 
 	data() {
-		// sanizized value (skin tone is allowed from 1 to 6)
-		const currentSkinTone = Math.min(Math.max(Number.parseInt(storage.getItem('NcEmojiPicker::currentSkinTone') ?? '1'), 1), 6)
+		const currentSkinTone = getCurrentSkinTone()
 
 		return {
 			/**
@@ -384,7 +381,7 @@ export default {
 			if (index > -1) {
 				this.currentSkinTone = index + 1
 				this.currentColor = this.skinTonePalette[index]
-				storage.setItem('NcEmojiPicker::currentSkinTone', `${this.currentSkinTone}`)
+				setCurrentSkinTone(this.currentSkinTone)
 			}
 		},
 
