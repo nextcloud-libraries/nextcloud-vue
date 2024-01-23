@@ -2,11 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0) (unreleased)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.4.0...v9.0.0)
+## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0-alpha.0) (unreleased)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.5.0...v9.0.0-alpha.0)
 
-### :boom: Breaking changes
-* Migrated to vue 3, compatible with vue 3 only.
+### 💥 Breaking Changes
+* The package now uses Vue 3 instead of Vue 2.7
+* The package is now a native ESM package
 * The `checked` prop was renamed to `modelValue`, the `update:checked` event was renamed to `update:modelValue`. This affects the following components.
   - `NcActionCheckbox`
   - `NcActionRadio`
@@ -33,6 +34,61 @@ All notable changes to this project will be documented in this file.
   - `NcBreadcrumb`
   - `NcListItem`
 * The `isFullscreen` and `isMobile` mixins were removed. Use the according composables instead.
+
+### 🚀 Enhancements
+* Allow writing components using Typescript and provide type definitions for `NcButton` [\#4525](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4525) \([susnux](https://github.com/susnux)\)
+
+### 🐛 Fixed bugs
+* fix(vue3): Inherit `$attrs` to `Dropdown` in `NcPopover` [\#4564](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4564) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* fix(eslint): run eslint on migrated files [\#4630](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4630) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* fix(NcListItemIcon): correctly use default slot in examples [\#4695](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4695) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* fix(NcAvatar): don't show `false` for disabled tooltip [\#4740](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4740) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* fix(NcCheckboxRadioSwitch): fix v-on with no argument expects an object value [\#4840](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4840) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* fix(NcActions): find actions deeper nested [\#4804](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4804) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* fix(NcUserBubble): import warn correctly [\#4906](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4906) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* fix(docs): use v-model instead of sync [\#4969](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4969) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* fix(NcCheckboxRadioSwitch): correctly declare update:modelValue [\#5006](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5006) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* fix(test): correctly provide props in test [\#5012](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5012) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* fix(NcBreadcrumb): fix setting class on root element [\#5010](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5010) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* fix(NcBreadcrumb): correctly emit drag events [\#5011](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5011) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* fix(NcCheckboxContent): correctly check default slot [\#5058](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5058) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* fix(NcBreadcrumbs): do not forward refs to hidden crumbs [\#5066](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5066) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+
+### Other Changes
+* Rename `checked` prop to `modelValue` [\#4994](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4994) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* Unify `modelValue` naming [\#4990](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4990) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* Remove deprecated mixins [\#4830](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4830) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* Use vite for all entry points [\#4524](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4524) \([susnux](https://github.com/susnux)\)
+* Use vite instead of webpack [\#4619](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4619) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* Make package ESM by default [\#4957](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4957) \([susnux](https://github.com/susnux)\)
+* chore(vue3): Migrate NcPopover [\#4511](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4511) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcHighlight [\#4513](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4513) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate Focus directive, globally import Tooltip in docs [\#4515](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4515) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcDatetime [\#4514](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4514) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): add unit test for isSlotPopulated [\#4516](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4516) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* feat(vue3): Do cheap migrations [\#4532](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4532) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate Nc*Field [\#4512](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4512) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* feat(vue3): Migrate NcDatetimePickerNative [\#4533](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4533) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Nc*Field rename default to icon slot [\#4543](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4543) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcEmojiPicker [\#4563](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4563) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcEmptyContent [\#4542](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4542) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcColorPicker [\#4562](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4562) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate `NcSelect*` and related components [\#4587](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4587) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcDateTimePicker to vue 3 [\#4631](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4631) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate Nc*Field from `value` to `model-value` [\#4647](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4647) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcTextArea to vue 3 [\#4696](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4696) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcActions* to vue 3 [\#4646](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4646) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcModal to vue 3 [\#4722](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4722) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcAvatar to vue 3 [\#4719](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4719) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcDialog* to vue 3 [\#4731](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4731) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcHeaderMenu to vue 3 [\#4732](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4732) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcListItem to vue 3 [\#4726](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4726) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcBreadcrumbs to vue 3 [\#4741](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4741) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcRelatedResource to vue 3 [\#4800](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4800) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcUserBubble to vue 3 [\#4739](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4739) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcContent to vue 3 [\#4831](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4831) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcAppSidebar* to vue 3 [\#4833](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4833) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* chore(vue3): Migrate NcRich* to vue 3 [\#4976](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4976) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 
 ## [v8.5.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.5.0) (2024-01-23)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.5.0...v8.4.0)
