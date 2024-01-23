@@ -1,11 +1,11 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Kaya Zeren <kayazeren@gmail.com>, 2023
+# Kaya Zeren <kayazeren@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2023\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2024\n"
 "Language-Team: Turkish (https://app.transifex.com/nextcloud/teams/64236/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: tr\n"
@@ -69,6 +69,9 @@ msgstr "Mavi mor"
 msgid "Boston Blue"
 msgstr "Boston mavisi"
 
+msgid "busy"
+msgstr "meşgul"
+
 msgid "Cancel changes"
 msgstr "Değişiklikleri iptal et"
 
@@ -102,11 +105,17 @@ msgstr "Akıllı seçimi kapat"
 msgid "Collapse menu"
 msgstr "Menüyü daralt"
 
+msgid "Color picker"
+msgstr "Renk seçici"
+
 msgid "Confirm changes"
 msgstr "Değişiklikleri onayla"
 
 msgid "Custom"
 msgstr "Özel"
+
+msgid "Dark skin tone"
+msgstr "Koyu deri rengi"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -120,6 +129,9 @@ msgstr "Rahatsız etmeyin"
 
 msgid "Edit item"
 msgstr "Ögeyi düzenle"
+
+msgid "Emoji picker"
+msgstr "Emoji seçici"
 
 msgid "Enter link"
 msgstr "Bağlantıyı yazın"
@@ -165,12 +177,27 @@ msgstr "Parolayı gizle"
 msgid "invisible"
 msgstr "görünmez"
 
+msgid "Keyboard navigation help"
+msgstr "Klavye ile gezinme yardımı"
+
+msgid "Light skin tone"
+msgstr "Açık deri rengi"
+
 msgid "Load more \"{options}\""
 msgstr "Diğer \"{options}\""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Denizci"
+
+msgid "Medium dark skin tone"
+msgstr "Orta koyu deri rengi"
+
+msgid "Medium light skin tone"
+msgstr "Orta açık deri rengi"
+
+msgid "Medium skin tone"
+msgstr "Orta deri rengi"
 
 msgid "Message limit of {count} characters reached"
 msgstr "{count} karakter ileti sınırına ulaşıldı"
@@ -180,6 +207,9 @@ msgstr "Diğer ögeler…"
 
 msgid "More options"
 msgstr "Diğer seçenekler"
+
+msgid "Neutral skin color"
+msgstr "Nötr deri rengi"
 
 msgid "Next"
 msgstr "Sonraki"
@@ -220,6 +250,9 @@ msgstr "Menüyü aç"
 
 msgid "Open navigation"
 msgstr "Gezinmeyi aç"
+
+msgid "Options"
+msgstr "Seçenekler"
 
 msgid "Password is secure"
 msgstr "Parola güvenli"
@@ -314,6 +347,15 @@ msgstr "Gezinme ayarları"
 
 msgid "Show password"
 msgstr "Parolayı görüntüle"
+
+msgid "Skin tone"
+msgstr "Deri rengi"
+
+msgid "Skip to app navigation"
+msgstr "Uygulama gezinmesine git"
+
+msgid "Skip to main content"
+msgstr "Ana içeriğe git"
 
 msgid "Smart Picker"
 msgstr "Akıllı seçim"
