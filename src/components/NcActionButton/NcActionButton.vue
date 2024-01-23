@@ -209,13 +209,13 @@ This also allows tri-state behavior (`true`, `false`, `null`) in which case `ari
 ```vue
 <template>
 	<NcActions>
-		<NcActionButton :model-value.sync="handRaised" model-behavior="checkbox">
+		<NcActionButton :model-value.sync="handRaised" type="checkbox">
 			<template #icon>
 				<HandBackLeft :size="20" />
 			</template>
 			Raise hand
 		</NcActionButton>
-		<NcActionButton :model-value.sync="fullscreen" model-behavior="checkbox">
+		<NcActionButton :model-value.sync="fullscreen" type="checkbox">
 			<template #icon>
 				<Fullscreen :size="20" />
 			</template>
@@ -247,13 +247,13 @@ It is also possible to use the button with radio semantics, this is only possibl
 ```vue
 <template>
 	<NcActions>
-		<NcActionButton :model-value.sync="payment" model-behavior="radio" value="cash">
+		<NcActionButton :model-value.sync="payment" type="radio" value="cash">
 			<template #icon>
 				<Cash :size="20" />
 			</template>
 			Pay with cash
 		</NcActionButton>
-		<NcActionButton :model-value.sync="payment" model-behavior="radio" value="card">
+		<NcActionButton :model-value.sync="payment" type="radio" value="card">
 			<template #icon>
 				<CreditCard :size="20" />
 			</template>
@@ -288,7 +288,7 @@ export default {
 				focusable: isFocusable,
 			}]"
 			:title="title"
-			type="button"
+			:type="nativeType"
 			v-bind="buttonAttributes"
 			@click="handleClick">
 			<!-- @slot Manually provide icon -->
@@ -385,17 +385,18 @@ export default {
 		},
 
 		/**
-		 * The button's behavior, by default the button acts like a normal button with optional toggle button behavior if `modelValue` is `true` or `false`
+		 * The button's behavior, by default the button acts like a normal button with optional toggle button behavior if `modelValue` is `true` or `false`.
 		 * But you can also set to checkbox button behavior with tri-state or radio button like behavior.
+		 * This extends the native HTML button type attribute.
 		 */
-		modelBehavior: {
+		type: {
 			type: String,
 			default: 'button',
-			validator: (behavior) => ['checkbox', 'radio', 'button'].includes(behavior),
+			validator: (behavior) => ['button', 'checkbox', 'radio', 'reset', 'submit'].includes(behavior),
 		},
 
 		/**
-		 * The buttons state if `modelBehavior` is 'checkbox' or 'radio' (meaning if it is pressed / selected)
+		 * The buttons state if `type` is 'checkbox' or 'radio' (meaning if it is pressed / selected)
 		 * Either boolean for checkbox and toggle button behavior or `value` for radio behavior
 		 */
 		modelValue: {
@@ -427,10 +428,20 @@ export default {
 		 * The current "checked" or "pressed" state for the model behavior
 		 */
 		isChecked() {
-			if (this.modelBehavior === 'radio') {
+			if (this.type === 'radio') {
 				return this.modelValue === this.value
 			}
 			return this.modelValue
+		},
+
+		/**
+		 * The native HTML type to set on the button
+		 */
+		nativeType() {
+			if (this.type === 'submit' || this.type === 'reset') {
+				return this.type
+			}
+			return 'button'
 		},
 
 		/**
@@ -443,10 +454,10 @@ export default {
 				// By default it needs to be a menu item in semantic menus
 				attributes.role = 'menuitem'
 
-				if (this.modelBehavior === 'radio') {
+				if (this.type === 'radio') {
 					attributes.role = 'menuitemradio'
 					attributes['aria-checked'] = this.isChecked ? 'true' : 'false'
-				} else if (this.modelBehavior === 'checkbox' || this.modelValue !== null) {
+				} else if (this.type === 'checkbox' || this.modelValue !== null) {
 					// either if checkbox behavior was set or the model value is not unset
 					attributes.role = 'menuitemcheckbox'
 					attributes['aria-checked'] = this.modelValue === null ? 'mixed' : (this.modelValue ? 'true' : 'false')
@@ -467,9 +478,9 @@ export default {
 		 */
 		handleClick(event) {
 			this.onClick(event)
-			// If modelValue or modelBehavior is set (so modelValue might be null for tri-state) we need to update it
-			if (this.modelValue !== null || this.modelBehavior !== 'button') {
-				if (this.modelBehavior === 'radio') {
+			// If modelValue or type is set (so modelValue might be null for tri-state) we need to update it
+			if (this.modelValue !== null || this.type !== 'button') {
+				if (this.type === 'radio') {
 					if (!this.isChecked) {
 						this.$emit('update:modelValue', this.value)
 					}

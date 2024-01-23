@@ -30,7 +30,7 @@ This should be used sparingly for accessibility.
 			<NcActionButtonGroup name="Text alignment">
 				<NcActionButton aria-label="Align left"
 					:model-value.sync="alignment"
-					model-behavior="radio"
+					type="radio"
 					value="l">
 					<template #icon>
 						<AlignLeft :size="20" />
@@ -38,7 +38,7 @@ This should be used sparingly for accessibility.
 				</NcActionButton>
 				<NcActionButton aria-label="Align center"
 					:model-value.sync="alignment"
-					model-behavior="radio"
+					type="radio"
 					value="c">
 					<template #icon>
 						<AlignCenter :size="20" />
@@ -46,7 +46,7 @@ This should be used sparingly for accessibility.
 				</NcActionButton>
 				<NcActionButton aria-label="Align right"
 					:model-value.sync="alignment"
-					model-behavior="radio"
+					type="radio"
 					value="r">
 					<template #icon>
 						<AlignRight :size="20" />

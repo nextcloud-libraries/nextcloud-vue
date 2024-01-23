@@ -1304,9 +1304,10 @@ export default {
 			}
 
 			const propsToForward = { ...(action?.componentOptions?.propsData ?? {}) }
-			// not available on NcButton
+			const nativeType = ['submit', 'reset'].includes(propsToForward.type) ? propsToForward.modelValue : 'button'
+			// not available on NcButton or with different meaning
 			delete propsToForward.modelValue
-			delete propsToForward.modelBehavior
+			delete propsToForward.type
 
 			return h('NcButton',
 				{
@@ -1326,6 +1327,7 @@ export default {
 						type: this.type || (buttonText ? 'secondary' : 'tertiary'),
 						disabled: this.disabled || action?.componentOptions?.propsData?.disabled,
 						pressed: action?.componentOptions?.propsData?.modelValue,
+						nativeType,
 						...propsToForward,
 					},
 					on: {
