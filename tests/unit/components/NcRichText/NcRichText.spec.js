@@ -187,4 +187,24 @@ describe('Foo', () => {
 		})
 		expect(wrapper.text()).toEqual('**Testwith** a ~~link~~ *to* [Link](https://example:1337) - go visit it')
 	})
+
+	it('formats interactive checkbox with extended markdown', async() => {
+		const wrapper = mount(NcRichText, {
+			propsData: {
+				text: '- [ ] task item',
+				useExtendedMarkdown: true,
+				interactive: true,
+			},
+		})
+		expect(wrapper.text()).toEqual('task item')
+		const checkbox = wrapper.findComponent({name: 'NcCheckboxRadioSwitch'})
+		expect(checkbox.exists()).toBeTruthy()
+		await checkbox.vm.$emit('update:checked', true)
+		expect(wrapper.emitted()['interact:todo']).toBeTruthy()
+		expect(wrapper.emitted()['interact:todo'][0][0]).toMatchObject({
+			id: expect.anything(),
+			label: 'task item',
+			value: true,
+		})
+	})
 })

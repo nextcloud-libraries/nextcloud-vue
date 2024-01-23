@@ -23,10 +23,11 @@ const NcLink = {
 	},
 }
 
-export const remarkAutolink = function({ autolink, useMarkdown }) {
+export const remarkAutolink = function({ autolink, useMarkdown, useExtendedMarkdown }) {
 	return function(tree) {
-
-		if (!useMarkdown || !autolink) {
+		// remark-gfm has its own autolink parser which can not be disabled
+		// and thus a local one is not needed
+		if (useExtendedMarkdown || !useMarkdown || !autolink) {
 			return
 		}
 

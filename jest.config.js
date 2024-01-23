@@ -23,6 +23,7 @@
 const ignorePatterns = [
 	'ansi-regex',
 	'bail',
+	'ccount', // ESM dependency of remark-gfm
 	'char-regex',
 	'comma-separated-tokens',
 	'decode-named-character-reference',
@@ -30,6 +31,8 @@ const ignorePatterns = [
 	'escape-string-regexp',
 	'hast-*',
 	'is-*',
+	'longest-streak', // ESM dependency of remark-gfm
+	'markdown-table', // ESM dependency of remark-gfm
 	'mdast-util-*',
 	'micromark',
 	'property-information',
@@ -46,6 +49,7 @@ const ignorePatterns = [
 	'vfile',
 	'vue-material-design-icons',
 	'web-namespaces',
+	'zwitch', // ESM dependency of remark-gfm
 ]
 
 module.exports = {

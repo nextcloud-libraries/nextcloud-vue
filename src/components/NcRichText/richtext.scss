@@ -135,10 +135,10 @@
 
 .rich-text--wrapper-markdown {
 	div > *:first-child,
-	blockquote > *:first-child{
+	blockquote > *:first-child {
 		margin-top: 0 !important;
 	}
-	div > *:last-child ,
+	div > *:last-child,
 	blockquote > *:last-child {
 		margin-bottom: 0 !important;
 	}
@@ -162,6 +162,37 @@
 
 	ul {
 		list-style-type: disc;
+	}
+
+	ul.contains-task-list {
+		list-style-type: none;
+		padding: 0;
+	}
+
+	table {
+		border-collapse: collapse;
+		border: 2px solid var(--color-border-maxcontrast);
+
+		th,
+		td {
+			padding: var(--default-grid-baseline);
+			border: 1px solid var(--color-border-maxcontrast);
+			&:first-child {
+				border-left: 0;
+			}
+			&:last-child {
+				border-right: 0;
+			}
+		}
+
+		tr {
+			&:first-child th {
+				border-top: 0;
+			}
+			&:last-child td {
+				border-bottom: 0;
+			}
+		}
 	}
 
 	blockquote {
