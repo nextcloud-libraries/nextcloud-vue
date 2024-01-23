@@ -30,6 +30,10 @@ export default {
 			type: Number,
 			default: 1,
 		},
+		displayFallback: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		return {
@@ -39,18 +43,35 @@ export default {
 	},
 	computed: {
 		isVisible() {
-			return this.loading || this.displayedReferences
+			return this.loading || this.displayedReferences.length !== 0
 		},
 		values() {
-			return this.referenceData
-				? this.referenceData
-				: (this.references ? Object.values(this.references) : [])
+			if (this.referenceData) {
+				return this.referenceData
+			}
+
+			if (this.displayFallback && !this.loading && !this.references) {
+				return [this.fallbackReference]
+			}
+
+			return this.references ? Object.values(this.references) : []
 		},
 		firstReference() {
 			return this.values[0] ?? null
 		},
 		displayedReferences() {
 			return this.values.slice(0, this.limit)
+		},
+		fallbackReference() {
+			return {
+				accessible: true,
+				openGraphObject: {
+					id: this.text,
+					link: this.text,
+					name: this.text,
+				},
+				richObjectType: 'open-graph',
+			}
 		},
 	},
 	watch: {
@@ -75,9 +96,11 @@ export default {
 			this.resolve().then((response) => {
 				this.references = response.data.ocs.data.references
 				this.loading = false
+				this.$emit('loaded')
 			}).catch((error) => {
 				console.error('Failed to extract references', error)
 				this.loading = false
+				this.$emit('loaded')
 			})
 		},
 		resolve() {
