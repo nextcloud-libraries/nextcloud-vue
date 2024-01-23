@@ -1,11 +1,11 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Иван Пешић, 2023
+# Иван Пешић, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Иван Пешић, 2023\n"
+"Last-Translator: Иван Пешић, 2024\n"
 "Language-Team: Serbian (https://app.transifex.com/nextcloud/teams/64236/sr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sr\n"
@@ -69,6 +69,9 @@ msgstr "Плаво љубичаста"
 msgid "Boston Blue"
 msgstr "Бостон плава"
 
+msgid "busy"
+msgstr "заузет"
+
 msgid "Cancel changes"
 msgstr "Откажи измене"
 
@@ -102,6 +105,9 @@ msgstr "Затвори паметни бирач"
 msgid "Collapse menu"
 msgstr "Сажми мени"
 
+msgid "Color picker"
+msgstr "Бирач боје"
+
 msgid "Confirm changes"
 msgstr "Потврдите измене"
 
@@ -120,6 +126,9 @@ msgstr "не узнемиравај"
 
 msgid "Edit item"
 msgstr "Уреди ставку"
+
+msgid "Emoji picker"
+msgstr "Бирач емођија"
 
 msgid "Enter link"
 msgstr "Унесите линк"
@@ -164,6 +173,9 @@ msgstr "Сакриј лозинку"
 
 msgid "invisible"
 msgstr "невидљиво"
+
+msgid "Keyboard navigation help"
+msgstr "Помоћ за навигацију тастатуром"
 
 msgid "Load more \"{options}\""
 msgstr "Учитај још „{options}”"
@@ -220,6 +232,9 @@ msgstr "Отвори мени"
 
 msgid "Open navigation"
 msgstr "Отвори навигацију"
+
+msgid "Options"
+msgstr "Опције"
 
 msgid "Password is secure"
 msgstr "Лозинка је безбедна"
@@ -314,6 +329,12 @@ msgstr "Кретање по подешавањима"
 
 msgid "Show password"
 msgstr "Прикажи лозинку"
+
+msgid "Skip to app navigation"
+msgstr "Прескочи на навигацију апликацијом"
+
+msgid "Skip to main content"
+msgstr "Прескочи на главни садржај"
 
 msgid "Smart Picker"
 msgstr "Паметни бирач"
