@@ -397,7 +397,12 @@ export default {
 
 		/**
 		 * The buttons state if `type` is 'checkbox' or 'radio' (meaning if it is pressed / selected)
-		 * Either boolean for checkbox and toggle button behavior or `value` for radio behavior
+		 * Either boolean for checkbox and toggle button behavior or `value` for radio behavior.
+		 *
+		 *  **This is not availabe for `type='submit'` or `type='reset'`**
+		 *
+		 * If using `type='checkbox'` a `model-value` of `true` means checked, `false` means unchecked and `null` means indeterminate (tri-state)
+		 * For `type='radio'` `null` is equal to `false`
 		 */
 		modelValue: {
 			type: [Boolean, String],
@@ -457,12 +462,12 @@ export default {
 				if (this.type === 'radio') {
 					attributes.role = 'menuitemradio'
 					attributes['aria-checked'] = this.isChecked ? 'true' : 'false'
-				} else if (this.type === 'checkbox' || this.modelValue !== null) {
+				} else if (this.type === 'checkbox' || (this.nativeType === 'button' && this.modelValue !== null)) {
 					// either if checkbox behavior was set or the model value is not unset
 					attributes.role = 'menuitemcheckbox'
 					attributes['aria-checked'] = this.modelValue === null ? 'mixed' : (this.modelValue ? 'true' : 'false')
 				}
-			} else if (this.modelValue !== null) {
+			} else if (this.modelValue !== null && this.nativeType === 'button') {
 				// In case this has a modelValue it is considered a toggle button, so we need to set the aria-pressed
 				attributes['aria-pressed'] = this.modelValue ? 'true' : 'false'
 			}
