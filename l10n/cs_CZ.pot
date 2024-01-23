@@ -113,6 +113,9 @@ msgstr "Potvrdit změny"
 msgid "Custom"
 msgstr "Uživatelsky určené"
 
+msgid "Dark skin tone"
+msgstr "Tmavý tělový tón"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "Deluge"
@@ -173,12 +176,27 @@ msgstr "Skrýt heslo"
 msgid "invisible"
 msgstr "neviditelné"
 
+msgid "Keyboard navigation help"
+msgstr "Nápověda pro pohyb pomocí klávesnice"
+
+msgid "Light skin tone"
+msgstr "Světlý tělový tón"
+
 msgid "Load more \"{options}\""
 msgstr "Načíst další „{options}“"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Námořnická"
+
+msgid "Medium dark skin tone"
+msgstr "Středně tmavý tělový tón"
+
+msgid "Medium light skin tone"
+msgstr "Středně světlý tělový tón"
+
+msgid "Medium skin tone"
+msgstr "Střední tělový tón"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Dosaženo limitu počtu ({count}) znaků zprávy"
@@ -188,6 +206,9 @@ msgstr "Další položky…"
 
 msgid "More options"
 msgstr "Další volby"
+
+msgid "Neutral skin color"
+msgstr "Neutřální tělová barva"
 
 msgid "Next"
 msgstr "Následující"
@@ -325,6 +346,15 @@ msgstr "Pohyb po nastavení"
 
 msgid "Show password"
 msgstr "Zobrazit heslo"
+
+msgid "Skin tone"
+msgstr "Tělový tón"
+
+msgid "Skip to app navigation"
+msgstr "Přeskočit na navigaci aplikace"
+
+msgid "Skip to main content"
+msgstr "Přeskočit na hlavní obsah"
 
 msgid "Smart Picker"
 msgstr "Inteligentní výběr"

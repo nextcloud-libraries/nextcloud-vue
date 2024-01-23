@@ -117,6 +117,9 @@ msgstr "Änderungen bestätigen"
 msgid "Custom"
 msgstr "Benutzerdefiniert"
 
+msgid "Dark skin tone"
+msgstr "Dunkler Skin-Farbton"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "Sintflut"
@@ -180,12 +183,24 @@ msgstr "Unsichtbar"
 msgid "Keyboard navigation help"
 msgstr "Tastatur-Navigationshilfe"
 
+msgid "Light skin tone"
+msgstr "Heller Skin-Farbton"
+
 msgid "Load more \"{options}\""
 msgstr "Weitere \"{options}\" laden"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Seemann"
+
+msgid "Medium dark skin tone"
+msgstr "Mitteldunkler Skin-Farbton"
+
+msgid "Medium light skin tone"
+msgstr "Mittelheller Skin-Farbton"
+
+msgid "Medium skin tone"
+msgstr "Mittlerer Skin-Farbton"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
@@ -195,6 +210,9 @@ msgstr "Weitere Elemente …"
 
 msgid "More options"
 msgstr "Mehr Optionen"
+
+msgid "Neutral skin color"
+msgstr "Neutraler Skin-Farbton"
 
 msgid "Next"
 msgstr "Weiter"
@@ -332,6 +350,9 @@ msgstr "Einstellungen für die Navigation"
 
 msgid "Show password"
 msgstr "Passwort anzeigen"
+
+msgid "Skin tone"
+msgstr "Skin-Farbton"
 
 msgid "Skip to app navigation"
 msgstr "Zur App-Navigation springen"
