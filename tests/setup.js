@@ -24,3 +24,8 @@ import { vi } from 'vitest'
 import OC from './OC.js'
 
 vi.stubGlobal('OC', OC)
+vi.stubGlobal('appName', 'nextcloud-vue')
+
+vi.stubGlobal('PRODUCTION', false)
+vi.stubGlobal('SCOPE_VERSION', 1)
+vi.stubGlobal('TRANSLATIONS', [])

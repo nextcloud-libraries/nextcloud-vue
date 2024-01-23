@@ -143,23 +143,37 @@ This component allows the user to pick an emoji.
 			:per-line="8"
 			:picker-styles="{ width: '320px' }"
 			:show-preview="showPreview"
+			:skin="currentSkinTone"
+			:show-skin-tones="false"
 			:title="previewFallbackName"
 			role="dialog"
 			:aria-label="t('Emoji picker')"
 			v-bind="$attrs"
 			@select="select">
 			<template #searchTemplate="slotProps">
-				<NcTextField ref="search"
-					v-model="search"
-					class="search"
-					:label="t('Search')"
-					:label-visible="true"
-					:placeholder="i18n.search"
-					trailing-button-icon="close"
-					:trailing-button-label="t('Clear search')"
-					:show-trailing-button="search !== ''"
-					@trailing-button-click="clearSearch(); slotProps.onSearch(search);"
-					@update:value="slotProps.onSearch(search)" />
+				<div class="search__wrapper">
+					<NcTextField ref="search"
+						v-model="search"
+						class="search"
+						:label="t('Search')"
+						:label-visible="true"
+						:placeholder="i18n.search"
+						trailing-button-icon="close"
+						:trailing-button-label="t('Clear search')"
+						:show-trailing-button="search !== ''"
+						@trailing-button-click="clearSearch(); slotProps.onSearch(search);"
+						@update:model-value="slotProps.onSearch(search)" />
+					<NcColorPicker palette-only
+						:palette="skinTonePalette"
+						:model-value="currentColor.color"
+						@update:model-value="onChangeSkinTone">
+						<NcButton :aria-label="t('Skin tone')" type="tertiary-no-background">
+							<template #icon>
+								<IconCircle :style="{ color: currentColor.color }" :title="currentColor.name" :size="20" />
+							</template>
+						</NcButton>
+					</NcColorPicker>
+				</div>
 			</template>
 			<template v-if="allowUnselect && selectedEmoji" #customCategory>
 				<div class="emoji-mart-category-label">
@@ -185,6 +199,12 @@ This component allows the user to pick an emoji.
 </template>
 
 <script>
+import { getCurrentSkinTone, setCurrentSkinTone } from '../../functions/emoji/emoji.ts'
+import { Color } from '../../utils/GenColors.js'
+
+import IconCircle from 'vue-material-design-icons/Circle.vue'
+import NcButton from '../NcButton/index.ts'
+import NcColorPicker from '../NcColorPicker/NcColorPicker.vue'
 import NcPopover from '../NcPopover/index.js'
 import NcTextField from '../NcTextField/index.js'
 import { t } from '../../l10n.js'
@@ -192,7 +212,7 @@ import { t } from '../../l10n.js'
 import { Picker, Emoji, EmojiIndex } from 'emoji-mart-vue-fast/src/index.js'
 import data from 'emoji-mart-vue-fast/data/all.json'
 
-// Shared emoji index for all NcEmojiPicker instances
+// Shared emoji index and skinTone for all NcEmojiPicker instances
 // Will be initialized on the first NcEmojiPicker creating
 let emojiIndex
 
@@ -215,14 +235,28 @@ const i18n = {
 	},
 }
 
+const skinTonePalette = [
+	new Color(255, 222, 52, t('Neutral skin color')),
+	new Color(228, 205, 166, t('Light skin tone')),
+	new Color(250, 221, 192, t('Medium light skin tone')),
+	new Color(174, 129, 87, t('Medium skin tone')),
+	new Color(158, 113, 88, t('Medium dark skin tone')),
+	new Color(96, 79, 69, t('Dark skin tone')),
+]
+
 export default {
 	name: 'NcEmojiPicker',
+
 	components: {
+		IconCircle,
+		NcButton,
+		NcColorPicker,
 		NcPopover,
 		NcTextField,
 		Emoji,
 		Picker,
 	},
+
 	props: {
 		/**
 		 * The emoji-set
@@ -297,21 +331,35 @@ export default {
 		return {
 			// Non-reactive constants
 			emojiIndex,
+			skinTonePalette,
 			i18n,
 		}
 	},
 
 	data() {
+		const currentSkinTone = getCurrentSkinTone()
+
 		return {
+			/**
+			 * The current active color from the skin tone palette
+			 */
+			currentColor: skinTonePalette[currentSkinTone - 1],
+			/**
+			 * The current active skin tone
+			 * @type {1|2|3|4|5|6}
+			 */
+			currentSkinTone,
 			search: '',
 			open: false,
 		}
 	},
+
 	computed: {
 		native() {
 			return this.activeSet === 'native'
 		},
 	},
+
 	methods: {
 		t,
 
@@ -320,6 +368,19 @@ export default {
 			const input = this.$refs.search?.$refs.inputField?.$refs.input
 			if (input) {
 				input.focus()
+			}
+		},
+
+		/**
+		 * Update the current skin tone by the result of the color picker
+		 * @param {string} color Color set
+		 */
+		onChangeSkinTone(color) {
+			const index = this.skinTonePalette.findIndex((tone) => tone.color.toLowerCase() === color.toLowerCase())
+			if (index > -1) {
+				this.currentSkinTone = index + 1
+				this.currentColor = this.skinTonePalette[index]
+				setCurrentSkinTone(this.currentSkinTone)
 			}
 		},
 
@@ -490,20 +551,23 @@ export default {
 	}
 
 }
-
-.search {
-	padding: 4px 8px;
-}
-
 </style>
 
-<style scoped>
-.row-selected span {
-	vertical-align: middle;
+<style scoped lang="scss">
+.search {
+	&__wrapper {
+		display: flex;
+		flex-direction: row;
+		gap: 4px; // for focus-visible outlines
+		align-items: end;
+		padding: 4px 8px;
+	}
 }
 
-.row-selected button {
-	vertical-align: middle;
+.row-selected {
+	button, span {
+		vertical-align: middle;
+	}
 }
 
 .emoji-delete {

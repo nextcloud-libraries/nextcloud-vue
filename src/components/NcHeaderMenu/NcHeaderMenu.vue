@@ -73,18 +73,21 @@ export default {
 		class="header-menu"
 		v-on="listeners">
 		<!-- Trigger -->
-		<button :id="isNav ? triggerId : null"
+		<NcButton :id="isNav ? triggerId : null"
 			ref="trigger"
-			class="header-menu__trigger button-vue"
+			type="tertiary-no-background"
+			class="header-menu__trigger"
 			:aria-label="ariaLabel"
 			:aria-describedby="description ? descriptionId : null"
 			:aria-controls="`header-menu-${id}`"
 			:aria-expanded="opened.toString()"
 			@click.prevent="toggleMenu">
-			<!-- @slot Icon trigger slot. Make sure the svg path
+			<template #icon>
+				<!-- @slot Icon trigger slot. Make sure the svg path
 				is at least 16px. Usually mdi icon works at 20px -->
-			<slot name="trigger" />
-		</button>
+				<slot name="trigger" />
+			</template>
+		</NcButton>
 
 		<span v-if="description"
 			:id="descriptionId"
@@ -115,8 +118,14 @@ import GenRandomId from '../../utils/GenRandomId.js'
 import { clickOutsideOptions } from '../../mixins/index.js'
 import { getTrapStack } from '../../utils/focusTrap.js'
 
+import NcButton from '../NcButton/index.ts'
+
 export default {
 	name: 'NcHeaderMenu',
+
+	components: {
+		NcButton,
+	},
 
 	directives: {
 		ClickOutside,
@@ -339,17 +348,9 @@ $externalMargin: 8px;
 	height: var(--header-height);
 
 	&__trigger {
-		display: flex;
-		align-items: center;
-		justify-content: center;
 		width: var(--header-height);
 		height: var(--header-height);
-		margin: 0;
-		padding: 0;
-		cursor: pointer;
 		opacity: .85;
-		background-color: transparent;
-		border: none;
 
 		// header is filled with primary or image background
 		filter: none !important;
@@ -363,8 +364,9 @@ $externalMargin: 8px;
 		opacity: 1;
 	}
 
-	&__trigger:focus-visible {
-		outline: none;
+	#{&}__trigger:focus-visible {
+		outline: none !important;
+		box-shadow: none !important;
 	}
 
 	&__wrapper {
