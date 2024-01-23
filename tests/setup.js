@@ -25,6 +25,7 @@ import OC from './OC.js'
 import 'regenerator-runtime/runtime'
 
 global.OC = OC
+global.appName = 'nextcloud-vue'
 
 global.PRODUCTION = false
 global.SCOPE_VERSION = 1

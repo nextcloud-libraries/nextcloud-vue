@@ -194,7 +194,7 @@ export default {
 					:disable-fields="!advancedFields"
 					@input="pickColor" />
 			</Transition>
-			<div class="color-picker__navigation">
+			<div v-if="!paletteOnly" class="color-picker__navigation">
 				<NcButton v-if="advanced"
 					type="tertiary"
 					:aria-label="ariaBack"
@@ -235,20 +235,6 @@ import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 import { Chrome } from 'vue-color'
 
-/**
- * Convert RGB object to a HEX string color
- *
- * @param {object} color - The color to convert
- * @param {string} [color.r] - Red value
- * @param {string} [color.g] - Green value
- * @param {string} [color.b] - Blue value
- * @return {string} The hex value
- */
-export function rgbToHex({ r, g, b }) {
-	const toHex = (number) => number.toString(16).padStart(2, '0')
-	return `#${toHex(r)}${toHex(g)}${toHex(b)}`
-}
-
 const HEX_REGEX = /^#([a-f0-9]{3}|[a-f0-9]{6})$/i
 
 export default {
@@ -281,6 +267,14 @@ export default {
 		},
 
 		/**
+		 * Limit selectable colors to only the provided palette
+		 */
+		paletteOnly: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * Provide a custom array of colors to show.
 		 * Can be either an array of string hexadecimal colors,
 		 * or an array of object with a `color` property with hexadecimal color string,
@@ -290,7 +284,7 @@ export default {
 		 */
 		palette: {
 			type: Array,
-			default: () => defaultPalette.map(item => ({ color: rgbToHex(item), name: item.name })),
+			default: () => [...defaultPalette],
 			validator: (palette) => palette.every(item =>
 				(typeof item === 'string' && HEX_REGEX.test(item))
 				|| (typeof item === 'object' && item.color && HEX_REGEX.test(item.color)),

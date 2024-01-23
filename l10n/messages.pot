@@ -105,6 +105,9 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
+msgid "Dark skin tone"
+msgstr ""
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr ""
@@ -164,11 +167,23 @@ msgstr ""
 msgid "Keyboard navigation help"
 msgstr ""
 
+msgid "Light skin tone"
+msgstr ""
+
 msgid "Load more \"{options}\""
 msgstr ""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
+msgstr ""
+
+msgid "Medium dark skin tone"
+msgstr ""
+
+msgid "Medium light skin tone"
+msgstr ""
+
+msgid "Medium skin tone"
 msgstr ""
 
 msgid "Message limit of {count} characters reached"
@@ -178,6 +193,9 @@ msgid "More items …"
 msgstr ""
 
 msgid "More options"
+msgstr ""
+
+msgid "Neutral skin color"
 msgstr ""
 
 msgid "Next"
@@ -314,6 +332,9 @@ msgid "Settings navigation"
 msgstr ""
 
 msgid "Show password"
+msgstr ""
+
+msgid "Skin tone"
 msgstr ""
 
 msgid "Skip to app navigation"
