@@ -162,7 +162,14 @@ export default defineComponent({
 		/** Additional elements to add to the focus trap */
 		additionalTrapElements: {
 			type: Array,
-			validator: (arr) => Array.isArray(arr) && arr.every((element) => typeof element === 'string'),
+			validator: (arr) => {
+				return (
+					Array.isArray(arr) && arr.every(
+						(element) =>
+							typeof element === 'string' || element instanceof HTMLElement,
+					)
+				)
+			},
 			default: () => ([]),
 		},
 
@@ -399,6 +406,7 @@ export default defineComponent({
 			closeOnClickOutside: props.closeOnClickOutside,
 			enableSlideshow: false,
 			enableSwipe: false,
+			additionalTrapElements: props.additionalTrapElements,
 		}))
 
 		return {
