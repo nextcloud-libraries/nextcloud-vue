@@ -115,15 +115,18 @@ export default {
 			/**
 			 * Since NcSelect does not support groups,
 			 * we create an object with the grouped timezones and continent labels.
+			 *
+			 * NOTE for now we are removing the grouping from the fields to fix an accessibility issue
+			 * in the future, other options can be introduced to better display the different areas
 			 */
 			let timezonesGrouped = []
 			Object.values(timezoneList).forEach(group => {
 				// Add an entry as group label
-				timezonesGrouped.push({
-					label: group.continent,
-					timezoneId: `tz-group__${group.continent}`,
-					regions: group.regions,
-				})
+				// timezonesGrouped.push({
+				// label: group.continent,
+				// timezoneId: `tz-group__${group.continent}`,
+				// regions: group.regions,
+				// })
 				timezonesGrouped = timezonesGrouped.concat(group.regions)
 			})
 			return timezonesGrouped
