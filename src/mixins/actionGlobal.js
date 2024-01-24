@@ -19,19 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import { warn } from 'vue'
-
 export default {
-	before() {
-		// all actions requires a valid text content
-		// if none, forbid the component mount and throw error
-		if (!this.$slots.default() || this.text.trim() === '') {
-			warn(`${this.$options.name} cannot be empty and requires a meaningful text content`, this)
-			this.$destroy()
-			this.$el.remove()
-		}
-	},
-
 	beforeUpdate() {
 		this.text = this.getText()
 	},

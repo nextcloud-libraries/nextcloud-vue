@@ -170,17 +170,127 @@ export default {
 }
 </script>
 ```
+
+### With different model behavior
+By default the button will act like a normal button, but it is also possible to change the behavior to a toggle button, checkbox button or radio button.
+
+For example to have the button act like a toggle button just set the `modelValue` property to the toggle state:
+
+```vue
+<template>
+	<NcActions>
+		<NcActionButton v-model="fullscreen">
+			<template #icon>
+				<Fullscreen :size="20" />
+			</template>
+			Fullscreen
+		</NcActionButton>
+	</NcActions>
+</template>
+<script>
+import Fullscreen from 'vue-material-design-icons/Fullscreen.vue'
+
+export default {
+	components: {
+		Fullscreen,
+	},
+	data() {
+		return {
+			fullscreen: true,
+		}
+	},
+}
+</script>
+```
+
+Another example would be using it with checkbox semantics, to enable or disable features.
+This also allows tri-state behavior (`true`, `false`, `null`) in which case `aria-checked` will be either `true`, `false` or `mixed`.
+
+```vue
+<template>
+	<NcActions>
+		<NcActionButton v-model="handRaised" type="checkbox">
+			<template #icon>
+				<HandBackLeft :size="20" />
+			</template>
+			Raise hand
+		</NcActionButton>
+		<NcActionButton v-model="fullscreen" type="checkbox">
+			<template #icon>
+				<Fullscreen :size="20" />
+			</template>
+			Fullscreen
+		</NcActionButton>
+	</NcActions>
+</template>
+<script>
+import HandBackLeft from 'vue-material-design-icons/HandBackLeft.vue'
+import Fullscreen from 'vue-material-design-icons/Fullscreen.vue'
+
+export default {
+	components: {
+		HandBackLeft,
+		Fullscreen,
+	},
+	data() {
+		return {
+			fullscreen: true,
+			handRaised: false,
+		}
+	},
+}
+</script>
+```
+
+It is also possible to use the button with radio semantics, this is only possible in menus and not for inline actions!
+
+```vue
+<template>
+	<NcActions>
+		<NcActionButton v-model="payment" type="radio" value="cash">
+			<template #icon>
+				<Cash :size="20" />
+			</template>
+			Pay with cash
+		</NcActionButton>
+		<NcActionButton v-model="payment" type="radio" value="card">
+			<template #icon>
+				<CreditCard :size="20" />
+			</template>
+			Pay by card
+		</NcActionButton>
+	</NcActions>
+</template>
+<script>
+import Cash from 'vue-material-design-icons/Cash.vue'
+import CreditCard from 'vue-material-design-icons/CreditCard.vue'
+
+export default {
+	components: {
+		Cash,
+		CreditCard,
+	},
+	data() {
+		return {
+			payment: 'card',
+		}
+	},
+}
+</script>
+```
 </docs>
 
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
-		<button class="action-button button-vue"
-			:class="{ focusable: isFocusable }"
-			:aria-label="ariaLabel"
+		<button :aria-label="ariaLabel"
+			:class="['action-button button-vue', {
+				'action-button--active': isChecked,
+				focusable: isFocusable,
+			}]"
 			:title="title"
-			:role="isInSemanticMenu && 'menuitem'"
-			type="button"
-			@click="onClick">
+			:type="nativeType"
+			v-bind="buttonAttributes"
+			@click="handleClick">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
 				<span :class="[isIconUrl ? 'action-button__icon--url' : icon]"
@@ -212,7 +322,9 @@ export default {
 			<span v-else class="action-button__text">{{ text }}</span>
 
 			<!-- right arrow icon when there is a sub-menu -->
-			<ChevronRightIcon v-if="isMenu" class="action-button__menu-icon" />
+			<ChevronRightIcon v-if="isMenu" :size="20" class="action-button__menu-icon" />
+			<CheckIcon v-else-if="isChecked === true" :size="20" class="action-button__pressed-icon" />
+			<span v-else-if="isChecked === false" class="action-button__pressed-icon material-design-icon" />
 
 			<!-- fake slot to gather inner text -->
 			<slot v-if="false" />
@@ -221,6 +333,7 @@ export default {
 </template>
 
 <script>
+import CheckIcon from 'vue-material-design-icons/Check.vue'
 import ChevronRightIcon from 'vue-material-design-icons/ChevronRight.vue'
 import ActionTextMixin from '../../mixins/actionText.js'
 
@@ -231,6 +344,7 @@ export default {
 	name: 'NcActionButton',
 
 	components: {
+		CheckIcon,
 		ChevronRightIcon,
 	},
 	mixins: [ActionTextMixin],
@@ -244,14 +358,6 @@ export default {
 
 	props: {
 		/**
-		 * disabled state of the action button
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
 		 * @deprecated To be removed in @nextcloud/vue 9. Migration guide: remove ariaHidden prop from NcAction* components.
 		 * @todo Add a check in @nextcloud/vue 9 that this prop is not provided,
 		 * otherwise root element will inherit incorrect aria-hidden.
@@ -262,6 +368,14 @@ export default {
 		},
 
 		/**
+		 * disabled state of the action button
+		 */
+		disabled: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * If this is a menu, a chevron icon will
 		 * be added at the end of the line
 		 */
@@ -269,7 +383,43 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * The button's behavior, by default the button acts like a normal button with optional toggle button behavior if `modelValue` is `true` or `false`.
+		 * But you can also set to checkbox button behavior with tri-state or radio button like behavior.
+		 * This extends the native HTML button type attribute.
+		 */
+		type: {
+			type: String,
+			default: 'button',
+			validator: (behavior) => ['button', 'checkbox', 'radio', 'reset', 'submit'].includes(behavior),
+		},
+
+		/**
+		 * The buttons state if `type` is 'checkbox' or 'radio' (meaning if it is pressed / selected)
+		 * Either boolean for checkbox and toggle button behavior or `value` for radio behavior.
+		 *
+		 *  **This is not availabe for `type='submit'` or `type='reset'`**
+		 *
+		 * If using `type='checkbox'` a `model-value` of `true` means checked, `false` means unchecked and `null` means indeterminate (tri-state)
+		 * For `type='radio'` `null` is equal to `false`
+		 */
+		modelValue: {
+			type: [Boolean, String],
+			default: null,
+		},
+
+		/**
+		 * The value used for the `modelValue` when this component is used with radio behavior
+		 * Similar to the `value` attribute of `<input type="radio">`
+		 */
+		value: {
+			type: String,
+			default: null,
+		},
 	},
+
+	emits: ['update:modelValue'],
 
 	computed: {
 		/**
@@ -280,6 +430,72 @@ export default {
 		isFocusable() {
 			return !this.disabled
 		},
+
+		/**
+		 * The current "checked" or "pressed" state for the model behavior
+		 */
+		isChecked() {
+			if (this.type === 'radio') {
+				return this.modelValue === this.value
+			}
+			return this.modelValue
+		},
+
+		/**
+		 * The native HTML type to set on the button
+		 */
+		nativeType() {
+			if (this.type === 'submit' || this.type === 'reset') {
+				return this.type
+			}
+			return 'button'
+		},
+
+		/**
+		 * HTML attributes to bind to the <button>
+		 */
+		buttonAttributes() {
+			const attributes = {}
+
+			if (this.isInSemanticMenu) {
+				// By default it needs to be a menu item in semantic menus
+				attributes.role = 'menuitem'
+
+				if (this.type === 'radio') {
+					attributes.role = 'menuitemradio'
+					attributes['aria-checked'] = this.isChecked ? 'true' : 'false'
+				} else if (this.type === 'checkbox' || (this.nativeType === 'button' && this.modelValue !== null)) {
+					// either if checkbox behavior was set or the model value is not unset
+					attributes.role = 'menuitemcheckbox'
+					attributes['aria-checked'] = this.modelValue === null ? 'mixed' : (this.modelValue ? 'true' : 'false')
+				}
+			} else if (this.modelValue !== null && this.nativeType === 'button') {
+				// In case this has a modelValue it is considered a toggle button, so we need to set the aria-pressed
+				attributes['aria-pressed'] = this.modelValue ? 'true' : 'false'
+			}
+
+			return attributes
+		},
+	},
+
+	methods: {
+		/**
+		 * Forward click event, let mixin handle the close-after-click and emit new modelValue if needed
+		 * @param {MouseEvent} event The click event
+		 */
+		handleClick(event) {
+			this.onClick(event)
+			// If modelValue or type is set (so modelValue might be null for tri-state) we need to update it
+			if (this.modelValue !== null || this.type !== 'button') {
+				if (this.type === 'radio') {
+					if (!this.isChecked) {
+						this.$emit('update:modelValue', this.value)
+					}
+				} else {
+					this.$emit('update:modelValue', !this.isChecked)
+				}
+			}
+		},
 	},
 }
 </script>
@@ -289,4 +505,9 @@ export default {
 @include action-active;
 @include action--disabled;
 @include action-item('button');
+
+.action-button__pressed-icon {
+	margin-left: auto;
+	margin-right: -$icon-margin;
+}
 </style>

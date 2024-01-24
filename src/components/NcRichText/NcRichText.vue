@@ -79,6 +79,61 @@ textarea {
 </style>
 ```
 
+### Flavored Markdown
+
+This component can support [Github Flavored Markdown](https://github.github.com/gfm/).
+It adds such elements, as tables, task lists, strikethrough, and supports autolinks by default
+
+It is also possible to make a rendered content interactive and listen for events
+
+```vue
+<template>
+	<div>
+		<textarea v-model="text" />
+
+		<NcRichText :text="text"
+			:use-extended-markdown="true"
+			:interactive="true"
+			@interact:todo="handleInteraction"/>
+	</div>
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				text: `## Try flavored markdown right now!
+
+~~strikethrough~~
+
+- [ ] task to be done
+- [x] task completed
+
+Table header | Column A | Column B
+-- | -- | --
+Table row | value A | value B
+`,
+			}
+		},
+		methods: {
+			handleInteraction(event) {
+				const uncheckedItem = '- [ ] ' + event.label + '\n'
+				const checkedItem = '- [x] ' + event.label + '\n'
+
+				this.text = event.value
+					? this.text.replace(uncheckedItem, checkedItem)
+					: this.text.replace(checkedItem, uncheckedItem)
+			},
+		},
+	}
+</script>
+<style lang="scss">
+textarea {
+	width: 100%;
+	height: 200px;
+}
+</style>
+```
+
 ### Usage with NcRichContenteditable
 
 See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation for more information
@@ -235,11 +290,14 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 
 <script>
 import NcReferenceList from './NcReferenceList.vue'
+import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
 import { remarkAutolink } from './autolink.js'
 import { remarkPlaceholder, prepareTextNode } from './placeholder.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 import { unified } from 'unified'
-import markdown from 'remark-parse'
+import remarkParse from 'remark-parse'
+import remarkGfm from 'remark-gfm'
 import breaks from 'remark-breaks'
 import remark2rehype from 'remark-rehype'
 import rehype2react from 'rehype-react'
@@ -299,11 +357,22 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/** Provide GitHub Flavored Markdown syntax */
+		useExtendedMarkdown: {
+			type: Boolean,
+			default: false,
+		},
+		/** Provide event from rendered markdown inputs */
+		interactive: {
+			type: Boolean,
+			default: false,
+		},
 		autolink: {
 			type: Boolean,
 			default: true,
 		},
 	},
+	emits: ['interact:todo'],
 	methods: {
 		renderPlaintext() {
 			const placeholders = this.text.split(/(\{[a-z\-_.0-9]+\})/ig).map((entry) => {
@@ -338,11 +407,13 @@ export default {
 		},
 		renderMarkdown() {
 			const renderedMarkdown = unified()
-				.use(markdown)
+				.use(remarkParse)
 				.use(remarkAutolink, {
 					autolink: this.autolink,
 					useMarkdown: this.useMarkdown,
+					useExtendedMarkdown: this.useExtendedMarkdown,
 				})
+				.use(this.useExtendedMarkdown ? remarkGfm : undefined)
 				.use(breaks)
 				.use(remark2rehype, {
 					handlers: {
@@ -395,6 +466,27 @@ export default {
 			}
 
 			if (!String(type).startsWith('#')) {
+				if (this.useExtendedMarkdown) {
+					if (String(type) === 'li' && Array.isArray(children)
+						&& children[0].type === 'input'
+						&& children[0].props.type === 'checkbox') {
+						const [inputNode, , label] = children
+						const id = 'markdown-input-' + GenRandomId(5)
+						const propsToForward = { ...inputNode.props }
+						// The checked prop is name modelValue for NcCheckboxRadioSwitch
+						delete propsToForward.checked
+						const inputComponent = h(NcCheckboxRadioSwitch, {
+							...propsToForward,
+							modelValue: inputNode.props.checked,
+							id,
+							disabled: !this.interactive,
+							'onUpdate:modelValue': (value) => {
+								this.$emit('interact:todo', { id, label, value })
+							},
+						}, [label])
+						return h(type, props, [inputComponent])
+					}
+				}
 				return h(type, props, children)
 			}
 
@@ -419,7 +511,7 @@ export default {
 		},
 	},
 	render() {
-		return this.useMarkdown
+		return this.useMarkdown || this.useExtendedMarkdown
 			? this.renderMarkdown()
 			: this.renderPlaintext()
 	},

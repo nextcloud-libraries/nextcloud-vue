@@ -1309,9 +1309,15 @@ export default {
 				title = text
 			}
 
+			const propsToForward = { ...(action?.props ?? {}) }
+			const nativeType = ['submit', 'reset'].includes(propsToForward.type) ? propsToForward.modelValue : 'button'
+			// not available on NcButton or with different meaning
+			delete propsToForward.modelValue
+			delete propsToForward.type
+
 			return h(NcButton,
 				mergeProps(
-					action?.props,
+					propsToForward,
 					{
 						class: 'action-item action-item--single',
 						'aria-label': action?.props?.['aria-label'] || text,
@@ -1319,8 +1325,12 @@ export default {
 						// If it has a menuName, we use a secondary button
 						type: this.type || (buttonText ? 'secondary' : 'tertiary'),
 						disabled: this.disabled || action?.props?.disabled,
+						pressed: action?.props?.modelValue,
+						nativeType,
 						onFocus: this.onFocus,
 						onBlur: this.onBlur,
+						// forward any pressed state from NcButton just like NcActionButton does
+						'onUpdate:pressed': action?.props?.['onUpdate:modelValue'] ?? (() => {}),
 					},
 				),
 				{

@@ -154,17 +154,17 @@ $maxWidth: 900px;
 		// make sure to properly align the icon with the text
 		margin: -$icon-margin;
 		margin-left: 0;
-		opacity: $opacity_normal;
+		color: var(--color-text-maxcontrast);
 
 		&:hover, &:focus, &:active {
-			opacity: $opacity_full;
+			color: var(--color-main-text);
 		}
 	}
 
 	&__desc {
 		margin-top: -.2em;
 		margin-bottom: 1em;
-		opacity: $opacity_normal;
+		color: var(--color-text-maxcontrast);
 		max-width: $maxWidth;
 	}
 }

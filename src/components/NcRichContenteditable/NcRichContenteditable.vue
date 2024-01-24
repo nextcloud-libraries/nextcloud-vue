@@ -253,7 +253,7 @@ import { t } from '../../l10n.js'
 import NcAutoCompleteResult from './NcAutoCompleteResult.vue'
 import richEditor from '../../mixins/richEditor/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
-import { emojiSearch, emojiAddRecent } from '../../functions/emoji/index.js'
+import { emojiSearch, emojiAddRecent } from '../../functions/emoji/index.ts'
 import { searchProvider, getLinkWithPicker } from '../NcRichText/index.js'
 
 import Tribute from 'tributejs/dist/tribute.esm.js'

@@ -228,6 +228,59 @@ describe('NcRichText', () => {
 			})
 		})
 
+		describe('strikethrough text', () => {
+			it('strikethrough text (with single tilda syntax)', () => {
+				mount(NcRichText, {
+					props: {
+						text: '~strikethrough single~',
+						useExtendedMarkdown: true,
+					},
+				})
+
+				cy.get('del').should('have.text', 'strikethrough single')
+			})
+
+			it('strikethrough text (with double tilda syntax)', () => {
+				mount(NcRichText, {
+					props: {
+						text: '~~strikethrough double~~',
+						useExtendedMarkdown: true,
+					},
+				})
+
+				cy.get('del').should('have.text', 'strikethrough double')
+			})
+
+			it('strikethrough text (several in line with different syntax)', () => {
+				const outputs = ['strikethrough single', 'strikethrough double']
+				mount(NcRichText, {
+					props: {
+						text: 'normal text ~strikethrough single~ normal text ~~strikethrough double~~ normal text',
+						useExtendedMarkdown: true,
+					},
+				})
+
+				cy.get('del').should('have.length', 2)
+				cy.get('del').each((item, index) => {
+					expect(item).have.text(outputs[index])
+				})
+			})
+
+			it('strikethrough text (between normal texts with different syntax)', () => {
+				mount(NcRichText, {
+					props: {
+						text: 'text~strikethrough~text~~strikethrough~~text',
+						useExtendedMarkdown: true,
+					},
+				})
+
+				cy.get('del').should('have.length', 2)
+				cy.get('del').each((item) => {
+					expect(item).have.text('strikethrough')
+				})
+			})
+		})
+
 		describe('inline code', () => {
 			it('inline code (single with backticks syntax)', () => {
 				mount(NcRichText, {
@@ -512,6 +565,49 @@ describe('NcRichText', () => {
 					expect(list).have.length(testCases.length)
 					expect(item).have.text('\n' + testCases[index].output + '\n')
 				})
+			})
+		})
+
+		describe('task lists', () => {
+			it('task list (with `- [ ]` and `- [x]` syntax divided with space from text)', () => {
+				const testCases = [
+					{ input: '- [ ] item 1', output: 'item 1', checked: false },
+					{ input: '- [x] item 2', output: 'item 2', checked: true },
+					{ input: '- [ ] item 3', output: 'item 3', checked: false },
+				]
+
+				mount(NcRichText, {
+					props: {
+						text: testCases.map(i => i.input).join('\n'),
+						useExtendedMarkdown: true,
+					},
+				})
+
+				cy.get('ul').should('exist')
+				cy.get('li').should('have.length', testCases.length)
+				cy.get('li').each((item, index) => {
+					// Vue 2.7 renders three non-breaking spaces here for some reason
+					expect(item).have.text('   ' + testCases[index].output)
+				})
+				cy.get('input:checked').should('have.length', testCases.filter(test => test.checked).length)
+			})
+		})
+
+		describe('tables', () => {
+			it('table (with `-- | --` syntax)', () => {
+				mount(NcRichText, {
+					props: {
+						text: 'Table | Column A | Column B\n-- | -- | --\nRow 1 | Value A1 | Value B1\nRow 2 | Value A2 | Value B2',
+						useExtendedMarkdown: true,
+					},
+				})
+
+				cy.get('table').should('exist')
+				cy.get('thead').should('exist')
+				cy.get('tbody').should('exist')
+				cy.get('tr').should('have.length', 3)
+				cy.get('th').should('have.length', 3)
+				cy.get('td').should('have.length', 6)
 			})
 		})
 
