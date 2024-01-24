@@ -8,17 +8,16 @@
 		"appName": true,
 		"appVersion": true
 	},
+	"ignorePatterns": ["!.storybook/", "coverage", "dist", "node_modules"],
 	"extends": [
-		"@nextcloud/eslint-config/typescript"
+		"@nextcloud/eslint-config/typescript",
+		"plugin:storybook/recommended",
+		"plugin:storybook/recommended"
 	],
-	"plugins": [
-		"cypress"
-	],
+	"plugins": ["cypress"],
 	"parserOptions": {
 		"babelOptions": {
-			"plugins": [
-				"@babel/plugin-syntax-import-assertions"
-			]
+			"plugins": ["@babel/plugin-syntax-import-assertions"]
 		}
 	},
 	"rules": {
