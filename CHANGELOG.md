@@ -24,6 +24,7 @@ All notable changes to this project will be documented in this file.
 * feat(NcReferenceList): Add support for a fallback reference widget by @mejo- in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5092
 * enh(NcEmojiPicker): Always show skin tone selector + save selection by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5103
 * feat(NcActionButton): Allow pressed state on NcActionButton - similar to NcButton by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4744
+* feat(`NcRichText`) add support of GFM (extended markdown) by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4365
 
 ### 🐛 Fixed bugs
 * fix(NcCheckboxRadioSwitch): fix shift+click on firefox by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4999
