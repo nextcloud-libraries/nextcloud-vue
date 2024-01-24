@@ -1,6 +1,6 @@
 import { defineConfig } from 'cypress'
+import { configureVisualRegression } from 'cypress-visual-regression'
 import webpack from 'webpack'
-import getCompareSnapshotsPlugin from 'cypress-visual-regression/dist/plugin.js'
 import path from 'path'
 import webpackConfig from '@nextcloud/webpack-vue-config'
 import webpackRules from '@nextcloud/webpack-vue-config/rules.js'
@@ -33,19 +33,18 @@ export default defineConfig({
 	defaultCommandTimeout: 6000,
 
 	env: {
-		failSilently: false,
-		type: 'actual',
-		SNAPSHOT_BASE_DIRECTORY: './cypress/snapshots/base',
-		SNAPSHOT_DIFF_DIRECTORY: './cypress/snapshots/diff',
-		INTEGRATION_FOLDER: 'cypress/visual/',
-		trashAssetsBeforeRuns: true,
+		visualRegression: {
+			type: 'regression',
+			baseDirectory: './cypress/snapshots/base',
+			diffDirectory: './cypress/snapshots/diff',
+		},
 	},
 
 	screenshotsFolder: './cypress/snapshots/actual',
 
 	component: {
-		setupNodeEvents(on, config) {
-			getCompareSnapshotsPlugin(on, config)
+		setupNodeEvents(on) {
+			configureVisualRegression(on)
 
 			// Disable spell checking to prevent rendering differences
 			on('before:browser:launch', (browser, launchOptions) => {
