@@ -347,8 +347,8 @@ $externalMargin: 8px;
 	width: var(--header-height);
 	height: var(--header-height);
 
-	&__trigger {
-		width: var(--header-height);
+	#{&}__trigger {
+		width: var(--header-height) !important;
 		height: var(--header-height);
 		opacity: .85;
 
