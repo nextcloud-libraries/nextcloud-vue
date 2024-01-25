@@ -7,6 +7,10 @@ div[data-preview] * {
 
 body {
 	position: relative;
+}
+
+h1,
+h2 {
 	line-height: 1.5 !important;
 }
 
