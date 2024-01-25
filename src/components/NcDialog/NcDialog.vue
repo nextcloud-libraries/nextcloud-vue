@@ -537,7 +537,7 @@ export default defineComponent({
 		margin-block: 0;
 
 		&:not(:empty) {
-			margin-block: 6px 12px; // only if there are actione we add margin so if it is empty scroll content looks nice
+			margin-block: 6px 12px; // only if there are actions, we add margin so if it is empty scroll content looks nice
 		}
 	}
 }

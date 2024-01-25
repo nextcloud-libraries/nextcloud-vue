@@ -402,9 +402,6 @@ export default {
 
 <style lang="scss" scoped>
 .app-settings {
-	&:deep(.dialog) {
-		min-height: 256px;
-	}
 	:deep &__navigation {
 		min-width: 200px;
 		margin-right: 20px;
@@ -414,11 +411,7 @@ export default {
 	}
 	:deep &__content {
 		box-sizing: border-box;
-
-		overflow-y: auto;
-		overflow-x: hidden;
-		padding-inline: 20px;
-		min-height: 256px;
+		padding-inline: 16px;
 	}
 }
 
@@ -469,4 +462,11 @@ export default {
 	}
 }
 
+@media only screen and (max-width: $breakpoint-small-mobile) {
+	.app-settings {
+		:deep .dialog__name {
+			padding-inline-start: 16px;
+		}
+	}
+}
 </style>
