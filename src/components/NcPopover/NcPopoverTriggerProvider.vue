@@ -1,13 +1,13 @@
 <script>
-import { computed, defineComponent } from 'vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
 	name: 'NcPopoverTriggerProvider',
 
 	provide() {
 		return {
-			'NcPopover:trigger:shown': computed(() => this.shown),
-			'NcPopover:trigger:attrs': computed(() => this.triggerAttrs),
+			'NcPopover:trigger:shown': () => this.shown,
+			'NcPopover:trigger:attrs': () => this.triggerAttrs,
 		}
 	},
 
