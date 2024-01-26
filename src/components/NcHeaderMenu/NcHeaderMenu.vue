@@ -348,7 +348,7 @@ $externalMargin: 8px;
 	height: var(--header-height);
 
 	#{&}__trigger {
-		width: var(--header-height) !important;
+		width: 100% !important;
 		height: var(--header-height);
 		opacity: .85;
 
@@ -412,10 +412,6 @@ $externalMargin: 8px;
 @media only screen and (max-width: $breakpoint-small-mobile) {
 	.header-menu {
 		width: $clickable-area;
-
-		&__trigger {
-			width: $clickable-area;
-		}
 	}
 }
 </style>
