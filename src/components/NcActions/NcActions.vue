@@ -4,6 +4,7 @@
   - @author John Molakvoæ <skjnldsv@protonmail.com>
   - @author Marco Ambrosini <marcoambrosini@icloud.com>
   - @author Raimund Schlüßler <raimund.schluessler@mailbox.org>
+  - @author Grigorii K. Shartsev <me@shgk.me>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -1252,27 +1253,6 @@ export default {
 			return
 		}
 
-		const menuItemsActions = ['NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio']
-		const textInputActions = ['NcActionInput', 'NcActionTextEditable']
-		const linkActions = ['NcActionLink', 'NcActionRouter']
-
-		const hasTextInputAction = actions.some(action => textInputActions.includes(this.getActionName(action)))
-		const hasMenuItemAction = actions.some(action => menuItemsActions.includes(this.getActionName(action)))
-		const hasLinkAction = actions.some(action => linkActions.includes(this.getActionName(action)))
-
-		// We consider the NcActions to have role="menu" if it consists some button-like action and not text inputs
-		this.isSemanticMenu = hasMenuItemAction && !hasTextInputAction
-		// We consider the NcActions to be navigation if it consists some link-like action
-		this.isSemanticNavigation = hasLinkAction && !hasMenuItemAction && !hasTextInputAction
-		// If it is not a menu and not a navigation, it is a popover with items: a form or just a text
-		this.isSemanticPopoverLike = !this.isSemanticMenu && !this.isSemanticNavigation
-
-		const popupRole = this.isSemanticMenu
-			? 'menu'
-			: hasTextInputAction
-				? 'dialog'
-				: 'true'
-
 		/**
 		 * Separate the actions into inline and menu actions
 		 */
@@ -1293,6 +1273,32 @@ export default {
 		 * @type {import('vue').VNode[]}
 		 */
 		const menuActions = actions.filter(action => !inlineActions.includes(action))
+
+		/**
+		 * Determine what kind of menu we have.
+		 * It defines focus behavior and a11y.
+		 */
+
+		const menuItemsActions = ['NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio']
+		const textInputActions = ['NcActionInput', 'NcActionTextEditable']
+		const linkActions = ['NcActionLink', 'NcActionRouter']
+
+		const hasTextInputAction = menuActions.some(action => textInputActions.includes(this.getActionName(action)))
+		const hasMenuItemAction = menuActions.some(action => menuItemsActions.includes(this.getActionName(action)))
+		const hasLinkAction = menuActions.some(action => linkActions.includes(this.getActionName(action)))
+
+		// We consider the NcActions to have role="menu" if it consists some button-like action and not text inputs
+		this.isSemanticMenu = hasMenuItemAction && !hasTextInputAction
+		// We consider the NcActions to be navigation if it consists some link-like action
+		this.isSemanticNavigation = hasLinkAction && !hasMenuItemAction && !hasTextInputAction
+		// If it is not a menu and not a navigation, it is a popover with items: a form or just a text
+		this.isSemanticPopoverLike = !this.isSemanticMenu && !this.isSemanticNavigation
+
+		const popupRole = this.isSemanticMenu
+			? 'menu'
+			: hasTextInputAction
+				? 'dialog'
+				: 'true'
 
 		/**
 		 * Render the provided action
