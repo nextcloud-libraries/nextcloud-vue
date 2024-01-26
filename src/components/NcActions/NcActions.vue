@@ -698,8 +698,8 @@ export default {
 			</NcActions>
 		</p>
 
-		<h2>Popover</h2>
-		Has any elements, including text input element, or no buttons.
+		<h2>Dialog</h2>
+		Includes data input elements
 		<p>
 			<NcActions aria-label="Group management">
 				<NcActionInput trailing-button-label="Submit" label="Rename group">
@@ -713,6 +713,19 @@ export default {
 					</template>
 					Remove group
 				</NcActionButton>
+			</NcActions>
+		</p>
+
+		<h2>Toolip</h2>
+		Has only text and not interactive elements
+		<p>
+			<NcActions aria-label="Contact" :inline="1">
+				<NcActionLink aria-label="View profile" href="/u/alice" icon="icon-user-white">
+					View profile
+				</NcActionLink>
+				<NcActionText icon="icon-timezone-white">
+					Local time: 10:12
+				</NcActionText>
 			</NcActions>
 		</p>
 	</div>
@@ -794,7 +807,6 @@ p {
 }
 </style>
 ```
-
 </docs>
 
 <script>
@@ -836,7 +848,7 @@ export default {
 			 * Provide the role for NcAction* components in the NcActions content.
 			 * @type {import('vue').ComputedRef<boolean>}
 			 */
-			'NcActions:isSemanticMenu': computed(() => this.isSemanticMenu),
+			'NcActions:isSemanticMenu': computed(() => this.actionsMenuSemanticType === 'menu'),
 		}
 	},
 
@@ -992,9 +1004,10 @@ export default {
 			opened: this.open,
 			focusIndex: 0,
 			randomId: `menu-${GenRandomId()}`,
-			isSemanticMenu: false,
-			isSemanticNavigation: false,
-			isSemanticPopoverLike: false,
+			/**
+			 * @type {'menu'|'navigation'|'dialog'|'tooltip'|''}
+			 */
+			actionsMenuSemanticType: '',
 		}
 	},
 
@@ -1005,6 +1018,10 @@ export default {
 				? 'primary'
 				// If it has a name, we use a secondary button
 				: this.menuName ? 'secondary' : 'tertiary')
+		},
+
+		withFocusTrap() {
+			return this.actionsMenuSemanticType === 'dialog'
 		},
 	},
 
@@ -1097,8 +1114,10 @@ export default {
 			// close everything
 			this.focusIndex = 0
 
-			// focus back the menu button
-			this.$refs.menuButton.$el.focus()
+			if (returnFocus) {
+				// Focus back the menu button
+				this.$refs.menuButton.$el.focus()
+			}
 		},
 
 		onOpen(event) {
@@ -1136,8 +1155,10 @@ export default {
 		 * @param {object} event The keydown event
 		 */
 		onKeydown(event) {
-			if (event.key === 'Tab' && !this.isSemanticPopoverLike) {
-				this.closeMenu(false)
+			if (event.key === 'Tab' && !this.withFocusTrap) {
+				// Return focus to restore Tab sequence
+				// So browser will correctly move focus to the next element
+				this.closeMenu(true)
 			}
 
 			if (event.key === 'ArrowUp') {
@@ -1231,6 +1252,12 @@ export default {
 		},
 		onBlur(event) {
 			this.$emit('blur', event)
+
+			// When there is no focusable elements to handle Tab press from actions menu
+			// It requries manual closing
+			if (this.actionsMenuSemanticType === 'tooltip') {
+				this.closeMenu(false)
+			}
 		},
 	},
 
@@ -1287,18 +1314,23 @@ export default {
 		const hasMenuItemAction = menuActions.some(action => menuItemsActions.includes(this.getActionName(action)))
 		const hasLinkAction = menuActions.some(action => linkActions.includes(this.getActionName(action)))
 
-		// We consider the NcActions to have role="menu" if it consists some button-like action and not text inputs
-		this.isSemanticMenu = hasMenuItemAction && !hasTextInputAction
-		// We consider the NcActions to be navigation if it consists some link-like action
-		this.isSemanticNavigation = hasLinkAction && !hasMenuItemAction && !hasTextInputAction
-		// If it is not a menu and not a navigation, it is a popover with items: a form or just a text
-		this.isSemanticPopoverLike = !this.isSemanticMenu && !this.isSemanticNavigation
+		if (hasTextInputAction) {
+			this.actionsMenuSemanticType = 'dialog'
+		} else if (hasMenuItemAction) {
+			this.actionsMenuSemanticType = 'menu'
+		} else if (hasLinkAction) {
+			this.actionsMenuSemanticType = 'navigation'
+		} else {
+			this.actionsMenuSemanticType = 'tooltip'
+		}
 
-		const popupRole = this.isSemanticMenu
-			? 'menu'
-			: hasTextInputAction
-				? 'dialog'
-				: 'true'
+		const actionsRoleToHtmlPopupRole = {
+			dialog: 'dialog',
+			menu: 'menu',
+			navigation: 'true',
+			tooltip: 'true',
+		}
+		const popupRole = actionsRoleToHtmlPopupRole[this.actionsMenuSemanticType]
 
 		/**
 		 * Render the provided action
@@ -1404,10 +1436,8 @@ export default {
 						container: this.container,
 						popoverBaseClass: 'action-item__popper',
 						popupRole,
-						// Menu and navigation should not have focus trap
-						// Tab should close the menu and move focus to the next UI element
-						setReturnFocus: !this.isSemanticPopoverLike ? null : this.$refs.menuButton?.$el,
-						focusTrap: this.isSemanticPopoverLike,
+						setReturnFocus: this.withFocusTrap ? this.$refs.menuButton?.$el : null,
+						focusTrap: this.withFocusTrap,
 					},
 					// For some reason the popover component
 					// does not react to props given under the 'props' key,
