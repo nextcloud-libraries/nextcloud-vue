@@ -122,6 +122,7 @@ export default {
 			}
 
 			// Return template and make sure we strip of new lines and tabs
+			// Make sure to @include mention-bubble mixin in the component style template, where this method is used
 			return this.renderComponentHtml(data, NcMentionBubble).replace(/[\n\t]/gmi, '')
 		},
 

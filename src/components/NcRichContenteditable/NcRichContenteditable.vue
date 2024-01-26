@@ -845,6 +845,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/NcMentionBubble';
+
 // Standalone styling, independent from server
 .rich-contenteditable {
 	position: relative;
@@ -934,6 +936,11 @@ export default {
 			border-radius: var(--border-radius);
 			background-color: var(--color-background-dark);
 		}
+	}
+
+	// Inject NcMentionBubble styles
+	:deep(.mention-bubble) {
+		@include mention-bubble;
 	}
 }
 
