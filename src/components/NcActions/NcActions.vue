@@ -1276,10 +1276,10 @@ export default {
 		/**
 		 * Filter and list actions that are allowed to be displayed inline
 		 */
-		let inlineActions = actions.filter(this.isValidSingleAction)
-		if (this.forceMenu && inlineActions.length > 0 && this.inline > 0) {
+		let validInlineActions = actions.filter(this.isValidSingleAction)
+		if (this.forceMenu && validInlineActions.length > 0 && this.inline > 0) {
 			Vue.util.warn('Specifying forceMenu will ignore any inline actions rendering.')
-			inlineActions = []
+			validInlineActions = []
 		}
 
 		/**
@@ -1462,8 +1462,8 @@ export default {
 		 * If we have a single action only and didn't force a menu,
 		 * we render the action as a standalone button
 		 */
-		if (actions.length === 1 && inlineActions.length === 1 && !this.forceMenu) {
-			return renderInlineAction(inlineActions[0])
+		if (actions.length === 1 && validInlineActions.length === 1 && !this.forceMenu) {
+			return renderInlineAction(validInlineActions[0])
 		}
 
 		// If we completely re-render the children
@@ -1481,10 +1481,10 @@ export default {
 		/**
 		 * If we some inline actions to render, render them, then the menu
 		 */
-		if (inlineActions.length > 0 && this.inline > 0) {
-			const renderedInlineActions = inlineActions.slice(0, this.inline)
+		if (validInlineActions.length > 0 && this.inline > 0) {
+			const inlineActions = validInlineActions.slice(0, this.inline)
 			// Filter already rendered actions
-			const menuActions = actions.filter(action => !renderedInlineActions.includes(action))
+			const menuActions = actions.filter(action => !inlineActions.includes(action))
 			return h('div',
 				{
 					class: [
@@ -1494,7 +1494,7 @@ export default {
 				},
 				[
 					// Render inline actions
-					...renderedInlineActions.map(renderInlineAction),
+					...inlineActions.map(renderInlineAction),
 					// render the rest within the popover menu
 					menuActions.length > 0
 						? h('div',
