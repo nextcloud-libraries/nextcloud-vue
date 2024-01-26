@@ -1274,13 +1274,25 @@ export default {
 				: 'true'
 
 		/**
-		 * Filter and list actions that are allowed to be displayed inline
+		 * Separate the actions into inline and menu actions
+		 */
+
+		/**
+		 * @type {import('vue').VNode[]}
 		 */
 		let validInlineActions = actions.filter(this.isValidSingleAction)
 		if (this.forceMenu && validInlineActions.length > 0 && this.inline > 0) {
 			Vue.util.warn('Specifying forceMenu will ignore any inline actions rendering.')
 			validInlineActions = []
 		}
+		/**
+		 * @type {import('vue').VNode[]}
+		 */
+		const inlineActions = validInlineActions.slice(0, this.inline)
+		/**
+		 * @type {import('vue').VNode[]}
+		 */
+		const menuActions = actions.filter(action => !inlineActions.includes(action))
 
 		/**
 		 * Render the provided action
@@ -1463,7 +1475,7 @@ export default {
 		 * we render the action as a standalone button
 		 */
 		if (actions.length === 1 && validInlineActions.length === 1 && !this.forceMenu) {
-			return renderInlineAction(validInlineActions[0])
+			return renderInlineAction(actions[0])
 		}
 
 		// If we completely re-render the children
@@ -1481,10 +1493,7 @@ export default {
 		/**
 		 * If we some inline actions to render, render them, then the menu
 		 */
-		if (validInlineActions.length > 0 && this.inline > 0) {
-			const inlineActions = validInlineActions.slice(0, this.inline)
-			// Filter already rendered actions
-			const menuActions = actions.filter(action => !inlineActions.includes(action))
+		if (inlineActions.length > 0 && this.inline > 0) {
 			return h('div',
 				{
 					class: [
