@@ -593,7 +593,7 @@ export default {
 
 			// If the initial value was a boolean, let's keep it that way
 			if (typeof this.checked === 'boolean') {
-				this.$emit('update:checked', !this.isChecked)
+				this.$emit('update:checked', !this.checked)
 				return
 			}
 
@@ -601,7 +601,12 @@ export default {
 			const values = this.getInputsSet()
 				.filter(input => input.checked)
 				.map(input => input.value)
-			this.$emit('update:checked', values)
+
+			if (values.includes(this.value)) {
+				this.$emit('update:checked', values.filter((v) => v !== this.value))
+			} else {
+				this.$emit('update:checked', [...values, this.value])
+			}
 		},
 
 		/**
