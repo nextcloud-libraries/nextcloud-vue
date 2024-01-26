@@ -984,6 +984,7 @@ export default {
 		'close',
 		'focus',
 		'blur',
+		'click',
 	],
 
 	data() {
@@ -1222,6 +1223,17 @@ export default {
 		onBlur(event) {
 			this.$emit('blur', event)
 		},
+		onClick(event) {
+			/**
+			 * Event emitted when the menu toggle button is clicked.
+			 *
+			 * This is e.g. necessary for the NcAvatar component
+			 * which needs to fetch the menu items on click.
+			 *
+			 * @type {PointerEvent}
+			 */
+			this.$emit('click', event)
+		},
 	},
 
 	/**
@@ -1420,6 +1432,7 @@ export default {
 						on: {
 							focus: this.onFocus,
 							blur: this.onBlur,
+							click: this.onClick,
 						},
 					}, [
 						h('template', { slot: 'icon' }, [triggerIcon]),

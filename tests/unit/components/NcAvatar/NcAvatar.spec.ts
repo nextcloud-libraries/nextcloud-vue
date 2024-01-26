@@ -42,7 +42,7 @@ describe('NcAvatar.vue', () => {
 		await nextTick()
 
 		expect(wrapper.find('.avatardiv__user-status').exists()).toBe(true)
-		expect(wrapper.attributes('aria-label')).toBe('Avatar of J. Doe, online')
+		expect(wrapper.find('.action-item__menutoggle').attributes('aria-label')).toBe('Avatar of J. Doe, online')
 	})
 
 	it('aria label is set to include status even if status is do-not-disturb', async () => {
@@ -63,7 +63,7 @@ describe('NcAvatar.vue', () => {
 		await nextTick()
 
 		expect(wrapper.find('.avatardiv__user-status').exists()).toBe(true)
-		expect(wrapper.attributes('aria-label')).toBe('Avatar of J. Doe, do not disturb')
+		expect(wrapper.find('.action-item__menutoggle').attributes('aria-label')).toBe('Avatar of J. Doe, do not disturb')
 	})
 
 	it('aria label is does not include status if status not shown', async () => {
@@ -85,7 +85,7 @@ describe('NcAvatar.vue', () => {
 		await nextTick()
 
 		expect(wrapper.find('.avatardiv__user-status').exists()).toBe(false)
-		expect(wrapper.attributes('aria-label')).toBe('Avatar of J. Doe')
+		expect(wrapper.find('.action-item__menutoggle').attributes('aria-label')).toBe('Avatar of J. Doe')
 	})
 
 	it('should display initials for user id', async () => {

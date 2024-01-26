@@ -226,9 +226,6 @@ msgstr ""
 msgid "online"
 msgstr ""
 
-msgid "Open contact menu"
-msgstr ""
-
 msgid "Open link to \"{resourceName}\""
 msgstr ""
 

@@ -115,16 +115,8 @@ export default {
 			'avatardiv--with-menu': hasMenu,
 			'avatardiv--with-menu-loading': contactsMenuLoading
 		}"
-		:title="tooltip"
 		:style="avatarStyle"
-		class="avatardiv popovermenu-wrapper"
-		:tabindex="hasMenu ? '0' : undefined"
-		:aria-label="avatarAriaLabel"
-		:role="hasMenu ? 'button' : undefined"
-		v-on="hasMenu ? {
-			click: toggleMenu,
-			keydown: toggleMenu,
-		} : null">
+		class="avatardiv popovermenu-wrapper">
 		<!-- @slot Icon slot -->
 		<slot name="icon">
 			<!-- Avatar icon or image -->
@@ -137,10 +129,12 @@ export default {
 
 		<!-- Contact menu -->
 		<!-- We show a button if the menu is not loaded yet. -->
-		<NcButton v-if="hasMenu && !menu.length"
-			:aria-label="t('Open contact menu')"
+		<NcButton v-if="hasMenu && menu.length === 0"
 			type="tertiary-no-background"
-			class="action-item action-item__menutoggle">
+			class="action-item action-item__menutoggle"
+			:aria-label="avatarAriaLabel"
+			:title="tooltip"
+			@click="toggleMenu">
 			<template #icon>
 				<NcLoadingIcon v-if="contactsMenuLoading" />
 				<DotsHorizontal v-else :size="20" />
@@ -151,7 +145,10 @@ export default {
 			manual-open
 			type="tertiary-no-background"
 			:container="menuContainer"
-			:open="contactsMenuOpenState">
+			:open.sync="contactsMenuOpenState"
+			:aria-label="avatarAriaLabel"
+			:title="tooltip"
+			@click="toggleMenu">
 			<NcActionLink v-for="(item, key) in menu"
 				:key="key"
 				:href="item.href"
@@ -747,7 +744,7 @@ export default {
 			cursor: pointer;
 			opacity: 0;
 		}
-		&:focus,
+		&:focus-within,
 		&:hover,
 		&#{&}-loading {
 			:deep(.action-item__menutoggle) {
