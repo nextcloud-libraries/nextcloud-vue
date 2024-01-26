@@ -1020,15 +1020,24 @@ export default {
 
 	methods: {
 		/**
+		 * Get the name of the action component
+		 *
+		 * @param {import('vue').VNode} action - a vnode with a NcAction* component instance
+		 * @return {string} the name of the action component
+		 */
+		getActionName(action) {
+			return action?.componentOptions?.Ctor?.extendOptions?.name ?? action?.componentOptions?.tag
+		},
+
+		/**
 		 * Do we have exactly one Action and
 		 * is it allowed as a standalone element?
 		 *
-		 * @param {Array} action The action to check
+		 * @param {import('vue').VNode} action The action to check
 		 * @return {boolean}
 		 */
 		isValidSingleAction(action) {
-			const componentName = action?.componentOptions?.Ctor?.extendOptions?.name ?? action?.componentOptions?.tag
-			return ['NcActionButton', 'NcActionLink', 'NcActionRouter'].includes(componentName)
+			return ['NcActionButton', 'NcActionLink', 'NcActionRouter'].includes(this.getActionName(action))
 		},
 
 		/**
@@ -1236,19 +1245,20 @@ export default {
 		 * This also ensure that we don't get 'text' elements, which would
 		 * become problematic later on.
 		 */
-		const actions = (this.$slots.default || []).filter(
-			action => action?.componentOptions?.tag || action?.componentOptions?.Ctor?.extendOptions?.name,
-		)
+		const actions = (this.$slots.default || []).filter(action => this.getActionName(action))
 
-		const getActionName = (action) => action?.componentOptions?.Ctor?.extendOptions?.name ?? action?.componentOptions?.tag
+		// Check that we have at least one action
+		if (actions.length === 0) {
+			return
+		}
 
 		const menuItemsActions = ['NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio']
 		const textInputActions = ['NcActionInput', 'NcActionTextEditable']
 		const linkActions = ['NcActionLink', 'NcActionRouter']
 
-		const hasTextInputAction = actions.some(action => textInputActions.includes(getActionName(action)))
-		const hasMenuItemAction = actions.some(action => menuItemsActions.includes(getActionName(action)))
-		const hasLinkAction = actions.some(action => linkActions.includes(getActionName(action)))
+		const hasTextInputAction = actions.some(action => textInputActions.includes(this.getActionName(action)))
+		const hasMenuItemAction = actions.some(action => menuItemsActions.includes(this.getActionName(action)))
+		const hasLinkAction = actions.some(action => linkActions.includes(this.getActionName(action)))
 
 		// We consider the NcActions to have role="menu" if it consists some button-like action and not text inputs
 		this.isSemanticMenu = hasMenuItemAction && !hasTextInputAction
@@ -1270,11 +1280,6 @@ export default {
 		if (this.forceMenu && inlineActions.length > 0 && this.inline > 0) {
 			Vue.util.warn('Specifying forceMenu will ignore any inline actions rendering.')
 			inlineActions = []
-		}
-
-		// Check that we have at least one action
-		if (actions.length === 0) {
-			return
 		}
 
 		/**
