@@ -238,9 +238,6 @@ msgstr "Olivínová"
 msgid "online"
 msgstr "online"
 
-msgid "Open contact menu"
-msgstr "Otevřít nabídku kontaktů"
-
 msgid "Open link to \"{resourceName}\""
 msgstr "Otevřít odkaz na „{resourceName}“"
 
