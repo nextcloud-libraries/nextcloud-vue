@@ -228,6 +228,7 @@ options.themes[theme] = structuredClone(options.themes.dropdown)
  * @typedef {import('focus-trap').FocusTargetValueOrFalse} FocusTargetValueOrFalse
  * @typedef {FocusTargetValueOrFalse|() => FocusTargetValueOrFalse} SetReturnFocus
  */
+
 export default {
 	name: 'NcPopover',
 
@@ -360,6 +361,15 @@ export default {
 		triggers: {
 			type: [Array, Object],
 			default: () => ['click'],
+		},
+
+		/**
+		 * When there is no setReturnFocus, NcPopover will try to return focus to the trigger button.
+		 * Use this prop to disable this behavior.
+		 */
+		noAutoReturnFocus: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -497,6 +507,14 @@ export default {
 		},
 
 		/**
+		 * @return {HTMLElement|undefined}
+		 */
+		getPopoverTriggerButtonElement() {
+			const triggerContainer = this.getPopoverTriggerElement()
+			return triggerContainer && tabbable(triggerContainer)[0]
+		},
+
+		/**
 		 * Add focus trap for accessibility.
 		 */
 		async useFocusTrap() {
@@ -519,7 +537,7 @@ export default {
 				// Focus will be release when popover be hide
 				escapeDeactivates: false,
 				allowOutsideClick: true,
-				setReturnFocus: this.setReturnFocus,
+				setReturnFocus: this.setReturnFocus || (!this.noAutoReturnFocus && this.getPopoverTriggerButtonElement()),
 				trapStack: getTrapStack(),
 				fallBackFocus: el,
 			})
