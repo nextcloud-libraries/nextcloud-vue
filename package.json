@@ -131,7 +131,7 @@
     "@vue/tsconfig": "^0.4.0",
     "babel-loader-exclude-node-modules-except": "^1.2.1",
     "cypress": "^13.3.3",
-    "cypress-visual-regression": "^3.0.0",
+    "cypress-visual-regression": "^4.0.0",
     "eslint-plugin-cypress": "^2.11.1",
     "file-loader": "^6.2.0",
     "gettext-extractor": "^3.7.2",

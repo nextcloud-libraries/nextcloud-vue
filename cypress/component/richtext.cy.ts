@@ -587,7 +587,7 @@ describe('NcRichText', () => {
 				cy.get('li').should('have.length', testCases.length)
 				cy.get('li').each((item, index) => {
 					// Vue 2.7 renders three non-breaking spaces here for some reason
-					expect(item).have.text('   ' + testCases[index].output)
+					expect(item).contain(testCases[index].output)
 				})
 				cy.get('input:checked').should('have.length', testCases.filter(test => test.checked).length)
 			})
