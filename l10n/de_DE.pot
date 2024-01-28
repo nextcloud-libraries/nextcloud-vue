@@ -242,9 +242,6 @@ msgstr "Olivin"
 msgid "online"
 msgstr "Online"
 
-msgid "Open contact menu"
-msgstr "Kontaktmenü öffnen"
-
 msgid "Open link to \"{resourceName}\""
 msgstr "Link zu \"{resourceName}“ öffnen"
 

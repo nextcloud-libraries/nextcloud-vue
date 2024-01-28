@@ -447,9 +447,9 @@ export default defineComponent({
 	name: 'NcButton',
 
 	inject: {
-		ncPopoverTriggerAttrs: {
+		getNcPopoverTriggerAttrs: {
 			from: 'NcPopover:trigger:attrs',
-			default: () => ({}),
+			default: () => () => ({}),
 		},
 	},
 
@@ -604,6 +604,10 @@ export default defineComponent({
 		 */
 		isReverseAligned() {
 			return this.alignment.includes('-')
+		},
+
+		ncPopoverTriggerAttrs() {
+			return this.getNcPopoverTriggerAttrs()
 		},
 	},
 

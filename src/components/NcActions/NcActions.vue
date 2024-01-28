@@ -4,6 +4,7 @@
   - @author John Molakvoæ <skjnldsv@protonmail.com>
   - @author Marco Ambrosini <marcoambrosini@icloud.com>
   - @author Raimund Schlüßler <raimund.schluessler@mailbox.org>
+  - @author Grigorii K. Shartsev <me@shgk.me>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -697,8 +698,8 @@ export default {
 			</NcActions>
 		</p>
 
-		<h2>Popover</h2>
-		Has any elements, including text input element, or no buttons.
+		<h2>Dialog</h2>
+		Includes data input elements
 		<p>
 			<NcActions aria-label="Group management">
 				<NcActionInput trailing-button-label="Submit" label="Rename group">
@@ -712,6 +713,19 @@ export default {
 					</template>
 					Remove group
 				</NcActionButton>
+			</NcActions>
+		</p>
+
+		<h2>Tooltip</h2>
+		Has only text and not interactive elements
+		<p>
+			<NcActions aria-label="Contact" :inline="1">
+				<NcActionLink aria-label="View profile" href="/u/alice" icon="icon-user-white">
+					View profile
+				</NcActionLink>
+				<NcActionText icon="icon-timezone-white">
+					Local time: 10:12
+				</NcActionText>
 			</NcActions>
 		</p>
 	</div>
@@ -793,7 +807,6 @@ p {
 }
 </style>
 ```
-
 </docs>
 
 <script>
@@ -837,7 +850,7 @@ export default {
 			 * Provide the role for NcAction* components in the NcActions content.
 			 * @type {import('vue').ComputedRef<boolean>}
 			 */
-			'NcActions:isSemanticMenu': computed(() => this.isSemanticMenu),
+			'NcActions:isSemanticMenu': computed(() => this.actionsMenuSemanticType === 'menu'),
 		}
 	},
 
@@ -986,6 +999,7 @@ export default {
 		'close',
 		'focus',
 		'blur',
+		'click',
 	],
 
 	data() {
@@ -993,9 +1007,10 @@ export default {
 			opened: this.open,
 			focusIndex: 0,
 			randomId: `menu-${GenRandomId()}`,
-			isSemanticMenu: false,
-			isSemanticNavigation: false,
-			isSemanticPopoverLike: false,
+			/**
+			 * @type {'menu'|'navigation'|'dialog'|'tooltip'|''}
+			 */
+			actionsMenuSemanticType: '',
 		}
 	},
 
@@ -1006,6 +1021,10 @@ export default {
 				? 'primary'
 				// If it has a name, we use a secondary button
 				: this.menuName ? 'secondary' : 'tertiary')
+		},
+
+		withFocusTrap() {
+			return this.actionsMenuSemanticType === 'dialog'
 		},
 	},
 
@@ -1022,17 +1041,27 @@ export default {
 
 	methods: {
 		/**
+		 * Get the name of the action component
+		 *
+		 * @param {import('vue').VNode} action - a vnode with a NcAction* component instance
+		 * @return {string} the name of the action component
+		 */
+		getActionName(action) {
+			return action?.type?.name
+		},
+
+		/**
 		 * Do we have exactly one Action and
 		 * is it allowed as a standalone element?
 		 *
-		 * @param {Array} action The action to check
+		 * @param {import('vue').VNode} action The action to check
 		 * @return {boolean}
 		 */
 		isValidSingleAction(action) {
-			return ['NcActionButton', 'NcActionLink', 'NcActionRouter'].includes(action?.type?.name)
+			return ['NcActionButton', 'NcActionLink', 'NcActionRouter'].includes(this.getActionName(action))
 		},
-		isAction(vnode) {
-			return vnode.type?.name?.startsWith?.('NcAction')
+		isAction(action) {
+			return this.getActionName(action)?.startsWith?.('NcAction')
 		},
 
 		/**
@@ -1091,8 +1120,10 @@ export default {
 			// close everything
 			this.focusIndex = 0
 
-			// focus back the menu button
-			this.$refs.menuButton.$el.focus()
+			if (returnFocus) {
+				// Focus back the menu button
+				this.$refs.menuButton.$el.focus()
+			}
 		},
 
 		onOpen(event) {
@@ -1130,8 +1161,10 @@ export default {
 		 * @param {object} event The keydown event
 		 */
 		onKeydown(event) {
-			if (event.key === 'Tab' && !this.isSemanticPopoverLike) {
-				this.closeMenu(false)
+			if (event.key === 'Tab' && !this.withFocusTrap) {
+				// Return focus to restore Tab sequence
+				// So browser will correctly move focus to the next element
+				this.closeMenu(true)
 			}
 
 			if (event.key === 'ArrowUp') {
@@ -1225,6 +1258,23 @@ export default {
 		},
 		onBlur(event) {
 			this.$emit('blur', event)
+
+			// When there is no focusable elements to handle Tab press from actions menu
+			// It requries manual closing
+			if (this.actionsMenuSemanticType === 'tooltip') {
+				this.closeMenu(false)
+			}
+		},
+		onClick(event) {
+			/**
+			 * Event emitted when the menu toggle button is clicked.
+			 *
+			 * This is e.g. necessary for the NcAvatar component
+			 * which needs to fetch the menu items on click.
+			 *
+			 * @type {PointerEvent}
+			 */
+			this.$emit('click', event)
 		},
 	},
 
@@ -1250,42 +1300,62 @@ export default {
 		}
 		findActions(this.$slots.default?.(), actions)
 
-		const getActionName = (action) => action?.type?.name
+		// Check that we have at least one action
+		if (actions.length === 0) {
+			return
+		}
+
+		/**
+		 * Separate the actions into inline and menu actions
+		 */
+
+		/**
+		 * @type {import('vue').VNode[]}
+		 */
+		let validInlineActions = actions.filter(this.isValidSingleAction)
+		if (this.forceMenu && validInlineActions.length > 0 && this.inline > 0) {
+			warn('Specifying forceMenu will ignore any inline actions rendering.')
+			validInlineActions = []
+		}
+		/**
+		 * @type {import('vue').VNode[]}
+		 */
+		const inlineActions = validInlineActions.slice(0, this.inline)
+		/**
+		 * @type {import('vue').VNode[]}
+		 */
+		const menuActions = actions.filter(action => !inlineActions.includes(action))
+
+		/**
+		 * Determine what kind of menu we have.
+		 * It defines focus behavior and a11y.
+		 */
 
 		const menuItemsActions = ['NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio']
 		const textInputActions = ['NcActionInput', 'NcActionTextEditable']
 		const linkActions = ['NcActionLink', 'NcActionRouter']
 
-		const hasTextInputAction = actions.some(action => textInputActions.includes(getActionName(action)))
-		const hasMenuItemAction = actions.some(action => menuItemsActions.includes(getActionName(action)))
-		const hasLinkAction = actions.some(action => linkActions.includes(getActionName(action)))
+		const hasTextInputAction = menuActions.some(action => textInputActions.includes(this.getActionName(action)))
+		const hasMenuItemAction = menuActions.some(action => menuItemsActions.includes(this.getActionName(action)))
+		const hasLinkAction = menuActions.some(action => linkActions.includes(this.getActionName(action)))
 
-		// We consider the NcActions to have role="menu" if it consists some button-like action and not text inputs
-		this.isSemanticMenu = hasMenuItemAction && !hasTextInputAction
-		// We consider the NcActions to be navigation if it consists some link-like action
-		this.isSemanticNavigation = hasLinkAction && !hasMenuItemAction && !hasTextInputAction
-		// If it is not a menu and not a navigation, it is a popover with items: a form or just a text
-		this.isSemanticPopoverLike = !this.isSemanticMenu && !this.isSemanticNavigation
-
-		const popupRole = this.isSemanticMenu
-			? 'menu'
-			: hasTextInputAction
-				? 'dialog'
-				: 'true'
-
-		/**
-		 * Filter and list actions that are allowed to be displayed inline
-		 */
-		let inlineActions = actions.filter(this.isValidSingleAction)
-		if (this.forceMenu && inlineActions.length > 0 && this.inline > 0) {
-			warn('Specifying forceMenu will ignore any inline actions rendering.')
-			inlineActions = []
+		if (hasTextInputAction) {
+			this.actionsMenuSemanticType = 'dialog'
+		} else if (hasMenuItemAction) {
+			this.actionsMenuSemanticType = 'menu'
+		} else if (hasLinkAction) {
+			this.actionsMenuSemanticType = 'navigation'
+		} else {
+			this.actionsMenuSemanticType = 'tooltip'
 		}
 
-		// Check that we have at least one action
-		if (actions.length === 0) {
-			return
+		const actionsRoleToHtmlPopupRole = {
+			dialog: 'dialog',
+			menu: 'menu',
+			navigation: 'true',
+			tooltip: 'true',
 		}
+		const popupRole = actionsRoleToHtmlPopupRole[this.actionsMenuSemanticType]
 
 		/**
 		 * Render the provided action
@@ -1365,10 +1435,8 @@ export default {
 					...this.manualOpen && { triggers: [] },
 					popoverBaseClass: 'action-item__popper',
 					popupRole,
-					// Menu and navigation should not have focus trap
-					// Tab should close the menu and move focus to the next UI element
-					setReturnFocus: !this.isSemanticPopoverLike ? null : this.$refs.menuButton?.$el,
-					focusTrap: this.isSemanticPopoverLike,
+					setReturnFocus: this.withFocusTrap ? this.$refs.menuButton?.$el : null,
+					focusTrap: this.withFocusTrap,
 					onShow: this.openMenu,
 					onAfterShow: this.onOpen,
 					onHide: this.closeMenu,
@@ -1384,6 +1452,7 @@ export default {
 						'aria-controls': this.opened ? this.randomId : null,
 						onFocus: this.onFocus,
 						onBlur: this.onBlur,
+						onClick: this.onClick,
 					}, {
 						icon: () => triggerIcon,
 						default: () => this.menuName,
@@ -1414,8 +1483,8 @@ export default {
 		 * If we have a single action only and didn't force a menu,
 		 * we render the action as a standalone button
 		 */
-		if (actions.length === 1 && inlineActions.length === 1 && !this.forceMenu) {
-			return renderInlineAction(inlineActions[0])
+		if (actions.length === 1 && validInlineActions.length === 1 && !this.forceMenu) {
+			return renderInlineAction(actions[0])
 		}
 
 		// If we completely re-render the children
@@ -1434,9 +1503,6 @@ export default {
 		 * If we some inline actions to render, render them, then the menu
 		 */
 		if (inlineActions.length > 0 && this.inline > 0) {
-			const renderedInlineActions = inlineActions.slice(0, this.inline)
-			// Filter already rendered actions
-			const menuActions = actions.filter(action => !renderedInlineActions.includes(action))
 			return h('div',
 				{
 					class: [
@@ -1446,7 +1512,7 @@ export default {
 				},
 				[
 					// Render inline actions
-					...renderedInlineActions.map(renderInlineAction),
+					...inlineActions.map(renderInlineAction),
 					// render the rest within the popover menu
 					menuActions.length > 0
 						? h('div',

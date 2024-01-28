@@ -1,5 +1,5 @@
 import { defineConfig } from 'cypress'
-import getCompareSnapshotsPlugin from 'cypress-visual-regression/dist/plugin'
+import { configureVisualRegression } from 'cypress-visual-regression'
 
 export default defineConfig({
 	projectId: '3paxvy',
@@ -8,19 +8,18 @@ export default defineConfig({
 	defaultCommandTimeout: 6000,
 
 	env: {
-		failSilently: false,
-		type: 'actual',
-		SNAPSHOT_BASE_DIRECTORY: './cypress/snapshots/base',
-		SNAPSHOT_DIFF_DIRECTORY: './cypress/snapshots/diff',
-		INTEGRATION_FOLDER: 'cypress/visual/',
-		trashAssetsBeforeRuns: true,
+		visualRegression: {
+			type: 'regression',
+			baseDirectory: './cypress/snapshots/base',
+			diffDirectory: './cypress/snapshots/diff',
+		},
 	},
 
 	screenshotsFolder: './cypress/snapshots/actual',
 
 	component: {
-		setupNodeEvents(on, config) {
-			getCompareSnapshotsPlugin(on, config)
+		setupNodeEvents(on) {
+			configureVisualRegression(on)
 
 			// Disable spell checking to prevent rendering differences
 			on('before:browser:launch', (browser, launchOptions) => {

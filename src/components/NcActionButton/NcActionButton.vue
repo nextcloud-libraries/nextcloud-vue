@@ -244,37 +244,87 @@ export default {
 
 It is also possible to use the button with radio semantics, this is only possible in menus and not for inline actions!
 
+With a string `modelValue`, checked state is determined by the `value` property and updates `modelValue` with the new `value` string.
+
+With a boolean `modelValue`, checked state is determined by `modelValue` and updates to `true` on check.
+
+Note: unlike native radio buttons, `NcActionButton` are not grouped by name, so you need to connect them by bind correct `modelValue``.
+
 ```vue
 <template>
-	<NcActions>
-		<NcActionButton v-model="payment" type="radio" value="cash">
-			<template #icon>
-				<Cash :size="20" />
-			</template>
-			Pay with cash
-		</NcActionButton>
-		<NcActionButton v-model="payment" type="radio" value="card">
-			<template #icon>
-				<CreditCard :size="20" />
-			</template>
-			Pay by card
-		</NcActionButton>
-	</NcActions>
+	<div>
+		<NcActions>
+			<NcActionButton v-model="payment" type="radio" value="cash">
+				<template #icon>
+					<Cash :size="20" />
+				</template>
+				Pay with cash
+			</NcActionButton>
+			<NcActionButton v-model="payment" type="radio" value="card">
+				<template #icon>
+					<CreditCard :size="20" />
+				</template>
+				Pay by card
+			</NcActionButton>
+			<NcActionSeparator />
+			<NcActionButton type="radio" :model-value="align.isLeft" @update:modelValue="setAlign('Left', $event)">
+				<template #icon>
+					<FormatAlignLeft :size="20" />
+				</template>
+				Left
+			</NcActionButton>
+			<NcActionButton type="radio" :model-value="align.isCenter" @update:modelValue="setAlign('Center', $event)">
+				<template #icon>
+					<FormatAlignCenter :size="20" />
+				</template>
+				Center
+			</NcActionButton>
+			<NcActionButton type="radio" :model-value="align.isRight" @update:modelValue="setAlign('Right', $event)">
+				<template #icon>
+					<FormatAlignRight :size="20" />
+				</template>
+				Right
+			</NcActionButton>
+		</NcActions>
+		<p>payment = "{{ payment }}"</p>
+		<p>align.isLeft = {{ align.isLeft }}</p>
+		<p>align.isCenter = {{ align.isCenter }}</p>
+		<p>align.isRight = {{ align.isRight }}</p>
+	</div>
 </template>
 <script>
 import Cash from 'vue-material-design-icons/Cash.vue'
 import CreditCard from 'vue-material-design-icons/CreditCard.vue'
+import FormatAlignLeft from 'vue-material-design-icons/FormatAlignLeft.vue'
+import FormatAlignCenter from 'vue-material-design-icons/FormatAlignCenter.vue'
+import FormatAlignRight from 'vue-material-design-icons/FormatAlignRight.vue'
 
 export default {
 	components: {
 		Cash,
 		CreditCard,
+		FormatAlignLeft,
+		FormatAlignCenter,
+		FormatAlignRight,
 	},
 	data() {
 		return {
 			payment: 'card',
+			align: {
+				isLeft: false,
+				isCenter: true,
+				isRight: false,
+			},
 		}
 	},
+	methods: {
+		setAlign(direction, value) {
+			this.align.isLeft = false
+			this.align.isCenter = false
+			this.align.isRight = false
+			this.align[`is${direction}`] = value
+		},
+	}
 }
 </script>
 ```
@@ -396,8 +446,10 @@ export default {
 		},
 
 		/**
-		 * The buttons state if `type` is 'checkbox' or 'radio' (meaning if it is pressed / selected)
-		 * Either boolean for checkbox and toggle button behavior or `value` for radio behavior.
+		 * The buttons state if `type` is 'checkbox' or 'radio' (meaning if it is pressed / selected).
+		 * For checkbox and toggle button behavior - boolean value.
+		 * For radio button behavior - could be a boolean checked or a string with the value of the button.
+		 * Note: Unlike native radio buttons, NcActionButton are not grouped by name, so you need to connect them by bind correct modelValue.
 		 *
 		 *  **This is not availabe for `type='submit'` or `type='reset'`**
 		 *
@@ -435,7 +487,7 @@ export default {
 		 * The current "checked" or "pressed" state for the model behavior
 		 */
 		isChecked() {
-			if (this.type === 'radio') {
+			if (this.type === 'radio' && typeof this.modelValue !== 'boolean') {
 				return this.modelValue === this.value
 			}
 			return this.modelValue
@@ -488,10 +540,17 @@ export default {
 			// If modelValue or type is set (so modelValue might be null for tri-state) we need to update it
 			if (this.modelValue !== null || this.type !== 'button') {
 				if (this.type === 'radio') {
-					if (!this.isChecked) {
-						this.$emit('update:modelValue', this.value)
+					if (typeof this.modelValue !== 'boolean') {
+						// String-value radios behavior is similar to native - click on checked radio does nothing
+						if (!this.isChecked) {
+							this.$emit('update:modelValue', this.value)
+						}
+					} else {
+						// Boolean radio allows to uncheck
+						this.$emit('update:modelValue', !this.isChecked)
 					}
 				} else {
+					// Checkbox toggles value
 					this.$emit('update:modelValue', !this.isChecked)
 				}
 			}

@@ -68,13 +68,17 @@ You can also use the default slot to inject custom content.
 
 ```vue
 <template>
-	<div>
+	<div style="display: flex; gap: 12px;">
 		<NcButton @click="showDialog = true">Show dialog</NcButton>
+		<NcButton @click="showLongDialog = true">Show long dialog</NcButton>
 		<NcDialog v-if="showDialog" name="Warning" :can-close="false">
 			<template #actions>
 				<NcButton @click="showDialog = false">Ok</NcButton>
 			</template>
 			<div style="color: red; font-weight: bold;">This is serious</div>
+		</NcDialog>
+		<NcDialog :open.sync="showLongDialog" name="Lorem Ipsum">
+			<p v-for="i in new Array(63)" :key="i">Lorem ipsum dolor sit amet.</p>
 		</NcDialog>
 	</div>
 </template>
@@ -83,6 +87,7 @@ export default {
 	data() {
 		return {
 			showDialog: false,
+			showLongDialog: false,
 		}
 	},
 }
@@ -92,6 +97,9 @@ export default {
 
 <template>
 	<NcModal v-if="open"
+		class="dialog__modal"
+		:enable-slideshow="false"
+		:enable-swipe="false"
 		v-bind="modalProps"
 		@close="handleClosed"
 		@update:show="handleClosing">
@@ -402,10 +410,7 @@ export default defineComponent({
 			size: props.size,
 			show: props.open && showModal.value,
 			outTransition: props.outTransition,
-			class: 'dialog__modal',
 			closeOnClickOutside: props.closeOnClickOutside,
-			enableSlideshow: false,
-			enableSwipe: false,
 			additionalTrapElements: props.additionalTrapElements,
 		}))
 
@@ -451,12 +456,13 @@ export default defineComponent({
 	&__modal {
 		:deep(.modal-wrapper .modal-container) {
 			display: flex !important;
-			padding-block: 4px 8px; // 4px to align with close button, 8px block-end to allow the actions a margin of 4px for the focus visible outline
-			padding-inline: 12px 8px; // Same as with padding-block, we need the actions to have a margin of 4px for the button outline
+			padding-block: 4px 0; // 4px to align with close button, 0 block-end to make overflowing content on scroll look nice
+			padding-inline: 12px 0; // Same as with padding-block, we need the actions to have a margin of 4px for the button outline
 		}
-		:deep(.modal-container__content) {
+		:deep(.modal-wrapper .modal-container__content) {
 			display: flex;
 			flex-direction: column;
+			overflow: hidden; // Only overflow on the .dialog__content
 		}
 	}
 
@@ -467,8 +473,6 @@ export default defineComponent({
 		flex: 1;
 		min-height: 0;
 		overflow: hidden;
-		// see modal-container padding, this aligns with the padding-inline-start (8px + 4px = 12px)
-		padding-inline-end: 4px;
 
 		&--collapsed {
 			flex-direction: column;
@@ -501,11 +505,11 @@ export default defineComponent({
 	}
 
 	&__name {
-		// Same as the NcAppSettingsDialog
 		text-align: center;
-		height: var(--default-clickable-area);
+		height: fit-content;
 		min-height: var(--default-clickable-area);
 		line-height: var(--default-clickable-area);
+		overflow-wrap: break-word;
 		margin-block-end: 12px;
 	}
 
@@ -514,6 +518,8 @@ export default defineComponent({
 		flex: 1;
 		min-height: 0;
 		overflow: auto;
+		// see .dialog__modal, we can not set the padding there to prevent floating scroll bars
+		padding-inline-end: 12px;
 	}
 
 	// In case only text content is show
@@ -527,8 +533,20 @@ export default defineComponent({
 		gap: 6px;
 		align-content: center;
 		width: fit-content;
-		margin-inline: auto 4px; // 4px to align with the overall modal padding, we need this here for the buttons to have their 4px focus-visible outline
-		margin-block: 6px 4px; // 4px block-end see reason above
+		margin-inline: auto 12px; // 12px to align with the overall modal padding
+		margin-block: 0;
+
+		&:not(:empty) {
+			margin-block: 6px 12px; // only if there are actions, we add margin so if it is empty scroll content looks nice
+		}
+	}
+}
+
+@media only screen and (max-width: $breakpoint-small-mobile) {
+	// Ensure the dialog name does not interfere with the close button
+	.dialog__name {
+		text-align: start;
+		margin-inline-end: var(--default-clickable-area);
 	}
 }
 </style>

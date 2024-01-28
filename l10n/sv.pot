@@ -69,6 +69,9 @@ msgstr "Blåviolett"
 msgid "Boston Blue"
 msgstr "Bostonblå"
 
+msgid "busy"
+msgstr "upptagen"
+
 msgid "Cancel changes"
 msgstr "Avbryt ändringar"
 
@@ -102,11 +105,17 @@ msgstr "Stäng Smart Picker"
 msgid "Collapse menu"
 msgstr "Komprimera menyn"
 
+msgid "Color picker"
+msgstr "Färgväljare"
+
 msgid "Confirm changes"
 msgstr "Bekräfta ändringar"
 
 msgid "Custom"
 msgstr "Anpassad"
+
+msgid "Dark skin tone"
+msgstr "Mörk hudton"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -120,6 +129,9 @@ msgstr "stör ej"
 
 msgid "Edit item"
 msgstr "Ändra"
+
+msgid "Emoji picker"
+msgstr "Emoji-väljare"
 
 msgid "Enter link"
 msgstr "Ange länk"
@@ -165,12 +177,27 @@ msgstr "Göm lössenordet"
 msgid "invisible"
 msgstr "osynlig"
 
+msgid "Keyboard navigation help"
+msgstr "Hjälp med tangentbordsnavigering"
+
+msgid "Light skin tone"
+msgstr "Ljus hudton"
+
 msgid "Load more \"{options}\""
 msgstr "Ladda fler \"{options}\""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Marinblå"
+
+msgid "Medium dark skin tone"
+msgstr "Medium mörk hudton"
+
+msgid "Medium light skin tone"
+msgstr "Medium ljus hudton"
+
+msgid "Medium skin tone"
+msgstr "Medium hudton"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Meddelandegräns {count} tecken används"
@@ -180,6 +207,9 @@ msgstr "Fler objekt"
 
 msgid "More options"
 msgstr "Fler alternativ"
+
+msgid "Neutral skin color"
+msgstr "Neutral hudfärg"
 
 msgid "Next"
 msgstr "Nästa"
@@ -208,9 +238,6 @@ msgstr "Olivin"
 
 msgid "online"
 msgstr "online"
-
-msgid "Open contact menu"
-msgstr "Öppna kontaktmenyn"
 
 msgid "Open link to \"{resourceName}\""
 msgstr "Öppna länken till \"{resourceName}\""
@@ -317,6 +344,15 @@ msgstr "Inställningsmeny"
 
 msgid "Show password"
 msgstr "Visa lössenordet"
+
+msgid "Skin tone"
+msgstr "Hudton"
+
+msgid "Skip to app navigation"
+msgstr "Hoppa till appnavigering"
+
+msgid "Skip to main content"
+msgstr "Hoppa till huvudinnehåll"
 
 msgid "Smart Picker"
 msgstr "Smart Picker"

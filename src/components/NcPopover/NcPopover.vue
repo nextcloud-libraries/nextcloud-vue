@@ -157,11 +157,12 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 
 <template>
 	<Dropdown ref="popover"
-		v-model:shown="shownProxy"
 		:distance="10"
 		:arrow-padding="10"
 		:no-auto-focus="true /* Handled by the focus trap */"
 		:popper-class="popoverBaseClass"
+		:shown="internalShown"
+		@update:shown="internalShown = $event"
 		@apply-show="afterShow"
 		@apply-hide="afterHide">
 		<NcPopoverTriggerProvider v-slot="slotProps" :shown="internalShown" :popup-role="popupRole">
@@ -248,21 +249,13 @@ export default {
 		}
 	},
 
-	computed: {
-		shownProxy: {
-			get() {
-				return this.internalShown
-			},
-			set(value) {
-				this.internalShown = value
-				this.$emit('update:shown', value)
-			},
-		},
-	},
-
 	watch: {
 		shown(value) {
 			this.internalShown = value
+		},
+
+		internalShown(value) {
+			this.$emit('update:shown', value)
 		},
 	},
 

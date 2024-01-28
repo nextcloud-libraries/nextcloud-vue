@@ -90,8 +90,26 @@ All notable changes to this project will be documented in this file.
 * chore(vue3): Migrate NcAppSidebar* to vue 3 [\#4833](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4833) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 * chore(vue3): Migrate NcRich* to vue 3 [\#4976](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4976) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 
+## [v8.5.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.5.1) (2024-01-24)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.5.0...v8.5.1)
+
+### 🐛 Fixed bugs
+* fix(NcPopover): a11y attrs provide-inject reactivity [\#5142](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5142) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcCheckboxRadioSwitch): On button style align the text vertically [\#5151](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5151) \([susnux](https://github.com/susnux)\)
+* fix: removed groupings in timezone picker [\#5130](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5130) \([emoral435](https://github.com/emoral435)\)
+* fix(fields): adjust label line-height [\#5133](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5133) \([ShGKme](https://github.com/ShGKme)\)
+* fix(header): width regression fixed [\#5129](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5129) \([emoral435](https://github.com/emoral435)\)
+* fix(NcCheckboxRadioSwitch): Make sure to include current value in checked array [\#5150](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5150) \([susnux](https://github.com/susnux)\)
+* fix: Ensure no double scrollbars for NcDialog and NcAppNavigationSettings [\#5139](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5139) \([susnux](https://github.com/susnux)\)
+
+### Other Changes
+* Updated translation
+* chore: Fix missing PR from changelog [\#5125](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5125) \([Pytal](https://github.com/Pytal)\)
+* chore: Migrate cypress config to vite instead of webpack [\#4961](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4961) \([susnux](https://github.com/susnux)\)
+* chore(styleguide): set line-height from server styles [\#5132](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5132) \([ShGKme](https://github.com/ShGKme)\)
+
 ## [v8.5.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.5.0) (2024-01-23)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.5.0...v8.4.0)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.4.0...v8.5.0)
 
 ### 🚀 Enhancements
 * enh(NcSelect): Add visible input label by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4963
@@ -112,6 +130,7 @@ All notable changes to this project will be documented in this file.
 * feat(NcReferenceList): Add support for a fallback reference widget by @mejo- in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5092
 * enh(NcEmojiPicker): Always show skin tone selector + save selection by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5103
 * feat(NcActionButton): Allow pressed state on NcActionButton - similar to NcButton by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4744
+* feat(`NcRichText`) add support of GFM (extended markdown) by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4365
 
 ### 🐛 Fixed bugs
 * fix(NcCheckboxRadioSwitch): fix shift+click on firefox by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4999

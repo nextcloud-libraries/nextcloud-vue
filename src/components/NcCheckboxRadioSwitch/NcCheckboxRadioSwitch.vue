@@ -595,7 +595,7 @@ export default {
 
 			// If the initial value was a boolean, let's keep it that way
 			if (typeof this.modelValue === 'boolean') {
-				this.$emit('update:modelValue', !this.isChecked)
+				this.$emit('update:modelValue', !this.modelValue)
 				return
 			}
 
@@ -603,7 +603,12 @@ export default {
 			const values = this.getInputsSet()
 				.filter(input => input.checked)
 				.map(input => input.value)
-			this.$emit('update:modelValue', values)
+
+			if (values.includes(this.value)) {
+				this.$emit('update:modelValue', values.filter((v) => v !== this.value))
+			} else {
+				this.$emit('update:modelValue', [...values, this.value])
+			}
 		},
 
 		/**

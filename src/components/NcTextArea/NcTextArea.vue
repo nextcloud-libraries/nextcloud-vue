@@ -402,6 +402,7 @@ export default {
 	&__input:focus + &__label,
 	&__input:not(:placeholder-shown) + &__label {
 		inset-block-start: -10px;
+		line-height: 1.5; // minimum allowed line height for accessibility
 		font-size: 13px; // minimum allowed font size for accessibility
 		font-weight: 500;
 		color: var(--color-main-text);

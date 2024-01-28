@@ -19,7 +19,7 @@ const registerWidget = (id, callback, onDestroy = (el) => {}) => {
 	}
 }
 
-const renderWidget = (el, { richObjectType, richObject, accessible }) => {
+const renderWidget = (el, { richObjectType, richObject, accessible, interactive }) => {
 	if (richObjectType === 'open-graph') {
 		return
 	}
@@ -29,7 +29,7 @@ const renderWidget = (el, { richObjectType, richObject, accessible }) => {
 		return
 	}
 
-	window._vue_richtext_widgets[richObjectType].callback(el, { richObjectType, richObject, accessible })
+	window._vue_richtext_widgets[richObjectType].callback(el, { richObjectType, richObject, accessible, interactive })
 }
 
 const destroyWidget = (richObjectType, el) => {
