@@ -87,13 +87,15 @@
 			:name="'This is an active element with normal counter'"
 			:bold="false"
 			:active="true"
-			:details="'1h'"
 			:counter-number="44">
 			<template #icon>
 				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
+			</template>
+			<template #details>
+				<LinkIcon :size="16"/>
 			</template>
 			<template #indicator>
 				<!-- Color dot -->
@@ -194,6 +196,9 @@
 			<template #subname>
 				In this slot you can put both text and other components such as icons
 			</template>
+			<template #details>
+				<LinkIcon :size="16"/>
+			</template>
 			<template #indicator>
 				<!-- Color dot -->
 				<CheckboxBlankCircle :size="16" fill-color="#0082c9"/>
@@ -230,10 +235,12 @@
 
 <script>
 	import CheckboxBlankCircle from 'vue-material-design-icons/CheckboxBlankCircle'
+	import LinkIcon from 'vue-material-design-icons/Link'
 
 	export default {
 		components: {
 			CheckboxBlankCircle,
+			LinkIcon,
 		}
 	}
 </script>
@@ -345,7 +352,8 @@
 								</span>
 								<span v-if="showDetails"
 									class="line-one__details">
-									{{ details }}
+									<!-- @slot This slot is used for some details in form of icon (prop `details` as a fallback) -->
+									<slot name="details">{{ details }}</slot>
 								</span>
 							</div>
 
@@ -566,15 +574,11 @@ export default {
 			displayActionsOnHoverFocus: false,
 			menuOpen: false,
 			hasIndicator: false,
+			hasDetails: false,
 		}
 	},
 
 	computed: {
-
-		hasDetails() {
-			return this.details !== ''
-		},
-
 		oneLine() {
 			return !this.hasSubname && !this.showDetails
 		},
@@ -584,7 +588,8 @@ export default {
 		},
 
 		showDetails() {
-			return this.hasDetails && (!this.displayActionsOnHoverFocus || this.forceDisplayActions)
+			return (this.details !== '' || this.hasDetails)
+				&& (!this.displayActionsOnHoverFocus || this.forceDisplayActions)
 		},
 
 		computedActionsAriaLabel() {
@@ -701,6 +706,9 @@ export default {
 			}
 			if (this.hasIndicator !== !!this.$slots.indicator) {
 				this.hasIndicator = !!this.$slots.indicator
+			}
+			if (this.hasDetails !== !!this.$slots.details) {
+				this.hasDetails = !!this.$slots.details
 			}
 		},
 	},
@@ -822,7 +830,7 @@ export default {
 
 	&__details {
 		color: var(--color-text-maxcontrast);
-		margin: 0 8px;
+		margin: 0 9px;
 		font-weight: normal;
 	}
 }
