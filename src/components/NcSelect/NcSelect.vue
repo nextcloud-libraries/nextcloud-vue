@@ -971,6 +971,7 @@ export default {
 						Object.assign(dropdownMenu.style, {
 							left: `${x}px`,
 							top: `${y}px`,
+							width: `${component.$refs.toggle.getBoundingClientRect().width}px`,
 						})
 					})
 				}
