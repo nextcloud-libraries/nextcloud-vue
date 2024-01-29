@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 * fix(header): width regression fixed [\#5129](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5129) \([emoral435](https://github.com/emoral435)\)
 * fix(NcCheckboxRadioSwitch): Make sure to include current value in checked array [\#5150](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5150) \([susnux](https://github.com/susnux)\)
 * fix: Ensure no double scrollbars for NcDialog and NcAppNavigationSettings [\#5139](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5139) \([susnux](https://github.com/susnux)\)
+* fix(NcAvatar): Remove span wrapper button semantics in favour of internal button components [\#5131](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5131) \([Pytal](https://github.com/Pytal)\)
 
 ### Other Changes
 * Updated translation
