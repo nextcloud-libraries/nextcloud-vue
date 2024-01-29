@@ -1146,12 +1146,12 @@ $top-buttons-spacing: 6px;
 }
 
 .slide-right-enter-to,
-.slide-right-leave {
+.slide-right-leave-from {
 	min-width: $sidebar-min-width;
 	max-width: $sidebar-max-width;
 }
 
-.slide-right-enter,
+.slide-right-enter-from,
 .slide-right-leave-to {
 	min-width: 0 !important;
 	max-width: 0 !important;
