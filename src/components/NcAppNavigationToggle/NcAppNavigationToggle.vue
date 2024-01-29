@@ -55,6 +55,11 @@ export default {
 	},
 
 	props: {
+		/**
+		 * Tracks whether the toggle has been clicked or not.
+		 * If it has been clicked, switches between the different MenuIcons
+		 * and emits a boolean indicating its opened status
+		 */
 		open: {
 			type: Boolean,
 			required: true,
@@ -69,6 +74,10 @@ export default {
 		},
 	},
 	methods: {
+		/**
+		 * Once the toggle has been clicked, emits the toggle status
+		 * so parent components can gauge the status of the navigation button
+		 */
 		toggleNavigation() {
 			this.$emit('update:open', !this.open)
 		},
