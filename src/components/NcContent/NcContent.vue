@@ -34,6 +34,7 @@ It also will set the skip content buttons needed for accessibility.
 
 ```vue
 	<template>
+		<div id="skip-actions" />
 		<NcContent app-name="forms">
 			<NcAppNavigation>
 				<template #list>
@@ -49,9 +50,9 @@ It also will set the skip content buttons needed for accessibility.
 				<h2>Your main app content here</h2>
 				<NcButton @click="opened = !opened">Toggle sidebar</NcButton>
 			</NcAppContent>
-			<!-- Todo: Bring back once migrated
-			<NcAppSidebar v-if="opened" name="cat-picture.jpg" @close="opened=false"></NcAppSidebar>
-			-->
+			<NcAppSidebar v-if="opened" name="cat-picture.jpg" @close="opened=false">
+				Sidebar content
+			</NcAppSidebar>
 		</NcContent>
 	</template>
 	<script>
@@ -68,6 +69,13 @@ It also will set the skip content buttons needed for accessibility.
 		}
 	}
 	</script>
+	<style>
+		#content-vue {
+			position: relative;
+			width: 800px;
+			height: 400px;
+		}
+	</style>
 ```
 
 </docs>
@@ -100,7 +108,6 @@ It also will set the skip content buttons needed for accessibility.
 					:svg="currentImage"
 					size="auto" />
 			</div>
-			&nbsp;<!-- TODO: Remove with vue3! This is a bug of vue-simple-portal that does not allow a single child, ref LinusBorg/vue-simple-portal#20 -->
 		</Teleport>
 		<slot />
 	</div>
