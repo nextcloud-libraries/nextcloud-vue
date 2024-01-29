@@ -156,6 +156,7 @@ export default {
 
 <template>
 	<NcPopover popup-role="dialog"
+		:container="container"
 		@apply-hide="handleClose">
 		<template #trigger="slotProps">
 			<slot v-bind="slotProps" />
@@ -283,6 +284,14 @@ export default defineComponent({
 				(typeof item === 'string' && HEX_REGEX.test(item))
 				|| (typeof item === 'object' && item.color && HEX_REGEX.test(item.color)),
 			),
+		},
+
+		/**
+		 * Selector for the popover container
+		 */
+		container: {
+			type: [String, Object, Element, Boolean],
+			default: 'body',
 		},
 	},
 
