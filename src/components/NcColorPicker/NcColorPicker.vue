@@ -161,6 +161,7 @@ export default {
 
 <template>
 	<NcPopover popup-role="dialog"
+		:container="container"
 		v-bind="$attrs"
 		v-on="$listeners"
 		@apply-hide="handleClose">
@@ -187,7 +188,7 @@ export default {
 							@click="pickColor(color)">
 					</label>
 				</div>
-				<Chrome v-if="advanced"
+				<Chrome v-else
 					v-model="currentColor"
 					class="color-picker__advanced"
 					:disable-alpha="true"
@@ -289,6 +290,14 @@ export default {
 				(typeof item === 'string' && HEX_REGEX.test(item))
 				|| (typeof item === 'object' && item.color && HEX_REGEX.test(item.color)),
 			),
+		},
+
+		/**
+		 * Selector for the popover container
+		 */
+		container: {
+			type: [String, Object, Element, Boolean],
+			default: 'body',
 		},
 	},
 

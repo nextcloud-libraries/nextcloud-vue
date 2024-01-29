@@ -166,6 +166,7 @@ This component allows the user to pick an emoji.
 						@trailing-button-click="clearSearch(); slotProps.onSearch(search);"
 						@update:value="slotProps.onSearch(search)" />
 					<NcColorPicker palette-only
+						:container="container"
 						:palette="skinTonePalette"
 						:value="currentColor.color"
 						@update:value="onChangeSkinTone">
