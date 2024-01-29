@@ -813,6 +813,7 @@ p {
 import NcButton from '../NcButton/index.js'
 import NcPopover from '../NcPopover/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
+import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
 
 import Vue, { computed } from 'vue'
@@ -1009,6 +1010,7 @@ export default {
 			 * @type {'menu'|'navigation'|'dialog'|'tooltip'|''}
 			 */
 			actionsMenuSemanticType: '',
+			externalFocusTrapStack: [],
 		}
 	},
 
@@ -1035,6 +1037,10 @@ export default {
 
 			this.opened = state
 		},
+
+		opened() {
+			this.intersectIntoCurrentFocusTrapStack()
+		},
 	},
 
 	methods: {
@@ -1046,6 +1052,33 @@ export default {
 		 */
 		getActionName(action) {
 			return action?.componentOptions?.Ctor?.extendOptions?.name ?? action?.componentOptions?.tag
+		},
+
+		/**
+		 * When the component has its own focus trap, then it is managed by global trap stack by focus-trap.
+		 *
+		 * However if the component has no focus trap and is used inside another focus trap - there is an issue.
+		 * By default popover content is rendered in body or other container, which is likely outside the current focus trap containers.
+		 * It results in broken behavior from focus-trap.
+		 *
+		 * We need to pause all the focus traps for opening popover and then unpause them back after closing.
+		 */
+		 intersectIntoCurrentFocusTrapStack() {
+			if (this.withFocusTrap) {
+				return
+			}
+
+			if (this.opened) {
+				this.externalFocusTrapStack = [...getTrapStack()]
+				for (const trap of this.externalFocusTrapStack) {
+					trap.pause()
+				}
+			} else {
+				for (const trap of this.externalFocusTrapStack) {
+					trap.unpause()
+				}
+				this.externalFocusTrapStack = []
+			}
 		},
 
 		/**
