@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: read
+  packages: write
 
 jobs:
   publish:
@@ -18,15 +19,20 @@ jobs:
 
     name: Build and publish to npm
     steps:
+      - name: Check actor permission level
+        uses: skjnldsv/check-actor-permission@e591dbfe838300c007028e1219ca82cc26e8d7c5 # v2.1
+        with:
+          require: admin
+
       - name: Checkout
-        uses: actions/checkout@v4 # v3.5.2
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
       - name: Read package.json node and npm engines version
-        uses: skjnldsv/read-package-engines-version-actions@0ce2ed60f6df073a62a77c0a4958dd0fc68e32e7 # v2.1
+        uses: skjnldsv/read-package-engines-version-actions@8205673bab74a63eb9b8093402fd9e0e018663a1 # v2.2
         id: versions
         with:
-          fallbackNode: '^16'
-          fallbackNpm: '^7'
+          fallbackNode: '^20'
+          fallbackNpm: '^9'
 
       - name: Set up node ${{ steps.versions.outputs.nodeVersion }}
         uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v3
@@ -37,6 +43,8 @@ jobs:
         run: npm i -g npm@"${{ steps.versions.outputs.npmVersion }}"
 
       - name: Install dependencies & build
+        env:
+          CYPRESS_INSTALL_BINARY: 0
         run: |
           npm ci
           npm run build --if-present
@@ -47,3 +55,13 @@ jobs:
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Setup Github Package Registry
+        uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v3
+        with:
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Publish package on GPR
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
