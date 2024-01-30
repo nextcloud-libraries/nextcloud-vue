@@ -830,7 +830,7 @@ Although it works when actions are not direct children but wrapped in custom com
 		<tr>
 			<td>
 				<NcActions>
-					<MyUserActionButton />
+					<NcActionUserButton />
 				</NcActions>
 			</td>
 			<td>
@@ -850,7 +850,7 @@ Although it works when actions are not direct children but wrapped in custom com
 		<tr>
 			<td>
 				<NcActions :inline="2">
-					<MyUserActionButton v-for="i in 4" />
+					<NcActionUserButton v-for="i in 4" />
 				</NcActions>
 			</td>
 			<td>
@@ -870,7 +870,7 @@ Although it works when actions are not direct children but wrapped in custom com
 		<tr>
 			<td>
 				<NcActions>
-					<MyActionsList />
+					<NcActionsList />
 				</NcActions>
 			</td>
 			<td>
@@ -895,14 +895,14 @@ export default {
 	components: {
 		Account,
 
-		MyUserActionButton: {
-			name: 'MyUserActionButton',
+		NcActionUserButton: {
+			name: 'NcActionUserButton',
 			components: { Account },
 			render: () => h(resolveComponent('NcActionButton'), null, { default: () => 'Button', icon: () => h(Account, { size: 20 }) }),
 		},
 
-		MyActionsList: {
-			name: 'MyActionsList',
+		NcActionsList: {
+			name: 'NcActionsList',
 			components: { Account },
 			render: () => h('div', null, {
 				default: () => [
