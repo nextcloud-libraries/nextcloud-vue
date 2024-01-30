@@ -807,6 +807,131 @@ p {
 }
 </style>
 ```
+
+## NcActions children limitations
+
+`<NcActions>` is supposed to be used with direct `<NcAction*>` children.
+Although it works when actions are not direct children but wrapped in custom components, it has limitations:
+- No `inline` prop property, including a single action display;
+- Accessibility issues, including changed keyboard behavior;
+- Invalid HTML.
+
+```
+<template>
+	<table class="actions-limitations-table">
+		<tr>
+			<th style="width: 50%">Non-direct children</th>
+			<th style="width: 50%">Direct NcAction* children</th>
+		</tr>
+
+		<tr>
+			<th colspan="2">This single button is supposed to be rendered as inline action but it is rendered as a menu:</th>
+		</tr>
+		<tr>
+			<td>
+				<NcActions>
+					<MyUserActionButton />
+				</NcActions>
+			</td>
+			<td>
+				<NcActions>
+					<NcActionButton>
+						<template #icon>
+							<Account :size="20" />
+						</template>
+						Button
+					</NcActionButton>
+				</NcActions>
+			</td>
+		</tr>
+		<tr>
+			<th colspan="2">This NcActions is supposed to have 2 inline buttons but it has none:</th>
+		</tr>
+		<tr>
+			<td>
+				<NcActions :inline="2">
+					<MyUserActionButton v-for="i in 4" />
+				</NcActions>
+			</td>
+			<td>
+				<NcActions :inline="2">
+					<NcActionButton v-for="i in 4">
+						<template #icon>
+							<Account :size="20" />
+						</template>
+						Button
+					</NcActionButton>
+				</NcActions>
+			</td>
+		</tr>
+		<tr>
+			<th colspan="2">This NcActions is supposed to have a11y role menu and keyboard navigation but it acts like a dialog:</th>
+		</tr>
+		<tr>
+			<td>
+				<NcActions>
+					<MyActionsList />
+				</NcActions>
+			</td>
+			<td>
+				<NcActions>
+					<NcActionButton v-for="i in 4">
+						<template #icon>
+							<Account :size="20" />
+						</template>
+						Button
+					</NcActionButton>
+				</NcActions>
+			</td>
+		</tr>
+	</table>
+</template>
+
+<script>
+import Account from 'vue-material-design-icons/Account.vue'
+
+export default {
+	components: {
+		Account,
+
+		MyUserActionButton: {
+			name: 'MyUserActionButton',
+			components: { Account },
+			render: (h) => h('NcActionButton', ['Button', h('Account', { props: { size: 20 }, slot: 'icon' })]),
+		},
+
+		MyActionsList: {
+			name: 'MyActionsList',
+			components: { Account },
+			render: (h) => h('div', [
+				h('NcActionButton', ['Button', h('Account', { props: { size: 20 }, slot: 'icon' })]),
+				h('NcActionButton', ['Button', h('Account', { props: { size: 20 }, slot: 'icon' })]),
+				h('NcActionButton', ['Button', h('Account', { props: { size: 20 }, slot: 'icon' })]),
+				h('NcActionButton', ['Button', h('Account', { props: { size: 20 }, slot: 'icon' })]),
+			]),
+		}
+	}
+}
+</script>
+
+<style>
+.actions-limitations-table {
+	border-collapse: collapse;
+	width: 100%;
+	th,
+	td {
+		border: 1px solid var(--color-border);
+		padding: var(--default-grid-baseline);
+		max-width: 50%;
+	}
+
+	th {
+		text-align: center;
+		text-wrap: wrap;
+	}
+}
+</style>
+```
 </docs>
 
 <script>
