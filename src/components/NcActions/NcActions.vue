@@ -1188,7 +1188,7 @@ export default {
 		 *
 		 * We need to pause all the focus traps for opening popover and then unpause them back after closing.
 		 */
-		 intersectIntoCurrentFocusTrapStack() {
+		intersectIntoCurrentFocusTrapStack() {
 			if (this.withFocusTrap) {
 				return
 			}
@@ -1415,7 +1415,11 @@ export default {
 			// When there is no focusable elements to handle Tab press from actions menu
 			// It requries manual closing
 			if (this.actionsMenuSemanticType === 'tooltip') {
-				this.closeMenu(false)
+				// Tooltip is supposed to have no focusable element.
+				// However, if there is a custom focusable element, it will be auto-focused and cause the menu to be closed on open.
+				if (this.$refs.menu && this.$refs.menu.querySelectorAll(focusableSelector).length === 0) {
+					this.closeMenu(false)
+				}
 			}
 		},
 		onClick(event) {
@@ -1491,7 +1495,22 @@ export default {
 		} else if (hasLinkAction) {
 			this.actionsMenuSemanticType = 'navigation'
 		} else {
-			this.actionsMenuSemanticType = 'tooltip'
+			// (!) Hotfix (!)
+			// In Vue 2 it is not easy to search for NcAction* in sub-component of a slot.
+			// When a menu is rendered, children are not mounted yet.
+			// If we have NcActions > MyActionsList > NcActionButton, only MyActionsList's vnode is available.
+			// So when NcActions has actions as non-direct children, here then we don't know about them.
+			// Like this menu has no buttons/links/inputs.
+			// It makes the menu incorrectly considered a tooltip.
+			const ncActions = actions.filter((action) => this.getActionName(action).startsWith('NcAction'))
+			if (ncActions.length === actions.length) {
+				// True tooltip
+				this.actionsMenuSemanticType = 'tooltip'
+			} else {
+				// Custom components are passed to the NcActions
+				// dialog is a universal fallback option
+				this.actionsMenuSemanticType = 'dialog'
+			}
 		}
 
 		const actionsRoleToHtmlPopupRole = {
