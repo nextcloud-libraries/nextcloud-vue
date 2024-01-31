@@ -396,4 +396,18 @@ export default ScopeComponent({
 			color-scheme: dark;
 		}
 	}
+
+	[data-theme-default],
+	[data-themes*=default] {
+		@media (prefers-color-scheme: light) {
+			.native-datetime-picker--input {
+				color-scheme: light;
+			}
+		}
+		@media (prefers-color-scheme: dark) {
+			.native-datetime-picker--input {
+				color-scheme: dark;
+			}
+		}
+	}
 </style>

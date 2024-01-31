@@ -1,11 +1,11 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Ali <alimahwer@yahoo.com>, 2023
+# Ali <alimahwer@yahoo.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ali <alimahwer@yahoo.com>, 2023\n"
+"Last-Translator: Ali <alimahwer@yahoo.com>, 2024\n"
 "Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
@@ -69,6 +69,9 @@ msgstr "بنفسجي مشعشع"
 msgid "Boston Blue"
 msgstr "سماوي مطفي"
 
+msgid "busy"
+msgstr "مشغول"
+
 msgid "Cancel changes"
 msgstr "إلغاء التغييرات"
 
@@ -102,11 +105,17 @@ msgstr "أغلِق اللاقط الذكي Smart Picker"
 msgid "Collapse menu"
 msgstr "طَيُّ القائمة"
 
+msgid "Color picker"
+msgstr "لاقط الألوان"
+
 msgid "Confirm changes"
 msgstr "تأكيد التغييرات"
 
 msgid "Custom"
 msgstr "مُخصَّص"
+
+msgid "Dark skin tone"
+msgstr "أسمر البُشرة"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -120,6 +129,9 @@ msgstr "يُرجى عدم الإزعاج"
 
 msgid "Edit item"
 msgstr "تعديل عنصر"
+
+msgid "Emoji picker"
+msgstr "لاقط الإيموجي"
 
 msgid "Enter link"
 msgstr "أدخِل الرابط"
@@ -165,12 +177,27 @@ msgstr "إخفاء كلمة المرور"
 msgid "invisible"
 msgstr "غير مرئي"
 
+msgid "Keyboard navigation help"
+msgstr "مساعدة في التنقل باستعمال لوحة المفاتيح"
+
+msgid "Light skin tone"
+msgstr "فاتح البُشرة"
+
 msgid "Load more \"{options}\""
 msgstr "تحميل المزيد من \"{options}\" "
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "أزرق بحري"
+
+msgid "Medium dark skin tone"
+msgstr "بُشرة متوسطة الاسمرار"
+
+msgid "Medium light skin tone"
+msgstr "بُشرة متوسطة البياض"
+
+msgid "Medium skin tone"
+msgstr "بُشرة وسطية اللون"
 
 msgid "Message limit of {count} characters reached"
 msgstr "تمّ الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
@@ -180,6 +207,9 @@ msgstr "عناصر أخرى ..."
 
 msgid "More options"
 msgstr "خيارات أخرى ..."
+
+msgid "Neutral skin color"
+msgstr "لون بُشرة طبيعي"
 
 msgid "Next"
 msgstr "التالي"
@@ -209,9 +239,6 @@ msgstr "زيتي"
 msgid "online"
 msgstr "مُتّصِلٌ"
 
-msgid "Open contact menu"
-msgstr "إفتَح قائمة جهات الاتصال"
-
 msgid "Open link to \"{resourceName}\""
 msgstr "إفتَح الرابط إلى \"{resourceName}\""
 
@@ -220,6 +247,9 @@ msgstr "إفتَح القائمة"
 
 msgid "Open navigation"
 msgstr "إفتَح المتصفح"
+
+msgid "Options"
+msgstr "خيارات"
 
 msgid "Password is secure"
 msgstr "كلمة المرور مُؤمّنة"
@@ -314,6 +344,15 @@ msgstr "إعدادات التّصفُّح"
 
 msgid "Show password"
 msgstr "أظهِر كلمة المرور"
+
+msgid "Skin tone"
+msgstr "لون البُشرة"
+
+msgid "Skip to app navigation"
+msgstr "تجاوَز إلى التنقل في التطبيق"
+
+msgid "Skip to main content"
+msgstr "تجاوَز إلى المحتوى الرئيسي"
 
 msgid "Smart Picker"
 msgstr "اللاقط الذكي smart picker"
