@@ -97,6 +97,7 @@ All notable changes to this project will be documented in this file.
 * feat: Implement widget flag for requesting interactive view by @juliushaertl in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5144
 * feat(NcListItem): introduce 'details' slot by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5146
 * feat(NcNoteCard): provide a slot for inserting a custom icon instead of default by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4894
+* feat(NcActionButton): support boolean value for radio type by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5134
 
 ### 🐛 Fixed bugs
 * fix(NcActions): keyboard navigation by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5153
