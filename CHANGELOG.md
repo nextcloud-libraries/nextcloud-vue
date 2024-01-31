@@ -90,6 +90,29 @@ All notable changes to this project will be documented in this file.
 * chore(vue3): Migrate NcAppSidebar* to vue 3 [\#4833](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4833) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 * chore(vue3): Migrate NcRich* to vue 3 [\#4976](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4976) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 
+## [v8.6.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.6.0) (2024-01-30)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.5.1...v8.6.0)
+
+### 🚀 Enhancements
+* feat: Implement widget flag for requesting interactive view by @juliushaertl in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5144
+* feat(NcListItem): introduce 'details' slot by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5146
+* feat(NcNoteCard): provide a slot for inserting a custom icon instead of default by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4894
+
+### 🐛 Fixed bugs
+* fix(NcActions): keyboard navigation by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5153
+* fix(NcSelect): list width on page scaling by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5162
+* fix(NcColorPicker): define a container prop by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5172
+* fix(NcActions): intercept into current focus trap stack by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4953
+* fix(NcRichText): Make URL_PATTERN match localhost and URLs with ports by @mejo- in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5176
+* fix(NcActions): hotfix for custom children by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5178
+* fix(NcDateTimePickerNative): create possibility to change a color theme on system default by @JuliaKirschenheuter in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5182
+
+### Other Changes
+* Updates for project Nextcloud vue library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5157
+* chore: Fix missing PR from changelog by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5175
+* chore(NcAppNavigationToggle): add comments by @emoral435 in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5148
+* chore: Update workflows by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5148
+
 ## [v8.5.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.5.1) (2024-01-24)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.5.0...v8.5.1)
 

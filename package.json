@@ -127,6 +127,7 @@
     "@nextcloud/vite-config": "github:nextcloud-libraries/nextcloud-vite-config#vue3",
     "@nextcloud/webpack-vue-config": "github:nextcloud/webpack-vue-config#1f4277c6ab14be63810f425ef6b762d8ca59697b",
     "@types/gettext-parser": "^4.0.4",
+    "@vitest/coverage-v8": "^1.2.2",
     "@vue/test-utils": "^2.4.1",
     "@vue/tsconfig": "^0.4.0",
     "babel-loader-exclude-node-modules-except": "^1.2.1",
