@@ -383,23 +383,9 @@
 								</span>
 							</div>
 						</div>
-
-						<!-- Actions -->
-						<div v-if="!forceDisplayActions"
-							v-show="displayActionsOnHoverFocus"
-							class="list-item-content__actions"
-							@click.prevent.stop="">
-							<NcActions ref="actions"
-								:primary="isActive || active"
-								:aria-label="computedActionsAriaLabel"
-								@update:open="handleActionsUpdateOpen">
-								<!-- @slot Provide the actions for the right side quick menu -->
-								<slot name="actions" />
-							</NcActions>
-						</div>
 					</div>
 					<!-- Actions -->
-					<div v-if="forceDisplayActions"
+					<div v-show="forceDisplayActions || displayActionsOnHoverFocus"
 						class="list-item-content__actions"
 						@click.prevent.stop="">
 						<NcActions ref="actions"
