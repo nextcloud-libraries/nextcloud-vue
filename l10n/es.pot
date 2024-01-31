@@ -118,6 +118,9 @@ msgstr "Confirmar cambios"
 msgid "Custom"
 msgstr "Personalizado"
 
+msgid "Dark skin tone"
+msgstr "Tono de piel obscuro"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "Diluvio"
@@ -181,12 +184,24 @@ msgstr "invisible"
 msgid "Keyboard navigation help"
 msgstr "Ayuda de navegación del teclado"
 
+msgid "Light skin tone"
+msgstr "Tono de piel claro"
+
 msgid "Load more \"{options}\""
 msgstr "Cargar más \"{options}\""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Marinero"
+
+msgid "Medium dark skin tone"
+msgstr "Tono de piel medio oscuro"
+
+msgid "Medium light skin tone"
+msgstr "Tono de piel medio claro"
+
+msgid "Medium skin tone"
+msgstr "Tono de piel medio"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Se ha alcanzado el límite de {count} caracteres en el mensaje"
@@ -196,6 +211,9 @@ msgstr "Más ítems ..."
 
 msgid "More options"
 msgstr "Más opciones"
+
+msgid "Neutral skin color"
+msgstr "Color de piel neutral"
 
 msgid "Next"
 msgstr "Siguiente"
@@ -224,9 +242,6 @@ msgstr "Olivino"
 
 msgid "online"
 msgstr "en línea"
-
-msgid "Open contact menu"
-msgstr "Abrir menú de contactos"
 
 msgid "Open link to \"{resourceName}\""
 msgstr "Abrir enlace a \"{resourceName}\""
@@ -333,6 +348,9 @@ msgstr "Navegación de ajustes"
 
 msgid "Show password"
 msgstr "Mostrar contraseña"
+
+msgid "Skin tone"
+msgstr "Tono de piel"
 
 msgid "Skip to app navigation"
 msgstr "Saltar a la navegación de apps"
