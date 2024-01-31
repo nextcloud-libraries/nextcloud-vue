@@ -33,7 +33,7 @@
 			:counter-number="44"
 			counterType="highlighted">
 			<template #icon>
-				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -62,7 +62,7 @@
 			:counter-number="44"
 			counterType="outlined">
 			<template #icon>
-				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -89,7 +89,7 @@
 			:active="true"
 			:counter-number="44">
 			<template #icon>
-				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -121,7 +121,7 @@
 			:counter-number="44"
 			counterType="highlighted">
 			<template #icon>
-				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -146,7 +146,7 @@
 			:counter-number="44"
 			counterType="outlined">
 			<template #icon>
-				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -170,7 +170,7 @@
 			:details="'1h'"
 			:counter-number="44">
 			<template #icon>
-				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -191,7 +191,7 @@
 			:name="'Name of the element'"
 			:bold="false">
 			<template #icon>
-				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -220,7 +220,7 @@
 			:bold="false"
 			:details="'1h'">
 			<template #icon>
-				<NcAvatar :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -248,66 +248,77 @@
 ```
 
 ### NcListItem compact mode
-```
-<ul style="width: 350px;">
-	<NcListItem
-		:name="'Name of the element'"
-		:counter-number="1"
-		:compact="true" >
-		<template #icon>
-			<div class="icon-edit" />
-		</template>
-		<template #subname>
-			This one is with subname
-		</template>
-		<template #actions>
-			<NcActionButton>
-				Button one
-			</NcActionButton>
-			<NcActionButton>
-				Button two
-			</NcActionButton>
-		</template>
-	</NcListItem>
-	<NcListItem
-		:name="'Name of the element'"
-		:compact="true" >
-		<template #icon>
-			<div class="icon-edit" />
-		</template>
-	</NcListItem>
-	<NcListItem
-		:name="'Name of the element'"
-		:counter-number="3"
-		:compact="true" >
-		<template #icon>
-			<div class="icon-edit" />
-		</template>
-		<template #subname>
-			This one is with subname
-		</template>
-		<template #actions>
-			<NcActionButton>
-				Button one
-			</NcActionButton>
-			<NcActionButton>
-				Button two
-			</NcActionButton>
-		</template>
-	</NcListItem>
-	<NcListItem
-		:name="'Name of the element'"
-		:compact="true"
-		:counter-number="4"
-		href="https://nextcloud.com">
-		<template #icon>
-			<div class="icon-edit" />
-		</template>
-		<template #subname>
-			This one is with an external link
-		</template>
-	</NcListItem>
-</ul>
+```vue
+<template>
+	<ul style="width: 350px;">
+		<NcListItem
+			:name="'Name of the element'"
+			:counter-number="1"
+			:compact="true" >
+			<template #icon>
+				<IconNoteText :size="20" />
+			</template>
+			<template #subname>
+				This one is with subname
+			</template>
+			<template #actions>
+				<NcActionButton>
+					Button one
+				</NcActionButton>
+				<NcActionButton>
+					Button two
+				</NcActionButton>
+			</template>
+		</NcListItem>
+		<NcListItem
+			:name="'Name of the element'"
+			:compact="true" >
+			<template #icon>
+				<IconNoteText :size="20" />
+			</template>
+		</NcListItem>
+		<NcListItem
+			:name="'Name of the element'"
+			:counter-number="3"
+			:compact="true" >
+			<template #icon>
+				<IconNoteText :size="20" />
+			</template>
+			<template #subname>
+				This one is with subname
+			</template>
+			<template #actions>
+				<NcActionButton>
+					Button one
+				</NcActionButton>
+				<NcActionButton>
+					Button two
+				</NcActionButton>
+			</template>
+		</NcListItem>
+		<NcListItem
+			:name="'Name of the element'"
+			:compact="true"
+			:counter-number="4"
+			href="https://nextcloud.com">
+			<template #icon>
+				<IconNoteText :size="20" />
+			</template>
+			<template #subname>
+				This one is with an external link
+			</template>
+		</NcListItem>
+	</ul>
+</template>
+<script>
+	import IconNoteText from 'vue-material-design-icons/NoteText.vue'
+
+	export default {
+		components: {
+			IconNoteText,
+		},
+	}
+</script>
 ```
 </docs>
 
@@ -320,24 +331,23 @@
 		:exact="to ? exact : null">
 		<li class="list-item__wrapper"
 			:class="{ 'list-item__wrapper--active' : isActive || active }">
-			<a :id="anchorId"
-				ref="list-item"
-				:href="routerLinkHref || href"
-				:target="target || (href === '#' ? undefined : '_blank')"
-				:rel="href === '#' ? undefined : 'noopener noreferrer'"
+			<div ref="list-item"
 				class="list-item"
-				:aria-label="linkAriaLabel"
+				:class="{ 'list-item--compact': compact }"
 				@mouseover="handleMouseover"
-				@mouseleave="handleMouseleave"
-				@focus="handleFocus"
-				@blur="handleBlur"
-				@keydown.tab.exact="handleTab"
-				@click="onClick($event, navigate, routerLinkHref)"
-				@keydown.esc="hideActions">
-
-				<div class="list-item-content__wrapper"
-					:class="{ 'list-item-content__wrapper--compact': compact }">
-					<!-- @slot This slot is used for the NcAvatar or icon -->
+				@mouseleave="handleMouseleave">
+				<a :id="anchorId || undefined"
+					:aria-label="linkAriaLabel"
+					class="list-item__anchor"
+					:href="routerLinkHref || href"
+					:target="target || (href === '#' ? undefined : '_blank')"
+					:rel="href === '#' ? undefined : 'noopener noreferrer'"
+					@focus="showActions"
+					@focusout="handleBlur"
+					@click="onClick($event, navigate, routerLinkHref)"
+					@keydown.enter="onClick($event, navigate, routerLinkHref)"
+					@keydown.esc="hideActions">
+					<!-- @slot This slot is used for the NcAvatar or icon, the content of this slot must not be interactive -->
 					<slot name="icon" />
 
 					<!-- Main content -->
@@ -384,25 +394,26 @@
 							</div>
 						</div>
 					</div>
-					<!-- Actions -->
-					<div v-show="forceDisplayActions || displayActionsOnHoverFocus"
-						class="list-item-content__actions"
-						@click.prevent.stop="">
-						<NcActions ref="actions"
-							:primary="isActive || active"
-							:aria-label="computedActionsAriaLabel"
-							@update:open="handleActionsUpdateOpen">
-							<!-- @slot Provide the actions for the right side quick menu -->
-							<slot name="actions" />
-						</NcActions>
-					</div>
+				</a>
+
+				<!-- Actions -->
+				<div v-show="forceDisplayActions || displayActionsOnHoverFocus"
+					class="list-item-content__actions"
+					@focusout="handleBlur">
+					<NcActions ref="actions"
+						:primary="isActive || active"
+						:aria-label="computedActionsAriaLabel"
+						@update:open="handleActionsUpdateOpen">
+						<!-- @slot Provide the actions for the right side quick menu -->
+						<slot name="actions" />
+					</NcActions>
 				</div>
 
 				<!-- @slot Extra elements below the item -->
 				<div v-if="$slots.extra" class="list-item__extra">
 					<slot name="extra" />
 				</div>
-			</a>
+			</div>
 		</li>
 	</component>
 </template>
@@ -554,7 +565,6 @@ export default {
 	data() {
 		return {
 			hovered: false,
-			focused: false,
 			hasActions: false,
 			hasSubname: false,
 			displayActionsOnHoverFocus: false,
@@ -605,7 +615,7 @@ export default {
 		/**
 		 * Handle link click
 		 *
-		 * @param {PointerEvent} event - Native click event
+		 * @param {MouseEvent|KeyboardEvent} event - Native click or keydown event
 		 * @param {Function} [navigate] - VueRouter link's navigate if any
 		 * @param {string} [routerLinkHref] - VueRouter link's href
 		 */
@@ -620,12 +630,9 @@ export default {
 			if (routerLinkHref) {
 				navigate?.(event)
 				event.preventDefault()
+			} else {
+				window.location = this.href
 			}
-		},
-
-		handleMouseover() {
-			this.showActions()
-			this.hovered = true
 		},
 
 		showActions() {
@@ -640,15 +647,18 @@ export default {
 		},
 
 		/**
-		 * Show actions upon focus
+		 * @param {FocusEvent} event UI event
 		 */
-		handleFocus() {
-			this.focused = true
-			this.showActions()
-		},
-
-		handleBlur() {
-			this.focused = false
+		handleBlur(event) {
+			// do not hide if open
+			if (this.menuOpen) {
+				return
+			}
+			// do not hide if focus is kept within
+			if (this.$refs['list-item'].contains(event.relatedTarget)) {
+				return
+			}
+			this.hideActions()
 		},
 
 		/**
@@ -661,20 +671,9 @@ export default {
 			this.hovered = false
 		},
 
-		/**
-		 * This method checks if the root element of the component is focused and
-		 * if that's the case it focuses the actions button if available
-		 *
-		 * @param {Event} e the keydown event
-		 */
-		handleTab(e) {
-			if (this.focused && this.hasActions) {
-				e.preventDefault()
-				this.$refs.actions.$refs.menuButton.$el.focus()
-				this.focused = false
-			} else {
-				this.displayActionsOnHoverFocus = false
-			}
+		handleMouseover() {
+			this.showActions()
+			this.hovered = true
 		},
 
 		handleActionsUpdateOpen(e) {
@@ -704,18 +703,18 @@ export default {
 <style lang="scss" scoped>
 
 .list-item__wrapper {
+	display: flex;
 	position: relative;
 	width: 100%;
 
 	&--active,
-	&:active,
 	&.active {
 		.list-item {
 			background-color: var(--color-primary-element);
-			&:active,
 			&:hover,
-			&:focus,
-			&:focus-visible {
+			&:focus-within,
+			&:has(:focus-visible),
+			&:has(:active) {
 				background-color: var(--color-primary-element-hover);
 			}
 		}
@@ -733,38 +732,51 @@ export default {
 // NcListItem
 .list-item {
 	box-sizing: border-box;
-	display: block;
+	display: flex;
 	position: relative;
 	flex: 0 0 auto;
 	justify-content: flex-start;
 	padding: 8px 10px;
+	// 4px padding for the focus-visible styles
+	margin: 4px;
 	// Fix for border-radius being too large for 3-line entries like in Mail
 	// 44px avatar size / 2 + 8px padding, and 2px for better visual quality
 	border-radius: 32px;
-	margin: 2px 0;
 	width: 100%;
 	cursor: pointer;
 	transition: background-color var(--animation-quick) ease-in-out;
 	list-style: none;
-	&:active,
 	&:hover,
-	&:focus,
-	&:focus-visible {
+	&:focus-within,
+	&:has(:active),
+	&:has(:focus-visible) {
 		background-color: var(--color-background-hover);
 	}
 
-	&-content__wrapper {
-		display: flex;
-		align-items: center;
-		height: 48px;
+	&:has(&__anchor:focus-visible) {
+		outline: 2px solid var(--color-main-text);
+		box-shadow: 0 0 0 4px var(--color-main-background);
+	}
 
-		&--compact {
-			height: 36px;
+	&--compact {
+		padding: 4px 10px;
 
+		.list-item__anchor {
 			.line-one, .line-two {
-				margin-top: -4px;
-				margin-bottom: -4px;
+				margin-block: -4px;
 			}
+		}
+	}
+
+	&__anchor {
+		display: flex;
+		flex: 1 0 auto;
+		align-items: center;
+		height: var(--default-clickable-area);
+
+		// This is handled by the parent container
+		&:focus-visible {
+			outline: none;
 		}
 	}
 
