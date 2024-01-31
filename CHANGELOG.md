@@ -53,6 +53,8 @@ All notable changes to this project will be documented in this file.
 * fix(NcBreadcrumb): correctly emit drag events [\#5011](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5011) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 * fix(NcCheckboxContent): correctly check default slot [\#5058](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5058) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 * fix(NcBreadcrumbs): do not forward refs to hidden crumbs [\#5066](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5066) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* fix(NcAppSidebar): adjust animation class names [\#5168](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5168) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* fix(docs): bring back NcAppSidebar in docs [\#5167](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5167) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 
 ### Other Changes
 * Rename `checked` prop to `modelValue` [\#4994](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4994) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
