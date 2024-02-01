@@ -58,7 +58,7 @@ export default {
 </docs>
 
 <template>
-	<li class="action" :class="{ 'action--disabled': disabled }">
+	<li class="action" :class="{ 'action--disabled': disabled }" :role="liRole">
 		<span class="action-text-editable"
 			@click="onClick">
 			<!-- @slot Manually provide icon -->
@@ -104,6 +104,7 @@ import ActionTextMixin from '../../mixins/actionText.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+import { useNcActionsContext } from '../NcActions/composables/useNcActionsContext.js'
 
 export default {
 	name: 'NcActionTextEditable',
@@ -144,6 +145,13 @@ export default {
 		'update:value',
 		'submit',
 	],
+
+	setup() {
+		const { liRole } = useNcActionsContext()
+		return {
+			liRole,
+		}
+	},
 
 	computed: {
 		/**

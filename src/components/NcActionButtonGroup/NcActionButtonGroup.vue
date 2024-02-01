@@ -90,7 +90,7 @@ export default {
 </docs>
 
 <template>
-	<li class="nc-button-group-base" :role="isInSemanticMenu && 'presentation'">
+	<li class="nc-button-group-base" :role="liRole">
 		<div v-if="name" :id="labelId">
 			{{ name }}
 		</div>
@@ -104,19 +104,13 @@ export default {
 import { defineComponent } from 'vue'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { t } from '../../l10n.js'
+import { useNcActionsContext } from '../NcActions/composables/useNcActionsContext.js'
 
 /**
  * A wrapper for allowing inlining NcAction components within the action menu
  */
 export default defineComponent({
 	name: 'NcActionButtonGroup',
-
-	inject: {
-		isInSemanticMenu: {
-			from: 'NcActions:isSemanticMenu',
-			default: false,
-		},
-	},
 
 	props: {
 		/**
@@ -130,7 +124,9 @@ export default defineComponent({
 	},
 
 	setup() {
+		const { liRole } = useNcActionsContext()
 		return {
+			liRole,
 			labelId: `nc-action-button-group-${GenRandomId()}`,
 		}
 	},

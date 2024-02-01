@@ -941,7 +941,7 @@ import GenRandomId from '../../utils/GenRandomId.js'
 import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
 
-import Vue, { computed } from 'vue'
+import Vue from 'vue'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 const focusableSelector = '.focusable'
@@ -966,15 +966,15 @@ export default {
 	provide() {
 		return {
 			/**
-			 * NcActions can be used as:
-			 * - Application menu (has menu role)
-			 * - Navigation (has no specific role, should be used an element with navigation role)
-			 * - Popover with plain text or text inputs (has no specific role)
-			 * Depending on the usage (used items), the menu and its items should have different roles for a11y.
-			 * Provide the role for NcAction* components in the NcActions content.
+			 * Type of the actions
+			 * @type {import('vue').ComputedRef<'menu'|'navigatoin'|''>}
+			 */
+			'NcActions:getMenuType': () => this.actionsMenuSemanticType,
+			/**
+			 * Role of <li> (root element) of all the actions inside this NcActions
 			 * @type {import('vue').ComputedRef<boolean>}
 			 */
-			'NcActions:isSemanticMenu': computed(() => this.actionsMenuSemanticType === 'menu'),
+			'NcActions:getListItemRole': () => this.htmlRoles.liRole,
 		}
 	},
 
@@ -1132,9 +1132,15 @@ export default {
 			focusIndex: 0,
 			randomId: `menu-${GenRandomId()}`,
 			/**
-			 * @type {'menu'|'navigation'|'dialog'|'tooltip'|''}
+			 * NcActions can be used as:
+			 * - Menu - liker a desktop application, list of buttons, links and radio/checkbox buttons
+			 * - Navigation - a list of links and no other interactive elements
+			 * - Dialog - a popover with a data-input elements, similar to a form
+			 * - Tooltip - a popover with text only and no interactive elements
+			 * Depending on the usage (passed items), the menu and its items should have different roles for a11y and keyboard navigation.
+			 * @type {'menu'|'navigation'|'dialog'|'tooltip'}
 			 */
-			actionsMenuSemanticType: '',
+			actionsMenuSemanticType: 'dialog',
 			externalFocusTrapStack: [],
 		}
 	},
@@ -1150,6 +1156,38 @@ export default {
 
 		withFocusTrap() {
 			return this.actionsMenuSemanticType === 'dialog'
+		},
+
+		htmlRoles() {
+			// Until we add a new wrapper component for the actions menu,
+			// If the menu has some role, then LI must be presentation.
+			// If we have a wrapper over the menu UL,
+			// then wrapper may have its own role to keep list role on UL.
+			const actionsRoleToHtmlRoles = {
+				dialog: {
+					triggerAriaHaspopup: 'dialog',
+					ulRole: 'dialog',
+					liRole: 'presentation',
+				},
+				menu: {
+					triggerAriaHaspopup: 'menu',
+					ulRole: 'menu',
+					// menuitem is always inside the li
+					liRole: 'presentation',
+				},
+				navigation: {
+					triggerAriaHaspopup: 'true',
+					// Keep native list role
+					ulRole: undefined,
+					liRole: undefined,
+				},
+				tooltip: {
+					triggerAriaHaspopup: 'true',
+					ulRole: 'tooltip',
+					liRole: 'presentation',
+				},
+			}
+			return actionsRoleToHtmlRoles[this.actionsMenuSemanticType]
 		},
 	},
 
@@ -1513,14 +1551,6 @@ export default {
 			}
 		}
 
-		const actionsRoleToHtmlPopupRole = {
-			dialog: 'dialog',
-			menu: 'menu',
-			navigation: 'true',
-			tooltip: 'true',
-		}
-		const popupRole = actionsRoleToHtmlPopupRole[this.actionsMenuSemanticType]
-
 		/**
 		 * Render the provided action
 		 *
@@ -1624,7 +1654,7 @@ export default {
 						boundary: this.boundariesElement,
 						container: this.container,
 						popoverBaseClass: 'action-item__popper',
-						popupRole,
+						popupRole: this.htmlRoles.triggerAriaHaspopup,
 						setReturnFocus: this.withFocusTrap ? this.$refs.menuButton?.$el : null,
 						focusTrap: this.withFocusTrap,
 					},
@@ -1685,7 +1715,7 @@ export default {
 							attrs: {
 								id: this.randomId,
 								tabindex: '-1',
-								role: popupRole !== 'true' ? popupRole : undefined,
+								role: this.htmlRoles.ulRole,
 								// TODO: allow to provide dialog aria-label
 							},
 						}, [

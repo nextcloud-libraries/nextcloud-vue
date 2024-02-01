@@ -331,7 +331,7 @@ export default {
 </docs>
 
 <template>
-	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
+	<li class="action" :class="{ 'action--disabled': disabled }" :role="liRole">
 		<button :aria-label="ariaLabel"
 			:class="['action-button button-vue', {
 				'action-button--active': isChecked,
@@ -386,6 +386,7 @@ export default {
 import CheckIcon from 'vue-material-design-icons/Check.vue'
 import ChevronRightIcon from 'vue-material-design-icons/ChevronRight.vue'
 import ActionTextMixin from '../../mixins/actionText.js'
+import { useNcActionsContext } from '../NcActions/composables/useNcActionsContext.js'
 
 /**
  * Button component to be used in Actions
@@ -398,13 +399,6 @@ export default {
 		ChevronRightIcon,
 	},
 	mixins: [ActionTextMixin],
-
-	inject: {
-		isInSemanticMenu: {
-			from: 'NcActions:isSemanticMenu',
-			default: false,
-		},
-	},
 
 	props: {
 		/**
@@ -471,6 +465,14 @@ export default {
 		},
 	},
 
+	setup() {
+		const { menuType, liRole } = useNcActionsContext()
+		return {
+			menuType,
+			liRole,
+		}
+	},
+
 	computed: {
 		/**
 		 * determines if the action is focusable
@@ -507,7 +509,7 @@ export default {
 		buttonAttributes() {
 			const attributes = {}
 
-			if (this.isInSemanticMenu) {
+			if (this.menuType === 'menu') {
 				// By default it needs to be a menu item in semantic menus
 				attributes.role = 'menuitem'
 

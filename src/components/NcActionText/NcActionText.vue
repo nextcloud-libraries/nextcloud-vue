@@ -22,7 +22,7 @@
   -->
 
 <template>
-	<li class="action" :role="isInSemanticMenu && 'presentation'">
+	<li class="action" :role="liRole">
 		<span class="action-text"
 			@click="onClick">
 			<!-- @slot Manually provide icon -->
@@ -64,17 +64,18 @@
 
 <script>
 import ActionTextMixin from '../../mixins/actionText.js'
+import { useNcActionsContext } from '../NcActions/composables/useNcActionsContext.js'
 
 export default {
 	name: 'NcActionText',
 
 	mixins: [ActionTextMixin],
 
-	inject: {
-		isInSemanticMenu: {
-			from: 'NcActions:isSemanticMenu',
-			default: false,
-		},
+	setup() {
+		const { liRole } = useNcActionsContext()
+		return {
+			liRole,
+		}
 	},
 }
 </script>

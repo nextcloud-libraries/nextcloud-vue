@@ -30,21 +30,16 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 </docs>
 
 <template>
-	<li class="app-navigation-caption" :role="isInSemanticMenu && 'presentation'">
+	<li class="app-navigation-caption" :role="liRole">
 		{{ name }}
 	</li>
 </template>
 
 <script>
+import { useNcActionsContext } from '../NcActions/composables/useNcActionsContext.js'
+
 export default {
 	name: 'NcActionCaption',
-
-	inject: {
-		isInSemanticMenu: {
-			from: 'NcActions:isSemanticMenu',
-			default: false,
-		},
-	},
 
 	props: {
 		/**
@@ -54,6 +49,13 @@ export default {
 			type: String,
 			required: true,
 		},
+	},
+
+	setup() {
+		const { liRole } = useNcActionsContext()
+		return {
+			liRole,
+		}
 	},
 }
 </script>

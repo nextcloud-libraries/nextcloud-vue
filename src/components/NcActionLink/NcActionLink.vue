@@ -78,7 +78,7 @@ export default {
 </docs>
 
 <template>
-	<li class="action" :role="isInSemanticMenu && 'presentation'">
+	<li class="action" :role="liRole">
 		<a :download="download"
 			:href="href"
 			:aria-label="ariaLabel"
@@ -86,7 +86,7 @@ export default {
 			:title="title"
 			class="action-link focusable"
 			rel="nofollow noreferrer noopener"
-			:role="isInSemanticMenu && 'menuitem'"
+			:role="menuType === 'menu' ? 'menuitem' : undefined"
 			@click="onClick">
 
 			<!-- @slot Manually provide icon -->
@@ -127,18 +127,12 @@ export default {
 
 <script>
 import ActionTextMixin from '../../mixins/actionText.js'
+import { useNcActionsContext } from '../NcActions/composables/useNcActionsContext.js'
 
 export default {
 	name: 'NcActionLink',
 
 	mixins: [ActionTextMixin],
-
-	inject: {
-		isInSemanticMenu: {
-			from: 'NcActions:isSemanticMenu',
-			default: false,
-		},
-	},
 
 	props: {
 		/**
@@ -190,6 +184,14 @@ export default {
 			type: Boolean,
 			default: null,
 		},
+	},
+
+	setup() {
+		const { menuType, liRole } = useNcActionsContext()
+		return {
+			menuType,
+			liRole,
+		}
 	},
 }
 </script>

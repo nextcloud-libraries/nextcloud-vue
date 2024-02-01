@@ -22,14 +22,14 @@
   -->
 
 <template>
-	<li class="action" :role="isInSemanticMenu && 'presentation'">
+	<li class="action" :role="liRole">
 		<RouterLink :to="to"
 			:aria-label="ariaLabel"
 			:exact="exact"
 			:title="title"
 			class="action-router focusable"
 			rel="nofollow noreferrer noopener"
-			:role="isInSemanticMenu && 'menuitem'"
+			:role="menuType === 'menu' ? 'menuitem' : undefined"
 			@click.native="onClick">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
@@ -69,18 +69,12 @@
 
 <script>
 import ActionTextMixin from '../../mixins/actionText.js'
+import { useNcActionsContext } from '../NcActions/composables/useNcActionsContext.js'
 
 export default {
 	name: 'NcActionRouter',
 
 	mixins: [ActionTextMixin],
-
-	inject: {
-		isInSemanticMenu: {
-			from: 'NcActions:isSemanticMenu',
-			default: false,
-		},
-	},
 
 	props: {
 		/**
@@ -98,6 +92,14 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+	},
+
+	setup() {
+		const { menuType, liRole } = useNcActionsContext()
+		return {
+			menuType,
+			liRole,
+		}
 	},
 }
 </script>

@@ -37,7 +37,7 @@ So that only one of each name set can be selected at the same time.
 </docs>
 
 <template>
-	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
+	<li class="action" :class="{ 'action--disabled': disabled }" :role="liRole">
 		<span class="action-radio" role="menuitemradio" :aria-checked="ariaChecked">
 			<input :id="id"
 				ref="radio"
@@ -61,18 +61,12 @@ So that only one of each name set can be selected at the same time.
 <script>
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
+import { useNcActionsContext } from '../NcActions/composables/useNcActionsContext.js'
 
 export default {
 	name: 'NcActionRadio',
 
 	mixins: [ActionGlobalMixin],
-
-	inject: {
-		isInSemanticMenu: {
-			from: 'NcActions:isSemanticMenu',
-			default: false,
-		},
-	},
 
 	props: {
 		/**
@@ -124,6 +118,14 @@ export default {
 		'change',
 	],
 
+	setup() {
+		const { menuType, liRole } = useNcActionsContext()
+		return {
+			menuType,
+			liRole,
+		}
+	},
+
 	computed: {
 		/**
 		 * determines if the action is focusable
@@ -140,7 +142,7 @@ export default {
 		 * @return {'true'|'false'|undefined} aria-checked value if needed
 		 */
 		 ariaChecked() {
-			if (this.isInSemanticMenu) {
+			if (this.menuType === 'menu') {
 				return this.checked ? 'true' : 'false'
 			}
 			return undefined

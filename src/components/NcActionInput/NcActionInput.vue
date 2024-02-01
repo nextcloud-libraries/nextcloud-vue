@@ -136,7 +136,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 </docs>
 
 <template>
-	<li class="action" :class="{ 'action--disabled': disabled }">
+	<li class="action" :class="{ 'action--disabled': disabled }" :role="liRole">
 		<span :class="{
 				'action-input-picker--disabled': disabled,
 				'action-input--visible-label': labelOutside && label,
@@ -269,6 +269,7 @@ import NcTextField from '../NcTextField/index.js'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { t } from '../../l10n.js'
+import { useNcActionsContext } from '../NcActions/composables/useNcActionsContext.js'
 
 export default {
 	name: 'NcActionInput',
@@ -401,6 +402,13 @@ export default {
 		'change',
 		'update:value',
 	],
+
+	setup() {
+		const { liRole } = useNcActionsContext()
+		return {
+			liRole,
+		}
+	},
 
 	computed: {
 		isIconUrl() {
