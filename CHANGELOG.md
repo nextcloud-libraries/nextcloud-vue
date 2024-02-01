@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v8.6.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.6.1) (2024-02-01)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.6.0...v8.6.1)
+
+### 🐛 Fixed bugs
+* fix(NcAppNavigationNewItem): bring back correct CSS class [\#5194](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5194) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* revert: fix(NcActions): use new slots api [\#5196](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5196) \([ShGKme](https://github.com/ShGKme)\)
+
+### Other Changes
+* Updated translations
+* fix(CI): Adjust npm-publish to work with GPR [\#5183](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5183) \([susnux](https://github.com/susnux)\)
+* chore(CHANGELOG): Add missing entry for 8.6.0 release [\#5192](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5192) \([susnux](https://github.com/susnux)\)
+
 ## [v8.6.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.6.0) (2024-01-30)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.5.1...v8.6.0)
 
