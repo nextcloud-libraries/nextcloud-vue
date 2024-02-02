@@ -913,6 +913,8 @@ export default {
 
 				// Reset active item
 				this.autocompleteActiveId = undefined
+
+				this.setTributeFocusVisible(false)
 			}
 		},
 
@@ -920,6 +922,7 @@ export default {
 			if (!this.isAutocompleteOpen) {
 				return
 			}
+			this.setTributeFocusVisible(true)
 			this.onTributeSelectedItemWillChange()
 		},
 
@@ -962,10 +965,26 @@ export default {
 
 			// Handle selecting new item on mouse selection
 			tributeContainer.addEventListener('mousemove', () => {
+				this.setTributeFocusVisible(false)
 				this.onTributeSelectedItemWillChange()
 			}, { passive: true })
 		},
 
+		/**
+		 * Set tribute-container--focus-visible class on the Tribute container when the user navigates the listbox via keyboard.
+		 *
+		 * Because the real focus is kept on the textbox, we cannot use the :focus-visible pseudo-class
+		 * to style selected options in the autocomplete listbox.
+		 *
+		 * @param {boolean} withFocusVisible - should the focus-visible class be added
+		 */
+		setTributeFocusVisible(withFocusVisible) {
+			if (withFocusVisible) {
+				this.getTributeContainer().classList.add('tribute-container--focus-visible')
+			} else {
+				this.getTributeContainer().classList.remove('tribute-container--focus-visible')
+			}
+		},
 	},
 }
 </script>
