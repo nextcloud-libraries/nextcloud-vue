@@ -229,14 +229,11 @@
 			</template>
 		</NcListItem>
 		<NcListItem
-			:name="'Name of the element'"
+			:name="'Without subname, Name of the element'"
 			:bold="false"
 			:details="'1h'">
 			<template #icon>
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
-			</template>
-			<template #subname>
-				In this slot you can put both text and other components such as icons
 			</template>
 			<template #indicator>
 				<!-- Color dot -->
@@ -260,6 +257,39 @@
 
 ```
 
+### NcListItem one line mode
+```vue
+<NcListItem
+	:name="'This is an active element with highlighted counter'"
+	:bold="false"
+	:active="true"
+	:details="'1h'"
+	:counter-number="44"
+	one-line
+	counterType="highlighted">
+	<template #icon>
+		<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+	</template>
+	<template #subname>
+		In this slot you can put both text and other components such as icons
+	</template>
+	<template #indicator>
+		<!-- Color dot -->
+		<CheckboxBlankCircle :size="16" fill-color="#fff" />
+	</template>
+	<template #actions>
+		<NcActionButton>
+			Button one
+		</NcActionButton>
+		<NcActionButton>
+			Button two
+		</NcActionButton>
+		<NcActionButton>
+			Button three
+		</NcActionButton>
+	</template>
+</NcListItem>
+```
 ### NcListItem compact mode
 ```vue
 <template>
@@ -345,7 +375,10 @@
 			v-bind="$attrs">
 			<div ref="list-item"
 				class="list-item"
-				:class="{ 'list-item--compact': compact }"
+				:class="{
+					'list-item--compact': compact,
+					'list-item--one-line': oneLine,
+				}"
 				@mouseover="handleMouseover"
 				@mouseleave="handleMouseleave">
 				<a :id="anchorId || undefined"
@@ -363,45 +396,37 @@
 
 					<!-- Main content -->
 					<div class="list-item-content">
-						<div class="list-item-content__main"
-							:class="{ 'list-item-content__main--oneline': oneLine }">
-
-							<!-- First line, name and details -->
-							<div class="line-one">
-								<span class="line-one__name">
-									<!-- @slot Slot for the first line of the component. prop 'name' is used as a fallback is no slots are provided -->
-									<slot name="name">{{ name }}</slot>
-								</span>
-								<span v-if="showDetails"
-									class="line-one__details">
-									<!-- @slot This slot is used for some details in form of icon (prop `details` as a fallback) -->
-									<slot name="details">{{ details }}</slot>
-								</span>
+						<div class="list-item-content__main">
+							<div class="list-item-content__name">
+								<!-- @slot Slot for the first line of the component. prop 'name' is used as a fallback is no slots are provided -->
+								<slot name="name">{{ name }}</slot>
 							</div>
-
-							<!-- Second line, subname and counter -->
-							<div class="line-two"
+							<div v-if="hasSubname"
+								class="list-item-content__subname"
 								:class="{'line-two--bold': bold}">
-								<span v-if="hasSubname" class="line-two__subname">
-									<!-- @slot Slot for the second line of the component -->
-									<slot name="subname" />
-								</span>
+								<!-- @slot Slot for the second line of the component -->
+								<slot name="subname" />
+							</div>
+						</div>
+						<div class="list-item-content__details">
+							<div v-if="showDetails" class="list-item-details__details">
+								<!-- @slot This slot is used for some details in form of icon (prop `details` as a fallback) -->
+								<slot name="details">{{ details }}</slot>
+							</div>
+							<!-- Counter and indicator -->
+							<div v-if="counterNumber != 0 || hasIndicator"
+								v-show="showAdditionalElements"
+								class="list-item-details__extra">
+								<NcCounterBubble v-if="counterNumber != 0"
+									:active="isActive || active"
+									class="list-item-details__counter"
+									:type="counterType">
+									{{ counterNumber }}
+								</NcCounterBubble>
 
-								<!-- Counter and indicator -->
-								<span v-if="counterNumber != 0 || hasIndicator"
-									v-show="showAdditionalElements"
-									class="line-two__additional_elements">
-									<NcCounterBubble v-if="counterNumber != 0"
-										:active="isActive || active"
-										class="line-two__counter"
-										:type="counterType">
-										{{ counterNumber }}
-									</NcCounterBubble>
-
-									<span v-if="hasIndicator" class="line-two__indicator">
-										<!-- @slot This slot is used for some indicator in form of icon -->
-										<slot name="indicator" />
-									</span>
+								<span v-if="hasIndicator" class="list-item-details__indicator">
+									<!-- @slot This slot is used for some indicator in form of icon -->
+									<slot name="indicator" />
 								</span>
 							</div>
 						</div>
@@ -560,6 +585,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Show the list component layout
+		 */
+		oneLine: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	emits: [
@@ -580,10 +612,6 @@ export default {
 	},
 
 	computed: {
-		oneLine() {
-			return !this.hasSubname && !this.showDetails
-		},
-
 		showAdditionalElements() {
 			return !this.displayActionsOnHoverFocus || this.forceDisplayActions
 		},
@@ -722,14 +750,34 @@ export default {
 			}
 		}
 
-		.line-one__name, .line-one__details {
-			color: var(--color-primary-element-text) !important;
-		}
-
-		.line-two__subname {
+		.list-item-content__name,
+		.list-item-content__subname,
+		.list-item-content__details,
+		.list-item-details__details {
 			color: var(--color-primary-element-text) !important;
 		}
 	}
+	.list-item-content__name,
+	.list-item-content__subname,
+	.list-item-content__details,
+	.list-item-details__details {
+		white-space: nowrap;
+		margin: 0 auto 0 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
+.list-item-content__name {
+	min-width: 100px;
+	max-width: 300px;
+	flex: 1 1 10%;
+	text-overflow: ellipsis;
+}
+
+.list-item-content__subname {
+	flex: 1 0;
+	min-width: 0;
 }
 
 // NcListItem
@@ -770,12 +818,33 @@ export default {
 			}
 		}
 	}
+	.list-item-content__details {
+		display: flex;
+		flex-direction: row;
+		justify-content: end;
+	}
+	&--one-line {
+		padding: 10px;
+		margin: 2px;
+		.list-item-content__main {
+			display: flex;
+			justify-content: start;
+			gap: 12px;
+			min-width: 0;
+		}
+		.list-item-content__details {
+			display: flex;
+			flex-direction: row;
+			justify-content: end;
+		}
+	}
 
 	&__anchor {
 		display: flex;
 		flex: 1 0 auto;
 		align-items: center;
 		height: var(--default-clickable-area);
+		min-width: 0;
 
 		// This is handled by the parent container
 		&:focus-visible {
@@ -785,12 +854,12 @@ export default {
 
 	&-content {
 		display: flex;
-		flex: 1 1 auto;
+		flex: 1 0;
 		justify-content: space-between;
 		padding-left: 8px;
-
+		min-width: 0;
 		&__main {
-			flex: 1 1 auto;
+			flex: 1 0;
 			width: 0;
 			margin: auto 0;
 
@@ -807,61 +876,23 @@ export default {
 		}
 	}
 
+	&-details {
+		&__details {
+			color: var(--color-text-maxcontrast);
+			margin: 0 9px;
+			font-weight: normal;
+		}
+		&__extra {
+			margin: 2px 4px 0 4px;
+			display: flex;
+			align-items: center;
+		}
+		&__indicator {
+			margin: 0 5px;
+		}
+	}
 	&__extra {
 		margin-top: 4px;
-	}
-}
-
-.line-one {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	white-space: nowrap;
-	margin: 0 auto 0 0;
-	overflow: hidden;
-
-	&__name {
-		overflow: hidden;
-		flex-grow: 1;
-		cursor: pointer;
-		text-overflow: ellipsis;
-		color: var(--color-main-text);
-		font-weight: bold;
-	}
-
-	&__details {
-		color: var(--color-text-maxcontrast);
-		margin: 0 9px;
-		font-weight: normal;
-	}
-}
-
-.line-two {
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
-	white-space: nowrap;
-	&--bold {
-		font-weight: bold;
-	}
-
-	&__subname {
-		overflow: hidden;
-		flex-grow: 1;
-		cursor: pointer;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-		color: var(--color-text-maxcontrast);
-	}
-
-	&__additional_elements {
-		margin: 2px 4px 0 4px;
-		display: flex;
-		align-items: center;
-	}
-
-	&__indicator {
-		margin: 0 5px;
 	}
 }
 
