@@ -230,6 +230,11 @@ export default {
 			aria-multiline="true"
 			class="rich-contenteditable__input"
 			role="textbox"
+			aria-haspopup="listbox"
+			aria-autocomplete="inline"
+			:aria-controls="tributeId"
+			:aria-expanded="isAutocompleteOpen ? 'true' : 'false'"
+			:aria-activedescendant="autocompleteActiveId"
 			v-bind="$attrs"
 			v-on="listeners"
 			@focus="moveCursorToEnd"
@@ -241,6 +246,8 @@ export default {
 			@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
 			@paste="onPaste"
 			@keyup.stop.prevent.capture="onKeyUp"
+			@keydown.up.exact.stop="onTributeArrowKeyDown"
+			@keydown.down.exact.stop="onTributeArrowKeyDown"
 			@tribute-active-true="onTributeActive(true)"
 			@tribute-active-false="onTributeActive(false)" />
 		<div v-if="label"
@@ -385,20 +392,23 @@ export default {
 	],
 
 	setup() {
+		const uid = GenRandomId(5)
 		return {
+			// Constants
+			labelId: `nc-rich-contenteditable-${uid}-label`,
+			tributeId: `nc-rich-contenteditable-${uid}-tribute`,
 			/**
 			 * Non-reactive property to store Tribute instance
 			 *
 			 * @type {import('tributejs').default | null}
 			 */
 			tribute: null,
+			tributeStyleMutationObserver: null,
 		}
 	},
 
 	data() {
 		return {
-			labelId: `rich-label-${GenRandomId(5)}`,
-
 			// Represent the raw untrimmed text of the contenteditable
 			// serves no other purpose than to check whether the
 			// content is empty or not
@@ -406,6 +416,11 @@ export default {
 
 			// Is in text composition session in IME
 			isComposing: false,
+
+			// Tribute autocomplete
+			isAutocompleteOpen: false,
+			autocompleteActiveId: undefined,
+			isTributeIntegrationDone: false,
 		}
 	},
 
@@ -521,6 +536,10 @@ export default {
 		if (this.tribute) {
 			this.tribute.detach(this.$refs.contenteditable)
 		}
+
+		if (this.tributeStyleMutationObserver) {
+			this.tributeStyleMutationObserver.disconnect()
+		}
 	},
 
 	methods: {
@@ -534,6 +553,8 @@ export default {
 		},
 
 		initializeTribute() {
+			const renderMenuItem = (content) => `<div id="nc-rich-contenteditable-tribute-item-${GenRandomId(5)}" role="option">${content}</div>`
+
 			const tributesCollection = []
 			tributesCollection.push({
 				// Allow spaces in the middle of mentions
@@ -544,7 +565,7 @@ export default {
 				// Where to inject the menu popup
 				menuContainer: this.menuContainer,
 				// Popup mention autocompletion templates
-				menuItemTemplate: item => this.renderComponentHtml(item.original, NcAutoCompleteResult),
+				menuItemTemplate: item => renderMenuItem(this.renderComponentHtml(item.original, NcAutoCompleteResult)),
 				// Hide if no results
 				noMatchTemplate: () => '<span class="hidden"></span>',
 				// Inner display of mentions
@@ -568,8 +589,7 @@ export default {
 							// instead of trying to show an image and their name.
 							return item.original
 						}
-
-						return `<span class="tribute-container-emoji__item__emoji">${item.original.native}</span> :${item.original.short_name}`
+						return renderMenuItem(`<span class="tribute-container-emoji__item__emoji">${item.original.native}</span> :${item.original.short_name}`)
 					},
 					// Hide if no results
 					noMatchTemplate: () => t('No emoji found'),
@@ -613,7 +633,7 @@ export default {
 					// Where to inject the menu popup
 					menuContainer: this.menuContainer,
 					// Popup mention autocompletion templates
-					menuItemTemplate: item => `<img class="tribute-container-link__item__icon" src="${item.original.icon_url}"> <span class="tribute-container-link__item__title">${item.original.title}</span>`,
+					menuItemTemplate: item => renderMenuItem(`<img class="tribute-container-link__item__icon" src="${item.original.icon_url}"> <span class="tribute-container-link__item__title">${item.original.title}</span>`),
 					// Hide if no results
 					noMatchTemplate: () => t('No link provider found'),
 					selectTemplate: this.getLink,
@@ -860,10 +880,22 @@ export default {
 		},
 
 		/**
+		 * Get the currently selected item element id in Tribute.js container
+		 * @return {HTMLElement}
+		 */
+		getTributeSelectedItem() {
+			// Tribute does not provide a way to get the active item, only the data index
+			// So we have to find it manually by select class
+			return this.getTributeContainer().querySelector('.highlight [id^="nc-rich-contenteditable-tribute-item-"]')
+		},
+
+		/**
 		 * Handle Tribute activation
 		 * @param {boolean} isActive - is active
 		 */
 		onTributeActive(isActive) {
+			this.isAutocompleteOpen = isActive
+
 			if (isActive) {
 				// Tribute.js doesn't support containerClass update when new collection is open
 				// The first opened collection's containerClass stays forever
@@ -872,12 +904,68 @@ export default {
 				// So we have to manually update the class
 				// The default class is "tribute-container"
 				this.getTributeContainer().setAttribute('class', this.tribute.current.collection.containerClass || 'tribute-container')
+
+				this.setupTributeIntegration()
 			} else {
 				// Cancel loading data for autocomplete
 				// Otherwise it could be received when another autocomplete is already opened
 				this.debouncedAutoComplete.clear()
+
+				// Reset active item
+				this.autocompleteActiveId = undefined
 			}
 		},
+
+		onTributeArrowKeyDown() {
+			if (!this.isAutocompleteOpen) {
+				return
+			}
+			this.onTributeSelectedItemWillChange()
+		},
+
+		onTributeSelectedItemWillChange() {
+			// Wait until tribute has updated the selected item
+			requestAnimationFrame(() => {
+				this.autocompleteActiveId = this.getTributeSelectedItem()?.id
+			})
+		},
+
+		setupTributeIntegration() {
+			// Setup integration only once on the first open
+			if (this.isTributeIntegrationDone) {
+				return
+			}
+			this.isTributeIntegrationDone = true
+
+			const tributeContainer = this.getTributeContainer()
+
+			// For aria-controls
+			tributeContainer.id = this.tributeId
+
+			// Container with options must be a listbox
+			tributeContainer.setAttribute('role', 'listbox')
+			// Reset list+listitem role from ul+li
+			const ul = tributeContainer.children[0]
+			ul.setAttribute('role', 'presentation')
+
+			// Tribute.js does not provide a way to react on show/hide
+			// tribute-active-true/false events are fired on initial activation, which is too early with async autoComplete function
+			this.tributeStyleMutationObserver = new MutationObserver(([{ target }]) => {
+				if (target.style.display !== 'none') {
+					// Tribute is visible - there will be selected item
+					this.onTributeSelectedItemWillChange()
+				}
+			}).observe(tributeContainer, {
+				attributes: true,
+				attributeFilter: ['style'],
+			})
+
+			// Handle selecting new item on mouse selection
+			tributeContainer.addEventListener('mousemove', () => {
+				this.onTributeSelectedItemWillChange()
+			}, { passive: true })
+		},
+
 	},
 }
 </script>
