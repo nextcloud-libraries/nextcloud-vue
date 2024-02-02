@@ -240,7 +240,9 @@ export default {
 			@keydown.enter.exact="onEnter"
 			@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
 			@paste="onPaste"
-			@keyup.stop.prevent.capture="onKeyUp" />
+			@keyup.stop.prevent.capture="onKeyUp"
+			@tribute-active-true="onTributeActive(true)"
+			@tribute-active-false="onTributeActive(false)" />
 		<div v-if="label"
 			:id="labelId"
 			class="rich-contenteditable__label">
@@ -371,11 +373,21 @@ export default {
 		'smart-picker-submit',
 	],
 
+	setup() {
+		return {
+			/**
+			 * Non-reactive property to store Tribute instance
+			 *
+			 * @type {import('tributejs').default | null}
+			 */
+			tribute: null,
+		}
+	},
+
 	data() {
 		return {
 			labelId: `rich-label-${GenRandomId(5)}`,
 			textSmiles: [],
-			tribute: null,
 			autocompleteOptions: {
 				// Allow spaces in the middle of mentions
 				allowSpaces: true,
@@ -571,18 +583,16 @@ export default {
 			this.textSmiles.push(':-' + char)
 		})
 
-		this.autocompleteTribute = new Tribute(this.autocompleteOptions)
-		this.autocompleteTribute.attach(this.$refs.contenteditable)
-
+		const tributesCollection = []
+		tributesCollection.push(this.autocompleteOptions)
 		if (this.emojiAutocomplete) {
-			this.emojiTribute = new Tribute(this.emojiOptions)
-			this.emojiTribute.attach(this.$refs.contenteditable)
+			tributesCollection.push(this.emojiOptions)
 		}
-
 		if (this.linkAutocomplete) {
-			this.linkTribute = new Tribute(this.linkOptions)
-			this.linkTribute.attach(this.$refs.contenteditable)
+			tributesCollection.push(this.linkOptions)
 		}
+		this.tribute = new Tribute({ collection: tributesCollection })
+		this.tribute.attach(this.$refs.contenteditable)
 
 		// Update default value
 		this.updateContent(this.value)
@@ -592,14 +602,8 @@ export default {
 		this.$refs.contenteditable.contentEditable = this.canEdit
 	},
 	beforeDestroy() {
-		if (this.autocompleteTribute) {
-			this.autocompleteTribute.detach(this.$refs.contenteditable)
-		}
-		if (this.emojiTribute) {
-			this.emojiTribute.detach(this.$refs.contenteditable)
-		}
-		if (this.linkTribute) {
-			this.linkTribute.detach(this.$refs.contenteditable)
+		if (this.tribute) {
+			this.tribute.detach(this.$refs.contenteditable)
 		}
 	},
 
@@ -807,7 +811,7 @@ export default {
 			// or in a text composition session with IME
 			if (this.multiline
 				|| this.isOverMaxlength
-				|| this.autocompleteTribute.isActive || this.emojiTribute.isActive || this.linkTribute.isActive
+				|| this.tribute.isActive
 				|| this.isComposing) {
 				return
 			}
@@ -839,6 +843,30 @@ export default {
 		onKeyUp(event) {
 			// prevent tribute from opening on keyup
 			event.stopImmediatePropagation()
+		},
+
+		/**
+		 * Get HTML element with Tribute.js container
+		 * @return {HTMLElement}
+		 */
+		getTributeContainer() {
+			return this.tribute.menu
+		},
+
+		/**
+		 * Handle Tribute activation
+		 * @param {boolean} isActive - is active
+		 */
+		onTributeActive(isActive) {
+			if (isActive) {
+				// Tribute.js doesn't support containerClass update when new collection is open
+				// The first opened collection's containerClass stays forever
+				// https://github.com/zurb/tribute/issues/595
+				// https://github.com/zurb/tribute/issues/627
+				// So we have to manually update the class
+				// The default class is "tribute-container"
+				this.getTributeContainer().setAttribute('class', this.tribute.current.collection.containerClass || 'tribute-container')
+			}
 		},
 	},
 }
