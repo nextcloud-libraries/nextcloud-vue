@@ -481,6 +481,15 @@ export default {
 			delete listeners.paste
 			return listeners
 		},
+
+		/**
+		 * Compute debounce function for the autocomplete function
+		 */
+		 debouncedAutoComplete() {
+			return debounce(async (search, callback) => {
+				this.autoComplete(search, callback)
+			}, 100)
+		},
 	},
 
 	watch: {
@@ -837,13 +846,6 @@ export default {
 			this.$emit('submit', event)
 		},
 
-		/**
-		 * Debounce the autocomplete function
-		 */
-		debouncedAutoComplete: debounce(async function(search, callback) {
-			this.autoComplete(search, callback)
-		}, 100),
-
 		onKeyUp(event) {
 			// prevent tribute from opening on keyup
 			event.stopImmediatePropagation()
@@ -870,6 +872,10 @@ export default {
 				// So we have to manually update the class
 				// The default class is "tribute-container"
 				this.getTributeContainer().setAttribute('class', this.tribute.current.collection.containerClass || 'tribute-container')
+			} else {
+				// Cancel loading data for autocomplete
+				// Otherwise it could be received when another autocomplete is already opened
+				this.debouncedAutoComplete.clear()
 			}
 		},
 	},
