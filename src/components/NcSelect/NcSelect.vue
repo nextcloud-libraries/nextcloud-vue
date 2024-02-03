@@ -1034,7 +1034,7 @@ export default {
 
 	mounted() {
 		if (!this.labelOutside && !this.inputLabel && !this.ariaLabelCombobox) {
-			Vue.util.warn('[NcSelect] An `inputLabel` or `ariaLabelCombobox` should be set.')
+			Vue.util.warn('[NcSelect] An `inputLabel` or `ariaLabelCombobox` should be set. If an external label is used, `labelOutside` should be set to `true`.')
 		}
 		if (this.inputLabel && this.ariaLabelCombobox) {
 			Vue.util.warn('[NcSelect] Only one of `inputLabel` or `ariaLabelCombobox` should to be set.')
