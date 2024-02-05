@@ -70,14 +70,14 @@ export default {
 				Test01: {
 					icon: 'icon-user',
 					id: 'Test01',
-					title: 'Test01',
+					label: 'Test01',
 					source: 'users',
 					primary: true,
 				},
 				Test02: {
 					icon: 'icon-user',
 					id: 'Test02',
-					title: 'Test02',
+					label: 'Test02',
 					source: 'users',
 					status: {
 						clearAt: null,
@@ -90,7 +90,7 @@ export default {
 				'Test@User': {
 					icon: 'icon-user',
 					id: 'Test@User',
-					title: 'Test 03',
+					label: 'Test 03',
 					source: 'users',
 					status: {
 						clearAt: null,
@@ -103,7 +103,7 @@ export default {
 				'Test Offline': {
 					icon: 'icon-user',
 					id: 'Test Offline',
-					title: 'Test Offline',
+					label: 'Test Offline',
 					source: 'users',
 					status: {
 						clearAt: null,
@@ -116,7 +116,7 @@ export default {
 				'Test DND': {
 					icon: 'icon-user',
 					id: 'Test DND',
-					title: 'Test DND',
+					label: 'Test DND',
 					source: 'users',
 					status: {
 						clearAt: null,
@@ -560,8 +560,8 @@ export default {
 				// Allow spaces in the middle of mentions
 				allowSpaces: true,
 				fillAttr: 'id',
-				// Search against id and title (display name)
-				lookup: result => `${result.id} ${result.title}`,
+				// Search against id and label (display name) (fallback to title for v8.0.0..8.6.1 compatibility)
+				lookup: result => `${result.id} ${result.label ?? result.title}`,
 				// Where to inject the menu popup
 				menuContainer: this.menuContainer,
 				// Popup mention autocompletion templates
