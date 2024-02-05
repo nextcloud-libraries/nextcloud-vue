@@ -553,7 +553,7 @@ export default {
 		},
 
 		initializeTribute() {
-			const renderMenuItem = (content) => `<div id="nc-rich-contenteditable-tribute-item-${GenRandomId(5)}" role="option">${content}</div>`
+			const renderMenuItem = (content) => `<div id="nc-rich-contenteditable-tribute-item-${GenRandomId(5)}" class="tribute-item" role="option">${content}</div>`
 
 			const tributesCollection = []
 			tributesCollection.push({
@@ -572,6 +572,11 @@ export default {
 				selectTemplate: item => this.genSelectTemplate(item?.original?.id),
 				// Autocompletion results
 				values: this.debouncedAutoComplete,
+				// Class added to the menu container
+				containerClass: 'tribute-container tribute-container-autocomplete',
+				// Class added to each list item
+				itemClass: 'tribute-container__item',
+
 			})
 
 			if (this.emojiAutocomplete) {
@@ -618,9 +623,9 @@ export default {
 						cb(emojiResults)
 					},
 					// Class added to the menu container
-					containerClass: 'tribute-container-emoji',
+					containerClass: 'tribute-container tribute-container-emoji',
 					// Class added to each list item
-					itemClass: 'tribute-container-emoji__item',
+					itemClass: 'tribute-container__item tribute-container-emoji__item',
 				})
 			}
 
@@ -640,9 +645,9 @@ export default {
 					// Pass the search results as values
 					values: (text, cb) => cb(searchProvider(text)),
 					// Class added to the menu container
-					containerClass: 'tribute-container-link',
+					containerClass: 'tribute-container tribute-container-link',
 					// Class added to each list item
-					itemClass: 'tribute-container-link__item',
+					itemClass: 'tribute-container__item tribute-container-link__item',
 				})
 			}
 
@@ -1085,56 +1090,77 @@ export default {
 </style>
 
 <style lang="scss">
-.tribute-container, .tribute-container-emoji, .tribute-container-link {
+.tribute-container {
 	z-index: 9000;
 	overflow: auto;
-	min-width: 250px;
-	max-width: 300px;
-	// Show maximum 4 entries and a half to show scroll
-	// 44px + 10px padding
-	max-height: ($clickable-area + 20px) * 4.5;
 	// Space it out a bit from the text
-	margin: 5px 0;
-	color: var(--color-main-text);
+	margin: var(--default-grid-baseline) 0;
+	padding: var(--default-grid-baseline);
+	color: var(--color-text-maxcontrast);
 	border-radius: var(--border-radius);
 	background: var(--color-main-background);
 	box-shadow: 0 1px 5px var(--color-box-shadow);
-}
 
-.tribute-container-emoji, .tribute-container-link {
-	min-width: 200px;
-	max-width: 200px;
-	padding: 4px;
-	// Show maximum 5 entries and a half to show scroll
-	max-height: 35px * 5 + math.div(35px, 2) !important;
-
-	&__item {
-		border-radius: 8px;
-		padding: 4px 8px;
-		margin-bottom: 4px;
-		opacity: 0.8;
+	.tribute-container__item {
+		color: var(--color-max-contrast);
+		border-radius: var(--border-radius);
+		padding: var(--default-grid-baseline) calc(2 * var(--default-grid-baseline));
+		margin-bottom: var(--default-grid-baseline);
 		cursor: pointer;
-
-		// Take care of long names
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
 
 		&:last-child {
 			margin-bottom: 0;
 		}
 
-		&__emoji {
-			padding-right: 8px;
+		&.highlight {
+			color: var(--color-main-text);
+			background: var(--color-background-hover);
+
+			&, * {
+				cursor: pointer;
+			}
 		}
 	}
 
-	.highlight {
-		opacity: 1;
-		color: var(--color-primary-element-light-text);
-		background: var(--color-primary-element-light);
-		&, * {
-			cursor: pointer;
+	&.tribute-container--focus-visible {
+		.highlight.tribute-container__item {
+			outline: 2px solid var(--color-main-text) !important;
+		}
+	}
+}
+
+.tribute-container-autocomplete {
+	min-width: 250px;
+	max-width: 300px;
+	// Show maximum 4 entries and a half to show scroll
+	// Autocomplete height
+	// + 2 paddings around autocomplete
+	// + 2 paddings arouind tribute item
+	// + 1 padding gap
+	// And 1.5 paddings - container's padding without the last gap
+	max-height: calc((var(--default-clickable-area) + 5 * var(--default-grid-baseline)) * 4.5 - 1.5 * var(--default-grid-baseline));
+}
+
+.tribute-container-emoji,
+.tribute-container-link {
+	min-width: 200px;
+	max-width: 200px;
+	// Show maximum 5 entries and a half to show scroll
+	// Item height
+	// + 2 paddings around autocomplete
+	// + 2 paddings arouind tribute item
+	// + 1 padding gap
+	// And 1.5 paddings - container's padding without the last gap
+	max-height: calc((24px + 3 * var(--default-grid-baseline)) * 5.5 - 1.5 * var(--default-grid-baseline));
+
+	.tribute-item {
+		// Take care of long names
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+		&__emoji {
+			padding-right: calc(var(--default-grid-baseline) * 2);
 		}
 	}
 }
@@ -1142,7 +1168,7 @@ export default {
 .tribute-container-link {
 	min-width: 200px;
 	max-width: 300px;
-	&__item {
+	.tribute-item {
 		display: flex;
 		align-items: center;
 		&__title {
@@ -1155,7 +1181,7 @@ export default {
 			width: 20px;
 			height: 20px;
 			object-fit: contain;
-			padding-right: 8px;
+			padding-right: calc(var(--default-grid-baseline) * 2);
 			filter: var(--background-invert-if-dark);
 		}
 	}
