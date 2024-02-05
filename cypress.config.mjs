@@ -14,13 +14,11 @@ export default defineConfig({
 	defaultCommandTimeout: 6000,
 
 	env: {
-		visualRegression: {
-			type: 'regression',
-			failSilently: false,
-			baseDirectory: './cypress/snapshots/base',
-			diffDirectory: './cypress/snapshots/diff',
-			trashAssetsBeforeRuns: true,
-		},
+		visualRegressionType: 'regression',
+		visualRegressionBaseDirectory: './cypress/snapshots/base',
+		visualRegressionDiffDirectory: './cypress/snapshots/diff',
+		visualRegressionGenerateDiff: true,
+		visualRegressionFailSilently: false,
 	},
 
 	screenshotsFolder: './cypress/snapshots/actual',
