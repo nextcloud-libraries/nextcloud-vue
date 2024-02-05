@@ -112,32 +112,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$autocomplete-padding: 10px;
-
 .autocomplete-result {
 	display: flex;
-	height: $clickable-area;
-	padding: $autocomplete-padding;
-
-	.highlight & {
-		color: var(--color-primary-element-light-text);
-		background: var(--color-primary-element-light);
-		&, * {
-			cursor: pointer;
-		}
-	}
+	height: var(--default-clickable-area);
+	padding: var(--default-grid-baseline) 0;
 
 	&__icon {
 		position: relative;
-		flex: 0 0 $clickable-area;
-		width: $clickable-area;
-		min-width: $clickable-area;
-		height: $clickable-area;
-		border-radius: $clickable-area;
+		flex: 0 0 var(--default-clickable-area);
+		width: var(--default-clickable-area);
+		min-width: var(--default-clickable-area);
+		height: var(--default-clickable-area);
+		border-radius: var(--default-clickable-area);
 		background-color: var(--color-background-darker);
 		background-repeat: no-repeat;
 		background-position: center;
-		background-size: $clickable-area - 2 * $autocomplete-padding;
+		background-size: contain;
 		&--with-avatar {
 			color: inherit;
 			background-size: cover;
@@ -174,7 +164,7 @@ $autocomplete-padding: 10px;
 		flex-direction: column;
 		justify-content: center;
 		min-width: 0;
-		padding-left: $autocomplete-padding;
+		padding-left: calc(var(--default-grid-baseline) * 2);
 	}
 
 	&__title,
