@@ -34,10 +34,10 @@
 				:status="status.status" />
 		</div>
 
-		<!-- Title and subline -->
+		<!-- Label and subline -->
 		<span class="autocomplete-result__content">
-			<span class="autocomplete-result__title" :title="title">
-				{{ title }}
+			<span class="autocomplete-result__title" :title="labelWithFallback">
+				{{ labelWithFallback }}
 			</span>
 			<span v-if="subline" class="autocomplete-result__subline">
 				{{ subline }}
@@ -59,9 +59,18 @@ export default {
 	},
 
 	props: {
+		/**
+		 * @deprecated Use `label` instead
+		 */
 		title: {
 			type: String,
-			required: true,
+			required: false,
+			default: null,
+		},
+		label: {
+			type: String,
+			required: false,
+			default: null,
 		},
 		subline: {
 			type: String,
@@ -97,6 +106,10 @@ export default {
 			return this.id && this.source === 'users'
 				? this.getAvatarUrl(this.id, 44)
 				: null
+		},
+		// For backwards compatibility
+		labelWithFallback() {
+			return this.label || this.title
 		},
 	},
 
