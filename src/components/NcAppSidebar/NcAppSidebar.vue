@@ -348,6 +348,7 @@ export default {
 		<aside id="app-sidebar-vue"
 			ref="sidebar"
 			class="app-sidebar"
+			:aria-labelledby="`app-sidebar-vue-${uid}__header`"
 			@keydown.esc.stop="isMobile && closeSidebar()">
 			<header :class="{
 					'app-sidebar-header--with-figure': hasFigure,
@@ -403,6 +404,7 @@ export default {
 							<div class="app-sidebar-header__mainname-container">
 								<!-- main name -->
 								<h2 v-show="!nameEditable"
+									:id="`app-sidebar-vue-${uid}__header`"
 									v-linkify="{text: name, linkify: linkifyName}"
 									:aria-label="title"
 									:title="title"
@@ -492,6 +494,7 @@ import Focus from '../../directives/Focus/index.js'
 import Linkify from '../../directives/Linkify/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
 
@@ -650,6 +653,7 @@ export default {
 
 	setup() {
 		return {
+			uid: GenRandomId(),
 			isMobile: useIsSmallMobile(),
 		}
 	},
