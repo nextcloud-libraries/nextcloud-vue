@@ -19,7 +19,7 @@
 	</div>
 </template>
 <script>
-import { renderWidget, isWidgetRegistered, destroyWidget } from './widgets.js'
+import { renderWidget, isWidgetRegistered, destroyWidget } from './../../functions/reference/widgets.js'
 
 export default {
 	name: 'NcReferenceWidget',

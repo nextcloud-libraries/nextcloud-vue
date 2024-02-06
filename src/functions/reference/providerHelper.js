@@ -1,6 +1,6 @@
 import { isCustomPickerElementRegistered } from './customPickerElements.js'
 
-import { t } from '../../../l10n.js'
+import { t } from '../../l10n.js'
 
 import axios from '@nextcloud/axios'
 import { loadState } from '@nextcloud/initial-state'
