@@ -40,7 +40,7 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 		@dragover.prevent="() => {}"
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
-		<NcButton v-if="(name || icon) && !$slots.default"
+		<NcButton v-if="(icon || $slots.icon) && !$slots.default"
 			:title="title"
 			:aria-label="icon ? name : undefined"
 			type="tertiary"
@@ -51,7 +51,16 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 					<span :class="icon" class="icon" />
 				</slot>
 			</template>
-			<template v-else #default>
+			<template v-if="forceIconText" #default>
+				{{ name }}
+			</template>
+		</NcButton>
+		<NcButton v-else-if="!$slots.default"
+			:aria-label="icon ? name : undefined"
+			type="tertiary"
+			v-bind="linkAttributes"
+			v-on="$listeners">
+			<template #default>
 				{{ name }}
 			</template>
 		</NcButton>
@@ -126,11 +135,19 @@ export default {
 		},
 
 		/**
-		 * Set a css icon-class to show an icon instead of the name text.
+		 * Set a css icon-class to show an icon along name text (if forceIconText is provided, otherwise just icon).
 		 */
 		icon: {
 			type: String,
 			default: '',
+		},
+
+		/**
+		 * Enables text to accompany the icon, if the icon was provided. The text that will be displayed is the name prop.
+		 */
+		forceIconText: {
+			type: Boolean,
+			default: false,
 		},
 
 		/**
