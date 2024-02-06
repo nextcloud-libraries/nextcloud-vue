@@ -865,6 +865,17 @@ export default {
 		},
 
 		/**
+		 * Focus the active tab
+		 * @public
+		 */
+		focusActiveTabContent() {
+			// If a tab is focused then probably a new trigger element moved the focus to the sidebar
+			this.preserveElementToReturnFocus()
+
+			this.$refs.tabs.focusActiveTabContent()
+		},
+
+		/**
 		 * Emit name change event to parent component
 		 *
 		 * @param {Event} event input event
