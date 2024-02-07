@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 * chore(NcSelect): Mention labelOutside for external label use by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5211
 
 ## [v8.6.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.6.1) (2024-02-01)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.6.0...v8.6.1)
 
 ### 🐛 Fixed bugs
 * fix(NcAppNavigationNewItem): bring back correct CSS class [\#5194](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5194) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
