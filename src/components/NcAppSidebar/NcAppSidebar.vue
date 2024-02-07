@@ -348,6 +348,7 @@ export default {
 		<aside id="app-sidebar-vue"
 			ref="sidebar"
 			class="app-sidebar"
+			:aria-labelledby="`app-sidebar-vue-${uid}__header`"
 			@keydown.esc.stop="isMobile && closeSidebar()">
 			<header :class="{
 					'app-sidebar-header--with-figure': hasFigure,
@@ -403,11 +404,13 @@ export default {
 							<div class="app-sidebar-header__mainname-container">
 								<!-- main name -->
 								<h2 v-show="!nameEditable"
+									:id="`app-sidebar-vue-${uid}__header`"
+									ref="header"
 									v-linkify="{text: name, linkify: linkifyName}"
 									:aria-label="title"
 									:title="title"
 									class="app-sidebar-header__mainname"
-									:tabindex="nameEditable ? 0 : undefined"
+									:tabindex="nameEditable ? 0 : -1"
 									@click.self="editName">
 									{{ name }}
 								</h2>
@@ -492,6 +495,7 @@ import Focus from '../../directives/Focus/index.js'
 import Linkify from '../../directives/Linkify/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
 
@@ -650,6 +654,7 @@ export default {
 
 	setup() {
 		return {
+			uid: GenRandomId(),
 			isMobile: useIsSmallMobile(),
 		}
 	},
@@ -661,6 +666,7 @@ export default {
 			favoriteTranslated: t('Favorite'),
 			isStarred: this.starred,
 			focusTrap: null,
+			elementToReturnFocus: null,
 		}
 	},
 
@@ -686,7 +692,16 @@ export default {
 		},
 	},
 
+	created() {
+		this.preserveElementToReturnFocus()
+	},
+
 	mounted() {
+		// Focus sidebar on open only if it was opened by a user interaction
+		if (this.elementToReturnFocus) {
+			this.focus()
+		}
+
 		this.toggleFocusTrap()
 	},
 
@@ -697,6 +712,23 @@ export default {
 	},
 
 	methods: {
+		preserveElementToReturnFocus() {
+			// Save the element that had focus before the sidebar was opened to return back on close
+			if (document.activeElement && document.activeElement !== document.body) {
+				this.elementToReturnFocus = document.activeElement
+
+				// Special case for menus (NcActions)
+				// If a sidebar was opened from a menu item, we want to return focus to the menu trigger instead of the item
+				if (this.elementToReturnFocus.getAttribute('role') === 'menuitem') {
+					const menu = this.elementToReturnFocus.closest('[role="menu"]')
+					if (menu) {
+						const menuTrigger = document.querySelector(`[aria-controls="${menu.id}"]`)
+						this.elementToReturnFocus = menuTrigger
+					}
+				}
+			}
+		},
+
 		initFocusTrap() {
 			if (this.focusTrap) {
 				return
@@ -721,7 +753,7 @@ export default {
 		/**
 		 * Activate focus trap if it is currently needed, otherwise deactivate
 		 */
-		 toggleFocusTrap() {
+		toggleFocusTrap() {
 			if (this.isMobile) {
 				this.initFocusTrap()
 				this.focusTrap.activate()
@@ -761,6 +793,10 @@ export default {
 			 * @type {HTMLElement}
 			 */
 			this.$emit('closed', element)
+
+			// Return focus to the element that had focus before the sidebar was opened
+			this.elementToReturnFocus?.focus({ focusVisible: true })
+			this.elementToReturnFocus = null
 		},
 
 		/**
@@ -818,6 +854,25 @@ export default {
 					() => this.$refs.nameInput.focus(),
 				)
 			}
+		},
+
+		/**
+		 * Focus the sidebar
+		 * @public
+		 */
+		focus() {
+			this.$refs.header.focus()
+		},
+
+		/**
+		 * Focus the active tab
+		 * @public
+		 */
+		focusActiveTabContent() {
+			// If a tab is focused then probably a new trigger element moved the focus to the sidebar
+			this.preserveElementToReturnFocus()
+
+			this.$refs.tabs.focusActiveTabContent()
 		},
 
 		/**

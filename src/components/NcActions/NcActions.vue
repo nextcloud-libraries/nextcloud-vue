@@ -1249,10 +1249,15 @@ export default {
 			 */
 			this.$emit('open')
 		},
-		closeMenu(returnFocus = true) {
+		async closeMenu(returnFocus = true) {
 			if (!this.opened) {
 				return
 			}
+
+			// Wait for the next tick to keep the menu in DOM, allowing other components to find what button in what menu was used,
+			// for example, to implement auto set return focus.
+			// NcPopover will actually remove the menu from DOM also on the next tick.
+			await this.$nextTick()
 
 			this.opened = false
 
