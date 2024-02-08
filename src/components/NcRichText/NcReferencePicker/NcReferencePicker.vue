@@ -32,8 +32,8 @@ import NcCustomPickerElement from './NcCustomPickerElement.vue'
 import NcProviderList from './NcProviderList.vue'
 import NcRawLinkInput from './NcRawLinkInput.vue'
 import NcSearch from './NcSearch.vue'
-import { isCustomPickerElementRegistered } from './customPickerElements.js'
-import { touchProvider } from './providerHelper.js'
+import { isCustomPickerElementRegistered } from './../../../functions/reference/customPickerElements.js'
+import { touchProvider } from './../../../functions/reference/providerHelper.js'
 
 const MODES = {
 	providerList: 1,
