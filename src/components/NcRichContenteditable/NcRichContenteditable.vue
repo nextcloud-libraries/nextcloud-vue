@@ -575,7 +575,7 @@ export default {
 				// Class added to the menu container
 				containerClass: `${this.$style['tribute-container']} ${this.$style['tribute-container-autocomplete']}`,
 				// Class added to each list item
-				itemClass: `${this.$style['tribute-container__item']}`,
+				itemClass: this.$style['tribute-container__item'],
 
 			})
 
@@ -594,7 +594,7 @@ export default {
 							// instead of trying to show an image and their name.
 							return item.original
 						}
-						return renderMenuItem(`<span class="${this.$style['tribute-container-emoji__item__emoji']}">${item.original.native}</span> :${item.original.short_name}`)
+						return renderMenuItem(`<span class="${this.$style['tribute-item__emoji']}">${item.original.native}</span> :${item.original.short_name}`)
 					},
 					// Hide if no results
 					noMatchTemplate: () => t('No emoji found'),
@@ -625,7 +625,7 @@ export default {
 					// Class added to the menu container
 					containerClass: `${this.$style['tribute-container']} ${this.$style['tribute-container-emoji']}`,
 					// Class added to each list item
-					itemClass: `${this.$style['tribute-container__item']} ${this.$style['tribute-container-emoji__item']}`,
+					itemClass: this.$style['tribute-container__item'],
 				})
 			}
 
@@ -638,7 +638,7 @@ export default {
 					// Where to inject the menu popup
 					menuContainer: this.menuContainer,
 					// Popup mention autocompletion templates
-					menuItemTemplate: item => renderMenuItem(`<img class="${this.$style['tribute-container-link__item__icon']}" src="${item.original.icon_url}"> <span class="${this.$style['tribute-container-link__item__title']}">${item.original.title}</span>`),
+					menuItemTemplate: item => renderMenuItem(`<img class="${this.$style['tribute-item__icon']}" src="${item.original.icon_url}"> <span class="${this.$style['tribute-item__title']}">${item.original.title}</span>`),
 					// Hide if no results
 					noMatchTemplate: () => t('No link provider found'),
 					selectTemplate: this.getLink,
@@ -647,7 +647,7 @@ export default {
 					// Class added to the menu container
 					containerClass: `${this.$style['tribute-container']} ${this.$style['tribute-container-link']}`,
 					// Class added to each list item
-					itemClass: `${this.$style['tribute-container__item']} ${this.$style['tribute-container-link__item']}`,
+					itemClass: this.$style['tribute-container__item'],
 				})
 			}
 
@@ -1102,7 +1102,7 @@ export default {
 	box-shadow: 0 1px 5px var(--color-box-shadow);
 
 	.tribute-container__item {
-		color: var(--color-max-contrast);
+		color: var(--color-text-maxcontrast);
 		border-radius: var(--border-radius);
 		padding: var(--default-grid-baseline) calc(2 * var(--default-grid-baseline));
 		margin-bottom: var(--default-grid-baseline);
