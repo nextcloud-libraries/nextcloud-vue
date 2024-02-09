@@ -553,7 +553,7 @@ export default {
 		},
 
 		initializeTribute() {
-			const renderMenuItem = (content) => `<div id="nc-rich-contenteditable-tribute-item-${GenRandomId(5)}" class="tribute-item" role="option">${content}</div>`
+			const renderMenuItem = (content) => `<div id="nc-rich-contenteditable-tribute-item-${GenRandomId(5)}" class="${this.$style['tribute-item']}" role="option">${content}</div>`
 
 			const tributesCollection = []
 			tributesCollection.push({
@@ -573,9 +573,9 @@ export default {
 				// Autocompletion results
 				values: this.debouncedAutoComplete,
 				// Class added to the menu container
-				containerClass: 'tribute-container tribute-container-autocomplete',
+				containerClass: `${this.$style['tribute-container']} ${this.$style['tribute-container-autocomplete']}`,
 				// Class added to each list item
-				itemClass: 'tribute-container__item',
+				itemClass: `${this.$style['tribute-container__item']}`,
 
 			})
 
@@ -594,7 +594,7 @@ export default {
 							// instead of trying to show an image and their name.
 							return item.original
 						}
-						return renderMenuItem(`<span class="tribute-container-emoji__item__emoji">${item.original.native}</span> :${item.original.short_name}`)
+						return renderMenuItem(`<span class="${this.$style['tribute-container-emoji__item__emoji']}">${item.original.native}</span> :${item.original.short_name}`)
 					},
 					// Hide if no results
 					noMatchTemplate: () => t('No emoji found'),
@@ -623,9 +623,9 @@ export default {
 						cb(emojiResults)
 					},
 					// Class added to the menu container
-					containerClass: 'tribute-container tribute-container-emoji',
+					containerClass: `${this.$style['tribute-container']} ${this.$style['tribute-container-emoji']}`,
 					// Class added to each list item
-					itemClass: 'tribute-container__item tribute-container-emoji__item',
+					itemClass: `${this.$style['tribute-container__item']} ${this.$style['tribute-container-emoji__item']}`,
 				})
 			}
 
@@ -638,16 +638,16 @@ export default {
 					// Where to inject the menu popup
 					menuContainer: this.menuContainer,
 					// Popup mention autocompletion templates
-					menuItemTemplate: item => renderMenuItem(`<img class="tribute-container-link__item__icon" src="${item.original.icon_url}"> <span class="tribute-container-link__item__title">${item.original.title}</span>`),
+					menuItemTemplate: item => renderMenuItem(`<img class="${this.$style['tribute-container-link__item__icon']}" src="${item.original.icon_url}"> <span class="${this.$style['tribute-container-link__item__title']}">${item.original.title}</span>`),
 					// Hide if no results
 					noMatchTemplate: () => t('No link provider found'),
 					selectTemplate: this.getLink,
 					// Pass the search results as values
 					values: (text, cb) => cb(searchProvider(text)),
 					// Class added to the menu container
-					containerClass: 'tribute-container tribute-container-link',
+					containerClass: `${this.$style['tribute-container']} ${this.$style['tribute-container-link']}`,
 					// Class added to each list item
-					itemClass: 'tribute-container__item tribute-container-link__item',
+					itemClass: `${this.$style['tribute-container__item']} ${this.$style['tribute-container-link__item']}`,
 				})
 			}
 
@@ -908,7 +908,7 @@ export default {
 				// https://github.com/zurb/tribute/issues/627
 				// So we have to manually update the class
 				// The default class is "tribute-container"
-				this.getTributeContainer().setAttribute('class', this.tribute.current.collection.containerClass || 'tribute-container')
+				this.getTributeContainer().setAttribute('class', this.tribute.current.collection.containerClass || this.$style['tribute-container'])
 
 				this.setupTributeIntegration()
 			} else {
@@ -985,9 +985,9 @@ export default {
 		 */
 		setTributeFocusVisible(withFocusVisible) {
 			if (withFocusVisible) {
-				this.getTributeContainer().classList.add('tribute-container--focus-visible')
+				this.getTributeContainer().classList.add(this.$style['tribute-container--focus-visible'])
 			} else {
-				this.getTributeContainer().classList.remove('tribute-container--focus-visible')
+				this.getTributeContainer().classList.remove(this.$style['tribute-container--focus-visible'])
 			}
 		},
 	},
@@ -1089,7 +1089,7 @@ export default {
 
 </style>
 
-<style lang="scss">
+<style lang="scss" module>
 .tribute-container {
 	z-index: 9000;
 	overflow: auto;
@@ -1112,7 +1112,7 @@ export default {
 			margin-bottom: 0;
 		}
 
-		&.highlight {
+		&:global(.highlight) {
 			color: var(--color-main-text);
 			background: var(--color-background-hover);
 
@@ -1123,7 +1123,7 @@ export default {
 	}
 
 	&.tribute-container--focus-visible {
-		.highlight.tribute-container__item {
+		:global(.highlight).tribute-container__item {
 			outline: 2px solid var(--color-main-text) !important;
 		}
 	}
