@@ -300,7 +300,6 @@ export default defineComponent({
 		'close',
 		'update:open',
 		'update:modelValue',
-		'input',
 	],
 
 	data() {
@@ -386,11 +385,6 @@ export default defineComponent({
 			 * Emits a hexadecimal string e.g. '#ffffff'
 			 */
 			this.$emit('update:modelValue', color)
-
-			/**
-			 * Emits a hexadecimal string e.g. '#ffffff'
-			 */
-			this.$emit('input', color)
 
 		},
 
