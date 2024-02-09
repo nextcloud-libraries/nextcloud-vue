@@ -167,6 +167,64 @@ export default {
 </style>
 ```
 
+### Native form validation example
+
+```vue
+<template>
+	<div class="container">
+		<form class="container__form" @submit.prevent>
+			<NcSelect class="container__select"
+				input-label="Require a selection"
+				:options="options"
+				v-model="singleValue"
+				required />
+			<NcButton native-type="submit">Submit</NcButton>
+		</form>
+
+		<form class="container__form" @submit.prevent>
+			<NcSelect class="container__select"
+				input-label="Require at least one selection"
+				:options="options"
+				v-model="multiValue"
+				multiple
+				required />
+			<NcButton native-type="submit">Submit</NcButton>
+		</form>
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			options: ['foo', 'bar', 'baz', 'qux', 'quux'],
+			singleValue: null,
+			multiValue: [],
+		}
+	},
+}
+</script>
+
+<style>
+.container {
+	display: flex;
+	gap: 0 12px;
+}
+
+.container__form {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	width: 100%;
+	gap: 8px 0;
+}
+
+.container__select {
+	width: 100%;
+}
+</style>
+```
+
 ### No wrap example
 
 The `noWrap` prop is set to `true` and the `max-width` of the multiselect
@@ -470,6 +528,7 @@ export default {
 		<template #search="{ attributes, events }">
 			<input :class="['vs__search', inputClass]"
 				v-bind="attributes"
+				:required="inputRequired"
 				v-on="events">
 		</template>
 		<template #open-indicator="{ attributes }">
@@ -898,6 +957,14 @@ export default {
 		},
 
 		/**
+		 * Enable if a value is required for native form validation
+		 */
+		required: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * Any available prop
 		 *
 		 * @see https://vue-select.org/api/props.html
@@ -922,6 +989,14 @@ export default {
 	},
 
 	computed: {
+		inputRequired() {
+			if (!this.required) {
+				return null
+			}
+			// The <input> itself does not have any value so we set the `required` attribute conditionally
+			return this.value === null || (Array.isArray(this.value) && this.value.length === 0)
+		},
+
 		localCalculatePosition() {
 			if (this.calculatePosition !== null) {
 				return this.calculatePosition
