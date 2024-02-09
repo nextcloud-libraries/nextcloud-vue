@@ -77,13 +77,13 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 					<Close :size="20" />
 				</template>
 			</NcActionInput>
-			<NcActionInput type="date" isNativePicker :model-value="new Date()">
+			<NcActionInput type="date" isNativePicker v-model="date">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
 				Please pick a date
 			</NcActionInput>
-			<NcActionInput type="date">
+			<NcActionInput type="date" v-model="date">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
@@ -126,6 +126,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 		data() {
 			return {
 				color: '#0082C9',
+				date: new Date(),
 				text: 'This is the input text',
 				multiSelected: [],
 			}
@@ -177,8 +178,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:input-class="['mx-input', { focusable: isFocusable }]"
 							class="action-input__datetimepicker"
 							v-bind="$attrs"
-							@input="onInput"
-							@change="onChange" />
+							@update:model-value="onUpdateModelValue" />
 
 						<NcDateTimePickerNative v-else-if="isNativePicker"
 							:id="idNativeDateTimePicker"
@@ -187,8 +187,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:input-class="{ focusable: isFocusable }"
 							class="action-input__datetimepicker"
 							v-bind="$attrs"
-							@input="$emit('input', $event)"
-							@change="$emit('change', $event)" />
+							@update:model-value="onUpdateModelValue" />
 
 						<NcSelect v-else-if="isMultiselectType"
 							:model-value="modelValue"
@@ -197,7 +196,8 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:append-to-body="false"
 							:input-class="{ focusable: isFocusable }"
 							class="action-input__multi"
-							v-bind="$attrs" />
+							v-bind="$attrs"
+							@update:model-value="onUpdateModelValue" />
 
 						<NcPasswordField v-else-if="type==='password'"
 							:id="inputId"
@@ -209,8 +209,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:input-class="{ focusable: isFocusable }"
 							:show-trailing-button="showTrailingButton && !disabled"
 							v-bind="$attrs"
-							@input="onInput"
-							@change="onChange" />
+							@update:model-value="onUpdateModelValue" />
 
 						<div v-else-if="type === 'color'" class="action-input__container">
 							<label v-if="label && type === 'color'"
@@ -224,7 +223,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 									:model-value="modelValue"
 									class="colorpicker__trigger"
 									v-bind="$attrs"
-									@input="onInput"
+									@update:model-value="onUpdateModelValue"
 									@submit="$refs.form.requestSubmit()">
 									<button :style="{'background-color': modelValue}"
 										class="colorpicker__preview"
@@ -247,8 +246,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							:show-trailing-button="showTrailingButton && !disabled"
 							v-bind="$attrs"
 							@trailing-button-click="$refs.form.requestSubmit()"
-							@input="onInput"
-							@change="onChange" />
+							@update:model-value="onUpdateModelValue" />
 					</div>
 				</div>
 			</form>
@@ -484,13 +482,13 @@ export default {
 				return false
 			}
 		},
-		onChange(event) {
+		onUpdateModelValue(event) {
 			/**
-			 * Emitted on change of the input field
+			 * Emitted on update of the model value
 			 *
 			 * @type {Event}
 			 */
-			this.$emit('change', event)
+			this.$emit('update:modelValue', event)
 		},
 	},
 }
