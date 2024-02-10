@@ -337,6 +337,7 @@ export default {
 				'action-button--active': isChecked,
 				focusable: isFocusable,
 			}]"
+			:disabled="disabled"
 			:title="title"
 			:type="nativeType"
 			v-bind="buttonAttributes"
