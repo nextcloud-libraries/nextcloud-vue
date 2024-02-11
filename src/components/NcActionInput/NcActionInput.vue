@@ -390,9 +390,7 @@ export default {
 	},
 
 	emits: [
-		'input',
 		'submit',
-		'change',
 		'update:modelValue',
 	],
 
@@ -451,21 +449,6 @@ export default {
 			if (this.$refs.datetimepicker && this.$refs.datetimepicker.$refs.datepicker) {
 				this.$refs.datetimepicker.$refs.datepicker.closePopup()
 			}
-		},
-		onInput(event) {
-			/**
-			 * Emitted on input events of the text field
-			 *
-			 * @type {Event|Date}
-			 */
-			this.$emit('input', event)
-			/**
-			 * Emitted when the inputs value changes
-			 * ! DateTimePicker only send the value
-			 *
-			 * @type {string|Date}
-			 */
-			this.$emit('update:modelValue', event.target ? event.target.value : event)
 		},
 		onSubmit(event) {
 			event.preventDefault()
