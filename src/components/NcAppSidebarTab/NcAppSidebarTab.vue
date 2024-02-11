@@ -30,8 +30,8 @@
 		:aria-label="isTablistShown() ? undefined : name"
 		:aria-labelledby="isTablistShown() ? `tab-button-${id}` : undefined"
 		class="app-sidebar__tab"
-		tabindex="0"
-		role="tabpanel"
+		:tabindex="isTablistShown() ? 0 : -1"
+		:role="isTablistShown() ? 'tabpanel' : undefined"
 		@scroll="onScroll">
 		<h3 class="hidden-visually">
 			{{ name }}

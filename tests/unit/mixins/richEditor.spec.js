@@ -73,7 +73,7 @@ describe('richEditor.js', () => {
 					userData: {
 						jdoe: {
 							id: 'jdoe',
-							title: 'J. Doe',
+							label: 'J. Doe',
 							source: 'users',
 							icon: 'icon-user',
 						},

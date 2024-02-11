@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { searchProvider } from './providerHelper.js'
+import { searchProvider } from './../../../functions/reference/providerHelper.js'
 import { isUrl } from './utils.js'
 import NcEmptyContent from '../../NcEmptyContent/index.js'
 import NcHighlight from '../../NcHighlight/index.js'

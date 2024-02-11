@@ -34,10 +34,10 @@
 				:status="status.status" />
 		</div>
 
-		<!-- Title and subline -->
+		<!-- Label and subline -->
 		<span class="autocomplete-result__content">
-			<span class="autocomplete-result__title" :title="title">
-				{{ title }}
+			<span class="autocomplete-result__title" :title="labelWithFallback">
+				{{ labelWithFallback }}
 			</span>
 			<span v-if="subline" class="autocomplete-result__subline">
 				{{ subline }}
@@ -59,9 +59,18 @@ export default {
 	},
 
 	props: {
+		/**
+		 * @deprecated Use `label` instead
+		 */
 		title: {
 			type: String,
-			required: true,
+			required: false,
+			default: null,
+		},
+		label: {
+			type: String,
+			required: false,
+			default: null,
 		},
 		subline: {
 			type: String,
@@ -98,6 +107,10 @@ export default {
 				? this.getAvatarUrl(this.id, 44)
 				: null
 		},
+		// For backwards compatibility
+		labelWithFallback() {
+			return this.label || this.title
+		},
 	},
 
 	methods: {
@@ -112,32 +125,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$autocomplete-padding: 10px;
-
 .autocomplete-result {
 	display: flex;
-	height: $clickable-area;
-	padding: $autocomplete-padding;
-
-	.highlight & {
-		color: var(--color-primary-element-light-text);
-		background: var(--color-primary-element-light);
-		&, * {
-			cursor: pointer;
-		}
-	}
+	height: var(--default-clickable-area);
+	padding: var(--default-grid-baseline) 0;
 
 	&__icon {
 		position: relative;
-		flex: 0 0 $clickable-area;
-		width: $clickable-area;
-		min-width: $clickable-area;
-		height: $clickable-area;
-		border-radius: $clickable-area;
+		flex: 0 0 var(--default-clickable-area);
+		width: var(--default-clickable-area);
+		min-width: var(--default-clickable-area);
+		height: var(--default-clickable-area);
+		border-radius: var(--default-clickable-area);
 		background-color: var(--color-background-darker);
 		background-repeat: no-repeat;
 		background-position: center;
-		background-size: $clickable-area - 2 * $autocomplete-padding;
+		background-size: contain;
 		&--with-avatar {
 			color: inherit;
 			background-size: cover;
@@ -174,7 +177,7 @@ $autocomplete-padding: 10px;
 		flex-direction: column;
 		justify-content: center;
 		min-width: 0;
-		padding-left: $autocomplete-padding;
+		padding-left: calc(var(--default-grid-baseline) * 2);
 	}
 
 	&__title,

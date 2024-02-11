@@ -20,27 +20,50 @@ const SCOPE_VERSION = JSON.stringify(versionHash)
 
 webpackConfig.devtool = isDev ? false : 'source-map'
 
+const sassLoader = {
+	loader: 'sass-loader',
+	options: {
+		additionalData: `@use 'sass:math'; $scope_version:${SCOPE_VERSION}; @import 'variables'; @import 'material-icons';`,
+		/**
+		 * ! needed for resolve-url-loader
+		 */
+		sourceMap: true,
+		sassOptions: {
+			sourceMapContents: false,
+			includePaths: [
+				path.resolve(__dirname, './src/assets'),
+			],
+		},
+	},
+}
+
 webpackRules.RULE_SCSS = {
 	test: /\.scss$/,
-	use: [
-		'style-loader',
-		'css-loader',
-		'resolve-url-loader',
+	oneOf: [
 		{
-			loader: 'sass-loader',
-			options: {
-				additionalData: `@use 'sass:math'; $scope_version:${SCOPE_VERSION}; @import 'variables'; @import 'material-icons';`,
-				/**
-				 * ! needed for resolve-url-loader
-				 */
-				sourceMap: true,
-				sassOptions: {
-					sourceMapContents: false,
-					includePaths: [
-						path.resolve(__dirname, './src/assets'),
-					],
+			resourceQuery: /module/,
+			use: [
+				'style-loader',
+				{
+					loader: 'css-loader',
+					options: {
+						modules: {
+							// Same as in Vite
+							localIdentName: '_[local]_[hash:base64:5]',
+						},
+					},
 				},
-			},
+				'resolve-url-loader',
+				sassLoader,
+			],
+		},
+		{
+			use: [
+				'style-loader',
+				'css-loader',
+				'resolve-url-loader',
+				sassLoader,
+			],
 		},
 	],
 }

@@ -39,7 +39,7 @@
 
 <script>
 import NcReferencePicker from './NcReferencePicker.vue'
-import { getCustomPickerElementSize, isCustomPickerElementRegistered } from './customPickerElements.js'
+import { getCustomPickerElementSize, isCustomPickerElementRegistered } from './../../../functions/reference/customPickerElements.js'
 import NcButton from '../../NcButton/index.ts'
 import NcModal from '../../NcModal/index.js'
 import { t } from '../../../l10n.js'
