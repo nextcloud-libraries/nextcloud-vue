@@ -70,14 +70,14 @@ export default {
 				Test01: {
 					icon: 'icon-user',
 					id: 'Test01',
-					title: 'Test01',
+					label: 'Test01',
 					source: 'users',
 					primary: true,
 				},
 				Test02: {
 					icon: 'icon-user',
 					id: 'Test02',
-					title: 'Test02',
+					label: 'Test02',
 					source: 'users',
 					status: {
 						clearAt: null,
@@ -90,7 +90,7 @@ export default {
 				'Test@User': {
 					icon: 'icon-user',
 					id: 'Test@User',
-					title: 'Test 03',
+					label: 'Test 03',
 					source: 'users',
 					status: {
 						clearAt: null,
@@ -103,7 +103,7 @@ export default {
 				'Test Offline': {
 					icon: 'icon-user',
 					id: 'Test Offline',
-					title: 'Test Offline',
+					label: 'Test Offline',
 					source: 'users',
 					status: {
 						clearAt: null,
@@ -116,7 +116,7 @@ export default {
 				'Test DND': {
 					icon: 'icon-user',
 					id: 'Test DND',
-					title: 'Test DND',
+					label: 'Test DND',
 					source: 'users',
 					status: {
 						clearAt: null,
@@ -230,6 +230,11 @@ export default {
 			aria-multiline="true"
 			class="rich-contenteditable__input"
 			role="textbox"
+			aria-haspopup="listbox"
+			aria-autocomplete="inline"
+			:aria-controls="tributeId"
+			:aria-expanded="isAutocompleteOpen ? 'true' : 'false'"
+			:aria-activedescendant="autocompleteActiveId"
 			v-bind="$attrs"
 			@focus="moveCursorToEnd"
 			@input="onInput"
@@ -239,7 +244,11 @@ export default {
 			@keydown.enter.exact="onEnter"
 			@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
 			@paste="onPaste"
-			@keyup.stop.prevent.capture="onKeyUp" />
+			@keyup.stop.prevent.capture="onKeyUp"
+			@keydown.up.exact.stop="onTributeArrowKeyDown"
+			@keydown.down.exact.stop="onTributeArrowKeyDown"
+			@tribute-active-true="onTributeActive(true)"
+			@tribute-active-false="onTributeActive(false)" />
 		<div v-if="label"
 			:id="labelId"
 			class="rich-contenteditable__label">
@@ -260,6 +269,17 @@ import Tribute from 'tributejs/dist/tribute.esm.js'
 import debounce from 'debounce'
 import stringLength from 'string-length'
 import GenRandomId from '../../utils/GenRandomId.js'
+
+/**
+ * Populate the list of text smiles we want to offer via Tribute.
+ * We add the colon `:)` and colon-dash `:-)` version for each of them.
+ */
+const smilesCharacters = ['d', 'D', 'p', 'P', 's', 'S', 'x', 'X', ')', '(', '|', '/']
+const textSmiles = []
+smilesCharacters.forEach((char) => {
+	textSmiles.push(':' + char)
+	textSmiles.push(':-' + char)
+})
 
 export default {
 	name: 'NcRichContenteditable',
@@ -378,96 +398,24 @@ export default {
 		'smart-picker-submit',
 	],
 
+	setup() {
+		const uid = GenRandomId(5)
+		return {
+			// Constants
+			labelId: `nc-rich-contenteditable-${uid}-label`,
+			tributeId: `nc-rich-contenteditable-${uid}-tribute`,
+			/**
+			 * Non-reactive property to store Tribute instance
+			 *
+			 * @type {import('tributejs').default | null}
+			 */
+			tribute: null,
+			tributeStyleMutationObserver: null,
+		}
+	},
+
 	data() {
 		return {
-			labelId: `rich-label-${GenRandomId(5)}`,
-			textSmiles: [],
-			tribute: null,
-			autocompleteOptions: {
-				// Allow spaces in the middle of mentions
-				allowSpaces: true,
-				fillAttr: 'id',
-				// Search against id and title (display name)
-				lookup: result => `${result.id} ${result.title}`,
-				// Where to inject the menu popup
-				menuContainer: this.menuContainer,
-				// Popup mention autocompletion templates
-				menuItemTemplate: item => this.renderComponentHtml(item.original, NcAutoCompleteResult),
-				// Hide if no results
-				noMatchTemplate: () => '<span class="hidden"></span>',
-				// Inner display of mentions
-				selectTemplate: item => this.genSelectTemplate(item?.original?.id),
-				// Autocompletion results
-				values: this.debouncedAutoComplete,
-			},
-			emojiOptions: {
-				trigger: ':',
-				// Don't use the tribute search function at all
-				// We pass search results as values (see below)
-				lookup: (result, query) => query,
-				// Where to inject the menu popup
-				menuContainer: this.menuContainer,
-				// Popup mention autocompletion templates
-				menuItemTemplate: item => {
-					if (this.textSmiles.includes(item.original)) {
-						// Display the raw text string for :), :-D, … for non emoji results,
-						// instead of trying to show an image and their name.
-						return item.original
-					}
-
-					return `<span class="tribute-container-emoji__item__emoji">${item.original.native}</span> :${item.original.short_name}`
-				},
-				// Hide if no results
-				noMatchTemplate: () => t('No emoji found'),
-				// Display raw emoji along with its name
-				selectTemplate: (item) => {
-					if (this.textSmiles.includes(item.original)) {
-						// Replace the selection with the raw text string for :), :-D, … for non emoji results
-						return item.original
-					}
-
-					emojiAddRecent(item.original)
-					return item.original.native
-				},
-				// Pass the search results as values
-				values: (text, cb) => {
-					const emojiResults = emojiSearch(text)
-					if (this.textSmiles.includes(':' + text)) {
-						/**
-						 * Prepend text smiles to the search results so that Tribute
-						 * is not interfering with normal writing, aka. "Cocos Island Meme".
-						 * E.g. `:)` and `:-)` got replaced by the flag of Cocos Island,
-						 * when submitting the input with Enter after writing them
-						 */
-						emojiResults.unshift(':' + text)
-					}
-					cb(emojiResults)
-				},
-				// Class added to the menu container
-				containerClass: 'tribute-container-emoji',
-				// Class added to each list item
-				itemClass: 'tribute-container-emoji__item',
-			},
-			linkOptions: {
-				trigger: '/',
-				// Don't use the tribute search function at all
-				// We pass search results as values (see below)
-				lookup: (result, query) => query,
-				// Where to inject the menu popup
-				menuContainer: this.menuContainer,
-				// Popup mention autocompletion templates
-				menuItemTemplate: item => `<img class="tribute-container-link__item__icon" src="${item.original.icon_url}"> <span class="tribute-container-link__item__title">${item.original.title}</span>`,
-				// Hide if no results
-				noMatchTemplate: () => t('No link provider found'),
-				selectTemplate: this.getLink,
-				// Pass the search results as values
-				values: (text, cb) => cb(searchProvider(text)),
-				// Class added to the menu container
-				containerClass: 'tribute-container-link',
-				// Class added to each list item
-				itemClass: 'tribute-container-link__item',
-			},
-
 			// Represent the raw untrimmed text of the contenteditable
 			// serves no other purpose than to check whether the
 			// content is empty or not
@@ -475,6 +423,11 @@ export default {
 
 			// Is in text composition session in IME
 			isComposing: false,
+
+			// Tribute autocomplete
+			isAutocompleteOpen: false,
+			autocompleteActiveId: undefined,
+			isTributeIntegrationDone: false,
 		}
 	},
 
@@ -533,6 +486,15 @@ export default {
 		canEdit() {
 			return this.contenteditable && !this.disabled
 		},
+
+		/**
+		 * Compute debounce function for the autocomplete function
+		 */
+		debouncedAutoComplete() {
+			return debounce(async (search, callback) => {
+				this.autoComplete(search, callback)
+			}, 100)
+		},
 	},
 
 	watch: {
@@ -550,29 +512,7 @@ export default {
 	},
 
 	mounted() {
-		/**
-		 * Populate the list of text smiles we want to offer via Tribute.
-		 * We add the colon `:)` and colon-dash `:-)` version for each of them.
-		 */
-		const smilesCharacters = ['d', 'D', 'p', 'P', 's', 'S', 'x', 'X', ')', '(', '|', '/']
-		this.textSmiles = []
-		smilesCharacters.forEach((char) => {
-			this.textSmiles.push(':' + char)
-			this.textSmiles.push(':-' + char)
-		})
-
-		this.autocompleteTribute = new Tribute(this.autocompleteOptions)
-		this.autocompleteTribute.attach(this.$refs.contenteditable)
-
-		if (this.emojiAutocomplete) {
-			this.emojiTribute = new Tribute(this.emojiOptions)
-			this.emojiTribute.attach(this.$refs.contenteditable)
-		}
-
-		if (this.linkAutocomplete) {
-			this.linkTribute = new Tribute(this.linkOptions)
-			this.linkTribute.attach(this.$refs.contenteditable)
-		}
+		this.initializeTribute()
 
 		// Update default value
 		this.updateContent(this.modelValue)
@@ -582,14 +522,12 @@ export default {
 		this.$refs.contenteditable.contentEditable = this.canEdit
 	},
 	beforeUnmount() {
-		if (this.autocompleteTribute) {
-			this.autocompleteTribute.detach(this.$refs.contenteditable)
+		if (this.tribute) {
+			this.tribute.detach(this.$refs.contenteditable)
 		}
-		if (this.emojiTribute) {
-			this.emojiTribute.detach(this.$refs.contenteditable)
-		}
-		if (this.linkTribute) {
-			this.linkTribute.detach(this.$refs.contenteditable)
+
+		if (this.tributeStyleMutationObserver) {
+			this.tributeStyleMutationObserver.disconnect()
 		}
 	},
 
@@ -601,6 +539,109 @@ export default {
 		 */
 		focus() {
 			this.$refs.contenteditable.focus()
+		},
+
+		initializeTribute() {
+			const renderMenuItem = (content) => `<div id="nc-rich-contenteditable-tribute-item-${GenRandomId(5)}" class="${this.$style['tribute-item']}" role="option">${content}</div>`
+
+			const tributesCollection = []
+			tributesCollection.push({
+				// Allow spaces in the middle of mentions
+				allowSpaces: true,
+				fillAttr: 'id',
+				// Search against id and label (display name) (fallback to title for v8.0.0..8.6.1 compatibility)
+				lookup: result => `${result.id} ${result.label ?? result.title}`,
+				// Where to inject the menu popup
+				menuContainer: this.menuContainer,
+				// Popup mention autocompletion templates
+				menuItemTemplate: item => renderMenuItem(this.renderComponentHtml(item.original, NcAutoCompleteResult)),
+				// Hide if no results
+				noMatchTemplate: () => '<span class="hidden"></span>',
+				// Inner display of mentions
+				selectTemplate: item => this.genSelectTemplate(item?.original?.id),
+				// Autocompletion results
+				values: this.debouncedAutoComplete,
+				// Class added to the menu container
+				containerClass: `${this.$style['tribute-container']} ${this.$style['tribute-container-autocomplete']}`,
+				// Class added to each list item
+				itemClass: this.$style['tribute-container__item'],
+
+			})
+
+			if (this.emojiAutocomplete) {
+				tributesCollection.push({
+					trigger: ':',
+					// Don't use the tribute search function at all
+					// We pass search results as values (see below)
+					lookup: (result, query) => query,
+					// Where to inject the menu popup
+					menuContainer: this.menuContainer,
+					// Popup mention autocompletion templates
+					menuItemTemplate: item => {
+						if (textSmiles.includes(item.original)) {
+							// Display the raw text string for :), :-D, … for non emoji results,
+							// instead of trying to show an image and their name.
+							return item.original
+						}
+						return renderMenuItem(`<span class="${this.$style['tribute-item__emoji']}">${item.original.native}</span> :${item.original.short_name}`)
+					},
+					// Hide if no results
+					noMatchTemplate: () => t('No emoji found'),
+					// Display raw emoji along with its name
+					selectTemplate: (item) => {
+						if (textSmiles.includes(item.original)) {
+							// Replace the selection with the raw text string for :), :-D, … for non emoji results
+							return item.original
+						}
+
+						emojiAddRecent(item.original)
+						return item.original.native
+					},
+					// Pass the search results as values
+					values: (text, cb) => {
+						const emojiResults = emojiSearch(text)
+						if (textSmiles.includes(':' + text)) {
+							/**
+							 * Prepend text smiles to the search results so that Tribute
+							 * is not interfering with normal writing, aka. "Cocos Island Meme".
+							 * E.g. `:)` and `:-)` got replaced by the flag of Cocos Island,
+							 * when submitting the input with Enter after writing them
+							 */
+							emojiResults.unshift(':' + text)
+						}
+						cb(emojiResults)
+					},
+					// Class added to the menu container
+					containerClass: `${this.$style['tribute-container']} ${this.$style['tribute-container-emoji']}`,
+					// Class added to each list item
+					itemClass: this.$style['tribute-container__item'],
+				})
+			}
+
+			if (this.linkAutocomplete) {
+				tributesCollection.push({
+					trigger: '/',
+					// Don't use the tribute search function at all
+					// We pass search results as values (see below)
+					lookup: (result, query) => query,
+					// Where to inject the menu popup
+					menuContainer: this.menuContainer,
+					// Popup mention autocompletion templates
+					menuItemTemplate: item => renderMenuItem(`<img class="${this.$style['tribute-item__icon']}" src="${item.original.icon_url}"> <span class="${this.$style['tribute-item__title']}">${item.original.title}</span>`),
+					// Hide if no results
+					noMatchTemplate: () => t('No link provider found'),
+					selectTemplate: this.getLink,
+					// Pass the search results as values
+					values: (text, cb) => cb(searchProvider(text)),
+					// Class added to the menu container
+					containerClass: `${this.$style['tribute-container']} ${this.$style['tribute-container-link']}`,
+					// Class added to each list item
+					itemClass: this.$style['tribute-container__item'],
+				})
+			}
+
+			this.tribute = new Tribute({ collection: tributesCollection })
+			this.tribute.attach(this.$refs.contenteditable)
 		},
 
 		getLink(item) {
@@ -797,7 +838,7 @@ export default {
 			// or in a text composition session with IME
 			if (this.multiline
 				|| this.isOverMaxlength
-				|| this.autocompleteTribute.isActive || this.emojiTribute.isActive || this.linkTribute.isActive
+				|| this.tribute.isActive
 				|| this.isComposing) {
 				return
 			}
@@ -819,16 +860,124 @@ export default {
 			this.$emit('submit', event)
 		},
 
-		/**
-		 * Debounce the autocomplete function
-		 */
-		debouncedAutoComplete: debounce(async function(search, callback) {
-			this.autoComplete(search, callback)
-		}, 100),
-
 		onKeyUp(event) {
 			// prevent tribute from opening on keyup
 			event.stopImmediatePropagation()
+		},
+
+		/**
+		 * Get HTML element with Tribute.js container
+		 * @return {HTMLElement}
+		 */
+		getTributeContainer() {
+			return this.tribute.menu
+		},
+
+		/**
+		 * Get the currently selected item element id in Tribute.js container
+		 * @return {HTMLElement}
+		 */
+		getTributeSelectedItem() {
+			// Tribute does not provide a way to get the active item, only the data index
+			// So we have to find it manually by select class
+			return this.getTributeContainer().querySelector('.highlight [id^="nc-rich-contenteditable-tribute-item-"]')
+		},
+
+		/**
+		 * Handle Tribute activation
+		 * @param {boolean} isActive - is active
+		 */
+		onTributeActive(isActive) {
+			this.isAutocompleteOpen = isActive
+
+			if (isActive) {
+				// Tribute.js doesn't support containerClass update when new collection is open
+				// The first opened collection's containerClass stays forever
+				// https://github.com/zurb/tribute/issues/595
+				// https://github.com/zurb/tribute/issues/627
+				// So we have to manually update the class
+				// The default class is "tribute-container"
+				this.getTributeContainer().setAttribute('class', this.tribute.current.collection.containerClass || this.$style['tribute-container'])
+
+				this.setupTributeIntegration()
+			} else {
+				// Cancel loading data for autocomplete
+				// Otherwise it could be received when another autocomplete is already opened
+				this.debouncedAutoComplete.clear()
+
+				// Reset active item
+				this.autocompleteActiveId = undefined
+
+				this.setTributeFocusVisible(false)
+			}
+		},
+
+		onTributeArrowKeyDown() {
+			if (!this.isAutocompleteOpen) {
+				return
+			}
+			this.setTributeFocusVisible(true)
+			this.onTributeSelectedItemWillChange()
+		},
+
+		onTributeSelectedItemWillChange() {
+			// Wait until tribute has updated the selected item
+			requestAnimationFrame(() => {
+				this.autocompleteActiveId = this.getTributeSelectedItem()?.id
+			})
+		},
+
+		setupTributeIntegration() {
+			// Setup integration only once on the first open
+			if (this.isTributeIntegrationDone) {
+				return
+			}
+			this.isTributeIntegrationDone = true
+
+			const tributeContainer = this.getTributeContainer()
+
+			// For aria-controls
+			tributeContainer.id = this.tributeId
+
+			// Container with options must be a listbox
+			tributeContainer.setAttribute('role', 'listbox')
+			// Reset list+listitem role from ul+li
+			const ul = tributeContainer.children[0]
+			ul.setAttribute('role', 'presentation')
+
+			// Tribute.js does not provide a way to react on show/hide
+			// tribute-active-true/false events are fired on initial activation, which is too early with async autoComplete function
+			this.tributeStyleMutationObserver = new MutationObserver(([{ target }]) => {
+				if (target.style.display !== 'none') {
+					// Tribute is visible - there will be selected item
+					this.onTributeSelectedItemWillChange()
+				}
+			}).observe(tributeContainer, {
+				attributes: true,
+				attributeFilter: ['style'],
+			})
+
+			// Handle selecting new item on mouse selection
+			tributeContainer.addEventListener('mousemove', () => {
+				this.setTributeFocusVisible(false)
+				this.onTributeSelectedItemWillChange()
+			}, { passive: true })
+		},
+
+		/**
+		 * Set tribute-container--focus-visible class on the Tribute container when the user navigates the listbox via keyboard.
+		 *
+		 * Because the real focus is kept on the textbox, we cannot use the :focus-visible pseudo-class
+		 * to style selected options in the autocomplete listbox.
+		 *
+		 * @param {boolean} withFocusVisible - should the focus-visible class be added
+		 */
+		setTributeFocusVisible(withFocusVisible) {
+			if (withFocusVisible) {
+				this.getTributeContainer().classList.add(this.$style['tribute-container--focus-visible'])
+			} else {
+				this.getTributeContainer().classList.remove(this.$style['tribute-container--focus-visible'])
+			}
 		},
 	},
 }
@@ -929,57 +1078,78 @@ export default {
 
 </style>
 
-<style lang="scss">
-.tribute-container, .tribute-container-emoji, .tribute-container-link {
+<style lang="scss" module>
+.tribute-container {
 	z-index: 9000;
 	overflow: auto;
-	min-width: 250px;
-	max-width: 300px;
-	// Show maximum 4 entries and a half to show scroll
-	// 44px + 10px padding
-	max-height: ($clickable-area + 20px) * 4.5;
 	// Space it out a bit from the text
-	margin: 5px 0;
-	color: var(--color-main-text);
+	margin: var(--default-grid-baseline) 0;
+	padding: var(--default-grid-baseline);
+	color: var(--color-text-maxcontrast);
 	border-radius: var(--border-radius);
 	background: var(--color-main-background);
 	box-shadow: 0 1px 5px var(--color-box-shadow);
-}
 
-.tribute-container-emoji, .tribute-container-link {
-	min-width: 200px;
-	max-width: 200px;
-	padding: 4px;
-	// Show maximum 5 entries and a half to show scroll
-	max-height: 35px * 5 + math.div(35px, 2) !important;
-
-	&__item {
-		border-radius: 8px;
-		padding: 4px 8px;
-		margin-bottom: 4px;
-		opacity: 0.8;
+	.tribute-container__item {
+		color: var(--color-text-maxcontrast);
+		border-radius: var(--border-radius);
+		padding: var(--default-grid-baseline) calc(2 * var(--default-grid-baseline));
+		margin-bottom: var(--default-grid-baseline);
 		cursor: pointer;
-
-		// Take care of long names
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
 
 		&:last-child {
 			margin-bottom: 0;
 		}
 
-		&__emoji {
-			padding-right: 8px;
+		&:global(.highlight) {
+			color: var(--color-main-text);
+			background: var(--color-background-hover);
+
+			&, * {
+				cursor: pointer;
+			}
 		}
 	}
 
-	.highlight {
-		opacity: 1;
-		color: var(--color-primary-element-light-text);
-		background: var(--color-primary-element-light);
-		&, * {
-			cursor: pointer;
+	&.tribute-container--focus-visible {
+		:global(.highlight).tribute-container__item {
+			outline: 2px solid var(--color-main-text) !important;
+		}
+	}
+}
+
+.tribute-container-autocomplete {
+	min-width: 250px;
+	max-width: 300px;
+	// Show maximum 4 entries and a half to show scroll
+	// Autocomplete height
+	// + 2 paddings around autocomplete
+	// + 2 paddings arouind tribute item
+	// + 1 padding gap
+	// And 1.5 paddings - container's padding without the last gap
+	max-height: calc((var(--default-clickable-area) + 5 * var(--default-grid-baseline)) * 4.5 - 1.5 * var(--default-grid-baseline));
+}
+
+.tribute-container-emoji,
+.tribute-container-link {
+	min-width: 200px;
+	max-width: 200px;
+	// Show maximum 5 entries and a half to show scroll
+	// Item height
+	// + 2 paddings around autocomplete
+	// + 2 paddings arouind tribute item
+	// + 1 padding gap
+	// And 1.5 paddings - container's padding without the last gap
+	max-height: calc((24px + 3 * var(--default-grid-baseline)) * 5.5 - 1.5 * var(--default-grid-baseline));
+
+	.tribute-item {
+		// Take care of long names
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+		&__emoji {
+			padding-right: calc(var(--default-grid-baseline) * 2);
 		}
 	}
 }
@@ -987,7 +1157,7 @@ export default {
 .tribute-container-link {
 	min-width: 200px;
 	max-width: 300px;
-	&__item {
+	.tribute-item {
 		display: flex;
 		align-items: center;
 		&__title {
@@ -1000,7 +1170,7 @@ export default {
 			width: 20px;
 			height: 20px;
 			object-fit: contain;
-			padding-right: 8px;
+			padding-right: calc(var(--default-grid-baseline) * 2);
 			filter: var(--background-invert-if-dark);
 		}
 	}

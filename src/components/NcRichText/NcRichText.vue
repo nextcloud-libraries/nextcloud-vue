@@ -168,14 +168,14 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 					Test01: {
 						icon: 'icon-user',
 						id: 'Test01',
-						title: 'Test01',
+						label: 'Test01',
 						source: 'users',
 						primary: true,
 					},
 					Test02: {
 						icon: 'icon-user',
 						id: 'Test02',
-						title: 'Test02',
+						label: 'Test02',
 						source: 'users',
 						status: {
 							clearAt: null,
@@ -188,7 +188,7 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 					'Test@User': {
 						icon: 'icon-user',
 						id: 'Test@User',
-						title: 'Test 03',
+						label: 'Test 03',
 						source: 'users',
 						status: {
 							clearAt: null,
@@ -201,7 +201,7 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 					'Test Offline': {
 						icon: 'icon-user',
 						id: 'Test Offline',
-						title: 'Test Offline',
+						label: 'Test Offline',
 						source: 'users',
 						status: {
 							clearAt: null,
@@ -214,7 +214,7 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 					'Test DND': {
 						icon: 'icon-user',
 						id: 'Test DND',
-						title: 'Test DND',
+						label: 'Test DND',
 						source: 'users',
 						status: {
 							clearAt: null,

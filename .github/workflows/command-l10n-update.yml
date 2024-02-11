@@ -49,7 +49,7 @@ jobs:
           git config --local user.name "nextcloud-command"
 
       - name: Read package.json node and npm engines version
-        uses: skjnldsv/read-package-engines-version-actions@v2
+        uses: skjnldsv/read-package-engines-version-actions@v3
         id: package-engines-versions
         with:
           fallbackNode: '^20'

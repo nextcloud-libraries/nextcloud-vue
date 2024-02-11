@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { renderCustomPickerElement, isCustomPickerElementRegistered, destroyCustomPickerElement } from './customPickerElements.js'
+import { renderCustomPickerElement, isCustomPickerElementRegistered, destroyCustomPickerElement } from './../../../functions/reference/customPickerElements.js'
 
 export default {
 	name: 'NcCustomPickerElement',

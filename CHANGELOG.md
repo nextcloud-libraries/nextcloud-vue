@@ -92,6 +92,35 @@ All notable changes to this project will be documented in this file.
 * chore(vue3): Migrate NcAppSidebar* to vue 3 [\#4833](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4833) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 * chore(vue3): Migrate NcRich* to vue 3 [\#4976](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4976) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 
+## [v8.6.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.6.2) (2024-02-07)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.6.1...v8.6.2)
+
+### 📝 Notes
+* In `NcRichContenteditable` properties `autoComplete.title`/`userData.title` were renamed back to `label` to be in line with server API. The `title` property is still working as a fallback, but deprecated. See https://github.com/nextcloud-libraries/nextcloud-vue/pull/5215
+
+### 🐛 Fixed bugs
+* fix(NcHeaderMenu): button size regression on small viewports fixed by @emoral435 in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5149
+* fix(NcListItem): Remove actions from within `a` which caused invalid HTML output by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5198
+* fix(NcRichContenteditable): make autocomplete accessible by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/4904
+* fix(NcRichContenteditable): unify styles and add contrast border on keyboard navigation by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5214
+* fix(NcRichContenteditable): bring back label for autocomplete by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5215
+* fix(NcAppSidebar): move focus to sidebar on open and auto return focus on close by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5219
+
+### Other Changes
+* chore(NcSelect): Mention labelOutside for external label use by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5211
+
+## [v8.6.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.6.1) (2024-02-01)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.6.0...v8.6.1)
+
+### 🐛 Fixed bugs
+* fix(NcAppNavigationNewItem): bring back correct CSS class [\#5194](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5194) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* revert: fix(NcActions): use new slots api [\#5196](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5196) \([ShGKme](https://github.com/ShGKme)\)
+
+### Other Changes
+* Updated translations
+* fix(CI): Adjust npm-publish to work with GPR [\#5183](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5183) \([susnux](https://github.com/susnux)\)
+* chore(CHANGELOG): Add missing entry for 8.6.0 release [\#5192](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5192) \([susnux](https://github.com/susnux)\)
+
 ## [v8.6.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.6.0) (2024-01-30)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.5.1...v8.6.0)
 

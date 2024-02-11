@@ -52,7 +52,7 @@ jobs:
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
       - name: Read package.json node and npm engines version
-        uses: skjnldsv/read-package-engines-version-actions@8205673bab74a63eb9b8093402fd9e0e018663a1 # v2.2
+        uses: skjnldsv/read-package-engines-version-actions@06d6baf7d8f41934ab630e97d9e6c0bc9c9ac5e4 # v3
         id: versions
         with:
           fallbackNode: '^20'
@@ -80,7 +80,7 @@ jobs:
         run: npm run test:coverage --if-present
 
       - name: Collect coverage
-        uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # v3.1.6
+        uses: codecov/codecov-action@e0b68c6749509c5f83f984dd99a76a1c1a231044 # v4.0.1
         with:
           files: ./coverage/lcov.info
 
