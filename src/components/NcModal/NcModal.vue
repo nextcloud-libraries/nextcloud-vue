@@ -1004,28 +1004,28 @@ export default {
 
 	// Sizing
 	&--small {
-		.modal-container {
+		& > .modal-container {
 			width: 400px;
 			max-width: 90%;
 			max-height: $max-modal-height;
 		}
 	}
 	&--normal {
-		.modal-container {
+		& > .modal-container {
 			max-width: 90%;
 			width: 600px;
 			max-height: $max-modal-height;
 		}
 	}
 	&--large {
-		.modal-container {
+		& > .modal-container {
 			max-width: 90%;
 			width: 900px;
 			max-height: $max-modal-height;
 		}
 	}
 	&--full {
-		.modal-container {
+		& > .modal-container {
 			width: 100%;
 			height: calc(100% - var(--header-height));
 			position: absolute;
