@@ -2,6 +2,7 @@ import { URL_PATTERN_AUTOLINK } from './helpers.js'
 
 import { visit, SKIP } from 'unist-util-visit'
 import { u } from 'unist-builder'
+import { getBaseUrl } from '@nextcloud/router'
 
 const NcLink = {
 	name: 'NcLink',
@@ -81,4 +82,22 @@ export const parseUrl = (text) => {
 	}
 	console.error('Failed to reassemble the chunked text: ' + text)
 	return text
+}
+
+export const getRoute = (router, url) => {
+	// Skip if Router is not defined in app, or baseUrl does not match
+	if (!router || !url.includes(getBaseUrl())) {
+		return null
+	}
+
+	const regexArray = router.getRoutes()
+		// route.regex matches only complete string (^.$), need to remove these characters
+		.map(route => new RegExp(route.regex.source.slice(1, -1), route.regex.flags))
+
+	for (const regex of regexArray) {
+		const match = url.search(regex)
+		if (match !== -1) {
+			return url.slice(match)
+		}
+	}
 }
