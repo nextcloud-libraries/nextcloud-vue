@@ -291,7 +291,7 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 <script>
 import NcReferenceList from './NcReferenceList.vue'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
-import { remarkAutolink } from './autolink.js'
+import { getRoute, remarkAutolink } from './autolink.js'
 import { remarkPlaceholder, prepareTextNode } from './placeholder.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 

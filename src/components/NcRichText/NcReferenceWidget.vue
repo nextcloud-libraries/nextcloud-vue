@@ -4,10 +4,10 @@
 			<div ref="customWidget" />
 		</div>
 
-		<a v-else-if="!noAccess && reference && reference.openGraphObject && !hasCustomWidget"
-			:href="reference.openGraphObject.link"
+		<component :is="referenceWidgetLinkComponent"
+			v-else-if="!noAccess && reference && reference.openGraphObject && !hasCustomWidget"
+			v-bind="referenceWidgetLinkProps"
 			rel="noopener noreferrer"
-			target="_blank"
 			class="widget-default">
 			<img v-if="reference.openGraphObject.thumb" class="widget-default--image" :src="reference.openGraphObject.thumb">
 			<div class="widget-default--details">
@@ -15,10 +15,13 @@
 				<p class="widget-default--description" :style="descriptionStyle">{{ reference.openGraphObject.description }}</p>
 				<p class="widget-default--link">{{ compactLink }}</p>
 			</div>
-		</a>
+		</component>
 	</div>
 </template>
 <script>
+import { RouterLink } from 'vue-router'
+
+import { getRoute } from './autolink.js'
 import { renderWidget, isWidgetRegistered, destroyWidget } from './../../functions/reference/widgets.js'
 import { useResizeObserver } from '@vueuse/core'
 
@@ -68,6 +71,17 @@ export default {
 				return link.substring(7)
 			}
 			return link
+		},
+		route() {
+			return getRoute(this.$router, this.reference.openGraphObject.link)
+		},
+		referenceWidgetLinkComponent() {
+			return this.route ? RouterLink : 'a'
+		},
+		referenceWidgetLinkProps() {
+			return this.route
+				? { to: this.route }
+				: { href: this.reference.openGraphObject.link, target: '_blank' }
 		},
 	},
 	mounted() {
