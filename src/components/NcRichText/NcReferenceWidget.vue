@@ -20,6 +20,7 @@
 </template>
 <script>
 import { renderWidget, isWidgetRegistered, destroyWidget } from './../../functions/reference/widgets.js'
+import { useResizeObserver } from '@vueuse/core'
 
 export default {
 	name: 'NcReferenceWidget',
@@ -71,7 +72,7 @@ export default {
 	},
 	mounted() {
 		this.renderWidget()
-		this.observer = new ResizeObserver(entries => {
+		useResizeObserver(this.$el, entries => {
 			if (entries[0].contentRect.width < 450) {
 				this.compact = 0
 			} else if (entries[0].contentRect.width < 550) {
@@ -83,10 +84,8 @@ export default {
 			}
 
 		})
-		this.observer.observe(this.$el)
 	},
 	beforeUnmount() {
-		this.observer.disconnect()
 		destroyWidget(this.reference.richObjectType, this.$el)
 	},
 	methods: {
