@@ -497,6 +497,6 @@ export default ScopeComponent({
 // TODO: This should be scoped or targeted by a specific selector, but the NcSelect component does not allow this yet.
 .vs__dropdown-menu--floating {
 	// Higher z-index than the popover in which the NcSelect is located.
-	z-index: 100001;
+	z-index: 100001 !important;
 }
 </style>
