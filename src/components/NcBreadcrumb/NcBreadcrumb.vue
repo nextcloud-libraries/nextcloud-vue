@@ -40,7 +40,7 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 		@dragover.prevent="() => {}"
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
-		<NcButton v-if="(icon || $slots.icon) && !$slots.default"
+		<NcButton v-if="(name || icon || $slots.icon) && !$slots.default"
 			:title="title"
 			:aria-label="icon ? name : undefined"
 			type="tertiary"
@@ -51,16 +51,7 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 					<span :class="icon" class="icon" />
 				</slot>
 			</template>
-			<template v-if="forceIconText" #default>
-				{{ name }}
-			</template>
-		</NcButton>
-		<NcButton v-else-if="!$slots.default"
-			:aria-label="icon ? name : undefined"
-			type="tertiary"
-			v-bind="linkAttributes"
-			v-on="$listeners">
-			<template #default>
+			<template v-if="!($slots.icon || icon) || forceIconText" #default>
 				{{ name }}
 			</template>
 		</NcButton>
