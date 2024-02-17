@@ -1,7 +1,7 @@
 <template>
 	<div v-if="isVisible" class="widgets--list" :class="{'icon-loading': loading }">
 		<div v-for="reference in displayedReferences" :key="reference?.openGraphObject?.id">
-			<NcReferenceWidget :reference="reference" />
+			<NcReferenceWidget :reference="reference" :interactive="interactive" :interactive-opt-in="interactiveOptIn" />
 		</div>
 	</div>
 </template>
@@ -38,6 +38,10 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		interactiveOptIn: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		return {
@@ -64,12 +68,7 @@ export default {
 			return this.values[0] ?? null
 		},
 		displayedReferences() {
-			return this.values.slice(0, this.limit).map(reference => {
-				return {
-					...reference,
-					interactive: this.interactive,
-				}
-			})
+			return this.values.slice(0, this.limit)
 		},
 		fallbackReference() {
 			return {
