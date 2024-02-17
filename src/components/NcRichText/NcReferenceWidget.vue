@@ -1,8 +1,6 @@
 <template>
 	<div>
-		<div v-if="reference && hasCustomWidget" class="widget-custom">
-			<div ref="customWidget" />
-		</div>
+		<div v-if="reference && hasCustomWidget" ref="customWidget" class="widget-custom" />
 
 		<component :is="referenceWidgetLinkComponent"
 			v-else-if="!noAccess && reference && reference.openGraphObject && !hasCustomWidget"
@@ -16,31 +14,55 @@
 				<p class="widget-default--link">{{ compactLink }}</p>
 			</div>
 		</component>
+		<NcButton v-if="hasInteractiveView && !isInteractive" @click="enableInteractive">
+			Enable interative mode
+		</NcButton>
 	</div>
 </template>
 <script>
-import { useResizeObserver } from '@vueuse/core'
+import { useElementVisibility, useResizeObserver } from '@vueuse/core'
 import { RouterLink } from 'vue-router'
 
 import { getRoute } from './autolink.ts'
-import { renderWidget, isWidgetRegistered, destroyWidget } from './../../functions/reference/widgets.js'
+import { renderWidget, isWidgetRegistered, destroyWidget, hasInteractiveView } from './../../functions/reference/widgets.js'
+import NcButton from '../../components/NcButton/NcButton.vue'
 
 export default {
 	name: 'NcReferenceWidget',
+	components: {
+		NcButton,
+	},
 	props: {
 		reference: {
 			type: Object,
 			required: true,
 		},
+		interactive: {
+			type: Boolean,
+			default: false,
+		},
+		interactiveOptIn: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		return {
 			compact: 3,
+			isVisible: false,
+			showInteractive: false,
+			rendered: false,
 		}
 	},
 	computed: {
+		isInteractive() {
+			return (!this.interactiveOptIn && this.interactive) || this.showInteractive
+		},
 		hasCustomWidget() {
 			return isWidgetRegistered(this.reference.richObjectType)
+		},
+		hasInteractiveView() {
+			return isWidgetRegistered(this.reference.richObjectType) && hasInteractiveView(this.reference.richObjectType)
 		},
 		noAccess() {
 			return this.reference && !this.reference.accessible
@@ -84,8 +106,16 @@ export default {
 				: { href: this.reference.openGraphObject.link, target: '_blank' }
 		},
 	},
+	watch: {
+		isVisible(val) {
+			if (!val || this.rendered) {
+				return
+			}
+			this.renderWidget()
+		},
+	},
 	mounted() {
-		this.renderWidget()
+		this.isVisible = useElementVisibility(this.$el)
 		useResizeObserver(this.$el, entries => {
 			if (entries[0].contentRect.width < 450) {
 				this.compact = 0
@@ -103,6 +133,10 @@ export default {
 		destroyWidget(this.reference.richObjectType, this.$el)
 	},
 	methods: {
+		enableInteractive() {
+			this.showInteractive = true
+			this.renderWidget()
+		},
 		renderWidget() {
 			if (this.$refs.customWidget) {
 				this.$refs.customWidget.innerHTML = ''
@@ -110,9 +144,16 @@ export default {
 			if (this?.reference?.richObjectType === 'open-graph') {
 				return
 			}
+			// create a separate element so we can rerender on the ref again
+			const widget = document.createElement('div')
+			this.$refs.customWidget.appendChild(widget)
 			this.$nextTick(() => {
 				// Waiting for the ref to become available
-				renderWidget(this.$refs.customWidget, this.reference)
+				renderWidget(widget, {
+					...this.reference,
+					interactive: this.isInteractive,
+				})
+				this.rendered = true
 			})
 		},
 	},

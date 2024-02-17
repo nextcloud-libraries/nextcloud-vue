@@ -6,7 +6,16 @@ const isWidgetRegistered = (id) => {
 	return !!window._vue_richtext_widgets[id]
 }
 
-const registerWidget = (id, callback, onDestroy = (el) => {}) => {
+const hasInteractiveView = (id) => {
+	return !!window._vue_richtext_widgets[id]?.hasInteractiveView
+}
+
+const registerWidget = (id, callback, onDestroy = (el) => {}, props) => {
+	const propsWithDefaults = {
+		hasInteractiveView: false,
+		...props,
+	}
+
 	if (window._vue_richtext_widgets[id]) {
 		console.error('Widget for id ' + id + ' already registered')
 		return
@@ -16,6 +25,7 @@ const registerWidget = (id, callback, onDestroy = (el) => {}) => {
 		id,
 		callback,
 		onDestroy,
+		...propsWithDefaults,
 	}
 }
 
@@ -51,4 +61,5 @@ export {
 	renderWidget,
 	destroyWidget,
 	isWidgetRegistered,
+	hasInteractiveView,
 }
