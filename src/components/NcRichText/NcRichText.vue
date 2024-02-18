@@ -291,7 +291,7 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 <script>
 import NcReferenceList from './NcReferenceList.vue'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
-import { getRoute, remarkAutolink } from './autolink.js'
+import { getRoute, remarkAutolink } from './autolink.ts'
 import { remarkPlaceholder, prepareTextNode } from './placeholder.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
@@ -434,73 +434,6 @@ export default {
 					jsx: this.createElement,
 					jsxs: this.createElement,
 					elementAttributeNameCase: 'html',
-					createElement: (tag, attrs, children) => {
-						// unescape special symbol "<" for simple text nodes
-						children = children?.map(child => typeof child === 'string'
-							? child.replace(/&lt;/gmi, '<')
-							: child,
-						)
-
-						if (!tag.startsWith('#')) {
-							if (this.useExtendedMarkdown) {
-								if (tag === 'li' && Array.isArray(children)
-									&& children[0].tag === 'input'
-									&& children[0].data.attrs.type === 'checkbox') {
-									const [inputNode, , label] = children
-									const id = 'markdown-input-' + GenRandomId(5)
-									const inputComponent = h(NcCheckboxRadioSwitch, {
-										attrs: {
-											...inputNode.data.attrs,
-											id,
-											disabled: !this.interactive,
-										},
-										on: {
-											'update:checked': (value) => {
-												this.$emit('interact:todo', { id, label, value })
-											},
-										},
-									}, [label])
-									return h(tag, attrs, [inputComponent])
-								}
-							}
-
-							if (tag === 'a') {
-								const route = getRoute(this.$router, attrs.attrs.href)
-								if (route) {
-									delete attrs.attrs.href
-									delete attrs.attrs.target
-
-									return h(RouterLink, {
-										...attrs,
-										props: {
-											to: route,
-										},
-									}, children)
-								}
-							}
-
-							return h(tag, attrs, children)
-						}
-
-						const placeholder = this.arguments[tag.slice(1)]
-						if (!placeholder) {
-							return h('span', { ...{ attrs }, ...{ class: 'rich-text--fallback' } }, [`{${tag.slice(1)}}`])
-						}
-
-						if (!placeholder.component) {
-							return h('span', attrs, [placeholder])
-						}
-
-						return h(
-							placeholder.component,
-							{
-								attrs,
-								props: placeholder.props,
-								class: 'rich-text--component',
-							},
-							children,
-						)
-					},
 					prefix: false,
 				})
 				.processSync(this.text
@@ -554,6 +487,19 @@ export default {
 							},
 						}, [label])
 						return h(type, props, [inputComponent])
+					}
+				}
+
+				if (String(type) === 'a') {
+					const route = getRoute(this.$router, props.href)
+					if (route) {
+						delete props.href
+						delete props.target
+
+						return h(RouterLink, {
+							...props,
+							to: route,
+						}, children)
 					}
 				}
 				return h(type, props, children)

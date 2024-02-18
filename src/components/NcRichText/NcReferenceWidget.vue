@@ -19,11 +19,11 @@
 	</div>
 </template>
 <script>
+import { useResizeObserver } from '@vueuse/core'
 import { RouterLink } from 'vue-router'
 
-import { getRoute } from './autolink.js'
+import { getRoute } from './autolink.ts'
 import { renderWidget, isWidgetRegistered, destroyWidget } from './../../functions/reference/widgets.js'
-import { useResizeObserver } from '@vueuse/core'
 
 export default {
 	name: 'NcReferenceWidget',

@@ -1,7 +1,6 @@
-import { parseUrl } from './autolink.js'
-
-import { visit } from 'unist-util-visit'
 import { u } from 'unist-builder'
+import { visit } from 'unist-util-visit'
+import { parseUrl } from './autolink.ts'
 
 export const remarkPlaceholder = function() {
 	return function(ast) {
