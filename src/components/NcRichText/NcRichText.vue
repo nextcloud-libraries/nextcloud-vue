@@ -291,7 +291,7 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 <script>
 import NcReferenceList from './NcReferenceList.vue'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
-import { remarkAutolink } from './autolink.js'
+import { getRoute, remarkAutolink } from './autolink.js'
 import { remarkPlaceholder, prepareTextNode } from './placeholder.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
@@ -302,6 +302,7 @@ import breaks from 'remark-breaks'
 import remark2rehype from 'remark-rehype'
 import rehype2react from 'rehype-react'
 import rehypeExternalLinks from 'rehype-external-links'
+import { RouterLink } from 'vue-router'
 
 export default {
 	name: 'NcRichText',
@@ -458,6 +459,22 @@ export default {
 									return h(tag, attrs, [inputComponent])
 								}
 							}
+
+							if (tag === 'a') {
+								const route = getRoute(this.$router, attrs.attrs.href)
+								if (route) {
+									delete attrs.attrs.href
+									delete attrs.attrs.target
+
+									return h(RouterLink, {
+										...attrs,
+										props: {
+											to: route,
+										},
+									}, children)
+								}
+							}
+
 							return h(tag, attrs, children)
 						}
 
