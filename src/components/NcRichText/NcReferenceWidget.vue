@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div :class="{'toggle-interactive': hasInteractiveView && !isInteractive }">
 		<div v-if="reference && hasCustomWidget" ref="customWidget" class="widget-custom" />
 
 		<component :is="referenceWidgetLinkComponent"
@@ -9,12 +9,18 @@
 			class="widget-default">
 			<img v-if="reference.openGraphObject.thumb" class="widget-default--image" :src="reference.openGraphObject.thumb">
 			<div class="widget-default--details">
-				<p class="widget-default--name">{{ reference.openGraphObject.name }}</p>
-				<p class="widget-default--description" :style="descriptionStyle">{{ reference.openGraphObject.description }}</p>
-				<p class="widget-default--link">{{ compactLink }}</p>
+				<p class="widget-default--name">
+					{{ reference.openGraphObject.name }}
+				</p>
+				<p class="widget-default--description" :style="descriptionStyle">
+					{{ reference.openGraphObject.description }}
+				</p>
+				<p class="widget-default--link">
+					{{ compactLink }}
+				</p>
 			</div>
 		</component>
-		<NcButton v-if="hasInteractiveView && !isInteractive" @click="enableInteractive">
+		<NcButton v-if="hasInteractiveView && !isInteractive" class="toggle-interactive--button" @click="enableInteractive">
 			Enable interative mode
 		</NcButton>
 	</div>
@@ -243,6 +249,24 @@ export default {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+	}
+}
+
+.toggle-interactive {
+	position: relative;
+	.toggle-interactive--button {
+		position: absolute;
+		top: 50%;
+		z-index: 10000;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+		opacity: 0;
+	}
+
+	&:focus-within, &:hover {
+		.toggle-interactive--button {
+			opacity: 1;
+		}
 	}
 }
 </style>
