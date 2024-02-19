@@ -12,7 +12,7 @@
 			:clear-search-on-blur="() => false"
 			:filterable="false"
 			@search="onSearch"
-			@input="onProviderSelected">
+			@update:model-value="onProviderSelected">
 			<template #option="option">
 				<div v-if="option.isLink" class="provider">
 					<LinkVariantIcon class="link-icon" :size="20" />
