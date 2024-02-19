@@ -137,7 +137,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 </docs>
 
 <template>
-	<li class="action" :class="{ 'action--disabled': disabled }">
+	<li class="action" :class="[{ 'action--disabled': disabled }, $props.class ]">
 		<span :class="{
 				'action-input-picker--disabled': disabled,
 				'action-input--visible-label': labelOutside && label,
@@ -388,6 +388,13 @@ export default {
 		trailingButtonLabel: {
 			type: String,
 			default: t('Submit'),
+		},
+		/**
+		 * CSS class to apply to the root element.
+		 */
+		class: {
+			type: [String, Array, Object],
+			default: '',
 		},
 	},
 
