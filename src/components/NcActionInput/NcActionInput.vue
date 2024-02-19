@@ -277,6 +277,8 @@ export default {
 
 	mixins: [ActionGlobalMixin],
 
+	inheritAttrs: false,
+
 	props: {
 		/**
 		 * id attribute of the checkbox element
