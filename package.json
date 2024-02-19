@@ -136,7 +136,7 @@
     "eslint-plugin-cypress": "^2.11.1",
     "file-loader": "^6.2.0",
     "gettext-extractor": "^3.7.2",
-    "gettext-parser": "^7.0.0",
+    "gettext-parser": "^8.0.0",
     "glob": "^10.0.0",
     "jsdom": "^22.1.0",
     "resolve-url-loader": "^5.0.0",
