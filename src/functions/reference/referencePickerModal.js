@@ -1,4 +1,4 @@
-import NcReferencePickerModal from './NcReferencePickerModal.vue'
+import NcReferencePickerModal from './../../components/NcRichText/NcReferencePicker/NcReferencePickerModal.vue'
 import { getProvider } from './providerHelper.js'
 
 import { createApp } from 'vue'

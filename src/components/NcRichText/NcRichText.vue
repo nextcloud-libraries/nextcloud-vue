@@ -168,14 +168,14 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 					Test01: {
 						icon: 'icon-user',
 						id: 'Test01',
-						title: 'Test01',
+						label: 'Test01',
 						source: 'users',
 						primary: true,
 					},
 					Test02: {
 						icon: 'icon-user',
 						id: 'Test02',
-						title: 'Test02',
+						label: 'Test02',
 						source: 'users',
 						status: {
 							clearAt: null,
@@ -188,7 +188,7 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 					'Test@User': {
 						icon: 'icon-user',
 						id: 'Test@User',
-						title: 'Test 03',
+						label: 'Test 03',
 						source: 'users',
 						status: {
 							clearAt: null,
@@ -201,7 +201,7 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 					'Test Offline': {
 						icon: 'icon-user',
 						id: 'Test Offline',
-						title: 'Test Offline',
+						label: 'Test Offline',
 						source: 'users',
 						status: {
 							clearAt: null,
@@ -214,7 +214,7 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 					'Test DND': {
 						icon: 'icon-user',
 						id: 'Test DND',
-						title: 'Test DND',
+						label: 'Test DND',
 						source: 'users',
 						status: {
 							clearAt: null,
@@ -291,7 +291,7 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 <script>
 import NcReferenceList from './NcReferenceList.vue'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
-import { remarkAutolink } from './autolink.js'
+import { getRoute, remarkAutolink } from './autolink.ts'
 import { remarkPlaceholder, prepareTextNode } from './placeholder.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
@@ -303,6 +303,7 @@ import remark2rehype from 'remark-rehype'
 import rehype2react from 'rehype-react'
 import rehypeExternalLinks from 'rehype-external-links'
 import { Fragment, h, resolveComponent } from 'vue'
+import { RouterLink } from 'vue-router'
 
 export default {
 	name: 'NcRichText',
@@ -433,6 +434,7 @@ export default {
 					jsx: this.createElement,
 					jsxs: this.createElement,
 					elementAttributeNameCase: 'html',
+					prefix: false,
 				})
 				.processSync(this.text
 					// escape special symbol "<" to not treat text as HTML
@@ -485,6 +487,19 @@ export default {
 							},
 						}, [label])
 						return h(type, props, [inputComponent])
+					}
+				}
+
+				if (String(type) === 'a') {
+					const route = getRoute(this.$router, props.href)
+					if (route) {
+						delete props.href
+						delete props.target
+
+						return h(RouterLink, {
+							...props,
+							to: route,
+						}, children)
 					}
 				}
 				return h(type, props, children)

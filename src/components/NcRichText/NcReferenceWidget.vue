@@ -4,10 +4,10 @@
 			<div ref="customWidget" />
 		</div>
 
-		<a v-else-if="!noAccess && reference && reference.openGraphObject && !hasCustomWidget"
-			:href="reference.openGraphObject.link"
+		<component :is="referenceWidgetLinkComponent"
+			v-else-if="!noAccess && reference && reference.openGraphObject && !hasCustomWidget"
+			v-bind="referenceWidgetLinkProps"
 			rel="noopener noreferrer"
-			target="_blank"
 			class="widget-default">
 			<img v-if="reference.openGraphObject.thumb" class="widget-default--image" :src="reference.openGraphObject.thumb">
 			<div class="widget-default--details">
@@ -15,11 +15,15 @@
 				<p class="widget-default--description" :style="descriptionStyle">{{ reference.openGraphObject.description }}</p>
 				<p class="widget-default--link">{{ compactLink }}</p>
 			</div>
-		</a>
+		</component>
 	</div>
 </template>
 <script>
-import { renderWidget, isWidgetRegistered, destroyWidget } from './widgets.js'
+import { useResizeObserver } from '@vueuse/core'
+import { RouterLink } from 'vue-router'
+
+import { getRoute } from './autolink.ts'
+import { renderWidget, isWidgetRegistered, destroyWidget } from './../../functions/reference/widgets.js'
 
 export default {
 	name: 'NcReferenceWidget',
@@ -68,10 +72,21 @@ export default {
 			}
 			return link
 		},
+		route() {
+			return getRoute(this.$router, this.reference.openGraphObject.link)
+		},
+		referenceWidgetLinkComponent() {
+			return this.route ? RouterLink : 'a'
+		},
+		referenceWidgetLinkProps() {
+			return this.route
+				? { to: this.route }
+				: { href: this.reference.openGraphObject.link, target: '_blank' }
+		},
 	},
 	mounted() {
 		this.renderWidget()
-		this.observer = new ResizeObserver(entries => {
+		useResizeObserver(this.$el, entries => {
 			if (entries[0].contentRect.width < 450) {
 				this.compact = 0
 			} else if (entries[0].contentRect.width < 550) {
@@ -83,10 +98,8 @@ export default {
 			}
 
 		})
-		this.observer.observe(this.$el)
 	},
 	beforeUnmount() {
-		this.observer.disconnect()
 		destroyWidget(this.reference.richObjectType, this.$el)
 	},
 	methods: {
