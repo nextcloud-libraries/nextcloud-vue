@@ -52,7 +52,7 @@ This component is meant to be used inside a DashboardWidget component.
 				<h3 :title="mainText">
 					{{ mainText }}
 				</h3>
-				<span class="message" :title="subText">
+				<span v-if="subText !== ''" class="message" :title="subText">
 					{{ subText }}
 				</span>
 			</div>
@@ -219,6 +219,8 @@ export default {
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
+		min-height: 44px;
 
 		h3,
 		.message {
