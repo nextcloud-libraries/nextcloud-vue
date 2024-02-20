@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0-alpha.0) (unreleased)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.5.0...v9.0.0-alpha.0)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.7.0...v9.0.0-alpha.2)
 
 ### 💥 Breaking Changes
 * The package now uses Vue 3 instead of Vue 2.7
@@ -39,6 +39,8 @@ All notable changes to this project will be documented in this file.
 * Allow writing components using Typescript and provide type definitions for `NcButton` [\#4525](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4525) \([susnux](https://github.com/susnux)\)
 
 ### 🐛 Fixed bugs
+* fix(NcActionInput): listen to correct events [\#5231](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5231) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
+* fix(NcRichText*): listen to correct events form NcSelect [\#5239](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5239) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 * fix(vue3): Inherit `$attrs` to `Dropdown` in `NcPopover` [\#4564](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4564) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 * fix(eslint): run eslint on migrated files [\#4630](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4630) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 * fix(NcListItemIcon): correctly use default slot in examples [\#4695](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4695) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
