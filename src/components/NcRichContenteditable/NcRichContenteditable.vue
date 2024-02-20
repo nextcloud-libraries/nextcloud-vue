@@ -557,13 +557,9 @@ export default {
 
 			const tributesCollection = []
 			tributesCollection.push({
-				// Allow spaces in the middle of mentions
-				allowSpaces: true,
 				fillAttr: 'id',
 				// Search against id and label (display name) (fallback to title for v8.0.0..8.6.1 compatibility)
 				lookup: result => `${result.id} ${result.label ?? result.title}`,
-				// Where to inject the menu popup
-				menuContainer: this.menuContainer,
 				// Popup mention autocompletion templates
 				menuItemTemplate: item => renderMenuItem(this.renderComponentHtml(item.original, NcAutoCompleteResult)),
 				// Hide if no results
@@ -585,8 +581,6 @@ export default {
 					// Don't use the tribute search function at all
 					// We pass search results as values (see below)
 					lookup: (result, query) => query,
-					// Where to inject the menu popup
-					menuContainer: this.menuContainer,
 					// Popup mention autocompletion templates
 					menuItemTemplate: item => {
 						if (textSmiles.includes(item.original)) {
@@ -635,8 +629,6 @@ export default {
 					// Don't use the tribute search function at all
 					// We pass search results as values (see below)
 					lookup: (result, query) => query,
-					// Where to inject the menu popup
-					menuContainer: this.menuContainer,
 					// Popup mention autocompletion templates
 					menuItemTemplate: item => renderMenuItem(`<img class="${this.$style['tribute-item__icon']}" src="${item.original.icon_url}"> <span class="${this.$style['tribute-item__title']}">${item.original.title}</span>`),
 					// Hide if no results
@@ -651,7 +643,13 @@ export default {
 				})
 			}
 
-			this.tribute = new Tribute({ collection: tributesCollection })
+			this.tribute = new Tribute({
+				collection: tributesCollection,
+				// Allow spaces in the middle of mentions
+				allowSpaces: true,
+				// Where to inject the menu popup
+				menuContainer: this.menuContainer,
+			})
 			this.tribute.attach(this.$refs.contenteditable)
 		},
 
@@ -1093,6 +1091,9 @@ export default {
 .tribute-container {
 	z-index: 9000;
 	overflow: auto;
+	// Hide container root element while initialising
+	position: absolute;
+	left: -10000px;
 	// Space it out a bit from the text
 	margin: var(--default-grid-baseline) 0;
 	padding: var(--default-grid-baseline);
