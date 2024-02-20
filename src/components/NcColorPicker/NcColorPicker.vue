@@ -89,8 +89,8 @@ export default {
 <template>
 	<div class="container1">
 		<NcButton @click="open = !open"> Click Me </NcButton>
-		<NcColorPicker :value="color" @input="updateColor" :shown.sync="open" v-slot="{ attrs }">
-			<div v-bind="attrs" :style="{'background-color': color}" class="color1" />
+		<NcColorPicker :value="color" @input="updateColor" :shown.sync="open">
+			<NcButton aria-label="Select color" :style="{'background-color': color}" class="color1" />
 		</NcColorPicker>
 	</div>
 </template>

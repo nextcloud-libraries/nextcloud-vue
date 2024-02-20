@@ -186,6 +186,8 @@ import { createFocusTrap } from 'focus-trap'
 import { getTrapStack } from '../../utils/focusTrap.js'
 import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
 
+const buttonSelector = 'button, [role="button"], input[type="button"]'
+
 export default {
 	name: 'NcPopover',
 
@@ -236,6 +238,15 @@ export default {
 			default: undefined,
 			type: [HTMLElement, SVGElement, String, Boolean],
 		},
+
+		/**
+		 * When there is no setReturnFocus, NcPopover will try to return focus to the trigger button.
+		 * Use this prop to disable this behavior.
+		 */
+		noAutoReturnFocus: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	emits: [
@@ -279,11 +290,8 @@ export default {
 		 */
 		checkTriggerA11y() {
 			if (window.OC?.debug) {
-				// TODO: Vue 3: should be
-				// this.$refs.popover.$refs.popper.$refs.reference
-				const triggerContainer = this.$refs.popover.$refs.reference
-				const requiredTriggerButton = triggerContainer.querySelector('[aria-expanded][aria-haspopup]')
-				if (!requiredTriggerButton) {
+				const triggerButton = this.getPopoverTriggerButtonElement()
+				if (!triggerButton || !triggerButton.hasAttributes('aria-expanded', 'aria-haspopup')) {
 					Vue.util.warn('It looks like you are using a custom button as a <NcPopover> or other popover #trigger. If you are not using <NcButton> as a trigger, you need to bind attrs from the #trigger slot props to your custom button. See <NcPopover> docs for an example.')
 				}
 			}
@@ -294,6 +302,23 @@ export default {
 		 */
 		getPopoverContentElement() {
 			return this.$refs.popover?.$refs.popperContent?.$el
+		},
+
+		/**
+		 * @return {HTMLElement|undefined}
+		 */
+		getPopoverTriggerElement() {
+			// TODO: Vue 3: should be
+			// this.$refs.popover.$refs.popper.$refs.reference
+			return this.$refs.popover.$refs.reference
+		},
+
+		/**
+		 * @return {HTMLElement|undefined}
+		 */
+		getPopoverTriggerButtonElement() {
+			const triggerContainer = this.getPopoverTriggerElement()
+			return triggerContainer?.querySelector(buttonSelector)
 		},
 
 		/**
@@ -318,7 +343,7 @@ export default {
 				// Focus will be release when popover be hide
 				escapeDeactivates: false,
 				allowOutsideClick: true,
-				setReturnFocus: this.setReturnFocus,
+				setReturnFocus: this.setReturnFocus || (!this.noAutoReturnFocus && this.getPopoverTriggerButtonElement()),
 				trapStack: getTrapStack(),
 			})
 			this.$focusTrap.activate()
