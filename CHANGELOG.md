@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v8.7.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.7.0) (2024-02-20)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.6.2...v8.7.0)
+
+## What's Changed
+
+### 🚀 Enhancements
+* feat: Split reference and smart picker functions from components by @juliushaertl in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5218
+* feat(NcSelect): Add `required` attribute for native form validation by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5225
+* feat(NcRichText): handle internal links with Vue Router by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5246
+* enh: added option to render icon and text for breadcrumb by @emoral435 in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5216
+
+### 🐛 Fixed bugs
+* fix(NcRichContenteditable): adjust styles and use CSS Modules to avoid global styles leak by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5235
+* fix(NcActionButton): Forward `disabled` state to native button element by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5237
+* fix(NcModal): scope modal-container size to current modal, don't propagate it on nested by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5244
+* Fix timezone dropdown by @GretaD in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5251
+* fix(NcReferenceWidget): `useResizeObserver` by @max-nextcloud in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5240
+* fix(NcListItem): compensate added margin for list items by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5260
+
 ## [v8.6.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.6.2) (2024-02-07)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.6.1...v8.6.2)
 
