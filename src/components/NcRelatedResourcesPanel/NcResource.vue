@@ -25,7 +25,8 @@
 		<NcButton class="resource__button"
 			:aria-label="labelTranslated"
 			type="tertiary"
-			:href="url">
+			:to="route"
+			:href="route ? null : url">
 			<template #icon>
 				<div class="resource__icon">
 					<img :src="icon">
@@ -39,6 +40,7 @@
 <script>
 import NcButton from '../NcButton/index.ts'
 
+import { getRoute } from '../NcRichText/autolink.ts'
 import { t } from '../../l10n.js'
 
 export default {
@@ -67,6 +69,12 @@ export default {
 		return {
 			labelTranslated: t('Open link to "{resourceName}"', { resourceName: this.name }),
 		}
+	},
+
+	computed: {
+		route() {
+			return getRoute(this.$router, this.url)
+		},
 	},
 
 	methods: {
