@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v8.7.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.7.1) (2024-02-21)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.7.0...v8.7.1)
+
+## What's Changed
+
+### 🐛 Fixed bugs
+* fix(NcRichContenteditable): register props globally for new Tribute by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5268
+* fix(NcReferenceList): Resolve relative URLs before fetching references by @mejo- in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5272
+* fix(NcDashboardWidgetItem): Center dashboard list items when there is no subtext by @juliushaertl in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5271
+
 ## [v8.7.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.7.0) (2024-02-20)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.6.2...v8.7.0)
 
