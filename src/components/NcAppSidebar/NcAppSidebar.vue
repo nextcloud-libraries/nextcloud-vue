@@ -312,6 +312,36 @@ export default {
 </script>
 ```
 
+### Custom subname
+
+Instead of using the `subname` prop you can use the same called slot. This is handy if you need to add accessible information.
+Like in the following example where the goal is to show a star icon to mark the file a favorite.
+Simplying adding `★` would not work as screen readers might not or wrongly announce the icon meaning this information is lost.
+
+A working alternative would be using an icon together with an `aria-label`:
+
+```vue
+	<template>
+		<NcAppSidebar name="cat-picture.jpg">
+			<template #subname>
+				<NcIconSvgWrapper inline :path="mdiStar" name="Favorite" />
+				123 KiB, a month ago
+			</template>
+		</NcAppSidebar>
+	</template>
+	<script>
+	import { mdiStar } from '@mdi/js'
+
+	export default {
+		setup() {
+			return {
+				mdiStar,
+			}
+		}
+	}
+	</script>
+```
+
 ### Empty sidebar for e.g. empty content component.
 
 ```vue
@@ -443,11 +473,13 @@ export default {
 								</NcActions>
 							</div>
 							<!-- secondary name -->
-							<p v-if="subname.trim() !== ''"
-								:aria-label="subtitle"
-								:title="subtitle"
+							<p v-if="subname.trim() !== '' || $slots['subname']"
+								:title="subtitle || undefined"
 								class="app-sidebar-header__subname">
-								{{ subname }}
+								<!-- @slot Alternative to the `subname` prop can be used for more complex conent. It will be rendered within a `p` tag. -->
+								<slot name="subname">
+									{{ subname }}
+								</slot>
 							</p>
 						</div>
 					</div>
@@ -1163,9 +1195,13 @@ $top-buttons-spacing: 6px;
 
 				// subname
 				.app-sidebar-header__subname {
-					padding: 0;
-					opacity: $opacity_normal;
+					color: var(--color-text-maxcontrast);
 					font-size: var(--default-font-size);
+					padding: 0;
+
+					* {
+						vertical-align: text-bottom;
+					}
 				}
 			}
 		}
