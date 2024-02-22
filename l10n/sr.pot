@@ -181,7 +181,7 @@ msgid "Keyboard navigation help"
 msgstr "Помоћ за навигацију тастатуром"
 
 msgid "Light skin tone"
-msgstr "Светли тон коже"
+msgstr "Светли тен коже"
 
 msgid "Load more \"{options}\""
 msgstr "Учитај још „{options}”"
@@ -191,7 +191,7 @@ msgid "Mariner"
 msgstr "Морнар"
 
 msgid "Medium dark skin tone"
-msgstr "Средње тамни тон коже"
+msgstr "Средње тамни тен коже"
 
 msgid "Medium light skin tone"
 msgstr "Средње светли тен коже"
