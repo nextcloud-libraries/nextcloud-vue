@@ -25,7 +25,7 @@
 
 Render raw SVG string icons.
 
-### Example
+### Usage within `icon`-slot
 
 ```vue
 <template>
@@ -66,7 +66,8 @@ import { mdiSend } from '@mdi/js'
 import { mdiStar } from '@mdi/js'
 
 export default {
-	data() {
+	setup() {
+		// This icons are static data, so you do not need to put them into `data` which will make them reactive
 		return {
 			closeSvg,
 			cogSvg,
@@ -85,6 +86,27 @@ export default {
 	gap: 10px;
 }
 </style>
+```
+
+### Inline usage inside text
+
+```vue
+<template>
+	<p>
+		This is my <NcIconSvgWrapper inline :path="mdiStar" /> Favorite
+	</p>
+</template>
+<script>
+import { mdiStar } from '@mdi/js'
+
+export default {
+	setup() {
+		return {
+			mdiStar,
+		}
+	},
+}
+</script>
 ```
 </docs>
 
@@ -108,6 +130,15 @@ export default {
 	name: 'NcIconSvgWrapper',
 
 	props: {
+		/**
+		 * Set if the icon should be used as inline content e.g. within text.
+		 * By default the icon is made a block element for use inside `icon`-slots.
+		 */
+		inline: {
+			type: Boolean,
+			default: false,
+		},
+
 		/**
 		 * Raw SVG string to render
 		 */
@@ -174,7 +205,7 @@ export default {
 		},
 		attributes() {
 			return {
-				class: 'icon-vue',
+				class: ['icon-vue', { 'icon-vue--inline': this.inline }],
 				role: 'img',
 				'aria-hidden': !this.name ? true : undefined,
 				'aria-label': this.name || undefined,
@@ -192,6 +223,13 @@ export default {
 	min-width: 44px;
 	min-height: 44px;
 	opacity: 1;
+
+	&--inline {
+		display: inline-flex;
+		min-width: fit-content;
+		min-height: fit-content;
+		vertical-align: text-bottom;
+	}
 
 	&:deep(svg) {
 		fill: currentColor;
