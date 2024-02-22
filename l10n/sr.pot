@@ -115,7 +115,7 @@ msgid "Custom"
 msgstr "Произвољно"
 
 msgid "Dark skin tone"
-msgstr "Тамни тон коже"
+msgstr "Тамни тен коже"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -346,7 +346,7 @@ msgid "Show password"
 msgstr "Прикажи лозинку"
 
 msgid "Skin tone"
-msgstr "Тон коже"
+msgstr "Тен коже"
 
 msgid "Skip to app navigation"
 msgstr "Прескочи на навигацију апликацијом"
