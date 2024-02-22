@@ -194,10 +194,10 @@ msgid "Medium dark skin tone"
 msgstr "Средње тамни тон коже"
 
 msgid "Medium light skin tone"
-msgstr "Средње светли тон коже"
+msgstr "Средње светли тен коже"
 
 msgid "Medium skin tone"
-msgstr "Средњи тон коже"
+msgstr "Средњи тен коже"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Достигнуто је ограничење величине поруке од {count} карактера"
