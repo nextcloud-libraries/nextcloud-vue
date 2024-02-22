@@ -114,6 +114,9 @@ msgstr "Потврдите измене"
 msgid "Custom"
 msgstr "Произвољно"
 
+msgid "Dark skin tone"
+msgstr "Тамни тон коже"
+
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "Поплава"
@@ -177,12 +180,24 @@ msgstr "невидљиво"
 msgid "Keyboard navigation help"
 msgstr "Помоћ за навигацију тастатуром"
 
+msgid "Light skin tone"
+msgstr "Светли тон коже"
+
 msgid "Load more \"{options}\""
 msgstr "Учитај још „{options}”"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Морнар"
+
+msgid "Medium dark skin tone"
+msgstr "Средње тамни тон коже"
+
+msgid "Medium light skin tone"
+msgstr "Средње светли тон коже"
+
+msgid "Medium skin tone"
+msgstr "Средњи тон коже"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Достигнуто је ограничење величине поруке од {count} карактера"
@@ -192,6 +207,9 @@ msgstr "Још ставки..."
 
 msgid "More options"
 msgstr "Још опција"
+
+msgid "Neutral skin color"
+msgstr "Неутрална боја коже"
 
 msgid "Next"
 msgstr "Следеће"
@@ -220,9 +238,6 @@ msgstr "Маслинаста"
 
 msgid "online"
 msgstr "на мрежи"
-
-msgid "Open contact menu"
-msgstr "Отвори мени контаката"
 
 msgid "Open link to \"{resourceName}\""
 msgstr "Отвори линк на „{resourceName}”"
@@ -329,6 +344,9 @@ msgstr "Кретање по подешавањима"
 
 msgid "Show password"
 msgstr "Прикажи лозинку"
+
+msgid "Skin tone"
+msgstr "Тон коже"
 
 msgid "Skip to app navigation"
 msgstr "Прескочи на навигацију апликацијом"
