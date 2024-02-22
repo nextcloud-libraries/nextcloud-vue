@@ -83,7 +83,11 @@ export default {
 			}
 		},
 		fullUrl() {
-			return new URL(this.text.trim(), window.location)
+			const matchArray = this.text.trim().match(new RegExp(URL_PATTERN))
+			if (matchArray) {
+				return new URL(matchArray[0], window.location).href
+			}
+			return null
 		},
 	},
 	watch: {
@@ -100,7 +104,7 @@ export default {
 				return
 			}
 
-			if (!(new RegExp(URL_PATTERN).exec(this.fullUrl.href))) {
+			if (!(new RegExp(URL_PATTERN).exec(this.fullUrl))) {
 				this.loading = false
 				return
 			}
@@ -116,7 +120,7 @@ export default {
 			})
 		},
 		resolve() {
-			const match = (new RegExp(URL_PATTERN).exec(this.fullUrl.href))
+			const match = (new RegExp(URL_PATTERN).exec(this.fullUrl))
 			if (this.limit === 1 && match) {
 				return axios.get(generateOcsUrl('references/resolve', 2) + `?reference=${encodeURIComponent(match[0])}`)
 			}
