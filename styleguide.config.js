@@ -217,7 +217,8 @@ module.exports = async () => {
 					{
 						name: 'App containers',
 						components: [
-							'src/components/NcContent/*.vue',
+							'src/components/NcAppContent/NcAppContent.vue',
+							'src/components/NcContent/NcContent.vue',
 						],
 						sections: [
 							{
@@ -228,12 +229,6 @@ module.exports = async () => {
 								ignore: [
 									'src/components/NcAppNavigationItem/NcAppNavigationIconCollapsible.vue',
 									'src/components/NcAppNavigationItem/NcInputConfirmCancel.vue',
-								],
-							},
-							{
-								name: 'NcAppContent',
-								components: [
-									'src/components/NcAppContent*/*.vue',
 								],
 							},
 							{

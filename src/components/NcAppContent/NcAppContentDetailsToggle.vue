@@ -27,7 +27,7 @@ import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
 import NcButton from '../NcButton/index.js'
 
 export default {
-	name: 'NcAppDetailsToggle',
+	name: 'NcAppContentDetailsToggle',
 
 	components: {
 		ArrowRight,
