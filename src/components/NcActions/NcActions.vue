@@ -1537,8 +1537,8 @@ export default {
 		const actionsRoleToHtmlPopupRole = {
 			dialog: 'dialog',
 			menu: 'menu',
-			navigation: 'true',
-			tooltip: 'true',
+			navigation: undefined,
+			tooltip: undefined,
 		}
 		const popupRole = actionsRoleToHtmlPopupRole[this.actionsMenuSemanticType]
 
@@ -1634,7 +1634,8 @@ export default {
 						ariaHidden: this.ariaHidden,
 						ref: 'menuButton',
 						'aria-label': this.menuName ? null : this.ariaLabel,
-						'aria-controls': this.opened ? this.randomId : null,
+						// 'aria-controls' is not needed for navigation menu
+						'aria-controls': this.opened && popupRole ? this.randomId : null,
 						onFocus: this.onFocus,
 						onBlur: this.onBlur,
 						onClick: this.onClick,
