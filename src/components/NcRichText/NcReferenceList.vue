@@ -82,9 +82,6 @@ export default {
 				richObjectType: 'open-graph',
 			}
 		},
-		fullUrl() {
-			return new URL(this.text.trim(), window.location)
-		},
 	},
 	watch: {
 		text: 'fetch',
@@ -100,7 +97,7 @@ export default {
 				return
 			}
 
-			if (!(new RegExp(URL_PATTERN).exec(this.fullUrl.href))) {
+			if (!(new RegExp(URL_PATTERN).exec(this.text))) {
 				this.loading = false
 				return
 			}
@@ -116,7 +113,7 @@ export default {
 			})
 		},
 		resolve() {
-			const match = (new RegExp(URL_PATTERN).exec(this.fullUrl.href))
+			const match = (new RegExp(URL_PATTERN).exec(this.text.trim()))
 			if (this.limit === 1 && match) {
 				return axios.get(generateOcsUrl('references/resolve', 2) + `?reference=${encodeURIComponent(match[0])}`)
 			}
