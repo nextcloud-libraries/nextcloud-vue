@@ -105,7 +105,7 @@ export default {
 					'app-content-wrapper--show-details': showDetails,
 					'app-content-wrapper--show-list': !showDetails,
 					'app-content-wrapper--mobile': isMobile,}">
-				<NcAppDetailsToggle v-if="showDetails" @click.native.stop.prevent="hideDetails" />
+				<NcAppContentDetailsToggle v-if="showDetails" @click.native.stop.prevent="hideDetails" />
 
 				<div v-show="!showDetails">
 					<slot name="list" />
@@ -152,7 +152,7 @@ import { Splitpanes, Pane } from 'splitpanes'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { isRtl } from '../../utils/rtl.ts'
 
-import NcAppDetailsToggle from './NcAppDetailsToggle.vue'
+import NcAppContentDetailsToggle from './NcAppContentDetailsToggle.vue'
 
 import 'splitpanes/dist/splitpanes.css'
 
@@ -173,7 +173,7 @@ export default {
 	name: 'NcAppContent',
 
 	components: {
-		NcAppDetailsToggle,
+		NcAppContentDetailsToggle,
 		Pane,
 		Splitpanes,
 	},
