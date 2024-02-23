@@ -209,10 +209,11 @@ export default {
 		/**
 		 * Popup role
 		 * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-haspopup#values
+		 * By default undefined because popup can't be always as menu
 		 */
 		popupRole: {
 			type: String,
-			default: 'true',
+			default: undefined,
 			validator: (value) => ['menu', 'listbox', 'tree', 'grid', 'dialog', 'true'].includes(value),
 		},
 

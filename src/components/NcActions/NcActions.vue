@@ -1521,8 +1521,8 @@ export default {
 		const actionsRoleToHtmlPopupRole = {
 			dialog: 'dialog',
 			menu: 'menu',
-			navigation: 'true',
-			tooltip: 'true',
+			navigation: undefined,
+			tooltip: undefined,
 		}
 		const popupRole = actionsRoleToHtmlPopupRole[this.actionsMenuSemanticType]
 
@@ -1662,7 +1662,8 @@ export default {
 						ref: 'menuButton',
 						attrs: {
 							'aria-label': this.menuName ? null : this.ariaLabel,
-							'aria-controls': this.opened ? this.randomId : null,
+							// 'aria-controls' is not needed for navigation menu
+							'aria-controls': this.opened && popupRole ? this.randomId : null,
 						},
 						on: {
 							focus: this.onFocus,
@@ -1690,7 +1691,7 @@ export default {
 							attrs: {
 								id: this.randomId,
 								tabindex: '-1',
-								role: popupRole !== 'true' ? popupRole : undefined,
+								role: popupRole,
 								// TODO: allow to provide dialog aria-label
 							},
 						}, [
