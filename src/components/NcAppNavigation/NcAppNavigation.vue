@@ -66,7 +66,7 @@ emit('toggle-navigation', {
 			@keydown.esc="handleEsc">
 			<slot />
 			<!-- List for Navigation li-items -->
-			<ul class="app-navigation__list">
+			<ul v-if="$slots.list" class="app-navigation__list">
 				<slot name="list" />
 			</ul>
 
