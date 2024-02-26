@@ -1715,6 +1715,7 @@ export default {
 					? h('span', { class: ['icon', this.defaultIcon] })
 					: h(DotsHorizontal, { size: 20 })
 				)
+			const triggerRandomId = `${this.randomId}-trigger`
 			return h(NcPopover,
 				{
 					ref: 'popover',
@@ -1735,6 +1736,7 @@ export default {
 				},
 				{
 					trigger: () => h(NcButton, {
+						id: triggerRandomId,
 						class: 'action-item__menutoggle',
 						type: this.triggerBtnType,
 						disabled: this.disabled,
@@ -1764,7 +1766,8 @@ export default {
 							id: this.randomId,
 							tabindex: '-1',
 							role: this.config.popupRole,
-							// TODO: allow to provide dialog aria-label
+							// Dialog must have a label
+							'aria-labelledby': this.actionsMenuSemanticType === 'dialog' ? triggerRandomId : undefined,
 						}, [
 							actions,
 						]),
