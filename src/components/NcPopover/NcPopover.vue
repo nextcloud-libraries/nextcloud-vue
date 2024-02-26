@@ -307,9 +307,7 @@ export default {
 		 * @return {HTMLElement|undefined}
 		 */
 		getPopoverTriggerContainerElement() {
-			// TODO: Vue 3: should be
-			// this.$refs.popover.$refs.popper.$refs.reference
-			return this.$refs.popover.$refs.reference
+			return this.$refs.popover.$refs.popper.$refs.reference
 		},
 
 		/**
