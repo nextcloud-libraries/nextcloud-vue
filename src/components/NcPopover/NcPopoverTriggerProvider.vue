@@ -18,7 +18,7 @@ export default defineComponent({
 		},
 		popupRole: {
 			type: String,
-			required: true,
+			default: undefined,
 		},
 	},
 

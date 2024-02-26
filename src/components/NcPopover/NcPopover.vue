@@ -209,7 +209,6 @@ export default {
 		/**
 		 * Popup role
 		 * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-haspopup#values
-		 * By default undefined because popup can't be always as menu
 		 */
 		popupRole: {
 			type: String,
@@ -283,7 +282,7 @@ export default {
 				// TODO: Vue 3: should be
 				// this.$refs.popover.$refs.popper.$refs.reference
 				const triggerContainer = this.$refs.popover.$refs.reference
-				const requiredTriggerButton = triggerContainer.querySelector('[aria-expanded][aria-haspopup]')
+				const requiredTriggerButton = triggerContainer.querySelector('[aria-expanded]')
 				if (!requiredTriggerButton) {
 					Vue.util.warn('It looks like you are using a custom button as a <NcPopover> or other popover #trigger. If you are not using <NcButton> as a trigger, you need to bind attrs from the #trigger slot props to your custom button. See <NcPopover> docs for an example.')
 				}
