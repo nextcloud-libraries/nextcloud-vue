@@ -1768,6 +1768,7 @@ export default {
 							role: this.config.popupRole,
 							// Dialog must have a label
 							'aria-labelledby': this.actionsMenuSemanticType === 'dialog' ? triggerRandomId : undefined,
+							'aria-modal': this.actionsMenuSemanticType === 'dialog' ? 'true' : undefined,
 						}, [
 							actions,
 						]),

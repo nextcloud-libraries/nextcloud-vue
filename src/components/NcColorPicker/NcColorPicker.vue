@@ -163,6 +163,7 @@ export default {
 		</template>
 		<div role="dialog"
 			class="color-picker"
+			aria-modal="true"
 			:aria-label="t('Color picker')"
 			:class="{ 'color-picker--advanced-fields': advanced && advancedFields }">
 			<Transition name="slide" mode="out-in">
