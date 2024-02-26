@@ -279,9 +279,7 @@ export default {
 		 */
 		checkTriggerA11y() {
 			if (window.OC?.debug) {
-				// TODO: Vue 3: should be
-				// this.$refs.popover.$refs.popper.$refs.reference
-				const triggerContainer = this.$refs.popover.$refs.reference
+				const triggerContainer = this.getPopoverTriggerContainerElement()
 				const requiredTriggerButton = triggerContainer.querySelector('[aria-expanded]')
 				if (!requiredTriggerButton) {
 					Vue.util.warn('It looks like you are using a custom button as a <NcPopover> or other popover #trigger. If you are not using <NcButton> as a trigger, you need to bind attrs from the #trigger slot props to your custom button. See <NcPopover> docs for an example.')
@@ -290,10 +288,32 @@ export default {
 		},
 
 		/**
+		 * Remove incorrect aria-describedby attribute from the trigger.
+		 * @see https://github.com/Akryum/floating-vue/blob/8d4f7125aae0e3ea00ba4093d6d2001ab15058f1/packages/floating-vue/src/components/Popper.ts#L734
+		 */
+		removeFloatingVueAriaDescribedBy() {
+			// When the popover is shown, floating-vue mutates the root elements of the trigger adding data-popper-shown and incorrect aria-describedby attributes.
+			const triggerContainer = this.getPopoverTriggerContainerElement()
+			const triggerElements = triggerContainer.querySelectorAll('[data-popper-shown]')
+			for (const el of triggerElements) {
+				el.removeAttribute('aria-describedby')
+			}
+		},
+
+		/**
 		 * @return {HTMLElement|undefined}
 		 */
 		getPopoverContentElement() {
 			return this.$refs.popover?.$refs.popperContent?.$el
+		},
+
+		/**
+		 * @return {HTMLElement|undefined}
+		 */
+		getPopoverTriggerContainerElement() {
+			// TODO: Vue 3: should be
+			// this.$refs.popover.$refs.popper.$refs.reference
+			return this.$refs.popover.$refs.reference
 		},
 
 		/**
@@ -368,14 +388,16 @@ export default {
 		},
 
 		afterShow() {
-			/**
-			 * Triggered after the tooltip was visually displayed.
-			 *
-			 * This is different from the 'show' and 'apply-show' which
-			 * run earlier than this where there is no guarantee that the
-			 * tooltip is already visible and in the DOM.
-			 */
+			this.removeFloatingVueAriaDescribedBy()
+
 			this.$nextTick(() => {
+				/**
+				 * Triggered after the tooltip was visually displayed.
+				 *
+				 * This is different from the 'show' and 'apply-show' which
+				 * run earlier than this where there is no guarantee that the
+				 * tooltip is already visible and in the DOM.
+				 */
 				this.$emit('after-show')
 				this.useFocusTrap()
 				this.addEscapeStopPropagation()
