@@ -1723,6 +1723,7 @@ export default {
 						},
 					})
 			)
+			const triggerRandomId = `${this.randomId}-trigger`
 			return h('NcPopover',
 				{
 					ref: 'popover',
@@ -1766,6 +1767,7 @@ export default {
 						slot: 'trigger',
 						ref: 'menuButton',
 						attrs: {
+							id: triggerRandomId,
 							'aria-label': this.menuName ? null : this.ariaLabel,
 							// 'aria-controls' should only present together with a valid aria-haspopup
 							'aria-controls': this.opened && this.config.popupRole ? this.randomId : null,
@@ -1798,7 +1800,8 @@ export default {
 								id: this.randomId,
 								tabindex: '-1',
 								role: this.config.popupRole,
-								// TODO: allow to provide dialog aria-label
+								// Dialog must have a label
+								'aria-labelledby': this.actionsMenuSemanticType === 'dialog' ? triggerRandomId : undefined,
 							},
 						}, [
 							actions,
