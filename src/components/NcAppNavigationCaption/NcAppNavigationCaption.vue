@@ -98,11 +98,13 @@
 </docs>
 
 <template>
-	<li class="app-navigation-caption">
+	<component :is="wrapperTag"
+		class="app-navigation-caption"
+		:class="{ 'app-navigation-caption--heading': isHeading }">
 		<!-- Name of the caption -->
-		<span class="app-navigation-caption__name">
+		<component :is="captionTag" class="app-navigation-caption__name">
 			{{ name }}
-		</span>
+		</component>
 
 		<!-- Actions -->
 		<div v-if="!!$slots.actions"
@@ -115,7 +117,7 @@
 				</template>
 			</NcActions>
 		</div>
-	</li>
+	</component>
 </template>
 
 <script>
@@ -137,11 +139,29 @@ export default {
 		},
 
 		/**
+		 * Enable when used as a heading
+		 * e.g. Before NcAppNavigationList
+		 */
+		isHeading: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * Any [NcActions](#/Components/NcActions?id=ncactions-1) prop
 		 */
 		// Not an actual prop but needed to show in vue-styleguidist docs
 		// eslint-disable-next-line
 		' ': {},
+	},
+
+	computed: {
+		wrapperTag() {
+			return this.isHeading ? 'div' : 'li'
+		},
+		captionTag() {
+			return this.isHeading ? 'h2' : 'span'
+		},
 	},
 }
 </script>
@@ -151,6 +171,13 @@ export default {
 .app-navigation-caption {
 	display: flex;
 	justify-content: space-between;
+
+	&--heading {
+		padding: var(--app-navigation-padding);
+		&:not(:first-child):not(:last-child) {
+			padding: 0 var(--app-navigation-padding);
+		}
+	}
 
 	&__name {
 		font-weight: bold;
