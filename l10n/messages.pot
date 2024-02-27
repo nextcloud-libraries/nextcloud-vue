@@ -286,6 +286,9 @@ msgstr ""
 msgid "Related resources"
 msgstr ""
 
+msgid "Related team resources"
+msgstr ""
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr ""
@@ -371,6 +374,9 @@ msgid "Undo changes"
 msgstr ""
 
 msgid "User status: {status}"
+msgstr ""
+
+msgid "View team"
 msgstr ""
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
