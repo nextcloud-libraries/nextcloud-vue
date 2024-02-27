@@ -1504,11 +1504,13 @@ export default {
 		focusFirstAction(event) {
 			if (this.opened) {
 				this.preventIfEvent(event)
-				// In case a button is considered aria-selected we will use this one as a initial focus
-				const firstSelectedIndex = [...this.getFocusableMenuItemElements()].findIndex((button) => {
-					return button.parentElement.getAttribute('aria-selected')
+				// In case a NcActionButton is considered checked we will use this one as a initial focus
+				// Having aria-checked is the simplest way to determine the checked state of a button
+				// TODO: determine when we need to focus the first checked item and when we not, for example, if menu has many radio groups
+				const firstCheckedIndex = [...this.getFocusableMenuItemElements()].findIndex((button) => {
+					return button.getAttribute('aria-checked') === 'true' && button.getAttribute('role') === 'menuitemradio'
 				})
-				this.focusIndex = firstSelectedIndex > -1 ? firstSelectedIndex : 0
+				this.focusIndex = firstCheckedIndex > -1 ? firstCheckedIndex : 0
 				this.focusAction()
 			}
 		},
