@@ -124,6 +124,9 @@ msgstr ""
 msgid "Emoji picker"
 msgstr ""
 
+msgid "Enable interactive view"
+msgstr ""
+
 msgid "Enter link"
 msgstr ""
 

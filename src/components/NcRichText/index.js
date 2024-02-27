@@ -22,7 +22,7 @@
 
 import NcRichText from './NcRichText.vue'
 
-import { registerWidget, renderWidget, isWidgetRegistered } from './../../functions/reference/widgets.js'
+import { registerWidget, renderWidget, isWidgetRegistered } from './../../functions/reference/widgets.ts'
 import NcReferenceList from './NcReferenceList.vue'
 import NcReferenceWidget from './NcReferenceWidget.vue'
 import NcReferencePicker from './NcReferencePicker/NcReferencePicker.vue'

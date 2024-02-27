@@ -36,7 +36,7 @@ export default {
 		},
 		interactive: {
 			type: Boolean,
-			default: false,
+			default: true,
 		},
 		interactiveOptIn: {
 			type: Boolean,

@@ -3,7 +3,7 @@ export {
 	renderWidget,
 	destroyWidget,
 	isWidgetRegistered,
-} from './../reference/widgets.js'
+} from './../reference/widgets.ts'
 export {
 	NcCustomPickerRenderResult,
 	registerCustomPickerElement,

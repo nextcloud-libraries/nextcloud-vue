@@ -21,7 +21,7 @@
 			</div>
 		</component>
 		<NcButton v-if="hasInteractiveView && !isInteractive" class="toggle-interactive--button" @click="enableInteractive">
-			Enable interative mode
+			{{ enableLabel }}
 		</NcButton>
 	</div>
 </template>
@@ -29,9 +29,10 @@
 import { RouterLink } from 'vue-router'
 
 import { getRoute } from './autolink.js'
-import { renderWidget, isWidgetRegistered, destroyWidget, hasInteractiveView } from './../../functions/reference/widgets.js'
-import { useElementVisibility, useResizeObserver } from '@vueuse/core'
+import { renderWidget, isWidgetRegistered, destroyWidget, hasInteractiveView } from './../../functions/reference/widgets.ts'
+import { useIntersectionObserver, useResizeObserver } from '@vueuse/core'
 import NcButton from '../../components/NcButton/index.js'
+import { t } from '../../l10n.js'
 
 export default {
 	name: 'NcReferenceWidget',
@@ -45,7 +46,7 @@ export default {
 		},
 		interactive: {
 			type: Boolean,
-			default: false,
+			default: true,
 		},
 		interactiveOptIn: {
 			type: Boolean,
@@ -55,9 +56,10 @@ export default {
 	data() {
 		return {
 			compact: 3,
-			isVisible: false,
 			showInteractive: false,
+			isVisible: false,
 			rendered: false,
+			enableLabel: t('Enable interactive view'),
 		}
 	},
 	computed: {
@@ -113,15 +115,21 @@ export default {
 		},
 	},
 	watch: {
-		isVisible(val) {
-			if (!val || this.rendered) {
-				return
-			}
-			this.renderWidget()
+		isVisible: {
+			handler(val) {
+				if (!val) {
+					this.destroyWidget()
+					return
+				}
+				this.renderWidget()
+			},
+			immediate: true,
 		},
 	},
 	mounted() {
-		this.isVisible = useElementVisibility(this.$el)
+		useIntersectionObserver(this.$el, entries => {
+			this.isVisible = entries[0]?.isIntersecting ?? false
+		})
 		useResizeObserver(this.$el, entries => {
 			if (entries[0].contentRect.width < 450) {
 				this.compact = 0
@@ -136,7 +144,7 @@ export default {
 		})
 	},
 	beforeDestroy() {
-		destroyWidget(this.reference.richObjectType, this.$el)
+		this.destroyWidget()
 	},
 	methods: {
 		enableInteractive() {
@@ -161,6 +169,12 @@ export default {
 				})
 				this.rendered = true
 			})
+		},
+		destroyWidget() {
+			if (this.rendered) {
+				destroyWidget(this.reference.richObjectType, this.$el)
+				this.rendered = false
+			}
 		},
 	},
 }
