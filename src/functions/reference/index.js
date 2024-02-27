@@ -1,4 +1,4 @@
-import { registerWidget, renderWidget, isWidgetRegistered, hasInteractiveView } from './widgets.js'
+import { registerWidget, renderWidget, isWidgetRegistered, hasInteractiveView } from './widgets.ts'
 import { getLinkWithPicker } from './referencePickerModal.js'
 import {
 	getProvider,
