@@ -571,7 +571,8 @@ export default {
 <template>
 	<div>
 		<h2>Application menu</h2>
-		Uses buttons, button groups, links and router links, separators, text. May have checkboxes and radio buttons.
+		<p>Has buttons, button groups, links and router links, separators, texts. May have checkboxes and radio buttons. Separator can be used to make groups of radio buttons as well.</p>
+		<p><kbd>Arrows</kbd> are used to navigate between items, <kbd>Tab</kbd> is used to navigate to the next UI element on the page.</p>
 		<p>
 			<NcActions aria-label="Email menu" type="tertiary">
 				<NcActionButtonGroup>
@@ -624,9 +625,6 @@ export default {
 				</NcActionLink>
 			</NcActions>
 		</p>
-
-		<h2>Menu in menubar</h2>
-		Same as application menu. Separator can be used to make groups of radio buttons as well.
 		<p>
 			<NcActions aria-label="Text settings" type="tertiary">
 				<template #icon>
@@ -677,7 +675,8 @@ export default {
 		</p>
 
 		<h2>Navigation</h2>
-		Uses links or router links. May use text elements, captions and separators.
+		<p>Has links or router links. May use text elements, captions and separators.</p>
+		<p>Uses classic <kbd>Tab</kbd> navigation.</p>
 		<p>
 			<NcActions aria-label="Applications navigation" :inline="2" type="tertiary">
 				<NcActionLink href="/apps/dashboard" icon="icon-category-dashboard-white">
@@ -692,14 +691,15 @@ export default {
 				<NcActionLink href="/apps/contacts" icon="icon-contacts-white">
 					Contacts
 				</NcActionLink>
-				<NcActionLink href="/apps/spreed" icon="icon-circles-white">
+				<NcActionLink href="/apps/circles" icon="icon-circles-white">
 					Circles
 				</NcActionLink>
 			</NcActions>
 		</p>
 
 		<h2>Dialog</h2>
-		Includes data input elements
+		<p>Includes data input elements, forms.</p>
+		<p>Uses <kbd>Tab</kbd> navigation with a focus trap.</p>
 		<p>
 			<NcActions aria-label="Group management">
 				<NcActionInput trailing-button-label="Submit" label="Rename group">
@@ -1137,9 +1137,9 @@ export default {
 			focusIndex: 0,
 			randomId: `menu-${GenRandomId()}`,
 			/**
-			 * @type {'menu'|'navigation'|'dialog'|'tooltip'|''}
+			 * @type {'menu'|'navigation'|'dialog'|'tooltip'|'unknown'}
 			 */
-			actionsMenuSemanticType: '',
+			actionsMenuSemanticType: 'unknown',
 			externalFocusTrapStack: [],
 		}
 	},
@@ -1153,8 +1153,63 @@ export default {
 				: this.menuName ? 'secondary' : 'tertiary')
 		},
 
+		/**
+		 * A11y roles and keyboard navigation configuration depending on the semantic type
+		 */
+		config() {
+			/**
+			 * Accessibility notes:
+			 *
+			 * There is no valid popup role for navigation and tooltip in `aria-haspopup`.
+			 * aria-haspopup="true" is equivalent to aria-haspopup="menu".
+			 * They must not be treated as menus.
+			 *
+			 * Having both arrow and tab navigation is not allowed for a11y.
+			 * Either menu is an atomic UI element, and arrows select menu items, Tab moves to the next UI element.
+			 * Or the menu is an expanded list of UI elements.
+			 *
+			 * Navigation type is just an "expanded" block, similar to native <details> element.
+			 */
+			const configs = {
+				menu: {
+					popupRole: 'menu',
+					withArrowNavigation: true,
+					withTabNavigation: false,
+					withFocusTrap: false,
+				},
+				navigation: {
+					popupRole: undefined,
+					withArrowNavigation: false,
+					withTabNavigation: true,
+					withFocusTrap: false,
+				},
+				dialog: {
+					popupRole: 'dialog',
+					withArrowNavigation: false,
+					withTabNavigation: true,
+					withFocusTrap: true,
+				},
+				tooltip: {
+					popupRole: undefined,
+					withArrowNavigation: false,
+					withTabNavigation: false,
+					withFocusTrap: false,
+				},
+				// Due to Vue limitations, we sometimes cannot determine the true type
+				// As a fallback use both arrow navigation and focus trap
+				unknown: {
+					popupRole: undefined,
+					role: undefined,
+					withArrowNavigation: true,
+					withTabNavigation: false,
+					withFocusTrap: true,
+				},
+			}
+			return configs[this.actionsMenuSemanticType]
+		},
+
 		withFocusTrap() {
-			return this.actionsMenuSemanticType === 'dialog'
+			return this.config.withFocusTrap
 		},
 	},
 
@@ -1194,7 +1249,7 @@ export default {
 		 * We need to pause all the focus traps for opening popover and then unpause them back after closing.
 		 */
 		intersectIntoCurrentFocusTrapStack() {
-			if (this.withFocusTrap) {
+			if (this.config.withFocusTrap) {
 				return
 			}
 
@@ -1299,10 +1354,25 @@ export default {
 		},
 
 		// MENU KEYS & FOCUS MANAGEMENT
-		// focus nearest focusable item on mouse move
-		// DO NOT change the focus if the target is already focused
-		// this will prevent issues with input being unfocused
-		// on mouse move
+		/**
+		 * @return {HTMLElement|null}
+		 */
+		getCurrentActiveMenuItemElement() {
+			return this.$refs.menu.querySelector('li.active')
+		},
+		/**
+		 * @return {NodeListOf<HTMLElement>}
+		 */
+		getFocusableMenuItemElements() {
+			return this.$refs.menu.querySelectorAll(focusableSelector)
+		},
+		/**
+		 * Focus nearest focusable item on mouse move.
+		 * DO NOT change the focus if the target is already focused
+		 * this will prevent issues with input being unfocused
+		 * on mouse move
+		 * @param {PointerEvent} event - The mouse move event
+		 */
 		onMouseFocusAction(event) {
 			if (document?.activeElement === event.target) {
 				return
@@ -1312,7 +1382,7 @@ export default {
 			if (menuItem && this.$refs.menu.contains(menuItem)) {
 				const focusableItem = menuItem.querySelector(focusableSelector)
 				if (focusableItem) {
-					const focusList = this.$refs.menu.querySelectorAll(focusableSelector)
+					const focusList = this.getFocusableMenuItemElements()
 					const focusIndex = [...focusList].indexOf(focusableItem)
 					if (focusIndex > -1) {
 						this.focusIndex = focusIndex
@@ -1327,31 +1397,75 @@ export default {
 		 * @param {object} event The keydown event
 		 */
 		onKeydown(event) {
-			if (event.key === 'Tab' && !this.withFocusTrap) {
-				// Return focus to restore Tab sequence
-				// So browser will correctly move focus to the next element
-				this.closeMenu(true)
+			if (event.key === 'Tab') {
+				if (this.config.withFocusTrap) {
+					// Focus is managed by focus-trap
+					return
+				}
+
+				if (!this.config.withTabNavigation) {
+					// Tab is not used for navigation - close the menu
+					// Return focus to restore Tab sequence
+					// So browser will correctly move focus to the next element
+					this.closeMenu(true)
+					return
+				}
+
+				// Tab is used for classic navigation but we implement it manually
+
+				event.preventDefault()
+
+				const focusList = this.getFocusableMenuItemElements()
+				const focusIndex = [...focusList].indexOf(document.activeElement)
+				if (focusIndex === -1) {
+					// This is not supposed to happen
+					// But if it does - do nothing and keep native behavior
+					return
+				}
+				const newFocusIndex = event.shiftKey ? focusIndex - 1 : focusIndex + 1
+
+				// There is no focus-trap, so going out of the menu closes it
+				if (newFocusIndex < 0 || newFocusIndex === focusList.length) {
+					this.closeMenu(true)
+				}
+
+				// Update current focused element
+				this.focusIndex = newFocusIndex
+				this.focusAction()
+				return
 			}
 
-			if (event.key === 'ArrowUp') {
-				this.focusPreviousAction(event)
-			}
+			if (this.config.withArrowNavigation) {
+				if (event.key === 'ArrowUp') {
+					this.focusPreviousAction(event)
+				}
 
-			if (event.key === 'ArrowDown') {
-				this.focusNextAction(event)
-			}
+				if (event.key === 'ArrowDown') {
+					this.focusNextAction(event)
+				}
 
-			if (event.key === 'PageUp') {
-				this.focusFirstAction(event)
-			}
+				if (event.key === 'PageUp') {
+					this.focusFirstAction(event)
+				}
 
-			if (event.key === 'PageDown') {
-				this.focusLastAction(event)
+				if (event.key === 'PageDown') {
+					this.focusLastAction(event)
+				}
 			}
 
 			if (event.key === 'Escape') {
 				this.closeMenu()
 				event.preventDefault()
+			}
+		},
+		onTriggerKeydown(event) {
+			if (event.key === 'Escape') {
+				// Tooltip has no focusable elements and the focus remains on the trigger button.
+				// So keydown event on the menu cannot be handled to close Tooltip on Escape.
+				// Handle on the trigger.
+				if (this.actionsMenuSemanticType === 'tooltip') {
+					this.closeMenu()
+				}
 			}
 		},
 		removeCurrentActive() {
@@ -1362,7 +1476,7 @@ export default {
 		},
 		focusAction() {
 			// TODO: have a global disabled state for non input elements
-			const focusElement = this.$refs.menu.querySelectorAll(focusableSelector)[this.focusIndex]
+			const focusElement = this.getFocusableMenuItemElements()[this.focusIndex]
 			if (focusElement) {
 				this.removeCurrentActive()
 				const liMenuParent = focusElement.closest('li.action')
@@ -1385,7 +1499,7 @@ export default {
 		},
 		focusNextAction(event) {
 			if (this.opened) {
-				const indexLength = this.$refs.menu.querySelectorAll(focusableSelector).length - 1
+				const indexLength = this.getFocusableMenuItemElements().length - 1
 				if (this.focusIndex === indexLength) {
 					this.focusFirstAction(event)
 				} else {
@@ -1399,7 +1513,7 @@ export default {
 			if (this.opened) {
 				this.preventIfEvent(event)
 				// In case a button is considered aria-selected we will use this one as a initial focus
-				const firstSelectedIndex = [...this.$refs.menu.querySelectorAll(focusableSelector)].findIndex((button) => {
+				const firstSelectedIndex = [...this.getFocusableMenuItemElements()].findIndex((button) => {
 					return button.parentElement.getAttribute('aria-selected')
 				})
 				this.focusIndex = firstSelectedIndex > -1 ? firstSelectedIndex : 0
@@ -1409,7 +1523,7 @@ export default {
 		focusLastAction(event) {
 			if (this.opened) {
 				this.preventIfEvent(event)
-				this.focusIndex = this.$refs.menu.querySelectorAll(focusableSelector).length - 1
+				this.focusIndex = this.getFocusableMenuItemElements().length - 1
 				this.focusAction()
 			}
 		},
@@ -1430,7 +1544,7 @@ export default {
 			if (this.actionsMenuSemanticType === 'tooltip') {
 				// Tooltip is supposed to have no focusable element.
 				// However, if there is a custom focusable element, it will be auto-focused and cause the menu to be closed on open.
-				if (this.$refs.menu && this.$refs.menu.querySelectorAll(focusableSelector).length === 0) {
+				if (this.$refs.menu && this.getFocusableMenuItemElements().length === 0) {
 					this.closeMenu(false)
 				}
 			}
@@ -1498,7 +1612,7 @@ export default {
 
 		/**
 		 * Determine what kind of menu we have.
-		 * It defines focus behavior and a11y.
+		 * It defines keyboard navigation and a11y.
 		 */
 
 		const menuItemsActions = ['NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio']
@@ -1529,18 +1643,9 @@ export default {
 				this.actionsMenuSemanticType = 'tooltip'
 			} else {
 				// Custom components are passed to the NcActions
-				// dialog is a universal fallback option
-				this.actionsMenuSemanticType = 'dialog'
+				this.actionsMenuSemanticType = 'unknown'
 			}
 		}
-
-		const actionsRoleToHtmlPopupRole = {
-			dialog: 'dialog',
-			menu: 'menu',
-			navigation: undefined,
-			tooltip: undefined,
-		}
-		const popupRole = actionsRoleToHtmlPopupRole[this.actionsMenuSemanticType]
 
 		/**
 		 * Render the provided action
@@ -1619,9 +1724,9 @@ export default {
 					container: this.container,
 					...this.manualOpen && { triggers: [] },
 					popoverBaseClass: 'action-item__popper',
-					popupRole,
-					setReturnFocus: this.withFocusTrap ? this.$refs.menuButton?.$el : null,
-					focusTrap: this.withFocusTrap,
+					popupRole: this.config.popupRole,
+					setReturnFocus: this.config.withFocusTrap ? this.$refs.menuButton?.$el : null,
+					focusTrap: this.config.withFocusTrap,
 					onShow: this.openMenu,
 					onAfterShow: this.onOpen,
 					onHide: this.closeMenu,
@@ -1634,11 +1739,12 @@ export default {
 						ariaHidden: this.ariaHidden,
 						ref: 'menuButton',
 						'aria-label': this.menuName ? null : this.ariaLabel,
-						// 'aria-controls' is not needed for navigation menu
-						'aria-controls': this.opened && popupRole ? this.randomId : null,
+						// 'aria-controls' should only present together with a valid aria-haspopup
+						'aria-controls': this.opened && this.config.popupRole ? this.randomId : null,
 						onFocus: this.onFocus,
 						onBlur: this.onBlur,
 						onClick: this.onClick,
+						onKeydown: this.onTriggerKeydown,
 					}, {
 						icon: () => triggerIcon,
 						default: () => this.menuName,
@@ -1655,7 +1761,7 @@ export default {
 						h('ul', {
 							id: this.randomId,
 							tabindex: '-1',
-							role: popupRole !== 'true' ? popupRole : undefined,
+							role: this.config.popupRole,
 							// TODO: allow to provide dialog aria-label
 						}, [
 							actions,
