@@ -32,7 +32,7 @@ const MENTION_START = '(?:^|\\s)'
 // Anything that is not text or end-of-line. Non-capturing group
 const MENTION_END = '(?:[^a-z]|$)'
 export const USERID_REGEX = new RegExp(`${MENTION_START}(@[a-zA-Z0-9_.@\\-']+)(${MENTION_END})`, 'gi')
-export const USERID_REGEX_WITH_SPACE = new RegExp(`${MENTION_START}(@&quot;[a-zA-Z0-9 _.@\\-']+&quot;)(${MENTION_END})`, 'gi')
+export const USERID_REGEX_WITH_SPACE = new RegExp(`${MENTION_START}(@&quot;[a-zA-Z0-9 _/.@\\-']+&quot;)(${MENTION_END})`, 'gi')
 
 export default {
 	props: {
