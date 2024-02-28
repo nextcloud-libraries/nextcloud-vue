@@ -645,8 +645,9 @@ export default {
 
 			this.tribute = new Tribute({
 				collection: tributesCollection,
-				// Allow spaces in the middle of mentions
-				allowSpaces: true,
+				// FIXME: tributejs doesn't support allowSpaces as a collection option, only as a global one
+				// Requires to fork a library to allow spaces only in the middle of mentions ('@' trigger)
+				allowSpaces: false,
 				// Where to inject the menu popup
 				menuContainer: this.menuContainer,
 			})
