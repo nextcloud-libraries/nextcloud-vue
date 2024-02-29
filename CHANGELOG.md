@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v8.8.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.8.1) (2024-02-29)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.8.0...v8.8.1)
+
+### 🐛 Fixed bugs
+* fix(NcSelect): handle text overflow in NcSelect by @hamza221 in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5325
+* fix: scope component breaking NcModal and NcDateTimePickers by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5331
+
 ## [v8.8.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.8.0) (2024-02-29)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.7.1...v8.8.0)
 
