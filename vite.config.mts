@@ -81,7 +81,7 @@ const overrides = defineConfig({
 		devSourcemap: true,
 		preprocessorOptions: {
 			scss: {
-				additionalData: `@use 'sass:math'; $scope_version:${SCOPE_VERSION}; @import 'variables'; @import 'material-icons';`,
+				additionalData: `@use 'sass:math'; $scope_version: '${SCOPE_VERSION}'; @import 'variables'; @import 'material-icons';`,
 				sourceMapContents: false,
 				includePaths: [
 					resolve(__dirname, 'src/assets'),
