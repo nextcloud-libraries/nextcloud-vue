@@ -147,6 +147,7 @@ This component allows the user to pick an emoji.
 			:show-skin-tones="false"
 			:title="previewFallbackName"
 			role="dialog"
+			aria-modal="true"
 			:aria-label="t('Emoji picker')"
 			v-bind="$attrs"
 			@select="select">

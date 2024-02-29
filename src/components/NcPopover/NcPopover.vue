@@ -142,7 +142,7 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 			</template>
 
 			<!-- Popover content should has the same role -->
-			<div role="dialog" aria-labelledby="popover-example-custom-role-1">
+			<div role="dialog" aria-labelledby="popover-example-custom-role-1" aria-modal="true">
 				<!-- This is not required but better to provide a label -->
 				<header id="popover-example-custom-role-1">
 					<strong>Confirm remove</strong>
