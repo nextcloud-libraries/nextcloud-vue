@@ -9,7 +9,8 @@ import md5 from 'md5'
 import l10nPlugin from './build/l10n-plugin.mts'
 
 const appVersion = JSON.stringify(process.env.npm_package_version || 'nextcloud-vue')
-const SCOPE_VERSION = md5(appVersion).slice(0, 7) as string
+const versionHash = md5(appVersion).slice(0, 7) as string
+const SCOPE_VERSION = JSON.stringify(versionHash)
 
 // Entry points which we build using vite
 const entryPoints = {
@@ -106,7 +107,7 @@ export default defineConfig((env) => {
 		libraryFormats: ['es', 'cjs'],
 		replace: {
 			PRODUCTION: JSON.stringify(env.mode === 'production'),
-			SCOPE_VERSION: JSON.stringify(SCOPE_VERSION),
+			SCOPE_VERSION,
 		},
 	})
 
