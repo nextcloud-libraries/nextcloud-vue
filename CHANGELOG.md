@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v8.8.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.8.0) (2024-02-29)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.7.1...v8.8.0)
+
+## What's Changed
+
+### 🚀 Enhancements
+* feat(NcAppSidebar): Add `subname` slot by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5285
+* feat: Add NcAppNavigationList by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5302
+
+### 🐛 Fixed bugs
+* fix(NcAppNavigationSpacer): Adjust order to make the spacer work again by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5286
+* fix(NcResource): use RouterLink where possible for internal shared resources by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5282
+* fix(NcActions): remove `aria-haspopup` and `aria-controls` from navigation menu by @JuliaKirschenheuter in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5300
+* fix(NcActions): put in order tab and arrow navigation by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5305
+* fix(NcPopover): remove invalid aria-describedby by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5304
+* fix(NcActions): provide a label in dialog role by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5308
+* fix(NcActions): focus first checked item on open by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5313
+* fix(NcRichContenteditable): respect forward slash as user mention character by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5323
+* fix(NcPopover): add aria-modal to some popover-based dialog components by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5309
+* fix(NcPopover): make popupRole non-required by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5306
+* fix(NcRichContenteditable): disable global allowSpaces tribute option by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5321
+
+### Other Changes
+* Updates for project Nextcloud vue library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5289
+* Revert "fix(NcReferenceList): Resolve relative URLs before fetching references" by @mejo- in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5291
+
 ## [v8.7.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.7.1) (2024-02-21)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.7.0...v8.7.1)
 
