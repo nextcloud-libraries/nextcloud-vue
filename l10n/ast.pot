@@ -1,10 +1,10 @@
 # 
 # Translators:
-# enolp <enolp@softastur.org>, 2023
+# enolp <enolp@softastur.org>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: enolp <enolp@softastur.org>, 2023\n"
+"Last-Translator: enolp <enolp@softastur.org>, 2024\n"
 "Language-Team: Asturian (https://app.transifex.com/nextcloud/teams/64236/ast/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ast\n"
@@ -68,6 +68,9 @@ msgstr "Viola azulao"
 msgid "Boston Blue"
 msgstr "Azul Boston"
 
+msgid "busy"
+msgstr "ocupáu"
+
 msgid "Cancel changes"
 msgstr "Encaboxar los cambeos"
 
@@ -101,11 +104,17 @@ msgstr "Zarrar la seleición intelixente"
 msgid "Collapse menu"
 msgstr "Recoyer el menú"
 
+msgid "Color picker"
+msgstr "Selector de colores"
+
 msgid "Confirm changes"
 msgstr "Confirmar los cambeos"
 
 msgid "Custom"
 msgstr "Personalizar"
+
+msgid "Dark skin tone"
+msgstr "Tonu d'aspeutu escuru"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -119,6 +128,9 @@ msgstr "nun molestar"
 
 msgid "Edit item"
 msgstr "Editar l'elementu"
+
+msgid "Emoji picker"
+msgstr "Selector de fustaxes"
 
 msgid "Enter link"
 msgstr "Introducir l'enllaz"
@@ -164,12 +176,27 @@ msgstr "Anubrir la contraseña"
 msgid "invisible"
 msgstr "invisible"
 
+msgid "Keyboard navigation help"
+msgstr "Ayuda de la navegación pente'l tecláu"
+
+msgid "Light skin tone"
+msgstr "Tonu d'aspeutu claru"
+
 msgid "Load more \"{options}\""
 msgstr "Cargar más «{options}»"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Marineru"
+
+msgid "Medium dark skin tone"
+msgstr "Tonu d'aspeutu medio escuru"
+
+msgid "Medium light skin tone"
+msgstr "Tonu d'aspeutu medio claru"
+
+msgid "Medium skin tone"
+msgstr "Tonu d'aspeutu mediu"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Algamóse la llende del mensaxe con {count} caráuteres"
@@ -179,6 +206,9 @@ msgstr "Más elementos…"
 
 msgid "More options"
 msgstr "Más opciones"
+
+msgid "Neutral skin color"
+msgstr "Color d'aspeutu neutral"
 
 msgid "Next"
 msgstr "Siguiente"
@@ -208,9 +238,6 @@ msgstr "Olivina"
 msgid "online"
 msgstr "en llinia"
 
-msgid "Open contact menu"
-msgstr "Abrir el menú de contautu"
-
 msgid "Open link to \"{resourceName}\""
 msgstr "Abrir l'enllaz a «{resourceName}»"
 
@@ -219,6 +246,9 @@ msgstr "Abrir le menú"
 
 msgid "Open navigation"
 msgstr "Abrir la navegación"
+
+msgid "Options"
+msgstr "Opciones"
 
 msgid "Password is secure"
 msgstr "La contraseña ye segura"
@@ -313,6 +343,15 @@ msgstr "Navegación pela configuración"
 
 msgid "Show password"
 msgstr "Amosar la contraseña"
+
+msgid "Skin tone"
+msgstr "Tonu d'aspeutu"
+
+msgid "Skip to app navigation"
+msgstr "Dir a la navegación d'aplicaciones"
+
+msgid "Skip to main content"
+msgstr "Dir al conteníu principal"
 
 msgid "Smart Picker"
 msgstr "Selector intelixente"
