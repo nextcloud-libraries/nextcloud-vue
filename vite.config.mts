@@ -13,7 +13,8 @@ import l10nPlugin from './build/l10n-plugin.mts'
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 
 const appVersion = JSON.stringify(process.env.npm_package_version || 'nextcloud-vue')
-const SCOPE_VERSION = md5(appVersion).slice(0, 7) as string
+const versionHash = md5(appVersion).slice(0, 7) as string
+const SCOPE_VERSION = JSON.stringify(versionHash)
 
 // Entry points which we build using vite
 const entryPoints = {
