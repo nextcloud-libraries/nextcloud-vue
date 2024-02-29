@@ -1213,6 +1213,10 @@ body {
 		border: none;
 	}
 
+	.vs__search {
+		text-overflow: ellipsis;
+	}
+
 	.vs__search, .vs__search:focus {
 		margin: 2px 0 0;
 	}
