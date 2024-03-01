@@ -128,6 +128,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.widget--list {
+	width: var(--widget-full-width, 100%);
+}
+
 .widgets--list.icon-loading {
 	min-height: 44px;
 }
