@@ -22,13 +22,57 @@
  */
 
 import { mount } from '@vue/test-utils'
+import { Fragment } from 'vue-frag'
 
 import NcActions from '../../../../src/components/NcActions/NcActions.vue'
 import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'
+import NcActionInput from '../../../../src/components/NcActionInput/NcActionInput.vue'
 import TestCompositionApi from './TestCompositionApi.vue'
+import { defineComponent } from 'vue'
 
 describe('NcActions.vue', () => {
-	'use strict'
+
+	describe('semantic menu type', () => {
+		const MyWrapper = defineComponent({
+			template: '<Fragment><NcActionInput /></Fragment>',
+			components: { Fragment, NcActionInput },
+		})
+
+		// This currently fails due to limitations of Vue 2
+		it.failing('Can auto detect semantic menu type in wrappers', () => {
+			const wrapper = mount(NcActions, {
+				slots: {
+					default: [
+						'<MyWrapper />',
+					],
+				},
+				stubs: {
+					MyWrapper,
+				},
+			})
+
+			expect(wrapper.vm.$data.actionsMenuSemanticType).toBe('dialog')
+		})
+
+		it('Can set the type manually', () => {
+			const wrapper = mount(NcActions, {
+				propsData: {
+					menuSemanticType: 'dialog',
+				},
+				slots: {
+					default: [
+						'<MyWrapper />',
+					],
+				},
+				stubs: {
+					MyWrapper,
+				},
+			})
+
+			expect(wrapper.vm.$data.actionsMenuSemanticType).toBe('dialog')
+		})
+	})
+
 	describe('when using the component with', () => {
 		it('no actions elements', () => {
 			const wrapper = mount(NcActions, {
@@ -178,7 +222,7 @@ describe('NcActions.vue', () => {
 					inline: 1,
 				},
 			})
-		
+
 			expect(wrapper.find('img[src="http://example.com/image.png"').exists()).toBe(true)
 		})
 	})

@@ -813,7 +813,7 @@ p {
 `<NcActions>` is supposed to be used with direct `<NcAction*>` children.
 Although it works when actions are not direct children but wrapped in custom components, it has limitations:
 - No `inline` prop property, including a single action display;
-- Accessibility issues, including changed keyboard behavior;
+- Accessibility issues, including changed keyboard behavior (see below);
 - Invalid HTML.
 
 ```
@@ -932,6 +932,40 @@ export default {
 }
 </style>
 ```
+
+#### Manually providing semantic menu information
+Due to limitations of Vue, when using a custom wrapper for action components, you have to provide the semantic menu type yourself.
+This is used for keyboard navigation and accessibility.
+In this example a `NcActionInput` component is used within a custom wrapper, so `NcActions` is not able to detect the semantic menu type of 'dialog' automatically,
+meaning it must be provided manually:
+
+```vue
+<template>
+	<NcActions menu-semantic-type="dialog">
+		<MyWrapper />
+	</NcActions>
+</template>
+<script>
+import Pencil from 'vue-material-design-icons/Pencil.vue'
+
+export default {
+	components: {
+		MyWrapper: {
+			template: `
+<NcActionInput trailing-button-label="Submit" label="Rename group">
+	<template #icon>
+		<Pencil :size="20" />
+	</template>
+</NcActionInput>`,
+		},
+		components: {
+			Pencil,
+		},
+	},
+}
+</script>
+```
+
 </docs>
 
 <script>
@@ -1020,6 +1054,33 @@ export default {
 		menuName: {
 			type: String,
 			default: null,
+		},
+
+		/**
+		 * NcActions can be used as:
+		 *
+		 * - Application menu (has menu role)
+		 * - Navigation (has no specific role, should be used an element with navigation role)
+		 * - Popover with plain text or text inputs (has no specific role)
+		 *
+		 * By default the used type is automatically detected by components used in the default slot.#
+		 *
+		 * With Vue 2 this is limited to direct children of the NcActions component.
+		 * So if you use a wrapper, you have to provide the semantic type yourself (see Example)
+		 *
+		 * Choose:
+		 *
+		 * - 'dialog' if you use any of these components: NcActionInput', 'NcActionTextEditable'
+		 * - 'menu' if you use any of these components: 'NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio'
+		 * - 'navigation' if using one of these: 'NcActionLink', 'NcActionRouter'
+		 * - Leave this property unset otherwise
+		 */
+		forceSemanticType: {
+			type: String,
+			default: null,
+			validator(value) {
+				return ['dialog', 'menu', 'navigation'].includes(value)
+			},
 		},
 
 		/**
@@ -1640,36 +1701,39 @@ export default {
 		 * Determine what kind of menu we have.
 		 * It defines keyboard navigation and a11y.
 		 */
-
-		const menuItemsActions = ['NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio']
-		const textInputActions = ['NcActionInput', 'NcActionTextEditable']
-		const linkActions = ['NcActionLink', 'NcActionRouter']
-
-		const hasTextInputAction = menuActions.some(action => textInputActions.includes(this.getActionName(action)))
-		const hasMenuItemAction = menuActions.some(action => menuItemsActions.includes(this.getActionName(action)))
-		const hasLinkAction = menuActions.some(action => linkActions.includes(this.getActionName(action)))
-
-		if (hasTextInputAction) {
-			this.actionsMenuSemanticType = 'dialog'
-		} else if (hasMenuItemAction) {
-			this.actionsMenuSemanticType = 'menu'
-		} else if (hasLinkAction) {
-			this.actionsMenuSemanticType = 'navigation'
+		if (this.forceSemanticType) {
+			this.actionsMenuSemanticType = this.forceSemanticType
 		} else {
-			// (!) Hotfix (!)
-			// In Vue 2 it is not easy to search for NcAction* in sub-component of a slot.
-			// When a menu is rendered, children are not mounted yet.
-			// If we have NcActions > MyActionsList > NcActionButton, only MyActionsList's vnode is available.
-			// So when NcActions has actions as non-direct children, here then we don't know about them.
-			// Like this menu has no buttons/links/inputs.
-			// It makes the menu incorrectly considered a tooltip.
-			const ncActions = actions.filter((action) => this.getActionName(action).startsWith('NcAction'))
-			if (ncActions.length === actions.length) {
-				// True tooltip
-				this.actionsMenuSemanticType = 'tooltip'
+			const textInputActions = ['NcActionInput', 'NcActionTextEditable']
+			const menuItemsActions = ['NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio']
+			const linkActions = ['NcActionLink', 'NcActionRouter']
+
+			const hasTextInputAction = menuActions.some(action => textInputActions.includes(this.getActionName(action)))
+			const hasMenuItemAction = menuActions.some(action => menuItemsActions.includes(this.getActionName(action)))
+			const hasLinkAction = menuActions.some(action => linkActions.includes(this.getActionName(action)))
+
+			if (hasTextInputAction) {
+				this.actionsMenuSemanticType = 'dialog'
+			} else if (hasMenuItemAction) {
+				this.actionsMenuSemanticType = 'menu'
+			} else if (hasLinkAction) {
+				this.actionsMenuSemanticType = 'navigation'
 			} else {
-				// Custom components are passed to the NcActions
-				this.actionsMenuSemanticType = 'unknown'
+				// (!) Hotfix (!)
+				// In Vue 2 it is not easy to search for NcAction* in sub-component of a slot.
+				// When a menu is rendered, children are not mounted yet.
+				// If we have NcActions > MyActionsList > NcActionButton, only MyActionsList's vnode is available.
+				// So when NcActions has actions as non-direct children, here then we don't know about them.
+				// Like this menu has no buttons/links/inputs.
+				// It makes the menu incorrectly considered a tooltip.
+				const ncActions = actions.filter((action) => this.getActionName(action).startsWith('NcAction'))
+				if (ncActions.length === actions.length) {
+					// True tooltip
+					this.actionsMenuSemanticType = 'tooltip'
+				} else {
+					// Custom components are passed to the NcActions
+					this.actionsMenuSemanticType = 'unknown'
+				}
 			}
 		}
 
