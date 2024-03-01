@@ -11,12 +11,14 @@ type widgetDestroyCallback = (el: HTMLElement) => void;
 interface WidgetProps {
 	id: string;
 	hasInteractiveView: boolean;
+	fullWidth: boolean;
 	callback: widgetRenderCallback;
 	onDestroy: widgetDestroyCallback;
 }
 
 interface WidgetPropsOptional {
 	hasInteractiveView?: boolean;
+	fullWidth?: boolean;
 }
 
 declare global {
@@ -38,10 +40,15 @@ const hasInteractiveView = (id: string) => {
 	return !!window._vue_richtext_widgets[id]?.hasInteractiveView
 }
 
+export const hasFullWidth = (id: string) => {
+	return !!window._vue_richtext_widgets[id]?.fullWidth ?? false
+}
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const registerWidget = (id: string, callback: widgetRenderCallback, onDestroy = (el: HTMLElement) => {}, props: WidgetPropsOptional) => {
 	const propsWithDefaults = {
 		hasInteractiveView: true,
+		fullWidth: false,
 		...props,
 	}
 
