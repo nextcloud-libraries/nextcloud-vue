@@ -115,17 +115,22 @@ The list size must be between the min and the max width value.
 </template>
 
 <script>
-import NcAppDetailsToggle from './NcAppDetailsToggle.vue'
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
-
 import { getBuilder } from '@nextcloud/browser-storage'
 import { emit } from '@nextcloud/event-bus'
+import { loadState } from '@nextcloud/initial-state'
 import { useSwipe } from '@vueuse/core'
 import { Splitpanes, Pane } from 'splitpanes'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { t } from '../../l10n.js'
+
+import NcAppDetailsToggle from './NcAppDetailsToggle.vue'
 
 import 'splitpanes/dist/splitpanes.css'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
+const { name: productName } = loadState('theming', 'data', { name: 'Nextcloud' })
+const activeApp = loadState('core', 'active-app', appName)
+const localizedAppName = loadState('core', 'apps', {})[activeApp]?.name ?? appName
 
 /**
  * App content container to be used for the main content of your app
@@ -202,6 +207,17 @@ export default {
 			type: String,
 			default: null,
 		},
+
+		/**
+		 * Allow setting the page's `<title>`
+		 *
+		 * If a page heading is set it defaults to `{pageHeading} - {appName} - {productName}` e.g. `Favorites - Files - Nextcloud`.
+		 * When setting the prop then the following format will be used: `{pageTitle} - {pageHeading || appName} - {productName}`
+		 */
+		pageTitle: {
+			type: String,
+			default: null,
+		},
 	},
 
 	emits: [
@@ -267,6 +283,27 @@ export default {
 					max: 100 - this.listMinWidth,
 				},
 			}
+		},
+
+		realPageTitle() {
+			if (this.pageTitle) {
+				return t('{view} - {app} - {product}', { view: this.pageTitle, app: this.pageHeading || localizedAppName, product: productName })
+			}
+			if (this.pageHeading) {
+				return t('{view} - {app} - {product}', { view: this.pageHeading, app: localizedAppName, product: productName })
+			}
+			return null
+		},
+	},
+
+	watch: {
+		realPageTitle: {
+			immediate: true,
+			handler() {
+				if (this.realPageTitle !== null) {
+					document.title = this.realPageTitle
+				}
+			},
 		},
 	},
 
