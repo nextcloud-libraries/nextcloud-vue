@@ -1,8 +1,9 @@
 <template>
-	<div>
-		<div v-if="reference && hasCustomWidget" class="widget-custom">
-			<div ref="customWidget" />
-		</div>
+	<div :class="{'toggle-interactive': hasInteractiveView && !isInteractive }">
+		<div v-if="reference && hasCustomWidget"
+			ref="customWidget"
+			class="widget-custom"
+			:class="{ 'full-width': hasFullWidth }" />
 
 		<component :is="referenceWidgetLinkComponent"
 			v-else-if="!noAccess && reference && reference.openGraphObject && !hasCustomWidget"
@@ -11,36 +12,71 @@
 			class="widget-default">
 			<img v-if="reference.openGraphObject.thumb" class="widget-default--image" :src="reference.openGraphObject.thumb">
 			<div class="widget-default--details">
-				<p class="widget-default--name">{{ reference.openGraphObject.name }}</p>
-				<p class="widget-default--description" :style="descriptionStyle">{{ reference.openGraphObject.description }}</p>
-				<p class="widget-default--link">{{ compactLink }}</p>
+				<p class="widget-default--name">
+					{{ reference.openGraphObject.name }}
+				</p>
+				<p class="widget-default--description" :style="descriptionStyle">
+					{{ reference.openGraphObject.description }}
+				</p>
+				<p class="widget-default--link">
+					{{ compactLink }}
+				</p>
 			</div>
 		</component>
+		<NcButton v-if="hasInteractiveView && !isInteractive" class="toggle-interactive--button" @click="enableInteractive">
+			{{ enableLabel }}
+		</NcButton>
 	</div>
 </template>
 <script>
 import { RouterLink } from 'vue-router'
 
 import { getRoute } from './autolink.js'
-import { renderWidget, isWidgetRegistered, destroyWidget } from './../../functions/reference/widgets.js'
-import { useResizeObserver } from '@vueuse/core'
+import { renderWidget, isWidgetRegistered, destroyWidget, hasInteractiveView, hasFullWidth } from './../../functions/reference/widgets.ts'
+import { useIntersectionObserver, useResizeObserver } from '@vueuse/core'
+import NcButton from '../../components/NcButton/index.js'
+import { t } from '../../l10n.js'
 
 export default {
 	name: 'NcReferenceWidget',
+	components: {
+		NcButton,
+	},
 	props: {
 		reference: {
 			type: Object,
 			required: true,
 		},
+		interactive: {
+			type: Boolean,
+			default: true,
+		},
+		interactiveOptIn: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		return {
 			compact: 3,
+			showInteractive: false,
+			isVisible: false,
+			rendered: false,
+			enableLabel: t('Enable interactive view'),
 		}
 	},
 	computed: {
+		isInteractive() {
+			return (!this.interactiveOptIn && this.interactive) || this.showInteractive
+		},
+		hasFullWidth() {
+			return hasFullWidth(this.reference.richObjectType)
+		},
 		hasCustomWidget() {
 			return isWidgetRegistered(this.reference.richObjectType)
+		},
+		hasInteractiveView() {
+			return isWidgetRegistered(this.reference.richObjectType) && hasInteractiveView(this.reference.richObjectType)
 		},
 		noAccess() {
 			return this.reference && !this.reference.accessible
@@ -84,8 +120,22 @@ export default {
 				: { href: this.reference.openGraphObject.link, target: '_blank' }
 		},
 	},
+	watch: {
+		isVisible: {
+			handler(val) {
+				if (!val) {
+					this.destroyWidget()
+					return
+				}
+				this.renderWidget()
+			},
+			immediate: true,
+		},
+	},
 	mounted() {
-		this.renderWidget()
+		useIntersectionObserver(this.$el, entries => {
+			this.isVisible = entries[0]?.isIntersecting ?? false
+		})
 		useResizeObserver(this.$el, entries => {
 			if (entries[0].contentRect.width < 450) {
 				this.compact = 0
@@ -100,9 +150,13 @@ export default {
 		})
 	},
 	beforeDestroy() {
-		destroyWidget(this.reference.richObjectType, this.$el)
+		this.destroyWidget()
 	},
 	methods: {
+		enableInteractive() {
+			this.showInteractive = true
+			this.renderWidget()
+		},
 		renderWidget() {
 			if (this.$refs.customWidget) {
 				this.$refs.customWidget.innerHTML = ''
@@ -110,10 +164,23 @@ export default {
 			if (this?.reference?.richObjectType === 'open-graph') {
 				return
 			}
+			// create a separate element so we can rerender on the ref again
+			const widget = document.createElement('div')
+			this.$refs.customWidget.appendChild(widget)
 			this.$nextTick(() => {
 				// Waiting for the ref to become available
-				renderWidget(this.$refs.customWidget, this.reference)
+				renderWidget(widget, {
+					...this.reference,
+					interactive: this.isInteractive,
+				})
+				this.rendered = true
 			})
+		},
+		destroyWidget() {
+			if (this.rendered) {
+				destroyWidget(this.reference.richObjectType, this.$el)
+				this.rendered = false
+			}
 		},
 	},
 }
@@ -134,6 +201,12 @@ export default {
 
 .widget-custom {
 	@include widget;
+
+	&.full-width {
+		width: var(--widget-full-width, 100%) !important;
+		left: calc( (var(--widget-full-width, 100%) - 100%) / 2 * -1);
+		position: relative;
+	}
 }
 
 .widget-access {
@@ -202,6 +275,24 @@ export default {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+	}
+}
+
+.toggle-interactive {
+	position: relative;
+	.toggle-interactive--button {
+		position: absolute;
+		top: 50%;
+		z-index: 10000;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+		opacity: 0;
+	}
+
+	&:focus-within, &:hover {
+		.toggle-interactive--button {
+			opacity: 1;
+		}
 	}
 }
 </style>
