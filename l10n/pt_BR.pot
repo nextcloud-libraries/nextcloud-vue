@@ -2,10 +2,11 @@
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Flávio Veras <flaviove@gmail.com>, 2023
+# Roberto Costa, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Flávio Veras <flaviove@gmail.com>, 2023\n"
+"Last-Translator: Roberto Costa, 2024\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_BR\n"
@@ -70,6 +71,9 @@ msgstr "Violeta Azul"
 msgid "Boston Blue"
 msgstr "Violeta Azul"
 
+msgid "busy"
+msgstr "ocupado"
+
 msgid "Cancel changes"
 msgstr "Cancelar alterações"
 
@@ -103,11 +107,17 @@ msgstr "Fechar Seletor Inteligente"
 msgid "Collapse menu"
 msgstr "Recolher menu"
 
+msgid "Color picker"
+msgstr "Seletor de cores"
+
 msgid "Confirm changes"
 msgstr "Confirmar alterações"
 
 msgid "Custom"
 msgstr "Personalizado"
+
+msgid "Dark skin tone"
+msgstr "Tom de pele escuro"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -121,6 +131,9 @@ msgstr "não perturbe"
 
 msgid "Edit item"
 msgstr "Editar item"
+
+msgid "Emoji picker"
+msgstr "Selecionar emoji"
 
 msgid "Enter link"
 msgstr "Insira o link"
@@ -166,12 +179,27 @@ msgstr "Ocultar a senha"
 msgid "invisible"
 msgstr "invisível"
 
+msgid "Keyboard navigation help"
+msgstr "Ajuda navegação de teclado"
+
+msgid "Light skin tone"
+msgstr "Tome de pele claro"
+
 msgid "Load more \"{options}\""
 msgstr "Carregue mais \"{options}\""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Marinheiro"
+
+msgid "Medium dark skin tone"
+msgstr "Tom de pele meio escuro"
+
+msgid "Medium light skin tone"
+msgstr "Tom de pele meio claro"
+
+msgid "Medium skin tone"
+msgstr "Tom de pele médio"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Limite de mensagem de {count} caracteres atingido"
@@ -181,6 +209,9 @@ msgstr "Mais itens …"
 
 msgid "More options"
 msgstr "Mais opções"
+
+msgid "Neutral skin color"
+msgstr "Tom de pele neutro"
 
 msgid "Next"
 msgstr "Próximo"
@@ -210,9 +241,6 @@ msgstr "Olivina"
 msgid "online"
 msgstr "ligado"
 
-msgid "Open contact menu"
-msgstr "Abrir o menu de contato"
-
 msgid "Open link to \"{resourceName}\""
 msgstr "Abrir i link para \"{resourceName}\""
 
@@ -221,6 +249,9 @@ msgstr "Abrir menu"
 
 msgid "Open navigation"
 msgstr "Abrir navegação"
+
+msgid "Options"
+msgstr "Opções"
 
 msgid "Password is secure"
 msgstr "A senha é segura"
@@ -315,6 +346,15 @@ msgstr "Navegação de configurações"
 
 msgid "Show password"
 msgstr "Mostrar senha"
+
+msgid "Skin tone"
+msgstr "Tom de pele"
+
+msgid "Skip to app navigation"
+msgstr "Ir para navegação"
+
+msgid "Skip to main content"
+msgstr "Ir para conteúdo principal"
 
 msgid "Smart Picker"
 msgstr "Seletor Inteligente"
