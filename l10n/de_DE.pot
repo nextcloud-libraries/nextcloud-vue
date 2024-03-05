@@ -136,6 +136,9 @@ msgstr "Element bearbeiten"
 msgid "Emoji picker"
 msgstr "Emoji-Auswahl"
 
+msgid "Enable interactive view"
+msgstr "Die interaktive Ansicht aktivieren"
+
 msgid "Enter link"
 msgstr "Link eingeben"
 
