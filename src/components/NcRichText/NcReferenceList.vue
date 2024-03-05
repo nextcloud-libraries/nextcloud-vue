@@ -1,7 +1,7 @@
 <template>
 	<div v-if="isVisible" class="widgets--list" :class="{'icon-loading': loading }">
 		<div v-for="reference in displayedReferences" :key="reference?.openGraphObject?.id">
-			<NcReferenceWidget :reference="reference" :interactive="interactive" :interactive-opt-in="interactiveOptIn" />
+			<NcReferenceWidget :reference="reference" :interactive="isInteractive" :interactive-opt-in="interactiveOptIn" />
 		</div>
 	</div>
 </template>
@@ -50,6 +50,9 @@ export default {
 		}
 	},
 	computed: {
+		isInteractive() {
+			return this.interactive && this.$el.closest('.nc-rich-text--interactive') === null
+		},
 		isVisible() {
 			return this.loading || this.displayedReferences.length !== 0
 		},
