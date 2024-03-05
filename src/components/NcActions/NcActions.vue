@@ -1316,7 +1316,7 @@ export default {
 
 			this.opened = false
 
-			this.$refs.popover.clearFocusTrap({ returnFocus })
+			this.$refs.popover?.clearFocusTrap({ returnFocus })
 
 			/**
 			 * Event emitted when the popover menu open state is changed
@@ -1335,7 +1335,7 @@ export default {
 
 			if (returnFocus) {
 				// Focus back the menu button
-				this.$refs.menuButton.$el.focus()
+				this.$refs.menuButton?.$el.focus()
 			}
 		},
 
