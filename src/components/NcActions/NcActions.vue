@@ -1343,7 +1343,7 @@ export default {
 
 			if (returnFocus) {
 				// Focus back the menu button
-				this.$refs.menuButton.$el.focus()
+				this.$refs.menuButton?.$el.focus()
 			}
 		},
 
