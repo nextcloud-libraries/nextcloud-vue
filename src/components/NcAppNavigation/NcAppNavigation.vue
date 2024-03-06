@@ -64,13 +64,17 @@ emit('toggle-navigation', {
 			class="app-navigation__content"
 			:inert="!open || undefined"
 			@keydown.esc="handleEsc">
-			<slot />
-			<!-- List for Navigation li-items -->
-			<ul v-if="$slots.list" class="app-navigation__list">
-				<slot name="list" />
-			</ul>
+			<div class="app-navigation__body" :class="{ 'app-navigation__body--no-list': !$slots.list }">
+				<!-- The main content of the navigation. If no list is passed to the #list slot, stretched vertically. -->
+				<slot />
+			</div>
 
-			<!-- Footer for e.g. AppNavigationSettings -->
+			<NcAppNavigationList v-if="$slots.list" class="app-navigation__list">
+				<!-- List for Navigation list items. Stretched between the main content and the footer -->
+				<slot name="list" />
+			</NcAppNavigationList>
+
+			<!-- Footer for e.g. NcAppNavigationSettings -->
 			<slot name="footer" />
 		</nav>
 		<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
@@ -84,12 +88,14 @@ import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { createFocusTrap } from 'focus-trap'
 
 import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
+import NcAppNavigationList from '../NcAppNavigationList/index.js'
 import { warn } from 'vue'
 
 export default {
 	name: 'NcAppNavigation',
 
 	components: {
+		NcAppNavigationList,
 		NcAppNavigationToggle,
 	},
 
@@ -255,10 +261,10 @@ export default {
 		position: absolute;
 	}
 
-	&__content > ul,
-	&__list {
+	// For legacy purposes support passing a bare list to the content in #default slot and including #footer slot
+	// Same styles as NcAppNavigationList
+	&__content > ul {
 		position: relative;
-		height: 100%;
 		width: 100%;
 		overflow-x: hidden;
 		overflow-y: auto;
@@ -268,6 +274,19 @@ export default {
 		gap: var(--default-grid-baseline, 4px);
 		padding: var(--app-navigation-padding);
 	}
+
+	// Always stretch the navigation list
+	& &__list {
+		height: 100%;
+	}
+
+	// Stretch the main content if there is no stretched list
+	&__body--no-list {
+		flex: 1 1 auto;
+		overflow: auto;
+		height: 100%;
+	}
+
 	&__content {
 		height: 100%;
 		display: flex;
