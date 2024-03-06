@@ -45,25 +45,30 @@ export default {
 </docs>
 
 <template>
-	<div v-if="appEnabled && isVisible" class="related-resources">
-		<div class="related-resources__header">
-			<h5>{{ header }}</h5>
-			<p>{{ subline }}</p>
-		</div>
+	<div>
+		<NcTeamResources :provider-id="providerId"
+			:item-id="itemId" />
 
-		<NcResource v-for="resource in resources"
-			:key="resource.itemId"
-			class="related-resources__entry"
-			:icon="resource.icon"
-			:name="resource.title"
-			:url="resource.url" />
+		<div v-if="appEnabled && isVisible" class="related-resources">
+			<div class="related-resources__header">
+				<h5>{{ header }}</h5>
+				<p>{{ subline }}</p>
+			</div>
+
+			<NcResource v-for="resource in resources"
+				:key="resource.itemId"
+				class="related-resources__entry"
+				:icon="resource.icon"
+				:name="resource.title"
+				:url="resource.url" />
+		</div>
 	</div>
 </template>
 
 <script>
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
-
+import NcTeamResources from './NcTeamResources.vue'
 import NcResource from './NcResource.vue'
 
 import { t } from '../../l10n.js'
@@ -73,6 +78,7 @@ export default {
 
 	components: {
 		NcResource,
+		NcTeamResources,
 	},
 
 	props: {
@@ -255,10 +261,10 @@ export default {
 <style lang="scss" scoped>
 .related-resources {
 	&__header {
-		margin: 0 0 10px 46px;
 
 		h5 {
 			font-weight: bold;
+			margin-bottom: 6px;
 		}
 
 		p {
