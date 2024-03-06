@@ -64,11 +64,7 @@ emit('toggle-navigation', {
 			class="app-navigation__content"
 			:inert="!open || undefined"
 			@keydown.esc="handleEsc">
-			<div v-if="$scopedSlots.default" class="app-navigation__body">
-				<!-- @slot Content within the nav, do NOT add NcModal/NcDialog inside this slot -->
-				<slot />
-			</div>
-
+			<slot />
 			<!-- List for Navigation li-items -->
 			<ul v-if="$scopedSlots.list" class="app-navigation__list">
 				<slot name="list" />
@@ -257,17 +253,6 @@ export default {
 	&--close {
 		transform: translateX(-100%);
 		position: absolute;
-	}
-
-	&__body {
-		position: relative;
-		height: 100%;
-		width: 100%;
-		overflow-x: hidden;
-		overflow-y: auto;
-		box-sizing: border-box;
-		display: flex;
-		flex-direction: column;
 	}
 
 	&__content > ul,
