@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v8.9.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.9.1) (2024-03-06)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.9.0...v8.9.1)
+
+### 🐛 Fixed bugs
+* fix: Revert "fix(NcAppNavigation): Wrap app navigation default slot with scrollable container" by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5355
+
 ## [v8.9.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.9.0) (2024-03-06)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.8.1...v8.9.0)
 
