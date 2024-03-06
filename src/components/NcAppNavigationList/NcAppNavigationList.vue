@@ -59,21 +59,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-ul.app-navigation-list { // Increase specificity over NcAppNavigation styles
+.app-navigation-list {
 	position: relative;
-	height: fit-content;
 	width: 100%;
-	overflow: unset;
+	overflow-x: hidden;
+	overflow-y: auto;
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
 	gap: var(--default-grid-baseline, 4px);
 	padding: var(--app-navigation-padding);
-
-	&:nth-last-of-type(2) {
-		// Fill remaining space before NcAppNavigation footer
-		height: 100%;
-		overflow: auto;
-	}
 }
 </style>
