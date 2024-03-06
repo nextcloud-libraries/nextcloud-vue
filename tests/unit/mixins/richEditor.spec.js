@@ -95,14 +95,16 @@ describe('richEditor.js', () => {
 				'@foobar no space - \n\n@foobar  @foobar',
 				'hello @"guest/47e0a7cf"',
 				'hello @"group/group-id" @"federated_user/user-id"',
+				'hello @"federated_user/user-id@server.com:8080"',
 			]
 			const outputs = [
 				'hello @foo@bar - hello @"bar @ foo"',
-				'hello @foo@bar  @"bar @ foo" @foobar  @foo-bar',
+				'hello @foo@bar @"bar @ foo" @foobar @foo-bar',
 				'hello foo@bar - hello @@foobar',
-				' @foobar no space - <br> @foobar  @foobar',
+				'@foobar no space - <br><br>@foobar  @foobar',
 				'hello @"guest/47e0a7cf"',
-				'hello @"group/group-id"  @"federated_user/user-id"',
+				'hello @"group/group-id" @"federated_user/user-id"',
+				'hello @"federated_user/user-id@server.com:8080"',
 			]
 
 			for (const i in inputs) {
