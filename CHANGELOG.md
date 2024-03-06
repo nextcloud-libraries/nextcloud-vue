@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v8.9.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.9.0) (2024-03-06)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.8.1...v8.9.0)
+
+### 🚀 Enhancements
+* feat(reference): Add opt-in for interactive mode and render widgets lazy once in view by @juliushaertl in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5257
+* feat: List team resources in related resources panel by @juliushaertl in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5316
+
+### 🐛 Fixed bugs
+* fix(NcAppNavigation): Wrap app navigation default slot with scrollable container by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5347
+
+### Other Changes
+* Updates for project Nextcloud vue library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5333
+* Updates for project Nextcloud vue library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5343
+* fix(NcActions): clear focus trap and move focus only if elements are existing in the DOM by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5345
+* Updates for project Nextcloud vue library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5348
+
 ## [v8.8.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.8.1) (2024-02-29)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.8.0...v8.8.1)
 
