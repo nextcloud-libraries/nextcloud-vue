@@ -51,8 +51,10 @@ Vue.use(NextcloudVuePlugin)
 If you want to work on improving the components it’s best to run the latest code and link it to your local Nextcloud installation:
 
 1. Install the dependencies with `npm ci`
-2. Build the components every time you do changes: `npm run build` or `npm run build:module` (for es modules)
-    - To watch for changes and rebuild automatically: `npm run watch` or `npm run watch:module`
+2. Build the components every time you do changes: `npm run build`
+    - To make development build: `npm run dev`
+    - To watch for changes and rebuild automatically: `npm run watch`
+    - To watch for changes and rebuild development build: `npm run dev:watch`
 3. Connect it to your local Nextcloud development setup:
     - In this repository do `npm link`
     - In the repository of an app do `npm link @nextcloud/vue` (you need to re-link any time you do `npm ci` in the app)
