@@ -1178,7 +1178,6 @@ $top-buttons-spacing: 6px;
 						height: $clickable-area;
 						width: $clickable-area;
 						border-radius: math.div($clickable-area, 2);
-						background-color: $action-background-hover;
 						margin-left: 5px;
 					}
 				}
