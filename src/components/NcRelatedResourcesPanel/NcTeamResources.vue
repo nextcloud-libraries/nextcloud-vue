@@ -46,7 +46,7 @@
 									class="resource__icon"
 									:svg="resource.iconSvg"
 									:size="20" />
-								<span v-else-if="resource.iconUrl" class="resource__icon">
+								<span v-else-if="resource.iconURL" class="resource__icon">
 									<img :src="resource.iconURL" alt="">
 								</span>
 								<span class="resource__name">
@@ -248,6 +248,13 @@ export default {
 			align-items: center;
 			justify-content: center;
 			text-align: center;
+
+			& > img {
+				border-radius: var(--border-radius-pill);
+				overflow: hidden;
+				width: 32px;
+				height: 32px;
+			}
 		}
 	}
 }
