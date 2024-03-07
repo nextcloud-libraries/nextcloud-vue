@@ -21,7 +21,11 @@
   -->
 
 <template>
-	<NcButton v-tooltip="title" :aria-label="title" class="app-details-toggle">
+	<NcButton v-tooltip="title"
+		type="tertiary"
+		:aria-label="title"
+		class="app-details-toggle"
+		:class="{ 'app-details-toggle--mobile': isMobile }">
 		<template #icon>
 			<ArrowRight :size="20" />
 		</template>
@@ -36,6 +40,7 @@ import Tooltip from '../../directives/Tooltip/index.js'
 import { emit } from '@nextcloud/event-bus'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
 
 export default {
 	name: 'NcAppDetailsToggle',
@@ -48,19 +53,30 @@ export default {
 		NcButton,
 		ArrowRight,
 	},
+	setup() {
+		return {
+			isMobile: useIsMobile(),
+		}
+	},
 
 	computed: {
 		title() {
 			return t('Go back to the list')
 		},
 	},
-
-	beforeMount() {
-		this.toggleAppNavigationButton(true)
+	watch: {
+		isMobile: {
+			immediate: true,
+			handler() {
+				this.toggleAppNavigationButton(this.isMobile)
+			},
+		},
 	},
 
 	beforeDestroy() {
-		this.toggleAppNavigationButton(false)
+		if (this.isMobile) {
+			this.toggleAppNavigationButton(false)
+		}
 	},
 
 	methods: {
@@ -81,7 +97,7 @@ export default {
 
 <style lang="scss" scoped>
 .app-details-toggle {
-	position: fixed;
+	position: sticky;
 	width: $clickable-area;
 	height: $clickable-area;
 	padding: $icon-margin;
@@ -91,10 +107,19 @@ export default {
 	background-color: var(--color-main-background);
 	z-index: 2000;
 
+	top: var(--app-navigation-padding);
+	// Navigation Toggle button width + 2 paddings around
+	left: calc(var(--default-clickable-area) + var(--app-navigation-padding) * 2);
+	&--mobile {
+		// There is no NavigationToggle button
+		left: var(--app-navigation-padding);
+	}
+
 	&:active,
 	&:hover,
 	&:focus {
 		opacity: 1;
 	}
 }
+
 </style>
