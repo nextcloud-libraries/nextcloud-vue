@@ -89,7 +89,12 @@ export default {
 		 * @return {string}
 		 */
 		parseContent(content) {
-			let text = content.replace(/<br>/gmi, '\n')
+			let text = content
+			// Consecutive spaces in HTML tags should collapse
+			text = text.replace(/>\s+</g, '><')
+			// Replace break lines with new lines
+			text = text.replace(/<br>/gmi, '\n')
+			// Replace some html special characters
 			text = text.replace(/&nbsp;/gmi, ' ')
 			text = text.replace(/&amp;/gmi, '&')
 
