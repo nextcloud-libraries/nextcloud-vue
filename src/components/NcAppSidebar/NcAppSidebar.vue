@@ -1020,7 +1020,6 @@ $top-buttons-spacing: 6px;
 					.app-sidebar-header__menu {
 						top: $top-buttons-spacing;
 						right: $clickable-area + $top-buttons-spacing; // left of the close button
-						background-color: transparent;
 						position: absolute;
 					}
 				}
@@ -1150,9 +1149,6 @@ $top-buttons-spacing: 6px;
 
 					// main menu
 					.app-sidebar-header__menu {
-						height: $clickable-area;
-						width: $clickable-area;
-						border-radius: math.div($clickable-area, 2);
 						margin-left: 5px;
 					}
 				}
