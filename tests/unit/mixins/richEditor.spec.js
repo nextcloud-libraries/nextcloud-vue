@@ -85,10 +85,27 @@ describe('richEditor.js', () => {
 
 		it('keep mentions with special characters', () => {
 			const editor = shallowMount(TestEditor, { propsData: { userData: {} } })
-			const input = 'hello @foo@bar - hello @"bar @ foo"'
-			const output = editor.vm.renderContent(input)
+			const inputs = [
+				'hello @foo@bar - hello @"bar @ foo"',
+				'hello @foo@bar @"bar @ foo" @foobar @foo-bar',
+				'hello foo@bar - hello @@foobar',
+				'@foobar no space - \n\n@foobar  @foobar',
+				'hello @"guest/47e0a7cf"',
+				'hello @"group/group-id" @"federated_user/user-id"',
+			]
+			const outputs = [
+				'hello @foo@bar - hello @"bar @ foo"',
+				'hello @foo@bar  @"bar @ foo" @foobar  @foo-bar',
+				'hello foo@bar - hello @@foobar',
+				' @foobar no space - <br> @foobar  @foobar',
+				'hello @"guest/47e0a7cf"',
+				'hello @"group/group-id"  @"federated_user/user-id"',
+			]
 
-			expect(output).toEqual('hello @foo@bar - hello @"bar @ foo"')
+			for (const i in inputs) {
+				const output = editor.vm.renderContent(inputs[i])
+				expect(output).toEqual(outputs[i])
+			}
 		})
 	})
 })
