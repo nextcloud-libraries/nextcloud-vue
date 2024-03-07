@@ -81,7 +81,7 @@ The list size must be between the min and the max width value.
 			<div v-if="isMobile"
 				:class="showDetails ? 'app-content-wrapper--show-details' : 'app-content-wrapper--show-list'"
 				class="app-content-wrapper app-content-wrapper--mobile">
-				<NcAppDetailsToggle v-if="hasList && showDetails" @click.native.stop.prevent="hideDetails" />
+				<NcAppContentDetailsToggle v-if="hasList && showDetails" @click.native.stop.prevent="hideDetails" />
 
 				<slot name="list" />
 				<slot />
@@ -115,7 +115,7 @@ The list size must be between the min and the max width value.
 </template>
 
 <script>
-import NcAppDetailsToggle from './NcAppDetailsToggle.vue'
+import NcAppContentDetailsToggle from './NcAppContentDetailsToggle.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
 
 import { getBuilder } from '@nextcloud/browser-storage'
@@ -135,7 +135,7 @@ export default {
 	name: 'NcAppContent',
 
 	components: {
-		NcAppDetailsToggle,
+		NcAppContentDetailsToggle,
 		Pane,
 		Splitpanes,
 	},

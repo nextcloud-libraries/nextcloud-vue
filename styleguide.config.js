@@ -144,7 +144,8 @@ module.exports = async () => {
 							{
 								name: 'NcAppContent',
 								components: [
-									'src/components/NcAppContent*/*.vue',
+									'src/components/NcAppContent/NcAppContent.vue',
+									'src/components/NcAppContent[A-Z]*/*.vue',
 								],
 							},
 							{
