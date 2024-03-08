@@ -561,6 +561,7 @@ export default {
 				fillAttr: 'id',
 				// Search against id and label (display name) (fallback to title for v8.0.0..8.6.1 compatibility)
 				lookup: result => `${result.id} ${result.label ?? result.title}`,
+				requireLeadingSpace: true,
 				// Popup mention autocompletion templates
 				menuItemTemplate: item => renderMenuItem(this.renderComponentHtml(item.original, NcAutoCompleteResult)),
 				// Hide if no results
@@ -582,6 +583,7 @@ export default {
 					// Don't use the tribute search function at all
 					// We pass search results as values (see below)
 					lookup: (result, query) => query,
+					requireLeadingSpace: true,
 					// Popup mention autocompletion templates
 					menuItemTemplate: item => {
 						if (textSmiles.includes(item.original)) {
@@ -630,6 +632,7 @@ export default {
 					// Don't use the tribute search function at all
 					// We pass search results as values (see below)
 					lookup: (result, query) => query,
+					requireLeadingSpace: true,
 					// Popup mention autocompletion templates
 					menuItemTemplate: item => renderMenuItem(`<img class="${this.$style['tribute-item__icon']}" src="${item.original.icon_url}"> <span class="${this.$style['tribute-item__title']}">${item.original.title}</span>`),
 					// Hide if no results
