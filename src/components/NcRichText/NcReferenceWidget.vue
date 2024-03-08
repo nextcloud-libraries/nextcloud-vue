@@ -23,7 +23,7 @@
 				</p>
 			</div>
 		</component>
-		<NcButton v-if="hasInteractiveView && !isInteractive" class="toggle-interactive--button" @click="enableInteractive">
+		<NcButton v-if="interactiveOptIn && hasInteractiveView && !isInteractive" class="toggle-interactive--button" @click="enableInteractive">
 			{{ enableLabel }}
 		</NcButton>
 	</div>
