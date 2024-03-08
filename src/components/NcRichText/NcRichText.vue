@@ -325,6 +325,10 @@ export default {
 			type: Number,
 			default: 0,
 		},
+		referenceInteractive: {
+			type: Boolean,
+			default: true,
+		},
 		/** Provide data upfront to avoid extra http request */
 		references: {
 			type: Object,
@@ -401,7 +405,11 @@ export default {
 				h('div', {}, placeholders.flat()),
 				this.referenceLimit > 0
 					? h('div', { class: 'rich-text--reference-widget' }, [
-						h(NcReferenceList, { text: this.text, referenceData: this.references }),
+						h(NcReferenceList, {
+							text: this.text,
+							referenceData: this.references,
+							interactive: this.referenceInteractive,
+						}),
 					])
 					: null,
 			])
@@ -448,7 +456,11 @@ export default {
 				renderedMarkdown,
 				this.referenceLimit > 0
 					? h('div', { class: 'rich-text--reference-widget' }, [
-						h(NcReferenceList, { text: this.text, referenceData: this.references }),
+						h(NcReferenceList, {
+							text: this.text,
+							referenceData: this.references,
+							interactive: this.referenceInteractive,
+						}),
 					])
 					: null,
 			])
