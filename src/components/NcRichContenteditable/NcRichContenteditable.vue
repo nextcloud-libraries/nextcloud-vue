@@ -241,6 +241,7 @@ export default {
 			@compositionstart="isComposing = true"
 			@compositionend="isComposing = false"
 			@keydown.delete="onDelete"
+			@keydown.esc.capture="onKeyEsc"
 			@keydown.enter.exact="onEnter"
 			@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
 			@paste="onPaste"
@@ -862,6 +863,14 @@ export default {
 		onKeyUp(event) {
 			// prevent tribute from opening on keyup
 			event.stopImmediatePropagation()
+		},
+
+		onKeyEsc(event) {
+			// prevent event from bubbling when tribute is open
+			if (this.tribute && this.isAutocompleteOpen) {
+				event.stopImmediatePropagation()
+				this.tribute.hideMenu()
+			}
 		},
 
 		/**
