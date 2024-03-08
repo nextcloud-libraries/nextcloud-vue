@@ -1192,6 +1192,7 @@ export default {
 					},
 					popoverContainerA11yAttrs: {},
 					popoverUlA11yAttrs: {
+						id: this.randomId,
 						role: 'menu',
 					},
 				},
@@ -1212,13 +1213,14 @@ export default {
 					triggerA11yAttr: {
 						'aria-controls': this.opened ? this.randomId : null,
 					},
-					popoverContainerA11yAttrs: {},
-					popoverUlA11yAttrs: {
+					popoverContainerA11yAttrs: {
+						id: this.randomId,
 						role: 'dialog',
 						// Dialog must have a label
 						'aria-labelledby': this.triggerRandomId,
 						'aria-modal': 'true',
 					},
+					popoverUlA11yAttrs: {},
 				},
 				tooltip: {
 					popupRole: undefined,
@@ -1836,7 +1838,6 @@ export default {
 					}, [
 						h('ul', {
 							attrs: {
-								id: this.randomId,
 								tabindex: '-1',
 								...this.config.popoverUlA11yAttrs,
 							},
