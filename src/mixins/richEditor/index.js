@@ -27,12 +27,18 @@ import escapeHtml from 'escape-html'
 import stripTags from 'striptags'
 import Vue from 'vue'
 
-// Beginning or whitespace. Non-capturing group
-const MENTION_START = '(?:^|\\s)'
-// Anything that is not text or end-of-line. Non-capturing group
-const MENTION_END = '(?:[^a-z]|$)'
-export const USERID_REGEX = new RegExp(`${MENTION_START}(@[a-zA-Z0-9_.@\\-']+)(${MENTION_END})`, 'gi')
-export const USERID_REGEX_WITH_SPACE = new RegExp(`${MENTION_START}(@&quot;[a-zA-Z0-9 _/.@\\-']+&quot;)(${MENTION_END})`, 'gi')
+// Referenced from public function getMentions(): https://github.com/nextcloud/server/blob/master/lib/private/Comments/Comment.php
+// Beginning or whitespace. Non-capturing group within word boundary
+const MENTION_START = /\B(?<![^a-z0-9_\-@.'\s])/.source
+// Capturing groups like: @user-id, @"guest/abc16def", @"federated_user/user-id", @"user-id with space"
+const MENTION_SIMPLE = /(@[a-z0-9_\-@.']+)/.source
+const MENTION_GUEST = /@&quot;guest\/[a-f0-9]+&quot;/.source
+const MENTION_PREFIXED = /@&quot;(?:federated_)?(?:group|team|user){1}\/[a-z0-9_\-@.' /:]+&quot;/.source
+const MENTION_WITH_SPACE = /@&quot;[a-z0-9_\-@.' ]+&quot;/.source
+const MENTION_COMPLEX = `(${MENTION_GUEST}|${MENTION_PREFIXED}|${MENTION_WITH_SPACE})`
+// Concatenated regular expressions
+export const USERID_REGEX = new RegExp(`${MENTION_START}${MENTION_SIMPLE}`, 'gi')
+export const USERID_REGEX_WITH_SPACE = new RegExp(`${MENTION_START}${MENTION_COMPLEX}`, 'gi')
 
 export default {
 	props: {
@@ -60,7 +66,7 @@ export default {
 			return splitValue
 				.map(part => {
 					// When splitting, the string is always putting the userIds
-					// on the the uneven indexes. We only want to generate the mentions html
+					// on the uneven indexes. We only want to generate the mentions html
 					if (!part.startsWith('@')) {
 						// This part doesn't contain a mention, let's make sure links are parsed
 						return Linkify(part)
@@ -69,7 +75,7 @@ export default {
 					// Extracting the id, nuking the leading @ and all "
 					const id = part.slice(1).replace(/&quot;/gi, '')
 					// Compiling template and prepend with the space we removed during the split
-					return ' ' + this.genSelectTemplate(id)
+					return this.genSelectTemplate(id)
 				})
 				.join('')
 				.replace(/\n/gmi, '<br>')
@@ -83,7 +89,12 @@ export default {
 		 * @return {string}
 		 */
 		parseContent(content) {
-			let text = content.replace(/<br>/gmi, '\n')
+			let text = content
+			// Consecutive spaces in HTML tags should collapse
+			text = text.replace(/>\s+</g, '><')
+			// Replace break lines with new lines
+			text = text.replace(/<br>/gmi, '\n')
+			// Replace some html special characters
 			text = text.replace(/&nbsp;/gmi, ' ')
 			text = text.replace(/&amp;/gmi, '&')
 
@@ -115,8 +126,8 @@ export default {
 
 			// Fallback to @mention in case no data matches
 			if (!data) {
-				// return `@${value}`
-				return !value.includes(' ') && !value.includes('/')
+				// return @value if matches MENTION_SIMPLE, @"value" otherwise
+				return [' ', '/', ':'].every(char => !value.includes(char))
 					? `@${value}`
 					: `@"${value}"`
 			}
