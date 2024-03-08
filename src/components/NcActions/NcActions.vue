@@ -1126,11 +1126,18 @@ export default {
 		'click',
 	],
 
+	setup() {
+		const randomId = `menu-${GenRandomId()}`
+		return {
+			randomId,
+			triggerRandomId: `trigger-${randomId}`,
+		}
+	},
+
 	data() {
 		return {
 			opened: this.open,
 			focusIndex: 0,
-			randomId: `menu-${GenRandomId()}`,
 			/**
 			 * @type {'menu'|'navigation'|'dialog'|'tooltip'|'unknown'}
 			 */
@@ -1155,6 +1162,10 @@ export default {
 			/**
 			 * Accessibility notes:
 			 *
+			 * "aria-haspopup" and "aria-expanded" are managed by NcPopover via `popupRole`
+			 *
+			 * "aria-controls" should only present together with a valid aria-haspopup
+			 *
 			 * There is no valid popup role for navigation and tooltip in `aria-haspopup`.
 			 * aria-haspopup="true" is equivalent to aria-haspopup="menu".
 			 * They must not be treated as menus.
@@ -1164,6 +1175,11 @@ export default {
 			 * Or the menu is an expanded list of UI elements.
 			 *
 			 * Navigation type is just an "expanded" block, similar to native <details> element.
+			 *
+			 * Arrow and Tab navigation should not be used together:
+			 * - Arrow navigation is used to navigate between items of UI element
+			 * - Tab navigation is used to navigate between UI elements on the page
+			 * - Menu is either an atomic UI element of just an expanded block of elements
 			 */
 			const configs = {
 				menu: {
@@ -1171,24 +1187,49 @@ export default {
 					withArrowNavigation: true,
 					withTabNavigation: false,
 					withFocusTrap: false,
+					triggerA11yAttr: {
+						'aria-controls': this.opened ? this.randomId : null,
+					},
+					popoverContainerA11yAttrs: {},
+					popoverUlA11yAttrs: {
+						id: this.randomId,
+						role: 'menu',
+					},
 				},
 				navigation: {
 					popupRole: undefined,
 					withArrowNavigation: false,
 					withTabNavigation: true,
 					withFocusTrap: false,
+					triggerA11yAttr: {},
+					popoverContainerA11yAttrs: {},
+					popoverUlA11yAttrs: {},
 				},
 				dialog: {
 					popupRole: 'dialog',
 					withArrowNavigation: false,
 					withTabNavigation: true,
 					withFocusTrap: true,
+					triggerA11yAttr: {
+						'aria-controls': this.opened ? this.randomId : null,
+					},
+					popoverContainerA11yAttrs: {
+						id: this.randomId,
+						role: 'dialog',
+						// Dialog must have a label
+						'aria-labelledby': this.triggerRandomId,
+						'aria-modal': 'true',
+					},
+					popoverUlA11yAttrs: {},
 				},
 				tooltip: {
 					popupRole: undefined,
 					withArrowNavigation: false,
 					withTabNavigation: false,
 					withFocusTrap: false,
+					triggerA11yAttr: {},
+					popoverContainerA11yAttrs: {},
+					popoverUlA11yAttrs: {},
 				},
 				// Due to Vue limitations, we sometimes cannot determine the true type
 				// As a fallback use both arrow navigation and focus trap
@@ -1198,13 +1239,12 @@ export default {
 					withArrowNavigation: true,
 					withTabNavigation: false,
 					withFocusTrap: true,
+					triggerA11yAttr: {},
+					popoverContainerA11yAttrs: {},
+					popoverUlA11yAttrs: {},
 				},
 			}
 			return configs[this.actionsMenuSemanticType]
-		},
-
-		withFocusTrap() {
-			return this.config.withFocusTrap
 		},
 	},
 
@@ -1725,7 +1765,6 @@ export default {
 						},
 					})
 			)
-			const triggerRandomId = `${this.randomId}-trigger`
 			return h('NcPopover',
 				{
 					ref: 'popover',
@@ -1769,10 +1808,9 @@ export default {
 						slot: 'trigger',
 						ref: 'menuButton',
 						attrs: {
-							id: triggerRandomId,
+							id: this.triggerRandomId,
 							'aria-label': this.menuName ? null : this.ariaLabel,
-							// 'aria-controls' should only present together with a valid aria-haspopup
-							'aria-controls': this.opened && this.config.popupRole ? this.randomId : null,
+							...this.config.triggerA11yAttr,
 						},
 						on: {
 							focus: this.onFocus,
@@ -1790,6 +1828,7 @@ export default {
 						},
 						attrs: {
 							tabindex: '-1',
+							...this.config.popoverContainerA11yAttrs,
 						},
 						on: {
 							keydown: this.onKeydown,
@@ -1799,12 +1838,8 @@ export default {
 					}, [
 						h('ul', {
 							attrs: {
-								id: this.randomId,
 								tabindex: '-1',
-								role: this.config.popupRole,
-								// Dialog must have a label
-								'aria-labelledby': this.actionsMenuSemanticType === 'dialog' ? triggerRandomId : undefined,
-								'aria-modal': this.actionsMenuSemanticType === 'dialog' ? 'true' : undefined,
+								...this.config.popoverUlA11yAttrs,
 							},
 						}, [
 							actions,
