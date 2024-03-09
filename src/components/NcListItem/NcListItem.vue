@@ -35,6 +35,11 @@
 			<template #icon>
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
+			<template #name>
+				<span style="display: flex; color: var(--color-primary);">
+					Name of the element with content
+				</span>
+			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
 			</template>
@@ -192,6 +197,14 @@
 			:bold="false">
 			<template #icon>
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+			</template>
+			<template #name>
+				<span style="display: flex; gap: 0.5rem; color: var(--color-primary);">
+					Flexible styling within the first line of the component
+					<div style="color: var(--color-secondary);">
+						like this.
+					</div>
+				</span>
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -386,10 +399,8 @@
 					<div class="list-item-content">
 						<div class="list-item-content__main">
 							<div class="list-item-content__name">
-								{{ name }}
-								<template v-if="hasNameSideContent">
-									<slot name="namesidecontent" />
-								</template>
+								<!-- @slot Slot for the first line of the component. prop 'name' is used as a fallback is no slots are provided -->
+								<slot name="name">{{ name }}</slot>
 							</div>
 							<div v-if="hasSubname"
 								class="list-item-content__subname"
@@ -601,7 +612,6 @@ export default {
 			hovered: false,
 			hasActions: false,
 			hasSubname: false,
-			hasNameSideContent: false,
 			displayActionsOnHoverFocus: false,
 			menuOpen: false,
 			hasIndicator: false,
@@ -717,9 +727,6 @@ export default {
 			}
 			if (this.hasSubname !== !!this.$slots.subname) {
 				this.hasSubname = !!this.$slots.subname
-			}
-			if (this.hasNameSideContent !== !!this.$slots.namesidecontent) {
-				this.hasNameSideContent = !!this.$slots.namesidecontent
 			}
 			if (this.hasIndicator !== !!this.$slots.indicator) {
 				this.hasIndicator = !!this.$slots.indicator
