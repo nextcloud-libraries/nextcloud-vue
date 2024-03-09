@@ -400,6 +400,9 @@
 							<div class="list-item-content__name">
 								<!-- @slot Slot for the first line of the component. prop 'name' is used as a fallback is no slots are provided -->
 								<slot name="name">{{ name }}</slot>
+								<template v-if="hasNameSideContent">
+									<slot name="namesidecontent" />
+								</template>
 							</div>
 							<div v-if="hasSubname"
 								class="list-item-content__subname"
@@ -604,6 +607,7 @@ export default {
 			hovered: false,
 			hasActions: false,
 			hasSubname: false,
+			hasNameSideContent: false,
 			displayActionsOnHoverFocus: false,
 			menuOpen: false,
 			hasIndicator: false,
@@ -719,6 +723,9 @@ export default {
 			}
 			if (this.hasSubname !== !!this.$slots.subname) {
 				this.hasSubname = !!this.$slots.subname
+			}
+			if (this.hasNameSideContent !== !!this.$slots.namesidecontent) {
+				this.hasNameSideContent = !!this.$slots.namesidecontent
 			}
 			if (this.hasIndicator !== !!this.$slots.indicator) {
 				this.hasIndicator = !!this.$slots.indicator
