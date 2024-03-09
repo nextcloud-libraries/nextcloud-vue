@@ -558,6 +558,7 @@ export default {
 			hovered: false,
 			hasActions: false,
 			hasSubname: false,
+			hasNameSideContent: false,
 			displayActionsOnHoverFocus: false,
 			menuOpen: false,
 			hasIndicator: false,
@@ -677,6 +678,9 @@ export default {
 			}
 			if (this.hasSubname !== !!this.$slots.subname) {
 				this.hasSubname = !!this.$slots.subname
+			}
+			if (this.hasNameSideContent !== !!this.$slots.namesidecontent) {
+				this.hasNameSideContent = !!this.$slots.namesidecontent
 			}
 			if (this.hasIndicator !== !!this.$slots.indicator) {
 				this.hasIndicator = !!this.$slots.indicator
