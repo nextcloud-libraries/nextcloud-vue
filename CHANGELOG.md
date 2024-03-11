@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v8.10.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.10.0) (2024-03-11)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.9.1...v8.10.0)
+
+### 🚀 Enhancements
+* feat(NcAppContent): add no-split layout by @GretaD in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5209
+* feat(NcListItem): add one-line layout by @GretaD in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5209
+* feat(NcActions): Allow to manually specify the semantic menu type by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5336
+
+### 🐛 Fixed bugs
+* fix(NcAppNavigation): stretch the main content when there is no list slot by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5360
+* fix(NcRichContenteditable): capture and stop `Esc` keydown event when closing tribute by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5353
+* fix(NcRelatedResourcesPanel): Adjust styling of team resource images by @juliushaertl in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5364
+* fix(NcRichContentEditable): require leading space to open tributes by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5378
+* fix(richEditor): reference server-scoped regular expression to match complex user mentions by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5359
+* fix(richText): when parse HTML content collapse consecutive spaces by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5359
+* fix(NcListItem): open _blank link by Enter and allow prevent by @pulsejet in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5342
+* fix(NcRichText): Allow to pass interactive widget toggle by @juliushaertl in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5365
+* fix(NcActions): correct dialog a11y attrs place by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5381
+* fix(NcUserStatusicon): set status icons size explicitly by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5390
+* fix(NcListItem): change padding for one-line layout by @GretaD in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5391
+* fix(NcReferenceWidget): Only use composables in `setup` context by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5394
+
+### Other Changes
+* Updates for project Nextcloud vue library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5358
+* chore: Remove GitHub Package Registry from publish workflow by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5357
+* chore(README): remove build:module and watch:module by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5346
+* Updates for project Nextcloud vue library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5387
+
 ## [v8.9.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.9.1) (2024-03-06)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.9.0...v8.9.1)
 
