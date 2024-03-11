@@ -45,7 +45,7 @@ module.exports = async () => {
 			},
 			resolve: {
 				alias: {
-					vue: 'vue/dist/vue.js',
+					vue$: 'vue/dist/vue.js',
 				},
 			},
 		}),
