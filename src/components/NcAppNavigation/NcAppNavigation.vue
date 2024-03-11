@@ -237,7 +237,8 @@ export default {
 	transition: transform var(--animation-quick), margin var(--animation-quick);
 	width: $navigation-width;
 	// Left toggle button padding + toggle button + right padding from NcAppContent
-	max-width: calc(100vw - (var(--app-navigation-padding) + var(--default-clickable-area) + var(--default-grid-baseline)));
+	--app-navigation-max-width: calc(100vw - (var(--app-navigation-padding) + var(--default-clickable-area) + var(--default-grid-baseline)));
+	max-width: var(--app-navigation-max-width);
 	position: relative;
 	top: 0;
 	left: 0;
@@ -252,13 +253,12 @@ export default {
 	user-select: none;
 	flex-grow: 0;
 	flex-shrink: 0;
-	background-color:  var(--color-main-background-blur, var(--color-main-background));
+	background-color: var(--color-main-background-blur, var(--color-main-background));
 	-webkit-backdrop-filter: var(--filter-background-blur, none);
 	backdrop-filter: var(--filter-background-blur, none);
 
 	&--close {
-		transform: translateX(-100%);
-		position: absolute;
+		margin-left: calc(-1 * min($navigation-width, var(--app-navigation-max-width)));
 	}
 
 	// For legacy purposes support passing a bare list to the content in #default slot and including #footer slot
@@ -303,7 +303,7 @@ export default {
 
 // When on mobile, we make the navigation slide over the appcontent
 @media only screen and (max-width: $breakpoint-mobile) {
-	.app-navigation:not(.app-navigation--close) {
+	.app-navigation {
 		position: absolute;
 	}
 }
