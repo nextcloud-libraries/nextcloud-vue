@@ -818,7 +818,7 @@ export default {
 		justify-content: end;
 	}
 	&--one-line {
-		padding: 10px;
+		padding: 0 9px;
 		margin: 2px;
 		.list-item-content__main {
 			display: flex;
