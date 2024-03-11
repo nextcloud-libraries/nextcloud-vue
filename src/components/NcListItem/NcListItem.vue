@@ -344,7 +344,6 @@
 					@focus="showActions"
 					@focusout="handleBlur"
 					@click="onClick($event, navigate, routerLinkHref)"
-					@keydown.enter="onClick($event, navigate, routerLinkHref)"
 					@keydown.esc="hideActions">
 					<!-- @slot This slot is used for the NcAvatar or icon, the content of this slot must not be interactive -->
 					<slot name="icon" />
@@ -622,8 +621,6 @@ export default {
 			if (routerLinkHref) {
 				navigate?.(event)
 				event.preventDefault()
-			} else {
-				window.location = this.href
 			}
 		},
 
