@@ -57,7 +57,7 @@ describe('NcActions.vue', () => {
 		it('Can set the type manually', () => {
 			const wrapper = mount(NcActions, {
 				propsData: {
-					menuSemanticType: 'dialog',
+					forceSemanticType: 'dialog',
 				},
 				slots: {
 					default: [

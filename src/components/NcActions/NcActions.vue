@@ -1002,7 +1002,7 @@ export default {
 			/**
 			 * NcActions can be used as:
 			 * - Application menu (has menu role)
-			 * - Navigation (has no specific role, should be used an element with navigation role)
+			 * - Expanded block (has no specific role, should be used an element with expanded role)
 			 * - Popover with plain text or text inputs (has no specific role)
 			 * Depending on the usage (used items), the menu and its items should have different roles for a11y.
 			 * Provide the role for NcAction* components in the NcActions content.
@@ -1060,26 +1060,27 @@ export default {
 		 * NcActions can be used as:
 		 *
 		 * - Application menu (has menu role)
-		 * - Navigation (has no specific role, should be used an element with navigation role)
+		 * - Navigation (has no specific role, should be used an element with expanded role)
 		 * - Popover with plain text or text inputs (has no specific role)
 		 *
 		 * By default the used type is automatically detected by components used in the default slot.#
 		 *
-		 * With Vue 2 this is limited to direct children of the NcActions component.
+		 * With Vue this is limited to direct children of the NcActions component.
 		 * So if you use a wrapper, you have to provide the semantic type yourself (see Example)
 		 *
 		 * Choose:
 		 *
 		 * - 'dialog' if you use any of these components: NcActionInput', 'NcActionTextEditable'
 		 * - 'menu' if you use any of these components: 'NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio'
-		 * - 'navigation' if using one of these: 'NcActionLink', 'NcActionRouter'
+		 * - 'expanded' if using one of these: 'NcActionLink', 'NcActionRouter'. This represents an expanded block.
+		 * - 'tooltip' only to be used when a text without any interactive elements is used.
 		 * - Leave this property unset otherwise
 		 */
 		forceSemanticType: {
 			type: String,
 			default: null,
 			validator(value) {
-				return ['dialog', 'menu', 'navigation'].includes(value)
+				return ['dialog', 'menu', 'expanded', 'tooltip'].includes(value)
 			},
 		},
 
@@ -1200,7 +1201,7 @@ export default {
 			opened: this.open,
 			focusIndex: 0,
 			/**
-			 * @type {'menu'|'navigation'|'dialog'|'tooltip'|'unknown'}
+			 * @type {'menu'|'expanded'|'dialog'|'tooltip'|'unknown'}
 			 */
 			actionsMenuSemanticType: 'unknown',
 			externalFocusTrapStack: [],
@@ -1227,7 +1228,7 @@ export default {
 			 *
 			 * "aria-controls" should only present together with a valid aria-haspopup
 			 *
-			 * There is no valid popup role for navigation and tooltip in `aria-haspopup`.
+			 * There is no valid popup role for expanded and tooltip in `aria-haspopup`.
 			 * aria-haspopup="true" is equivalent to aria-haspopup="menu".
 			 * They must not be treated as menus.
 			 *
@@ -1257,7 +1258,7 @@ export default {
 						role: 'menu',
 					},
 				},
-				navigation: {
+				expanded: {
 					popupRole: undefined,
 					withArrowNavigation: false,
 					withTabNavigation: true,
@@ -1717,7 +1718,7 @@ export default {
 			} else if (hasMenuItemAction) {
 				this.actionsMenuSemanticType = 'menu'
 			} else if (hasLinkAction) {
-				this.actionsMenuSemanticType = 'navigation'
+				this.actionsMenuSemanticType = 'expanded'
 			} else {
 				// (!) Hotfix (!)
 				// In Vue 2 it is not easy to search for NcAction* in sub-component of a slot.
