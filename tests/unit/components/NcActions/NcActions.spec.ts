@@ -22,6 +22,7 @@
  */
 
 import { mount } from '@vue/test-utils'
+import { Fragment } from 'vue-frag'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 import NcActions from '../../../../src/components/NcActions/NcActions.vue'
@@ -35,11 +36,11 @@ describe('NcActions.vue', () => {
 	describe('semantic menu type', () => {
 		const MyWrapper = defineComponent({
 			template: '<Fragment><NcActionInput /></Fragment>',
-			components: { Fragment, NcActionInput },
+			components: { NcActionInput },
 		})
 
-		// This currently fails due to limitations of Vue 2
-		it.failing('Can auto detect semantic menu type in wrappers', () => {
+		// This currently fails due to limitations of Vue
+		it.fails('Can auto detect semantic menu type in wrappers', () => {
 			const wrapper = mount(NcActions, {
 				slots: {
 					default: [
@@ -56,16 +57,18 @@ describe('NcActions.vue', () => {
 
 		it('Can set the type manually', () => {
 			const wrapper = mount(NcActions, {
-				propsData: {
-					menuSemanticType: 'dialog',
+				props: {
+					forceSemanticType: 'dialog',
 				},
 				slots: {
 					default: [
 						'<MyWrapper />',
 					],
 				},
-				stubs: {
-					MyWrapper,
+				global: {
+					stubs: {
+						MyWrapper,
+					},
 				},
 			})
 
