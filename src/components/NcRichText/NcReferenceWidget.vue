@@ -1,5 +1,5 @@
 <template>
-	<div :class="{'toggle-interactive': hasInteractiveView && !isInteractive }">
+	<div ref="widgetRoot" :class="{'toggle-interactive': hasInteractiveView && !isInteractive }">
 		<div v-if="reference && hasCustomWidget"
 			ref="customWidget"
 			class="widget-custom"
@@ -24,18 +24,20 @@
 			</div>
 		</component>
 		<NcButton v-if="interactiveOptIn && hasInteractiveView && !isInteractive" class="toggle-interactive--button" @click="enableInteractive">
-			{{ enableLabel }}
+			{{ t('Enable interactive view') }}
 		</NcButton>
 	</div>
 </template>
 <script>
 import { useIntersectionObserver, useResizeObserver } from '@vueuse/core'
+import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
+import { t } from '../../l10n.js'
 import { getRoute } from './autolink.ts'
 import { renderWidget, isWidgetRegistered, destroyWidget, hasInteractiveView, hasFullWidth } from './../../functions/reference/widgets.ts'
+
 import NcButton from '../../components/NcButton/NcButton.vue'
-import { t } from '../../l10n.js'
 
 export default {
 	name: 'NcReferenceWidget',
@@ -56,15 +58,43 @@ export default {
 			default: false,
 		},
 	},
-	data() {
+
+	setup() {
+		const compact = ref(3)
+		const isVisible = ref(false)
+		// This is the widget root node
+		const widgetRoot = ref()
+
+		useIntersectionObserver(widgetRoot, (entries) => {
+			isVisible.value = entries[0]?.isIntersecting ?? false
+		})
+
+		useResizeObserver(widgetRoot, (entries) => {
+			if (entries[0].contentRect.width < 450) {
+				compact.value = 0
+			} else if (entries[0].contentRect.width < 550) {
+				compact.value = 1
+			} else if (entries[0].contentRect.width < 650) {
+				compact.value = 2
+			} else {
+				compact.value = 3
+			}
+		})
+
 		return {
-			compact: 3,
-			showInteractive: false,
-			isVisible: false,
-			rendered: false,
-			enableLabel: t('Enable interactive view'),
+			compact,
+			isVisible,
+			widgetRoot,
 		}
 	},
+
+	data() {
+		return {
+			showInteractive: false,
+			rendered: false,
+		}
+	},
+
 	computed: {
 		isInteractive() {
 			return (!this.interactiveOptIn && this.interactive) || this.showInteractive
@@ -132,27 +162,12 @@ export default {
 			immediate: true,
 		},
 	},
-	mounted() {
-		useIntersectionObserver(this.$el, entries => {
-			this.isVisible = entries[0]?.isIntersecting ?? false
-		})
-		useResizeObserver(this.$el, entries => {
-			if (entries[0].contentRect.width < 450) {
-				this.compact = 0
-			} else if (entries[0].contentRect.width < 550) {
-				this.compact = 1
-			} else if (entries[0].contentRect.width < 650) {
-				this.compact = 2
-			} else {
-				this.compact = 3
-			}
-
-		})
-	},
 	beforeUnmount() {
 		this.destroyWidget()
 	},
 	methods: {
+		t,
+
 		enableInteractive() {
 			this.showInteractive = true
 			this.renderWidget()
