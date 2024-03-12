@@ -27,7 +27,7 @@
 	<ul>
 		<NcListItem
 			:name="'This is an active element with highlighted counter'"
-			:bold="false"
+			:bold="true"
 			:active="true"
 			:details="'1h'"
 			:counter-number="44"
@@ -120,7 +120,7 @@
 		</NcListItem>
 		<NcListItem
 			:name="'Name of the element with highlighted counter'"
-			:bold="false"
+			:bold="true"
 			:force-display-actions="true"
 			:details="'1h'"
 			:counter-number="44"
@@ -403,7 +403,7 @@
 							</div>
 							<div v-if="hasSubname"
 								class="list-item-content__subname"
-								:class="{'line-two--bold': bold}">
+								:class="{'list-item-content__subname--bold': bold}">
 								<!-- @slot Slot for the second line of the component -->
 								<slot name="subname" />
 							</div>
@@ -772,12 +772,15 @@ export default {
 	min-width: 100px;
 	max-width: 300px;
 	flex: 1 1 10%;
-	text-overflow: ellipsis;
+	font-weight: bold;
 }
 
 .list-item-content__subname {
 	flex: 1 0;
 	min-width: 0;
+	&--bold {
+		font-weight: bold;
+	}
 }
 
 // NcListItem
@@ -820,8 +823,8 @@ export default {
 	}
 	.list-item-content__details {
 		display: flex;
-		flex-direction: row;
-		justify-content: end;
+		flex-direction: column;
+		align-items: end;
 	}
 	&--one-line {
 		padding: 10px;
@@ -833,8 +836,8 @@ export default {
 			min-width: 0;
 		}
 		.list-item-content__details {
-			display: flex;
 			flex-direction: row;
+			align-items: unset;
 			justify-content: end;
 		}
 	}
@@ -879,7 +882,7 @@ export default {
 	&-details {
 		&__details {
 			color: var(--color-text-maxcontrast);
-			margin: 0 9px;
+			margin: 0 9px !important;
 			font-weight: normal;
 		}
 		&__extra {
