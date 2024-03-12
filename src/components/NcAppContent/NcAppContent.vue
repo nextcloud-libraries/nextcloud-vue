@@ -150,7 +150,8 @@ export default {
 		},
 
 		/**
-		 * Allows you to set the default width of the resizable list in %
+		 * Allows you to set the default width of the resizable list in % on vertical-split
+		 * Allows you to set the default height of the resizable list in % on horizontal-split
 		 * Must be between listMinWidth and listMaxWidth
 		 */
 		listSize: {
@@ -159,7 +160,8 @@ export default {
 		},
 
 		/**
-		 * Allows you to set the minimum width of the list column in %
+		 * Allows you to set the minimum width of the list column in % on vertical-split
+		 * Allows you to set the minimum height of the list column in % on horizontal-split
 		 */
 		listMinWidth: {
 			type: Number,
@@ -167,7 +169,8 @@ export default {
 		},
 
 		/**
-		 * Allows you to set the maximum width of the list column in %
+		 * Allows you to set the maximum width of the list column in % on vertical-split
+		 * Allows you to set the maximum height of the list column in % on horizontal-split
 		 */
 		listMaxWidth: {
 			type: Number,
@@ -403,7 +406,6 @@ export default {
 		&-list {
 			min-width: 300px;
 			position: sticky;
-			top: var(--header-height);
 
 			@media only screen and (width < $breakpoint-mobile) {
 				display: none;
@@ -418,16 +420,23 @@ export default {
 			}
 		}
 	}
+	.app-content-wrapper--vertical-split {
+		.splitpanes__splitter {
+			width: 9px;
+			margin-left: -5px;
+			background-color: transparent;
+			border-left: none;
 
-	.splitpanes__splitter {
-		width: 9px;
-		margin-left: -5px;
-		background-color: transparent;
-		border-left: none;
-
-		&:before,
-		&:after {
-			display: none;
+			&:before,
+			&:after {
+				display: none;
+			}
+		}
+	}
+	.app-content-wrapper--horizontal-split {
+		.splitpanes__splitter {
+			height: 9px;
+			margin-top: -5px;
 		}
 	}
 }
