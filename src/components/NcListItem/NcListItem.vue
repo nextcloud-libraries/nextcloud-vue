@@ -35,6 +35,11 @@
 			<template #icon>
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
+			<template #name>
+				<span style="display: flex; color: var(--color-primary);">
+					Name of the element with content
+				</span>
+			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
 			</template>
@@ -192,6 +197,14 @@
 			:bold="false">
 			<template #icon>
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+			</template>
+			<template #name>
+				<span style="display: flex; gap: 0.5rem; color: var(--color-primary);">
+					Flexible styling within the first line of the component
+					<div style="color: var(--color-secondary);">
+						like this.
+					</div>
+				</span>
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -386,7 +399,8 @@
 					<div class="list-item-content">
 						<div class="list-item-content__main">
 							<div class="list-item-content__name">
-								{{ name }}
+								<!-- @slot Slot for the first line of the component. prop 'name' is used as a fallback is no slots are provided -->
+								<slot name="name">{{ name }}</slot>
 							</div>
 							<div v-if="hasSubname"
 								class="list-item-content__subname"
