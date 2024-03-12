@@ -379,6 +379,9 @@ export default {
 	width: 100%;
 	height: 100%;
 }
+.app-content-wrapper.app-content-wrapper--no-split.app-content-wrapper--show-list.app-content-wrapper--list {
+	overflow: hidden;
+}
 
 // Mobile list/details handling
 .app-content-wrapper--no-split {
