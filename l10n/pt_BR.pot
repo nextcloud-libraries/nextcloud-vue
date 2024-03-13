@@ -1,12 +1,12 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Flávio Veras <flaviove@gmail.com>, 2023
 # Roberto Costa, 2024
+# Flávio Veras <flaviove@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Roberto Costa, 2024\n"
+"Last-Translator: Flávio Veras <flaviove@gmail.com>, 2024\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_BR\n"
@@ -134,6 +134,9 @@ msgstr "Editar item"
 
 msgid "Emoji picker"
 msgstr "Selecionar emoji"
+
+msgid "Enable interactive view"
+msgstr "Ativar visualização interativa"
 
 msgid "Enter link"
 msgstr "Insira o link"
@@ -301,6 +304,9 @@ msgstr "Link bruto {options}"
 msgid "Related resources"
 msgstr "Recursos relacionados"
 
+msgid "Related team resources"
+msgstr "Recursos de equipe relacionados"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Castanho rosado"
@@ -388,6 +394,9 @@ msgstr "Desfazer modificações"
 
 msgid "User status: {status}"
 msgstr "Status do usuário: {status}"
+
+msgid "View team"
+msgstr "Ver equipe"
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
