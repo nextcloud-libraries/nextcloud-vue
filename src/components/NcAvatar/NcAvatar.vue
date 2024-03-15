@@ -160,6 +160,9 @@ export default {
 				:key="key"
 				:href="item.href"
 				:icon="item.icon">
+				<template v-if="item.iconSvg" #icon>
+					<NcIconSvgWrapper :svg="item.iconSvg" />
+				</template>
 				{{ item.text }}
 			</NcActionLink>
 			<template v-if="contactsMenuLoading" #icon>
@@ -191,6 +194,7 @@ export default {
 import NcActions from '../NcActions/index.js'
 import NcActionLink from '../NcActionLink/index.js'
 import NcButton from '../NcButton/index.ts'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
 import usernameToColor from '../../functions/usernameToColor/index.js'
@@ -241,6 +245,7 @@ export default {
 		NcActions,
 		NcActionLink,
 		NcButton,
+		NcIconSvgWrapper,
 		NcLoadingIcon,
 		NcUserStatusIcon,
 	},
@@ -518,9 +523,13 @@ export default {
 			}
 
 			if (this.showUserStatus && (this.userStatus.icon || this.userStatus.message)) {
+				// NcAction's URL icons are inverted in dark mode, so we need to pass SVG image in the icon slot
+				const emojiIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+					<text x="50%" y="50%" text-anchor="middle" style="dominant-baseline: central; font-size: 85%">${escape(this.userStatus.icon)}</text>
+				</svg>`
 				return [{
 					href: '#',
-					icon: `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><text x='0' y='14' font-size='14'>${escape(this.userStatus.icon)}</text></svg>`,
+					iconSvg: this.userStatus.icon ? emojiIcon : undefined,
 					text: `${this.userStatus.message}`,
 				}].concat(actions)
 			}
