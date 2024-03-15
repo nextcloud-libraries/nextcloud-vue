@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v8.11.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.10.0) (2024-03-15)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.10.0...v8.11.0)
+
+### 🚀 Enhancements
+* feat(NcListItem): add title slot by @emoral435 in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5388
+* feat(NcAppContent): add horizontal split layout by @GretaD in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5401
+### 🐛 Fixed bugs
+* fix(NcListItem): bring back old styling for two-line list items by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5400
+* fix(NcListItem): align indicators at the element bottom by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5408
+* fix(NcReferenceWidget): set timeout to destroy idle widgets outside of viewports by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5411
+* fix(NcAvatar): rendering user status emoji in the menu by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5409
+* fix(NcAvatar): handle regex error on initials match by @kyteinsky in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5407
+### Other Changes
+* Updates for project Nextcloud vue library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5404
+
+## New Contributors
+* @kyteinsky made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5407
+
 ## [v8.10.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.10.0) (2024-03-11)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.9.1...v8.10.0)
 
