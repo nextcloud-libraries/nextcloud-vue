@@ -39,6 +39,8 @@ import { renderWidget, isWidgetRegistered, destroyWidget, hasInteractiveView, ha
 
 import NcButton from '../../components/NcButton/NcButton.vue'
 
+const IDLE_TIMEOUT = 3 * 60 * 1000 // 3 minutes outside of viewport before widget is removed from the DOM
+
 export default {
 	name: 'NcReferenceWidget',
 	components: {
@@ -92,6 +94,7 @@ export default {
 		return {
 			showInteractive: false,
 			rendered: false,
+			idleTimeout: null,
 		}
 	},
 
@@ -154,10 +157,23 @@ export default {
 		isVisible: {
 			handler(val) {
 				if (!val) {
-					this.destroyWidget()
+					this.idleTimeout = setTimeout(() => {
+						// If the widget is still outside of viewport after timeout, destroy it
+						if (!this.isVisible) {
+							this.destroyWidget()
+						}
+					}, IDLE_TIMEOUT)
 					return
 				}
-				this.renderWidget()
+
+				if (this.idleTimeout) {
+					clearTimeout(this.idleTimeout)
+					this.idleTimeout = null
+				}
+
+				if (!this.rendered) {
+					this.renderWidget()
+				}
 			},
 			immediate: true,
 		},
