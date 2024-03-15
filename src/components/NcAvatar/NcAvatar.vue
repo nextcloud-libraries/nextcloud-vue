@@ -477,7 +477,7 @@ export default {
 			if (this.showInitials) {
 				const user = this.userIdentifier.trim()
 				if (user === '') {
-					return '?'
+					return initials
 				}
 
 				/**
@@ -487,7 +487,12 @@ export default {
 				 * \s: White space for breaking the string
 				 * @type {string}
 				 */
-				const filtered = user.match(/[\p{L}\p{N}\s]/gu).join('')
+				const filteredChars = user.match(/[\p{L}\p{N}\s]/gu)
+				if (filteredChars == null) {
+					return initials
+				}
+
+				const filtered = filteredChars.join('')
 				const idx = filtered.lastIndexOf(' ')
 				initials = String.fromCodePoint(filtered.codePointAt(0))
 				if (idx !== -1) {
