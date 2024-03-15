@@ -63,7 +63,6 @@
 			:name="'This is an active element with outlined counter'"
 			:bold="false"
 			:active="true"
-			:details="'1h'"
 			:counter-number="44"
 			counterType="outlined">
 			<template #icon>
@@ -147,7 +146,6 @@
 			:name="'Name of the element with outlined counter'"
 			:bold="false"
 			:force-display-actions="true"
-			:details="'1h'"
 			:counter-number="44"
 			counterType="outlined">
 			<template #icon>
