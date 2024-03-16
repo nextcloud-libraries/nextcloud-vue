@@ -133,6 +133,9 @@ msgstr "تعديل عنصر"
 msgid "Emoji picker"
 msgstr "لاقط الإيموجي"
 
+msgid "Enable interactive view"
+msgstr "تمكين المنظور التفاعلي"
+
 msgid "Enter link"
 msgstr "أدخِل الرابط"
 
@@ -299,6 +302,9 @@ msgstr " الرابط الخام raw link ـ {options}"
 msgid "Related resources"
 msgstr "مصادر ذات صلة"
 
+msgid "Related team resources"
+msgstr "موارد للفريق ذات صلة"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "بُنِّي زهري"
@@ -386,6 +392,9 @@ msgstr "تراجَع عن التغييرات"
 
 msgid "User status: {status}"
 msgstr "حالة المستخدِم: {status}"
+
+msgid "View team"
+msgstr "عرض الفريق"
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
