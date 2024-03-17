@@ -71,6 +71,11 @@ export default {
 		},
 	},
 
+	model: {
+		prop: 'checked',
+		event: 'update:checked',
+	},
+
 	props: {
 		/**
 		 * id attribute of the checkbox element

@@ -315,9 +315,9 @@ export default {
 </template>
 
 <script>
-import NcCheckboxContent, { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxContent.vue'
+import { n, t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
-import { t, n } from '../../l10n.js'
+import NcCheckboxContent, { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxContent.vue'
 
 export default {
 	name: 'NcCheckboxRadioSwitch',
@@ -328,6 +328,11 @@ export default {
 
 	// We need to pass attributes to the input element
 	inheritAttrs: false,
+
+	model: {
+		prop: 'checked',
+		event: 'update:checked',
+	},
 
 	props: {
 		/**

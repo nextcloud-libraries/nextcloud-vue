@@ -129,6 +129,11 @@ export default {
 
 	inheritAttrs: false,
 
+	model: {
+		prop: 'value',
+		event: 'update:value',
+	},
+
 	props: {
 		/**
 		 * The value of the input field
