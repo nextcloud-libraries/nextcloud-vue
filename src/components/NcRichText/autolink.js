@@ -84,20 +84,36 @@ export const parseUrl = (text) => {
 	return text
 }
 
+/**
+ * Try to get path for router link from absolute URL
+ *
+ * @param {import('vue-router').default} router - VueRouter instance of router link
+ * @param {string} url - absolute URL to parse
+ * @return {string|null} router link path or null if this URL doesn't match this router config
+ * @example http://cloud.ltd/nextcloud/index.php/app/files/favorites?fileid=2#fragment => /files/favorites?fileid=2#fragment
+ */
 export const getRoute = (router, url) => {
-	// Skip if Router is not defined in app, or baseUrl does not match
-	if (!router || !url.includes(getBaseUrl())) {
+	// http://cloud.ltd/nextcloud/index.php/app/files/favorites?fileid=2#fragment
+	// |_____origin____|_________router-base_________|______router-location______|
+	// |__________base___________|
+
+	// Skip if Router is not defined in app, or URL is not a link to this Nextcloud server instance
+	if (!router || !url.startsWith(getBaseUrl())) {
 		return null
 	}
 
-	const regexArray = router.getRoutes()
-		// route.regex matches only complete string (^.$), need to remove these characters
-		.map(route => new RegExp(route.regex.source.slice(1, -1), route.regex.flags))
+	const origin = new URL(url).origin
+	const urlWithoutOrigin = url.replace(origin, '')
 
-	for (const regex of regexArray) {
-		const match = url.search(regex)
-		if (match !== -1) {
-			return url.slice(match)
-		}
+	// Remove index.php - it is optional in general case
+	const urlWithoutOriginAndIndexPhp = url.startsWith(getBaseUrl() + '/index.php') ? urlWithoutOrigin.replace('/index.php', '') : urlWithoutOrigin
+	const routerBaseWithoutIndexPhp = router.history.base.replace('/index.php', '')
+
+	// This URL is not a part of this router
+	if (!urlWithoutOriginAndIndexPhp.startsWith(routerBaseWithoutIndexPhp)) {
+		return null
 	}
+
+	// Root route may have empty '' path, fallback to '/'
+	return urlWithoutOriginAndIndexPhp.replace(routerBaseWithoutIndexPhp, '') || '/'
 }
