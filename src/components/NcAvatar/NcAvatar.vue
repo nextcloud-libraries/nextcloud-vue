@@ -198,6 +198,7 @@ import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
 import usernameToColor from '../../functions/usernameToColor/index.js'
+import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
 import { getUserStatusText } from '../../utils/UserStatus.ts'
 import { userStatus } from '../../mixins/index.js'
 import { t } from '../../l10n.js'
@@ -657,19 +658,7 @@ export default {
 		 * @return {string}
 		 */
 		avatarUrlGenerator(user, size) {
-			const darkTheme = window.getComputedStyle(document.body)
-				.getPropertyValue('--background-invert-if-dark') === 'invert(100%)'
-			let url = '/avatar/{user}/{size}' + (darkTheme ? '/dark' : '')
-			if (this.isGuest) {
-				url = '/avatar/guest/{user}/{size}' + (darkTheme ? '/dark' : '')
-			}
-
-			let avatarUrl = generateUrl(
-				url,
-				{
-					user,
-					size,
-				})
+			let avatarUrl = getAvatarUrl(user, size, this.isGuest)
 
 			// eslint-disable-next-line camelcase
 			if (user === getCurrentUser()?.uid && typeof oc_userconfig !== 'undefined') {
