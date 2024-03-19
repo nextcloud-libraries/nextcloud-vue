@@ -778,14 +778,15 @@ export default {
 	min-width: 100px;
 	max-width: 300px;
 	flex: 1 1 10%;
-	font-weight: bold;
+	font-weight: 500;
 }
 
 .list-item-content__subname {
 	flex: 1 0;
 	min-width: 0;
+	color: var(--color-text-maxcontrast);
 	&--bold {
-		font-weight: bold;
+		font-weight: 500;
 	}
 }
 
