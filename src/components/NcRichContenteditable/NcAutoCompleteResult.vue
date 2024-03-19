@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { generateUrl } from '@nextcloud/router'
+import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
 
 import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
 
@@ -114,12 +114,7 @@ export default {
 	},
 
 	methods: {
-		getAvatarUrl(user, size) {
-			return generateUrl('/avatar/{user}/{size}', {
-				user,
-				size,
-			})
-		},
+		getAvatarUrl,
 	},
 }
 </script>
