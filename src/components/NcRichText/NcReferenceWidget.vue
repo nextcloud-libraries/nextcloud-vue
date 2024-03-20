@@ -1,8 +1,9 @@
 <template>
-	<div>
-		<div v-if="reference && hasCustomWidget" class="widget-custom">
-			<div ref="customWidget" />
-		</div>
+	<div ref="widgetRoot" :class="{'toggle-interactive': hasInteractiveView && !isInteractive }">
+		<div v-if="reference && hasCustomWidget"
+			ref="customWidget"
+			class="widget-custom"
+			:class="{ 'full-width': hasFullWidth }" />
 
 		<component :is="referenceWidgetLinkComponent"
 			v-else-if="!noAccess && reference && reference.openGraphObject && !hasCustomWidget"
@@ -11,36 +12,104 @@
 			class="widget-default">
 			<img v-if="reference.openGraphObject.thumb" class="widget-default--image" :src="reference.openGraphObject.thumb">
 			<div class="widget-default--details">
-				<p class="widget-default--name">{{ reference.openGraphObject.name }}</p>
-				<p class="widget-default--description" :style="descriptionStyle">{{ reference.openGraphObject.description }}</p>
-				<p class="widget-default--link">{{ compactLink }}</p>
+				<p class="widget-default--name">
+					{{ reference.openGraphObject.name }}
+				</p>
+				<p class="widget-default--description" :style="descriptionStyle">
+					{{ reference.openGraphObject.description }}
+				</p>
+				<p class="widget-default--link">
+					{{ compactLink }}
+				</p>
 			</div>
 		</component>
+		<NcButton v-if="interactiveOptIn && hasInteractiveView && !isInteractive" class="toggle-interactive--button" @click="enableInteractive">
+			{{ t('Enable interactive view') }}
+		</NcButton>
 	</div>
 </template>
 <script>
-import { useResizeObserver } from '@vueuse/core'
+import { useIntersectionObserver, useResizeObserver } from '@vueuse/core'
+import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
+import { t } from '../../l10n.js'
 import { getRoute } from './autolink.ts'
-import { renderWidget, isWidgetRegistered, destroyWidget } from './../../functions/reference/widgets.js'
+import { renderWidget, isWidgetRegistered, destroyWidget, hasInteractiveView, hasFullWidth } from './../../functions/reference/widgets.ts'
+
+import NcButton from '../../components/NcButton/NcButton.vue'
+
+const IDLE_TIMEOUT = 3 * 60 * 1000 // 3 minutes outside of viewport before widget is removed from the DOM
 
 export default {
 	name: 'NcReferenceWidget',
+	components: {
+		NcButton,
+	},
 	props: {
 		reference: {
 			type: Object,
 			required: true,
 		},
+		interactive: {
+			type: Boolean,
+			default: true,
+		},
+		interactiveOptIn: {
+			type: Boolean,
+			default: false,
+		},
 	},
-	data() {
+
+	setup() {
+		const compact = ref(3)
+		const isVisible = ref(false)
+		// This is the widget root node
+		const widgetRoot = ref()
+
+		useIntersectionObserver(widgetRoot, (entries) => {
+			isVisible.value = entries[0]?.isIntersecting ?? false
+		})
+
+		useResizeObserver(widgetRoot, (entries) => {
+			if (entries[0].contentRect.width < 450) {
+				compact.value = 0
+			} else if (entries[0].contentRect.width < 550) {
+				compact.value = 1
+			} else if (entries[0].contentRect.width < 650) {
+				compact.value = 2
+			} else {
+				compact.value = 3
+			}
+		})
+
 		return {
-			compact: 3,
+			compact,
+			isVisible,
+			widgetRoot,
 		}
 	},
+
+	data() {
+		return {
+			showInteractive: false,
+			rendered: false,
+			idleTimeout: null,
+		}
+	},
+
 	computed: {
+		isInteractive() {
+			return (!this.interactiveOptIn && this.interactive) || this.showInteractive
+		},
+		hasFullWidth() {
+			return hasFullWidth(this.reference.richObjectType)
+		},
 		hasCustomWidget() {
 			return isWidgetRegistered(this.reference.richObjectType)
+		},
+		hasInteractiveView() {
+			return isWidgetRegistered(this.reference.richObjectType) && hasInteractiveView(this.reference.richObjectType)
 		},
 		noAccess() {
 			return this.reference && !this.reference.accessible
@@ -84,25 +153,41 @@ export default {
 				: { href: this.reference.openGraphObject.link, target: '_blank' }
 		},
 	},
-	mounted() {
-		this.renderWidget()
-		useResizeObserver(this.$el, entries => {
-			if (entries[0].contentRect.width < 450) {
-				this.compact = 0
-			} else if (entries[0].contentRect.width < 550) {
-				this.compact = 1
-			} else if (entries[0].contentRect.width < 650) {
-				this.compact = 2
-			} else {
-				this.compact = 3
-			}
+	watch: {
+		isVisible: {
+			handler(val) {
+				if (!val) {
+					this.idleTimeout = setTimeout(() => {
+						// If the widget is still outside of viewport after timeout, destroy it
+						if (!this.isVisible) {
+							this.destroyWidget()
+						}
+					}, IDLE_TIMEOUT)
+					return
+				}
 
-		})
+				if (this.idleTimeout) {
+					clearTimeout(this.idleTimeout)
+					this.idleTimeout = null
+				}
+
+				if (!this.rendered) {
+					this.renderWidget()
+				}
+			},
+			immediate: true,
+		},
 	},
 	beforeUnmount() {
-		destroyWidget(this.reference.richObjectType, this.$el)
+		this.destroyWidget()
 	},
 	methods: {
+		t,
+
+		enableInteractive() {
+			this.showInteractive = true
+			this.renderWidget()
+		},
 		renderWidget() {
 			if (this.$refs.customWidget) {
 				this.$refs.customWidget.innerHTML = ''
@@ -110,10 +195,23 @@ export default {
 			if (this?.reference?.richObjectType === 'open-graph') {
 				return
 			}
+			// create a separate element so we can rerender on the ref again
+			const widget = document.createElement('div')
+			this.$refs.customWidget.appendChild(widget)
 			this.$nextTick(() => {
 				// Waiting for the ref to become available
-				renderWidget(this.$refs.customWidget, this.reference)
+				renderWidget(widget, {
+					...this.reference,
+					interactive: this.isInteractive,
+				})
+				this.rendered = true
 			})
+		},
+		destroyWidget() {
+			if (this.rendered) {
+				destroyWidget(this.reference.richObjectType, this.$el)
+				this.rendered = false
+			}
 		},
 	},
 }
@@ -134,6 +232,12 @@ export default {
 
 .widget-custom {
 	@include widget;
+
+	&.full-width {
+		width: var(--widget-full-width, 100%) !important;
+		left: calc( (var(--widget-full-width, 100%) - 100%) / 2 * -1);
+		position: relative;
+	}
 }
 
 .widget-access {
@@ -202,6 +306,24 @@ export default {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+	}
+}
+
+.toggle-interactive {
+	position: relative;
+	.toggle-interactive--button {
+		position: absolute;
+		top: 50%;
+		z-index: 10000;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+		opacity: 0;
+	}
+
+	&:focus-within, &:hover {
+		.toggle-interactive--button {
+			opacity: 1;
+		}
 	}
 }
 </style>
