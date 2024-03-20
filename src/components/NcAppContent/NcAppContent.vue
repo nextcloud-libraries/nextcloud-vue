@@ -89,8 +89,12 @@ The list size must be between the min and the max width value.
 
 				<slot v-else />
 			</div>
-			<div v-else-if="layout === 'vertical-split'" class="app-content-wrapper">
-				<Splitpanes class="default-theme"
+			<div v-else-if="layout === 'vertical-split' || layout === 'horizontal-split'" class="app-content-wrapper">
+				<Splitpanes :horizontal="layout === 'horizontal-split'"
+					class="default-theme"
+					:class="{ 'splitpanes--horizontal': layout === 'horizontal-split',
+						'splitpanes--vertical': layout === 'vertical-split'
+					}"
 					@resized="handlePaneResize">
 					<Pane class="splitpanes__pane-list"
 						:size="listPaneSize || paneDefaults.list.size"
@@ -150,7 +154,8 @@ export default {
 		},
 
 		/**
-		 * Allows you to set the default width of the resizable list in %
+		 * Allows you to set the default width of the resizable list in % on vertical-split
+		 * Allows you to set the default height of the resizable list in % on horizontal-split
 		 * Must be between listMinWidth and listMaxWidth
 		 */
 		listSize: {
@@ -159,7 +164,8 @@ export default {
 		},
 
 		/**
-		 * Allows you to set the minimum width of the list column in %
+		 * Allows you to set the minimum width of the list column in % on vertical-split
+		 * Allows you to set the minimum height of the list column in % on horizontal-split
 		 */
 		listMinWidth: {
 			type: Number,
@@ -167,7 +173,8 @@ export default {
 		},
 
 		/**
-		 * Allows you to set the maximum width of the list column in %
+		 * Allows you to set the maximum width of the list column in % on vertical-split
+		 * Allows you to set the maximum height of the list column in % on horizontal-split
 		 */
 		listMaxWidth: {
 			type: Number,
@@ -206,13 +213,14 @@ export default {
 		 * Content layout used when there is a list together with content:
 		 * - `vertical-split` - a 2-column layout with list and default content separated vertically
 		 * - `no-split` - a single column layout; List is shown when `showDetails` is `false`, otherwise the default slot content is shown with a back button to return to the list.
+		 * - 'horizontal-split' - a 2-column layout with list and default content separated horizontally
 		 * On mobile screen `no-split` layout is forced.
 		 */
 		layout: {
 			type: String,
 			default: 'vertical-split',
 			validator(value) {
-				return ['no-split', 'vertical-split'].includes(value)
+				return ['no-split', 'vertical-split', 'horizontal-split'].includes(value)
 			},
 		},
 	},
@@ -414,7 +422,6 @@ export default {
 		&-list {
 			min-width: 300px;
 			position: sticky;
-			top: var(--header-height);
 
 			@media only screen and (width < $breakpoint-mobile) {
 				display: none;
@@ -429,16 +436,23 @@ export default {
 			}
 		}
 	}
+	.app-content-wrapper--vertical-split {
+		.splitpanes__splitter {
+			width: 9px;
+			margin-left: -5px;
+			background-color: transparent;
+			border-left: none;
 
-	.splitpanes__splitter {
-		width: 9px;
-		margin-left: -5px;
-		background-color: transparent;
-		border-left: none;
-
-		&:before,
-		&:after {
-			display: none;
+			&:before,
+			&:after {
+				display: none;
+			}
+		}
+	}
+	.app-content-wrapper--horizontal-split {
+		.splitpanes__splitter {
+			height: 9px;
+			margin-top: -5px;
 		}
 	}
 }
