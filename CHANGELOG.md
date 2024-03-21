@@ -2,7 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v8.11.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.10.0) (2024-03-15)
+## [v8.11.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.11.1) (2024-03-21)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.11.0...v8.11.1)
+
+## What's Changed
+### 🐛 Fixed bugs
+* fix(tribute): provide avatar url correctly for dark mode by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5420
+* fix(NcListItem): decrease font-weight, restore contrast color for subname by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5421
+* fix(NcAppSidebar): fix animation glitch on toggle by @RayBB in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5389
+* fix(NcAppSidebar): remove always hover styles from actions in non-compact mode by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5367
+* fix(NcActionInput): Add label to docs by @nickvergessen in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5432
+### Other Changes
+* Updates for project Nextcloud vue library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5417
+* Updates for project Nextcloud vue library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5426
+
+## New Contributors
+* @RayBB made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5389
+
+## [v8.11.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.11.0) (2024-03-15)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.10.0...v8.11.0)
 
 ### 🚀 Enhancements
