@@ -1070,7 +1070,6 @@ export default {
 		&--empty:not(&--has-label):before {
 			content: attr(aria-placeholder);
 			color: var(--color-text-maxcontrast);
-			position: absolute;
 		}
 
 		&[contenteditable='false']:not(&--disabled) {
