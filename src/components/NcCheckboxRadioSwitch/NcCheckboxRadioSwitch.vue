@@ -322,6 +322,11 @@ export default {
 		NcCheckboxContent,
 	},
 
+	model: {
+		prop: 'checked',
+		event: 'update:checked',
+	},
+
 	props: {
 		/**
 		 * Unique id attribute of the input
