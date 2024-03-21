@@ -47,7 +47,7 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 				class="checkbox action-checkbox__checkbox"
 				@keydown.enter.exact.prevent="checkInput"
 				@change="onChange">
-			<label ref="label" :for="id" class="action-checkbox__label">{{ text }}</label>
+			<label ref="label" :for="id" class="action-checkbox__label">{{ getText() }}</label>
 
 			<!-- fake slot to gather inner text -->
 			<slot v-if="false" />
