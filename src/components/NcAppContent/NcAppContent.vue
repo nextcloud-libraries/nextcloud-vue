@@ -430,6 +430,8 @@ export default {
 
 		&-details {
 			overflow-y: auto;
+			scroll-padding-top: 60px;
+			scroll-behavior: smooth;
 
 			@media only screen and (width < $breakpoint-mobile) {
 				min-width: 100%;
