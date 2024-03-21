@@ -89,7 +89,10 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 				</template>
 				Please pick a date
 			</NcActionInput>
-			<NcActionInput type="multiselect" :options="['Apple', 'Banana', 'Cherry']">
+			<NcActionInput
+				type="multiselect"
+				input-label="Fruit selection"
+				:options="['Apple', 'Banana', 'Cherry']">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
@@ -98,7 +101,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 			<NcActionInput
 				v-model="multiSelected"
 				type="multiselect"
-				label="label"
+				input-label="Fruit selection"
 				track-by="id"
 				:append-to-body="true"
 				:multiple="true"
