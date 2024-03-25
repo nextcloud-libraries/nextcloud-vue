@@ -327,6 +327,7 @@ export default {
 			}
 
 			const el = this.getPopoverContentElement()
+			el.tabIndex = -1
 
 			if (!el) {
 				return
@@ -340,6 +341,7 @@ export default {
 				allowOutsideClick: true,
 				setReturnFocus: this.setReturnFocus,
 				trapStack: getTrapStack(),
+				fallBackFocus: el,
 			})
 			this.$focusTrap.activate()
 		},
