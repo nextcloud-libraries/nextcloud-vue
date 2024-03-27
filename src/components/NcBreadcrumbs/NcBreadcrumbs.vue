@@ -582,7 +582,7 @@ export default {
 					},
 				},
 			// Add all hidden breadcrumbs as ActionRouter or ActionLink
-			}, this.hiddenIndices.map(index => {
+			}, this.hiddenIndices.filter(index => index <= breadcrumbs.length - 1).map(index => {
 				const crumb = breadcrumbs[index]
 				// Get the parameters from the breadcrumb component props
 				const to = crumb.componentOptions.propsData.to
