@@ -1441,10 +1441,42 @@ export default {
 			}
 		},
 
-		onOpen(event) {
+		/**
+		 * Called when popover is shown after the show delay
+		 */
+		onOpen() {
 			this.$nextTick(() => {
-				this.focusFirstAction(event)
+				this.focusFirstAction(null)
+				this.resizePopover()
 			})
+		},
+
+		/**
+		 * Hanle resizing the popover to make sure users can discover there is more to scroll
+		 */
+		resizePopover() {
+			// Get the inner v-popper element that defines the popover height (from floating-vue)
+			const inner = this.$refs.menu.closest('.v-popper__inner')
+			const maxHeight = Number.parseFloat(window.getComputedStyle(inner).maxHeight)
+			const height = this.$refs.menu.clientHeight
+			// If the popover height is limited by the max-height (scrollbars shown) limit the height to half of the last element
+			if (height > maxHeight) {
+				// sum of action heights
+				let currentHeight = 0
+				// last action height
+				let actionHeight = 0
+				for (const action of this.$refs.menuList.children) {
+					// If the max height would be overflown by half of the current element,
+					// then we limit the height to the half of the previous element
+					if ((currentHeight + action.clientHeight / 2) > maxHeight) {
+						inner.style.height = `${currentHeight - actionHeight / 2}px`
+						break
+					}
+					// otherwise sum up the height
+					actionHeight = action.clientHeight
+					currentHeight += actionHeight
+				}
+			}
 		},
 
 		// MENU KEYS & FOCUS MANAGEMENT
@@ -1859,7 +1891,7 @@ export default {
 					},
 					on: {
 						show: this.openMenu,
-						'after-show': this.onOpen,
+						'apply-show': this.onOpen,
 						hide: this.closeMenu,
 					},
 				},
@@ -1906,6 +1938,7 @@ export default {
 								tabindex: '-1',
 								...this.config.popoverUlA11yAttrs,
 							},
+							ref: 'menuList',
 						}, [
 							actions,
 						]),
@@ -1927,6 +1960,7 @@ export default {
 		// Mostly used when clicking a menu item
 		this.$nextTick(() => {
 			if (this.opened && this.$refs.menu) {
+				this.resizePopover()
 				const isAnyActive = this.$refs.menu.querySelector('li.active') || []
 				if (isAnyActive.length === 0) {
 					this.focusFirstAction()
