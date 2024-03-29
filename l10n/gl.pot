@@ -133,6 +133,9 @@ msgstr "Editar o elemento"
 msgid "Emoji picker"
 msgstr "Selector de «emojis»"
 
+msgid "Enable interactive view"
+msgstr "Activar a vista interactiva"
+
 msgid "Enter link"
 msgstr "Introducir a ligazón"
 
@@ -299,6 +302,9 @@ msgstr "Ligazón sen procesar {options}"
 msgid "Related resources"
 msgstr "Recursos relacionados"
 
+msgid "Related team resources"
+msgstr "Recursos de equipo relacionados"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Pardo rosado"
@@ -386,6 +392,9 @@ msgstr "Desfacer os cambios"
 
 msgid "User status: {status}"
 msgstr "Estado do usuario: {status}"
+
+msgid "View team"
+msgstr "Ver o equipo"
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"

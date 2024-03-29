@@ -27,7 +27,7 @@
 	<ul>
 		<NcListItem
 			:name="'This is an active element with highlighted counter'"
-			:bold="false"
+			:bold="true"
 			:active="true"
 			:details="'1h'"
 			:counter-number="44"
@@ -63,7 +63,6 @@
 			:name="'This is an active element with outlined counter'"
 			:bold="false"
 			:active="true"
-			:details="'1h'"
 			:counter-number="44"
 			counterType="outlined">
 			<template #icon>
@@ -120,7 +119,7 @@
 		</NcListItem>
 		<NcListItem
 			:name="'Name of the element with highlighted counter'"
-			:bold="false"
+			:bold="true"
 			:force-display-actions="true"
 			:details="'1h'"
 			:counter-number="44"
@@ -147,7 +146,6 @@
 			:name="'Name of the element with outlined counter'"
 			:bold="false"
 			:force-display-actions="true"
-			:details="'1h'"
 			:counter-number="44"
 			counterType="outlined">
 			<template #icon>
@@ -403,7 +401,7 @@
 							</div>
 							<div v-if="hasSubname"
 								class="list-item-content__subname"
-								:class="{'line-two--bold': bold}">
+								:class="{'list-item-content__subname--bold': bold}">
 								<!-- @slot Slot for the second line of the component -->
 								<slot name="subname" />
 							</div>
@@ -757,6 +755,7 @@ export default {
 			color: var(--color-primary-element-text) !important;
 		}
 	}
+
 	.list-item-content__name,
 	.list-item-content__subname,
 	.list-item-content__details,
@@ -772,12 +771,25 @@ export default {
 	min-width: 100px;
 	max-width: 300px;
 	flex: 1 1 10%;
-	text-overflow: ellipsis;
+	font-weight: 500;
 }
 
 .list-item-content__subname {
 	flex: 1 0;
 	min-width: 0;
+	color: var(--color-text-maxcontrast);
+	&--bold {
+		font-weight: 500;
+	}
+	.list-item-content__name,
+	.list-item-content__subname,
+	.list-item-content__details,
+	.list-item-details__details {
+		white-space: nowrap;
+		margin: 0 auto 0 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 }
 
 // NcListItem
@@ -820,11 +832,12 @@ export default {
 	}
 	.list-item-content__details {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		justify-content: end;
+		align-items: end;
 	}
 	&--one-line {
-		padding: 10px;
+		padding: 0 9px;
 		margin: 2px;
 		.list-item-content__main {
 			display: flex;
@@ -833,8 +846,8 @@ export default {
 			min-width: 0;
 		}
 		.list-item-content__details {
-			display: flex;
 			flex-direction: row;
+			align-items: unset;
 			justify-content: end;
 		}
 	}
@@ -879,7 +892,7 @@ export default {
 	&-details {
 		&__details {
 			color: var(--color-text-maxcontrast);
-			margin: 0 9px;
+			margin: 0 9px !important;
 			font-weight: normal;
 		}
 		&__extra {

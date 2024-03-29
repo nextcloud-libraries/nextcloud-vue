@@ -94,6 +94,134 @@ All notable changes to this project will be documented in this file.
 * chore(vue3): Migrate NcAppSidebar* to vue 3 [\#4833](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4833) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 * chore(vue3): Migrate NcRich* to vue 3 [\#4976](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4976) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 
+## [v8.11.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.11.1) (2024-03-21)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.11.0...v8.11.1)
+
+## What's Changed
+### 🐛 Fixed bugs
+* fix(tribute): provide avatar url correctly for dark mode [\#5420](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5420) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcListItem): decrease font-weight, restore contrast color for subname [\#5421](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5421) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcAppSidebar): fix animation glitch on toggle [\#5389](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5389) \([RayBB](https://github.com/RayBB)\)
+* fix(NcAppSidebar): remove always hover styles from actions in non-compact mode [\#5367](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5367) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcActionInput): Add label to docs [\#5432](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5432) \([nickvergessen](https://github.com/nickvergessen)\)
+### Other Changes
+* Updates for project Nextcloud vue library [\#5417](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5417) \([transifex-integration](https://github.com/transifex-integration)\)
+* Updates for project Nextcloud vue library [\#5426](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5426) \([transifex-integration](https://github.com/transifex-integration)\)
+
+## New Contributors
+* @RayBB made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5389
+
+## [v8.11.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.11.0) (2024-03-15)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.10.0...v8.11.0)
+
+### 🚀 Enhancements
+* feat(NcListItem): add title slot [\#5388](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5388) \([emoral435](https://github.com/emoral435)\)
+* feat(NcAppContent): add horizontal split layout [\#5401](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5401) \([GretaD](https://github.com/GretaD)\)
+### 🐛 Fixed bugs
+* fix(NcListItem): bring back old styling for two-line list items [\#5400](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5400) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcListItem): align indicators at the element bottom [\#5408](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5408) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcReferenceWidget): set timeout to destroy idle widgets outside of viewports [\#5411](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5411) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcAvatar): rendering user status emoji in the menu [\#5409](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5409) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcAvatar): handle regex error on initials match [\#5407](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5407) \([kyteinsky](https://github.com/kyteinsky)\)
+### Other Changes
+* Updates for project Nextcloud vue library [\#5404](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5404) \([transifex-integration](https://github.com/transifex-integration)\)
+
+## New Contributors
+* @kyteinsky made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5407
+
+## [v8.10.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.10.0) (2024-03-11)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.9.1...v8.10.0)
+
+### 🚀 Enhancements
+* feat(NcAppContent): add no-split layout [\#5209](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5209) \([GretaD](https://github.com/GretaD)\)
+* feat(NcListItem): add one-line layout [\#5209](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5209) \([GretaD](https://github.com/GretaD)\)
+* feat(NcActions): Allow to manually specify the semantic menu type [\#5336](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5336) \([susnux](https://github.com/susnux)\)
+
+### 🐛 Fixed bugs
+* fix(NcAppNavigation): stretch the main content when there is no list slot [\#5360](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5360) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcRichContenteditable): capture and stop `Esc` keydown event when closing tribute [\#5353](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5353) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcRelatedResourcesPanel): Adjust styling of team resource images [\#5364](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5364) \([juliushaertl](https://github.com/juliushaertl)\)
+* fix(NcRichContentEditable): require leading space to open tributes [\#5378](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5378) \([Antreesy](https://github.com/Antreesy)\)
+* fix(richEditor): reference server-scoped regular expression to match complex user mentions [\#5359](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5359) \([Antreesy](https://github.com/Antreesy)\)
+* fix(richText): when parse HTML content collapse consecutive spaces [\#5359](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5359) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcListItem): open _blank link by Enter and allow prevent [\#5342](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5342) \([pulsejet](https://github.com/pulsejet)\)
+* fix(NcRichText): Allow to pass interactive widget toggle [\#5365](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5365) \([juliushaertl](https://github.com/juliushaertl)\)
+* fix(NcActions): correct dialog a11y attrs place [\#5381](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5381) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcUserStatusicon): set status icons size explicitly [\#5390](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5390) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcListItem): change padding for one-line layout [\#5391](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5391) \([GretaD](https://github.com/GretaD)\)
+* fix(NcReferenceWidget): Only use composables in `setup` context [\#5394](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5394) \([susnux](https://github.com/susnux)\)
+
+### Other Changes
+* Updates for project Nextcloud vue library [\#5358](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5358) \([transifex-integration](https://github.com/transifex-integration)\)
+* chore: Remove GitHub Package Registry from publish workflow [\#5357](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5357) \([Pytal](https://github.com/Pytal)\)
+* chore(README): remove build:module and watch:module [\#5346](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5346) \([ShGKme](https://github.com/ShGKme)\)
+* Updates for project Nextcloud vue library [\#5387](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5387) \([transifex-integration](https://github.com/transifex-integration)\)
+
+## [v8.9.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.9.1) (2024-03-06)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.9.0...v8.9.1)
+
+### 🐛 Fixed bugs
+* fix: Revert "fix(NcAppNavigation): Wrap app navigation default slot with scrollable container" [\#5355](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5355) \([Pytal](https://github.com/Pytal)\)
+
+## [v8.9.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.9.0) (2024-03-06)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.8.1...v8.9.0)
+
+### 🚀 Enhancements
+* feat(reference): Add opt-in for interactive mode and render widgets lazy once in view [\#5257](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5257) \([juliushaertl](https://github.com/juliushaertl)\)
+* feat: List team resources in related resources panel [\#5316](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5316) \([juliushaertl](https://github.com/juliushaertl)\)
+
+### 🐛 Fixed bugs
+* fix(NcAppNavigation): Wrap app navigation default slot with scrollable container [\#5347](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5347) \([Pytal](https://github.com/Pytal)\)
+
+### Other Changes
+* Updates for project Nextcloud vue library [\#5333](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5333) \([transifex-integration](https://github.com/transifex-integration)\)
+* Updates for project Nextcloud vue library [\#5343](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5343) \([transifex-integration](https://github.com/transifex-integration)\)
+* fix(NcActions): clear focus trap and move focus only if elements are existing in the DOM [\#5345](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5345) \([Antreesy](https://github.com/Antreesy)\)
+* Updates for project Nextcloud vue library [\#5348](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5348) \([transifex-integration](https://github.com/transifex-integration)\)
+
+## [v8.8.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.8.1) (2024-02-29)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.8.0...v8.8.1)
+
+### 🐛 Fixed bugs
+* fix(NcSelect): handle text overflow in NcSelect [\#5325](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5325) \([hamza221](https://github.com/hamza221)\)
+* fix: scope component breaking NcModal and NcDateTimePickers [\#5331](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5331) \([ShGKme](https://github.com/ShGKme)\)
+
+## [v8.8.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.8.0) (2024-02-29)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.7.1...v8.8.0)
+
+## What's Changed
+
+### 🚀 Enhancements
+* feat(NcAppSidebar): Add `subname` slot [\#5285](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5285) \([susnux](https://github.com/susnux)\)
+* feat: Add NcAppNavigationList [\#5302](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5302) \([Pytal](https://github.com/Pytal)\)
+
+### 🐛 Fixed bugs
+* fix(NcAppNavigationSpacer): Adjust order to make the spacer work again [\#5286](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5286) \([susnux](https://github.com/susnux)\)
+* fix(NcResource): use RouterLink where possible for internal shared resources [\#5282](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5282) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcActions): remove `aria-haspopup` and `aria-controls` from navigation menu [\#5300](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5300) \([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter)\)
+* fix(NcActions): put in order tab and arrow navigation [\#5305](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5305) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcPopover): remove invalid aria-describedby [\#5304](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5304) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcActions): provide a label in dialog role [\#5308](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5308) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcActions): focus first checked item on open [\#5313](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5313) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcRichContenteditable): respect forward slash as user mention character [\#5323](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5323) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcPopover): add aria-modal to some popover-based dialog components [\#5309](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5309) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcPopover): make popupRole non-required [\#5306](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5306) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcRichContenteditable): disable global allowSpaces tribute option [\#5321](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5321) \([Antreesy](https://github.com/Antreesy)\)
+
+### Other Changes
+* Updates for project Nextcloud vue library [\#5289](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5289) \([transifex-integration](https://github.com/transifex-integration)\)
+* Revert "fix(NcReferenceList): Resolve relative URLs before fetching references" [\#5291](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5291) \([mejo-](https://github.com/mejo-)\)
+
+## [v8.7.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.7.1) (2024-02-21)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.7.0...v8.7.1)
+
+## What's Changed
+
+### 🐛 Fixed bugs
+* fix(NcRichContenteditable): register props globally for new Tribute [\#5268](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5268) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcReferenceList): Resolve relative URLs before fetching references [\#5272](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5272) \([mejo-](https://github.com/mejo-)\)
+* fix(NcDashboardWidgetItem): Center dashboard list items when there is no subtext [\#5271](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5271) \([juliushaertl](https://github.com/juliushaertl)\)
+
 ## [v8.7.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.7.0) (2024-02-20)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.6.2...v8.7.0)
 

@@ -716,8 +716,8 @@ export default {
 			</NcActions>
 		</p>
 
-		<h2>Tooltip</h2>
-		Has only text and not interactive elements
+		<h2>Toolip</h2>
+		<p>Has only text and no interactive elements.</p>
 		<p>
 			<NcActions aria-label="Contact" :inline="1">
 				<NcActionLink aria-label="View profile" href="/u/alice" icon="icon-user-white">
@@ -813,7 +813,7 @@ p {
 `<NcActions>` is supposed to be used with direct `<NcAction*>` children.
 Although it works when actions are not direct children but wrapped in custom components, it has limitations:
 - No `inline` prop property, including a single action display;
-- Accessibility issues, including changed keyboard behavior;
+- Accessibility issues, including changed keyboard behavior (see below);
 - Invalid HTML.
 
 ```
@@ -935,6 +935,40 @@ export default {
 }
 </style>
 ```
+
+#### Manually providing semantic menu information
+Due to limitations of Vue, when using a custom wrapper for action components, you have to provide the semantic menu type yourself.
+This is used for keyboard navigation and accessibility.
+In this example a `NcActionInput` component is used within a custom wrapper, so `NcActions` is not able to detect the semantic menu type of 'dialog' automatically,
+meaning it must be provided manually:
+
+```vue
+<template>
+	<NcActions menu-semantic-type="dialog">
+		<MyWrapper />
+	</NcActions>
+</template>
+<script>
+import Pencil from 'vue-material-design-icons/Pencil.vue'
+
+export default {
+	components: {
+		MyWrapper: {
+			template: `
+<NcActionInput trailing-button-label="Submit" label="Rename group">
+	<template #icon>
+		<Pencil :size="20" />
+	</template>
+</NcActionInput>`,
+		},
+		components: {
+			Pencil,
+		},
+	},
+}
+</script>
+```
+
 </docs>
 
 <script>
@@ -973,7 +1007,7 @@ export default {
 			/**
 			 * NcActions can be used as:
 			 * - Application menu (has menu role)
-			 * - Navigation (has no specific role, should be used an element with navigation role)
+			 * - Expanded block (has no specific role, should be used an element with expanded role)
 			 * - Popover with plain text or text inputs (has no specific role)
 			 * Depending on the usage (used items), the menu and its items should have different roles for a11y.
 			 * Provide the role for NcAction* components in the NcActions content.
@@ -1025,6 +1059,34 @@ export default {
 		menuName: {
 			type: String,
 			default: null,
+		},
+
+		/**
+		 * NcActions can be used as:
+		 *
+		 * - Application menu (has menu role)
+		 * - Navigation (has no specific role, should be used an element with expanded role)
+		 * - Popover with plain text or text inputs (has no specific role)
+		 *
+		 * By default the used type is automatically detected by components used in the default slot.#
+		 *
+		 * With Vue this is limited to direct children of the NcActions component.
+		 * So if you use a wrapper, you have to provide the semantic type yourself (see Example)
+		 *
+		 * Choose:
+		 *
+		 * - 'dialog' if you use any of these components: NcActionInput', 'NcActionTextEditable'
+		 * - 'menu' if you use any of these components: 'NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio'
+		 * - 'expanded' if using one of these: 'NcActionLink', 'NcActionRouter'. This represents an expanded block.
+		 * - 'tooltip' only to be used when a text without any interactive elements is used.
+		 * - Leave this property unset otherwise
+		 */
+		forceSemanticType: {
+			type: String,
+			default: null,
+			validator(value) {
+				return ['dialog', 'menu', 'expanded', 'tooltip'].includes(value)
+			},
 		},
 
 		/**
@@ -1131,13 +1193,20 @@ export default {
 		'click',
 	],
 
+	setup() {
+		const randomId = `menu-${GenRandomId()}`
+		return {
+			randomId,
+			triggerRandomId: `trigger-${randomId}`,
+		}
+	},
+
 	data() {
 		return {
 			opened: this.open,
 			focusIndex: 0,
-			randomId: `menu-${GenRandomId()}`,
 			/**
-			 * @type {'menu'|'navigation'|'dialog'|'tooltip'|'unknown'}
+			 * @type {'menu'|'expanded'|'dialog'|'tooltip'|'unknown'}
 			 */
 			actionsMenuSemanticType: 'unknown',
 			externalFocusTrapStack: [],
@@ -1160,7 +1229,11 @@ export default {
 			/**
 			 * Accessibility notes:
 			 *
-			 * There is no valid popup role for navigation and tooltip in `aria-haspopup`.
+			 * "aria-haspopup" and "aria-expanded" are managed by NcPopover via `popupRole`
+			 *
+			 * "aria-controls" should only present together with a valid aria-haspopup
+			 *
+			 * There is no valid popup role for expanded and tooltip in `aria-haspopup`.
 			 * aria-haspopup="true" is equivalent to aria-haspopup="menu".
 			 * They must not be treated as menus.
 			 *
@@ -1169,6 +1242,11 @@ export default {
 			 * Or the menu is an expanded list of UI elements.
 			 *
 			 * Navigation type is just an "expanded" block, similar to native <details> element.
+			 *
+			 * Arrow and Tab navigation should not be used together:
+			 * - Arrow navigation is used to navigate between items of UI element
+			 * - Tab navigation is used to navigate between UI elements on the page
+			 * - Menu is either an atomic UI element of just an expanded block of elements
 			 */
 			const configs = {
 				menu: {
@@ -1176,24 +1254,49 @@ export default {
 					withArrowNavigation: true,
 					withTabNavigation: false,
 					withFocusTrap: false,
+					triggerA11yAttr: {
+						'aria-controls': this.opened ? this.randomId : null,
+					},
+					popoverContainerA11yAttrs: {},
+					popoverUlA11yAttrs: {
+						id: this.randomId,
+						role: 'menu',
+					},
 				},
-				navigation: {
+				expanded: {
 					popupRole: undefined,
 					withArrowNavigation: false,
 					withTabNavigation: true,
 					withFocusTrap: false,
+					triggerA11yAttr: {},
+					popoverContainerA11yAttrs: {},
+					popoverUlA11yAttrs: {},
 				},
 				dialog: {
 					popupRole: 'dialog',
 					withArrowNavigation: false,
 					withTabNavigation: true,
 					withFocusTrap: true,
+					triggerA11yAttr: {
+						'aria-controls': this.opened ? this.randomId : null,
+					},
+					popoverContainerA11yAttrs: {
+						id: this.randomId,
+						role: 'dialog',
+						// Dialog must have a label
+						'aria-labelledby': this.triggerRandomId,
+						'aria-modal': 'true',
+					},
+					popoverUlA11yAttrs: {},
 				},
 				tooltip: {
 					popupRole: undefined,
 					withArrowNavigation: false,
 					withTabNavigation: false,
 					withFocusTrap: false,
+					triggerA11yAttr: {},
+					popoverContainerA11yAttrs: {},
+					popoverUlA11yAttrs: {},
 				},
 				// Due to Vue limitations, we sometimes cannot determine the true type
 				// As a fallback use both arrow navigation and focus trap
@@ -1203,13 +1306,12 @@ export default {
 					withArrowNavigation: true,
 					withTabNavigation: false,
 					withFocusTrap: true,
+					triggerA11yAttr: {},
+					popoverContainerA11yAttrs: {},
+					popoverUlA11yAttrs: {},
 				},
 			}
 			return configs[this.actionsMenuSemanticType]
-		},
-
-		withFocusTrap() {
-			return this.config.withFocusTrap
 		},
 	},
 
@@ -1586,11 +1688,6 @@ export default {
 		}
 		findActions(this.$slots.default?.(), actions)
 
-		// Check that we have at least one action
-		if (actions.length === 0) {
-			return
-		}
-
 		/**
 		 * Separate the actions into inline and menu actions
 		 */
@@ -1616,37 +1713,45 @@ export default {
 		 * Determine what kind of menu we have.
 		 * It defines keyboard navigation and a11y.
 		 */
-
-		const menuItemsActions = ['NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio']
-		const textInputActions = ['NcActionInput', 'NcActionTextEditable']
-		const linkActions = ['NcActionLink', 'NcActionRouter']
-
-		const hasTextInputAction = menuActions.some(action => textInputActions.includes(this.getActionName(action)))
-		const hasMenuItemAction = menuActions.some(action => menuItemsActions.includes(this.getActionName(action)))
-		const hasLinkAction = menuActions.some(action => linkActions.includes(this.getActionName(action)))
-
-		if (hasTextInputAction) {
-			this.actionsMenuSemanticType = 'dialog'
-		} else if (hasMenuItemAction) {
-			this.actionsMenuSemanticType = 'menu'
-		} else if (hasLinkAction) {
-			this.actionsMenuSemanticType = 'navigation'
+		if (this.forceSemanticType) {
+			this.actionsMenuSemanticType = this.forceSemanticType
 		} else {
-			// (!) Hotfix (!)
-			// In Vue 2 it is not easy to search for NcAction* in sub-component of a slot.
-			// When a menu is rendered, children are not mounted yet.
-			// If we have NcActions > MyActionsList > NcActionButton, only MyActionsList's vnode is available.
-			// So when NcActions has actions as non-direct children, here then we don't know about them.
-			// Like this menu has no buttons/links/inputs.
-			// It makes the menu incorrectly considered a tooltip.
-			const ncActions = actions.filter((action) => this.getActionName(action).startsWith('NcAction'))
-			if (ncActions.length === actions.length) {
-				// True tooltip
-				this.actionsMenuSemanticType = 'tooltip'
+			const textInputActions = ['NcActionInput', 'NcActionTextEditable']
+			const menuItemsActions = ['NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio']
+			const linkActions = ['NcActionLink', 'NcActionRouter']
+
+			const hasTextInputAction = menuActions.some(action => textInputActions.includes(this.getActionName(action)))
+			const hasMenuItemAction = menuActions.some(action => menuItemsActions.includes(this.getActionName(action)))
+			const hasLinkAction = menuActions.some(action => linkActions.includes(this.getActionName(action)))
+
+			if (hasTextInputAction) {
+				this.actionsMenuSemanticType = 'dialog'
+			} else if (hasMenuItemAction) {
+				this.actionsMenuSemanticType = 'menu'
+			} else if (hasLinkAction) {
+				this.actionsMenuSemanticType = 'expanded'
 			} else {
-				// Custom components are passed to the NcActions
-				this.actionsMenuSemanticType = 'unknown'
+				// (!) Hotfix (!)
+				// In Vue it is not easy to search for NcAction* in sub-component of a slot.
+				// When a menu is rendered, children are not mounted yet.
+				// If we have NcActions > MyActionsList > NcActionButton, only MyActionsList's vnode is available.
+				// So when NcActions has actions as non-direct children, here then we don't know about them.
+				// Like this menu has no buttons/links/inputs.
+				// It makes the menu incorrectly considered a tooltip.
+				const ncActions = actions.filter((action) => this.getActionName(action).startsWith('NcAction'))
+				if (ncActions.length === actions.length) {
+					// True tooltip
+					this.actionsMenuSemanticType = 'tooltip'
+				} else {
+					// Custom components are passed to the NcActions
+					this.actionsMenuSemanticType = 'unknown'
+				}
 			}
+		}
+
+		// Check that we have at least one action
+		if (actions.length === 0) {
+			return
 		}
 
 		/**
@@ -1725,14 +1830,14 @@ export default {
 					placement: this.placement,
 					boundary: this.boundariesElement,
 					container: this.container,
-					...this.manualOpen && { triggers: [] },
 					popoverBaseClass: 'action-item__popper',
 					popupRole: this.config.popupRole,
 					setReturnFocus: this.config.withFocusTrap ? this.$refs.menuButton?.$el : null,
 					focusTrap: this.config.withFocusTrap,
-					onShow: this.openMenu,
-					onAfterShow: this.onOpen,
-					onHide: this.closeMenu,
+					...this.manualOpen && { triggers: [] },
+					show: this.openMenu,
+					'after-show': this.onOpen,
+					hide: this.closeMenu,
 				},
 				{
 					trigger: () => h(NcButton, {
@@ -1743,12 +1848,11 @@ export default {
 						ariaHidden: this.ariaHidden,
 						ref: 'menuButton',
 						'aria-label': this.menuName ? null : this.ariaLabel,
-						// 'aria-controls' should only present together with a valid aria-haspopup
-						'aria-controls': this.opened && this.config.popupRole ? this.randomId : null,
-						onFocus: this.onFocus,
-						onBlur: this.onBlur,
-						onClick: this.onClick,
-						onKeydown: this.onTriggerKeydown,
+						...this.config.triggerA11yAttr,
+						focus: this.onFocus,
+						blur: this.onBlur,
+						click: this.onClick,
+						keydown: this.onTriggerKeydown,
 					}, {
 						icon: () => triggerIcon,
 						default: () => this.menuName,
@@ -1758,6 +1862,7 @@ export default {
 							open: this.opened,
 						},
 						tabindex: '-1',
+						...this.config.popoverContainerA11yAttrs,
 						onKeydown: this.onKeydown,
 						onMousemove: this.onMouseFocusAction,
 						ref: 'menu',
@@ -1765,10 +1870,10 @@ export default {
 						h('ul', {
 							id: this.randomId,
 							tabindex: '-1',
-							role: this.config.popupRole,
 							// Dialog must have a label
 							'aria-labelledby': this.actionsMenuSemanticType === 'dialog' ? triggerRandomId : undefined,
 							'aria-modal': this.actionsMenuSemanticType === 'dialog' ? 'true' : undefined,
+							...this.config.popoverUlA11yAttrs,
 						}, [
 							actions,
 						]),

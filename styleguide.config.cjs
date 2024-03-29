@@ -43,6 +43,11 @@ module.exports = async () => {
 					},
 				},
 			},
+			resolve: {
+				alias: {
+					vue$: path.join(__dirname, 'node_modules', 'vue'),
+				},
+			},
 		}),
 
 		exampleMode: 'collapse',
