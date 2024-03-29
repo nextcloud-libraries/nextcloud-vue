@@ -64,6 +64,7 @@ describe('NcAvatar.vue', () => {
 		await nextTick()
 
 		expect(wrapper.find('.avatardiv__user-status').exists()).toBe(true)
+		console.warn(wrapper.html())
 		expect(wrapper.find('.action-item__menutoggle').attributes('aria-label')).toBe('Avatar of J. Doe, do not disturb')
 	})
 

@@ -20,6 +20,7 @@
  *
  */
 
+import { describe, afterEach, it, expect } from 'vitest'
 import { getAvatarUrl } from '../../../src/utils/getAvatarUrl'
 
 describe('getAvatarUrl', () => {
