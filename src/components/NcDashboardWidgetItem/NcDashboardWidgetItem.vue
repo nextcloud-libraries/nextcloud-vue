@@ -51,6 +51,7 @@ This component is meant to be used inside a DashboardWidget component.
 			<div class="item__details">
 				<h3 :title="mainText">
 					{{ mainText }}
+					<span v-if="extText !== ''" class="extension" :title="extText">{{ extText }}</span>
 				</h3>
 				<span v-if="subText !== ''" class="message" :title="subText">
 					{{ subText }}
@@ -134,6 +135,13 @@ export default {
 		mainText: {
 			type: String,
 			required: true,
+		},
+		/**
+		 * Item extra/extension text (optional)
+		 */
+		extText: {
+			type: String,
+			default: '',
 		},
 		/**
 		 * Item subline text (optional)
@@ -237,7 +245,7 @@ export default {
 			font-size: 100%;
 			margin: 0;
 		}
-		.message {
+		.message, .extension {
 			width: 100%;
 			color: var(--color-text-maxcontrast);
 		}
