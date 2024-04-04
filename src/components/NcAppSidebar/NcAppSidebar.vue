@@ -356,7 +356,7 @@ export default {
 			ref="sidebar"
 			class="app-sidebar"
 			:aria-labelledby="`app-sidebar-vue-${uid}__header`"
-			@keydown.esc.stop="isMobile && closeSidebar()">
+			@keydown.esc="onKeydownEsc">
 			<header :class="{
 					'app-sidebar-header--with-figure': isSlotPopulated($slots.header?.()) || background,
 					'app-sidebar-header--compact': compact,
@@ -766,6 +766,18 @@ export default {
 				this.focusTrap.activate()
 			} else {
 				this.focusTrap?.deactivate()
+			}
+		},
+
+		/**
+		 * Close the sidebar on pressing the escape key on mobile
+		 *
+		 * @param {KeyboardEvent} event key down event
+		 */
+		onKeydownEsc(event) {
+			if (this.isMobile) {
+				event.stopPropagation()
+				this.closeSidebar()
 			}
 		},
 
