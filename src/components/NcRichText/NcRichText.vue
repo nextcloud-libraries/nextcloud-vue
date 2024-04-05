@@ -452,7 +452,7 @@ export default {
 								if (tag === 'li' && Array.isArray(children)
 									&& children[0].tag === 'input'
 									&& children[0].data.attrs.type === 'checkbox') {
-									const [inputNode, , label] = children
+									const [inputNode, ...labelParts] = children
 									const id = 'markdown-input-' + GenRandomId(5)
 									const inputComponent = h(NcCheckboxRadioSwitch, {
 										attrs: {
@@ -462,10 +462,10 @@ export default {
 										},
 										on: {
 											'update:checked': (value) => {
-												this.$emit('interact:todo', { id, label, value })
+												this.$emit('interact:todo', { id, label: labelParts.join(''), value })
 											},
 										},
-									}, [label])
+									}, [labelParts])
 									return h(tag, attrs, [inputComponent])
 								}
 							}
@@ -546,5 +546,9 @@ export default {
 
 a:not(.rich-text--component) {
 	text-decoration: underline;
+}
+
+:deep(.checkbox-content__text) {
+	gap: 4px;
 }
 </style>
