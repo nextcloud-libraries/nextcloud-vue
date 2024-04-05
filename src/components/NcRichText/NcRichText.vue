@@ -115,13 +115,29 @@ Table row | value A | value B
 			}
 		},
 		methods: {
-			handleInteraction(event) {
-				const uncheckedItem = '- [ ] ' + event.label + '\n'
-				const checkedItem = '- [x] ' + event.label + '\n'
-
-				this.text = event.value
-					? this.text.replace(uncheckedItem, checkedItem)
-					: this.text.replace(checkedItem, uncheckedItem)
+			handleInteraction(id) {
+				const parentId = id.split('-markdown-input-')[0]
+				const index = Array.from(document.querySelectorAll(`span[id^="${parentId}-markdown-input-"]`)).findIndex((el) => el.id.includes(id))
+				if (index === -1 ) {
+					return
+				}
+				let checkBoxIndex = 0
+				lines = this.text.split('\n')
+				for (let i = 0; i < lines.length; i++) {
+					if (lines[i].includes('[ ]') || lines[i].includes('[x]')) {
+						if (checkBoxIndex === index) {
+							const isChecked = lines[i].includes('[x]')
+							if (isChecked) {
+								lines[i] = lines[i].replace('[x]', '[ ]')
+							} else {
+								lines[i] = lines[i].replace('[ ]', '[x]')
+							}
+							break
+						}
+						checkBoxIndex++
+					}
+				}
+				this.text = lines.join('\n')
 			},
 		},
 	}
@@ -150,11 +166,13 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 
 		<NcCheckboxRadioSwitch :checked.sync="autolink" type="checkbox">Autolink</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch :checked.sync="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch :checked.sync="useExtendedMarkdown" type="checkbox">Use extended Markdown</NcCheckboxRadioSwitch>
 
 		<NcRichText :text="text"
 			:autolink="autolink"
 			:arguments="userMentions"
-			:use-markdown="useMarkdown" />
+			:use-markdown="useMarkdown"
+			:use-extended-markdown="useExtendedMarkdown" />
 	</div>
 </template>
 <script>
@@ -164,6 +182,7 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 				message: '',
 				autolink: true,
 				useMarkdown: true,
+				useExtendedMarkdown: true,
 				userData: {
 					Test01: {
 						icon: 'icon-user',
@@ -377,6 +396,13 @@ export default {
 		},
 	},
 	emits: ['interact:todo'],
+
+	data() {
+		return {
+			parentId: GenRandomId(5),
+		}
+	},
+
 	methods: {
 		renderPlaintext(h) {
 			const context = this
@@ -449,20 +475,19 @@ export default {
 
 						if (!tag.startsWith('#')) {
 							if (this.useExtendedMarkdown) {
-								let nestedList
+								let nestedNode = null
 								if (tag === 'li' && Array.isArray(children)
 									&& children[0].tag === 'input'
 									&& children[0].data.attrs.type === 'checkbox') {
 									const [inputNode, ...labelParts] = children
 
-									const nestedListIndex = labelParts.findIndex((child) => child.tag === 'ul' || child.tag === 'li')
-									if (nestedListIndex !== -1) {
-										nestedList = labelParts[nestedListIndex]
-										nestedList.data.attrs.style = 'margin-inline-start: 20px;'
-										labelParts.splice(nestedListIndex)
+									const nestedNodeIndex = labelParts.findIndex((child) => ['ul', 'ol', 'li', 'blockquote', 'pre'].includes(child.tag))
+									if (nestedNodeIndex !== -1) {
+										nestedNode = labelParts[nestedNodeIndex]
+										labelParts.splice(nestedNodeIndex)
 									}
 
-									const id = 'markdown-input-' + GenRandomId(5)
+									const id = this.parentId + '-markdown-input-' + GenRandomId(5)
 									const inputComponent = h(NcCheckboxRadioSwitch, {
 										attrs: {
 											...inputNode.data.attrs,
@@ -470,14 +495,13 @@ export default {
 											disabled: !this.interactive,
 										},
 										on: {
-											'update:checked': (value) => {
-												this.$emit('interact:todo', { id, label: labelParts.join(''), value })
+											'update:checked': () => {
+												this.$emit('interact:todo', id)
 											},
 										},
 									}, labelParts)
 
-									return h(tag, attrs, [inputComponent, nestedListIndex ? [nestedList] : []])
-
+									return h(tag, attrs, [inputComponent, nestedNode])
 								}
 							}
 
