@@ -484,7 +484,7 @@ export default {
 					if (String(type) === 'li' && Array.isArray(children)
 						&& children[0].type === 'input'
 						&& children[0].props.type === 'checkbox') {
-						const [inputNode, , label] = children
+						const [inputNode, , ...labelParts] = children
 						const id = 'markdown-input-' + GenRandomId(5)
 						const propsToForward = { ...inputNode.props }
 						// The checked prop is name modelValue for NcCheckboxRadioSwitch
@@ -495,9 +495,9 @@ export default {
 							id,
 							disabled: !this.interactive,
 							'onUpdate:modelValue': (value) => {
-								this.$emit('interact:todo', { id, label, value })
+								this.$emit('interact:todo', { id, label: labelParts.join(''), value })
 							},
-						}, [label])
+						}, labelParts)
 						return h(type, props, [inputComponent])
 					}
 				}
@@ -550,5 +550,9 @@ export default {
 
 a:not(.rich-text--component) {
 	text-decoration: underline;
+}
+
+:deep(.checkbox-content__text) {
+	gap: 4px;
 }
 </style>
