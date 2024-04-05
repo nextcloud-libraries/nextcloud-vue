@@ -449,10 +449,19 @@ export default {
 
 						if (!tag.startsWith('#')) {
 							if (this.useExtendedMarkdown) {
+								let nestedList
 								if (tag === 'li' && Array.isArray(children)
 									&& children[0].tag === 'input'
 									&& children[0].data.attrs.type === 'checkbox') {
 									const [inputNode, ...labelParts] = children
+
+									const nestedListIndex = labelParts.findIndex((child) => child.tag === 'ul' || child.tag === 'li')
+									if (nestedListIndex !== -1) {
+										nestedList = labelParts[nestedListIndex]
+										nestedList.data.attrs.style = 'margin-inline-start: 20px;'
+										labelParts.splice(nestedListIndex)
+									}
+
 									const id = 'markdown-input-' + GenRandomId(5)
 									const inputComponent = h(NcCheckboxRadioSwitch, {
 										attrs: {
@@ -465,8 +474,10 @@ export default {
 												this.$emit('interact:todo', { id, label: labelParts.join(''), value })
 											},
 										},
-									}, [labelParts])
-									return h(tag, attrs, [inputComponent])
+									}, labelParts)
+
+									return h(tag, attrs, [inputComponent, nestedListIndex ? [nestedList] : []])
+
 								}
 							}
 
