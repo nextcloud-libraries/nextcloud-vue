@@ -655,6 +655,7 @@ export default {
 			 */
 			menuOpenLocalValue: false,
 			focused: false,
+			collapsible: false,
 		}
 	},
 
