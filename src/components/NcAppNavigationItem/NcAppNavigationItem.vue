@@ -640,16 +640,13 @@ export default {
 			 */
 			menuOpenLocalValue: false,
 			focused: false,
+			collapsible: false,
 		}
 	},
 
 	computed: {
 		isRouterLink() {
 			return this.to && !this.href
-		},
-
-		collapsible() {
-			return this.allowCollapse && !!this.$slots.default
 		},
 
 		// Checks if the component is already a children of another
@@ -753,6 +750,7 @@ export default {
 
 		updateSlotInfo() {
 			this.hasChildren = !!this.$slots.default
+			this.collapsible = this.allowCollapse && !!this.$slots.default
 		},
 
 		/**
