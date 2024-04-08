@@ -468,7 +468,8 @@ A working alternative would be using an icon together with an `aria-label`:
 								<!-- header main menu -->
 								<NcActions v-if="$slots['secondary-actions']"
 									class="app-sidebar-header__menu"
-									:force-menu="forceMenu">
+									:force-menu="forceMenu"
+									:inline="secondaryInline">
 									<slot name="secondary-actions" />
 								</NcActions>
 							</div>
@@ -651,6 +652,14 @@ export default {
 		forceMenu: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Display x items inline out of the dropdown menu
+		 * Will be ignored if `forceMenu` is set
+		 */
+		 secondaryInline: {
+			type: Number,
+			default: 0,
 		},
 		/**
 		 * Linkify the name
