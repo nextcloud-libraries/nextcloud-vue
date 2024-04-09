@@ -1,7 +1,5 @@
 /* eslint-disable-next-line */
 import 'core-js/stable'
-/* eslint-disable-next-line */
-import 'regenerator-runtime/runtime'
 import Vue from 'vue'
 import VTooltip from './../src/directives/Tooltip/index.js'
 
