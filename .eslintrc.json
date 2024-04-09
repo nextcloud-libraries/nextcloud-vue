@@ -22,6 +22,18 @@
 		}
 	},
 	"rules": {
+		"@nextcloud/no-deprecations": [
+			"error",
+			{
+				"parseAppInfo": false
+			}
+		],
+		"@nextcloud/no-removed-apis": [
+			"error",
+			{
+				"parseAppInfo": false
+			}
+		],
 		"import/no-unresolved": [
 			"error",
 			{
