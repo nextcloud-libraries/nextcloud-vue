@@ -505,12 +505,14 @@ export default defineComponent({
 	}
 
 	&__name {
+		font-size: 21px;
+
 		text-align: center;
 		height: fit-content;
 		min-height: var(--default-clickable-area);
 		line-height: var(--default-clickable-area);
 		overflow-wrap: break-word;
-		margin-block-end: 12px;
+		margin-block: 0 12px;
 	}
 
 	&__content {
