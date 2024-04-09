@@ -2,6 +2,16 @@
  * Styles are extracted to extract scss to dist folder, too.
  */
 
+li.task-list-item > ul,
+li.task-list-item > ol,
+li.task-list-item > li,
+li.task-list-item > blockquote,
+li.task-list-item > pre {
+	margin-inline-start: 15px;
+	margin-block-end: 0;
+ }
+
+
 .rich-text--wrapper {
 	word-break: break-word;
 	line-height: 1.5;
