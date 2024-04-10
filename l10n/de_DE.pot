@@ -187,7 +187,7 @@ msgid "Keyboard navigation help"
 msgstr "Tastatur-Navigationshilfe"
 
 msgid "Light skin tone"
-msgstr "Heller Skin-Farbton"
+msgstr "Heller Hautton"
 
 msgid "Load more \"{options}\""
 msgstr "Weitere \"{options}\" laden"
