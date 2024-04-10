@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { generateUrl } from '@nextcloud/router'
+import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
 
 export default {
 	name: 'NcMentionBubble',
@@ -103,12 +103,7 @@ export default {
 	},
 
 	methods: {
-		getAvatarUrl(user, size) {
-			return generateUrl('/avatar/{user}/{size}', {
-				user,
-				size,
-			})
-		},
+		getAvatarUrl,
 	},
 }
 </script>
