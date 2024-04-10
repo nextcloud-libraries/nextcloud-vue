@@ -203,7 +203,7 @@ msgid "Medium light skin tone"
 msgstr "Mittelheller Hautfarbton"
 
 msgid "Medium skin tone"
-msgstr "Mittlerer Skin-Farbton"
+msgstr "Mittlerer Hautfarbton"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
@@ -215,7 +215,7 @@ msgid "More options"
 msgstr "Mehr Optionen"
 
 msgid "Neutral skin color"
-msgstr "Neutraler Skin-Farbton"
+msgstr "Neutraler Hautfarbton"
 
 msgid "Next"
 msgstr "Weiter"
