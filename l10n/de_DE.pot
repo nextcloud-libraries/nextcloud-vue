@@ -1,12 +1,12 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Mark Ziegler <mark.ziegler@rakekniven.de>, 2024
 # Mario Siegmann <mario_siegmann@web.de>, 2024
+# Mark Ziegler <mark.ziegler@rakekniven.de>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2024\n"
+"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2024\n"
 "Language-Team: German (Germany) (https://app.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -118,7 +118,7 @@ msgid "Custom"
 msgstr "Benutzerdefiniert"
 
 msgid "Dark skin tone"
-msgstr "Dunkler Skin-Farbton"
+msgstr "Dunkler Hautfarbton"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -187,7 +187,7 @@ msgid "Keyboard navigation help"
 msgstr "Tastatur-Navigationshilfe"
 
 msgid "Light skin tone"
-msgstr "Heller Skin-Farbton"
+msgstr "Heller Hautfarbton"
 
 msgid "Load more \"{options}\""
 msgstr "Weitere \"{options}\" laden"
@@ -197,13 +197,13 @@ msgid "Mariner"
 msgstr "Seemann"
 
 msgid "Medium dark skin tone"
-msgstr "Mitteldunkler Skin-Farbton"
+msgstr "Mitteldunkler Hautfarbton"
 
 msgid "Medium light skin tone"
-msgstr "Mittelheller Skin-Farbton"
+msgstr "Mittelheller Hautfarbton"
 
 msgid "Medium skin tone"
-msgstr "Mittlerer Skin-Farbton"
+msgstr "Mittlerer Hautfarbton"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
@@ -215,7 +215,7 @@ msgid "More options"
 msgstr "Mehr Optionen"
 
 msgid "Neutral skin color"
-msgstr "Neutraler Skin-Farbton"
+msgstr "Neutraler Hautfarbton"
 
 msgid "Next"
 msgstr "Weiter"
@@ -355,7 +355,7 @@ msgid "Show password"
 msgstr "Passwort anzeigen"
 
 msgid "Skin tone"
-msgstr "Skin-Farbton"
+msgstr "Hautfarbton"
 
 msgid "Skip to app navigation"
 msgstr "Zur App-Navigation springen"
