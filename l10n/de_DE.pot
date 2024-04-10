@@ -197,7 +197,7 @@ msgid "Mariner"
 msgstr "Seemann"
 
 msgid "Medium dark skin tone"
-msgstr "Mitteldunkler Skin-Farbton"
+msgstr "Mitteldunkler Hautfarbton"
 
 msgid "Medium light skin tone"
 msgstr "Mittelheller Skin-Farbton"
