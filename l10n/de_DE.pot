@@ -1,12 +1,12 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Mark Ziegler <mark.ziegler@rakekniven.de>, 2024
 # Mario Siegmann <mario_siegmann@web.de>, 2024
+# Mark Ziegler <mark.ziegler@rakekniven.de>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2024\n"
+"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2024\n"
 "Language-Team: German (Germany) (https://app.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -118,7 +118,7 @@ msgid "Custom"
 msgstr "Benutzerdefiniert"
 
 msgid "Dark skin tone"
-msgstr "Dunkler Skin-Farbton"
+msgstr "Dunkler Hautton"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
