@@ -355,7 +355,7 @@ msgid "Show password"
 msgstr "Passwort anzeigen"
 
 msgid "Skin tone"
-msgstr "Skin-Farbton"
+msgstr "Hautfarbton"
 
 msgid "Skip to app navigation"
 msgstr "Zur App-Navigation springen"
