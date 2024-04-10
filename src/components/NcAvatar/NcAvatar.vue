@@ -149,15 +149,15 @@ export default {
 			:aria-label="avatarAriaLabel"
 			:title="tooltip"
 			@click="toggleMenu">
-			<NcActionLink v-for="(item, key) in menu"
+			<component :is="item.ncActionComponent"
+				v-for="(item, key) in menu"
 				:key="key"
-				:href="item.href"
-				:icon="item.icon">
+				v-bind="item.ncActionComponentProps">
 				<template v-if="item.iconSvg" #icon>
 					<NcIconSvgWrapper :svg="item.iconSvg" />
 				</template>
 				{{ item.text }}
-			</NcActionLink>
+			</component>
 			<template v-if="contactsMenuLoading" #icon>
 				<NcLoadingIcon />
 			</template>
@@ -186,6 +186,8 @@ export default {
 <script>
 import NcActions from '../NcActions/index.js'
 import NcActionLink from '../NcActionLink/index.js'
+import NcActionRouter from '../NcActionRouter/index.js'
+import NcActionText from '../NcActionText/index.js'
 import NcButton from '../NcButton/index.js'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
@@ -195,6 +197,7 @@ import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
 import { getUserStatusText } from '../../utils/UserStatus.ts'
 import { userStatus } from '../../mixins/index.js'
 import { t } from '../../l10n.js'
+import { getRoute } from '../../components/NcRichText/autolink.js'
 
 import axios from '@nextcloud/axios'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
@@ -237,7 +240,6 @@ export default {
 	components: {
 		DotsHorizontal,
 		NcActions,
-		NcActionLink,
 		NcButton,
 		NcIconSvgWrapper,
 		NcLoadingIcon,
@@ -504,9 +506,18 @@ export default {
 		},
 		menu() {
 			const actions = this.contactsMenuActions.map((item) => {
+				const route = getRoute(this.$router, item.hyperlink)
 				return {
-					href: item.hyperlink,
-					icon: item.icon,
+					ncActionComponent: route ? NcActionRouter : NcActionLink,
+					ncActionComponentProps: route
+						? {
+							to: route,
+							icon: item.icon,
+						}
+						: {
+							href: item.hyperlink,
+							icon: item.icon,
+						},
 					text: item.title,
 				}
 			})
@@ -527,7 +538,8 @@ export default {
 					<text x="50%" y="50%" text-anchor="middle" style="dominant-baseline: central; font-size: 85%">${escape(this.userStatus.icon)}</text>
 				</svg>`
 				return [{
-					href: '#',
+					ncActionComponent: NcActionText,
+					ncActionComponentProps: {},
 					iconSvg: this.userStatus.icon ? emojiIcon : undefined,
 					text: `${this.userStatus.message}`,
 				}].concat(actions)
