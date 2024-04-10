@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v8.11.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.11.2) (2024-04-10)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.11.1...v8.11.2)
+
+## What's Changed
+### 🐛 Fixed bugs
+* fix(NcBreadcrumbs): Only render existing hidden breadcrumbs by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5441
+* fix(NcAppNavigationItem): Fix uncollapsible entry by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5456
+* fix(NcRichText): include all label items by @DorraJaouad in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5455
+* fix(sidebar): propagate keydown unless mobile by @pulsejet in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5451
+* fix(NcActions): Show last action entry only partial to make it discoverable by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5448
+* fix(NcDialog): Set font size to make dialog compatible with Nextcloud 30 by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5463
+* fix(NcRichText): more strictly resolve vue router's path by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5419
+* fix(NcAvatar): support in-app router links for contact menu by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5477
+### Other Changes
+* Updates for project Nextcloud vue library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5447
+* Updates for project Nextcloud vue library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5478
+
+## New Contributors
+* @DorraJaouad made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5455
+
 ## [v8.11.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.11.1) (2024-03-21)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.11.0...v8.11.1)
 
