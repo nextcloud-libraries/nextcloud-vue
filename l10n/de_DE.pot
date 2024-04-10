@@ -118,7 +118,7 @@ msgid "Custom"
 msgstr "Benutzerdefiniert"
 
 msgid "Dark skin tone"
-msgstr "Dunkler Hautton"
+msgstr "Dunkler Hautfarbton"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -187,7 +187,7 @@ msgid "Keyboard navigation help"
 msgstr "Tastatur-Navigationshilfe"
 
 msgid "Light skin tone"
-msgstr "Heller Hautton"
+msgstr "Heller Hautfarbton"
 
 msgid "Load more \"{options}\""
 msgstr "Weitere \"{options}\" laden"
