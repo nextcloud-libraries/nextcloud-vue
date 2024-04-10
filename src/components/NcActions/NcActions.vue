@@ -716,7 +716,7 @@ export default {
 			</NcActions>
 		</p>
 
-		<h2>Toolip</h2>
+		<h2>Tooltip</h2>
 		<p>Has only text and no interactive elements.</p>
 		<p>
 			<NcActions aria-label="Contact" :inline="1">
