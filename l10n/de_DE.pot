@@ -200,7 +200,7 @@ msgid "Medium dark skin tone"
 msgstr "Mitteldunkler Hautfarbton"
 
 msgid "Medium light skin tone"
-msgstr "Mittelheller Skin-Farbton"
+msgstr "Mittelheller Hautfarbton"
 
 msgid "Medium skin tone"
 msgstr "Mittlerer Skin-Farbton"
