@@ -41,7 +41,7 @@ const hasInteractiveView = (id: string) => {
 }
 
 export const hasFullWidth = (id: string) => {
-	return !!window._vue_richtext_widgets[id]?.fullWidth ?? false
+	return !!window._vue_richtext_widgets[id]?.fullWidth
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
