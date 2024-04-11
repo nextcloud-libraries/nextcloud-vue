@@ -189,12 +189,16 @@ export default {
 			this.renderWidget()
 		},
 		renderWidget() {
-			if (this.$refs.customWidget) {
-				this.$refs.customWidget.innerHTML = ''
+			if (!this.$refs.customWidget) {
+				return
 			}
+
 			if (this?.reference?.richObjectType === 'open-graph') {
 				return
 			}
+
+			this.$refs.customWidget.innerHTML = ''
+
 			// create a separate element so we can rerender on the ref again
 			const widget = document.createElement('div')
 			this.$refs.customWidget.appendChild(widget)
