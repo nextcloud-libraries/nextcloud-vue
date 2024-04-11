@@ -1,6 +1,31 @@
+/**
+ * @copyright Copyright (c) 2022 Julius Härtl <jus@bitgrid.net>
+ *
+ * @author Julius Härtl <jus@bitgrid.net>
+ * @author Raimund Schlüßler <raimund.schluessler@mailbox.org>
+ * @author Maksim Sukharev <antreesy.web@gmail.com>
+ * @author Grigorii K. Shartsev <me@shgk.me>
+ *
+ * @license AGPL-3.0-or-later
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 import { URL_PATTERN_AUTOLINK } from './helpers.js'
 
-import type { RouteLocation, Router } from 'vue-router'
+import type { Router } from 'vue-router'
 import { getBaseUrl, getRootUrl } from '@nextcloud/router'
 import { u } from 'unist-builder'
 import { visit, SKIP } from 'unist-util-visit'
@@ -92,26 +117,56 @@ export const parseUrl = (text: string) => {
 	return text
 }
 
-export const getRoute = (router: Router, url: string): RouteLocation | null => {
-	const isAbsolutURL = url.match(/https?:\/\//)
+/**
+ * Try to get path for router link from an absolute or relative URL.
+ *
+ * @param {Router} router - VueRouter instance of the router link
+ * @param {string} url - absolute URL to parse
+ * @return {string|null} a path that can be useed in the router link or null if this URL doesn't match this router config
+ * @example http://cloud.ltd/nextcloud/index.php/app/files/favorites?fileid=2#fragment => /files/favorites?fileid=2#fragment
+ */
+export const getRoute = (router: Router, url: string): string | null => {
+	/**
+	 * http://cloud.ltd /nextcloud /index.php/app/files /favorites?fileid=2#fragment
+	 * |_____origin____|__________router-base__________|_________router-path________|
+	 * |__________base____________|
+	 *                 |___root___|
+	 */
 
-	// Skip if Router is not defined in app, or root url does not match
-	if (!router || (isAbsolutURL && !url.includes(getBaseUrl()))) {
+	// Router is not defined in the app => not an app route
+	if (!router) {
 		return null
 	}
 
-	// Remove webroot
-	if (isAbsolutURL) {
-		url = url.slice(getBaseUrl().length)
-	} else {
-		url = url.slice(getRootUrl().length)
-	}
-	// Remove base URL for matching
-	url = url.slice(router.options.history.base.length)
+	const isAbsoluteURL = /^https?:\/\//.test(url)
 
-	const route = router.resolve(url)
-	if (route.name || route.matched.length > 0) {
-		return route
+	// URL is not a link to this Nextcloud server instance => not an app route
+	if ((isAbsoluteURL && !url.startsWith(getBaseUrl())) || (!isAbsoluteURL && !url.startsWith(getRootUrl()))) {
+		return null
 	}
-	return null
+
+	const routerBase = router.options.history.base
+
+	const urlWithoutOrigin = isAbsoluteURL ? url.slice(new URL(url).origin.length) : url
+
+	// Remove index.php - it is optional in general case in both, VueRouter base and the URL
+	const urlWithoutOriginAndIndexPhp = url.startsWith((isAbsoluteURL ? getBaseUrl() : getRootUrl()) + '/index.php') ? urlWithoutOrigin.replace('/index.php', '') : urlWithoutOrigin
+	const routerBaseWithoutIndexPhp = routerBase.replace('/index.php', '')
+
+	// This URL is not a part of this router by base
+	if (!urlWithoutOriginAndIndexPhp.startsWith(routerBaseWithoutIndexPhp)) {
+		return null
+	}
+
+	// Root route may have an empty '' path, fallback to '/'
+	const routerPath = urlWithoutOriginAndIndexPhp.replace(routerBaseWithoutIndexPhp, '') || '/'
+
+	// Check if there is actually matching route in the router for this path
+	const route = router.resolve(routerPath)
+
+	if (!route.matched.length) {
+		return null
+	}
+
+	return route.fullPath
 }
