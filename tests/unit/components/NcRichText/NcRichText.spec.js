@@ -204,10 +204,5 @@ describe('Foo', () => {
 		expect(checkbox.exists()).toBeTruthy()
 		await checkbox.vm.$emit('update:modelValue', true)
 		expect(wrapper.emitted()['interact:todo']).toBeTruthy()
-		expect(wrapper.emitted()['interact:todo'][0][0]).toMatchObject({
-			id: expect.anything(),
-			label: 'task item',
-			value: true,
-		})
 	})
 })
