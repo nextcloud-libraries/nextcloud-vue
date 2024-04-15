@@ -531,11 +531,17 @@ export default defineComponent({
 	}
 
 	&__actions {
+		box-sizing: border-box;
+
 		display: flex;
 		gap: 6px;
 		align-content: center;
-		width: fit-content;
-		margin-inline: auto 12px; // 12px to align with the overall modal padding
+		justify-content: end;
+
+		width: 100%;
+		max-width: 100%;
+		padding-inline: 0 12px; // 12px to align with the overall modal padding
+		margin-inline: 0;
 		margin-block: 0;
 
 		&:not(:empty) {
