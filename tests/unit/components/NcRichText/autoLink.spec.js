@@ -20,7 +20,7 @@
  *
  */
 
-import { expect, describe, it, jest } from '@jest/globals'
+import { jest, describe, it, beforeAll } from '@jest/globals'
 import { getRoute } from '../../../../src/components/NcRichText/autolink.js'
 import VueRouter from 'vue-router'
 import { getBaseUrl, getRootUrl } from '@nextcloud/router'
@@ -41,7 +41,7 @@ describe('autoLink', () => {
 					['with', '/index.php'],
 					['without', ''],
 				])('%s /index.php in link', (_, indexPhp) => {
-					const linkBase = origin + root + indexPhp
+					const linkBase = origin ? origin + root + indexPhp : ''
 					beforeAll(() => {
 						getBaseUrl.mockReturnValue(`https://cloud.ltd${root}`)
 						getRootUrl.mockReturnValue(root)
@@ -129,17 +129,36 @@ describe('autoLink', () => {
 			})
 		})
 
-		// getRoute doesn't have to guarantee Talk Desktop compatiblity, but checking just in case
+		it('should not get route from relative link with base /nextcloud/index.php/apps/test/foo', () => {
+			getBaseUrl.mockReturnValue('https://cloud.ltd/nextcloud')
+			getRootUrl.mockReturnValue('/nextcloud')
+			const router = new VueRouter({
+				mode: 'history',
+				base: '/nextcloud/index.php/apps/test',
+				routes: [
+					{ path: '/foo', name: 'foo' },
+				],
+			})
+
+			expect(getRoute(router, '/nextcloud/index.php/apps/test/foo')).toBe(null)
+		})
+
+		// getRoute doesn't have to guarantee Talk Desktop compatibility, but checking just in case
 		describe('with Talk Desktop router - no router base and invalid getRootUrl', () => {
 			it.each([
-				['https://cloud.ltd/nextcloud/index.php/apps/spreed?callTo=alice'],
-				['https://cloud.ltd/nextcloud/index.php/call/abc123ef'],
-				['https://cloud.ltd/nextcloud/index.php/apps/files'],
-				['https://cloud.ltd/nextcloud/'],
-			])('should not get route for %s', (link) => {
-				// On Talk Desktop both Base and Root URL returns an absolute path because there is no location
+				['https://cloud.ltd/nextcloud/index.php/apps/spreed', '/apps/spreed'],
+				['https://cloud.ltd/nextcloud/index.php/apps/spreed?callTo=alice', '/apps/spreed?callTo=alice'],
+				['https://cloud.ltd/nextcloud/index.php/call/abc123ef', '/call/abc123ef'],
+				['https://cloud.ltd/nextcloud/index.php/apps/files', null],
+				['https://cloud.ltd/nextcloud/', null],
+				['/apps/spreed', '/apps/spreed'],
+				['/apps/spreed?callTo=alice', '/apps/spreed?callTo=alice'],
+				['/call/abc123ef', '/call/abc123ef'],
+				['/apps/files', null],
+				['/', null],
+			])('should get route %s => %s', (link, expectedRoute) => {
 				getBaseUrl.mockReturnValue('https://cloud.ltd/nextcloud')
-				getRootUrl.mockReturnValue('https://cloud.ltd/nextcloud')
+				getRootUrl.mockReturnValue('/nextcloud')
 
 				const routerTalkDesktop = new VueRouter({
 					// On Talk Desktop, we use hash mode, because it works on file:// protocol
@@ -152,7 +171,7 @@ describe('autoLink', () => {
 					],
 				})
 
-				expect(getRoute(routerTalkDesktop, link)).toBe(null)
+				expect(getRoute(routerTalkDesktop, link)).toBe(expectedRoute)
 			})
 		})
 	})

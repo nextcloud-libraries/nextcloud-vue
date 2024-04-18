@@ -114,16 +114,19 @@ export const parseUrl = (text) => {
  *
  * @param {import('vue-router').default} router - VueRouter instance of the router link
  * @param {string} url - absolute URL to parse
- * @return {string|null} a path that can be useed in the router link or null if this URL doesn't match this router config
- * @example http://cloud.ltd/nextcloud/index.php/app/files/favorites?fileid=2#fragment => /files/favorites?fileid=2#fragment
+ * @return {string|null} a path that can be used in the router link or null if this URL doesn't match this router config
+ * @example http://cloud.ltd/nextcloud/index.php/apps/files/favorites?fileid=2#fragment => /files/favorites?fileid=2#fragment
  */
 export const getRoute = (router, url) => {
 	/**
-	 * http://cloud.ltd /nextcloud /index.php/app/files /favorites?fileid=2#fragment
-	 * |_____origin____|__________router-base__________|_________router-path________|
-	 * |__________base____________|
-	 *                 |___root___|
+	 * http://cloud.ltd /nextcloud /index.php /apps/files /favorites?fileid=2#fragment
+	 * |_____origin____|___________router-base____________|                           |
+	 * |__________base____________|          |______________relative-url______________|
+	 * |               |___root___|_optional_|__app-base__|_________router-path_______|
 	 */
+
+	const removePrefix = (str, prefix) => str.startsWith(prefix) ? str.slice(prefix.length) : str
+	const removePrefixes = (str, ...prefixes) => prefixes.reduce((acc, prefix) => removePrefix(acc, prefix), str)
 
 	// Router is not defined in the app => not an app route
 	if (!router) {
@@ -133,29 +136,21 @@ export const getRoute = (router, url) => {
 	const isAbsoluteURL = /^https?:\/\//.test(url)
 
 	// URL is not a link to this Nextcloud server instance => not an app route
-	if ((isAbsoluteURL && !url.startsWith(getBaseUrl())) || (!isAbsoluteURL && !url.startsWith(getRootUrl()))) {
+	if (isAbsoluteURL && !url.startsWith(getBaseUrl())) {
 		return null
 	}
 
-	// Vue 3: router.options.history.base
-	const routerBase = router.history.base
+	// URL relative to the instance root
+	const relativeUrl = isAbsoluteURL ? removePrefixes(url, getBaseUrl(), '/index.php') : url
 
-	const urlWithoutOrigin = isAbsoluteURL ? url.slice(new URL(url).origin.length) : url
-
-	// Remove index.php - it is optional in general case in both, VueRouter base and the URL
-	const urlWithoutOriginAndIndexPhp = url.startsWith((isAbsoluteURL ? getBaseUrl() : getRootUrl()) + '/index.php') ? urlWithoutOrigin.replace('/index.php', '') : urlWithoutOrigin
-	const routerBaseWithoutIndexPhp = routerBase.replace('/index.php', '')
-
-	// This URL is not a part of this router by base
-	if (!urlWithoutOriginAndIndexPhp.startsWith(routerBaseWithoutIndexPhp)) {
-		return null
-	}
+	// Router base relative to the instance root (app-base above)
+	const relativeRouterBase = removePrefixes(router.history.base, getRootUrl(), '/index.php')
 
 	// Root route may have an empty '' path, fallback to '/'
-	const routerPath = urlWithoutOriginAndIndexPhp.replace(routerBaseWithoutIndexPhp, '') || '/'
+	const potentialRouterPath = removePrefixes(relativeUrl, relativeRouterBase) || '/'
 
 	// Check if there is actually matching route in the router for this path
-	const route = router.resolve(routerPath).route
+	const route = router.resolve(potentialRouterPath).route
 
 	if (!route.matched.length) {
 		return null
