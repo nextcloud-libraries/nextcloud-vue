@@ -84,7 +84,7 @@ describe('NcDateTime.vue', () => {
 		/**
 		 * Use German locale as it uses a different date format than English
 		 */
-		it('', () => {
+		it('Works with absolute timestamps', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30)
 			jest.setSystemTime(time)
 			const wrapper = mount(NcDateTime, {
@@ -95,6 +95,31 @@ describe('NcDateTime.vue', () => {
 
 			expect(wrapper.element.hasAttribute('title')).toBe(true)
 			expect(wrapper.element.getAttribute('title')).toMatch('23.06.23, 14:30:00')
+		})
+	})
+
+	describe('Work with different languages', () => {
+		beforeAll(() => {
+			// mock the language
+			document.documentElement.lang = 'de'
+		})
+		afterAll(() => {
+			// revert mock
+			document.documentElement.lang = 'en'
+		})
+
+		it('Works with relative timestamps', () => {
+			const now = Date.UTC(2023, 5, 24, 14, 0)
+			jest.setSystemTime(now)
+
+			const yesterday = Date.UTC(2023, 5, 23, 13, 59)
+			const wrapper = mount(NcDateTime, {
+				propsData: {
+					timestamp: yesterday,
+				},
+			})
+
+			expect(wrapper.text()).toMatch('gestern')
 		})
 	})
 
