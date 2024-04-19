@@ -28,6 +28,8 @@
 This is a simple input checkbox, radio and switch design.
 Please have a look at proper usage and recommendations: https://material.io/components/checkboxes
 
+Note: All attributes on the element are passed to the inner input element - except for the button type.
+
 ### Standard checkbox
 ```vue
 <template>
@@ -259,21 +261,25 @@ export default {
 
 <template>
 	<component :is="computedWrapperElement"
-		:id="wrapperId"
+		:id="wrapperId ?? (isButtonType ? id : null)"
 		:aria-label="isButtonType && ariaLabel ? ariaLabel : undefined"
-		:class="{
-			['checkbox-radio-switch-' + type]: type,
-			'checkbox-radio-switch--checked': isChecked,
-			'checkbox-radio-switch--disabled': disabled,
-			'checkbox-radio-switch--indeterminate': hasIndeterminate ? indeterminate : false,
-			'checkbox-radio-switch--button-variant': buttonVariant,
-			'checkbox-radio-switch--button-variant-v-grouped': buttonVariant && buttonVariantGrouped === 'vertical',
-			'checkbox-radio-switch--button-variant-h-grouped': buttonVariant && buttonVariantGrouped === 'horizontal',
-			'button-vue': isButtonType,
-		}"
 		class="checkbox-radio-switch"
-		:style="cssVars"
+		:class="[
+			$props.class,
+			{
+				['checkbox-radio-switch-' + type]: type,
+				'checkbox-radio-switch--checked': isChecked,
+				'checkbox-radio-switch--disabled': disabled,
+				'checkbox-radio-switch--indeterminate': hasIndeterminate ? indeterminate : false,
+				'checkbox-radio-switch--button-variant': buttonVariant,
+				'checkbox-radio-switch--button-variant-v-grouped': buttonVariant && buttonVariantGrouped === 'vertical',
+				'checkbox-radio-switch--button-variant-h-grouped': buttonVariant && buttonVariantGrouped === 'horizontal',
+				'button-vue': isButtonType,
+			},
+		]"
+		:style="[cssVars, style]"
 		:type="isButtonType ? 'button' : null"
+		v-bind="isButtonType ? $attrs : {} "
 		v-on="isButtonType ? listeners : {}">
 		<input v-if="!isButtonType"
 			:id="id"
@@ -287,6 +293,7 @@ export default {
 			:indeterminate.prop="hasIndeterminate ? indeterminate : null"
 			:required="required"
 			:name="name"
+			v-bind="$attrs"
 			v-on="listeners">
 		<NcCheckboxContent :id="id"
 			class="checkbox-radio-switch__content"
@@ -323,6 +330,9 @@ export default {
 	components: {
 		NcCheckboxContent,
 	},
+
+	// We need to pass attributes to the input element
+	inheritAttrs: false,
 
 	props: {
 		/**
@@ -458,6 +468,22 @@ export default {
 			type: String,
 			default: null,
 		},
+
+		/**
+		 * The class(es) to pass to the wrapper / root element of the component
+		 */
+		class: {
+			type: [String, Array, Object],
+			default: '',
+		},
+
+		/**
+		 * The style to pass to the wrapper / root element of the component
+		 */
+		style: {
+			type: [String, Array, Object],
+			default: '',
+		},
 	},
 
 	emits: ['update:modelValue'],
@@ -489,6 +515,17 @@ export default {
 		},
 
 		/**
+		 * CSS local variables for this component
+		 * @return {Record<string, string>}
+		 */
+		cssVars() {
+			return {
+				'--icon-size': this.size + 'px',
+				'--icon-height': (this.type === TYPE_SWITCH ? 16 : this.size) + 'px',
+			}
+		},
+
+		/**
 		 * Icon size
 		 *
 		 * @return {number}
@@ -497,18 +534,6 @@ export default {
 			return this.type === TYPE_SWITCH
 				? 36
 				: 24
-		},
-
-		/**
-		 * Css local variables for this component
-		 *
-		 * @return {object}
-		 */
-		cssVars() {
-			return {
-				'--icon-size': this.size + 'px',
-				'--icon-height': (this.type === TYPE_SWITCH ? 16 : this.size) + 'px',
-			}
 		},
 
 		/**
