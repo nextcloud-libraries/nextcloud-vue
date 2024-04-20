@@ -28,6 +28,8 @@
 This is a simple input checkbox, radio and switch design.
 Please have a look at proper usage and recommendations: https://material.io/components/checkboxes
 
+Note: All attributes on the element are passed to the inner input element - except for the button type.
+
 ### Standard checkbox
 ```vue
 <template>
@@ -274,6 +276,7 @@ export default {
 		class="checkbox-radio-switch"
 		:style="cssVars"
 		:type="isButtonType ? 'button' : null"
+		v-bind="isButtonType ? $attrs : {}"
 		v-on="isButtonType ? listeners : null">
 		<input v-if="!isButtonType"
 			:id="id"
@@ -287,6 +290,7 @@ export default {
 			:indeterminate.prop="hasIndeterminate ? indeterminate : null"
 			:required="required"
 			:name="name"
+			v-bind="$attrs"
 			v-on="listeners">
 		<NcCheckboxContent :id="id"
 			class="checkbox-radio-switch__content"
@@ -321,6 +325,9 @@ export default {
 	components: {
 		NcCheckboxContent,
 	},
+
+	// We need to pass attributes to the input element
+	inheritAttrs: false,
 
 	props: {
 		/**
