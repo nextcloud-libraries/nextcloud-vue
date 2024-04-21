@@ -133,6 +133,9 @@ msgstr "Edit item"
 msgid "Emoji picker"
 msgstr "Emoji picker"
 
+msgid "Enable interactive view"
+msgstr "Enable interactive view"
+
 msgid "Enter link"
 msgstr "Enter link"
 
@@ -299,6 +302,9 @@ msgstr "Raw link {options}"
 msgid "Related resources"
 msgstr "Related resources"
 
+msgid "Related team resources"
+msgstr "Related team resources"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Rosy brown"
@@ -386,6 +392,9 @@ msgstr "Undo changes"
 
 msgid "User status: {status}"
 msgstr "User status: {status}"
+
+msgid "View team"
+msgstr "View team"
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
