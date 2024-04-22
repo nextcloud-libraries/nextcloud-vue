@@ -20,7 +20,7 @@
  *
  */
 
-import { getCanonicalLocale } from '@nextcloud/l10n'
+import { getCanonicalLocale, getLanguage } from '@nextcloud/l10n'
 import { computed, onUnmounted, ref, onMounted, watch, unref, type Ref } from 'vue'
 import { t } from '../l10n.js'
 
@@ -48,7 +48,7 @@ interface FormatDateOptions {
 type MaybeRef<T> = T | Ref<T>
 
 /**
- * Composable for formatting time stamps using current users locale
+ * Composable for formatting time stamps using current users locale and language
  *
  * @param {Date | number | import('vue').Ref<Date> | import('vue').Ref<number>} timestamp Current timestamp
  * @param {object} opts Optional options
@@ -87,7 +87,7 @@ export function useFormatDateTime(
 	/** Time string formatted for main text */
 	const formattedTime = computed<string>(() => {
 		if (wrappedOptions.value.relativeTime !== false) {
-			const formatter = new Intl.RelativeTimeFormat(getCanonicalLocale(), { numeric: 'auto', style: wrappedOptions.value.relativeTime })
+			const formatter = new Intl.RelativeTimeFormat(getLanguage(), { numeric: 'auto', style: wrappedOptions.value.relativeTime })
 
 			const diff = date.value.getTime() - currentTime.value
 			const seconds = diff / 1000
