@@ -33,4 +33,33 @@ describe('NcCheckboxRadioSwitch', () => {
 		expect(input.attributes('aria-invalid')).toBe('true')
 		expect(input.attributes('aria-errormessage')).toBe('id-test')
 	})
+
+	it('sets aria-labelledby attribute correctly', () => {
+		const wrapper = mount(NcCheckboxRadioSwitch, {
+			props: {
+				id: 'test-id',
+			},
+			slots: {
+				default: 'Test',
+			},
+		})
+
+		expect(wrapper.find('input').attributes('aria-labelledby')).toBe('test-id-label')
+		expect(wrapper.findComponent({ name: 'NcCheckboxContent' }).attributes('id')).toBe('test-id-label')
+	})
+
+	it('does not set id on button content', () => {
+		const wrapper = mount(NcCheckboxRadioSwitch, {
+			props: {
+				id: 'test-id',
+				type: 'button',
+			},
+			slots: {
+				default: 'Test',
+			},
+		})
+
+		expect(wrapper.find('input').exists()).toBe(false)
+		expect(wrapper.findComponent({ name: 'NcCheckboxContent' }).attributes('id')).toBe(undefined)
+	})
 })

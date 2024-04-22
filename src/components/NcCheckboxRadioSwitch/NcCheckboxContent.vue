@@ -4,8 +4,7 @@
 -->
 
 <template>
-	<span :id="!isButtonType ? `${id}-label` : undefined"
-		class="checkbox-content"
+	<span class="checkbox-content"
 		:class="{
 			['checkbox-content-' + type]: true,
 			'checkbox-content--button-variant': buttonVariant,
@@ -67,14 +66,6 @@ export default {
 	},
 
 	props: {
-		/**
-		 * Unique id attribute of the input to label
-		 */
-		id: {
-			type: String,
-			default: null,
-		},
-
 		/**
 		 * Class for the icon element
 		 */
