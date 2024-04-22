@@ -20,7 +20,7 @@
  *
  */
 
-import { useFormatDateTime } from '../../../src/composables/useFormatDateTime.js'
+import { useFormatDateTime } from '../../../src/composables/useFormatDateTime.ts'
 import { isRef, nextTick, ref } from 'vue'
 
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'

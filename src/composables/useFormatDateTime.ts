@@ -20,8 +20,9 @@
  *
  */
 
+import type { MaybeRef } from 'vue'
 import { getCanonicalLocale } from '@nextcloud/l10n'
-import { computed, onUnmounted, ref, onMounted, watch, unref } from 'vue'
+import { computed, onUnmounted, ref, toValue, watchEffect } from 'vue'
 import { t } from '../l10n.js'
 
 const FEW_SECONDS_AGO = {
@@ -30,44 +31,64 @@ const FEW_SECONDS_AGO = {
 	narrow: t('sec. ago'), // FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 }
 
+interface FormatDateOptions {
+	/**
+	 * The format used for displaying, or if relative time is used the format used for the title
+	 */
+	format?: Intl.DateTimeFormatOptions
+	/**
+	 * Ignore seconds when displaying the relative time and just show `a few seconds ago`
+	 */
+	ignoreSeconds?: boolean
+	/**
+	 * Wether to display the timestamp as time from now
+	 */
+	relativeTime?: false | 'long' | 'short' | 'narrow'
+}
+
 /**
  * Composable for formatting time stamps using current users locale
  *
- * @param {Date | number | import('vue').Ref<Date> | import('vue').Ref<number>} timestamp Current timestamp
+ * @param {import('vue').MaybeRef<Date | number>} timestamp Current timestamp
  * @param {object} opts Optional options
  * @param {Intl.DateTimeFormatOptions} opts.format The format used for displaying, or if relative time is used the format used for the title (optional)
  * @param {boolean} opts.ignoreSeconds Ignore seconds when displaying the relative time and just show `a few seconds ago`
  * @param {false | 'long' | 'short' | 'narrow'} opts.relativeTime Wether to display the timestamp as time from now (optional)
  */
-export function useFormatDateTime(timestamp = Date.now(), opts = {}) {
+export function useFormatDateTime(
+	timestamp: MaybeRef<Date|number> = Date.now(),
+	opts: MaybeRef<FormatDateOptions> = {},
+) {
 	// Current time as Date.now is not reactive
 	const currentTime = ref(Date.now())
 	// The interval ID for the window
-	let intervalId = null
+	let intervalId: number|undefined
 
 	const options = ref({
-		timeStyle: 'medium',
-		dateStyle: 'short',
-		relativeTime: 'long',
+		format: {
+			timeStyle: 'medium',
+			dateStyle: 'short',
+		} as Intl.DateTimeFormatOptions,
+		relativeTime: 'long' as const,
 		ignoreSeconds: false,
-		...unref(opts),
+		...toValue(opts),
 	})
-	const wrappedOptions = computed(() => ({ ...unref(opts), ...options.value }))
+	const wrappedOptions = computed<Required<FormatDateOptions>>(() => ({ ...toValue(opts), ...options.value }))
 
 	/** ECMA Date object of the timestamp */
-	const date = computed(() => new Date(unref(timestamp)))
+	const date = computed(() => new Date(toValue(timestamp)))
 
-	const formattedFullTime = computed(() => {
+	const formattedFullTime = computed<string>(() => {
 		const formatter = new Intl.DateTimeFormat(getCanonicalLocale(), wrappedOptions.value.format)
 		return formatter.format(date.value)
 	})
 
 	/** Time string formatted for main text */
-	const formattedTime = computed(() => {
+	const formattedTime = computed<string>(() => {
 		if (wrappedOptions.value.relativeTime !== false) {
 			const formatter = new Intl.RelativeTimeFormat(getCanonicalLocale(), { numeric: 'auto', style: wrappedOptions.value.relativeTime })
 
-			const diff = date.value - currentTime.value
+			const diff = date.value.getTime() - currentTime.value
 			const seconds = diff / 1000
 			if (Math.abs(seconds) <= 90) {
 				if (wrappedOptions.value.ignoreSeconds) {
@@ -98,22 +119,15 @@ export function useFormatDateTime(timestamp = Date.now(), opts = {}) {
 			}
 			return formatter.format(Math.round(days / 365), 'year')
 		}
-		return formattedFullTime
+		return formattedFullTime.value
 	})
 
 	// Set or clear interval if relative time is dis/enabled
-	watch([wrappedOptions], (opts) => {
+	watchEffect(() => {
 		window.clearInterval(intervalId)
 		intervalId = undefined
-		if (opts.relativeTime) {
-			intervalId = window.setInterval(() => { currentTime.value = new Date() }, 1000)
-		}
-	})
-
-	// Start the interval for setting the current time if relative time is enabled
-	onMounted(() => {
-		if (wrappedOptions.value.relativeTime !== false) {
-			intervalId = window.setInterval(() => { currentTime.value = new Date() }, 1000)
+		if (wrappedOptions.value.relativeTime) {
+			intervalId = window.setInterval(() => { currentTime.value = Date.now() }, 1000)
 		}
 	})
 

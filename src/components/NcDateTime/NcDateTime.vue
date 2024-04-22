@@ -109,12 +109,13 @@ h4 {
 <template>
 	<span class="nc-datetime"
 		:data-timestamp="timestamp"
-		:title="formattedFullTime">{{ formattedTime }}</span>
+		:title="formattedFullTime"
+		v-text="formattedTime" />
 </template>
 
 <script>
 import { computed } from 'vue'
-import { useFormatDateTime } from '../../composables/useFormatDateTime.js'
+import { useFormatDateTime } from '../../composables/useFormatDateTime.ts'
 
 export default {
 	name: 'NcDateTime',
