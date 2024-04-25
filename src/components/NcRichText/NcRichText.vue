@@ -583,7 +583,4 @@ a:not(.rich-text--component) {
 	text-decoration: underline;
 }
 
-:deep(.checkbox-content__text) {
-	gap: 4px;
-}
 </style>
