@@ -224,8 +224,6 @@ export default {
 
 	&__text {
 		flex: 1 0;
-		display: flex;
-		align-items: center;
 
 		&:empty {
 			// hide text if empty to ensure checkbox outline is a circle instead of oval

@@ -782,6 +782,8 @@ export default {
 	}
 	&--button-variant-h-grouped :deep(.checkbox-radio-switch__text) {
 		text-align: center;
+		display: flex;
+		align-items: center;
 	}
 	&--button-variant-h-grouped &__content {
 		flex-direction: column;
