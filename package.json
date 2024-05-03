@@ -16,7 +16,8 @@
     "build": "vite build --mode production ",
     "dev": "vite build --mode development",
     "dev:watch": "vite build --mode development --watch",
-    "watch": "npm run dev:watch",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
     "l10n:extract": "node build/extract-l10n.mjs",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix",
@@ -120,8 +121,9 @@
     "@nextcloud/babel-config": "^1.0.0",
     "@nextcloud/browserslist-config": "^3.0.0",
     "@nextcloud/eslint-config": "^8.3.0",
-    "@nextcloud/stylelint-config": "^3.0.0",
-    "@nextcloud/vite-config": "^1.2.2",
+    "@nextcloud/prettier-config": "^1.1.0",
+    "@nextcloud/stylelint-config": "^3.0.1",
+    "@nextcloud/vite-config": "^1.2.3",
     "@nextcloud/webpack-vue-config": "^6.0.1",
     "@types/gettext-parser": "^4.0.4",
     "@types/jest": "^29.5.5",
@@ -133,6 +135,7 @@
     "core-js": "^3.36.1",
     "cypress": "^13.6.5",
     "cypress-visual-regression": "^5.0.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-cypress": "^3.0.0",
     "file-loader": "^6.2.0",
     "gettext-extractor": "^3.7.2",
@@ -144,6 +147,7 @@
     "jest-serializer-vue": "^3.1.0",
     "jest-transform-stub": "^2.0.0",
     "node-polyfill-webpack-plugin": "^3.0.0",
+    "prettier": "^3.2.5",
     "resolve-url-loader": "^5.0.0",
     "sanitize-filename": "^1.6.3",
     "ts-node": "^10.9.1",
@@ -160,5 +164,6 @@
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
-  ]
+  ],
+  "prettier": "@nextcloud/prettier-config"
 }
