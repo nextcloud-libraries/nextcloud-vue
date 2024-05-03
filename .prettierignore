@@ -1,0 +1,35 @@
+/dist
+/src/fonts
+
+.DS_Store
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+.marginalia
+
+# Unit test / coverage reports
+coverage
+
+# Docs compiled build
+styleguide/build/
+styleguide/index.html
+
+# Assets from server
+styleguide/assets/
+
+# Cypress files
+cypress/videos
+cypress/screenshots
+cypress/snapshots/actual
+cypress/snapshots/diff
+cypress/snapshots/base/**/*-base-*

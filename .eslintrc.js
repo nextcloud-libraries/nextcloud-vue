@@ -8,17 +8,11 @@ module.exports = {
 		appName: true,
 		appVersion: true,
 	},
-	extends: [
-		'@nextcloud',
-	],
-	plugins: [
-		'cypress',
-	],
+	extends: ['@nextcloud', 'prettier'],
+	plugins: ['cypress'],
 	parserOptions: {
 		babelOptions: {
-			plugins: [
-				'@babel/plugin-syntax-import-assertions',
-			],
+			plugins: ['@babel/plugin-syntax-import-assertions'],
 		},
 	},
 	rules: {
@@ -29,4 +23,12 @@ module.exports = {
 			},
 		],
 	},
+	overrides: [
+		{
+			files: ['**/*.vue'],
+			rules: {
+				'vue/first-attribute-linebreak': 'off',
+			},
+		},
+	],
 }
