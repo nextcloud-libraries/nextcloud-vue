@@ -29,7 +29,7 @@ const ScopeComponent = (Component) => {
 	}
 
 	// Inject root scoping function
-	Component.mounted.push(function() {
+	Component.mounted.push(function () {
 		this.$el.setAttribute(`data-v-${SCOPE_VERSION}`, '')
 	})
 }

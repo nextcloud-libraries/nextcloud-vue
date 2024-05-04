@@ -142,8 +142,11 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 
 <template>
 	<div class="native-datetime-picker">
-		<label :class="{ 'hidden-visually': hideLabel }" :for="id">{{ label }}</label>
-		<input :id="id"
+		<label :class="{ 'hidden-visually': hideLabel }" :for="id">
+			{{ label }}
+		</label>
+		<input
+			:id="id"
 			class="native-datetime-picker--input"
 			:class="inputClass"
 			:type="type"
@@ -151,12 +154,11 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 			:min="formattedMin"
 			:max="formattedMax"
 			v-bind="$attrs"
-			v-on="listeners">
+			v-on="listeners" />
 	</div>
 </template>
 
 <script>
-
 const inputDateTypes = ['date', 'datetime-local', 'month', 'time', 'week']
 
 export default {
@@ -235,9 +237,7 @@ export default {
 		},
 	},
 
-	emits: [
-		'input',
-	],
+	emits: ['input'],
 
 	computed: {
 		formattedValue() {
@@ -283,7 +283,10 @@ export default {
 							 *
 							 * @return {Date} new chosen Date()
 							 */
-							return this.$emit('input', new Date(`${yyyy}-${MM}-${dd}T${time}`))
+							return this.$emit(
+								'input',
+								new Date(`${yyyy}-${MM}-${dd}T${time}`),
+							)
 						}
 						const { yyyy, MM, dd } = this.getReadableDate(this.value)
 						/**
@@ -291,17 +294,27 @@ export default {
 						 *
 						 * @return {Date} new chosen Date()
 						 */
-						return this.$emit('input', new Date(`${yyyy}-${MM}-${dd}T${time}`))
+						return this.$emit(
+							'input',
+							new Date(`${yyyy}-${MM}-${dd}T${time}`),
+						)
 					} else if (this.type === 'month') {
-						const MM = (new Date($event.target.value).getMonth() + 1).toString().padStart(2, '0')
+						const MM = (new Date($event.target.value).getMonth() + 1)
+							.toString()
+							.padStart(2, '0')
 						if (this.value === '') {
-							const { yyyy, dd, hh, mm } = this.getReadableDate(new Date())
+							const { yyyy, dd, hh, mm } = this.getReadableDate(
+								new Date(),
+							)
 							/**
 							 * Emitted when the input value changes
 							 *
 							 * @return {Date} new chosen Date()
 							 */
-							return this.$emit('input', new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`))
+							return this.$emit(
+								'input',
+								new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`),
+							)
 						}
 						const { yyyy, dd, hh, mm } = this.getReadableDate(this.value)
 						/**
@@ -309,10 +322,17 @@ export default {
 						 *
 						 * @return {Date} new chosen Date()
 						 */
-						return this.$emit('input', new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`))
+						return this.$emit(
+							'input',
+							new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`),
+						)
 					}
-					const timezoneOffsetSeconds = new Date($event.target.valueAsNumber).getTimezoneOffset() * 1000 * 60
-					const inputDateWithTimezone = $event.target.valueAsNumber + timezoneOffsetSeconds
+					const timezoneOffsetSeconds =
+						new Date($event.target.valueAsNumber).getTimezoneOffset() *
+						1000 *
+						60
+					const inputDateWithTimezone =
+						$event.target.valueAsNumber + timezoneOffsetSeconds
 					/**
 					 * Emitted when the input value changes
 					 *
@@ -361,8 +381,9 @@ export default {
 					return `${hh}:${mm}`
 				} else if (this.type === 'week') {
 					const startDate = new Date(yyyy, 0, 1)
-					const daysSinceBeginningOfYear = Math.floor((value - startDate)
-						/ (24 * 60 * 60 * 1000))
+					const daysSinceBeginningOfYear = Math.floor(
+						(value - startDate) / (24 * 60 * 60 * 1000),
+					)
 					const weekNumber = Math.ceil(daysSinceBeginningOfYear / 7)
 					return `${yyyy}-W${weekNumber}`
 				}
@@ -375,42 +396,42 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	.native-datetime-picker {
-		display: flex;
-		flex-direction: column;
-	}
+.native-datetime-picker {
+	display: flex;
+	flex-direction: column;
+}
 
-	.native-datetime-picker .native-datetime-picker--input {
-		width: 100%;
-		flex: 0 0 auto;
-		padding-right: 4px;
-	}
+.native-datetime-picker .native-datetime-picker--input {
+	width: 100%;
+	flex: 0 0 auto;
+	padding-right: 4px;
+}
 
-	[data-theme-light],
-	[data-themes*=light] {
+[data-theme-light],
+[data-themes*='light'] {
+	.native-datetime-picker--input {
+		color-scheme: light;
+	}
+}
+
+[data-theme-dark],
+[data-themes*='dark'] {
+	.native-datetime-picker--input {
+		color-scheme: dark;
+	}
+}
+
+[data-theme-default],
+[data-themes*='default'] {
+	@media (prefers-color-scheme: light) {
 		.native-datetime-picker--input {
 			color-scheme: light;
 		}
 	}
-
-	[data-theme-dark],
-	[data-themes*=dark] {
+	@media (prefers-color-scheme: dark) {
 		.native-datetime-picker--input {
 			color-scheme: dark;
 		}
 	}
-
-	[data-theme-default],
-	[data-themes*=default] {
-		@media (prefers-color-scheme: light) {
-			.native-datetime-picker--input {
-				color-scheme: light;
-			}
-		}
-		@media (prefers-color-scheme: dark) {
-			.native-datetime-picker--input {
-				color-scheme: dark;
-			}
-		}
-	}
+}
 </style>

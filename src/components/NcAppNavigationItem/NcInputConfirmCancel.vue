@@ -29,16 +29,19 @@
 </docs>
 <template>
 	<div class="app-navigation-input-confirm">
-		<form @submit.prevent="confirm"
+		<form
+			@submit.prevent="confirm"
 			@keydown.esc.exact.stop.prevent="cancel"
 			@click.stop.prevent>
-			<input ref="input"
+			<input
+				ref="input"
 				v-model="valueModel"
 				type="text"
 				class="app-navigation-input-confirm__input"
-				:placeholder="placeholder">
+				:placeholder="placeholder" />
 
-			<NcButton native-type="submit"
+			<NcButton
+				native-type="submit"
 				type="primary"
 				:aria-label="labelConfirm"
 				@click.stop.prevent="confirm">
@@ -47,7 +50,8 @@
 				</template>
 			</NcButton>
 
-			<NcButton native-type="reset"
+			<NcButton
+				native-type="reset"
 				:type="primary ? 'primary' : 'tertiary'"
 				:aria-label="labelCancel"
 				@click.stop.prevent="cancel">
@@ -94,11 +98,7 @@ export default {
 		},
 	},
 
-	emits: [
-		'input',
-		'confirm',
-		'cancel',
-	],
+	emits: ['input', 'confirm', 'cancel'],
 
 	data() {
 		return {
@@ -109,7 +109,9 @@ export default {
 
 	computed: {
 		valueModel: {
-			get() { return this.value },
+			get() {
+				return this.value
+			},
 			set(newValue) {
 				this.$emit('input', newValue)
 			},

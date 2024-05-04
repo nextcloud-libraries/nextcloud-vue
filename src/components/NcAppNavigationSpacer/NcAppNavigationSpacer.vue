@@ -30,9 +30,8 @@ export default {
 </script>
 
 <style scoped>
-	.app-navigation-spacer {
-		flex-shrink: 0;
-		height: 22px;
-	}
-
+.app-navigation-spacer {
+	flex-shrink: 0;
+	height: 22px;
+}
 </style>

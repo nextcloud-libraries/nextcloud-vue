@@ -75,7 +75,9 @@ describe('NcAppSidebarTabs.vue', () => {
 					},
 					slots: {
 						default: '<div />',
-						'secondary-actions': ['<NcActionButton icon="icon-delete">Test</NcActionButton>'],
+						'secondary-actions': [
+							'<NcActionButton icon="icon-delete">Test</NcActionButton>',
+						],
 					},
 					stubs: {
 						// used to register custom components
@@ -104,7 +106,7 @@ describe('NcAppSidebarTabs.vue', () => {
 						],
 					},
 					stubs: {
-					// used to register custom components
+						// used to register custom components
 						NcAppSidebarTab,
 					},
 					attachTo: document.body,
@@ -117,21 +119,29 @@ describe('NcAppSidebarTabs.vue', () => {
 				expect(wrapper.find('div[role="tablist"]').exists()).toBe(true)
 			})
 			it('display all the 3 elements', () => {
-				const liList = wrapper.findAll('div[role="tablist"]>.checkbox-radio-switch')
+				const liList = wrapper.findAll(
+					'div[role="tablist"]>.checkbox-radio-switch',
+				)
 				expect(liList.length).toEqual(3)
 			})
 			it('emit "update:active" event with the selected tab id when clicking on a tab', () => {
-				const lastLink = wrapper.find('div[role="tablist"]>button.checkbox-radio-switch:last-of-type')
+				const lastLink = wrapper.find(
+					'div[role="tablist"]>button.checkbox-radio-switch:last-of-type',
+				)
 				lastLink.trigger('click')
 				expect(wrapper.emitted('update:active')[0]).toEqual(['last'])
 			})
 			it('emit "update:active" event with the first tab id when keydown pageup is pressed', () => {
-				const lastLink = wrapper.find('div[role="tablist"]>button.checkbox-radio-switch:last-of-type')
+				const lastLink = wrapper.find(
+					'div[role="tablist"]>button.checkbox-radio-switch:last-of-type',
+				)
 				lastLink.trigger('keydown.pageup')
 				expect(wrapper.emitted('update:active')[0]).toEqual(['first'])
 			})
 			it('emit "update:active" event with the last tab id when keydown pagedown is pressed', () => {
-				const lastLink = wrapper.find('div[role="tablist"]>button.checkbox-radio-switch:last-of-type')
+				const lastLink = wrapper.find(
+					'div[role="tablist"]>button.checkbox-radio-switch:last-of-type',
+				)
 				lastLink.trigger('keydown.pagedown')
 				expect(wrapper.emitted('update:active')[0]).toEqual(['last'])
 			})
@@ -141,12 +151,16 @@ describe('NcAppSidebarTabs.vue', () => {
 				})
 				it('does not emit "update:active" event when keydown left is pressed', () => {
 					expect(wrapper.emitted('update:active')).toBeFalsy()
-					const firstLink = wrapper.find('div[role="tablist"]>button.checkbox-radio-switch')
+					const firstLink = wrapper.find(
+						'div[role="tablist"]>button.checkbox-radio-switch',
+					)
 					firstLink.trigger('keydown.left')
 					expect(wrapper.emitted('update:active')).toBeFalsy()
 				})
 				it('emit "update:active" event with the next tab id when keydown right is pressed', () => {
-					const firstLink = wrapper.find('div[role="tablist"]>button.checkbox-radio-switch')
+					const firstLink = wrapper.find(
+						'div[role="tablist"]>button.checkbox-radio-switch',
+					)
 					firstLink.trigger('keydown.right')
 					expect(wrapper.emitted('update:active')[0]).toEqual(['second'])
 				})
@@ -156,13 +170,17 @@ describe('NcAppSidebarTabs.vue', () => {
 					wrapper.setData({ activeTab: 'last' })
 				})
 				it('emit "update:active" event with the previous tab id when keydown left is pressed', () => {
-					const lastLink = wrapper.find('div[role="tablist"]>button.checkbox-radio-switch:last-of-type')
+					const lastLink = wrapper.find(
+						'div[role="tablist"]>button.checkbox-radio-switch:last-of-type',
+					)
 					lastLink.trigger('keydown.left')
 					expect(wrapper.emitted('update:active')[0]).toEqual(['second'])
 				})
 				it('does not emit "update:active" event when keydown right is pressed', () => {
 					expect(wrapper.emitted('update:active')).toBeFalsy()
-					const lastLink = wrapper.find('div[role="tablist"]>button.checkbox-radio-switch:last-of-type')
+					const lastLink = wrapper.find(
+						'div[role="tablist"]>button.checkbox-radio-switch:last-of-type',
+					)
 					lastLink.trigger('keydown.right')
 					expect(wrapper.emitted('update:active')).toBeFalsy()
 				})

@@ -369,18 +369,21 @@ A working alternative would be using an icon together with an `aria-label`:
 </docs>
 
 <template>
-	<transition appear
+	<transition
+		appear
 		name="slide-right"
 		@before-enter="onBeforeEnter"
 		@after-enter="onAfterEnter"
 		@before-leave="onBeforeLeave"
 		@after-leave="onAfterLeave">
-		<aside id="app-sidebar-vue"
+		<aside
+			id="app-sidebar-vue"
 			ref="sidebar"
 			class="app-sidebar"
 			:aria-labelledby="`app-sidebar-vue-${uid}__header`"
 			@keydown.esc="onKeydownEsc">
-			<header :class="{
+			<header
+				:class="{
 					'app-sidebar-header--with-figure': hasFigure,
 					'app-sidebar-header--compact': compact,
 				}"
@@ -388,13 +391,15 @@ A working alternative would be using an icon together with an `aria-label`:
 				<!-- container for figure and description, allows easy switching to compact mode -->
 				<div class="app-sidebar-header__info">
 					<!-- sidebar header illustration/figure -->
-					<div v-if="hasFigure && !empty"
+					<div
+						v-if="hasFigure && !empty"
 						:class="{
-							'app-sidebar-header__figure--with-action': hasFigureClickListener
+							'app-sidebar-header__figure--with-action':
+								hasFigureClickListener,
 						}"
 						class="app-sidebar-header__figure"
 						:style="{
-							backgroundImage: `url(${background})`
+							backgroundImage: `url(${background})`,
 						}"
 						tabindex="0"
 						@click="onFigureClick"
@@ -403,18 +408,26 @@ A working alternative would be using an icon together with an `aria-label`:
 					</div>
 
 					<!-- sidebar details -->
-					<div v-if="!empty"
+					<div
+						v-if="!empty"
 						:class="{
-							'app-sidebar-header__desc--with-tertiary-action': canStar || $slots['tertiary-actions'],
-							'app-sidebar-header__desc--editable': nameEditable && !subname,
-							'app-sidebar-header__desc--with-subname--editable': nameEditable && subname,
-							'app-sidebar-header__desc--without-actions': !$slots['secondary-actions'],
+							'app-sidebar-header__desc--with-tertiary-action':
+								canStar || $slots['tertiary-actions'],
+							'app-sidebar-header__desc--editable':
+								nameEditable && !subname,
+							'app-sidebar-header__desc--with-subname--editable':
+								nameEditable && subname,
+							'app-sidebar-header__desc--without-actions':
+								!$slots['secondary-actions'],
 						}"
 						class="app-sidebar-header__desc">
 						<!-- favourite icon -->
-						<div v-if="canStar || $slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
+						<div
+							v-if="canStar || $slots['tertiary-actions']"
+							class="app-sidebar-header__tertiary-actions">
 							<slot name="tertiary-actions">
-								<NcButton v-if="canStar"
+								<NcButton
+									v-if="canStar"
 									:aria-label="favoriteTranslated"
 									:pressed="isStarred"
 									class="app-sidebar-header__star"
@@ -433,10 +446,14 @@ A working alternative would be using an icon together with an `aria-label`:
 						<div class="app-sidebar-header__name-container">
 							<div class="app-sidebar-header__mainname-container">
 								<!-- main name -->
-								<h2 v-show="!nameEditable"
+								<h2
+									v-show="!nameEditable"
 									:id="`app-sidebar-vue-${uid}__header`"
 									ref="header"
-									v-linkify="{text: name, linkify: linkifyName}"
+									v-linkify="{
+										text: name,
+										linkify: linkifyName,
+									}"
 									:aria-label="title"
 									:title="title"
 									class="app-sidebar-header__mainname"
@@ -445,18 +462,21 @@ A working alternative would be using an icon together with an `aria-label`:
 									{{ name }}
 								</h2>
 								<template v-if="nameEditable">
-									<form v-click-outside="() => onSubmitName()"
+									<form
+										v-click-outside="() => onSubmitName()"
 										class="app-sidebar-header__mainname-form"
 										@submit.prevent="onSubmitName">
-										<input ref="nameInput"
+										<input
+											ref="nameInput"
 											v-focus
 											class="app-sidebar-header__mainname-input"
 											type="text"
 											:placeholder="namePlaceholder"
 											:value="name"
 											@keydown.esc.stop="onDismissEditing"
-											@input="onNameInput">
-										<NcButton type="tertiary-no-background"
+											@input="onNameInput" />
+										<NcButton
+											type="tertiary-no-background"
 											:aria-label="changeNameTranslated"
 											native-type="submit">
 											<template #icon>
@@ -466,14 +486,16 @@ A working alternative would be using an icon together with an `aria-label`:
 									</form>
 								</template>
 								<!-- header main menu -->
-								<NcActions v-if="$slots['secondary-actions']"
+								<NcActions
+									v-if="$slots['secondary-actions']"
 									class="app-sidebar-header__menu"
 									:force-menu="forceMenu">
 									<slot name="secondary-actions" />
 								</NcActions>
 							</div>
 							<!-- secondary name -->
-							<p v-if="subname.trim() !== '' || $slots['subname']"
+							<p
+								v-if="subname.trim() !== '' || $slots['subname']"
 								:title="subtitle || undefined"
 								class="app-sidebar-header__subname">
 								<!-- @slot Alternative to the `subname` prop can be used for more complex conent. It will be rendered within a `p` tag. -->
@@ -485,7 +507,8 @@ A working alternative would be using an icon together with an `aria-label`:
 					</div>
 				</div>
 
-				<NcButton ref="closeButton"
+				<NcButton
+					ref="closeButton"
 					:title="closeTranslated"
 					:aria-label="closeTranslated"
 					type="tertiary"
@@ -496,12 +519,15 @@ A working alternative would be using an icon together with an `aria-label`:
 					</template>
 				</NcButton>
 
-				<div v-if="$slots['description'] && !empty" class="app-sidebar-header__description">
+				<div
+					v-if="$slots['description'] && !empty"
+					class="app-sidebar-header__description">
 					<slot name="description" />
 				</div>
 			</header>
 
-			<NcAppSidebarTabs v-show="!loading"
+			<NcAppSidebarTabs
+				v-show="!loading"
 				ref="tabs"
 				:active="active"
 				@update:active="onUpdateActive">
@@ -754,7 +780,9 @@ export default {
 				if (this.elementToReturnFocus.getAttribute('role') === 'menuitem') {
 					const menu = this.elementToReturnFocus.closest('[role="menu"]')
 					if (menu) {
-						const menuTrigger = document.querySelector(`[aria-controls="${menu.id}"]`)
+						const menuTrigger = document.querySelector(
+							`[aria-controls="${menu.id}"]`,
+						)
 						this.elementToReturnFocus = menuTrigger
 					}
 				}
@@ -766,20 +794,24 @@ export default {
 				return
 			}
 
-			this.focusTrap = createFocusTrap([
-				// The sidebar itself
-				this.$refs.sidebar,
-				// Nextcloud Server header navigarion
-				document.querySelector('#header'),
-				// The app navigation toggle. Navigation can be opened above the sidebar
-				// Take the parent element, because the focus-trap requires a container with elements, not the element itself
-				document.querySelector('[aria-controls="app-navigation-vue"]')?.parentElement,
-			], {
-				allowOutsideClick: true,
-				fallbackFocus: this.$refs.closeButton,
-				trapStack: getTrapStack(),
-				escapeDeactivates: false,
-			})
+			this.focusTrap = createFocusTrap(
+				[
+					// The sidebar itself
+					this.$refs.sidebar,
+					// Nextcloud Server header navigarion
+					document.querySelector('#header'),
+					// The app navigation toggle. Navigation can be opened above the sidebar
+					// Take the parent element, because the focus-trap requires a container with elements, not the element itself
+					document.querySelector('[aria-controls="app-navigation-vue"]')
+						?.parentElement,
+				],
+				{
+					allowOutsideClick: true,
+					fallbackFocus: this.$refs.closeButton,
+					trapStack: getTrapStack(),
+					escapeDeactivates: false,
+				},
+			)
 		},
 
 		/**
@@ -894,9 +926,7 @@ export default {
 			this.$emit('update:nameEditable', true)
 			// Focus the name input
 			if (this.nameEditable) {
-				this.$nextTick(
-					() => this.$refs.nameInput.focus(),
-				)
+				this.$nextTick(() => this.$refs.nameInput.focus())
 			}
 		},
 
@@ -1107,7 +1137,8 @@ $top-buttons-spacing: 6px;
 			flex-direction: row;
 			justify-content: center;
 			align-items: center;
-			padding: #{$desc-vertical-padding} #{$top-buttons-spacing} #{$desc-vertical-padding} #{math.div($desc-vertical-padding, 2)};
+			padding: #{$desc-vertical-padding} #{$top-buttons-spacing} #{$desc-vertical-padding}
+				#{math.div($desc-vertical-padding, 2)};
 			gap: 0 4px;
 
 			// custom overrides
@@ -1253,12 +1284,12 @@ $top-buttons-spacing: 6px;
 // ! slots specific designs, cannot be scoped
 // if any button inside the description slot, increase visual padding
 .app-sidebar-header__description {
-	button, .button,
+	button,
+	.button,
 	input[type='button'],
 	input[type='submit'],
 	input[type='reset'] {
 		padding: 6px 22px;
 	}
 }
-
 </style>

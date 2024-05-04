@@ -22,7 +22,11 @@
 
 import NcRichText from './NcRichText.vue'
 
-import { registerWidget, renderWidget, isWidgetRegistered } from './../../functions/reference/widgets.ts'
+import {
+	registerWidget,
+	renderWidget,
+	isWidgetRegistered,
+} from './../../functions/reference/widgets.ts'
 import NcReferenceList from './NcReferenceList.vue'
 import NcReferenceWidget from './NcReferenceWidget.vue'
 import NcReferencePicker from './NcReferencePicker/NcReferencePicker.vue'
@@ -52,11 +56,9 @@ export {
 	NcReferencePicker,
 	NcReferencePickerModal,
 	NcSearch,
-
 	registerWidget,
 	renderWidget,
 	isWidgetRegistered,
-
 	NcCustomPickerRenderResult,
 	registerCustomPickerElement,
 	renderCustomPickerElement,

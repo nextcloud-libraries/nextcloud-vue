@@ -3,7 +3,7 @@ name: Update server styling
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 5 * * *"
+    - cron: '0 5 * * *'
 
 jobs:
   server-styling-update:
@@ -25,7 +25,7 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.COMMAND_BOT_PAT }}
-          commit-message: "chore(assets): Update styling from server"
+          commit-message: 'chore(assets): Update styling from server'
           committer: GitHub <noreply@github.com>
           author: nextcloud-command <nextcloud-command@users.noreply.github.com>
           signoff: true

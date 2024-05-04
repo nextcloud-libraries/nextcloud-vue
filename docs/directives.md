@@ -17,16 +17,16 @@ In the template, use the `v-tooltip` directive:
 Of course, you can use a reactive property:
 
 ```vue
-    <template>
-        <a v-tooltip="tooltipContent">Hover me</a>
-    </template>
-    <script>
-        export default {
-            computed: {
-                tooltipContent: () => 'You have new messages.'
-            }
-        }
-    </script>
+<template>
+	<a v-tooltip="tooltipContent">Hover me</a>
+</template>
+<script>
+export default {
+	computed: {
+		tooltipContent: () => 'You have new messages.',
+	},
+}
+</script>
 ```
 
 You can specify the tooltip position as a modifier:
@@ -34,25 +34,27 @@ You can specify the tooltip position as a modifier:
 ```vue
 <a v-tooltip.bottom="'You have new messages.'">Hover me</a>
 ```
+
 The available positions are:
- - `'auto'`
- - `'auto-start'`
- - `'auto-end'`
- - `'top'`
- - `'top-start'`
- - `'top-end'`
- - `'right'`
- - `'right-start'`
- - `'right-end'`
- - `'bottom'`
- - `'bottom-start'`
- - `'bottom-end'`
- - `'left'`
- - `'left-start'`
- - `'left-end'`
+
+-   `'auto'`
+-   `'auto-start'`
+-   `'auto-end'`
+-   `'top'`
+-   `'top-start'`
+-   `'top-end'`
+-   `'right'`
+-   `'right-start'`
+-   `'right-end'`
+-   `'bottom'`
+-   `'bottom-start'`
+-   `'bottom-end'`
+-   `'left'`
+-   `'left-start'`
+-   `'left-end'`
 
 ```vue
-<button v-tooltip="{content: 'I\'m a tooltip', show: true, placement: 'right'}">
+<button v-tooltip="{ content: 'I\'m a tooltip', show: true, placement: 'right' }">
     I'm a button with a tooltip
 </button>
 ```

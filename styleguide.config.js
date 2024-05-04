@@ -14,9 +14,7 @@ module.exports = async () => {
 		externals: {},
 		module: {
 			// Ignore eslint
-			rules: base.module.rules.filter(
-				rule => rule.use !== 'eslint-loader',
-			),
+			rules: base.module.rules.filter((rule) => rule.use !== 'eslint-loader'),
 		},
 	})
 
@@ -127,9 +125,7 @@ module.exports = async () => {
 					},
 					{
 						name: 'App containers',
-						components: [
-							'src/components/NcContent/*.vue',
-						],
+						components: ['src/components/NcContent/*.vue'],
 						sections: [
 							{
 								name: 'NcAppNavigation',
@@ -143,41 +139,29 @@ module.exports = async () => {
 							},
 							{
 								name: 'NcAppContent',
-								components: [
-									'src/components/NcAppContent*/*.vue',
-								],
+								components: ['src/components/NcAppContent*/*.vue'],
 							},
 							{
 								name: 'NcAppSidebar',
-								components: [
-									'src/components/NcAppSidebar*/*.vue',
-								],
+								components: ['src/components/NcAppSidebar*/*.vue'],
 							},
 							{
 								name: 'NcAppSettings',
-								components: [
-									'src/components/NcAppSettings*/*.vue',
-								],
+								components: ['src/components/NcAppSettings*/*.vue'],
 							},
 						],
 					},
 					{
 						name: 'NcBreadcrumbs',
-						components: [
-							'src/components/NcBreadcrumb*/*.vue',
-						],
+						components: ['src/components/NcBreadcrumb*/*.vue'],
 					},
 					{
 						name: 'NcDashboard',
-						components: [
-							'src/components/NcDashboard*/*.vue',
-						],
+						components: ['src/components/NcDashboard*/*.vue'],
 					},
 					{
 						name: 'NcDialog',
-						components: [
-							'src/components/NcDialog*/*.vue',
-						],
+						components: ['src/components/NcDialog*/*.vue'],
 					},
 					{
 						name: 'NcFields',
@@ -188,33 +172,23 @@ module.exports = async () => {
 					},
 					{
 						name: 'NcListItems',
-						components: [
-							'src/components/NcListItem*/*.vue',
-						],
+						components: ['src/components/NcListItem*/*.vue'],
 					},
 					{
 						name: 'NcSelect',
-						components: [
-							'src/components/NcSelect*/*.vue',
-						],
+						components: ['src/components/NcSelect*/*.vue'],
 					},
 					{
 						name: 'NcPickers',
-						components: [
-							'src/components/Nc*Picker*/*.vue',
-						],
+						components: ['src/components/Nc*Picker*/*.vue'],
 					},
 					{
 						name: 'NcRichText',
-						components: [
-							'src/components/NcRichText/NcRichText.vue',
-						],
+						components: ['src/components/NcRichText/NcRichText.vue'],
 					},
 					{
 						name: 'NcSettings',
-						components: [
-							'src/components/NcSettings*/*.vue',
-						],
+						components: ['src/components/NcSettings*/*.vue'],
 					},
 				],
 			},

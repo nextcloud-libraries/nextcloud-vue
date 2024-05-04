@@ -30,17 +30,23 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 </docs>
 
 <template>
-	<li ref="crumb"
+	<li
+		ref="crumb"
 		class="vue-crumb"
-		:class="{'vue-crumb--hovered': hovering}"
+		:class="{ 'vue-crumb--hovered': hovering }"
 		:[crumbId]="''"
 		draggable="false"
-		@dragstart.prevent="() => {/** Prevent the breadcrumb from being draggable. */}"
+		@dragstart.prevent="
+			() => {
+				/** Prevent the breadcrumb from being draggable. */
+			}
+		"
 		@drop.prevent="dropped"
 		@dragover.prevent="() => {}"
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
-		<NcButton v-if="(name || icon || $slots.icon) && !$slots.default"
+		<NcButton
+			v-if="(name || icon || $slots.icon) && !$slots.default"
 			:title="title"
 			:aria-label="icon ? name : undefined"
 			type="tertiary"
@@ -56,7 +62,8 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 				{{ name }}
 			</template>
 		</NcButton>
-		<NcActions v-if="$slots.default"
+		<NcActions
+			v-if="$slots.default"
 			ref="actions"
 			type="tertiary"
 			:force-menu="forceMenu"
@@ -176,10 +183,7 @@ export default {
 			default: false,
 		},
 	},
-	emits: [
-		'update:open',
-		'dropped',
-	],
+	emits: ['update:open', 'dropped'],
 	data() {
 		return {
 			/**
@@ -201,10 +205,9 @@ export default {
 			// If it's a router-link, we pass `to` and `exact`, if its an <a/> element, we pass `href`, otherwise we have a button
 			return this.to
 				? { to: this.to, exact: this.exact, ...this.$attrs }
-				: (this.href
+				: this.href
 					? { href: this.href, ...this.$attrs }
 					: this.$attrs
-				)
 		},
 	},
 	methods: {
@@ -276,8 +279,10 @@ export default {
 			// Don't do anything if we
 			// - leave towards a child element.
 			// - or are still within the crumb
-			if (e.target.contains(e.relatedTarget)
-				|| this.$refs.crumb.contains(e.relatedTarget)) {
+			if (
+				e.target.contains(e.relatedTarget) ||
+				this.$refs.crumb.contains(e.relatedTarget)
+			) {
 				return
 			}
 			this.hovering = false
@@ -287,7 +292,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .vue-crumb {
 	background-image: none;
 	display: inline-flex;

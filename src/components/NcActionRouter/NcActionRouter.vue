@@ -23,7 +23,8 @@
 
 <template>
 	<li class="action" :role="isInSemanticMenu && 'presentation'">
-		<RouterLink :to="to"
+		<RouterLink
+			:to="to"
 			:aria-label="ariaLabel"
 			:exact="exact"
 			:title="title"
@@ -33,19 +34,21 @@
 			@click.native="onClick">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
-				<span :class="[isIconUrl ? 'action-router__icon--url' : icon]"
-					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+				<span
+					:class="[isIconUrl ? 'action-router__icon--url' : icon]"
+					:style="{
+						backgroundImage: isIconUrl ? `url(${icon})` : null,
+					}"
 					class="action-router__icon"
 					aria-hidden="true" />
 			</slot>
 
 			<!-- long text with name -->
-			<span v-if="name"
-				class="action-router__longtext-wrapper">
+			<span v-if="name" class="action-router__longtext-wrapper">
 				<strong class="action-router__name">
 					{{ name }}
 				</strong>
-				<br>
+				<br />
 				<!-- white space is shown on longtext, so we can't
 				put {{ text }} on a new line for code readability -->
 				<span class="action-router__longtext" v-text="text" />
@@ -54,7 +57,8 @@
 			<!-- long text only -->
 			<!-- white space is shown on longtext, so we can't
 			put {{ text }} on a new line for code readability -->
-			<span v-else-if="isLongText"
+			<span
+				v-else-if="isLongText"
 				class="action-router__longtext"
 				v-text="text" />
 
@@ -107,5 +111,4 @@ export default {
 @include action-active;
 @include action-item('router');
 @include action--disabled;
-
 </style>

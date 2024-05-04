@@ -10,16 +10,18 @@ import Vue from 'vue'
  * @param {boolean} isInsideViewer Should be true if this function is called while the Viewer is displayed
  * @return {Promise<unknown>}
  */
-export async function getLinkWithPicker(providerId = null, isInsideViewer = undefined) {
+export async function getLinkWithPicker(
+	providerId = null,
+	isInsideViewer = undefined,
+) {
 	return await new Promise((resolve, reject) => {
 		const modalId = 'referencePickerModal'
 		const modalElement = document.createElement('div')
 		modalElement.id = modalId
 		document.body.append(modalElement)
 
-		const initialProvider = providerId === null
-			? null
-			: (getProvider(providerId) ?? null)
+		const initialProvider =
+			providerId === null ? null : getProvider(providerId) ?? null
 
 		const View = Vue.extend(NcReferencePickerModal)
 		const view = new View({

@@ -23,7 +23,8 @@
  -->
 <template>
 	<div class="app-navigation-toggle-wrapper">
-		<NcButton class="app-navigation-toggle"
+		<NcButton
+			class="app-navigation-toggle"
 			type="tertiary"
 			:aria-expanded="open ? 'true' : 'false'"
 			:aria-label="label"
@@ -90,7 +91,7 @@ export default {
 	position: absolute;
 	top: var(--app-navigation-padding);
 	right: calc(0px - var(--app-navigation-padding));
-	margin-right: - $clickable-area;
+	margin-right: -$clickable-area;
 }
 
 button.app-navigation-toggle {

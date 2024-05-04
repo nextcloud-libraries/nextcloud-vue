@@ -123,7 +123,8 @@ export default {
 </docs>
 
 <template>
-	<DatePicker ref="datepicker"
+	<DatePicker
+		ref="datepicker"
 		:append-to-body="appendToBody"
 		:clearable="clearable"
 		:format="format ? format : formatTypeMap"
@@ -141,27 +142,32 @@ export default {
 		@select-month="handleSelectMonth"
 		@update:value="$emit('update:value', value)">
 		<template #icon-calendar>
-			<NcPopover v-if="showTimezoneSelect"
+			<NcPopover
+				v-if="showTimezoneSelect"
 				popup-role="dialog"
 				:shown.sync="showTimezonePopover"
 				popover-base-class="timezone-select__popper">
 				<template #trigger="{ attrs }">
-					<button class="datetime-picker-inline-icon"
-						:class="{'datetime-picker-inline-icon--highlighted': highlightTimezone}"
+					<button
+						class="datetime-picker-inline-icon"
+						:class="{
+							'datetime-picker-inline-icon--highlighted':
+								highlightTimezone,
+						}"
 						v-bind="attrs"
 						@mousedown.stop.prevent="() => {}">
 						<Web :size="20" />
 					</button>
 				</template>
 
-				<div role="dialog"
-					:aria-labelledby="timezoneDialogHeaderId">
+				<div role="dialog" :aria-labelledby="timezoneDialogHeaderId">
 					<div class="timezone-popover-wrapper__label">
 						<strong :id="timezoneDialogHeaderId">
 							{{ t('Please select a time zone:') }}
 						</strong>
 					</div>
-					<NcTimezonePicker v-model="tzVal"
+					<NcTimezonePicker
+						v-model="tzVal"
 						class="timezone-popover-wrapper__timezone-select"
 						@input="$emit('update:timezone-id', arguments[0])" />
 				</div>
@@ -292,10 +298,7 @@ export default {
 		},
 	},
 
-	emits: [
-		'update:value',
-		'update:timezone-id',
-	],
+	emits: ['update:value', 'update:timezone-id'],
 
 	setup() {
 		return {
@@ -376,13 +379,21 @@ export default {
 			 */
 			const getWeek = (date) => {
 				// Adjust to nearest Thursday
-				const firstThursday = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
-				firstThursday.setUTCDate(firstThursday.getUTCDate() + 4 - (firstThursday.getUTCDay() || 7))
+				const firstThursday = new Date(
+					Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()),
+				)
+				firstThursday.setUTCDate(
+					firstThursday.getUTCDate() +
+						4 -
+						(firstThursday.getUTCDay() || 7),
+				)
 
-				const yearStart = new Date(Date.UTC(firstThursday.getUTCFullYear(), 0, 1))
+				const yearStart = new Date(
+					Date.UTC(firstThursday.getUTCFullYear(), 0, 1),
+				)
 
 				// Full weeks to nearest Thursday
-				return Math.ceil((((firstThursday - yearStart) / 86400000) + 1) / 7)
+				return Math.ceil(((firstThursday - yearStart) / 86400000 + 1) / 7)
 			}
 
 			return {
@@ -441,7 +452,7 @@ export default {
 }
 
 .datetime-picker-inline-icon {
-	opacity: .3;
+	opacity: 0.3;
 	border: none;
 	background-color: transparent;
 	border-radius: 0;
@@ -449,7 +460,7 @@ export default {
 	margin: 0;
 
 	&--highlighted {
-		opacity: .7;
+		opacity: 0.7;
 	}
 
 	&:focus,
@@ -462,7 +473,8 @@ export default {
 <style lang="scss">
 // We overwrite the popover base class, so we can style
 // the popover for the timezone select only.
-.v-popper--theme-dropdown.v-popper__popper.timezone-select__popper .v-popper__wrapper {
+.v-popper--theme-dropdown.v-popper__popper.timezone-select__popper
+	.v-popper__wrapper {
 	border-radius: var(--border-radius-large);
 
 	.v-popper__inner {
@@ -487,7 +499,8 @@ export default {
 						border-bottom-right-radius: 0;
 					}
 					&.select--drop-up .vs__dropdown-toggle {
-						border-radius: 0 0 calc(var(--border-radius-large) - 4px) calc(var(--border-radius-large) - 4px);
+						border-radius: 0 0 calc(var(--border-radius-large) - 4px)
+							calc(var(--border-radius-large) - 4px);
 					}
 				}
 			}

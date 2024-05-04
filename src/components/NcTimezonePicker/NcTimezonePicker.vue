@@ -41,7 +41,8 @@ export default {
 </docs>
 
 <template>
-	<NcSelect :aria-label-combobox="t('Search for time zone')"
+	<NcSelect
+		:aria-label-combobox="t('Search for time zone')"
 		:clearable="false"
 		:filter-by="filterBy"
 		:multiple="false"
@@ -55,10 +56,7 @@ export default {
 </template>
 
 <script>
-import {
-	getReadableTimezoneName,
-	getSortedTimezoneList,
-} from './timezone.js'
+import { getReadableTimezoneName, getSortedTimezoneList } from './timezone.js'
 import getTimezoneManager from './timezoneDataProviderService.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import NcSelect from '../NcSelect/index.js'
@@ -111,7 +109,10 @@ export default {
 		},
 		options() {
 			const timezoneManager = getTimezoneManager()
-			const timezoneList = getSortedTimezoneList(timezoneManager.listAllTimezones(), this.additionalTimezones)
+			const timezoneList = getSortedTimezoneList(
+				timezoneManager.listAllTimezones(),
+				this.additionalTimezones,
+			)
 			/**
 			 * Since NcSelect does not support groups,
 			 * we create an object with the grouped timezones and continent labels.
@@ -120,7 +121,7 @@ export default {
 			 * in the future, other options can be introduced to better display the different areas
 			 */
 			let timezonesGrouped = []
-			Object.values(timezoneList).forEach(group => {
+			Object.values(timezoneList).forEach((group) => {
 				// Add an entry as group label
 				// timezonesGrouped.push({
 				// label: group.continent,
@@ -172,7 +173,7 @@ export default {
 
 			// For the continent labels, we have to check if one region matches every search term.
 			if (option.timezoneId.startsWith('tz-group__')) {
-				return option.regions.some(region => {
+				return option.regions.some((region) => {
 					return this.matchTimezoneId(region.timezoneId, terms)
 				})
 			}
@@ -182,7 +183,9 @@ export default {
 		},
 
 		matchTimezoneId(timezoneId, terms) {
-			return terms.every(term => timezoneId.toLowerCase().includes(term.toLowerCase()))
+			return terms.every((term) =>
+				timezoneId.toLowerCase().includes(term.toLowerCase()),
+			)
 		},
 	},
 }

@@ -16,17 +16,10 @@ export default {
 	Util: {
 		naturalSortCompare(a, b) {
 			return 0
-		}
+		},
 	},
 
-	coreApps: [
-		'',
-		'admin',
-		'log',
-		'core/search',
-		'core',
-		'3rdparty',
-	],
+	coreApps: ['', 'admin', 'log', 'core/search', 'core', '3rdparty'],
 
 	appswebroots: {
 		calendar: '/apps/calendar',

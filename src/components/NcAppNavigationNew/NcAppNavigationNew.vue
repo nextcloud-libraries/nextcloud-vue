@@ -20,7 +20,7 @@
  -
  -->
 
- <docs>
+<docs>
 ### Usage
 
  ```
@@ -45,7 +45,8 @@
 
 <template>
 	<div class="app-navigation-new">
-		<NcButton :id="buttonId"
+		<NcButton
+			:id="buttonId"
 			:disabled="disabled"
 			:type="type"
 			@click="$emit('click')">

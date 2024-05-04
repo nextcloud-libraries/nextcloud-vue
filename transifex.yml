@@ -1,7 +1,7 @@
 git:
-  filters:
-    - filter_type: file
-      file_format: PO
-      source_language: en
-      source_file: l10n/messages.pot
-      translation_files_expression: l10n/<lang>.pot
+    filters:
+        - filter_type: file
+          file_format: PO
+          source_language: en
+          source_file: l10n/messages.pot
+          translation_files_expression: l10n/<lang>.pot

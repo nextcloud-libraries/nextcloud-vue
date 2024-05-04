@@ -20,18 +20,28 @@
 -->
 
 <template>
-	<span :class="{'mention-bubble--primary': primary}"
+	<span
+		:class="{ 'mention-bubble--primary': primary }"
 		class="mention-bubble"
 		contenteditable="false">
 		<span class="mention-bubble__wrapper">
 			<span class="mention-bubble__content">
 				<!-- Avatar or icon -->
-				<span :class="[icon, `mention-bubble__icon--${avatarUrl ? 'with-avatar' : ''}`]"
-					:style="avatarUrl ? { backgroundImage: `url(${avatarUrl})` } : null"
+				<span
+					:class="[
+						icon,
+						`mention-bubble__icon--${avatarUrl ? 'with-avatar' : ''}`,
+					]"
+					:style="
+						avatarUrl ? { backgroundImage: `url(${avatarUrl})` } : null
+					"
 					class="mention-bubble__icon" />
 
 				<!-- Title -->
-				<span role="heading" class="mention-bubble__title" :title="labelWithFallback" />
+				<span
+					role="heading"
+					class="mention-bubble__title"
+					:title="labelWithFallback" />
 			</span>
 
 			<!-- Selectable text for copy/paste -->
@@ -134,7 +144,7 @@ $bubble-avatar-size: $bubble-height - 2 * $bubble-padding;
 		overflow: hidden;
 		align-items: center;
 		max-width: 100%;
-		height: $bubble-height ;
+		height: $bubble-height;
 		-webkit-user-select: none;
 		user-select: none;
 		padding-right: $bubble-padding * 3;
@@ -177,5 +187,4 @@ $bubble-avatar-size: $bubble-height - 2 * $bubble-padding;
 		left: -1000px;
 	}
 }
-
 </style>

@@ -29,7 +29,12 @@ describe('Nextcloud Vue Plugin', () => {
 	it('can be installed', () => {
 		const localVue = createLocalVue()
 		localVue.use(NextcloudVuePlugin)
-		const wrapper = mount({ render: (h) => h('NcButton', { props: { ariaLabel: 'button' } }) }, { localVue })
+		const wrapper = mount(
+			{
+				render: (h) => h('NcButton', { props: { ariaLabel: 'button' } }),
+			},
+			{ localVue },
+		)
 		expect(wrapper.vm.$el.tagName).not.toBe('NCBUTTON') // If it could no be installed it would be 'NCBUTTON', otherwise it would be 'A' or 'BUTTON'
 	})
 })

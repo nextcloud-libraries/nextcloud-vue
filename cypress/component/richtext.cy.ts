@@ -26,13 +26,21 @@ describe('NcRichText', () => {
 					{ tag: 'h2', input: '## heading 2', output: 'heading 2' },
 					{ tag: 'h3', input: '### heading 3', output: 'heading 3' },
 					{ tag: 'h4', input: '#### heading 4', output: 'heading 4' },
-					{ tag: 'h5', input: '##### heading 5', output: 'heading 5' },
-					{ tag: 'h6', input: '###### heading 6', output: 'heading 6' },
+					{
+						tag: 'h5',
+						input: '##### heading 5',
+						output: 'heading 5',
+					},
+					{
+						tag: 'h6',
+						input: '###### heading 6',
+						output: 'heading 6',
+					},
 				]
 
 				mount(NcRichText, {
 					propsData: {
-						text: testCases.map(i => i.input).join('\n'),
+						text: testCases.map((i) => i.input).join('\n'),
 						useMarkdown: true,
 					},
 				})
@@ -349,7 +357,10 @@ describe('NcRichText', () => {
 					},
 				})
 
-				cy.get('code').should('have.text', 'inline code **bold text** _italic text_ <span>text</span>')
+				cy.get('code').should(
+					'have.text',
+					'inline code **bold text** _italic text_ <span>text</span>',
+				)
 			})
 		})
 
@@ -418,7 +429,10 @@ describe('NcRichText', () => {
 					},
 				})
 
-				cy.get('pre').should('have.text', '**bold text**\n_italic text_\n`inline code`\n<span>text</span>\n')
+				cy.get('pre').should(
+					'have.text',
+					'**bold text**\n_italic text_\n`inline code`\n<span>text</span>\n',
+				)
 			})
 		})
 
@@ -453,7 +467,10 @@ describe('NcRichText', () => {
 					},
 				})
 
-				cy.get('blockquote').should('have.text', '\nblockquote bold text italic text inline code\n')
+				cy.get('blockquote').should(
+					'have.text',
+					'\nblockquote bold text italic text inline code\n',
+				)
 				cy.get('strong').should('have.text', 'bold text')
 				cy.get('em').should('have.text', 'italic text')
 				cy.get('code').should('have.text', 'inline code')
@@ -467,7 +484,10 @@ describe('NcRichText', () => {
 					},
 				})
 
-				cy.get('blockquote').should('have.text', '\nline 1\nline 2\nline 3\n')
+				cy.get('blockquote').should(
+					'have.text',
+					'\nline 1\nline 2\nline 3\n',
+				)
 			})
 
 			it('blockquote (divided from normal text)', () => {
@@ -500,7 +520,9 @@ describe('NcRichText', () => {
 					},
 				})
 
-				cy.get('blockquote').children('blockquote').should('have.text', '\nnested blockquote\n')
+				cy.get('blockquote')
+					.children('blockquote')
+					.should('have.text', '\nnested blockquote\n')
 			})
 		})
 
@@ -514,7 +536,7 @@ describe('NcRichText', () => {
 
 				mount(NcRichText, {
 					propsData: {
-						text: testCases.map(i => i.input).join('\n'),
+						text: testCases.map((i) => i.input).join('\n'),
 						useMarkdown: true,
 					},
 				})
@@ -535,7 +557,7 @@ describe('NcRichText', () => {
 
 				mount(NcRichText, {
 					propsData: {
-						text: testCases.map(i => i.input).join('\n'),
+						text: testCases.map((i) => i.input).join('\n'),
 						useMarkdown: true,
 					},
 				})
@@ -556,7 +578,7 @@ describe('NcRichText', () => {
 
 				mount(NcRichText, {
 					propsData: {
-						text: testCases.map(i => i.input).join('\n'),
+						text: testCases.map((i) => i.input).join('\n'),
 						useMarkdown: true,
 					},
 				})
@@ -578,7 +600,7 @@ describe('NcRichText', () => {
 
 				mount(NcRichText, {
 					propsData: {
-						text: testCases.map(i => i.input).join('\n'),
+						text: testCases.map((i) => i.input).join('\n'),
 						useExtendedMarkdown: true,
 					},
 				})
@@ -589,7 +611,10 @@ describe('NcRichText', () => {
 					// Vue 2.7 renders three non-breaking spaces here for some reason
 					expect(item).contain(testCases[index].output)
 				})
-				cy.get('input:checked').should('have.length', testCases.filter(test => test.checked).length)
+				cy.get('input:checked').should(
+					'have.length',
+					testCases.filter((test) => test.checked).length,
+				)
 			})
 		})
 

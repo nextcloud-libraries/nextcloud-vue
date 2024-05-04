@@ -71,32 +71,46 @@ The list size must be between the min and the max width value.
 </docs>
 
 <template>
-	<main id="app-content-vue" class="app-content no-snapper" :class="{ 'app-content--has-list': hasList }">
+	<main
+		id="app-content-vue"
+		class="app-content no-snapper"
+		:class="{ 'app-content--has-list': hasList }">
 		<h1 v-if="pageHeading" class="hidden-visually">
 			{{ pageHeading }}
 		</h1>
 
 		<template v-if="hasList">
 			<!-- Mobile view does not allow resizeable panes -->
-			<div v-if="isMobile || layout === 'no-split'"
+			<div
+				v-if="isMobile || layout === 'no-split'"
 				class="app-content-wrapper app-content-wrapper--no-split"
 				:class="{
 					'app-content-wrapper--show-details': showDetails,
 					'app-content-wrapper--show-list': !showDetails,
-					'app-content-wrapper--mobile': isMobile,}">
-				<NcAppDetailsToggle v-if="showDetails" @click.native.stop.prevent="hideDetails" />
+					'app-content-wrapper--mobile': isMobile,
+				}">
+				<NcAppDetailsToggle
+					v-if="showDetails"
+					@click.native.stop.prevent="hideDetails" />
 				<slot v-if="!showDetails" name="list" />
 
 				<slot v-else />
 			</div>
-			<div v-else-if="layout === 'vertical-split' || layout === 'horizontal-split'" class="app-content-wrapper">
-				<Splitpanes :horizontal="layout === 'horizontal-split'"
+			<div
+				v-else-if="
+					layout === 'vertical-split' || layout === 'horizontal-split'
+				"
+				class="app-content-wrapper">
+				<Splitpanes
+					:horizontal="layout === 'horizontal-split'"
 					class="default-theme"
-					:class="{ 'splitpanes--horizontal': layout === 'horizontal-split',
-						'splitpanes--vertical': layout === 'vertical-split'
+					:class="{
+						'splitpanes--horizontal': layout === 'horizontal-split',
+						'splitpanes--vertical': layout === 'vertical-split',
 					}"
 					@resized="handlePaneResize">
-					<Pane class="splitpanes__pane-list"
+					<Pane
+						class="splitpanes__pane-list"
 						:size="listPaneSize || paneDefaults.list.size"
 						:min-size="paneDefaults.list.min"
 						:max-size="paneDefaults.list.max">
@@ -104,7 +118,8 @@ The list size must be between the min and the max width value.
 						<slot name="list" />
 					</Pane>
 
-					<Pane class="splitpanes__pane-details"
+					<Pane
+						class="splitpanes__pane-details"
 						:size="detailsPaneSize"
 						:min-size="paneDefaults.details.min"
 						:max-size="paneDefaults.details.max">
@@ -220,15 +235,14 @@ export default {
 			type: String,
 			default: 'vertical-split',
 			validator(value) {
-				return ['no-split', 'vertical-split', 'horizontal-split'].includes(value)
+				return ['no-split', 'vertical-split', 'horizontal-split'].includes(
+					value,
+				)
 			},
 		},
 	},
 
-	emits: [
-		'update:showDetails',
-		'resize:list',
-	],
+	emits: ['update:showDetails', 'resize:list'],
 
 	setup() {
 		return {
@@ -260,7 +274,10 @@ export default {
 				// to a global storage key
 				return `pane-list-size-${appName}`
 			} catch (e) {
-				console.info('[INFO] AppContent:', 'falling back to global nextcloud pane config')
+				console.info(
+					'[INFO] AppContent:',
+					'falling back to global nextcloud pane config',
+				)
 				return 'pane-list-size-nextcloud'
 			}
 		},
@@ -317,11 +334,17 @@ export default {
 			const minSwipeX = 70
 			const touchZone = 300
 			if (Math.abs(this.swiping.lengthX) > minSwipeX) {
-				if (this.swiping.coordsStart.x < (touchZone / 2) && direction === 'right') {
+				if (
+					this.swiping.coordsStart.x < touchZone / 2 &&
+					direction === 'right'
+				) {
 					emit('toggle-navigation', {
 						open: true,
 					})
-				} else if (this.swiping.coordsStart.x < touchZone * 1.5 && direction === 'left') {
+				} else if (
+					this.swiping.coordsStart.x < touchZone * 1.5 &&
+					direction === 'left'
+				) {
 					emit('toggle-navigation', {
 						open: false,
 					})
@@ -348,7 +371,10 @@ export default {
 
 		// browserStorage is not reactive, we need to update this manually
 		restorePaneConfig() {
-			const listPaneSize = parseInt(browserStorage.getItem(this.paneConfigID), 10)
+			const listPaneSize = parseInt(
+				browserStorage.getItem(this.paneConfigID),
+				10,
+			)
 			if (!isNaN(listPaneSize) && listPaneSize !== this.listPaneSize) {
 				console.debug('AppContent pane config', listPaneSize)
 				this.listPaneSize = listPaneSize
@@ -366,7 +392,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
 .app-content {
 	position: initial;
 	z-index: 1000;

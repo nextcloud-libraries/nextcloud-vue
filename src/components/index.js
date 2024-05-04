@@ -82,7 +82,11 @@ export { default as NcPasswordField } from './NcPasswordField/index.js'
 export { default as NcPopover } from './NcPopover/index.js'
 export { default as NcProgressBar } from './NcProgressBar/index.js'
 export { default as NcRelatedResourcesPanel } from './NcRelatedResourcesPanel/index.js'
-export { default as NcRichContenteditable, NcAutoCompleteResult, NcMentionBubble } from './NcRichContenteditable/index.js'
+export {
+	default as NcRichContenteditable,
+	NcAutoCompleteResult,
+	NcMentionBubble,
+} from './NcRichContenteditable/index.js'
 export { default as NcRichText } from './NcRichText/index.js'
 export { default as NcSavingIndicatorIcon } from './NcSavingIndicatorIcon/index.js'
 export { default as NcSelect } from './NcSelect/index.js'

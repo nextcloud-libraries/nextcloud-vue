@@ -107,7 +107,8 @@ h4 {
 </docs>
 
 <template>
-	<span class="nc-datetime"
+	<span
+		class="nc-datetime"
 		:data-timestamp="timestamp"
 		:title="formattedFullTime"
 		v-text="formattedTime" />
@@ -161,7 +162,10 @@ export default {
 
 	setup(props) {
 		const timestamp = computed(() => props.timestamp)
-		const { formattedTime, formattedFullTime } = useFormatDateTime(timestamp, props)
+		const { formattedTime, formattedFullTime } = useFormatDateTime(
+			timestamp,
+			props,
+		)
 		return {
 			formattedTime,
 			formattedFullTime,

@@ -260,17 +260,22 @@ export default {
 </docs>
 
 <template>
-	<component :is="computedWrapperElement"
+	<component
+		:is="computedWrapperElement"
 		:id="wrapperId"
 		:aria-label="isButtonType && ariaLabel ? ariaLabel : undefined"
 		:class="{
 			['checkbox-radio-switch-' + type]: type,
 			'checkbox-radio-switch--checked': isChecked,
 			'checkbox-radio-switch--disabled': disabled,
-			'checkbox-radio-switch--indeterminate': hasIndeterminate ? indeterminate : false,
+			'checkbox-radio-switch--indeterminate': hasIndeterminate
+				? indeterminate
+				: false,
 			'checkbox-radio-switch--button-variant': buttonVariant,
-			'checkbox-radio-switch--button-variant-v-grouped': buttonVariant && buttonVariantGrouped === 'vertical',
-			'checkbox-radio-switch--button-variant-h-grouped': buttonVariant && buttonVariantGrouped === 'horizontal',
+			'checkbox-radio-switch--button-variant-v-grouped':
+				buttonVariant && buttonVariantGrouped === 'vertical',
+			'checkbox-radio-switch--button-variant-h-grouped':
+				buttonVariant && buttonVariantGrouped === 'horizontal',
 			'button-vue': isButtonType,
 		}"
 		class="checkbox-radio-switch"
@@ -278,7 +283,8 @@ export default {
 		:type="isButtonType ? 'button' : null"
 		v-bind="isButtonType ? $attrs : {}"
 		v-on="isButtonType ? listeners : null">
-		<input v-if="!isButtonType"
+		<input
+			v-if="!isButtonType"
 			:id="id"
 			:aria-labelledby="!isButtonType && !ariaLabel ? `${id}-label` : null"
 			:aria-label="ariaLabel || undefined"
@@ -291,8 +297,9 @@ export default {
 			:required="required"
 			:name="name"
 			v-bind="$attrs"
-			v-on="listeners">
-		<NcCheckboxContent :id="id"
+			v-on="listeners" />
+		<NcCheckboxContent
+			:id="id"
 			class="checkbox-radio-switch__content"
 			icon-class="checkbox-radio-switch__icon"
 			text-class="checkbox-radio-switch__text"
@@ -315,7 +322,12 @@ export default {
 </template>
 
 <script>
-import NcCheckboxContent, { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxContent.vue'
+import NcCheckboxContent, {
+	TYPE_BUTTON,
+	TYPE_CHECKBOX,
+	TYPE_RADIO,
+	TYPE_SWITCH,
+} from './NcCheckboxContent.vue'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { t, n } from '../../l10n.js'
 
@@ -336,7 +348,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'checkbox-radio-switch-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 
 		/**
@@ -376,12 +388,8 @@ export default {
 		type: {
 			type: String,
 			default: 'checkbox',
-			validator: type => [
-				TYPE_CHECKBOX,
-				TYPE_RADIO,
-				TYPE_SWITCH,
-				TYPE_BUTTON,
-			].includes(type),
+			validator: (type) =>
+				[TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH, TYPE_BUTTON].includes(type),
 		},
 
 		/**
@@ -401,7 +409,7 @@ export default {
 		buttonVariantGrouped: {
 			type: String,
 			default: 'no',
-			validator: v => ['no', 'vertical', 'horizontal'].includes(v),
+			validator: (v) => ['no', 'vertical', 'horizontal'].includes(v),
 		},
 
 		/**
@@ -499,9 +507,7 @@ export default {
 		 * @return {number}
 		 */
 		size() {
-			return this.type === TYPE_SWITCH
-				? 36
-				: 24
+			return this.type === TYPE_SWITCH ? 36 : 24
 		},
 
 		/**
@@ -523,11 +529,7 @@ export default {
 		 * @return {string}
 		 */
 		inputType() {
-			const nativeTypes = [
-				TYPE_CHECKBOX,
-				TYPE_RADIO,
-				TYPE_BUTTON,
-			]
+			const nativeTypes = [TYPE_CHECKBOX, TYPE_RADIO, TYPE_BUTTON]
 			if (nativeTypes.includes(this.type)) {
 				return this.type
 			}
@@ -552,28 +554,31 @@ export default {
 		},
 
 		hasIndeterminate() {
-			return [
-				TYPE_CHECKBOX,
-				TYPE_RADIO,
-			].includes(this.inputType)
+			return [TYPE_CHECKBOX, TYPE_RADIO].includes(this.inputType)
 		},
 	},
 
 	mounted() {
 		if (this.name && this.type === TYPE_CHECKBOX) {
 			if (!Array.isArray(this.checked)) {
-				throw new Error('When using groups of checkboxes, the updated value will be an array.')
+				throw new Error(
+					'When using groups of checkboxes, the updated value will be an array.',
+				)
 			}
 		}
 
 		// https://material.io/components/checkboxes#usage
 		if (this.name && this.type === TYPE_SWITCH) {
-			throw new Error('Switches are not made to be used for data sets. Please use checkboxes instead.')
+			throw new Error(
+				'Switches are not made to be used for data sets. Please use checkboxes instead.',
+			)
 		}
 
 		// https://material.io/components/checkboxes#usage
 		if (typeof this.checked !== 'boolean' && this.type === TYPE_SWITCH) {
-			throw new Error('Switches can only be used with boolean as checked prop.')
+			throw new Error(
+				'Switches can only be used with boolean as checked prop.',
+			)
 		}
 	},
 
@@ -606,11 +611,14 @@ export default {
 
 			// Dispatch the checked values as an array if multiple, or single value otherwise
 			const values = this.getInputsSet()
-				.filter(input => input.checked)
-				.map(input => input.value)
+				.filter((input) => input.checked)
+				.map((input) => input.value)
 
 			if (values.includes(this.value)) {
-				this.$emit('update:checked', values.filter((v) => v !== this.value))
+				this.$emit(
+					'update:checked',
+					values.filter((v) => v !== this.value),
+				)
 			} else {
 				this.$emit('update:checked', [...values, this.value])
 			}
@@ -659,7 +667,7 @@ export default {
 	&--disabled &__content {
 		opacity: $opacity_disabled;
 		:deep(.checkbox-radio-switch__icon) > * {
-			color: var(--color-main-text)
+			color: var(--color-main-text);
 		}
 	}
 
@@ -684,7 +692,9 @@ export default {
 	}
 
 	// If switch is checked AND disabled, use the fade primary colour
-	&-switch.checkbox-radio-switch--disabled.checkbox-radio-switch--checked :deep(.checkbox-radio-switch__icon) > * {
+	&-switch.checkbox-radio-switch--disabled.checkbox-radio-switch--checked
+		:deep(.checkbox-radio-switch__icon)
+		> * {
 		color: var(--color-primary-element-light);
 	}
 
@@ -725,7 +735,9 @@ export default {
 		display: none;
 	}
 
-	&--button-variant:not(&--button-variant-v-grouped):not(&--button-variant-h-grouped),
+	&--button-variant:not(&--button-variant-v-grouped):not(
+			&--button-variant-h-grouped
+		),
 	&--button-variant &__content {
 		border-radius: $border-radius;
 	}
@@ -748,13 +760,13 @@ export default {
 
 		// remove borders between elements
 		&:not(:last-of-type) {
-			border-bottom: 0!important;
+			border-bottom: 0 !important;
 			.checkbox-radio-switch__content {
 				margin-bottom: 2px;
 			}
 		}
 		&:not(:first-of-type) {
-			border-top: 0!important;
+			border-top: 0 !important;
 		}
 	}
 
@@ -771,13 +783,13 @@ export default {
 
 		// remove borders between elements
 		&:not(:last-of-type) {
-			border-right: 0!important;
+			border-right: 0 !important;
 			.checkbox-radio-switch__content {
 				margin-right: 2px;
 			}
 		}
 		&:not(:first-of-type) {
-			border-left: 0!important;
+			border-left: 0 !important;
 		}
 	}
 	&--button-variant-h-grouped :deep(.checkbox-radio-switch__text) {

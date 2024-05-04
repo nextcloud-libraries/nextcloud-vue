@@ -40,7 +40,10 @@ describe('useFormatDateTime composable', () => {
 
 	it('Shows relative times', async () => {
 		const time = ref(Date.now())
-		const ctx = useFormatDateTime(time, { ignoreSeconds: false, relativeTime: 'long' })
+		const ctx = useFormatDateTime(time, {
+			ignoreSeconds: false,
+			relativeTime: 'long',
+		})
 		expect(ctx.formattedTime.value).toContain('now')
 		time.value = Date.now() - 5000
 		await nextTick()
@@ -66,7 +69,10 @@ describe('useFormatDateTime composable', () => {
 	})
 
 	it('Shows different relative times', async () => {
-		const ctx = useFormatDateTime(Date.now() - 5000, { ignoreSeconds: true, relativeTime: 'long' })
+		const ctx = useFormatDateTime(Date.now() - 5000, {
+			ignoreSeconds: true,
+			relativeTime: 'long',
+		})
 		expect(ctx.formattedTime.value).toBe('a few seconds ago')
 		ctx.options.value.relativeTime = 'short'
 		await nextTick()
@@ -77,7 +83,9 @@ describe('useFormatDateTime composable', () => {
 	})
 
 	it('Should be reactive on options change', async () => {
-		const ctx = useFormatDateTime(Date.now() - 5000, { ignoreSeconds: false })
+		const ctx = useFormatDateTime(Date.now() - 5000, {
+			ignoreSeconds: false,
+		})
 		expect(ctx.formattedTime.value).toContain('sec')
 		ctx.options.value.ignoreSeconds = true
 		await nextTick()

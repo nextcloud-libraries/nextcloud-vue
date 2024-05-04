@@ -365,14 +365,17 @@
 
 <template>
 	<!-- This wrapper can be either a router link or a `<li>` -->
-	<component :is="to ? 'router-link' : 'NcVNodes'"
+	<component
+		:is="to ? 'router-link' : 'NcVNodes'"
 		v-slot="{ href: routerLinkHref, navigate, isActive }"
 		:custom="to ? true : null"
 		:to="to"
 		:exact="to ? exact : null">
-		<li class="list-item__wrapper"
-			:class="{ 'list-item__wrapper--active' : isActive || active }">
-			<div ref="list-item"
+		<li
+			class="list-item__wrapper"
+			:class="{ 'list-item__wrapper--active': isActive || active }">
+			<div
+				ref="list-item"
 				class="list-item"
 				:class="{
 					'list-item--compact': compact,
@@ -380,7 +383,8 @@
 				}"
 				@mouseover="handleMouseover"
 				@mouseleave="handleMouseleave">
-				<a :id="anchorId || undefined"
+				<a
+					:id="anchorId || undefined"
 					:aria-label="linkAriaLabel"
 					class="list-item__anchor"
 					:href="routerLinkHref || href"
@@ -400,30 +404,39 @@
 								<!-- @slot Slot for the first line of the component. prop 'name' is used as a fallback is no slots are provided -->
 								<slot name="name">{{ name }}</slot>
 							</div>
-							<div v-if="hasSubname"
+							<div
+								v-if="hasSubname"
 								class="list-item-content__subname"
-								:class="{'list-item-content__subname--bold': bold}">
+								:class="{
+									'list-item-content__subname--bold': bold,
+								}">
 								<!-- @slot Slot for the second line of the component -->
 								<slot name="subname" />
 							</div>
 						</div>
 						<div class="list-item-content__details">
-							<div v-if="showDetails" class="list-item-details__details">
+							<div
+								v-if="showDetails"
+								class="list-item-details__details">
 								<!-- @slot This slot is used for some details in form of icon (prop `details` as a fallback) -->
 								<slot name="details">{{ details }}</slot>
 							</div>
 							<!-- Counter and indicator -->
-							<div v-if="counterNumber != 0 || hasIndicator"
+							<div
+								v-if="counterNumber != 0 || hasIndicator"
 								v-show="showAdditionalElements"
 								class="list-item-details__extra">
-								<NcCounterBubble v-if="counterNumber != 0"
+								<NcCounterBubble
+									v-if="counterNumber != 0"
 									:active="isActive || active"
 									class="list-item-details__counter"
 									:type="counterType">
 									{{ counterNumber }}
 								</NcCounterBubble>
 
-								<span v-if="hasIndicator" class="list-item-details__indicator">
+								<span
+									v-if="hasIndicator"
+									class="list-item-details__indicator">
 									<!-- @slot This slot is used for some indicator in form of icon -->
 									<slot name="indicator" />
 								</span>
@@ -433,10 +446,12 @@
 				</a>
 
 				<!-- Actions -->
-				<div v-show="forceDisplayActions || displayActionsOnHoverFocus"
+				<div
+					v-show="forceDisplayActions || displayActionsOnHoverFocus"
 					class="list-item-content__actions"
 					@focusout="handleBlur">
-					<NcActions ref="actions"
+					<NcActions
+						ref="actions"
 						:primary="isActive || active"
 						:aria-label="computedActionsAriaLabel"
 						@update:open="handleActionsUpdateOpen">
@@ -568,10 +583,10 @@ export default {
 		 * If different from 0 this component will display the
 		 * NcCounterBubble component
 		 */
-		 counterNumber: {
-			 type: [Number, String],
-			 default: 0,
-		 },
+		counterNumber: {
+			type: [Number, String],
+			default: 0,
+		},
 
 		/**
 		 * Outlined or highlighted state of the counter
@@ -600,10 +615,7 @@ export default {
 		},
 	},
 
-	emits: [
-		'click',
-		'update:menuOpen',
-	],
+	emits: ['click', 'update:menuOpen'],
 
 	data() {
 		return {
@@ -623,17 +635,21 @@ export default {
 		},
 
 		showDetails() {
-			return (this.details !== '' || this.hasDetails)
-				&& (!this.displayActionsOnHoverFocus || this.forceDisplayActions)
+			return (
+				(this.details !== '' || this.hasDetails) &&
+				(!this.displayActionsOnHoverFocus || this.forceDisplayActions)
+			)
 		},
 
 		computedActionsAriaLabel() {
-			return this.actionsAriaLabel || t('Actions for item with name "{name}"', { name: this.name })
+			return (
+				this.actionsAriaLabel ||
+				t('Actions for item with name "{name}"', { name: this.name })
+			)
 		},
 	},
 
 	watch: {
-
 		menuOpen(newValue) {
 			// A click outside both the menu and the root element hides the actions again
 			if (!newValue && !this.hovered) {
@@ -738,7 +754,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .list-item__wrapper {
 	display: flex;
 	position: relative;
@@ -823,7 +838,8 @@ export default {
 		padding: 4px 10px;
 
 		.list-item__anchor {
-			.line-one, .line-two {
+			.line-one,
+			.line-two {
 				margin-block: -4px;
 			}
 		}
@@ -906,5 +922,4 @@ export default {
 		margin-top: 4px;
 	}
 }
-
 </style>

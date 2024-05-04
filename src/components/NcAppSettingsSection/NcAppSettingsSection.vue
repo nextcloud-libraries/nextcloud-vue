@@ -76,7 +76,6 @@ export default {
 		this.unregisterSection(this.id)
 	},
 }
-
 </script>
 
 <style lang="scss" scoped>

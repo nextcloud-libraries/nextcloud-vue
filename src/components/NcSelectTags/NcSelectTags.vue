@@ -131,21 +131,22 @@ export default {
 </docs>
 
 <template>
-	<NcSelect v-bind="propsToForward"
+	<NcSelect
+		v-bind="propsToForward"
 		:options="availableOptions"
 		:close-on-select="!multiple"
 		:value="passthru ? value : localValue"
-		@search="searchString => search = searchString"
+		@search="(searchString) => (search = searchString)"
 		v-on="{
 			...$listeners,
 			input: passthru ? $listeners.input : handleInput,
 		}">
 		<template #option="option">
-			<NcEllipsisedOption :name="getOptionLabel(option)"
-				:search="search" />
+			<NcEllipsisedOption :name="getOptionLabel(option)" :search="search" />
 		</template>
 		<template #selected-option="selectedOption">
-			<NcEllipsisedOption :name="getOptionLabel(selectedOption)"
+			<NcEllipsisedOption
+				:name="getOptionLabel(selectedOption)"
 				:search="search" />
 		</template>
 		<template v-for="(_, name) in $scopedSlots" #[name]="data">
@@ -304,10 +305,10 @@ export default {
 			}
 			if (this.multiple) {
 				return this.value
-					.filter(tag => tag !== '')
-					.map(id => this.tags.find(tag2 => tag2.id === id))
+					.filter((tag) => tag !== '')
+					.map((id) => this.tags.find((tag2) => tag2.id === id))
 			} else {
-				return this.tags.find(tag => tag.id === this.value)
+				return this.tags.find((tag) => tag.id === this.value)
 			}
 		},
 
@@ -352,7 +353,10 @@ export default {
 				 *
 				 * @type {number|number[]}
 				 */
-				this.$emit('input', value.map(element => element.id))
+				this.$emit(
+					'input',
+					value.map((element) => element.id),
+				)
 			} else {
 				if (value === null) {
 					this.$emit('input', null)

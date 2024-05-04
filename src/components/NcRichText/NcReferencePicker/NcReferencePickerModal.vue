@@ -1,12 +1,13 @@
 <template>
-	<NcModal v-if="show"
+	<NcModal
+		v-if="show"
 		:size="modalSize"
 		:can-close="false"
 		class="reference-picker-modal"
 		@close="onCancel">
-		<div ref="modal_content"
-			class="reference-picker-modal--content">
-			<NcButton v-if="showBackButton"
+		<div ref="modal_content" class="reference-picker-modal--content">
+			<NcButton
+				v-if="showBackButton"
 				:aria-label="backButtonTitle"
 				:title="backButtonTitle"
 				class="back-button"
@@ -15,7 +16,8 @@
 					<ArrowLeftIcon />
 				</template>
 			</NcButton>
-			<NcButton :aria-label="closeButtonLabel"
+			<NcButton
+				:aria-label="closeButtonLabel"
 				:title="closeButtonTitle"
 				type="tertiary"
 				class="close-button"
@@ -27,7 +29,8 @@
 			<h2 v-if="showModalName">
 				{{ modalName }}
 			</h2>
-			<NcReferencePicker ref="referencePicker"
+			<NcReferencePicker
+				ref="referencePicker"
 				:initial-provider="initialProvider"
 				:focus-on-create="focusOnCreate"
 				@provider-selected="onProviderSelect"
@@ -39,7 +42,10 @@
 
 <script>
 import NcReferencePicker from './NcReferencePicker.vue'
-import { getCustomPickerElementSize, isCustomPickerElementRegistered } from './../../../functions/reference/customPickerElements.js'
+import {
+	getCustomPickerElementSize,
+	isCustomPickerElementRegistered,
+} from './../../../functions/reference/customPickerElements.js'
 import NcButton from '../../NcButton/index.js'
 import NcModal from '../../NcModal/index.js'
 import { t } from '../../../l10n.js'
@@ -82,10 +88,7 @@ export default {
 			default: false,
 		},
 	},
-	emits: [
-		'cancel',
-		'submit',
-	],
+	emits: ['cancel', 'submit'],
 	data() {
 		return {
 			show: true,
@@ -103,12 +106,16 @@ export default {
 			return this.initialProvider === null && this.isProviderSelected
 		},
 		modalSize() {
-			return this.isProviderSelected && isCustomPickerElementRegistered(this.selectedProvider.id)
-				? (getCustomPickerElementSize(this.selectedProvider.id) ?? 'large')
+			return this.isProviderSelected &&
+				isCustomPickerElementRegistered(this.selectedProvider.id)
+				? getCustomPickerElementSize(this.selectedProvider.id) ?? 'large'
 				: 'normal'
 		},
 		showModalName() {
-			return !this.isProviderSelected || !isCustomPickerElementRegistered(this.selectedProvider.id)
+			return (
+				!this.isProviderSelected ||
+				!isCustomPickerElementRegistered(this.selectedProvider.id)
+			)
 		},
 		modalName() {
 			return this.isProviderSelected

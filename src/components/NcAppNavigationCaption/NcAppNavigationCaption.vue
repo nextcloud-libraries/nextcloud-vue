@@ -98,7 +98,8 @@
 </docs>
 
 <template>
-	<component :is="wrapperTag"
+	<component
+		:is="wrapperTag"
 		class="app-navigation-caption"
 		:class="{ 'app-navigation-caption--heading': isHeading }">
 		<!-- Name of the caption -->
@@ -107,10 +108,8 @@
 		</component>
 
 		<!-- Actions -->
-		<div v-if="hasActions"
-			class="app-navigation-caption__actions">
-			<NcActions v-bind="$attrs"
-				v-on="$listeners">
+		<div v-if="hasActions" class="app-navigation-caption__actions">
+			<NcActions v-bind="$attrs" v-on="$listeners">
 				<!-- @slot Slot for the actions menu -->
 				<slot name="actions" />
 				<template #icon>
@@ -172,7 +171,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .app-navigation-caption {
 	display: flex;
 	justify-content: space-between;
@@ -195,7 +193,8 @@ export default {
 		box-shadow: none !important;
 		flex-shrink: 0;
 		// padding to align the name with the icon of app navigation items
-		padding: 0 calc(var(--default-grid-baseline, 4px) * 2) 0 calc(var(--default-grid-baseline, 4px) * 3);
+		padding: 0 calc(var(--default-grid-baseline, 4px) * 2) 0
+			calc(var(--default-grid-baseline, 4px) * 3);
 		margin-bottom: 12px;
 	}
 

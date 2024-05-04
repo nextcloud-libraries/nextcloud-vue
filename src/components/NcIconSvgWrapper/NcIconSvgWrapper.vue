@@ -111,15 +111,15 @@ export default {
 </docs>
 
 <template>
-	<span v-if="!cleanSvg"
-		v-bind="attributes">
+	<span v-if="!cleanSvg" v-bind="attributes">
 		<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 			<path :d="path" />
 		</svg>
 	</span>
-	<span v-else
+	<span
+		v-else
 		v-bind="attributes"
-		v-html="cleanSvg" /> <!-- eslint-disable-line vue/no-v-html -->
+		v-html="cleanSvg" /><!-- eslint-disable-line vue/no-v-html -->
 </template>
 
 <script>

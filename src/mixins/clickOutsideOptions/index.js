@@ -33,7 +33,9 @@ export default {
 	},
 	computed: {
 		clickOutsideOptions() {
-			const excludedQuerySelectors = Array.isArray(this.excludeClickOutsideSelectors)
+			const excludedQuerySelectors = Array.isArray(
+				this.excludeClickOutsideSelectors,
+			)
 				? this.excludeClickOutsideSelectors
 				: [this.excludeClickOutsideSelectors]
 

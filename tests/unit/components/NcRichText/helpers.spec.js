@@ -1,4 +1,7 @@
-import { URL_PATTERN, URL_PATTERN_AUTOLINK } from '../../../../src/components/NcRichText/helpers.js'
+import {
+	URL_PATTERN,
+	URL_PATTERN_AUTOLINK,
+} from '../../../../src/components/NcRichText/helpers.js'
 
 describe('URL_PATTERN', () => {
 	const urls = [

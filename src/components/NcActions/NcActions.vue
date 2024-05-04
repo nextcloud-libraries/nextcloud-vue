@@ -1008,7 +1008,9 @@ export default {
 			 * Provide the role for NcAction* components in the NcActions content.
 			 * @type {import('vue').ComputedRef<boolean>}
 			 */
-			'NcActions:isSemanticMenu': computed(() => this.actionsMenuSemanticType === 'menu'),
+			'NcActions:isSemanticMenu': computed(
+				() => this.actionsMenuSemanticType === 'menu',
+			),
 		}
 	},
 
@@ -1100,7 +1102,18 @@ export default {
 		type: {
 			type: String,
 			validator(value) {
-				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].indexOf(value) !== -1
+				return (
+					[
+						'primary',
+						'secondary',
+						'tertiary',
+						'tertiary-no-background',
+						'tertiary-on-primary',
+						'error',
+						'warning',
+						'success',
+					].indexOf(value) !== -1
+				)
 			},
 			default: null,
 		},
@@ -1179,14 +1192,7 @@ export default {
 		},
 	},
 
-	emits: [
-		'open',
-		'update:open',
-		'close',
-		'focus',
-		'blur',
-		'click',
-	],
+	emits: ['open', 'update:open', 'close', 'focus', 'blur', 'click'],
 
 	setup() {
 		const randomId = `menu-${GenRandomId()}`
@@ -1211,10 +1217,15 @@ export default {
 	computed: {
 		triggerBtnType() {
 			// If requested, we use a primary button
-			return this.type || (this.primary
-				? 'primary'
-				// If it has a name, we use a secondary button
-				: this.menuName ? 'secondary' : 'tertiary')
+			return (
+				this.type ||
+				(this.primary
+					? 'primary'
+					: // If it has a name, we use a secondary button
+						this.menuName
+						? 'secondary'
+						: 'tertiary')
+			)
 		},
 
 		/**
@@ -1333,7 +1344,10 @@ export default {
 		 * @return {string} the name of the action component
 		 */
 		getActionName(action) {
-			return action?.componentOptions?.Ctor?.extendOptions?.name ?? action?.componentOptions?.tag
+			return (
+				action?.componentOptions?.Ctor?.extendOptions?.name ??
+				action?.componentOptions?.tag
+			)
 		},
 
 		/**
@@ -1371,7 +1385,9 @@ export default {
 		 * @return {boolean}
 		 */
 		isValidSingleAction(action) {
-			return ['NcActionButton', 'NcActionLink', 'NcActionRouter'].includes(this.getActionName(action))
+			return ['NcActionButton', 'NcActionLink', 'NcActionRouter'].includes(
+				this.getActionName(action),
+			)
 		},
 
 		/**
@@ -1380,7 +1396,10 @@ export default {
 		 */
 		isIconUrl(url) {
 			try {
-				return !!(new URL(url, url.startsWith('/') ? window.location.origin : undefined))
+				return !!new URL(
+					url,
+					url.startsWith('/') ? window.location.origin : undefined,
+				)
 			} catch (error) {
 				return false
 			}
@@ -1457,7 +1476,9 @@ export default {
 		resizePopover() {
 			// Get the inner v-popper element that defines the popover height (from floating-vue)
 			const inner = this.$refs.menu.closest('.v-popper__inner')
-			const maxHeight = Number.parseFloat(window.getComputedStyle(inner).maxHeight)
+			const maxHeight = Number.parseFloat(
+				window.getComputedStyle(inner).maxHeight,
+			)
 			const height = this.$refs.menu.clientHeight
 			// If the popover height is limited by the max-height (scrollbars shown) limit the height to half of the last element
 			if (height > maxHeight) {
@@ -1468,7 +1489,7 @@ export default {
 				for (const action of this.$refs.menuList.children) {
 					// If the max height would be overflown by half of the current element,
 					// then we limit the height to the half of the previous element
-					if ((currentHeight + action.clientHeight / 2) > maxHeight) {
+					if (currentHeight + action.clientHeight / 2 > maxHeight) {
 						inner.style.height = `${currentHeight - actionHeight / 2}px`
 						break
 					}
@@ -1487,7 +1508,7 @@ export default {
 			return this.$refs.menu.querySelector('li.active')
 		},
 		/**
-		 * @return {NodeListOf<HTMLElement>}
+		 * @return {NodeList<HTMLElement>}
 		 */
 		getFocusableMenuItemElements() {
 			return this.$refs.menu.querySelectorAll(focusableSelector)
@@ -1497,6 +1518,7 @@ export default {
 		 * DO NOT change the focus if the target is already focused
 		 * this will prevent issues with input being unfocused
 		 * on mouse move
+		 *
 		 * @param {PointerEvent} event - The mouse move event
 		 */
 		onMouseFocusAction(event) {
@@ -1548,7 +1570,9 @@ export default {
 					// But if it does - do nothing and keep native behavior
 					return
 				}
-				const newFocusIndex = event.shiftKey ? focusIndex - 1 : focusIndex + 1
+				const newFocusIndex = event.shiftKey
+					? focusIndex - 1
+					: focusIndex + 1
 
 				// There is no focus-trap, so going out of the menu closes it
 				if (newFocusIndex < 0 || newFocusIndex === focusList.length) {
@@ -1641,8 +1665,13 @@ export default {
 				// In case a NcActionButton is considered checked we will use this one as a initial focus
 				// Having aria-checked is the simplest way to determine the checked state of a button
 				// TODO: determine when we need to focus the first checked item and when we not, for example, if menu has many radio groups
-				const firstCheckedIndex = [...this.getFocusableMenuItemElements()].findIndex((button) => {
-					return button.getAttribute('aria-checked') === 'true' && button.getAttribute('role') === 'menuitemradio'
+				const firstCheckedIndex = [
+					...this.getFocusableMenuItemElements(),
+				].findIndex((button) => {
+					return (
+						button.getAttribute('aria-checked') === 'true' &&
+						button.getAttribute('role') === 'menuitemradio'
+					)
 				})
 				this.focusIndex = firstCheckedIndex > -1 ? firstCheckedIndex : 0
 				this.focusAction()
@@ -1672,7 +1701,10 @@ export default {
 			if (this.actionsMenuSemanticType === 'tooltip') {
 				// Tooltip is supposed to have no focusable element.
 				// However, if there is a custom focusable element, it will be auto-focused and cause the menu to be closed on open.
-				if (this.$refs.menu && this.getFocusableMenuItemElements().length === 0) {
+				if (
+					this.$refs.menu &&
+					this.getFocusableMenuItemElements().length === 0
+				) {
 					this.closeMenu(false)
 				}
 			}
@@ -1702,7 +1734,9 @@ export default {
 		 * This also ensure that we don't get 'text' elements, which would
 		 * become problematic later on.
 		 */
-		const actions = (this.$slots.default || []).filter(action => this.getActionName(action))
+		const actions = (this.$slots.default || []).filter((action) =>
+			this.getActionName(action),
+		)
 
 		// Check that we have at least one action
 		if (actions.length === 0) {
@@ -1718,7 +1752,9 @@ export default {
 		 */
 		let validInlineActions = actions.filter(this.isValidSingleAction)
 		if (this.forceMenu && validInlineActions.length > 0 && this.inline > 0) {
-			Vue.util.warn('Specifying forceMenu will ignore any inline actions rendering.')
+			Vue.util.warn(
+				'Specifying forceMenu will ignore any inline actions rendering.',
+			)
 			validInlineActions = []
 		}
 		/**
@@ -1728,7 +1764,9 @@ export default {
 		/**
 		 * @type {import('vue').VNode[]}
 		 */
-		const menuActions = actions.filter(action => !inlineActions.includes(action))
+		const menuActions = actions.filter(
+			(action) => !inlineActions.includes(action),
+		)
 
 		/**
 		 * Determine what kind of menu we have.
@@ -1738,12 +1776,23 @@ export default {
 			this.actionsMenuSemanticType = this.forceSemanticType
 		} else {
 			const textInputActions = ['NcActionInput', 'NcActionTextEditable']
-			const menuItemsActions = ['NcActionButton', 'NcActionButtonGroup', 'NcActionCheckbox', 'NcActionRadio']
+			const menuItemsActions = [
+				'NcActionButton',
+				'NcActionButtonGroup',
+				'NcActionCheckbox',
+				'NcActionRadio',
+			]
 			const linkActions = ['NcActionLink', 'NcActionRouter']
 
-			const hasTextInputAction = menuActions.some(action => textInputActions.includes(this.getActionName(action)))
-			const hasMenuItemAction = menuActions.some(action => menuItemsActions.includes(this.getActionName(action)))
-			const hasLinkAction = menuActions.some(action => linkActions.includes(this.getActionName(action)))
+			const hasTextInputAction = menuActions.some((action) =>
+				textInputActions.includes(this.getActionName(action)),
+			)
+			const hasMenuItemAction = menuActions.some((action) =>
+				menuItemsActions.includes(this.getActionName(action)),
+			)
+			const hasLinkAction = menuActions.some((action) =>
+				linkActions.includes(this.getActionName(action)),
+			)
 
 			if (hasTextInputAction) {
 				this.actionsMenuSemanticType = 'dialog'
@@ -1759,7 +1808,9 @@ export default {
 				// So when NcActions has actions as non-direct children, here then we don't know about them.
 				// Like this menu has no buttons/links/inputs.
 				// It makes the menu incorrectly considered a tooltip.
-				const ncActions = actions.filter((action) => this.getActionName(action).startsWith('NcAction'))
+				const ncActions = actions.filter((action) =>
+					this.getActionName(action).startsWith('NcAction'),
+				)
 				if (ncActions.length === actions.length) {
 					// True tooltip
 					this.actionsMenuSemanticType = 'tooltip'
@@ -1778,11 +1829,14 @@ export default {
 		 */
 		const renderInlineAction = (action) => {
 			const iconProp = action?.componentOptions?.propsData?.icon
-			const icon = action?.data?.scopedSlots?.icon()?.[0] ?? (
-				this.isIconUrl(iconProp)
-					? h('img', { class: 'action-item__menutoggle__icon', attrs: { src: iconProp, alt: '' } })
-					: h('span', { class: ['icon', iconProp] })
-			)
+			const icon =
+				action?.data?.scopedSlots?.icon()?.[0] ??
+				(this.isIconUrl(iconProp)
+					? h('img', {
+							class: 'action-item__menutoggle__icon',
+							attrs: { src: iconProp, alt: '' },
+						})
+					: h('span', { class: ['icon', iconProp] }))
 			const attrs = action?.data?.attrs || {}
 			const clickListener = action?.componentOptions?.listeners?.click
 
@@ -1796,13 +1850,18 @@ export default {
 				title = text
 			}
 
-			const propsToForward = { ...(action?.componentOptions?.propsData ?? {}) }
-			const nativeType = ['submit', 'reset'].includes(propsToForward.type) ? propsToForward.modelValue : 'button'
+			const propsToForward = {
+				...(action?.componentOptions?.propsData ?? {}),
+			}
+			const nativeType = ['submit', 'reset'].includes(propsToForward.type)
+				? propsToForward.modelValue
+				: 'button'
 			// not available on NcButton or with different meaning
 			delete propsToForward.modelValue
 			delete propsToForward.type
 
-			return h('NcButton',
+			return h(
+				'NcButton',
 				{
 					class: [
 						'action-item action-item--single',
@@ -1818,7 +1877,9 @@ export default {
 					props: {
 						// If it has a menuName, we use a secondary button
 						type: this.type || (buttonText ? 'secondary' : 'tertiary'),
-						disabled: this.disabled || action?.componentOptions?.propsData?.disabled,
+						disabled:
+							this.disabled ||
+							action?.componentOptions?.propsData?.disabled,
 						pressed: action?.componentOptions?.propsData?.modelValue,
 						nativeType,
 						...propsToForward,
@@ -1827,7 +1888,10 @@ export default {
 						focus: this.onFocus,
 						blur: this.onBlur,
 						// forward any pressed state from NcButton just like NcActionButton does
-						'update:pressed': action?.componentOptions?.listeners?.['update:modelValue'] ?? (() => {}),
+						'update:pressed':
+							action?.componentOptions?.listeners?.[
+								'update:modelValue'
+							] ?? (() => {}),
 						// If we have a click listener,
 						// we bind it to execute on click and forward the click event
 						...(!!clickListener && {
@@ -1839,10 +1903,7 @@ export default {
 						}),
 					},
 				},
-				[
-					h('template', { slot: 'icon' }, [icon]),
-					buttonText,
-				],
+				[h('template', { slot: 'icon' }, [icon]), buttonText],
 			)
 		}
 
@@ -1853,16 +1914,17 @@ export default {
 		 * @return {Function} the vue render function
 		 */
 		const renderActionsPopover = (actions) => {
-			const triggerIcon = this.$slots.icon?.[0] || (
-				this.defaultIcon
+			const triggerIcon =
+				this.$slots.icon?.[0] ||
+				(this.defaultIcon
 					? h('span', { class: ['icon', this.defaultIcon] })
 					: h('DotsHorizontal', {
-						props: {
-							size: 20,
-						},
-					})
-			)
-			return h('NcPopover',
+							props: {
+								size: 20,
+							},
+						}))
+			return h(
+				'NcPopover',
 				{
 					ref: 'popover',
 					props: {
@@ -1874,7 +1936,9 @@ export default {
 						container: this.container,
 						popoverBaseClass: 'action-item__popper',
 						popupRole: this.config.popupRole,
-						setReturnFocus: this.config.withFocusTrap ? this.$refs.menuButton?.$el : null,
+						setReturnFocus: this.config.withFocusTrap
+							? this.$refs.menuButton?.$el
+							: null,
 						focusTrap: this.config.withFocusTrap,
 					},
 					// For some reason the popover component
@@ -1887,7 +1951,7 @@ export default {
 						placement: this.placement,
 						boundary: this.boundariesElement,
 						container: this.container,
-						...this.manualOpen && { triggers: [] },
+						...(this.manualOpen && { triggers: [] }),
 					},
 					on: {
 						show: this.openMenu,
@@ -1896,53 +1960,63 @@ export default {
 					},
 				},
 				[
-					h('NcButton', {
-						class: 'action-item__menutoggle',
-						props: {
-							type: this.triggerBtnType,
-							disabled: this.disabled,
+					h(
+						'NcButton',
+						{
+							class: 'action-item__menutoggle',
+							props: {
+								type: this.triggerBtnType,
+								disabled: this.disabled,
+							},
+							slot: 'trigger',
+							ref: 'menuButton',
+							attrs: {
+								id: this.triggerRandomId,
+								'aria-label': this.menuName ? null : this.ariaLabel,
+								...this.config.triggerA11yAttr,
+							},
+							on: {
+								focus: this.onFocus,
+								blur: this.onBlur,
+								click: this.onClick,
+								keydown: this.onTriggerKeydown,
+							},
 						},
-						slot: 'trigger',
-						ref: 'menuButton',
-						attrs: {
-							id: this.triggerRandomId,
-							'aria-label': this.menuName ? null : this.ariaLabel,
-							...this.config.triggerA11yAttr,
-						},
-						on: {
-							focus: this.onFocus,
-							blur: this.onBlur,
-							click: this.onClick,
-							keydown: this.onTriggerKeydown,
-						},
-					}, [
-						h('template', { slot: 'icon' }, [triggerIcon]),
-						this.menuName,
-					]),
-					h('div', {
-						class: {
-							open: this.opened,
-						},
-						attrs: {
-							tabindex: '-1',
-							...this.config.popoverContainerA11yAttrs,
-						},
-						on: {
-							keydown: this.onKeydown,
-							mousemove: this.onMouseFocusAction,
-						},
-						ref: 'menu',
-					}, [
-						h('ul', {
+						[
+							h('template', { slot: 'icon' }, [triggerIcon]),
+							this.menuName,
+						],
+					),
+					h(
+						'div',
+						{
+							class: {
+								open: this.opened,
+							},
 							attrs: {
 								tabindex: '-1',
-								...this.config.popoverUlA11yAttrs,
+								...this.config.popoverContainerA11yAttrs,
 							},
-							ref: 'menuList',
-						}, [
-							actions,
-						]),
-					]),
+							on: {
+								keydown: this.onKeydown,
+								mousemove: this.onMouseFocusAction,
+							},
+							ref: 'menu',
+						},
+						[
+							h(
+								'ul',
+								{
+									attrs: {
+										tabindex: '-1',
+										...this.config.popoverUlA11yAttrs,
+									},
+									ref: 'menuList',
+								},
+								[actions],
+							),
+						],
+					),
 				],
 			)
 		}
@@ -1951,7 +2025,11 @@ export default {
 		 * If we have a single action only and didn't force a menu,
 		 * we render the action as a standalone button
 		 */
-		if (actions.length === 1 && validInlineActions.length === 1 && !this.forceMenu) {
+		if (
+			actions.length === 1 &&
+			validInlineActions.length === 1 &&
+			!this.forceMenu
+		) {
 			return renderInlineAction(actions[0])
 		}
 
@@ -1972,38 +2050,38 @@ export default {
 		 * If we some inline actions to render, render them, then the menu
 		 */
 		if (inlineActions.length > 0 && this.inline > 0) {
-			return h('div',
+			return h(
+				'div',
 				{
-					class: [
-						'action-items',
-						`action-item--${this.triggerBtnType}`,
-					],
+					class: ['action-items', `action-item--${this.triggerBtnType}`],
 				},
 				[
 					// Render inline actions
 					...inlineActions.map(renderInlineAction),
 					// render the rest within the popover menu
 					menuActions.length > 0
-						? h('div',
-							{
-								class: [
-									'action-item',
-									{
-										'action-item--open': this.opened,
-									},
-								],
-							},
-							[
-								renderActionsPopover(menuActions),
-							])
+						? h(
+								'div',
+								{
+									class: [
+										'action-item',
+										{
+											'action-item--open': this.opened,
+										},
+									],
+								},
+								[renderActionsPopover(menuActions)],
+							)
 						: null,
-				])
+				],
+			)
 		}
 
 		/**
 		 * Otherwise, we render the actions in a popover
 		 */
-		return h('div',
+		return h(
+			'div',
 			{
 				class: [
 					'action-item action-item--default-popover',
@@ -2013,9 +2091,7 @@ export default {
 					},
 				],
 			},
-			[
-				renderActionsPopover(actions),
-			],
+			[renderActionsPopover(actions)],
 		)
 	},
 }
@@ -2079,7 +2155,7 @@ export default {
 // the popover__inner for actions only.
 .v-popper--theme-dropdown.v-popper__popper.action-item__popper .v-popper__wrapper {
 	border-radius: var(--border-radius-large);
-	overflow:hidden;
+	overflow: hidden;
 
 	.v-popper__inner {
 		border-radius: var(--border-radius-large);

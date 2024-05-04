@@ -22,16 +22,15 @@
 
 <template>
 	<!-- Button to expand or collapse children -->
-	<NcButton class="icon-collapse"
-		:class="{'icon-collapse--open':open}"
+	<NcButton
+		class="icon-collapse"
+		:class="{ 'icon-collapse--open': open }"
 		type="tertiary"
 		:aria-label="labelButton"
 		@click="onClick">
 		<template #icon>
-			<ChevronUp v-if="open"
-				:size="20" />
-			<ChevronDown v-else
-				:size="20" />
+			<ChevronUp v-if="open" :size="20" />
+			<ChevronDown v-else :size="20" />
 		</template>
 	</NcButton>
 </template>
@@ -72,7 +71,6 @@ export default {
 			this.$emit('click', e)
 		},
 	},
-
 }
 </script>
 
@@ -84,10 +82,9 @@ export default {
 	right: 0;
 	&--open {
 		color: var(--color-main-text);
-		&:hover{
+		&:hover {
 			color: var(--color-primary-element);
 		}
 	}
 }
-
 </style>

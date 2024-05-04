@@ -81,7 +81,6 @@ export default {
 			this.$emit('click', e)
 		},
 	},
-
 }
 </script>
 
@@ -99,5 +98,4 @@ export default {
 		border-radius: 50%;
 	}
 }
-
 </style>

@@ -3,8 +3,8 @@ import { parseUrl } from './autolink.js'
 import { visit } from 'unist-util-visit'
 import { u } from 'unist-builder'
 
-export const remarkPlaceholder = function() {
-	return function(ast) {
+export const remarkPlaceholder = function () {
+	return function (ast) {
 		visit(ast, (node) => node.type === 'text', visitor)
 
 		/**
@@ -14,7 +14,8 @@ export const remarkPlaceholder = function() {
 		 * @param {object} parent The parent node
 		 */
 		function visitor(node, index, parent) {
-			const placeholders = node.value.split(/(\{[a-z\-_.0-9]+\})/ig)
+			const placeholders = node.value
+				.split(/(\{[a-z\-_.0-9]+\})/gi)
 				.map((entry, index, list) => {
 					const matches = entry.match(/^\{([a-z\-_.0-9]+)\}$/i)
 					if (!matches) {
@@ -42,7 +43,8 @@ export const prepareTextNode = ({ h, context }, text) => {
 			}
 			const { component, props } = entry
 			// do not override class of NcLink
-			const componentClass = component.name === 'NcLink' ? undefined : 'rich-text--component'
+			const componentClass =
+				component.name === 'NcLink' ? undefined : 'rich-text--component'
 			return h(component, {
 				props,
 				class: componentClass,

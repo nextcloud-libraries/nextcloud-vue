@@ -7,7 +7,6 @@ if (!window._vue_richtext_custom_picker_elements) {
  * It contains a dom element and an object (Vue instance or other fancy things)
  */
 class NcCustomPickerRenderResult {
-
 	/**
 	 * @param {HTMLElement} element The HTML element
 	 * @param {object} object The object
@@ -16,7 +15,6 @@ class NcCustomPickerRenderResult {
 		this.element = element
 		this.object = object
 	}
-
 }
 
 const isCustomPickerElementRegistered = (id) => {
@@ -31,9 +29,16 @@ const getCustomPickerElementSize = (id) => {
 	return null
 }
 
-const registerCustomPickerElement = (id, callback, onDestroy = (el) => {}, size = 'large') => {
+const registerCustomPickerElement = (
+	id,
+	callback,
+	onDestroy = (el) => {},
+	size = 'large',
+) => {
 	if (window._vue_richtext_custom_picker_elements[id]) {
-		console.error('Custom reference picker element for id ' + id + ' already registered')
+		console.error(
+			'Custom reference picker element for id ' + id + ' already registered',
+		)
 		return
 	}
 
@@ -47,11 +52,18 @@ const registerCustomPickerElement = (id, callback, onDestroy = (el) => {}, size 
 
 const renderCustomPickerElement = (el, { providerId, accessible }) => {
 	if (!window._vue_richtext_custom_picker_elements[providerId]) {
-		console.error('Custom reference picker element for reference provider ID ' + providerId + ' not registered')
+		console.error(
+			'Custom reference picker element for reference provider ID ' +
+				providerId +
+				' not registered',
+		)
 		return
 	}
 
-	return window._vue_richtext_custom_picker_elements[providerId].callback(el, { providerId, accessible })
+	return window._vue_richtext_custom_picker_elements[providerId].callback(el, {
+		providerId,
+		accessible,
+	})
 }
 
 const destroyCustomPickerElement = (providerId, el, renderResult) => {
@@ -59,7 +71,10 @@ const destroyCustomPickerElement = (providerId, el, renderResult) => {
 		return
 	}
 
-	window._vue_richtext_custom_picker_elements[providerId].onDestroy(el, renderResult)
+	window._vue_richtext_custom_picker_elements[providerId].onDestroy(
+		el,
+		renderResult,
+	)
 }
 
 window._registerCustomPickerElement = registerCustomPickerElement

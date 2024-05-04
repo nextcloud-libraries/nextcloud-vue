@@ -27,7 +27,7 @@
  * @param {string} name the parent name
  * @return {object|undefined} the parent component
  */
-const GetParent = function(context, name) {
+const GetParent = function (context, name) {
 	let parent = context.$parent
 	while (parent) {
 		if (parent.$options.name === name) {

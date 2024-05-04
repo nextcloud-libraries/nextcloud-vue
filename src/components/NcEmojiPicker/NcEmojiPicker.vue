@@ -124,7 +124,8 @@ This component allows the user to pick an emoji.
 </docs>
 
 <template>
-	<NcPopover :shown.sync="open"
+	<NcPopover
+		:shown.sync="open"
 		:container="container"
 		popup-role="dialog"
 		v-bind="$attrs"
@@ -134,7 +135,8 @@ This component allows the user to pick an emoji.
 		<template #trigger="slotProps">
 			<slot v-bind="slotProps" />
 		</template>
-		<Picker ref="picker"
+		<Picker
+			ref="picker"
 			:auto-focus="false /* We manage the input focus ourselves */"
 			color="var(--color-primary-element)"
 			:data="emojiIndex"
@@ -155,7 +157,8 @@ This component allows the user to pick an emoji.
 			@select="select">
 			<template #searchTemplate="slotProps">
 				<div class="search__wrapper">
-					<NcTextField ref="search"
+					<NcTextField
+						ref="search"
 						class="search"
 						:value.sync="search"
 						:label="t('Search')"
@@ -164,16 +167,25 @@ This component allows the user to pick an emoji.
 						trailing-button-icon="close"
 						:trailing-button-label="t('Clear search')"
 						:show-trailing-button="search !== ''"
-						@trailing-button-click="clearSearch(); slotProps.onSearch(search);"
+						@trailing-button-click="
+							clearSearch()
+							slotProps.onSearch(search)
+						"
 						@update:value="slotProps.onSearch(search)" />
-					<NcColorPicker palette-only
+					<NcColorPicker
+						palette-only
 						:container="container"
 						:palette="skinTonePalette"
 						:value="currentColor.color"
 						@update:value="onChangeSkinTone">
-						<NcButton :aria-label="t('Skin tone')" type="tertiary-no-background">
+						<NcButton
+							:aria-label="t('Skin tone')"
+							type="tertiary-no-background">
 							<template #icon>
-								<IconCircle :style="{ color: currentColor.color }" :title="currentColor.name" :size="20" />
+								<IconCircle
+									:style="{ color: currentColor.color }"
+									:title="currentColor.name"
+									:size="20" />
 							</template>
 						</NcButton>
 					</NcColorPicker>
@@ -185,13 +197,15 @@ This component allows the user to pick an emoji.
 						{{ t('Selected') }}
 					</h3>
 				</div>
-				<Emoji class="emoji-selected"
+				<Emoji
+					class="emoji-selected"
 					:data="emojiIndex"
 					:emoji="selectedEmoji"
 					:native="true"
 					:size="32"
 					@click="unselect" />
-				<Emoji class="emoji-delete"
+				<Emoji
+					class="emoji-delete"
 					:data="emojiIndex"
 					emoji=":x:"
 					:native="true"
@@ -205,7 +219,10 @@ This component allows the user to pick an emoji.
 <script>
 import { Picker, Emoji, EmojiIndex } from 'emoji-mart-vue-fast'
 import { t } from '../../l10n.js'
-import { getCurrentSkinTone, setCurrentSkinTone } from '../../functions/emoji/emoji.ts'
+import {
+	getCurrentSkinTone,
+	setCurrentSkinTone,
+} from '../../functions/emoji/emoji.ts'
 import { Color } from '../../utils/GenColors.js'
 
 import data from 'emoji-mart-vue-fast/data/all.json'
@@ -319,11 +336,7 @@ export default {
 			default: 'body',
 		},
 	},
-	emits: [
-		'select',
-		'select-data',
-		'unselect',
-	],
+	emits: ['select', 'select-data', 'unselect'],
 
 	setup() {
 		// If this is the first instance of NcEmojiPicker - setup EmojiIndex
@@ -379,7 +392,9 @@ export default {
 		 * @param {string} color Color set
 		 */
 		onChangeSkinTone(color) {
-			const index = this.skinTonePalette.findIndex((tone) => tone.color.toLowerCase() === color.toLowerCase())
+			const index = this.skinTonePalette.findIndex(
+				(tone) => tone.color.toLowerCase() === color.toLowerCase(),
+			)
 			if (index > -1) {
 				this.currentSkinTone = index + 1
 				this.currentColor = this.skinTonePalette[index]
@@ -430,9 +445,7 @@ export default {
 				return
 			}
 			const picker = this.$refs.picker
-			const focusableList = picker.$el.querySelectorAll(
-				'button, input',
-			)
+			const focusableList = picker.$el.querySelectorAll('button, input')
 			const last = focusableList.length - 1
 			// escape early if only 1 or no elements to focus
 			if (focusableList.length <= 1) {
@@ -443,7 +456,10 @@ export default {
 				// Jump to first item when pressing tab on the latest item
 				event.preventDefault()
 				focusableList[0].focus()
-			} else if (event.shiftKey === true && event.target === focusableList[0]) {
+			} else if (
+				event.shiftKey === true &&
+				event.target === focusableList[0]
+			) {
 				// Jump to the last item if pressing shift+tab on the first item
 				event.preventDefault()
 				focusableList[last].focus()
@@ -537,13 +553,12 @@ export default {
 			text-align: center;
 
 			&:hover::before,
-			&.emoji-mart-emoji-selected::before{
+			&.emoji-mart-emoji-selected::before {
 				background-color: var(--color-background-hover) !important;
 				outline: 2px solid var(--color-primary-element);
 			}
 		}
 		button {
-
 			&:focus-visible {
 				background-color: var(--color-background-hover);
 				border: 2px solid var(--color-primary-element) !important;
@@ -551,7 +566,6 @@ export default {
 			}
 		}
 	}
-
 }
 </style>
 
@@ -567,7 +581,8 @@ export default {
 }
 
 .row-selected {
-	button, span {
+	button,
+	span {
 		vertical-align: middle;
 	}
 }

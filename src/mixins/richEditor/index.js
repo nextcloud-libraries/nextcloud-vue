@@ -33,12 +33,16 @@ const MENTION_START = /\B(?<![^a-z0-9_\-@.'\s])/.source
 // Capturing groups like: @user-id, @"guest/abc16def", @"federated_user/user-id", @"user-id with space"
 const MENTION_SIMPLE = /(@[a-z0-9_\-@.']+)/.source
 const MENTION_GUEST = /@&quot;guest\/[a-f0-9]+&quot;/.source
-const MENTION_PREFIXED = /@&quot;(?:federated_)?(?:group|team|user){1}\/[a-z0-9_\-@.' /:]+&quot;/.source
+const MENTION_PREFIXED =
+	/@&quot;(?:federated_)?(?:group|team|user){1}\/[a-z0-9_\-@.' /:]+&quot;/.source
 const MENTION_WITH_SPACE = /@&quot;[a-z0-9_\-@.' ]+&quot;/.source
 const MENTION_COMPLEX = `(${MENTION_GUEST}|${MENTION_PREFIXED}|${MENTION_WITH_SPACE})`
 // Concatenated regular expressions
 export const USERID_REGEX = new RegExp(`${MENTION_START}${MENTION_SIMPLE}`, 'gi')
-export const USERID_REGEX_WITH_SPACE = new RegExp(`${MENTION_START}${MENTION_COMPLEX}`, 'gi')
+export const USERID_REGEX_WITH_SPACE = new RegExp(
+	`${MENTION_START}${MENTION_COMPLEX}`,
+	'gi',
+)
 
 export default {
 	props: {
@@ -59,12 +63,14 @@ export default {
 			const sanitizedValue = escapeHtml(value)
 
 			// Extract all the userIds
-			const splitValue = sanitizedValue.split(USERID_REGEX)
-				.map(part => part.split(USERID_REGEX_WITH_SPACE)).flat()
+			const splitValue = sanitizedValue
+				.split(USERID_REGEX)
+				.map((part) => part.split(USERID_REGEX_WITH_SPACE))
+				.flat()
 
 			// Replace userIds by html
 			return splitValue
-				.map(part => {
+				.map((part) => {
 					// When splitting, the string is always putting the userIds
 					// on the uneven indexes. We only want to generate the mentions html
 					if (!part.startsWith('@')) {
@@ -78,8 +84,8 @@ export default {
 					return this.genSelectTemplate(id)
 				})
 				.join('')
-				.replace(/\n/gmi, '<br>')
-				.replace(/&amp;/gmi, '&')
+				.replace(/\n/gim, '<br>')
+				.replace(/&amp;/gim, '&')
 		},
 
 		/**
@@ -93,14 +99,14 @@ export default {
 			// Consecutive spaces in HTML tags should collapse
 			text = text.replace(/>\s+</g, '><')
 			// Replace break lines with new lines
-			text = text.replace(/<br>/gmi, '\n')
+			text = text.replace(/<br>/gim, '\n')
 			// Replace some html special characters
-			text = text.replace(/&nbsp;/gmi, ' ')
-			text = text.replace(/&amp;/gmi, '&')
+			text = text.replace(/&nbsp;/gim, ' ')
+			text = text.replace(/&amp;/gim, '&')
 
 			// Convert the mentions to text only
 			// first we replace divs with new lines
-			text = text.replace(/<\/div>/gmi, '\n')
+			text = text.replace(/<\/div>/gim, '\n')
 			// then we remove all leftover html
 			text = stripTags(text, '<div>')
 			text = stripTags(text)
@@ -127,13 +133,16 @@ export default {
 			// Fallback to @mention in case no data matches
 			if (!data) {
 				// return @value if matches MENTION_SIMPLE, @"value" otherwise
-				return [' ', '/', ':'].every(char => !value.includes(char))
+				return [' ', '/', ':'].every((char) => !value.includes(char))
 					? `@${value}`
 					: `@"${value}"`
 			}
 
 			// Return template and make sure we strip of new lines and tabs
-			return this.renderComponentHtml(data, NcMentionBubble).replace(/[\n\t]/gmi, '')
+			return this.renderComponentHtml(data, NcMentionBubble).replace(
+				/[\n\t]/gim,
+				'',
+			)
 		},
 
 		/**

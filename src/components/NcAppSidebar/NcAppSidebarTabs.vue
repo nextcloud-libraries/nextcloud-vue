@@ -28,7 +28,8 @@
 	<div class="app-sidebar-tabs">
 		<!-- tabs navigation -->
 		<!-- 33 and 34 code is for page up and page down -->
-		<div v-if="hasMultipleTabs"
+		<div
+			v-if="hasMultipleTabs"
 			role="tablist"
 			class="app-sidebar-tabs__nav"
 			@keydown.left.exact.prevent.stop="focusPreviousTab"
@@ -38,7 +39,8 @@
 			@keydown.end.exact.prevent.stop="focusLastTab"
 			@keydown.page-up.exact.prevent.stop="focusFirstTab"
 			@keydown.page-down.exact.prevent.stop="focusLastTab">
-			<NcCheckboxRadioSwitch v-for="tab in tabs"
+			<NcCheckboxRadioSwitch
+				v-for="tab in tabs"
 				:key="tab.id"
 				:aria-controls="`tab-${tab.id}`"
 				:aria-selected="String(activeTab === tab.id)"
@@ -64,7 +66,8 @@
 		</div>
 
 		<!-- tabs content -->
-		<div :class="{'app-sidebar-tabs__content--multiple': hasMultipleTabs}"
+		<div
+			:class="{ 'app-sidebar-tabs__content--multiple': hasMultipleTabs }"
 			class="app-sidebar-tabs__content">
 			<!-- @slot Tabs content - NcAppSidebarTab components or any content if there is no tabs -->
 			<slot />
@@ -145,7 +148,6 @@ export default {
 	},
 
 	methods: {
-
 		/**
 		 * Set the current active tab
 		 *
@@ -218,12 +220,12 @@ export default {
 		 * Update the current active tab
 		 */
 		updateActive() {
-			this.activeTab = this.active
-			&& this.tabs.some(tab => tab.id === this.active)
-				? this.active
-				: this.tabs.length > 0
-					? this.tabs[0].id
-					: ''
+			this.activeTab =
+				this.active && this.tabs.some((tab) => tab.id === this.active)
+					? this.active
+					: this.tabs.length > 0
+						? this.tabs[0].id
+						: ''
 		},
 
 		/**
@@ -278,17 +280,19 @@ export default {
 			border-radius: 0 !important;
 			.checkbox-content {
 				padding: var(--default-grid-baseline);
-				border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0 !important;
+				border-radius: var(--default-grid-baseline)
+					var(--default-grid-baseline) 0 0 !important;
 				margin: 0 !important;
 				border-bottom: var(--default-grid-baseline) solid transparent !important;
 				.checkbox-content__icon--checked > * {
 					color: var(--color-main-text) !important;
 				}
 			}
-			&.checkbox-radio-switch--checked .checkbox-radio-switch__content{
+			&.checkbox-radio-switch--checked .checkbox-radio-switch__content {
 				background: transparent !important;
 				color: var(--color-main-text) !important;
-				border-bottom: var(--default-grid-baseline) solid var(--color-primary-element) !important;
+				border-bottom: var(--default-grid-baseline) solid
+					var(--color-primary-element) !important;
 			}
 		}
 	}

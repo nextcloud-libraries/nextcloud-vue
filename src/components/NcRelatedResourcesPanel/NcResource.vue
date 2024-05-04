@@ -22,14 +22,15 @@
 
 <template>
 	<li class="resource">
-		<NcButton class="resource__button"
+		<NcButton
+			class="resource__button"
 			:aria-label="labelTranslated"
 			type="tertiary"
 			:to="route"
 			:href="route ? null : url">
 			<template #icon>
 				<div class="resource__icon">
-					<img :src="icon">
+					<img :src="icon" />
 				</div>
 			</template>
 			{{ name }}
@@ -67,7 +68,9 @@ export default {
 
 	data() {
 		return {
-			labelTranslated: t('Open link to "{resourceName}"', { resourceName: this.name }),
+			labelTranslated: t('Open link to "{resourceName}"', {
+				resourceName: this.name,
+			}),
 		}
 	},
 

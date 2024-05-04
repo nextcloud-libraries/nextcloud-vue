@@ -4,7 +4,7 @@
  * @param  {Node}  elem The element to check
  * @return {Object}     A set of booleans for each side of the element
  */
-const isOutOfViewport = function(elem) {
+const isOutOfViewport = function (elem) {
 	// Get element's bounding
 	const bounding = elem.getBoundingClientRect()
 	const contentHeight = document.documentElement.clientHeight

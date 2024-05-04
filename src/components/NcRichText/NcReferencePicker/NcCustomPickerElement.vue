@@ -3,7 +3,11 @@
 </template>
 
 <script>
-import { renderCustomPickerElement, isCustomPickerElementRegistered, destroyCustomPickerElement } from './../../../functions/reference/customPickerElements.js'
+import {
+	renderCustomPickerElement,
+	isCustomPickerElementRegistered,
+	destroyCustomPickerElement,
+} from './../../../functions/reference/customPickerElements.js'
 
 export default {
 	name: 'NcCustomPickerElement',
@@ -16,10 +20,7 @@ export default {
 			required: true,
 		},
 	},
-	emits: [
-		'cancel',
-		'submit',
-	],
+	emits: ['cancel', 'submit'],
 	data() {
 		return {
 			isRegistered: isCustomPickerElementRegistered(this.provider.id),
@@ -42,11 +43,20 @@ export default {
 				this.$refs.domElement.innerHTML = ''
 			}
 
-			const renderFunctionResult = renderCustomPickerElement(this.$refs.domElement, { providerId: this.provider.id, accessible: false })
+			const renderFunctionResult = renderCustomPickerElement(
+				this.$refs.domElement,
+				{
+					providerId: this.provider.id,
+					accessible: false,
+				},
+			)
 			// this works whether renderCustomPickerElement returns a promise or a value
-			Promise.resolve(renderFunctionResult).then(result => {
+			Promise.resolve(renderFunctionResult).then((result) => {
 				this.renderResult = result
-				if (this.renderResult.object?._isVue && this.renderResult.object?.$on) {
+				if (
+					this.renderResult.object?._isVue &&
+					this.renderResult.object?.$on
+				) {
 					this.renderResult.object.$on('submit', this.onSubmit)
 					this.renderResult.object.$on('cancel', this.onCancel)
 				}

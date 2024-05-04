@@ -16,12 +16,20 @@ const anyLinkProvider = {
 
 // only get the provider list once, even if functions of this file are imported multiple times by different apps/components
 if (!window._vue_richtext_reference_providers) {
-	window._vue_richtext_reference_providers = loadState('core', 'reference-provider-list', [])
+	window._vue_richtext_reference_providers = loadState(
+		'core',
+		'reference-provider-list',
+		[],
+	)
 }
 
 // single timestamps object used by every entity in the page
 if (!window._vue_richtext_reference_provider_timestamps) {
-	window._vue_richtext_reference_provider_timestamps = loadState('core', 'reference-provider-timestamps', {})
+	window._vue_richtext_reference_provider_timestamps = loadState(
+		'core',
+		'reference-provider-timestamps',
+		{},
+	)
 }
 
 /**
@@ -32,18 +40,24 @@ export function getProvider(providerId) {
 	if (providerId === anyLinkProviderId) {
 		return anyLinkProvider
 	}
-	return getProviders().find(p => p.id === providerId)
+	return getProviders().find((p) => p.id === providerId)
 }
 
 /**
  * @return {Array} Raw provider list as it was provided by the server
  */
 export function getProviders() {
-	return window._vue_richtext_reference_providers.filter(p => {
+	return window._vue_richtext_reference_providers.filter((p) => {
 		// avoid providers with no associated search provider and no custom component registered
-		const keep = (!!p.search_providers_ids && p.search_providers_ids.length > 0) || isCustomPickerElementRegistered(p.id)
+		const keep =
+			(!!p.search_providers_ids && p.search_providers_ids.length > 0) ||
+			isCustomPickerElementRegistered(p.id)
 		if (!keep) {
-			console.debug('[smart picker]', p.id, 'reference provider is discoverable but does not have any related search provider or custom picker component registered')
+			console.debug(
+				'[smart picker]',
+				p.id,
+				'reference provider is discoverable but does not have any related search provider or custom picker component registered',
+			)
 		}
 		return keep
 	})
@@ -60,25 +74,23 @@ export function getProviders() {
 export function sortProviders(providerList) {
 	const timestamps = window._vue_richtext_reference_provider_timestamps
 
-	return providerList.sort((a, b) => {
-		return a.order === b.order
-			? 0
-			: a.order > b.order
-				? 1
-				: -1
-	}).sort((a, b) => {
-		const ta = timestamps[a.id]
-		const tb = timestamps[b.id]
-		return ta === tb
-			? 0
-			: tb === undefined
-				? -1
-				: ta === undefined
-					? 1
-					: ta > tb
-						? -1
-						: 1
-	})
+	return providerList
+		.sort((a, b) => {
+			return a.order === b.order ? 0 : a.order > b.order ? 1 : -1
+		})
+		.sort((a, b) => {
+			const ta = timestamps[a.id]
+			const tb = timestamps[b.id]
+			return ta === tb
+				? 0
+				: tb === undefined
+					? -1
+					: ta === undefined
+						? 1
+						: ta > tb
+							? -1
+							: 1
+		})
 }
 
 /**
@@ -94,7 +106,7 @@ export function searchProvider(query, limit = null) {
 	const escapedQuery = query.replace(/[/\-\\^$*+?.()|[\]{}]/g, '\\$&')
 	const regexp = new RegExp(escapedQuery, 'i')
 	const sortedProviders = sortProviders(providers)
-	const filteredSortedProviders = sortedProviders.filter(p => {
+	const filteredSortedProviders = sortedProviders.filter((p) => {
 		return p.title.match(regexp)
 	})
 	const searchResult = limit
@@ -117,9 +129,10 @@ export function touchProvider(providerId) {
 	const params = {
 		timestamp,
 	}
-	const url = generateOcsUrl('references/provider/{providerId}', { providerId })
-	axios.put(url, params)
-		.then((response) => {
-			window._vue_richtext_reference_provider_timestamps[providerId] = timestamp
-		})
+	const url = generateOcsUrl('references/provider/{providerId}', {
+		providerId,
+	})
+	axios.put(url, params).then((response) => {
+		window._vue_richtext_reference_provider_timestamps[providerId] = timestamp
+	})
 }

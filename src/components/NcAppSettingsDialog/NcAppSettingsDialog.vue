@@ -140,25 +140,29 @@ export default {
 </docs>
 
 <template>
-	<NcDialog v-if="open"
+	<NcDialog
+		v-if="open"
 		:navigation-aria-label="settingsNavigationAriaLabel"
 		v-bind="dialogProperties"
 		@update:open="handleCloseModal">
 		<template v-if="hasNavigation" #navigation="{ isCollapsed }">
-			<ul v-if="!isCollapsed"
-				class="navigation-list">
+			<ul v-if="!isCollapsed" class="navigation-list">
 				<li v-for="section in sections" :key="section.id">
-					<a :aria-current="`${section.id === selectedSection}`"
+					<a
+						:aria-current="`${section.id === selectedSection}`"
 						:class="{
 							'navigation-list__link': true,
-							'navigation-list__link--active': section.id === selectedSection,
+							'navigation-list__link--active':
+								section.id === selectedSection,
 							'navigation-list__link--icon': hasNavigationIcons,
 						}"
 						:href="`#settings-section_${section.id}`"
 						tabindex="0"
 						@click.prevent="handleSettingsNavigationClick(section.id)"
 						@keydown.enter="handleSettingsNavigationClick(section.id)">
-						<div v-if="hasNavigationIcons" class="navigation-list__link-icon">
+						<div
+							v-if="hasNavigationIcons"
+							class="navigation-list__link-icon">
 							<NcVNodes v-if="section.icon" :vnodes="section.icon" />
 						</div>
 						<span class="navigation-list__link-text">
@@ -184,7 +188,6 @@ import debounce from 'debounce'
 import Vue from 'vue'
 
 export default {
-
 	name: 'NcAppSettingsDialog',
 
 	components: {
@@ -238,7 +241,6 @@ export default {
 			type: Array,
 			default: () => [],
 		},
-
 	},
 
 	emits: ['update:open'],
@@ -308,7 +310,6 @@ export default {
 			this.scroller.addEventListener('scroll', this.handleScroll)
 			this.addedScrollListener = true
 		}
-
 	},
 
 	methods: {
@@ -321,16 +322,23 @@ export default {
 		registerSection(id, name, icon) {
 			// Check for the uniqueness of section names
 			if (this.sections.some(({ id: otherId }) => id === otherId)) {
-				throw new Error(`Duplicate section id found: ${id}. Settings navigation sections must have unique section ids.`)
+				throw new Error(
+					`Duplicate section id found: ${id}. Settings navigation sections must have unique section ids.`,
+				)
 			}
 			if (this.sections.some(({ name: otherName }) => name === otherName)) {
-				Vue.util.warn(`Duplicate section name found: ${name}. Settings navigation sections must have unique section names.`)
+				Vue.util.warn(
+					`Duplicate section name found: ${name}. Settings navigation sections must have unique section names.`,
+				)
 			}
 
 			const newSections = [...this.sections, { id, name, icon }]
 			// Sort sections by order in slots
 			this.sections = newSections.sort(({ id: idA }, { id: idB }) => {
-				const indexOf = (id) => this.$slots.default?.findIndex?.(vnode => vnode?.componentOptions?.propsData?.id === id) ?? -1
+				const indexOf = (id) =>
+					this.$slots.default?.findIndex?.(
+						(vnode) => vnode?.componentOptions?.propsData?.id === id,
+					) ?? -1
 				return indexOf(idA) - indexOf(idB)
 			})
 
@@ -389,7 +397,7 @@ export default {
 		},
 
 		// Remove selected section once the user starts scrolling
-		unfocusNavigationItem: debounce(function() {
+		unfocusNavigationItem: debounce(function () {
 			this.selectedSection = ''
 			if (document.activeElement.className.includes('navigation-list__link')) {
 				document.activeElement.blur()
@@ -397,7 +405,6 @@ export default {
 		}, 300),
 	},
 }
-
 </script>
 
 <style lang="scss" scoped>

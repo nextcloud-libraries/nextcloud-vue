@@ -84,7 +84,8 @@ It extends and styles an HTMLTextAreaElement.
 <template>
 	<div class="textarea" :class="{ 'textarea--disabled': disabled }">
 		<div class="textarea__main-wrapper">
-			<textarea v-bind="$attrs"
+			<textarea
+				v-bind="$attrs"
 				:id="computedId"
 				ref="input"
 				class="textarea__input"
@@ -93,32 +94,42 @@ It extends and styles an HTMLTextAreaElement.
 				:placeholder="computedPlaceholder"
 				:aria-describedby="ariaDescribedby"
 				aria-live="polite"
-				:class="[inputClass,
+				:class="[
+					inputClass,
 					{
 						'textarea__input--label-outside': labelOutside,
 						'textarea__input--success': success,
 						'textarea__input--error': error,
-					}]"
+					},
+				]"
 				:style="{ resize: resize }"
 				:value="value"
 				v-on="$listeners"
 				@input="handleInput" />
 			<!-- Label -->
-			<label v-if="!labelOutside && isValidLabel"
+			<label
+				v-if="!labelOutside && isValidLabel"
 				class="textarea__label"
 				:for="computedId">
 				{{ label }}
 			</label>
 		</div>
-		<p v-if="helperText.length > 0"
+		<p
+			v-if="helperText.length > 0"
 			:id="`${inputName}-helper-text`"
 			class="textarea__helper-text-message"
 			:class="{
 				'textarea__helper-text-message--error': error,
 				'textarea__helper-text-message--success': success,
 			}">
-			<Check v-if="success" class="textarea__helper-text-message__icon" :size="18" />
-			<AlertCircle v-else-if="error" class="textarea__helper-text-message__icon" :size="18" />
+			<Check
+				v-if="success"
+				class="textarea__helper-text-message__icon"
+				:size="18" />
+			<AlertCircle
+				v-else-if="error"
+				class="textarea__helper-text-message__icon"
+				:size="18" />
 			{{ helperText }}
 		</p>
 	</div>
@@ -232,17 +243,18 @@ export default {
 		resize: {
 			type: String,
 			default: 'both',
-			validator: (value) => ['both', 'vertical', 'horizontal', 'none'].includes(value),
+			validator: (value) =>
+				['both', 'vertical', 'horizontal', 'none'].includes(value),
 		},
 	},
 
-	emits: [
-		'update:value',
-	],
+	emits: ['update:value'],
 
 	computed: {
 		computedId() {
-			return this.$attrs.id && this.$attrs.id !== '' ? this.$attrs.id : this.inputName
+			return this.$attrs.id && this.$attrs.id !== ''
+				? this.$attrs.id
+				: this.inputName
 		},
 
 		inputName() {
@@ -260,7 +272,9 @@ export default {
 		isValidLabel() {
 			const isValidLabel = this.label || this.labelOutside
 			if (!isValidLabel) {
-				console.warn('You need to add a label to the NcInputField component. Either use the prop label or use an external one, as per the example in the documentation.')
+				console.warn(
+					'You need to add a label to the NcInputField component. Either use the prop label or use an external one, as per the example in the documentation.',
+				)
 			}
 			return isValidLabel
 		},
@@ -304,7 +318,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .textarea {
 	position: relative;
 	width: 100%;
@@ -344,7 +357,7 @@ export default {
 		}
 
 		// Hide placeholder while not focussed -> show label instead (only if internal label is used)
-		&:not(:focus,&--label-outside)::placeholder {
+		&:not(:focus, &--label-outside)::placeholder {
 			opacity: 0;
 		}
 
@@ -361,16 +374,26 @@ export default {
 		}
 
 		&--success {
-			border-color: var(--color-success) !important; //Override hover border color
+			border-color: var(
+				--color-success
+			) !important; //Override hover border color
 			&:focus-visible {
-				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
+				box-shadow:
+					rgb(248, 250, 252) 0px 0px 0px 2px,
+					var(--color-primary-element) 0px 0px 0px 4px,
+					rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 			}
 		}
 
 		&--error {
-			border-color: var(--color-error) !important; //Override hover border color
+			border-color: var(
+				--color-error
+			) !important; //Override hover border color
 			&:focus-visible {
-				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
+				box-shadow:
+					rgb(248, 250, 252) 0px 0px 0px 2px,
+					var(--color-primary-element) 0px 0px 0px 4px,
+					rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 			}
 		}
 	}
@@ -390,7 +413,12 @@ export default {
 		// forward events to input
 		pointer-events: none;
 		// Position transition
-		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick), background-color var(--animation-quick) var(--animation-slow);
+		transition:
+			height var(--animation-quick),
+			inset-block-start var(--animation-quick),
+			font-size var(--animation-quick),
+			color var(--animation-quick),
+			background-color var(--animation-quick) var(--animation-slow);
 	}
 
 	&__input:focus + &__label,
@@ -404,7 +432,11 @@ export default {
 		padding-inline: 4px;
 		margin-inline-start: 8px;
 
-		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick);
+		transition:
+			height var(--animation-quick),
+			inset-block-start var(--animation-quick),
+			font-size var(--animation-quick),
+			color var(--animation-quick);
 	}
 
 	&__helper-text-message {

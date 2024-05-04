@@ -63,23 +63,25 @@ This is a simple progress bar component.
 </docs>
 
 <template>
-	<span v-if="type === 'circular'"
+	<span
+		v-if="type === 'circular'"
 		role="progressbar"
 		:aria-valuenow="value"
 		:style="{ '--progress-bar-height': height + 'px' }"
 		:class="{ 'progress-bar--error': error }"
 		class="progress-bar progress-bar--circular">
-		<svg :height="height"
-			:width="height">
-			<circle stroke="currentColor"
+		<svg :height="height" :width="height">
+			<circle
+				stroke="currentColor"
 				fill="transparent"
 				:stroke-dasharray="`${progress * circumference} ${(1 - progress) * circumference}`"
-				:stroke-dashoffset="0.25*circumference"
+				:stroke-dashoffset="0.25 * circumference"
 				:stroke-width="stroke"
 				:r="radiusNormalized"
 				:cx="radius"
 				:cy="radius" />
-			<circle stroke="var(--color-background-darker)"
+			<circle
+				stroke="var(--color-background-darker)"
 				fill="transparent"
 				:stroke-dasharray="`${(1 - progress) * circumference} ${progress * circumference}`"
 				:stroke-dashoffset="(0.25 - progress) * circumference"
@@ -89,17 +91,17 @@ This is a simple progress bar component.
 				:cy="radius" />
 		</svg>
 	</span>
-	<progress v-else
+	<progress
+		v-else
 		class="progress-bar progress-bar--linear vue"
 		:class="{ 'progress-bar--error': error }"
-		:style="{'--progress-bar-height': height + 'px' }"
+		:style="{ '--progress-bar-height': height + 'px' }"
 		:value="value"
 		max="100" />
 </template>
 
 <script>
 export default {
-
 	name: 'NcProgressBar',
 
 	props: {
@@ -110,8 +112,7 @@ export default {
 			type: Number,
 			default: 0,
 			validator(value) {
-				return value >= 0
-					&& value <= 100
+				return value >= 0 && value <= 100
 			},
 		},
 		/**
@@ -126,7 +127,9 @@ export default {
 			type: [String, Number],
 			default: 'small',
 			validator(value) {
-				return ['small', 'medium'].includes(value) || typeof value === 'number'
+				return (
+					['small', 'medium'].includes(value) || typeof value === 'number'
+				)
 			},
 		},
 		/**
@@ -188,7 +191,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .progress-bar {
 	display: block;
 	height: var(--progress-bar-height);
@@ -209,11 +211,17 @@ export default {
 			background-color: transparent;
 		}
 		&::-webkit-progress-value {
-			background: var(--progress-bar-color, var(--gradient-primary-background));
+			background: var(
+				--progress-bar-color,
+				var(--gradient-primary-background)
+			);
 			border-radius: calc(var(--progress-bar-height) / 2);
 		}
 		&::-moz-progress-bar {
-			background: var(--progress-bar-color, var(--gradient-primary-background));
+			background: var(
+				--progress-bar-color,
+				var(--gradient-primary-background)
+			);
 			border-radius: calc(var(--progress-bar-height) / 2);
 		}
 	}
@@ -232,5 +240,4 @@ export default {
 		}
 	}
 }
-
 </style>

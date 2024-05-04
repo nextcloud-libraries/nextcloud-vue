@@ -156,7 +156,8 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 </docs>
 
 <template>
-	<Dropdown ref="popover"
+	<Dropdown
+		ref="popover"
 		:distance="10"
 		:arrow-padding="10"
 		v-bind="$attrs"
@@ -167,7 +168,10 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 		@update:shown="internalShown = $event"
 		@apply-show="afterShow"
 		@apply-hide="afterHide">
-		<NcPopoverTriggerProvider v-slot="slotProps" :shown="internalShown" :popup-role="popupRole">
+		<NcPopoverTriggerProvider
+			v-slot="slotProps"
+			:shown="internalShown"
+			:popup-role="popupRole">
 			<!-- This will be the popover target (for the events and position) -->
 			<slot name="trigger" v-bind="slotProps" />
 		</NcPopoverTriggerProvider>
@@ -213,7 +217,10 @@ export default {
 		popupRole: {
 			type: String,
 			default: undefined,
-			validator: (value) => ['menu', 'listbox', 'tree', 'grid', 'dialog', 'true'].includes(value),
+			validator: (value) =>
+				['menu', 'listbox', 'tree', 'grid', 'dialog', 'true'].includes(
+					value,
+				),
 		},
 
 		popoverBaseClass: {
@@ -280,9 +287,12 @@ export default {
 		checkTriggerA11y() {
 			if (window.OC?.debug) {
 				const triggerContainer = this.getPopoverTriggerContainerElement()
-				const requiredTriggerButton = triggerContainer.querySelector('[aria-expanded]')
+				const requiredTriggerButton =
+					triggerContainer.querySelector('[aria-expanded]')
 				if (!requiredTriggerButton) {
-					Vue.util.warn('It looks like you are using a custom button as a <NcPopover> or other popover #trigger. If you are not using <NcButton> as a trigger, you need to bind attrs from the #trigger slot props to your custom button. See <NcPopover> docs for an example.')
+					Vue.util.warn(
+						'It looks like you are using a custom button as a <NcPopover> or other popover #trigger. If you are not using <NcButton> as a trigger, you need to bind attrs from the #trigger slot props to your custom button. See <NcPopover> docs for an example.',
+					)
 				}
 			}
 		},
@@ -294,7 +304,8 @@ export default {
 		removeFloatingVueAriaDescribedBy() {
 			// When the popover is shown, floating-vue mutates the root elements of the trigger adding data-popper-shown and incorrect aria-describedby attributes.
 			const triggerContainer = this.getPopoverTriggerContainerElement()
-			const triggerElements = triggerContainer.querySelectorAll('[data-popper-shown]')
+			const triggerElements =
+				triggerContainer.querySelectorAll('[data-popper-shown]')
 			for (const el of triggerElements) {
 				el.removeAttribute('aria-describedby')
 			}
@@ -416,32 +427,31 @@ export default {
 </script>
 
 <style lang="scss">
-
 .resize-observer {
-	position:absolute;
-	top:0;
-	left:0;
-	z-index:-1;
-	width:100%;
-	height:100%;
-	border:none;
-	background-color:transparent;
-	pointer-events:none;
-	display:block;
-	overflow:hidden;
-	opacity:0
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	border: none;
+	background-color: transparent;
+	pointer-events: none;
+	display: block;
+	overflow: hidden;
+	opacity: 0;
 }
 
 .resize-observer object {
-	display:block;
-	position:absolute;
-	top:0;
-	left:0;
-	height:100%;
-	width:100%;
-	overflow:hidden;
-	pointer-events:none;
-	z-index:-1
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	pointer-events: none;
+	z-index: -1;
 }
 
 $arrow-width: 10px;
@@ -499,7 +509,9 @@ $arrow-width: 10px;
 
 		&[aria-hidden='true'] {
 			visibility: hidden;
-			transition: opacity var(--animation-quick), visibility var(--animation-quick);
+			transition:
+				opacity var(--animation-quick),
+				visibility var(--animation-quick);
 			opacity: 0;
 		}
 
@@ -510,5 +522,4 @@ $arrow-width: 10px;
 		}
 	}
 }
-
 </style>

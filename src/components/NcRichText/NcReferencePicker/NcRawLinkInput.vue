@@ -1,7 +1,8 @@
 <template>
 	<div class="raw-link">
 		<div class="input-wrapper">
-			<NcTextField ref="url-input"
+			<NcTextField
+				ref="url-input"
 				:value.sync="inputValue"
 				:show-trailing-button="inputValue !== ''"
 				:label="inputPlaceholder"
@@ -12,15 +13,16 @@
 				<LinkVariantIcon v-else :size="16" />
 			</NcTextField>
 		</div>
-		<NcReferenceWidget v-if="reference !== null"
+		<NcReferenceWidget
+			v-if="reference !== null"
 			class="reference-widget"
 			:reference="reference" />
-		<NcEmptyContent v-else
-			class="raw-link--empty-content">
+		<NcEmptyContent v-else class="raw-link--empty-content">
 			<template #icon>
-				<img v-if="provider.icon_url"
+				<img
+					v-if="provider.icon_url"
 					class="provider-icon"
-					:src="provider.icon_url">
+					:src="provider.icon_url" />
 				<LinkVariantIcon v-else />
 			</template>
 		</NcEmptyContent>
@@ -58,9 +60,7 @@ export default {
 			required: true,
 		},
 	},
-	emits: [
-		'submit',
-	],
+	emits: ['submit'],
 	data() {
 		return {
 			inputValue: '',
@@ -103,11 +103,18 @@ export default {
 		updateReference() {
 			this.loading = true
 			this.abortController = new AbortController()
-			axios.get(generateOcsUrl('references/resolve', 2) + '?reference=' + encodeURIComponent(this.inputValue), {
-				signal: this.abortController.signal,
-			})
+			axios
+				.get(
+					generateOcsUrl('references/resolve', 2) +
+						'?reference=' +
+						encodeURIComponent(this.inputValue),
+					{
+						signal: this.abortController.signal,
+					},
+				)
 				.then((response) => {
-					this.reference = response.data.ocs.data.references[this.inputValue]
+					this.reference =
+						response.data.ocs.data.references[this.inputValue]
 				})
 				.catch((error) => {
 					console.error(error)

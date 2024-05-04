@@ -33,7 +33,7 @@ let initialized = false
  *
  * @return {object}
  */
-export default function() {
+export default function () {
 	if (!initialized) {
 		initialize()
 	}

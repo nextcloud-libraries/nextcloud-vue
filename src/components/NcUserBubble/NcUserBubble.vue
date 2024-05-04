@@ -77,14 +77,16 @@ export default {
 
 </docs>
 <template>
-	<component :is="isPopoverComponent"
+	<component
+		:is="isPopoverComponent"
 		trigger="hover focus"
 		:shown="open"
 		class="user-bubble__wrapper"
 		@update:open="onOpenChange">
 		<!-- Main userbubble structure -->
 		<template #trigger="{ attrs }">
-			<component :is="isLinkComponent"
+			<component
+				:is="isLinkComponent"
 				class="user-bubble__content"
 				:style="styles.content"
 				:href="hasUrl ? url : null"
@@ -92,11 +94,14 @@ export default {
 				v-bind="attrs"
 				@click="onClick">
 				<!-- NcAvatar -->
-				<NcAvatar :url="isCustomAvatar && isAvatarUrl ? avatarImage : undefined"
-					:icon-class="isCustomAvatar && !isAvatarUrl ? avatarImage : undefined"
+				<NcAvatar
+					:url="isCustomAvatar && isAvatarUrl ? avatarImage : undefined"
+					:icon-class="
+						isCustomAvatar && !isAvatarUrl ? avatarImage : undefined
+					"
 					:user="user"
 					:display-name="displayName"
-					:size="size - (margin * 2)"
+					:size="size - margin * 2"
 					:style="styles.avatar"
 					:disable-tooltip="true"
 					:disable-menu="true"
@@ -170,7 +175,10 @@ export default {
 			default: undefined,
 			validator: (url) => {
 				try {
-					url = new URL(url, url?.startsWith?.('/') ? window.location.href : undefined)
+					url = new URL(
+						url,
+						url?.startsWith?.('/') ? window.location.href : undefined,
+					)
 					return true
 				} catch (error) {
 					return false
@@ -207,10 +215,7 @@ export default {
 			default: 2,
 		},
 	},
-	emits: [
-		'click',
-		'update:open',
-	],
+	emits: ['click', 'update:open'],
 	computed: {
 		/**
 		 * If userbubble is empty, let's NOT
@@ -221,9 +226,7 @@ export default {
 		 * @return {string} 'Popover' or 'UserBubbleDiv'
 		 */
 		isPopoverComponent() {
-			return !this.popoverEmpty
-				? 'NcPopover'
-				: 'NcUserBubbleDiv'
+			return !this.popoverEmpty ? 'NcPopover' : 'NcUserBubbleDiv'
 		},
 
 		/**
@@ -282,7 +285,9 @@ export default {
 	},
 	mounted() {
 		if (!this.displayName && !this.user) {
-			Vue.util.warn('[NcUserBubble] At least `displayName` or `user` property should be set.')
+			Vue.util.warn(
+				'[NcUserBubble] At least `displayName` or `user` property should be set.',
+			)
 		}
 	},
 	methods: {
@@ -345,5 +350,4 @@ export default {
 		padding-left: 4px;
 	}
 }
-
 </style>

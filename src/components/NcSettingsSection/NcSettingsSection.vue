@@ -42,10 +42,13 @@ This component is to be used in the settings section of nextcloud.
 </docs>
 
 <template>
-	<div class="settings-section" :class="{'settings-section--limit-width': limitWidth}">
+	<div
+		class="settings-section"
+		:class="{ 'settings-section--limit-width': limitWidth }">
 		<h2 class="settings-section__name">
 			{{ name }}
-			<a v-if="hasDocUrl"
+			<a
+				v-if="hasDocUrl"
 				:href="docUrl"
 				class="settings-section__info"
 				:title="docNameTranslated"
@@ -55,8 +58,7 @@ This component is to be used in the settings section of nextcloud.
 				<HelpCircle :size="20" />
 			</a>
 		</h2>
-		<p v-if="hasDescription"
-			class="settings-section__desc">
+		<p v-if="hasDescription" class="settings-section__desc">
 			{{ description }}
 		</p>
 		<slot />
@@ -117,7 +119,6 @@ export default {
 		},
 	},
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -156,17 +157,18 @@ $maxWidth: 900px;
 		margin-left: 0;
 		color: var(--color-text-maxcontrast);
 
-		&:hover, &:focus, &:active {
+		&:hover,
+		&:focus,
+		&:active {
 			color: var(--color-main-text);
 		}
 	}
 
 	&__desc {
-		margin-top: -.2em;
+		margin-top: -0.2em;
 		margin-bottom: 1em;
 		color: var(--color-text-maxcontrast);
 		max-width: $maxWidth;
 	}
 }
-
 </style>

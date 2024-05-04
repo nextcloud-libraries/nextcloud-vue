@@ -65,7 +65,13 @@ describe('NcRichContenteditable', () => {
 
 	it('should emit "paste" on past', async () => {
 		const { contentEditable, wrapper } = mountNcRichContenteditable()
-		await contentEditable().trigger('paste', { clipboardData: { getData: () => 'PASTED_TEXT', files: [], items: {} } })
+		await contentEditable().trigger('paste', {
+			clipboardData: {
+				getData: () => 'PASTED_TEXT',
+				files: [],
+				items: {},
+			},
+		})
 		expect(wrapper.emitted('paste')).toBeDefined()
 		expect(wrapper.emitted('paste')).toHaveLength(1)
 	})
@@ -106,7 +112,13 @@ describe('NcRichContenteditable', () => {
 		})
 
 		await contentEditable().trigger('focus')
-		await contentEditable().trigger('paste', { clipboardData: { getData: () => 'PASTED_TEXT', files: [], items: {} } })
+		await contentEditable().trigger('paste', {
+			clipboardData: {
+				getData: () => 'PASTED_TEXT',
+				files: [],
+				items: {},
+			},
+		})
 		await contentEditable().trigger('blur')
 
 		expect(handlers.focus).toHaveBeenCalledTimes(1)

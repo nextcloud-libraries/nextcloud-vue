@@ -21,11 +21,10 @@
  -->
 
 <template>
-	<div id="app-settings"
-		v-click-outside="clickOutsideConfig"
-		:class="{ open }">
+	<div id="app-settings" v-click-outside="clickOutsideConfig" :class="{ open }">
 		<div id="app-settings__header">
-			<button class="settings-button"
+			<button
+				class="settings-button"
 				type="button"
 				:aria-expanded="open ? 'true' : 'false'"
 				aria-controls="app-settings__content"
@@ -57,9 +56,7 @@ export default {
 	components: {
 		Cog,
 	},
-	mixins: [
-		clickOutsideOptions,
-	],
+	mixins: [clickOutsideOptions],
 	props: {
 		name: {
 			type: String,
@@ -74,10 +71,7 @@ export default {
 	},
 	computed: {
 		clickOutsideConfig() {
-			return [
-				this.closeMenu,
-				this.clickOutsideOptions,
-			]
+			return [this.closeMenu, this.clickOutsideOptions]
 		},
 	},
 	methods: {
@@ -97,7 +91,8 @@ export default {
 
 	&__header {
 		box-sizing: border-box;
-		margin: 0 $app-navigation-settings-margin $app-navigation-settings-margin $app-navigation-settings-margin;
+		margin: 0 $app-navigation-settings-margin $app-navigation-settings-margin
+			$app-navigation-settings-margin;
 
 		.settings-button {
 			display: flex;
@@ -162,5 +157,4 @@ export default {
 	max-height: 0 !important;
 	padding: 0 10px !important;
 }
-
 </style>

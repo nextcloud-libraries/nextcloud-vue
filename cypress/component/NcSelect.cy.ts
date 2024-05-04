@@ -2,35 +2,36 @@ import { mount } from 'cypress/vue2'
 import NcSelect from '../../src/components/NcSelect/NcSelect.vue'
 
 describe('NcSelect', () => {
-	const mountSelect = () => mount(NcSelect, {
-		propsData: {
-			userSelect: true,
-			inputClass: 'cypress-search-input',
-			options: [
-				{
-					id: '0-john',
-					displayName: 'John',
-					isNoUser: false,
-					subname: 'john@example.org',
-					icon: '',
-				},
-				{
-					id: '0-emma',
-					displayName: 'Emma',
-					isNoUser: false,
-					subname: 'emma@example.org',
-					icon: '',
-				},
-				{
-					id: '0-olivia',
-					displayName: 'Olivia',
-					isNoUser: false,
-					subname: 'olivia@example.org',
-					icon: '',
-				},
-			],
-		},
-	})
+	const mountSelect = () =>
+		mount(NcSelect, {
+			propsData: {
+				userSelect: true,
+				inputClass: 'cypress-search-input',
+				options: [
+					{
+						id: '0-john',
+						displayName: 'John',
+						isNoUser: false,
+						subname: 'john@example.org',
+						icon: '',
+					},
+					{
+						id: '0-emma',
+						displayName: 'Emma',
+						isNoUser: false,
+						subname: 'emma@example.org',
+						icon: '',
+					},
+					{
+						id: '0-olivia',
+						displayName: 'Olivia',
+						isNoUser: false,
+						subname: 'olivia@example.org',
+						icon: '',
+					},
+				],
+			},
+		})
 
 	it('has options', () => {
 		mountSelect()
