@@ -1,30 +1,38 @@
 interface WidgetRenderProperties {
-	richObjectType: string;
-	richObject: object;
-	accessible: boolean;
-	interactive: boolean;
+	richObjectType: string
+	richObject: object
+	accessible: boolean
+	interactive: boolean
 }
 
-type widgetRenderCallback = (el: HTMLElement, properties: WidgetRenderProperties) => void;
-type widgetDestroyCallback = (el: HTMLElement) => void;
+type widgetRenderCallback = (
+	el: HTMLElement,
+	properties: WidgetRenderProperties,
+) => void
+type widgetDestroyCallback = (el: HTMLElement) => void
 
 interface WidgetProps {
-	id: string;
-	hasInteractiveView: boolean;
-	fullWidth: boolean;
-	callback: widgetRenderCallback;
-	onDestroy: widgetDestroyCallback;
+	id: string
+	hasInteractiveView: boolean
+	fullWidth: boolean
+	callback: widgetRenderCallback
+	onDestroy: widgetDestroyCallback
 }
 
 interface WidgetPropsOptional {
-	hasInteractiveView?: boolean;
-	fullWidth?: boolean;
+	hasInteractiveView?: boolean
+	fullWidth?: boolean
 }
 
 declare global {
 	interface Window {
-		_vue_richtext_widgets: Record<string, WidgetProps>;
-		_registerWidget: (id: string, callback: widgetRenderCallback, onDestroy: widgetDestroyCallback, props: WidgetPropsOptional) => void;
+		_vue_richtext_widgets: Record<string, WidgetProps>
+		_registerWidget: (
+			id: string,
+			callback: widgetRenderCallback,
+			onDestroy: widgetDestroyCallback,
+			props: WidgetPropsOptional,
+		) => void
 	}
 }
 
@@ -45,7 +53,12 @@ export const hasFullWidth = (id: string) => {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const registerWidget = (id: string, callback: widgetRenderCallback, onDestroy = (el: HTMLElement) => {}, props: WidgetPropsOptional) => {
+const registerWidget = (
+	id: string,
+	callback: widgetRenderCallback,
+	onDestroy = (el: HTMLElement) => {},
+	props: WidgetPropsOptional,
+) => {
 	const propsWithDefaults = {
 		hasInteractiveView: true,
 		fullWidth: false,
@@ -65,17 +78,27 @@ const registerWidget = (id: string, callback: widgetRenderCallback, onDestroy = 
 	}
 }
 
-const renderWidget = (el: HTMLElement, { richObjectType, richObject, accessible, interactive }) => {
+const renderWidget = (
+	el: HTMLElement,
+	{ richObjectType, richObject, accessible, interactive },
+) => {
 	if (richObjectType === 'open-graph') {
 		return
 	}
 
 	if (!window._vue_richtext_widgets[richObjectType]) {
-		console.error('Widget for rich object type ' + richObjectType + ' not registered')
+		console.error(
+			'Widget for rich object type ' + richObjectType + ' not registered',
+		)
 		return
 	}
 
-	window._vue_richtext_widgets[richObjectType].callback(el, { richObjectType, richObject, accessible, interactive })
+	window._vue_richtext_widgets[richObjectType].callback(el, {
+		richObjectType,
+		richObject,
+		accessible,
+		interactive,
+	})
 }
 
 const destroyWidget = (richObjectType: string, el: HTMLElement) => {
@@ -90,7 +113,12 @@ const destroyWidget = (richObjectType: string, el: HTMLElement) => {
 	window._vue_richtext_widgets[richObjectType].onDestroy(el)
 }
 
-window._registerWidget = (id: string, callback: widgetRenderCallback, onDestroy: widgetDestroyCallback, props: WidgetPropsOptional) => {
+window._registerWidget = (
+	id: string,
+	callback: widgetRenderCallback,
+	onDestroy: widgetDestroyCallback,
+	props: WidgetPropsOptional,
+) => {
 	registerWidget(id, callback, onDestroy, props)
 }
 

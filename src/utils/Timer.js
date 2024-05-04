@@ -30,25 +30,25 @@ export default function timer(callback, delay) {
 	let remaining = delay
 	let running
 
-	this.start = function() {
+	this.start = function () {
 		running = true
 		started = new Date()
 		id = setTimeout(callback, remaining)
 	}
 
-	this.pause = function() {
+	this.pause = function () {
 		running = false
 		clearTimeout(id)
 		remaining -= new Date() - started
 	}
 
-	this.clear = function() {
+	this.clear = function () {
 		running = false
 		clearTimeout(id)
 		remaining = 0
 	}
 
-	this.getTimeLeft = function() {
+	this.getTimeLeft = function () {
 		if (running) {
 			this.pause()
 			this.start()
@@ -57,7 +57,7 @@ export default function timer(callback, delay) {
 		return remaining
 	}
 
-	this.getStateRunning = function() {
+	this.getStateRunning = function () {
 		return running
 	}
 

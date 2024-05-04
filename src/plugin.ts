@@ -21,13 +21,17 @@ import * as NcDirectives from './directives/index.js'
 export const NextcloudVuePlugin: PluginObject<never> = {
 	install(Vue) {
 		// Install components
-		Object.entries(NcComponents as { [key: string]: DefineComponent }).forEach(([name, component]) => {
-			Vue.component(component.name || name, component)
-		})
+		Object.entries(NcComponents as { [key: string]: DefineComponent }).forEach(
+			([name, component]) => {
+				Vue.component(component.name || name, component)
+			},
+		)
 
 		// Install directives
-		Object.entries(NcDirectives as { [key: string]: Directive }).forEach(([name, directive]) => {
-			Vue.directive(name, directive)
-		})
+		Object.entries(NcDirectives as { [key: string]: Directive }).forEach(
+			([name, directive]) => {
+				Vue.directive(name, directive)
+			},
+		)
 	},
 }

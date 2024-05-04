@@ -30,7 +30,9 @@ export default defineConfig({
 			// Disable spell checking to prevent rendering differences
 			on('before:browser:launch', (browser, launchOptions) => {
 				if (browser.family === 'chromium' && browser.name !== 'electron') {
-					launchOptions.preferences.default['browser.enable_spellchecking'] = false
+					launchOptions.preferences.default[
+						'browser.enable_spellchecking'
+					] = false
 					return launchOptions
 				}
 
@@ -44,7 +46,6 @@ export default defineConfig({
 					return launchOptions
 				}
 			})
-
 		},
 
 		devServer: {
@@ -60,28 +61,31 @@ export default defineConfig({
 						return 'export default ""'
 					},
 				}
-				const config = await createAppConfig({}, {
-					inlineCSS: true,
-					replace: {
-						PRODUCTION: 'false',
-						SCOPE_VERSION,
-					},
-					config: {
-						plugins: [vueDocsPlugin],
-						css: {
-							devSourcemap: true,
-							preprocessorOptions: {
-								scss: {
-									additionalData: `@use 'sass:math'; $scope_version:${SCOPE_VERSION}; @import 'variables'; @import 'material-icons';`,
-									sourceMapContents: false,
-									includePaths: [
-										resolve(__dirname, 'src/assets'),
-									],
+				const config = await createAppConfig(
+					{},
+					{
+						inlineCSS: true,
+						replace: {
+							PRODUCTION: 'false',
+							SCOPE_VERSION,
+						},
+						config: {
+							plugins: [vueDocsPlugin],
+							css: {
+								devSourcemap: true,
+								preprocessorOptions: {
+									scss: {
+										additionalData: `@use 'sass:math'; $scope_version:${SCOPE_VERSION}; @import 'variables'; @import 'material-icons';`,
+										sourceMapContents: false,
+										includePaths: [
+											resolve(__dirname, 'src/assets'),
+										],
+									},
 								},
 							},
 						},
 					},
-				})({ mode: 'production', command: 'serve' })
+				)({ mode: 'production', command: 'serve' })
 
 				return config
 			},

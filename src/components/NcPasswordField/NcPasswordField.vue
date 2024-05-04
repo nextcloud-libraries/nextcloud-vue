@@ -96,7 +96,8 @@ export default {
 </docs>
 
 <template>
-	<NcInputField v-bind="propsAndAttrsToForward"
+	<NcInputField
+		v-bind="propsAndAttrsToForward"
 		ref="inputField"
 		:type="isPasswordHidden ? 'password' : 'text'"
 		:trailing-button-label="trailingButtonLabelPassword"
@@ -117,7 +118,6 @@ export default {
 </template>
 
 <script>
-
 import Eye from 'vue-material-design-icons/Eye.vue'
 import EyeOff from 'vue-material-design-icons/EyeOff.vue'
 import NcInputField from '../NcInputField/NcInputField.vue'
@@ -173,7 +173,7 @@ export default {
 		/**
 		 * Controls whether to display the trailing button.
 		 */
-		 showTrailingButton: {
+		showTrailingButton: {
 			type: Boolean,
 			default: true,
 		},
@@ -215,11 +215,7 @@ export default {
 		},
 	},
 
-	emits: [
-		'valid',
-		'invalid',
-		'update:value',
-	],
+	emits: ['valid', 'invalid', 'update:value'],
 
 	data() {
 		return {
@@ -260,7 +256,9 @@ export default {
 				...this.$attrs,
 				// Proxy original NcInputField's props
 				...Object.fromEntries(
-					Object.entries(this.$props).filter(([key]) => NcInputFieldProps.has(key)),
+					Object.entries(this.$props).filter(([key]) =>
+						NcInputFieldProps.has(key),
+					),
 				),
 			}
 		},
@@ -308,9 +306,12 @@ export default {
 		togglePasswordVisibility() {
 			this.isPasswordHidden = !this.isPasswordHidden
 		},
-		checkPassword: debounce(async function(password) {
+		checkPassword: debounce(async function (password) {
 			try {
-				const { data } = await axios.post(generateOcsUrl('apps/password_policy/api/v1/validate'), { password })
+				const { data } = await axios.post(
+					generateOcsUrl('apps/password_policy/api/v1/validate'),
+					{ password },
+				)
 				this.isValid = data.ocs.data.passed
 				if (data.ocs.data.passed) {
 					this.internalHelpMessage = t('Password is secure')

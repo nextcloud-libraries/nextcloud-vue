@@ -68,7 +68,9 @@ describe('NcDateTime.vue', () => {
 		})
 
 		expect(wrapper.element.hasAttribute('title')).toBe(true)
-		expect(wrapper.element.textContent).toMatch(wrapper.element.getAttribute('title'))
+		expect(wrapper.element.textContent).toMatch(
+			wrapper.element.getAttribute('title'),
+		)
 	})
 
 	describe('Work with different locales', () => {
@@ -94,7 +96,9 @@ describe('NcDateTime.vue', () => {
 			})
 
 			expect(wrapper.element.hasAttribute('title')).toBe(true)
-			expect(wrapper.element.getAttribute('title')).toMatch('23.06.23, 14:30:00')
+			expect(wrapper.element.getAttribute('title')).toMatch(
+				'23.06.23, 14:30:00',
+			)
 		})
 	})
 

@@ -38,40 +38,58 @@ const NcLink = {
 		},
 	},
 	render(h) {
-		return h('a', {
-			attrs: {
-				href: this.href,
-				rel: 'noopener noreferrer',
-				target: '_blank',
-				class: 'rich-text--external-link',
+		return h(
+			'a',
+			{
+				attrs: {
+					href: this.href,
+					rel: 'noopener noreferrer',
+					target: '_blank',
+					class: 'rich-text--external-link',
+				},
 			},
-		}, [this.href.trim()])
+			[this.href.trim()],
+		)
 	},
 }
 
-export const remarkAutolink = function({ autolink, useMarkdown, useExtendedMarkdown }) {
-	return function(tree) {
+export const remarkAutolink = function ({
+	autolink,
+	useMarkdown,
+	useExtendedMarkdown,
+}) {
+	return function (tree) {
 		// remark-gfm has its own autolink parser which can not be disabled
 		// and thus a local one is not needed
 		if (useExtendedMarkdown || !useMarkdown || !autolink) {
 			return
 		}
 
-		visit(tree, (node) => node.type === 'text', (node, index, parent) => {
-			let parsed = parseUrl(node.value)
-			parsed = parsed.map((n) => {
-				if (typeof n === 'string') {
-					return u('text', n)
-				}
+		visit(
+			tree,
+			(node) => node.type === 'text',
+			(node, index, parent) => {
+				let parsed = parseUrl(node.value)
+				parsed = parsed
+					.map((n) => {
+						if (typeof n === 'string') {
+							return u('text', n)
+						}
 
-				return u('link', {
-					url: n.props.href,
-				}, [u('text', n.props.href)])
-			}).filter((x) => x)
+						return u(
+							'link',
+							{
+								url: n.props.href,
+							},
+							[u('text', n.props.href)],
+						)
+					})
+					.filter((x) => x)
 
-			parent.children.splice(index, 1, ...parsed.flat())
-			return [SKIP, index + parsed.flat().length]
-		})
+				parent.children.splice(index, 1, ...parsed.flat())
+				return [SKIP, index + parsed.flat().length]
+			},
+		)
 	}
 }
 
@@ -87,8 +105,13 @@ export const parseUrl = (text) => {
 			textBefore += href[0]
 			href = href.substring(1).trim()
 		}
-		const lastChar = href[(href.length - 1)]
-		if (lastChar === '.' || lastChar === ',' || lastChar === ';' || (match[0][0] === '(' && lastChar === ')')) {
+		const lastChar = href[href.length - 1]
+		if (
+			lastChar === '.' ||
+			lastChar === ',' ||
+			lastChar === ';' ||
+			(match[0][0] === '(' && lastChar === ')')
+		) {
 			href = href.substring(0, href.length - 1)
 			textAfter = lastChar
 		}
@@ -101,7 +124,9 @@ export const parseUrl = (text) => {
 		match = URL_PATTERN_AUTOLINK.exec(text)
 	}
 	list.push(text.substring(start))
-	const joinedText = list.map((item) => typeof item === 'string' ? item : item.props.href).join('')
+	const joinedText = list
+		.map((item) => (typeof item === 'string' ? item : item.props.href))
+		.join('')
 	if (text === joinedText) {
 		return list
 	}
@@ -125,8 +150,10 @@ export const getRoute = (router, url) => {
 	 * |               |___root___|_optional_|__app-base__|_________router-path_______|
 	 */
 
-	const removePrefix = (str, prefix) => str.startsWith(prefix) ? str.slice(prefix.length) : str
-	const removePrefixes = (str, ...prefixes) => prefixes.reduce((acc, prefix) => removePrefix(acc, prefix), str)
+	const removePrefix = (str, prefix) =>
+		str.startsWith(prefix) ? str.slice(prefix.length) : str
+	const removePrefixes = (str, ...prefixes) =>
+		prefixes.reduce((acc, prefix) => removePrefix(acc, prefix), str)
 
 	// Router is not defined in the app => not an app route
 	if (!router) {
@@ -141,13 +168,20 @@ export const getRoute = (router, url) => {
 	}
 
 	// URL relative to the instance root
-	const relativeUrl = isAbsoluteURL ? removePrefixes(url, getBaseUrl(), '/index.php') : url
+	const relativeUrl = isAbsoluteURL
+		? removePrefixes(url, getBaseUrl(), '/index.php')
+		: url
 
 	// Router base relative to the instance root (app-base above)
-	const relativeRouterBase = removePrefixes(router.history.base, getRootUrl(), '/index.php')
+	const relativeRouterBase = removePrefixes(
+		router.history.base,
+		getRootUrl(),
+		'/index.php',
+	)
 
 	// Root route may have an empty '' path, fallback to '/'
-	const potentialRouterPath = removePrefixes(relativeUrl, relativeRouterBase) || '/'
+	const potentialRouterPath =
+		removePrefixes(relativeUrl, relativeRouterBase) || '/'
 
 	// Check if there is actually matching route in the router for this path
 	const route = router.resolve(potentialRouterPath).route

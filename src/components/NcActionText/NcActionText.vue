@@ -23,24 +23,25 @@
 
 <template>
 	<li class="action" :role="isInSemanticMenu && 'presentation'">
-		<span class="action-text"
-			@click="onClick">
+		<span class="action-text" @click="onClick">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
-				<span v-if="icon !== ''"
+				<span
+					v-if="icon !== ''"
 					:class="[isIconUrl ? 'action-text__icon--url' : icon]"
 					aria-hidden="true"
-					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+					:style="{
+						backgroundImage: isIconUrl ? `url(${icon})` : null,
+					}"
 					class="action-text__icon" />
 			</slot>
 
 			<!-- long text with name -->
-			<span v-if="name"
-				class="action-text__longtext-wrapper">
+			<span v-if="name" class="action-text__longtext-wrapper">
 				<strong class="action-text__name">
 					{{ name }}
 				</strong>
-				<br>
+				<br />
 				<!-- white space is shown on longtext, so we can't
 				put {{ text }} on a new line for code readability -->
 				<span class="action-text__longtext" v-text="text" />
@@ -49,7 +50,8 @@
 			<!-- long text only -->
 			<!-- white space is shown on longtext, so we can't
 			put {{ text }} on a new line for code readability -->
-			<span v-else-if="isLongText"
+			<span
+				v-else-if="isLongText"
 				class="action-text__longtext"
 				v-text="text" />
 

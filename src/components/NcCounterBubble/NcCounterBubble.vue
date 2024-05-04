@@ -20,7 +20,7 @@
  -
  -->
 
- <docs>
+<docs>
 
 ### Normal Counter
 
@@ -43,14 +43,12 @@
 </docs>
 
 <template>
-	<div :class="counterClassObject"
-		class="counter-bubble__counter">
+	<div :class="counterClassObject" class="counter-bubble__counter">
 		<slot />
 	</div>
 </template>
 
 <script>
-
 export default {
 	name: 'NcCounterBubble',
 
@@ -84,12 +82,11 @@ export default {
 		},
 	},
 }
-
 </script>
 
 <style lang="scss" scoped>
 .counter-bubble__counter {
-	font-size: calc(var(--default-font-size) * .8);
+	font-size: calc(var(--default-font-size) * 0.8);
 	overflow: hidden;
 	width: fit-content;
 	max-width: $clickable-area;
@@ -127,5 +124,4 @@ export default {
 		box-shadow: inset 0 0 0 2px;
 	}
 }
-
 </style>

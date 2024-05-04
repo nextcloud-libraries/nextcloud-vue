@@ -138,8 +138,8 @@ describe('NcAppNavigation.vue', () => {
 			const navigation = findNavigation(wrapper)
 
 			expect(
-				navigation.attributes('role') === 'navigation'
-				|| navigation.element.tagName === 'NAV',
+				navigation.attributes('role') === 'navigation' ||
+					navigation.element.tagName === 'NAV',
 			).toBeTruthy()
 		})
 
@@ -148,7 +148,9 @@ describe('NcAppNavigation.vue', () => {
 			const navigation = findNavigation(wrapper)
 			const togglebutton = findToggleButton(wrapper)
 
-			expect(togglebutton.attributes('aria-controls')).toBe(navigation.attributes('id'))
+			expect(togglebutton.attributes('aria-controls')).toBe(
+				navigation.attributes('id'),
+			)
 		})
 
 		it('has correct aria attributes and inert on open navigation', () => {

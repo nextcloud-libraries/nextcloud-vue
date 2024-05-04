@@ -70,14 +70,16 @@ When using an error type,
 </docs>
 
 <template>
-	<div class="notecard"
+	<div
+		class="notecard"
 		:class="`notecard--${type}`"
 		:role="shouldShowAlert ? 'alert' : 'note'">
 		<!-- @slot Manually provide icon -->
 		<slot name="icon">
-			<component :is="icon"
+			<component
+				:is="icon"
 				class="notecard__icon"
-				:class="{'notecard__icon--heading': heading}"
+				:class="{ 'notecard__icon--heading': heading }"
 				:fill-color="color" />
 		</slot>
 		<div>
@@ -105,7 +107,8 @@ export default {
 		type: {
 			type: String,
 			default: 'warning',
-			validator: type => ['success', 'info', 'warning', 'error'].includes(type),
+			validator: (type) =>
+				['success', 'info', 'warning', 'error'].includes(type),
 		},
 		showAlert: {
 			type: Boolean,
@@ -122,30 +125,30 @@ export default {
 		},
 		icon() {
 			switch (this.type) {
-			case 'error':
-				return AlertDecagram
-			case 'success':
-				return CheckboxMarkedCircle
-			case 'info':
-				return Information
-			case 'warning':
-				return Alert
-			default:
-				return Alert
+				case 'error':
+					return AlertDecagram
+				case 'success':
+					return CheckboxMarkedCircle
+				case 'info':
+					return Information
+				case 'warning':
+					return Alert
+				default:
+					return Alert
 			}
 		},
 		color() {
 			switch (this.type) {
-			case 'error':
-				return 'var(--color-error)'
-			case 'success':
-				return 'var(--color-success)'
-			case 'info':
-				return 'var(--color-info)'
-			case 'warning':
-				return 'var(--color-warning)'
-			default:
-				return 'var(--color-warning)'
+				case 'error':
+					return 'var(--color-error)'
+				case 'success':
+					return 'var(--color-success)'
+				case 'info':
+					return 'var(--color-info)'
+				case 'warning':
+					return 'var(--color-warning)'
+				default:
+					return 'var(--color-warning)'
 			}
 		},
 	},

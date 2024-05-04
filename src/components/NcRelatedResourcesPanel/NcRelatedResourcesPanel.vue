@@ -46,8 +46,7 @@ export default {
 
 <template>
 	<div>
-		<NcTeamResources :provider-id="providerId"
-			:item-id="itemId" />
+		<NcTeamResources :provider-id="providerId" :item-id="itemId" />
 
 		<div v-if="appEnabled && isVisible" class="related-resources">
 			<div class="related-resources__header">
@@ -55,7 +54,8 @@ export default {
 				<p>{{ subline }}</p>
 			</div>
 
-			<NcResource v-for="resource in resources"
+			<NcResource
+				v-for="resource in resources"
 				:key="resource.itemId"
 				class="related-resources__entry"
 				:icon="resource.icon"
@@ -128,7 +128,9 @@ export default {
 		},
 		description: {
 			type: String,
-			default: t('Anything shared with the same group of people will show up here'),
+			default: t(
+				'Anything shared with the same group of people will show up here',
+			),
 		},
 		/**
 		 * If this element is used on a primary element set to true for primary styling.
@@ -139,10 +141,7 @@ export default {
 		},
 	},
 
-	emits: [
-		'has-error',
-		'has-resources',
-	],
+	emits: ['has-error', 'has-resources'],
 
 	data() {
 		return {
@@ -162,7 +161,9 @@ export default {
 		},
 		subline() {
 			if (this.error) {
-				return t('Error getting related resources. Please contact your system administrator if you have any questions.')
+				return t(
+					'Error getting related resources. Please contact your system administrator if you have any questions.',
+				)
 			}
 			return this.description
 		},
@@ -193,12 +194,15 @@ export default {
 				itemId = this.itemId
 			}
 
-			return generateOcsUrl('/apps/related_resources/related/{providerId}?itemId={itemId}&resourceType={resourceType}&limit={limit}&format=json', {
-				providerId,
-				itemId,
-				resourceType: this.resourceType,
-				limit: this.limit,
-			})
+			return generateOcsUrl(
+				'/apps/related_resources/related/{providerId}?itemId={itemId}&resourceType={resourceType}&limit={limit}&format=json',
+				{
+					providerId,
+					itemId,
+					resourceType: this.resourceType,
+					limit: this.limit,
+				},
+			)
 		},
 	},
 
@@ -261,7 +265,6 @@ export default {
 <style lang="scss" scoped>
 .related-resources {
 	&__header {
-
 		h5 {
 			font-weight: bold;
 			margin-bottom: 6px;

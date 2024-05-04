@@ -49,7 +49,10 @@ export default {
 				return
 			}
 			const capabilities = getCapabilities()
-			if (!Object.prototype.hasOwnProperty.call(capabilities, 'user_status') || !capabilities.user_status.enabled) {
+			if (
+				!Object.prototype.hasOwnProperty.call(capabilities, 'user_status') ||
+				!capabilities.user_status.enabled
+			) {
 				return
 			}
 
@@ -59,18 +62,21 @@ export default {
 			}
 
 			try {
-				const { data } = await axios.get(generateOcsUrl('apps/user_status/api/v1/statuses/{userId}', { userId }))
-				const {
-					status,
-					message,
-					icon,
-				} = data.ocs.data
+				const { data } = await axios.get(
+					generateOcsUrl('apps/user_status/api/v1/statuses/{userId}', {
+						userId,
+					}),
+				)
+				const { status, message, icon } = data.ocs.data
 				this.userStatus.status = status
 				this.userStatus.message = message || ''
 				this.userStatus.icon = icon || ''
 				this.hasStatus = true
 			} catch (e) {
-				if (e.response.status === 404 && e.response.data.ocs?.data?.length === 0) {
+				if (
+					e.response.status === 404 &&
+					e.response.data.ocs?.data?.length === 0
+				) {
 					// User just has no status set, so don't log it
 					return
 				}

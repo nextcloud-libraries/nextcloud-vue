@@ -22,14 +22,20 @@
 <template>
 	<div class="autocomplete-result">
 		<!-- Avatar or icon -->
-		<div :class="[icon, `autocomplete-result__icon--${avatarUrl ? 'with-avatar' : ''}`]"
-			:style="avatarUrl ? { backgroundImage: `url(${avatarUrl})` } : null "
+		<div
+			:class="[
+				icon,
+				`autocomplete-result__icon--${avatarUrl ? 'with-avatar' : ''}`,
+			]"
+			:style="avatarUrl ? { backgroundImage: `url(${avatarUrl})` } : null"
 			class="autocomplete-result__icon">
-			<span v-if="status.icon"
+			<span
+				v-if="status.icon"
 				class="autocomplete-result__status autocomplete-result__status--icon">
-				{{ status && status.icon || '' }}
+				{{ (status && status.icon) || '' }}
 			</span>
-			<NcUserStatusIcon v-else-if="status.status && status.status !== 'offline'"
+			<NcUserStatusIcon
+				v-else-if="status.status && status.status !== 'offline'"
 				class="autocomplete-result__status"
 				:status="status.status" />
 		</div>
@@ -186,5 +192,4 @@ export default {
 		color: var(--color-text-maxcontrast);
 	}
 }
-
 </style>

@@ -406,39 +406,41 @@ export default {
 	methods: {
 		renderPlaintext(h) {
 			const context = this
-			const placeholders = this.text.split(/(\{[a-z\-_.0-9]+\})/ig).map(function(entry, index, list) {
-				const matches = entry.match(/^\{([a-z\-_.0-9]+)\}$/i)
-				// just return plain string nodes as text
-				if (!matches) {
-					return prepareTextNode({ h, context }, entry)
-				}
-				// return component instance if argument is an object
-				const argumentId = matches[1]
-				const argument = context.arguments[argumentId]
-				if (typeof argument === 'object') {
-					const { component, props } = argument
-					return h(component, {
-						props,
-						class: 'rich-text--component',
-					})
-				}
-				if (argument) {
-					return h('span', { class: 'rich-text--fallback' }, argument)
-				}
-				return entry
-			})
+			const placeholders = this.text
+				.split(/(\{[a-z\-_.0-9]+\})/gi)
+				.map(function (entry, index, list) {
+					const matches = entry.match(/^\{([a-z\-_.0-9]+)\}$/i)
+					// just return plain string nodes as text
+					if (!matches) {
+						return prepareTextNode({ h, context }, entry)
+					}
+					// return component instance if argument is an object
+					const argumentId = matches[1]
+					const argument = context.arguments[argumentId]
+					if (typeof argument === 'object') {
+						const { component, props } = argument
+						return h(component, {
+							props,
+							class: 'rich-text--component',
+						})
+					}
+					if (argument) {
+						return h('span', { class: 'rich-text--fallback' }, argument)
+					}
+					return entry
+				})
 			return h('div', { class: 'rich-text--wrapper' }, [
 				h('div', {}, placeholders.flat()),
 				this.referenceLimit > 0
 					? h('div', { class: 'rich-text--reference-widget' }, [
-						h(NcReferenceList, {
-							props: {
-								text: this.text,
-								referenceData: this.references,
-								interactive: this.referenceInteractive,
-							},
-						}),
-					])
+							h(NcReferenceList, {
+								props: {
+									text: this.text,
+									referenceData: this.references,
+									interactive: this.referenceInteractive,
+								},
+							}),
+						])
 					: null,
 			])
 		},
@@ -455,7 +457,9 @@ export default {
 				.use(remark2rehype, {
 					handlers: {
 						component(toHast, node) {
-							return toHast(node, node.component, { value: node.value })
+							return toHast(node, node.component, {
+								value: node.value,
+							})
 						},
 					},
 				})
@@ -468,55 +472,85 @@ export default {
 				.use(rehype2react, {
 					createElement: (tag, attrs, children) => {
 						// unescape special symbol "<" for simple text nodes
-						children = children?.map(child => typeof child === 'string'
-							? child.replace(/&lt;/gmi, '<')
-							: child,
+						children = children?.map((child) =>
+							typeof child === 'string'
+								? child.replace(/&lt;/gim, '<')
+								: child,
 						)
 
 						if (!tag.startsWith('#')) {
 							if (this.useExtendedMarkdown) {
 								let nestedNode = null
-								if (tag === 'li' && Array.isArray(children)
-									&& children[0].tag === 'input'
-									&& children[0].data.attrs.type === 'checkbox') {
+								if (
+									tag === 'li' &&
+									Array.isArray(children) &&
+									children[0].tag === 'input' &&
+									children[0].data.attrs.type === 'checkbox'
+								) {
 									const [inputNode, ...labelParts] = children
 
-									const nestedNodeIndex = labelParts.findIndex((child) => ['ul', 'ol', 'li', 'blockquote', 'pre'].includes(child.tag))
+									const nestedNodeIndex = labelParts.findIndex(
+										(child) =>
+											[
+												'ul',
+												'ol',
+												'li',
+												'blockquote',
+												'pre',
+											].includes(child.tag),
+									)
 									if (nestedNodeIndex !== -1) {
 										nestedNode = labelParts[nestedNodeIndex]
 										labelParts.splice(nestedNodeIndex)
 									}
 
-									const id = this.parentId + '-markdown-input-' + GenRandomId(5)
-									const inputComponent = h(NcCheckboxRadioSwitch, {
-										attrs: {
-											...inputNode.data.attrs,
-											id,
-											disabled: !this.interactive,
-										},
-										on: {
-											'update:checked': () => {
-												this.$emit('interact:todo', id)
+									const id =
+										this.parentId +
+										'-markdown-input-' +
+										GenRandomId(5)
+									const inputComponent = h(
+										NcCheckboxRadioSwitch,
+										{
+											attrs: {
+												...inputNode.data.attrs,
+												id,
+												disabled: !this.interactive,
+											},
+											on: {
+												'update:checked': () => {
+													this.$emit('interact:todo', id)
+												},
 											},
 										},
-									}, labelParts)
+										labelParts,
+									)
 
-									return h(tag, attrs, [inputComponent, nestedNode])
+									return h(tag, attrs, [
+										inputComponent,
+										nestedNode,
+									])
 								}
 							}
 
 							if (tag === 'a') {
-								const route = getRoute(this.$router, attrs.attrs.href)
+								const route = getRoute(
+									this.$router,
+									attrs.attrs.href,
+								)
 								if (route) {
 									delete attrs.attrs.href
 									delete attrs.attrs.target
 
-									return h(RouterLink, {
-										...attrs,
-										props: {
-											to: route,
+									return h(
+										RouterLink,
+										{
+											...attrs,
+											props: {
+												to: route,
+											},
 										},
-									}, children)
+										children,
+									)
 								}
 							}
 
@@ -525,7 +559,14 @@ export default {
 
 						const placeholder = this.arguments[tag.slice(1)]
 						if (!placeholder) {
-							return h('span', { ...{ attrs }, ...{ class: 'rich-text--fallback' } }, [`{${tag.slice(1)}}`])
+							return h(
+								'span',
+								{
+									...{ attrs },
+									...{ class: 'rich-text--fallback' },
+								},
+								[`{${tag.slice(1)}}`],
+							)
 						}
 
 						if (!placeholder.component) {
@@ -544,28 +585,32 @@ export default {
 					},
 					prefix: false,
 				})
-				.processSync(this.text
-					// escape special symbol "<" to not treat text as HTML
-					.replace(/</gmi, '&lt;')
-					// unescape special symbol ">" to parse blockquotes
-					.replace(/&gt;/gmi, '>'),
-				)
-				.result
+				.processSync(
+					this.text
+						// escape special symbol "<" to not treat text as HTML
+						.replace(/</gim, '&lt;')
+						// unescape special symbol ">" to parse blockquotes
+						.replace(/&gt;/gim, '>'),
+				).result
 
-			return h('div', { class: 'rich-text--wrapper rich-text--wrapper-markdown' }, [
-				renderedMarkdown,
-				this.referenceLimit > 0
-					? h('div', { class: 'rich-text--reference-widget' }, [
-						h(NcReferenceList, {
-							props: {
-								text: this.text,
-								referenceData: this.references,
-								interactive: this.referenceInteractive,
-							},
-						}),
-					])
-					: null,
-			])
+			return h(
+				'div',
+				{ class: 'rich-text--wrapper rich-text--wrapper-markdown' },
+				[
+					renderedMarkdown,
+					this.referenceLimit > 0
+						? h('div', { class: 'rich-text--reference-widget' }, [
+								h(NcReferenceList, {
+									props: {
+										text: this.text,
+										referenceData: this.references,
+										interactive: this.referenceInteractive,
+									},
+								}),
+							])
+						: null,
+				],
+			)
 		},
 	},
 	render(h) {
@@ -582,5 +627,4 @@ export default {
 a:not(.rich-text--component) {
 	text-decoration: underline;
 }
-
 </style>

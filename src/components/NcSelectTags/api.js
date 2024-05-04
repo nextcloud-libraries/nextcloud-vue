@@ -42,7 +42,7 @@ const xmlToJson = (xml) => {
 		for (let i = 0; i < xml.childNodes.length; i++) {
 			const item = xml.childNodes.item(i)
 			const nodeName = item.nodeName
-			if (typeof (obj[nodeName]) === 'undefined') {
+			if (typeof obj[nodeName] === 'undefined') {
 				obj[nodeName] = xmlToJson(item)
 			} else {
 				if (typeof obj[nodeName].push === 'undefined') {
@@ -60,7 +60,7 @@ const xmlToJson = (xml) => {
 const parseXml = (xml) => {
 	let dom = null
 	try {
-		dom = (new DOMParser()).parseFromString(xml, 'text/xml')
+		dom = new DOMParser().parseFromString(xml, 'text/xml')
 	} catch (e) {
 		console.error('Failed to parse xml document', e)
 	}
@@ -88,7 +88,7 @@ const xmlToTagList = (xml) => {
 	return result
 }
 
-const searchTags = async function() {
+const searchTags = async function () {
 	if (window.NextcloudVueDocs) {
 		return Promise.resolve(xmlToTagList(window.NextcloudVueDocs.tags))
 	}
@@ -110,6 +110,4 @@ const searchTags = async function() {
 	return xmlToTagList(result.data)
 }
 
-export {
-	searchTags,
-}
+export { searchTags }

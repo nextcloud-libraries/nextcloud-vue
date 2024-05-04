@@ -33,7 +33,9 @@ describe('richEditor.js', () => {
 
 	describe('renderContent', () => {
 		it('sanitizes the input', () => {
-			const editor = shallowMount(TestEditor, { propsData: { userData: {} } })
+			const editor = shallowMount(TestEditor, {
+				propsData: { userData: {} },
+			})
 			const input = 'Some <table>html</table>'
 			const output = editor.vm.renderContent(input)
 
@@ -41,7 +43,9 @@ describe('richEditor.js', () => {
 		})
 
 		it('converts newline to hard line breaks', () => {
-			const editor = shallowMount(TestEditor, { propsData: { userData: {} } })
+			const editor = shallowMount(TestEditor, {
+				propsData: { userData: {} },
+			})
 			const input = 'hard\nbreak'
 			const output = editor.vm.renderContent(input)
 
@@ -49,7 +53,9 @@ describe('richEditor.js', () => {
 		})
 
 		it('no duplicated ampersand (from Linkify)', () => {
-			const editor = shallowMount(TestEditor, { propsData: { userData: {} } })
+			const editor = shallowMount(TestEditor, {
+				propsData: { userData: {} },
+			})
 			const input = 'hello &'
 			const output = editor.vm.renderContent(input)
 
@@ -57,7 +63,9 @@ describe('richEditor.js', () => {
 		})
 
 		it('keeps mentions without user data', () => {
-			const editor = shallowMount(TestEditor, { propsData: { userData: {} } })
+			const editor = shallowMount(TestEditor, {
+				propsData: { userData: {} },
+			})
 			const input = 'hello @foobar'
 			const output = editor.vm.renderContent(input)
 
@@ -84,7 +92,9 @@ describe('richEditor.js', () => {
 		})
 
 		it('keep mentions with special characters', () => {
-			const editor = shallowMount(TestEditor, { propsData: { userData: {} } })
+			const editor = shallowMount(TestEditor, {
+				propsData: { userData: {} },
+			})
 			const inputs = [
 				'hello @foo@bar - hello @"bar @ foo"',
 				'hello @foo@bar @"bar @ foo" @foobar @foo-bar',

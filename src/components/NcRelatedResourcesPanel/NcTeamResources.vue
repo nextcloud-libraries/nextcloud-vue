@@ -3,7 +3,8 @@
 		<h5 class="team-resources__header">
 			{{ t('Related team resources') }}
 		</h5>
-		<details v-for="team in teamResources"
+		<details
+			v-for="team in teamResources"
 			:key="team.teamId"
 			name="Team resources"
 			class="related-team"
@@ -14,7 +15,8 @@
 					<AccountGroup :size="20" />
 					{{ team.displayName }}
 				</h5>
-				<NcButton type="tertiary"
+				<NcButton
+					type="tertiary"
 					:href="team.link"
 					:aria-label="t('View team')"
 					:title="t('View team')">
@@ -23,31 +25,40 @@
 					</template>
 				</NcButton>
 
-				<ChevronUp v-if="open(team.teamId)"
-					:size="20" />
-				<ChevronDown v-else
-					:size="20" />
+				<ChevronUp v-if="open(team.teamId)" :size="20" />
+				<ChevronDown v-else :size="20" />
 			</summary>
 
 			<div>
-				<div v-for="provider in teamProviders(team.teamId)"
+				<div
+					v-for="provider in teamProviders(team.teamId)"
 					:key="provider.id"
 					class="related-team-provider">
 					<h6 v-if="provider.resources.length > 0">
 						{{ provider.name }}
 					</h6>
 					<ul>
-						<li v-for="resource in provider.resources" :key="resource.url" class="related-team-resource">
-							<a :href="resource.url" class="related-team-resource__link">
-								<span v-if="resource.iconEmoji" class="resource__icon">
+						<li
+							v-for="resource in provider.resources"
+							:key="resource.url"
+							class="related-team-resource">
+							<a
+								:href="resource.url"
+								class="related-team-resource__link">
+								<span
+									v-if="resource.iconEmoji"
+									class="resource__icon">
 									{{ resource.iconEmoji }}
 								</span>
-								<NcIconSvgWrapper v-else-if="resource.iconSvg"
+								<NcIconSvgWrapper
+									v-else-if="resource.iconSvg"
 									class="resource__icon"
 									:svg="resource.iconSvg"
 									:size="20" />
-								<span v-else-if="resource.iconURL" class="resource__icon">
-									<img :src="resource.iconURL" alt="">
+								<span
+									v-else-if="resource.iconURL"
+									class="resource__icon">
+									<img :src="resource.iconURL" alt="" />
 								</span>
 								<span class="resource__name">
 									{{ resource.label }}
@@ -98,7 +109,9 @@ export default {
 
 	data() {
 		return {
-			appEnabled: OC?.appswebroots?.circles !== undefined && (OC.config.version.split('.')[0] ?? 0) >= 29,
+			appEnabled:
+				OC?.appswebroots?.circles !== undefined &&
+				(OC.config.version.split('.')[0] ?? 0) >= 29,
 			loading: false,
 			teamResources: null,
 			teamOpen: [],
@@ -111,9 +124,12 @@ export default {
 		},
 		teamProviders() {
 			return (teamId) => {
-				const team = this.teamResources.find(t => t.teamId === teamId)
+				const team = this.teamResources.find((t) => t.teamId === teamId)
 				return team.resources?.reduce((acc, resource) => {
-					if (resource.provider.id === this.providerId && resource.id === String(this.itemId)) {
+					if (
+						resource.provider.id === this.providerId &&
+						resource.id === String(this.itemId)
+					) {
 						return acc
 					}
 
@@ -122,7 +138,10 @@ export default {
 						acc[resource.provider.id].resources = []
 					}
 
-					if (resource.provider.id === this.providerId && resource.id === String(this.itemId)) {
+					if (
+						resource.provider.id === this.providerId &&
+						resource.id === String(this.itemId)
+					) {
 						return acc
 					}
 
@@ -156,7 +175,11 @@ export default {
 		async fetchTeamResources() {
 			try {
 				this.loading = true
-				const response = await axios.get(generateOcsUrl(`/teams/resources/${this.providerId}/${this.itemId}`))
+				const response = await axios.get(
+					generateOcsUrl(
+						`/teams/resources/${this.providerId}/${this.itemId}`,
+					),
+				)
 				this.teamResources = response.data.ocs.data.teams
 				this.teamOpen = [this.teamResources[0]?.teamId]
 			} catch (e) {

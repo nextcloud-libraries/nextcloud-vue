@@ -218,9 +218,12 @@ export default {
 		/**
 		 * Add a listener so the component reacts on resize
 		 */
-		window.addEventListener('resize', debounce(() => {
-			this.handleWindowResize()
-		}, 100))
+		window.addEventListener(
+			'resize',
+			debounce(() => {
+				this.handleWindowResize()
+			}, 100),
+		)
 		subscribe('navigation-toggled', this.delayedResize)
 	},
 	mounted() {
@@ -258,7 +261,7 @@ export default {
 		/**
 		 * Call the resize function after a delay
 		 */
-		 async delayedResize() {
+		async delayedResize() {
 			await this.$nextTick()
 			this.handleWindowResize()
 		},
@@ -284,22 +287,32 @@ export default {
 			}
 			let overflow = totalWidth - availableWidth
 			// If we overflow, we have to take the action-item width into account as well.
-			overflow += (overflow > 0) ? 64 : 0
+			overflow += overflow > 0 ? 64 : 0
 			let i = 0
 			// We start hiding the breadcrumb in the center
 			const startIndex = Math.floor(nrCrumbs / 2)
 			// Don't hide the first and last breadcrumb
 			while (overflow > 0 && i < nrCrumbs - 2) {
 				// We hide elements alternating to the left and right
-				const currentIndex = startIndex + ((i % 2) ? i + 1 : i) / 2 * Math.pow(-1, i + (nrCrumbs % 2))
+				const currentIndex =
+					startIndex +
+					((i % 2 ? i + 1 : i) / 2) * Math.pow(-1, i + (nrCrumbs % 2))
 				// Calculate the remaining overflow width after hiding this breadcrumb
-				overflow -= this.getWidth(breadcrumbs[currentIndex]?.elm, currentIndex === (breadcrumbs.length - 1))
+				overflow -= this.getWidth(
+					breadcrumbs[currentIndex]?.elm,
+					currentIndex === breadcrumbs.length - 1,
+				)
 				hiddenIndices.push(currentIndex)
 				i++
 			}
 			// We only update the hidden crumbs if they have changed,
 			// otherwise we will run into an infinite update loop.
-			if (!this.arraysEqual(this.hiddenIndices, hiddenIndices.sort((a, b) => a - b))) {
+			if (
+				!this.arraysEqual(
+					this.hiddenIndices,
+					hiddenIndices.sort((a, b) => a - b),
+				)
+			) {
 				this.hiddenIndices = hiddenIndices
 			}
 		},
@@ -330,7 +343,12 @@ export default {
 		 * @return {number} The total width
 		 */
 		getTotalWidth(breadcrumbs) {
-			return breadcrumbs.reduce((width, crumb, index) => width + this.getWidth(crumb?.elm, index === (breadcrumbs.length - 1)), 0)
+			return breadcrumbs.reduce(
+				(width, crumb, index) =>
+					width +
+					this.getWidth(crumb?.elm, index === breadcrumbs.length - 1),
+				0,
+			)
 		},
 		/**
 		 * Calculates the width of the provided element
@@ -405,7 +423,9 @@ export default {
 
 			// Remove all hovering classes
 			const crumbs = document.querySelectorAll(`.${crumbClass}`)
-			crumbs.forEach((f) => { f.classList.remove(`${crumbClass}--hovered`) })
+			crumbs.forEach((f) => {
+				f.classList.remove(`${crumbClass}--hovered`)
+			})
 			return this.preventDefault(e)
 		},
 		/**
@@ -435,7 +455,9 @@ export default {
 				const target = e.target.closest(`.${crumbClass}`)
 				if (target.classList && target.classList.contains(crumbClass)) {
 					const crumbs = document.querySelectorAll(`.${crumbClass}`)
-					crumbs.forEach((f) => { f.classList.remove(`${crumbClass}--hovered`) })
+					crumbs.forEach((f) => {
+						f.classList.remove(`${crumbClass}--hovered`)
+					})
 					target.classList.add(`${crumbClass}--hovered`)
 				}
 			}
@@ -486,7 +508,9 @@ export default {
 		},
 
 		isBreadcrumb(vnode) {
-			return (vnode?.componentOptions?.tag || vnode?.tag || '').includes('NcBreadcrumb')
+			return (vnode?.componentOptions?.tag || vnode?.tag || '').includes(
+				'NcBreadcrumb',
+			)
 		},
 	},
 	/**
@@ -499,14 +523,14 @@ export default {
 		// Get the breadcrumbs
 		const breadcrumbs = []
 		// We have to iterate over all slot elements
-		this.$slots.default.forEach(vnode => {
+		this.$slots.default.forEach((vnode) => {
 			if (this.isBreadcrumb(vnode)) {
 				breadcrumbs.push(vnode)
 				return
 			}
 			// If we encounter a Fragment, we have to check its children too
 			if (vnode?.type === Fragment) {
-				vnode?.children?.forEach?.(child => {
+				vnode?.children?.forEach?.((child) => {
 					if (this.isBreadcrumb(child)) {
 						breadcrumbs.push(child)
 					}
@@ -554,86 +578,101 @@ export default {
 
 			// The Actions menu
 			// Use a breadcrumb component for the hidden breadcrumbs
-			crumbs.push(h('NcBreadcrumb', {
-				class: 'dropdown',
+			crumbs.push(
+				h(
+					'NcBreadcrumb',
+					{
+						class: 'dropdown',
 
-				props: this.menuBreadcrumbProps,
+						props: this.menuBreadcrumbProps,
 
-				attrs: {
-					// Hide the dropdown menu from screen-readers,
-					// since the crumbs in the menu are still in the list.
-					'aria-hidden': true,
-				},
+						attrs: {
+							// Hide the dropdown menu from screen-readers,
+							// since the crumbs in the menu are still in the list.
+							'aria-hidden': true,
+						},
 
-				// Add a ref to the Actions menu
-				ref: 'actionsBreadcrumb',
-				key: 'actions-breadcrumb-1',
-				// Add handlers so the Actions menu opens on hover
-				nativeOn: {
-					dragstart: this.dragStart,
-					dragenter: () => { this.menuBreadcrumbProps.open = true },
-					dragleave: this.closeActions,
-				},
-				on: {
-					// Make sure we keep the same open state
-					// as the Actions component
-					'update:open': (open) => {
-						this.menuBreadcrumbProps.open = open
+						// Add a ref to the Actions menu
+						ref: 'actionsBreadcrumb',
+						key: 'actions-breadcrumb-1',
+						// Add handlers so the Actions menu opens on hover
+						nativeOn: {
+							dragstart: this.dragStart,
+							dragenter: () => {
+								this.menuBreadcrumbProps.open = true
+							},
+							dragleave: this.closeActions,
+						},
+						on: {
+							// Make sure we keep the same open state
+							// as the Actions component
+							'update:open': (open) => {
+								this.menuBreadcrumbProps.open = open
+							},
+						},
+						// Add all hidden breadcrumbs as ActionRouter or ActionLink
 					},
-				},
-			// Add all hidden breadcrumbs as ActionRouter or ActionLink
-			}, this.hiddenIndices.filter(index => index <= breadcrumbs.length - 1).map(index => {
-				const crumb = breadcrumbs[index]
-				// Get the parameters from the breadcrumb component props
-				const to = crumb.componentOptions.propsData.to
-				const href = crumb.componentOptions.propsData.href
-				const disabled = crumb.componentOptions.propsData.disableDrop
-				const title = crumb.componentOptions.propsData.title
-				const name = crumb.componentOptions.propsData.name
+					this.hiddenIndices
+						.filter((index) => index <= breadcrumbs.length - 1)
+						.map((index) => {
+							const crumb = breadcrumbs[index]
+							// Get the parameters from the breadcrumb component props
+							const to = crumb.componentOptions.propsData.to
+							const href = crumb.componentOptions.propsData.href
+							const disabled =
+								crumb.componentOptions.propsData.disableDrop
+							const title = crumb.componentOptions.propsData.title
+							const name = crumb.componentOptions.propsData.name
 
-				// Decide whether to show the breadcrumbs as ActionButton, ActionRouter or ActionLink
-				let element = 'NcActionButton'
-				let path = ''
-				if (href) {
-					element = 'NcActionLink'
-					path = href
-				}
-				if (to) {
-					element = 'NcActionRouter'
-					path = to
-				}
-				const folderIcon = h('IconFolder', {
-					props: {
-						size: 20,
-					},
-					slot: 'icon',
-				})
-				return h(element, {
-					class: crumbClass,
-					props: {
-						href: href || null,
-						title,
-						to: to || null,
-					},
-					// Prevent the breadcrumbs from being draggable
-					attrs: {
-						draggable: false,
-					},
-					on: {
-						...crumb.componentOptions.listeners,
-					},
-					// Add the drag and drop handlers
-					nativeOn: {
-						dragstart: this.dragStart,
-						drop: ($event) => this.dropped($event, path, disabled),
-						dragover: this.dragOver,
-						dragenter: ($event) => this.dragEnter($event, disabled),
-						dragleave: ($event) => this.dragLeave($event, disabled),
-					},
-				},
-				[folderIcon, name],
-				)
-			})),
+							// Decide whether to show the breadcrumbs as ActionButton, ActionRouter or ActionLink
+							let element = 'NcActionButton'
+							let path = ''
+							if (href) {
+								element = 'NcActionLink'
+								path = href
+							}
+							if (to) {
+								element = 'NcActionRouter'
+								path = to
+							}
+							const folderIcon = h('IconFolder', {
+								props: {
+									size: 20,
+								},
+								slot: 'icon',
+							})
+							return h(
+								element,
+								{
+									class: crumbClass,
+									props: {
+										href: href || null,
+										title,
+										to: to || null,
+									},
+									// Prevent the breadcrumbs from being draggable
+									attrs: {
+										draggable: false,
+									},
+									on: {
+										...crumb.componentOptions.listeners,
+									},
+									// Add the drag and drop handlers
+									nativeOn: {
+										dragstart: this.dragStart,
+										drop: ($event) =>
+											this.dropped($event, path, disabled),
+										dragover: this.dragOver,
+										dragenter: ($event) =>
+											this.dragEnter($event, disabled),
+										dragleave: ($event) =>
+											this.dragLeave($event, disabled),
+									},
+								},
+								[folderIcon, name],
+							)
+						}),
+				),
 			)
 
 			// The second half of the breadcrumbs
@@ -641,15 +680,41 @@ export default {
 			crumbs = crumbs.concat(crumbs2)
 		}
 
-		const wrapper = [h('nav', { attrs: { 'aria-label': this.ariaLabel } }, [h('ul', { class: 'breadcrumb__crumbs' }, [crumbs])])]
+		const wrapper = [
+			h('nav', { attrs: { 'aria-label': this.ariaLabel } }, [
+				h('ul', { class: 'breadcrumb__crumbs' }, [crumbs]),
+			]),
+		]
 		// Append the actions slot if it is populated
 		if (this.$slots.actions) {
-			wrapper.push(h('div', { class: 'breadcrumb__actions', ref: 'breadcrumb__actions' }, this.$slots.actions))
+			wrapper.push(
+				h(
+					'div',
+					{
+						class: 'breadcrumb__actions',
+						ref: 'breadcrumb__actions',
+					},
+					this.$slots.actions,
+				),
+			)
 		}
 
 		this.breadcrumbsRefs = breadcrumbsRefs
 
-		return h('div', { class: ['breadcrumb', { 'breadcrumb--collapsed': (this.hiddenIndices.length === breadcrumbs.length - 2) }], ref: 'container' }, wrapper)
+		return h(
+			'div',
+			{
+				class: [
+					'breadcrumb',
+					{
+						'breadcrumb--collapsed':
+							this.hiddenIndices.length === breadcrumbs.length - 2,
+					},
+				],
+				ref: 'container',
+			},
+			wrapper,
+		)
 	},
 }
 </script>

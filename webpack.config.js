@@ -30,9 +30,7 @@ const sassLoader = {
 		sourceMap: true,
 		sassOptions: {
 			sourceMapContents: false,
-			includePaths: [
-				path.resolve(__dirname, './src/assets'),
-			],
+			includePaths: [path.resolve(__dirname, './src/assets')],
 		},
 	},
 }
@@ -58,12 +56,7 @@ webpackRules.RULE_SCSS = {
 			],
 		},
 		{
-			use: [
-				'style-loader',
-				'css-loader',
-				'resolve-url-loader',
-				sassLoader,
-			],
+			use: ['style-loader', 'css-loader', 'resolve-url-loader', sassLoader],
 		},
 	],
 }
@@ -90,10 +83,12 @@ webpackRules.RULE_NODE_MJS = {
 webpackConfig.module.rules = Object.values(webpackRules)
 
 module.exports = () => {
-	webpackConfig.plugins.push(new DefinePlugin({
-		PRODUCTION: JSON.stringify(!isDev),
-		SCOPE_VERSION,
-	}))
+	webpackConfig.plugins.push(
+		new DefinePlugin({
+			PRODUCTION: JSON.stringify(!isDev),
+			SCOPE_VERSION,
+		}),
+	)
 
 	return webpackConfig
 }

@@ -25,7 +25,9 @@ import NcModal from '../../../../src/components/NcModal/NcModal.vue'
 
 describe('NcModal', () => {
 	it('closes on click outside with `canClose`', async () => {
-		const wrapper = mount(NcModal, { propsData: { canClose: true, title: 'modal' } })
+		const wrapper = mount(NcModal, {
+			propsData: { canClose: true, title: 'modal' },
+		})
 		expect(wrapper.html().includes('modal-wrapper')).toBe(true)
 
 		expect(wrapper.emitted('update:show')).toBe(undefined)
@@ -36,7 +38,9 @@ describe('NcModal', () => {
 	})
 
 	it('not closes on click outside when `canClose` is false', async () => {
-		const wrapper = mount(NcModal, { propsData: { canClose: false, title: 'modal' } })
+		const wrapper = mount(NcModal, {
+			propsData: { canClose: false, title: 'modal' },
+		})
 		expect(wrapper.html().includes('modal-wrapper')).toBe(true)
 
 		expect(wrapper.emitted('update:show')).toBe(undefined)
@@ -47,7 +51,13 @@ describe('NcModal', () => {
 	})
 
 	it('not closes on click outside when `canClose` is true but `closeOnClickOutside` is false', async () => {
-		const wrapper = mount(NcModal, { propsData: { canClose: true, closeOnClickOutside: false, title: 'modal' } })
+		const wrapper = mount(NcModal, {
+			propsData: {
+				canClose: true,
+				closeOnClickOutside: false,
+				title: 'modal',
+			},
+		})
 		expect(wrapper.html().includes('modal-wrapper')).toBe(true)
 
 		expect(wrapper.emitted('update:show')).toBe(undefined)

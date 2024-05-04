@@ -198,14 +198,19 @@ export default {
 </docs>
 
 <template>
-	<transition name="fade"
+	<transition
+		name="fade"
 		appear
 		@after-enter="useFocusTrap"
 		@before-leave="clearFocusTrap">
-		<div v-show="showModal"
+		<div
+			v-show="showModal"
 			ref="mask"
 			class="modal-mask"
-			:class="{ 'modal-mask--dark': dark || !closeButtonContained || hasPrevious || hasNext }"
+			:class="{
+				'modal-mask--dark':
+					dark || !closeButtonContained || hasPrevious || hasNext,
+			}"
 			:style="cssVariables"
 			role="dialog"
 			aria-modal="true"
@@ -215,24 +220,30 @@ export default {
 			<!-- Header -->
 			<transition name="fade-visibility" appear>
 				<div class="modal-header">
-					<h2 v-if="name.trim() !== ''"
+					<h2
+						v-if="name.trim() !== ''"
 						:id="'modal-name-' + randId"
 						class="modal-name">
 						{{ name }}
 					</h2>
 					<div class="icons-menu">
 						<!-- Play-pause toggle -->
-						<button v-if="hasNext && enableSlideshow"
+						<button
+							v-if="hasNext && enableSlideshow"
 							v-tooltip.auto="playPauseName"
-							:class="{ 'play-pause-icons--paused': slideshowPaused }"
+							:class="{
+								'play-pause-icons--paused': slideshowPaused,
+							}"
 							class="play-pause-icons"
 							type="button"
 							@click="togglePlayPause">
 							<!-- Play/pause icons -->
-							<Play v-if="!playing"
+							<Play
+								v-if="!playing"
 								:size="iconSize"
 								class="play-pause-icons__play" />
-							<Pause v-else
+							<Pause
+								v-else
 								:size="iconSize"
 								class="play-pause-icons__pause" />
 							<span class="hidden-visually">
@@ -240,11 +251,13 @@ export default {
 							</span>
 
 							<!-- Progress circle, css animated -->
-							<svg v-if="playing"
+							<svg
+								v-if="playing"
 								class="progress-ring"
 								height="50"
 								width="50">
-								<circle class="progress-ring__circle"
+								<circle
+									class="progress-ring__circle"
 									stroke="white"
 									stroke-width="2"
 									fill="transparent"
@@ -261,7 +274,8 @@ export default {
 						</NcActions>
 
 						<!-- Close modal -->
-						<NcButton v-if="canClose && !closeButtonContained"
+						<NcButton
+							v-if="canClose && !closeButtonContained"
 							:aria-label="closeButtonAriaLabel"
 							class="header-close"
 							type="tertiary"
@@ -276,16 +290,20 @@ export default {
 
 			<!-- Content wrapper -->
 			<transition :name="modalTransitionName" appear>
-				<div v-show="showModal"
+				<div
+					v-show="showModal"
 					:class="[
 						`modal-wrapper--${size}`,
-						{ 'modal-wrapper--spread-navigation': spreadNavigation },
+						{
+							'modal-wrapper--spread-navigation': spreadNavigation,
+						},
 					]"
 					class="modal-wrapper"
 					@mousedown.self="handleClickModalWrapper">
 					<!-- Navigation button -->
 					<transition name="fade-visibility" appear>
-						<NcButton v-show="hasPrevious"
+						<NcButton
+							v-show="hasPrevious"
 							type="tertiary-no-background"
 							class="prev"
 							:aria-label="prevButtonAriaLabel"
@@ -299,7 +317,8 @@ export default {
 					<!-- Content -->
 					<div :id="'modal-description-' + randId" class="modal-container">
 						<!-- Close modal -->
-						<NcButton v-if="canClose && closeButtonContained"
+						<NcButton
+							v-if="canClose && closeButtonContained"
 							type="tertiary"
 							class="modal-container__close"
 							:aria-label="closeButtonAriaLabel"
@@ -316,7 +335,8 @@ export default {
 
 					<!-- Navigation button -->
 					<transition name="fade-visibility" appear>
-						<NcButton v-show="hasNext"
+						<NcButton
+							v-show="hasNext"
 							type="tertiary-no-background"
 							class="next"
 							:aria-label="nextButtonAriaLabel"
@@ -437,7 +457,7 @@ export default {
 		size: {
 			type: String,
 			default: 'normal',
-			validator: size => {
+			validator: (size) => {
 				return ['small', 'normal', 'large', 'full'].includes(size)
 			},
 		},
@@ -519,12 +539,7 @@ export default {
 		},
 	},
 
-	emits: [
-		'previous',
-		'next',
-		'close',
-		'update:show',
-	],
+	emits: ['previous', 'next', 'close', 'update:show'],
 
 	data() {
 		return {
@@ -540,7 +555,7 @@ export default {
 
 	computed: {
 		showModal() {
-			return (this.show === undefined) ? this.internalShow : this.show
+			return this.show === undefined ? this.internalShow : this.show
 		},
 		modalTransitionName() {
 			return `modal-${this.outTransition ? 'out' : 'in'}`
@@ -584,7 +599,10 @@ export default {
 		additionalTrapElements(elements) {
 			if (this.focusTrap) {
 				const contentContainer = this.$refs.mask
-				this.focusTrap.updateContainerElements([contentContainer, ...elements])
+				this.focusTrap.updateContainerElements([
+					contentContainer,
+					...elements,
+				])
 			}
 		},
 	},
@@ -682,7 +700,10 @@ export default {
 			if (event.key === 'Escape') {
 				const trapStack = getTrapStack()
 				// Only close the most recent focus trap modal
-				if (trapStack.length > 0 && trapStack[trapStack.length - 1] !== this.focusTrap) {
+				if (
+					trapStack.length > 0 &&
+					trapStack[trapStack.length - 1] !== this.focusTrap
+				) {
 					return
 				}
 				return this.close(event)
@@ -696,7 +717,10 @@ export default {
 				// Ignore arrow navigation, if there is a current focus outside the modal.
 				// For example, when the focus is in Sidebar or NcActions's items,
 				// arrow navigation should not be intercept by modal slider
-				if (document.activeElement && !this.$el.contains(document.activeElement)) {
+				if (
+					document.activeElement &&
+					!this.$el.contains(document.activeElement)
+				) {
 					return
 				}
 				return arrowHandlers[event.key](event)
@@ -739,7 +763,7 @@ export default {
 		resetSlideshow() {
 			this.playing = !this.playing
 			this.clearSlideshowTimeout()
-			this.$nextTick(function() {
+			this.$nextTick(function () {
 				this.togglePlayPause()
 			})
 		},
@@ -793,7 +817,10 @@ export default {
 			}
 
 			// Init focus trap
-			this.focusTrap = createFocusTrap([contentContainer, ...this.additionalTrapElements], options)
+			this.focusTrap = createFocusTrap(
+				[contentContainer, ...this.additionalTrapElements],
+				options,
+			)
 			this.focusTrap.activate()
 		},
 		clearFocusTrap() {
@@ -803,13 +830,11 @@ export default {
 			this.focusTrap?.deactivate()
 			this.focusTrap = null
 		},
-
 	},
 }
 </script>
 
 <style lang="scss" scoped>
-
 .modal-mask {
 	position: fixed;
 	z-index: 9998;
@@ -818,9 +843,9 @@ export default {
 	display: block;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0, 0, 0, .5);
+	background-color: rgba(0, 0, 0, 0.5);
 	&--dark {
-		background-color: rgba(0, 0, 0, .92);
+		background-color: rgba(0, 0, 0, 0.92);
 	}
 }
 
@@ -838,7 +863,9 @@ export default {
 	width: 100%;
 	height: $header-height;
 	overflow: hidden;
-	transition: opacity 250ms, visibility 250ms;
+	transition:
+		opacity 250ms,
+		visibility 250ms;
 
 	.modal-name {
 		overflow-x: hidden;
@@ -931,7 +958,8 @@ export default {
 		// Force the Actions menu icon to be the same size as other icons
 		&:deep(.action-item__menutoggle) {
 			padding: 0;
-			span, svg {
+			span,
+			svg {
 				width: var(--icon-size);
 				height: var(--icon-size);
 			}
@@ -981,7 +1009,7 @@ export default {
 		border-radius: var(--border-radius-large);
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
-		box-shadow: 0 0 40px rgba(0, 0, 0, .2);
+		box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
 
 		&__close {
 			// Ensure the close button is always ontop of the content
@@ -1081,7 +1109,7 @@ export default {
 
 .modal-in-enter .modal-container,
 .modal-in-leave-to .modal-container {
-	transform: scale(.9);
+	transform: scale(0.9);
 }
 
 .modal-out-enter .modal-container,
@@ -1111,7 +1139,7 @@ $pi: 3.14159265358979;
 	}
 	&--paused {
 		.icon-pause {
-			animation: breath 2s cubic-bezier(.4, 0, .2, 1) infinite;
+			animation: breath 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 		}
 		.progress-ring__circle {
 			animation-play-state: paused !important;
@@ -1140,5 +1168,4 @@ $pi: 3.14159265358979;
 		opacity: 1;
 	}
 }
-
 </style>

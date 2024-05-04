@@ -222,7 +222,7 @@ export default {
 		width: 64px;
 		height: 64px;
 		margin: 0 auto 15px;
-		opacity: .4;
+		opacity: 0.4;
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: 64px;

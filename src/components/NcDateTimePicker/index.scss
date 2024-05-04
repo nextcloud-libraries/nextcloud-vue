@@ -18,7 +18,7 @@ $cell_height: 32px;
 			border: 2px solid var(--color-border-maxcontrast);
 			background-color: var(--color-main-background);
 			background-clip: content-box;
-			
+
 			&:active:not(.disabled),
 			&:hover:not(.disabled),
 			&:focus:not(.disabled) {
@@ -59,7 +59,7 @@ $cell_height: 32px;
 			border-left: 1px solid var(--color-border);
 		}
 	}
-	
+
 	&.show-week-number .mx-calendar {
 		width: $cell_height * 8 + 2 * 5px + 30px; // week number + 7 days + padding + 30px padding to fit the buttons
 	}
@@ -311,7 +311,8 @@ $cell_height: 32px;
 
 				> i {
 					// Hide original icons
-					&::after, &::before {
+					&::after,
+					&::before {
 						content: none;
 					}
 					background-repeat: no-repeat;
@@ -370,7 +371,9 @@ $cell_height: 32px;
 				background-color: var(--color-background-dark);
 				td {
 					background-color: transparent;
-					&, &:hover, &:focus {
+					&,
+					&:hover,
+					&:focus {
 						color: inherit;
 					}
 				}

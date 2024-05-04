@@ -22,11 +22,13 @@
 
 <template>
 	<span class="name-parts" :title="name">
-		<NcHighlight class="name-parts__first"
+		<NcHighlight
+			class="name-parts__first"
 			:text="part1"
 			:search="search"
 			:highlight="highlight1" />
-		<NcHighlight v-if="part2"
+		<NcHighlight
+			v-if="part2"
 			class="name-parts__last"
 			:text="part2"
 			:search="search"
@@ -101,7 +103,7 @@ export default {
 		 * @return {Array} The array with the ranges to highlight
 		 */
 		highlight2() {
-			return this.highlight1.map(range => {
+			return this.highlight1.map((range) => {
 				return {
 					start: range.start - this.split,
 					end: range.end - this.split,

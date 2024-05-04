@@ -53,16 +53,19 @@ export const emojiSearch = (query: string, maxResults: number = 10) => {
 	if (query) {
 		results = index.search(`:${query}`, maxResults)
 		if (results.length < maxResults) {
-			results = results.concat(index.search(query, maxResults - results.length))
+			results = results.concat(
+				index.search(query, maxResults - results.length),
+			)
 		}
 	} else {
-		results = frequently.get(maxResults).map((id: number) => index.emoji(id)) || []
+		results =
+			frequently.get(maxResults).map((id: number) => index.emoji(id)) || []
 	}
 
 	return results.map((emoji) => emoji.getSkin(currentSkinTone))
 }
 
-export const emojiAddRecent = function(id) {
+export const emojiAddRecent = function (id) {
 	frequently.add(id)
 }
 
@@ -71,7 +74,9 @@ export const emojiAddRecent = function(id) {
  * @return {EmojiSkinTone} The skin tone
  */
 export const getCurrentSkinTone = () => {
-	const skinTone = Number.parseInt(storage.getItem('NcEmojiPicker::currentSkinTone') ?? '1')
+	const skinTone = Number.parseInt(
+		storage.getItem('NcEmojiPicker::currentSkinTone') ?? '1',
+	)
 	// Clamp skinTone to valid ranges
 	return Math.min(Math.max(skinTone, EmojiSkinTone.Neutral), EmojiSkinTone.Dark)
 }
@@ -82,6 +87,9 @@ export const getCurrentSkinTone = () => {
  */
 export const setCurrentSkinTone = (skinTone: EmojiSkinTone) => {
 	// Clamp skinTone to valid ranges
-	skinTone = Math.min(Math.max(skinTone, EmojiSkinTone.Neutral), EmojiSkinTone.Dark)
+	skinTone = Math.min(
+		Math.max(skinTone, EmojiSkinTone.Neutral),
+		EmojiSkinTone.Dark,
+	)
 	storage.setItem('NcEmojiPicker::currentSkinTone', skinTone.toString())
 }

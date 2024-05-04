@@ -96,7 +96,8 @@ export default {
 </docs>
 
 <template>
-	<NcModal v-if="open"
+	<NcModal
+		v-if="open"
 		class="dialog__modal"
 		:enable-slideshow="false"
 		:enable-swipe="false"
@@ -106,9 +107,15 @@ export default {
 		<!-- The dialog name / header -->
 		<h2 :id="navigationId" class="dialog__name" v-text="name" />
 		<div class="dialog" :class="dialogClasses">
-			<div ref="wrapper" :class="['dialog__wrapper', { 'dialog__wrapper--collapsed': isNavigationCollapsed }]">
+			<div
+				ref="wrapper"
+				:class="[
+					'dialog__wrapper',
+					{ 'dialog__wrapper--collapsed': isNavigationCollapsed },
+				]">
 				<!-- When the navigation is collapsed (too small dialog) it is displayed above the main content, otherwise on the inline start -->
-				<nav v-if="hasNavigation"
+				<nav
+					v-if="hasNavigation"
 					class="dialog__navigation"
 					:class="navigationClasses"
 					:aria-label="navigationAriaLabelAttr"
@@ -127,7 +134,8 @@ export default {
 			<!-- The dialog actions aka the buttons -->
 			<div class="dialog__actions">
 				<slot name="actions">
-					<NcDialogButton v-for="(button, idx) in buttons"
+					<NcDialogButton
+						v-for="(button, idx) in buttons"
 						:key="idx"
 						v-bind="button"
 						@click="handleButtonClose" />
@@ -172,13 +180,15 @@ export default defineComponent({
 			type: Array,
 			validator: (arr) => {
 				return (
-					Array.isArray(arr) && arr.every(
+					Array.isArray(arr) &&
+					arr.every(
 						(element) =>
-							typeof element === 'string' || element instanceof HTMLElement,
+							typeof element === 'string' ||
+							element instanceof HTMLElement,
 					)
 				)
 			},
-			default: () => ([]),
+			default: () => [],
 		},
 
 		/**
@@ -209,7 +219,9 @@ export default defineComponent({
 			type: String,
 			required: false,
 			default: 'small',
-			validator: (value) => typeof value === 'string' && ['small', 'normal', 'large', 'full'].includes(value),
+			validator: (value) =>
+				typeof value === 'string' &&
+				['small', 'normal', 'large', 'full'].includes(value),
 		},
 
 		/**
@@ -219,8 +231,10 @@ export default defineComponent({
 		buttons: {
 			type: Array,
 			required: false,
-			default: () => ([]),
-			validator: (value) => Array.isArray(value) && value.every((element) => typeof element === 'object'),
+			default: () => [],
+			validator: (value) =>
+				Array.isArray(value) &&
+				value.every((element) => typeof element === 'object'),
 		},
 
 		/**
@@ -349,7 +363,9 @@ export default defineComponent({
 		/**
 		 * aria-label attribute for the nav element
 		 */
-		const navigationAriaLabelAttr = computed(() => props.navigationAriaLabel || undefined)
+		const navigationAriaLabelAttr = computed(
+			() => props.navigationAriaLabel || undefined,
+		)
 
 		/**
 		 * aria-labelledby attribute for the nav element

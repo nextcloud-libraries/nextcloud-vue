@@ -1,6 +1,9 @@
 <template>
-	<div class="smart-picker-search" :class="{ 'with-empty-content': showEmptyContent }">
-		<NcSelect ref="search-select"
+	<div
+		class="smart-picker-search"
+		:class="{ 'with-empty-content': showEmptyContent }">
+		<NcSelect
+			ref="search-select"
 			v-model="selectedResult"
 			class="smart-picker-search--select"
 			input-id="search-select-input"
@@ -22,24 +25,37 @@
 				<div v-if="option.isRawLink" class="custom-option">
 					<LinkVariantIcon class="option-simple-icon" :size="20" />
 					<span class="option-text">
-						{{ t('Raw link {options}', { options: option.resourceUrl }) }}
+						{{
+							t('Raw link {options}', {
+								options: option.resourceUrl,
+							})
+						}}
 					</span>
 				</div>
-				<NcSearchResult v-else-if="option.resourceUrl"
+				<NcSearchResult
+					v-else-if="option.resourceUrl"
 					class="search-result"
 					:entry="option"
 					:query="searchQuery" />
-				<span v-else-if="option.isCustomGroupTitle" class="custom-option group-name">
-					<img v-if="provider.icon_url"
+				<span
+					v-else-if="option.isCustomGroupTitle"
+					class="custom-option group-name">
+					<img
+						v-if="provider.icon_url"
 						class="provider-icon group-name-icon"
-						:src="provider.icon_url">
+						:src="provider.icon_url" />
 					<span class="option-text">
 						<strong>{{ option.name }}</strong>
 					</span>
 				</span>
 				<span v-else-if="option.isMore" :class="{ 'custom-option': true }">
-					<span v-if="option.isLoading" class="option-simple-icon icon-loading-small" />
-					<DotsHorizontalIcon v-else class="option-simple-icon" :size="20" />
+					<span
+						v-if="option.isLoading"
+						class="option-simple-icon icon-loading-small" />
+					<DotsHorizontalIcon
+						v-else
+						class="option-simple-icon"
+						:size="20" />
 					<span class="option-text">
 						{{ t('Load more "{options}"', { options: option.name }) }}
 					</span>
@@ -49,13 +65,15 @@
 				{{ noOptionsText }}
 			</template>
 		</NcSelect>
-		<NcEmptyContent v-if="showEmptyContent"
+		<NcEmptyContent
+			v-if="showEmptyContent"
 			class="smart-picker-search--empty-content">
 			<template #icon>
-				<img v-if="provider.icon_url"
+				<img
+					v-if="provider.icon_url"
 					class="provider-icon"
 					:alt="providerIconAlt"
-					:src="provider.icon_url">
+					:src="provider.icon_url" />
 				<LinkVariantIcon v-else />
 			</template>
 		</NcEmptyContent>
@@ -104,9 +122,7 @@ export default {
 			default: null,
 		},
 	},
-	emits: [
-		'submit',
-	],
+	emits: ['submit'],
 	data() {
 		return {
 			searchQuery: '',
@@ -147,10 +163,13 @@ export default {
 		},
 		formattedSearchResults() {
 			const results = []
-			this.searchProviderIds.forEach(pid => {
+			this.searchProviderIds.forEach((pid) => {
 				if (this.resultsBySearchProvider[pid].entries.length > 0) {
 					// don't show group name entry if there is only one search provider and one result
-					if (this.searchProviderIds.length > 1 || this.resultsBySearchProvider[pid].entries.length > 1) {
+					if (
+						this.searchProviderIds.length > 1 ||
+						this.resultsBySearchProvider[pid].entries.length > 1
+					) {
 						results.push({
 							id: 'groupTitle-' + pid,
 							name: this.resultsBySearchProvider[pid].name,
@@ -158,7 +177,9 @@ export default {
 							providerId: pid,
 						})
 					}
-					const providerEntriesWithId = this.resultsBySearchProvider[pid].entries.map((entry, index) => {
+					const providerEntriesWithId = this.resultsBySearchProvider[
+						pid
+					].entries.map((entry, index) => {
 						return {
 							id: 'provider-' + pid + '-entry-' + index,
 							...entry,
@@ -189,7 +210,7 @@ export default {
 		t,
 		resetResults() {
 			const resultsBySearchProvider = {}
-			this.searchProviderIds.forEach(pid => {
+			this.searchProviderIds.forEach((pid) => {
 				resultsBySearchProvider[pid] = {
 					entries: [],
 				}
@@ -198,7 +219,9 @@ export default {
 		},
 		focus() {
 			setTimeout(() => {
-				this.$refs['search-select']?.$el?.querySelector('#search-select-input')?.focus()
+				this.$refs['search-select']?.$el
+					?.querySelector('#search-select-input')
+					?.focus()
 			}, 300)
 		},
 		cancelSearchRequests() {
@@ -244,39 +267,69 @@ export default {
 			this.abortController = new AbortController()
 			this.searching = true
 
-			const searchPromises = searchProviderId === null
-				? [...this.searchProviderIds].map(pid => {
-					return this.searchOneProvider(pid)
-				})
-				: [this.searchOneProvider(searchProviderId, this.resultsBySearchProvider[searchProviderId]?.cursor ?? null)]
+			const searchPromises =
+				searchProviderId === null
+					? [...this.searchProviderIds].map((pid) => {
+							return this.searchOneProvider(pid)
+						})
+					: [
+							this.searchOneProvider(
+								searchProviderId,
+								this.resultsBySearchProvider[searchProviderId]
+									?.cursor ?? null,
+							),
+						]
 			// fake one to have a request error
 			// searchPromises.push(this.searchOneProvider('nopid'))
 
-			return Promise.allSettled(searchPromises)
-				.then((promises) => {
-					const isOneCanceled = !!promises.find(p => {
-						return p.status === 'rejected' && (p.reason.name === 'CanceledError' || p.reason.code === 'ERR_CANCELED')
-					})
-					// nothing was canceled: not searching
-					if (!isOneCanceled) {
-						this.searching = false
-						this.searchingMoreOf = null
-					}
+			return Promise.allSettled(searchPromises).then((promises) => {
+				const isOneCanceled = !!promises.find((p) => {
+					return (
+						p.status === 'rejected' &&
+						(p.reason.name === 'CanceledError' ||
+							p.reason.code === 'ERR_CANCELED')
+					)
 				})
+				// nothing was canceled: not searching
+				if (!isOneCanceled) {
+					this.searching = false
+					this.searchingMoreOf = null
+				}
+			})
 		},
 		searchOneProvider(providerId, cursor = null) {
-			const url = cursor === null
-				? generateOcsUrl('search/providers/{providerId}/search?term={term}&limit={limit}', { providerId, term: this.searchQuery, limit: LIMIT })
-				: generateOcsUrl('search/providers/{providerId}/search?term={term}&limit={limit}&cursor={cursor}', { providerId, term: this.searchQuery, limit: LIMIT, cursor })
-			return axios.get(url, {
-				signal: this.abortController.signal,
-			})
+			const url =
+				cursor === null
+					? generateOcsUrl(
+							'search/providers/{providerId}/search?term={term}&limit={limit}',
+							{
+								providerId,
+								term: this.searchQuery,
+								limit: LIMIT,
+							},
+						)
+					: generateOcsUrl(
+							'search/providers/{providerId}/search?term={term}&limit={limit}&cursor={cursor}',
+							{
+								providerId,
+								term: this.searchQuery,
+								limit: LIMIT,
+								cursor,
+							},
+						)
+			return axios
+				.get(url, {
+					signal: this.abortController.signal,
+				})
 				.then((response) => {
 					const data = response.data.ocs.data
 					this.resultsBySearchProvider[providerId].name = data.name
 					this.resultsBySearchProvider[providerId].cursor = data.cursor
-					this.resultsBySearchProvider[providerId].isPaginated = data.isPaginated
-					this.resultsBySearchProvider[providerId].entries.push(...data.entries)
+					this.resultsBySearchProvider[providerId].isPaginated =
+						data.isPaginated
+					this.resultsBySearchProvider[providerId].entries.push(
+						...data.entries,
+					)
 				})
 		},
 	},

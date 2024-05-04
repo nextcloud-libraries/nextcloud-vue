@@ -1,26 +1,30 @@
 <template>
-	<div class="reference-picker"
+	<div
+		class="reference-picker"
 		:style="pickerWrapperStyle"
 		tabindex="-1"
 		@keydown.stop.prevent.esc="onEscapePressed">
-		<NcProviderList v-if="mode === MODES.providerList"
+		<NcProviderList
+			v-if="mode === MODES.providerList"
 			ref="provider-list"
 			@select-provider="onProviderSelected"
 			@submit="submitLink"
 			@cancel="cancelProviderSelection" />
-		<NcRawLinkInput v-else-if="mode === MODES.standardLinkInput"
+		<NcRawLinkInput
+			v-else-if="mode === MODES.standardLinkInput"
 			ref="url-input"
 			:provider="selectedProvider"
 			@submit="submitLink"
 			@cancel="cancelRawLinkInput" />
-		<NcSearch v-else-if="mode === MODES.searchInput"
+		<NcSearch
+			v-else-if="mode === MODES.searchInput"
 			ref="url-input"
 			:provider="selectedProvider"
 			@cancel="cancelSearch"
 			@submit="submitLink" />
-		<div v-else-if="mode === MODES.customElement"
-			class="custom-element-wrapper">
-			<NcCustomPickerElement :provider="selectedProvider"
+		<div v-else-if="mode === MODES.customElement" class="custom-element-wrapper">
+			<NcCustomPickerElement
+				:provider="selectedProvider"
 				@submit="submitLink"
 				@cancel="cancelCustomElement" />
 		</div>
@@ -116,7 +120,6 @@ export default {
 				})
 			}
 		}
-
 	},
 	methods: {
 		onEscapePressed() {

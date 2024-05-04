@@ -511,52 +511,58 @@ export default {
 </docs>
 
 <template>
-	<VueSelect class="select"
+	<VueSelect
+		class="select"
 		:class="{
 			'select--no-wrap': noWrap,
 			'user-select': userSelect,
 		}"
 		v-bind="propsToForward"
 		v-on="$listeners"
-		@search="searchString => search = searchString">
+		@search="(searchString) => (search = searchString)">
 		<template v-if="!labelOutside && inputLabel" #header>
-			<label :for="inputId"
-				class="select__label">
+			<label :for="inputId" class="select__label">
 				{{ inputLabel }}
 			</label>
 		</template>
 		<template #search="{ attributes, events }">
-			<input :class="['vs__search', inputClass]"
+			<input
+				:class="['vs__search', inputClass]"
 				v-bind="attributes"
 				:required="inputRequired"
-				v-on="events">
+				v-on="events" />
 		</template>
 		<template #open-indicator="{ attributes }">
-			<ChevronDown v-bind="attributes"
+			<ChevronDown
+				v-bind="attributes"
 				fill-color="var(--vs-controls-color)"
 				:style="{
 					cursor: !disabled ? 'pointer' : null,
 				}"
 				:size="26" />
-				<!-- Set size to 26 to make up for the increased padding of this icon -->
+			<!-- Set size to 26 to make up for the increased padding of this icon -->
 		</template>
 		<template #option="option">
-			<NcListItemIcon v-if="userSelect"
+			<NcListItemIcon
+				v-if="userSelect"
 				v-bind="option"
 				:avatar-size="24"
 				:name="option[localLabel]"
 				:search="search" />
-			<NcEllipsisedOption v-else
+			<NcEllipsisedOption
+				v-else
 				:name="String(option[localLabel])"
 				:search="search" />
 		</template>
 		<template #selected-option="selectedOption">
-			<NcListItemIcon v-if="userSelect"
+			<NcListItemIcon
+				v-if="userSelect"
 				v-bind="selectedOption"
 				:avatar-size="24"
 				:name="selectedOption[localLabel]"
 				:search="search" />
-			<NcEllipsisedOption v-else
+			<NcEllipsisedOption
+				v-else
 				:name="String(selectedOption[localLabel])"
 				:search="search" />
 		</template>
@@ -611,7 +617,10 @@ export default {
 	props: {
 		// Add VueSelect props to $props
 		...VueSelect.props,
-		...VueSelect.mixins.reduce((allProps, mixin) => ({ ...allProps, ...mixin.props }), {}),
+		...VueSelect.mixins.reduce(
+			(allProps, mixin) => ({ ...allProps, ...mixin.props }),
+			{},
+		),
 
 		/**
 		 * `aria-label` for the clear input button
@@ -646,7 +655,8 @@ export default {
 		 */
 		ariaLabelDeselectOption: {
 			type: Function,
-			default: (optionLabel) => t('Deselect {option}', { option: optionLabel }),
+			default: (optionLabel) =>
+				t('Deselect {option}', { option: optionLabel }),
 		},
 
 		/**
@@ -694,15 +704,16 @@ export default {
 			type: Object,
 			default: () => ({
 				Deselect: {
-					render: createElement => createElement(Close, {
-						props: {
-							size: 20,
-							fillColor: 'var(--vs-controls-color)',
-						},
-						style: {
-							cursor: 'pointer',
-						},
-					}),
+					render: (createElement) =>
+						createElement(Close, {
+							props: {
+								size: 20,
+								fillColor: 'var(--vs-controls-color)',
+							},
+							style: {
+								cursor: 'pointer',
+							},
+						}),
 				},
 			}),
 		},
@@ -994,7 +1005,10 @@ export default {
 				return null
 			}
 			// The <input> itself does not have any value so we set the `required` attribute conditionally
-			return this.value === null || (Array.isArray(this.value) && this.value.length === 0)
+			return (
+				this.value === null ||
+				(Array.isArray(this.value) && this.value.length === 0)
+			)
 		},
 
 		localCalculatePosition() {
@@ -1068,10 +1082,15 @@ export default {
 			if (this.userSelect) {
 				return (option, label, search) => {
 					const match = search.match(EMAIL_NOTATION)
-					return (match && option.subname?.toLocaleLowerCase?.()?.indexOf(match[1].toLocaleLowerCase()) > -1)
-						|| (`${label} ${option.subname}`
+					return (
+						(match &&
+							option.subname
+								?.toLocaleLowerCase?.()
+								?.indexOf(match[1].toLocaleLowerCase()) > -1) ||
+						`${label} ${option.subname}`
 							.toLocaleLowerCase()
-							.indexOf(search.toLocaleLowerCase()) > -1)
+							.indexOf(search.toLocaleLowerCase()) > -1
+					)
 				}
 			}
 			return VueSelect.props.filterBy.default
@@ -1090,11 +1109,14 @@ export default {
 		propsToForward() {
 			const vueSelectKeys = [
 				...Object.keys(VueSelect.props),
-				...VueSelect.mixins.flatMap(mixin => Object.keys(mixin.props ?? {})),
+				...VueSelect.mixins.flatMap((mixin) =>
+					Object.keys(mixin.props ?? {}),
+				),
 			]
 			const initialPropsToForward = Object.fromEntries(
-				Object.entries(this.$props)
-					.filter(([key, _value]) => vueSelectKeys.includes(key)),
+				Object.entries(this.$props).filter(([key, _value]) =>
+					vueSelectKeys.includes(key),
+				),
 			)
 			const propsToForward = {
 				...initialPropsToForward,
@@ -1109,10 +1131,14 @@ export default {
 
 	mounted() {
 		if (!this.labelOutside && !this.inputLabel && !this.ariaLabelCombobox) {
-			Vue.util.warn('[NcSelect] An `inputLabel` or `ariaLabelCombobox` should be set. If an external label is used, `labelOutside` should be set to `true`.')
+			Vue.util.warn(
+				'[NcSelect] An `inputLabel` or `ariaLabelCombobox` should be set. If an external label is used, `labelOutside` should be set to `true`.',
+			)
 		}
 		if (this.inputLabel && this.ariaLabelCombobox) {
-			Vue.util.warn('[NcSelect] Only one of `inputLabel` or `ariaLabelCombobox` should to be set.')
+			Vue.util.warn(
+				'[NcSelect] Only one of `inputLabel` or `ariaLabelCombobox` should to be set.',
+			)
 		}
 	},
 
@@ -1177,7 +1203,8 @@ body {
 	--vs-dropdown-option--active-color: var(--color-main-text);
 
 	/* Keyboard Focus State */
-	--vs-dropdown-option--kb-focus-box-shadow: inset 0px 0px 0px 2px var(--vs-border-color);
+	--vs-dropdown-option--kb-focus-box-shadow: inset 0px 0px 0px 2px
+		var(--vs-border-color);
 
 	/* Deselect State */
 	--vs-dropdown-option--deselect-bg: var(--color-error);
@@ -1213,7 +1240,8 @@ body {
 		text-overflow: ellipsis;
 	}
 
-	.vs__search, .vs__search:focus {
+	.vs__search,
+	.vs__search:focus {
 		margin: 2px 0 0;
 	}
 
@@ -1303,10 +1331,13 @@ body {
 	border-color: var(--color-main-text) !important;
 	outline: none !important;
 	box-shadow:
-		-2px 0 0 var(--color-main-background), // Right
-		0 2px 0 var(--color-main-background), // Bottom
-		2px 0 0 var(--color-main-background), // Left
-		!important;
+		-2px 0 0 var(--color-main-background),
+		// Right
+		0 2px 0 var(--color-main-background),
+		// Bottom
+		2px 0 0 var(--color-main-background),
+		// Left
+ !important;
 	padding: 4px !important;
 
 	&--floating {
@@ -1321,10 +1352,13 @@ body {
 			border-top-style: var(--vs-border-style) !important;
 			border-bottom-style: none !important;
 			box-shadow:
-				0 -2px 0 var(--color-main-background), // Top
-				-2px 0 0 var(--color-main-background), // Right
-				2px 0 0 var(--color-main-background), // Left
-				!important
+				0 -2px 0 var(--color-main-background),
+				// Top
+				-2px 0 0 var(--color-main-background),
+				// Right
+				2px 0 0 var(--color-main-background),
+				// Left
+ !important;
 		}
 	}
 

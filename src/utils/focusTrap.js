@@ -25,7 +25,7 @@
  *
  * @return {import('focus-trap').FocusTrap[]}
  */
-export const getTrapStack = function() {
+export const getTrapStack = function () {
 	// Create global stack if undefined
 	Object.assign(window, { _nc_focus_trap: window._nc_focus_trap || [] })
 

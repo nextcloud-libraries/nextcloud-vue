@@ -44,16 +44,25 @@ import '@fontsource/roboto'
  *
  * @param {boolean} compact make the appsidebar compact or not
  */
-export default function(compact) {
+export default function (compact) {
 	describe(`NcAppSidebar.vue ${compact ? '' : 'not '}in compact mode`, () => {
 		'use strict'
 		// Possible props and actions
 		const name = 'Very long title that will certainly overflow the sidebar width'
-		const subnames = ['', 'Very long subtitle what will certainly overflow the sidebar width']
+		const subnames = [
+			'',
+			'Very long subtitle what will certainly overflow the sidebar width',
+		]
 		const nameEditable = [false, true]
 		const starred = [null, false, true]
-		const header = ['', '<div style="background: no-repeat center/contain var(--icon-folder-000); height: 100%;" />']
-		const secondary = ['', '<NcActionButton icon="icon-delete">Action1</NcActionButton><NcActionButton icon="icon-delete">Action2</NcActionButton>']
+		const header = [
+			'',
+			'<div style="background: no-repeat center/contain var(--icon-folder-000); height: 100%;" />',
+		]
+		const secondary = [
+			'',
+			'<NcActionButton icon="icon-delete">Action1</NcActionButton><NcActionButton icon="icon-delete">Action2</NcActionButton>',
+		]
 
 		const components = {
 			NcActionButton,
@@ -63,11 +72,11 @@ export default function(compact) {
 			components,
 		}
 
-		subnames.forEach(subname => {
-			nameEditable.forEach(editable => {
-				starred.forEach(star => {
-					header.forEach(head => {
-						secondary.forEach(second => {
+		subnames.forEach((subname) => {
+			nameEditable.forEach((editable) => {
+				starred.forEach((star) => {
+					header.forEach((head) => {
+						secondary.forEach((second) => {
 							// TODO remove when https://github.com/mjhea0/cypress-visual-regression/pull/56
 							const fileName = sanitize(`NcAppSidebar.vue
 									-subname_${subname ? 'true' : 'null'}

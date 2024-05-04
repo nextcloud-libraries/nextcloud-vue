@@ -47,7 +47,8 @@ This component displays a user status icon.
 </docs>
 
 <template>
-	<span v-if="activeStatus"
+	<span
+		v-if="activeStatus"
 		class="user-status-icon"
 		:class="{
 			'user-status-icon--invisible': ['invisible', 'offline'].includes(status),
@@ -55,7 +56,7 @@ This component displays a user status icon.
 		role="img"
 		:aria-hidden="ariaHidden"
 		:aria-label="ariaLabel"
-		v-html="activeSvg" /> <!-- eslint-disable-line vue/no-v-html -->
+		v-html="activeSvg" /><!-- eslint-disable-line vue/no-v-html -->
 </template>
 
 <script>
@@ -92,14 +93,10 @@ export default {
 		status: {
 			type: String,
 			default: null,
-			validator: (value) => [
-				'online',
-				'away',
-				'busy',
-				'dnd',
-				'invisible',
-				'offline',
-			].includes(value),
+			validator: (value) =>
+				['online', 'away', 'busy', 'dnd', 'invisible', 'offline'].includes(
+					value,
+				),
 		},
 
 		/**
@@ -110,10 +107,7 @@ export default {
 		ariaHidden: {
 			type: String,
 			default: null,
-			validator: (value) => [
-				'true',
-				'false',
-			].includes(value),
+			validator: (value) => ['true', 'false'].includes(value),
 		},
 	},
 
@@ -144,7 +138,9 @@ export default {
 			if (this.ariaHidden === 'true') {
 				return null
 			}
-			return t('User status: {status}', { status: getUserStatusText(this.activeStatus) })
+			return t('User status: {status}', {
+				status: getUserStatusText(this.activeStatus),
+			})
 		},
 	},
 
@@ -157,7 +153,11 @@ export default {
 					return
 				}
 				try {
-					const { data } = await axios.get(generateOcsUrl('/apps/user_status/api/v1/statuses/{user}', { user }))
+					const { data } = await axios.get(
+						generateOcsUrl('/apps/user_status/api/v1/statuses/{user}', {
+							user,
+						}),
+					)
 					this.fetchedUserStatus = data.ocs?.data?.status
 				} catch (error) {
 					this.fetchedUserStatus = null
@@ -168,7 +168,9 @@ export default {
 
 	mounted() {
 		if (!this.user && !this.status) {
-			Vue.util.warn('[NcUserStatusIcon] The `user` or `status` prop should be set.')
+			Vue.util.warn(
+				'[NcUserStatusIcon] The `user` or `status` prop should be set.',
+			)
 		}
 	},
 }

@@ -13,7 +13,10 @@ export default (dir: string) => {
 	// mapping from filesnames -> variable name
 	let nameMap: Record<string, string>
 	// all loaded translations, as filenames ->
-	const translations: Record<string, { l: string, t: Record<string, { v: string[], p?: string }> }[]> = {}
+	const translations: Record<
+		string,
+		{ l: string; t: Record<string, { v: string[]; p?: string }> }[]
+	> = {}
 
 	return {
 		name: 'nextcloud-l10n-plugin',
@@ -30,7 +33,9 @@ export default (dir: string) => {
 			this.info('[l10n] Loading translation mapping for components')
 			// mapping which files (filename:filename2:filename3) contain which message ids
 			const context = (await import('./extract-l10n.mjs')).context
-			nameMap = Object.fromEntries(Object.keys(context).map((key, index) => [key, `t${index}`]))
+			nameMap = Object.fromEntries(
+				Object.keys(context).map((key, index) => [key, `t${index}`]),
+			)
 
 			this.info('[l10n] Building translation chunks for components')
 			// This will split translations in a map like "using file(s)" => {locale, translations}
@@ -45,7 +50,11 @@ export default (dir: string) => {
 						l: locale,
 						// We simply filter those translations whos msg IDs are used by current context
 						// eslint-disable-next-line @typescript-eslint/no-unused-vars
-						t: Object.fromEntries(Object.entries(currentTranslations).filter(([id, _value]) => msgIds.includes(id))),
+						t: Object.fromEntries(
+							Object.entries(currentTranslations).filter(
+								([id, _value]) => msgIds.includes(id),
+							),
+						),
 					})
 				}
 			}
@@ -64,8 +73,16 @@ export default (dir: string) => {
 				}
 				// dont handle other plugins imports
 				return null
-			} else if (source.endsWith('l10n.js') && importer && !importer.includes('node_modules')) {
-				if (dirname(resolve(dirname(importer), source)).split('/').at(-1) === 'src') {
+			} else if (
+				source.endsWith('l10n.js') &&
+				importer &&
+				!importer.includes('node_modules')
+			) {
+				if (
+					dirname(resolve(dirname(importer), source))
+						.split('/')
+						.at(-1) === 'src'
+				) {
 					// return our wrapper for handling the import
 					return `\0l10nwrapper?source=${encodeURIComponent(importer)}`
 				}
@@ -82,7 +99,8 @@ export default (dir: string) => {
 				// In case this is the wrapper module we provide a module that imports only the required translations and exports t and n functions
 				const source = decodeURIComponent(match[1])
 				// filter function to check the paths (files that use this translation) includes the current source
-				const filterByPath = (paths: string) => paths.split(':').some((path) => source.endsWith(path))
+				const filterByPath = (paths: string) =>
+					paths.split(':').some((path) => source.endsWith(path))
 				// All translations that need to be imported for the current source
 				const imports = Object.entries(nameMap)
 					// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -92,7 +110,12 @@ export default (dir: string) => {
 				return `import {t,n,register,${imports.join(',')}} from '\0l10n';register(${imports.join(',')});export {t,n};`
 			} else if (id === '\0l10n') {
 				// exports are all chunked translations
-				const exports = Object.entries(nameMap).map(([usage, id]) => `export const ${id} = ${JSON.stringify(translations[usage])}`).join(';\n')
+				const exports = Object.entries(nameMap)
+					.map(
+						([usage, id]) =>
+							`export const ${id} = ${JSON.stringify(translations[usage])}`,
+					)
+					.join(';\n')
 				return `import { getGettextBuilder } from '@nextcloud/l10n/gettext'
 const gettext = getGettextBuilder().detectLocale().build()
 export const n = gettext.ngettext.bind(gettext)

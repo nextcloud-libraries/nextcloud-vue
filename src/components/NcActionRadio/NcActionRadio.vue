@@ -37,9 +37,13 @@ So that only one of each name set can be selected at the same time.
 </docs>
 
 <template>
-	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
+	<li
+		class="action"
+		:class="{ 'action--disabled': disabled }"
+		:role="isInSemanticMenu && 'presentation'">
 		<span class="action-radio" role="menuitemradio" :aria-checked="ariaChecked">
-			<input :id="id"
+			<input
+				:id="id"
 				ref="radio"
 				:disabled="disabled"
 				:checked="checked"
@@ -49,8 +53,10 @@ So that only one of each name set can be selected at the same time.
 				type="radio"
 				class="radio action-radio__radio"
 				@keydown.enter.exact.prevent="toggleInput"
-				@change="onChange">
-			<label ref="label" :for="id" class="action-radio__label">{{ text }}</label>
+				@change="onChange" />
+			<label ref="label" :for="id" class="action-radio__label">
+				{{ text }}
+			</label>
 
 			<!-- fake slot to gather inner text -->
 			<slot v-if="false" />
@@ -81,7 +87,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'action-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 
 		/**
@@ -119,10 +125,7 @@ export default {
 		},
 	},
 
-	emits: [
-		'update:checked',
-		'change',
-	],
+	emits: ['update:checked', 'change'],
 
 	computed: {
 		/**
@@ -139,7 +142,7 @@ export default {
 		 *
 		 * @return {'true'|'false'|undefined} aria-checked value if needed
 		 */
-		 ariaChecked() {
+		ariaChecked() {
 			if (this.isInSemanticMenu) {
 				return this.checked ? 'true' : 'false'
 			}
@@ -231,5 +234,4 @@ export default {
 		}
 	}
 }
-
 </style>

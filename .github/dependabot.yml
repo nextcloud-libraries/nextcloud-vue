@@ -6,21 +6,21 @@
 version: 2
 updates:
   - package-ecosystem: npm
-    directory: "/"
+    directory: '/'
     schedule:
       interval: daily
       timezone: Europe/Paris
     open-pull-requests-limit: 10
     labels:
-    - 3. to review
-    - dependencies
+      - 3. to review
+      - dependencies
 
   - package-ecosystem: github-actions
-    directory: "/"
+    directory: '/'
     schedule:
       interval: daily
       timezone: Europe/Paris
     open-pull-requests-limit: 10
     labels:
-    - 3. to review
-    - dependencies
+      - 3. to review
+      - dependencies
