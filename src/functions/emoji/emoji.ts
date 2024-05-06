@@ -27,6 +27,10 @@ import data from 'emoji-mart-vue-fast/data/all.json'
 
 const storage = getBuilder('nextcloud-vue').persist(true).build()
 
+// Shared emoji index and skinTone for all emojiSearch function calls
+// Will be initialized on the first call
+let emojiIndex
+
 /**
  * Skin tones supported by Unicode Emojis (Fitzpatrick scale)
  * The numeric values align with `emoji-mart-vue`
@@ -46,17 +50,20 @@ export enum EmojiSkinTone {
  * @return {Array} list of found emojis
  */
 export const emojiSearch = (query: string, maxResults: number = 10) => {
-	const index = new EmojiIndex(data)
+	// If this is the first call of function - initialize EmojiIndex
+	if (!emojiIndex) {
+		emojiIndex = new EmojiIndex(data)
+	}
 	const currentSkinTone = getCurrentSkinTone()
 
 	let results
 	if (query) {
-		results = index.search(`:${query}`, maxResults)
+		results = emojiIndex.search(`:${query}`, maxResults)
 		if (results.length < maxResults) {
-			results = results.concat(index.search(query, maxResults - results.length))
+			results = results.concat(emojiIndex.search(query, maxResults - results.length))
 		}
 	} else {
-		results = frequently.get(maxResults).map((id: number) => index.emoji(id)) || []
+		results = frequently.get(maxResults).map((id: number) => emojiIndex.emoji(id)) || []
 	}
 
 	return results.map((emoji) => emoji.getSkin(currentSkinTone))
