@@ -1218,7 +1218,15 @@ body {
 	}
 
 	.vs__dropdown-toggle {
+		position: relative;
+		max-height: 100px;
 		padding: 0;
+		overflow-y: auto;
+	}
+
+	.vs__actions {
+		position: sticky;
+		top: 0;
 	}
 
 	.vs__clear {
