@@ -71,9 +71,7 @@ export default {
 		},
 	},
 
-	emits: [
-		'click',
-	],
+	emits: ['click'],
 
 	computed: {
 		/**
@@ -82,7 +80,10 @@ export default {
 		 */
 		isIconUrl() {
 			try {
-				return !!(new URL(this.icon, this.icon.startsWith('/') ? window.location.origin : undefined))
+				return !!new URL(
+					this.icon,
+					this.icon.startsWith('/') ? window.location.origin : undefined,
+				)
 			} catch (error) {
 				return false
 			}

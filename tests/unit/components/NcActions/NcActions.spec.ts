@@ -31,7 +31,6 @@ import TestCompositionApi from './TestCompositionApi.vue'
 import { defineComponent } from 'vue'
 
 describe('NcActions.vue', () => {
-
 	describe('semantic menu type', () => {
 		const MyWrapper = defineComponent({
 			template: '<Fragment><NcActionInput /></Fragment>',
@@ -42,9 +41,7 @@ describe('NcActions.vue', () => {
 		it.failing('Can auto detect semantic menu type in wrappers', () => {
 			const wrapper = mount(NcActions, {
 				slots: {
-					default: [
-						'<MyWrapper />',
-					],
+					default: ['<MyWrapper />'],
 				},
 				stubs: {
 					MyWrapper,
@@ -60,9 +57,7 @@ describe('NcActions.vue', () => {
 					forceSemanticType: 'dialog',
 				},
 				slots: {
-					default: [
-						'<MyWrapper />',
-					],
+					default: ['<MyWrapper />'],
 				},
 				stubs: {
 					MyWrapper,
@@ -120,9 +115,7 @@ describe('NcActions.vue', () => {
 			beforeEach(() => {
 				wrapper = mount(NcActions, {
 					slots: {
-						default: [
-							'<NcActionButton>Test1</NcActionButton>',
-						],
+						default: ['<NcActionButton>Test1</NcActionButton>'],
 					},
 					stubs: {
 						// used to register custom components
@@ -184,7 +177,9 @@ describe('NcActions.vue', () => {
 			})
 			it('shows the first action outside.', () => {
 				expect(wrapper.findAll('button.action-item').length).toBe(1)
-				expect(wrapper.find('button.action-item[aria-label="Test1"]').exists()).toBe(true)
+				expect(
+					wrapper.find('button.action-item[aria-label="Test1"]').exists(),
+				).toBe(true)
 			})
 			it('shows the menu toggle.', () => {
 				expect(wrapper.find('.action-item__menutoggle').exists()).toBe(true)
@@ -223,7 +218,9 @@ describe('NcActions.vue', () => {
 				},
 			})
 
-			expect(wrapper.find('img[src="http://example.com/image.png"').exists()).toBe(true)
+			expect(
+				wrapper.find('img[src="http://example.com/image.png"').exists(),
+			).toBe(true)
 		})
 	})
 })

@@ -54,22 +54,30 @@ emit('toggle-navigation', {
 </docs>
 
 <template>
-	<div ref="appNavigationContainer"
+	<div
+		ref="appNavigationContainer"
 		class="app-navigation"
-		:class="{'app-navigation--close':!open }">
-		<nav id="app-navigation-vue"
+		:class="{ 'app-navigation--close': !open }">
+		<nav
+			id="app-navigation-vue"
 			:aria-hidden="open ? 'false' : 'true'"
 			:aria-label="ariaLabel || undefined"
 			:aria-labelledby="ariaLabelledby || undefined"
 			class="app-navigation__content"
 			:inert="!open || undefined"
 			@keydown.esc="handleEsc">
-			<div class="app-navigation__body" :class="{ 'app-navigation__body--no-list': !$scopedSlots.list }">
+			<div
+				class="app-navigation__body"
+				:class="{
+					'app-navigation__body--no-list': !$scopedSlots.list,
+				}">
 				<!-- The main content of the navigation. If no list is passed to the #list slot, stretched vertically. -->
 				<slot />
 			</div>
 
-			<NcAppNavigationList v-if="$scopedSlots.list" class="app-navigation__list">
+			<NcAppNavigationList
+				v-if="$scopedSlots.list"
+				class="app-navigation__list">
 				<!-- List for Navigation list items. Stretched between the main content and the footer -->
 				<slot name="list" />
 			</NcAppNavigationList>
@@ -102,7 +110,10 @@ export default {
 	// Injected from NcContent
 	inject: {
 		setHasAppNavigation: {
-			default: () => () => Vue.util.warn('NcAppNavigation is not mounted inside NcContent, this is probably an error.'),
+			default: () => () =>
+				Vue.util.warn(
+					'NcAppNavigation is not mounted inside NcContent, this is probably an error.',
+				),
 			from: 'NcContent:setHasAppNavigation',
 		},
 	},
@@ -185,15 +196,16 @@ export default {
 				return
 			}
 
-			this.open = (typeof state === 'undefined') ? !this.open : state
+			this.open = typeof state === 'undefined' ? !this.open : state
 			const bodyStyles = getComputedStyle(document.body)
-			const animationLength = parseInt(bodyStyles.getPropertyValue('--animation-quick')) || 100
+			const animationLength =
+				parseInt(bodyStyles.getPropertyValue('--animation-quick')) || 100
 
 			setTimeout(() => {
 				emit('navigation-toggled', {
 					open: this.open,
 				})
-			// We wait for 1.5 times the animation length to give the animation time to really finish.
+				// We wait for 1.5 times the animation length to give the animation time to really finish.
 			}, 1.5 * animationLength)
 		},
 
@@ -233,11 +245,22 @@ export default {
 .app-navigation {
 	// Set scoped variable override
 	// Using --color-text-maxcontrast as a fallback evaluates to an invalid value as it references itself in this scope instead of the variable defined higher up
-	--color-text-maxcontrast: var(--color-text-maxcontrast-background-blur, var(--color-text-maxcontrast-default));
-	transition: transform var(--animation-quick), margin var(--animation-quick);
+	--color-text-maxcontrast: var(
+		--color-text-maxcontrast-background-blur,
+		var(--color-text-maxcontrast-default)
+	);
+	transition:
+		transform var(--animation-quick),
+		margin var(--animation-quick);
 	width: $navigation-width;
 	// Left toggle button padding + toggle button + right padding from NcAppContent
-	--app-navigation-max-width: calc(100vw - (var(--app-navigation-padding) + var(--default-clickable-area) + var(--default-grid-baseline)));
+	--app-navigation-max-width: calc(
+		100vw -
+			(
+				var(--app-navigation-padding) + var(--default-clickable-area) +
+					var(--default-grid-baseline)
+			)
+	);
 	max-width: var(--app-navigation-max-width);
 	position: relative;
 	top: 0;
@@ -253,12 +276,17 @@ export default {
 	user-select: none;
 	flex-grow: 0;
 	flex-shrink: 0;
-	background-color: var(--color-main-background-blur, var(--color-main-background));
+	background-color: var(
+		--color-main-background-blur,
+		var(--color-main-background)
+	);
 	-webkit-backdrop-filter: var(--filter-background-blur, none);
 	backdrop-filter: var(--filter-background-blur, none);
 
 	&--close {
-		margin-left: calc(-1 * min($navigation-width, var(--app-navigation-max-width)));
+		margin-left: calc(
+			-1 * min($navigation-width, var(--app-navigation-max-width))
+		);
 	}
 
 	// For legacy purposes support passing a bare list to the content in #default slot and including #footer slot

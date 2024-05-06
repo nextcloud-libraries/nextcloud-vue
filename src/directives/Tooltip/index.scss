@@ -62,12 +62,14 @@ $arrow-width: 10px;
 		// HIDDEN / SHOWN
 		&[aria-hidden='true'] {
 			visibility: hidden;
-			transition: opacity .15s, visibility .15s;
+			transition:
+				opacity 0.15s,
+				visibility 0.15s;
 			opacity: 0;
 		}
 		&[aria-hidden='false'] {
 			visibility: visible;
-			transition: opacity .15s;
+			transition: opacity 0.15s;
 			opacity: 1;
 		}
 	}

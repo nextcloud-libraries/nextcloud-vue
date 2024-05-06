@@ -42,7 +42,9 @@ describe('NcAvatar.vue', () => {
 		await nextTick()
 
 		expect(wrapper.find('.avatardiv__user-status').exists()).toBe(true)
-		expect(wrapper.find('.action-item__menutoggle').attributes('aria-label')).toBe('Avatar of J. Doe, online')
+		expect(
+			wrapper.find('.action-item__menutoggle').attributes('aria-label'),
+		).toBe('Avatar of J. Doe, online')
 	})
 
 	it('aria label is set to include status even if status is do-not-disturb', async () => {
@@ -63,7 +65,9 @@ describe('NcAvatar.vue', () => {
 		await nextTick()
 
 		expect(wrapper.find('.avatardiv__user-status').exists()).toBe(true)
-		expect(wrapper.find('.action-item__menutoggle').attributes('aria-label')).toBe('Avatar of J. Doe, do not disturb')
+		expect(
+			wrapper.find('.action-item__menutoggle').attributes('aria-label'),
+		).toBe('Avatar of J. Doe, do not disturb')
 	})
 
 	it('aria label is does not include status if status not shown', async () => {
@@ -85,7 +89,9 @@ describe('NcAvatar.vue', () => {
 		await nextTick()
 
 		expect(wrapper.find('.avatardiv__user-status').exists()).toBe(false)
-		expect(wrapper.find('.action-item__menutoggle').attributes('aria-label')).toBe('Avatar of J. Doe')
+		expect(
+			wrapper.find('.action-item__menutoggle').attributes('aria-label'),
+		).toBe('Avatar of J. Doe')
 	})
 
 	it('should display initials for user id', async () => {
@@ -113,22 +119,25 @@ describe('NcAvatar.vue', () => {
 
 	describe('Fallback initials', () => {
 		it.each`
-			displayName             | initials | case
-			${''}                   | ${'?'}   | ${'empty user'}
-			${'Jane Doe'}           | ${'JD'}  | ${'display name property'}
-			${'Jane (Doe)'}         | ${'JD'}  | ${'special characters in name'}
-			${'jane doe'}           | ${'JD'}  | ${'lower case name'}
-			${'Jane Some Name Doe'} | ${'JD'}  | ${'middle names'}
-			${'Ümit Öçal'}          | ${'ÜÖ'}  | ${'non ascii characters'}
-			${'ジェーン ドー'}        | ${'ジド'} | ${'non latin characters'}
-		`('should display initials for $case ("$displayName" -> "$initials")', async ({ displayName, initials }) => {
-			const wrapper = shallowMount(NcAvatar, {
-				propsData: {
-					displayName,
-				},
-			})
-			await nextTick()
-			expect(wrapper.text()).toBe(initials)
-		})
+			displayName             | initials  | case
+			${''}                   | ${'?'}    | ${'empty user'}
+			${'Jane Doe'}           | ${'JD'}   | ${'display name property'}
+			${'Jane (Doe)'}         | ${'JD'}   | ${'special characters in name'}
+			${'jane doe'}           | ${'JD'}   | ${'lower case name'}
+			${'Jane Some Name Doe'} | ${'JD'}   | ${'middle names'}
+			${'Ümit Öçal'}          | ${'ÜÖ'}   | ${'non ascii characters'}
+			${'ジェーン ドー'}      | ${'ジド'} | ${'non latin characters'}
+		`(
+			'should display initials for $case ("$displayName" -> "$initials")',
+			async ({ displayName, initials }) => {
+				const wrapper = shallowMount(NcAvatar, {
+					propsData: {
+						displayName,
+					},
+				})
+				await nextTick()
+				expect(wrapper.text()).toBe(initials)
+			},
+		)
 	})
 })

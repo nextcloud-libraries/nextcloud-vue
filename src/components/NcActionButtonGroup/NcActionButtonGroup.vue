@@ -94,7 +94,10 @@ export default {
 		<div v-if="name" :id="labelId">
 			{{ name }}
 		</div>
-		<ul class="nc-button-group-content" role="group" :aria-labelledby="name ? labelId : undefined">
+		<ul
+			class="nc-button-group-content"
+			role="group"
+			:aria-labelledby="name ? labelId : undefined">
 			<slot />
 		</ul>
 	</li>
@@ -143,7 +146,7 @@ export default defineComponent({
 
 <style lang="scss">
 .nc-button-group-base {
-	>div {
+	> div {
 		text-align: center;
 		color: var(--color-text-maxcontrast);
 	}
@@ -168,7 +171,9 @@ export default defineComponent({
 				border-radius: var(--border-radius-large);
 				color: var(--color-primary-element-text);
 
-				&:hover, &:focus, &:focus-within {
+				&:hover,
+				&:focus,
+				&:focus-within {
 					background-color: var(--color-primary-element-hover);
 				}
 			}

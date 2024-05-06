@@ -1,16 +1,28 @@
 <template>
-	<div ref="widgetRoot" :class="{'toggle-interactive': hasInteractiveView && !isInteractive }">
-		<div v-if="reference && hasCustomWidget"
+	<div
+		ref="widgetRoot"
+		:class="{ 'toggle-interactive': hasInteractiveView && !isInteractive }">
+		<div
+			v-if="reference && hasCustomWidget"
 			ref="customWidget"
 			class="widget-custom"
 			:class="{ 'full-width': hasFullWidth }" />
 
-		<component :is="referenceWidgetLinkComponent"
-			v-else-if="!noAccess && reference && reference.openGraphObject && !hasCustomWidget"
+		<component
+			:is="referenceWidgetLinkComponent"
+			v-else-if="
+				!noAccess &&
+				reference &&
+				reference.openGraphObject &&
+				!hasCustomWidget
+			"
 			v-bind="referenceWidgetLinkProps"
 			rel="noopener noreferrer"
 			class="widget-default">
-			<img v-if="reference.openGraphObject.thumb" class="widget-default--image" :src="reference.openGraphObject.thumb">
+			<img
+				v-if="reference.openGraphObject.thumb"
+				class="widget-default--image"
+				:src="reference.openGraphObject.thumb" />
 			<div class="widget-default--details">
 				<p class="widget-default--name">
 					{{ reference.openGraphObject.name }}
@@ -23,7 +35,10 @@
 				</p>
 			</div>
 		</component>
-		<NcButton v-if="interactiveOptIn && hasInteractiveView && !isInteractive" class="toggle-interactive--button" @click="enableInteractive">
+		<NcButton
+			v-if="interactiveOptIn && hasInteractiveView && !isInteractive"
+			class="toggle-interactive--button"
+			@click="enableInteractive">
 			{{ t('Enable interactive view') }}
 		</NcButton>
 	</div>
@@ -35,7 +50,13 @@ import { RouterLink } from 'vue-router'
 
 import { t } from '../../l10n.js'
 import { getRoute } from './autolink.js'
-import { renderWidget, isWidgetRegistered, destroyWidget, hasInteractiveView, hasFullWidth } from './../../functions/reference/widgets.ts'
+import {
+	renderWidget,
+	isWidgetRegistered,
+	destroyWidget,
+	hasInteractiveView,
+	hasFullWidth,
+} from './../../functions/reference/widgets.ts'
 
 import NcButton from '../../components/NcButton/index.js'
 
@@ -100,7 +121,9 @@ export default {
 
 	computed: {
 		isInteractive() {
-			return (!this.interactiveOptIn && this.interactive) || this.showInteractive
+			return (
+				(!this.interactiveOptIn && this.interactive) || this.showInteractive
+			)
 		},
 		hasFullWidth() {
 			return hasFullWidth(this.reference.richObjectType)
@@ -109,7 +132,10 @@ export default {
 			return isWidgetRegistered(this.reference.richObjectType)
 		},
 		hasInteractiveView() {
-			return isWidgetRegistered(this.reference.richObjectType) && hasInteractiveView(this.reference.richObjectType)
+			return (
+				isWidgetRegistered(this.reference.richObjectType) &&
+				hasInteractiveView(this.reference.richObjectType)
+			)
 		},
 		noAccess() {
 			return this.reference && !this.reference.accessible
@@ -150,7 +176,10 @@ export default {
 		referenceWidgetLinkProps() {
 			return this.route
 				? { to: this.route }
-				: { href: this.reference.openGraphObject.link, target: '_blank' }
+				: {
+						href: this.reference.openGraphObject.link,
+						target: '_blank',
+					}
 		},
 	},
 	watch: {
@@ -221,7 +250,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
 @mixin widget {
 	width: 100%;
 	margin: auto;
@@ -239,7 +267,7 @@ export default {
 
 	&.full-width {
 		width: var(--widget-full-width, 100%) !important;
-		left: calc( (var(--widget-full-width, 100%) - 100%) / 2 * -1);
+		left: calc((var(--widget-full-width, 100%) - 100%) / 2 * -1);
 		position: relative;
 	}
 }
@@ -269,7 +297,6 @@ export default {
 		.widget-default--description {
 			display: none;
 		}
-
 	}
 
 	&--image {
@@ -324,7 +351,8 @@ export default {
 		opacity: 0;
 	}
 
-	&:focus-within, &:hover {
+	&:focus-within,
+	&:hover {
 		.toggle-interactive--button {
 			opacity: 1;
 		}

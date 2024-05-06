@@ -29,7 +29,7 @@ import md5 from 'md5'
  * @param {string} username Display name or user id to generate from
  * @return {object} the rgb colors as {r:255, g:255, b:255}
  */
-const usernameToColor = function(username) {
+const usernameToColor = function (username) {
 	// Normalize hash
 	let hash = username.toLowerCase()
 

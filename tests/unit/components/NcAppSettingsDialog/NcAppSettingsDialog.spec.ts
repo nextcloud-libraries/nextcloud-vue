@@ -31,7 +31,8 @@ import { resizeWindowWidth } from '../../testing-utils'
 const MockSection = defineComponent({
 	props: { id: { type: String, default: 'test_id' } },
 	setup(props) {
-		const register = inject<(id: string, name: string)=> void>('registerSection')
+		const register =
+			inject<(id: string, name: string) => void>('registerSection')
 		onMounted(() => register?.(props.id, 'test_name'))
 		return (h) => h('li', ['empty'])
 	},
@@ -114,14 +115,18 @@ describe('NcAppSettingsDialog: Sections registration', () => {
 		expect(wrapper.findAll('nav a')).toHaveLength(1)
 
 		// Second one should unregister first and replace with this one, but show an error
-		expect(() => wrapper.vm.registerSection('test_id', 'test_other_name')).toThrow()
+		expect(() =>
+			wrapper.vm.registerSection('test_id', 'test_other_name'),
+		).toThrow()
 		await nextTick()
 		expect(wrapper.findAll('nav a')).toHaveLength(1)
 	})
 
 	it('can unregister a section', async () => {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const wrapper = mount<Vue & { registerSection: any, unregisterSection: any }>(NcAppSettingsDialog, {
+		const wrapper = mount<
+			Vue & { registerSection: any; unregisterSection: any }
+		>(NcAppSettingsDialog, {
 			propsData: {
 				open: true,
 				showNavigation: true,

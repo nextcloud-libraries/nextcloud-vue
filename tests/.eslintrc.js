@@ -1,9 +1,7 @@
 module.exports = {
 	env: {
 		jest: true,
-		"cypress/globals": true
+		'cypress/globals': true,
 	},
-	extends: [
-		"plugin:cypress/recommended"
-	],
+	extends: ['plugin:cypress/recommended', 'prettier'],
 }

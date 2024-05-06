@@ -24,8 +24,9 @@
 	https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-1/tabs.html -->
 
 <template>
-	<section :id="`tab-${id}`"
-		:class="{'app-sidebar__tab--active': isActive}"
+	<section
+		:id="`tab-${id}`"
+		:class="{ 'app-sidebar__tab--active': isActive }"
 		:aria-hidden="!isActive"
 		:aria-label="isTablistShown() ? undefined : name"
 		:aria-labelledby="isTablistShown() ? `tab-button-${id}` : undefined"
@@ -78,10 +79,7 @@ export default {
 		},
 	},
 
-	emits: [
-		'bottom-reached',
-		'scroll',
-	],
+	emits: ['bottom-reached', 'scroll'],
 
 	expose: ['id', 'name', 'icon', 'order', 'renderIcon'],
 
@@ -110,7 +108,10 @@ export default {
 	methods: {
 		onScroll(event) {
 			// Are we scrolled to the very bottom ?
-			if (this.$el.scrollHeight - this.$el.scrollTop === this.$el.clientHeight) {
+			if (
+				this.$el.scrollHeight - this.$el.scrollTop ===
+				this.$el.clientHeight
+			) {
 				/**
 				 * Bottom scroll is reached
 				 *

@@ -175,7 +175,8 @@ export default {
 	<div class="dashboard-widget">
 		<!-- This element is shown if we have items, but want to show a general message as well.
 		Can be used e.g. to show "No mentions" on top of the item list. -->
-		<NcEmptyContent v-if="showHalfEmptyContentArea"
+		<NcEmptyContent
+			v-if="showHalfEmptyContentArea"
 			:description="halfEmptyContentString"
 			class="half-screen">
 			<template #icon>
@@ -190,7 +191,8 @@ export default {
 			<li v-for="item in displayedItems" :key="item.id">
 				<!-- @slot The default slot can be optionally overridden. It contains the template of one item. -->
 				<slot name="default" :item="item">
-					<NcDashboardWidgetItem v-bind="item"
+					<NcDashboardWidgetItem
+						v-bind="item"
 						:item-menu="itemMenu"
 						v-on="handlers" />
 				</slot>
@@ -202,15 +204,14 @@ export default {
 				<NcAvatar class="item-avatar" :size="44" />
 				<div class="item__details">
 					<h3>&nbsp;</h3>
-					<p class="message">
-&nbsp;
-					</p>
+					<p class="message">&nbsp;</p>
 				</div>
 			</div>
 		</div>
 		<!-- @slot Slot for showing information in case of an empty item list. -->
 		<slot v-else-if="items.length === 0" name="empty-content">
-			<NcEmptyContent v-if="emptyContentMessage"
+			<NcEmptyContent
+				v-if="emptyContentMessage"
 				:description="emptyContentMessage">
 				<template #icon>
 					<!-- @slot The icon to show in the empty content area. -->
@@ -219,7 +220,8 @@ export default {
 			</NcEmptyContent>
 		</slot>
 		<!-- A "show more" link, e.g. to navigate to the main app belonging to this widget. -->
-		<a v-else-if="showMore"
+		<a
+			v-else-if="showMore"
 			:href="showMoreUrl"
 			target="_blank"
 			class="more"
@@ -254,7 +256,9 @@ export default {
 		 */
 		items: {
 			type: Array,
-			default: () => { return [] },
+			default: () => {
+				return []
+			},
 		},
 		/**
 		 * If this is set, a "show more" text is displayed on the widget's bottom.
@@ -285,7 +289,9 @@ export default {
 		 */
 		itemMenu: {
 			type: Object,
-			default: () => { return {} },
+			default: () => {
+				return {}
+			},
 		},
 		/**
 		 * Whether both the items and the empty content message are shown.
@@ -323,14 +329,19 @@ export default {
 			return h
 		},
 		displayedItems() {
-			const nbItems = (this.showMoreUrl && this.items.length >= this.maxItemNumber)
-				? this.maxItemNumber - 1
-				: this.maxItemNumber
+			const nbItems =
+				this.showMoreUrl && this.items.length >= this.maxItemNumber
+					? this.maxItemNumber - 1
+					: this.maxItemNumber
 			return this.items.slice(0, nbItems)
 		},
 
 		showHalfEmptyContentArea() {
-			return this.showItemsAndEmptyContent && this.halfEmptyContentString && this.items.length !== 0
+			return (
+				this.showItemsAndEmptyContent &&
+				this.halfEmptyContentString &&
+				this.items.length !== 0
+			)
 		},
 
 		halfEmptyContentString() {

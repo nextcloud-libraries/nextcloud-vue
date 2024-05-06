@@ -130,7 +130,8 @@ export default {
 </docs>
 
 <template>
-	<NcInputField v-bind="propsAndAttrsToForward"
+	<NcInputField
+		v-bind="propsAndAttrsToForward"
 		ref="inputField"
 		v-on="$listeners"
 		@input="handleInput">
@@ -147,7 +148,6 @@ export default {
 </template>
 
 <script>
-
 import NcInputField from '../NcInputField/NcInputField.vue'
 
 import Close from 'vue-material-design-icons/Close.vue'
@@ -202,17 +202,11 @@ export default {
 		trailingButtonIcon: {
 			type: String,
 			default: 'close',
-			validator: (value) => [
-				'close',
-				'arrowRight',
-				'undo',
-			].includes(value),
+			validator: (value) => ['close', 'arrowRight', 'undo'].includes(value),
 		},
 	},
 
-	emits: [
-		'update:value',
-	],
+	emits: ['update:value'],
 
 	computed: {
 		propsAndAttrsToForward() {
@@ -227,10 +221,14 @@ export default {
 				...this.$attrs,
 				// Proxy original NcInputField's props
 				...Object.fromEntries(
-					Object.entries(this.$props).filter(([key]) => NcInputFieldProps.has(key)),
+					Object.entries(this.$props).filter(([key]) =>
+						NcInputFieldProps.has(key),
+					),
 				),
 				// Adjust aria-label for predefined trailing buttons
-				trailingButtonLabel: this.trailingButtonLabel || predefinedLabels[this.trailingButtonIcon],
+				trailingButtonLabel:
+					this.trailingButtonLabel ||
+					predefinedLabels[this.trailingButtonIcon],
 			}
 		},
 	},

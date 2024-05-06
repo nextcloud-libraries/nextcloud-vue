@@ -30,21 +30,21 @@
 </docs>
 
 <template>
-	<form ref="form"
-		:disabled="disabled"
-		@submit.prevent.stop="onSubmit">
+	<form ref="form" :disabled="disabled" @submit.prevent.stop="onSubmit">
 		<div class="input-wrapper">
 			<label :for="id" class="action-input__label">{{ label }}</label>
-			<input :id="id"
+			<input
+				:id="id"
 				type="text"
 				:value="value"
 				:disabled="disabled"
 				@input="onInput"
-				@change="onChange">
-			<input :id="idSubmit"
+				@change="onChange" />
+			<input
+				:id="idSubmit"
 				:value="submitTranslated"
 				type="submit"
-				class="action-input__submit">
+				class="action-input__submit" />
 			<p v-if="hint" class="hint">
 				{{ hint }}
 			</p>
@@ -97,16 +97,11 @@ export default {
 		id: {
 			type: String,
 			default: () => 'settings-input-text-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 	},
 
-	emits: [
-		'update:value',
-		'input',
-		'submit',
-		'change',
-	],
+	emits: ['update:value', 'input', 'submit', 'change'],
 
 	data() {
 		return {
@@ -155,27 +150,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.input-wrapper {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+	max-width: 400px;
 
-	.input-wrapper {
-		display: flex;
-		align-items: center;
-		flex-wrap: wrap;
-		width: 100%;
-		max-width: 400px;
-
-		& .action-input__label {
-			margin-right: 12px;
-		}
-
-		// if disabled, change cursor
-		&:disabled {
-			cursor: default;
-		}
-
-		.hint {
-			color: var(--color-text-maxcontrast);
-			margin-left: 8px;
-		}
+	& .action-input__label {
+		margin-right: 12px;
 	}
 
+	// if disabled, change cursor
+	&:disabled {
+		cursor: default;
+	}
+
+	.hint {
+		color: var(--color-text-maxcontrast);
+		margin-left: 8px;
+	}
+}
 </style>

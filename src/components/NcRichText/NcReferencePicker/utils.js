@@ -5,11 +5,11 @@ let mytimer = 0
  * @param {number} ms The delay in milli-seconds
  */
 export function delay(callback, ms) {
-	return function() {
+	return function () {
 		const context = this
 		const args = arguments
 		clearTimeout(mytimer)
-		mytimer = setTimeout(function() {
+		mytimer = setTimeout(function () {
 			callback.apply(context, args)
 		}, ms || 0)
 	}

@@ -21,7 +21,7 @@ jobs:
           token: ${{ secrets.COMMAND_BOT_PAT }}
           repository: ${{ github.event.repository.full_name }}
           comment-id: ${{ github.event.comment.id }}
-          reaction-type: "+1"
+          reaction-type: '+1'
 
       - name: Parse command
         uses: skjnldsv/parse-command-comment@master
@@ -97,4 +97,4 @@ jobs:
           token: ${{ secrets.COMMAND_BOT_PAT }}
           repository: ${{ github.event.repository.full_name }}
           comment-id: ${{ github.event.comment.id }}
-          reaction-type: "-1"
+          reaction-type: '-1'

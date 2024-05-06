@@ -21,7 +21,8 @@
 -->
 
 <template>
-	<span :id="!isButtonType ? `${id}-label` : undefined"
+	<span
+		:id="!isButtonType ? `${id}-label` : undefined"
 		class="checkbox-content"
 		:class="{
 			['checkbox-content-' + type]: true,
@@ -32,10 +33,11 @@
 			label can't be used here because of shift+click firefox bug
 			https://bugzilla.mozilla.org/show_bug.cgi?id=559506
 		-->
-		<span :class="{
+		<span
+			:class="{
 				'checkbox-content__icon': true,
 				'checkbox-content__icon--checked': isChecked,
-				[iconClass]: true
+				[iconClass]: true,
 			}"
 			:aria-hidden="true"
 			inert>
@@ -43,11 +45,10 @@
 					@binding {bool} checked The input checked state
 					@binding {bool} loading The loading state
 			-->
-			<slot name="icon"
-				:checked="isChecked"
-				:loading="loading">
+			<slot name="icon" :checked="isChecked" :loading="loading">
 				<NcLoadingIcon v-if="loading" />
-				<component :is="checkboxRadioIconElement"
+				<component
+					:is="checkboxRadioIconElement"
 					v-else-if="!buttonVariant"
 					:size="size" />
 			</slot>
@@ -119,12 +120,8 @@ export default {
 		type: {
 			type: String,
 			default: 'checkbox',
-			validator: type => [
-				TYPE_CHECKBOX,
-				TYPE_RADIO,
-				TYPE_SWITCH,
-				TYPE_BUTTON,
-			].includes(type),
+			validator: (type) =>
+				[TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH, TYPE_BUTTON].includes(type),
 		},
 
 		/**
@@ -256,7 +253,8 @@ export default {
 		}
 	}
 
-	&, * {
+	&,
+	* {
 		cursor: pointer;
 		flex-shrink: 0;
 	}

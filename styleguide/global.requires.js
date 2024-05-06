@@ -23,9 +23,18 @@ function mockRequests(error) {
 	let data = null
 
 	// Mock requesting groups
-	const requestGroups = request.responseURL.match(/cloud\/groups\/details\?search=([^&]*)&limit=\d+$/)
+	const requestGroups = request.responseURL.match(
+		/cloud\/groups\/details\?search=([^&]*)&limit=\d+$/,
+	)
 	if (requestGroups) {
-		data = { groups: USER_GROUPS.filter(e => !requestGroups[1] || e.displayname.startsWith(requestGroups[1]) || e.id.startsWith(requestGroups[1])) }
+		data = {
+			groups: USER_GROUPS.filter(
+				(e) =>
+					!requestGroups[1] ||
+					e.displayname.startsWith(requestGroups[1]) ||
+					e.id.startsWith(requestGroups[1]),
+			),
+		}
 	}
 
 	if (data) {
@@ -34,7 +43,10 @@ function mockRequests(error) {
 	return Promise.reject(error)
 }
 
-axios.interceptors.response.use((r) => r, e => mockRequests(e))
+axios.interceptors.response.use(
+	(r) => r,
+	(e) => mockRequests(e),
+)
 
 /**
  * From server util.js
@@ -51,19 +63,19 @@ function chunkify(t) {
 	let c
 
 	while (x < t.length) {
-	  c = t.charAt(x) // only include the dot in strings
+		c = t.charAt(x) // only include the dot in strings
 
-	  const m = !n && (c === '.' || (c >= '0' && c <= '9'))
+		const m = !n && (c === '.' || (c >= '0' && c <= '9'))
 
-	  if (m !== n) {
-		// next chunk
+		if (m !== n) {
+			// next chunk
 			y++
 			tz[y] = ''
 			n = m
-	  }
+		}
 
-	  tz[y] += c
-	  x++
+		tz[y] += c
+		x++
 	}
 
 	return tz
@@ -110,8 +122,8 @@ window.OC = {
 					if (aNum == aa[x] && bNum == bb[x]) {
 						return aNum - bNum
 					} else {
-					// Note: This locale setting isn't supported by all browsers but for the ones
-					// that do there will be more consistency between client-server sorting
+						// Note: This locale setting isn't supported by all browsers but for the ones
+						// that do there will be more consistency between client-server sorting
 						return aa[x].localeCompare(bb[x], OC.getLanguage())
 					}
 				}
@@ -120,14 +132,7 @@ window.OC = {
 			return aa.length - bb.length
 		},
 	},
-	coreApps: [
-		'',
-		'admin',
-		'log',
-		'core/search',
-		'core',
-		'3rdparty',
-	],
+	coreApps: ['', 'admin', 'log', 'core/search', 'core', '3rdparty'],
 	appswebroots: {
 		calendar: '/apps/calendar',
 		deck: '/apps/deck',

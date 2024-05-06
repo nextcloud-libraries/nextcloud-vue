@@ -58,9 +58,18 @@ describe('autoLink', () => {
 							[`${linkBase}/apps/test/foo/`, '/foo/'],
 							[`${linkBase}/apps/test/bar/1`, '/bar/1'],
 
-							['https://external.ltd/nextcloud/index.php/apps/test/foo', null], // Different origin
-							['https://cloud.ltd/external/index.php/apps/test/foo/', null], // Different base
-							['https://cloud.ltd/nextcloud/index.php/apps/not-router-base/', null], // Different router base
+							[
+								'https://external.ltd/nextcloud/index.php/apps/test/foo',
+								null,
+							], // Different origin
+							[
+								'https://cloud.ltd/external/index.php/apps/test/foo/',
+								null,
+							], // Different base
+							[
+								'https://cloud.ltd/nextcloud/index.php/apps/not-router-base/',
+								null,
+							], // Different router base
 							['https://cloud.ltd/nextcloud/apps/test/baz', null], // No matching route
 						])('should get route %s => %s', (link, expectedRoute) => {
 							const routerTest = new VueRouter({
@@ -68,7 +77,10 @@ describe('autoLink', () => {
 								base: `${routerBase}/apps/test`,
 								routes: [
 									{ path: '/foo', name: 'foo' },
-									{ path: '/bar/:param', name: 'bar' },
+									{
+										path: '/bar/:param',
+										name: 'bar',
+									},
 								],
 							})
 							expect(getRoute(routerTest, link)).toBe(expectedRoute)
@@ -77,53 +89,87 @@ describe('autoLink', () => {
 						it.each([
 							[`${linkBase}/apps/files/`, '/files'],
 							[`${linkBase}/apps/files/favorites/1`, '/favorites/1'],
-							[`${linkBase}/apps/files/files/1?fileid=2#c`, '/files/1?fileid=2#c'], // With query and hash
-							[`${linkBase}/apps/files/files/1?dir=server/lib/index.php#c`, '/files/1?dir=server%2Flib%2Findex.php#c'], // With index.php in query
+							[
+								`${linkBase}/apps/files/files/1?fileid=2#c`,
+								'/files/1?fileid=2#c',
+							], // With query and hash
+							[
+								`${linkBase}/apps/files/files/1?dir=server/lib/index.php#c`,
+								'/files/1?dir=server%2Flib%2Findex.php#c',
+							], // With index.php in query
+						])(
+							'should get route for Files: %s => %s',
+							(link, expectedRoute) => {
+								const routerFiles = new VueRouter({
+									mode: 'history',
+									base: `${routerBase}/apps/files`,
+									routes: [
+										{
+											path: '/',
+											name: 'root',
+											redirect: '/files',
+										},
+										{
+											path: '/:view/:fileid(\\d+)?',
+											name: 'fileslist',
+										},
+									],
+								})
 
-						])('should get route for Files: %s => %s', (link, expectedRoute) => {
-							const routerFiles = new VueRouter({
-								mode: 'history',
-								base: `${routerBase}/apps/files`,
-								routes: [
-									{ path: '/', name: 'root', redirect: '/files' },
-									{ path: '/:view/:fileid(\\d+)?', name: 'fileslist' },
-								],
-							})
-
-							expect(getRoute(routerFiles, link)).toBe(expectedRoute)
-						})
+								expect(getRoute(routerFiles, link)).toBe(
+									expectedRoute,
+								)
+							},
+						)
 
 						it.each([
-							[`${linkBase}/apps/spreed?callTo=alice`, '/apps/spreed?callTo=alice'],
-							[`${linkBase}/call/abc123ef#message_123`, '/call/abc123ef#message_123'],
+							[
+								`${linkBase}/apps/spreed?callTo=alice`,
+								'/apps/spreed?callTo=alice',
+							],
+							[
+								`${linkBase}/call/abc123ef#message_123`,
+								'/call/abc123ef#message_123',
+							],
 							[`${linkBase}/apps/files`, null],
 							[`${linkBase}`, null],
-						])('should get route for Talk: %s => %s', (link, expectedRoute) => {
-							const routerTalk = new VueRouter({
-								mode: 'history',
-								base: `${routerBase}`,
-								routes: [
-									{ path: '/apps/spreed', name: 'root' },
-									{ path: '/call/:id', name: 'call' },
-								],
-							})
-							expect(getRoute(routerTalk, link)).toBe(expectedRoute)
-						})
+						])(
+							'should get route for Talk: %s => %s',
+							(link, expectedRoute) => {
+								const routerTalk = new VueRouter({
+									mode: 'history',
+									base: `${routerBase}`,
+									routes: [
+										{
+											path: '/apps/spreed',
+											name: 'root',
+										},
+										{ path: '/call/:id', name: 'call' },
+									],
+								})
+								expect(getRoute(routerTalk, link)).toBe(
+									expectedRoute,
+								)
+							},
+						)
 
 						it.each([
 							[`${linkBase}/settings/apps`, '/apps'],
 							[`${linkBase}/apps/files`, null],
-						])('should get route for Settings: %s => %s', (link, expectedRoute) => {
-							const routerSettings = new VueRouter({
-								mode: 'history',
-								base: `${routerBase}/settings`,
-								routes: [
-									{ path: '/apps', name: 'apps' },
-								],
-							})
+						])(
+							'should get route for Settings: %s => %s',
+							(link, expectedRoute) => {
+								const routerSettings = new VueRouter({
+									mode: 'history',
+									base: `${routerBase}/settings`,
+									routes: [{ path: '/apps', name: 'apps' }],
+								})
 
-							expect(getRoute(routerSettings, link)).toBe(expectedRoute)
-						})
+								expect(getRoute(routerSettings, link)).toBe(
+									expectedRoute,
+								)
+							},
+						)
 					})
 				})
 			})
@@ -135,9 +181,7 @@ describe('autoLink', () => {
 			const router = new VueRouter({
 				mode: 'history',
 				base: '/nextcloud/index.php/apps/test',
-				routes: [
-					{ path: '/foo', name: 'foo' },
-				],
+				routes: [{ path: '/foo', name: 'foo' }],
 			})
 
 			expect(getRoute(router, '/nextcloud/index.php/apps/test/foo')).toBe(null)
@@ -146,9 +190,18 @@ describe('autoLink', () => {
 		// getRoute doesn't have to guarantee Talk Desktop compatibility, but checking just in case
 		describe('with Talk Desktop router - no router base and invalid getRootUrl', () => {
 			it.each([
-				['https://cloud.ltd/nextcloud/index.php/apps/spreed', '/apps/spreed'],
-				['https://cloud.ltd/nextcloud/index.php/apps/spreed?callTo=alice', '/apps/spreed?callTo=alice'],
-				['https://cloud.ltd/nextcloud/index.php/call/abc123ef', '/call/abc123ef'],
+				[
+					'https://cloud.ltd/nextcloud/index.php/apps/spreed',
+					'/apps/spreed',
+				],
+				[
+					'https://cloud.ltd/nextcloud/index.php/apps/spreed?callTo=alice',
+					'/apps/spreed?callTo=alice',
+				],
+				[
+					'https://cloud.ltd/nextcloud/index.php/call/abc123ef',
+					'/call/abc123ef',
+				],
 				['https://cloud.ltd/nextcloud/index.php/apps/files', null],
 				['https://cloud.ltd/nextcloud/', null],
 				['/apps/spreed', '/apps/spreed'],

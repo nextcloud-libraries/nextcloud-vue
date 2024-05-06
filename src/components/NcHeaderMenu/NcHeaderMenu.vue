@@ -1,4 +1,4 @@
- <!--
+<!--
   - @copyright Copyright (c) 2020 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
@@ -64,7 +64,8 @@ export default {
 </docs>
 
 <template>
-	<component :is="wrapperTag"
+	<component
+		:is="wrapperTag"
 		:id="id"
 		ref="headerMenu"
 		v-click-outside="clickOutsideConfig"
@@ -73,7 +74,8 @@ export default {
 		class="header-menu"
 		v-on="listeners">
 		<!-- Trigger -->
-		<NcButton :id="isNav ? triggerId : null"
+		<NcButton
+			:id="isNav ? triggerId : null"
 			ref="trigger"
 			type="tertiary-no-background"
 			class="header-menu__trigger"
@@ -89,7 +91,8 @@ export default {
 			</template>
 		</NcButton>
 
-		<span v-if="description"
+		<span
+			v-if="description"
 			:id="descriptionId"
 			class="header-menu__description hidden-visually">
 			{{ description }}
@@ -99,9 +102,7 @@ export default {
 		<div v-show="opened" class="header-menu__carret" />
 
 		<!-- Menu opened content -->
-		<div v-show="opened"
-			:id="`header-menu-${id}`"
-			class="header-menu__wrapper">
+		<div v-show="opened" :id="`header-menu-${id}`" class="header-menu__wrapper">
 			<div ref="content" class="header-menu__content">
 				<!-- @slot Main content -->
 				<slot />
@@ -131,9 +132,7 @@ export default {
 		ClickOutside,
 	},
 
-	mixins: [
-		clickOutsideOptions,
-	],
+	mixins: [clickOutsideOptions],
 
 	props: {
 		/**
@@ -181,20 +180,14 @@ export default {
 		},
 	},
 
-	emits: [
-		'close',
-		'closed',
-		'open',
-		'opened',
-		'update:open',
-		'cancel',
-	],
+	emits: ['close', 'closed', 'open', 'opened', 'update:open', 'cancel'],
 
 	data() {
 		return {
 			focusTrap: null,
 			opened: this.open,
-			shortcutsDisabled: window.OCP?.Accessibility?.disableKeyboardShortcuts?.(),
+			shortcutsDisabled:
+				window.OCP?.Accessibility?.disableKeyboardShortcuts?.(),
 			triggerId: GenRandomId(),
 			descriptionId: GenRandomId(),
 		}
@@ -206,10 +199,7 @@ export default {
 		},
 
 		clickOutsideConfig() {
-			return [
-				this.closeMenu,
-				this.clickOutsideOptions,
-			]
+			return [this.closeMenu, this.clickOutsideOptions]
 		},
 
 		listeners() {
@@ -350,7 +340,7 @@ $externalMargin: 8px;
 	#{&}__trigger {
 		width: 100% !important;
 		height: var(--header-height);
-		opacity: .85;
+		opacity: 0.85;
 
 		// header is filled with primary or image background
 		filter: none !important;

@@ -160,7 +160,8 @@ export default {
 </docs>
 
 <template>
-	<NcPopover popup-role="dialog"
+	<NcPopover
+		popup-role="dialog"
 		:container="container"
 		v-bind="$attrs"
 		v-on="$listeners"
@@ -168,28 +169,40 @@ export default {
 		<template #trigger="slotProps">
 			<slot v-bind="slotProps" />
 		</template>
-		<div role="dialog"
+		<div
+			role="dialog"
 			class="color-picker"
 			aria-modal="true"
 			:aria-label="t('Color picker')"
-			:class="{ 'color-picker--advanced-fields': advanced && advancedFields }">
+			:class="{
+				'color-picker--advanced-fields': advanced && advancedFields,
+			}">
 			<Transition name="slide" mode="out-in">
 				<div v-if="!advanced" class="color-picker__simple">
-					<label v-for="({ color, name }, index) in normalizedPalette"
+					<label
+						v-for="({ color, name }, index) in normalizedPalette"
 						:key="index"
 						:style="{ backgroundColor: color }"
 						class="color-picker__simple-color-circle"
-						:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }">
-						<Check v-if="color === currentColor" :size="20" :fill-color="contrastColor" />
-						<input type="radio"
+						:class="{
+							'color-picker__simple-color-circle--active':
+								color === currentColor,
+						}">
+						<Check
+							v-if="color === currentColor"
+							:size="20"
+							:fill-color="contrastColor" />
+						<input
+							type="radio"
 							class="hidden-visually"
 							:aria-label="name"
 							:name="`color-picker-${uid}`"
 							:checked="color === currentColor"
-							@click="pickColor(color)">
+							@click="pickColor(color)" />
 					</label>
 				</div>
-				<Chrome v-else
+				<Chrome
+					v-else
 					v-model="currentColor"
 					class="color-picker__advanced"
 					:disable-alpha="true"
@@ -197,7 +210,8 @@ export default {
 					@input="pickColor" />
 			</Transition>
 			<div v-if="!paletteOnly" class="color-picker__navigation">
-				<NcButton v-if="advanced"
+				<NcButton
+					v-if="advanced"
 					type="tertiary"
 					:aria-label="ariaBack"
 					@click="handleBack">
@@ -205,7 +219,8 @@ export default {
 						<ArrowLeft :size="20" />
 					</template>
 				</NcButton>
-				<NcButton v-else
+				<NcButton
+					v-else
 					type="tertiary"
 					:aria-label="ariaMore"
 					@click="handleMoreSettings">
@@ -213,8 +228,7 @@ export default {
 						<DotsHorizontal :size="20" />
 					</template>
 				</NcButton>
-				<NcButton type="primary"
-					@click="handleConfirm">
+				<NcButton type="primary" @click="handleConfirm">
 					{{ t('Choose') }}
 				</NcButton>
 			</div>
@@ -286,10 +300,14 @@ export default {
 		palette: {
 			type: Array,
 			default: () => [...defaultPalette],
-			validator: (palette) => palette.every(item =>
-				(typeof item === 'string' && HEX_REGEX.test(item))
-				|| (typeof item === 'object' && item.color && HEX_REGEX.test(item.color)),
-			),
+			validator: (palette) =>
+				palette.every(
+					(item) =>
+						(typeof item === 'string' && HEX_REGEX.test(item)) ||
+						(typeof item === 'object' &&
+							item.color &&
+							HEX_REGEX.test(item.color)),
+				),
 		},
 
 		/**
@@ -301,13 +319,7 @@ export default {
 		},
 	},
 
-	emits: [
-		'submit',
-		'close',
-		'update:open',
-		'update:value',
-		'input',
-	],
+	emits: ['submit', 'close', 'update:open', 'update:value', 'input'],
 
 	data() {
 		return {
@@ -322,9 +334,12 @@ export default {
 		normalizedPalette() {
 			return this.palette.map((item) => ({
 				color: typeof item === 'object' ? item.color : item,
-				name: typeof item === 'object' && item.name
-					? item.name
-					: t('A color with a HEX value {hex}', { hex: item.color }),
+				name:
+					typeof item === 'object' && item.name
+						? item.name
+						: t('A color with a HEX value {hex}', {
+								hex: item.color,
+							}),
 			}))
 		},
 
@@ -334,7 +349,7 @@ export default {
 		contrastColor() {
 			const black = '#000000'
 			const white = '#FFFFFF'
-			return (this.calculateLuma(this.currentColor) > 0.5) ? black : white
+			return this.calculateLuma(this.currentColor) > 0.5 ? black : white
 		},
 	},
 
@@ -397,7 +412,6 @@ export default {
 			 * Emits a hexadecimal string e.g. '#ffffff'
 			 */
 			this.$emit('input', color)
-
 		},
 
 		/**
@@ -405,7 +419,7 @@ export default {
 		 *
 		 * @param {string} color the hex color
 		 */
-		 calculateLuma(color) {
+		calculateLuma(color) {
 			const [red, green, blue] = this.hexToRGB(color)
 			return (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255
 		},
@@ -415,15 +429,18 @@ export default {
 		 *
 		 * @param {string} hex the hex color
 		 */
-		 hexToRGB(hex) {
+		hexToRGB(hex) {
 			const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
 			return result
-				? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)]
+				? [
+						parseInt(result[1], 16),
+						parseInt(result[2], 16),
+						parseInt(result[3], 16),
+					]
 				: null
 		},
 	},
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -464,7 +481,7 @@ export default {
 				outline: 2px solid var(--color-main-text);
 			}
 			&:hover {
-				opacity: .6;
+				opacity: 0.6;
 			}
 			&--active {
 				width: 38px;
@@ -551,5 +568,4 @@ export default {
 		transition: all 50ms ease-in-out;
 	}
 }
-
 </style>

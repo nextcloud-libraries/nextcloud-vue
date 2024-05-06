@@ -79,7 +79,8 @@ It also will set the skip content buttons needed for accessibility.
 					{{ t('Keyboard navigation help') }}
 				</div>
 				<div class="vue-skip-actions__buttons">
-					<NcButton v-show="hasAppNavigation"
+					<NcButton
+						v-show="hasAppNavigation"
 						type="tertiary"
 						href="#app-navigation-vue"
 						@click.prevent="openAppNavigation"
@@ -87,14 +88,16 @@ It also will set the skip content buttons needed for accessibility.
 						@mouseover="currentFocus = 'navigation'">
 						{{ t('Skip to app navigation') }}
 					</NcButton>
-					<NcButton type="tertiary"
+					<NcButton
+						type="tertiary"
 						href="#app-content-vue"
 						@focusin="currentFocus = 'content'"
 						@mouseover="currentFocus = 'content'">
 						{{ t('Skip to main content') }}
 					</NcButton>
 				</div>
-				<NcIconSvgWrapper v-show="!isMobile"
+				<NcIconSvgWrapper
+					v-show="!isMobile"
 					class="vue-skip-actions__image"
 					:svg="currentImage"
 					size="auto" />
@@ -191,11 +194,11 @@ export default {
 <style lang="scss">
 // Remove server stylings and add a backdrop
 #skip-actions.vue-skip-actions:focus-within {
-	top: 0!important;
-	left: 0!important;
+	top: 0 !important;
+	left: 0 !important;
 	width: 100vw;
 	height: 100vh;
-	padding: var(--body-container-margin)!important;
+	padding: var(--body-container-margin) !important;
 	backdrop-filter: brightness(50%);
 }
 </style>

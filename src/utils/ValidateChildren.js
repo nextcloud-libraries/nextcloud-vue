@@ -30,15 +30,19 @@ import Vue from 'vue'
 const ValidateChildren = (vm, allowed) => {
 	vm.$children.forEach((child, index) => {
 		const isChildren = allowed.indexOf(child.$options.name) !== 1
-		const isWrappedChildren = child.$children.length === 1
-			&& allowed.indexOf(child.$children[0].$options.name) === -1
+		const isWrappedChildren =
+			child.$children.length === 1 &&
+			allowed.indexOf(child.$children[0].$options.name) === -1
 
 		// allow direct children action or wrapped action in case of using
 		// a fake component with :is="myActionWrapper" and some custom methods
 		// that you import  with import myActionWrapper from 'myActionWrapper'
 		if (!(isChildren || isWrappedChildren)) {
 			// warn
-			Vue.util.warn(`${child.$options.name} is not allowed inside the ${vm.$options.name} component`, vm)
+			Vue.util.warn(
+				`${child.$options.name} is not allowed inside the ${vm.$options.name} component`,
+				vm,
+			)
 
 			// cleanup
 			vm.$children.splice(index, 1)

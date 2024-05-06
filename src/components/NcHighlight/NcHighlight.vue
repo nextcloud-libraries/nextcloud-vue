@@ -85,7 +85,7 @@ export default {
 			// If there are ranges to highlight provided, we use this array.
 			if (this.highlight.length > 0) {
 				ranges = this.highlight
-			// Otherwise we check the text to highlight for matches of the search term.
+				// Otherwise we check the text to highlight for matches of the search term.
 			} else {
 				ranges = FindRanges(this.text, this.search)
 			}
@@ -109,8 +109,11 @@ export default {
 			ranges = ranges.reduce((validRanges, range) => {
 				if (range.start < this.text.length && range.end > 0) {
 					validRanges.push({
-						start: (range.start < 0) ? 0 : range.start,
-						end: (range.end > this.text.length) ? this.text.length : range.end,
+						start: range.start < 0 ? 0 : range.start,
+						end:
+							range.end > this.text.length
+								? this.text.length
+								: range.end,
 					})
 				}
 				return validRanges
@@ -155,12 +158,14 @@ export default {
 		chunks() {
 			// If the ranges array is empty, show only one chunk with all text
 			if (this.ranges.length === 0) {
-				return [{
-					start: 0,
-					end: this.text.length,
-					highlight: false,
-					text: this.text,
-				}]
+				return [
+					{
+						start: 0,
+						end: this.text.length,
+						highlight: false,
+						text: this.text,
+					},
+				]
 			}
 			// Calculate the chunks
 			const chunks = []
@@ -182,7 +187,10 @@ export default {
 					currentIndex = range.end
 					// If this was the last range to highlight and we haven't reached the end of the text,
 					// add the rest of the text without highlighting.
-					if (currentRange >= this.ranges.length && currentIndex < this.text.length) {
+					if (
+						currentRange >= this.ranges.length &&
+						currentIndex < this.text.length
+					) {
 						chunks.push({
 							start: currentIndex,
 							end: this.text.length,
@@ -218,9 +226,13 @@ export default {
 			return h('span', {}, this.text)
 		}
 
-		return h('span', {}, this.chunks.map(chunk => {
-			return chunk.highlight ? h('strong', {}, chunk.text) : chunk.text
-		}))
+		return h(
+			'span',
+			{},
+			this.chunks.map((chunk) => {
+				return chunk.highlight ? h('strong', {}, chunk.text) : chunk.text
+			}),
+		)
 	},
 }
 </script>

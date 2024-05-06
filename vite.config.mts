@@ -43,20 +43,21 @@ const entryPoints = {
 	}, {}),
 
 	...globSync('src/mixins/*/index.js').reduce((acc, item) => {
-		const name = item
-			.replace('/index.js', '')
-			.replace('src/mixins/', 'Mixins/')
+		const name = item.replace('/index.js', '').replace('src/mixins/', 'Mixins/')
 		acc[name] = join(__dirname, item)
 		return acc
 	}, {}),
 
-	...globSync(['src/composables/*/index.js', 'src/composables/*/index.ts']).reduce((acc, item) => {
-		const name = item
-			.replace(/\/index\.[jt]s/, '')
-			.replace('src/composables/', 'Composables/')
-		acc[name] = join(__dirname, item)
-		return acc
-	}, {}),
+	...globSync(['src/composables/*/index.js', 'src/composables/*/index.ts']).reduce(
+		(acc, item) => {
+			const name = item
+				.replace(/\/index\.[jt]s/, '')
+				.replace('src/composables/', 'Composables/')
+			acc[name] = join(__dirname, item)
+			return acc
+		},
+		{},
+	),
 
 	index: resolve(__dirname, 'src/index.js'),
 }
@@ -74,19 +75,14 @@ const vueDocsPlugin: Plugin = {
 
 // Customizations for the vite config
 const overrides = defineConfig({
-	plugins: [
-		vueDocsPlugin,
-		l10nPlugin(resolve(__dirname, 'l10n')),
-	],
+	plugins: [vueDocsPlugin, l10nPlugin(resolve(__dirname, 'l10n'))],
 	css: {
 		devSourcemap: true,
 		preprocessorOptions: {
 			scss: {
 				additionalData: `@use 'sass:math'; $scope_version:${SCOPE_VERSION}; @import 'variables'; @import 'material-icons';`,
 				sourceMapContents: false,
-				includePaths: [
-					resolve(__dirname, 'src/assets'),
-				],
+				includePaths: [resolve(__dirname, 'src/assets')],
 			},
 		},
 	},
@@ -94,7 +90,6 @@ const overrides = defineConfig({
 
 // We need a callback config so we can access the vite build mode
 export default defineConfig((env) => {
-
 	const createConfig = createLibConfig(entryPoints, {
 		// Add our overrides to the config
 		config: overrides,

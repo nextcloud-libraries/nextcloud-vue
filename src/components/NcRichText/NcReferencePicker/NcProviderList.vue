@@ -1,6 +1,7 @@
 <template>
 	<div class="provider-list">
-		<NcSelect ref="provider-select"
+		<NcSelect
+			ref="provider-select"
 			v-model="selectedProvider"
 			class="provider-list--select"
 			input-id="provider-select-input"
@@ -19,10 +20,12 @@
 					<span>{{ option.title }}</span>
 				</div>
 				<div v-else class="provider">
-					<img class="provider-icon"
+					<img
+						class="provider-icon"
 						:src="option.icon_url"
-						:alt="providerIconAlt">
-					<NcHighlight class="option-text"
+						:alt="providerIconAlt" />
+					<NcHighlight
+						class="option-text"
 						:search="query"
 						:text="option.title" />
 				</div>
@@ -54,10 +57,7 @@ export default {
 		NcEmptyContent,
 		LinkVariantIcon,
 	},
-	emits: [
-		'select-provider',
-		'submit',
-	],
+	emits: ['select-provider', 'submit'],
 	data() {
 		return {
 			selectedProvider: null,
@@ -83,7 +83,9 @@ export default {
 	methods: {
 		focus() {
 			setTimeout(() => {
-				this.$refs['provider-select']?.$el?.querySelector('#provider-select-input')?.focus()
+				this.$refs['provider-select']?.$el
+					?.querySelector('#provider-select-input')
+					?.focus()
 			}, 300)
 		},
 		onProviderSelected(p) {
@@ -137,7 +139,6 @@ export default {
 				text-overflow: ellipsis;
 				white-space: nowrap;
 			}
-
 		}
 	}
 }

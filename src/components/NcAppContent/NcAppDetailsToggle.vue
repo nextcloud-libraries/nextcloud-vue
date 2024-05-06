@@ -21,7 +21,8 @@
   -->
 
 <template>
-	<NcButton v-tooltip="title"
+	<NcButton
+		v-tooltip="title"
 		type="tertiary"
 		:aria-label="title"
 		class="app-details-toggle"
@@ -81,7 +82,9 @@ export default {
 
 	methods: {
 		toggleAppNavigationButton(hide = true) {
-			const appNavigationToggle = document.querySelector('.app-navigation .app-navigation-toggle')
+			const appNavigationToggle = document.querySelector(
+				'.app-navigation .app-navigation-toggle',
+			)
 			if (appNavigationToggle) {
 				appNavigationToggle.style.display = hide ? 'none' : null
 
@@ -102,7 +105,7 @@ export default {
 	height: $clickable-area;
 	padding: $icon-margin;
 	cursor: pointer;
-	opacity: .6;
+	opacity: 0.6;
 	transform: rotate(180deg);
 	background-color: var(--color-main-background);
 	z-index: 2000;
@@ -121,5 +124,4 @@ export default {
 		opacity: 1;
 	}
 }
-
 </style>

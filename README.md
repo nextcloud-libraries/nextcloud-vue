@@ -11,13 +11,14 @@ A list of available components with examples to try out is available in the [doc
 
 The documentation is built from the latest development branch, for stable releases the documentation can be found matching the latest minor version:
 
-- [master](https://nextcloud-vue-components.netlify.app).
-- [7.x.x](https://stable7--nextcloud-vue-components.netlify.app/)
-- [6.x.x](https://stable6--nextcloud-vue-components.netlify.app/)
+-   [master](https://nextcloud-vue-components.netlify.app).
+-   [7.x.x](https://stable7--nextcloud-vue-components.netlify.app/)
+-   [6.x.x](https://stable6--nextcloud-vue-components.netlify.app/)
 
 ## Getting started
 
 ### App example
+
 If you want to check a real live example of a nextcloud app that uses this library, you can head over to https://github.com/skjnldsv/vueexample/
 We will try to maintain this repository the best we can, but some example might be obsolete. Always check this [repository documentation](#documentation).
 
@@ -68,6 +69,7 @@ Our awesome translation community will then be notified and a bot will sync thos
 
 Nonetheless, it requires a bit of caution.
 When you implement a translated string, import the `translate` or `translatePlural` and add it in your methods like so:
+
 ```vue
 <template>
 	<element>
@@ -88,6 +90,7 @@ export default {
 
 Please note that using a translated string as an attribute will _NOT_ work.
 But it will work if it's within an element (like the example above)
+
 ```vue
 <template>
 	<element :prop="t('This will not work')" />
@@ -95,6 +98,7 @@ But it will work if it's within an element (like the example above)
 ```
 
 You will instead have to define the string in the data section and use the relevant variable reference.
+
 ```vue
 <template>
 	<element :prop="chooseProp" />
@@ -121,8 +125,8 @@ with all the components.
 
 If you want to use [vue-devtools](https://github.com/vuejs/vue-devtools) in Firefox, you need to:
 
-* Either enable the [HMR Enabler](https://github.com/nextcloud/hmr_enabler) app …
-* … or patch your nextcloud instance as follows:
+-   Either enable the [HMR Enabler](https://github.com/nextcloud/hmr_enabler) app …
+-   … or patch your nextcloud instance as follows:
 
 ```diff
 diff --git a/lib/public/AppFramework/Http/ContentSecurityPolicy.php b/lib/public/AppFramework/Http/ContentSecurityPolicy.php
@@ -145,21 +149,21 @@ index 0e3a6a705d..416b8b0fb9 100644
 
 ## Releasing a new version
 
-- Pull the latest changes from `master` or `stableX`
-- Checkout a new branch with the tag name (e.g `v4.0.1`): `git checkout -b v<version>`
-- Run `npm version patch --no-git-tag-version` (`npm version minor --no-git-tag-version` if minor).
-  This will return a new version name, make sure it matches what you expect
-- Generate the changelog content from the [release](https://github.com/nextcloud-libraries/nextcloud-vue/releases) page.
-  Create a draft release, select the previous tag, click `generate` then paste the content to the `CHANGELOG.md` file
-  1. use the the version as tag AND title (e.g `v4.0.1`)
-  2. add the changelog content as description (https://github.com/nextcloud-libraries/nextcloud-vue/releases)
-- Commit, push and create PR
-- Get your PR reviewed and merged
-- Create a milestone with the follow-up version at https://github.com/nextcloud-libraries/nextcloud-vue/milestones
-- Move all open tickets and PRs to the follow-up
-- Close the milestone of the version you release
-- Publish the previously drafted release on GitHub
-  ![image](https://user-images.githubusercontent.com/14975046/124442568-2a952500-dd7d-11eb-82a2-402f9170231a.png)
+-   Pull the latest changes from `master` or `stableX`
+-   Checkout a new branch with the tag name (e.g `v4.0.1`): `git checkout -b v<version>`
+-   Run `npm version patch --no-git-tag-version` (`npm version minor --no-git-tag-version` if minor).
+    This will return a new version name, make sure it matches what you expect
+-   Generate the changelog content from the [release](https://github.com/nextcloud-libraries/nextcloud-vue/releases) page.
+    Create a draft release, select the previous tag, click `generate` then paste the content to the `CHANGELOG.md` file
+    1. use the the version as tag AND title (e.g `v4.0.1`)
+    2. add the changelog content as description (https://github.com/nextcloud-libraries/nextcloud-vue/releases)
+-   Commit, push and create PR
+-   Get your PR reviewed and merged
+-   Create a milestone with the follow-up version at https://github.com/nextcloud-libraries/nextcloud-vue/milestones
+-   Move all open tickets and PRs to the follow-up
+-   Close the milestone of the version you release
+-   Publish the previously drafted release on GitHub
+    ![image](https://user-images.githubusercontent.com/14975046/124442568-2a952500-dd7d-11eb-82a2-402f9170231a.png)
 
 <a href="https://www.netlify.com">
   <img src="https://www.netlify.com/img/global/badges/netlify-dark.svg"/>

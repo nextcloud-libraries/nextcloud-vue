@@ -1,4 +1,9 @@
-import { registerWidget, renderWidget, isWidgetRegistered, hasInteractiveView } from './widgets.ts'
+import {
+	registerWidget,
+	renderWidget,
+	isWidgetRegistered,
+	hasInteractiveView,
+} from './widgets.ts'
 import { getLinkWithPicker } from './referencePickerModal.js'
 import {
 	getProvider,
@@ -19,7 +24,6 @@ export {
 	renderWidget,
 	isWidgetRegistered,
 	hasInteractiveView,
-
 	NcCustomPickerRenderResult,
 	registerCustomPickerElement,
 	renderCustomPickerElement,

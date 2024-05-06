@@ -84,7 +84,11 @@ export default defineComponent({
 			type: String,
 			required: false,
 			default: 'secondary',
-			validator: (type) => typeof type === 'string' && ['primary', 'secondary', 'error', 'warning', 'success'].includes(type),
+			validator: (type) =>
+				typeof type === 'string' &&
+				['primary', 'secondary', 'error', 'warning', 'success'].includes(
+					type,
+				),
 		},
 	},
 

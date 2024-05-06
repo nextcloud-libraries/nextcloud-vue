@@ -7,30 +7,11 @@
     "nextcloud",
     "components"
   ],
-  "repository": "https://github.com/nextcloud-libraries/nextcloud-vue",
   "homepage": "https://github.com/nextcloud-libraries/nextcloud-vue",
   "bugs": "https://github.com/nextcloud-libraries/nextcloud-vue/issues",
-  "author": "John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>",
+  "repository": "https://github.com/nextcloud-libraries/nextcloud-vue",
   "license": "AGPL-3.0",
-  "scripts": {
-    "build": "vite build --mode production ",
-    "dev": "vite build --mode development",
-    "dev:watch": "vite build --mode development --watch",
-    "watch": "npm run dev:watch",
-    "l10n:extract": "node build/extract-l10n.mjs",
-    "lint": "eslint --ext .js,.vue src",
-    "lint:fix": "eslint --ext .js,.vue src --fix",
-    "test": "TZ=UTC jest --verbose --color",
-    "test:coverage": "TZ=UTC jest --verbose --coverage --no-cache",
-    "stylelint": "stylelint src/**/*.vue src/**/*.scss src/**/*.css",
-    "stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix",
-    "styleguide": "vue-styleguidist server",
-    "styleguide:build": "vue-styleguidist build",
-    "cypress": "TZ=UTC cypress run --component",
-    "cypress:gui": "TZ=UTC cypress open --component",
-    "cypress:update-snapshots": "TZ=UTC cypress run --component --spec \"cypress/visual/**/*.cy.{t,j}s\" --env type=base --config screenshotsFolder=cypress/snapshots/base"
-  },
-  "main": "dist/index.cjs",
+  "author": "John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
@@ -57,12 +38,36 @@
       "require": "./dist/Composables/*.cjs"
     }
   },
+  "main": "dist/index.cjs",
   "files": [
     "CHANGELOG.md",
     "LICENSE",
     "README.md",
     "dist"
   ],
+  "scripts": {
+    "build": "vite build --mode production ",
+    "cypress": "TZ=UTC cypress run --component",
+    "cypress:gui": "TZ=UTC cypress open --component",
+    "cypress:update-snapshots": "TZ=UTC cypress run --component --spec \"cypress/visual/**/*.cy.{t,j}s\" --env type=base --config screenshotsFolder=cypress/snapshots/base",
+    "dev": "vite build --mode development",
+    "dev:watch": "vite build --mode development --watch",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "l10n:extract": "node build/extract-l10n.mjs",
+    "lint": "eslint --ext .js,.vue src",
+    "lint:fix": "eslint --ext .js,.vue src --fix",
+    "styleguide": "vue-styleguidist server",
+    "styleguide:build": "vue-styleguidist build",
+    "stylelint": "stylelint src/**/*.vue src/**/*.scss src/**/*.css",
+    "stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix",
+    "test": "TZ=UTC jest --verbose --color",
+    "test:coverage": "TZ=UTC jest --verbose --coverage --no-cache"
+  },
+  "browserslist": [
+    "extends @nextcloud/browserslist-config"
+  ],
+  "prettier": "@nextcloud/prettier-config",
   "dependencies": {
     "@floating-ui/dom": "^1.1.0",
     "@linusborg/vue-simple-portal": "^0.1.5",
@@ -106,10 +111,6 @@
     "vue-frag": "^1.4.3",
     "vue2-datepicker": "^3.11.0"
   },
-  "engines": {
-    "node": "^20.0.0",
-    "npm": "^9.0.0"
-  },
   "devDependencies": {
     "@babel/plugin-syntax-import-assertions": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
@@ -120,6 +121,7 @@
     "@nextcloud/babel-config": "^1.0.0",
     "@nextcloud/browserslist-config": "^3.0.0",
     "@nextcloud/eslint-config": "^8.3.0",
+    "@nextcloud/prettier-config": "^1.1.0",
     "@nextcloud/stylelint-config": "^3.0.0",
     "@nextcloud/vite-config": "^1.2.2",
     "@nextcloud/webpack-vue-config": "^6.0.1",
@@ -133,6 +135,7 @@
     "core-js": "^3.36.1",
     "cypress": "^13.6.5",
     "cypress-visual-regression": "^5.0.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-cypress": "^3.0.0",
     "file-loader": "^6.2.0",
     "gettext-extractor": "^3.7.2",
@@ -144,6 +147,7 @@
     "jest-serializer-vue": "^3.1.0",
     "jest-transform-stub": "^2.0.0",
     "node-polyfill-webpack-plugin": "^3.0.0",
+    "prettier": "^3.2.5",
     "resolve-url-loader": "^5.0.0",
     "sanitize-filename": "^1.6.3",
     "ts-node": "^10.9.1",
@@ -158,7 +162,8 @@
     "webpack": "^5.88.1",
     "webpack-merge": "^5.9.0"
   },
-  "browserslist": [
-    "extends @nextcloud/browserslist-config"
-  ]
+  "engines": {
+    "node": "^20.0.0",
+    "npm": "^9.0.0"
+  }
 }

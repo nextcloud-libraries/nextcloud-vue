@@ -1,7 +1,12 @@
 <template>
-	<div v-if="isVisible" class="widgets--list" :class="{'icon-loading': loading }">
-		<div v-for="reference in displayedReferences" :key="reference?.openGraphObject?.id">
-			<NcReferenceWidget :reference="reference" :interactive="interactive" :interactive-opt-in="interactiveOptIn" />
+	<div v-if="isVisible" class="widgets--list" :class="{ 'icon-loading': loading }">
+		<div
+			v-for="reference in displayedReferences"
+			:key="reference?.openGraphObject?.id">
+			<NcReferenceWidget
+				:reference="reference"
+				:interactive="interactive"
+				:interactive-opt-in="interactiveOptIn" />
 		</div>
 	</div>
 </template>
@@ -96,25 +101,30 @@ export default {
 				return
 			}
 
-			if (!(new RegExp(URL_PATTERN).exec(this.text))) {
+			if (!new RegExp(URL_PATTERN).exec(this.text)) {
 				this.loading = false
 				return
 			}
 
-			this.resolve().then((response) => {
-				this.references = response.data.ocs.data.references
-				this.loading = false
-				this.$emit('loaded')
-			}).catch((error) => {
-				console.error('Failed to extract references', error)
-				this.loading = false
-				this.$emit('loaded')
-			})
+			this.resolve()
+				.then((response) => {
+					this.references = response.data.ocs.data.references
+					this.loading = false
+					this.$emit('loaded')
+				})
+				.catch((error) => {
+					console.error('Failed to extract references', error)
+					this.loading = false
+					this.$emit('loaded')
+				})
 		},
 		resolve() {
-			const match = (new RegExp(URL_PATTERN).exec(this.text.trim()))
+			const match = new RegExp(URL_PATTERN).exec(this.text.trim())
 			if (this.limit === 1 && match) {
-				return axios.get(generateOcsUrl('references/resolve', 2) + `?reference=${encodeURIComponent(match[0])}`)
+				return axios.get(
+					generateOcsUrl('references/resolve', 2) +
+						`?reference=${encodeURIComponent(match[0])}`,
+				)
 			}
 
 			return axios.post(generateOcsUrl('references/extract', 2), {

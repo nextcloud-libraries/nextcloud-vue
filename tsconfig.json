@@ -1,18 +1,18 @@
 {
-  "extends": "@vue/tsconfig",
-  "include": ["./src/**/*.ts"],
-  "exclude": ["./src/**/*.cy.ts"],
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "Bundler",
-    "target": "ESNext",
-    "module": "esnext",
-    "declaration": true,
-    "strict": true,
-    "noImplicitAny": false,
-    "outDir": "./dist",
-  },
-  "vueCompilerOptions": {
-    "target": 2.7
-  }
+	"extends": "@vue/tsconfig",
+	"include": ["./src/**/*.ts"],
+	"exclude": ["./src/**/*.cy.ts"],
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"moduleResolution": "Bundler",
+		"target": "ESNext",
+		"module": "esnext",
+		"declaration": true,
+		"strict": true,
+		"noImplicitAny": false,
+		"outDir": "./dist"
+	},
+	"vueCompilerOptions": {
+		"target": 2.7
+	}
 }

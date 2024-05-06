@@ -435,7 +435,6 @@ td.row-size {
 </docs>
 
 <script>
-
 export default {
 	name: 'NcButton',
 
@@ -455,7 +454,15 @@ export default {
 		alignment: {
 			type: String,
 			default: 'center',
-			validator: (alignment) => ['start', 'start-reverse', 'center', 'center-reverse', 'end', 'end-reverse'].includes(alignment),
+			validator: (alignment) =>
+				[
+					'start',
+					'start-reverse',
+					'center',
+					'center-reverse',
+					'end',
+					'end-reverse',
+				].includes(alignment),
 		},
 
 		/**
@@ -474,7 +481,18 @@ export default {
 		type: {
 			type: String,
 			validator(value) {
-				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].indexOf(value) !== -1
+				return (
+					[
+						'primary',
+						'secondary',
+						'tertiary',
+						'tertiary-no-background',
+						'tertiary-on-primary',
+						'error',
+						'warning',
+						'success',
+					].indexOf(value) !== -1
+				)
 			},
 			default: 'secondary',
 		},
@@ -620,81 +638,98 @@ export default {
 		 * Always fill either the text prop or the ariaLabel one.
 		 */
 		if (!hasText && !this.ariaLabel) {
-			console.warn('You need to fill either the text or the ariaLabel props in the button component.', {
-				text: this.$slots.default?.[0]?.text,
-				ariaLabel: this.ariaLabel,
-			},
-			this)
+			console.warn(
+				'You need to fill either the text or the ariaLabel props in the button component.',
+				{
+					text: this.$slots.default?.[0]?.text,
+					ariaLabel: this.ariaLabel,
+				},
+				this,
+			)
 		}
 
-		const isLink = (this.to || this.href)
+		const isLink = this.to || this.href
 
 		const hasPressed = !isLink && typeof this.pressed === 'boolean'
 
-		const renderButton = ({ href, navigate, isActive, isExactActive } = {}) => h(isLink ? 'a' : 'button',
-			{
-				class: [
-					'button-vue',
-					{
-						'button-vue--icon-only': hasIcon && !hasText,
-						'button-vue--text-only': hasText && !hasIcon,
-						'button-vue--icon-and-text': hasIcon && hasText,
-						[`button-vue--vue-${this.realType}`]: this.realType,
-						'button-vue--wide': this.wide,
-						[`button-vue--${this.flexAlignment}`]: this.flexAlignment !== 'center',
-						'button-vue--reverse': this.isReverseAligned,
-						active: isActive,
-						'router-link-exact-active': isExactActive,
-					},
-				],
-				attrs: {
-					'aria-label': this.ariaLabel,
-					'aria-pressed': hasPressed ? this.pressed.toString() : undefined,
-					disabled: this.disabled,
-					type: isLink ? null : this.nativeType,
-					role: isLink ? 'button' : null,
-					href: this.to ? href : (this.href || null),
-					target: isLink ? '_self' : null,
-					rel: isLink ? 'nofollow noreferrer noopener' : null,
-					download: (!this.to && this.href && this.download) ? this.download : null,
-					// If this button is used as a popover trigger, we need to apply trigger attrs, e.g. aria attributes
-					...this.ncPopoverTriggerAttrs,
-					// Inherit all the component attrs
-					...this.$attrs,
-				},
-				on: {
-					...this.$listeners,
-					click: ($event) => {
-						if (hasPressed) {
-							/**
-							 * Update the current pressed state of the button (if the `pressed` property was configured)
-							 *
-							 * @property {boolean} newValue The new `pressed`-state
-							 */
-							this.$emit('update:pressed', !this.pressed)
-						}
-						// We have to both navigate and emit the click event
-						this.$emit('click', $event)
-						navigate?.($event)
-					},
-				},
-			},
-			[
-				h('span', { class: 'button-vue__wrapper' }, [
-					hasIcon
-						? h('span', {
-							class: 'button-vue__icon',
-							attrs: {
-								'aria-hidden': 'true',
-							},
+		const renderButton = ({ href, navigate, isActive, isExactActive } = {}) =>
+			h(
+				isLink ? 'a' : 'button',
+				{
+					class: [
+						'button-vue',
+						{
+							'button-vue--icon-only': hasIcon && !hasText,
+							'button-vue--text-only': hasText && !hasIcon,
+							'button-vue--icon-and-text': hasIcon && hasText,
+							[`button-vue--vue-${this.realType}`]: this.realType,
+							'button-vue--wide': this.wide,
+							[`button-vue--${this.flexAlignment}`]:
+								this.flexAlignment !== 'center',
+							'button-vue--reverse': this.isReverseAligned,
+							active: isActive,
+							'router-link-exact-active': isExactActive,
 						},
-						[this.$slots.icon],
-						)
-						: null,
-					hasText ? h('span', { class: 'button-vue__text' }, [this.$slots.default]) : null,
-				]),
-			],
-		)
+					],
+					attrs: {
+						'aria-label': this.ariaLabel,
+						'aria-pressed': hasPressed
+							? this.pressed.toString()
+							: undefined,
+						disabled: this.disabled,
+						type: isLink ? null : this.nativeType,
+						role: isLink ? 'button' : null,
+						href: this.to ? href : this.href || null,
+						target: isLink ? '_self' : null,
+						rel: isLink ? 'nofollow noreferrer noopener' : null,
+						download:
+							!this.to && this.href && this.download
+								? this.download
+								: null,
+						// If this button is used as a popover trigger, we need to apply trigger attrs, e.g. aria attributes
+						...this.ncPopoverTriggerAttrs,
+						// Inherit all the component attrs
+						...this.$attrs,
+					},
+					on: {
+						...this.$listeners,
+						click: ($event) => {
+							if (hasPressed) {
+								/**
+								 * Update the current pressed state of the button (if the `pressed` property was configured)
+								 *
+								 * @property {boolean} newValue The new `pressed`-state
+								 */
+								this.$emit('update:pressed', !this.pressed)
+							}
+							// We have to both navigate and emit the click event
+							this.$emit('click', $event)
+							navigate?.($event)
+						},
+					},
+				},
+				[
+					h('span', { class: 'button-vue__wrapper' }, [
+						hasIcon
+							? h(
+									'span',
+									{
+										class: 'button-vue__icon',
+										attrs: {
+											'aria-hidden': 'true',
+										},
+									},
+									[this.$slots.icon],
+								)
+							: null,
+						hasText
+							? h('span', { class: 'button-vue__text' }, [
+									this.$slots.default,
+								])
+							: null,
+					]),
+				],
+			)
 
 		// If we have a router-link, we wrap the button in it
 		if (this.to) {
@@ -713,11 +748,9 @@ export default {
 		return renderButton()
 	},
 }
-
 </script>
 
 <style lang="scss" scoped>
-
 .button-vue {
 	position: relative;
 	width: fit-content;
@@ -789,7 +822,8 @@ export default {
 	}
 
 	&--reverse#{&}--icon-and-text {
-		padding-inline: calc(var(--default-grid-baseline) * 4) var(--default-grid-baseline);
+		padding-inline: calc(var(--default-grid-baseline) * 4)
+			var(--default-grid-baseline);
 	}
 
 	&__icon {
@@ -828,7 +862,8 @@ export default {
 	// Icon and text button
 	&--icon-and-text {
 		padding-block: 0;
-		padding-inline: var(--default-grid-baseline) calc(var(--default-grid-baseline) * 4);
+		padding-inline: var(--default-grid-baseline)
+			calc(var(--default-grid-baseline) * 4);
 	}
 
 	// Wide button spans the whole width of the container
@@ -942,5 +977,4 @@ export default {
 		}
 	}
 }
-
 </style>

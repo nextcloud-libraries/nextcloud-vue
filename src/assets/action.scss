@@ -35,7 +35,8 @@
 	.action--disabled {
 		pointer-events: none;
 		opacity: $opacity_disabled;
-		&:hover, &:focus {
+		&:hover,
+		&:focus {
 			cursor: default;
 			opacity: $opacity_disabled;
 		}
@@ -44,7 +45,6 @@
 		}
 	}
 }
-
 
 @mixin action-item($name) {
 	.action-#{$name} {

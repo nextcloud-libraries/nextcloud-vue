@@ -59,39 +59,50 @@ export default {
 
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }">
-		<span class="action-text-editable"
-			@click="onClick">
+		<span class="action-text-editable" @click="onClick">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
-				<span :class="[isIconUrl ? 'action-text-editable__icon--url' : icon]"
-					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+				<span
+					:class="[isIconUrl ? 'action-text-editable__icon--url' : icon]"
+					:style="{
+						backgroundImage: isIconUrl ? `url(${icon})` : null,
+					}"
 					class="action-text-editable__icon" />
 			</slot>
 
 			<!-- form and input -->
-			<form ref="form"
+			<form
+				ref="form"
 				class="action-text-editable__form"
 				:disabled="disabled"
 				@submit.prevent="onSubmit">
-				<input :id="id" type="submit" class="action-text-editable__submit">
+				<input :id="id" type="submit" class="action-text-editable__submit" />
 
 				<!-- name -->
-				<label v-if="name"
+				<label
+					v-if="name"
 					class="action-text-editable__name"
 					:for="computedId">
 					{{ name }}
 				</label>
 
-				<textarea :id="computedId"
+				<textarea
+					:id="computedId"
 					:disabled="disabled"
 					:value="value"
 					v-bind="$attrs"
-					:class="['action-text-editable__textarea', { focusable: isFocusable }]"
+					:class="[
+						'action-text-editable__textarea',
+						{ focusable: isFocusable },
+					]"
 					@input="onInput" />
 
 				<!-- allow the custom font to inject a ::before
 					not possible on input[type=submit] -->
-				<label v-show="!disabled" :for="id" class="action-text-editable__label">
+				<label
+					v-show="!disabled"
+					:for="id"
+					class="action-text-editable__label">
 					<ArrowRight :size="20" />
 				</label>
 			</form>
@@ -121,7 +132,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'action-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 		/**
 		 * disabled state of the text area
@@ -139,11 +150,7 @@ export default {
 		},
 	},
 
-	emits: [
-		'input',
-		'update:value',
-		'submit',
-	],
+	emits: ['input', 'update:value', 'submit'],
 
 	computed: {
 		/**
@@ -233,7 +240,8 @@ $input-margin: 4px;
 		min-height: 0;
 		/* Keep padding to define the width to
 			assure correct position of a possible text */
-		padding: #{math.div($clickable-area, 2)} 0 #{math.div($clickable-area, 2)} $clickable-area;
+		padding: #{math.div($clickable-area, 2)} 0 #{math.div($clickable-area, 2)}
+			$clickable-area;
 
 		background-position: #{$icon-margin} center;
 		background-size: $icon-size;
@@ -290,7 +298,8 @@ $input-margin: 4px;
 		background-color: var(--color-main-background);
 		background-clip: padding-box;
 
-		&, * {
+		&,
+		* {
 			cursor: pointer;
 		}
 	}

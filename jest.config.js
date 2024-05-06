@@ -53,22 +53,17 @@ const ignorePatterns = [
 ]
 
 module.exports = {
-	moduleFileExtensions: [
-		'js',
-		'ts',
-		'vue',
-	],
+	moduleFileExtensions: ['js', 'ts', 'vue'],
 
 	testEnvironment: 'jsdom',
-	setupFilesAfterEnv: [
-		'./tests/setup.js',
-	],
+	setupFilesAfterEnv: ['./tests/setup.js'],
 
 	transform: {
 		'^.+\\.(j|t)s$': 'babel-jest',
 		'^.+\\.vue$': '@vue/vue2-jest',
 		'.+\\?raw$': 'jest-raw-loader',
-		'.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
+		'.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+			'jest-transform-stub',
 	},
 	transformIgnorePatterns: [
 		'/node_modules/(?!(' + ignorePatterns.join('|') + '))',
@@ -79,21 +74,10 @@ module.exports = {
 		'\\?raw$': 'jest-raw-loader',
 	},
 
-	snapshotSerializers: [
-		'<rootDir>/node_modules/jest-serializer-vue',
-	],
+	snapshotSerializers: ['<rootDir>/node_modules/jest-serializer-vue'],
 
 	coverageDirectory: './coverage/',
 	collectCoverage: false,
-	collectCoverageFrom: [
-		'<rootDir>/src/**/*.{js,ts,vue}',
-		'!**/node_modules/**',
-	],
-	coverageReporters: [
-		'json',
-		'text',
-		'html',
-		'lcov',
-		'clover',
-	],
+	collectCoverageFrom: ['<rootDir>/src/**/*.{js,ts,vue}', '!**/node_modules/**'],
+	coverageReporters: ['json', 'text', 'html', 'lcov', 'clover'],
 }

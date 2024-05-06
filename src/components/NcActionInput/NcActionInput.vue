@@ -140,7 +140,8 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }">
-		<span :class="{
+		<span
+			:class="{
 				'action-input-picker--disabled': disabled,
 				'action-input--visible-label': labelOutside && label,
 			}"
@@ -149,31 +150,38 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 			<span class="action-input__icon-wrapper">
 				<!-- @slot Manually provide icon -->
 				<slot name="icon">
-					<span :class="[isIconUrl ? 'action-input__icon--url' : icon]"
-						:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+					<span
+						:class="[isIconUrl ? 'action-input__icon--url' : icon]"
+						:style="{
+							backgroundImage: isIconUrl ? `url(${icon})` : null,
+						}"
 						aria-hidden="true"
 						class="action-input__icon" />
 				</slot>
 			</span>
 
 			<!-- form and input -->
-			<form ref="form"
+			<form
+				ref="form"
 				class="action-input__form"
 				:disabled="disabled"
 				@submit.prevent="onSubmit">
 				<div class="action-input__container">
-					<label v-if="label && labelOutside"
+					<label
+						v-if="label && labelOutside"
 						class="action-input__text-label"
-						:class="{ 'action-input__text-label--hidden': !labelOutside}"
+						:class="{
+							'action-input__text-label--hidden': !labelOutside,
+						}"
 						:for="inputId">
 						{{ label }}
 					</label>
 					<div class="action-input__input-container">
-
-						<NcDateTimePicker v-if="datePickerType"
+						<NcDateTimePicker
+							v-if="datePickerType"
 							ref="datetimepicker"
 							:value="value"
-							style="z-index: 99999999999;"
+							style="z-index: 99999999999"
 							:placeholder="text"
 							:disabled="disabled"
 							:type="datePickerType"
@@ -183,7 +191,8 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							@input="onInput"
 							@change="onChange" />
 
-						<NcDateTimePickerNative v-else-if="isNativePicker"
+						<NcDateTimePickerNative
+							v-else-if="isNativePicker"
 							:id="idNativeDateTimePicker"
 							:value="value"
 							:type="nativeDatePickerType"
@@ -193,17 +202,23 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							@input="$emit('input', $event)"
 							@change="$emit('change', $event)" />
 
-						<NcSelect v-else-if="isMultiselectType"
+						<NcSelect
+							v-else-if="isMultiselectType"
 							:value="value"
 							:placeholder="text"
 							:disabled="disabled"
-							:append-to-body="$attrs.appendToBody || $attrs['append-to-body'] || false"
+							:append-to-body="
+								$attrs.appendToBody ||
+								$attrs['append-to-body'] ||
+								false
+							"
 							:input-class="{ focusable: isFocusable }"
 							class="action-input__multi"
 							v-bind="$attrs"
 							v-on="$listeners" />
 
-						<NcPasswordField v-else-if="type==='password'"
+						<NcPasswordField
+							v-else-if="type === 'password'"
 							:id="inputId"
 							:value="value"
 							:label="label"
@@ -217,29 +232,38 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							@input="onInput"
 							@change="onChange" />
 
-						<div v-else-if="type === 'color'" class="action-input__container">
-							<label v-if="label && type === 'color'"
+						<div
+							v-else-if="type === 'color'"
+							class="action-input__container">
+							<label
+								v-if="label && type === 'color'"
 								class="action-input__text-label"
-								:class="{ 'action-input__text-label--hidden': !labelOutside}"
+								:class="{
+									'action-input__text-label--hidden':
+										!labelOutside,
+								}"
 								:for="inputId">
 								{{ label }}
 							</label>
 							<div class="action-input__input-container">
-								<NcColorPicker id="inputId"
+								<NcColorPicker
+									id="inputId"
 									:value="value"
 									class="colorpicker__trigger"
 									v-bind="$attrs"
 									v-on="$listeners"
 									@input="onInput"
 									@submit="$refs.form.requestSubmit()">
-									<button :style="{'background-color': value}"
+									<button
+										:style="{ 'background-color': value }"
 										class="colorpicker__preview"
 										:class="{ focusable: isFocusable }" />
 								</NcColorPicker>
 							</div>
 						</div>
 
-						<NcTextField v-else
+						<NcTextField
+							v-else
 							:id="inputId"
 							:value="value"
 							:label="label"
@@ -293,7 +317,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'action-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 		/**
 		 * id attribute of the text input element
@@ -301,7 +325,7 @@ export default {
 		inputId: {
 			type: String,
 			default: () => 'action-input-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 		/**
 		 * Icon to show with the action, can be either a CSS class or an URL
@@ -317,10 +341,24 @@ export default {
 			type: String,
 			default: 'text',
 			validator(type) {
-				return ['date', 'datetime-local', 'month', 'multiselect',
-					'number', 'password', 'search', 'tel',
-					'text', 'time', 'url', 'week', 'color',
-					'email'].indexOf(type) > -1
+				return (
+					[
+						'date',
+						'datetime-local',
+						'month',
+						'multiselect',
+						'number',
+						'password',
+						'search',
+						'tel',
+						'text',
+						'time',
+						'url',
+						'week',
+						'color',
+						'email',
+					].indexOf(type) > -1
+				)
 			},
 		},
 		/**
@@ -398,12 +436,7 @@ export default {
 		},
 	},
 
-	emits: [
-		'input',
-		'submit',
-		'change',
-		'update:value',
-	],
+	emits: ['input', 'submit', 'change', 'update:value'],
 
 	computed: {
 		isIconUrl() {
@@ -420,12 +453,12 @@ export default {
 
 		nativeDatePickerType() {
 			switch (this.type) {
-			case 'date':
-			case 'month':
-			case 'time':
-			case 'week':
-			case 'datetime-local':
-				return this.type
+				case 'date':
+				case 'month':
+				case 'time':
+				case 'week':
+				case 'datetime-local':
+					return this.type
 			}
 			return false
 		},
@@ -433,13 +466,13 @@ export default {
 		datePickerType() {
 			if (!this.isNativePicker) {
 				switch (this.type) {
-				case 'date':
-				case 'month':
-				case 'time':
-					return this.type
+					case 'date':
+					case 'month':
+					case 'time':
+						return this.type
 
-				case 'datetime-local':
-					return 'datetime'
+					case 'datetime-local':
+						return 'datetime'
 				}
 			}
 			return false
@@ -457,7 +490,10 @@ export default {
 	methods: {
 		// closing datepicker popup on mouseleave = unfocus
 		onLeave() {
-			if (this.$refs.datetimepicker && this.$refs.datetimepicker.$refs.datepicker) {
+			if (
+				this.$refs.datetimepicker &&
+				this.$refs.datetimepicker.$refs.datepicker
+			) {
 				this.$refs.datetimepicker.$refs.datepicker.closePopup()
 			}
 		},
@@ -558,7 +594,8 @@ $input-margin: 4px;
 		min-height: 0;
 		/* Keep padding to define the width to
 			assure correct position of a possible text */
-		padding: #{math.div($clickable-area, 2)} 0 #{math.div($clickable-area, 2)} $clickable-area;
+		padding: #{math.div($clickable-area, 2)} 0 #{math.div($clickable-area, 2)}
+			$clickable-area;
 
 		background-position: #{$icon-margin} center;
 		background-size: $icon-size;
@@ -635,5 +672,4 @@ li:last-child > .action-input {
 li:first-child > .action-input:not(.action-input--visible-label) {
 	padding-top: $icon-margin - $input-margin;
 }
-
 </style>

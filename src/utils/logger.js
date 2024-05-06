@@ -20,7 +20,4 @@
  */
 import { getLoggerBuilder } from '@nextcloud/logger'
 
-export default getLoggerBuilder()
-	.detectUser()
-	.setApp('@nextcloud/vue')
-	.build()
+export default getLoggerBuilder().detectUser().setApp('@nextcloud/vue').build()

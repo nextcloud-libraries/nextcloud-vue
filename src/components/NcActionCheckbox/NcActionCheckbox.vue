@@ -35,9 +35,16 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 </docs>
 
 <template>
-	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
-		<span class="action-checkbox" :role="isInSemanticMenu && 'menuitemcheckbox'" :aria-checked="ariaChecked">
-			<input :id="id"
+	<li
+		class="action"
+		:class="{ 'action--disabled': disabled }"
+		:role="isInSemanticMenu && 'presentation'">
+		<span
+			class="action-checkbox"
+			:role="isInSemanticMenu && 'menuitemcheckbox'"
+			:aria-checked="ariaChecked">
+			<input
+				:id="id"
 				ref="checkbox"
 				:disabled="disabled"
 				:checked="checked"
@@ -46,8 +53,10 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 				type="checkbox"
 				class="checkbox action-checkbox__checkbox"
 				@keydown.enter.exact.prevent="checkInput"
-				@change="onChange">
-			<label ref="label" :for="id" class="action-checkbox__label">{{ text }}</label>
+				@change="onChange" />
+			<label ref="label" :for="id" class="action-checkbox__label">
+				{{ text }}
+			</label>
 
 			<!-- fake slot to gather inner text -->
 			<slot v-if="false" />
@@ -78,7 +87,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'action-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 
 		/**
@@ -106,12 +115,7 @@ export default {
 		},
 	},
 
-	emits: [
-		'change',
-		'check',
-		'uncheck',
-		'update:checked',
-	],
+	emits: ['change', 'check', 'uncheck', 'update:checked'],
 
 	computed: {
 		/**
@@ -236,5 +240,4 @@ export default {
 		}
 	}
 }
-
 </style>

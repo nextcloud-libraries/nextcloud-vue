@@ -214,7 +214,8 @@ export default {
 
 <template>
 	<div class="rich-contenteditable">
-		<div :id="id"
+		<div
+			:id="id"
 			ref="contenteditable"
 			v-tooltip="tooltipString"
 			:class="{
@@ -251,9 +252,7 @@ export default {
 			@keydown.down.exact.stop="onTributeArrowKeyDown"
 			@tribute-active-true="onTributeActive(true)"
 			@tribute-active-false="onTributeActive(false)" />
-		<div v-if="label"
-			:id="labelId"
-			class="rich-contenteditable__label">
+		<div v-if="label" :id="labelId" class="rich-contenteditable__label">
 			{{ label }}
 		</div>
 	</div>
@@ -385,12 +384,7 @@ export default {
 		},
 	},
 
-	emits: [
-		'submit',
-		'paste',
-		'update:value',
-		'smart-picker-submit',
-	],
+	emits: ['submit', 'paste', 'update:value', 'smart-picker-submit'],
 
 	setup() {
 		const uid = GenRandomId(5)
@@ -466,7 +460,9 @@ export default {
 				return null
 			}
 			return {
-				content: t('Message limit of {count} characters reached', { count: this.maxlength }),
+				content: t('Message limit of {count} characters reached', {
+					count: this.maxlength,
+				}),
 				shown: true,
 				trigger: 'manual',
 			}
@@ -501,7 +497,7 @@ export default {
 		/**
 		 * Compute debounce function for the autocomplete function
 		 */
-		 debouncedAutoComplete() {
+		debouncedAutoComplete() {
 			return debounce(async (search, callback) => {
 				this.autoComplete(search, callback)
 			}, 100)
@@ -554,27 +550,33 @@ export default {
 		},
 
 		initializeTribute() {
-			const renderMenuItem = (content) => `<div id="nc-rich-contenteditable-tribute-item-${GenRandomId(5)}" class="${this.$style['tribute-item']}" role="option">${content}</div>`
+			const renderMenuItem = (content) =>
+				`<div id="nc-rich-contenteditable-tribute-item-${GenRandomId(5)}" class="${this.$style['tribute-item']}" role="option">${content}</div>`
 
 			const tributesCollection = []
 			tributesCollection.push({
 				fillAttr: 'id',
 				// Search against id and label (display name) (fallback to title for v8.0.0..8.6.1 compatibility)
-				lookup: result => `${result.id} ${result.label ?? result.title}`,
+				lookup: (result) => `${result.id} ${result.label ?? result.title}`,
 				requireLeadingSpace: true,
 				// Popup mention autocompletion templates
-				menuItemTemplate: item => renderMenuItem(this.renderComponentHtml(item.original, NcAutoCompleteResult)),
+				menuItemTemplate: (item) =>
+					renderMenuItem(
+						this.renderComponentHtml(
+							item.original,
+							NcAutoCompleteResult,
+						),
+					),
 				// Hide if no results
 				noMatchTemplate: () => '<span class="hidden"></span>',
 				// Inner display of mentions
-				selectTemplate: item => this.genSelectTemplate(item?.original?.id),
+				selectTemplate: (item) => this.genSelectTemplate(item?.original?.id),
 				// Autocompletion results
 				values: this.debouncedAutoComplete,
 				// Class added to the menu container
 				containerClass: `${this.$style['tribute-container']} ${this.$style['tribute-container-autocomplete']}`,
 				// Class added to each list item
 				itemClass: this.$style['tribute-container__item'],
-
 			})
 
 			if (this.emojiAutocomplete) {
@@ -585,13 +587,15 @@ export default {
 					lookup: (result, query) => query,
 					requireLeadingSpace: true,
 					// Popup mention autocompletion templates
-					menuItemTemplate: item => {
+					menuItemTemplate: (item) => {
 						if (textSmiles.includes(item.original)) {
 							// Display the raw text string for :), :-D, … for non emoji results,
 							// instead of trying to show an image and their name.
 							return item.original
 						}
-						return renderMenuItem(`<span class="${this.$style['tribute-item__emoji']}">${item.original.native}</span> :${item.original.short_name}`)
+						return renderMenuItem(
+							`<span class="${this.$style['tribute-item__emoji']}">${item.original.native}</span> :${item.original.short_name}`,
+						)
 					},
 					// Hide if no results
 					noMatchTemplate: () => t('No emoji found'),
@@ -634,7 +638,10 @@ export default {
 					lookup: (result, query) => query,
 					requireLeadingSpace: true,
 					// Popup mention autocompletion templates
-					menuItemTemplate: item => renderMenuItem(`<img class="${this.$style['tribute-item__icon']}" src="${item.original.icon_url}"> <span class="${this.$style['tribute-item__title']}">${item.original.title}</span>`),
+					menuItemTemplate: (item) =>
+						renderMenuItem(
+							`<img class="${this.$style['tribute-item__icon']}" src="${item.original.icon_url}"> <span class="${this.$style['tribute-item__title']}">${item.original.title}</span>`,
+						),
 					// Hide if no results
 					noMatchTemplate: () => t('No link provider found'),
 					selectTemplate: this.getLink,
@@ -662,9 +669,11 @@ export default {
 			// there is no way to get a tribute result asynchronously
 			// so we immediately insert a node and replace it when the result comes
 			getLinkWithPicker(item.original.id)
-				.then(result => {
+				.then((result) => {
 					// replace dummy temp element by a text node which contains the picker result
-					const tmpElem = document.getElementById('tmp-smart-picker-result-node')
+					const tmpElem = document.getElementById(
+						'tmp-smart-picker-result-node',
+					)
 					const eventData = {
 						result,
 						insertText: true,
@@ -681,7 +690,9 @@ export default {
 				})
 				.catch((error) => {
 					console.debug('Smart picker promise rejected:', error)
-					const tmpElem = document.getElementById('tmp-smart-picker-result-node')
+					const tmpElem = document.getElementById(
+						'tmp-smart-picker-result-node',
+					)
 					this.setCursorAfter(tmpElem)
 					tmpElem.remove()
 				})
@@ -735,8 +746,12 @@ export default {
 			this.$emit('paste', event)
 
 			// If we have a file or if we don't have any text, ignore
-			if (clipboardData.files.length !== 0
-				|| !Object.values(clipboardData.items).find(item => item?.type.startsWith('text'))) {
+			if (
+				clipboardData.files.length !== 0 ||
+				!Object.values(clipboardData.items).find((item) =>
+					item?.type.startsWith('text'),
+				)
+			) {
 				return
 			}
 
@@ -815,7 +830,10 @@ export default {
 			}
 
 			const curRange = selection.getRangeAt(selection.rangeCount - 1)
-			if (curRange.commonAncestorContainer.nodeType === 3 && curRange.startOffset > 0) {
+			if (
+				curRange.commonAncestorContainer.nodeType === 3 &&
+				curRange.startOffset > 0
+			) {
 				// we are in child selection. The characters of the text node is being deleted
 				return
 			}
@@ -850,10 +868,12 @@ export default {
 			// or length is over maxlength
 			// or autocompletion menu is opened
 			// or in a text composition session with IME
-			if (this.multiline
-				|| this.isOverMaxlength
-				|| this.tribute.isActive
-				|| this.isComposing) {
+			if (
+				this.multiline ||
+				this.isOverMaxlength ||
+				this.tribute.isActive ||
+				this.isComposing
+			) {
 				return
 			}
 
@@ -902,7 +922,9 @@ export default {
 		getTributeSelectedItem() {
 			// Tribute does not provide a way to get the active item, only the data index
 			// So we have to find it manually by select class
-			return this.getTributeContainer().querySelector('.highlight [id^="nc-rich-contenteditable-tribute-item-"]')
+			return this.getTributeContainer().querySelector(
+				'.highlight [id^="nc-rich-contenteditable-tribute-item-"]',
+			)
 		},
 
 		/**
@@ -919,7 +941,11 @@ export default {
 				// https://github.com/zurb/tribute/issues/627
 				// So we have to manually update the class
 				// The default class is "tribute-container"
-				this.getTributeContainer().setAttribute('class', this.tribute.current.collection.containerClass || this.$style['tribute-container'])
+				this.getTributeContainer().setAttribute(
+					'class',
+					this.tribute.current.collection.containerClass ||
+						this.$style['tribute-container'],
+				)
 
 				this.setupTributeIntegration()
 			} else {
@@ -969,21 +995,27 @@ export default {
 
 			// Tribute.js does not provide a way to react on show/hide
 			// tribute-active-true/false events are fired on initial activation, which is too early with async autoComplete function
-			this.tributeStyleMutationObserver = new MutationObserver(([{ target }]) => {
-				if (target.style.display !== 'none') {
-					// Tribute is visible - there will be selected item
-					this.onTributeSelectedItemWillChange()
-				}
-			}).observe(tributeContainer, {
+			this.tributeStyleMutationObserver = new MutationObserver(
+				([{ target }]) => {
+					if (target.style.display !== 'none') {
+						// Tribute is visible - there will be selected item
+						this.onTributeSelectedItemWillChange()
+					}
+				},
+			).observe(tributeContainer, {
 				attributes: true,
 				attributeFilter: ['style'],
 			})
 
 			// Handle selecting new item on mouse selection
-			tributeContainer.addEventListener('mousemove', () => {
-				this.setTributeFocusVisible(false)
-				this.onTributeSelectedItemWillChange()
-			}, { passive: true })
+			tributeContainer.addEventListener(
+				'mousemove',
+				() => {
+					this.setTributeFocusVisible(false)
+					this.onTributeSelectedItemWillChange()
+				},
+				{ passive: true },
+			)
 		},
 
 		/**
@@ -996,9 +1028,13 @@ export default {
 		 */
 		setTributeFocusVisible(withFocusVisible) {
 			if (withFocusVisible) {
-				this.getTributeContainer().classList.add(this.$style['tribute-container--focus-visible'])
+				this.getTributeContainer().classList.add(
+					this.$style['tribute-container--focus-visible'],
+				)
 			} else {
-				this.getTributeContainer().classList.remove(this.$style['tribute-container--focus-visible'])
+				this.getTributeContainer().classList.remove(
+					this.$style['tribute-container--focus-visible'],
+				)
 			}
 		},
 	},
@@ -1026,7 +1062,12 @@ export default {
 		// forward events to input
 		pointer-events: none;
 		// Position transition
-		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick), background-color var(--animation-quick) var(--animation-slow);
+		transition:
+			height var(--animation-quick),
+			inset-block-start var(--animation-quick),
+			font-size var(--animation-quick),
+			color var(--animation-quick),
+			background-color var(--animation-quick) var(--animation-slow);
 	}
 
 	&__input:focus + &__label,
@@ -1040,7 +1081,11 @@ export default {
 		padding-inline: 5px;
 		margin-inline-start: 9px;
 
-		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick);
+		transition:
+			height var(--animation-quick),
+			inset-block-start var(--animation-quick),
+			font-size var(--animation-quick),
+			color var(--animation-quick);
 	}
 
 	&__input {
@@ -1097,7 +1142,6 @@ export default {
 		}
 	}
 }
-
 </style>
 
 <style lang="scss" module>
@@ -1130,7 +1174,8 @@ export default {
 			color: var(--color-main-text);
 			background: var(--color-background-hover);
 
-			&, * {
+			&,
+			* {
 				cursor: pointer;
 			}
 		}
@@ -1152,7 +1197,10 @@ export default {
 	// + 2 paddings arouind tribute item
 	// + 1 padding gap
 	// And 1.5 paddings - container's padding without the last gap
-	max-height: calc((var(--default-clickable-area) + 5 * var(--default-grid-baseline)) * 4.5 - 1.5 * var(--default-grid-baseline));
+	max-height: calc(
+		(var(--default-clickable-area) + 5 * var(--default-grid-baseline)) * 4.5 -
+			1.5 * var(--default-grid-baseline)
+	);
 }
 
 .tribute-container-emoji,
@@ -1165,7 +1213,10 @@ export default {
 	// + 2 paddings arouind tribute item
 	// + 1 padding gap
 	// And 1.5 paddings - container's padding without the last gap
-	max-height: calc((24px + 3 * var(--default-grid-baseline)) * 5.5 - 1.5 * var(--default-grid-baseline));
+	max-height: calc(
+		(24px + 3 * var(--default-grid-baseline)) * 5.5 - 1.5 *
+			var(--default-grid-baseline)
+	);
 
 	.tribute-item {
 		// Take care of long names
@@ -1200,5 +1251,4 @@ export default {
 		}
 	}
 }
-
 </style>

@@ -331,12 +331,19 @@ export default {
 </docs>
 
 <template>
-	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
-		<button :aria-label="ariaLabel"
-			:class="['action-button button-vue', {
-				'action-button--active': isChecked,
-				focusable: isFocusable,
-			}]"
+	<li
+		class="action"
+		:class="{ 'action--disabled': disabled }"
+		:role="isInSemanticMenu && 'presentation'">
+		<button
+			:aria-label="ariaLabel"
+			:class="[
+				'action-button button-vue',
+				{
+					'action-button--active': isChecked,
+					focusable: isFocusable,
+				},
+			]"
 			:disabled="disabled"
 			:title="title"
 			:type="nativeType"
@@ -344,19 +351,21 @@ export default {
 			@click="handleClick">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
-				<span :class="[isIconUrl ? 'action-button__icon--url' : icon]"
-					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+				<span
+					:class="[isIconUrl ? 'action-button__icon--url' : icon]"
+					:style="{
+						backgroundImage: isIconUrl ? `url(${icon})` : null,
+					}"
 					aria-hidden="true"
 					class="action-button__icon" />
 			</slot>
 
 			<!-- long text with name -->
-			<span v-if="name"
-				class="action-button__longtext-wrapper">
+			<span v-if="name" class="action-button__longtext-wrapper">
 				<strong class="action-button__name">
 					{{ name }}
 				</strong>
-				<br>
+				<br />
 				<!-- white space is shown on longtext, so we can't
 					put {{ text }} on a new line for code readability -->
 				<span class="action-button__longtext" v-text="text" />
@@ -365,7 +374,8 @@ export default {
 			<!-- long text only -->
 			<!-- white space is shown on longtext, so we can't
 				put {{ text }} on a new line for code readability -->
-			<span v-else-if="isLongText"
+			<span
+				v-else-if="isLongText"
 				class="action-button__longtext"
 				v-text="text" />
 
@@ -373,9 +383,17 @@ export default {
 			<span v-else class="action-button__text">{{ text }}</span>
 
 			<!-- right arrow icon when there is a sub-menu -->
-			<ChevronRightIcon v-if="isMenu" :size="20" class="action-button__menu-icon" />
-			<CheckIcon v-else-if="isChecked === true" :size="20" class="action-button__pressed-icon" />
-			<span v-else-if="isChecked === false" class="action-button__pressed-icon material-design-icon" />
+			<ChevronRightIcon
+				v-if="isMenu"
+				:size="20"
+				class="action-button__menu-icon" />
+			<CheckIcon
+				v-else-if="isChecked === true"
+				:size="20"
+				class="action-button__pressed-icon" />
+			<span
+				v-else-if="isChecked === false"
+				class="action-button__pressed-icon material-design-icon" />
 
 			<!-- fake slot to gather inner text -->
 			<slot v-if="false" />
@@ -443,7 +461,10 @@ export default {
 		type: {
 			type: String,
 			default: 'button',
-			validator: (behavior) => ['button', 'checkbox', 'radio', 'reset', 'submit'].includes(behavior),
+			validator: (behavior) =>
+				['button', 'checkbox', 'radio', 'reset', 'submit'].includes(
+					behavior,
+				),
 		},
 
 		/**
@@ -515,10 +536,18 @@ export default {
 				if (this.type === 'radio') {
 					attributes.role = 'menuitemradio'
 					attributes['aria-checked'] = this.isChecked ? 'true' : 'false'
-				} else if (this.type === 'checkbox' || (this.nativeType === 'button' && this.modelValue !== null)) {
+				} else if (
+					this.type === 'checkbox' ||
+					(this.nativeType === 'button' && this.modelValue !== null)
+				) {
 					// either if checkbox behavior was set or the model value is not unset
 					attributes.role = 'menuitemcheckbox'
-					attributes['aria-checked'] = this.modelValue === null ? 'mixed' : (this.modelValue ? 'true' : 'false')
+					attributes['aria-checked'] =
+						this.modelValue === null
+							? 'mixed'
+							: this.modelValue
+								? 'true'
+								: 'false'
 				}
 			} else if (this.modelValue !== null && this.nativeType === 'button') {
 				// In case this has a modelValue it is considered a toggle button, so we need to set the aria-pressed

@@ -272,26 +272,30 @@ Just set the `pinned` prop.
 </docs>
 
 <template>
-	<li :id="id"
+	<li
+		:id="id"
 		:class="{
 			'app-navigation-entry--opened': opened,
 			'app-navigation-entry--pinned': pinned,
 			'app-navigation-entry--collapsible': collapsible,
 		}"
 		class="app-navigation-entry-wrapper">
-		<component :is="isRouterLink ? 'router-link' : 'NcVNodes'"
+		<component
+			:is="isRouterLink ? 'router-link' : 'NcVNodes'"
 			v-slot="{ href: routerLinkHref, navigate, isActive }"
 			:custom="isRouterLink ? true : false"
 			:to="to"
 			:exact="isRouterLink ? exact : null">
-			<div :class="{
+			<div
+				:class="{
 					'app-navigation-entry--editing': editingActive,
 					'app-navigation-entry--deleted': undo,
-					'active': (isActive && to) || active,
+					active: (isActive && to) || active,
 				}"
 				class="app-navigation-entry">
 				<!-- Icon and name -->
-				<a v-if="!undo"
+				<a
+					v-if="!undo"
 					class="app-navigation-entry-link"
 					:aria-current="active || (isActive && to) ? 'page' : undefined"
 					:aria-description="ariaDescription"
@@ -303,11 +307,9 @@ Just set the `pinned` prop.
 					@click="onClick($event, navigate, routerLinkHref)"
 					@focus="handleFocus"
 					@keydown.tab.exact="handleTab">
-
 					<!-- icon if not collapsible -->
 					<!-- never show the icon over the collapsible if mobile -->
-					<div :class="{ [icon]: icon }"
-						class="app-navigation-entry-icon">
+					<div :class="{ [icon]: icon }" class="app-navigation-entry-icon">
 						<NcLoadingIcon v-if="loading" />
 						<!-- @slot Slot for the optional leading icon -->
 						<slot v-else name="icon" />
@@ -316,9 +318,12 @@ Just set the `pinned` prop.
 						{{ name }}
 					</span>
 					<div v-if="editingActive" class="editingContainer">
-						<NcInputConfirmCancel ref="editingInput"
+						<NcInputConfirmCancel
+							ref="editingInput"
 							v-model="editingValue"
-							:placeholder="editPlaceholder !== '' ? editPlaceholder : name"
+							:placeholder="
+								editPlaceholder !== '' ? editPlaceholder : name
+							"
 							:primary="(isActive && to) || active"
 							@cancel="cancelEditing"
 							@confirm="handleEditingDone" />
@@ -333,15 +338,21 @@ Just set the `pinned` prop.
 				</div>
 
 				<!-- Counter and Actions -->
-				<div v-if="hasUtils && !editingActive"
+				<div
+					v-if="hasUtils && !editingActive"
 					class="app-navigation-entry__utils"
-					:class="{'app-navigation-entry__utils--display-actions': forceDisplayActions || menuOpenLocalValue || menuOpen }">
-					<div v-if="$slots.counter"
+					:class="{
+						'app-navigation-entry__utils--display-actions':
+							forceDisplayActions || menuOpenLocalValue || menuOpen,
+					}">
+					<div
+						v-if="$slots.counter"
 						class="app-navigation-entry__counter-wrapper">
 						<!-- @slot Slot for the `NcCounterBubble` -->
 						<slot name="counter" />
 					</div>
-					<NcActions v-if="$slots.actions || (editable && !editingActive) || undo"
+					<NcActions
+						v-if="$slots.actions || (editable && !editingActive) || undo"
 						ref="actions"
 						:inline="inlineActions"
 						class="app-navigation-entry__actions"
@@ -357,7 +368,8 @@ Just set the `pinned` prop.
 							<!-- @slot Slot for the custom menu icon -->
 							<slot name="menu-icon" />
 						</template>
-						<NcActionButton v-if="editable && !editingActive"
+						<NcActionButton
+							v-if="editable && !editingActive"
 							:aria-label="editButtonAriaLabel"
 							@click="handleEdit">
 							<template #icon>
@@ -365,7 +377,8 @@ Just set the `pinned` prop.
 							</template>
 							{{ editLabel }}
 						</NcActionButton>
-						<NcActionButton v-if="undo"
+						<NcActionButton
+							v-if="undo"
 							:aria-label="undoButtonAriaLabel"
 							@click="handleUndo">
 							<template #icon>
@@ -376,14 +389,19 @@ Just set the `pinned` prop.
 						<slot name="actions" />
 					</NcActions>
 				</div>
-				<NcAppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
+				<NcAppNavigationIconCollapsible
+					v-if="collapsible"
+					:open="opened"
+					@click.prevent.stop="toggleCollapse" />
 
 				<!-- @slot Slot for anything (virtual) that should be mounted in the component, like a related modal -->
 				<slot name="extra" />
 			</div>
 		</component>
 		<!-- Children elements -->
-		<ul v-if="canHaveChildren && hasChildren" class="app-navigation-entry__children">
+		<ul
+			v-if="canHaveChildren && hasChildren"
+			class="app-navigation-entry__children">
 			<!-- @slot Slot for children -->
 			<slot />
 		</ul>
@@ -450,7 +468,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'app-navigation-item-' + GenRandomId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 
 		/**
@@ -615,13 +633,7 @@ export default {
 		},
 	},
 
-	emits: [
-		'update:menuOpen',
-		'update:open',
-		'update:name',
-		'click',
-		'undo',
-	],
+	emits: ['update:menuOpen', 'update:open', 'update:name', 'click', 'undo'],
 
 	setup() {
 		return {
@@ -660,7 +672,12 @@ export default {
 		},
 
 		hasUtils() {
-			if (this.$slots.actions || this.$slots.counter || this.editable || this.undo) {
+			if (
+				this.$slots.actions ||
+				this.$slots.counter ||
+				this.editable ||
+				this.undo
+			) {
 				return true
 			}
 			return false
