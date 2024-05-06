@@ -18,33 +18,33 @@ const SCOPE_VERSION = JSON.stringify(versionHash)
 
 // Entry points which we build using vite
 const entryPoints = {
-	...globSync('src/components/*/index.js').reduce((acc, item) => {
+	...globSync(['src/components/*/index.js', 'src/components/*/index.ts']).reduce((acc, item) => {
 		const name = item
-			.replace('/index.js', '')
+			.replace(/\/index\.[jt]s/, '')
 			.replace('src/components/', 'Components/')
 		acc[name] = join(__dirname, item)
 		return acc
 	}, {}),
 
-	...globSync('src/directives/*/index.js').reduce((acc, item) => {
+	...globSync(['src/directives/*/index.js', 'src/directives/*/index.ts']).reduce((acc, item) => {
 		const name = item
-			.replace('/index.js', '')
+			.replace(/\/index\.[jt]s/, '')
 			.replace('src/directives/', 'Directives/')
 		acc[name] = join(__dirname, item)
 		return acc
 	}, {}),
 
-	...globSync('src/functions/*/index.js').reduce((acc, item) => {
+	...globSync(['src/functions/*/index.js', 'src/functions/*/index.ts']).reduce((acc, item) => {
 		const name = item
-			.replace('/index.js', '')
+			.replace(/\/index\.[jt]s/, '')
 			.replace('src/functions/', 'Functions/')
 		acc[name] = join(__dirname, item)
 		return acc
 	}, {}),
 
-	...globSync('src/mixins/*/index.js').reduce((acc, item) => {
+	...globSync(['src/mixins/*/index.js', 'src/mixins/*/index.ts']).reduce((acc, item) => {
 		const name = item
-			.replace('/index.js', '')
+			.replace(/\/index\.[jt]s/, '')
 			.replace('src/mixins/', 'Mixins/')
 		acc[name] = join(__dirname, item)
 		return acc
