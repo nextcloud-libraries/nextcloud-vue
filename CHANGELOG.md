@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v8.11.3](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.11.3) (2024-05-07)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.11.2...v8.11.3)
+
+## What's Changed
+### 🐛 Fixed bugs
+* fix(NcReferenceWidget): do not try to render widget when there is no widget by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5485
+* fix(NcDialog): Actions should not overflow the action container by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5495
+* fix(NcColorPicker): Allow to submit selected color in simple-view by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5499
+* fix(autolink): correctly handle relative links without webroot by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5487
+* fix(NcDateTime): When relative time is disabled return a string and not the reference to it by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5493
+* fix(NcCheckboxRadioSwitch): Pass attrs to `input` if available by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5507
+* fix(NcCheckboxRadioSwitch): Add background color for button style by @susnux in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5509
+* fix(NcDateTime): Respect language by @Pytal in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5501
+* fix(NcRichText): adjust display so long texts in checkboxes can be shown correctly by @DorraJaouad in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5527
+* style(NcSelect): restrict max-height to prevent overflow by component by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5551
+* build(vite): iterate over .ts files in all directories by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5553
+* fix(emoji): index emoji data once for search functions by @Antreesy in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5554
+### Other Changes
+* chore(widgets): remove unneeded nullish coalescing by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5484
+* Updates for project Nextcloud vue library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5494
+* Updates for project Nextcloud vue library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5510
+* Updates for project Nextcloud vue library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5533
+
 ## [v8.11.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.11.2) (2024-04-10)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.11.1...v8.11.2)
 
