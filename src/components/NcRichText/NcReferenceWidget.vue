@@ -62,29 +62,25 @@ export default {
 	},
 
 	setup() {
-		const compact = ref(3)
+		const width = ref(700)
 		const isVisible = ref(false)
 		// This is the widget root node
 		const widgetRoot = ref()
 
 		useIntersectionObserver(widgetRoot, (entries) => {
-			isVisible.value = entries[0]?.isIntersecting ?? false
+			window.requestAnimationFrame(() => {
+				isVisible.value = entries[0]?.isIntersecting ?? false
+			})
 		})
 
 		useResizeObserver(widgetRoot, (entries) => {
-			if (entries[0].contentRect.width < 450) {
-				compact.value = 0
-			} else if (entries[0].contentRect.width < 550) {
-				compact.value = 1
-			} else if (entries[0].contentRect.width < 650) {
-				compact.value = 2
-			} else {
-				compact.value = 3
-			}
+			window.requestAnimationFrame(() => {
+				width.value = entries[0].contentRect.width
+			})
 		})
 
 		return {
-			compact,
+			width,
 			isVisible,
 			widgetRoot,
 		}
@@ -115,17 +111,21 @@ export default {
 			return this.reference && !this.reference.accessible
 		},
 		descriptionStyle() {
-			if (this.compact === 0) {
+			if (this.numberOfLines === 0) {
 				return {
 					display: 'none',
 				}
 			}
-
-			const lineClamp = this.compact < 4 ? this.compact : 3
+			const lineClamp = this.numberOfLines
 			return {
 				lineClamp,
 				webkitLineClamp: lineClamp,
 			}
+		},
+		numberOfLines() {
+			// no description for width < 450, one line until 550 and so on
+			const lineCountOffsets = [450, 550, 650, Infinity]
+			return lineCountOffsets.findIndex(max => this.width.value < max)
 		},
 		compactLink() {
 			const link = this.reference.openGraphObject.link
