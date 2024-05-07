@@ -1,0 +1,403 @@
+# 
+# Translators:
+# Aindriú Mac Giolla Eoin, 2024
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Aindriú Mac Giolla Eoin, 2024\n"
+"Language-Team: Irish (https://app.transifex.com/nextcloud/teams/64236/ga/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ga\n"
+"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);\n"
+
+msgid "{tag} (invisible)"
+msgstr "{tag} (dofheicthe)"
+
+msgid "{tag} (restricted)"
+msgstr "{tag} (srianta)"
+
+msgid "A color with a HEX value {hex}"
+msgstr "Dath le luach HEX {hex}"
+
+msgid "a few seconds ago"
+msgstr "cúpla soicind ó shin"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
+
+msgid "Actions"
+msgstr "Gníomhartha"
+
+msgid "Actions for item with name \"{name}\""
+msgstr "Gníomhartha le haghaidh míre leis an ainm \"{name}\""
+
+msgid "Activities"
+msgstr "Gníomhaíochtaí"
+
+msgid "Animals & Nature"
+msgstr "Ainmhithe & Dúlra"
+
+msgid "Any link"
+msgstr "Aon nasc"
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr "Taispeánfar aon rud a roinntear leis an ngrúpa céanna daoine anseo"
+
+msgid "Avatar of {displayName}"
+msgstr "Avatar de {displayName}"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "Avatar de {displayName}, {status}"
+
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "ar shiúl"
+
+msgid "Back"
+msgstr "Ar ais"
+
+msgid "Back to provider selection"
+msgstr "Ar ais go roghnú soláthraí"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Gorm Violet"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Bostún Gorm"
+
+msgid "busy"
+msgstr "gnóthach"
+
+msgid "Cancel changes"
+msgstr "Cealaigh athruithe"
+
+msgid "Change name"
+msgstr "Athrú ainm"
+
+msgid "Choose"
+msgstr "Roghnaigh"
+
+msgid "Clear search"
+msgstr "Glan cuardach"
+
+msgid "Clear selected"
+msgstr "Glan roghnaithe"
+
+msgid "Clear text"
+msgstr "Téacs soiléir"
+
+msgid "Close"
+msgstr "Dún"
+
+msgid "Close navigation"
+msgstr "Dún nascleanúint"
+
+msgid "Close sidebar"
+msgstr "Dún barra taoibh"
+
+msgid "Close Smart Picker"
+msgstr "Dún Piocálaí Cliste"
+
+msgid "Collapse menu"
+msgstr "Roghchlár Laghdaigh"
+
+msgid "Color picker"
+msgstr "Roghnóir dathanna"
+
+msgid "Confirm changes"
+msgstr "Deimhnigh na hathruithe"
+
+msgid "Custom"
+msgstr "Saincheaptha"
+
+msgid "Dark skin tone"
+msgstr "Ton craiceann dorcha"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Díle"
+
+msgid "Deselect {option}"
+msgstr "Díroghnaigh {option}"
+
+msgid "do not disturb"
+msgstr "ná cur as"
+
+msgid "Edit item"
+msgstr "Cuir mír in eagar"
+
+msgid "Emoji picker"
+msgstr "Roghnóir Emoji"
+
+msgid "Enable interactive view"
+msgstr "Cumasaigh amharc idirghníomhach"
+
+msgid "Enter link"
+msgstr "Cuir isteach nasc"
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+"Earráid agus acmhainní gaolmhara á bhfáil. Déan teagmháil le riarthóir do "
+"chórais má tá aon cheist agat."
+
+msgid "External documentation for {name}"
+msgstr "Doiciméadúchán seachtrach le haghaidh {name}"
+
+msgid "Favorite"
+msgstr "is fearr leat"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Feldspar"
+
+msgid "Flags"
+msgstr "Bratacha"
+
+msgid "Food & Drink"
+msgstr "Bia & Deoch"
+
+msgid "Frequently used"
+msgstr "Úsáidtear go minic"
+
+msgid "Global"
+msgstr "Domhanda"
+
+msgid "Go back to the list"
+msgstr "Téigh ar ais go dtí an liosta"
+
+msgid "Gold"
+msgstr "Óir"
+
+msgid "Hide password"
+msgstr "Folaigh pasfhocal"
+
+msgid "invisible"
+msgstr "dofheicthe"
+
+msgid "Keyboard navigation help"
+msgstr "Cabhair le nascleanúint méarchláir"
+
+msgid "Light skin tone"
+msgstr "Ton craiceann éadrom"
+
+msgid "Load more \"{options}\""
+msgstr "Luchtaigh tuilleadh \"{options}\""
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Mairnéalach"
+
+msgid "Medium dark skin tone"
+msgstr "Ton craiceann meánach dorcha"
+
+msgid "Medium light skin tone"
+msgstr "Ton craiceann meánach éadrom"
+
+msgid "Medium skin tone"
+msgstr "Ton craiceann meánach"
+
+msgid "Message limit of {count} characters reached"
+msgstr "Teorainn teachtaireachta de {count} carachtar bainte amach"
+
+msgid "More items …"
+msgstr "Tuilleadh earraí…"
+
+msgid "More options"
+msgstr "Tuilleadh roghanna"
+
+msgid "Neutral skin color"
+msgstr "Dath craiceann neodrach"
+
+msgid "Next"
+msgstr "Ar aghaidh"
+
+msgid "Nextcloud blue"
+msgstr "Nextcloud gorm"
+
+msgid "No emoji found"
+msgstr "Níor aimsíodh emoji"
+
+msgid "No link provider found"
+msgstr "Níor aimsíodh aon soláthraí naisc"
+
+msgid "No results"
+msgstr "Gan torthaí"
+
+msgid "Objects"
+msgstr "Réada"
+
+msgid "offline"
+msgstr "as líne"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Olaivín"
+
+msgid "online"
+msgstr "ar líne"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "Oscail nasc chuig \"{resourceName}\""
+
+msgid "Open menu"
+msgstr "Roghchlár a oscailt"
+
+msgid "Open navigation"
+msgstr "Oscail nascleanúint"
+
+msgid "Options"
+msgstr "Roghanna"
+
+msgid "Password is secure"
+msgstr "Tá pasfhocal slán"
+
+msgid "Pause slideshow"
+msgstr "Cuir taispeántas sleamhnán ar sos"
+
+msgid "People & Body"
+msgstr "Daoine & Corp"
+
+msgid "Pick a date"
+msgstr "Roghnaigh dáta"
+
+msgid "Pick a date and a time"
+msgstr "Roghnaigh dáta agus am"
+
+msgid "Pick a month"
+msgstr "Pioc in aghaidh na míosa"
+
+msgid "Pick a time"
+msgstr "Roghnaigh am"
+
+msgid "Pick a week"
+msgstr "Pioc in aghaidh na seachtaine"
+
+msgid "Pick a year"
+msgstr "Pioc bliain"
+
+msgid "Pick an emoji"
+msgstr "Roghnaigh emoji"
+
+msgid "Please select a time zone:"
+msgstr "Roghnaigh crios ama le do thoil:"
+
+msgid "Previous"
+msgstr "Roimhe Seo"
+
+msgid "Provider icon"
+msgstr "Deilbhín soláthraí"
+
+msgid "Purple"
+msgstr "Corcra"
+
+msgid "Raw link {options}"
+msgstr "Nasc amh {roghanna}"
+
+msgid "Related resources"
+msgstr "Acmhainní gaolmhara"
+
+msgid "Related team resources"
+msgstr "Acmhainní foirne gaolmhara"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Rosach donn"
+
+msgid "Save changes"
+msgstr "Sabháil na hathruithe"
+
+msgid "Search"
+msgstr "Cuardach"
+
+msgid "Search emoji"
+msgstr "Cuardaigh emoji"
+
+msgid "Search for time zone"
+msgstr "Cuardaigh crios ama"
+
+msgid "Search results"
+msgstr "Torthaí cuardaigh"
+
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "soic. ó shin"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "soicind ó shin"
+
+msgid "Select a tag"
+msgstr "Roghnaigh clib"
+
+msgid "Select provider"
+msgstr "Roghnaigh soláthraí"
+
+msgid "Selected"
+msgstr "Roghnaithe"
+
+msgid "Settings"
+msgstr "Socruithe"
+
+msgid "Settings navigation"
+msgstr "Nascleanúint socruithe"
+
+msgid "Show password"
+msgstr "Taispeáin pasfhocal"
+
+msgid "Skin tone"
+msgstr "Ton craicinn"
+
+msgid "Skip to app navigation"
+msgstr "Téigh ar aghaidh chuig nascleanúint aip"
+
+msgid "Skip to main content"
+msgstr "Téigh ar aghaidh chuig an bpríomhábhar"
+
+msgid "Smart Picker"
+msgstr "Roghnóir Cliste"
+
+msgid "Smileys & Emotion"
+msgstr "Smileys & Mothúchán"
+
+msgid "Start slideshow"
+msgstr "Tosaigh taispeántas sleamhnán"
+
+msgid "Start typing to search"
+msgstr "Tosaigh ag clóscríobh chun cuardach a dhéanamh"
+
+msgid "Submit"
+msgstr "Cuir isteach"
+
+msgid "Symbols"
+msgstr "Siombailí"
+
+msgid "Travel & Places"
+msgstr "Taisteal & Áiteanna"
+
+msgid "Type to search time zone"
+msgstr "Clóscríobh chun crios ama a chuardach"
+
+msgid "Unable to search the group"
+msgstr "Ní féidir an grúpa a chuardach"
+
+msgid "Undo changes"
+msgstr "Cealaigh athruithe"
+
+msgid "User status: {status}"
+msgstr "Stádas úsáideora: {status}"
+
+msgid "View team"
+msgstr "Féach ar an bhfoireann"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Fuisce"
+
+msgid "Write a message …"
+msgstr "Scríobh teachtaireacht…"
