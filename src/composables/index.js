@@ -23,3 +23,4 @@
 export * from './useIsFullscreen/index.js'
 export * from './useIsMobile/index.js'
 export * from './useFormatDateTime.ts'
+export * from './useElementSize/index.ts'

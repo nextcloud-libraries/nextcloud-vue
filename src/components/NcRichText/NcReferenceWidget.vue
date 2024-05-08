@@ -29,13 +29,14 @@
 	</div>
 </template>
 <script>
-import { useIntersectionObserver, useResizeObserver } from '@vueuse/core'
+import { useIntersectionObserver } from '@vueuse/core'
 import { nextTick, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
 import { t } from '../../l10n.js'
 import { getRoute } from './autolink.js'
 import { renderWidget, isWidgetRegistered, destroyWidget, hasInteractiveView, hasFullWidth } from './../../functions/reference/widgets.ts'
+import { useElementSize } from '../../composables/useElementSize/index.ts'
 
 import NcButton from '../../components/NcButton/index.js'
 
@@ -62,30 +63,14 @@ export default {
 	},
 
 	setup() {
-		const width = ref(0)
 		const isVisible = ref(false)
 		// This is the widget root node
 		const widgetRoot = ref()
+		const { width } = useElementSize(widgetRoot)
 
 		useIntersectionObserver(widgetRoot, () => {
 			nextTick(() => {
 				isVisible.value = widgetRoot.value?.isIntersecting ?? false
-			})
-		})
-
-		/**
-		 * Measure the width of the widgetRoot after a resize
-		 */
-		useResizeObserver(widgetRoot, () => {
-			/**
-			 * Wait till the next tick to allow the resize to finish first
-			 * and avoid triggering content updates during the resize.
-			 *
-			 * Without the nextTick we were seeing crashing browsers
-			 * in cypress tests.
-			 */
-			nextTick(() => {
-				width.value = widgetRoot.value?.contentRect.width ?? 0
 			})
 		})
 
