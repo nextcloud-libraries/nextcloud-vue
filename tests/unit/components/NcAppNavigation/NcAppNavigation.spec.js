@@ -19,7 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import { describe, it, expect, afterEach } from '@jest/globals'
+import { describe, it, expect } from '@jest/globals'
 import { mount } from '@vue/test-utils'
 import { emit } from '@nextcloud/event-bus'
 import { nextTick } from 'vue'
