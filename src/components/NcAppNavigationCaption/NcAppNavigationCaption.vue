@@ -148,6 +148,14 @@ export default {
 		},
 
 		/**
+		 * If `isHeading` is set, this defines the heading level that should be used
+		 */
+		headingLevel: {
+			type: Number,
+			default: 2,
+		},
+
+		/**
 		 * Any [NcActions](#/Components/NcActions?id=ncactions-1) prop
 		 */
 		// Not an actual prop but needed to show in vue-styleguidist docs
@@ -160,7 +168,9 @@ export default {
 			return this.isHeading ? 'div' : 'li'
 		},
 		captionTag() {
-			return this.isHeading ? 'h2' : 'span'
+			// Limit to at least h2 as h1 is considered invalid and reserved
+			const headingLevel = Math.max(2, this.headingLevel)
+			return this.isHeading ? `h${headingLevel}` : 'span'
 		},
 	},
 }
