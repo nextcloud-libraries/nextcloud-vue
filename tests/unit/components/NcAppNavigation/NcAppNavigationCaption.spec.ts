@@ -3,13 +3,11 @@ import { shallowMount } from '@vue/test-utils'
 import NcAppNavigationCaption from '../../../../src/components/NcAppNavigationCaption/NcAppNavigationCaption.vue'
 
 describe('NcAppNavigationCaption.vue', () => {
-	test('attributes are passed to actions', async () => {
+	test('NcActions attributes are passed to actions', async () => {
 		const wrapper = shallowMount(NcAppNavigationCaption, {
 			props: {
 				name: 'The name',
-			},
-			attrs: {
-				forceMenu: 'true',
+				forceMenu: true,
 			},
 			slots: {
 				actions: [
@@ -20,6 +18,25 @@ describe('NcAppNavigationCaption.vue', () => {
 		})
 
 		expect(wrapper.findComponent({ name: 'NcActions' }).attributes('forcemenu')).toBe('true')
+	})
+
+	test('Other attributes are kept on the caption', async () => {
+		const wrapper = shallowMount(NcAppNavigationCaption, {
+			props: {
+				name: 'The name',
+			},
+			attrs: {
+				'data-test': 'test',
+			},
+			slots: {
+				actions: [
+					'<NcActionButton>Button 1</NcActionButton>',
+					'<NcActionButton>Button 2</NcActionButton>',
+				],
+			},
+		})
+
+		expect(wrapper.attributes('data-test')).toBe('test')
 	})
 
 	test('can set id on the caption', async () => {
