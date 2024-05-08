@@ -30,7 +30,7 @@
 </template>
 <script>
 import { useIntersectionObserver, useResizeObserver } from '@vueuse/core'
-import { ref } from 'vue'
+import { nextTick, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
 import { t } from '../../l10n.js'
@@ -67,15 +67,25 @@ export default {
 		// This is the widget root node
 		const widgetRoot = ref()
 
-		useIntersectionObserver(widgetRoot, (entries) => {
-			window.requestAnimationFrame(() => {
-				isVisible.value = entries[0]?.isIntersecting ?? false
+		useIntersectionObserver(widgetRoot, () => {
+			nextTick(() => {
+				isVisible.value = widgetRoot.value?.isIntersecting ?? false
 			})
 		})
 
-		useResizeObserver(widgetRoot, (entries) => {
-			window.requestAnimationFrame(() => {
-				width.value = entries[0].contentRect.width
+		/**
+		 * Measure the width of the widgetRoot after a resize
+		 */
+		useResizeObserver(widgetRoot, () => {
+			/**
+			 * Wait till the next tick to allow the resize to finish first
+			 * and avoid triggering content updates during the resize.
+			 *
+			 * Without the nextTick we were seeing crashing browsers
+			 * in cypress tests.
+			 */
+			nextTick(() => {
+				width.value = widgetRoot.value?.contentRect.width ?? 0
 			})
 		})
 
