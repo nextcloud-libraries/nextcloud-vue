@@ -12,11 +12,13 @@
     "strict": true,
     "noImplicitAny": false,
     "outDir": "./dist",
-  },
-  "vueCompilerOptions": {
-    "target": 3.3,
     "rootDir": "./src",
   },
+
+  "vueCompilerOptions": {
+    "target": 3.3,
+  },
+
   "ts-node": {
     "compilerOptions": {
       "module": "ES2015",

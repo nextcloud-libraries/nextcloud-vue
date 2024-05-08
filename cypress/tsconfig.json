@@ -2,6 +2,7 @@
 	"extends": "../tsconfig.json",
 	"include": ["./**/*.ts"],
 	"compilerOptions": {
+		"rootDir": "..",
 		"types": [
 			"cypress",
 			"cypress-visual-regression"
