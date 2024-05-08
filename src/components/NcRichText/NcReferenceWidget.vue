@@ -62,7 +62,7 @@ export default {
 	},
 
 	setup() {
-		const width = ref(700)
+		const width = ref(0)
 		const isVisible = ref(false)
 		// This is the widget root node
 		const widgetRoot = ref()
