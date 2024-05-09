@@ -30,7 +30,7 @@
 </template>
 <script>
 import { useIntersectionObserver, useResizeObserver } from '@vueuse/core'
-import { ref } from 'vue'
+import { nextTick, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
 import { t } from '../../l10n.js'
@@ -62,29 +62,35 @@ export default {
 	},
 
 	setup() {
-		const compact = ref(3)
+		const width = ref(0)
 		const isVisible = ref(false)
 		// This is the widget root node
 		const widgetRoot = ref()
 
-		useIntersectionObserver(widgetRoot, (entries) => {
-			isVisible.value = entries[0]?.isIntersecting ?? false
+		useIntersectionObserver(widgetRoot, () => {
+			nextTick(() => {
+				isVisible.value = widgetRoot.value?.isIntersecting ?? false
+			})
 		})
 
-		useResizeObserver(widgetRoot, (entries) => {
-			if (entries[0].contentRect.width < 450) {
-				compact.value = 0
-			} else if (entries[0].contentRect.width < 550) {
-				compact.value = 1
-			} else if (entries[0].contentRect.width < 650) {
-				compact.value = 2
-			} else {
-				compact.value = 3
-			}
+		/**
+		 * Measure the width of the widgetRoot after a resize
+		 */
+		useResizeObserver(widgetRoot, () => {
+			/**
+			 * Wait till the next tick to allow the resize to finish first
+			 * and avoid triggering content updates during the resize.
+			 *
+			 * Without the nextTick we were seeing crashing browsers
+			 * in cypress tests.
+			 */
+			nextTick(() => {
+				width.value = widgetRoot.value?.contentRect.width ?? 0
+			})
 		})
 
 		return {
-			compact,
+			width,
 			isVisible,
 			widgetRoot,
 		}
@@ -115,17 +121,21 @@ export default {
 			return this.reference && !this.reference.accessible
 		},
 		descriptionStyle() {
-			if (this.compact === 0) {
+			if (this.numberOfLines === 0) {
 				return {
 					display: 'none',
 				}
 			}
-
-			const lineClamp = this.compact < 4 ? this.compact : 3
+			const lineClamp = this.numberOfLines
 			return {
 				lineClamp,
 				webkitLineClamp: lineClamp,
 			}
+		},
+		numberOfLines() {
+			// no description for width < 450, one line until 550 and so on
+			const lineCountOffsets = [450, 550, 650, Infinity]
+			return lineCountOffsets.findIndex(max => this.width.value < max)
 		},
 		compactLink() {
 			const link = this.reference.openGraphObject.link
