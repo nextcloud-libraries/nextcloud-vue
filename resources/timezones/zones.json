@@ -1,5 +1,5 @@
 {
-  "version": "2.2019c",
+  "version": "2.2024a",
   "aliases": {
     "AUS Central Standard Time": {
       "aliasTo": "Australia/Darwin"
@@ -415,16 +415,12 @@
     "Africa/Accra": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0053300",
-      "longitude": "+0001300"
+      ]
     },
     "Africa/Addis_Ababa": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:EAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0090200",
-      "longitude": "+0384200"
+      ]
     },
     "Africa/Algiers": {
       "ics": [
@@ -436,30 +432,27 @@
     "Africa/Asmara": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:EAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0152000",
-      "longitude": "+0385300"
+      ]
+    },
+    "Africa/Asmera": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:EAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "Africa/Bamako": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0123900",
-      "longitude": "-0080000"
+      ]
     },
     "Africa/Bangui": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0100\r\nTZNAME:WAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0042200",
-      "longitude": "+0183500"
+      ]
     },
     "Africa/Banjul": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0132800",
-      "longitude": "-0163900"
+      ]
     },
     "Africa/Bissau": {
       "ics": [
@@ -471,39 +464,29 @@
     "Africa/Blantyre": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0200\r\nTZNAME:CAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0154700",
-      "longitude": "+0350000"
+      ]
     },
     "Africa/Brazzaville": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0100\r\nTZNAME:WAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0041600",
-      "longitude": "+0151700"
+      ]
     },
     "Africa/Bujumbura": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0200\r\nTZNAME:CAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0032300",
-      "longitude": "+0292200"
+      ]
     },
     "Africa/Cairo": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:19700424T000000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=-1FR\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701030T000000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1FR\r\nEND:STANDARD"
       ],
       "latitude": "+0300300",
       "longitude": "+0311500"
     },
     "Africa/Casablanca": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0000\r\nTZNAME:+00\r\nDTSTART:19700101T000000\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0100\r\nTZNAME:+01\r\nDTSTART:20180325T020000\r\nRDATE:20180325T020000\r\nRDATE:20180617T020000\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0000\r\nTZNAME:+00\r\nDTSTART:20180513T030000\r\nRDATE:20180513T030000\r\nEND:STANDARD",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0100\r\nTZNAME:+01\r\nDTSTART:20190609T020000\r\nRDATE:20190609T020000\r\nRDATE:20200524T020000\r\nRDATE:20210516T020000\r\nRDATE:20220508T020000\r\nEND:STANDARD",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0100\r\nTZNAME:+01\r\nDTSTART:20181028T030000\r\nRDATE:20181028T030000\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0000\r\nTZNAME:+00\r\nDTSTART:20190505T030000\r\nRDATE:20190505T030000\r\nRDATE:20200419T030000\r\nRDATE:20210411T030000\r\nRDATE:20220327T030000\r\nEND:DAYLIGHT"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0100\r\nTZNAME:+01\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0333900",
       "longitude": "-0073500"
@@ -519,46 +502,31 @@
     "Africa/Conakry": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0093100",
-      "longitude": "-0134300"
+      ]
     },
     "Africa/Dakar": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0144000",
-      "longitude": "-0172600"
+      ]
     },
     "Africa/Dar_es_Salaam": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:EAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0064800",
-      "longitude": "+0391700"
+      ]
     },
     "Africa/Djibouti": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:EAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0113600",
-      "longitude": "+0430900"
+      ]
     },
     "Africa/Douala": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0100\r\nTZNAME:WAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0040300",
-      "longitude": "+0094200"
+      ]
     },
     "Africa/El_Aaiun": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0100\r\nTZOFFSETTO:+0000\r\nTZNAME:+00\r\nDTSTART:19700101T000000\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0100\r\nTZNAME:+01\r\nDTSTART:20180325T020000\r\nRDATE:20180325T020000\r\nRDATE:20180617T020000\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0000\r\nTZNAME:+00\r\nDTSTART:20180513T030000\r\nRDATE:20180513T030000\r\nEND:STANDARD",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0100\r\nTZNAME:+01\r\nDTSTART:20181028T030000\r\nRDATE:20181028T030000\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0000\r\nTZNAME:+00\r\nDTSTART:20190505T030000\r\nRDATE:20190505T030000\r\nRDATE:20200419T030000\r\nRDATE:20210411T030000\r\nRDATE:20220327T030000\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0100\r\nTZNAME:+01\r\nDTSTART:20190609T020000\r\nRDATE:20190609T020000\r\nRDATE:20200524T020000\r\nRDATE:20210516T020000\r\nRDATE:20220508T020000\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0100\r\nTZNAME:+01\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0270900",
       "longitude": "-0131200"
@@ -566,23 +534,17 @@
     "Africa/Freetown": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0083000",
-      "longitude": "-0131500"
+      ]
     },
     "Africa/Gaborone": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0200\r\nTZNAME:CAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0243900",
-      "longitude": "+0255500"
+      ]
     },
     "Africa/Harare": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0200\r\nTZNAME:CAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0175000",
-      "longitude": "+0310300"
+      ]
     },
     "Africa/Johannesburg": {
       "ics": [
@@ -593,7 +555,7 @@
     },
     "Africa/Juba": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:EAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0200\r\nTZNAME:CAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0045100",
       "longitude": "+0313700"
@@ -601,9 +563,7 @@
     "Africa/Kampala": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:EAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0001900",
-      "longitude": "+0322500"
+      ]
     },
     "Africa/Khartoum": {
       "ics": [
@@ -615,16 +575,12 @@
     "Africa/Kigali": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0200\r\nTZNAME:CAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0015700",
-      "longitude": "+0300400"
+      ]
     },
     "Africa/Kinshasa": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0100\r\nTZNAME:WAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0041800",
-      "longitude": "+0151800"
+      ]
     },
     "Africa/Lagos": {
       "ics": [
@@ -636,44 +592,32 @@
     "Africa/Libreville": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0100\r\nTZNAME:WAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0002300",
-      "longitude": "+0092700"
+      ]
     },
     "Africa/Lome": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0060800",
-      "longitude": "+0011300"
+      ]
     },
     "Africa/Luanda": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0100\r\nTZNAME:WAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0084800",
-      "longitude": "+0131400"
+      ]
     },
     "Africa/Lubumbashi": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0200\r\nTZNAME:CAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0114000",
-      "longitude": "+0272800"
+      ]
     },
     "Africa/Lusaka": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0200\r\nTZNAME:CAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0152500",
-      "longitude": "+0281700"
+      ]
     },
     "Africa/Malabo": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0100\r\nTZNAME:WAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0034500",
-      "longitude": "+0084700"
+      ]
     },
     "Africa/Maputo": {
       "ics": [
@@ -685,23 +629,17 @@
     "Africa/Maseru": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0200\r\nTZNAME:SAST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0292800",
-      "longitude": "+0273000"
+      ]
     },
     "Africa/Mbabane": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0200\r\nTZNAME:SAST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0261800",
-      "longitude": "+0310600"
+      ]
     },
     "Africa/Mogadishu": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:EAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0020400",
-      "longitude": "+0452200"
+      ]
     },
     "Africa/Monrovia": {
       "ics": [
@@ -727,38 +665,34 @@
     "Africa/Niamey": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0100\r\nTZNAME:WAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0133100",
-      "longitude": "+0020700"
+      ]
     },
     "Africa/Nouakchott": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0180600",
-      "longitude": "-0155700"
+      ]
     },
     "Africa/Ouagadougou": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0122200",
-      "longitude": "-0013100"
+      ]
     },
     "Africa/Porto-Novo": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0100\r\nTZNAME:WAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0062900",
-      "longitude": "+0023700"
+      ]
     },
     "Africa/Sao_Tome": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0100\r\nTZNAME:WAT\r\nDTSTART:20180101T010000\r\nRDATE:20180101T010000\r\nEND:STANDARD",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:20190101T020000\r\nRDATE:20190101T020000\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0002000",
       "longitude": "+0064400"
+    },
+    "Africa/Timbuktu": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "Africa/Tripoli": {
       "ics": [
@@ -800,16 +734,12 @@
     "America/Anguilla": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0181200",
-      "longitude": "-0630400"
+      ]
     },
     "America/Antigua": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0170300",
-      "longitude": "-0614800"
+      ]
     },
     "America/Araguaina": {
       "ics": [
@@ -831,6 +761,11 @@
       ],
       "latitude": "-0282800",
       "longitude": "-0654700"
+    },
+    "America/Argentina/ComodRivadavia": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "America/Argentina/Cordoba": {
       "ics": [
@@ -905,9 +840,7 @@
     "America/Aruba": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0123000",
-      "longitude": "-0695800"
+      ]
     },
     "America/Asuncion": {
       "ics": [
@@ -920,9 +853,13 @@
     "America/Atikokan": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0484531",
-      "longitude": "-0913718"
+      ]
+    },
+    "America/Atka": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-1000\r\nTZOFFSETTO:-0900\r\nTZNAME:HDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0900\r\nTZOFFSETTO:-1000\r\nTZNAME:HST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
     },
     "America/Bahia": {
       "ics": [
@@ -933,8 +870,7 @@
     },
     "America/Bahia_Banderas": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0600\r\nTZNAME:CST\r\nDTSTART:19701025T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0500\r\nTZNAME:CDT\r\nDTSTART:19700405T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:DAYLIGHT"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0600\r\nTZNAME:CST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0204800",
       "longitude": "-1051500"
@@ -963,9 +899,7 @@
     "America/Blanc-Sablon": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0512500",
-      "longitude": "-0570700"
+      ]
     },
     "America/Boa_Vista": {
       "ics": [
@@ -989,6 +923,11 @@
       "latitude": "+0433649",
       "longitude": "-1161209"
     },
+    "America/Buenos_Aires": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
     "America/Cambridge_Bay": {
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0600\r\nTZNAME:MDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
@@ -999,9 +938,7 @@
     },
     "America/Campo_Grande": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:-04\r\nDTSTART:19700101T000000\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:20181104T000000\r\nRDATE:20181104T000000\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0400\r\nTZNAME:-04\r\nDTSTART:20180218T000000\r\nRDATE:20180218T000000\r\nRDATE:20190217T000000\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:-04\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "-0202700",
       "longitude": "-0543700"
@@ -1020,6 +957,11 @@
       "latitude": "+0103000",
       "longitude": "-0665600"
     },
+    "America/Catamarca": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
     "America/Cayenne": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
@@ -1030,9 +972,7 @@
     "America/Cayman": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0191800",
-      "longitude": "-0812300"
+      ]
     },
     "America/Chicago": {
       "ics": [
@@ -1044,11 +984,28 @@
     },
     "America/Chihuahua": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0600\r\nTZNAME:MDT\r\nDTSTART:19700405T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0700\r\nTZNAME:MST\r\nDTSTART:19701025T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0600\r\nTZNAME:CST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0283800",
       "longitude": "-1060500"
+    },
+    "America/Ciudad_Juarez": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0600\r\nTZNAME:MDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0700\r\nTZNAME:MST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ],
+      "latitude": "+0314400",
+      "longitude": "-1062900"
+    },
+    "America/Coral_Harbour": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
+    "America/Cordoba": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "America/Costa_Rica": {
       "ics": [
@@ -1060,14 +1017,10 @@
     "America/Creston": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0700\r\nTZNAME:MST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0490600",
-      "longitude": "-1163100"
+      ]
     },
     "America/Cuiaba": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:20181104T000000\r\nRDATE:20181104T000000\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0400\r\nTZNAME:-04\r\nDTSTART:20180218T000000\r\nRDATE:20180218T000000\r\nRDATE:20190217T000000\r\nEND:STANDARD",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:-04\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "-0153500",
@@ -1076,9 +1029,7 @@
     "America/Curacao": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0121100",
-      "longitude": "-0690000"
+      ]
     },
     "America/Danmarkshavn": {
       "ics": [
@@ -1089,8 +1040,7 @@
     },
     "America/Dawson": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0800\r\nTZOFFSETTO:-0700\r\nTZNAME:PDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0800\r\nTZNAME:PST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0700\r\nTZNAME:MST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0640400",
       "longitude": "-1392500"
@@ -1099,7 +1049,7 @@
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0700\r\nTZNAME:MST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
-      "latitude": "+0594600",
+      "latitude": "+0554600",
       "longitude": "-1201400"
     },
     "America/Denver": {
@@ -1121,9 +1071,7 @@
     "America/Dominica": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0151800",
-      "longitude": "-0612400"
+      ]
     },
     "America/Edmonton": {
       "ics": [
@@ -1147,12 +1095,24 @@
       "latitude": "+0134200",
       "longitude": "-0891200"
     },
+    "America/Ensenada": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0800\r\nTZOFFSETTO:-0700\r\nTZNAME:PDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0800\r\nTZNAME:PST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
     "America/Fort_Nelson": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0700\r\nTZNAME:MST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0584800",
       "longitude": "-1224200"
+    },
+    "America/Fort_Wayne": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0400\r\nTZNAME:EDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
     },
     "America/Fortaleza": {
       "ics": [
@@ -1171,11 +1131,9 @@
     },
     "America/Godthab": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0200\r\nTZNAME:-02\r\nDTSTART:19700328T220000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYMONTHDAY=24,25,26,27,28,29,30;BYDAY=SA\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0200\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:19701024T230000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYMONTHDAY=24,25,26,27,28,29,30;BYDAY=SA\r\nEND:STANDARD"
-      ],
-      "latitude": "+0641100",
-      "longitude": "-0514400"
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0200\r\nTZOFFSETTO:-0100\r\nTZNAME:-01\r\nDTSTART:19700328T230000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SA\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0100\r\nTZOFFSETTO:-0200\r\nTZNAME:-02\r\nDTSTART:19701025T000000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
+      ]
     },
     "America/Goose_Bay": {
       "ics": [
@@ -1187,10 +1145,8 @@
     },
     "America/Grand_Turk": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:20181104T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0400\r\nTZNAME:EDT\r\nDTSTART:20190310T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:EDT\r\nDTSTART:20180311T020000\r\nRDATE:20180311T020000\r\nEND:DAYLIGHT"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0400\r\nTZNAME:EDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT"
       ],
       "latitude": "+0212800",
       "longitude": "-0710800"
@@ -1198,16 +1154,12 @@
     "America/Grenada": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0120300",
-      "longitude": "-0614500"
+      ]
     },
     "America/Guadeloupe": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0161400",
-      "longitude": "-0613200"
+      ]
     },
     "America/Guatemala": {
       "ics": [
@@ -1317,6 +1269,12 @@
       "latitude": "+0410305",
       "longitude": "-0863611"
     },
+    "America/Indianapolis": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0400\r\nTZNAME:EDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
     "America/Inuvik": {
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0600\r\nTZNAME:MDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
@@ -1339,6 +1297,11 @@
       ],
       "latitude": "+0175805",
       "longitude": "-0764736"
+    },
+    "America/Jujuy": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "America/Juneau": {
       "ics": [
@@ -1364,12 +1327,16 @@
       "latitude": "+0364947",
       "longitude": "-0845057"
     },
+    "America/Knox_IN": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0500\r\nTZNAME:CDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0600\r\nTZNAME:CST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
     "America/Kralendijk": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0120903",
-      "longitude": "-0681636"
+      ]
     },
     "America/La_Paz": {
       "ics": [
@@ -1393,12 +1360,16 @@
       "latitude": "+0340308",
       "longitude": "-1181434"
     },
+    "America/Louisville": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0400\r\nTZNAME:EDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
     "America/Lower_Princes": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0180305",
-      "longitude": "-0630250"
+      ]
     },
     "America/Maceio": {
       "ics": [
@@ -1424,9 +1395,7 @@
     "America/Marigot": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0180400",
-      "longitude": "-0630500"
+      ]
     },
     "America/Martinique": {
       "ics": [
@@ -1445,11 +1414,15 @@
     },
     "America/Mazatlan": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0600\r\nTZNAME:MDT\r\nDTSTART:19700405T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0700\r\nTZNAME:MST\r\nDTSTART:19701025T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0700\r\nTZNAME:MST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0231300",
       "longitude": "-1062500"
+    },
+    "America/Mendoza": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "America/Menominee": {
       "ics": [
@@ -1461,8 +1434,7 @@
     },
     "America/Merida": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0500\r\nTZNAME:CDT\r\nDTSTART:19700405T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0600\r\nTZNAME:CST\r\nDTSTART:19701025T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0600\r\nTZNAME:CST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0205800",
       "longitude": "-0893700"
@@ -1470,17 +1442,14 @@
     "America/Metlakatla": {
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0900\r\nTZOFFSETTO:-0800\r\nTZNAME:AKDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0800\r\nTZOFFSETTO:-0900\r\nTZNAME:AKST\r\nDTSTART:20191103T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0800\r\nTZOFFSETTO:-0800\r\nTZNAME:PST\r\nDTSTART:20181104T020000\r\nRDATE:20181104T020000\r\nEND:STANDARD",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0800\r\nTZOFFSETTO:-0900\r\nTZNAME:AKST\r\nDTSTART:20190120T020000\r\nRDATE:20190120T020000\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0800\r\nTZOFFSETTO:-0900\r\nTZNAME:AKST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
       ],
       "latitude": "+0550737",
       "longitude": "-1313435"
     },
     "America/Mexico_City": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0500\r\nTZNAME:CDT\r\nDTSTART:19700405T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0600\r\nTZNAME:CST\r\nDTSTART:19701025T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0600\r\nTZNAME:CST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0192400",
       "longitude": "-0990900"
@@ -1503,8 +1472,7 @@
     },
     "America/Monterrey": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0500\r\nTZNAME:CDT\r\nDTSTART:19700405T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0600\r\nTZNAME:CST\r\nDTSTART:19701025T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0600\r\nTZNAME:CST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0254000",
       "longitude": "-1001900"
@@ -1516,20 +1484,22 @@
       "latitude": "-0345433",
       "longitude": "-0561245"
     },
+    "America/Montreal": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0400\r\nTZNAME:EDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
     "America/Montserrat": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0164300",
-      "longitude": "-0621300"
+      ]
     },
     "America/Nassau": {
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0400\r\nTZNAME:EDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0250500",
-      "longitude": "-0772100"
+      ]
     },
     "America/New_York": {
       "ics": [
@@ -1543,9 +1513,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0400\r\nTZNAME:EDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0490100",
-      "longitude": "-0881600"
+      ]
     },
     "America/Nome": {
       "ics": [
@@ -1586,10 +1554,18 @@
       "latitude": "+0465042",
       "longitude": "-1012439"
     },
+    "America/Nuuk": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0200\r\nTZOFFSETTO:-0100\r\nTZNAME:-01\r\nDTSTART:19700328T230000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SA\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0100\r\nTZOFFSETTO:-0200\r\nTZNAME:-02\r\nDTSTART:19701025T000000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
+      ],
+      "latitude": "+0641100",
+      "longitude": "-0514400"
+    },
     "America/Ojinaga": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0600\r\nTZNAME:MDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0700\r\nTZNAME:MST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0500\r\nTZNAME:CDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0600\r\nTZNAME:CST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
       ],
       "latitude": "+0293400",
       "longitude": "-1042500"
@@ -1605,9 +1581,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0400\r\nTZNAME:EDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0660800",
-      "longitude": "-0654400"
+      ]
     },
     "America/Paramaribo": {
       "ics": [
@@ -1634,9 +1608,12 @@
     "America/Port_of_Spain": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0103900",
-      "longitude": "-0613100"
+      ]
+    },
+    "America/Porto_Acre": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0500\r\nTZNAME:-05\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "America/Porto_Velho": {
       "ics": [
@@ -1663,9 +1640,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0500\r\nTZNAME:CDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0600\r\nTZNAME:CST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0484300",
-      "longitude": "-0943400"
+      ]
     },
     "America/Rankin_Inlet": {
       "ics": [
@@ -1704,6 +1679,17 @@
       "latitude": "-0095800",
       "longitude": "-0674800"
     },
+    "America/Rosario": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
+    "America/Santa_Isabel": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0800\r\nTZOFFSETTO:-0700\r\nTZNAME:PDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0800\r\nTZNAME:PST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
     "America/Santarem": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
@@ -1713,11 +1699,8 @@
     },
     "America/Santiago": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0400\r\nTZNAME:-04\r\nDTSTART:20190407T000000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYMONTHDAY=2,3,4,5,6,7,8;BYDAY=SU\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:20190908T000000\r\nRRULE:FREQ=YEARLY;BYMONTH=9;BYMONTHDAY=2,3,4,5,6,7,8;BYDAY=SU\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0400\r\nTZNAME:-04\r\nDTSTART:19700101T000000\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:20180812T000000\r\nRDATE:20180812T000000\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0400\r\nTZNAME:-04\r\nDTSTART:20180513T000000\r\nRDATE:20180513T000000\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0400\r\nTZNAME:-04\r\nDTSTART:19700405T000000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:19700906T000000\r\nRRULE:FREQ=YEARLY;BYMONTH=9;BYDAY=1SU\r\nEND:DAYLIGHT"
       ],
       "latitude": "-0332700",
       "longitude": "-0704000"
@@ -1731,20 +1714,24 @@
     },
     "America/Sao_Paulo": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0200\r\nTZNAME:-02\r\nDTSTART:20181104T000000\r\nRDATE:20181104T000000\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0200\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:20180218T000000\r\nRDATE:20180218T000000\r\nRDATE:20190217T000000\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0200\r\nTZOFFSETTO:-0200\r\nTZNAME:-02\r\nDTSTART:19700101T000000\r\nEND:DAYLIGHT"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "-0233200",
       "longitude": "-0463700"
     },
     "America/Scoresbysund": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0100\r\nTZOFFSETTO:+0000\r\nTZNAME:+00\r\nDTSTART:19700329T000000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:-0100\r\nTZNAME:-01\r\nDTSTART:19701025T010000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0100\r\nTZOFFSETTO:-0200\r\nTZNAME:-02\r\nDTSTART:19701025T000000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0200\r\nTZOFFSETTO:-0100\r\nTZNAME:-01\r\nDTSTART:19700328T230000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SA\r\nEND:DAYLIGHT"
       ],
       "latitude": "+0702900",
       "longitude": "-0215800"
+    },
+    "America/Shiprock": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0600\r\nTZNAME:MDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0700\r\nTZNAME:MST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
     },
     "America/Sitka": {
       "ics": [
@@ -1757,9 +1744,7 @@
     "America/St_Barthelemy": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0175300",
-      "longitude": "-0625100"
+      ]
     },
     "America/St_Johns": {
       "ics": [
@@ -1772,30 +1757,22 @@
     "America/St_Kitts": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0171800",
-      "longitude": "-0624300"
+      ]
     },
     "America/St_Lucia": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0140100",
-      "longitude": "-0610000"
+      ]
     },
     "America/St_Thomas": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0182100",
-      "longitude": "-0645600"
+      ]
     },
     "America/St_Vincent": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0130900",
-      "longitude": "-0611400"
+      ]
     },
     "America/Swift_Current": {
       "ics": [
@@ -1823,9 +1800,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0400\r\nTZNAME:EDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0482300",
-      "longitude": "-0891500"
+      ]
     },
     "America/Tijuana": {
       "ics": [
@@ -1846,9 +1821,7 @@
     "America/Tortola": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0182700",
-      "longitude": "-0643700"
+      ]
     },
     "America/Vancouver": {
       "ics": [
@@ -1858,10 +1831,14 @@
       "latitude": "+0491600",
       "longitude": "-1230700"
     },
+    "America/Virgin": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
     "America/Whitehorse": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0800\r\nTZOFFSETTO:-0700\r\nTZNAME:PDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0800\r\nTZNAME:PST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0700\r\nTZNAME:MST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0604300",
       "longitude": "-1350300"
@@ -1886,14 +1863,11 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0600\r\nTZNAME:MDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0700\r\nTZNAME:MST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0622700",
-      "longitude": "-1142100"
+      ]
     },
     "Antarctica/Casey": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0800\r\nTZOFFSETTO:+1100\r\nTZNAME:+11\r\nDTSTART:19700101T000000\r\nEND:STANDARD",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1100\r\nTZOFFSETTO:+0800\r\nTZNAME:+08\r\nDTSTART:20180311T040000\r\nRDATE:20180311T040000\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0800\r\nTZOFFSETTO:+0800\r\nTZNAME:+08\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "-0661700",
       "longitude": "+1103100"
@@ -1908,13 +1882,12 @@
     "Antarctica/DumontDUrville": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+1000\r\nTZOFFSETTO:+1000\r\nTZNAME:+10\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0664000",
-      "longitude": "+1400100"
+      ]
     },
     "Antarctica/Macquarie": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1100\r\nTZOFFSETTO:+1100\r\nTZNAME:+11\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1100\r\nTZOFFSETTO:+1000\r\nTZNAME:AEST\r\nDTSTART:19700405T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+1000\r\nTZOFFSETTO:+1100\r\nTZNAME:AEDT\r\nDTSTART:19701004T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=1SU\r\nEND:DAYLIGHT"
       ],
       "latitude": "-0543000",
       "longitude": "+1585700"
@@ -1930,9 +1903,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+1200\r\nTZOFFSETTO:+1300\r\nTZNAME:NZDT\r\nDTSTART:19700927T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=9;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+1300\r\nTZOFFSETTO:+1200\r\nTZNAME:NZST\r\nDTSTART:19700405T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "-0775000",
-      "longitude": "+1663600"
+      ]
     },
     "Antarctica/Palmer": {
       "ics": [
@@ -1948,12 +1919,16 @@
       "latitude": "-0673400",
       "longitude": "-0680800"
     },
+    "Antarctica/South_Pole": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+1200\r\nTZOFFSETTO:+1300\r\nTZNAME:NZDT\r\nDTSTART:19700927T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=9;BYDAY=-1SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1300\r\nTZOFFSETTO:+1200\r\nTZNAME:NZST\r\nDTSTART:19700405T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
     "Antarctica/Syowa": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:+03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0690022",
-      "longitude": "+0393524"
+      ]
     },
     "Antarctica/Troll": {
       "ics": [
@@ -1965,7 +1940,7 @@
     },
     "Antarctica/Vostok": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0600\r\nTZOFFSETTO:+0600\r\nTZNAME:+06\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0500\r\nTZOFFSETTO:+0500\r\nTZNAME:+05\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "-0782400",
       "longitude": "+1065400"
@@ -1974,28 +1949,23 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0780000",
-      "longitude": "+0160000"
+      ]
     },
     "Asia/Aden": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:+03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0124500",
-      "longitude": "+0451200"
+      ]
     },
     "Asia/Almaty": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0600\r\nTZOFFSETTO:+0600\r\nTZNAME:+06\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0500\r\nTZOFFSETTO:+0500\r\nTZNAME:+05\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0431500",
       "longitude": "+0765700"
     },
     "Asia/Amman": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:19700326T235959\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1TH\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701030T010000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1FR\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:+03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0315700",
       "longitude": "+0355600"
@@ -2028,6 +1998,11 @@
       "latitude": "+0375700",
       "longitude": "+0582300"
     },
+    "Asia/Ashkhabad": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0500\r\nTZOFFSETTO:+0500\r\nTZNAME:+05\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
     "Asia/Atyrau": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0500\r\nTZOFFSETTO:+0500\r\nTZNAME:+05\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
@@ -2045,9 +2020,7 @@
     "Asia/Bahrain": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:+03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0262300",
-      "longitude": "+0503500"
+      ]
     },
     "Asia/Baku": {
       "ics": [
@@ -2088,9 +2061,12 @@
     "Asia/Brunei": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0800\r\nTZOFFSETTO:+0800\r\nTZNAME:+08\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0045600",
-      "longitude": "+1145500"
+      ]
+    },
+    "Asia/Calcutta": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0530\r\nTZOFFSETTO:+0530\r\nTZNAME:IST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "Asia/Chita": {
       "ics": [
@@ -2106,6 +2082,16 @@
       "latitude": "+0480400",
       "longitude": "+1143000"
     },
+    "Asia/Chongqing": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0800\r\nTZOFFSETTO:+0800\r\nTZNAME:CST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
+    "Asia/Chungking": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0800\r\nTZOFFSETTO:+0800\r\nTZNAME:CST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
     "Asia/Colombo": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0530\r\nTZOFFSETTO:+0530\r\nTZNAME:+0530\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
@@ -2113,10 +2099,14 @@
       "latitude": "+0065600",
       "longitude": "+0795100"
     },
+    "Asia/Dacca": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0600\r\nTZOFFSETTO:+0600\r\nTZNAME:+06\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
     "Asia/Damascus": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701030T000000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1FR\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:19700327T000000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1FR\r\nEND:DAYLIGHT"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:+03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0333000",
       "longitude": "+0361800"
@@ -2151,26 +2141,29 @@
     },
     "Asia/Famagusta": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701025T040000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:20180325T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT"
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:19700329T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701025T040000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
       ],
       "latitude": "+0350700",
       "longitude": "+0335700"
     },
     "Asia/Gaza": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701031T010000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SA\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:20190329T000000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1FR\r\nEND:DAYLIGHT",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:20180324T010000\r\nRDATE:20180324T010000\r\nEND:DAYLIGHT"
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:19700328T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SA\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701031T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SA\r\nEND:STANDARD"
       ],
       "latitude": "+0313000",
       "longitude": "+0342800"
     },
+    "Asia/Harbin": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0800\r\nTZOFFSETTO:+0800\r\nTZNAME:CST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
     "Asia/Hebron": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701031T010000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SA\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:20190329T000000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1FR\r\nEND:DAYLIGHT",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:20180324T010000\r\nRDATE:20180324T010000\r\nEND:DAYLIGHT"
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:19700328T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SA\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701031T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SA\r\nEND:STANDARD"
       ],
       "latitude": "+0313200",
       "longitude": "+0350542"
@@ -2206,9 +2199,7 @@
     "Asia/Istanbul": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:+03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0410100",
-      "longitude": "+0285800"
+      ]
     },
     "Asia/Jakarta": {
       "ics": [
@@ -2226,7 +2217,7 @@
     },
     "Asia/Jerusalem": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:IDT\r\nDTSTART:19700327T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYMONTHDAY=23,24,25,26,27,28,29;BYDAY=FR\r\nEND:DAYLIGHT",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:IDT\r\nDTSTART:19700327T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1FR\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:IST\r\nDTSTART:19701025T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
       ],
       "latitude": "+0314650",
@@ -2253,12 +2244,22 @@
       "latitude": "+0245200",
       "longitude": "+0670300"
     },
+    "Asia/Kashgar": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0600\r\nTZOFFSETTO:+0600\r\nTZNAME:+06\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
     "Asia/Kathmandu": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0545\r\nTZOFFSETTO:+0545\r\nTZNAME:+0545\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0274300",
       "longitude": "+0851900"
+    },
+    "Asia/Katmandu": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0545\r\nTZOFFSETTO:+0545\r\nTZNAME:+0545\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "Asia/Khandyga": {
       "ics": [
@@ -2284,9 +2285,7 @@
     "Asia/Kuala_Lumpur": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0800\r\nTZOFFSETTO:+0800\r\nTZNAME:+08\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0031000",
-      "longitude": "+1014200"
+      ]
     },
     "Asia/Kuching": {
       "ics": [
@@ -2298,9 +2297,12 @@
     "Asia/Kuwait": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:+03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0292000",
-      "longitude": "+0475900"
+      ]
+    },
+    "Asia/Macao": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0800\r\nTZOFFSETTO:+0800\r\nTZNAME:CST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "Asia/Macau": {
       "ics": [
@@ -2333,9 +2335,7 @@
     "Asia/Muscat": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0400\r\nTZOFFSETTO:+0400\r\nTZNAME:+04\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0233600",
-      "longitude": "+0583500"
+      ]
     },
     "Asia/Nicosia": {
       "ics": [
@@ -2376,9 +2376,7 @@
     "Asia/Phnom_Penh": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0700\r\nTZOFFSETTO:+0700\r\nTZNAME:+07\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0113300",
-      "longitude": "+1045500"
+      ]
     },
     "Asia/Pontianak": {
       "ics": [
@@ -2389,8 +2387,7 @@
     },
     "Asia/Pyongyang": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0900\r\nTZOFFSETTO:+0830\r\nTZNAME:KST\r\nDTSTART:19700101T000000\r\nEND:STANDARD",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0830\r\nTZOFFSETTO:+0900\r\nTZNAME:KST\r\nDTSTART:20180504T233000\r\nRDATE:20180504T233000\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0900\r\nTZOFFSETTO:+0900\r\nTZNAME:KST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0390100",
       "longitude": "+1254500"
@@ -2404,18 +2401,22 @@
     },
     "Asia/Qostanay": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0600\r\nTZOFFSETTO:+0600\r\nTZNAME:+06\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0500\r\nTZOFFSETTO:+0500\r\nTZNAME:+05\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0531200",
       "longitude": "+0633700"
     },
     "Asia/Qyzylorda": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0600\r\nTZOFFSETTO:+0600\r\nTZNAME:+06\r\nDTSTART:19700101T000000\r\nEND:STANDARD",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0600\r\nTZOFFSETTO:+0500\r\nTZNAME:+05\r\nDTSTART:20181221T000000\r\nRDATE:20181221T000000\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0500\r\nTZOFFSETTO:+0500\r\nTZNAME:+05\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0444800",
       "longitude": "+0652800"
+    },
+    "Asia/Rangoon": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0630\r\nTZOFFSETTO:+0630\r\nTZNAME:+0630\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "Asia/Riyadh": {
       "ics": [
@@ -2423,6 +2424,11 @@
       ],
       "latitude": "+0243800",
       "longitude": "+0464300"
+    },
+    "Asia/Saigon": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0700\r\nTZOFFSETTO:+0700\r\nTZNAME:+07\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "Asia/Sakhalin": {
       "ics": [
@@ -2489,12 +2495,21 @@
     },
     "Asia/Tehran": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0400\r\nTZOFFSETTO:+0330\r\nTZNAME:+0330\r\nDTSTART:19700101T000000\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0330\r\nTZOFFSETTO:+0430\r\nTZNAME:+0430\r\nDTSTART:20180321T235959\r\nRDATE:20180321T235959\r\nRDATE:20190321T235959\r\nRDATE:20200320T235959\r\nRDATE:20210321T235959\r\nRDATE:20220321T235959\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0430\r\nTZOFFSETTO:+0330\r\nTZNAME:+0330\r\nDTSTART:20180921T235959\r\nRDATE:20180921T235959\r\nRDATE:20190921T235959\r\nRDATE:20200920T235959\r\nRDATE:20210921T235959\r\nRDATE:20220921T235959\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0330\r\nTZOFFSETTO:+0330\r\nTZNAME:+0330\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0354000",
       "longitude": "+0512600"
+    },
+    "Asia/Tel_Aviv": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:IDT\r\nDTSTART:19700327T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1FR\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:IST\r\nDTSTART:19701025T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
+      ]
+    },
+    "Asia/Thimbu": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0600\r\nTZOFFSETTO:+0600\r\nTZNAME:+06\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "Asia/Thimphu": {
       "ics": [
@@ -2517,12 +2532,22 @@
       "latitude": "+0563000",
       "longitude": "+0845800"
     },
+    "Asia/Ujung_Pandang": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0800\r\nTZOFFSETTO:+0800\r\nTZNAME:WITA\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
     "Asia/Ulaanbaatar": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0800\r\nTZOFFSETTO:+0800\r\nTZNAME:+08\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0475500",
       "longitude": "+1065300"
+    },
+    "Asia/Ulan_Bator": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0800\r\nTZOFFSETTO:+0800\r\nTZNAME:+08\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "Asia/Urumqi": {
       "ics": [
@@ -2541,9 +2566,7 @@
     "Asia/Vientiane": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0700\r\nTZOFFSETTO:+0700\r\nTZNAME:+07\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0175800",
-      "longitude": "+1023600"
+      ]
     },
     "Asia/Vladivostok": {
       "ics": [
@@ -2611,6 +2634,12 @@
       "latitude": "+0145500",
       "longitude": "-0233100"
     },
+    "Atlantic/Faeroe": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0100\r\nTZNAME:WEST\r\nDTSTART:19700329T010000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0000\r\nTZNAME:WET\r\nDTSTART:19701025T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
+      ]
+    },
     "Atlantic/Faroe": {
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0100\r\nTZNAME:WEST\r\nDTSTART:19700329T010000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
@@ -2618,6 +2647,12 @@
       ],
       "latitude": "+0620100",
       "longitude": "-0064600"
+    },
+    "Atlantic/Jan_Mayen": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
+      ]
     },
     "Atlantic/Madeira": {
       "ics": [
@@ -2630,9 +2665,7 @@
     "Atlantic/Reykjavik": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0640900",
-      "longitude": "-0215100"
+      ]
     },
     "Atlantic/South_Georgia": {
       "ics": [
@@ -2644,9 +2677,7 @@
     "Atlantic/St_Helena": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0155500",
-      "longitude": "-0054200"
+      ]
     },
     "Atlantic/Stanley": {
       "ics": [
@@ -2654,6 +2685,12 @@
       ],
       "latitude": "-0514200",
       "longitude": "-0575100"
+    },
+    "Australia/ACT": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1100\r\nTZOFFSETTO:+1000\r\nTZNAME:AEST\r\nDTSTART:19700405T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+1000\r\nTZOFFSETTO:+1100\r\nTZNAME:AEDT\r\nDTSTART:19701004T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=1SU\r\nEND:DAYLIGHT"
+      ]
     },
     "Australia/Adelaide": {
       "ics": [
@@ -2678,13 +2715,17 @@
       "latitude": "-0315700",
       "longitude": "+1412700"
     },
+    "Australia/Canberra": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1100\r\nTZOFFSETTO:+1000\r\nTZNAME:AEST\r\nDTSTART:19700405T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+1000\r\nTZOFFSETTO:+1100\r\nTZNAME:AEDT\r\nDTSTART:19701004T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=1SU\r\nEND:DAYLIGHT"
+      ]
+    },
     "Australia/Currie": {
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+1000\r\nTZOFFSETTO:+1100\r\nTZNAME:AEDT\r\nDTSTART:19701004T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+1100\r\nTZOFFSETTO:+1000\r\nTZNAME:AEST\r\nDTSTART:19700405T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "-0395600",
-      "longitude": "+1435200"
+      ]
     },
     "Australia/Darwin": {
       "ics": [
@@ -2707,6 +2748,12 @@
       ],
       "latitude": "-0425300",
       "longitude": "+1471900"
+    },
+    "Australia/LHI": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1100\r\nTZOFFSETTO:+1030\r\nTZNAME:+1030\r\nDTSTART:19700405T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+1030\r\nTZOFFSETTO:+1100\r\nTZNAME:+11\r\nDTSTART:19701004T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=1SU\r\nEND:DAYLIGHT"
+      ]
     },
     "Australia/Lindeman": {
       "ics": [
@@ -2731,12 +2778,34 @@
       "latitude": "-0374900",
       "longitude": "+1445800"
     },
+    "Australia/NSW": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1100\r\nTZOFFSETTO:+1000\r\nTZNAME:AEST\r\nDTSTART:19700405T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+1000\r\nTZOFFSETTO:+1100\r\nTZNAME:AEDT\r\nDTSTART:19701004T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=1SU\r\nEND:DAYLIGHT"
+      ]
+    },
+    "Australia/North": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0930\r\nTZOFFSETTO:+0930\r\nTZNAME:ACST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
     "Australia/Perth": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0800\r\nTZOFFSETTO:+0800\r\nTZNAME:AWST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "-0315700",
       "longitude": "+1155100"
+    },
+    "Australia/Queensland": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1000\r\nTZOFFSETTO:+1000\r\nTZNAME:AEST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
+    "Australia/South": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1030\r\nTZOFFSETTO:+0930\r\nTZNAME:ACST\r\nDTSTART:19700405T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0930\r\nTZOFFSETTO:+1030\r\nTZNAME:ACDT\r\nDTSTART:19701004T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=1SU\r\nEND:DAYLIGHT"
+      ]
     },
     "Australia/Sydney": {
       "ics": [
@@ -2746,13 +2815,112 @@
       "latitude": "-0335200",
       "longitude": "+1511300"
     },
+    "Australia/Tasmania": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+1000\r\nTZOFFSETTO:+1100\r\nTZNAME:AEDT\r\nDTSTART:19701004T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=1SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1100\r\nTZOFFSETTO:+1000\r\nTZNAME:AEST\r\nDTSTART:19700405T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
+    "Australia/Victoria": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1100\r\nTZOFFSETTO:+1000\r\nTZNAME:AEST\r\nDTSTART:19700405T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+1000\r\nTZOFFSETTO:+1100\r\nTZNAME:AEDT\r\nDTSTART:19701004T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=1SU\r\nEND:DAYLIGHT"
+      ]
+    },
+    "Australia/West": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0800\r\nTZOFFSETTO:+0800\r\nTZNAME:AWST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
+    "Australia/Yancowinna": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1030\r\nTZOFFSETTO:+0930\r\nTZNAME:ACST\r\nDTSTART:19700405T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0930\r\nTZOFFSETTO:+1030\r\nTZNAME:ACDT\r\nDTSTART:19701004T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=1SU\r\nEND:DAYLIGHT"
+      ]
+    },
+    "Brazil/Acre": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0500\r\nTZNAME:-05\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
+    "Brazil/DeNoronha": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0200\r\nTZOFFSETTO:-0200\r\nTZNAME:-02\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
+    "Brazil/East": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
+    "Brazil/West": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0400\r\nTZNAME:-04\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
+    "Canada/Atlantic": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0300\r\nTZNAME:ADT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0400\r\nTZNAME:AST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
+    "Canada/Central": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0500\r\nTZNAME:CDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0600\r\nTZNAME:CST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
+    "Canada/Eastern": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0400\r\nTZNAME:EDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
+    "Canada/Mountain": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0600\r\nTZNAME:MDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0700\r\nTZNAME:MST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
+    "Canada/Newfoundland": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0230\r\nTZOFFSETTO:-0330\r\nTZNAME:NST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0330\r\nTZOFFSETTO:-0230\r\nTZNAME:NDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT"
+      ]
+    },
+    "Canada/Pacific": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0800\r\nTZOFFSETTO:-0700\r\nTZNAME:PDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0800\r\nTZNAME:PST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
+    "Canada/Saskatchewan": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0600\r\nTZNAME:CST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
+    "Canada/Yukon": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0700\r\nTZNAME:MST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
+    "Chile/Continental": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0400\r\nTZNAME:-04\r\nDTSTART:19700405T000000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0300\r\nTZNAME:-03\r\nDTSTART:19700906T000000\r\nRRULE:FREQ=YEARLY;BYMONTH=9;BYDAY=1SU\r\nEND:DAYLIGHT"
+      ]
+    },
+    "Chile/EasterIsland": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0600\r\nTZNAME:-06\r\nDTSTART:19700404T220000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SA\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0500\r\nTZNAME:-05\r\nDTSTART:19700905T220000\r\nRRULE:FREQ=YEARLY;BYMONTH=9;BYDAY=1SA\r\nEND:DAYLIGHT"
+      ]
+    },
     "Europe/Amsterdam": {
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0522200",
-      "longitude": "+0045400"
+      ]
     },
     "Europe/Andorra": {
       "ics": [
@@ -2777,6 +2945,12 @@
       "latitude": "+0375800",
       "longitude": "+0234300"
     },
+    "Europe/Belfast": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0100\r\nTZNAME:BST\r\nDTSTART:19700329T010000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:19701025T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
+      ]
+    },
     "Europe/Belgrade": {
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
@@ -2797,9 +2971,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0480900",
-      "longitude": "+0170700"
+      ]
     },
     "Europe/Brussels": {
       "ics": [
@@ -2829,9 +3001,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0474200",
-      "longitude": "+0084100"
+      ]
     },
     "Europe/Chisinau": {
       "ics": [
@@ -2845,9 +3015,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0554000",
-      "longitude": "+0123500"
+      ]
     },
     "Europe/Dublin": {
       "ics": [
@@ -2869,9 +3037,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0100\r\nTZNAME:BST\r\nDTSTART:19700329T010000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:19701025T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0492717",
-      "longitude": "-0023210"
+      ]
     },
     "Europe/Helsinki": {
       "ics": [
@@ -2885,9 +3051,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0100\r\nTZNAME:BST\r\nDTSTART:19700329T010000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:19701025T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0540900",
-      "longitude": "-0042800"
+      ]
     },
     "Europe/Istanbul": {
       "ics": [
@@ -2900,9 +3064,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0000\r\nTZOFFSETTO:+0100\r\nTZNAME:BST\r\nDTSTART:19700329T010000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0000\r\nTZNAME:GMT\r\nDTSTART:19701025T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0491101",
-      "longitude": "-0020624"
+      ]
     },
     "Europe/Kaliningrad": {
       "ics": [
@@ -2913,18 +3075,24 @@
     },
     "Europe/Kiev": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:19700329T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701025T040000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0502600",
-      "longitude": "+0303100"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701025T040000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:19700329T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT"
+      ]
     },
     "Europe/Kirov": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:+03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:MSK\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0583600",
       "longitude": "+0493900"
+    },
+    "Europe/Kyiv": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701025T040000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:19700329T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT"
+      ],
+      "latitude": "+0502600",
+      "longitude": "+0303100"
     },
     "Europe/Lisbon": {
       "ics": [
@@ -2938,9 +3106,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0460300",
-      "longitude": "+0143100"
+      ]
     },
     "Europe/London": {
       "ics": [
@@ -2954,9 +3120,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0493600",
-      "longitude": "+0060900"
+      ]
     },
     "Europe/Madrid": {
       "ics": [
@@ -2978,9 +3142,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:19700329T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701025T040000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0600600",
-      "longitude": "+0195700"
+      ]
     },
     "Europe/Minsk": {
       "ics": [
@@ -2993,9 +3155,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0434200",
-      "longitude": "+0072300"
+      ]
     },
     "Europe/Moscow": {
       "ics": [
@@ -3008,17 +3168,13 @@
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701025T040000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD",
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:19700329T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT"
-      ],
-      "latitude": "+0351000",
-      "longitude": "+0332200"
+      ]
     },
     "Europe/Oslo": {
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0595500",
-      "longitude": "+0104500"
+      ]
     },
     "Europe/Paris": {
       "ics": [
@@ -3032,9 +3188,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0422600",
-      "longitude": "+0191600"
+      ]
     },
     "Europe/Prague": {
       "ics": [
@@ -3071,17 +3225,13 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0435500",
-      "longitude": "+0122800"
+      ]
     },
     "Europe/Sarajevo": {
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0435200",
-      "longitude": "+0182500"
+      ]
     },
     "Europe/Saratov": {
       "ics": [
@@ -3101,9 +3251,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0415900",
-      "longitude": "+0212600"
+      ]
     },
     "Europe/Sofia": {
       "ics": [
@@ -3117,9 +3265,7 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0592000",
-      "longitude": "+0180300"
+      ]
     },
     "Europe/Tallinn": {
       "ics": [
@@ -3137,6 +3283,12 @@
       "latitude": "+0412000",
       "longitude": "+0195000"
     },
+    "Europe/Tiraspol": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
+      ]
+    },
     "Europe/Ulyanovsk": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0400\r\nTZOFFSETTO:+0400\r\nTZNAME:+04\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
@@ -3146,27 +3298,21 @@
     },
     "Europe/Uzhgorod": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:19700329T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701025T040000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0483700",
-      "longitude": "+0221800"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701025T040000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:19700329T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT"
+      ]
     },
     "Europe/Vaduz": {
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0470900",
-      "longitude": "+0093100"
+      ]
     },
     "Europe/Vatican": {
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0415408",
-      "longitude": "+0122711"
+      ]
     },
     "Europe/Vienna": {
       "ics": [
@@ -3186,8 +3332,7 @@
     },
     "Europe/Volgograd": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0400\r\nTZNAME:+04\r\nDTSTART:20181028T020000\r\nRDATE:20181028T020000\r\nEND:STANDARD",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0400\r\nTZOFFSETTO:+0300\r\nTZNAME:+03\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:MSK\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "+0484400",
       "longitude": "+0442500"
@@ -3204,17 +3349,13 @@
       "ics": [
         "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0100\r\nTZOFFSETTO:+0200\r\nTZNAME:CEST\r\nDTSTART:19700329T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0100\r\nTZNAME:CET\r\nDTSTART:19701025T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0454800",
-      "longitude": "+0155800"
+      ]
     },
     "Europe/Zaporozhye": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:19700329T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701025T040000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD"
-      ],
-      "latitude": "+0475000",
-      "longitude": "+0351000"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0200\r\nTZNAME:EET\r\nDTSTART:19701025T040000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+0200\r\nTZOFFSETTO:+0300\r\nTZNAME:EEST\r\nDTSTART:19700329T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\nEND:DAYLIGHT"
+      ]
     },
     "Europe/Zurich": {
       "ics": [
@@ -3227,9 +3368,7 @@
     "Indian/Antananarivo": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:EAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0185500",
-      "longitude": "+0473100"
+      ]
     },
     "Indian/Chagos": {
       "ics": [
@@ -3241,37 +3380,27 @@
     "Indian/Christmas": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0700\r\nTZOFFSETTO:+0700\r\nTZNAME:+07\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0102500",
-      "longitude": "+1054300"
+      ]
     },
     "Indian/Cocos": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0630\r\nTZOFFSETTO:+0630\r\nTZNAME:+0630\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0121000",
-      "longitude": "+0965500"
+      ]
     },
     "Indian/Comoro": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:EAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0114100",
-      "longitude": "+0431600"
+      ]
     },
     "Indian/Kerguelen": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0500\r\nTZOFFSETTO:+0500\r\nTZNAME:+05\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0492110",
-      "longitude": "+0701303"
+      ]
     },
     "Indian/Mahe": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0400\r\nTZOFFSETTO:+0400\r\nTZNAME:+04\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0044000",
-      "longitude": "+0552800"
+      ]
     },
     "Indian/Maldives": {
       "ics": [
@@ -3290,21 +3419,32 @@
     "Indian/Mayotte": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0300\r\nTZOFFSETTO:+0300\r\nTZNAME:EAT\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0124700",
-      "longitude": "+0451400"
+      ]
     },
     "Indian/Reunion": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+0400\r\nTZOFFSETTO:+0400\r\nTZNAME:+04\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0205200",
-      "longitude": "+0552800"
+      ]
+    },
+    "Mexico/BajaNorte": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0800\r\nTZOFFSETTO:-0700\r\nTZNAME:PDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0800\r\nTZNAME:PST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
+    "Mexico/BajaSur": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0700\r\nTZNAME:MST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
+    "Mexico/General": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0600\r\nTZNAME:CST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "Pacific/Apia": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1400\r\nTZOFFSETTO:+1300\r\nTZNAME:+13\r\nDTSTART:19700405T040000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+1300\r\nTZOFFSETTO:+1400\r\nTZNAME:+14\r\nDTSTART:19700927T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=9;BYDAY=-1SU\r\nEND:DAYLIGHT"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1300\r\nTZOFFSETTO:+1300\r\nTZNAME:+13\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "-0135000",
       "longitude": "-1714400"
@@ -3335,17 +3475,12 @@
     "Pacific/Chuuk": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+1000\r\nTZOFFSETTO:+1000\r\nTZNAME:+10\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0072500",
-      "longitude": "+1514700"
+      ]
     },
     "Pacific/Easter": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0600\r\nTZNAME:-06\r\nDTSTART:20190406T220000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SA\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0500\r\nTZNAME:-05\r\nDTSTART:20190907T220000\r\nRRULE:FREQ=YEARLY;BYMONTH=9;BYDAY=1SA\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0600\r\nTZNAME:-06\r\nDTSTART:19700101T000000\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0500\r\nTZNAME:-05\r\nDTSTART:20180811T220000\r\nRDATE:20180811T220000\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0600\r\nTZNAME:-06\r\nDTSTART:20180512T220000\r\nRDATE:20180512T220000\r\nEND:STANDARD"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0600\r\nTZNAME:-06\r\nDTSTART:19700404T220000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SA\r\nEND:STANDARD",
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0500\r\nTZNAME:-05\r\nDTSTART:19700905T220000\r\nRRULE:FREQ=YEARLY;BYMONTH=9;BYDAY=1SA\r\nEND:DAYLIGHT"
       ],
       "latitude": "-0270900",
       "longitude": "-1092600"
@@ -3360,9 +3495,7 @@
     "Pacific/Enderbury": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+1300\r\nTZOFFSETTO:+1300\r\nTZNAME:+13\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0030800",
-      "longitude": "-1710500"
+      ]
     },
     "Pacific/Fakaofo": {
       "ics": [
@@ -3373,9 +3506,7 @@
     },
     "Pacific/Fiji": {
       "ics": [
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1300\r\nTZOFFSETTO:+1200\r\nTZNAME:+12\r\nDTSTART:19700118T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=1;BYMONTHDAY=12,13,14,15,16,17,18;BYDAY=SU\r\nEND:STANDARD",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+1200\r\nTZOFFSETTO:+1300\r\nTZNAME:+13\r\nDTSTART:20191110T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=2SU\r\nEND:DAYLIGHT",
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+1200\r\nTZOFFSETTO:+1300\r\nTZNAME:+13\r\nDTSTART:20181104T020000\r\nRDATE:20181104T020000\r\nEND:DAYLIGHT"
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1200\r\nTZOFFSETTO:+1200\r\nTZNAME:+12\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
       "latitude": "-0180800",
       "longitude": "+1782500"
@@ -3383,9 +3514,7 @@
     "Pacific/Funafuti": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+1200\r\nTZOFFSETTO:+1200\r\nTZNAME:+12\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0083100",
-      "longitude": "+1791300"
+      ]
     },
     "Pacific/Galapagos": {
       "ics": [
@@ -3422,6 +3551,18 @@
       "latitude": "+0211825",
       "longitude": "-1575130"
     },
+    "Pacific/Johnston": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-1000\r\nTZOFFSETTO:-1000\r\nTZNAME:HST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
+    "Pacific/Kanton": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1300\r\nTZOFFSETTO:+1300\r\nTZNAME:+13\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ],
+      "latitude": "-0024700",
+      "longitude": "-1714300"
+    },
     "Pacific/Kiritimati": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+1400\r\nTZOFFSETTO:+1400\r\nTZNAME:+14\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
@@ -3446,9 +3587,7 @@
     "Pacific/Majuro": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+1200\r\nTZOFFSETTO:+1200\r\nTZNAME:+12\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0070900",
-      "longitude": "+1711200"
+      ]
     },
     "Pacific/Marquesas": {
       "ics": [
@@ -3460,9 +3599,7 @@
     "Pacific/Midway": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:-1100\r\nTZOFFSETTO:-1100\r\nTZNAME:SST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0281300",
-      "longitude": "-1772200"
+      ]
     },
     "Pacific/Nauru": {
       "ics": [
@@ -3480,10 +3617,8 @@
     },
     "Pacific/Norfolk": {
       "ics": [
-        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+1100\r\nTZOFFSETTO:+1200\r\nTZNAME:+12\r\nDTSTART:20191006T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=1SU\r\nEND:DAYLIGHT",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1200\r\nTZOFFSETTO:+1100\r\nTZNAME:+11\r\nDTSTART:20200405T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:STANDARD",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1130\r\nTZOFFSETTO:+1100\r\nTZNAME:+11\r\nDTSTART:19700101T000000\r\nEND:STANDARD",
-        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1100\r\nTZOFFSETTO:+1100\r\nTZNAME:+11\r\nDTSTART:20190701T000000\r\nRDATE:20190701T000000\r\nEND:STANDARD"
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:+1100\r\nTZOFFSETTO:+1200\r\nTZNAME:+12\r\nDTSTART:19701004T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=1SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1200\r\nTZOFFSETTO:+1100\r\nTZNAME:+11\r\nDTSTART:19700405T030000\r\nRRULE:FREQ=YEARLY;BYMONTH=4;BYDAY=1SU\r\nEND:STANDARD"
       ],
       "latitude": "-0290300",
       "longitude": "+1675800"
@@ -3519,9 +3654,12 @@
     "Pacific/Pohnpei": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+1100\r\nTZOFFSETTO:+1100\r\nTZNAME:+11\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0065800",
-      "longitude": "+1581300"
+      ]
+    },
+    "Pacific/Ponape": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1100\r\nTZOFFSETTO:+1100\r\nTZNAME:+11\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "Pacific/Port_Moresby": {
       "ics": [
@@ -3540,9 +3678,12 @@
     "Pacific/Saipan": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+1000\r\nTZOFFSETTO:+1000\r\nTZNAME:ChST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0151200",
-      "longitude": "+1454500"
+      ]
+    },
+    "Pacific/Samoa": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-1100\r\nTZOFFSETTO:-1100\r\nTZNAME:SST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "Pacific/Tahiti": {
       "ics": [
@@ -3562,22 +3703,97 @@
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+1300\r\nTZOFFSETTO:+1300\r\nTZNAME:+13\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
       ],
-      "latitude": "-0211000",
-      "longitude": "-1751000"
+      "latitude": "-0210800",
+      "longitude": "-1751200"
+    },
+    "Pacific/Truk": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1000\r\nTZOFFSETTO:+1000\r\nTZNAME:+10\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     },
     "Pacific/Wake": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+1200\r\nTZOFFSETTO:+1200\r\nTZNAME:+12\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "+0191700",
-      "longitude": "+1663700"
+      ]
     },
     "Pacific/Wallis": {
       "ics": [
         "BEGIN:STANDARD\r\nTZOFFSETFROM:+1200\r\nTZOFFSETTO:+1200\r\nTZNAME:+12\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
-      ],
-      "latitude": "-0131800",
-      "longitude": "-1761000"
+      ]
+    },
+    "Pacific/Yap": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:+1000\r\nTZOFFSETTO:+1000\r\nTZNAME:+10\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
+    "US/Alaska": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0900\r\nTZOFFSETTO:-0800\r\nTZNAME:AKDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0800\r\nTZOFFSETTO:-0900\r\nTZNAME:AKST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
+    "US/Aleutian": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-1000\r\nTZOFFSETTO:-0900\r\nTZNAME:HDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0900\r\nTZOFFSETTO:-1000\r\nTZNAME:HST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
+    "US/Arizona": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0700\r\nTZNAME:MST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
+    "US/Central": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0500\r\nTZNAME:CDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0600\r\nTZNAME:CST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
+    "US/East-Indiana": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0400\r\nTZNAME:EDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
+    "US/Eastern": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0400\r\nTZNAME:EDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
+    "US/Hawaii": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-1000\r\nTZOFFSETTO:-1000\r\nTZNAME:HST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
+    },
+    "US/Indiana-Starke": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0500\r\nTZNAME:CDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0600\r\nTZNAME:CST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
+    "US/Michigan": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0400\r\nTZNAME:EDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
+    "US/Mountain": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0600\r\nTZNAME:MDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0600\r\nTZOFFSETTO:-0700\r\nTZNAME:MST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
+    "US/Pacific": {
+      "ics": [
+        "BEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0800\r\nTZOFFSETTO:-0700\r\nTZNAME:PDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT",
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-0700\r\nTZOFFSETTO:-0800\r\nTZNAME:PST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD"
+      ]
+    },
+    "US/Samoa": {
+      "ics": [
+        "BEGIN:STANDARD\r\nTZOFFSETFROM:-1100\r\nTZOFFSETTO:-1100\r\nTZNAME:SST\r\nDTSTART:19700101T000000\r\nEND:STANDARD"
+      ]
     }
   }
 }
