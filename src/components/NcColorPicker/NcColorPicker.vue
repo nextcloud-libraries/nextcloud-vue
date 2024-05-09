@@ -89,7 +89,7 @@ export default {
 <template>
 	<div class="container1">
 		<NcButton @click="open = !open"> Click Me </NcButton>
-		<NcColorPicker v-model="color" v-model:shown="open" v-slot="{ attrs }">
+		<NcColorPicker v-model="color" v-model:shown="open" @submit="open = false" v-slot="{ attrs }">
 			<div v-bind="attrs" :style="{'background-color': color}" class="color1" />
 		</NcColorPicker>
 	</div>
@@ -198,7 +198,7 @@ export default {
 						<ArrowLeft :size="20" />
 					</template>
 				</NcButton>
-				<NcButton v-if="!advanced"
+				<NcButton v-else
 					type="tertiary"
 					:aria-label="ariaMore"
 					@click="handleMoreSettings">
@@ -206,8 +206,7 @@ export default {
 						<DotsHorizontal :size="20" />
 					</template>
 				</NcButton>
-				<NcButton v-if="advanced"
-					type="primary"
+				<NcButton type="primary"
 					@click="handleConfirm">
 					{{ t('Choose') }}
 				</NcButton>
