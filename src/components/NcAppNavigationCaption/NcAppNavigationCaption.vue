@@ -1,4 +1,6 @@
 <docs>
+### Basic usage
+
 ```vue
 	<template>
 		<ul class="nav">
@@ -95,6 +97,23 @@
 	</style>
 ```
 
+### Element used as a heading
+```vue
+	<template>
+		<!-- e.g. NcAppNavigation-->
+		<div style="display: flex; flex-direction: column;">
+			<NcAppNavigationCaption heading-id="mylist-heading"
+				is-heading
+				name="My navigation list" />
+			<NcAppNavigationList aria-labelledby="mylist-heading">
+				<NcAppNavigationItem name="First" />
+				<NcAppNavigationItem name="Second" />
+				<NcAppNavigationItem name="Third" />
+			</NcAppNavigationList>
+		</div>
+	</template>
+```
+
 </docs>
 
 <template>
@@ -102,7 +121,9 @@
 		class="app-navigation-caption"
 		:class="{ 'app-navigation-caption--heading': isHeading }">
 		<!-- Name of the caption -->
-		<component :is="captionTag" class="app-navigation-caption__name">
+		<component :is="captionTag"
+			:id="headingId"
+			class="app-navigation-caption__name">
 			{{ name }}
 		</component>
 
@@ -137,6 +158,15 @@ export default {
 		name: {
 			type: String,
 			required: true,
+		},
+
+		/**
+		 * `id` to set on the inner caption
+		 * Can be used for connecting the `NcActionCaption` with `NcActionList` using `aria-labelledby`.
+		 */
+		headingId: {
+			type: String,
+			default: null,
 		},
 
 		/**

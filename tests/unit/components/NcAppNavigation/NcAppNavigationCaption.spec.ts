@@ -1,4 +1,4 @@
-import { describe, expect } from '@jest/globals'
+import { describe, expect, test } from '@jest/globals'
 import { shallowMount } from '@vue/test-utils'
 import NcAppNavigationCaption from '../../../../src/components/NcAppNavigationCaption/NcAppNavigationCaption.vue'
 
@@ -20,6 +20,18 @@ describe('NcAppNavigationCaption.vue', () => {
 		})
 
 		expect(wrapper.findComponent({ name: 'NcActions' }).attributes('forcemenu')).toBe('true')
+	})
+
+	test('can set id on the caption', async () => {
+		const wrapper = shallowMount(NcAppNavigationCaption, {
+			propsData: {
+				name: 'The name',
+				isHeading: true,
+				headingId: 'my-heading-id',
+			},
+		})
+
+		expect(wrapper.find('h2').attributes('id')).toBe('my-heading-id')
 	})
 
 	test('component is a list entry by default', async () => {
