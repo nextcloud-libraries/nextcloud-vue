@@ -68,6 +68,45 @@ The list size must be between the min and the max width value.
 	:list-max-width="45"
 >...</NcAppContent>
 ```
+
+#### Usage: Custom document title
+For accessibility reasons every document should have a `h1` heading,
+this is visually hidden, but required for a semantically correct document.
+You can use your app name or current view for the heading.
+
+Additionally you can set a custom document title, e.g. to show the current status.
+
+```vue
+<template>
+	<NcAppContent :pageHeading="heading ? 'Heading' : undefined" :pageTitle="title ? 'Title' : undefined" >
+		<NcCheckboxRadioSwitch type="switch" :checked.sync="title">
+			Toggle title
+		</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch type="switch" :checked.sync="heading">
+			Toggle Heading
+		</NcCheckboxRadioSwitch>
+		<NcButton @click="reset">Reset</NcButton>
+	</NcAppContent>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			heading: false,
+			title: false,
+		}
+	},
+	methods: {
+		reset() {
+			this.heading = false
+			this.title = false
+			document.title = ''
+		},
+	},
+}
+</script>
+```
 </docs>
 
 <template>
@@ -126,7 +165,6 @@ import { loadState } from '@nextcloud/initial-state'
 import { useSwipe } from '@vueuse/core'
 import { Splitpanes, Pane } from 'splitpanes'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { t } from '../../l10n.js'
 
 import NcAppDetailsToggle from './NcAppDetailsToggle.vue'
 
@@ -233,6 +271,7 @@ export default {
 		 * Allow setting the page's `<title>`
 		 *
 		 * If a page heading is set it defaults to `{pageHeading} - {appName} - {productName}` e.g. `Favorites - Files - Nextcloud`.
+		 * When the page heading and the app name is the same only one is used, e.g. `Files - Files - Nextcloud` is shown as `Files - Nextcloud`.
 		 * When setting the prop then the following format will be used: `{pageTitle} - {pageHeading || appName} - {productName}`
 		 */
 		pageTitle: {
@@ -307,13 +346,23 @@ export default {
 		},
 
 		realPageTitle() {
+			const entries = new Set()
 			if (this.pageTitle) {
-				return t('{view} - {app} - {product}', { view: this.pageTitle, app: this.pageHeading || localizedAppName, product: productName })
+				entries.add(this.pageTitle)
 			}
 			if (this.pageHeading) {
-				return t('{view} - {app} - {product}', { view: this.pageHeading, app: localizedAppName, product: productName })
+				entries.add(this.pageHeading)
 			}
-			return null
+			if (entries.size === 0) {
+				return null
+			}
+
+			if (entries.size < 2) {
+				// Only add if not already pageHeading and pageTitle are included
+				entries.add(localizedAppName)
+			}
+			entries.add(productName)
+			return [...entries.values()].join(' - ')
 		},
 	},
 
