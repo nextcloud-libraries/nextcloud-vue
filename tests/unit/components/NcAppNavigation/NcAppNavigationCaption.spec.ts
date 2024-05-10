@@ -22,6 +22,18 @@ describe('NcAppNavigationCaption.vue', () => {
 		expect(wrapper.findComponent({ name: 'NcActions' }).attributes('forcemenu')).toBe('true')
 	})
 
+	test('can set id on the caption', async () => {
+		const wrapper = shallowMount(NcAppNavigationCaption, {
+			props: {
+				name: 'The name',
+				isHeading: true,
+				headingId: 'my-heading-id',
+			},
+		})
+
+		expect(wrapper.find('h2').attributes('id')).toBe('my-heading-id')
+	})
+
 	test('component is a list entry by default', async () => {
 		const wrapper = shallowMount(NcAppNavigationCaption, {
 			props: {
@@ -44,31 +56,5 @@ describe('NcAppNavigationCaption.vue', () => {
 
 		expect(wrapper.element.tagName).toBe('DIV')
 		expect(wrapper.find('h2').exists()).toBe(true)
-	})
-
-	test('can set the heading level', async () => {
-		const wrapper = shallowMount(NcAppNavigationCaption, {
-			props: {
-				name: 'The name',
-				isHeading: true,
-				headingLevel: 3,
-			},
-		})
-
-		expect(wrapper.find('h3').exists()).toBe(true)
-		expect(wrapper.find('h2').exists()).toBe(false)
-	})
-
-	test('does not set the heading level to h1', async () => {
-		const wrapper = shallowMount(NcAppNavigationCaption, {
-			props: {
-				name: 'The name',
-				isHeading: true,
-				headingLevel: 1,
-			},
-		})
-
-		expect(wrapper.find('h2').exists()).toBe(true)
-		expect(wrapper.find('h1').exists()).toBe(false)
 	})
 })
