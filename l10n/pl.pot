@@ -2,10 +2,12 @@
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Valdnet, 2024
+# Pirania 3680, 2024
+# Piotr Strębski <strebski@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Valdnet, 2024\n"
+"Last-Translator: Piotr Strębski <strebski@gmail.com>, 2024\n"
 "Language-Team: Polish (https://app.transifex.com/nextcloud/teams/64236/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
@@ -70,6 +72,9 @@ msgstr "Niebieski fiolet"
 msgid "Boston Blue"
 msgstr "Błękit Bostonu"
 
+msgid "busy"
+msgstr "zajęty"
+
 msgid "Cancel changes"
 msgstr "Anuluj zmiany"
 
@@ -103,11 +108,17 @@ msgstr "Zamknij inteligentny selektor"
 msgid "Collapse menu"
 msgstr "Zwiń menu"
 
+msgid "Color picker"
+msgstr "Wybierz kolor"
+
 msgid "Confirm changes"
 msgstr "Potwierdź zmiany"
 
 msgid "Custom"
 msgstr "Zwyczajne"
+
+msgid "Dark skin tone"
+msgstr "Ciemna tonacja"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -121,6 +132,12 @@ msgstr "nie przeszkadzać"
 
 msgid "Edit item"
 msgstr "Edytuj element"
+
+msgid "Emoji picker"
+msgstr "Wybierz Emoji"
+
+msgid "Enable interactive view"
+msgstr "Włącz widok interaktywny"
 
 msgid "Enter link"
 msgstr "Wprowadź link"
@@ -166,12 +183,27 @@ msgstr "Ukryj hasło"
 msgid "invisible"
 msgstr "niewidzialny"
 
+msgid "Keyboard navigation help"
+msgstr "Pomoc w nawigacji za pomocą klawiatury"
+
+msgid "Light skin tone"
+msgstr "Jasny odcień skóry"
+
 msgid "Load more \"{options}\""
 msgstr "Załaduj więcej \"{options}\""
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Marynarz"
+
+msgid "Medium dark skin tone"
+msgstr "Średnio ciemny odcień skóry"
+
+msgid "Medium light skin tone"
+msgstr "Średnio jasny odcień skóry"
+
+msgid "Medium skin tone"
+msgstr "Średni odcień skóry"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Przekroczono limit wiadomości wynoszący {count} znaków"
@@ -181,6 +213,9 @@ msgstr "Więcej pozycji…"
 
 msgid "More options"
 msgstr "Więcej opcji"
+
+msgid "Neutral skin color"
+msgstr "Neutralny kolor skróry"
 
 msgid "Next"
 msgstr "Następny"
@@ -209,9 +244,6 @@ msgstr "Oliwin"
 
 msgid "online"
 msgstr "online"
-
-msgid "Open contact menu"
-msgstr "Otwórz menu kontaktu"
 
 msgid "Open link to \"{resourceName}\""
 msgstr "Otwórz link do \"{resourceName}\""
@@ -273,6 +305,9 @@ msgstr "Link Raw {options}"
 msgid "Related resources"
 msgstr "Powiązane zasoby"
 
+msgid "Related team resources"
+msgstr "Powiązane zasoby grupowe"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Różowy brąz"
@@ -319,8 +354,17 @@ msgstr "Ustawienia nawigacji"
 msgid "Show password"
 msgstr "Pokaż hasło"
 
+msgid "Skin tone"
+msgstr "Kolor skóry"
+
+msgid "Skip to app navigation"
+msgstr "Przewiń do nawigacji"
+
+msgid "Skip to main content"
+msgstr "Przewiń do głównych treści"
+
 msgid "Smart Picker"
-msgstr "Inteligentny Picker"
+msgstr "Inteligentne wybieranie"
 
 msgid "Smileys & Emotion"
 msgstr "Buźki i emotikony"
@@ -351,6 +395,9 @@ msgstr "Cofnij zmiany"
 
 msgid "User status: {status}"
 msgstr "Status użytkownika: {status}"
+
+msgid "View team"
+msgstr "Zobacz grupę"
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
