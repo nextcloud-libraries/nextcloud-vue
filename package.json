@@ -39,22 +39,27 @@
       "require": "./dist/index.cjs"
     },
     "./dist/Components/*.js": {
+      "types": "./dist/components/*/index.d.ts",
       "import": "./dist/Components/*.mjs",
       "require": "./dist/Components/*.cjs"
     },
     "./dist/Directives/*.js": {
+      "types": "./dist/directives/*/index.d.ts",
       "import": "./dist/Directives/*.mjs",
       "require": "./dist/Directives/*.cjs"
     },
     "./dist/Functions/*.js": {
+      "types": "./dist/functions/*/index.d.ts",
       "import": "./dist/Functions/*.mjs",
       "require": "./dist/Functions/*.cjs"
     },
     "./dist/Mixins/*.js": {
+      "types": "./dist/mixins/*/index.d.ts",
       "import": "./dist/Mixins/*.mjs",
       "require": "./dist/Mixins/*.cjs"
     },
     "./dist/Composables/*.js": {
+      "types": "./dist/composables/*/index.d.ts",
       "import": "./dist/Composables/*.mjs",
       "require": "./dist/Composables/*.cjs"
     }

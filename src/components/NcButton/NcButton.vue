@@ -607,7 +607,7 @@ export default defineComponent({
 		},
 
 		ncPopoverTriggerAttrs() {
-			return this.getNcPopoverTriggerAttrs()
+			return (this.getNcPopoverTriggerAttrs as () => Record<string, string|undefined>)()
 		},
 	},
 

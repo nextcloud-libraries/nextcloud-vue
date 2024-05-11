@@ -6,7 +6,7 @@ import { defineConfig } from 'vite'
 
 import md5 from 'md5'
 
-import l10nPlugin from './build/l10n-plugin.mts'
+import l10nPlugin from './build/l10n-plugin.mjs'
 
 const appVersion = JSON.stringify(process.env.npm_package_version || 'nextcloud-vue')
 const versionHash = md5(appVersion).slice(0, 7) as string
@@ -94,6 +94,15 @@ export default defineConfig((env) => {
 	const createConfig = createLibConfig(entryPoints, {
 		// Add our overrides to the config
 		config: overrides,
+		// Only create declarations for source files
+		DTSPluginOptions: {
+			include: ['src/**/*.ts', 'src/**/*.js', 'src/**/*.vue'],
+			compilerOptions: {
+				declaration: true,
+				rootDir: 'src',
+				noEmit: false,
+			},
+		},
 		// By default all dependencies are external, but no path imports
 		nodeExternalsOptions: {
 			// Packages with paths imports should be added here to mark them as external as well
@@ -104,7 +113,7 @@ export default defineConfig((env) => {
 		// For backwards compatibility we include the css within the js files
 		inlineCSS: true,
 		// Build CommonJS files for backwards compatibility
-		libraryFormats: ['es', 'cjs'],
+		libraryFormats: ['cjs', 'es'],
 		replace: {
 			PRODUCTION: JSON.stringify(env.mode === 'production'),
 			SCOPE_VERSION,
