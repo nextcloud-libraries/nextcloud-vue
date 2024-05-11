@@ -73,6 +73,17 @@ webpackRules.RULE_JS.exclude = BabelLoaderExcludeNodeModulesExcept([
 	'tributejs',
 ])
 
+// Speedup styleguide build
+webpackRules.RULE_TS.use = [
+	'babel-loader',
+	{
+		loader: 'ts-loader',
+		options: {
+			transpileOnly: true,
+		},
+	},
+]
+
 webpackRules.RULE_RAW_SVG = {
 	resourceQuery: /raw/,
 	type: 'asset/source',
