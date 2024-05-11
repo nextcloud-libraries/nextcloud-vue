@@ -42,7 +42,7 @@
 		</ul>
 	</template>
 	<script>
-	import Check from 'vue-material-design-icons/Check'
+	import Check from 'vue-material-design-icons/Check.vue'
 
 	export default {
 		components: {
@@ -102,10 +102,10 @@ button will be automatically created.
 		</div>
 	</template>
 	<script>
-	import Check from 'vue-material-design-icons/Check'
-	import Delete from 'vue-material-design-icons/Delete'
-	import OpenInNew from 'vue-material-design-icons/OpenInNew'
-	import Pencil from 'vue-material-design-icons/Pencil'
+	import Check from 'vue-material-design-icons/Check.vue'
+	import Delete from 'vue-material-design-icons/Delete.vue'
+	import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
+	import Pencil from 'vue-material-design-icons/Pencil.vue'
 
 	export default {
 		components: {
@@ -142,7 +142,7 @@ Just nest the counter in a template within `<NcAppNavigationItem>` and add `#cou
 		</ul>
 	</template>
 	<script>
-	import Folder from 'vue-material-design-icons/Folder'
+	import Folder from 'vue-material-design-icons/Folder.vue'
 
 	export default {
 		components: {
@@ -198,10 +198,10 @@ prevent the user from collapsing the items.
 		</ul>
 	</template>
 	<script>
-	import Folder from 'vue-material-design-icons/Folder'
-	import Delete from 'vue-material-design-icons/Delete'
-	import OpenInNew from 'vue-material-design-icons/OpenInNew'
-	import Pencil from 'vue-material-design-icons/Pencil'
+	import Folder from 'vue-material-design-icons/Folder.vue'
+	import Delete from 'vue-material-design-icons/Delete.vue'
+	import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
+	import Pencil from 'vue-material-design-icons/Pencil.vue'
 
 	export default {
 		components: {
@@ -235,7 +235,7 @@ the placeholder is the previous name of the element.
 		</ul>
 	</template>
 	<script>
-	import Folder from 'vue-material-design-icons/Folder'
+	import Folder from 'vue-material-design-icons/Folder.vue'
 
 	export default {
 		components: {
