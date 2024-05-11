@@ -45,7 +45,7 @@
 	</NcAvatar>
 </template>
 <script>
-import AccountMultiple from 'vue-material-design-icons/AccountMultiple'
+import AccountMultiple from 'vue-material-design-icons/AccountMultiple.vue'
 
 export default {
 	components: {

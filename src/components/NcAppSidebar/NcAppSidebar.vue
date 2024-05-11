@@ -56,9 +56,9 @@ include a standard-header like it's used by the files app.
 	</NcAppSidebar>
 </template>
 <script>
-	import Magnify from 'vue-material-design-icons/Magnify'
-	import Cog from 'vue-material-design-icons/Cog'
-	import ShareVariant from 'vue-material-design-icons/ShareVariant'
+	import Magnify from 'vue-material-design-icons/Magnify.vue'
+	import Cog from 'vue-material-design-icons/Cog.vue'
+	import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
 
 	export default {
 		components: {
@@ -95,7 +95,7 @@ Single tab is rendered without navigation.
 	</div>
 </template>
 <script>
-import Cog from 'vue-material-design-icons/Cog'
+import Cog from 'vue-material-design-icons/Cog.vue'
 
 export default {
 	components: {
@@ -138,9 +138,9 @@ export default {
 	</div>
 </template>
 <script>
-import Magnify from 'vue-material-design-icons/Magnify'
-import Cog from 'vue-material-design-icons/Cog'
-import ShareVariant from 'vue-material-design-icons/ShareVariant'
+import Magnify from 'vue-material-design-icons/Magnify.vue'
+import Cog from 'vue-material-design-icons/Cog.vue'
+import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
 
 export default {
 	components: {
@@ -185,9 +185,9 @@ export default {
 	</NcAppSidebar>
 </template>
 <script>
-import Magnify from 'vue-material-design-icons/Magnify'
-import Cog from 'vue-material-design-icons/Cog'
-import ShareVariant from 'vue-material-design-icons/ShareVariant'
+import Magnify from 'vue-material-design-icons/Magnify.vue'
+import Cog from 'vue-material-design-icons/Cog.vue'
+import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
 
 export default {
 	components: {
@@ -231,9 +231,9 @@ export default {
 	</div>
 </template>
 <script>
-import Magnify from 'vue-material-design-icons/Magnify'
-import Cog from 'vue-material-design-icons/Cog'
-import ShareVariant from 'vue-material-design-icons/ShareVariant'
+import Magnify from 'vue-material-design-icons/Magnify.vue'
+import Cog from 'vue-material-design-icons/Cog.vue'
+import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
 
 export default {
 	components: {
@@ -357,7 +357,7 @@ A working alternative would be using an icon together with an `aria-label`:
 		</NcAppSidebar>
 	</template>
 	<script>
-	import Magnify from 'vue-material-design-icons/Magnify'
+	import Magnify from 'vue-material-design-icons/Magnify.vue'
 
 	export default {
 		components: {

@@ -150,7 +150,7 @@ It can be used with one or multiple actions.
 
 </template>
 <script>
-import Video from 'vue-material-design-icons/Video'
+import Video from 'vue-material-design-icons/Video.vue'
 
 export default {
 	components: {
