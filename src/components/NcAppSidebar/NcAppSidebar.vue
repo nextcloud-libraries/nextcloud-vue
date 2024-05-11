@@ -27,6 +27,10 @@ This component provides a way to include the standardised sidebar.
 The standard properties like name, subname, starred, etc. allow to automatically
 include a standard-header like it's used by the files app.
 
+To conditionally show the sidebar either use `v-if` on the sidebar component,
+or use the `open` property of the component to controll the state.
+Using `v-show` directly will result in usability issues due to internal focus trap handling.
+
 ### Standard usage
 
 ```vue
@@ -366,6 +370,74 @@ A working alternative would be using an icon together with an `aria-label`:
 	}
 	</script>
 ```
+
+### Conditionally show the sidebar
+
+If the sidebar should be shown conditionally (e.g. using a button)
+and the users are expected to open and close the sidebar multiple times,
+then using `v-if` might result in bad performance.
+So instead use the `open` property:
+
+```vue
+<template>
+	<!-- This is in most cases NcContent -->
+	<div class="content-wrapper">
+		<!-- The main content - In most cases NcAppContent -->
+		<div>
+			<NcButton @click.prevent="showSidebar = !showSidebar">
+				Toggle sidebar
+			</NcButton>
+		</div>
+		<!-- The sidebar -->
+		<NcAppSidebar
+			:open.sync="showSidebar"
+			name="cat-picture.jpg"
+			subname="last edited 3 weeks ago">
+			<NcAppSidebarTab name="Settings" id="settings-tab">
+				<template #icon>
+					<Cog :size="20" />
+				</template>
+				Single tab content
+			</NcAppSidebarTab>
+		</NcAppSidebar>
+	</div>
+</template>
+<script>
+import Cog from 'vue-material-design-icons/Cog'
+
+export default {
+	components: {
+		Cog,
+	},
+	data() {
+		return {
+			showSidebar: true,
+		}
+	},
+}
+</script>
+<style scoped>
+/* This styles just mock NcContent and NcAppContent */
+.content-wrapper {
+	position: relative;
+	/* Just to prevent jumping when the sidebar is hidden */
+	min-height: 360px;
+}
+
+.main-content {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+/* Fix styles on this style guide page */
+@media only screen and (max-width: 512px) {
+	:deep(aside) {
+		width: calc(100vw - 64px) !important;
+	}
+}
+</style>
+```
 </docs>
 
 <template>
@@ -375,7 +447,8 @@ A working alternative would be using an icon together with an `aria-label`:
 		@after-enter="onAfterEnter"
 		@before-leave="onBeforeLeave"
 		@after-leave="onAfterLeave">
-		<aside id="app-sidebar-vue"
+		<aside v-show="open"
+			id="app-sidebar-vue"
 			ref="sidebar"
 			class="app-sidebar"
 			:aria-labelledby="`app-sidebar-vue-${uid}__header`"
@@ -525,7 +598,6 @@ import NcButton from '../NcButton/index.js'
 import NcEmptyContent from '../NcEmptyContent/index.js'
 import Focus from '../../directives/Focus/index.js'
 import Linkify from '../../directives/Linkify/index.js'
-import Tooltip from '../../directives/Tooltip/index.js'
 import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { getTrapStack } from '../../utils/focusTrap.js'
@@ -558,7 +630,6 @@ export default {
 		focus: Focus,
 		linkify: Linkify,
 		ClickOutside,
-		Tooltip,
 	},
 
 	props: {
@@ -667,6 +738,16 @@ export default {
 			type: String,
 			default: '',
 		},
+
+		/**
+		 * Allow to conditionally show the sidebar
+		 * You can also use `v-if` on the sidebar, but using the open prop allow to keep
+		 * the sidebar inside the DOM for performance if it is opened and closed multple times.
+		 */
+		open: {
+			type: Boolean,
+			default: true,
+		},
 	},
 
 	emits: [
@@ -676,10 +757,11 @@ export default {
 		'opening',
 		'opened',
 		'figure-click',
-		'update:starred',
-		'update:nameEditable',
-		'update:name',
 		'update:active',
+		'update:name',
+		'update:nameEditable',
+		'update:open',
+		'update:starred',
 		'submit-name',
 		'dismiss-editing',
 	],
@@ -720,6 +802,10 @@ export default {
 		},
 
 		isMobile() {
+			this.toggleFocusTrap()
+		},
+
+		open() {
 			this.toggleFocusTrap()
 		},
 	},
@@ -786,7 +872,7 @@ export default {
 		 * Activate focus trap if it is currently needed, otherwise deactivate
 		 */
 		toggleFocusTrap() {
-			if (this.isMobile) {
+			if (this.open && this.isMobile) {
 				this.initFocusTrap()
 				this.focusTrap.activate()
 			} else {
@@ -811,6 +897,7 @@ export default {
 			 * The sidebar is opening and the transition is in progress
 			 *
 			 * @type {HTMLElement}
+			 * @deprecated
 			 */
 			this.$emit('opening', element)
 		},
@@ -827,6 +914,7 @@ export default {
 			 * The sidebar is closing and the transition is in progress
 			 *
 			 * @type {HTMLElement}
+			 * @deprecated
 			 */
 			this.$emit('closing', element)
 		},
@@ -855,6 +943,11 @@ export default {
 			 * @type {Event}
 			 */
 			this.$emit('close', e)
+			/**
+			 * Current open state emitted after the transitions are finished
+			 * @type {boolean}
+			 */
+			this.$emit('update:open', false)
 		},
 
 		/**
