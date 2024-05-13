@@ -397,7 +397,7 @@ So instead use the `open` property:
 		</div>
 		<!-- The sidebar -->
 		<NcAppSidebar
-			:open.sync="showSidebar"
+			v-model:open="showSidebar"
 			name="cat-picture.jpg"
 			subname="last edited 3 weeks ago">
 			<NcAppSidebarTab name="Settings" id="settings-tab">
@@ -448,8 +448,23 @@ export default {
 </docs>
 
 <template>
+	<NcButton v-if="!open"
+		:aria-label="t('Open sidebar')"
+		class="app-sidebar__toggle"
+		:class="toggleClasses"
+		type="tertiary"
+		ref="toggle"
+		@click="$emit('update:open', true)">
+		<template #icon>
+			<!-- @slot Custom icon for the toggle button, defaults to the dock-right icon from MDI -->
+			<slot name="toggle-icon">
+				<IconDockRight :size="20" />
+			</slot>
+		</template>
+	</NcButton>
 	<transition appear
 		name="slide-right"
+		v-bind="$attrs"
 		@after-enter="onAfterEnter"
 		@after-leave="onAfterLeave">
 		<aside v-show="open"
@@ -500,8 +515,8 @@ export default {
 									@click.prevent="toggleStarred">
 									<template #icon>
 										<NcLoadingIcon v-if="starLoading" />
-										<Star v-else-if="isStarred" :size="20" />
-										<StarOutline v-else :size="20" />
+										<IconStar v-else-if="isStarred" :size="20" />
+										<IconStarOutline v-else :size="20" />
 									</template>
 								</NcButton>
 							</slot>
@@ -538,7 +553,7 @@ export default {
 											:aria-label="changeNameTranslated"
 											native-type="submit">
 											<template #icon>
-												<ArrowRight :size="20" />
+												<IconArrowRight :size="20" />
 											</template>
 										</NcButton>
 									</form>
@@ -570,7 +585,7 @@ export default {
 					class="app-sidebar__close"
 					@click.prevent="closeSidebar">
 					<template #icon>
-						<Close :size="20" />
+						<IconClose :size="20" />
 					</template>
 				</NcButton>
 
@@ -609,10 +624,11 @@ import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
 import isSlotPopulated from '../../utils/isSlotPopulated.ts'
 
-import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-import Close from 'vue-material-design-icons/Close.vue'
-import Star from 'vue-material-design-icons/Star.vue'
-import StarOutline from 'vue-material-design-icons/StarOutline.vue'
+import IconArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+import IconClose from 'vue-material-design-icons/Close.vue'
+import IconDockRight from 'vue-material-design-icons/DockRight.vue'
+import IconStar from 'vue-material-design-icons/Star.vue'
+import IconStarOutline from 'vue-material-design-icons/StarOutline.vue'
 
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
@@ -623,13 +639,14 @@ export default {
 	components: {
 		NcActions,
 		NcAppSidebarTabs,
-		ArrowRight,
 		NcButton,
 		NcLoadingIcon,
 		NcEmptyContent,
-		Close,
-		Star,
-		StarOutline,
+		IconArrowRight,
+		IconClose,
+		IconDockRight,
+		IconStar,
+		IconStarOutline,
 	},
 
 	directives: {
@@ -637,6 +654,8 @@ export default {
 		linkify: Linkify,
 		ClickOutside,
 	},
+
+	inheritAttrs: false,
 
 	props: {
 		active: {
@@ -749,10 +768,22 @@ export default {
 		 * Allow to conditionally show the sidebar
 		 * You can also use `v-if` on the sidebar, but using the open prop allow to keep
 		 * the sidebar inside the DOM for performance if it is opened and closed multple times.
+		 *
+		 * When using the `open` property to close the sidebar a built-in toggle button will be shown to reopen it,
+		 * similar to the app navigation.
 		 */
 		open: {
 			type: Boolean,
 			default: true,
+		},
+
+		/**
+		 * Custom classes to assign to the sidebar toggle button
+		 * If needed this can be used to assign styles to the button using `:deep()` selector.
+		 */
+		toggleClasses: {
+			type: [String, Array, Object],
+			default: '',
 		},
 	},
 
@@ -832,6 +863,8 @@ export default {
 
 	methods: {
 		isSlotPopulated,
+
+		t,
 
 		preserveElementToReturnFocus() {
 			// Save the element that had focus before the sidebar was opened to return back on close
@@ -983,7 +1016,7 @@ export default {
 		 * @public
 		 */
 		focus() {
-			this.$refs.header.focus()
+			(this.$refs.header ?? this.$refs.toggle)?.focus()
 		},
 
 		/**
@@ -1082,6 +1115,15 @@ $top-buttons-spacing: 6px;
 	height: 100%;
 	border-left: 1px solid var(--color-border);
 	background: var(--color-main-background);
+
+	&__toggle {
+		--sidebar-toggle-position: #{$app-navigation-padding};
+		position: absolute !important;
+		inset-block-start: var(--sidebar-toggle-position);
+		inset-inline-end: var(--sidebar-toggle-position);
+		// app-content has z-index 1000 so we need 1001
+		z-index: 1001;
+	}
 
 	.app-sidebar-header {
 		> .app-sidebar__close {
