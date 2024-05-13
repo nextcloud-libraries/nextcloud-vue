@@ -441,153 +441,171 @@ export default {
 </docs>
 
 <template>
-	<transition appear
-		name="slide-right"
-		@before-enter="onBeforeEnter"
-		@after-enter="onAfterEnter"
-		@before-leave="onBeforeLeave"
-		@after-leave="onAfterLeave">
-		<aside v-show="open"
-			id="app-sidebar-vue"
-			ref="sidebar"
-			class="app-sidebar"
-			:aria-labelledby="`app-sidebar-vue-${uid}__header`"
-			@keydown.esc="onKeydownEsc">
-			<header :class="{
-					'app-sidebar-header--with-figure': hasFigure,
-					'app-sidebar-header--compact': compact,
-				}"
-				class="app-sidebar-header">
-				<!-- container for figure and description, allows easy switching to compact mode -->
-				<div class="app-sidebar-header__info">
-					<!-- sidebar header illustration/figure -->
-					<div v-if="hasFigure && !empty"
-						:class="{
-							'app-sidebar-header__figure--with-action': hasFigureClickListener
-						}"
-						class="app-sidebar-header__figure"
-						:style="{
-							backgroundImage: `url(${background})`
-						}"
-						tabindex="0"
-						@click="onFigureClick"
-						@keydown.enter="onFigureClick">
-						<slot class="app-sidebar-header__background" name="header" />
-					</div>
-
-					<!-- sidebar details -->
-					<div v-if="!empty"
-						:class="{
-							'app-sidebar-header__desc--with-tertiary-action': canStar || $slots['tertiary-actions'],
-							'app-sidebar-header__desc--editable': nameEditable && !subname,
-							'app-sidebar-header__desc--with-subname--editable': nameEditable && subname,
-							'app-sidebar-header__desc--without-actions': !$slots['secondary-actions'],
-						}"
-						class="app-sidebar-header__desc">
-						<!-- favourite icon -->
-						<div v-if="canStar || $slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
-							<slot name="tertiary-actions">
-								<NcButton v-if="canStar"
-									:aria-label="favoriteTranslated"
-									:pressed="isStarred"
-									class="app-sidebar-header__star"
-									type="secondary"
-									@click.prevent="toggleStarred">
-									<template #icon>
-										<NcLoadingIcon v-if="starLoading" />
-										<Star v-else-if="isStarred" :size="20" />
-										<StarOutline v-else :size="20" />
-									</template>
-								</NcButton>
-							</slot>
+	<Fragment>
+		<!-- With vue3 we can move this inside the transition, but vue2 does not allow v-show in transition -->
+		<NcButton v-show="!open"
+			:aria-label="t('Open sidebar')"
+			class="app-sidebar__toggle"
+			:class="toggleClasses"
+			type="tertiary"
+			@click="$emit('update:open', true)">
+			<template #icon>
+				<!-- @slot Custom icon for the toggle button, defaults to the dock-right icon from MDI -->
+				<slot name="toggle-icon">
+					<IconDockRight :size="20" />
+				</slot>
+			</template>
+		</NcButton>
+		<transition appear
+			name="slide-right"
+			v-bind="$attrs"
+			v-on="$listeners"
+			@before-enter="onBeforeEnter"
+			@after-enter="onAfterEnter"
+			@before-leave="onBeforeLeave"
+			@after-leave="onAfterLeave">
+			<aside v-show="open"
+				id="app-sidebar-vue"
+				ref="sidebar"
+				class="app-sidebar"
+				:aria-labelledby="`app-sidebar-vue-${uid}__header`"
+				@keydown.esc="onKeydownEsc">
+				<header :class="{
+						'app-sidebar-header--with-figure': hasFigure,
+						'app-sidebar-header--compact': compact,
+					}"
+					class="app-sidebar-header">
+					<!-- container for figure and description, allows easy switching to compact mode -->
+					<div class="app-sidebar-header__info">
+						<!-- sidebar header illustration/figure -->
+						<div v-if="hasFigure && !empty"
+							:class="{
+								'app-sidebar-header__figure--with-action': hasFigureClickListener
+							}"
+							class="app-sidebar-header__figure"
+							:style="{
+								backgroundImage: `url(${background})`
+							}"
+							tabindex="0"
+							@click="onFigureClick"
+							@keydown.enter="onFigureClick">
+							<slot class="app-sidebar-header__background" name="header" />
 						</div>
 
-						<!-- name -->
-						<div class="app-sidebar-header__name-container">
-							<div class="app-sidebar-header__mainname-container">
-								<!-- main name -->
-								<h2 v-show="!nameEditable"
-									:id="`app-sidebar-vue-${uid}__header`"
-									ref="header"
-									v-linkify="{text: name, linkify: linkifyName}"
-									:aria-label="title"
-									:title="title"
-									class="app-sidebar-header__mainname"
-									:tabindex="nameEditable ? 0 : -1"
-									@click.self="editName">
-									{{ name }}
-								</h2>
-								<template v-if="nameEditable">
-									<form v-click-outside="() => onSubmitName()"
-										class="app-sidebar-header__mainname-form"
-										@submit.prevent="onSubmitName">
-										<input ref="nameInput"
-											v-focus
-											class="app-sidebar-header__mainname-input"
-											type="text"
-											:placeholder="namePlaceholder"
-											:value="name"
-											@keydown.esc.stop="onDismissEditing"
-											@input="onNameInput">
-										<NcButton type="tertiary-no-background"
-											:aria-label="changeNameTranslated"
-											native-type="submit">
-											<template #icon>
-												<ArrowRight :size="20" />
-											</template>
-										</NcButton>
-									</form>
-								</template>
-								<!-- header main menu -->
-								<NcActions v-if="$slots['secondary-actions']"
-									class="app-sidebar-header__menu"
-									:force-menu="forceMenu">
-									<slot name="secondary-actions" />
-								</NcActions>
-							</div>
-							<!-- secondary name -->
-							<p v-if="subname.trim() !== '' || $slots['subname']"
-								:title="subtitle || undefined"
-								class="app-sidebar-header__subname">
-								<!-- @slot Alternative to the `subname` prop can be used for more complex conent. It will be rendered within a `p` tag. -->
-								<slot name="subname">
-									{{ subname }}
+						<!-- sidebar details -->
+						<div v-if="!empty"
+							:class="{
+								'app-sidebar-header__desc--with-tertiary-action': canStar || $slots['tertiary-actions'],
+								'app-sidebar-header__desc--editable': nameEditable && !subname,
+								'app-sidebar-header__desc--with-subname--editable': nameEditable && subname,
+								'app-sidebar-header__desc--without-actions': !$slots['secondary-actions'],
+							}"
+							class="app-sidebar-header__desc">
+							<!-- favourite icon -->
+							<div v-if="canStar || $slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
+								<slot name="tertiary-actions">
+									<NcButton v-if="canStar"
+										:aria-label="favoriteTranslated"
+										:pressed="isStarred"
+										class="app-sidebar-header__star"
+										type="secondary"
+										@click.prevent="toggleStarred">
+										<template #icon>
+											<NcLoadingIcon v-if="starLoading" />
+											<Star v-else-if="isStarred" :size="20" />
+											<StarOutline v-else :size="20" />
+										</template>
+									</NcButton>
 								</slot>
-							</p>
+							</div>
+
+							<!-- name -->
+							<div class="app-sidebar-header__name-container">
+								<div class="app-sidebar-header__mainname-container">
+									<!-- main name -->
+									<h2 v-show="!nameEditable"
+										:id="`app-sidebar-vue-${uid}__header`"
+										ref="header"
+										v-linkify="{text: name, linkify: linkifyName}"
+										:aria-label="title"
+										:title="title"
+										class="app-sidebar-header__mainname"
+										:tabindex="nameEditable ? 0 : -1"
+										@click.self="editName">
+										{{ name }}
+									</h2>
+									<template v-if="nameEditable">
+										<form v-click-outside="() => onSubmitName()"
+											class="app-sidebar-header__mainname-form"
+											@submit.prevent="onSubmitName">
+											<input ref="nameInput"
+												v-focus
+												class="app-sidebar-header__mainname-input"
+												type="text"
+												:placeholder="namePlaceholder"
+												:value="name"
+												@keydown.esc.stop="onDismissEditing"
+												@input="onNameInput">
+											<NcButton type="tertiary-no-background"
+												:aria-label="changeNameTranslated"
+												native-type="submit">
+												<template #icon>
+													<ArrowRight :size="20" />
+												</template>
+											</NcButton>
+										</form>
+									</template>
+									<!-- header main menu -->
+									<NcActions v-if="$slots['secondary-actions']"
+										class="app-sidebar-header__menu"
+										:force-menu="forceMenu">
+										<slot name="secondary-actions" />
+									</NcActions>
+								</div>
+								<!-- secondary name -->
+								<p v-if="subname.trim() !== '' || $slots['subname']"
+									:title="subtitle || undefined"
+									class="app-sidebar-header__subname">
+									<!-- @slot Alternative to the `subname` prop can be used for more complex conent. It will be rendered within a `p` tag. -->
+									<slot name="subname">
+										{{ subname }}
+									</slot>
+								</p>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<NcButton ref="closeButton"
-					:title="closeTranslated"
-					:aria-label="closeTranslated"
-					type="tertiary"
-					class="app-sidebar__close"
-					@click.prevent="closeSidebar">
+					<NcButton ref="closeButton"
+						:title="closeTranslated"
+						:aria-label="closeTranslated"
+						type="tertiary"
+						class="app-sidebar__close"
+						@click.prevent="closeSidebar">
+						<template #icon>
+							<Close :size="20" />
+						</template>
+					</NcButton>
+
+					<div v-if="$slots['description'] && !empty" class="app-sidebar-header__description">
+						<slot name="description" />
+					</div>
+				</header>
+
+				<NcAppSidebarTabs v-show="!loading"
+					ref="tabs"
+					:active="active"
+					@update:active="onUpdateActive">
+					<slot />
+				</NcAppSidebarTabs>
+
+				<NcEmptyContent v-if="loading">
 					<template #icon>
-						<Close :size="20" />
+						<NcLoadingIcon :size="64" />
 					</template>
-				</NcButton>
-
-				<div v-if="$slots['description'] && !empty" class="app-sidebar-header__description">
-					<slot name="description" />
-				</div>
-			</header>
-
-			<NcAppSidebarTabs v-show="!loading"
-				ref="tabs"
-				:active="active"
-				@update:active="onUpdateActive">
-				<slot />
-			</NcAppSidebarTabs>
-
-			<NcEmptyContent v-if="loading">
-				<template #icon>
-					<NcLoadingIcon :size="64" />
-				</template>
-			</NcEmptyContent>
-		</aside>
-	</transition>
+				</NcEmptyContent>
+			</aside>
+		</transition>
+	</Fragment>
 </template>
 
 <script>
@@ -603,8 +621,10 @@ import GenRandomId from '../../utils/GenRandomId.js'
 import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
 
+import { Fragment } from 'vue-frag'
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import Close from 'vue-material-design-icons/Close.vue'
+import IconDockRight from 'vue-material-design-icons/DockRight.vue'
 import Star from 'vue-material-design-icons/Star.vue'
 import StarOutline from 'vue-material-design-icons/StarOutline.vue'
 
@@ -615,9 +635,11 @@ export default {
 	name: 'NcAppSidebar',
 
 	components: {
+		Fragment,
 		NcActions,
 		NcAppSidebarTabs,
 		ArrowRight,
+		IconDockRight,
 		NcButton,
 		NcLoadingIcon,
 		NcEmptyContent,
@@ -631,6 +653,8 @@ export default {
 		linkify: Linkify,
 		ClickOutside,
 	},
+
+	inheritAttrs: false,
 
 	props: {
 		active: {
@@ -743,10 +767,22 @@ export default {
 		 * Allow to conditionally show the sidebar
 		 * You can also use `v-if` on the sidebar, but using the open prop allow to keep
 		 * the sidebar inside the DOM for performance if it is opened and closed multple times.
+		 *
+		 * When using the `open` property to close the sidebar a built-in toggle button will be shown to reopen it,
+		 * similar to the app navigation.
 		 */
 		open: {
 			type: Boolean,
 			default: true,
+		},
+
+		/**
+		 * Custom classes to assign to the sidebar toggle button
+		 * If needed this can be used to assign styles to the button using `:deep()` selector.
+		 */
+		toggleClasses: {
+			type: [String, Array, Object],
+			default: '',
 		},
 	},
 
@@ -830,6 +866,8 @@ export default {
 	},
 
 	methods: {
+		t,
+
 		preserveElementToReturnFocus() {
 			// Save the element that had focus before the sidebar was opened to return back on close
 			if (document.activeElement && document.activeElement !== document.body) {
@@ -1097,6 +1135,15 @@ $top-buttons-spacing: 6px;
 	height: 100%;
 	border-left: 1px solid var(--color-border);
 	background: var(--color-main-background);
+
+	&__toggle {
+		--sidebar-toggle-position: #{$app-navigation-padding};
+		position: absolute !important;
+		inset-block-start: var(--sidebar-toggle-position);
+		inset-inline-end: var(--sidebar-toggle-position);
+		// app-content has z-index 1000 so we need 1001
+		z-index: 1001;
+	}
 
 	.app-sidebar-header {
 		> .app-sidebar__close {
