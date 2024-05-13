@@ -29,7 +29,7 @@
 	</div>
 </template>
 <script>
-import { useIntersectionObserver, useResizeObserver } from '@vueuse/core'
+import { useElementSize, useIntersectionObserver } from '@vueuse/core'
 import { nextTick, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
@@ -62,30 +62,14 @@ export default {
 	},
 
 	setup() {
-		const width = ref(0)
 		const isVisible = ref(false)
 		// This is the widget root node
 		const widgetRoot = ref()
+		const { width } = useElementSize(widgetRoot)
 
 		useIntersectionObserver(widgetRoot, () => {
 			nextTick(() => {
 				isVisible.value = widgetRoot.value?.isIntersecting ?? false
-			})
-		})
-
-		/**
-		 * Measure the width of the widgetRoot after a resize
-		 */
-		useResizeObserver(widgetRoot, () => {
-			/**
-			 * Wait till the next tick to allow the resize to finish first
-			 * and avoid triggering content updates during the resize.
-			 *
-			 * Without the nextTick we were seeing crashing browsers
-			 * in cypress tests.
-			 */
-			nextTick(() => {
-				width.value = widgetRoot.value?.contentRect.width ?? 0
 			})
 		})
 
@@ -135,7 +119,7 @@ export default {
 		numberOfLines() {
 			// no description for width < 450, one line until 550 and so on
 			const lineCountOffsets = [450, 550, 650, Infinity]
-			return lineCountOffsets.findIndex(max => this.width.value < max)
+			return lineCountOffsets.findIndex(max => this.width < max)
 		},
 		compactLink() {
 			const link = this.reference.openGraphObject.link
