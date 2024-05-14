@@ -38,7 +38,7 @@ It might be used for list rendering or within the multiselect for example
 		</NcListItemIcon>
 	</template>
 	<script>
-	import Account from 'vue-material-design-icons/Account'
+	import Account from 'vue-material-design-icons/Account.vue'
 
 	export default {
 		components: {
@@ -58,7 +58,7 @@ It might be used for list rendering or within the multiselect for example
 		</NcListItemIcon>
 	</template>
 	<script>
-	import AccountMultiple from 'vue-material-design-icons/AccountMultiple'
+	import AccountMultiple from 'vue-material-design-icons/AccountMultiple.vue'
 
 	export default {
 		components: {
@@ -80,7 +80,7 @@ It might be used for list rendering or within the multiselect for example
 		</NcListItemIcon>
 	</template>
 	<script>
-	import AccountMultiple from 'vue-material-design-icons/AccountMultiple'
+	import AccountMultiple from 'vue-material-design-icons/AccountMultiple.vue'
 
 	export default {
 		components: {
@@ -111,8 +111,8 @@ It might be used for list rendering or within the multiselect for example
 		</NcListItemIcon>
 	</template>
 	<script>
-	import Delete from 'vue-material-design-icons/Delete'
-	import Pencil from 'vue-material-design-icons/Pencil'
+	import Delete from 'vue-material-design-icons/Delete.vue'
+	import Pencil from 'vue-material-design-icons/Pencil.vue'
 
 	export default {
 		components: {

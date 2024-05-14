@@ -64,8 +64,8 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 	</div>
 </template>
 <script>
-import Download from 'vue-material-design-icons/Download'
-import OpenInNew from 'vue-material-design-icons/OpenInNew'
+import Download from 'vue-material-design-icons/Download.vue'
+import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
 
 export default {
 	components: {

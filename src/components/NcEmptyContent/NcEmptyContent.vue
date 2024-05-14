@@ -37,7 +37,7 @@ Providing an icon, name, and a description is strongly advised.
 </template>
 
 <script>
-import Comment from 'vue-material-design-icons/Comment'
+import Comment from 'vue-material-design-icons/Comment.vue'
 
 export default {
 	components: {
@@ -99,7 +99,7 @@ consider only using header elements as the root elements for the name slot.
 </template>
 
 <script>
-import Comment from 'vue-material-design-icons/Comment'
+import Comment from 'vue-material-design-icons/Comment.vue'
 
 export default {
 	components: {
@@ -127,7 +127,7 @@ like a link.
 </template>
 
 <script>
-import Comment from 'vue-material-design-icons/Comment'
+import Comment from 'vue-material-design-icons/Comment.vue'
 
 export default {
 	components: {
