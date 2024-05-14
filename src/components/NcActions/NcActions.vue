@@ -41,7 +41,7 @@ https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-action
 	</NcActions>
 </template>
 <script>
-import Delete from 'vue-material-design-icons/Delete'
+import Delete from 'vue-material-design-icons/Delete.vue'
 
 export default {
 	components: {
@@ -82,9 +82,9 @@ export default {
 	</NcActions>
 </template>
 <script>
-import Delete from 'vue-material-design-icons/Delete'
-import OpenInNew from 'vue-material-design-icons/OpenInNew'
-import Pencil from 'vue-material-design-icons/Pencil'
+import Delete from 'vue-material-design-icons/Delete.vue'
+import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
+import Pencil from 'vue-material-design-icons/Pencil.vue'
 
 export default {
 	components: {
@@ -133,10 +133,10 @@ export default {
 	</NcActions>
 </template>
 <script>
-import Plus from 'vue-material-design-icons/Plus'
-import Delete from 'vue-material-design-icons/Delete'
-import OpenInNew from 'vue-material-design-icons/OpenInNew'
-import Pencil from 'vue-material-design-icons/Pencil'
+import Plus from 'vue-material-design-icons/Plus.vue'
+import Delete from 'vue-material-design-icons/Delete.vue'
+import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
+import Pencil from 'vue-material-design-icons/Pencil.vue'
 
 export default {
 	components: {
@@ -186,10 +186,10 @@ export default {
 	</NcActions>
 </template>
 <script>
-import Plus from 'vue-material-design-icons/Plus'
-import Delete from 'vue-material-design-icons/Delete'
-import OpenInNew from 'vue-material-design-icons/OpenInNew'
-import Pencil from 'vue-material-design-icons/Pencil'
+import Plus from 'vue-material-design-icons/Plus.vue'
+import Delete from 'vue-material-design-icons/Delete.vue'
+import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
+import Pencil from 'vue-material-design-icons/Pencil.vue'
 export default {
 	components: {
 		Delete,
@@ -235,9 +235,9 @@ export default {
 	</NcActions>
 </template>
 <script>
-import Delete from 'vue-material-design-icons/Delete'
-import OpenInNew from 'vue-material-design-icons/OpenInNew'
-import Pencil from 'vue-material-design-icons/Pencil'
+import Delete from 'vue-material-design-icons/Delete.vue'
+import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
+import Pencil from 'vue-material-design-icons/Pencil.vue'
 
 export default {
 	components: {
@@ -289,10 +289,10 @@ export default {
 	</NcActions>
 </template>
 <script>
-import ArrowRight from 'vue-material-design-icons/ArrowRight'
-import Delete from 'vue-material-design-icons/Delete'
-import Download from 'vue-material-design-icons/Download'
-import Pencil from 'vue-material-design-icons/Pencil'
+import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+import Delete from 'vue-material-design-icons/Delete.vue'
+import Download from 'vue-material-design-icons/Download.vue'
+import Pencil from 'vue-material-design-icons/Pencil.vue'
 
 export default {
 	components: {
@@ -324,8 +324,8 @@ export default {
 	</NcActions>
 </template>
 <script>
-import Delete from 'vue-material-design-icons/Delete'
-import Pencil from 'vue-material-design-icons/Pencil'
+import Delete from 'vue-material-design-icons/Delete.vue'
+import Pencil from 'vue-material-design-icons/Pencil.vue'
 
 export default {
 	components: {
@@ -369,11 +369,11 @@ export default {
 	</NcActions>
 </template>
 <script>
-import ArrowRight from 'vue-material-design-icons/ArrowRight'
-import Delete from 'vue-material-design-icons/Delete'
-import Download from 'vue-material-design-icons/Download'
-import Pencil from 'vue-material-design-icons/Pencil'
-import Plus from 'vue-material-design-icons/Plus'
+import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+import Delete from 'vue-material-design-icons/Delete.vue'
+import Download from 'vue-material-design-icons/Download.vue'
+import Pencil from 'vue-material-design-icons/Pencil.vue'
+import Plus from 'vue-material-design-icons/Plus.vue'
 
 export default {
 	components: {
@@ -414,9 +414,9 @@ It can be used with one or multiple actions.
 	</div>
 </template>
 <script>
-import Delete from 'vue-material-design-icons/Delete'
-import DotsHorizontalCircleOutline from 'vue-material-design-icons/DotsHorizontalCircleOutline'
-import MicrophoneOff from 'vue-material-design-icons/MicrophoneOff'
+import Delete from 'vue-material-design-icons/Delete.vue'
+import DotsHorizontalCircleOutline from 'vue-material-design-icons/DotsHorizontalCircleOutline.vue'
+import MicrophoneOff from 'vue-material-design-icons/MicrophoneOff.vue'
 
 export default {
 	components: {
@@ -452,8 +452,8 @@ export default {
 	</NcActions>
 </template>
 <script>
-import Delete from 'vue-material-design-icons/Delete'
-import Magnify from 'vue-material-design-icons/Magnify'
+import Delete from 'vue-material-design-icons/Delete.vue'
+import Magnify from 'vue-material-design-icons/Magnify.vue'
 
 export default {
 	components: {
@@ -531,10 +531,10 @@ export default {
 </template>
 
 <script>
-import Delete from 'vue-material-design-icons/Delete'
-import Palette from 'vue-material-design-icons/Palette'
-import SelectColor from 'vue-material-design-icons/SelectColor'
-import CheckboxMarkedCircleOutline from 'vue-material-design-icons/CheckboxMarkedCircleOutline'
+import Delete from 'vue-material-design-icons/Delete.vue'
+import Palette from 'vue-material-design-icons/Palette.vue'
+import SelectColor from 'vue-material-design-icons/SelectColor.vue'
+import CheckboxMarkedCircleOutline from 'vue-material-design-icons/CheckboxMarkedCircleOutline.vue'
 
 export default {
 	components: {
@@ -733,18 +733,18 @@ export default {
 
 <script>
 // Common icons
-import Pencil from 'vue-material-design-icons/Pencil'
-import Delete from 'vue-material-design-icons/Delete'
+import Pencil from 'vue-material-design-icons/Pencil.vue'
+import Delete from 'vue-material-design-icons/Delete.vue'
 
 // Email icons
-import StarOutline from 'vue-material-design-icons/StarOutline'
-import EmailUnread from 'vue-material-design-icons/Email'
-import Bookmark from 'vue-material-design-icons/Bookmark'
-import ClockOutlineIcon from 'vue-material-design-icons/ClockOutline'
-import AlertOctagonIcon from 'vue-material-design-icons/AlertOctagon'
-import CheckIcon from 'vue-material-design-icons/Check'
-import OpenInNewIcon from 'vue-material-design-icons/OpenInNew'
-import DownloadIcon from 'vue-material-design-icons/Download'
+import StarOutline from 'vue-material-design-icons/StarOutline.vue'
+import EmailUnread from 'vue-material-design-icons/Email.vue'
+import Bookmark from 'vue-material-design-icons/Bookmark.vue'
+import ClockOutlineIcon from 'vue-material-design-icons/ClockOutline.vue'
+import AlertOctagonIcon from 'vue-material-design-icons/AlertOctagon.vue'
+import CheckIcon from 'vue-material-design-icons/Check.vue'
+import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
+import DownloadIcon from 'vue-material-design-icons/Download.vue'
 
 // Formating icons
 import FormatTitle from 'vue-material-design-icons/FormatTitle.vue'

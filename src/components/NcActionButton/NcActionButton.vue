@@ -54,8 +54,8 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 		</NcActions>
 	</template>
 	<script>
-	import Delete from 'vue-material-design-icons/Delete'
-	import Plus from 'vue-material-design-icons/Plus'
+	import Delete from 'vue-material-design-icons/Delete.vue'
+	import Plus from 'vue-material-design-icons/Plus.vue'
 
 	export default {
 		components: {
@@ -91,8 +91,8 @@ If you're using a long text you can specify a name
 		</NcActions>
 	</template>
 	<script>
-	import Delete from 'vue-material-design-icons/Delete'
-	import Plus from 'vue-material-design-icons/Plus'
+	import Delete from 'vue-material-design-icons/Delete.vue'
+	import Plus from 'vue-material-design-icons/Plus.vue'
 
 	export default {
 		components: {
@@ -123,7 +123,7 @@ Action icon attribute with a single action
 		</NcActions>
 	</template>
 	<script>
-	import Plus from 'vue-material-design-icons/Plus'
+	import Plus from 'vue-material-design-icons/Plus.vue'
 
 	export default {
 		components: {
@@ -159,8 +159,8 @@ You can also use a custom icon, for example from the vue-material-design-icons l
 	</NcActions>
 </template>
 <script>
-import HandBackLeft from 'vue-material-design-icons/HandBackLeft'
-import HandBackRight from 'vue-material-design-icons/HandBackRight'
+import HandBackLeft from 'vue-material-design-icons/HandBackLeft.vue'
+import HandBackRight from 'vue-material-design-icons/HandBackRight.vue'
 
 export default {
 	components: {
