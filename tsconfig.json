@@ -1,18 +1,18 @@
 {
   "extends": "@vue/tsconfig/tsconfig.json",
-  "include": ["./src/**/*.ts", "./src/**/*.vue", "**/*.ts"],
-  "exclude": ["./src/**/*.cy.ts"],
+  "include": ["./src/**/*.js","./src/**/*.ts", "./src/**/*.vue", "**/*.ts"],
+  "exclude": ["./src/**/*.cy.ts", "cypress", "tests"],
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "Bundler",
     "target": "ESNext",
     "module": "ESNext",
-    "declaration": true,
-    "strict": true,
+    "moduleResolution": "Bundler",
     "noImplicitAny": false,
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": ".",
+    "strict": true,
+    "noEmit": true,
   },
 
   "vueCompilerOptions": {
