@@ -1196,8 +1196,11 @@ $top-buttons-spacing: 6px;
 					overflow: hidden;
 					width: 100%;
 					margin: 0;
-					white-space: nowrap;
+					white-space: normal;
 					text-overflow: ellipsis;
+					display: -webkit-box;
+					-webkit-line-clamp: 3;
+					-webkit-box-orient: vertical;
 				}
 
 				// subname
