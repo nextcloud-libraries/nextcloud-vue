@@ -206,6 +206,9 @@ export default {
 		attributes() {
 			return {
 				class: ['icon-vue', { 'icon-vue--inline': this.inline }],
+				style: {
+					' --icon-size': this.iconSize,
+				},
 				role: 'img',
 				'aria-hidden': !this.name ? true : undefined,
 				'aria-label': this.name || undefined,
@@ -233,10 +236,10 @@ export default {
 
 	&:deep(svg) {
 		fill: currentColor;
-		width: v-bind('iconSize');
-		height: v-bind('iconSize');
-		max-width: v-bind('iconSize');
-		max-height: v-bind('iconSize');
+		width: var(--icon-size, 20px);
+		height: var(--icon-size, 20px);
+		max-width: var(--icon-size, 20px);
+		max-height: var(--icon-size, 20px);
 	}
 }
 </style>
