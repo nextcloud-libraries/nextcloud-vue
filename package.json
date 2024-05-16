@@ -121,7 +121,7 @@
     "@nextcloud/browserslist-config": "^3.0.0",
     "@nextcloud/eslint-config": "^8.3.0",
     "@nextcloud/stylelint-config": "^3.0.0",
-    "@nextcloud/vite-config": "^1.2.2",
+    "@nextcloud/vite-config": "^2.0.0",
     "@nextcloud/webpack-vue-config": "^6.0.1",
     "@types/gettext-parser": "^4.0.4",
     "@types/jest": "^29.5.5",
