@@ -738,7 +738,7 @@ export default {
 	span {
 		cursor: pointer;
 	}
-	border-radius: math.div($clickable-area, 2);
+	border-radius: var(--border-radius-new-design, math.div($clickable-area, 2));
 	transition-property: color, border-color, background-color;
 	transition-duration: 0.1s;
 	transition-timing-function: linear;
@@ -841,7 +841,7 @@ export default {
 		box-shadow: 0 0 0 4px var(--color-main-background) !important;
 		&.button-vue--vue-tertiary-on-primary {
 			outline: 2px solid var(--color-primary-element-text);
-			border-radius: var(--border-radius);
+			border-radius: var(--border-radius-new-design, var(--border-radius));
 			background-color: transparent;
 		}
 	}
