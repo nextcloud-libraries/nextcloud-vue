@@ -373,7 +373,7 @@ export default {
 
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
-		border: 2px solid var(--color-border-maxcontrast);
+		border: var(--border-width-input, 2px) solid var(--color-border-maxcontrast);
 		border-radius: var(--border-radius-large);
 
 		cursor: pointer;
@@ -388,7 +388,8 @@ export default {
 		&:active:not([disabled]),
 		&:hover:not([disabled]),
 		&:focus:not([disabled]) {
-			border-color: 2px solid var(--color-main-text) !important;
+			border-width: var(--border-width-input-focused, 2px);
+			border-color: var(--color-main-text) !important;
 			box-shadow: 0 0 0 2px var(--color-main-background) !important;
 		}
 
