@@ -33,8 +33,7 @@ This component is to be used in the settings section of nextcloud.
 	<NcSettingsSection
 		name="Two-Factor Authentication"
 		description="Two-factor authentication can be enforced for all users and specific groups."
-		doc-url="https://docs.nextcloud.com/server/19/go.php?to=admin-2fa"
-		:limit-width="true">
+		doc-url="https://docs.nextcloud.com/server/19/go.php?to=admin-2fa">
 		<p>Your settings here</p>
 	</NcSettingsSection>
 </template>
@@ -42,7 +41,7 @@ This component is to be used in the settings section of nextcloud.
 </docs>
 
 <template>
-	<div class="settings-section" :class="{'settings-section--limit-width': limitWidth}">
+	<div class="settings-section">
 		<h2 class="settings-section__name">
 			{{ name }}
 			<a v-if="hasDocUrl"
@@ -88,16 +87,6 @@ export default {
 			type: String,
 			default: '',
 		},
-		/**
-		 * Limit the width of the setting's content
-		 *
-		 * By default only the name and description have a limit, use this
-		 * property to also apply this to the rest of the content.
-		 */
-		limitWidth: {
-			type: Boolean,
-			default: true,
-		},
 	},
 
 	data() {
@@ -122,26 +111,22 @@ export default {
 
 <style lang="scss" scoped>
 $maxWidth: 900px;
+$sectionMargin: calc(var(--default-grid-baseline) * 7);
 
 .settings-section {
 	display: block;
-	margin-bottom: auto;
-	padding: 30px;
+	padding: 0 0 calc(var(--default-grid-baseline) * 5) 0;
+	margin: $sectionMargin;
+	width: min($maxWidth, 100% - calc($sectionMargin * 2));
 
 	&:not(:last-child) {
 		border-bottom: 1px solid var(--color-border);
-	}
-
-	&--limit-width > * {
-		max-width: $maxWidth;
 	}
 
 	&__name {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		font-size: 20px;
-		font-weight: bold;
 		max-width: $maxWidth;
 	}
 
