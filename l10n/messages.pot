@@ -14,6 +14,9 @@ msgstr ""
 msgid "a few seconds ago"
 msgstr ""
 
+msgid "A pattern with value {pattern}"
+msgstr ""
+
 #. TRANSLATORS: A color name for RGB(110, 166, 143)
 msgid "Acapulco"
 msgstr ""
@@ -69,6 +72,9 @@ msgstr ""
 msgid "Change name"
 msgstr ""
 
+msgid "checkered"
+msgstr ""
+
 msgid "Choose"
 msgstr ""
 
@@ -115,7 +121,13 @@ msgstr ""
 msgid "Deselect {option}"
 msgstr ""
 
+msgid "diagonal-lines"
+msgstr ""
+
 msgid "do not disturb"
+msgstr ""
+
+msgid "dots"
 msgstr ""
 
 msgid "Edit item"
@@ -161,7 +173,13 @@ msgstr ""
 msgid "Gold"
 msgstr ""
 
+msgid "hexagons"
+msgstr ""
+
 msgid "Hide password"
+msgstr ""
+
+msgid "horizontal-lines"
 msgstr ""
 
 msgid "invisible"
@@ -365,6 +383,9 @@ msgid "Symbols"
 msgstr ""
 
 msgid "Travel & Places"
+msgstr ""
+
+msgid "triangles"
 msgstr ""
 
 msgid "Type to search time zone"
