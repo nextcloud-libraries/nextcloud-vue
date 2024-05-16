@@ -234,7 +234,7 @@ export default {
 	// Set scoped variable override
 	// Using --color-text-maxcontrast as a fallback evaluates to an invalid value as it references itself in this scope instead of the variable defined higher up
 	--color-text-maxcontrast: var(--color-text-maxcontrast-background-blur, var(--color-text-maxcontrast-default));
-	transition: transform var(--animation-quick), margin var(--animation-quick);
+	transition: transform var(--animation-slow) cubic-bezier(.34,.11,0,1.2), margin var(--animation-slow) cubic-bezier(.34,.11,0,1.2);
 	width: $navigation-width;
 	// Left toggle button padding + toggle button + right padding from NcAppContent
 	--app-navigation-max-width: calc(100vw - (var(--app-navigation-padding) + var(--default-clickable-area) + var(--default-grid-baseline)));
