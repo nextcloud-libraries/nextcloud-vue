@@ -893,9 +893,6 @@ export default {
 				this.$refs.sidebar,
 				// Nextcloud Server header navigarion
 				document.querySelector('#header'),
-				// The app navigation toggle. Navigation can be opened above the sidebar
-				// Take the parent element, because the focus-trap requires a container with elements, not the element itself
-				document.querySelector('[aria-controls="app-navigation-vue"]')?.parentElement,
 			], {
 				allowOutsideClick: true,
 				fallbackFocus: this.$refs.closeButton,
