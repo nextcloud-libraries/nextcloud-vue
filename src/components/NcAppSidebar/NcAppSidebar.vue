@@ -450,9 +450,7 @@ export default {
 <template>
 	<transition appear
 		name="slide-right"
-		@before-enter="onBeforeEnter"
 		@after-enter="onAfterEnter"
-		@before-leave="onBeforeLeave"
 		@after-leave="onAfterLeave">
 		<aside v-show="open"
 			id="app-sidebar-vue"
@@ -760,9 +758,7 @@ export default {
 
 	emits: [
 		'close',
-		'closing',
 		'closed',
-		'opening',
 		'opened',
 		// 'figure-click', not emitted on purpose to make "hasFigureClickListener" work
 		'update:active',
@@ -899,15 +895,6 @@ export default {
 			}
 		},
 
-		onBeforeEnter(element) {
-			/**
-			 * The sidebar is opening and the transition is in progress
-			 *
-			 * @type {HTMLElement}
-			 * @deprecated
-			 */
-			this.$emit('opening', element)
-		},
 		onAfterEnter(element) {
 			/**
 			 * The sidebar is opened and the transition is complete
@@ -915,15 +902,6 @@ export default {
 			 * @type {HTMLElement}
 			 */
 			this.$emit('opened', element)
-		},
-		onBeforeLeave(element) {
-			/**
-			 * The sidebar is closing and the transition is in progress
-			 *
-			 * @type {HTMLElement}
-			 * @deprecated
-			 */
-			this.$emit('closing', element)
 		},
 		onAfterLeave(element) {
 			/**
