@@ -376,18 +376,21 @@ A working alternative would be using an icon together with an `aria-label`:
 If the sidebar should be shown conditionally (e.g. using a button)
 and the users are expected to open and close the sidebar multiple times,
 then using `v-if` might result in bad performance.
-So instead use the `open` property:
+So instead use the `open` property.
+
+You can also use `--app-sidebar-offset` CSS variable to preserve space for the toggle button, for example, in top bar of NcAppContent.
 
 ```vue
 <template>
 	<!-- This is in most cases NcContent -->
-	<div class="content-wrapper">
-		<!-- The main content - In most cases NcAppContent -->
-		<div>
-			<NcButton @click.prevent="showSidebar = !showSidebar">
-				Toggle sidebar
-			</NcButton>
-		</div>
+	<NcContent app-name="styleguidist" class="content-styleguidist">
+		<NcAppContent>
+			<div class="top-bar">
+				<NcButton @click.prevent="showSidebar = !showSidebar">
+					Toggle sidebar
+				</NcButton>
+			</div>
+		</NcAppContent>
 		<!-- The sidebar -->
 		<NcAppSidebar
 			:open.sync="showSidebar"
@@ -400,8 +403,9 @@ So instead use the `open` property:
 				Single tab content
 			</NcAppSidebarTab>
 		</NcAppSidebar>
-	</div>
+	</NcContent>
 </template>
+
 <script>
 import Cog from 'vue-material-design-icons/Cog'
 
@@ -418,8 +422,8 @@ export default {
 </script>
 <style scoped>
 /* This styles just mock NcContent and NcAppContent */
-.content-wrapper {
-	position: relative;
+.content-styleguidist {
+	position: relative !important;
 	/* Just to prevent jumping when the sidebar is hidden */
 	min-height: 360px;
 }
@@ -436,6 +440,15 @@ export default {
 		width: calc(100vw - 64px) !important;
 	}
 }
+
+.top-bar {
+	display: flex;
+	justify-content: flex-end;
+	/* preserve space for toggle button */
+	padding-inline-end: var(--app-sidebar-offset);
+	/* same as on toggle button, but doesn't have to be the same */
+	margin: var(--app-sidebar-padding);
+}
 </style>
 ```
 </docs>
@@ -443,7 +456,7 @@ export default {
 <template>
 	<Fragment>
 		<!-- With vue3 we can move this inside the transition, but vue2 does not allow v-show in transition -->
-		<NcButton v-show="!open"
+		<NcButton v-if="!open"
 			:aria-label="t('Open sidebar')"
 			class="app-sidebar__toggle"
 			:class="toggleClasses"
@@ -1101,6 +1114,20 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss">
+.content {
+	// A padding between the toggle button and the page border
+	--app-sidebar-padding: #{$app-navigation-padding};
+	// A padding between the toggle button and the page border
+	--app-sidebar-offset: 0;
+}
+
+.content:has(.app-sidebar__toggle) {
+	--app-sidebar-offset: calc(var(--app-sidebar-padding) + var(--default-clickable-area));
+}
+</style>
+
 <style lang="scss" scoped>
 $sidebar-min-width: 300px;
 $sidebar-max-width: 500px;
@@ -1137,10 +1164,9 @@ $top-buttons-spacing: 6px;
 	background: var(--color-main-background);
 
 	&__toggle {
-		--sidebar-toggle-position: #{$app-navigation-padding};
 		position: absolute !important;
-		inset-block-start: var(--sidebar-toggle-position);
-		inset-inline-end: var(--sidebar-toggle-position);
+		inset-block-start: var(--app-sidebar-padding);
+		inset-inline-end: var(--app-sidebar-padding);
 		// app-content has z-index 1000 so we need 1001
 		z-index: 1001;
 	}
