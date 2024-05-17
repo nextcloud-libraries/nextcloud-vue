@@ -255,7 +255,8 @@ export default {
 	flex-shrink: 0;
 	background-color: var(--color-main-background-blur, var(--color-main-background));
 	-webkit-backdrop-filter: var(--filter-background-blur, none);
-	backdrop-filter: var(--filter-background-blur, none);
+	// Commented because it leads to huge performance problems in Chromium based browsers on Windows
+	// backdrop-filter: var(--filter-background-blur, none);
 
 	&--close {
 		margin-left: calc(-1 * min($navigation-width, var(--app-navigation-max-width)));
