@@ -41,7 +41,7 @@ This component is to be used in the settings section of nextcloud.
 </docs>
 
 <template>
-	<div class="settings-section">
+	<div class="settings-section" :class="{'settings-section--limit-width': forceLimitWidth}">
 		<h2 class="settings-section__name">
 			{{ name }}
 			<a v-if="hasDocUrl"
@@ -87,6 +87,17 @@ export default {
 			type: String,
 			default: '',
 		},
+		/**
+		 * Limit the width of the setting's content
+		 *
+		 * Setting this to false allows unrestricted (width) settings content.
+		 * Note that the name and description have always a width limit.
+		 * @deprecated Will be removed with next version and will not be used on Nextcloud 30+ (always forced to true)
+		 */
+		limitWidth: {
+			type: Boolean,
+			default: true,
+		},
 	},
 
 	data() {
@@ -98,6 +109,15 @@ export default {
 	},
 
 	computed: {
+		forceLimitWidth() {
+			if (this.limitWidth) {
+				return true
+			}
+			// Overwrite this on Nextcloud 30+ to always limit the width
+			const [major] = window._oc_config?.version.split('.', 2) ?? []
+			return major && Number.parseInt(major) >= 30
+		},
+
 		hasDescription() {
 			return this.description.length > 0
 		},
@@ -111,22 +131,26 @@ export default {
 
 <style lang="scss" scoped>
 $maxWidth: 900px;
-$sectionMargin: calc(var(--default-grid-baseline) * 7);
 
 .settings-section {
 	display: block;
-	padding: 0 0 calc(var(--default-grid-baseline) * 5) 0;
-	margin: $sectionMargin;
-	width: min($maxWidth, 100% - calc($sectionMargin * 2));
+	margin-bottom: auto;
+	padding: 30px;
 
 	&:not(:last-child) {
 		border-bottom: 1px solid var(--color-border);
+	}
+
+	&--limit-width > * {
+		max-width: $maxWidth;
 	}
 
 	&__name {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		font-size: 20px;
+		font-weight: bold;
 		max-width: $maxWidth;
 	}
 
