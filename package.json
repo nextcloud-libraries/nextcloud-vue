@@ -31,37 +31,30 @@
     "cypress:gui": "TZ=UTC cypress open --component",
     "cypress:update-snapshots": "TZ=UTC cypress run --component --spec \"cypress/visual/**/*.cy.{t,j}s\" --env type=base --config screenshotsFolder=cypress/snapshots/base"
   },
-  "main": "dist/index.cjs",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "import": "./dist/index.mjs"
     },
     "./dist/Components/*.js": {
       "types": "./dist/components/*/index.d.ts",
-      "import": "./dist/Components/*.mjs",
-      "require": "./dist/Components/*.cjs"
+      "import": "./dist/Components/*.mjs"
     },
     "./dist/Directives/*.js": {
       "types": "./dist/directives/*/index.d.ts",
-      "import": "./dist/Directives/*.mjs",
-      "require": "./dist/Directives/*.cjs"
+      "import": "./dist/Directives/*.mjs"
     },
     "./dist/Functions/*.js": {
       "types": "./dist/functions/*/index.d.ts",
-      "import": "./dist/Functions/*.mjs",
-      "require": "./dist/Functions/*.cjs"
+      "import": "./dist/Functions/*.mjs"
     },
     "./dist/Mixins/*.js": {
       "types": "./dist/mixins/*/index.d.ts",
-      "import": "./dist/Mixins/*.mjs",
-      "require": "./dist/Mixins/*.cjs"
+      "import": "./dist/Mixins/*.mjs"
     },
     "./dist/Composables/*.js": {
       "types": "./dist/composables/*/index.d.ts",
-      "import": "./dist/Composables/*.mjs",
-      "require": "./dist/Composables/*.cjs"
+      "import": "./dist/Composables/*.mjs"
     }
   },
   "files": [
