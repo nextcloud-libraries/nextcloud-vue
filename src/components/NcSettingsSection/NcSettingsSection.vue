@@ -33,8 +33,7 @@ This component is to be used in the settings section of nextcloud.
 	<NcSettingsSection
 		name="Two-Factor Authentication"
 		description="Two-factor authentication can be enforced for all users and specific groups."
-		doc-url="https://docs.nextcloud.com/server/19/go.php?to=admin-2fa"
-		:limit-width="true">
+		doc-url="https://docs.nextcloud.com/server/19/go.php?to=admin-2fa">
 		<p>Your settings here</p>
 	</NcSettingsSection>
 </template>
@@ -42,7 +41,7 @@ This component is to be used in the settings section of nextcloud.
 </docs>
 
 <template>
-	<div class="settings-section" :class="{'settings-section--limit-width': limitWidth}">
+	<div class="settings-section" :class="{'settings-section--limit-width': forceLimitWidth}">
 		<h2 class="settings-section__name">
 			{{ name }}
 			<a v-if="hasDocUrl"
@@ -91,8 +90,9 @@ export default {
 		/**
 		 * Limit the width of the setting's content
 		 *
-		 * By default only the name and description have a limit, use this
-		 * property to also apply this to the rest of the content.
+		 * Setting this to false allows unrestricted (width) settings content.
+		 * Note that the name and description have always a width limit.
+		 * @deprecated Will be removed with next version and will not be used on Nextcloud 30+ (always forced to true)
 		 */
 		limitWidth: {
 			type: Boolean,
@@ -109,6 +109,15 @@ export default {
 	},
 
 	computed: {
+		forceLimitWidth() {
+			if (this.limitWidth) {
+				return true
+			}
+			// Overwrite this on Nextcloud 30+ to always limit the width
+			const [major] = window._oc_config?.version.split('.', 2) ?? []
+			return major && Number.parseInt(major) >= 30
+		},
+
 		hasDescription() {
 			return this.description.length > 0
 		},
