@@ -8,14 +8,14 @@ All notable changes to this project will be documented in this file.
 ### 🚀 Enhancements
 * feat(NcAppNavigationCaption): Allow to set heading level [\#5567](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5567) \([susnux](https://github.com/susnux)\)
 * feat(NcAppNavigationCaption): Add `heading-id` prop to allow setting the ID on the caption itself [\#5565](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5565) \([susnux](https://github.com/susnux)\)
+* feat(NcAppSidebar): Allow to set `open` state to prevent focus trap issues on mobile [\#5584](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5584) \([susnux](https://github.com/susnux)\)
 
 ### 🐛 Fixed bugs
 * fix(NcReferenceWidget): use requestAnimationFrame in observers [\#5561](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5561) \([max-nextcloud](https://github.com/max-nextcloud)\)
 * fix(NcAppNavigationCaption): Fix margin [\#5576](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5576) \([Pytal](https://github.com/Pytal)\)
 * fix(NcReferenceWidget): useElementSize [\#5587](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5587) \([max-nextcloud](https://github.com/max-nextcloud)\)
 * fix(docs): Add missing file extensions to vue-material-design-icons imports [\#5581](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5581) \([susnux](https://github.com/susnux)\)
-* feat(NcAppSidebar): Allow to set `open` state to prevent focus trap issues on mobile [\#5584](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5584) \([susnux](https://github.com/susnux)\)
-* feat(mobile): restore hiding the appnavigation on mobile [\#5603](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5603) \([szaimen](https://github.com/szaimen)\)
+* fix(NcAppNavigation): restore hiding toggle on mobile [\#5603](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5603) \([szaimen](https://github.com/szaimen)\)
 * fix(NcSettingSection): Update design and enforce `limitWidth` option [\#5514](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5514) \([marcoambrosini](https://github.com/marcoambrosini)\)
   * Adjusted in [\#5604](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5604)
 
