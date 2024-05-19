@@ -106,6 +106,7 @@ All notable changes to this project will be documented in this file.
 ### 🚀 Enhancements
 * feat(NcAppNavigationCaption): Allow to set heading level [\#5567](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5567) \([susnux](https://github.com/susnux)\)
 * feat(NcAppNavigationCaption): Add `heading-id` prop to allow setting the ID on the caption itself [\#5565](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5565) \([susnux](https://github.com/susnux)\)
+* feat(NcAppSidebar): Allow to set `open` state to prevent focus trap issues on mobile [\#5584](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5584) \([susnux](https://github.com/susnux)\)
 
 ### 🐛 Fixed bugs
 * fix(NcReferenceWidget): use requestAnimationFrame in observers [\#5561](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5561) \([max-nextcloud](https://github.com/max-nextcloud)\)
