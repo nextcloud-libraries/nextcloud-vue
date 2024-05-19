@@ -112,8 +112,8 @@ export default defineConfig((env) => {
 		},
 		// For backwards compatibility we include the css within the js files
 		inlineCSS: true,
-		// Build CommonJS files for backwards compatibility
-		libraryFormats: ['cjs', 'es'],
+		// Only standard ESM
+		libraryFormats: ['es'],
 		replace: {
 			PRODUCTION: JSON.stringify(env.mode === 'production'),
 			SCOPE_VERSION,
