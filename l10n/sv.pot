@@ -97,7 +97,7 @@ msgid "Close navigation"
 msgstr "Stäng navigering"
 
 msgid "Close sidebar"
-msgstr "Stäng sidopanel"
+msgstr "Stäng sidofältet"
 
 msgid "Close Smart Picker"
 msgstr "Stäng Smart Picker"
