@@ -251,6 +251,9 @@ msgstr "Menüyü aç"
 msgid "Open navigation"
 msgstr "Gezinmeyi aç"
 
+msgid "Open sidebar"
+msgstr "Yan çubuğu aç"
+
 msgid "Options"
 msgstr "Seçenekler"
 
