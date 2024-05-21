@@ -250,6 +250,9 @@ msgstr "Roghchlár a oscailt"
 msgid "Open navigation"
 msgstr "Oscail nascleanúint"
 
+msgid "Open sidebar"
+msgstr "Oscail barra taoibh"
+
 msgid "Options"
 msgstr "Roghanna"
 
