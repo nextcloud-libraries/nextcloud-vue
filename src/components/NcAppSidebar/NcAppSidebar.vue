@@ -361,14 +361,17 @@ A working alternative would be using an icon together with an `aria-label`:
 	</script>
 ```
 
-### Conditionally show the sidebar
+### Conditionally show the sidebar with `open`
 
-If the sidebar should be shown conditionally (e.g. using a button)
-and the users are expected to open and close the sidebar multiple times,
-then using `v-if` might result in bad performance.
-So instead use the `open` property.
+If the sidebar should be shown conditionally, you can use `open` prop to define sidebar visibility.
+It automatically shows a toggle button to open the sidebar if it is closed.
 
-You can also use `--app-sidebar-offset` CSS variable to preserve space for the toggle button, for example, in top bar of NcAppContent.
+You can also use `--app-sidebar-offset` CSS variable to preserve space
+for the toggle button, for example, in top bar of `NcAppContent`.
+
+The built-in toggle button can be removed with `no-toggle` prop.
+
+Note: the built-in toggle button is only available then NcAppSidebar is used in NcContent.
 
 ```vue
 <template>
@@ -376,9 +379,7 @@ You can also use `--app-sidebar-offset` CSS variable to preserve space for the t
 	<NcContent app-name="styleguidist" class="content-styleguidist">
 		<NcAppContent>
 			<div class="top-bar">
-				<NcButton @click.prevent="showSidebar = !showSidebar">
-					Toggle sidebar
-				</NcButton>
+				<NcButton type="primary">Start a call</NcButton>
 			</div>
 		</NcAppContent>
 		<!-- The sidebar -->
@@ -441,27 +442,92 @@ export default {
 }
 </style>
 ```
+
+### Conditionally show the sidebar programmatically with `v-if`
+
+If the sidebar should be shown conditionally without any explicit toggle button, you can use `v-if`.
+
+**Note about performance**: using `v-if` might result in bad performance and loosing sidebar content state.
+
+**Note about `v-show`**: using `v-show` to hide sidebar will result in usability issues due to active focus trap on mobile.
+
+```vue
+<template>
+	<!-- This is in most cases NcContent -->
+	<NcContent app-name="styleguidist" class="content-styleguidist">
+		<NcAppContent>
+			<div class="top-bar">
+				<NcButton @click.prevent="showSidebar = true">
+					Toggle sidebar
+				</NcButton>
+			</div>
+		</NcAppContent>
+		<!-- The sidebar -->
+		<NcAppSidebar
+			v-if="showSidebar"
+			name="cat-picture.jpg"
+			subname="last edited 3 weeks ago"
+			@close="showSidebar = false">
+			<NcAppSidebarTab name="Settings" id="settings-tab">
+				<template #icon>
+					<Cog :size="20" />
+				</template>
+				Single tab content
+			</NcAppSidebarTab>
+		</NcAppSidebar>
+	</NcContent>
+</template>
+
+<script>
+import Cog from 'vue-material-design-icons/Cog'
+
+export default {
+	components: {
+		Cog,
+	},
+	data() {
+		return {
+			showSidebar: true,
+		}
+	},
+}
+</script>
+<style scoped>
+/* This styles just mock NcContent and NcAppContent */
+.content-styleguidist {
+	position: relative !important;
+	/* Just to prevent jumping when the sidebar is hidden */
+	min-height: 360px;
+}
+
+.main-content {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+/* Fix styles on this style guide page */
+@media only screen and (max-width: 512px) {
+	:deep(aside) {
+		width: calc(100vw - 64px) !important;
+	}
+}
+
+.top-bar {
+	display: flex;
+	justify-content: flex-end;
+	/* preserve space for toggle button */
+	padding-inline-end: var(--app-sidebar-offset);
+	/* same as on toggle button, but doesn't have to be the same */
+	margin: var(--app-sidebar-padding);
+}
+</style>
+```
 </docs>
 
 <template>
-	<NcButton v-if="!open && !noToggle"
-		ref="toggle"
-		:aria-label="t('Open sidebar')"
-		class="app-sidebar__toggle"
-		:class="toggleClasses"
-		type="tertiary"
-		v-bind="toggleAttrs"
-		@click="$emit('update:open', true)">
-		<template #icon>
-			<!-- @slot Custom icon for the toggle button, defaults to the dock-right icon from MDI -->
-			<slot name="toggle-icon">
-				<IconDockRight :size="20" />
-			</slot>
-		</template>
-	</NcButton>
 	<transition appear
 		name="slide-right"
-		v-bind="$attrs"
 		@after-enter="onAfterEnter"
 		@after-leave="onAfterLeave">
 		<aside v-show="open"
@@ -470,6 +536,28 @@ export default {
 			class="app-sidebar"
 			:aria-labelledby="`app-sidebar-vue-${uid}__header`"
 			@keydown.esc="onKeydownEsc">
+			<!--
+				We cannot render toggle button inside sidebar (aside#app-sidebar-vue), because it is hidden then the toggle is needed.
+				But we also need transition with the sidebar to be the root of this component to use it as a single UI element, allowing to use `v-show`.
+				So we cannot render the toggle button directly in this component.
+				As a simple solution - render it in the content to keep correct position.
+			-->
+			<Teleport v-if="ncContentSelector && !open && !noToggle" :to="ncContentSelector">
+				<NcButton :aria-label="t('Open sidebar')"
+					class="app-sidebar__toggle"
+					:class="toggleClasses"
+					type="tertiary"
+					v-bind="toggleAttrs"
+					@click="$emit('update:open', true)">
+					<template #icon>
+						<!-- @slot Custom icon for the toggle button, defaults to the dock-right icon from MDI -->
+						<slot name="toggle-icon">
+							<IconDockRight :size="20" />
+						</slot>
+					</template>
+				</NcButton>
+			</Teleport>
+
 			<header :class="{
 					'app-sidebar-header--with-figure': isSlotPopulated($slots.header?.()) || background,
 					'app-sidebar-header--compact': compact,
@@ -652,7 +740,12 @@ export default {
 		ClickOutside,
 	},
 
-	inheritAttrs: false,
+	inject: {
+		ncContentSelector: {
+			from: 'NcContent:selector',
+			default: undefined,
+		},
+	},
 
 	props: {
 		active: {
@@ -852,11 +945,15 @@ export default {
 
 		open() {
 			this.toggleFocusTrap()
+
+			this.checkToggleButtonContainerAvailability()
 		},
 	},
 
 	created() {
 		this.preserveElementToReturnFocus()
+
+		this.checkToggleButtonContainerAvailability()
 	},
 
 	mounted() {
@@ -1038,6 +1135,19 @@ export default {
 			this.preserveElementToReturnFocus()
 
 			this.$refs.tabs.focusActiveTabContent()
+		},
+
+		/**
+		 * Check if the toggle button container is available
+		 */
+		checkToggleButtonContainerAvailability() {
+			// Toggle button must be rendered, but there is no element to teleport it to
+			if (this.open === false && !this.noToggle && !this.ncContentSelector) {
+				console.warn(
+					'[NcAppSidebar] It looks like you want to use NcAppSidebar with the built-in toggle button. '
+					+ 'This feature is only available when NcAppSidebar is used in NcContent.',
+				)
+			}
 		},
 
 		/**
