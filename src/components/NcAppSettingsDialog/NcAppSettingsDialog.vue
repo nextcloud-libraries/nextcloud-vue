@@ -384,7 +384,7 @@ export default {
 		position: relative;
 	}
 	&__navigation {
-		min-width: 300px;
+		min-width: 200px;
 		margin-right: 20px;
 		overflow-x: hidden;
 		overflow-y: auto;
@@ -420,6 +420,12 @@ export default {
 		overflow: hidden;
 		background-color: transparent;
 		border: none;
+		&.-text {
+			max-width: 250px;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
 		&:hover,
 		&:focus {
 			background-color: var(--color-background-hover);
