@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2022 Julia Kirschenheuter <julia.kirschenheuter@nextcloud.com>
   -
   - @author Julia Kirschenheuter <julia.kirschenheuter@nextcloud.com>
+  - @author Richard Steinmetz <richard@steinmetz.cloud>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -33,13 +34,14 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 #### Usage: type='datetime-local'
 ```vue
 <template>
-	<span>
+	<div>
+		<span>Picked date: {{ value || 'null' }}</span>
 		<NcDateTimePickerNative
 			v-model="value"
 			:id="id"
 			:label="label"
 			type="datetime-local" />
-	</span>
+	</div>
 </template>
 <script>
 	export default {
@@ -57,7 +59,8 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 #### Usage: type='datetime-local' with min date and max date
 ```vue
 <template>
-	<span>
+	<div>
+		<span>Picked date: {{ value || 'null' }}</span>
 		<NcDateTimePickerNative
 			v-model="value"
 			:id="id"
@@ -65,7 +68,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 			:max="someDate"
 			:label="label"
 			type="datetime-local" />
-	</span>
+	</div>
 </template>
 
 <script>
@@ -86,13 +89,14 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 #### Usage: type='week'
 ```vue
 <template>
-	<span>
+	<div>
+		<span>Picked date: {{ value || 'null' }}</span>
 		<NcDateTimePickerNative
 			v-model="value"
 			:id="id"
 			:label="label"
 			type="week" />
-	</span>
+	</div>
 </template>
 
 <script>
@@ -111,13 +115,14 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 #### Usage: type='month'
 ```vue
 <template>
-	<span>
+	<div>
+		<span>Picked date: {{ value || 'null' }}</span>
 		<NcDateTimePickerNative
 			v-model="value"
 			:id="id"
 			:label="label"
 			type="month" />
-	</span>
+	</div>
 </template>
 
 <script>
@@ -163,10 +168,11 @@ export default {
 		 * The date is – like the `Date` object in JavaScript – tied to UTC.
 		 * The selected time zone does not have an influence of the selected time and date value.
 		 * You have to translate the time yourself when you want to factor in time zones.
+		 * Pass null to clear the input field.
 		 */
 		value: {
 			type: Date,
-			required: true,
+			default: null,
 		},
 
 		/**
@@ -265,7 +271,7 @@ export default {
 						 *
 						 * @return {string} empty string
 						 */
-						return this.$emit('input', '')
+						return this.$emit('input', null)
 					}
 					if (this.type === 'time') {
 						const time = $event.target.value
@@ -377,5 +383,34 @@ export default {
 	.native-datetime-picker .native-datetime-picker--input {
 		width: 100%;
 		flex: 0 0 auto;
+		padding-right: 4px;
+	}
+
+	[data-theme-light],
+	[data-themes*=light] {
+		.native-datetime-picker--input {
+			color-scheme: light;
+		}
+	}
+
+	[data-theme-dark],
+	[data-themes*=dark] {
+		.native-datetime-picker--input {
+			color-scheme: dark;
+		}
+	}
+
+	[data-theme-default],
+	[data-themes*=default] {
+		@media (prefers-color-scheme: light) {
+			.native-datetime-picker--input {
+				color-scheme: light;
+			}
+		}
+		@media (prefers-color-scheme: dark) {
+			.native-datetime-picker--input {
+				color-scheme: dark;
+			}
+		}
 	}
 </style>

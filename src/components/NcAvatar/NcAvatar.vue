@@ -45,7 +45,7 @@
 	</NcAvatar>
 </template>
 <script>
-import AccountMultiple from 'vue-material-design-icons/AccountMultiple'
+import AccountMultiple from 'vue-material-design-icons/AccountMultiple.vue'
 
 export default {
 	components: {
@@ -108,24 +108,19 @@ export default {
 
 </docs>
 <template>
-	<div ref="main"
+	<span ref="main"
 		v-click-outside="closeMenu"
 		:class="{
 			'avatardiv--unknown': userDoesNotExist,
-			'avatardiv--with-menu': hasMenu
+			'avatardiv--with-menu': hasMenu,
+			'avatardiv--with-menu-loading': contactsMenuLoading
 		}"
-		:title="tooltip"
 		:style="avatarStyle"
-		class="avatardiv popovermenu-wrapper"
-		:tabindex="hasMenu ? '0' : undefined"
-		:aria-label="avatarAriaLabel"
-		:role="hasMenu ? 'button' : undefined"
-		v-on="hasMenu ? { click: toggleMenu } : {}"
-		@keydown.enter="toggleMenu">
+		class="avatardiv popovermenu-wrapper">
 		<!-- @slot Icon slot -->
 		<slot name="icon">
 			<!-- Avatar icon or image -->
-			<div v-if="iconClass" :class="iconClass" class="avatar-class-icon" />
+			<span v-if="iconClass" :class="iconClass" class="avatar-class-icon" />
 			<img v-else-if="isAvatarLoaded && !userDoesNotExist"
 				:src="avatarUrlLoaded"
 				:srcset="avatarSrcSetLoaded"
@@ -133,57 +128,85 @@ export default {
 		</slot>
 
 		<!-- Contact menu -->
-		<NcPopover v-if="hasMenu"
-			placement="auto"
-			:container="menuContainer"
-			:open="contactsMenuOpenState"
-			@after-show="handlePopoverAfterShow"
-			@after-hide="handlePopoverAfterHide">
-			<NcPopoverMenu ref="popoverMenu" :menu="menu" />
-			<template #trigger>
+		<!-- We show a button if the menu is not loaded yet. -->
+		<NcButton v-if="hasMenu && menu.length === 0"
+			type="tertiary-no-background"
+			class="action-item action-item__menutoggle"
+			:aria-label="avatarAriaLabel"
+			:title="tooltip"
+			@click="toggleMenu">
+			<template #icon>
 				<NcLoadingIcon v-if="contactsMenuLoading" />
-				<DotsHorizontal v-else
-					:size="20"
-					class="icon-more" />
+				<DotsHorizontal v-else :size="20" />
 			</template>
-		</NcPopover>
+		</NcButton>
+		<NcActions v-else-if="hasMenu"
+			force-menu
+			manual-open
+			type="tertiary-no-background"
+			:container="menuContainer"
+			:open.sync="contactsMenuOpenState"
+			:aria-label="avatarAriaLabel"
+			:title="tooltip"
+			@click="toggleMenu">
+			<component :is="item.ncActionComponent"
+				v-for="(item, key) in menu"
+				:key="key"
+				v-bind="item.ncActionComponentProps">
+				<template v-if="item.iconSvg" #icon>
+					<NcIconSvgWrapper :svg="item.iconSvg" />
+				</template>
+				{{ item.text }}
+			</component>
+			<template v-if="contactsMenuLoading" #icon>
+				<NcLoadingIcon />
+			</template>
+		</NcActions>
 
 		<!-- Avatar status -->
-		<div v-if="showUserStatusIconOnAvatar" class="avatardiv__user-status avatardiv__user-status--icon">
+		<span v-if="showUserStatusIconOnAvatar" class="avatardiv__user-status avatardiv__user-status--icon">
 			{{ userStatus.icon }}
-		</div>
-		<div v-else-if="canDisplayUserStatus"
+		</span>
+		<NcUserStatusIcon v-else-if="canDisplayUserStatus"
 			class="avatardiv__user-status"
-			:class="'avatardiv__user-status--' + userStatus.status" />
+			:status="userStatus.status"
+			:aria-hidden="String(hasMenu)" />
 
 		<!-- Show the letter if no avatar nor icon class -->
-		<div v-if="userDoesNotExist && !(iconClass || $slots.icon)"
+		<span v-if="showInitials"
 			:style="initialsWrapperStyle"
 			class="avatardiv__initials-wrapper">
-			<div :style="initialsStyle" class="unknown">
+			<span :style="initialsStyle" class="avatardiv__initials">
 				{{ initials }}
-			</div>
-		</div>
-	</div>
+			</span>
+		</span>
+	</span>
 </template>
 
 <script>
-import NcPopover from '../NcPopover/index.js'
-import NcPopoverMenu from '../NcPopoverMenu/index.js'
+import NcActions from '../NcActions/index.js'
+import NcActionLink from '../NcActionLink/index.js'
+import NcActionRouter from '../NcActionRouter/index.js'
+import NcActionText from '../NcActionText/index.js'
+import NcButton from '../NcButton/index.js'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
+import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
 import usernameToColor from '../../functions/usernameToColor/index.js'
+import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
+import { getUserStatusText } from '../../utils/UserStatus.ts'
 import { userStatus } from '../../mixins/index.js'
 import { t } from '../../l10n.js'
+import { getRoute } from '../../components/NcRichText/autolink.js'
+
+import axios from '@nextcloud/axios'
+import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 import { getCurrentUser } from '@nextcloud/auth'
-import axios from '@nextcloud/axios'
 import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { getBuilder } from '@nextcloud/browser-storage'
 import { generateUrl } from '@nextcloud/router'
-
-import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
-
-import { directive as ClickOutside } from 'v-click-outside'
+import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 
@@ -216,9 +239,11 @@ export default {
 	},
 	components: {
 		DotsHorizontal,
+		NcActions,
+		NcButton,
+		NcIconSvgWrapper,
 		NcLoadingIcon,
-		NcPopover,
-		NcPopoverMenu,
+		NcUserStatusIcon,
 	},
 	mixins: [userStatus],
 	props: {
@@ -335,15 +360,6 @@ export default {
 		},
 
 		/**
-		 * Choose the avatar menu alignment.
-		 * Possible values are `left`, `center`, `right`.
-		 */
-		menuPosition: {
-			type: String,
-			default: 'center',
-		},
-
-		/**
 		 * Selector for the popover menu container
 		 */
 		menuContainer: {
@@ -365,19 +381,19 @@ export default {
 	},
 	computed: {
 		avatarAriaLabel() {
+			// aria-label is only allowed on interactive elements
 			if (!this.hasMenu) {
 				return
 			}
-			if (this.hasStatus && this.showUserStatus && this.showUserStatusCompact) {
-				return t('Avatar of {displayName}, {status}', { displayName: this.displayName ?? this.user, status: this.userStatus.status })
+			if (this.canDisplayUserStatus || this.showUserStatusIconOnAvatar) {
+				return t('Avatar of {displayName}, {status}', { displayName: this.displayName ?? this.user, status: getUserStatusText(this.userStatus.status) })
 			}
 			return t('Avatar of {displayName}', { displayName: this.displayName ?? this.user })
 		},
-
 		canDisplayUserStatus() {
 			return this.showUserStatus
 				&& this.hasStatus
-				&& ['online', 'away', 'dnd'].includes(this.userStatus.status)
+				&& ['online', 'away', 'busy', 'dnd'].includes(this.userStatus.status)
 		},
 		showUserStatusIconOnAvatar() {
 			return this.showUserStatus
@@ -386,7 +402,11 @@ export default {
 				&& this.userStatus.status !== 'dnd'
 				&& this.userStatus.icon
 		},
-		getUserIdentifier() {
+		/**
+		 * The user identifier, either the display name if set or the user property
+		 * If both properties are not set an empty string is returned
+		 */
+		userIdentifier() {
 			if (this.isDisplayNameDefined) {
 				return this.displayName
 			}
@@ -413,10 +433,14 @@ export default {
 			}
 			return !(this.user === getCurrentUser()?.uid || this.userDoesNotExist || this.url)
 		},
-		shouldShowPlaceholder() {
-			return this.allowPlaceholder && (
-				this.userDoesNotExist)
+
+		/**
+		 * True if initials should be shown as the user icon fallback
+		 */
+		showInitials() {
+			return this.allowPlaceholder && this.userDoesNotExist && !(this.iconClass || this.$slots.icon)
 		},
+
 		avatarStyle() {
 			const style = {
 				'--size': this.size + 'px',
@@ -426,13 +450,13 @@ export default {
 			return style
 		},
 		initialsWrapperStyle() {
-			const { r, g, b } = usernameToColor(this.getUserIdentifier)
+			const { r, g, b } = usernameToColor(this.userIdentifier)
 			return {
 				backgroundColor: `rgba(${r}, ${g}, ${b}, 0.1)`,
 			}
 		},
 		initialsStyle() {
-			const { r, g, b } = usernameToColor(this.getUserIdentifier)
+			const { r, g, b } = usernameToColor(this.userIdentifier)
 			return {
 				color: `rgb(${r}, ${g}, ${b})`,
 			}
@@ -447,28 +471,54 @@ export default {
 
 			return this.displayName
 		},
+
+		/**
+		 * Get the (max. two) initials of the user as uppcase string
+		 */
 		initials() {
-			let initials
-			if (this.shouldShowPlaceholder) {
-				const user = this.getUserIdentifier
-				const idx = user.indexOf(' ')
+			let initials = '?'
+			if (this.showInitials) {
+				const user = this.userIdentifier.trim()
 				if (user === '') {
-					initials = '?'
-				} else {
-					initials = String.fromCodePoint(user.codePointAt(0))
-					if (idx !== -1) {
-						initials = initials.concat(String.fromCodePoint(user.codePointAt(idx + 1)))
-					}
+					return initials
+				}
+
+				/**
+				 * Filtered user name, without special characters so only letters and numbers are allowed (prevent e.g. '(' as an initial)
+				 * \p{L}: Letters of all languages
+				 * \p{N}: Numbers of all languages
+				 * \s: White space for breaking the string
+				 * @type {string}
+				 */
+				const filteredChars = user.match(/[\p{L}\p{N}\s]/gu)
+				if (filteredChars == null) {
+					return initials
+				}
+
+				const filtered = filteredChars.join('')
+				const idx = filtered.lastIndexOf(' ')
+				initials = String.fromCodePoint(filtered.codePointAt(0))
+				if (idx !== -1) {
+					initials = initials.concat(String.fromCodePoint(filtered.codePointAt(idx + 1)))
 				}
 			}
-			return initials.toUpperCase()
+			return initials.toLocaleUpperCase()
 		},
 		menu() {
 			const actions = this.contactsMenuActions.map((item) => {
+				const route = getRoute(this.$router, item.hyperlink)
 				return {
-					href: item.hyperlink,
-					icon: item.icon,
-					longtext: item.title,
+					ncActionComponent: route ? NcActionRouter : NcActionLink,
+					ncActionComponentProps: route
+						? {
+							to: route,
+							icon: item.icon,
+						}
+						: {
+							href: item.hyperlink,
+							icon: item.icon,
+						},
+					text: item.title,
 				}
 			})
 
@@ -483,9 +533,14 @@ export default {
 			}
 
 			if (this.showUserStatus && (this.userStatus.icon || this.userStatus.message)) {
+				// NcAction's URL icons are inverted in dark mode, so we need to pass SVG image in the icon slot
+				const emojiIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+					<text x="50%" y="50%" text-anchor="middle" style="dominant-baseline: central; font-size: 85%">${escape(this.userStatus.icon)}</text>
+				</svg>`
 				return [{
-					href: '#',
-					icon: `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><text x='0' y='14' font-size='14'>${escape(this.userStatus.icon)}</text></svg>`,
+					ncActionComponent: NcActionText,
+					ncActionComponentProps: {},
+					iconSvg: this.userStatus.icon ? emojiIcon : undefined,
 					text: `${this.userStatus.message}`,
 				}].concat(actions)
 			}
@@ -532,16 +587,7 @@ export default {
 	},
 
 	methods: {
-		handlePopoverAfterShow() {
-			const links = this.$refs.popoverMenu.$el.getElementsByTagName('a')
-			if (links.length) {
-				links[0].focus()
-			}
-		},
-		handlePopoverAfterHide() {
-			// bring focus back to the trigger
-			this.$refs.main.focus()
-		},
+		t,
 		handleUserStatusUpdated(state) {
 			if (this.user === state.userId) {
 				this.userStatus = {
@@ -552,8 +598,12 @@ export default {
 			}
 		},
 
-		async toggleMenu() {
-			if (!this.hasMenu) {
+		/**
+		 * Toggle the popover menu on click or enter
+		 * @param {KeyboardEvent|MouseEvent} event the UI event
+		 */
+		async toggleMenu(event) {
+			if (event.type === 'keydown' && event.key !== 'Enter') {
 				return
 			}
 			if (!this.contactsMenuOpenState) {
@@ -618,19 +668,7 @@ export default {
 		 * @return {string}
 		 */
 		avatarUrlGenerator(user, size) {
-			const darkTheme = window.getComputedStyle(this.$el)
-				.getPropertyValue('--background-invert-if-dark') === 'invert(100%)'
-			let url = '/avatar/{user}/{size}' + (darkTheme ? '/dark' : '')
-			if (this.isGuest) {
-				url = '/avatar/guest/{user}/{size}' + (darkTheme ? '/dark' : '')
-			}
-
-			let avatarUrl = generateUrl(
-				url,
-				{
-					user,
-					size,
-				})
+			let avatarUrl = getAvatarUrl(user, size, this.isGuest)
 
 			// eslint-disable-next-line camelcase
 			if (user === getCurrentUser()?.uid && typeof oc_userconfig !== 'undefined') {
@@ -701,6 +739,7 @@ export default {
 	&--unknown {
 		position: relative;
 		background-color: var(--color-main-background);
+		white-space: normal;
 	}
 
 	&:not(&--unknown) {
@@ -711,37 +750,48 @@ export default {
 
 	&--with-menu {
 		cursor: pointer;
-		:deep(.v-popper) {
+		.action-item {
 			position: absolute;
 			top: 0;
 			left: 0;
 		}
-		.icon-more {
+		:deep(.action-item__menutoggle) {
 			cursor: pointer;
 			opacity: 0;
 		}
-		&:focus,
-		&:hover {
-			.icon-more {
+		&:focus-within,
+		&:hover,
+		&#{&}-loading {
+			:deep(.action-item__menutoggle) {
 				opacity: 1;
 			}
 			img {
 				opacity: 0.3;
 			}
 		}
-		.icon-more,
+		:deep(.action-item__menutoggle),
 		img {
 			transition: opacity var(--animation-quick);
+		}
+		:deep() {
+			.button-vue,
+			.button-vue__icon {
+				height: var(--size);
+				min-height: var(--size);
+				width: var(--size) !important;
+				min-width: var(--size);
+			}
 		}
 	}
 
 	.avatardiv__initials-wrapper {
+		display: block;
 		height: var(--size);
 		width: var(--size);
 		background-color: var(--color-main-background);
 		border-radius: 50%;
 
-		.unknown {
+		.avatardiv__initials {
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -766,9 +816,12 @@ export default {
 	}
 
 	.avatardiv__user-status {
+		box-sizing: border-box;
 		position: absolute;
 		right: -4px;
 		bottom: -4px;
+		min-height: 18px;
+		min-width: 18px;
 		max-height: 18px;
 		max-width: 18px;
 		height: 40%;
@@ -787,20 +840,10 @@ export default {
 			background-color: var(--color-background-hover);
 		}
 		.acli.active & {
-			border-color: var(--color-primary-light);
-			background-color: var(--color-primary-light);
+			border-color: var(--color-primary-element-light);
+			background-color: var(--color-primary-element-light);
 		}
 
-		&--online{
-			background-image: url('../../assets/status-icons/user-status-online.svg');
-		}
-		&--dnd{
-			background-image: url('../../assets/status-icons/user-status-dnd.svg');
-			background-color: #ffffff;
-		}
-		&--away{
-			background-image: url('../../assets/status-icons/user-status-away.svg');
-		}
 		&--icon {
 			border: none;
 			background-color: transparent;
@@ -814,6 +857,7 @@ export default {
 }
 
 .avatar-class-icon {
+	display: block;
 	border-radius: 50%;
 	background-color: var(--color-background-darker);
 	height: 100%;

@@ -33,23 +33,25 @@ General purpose password field component.
 			label="Old password" />
 		<div class="external-label">
 			<label for="textField">New password</label>
-			<NcPasswordField :value.sync="text2"
-				id="textField"
-				:label-outside="true" />
+			<NcPasswordField id="textField"
+				:value.sync="text2"
+				:label-outside="true"
+				placeholder="Min. 12 characters" />
 		</div>
 		<div class="external-label">
 			<label for="textField2">New password</label>
-			<NcPasswordField :value.sync="text3"
+			<NcPasswordField id="textField2"
+				:value.sync="text3"
 				:error="true"
-				id="textField2"
 				:label-outside="true"
+				placeholder="Min. 12 characters"
 				helper-text="Password is insecure" />
 		</div>
 
 		<NcPasswordField :value.sync="text4"
 			label="Good new password"
-			:label-visible="true"
 			:success="true"
+			placeholder="Min. 12 characters"
 			helper-text="Password is secure" />
 
 		<NcPasswordField :value.sync="text5"
@@ -94,10 +96,9 @@ export default {
 </docs>
 
 <template>
-	<NcInputField v-bind="{...$attrs, ...$props }"
+	<NcInputField v-bind="propsAndAttrsToForward"
 		ref="inputField"
 		:type="isPasswordHidden ? 'password' : 'text'"
-		:show-trailing-button="true"
 		:trailing-button-label="trailingButtonLabelPassword"
 		:helper-text="computedHelperText"
 		:error="computedError"
@@ -127,6 +128,23 @@ import { generateOcsUrl } from '@nextcloud/router'
 import { t } from '../../l10n.js'
 import logger from '../../utils/logger.js'
 
+/**
+ * @typedef PasswordPolicy
+ * @property {object} api - The URLs to the password_policy app methods
+ * @property {string} api.generate - The URL to the password generator
+ * @property {string} api.validate - The URL to the password validator
+ * @property {boolean} enforceNonCommonPassword - Whether to enforce non common passwords
+ * @property {boolean} enforceNumericCharacters - Whether to enforce numeric characters
+ * @property {boolean} enforceSpecialCharacters - Whether to enforce special characters
+ * @property {boolean} enforceUpperLowerCase - Whether to enforce upper and lower case
+ * @property {number} minLength - The minimum length of the password
+ */
+
+/** @type {PasswordPolicy|null} */
+const passwordPolicy = loadState('core', 'capabilities', {}).password_policy || null
+
+const NcInputFieldProps = new Set(Object.keys(NcInputField.props))
+
 export default {
 	name: 'NcPasswordField',
 
@@ -140,17 +158,31 @@ export default {
 	inheritAttrs: false,
 
 	props: {
+		/**
+		 * Any [NcInputField](#/Components/NcFields?id=ncinputfield) props
+		 */
+		// Not an actual prop but needed to show in vue-styleguidist docs
+		// eslint-disable-next-line
+		' ': {},
+
+		// Reuse all the props from NcInputField for better typing and documentation
 		...NcInputField.props,
 
+		// Redefined props
+
 		/**
-		 * Additional error message
-		 *
-		 * This will be displayed beneath the input field
+		 * Controls whether to display the trailing button.
 		 */
-		helperText: {
-			type: String,
-			default: '',
+		 showTrailingButton: {
+			type: Boolean,
+			default: true,
 		},
+
+		// Removed NcInputField props, defined only by this component
+
+		trailingButtonLabel: undefined,
+
+		// Custom props
 
 		/**
 		 * Check if the user entered a valid password using the password_policy
@@ -193,7 +225,6 @@ export default {
 		return {
 			isPasswordHidden: true,
 			internalHelpMessage: '',
-			passwordPolicy: loadState('core', 'capabilities', {}).password_policy || null,
 			isValid: null,
 		}
 	},
@@ -213,7 +244,7 @@ export default {
 		},
 
 		rules() {
-			const { minlength, passwordPolicy } = this
+			const { minlength } = this
 			return {
 				minlength: minlength ?? passwordPolicy?.minLength,
 			}
@@ -222,22 +253,49 @@ export default {
 		trailingButtonLabelPassword() {
 			return this.isPasswordHidden ? t('Show password') : t('Hide password')
 		},
+
+		propsAndAttrsToForward() {
+			return {
+				// Proxy all the HTML attributes
+				...this.$attrs,
+				// Proxy original NcInputField's props
+				...Object.fromEntries(
+					Object.entries(this.$props).filter(([key]) => NcInputFieldProps.has(key)),
+				),
+			}
+		},
 	},
 
 	watch: {
 		value(newValue) {
 			if (this.checkPasswordStrength) {
-				if (this.passwordPolicy === null) {
+				if (passwordPolicy === null) {
 					return
 				}
-				if (this.passwordPolicy) {
-					this.checkPassword(newValue)
-				}
+				this.checkPassword(newValue)
 			}
 		},
 	},
 
 	methods: {
+		/**
+		 * Focus the input element
+		 *
+		 * @public
+		 */
+		focus() {
+			this.$refs.inputField.focus()
+		},
+
+		/**
+		 * Select all the text in the input
+		 *
+		 * @public
+		 */
+		select() {
+			this.$refs.inputField.select()
+		},
+
 		handleInput(event) {
 			/**
 			 * Triggers when the value inside the password field is

@@ -1,13 +1,14 @@
 # 
 # Translators:
-# Artur Skoczylas <art.skoczylas@gmail.com>, 2020
-# 781a1b025aac2249bbf52ec77cbcded3_dc68cbf, 2022
-# Valdnet, 2022
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Valdnet, 2024
+# Pirania 3680, 2024
+# Piotr Strębski <strebski@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Valdnet, 2022\n"
-"Language-Team: Polish (https://www.transifex.com/nextcloud/teams/64236/pl/)\n"
+"Last-Translator: Piotr Strębski <strebski@gmail.com>, 2024\n"
+"Language-Team: Polish (https://app.transifex.com/nextcloud/teams/64236/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
@@ -18,14 +19,30 @@ msgstr "{tag} (niewidoczna)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (ograniczona)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "Kolor o wartości HEX {hex}"
+
+msgid "a few seconds ago"
+msgstr "kilka sekund temu"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
+
 msgid "Actions"
 msgstr "Działania"
+
+msgid "Actions for item with name \"{name}\""
+msgstr "Akcje dla elementu o nazwie \"{name}\""
 
 msgid "Activities"
 msgstr "Aktywność"
 
 msgid "Animals & Nature"
 msgstr "Zwierzęta i natura"
+
+msgid "Any link"
+msgstr "Dowolny link"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
@@ -37,14 +54,41 @@ msgstr "Awatar {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Awatar {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "stąd"
+
+msgid "Back"
+msgstr "Wstecz"
+
+msgid "Back to provider selection"
+msgstr "Powrót do wyboru dostawcy"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Niebieski fiolet"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Błękit Bostonu"
+
+msgid "busy"
+msgstr "zajęty"
+
 msgid "Cancel changes"
 msgstr "Anuluj zmiany"
 
-msgid "Change title"
-msgstr "Zmień tytuł"
+msgid "Change name"
+msgstr "Zmień nazwę"
 
 msgid "Choose"
 msgstr "Wybierz"
+
+msgid "Clear search"
+msgstr "Wyczyść wyszukiwanie"
+
+msgid "Clear selected"
+msgstr "Wyczyść wybrane"
 
 msgid "Clear text"
 msgstr "Wyczyść tekst"
@@ -52,14 +96,20 @@ msgstr "Wyczyść tekst"
 msgid "Close"
 msgstr "Zamknij"
 
-msgid "Close modal"
-msgstr "Zamknij modal"
-
 msgid "Close navigation"
 msgstr "Zamknij nawigację"
 
 msgid "Close sidebar"
 msgstr "Zamknij pasek boczny"
+
+msgid "Close Smart Picker"
+msgstr "Zamknij inteligentny selektor"
+
+msgid "Collapse menu"
+msgstr "Zwiń menu"
+
+msgid "Color picker"
+msgstr "Wybierz kolor"
 
 msgid "Confirm changes"
 msgstr "Potwierdź zmiany"
@@ -67,20 +117,47 @@ msgstr "Potwierdź zmiany"
 msgid "Custom"
 msgstr "Zwyczajne"
 
+msgid "Dark skin tone"
+msgstr "Ciemna tonacja"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Potop"
+
+msgid "Deselect {option}"
+msgstr "Odznacz {option}"
+
+msgid "do not disturb"
+msgstr "nie przeszkadzać"
+
 msgid "Edit item"
 msgstr "Edytuj element"
 
-msgid "Error getting related resources"
-msgstr "Błąd podczas pobierania powiązanych zasobów"
+msgid "Emoji picker"
+msgstr "Wybierz Emoji"
 
-msgid "Error parsing svg"
-msgstr "Błąd podczas analizowania svg"
+msgid "Enable interactive view"
+msgstr "Włącz widok interaktywny"
 
-msgid "External documentation for {title}"
-msgstr "Dokumentacja zewnętrzna dla {title}"
+msgid "Enter link"
+msgstr "Wprowadź link"
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+"Błąd podczas pobierania powiązanych zasobów. Jeśli masz jakiekolwiek "
+"pytania, skontaktuj się z administratorem systemu."
+
+msgid "External documentation for {name}"
+msgstr "Dokumentacja zewnętrzna dla {name}"
 
 msgid "Favorite"
 msgstr "Ulubiony"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Skaleń"
 
 msgid "Flags"
 msgstr "Flagi"
@@ -97,8 +174,36 @@ msgstr "Globalnie"
 msgid "Go back to the list"
 msgstr "Powrót do listy"
 
+msgid "Gold"
+msgstr "Złote"
+
 msgid "Hide password"
 msgstr "Ukryj hasło"
+
+msgid "invisible"
+msgstr "niewidzialny"
+
+msgid "Keyboard navigation help"
+msgstr "Pomoc w nawigacji za pomocą klawiatury"
+
+msgid "Light skin tone"
+msgstr "Jasny odcień skóry"
+
+msgid "Load more \"{options}\""
+msgstr "Załaduj więcej \"{options}\""
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Marynarz"
+
+msgid "Medium dark skin tone"
+msgstr "Średnio ciemny odcień skóry"
+
+msgid "Medium light skin tone"
+msgstr "Średnio jasny odcień skóry"
+
+msgid "Medium skin tone"
+msgstr "Średni odcień skóry"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Przekroczono limit wiadomości wynoszący {count} znaków"
@@ -106,11 +211,23 @@ msgstr "Przekroczono limit wiadomości wynoszący {count} znaków"
 msgid "More items …"
 msgstr "Więcej pozycji…"
 
+msgid "More options"
+msgstr "Więcej opcji"
+
+msgid "Neutral skin color"
+msgstr "Neutralny kolor skróry"
+
 msgid "Next"
 msgstr "Następny"
 
+msgid "Nextcloud blue"
+msgstr "Niebieskie Nextcloud"
+
 msgid "No emoji found"
 msgstr "Nie znaleziono emoji"
+
+msgid "No link provider found"
+msgstr "Nie znaleziono dostawcy linków"
 
 msgid "No results"
 msgstr "Brak wyników"
@@ -118,14 +235,27 @@ msgstr "Brak wyników"
 msgid "Objects"
 msgstr "Obiekty"
 
-msgid "Open"
-msgstr "Otwórz"
+msgid "offline"
+msgstr "offline"
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "Otwórz link do \"{resourceTitle}\""
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Oliwin"
+
+msgid "online"
+msgstr "online"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "Otwórz link do \"{resourceName}\""
+
+msgid "Open menu"
+msgstr "Otwórz menu"
 
 msgid "Open navigation"
 msgstr "Otwórz nawigację"
+
+msgid "Options"
+msgstr "Opcje"
 
 msgid "Password is secure"
 msgstr "Hasło jest bezpieczne"
@@ -136,6 +266,24 @@ msgstr "Wstrzymaj pokaz slajdów"
 msgid "People & Body"
 msgstr "Ludzie i ciało"
 
+msgid "Pick a date"
+msgstr "Wybierz datę"
+
+msgid "Pick a date and a time"
+msgstr "Wybierz datę i godzinę"
+
+msgid "Pick a month"
+msgstr "Wybierz miesiąc"
+
+msgid "Pick a time"
+msgstr "Wybierz czas"
+
+msgid "Pick a week"
+msgstr "Wybierz tydzień"
+
+msgid "Pick a year"
+msgstr "Wybierz rok"
+
 msgid "Pick an emoji"
 msgstr "Wybierz emoji"
 
@@ -145,17 +293,57 @@ msgstr "Wybierz strefę czasową:"
 msgid "Previous"
 msgstr "Poprzedni"
 
+msgid "Provider icon"
+msgstr "Dostawca ikony"
+
+msgid "Purple"
+msgstr "Fioletowy"
+
+msgid "Raw link {options}"
+msgstr "Link Raw {options}"
+
 msgid "Related resources"
 msgstr "Powiązane zasoby"
+
+msgid "Related team resources"
+msgstr "Powiązane zasoby grupowe"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Różowy brąz"
+
+msgid "Save changes"
+msgstr "Zapisz zmiany"
 
 msgid "Search"
 msgstr "Szukaj"
 
+msgid "Search emoji"
+msgstr "Szukaj emoji"
+
+msgid "Search for time zone"
+msgstr "Szukaj strefy czasowej"
+
 msgid "Search results"
 msgstr "Wyniki wyszukiwania"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "sek. temu"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "sekund temu"
+
 msgid "Select a tag"
 msgstr "Wybierz etykietę"
+
+msgid "Select provider"
+msgstr "Wybierz dostawcę"
+
+msgid "Selected"
+msgstr "Wybrane"
 
 msgid "Settings"
 msgstr "Ustawienia"
@@ -166,11 +354,26 @@ msgstr "Ustawienia nawigacji"
 msgid "Show password"
 msgstr "Pokaż hasło"
 
+msgid "Skin tone"
+msgstr "Kolor skóry"
+
+msgid "Skip to app navigation"
+msgstr "Przewiń do nawigacji"
+
+msgid "Skip to main content"
+msgstr "Przewiń do głównych treści"
+
+msgid "Smart Picker"
+msgstr "Inteligentne wybieranie"
+
 msgid "Smileys & Emotion"
 msgstr "Buźki i emotikony"
 
 msgid "Start slideshow"
 msgstr "Rozpocznij pokaz slajdów"
+
+msgid "Start typing to search"
+msgstr "Zacznij pisać, aby wyszukać"
 
 msgid "Submit"
 msgstr "Wyślij"
@@ -190,9 +393,15 @@ msgstr "Nie można przeszukać grupy"
 msgid "Undo changes"
 msgstr "Cofnij zmiany"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
-"Napisz wiadomość, \"@\" aby o kimś wspomnieć, \":\" dla autouzupełniania "
-"emoji…"
+msgid "User status: {status}"
+msgstr "Status użytkownika: {status}"
+
+msgid "View team"
+msgstr "Zobacz grupę"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Whisky"
+
+msgid "Write a message …"
+msgstr "Napisać wiadomość…"

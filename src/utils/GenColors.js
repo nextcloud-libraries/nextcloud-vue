@@ -2,6 +2,7 @@
  * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Grigorii K. Shartsev <me@shgk.me>
  *
  * @license AGPL-3.0-or-later
  *
@@ -20,19 +21,30 @@
  *
  */
 
-/**
- * Originally taken from https://github.com/nextcloud/server/blob/master/core/js/placeholder.js
- */
+import { t } from '../l10n.js'
 
-/**
- * @param {number} r The red value
- * @param {number} g The green value
- * @param {number} b The blue value
- */
-function Color(r, g, b) {
-	this.r = r
-	this.g = g
-	this.b = b
+export class Color {
+
+	/**
+	 * @param {number} r The red value
+	 * @param {number} g The green value
+	 * @param {number} b The blue value
+	 * @param {string} [name] The name of the color
+	 */
+	constructor(r, g, b, name) {
+		this.r = r
+		this.g = g
+		this.b = b
+		if (name) {
+			this.name = name
+		}
+	}
+
+	get color() {
+		const toHex = (num) => `00${num.toString(16)}`.slice(-2)
+		return `#${toHex(this.r)}${toHex(this.g)}${toHex(this.b)}`
+	}
+
 }
 
 /**
@@ -54,8 +66,8 @@ function stepCalc(steps, ends) {
  * Create a color palette from two colors
  *
  * @param {number} steps The number of steps the palette has
- * @param {string} color1 The first color
- * @param {string} color2 The second color
+ * @param {Color} color1 The first color
+ * @param {Color} color2 The second color
  * @return {Array} The created palette array
  */
 function mixPalette(steps, color1, color2) {
@@ -63,13 +75,64 @@ function mixPalette(steps, color1, color2) {
 	palette.push(color1)
 	const step = stepCalc(steps, [color1, color2])
 	for (let i = 1; i < steps; i++) {
-		const r = parseInt(color1.r + step[0] * i, 10)
-		const g = parseInt(color1.g + step[1] * i, 10)
-		const b = parseInt(color1.b + step[2] * i, 10)
+		const r = Math.floor(color1.r + step[0] * i)
+		const g = Math.floor(color1.g + step[1] * i)
+		const b = Math.floor(color1.b + step[2] * i)
 		palette.push(new Color(r, g, b))
 	}
 	return palette
 }
+
+/**
+ * Like GenColor(4) but with labels
+ */
+export const defaultPalette = [
+	new Color(182, 70, 157, t('Purple')),
+	new Color(
+		191, 103, 139,
+		t('Rosy brown'), // TRANSLATORS: A color name for RGB(191, 103, 139)
+	),
+	new Color(
+		201, 136, 121,
+		t('Feldspar'), // TRANSLATORS: A color name for RGB(201, 136, 121)
+	),
+	new Color(
+		211, 169, 103,
+		t('Whiskey'), // TRANSLATORS: A color name for RGB(211, 169, 103)
+	),
+	new Color(
+		221, 203, 85,
+		t('Gold'),
+	),
+	new Color(
+		165, 184, 114,
+		t('Olivine'), // TRANSLATORS: A color name for RGB(165, 184, 114)
+	),
+	new Color(
+		110, 166, 143,
+		t('Acapulco'), // TRANSLATORS: A color name for RGB(110, 166, 143)
+	),
+	new Color(
+		55, 148, 172,
+		t('Boston Blue'), // TRANSLATORS: A color name for RGB(55, 148, 172)
+	),
+	new Color(
+		0, 130, 201,
+		t('Nextcloud blue'),
+	),
+	new Color(
+		45, 115, 190,
+		t('Mariner'), // TRANSLATORS: A color name for RGB(45, 115, 190)
+	),
+	new Color(
+		91, 100, 179,
+		t('Blue Violet'), // TRANSLATORS: A color name for RGB(91, 100, 179)
+	),
+	new Color(
+		136, 85, 168,
+		t('Deluge'), // TRANSLATORS: A color name for RGB(136, 85, 168)
+	),
+]
 
 /**
  * Generate colors from the official nextcloud color
@@ -77,17 +140,21 @@ function mixPalette(steps, color1, color2) {
  * if step = 6
  * 3 colors * 6 will result in 18 generated colors
  *
- * @param {number} [steps=6] Number of steps to go from a color to another
+ * @param {number} [steps] Number of steps to go from a color to another
  * @return {object[]}
  */
-function GenColors(steps) {
+export function GenColors(steps) {
 	if (!steps) {
 		steps = 6
 	}
 
-	const red = new Color(182, 70, 157)
-	const yellow = new Color(221, 203, 85)
-	const blue = new Color(0, 130, 201) // Nextcloud blue
+	if (steps === 4) {
+		return defaultPalette
+	}
+
+	const red = new Color(182, 70, 157, t('Purple'))
+	const yellow = new Color(221, 203, 85, t('Gold'))
+	const blue = new Color(0, 130, 201, t('Nextcloud blue'))
 
 	const palette1 = mixPalette(steps, red, yellow)
 	const palette2 = mixPalette(steps, yellow, blue)
@@ -95,5 +162,3 @@ function GenColors(steps) {
 
 	return palette1.concat(palette2).concat(palette3)
 }
-
-export default GenColors

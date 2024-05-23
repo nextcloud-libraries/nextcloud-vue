@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Pavel Borecki <pavel.borecki@gmail.com>, 2022
+# Pavel Borecki <pavel.borecki@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2022\n"
-"Language-Team: Czech (Czech Republic) (https://www.transifex.com/nextcloud/teams/64236/cs_CZ/)\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2024\n"
+"Language-Team: Czech (Czech Republic) (https://app.transifex.com/nextcloud/teams/64236/cs_CZ/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: cs_CZ\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
@@ -16,14 +16,30 @@ msgstr "{tag} (neviditelné)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (omezené)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "Barva vyjádřená HEX hodnotou {hex}"
+
+msgid "a few seconds ago"
+msgstr "před několika sekundami"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Akapulko"
+
 msgid "Actions"
 msgstr "Akce"
+
+msgid "Actions for item with name \"{name}\""
+msgstr "Akce pro položku s názvem „{name}“"
 
 msgid "Activities"
 msgstr "Aktivity"
 
 msgid "Animals & Nature"
 msgstr "Zvířata a příroda"
+
+msgid "Any link"
+msgstr "Jakýkoli odkaz"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Cokoli nasdíleného stejné skupině lidí se zobrazí zde"
@@ -34,14 +50,41 @@ msgstr "Zástupný obrázek uživatele {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Zástupný obrázek uživatele {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "pryč"
+
+msgid "Back"
+msgstr "Zpět"
+
+msgid "Back to provider selection"
+msgstr "Zpět na výběr poskytovatele"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Modrofialová"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Bostonská modrá"
+
+msgid "busy"
+msgstr "zaneprádněn(a)"
+
 msgid "Cancel changes"
 msgstr "Zrušit změny"
 
-msgid "Change title"
-msgstr "Změnit nadpis"
+msgid "Change name"
+msgstr "Změnit název"
 
 msgid "Choose"
 msgstr "Zvolit"
+
+msgid "Clear search"
+msgstr "Vyčistit vyhledávání"
+
+msgid "Clear selected"
+msgstr "Vyčistit vybrané"
 
 msgid "Clear text"
 msgstr "Čitelný text"
@@ -49,14 +92,20 @@ msgstr "Čitelný text"
 msgid "Close"
 msgstr "Zavřít"
 
-msgid "Close modal"
-msgstr "Zavřít dialogové okno"
-
 msgid "Close navigation"
 msgstr "Zavřít navigaci"
 
 msgid "Close sidebar"
 msgstr "Zavřít postranní panel"
+
+msgid "Close Smart Picker"
+msgstr "Zavřít inteligentní výběr"
+
+msgid "Collapse menu"
+msgstr "Sbalit nabídku"
+
+msgid "Color picker"
+msgstr "Výběr barev"
 
 msgid "Confirm changes"
 msgstr "Potvrdit změny"
@@ -64,20 +113,44 @@ msgstr "Potvrdit změny"
 msgid "Custom"
 msgstr "Uživatelsky určené"
 
+msgid "Dark skin tone"
+msgstr "Tmavý tělový tón"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Deluge"
+
+msgid "Deselect {option}"
+msgstr "Zrušit výběr {option}"
+
+msgid "do not disturb"
+msgstr "nerušit"
+
 msgid "Edit item"
 msgstr "Upravit položku"
 
-msgid "Error getting related resources"
-msgstr "Chyba při získávání souvisejících prostředků"
+msgid "Emoji picker"
+msgstr "Výběr emotikon"
 
-msgid "Error parsing svg"
-msgstr "Chyba při zpracovávání svg"
+msgid "Enter link"
+msgstr "Zadat odkaz"
 
-msgid "External documentation for {title}"
-msgstr "Externí dokumentace k {title}"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+"Chyba při získávání souvisejících prostředků. Pokud máte jakékoli dotazy, "
+"obraťte se na správce vámi využívaného systému."
+
+msgid "External documentation for {name}"
+msgstr "Externí dokumentace pro {name}"
 
 msgid "Favorite"
 msgstr "Oblíbené"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Živicová"
 
 msgid "Flags"
 msgstr "Příznaky"
@@ -94,8 +167,36 @@ msgstr "Globální"
 msgid "Go back to the list"
 msgstr "Jít zpět na seznam"
 
+msgid "Gold"
+msgstr "Zlatá"
+
 msgid "Hide password"
 msgstr "Skrýt heslo"
+
+msgid "invisible"
+msgstr "neviditelné"
+
+msgid "Keyboard navigation help"
+msgstr "Nápověda pro pohyb pomocí klávesnice"
+
+msgid "Light skin tone"
+msgstr "Světlý tělový tón"
+
+msgid "Load more \"{options}\""
+msgstr "Načíst další „{options}“"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Námořnická"
+
+msgid "Medium dark skin tone"
+msgstr "Středně tmavý tělový tón"
+
+msgid "Medium light skin tone"
+msgstr "Středně světlý tělový tón"
+
+msgid "Medium skin tone"
+msgstr "Střední tělový tón"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Dosaženo limitu počtu ({count}) znaků zprávy"
@@ -103,11 +204,23 @@ msgstr "Dosaženo limitu počtu ({count}) znaků zprávy"
 msgid "More items …"
 msgstr "Další položky…"
 
+msgid "More options"
+msgstr "Další volby"
+
+msgid "Neutral skin color"
+msgstr "Neutřální tělová barva"
+
 msgid "Next"
 msgstr "Následující"
 
+msgid "Nextcloud blue"
+msgstr "Nextcloud modrá"
+
 msgid "No emoji found"
 msgstr "Nenalezeno žádné emoji"
+
+msgid "No link provider found"
+msgstr "Nenalezen žádný poskytovatel odkazů"
 
 msgid "No results"
 msgstr "Nic nenalezeno"
@@ -115,14 +228,27 @@ msgstr "Nic nenalezeno"
 msgid "Objects"
 msgstr "Objekty"
 
-msgid "Open"
-msgstr "Otevřít"
+msgid "offline"
+msgstr "offline"
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "Otevřít odkaz na „{resourceTitle}“"
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Olivínová"
+
+msgid "online"
+msgstr "online"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "Otevřít odkaz na „{resourceName}“"
+
+msgid "Open menu"
+msgstr "Otevřít nabídku"
 
 msgid "Open navigation"
 msgstr "Otevřít navigaci"
+
+msgid "Options"
+msgstr "Možnosti"
 
 msgid "Password is secure"
 msgstr "Heslo je bezpečné"
@@ -133,6 +259,24 @@ msgstr "Pozastavit prezentaci"
 msgid "People & Body"
 msgstr "Lidé a tělo"
 
+msgid "Pick a date"
+msgstr "Vybrat datum"
+
+msgid "Pick a date and a time"
+msgstr "Vybrat datum a čas"
+
+msgid "Pick a month"
+msgstr "Vybrat měsíc"
+
+msgid "Pick a time"
+msgstr "Vybrat čas"
+
+msgid "Pick a week"
+msgstr "Vybrat týden"
+
+msgid "Pick a year"
+msgstr "Vybrat rok"
+
 msgid "Pick an emoji"
 msgstr "Vybrat emoji"
 
@@ -142,17 +286,54 @@ msgstr "Vyberte časovou zónu:"
 msgid "Previous"
 msgstr "Předchozí"
 
+msgid "Provider icon"
+msgstr "Ikona poskytovatele"
+
+msgid "Purple"
+msgstr "Fialová"
+
+msgid "Raw link {options}"
+msgstr "Holý odkaz {options}"
+
 msgid "Related resources"
 msgstr "Související prostředky"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Růžovohnědá"
+
+msgid "Save changes"
+msgstr "Uložit změny"
 
 msgid "Search"
 msgstr "Hledat"
 
+msgid "Search emoji"
+msgstr "Hledat emoji"
+
+msgid "Search for time zone"
+msgstr "Vyhledat časové pásmo"
+
 msgid "Search results"
 msgstr "Výsledky hledání"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "sek. před"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "sekund předtím"
+
 msgid "Select a tag"
 msgstr "Vybrat štítek"
+
+msgid "Select provider"
+msgstr "Vybrat poskytovatele"
+
+msgid "Selected"
+msgstr "Vybráno"
 
 msgid "Settings"
 msgstr "Nastavení"
@@ -163,11 +344,26 @@ msgstr "Pohyb po nastavení"
 msgid "Show password"
 msgstr "Zobrazit heslo"
 
+msgid "Skin tone"
+msgstr "Tělový tón"
+
+msgid "Skip to app navigation"
+msgstr "Přeskočit na navigaci aplikace"
+
+msgid "Skip to main content"
+msgstr "Přeskočit na hlavní obsah"
+
+msgid "Smart Picker"
+msgstr "Inteligentní výběr"
+
 msgid "Smileys & Emotion"
 msgstr "Úsměvy a emoce"
 
 msgid "Start slideshow"
 msgstr "Spustit prezentaci"
+
+msgid "Start typing to search"
+msgstr "Vyhledávejte psaním"
 
 msgid "Submit"
 msgstr "Odeslat"
@@ -187,10 +383,12 @@ msgstr "Nedaří se hledat skupinu"
 msgid "Undo changes"
 msgstr "Vzít změny zpět"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
-"Napište zprávu – pokud chcete někoho zmínit, napište před jeho uživatelským "
-"jménem „@“ (zavináč); automatické doplňování emotikonů zahájíte napsáním „:“"
-" (dvojtečky)…"
+msgid "User status: {status}"
+msgstr "Stav uživatele: {status}"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Whisky"
+
+msgid "Write a message …"
+msgstr "Napsat zprávu…"

@@ -1,12 +1,12 @@
 # 
 # Translators:
-# Andi Chandler <andi@gowling.com>, 2022
-# Café Tango, 2022
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Andi Chandler <andi@gowling.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Café Tango, 2022\n"
-"Language-Team: English (United Kingdom) (https://www.transifex.com/nextcloud/teams/64236/en_GB/)\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>, 2024\n"
+"Language-Team: English (United Kingdom) (https://app.transifex.com/nextcloud/teams/64236/en_GB/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: en_GB\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -17,14 +17,30 @@ msgstr "{tag} (invisible)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (restricted)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "A colour with a HEX value {hex}"
+
+msgid "a few seconds ago"
+msgstr "a few seconds ago"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
+
 msgid "Actions"
 msgstr "Actions"
+
+msgid "Actions for item with name \"{name}\""
+msgstr "Actions for item with name \"{name}\""
 
 msgid "Activities"
 msgstr "Activities"
 
 msgid "Animals & Nature"
 msgstr "Animals & Nature"
+
+msgid "Any link"
+msgstr "Any link"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Anything shared with the same group of people will show up here"
@@ -35,14 +51,41 @@ msgstr "Avatar of {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar of {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "away"
+
+msgid "Back"
+msgstr "Back"
+
+msgid "Back to provider selection"
+msgstr "Back to provider selection"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Blue Violet"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Boston Blue"
+
+msgid "busy"
+msgstr "busy"
+
 msgid "Cancel changes"
 msgstr "Cancel changes"
 
-msgid "Change title"
-msgstr "Change title"
+msgid "Change name"
+msgstr "Change name"
 
 msgid "Choose"
 msgstr "Choose"
+
+msgid "Clear search"
+msgstr "Clear search"
+
+msgid "Clear selected"
+msgstr "Clear selected"
 
 msgid "Clear text"
 msgstr "Clear text"
@@ -50,14 +93,20 @@ msgstr "Clear text"
 msgid "Close"
 msgstr "Close"
 
-msgid "Close modal"
-msgstr "Close modal"
-
 msgid "Close navigation"
 msgstr "Close navigation"
 
 msgid "Close sidebar"
 msgstr "Close sidebar"
+
+msgid "Close Smart Picker"
+msgstr "Close Smart Picker"
+
+msgid "Collapse menu"
+msgstr "Collapse menu"
+
+msgid "Color picker"
+msgstr "Colour picker"
 
 msgid "Confirm changes"
 msgstr "Confirm changes"
@@ -65,20 +114,47 @@ msgstr "Confirm changes"
 msgid "Custom"
 msgstr "Custom"
 
+msgid "Dark skin tone"
+msgstr "Dark skin tone"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Deluge"
+
+msgid "Deselect {option}"
+msgstr "Deselect {option}"
+
+msgid "do not disturb"
+msgstr "do not disturb"
+
 msgid "Edit item"
 msgstr "Edit item"
 
-msgid "Error getting related resources"
-msgstr "Error getting related resources"
+msgid "Emoji picker"
+msgstr "Emoji picker"
 
-msgid "Error parsing svg"
-msgstr "Error parsing svg"
+msgid "Enable interactive view"
+msgstr "Enable interactive view"
 
-msgid "External documentation for {title}"
-msgstr "External documentation for {title}"
+msgid "Enter link"
+msgstr "Enter link"
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+
+msgid "External documentation for {name}"
+msgstr "External documentation for {name}"
 
 msgid "Favorite"
 msgstr "Favourite"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Feldspar"
 
 msgid "Flags"
 msgstr "Flags"
@@ -95,8 +171,36 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Go back to the list"
 
+msgid "Gold"
+msgstr "Gold"
+
 msgid "Hide password"
 msgstr "Hide password"
+
+msgid "invisible"
+msgstr "invisible"
+
+msgid "Keyboard navigation help"
+msgstr "Keyboard navigation help"
+
+msgid "Light skin tone"
+msgstr "Light skin tone"
+
+msgid "Load more \"{options}\""
+msgstr "Load more \"{options}\""
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Mariner"
+
+msgid "Medium dark skin tone"
+msgstr "Medium dark skin tone"
+
+msgid "Medium light skin tone"
+msgstr "Medium light skin tone"
+
+msgid "Medium skin tone"
+msgstr "Medium skin tone"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Message limit of {count} characters reached"
@@ -104,11 +208,23 @@ msgstr "Message limit of {count} characters reached"
 msgid "More items …"
 msgstr "More items …"
 
+msgid "More options"
+msgstr "More options"
+
+msgid "Neutral skin color"
+msgstr "Neutral skin colour"
+
 msgid "Next"
 msgstr "Next"
 
+msgid "Nextcloud blue"
+msgstr "Nextcloud blue"
+
 msgid "No emoji found"
 msgstr "No emoji found"
+
+msgid "No link provider found"
+msgstr "No link provider found"
 
 msgid "No results"
 msgstr "No results"
@@ -116,14 +232,27 @@ msgstr "No results"
 msgid "Objects"
 msgstr "Objects"
 
-msgid "Open"
-msgstr "Open"
+msgid "offline"
+msgstr "offline"
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "Open link to \"{resourceTitle}\""
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Olivine"
+
+msgid "online"
+msgstr "online"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "Open link to \"{resourceName}\""
+
+msgid "Open menu"
+msgstr "Open menu"
 
 msgid "Open navigation"
 msgstr "Open navigation"
+
+msgid "Options"
+msgstr "Options"
 
 msgid "Password is secure"
 msgstr "Password is secure"
@@ -134,6 +263,24 @@ msgstr "Pause slideshow"
 msgid "People & Body"
 msgstr "People & Body"
 
+msgid "Pick a date"
+msgstr "Pick a date"
+
+msgid "Pick a date and a time"
+msgstr "Pick a date and a time"
+
+msgid "Pick a month"
+msgstr "Pick a month"
+
+msgid "Pick a time"
+msgstr "Pick a time"
+
+msgid "Pick a week"
+msgstr "Pick a week"
+
+msgid "Pick a year"
+msgstr "Pick a year"
+
 msgid "Pick an emoji"
 msgstr "Pick an emoji"
 
@@ -143,17 +290,57 @@ msgstr "Please select a time zone:"
 msgid "Previous"
 msgstr "Previous"
 
+msgid "Provider icon"
+msgstr "Provider icon"
+
+msgid "Purple"
+msgstr "Purple"
+
+msgid "Raw link {options}"
+msgstr "Raw link {options}"
+
 msgid "Related resources"
 msgstr "Related resources"
+
+msgid "Related team resources"
+msgstr "Related team resources"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Rosy brown"
+
+msgid "Save changes"
+msgstr "Save changes"
 
 msgid "Search"
 msgstr "Search"
 
+msgid "Search emoji"
+msgstr "Search emoji"
+
+msgid "Search for time zone"
+msgstr "Search for time zone"
+
 msgid "Search results"
 msgstr "Search results"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "sec. ago"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "seconds ago"
+
 msgid "Select a tag"
 msgstr "Select a tag"
+
+msgid "Select provider"
+msgstr "Select provider"
+
+msgid "Selected"
+msgstr "Selected"
 
 msgid "Settings"
 msgstr "Settings"
@@ -164,11 +351,26 @@ msgstr "Settings navigation"
 msgid "Show password"
 msgstr "Show password"
 
+msgid "Skin tone"
+msgstr "Skin tone"
+
+msgid "Skip to app navigation"
+msgstr "Skip to app navigation"
+
+msgid "Skip to main content"
+msgstr "Skip to main content"
+
+msgid "Smart Picker"
+msgstr "Smart Picker"
+
 msgid "Smileys & Emotion"
 msgstr "Smileys & Emotion"
 
 msgid "Start slideshow"
 msgstr "Start slideshow"
+
+msgid "Start typing to search"
+msgstr "Start typing to search"
 
 msgid "Submit"
 msgstr "Submit"
@@ -188,9 +390,15 @@ msgstr "Unable to search the group"
 msgid "Undo changes"
 msgstr "Undo changes"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
+msgid "User status: {status}"
+msgstr "User status: {status}"
+
+msgid "View team"
+msgstr "View team"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Whiskey"
+
+msgid "Write a message …"
+msgstr "Write a message …"

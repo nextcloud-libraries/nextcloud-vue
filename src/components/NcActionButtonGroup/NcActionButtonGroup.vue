@@ -27,21 +27,27 @@ This should be used sparingly for accessibility.
 <template>
 	<div style="display: flex; align-items: center;">
 		<NcActions>
-			<NcActionButtonGroup title="Text alignment">
+			<NcActionButtonGroup name="Text alignment">
 				<NcActionButton aria-label="Align left"
-					@click="showMessage('Align left')">
+					:model-value.sync="alignment"
+					type="radio"
+					value="l">
 					<template #icon>
 						<AlignLeft :size="20" />
 					</template>
 				</NcActionButton>
 				<NcActionButton aria-label="Align center"
-					@click="showMessage('Align center')">
+					:model-value.sync="alignment"
+					type="radio"
+					value="c">
 					<template #icon>
 						<AlignCenter :size="20" />
 					</template>
 				</NcActionButton>
 				<NcActionButton aria-label="Align right"
-					@click="showMessage('Align Right')">
+					:model-value.sync="alignment"
+					type="radio"
+					value="r">
 					<template #icon>
 						<AlignRight :size="20" />
 					</template>
@@ -70,6 +76,9 @@ export default {
 		AlignCenter,
 		Plus,
 	},
+	data() {
+		return { alignment: 'l' }
+	},
 	methods: {
 		showMessage(msg) {
 			alert(msg)
@@ -81,11 +90,11 @@ export default {
 </docs>
 
 <template>
-	<li class="nc-button-group-base">
-		<div v-if="title">
-			{{ title }}
+	<li class="nc-button-group-base" :role="isInSemanticMenu && 'presentation'">
+		<div v-if="name" :id="labelId">
+			{{ name }}
 		</div>
-		<ul class="nc-button-group-content">
+		<ul class="nc-button-group-content" role="group" :aria-labelledby="name ? labelId : undefined">
 			<slot />
 		</ul>
 	</li>
@@ -93,21 +102,41 @@ export default {
 
 <script>
 import { defineComponent } from 'vue'
+import GenRandomId from '../../utils/GenRandomId.js'
+import { t } from '../../l10n.js'
 
 /**
  * A wrapper for allowing inlining NcAction components within the action menu
  */
 export default defineComponent({
 	name: 'NcActionButtonGroup',
+
+	inject: {
+		isInSemanticMenu: {
+			from: 'NcActions:isSemanticMenu',
+			default: false,
+		},
+	},
+
 	props: {
 		/**
-		 * Optional title shown below the button group
+		 * Optional text shown below the button group
 		 */
-		title: {
+		name: {
 			required: false,
 			default: undefined,
 			type: String,
 		},
+	},
+
+	setup() {
+		return {
+			labelId: `nc-action-button-group-${GenRandomId()}`,
+		}
+	},
+
+	methods: {
+		t,
 	},
 })
 </script>
@@ -121,6 +150,7 @@ export default defineComponent({
 
 	ul.nc-button-group-content {
 		display: flex;
+		gap: 4px; // required for the focus-visible outline
 		justify-content: space-between;
 		li {
 			flex: 1 1;
@@ -132,6 +162,20 @@ export default defineComponent({
 			width: 100%;
 			display: flex;
 			justify-content: center;
+
+			&.action-button--active {
+				background-color: var(--color-primary-element);
+				border-radius: var(--border-radius-large);
+				color: var(--color-primary-element-text);
+
+				&:hover, &:focus, &:focus-within {
+					background-color: var(--color-primary-element-hover);
+				}
+			}
+
+			.action-button__pressed-icon {
+				display: none;
+			}
 		}
 	}
 }

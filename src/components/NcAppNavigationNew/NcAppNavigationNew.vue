@@ -47,6 +47,7 @@
 	<div class="app-navigation-new">
 		<NcButton :id="buttonId"
 			:disabled="disabled"
+			:type="type"
 			@click="$emit('click')">
 			<template #icon>
 				<slot name="icon" />
@@ -78,13 +79,20 @@ export default {
 			type: String,
 			required: true,
 		},
+		type: {
+			type: String,
+			default: 'primary',
+			validator(value) {
+				return ['primary', 'secondary', 'tertiary'].indexOf(value) !== -1
+			},
+		},
 	},
 
 	emits: ['click'],
 }
 </script>
 
- <style lang="scss" scoped>
+<style lang="scss" scoped>
 /* 'New' button */
 .app-navigation-new {
 	display: block;

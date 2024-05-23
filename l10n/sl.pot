@@ -1,13 +1,12 @@
 # 
 # Translators:
-# Goran Kavrecic <goran.kavrecic@indea.si>, 2021
-# Marko <marko.ambrozic@gmail.com>, 2022
-# Matej Urbančič <>, 2022
+# Joas Schilling, 2023
+# Transifex Bot <>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Matej Urbančič <>, 2022\n"
-"Language-Team: Slovenian (https://www.transifex.com/nextcloud/teams/64236/sl/)\n"
+"Last-Translator: Transifex Bot <>, 2023\n"
+"Language-Team: Slovenian (https://app.transifex.com/nextcloud/teams/64236/sl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sl\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
@@ -18,8 +17,14 @@ msgstr "{tag} (nevidno)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (omejeno)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "Dejanja"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "Dejavnosti"
@@ -27,20 +32,35 @@ msgstr "Dejavnosti"
 msgid "Animals & Nature"
 msgstr "Živali in Narava"
 
+msgid "Any link"
+msgstr ""
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+
 msgid "Avatar of {displayName}"
 msgstr "Podoba {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
 msgstr "Prikazna slika {displayName}, {status}"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "Prekliči spremembe"
 
-msgid "Change title"
-msgstr "Spremeni naziv"
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "Izbor"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear text"
 msgstr "Počisti besedilo"
@@ -57,6 +77,12 @@ msgstr "Zapri krmarjenje"
 msgid "Close sidebar"
 msgstr "Zapri stransko vrstico"
 
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "Potrdi spremembe"
 
@@ -66,11 +92,16 @@ msgstr "Po meri"
 msgid "Edit item"
 msgstr "Uredi predmet"
 
-msgid "Error getting related resources"
-msgstr "Napaka pridobivanja povezanih virov"
+msgid "Enter link"
+msgstr ""
 
-msgid "External documentation for {title}"
-msgstr "Zunanja dokumentacija za {title}"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+
+msgid "External documentation for {name}"
+msgstr ""
 
 msgid "Favorite"
 msgstr "Priljubljeno"
@@ -93,11 +124,17 @@ msgstr "Vrni se na seznam"
 msgid "Hide password"
 msgstr "Skrij geslo"
 
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "Dosežena omejitev {count} znakov na sporočilo."
 
 msgid "More items …"
 msgstr "Več predmetov ..."
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "Naslednji"
@@ -105,20 +142,29 @@ msgstr "Naslednji"
 msgid "No emoji found"
 msgstr "Ni najdenih izraznih ikon"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "Ni zadetkov"
 
 msgid "Objects"
 msgstr "Predmeti"
 
-msgid "Open"
-msgstr "Odpri"
+msgid "Open contact menu"
+msgstr ""
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "Odpri povezavo do »{resourceTitle}«"
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "Odpri krmarjenje"
+
+msgid "Open settings menu"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "Geslo je varno"
@@ -156,17 +202,38 @@ msgstr "Izbor časovnega pasu:"
 msgid "Previous"
 msgstr "Predhodni"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
 msgid "Related resources"
 msgstr "Povezani viri"
 
 msgid "Search"
 msgstr "Iskanje"
 
+msgid "Search emoji"
+msgstr ""
+
 msgid "Search results"
 msgstr "Zadetki iskanja"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "Izbor oznake"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "Nastavitve"
@@ -177,11 +244,17 @@ msgstr "Krmarjenje nastavitev"
 msgid "Show password"
 msgstr "Pokaži geslo"
 
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "Izrazne ikone"
 
 msgid "Start slideshow"
 msgstr "Začni predstavitev"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "Pošlji"
@@ -201,7 +274,7 @@ msgstr "Ni mogoče iskati po skupini"
 msgid "Undo changes"
 msgstr "Razveljavi spremembe"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
 msgstr ""
-"Napišite sporočilo, za omembo pred ime postavite@, začnite z : za "
-"vstavljanje izraznih ikon …"

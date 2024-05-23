@@ -2,8 +2,9 @@
  - @copyright Copyright (c) 2020 Marco Ambrosini <marcoambrosini@icloud.com>
  -
  - @author Marco Ambrosini <marcoambrosini@icloud.com>
+ - @author Ferdinand Thiessen <opensource@fthiessen.de>
  -
- - @license GNU AGPL version 3 or any later version
+ - @license AGPL-3.0-or-later
  -
  - This program is free software: you can redistribute it and/or modify
  - it under the terms of the GNU Affero General Public License as
@@ -21,42 +22,42 @@
  -->
 <docs>
 Just nest the `AppSettingSections` component into `NcAppSettingsDialog`,
-providing the section's title prop. You can put your settings within each
+providing the section's name prop. You can put your settings within each
 `NcAppSettingsSection` component.
 
 ```vue
 <template>
 	<div>
 		<NcButton @click="settingsOpen = true">Show Settings</NcButton>
-		<NcAppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" title="Application settings">
-			<NcAppSettingsSection id="asci-title-1" title="Example title 1">
+		<NcAppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" name="Application settings">
+			<NcAppSettingsSection id="asci-name-1" name="Example name 1">
 				Some example content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-2" title="Example title 2">
+			<NcAppSettingsSection id="asci-name-2" name="Example name 2">
 				Some more content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-3" title="Example title 3">
+			<NcAppSettingsSection id="asci-name-3" name="Example name 3">
 				Some example content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-4" title="Example title 4">
+			<NcAppSettingsSection id="asci-name-4" name="Example name 4">
 				Some more content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-5" title="Example title 5">
+			<NcAppSettingsSection id="asci-name-5" name="Example name 5">
 				Some example content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-6" title="Example title 6">
+			<NcAppSettingsSection id="asci-name-6" name="Example name 6">
 				Some more content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-7" title="Example title 7">
+			<NcAppSettingsSection id="asci-name-7" name="Example name 7">
 				Some example content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-8" title="Example title 8">
+			<NcAppSettingsSection id="asci-name-8" name="Example name 8">
 				Some more content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-9" title="Example title 9">
+			<NcAppSettingsSection id="asci-name-9" name="Example name 9">
 				Some more content
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-title-10" title="Example title 10">
+			<NcAppSettingsSection id="asci-name-10" name="Example name 10">
 				Some more content
 			</NcAppSettingsSection>
 		</NcAppSettingsDialog>
@@ -73,24 +74,130 @@ export default {
 }
 </script>
 ```
-</docs>
+
+You can also add icons to the section navigation:
+
+```vue
+<template>
+	<div>
+		<NcButton @click="settingsOpen = true">Show Settings</NcButton>
+		<NcAppSettingsDialog :open.sync="settingsOpen" :show-navigation="true" name="Application settings">
+			<NcAppSettingsSection id="asci-name-1" name="Instagram">
+				<template #icon>
+					<Instagram :size="20" />
+				</template>
+				<p style="height: 100vh;">
+					Instagram setting
+				</p>
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-2" name="Mastodon">
+				<template #icon>
+					<Mastodon :size="20" />
+				</template>
+				<p style="height: 100vh;">
+					Mastodon setting
+				</p>
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-3" name="Twitch">
+				<template #icon>
+					<Twitch :size="20" />
+				</template>
+				<p style="height: 100vh;">
+					Twitch setting
+				</p>
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-4" name="Twitter">
+				<template #icon>
+					<Twitter :size="20" />
+				</template>
+				Twitter setting
+			</NcAppSettingsSection>
+		</NcAppSettingsDialog>
+	</div>
+</template>
 
 <script>
-import NcModal from '../NcModal/index.js'
-import isMobile from '../../mixins/isMobile/index.js'
+import Instagram from 'vue-material-design-icons/Instagram.vue'
+import Mastodon from 'vue-material-design-icons/Mastodon.vue'
+import Twitch from 'vue-material-design-icons/Twitch.vue'
+import Twitter from 'vue-material-design-icons/Twitter.vue'
+
+export default {
+	components: {
+		Instagram,
+		Mastodon,
+		Twitch,
+		Twitter,
+	},
+	data() {
+		return {
+			settingsOpen: false,
+		}
+	},
+}
+</script>
+```
+</docs>
+
+<template>
+	<NcDialog v-if="open"
+		:navigation-aria-label="settingsNavigationAriaLabel"
+		v-bind="dialogProperties"
+		@update:open="handleCloseModal">
+		<template v-if="hasNavigation" #navigation="{ isCollapsed }">
+			<ul v-if="!isCollapsed"
+				class="navigation-list">
+				<li v-for="section in sections" :key="section.id">
+					<a :aria-current="`${section.id === selectedSection}`"
+						:class="{
+							'navigation-list__link': true,
+							'navigation-list__link--active': section.id === selectedSection,
+							'navigation-list__link--icon': hasNavigationIcons,
+						}"
+						:href="`#settings-section_${section.id}`"
+						tabindex="0"
+						@click.prevent="handleSettingsNavigationClick(section.id)"
+						@keydown.enter="handleSettingsNavigationClick(section.id)">
+						<div v-if="hasNavigationIcons" class="navigation-list__link-icon">
+							<NcVNodes v-if="section.icon" :vnodes="section.icon" />
+						</div>
+						<span class="navigation-list__link-text">
+							{{ section.name }}
+						</span>
+					</a>
+				</li>
+			</ul>
+		</template>
+		<div ref="settingsScroller">
+			<slot />
+		</div>
+	</NcDialog>
+</template>
+
+<script>
+import NcDialog from '../NcDialog/index.js'
+import NcVNodes from '../NcVNodes/index.js'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { t } from '../../l10n.js'
 
 import debounce from 'debounce'
+import Vue from 'vue'
 
 export default {
 
 	name: 'NcAppSettingsDialog',
 
 	components: {
-		NcModal,
+		NcDialog,
+		NcVNodes,
 	},
 
-	mixins: [isMobile],
+	provide() {
+		return {
+			registerSection: this.registerSection,
+			unregisterSection: this.unregisterSection,
+		}
+	},
 
 	props: {
 		/**
@@ -117,15 +224,30 @@ export default {
 		},
 
 		/**
-		 * Title of the settings
+		 * Name of the settings
 		 */
-		title: {
+		name: {
 			type: String,
 			default: '',
 		},
+
+		/**
+		 * Additional elements to add to the focus trap
+		 */
+		additionalTrapElements: {
+			type: Array,
+			default: () => [],
+		},
+
 	},
 
 	emits: ['update:open'],
+
+	setup() {
+		return {
+			isMobile: useIsMobile(),
+		}
+	},
 
 	data() {
 		return {
@@ -133,10 +255,34 @@ export default {
 			linkClicked: false,
 			addedScrollListener: false,
 			scroller: null,
+			/**
+			 * Currently registered settings sections
+			 * @type {{ id: string, name: string, icon?: import('vue').VNode[] }[]}
+			 */
+			sections: [],
 		}
 	},
 
 	computed: {
+		dialogProperties() {
+			return {
+				additionalTrapElements: this.additionalTrapElements,
+				closeOnClickOutside: true,
+				class: 'app-settings',
+				container: this.container,
+				contentClasses: 'app-settings__content',
+				size: 'large',
+				name: this.name,
+				navigationClasses: 'app-settings__navigation',
+			}
+		},
+
+		/**
+		 * Check if one or more navigation entries provide icons
+		 */
+		hasNavigationIcons() {
+			return this.sections.some(({ icon }) => !!icon)
+		},
 
 		hasNavigation() {
 			if (this.isMobile || !this.showNavigation) {
@@ -149,11 +295,6 @@ export default {
 		settingsNavigationAriaLabel() {
 			return t('Settings navigation')
 		},
-	},
-
-	mounted() {
-		// Select first settings section
-		this.selectedSection = this.$slots.default[0].componentOptions.propsData.id
 	},
 
 	updated() {
@@ -171,38 +312,45 @@ export default {
 	},
 
 	methods: {
+		/**
+		 * Called when a new section is registered
+		 * @param {string} id The section ID
+		 * @param {string} name The section name
+		 * @param {import('vue').VNode[]|undefined} icon Optional icon component
+		 */
+		registerSection(id, name, icon) {
+			// Check for the uniqueness of section names
+			if (this.sections.some(({ id: otherId }) => id === otherId)) {
+				throw new Error(`Duplicate section id found: ${id}. Settings navigation sections must have unique section ids.`)
+			}
+			if (this.sections.some(({ name: otherName }) => name === otherName)) {
+				Vue.util.warn(`Duplicate section name found: ${name}. Settings navigation sections must have unique section names.`)
+			}
+
+			const newSections = [...this.sections, { id, name, icon }]
+			// Sort sections by order in slots
+			this.sections = newSections.sort(({ id: idA }, { id: idB }) => {
+				const indexOf = (id) => this.$slots.default?.findIndex?.(vnode => vnode?.componentOptions?.propsData?.id === id) ?? -1
+				return indexOf(idA) - indexOf(idB)
+			})
+
+			// If this is the first section registered, set it as selected
+			if (this.sections.length === 1) {
+				this.selectedSection = id
+			}
+		},
 
 		/**
-		 * Builds the settings navigation menu
-		 *
-		 * @param {object} slots The default slots object passed from the render function.
-		 * @return {Array} the navigation items
+		 * Called when a section is unregistered to remove it from dialog
+		 * @param {string} id The section ID
 		 */
-		getSettingsNavigation(slots) {
-			// Array of navigationitems strings
-			const navigationItems = slots.filter(vNode => vNode.componentOptions).map(vNode => {
-				return {
-					id: vNode.componentOptions.propsData?.id,
-					title: vNode.componentOptions.propsData?.title,
-				}
-			})
-			const navigationTitles = slots.map(item => item.title)
-			const navigationIds = slots.map(item => item.id)
+		unregisterSection(id) {
+			this.sections = this.sections.filter(({ id: otherId }) => id !== otherId)
 
-			// Check for the uniqueness of section titles
-			navigationItems.forEach((element, index) => {
-				const newTitlesArray = [...navigationTitles]
-				const newIdArray = [...navigationIds]
-				newTitlesArray.splice(index, 1)
-				newIdArray.splice(index, 1)
-				if (newTitlesArray.includes(element.title)) {
-					throw new Error(`Duplicate section title found: ${element}. Settings navigation sections must have unique section titles.`)
-				}
-				if (newIdArray.includes(element.id)) {
-					throw new Error(`Duplicate section id found: ${element}. Settings navigation sections must have unique section ids.`)
-				}
-			})
-			return navigationItems
+			// If the current section is unregistered, set the first section as selected
+			if (this.selectedSection === id) {
+				this.selectedSection = this.sections[0]?.id ?? ''
+			}
 		},
 
 		/**
@@ -222,7 +370,11 @@ export default {
 			}, 1000)
 		},
 
-		handleCloseModal() {
+		handleCloseModal(isOpen) {
+			if (isOpen) {
+				return
+			}
+
 			this.$emit('update:open', false)
 			// Remove scroll listener each time the modal is closed
 			this.scroller.removeEventListener('scroll', this.handleScroll)
@@ -243,160 +395,23 @@ export default {
 				document.activeElement.blur()
 			}
 		}, 300),
-
-		handleLinkKeydown(keyDownEvent, item) {
-			if (keyDownEvent.code === 'Enter') {
-				this.handleSettingsNavigationClick(item)
-			}
-		},
-	},
-
-	render(h) {
-		/**
-		 * Build the navigation
-		 *
-		 * @return {object} the navigation
-		 */
-		const createAppSettingsNavigation = () => {
-			if (this.hasNavigation) {
-				return [h('div', {
-					attrs: {
-						class: 'app-settings__navigation',
-						role: 'tablist',
-						'aria-label': this.settingsNavigationAriaLabel,
-					},
-				}, [h('ul', {
-					attrs: {
-						class: 'navigation-list',
-						role: 'tablist',
-					},
-				}, this.getSettingsNavigation(this.$slots.default).map(item => {
-					return createListElement(item)
-				}))])]
-			} else {
-				return []
-			}
-		}
-
-		/**
-		 * Build each list element in the navigation
-		 *
-		 * @param {object} item the navigation item
-		 * @return {object} the list element
-		 */
-		const createListElement = (item) => h('li', {}, [h('a', {
-			class: {
-				'navigation-list__link': true,
-				'navigation-list__link--active': item.id === this.selectedSection,
-			},
-
-			attrs: {
-				role: 'tab',
-				'aria-selected': item.id === this.selectedSection,
-				tabindex: '0',
-			},
-
-			on: {
-				click: () => this.handleSettingsNavigationClick(item.id),
-				keydown: () => this.handleLinkKeydown(event, item.id),
-			},
-		}, item.title)])
-
-		// Return value of the render function
-		if (this.open) {
-			return h('NcModal', {
-				class: [
-					'app-settings-modal',
-				],
-				attrs: {
-					container: this.container,
-					size: 'large',
-				},
-				on: {
-					close: () => { this.handleCloseModal() },
-				},
-			}, [
-				// main app-settings root element
-				h('div', {
-					attrs: {
-						class: 'app-settings',
-					},
-				}, [
-					// app-settings title
-					h('h2', {
-						attrs: {
-							class: 'app-settings__title',
-						},
-					}, this.title),
-
-					// app-settings navigation + content
-					h(
-						'div',
-						{
-							attrs: {
-								class: 'app-settings__wrapper',
-							},
-						},
-						[
-							...createAppSettingsNavigation(),
-							h('div', {
-								attrs: {
-									class: 'app-settings__content',
-								},
-								ref: 'settingsScroller',
-							}, this.$slots.default),
-						]
-					),
-				]),
-			])
-		} else {
-			return undefined
-		}
 	},
 }
 
 </script>
 
 <style lang="scss" scoped>
-
-.app-settings-modal :deep(.modal-wrapper .modal-container) {
-	display: flex;
-	overflow: hidden;
-}
-
 .app-settings {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	min-width: 0;
-	&__title {
-		min-height: $clickable-area;
-		height: $clickable-area;
-		line-height: $clickable-area;
-		padding-top: 4px; // Same as the close button top spacing
-		text-align: center;
-	}
-	&__wrapper {
-		display: flex;
-		width: 100%;
-		overflow: hidden;
-		height: 100%;
-		position: relative;
-	}
-	&__navigation {
+	:deep &__navigation {
 		min-width: 200px;
 		margin-right: 20px;
 		overflow-x: hidden;
 		overflow-y: auto;
 		position: relative;
-		height: 100%;
 	}
-	&__content {
-		max-width: 100vw;
-		overflow-y: auto;
-		overflow-x: hidden;
-		padding: 24px;
-		width: 100%;
+	:deep &__content {
+		box-sizing: border-box;
+		padding-inline: 16px;
 	}
 }
 
@@ -405,8 +420,10 @@ export default {
 	box-sizing: border-box;
 	overflow-y: auto;
 	padding: 12px;
+
 	&__link {
-		display: block;
+		display: flex;
+		align-content: center;
 		font-size: 16px;
 		height: $clickable-area;
 		margin: 4px 0;
@@ -430,10 +447,31 @@ export default {
 		&:focus {
 			background-color: var(--color-background-hover);
 		}
+
 		&--active {
-			background-color: var(--color-primary-light) !important;
+			background-color: var(--color-primary-element-light) !important;
+		}
+
+		&--icon {
+			padding-inline-start: 8px;
+			gap: 4px;
+		}
+
+		&-icon {
+			display: flex;
+			justify-content: center;
+			align-content: center;
+			width: 36px;
+			max-width: 36px;
 		}
 	}
 }
 
+@media only screen and (max-width: $breakpoint-small-mobile) {
+	.app-settings {
+		:deep .dialog__name {
+			padding-inline-start: 16px;
+		}
+	}
+}
 </style>

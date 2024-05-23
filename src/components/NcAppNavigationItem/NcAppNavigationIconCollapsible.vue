@@ -28,9 +28,9 @@
 		:aria-label="labelButton"
 		@click="onClick">
 		<template #icon>
-			<ChevronDown v-if="open"
+			<ChevronUp v-if="open"
 				:size="20" />
-			<ChevronRight v-else
+			<ChevronDown v-else
 				:size="20" />
 		</template>
 	</NcButton>
@@ -40,16 +40,16 @@
 import NcButton from '../NcButton/index.js'
 import { t } from '../../l10n.js'
 
-import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
+import ChevronUp from 'vue-material-design-icons/ChevronUp.vue'
 
 export default {
 	name: 'NcAppNavigationIconCollapsible',
 
 	components: {
 		NcButton,
-		ChevronRight,
 		ChevronDown,
+		ChevronUp,
 	},
 
 	props: {
@@ -78,17 +78,14 @@ export default {
 
 <style lang="scss" scoped>
 .button-vue.icon-collapse {
-	position: absolute;
+	position: relative;
 	z-index: 105; // above a, under button
 	color: var(--color-main-text);
-
-	&:hover{
-		color: var(--color-primary);
-	}
+	right: 0;
 	&--open {
 		color: var(--color-main-text);
 		&:hover{
-			color: var(--color-primary);
+			color: var(--color-primary-element);
 		}
 	}
 }

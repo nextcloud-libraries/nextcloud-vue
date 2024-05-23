@@ -1,13 +1,12 @@
 # 
 # Translators:
-# ButterflyOfFire, 2020
-# Anouar Fadili, 2022
-# Ali Mohamed, 2022
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Ali <alimahwer@yahoo.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ali Mohamed, 2022\n"
-"Language-Team: Arabic (https://www.transifex.com/nextcloud/teams/64236/ar/)\n"
+"Last-Translator: Ali <alimahwer@yahoo.com>, 2024\n"
+"Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
@@ -16,67 +15,146 @@ msgid "{tag} (invisible)"
 msgstr "{tag} (غير مرئي)"
 
 msgid "{tag} (restricted)"
-msgstr "{tag} (مقيد)"
+msgstr "{tag} (مُقيّد)"
+
+msgid "A color with a HEX value {hex}"
+msgstr "لون بالقيمة الست عشرية {hex}"
+
+msgid "a few seconds ago"
+msgstr "منذ عدة ثوانٍ مضت"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "بازلائي مطفي"
 
 msgid "Actions"
-msgstr "الإجراءات"
+msgstr "إجراءات"
+
+msgid "Actions for item with name \"{name}\""
+msgstr "إجراءات على العنصر المُسمَّى \"{name}\""
 
 msgid "Activities"
-msgstr "النشاطات"
+msgstr "سجل الحركات"
 
 msgid "Animals & Nature"
 msgstr "الحيوانات والطبيعة"
 
+msgid "Any link"
+msgstr "أيَّ رابطٍ"
+
 msgid "Anything shared with the same group of people will show up here"
-msgstr "أي مادة تمت مشاركتها مع نفس المجموعة من الأشخاص سيتم عرضها هنا"
+msgstr "أيّ مادة تمت مشاركتها مع نفس المجموعة من الأشخاص سيتم عرضها هنا"
 
 msgid "Avatar of {displayName}"
-msgstr "صورة {displayName} الرمزية"
+msgstr "الرمز التجسيدي avatar لــ {displayName}  "
 
 msgid "Avatar of {displayName}, {status}"
-msgstr "صورة {displayName} الرمزية، {status}"
+msgstr "الرمز التجسيدي  avatar لــ {displayName}، {status}"
+
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "غير موجود"
+
+msgid "Back"
+msgstr "عودة"
+
+msgid "Back to provider selection"
+msgstr "عودة إلى اختيار المُزوِّد"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "بنفسجي مشعشع"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "سماوي مطفي"
+
+msgid "busy"
+msgstr "مشغول"
 
 msgid "Cancel changes"
 msgstr "إلغاء التغييرات"
 
-msgid "Change title"
-msgstr "تغيير العنوان"
+msgid "Change name"
+msgstr "تغيير الاسم"
 
 msgid "Choose"
-msgstr "إختيار"
+msgstr "إختَر"
+
+msgid "Clear search"
+msgstr "مَحْوُ البحث"
+
+msgid "Clear selected"
+msgstr "مَحْوُ المُحدّد"
 
 msgid "Clear text"
-msgstr "مسح النص"
+msgstr "مَحْوُ النص"
 
 msgid "Close"
-msgstr "أغلق"
-
-msgid "Close modal"
-msgstr "قفل الشرط"
+msgstr "أغلِق"
 
 msgid "Close navigation"
-msgstr "إغلاق المتصفح"
+msgstr "أغلِق المُتصفِّح"
 
 msgid "Close sidebar"
 msgstr "قفل الشريط الجانبي"
+
+msgid "Close Smart Picker"
+msgstr "أغلِق اللاقط الذكي Smart Picker"
+
+msgid "Collapse menu"
+msgstr "طَيُّ القائمة"
+
+msgid "Color picker"
+msgstr "لاقط الألوان"
 
 msgid "Confirm changes"
 msgstr "تأكيد التغييرات"
 
 msgid "Custom"
-msgstr "مخصص"
+msgstr "مُخصَّص"
+
+msgid "Dark skin tone"
+msgstr "أسمر البُشرة"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "بنفسجي مطفي"
+
+msgid "Deselect {option}"
+msgstr "إلغاء تحديد {option}"
+
+msgid "do not disturb"
+msgstr "يُرجى عدم الإزعاج"
 
 msgid "Edit item"
 msgstr "تعديل عنصر"
 
-msgid "Error getting related resources"
-msgstr "خطأ في تحصيل مصادر ذات صلة"
+msgid "Emoji picker"
+msgstr "لاقط الإيموجي"
 
-msgid "External documentation for {title}"
-msgstr "الوثائق الخارجية لـ{title}"
+msgid "Enable interactive view"
+msgstr "تمكين المنظور التفاعلي"
+
+msgid "Enter link"
+msgstr "أدخِل الرابط"
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+"خطأ في الحصول على الموارد ذات الصلة. يرجى الاتصال بمشرف النظام عندك إذا كان "
+"لديك أيّ أسئلة."
+
+msgid "External documentation for {name}"
+msgstr "التوثيق الخارجي لـ {name}"
 
 msgid "Favorite"
-msgstr "مفضلة"
+msgstr "المُفضَّلة"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "وردي صخري"
 
 msgid "Flags"
 msgstr "الأعلام"
@@ -85,55 +163,129 @@ msgid "Food & Drink"
 msgstr "الطعام والشراب"
 
 msgid "Frequently used"
-msgstr "كثيرا ما تستخدم"
+msgstr "شائعة الاستعمال"
 
 msgid "Global"
-msgstr "عالمي"
+msgstr "شامل"
 
 msgid "Go back to the list"
-msgstr "العودة إلى القائمة"
+msgstr "عودة إلى القائمة"
+
+msgid "Gold"
+msgstr "ذهبي"
 
 msgid "Hide password"
-msgstr "إخفاء كلمة السر"
+msgstr "إخفاء كلمة المرور"
+
+msgid "invisible"
+msgstr "غير مرئي"
+
+msgid "Keyboard navigation help"
+msgstr "مساعدة في التنقل باستعمال لوحة المفاتيح"
+
+msgid "Light skin tone"
+msgstr "فاتح البُشرة"
+
+msgid "Load more \"{options}\""
+msgstr "تحميل المزيد من \"{options}\" "
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "أزرق بحري"
+
+msgid "Medium dark skin tone"
+msgstr "بُشرة متوسطة الاسمرار"
+
+msgid "Medium light skin tone"
+msgstr "بُشرة متوسطة البياض"
+
+msgid "Medium skin tone"
+msgstr "بُشرة وسطية اللون"
 
 msgid "Message limit of {count} characters reached"
-msgstr "تم الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
+msgstr "تمّ الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
 
 msgid "More items …"
 msgstr "عناصر أخرى ..."
 
+msgid "More options"
+msgstr "خيارات أخرى ..."
+
+msgid "Neutral skin color"
+msgstr "لون بُشرة طبيعي"
+
 msgid "Next"
 msgstr "التالي"
 
+msgid "Nextcloud blue"
+msgstr "أزرق نكست كلاود"
+
 msgid "No emoji found"
-msgstr "لم يتم العثور على أي رمز تعبيري"
+msgstr "لم يتم العثور على أي إيموجي emoji"
+
+msgid "No link provider found"
+msgstr "لا يوجد أيّ مزود روابط link provider"
 
 msgid "No results"
 msgstr "ليس هناك أية نتيجة"
 
 msgid "Objects"
-msgstr "الأشياء"
+msgstr "أشياء"
 
-msgid "Open"
-msgstr "فتح"
+msgid "offline"
+msgstr "غير متصل"
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "فتح رابط إلى \"{resourceTitle}\""
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "زيتي"
+
+msgid "online"
+msgstr "مُتّصِلٌ"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "إفتَح الرابط إلى \"{resourceName}\""
+
+msgid "Open menu"
+msgstr "إفتَح القائمة"
 
 msgid "Open navigation"
-msgstr "فتح المتصفح"
+msgstr "إفتَح المتصفح"
+
+msgid "Open sidebar"
+msgstr "إفتَح الشريط الجانبي"
+
+msgid "Options"
+msgstr "خيارات"
 
 msgid "Password is secure"
-msgstr "كلمة السر مُؤمّنة"
+msgstr "كلمة المرور مُؤمّنة"
 
 msgid "Pause slideshow"
-msgstr "إيقاف العرض مؤقتًا"
+msgstr "تجميد عرض الشرائح"
 
 msgid "People & Body"
-msgstr "الناس والجسم"
+msgstr "أشخاص و أجسام"
+
+msgid "Pick a date"
+msgstr "إختَر التاريخ"
+
+msgid "Pick a date and a time"
+msgstr "إختَر التاريخ و الوقت"
+
+msgid "Pick a month"
+msgstr "إختَر الشهر"
+
+msgid "Pick a time"
+msgstr "إختَر الوقت"
+
+msgid "Pick a week"
+msgstr "إختَر الأسبوع"
+
+msgid "Pick a year"
+msgstr "إختَر السنة"
 
 msgid "Pick an emoji"
-msgstr "اختر رمزًا تعبيريًا"
+msgstr "إختَر رمز إيموجي emoji"
 
 msgid "Please select a time zone:"
 msgstr "الرجاء تحديد المنطقة الزمنية:"
@@ -141,51 +293,115 @@ msgstr "الرجاء تحديد المنطقة الزمنية:"
 msgid "Previous"
 msgstr "السابق"
 
+msgid "Provider icon"
+msgstr "أيقونة المُزوِّد"
+
+msgid "Purple"
+msgstr "بنفسجي"
+
+msgid "Raw link {options}"
+msgstr " الرابط الخام raw link ـ {options}"
+
 msgid "Related resources"
 msgstr "مصادر ذات صلة"
+
+msgid "Related team resources"
+msgstr "موارد للفريق ذات صلة"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "بُنِّي زهري"
+
+msgid "Save changes"
+msgstr "حفظ التغييرات"
 
 msgid "Search"
 msgstr "بحث"
 
+msgid "Search emoji"
+msgstr "البحث عن إيموجي emoji"
+
+msgid "Search for time zone"
+msgstr "البحث عن منطقة زمنية"
+
 msgid "Search results"
 msgstr "نتائج البحث"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "ثانية مضت"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "ثوانٍ مضت"
+
 msgid "Select a tag"
-msgstr "اختر علامة"
+msgstr "إختَر سِمَةً tag"
+
+msgid "Select provider"
+msgstr "إختَر مٌزوِّداً"
+
+msgid "Selected"
+msgstr "مُحدّدة"
 
 msgid "Settings"
 msgstr "الإعدادات"
 
 msgid "Settings navigation"
-msgstr "إعدادات المتصفح"
+msgstr "إعدادات التّصفُّح"
 
 msgid "Show password"
-msgstr "أعرض كلمة السر"
+msgstr "أظهِر كلمة المرور"
+
+msgid "Skin tone"
+msgstr "لون البُشرة"
+
+msgid "Skip to app navigation"
+msgstr "تجاوَز إلى التنقل في التطبيق"
+
+msgid "Skip to main content"
+msgstr "تجاوَز إلى المحتوى الرئيسي"
+
+msgid "Smart Picker"
+msgstr "اللاقط الذكي smart picker"
 
 msgid "Smileys & Emotion"
-msgstr "الوجوه و الرموز التعبيرية"
+msgstr "وجوهٌ ضاحكة و مشاعر"
 
 msgid "Start slideshow"
-msgstr "بدء العرض"
+msgstr "إبدإ العرض"
+
+msgid "Start typing to search"
+msgstr "إبدإ كتابة مفردات البحث"
 
 msgid "Submit"
 msgstr "إرسال"
 
 msgid "Symbols"
-msgstr "الرموز"
+msgstr "رموز"
 
 msgid "Travel & Places"
-msgstr "السفر والأماكن"
+msgstr "سفر و أماكن"
 
 msgid "Type to search time zone"
-msgstr "اكتب للبحث عن منطقة زمنية"
+msgstr "أكتُب للبحث عن منطقة زمنية"
 
 msgid "Unable to search the group"
-msgstr "تعذر البحث في المجموعة"
+msgstr "تعذّر البحث في المجموعة"
 
 msgid "Undo changes"
-msgstr "التراجع عن التغييرات"
+msgstr "تراجَع عن التغييرات"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
-msgstr ""
-"اكتب رسالة، @ للإشارة إلى شخص ما، : للإكمال التلقائي للرموز التعبيرية ..."
+msgid "User status: {status}"
+msgstr "حالة المستخدِم: {status}"
+
+msgid "View team"
+msgstr "عرض الفريق"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "نبيذي"
+
+msgid "Write a message …"
+msgstr "أكتُب رسالةً ..."

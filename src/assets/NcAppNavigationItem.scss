@@ -1,0 +1,213 @@
+.app-navigation-entry {
+	position: relative;
+	display: flex;
+	flex-shrink: 0;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	width: 100%;
+	min-height: $clickable-area;
+	transition: background-color var(--animation-quick) ease-in-out;
+	transition: background-color 200ms ease-in-out;
+	border-radius: var(--border-radius-pill);
+
+	&-wrapper {
+		position: relative;
+		display: flex;
+		flex-shrink: 0;
+		flex-wrap: wrap;
+		box-sizing: border-box;
+		width: 100%;
+
+		&.app-navigation-entry--collapsible:not(.app-navigation-entry--opened) > ul {
+			// NO ANIMATE because if not really hidden, we can still tab through it
+			display: none;
+		}
+	}
+
+	// When .active class is applied, change color background of link and utils. The
+	// !important prevents the focus state to override the active state.
+	&.active {
+		background-color: var(--color-primary-element) !important;
+
+		&:hover {
+			background-color: var(--color-primary-element-hover) !important;
+		}
+
+		// overwrite active text color
+		.app-navigation-entry-link, .app-navigation-entry-button {
+			color: var(--color-primary-element-text) !important;
+		}
+	}
+	&:focus-within,
+	&:hover {
+		background-color: var(--color-background-hover);
+	}
+	&.active,
+	&:focus-within,
+	&:hover {
+		.app-navigation-entry__children {
+			background-color: var(--color-main-background);
+		}
+	}
+
+	// Show the actions on active
+	&.active,
+	// Always show the undo button
+	&.app-navigation-entry--deleted,
+	&:focus,
+	&:focus-within,
+	&:hover {
+		.app-navigation-entry__utils .app-navigation-entry__actions {
+			display: inline-block;
+		}
+	}
+
+	/* hide deletion/collapse of subitems */
+	&.app-navigation-entry--deleted > ul {
+		// NO ANIMATE because if not really hidden, we can still tab through it
+		display: none;
+	}
+
+	&:not(.app-navigation-entry--editing) {
+		.app-navigation-entry-link, .app-navigation-entry-button {
+			padding-right: $icon-margin;
+		}
+	}
+
+	// Main entry link
+	.app-navigation-entry-link, .app-navigation-entry-button {
+		z-index: 100; /* above the bullet to allow click*/
+		display: flex;
+		overflow: hidden;
+		flex: 1 1 0;
+		box-sizing: border-box;
+		min-height: $clickable-area;
+		padding: 0;
+		white-space: nowrap;
+		color: var(--color-main-text);
+		background-repeat: no-repeat;
+		background-position: $icon-margin center;
+		background-size: $icon-size $icon-size;
+		line-height: $clickable-area;
+
+		.app-navigation-entry-icon {
+			display: flex;
+			align-items: center;
+			flex: 0 0 $clickable-area;
+			justify-content: center;
+			width: $clickable-area;
+			height: $clickable-area;
+			background-size: $icon-size $icon-size;
+			background-repeat: no-repeat;
+			background-position: $icon-margin center;
+		}
+
+		.app-navigation-entry__name {
+			overflow: hidden;
+			max-width: 100%;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+
+		.editingContainer {
+			width: calc(100% - #{$clickable-area});
+			margin: auto;
+		}
+
+		&:focus-visible {
+			box-shadow: 0 0 0 4px var(--color-main-background);
+			outline: 2px solid var(--color-main-text);
+			border-radius: var(--border-radius-pill);
+		}
+	}
+}
+/* Second level nesting for lists */
+.app-navigation-entry__children {
+	position: relative;
+	display: flex;
+	flex: 0 1 auto;
+	flex-direction: column;
+	width: 100%;
+	gap: var(--default-grid-baseline, 4px);
+
+	.app-navigation-entry {
+		display: inline-flex;
+		flex-wrap: wrap;
+		padding-left: $icon-size;
+	}
+}
+
+/* Deleted entries */
+.app-navigation-entry__deleted {
+	display: inline-flex;
+	flex: 1 1 0;
+	padding-left: $clickable-area - $icon-margin !important;
+	.app-navigation-entry__deleted-description {
+		position: relative;
+		overflow: hidden;
+		flex: 1 1 0;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		line-height: $clickable-area;
+	}
+}
+
+/* counter and actions */
+.app-navigation-entry__utils {
+	display: flex;
+	min-width: $clickable-area;
+	align-items: center;
+	flex: 0 1 auto;
+	justify-content: flex-end;
+	&#{&}--display-actions .action-item.app-navigation-entry__actions {
+		display: inline-block;
+	}
+	/* counter */
+	.app-navigation-entry__counter-wrapper {
+		// Add slightly more space to the right of the counter
+		margin-right: calc(var(--default-grid-baseline) * 3);
+		display: flex;
+		align-items: center;
+		flex: 0 1 auto;
+	}
+	/* actions */
+	.action-item.app-navigation-entry__actions {
+		display: none;
+	}
+}
+
+// STATES
+/* editing state */
+.app-navigation-entry--editing {
+	.app-navigation-entry-edit {
+		z-index: 250;
+		opacity: 1;
+	}
+}
+
+/* deleted state */
+.app-navigation-entry--deleted {
+	.app-navigation-entry-deleted {
+		z-index: 250;
+		transform: translateX(0);
+	}
+}
+
+/* pinned state */
+.app-navigation-entry--pinned {
+	order: 2;
+	margin-top: auto;
+	// only put a marginTop auto to the first one!
+	~ .app-navigation-entry--pinned {
+		margin-top: 0;
+	}
+}
+
+// Add more contrast for active entry
+[data-themes*='highcontrast'] {
+	.app-navigation-entry {
+		&:active {
+			background-color: var(--color-primary-element-light-hover) !important;
+		}
+	}
+}

@@ -22,7 +22,7 @@
  */
 
 @mixin action-active {
-	li {
+	li.action {
 		&.active {
 			background-color: var(--color-background-hover);
 			border-radius: 6px;
@@ -61,7 +61,6 @@
 		cursor: pointer;
 		white-space: nowrap;
 
-		opacity: $opacity_normal;
 		color: var(--color-main-text);
 		border: 0;
 		border-radius: 0; // otherwise Safari will cut the border-radius area
@@ -71,11 +70,6 @@
 		font-weight: normal;
 		font-size: var(--default-font-size);
 		line-height: $clickable-area;
-
-		&:hover,
-		&:focus {
-			opacity: $opacity_full;
-		}
 
 		& > span {
 			cursor: pointer;
@@ -102,7 +96,8 @@
 		}
 
 		// long text area
-		p {
+		&__longtext-wrapper,
+		&__longtext {
 			max-width: 220px;
 			line-height: 1.6em;
 
@@ -120,16 +115,24 @@
 		&__longtext {
 			cursor: pointer;
 			// allow the use of `\n`
-			white-space: pre-wrap;
+			white-space: pre-wrap !important;
 		}
 
-		&__title {
+		&__name {
 			font-weight: bold;
 			text-overflow: ellipsis;
 			overflow: hidden;
 			white-space: nowrap;
 			max-width: 100%;
 			display: inline-block;
+		}
+
+		&__menu-icon {
+			// Push to the right
+			margin-left: auto;
+			// Align with right end of the button
+			// This is the padding-right
+			margin-right: -$icon-margin;
 		}
 	}
 }

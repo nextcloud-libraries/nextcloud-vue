@@ -1,18 +1,12 @@
 # 
 # Translators:
-# Gabriel Ekström <gabriel.ekstrom06@gmail.com>, 2020
-# efef6ec5b435a041fce803c7f8af77d2_2341d43, 2020
-# f90ece83ebc6bad1c1e52843719995d7_72bd7dc, 2021
-# Tim Ragnwald, 2021
-# Tommie Bergman <tommie.bergman@gmail.com>, 2022
-# Max Bäckström, 2022
-# Magnus Höglund, 2022
-# Erik Lennartsson, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Magnus Höglund, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Erik Lennartsson, 2023\n"
-"Language-Team: Swedish (https://www.transifex.com/nextcloud/teams/64236/sv/)\n"
+"Last-Translator: Magnus Höglund, 2024\n"
+"Language-Team: Swedish (https://app.transifex.com/nextcloud/teams/64236/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -23,14 +17,30 @@ msgstr "{tag} (osynlig)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (begränsad)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "En färg med ett HEX-värde {hex}"
+
+msgid "a few seconds ago"
+msgstr "några sekunder sedan"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
+
 msgid "Actions"
 msgstr "Åtgärder"
+
+msgid "Actions for item with name \"{name}\""
+msgstr "Åtgärder för objekt med namn \"{name}\""
 
 msgid "Activities"
 msgstr "Aktiviteter"
 
 msgid "Animals & Nature"
 msgstr "Djur & Natur"
+
+msgid "Any link"
+msgstr "Vilken länk som helst"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Något som delats med samma grupp av personer kommer att visas här"
@@ -41,14 +51,41 @@ msgstr "{displayName}s avatar"
 msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName}s avatar, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "borta"
+
+msgid "Back"
+msgstr "Tillbaka"
+
+msgid "Back to provider selection"
+msgstr "Tillbaka till leverantörsval"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Blåviolett"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Bostonblå"
+
+msgid "busy"
+msgstr "upptagen"
+
 msgid "Cancel changes"
 msgstr "Avbryt ändringar"
 
-msgid "Change title"
-msgstr "Ändra titel"
+msgid "Change name"
+msgstr "Ändra namn"
 
 msgid "Choose"
 msgstr "Välj"
+
+msgid "Clear search"
+msgstr "Rensa sökning"
+
+msgid "Clear selected"
+msgstr "Rensa val"
 
 msgid "Clear text"
 msgstr "Ta bort text"
@@ -56,14 +93,20 @@ msgstr "Ta bort text"
 msgid "Close"
 msgstr "Stäng"
 
-msgid "Close modal"
-msgstr "Stäng modal"
-
 msgid "Close navigation"
 msgstr "Stäng navigering"
 
 msgid "Close sidebar"
-msgstr "Stäng sidopanel"
+msgstr "Stäng sidofältet"
+
+msgid "Close Smart Picker"
+msgstr "Stäng Smart Picker"
+
+msgid "Collapse menu"
+msgstr "Komprimera menyn"
+
+msgid "Color picker"
+msgstr "Färgväljare"
 
 msgid "Confirm changes"
 msgstr "Bekräfta ändringar"
@@ -71,20 +114,47 @@ msgstr "Bekräfta ändringar"
 msgid "Custom"
 msgstr "Anpassad"
 
+msgid "Dark skin tone"
+msgstr "Mörk hudton"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Skyfallsblå"
+
+msgid "Deselect {option}"
+msgstr "Avmarkera {option}"
+
+msgid "do not disturb"
+msgstr "stör ej"
+
 msgid "Edit item"
 msgstr "Ändra"
 
-msgid "Error getting related resources"
-msgstr "Problem att hämta relaterade resurser"
+msgid "Emoji picker"
+msgstr "Emoji-väljare"
 
-msgid "Error parsing svg"
-msgstr "Fel vid inläsning av svg"
+msgid "Enable interactive view"
+msgstr "Aktivera interaktiv vy"
 
-msgid "External documentation for {title}"
-msgstr "Extern dokumentation för {title}"
+msgid "Enter link"
+msgstr "Ange länk"
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+"Det gick inte att hämta relaterade resurser. Kontakta din "
+"systemadministratör om du har några frågor."
+
+msgid "External documentation for {name}"
+msgstr "Extern dokumentation för {name}"
 
 msgid "Favorite"
 msgstr "Favorit"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Feldspat"
 
 msgid "Flags"
 msgstr "Flaggor"
@@ -101,8 +171,36 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Gå tillbaka till listan"
 
+msgid "Gold"
+msgstr "Guld"
+
 msgid "Hide password"
 msgstr "Göm lössenordet"
+
+msgid "invisible"
+msgstr "osynlig"
+
+msgid "Keyboard navigation help"
+msgstr "Hjälp med tangentbordsnavigering"
+
+msgid "Light skin tone"
+msgstr "Ljus hudton"
+
+msgid "Load more \"{options}\""
+msgstr "Ladda fler \"{options}\""
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Marinblå"
+
+msgid "Medium dark skin tone"
+msgstr "Medium mörk hudton"
+
+msgid "Medium light skin tone"
+msgstr "Medium ljus hudton"
+
+msgid "Medium skin tone"
+msgstr "Medium hudton"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Meddelandegräns {count} tecken används"
@@ -110,11 +208,23 @@ msgstr "Meddelandegräns {count} tecken används"
 msgid "More items …"
 msgstr "Fler objekt"
 
+msgid "More options"
+msgstr "Fler alternativ"
+
+msgid "Neutral skin color"
+msgstr "Neutral hudfärg"
+
 msgid "Next"
 msgstr "Nästa"
 
+msgid "Nextcloud blue"
+msgstr "Nextcloud-blå"
+
 msgid "No emoji found"
 msgstr "Hittade inga emojis"
+
+msgid "No link provider found"
+msgstr "Ingen länkleverantör hittades"
 
 msgid "No results"
 msgstr "Inga resultat"
@@ -122,14 +232,30 @@ msgstr "Inga resultat"
 msgid "Objects"
 msgstr "Objekt"
 
-msgid "Open"
-msgstr "Öppna"
+msgid "offline"
+msgstr "offline"
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "Öppna länk till \"{resourceTitle}\""
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Olivin"
+
+msgid "online"
+msgstr "online"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "Öppna länken till \"{resourceName}\""
+
+msgid "Open menu"
+msgstr "Öppna menyn"
 
 msgid "Open navigation"
 msgstr "Öppna navigering"
+
+msgid "Open sidebar"
+msgstr "Öppna sidofältet"
+
+msgid "Options"
+msgstr "Alternativ"
 
 msgid "Password is secure"
 msgstr "Lössenordet är säkert"
@@ -140,6 +266,24 @@ msgstr "Pausa bildspelet"
 msgid "People & Body"
 msgstr "Kropp & Själ"
 
+msgid "Pick a date"
+msgstr "Välj datum"
+
+msgid "Pick a date and a time"
+msgstr "Välj datum och tid"
+
+msgid "Pick a month"
+msgstr "Välj månad"
+
+msgid "Pick a time"
+msgstr "Välj tid"
+
+msgid "Pick a week"
+msgstr "Välj vecka"
+
+msgid "Pick a year"
+msgstr "Välj år"
+
 msgid "Pick an emoji"
 msgstr "Välj en emoji"
 
@@ -149,17 +293,57 @@ msgstr "Välj tidszon:"
 msgid "Previous"
 msgstr "Föregående"
 
+msgid "Provider icon"
+msgstr "Leverantörsikon"
+
+msgid "Purple"
+msgstr "Lila"
+
+msgid "Raw link {options}"
+msgstr "Oformaterad länk {options}"
+
 msgid "Related resources"
 msgstr "Relaterade resurser"
+
+msgid "Related team resources"
+msgstr "Relaterade teamresurser"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Rosabrun"
+
+msgid "Save changes"
+msgstr "Spara ändringar"
 
 msgid "Search"
 msgstr "Sök"
 
+msgid "Search emoji"
+msgstr "Sök emoji"
+
+msgid "Search for time zone"
+msgstr "Sök efter tidszon"
+
 msgid "Search results"
 msgstr "Sökresultat"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "sek. sedan"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "sekunder sedan"
+
 msgid "Select a tag"
 msgstr "Välj en tag"
+
+msgid "Select provider"
+msgstr "Välj leverantör"
+
+msgid "Selected"
+msgstr "Vald"
 
 msgid "Settings"
 msgstr "Inställningar"
@@ -170,11 +354,26 @@ msgstr "Inställningsmeny"
 msgid "Show password"
 msgstr "Visa lössenordet"
 
+msgid "Skin tone"
+msgstr "Hudton"
+
+msgid "Skip to app navigation"
+msgstr "Hoppa till appnavigering"
+
+msgid "Skip to main content"
+msgstr "Hoppa till huvudinnehåll"
+
+msgid "Smart Picker"
+msgstr "Smart Picker"
+
 msgid "Smileys & Emotion"
 msgstr "Selfies & Känslor"
 
 msgid "Start slideshow"
 msgstr "Starta bildspelet"
+
+msgid "Start typing to search"
+msgstr "Börja skriva för att söka"
 
 msgid "Submit"
 msgstr "Skicka"
@@ -194,9 +393,15 @@ msgstr "Kunde inte söka i gruppen"
 msgid "Undo changes"
 msgstr "Ångra ändringar"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
-"Skriv meddelande, använd \"@\" för att nämna någon, använd \":\" för "
-"automatiska emojiförslag ..."
+msgid "User status: {status}"
+msgstr "Användarstatus: {status}"
+
+msgid "View team"
+msgstr "Visa team"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Whisky"
+
+msgid "Write a message …"
+msgstr "Skriv ett meddelande …"

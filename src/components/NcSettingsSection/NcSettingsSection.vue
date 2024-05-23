@@ -31,10 +31,9 @@ This component is to be used in the settings section of nextcloud.
 ```vue
 <template>
 	<NcSettingsSection
-		title="Two-Factor Authentication"
+		name="Two-Factor Authentication"
 		description="Two-factor authentication can be enforced for all users and specific groups."
-		doc-url="https://docs.nextcloud.com/server/19/go.php?to=admin-2fa"
-		:limit-width="true">
+		doc-url="https://docs.nextcloud.com/server/19/go.php?to=admin-2fa">
 		<p>Your settings here</p>
 	</NcSettingsSection>
 </template>
@@ -42,15 +41,16 @@ This component is to be used in the settings section of nextcloud.
 </docs>
 
 <template>
-	<div class="settings-section" :class="{'settings-section--limit-width': limitWidth}">
-		<h2 class="settings-section__title">
-			{{ title }}
+	<div class="settings-section" :class="{'settings-section--limit-width': forceLimitWidth}">
+		<h2 class="settings-section__name">
+			{{ name }}
 			<a v-if="hasDocUrl"
 				:href="docUrl"
 				class="settings-section__info"
-				role="note"
-				:aria-label="docTitleTranslated"
-				:title="docTitleTranslated">
+				:title="docNameTranslated"
+				:aria-label="docNameTranslated"
+				target="_blank"
+				rel="noreferrer nofollow">
 				<HelpCircle :size="20" />
 			</a>
 		</h2>
@@ -75,7 +75,7 @@ export default {
 	},
 
 	props: {
-		title: {
+		name: {
 			type: String,
 			required: true,
 		},
@@ -90,8 +90,9 @@ export default {
 		/**
 		 * Limit the width of the setting's content
 		 *
-		 * By default only the title and description have a limit, use this
-		 * property to also apply this to the rest of the content.
+		 * Setting this to false allows unrestricted (width) settings content.
+		 * Note that the name and description have always a width limit.
+		 * @deprecated Will be removed with next version and will not be used on Nextcloud 30+ (always forced to true)
 		 */
 		limitWidth: {
 			type: Boolean,
@@ -101,13 +102,22 @@ export default {
 
 	data() {
 		return {
-			docTitleTranslated: t('External documentation for {title}', {
-				title: this.title,
+			docNameTranslated: t('External documentation for {name}', {
+				name: this.name,
 			}),
 		}
 	},
 
 	computed: {
+		forceLimitWidth() {
+			if (this.limitWidth) {
+				return true
+			}
+			// Overwrite this on Nextcloud 30+ to always limit the width
+			const [major] = window._oc_config?.version.split('.', 2) ?? []
+			return major && Number.parseInt(major) >= 30
+		},
+
 		hasDescription() {
 			return this.description.length > 0
 		},
@@ -135,7 +145,7 @@ $maxWidth: 900px;
 		max-width: $maxWidth;
 	}
 
-	&__title {
+	&__name {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
@@ -153,17 +163,17 @@ $maxWidth: 900px;
 		// make sure to properly align the icon with the text
 		margin: -$icon-margin;
 		margin-left: 0;
-		opacity: $opacity_normal;
+		color: var(--color-text-maxcontrast);
 
 		&:hover, &:focus, &:active {
-			opacity: $opacity_full;
+			color: var(--color-main-text);
 		}
 	}
 
 	&__desc {
 		margin-top: -.2em;
 		margin-bottom: 1em;
-		opacity: $opacity_normal;
+		color: var(--color-text-maxcontrast);
 		max-width: $maxWidth;
 	}
 }

@@ -25,7 +25,7 @@
 <template>
 <div>
 	<div>
-		<NcSavingIndicatorIcon :title="`${savingState === 'error' ? 'Error saving' : savingState} file`"
+		<NcSavingIndicatorIcon :name="`${savingState === 'error' ? 'Error saving' : savingState} file`"
 			:error="savingState === 'error'"
 			:saving="savingState === 'saving'" />
 	</div>
@@ -66,7 +66,7 @@ export default {
 </docs>
 
 <template>
-	<span :aria-label="title"
+	<span :aria-label="name"
 		class="material-design-icon"
 		role="img"
 		@click="$emit('click', $event)">
@@ -77,7 +77,7 @@ export default {
 			viewBox="0 0 24 24">
 			<path :fill="indicatorColor" d="m19 15a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4z" />
 			<path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z">
-				<title v-if="title">{{ title }}</title>
+				<title v-if="name">{{ name }}</title>
 			</path>
 		</svg>
 	</span>
@@ -99,7 +99,7 @@ export default defineComponent({
 		/**
 		 * Specify what is saved.
 		 */
-		title: {
+		name: {
 			type: String,
 			default: '',
 		},
@@ -123,7 +123,7 @@ export default defineComponent({
 	emits: ['click'],
 	computed: {
 		indicatorColor() {
-			return this.error ? 'var(--color-error)' : (this.saving ? 'var(--color-primary)' : 'none')
+			return this.error ? 'var(--color-error)' : (this.saving ? 'var(--color-primary-element)' : 'none')
 		},
 	},
 })

@@ -33,13 +33,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 </docs>
 
 <template>
-	<div class="input-field">
-		<label v-if="!labelOutside && label !== undefined"
-			class="input-field__label"
-			:class="{ 'input-field__label--hidden': !labelVisible }"
-			:for="computedId">
-			{{ label }}
-		</label>
+	<div class="input-field" :class="{ 'input-field--disabled': disabled }">
 		<div class="input-field__main-wrapper">
 			<input v-bind="$attrs"
 				:id="computedId"
@@ -48,18 +42,30 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 				:type="type"
 				:disabled="disabled"
 				:placeholder="computedPlaceholder"
-				:aria-describedby="helperText.length > 0 ? `${inputName}-helper-text` : ''"
+				:aria-describedby="ariaDescribedby"
 				aria-live="polite"
 				:class="[inputClass,
 					{
 						'input-field__input--trailing-icon': showTrailingButton || hasTrailingIcon,
 						'input-field__input--leading-icon': hasLeadingIcon,
+						'input-field__input--label-outside': labelOutside,
 						'input-field__input--success': success,
 						'input-field__input--error': error,
+						'input-field__input--pill': pill,
 					}]"
-				:value="value"
+				:value="value.toString()"
 				v-on="$listeners"
 				@input="handleInput">
+			<!-- Label -->
+			<label v-if="!labelOutside && isValidLabel"
+				class="input-field__label"
+				:class="[{
+					'input-field__label--trailing-icon': showTrailingButton || hasTrailingIcon,
+					'input-field__label--leading-icon': hasLeadingIcon,
+				}]"
+				:for="computedId">
+				{{ label }}
+			</label>
 
 			<!-- Leading icon -->
 			<div v-show="hasLeadingIcon" class="input-field__icon input-field__icon--leading">
@@ -70,7 +76,10 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 			<!-- trailing button -->
 			<NcButton v-if="showTrailingButton"
 				type="tertiary-no-background"
-				class="input-field__clear-button"
+				class="input-field__trailing-button"
+				:class="[{
+					'input-field__trailing-button--pill': pill,
+				}]"
 				:aria-label="trailingButtonLabel"
 				:disabled="disabled"
 				@click="handleTrailingButtonClick">
@@ -84,8 +93,8 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 			<!-- Success and error icons -->
 			<div v-else-if="success || error"
 				class="input-field__icon input-field__icon--trailing">
-				<Check v-if="success" :size="18" />
-				<AlertCircle v-else-if="error" :size="18" />
+				<Check v-if="success" :size="20" style="color: var(--color-success-text);" />
+				<AlertCircle v-else-if="error" :size="20" style="color: var(--color-error-text);" />
 			</div>
 		</div>
 		<p v-if="helperText.length > 0"
@@ -123,9 +132,10 @@ export default {
 	props: {
 		/**
 		 * The value of the input field
+		 * If type is 'number' and a number is passed as value than the type of `update:value` will also be 'number'
 		 */
 		value: {
-			type: String,
+			type: [String, Number],
 			required: true,
 		},
 
@@ -147,9 +157,11 @@ export default {
 		},
 
 		/**
-		 * The hidden input label for accessibility purposes. This will also
-		 * be used as a placeholder unless the placeholder prop is populated
-		 * with a different string.
+		 * The input label, always provide one for accessibility purposes.
+		 * This will also be used as a placeholder unless the placeholder
+		 * prop is populated with a different string.
+		 *
+		 * Note: If the background color is not `--color-main-background` consider using an external label instead (see `labelOutside`).
 		 */
 		label: {
 			type: String,
@@ -162,16 +174,6 @@ export default {
 		 * this component
 		 */
 		labelOutside: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * We normally have the label hidden visually and use it for
-		 * accessibility only. If you want to have the label visible just above
-		 * the input field pass in true to this prop.
-		 */
-		labelVisible: {
 			type: Boolean,
 			default: false,
 		},
@@ -240,6 +242,16 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Specifies whether the input should have a pill form.
+		 * By default, input has rounded corners.
+		 */
+		pill: {
+			type: Boolean,
+			default: false,
+		},
+
 		/**
 		 * Class to add to the input field.
 		 * Necessary to use NcInputField in the NcActionInput component.
@@ -277,37 +289,54 @@ export default {
 		},
 
 		computedPlaceholder() {
-			if (this.labelVisible) {
-				return this.hasPlaceholder ? this.placeholder : ''
-			} else {
-				return this.hasPlaceholder ? this.placeholder : this.label
+			return this.hasPlaceholder ? this.placeholder : this.label
+		},
+
+		isValidLabel() {
+			const isValidLabel = this.label || this.labelOutside
+			if (!isValidLabel) {
+				console.warn('You need to add a label to the NcInputField component. Either use the prop label or use an external one, as per the example in the documentation.')
 			}
-		},
-	},
-
-	watch: {
-		label() {
-			this.validateLabel()
+			return isValidLabel
 		},
 
-		labelOutside() {
-			this.validateLabel()
+		ariaDescribedby() {
+			const ariaDescribedby = []
+			if (this.helperText.length > 0) {
+				ariaDescribedby.push(`${this.inputName}-helper-text`)
+			}
+			if (this.$attrs['aria-describedby']) {
+				ariaDescribedby.push(this.$attrs['aria-describedby'])
+			}
+			return ariaDescribedby.join(' ') || null
 		},
 	},
 
 	methods: {
+		/**
+		 * Focus the input element
+		 *
+		 * @public
+		 */
+		focus() {
+			this.$refs.input.focus()
+		},
+
+		/**
+		 * Select all the text in the input
+		 *
+		 * @public
+		 */
+		select() {
+			this.$refs.input.select()
+		},
+
 		handleInput(event) {
-			this.$emit('update:value', event.target.value)
+			this.$emit('update:value', this.type === 'number' && typeof this.value === 'number' ? parseFloat(event.target.value, 10) : event.target.value)
 		},
 
 		handleTrailingButtonClick(event) {
 			this.$emit('trailing-button-click', event)
-		},
-
-		validateLabel() {
-			if (this.label && !this.labelOutside) {
-				throw new Error('You need to add a label to the textField component. Either use the prop label or use an external one, as per the example in the documentation')
-			}
 		},
 	},
 }
@@ -319,39 +348,76 @@ export default {
 	position: relative;
 	width: 100%;
 	border-radius: var(--border-radius-large);
+	margin-block-start: 6px; // for the label in active state
 
 	&__main-wrapper {
-		height: 36px;
+		height: var(--default-clickable-area);
 		position: relative;
+	}
+
+	&--disabled {
+		opacity: 0.4;
+		filter: saturate(0.4);
 	}
 
 	&__input {
 		margin: 0;
-		padding: 0 12px;
+		padding-inline: 12px 6px; // align with label 8px margin label + 6px padding label - 2px border input
+		height: var(--default-clickable-area) !important;
+		width: 100%;
+
 		font-size: var(--default-font-size);
+		text-overflow: ellipsis;
+
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
 		border: 2px solid var(--color-border-maxcontrast);
-		height: 36px !important;
 		border-radius: var(--border-radius-large);
-		text-overflow: ellipsis;
+
 		cursor: pointer;
-		width: 100%;
 		-webkit-appearance: textfield !important;
 		-moz-appearance: textfield !important;
+
+		// Center text if external label is used
+		&--label-outside {
+			padding-block: 0;
+		}
 
 		&:active:not([disabled]),
 		&:hover:not([disabled]),
 		&:focus:not([disabled]) {
-			border-color: var(--color-primary-element);
+			border-color: 2px solid var(--color-main-text) !important;
+			box-shadow: 0 0 0 2px var(--color-main-background) !important;
+		}
+
+		&:focus + .input-field__label,
+		&:hover:not(:placeholder-shown) + .input-field__label {
+			color: var(--color-main-text);
+		}
+
+		// Hide placeholder while not focussed -> show label instead (only if internal label is used)
+		&:not(:focus,&--label-outside)::placeholder {
+			opacity: 0;
 		}
 
 		&:focus {
 			cursor: text;
 		}
 
+		&:disabled {
+			cursor: default;
+		}
+
 		&:focus-visible {
 			box-shadow: unset !important; // Override server rules
+		}
+
+		&--leading-icon {
+			padding-inline-start: var(--default-clickable-area);
+		}
+
+		&--trailing-icon {
+			padding-inline-end: var(--default-clickable-area);
 		}
 
 		&--success {
@@ -368,78 +434,103 @@ export default {
 			}
 		}
 
-		&--leading-icon {
-			padding-left: 28px;
-		}
-
-		&--trailing-icon {
-			padding-right: 28px;
+		&--pill {
+			border-radius: var(--border-radius-pill);
 		}
 	}
 
 	&__label {
-		padding: 4px 0;
-		display: block;
+		position: absolute;
+		margin-inline: 14px 0;
+		max-width: fit-content;
+		inset-block-start: 11px;
+		inset-inline: 0;
+		// Fix color so that users do not think the input already has content
+		color: var(--color-text-maxcontrast);
+		// only one line labels are allowed
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		// forward events to input
+		pointer-events: none;
+		// Position transition
+		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick), background-color var(--animation-quick) var(--animation-slow);
 
-		&--hidden {
-			position: absolute;
-			left: -10000px;
-			top: auto;
-			width: 1px;
-			height: 1px;
-			overflow: hidden;
+		&--leading-icon {
+			margin-inline-start: var(--default-clickable-area);
+		}
+
+		&--trailing-icon {
+			margin-inline-end: var(--default-clickable-area);
+		}
+	}
+
+	&__input:focus + &__label,
+	&__input:not(:placeholder-shown) + &__label {
+		inset-block-start: -10px;
+		line-height: 1.5; // minimum allowed line height for accessibility
+		font-size: 13px; // minimum allowed font size for accessibility
+		font-weight: 500;
+		border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0;
+		background-color: var(--color-main-background);
+		padding-inline: 5px;
+		margin-inline-start: 9px;
+
+		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick);
+		&--leading-icon {
+			margin-inline-start: 41px;
 		}
 	}
 
 	&__icon {
 		position: absolute;
-		height: 32px;
-		width: 32px;
+		height: var(--default-clickable-area);
+		width: var(--default-clickable-area);
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		opacity: 0.7;
+
 		&--leading {
-			bottom: 2px;
-			left: 2px;
+			inset-block-end: 0;
+			inset-inline-start: 2px;
 		}
 
 		&--trailing {
-			bottom: 2px;
-			right: 2px;
+			inset-block-end: 0;
+			inset-inline-end: 2px;
 		}
 	}
 
-	&__clear-button.button-vue {
-		position: absolute;
-		top: 2px;
-		right: 1px;
-		min-width: unset;
-		min-height: unset;
-		height: 32px;
-		width: 32px !important;
-		border-radius: var(--border-radius-large);
+	&__trailing-button {
+		&.button-vue {
+			position: absolute;
+			top: 0;
+			right: 0;
+			border-radius: var(--border-radius-large);
+		}
+
+		&--pill.button-vue {
+			border-radius: var(--border-radius-pill);
+		}
 	}
 
 	&__helper-text-message {
-		padding: 4px 0;
+		padding-block: 4px;
 		display: flex;
 		align-items: center;
 
 		&__icon {
-			margin-right: 8px;
-			align-self: start;
-			margin-top: 4px;
+			margin-inline-end: 8px;
 		}
 
 		&--error {
-			color: var(--color-error);
+			color: var(--color-error-text);
 		}
 
 		&--success {
-			color: var(--color-success);
+			color: var(--color-success-text);
 		}
 	}
 }
-
 </style>

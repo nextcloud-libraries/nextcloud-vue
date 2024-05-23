@@ -25,20 +25,22 @@
 		<NcButton class="resource__button"
 			:aria-label="labelTranslated"
 			type="tertiary"
-			:href="url">
+			:to="route"
+			:href="route ? null : url">
 			<template #icon>
 				<div class="resource__icon">
 					<img :src="icon">
 				</div>
 			</template>
-			{{ title }}
+			{{ name }}
 		</NcButton>
 	</li>
 </template>
 
 <script>
 import NcButton from '../NcButton/index.js'
-import Tooltip from '../../directives/Tooltip/index.js'
+
+import { getRoute } from '../NcRichText/autolink.js'
 import { t } from '../../l10n.js'
 
 export default {
@@ -48,26 +50,14 @@ export default {
 		NcButton,
 	},
 
-	directives: {
-		Tooltip,
-	},
-
 	props: {
 		icon: {
 			type: String,
 			required: true,
 		},
-		title: {
+		name: {
 			type: String,
 			required: true,
-		},
-		subtitle: {
-			type: String,
-			default: null,
-		},
-		tooltip: {
-			type: String,
-			default: null,
 		},
 		url: {
 			type: String,
@@ -77,8 +67,18 @@ export default {
 
 	data() {
 		return {
-			labelTranslated: t('Open link to "{resourceTitle}"', { resourceTitle: this.title }),
+			labelTranslated: t('Open link to "{resourceName}"', { resourceName: this.name }),
 		}
+	},
+
+	computed: {
+		route() {
+			return getRoute(this.$router, this.url)
+		},
+	},
+
+	methods: {
+		t,
 	},
 }
 </script>
@@ -95,9 +95,15 @@ export default {
 		justify-content: flex-start !important;
 		padding: 0 !important;
 
-		&:deep(.button-vue__text) {
-			font-weight: normal !important;
-			margin-left: 2px !important;
+		&:deep {
+			.button-vue__wrapper {
+				justify-content: flex-start !important;
+
+				.button-vue__text {
+					font-weight: normal !important;
+					margin-left: 2px !important;
+				}
+			}
 		}
 	}
 

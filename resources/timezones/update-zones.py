@@ -4,7 +4,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 """
-This script allows updating Lightning's zones.json.
+This script allows updating Calendar's zones.json.
   python update-zones.py --vzic /path/to/tzurl/vzic --tzdata /path/to/latest/tzdata
 
 You can also have the latest tzdata downloaded automatically:
@@ -13,22 +13,47 @@ You can also have the latest tzdata downloaded automatically:
 IMPORTANT: Make sure your local copy of zones.json is in sync with Hg before running this script.
 Otherwise manual corrections will get dropped when pushing the update.
 
-"""
+------------------------
 
+Info for use in calendar-js:
+
+RUN:
+- Download and build vzic (https://github.com/libical/vzic/)
+- run with python2 or python3
+    - python3 update-zones.py --vzic /PATH/TO/VZIC/EXECUTABLE
+
+INFO:
+- Line 109: --pure argument was commented because of wrong output
+- Line 225: Added check for >> "BYMONTH" in rrule << to prevent error in last line of ics block
+- Line 388: Can't create tzprops_file
+- Line 491: test was commented because of missing files
+
+"""
 from __future__ import absolute_import
 
-import argparse, ftplib, json, os, os.path, re, shutil, subprocess, sys, tarfile, tempfile
+import argparse
+import ftplib
+import json
+import os
+import os.path
+import re
+import shutil
+import subprocess
+import sys
+import tarfile
+import tempfile
 from collections import OrderedDict
 from datetime import date, timedelta
 
-# Keep time zone changes from this date onwards. If the zones.json file is becoming
+# Keep timezone changes from this date onwards. If the zones.json file is becoming
 # too large, consider changing to a later date.
 HISTORY_CUTOFF = 20180101
-FUTURE_CUTOFF = 20221231
+FUTURE_CUTOFF = 20261231
 
 
 class TimezoneUpdater(object):
-    """ Time zone updater class, use the run method to do everything automatically"""
+    """Timezone updater class, use the run method to do everything automatically"""
+
     def __init__(self, tzdata_path, zoneinfo_pure_path):
         self.tzdata_path = tzdata_path
         self.zoneinfo_pure_path = zoneinfo_pure_path
@@ -36,15 +61,21 @@ class TimezoneUpdater(object):
     def download_tzdata(self):
         """Download the latest tzdata from ftp.iana.org"""
         tzdata_download_path = tempfile.mktemp(".tar.gz", prefix="zones")
-        sys.stderr.write("Downloading tzdata-latest.tar.gz from"
-                         " ftp.iana.org to %s\n" % tzdata_download_path)
+        sys.stderr.write(
+            "Downloading tzdata-latest.tar.gz from"
+            " ftp.iana.org to %s\n" % tzdata_download_path
+        )
         ftp = ftplib.FTP("ftp.iana.org")
         ftp.login()
-        ftp.retrbinary("RETR /tz/tzdata-latest.tar.gz", open(tzdata_download_path, "wb").write)
+        ftp.retrbinary(
+            "RETR /tz/tzdata-latest.tar.gz", open(tzdata_download_path, "wb").write
+        )
         ftp.quit()
 
         self.tzdata_path = tempfile.mkdtemp(prefix="zones")
-        sys.stderr.write("Extracting %s to %s\n" % (tzdata_download_path, self.tzdata_path))
+        sys.stderr.write(
+            "Extracting %s to %s\n" % (tzdata_download_path, self.tzdata_path)
+        )
         tarfile.open(tzdata_download_path).extractall(path=self.tzdata_path)
         os.unlink(tzdata_download_path)
 
@@ -64,15 +95,20 @@ class TimezoneUpdater(object):
 
         # Use `vzic` to create zone files.
         sys.stderr.write("Exporting pure zone info to %s\n" % self.zoneinfo_pure_path)
-        subprocess.check_call([
-            vzic_path,
-            "--olson-dir", self.tzdata_path,
-            "--output-dir", self.zoneinfo_pure_path,
-            "--pure"
-        ], stdout=sys.stderr)
+        subprocess.check_call(
+            [
+                vzic_path,
+                "--olson-dir",
+                self.tzdata_path,
+                "--output-dir",
+                self.zoneinfo_pure_path,
+                # "--pure",
+            ],
+            stdout=sys.stderr,
+        )
 
     def read_backward(self):
-        """Read the 'backward' file, which contains time zone identifier links"""
+        """Read the 'backward' file, which contains timezone identifier links"""
         links = {}
         with open(os.path.join(self.tzdata_path, "backward"), "r") as backward:
             for line in backward:
@@ -88,7 +124,9 @@ class TimezoneUpdater(object):
         with open(os.path.join(self.zoneinfo_pure_path, "zones.tab"), "r") as tab:
             for line in tab:
                 if len(line) < 19:
-                    sys.stderr.write("Line in zones.tab not long enough: %s\n" % line.strip())
+                    sys.stderr.write(
+                        "Line in zones.tab not long enough: %s\n" % line.strip()
+                    )
                     continue
 
                 [latitude, longitude, name] = line.rstrip().split(" ", 2)
@@ -136,7 +174,7 @@ class TimezoneUpdater(object):
                     components_by_start_date[rdate] = component
                 component["valid_rdates"] = filter(
                     lambda rd: FUTURE_CUTOFF >= int(rd[0:8]) >= HISTORY_CUTOFF,
-                    component["rdates"]
+                    component["rdates"],
                 )
             component["max_date"] = max_rdate
 
@@ -147,23 +185,28 @@ class TimezoneUpdater(object):
             if key > FUTURE_CUTOFF:
                 continue
             component = components_by_start_date[key]
+
             if finished and "RRULE" not in component:
                 continue
-            if "used" in component:
-                continue
-            component["used"] = True
+
             kept_components.append(component)
-            if key <= HISTORY_CUTOFF:
+
+            if key < HISTORY_CUTOFF:
                 finished = True
+
+        # The last kept component is the active component at HISTORY_CUTOFF.
+        # If it is a list of recurrence dates, prepend the epoch.
+        earliest = kept_components[-1]
+        if "valid_rdates" in earliest and len(earliest["valid_rdates"]) > 0:
+            earliest["valid_rdates"] = ["19700101T000000"] + earliest["valid_rdates"]
 
         for i in range(len(kept_components)):
             component = kept_components[i]
-            last = i == len(kept_components) - 1
             # In this block of code, we attempt to match what vzic does when
-            # creating "Outlook-compatible" time zone files. This is to minimize
+            # creating "Outlook-compatible" timezone files. This is to minimize
             # changes in our zones.json file. And to be more Outlook-compatible.
             if int(component["DTSTART"][0:8]) < HISTORY_CUTOFF:
-                if not last and "valid_rdates" in component and len(component["valid_rdates"]) > 0:
+                if "valid_rdates" in component and len(component["valid_rdates"]) > 0:
                     component["DTSTART"] = component["valid_rdates"][0]
                     continue
 
@@ -172,29 +215,36 @@ class TimezoneUpdater(object):
                 start_time = "T000000"
 
                 if "RRULE" in component:
-                    rrule = dict(part.split("=") for part in component["RRULE"].split(";"))
-                    bymonth = int(rrule["BYMONTH"])
-                    weekday = rrule["BYDAY"].lstrip("-012345")
-                    weekday_index = ["MO", "TU", "WE", "TH", "FR", "SA", "SU"].index(weekday)
+                    rrule = dict(
+                        part.split("=") for part in component["RRULE"].split(";")
+                    )
+                    if "BYMONTH" in rrule:
+                        bymonth = int(rrule["BYMONTH"])
+                        weekday = rrule["BYDAY"].lstrip("-012345")
+                        weekday_index = ["MO", "TU", "WE", "TH", "FR", "SA", "SU"].index(
+                            weekday
+                        )
 
-                    if "BYMONTHDAY" in rrule:
-                        bymonthday = list(int(d) for d in rrule["BYMONTHDAY"].split(","))
-                        for day in bymonthday:
-                            test_day = date(1970, bymonth, day)
-                            if test_day.weekday() == weekday_index:
-                                start_date = test_day.strftime("%Y%m%d")
-                                start_time = component["DTSTART"][8:]
-                                break
-                    elif "BYDAY" in rrule:
-                        which_weekday = int(rrule["BYDAY"].rstrip("AEFHMORSTUW"))
-                        days_matching = [0]
-                        test_day = date(1970, bymonth, 1)
-                        while test_day.month == bymonth:
-                            if test_day.weekday() == weekday_index:
-                                days_matching.append(test_day)
-                            test_day = test_day + timedelta(days=1)
-                        start_date = days_matching[which_weekday].strftime("%Y%m%d")
-                        start_time = component["DTSTART"][8:]
+                        if "BYMONTHDAY" in rrule:
+                            bymonthday = list(
+                                int(d) for d in rrule["BYMONTHDAY"].split(",")
+                            )
+                            for day in bymonthday:
+                                test_day = date(1970, bymonth, day)
+                                if test_day.weekday() == weekday_index:
+                                    start_date = test_day.strftime("%Y%m%d")
+                                    start_time = component["DTSTART"][8:]
+                                    break
+                        elif "BYDAY" in rrule:
+                            which_weekday = int(rrule["BYDAY"].rstrip("AEFHMORSTUW"))
+                            days_matching = [0]
+                            test_day = date(1970, bymonth, 1)
+                            while test_day.month == bymonth:
+                                if test_day.weekday() == weekday_index:
+                                    days_matching.append(test_day)
+                                test_day = test_day + timedelta(days=1)
+                            start_date = days_matching[which_weekday].strftime("%Y%m%d")
+                            start_time = component["DTSTART"][8:]
 
                 component["DTSTART"] = start_date + start_time
 
@@ -205,6 +255,10 @@ class TimezoneUpdater(object):
         zone_name = filename[:-4]
         ics = []
         for component in kept_components:
+            if "done" in component:
+                continue
+            component["done"] = True
+
             ics_lines = []
             ics_lines.append("BEGIN:%s" % component["type"])
             if len(kept_components) == 1 or len(component["TZOFFSETFROM"]) != 5:
@@ -245,7 +299,9 @@ class TimezoneUpdater(object):
                 continue
             fullpath = os.path.join(path, entry)
             if os.path.isdir(fullpath):
-                zones.update(self.read_dir(fullpath, process_zone, os.path.join(prefix, entry)))
+                zones.update(
+                    self.read_dir(fullpath, process_zone, os.path.join(prefix, entry))
+                )
             elif prefix != "":
                 filename = os.path.join(prefix, entry)
                 zones[filename[:-4]] = process_zone(filename)
@@ -254,7 +310,7 @@ class TimezoneUpdater(object):
     @staticmethod
     def link_removed_zones(oldzones, newzones, links):
         """Checks which zones have been removed and creates an alias entry if
-           there is one"""
+        there is one"""
         aliases = {}
         for key in oldzones:
             if key not in newzones and key in links:
@@ -264,7 +320,7 @@ class TimezoneUpdater(object):
 
     @staticmethod
     def update_timezones_properties(tzprops_file, version, newzones, aliases):
-        TZ_LINE = re.compile(r'^(?P<name>pref.timezone.[^=]+)=(?P<value>.*)$')
+        TZ_LINE = re.compile(r"^(?P<name>pref.timezone.[^=]+)=(?P<value>.*)$")
         outlines = []
         zoneprops = {}
 
@@ -272,15 +328,15 @@ class TimezoneUpdater(object):
             for line in fp.readlines():
                 match = TZ_LINE.match(line.rstrip("\n"))
                 if match:
-                    zoneprops[match.group('name')] = match.group('value')
+                    zoneprops[match.group("name")] = match.group("value")
 
         for zone in newzones:
-            propname = 'pref.timezone.' + zone.replace('/', '.')
+            propname = "pref.timezone." + zone.replace("/", ".")
             if propname not in zoneprops:
                 outlines.append(propname + "=" + zone.replace("_", " "))
 
         if len(outlines):
-            with open(tzprops_file, 'a') as fp:
+            with open(tzprops_file, "a") as fp:
                 fp.write("\n#added with %s\n" % version)
                 fp.write("\n".join(outlines) + "\n")
 
@@ -297,7 +353,7 @@ class TimezoneUpdater(object):
             jsonfile.write("\n")
 
     def run(self, zones_json_file, tzprops_file, vzic_path):
-        """Run the time zone updater, with a zones.json file and the path to vzic"""
+        """Run the timezone updater, with a zones.json file and the path to vzic"""
 
         need_download_tzdata = self.tzdata_path is None
         if need_download_tzdata:
@@ -318,13 +374,16 @@ class TimezoneUpdater(object):
         self.run_vzic(vzic_path)
         lat_long_data = self.read_zones_tab()
 
-        newzones = self.read_dir(self.zoneinfo_pure_path,
-                                 lambda fn: self.read_ics(fn, lat_long_data))
+        newzones = self.read_dir(
+            self.zoneinfo_pure_path, lambda fn: self.read_ics(fn, lat_long_data)
+        )
 
         newaliases = self.link_removed_zones(zonesjson["zones"], newzones, links)
         zonesjson["aliases"].update(newaliases)
 
-        self.update_timezones_properties(tzprops_file, version, newzones, zonesjson["aliases"])
+        # self.update_timezones_properties(
+        #     tzprops_file, version, newzones, zonesjson["aliases"]
+        # )
 
         self.write_output(version, zonesjson["aliases"], newzones, zones_json_file)
 
@@ -335,42 +394,57 @@ class TimezoneUpdater(object):
 def parse_args():
     """Gather arguments from the command-line."""
     parser = argparse.ArgumentParser(
-        description="Create time zone info JSON file from tzdata files"
+        description="Create timezone info JSON file from tzdata files"
     )
-    parser.add_argument("-v", "--vzic", dest="vzic_path", required=True,
-                        help="""Path to the `vzic` executable. This must be
+    parser.add_argument(
+        "-v",
+        "--vzic",
+        dest="vzic_path",
+        required=True,
+        help="""Path to the `vzic` executable. This must be
                         downloaded from https://code.google.com/p/tzurl/ and
-                        compiled.""")
-    parser.add_argument("-t", "--tzdata", dest="tzdata_path",
-                        help="""Path to a directory containing the IANA
-                        time zone data.  If this argument is omitted, the data
-                        will be downloaded from ftp.iana.org.""")
+                        compiled.""",
+    )
+    parser.add_argument(
+        "-t",
+        "--tzdata",
+        dest="tzdata_path",
+        help="""Path to a directory containing the IANA
+                        timezone data.  If this argument is omitted, the data
+                        will be downloaded from ftp.iana.org.""",
+    )
     return parser.parse_args()
 
 
 def create_test_data(zones_file):
     """Creating test data."""
 
-    previous_file = os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                                 "..", "test", "unit", "data", "previous.json")
+    previous_file = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        "..",
+        "test",
+        "unit",
+        "data",
+        "previous.json",
+    )
 
     previous_version = "no previous version"
     current_version = "no current version"
-    if (os.path.isfile(zones_file) and os.access(zones_file, os.R_OK)):
+    if os.path.isfile(zones_file) and os.access(zones_file, os.R_OK):
         with open(zones_file, "r") as rzf:
             current_data = json.load(rzf)
             current_version = current_data["version"]
             current_zones = current_data["zones"]
             current_aliases = current_data["aliases"]
-    if (os.path.isfile(previous_file) and os.access(previous_file, os.R_OK)):
+    if os.path.isfile(previous_file) and os.access(previous_file, os.R_OK):
         with open(previous_file, "r") as rpf:
             previous_data = json.load(rpf)
             previous_version = previous_data["version"]
 
-    if (current_version == "no current version"):
+    if current_version == "no current version":
         """Test data creation not possible - currently no zones.json file available."""
 
-    elif (current_version != previous_version):
+    elif current_version != previous_version:
         """Extracting data from zones.json"""
 
         test_aliases = current_aliases.keys()
@@ -387,7 +461,7 @@ def create_test_data(zones_file):
             wpf.write("\n")
 
         """Please run calendar xpshell test 'test_timezone_definition.js' to check the updated
-        time zone definition for any glitches."""
+        timezone definition for any glitches."""
 
     else:
         # This may happen if the script is executed multiple times without new tzdata available
@@ -396,15 +470,21 @@ def create_test_data(zones_file):
 
 
 def main():
-    """Run the time zone updater from command-line args"""
+    """Run the timezone updater from command-line args"""
     args = parse_args()
     json_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), "zones.json")
-    tzprops_file = os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                                "..", "locales", "en-US", "chrome", "calendar",
-                                "timezones.properties")
+    tzprops_file = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        "..",
+        "locales",
+        "en-US",
+        "chrome",
+        "calendar",
+        "timezones.properties",
+    )
 
     # A test data update must occur before the zones.json file gets updated to have meaningful data
-    create_test_data(json_file)
+    # create_test_data(json_file)
 
     zoneinfo_pure_path = tempfile.mkdtemp(prefix="zones")
 
@@ -413,6 +493,7 @@ def main():
 
     # Clean up.
     shutil.rmtree(zoneinfo_pure_path)
+
 
 if __name__ == "__main__":
     main()

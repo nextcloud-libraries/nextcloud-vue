@@ -1,4 +1,3 @@
-
 /**
  * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -34,7 +33,14 @@ export default {
 			default: '',
 		},
 		/**
-		 * Title to show next to the icon
+		 * The main text content of the entry.
+		 */
+		name: {
+			type: String,
+			default: '',
+		},
+		/**
+		 * The title attribute of the element.
 		 */
 		title: {
 			type: String,
@@ -52,7 +58,16 @@ export default {
 		 */
 		ariaLabel: {
 			type: String,
-			default: '',
+			default: null,
+		},
+		/**
+		 * @deprecated To be removed in @nextcloud/vue 9. Migration guide: remove ariaHidden prop from NcAction* components.
+		 * @todo Add a check in @nextcloud/vue 9 that this prop is not provided,
+		 * otherwise root element will inherit incorrect aria-hidden.
+		 */
+		ariaHidden: {
+			type: Boolean,
+			default: null,
 		},
 	},
 
@@ -61,9 +76,13 @@ export default {
 	],
 
 	computed: {
+		/**
+		 * Check if icon prop is an URL
+		 * @return {boolean} Whether the icon prop is an URL
+		 */
 		isIconUrl() {
 			try {
-				return new URL(this.icon)
+				return !!(new URL(this.icon, this.icon.startsWith('/') ? window.location.origin : undefined))
 			} catch (error) {
 				return false
 			}

@@ -19,22 +19,21 @@ jobs:
       matrix:
         # run x copies of the current job in parallel
         containers: [1, 2]
-        node-version: [16]
 
     name: Runner ${{ matrix.containers }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Read package.json node and npm engines version
-        uses: skjnldsv/read-package-engines-version-actions@v2
+        uses: skjnldsv/read-package-engines-version-actions@v3
         id: versions
         with:
-          fallbackNode: '^14'
-          fallbackNpm: '^7'
+          fallbackNode: '^20'
+          fallbackNpm: '^9'
 
       - name: Set up node ${{ steps.versions.outputs.nodeVersion }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ steps.versions.outputs.nodeVersion }}
 
@@ -46,7 +45,7 @@ jobs:
           npm ci
 
       - name: Cypress run
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           component: true
           install: false # we have already installed all dependencies above
@@ -62,8 +61,8 @@ jobs:
           npm_package_name: ${{ env.APP_NAME }}
 
       - name: Upload snapshots
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: snapshots
+          name: snapshots-${{ matrix.containers }}
           path: cypress/snapshots

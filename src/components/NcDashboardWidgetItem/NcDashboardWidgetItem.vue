@@ -31,7 +31,7 @@ This component is meant to be used inside a DashboardWidget component.
 <template>
 	<div @mouseover="hovered = true" @mouseleave="hovered = false">
 		<component :is="targetUrl ? 'a' : 'div'"
-			:href="targetUrl"
+			:href="targetUrl || undefined"
 			:target="targetUrl ? '_blank' : undefined"
 			:class="{ 'item-list__entry': true, 'item-list__entry--has-actions-menu': gotMenu }"
 			@click="onLinkClick">
@@ -52,9 +52,9 @@ This component is meant to be used inside a DashboardWidget component.
 				<h3 :title="mainText">
 					{{ mainText }}
 				</h3>
-				<p class="message" :title="subText">
+				<span v-if="subText !== ''" class="message" :title="subText">
 					{{ subText }}
-				</p>
+				</span>
 			</div>
 			<NcActions v-if="gotMenu" :force-menu="forceMenu">
 				<!-- @slot This slot can be used to provide actions for each dashboard widget item. -->
@@ -219,6 +219,8 @@ export default {
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
+		min-height: 44px;
 
 		h3,
 		.message {

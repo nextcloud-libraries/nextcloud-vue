@@ -1,66 +1,283 @@
 # 
 # Translators:
-# fpapoila <fpapoila@gmail.com>, 2020
-# Manuela Silva <manuelarodsilva@gmail.com>, 2020
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Manuela Silva <manuelarodsilva@gmail.com>, 2020\n"
-"Language-Team: Portuguese (Portugal) (https://www.transifex.com/nextcloud/teams/64236/pt_PT/)\n"
+"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2023\n"
+"Language-Team: Portuguese (Portugal) (https://app.transifex.com/nextcloud/teams/64236/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_PT\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:170
 msgid "{tag} (invisible)"
 msgstr "{tag} (invisivel)"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:173
 msgid "{tag} (restricted)"
 msgstr "{tag} (restrito)"
 
-#: src/components/Actions/Actions.vue:249
+msgid "a few seconds ago"
+msgstr "alguns segundos atrás"
+
 msgid "Actions"
 msgstr "Ações"
 
-#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Actions for item with name \"{name}\""
+msgstr "Ações para objeto com o nome \"[name]\""
+
+msgid "Activities"
+msgstr "Atividades"
+
+msgid "Animals & Nature"
+msgstr "Animais e Natureza"
+
+msgid "Any link"
+msgstr "Qualquer link"
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+"Qualquer coisa compartilhada com o mesmo grupo de pessoas aparecerá aqui"
+
+msgid "Avatar of {displayName}"
+msgstr "Avatar de {displayName}"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "Avatar de {displayName}, {status}"
+
+msgid "Back"
+msgstr "Voltar atrás"
+
+msgid "Back to provider selection"
+msgstr "Voltar à seleção de fornecedor"
+
+msgid "Cancel changes"
+msgstr "Cancelar alterações"
+
+msgid "Change name"
+msgstr "Alterar nome"
+
 msgid "Choose"
 msgstr "Escolher"
 
-#: src/components/Modal/Modal.vue:117
+msgid "Clear search"
+msgstr "Limpar a pesquisa"
+
+msgid "Clear text"
+msgstr "Limpar texto"
+
 msgid "Close"
 msgstr "Fechar"
 
-#: src/components/Modal/Modal.vue:166
+msgid "Close modal"
+msgstr "Fechar modal"
+
+msgid "Close navigation"
+msgstr "Fechar navegação"
+
+msgid "Close sidebar"
+msgstr "Fechar barra lateral"
+
+msgid "Close Smart Picker"
+msgstr "Fechar \"Smart Picker\""
+
+msgid "Collapse menu"
+msgstr "Comprimir menu"
+
+msgid "Confirm changes"
+msgstr "Confirmar alterações"
+
+msgid "Custom"
+msgstr "Personalizado"
+
+msgid "Edit item"
+msgstr "Editar item"
+
+msgid "Enter link"
+msgstr "Introduzir link"
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+"Erro em obter info relacionadas. Por favor contacte o administrador do "
+"sistema para esclarecimentos adicionais."
+
+msgid "External documentation for {name}"
+msgstr "Documentação externa para {name}"
+
+msgid "Favorite"
+msgstr "Favorito"
+
+msgid "Flags"
+msgstr "Bandeiras"
+
+msgid "Food & Drink"
+msgstr "Comida e Bebida"
+
+msgid "Frequently used"
+msgstr "Mais utilizados"
+
+msgid "Global"
+msgstr "Global"
+
+msgid "Go back to the list"
+msgstr "Voltar para a lista"
+
+msgid "Hide password"
+msgstr "Ocultar a senha"
+
+msgid "Load more \"{options}\""
+msgstr ""
+
+msgid "Message limit of {count} characters reached"
+msgstr "Atingido o limite de {count} carateres da mensagem."
+
+msgid "More items …"
+msgstr "Mais itens …"
+
+msgid "More options"
+msgstr "Mais opções"
+
 msgid "Next"
 msgstr "Seguinte"
 
-#: src/components/Multiselect/Multiselect.vue:174
-#: src/components/MultiselectTags/MultiselectTags.vue:78
-#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
+msgid "No emoji found"
+msgstr "Nenhum emoji encontrado"
+
+msgid "No link provider found"
+msgstr "Nenhum fornecedor de link encontrado"
+
 msgid "No results"
 msgstr "Sem resultados"
 
-#: src/components/Modal/Modal.vue:302
+msgid "Objects"
+msgstr "Objetos"
+
+msgid "Open contact menu"
+msgstr "Abrir o menu de contato"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "Abrir link para \"{resourceName}\""
+
+msgid "Open menu"
+msgstr "Abrir menu"
+
+msgid "Open navigation"
+msgstr "Abrir navegação"
+
+msgid "Open settings menu"
+msgstr "Abrir menu de configurações"
+
+msgid "Password is secure"
+msgstr "A senha é segura"
+
 msgid "Pause slideshow"
 msgstr "Pausar diaporama"
 
-#: src/components/Modal/Modal.vue:144
+msgid "People & Body"
+msgstr "Pessoas e Corpo"
+
+msgid "Pick a date"
+msgstr "Escolha uma data"
+
+msgid "Pick a date and a time"
+msgstr "Escolha uma data e um horário"
+
+msgid "Pick a month"
+msgstr "Escolha um mês"
+
+msgid "Pick a time"
+msgstr "Escolha um horário"
+
+msgid "Pick a week"
+msgstr "Escolha uma semana"
+
+msgid "Pick a year"
+msgstr "Escolha um ano"
+
+msgid "Pick an emoji"
+msgstr "Escolha um emoji"
+
+msgid "Please select a time zone:"
+msgstr "Por favor, selecione um fuso horário: "
+
 msgid "Previous"
 msgstr "Anterior"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:100
+msgid "Provider icon"
+msgstr "Icon do fornecedor"
+
+msgid "Raw link {options}"
+msgstr "Link inicial {options}"
+
+msgid "Related resources"
+msgstr "Recursos relacionados"
+
+msgid "Search"
+msgstr "Pesquisar"
+
+msgid "Search emoji"
+msgstr "Pesquisar emoji"
+
+msgid "Search results"
+msgstr "Resultados da pesquisa"
+
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "seg. atrás"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "segundos atrás"
+
 msgid "Select a tag"
 msgstr "Selecionar uma etiqueta"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:53
+msgid "Select provider"
+msgstr "Escolha de fornecedor"
+
+msgid "Selected"
+msgstr ""
+
 msgid "Settings"
 msgstr "Definições"
 
-#: src/components/Modal/Modal.vue:302
+msgid "Settings navigation"
+msgstr "Navegação de configurações"
+
+msgid "Show password"
+msgstr "Mostrar senha"
+
+msgid "Smart Picker"
+msgstr "Smart Picker"
+
+msgid "Smileys & Emotion"
+msgstr "Sorrisos e Emoções"
+
 msgid "Start slideshow"
 msgstr "Iniciar diaporama"
 
-#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
+msgid "Start typing to search"
+msgstr "Comece a digitar para pesquisar"
+
+msgid "Submit"
+msgstr "Submeter"
+
+msgid "Symbols"
+msgstr "Símbolos"
+
+msgid "Travel & Places"
+msgstr "Viagem e Lugares"
+
+msgid "Type to search time zone"
+msgstr "Digite para pesquisar o fuso horário "
+
 msgid "Unable to search the group"
 msgstr "Não é possível pesquisar o grupo"
+
+msgid "Undo changes"
+msgstr "Anular alterações"
+
+msgid "Write a message …"
+msgstr ""

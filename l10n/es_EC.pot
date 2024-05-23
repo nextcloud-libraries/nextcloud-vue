@@ -1,0 +1,283 @@
+# 
+# Translators:
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# 
+msgid ""
+msgstr ""
+"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2023\n"
+"Language-Team: Spanish (Ecuador) (https://app.transifex.com/nextcloud/teams/64236/es_EC/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: es_EC\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+msgid "{tag} (invisible)"
+msgstr "{tag} (invisible)"
+
+msgid "{tag} (restricted)"
+msgstr "{tag} (restricted)"
+
+msgid "a few seconds ago"
+msgstr "hace unos segundos"
+
+msgid "Actions"
+msgstr "Acciones"
+
+msgid "Actions for item with name \"{name}\""
+msgstr "Acciones para el elemento con nombre \"{name}\""
+
+msgid "Activities"
+msgstr "Actividades"
+
+msgid "Animals & Nature"
+msgstr "Animales y Naturaleza"
+
+msgid "Any link"
+msgstr "Cualquier enlace"
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+"Cualquier cosa compartida con el mismo grupo de personas aparecerá aquí."
+
+msgid "Avatar of {displayName}"
+msgstr "Avatar de {displayName}"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "Avatar de {displayName}, {status}"
+
+msgid "Back"
+msgstr "Atrás"
+
+msgid "Back to provider selection"
+msgstr "Volver a la selección de proveedor"
+
+msgid "Cancel changes"
+msgstr "Cancelar cambios"
+
+msgid "Change name"
+msgstr "Cambiar nombre"
+
+msgid "Choose"
+msgstr "Elegir"
+
+msgid "Clear search"
+msgstr "Limpiar búsqueda"
+
+msgid "Clear text"
+msgstr "Limpiar texto"
+
+msgid "Close"
+msgstr "Cerrar"
+
+msgid "Close modal"
+msgstr "Cerrar modal"
+
+msgid "Close navigation"
+msgstr "Cerrar navegación"
+
+msgid "Close sidebar"
+msgstr "Cerrar barra lateral"
+
+msgid "Close Smart Picker"
+msgstr "Cerrar selector inteligente"
+
+msgid "Collapse menu"
+msgstr "Ocultar menú"
+
+msgid "Confirm changes"
+msgstr "Confirmar cambios"
+
+msgid "Custom"
+msgstr "Personalizado"
+
+msgid "Edit item"
+msgstr "Editar elemento"
+
+msgid "Enter link"
+msgstr "Ingresar enlace"
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+"Error al obtener recursos relacionados. Por favor, contacta a tu "
+"administrador del sistema si tienes alguna pregunta."
+
+msgid "External documentation for {name}"
+msgstr "Documentación externa para {name}"
+
+msgid "Favorite"
+msgstr "Favorito"
+
+msgid "Flags"
+msgstr "Marcas"
+
+msgid "Food & Drink"
+msgstr "Comida y Bebida"
+
+msgid "Frequently used"
+msgstr "Frecuentemente utilizado"
+
+msgid "Global"
+msgstr "Global"
+
+msgid "Go back to the list"
+msgstr "Volver a la lista"
+
+msgid "Hide password"
+msgstr "Ocultar contraseña"
+
+msgid "Load more \"{options}\""
+msgstr ""
+
+msgid "Message limit of {count} characters reached"
+msgstr "Se ha alcanzado el límite de caracteres del mensaje {count}"
+
+msgid "More items …"
+msgstr "Más elementos..."
+
+msgid "More options"
+msgstr "Más opciones"
+
+msgid "Next"
+msgstr "Siguiente"
+
+msgid "No emoji found"
+msgstr "No se encontró ningún emoji"
+
+msgid "No link provider found"
+msgstr "No se encontró ningún proveedor de enlaces"
+
+msgid "No results"
+msgstr "Sin resultados"
+
+msgid "Objects"
+msgstr "Objetos"
+
+msgid "Open contact menu"
+msgstr "Abrir menú de contactos"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "Abrir enlace a \"{resourceName}\""
+
+msgid "Open menu"
+msgstr "Abrir menú"
+
+msgid "Open navigation"
+msgstr "Abrir navegación"
+
+msgid "Open settings menu"
+msgstr "Abrir menú de configuración"
+
+msgid "Password is secure"
+msgstr "La contraseña es segura"
+
+msgid "Pause slideshow"
+msgstr "Pausar presentación de diapositivas"
+
+msgid "People & Body"
+msgstr "Personas y Cuerpo"
+
+msgid "Pick a date"
+msgstr "Seleccionar una fecha"
+
+msgid "Pick a date and a time"
+msgstr "Seleccionar una fecha y una hora"
+
+msgid "Pick a month"
+msgstr "Seleccionar un mes"
+
+msgid "Pick a time"
+msgstr "Seleccionar una semana"
+
+msgid "Pick a week"
+msgstr "Seleccionar una semana"
+
+msgid "Pick a year"
+msgstr "Seleccionar un año"
+
+msgid "Pick an emoji"
+msgstr "Seleccionar un emoji"
+
+msgid "Please select a time zone:"
+msgstr "Por favor, selecciona una zona horaria:"
+
+msgid "Previous"
+msgstr "Anterior"
+
+msgid "Provider icon"
+msgstr "Ícono del proveedor"
+
+msgid "Raw link {options}"
+msgstr "Enlace directo {options}"
+
+msgid "Related resources"
+msgstr "Recursos relacionados"
+
+msgid "Search"
+msgstr "Buscar"
+
+msgid "Search emoji"
+msgstr "Buscar emoji"
+
+msgid "Search results"
+msgstr "Resultados de búsqueda"
+
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "hace segundos"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "Segundos atrás"
+
+msgid "Select a tag"
+msgstr "Seleccionar una etiqueta"
+
+msgid "Select provider"
+msgstr "Seleccionar proveedor"
+
+msgid "Selected"
+msgstr ""
+
+msgid "Settings"
+msgstr "Configuraciones"
+
+msgid "Settings navigation"
+msgstr "Navegación de configuraciones"
+
+msgid "Show password"
+msgstr "Mostrar contraseña"
+
+msgid "Smart Picker"
+msgstr "Selector inteligente"
+
+msgid "Smileys & Emotion"
+msgstr "Caritas y Emociones"
+
+msgid "Start slideshow"
+msgstr "Iniciar presentación de diapositivas"
+
+msgid "Start typing to search"
+msgstr "Comienza a escribir para buscar"
+
+msgid "Submit"
+msgstr "Enviar"
+
+msgid "Symbols"
+msgstr "Símbolos"
+
+msgid "Travel & Places"
+msgstr "Viajes y Lugares"
+
+msgid "Type to search time zone"
+msgstr "Escribe para buscar la zona horaria"
+
+msgid "Unable to search the group"
+msgstr "No se puede buscar en el grupo"
+
+msgid "Undo changes"
+msgstr "Deshacer cambios"
+
+msgid "Write a message …"
+msgstr ""

@@ -1,4 +1,5 @@
 export default {
+	debug: true,
 
 	getLanguage() {
 		return 'en-GB'

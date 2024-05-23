@@ -26,20 +26,50 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 
 ```
 <template>
-	<NcActions>
-		<NcActionLink href="https://nextcloud.com">
-			<template #icon>
-				<OpenInNew :size="20" />
-			</template>
-			Nextcloud website
-		</NcActionLink>
-	</NcActions>
+	<div style="display: flex; align-items: center;">
+		<NcActions>
+			<NcActionLink href="https://nextcloud.com">
+				<template #icon>
+					<OpenInNew :size="20" />
+				</template>
+				Nextcloud website
+			</NcActionLink>
+		</NcActions>
+
+		<NcActions>
+			<NcActionLink href="https://www.gnu.org/licenses/gpl.odt"
+				  download="AGPL License text.odt">
+				<template #icon>
+					<Download :size="20" />
+				</template>
+				Download AGPL license text
+			</NcActionLink>
+		</NcActions>
+
+		<NcActions>
+			<NcActionLink href="https://nextcloud.com">
+				<template #icon>
+					<OpenInNew :size="20" />
+				</template>
+				Nextcloud website
+			</NcActionLink>
+			<NcActionLink href="https://www.gnu.org/licenses/gpl.odt"
+				  download="AGPL License text.odt">
+				<template #icon>
+					<Download :size="20" />
+				</template>
+				Download AGPL license text
+			</NcActionLink>
+		</NcActions>
+	</div>
 </template>
 <script>
-import OpenInNew from 'vue-material-design-icons/OpenInNew'
+import Download from 'vue-material-design-icons/Download.vue'
+import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
 
 export default {
 	components: {
+		Download,
 		OpenInNew,
 	},
 }
@@ -48,7 +78,7 @@ export default {
 </docs>
 
 <template>
-	<li class="action">
+	<li class="action" :role="isInSemanticMenu && 'presentation'">
 		<a :download="download"
 			:href="href"
 			:aria-label="ariaLabel"
@@ -56,30 +86,33 @@ export default {
 			:title="title"
 			class="action-link focusable"
 			rel="nofollow noreferrer noopener"
+			:role="isInSemanticMenu && 'menuitem'"
 			@click="onClick">
 
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
 				<span :class="[isIconUrl ? 'action-link__icon--url' : icon]"
 					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+					aria-hidden="true"
 					class="action-link__icon" />
 			</slot>
 
-			<!-- long text with title -->
-			<p v-if="title">
-				<strong class="action-link__title">
-					{{ title }}
+			<!-- long text with name -->
+			<span v-if="name"
+				class="action-link__longtext-wrapper">
+				<strong class="action-link__name">
+					{{ name }}
 				</strong>
 				<br>
 				<!-- white space is shown on longtext, so we can't
 				put {{ text }} on a new line for code readability -->
 				<span class="action-link__longtext" v-text="text" />
-			</p>
+			</span>
 
 			<!-- long text only -->
 			<!-- white space is shown on longtext, so we can't
 			put {{ text }} on a new line for code readability -->
-			<p v-else-if="isLongText"
+			<span v-else-if="isLongText"
 				class="action-link__longtext"
 				v-text="text" />
 
@@ -99,6 +132,13 @@ export default {
 	name: 'NcActionLink',
 
 	mixins: [ActionTextMixin],
+
+	inject: {
+		isInSemanticMenu: {
+			from: 'NcActions:isSemanticMenu',
+			default: false,
+		},
+	},
 
 	props: {
 		/**
@@ -139,6 +179,15 @@ export default {
 		 */
 		title: {
 			type: String,
+			default: null,
+		},
+		/**
+		 * @deprecated To be removed in @nextcloud/vue 9. Migration guide: remove ariaHidden prop from NcAction* components.
+		 * @todo Add a check in @nextcloud/vue 9 that this prop is not provided,
+		 * otherwise root element will inherit incorrect aria-hidden.
+		 */
+		ariaHidden: {
+			type: Boolean,
 			default: null,
 		},
 	},

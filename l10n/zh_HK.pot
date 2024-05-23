@@ -1,11 +1,12 @@
 # 
 # Translators:
-# Café Tango, 2022
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Café Tango, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Café Tango, 2022\n"
-"Language-Team: Chinese (Hong Kong) (https://www.transifex.com/nextcloud/teams/64236/zh_HK/)\n"
+"Last-Translator: Café Tango, 2023\n"
+"Language-Team: Chinese (Hong Kong) (https://app.transifex.com/nextcloud/teams/64236/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_HK\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -16,14 +17,23 @@ msgstr "{tag} (隱藏)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (受限)"
 
+msgid "a few seconds ago"
+msgstr "幾秒前"
+
 msgid "Actions"
 msgstr "動作"
+
+msgid "Actions for item with name \"{name}\""
+msgstr "名稱為「{name}」項目的操作"
 
 msgid "Activities"
 msgstr "活動"
 
 msgid "Animals & Nature"
 msgstr "動物與自然"
+
+msgid "Any link"
+msgstr "任何連結"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "與同一組人共享的任何內容都會顯示在此處"
@@ -34,14 +44,26 @@ msgstr "{displayName} 的頭像"
 msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName} 的頭像，{status}"
 
+msgid "away"
+msgstr "離開"
+
+msgid "Back"
+msgstr "返回"
+
+msgid "Back to provider selection"
+msgstr "回到提供者選擇"
+
 msgid "Cancel changes"
 msgstr "取消更改"
 
-msgid "Change title"
-msgstr "更改標題"
+msgid "Change name"
+msgstr "更改名稱"
 
 msgid "Choose"
 msgstr "選擇"
+
+msgid "Clear search"
+msgstr "清除搜索"
 
 msgid "Clear text"
 msgstr "清除文本"
@@ -58,23 +80,34 @@ msgstr "關閉導航"
 msgid "Close sidebar"
 msgstr "關閉側邊欄"
 
+msgid "Close Smart Picker"
+msgstr "關閉 Smart Picker"
+
+msgid "Collapse menu"
+msgstr "折疊選單"
+
 msgid "Confirm changes"
 msgstr "確認更改"
 
 msgid "Custom"
 msgstr "自定義"
 
+msgid "do not disturb"
+msgstr "請勿打擾"
+
 msgid "Edit item"
 msgstr "編輯項目"
 
-msgid "Error getting related resources"
-msgstr "獲取相關資源出錯"
+msgid "Enter link"
+msgstr "輸入連結"
 
-msgid "Error parsing svg"
-msgstr "解析 svg 時出錯"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr "取得相關資源時發生錯誤。如果有任何問題，請聯絡系統管理員。"
 
-msgid "External documentation for {title}"
-msgstr "{title} 的外部文檔"
+msgid "External documentation for {name}"
+msgstr "{name} 的外部文件"
 
 msgid "Favorite"
 msgstr "喜愛"
@@ -97,11 +130,17 @@ msgstr "返回清單"
 msgid "Hide password"
 msgstr "隱藏密碼"
 
+msgid "Load more \"{options}\""
+msgstr "載入更多 \"{options}\""
+
 msgid "Message limit of {count} characters reached"
 msgstr "已達到訊息最多 {count} 字元限制"
 
 msgid "More items …"
 msgstr "更多項目 …"
+
+msgid "More options"
+msgstr "更多選項"
 
 msgid "Next"
 msgstr "下一個"
@@ -109,20 +148,35 @@ msgstr "下一個"
 msgid "No emoji found"
 msgstr "未找到表情符號"
 
+msgid "No link provider found"
+msgstr "找不到連結提供者"
+
 msgid "No results"
 msgstr "無結果"
 
 msgid "Objects"
 msgstr "物件"
 
-msgid "Open"
-msgstr "打開"
+msgid "offline"
+msgstr "離線"
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "打開指向 “{resourceTitle}” 的鏈結"
+msgid "online"
+msgstr "在線"
+
+msgid "Open contact menu"
+msgstr "開啟通訊錄選單"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "開啟到「{resourceName}」的連結"
+
+msgid "Open menu"
+msgstr "開啟選單"
 
 msgid "Open navigation"
 msgstr "開啟導航"
+
+msgid "Open settings menu"
+msgstr "開啟設定選單"
 
 msgid "Password is secure"
 msgstr "密碼是安全的"
@@ -133,6 +187,24 @@ msgstr "暫停幻燈片"
 msgid "People & Body"
 msgstr "人物"
 
+msgid "Pick a date"
+msgstr "挑選日期"
+
+msgid "Pick a date and a time"
+msgstr "挑選日期與時間"
+
+msgid "Pick a month"
+msgstr "挑選月份"
+
+msgid "Pick a time"
+msgstr "挑選時間"
+
+msgid "Pick a week"
+msgstr "挑選星期"
+
+msgid "Pick a year"
+msgstr "挑選年份"
+
 msgid "Pick an emoji"
 msgstr "選擇表情符號"
 
@@ -142,17 +214,41 @@ msgstr "請選擇時區："
 msgid "Previous"
 msgstr "上一個"
 
+msgid "Provider icon"
+msgstr "提供者圖示"
+
+msgid "Raw link {options}"
+msgstr "原始連結 {options}"
+
 msgid "Related resources"
 msgstr "相關資源"
 
 msgid "Search"
 msgstr "搜尋"
 
+msgid "Search emoji"
+msgstr "搜尋表情符號"
+
 msgid "Search results"
 msgstr "搜尋結果"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "秒前"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "秒前"
+
 msgid "Select a tag"
 msgstr "選擇標籤"
+
+msgid "Select provider"
+msgstr "選擇提供者"
+
+msgid "Selected"
+msgstr "已選"
 
 msgid "Settings"
 msgstr "設定"
@@ -163,11 +259,17 @@ msgstr "設定值導覽"
 msgid "Show password"
 msgstr "顯示密碼"
 
+msgid "Smart Picker"
+msgstr "Smart Picker"
+
 msgid "Smileys & Emotion"
 msgstr "表情"
 
 msgid "Start slideshow"
 msgstr "開始幻燈片"
+
+msgid "Start typing to search"
+msgstr "開始輸入以進行搜尋"
 
 msgid "Submit"
 msgstr "提交"
@@ -187,7 +289,8 @@ msgstr "無法搜尋群組"
 msgid "Undo changes"
 msgstr "取消更改"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr "寫訊息，使用 \"@\" 來指代某人，使用 \":\" 用於表情符號自動填充 ..."
+msgid "User status: {status}"
+msgstr "用戶狀態：{status}"
+
+msgid "Write a message …"
+msgstr "編寫訊息 …"

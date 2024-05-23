@@ -1,0 +1,394 @@
+# 
+# Translators:
+# enolp <enolp@softastur.org>, 2024
+# 
+msgid ""
+msgstr ""
+"Last-Translator: enolp <enolp@softastur.org>, 2024\n"
+"Language-Team: Asturian (https://app.transifex.com/nextcloud/teams/64236/ast/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ast\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "{tag} (invisible)"
+msgstr "{tag} (invisible)"
+
+msgid "{tag} (restricted)"
+msgstr "{tag} (restrinxóse)"
+
+msgid "A color with a HEX value {hex}"
+msgstr "Un color con un valor HEX {hex}"
+
+msgid "a few seconds ago"
+msgstr "hai unos segundos"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulcu"
+
+msgid "Actions"
+msgstr "Aiciones"
+
+msgid "Actions for item with name \"{name}\""
+msgstr "Aiciones pal elementu col nome «{name}»"
+
+msgid "Activities"
+msgstr "Actividaes"
+
+msgid "Animals & Nature"
+msgstr "Animales y natura"
+
+msgid "Any link"
+msgstr "Cualesquier enllaz"
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr "Equí va apaecer tolo que compartas col mesmu grupu de persones"
+
+msgid "Avatar of {displayName}"
+msgstr "Avatar de: {displayName}"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "Avatar de: {displayName}, {status}"
+
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "ausente"
+
+msgid "Back"
+msgstr "Atrás"
+
+msgid "Back to provider selection"
+msgstr "Volver a la seleición de fornidores"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Viola azulao"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Azul Boston"
+
+msgid "busy"
+msgstr "ocupáu"
+
+msgid "Cancel changes"
+msgstr "Encaboxar los cambeos"
+
+msgid "Change name"
+msgstr "Camudar el nome"
+
+msgid "Choose"
+msgstr "Escoyer"
+
+msgid "Clear search"
+msgstr "Borrar la busca"
+
+msgid "Clear selected"
+msgstr "Borrar lo seleicionao"
+
+msgid "Clear text"
+msgstr "Borrar el testu"
+
+msgid "Close"
+msgstr "Zarrar"
+
+msgid "Close navigation"
+msgstr "Zarrar la navegación"
+
+msgid "Close sidebar"
+msgstr "Zarrar la barra llateral"
+
+msgid "Close Smart Picker"
+msgstr "Zarrar la seleición intelixente"
+
+msgid "Collapse menu"
+msgstr "Recoyer el menú"
+
+msgid "Color picker"
+msgstr "Selector de colores"
+
+msgid "Confirm changes"
+msgstr "Confirmar los cambeos"
+
+msgid "Custom"
+msgstr "Personalizar"
+
+msgid "Dark skin tone"
+msgstr "Tonu d'aspeutu escuru"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Deluge"
+
+msgid "Deselect {option}"
+msgstr "Deseleicionar «{option}»"
+
+msgid "do not disturb"
+msgstr "nun molestar"
+
+msgid "Edit item"
+msgstr "Editar l'elementu"
+
+msgid "Emoji picker"
+msgstr "Selector de fustaxes"
+
+msgid "Enter link"
+msgstr "Introducir l'enllaz"
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+"Hebo un error al consiguir los recursos rellacionaos. Ponte en contautu col "
+"alministrador del sistema si tienes dalguna entruga."
+
+msgid "External documentation for {name}"
+msgstr "Documentación esterna pa: {name}"
+
+msgid "Favorite"
+msgstr "Favoritu"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Feldspar"
+
+msgid "Flags"
+msgstr "Banderes"
+
+msgid "Food & Drink"
+msgstr "Cómida y bébora"
+
+msgid "Frequently used"
+msgstr "D'usu frecuente"
+
+msgid "Global"
+msgstr "Global"
+
+msgid "Go back to the list"
+msgstr "Volver a la llista"
+
+msgid "Gold"
+msgstr "Oru"
+
+msgid "Hide password"
+msgstr "Anubrir la contraseña"
+
+msgid "invisible"
+msgstr "invisible"
+
+msgid "Keyboard navigation help"
+msgstr "Ayuda de la navegación pente'l tecláu"
+
+msgid "Light skin tone"
+msgstr "Tonu d'aspeutu claru"
+
+msgid "Load more \"{options}\""
+msgstr "Cargar más «{options}»"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Marineru"
+
+msgid "Medium dark skin tone"
+msgstr "Tonu d'aspeutu medio escuru"
+
+msgid "Medium light skin tone"
+msgstr "Tonu d'aspeutu medio claru"
+
+msgid "Medium skin tone"
+msgstr "Tonu d'aspeutu mediu"
+
+msgid "Message limit of {count} characters reached"
+msgstr "Algamóse la llende del mensaxe con {count} caráuteres"
+
+msgid "More items …"
+msgstr "Más elementos…"
+
+msgid "More options"
+msgstr "Más opciones"
+
+msgid "Neutral skin color"
+msgstr "Color d'aspeutu neutral"
+
+msgid "Next"
+msgstr "Siguiente"
+
+msgid "Nextcloud blue"
+msgstr "Nextcloud azul"
+
+msgid "No emoji found"
+msgstr "Nun s'atopó nengún fustaxe"
+
+msgid "No link provider found"
+msgstr "Nun s'atopó nengún fornidor d'enllaces"
+
+msgid "No results"
+msgstr "Nun hai nengún resultáu"
+
+msgid "Objects"
+msgstr "Oxetos"
+
+msgid "offline"
+msgstr "desconectáu"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Olivina"
+
+msgid "online"
+msgstr "en llinia"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "Abrir l'enllaz a «{resourceName}»"
+
+msgid "Open menu"
+msgstr "Abrir le menú"
+
+msgid "Open navigation"
+msgstr "Abrir la navegación"
+
+msgid "Options"
+msgstr "Opciones"
+
+msgid "Password is secure"
+msgstr "La contraseña ye segura"
+
+msgid "Pause slideshow"
+msgstr "Posar la presentación de diapositives"
+
+msgid "People & Body"
+msgstr "Persones y cuerpu"
+
+msgid "Pick a date"
+msgstr "Escueyi una data"
+
+msgid "Pick a date and a time"
+msgstr "Escueyi una data y hora"
+
+msgid "Pick a month"
+msgstr "Escueyi un mes"
+
+msgid "Pick a time"
+msgstr "Escueyi una hora"
+
+msgid "Pick a week"
+msgstr "Escueyi una selmana"
+
+msgid "Pick a year"
+msgstr "Escueyi un añu"
+
+msgid "Pick an emoji"
+msgstr "Escueyi un fustaxe"
+
+msgid "Please select a time zone:"
+msgstr "Seleiciona un fusu horariu:"
+
+msgid "Previous"
+msgstr "Anterior"
+
+msgid "Provider icon"
+msgstr "Iconu del fornidor"
+
+msgid "Purple"
+msgstr "Moráu"
+
+msgid "Raw link {options}"
+msgstr "Enllaz en bruto {optiones}"
+
+msgid "Related resources"
+msgstr "Recursos rellacionao"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Marrón arrosao"
+
+msgid "Save changes"
+msgstr "Guardar los cambeos"
+
+msgid "Search"
+msgstr "Buscar"
+
+msgid "Search emoji"
+msgstr "Buscar nos fustaxes"
+
+msgid "Search for time zone"
+msgstr "Buscar fusos horarios"
+
+msgid "Search results"
+msgstr "Resultaos de la busca"
+
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "hai segs"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "hai segundos"
+
+msgid "Select a tag"
+msgstr "Seleicionar una etiqueta"
+
+msgid "Select provider"
+msgstr "Seleicionar el fornidor"
+
+msgid "Selected"
+msgstr "Na seleición"
+
+msgid "Settings"
+msgstr "Configuración"
+
+msgid "Settings navigation"
+msgstr "Navegación pela configuración"
+
+msgid "Show password"
+msgstr "Amosar la contraseña"
+
+msgid "Skin tone"
+msgstr "Tonu d'aspeutu"
+
+msgid "Skip to app navigation"
+msgstr "Dir a la navegación d'aplicaciones"
+
+msgid "Skip to main content"
+msgstr "Dir al conteníu principal"
+
+msgid "Smart Picker"
+msgstr "Selector intelixente"
+
+msgid "Smileys & Emotion"
+msgstr "Sorrises y emociones"
+
+msgid "Start slideshow"
+msgstr "Aniciar la presentación de diapositives"
+
+msgid "Start typing to search"
+msgstr "Comienza a escribir pa buscar"
+
+msgid "Submit"
+msgstr "Unviar"
+
+msgid "Symbols"
+msgstr "Símbolos"
+
+msgid "Travel & Places"
+msgstr "Viaxes y llugares"
+
+msgid "Type to search time zone"
+msgstr "Escribi pa buscar un fusu horariu"
+
+msgid "Unable to search the group"
+msgstr "Nun ye posible buscar el grupu"
+
+msgid "Undo changes"
+msgstr "Desfacer los cambeos"
+
+msgid "User status: {status}"
+msgstr "Estáu del usuariu: {status}"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Whiskey"
+
+msgid "Write a message …"
+msgstr "Escribi un mensaxe…"

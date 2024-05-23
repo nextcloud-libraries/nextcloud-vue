@@ -30,7 +30,7 @@
 <template>
 	<div class="app-navigation-input-confirm">
 		<form @submit.prevent="confirm"
-			@keydown.esc.exact.prevent="cancel"
+			@keydown.esc.exact.stop.prevent="cancel"
 			@click.stop.prevent>
 			<input ref="input"
 				v-model="valueModel"
@@ -48,7 +48,7 @@
 			</NcButton>
 
 			<NcButton native-type="reset"
-				type="tertiary"
+				:type="primary ? 'primary' : 'tertiary'"
 				:aria-label="labelCancel"
 				@click.stop.prevent="cancel">
 				<template #icon>
@@ -75,10 +75,19 @@ export default {
 	},
 
 	props: {
+		/**
+		 * If this element is used on a primary element set to true for primary styling.
+		 */
+		primary: {
+			default: false,
+			type: Boolean,
+		},
+
 		placeholder: {
 			default: '',
 			type: String,
 		},
+
 		value: {
 			default: '',
 			type: String,
@@ -121,7 +130,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 $input-height: 34px;
 $input-padding: 7px;
 $input-margin: 5px;

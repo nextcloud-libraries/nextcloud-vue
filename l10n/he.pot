@@ -1,125 +1,281 @@
 # 
 # Translators:
-# Yaron Shahrabani <sh.yaron@gmail.com>, 2020
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>, 2020\n"
-"Language-Team: Hebrew (https://www.transifex.com/nextcloud/teams/64236/he/)\n"
+"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2023\n"
+"Language-Team: Hebrew (https://app.transifex.com/nextcloud/teams/64236/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: he\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:170
 msgid "{tag} (invisible)"
 msgstr "{tag} (נסתר)"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:173
 msgid "{tag} (restricted)"
 msgstr "{tag} (מוגבל)"
 
-#: src/components/Actions/Actions.vue:249
+msgid "a few seconds ago"
+msgstr "לפני מספר שניות"
+
 msgid "Actions"
 msgstr "פעולות"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:176
+msgid "Actions for item with name \"{name}\""
+msgstr "פעולות לפריט בשם „{name}”"
+
 msgid "Activities"
 msgstr "פעילויות"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:174
 msgid "Animals & Nature"
 msgstr "חיות וטבע"
 
-#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Any link"
+msgstr "קישור כלשהו"
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr "כל מה שמשותף עם אותה קבוצת האנשים יופיע כאן"
+
+msgid "Avatar of {displayName}"
+msgstr "תמונה ייצוגית של {displayName}"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "תמונה ייצוגית של {displayName}, {status}"
+
+msgid "Back"
+msgstr "חזרה"
+
+msgid "Back to provider selection"
+msgstr "חזרה לבחירת ספק"
+
+msgid "Cancel changes"
+msgstr "ביטול שינויים"
+
+msgid "Change name"
+msgstr "החלפת שם"
+
 msgid "Choose"
 msgstr "בחירה"
 
-#: src/components/Modal/Modal.vue:117
+msgid "Clear search"
+msgstr "פינוי חיפוש"
+
+msgid "Clear text"
+msgstr "פינוי טקסט"
+
 msgid "Close"
 msgstr "סגירה"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:181
+msgid "Close modal"
+msgstr "סגירת החלונית"
+
+msgid "Close navigation"
+msgstr "סגירת הניווט"
+
+msgid "Close sidebar"
+msgstr "סגירת סרגל הצד"
+
+msgid "Close Smart Picker"
+msgstr "סגירת הבורר החכם"
+
+msgid "Collapse menu"
+msgstr "צמצום התפריט"
+
+msgid "Confirm changes"
+msgstr "אישור השינויים"
+
 msgid "Custom"
 msgstr "בהתאמה אישית"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:180
+msgid "Edit item"
+msgstr "עריכת פריט"
+
+msgid "Enter link"
+msgstr "מילוי קישור"
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+"שגיאה בקבלת המשאבים הקשורים. נא ליצור קשר עם הנהלת המערכת אם יש לך שאלות."
+
+msgid "External documentation for {name}"
+msgstr "תיעוד חיצוני עבור {name}"
+
+msgid "Favorite"
+msgstr "למועדפים"
+
 msgid "Flags"
 msgstr "דגלים"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:175
 msgid "Food & Drink"
 msgstr "מזון ומשקאות"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:171
 msgid "Frequently used"
 msgstr "בשימוש תדיר"
 
-#: src/components/Modal/Modal.vue:166
+msgid "Global"
+msgstr "כללי"
+
+msgid "Go back to the list"
+msgstr "חזרה לרשימה"
+
+msgid "Hide password"
+msgstr "הסתרת סיסמה"
+
+msgid "Load more \"{options}\""
+msgstr ""
+
+msgid "Message limit of {count} characters reached"
+msgstr "הגעת למגבלה של {count} תווים"
+
+msgid "More items …"
+msgstr "פריטים נוספים…"
+
+msgid "More options"
+msgstr "אפשרויות נוספות"
+
 msgid "Next"
 msgstr "הבא"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:168
 msgid "No emoji found"
 msgstr "לא נמצא אמוג׳י"
 
-#: src/components/Multiselect/Multiselect.vue:174
-#: src/components/MultiselectTags/MultiselectTags.vue:78
-#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
+msgid "No link provider found"
+msgstr "לא נמצא ספק קישורים"
+
 msgid "No results"
 msgstr "אין תוצאות"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:178
 msgid "Objects"
 msgstr "חפצים"
 
-#: src/components/Modal/Modal.vue:302
+msgid "Open contact menu"
+msgstr "פתיחת תפריט קשר"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "פתיחת קישור אל „{resourceName}”"
+
+msgid "Open menu"
+msgstr "פתיחת תפריט"
+
+msgid "Open navigation"
+msgstr "פתיחת ניווט"
+
+msgid "Open settings menu"
+msgstr "פתיחת תפריט הגדרות"
+
+msgid "Password is secure"
+msgstr "הסיסמה מאובטחת"
+
 msgid "Pause slideshow"
 msgstr "השהיית מצגת"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:173
 msgid "People & Body"
 msgstr "אנשים וגוף"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:153
+msgid "Pick a date"
+msgstr "נא לבחור תאריך"
+
+msgid "Pick a date and a time"
+msgstr "נא לבחור תאריך ושעה"
+
+msgid "Pick a month"
+msgstr "נא לבחור חודש"
+
+msgid "Pick a time"
+msgstr "נא לבחור שעה"
+
+msgid "Pick a week"
+msgstr "נא לבחור שבוע"
+
+msgid "Pick a year"
+msgstr "נא לבחור שנה"
+
 msgid "Pick an emoji"
 msgstr "נא לבחור אמוג׳י"
 
-#: src/components/Modal/Modal.vue:144
+msgid "Please select a time zone:"
+msgstr "נא לבחור אזור זמן:"
+
 msgid "Previous"
 msgstr "הקודם"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:167
+msgid "Provider icon"
+msgstr "סמל ספק"
+
+msgid "Raw link {options}"
+msgstr "קישור גולמי {options}"
+
+msgid "Related resources"
+msgstr "משאבים קשורים"
+
 msgid "Search"
 msgstr "חיפוש"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:170
+msgid "Search emoji"
+msgstr "חיפוש אמוג׳י"
+
 msgid "Search results"
 msgstr "תוצאות חיפוש"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:100
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "לפני מספר שניות"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "לפני מס׳ שניות"
+
 msgid "Select a tag"
 msgstr "בחירת תגית"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:57
+msgid "Select provider"
+msgstr "בחירת ספק"
+
+msgid "Selected"
+msgstr ""
+
 msgid "Settings"
 msgstr "הגדרות"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:172
+msgid "Settings navigation"
+msgstr "ניווט בהגדרות"
+
+msgid "Show password"
+msgstr "הצגת סיסמה"
+
+msgid "Smart Picker"
+msgstr "בורר חכם"
+
 msgid "Smileys & Emotion"
 msgstr "חייכנים ורגשונים"
 
-#: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "התחלת המצגת"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:179
+msgid "Start typing to search"
+msgstr "התחלת הקלדה מחפשת"
+
+msgid "Submit"
+msgstr "הגשה"
+
 msgid "Symbols"
 msgstr "סמלים"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:177
 msgid "Travel & Places"
 msgstr "טיולים ומקומות"
 
-#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
+msgid "Type to search time zone"
+msgstr "יש להקליד כדי לחפש אזור זמן"
+
 msgid "Unable to search the group"
 msgstr "לא ניתן לחפש בקבוצה"
+
+msgid "Undo changes"
+msgstr "ביטול שינויים"
+
+msgid "Write a message …"
+msgstr ""

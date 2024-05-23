@@ -1,0 +1,285 @@
+# 
+# Translators:
+# Joas Schilling, 2023
+# Pavel Borecki <pavel.borecki@gmail.com>, 2023
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2023\n"
+"Language-Team: Czech (Czech Republic) (https://app.transifex.com/nextcloud/teams/64236/cs_CZ/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: cs_CZ\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+
+msgid "{tag} (invisible)"
+msgstr "{tag} (neviditelné)"
+
+msgid "{tag} (restricted)"
+msgstr "{tag} (omezené)"
+
+msgid "a few seconds ago"
+msgstr "před několika sekundami"
+
+msgid "Actions"
+msgstr "Akce"
+
+msgid "Actions for item with name \"{name}\""
+msgstr "Akce pro položku s názvem „{name}“"
+
+msgid "Activities"
+msgstr "Aktivity"
+
+msgid "Animals & Nature"
+msgstr "Zvířata a příroda"
+
+msgid "Any link"
+msgstr "Jakýkoli odkaz"
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr "Cokoli nasdíleného stejné skupině lidí se zobrazí zde"
+
+msgid "Avatar of {displayName}"
+msgstr "Zástupný obrázek uživatele {displayName}"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "Zástupný obrázek uživatele {displayName}, {status}"
+
+msgid "Back"
+msgstr "Zpět"
+
+msgid "Back to provider selection"
+msgstr "Zpět na výběr poskytovatele"
+
+msgid "Cancel changes"
+msgstr "Zrušit změny"
+
+msgid "Change name"
+msgstr "Změnit název"
+
+msgid "Choose"
+msgstr "Zvolit"
+
+msgid "Clear search"
+msgstr "Vyčistit vyhledávání"
+
+msgid "Clear text"
+msgstr "Čitelný text"
+
+msgid "Close"
+msgstr "Zavřít"
+
+msgid "Close modal"
+msgstr "Zavřít dialogové okno"
+
+msgid "Close navigation"
+msgstr "Zavřít navigaci"
+
+msgid "Close sidebar"
+msgstr "Zavřít postranní panel"
+
+msgid "Close Smart Picker"
+msgstr "Zavřít inteligentní výběr"
+
+msgid "Collapse menu"
+msgstr "Sbalit nabídku"
+
+msgid "Confirm changes"
+msgstr "Potvrdit změny"
+
+msgid "Custom"
+msgstr "Uživatelsky určené"
+
+msgid "Edit item"
+msgstr "Upravit položku"
+
+msgid "Enter link"
+msgstr "Zadat odkaz"
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+"Chyba při získávání souvisejících prostředků. Pokud máte jakékoli dotazy, "
+"obraťte se na správce vámi využívaného systému."
+
+msgid "External documentation for {name}"
+msgstr "Externí dokumentace pro {name}"
+
+msgid "Favorite"
+msgstr "Oblíbené"
+
+msgid "Flags"
+msgstr "Příznaky"
+
+msgid "Food & Drink"
+msgstr "Jídlo a pití"
+
+msgid "Frequently used"
+msgstr "Často používané"
+
+msgid "Global"
+msgstr "Globální"
+
+msgid "Go back to the list"
+msgstr "Jít zpět na seznam"
+
+msgid "Hide password"
+msgstr "Skrýt heslo"
+
+msgid "Load more \"{options}\"\""
+msgstr "Načíst více „{options}“"
+
+msgid "Message limit of {count} characters reached"
+msgstr "Dosaženo limitu počtu ({count}) znaků zprávy"
+
+msgid "More items …"
+msgstr "Další položky…"
+
+msgid "More options"
+msgstr "Další volby"
+
+msgid "Next"
+msgstr "Následující"
+
+msgid "No emoji found"
+msgstr "Nenalezeno žádné emoji"
+
+msgid "No link provider found"
+msgstr "Nenalezen žádný poskytovatel odkazů"
+
+msgid "No results"
+msgstr "Nic nenalezeno"
+
+msgid "Objects"
+msgstr "Objekty"
+
+msgid "Open contact menu"
+msgstr "Otevřít nabídku kontaktů"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "Otevřít odkaz na „{resourceName}“"
+
+msgid "Open menu"
+msgstr "Otevřít nabídku"
+
+msgid "Open navigation"
+msgstr "Otevřít navigaci"
+
+msgid "Open settings menu"
+msgstr "Otevřít nabídku nastavení"
+
+msgid "Password is secure"
+msgstr "Heslo je bezpečné"
+
+msgid "Pause slideshow"
+msgstr "Pozastavit prezentaci"
+
+msgid "People & Body"
+msgstr "Lidé a tělo"
+
+msgid "Pick a date"
+msgstr "Vybrat datum"
+
+msgid "Pick a date and a time"
+msgstr "Vybrat datum a čas"
+
+msgid "Pick a month"
+msgstr "Vybrat měsíc"
+
+msgid "Pick a time"
+msgstr "Vybrat čas"
+
+msgid "Pick a week"
+msgstr "Vybrat týden"
+
+msgid "Pick a year"
+msgstr "Vybrat rok"
+
+msgid "Pick an emoji"
+msgstr "Vybrat emoji"
+
+msgid "Please select a time zone:"
+msgstr "Vyberte časovou zónu:"
+
+msgid "Previous"
+msgstr "Předchozí"
+
+msgid "Provider icon"
+msgstr "Ikona poskytovatele"
+
+msgid "Raw link {options}"
+msgstr "Holý odkaz {options}"
+
+msgid "Related resources"
+msgstr "Související prostředky"
+
+msgid "Search"
+msgstr "Hledat"
+
+msgid "Search emoji"
+msgstr "Hledat emoji"
+
+msgid "Search results"
+msgstr "Výsledky hledání"
+
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "sek. před"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "sekund předtím"
+
+msgid "Select a tag"
+msgstr "Vybrat štítek"
+
+msgid "Select provider"
+msgstr "Vybrat poskytovatele"
+
+msgid "Settings"
+msgstr "Nastavení"
+
+msgid "Settings navigation"
+msgstr "Pohyb po nastavení"
+
+msgid "Show password"
+msgstr "Zobrazit heslo"
+
+msgid "Smart Picker"
+msgstr "Inteligentní výběr"
+
+msgid "Smileys & Emotion"
+msgstr "Úsměvy a emoce"
+
+msgid "Start slideshow"
+msgstr "Spustit prezentaci"
+
+msgid "Start typing to search"
+msgstr "Vyhledávejte psaním"
+
+msgid "Submit"
+msgstr "Odeslat"
+
+msgid "Symbols"
+msgstr "Symboly"
+
+msgid "Travel & Places"
+msgstr "Cestování a místa"
+
+msgid "Type to search time zone"
+msgstr "Psaním vyhledejte časovou zónu"
+
+msgid "Unable to search the group"
+msgstr "Nedaří se hledat skupinu"
+
+msgid "Undo changes"
+msgstr "Vzít změny zpět"
+
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
+msgstr ""
+"Napište zprávu – pokud chcete někoho zmínit, napište před jeho uživatelským "
+"jménem „@“ (zavináč); automatické doplňování emotikonů zahájíte napsáním „:“"
+" (dvojtečky)…"

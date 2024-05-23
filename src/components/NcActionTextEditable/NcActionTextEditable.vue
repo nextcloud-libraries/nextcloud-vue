@@ -38,7 +38,7 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 				<Pencil :size="20" />
 			</template>
 		</NcActionTextEditable>
-		<NcActionTextEditable title="Please edit the text" value="This is a textarea with title">
+		<NcActionTextEditable name="Please edit the text" value="This is a textarea with name">
 			<template #icon>
 				<Pencil :size="20" />
 			</template>
@@ -75,12 +75,15 @@ export default {
 				@submit.prevent="onSubmit">
 				<input :id="id" type="submit" class="action-text-editable__submit">
 
-				<!-- title -->
-				<strong v-if="title" class="action-text__title">
-					{{ title }}
-				</strong>
+				<!-- name -->
+				<label v-if="name"
+					class="action-text-editable__name"
+					:for="computedId">
+					{{ name }}
+				</label>
 
-				<textarea :disabled="disabled"
+				<textarea :id="computedId"
+					:disabled="disabled"
 					:value="value"
 					v-bind="$attrs"
 					:class="['action-text-editable__textarea', { focusable: isFocusable }]"
@@ -151,6 +154,10 @@ export default {
 		isFocusable() {
 			return !this.disabled
 		},
+
+		computedId() {
+			return GenRandomId()
+		},
 	},
 
 	methods: {
@@ -207,7 +214,6 @@ $input-margin: 4px;
 	cursor: pointer;
 	white-space: nowrap;
 
-	opacity: $opacity_normal;
 	color: var(--color-main-text);
 	border: 0;
 	border-radius: 0; // otherwise Safari will cut the border-radius area
@@ -216,11 +222,6 @@ $input-margin: 4px;
 
 	font-weight: normal;
 	line-height: $clickable-area;
-
-	&:hover,
-	&:focus {
-		opacity: $opacity_full;
-	}
 
 	& > span {
 		cursor: pointer;
@@ -283,8 +284,6 @@ $input-margin: 4px;
 		margin: 0;
 		padding: 7px 6px;
 
-		opacity: $opacity_full;
-		color: var(--color-text-maxcontrast);
 		border: 0;
 		border-radius: 50%;
 		/* Avoid background under border */
@@ -299,6 +298,8 @@ $input-margin: 4px;
 	/* Inputs inside popover supports text, submit & reset */
 	&__textarea {
 		flex: 1 1 auto;
+		color: inherit;
+		border-color: var(--color-border-maxcontrast);
 
 		min-height: #{$clickable-area * 2 - $input-margin * 2}; /* twice the element margin-y */
 		max-height: #{$clickable-area * 3 - $input-margin * 2}; /* twice the element margin-y */
@@ -324,7 +325,7 @@ $input-margin: 4px;
 				&:hover,
 				&:focus {
 					background-color: var(--color-primary-element);
-					color: var(--color-primary-text);
+					color: var(--color-primary-element-text);
 				}
 			}
 		}
@@ -353,5 +354,4 @@ li:last-child > .action-text-editable {
 li:first-child > .action-text-editable {
 	margin-top: $icon-margin - $input-margin;
 }
-
 </style>

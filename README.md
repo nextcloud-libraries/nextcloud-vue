@@ -9,6 +9,12 @@ This repo contains the various Vue.js components that Nextcloud uses for its int
 
 A list of available components with examples to try out is available in the [documentation](https://nextcloud-vue-components.netlify.app).
 
+The documentation is built from the latest development branch, for stable releases the documentation can be found matching the latest minor version:
+
+- [master](https://nextcloud-vue-components.netlify.app).
+- [7.x.x](https://stable7--nextcloud-vue-components.netlify.app/)
+- [6.x.x](https://stable6--nextcloud-vue-components.netlify.app/)
+
 ## Getting started
 
 ### App example
@@ -31,13 +37,13 @@ import { NcAppNavigation, NcActions, NcActionButton } from '@nextcloud/vue'
 
 ### Registering all components.
 
-> Be careful, this will registry all components, even the ones not being used.
+> Be careful, this will registry all components and directives, even the ones not being used.
 
 ```js
 import Vue from 'vue'
-import NcComponents from '@nextcloud/vue/dist/install.js'
+import { NextcloudVuePlugin } from '@nextcloud/vue'
 
-Vue.use(NcComponents)
+Vue.use(NextcloudVuePlugin)
 ```
 
 ## Development setup
@@ -45,8 +51,10 @@ Vue.use(NcComponents)
 If you want to work on improving the components it’s best to run the latest code and link it to your local Nextcloud installation:
 
 1. Install the dependencies with `npm ci`
-2. Build the components every time you do changes: `npm run build` or `npm run build:module` (for es modules)
-    - To watch for changes and rebuild automatically: `npm run watch` or `npm run watch:module`
+2. Build the components every time you do changes: `npm run build`
+    - To make development build: `npm run dev`
+    - To watch for changes and rebuild automatically: `npm run watch`
+    - To watch for changes and rebuild development build: `npm run dev:watch`
 3. Connect it to your local Nextcloud development setup:
     - In this repository do `npm link`
     - In the repository of an app do `npm link @nextcloud/vue` (you need to re-link any time you do `npm ci` in the app)
@@ -63,7 +71,7 @@ When you implement a translated string, import the `translate` or `translatePlur
 ```vue
 <template>
 	<element>
- 		{{ t('Choose') }} 
+		{{ t('Choose') }}
 	</element>
 </template>
 
@@ -105,13 +113,16 @@ export default {
 
 ## Styleguide
 
-When developing new components or extending compnents, make sure to also have some bits of related documentation like examples, where applicable.
+When developing new components or extending components, make sure to also have some bits of related documentation like examples, where applicable.
 To test components and the documentation in that context, you can run `npm run styleguide` to run a local server that serves the style guide
 with all the components.
 
 ### Using vue-devtools in Firefox
 
-If you want to use [vue-devtools](https://github.com/vuejs/vue-devtools) in Firefox, you need to patch your nextcloud instance as follow:
+If you want to use [vue-devtools](https://github.com/vuejs/vue-devtools) in Firefox, you need to:
+
+* Either enable the [HMR Enabler](https://github.com/nextcloud/hmr_enabler) app …
+* … or patch your nextcloud instance as follows:
 
 ```diff
 diff --git a/lib/public/AppFramework/Http/ContentSecurityPolicy.php b/lib/public/AppFramework/Http/ContentSecurityPolicy.php
@@ -134,17 +145,20 @@ index 0e3a6a705d..416b8b0fb9 100644
 
 ## Releasing a new version
 
-- Pull the latest changes from `master` or `stableX`;
-- Checkout a new branch with the tag name (e.g `v4.0.1`): `git checkout -b v<version>`;
-- Run `npm version patch --no-git-tag-version` (`npm version minor --no-git-tag-version` if minor). This will return a new version name, make sure it matches what you expect;
-- Commit, push and create PR;
-- Add the change log content from the 'Changelog' action on Github to `CHANGELOG.md`;
-- Commit and push;
-- Get your PR reviewed and merged;
-- Create a milestone with the follow up version at https://github.com/nextcloud/nextcloud-vue/milestones
-- Move all open tickets and PRs to the follow up
+- Pull the latest changes from `master` or `stableX`
+- Checkout a new branch with the tag name (e.g `v4.0.1`): `git checkout -b v<version>`
+- Run `npm version patch --no-git-tag-version` (`npm version minor --no-git-tag-version` if minor).
+  This will return a new version name, make sure it matches what you expect
+- Generate the changelog content from the [release](https://github.com/nextcloud-libraries/nextcloud-vue/releases) page.
+  Create a draft release, select the previous tag, click `generate` then paste the content to the `CHANGELOG.md` file
+  1. use the the version as tag AND title (e.g `v4.0.1`)
+  2. add the changelog content as description (https://github.com/nextcloud-libraries/nextcloud-vue/releases)
+- Commit, push and create PR
+- Get your PR reviewed and merged
+- Create a milestone with the follow-up version at https://github.com/nextcloud-libraries/nextcloud-vue/milestones
+- Move all open tickets and PRs to the follow-up
 - Close the milestone of the version you release
-- Create a release on github with the version as tag (e.g `v4.0.1`) and add the changelog content as description (https://github.com/nextcloud/nextcloud-vue/releases);
+- Publish the previously drafted release on GitHub
   ![image](https://user-images.githubusercontent.com/14975046/124442568-2a952500-dd7d-11eb-82a2-402f9170231a.png)
 
 <a href="https://www.netlify.com">

@@ -23,26 +23,34 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 
 ```vue
 	<NcActions>
-		<NcActionCaption title="Test caption" />
-		<NcActionCaption title="Test caption 2" />
+		<NcActionCaption name="Test caption" />
+		<NcActionCaption name="Test caption 2" />
 	</NcActions>
 ```
 </docs>
 
 <template>
-	<li class="app-navigation-caption">
-		{{ title }}
+	<li class="app-navigation-caption" :role="isInSemanticMenu && 'presentation'">
+		{{ name }}
 	</li>
 </template>
 
 <script>
 export default {
 	name: 'NcActionCaption',
+
+	inject: {
+		isInSemanticMenu: {
+			from: 'NcActions:isSemanticMenu',
+			default: false,
+		},
+	},
+
 	props: {
 		/**
 		 * The caption's text
 		 */
-		title: {
+		name: {
 			type: String,
 			required: true,
 		},

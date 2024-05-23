@@ -1,18 +1,12 @@
 # 
 # Translators:
-# Carles Ferrando Garcia <carles.ferrando@gnuescultura.eu>, 2020
-# Toni Hermoso Pulido <toniher@softcatala.cat>, 2020
-# David Jacovkis <david@freeknowledge.eu>, 2020
-# Marc Riera <marcriera@softcatala.org>, 2022
-# Papa Nates, 2022
-# omar.maciasmolina <omar.maciasmolina@gmail.com>, 2022
-# v v <e670006006@gmail.com>, 2022
-# Carles Sadurní <transifex@puntnet.org>, 2023
+# Joas Schilling, 2023
+# Transifex Bot <>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Carles Sadurní <transifex@puntnet.org>, 2023\n"
-"Language-Team: Catalan (https://www.transifex.com/nextcloud/teams/64236/ca/)\n"
+"Last-Translator: Transifex Bot <>, 2023\n"
+"Language-Team: Catalan (https://app.transifex.com/nextcloud/teams/64236/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -23,14 +17,23 @@ msgstr "{tag} (invisible)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (restringit)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "Accions"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "Activitats"
 
 msgid "Animals & Nature"
 msgstr "Animals i natura"
+
+msgid "Any link"
+msgstr ""
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
@@ -42,14 +45,23 @@ msgstr "Avatar de {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar de {displayName}, {status}"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "Cancel·la els canvis"
 
-msgid "Change title"
-msgstr "Canviar títol"
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "Tria"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear text"
 msgstr "Netejar text"
@@ -66,6 +78,12 @@ msgstr "Tanca la navegació"
 msgid "Close sidebar"
 msgstr "Tancar la barra lateral"
 
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "Confirmeu els canvis"
 
@@ -75,14 +93,16 @@ msgstr "Personalitzat"
 msgid "Edit item"
 msgstr "Edita l'element"
 
-msgid "Error getting related resources"
-msgstr "Error obtenint els recursos relacionats"
+msgid "Enter link"
+msgstr ""
 
-msgid "Error parsing svg"
-msgstr "Error en l'anàlisi del svg"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
 
-msgid "External documentation for {title}"
-msgstr "Documentació externa per a {title}"
+msgid "External documentation for {name}"
+msgstr ""
 
 msgid "Favorite"
 msgstr "Preferit"
@@ -105,11 +125,17 @@ msgstr "Torna a la llista"
 msgid "Hide password"
 msgstr "Amagar contrasenya"
 
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "S'ha arribat al límit de {count} caràcters per missatge"
 
 msgid "More items …"
 msgstr "Més artícles..."
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "Següent"
@@ -117,20 +143,29 @@ msgstr "Següent"
 msgid "No emoji found"
 msgstr "No s'ha trobat cap emoji"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "Sense resultats"
 
 msgid "Objects"
 msgstr "Objectes"
 
-msgid "Open"
-msgstr "Obrir"
+msgid "Open contact menu"
+msgstr ""
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "Obrir enllaç a \"{resourceTitle}\""
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "Obre la navegació"
+
+msgid "Open settings menu"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "Contrasenya segura<br>"
@@ -141,6 +176,24 @@ msgstr "Atura la presentació"
 msgid "People & Body"
 msgstr "Persones i cos"
 
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
 msgid "Pick an emoji"
 msgstr "Trieu un emoji"
 
@@ -150,17 +203,38 @@ msgstr "Seleccioneu una zona horària:"
 msgid "Previous"
 msgstr "Anterior"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
 msgid "Related resources"
 msgstr "Recursos relacionats"
 
 msgid "Search"
 msgstr "Cerca"
 
+msgid "Search emoji"
+msgstr ""
+
 msgid "Search results"
 msgstr "Resultats de cerca"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "Seleccioneu una etiqueta"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "Paràmetres"
@@ -171,11 +245,17 @@ msgstr "Navegació d'opcions"
 msgid "Show password"
 msgstr "Mostrar contrasenya"
 
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "Cares i emocions"
 
 msgid "Start slideshow"
 msgstr "Inicia la presentació"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "Envia"

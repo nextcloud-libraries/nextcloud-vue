@@ -27,7 +27,7 @@
 ```vue
 <template>
 	<div class="wrapper">
-		<NcSelectTags v-model="value" :multiple="false" />
+		<NcSelectTags v-model="value" input-label="Tag" :multiple="false" />
 		{{ value }}
 	</div>
 </template>
@@ -47,7 +47,7 @@ export default {
 ```vue
 <template>
 	<div class="wrapper">
-		<NcSelectTags v-model="value" :multiple="true" />
+		<NcSelectTags v-model="value" input-label="Tags" :multiple="true" />
 		{{ value }}
 	</div>
 </template>
@@ -71,7 +71,7 @@ Because of compatibility reasons only 5 tag entries are shown by default. If you
 ```vue
 <template>
 	<div class="wrapper">
-		<NcSelectTags v-model="value" :limit="null" />
+		<NcSelectTags v-model="value" input-label="Tags" :limit="null" />
 		{{ value }}
 	</div>
 </template>
@@ -94,7 +94,7 @@ It's also possible to apply any custom filter logic by setting the `optionsFilte
 ```vue
 <template>
 	<div class="wrapper">
-		<NcSelectTags v-model="value" :options-filter="customFilter" />
+		<NcSelectTags v-model="value" input-label="Tags" :options-filter="customFilter" />
 		{{ value }}
 	</div>
 </template>
@@ -134,11 +134,12 @@ export default {
 	<NcSelect v-bind="propsToForward"
 		:options="availableOptions"
 		:close-on-select="!multiple"
-		:value="localValue"
+		:value="passthru ? value : localValue"
 		@search="searchString => search = searchString"
-		@input="handleInput"
-		v-on="{ ...$listeners, input: () => {} }">
-		<!-- Do not forward input event listener to NcSelect as we emit custom input events programmatically -->
+		v-on="{
+			...$listeners,
+			input: passthru ? $listeners.input : handleInput,
+		}">
 		<template #option="option">
 			<NcEllipsisedOption :name="getOptionLabel(option)"
 				:search="search" />
@@ -172,6 +173,16 @@ export default {
 	props: {
 		// Add NcSelect prop defaults and populate $props
 		...NcSelect.props,
+
+		/**
+		 * Enable automatic fetching of tags
+		 *
+		 * If `false`, available tags must be passed using the `options` prop
+		 */
+		fetchTags: {
+			type: Boolean,
+			default: true,
+		},
 
 		/**
 		 * Callback to generate the label text
@@ -225,6 +236,17 @@ export default {
 		},
 
 		/**
+		 * Enable passing of `value` prop and emitted `input` events as-is
+		 * i.e. for usage with `v-model`
+		 *
+		 * If `true`, custom internal `value` and `input` handling is disabled
+		 */
+		passthru: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * Placeholder text
 		 *
 		 * @see https://vue-select.org/api/props.html#placeholder
@@ -238,7 +260,7 @@ export default {
 		 * Currently selected value
 		 */
 		value: {
-			type: [Number, Array],
+			type: [Number, Array, Object],
 			default: null,
 		},
 
@@ -264,7 +286,7 @@ export default {
 	data() {
 		return {
 			search: '',
-			tags: [],
+			availableTags: [],
 		}
 	},
 
@@ -292,19 +314,31 @@ export default {
 		propsToForward() {
 			const {
 				// Props handled by this component
+				fetchTags,
 				optionsFilter,
+				passthru,
 				// Props to forward
 				...propsToForward
 			} = this.$props
 
 			return propsToForward
 		},
+
+		tags() {
+			if (!this.fetchTags) {
+				return this.options
+			}
+			return this.availableTags
+		},
 	},
 
-	async beforeCreate() {
+	async created() {
+		if (!this.fetchTags) {
+			return
+		}
 		try {
 			const result = await searchTags()
-			this.tags = result
+			this.availableTags = result
 		} catch (error) {
 			console.error('Loading systemtags failed', error)
 		}

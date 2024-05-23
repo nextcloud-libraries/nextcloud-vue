@@ -1,0 +1,280 @@
+# 
+# Translators:
+# Joas Schilling, 2023
+# Transifex Bot <>, 2023
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Transifex Bot <>, 2023\n"
+"Language-Team: Slovak (Slovakia) (https://app.transifex.com/nextcloud/teams/64236/sk_SK/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: sk_SK\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
+
+msgid "{tag} (invisible)"
+msgstr "{tag} (neviditeľný)"
+
+msgid "{tag} (restricted)"
+msgstr "{tag} (obmedzený)"
+
+msgid "a few seconds ago"
+msgstr ""
+
+msgid "Actions"
+msgstr "Akcie"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
+
+msgid "Activities"
+msgstr "Aktivity"
+
+msgid "Animals & Nature"
+msgstr "Zvieratá a príroda"
+
+msgid "Any link"
+msgstr ""
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+
+msgid "Avatar of {displayName}"
+msgstr "Avatar {displayName}"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "Avatar {displayName}, {status}"
+
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
+msgid "Cancel changes"
+msgstr "Zrušiť zmeny"
+
+msgid "Change name"
+msgstr ""
+
+msgid "Choose"
+msgstr "Vybrať"
+
+msgid "Clear search"
+msgstr ""
+
+msgid "Clear text"
+msgstr ""
+
+msgid "Close"
+msgstr "Zatvoriť"
+
+msgid "Close modal"
+msgstr ""
+
+msgid "Close navigation"
+msgstr "Zavrieť navigáciu"
+
+msgid "Close sidebar"
+msgstr ""
+
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
+msgid "Confirm changes"
+msgstr "Potvrdiť zmeny"
+
+msgid "Custom"
+msgstr "Zvyk"
+
+msgid "Edit item"
+msgstr "Upraviť položku"
+
+msgid "Enter link"
+msgstr ""
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+
+msgid "External documentation for {name}"
+msgstr ""
+
+msgid "Favorite"
+msgstr ""
+
+msgid "Flags"
+msgstr "Vlajky"
+
+msgid "Food & Drink"
+msgstr "Jedlo a nápoje"
+
+msgid "Frequently used"
+msgstr "Často používané"
+
+msgid "Global"
+msgstr "Globálne"
+
+msgid "Go back to the list"
+msgstr "Naspäť na zoznam"
+
+msgid "Hide password"
+msgstr ""
+
+msgid "Load more \"{options}\"\""
+msgstr ""
+
+msgid "Message limit of {count} characters reached"
+msgstr "Limit správy na {count} znakov dosiahnutý"
+
+msgid "More items …"
+msgstr ""
+
+msgid "More options"
+msgstr ""
+
+msgid "Next"
+msgstr "Ďalší"
+
+msgid "No emoji found"
+msgstr "Nenašli sa žiadne emodži"
+
+msgid "No link provider found"
+msgstr ""
+
+msgid "No results"
+msgstr "Žiadne výsledky"
+
+msgid "Objects"
+msgstr "Objekty"
+
+msgid "Open contact menu"
+msgstr ""
+
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
+
+msgid "Open navigation"
+msgstr "Otvoriť navigáciu"
+
+msgid "Open settings menu"
+msgstr ""
+
+msgid "Password is secure"
+msgstr ""
+
+msgid "Pause slideshow"
+msgstr "Pozastaviť prezentáciu"
+
+msgid "People & Body"
+msgstr "Ľudia a telo"
+
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
+msgid "Pick an emoji"
+msgstr "Vyberte si emodži"
+
+msgid "Please select a time zone:"
+msgstr "Prosím vyberte časovú zónu:"
+
+msgid "Previous"
+msgstr "Predchádzajúci"
+
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
+msgid "Related resources"
+msgstr ""
+
+msgid "Search"
+msgstr "Hľadať"
+
+msgid "Search emoji"
+msgstr ""
+
+msgid "Search results"
+msgstr "Výsledky vyhľadávania"
+
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
+msgid "Select a tag"
+msgstr "Vybrať štítok"
+
+msgid "Select provider"
+msgstr ""
+
+msgid "Settings"
+msgstr "Nastavenia"
+
+msgid "Settings navigation"
+msgstr "Navigácia v nastaveniach"
+
+msgid "Show password"
+msgstr ""
+
+msgid "Smart Picker"
+msgstr ""
+
+msgid "Smileys & Emotion"
+msgstr "Smajlíky a emócie"
+
+msgid "Start slideshow"
+msgstr "Začať prezentáciu"
+
+msgid "Start typing to search"
+msgstr ""
+
+msgid "Submit"
+msgstr "Odoslať"
+
+msgid "Symbols"
+msgstr "Symboly"
+
+msgid "Travel & Places"
+msgstr "Cestovanie a miesta"
+
+msgid "Type to search time zone"
+msgstr "Začníte písať pre vyhľadávanie časovej zóny"
+
+msgid "Unable to search the group"
+msgstr "Skupinu sa nepodarilo nájsť"
+
+msgid "Undo changes"
+msgstr "Vrátiť zmeny"
+
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
+msgstr ""

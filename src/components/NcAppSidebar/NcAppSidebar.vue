@@ -24,16 +24,27 @@
 ### General description
 
 This component provides a way to include the standardised sidebar.
-The standard properties like title, subtitle, starred, etc. allow to automatically
+The standard properties like name, subname, starred, etc. allow to automatically
 include a standard-header like it's used by the files app.
+
+To conditionally show the sidebar either use `v-if` on the sidebar component,
+or use the `open` property of the component to controll the state.
+Using `v-show` directly will result in usability issues due to internal focus trap handling.
 
 ### Standard usage
 
 ```vue
 <template>
 	<NcAppSidebar
-		title="cat-picture.jpg"
-		subtitle="last edited 3 weeks ago">
+		:starred="starred"
+		name="cat-picture.jpg"
+		subname="last edited 3 weeks ago">
+		<NcAppSidebarTab name="Search" id="search-tab">
+			<template #icon>
+				<Magnify :size="20" />
+			</template>
+			Search tab content
+		</NcAppSidebarTab>
 		<NcAppSidebarTab name="Settings" id="settings-tab">
 			<template #icon>
 				<Cog :size="20" />
@@ -49,27 +60,209 @@ include a standard-header like it's used by the files app.
 	</NcAppSidebar>
 </template>
 <script>
-	import Cog from 'vue-material-design-icons/Cog'
-	import ShareVariant from 'vue-material-design-icons/ShareVariant'
+	import Magnify from 'vue-material-design-icons/Magnify.vue'
+	import Cog from 'vue-material-design-icons/Cog.vue'
+	import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
 
 	export default {
 		components: {
+			Magnify,
 			Cog,
 			ShareVariant,
+		},
+		data() {
+			return {
+				starred: false,
+			}
 		},
 	}
 </script>
 ```
 
-### Editable title
+### One tab
+
+Single tab is rendered without navigation.
+
+```vue
+<template>
+	<div>
+		<NcAppSidebar
+			name="cat-picture.jpg"
+			subname="last edited 3 weeks ago">
+			<NcAppSidebarTab name="Settings" id="settings-tab">
+				<template #icon>
+					<Cog :size="20" />
+				</template>
+				Single tab content
+			</NcAppSidebarTab>
+		</NcAppSidebar>
+	</div>
+</template>
+<script>
+import Cog from 'vue-material-design-icons/Cog.vue'
+
+export default {
+	components: {
+		Cog,
+	},
+}
+</script>
+```
+
+### Dynamic tabs
+
+```vue
+<template>
+	<div>
+		<NcCheckboxRadioSwitch :checked.sync="showTabs[0]">Show search tab</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch :checked.sync="showTabs[1]">Show settings tab</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch :checked.sync="showTabs[2]">Show sharing tab</NcCheckboxRadioSwitch>
+		<NcAppSidebar
+			name="cat-picture.jpg"
+			subname="last edited 3 weeks ago">
+			<NcAppSidebarTab v-if="showTabs[0]" name="Search" id="search-tab">
+				<template #icon>
+					<Magnify :size="20" />
+				</template>
+				Search tab content
+			</NcAppSidebarTab>
+			<NcAppSidebarTab v-if="showTabs[1]" name="Settings" id="settings-tab">
+				<template #icon>
+					<Cog :size="20" />
+				</template>
+				Settings
+			</NcAppSidebarTab>
+			<NcAppSidebarTab v-if="showTabs[2]" name="Sharing" id="share-tab">
+				<template #icon>
+					<ShareVariant :size="20" />
+				</template>
+				Sharing tab content
+			</NcAppSidebarTab>
+		</NcAppSidebar>
+	</div>
+</template>
+<script>
+import Magnify from 'vue-material-design-icons/Magnify.vue'
+import Cog from 'vue-material-design-icons/Cog.vue'
+import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
+
+export default {
+	components: {
+		Magnify,
+		Cog,
+		ShareVariant,
+	},
+	data() {
+		return {
+			showTabs: [true, true, false],
+		}
+	},
+}
+</script>
+```
+
+### Custom order
 
 ```vue
 <template>
 	<NcAppSidebar
-		:title.sync="title"
-		:title-editable="true"
-		title-placeholder="Filename"
-		subtitle="last edited 3 weeks ago">
+		name="cat-picture.jpg"
+		subname="last edited 3 weeks ago">
+		<NcAppSidebarTab name="Search" id="search-tab" :order="3">
+			<template #icon>
+				<Magnify :size="20" />
+			</template>
+			Search tab content
+		</NcAppSidebarTab>
+		<NcAppSidebarTab name="Settings" id="settings-tab" :order="2">
+			<template #icon>
+				<Cog :size="20" />
+			</template>
+			Settings tab content
+		</NcAppSidebarTab>
+		<NcAppSidebarTab name="Sharing" id="share-tab" :order="1">
+			<template #icon>
+				<ShareVariant :size="20" />
+			</template>
+			Sharing tab content
+		</NcAppSidebarTab>
+	</NcAppSidebar>
+</template>
+<script>
+import Magnify from 'vue-material-design-icons/Magnify.vue'
+import Cog from 'vue-material-design-icons/Cog.vue'
+import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
+
+export default {
+	components: {
+		Magnify,
+		Cog,
+		ShareVariant,
+	},
+}
+</script>
+```
+
+### Activating tab programmatically
+
+```vue
+<template>
+	<div>
+		<NcSelect v-model="active" :options="['search-tab', 'settings-tab', 'share-tab']" />
+		<NcAppSidebar
+			name="cat-picture.jpg"
+			subname="last edited 3 weeks ago"
+			:active.sync="active">
+			<NcAppSidebarTab name="Search" id="search-tab">
+				<template #icon>
+					<Magnify :size="20" />
+				</template>
+				Search tab content
+			</NcAppSidebarTab>
+			<NcAppSidebarTab name="Settings" id="settings-tab">
+				<template #icon>
+					<Cog :size="20" />
+				</template>
+				Settings
+			</NcAppSidebarTab>
+			<NcAppSidebarTab name="Sharing" id="share-tab">
+				<template #icon>
+					<ShareVariant :size="20" />
+				</template>
+				Sharing tab content
+			</NcAppSidebarTab>
+		</NcAppSidebar>
+	</div>
+</template>
+<script>
+import Magnify from 'vue-material-design-icons/Magnify.vue'
+import Cog from 'vue-material-design-icons/Cog.vue'
+import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
+
+export default {
+	components: {
+		Magnify,
+		Cog,
+		ShareVariant,
+	},
+	data() {
+		return {
+			active: 'search-tab',
+		}
+	},
+}
+</script>
+```
+
+### Editable name
+
+```vue
+<template>
+	<NcAppSidebar
+		:name.sync="name"
+		:name-editable="true"
+		name-placeholder="Filename"
+		subname="last edited 3 weeks ago">
 		<!-- Insert your slots and tabs here -->
 	</NcAppSidebar>
 </template>
@@ -77,23 +270,23 @@ include a standard-header like it's used by the files app.
 	export default {
 		data() {
 			return {
-				title: 'cat-picture.jpg',
+				name: 'cat-picture.jpg',
 			}
 		},
 	}
 </script>
 ```
 
-### Editable title after click with custom tertiary action
+### Editable name after click with custom tertiary action
 
 ```vue
 <template>
 	<NcAppSidebar
-		:title="title"
-		:title-editable.sync="titleEditable"
-		:title-placeholder="titlePlaceholder"
-		:subtitle="subtitle"
-		@update:title="titleUpdate">
+		:name="name"
+		:name-editable.sync="nameEditable"
+		:name-placeholder="namePlaceholder"
+		:subname="subname"
+		@update:name="nameUpdate">
 		<template #tertiary-actions>
 			<form>
 				<input type="checkbox" @click="toggledCheckbox"/>
@@ -105,15 +298,15 @@ include a standard-header like it's used by the files app.
 	export default {
 		data() {
 			return {
-				title: 'cat-picture.jpg',
-				titlePlaceholder: 'Filename',
-				subtitle: 'last edited 3 weeks ago',
-				titleEditable: false
+				name: 'cat-picture.jpg',
+				namePlaceholder: 'Filename',
+				subname: 'last edited 3 weeks ago',
+				nameEditable: false
 			}
 		},
 		methods: {
-			titleUpdate(e) {
-				this.title = e
+			nameUpdate(e) {
+				this.name = e
 			},
 			toggledCheckbox() {
 				alert('toggle')
@@ -123,14 +316,44 @@ include a standard-header like it's used by the files app.
 </script>
 ```
 
+### Custom subname
+
+Instead of using the `subname` prop you can use the same called slot. This is handy if you need to add accessible information.
+Like in the following example where the goal is to show a star icon to mark the file a favorite.
+Simplying adding `★` would not work as screen readers might not or wrongly announce the icon meaning this information is lost.
+
+A working alternative would be using an icon together with an `aria-label`:
+
+```vue
+	<template>
+		<NcAppSidebar name="cat-picture.jpg">
+			<template #subname>
+				<NcIconSvgWrapper inline :path="mdiStar" name="Favorite" />
+				123 KiB, a month ago
+			</template>
+		</NcAppSidebar>
+	</template>
+	<script>
+	import { mdiStar } from '@mdi/js'
+
+	export default {
+		setup() {
+			return {
+				mdiStar,
+			}
+		}
+	}
+	</script>
+```
+
 ### Empty sidebar for e.g. empty content component.
 
 ```vue
 	<template>
 		<NcAppSidebar
-			title="cat-picture.jpg"
+			name="cat-picture.jpg"
 			:empty="true">
-			<NcEmptyContent title="Content not found.">
+			<NcEmptyContent name="Content not found.">
 				<template #icon>
 					<Magnify :size="20" />
 				</template>
@@ -138,7 +361,7 @@ include a standard-header like it's used by the files app.
 		</NcAppSidebar>
 	</template>
 	<script>
-	import Magnify from 'vue-material-design-icons/Magnify'
+	import Magnify from 'vue-material-design-icons/Magnify.vue'
 
 	export default {
 		components: {
@@ -147,145 +370,255 @@ include a standard-header like it's used by the files app.
 	}
 	</script>
 ```
+
+### Conditionally show the sidebar
+
+If the sidebar should be shown conditionally (e.g. using a button)
+and the users are expected to open and close the sidebar multiple times,
+then using `v-if` might result in bad performance.
+So instead use the `open` property.
+
+You can also use `--app-sidebar-offset` CSS variable to preserve space for the toggle button, for example, in top bar of NcAppContent.
+
+```vue
+<template>
+	<!-- This is in most cases NcContent -->
+	<NcContent app-name="styleguidist" class="content-styleguidist">
+		<NcAppContent>
+			<div class="top-bar">
+				<NcButton @click.prevent="showSidebar = !showSidebar">
+					Toggle sidebar
+				</NcButton>
+			</div>
+		</NcAppContent>
+		<!-- The sidebar -->
+		<NcAppSidebar
+			:open.sync="showSidebar"
+			name="cat-picture.jpg"
+			subname="last edited 3 weeks ago">
+			<NcAppSidebarTab name="Settings" id="settings-tab">
+				<template #icon>
+					<Cog :size="20" />
+				</template>
+				Single tab content
+			</NcAppSidebarTab>
+		</NcAppSidebar>
+	</NcContent>
+</template>
+
+<script>
+import Cog from 'vue-material-design-icons/Cog'
+
+export default {
+	components: {
+		Cog,
+	},
+	data() {
+		return {
+			showSidebar: true,
+		}
+	},
+}
+</script>
+<style scoped>
+/* This styles just mock NcContent and NcAppContent */
+.content-styleguidist {
+	position: relative !important;
+	/* Just to prevent jumping when the sidebar is hidden */
+	min-height: 360px;
+}
+
+.main-content {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+/* Fix styles on this style guide page */
+@media only screen and (max-width: 512px) {
+	:deep(aside) {
+		width: calc(100vw - 64px) !important;
+	}
+}
+
+.top-bar {
+	display: flex;
+	justify-content: flex-end;
+	/* preserve space for toggle button */
+	padding-inline-end: var(--app-sidebar-offset);
+	/* same as on toggle button, but doesn't have to be the same */
+	margin: var(--app-sidebar-padding);
+}
+</style>
+```
 </docs>
 
 <template>
-	<transition appear
-		name="slide-right"
-		@before-enter="onBeforeEnter"
-		@after-enter="onAfterEnter"
-		@before-leave="onBeforeLeave"
-		@after-leave="onAfterLeave">
-		<aside id="app-sidebar-vue" class="app-sidebar">
-			<header :class="{
-					'app-sidebar-header--with-figure': hasFigure,
-					'app-sidebar-header--compact': compact,
-				}"
-				class="app-sidebar-header">
-				<!-- container for figure and description, allows easy switching to compact mode -->
-				<div class="app-sidebar-header__info">
-					<!-- sidebar header illustration/figure -->
-					<div v-if="hasFigure && !empty"
-						:class="{
-							'app-sidebar-header__figure--with-action': hasFigureClickListener
-						}"
-						class="app-sidebar-header__figure"
-						:style="{
-							backgroundImage: `url(${background})`
-						}"
-						tabindex="0"
-						@click="onFigureClick"
-						@keydown.enter="onFigureClick">
-						<slot class="app-sidebar-header__background" name="header" />
-					</div>
-
-					<!-- sidebar details -->
-					<div v-if="!empty"
-						:class="{
-							'app-sidebar-header__desc--with-tertiary-action': canStar || $slots['tertiary-actions'],
-							'app-sidebar-header__desc--editable': titleEditable && !subtitle,
-							'app-sidebar-header__desc--with-subtitle--editable': titleEditable && subtitle,
-							'app-sidebar-header__desc--without-actions': !$slots['secondary-actions'],
-						}"
-						class="app-sidebar-header__desc">
-						<!-- favourite icon -->
-						<div v-if="canStar || $slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
-							<slot name="tertiary-actions">
-								<NcButton v-if="canStar"
-									:aria-label="favoriteTranslated"
-									class="app-sidebar-header__star"
-									type="secondary"
-									@click.prevent="toggleStarred">
-									<template #icon>
-										<NcLoadingIcon v-if="starLoading" />
-										<Star v-else-if="isStarred" :size="20" />
-										<StarOutline v-else :size="20" />
-									</template>
-								</NcButton>
-							</slot>
+	<Fragment>
+		<!-- With vue3 we can move this inside the transition, but vue2 does not allow v-show in transition -->
+		<NcButton v-if="!open"
+			:aria-label="t('Open sidebar')"
+			class="app-sidebar__toggle"
+			:class="toggleClasses"
+			type="tertiary"
+			@click="$emit('update:open', true)">
+			<template #icon>
+				<!-- @slot Custom icon for the toggle button, defaults to the dock-right icon from MDI -->
+				<slot name="toggle-icon">
+					<IconDockRight :size="20" />
+				</slot>
+			</template>
+		</NcButton>
+		<transition appear
+			name="slide-right"
+			v-bind="$attrs"
+			v-on="$listeners"
+			@before-enter="onBeforeEnter"
+			@after-enter="onAfterEnter"
+			@before-leave="onBeforeLeave"
+			@after-leave="onAfterLeave">
+			<aside v-show="open"
+				id="app-sidebar-vue"
+				ref="sidebar"
+				class="app-sidebar"
+				:aria-labelledby="`app-sidebar-vue-${uid}__header`"
+				@keydown.esc="onKeydownEsc">
+				<header :class="{
+						'app-sidebar-header--with-figure': hasFigure,
+						'app-sidebar-header--compact': compact,
+					}"
+					class="app-sidebar-header">
+					<!-- container for figure and description, allows easy switching to compact mode -->
+					<div class="app-sidebar-header__info">
+						<!-- sidebar header illustration/figure -->
+						<div v-if="hasFigure && !empty"
+							:class="{
+								'app-sidebar-header__figure--with-action': hasFigureClickListener
+							}"
+							class="app-sidebar-header__figure"
+							:style="{
+								backgroundImage: `url(${background})`
+							}"
+							tabindex="0"
+							@click="onFigureClick"
+							@keydown.enter="onFigureClick">
+							<slot class="app-sidebar-header__background" name="header" />
 						</div>
 
-						<!-- title -->
-						<div class="app-sidebar-header__title-container">
-							<div class="app-sidebar-header__maintitle-container">
-								<!-- main title -->
-								<h2 v-show="!titleEditable"
-									v-linkify="{text: title, linkify: linkifyTitle}"
-									:aria-label="titleTooltip"
-									:title="titleTooltip"
-									class="app-sidebar-header__maintitle"
-									:tabindex="titleEditable ? 0 : undefined"
-									@click.self="editTitle">
-									{{ title }}
-								</h2>
-								<template v-if="titleEditable">
-									<form v-click-outside="() => onSubmitTitle()"
-										class="app-sidebar-header__maintitle-form"
-										@submit.prevent="onSubmitTitle">
-										<input ref="titleInput"
-											v-focus
-											class="app-sidebar-header__maintitle-input"
-											type="text"
-											:placeholder="titlePlaceholder"
-											:value="title"
-											@keydown.esc="onDismissEditing"
-											@input="onTitleInput">
-										<NcButton type="tertiary-no-background"
-											:aria-label="changeTitleTranslated"
-											native-type="submit">
-											<template #icon>
-												<ArrowRight :size="20" />
-											</template>
-										</NcButton>
-									</form>
-								</template>
-								<!-- header main menu -->
-								<NcActions v-if="$slots['secondary-actions']"
-									class="app-sidebar-header__menu"
-									:force-menu="forceMenu">
-									<slot name="secondary-actions" />
-								</NcActions>
+						<!-- sidebar details -->
+						<div v-if="!empty"
+							:class="{
+								'app-sidebar-header__desc--with-tertiary-action': canStar || $slots['tertiary-actions'],
+								'app-sidebar-header__desc--editable': nameEditable && !subname,
+								'app-sidebar-header__desc--with-subname--editable': nameEditable && subname,
+								'app-sidebar-header__desc--without-actions': !$slots['secondary-actions'],
+							}"
+							class="app-sidebar-header__desc">
+							<!-- favourite icon -->
+							<div v-if="canStar || $slots['tertiary-actions']" class="app-sidebar-header__tertiary-actions">
+								<slot name="tertiary-actions">
+									<NcButton v-if="canStar"
+										:aria-label="favoriteTranslated"
+										:pressed="isStarred"
+										class="app-sidebar-header__star"
+										type="secondary"
+										@click.prevent="toggleStarred">
+										<template #icon>
+											<NcLoadingIcon v-if="starLoading" />
+											<Star v-else-if="isStarred" :size="20" />
+											<StarOutline v-else :size="20" />
+										</template>
+									</NcButton>
+								</slot>
 							</div>
-							<!-- secondary title -->
-							<p v-if="subtitle.trim() !== ''"
-								:aria-label="subtitleTooltip"
-								:title="subtitleTooltip"
-								class="app-sidebar-header__subtitle">
-								{{ subtitle }}
-							</p>
+
+							<!-- name -->
+							<div class="app-sidebar-header__name-container">
+								<div class="app-sidebar-header__mainname-container">
+									<!-- main name -->
+									<h2 v-show="!nameEditable"
+										:id="`app-sidebar-vue-${uid}__header`"
+										ref="header"
+										v-linkify="{text: name, linkify: linkifyName}"
+										:aria-label="title"
+										:title="title"
+										class="app-sidebar-header__mainname"
+										:tabindex="nameEditable ? 0 : -1"
+										@click.self="editName">
+										{{ name }}
+									</h2>
+									<template v-if="nameEditable">
+										<form v-click-outside="() => onSubmitName()"
+											class="app-sidebar-header__mainname-form"
+											@submit.prevent="onSubmitName">
+											<input ref="nameInput"
+												v-focus
+												class="app-sidebar-header__mainname-input"
+												type="text"
+												:placeholder="namePlaceholder"
+												:value="name"
+												@keydown.esc.stop="onDismissEditing"
+												@input="onNameInput">
+											<NcButton type="tertiary-no-background"
+												:aria-label="changeNameTranslated"
+												native-type="submit">
+												<template #icon>
+													<ArrowRight :size="20" />
+												</template>
+											</NcButton>
+										</form>
+									</template>
+									<!-- header main menu -->
+									<NcActions v-if="$slots['secondary-actions']"
+										class="app-sidebar-header__menu"
+										:force-menu="forceMenu">
+										<slot name="secondary-actions" />
+									</NcActions>
+								</div>
+								<!-- secondary name -->
+								<p v-if="subname.trim() !== '' || $slots['subname']"
+									:title="subtitle || undefined"
+									class="app-sidebar-header__subname">
+									<!-- @slot Alternative to the `subname` prop can be used for more complex conent. It will be rendered within a `p` tag. -->
+									<slot name="subname">
+										{{ subname }}
+									</slot>
+								</p>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<NcButton :title="closeTranslated"
-					:aria-label="closeTranslated"
-					type="tertiary"
-					class="app-sidebar__close"
-					@click.prevent="closeSidebar">
+					<NcButton ref="closeButton"
+						:title="closeTranslated"
+						:aria-label="closeTranslated"
+						type="tertiary"
+						class="app-sidebar__close"
+						@click.prevent="closeSidebar">
+						<template #icon>
+							<Close :size="20" />
+						</template>
+					</NcButton>
+
+					<div v-if="$slots['description'] && !empty" class="app-sidebar-header__description">
+						<slot name="description" />
+					</div>
+				</header>
+
+				<NcAppSidebarTabs v-show="!loading"
+					ref="tabs"
+					:active="active"
+					@update:active="onUpdateActive">
+					<slot />
+				</NcAppSidebarTabs>
+
+				<NcEmptyContent v-if="loading">
 					<template #icon>
-						<Close :size="20" />
+						<NcLoadingIcon :size="64" />
 					</template>
-				</NcButton>
-
-				<div v-if="$slots['description'] && !empty" class="app-sidebar-header__description">
-					<slot name="description" />
-				</div>
-			</header>
-
-			<NcAppSidebarTabs v-show="!loading"
-				ref="tabs"
-				:active="active"
-				@update:active="onUpdateActive">
-				<slot />
-			</NcAppSidebarTabs>
-
-			<NcEmptyContent v-if="loading">
-				<template #icon>
-					<NcLoadingIcon :size="64" />
-				</template>
-			</NcEmptyContent>
-		</aside>
-	</transition>
+				</NcEmptyContent>
+			</aside>
+		</transition>
+	</Fragment>
 </template>
 
 <script>
@@ -296,23 +629,30 @@ import NcButton from '../NcButton/index.js'
 import NcEmptyContent from '../NcEmptyContent/index.js'
 import Focus from '../../directives/Focus/index.js'
 import Linkify from '../../directives/Linkify/index.js'
-import Tooltip from '../../directives/Tooltip/index.js'
+import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
+import GenRandomId from '../../utils/GenRandomId.js'
+import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
 
+import { Fragment } from 'vue-frag'
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import Close from 'vue-material-design-icons/Close.vue'
+import IconDockRight from 'vue-material-design-icons/DockRight.vue'
 import Star from 'vue-material-design-icons/Star.vue'
 import StarOutline from 'vue-material-design-icons/StarOutline.vue'
 
-import { directive as ClickOutside } from 'v-click-outside'
+import { vOnClickOutside as ClickOutside } from '@vueuse/components'
+import { createFocusTrap } from 'focus-trap'
 
 export default {
 	name: 'NcAppSidebar',
 
 	components: {
+		Fragment,
 		NcActions,
 		NcAppSidebarTabs,
 		ArrowRight,
+		IconDockRight,
 		NcButton,
 		NcLoadingIcon,
 		NcEmptyContent,
@@ -325,36 +665,40 @@ export default {
 		focus: Focus,
 		linkify: Linkify,
 		ClickOutside,
-		Tooltip,
 	},
+
+	inheritAttrs: false,
 
 	props: {
 		active: {
 			type: String,
 			default: '',
 		},
-		title: {
+		name: {
 			type: String,
 			default: '',
 			required: true,
 		},
 
 		/**
-		 * Allow to edit the sidebar title.
+		 * Allow to edit the sidebar name.
 		 */
-		titleEditable: {
+		nameEditable: {
 			type: Boolean,
 			default: false,
 		},
-		titlePlaceholder: {
+		namePlaceholder: {
 			type: String,
 			default: '',
 		},
+		subname: {
+			type: String,
+			default: '',
+		},
+		/**
+		 * Title to display for the subname.
+		 */
 		subtitle: {
-			type: String,
-			default: '',
-		},
-		subtitleTooltip: {
 			type: String,
 			default: '',
 		},
@@ -416,21 +760,41 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-
 		/**
-		 * Linkify the title
+		 * Linkify the name
 		 */
-		linkifyTitle: {
+		linkifyName: {
 			type: Boolean,
 			default: false,
 		},
-
 		/**
-		 * Tooltip to display for the title.
+		 * Title to display for the name.
 		 * Can be set to the same text in case it's too long.
 		 */
-		titleTooltip: {
+		title: {
 			type: String,
+			default: '',
+		},
+
+		/**
+		 * Allow to conditionally show the sidebar
+		 * You can also use `v-if` on the sidebar, but using the open prop allow to keep
+		 * the sidebar inside the DOM for performance if it is opened and closed multple times.
+		 *
+		 * When using the `open` property to close the sidebar a built-in toggle button will be shown to reopen it,
+		 * similar to the app navigation.
+		 */
+		open: {
+			type: Boolean,
+			default: true,
+		},
+
+		/**
+		 * Custom classes to assign to the sidebar toggle button
+		 * If needed this can be used to assign styles to the button using `:deep()` selector.
+		 */
+		toggleClasses: {
+			type: [String, Array, Object],
 			default: '',
 		},
 	},
@@ -442,20 +806,30 @@ export default {
 		'opening',
 		'opened',
 		'figure-click',
-		'update:starred',
-		'update:titleEditable',
-		'update:title',
 		'update:active',
-		'submit-title',
+		'update:name',
+		'update:nameEditable',
+		'update:open',
+		'update:starred',
+		'submit-name',
 		'dismiss-editing',
 	],
 
+	setup() {
+		return {
+			uid: GenRandomId(),
+			isMobile: useIsSmallMobile(),
+		}
+	},
+
 	data() {
 		return {
-			changeTitleTranslated: t('Change title'),
+			changeNameTranslated: t('Change name'),
 			closeTranslated: t('Close sidebar'),
 			favoriteTranslated: t('Favorite'),
 			isStarred: this.starred,
+			focusTrap: null,
+			elementToReturnFocus: null,
 		}
 	},
 
@@ -475,19 +849,103 @@ export default {
 		starred() {
 			this.isStarred = this.starred
 		},
+
+		isMobile() {
+			this.toggleFocusTrap()
+		},
+
+		open() {
+			this.toggleFocusTrap()
+		},
+	},
+
+	created() {
+		this.preserveElementToReturnFocus()
+	},
+
+	mounted() {
+		// Focus sidebar on open only if it was opened by a user interaction
+		if (this.elementToReturnFocus) {
+			this.focus()
+		}
+
+		this.toggleFocusTrap()
 	},
 
 	beforeDestroy() {
 		// Make sure that the 'closed' event is dispatched even if this element is destroyed before the 'after-leave' event is received.
 		this.$emit('closed')
+		this.focusTrap?.deactivate()
 	},
 
 	methods: {
+		t,
+
+		preserveElementToReturnFocus() {
+			// Save the element that had focus before the sidebar was opened to return back on close
+			if (document.activeElement && document.activeElement !== document.body) {
+				this.elementToReturnFocus = document.activeElement
+
+				// Special case for menus (NcActions)
+				// If a sidebar was opened from a menu item, we want to return focus to the menu trigger instead of the item
+				if (this.elementToReturnFocus.getAttribute('role') === 'menuitem') {
+					const menu = this.elementToReturnFocus.closest('[role="menu"]')
+					if (menu) {
+						const menuTrigger = document.querySelector(`[aria-controls="${menu.id}"]`)
+						this.elementToReturnFocus = menuTrigger
+					}
+				}
+			}
+		},
+
+		initFocusTrap() {
+			if (this.focusTrap) {
+				return
+			}
+
+			this.focusTrap = createFocusTrap([
+				// The sidebar itself
+				this.$refs.sidebar,
+				// Nextcloud Server header navigarion
+				document.querySelector('#header'),
+			], {
+				allowOutsideClick: true,
+				fallbackFocus: this.$refs.closeButton,
+				trapStack: getTrapStack(),
+				escapeDeactivates: false,
+			})
+		},
+
+		/**
+		 * Activate focus trap if it is currently needed, otherwise deactivate
+		 */
+		toggleFocusTrap() {
+			if (this.open && this.isMobile) {
+				this.initFocusTrap()
+				this.focusTrap.activate()
+			} else {
+				this.focusTrap?.deactivate()
+			}
+		},
+
+		/**
+		 * Close the sidebar on pressing the escape key on mobile
+		 *
+		 * @param {KeyboardEvent} event key down event
+		 */
+		onKeydownEsc(event) {
+			if (this.isMobile) {
+				event.stopPropagation()
+				this.closeSidebar()
+			}
+		},
+
 		onBeforeEnter(element) {
 			/**
 			 * The sidebar is opening and the transition is in progress
 			 *
 			 * @type {HTMLElement}
+			 * @deprecated
 			 */
 			this.$emit('opening', element)
 		},
@@ -504,6 +962,7 @@ export default {
 			 * The sidebar is closing and the transition is in progress
 			 *
 			 * @type {HTMLElement}
+			 * @deprecated
 			 */
 			this.$emit('closing', element)
 		},
@@ -514,6 +973,10 @@ export default {
 			 * @type {HTMLElement}
 			 */
 			this.$emit('closed', element)
+
+			// Return focus to the element that had focus before the sidebar was opened
+			this.elementToReturnFocus?.focus({ focusVisible: true })
+			this.elementToReturnFocus = null
 		},
 
 		/**
@@ -528,6 +991,11 @@ export default {
 			 * @type {Event}
 			 */
 			this.$emit('close', e)
+			/**
+			 * Current open state emitted after the transitions are finished
+			 * @type {boolean}
+			 */
+			this.$emit('update:open', false)
 		},
 
 		/**
@@ -558,56 +1026,75 @@ export default {
 			this.$emit('update:starred', this.isStarred)
 		},
 
-		editTitle() {
+		editName() {
 			/**
-			 * Emitted when the titleEditable value changes
+			 * Emitted when the nameEditable value changes
 			 *
 			 * @type {boolean}
 			 */
-			this.$emit('update:titleEditable', true)
-			// Focus the title input
-			if (this.titleEditable) {
+			this.$emit('update:nameEditable', true)
+			// Focus the name input
+			if (this.nameEditable) {
 				this.$nextTick(
-					() => this.$refs.titleInput.focus()
+					() => this.$refs.nameInput.focus(),
 				)
 			}
 		},
 
 		/**
-		 * Emit title change event to parent component
-		 *
-		 * @param {Event} event input event
+		 * Focus the sidebar
+		 * @public
 		 */
-		onTitleInput(event) {
-			/**
-			 * Emitted when the title value changes
-			 *
-			 * @type {string|Date}
-			 */
-			this.$emit('update:title', event.target.value)
+		focus() {
+			this.$refs.header.focus()
 		},
 
 		/**
-		 * Emit when the title form edit confirm button is pressed in order
-		 * to change the title.
+		 * Focus the active tab
+		 * @public
+		 */
+		focusActiveTabContent() {
+			// If a tab is focused then probably a new trigger element moved the focus to the sidebar
+			this.preserveElementToReturnFocus()
+
+			this.$refs.tabs.focusActiveTabContent()
+		},
+
+		/**
+		 * Emit name change event to parent component
+		 *
+		 * @param {Event} event input event
+		 */
+		onNameInput(event) {
+			/**
+			 * Emitted when the name value changes
+			 *
+			 * @type {string|Date}
+			 */
+			this.$emit('update:name', event.target.value)
+		},
+
+		/**
+		 * Emit when the name form edit confirm button is pressed in order
+		 * to change the name.
 		 *
 		 * @param {Event} event submit event
 		 */
-		onSubmitTitle(event) {
+		onSubmitName(event) {
 			// Disable editing
-			this.$emit('update:titleEditable', false)
+			this.$emit('update:nameEditable', false)
 			/**
-			 * Emitted when the title edit input has been submitted
+			 * Emitted when the name edit input has been submitted
 			 *
 			 * @type {Event}
 			 */
-			this.$emit('submit-title', event)
+			this.$emit('submit-name', event)
 		},
 		onDismissEditing() {
 			// Disable editing
-			this.$emit('update:titleEditable', false)
+			this.$emit('update:nameEditable', false)
 			/**
-			 * Emitted when the title edit has been cancelled
+			 * Emitted when the name edit has been cancelled
 			 *
 			 * @type {Event}
 			 */
@@ -624,26 +1111,49 @@ export default {
 	},
 }
 </script>
-<style lang="scss" scoped>
-$sidebar-min-width: 300px;
-$sidebar-max-width: 500px;
 
-$desc-vertical-padding: 18px;
-$desc-vertical-padding-compact: 10px;
+<style lang="scss">
+// Allows to use transition over a custom CSS property (CSS Variable)
+// Ignored on old browsers resulting in slightly noticeable jump
+@property --app-sidebar-offset {
+  syntax: '<length>';
+  initial-value: 0;
+  inherits: true;
+}
+
+.content {
+	// A padding between the toggle button and the page border
+	--app-sidebar-padding: #{$app-navigation-padding};
+	// A padding between the toggle button and the page border
+	--app-sidebar-offset: 0;
+	transition-duration: var(--animation-quick);
+	transition-property: --app-sidebar-offset;
+}
+
+.content:has(.app-sidebar__toggle) {
+	--app-sidebar-offset: calc(var(--app-sidebar-padding) + var(--default-clickable-area));
+}
+</style>
+
+<style lang="scss" scoped>
 $desc-input-padding: 7px;
 
-// title and subtitle
-$desc-title-height: 30px;
-$desc-subtitle-height: 22px;
-$desc-height: $desc-title-height + $desc-subtitle-height;
+// name and subname
+$desc-name-height: 30px;
+$desc-subname-height: 22px;
+$desc-height: $desc-name-height + $desc-subname-height;
 
-$top-buttons-spacing: 6px;
+$top-buttons-spacing: $app-navigation-padding; // align with app navigation
 
 /*
 	Sidebar: to be used within #content
 	app-content will be shrinked properly
 */
 .app-sidebar {
+	--app-sidebar-width: clamp(300px, 27vw, 500px);
+	--app-sidebar-padding: #{$app-navigation-padding};
+	width: var(--app-sidebar-width);
+
 	z-index: 1500;
 	top: 0;
 	right: 0;
@@ -652,12 +1162,19 @@ $top-buttons-spacing: 6px;
 	overflow-y: auto;
 	flex-direction: column;
 	flex-shrink: 0;
-	width: 27vw;
-	min-width: $sidebar-min-width;
-	max-width: $sidebar-max-width;
 	height: 100%;
 	border-left: 1px solid var(--color-border);
 	background: var(--color-main-background);
+	// Make close button positioned relative to the header
+	position: relative;
+
+	&__toggle {
+		position: absolute !important;
+		inset-block-start: var(--app-sidebar-padding);
+		inset-inline-end: var(--app-sidebar-padding);
+		// app-content has z-index 1000 so we need 1001
+		z-index: 1001;
+	}
 
 	.app-sidebar-header {
 		> .app-sidebar__close {
@@ -683,10 +1200,11 @@ $top-buttons-spacing: 6px;
 				flex-direction: row;
 
 				.app-sidebar-header__figure {
+					--figure-size: calc($desc-height + var(--app-sidebar-padding));
 					z-index: 2;
-					width: $desc-height + $desc-vertical-padding;
-					height: $desc-height + $desc-vertical-padding;
-					margin: math.div($desc-vertical-padding, 2);
+					width: var(--figure-size);
+					height: var(--figure-size);
+					margin: calc(var(--app-sidebar-padding) / 2);
 					border-radius: 3px;
 					flex: 0 0 auto;
 				}
@@ -694,24 +1212,23 @@ $top-buttons-spacing: 6px;
 					padding-left: 0;
 					flex: 1 1 auto;
 					min-width: 0;
-					padding-right: 2 * $clickable-area + $top-buttons-spacing;
-					padding-top: $desc-vertical-padding-compact;
+					padding-right: calc(2 * $clickable-area + $top-buttons-spacing);
+					padding-top: var(--app-sidebar-padding);
 
 					&.app-sidebar-header__desc--without-actions {
-						padding-right: #{$clickable-area + $top-buttons-spacing};
+						padding-right: calc($clickable-area + $top-buttons-spacing);
 					}
 
 					.app-sidebar-header__tertiary-actions {
 						z-index: 3; // above star
 						position: absolute;
-						top: math.div($desc-vertical-padding, 2);
+						top: calc(var(--app-sidebar-padding) / 2);
 						left: -1 * $clickable-area;
 						gap: 0; // override gap
 					}
 					.app-sidebar-header__menu {
 						top: $top-buttons-spacing;
-						right: $clickable-area + $top-buttons-spacing; // left of the close button
-						background-color: transparent;
+						right: calc($clickable-area + $top-buttons-spacing); // left of the close button
 						position: absolute;
 					}
 				}
@@ -724,14 +1241,14 @@ $top-buttons-spacing: 6px;
 			.app-sidebar-header__menu {
 				position: absolute;
 				top: $top-buttons-spacing;
-				right: $top-buttons-spacing + $clickable-area;
+				right: calc($top-buttons-spacing + $clickable-area);
 			}
 			// increase the padding to not overlap the menu
 			.app-sidebar-header__desc {
-				padding-right: #{$clickable-area * 2 + $top-buttons-spacing};
+				padding-right: calc($clickable-area * 2 + $top-buttons-spacing);
 
 				&.app-sidebar-header__desc--without-actions {
-					padding-right: #{$clickable-area + $top-buttons-spacing};
+					padding-right: calc($clickable-area + $top-buttons-spacing);
 				}
 			}
 		}
@@ -762,7 +1279,8 @@ $top-buttons-spacing: 6px;
 			flex-direction: row;
 			justify-content: center;
 			align-items: center;
-			padding: #{$desc-vertical-padding} #{$top-buttons-spacing} #{$desc-vertical-padding} #{math.div($desc-vertical-padding, 2)};
+			padding-inline: var(--app-sidebar-padding);
+			padding-block: #{$top-buttons-spacing} calc(var(--app-sidebar-padding) / 2);
 			gap: 0 4px;
 
 			// custom overrides
@@ -770,13 +1288,13 @@ $top-buttons-spacing: 6px;
 				padding-left: 6px;
 			}
 
-			&--editable .app-sidebar-header__maintitle-form,
-			&--with-subtitle--editable .app-sidebar-header__maintitle-form {
+			&--editable .app-sidebar-header__mainname-form,
+			&--with-subname--editable .app-sidebar-header__mainname-form {
 				margin-top: -2px;
 				margin-bottom: -2px;
 			}
 
-			&--with-subtitle--editable .app-sidebar-header__subtitle {
+			&--with-subname--editable .app-sidebar-header__subname {
 				margin-top: -2px;
 			}
 
@@ -790,32 +1308,32 @@ $top-buttons-spacing: 6px;
 				.app-sidebar-header__star {
 					// Override default Button component styles
 					box-shadow: none;
-					&:hover {
+					&:not([aria-pressed='true']):hover {
 						box-shadow: none;
 						background-color: var(--color-background-hover);
 					}
 				}
 			}
 
-			// titles
-			.app-sidebar-header__title-container {
+			// names
+			.app-sidebar-header__name-container {
 				flex: 1 1 auto;
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
 				min-width: 0;
 
-				.app-sidebar-header__maintitle-container {
+				.app-sidebar-header__mainname-container {
 					display: flex;
 					align-items: center;
 					min-height: $clickable-area;
 
-					// main title
-					.app-sidebar-header__maintitle {
+					// main name
+					.app-sidebar-header__mainname {
 						padding: 0;
 						min-height: 30px;
 						font-size: 20px;
-						line-height: $desc-title-height;
+						line-height: $desc-name-height;
 
 						// Needs 'deep' as the link is generated by the linkify directive
 						&:deep(.linkified) {
@@ -825,12 +1343,12 @@ $top-buttons-spacing: 6px;
 						}
 					}
 
-					.app-sidebar-header__maintitle-form {
+					.app-sidebar-header__mainname-form {
 						display: flex;
 						flex: 1 1 auto;
 						align-items: center;
 
-						input.app-sidebar-header__maintitle-input {
+						input.app-sidebar-header__mainname-input {
 							flex: 1 1 auto;
 							margin: 0;
 							padding: $desc-input-padding;
@@ -841,17 +1359,13 @@ $top-buttons-spacing: 6px;
 
 					// main menu
 					.app-sidebar-header__menu {
-						height: $clickable-area;
-						width: $clickable-area;
-						border-radius: math.div($clickable-area, 2);
-						background-color: $action-background-hover;
 						margin-left: 5px;
 					}
 				}
 
-				// shared between main and subtitle
-				.app-sidebar-header__maintitle,
-				.app-sidebar-header__subtitle {
+				// shared between main and subname
+				.app-sidebar-header__mainname,
+				.app-sidebar-header__subname {
 					overflow: hidden;
 					width: 100%;
 					margin: 0;
@@ -859,11 +1373,15 @@ $top-buttons-spacing: 6px;
 					text-overflow: ellipsis;
 				}
 
-				// subtitle
-				.app-sidebar-header__subtitle {
-					padding: 0;
-					opacity: $opacity_normal;
+				// subname
+				.app-sidebar-header__subname {
+					color: var(--color-text-maxcontrast);
 					font-size: var(--default-font-size);
+					padding: 0;
+
+					* {
+						vertical-align: text-bottom;
+					}
 				}
 			}
 		}
@@ -878,28 +1396,27 @@ $top-buttons-spacing: 6px;
 }
 
 // Make the sidebar full-width on small screens
-@media only screen and (max-width: math.div($breakpoint-mobile, 2)) {
+@media only screen and (max-width: $breakpoint-small-mobile) {
 	.app-sidebar {
-		width: 100vw;
+		position: absolute;
+		--app-sidebar-width: 100vw;
 	}
 }
 
 .slide-right-leave-active,
 .slide-right-enter-active {
 	transition-duration: var(--animation-quick);
-	transition-property: max-width, min-width;
+	transition-property: margin-right;
 }
 
 .slide-right-enter-to,
 .slide-right-leave {
-	min-width: $sidebar-min-width;
-	max-width: $sidebar-max-width;
+	margin-right: 0;
 }
 
 .slide-right-enter,
 .slide-right-leave-to {
-	min-width: 0 !important;
-	max-width: 0 !important;
+	margin-right: calc(-1 * var(--app-sidebar-width));
 }
 </style>
 

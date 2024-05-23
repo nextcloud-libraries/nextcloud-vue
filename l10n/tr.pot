@@ -1,14 +1,12 @@
 # 
 # Translators:
-# Kemal Oktay Aktoğan <oktay454@disroot.org>, 2020
-# abc Def <hdogan1974@gmail.com>, 2020
-# Hüseyin Fahri Uzun <mail@fahriuzun.com>, 2021
-# Kaya Zeren <kayazeren@gmail.com>, 2022
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Kaya Zeren <kayazeren@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2022\n"
-"Language-Team: Turkish (https://www.transifex.com/nextcloud/teams/64236/tr/)\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2024\n"
+"Language-Team: Turkish (https://app.transifex.com/nextcloud/teams/64236/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -19,14 +17,30 @@ msgstr "{tag} (görünmez)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (kısıtlı)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "{hex} onaltılık değeri ile bir renk "
+
+msgid "a few seconds ago"
+msgstr "birkaç saniye önce"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Akapulko"
+
 msgid "Actions"
 msgstr "İşlemler"
+
+msgid "Actions for item with name \"{name}\""
+msgstr "{name} adındaki öge için işlemler"
 
 msgid "Activities"
 msgstr "Etkinlikler"
 
 msgid "Animals & Nature"
 msgstr "Hayvanlar ve Doğa"
+
+msgid "Any link"
+msgstr "Herhangi bir bağlantı"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Aynı kişi grubu ile paylaşılan herşey burada görüntülenir"
@@ -37,14 +51,41 @@ msgstr "{displayName} avatarı"
 msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName}, {status} avatarı"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "Uzakta"
+
+msgid "Back"
+msgstr "Geri"
+
+msgid "Back to provider selection"
+msgstr "Sağlayıcı seçimine dön"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Mavi mor"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Boston mavisi"
+
+msgid "busy"
+msgstr "meşgul"
+
 msgid "Cancel changes"
 msgstr "Değişiklikleri iptal et"
 
-msgid "Change title"
-msgstr "Başlığı değiştir"
+msgid "Change name"
+msgstr "Adı değiştir"
 
 msgid "Choose"
 msgstr "Seçin"
+
+msgid "Clear search"
+msgstr "Aramayı temizle"
+
+msgid "Clear selected"
+msgstr "Seçilmişleri temizle"
 
 msgid "Clear text"
 msgstr "Metni temizle"
@@ -52,14 +93,20 @@ msgstr "Metni temizle"
 msgid "Close"
 msgstr "Kapat"
 
-msgid "Close modal"
-msgstr "Üste açılan pencereyi kapat"
-
 msgid "Close navigation"
 msgstr "Gezinmeyi kapat"
 
 msgid "Close sidebar"
 msgstr "Yan çubuğu kapat"
+
+msgid "Close Smart Picker"
+msgstr "Akıllı seçimi kapat"
+
+msgid "Collapse menu"
+msgstr "Menüyü daralt"
+
+msgid "Color picker"
+msgstr "Renk seçici"
 
 msgid "Confirm changes"
 msgstr "Değişiklikleri onayla"
@@ -67,26 +114,53 @@ msgstr "Değişiklikleri onayla"
 msgid "Custom"
 msgstr "Özel"
 
+msgid "Dark skin tone"
+msgstr "Koyu deri rengi"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Sel"
+
+msgid "Deselect {option}"
+msgstr "{option} bırak"
+
+msgid "do not disturb"
+msgstr "Rahatsız etmeyin"
+
 msgid "Edit item"
 msgstr "Ögeyi düzenle"
 
-msgid "Error getting related resources"
-msgstr "İlgili kaynaklar alınırken sorun çıktı"
+msgid "Emoji picker"
+msgstr "Emoji seçici"
 
-msgid "Error parsing svg"
-msgstr "svg işlenirken sorun çıktı"
+msgid "Enable interactive view"
+msgstr "Etkileşimli görünümü aç"
 
-msgid "External documentation for {title}"
-msgstr "{title} için dış belgeler"
+msgid "Enter link"
+msgstr "Bağlantıyı yazın"
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+"İlgili kaynaklara ulaşılırken sorun çıktı. Herhangi bir sorunuz varsa lütfen"
+" sistem yöneticiniz ile görüşün "
+
+msgid "External documentation for {name}"
+msgstr "{name} için dış belgeler"
 
 msgid "Favorite"
 msgstr "Sık kullanılanlara ekle"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Feldispat"
 
 msgid "Flags"
 msgstr "Bayraklar"
 
 msgid "Food & Drink"
-msgstr "Yeme ve İçme"
+msgstr "Yeme ve içme"
 
 msgid "Frequently used"
 msgstr "Sık kullanılanlar"
@@ -97,8 +171,36 @@ msgstr "Evrensel"
 msgid "Go back to the list"
 msgstr "Listeye dön"
 
+msgid "Gold"
+msgstr "Altın"
+
 msgid "Hide password"
 msgstr "Parolayı gizle"
+
+msgid "invisible"
+msgstr "görünmez"
+
+msgid "Keyboard navigation help"
+msgstr "Klavye ile gezinme yardımı"
+
+msgid "Light skin tone"
+msgstr "Açık deri rengi"
+
+msgid "Load more \"{options}\""
+msgstr "Diğer \"{options}\""
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Denizci"
+
+msgid "Medium dark skin tone"
+msgstr "Orta koyu deri rengi"
+
+msgid "Medium light skin tone"
+msgstr "Orta açık deri rengi"
+
+msgid "Medium skin tone"
+msgstr "Orta deri rengi"
 
 msgid "Message limit of {count} characters reached"
 msgstr "{count} karakter ileti sınırına ulaşıldı"
@@ -106,11 +208,23 @@ msgstr "{count} karakter ileti sınırına ulaşıldı"
 msgid "More items …"
 msgstr "Diğer ögeler…"
 
+msgid "More options"
+msgstr "Diğer seçenekler"
+
+msgid "Neutral skin color"
+msgstr "Nötr deri rengi"
+
 msgid "Next"
 msgstr "Sonraki"
 
+msgid "Nextcloud blue"
+msgstr "Nextcloud mavi"
+
 msgid "No emoji found"
 msgstr "Herhangi bir emoji bulunamadı"
+
+msgid "No link provider found"
+msgstr "Bağlantı sağlayıcısı bulunamadı"
 
 msgid "No results"
 msgstr "Herhangi bir sonuç bulunamadı"
@@ -118,14 +232,30 @@ msgstr "Herhangi bir sonuç bulunamadı"
 msgid "Objects"
 msgstr "Nesneler"
 
-msgid "Open"
-msgstr "Aç"
+msgid "offline"
+msgstr "Çevrim dışı"
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "\"{resourceTitle}\" bağlantısını aç"
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Zeytinlik"
+
+msgid "online"
+msgstr "Çevrim içi"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "{resourceName} bağlantısını aç"
+
+msgid "Open menu"
+msgstr "Menüyü aç"
 
 msgid "Open navigation"
 msgstr "Gezinmeyi aç"
+
+msgid "Open sidebar"
+msgstr "Yan çubuğu aç"
+
+msgid "Options"
+msgstr "Seçenekler"
 
 msgid "Password is secure"
 msgstr "Parola güvenli"
@@ -134,7 +264,25 @@ msgid "Pause slideshow"
 msgstr "Slayt sunumunu duraklat"
 
 msgid "People & Body"
-msgstr "İnsanlar ve Beden"
+msgstr "İnsanlar ve beden"
+
+msgid "Pick a date"
+msgstr "Bir tarih seçin"
+
+msgid "Pick a date and a time"
+msgstr "Bir tarih ve saat seçin"
+
+msgid "Pick a month"
+msgstr "Bir ay seçin"
+
+msgid "Pick a time"
+msgstr "Bir saat seçin"
+
+msgid "Pick a week"
+msgstr "Bir hafta seçin"
+
+msgid "Pick a year"
+msgstr "Bir yıl seçin"
 
 msgid "Pick an emoji"
 msgstr "Bir emoji seçin"
@@ -145,17 +293,57 @@ msgstr "Lütfen bir saat dilimi seçin:"
 msgid "Previous"
 msgstr "Önceki"
 
+msgid "Provider icon"
+msgstr "Sağlayıcı simgesi"
+
+msgid "Purple"
+msgstr "Mor"
+
+msgid "Raw link {options}"
+msgstr "Ham bağlantı {options}"
+
 msgid "Related resources"
 msgstr "İlgili kaynaklar"
+
+msgid "Related team resources"
+msgstr "İlgili takım kaynakları"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Kırmızımsı kahverengi"
+
+msgid "Save changes"
+msgstr "Değişiklikleri kaydet"
 
 msgid "Search"
 msgstr "Arama"
 
+msgid "Search emoji"
+msgstr "Emoji ara"
+
+msgid "Search for time zone"
+msgstr "Saat dilimi ara"
+
 msgid "Search results"
 msgstr "Arama sonuçları"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "sn. önce"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "saniye önce"
+
 msgid "Select a tag"
 msgstr "Bir etiket seçin"
+
+msgid "Select provider"
+msgstr "Sağlayıcı seçin"
+
+msgid "Selected"
+msgstr "Seçilmiş"
 
 msgid "Settings"
 msgstr "Ayarlar"
@@ -166,11 +354,26 @@ msgstr "Gezinme ayarları"
 msgid "Show password"
 msgstr "Parolayı görüntüle"
 
+msgid "Skin tone"
+msgstr "Deri rengi"
+
+msgid "Skip to app navigation"
+msgstr "Uygulama gezinmesine git"
+
+msgid "Skip to main content"
+msgstr "Ana içeriğe git"
+
+msgid "Smart Picker"
+msgstr "Akıllı seçim"
+
 msgid "Smileys & Emotion"
-msgstr "İfadeler ve Duygular"
+msgstr "İfadeler ve duygular"
 
 msgid "Start slideshow"
 msgstr "Slayt sunumunu başlat"
+
+msgid "Start typing to search"
+msgstr "Aramak için yazmaya başlayın"
 
 msgid "Submit"
 msgstr "Gönder"
@@ -179,7 +382,7 @@ msgid "Symbols"
 msgstr "Simgeler"
 
 msgid "Travel & Places"
-msgstr "Gezi ve Yerler"
+msgstr "Gezi ve yerler"
 
 msgid "Type to search time zone"
 msgstr "Saat dilimi aramak için yazmaya başlayın"
@@ -190,9 +393,15 @@ msgstr "Grupta arama yapılamadı"
 msgid "Undo changes"
 msgstr "Değişiklikleri geri al"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
-"İleti yazın, birini anmak için @, otomatik emoji tamamlamak için \":\" "
-"kullanın…"
+msgid "User status: {status}"
+msgstr "Kullanıcı durumu: {status}"
+
+msgid "View team"
+msgstr "Takımı görüntüle"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Viski"
+
+msgid "Write a message …"
+msgstr "Bir ileti yazın…"

@@ -25,11 +25,12 @@
 ### General description
 
 This component is meant to be used inside a Breadcrumbs component.
+Renders a button element when given no redirection props, otherwise, renders <a/> or <router-link/> elements
 
 </docs>
 
 <template>
-	<div ref="crumb"
+	<li ref="crumb"
 		class="vue-crumb"
 		:class="{'vue-crumb--hovered': hovering}"
 		:[crumbId]="''"
@@ -39,26 +40,30 @@ This component is meant to be used inside a Breadcrumbs component.
 		@dragover.prevent="() => {}"
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
-		<component :is="tag"
-			v-if="(title || icon) && !$slots.default"
-			:exact="exact"
-			:to="to"
-			:href="href"
-			v-bind="$attrs"
+		<NcButton v-if="(name || icon || $slots.icon) && !$slots.default"
+			:title="title"
+			:aria-label="icon ? name : undefined"
+			type="tertiary"
+			v-bind="linkAttributes"
 			v-on="$listeners">
-			<!-- @slot Slot for passing a material design icon. Precedes the icon and title prop. -->
-			<slot name="icon">
-				<span v-if="icon" :class="icon" class="icon" />
-				<span v-else>{{ title }}</span>
-			</slot>
-		</component>
+			<template v-if="$slots.icon || icon" #icon>
+				<!-- @slot Slot for passing a material design icon. Precedes the icon and name prop. -->
+				<slot name="icon">
+					<span :class="icon" class="icon" />
+				</slot>
+			</template>
+			<template v-if="!($slots.icon || icon) || forceIconText" #default>
+				{{ name }}
+			</template>
+		</NcButton>
 		<NcActions v-if="$slots.default"
 			ref="actions"
 			type="tertiary"
 			:force-menu="forceMenu"
 			:open="open"
-			:menu-title="title"
-			:force-title="true"
+			:menu-name="name"
+			:title="title"
+			:force-name="true"
 			:container="`.vue-crumb[${crumbId}]`"
 			@update:open="onOpenChange">
 			<template #icon>
@@ -69,12 +74,13 @@ This component is meant to be used inside a Breadcrumbs component.
 			<slot />
 		</NcActions>
 		<ChevronRight class="vue-crumb__separator" :size="20" />
-	</div>
+	</li>
 </template>
 
 <script>
 import NcActions from '../NcActions/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
+import NcButton from '../NcButton/NcButton.vue'
 
 import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
 
@@ -83,14 +89,23 @@ export default {
 	components: {
 		NcActions,
 		ChevronRight,
+		NcButton,
 	},
+	inheritAttrs: false,
 	props: {
 		/**
-		 * The displayed title of the breadcrumb.
+		 * The main text content of the entry.
+		 */
+		name: {
+			type: String,
+			required: true,
+		},
+		/**
+		 * The title attribute of the element.
 		 */
 		title: {
 			type: String,
-			required: true,
+			default: null,
 		},
 
 		/**
@@ -122,11 +137,19 @@ export default {
 		},
 
 		/**
-		 * Set a css icon-class to show an icon instead of the title text.
+		 * Set a css icon-class to show an icon along name text (if forceIconText is provided, otherwise just icon).
 		 */
 		icon: {
 			type: String,
 			default: '',
+		},
+
+		/**
+		 * Enables text to accompany the icon, if the icon was provided. The text that will be displayed is the name prop.
+		 */
+		forceIconText: {
+			type: Boolean,
+			default: false,
 		},
 
 		/**
@@ -172,12 +195,16 @@ export default {
 	},
 	computed: {
 		/**
-		 * Determines which element tag to use
-		 *
-		 * @return {string} the tag
+		 * The attributes to pass to `router-link` or `a`
 		 */
-		tag() {
-			return this.to ? 'router-link' : 'a'
+		linkAttributes() {
+			// If it's a router-link, we pass `to` and `exact`, if its an <a/> element, we pass `href`, otherwise we have a button
+			return this.to
+				? { to: this.to, exact: this.exact, ...this.$attrs }
+				: (this.href
+					? { href: this.href, ...this.$attrs }
+					: this.$attrs
+				)
 		},
 	},
 	methods: {
@@ -268,13 +295,7 @@ export default {
 	padding: 0;
 
 	&:last-child {
-		max-width: 210px;
-		font-weight: bold;
-
-		> a,
-		> a:deep(*) {
-			cursor: default;
-		}
+		min-width: 0;
 
 		// Don't show breadcrumb separator for last crumb
 		.vue-crumb__separator {
@@ -282,45 +303,35 @@ export default {
 		}
 	}
 
-	// Hover and focus effect for crumbs, but not the last one
-	&:not(:last-child) > a {
+	// Necessary to hide hidden crumbs
+	&--hidden {
+		display: none;
+	}
+	&__separator {
+		padding: 0;
+		color: var(--color-text-maxcontrast);
+	}
+	// Necessary for indicating hovering for drag and drop
+	&#{&}--hovered :deep(.button-vue) {
+		background-color: var(--color-background-dark);
+		color: var(--color-main-text);
+	}
+	// Adjust button style
+	&:not(:last-child) :deep() .button-vue {
+		color: var(--color-text-maxcontrast);
+
 		&:hover,
 		&:focus {
 			background-color: var(--color-background-dark);
 			color: var(--color-main-text);
 		}
-	}
 
-	&--hidden {
-		display: none;
-	}
-
-	&#{&}--hovered > a {
-		background-color: var(--color-background-dark);
-		color: var(--color-main-text);
-	}
-
-	&__separator {
-		padding: 0;
-		color: var(--color-text-maxcontrast);
-	}
-
-	> a {
-		overflow: hidden;
-		color: var(--color-text-maxcontrast);
-		padding: 12px;
-		min-width: $clickable-area;
-		max-width: 100%;
-		border-radius: var(--border-radius-pill);
-		align-items: center;
-		display: inline-flex;
-		justify-content: center;
-
-		> span {
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
+		&__text {
+			font-weight: normal;
 		}
+	}
+	:deep(.button-vue__text) {
+		margin: 0;
 	}
 
 	// Adjust action item appearance for crumbs with actions
@@ -331,6 +342,7 @@ export default {
 
 		.button-vue {
 			padding: 0 4px 0 16px;
+			max-width: 100%;
 
 			&__wrapper {
 				flex-direction: row-reverse;

@@ -31,7 +31,7 @@
 					class="mention-bubble__icon" />
 
 				<!-- Title -->
-				<span role="heading" class="mention-bubble__title" :title="label" />
+				<span role="heading" class="mention-bubble__title" :title="labelWithFallback" />
 			</span>
 
 			<!-- Selectable text for copy/paste -->
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { generateUrl } from '@nextcloud/router'
+import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
 
 export default {
 	name: 'NcMentionBubble',
@@ -51,13 +51,26 @@ export default {
 			type: String,
 			required: true,
 		},
+		/**
+		 * @deprecated Use `label` instead
+		 */
+		title: {
+			type: String,
+			required: false,
+			default: null,
+		},
 		label: {
 			type: String,
-			required: true,
+			required: false,
+			default: null,
 		},
 		icon: {
 			type: String,
 			required: true,
+		},
+		iconUrl: {
+			type: [String, null],
+			default: null,
 		},
 		source: {
 			type: String,
@@ -70,24 +83,27 @@ export default {
 	},
 	computed: {
 		avatarUrl() {
+			if (this.iconUrl) {
+				return this.iconUrl
+			}
+
 			return this.id && this.source === 'users'
 				? this.getAvatarUrl(this.id, 44)
 				: null
 		},
 		mentionText() {
-			return this.id.indexOf(' ') === -1
+			return !this.id.includes(' ') && !this.id.includes('/')
 				? `@${this.id}`
 				: `@"${this.id}"`
+		},
+		// Fallback to title for compatibility
+		labelWithFallback() {
+			return this.label || this.title
 		},
 	},
 
 	methods: {
-		getAvatarUrl(user, size) {
-			return generateUrl('/avatar/{user}/{size}', {
-				user,
-				size,
-			})
-		},
+		getAvatarUrl,
 	},
 }
 </script>
@@ -100,7 +116,7 @@ $bubble-avatar-size: $bubble-height - 2 * $bubble-padding;
 
 .mention-bubble {
 	&--primary &__content {
-		color: var(--color-primary-text);
+		color: var(--color-primary-element-text);
 		background-color: var(--color-primary-element);
 	}
 
@@ -148,7 +164,7 @@ $bubble-avatar-size: $bubble-height - 2 * $bubble-padding;
 		margin-left: $bubble-padding;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		// Put label in ::before so it is not selectable
+		// Put title in ::before so it is not selectable
 		&::before {
 			content: attr(title);
 		}

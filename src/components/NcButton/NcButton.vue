@@ -76,7 +76,6 @@ It can be used with one or multiple actions.
 			:readonly="readonly">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
-					title=""
 					:size="20" />
 			</template>
 			<template v-if="style.indexOf('text') !== -1">Example text</template>
@@ -103,7 +102,6 @@ It can be used with one or multiple actions.
 		text="Example text">
 		<template #icon>
 			<Video
-				title=""
 				:size="20" />
 		</template>
 		Example text
@@ -132,7 +130,6 @@ It can be used with one or multiple actions.
 			type="warning">
 			<template #icon>
 				<Video
-					title=""
 					:size="20" />
 			</template>
 			Example text
@@ -153,7 +150,7 @@ It can be used with one or multiple actions.
 
 </template>
 <script>
-import Video from 'vue-material-design-icons/Video'
+import Video from 'vue-material-design-icons/Video.vue'
 
 export default {
 	components: {
@@ -199,6 +196,242 @@ button {
 }
 </style>
 ```
+
+### Alignment
+Sometimes it is required to change the icon alignment on the button, like for switching between pages as in following example:
+
+```vue
+<template>
+	<div style="display: flex; flex-direction: column; gap: 12px;">
+		<NcButton aria-label="center (default)" type="secondary" wide>
+			<template #icon>
+				<IconLeft :size="20" />
+			</template>
+			center (default)
+		</NcButton>
+		<NcButton alignment="center-reverse" aria-label="center-reverse" type="secondary" wide>
+			<template #icon>
+				<IconRight :size="20" />
+			</template>
+			center-reverse
+		</NcButton>
+		<div style="display: flex; gap: 12px;">
+			<div style="display: flex; flex-direction: column; gap: 12px; flex: 1">
+				<NcButton alignment="start" aria-label="start" type="secondary" wide>
+					<template #icon>
+						<IconLeft :size="20" />
+					</template>
+					start
+				</NcButton>
+				<NcButton alignment="start-reverse" aria-label="start-reverse" type="secondary" wide>
+					<template #icon>
+						<IconRight :size="20" />
+					</template>
+					start-reverse
+				</NcButton>
+			</div>
+			<div style="display: flex; flex-direction: column; gap: 12px; flex: 1">
+				<NcButton alignment="end" aria-label="end" type="secondary" wide>
+					<template #icon>
+						<IconLeft :size="20" />
+					</template>
+					end
+				</NcButton>
+				<NcButton alignment="end-reverse" aria-label="end-reverse" type="secondary" wide>
+					<template #icon>
+						<IconRight :size="20" />
+					</template>
+					end-reverse
+				</NcButton>
+			</div>
+		</div>
+	</div>
+</template>
+<script>
+import IconLeft from 'vue-material-design-icons/ArrowLeft.vue'
+import IconRight from 'vue-material-design-icons/ArrowRight.vue'
+
+export default {
+	components: {
+		IconLeft,
+		IconRight,
+	},
+}
+</script>
+```
+
+### Pressed state
+
+It is possible to make the button stateful by adding a pressed state, e.g. if you like to create a favorite button.
+The button will have the required `aria` attribute for accessibility and visual style (`primary` when pressed, and the configured type otherwise).
+
+Do not change `text` or `aria-label` of the pressed/unpressed button. See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed
+
+```vue
+<template>
+	<div>
+		<div style="display: flex; gap: 12px;">
+			<NcButton :pressed.sync="isFavorite" aria-label="Favorite" type="tertiary-no-background">
+				<template #icon>
+					<IconStar v-if="isFavorite" :size="20" />
+					<IconStarOutline v-else :size="20" />
+				</template>
+			</NcButton>
+
+			<NcButton :pressed.sync="isFavorite" type="tertiary">
+				<template #icon>
+					<IconStar v-if="isFavorite" :size="20" />
+					<IconStarOutline v-else :size="20" />
+				</template>
+				Favorite
+			</NcButton>
+
+			<NcButton :pressed.sync="isFavorite" aria-label="Favorite">
+				<template #icon>
+					<IconStar v-if="isFavorite" :size="20" />
+					<IconStarOutline v-else :size="20" />
+				</template>
+			</NcButton>
+		</div>
+		<div>
+			It is {{ isFavorite ? 'a' : 'not a' }} favorite.
+		</div>
+	</div>
+</template>
+<script>
+import IconStar from 'vue-material-design-icons/Star.vue'
+import IconStarOutline from 'vue-material-design-icons/StarOutline.vue'
+
+export default {
+	components: {
+		IconStar,
+		IconStarOutline,
+	},
+	data() {
+		return {
+			isFavorite: false,
+		}
+	},
+	methods: {
+		toggleFavorite() {
+			this.isFavorite = !this.isFavorite
+		},
+	},
+}
+</script>
+```
+
+### Usage example: Sorting table columns
+The standard way to implement sortable table column headers should be like this:
+
+```vue
+<template>
+	<table>
+		<thead>
+			<tr>
+				<th :aria-sorted="sortedName" class="row-name">
+					<NcButton alignment="start-reverse"
+						:wide="true"
+						type="tertiary"
+						@click="sortName">
+						<template #icon>
+							<IconDown v-if="sortedName === 'ascending'" class="sort-icon" :size="20" />
+							<IconUp v-else-if="sortedName === 'descending'" class="sort-icon" :size="20" />
+						</template>
+						<span class="table-header">Name</span>
+					</NcButton>
+				</th>
+				<th :aria-sorted="sortedSize" class="row-size">
+					<NcButton alignment="end"
+						:wide="true"
+						type="tertiary"
+						@click="sortSize">
+						<template #icon>
+							<IconDown v-if="sortedSize === 'ascending'" class="sort-icon" :size="20" />
+							<IconUp v-else-if="sortedSize === 'descending'" class="sort-icon" :size="20" />
+						</template>
+						<span class="table-header">Size</span>
+					</NcButton>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="row-name">Lorem ipsum</td>
+				<td class="row-size">8 MiB</td>
+			</tr>
+		</tbody>
+	</table>
+</template>
+<script>
+import IconUp from 'vue-material-design-icons/MenuUp.vue'
+import IconDown from 'vue-material-design-icons/MenuDown.vue'
+
+export default {
+	components: {
+		IconUp,
+		IconDown,
+	},
+	data() {
+		return {
+			sortedName: null,
+			sortedSize: null,
+		}
+	},
+	methods: {
+		sortName() {
+			if (this.sortedName === 'ascending') {
+				this.sortedName = 'descending'
+			} else if (this.sortedName === 'descending') {
+				this.sortedName = null
+			} else {
+				this.sortedName = 'ascending'
+			}
+		},
+		sortSize() {
+			if (this.sortedSize === 'ascending') {
+				this.sortedSize = 'descending'
+			} else if (this.sortedSize === 'descending') {
+				this.sortedSize = null
+			} else {
+				this.sortedSize = 'ascending'
+			}
+		},
+	},
+}
+</script>
+<style>
+table {
+	table-layout: fixed;
+	width: 300px;
+}
+
+td.row-name {
+	padding-inline-start: 16px;
+}
+
+td.row-size {
+	text-align: right;
+	padding-inline-end: 16px;
+}
+
+.table-header {
+	font-weight: normal;
+	color: var(--color-text-maxcontrast);
+}
+
+.sort-icon {
+	color: var(--color-text-maxcontrast);
+	position: relative;
+	inset-inline: -10px;
+}
+
+.row-size .sort-icon {
+	inset-inline: 10px;
+}
+</style>
+```
+
 </docs>
 
 <script>
@@ -206,7 +439,25 @@ button {
 export default {
 	name: 'NcButton',
 
+	inject: {
+		getNcPopoverTriggerAttrs: {
+			from: 'NcPopover:trigger:attrs',
+			default: () => () => ({}),
+		},
+	},
+
 	props: {
+		/**
+		 * Set the text and icon alignment
+		 *
+		 * @default 'center'
+		 */
+		alignment: {
+			type: String,
+			default: 'center',
+			validator: (alignment) => ['start', 'start-reverse', 'center', 'center-reverse', 'end', 'end-reverse'].includes(alignment),
+		},
+
 		/**
 		 * Toggles the disabled state of the button on and off.
 		 */
@@ -252,8 +503,8 @@ export default {
 
 		/**
 		 * Always try to provide an aria-label to your button. Make it more
-		 * specific than the button's title by provide some more context. E.g. if
-		 * the title of the button is "send" in the Mail app, the aria label could
+		 * specific than the button's name by provide some more context. E.g. if
+		 * the name of the button is "send" in the Mail app, the aria label could
 		 * be "Send email".
 		 */
 		ariaLabel: {
@@ -266,6 +517,14 @@ export default {
 		 * element.
 		 */
 		href: {
+			type: String,
+			default: null,
+		},
+
+		/**
+		 * Providing the download attribute with href downloads file when clicking.
+		 */
+		download: {
 			type: String,
 			default: null,
 		},
@@ -287,19 +546,63 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * @deprecated To be removed in @nextcloud/vue 9. Migration guide: remove ariaHidden prop from NcAction* components.
+		 * @todo Add a check in @nextcloud/vue 9 that this prop is not provided,
+		 * otherwise root element will inherit incorrect aria-hidden.
+		 */
+		ariaHidden: {
+			type: Boolean,
+			default: null,
+		},
+
+		/**
+		 * The pressed state of the button if it has a checked state
+		 * This will add the `aria-pressed` attribute and for the button to have the primary style in checked state.
+		 *
+		 * Pressed state is not supported for links
+		 */
+		pressed: {
+			type: Boolean,
+			default: null,
+		},
 	},
 
+	emits: ['update:pressed', 'click'],
+
 	computed: {
-		// Determines whether the root element is an a,
-		// a router-link or a button
-		rootElement() {
-			if (this.to) {
-				return 'router-link'
+		/**
+		 * The real type to be used for the button, enforces `primary` for pressed state and, if stateful button, any other type for not pressed state
+		 * Otherwise the type property is used.
+		 */
+		realType() {
+			// Force *primary* when pressed
+			if (this.pressed) {
+				return 'primary'
 			}
-			if (this.href) {
-				return 'a'
+			// If not pressed but button is configured as stateful button then the type must not be primary
+			if (this.pressed === false && this.type === 'primary') {
+				return 'secondary'
 			}
-			return 'button'
+			return this.type
+		},
+
+		/**
+		 * The flexbox alignment of the button content
+		 */
+		flexAlignment() {
+			return this.alignment.split('-')[0]
+		},
+
+		/**
+		 * If the button content should be reversed (icon on the end)
+		 */
+		isReverseAligned() {
+			return this.alignment.includes('-')
+		},
+
+		ncPopoverTriggerAttrs() {
+			return this.getNcPopoverTriggerAttrs()
 		},
 	},
 
@@ -310,23 +613,25 @@ export default {
 	 * @return {object|undefined} The created VNode
 	 */
 	render(h) {
-		const text = this.$slots.default?.[0]?.text?.trim?.()
-
-		const hasText = !!text
+		const hasText = !!this.$slots.default
 		const hasIcon = this.$slots?.icon
 
 		/**
 		 * Always fill either the text prop or the ariaLabel one.
 		 */
-		if (!text && !this.ariaLabel) {
+		if (!hasText && !this.ariaLabel) {
 			console.warn('You need to fill either the text or the ariaLabel props in the button component.', {
-				text,
+				text: this.$slots.default?.[0]?.text,
 				ariaLabel: this.ariaLabel,
 			},
 			this)
 		}
 
-		return h(this.rootElement,
+		const isLink = (this.to || this.href)
+
+		const hasPressed = !isLink && typeof this.pressed === 'boolean'
+
+		const renderButton = ({ href, navigate, isActive, isExactActive } = {}) => h(isLink ? 'a' : 'button',
 			{
 				class: [
 					'button-vue',
@@ -334,40 +639,78 @@ export default {
 						'button-vue--icon-only': hasIcon && !hasText,
 						'button-vue--text-only': hasText && !hasIcon,
 						'button-vue--icon-and-text': hasIcon && hasText,
-						[`button-vue--vue-${this.type}`]: this.type,
+						[`button-vue--vue-${this.realType}`]: this.realType,
 						'button-vue--wide': this.wide,
+						[`button-vue--${this.flexAlignment}`]: this.flexAlignment !== 'center',
+						'button-vue--reverse': this.isReverseAligned,
+						active: isActive,
+						'router-link-exact-active': isExactActive,
 					},
 				],
 				attrs: {
 					'aria-label': this.ariaLabel,
+					'aria-pressed': hasPressed ? this.pressed.toString() : undefined,
 					disabled: this.disabled,
-					type: this.href ? null : this.nativeType,
-					role: this.href ? 'button' : null,
-					href: (!this.to && this.href) ? this.href : null,
+					type: isLink ? null : this.nativeType,
+					role: isLink ? 'button' : null,
+					href: this.to ? href : (this.href || null),
+					target: isLink ? '_self' : null,
+					rel: isLink ? 'nofollow noreferrer noopener' : null,
+					download: (!this.to && this.href && this.download) ? this.download : null,
+					// If this button is used as a popover trigger, we need to apply trigger attrs, e.g. aria attributes
+					...this.ncPopoverTriggerAttrs,
+					// Inherit all the component attrs
 					...this.$attrs,
-				},
-				props: {
-					to: this.to ? this.to : null,
-					tag: this.to ? 'button' : null,
-					exact: this.exact,
 				},
 				on: {
 					...this.$listeners,
-				},
-				// nativeOn is only valid on components
-				...(this.rootElement === 'router-link' && {
-					nativeOn: {
-						...this.$listeners,
+					click: ($event) => {
+						if (hasPressed) {
+							/**
+							 * Update the current pressed state of the button (if the `pressed` property was configured)
+							 *
+							 * @property {boolean} newValue The new `pressed`-state
+							 */
+							this.$emit('update:pressed', !this.pressed)
+						}
+						// We have to both navigate and emit the click event
+						this.$emit('click', $event)
+						navigate?.($event)
 					},
-				}),
+				},
 			},
 			[
 				h('span', { class: 'button-vue__wrapper' }, [
-					hasIcon ? h('span', { class: 'button-vue__icon' }, [this.$slots.icon]) : null,
-					hasText ? h('span', { class: 'button-vue__text' }, [text]) : null,
+					hasIcon
+						? h('span', {
+							class: 'button-vue__icon',
+							attrs: {
+								'aria-hidden': 'true',
+							},
+						},
+						[this.$slots.icon],
+						)
+						: null,
+					hasText ? h('span', { class: 'button-vue__text' }, [this.$slots.default]) : null,
 				]),
-			]
+			],
 		)
+
+		// If we have a router-link, we wrap the button in it
+		if (this.to) {
+			return h('router-link', {
+				props: {
+					custom: true,
+					to: this.to,
+					exact: this.exact,
+				},
+				scopedSlots: {
+					default: renderButton,
+				},
+			})
+		}
+		// Otherwise we simply return the button
+		return renderButton()
 	},
 }
 
@@ -416,10 +759,10 @@ export default {
 	}
 
 	// Default button type
-	color: var(--color-primary-light-text);
-	background-color: var(--color-primary-light);
+	color: var(--color-primary-element-light-text);
+	background-color: var(--color-primary-element-light);
 	&:hover:not(:disabled) {
-		background-color: var(--color-primary-light-hover);
+		background-color: var(--color-primary-element-light-hover);
 	}
 
 	// Back to the default color for this button when active
@@ -431,7 +774,22 @@ export default {
 	&__wrapper {
 		display: inline-flex;
 		align-items: center;
-		justify-content: space-around;
+		justify-content: center;
+		width: 100%;
+	}
+
+	&--end &__wrapper {
+		justify-content: end;
+	}
+	&--start &__wrapper {
+		justify-content: start;
+	}
+	&--reverse &__wrapper {
+		flex-direction: row-reverse;
+	}
+
+	&--reverse#{&}--icon-and-text {
+		padding-inline: calc(var(--default-grid-baseline) * 4) var(--default-grid-baseline);
 	}
 
 	&__icon {
@@ -448,6 +806,9 @@ export default {
 		font-weight: bold;
 		margin-bottom: 1px;
 		padding: 2px 0;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
 	}
 
 	// Icon-only button
@@ -466,7 +827,8 @@ export default {
 
 	// Icon and text button
 	&--icon-and-text {
-		padding: 0 16px 0 4px;
+		padding-block: 0;
+		padding-inline: var(--default-grid-baseline) calc(var(--default-grid-baseline) * 4);
 	}
 
 	// Wide button spans the whole width of the container
@@ -476,8 +838,9 @@ export default {
 
 	&:focus-visible {
 		outline: 2px solid var(--color-main-text) !important;
+		box-shadow: 0 0 0 4px var(--color-main-background) !important;
 		&.button-vue--vue-tertiary-on-primary {
-			outline: 2px solid var(--color-primary-text);
+			outline: 2px solid var(--color-primary-element-text);
 			border-radius: var(--border-radius);
 			background-color: transparent;
 		}
@@ -488,7 +851,7 @@ export default {
 	// Primary
 	&--vue-primary {
 		background-color: var(--color-primary-element);
-		color: var(--color-primary-text);
+		color: var(--color-primary-element-text);
 		&:hover:not(:disabled) {
 			background-color: var(--color-primary-element-hover);
 		}
@@ -501,11 +864,11 @@ export default {
 
 	// Secondary
 	&--vue-secondary {
-		color: var(--color-primary-light-text);
-		background-color: var(--color-primary-light);
+		color: var(--color-primary-element-light-text);
+		background-color: var(--color-primary-element-light);
 		&:hover:not(:disabled) {
-			color: var(--color-primary-light-text);
-			background-color: var(--color-primary-light-hover);
+			color: var(--color-primary-element-light-text);
+			background-color: var(--color-primary-element-light-hover);
 		}
 	}
 
@@ -514,7 +877,6 @@ export default {
 		color: var(--color-main-text);
 		background-color: transparent;
 		&:hover:not(:disabled) {
-			background-color: var(--color);
 			background-color: var(--color-background-hover);
 		}
 	}
@@ -530,7 +892,7 @@ export default {
 
 	// Tertiary on primary color (like the header)
 	&--vue-tertiary-on-primary {
-		color: var(--color-primary-text);
+		color: var(--color-primary-element-text);
 		background-color: transparent;
 
 		&:hover:not(:disabled) {

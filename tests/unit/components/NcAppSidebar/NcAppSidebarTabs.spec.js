@@ -52,7 +52,7 @@ describe('NcAppSidebarTabs.vue', () => {
 			beforeEach(() => {
 				wrapper = mount(NcAppSidebarTabs, {
 					propsData: {
-						title: 'Sidebar title.',
+						name: 'Sidebar name.',
 					},
 					slots: {
 						default: ['<div />'],
@@ -63,15 +63,15 @@ describe('NcAppSidebarTabs.vue', () => {
 				expect(onWarning).toHaveBeenCalledTimes(0)
 				expect(consoleDebug).toHaveBeenCalledTimes(0)
 			})
-			it('does not display the nav element', () => {
-				expect(wrapper.find('nav').exists()).toBe(false)
+			it('does not display the tablist element', () => {
+				expect(wrapper.find('div[role="tablist"]').exists()).toBe(false)
 			})
 		})
 		describe('with div and secondary action', () => {
 			beforeEach(() => {
 				wrapper = mount(NcAppSidebarTabs, {
 					propsData: {
-						title: 'Sidebar title.',
+						name: 'Sidebar name.',
 					},
 					slots: {
 						default: '<div />',
@@ -88,8 +88,8 @@ describe('NcAppSidebarTabs.vue', () => {
 			})
 		})
 
-		it('does not display the nav element', () => {
-			expect(wrapper.find('nav').exists()).toBe(false)
+		it('does not display the tablist element', () => {
+			expect(wrapper.find('div[role="tablist"]').exists()).toBe(false)
 		})
 	})
 	describe('when only children of type AppSidebarTab is used', () => {
@@ -107,30 +107,31 @@ describe('NcAppSidebarTabs.vue', () => {
 					// used to register custom components
 						NcAppSidebarTab,
 					},
+					attachTo: document.body,
 				})
 			})
 			it('Issues no warning.', () => {
 				expect(onWarning).toHaveBeenCalledTimes(0)
 			})
-			it('display the nav element', () => {
-				expect(wrapper.find('nav').exists()).toBe(true)
+			it('display the tablist element', () => {
+				expect(wrapper.find('div[role="tablist"]').exists()).toBe(true)
 			})
-			it('display all the 3 elements in li', () => {
-				const liList = wrapper.findAll('nav>ul>li')
+			it('display all the 3 elements', () => {
+				const liList = wrapper.findAll('div[role="tablist"]>.checkbox-radio-switch')
 				expect(liList.length).toEqual(3)
 			})
 			it('emit "update:active" event with the selected tab id when clicking on a tab', () => {
-				const lastLink = wrapper.find('nav>ul>li:last-of-type>a')
+				const lastLink = wrapper.find('div[role="tablist"]>button.checkbox-radio-switch:last-of-type')
 				lastLink.trigger('click')
 				expect(wrapper.emitted('update:active')[0]).toEqual(['last'])
 			})
 			it('emit "update:active" event with the first tab id when keydown pageup is pressed', () => {
-				const lastLink = wrapper.find('nav>ul>li:last-of-type>a')
+				const lastLink = wrapper.find('div[role="tablist"]>button.checkbox-radio-switch:last-of-type')
 				lastLink.trigger('keydown.pageup')
 				expect(wrapper.emitted('update:active')[0]).toEqual(['first'])
 			})
 			it('emit "update:active" event with the last tab id when keydown pagedown is pressed', () => {
-				const lastLink = wrapper.find('nav>ul>li:last-of-type>a')
+				const lastLink = wrapper.find('div[role="tablist"]>button.checkbox-radio-switch:last-of-type')
 				lastLink.trigger('keydown.pagedown')
 				expect(wrapper.emitted('update:active')[0]).toEqual(['last'])
 			})
@@ -140,12 +141,12 @@ describe('NcAppSidebarTabs.vue', () => {
 				})
 				it('does not emit "update:active" event when keydown left is pressed', () => {
 					expect(wrapper.emitted('update:active')).toBeFalsy()
-					const firstLink = wrapper.find('nav>ul>li>a')
+					const firstLink = wrapper.find('div[role="tablist"]>button.checkbox-radio-switch')
 					firstLink.trigger('keydown.left')
 					expect(wrapper.emitted('update:active')).toBeFalsy()
 				})
 				it('emit "update:active" event with the next tab id when keydown right is pressed', () => {
-					const firstLink = wrapper.find('nav>ul>li>a')
+					const firstLink = wrapper.find('div[role="tablist"]>button.checkbox-radio-switch')
 					firstLink.trigger('keydown.right')
 					expect(wrapper.emitted('update:active')[0]).toEqual(['second'])
 				})
@@ -155,13 +156,13 @@ describe('NcAppSidebarTabs.vue', () => {
 					wrapper.setData({ activeTab: 'last' })
 				})
 				it('emit "update:active" event with the previous tab id when keydown left is pressed', () => {
-					const lastLink = wrapper.find('nav>ul>li:last-of-type>a')
+					const lastLink = wrapper.find('div[role="tablist"]>button.checkbox-radio-switch:last-of-type')
 					lastLink.trigger('keydown.left')
 					expect(wrapper.emitted('update:active')[0]).toEqual(['second'])
 				})
 				it('does not emit "update:active" event when keydown right is pressed', () => {
 					expect(wrapper.emitted('update:active')).toBeFalsy()
-					const lastLink = wrapper.find('nav>ul>li:last-of-type>a')
+					const lastLink = wrapper.find('div[role="tablist"]>button.checkbox-radio-switch:last-of-type')
 					lastLink.trigger('keydown.right')
 					expect(wrapper.emitted('update:active')).toBeFalsy()
 				})
@@ -184,28 +185,9 @@ describe('NcAppSidebarTabs.vue', () => {
 			it('Issues no warning.', () => {
 				expect(onWarning).toHaveBeenCalledTimes(0)
 			})
-			it('does not display the nav element', () => {
-				expect(wrapper.find('nav').exists()).toBe(false)
+			it('does not display the tablist element', () => {
+				expect(wrapper.find('div[role="tablist"]').exists()).toBe(false)
 			})
-		})
-	})
-	describe('when tabs and other elements are mixed', () => {
-		it('Issues a warning and logs to console .', () => {
-			mount(NcAppSidebarTabs, {
-				slots: {
-					default: [
-						'<nc-app-sidebar-tab id="1" icon="icon-details" name="Tab1">Tab1</nc-app-sidebar-tab>',
-						'<NcAppSidebarTab id="2" icon="icon-details" name="Tab2">Tab2</NcAppSidebarTab>',
-						'<div>Non-tab-content</div>',
-						'Test',
-					],
-				},
-				stubs: {
-					NcAppSidebarTab,
-				},
-			})
-			expect(onWarning).toHaveBeenCalledTimes(1)
-			expect(consoleDebug).toHaveBeenCalledTimes(2)
 		})
 	})
 })

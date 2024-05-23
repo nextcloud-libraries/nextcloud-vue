@@ -24,6 +24,9 @@
 See [NcInputField](#/Components/NcFields?id=ncinputfield) for a list of all available props.
 
 General purpose text field component.
+It is recommended to not only provide a placeholder, but also a label.
+The label should describe what input is expected and the placehold what format the input should have.
+
 Note: the inner html `input` element inherits all the attributes from the
 NcTextField component so you can add things like `autocomplete`, `maxlength`
 and `minlength`.
@@ -36,32 +39,39 @@ and `minlength`.
 			trailing-button-icon="close"
 			:show-trailing-button="text1 !== ''"
 			@trailing-button-click="clearText">
-			<Magnify :size="16" />
+			<Magnify :size="20" />
+		</NcTextField>
+		<NcTextField :value.sync="text4"
+			label="Internal label"
+			placeholder="That can be used together with placeholder"
+			trailing-button-icon="close"
+			:show-trailing-button="text4 !== ''"
+			@trailing-button-click="clearText">
+			<Lock :size="20" />
 		</NcTextField>
 		<NcTextField :value.sync="text2"
 			label="Success state"
+			placeholder="Placeholders are possible"
 			:success="true"
 			@trailing-button-click="clearText">
 		</NcTextField>
 		<NcTextField :value.sync="text3"
 			label="Error state"
+			placeholder="Enter something valid"
 			:error="true"
 			@trailing-button-click="clearText">
 		</NcTextField>
-		<NcTextField :value.sync="text4"
-			label="Internal label"
-			placeholder="That can be used together with placeholder"
-			:label-visible="true"
-			trailing-button-icon="close"
-			:show-trailing-button="text4 !== ''"
-			@trailing-button-click="clearText">
-			<Lock :size="16" />
-		</NcTextField>
+		<NcTextField label="Disabled"
+			:disabled="true" />
+		<NcTextField label="Disabled + Success"
+			:success="true"
+			:disabled="true" />
 		<div class="external-label">
 			<label for="textField">External label</label>
 			<NcTextField :value.sync="text5"
 				id="textField"
 				:label-outside="true"
+				placeholder="Input with external label"
 				@trailing-button-click="clearText" />
 		</div>
 	</div>
@@ -120,9 +130,8 @@ export default {
 </docs>
 
 <template>
-	<NcInputField v-bind="{...$attrs, ...$props }"
+	<NcInputField v-bind="propsAndAttrsToForward"
 		ref="inputField"
-		:trailing-button-label="clearTextLabel"
 		v-on="$listeners"
 		@input="handleInput">
 		<!-- Default slot for the leading icon -->
@@ -147,6 +156,8 @@ import Undo from 'vue-material-design-icons/UndoVariant.vue'
 
 import { t } from '../../l10n.js'
 
+const NcInputFieldProps = new Set(Object.keys(NcInputField.props))
+
 export default {
 	name: 'NcTextField',
 
@@ -161,11 +172,32 @@ export default {
 	inheritAttrs: false,
 
 	props: {
+		/**
+		 * Any [NcInputField](#/Components/NcFields?id=ncinputfield) props
+		 */
+		// Not an actual prop but needed to show in vue-styleguidist docs
+		// eslint-disable-next-line
+		' ': {},
+
+		// Reuse all the props from NcInputField for better typing and documentation
 		...NcInputField.props,
 
 		/**
+		 * The `aria-label` to set on the trailing button
+		 * If no explicit value is set it will default to the one matching the `trailingButtonIcon`:
+		 * @default 'Clear text'|'Save changes'|'Undo changes'
+		 */
+		trailingButtonLabel: {
+			type: String,
+			default: '',
+		},
+
+		// Custom props
+
+		/**
 		 * Specifies which material design icon should be used for the trailing
-		 * button. Value can be `close`, `arrowRight`, or `undo`.
+		 * button.
+		 * @type {'close'|'arrowRight'|'undo'}
 		 */
 		trailingButtonIcon: {
 			type: String,
@@ -183,12 +215,45 @@ export default {
 	],
 
 	computed: {
-		clearTextLabel() {
-			return this.trailingButtonLabel || t('Clear text')
+		propsAndAttrsToForward() {
+			const predefinedLabels = {
+				undo: t('Undo changes'),
+				close: t('Clear text'),
+				arrowRight: t('Save changes'),
+			}
+
+			return {
+				// Proxy all the HTML attributes
+				...this.$attrs,
+				// Proxy original NcInputField's props
+				...Object.fromEntries(
+					Object.entries(this.$props).filter(([key]) => NcInputFieldProps.has(key)),
+				),
+				// Adjust aria-label for predefined trailing buttons
+				trailingButtonLabel: this.trailingButtonLabel || predefinedLabels[this.trailingButtonIcon],
+			}
 		},
 	},
 
 	methods: {
+		/**
+		 * Focus the input element
+		 *
+		 * @public
+		 */
+		focus() {
+			this.$refs.inputField.focus()
+		},
+
+		/**
+		 * Select all the text in the input
+		 *
+		 * @public
+		 */
+		select() {
+			this.$refs.inputField.select()
+		},
+
 		handleInput(event) {
 			this.$emit('update:value', event.target.value)
 		},

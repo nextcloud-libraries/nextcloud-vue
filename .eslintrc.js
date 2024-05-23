@@ -14,4 +14,19 @@ module.exports = {
 	plugins: [
 		'cypress',
 	],
+	parserOptions: {
+		babelOptions: {
+			plugins: [
+				'@babel/plugin-syntax-import-assertions',
+			],
+		},
+	},
+	rules: {
+		'import/no-unresolved': [
+			'error',
+			{
+				ignore: ['\\?raw$'],
+			},
+		],
+	},
 }

@@ -48,9 +48,9 @@ export default function(compact) {
 	describe(`NcAppSidebar.vue ${compact ? '' : 'not '}in compact mode`, () => {
 		'use strict'
 		// Possible props and actions
-		const title = 'Very long title that will certainly overflow the sidebar width'
-		const subtitles = ['', 'Very long subtitle what will certainly overflow the sidebar width']
-		const titleEditable = [false, true]
+		const name = 'Very long title that will certainly overflow the sidebar width'
+		const subnames = ['', 'Very long subtitle what will certainly overflow the sidebar width']
+		const nameEditable = [false, true]
 		const starred = [null, false, true]
 		const header = ['', '<div style="background: no-repeat center/contain var(--icon-folder-000); height: 100%;" />']
 		const secondary = ['', '<NcActionButton icon="icon-delete">Action1</NcActionButton><NcActionButton icon="icon-delete">Action2</NcActionButton>']
@@ -63,14 +63,14 @@ export default function(compact) {
 			components,
 		}
 
-		subtitles.forEach(subtitle => {
-			titleEditable.forEach(editable => {
+		subnames.forEach(subname => {
+			nameEditable.forEach(editable => {
 				starred.forEach(star => {
 					header.forEach(head => {
 						secondary.forEach(second => {
 							// TODO remove when https://github.com/mjhea0/cypress-visual-regression/pull/56
 							const fileName = sanitize(`NcAppSidebar.vue
-									-subtitle_${subtitle ? 'true' : 'null'}
+									-subname_${subname ? 'true' : 'null'}
 									-starred_${star === null ? 'null' : star ? 'true' : 'false'}
 									-compact_${compact ? 'true' : 'false'}
 									-header_${head ? 'image' : 'none'}
@@ -80,11 +80,11 @@ export default function(compact) {
 
 							const defaultOptions = {
 								propsData: {
-									title,
-									subtitle,
+									name,
+									subname,
 									starred: star,
 									compact,
-									titleEditable: editable,
+									nameEditable: editable,
 								},
 								slots: {
 									default: ['<div />'],
@@ -96,7 +96,11 @@ export default function(compact) {
 
 							it('Renders ' + fileName, () => {
 								cy.mount(NcAppSidebar, defaultOptions)
-								cy.get('.app-sidebar-header').compareSnapshot(fileName)
+								cy.get('.app-sidebar-header')
+									// Ensure cursor is not displayed to prevent flaky tests (flashing input cursor)
+									.invoke('css', 'caret-color', 'transparent')
+									// Compare to "golden" standard
+									.compareSnapshot(fileName)
 							})
 						})
 					})

@@ -1,17 +1,13 @@
 # 
 # Translators:
-# Alex <kekcuha@gmail.com>, 2020
-# Andrey Atapin <atab74@gmail.com>, 2020
-# Nikita Epifanov, 2021
-# Dmitry Plakhov <dim5x@yahoo.com>, 2021
-# Влад <integration.into.society@gmail.com>, 2022
-# Вадим Фещенко, 2022
-# Алексей Хрусталёв, 2022
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Max Smith <sevinfolds@gmail.com>, 2023
+# ashed <craysy@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Алексей Хрусталёв, 2022\n"
-"Language-Team: Russian (https://www.transifex.com/nextcloud/teams/64236/ru/)\n"
+"Last-Translator: ashed <craysy@gmail.com>, 2023\n"
+"Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
@@ -22,8 +18,14 @@ msgstr "{tag} (невидимое)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (ограниченное)"
 
+msgid "a few seconds ago"
+msgstr "несколько секунд назад"
+
 msgid "Actions"
 msgstr "Действия "
+
+msgid "Actions for item with name \"{name}\""
+msgstr "Действия для элемента с названием \"{name}\""
 
 msgid "Activities"
 msgstr "События"
@@ -31,17 +33,41 @@ msgstr "События"
 msgid "Animals & Nature"
 msgstr "Животные и природа "
 
+msgid "Any link"
+msgstr "Любая ссылка"
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr "Всё, чем поделились с той же группой людей, будет отображаться здесь"
+
 msgid "Avatar of {displayName}"
 msgstr "Аватар {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
 msgstr "Фотография {displayName}, {status}"
 
+msgid "away"
+msgstr "отсутствие"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Back to provider selection"
+msgstr "Вернуться к выбору провайдера"
+
 msgid "Cancel changes"
 msgstr "Отменить изменения"
 
+msgid "Change name"
+msgstr "Изменить имя"
+
 msgid "Choose"
 msgstr "Выберите"
+
+msgid "Clear search"
+msgstr "Очистить поиск"
+
+msgid "Clear text"
+msgstr "Очистить текст"
 
 msgid "Close"
 msgstr "Закрыть"
@@ -52,17 +78,42 @@ msgstr "Закрыть модальное окно"
 msgid "Close navigation"
 msgstr "Закрыть навигацию"
 
+msgid "Close sidebar"
+msgstr "Закрыть сайдбар"
+
+msgid "Close Smart Picker"
+msgstr "Закрыть интеллектуальный выбор"
+
+msgid "Collapse menu"
+msgstr "Свернуть меню"
+
 msgid "Confirm changes"
 msgstr "Подтвердить изменения"
 
 msgid "Custom"
 msgstr "Пользовательское"
 
+msgid "do not disturb"
+msgstr "не беспокоить"
+
 msgid "Edit item"
 msgstr "Изменить элемент"
 
-msgid "External documentation for {title}"
-msgstr "Внешняя документация для {title}"
+msgid "Enter link"
+msgstr "Введите ссылку"
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+"Ошибка при получении связанных ресурсов. Если у вас есть какие-либо вопросы,"
+" обратитесь к системному администратору."
+
+msgid "External documentation for {name}"
+msgstr "Внешняя документация для {name}"
+
+msgid "Favorite"
+msgstr "Избранное"
 
 msgid "Flags"
 msgstr "Флаги"
@@ -79,14 +130,20 @@ msgstr "Глобальный"
 msgid "Go back to the list"
 msgstr "Вернуться к списку"
 
-msgid "items"
-msgstr "элементов"
+msgid "Hide password"
+msgstr "Скрыть пароль"
+
+msgid "Load more \"{options}\""
+msgstr "Загрузить больше \"{options}\"\""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Достигнуто ограничение на количество символов в {count}"
 
-msgid "More {dashboardItemType} …"
-msgstr "Больше {dashboardItemType} …"
+msgid "More items …"
+msgstr "Больше элементов..."
+
+msgid "More options"
+msgstr "Больше опций"
 
 msgid "Next"
 msgstr "Следующее"
@@ -94,23 +151,62 @@ msgstr "Следующее"
 msgid "No emoji found"
 msgstr "Эмодзи не найдено"
 
+msgid "No link provider found"
+msgstr "Поставщик ссылок не найден"
+
 msgid "No results"
 msgstr "Результаты отсуствуют"
 
 msgid "Objects"
 msgstr "Объекты"
 
-msgid "Open"
-msgstr "Открыть"
+msgid "offline"
+msgstr "офлайн"
+
+msgid "online"
+msgstr "онлайн"
+
+msgid "Open contact menu"
+msgstr "Открыть меню контакта"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "Открыть ссылку на \"{resourceName}\""
+
+msgid "Open menu"
+msgstr "Открыть меню"
 
 msgid "Open navigation"
 msgstr "Открыть навигацию"
+
+msgid "Open settings menu"
+msgstr "Открыть меню настроек"
+
+msgid "Password is secure"
+msgstr "Пароль надежный"
 
 msgid "Pause slideshow"
 msgstr "Приостановить показ слйдов"
 
 msgid "People & Body"
 msgstr "Люди и тело"
+
+msgid "Pick a date"
+msgstr "Выберите дату"
+
+msgid "Pick a date and a time"
+msgstr "Выберите дату и время"
+
+msgid "Pick a month"
+msgstr "Выберите месяц"
+
+msgid "Pick a time"
+msgstr "Выберите время"
+
+msgid "Pick a week"
+msgstr "Выберите неделю"
+
+msgid "Pick a year"
+msgstr "Выберите год"
 
 msgid "Pick an emoji"
 msgstr "Выберите эмодзи"
@@ -121,14 +217,41 @@ msgstr "Пожалуйста, выберите часовой пояс:"
 msgid "Previous"
 msgstr "Предыдущее"
 
+msgid "Provider icon"
+msgstr "Значок поставщика"
+
+msgid "Raw link {options}"
+msgstr "Необработанная ссылка {options}"
+
+msgid "Related resources"
+msgstr "Связанные ресурсы"
+
 msgid "Search"
 msgstr "Поиск"
+
+msgid "Search emoji"
+msgstr "Поиск эмодзи"
 
 msgid "Search results"
 msgstr "Результаты поиска"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "сек. назад"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "секунд назад"
+
 msgid "Select a tag"
 msgstr "Выберите метку"
+
+msgid "Select provider"
+msgstr "Выбрать поставщика"
+
+msgid "Selected"
+msgstr "Выбрано"
 
 msgid "Settings"
 msgstr "Параметры"
@@ -136,11 +259,20 @@ msgstr "Параметры"
 msgid "Settings navigation"
 msgstr "Навигация по настройкам"
 
+msgid "Show password"
+msgstr "Показать пароль"
+
+msgid "Smart Picker"
+msgstr "Умный выбор"
+
 msgid "Smileys & Emotion"
 msgstr "Смайлики и эмоции"
 
 msgid "Start slideshow"
 msgstr "Начать показ слайдов"
+
+msgid "Start typing to search"
+msgstr "Начните вводить текст для поиска"
 
 msgid "Submit"
 msgstr "Утвердить"
@@ -160,7 +292,8 @@ msgstr "Невозможно найти группу"
 msgid "Undo changes"
 msgstr "Отменить изменения"
 
-msgid "Write message, @ to mention someone, : for emoji autocompletion …"
-msgstr ""
-"Напишите сообщение, @ - чтобы упомянуть кого-то, : - для автозаполнения "
-"эмодзи …"
+msgid "User status: {status}"
+msgstr "Статус пользователя: {status}"
+
+msgid "Write a message …"
+msgstr "Напиши сообщение …"

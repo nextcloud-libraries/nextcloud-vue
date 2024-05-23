@@ -30,9 +30,8 @@ General purpose multiselect component.
 ```vue
 <template>
 	<div class="grid">
-		<div v-for="{ title, props } in selectArray"
+		<div v-for="{ props } in selectArray"
 			class="container">
-			<label :for="props.inputId">{{ title }}</label>
 			<NcSelect v-bind="props"
 				v-model="props.value" />
 		</div>
@@ -40,17 +39,10 @@ General purpose multiselect component.
 </template>
 
 <script>
-import GenRandomId from '../../utils/GenRandomId.js'
-
-const getRandomId = () => {
-	return `select-${GenRandomId()}`
-}
-
 const selectArray = [
 	{
-		title: 'Simple',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'Simple',
 			options: [
 				'foo',
 				'bar',
@@ -62,9 +54,8 @@ const selectArray = [
 	},
 
 	{
-		title: 'Simple (top placement)',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'Simple (top placement)',
 			placement: 'top',
 			options: [
 				'foo',
@@ -77,9 +68,8 @@ const selectArray = [
 	},
 
 	{
-		title: 'Multiple (with placeholder)',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'Multiple (with placeholder)',
 			multiple: true,
 			placeholder: 'Select multiple options',
 			options: [
@@ -93,9 +83,8 @@ const selectArray = [
 	},
 
 	{
-		title: 'Multiple (objects, pre-selected, stay open on select)',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'Multiple (objects, pre-selected, stay open on select)',
 			multiple: true,
 			closeOnSelect: false,
 			options: [
@@ -178,6 +167,64 @@ export default {
 </style>
 ```
 
+### Native form validation example
+
+```vue
+<template>
+	<div class="container">
+		<form class="container__form" @submit.prevent>
+			<NcSelect class="container__select"
+				input-label="Require a selection"
+				:options="options"
+				v-model="singleValue"
+				required />
+			<NcButton native-type="submit">Submit</NcButton>
+		</form>
+
+		<form class="container__form" @submit.prevent>
+			<NcSelect class="container__select"
+				input-label="Require at least one selection"
+				:options="options"
+				v-model="multiValue"
+				multiple
+				required />
+			<NcButton native-type="submit">Submit</NcButton>
+		</form>
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			options: ['foo', 'bar', 'baz', 'qux', 'quux'],
+			singleValue: null,
+			multiValue: [],
+		}
+	},
+}
+</script>
+
+<style>
+.container {
+	display: flex;
+	gap: 0 12px;
+}
+
+.container__form {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	width: 100%;
+	gap: 8px 0;
+}
+
+.container__select {
+	width: 100%;
+}
+</style>
+```
+
 ### No wrap example
 
 The `noWrap` prop is set to `true` and the `max-width` of the multiselect
@@ -187,13 +234,11 @@ parent container is limited to `350px`
 <template>
 	<div class="grid">
 		<div class="container">
-			<label :for="data1.props.inputId">{{ data1.title }}</label>
 			<NcSelect :no-wrap="false"
 				v-bind="data1.props"
 				v-model="data1.props.value" />
 		</div>
 		<div class="container">
-			<label :for="data2.props.inputId">{{ data2.title }}</label>
 			<NcSelect :no-wrap="true"
 				v-bind="data2.props"
 				v-model="data2.props.value" />
@@ -202,16 +247,9 @@ parent container is limited to `350px`
 </template>
 
 <script>
-import GenRandomId from '../../utils/GenRandomId.js'
-
-const getRandomId = () => {
-	return `select-${GenRandomId()}`
-}
-
 const data1 = {
-	title: 'Wrapped (Default)',
 	props: {
-		inputId: getRandomId(),
+		inputLabel: 'Wrapped (Default)',
 		multiple: true,
 		closeOnSelect: false,
 		options: [
@@ -242,9 +280,8 @@ const data1 = {
 }
 
 const data2 = {
-	title: 'Not wrapped',
 	props: {
-		inputId: getRandomId(),
+		inputLabel: 'Not wrapped',
 		multiple: true,
 		closeOnSelect: false,
 		options: [
@@ -305,9 +342,8 @@ export default {
 ```vue
 <template>
 	<div class="grid">
-		<div v-for="{ title, props } in selectArray"
+		<div v-for="{ props } in selectArray"
 			class="container">
-			<label :for="props.inputId">{{ title }}</label>
 			<NcSelect v-bind="props"
 				v-model="props.value" />
 		</div>
@@ -318,78 +354,77 @@ export default {
 import AccountGroup from '@mdi/svg/svg/account-group.svg?raw'
 import Email from '@mdi/svg/svg/email.svg?raw'
 
-import GenRandomId from '../../utils/GenRandomId.js'
-
-const getRandomId = () => {
-	return `select-${GenRandomId()}`
-}
-
 const selectArray = [
 	{
-		title: 'User select',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'User select',
 			userSelect: true,
 			options: [
 				{
 					id: '0-john',
 					displayName: 'John',
 					isNoUser: false,
-					subtitle: 'john@example.org',
+					subname: 'john@example.org',
 					icon: '',
+					// Example of how to show the user status within the option
+					user: '0-john',
+					preloadedUserStatus: {
+						icon: '',
+						status: 'online',
+						message: 'I am online',
+					},
 				},
 				{
 					id: '0-emma',
 					displayName: 'Emma',
 					isNoUser: false,
-					subtitle: 'emma@example.org',
+					subname: 'emma@example.org',
 					icon: '',
 				},
 				{
 					id: '0-olivia',
 					displayName: 'Olivia',
 					isNoUser: false,
-					subtitle: 'olivia@example.org',
+					subname: 'olivia@example.org',
 					icon: '',
 				},
 				{
 					id: '0-noah',
 					displayName: 'Noah',
 					isNoUser: false,
-					subtitle: 'noah@example.org',
+					subname: 'noah@example.org',
 					icon: '',
 				},
 				{
 					id: '0-oliver',
 					displayName: 'Oliver',
 					isNoUser: false,
-					subtitle: 'oliver@example.org',
+					subname: 'oliver@example.org',
 					icon: '',
 				},
 				{
 					id: '1-admin',
 					displayName: 'Admin',
 					isNoUser: true,
-					subtitle: null,
+					subname: null,
 					iconSvg: AccountGroup,
-					iconTitle: 'Group icon',
+					iconName: 'Group icon',
 				},
 				{
 					id: '2-org@example.org',
 					displayName: 'Organization',
 					isNoUser: true,
-					subtitle: 'org@example.org',
+					subname: 'org@example.org',
 					iconSvg: Email,
-					iconTitle: 'Email icon',
+					iconName: 'Email icon',
 				},
 			],
 		},
 	},
 
 	{
-		title: 'Multiple user select (stay open on select)',
 		props: {
-			inputId: getRandomId(),
+			inputLabel: 'Multiple user select (stay open on select)',
 			userSelect: true,
 			multiple: true,
 			closeOnSelect: false,
@@ -398,52 +433,52 @@ const selectArray = [
 					id: '0-john',
 					displayName: 'John',
 					isNoUser: false,
-					subtitle: 'john@example.org',
+					subname: 'john@example.org',
 					icon: '',
 				},
 				{
 					id: '0-emma',
 					displayName: 'Emma',
 					isNoUser: false,
-					subtitle: 'emma@example.org',
+					subname: 'emma@example.org',
 					icon: '',
 				},
 				{
 					id: '0-olivia',
 					displayName: 'Olivia',
 					isNoUser: false,
-					subtitle: 'olivia@example.org',
+					subname: 'olivia@example.org',
 					icon: '',
 				},
 				{
 					id: '0-noah',
 					displayName: 'Noah',
 					isNoUser: false,
-					subtitle: 'noah@example.org',
+					subname: 'noah@example.org',
 					icon: '',
 				},
 				{
 					id: '0-oliver',
 					displayName: 'Oliver',
 					isNoUser: false,
-					subtitle: 'oliver@example.org',
+					subname: 'oliver@example.org',
 					icon: '',
 				},
 				{
 					id: '1-admin',
 					displayName: 'Admin',
 					isNoUser: true,
-					subtitle: null,
+					subname: null,
 					iconSvg: AccountGroup,
-					iconTitle: 'Group icon',
+					iconName: 'Group icon',
 				},
 				{
 					id: '2-org@example.org',
 					displayName: 'Organization',
 					isNoUser: true,
-					subtitle: 'org@example.org',
+					subname: 'org@example.org',
 					iconSvg: Email,
-					iconTitle: 'Email icon',
+					iconName: 'Email icon',
 				},
 			],
 		},
@@ -479,20 +514,37 @@ export default {
 	<VueSelect class="select"
 		:class="{
 			'select--no-wrap': noWrap,
+			'user-select': userSelect,
 		}"
 		v-bind="propsToForward"
 		v-on="$listeners"
 		@search="searchString => search = searchString">
+		<template v-if="!labelOutside && inputLabel" #header>
+			<label :for="inputId"
+				class="select__label">
+				{{ inputLabel }}
+			</label>
+		</template>
+		<template #search="{ attributes, events }">
+			<input :class="['vs__search', inputClass]"
+				v-bind="attributes"
+				:required="inputRequired"
+				v-on="events">
+		</template>
 		<template #open-indicator="{ attributes }">
 			<ChevronDown v-bind="attributes"
 				fill-color="var(--vs-controls-color)"
+				:style="{
+					cursor: !disabled ? 'pointer' : null,
+				}"
 				:size="26" />
 				<!-- Set size to 26 to make up for the increased padding of this icon -->
 		</template>
 		<template #option="option">
 			<NcListItemIcon v-if="userSelect"
 				v-bind="option"
-				:title="option[localLabel]"
+				:avatar-size="24"
+				:name="option[localLabel]"
 				:search="search" />
 			<NcEllipsisedOption v-else
 				:name="String(option[localLabel])"
@@ -501,7 +553,8 @@ export default {
 		<template #selected-option="selectedOption">
 			<NcListItemIcon v-if="userSelect"
 				v-bind="selectedOption"
-				:title="selectedOption[localLabel]"
+				:avatar-size="24"
+				:name="selectedOption[localLabel]"
 				:search="search" />
 			<NcEllipsisedOption v-else
 				:name="String(selectedOption[localLabel])"
@@ -521,8 +574,10 @@ export default {
 </template>
 
 <script>
-import VueSelect from '@nextcloud/vue-select'
 import '@nextcloud/vue-select/dist/vue-select.css'
+
+import Vue from 'vue'
+import { VueSelect } from '@nextcloud/vue-select'
 import {
 	autoUpdate,
 	computePosition,
@@ -531,6 +586,7 @@ import {
 	offset,
 	shift,
 } from '@floating-ui/dom'
+import { t } from '../../l10n.js'
 
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import Close from 'vue-material-design-icons/Close.vue'
@@ -539,7 +595,7 @@ import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
 import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
-import l10n from '../../mixins/l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 export default {
 	name: 'NcSelect',
@@ -552,13 +608,46 @@ export default {
 		VueSelect,
 	},
 
-	mixins: [
-		l10n,
-	],
-
 	props: {
 		// Add VueSelect props to $props
 		...VueSelect.props,
+		...VueSelect.mixins.reduce((allProps, mixin) => ({ ...allProps, ...mixin.props }), {}),
+
+		/**
+		 * `aria-label` for the clear input button
+		 */
+		ariaLabelClearSelected: {
+			type: String,
+			default: t('Clear selected'),
+		},
+
+		/**
+		 * `aria-label` for the search input
+		 *
+		 * A descriptive `inputLabel` is preferred as this is not visible.
+		 */
+		ariaLabelCombobox: {
+			type: String,
+			default: null,
+		},
+
+		/**
+		 * `aria-label` for the listbox element
+		 */
+		ariaLabelListbox: {
+			type: String,
+			default: t('Options'),
+		},
+
+		/**
+		 * Allows to customize the `aria-label` for the deselect-option button
+		 * The default is "Deselect " + optionLabel
+		 * @type {(optionLabel: string) => string}
+		 */
+		ariaLabelDeselectOption: {
+			type: Function,
+			default: (optionLabel) => t('Deselect {option}', { option: optionLabel }),
+		},
 
 		/**
 		 * Append the dropdown element to the end of the body
@@ -637,6 +726,19 @@ export default {
 		},
 
 		/**
+		 * Determines whether the dropdown should be open.
+		 * Receives the component instance as the only argument.
+		 *
+		 * @see https://vue-select.org/api/props.html#dropdownshouldopen
+		 */
+		dropdownShouldOpen: {
+			type: Function,
+			default: ({ noDrop, open }) => {
+				return noDrop ? false : open
+			},
+		},
+
+		/**
 		 * Callback to determine if the provided option should
 		 * match the current search text. Used to determine
 		 * if the option should be displayed.
@@ -645,7 +747,7 @@ export default {
 		 * below
 		 *
 		 * Enabling `userSelect` will automatically set this to filter by the
-		 * `displayName` and `subtitle` properties of the user option object
+		 * `displayName` and `subname` properties of the user option object
 		 * unless this prop is set explicitly
 		 *
 		 * @see https://vue-select.org/api/props.html#filterby
@@ -656,13 +758,39 @@ export default {
 		},
 
 		/**
-		 * Input element id
+		 * Class for the `input`
 		 *
-		 * @see https://vue-select.org/api/props.html#inputid
+		 * Necessary for use in NcActionInput
+		 */
+		inputClass: {
+			type: [String, Object],
+			default: null,
+		},
+
+		/**
+		 * Input element id
 		 */
 		inputId: {
 			type: String,
+			default: () => `select-input-${GenRandomId()}`,
+		},
+
+		/**
+		 * Visible label for the input element
+		 *
+		 * @todo Set default for @nextcloud/vue 9
+		 */
+		inputLabel: {
+			type: String,
 			default: null,
+		},
+
+		/**
+		 * Pass true if you are using an external label
+		 */
+		labelOutside: {
+			type: Boolean,
+			default: false,
 		},
 
 		/**
@@ -721,7 +849,7 @@ export default {
 		/**
 		 * Array of options
 		 *
-		 * @type {Array<string | number | { [key: string | number]: any }>}
+		 * @type {Array<string | number | Record<string | number, any>>}
 		 *
 		 * @see https://vue-select.org/api/props.html#options
 		 */
@@ -741,6 +869,49 @@ export default {
 		},
 
 		/**
+		 * Customized component's response to keydown events while the search input has focus
+		 *
+		 * @see https://vue-select.org/guide/keydown.html#mapkeydown
+		 */
+		mapKeydown: {
+			type: Function,
+			/**
+			 * Patched Vue-Select keydown events handlers map to stop Escape propagation in open select
+			 *
+			 * @param {Record<number, Function>} map - Mapped keyCode to handlers { <keyCode>:<callback> }
+			 * @param {import('@nextcloud/vue-select').VueSelect} vm - VueSelect instance
+			 * @return {Record<number, Function>} patched keydown event handlers
+			 */
+			default(map, vm) {
+				return {
+					...map,
+					/**
+					 * Patched Escape handler to stop propagation from open select
+					 *
+					 * @param {KeyboardEvent} event - default keydown event handler
+					 */
+					27: (event) => {
+						if (vm.open) {
+							event.stopPropagation()
+						}
+						// Default VueSelect's handler
+						map[27](event)
+					},
+				}
+			},
+		},
+
+		/**
+		 * A unique identifier used to generate IDs and DOM attributes. Must be unique for every instance of the component.
+		 *
+		 * @see https://vue-select.org/api/props.html#uid
+		 */
+		uid: {
+			type: String,
+			default: () => GenRandomId(),
+		},
+
+		/**
 		 * When `appendToBody` is true, this sets the placement of the dropdown
 		 *
 		 * @type {'bottom' | 'top'}
@@ -751,10 +922,20 @@ export default {
 		},
 
 		/**
+		 * If false, the focused dropdown option will not be reset when filtered
+		 * options change
+		 */
+		resetFocusOnOptionsChange: {
+			type: Boolean,
+			default: true,
+		},
+
+		/**
 		 * Enable the user selector with avatars
 		 *
 		 * Objects must contain the data expected by the
-		 * [NcAvatar](#/Components/NcAvatar) component
+		 * [NcListItemIcon](#/Components/NcListItemIcon) and
+		 * [NcAvatar](#/Components/NcAvatar) components
 		 */
 		userSelect: {
 			type: Boolean,
@@ -766,13 +947,21 @@ export default {
 		 *
 		 * The `v-model` directive may be used for two-way data binding
 		 *
-		 * @type {string | number | { [key: string | number]: any } | Array<any>}
+		 * @type {string | number | Record<string | number, any> | Array<any>}
 		 *
 		 * @see https://vue-select.org/api/props.html#value
 		 */
 		value: {
 			type: [String, Number, Object, Array],
 			default: null,
+		},
+
+		/**
+		 * Enable if a value is required for native form validation
+		 */
+		required: {
+			type: Boolean,
+			default: false,
 		},
 
 		/**
@@ -800,6 +989,14 @@ export default {
 	},
 
 	computed: {
+		inputRequired() {
+			if (!this.required) {
+				return null
+			}
+			// The <input> itself does not have any value so we set the `required` attribute conditionally
+			return this.value === null || (Array.isArray(this.value) && this.value.length === 0)
+		},
+
 		localCalculatePosition() {
 			if (this.calculatePosition !== null) {
 				return this.calculatePosition
@@ -846,6 +1043,7 @@ export default {
 						Object.assign(dropdownMenu.style, {
 							left: `${x}px`,
 							top: `${y}px`,
+							width: `${component.$refs.toggle.getBoundingClientRect().width}px`,
 						})
 					})
 				}
@@ -861,14 +1059,19 @@ export default {
 		},
 
 		localFilterBy() {
+			// Match the email notation like "Jane <j.doe@example.com>" with the email address as matching group
+			const EMAIL_NOTATION = /[^<]*<([^>]+)/
+
 			if (this.filterBy !== null) {
 				return this.filterBy
 			}
 			if (this.userSelect) {
 				return (option, label, search) => {
-					return (`${label} ${option.subtitle}` || '')
-						.toLocaleLowerCase()
-						.indexOf(search.toLocaleLowerCase()) > -1
+					const match = search.match(EMAIL_NOTATION)
+					return (match && option.subname?.toLocaleLowerCase?.()?.indexOf(match[1].toLocaleLowerCase()) > -1)
+						|| (`${label} ${option.subname}`
+							.toLocaleLowerCase()
+							.indexOf(search.toLocaleLowerCase()) > -1)
 				}
 			}
 			return VueSelect.props.filterBy.default
@@ -885,15 +1088,14 @@ export default {
 		},
 
 		propsToForward() {
-			const {
-				// Props handled by this component
-				noWrap,
-				placement,
-				userSelect,
-				// Props to forward
-				...initialPropsToForward
-			} = this.$props
-
+			const vueSelectKeys = [
+				...Object.keys(VueSelect.props),
+				...VueSelect.mixins.flatMap(mixin => Object.keys(mixin.props ?? {})),
+			]
+			const initialPropsToForward = Object.fromEntries(
+				Object.entries(this.$props)
+					.filter(([key, _value]) => vueSelectKeys.includes(key)),
+			)
 			const propsToForward = {
 				...initialPropsToForward,
 				// Custom overrides of vue-select props
@@ -901,9 +1103,21 @@ export default {
 				filterBy: this.localFilterBy,
 				label: this.localLabel,
 			}
-
 			return propsToForward
 		},
+	},
+
+	mounted() {
+		if (!this.labelOutside && !this.inputLabel && !this.ariaLabelCombobox) {
+			Vue.util.warn('[NcSelect] An `inputLabel` or `ariaLabelCombobox` should be set. If an external label is used, `labelOutside` should be set to `true`.')
+		}
+		if (this.inputLabel && this.ariaLabelCombobox) {
+			Vue.util.warn('[NcSelect] Only one of `inputLabel` or `ariaLabelCombobox` should to be set.')
+		}
+	},
+
+	methods: {
+		t,
 	},
 }
 </script>
@@ -925,10 +1139,13 @@ body {
 	--vs-line-height: var(--default-line-height);
 
 	/* Disabled State */
-	--vs-state-disabled-bg: var(--color-background-dark);
+	--vs-state-disabled-bg: var(--color-background-hover);
 	--vs-state-disabled-color: var(--color-text-maxcontrast);
 	--vs-state-disabled-controls-color: var(--color-text-maxcontrast);
 	--vs-state-disabled-cursor: not-allowed;
+	--vs-disabled-bg: var(--color-background-hover);
+	--vs-disabled-color: var(--color-text-maxcontrast);
+	--vs-disabled-cursor: not-allowed;
 
 	/* Borders */
 	--vs-border-color: var(--color-border-maxcontrast);
@@ -937,11 +1154,14 @@ body {
 	--vs-border-radius: var(--border-radius-large);
 
 	/* Component Controls: Clear, Open Indicator */
-	--vs-controls-color: var(--color-text-maxcontrast);
+	--vs-controls-color: var(--color-main-text);
 
 	/* Selected */
-	--vs-selected-bg: var(--color-background-dark);
+	--vs-selected-bg: var(--color-background-hover);
 	--vs-selected-color: var(--color-main-text);
+	--vs-selected-border-color: var(--vs-border-color);
+	--vs-selected-border-style: var(--vs-border-style);
+	--vs-selected-border-width: var(--vs-border-width);
 
 	/* Dropdown */
 	--vs-dropdown-bg: var(--color-main-background);
@@ -965,6 +1185,9 @@ body {
 
 	/* Transitions */
 	--vs-transition-duration: 0ms;
+
+	/* Actions */
+	--vs-actions-padding: 0 8px 0 4px;
 }
 
 .v-select.select {
@@ -973,9 +1196,37 @@ body {
 	min-width: 260px;
 	margin: 0;
 
+	.select__label {
+		display: block;
+		margin-bottom: 2px;
+	}
+
 	.vs__selected {
-		min-height: 36px;
-		padding: 0 0.5em;
+		height: 32px;
+		padding: 0 8px 0 12px;
+		border-radius: 18px !important;
+		background: var(--color-primary-element-light);
+		border: none;
+	}
+
+	.vs__search {
+		text-overflow: ellipsis;
+	}
+
+	.vs__search, .vs__search:focus {
+		margin: 2px 0 0;
+	}
+
+	.vs__dropdown-toggle {
+		position: relative;
+		max-height: 100px;
+		padding: 0;
+		overflow-y: auto;
+	}
+
+	.vs__actions {
+		position: sticky;
+		top: 0;
 	}
 
 	.vs__clear {
@@ -983,18 +1234,36 @@ body {
 	}
 
 	&.vs--open .vs__dropdown-toggle {
-		border-color: var(--color-primary);
+		outline: 2px solid var(--color-main-background);
+		border-color: var(--color-main-text);
 		border-bottom-color: transparent;
 	}
 
-	&:not(.vs--open) .vs__dropdown-toggle:hover {
-		border-color: var(--color-primary);
+	&:not(.vs--disabled, .vs--open) .vs__dropdown-toggle:hover {
+		outline: 2px solid var(--color-main-background);
+		border-color: var(--color-main-text);
+	}
+
+	&.vs--disabled {
+		.vs__search,
+		.vs__selected {
+			color: var(--color-text-maxcontrast);
+		}
+
+		.vs__clear,
+		.vs__deselect {
+			display: none;
+		}
 	}
 
 	&--no-wrap {
 		.vs__selected-options {
 			flex-wrap: nowrap;
 			overflow: auto;
+			min-width: unset;
+			.vs__selected {
+				min-width: unset;
+			}
 		}
 	}
 
@@ -1003,31 +1272,18 @@ body {
 			.vs__dropdown-toggle {
 				border-radius: 0 0 var(--vs-border-radius) var(--vs-border-radius);
 				border-top-color: transparent;
-				border-bottom-color: var(--color-primary);
+				border-bottom-color: var(--color-main-text);
 			}
 		}
 	}
 
-	// Hide search from dom if unused to prevent unneeded flex wrap
-	.vs__search[readonly] {
-		position: absolute;
-	}
-	// If search if hidden, ensure that the height of the search is the same
 	.vs__selected-options {
+		// If search is hidden, ensure that the height of the search is the same
 		min-height: 40px; // 36px search height + 4px search margin
-	}
 
-	/**
-	 * Fix overlow of selected options
-	 * There is an upstream pull request, if it is merged and released remove this fix
-	 * https://github.com/sagalbot/vue-select/pull/1756
-	 */
-	&:not(.select--no-wrap) {
-		.vs__selected-options {
-			min-width: 0;
-			.vs__selected {
-				min-width: 0;
-			}
+		// Hide search from dom if unused to prevent unneeded flex wrap
+		.vs__selected ~ .vs__search[readonly] {
+			position: absolute;
 		}
 	}
 
@@ -1037,35 +1293,60 @@ body {
 			.vs__selected {
 				// Fix `max-width` for `position: absolute`
 				max-width: 100%;
+				// Fix color to be accessible
+				opacity: 1;
+				color: var(--color-text-maxcontrast);
 			}
+		}
+		.vs__selected-options {
+			flex-wrap: nowrap;
+		}
+		.vs__selected {
+			background: unset !important;
 		}
 	}
 }
 
 .vs__dropdown-menu {
-	border-color: var(--color-primary);
-	padding: 4px;
+	border-color: var(--color-main-text) !important;
+	outline: none !important;
+	box-shadow:
+		-2px 0 0 var(--color-main-background), // Right
+		0 2px 0 var(--color-main-background), // Bottom
+		2px 0 0 var(--color-main-background), // Left
+		!important;
+	padding: 4px !important;
 
 	&--floating {
+		/* Fallback styles overidden by programmatically set inline styles */
 		width: max-content;
 		position: absolute;
 		top: 0;
 		left: 0;
 
 		&-placement-top {
-			border-radius: var(--vs-border-radius) var(--vs-border-radius) 0 0;
-			border-top-style: var(--vs-border-style);
-			border-bottom-style: none;
-			box-shadow: 0px -1px 1px 0px var(--color-box-shadow);
+			border-radius: var(--vs-border-radius) var(--vs-border-radius) 0 0 !important;
+			border-top-style: var(--vs-border-style) !important;
+			border-bottom-style: none !important;
+			box-shadow:
+				0 -2px 0 var(--color-main-background), // Top
+				-2px 0 0 var(--color-main-background), // Right
+				2px 0 0 var(--color-main-background), // Left
+				!important
 		}
 	}
 
 	.vs__dropdown-option {
-		border-radius: 6px;
+		border-radius: 6px !important;
 	}
 
 	.vs__no-options {
-		color: var(--color-text-lighter)
+		color: var(--color-text-lighter) !important;
 	}
+}
+
+// Selected users require slightly different padding
+.user-select .vs__selected {
+	padding: 0 2px !important;
 }
 </style>

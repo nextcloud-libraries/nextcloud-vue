@@ -20,24 +20,16 @@
  *
  */
 
-import { IsMobileState } from '../../utils/IsMobileState.js'
+import { isMobileState } from '../../composables/useIsMobile/index.js'
 
 export default {
-	data() {
-		return {
-			isMobile: false,
-		}
-	},
-	mounted() {
-		IsMobileState.$on('changed', this.onIsMobileChanged)
-		this.isMobile = IsMobileState.isMobile
-	},
-	beforeDestroy() {
-		IsMobileState.$off('changed', this.onIsMobileChanged)
-	},
-	methods: {
-		onIsMobileChanged(val) {
-			this.isMobile = val
+	computed: {
+		/**
+		 * @deprecated Is to be removed in v9.0.0 with Vue 3 migration.
+		 *             Use `composables/useIsMobile` instead.
+		 */
+		isMobile() {
+			return isMobileState.value
 		},
 	},
 }

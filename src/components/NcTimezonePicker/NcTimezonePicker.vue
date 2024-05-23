@@ -41,13 +41,15 @@ export default {
 </docs>
 
 <template>
-	<NcSelect :value="selectedTimezone"
-		:options="options"
-		:multiple="false"
+	<NcSelect :aria-label-combobox="t('Search for time zone')"
 		:clearable="false"
+		:filter-by="filterBy"
+		:multiple="false"
+		:options="options"
 		:placeholder="placeholder"
 		:selectable="isSelectable"
-		:filter-by="filterBy"
+		:uid="uid"
+		:value="selectedTimezone"
 		label="label"
 		@option:selected="change" />
 </template>
@@ -58,6 +60,7 @@ import {
 	getSortedTimezoneList,
 } from './timezone.js'
 import getTimezoneManager from './timezoneDataProviderService.js'
+import GenRandomId from '../../utils/GenRandomId.js'
 import NcSelect from '../NcSelect/index.js'
 import { t } from '../../l10n.js'
 
@@ -80,6 +83,13 @@ export default {
 		value: {
 			type: String,
 			default: 'floating',
+		},
+		/**
+		 * ID of the inner vue-select element, can be used for labels like: `vs-${uid}__combobox`
+		 */
+		uid: {
+			type: [String, Number],
+			default: () => `tz-${GenRandomId(5)}`,
 		},
 	},
 	emits: ['input'],
@@ -105,21 +115,26 @@ export default {
 			/**
 			 * Since NcSelect does not support groups,
 			 * we create an object with the grouped timezones and continent labels.
+			 *
+			 * NOTE for now we are removing the grouping from the fields to fix an accessibility issue
+			 * in the future, other options can be introduced to better display the different areas
 			 */
 			let timezonesGrouped = []
 			Object.values(timezoneList).forEach(group => {
 				// Add an entry as group label
-				timezonesGrouped.push({
-					label: group.continent,
-					timezoneId: `tz-group__${group.continent}`,
-					regions: group.regions,
-				})
+				// timezonesGrouped.push({
+				// label: group.continent,
+				// timezoneId: `tz-group__${group.continent}`,
+				// regions: group.regions,
+				// })
 				timezonesGrouped = timezonesGrouped.concat(group.regions)
 			})
 			return timezonesGrouped
 		},
 	},
 	methods: {
+		t,
+
 		change(newValue) {
 			if (!newValue) {
 				return

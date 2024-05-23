@@ -1,125 +1,280 @@
 # 
 # Translators:
-# Kervoas-Le Nabat Ewen <ewenkervoas@free.fr>, 2020
+# Joas Schilling, 2023
+# Transifex Bot <>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Kervoas-Le Nabat Ewen <ewenkervoas@free.fr>, 2020\n"
-"Language-Team: Breton (https://www.transifex.com/nextcloud/teams/64236/br/)\n"
+"Last-Translator: Transifex Bot <>, 2023\n"
+"Language-Team: Breton (https://app.transifex.com/nextcloud/teams/64236/br/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: br\n"
 "Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:170
 msgid "{tag} (invisible)"
 msgstr "{tag} (diwelus)"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:173
 msgid "{tag} (restricted)"
 msgstr "{tag} (bevennet)"
 
-#: src/components/Actions/Actions.vue:249
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "Oberioù"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:176
+msgid "Actions for item with name \"{name}\""
+msgstr ""
+
 msgid "Activities"
 msgstr "Oberiantizoù"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:174
 msgid "Animals & Nature"
 msgstr "Loened & Natur"
 
-#: src/components/ColorPicker/ColorPicker.vue:145
+msgid "Any link"
+msgstr ""
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+
+msgid "Avatar of {displayName}"
+msgstr ""
+
+msgid "Avatar of {displayName}, {status}"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
+msgid "Cancel changes"
+msgstr ""
+
+msgid "Change name"
+msgstr ""
+
 msgid "Choose"
 msgstr "Dibab"
 
-#: src/components/Modal/Modal.vue:117
+msgid "Clear search"
+msgstr ""
+
+msgid "Clear text"
+msgstr ""
+
 msgid "Close"
 msgstr "Serriñ"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:181
+msgid "Close modal"
+msgstr ""
+
+msgid "Close navigation"
+msgstr ""
+
+msgid "Close sidebar"
+msgstr ""
+
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
+msgid "Confirm changes"
+msgstr ""
+
 msgid "Custom"
 msgstr "Personelañ"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:180
+msgid "Edit item"
+msgstr ""
+
+msgid "Enter link"
+msgstr ""
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+
+msgid "External documentation for {name}"
+msgstr ""
+
+msgid "Favorite"
+msgstr ""
+
 msgid "Flags"
 msgstr "Bannieloù"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:175
 msgid "Food & Drink"
 msgstr "Boued & Evajoù"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:171
 msgid "Frequently used"
 msgstr "Implijet alies"
 
-#: src/components/Modal/Modal.vue:166
+msgid "Global"
+msgstr ""
+
+msgid "Go back to the list"
+msgstr ""
+
+msgid "Hide password"
+msgstr ""
+
+msgid "Load more \"{options}\"\""
+msgstr ""
+
+msgid "Message limit of {count} characters reached"
+msgstr ""
+
+msgid "More items …"
+msgstr ""
+
+msgid "More options"
+msgstr ""
+
 msgid "Next"
 msgstr "Da heul"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:168
 msgid "No emoji found"
 msgstr "Emoji ebet kavet"
 
-#: src/components/Multiselect/Multiselect.vue:174
-#: src/components/MultiselectTags/MultiselectTags.vue:78
-#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:38
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "Disoc'h ebet"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:178
 msgid "Objects"
 msgstr "Traoù"
 
-#: src/components/Modal/Modal.vue:302
+msgid "Open contact menu"
+msgstr ""
+
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
+
+msgid "Open navigation"
+msgstr ""
+
+msgid "Open settings menu"
+msgstr ""
+
+msgid "Password is secure"
+msgstr ""
+
 msgid "Pause slideshow"
 msgstr "Arsav an diaporama"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:173
 msgid "People & Body"
 msgstr "Tud & Korf"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:153
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
 msgid "Pick an emoji"
 msgstr "Choaz un emoji"
 
-#: src/components/Modal/Modal.vue:144
+msgid "Please select a time zone:"
+msgstr ""
+
 msgid "Previous"
 msgstr "A-raok"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:167
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
+msgid "Related resources"
+msgstr ""
+
 msgid "Search"
 msgstr "Klask"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:170
+msgid "Search emoji"
+msgstr ""
+
 msgid "Search results"
 msgstr "Disoc'hoù an enklask"
 
-#: src/components/MultiselectTags/MultiselectTags.vue:100
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "Choaz ur c'hlav"
 
-#: src/components/AppNavigationSettings/AppNavigationSettings.vue:57
+msgid "Select provider"
+msgstr ""
+
 msgid "Settings"
 msgstr "Arventennoù"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:172
+msgid "Settings navigation"
+msgstr ""
+
+msgid "Show password"
+msgstr ""
+
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "Smileyioù & Fromoù"
 
-#: src/components/Modal/Modal.vue:302
 msgid "Start slideshow"
 msgstr "Kregiñ an diaporama"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:179
+msgid "Start typing to search"
+msgstr ""
+
+msgid "Submit"
+msgstr ""
+
 msgid "Symbols"
 msgstr "Arouezioù"
 
-#: src/components/EmojiPicker/EmojiPicker.vue:177
 msgid "Travel & Places"
 msgstr "Beaj & Lec'hioù"
 
-#: src/components/SettingsSelectGroup/SettingsSelectGroup.vue:143
+msgid "Type to search time zone"
+msgstr ""
+
 msgid "Unable to search the group"
 msgstr "Dibosupl eo klask ar strollad"
+
+msgid "Undo changes"
+msgstr ""
+
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
+msgstr ""

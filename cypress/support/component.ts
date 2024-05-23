@@ -13,6 +13,12 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
+// setup styles
+import '../../styleguide/assets/default.css'
+import '../../styleguide/assets/additional.css'
+import '../../styleguide/assets/icons.css'
+
+// cypress commands
 import './commands'
 import { mount } from '@cypress/vue2'
 
@@ -20,13 +26,15 @@ import { mount } from '@cypress/vue2'
 // your custom command.
 // Alternatively, can be defined in cypress/support/component.d.ts
 // with a <reference path="./component" /> at the top of your spec.
-// declare global {
-// 	namespace Cypress {
-// 		interface Chainable {
-// 			mount: typeof mount
-// 		}
-// 	}
-// }
+
+declare global {
+	// eslint-disable-next-line @typescript-eslint/no-namespace
+	namespace Cypress {
+		interface Chainable {
+			mount: typeof mount
+		}
+	}
+}
 
 // Example use:
 // cy.mount(MyComponent)

@@ -22,35 +22,39 @@
   -->
 
 <template>
-	<li class="action">
-		<router-link :to="to"
-			:exact="exact"
-			class="action-router focusable"
+	<li class="action" :role="isInSemanticMenu && 'presentation'">
+		<RouterLink :to="to"
 			:aria-label="ariaLabel"
+			:exact="exact"
+			:title="title"
+			class="action-router focusable"
 			rel="nofollow noreferrer noopener"
+			:role="isInSemanticMenu && 'menuitem'"
 			@click.native="onClick">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
 				<span :class="[isIconUrl ? 'action-router__icon--url' : icon]"
 					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
-					class="action-router__icon" />
+					class="action-router__icon"
+					aria-hidden="true" />
 			</slot>
 
-			<!-- long text with title -->
-			<p v-if="title">
-				<strong class="action-router__title">
-					{{ title }}
+			<!-- long text with name -->
+			<span v-if="name"
+				class="action-router__longtext-wrapper">
+				<strong class="action-router__name">
+					{{ name }}
 				</strong>
 				<br>
 				<!-- white space is shown on longtext, so we can't
 				put {{ text }} on a new line for code readability -->
 				<span class="action-router__longtext" v-text="text" />
-			</p>
+			</span>
 
 			<!-- long text only -->
 			<!-- white space is shown on longtext, so we can't
 			put {{ text }} on a new line for code readability -->
-			<p v-else-if="isLongText"
+			<span v-else-if="isLongText"
 				class="action-router__longtext"
 				v-text="text" />
 
@@ -59,7 +63,7 @@
 
 			<!-- fake slot to gather inner text -->
 			<slot v-if="false" />
-		</router-link>
+		</RouterLink>
 	</li>
 </template>
 
@@ -70,6 +74,13 @@ export default {
 	name: 'NcActionRouter',
 
 	mixins: [ActionTextMixin],
+
+	inject: {
+		isInSemanticMenu: {
+			from: 'NcActions:isSemanticMenu',
+			default: false,
+		},
+	},
 
 	props: {
 		/**

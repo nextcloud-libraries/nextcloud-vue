@@ -1,15 +1,12 @@
 # 
 # Translators:
-# George Kitsoukakis <norhorn@gmail.com>, 2020
-# Efstathios Iosifidis <iefstathios@gmail.com>, 2021
-# Gerasimos Theotokatos, 2021
-# Nik Pap, 2022
-# Georgia Konstantiou, 2022
+# Joas Schilling, 2023
+# Transifex Bot <>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Georgia Konstantiou, 2022\n"
-"Language-Team: Greek (https://www.transifex.com/nextcloud/teams/64236/el/)\n"
+"Last-Translator: Transifex Bot <>, 2023\n"
+"Language-Team: Greek (https://app.transifex.com/nextcloud/teams/64236/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,14 +17,23 @@ msgstr "{tag} (αόρατο)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (περιορισμένο)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "Ενέργειες"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "Δραστηριότητες"
 
 msgid "Animals & Nature"
 msgstr "Ζώα & Φύση"
+
+msgid "Any link"
+msgstr ""
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Οτιδήποτε μοιράζεται με την ίδια ομάδα ατόμων θα εμφανίζεται εδώ"
@@ -38,14 +44,23 @@ msgstr "Άβαταρ του {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Άβαταρ του {displayName}, {status}"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "Ακύρωση αλλαγών"
 
-msgid "Change title"
-msgstr "Αλλαγή τίτλου"
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "Επιλογή"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear text"
 msgstr "Εκκαθάριση κειμένου"
@@ -62,6 +77,12 @@ msgstr "Κλείσιμο πλοήγησης"
 msgid "Close sidebar"
 msgstr "Κλείσιμο πλευρικής μπάρας"
 
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "Επιβεβαίωση αλλαγών"
 
@@ -71,14 +92,16 @@ msgstr "Προσαρμογή"
 msgid "Edit item"
 msgstr "Επεξεργασία"
 
-msgid "Error getting related resources"
-msgstr "Σφάλμα λήψης σχετικών πόρων"
+msgid "Enter link"
+msgstr ""
 
-msgid "Error parsing svg"
-msgstr "Σφάλμα ανάλυσης svg"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
 
-msgid "External documentation for {title}"
-msgstr "Εξωτερική τεκμηρίωση για {title}"
+msgid "External documentation for {name}"
+msgstr ""
 
 msgid "Favorite"
 msgstr "Αγαπημένα"
@@ -101,11 +124,17 @@ msgstr "Επιστροφή στην αρχική λίστα "
 msgid "Hide password"
 msgstr "Απόκρυψη κωδικού πρόσβασης"
 
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "Συμπληρώθηκε το όριο των {count} χαρακτήρων του μηνύματος"
 
 msgid "More items …"
 msgstr "Περισσότερα στοιχεία …"
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "Επόμενο"
@@ -113,20 +142,29 @@ msgstr "Επόμενο"
 msgid "No emoji found"
 msgstr "Δεν βρέθηκε emoji"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "Κανένα αποτέλεσμα"
 
 msgid "Objects"
 msgstr "Αντικείμενα"
 
-msgid "Open"
-msgstr "Άνοιγμα"
+msgid "Open contact menu"
+msgstr ""
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "Άνοιγμα συνδέσμου στο \"{resourceTitle}\""
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "Άνοιγμα πλοήγησης"
+
+msgid "Open settings menu"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "Ο κωδικός πρόσβασης είναι ασφαλής"
@@ -137,6 +175,24 @@ msgstr "Παύση προβολής διαφανειών"
 msgid "People & Body"
 msgstr "Άνθρωποι & Σώμα"
 
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
 msgid "Pick an emoji"
 msgstr "Επιλέξτε ένα emoji"
 
@@ -146,17 +202,38 @@ msgstr "Παρακαλούμε επιλέξτε μια ζώνη ώρας:"
 msgid "Previous"
 msgstr "Προηγούμενο"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
 msgid "Related resources"
 msgstr "Σχετικοί πόροι"
 
 msgid "Search"
 msgstr "Αναζήτηση"
 
+msgid "Search emoji"
+msgstr ""
+
 msgid "Search results"
 msgstr "Αποτελέσματα αναζήτησης"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "Επιλογή ετικέτας"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "Ρυθμίσεις"
@@ -167,11 +244,17 @@ msgstr "Πλοήγηση ρυθμίσεων"
 msgid "Show password"
 msgstr "Εμφάνιση κωδικού πρόσβασης"
 
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "Φατσούλες & Συναίσθημα"
 
 msgid "Start slideshow"
 msgstr "Έναρξη προβολής διαφανειών"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "Υποβολή"

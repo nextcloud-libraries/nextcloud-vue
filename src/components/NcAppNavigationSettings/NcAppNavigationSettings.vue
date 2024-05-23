@@ -27,26 +27,28 @@
 		<div id="app-settings__header">
 			<button class="settings-button"
 				type="button"
+				:aria-expanded="open ? 'true' : 'false'"
+				aria-controls="app-settings__content"
 				@click="toggleMenu">
 				<Cog class="settings-button__icon" :size="20" />
-				<span class="settings-button__label">{{ title }}</span>
+				<span class="settings-button__label">{{ name }}</span>
 			</button>
 		</div>
-		<transition name="slide-up">
+		<Transition name="slide-up">
 			<div v-show="open" id="app-settings__content">
 				<slot />
 			</div>
-		</transition>
+		</Transition>
 	</div>
 </template>
 
 <script>
 import { t } from '../../l10n.js'
-import { excludeClickOutsideClasses } from '../../mixins/index.js'
+import { clickOutsideOptions } from '../../mixins/index.js'
 
 import Cog from 'vue-material-design-icons/Cog.vue'
 
-import { directive as ClickOutside } from 'v-click-outside'
+import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 
 export default {
 	directives: {
@@ -56,10 +58,10 @@ export default {
 		Cog,
 	},
 	mixins: [
-		excludeClickOutsideClasses,
+		clickOutsideOptions,
 	],
 	props: {
-		title: {
+		name: {
 			type: String,
 			required: false,
 			default: t('Settings'),
@@ -68,11 +70,15 @@ export default {
 	data() {
 		return {
 			open: false,
-			clickOutsideConfig: {
-				handler: this.closeMenu,
-				middleware: this.clickOutsideMiddleware,
-			},
 		}
+	},
+	computed: {
+		clickOutsideConfig() {
+			return [
+				this.closeMenu,
+				this.clickOutsideOptions,
+			]
+		},
 	},
 	methods: {
 		toggleMenu() {

@@ -1,0 +1,280 @@
+# 
+# Translators:
+# Joas Schilling, 2023
+# Transifex Bot <>, 2023
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Transifex Bot <>, 2023\n"
+"Language-Team: Finnish (Finland) (https://app.transifex.com/nextcloud/teams/64236/fi_FI/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: fi_FI\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "{tag} (invisible)"
+msgstr "{tag} (näkymätön)"
+
+msgid "{tag} (restricted)"
+msgstr "{tag} (rajoitettu)"
+
+msgid "a few seconds ago"
+msgstr ""
+
+msgid "Actions"
+msgstr "Toiminnot"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
+
+msgid "Activities"
+msgstr "Aktiviteetit"
+
+msgid "Animals & Nature"
+msgstr "Eläimet & luonto"
+
+msgid "Any link"
+msgstr ""
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+
+msgid "Avatar of {displayName}"
+msgstr "Käyttäjän {displayName} avatar"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "Käyttäjän {displayName} avatar, {status}"
+
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
+msgid "Cancel changes"
+msgstr "Peruuta muutokset"
+
+msgid "Change name"
+msgstr ""
+
+msgid "Choose"
+msgstr "Valitse"
+
+msgid "Clear search"
+msgstr ""
+
+msgid "Clear text"
+msgstr ""
+
+msgid "Close"
+msgstr "Sulje"
+
+msgid "Close modal"
+msgstr ""
+
+msgid "Close navigation"
+msgstr "Sulje navigaatio"
+
+msgid "Close sidebar"
+msgstr ""
+
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
+msgid "Confirm changes"
+msgstr "Vahvista muutokset"
+
+msgid "Custom"
+msgstr "Mukautettu"
+
+msgid "Edit item"
+msgstr "Muokkaa kohdetta"
+
+msgid "Enter link"
+msgstr ""
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+
+msgid "External documentation for {name}"
+msgstr ""
+
+msgid "Favorite"
+msgstr ""
+
+msgid "Flags"
+msgstr "Liput"
+
+msgid "Food & Drink"
+msgstr "Ruoka & juoma"
+
+msgid "Frequently used"
+msgstr "Usein käytetyt"
+
+msgid "Global"
+msgstr "Yleinen"
+
+msgid "Go back to the list"
+msgstr "Siirry takaisin listaan"
+
+msgid "Hide password"
+msgstr ""
+
+msgid "Load more \"{options}\"\""
+msgstr ""
+
+msgid "Message limit of {count} characters reached"
+msgstr "Viestin merkken enimmäisimäärä {count} täynnä "
+
+msgid "More items …"
+msgstr ""
+
+msgid "More options"
+msgstr ""
+
+msgid "Next"
+msgstr "Seuraava"
+
+msgid "No emoji found"
+msgstr "Emojia ei löytynyt"
+
+msgid "No link provider found"
+msgstr ""
+
+msgid "No results"
+msgstr "Ei tuloksia"
+
+msgid "Objects"
+msgstr "Esineet & asiat"
+
+msgid "Open contact menu"
+msgstr ""
+
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
+
+msgid "Open navigation"
+msgstr "Avaa navigaatio"
+
+msgid "Open settings menu"
+msgstr ""
+
+msgid "Password is secure"
+msgstr ""
+
+msgid "Pause slideshow"
+msgstr "Keskeytä diaesitys"
+
+msgid "People & Body"
+msgstr "Ihmiset & keho"
+
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
+msgid "Pick an emoji"
+msgstr "Valitse emoji"
+
+msgid "Please select a time zone:"
+msgstr "Valitse aikavyöhyke:"
+
+msgid "Previous"
+msgstr "Edellinen"
+
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
+msgid "Related resources"
+msgstr ""
+
+msgid "Search"
+msgstr "Etsi"
+
+msgid "Search emoji"
+msgstr ""
+
+msgid "Search results"
+msgstr "Hakutulokset"
+
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
+msgid "Select a tag"
+msgstr "Valitse tagi"
+
+msgid "Select provider"
+msgstr ""
+
+msgid "Settings"
+msgstr "Asetukset"
+
+msgid "Settings navigation"
+msgstr "Asetusnavigaatio"
+
+msgid "Show password"
+msgstr ""
+
+msgid "Smart Picker"
+msgstr ""
+
+msgid "Smileys & Emotion"
+msgstr "Hymiöt & tunteet"
+
+msgid "Start slideshow"
+msgstr "Aloita diaesitys"
+
+msgid "Start typing to search"
+msgstr ""
+
+msgid "Submit"
+msgstr "Lähetä"
+
+msgid "Symbols"
+msgstr "Symbolit"
+
+msgid "Travel & Places"
+msgstr "Matkustus & kohteet"
+
+msgid "Type to search time zone"
+msgstr "Kirjoita etsiäksesi aikavyöhyke"
+
+msgid "Unable to search the group"
+msgstr "Ryhmää ei voi hakea"
+
+msgid "Undo changes"
+msgstr "Kumoa muutokset"
+
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
+msgstr ""

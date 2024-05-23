@@ -3,8 +3,9 @@
   - @copyright Copyright (c) 2020 Simon Belbeoch <simon.belbeoch@gmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Ferdinand Thiessen <opensource@fthiessen.de>
   -
-  - @license GNU AGPL version 3 or any later version
+  - @license AGPL-3.0-or-later
   -
   - This program is free software: you can redistribute it and/or modify
   - it under the terms of the GNU Affero General Public License as
@@ -27,38 +28,45 @@
 	<div class="app-sidebar-tabs">
 		<!-- tabs navigation -->
 		<!-- 33 and 34 code is for page up and page down -->
-		<nav v-if="hasMultipleTabs"
+		<div v-if="hasMultipleTabs"
 			role="tablist"
 			class="app-sidebar-tabs__nav"
-			@keydown.left.exact.prevent="focusPreviousTab"
-			@keydown.right.exact.prevent="focusNextTab"
-			@keydown.tab.exact.prevent="focusActiveTabContent"
-			@keydown.33.exact.prevent="focusFirstTab"
-			@keydown.34.exact.prevent="focusLastTab">
-			<ul>
-				<li v-for="tab in tabs" :key="tab.id" class="app-sidebar-tabs__tab">
-					<a :id="tab.id"
-						:aria-controls="`tab-${tab.id}`"
-						:aria-selected="activeTab === tab.id"
-						:class="{ active: activeTab === tab.id }"
-						:data-id="tab.id"
-						:href="`#tab-${tab.id}`"
-						:tabindex="activeTab === tab.id ? undefined : -1"
-						role="tab"
-						@click.prevent="setActive(tab.id)">
-						<span class="app-sidebar-tabs__tab-icon">
-							<NcVNodes v-if="hasMdIcon(tab)" :vnodes="tab.$slots.icon[0]" />
-							<span v-else :class="tab.icon" />
-						</span>
-						{{ tab.name }}
-					</a>
-				</li>
-			</ul>
-		</nav>
+			@keydown.left.exact.prevent.stop="focusPreviousTab"
+			@keydown.right.exact.prevent.stop="focusNextTab"
+			@keydown.tab.exact.prevent.stop="focusActiveTabContent"
+			@keydown.home.exact.prevent.stop="focusFirstTab"
+			@keydown.end.exact.prevent.stop="focusLastTab"
+			@keydown.page-up.exact.prevent.stop="focusFirstTab"
+			@keydown.page-down.exact.prevent.stop="focusLastTab">
+			<NcCheckboxRadioSwitch v-for="tab in tabs"
+				:key="tab.id"
+				:aria-controls="`tab-${tab.id}`"
+				:aria-selected="String(activeTab === tab.id)"
+				:button-variant="true"
+				:checked="activeTab === tab.id"
+				:wrapper-id="`tab-button-${tab.id}`"
+				:tabindex="activeTab === tab.id ? 0 : -1"
+				button-variant-grouped="horizontal"
+				class="app-sidebar-tabs__tab"
+				:class="{ active: tab.id === activeTab }"
+				role="tab"
+				type="button"
+				@update:checked="setActive(tab.id)">
+				<span class="app-sidebar-tabs__tab-caption">
+					{{ tab.name }}
+				</span>
+				<template #icon>
+					<NcVNodes :vnodes="tab.renderIcon()">
+						<span class="app-sidebar-tabs__tab-icon" :class="tab.icon" />
+					</NcVNodes>
+				</template>
+			</NcCheckboxRadioSwitch>
+		</div>
 
 		<!-- tabs content -->
 		<div :class="{'app-sidebar-tabs__content--multiple': hasMultipleTabs}"
 			class="app-sidebar-tabs__content">
+			<!-- @slot Tabs content - NcAppSidebarTab components or any content if there is no tabs -->
 			<slot />
 		</div>
 	</div>
@@ -66,23 +74,25 @@
 
 <script>
 import NcVNodes from '../NcVNodes/index.js'
-
-import Vue from 'vue'
-
-const IsValidString = function(value) {
-	return value && typeof value === 'string' && value.trim() !== ''
-}
-
-const IsValidStringWithoutSpaces = function(value) {
-	return IsValidString(value) && value.indexOf(' ') === -1
-}
+import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/index.js'
 
 export default {
 	name: 'NcAppSidebarTabs',
 
 	components: {
-		// Component to render the material design icon (vnodes)
+		NcCheckboxRadioSwitch,
 		NcVNodes,
+	},
+
+	provide() {
+		return {
+			registerTab: this.registerTab,
+			unregisterTab: this.unregisterTab,
+			// Getter as an alternative to Vue 2.7 computed(() => this.activeTab)
+			getActiveTab: () => this.activeTab,
+			// Used to check whether the tab header is shown so the tabs can reference the tab header for `aria-labelledby` or not
+			isTablistShown: () => this.hasMultipleTabs,
+		}
 	},
 
 	props: {
@@ -100,26 +110,28 @@ export default {
 	data() {
 		return {
 			/**
-			 * The tab component instances to build the tab navbar from.
+			 * Tab descriptions from the passed NcSidebarTab components' props to build the tab navbar from.
 			 */
 			tabs: [],
 			/**
-			 * The id of the currently active tab.
+			 * Local active (open) tab's ID. It allows to use component without active.sync
 			 */
 			activeTab: '',
-			/**
-			 * Dummy array to react on slot changes.
-			 */
-			children: [],
 		}
 	},
 
 	computed: {
+		/**
+		 * Has multiple tabs. If only one tab - its content is shown without navigation
+		 *
+		 * @return {boolean}
+		 */
 		hasMultipleTabs() {
 			return this.tabs.length > 1
 		},
+
 		currentTabIndex() {
-			return this.tabs.findIndex(tab => tab.id === this.activeTab)
+			return this.tabs.findIndex((tab) => tab.id === this.activeTab)
 		},
 	},
 
@@ -130,18 +142,6 @@ export default {
 				this.updateActive()
 			}
 		},
-
-		children() {
-			this.updateTabs()
-		},
-	},
-
-	mounted() {
-		// Init the tabs list
-		this.updateTabs()
-
-		// Let's make the children list reactive
-		this.children = this.$children
 	},
 
 	methods: {
@@ -153,6 +153,9 @@ export default {
 		 */
 		setActive(id) {
 			this.activeTab = id
+			/**
+			 * @property {string} active - active tab's id
+			 */
 			this.$emit('update:active', this.activeTab)
 		},
 
@@ -164,7 +167,7 @@ export default {
 			if (this.currentTabIndex > 0) {
 				this.setActive(this.tabs[this.currentTabIndex - 1].id)
 			}
-			this.focusActiveTab() // focus nav item
+			this.focusActiveTab()
 		},
 
 		/**
@@ -175,7 +178,7 @@ export default {
 			if (this.currentTabIndex < this.tabs.length - 1) {
 				this.setActive(this.tabs[this.currentTabIndex + 1].id)
 			}
-			this.focusActiveTab() // focus nav item
+			this.focusActiveTab()
 		},
 
 		/**
@@ -184,7 +187,7 @@ export default {
 		 */
 		focusFirstTab() {
 			this.setActive(this.tabs[0].id)
-			this.focusActiveTab() // focus nav item
+			this.focusActiveTab()
 		},
 
 		/**
@@ -193,14 +196,14 @@ export default {
 		 */
 		focusLastTab() {
 			this.setActive(this.tabs[this.tabs.length - 1].id)
-			this.focusActiveTab() // focus nav item
+			this.focusActiveTab()
 		},
 
 		/**
 		 * Focus the current active tab
 		 */
 		focusActiveTab() {
-			this.$el.querySelector('#' + this.activeTab).focus()
+			this.$el.querySelector(`#tab-button-${this.activeTab}`).focus()
 		},
 
 		/**
@@ -216,62 +219,40 @@ export default {
 		 */
 		updateActive() {
 			this.activeTab = this.active
-				&& this.tabs.findIndex(tab => tab.id === this.active) !== -1
+			&& this.tabs.some(tab => tab.id === this.active)
 				? this.active
 				: this.tabs.length > 0
 					? this.tabs[0].id
 					: ''
 		},
 
-		hasMdIcon(tab) {
-			return tab?.$slots?.icon
+		/**
+		 * Register child tab in the tabs
+		 *
+		 * @param {object} tab child tab passed to slot
+		 */
+		registerTab(tab) {
+			this.tabs.push(tab)
+			this.tabs.sort((a, b) => {
+				if (a.order === b.order) {
+					return OC.Util.naturalSortCompare(a.name, b.name)
+				}
+				return a.order - b.order
+			})
+			this.updateActive()
 		},
 
 		/**
-		 * Manually update the sidebar tabs according to $slots.default
+		 * Unregister child tab from the tabs
+		 *
+		 * @param {string} id tab's id
 		 */
-		updateTabs() {
-			if (!this.$slots.default) {
-				this.tabs = []
-				return
+		unregisterTab(id) {
+			const tabIndex = this.tabs.findIndex((tab) => tab.id === id)
+			if (tabIndex !== -1) {
+				this.tabs.splice(tabIndex, 1)
 			}
-
-			// Find all valid children (AppSidebarTab, other components, text nodes, etc.)
-			const children = this.$slots.default.filter(elem => elem.tag || elem.text.trim())
-
-			// Find all valid instances of AppSidebarTab
-			const invalidTabs = []
-			const tabs = children.reduce((tabs, tabNode) => {
-				const tab = tabNode.componentInstance
-				// Make sure all required props are provided and valid
-				if (IsValidString(tab?.name)
-					&& IsValidStringWithoutSpaces(tab?.id)
-					&& (IsValidStringWithoutSpaces(tab?.icon) || tab?.$slots?.icon)) {
-					tabs.push(tab)
-				} else {
-					invalidTabs.push(tabNode)
-				}
-				return tabs
-			}, [])
-
-			// Tabs are optional, but you can use either tabs or non-tab-content only
-			if (tabs.length !== 0 && tabs.length !== children.length) {
-				Vue.util.warn('Mixing tabs and non-tab-content is not possible.')
-				invalidTabs.map(invalid => console.debug('Ignoring invalid tab', invalid))
-			}
-
-			// We sort the tabs by their order or by their name
-			this.tabs = tabs.sort((a, b) => {
-				const orderA = a.order || 0
-				const orderB = b.order || 0
-				if (orderA === orderB) {
-					return OC.Util.naturalSortCompare(a.name, b.name)
-				}
-				return orderA - orderB
-			})
-
-			// Init active tab if exists
-			if (this.tabs.length > 0) {
+			if (this.activeTab === id) {
 				this.updateActive()
 			}
 		},
@@ -286,81 +267,63 @@ export default {
 	flex: 1 1 100%;
 
 	&__nav {
-		margin-top: 10px;
-		ul {
-			display: flex;
-			justify-content: stretch;
-		}
-	}
-	&__tab {
-		display: block;
-		flex: 1 1;
-		min-width: 0;
-		text-align: center;
-		a {
-			position: relative;
-			display: block;
-			overflow: hidden;
-			padding: 25px 5px 5px 5px;
-			transition: color var(--animation-quick), opacity var(--animation-quick), border-color var(--animation-quick);
-			text-align: center;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			opacity: $opacity_normal;
-			color: var(--color-main-text);
-			border-bottom: 1px solid var(--color-border);
+		display: flex;
+		justify-content: stretch;
+		margin: 10px 8px 0 8px;
+		border-bottom: 1px solid var(--color-border);
 
-			&:hover,
-			&:focus,
-			&:active,
-			&.active {
-				opacity: $opacity_full;
-				.app-sidebar-tabs__tab-icon {
-					opacity: $opacity_full;
+		// Override checkbox-radio-switch styles so that it looks like tabs
+		& :deep(.checkbox-radio-switch--button-variant) {
+			border: unset !important;
+			border-radius: 0 !important;
+			.checkbox-content {
+				padding: var(--default-grid-baseline);
+				border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0 !important;
+				margin: 0 !important;
+				border-bottom: var(--default-grid-baseline) solid transparent !important;
+				.checkbox-content__icon--checked > * {
+					color: var(--color-main-text) !important;
 				}
 			}
-			&:not(.active):hover,
-			&:not(.active):focus {
-				border-bottom-color: var(--color-background-darker);
-				box-shadow: inset 0 -1px 0 var(--color-background-darker);
-			}
-			&.active {
-				color: var(--color-main-text);
-				border-bottom-color: var(--color-main-text);
-				box-shadow: inset 0 -1px 0 var(--color-main-text);
-				font-weight: bold;
-			}
-			// differentiate the two for accessibility purpose
-			// make sure the user knows she's focusing the navigation
-			// and can use arrows/home/pageup...
-			&:focus {
-				border-bottom-color: var(--color-primary-element);
-				box-shadow: inset 0 -1px 0 var(--color-primary-element);
+			&.checkbox-radio-switch--checked .checkbox-radio-switch__content{
+				background: transparent !important;
+				color: var(--color-main-text) !important;
+				border-bottom: var(--default-grid-baseline) solid var(--color-primary-element) !important;
 			}
 		}
 	}
 
-	&__tab-icon {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 25px;
-		transition: opacity var(--animation-quick);
-		opacity: $opacity_normal;
+	&__tab {
+		flex: 1 1;
+		&.active {
+			color: var(--color-primary-element);
+		}
 
-		& > span {
+		&-caption {
+			flex: 0 1 100%;
+			width: 100%;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			text-align: center;
+		}
+
+		&-icon {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			background-size: 16px;
+			background-size: 20px;
+		}
+
+		// Override max-width to use all available space
+		:deep(.checkbox-radio-switch__content) {
+			max-width: unset;
 		}
 	}
 
 	&__content {
 		position: relative;
-		// take full available height
-		min-height: 0;
+		min-height: 256px;
 		height: 100%;
 		// force the use of the tab component if more than one tab
 		// you can just put raw content if you don't use tabs

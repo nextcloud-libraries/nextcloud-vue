@@ -2,6 +2,7 @@
  - @copyright Copyright (c) 2019 Marco Ambrosini <marcoambrosini@icloud.com>
  -
  - @author Marco Ambrosini <marcoambrosini@icloud.com>
+ - @author Grigorii K. Shartsev <me@shgk.me>
  -
  - @license GNU AGPL version 3 or any later version
  -
@@ -88,8 +89,8 @@ export default {
 <template>
 	<div class="container1">
 		<NcButton @click="open = !open"> Click Me </NcButton>
-		<NcColorPicker :value="color" @input="updateColor" :shown.sync="open">
-			<div :style="{'background-color': color}" class="color1" />
+		<NcColorPicker :value="color" @input="updateColor" :shown.sync="open" @submit="open = false" v-slot="{ attrs }">
+			<div v-bind="attrs" :style="{'background-color': color}" class="color1" />
 		</NcColorPicker>
 	</div>
 </template>
@@ -159,33 +160,43 @@ export default {
 </docs>
 
 <template>
-	<NcPopover v-bind="$attrs" v-on="$listeners" @apply-hide="handleClose">
-		<template #trigger>
-			<slot />
+	<NcPopover popup-role="dialog"
+		:container="container"
+		v-bind="$attrs"
+		v-on="$listeners"
+		@apply-hide="handleClose">
+		<template #trigger="slotProps">
+			<slot v-bind="slotProps" />
 		</template>
-		<div class="color-picker"
+		<div role="dialog"
+			class="color-picker"
+			aria-modal="true"
+			:aria-label="t('Color picker')"
 			:class="{ 'color-picker--advanced-fields': advanced && advancedFields }">
-			<transition name="slide" mode="out-in">
+			<Transition name="slide" mode="out-in">
 				<div v-if="!advanced" class="color-picker__simple">
-					<button v-for="(color, index) in palette"
+					<label v-for="({ color, name }, index) in normalizedPalette"
 						:key="index"
-						:style="{'background-color': color }"
+						:style="{ backgroundColor: color }"
 						class="color-picker__simple-color-circle"
-						:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }"
-						type="button"
-						@click="pickColor(color)">
-						<Check v-if="color === currentColor"
-							:size="20" />
-					</button>
+						:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }">
+						<Check v-if="color === currentColor" :size="20" :fill-color="contrastColor" />
+						<input type="radio"
+							class="hidden-visually"
+							:aria-label="name"
+							:name="`color-picker-${uid}`"
+							:checked="color === currentColor"
+							@click="pickColor(color)">
+					</label>
 				</div>
-				<Chrome v-if="advanced"
+				<Chrome v-else
 					v-model="currentColor"
 					class="color-picker__advanced"
 					:disable-alpha="true"
 					:disable-fields="!advancedFields"
 					@input="pickColor" />
-			</transition>
-			<div class="color-picker__navigation">
+			</Transition>
+			<div v-if="!paletteOnly" class="color-picker__navigation">
 				<NcButton v-if="advanced"
 					type="tertiary"
 					:aria-label="ariaBack"
@@ -194,7 +205,7 @@ export default {
 						<ArrowLeft :size="20" />
 					</template>
 				</NcButton>
-				<NcButton v-if="!advanced"
+				<NcButton v-else
 					type="tertiary"
 					:aria-label="ariaMore"
 					@click="handleMoreSettings">
@@ -202,8 +213,7 @@ export default {
 						<DotsHorizontal :size="20" />
 					</template>
 				</NcButton>
-				<NcButton v-if="advanced"
-					type="primary"
+				<NcButton type="primary"
 					@click="handleConfirm">
 					{{ t('Choose') }}
 				</NcButton>
@@ -216,7 +226,9 @@ export default {
 import NcButton from '../NcButton/index.js'
 import NcPopover from '../NcPopover/index.js'
 import { t } from '../../l10n.js'
-import GenColors from '../../utils/GenColors.js'
+import { defaultPalette } from '../../utils/GenColors.js'
+
+import GenRandomId from '../../utils/GenRandomId.js'
 
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
 import Check from 'vue-material-design-icons/Check.vue'
@@ -224,10 +236,7 @@ import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 import { Chrome } from 'vue-color'
 
-const rgbToHex = function(color) {
-	const hex = color.toString(16)
-	return hex.length === 1 ? '0' + hex : hex
-}
+const HEX_REGEX = /^#([a-f0-9]{3}|[a-f0-9]{6})$/i
 
 export default {
 	name: 'NcColorPicker',
@@ -259,16 +268,36 @@ export default {
 		},
 
 		/**
-		 * Provide a custom array of hexadecimal colors to show
+		 * Limit selectable colors to only the provided palette
+		 */
+		paletteOnly: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Provide a custom array of colors to show.
+		 * Can be either an array of string hexadecimal colors,
+		 * or an array of object with a `color` property with hexadecimal color string,
+		 * and a `name` property for accessibility.
+		 *
+		 * @type {string[] | {color: string, name: string}[]}
 		 */
 		palette: {
 			type: Array,
-			default: () => GenColors(4).map(color => {
-				return '#' + rgbToHex(color.r) + rgbToHex(color.g) + rgbToHex(color.b)
-			}),
-			validator(palette) {
-				return palette.every(color => /^#([a-f0-9]{3}|[a-f0-9]{6})$/i.test(color))
-			},
+			default: () => [...defaultPalette],
+			validator: (palette) => palette.every(item =>
+				(typeof item === 'string' && HEX_REGEX.test(item))
+				|| (typeof item === 'object' && item.color && HEX_REGEX.test(item.color)),
+			),
+		},
+
+		/**
+		 * Selector for the popover container
+		 */
+		container: {
+			type: [String, Object, Element, Boolean],
+			default: 'body',
 		},
 	},
 
@@ -287,6 +316,26 @@ export default {
 			ariaBack: t('Back'),
 			ariaMore: t('More options'),
 		}
+	},
+
+	computed: {
+		normalizedPalette() {
+			return this.palette.map((item) => ({
+				color: typeof item === 'object' ? item.color : item,
+				name: typeof item === 'object' && item.name
+					? item.name
+					: t('A color with a HEX value {hex}', { hex: item.color }),
+			}))
+		},
+
+		uid() {
+			return GenRandomId()
+		},
+		contrastColor() {
+			const black = '#000000'
+			const white = '#FFFFFF'
+			return (this.calculateLuma(this.currentColor) > 0.5) ? black : white
+		},
 	},
 
 	watch: {
@@ -350,6 +399,28 @@ export default {
 			this.$emit('input', color)
 
 		},
+
+		/**
+		 * Calculate luminance of provided hex color
+		 *
+		 * @param {string} color the hex color
+		 */
+		 calculateLuma(color) {
+			const [red, green, blue] = this.hexToRGB(color)
+			return (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255
+		},
+
+		/**
+		 * Convert hex color to RGB
+		 *
+		 * @param {string} hex the hex color
+		 */
+		 hexToRGB(hex) {
+			const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+			return result
+				? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)]
+				: null
+		},
 	},
 }
 
@@ -389,6 +460,9 @@ export default {
 			border: 1px solid rgba(0, 0, 0, 0.25);
 			border-radius: 50%;
 			font-size: 16px;
+			&:focus-within {
+				outline: 2px solid var(--color-main-text);
+			}
 			&:hover {
 				opacity: .6;
 			}

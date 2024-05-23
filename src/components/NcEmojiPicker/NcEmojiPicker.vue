@@ -84,21 +84,59 @@ This component allows the user to pick an emoji.
 	}
 </script>
 ```
+
+* Allow unselecting a previously set emoji.
+
+```vue
+<template>
+	<div>
+		<NcEmojiPicker
+			:show-preview="true"
+			:allow-unselect="true"
+			:selected-emoji="emoji"
+			@select="select"
+			@unselect="unselect"
+			style="display: inline-block">
+			<NcButton> Click Me </NcButton>
+		</NcEmojiPicker>
+		<span>selected emoji: {{ emoji }}</span>
+	</div>
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				emoji: '',
+			}
+		},
+		methods: {
+			select(emoji) {
+				this.emoji = emoji
+			},
+			unselect() {
+				this.emoji = ''
+			},
+		},
+	}
+</script>
+```
+
 </docs>
 
 <template>
 	<NcPopover :shown.sync="open"
 		:container="container"
+		popup-role="dialog"
 		v-bind="$attrs"
 		v-on="$listeners"
 		@after-show="afterShow"
 		@after-hide="afterHide">
-		<template #trigger>
-			<slot />
+		<template #trigger="slotProps">
+			<slot v-bind="slotProps" />
 		</template>
 		<Picker ref="picker"
 			:auto-focus="false /* We manage the input focus ourselves */"
-			color="var(--color-primary)"
+			color="var(--color-primary-element)"
 			:data="emojiIndex"
 			:emoji="previewFallbackEmoji"
 			:i18n="i18n"
@@ -107,25 +145,121 @@ This component allows the user to pick an emoji.
 			:per-line="8"
 			:picker-styles="{ width: '320px' }"
 			:show-preview="showPreview"
-			:title="previewFallbackTitle"
+			:skin="currentSkinTone"
+			:show-skin-tones="false"
+			:title="previewFallbackName"
+			role="dialog"
+			aria-modal="true"
+			:aria-label="t('Emoji picker')"
 			v-bind="$attrs"
-			@select="select" />
+			@select="select">
+			<template #searchTemplate="slotProps">
+				<div class="search__wrapper">
+					<NcTextField ref="search"
+						class="search"
+						:value.sync="search"
+						:label="t('Search')"
+						:label-visible="true"
+						:placeholder="i18n.search"
+						trailing-button-icon="close"
+						:trailing-button-label="t('Clear search')"
+						:show-trailing-button="search !== ''"
+						@trailing-button-click="clearSearch(); slotProps.onSearch(search);"
+						@update:value="slotProps.onSearch(search)" />
+					<NcColorPicker palette-only
+						:container="container"
+						:palette="skinTonePalette"
+						:value="currentColor.color"
+						@update:value="onChangeSkinTone">
+						<NcButton :aria-label="t('Skin tone')" type="tertiary-no-background">
+							<template #icon>
+								<IconCircle :style="{ color: currentColor.color }" :title="currentColor.name" :size="20" />
+							</template>
+						</NcButton>
+					</NcColorPicker>
+				</div>
+			</template>
+			<template v-if="allowUnselect && selectedEmoji" #customCategory>
+				<div class="emoji-mart-category-label">
+					<h3 class="emoji-mart-category-label">
+						{{ t('Selected') }}
+					</h3>
+				</div>
+				<Emoji class="emoji-selected"
+					:data="emojiIndex"
+					:emoji="selectedEmoji"
+					:native="true"
+					:size="32"
+					@click="unselect" />
+				<Emoji class="emoji-delete"
+					:data="emojiIndex"
+					emoji=":x:"
+					:native="true"
+					:size="10"
+					@click="unselect" />
+			</template>
+		</Picker>
 	</NcPopover>
 </template>
 
 <script>
-import NcPopover from '../NcPopover/index.js'
+import { Picker, Emoji, EmojiIndex } from 'emoji-mart-vue-fast'
 import { t } from '../../l10n.js'
+import { getCurrentSkinTone, setCurrentSkinTone } from '../../functions/emoji/emoji.ts'
+import { Color } from '../../utils/GenColors.js'
 
-import { Picker, EmojiIndex } from 'emoji-mart-vue-fast'
 import data from 'emoji-mart-vue-fast/data/all.json'
+import IconCircle from 'vue-material-design-icons/Circle.vue'
+import NcButton from '../NcButton/index.js'
+import NcColorPicker from '../NcColorPicker/NcColorPicker.vue'
+import NcPopover from '../NcPopover/index.js'
+import NcTextField from '../NcTextField/index.js'
+
+// Shared emoji index and skinTone for all NcEmojiPicker instances
+// Will be initialized on the first NcEmojiPicker creating
+let emojiIndex
+
+const i18n = {
+	search: t('Search emoji'),
+	notfound: t('No emoji found'),
+	categories: {
+		search: t('Search results'),
+		recent: t('Frequently used'),
+		smileys: t('Smileys & Emotion'),
+		people: t('People & Body'),
+		nature: t('Animals & Nature'),
+		foods: t('Food & Drink'),
+		activity: t('Activities'),
+		places: t('Travel & Places'),
+		objects: t('Objects'),
+		symbols: t('Symbols'),
+		flags: t('Flags'),
+		custom: t('Custom'),
+	},
+}
+
+const skinTonePalette = [
+	new Color(255, 222, 52, t('Neutral skin color')),
+	new Color(228, 205, 166, t('Light skin tone')),
+	new Color(250, 221, 192, t('Medium light skin tone')),
+	new Color(174, 129, 87, t('Medium skin tone')),
+	new Color(158, 113, 88, t('Medium dark skin tone')),
+	new Color(96, 79, 69, t('Dark skin tone')),
+]
 
 export default {
 	name: 'NcEmojiPicker',
+
 	components: {
-		Picker,
+		Emoji,
+		IconCircle,
+		NcButton,
+		NcColorPicker,
 		NcPopover,
+		NcTextField,
+		Picker,
 	},
+
 	props: {
 		/**
 		 * The emoji-set
@@ -142,6 +276,20 @@ export default {
 			default: false,
 		},
 		/**
+		 * Allow unselecting the selected emoji
+		 */
+		allowUnselect: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Selected emoji to allow unselecting
+		 */
+		selectedEmoji: {
+			type: String,
+			default: '',
+		},
+		/**
 		 * The fallback emoji in the preview section
 		 */
 		previewFallbackEmoji: {
@@ -151,7 +299,7 @@ export default {
 		/**
 		 * The fallback text in the preview section
 		 */
-		previewFallbackTitle: {
+		previewFallbackName: {
 			type: String,
 			default: t('Pick an emoji'),
 		},
@@ -174,37 +322,71 @@ export default {
 	emits: [
 		'select',
 		'select-data',
+		'unselect',
 	],
-	data() {
+
+	setup() {
+		// If this is the first instance of NcEmojiPicker - setup EmojiIndex
+		if (!emojiIndex) {
+			emojiIndex = new EmojiIndex(data)
+		}
+
 		return {
-			emojiIndex: new EmojiIndex(data),
-			i18n: {
-				search: t('Search'),
-				notfound: t('No emoji found'),
-				categories: {
-					search: t('Search results'),
-					recent: t('Frequently used'),
-					smileys: t('Smileys & Emotion'),
-					people: t('People & Body'),
-					nature: t('Animals & Nature'),
-					foods: t('Food & Drink'),
-					activity: t('Activities'),
-					places: t('Travel & Places'),
-					objects: t('Objects'),
-					symbols: t('Symbols'),
-					flags: t('Flags'),
-					custom: t('Custom'),
-				},
-			},
+			// Non-reactive constants
+			emojiIndex,
+			skinTonePalette,
+			i18n,
+		}
+	},
+
+	data() {
+		const currentSkinTone = getCurrentSkinTone()
+
+		return {
+			/**
+			 * The current active color from the skin tone palette
+			 */
+			currentColor: skinTonePalette[currentSkinTone - 1],
+			/**
+			 * The current active skin tone
+			 * @type {1|2|3|4|5|6}
+			 */
+			currentSkinTone,
+			search: '',
 			open: false,
 		}
 	},
+
 	computed: {
 		native() {
 			return this.activeSet === 'native'
 		},
 	},
+
 	methods: {
+		t,
+
+		clearSearch() {
+			this.search = ''
+			const input = this.$refs.search?.$refs.inputField?.$refs.input
+			if (input) {
+				input.focus()
+			}
+		},
+
+		/**
+		 * Update the current skin tone by the result of the color picker
+		 * @param {string} color Color set
+		 */
+		onChangeSkinTone(color) {
+			const index = this.skinTonePalette.findIndex((tone) => tone.color.toLowerCase() === color.toLowerCase())
+			if (index > -1) {
+				this.currentSkinTone = index + 1
+				this.currentColor = this.skinTonePalette[index]
+				setCurrentSkinTone(this.currentSkinTone)
+			}
+		},
+
 		select(emojiObject) {
 			/**
 			 * Emits a string containing the emoji e.g. '👩🏿‍💻'
@@ -221,13 +403,17 @@ export default {
 			}
 		},
 
+		unselect() {
+			this.$emit('unselect')
+		},
+
 		afterShow() {
 			// add focus trap in modal
 			const picker = this.$refs.picker
 			picker.$el.addEventListener('keydown', this.checkKeyEvent)
 
 			// set focus on input search field
-			const input = picker.$refs.search.$el.querySelector('input')
+			const input = this.$refs.search?.$refs.inputField?.$refs.input
 			if (input) {
 				input.focus()
 			}
@@ -245,7 +431,7 @@ export default {
 			}
 			const picker = this.$refs.picker
 			const focusableList = picker.$el.querySelectorAll(
-				'button, input'
+				'button, input',
 			)
 			const last = focusableList.length - 1
 			// escape early if only 1 or no elements to focus
@@ -268,7 +454,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~emoji-mart-vue-fast/css/emoji-mart.css';
+@import 'emoji-mart-vue-fast/css/emoji-mart.css';
 
 .emoji-mart {
 	background-color: var(--color-main-background) !important;
@@ -304,7 +490,7 @@ export default {
 	}
 
 	.emoji-mart-search input:focus-visible {
-		box-shadow: inset 0 0 0 2px var(--color-primary);
+		box-shadow: inset 0 0 0 2px var(--color-primary-element);
 		outline: none;
 	}
 
@@ -321,7 +507,7 @@ export default {
 			padding: 12px 4px;
 			height: auto;
 			&:focus-visible {
-				/* box-shadow: inset 0 0 0 2px var(--color-primary); */
+				/* box-shadow: inset 0 0 0 2px var(--color-primary-element); */
 				outline: 2px solid var(--color-primary-element);
 			}
 		}
@@ -366,5 +552,29 @@ export default {
 		}
 	}
 
+}
+</style>
+
+<style scoped lang="scss">
+.search {
+	&__wrapper {
+		display: flex;
+		flex-direction: row;
+		gap: 4px; // for focus-visible outlines
+		align-items: end;
+		padding: 4px 8px;
+	}
+}
+
+.row-selected {
+	button, span {
+		vertical-align: middle;
+	}
+}
+
+.emoji-delete {
+	vertical-align: top;
+	margin-left: -21px;
+	margin-top: -3px;
 }
 </style>

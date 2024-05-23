@@ -34,7 +34,7 @@ This component is made to be used in the Nextcloud top header.
 			<div>
 				<input placeholder="Search for files, comments, contacts..." type="search" style="width: 99%;" />
 				<NcEmptyContent
-					title="Search"
+					name="Search"
 					description="Start typing to search">
 					<template #icon>
 						<Magnify />
@@ -64,22 +64,36 @@ export default {
 </docs>
 
 <template>
-	<div :id="id"
+	<component :is="wrapperTag"
+		:id="id"
+		ref="headerMenu"
 		v-click-outside="clickOutsideConfig"
+		:aria-labelledby="isNav ? triggerId : null"
 		:class="{ 'header-menu--opened': opened }"
-		class="header-menu">
-		<!-- Open trigger icon -->
-		<a ref="trigger"
+		class="header-menu"
+		v-on="listeners">
+		<!-- Trigger -->
+		<NcButton :id="isNav ? triggerId : null"
+			ref="trigger"
+			type="tertiary-no-background"
 			class="header-menu__trigger"
-			href="#"
 			:aria-label="ariaLabel"
+			:aria-describedby="description ? descriptionId : null"
 			:aria-controls="`header-menu-${id}`"
 			:aria-expanded="opened.toString()"
 			@click.prevent="toggleMenu">
-			<!-- @slot Icon trigger slot. Make sure the svg path
+			<template #icon>
+				<!-- @slot Icon trigger slot. Make sure the svg path
 				is at least 16px. Usually mdi icon works at 20px -->
-			<slot name="trigger" />
-		</a>
+				<slot name="trigger" />
+			</template>
+		</NcButton>
+
+		<span v-if="description"
+			:id="descriptionId"
+			class="header-menu__description hidden-visually">
+			{{ description }}
+		</span>
 
 		<!-- Visual triangle -->
 		<div v-show="opened" class="header-menu__carret" />
@@ -87,32 +101,38 @@ export default {
 		<!-- Menu opened content -->
 		<div v-show="opened"
 			:id="`header-menu-${id}`"
-			class="header-menu__wrapper"
-			role="menu">
+			class="header-menu__wrapper">
 			<div ref="content" class="header-menu__content">
 				<!-- @slot Main content -->
 				<slot />
 			</div>
 		</div>
-	</div>
+	</component>
 </template>
 
 <script>
-import { directive as ClickOutside } from 'v-click-outside'
+import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
 
-import excludeClickOutsideClasses from '../../mixins/excludeClickOutsideClasses/index.js'
+import GenRandomId from '../../utils/GenRandomId.js'
+import { clickOutsideOptions } from '../../mixins/index.js'
 import { getTrapStack } from '../../utils/focusTrap.js'
+
+import NcButton from '../NcButton/index.js'
 
 export default {
 	name: 'NcHeaderMenu',
+
+	components: {
+		NcButton,
+	},
 
 	directives: {
 		ClickOutside,
 	},
 
 	mixins: [
-		excludeClickOutsideClasses,
+		clickOutsideOptions,
 	],
 
 	props: {
@@ -139,6 +159,26 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Pass `true` if the header menu is used for website navigation
+		 *
+		 * The wrapper tag will be set to `nav` and its `aria-labelledby`
+		 * will be associated with the menu open button
+		 */
+		isNav: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Additional visually hidden description text for the menu
+		 * open button
+		 */
+		description: {
+			type: String,
+			default: null,
+		},
 	},
 
 	emits: [
@@ -155,12 +195,31 @@ export default {
 			focusTrap: null,
 			opened: this.open,
 			shortcutsDisabled: window.OCP?.Accessibility?.disableKeyboardShortcuts?.(),
-
-			clickOutsideConfig: {
-				handler: this.closeMenu,
-				middleware: this.clickOutsideMiddleware,
-			},
+			triggerId: GenRandomId(),
+			descriptionId: GenRandomId(),
 		}
+	},
+
+	computed: {
+		wrapperTag() {
+			return this.isNav ? 'nav' : 'div'
+		},
+
+		clickOutsideConfig() {
+			return [
+				this.closeMenu,
+				this.clickOutsideOptions,
+			]
+		},
+
+		listeners() {
+			if (this.isNav) {
+				return {
+					focusout: this.onFocusOut,
+				}
+			}
+			return null
+		},
 	},
 
 	watch: {
@@ -244,12 +303,21 @@ export default {
 		},
 
 		/**
+		 * @param {FocusEvent} event The focus event
+		 */
+		onFocusOut(event) {
+			if (!this.$refs.headerMenu.contains(event.relatedTarget)) {
+				this.closeMenu()
+			}
+		},
+
+		/**
 		 * Add focus trap for accessibility.
 		 * Shall only be used when all children are mounted
 		 * and available in the DOM. We use $nextTick for that.
 		 */
 		async useFocusTrap() {
-			if (this.focusTrap) {
+			if (this.isNav || this.focusTrap) {
 				return
 			}
 			// Init focus trap
@@ -279,20 +347,14 @@ $externalMargin: 8px;
 	width: var(--header-height);
 	height: var(--header-height);
 
-	&__trigger {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: var(--header-height);
+	#{&}__trigger {
+		width: 100% !important;
 		height: var(--header-height);
-		margin: 0;
-		padding: 0;
-		cursor: pointer;
 		opacity: .85;
 
 		// header is filled with primary or image background
-		filter: var(--background-image-invert-if-bright);
-		color: #fff !important;
+		filter: none !important;
+		color: var(--color-primary-text) !important;
 	}
 
 	&--opened &__trigger,
@@ -302,15 +364,16 @@ $externalMargin: 8px;
 		opacity: 1;
 	}
 
-	&__trigger:focus-visible {
-		outline: none;
+	#{&}__trigger:focus-visible {
+		outline: none !important;
+		box-shadow: none !important;
 	}
 
 	&__wrapper {
 		position: fixed;
 		z-index: 2000;
 		top: 50px;
-		right: 0;
+		inset-inline-end: 0;
 		box-sizing: border-box;
 		margin: 0 $externalMargin;
 		padding: 8px;
@@ -325,7 +388,7 @@ $externalMargin: 8px;
 		position: absolute;
 		z-index: 2001; // Because __wrapper is 2000.
 		bottom: 0;
-		left: calc(50% - 10px);
+		inset-inline-start: calc(50% - 10px);
 		width: 0;
 		height: 0;
 		content: ' ';
@@ -346,4 +409,9 @@ $externalMargin: 8px;
 	}
 }
 
+@media only screen and (max-width: $breakpoint-small-mobile) {
+	.header-menu {
+		width: $clickable-area;
+	}
+}
 </style>

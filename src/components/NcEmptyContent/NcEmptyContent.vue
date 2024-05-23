@@ -24,12 +24,12 @@
 ### Basic use
 
 Use this component to display a message about an empty content.
-Providing an icon, title, and a description is strongly advised.
+Providing an icon, name, and a description is strongly advised.
 
 ```
 <template>
-	<NcEmptyContent
-		title="No comments">
+	<NcEmptyContent name="No comments"
+		description="Start writing comments and they will appear here.">
 		<template #icon>
 			<Comment />
 		</template>
@@ -37,7 +37,7 @@ Providing an icon, title, and a description is strongly advised.
 </template>
 
 <script>
-import Comment from 'vue-material-design-icons/Comment'
+import Comment from 'vue-material-design-icons/Comment.vue'
 
 export default {
 	components: {
@@ -46,9 +46,37 @@ export default {
 }
 </script>
 ```
+#### With custom svg
 
-You can also customize the title using the `#title` slot
-and add actions.
+```
+<template>
+	<NcEmptyContent
+		name="No files in here">
+		<template #icon>
+			<NcIconSvgWrapper :svg="folderSvg" />
+		</template>
+	</NcEmptyContent>
+</template>
+
+<script>
+import folderSvg from '@mdi/svg/svg/folder.svg?raw'
+
+export default {
+	components: {
+		Comment,
+	},
+	data() {
+		return {
+			folderSvg,
+		}
+	},
+}
+</script>
+```
+
+You can also customize the name using the `#name` slot
+and add actions. But to keep the style consistent across Nextcloud
+consider only using header elements as the root elements for the name slot.
 
 ```
 <template>
@@ -57,9 +85,9 @@ and add actions.
 		<template #icon>
 			<Comment />
 		</template>
-		<template #title>
-			<h1 class="empty-content__title">
-				No Comments
+		<template #name>
+			<h1 class="empty-content__name">
+				No comments
 			</h1>
 		</template>
 		<template #action>
@@ -71,7 +99,35 @@ and add actions.
 </template>
 
 <script>
-import Comment from 'vue-material-design-icons/Comment'
+import Comment from 'vue-material-design-icons/Comment.vue'
+
+export default {
+	components: {
+		Comment,
+	},
+}
+</script>
+```
+
+Similar to the `#name` slot, you could also use the `#description` slot.
+The content will be rendered within a paragraph so you can use any inline element,
+like a link.
+
+```
+<template>
+	<NcEmptyContent
+		name="No comments">
+		<template #icon>
+			<Comment />
+		</template>
+		<template #description>
+			<a href="https://en.wikipedia.org/wiki/Comment">What is even a comment?</a>
+		</template>
+	</NcEmptyContent>
+</template>
+
+<script>
+import Comment from 'vue-material-design-icons/Comment.vue'
 
 export default {
 	components: {
@@ -84,17 +140,21 @@ export default {
 
 <template>
 	<div class="empty-content" role="note">
-		<div v-if="$slots.icon" class="empty-content__icon">
+		<div v-if="$slots.icon" class="empty-content__icon" aria-hidden="true">
 			<!-- @slot Optional material design icon -->
 			<slot name="icon" />
 		</div>
-		<slot name="title">
-			<h2 v-if="hasTitle" class="empty-content__title">
-				{{ title }}
-			</h2>
+		<!-- @slot Optional name if not set as property, shall be enclosed by a header element -->
+		<slot name="name">
+			<span v-if="hasName" class="empty-content__name">
+				{{ name }}
+			</span>
 		</slot>
-		<p v-if="hasDescription">
-			{{ description }}
+		<p v-if="hasDescription" class="empty-content__description">
+			<!-- @slot Optional formatted description rendered inside a paragraph -->
+			<slot name="description">
+				{{ description }}
+			</slot>
 		</p>
 		<div v-if="$slots.action" class="empty-content__action">
 			<!-- @slot Optional slot for a button or the like -->
@@ -108,11 +168,19 @@ export default {
 	name: 'NcEmptyContent',
 
 	props: {
-		title: {
+		/**
+		 * A header message about an empty content shown
+		 * @example 'No comments'
+		 */
+		name: {
 			type: String,
 			default: '',
 		},
 
+		/**
+		 * Desription of the empty content
+		 * @example 'No comments yet, start the conversation!'
+		 */
 		description: {
 			type: String,
 			default: '',
@@ -120,11 +188,14 @@ export default {
 	},
 
 	computed: {
-		hasTitle() {
-			return this.title !== ''
+		hasName() {
+			return this.name !== ''
 		},
+		/**
+		 * Check if a description is given as either property or slot
+		 */
 		hasDescription() {
-			return this.description !== ''
+			return this.description !== '' || this.$slots.description?.[0]
 		},
 	},
 }
@@ -135,7 +206,9 @@ export default {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	margin-top: 20vh;
+	justify-content: center;
+	/* In case of using in a flex container - flex in advance */
+	flex-grow: 1;
 
 	.modal-wrapper & {
 		margin-top: 5vh;
@@ -155,14 +228,23 @@ export default {
 		background-size: 64px;
 
 		:deep(svg) {
-			width: 64px;
-			height: 64px;
+			width: 64px !important;
+			height: 64px !important;
+			max-width: 64px !important;
+			max-height: 64px !important;
 		}
 	}
 
-	&__title {
+	&__name {
 		margin-bottom: 10px;
 		text-align: center;
+		font-weight: bold;
+		font-size: 20px;
+		line-height: 30px;
+	}
+
+	&__description {
+		color: var(--color-text-maxcontrast);
 	}
 
 	&__action {

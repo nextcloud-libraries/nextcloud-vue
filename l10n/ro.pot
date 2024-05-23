@@ -1,14 +1,12 @@
 # 
 # Translators:
-# Mădălin Vasiliu <contact@madalinvasiliu.com>, 2022
-# Petre T, 2022
-# Mihai Michael, 2022
-# Daniel Rosca, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Liviu Milies, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Daniel Rosca, 2023\n"
-"Language-Team: Romanian (https://www.transifex.com/nextcloud/teams/64236/ro/)\n"
+"Last-Translator: Liviu Milies, 2023\n"
+"Language-Team: Romanian (https://app.transifex.com/nextcloud/teams/64236/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
@@ -19,14 +17,26 @@ msgstr "{tag} (invizibil)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (restricționat)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "O culoare în HEX value {hex}"
+
+msgid "a few seconds ago"
+msgstr "acum câteva secunde"
+
 msgid "Actions"
 msgstr "Acțiuni"
+
+msgid "Actions for item with name \"{name}\""
+msgstr "Acțiuni pentru elementul cu numele \"{name}\""
 
 msgid "Activities"
 msgstr "Activități"
 
 msgid "Animals & Nature"
 msgstr "Animale și natură"
+
+msgid "Any link"
+msgstr "Orice link"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr ""
@@ -38,14 +48,29 @@ msgstr "Avatarul lui {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatarul lui {displayName}, {status}"
 
+msgid "away"
+msgstr "plecat"
+
+msgid "Back"
+msgstr "Înapoi"
+
+msgid "Back to provider selection"
+msgstr "Înapoi la selecția providerului"
+
 msgid "Cancel changes"
 msgstr "Anulează modificările"
 
-msgid "Change title"
-msgstr "Modificați titlul"
+msgid "Change name"
+msgstr "Modifică numele"
 
 msgid "Choose"
 msgstr "Alegeți"
+
+msgid "Clear search"
+msgstr "Șterge căutarea"
+
+msgid "Clear selected"
+msgstr "Șterge selecția"
 
 msgid "Clear text"
 msgstr "Șterge textul"
@@ -53,14 +78,17 @@ msgstr "Șterge textul"
 msgid "Close"
 msgstr "Închideți"
 
-msgid "Close modal"
-msgstr "Închideți modulul"
-
 msgid "Close navigation"
 msgstr "Închideți navigarea"
 
 msgid "Close sidebar"
 msgstr "Închide bara laterală"
+
+msgid "Close Smart Picker"
+msgstr "Închide Smart Picker"
+
+msgid "Collapse menu"
+msgstr "Restrânge meniul"
 
 msgid "Confirm changes"
 msgstr "Confirmați modificările"
@@ -68,17 +96,27 @@ msgstr "Confirmați modificările"
 msgid "Custom"
 msgstr "Personalizat"
 
+msgid "Deselect {option}"
+msgstr "Deselctează {option}"
+
+msgid "do not disturb"
+msgstr "nu deranjați"
+
 msgid "Edit item"
 msgstr "Editați elementul"
 
-msgid "Error getting related resources"
-msgstr " Eroare la returnarea resurselor legate"
+msgid "Enter link"
+msgstr "Introduceți link-ul"
 
-msgid "Error parsing svg"
-msgstr "Eroare de analizare a svg"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+"Eroare la preluarea resurselor adiționale. Vă rugăm să contactați "
+"administratorul pentru întrebări."
 
-msgid "External documentation for {title}"
-msgstr "Documentație externă pentru {title}"
+msgid "External documentation for {name}"
+msgstr "Documentație externă pentru {name}"
 
 msgid "Favorite"
 msgstr "Favorit"
@@ -98,8 +136,14 @@ msgstr "Global"
 msgid "Go back to the list"
 msgstr "Întoarceți-vă la listă"
 
+msgid "Gold"
+msgstr "Aur"
+
 msgid "Hide password"
 msgstr "Ascunde parola"
+
+msgid "Load more \"{options}\""
+msgstr "Încarcă mai multe \"{options}\""
 
 msgid "Message limit of {count} characters reached"
 msgstr "Limita mesajului de {count} caractere a fost atinsă"
@@ -107,11 +151,20 @@ msgstr "Limita mesajului de {count} caractere a fost atinsă"
 msgid "More items …"
 msgstr "Mai multe articole ..."
 
+msgid "More options"
+msgstr "Mai multe opțiuni"
+
 msgid "Next"
 msgstr "Următorul"
 
+msgid "Nextcloud blue"
+msgstr "Nextcloud albastru"
+
 msgid "No emoji found"
 msgstr "Nu s-a găsit niciun emoji"
+
+msgid "No link provider found"
+msgstr "Nu s-a găsit un provider pentru linkuri"
 
 msgid "No results"
 msgstr "Nu există rezultate"
@@ -119,14 +172,26 @@ msgstr "Nu există rezultate"
 msgid "Objects"
 msgstr "Obiecte"
 
-msgid "Open"
-msgstr "Deschideți"
+msgid "offline"
+msgstr "deconectat"
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "Deschide legătura la \"{resourceTitle}\""
+msgid "online"
+msgstr "online"
+
+msgid "Open contact menu"
+msgstr "Deschide meniul contacte"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "Deschide linkul la  \"{resourceName}\""
+
+msgid "Open menu"
+msgstr "Deschide meniul"
 
 msgid "Open navigation"
 msgstr "Deschideți navigația"
+
+msgid "Open settings menu"
+msgstr "Deschide meniul pentru setări"
 
 msgid "Password is secure"
 msgstr "Parola este sigură"
@@ -137,6 +202,24 @@ msgstr "Pauză prezentare de diapozitive"
 msgid "People & Body"
 msgstr "Oameni și corp"
 
+msgid "Pick a date"
+msgstr "Selectați o dată"
+
+msgid "Pick a date and a time"
+msgstr "Selectați data și timpul"
+
+msgid "Pick a month"
+msgstr "Selectați o lună"
+
+msgid "Pick a time"
+msgstr "Selectați timpul"
+
+msgid "Pick a week"
+msgstr "Selectați o săptămână"
+
+msgid "Pick a year"
+msgstr "Selectați anul"
+
 msgid "Pick an emoji"
 msgstr "Alege un emoji"
 
@@ -146,17 +229,53 @@ msgstr "Vă rugăm să selectați un fus orar:"
 msgid "Previous"
 msgstr "Anterior"
 
+msgid "Provider icon"
+msgstr "Provider pentru icon"
+
+msgid "Purple"
+msgstr "Purpuriu"
+
+msgid "Raw link {options}"
+msgstr "Link brut {options}"
+
 msgid "Related resources"
 msgstr "Resurse legate"
+
+msgid "Save changes"
+msgstr "Salvează modificările"
 
 msgid "Search"
 msgstr "Căutare"
 
+msgid "Search emoji"
+msgstr "Căutare emoji"
+
+msgid "Search for options"
+msgstr "Căutare opțiuni"
+
+msgid "Search for time zone"
+msgstr "Căutare zonă de timp"
+
 msgid "Search results"
 msgstr "Rezultatele căutării"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "sec. în urmă"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "secunde în urmă"
+
 msgid "Select a tag"
 msgstr "Selectați o etichetă"
+
+msgid "Select provider"
+msgstr "Selectați providerul"
+
+msgid "Selected"
+msgstr "Selectat"
 
 msgid "Settings"
 msgstr "Setări"
@@ -167,11 +286,17 @@ msgstr "Navigare setări"
 msgid "Show password"
 msgstr "Arată parola"
 
+msgid "Smart Picker"
+msgstr "Smart Picker"
+
 msgid "Smileys & Emotion"
 msgstr "Zâmbete și emoții"
 
 msgid "Start slideshow"
 msgstr "Începeți prezentarea de diapozitive"
+
+msgid "Start typing to search"
+msgstr "Tastați pentru căutare"
 
 msgid "Submit"
 msgstr "Trimiteți"
@@ -191,9 +316,8 @@ msgstr "Imposibilitatea de a căuta în grup"
 msgid "Undo changes"
 msgstr "Anularea modificărilor"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
-"Scrie un mesaj, folosește \"@\" pentru a menționa pe cineva, folosește \":\""
-" pentru autocompletarea cu emoji ..."
+msgid "User status: {status}"
+msgstr "Status utilizator: {status}"
+
+msgid "Write a message …"
+msgstr "Scrieți un mesaj ..."

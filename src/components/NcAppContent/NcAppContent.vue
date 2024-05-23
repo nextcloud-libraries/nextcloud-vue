@@ -72,19 +72,29 @@ The list size must be between the min and the max width value.
 
 <template>
 	<main id="app-content-vue" class="app-content no-snapper" :class="{ 'app-content--has-list': hasList }">
+		<h1 v-if="pageHeading" class="hidden-visually">
+			{{ pageHeading }}
+		</h1>
+
 		<template v-if="hasList">
 			<!-- Mobile view does not allow resizeable panes -->
-			<div v-if="isMobile"
-				:class="showDetails ? 'app-content-wrapper--show-details' : 'app-content-wrapper--show-list'"
-				class="app-content-wrapper app-content-wrapper--mobile">
-				<NcAppDetailsToggle v-if="hasList && showDetails" @click.native.stop.prevent="hideDetails" />
+			<div v-if="isMobile || layout === 'no-split'"
+				class="app-content-wrapper app-content-wrapper--no-split"
+				:class="{
+					'app-content-wrapper--show-details': showDetails,
+					'app-content-wrapper--show-list': !showDetails,
+					'app-content-wrapper--mobile': isMobile,}">
+				<NcAppDetailsToggle v-if="showDetails" @click.native.stop.prevent="hideDetails" />
+				<slot v-if="!showDetails" name="list" />
 
-				<slot name="list" />
-				<slot />
+				<slot v-else />
 			</div>
-
-			<div v-else class="app-content-wrapper">
-				<Splitpanes class="default-theme"
+			<div v-else-if="layout === 'vertical-split' || layout === 'horizontal-split'" class="app-content-wrapper">
+				<Splitpanes :horizontal="layout === 'horizontal-split'"
+					class="default-theme"
+					:class="{ 'splitpanes--horizontal': layout === 'horizontal-split',
+						'splitpanes--vertical': layout === 'vertical-split'
+					}"
 					@resized="handlePaneResize">
 					<Pane class="splitpanes__pane-list"
 						:size="listPaneSize || paneDefaults.list.size"
@@ -104,22 +114,21 @@ The list size must be between the min and the max width value.
 				</Splitpanes>
 			</div>
 		</template>
-
 		<!-- @slot Provide the main content to the app content -->
-		<slot v-else />
+		<slot v-if="!hasList" />
 	</main>
 </template>
 
 <script>
 import NcAppDetailsToggle from './NcAppDetailsToggle.vue'
-import isMobile from '../../mixins/isMobile/index.js'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
 
 import { getBuilder } from '@nextcloud/browser-storage'
-import { emit } from '@nextcloud/event-bus'
-
-import Hammer from 'hammerjs'
-import 'splitpanes/dist/splitpanes.css'
+import { useSwipe } from '@vueuse/core'
 import { Splitpanes, Pane } from 'splitpanes'
+
+import 'splitpanes/dist/splitpanes.css'
+import { emit } from '@nextcloud/event-bus'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 
@@ -135,9 +144,6 @@ export default {
 		Pane,
 		Splitpanes,
 	},
-
-	mixins: [isMobile],
-
 	props: {
 		/**
 		 * Allows to disable the control by swipe of the app navigation open state
@@ -148,7 +154,8 @@ export default {
 		},
 
 		/**
-		 * Allows you to set the default width of the resizable list in %
+		 * Allows you to set the default width of the resizable list in % on vertical-split
+		 * Allows you to set the default height of the resizable list in % on horizontal-split
 		 * Must be between listMinWidth and listMaxWidth
 		 */
 		listSize: {
@@ -157,7 +164,8 @@ export default {
 		},
 
 		/**
-		 * Allows you to set the minimum width of the list column in %
+		 * Allows you to set the minimum width of the list column in % on vertical-split
+		 * Allows you to set the minimum height of the list column in % on horizontal-split
 		 */
 		listMinWidth: {
 			type: Number,
@@ -165,7 +173,8 @@ export default {
 		},
 
 		/**
-		 * Allows you to set the maximum width of the list column in %
+		 * Allows you to set the maximum width of the list column in % on vertical-split
+		 * Allows you to set the maximum height of the list column in % on horizontal-split
 		 */
 		listMaxWidth: {
 			type: Number,
@@ -192,15 +201,47 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+
+		/**
+		 * Specify the `<h1>` page heading
+		 */
+		pageHeading: {
+			type: String,
+			default: null,
+		},
+		/**
+		 * Content layout used when there is a list together with content:
+		 * - `vertical-split` - a 2-column layout with list and default content separated vertically
+		 * - `no-split` - a single column layout; List is shown when `showDetails` is `false`, otherwise the default slot content is shown with a back button to return to the list.
+		 * - 'horizontal-split' - a 2-column layout with list and default content separated horizontally
+		 * On mobile screen `no-split` layout is forced.
+		 */
+		layout: {
+			type: String,
+			default: 'vertical-split',
+			validator(value) {
+				return ['no-split', 'vertical-split', 'horizontal-split'].includes(value)
+			},
+		},
 	},
 
-	emits: ['update:showDetails'],
+	emits: [
+		'update:showDetails',
+		'resize:list',
+	],
+
+	setup() {
+		return {
+			isMobile: useIsMobile(),
+		}
+	},
 
 	data() {
 		return {
 			contentHeight: 0,
-
 			hasList: false,
+			hasContent: false,
+			swiping: {},
 			listPaneSize: this.restorePaneConfig(),
 		}
 	},
@@ -251,38 +292,40 @@ export default {
 	},
 
 	updated() {
-		this.checkListSlot()
+		this.checkSlots()
 	},
 
 	mounted() {
 		if (this.allowSwipeNavigation) {
-			this.mc = new Hammer(this.$el, { cssProps: { userSelect: 'text' } })
-			this.mc.on('swipeleft swiperight', this.handleSwipe)
+			this.swiping = useSwipe(this.$el, {
+				onSwipeEnd: this.handleSwipe,
+			})
 		}
 
-		this.checkListSlot()
+		this.checkSlots()
 		this.restorePaneConfig()
 	},
 
-	beforeDestroy() {
-		this.mc.off('swipeleft swiperight', this.handleSwipe)
-	},
-
 	methods: {
-		// handle the swipe event
-		handleSwipe(e) {
+		/**
+		 * handle the swipe event
+		 *
+		 * @param {TouchEvent} e The touch event
+		 * @param {import('@vueuse/core').SwipeDirection} direction The swipe direction of the event
+		 */
+		handleSwipe(e, direction) {
 			const minSwipeX = 70
-			const touchzone = 40
-			const startX = e.srcEvent.pageX - e.deltaX
-			const hasEnoughDistance = Math.abs(e.deltaX) > minSwipeX
-			if (hasEnoughDistance && startX < touchzone) {
-				emit('toggle-navigation', {
-					open: true,
-				})
-			} else if (hasEnoughDistance && startX < touchzone + 300) {
-				emit('toggle-navigation', {
-					open: false,
-				})
+			const touchZone = 300
+			if (Math.abs(this.swiping.lengthX) > minSwipeX) {
+				if (this.swiping.coordsStart.x < (touchZone / 2) && direction === 'right') {
+					emit('toggle-navigation', {
+						open: true,
+					})
+				} else if (this.swiping.coordsStart.x < touchZone * 1.5 && direction === 'left') {
+					emit('toggle-navigation', {
+						open: false,
+					})
+				}
 			}
 		},
 
@@ -290,15 +333,17 @@ export default {
 			const listPaneSize = parseInt(event[0].size, 10)
 			browserStorage.setItem(this.paneConfigID, JSON.stringify(listPaneSize))
 			this.listPaneSize = listPaneSize
+			/**
+			 * Emitted when the list pane is resized by the user
+			 */
+			this.$emit('resize:list', { size: listPaneSize })
 			console.debug('AppContent pane config', listPaneSize)
 		},
 
 		// $slots is not reactive, we need to update this manually
-		checkListSlot() {
-			const hasListSlot = !!this.$slots.list
-			if (this.hasList !== hasListSlot) {
-				this.hasList = hasListSlot
-			}
+		checkSlots() {
+			this.hasList = !!this.$scopedSlots.list
+			this.hasContent = !!this.$scopedSlots.default
 		},
 
 		// browserStorage is not reactive, we need to update this manually
@@ -335,10 +380,6 @@ export default {
 	&:not(.app-content--has-list) {
 		overflow: auto;
 	}
-
-	// Variables
-	// the whitespace between the topbar content and its edges
-	--topbar-margin: #{$topbar-margin};
 }
 
 .app-content-wrapper {
@@ -348,10 +389,10 @@ export default {
 }
 
 // Mobile list/details handling
-.app-content-wrapper--mobile {
+.app-content-wrapper--no-split {
 	&.app-content-wrapper--show-list :deep() {
 		.app-content-list {
-			display: block;
+			display: flex;
 		}
 		.app-content-details {
 			display: none;
@@ -370,6 +411,8 @@ export default {
 :deep(.splitpanes.default-theme) {
 	.app-content-list {
 		max-width: none;
+		/* Thin scrollbar is hard to catch on resizable columns */
+		scrollbar-width: auto;
 	}
 
 	.splitpanes__pane {
@@ -379,7 +422,6 @@ export default {
 		&-list {
 			min-width: 300px;
 			position: sticky;
-			top: var(--header-height);
 
 			@media only screen and (width < $breakpoint-mobile) {
 				display: none;
@@ -394,17 +436,30 @@ export default {
 			}
 		}
 	}
+	.app-content-wrapper--vertical-split {
+		.splitpanes__splitter {
+			width: 9px;
+			margin-left: -5px;
+			background-color: transparent;
+			border-left: none;
 
-	.splitpanes__splitter {
-		width: 9px;
-		margin-left: -5px;
-		background-color: transparent;
-		border-left: none;
-
-		&:before,
-		&:after {
-			display: none;
+			&:before,
+			&:after {
+				display: none;
+			}
 		}
+	}
+	.app-content-wrapper--horizontal-split {
+		.splitpanes__splitter {
+			height: 9px;
+			margin-top: -5px;
+		}
+	}
+}
+
+.app-content-wrapper--show-list {
+	:deep(.app-content-list) {
+		max-width: none;
 	}
 }
 </style>

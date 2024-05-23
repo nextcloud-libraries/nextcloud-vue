@@ -1,11 +1,12 @@
 # 
 # Translators:
-# Moo, 2021
+# Joas Schilling, 2023
+# Transifex Bot <>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Moo, 2021\n"
-"Language-Team: Lithuanian (Lithuania) (https://www.transifex.com/nextcloud/teams/64236/lt_LT/)\n"
+"Last-Translator: Transifex Bot <>, 2023\n"
+"Language-Team: Lithuanian (Lithuania) (https://app.transifex.com/nextcloud/teams/64236/lt_LT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: lt_LT\n"
 "Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
@@ -16,8 +17,14 @@ msgstr "{tag} (nematoma)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (apribota)"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "Veiksmai"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "Veiklos"
@@ -25,17 +32,79 @@ msgstr "Veiklos"
 msgid "Animals & Nature"
 msgstr "Gyvūnai ir gamta"
 
+msgid "Any link"
+msgstr ""
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+
+msgid "Avatar of {displayName}"
+msgstr ""
+
+msgid "Avatar of {displayName}, {status}"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
+msgid "Cancel changes"
+msgstr ""
+
+msgid "Change name"
+msgstr ""
+
 msgid "Choose"
 msgstr "Pasirinkti"
+
+msgid "Clear search"
+msgstr ""
+
+msgid "Clear text"
+msgstr ""
 
 msgid "Close"
 msgstr "Užverti"
 
+msgid "Close modal"
+msgstr ""
+
+msgid "Close navigation"
+msgstr ""
+
+msgid "Close sidebar"
+msgstr ""
+
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
+msgid "Confirm changes"
+msgstr ""
+
 msgid "Custom"
 msgstr "Tinkinti"
 
-msgid "External documentation for {title}"
-msgstr "Išorinė {title} dokumentacija"
+msgid "Edit item"
+msgstr ""
+
+msgid "Enter link"
+msgstr ""
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+
+msgid "External documentation for {name}"
+msgstr ""
+
+msgid "Favorite"
+msgstr ""
 
 msgid "Flags"
 msgstr "Vėliavos"
@@ -46,8 +115,26 @@ msgstr "Maistas ir gėrimai"
 msgid "Frequently used"
 msgstr "Dažniausiai naudoti"
 
+msgid "Global"
+msgstr ""
+
+msgid "Go back to the list"
+msgstr ""
+
+msgid "Hide password"
+msgstr ""
+
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "Pasiekta {count} simbolių žinutės riba"
+
+msgid "More items …"
+msgstr ""
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "Kitas"
@@ -55,11 +142,32 @@ msgstr "Kitas"
 msgid "No emoji found"
 msgstr "Nerasta jaustukų"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "Nėra rezultatų"
 
 msgid "Objects"
 msgstr "Objektai"
+
+msgid "Open contact menu"
+msgstr ""
+
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
+
+msgid "Open navigation"
+msgstr ""
+
+msgid "Open settings menu"
+msgstr ""
+
+msgid "Password is secure"
+msgstr ""
 
 msgid "Pause slideshow"
 msgstr "Pristabdyti skaidrių rodymą"
@@ -67,20 +175,65 @@ msgstr "Pristabdyti skaidrių rodymą"
 msgid "People & Body"
 msgstr "Žmonės ir kūnas"
 
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
 msgid "Pick an emoji"
 msgstr "Pasirinkti jaustuką"
+
+msgid "Please select a time zone:"
+msgstr ""
 
 msgid "Previous"
 msgstr "Ankstesnis"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
+msgid "Related resources"
+msgstr ""
+
 msgid "Search"
 msgstr "Ieškoti"
+
+msgid "Search emoji"
+msgstr ""
 
 msgid "Search results"
 msgstr "Paieškos rezultatai"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "Pasirinkti žymę"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "Nustatymai"
@@ -88,11 +241,20 @@ msgstr "Nustatymai"
 msgid "Settings navigation"
 msgstr "Naršymas nustatymuose"
 
+msgid "Show password"
+msgstr ""
+
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "Šypsenos ir emocijos"
 
 msgid "Start slideshow"
 msgstr "Pradėti skaidrių rodymą"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "Pateikti"
@@ -103,8 +265,16 @@ msgstr "Simboliai"
 msgid "Travel & Places"
 msgstr "Kelionės ir vietos"
 
+msgid "Type to search time zone"
+msgstr ""
+
 msgid "Unable to search the group"
 msgstr "Nepavyko atlikti paiešką grupėje"
 
-msgid "Write message, @ to mention someone …"
-msgstr "Rašykite žinutę, naudokite @ norėdami kažką paminėti…"
+msgid "Undo changes"
+msgstr ""
+
+msgid ""
+"Write message, use \"@\" to mention someone, use \":\" for emoji "
+"autocompletion …"
+msgstr ""

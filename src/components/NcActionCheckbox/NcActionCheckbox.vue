@@ -35,8 +35,8 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 </docs>
 
 <template>
-	<li class="action" :class="{ 'action--disabled': disabled }">
-		<span class="action-checkbox">
+	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
+		<span class="action-checkbox" :role="isInSemanticMenu && 'menuitemcheckbox'" :aria-checked="ariaChecked">
 			<input :id="id"
 				ref="checkbox"
 				:disabled="disabled"
@@ -63,6 +63,13 @@ export default {
 	name: 'NcActionCheckbox',
 
 	mixins: [ActionGlobalMixin],
+
+	inject: {
+		isInSemanticMenu: {
+			from: 'NcActions:isSemanticMenu',
+			default: false,
+		},
+	},
 
 	props: {
 		/**
@@ -114,6 +121,18 @@ export default {
 		 */
 		isFocusable() {
 			return !this.disabled
+		},
+
+		/**
+		 * aria-checked attribute for role="menuitemcheckbox"
+		 *
+		 * @return {'true'|'false'|undefined} aria-checked value if needed
+		 */
+		ariaChecked() {
+			if (this.isInSemanticMenu) {
+				return this.checked ? 'true' : 'false'
+			}
+			return undefined
 		},
 	},
 
@@ -193,9 +212,6 @@ export default {
 
 		width: 1px;
 		height: 1px;
-		&:focus + .action-checkbox__label {
-			opacity: $opacity_full;
-		}
 	}
 
 	&__label {
@@ -206,7 +222,6 @@ export default {
 		padding: 0 !important;
 		padding-right: $icon-margin !important;
 
-		opacity: $opacity_normal;
 		// checkbox-width is 12px, border is 2
 		// (44 - 14 - 2) / 2 = 14
 		&::before {
@@ -218,13 +233,6 @@ export default {
 		&,
 		.action-checkbox__label {
 			cursor: pointer;
-		}
-	}
-
-	&:not(.action-checkbox--disabled):hover,
-	&:not(.action-checkbox--disabled):focus {
-		.action-checkbox__label {
-			opacity: $opacity_full;
 		}
 	}
 }

@@ -1,19 +1,12 @@
 # 
 # Translators:
-# SleepyJesse <Jesse_Xu@live.com>, 2020
-# ffk_jan <fuufuukun@163.com>, 2020
-# Pascal Janus <pascal_janus@163.com>, 2020
-# Toms Project <tom@projectoms.com>, 2020
-# tranxde, 2020
-# ous50, 2021
-# berlin2123 <berlinli222@163.com>, 2022
-# Mmmm Heee, 2022
-# ii ii, 2022
+# Joas Schilling, 2023
+# Transifex Bot <>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: ii ii, 2022\n"
-"Language-Team: Chinese (China) (https://www.transifex.com/nextcloud/teams/64236/zh_CN/)\n"
+"Last-Translator: Transifex Bot <>, 2023\n"
+"Language-Team: Chinese (China) (https://app.transifex.com/nextcloud/teams/64236/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -24,14 +17,23 @@ msgstr "{tag} （不可见）"
 msgid "{tag} (restricted)"
 msgstr "{tag} （受限）"
 
+msgid "a few seconds ago"
+msgstr ""
+
 msgid "Actions"
 msgstr "行为"
+
+msgid "Actions for item with name \"{name}\""
+msgstr ""
 
 msgid "Activities"
 msgstr "活动"
 
 msgid "Animals & Nature"
 msgstr "动物 & 自然"
+
+msgid "Any link"
+msgstr ""
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "与同组用户分享的所有内容都会显示于此"
@@ -42,14 +44,23 @@ msgstr "{displayName}的头像"
 msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName}的头像，{status}"
 
+msgid "Back"
+msgstr ""
+
+msgid "Back to provider selection"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr "取消更改"
 
-msgid "Change title"
-msgstr "更改标题"
+msgid "Change name"
+msgstr ""
 
 msgid "Choose"
 msgstr "选择"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear text"
 msgstr "清除文本"
@@ -66,6 +77,12 @@ msgstr "关闭导航"
 msgid "Close sidebar"
 msgstr "关闭侧边栏"
 
+msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Confirm changes"
 msgstr "确认更改"
 
@@ -75,14 +92,16 @@ msgstr "自定义"
 msgid "Edit item"
 msgstr "编辑项目"
 
-msgid "Error getting related resources"
-msgstr "获取相关资源时出错"
+msgid "Enter link"
+msgstr ""
 
-msgid "Error parsing svg"
-msgstr "解析 svg 时出错"
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
 
-msgid "External documentation for {title}"
-msgstr "{title}的外部文档"
+msgid "External documentation for {name}"
+msgstr ""
 
 msgid "Favorite"
 msgstr "喜爱"
@@ -105,11 +124,17 @@ msgstr "返回至列表"
 msgid "Hide password"
 msgstr "隐藏密码"
 
+msgid "Load more \"{options}\"\""
+msgstr ""
+
 msgid "Message limit of {count} characters reached"
 msgstr "已达到 {count} 个字符的消息限制"
 
 msgid "More items …"
 msgstr "更多项目…"
+
+msgid "More options"
+msgstr ""
 
 msgid "Next"
 msgstr "下一个"
@@ -117,20 +142,29 @@ msgstr "下一个"
 msgid "No emoji found"
 msgstr "表情未找到"
 
+msgid "No link provider found"
+msgstr ""
+
 msgid "No results"
 msgstr "无结果"
 
 msgid "Objects"
 msgstr "物体"
 
-msgid "Open"
-msgstr "打开"
+msgid "Open contact menu"
+msgstr ""
 
-msgid "Open link to \"{resourceTitle}\""
-msgstr "打开\"{resourceTitle}\"的连接"
+msgid "Open link to \"{resourceName}\""
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
 
 msgid "Open navigation"
 msgstr "开启导航"
+
+msgid "Open settings menu"
+msgstr ""
 
 msgid "Password is secure"
 msgstr "密码安全"
@@ -141,6 +175,24 @@ msgstr "暂停幻灯片"
 msgid "People & Body"
 msgstr "人 & 身体"
 
+msgid "Pick a date"
+msgstr ""
+
+msgid "Pick a date and a time"
+msgstr ""
+
+msgid "Pick a month"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick a week"
+msgstr ""
+
+msgid "Pick a year"
+msgstr ""
+
 msgid "Pick an emoji"
 msgstr "选择一个表情"
 
@@ -150,17 +202,38 @@ msgstr "请选择一个时区："
 msgid "Previous"
 msgstr "上一个"
 
+msgid "Provider icon"
+msgstr ""
+
+msgid "Raw link {options}"
+msgstr ""
+
 msgid "Related resources"
 msgstr "相关资源"
 
 msgid "Search"
 msgstr "搜索"
 
+msgid "Search emoji"
+msgstr ""
+
 msgid "Search results"
 msgstr "搜索结果"
 
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr ""
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr ""
+
 msgid "Select a tag"
 msgstr "选择一个标签"
+
+msgid "Select provider"
+msgstr ""
 
 msgid "Settings"
 msgstr "设置"
@@ -171,11 +244,17 @@ msgstr "设置向导"
 msgid "Show password"
 msgstr "显示密码"
 
+msgid "Smart Picker"
+msgstr ""
+
 msgid "Smileys & Emotion"
 msgstr "笑脸 & 情感"
 
 msgid "Start slideshow"
 msgstr "开始幻灯片"
+
+msgid "Start typing to search"
+msgstr ""
 
 msgid "Submit"
 msgstr "提交"

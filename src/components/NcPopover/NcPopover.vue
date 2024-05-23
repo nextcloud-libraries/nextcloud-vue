@@ -36,28 +36,30 @@ open prop on this component;
 
 ### Examples
 
-#### With a `<button>` as a trigger:
+#### With a `<NcButton>` as a trigger:
 
 ```vue
 <template>
-	<NcPopover>
-		<template #trigger>
-			<NcButton> I am the trigger </NcButton>
-		</template>
-		<template>
-			<form tabindex="0" @submit.prevent>
-				<h2>this is some content</h2>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. </br>
-					Vestibulum eget placerat velit.
-				</p>
-				<label>
-					Label element
-					<input type="text" placehold="input element" />
-				</label>
-			</form>
-		</template>
-	</NcPopover>
+	<div style="display: flex">
+		<NcPopover popup-role="dialog">
+			<template #trigger>
+				<NcButton>I am the trigger</NcButton>
+			</template>
+			<template>
+				<form tabindex="0" role="dialog" aria-labelledby="popover-example-dialog-header-1" @submit.prevent>
+					<h2 id="popover-example-dialog-header-1">this is some content</h2>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/>
+						Vestibulum eget placerat velit.
+					</p>
+					<label>
+						Label element
+						<input type="text" placeholder="input element"/>
+					</label>
+				</form>
+			</template>
+		</NcPopover>
+	</div>
 </template>
 ```
 
@@ -69,14 +71,86 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 
 ```vue
 <template>
-	<NcPopover :focus-trap="false">
-		<template #trigger>
-			<NcButton> Click me! </NcButton>
-		</template>
-		<template>
+	<div style="display: flex">
+		<NcPopover :focus-trap="false">
+			<template #trigger>
+				<NcButton>Click me!</NcButton>
+			</template>
+			<template>
+				Hi! 🚀
+			</template>
+		</NcPopover>
+	</div>
+</template>
+```
+
+#### With passing props to `floating-vue`'s `Dropdown`:
+
+```vue
+<template>
+	<div style="display: flex">
+		<NcPopover container="body" :popper-hide-triggers="(triggers) => [...triggers, 'click']" popup-role="dialog">
+			<template #trigger>
+				<NcButton>I am the trigger</NcButton>
+			</template>
+			<template #default>
+				<NcButton>Click on the button will close NcPopover</NcButton>
+			</template>
+		</NcPopover>
+	</div>
+</template>
+```
+
+#### With a custom button in as a trigger:
+
+When `<NcButton>` is used as a `<NcPopover>` trigger, it injects required for a11y attributes to the button.
+
+If you are using your own custom button as a trigger make sure to bind `attrs` from the trigger slot props.
+See code example below.
+
+```vue
+<template>
+	<div style="display: flex">
+		<NcPopover>
+			<!-- Take "attrs" from the slot props -->
+			<template #trigger="{ attrs }">
+				<!-- Bind attrs as the button attrs -->
+				<button v-bind="attrs">
+					I am a custom button in the trigger
+				</button>
+			</template>
+
 			Hi! 🚀
-		</template>
-	</NcPopover>
+		</NcPopover>
+	</div>
+</template>
+```
+
+#### Provide role for the popover content
+
+For accessibility reasons, popover should have a role. Provide it to the `popup-role` and make sure that the popover content is an element with the same role.
+
+See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-haspopup
+
+```vue
+<template>
+	<div style="display: flex">
+		<!-- Provide popup role -->
+		<NcPopover popup-role="dialog">
+			<template #trigger>
+				<NcButton>Delete</NcButton>
+			</template>
+
+			<!-- Popover content should has the same role -->
+			<div role="dialog" aria-labelledby="popover-example-custom-role-1" aria-modal="true">
+				<!-- This is not required but better to provide a label -->
+				<header id="popover-example-custom-role-1">
+					<strong>Confirm remove</strong>
+				</header>
+				<NcButton type="danger">Delete</NcButton>
+			</div>
+		</NcPopover>
+	</div>
 </template>
 ```
 </docs>
@@ -88,11 +162,16 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 		v-bind="$attrs"
 		:no-auto-focus="true /* Handled by the focus trap */"
 		:popper-class="popoverBaseClass"
+		:shown="internalShown"
 		v-on="$listeners"
+		@update:shown="internalShown = $event"
 		@apply-show="afterShow"
 		@apply-hide="afterHide">
-		<!-- This will be the popover target (for the events and position) -->
-		<slot name="trigger" />
+		<NcPopoverTriggerProvider v-slot="slotProps" :shown="internalShown" :popup-role="popupRole">
+			<!-- This will be the popover target (for the events and position) -->
+			<slot name="trigger" v-bind="slotProps" />
+		</NcPopoverTriggerProvider>
+
 		<!-- This will be the content of the popover -->
 		<template #popper>
 			<slot />
@@ -101,17 +180,42 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 </template>
 
 <script>
+import Vue from 'vue'
 import { Dropdown } from 'floating-vue'
 import { createFocusTrap } from 'focus-trap'
 import { getTrapStack } from '../../utils/focusTrap.js'
+import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
 
 export default {
 	name: 'NcPopover',
+
 	components: {
 		Dropdown,
+		NcPopoverTriggerProvider,
 	},
 
+	inheritAttrs: false,
+
 	props: {
+		/**
+		 * Show or hide the popper
+		 * @see https://floating-vue.starpad.dev/api/#shown
+		 */
+		shown: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Popup role
+		 * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-haspopup#values
+		 */
+		popupRole: {
+			type: String,
+			default: undefined,
+			validator: (value) => ['menu', 'listbox', 'tree', 'grid', 'dialog', 'true'].includes(value),
+		},
+
 		popoverBaseClass: {
 			type: String,
 			default: '',
@@ -137,13 +241,81 @@ export default {
 	emits: [
 		'after-show',
 		'after-hide',
+		/**
+		 * @see https://floating-vue.starpad.dev/api/#update-shown
+		 */
+		'update:shown',
 	],
+
+	data() {
+		return {
+			internalShown: this.shown,
+		}
+	},
+
+	watch: {
+		shown(value) {
+			this.internalShown = value
+		},
+
+		internalShown(value) {
+			this.$emit('update:shown', value)
+		},
+	},
+
+	mounted() {
+		this.checkTriggerA11y()
+	},
 
 	beforeDestroy() {
 		this.clearFocusTrap()
+		this.clearEscapeStopPropagation()
 	},
 
 	methods: {
+		/**
+		 * Check if the trigger has all required a11y attributes.
+		 * Important to check custom trigger button.
+		 */
+		checkTriggerA11y() {
+			if (window.OC?.debug) {
+				const triggerContainer = this.getPopoverTriggerContainerElement()
+				const requiredTriggerButton = triggerContainer.querySelector('[aria-expanded]')
+				if (!requiredTriggerButton) {
+					Vue.util.warn('It looks like you are using a custom button as a <NcPopover> or other popover #trigger. If you are not using <NcButton> as a trigger, you need to bind attrs from the #trigger slot props to your custom button. See <NcPopover> docs for an example.')
+				}
+			}
+		},
+
+		/**
+		 * Remove incorrect aria-describedby attribute from the trigger.
+		 * @see https://github.com/Akryum/floating-vue/blob/8d4f7125aae0e3ea00ba4093d6d2001ab15058f1/packages/floating-vue/src/components/Popper.ts#L734
+		 */
+		removeFloatingVueAriaDescribedBy() {
+			// When the popover is shown, floating-vue mutates the root elements of the trigger adding data-popper-shown and incorrect aria-describedby attributes.
+			const triggerContainer = this.getPopoverTriggerContainerElement()
+			const triggerElements = triggerContainer.querySelectorAll('[data-popper-shown]')
+			for (const el of triggerElements) {
+				el.removeAttribute('aria-describedby')
+			}
+		},
+
+		/**
+		 * @return {HTMLElement|undefined}
+		 */
+		getPopoverContentElement() {
+			return this.$refs.popover?.$refs.popperContent?.$el
+		},
+
+		/**
+		 * @return {HTMLElement|undefined}
+		 */
+		getPopoverTriggerContainerElement() {
+			// TODO: Vue 3: should be
+			// this.$refs.popover.$refs.popper.$refs.reference
+			return this.$refs.popover.$refs.reference
+		},
+
 		/**
 		 * Add focus trap for accessibility.
 		 */
@@ -154,7 +326,7 @@ export default {
 				return
 			}
 
-			const el = this.$refs.popover?.$refs.popperContent?.$el
+			const el = this.getPopoverContentElement()
 
 			if (!el) {
 				return
@@ -186,17 +358,49 @@ export default {
 			}
 		},
 
+		/**
+		 * Add stopPropagation for Escape.
+		 * It prevents global Escape handling after closing popover.
+		 *
+		 * Manual event handling is used here instead of v-on because there is no direct access to the node.
+		 * Alternative - wrap <template #popover> in a div wrapper.
+		 */
+		addEscapeStopPropagation() {
+			const el = this.getPopoverContentElement()
+			el?.addEventListener('keydown', this.stopKeydownEscapeHandler)
+		},
+
+		/**
+		 * Remove stop Escape handler
+		 */
+		clearEscapeStopPropagation() {
+			const el = this.getPopoverContentElement()
+			el?.removeEventListener('keydown', this.stopKeydownEscapeHandler)
+		},
+
+		/**
+		 * @param {KeyboardEvent} event - native keydown event
+		 */
+		stopKeydownEscapeHandler(event) {
+			if (event.type === 'keydown' && event.key === 'Escape') {
+				event.stopPropagation()
+			}
+		},
+
 		afterShow() {
-			/**
-			 * Triggered after the tooltip was visually displayed.
-			 *
-			 * This is different from the 'show' and 'apply-show' which
-			 * run earlier than this where there is no guarantee that the
-			 * tooltip is already visible and in the DOM.
-			 */
+			this.removeFloatingVueAriaDescribedBy()
+
 			this.$nextTick(() => {
+				/**
+				 * Triggered after the tooltip was visually displayed.
+				 *
+				 * This is different from the 'show' and 'apply-show' which
+				 * run earlier than this where there is no guarantee that the
+				 * tooltip is already visible and in the DOM.
+				 */
 				this.$emit('after-show')
 				this.useFocusTrap()
+				this.addEscapeStopPropagation()
 			})
 		},
 		afterHide() {
@@ -205,6 +409,7 @@ export default {
 			 */
 			this.$emit('after-hide')
 			this.clearFocusTrap()
+			this.clearEscapeStopPropagation()
 		},
 	},
 }
@@ -253,7 +458,7 @@ $arrow-width: 10px;
 		.v-popper__inner {
 			padding: 0;
 			color: var(--color-main-text);
-			border-radius: var(--border-radius);
+			border-radius: var(--border-radius-large);
 			overflow: hidden;
 			background: var(--color-main-background);
 		}

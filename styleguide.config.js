@@ -15,7 +15,7 @@ module.exports = async () => {
 		module: {
 			// Ignore eslint
 			rules: base.module.rules.filter(
-				rule => rule.use !== 'eslint-loader'
+				rule => rule.use !== 'eslint-loader',
 			),
 		},
 	})
@@ -36,22 +36,27 @@ module.exports = async () => {
 				proxy: {
 					// redirect to the guest avatar endpoint
 					'/index.php/avatar': {
-						target: 'https://nextcloud.com/wp-content/themes/next/assets/img/common/nextcloud-square-logo.png',
+						target: 'https://raw.githubusercontent.com/nextcloud/promo/master/nextcloud-icon.png',
 						changeOrigin: true,
 						ignorePath: true,
 						secure: false,
 					},
 				},
 			},
+			resolve: {
+				alias: {
+					vue$: 'vue/dist/vue.js',
+				},
+			},
 		}),
 
-		exampleMode: 'expand',
-		usageMode: 'expand',
+		exampleMode: 'collapse',
+		usageMode: 'collapse',
 
 		components: 'src/components/*/*.vue',
 		getComponentPathLine(componentPath) {
 			const name = path.basename(componentPath, '.vue')
-			return `import ${name} from '@nextcloud/vue/dist/Components/${name}'`
+			return `import ${name} from '@nextcloud/vue/dist/Components/${name}.js'`
 		},
 
 		sections: [
@@ -60,6 +65,24 @@ module.exports = async () => {
 				content: 'docs/index.md',
 				exampleMode: 'hide',
 				usageMode: 'hide',
+			},
+			{
+				name: 'Latest version: v8.x (Nextcloud 28)',
+				href: 'https://nextcloud-vue-components.netlify.app',
+				sections: [
+					{
+						name: 'next v9.x (Nextcloud 28 + Vue 3)',
+						href: 'https://next--nextcloud-vue-components.netlify.app',
+					},
+					{
+						name: 'v7.x (Nextcloud 25 - 27)',
+						href: 'https://stable7--nextcloud-vue-components.netlify.app',
+					},
+					{
+						name: 'v6.x (Nextcloud 24 - 25)',
+						href: 'https://stable6--nextcloud-vue-components.netlify.app',
+					},
+				],
 			},
 			{
 				name: 'Directives',
@@ -79,15 +102,19 @@ module.exports = async () => {
 					'src/components/NcAppSettings*/*.vue',
 					'src/components/NcAppSidebar*/*.vue',
 					'src/components/NcBreadcrumb*/*.vue',
+					'src/components/NcCheckboxRadioSwitch/NcCheckboxContent.vue',
 					'src/components/NcContent/*.vue',
 					'src/components/NcDashboard*/*.vue',
+					'src/components/NcDialog*/*.vue',
 					'src/components/NcListItem*/*.vue',
 					'src/components/NcMultiselect*/*.vue',
-					'src/components/NcPopoverMenu/!(NcPopoverMenu).vue',
 					'src/components/NcRichContenteditable/!(NcRichContenteditable).vue',
+					'src/components/NcRichText*/*.vue',
 					'src/components/NcSelect*/*.vue',
 					'src/components/NcSettings*/*.vue',
 					'src/components/NcUserBubble/NcUserBubbleDiv.vue',
+					'src/components/NcTextArea/*.vue',
+					'src/components/NcPopover/NcPopoverTriggerProvider.vue',
 				],
 				sections: [
 					{
@@ -108,6 +135,10 @@ module.exports = async () => {
 								name: 'NcAppNavigation',
 								components: [
 									'src/components/NcAppNavigation*/*.vue',
+								],
+								ignore: [
+									'src/components/NcAppNavigationItem/NcAppNavigationIconCollapsible.vue',
+									'src/components/NcAppNavigationItem/NcInputConfirmCancel.vue',
 								],
 							},
 							{
@@ -143,9 +174,16 @@ module.exports = async () => {
 						],
 					},
 					{
+						name: 'NcDialog',
+						components: [
+							'src/components/NcDialog*/*.vue',
+						],
+					},
+					{
 						name: 'NcFields',
 						components: [
 							'src/components/Nc*Field/*.vue',
+							'src/components/NcTextArea/*.vue',
 						],
 					},
 					{
@@ -161,15 +199,15 @@ module.exports = async () => {
 						],
 					},
 					{
-						name: 'NcMultiselect',
-						components: [
-							'src/components/NcMultiselect*/*.vue',
-						],
-					},
-					{
 						name: 'NcPickers',
 						components: [
 							'src/components/Nc*Picker*/*.vue',
+						],
+					},
+					{
+						name: 'NcRichText',
+						components: [
+							'src/components/NcRichText/NcRichText.vue',
 						],
 					},
 					{
@@ -184,7 +222,7 @@ module.exports = async () => {
 
 		ribbon: {
 			text: 'Fork me on GitHub',
-			url: 'https://github.com/nextcloud/nextcloud-vue',
+			url: 'https://github.com/nextcloud-libraries/nextcloud-vue',
 		},
 
 		// see https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.js

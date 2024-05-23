@@ -29,7 +29,7 @@ export default {
 		 */
 		vnodes: {
 			type: [Array, Object],
-			default: () => [],
+			default: null,
 		},
 	},
 	/**
@@ -39,7 +39,7 @@ export default {
 	 * @return {object} The created VNode
 	 */
 	render(h) {
-		return this.vnodes
+		return this.vnodes || this.$slots?.default || this.$scopedSlots?.default?.()
 	},
 }
 </script>

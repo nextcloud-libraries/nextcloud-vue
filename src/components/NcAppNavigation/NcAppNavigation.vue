@@ -54,61 +54,120 @@ emit('toggle-navigation', {
 </docs>
 
 <template>
-	<div id="app-navigation-vue"
+	<div ref="appNavigationContainer"
 		class="app-navigation"
-		role="navigation"
 		:class="{'app-navigation--close':!open }">
+		<nav id="app-navigation-vue"
+			:aria-hidden="open ? 'false' : 'true'"
+			:aria-label="ariaLabel || undefined"
+			:aria-labelledby="ariaLabelledby || undefined"
+			class="app-navigation__content"
+			:inert="!open || undefined"
+			@keydown.esc="handleEsc">
+			<div class="app-navigation__body" :class="{ 'app-navigation__body--no-list': !$scopedSlots.list }">
+				<!-- The main content of the navigation. If no list is passed to the #list slot, stretched vertically. -->
+				<slot />
+			</div>
+
+			<NcAppNavigationList v-if="$scopedSlots.list" class="app-navigation__list">
+				<!-- List for Navigation list items. Stretched between the main content and the footer -->
+				<slot name="list" />
+			</NcAppNavigationList>
+
+			<!-- Footer for e.g. NcAppNavigationSettings -->
+			<slot name="footer" />
+		</nav>
 		<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
-		<slot />
-
-		<!-- List for Navigation li-items -->
-		<ul class="app-navigation__list">
-			<slot name="list" />
-		</ul>
-
-		<!-- Footer for e.g. AppNavigationSettings -->
-		<slot name="footer" />
 	</div>
 </template>
 
 <script>
-import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
-import isMobile from '../../mixins/isMobile/index.js'
-
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { getTrapStack } from '../../utils/focusTrap.js'
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
+import { createFocusTrap } from 'focus-trap'
+
+import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
+import NcAppNavigationList from '../NcAppNavigationList/index.js'
+import Vue from 'vue'
 
 export default {
 	name: 'NcAppNavigation',
 
 	components: {
+		NcAppNavigationList,
 		NcAppNavigationToggle,
 	},
 
-	mixins: [isMobile],
+	// Injected from NcContent
+	inject: {
+		setHasAppNavigation: {
+			default: () => () => Vue.util.warn('NcAppNavigation is not mounted inside NcContent, this is probably an error.'),
+			from: 'NcContent:setHasAppNavigation',
+		},
+	},
+
+	props: {
+		/**
+		 * The aria label to describe the navigation
+		 */
+		ariaLabel: {
+			type: String,
+			default: '',
+		},
+
+		/**
+		 * aria-labelledby attribute to describe the navigation
+		 */
+		ariaLabelledby: {
+			type: String,
+			default: '',
+		},
+	},
+
+	setup() {
+		return {
+			isMobile: useIsMobile(),
+		}
+	},
 
 	data() {
 		return {
-			open: true,
+			open: !this.isMobile,
+			focusTrap: null,
 		}
 	},
 
 	watch: {
 		isMobile() {
 			this.open = !this.isMobile
+			this.toggleFocusTrap()
+		},
+		open() {
+			this.toggleFocusTrap()
 		},
 	},
 
 	mounted() {
+		this.setHasAppNavigation(true)
 		subscribe('toggle-navigation', this.toggleNavigationByEventBus)
 		// Emit an event with the initial state of the navigation
 		emit('navigation-toggled', {
 			open: this.open,
 		})
+
+		this.focusTrap = createFocusTrap(this.$refs.appNavigationContainer, {
+			allowOutsideClick: true,
+			fallbackFocus: this.$refs.appNavigationContainer,
+			trapStack: getTrapStack(),
+			escapeDeactivates: false,
+		})
+		this.toggleFocusTrap()
 	},
 	unmounted() {
-		this.mc.off('swipeleft swiperight')
-		this.mc.destroy()
+		this.setHasAppNavigation(false)
 		unsubscribe('toggle-navigation', this.toggleNavigationByEventBus)
+		this.focusTrap.deactivate()
 	},
 
 	methods: {
@@ -118,6 +177,14 @@ export default {
 		 * @param {boolean} [state] set the state instead of inverting the current one
 		 */
 		toggleNavigation(state) {
+			// Early return if alreay in that state
+			if (this.open === state) {
+				emit('navigation-toggled', {
+					open: this.open,
+				})
+				return
+			}
+
 			this.open = (typeof state === 'undefined') ? !this.open : state
 			const bodyStyles = getComputedStyle(document.body)
 			const animationLength = parseInt(bodyStyles.getPropertyValue('--animation-quick')) || 100
@@ -129,21 +196,49 @@ export default {
 			// We wait for 1.5 times the animation length to give the animation time to really finish.
 			}, 1.5 * animationLength)
 		},
+
 		toggleNavigationByEventBus({ open }) {
 			this.toggleNavigation(open)
+		},
+
+		/**
+		 * Activate focus trap if it is currently needed, otherwise deactivate
+		 */
+		toggleFocusTrap() {
+			if (this.isMobile && this.open) {
+				this.focusTrap.activate()
+			} else {
+				this.focusTrap.deactivate()
+			}
+		},
+
+		handleEsc() {
+			if (this.isMobile) {
+				this.toggleNavigation(false)
+			}
 		},
 	},
 }
 </script>
+
+<style lang="scss">
+.app-navigation,
+.app-content {
+	/** Distance of the app naviation toggle and the first navigation item to the top edge of the app content container */
+	--app-navigation-padding: #{$app-navigation-padding};
+}
+</style>
 
 <style lang="scss" scoped>
 .app-navigation {
 	// Set scoped variable override
 	// Using --color-text-maxcontrast as a fallback evaluates to an invalid value as it references itself in this scope instead of the variable defined higher up
 	--color-text-maxcontrast: var(--color-text-maxcontrast-background-blur, var(--color-text-maxcontrast-default));
-
 	transition: transform var(--animation-quick), margin var(--animation-quick);
 	width: $navigation-width;
+	// Left toggle button padding + toggle button + right padding from NcAppContent
+	--app-navigation-max-width: calc(100vw - (var(--app-navigation-padding) + var(--default-clickable-area) + var(--default-grid-baseline)));
+	max-width: var(--app-navigation-max-width);
 	position: relative;
 	top: 0;
 	left: 0;
@@ -156,24 +251,20 @@ export default {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	display: flex;
-	flex-direction: column;
 	flex-grow: 0;
 	flex-shrink: 0;
-	background-color:  var(--color-main-background-blur, var(--color-main-background));
+	background-color: var(--color-main-background-blur, var(--color-main-background));
 	-webkit-backdrop-filter: var(--filter-background-blur, none);
 	backdrop-filter: var(--filter-background-blur, none);
 
 	&--close {
-		transform: translateX(-100%);
-		position: absolute;
+		margin-left: calc(-1 * min($navigation-width, var(--app-navigation-max-width)));
 	}
 
-	//list of navigation items
-	& > ul,
-	&__list {
+	// For legacy purposes support passing a bare list to the content in #default slot and including #footer slot
+	// Same styles as NcAppNavigationList
+	&__content > ul {
 		position: relative;
-		height: 100%;
 		width: 100%;
 		overflow-x: hidden;
 		overflow-y: auto;
@@ -181,12 +272,30 @@ export default {
 		display: flex;
 		flex-direction: column;
 		gap: var(--default-grid-baseline, 4px);
-		padding: calc(var(--default-grid-baseline, 4px) * 2);
+		padding: var(--app-navigation-padding);
+	}
+
+	// Always stretch the navigation list
+	& &__list {
+		height: 100%;
+	}
+
+	// Stretch the main content if there is no stretched list
+	&__body--no-list {
+		flex: 1 1 auto;
+		overflow: auto;
+		height: 100%;
+	}
+
+	&__content {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
 	}
 }
 
 // add extra border for high contrast mode
-[data-themes*="highcontrast"] {
+[data-themes*='highcontrast'] {
 	.app-navigation {
 		border-right: 1px solid var(--color-border);
 	}
@@ -194,13 +303,13 @@ export default {
 
 // When on mobile, we make the navigation slide over the appcontent
 @media only screen and (max-width: $breakpoint-mobile) {
-	.app-navigation:not(.app-navigation--close) {
+	.app-navigation {
 		position: absolute;
 	}
 }
 
 // Put the toggle behind appsidebar on small screens
-@media only screen and (max-width: math.div($breakpoint-mobile, 2)) {
+@media only screen and (max-width: $breakpoint-small-mobile) {
 	.app-navigation {
 		z-index: 1400;
 	}

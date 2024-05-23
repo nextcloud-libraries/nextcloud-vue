@@ -32,7 +32,7 @@ depending on whether you require the Modal to stay within the DOM or not. Do not
 			:show.sync="modal"
 			@close="closeModal"
 			size="small"
-			title="Title"
+			name="Name"
 			:outTransition="true"
 			:hasNext="true"
 			:hasPrevious="true">
@@ -73,14 +73,30 @@ export default {
 		<NcButton @click="showModal">Show Modal with fields</NcButton>
 		<NcModal
 			v-if="modal"
+			ref="modalRef"
 			@close="closeModal"
-			title="Title inside modal">
+			name="Name inside modal">
 			<div class="modal__content">
 				<h2>Please enter your name</h2>
-				<NcTextField label="First Name" :value.sync="firstName" />
-				<NcTextField label="Last Name" :value.sync="lastName" />
+				<div class="form-group">
+					<NcTextField label="First Name" :value.sync="firstName" />
+				</div>
+				<div class="form-group">
+					<NcTextField label="Last Name" :value.sync="lastName" />
+				</div>
+				<div class="form-group">
+					<label for="pizza">What is the most important pizza item?</label>
+					<NcSelect input-id="pizza" :options="['Cheese', 'Tomatos', 'Pineapples']" v-model="pizza" />
+				</div>
+				<div class="form-group">
+					<label for="emoji-trigger">Select your favorite emoji</label>
+					<NcEmojiPicker v-if="modalRef" :container="modalRef.$el">
+						<NcButton id="emoji-trigger">Select</NcButton>
+					</NcEmojiPicker>
+				</div>
+
 				<NcButton
-					:disabled="!this.firstName || !this.lastName"
+					:disabled="!firstName || !lastName || !pizza"
 					@click="closeModal"
 					type="primary">
 					Submit
@@ -90,12 +106,20 @@ export default {
 	</div>
 </template>
 <script>
+import { ref } from 'vue'
+
 export default {
+	setup() {
+		return {
+			modalRef: ref(null),
+		}
+	},
 	data() {
 		return {
 			modal: false,
 			firstName: '',
 			lastName: '',
+			pizza: [],
 		}
 	},
 	methods: {
@@ -113,11 +137,17 @@ export default {
 <style scoped>
 .modal__content {
 	margin: 50px;
+}
+
+.modal__content h2 {
 	text-align: center;
 }
 
-.input-field {
-	margin: 12px 0px;
+.form-group {
+	margin: calc(var(--default-grid-baseline) * 4) 0;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 }
 </style>
 ```
@@ -175,24 +205,25 @@ export default {
 		<div v-show="showModal"
 			ref="mask"
 			class="modal-mask"
-			:class="{ 'modal-mask--dark': dark }"
+			:class="{ 'modal-mask--dark': dark || !closeButtonContained || hasPrevious || hasNext }"
 			:style="cssVariables"
 			role="dialog"
 			aria-modal="true"
-			:aria-labelledby="'modal-title-' + randId"
-			:aria-describedby="'modal-description-' + randId">
+			:aria-labelledby="'modal-name-' + randId"
+			:aria-describedby="'modal-description-' + randId"
+			tabindex="-1">
 			<!-- Header -->
 			<transition name="fade-visibility" appear>
 				<div class="modal-header">
-					<h2 v-if="title.trim() !== ''"
-						:id="'modal-title-' + randId"
-						class="modal-title">
-						{{ title }}
+					<h2 v-if="name.trim() !== ''"
+						:id="'modal-name-' + randId"
+						class="modal-name">
+						{{ name }}
 					</h2>
 					<div class="icons-menu">
 						<!-- Play-pause toggle -->
 						<button v-if="hasNext && enableSlideshow"
-							v-tooltip.auto="playPauseTitle"
+							v-tooltip.auto="playPauseName"
 							:class="{ 'play-pause-icons--paused': slideshowPaused }"
 							class="play-pause-icons"
 							type="button"
@@ -205,7 +236,7 @@ export default {
 								:size="iconSize"
 								class="play-pause-icons__pause" />
 							<span class="hidden-visually">
-								{{ playPauseTitle }}
+								{{ playPauseName }}
 							</span>
 
 							<!-- Progress circle, css animated -->
@@ -248,18 +279,15 @@ export default {
 				<div v-show="showModal"
 					:class="[
 						`modal-wrapper--${size}`,
-						spreadNavigation ? 'modal-wrapper--spread-navigation' : ''
+						{ 'modal-wrapper--spread-navigation': spreadNavigation },
 					]"
 					class="modal-wrapper"
-					@mousedown.self="close">
+					@mousedown.self="handleClickModalWrapper">
 					<!-- Navigation button -->
 					<transition name="fade-visibility" appear>
 						<NcButton v-show="hasPrevious"
 							type="tertiary-no-background"
 							class="prev"
-							:class="{
-								invisible: !hasPrevious
-							}"
 							:aria-label="prevButtonAriaLabel"
 							@click="previous">
 							<template #icon>
@@ -270,8 +298,6 @@ export default {
 
 					<!-- Content -->
 					<div :id="'modal-description-' + randId" class="modal-container">
-						<!-- @slot Modal content to render -->
-						<slot />
 						<!-- Close modal -->
 						<NcButton v-if="canClose && closeButtonContained"
 							type="tertiary"
@@ -282,6 +308,10 @@ export default {
 								<Close :size="20" />
 							</template>
 						</NcButton>
+						<div class="modal-container__content">
+							<!-- @slot Modal content to render -->
+							<slot />
+						</div>
 					</div>
 
 					<!-- Navigation button -->
@@ -289,9 +319,6 @@ export default {
 						<NcButton v-show="hasNext"
 							type="tertiary-no-background"
 							class="next"
-							:class="{
-								invisible: !hasNext
-							}"
 							:aria-label="nextButtonAriaLabel"
 							@click="next">
 							<template #icon>
@@ -309,7 +336,6 @@ export default {
 import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
-import l10n from '../../mixins/l10n.js'
 import NcActions from '../NcActions/index.js'
 import NcButton from '../../components/NcButton/index.js'
 import Timer from '../../utils/Timer.js'
@@ -322,7 +348,7 @@ import Pause from 'vue-material-design-icons/Pause.vue'
 import Play from 'vue-material-design-icons/Play.vue'
 
 import { createFocusTrap } from 'focus-trap'
-import Hammer from 'hammerjs'
+import { useSwipe } from '@vueuse/core'
 
 export default {
 	name: 'NcModal',
@@ -341,13 +367,11 @@ export default {
 		tooltip: Tooltip,
 	},
 
-	mixins: [l10n],
-
 	props: {
 		/**
-		 * Title to be shown with the modal
+		 * Name to be shown with the modal
 		 */
-		title: {
+		name: {
 			type: String,
 			default: '',
 		},
@@ -417,6 +441,7 @@ export default {
 				return ['small', 'normal', 'large', 'full'].includes(size)
 			},
 		},
+
 		/**
 		 * Declare if the modal can be closed
 		 */
@@ -424,7 +449,20 @@ export default {
 			type: Boolean,
 			default: true,
 		},
-		/** Makes the modal backdrop black if true  */
+
+		/**
+		 * Close the modal if the user clicked outside of the modal
+		 * Only relevant if `canClose` is set to true.
+		 */
+		closeOnClickOutside: {
+			type: Boolean,
+			default: true,
+		},
+
+		/**
+		 * Makes the modal backdrop black if true
+		 * Will be overwritten if some buttons are shown outside
+		 */
 		dark: {
 			type: Boolean,
 			default: false,
@@ -469,6 +507,16 @@ export default {
 			type: Boolean,
 			default: undefined,
 		},
+
+		/**
+		 * Set element to return focus to after focus trap deactivation
+		 *
+		 * @type {import('focus-trap').FocusTargetValueOrFalse}
+		 */
+		setReturnFocus: {
+			default: undefined,
+			type: [HTMLElement, SVGElement, String, Boolean],
+		},
 	},
 
 	emits: [
@@ -497,7 +545,7 @@ export default {
 		modalTransitionName() {
 			return `modal-${this.outTransition ? 'out' : 'in'}`
 		},
-		playPauseTitle() {
+		playPauseName() {
 			return this.playing ? t('Pause slideshow') : t('Start slideshow')
 		},
 		cssVariables() {
@@ -508,7 +556,7 @@ export default {
 		},
 
 		closeButtonAriaLabel() {
-			return t('Close modal')
+			return t('Close')
 		},
 		prevButtonAriaLabel() {
 			return t('Previous')
@@ -546,15 +594,13 @@ export default {
 	},
 	beforeDestroy() {
 		window.removeEventListener('keydown', this.handleKeydown)
-		this.mc.off('swipeleft swiperight')
-		this.mc.destroy()
+		this.mc.stop()
 	},
 	mounted() {
 		// init clear view
 		this.useFocusTrap()
-		this.mc = new Hammer(this.$refs.mask)
-		this.mc.on('swipeleft swiperight', e => {
-			this.handleSwipe(e)
+		this.mc = useSwipe(this.$refs.mask, {
+			onSwipeEnd: this.handleSwipe,
 		})
 
 		if (this.container) {
@@ -573,6 +619,8 @@ export default {
 	},
 
 	methods: {
+		t,
+
 		// Events emitters
 		previous(event) {
 			// do not send the event if nothing is available
@@ -615,26 +663,58 @@ export default {
 			}
 		},
 
-		// Key Handlers
-		handleKeydown(e) {
-			switch (e.keyCode) {
-			case 37: // left arrow
-				this.previous(e)
-				break
-			case 39: // right arrow
-				this.next(e)
-				break
-			case 27: // escape key
-				this.close(e)
-				break
+		/**
+		 * Handle click on modal wrapper
+		 * If `closeOnClickOutside` is set the modal will be closed
+		 *
+		 * @param {MouseEvent} event The click event
+		 */
+		handleClickModalWrapper(event) {
+			if (this.closeOnClickOutside) {
+				this.close(event)
 			}
 		},
-		handleSwipe(e) {
+
+		/**
+		 * @param {KeyboardEvent} event - keyboard event
+		 */
+		handleKeydown(event) {
+			if (event.key === 'Escape') {
+				const trapStack = getTrapStack()
+				// Only close the most recent focus trap modal
+				if (trapStack.length > 0 && trapStack[trapStack.length - 1] !== this.focusTrap) {
+					return
+				}
+				return this.close(event)
+			}
+
+			const arrowHandlers = {
+				ArrowLeft: this.previous,
+				ArrowRight: this.next,
+			}
+			if (arrowHandlers[event.key]) {
+				// Ignore arrow navigation, if there is a current focus outside the modal.
+				// For example, when the focus is in Sidebar or NcActions's items,
+				// arrow navigation should not be intercept by modal slider
+				if (document.activeElement && !this.$el.contains(document.activeElement)) {
+					return
+				}
+				return arrowHandlers[event.key](event)
+			}
+		},
+
+		/**
+		 * handle the swipe event
+		 *
+		 * @param {TouchEvent} e The touch event
+		 * @param {import('@vueuse/core').SwipeDirection} direction Swipe direction
+		 */
+		handleSwipe(e, direction) {
 			if (this.enableSwipe) {
-				if (e.type === 'swipeleft') {
+				if (direction === 'left') {
 					// swiping to left to go to the next item
 					this.next(e)
-				} else if (e.type === 'swiperight') {
+				} else if (direction === 'right') {
 					// swiping to right to go back to the previous item
 					this.previous(e)
 				}
@@ -702,11 +782,18 @@ export default {
 			// wait until all children are mounted and available in the DOM before focusTrap can be added
 			await this.$nextTick()
 
-			// Init focus trap
-			this.focusTrap = createFocusTrap(contentContainer, {
+			const options = {
 				allowOutsideClick: true,
+				fallbackFocus: contentContainer,
 				trapStack: getTrapStack(),
-			})
+				// Esc can be used without stop in content or additionalTrapElements where it should not deacxtivate modal's focus trap.
+				// Focus trap is deactivated on modal close anyway.
+				escapeDeactivates: false,
+				setReturnFocus: this.setReturnFocus,
+			}
+
+			// Init focus trap
+			this.focusTrap = createFocusTrap([contentContainer, ...this.additionalTrapElements], options)
 			this.focusTrap.activate()
 		},
 		clearFocusTrap() {
@@ -751,16 +838,9 @@ export default {
 	width: 100%;
 	height: $header-height;
 	overflow: hidden;
-	transition: opacity 250ms,
-		visibility 250ms;
+	transition: opacity 250ms, visibility 250ms;
 
-	// replace display by visibility
-	&.invisible[style*='display:none'],
-	&.invisible[style*='display: none'] {
-		visibility: hidden;
-	}
-
-	.modal-title {
+	.modal-name {
 		overflow-x: hidden;
 		box-sizing: border-box;
 		width: 100%;
@@ -773,9 +853,9 @@ export default {
 		margin-bottom: 0;
 	}
 
-	// On wider screens the title can be centered
+	// On wider screens the name can be centered
 	@media only screen and (min-width: $breakpoint-mobile) {
-		.modal-title {
+		.modal-name {
 			padding-left: #{$clickable-area * 3}; // maximum actions is 3
 			text-align: center;
 		}
@@ -871,29 +951,20 @@ export default {
 	.prev,
 	.next {
 		z-index: 10000;
-		// ignore display: none
-		display: flex !important;
-		height: 35vw;
+		height: 35vh;
+		min-height: 300px;
 		position: absolute;
-		transition: opacity 250ms,
-			visibility 250ms;
-		color: var(--color-primary-text);
+		transition: opacity 250ms;
+		// hover the mask
+		color: white;
 
 		&:focus-visible {
 			// Override NcButton focus styles
-			box-shadow: 0 0 0 2px var(--color-primary-text);
+			box-shadow: 0 0 0 2px var(--color-primary-element-text);
 			background-color: var(--color-box-shadow);
 		}
-
-		// we want to keep the elements on page
-		// even if hidden to avoid having a unbalanced
-		// centered content
-		// replace display by visibility
-		&.invisible[style*='display:none'],
-		&.invisible[style*='display: none'] {
-			visibility: hidden;
-		}
 	}
+
 	.prev {
 		left: 2px;
 	}
@@ -904,44 +975,57 @@ export default {
 	/* Content */
 	.modal-container {
 		position: relative;
-		display: block;
-		overflow: auto; // avoids unecessary hacks if the content should be bigger than the modal
+		display: flex;
 		padding: 0;
 		transition: transform 300ms ease;
 		border-radius: var(--border-radius-large);
 		background-color: var(--color-main-background);
+		color: var(--color-main-text);
 		box-shadow: 0 0 40px rgba(0, 0, 0, .2);
+
 		&__close {
+			// Ensure the close button is always ontop of the content
+			z-index: 1;
 			position: absolute;
 			top: 4px;
 			right: 4px;
 		}
+
+		&__content {
+			width: 100%;
+			min-height: 52px; // At least the close button shall fit in
+			overflow: auto; // avoids unecessary hacks if the content should be bigger than the modal
+		}
 	}
+
+	// We allow 90% max-height, but we need to ensure the header does not overlap the modal
+	// as the modal is centered, we need the space on top and bottom
+	$max-modal-height: min(90%, calc(100% - 2 * $header-height));
 
 	// Sizing
 	&--small {
-		.modal-container {
+		& > .modal-container {
 			width: 400px;
 			max-width: 90%;
-			max-height: 90%;
+			max-height: $max-modal-height;
 		}
 	}
 	&--normal {
-		.modal-container {
+		& > .modal-container {
 			max-width: 90%;
 			width: 600px;
-			max-height: 90%;
+			max-height: $max-modal-height;
 		}
 	}
 	&--large {
-		.modal-container {
+		& > .modal-container {
 			max-width: 90%;
 			width: 900px;
-			max-height: 90%;
+			max-height: $max-modal-height;
 		}
 	}
 	&--full {
-		.modal-container {
+		& > .modal-container {
 			width: 100%;
 			height: calc(100% - var(--header-height));
 			position: absolute;
@@ -951,7 +1035,7 @@ export default {
 	}
 
 	// Make modal full screen on mobile
-	@media only screen and (max-width: math.div($breakpoint-mobile, 2)) {
+	@media only screen and ((max-width: $breakpoint-small-mobile) or (max-height: 400px)) {
 		.modal-container {
 			max-width: initial;
 			width: 100%;

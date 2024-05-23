@@ -28,7 +28,7 @@
 <template>
 	<NcDashboardWidget :items="items">
 		<template #default="{ item }">
-			{{ item.title }}
+			{{ item.name }}
 		</template>
 	</NcDashboardWidget>
 </template>
@@ -36,11 +36,11 @@
 <script>
 const myItems = [
 	{
-		title: 'first',
+		name: 'first',
 		content: 'blabla',
 	},
 	{
-		title: 'second',
+		name: 'second',
 		content: 'fuzzfuzz',
 	},
 ]
@@ -63,7 +63,7 @@ export default {
 		:show-items-and-empty-content="true"
 		:half-empty-content-message="'No unread items'">
 		<template #default="{ item }">
-			{{ item.title }}
+			{{ item.name }}
 		</template>
 	</NcDashboardWidget>
 </template>
@@ -71,11 +71,11 @@ export default {
 <script>
 const myItems = [
 	{
-		title: 'first',
+		name: 'first',
 		content: 'blabla',
 	},
 	{
-		title: 'second',
+		name: 'second',
 		content: 'fuzzfuzz',
 	},
 ]
@@ -351,11 +351,9 @@ export default {
 <style scoped lang="scss">
 .dashboard-widget :deep(.empty-content) {
 	text-align: center;
-	margin-top: 0;
 	padding-top: 5vh;
 	&.half-screen {
 		padding-top: 0;
-		margin-top: 0;
 		margin-bottom: 1vh;
 	}
 }

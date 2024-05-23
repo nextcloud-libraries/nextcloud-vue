@@ -55,9 +55,10 @@ $navigation-width: 300px;
 
 // mobile breakpoint
 $breakpoint-mobile: 1024px;
-
-// top-bar spacing
-$topbar-margin: 4px;
+$breakpoint-small-mobile: math.div($breakpoint-mobile, 2);
 
 // navigation spacing
 $app-navigation-settings-margin: 3px;
+
+// navigation items
+$app-navigation-padding: calc(var(--default-grid-baseline, 4px) * 2);

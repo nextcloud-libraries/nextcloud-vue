@@ -1,4 +1,3 @@
-
 /**
  * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -20,19 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import Vue from 'vue'
-
 export default {
-	before() {
-		// all actions requires a valid text content
-		// if none, forbid the component mount and throw error
-		if (!this.$slots.default || this.text.trim() === '') {
-			Vue.util.warn(`${this.$options.name} cannot be empty and requires a meaningful text content`, this)
-			this.$destroy()
-			this.$el.remove()
-		}
-	},
-
 	beforeUpdate() {
 		this.text = this.getText()
 	},

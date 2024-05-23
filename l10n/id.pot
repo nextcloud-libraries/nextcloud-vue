@@ -1,0 +1,323 @@
+# 
+# Translators:
+# Empty Slot Filler, 2023
+# Linerly <linerly@proton.me>, 2023
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Linerly <linerly@proton.me>, 2023\n"
+"Language-Team: Indonesian (https://app.transifex.com/nextcloud/teams/64236/id/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: id\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "{tag} (invisible)"
+msgstr "{tag} (tidak terlihat)"
+
+msgid "{tag} (restricted)"
+msgstr "{tag} (dibatasi)"
+
+msgid "A color with a HEX value {hex}"
+msgstr "Warna dengan nilai HEX {hex}"
+
+msgid "a few seconds ago"
+msgstr "beberapa detik yang lalu"
+
+msgid "Actions"
+msgstr "Tindakan"
+
+msgid "Actions for item with name \"{name}\""
+msgstr "Tindakan untuk item dengan nama \"{name}\""
+
+msgid "Activities"
+msgstr "Aktivitas"
+
+msgid "Animals & Nature"
+msgstr "Satwa dan Alam"
+
+msgid "Any link"
+msgstr "Semua tautan"
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr ""
+"Apa pun yang dibagikan dengan grup orang yang sama akan muncul di sini"
+
+msgid "Avatar of {displayName}"
+msgstr "Avatar {displayName}"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "Avatar {displayName}, {status}"
+
+msgid "away"
+msgstr "tidak tersedia"
+
+msgid "Back"
+msgstr "Kembali"
+
+msgid "Back to provider selection"
+msgstr "Kembali ke pemilihan penyedia"
+
+msgid "Cancel changes"
+msgstr "Batalkan perubahan"
+
+msgid "Change name"
+msgstr "Ubah nama"
+
+msgid "Choose"
+msgstr "Pilih"
+
+msgid "Clear search"
+msgstr "Bersihkan pencarian"
+
+msgid "Clear selected"
+msgstr "Hapus terpilih"
+
+msgid "Clear text"
+msgstr "Bersihkan teks"
+
+msgid "Close"
+msgstr "Tutup"
+
+msgid "Close navigation"
+msgstr "Tutup navigasi"
+
+msgid "Close sidebar"
+msgstr "Tutup bilah sisi"
+
+msgid "Close Smart Picker"
+msgstr "Tutup Pemilih Cerdas"
+
+msgid "Collapse menu"
+msgstr "Ciutkan menu"
+
+msgid "Confirm changes"
+msgstr "Konfirmasikan perubahan"
+
+msgid "Custom"
+msgstr "Khusus"
+
+msgid "Deselect {option}"
+msgstr "Batalkan pemilihan {option}"
+
+msgid "do not disturb"
+msgstr "jangan ganggu"
+
+msgid "Edit item"
+msgstr "Edit item"
+
+msgid "Enter link"
+msgstr "Masukkan tautan"
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr ""
+"Kesalahan saat mengambil sumber daya terkait. Hubungi administrator sistem "
+"Anda jika ada pertanyaan."
+
+msgid "External documentation for {name}"
+msgstr "Dokumentasi eksternal untuk {name}"
+
+msgid "Favorite"
+msgstr "Favorit"
+
+msgid "Flags"
+msgstr "Tanda"
+
+msgid "Food & Drink"
+msgstr "Makanan dan Minuman"
+
+msgid "Frequently used"
+msgstr "Sering digunakan"
+
+msgid "Global"
+msgstr "Global"
+
+msgid "Go back to the list"
+msgstr "Kembali ke daftar"
+
+msgid "Gold"
+msgstr "Emas"
+
+msgid "Hide password"
+msgstr "Sembunyikan sandi"
+
+msgid "Load more \"{options}\""
+msgstr "Muat \"{options}\" lainnya"
+
+msgid "Message limit of {count} characters reached"
+msgstr "Batas jumlah karakter pesan ({count} karakter) tercapai"
+
+msgid "More items …"
+msgstr "Item lainnya…"
+
+msgid "More options"
+msgstr "Opsi lainnya"
+
+msgid "Next"
+msgstr "Selanjutnya"
+
+msgid "Nextcloud blue"
+msgstr "Biru Nextcloud"
+
+msgid "No emoji found"
+msgstr "Tidak ada emoji yang ditemukan"
+
+msgid "No link provider found"
+msgstr "Tidak ada penyedia tautan yang ditemukan"
+
+msgid "No results"
+msgstr "Tidak ada hasil"
+
+msgid "Objects"
+msgstr "Objek"
+
+msgid "offline"
+msgstr "luring"
+
+msgid "online"
+msgstr "daring"
+
+msgid "Open contact menu"
+msgstr "Buka menu kontak"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "Buka tautan ke \"{resourceName}\""
+
+msgid "Open menu"
+msgstr "Buka menu"
+
+msgid "Open navigation"
+msgstr "Buka navigasi"
+
+msgid "Open settings menu"
+msgstr "Buka menu pengaturan"
+
+msgid "Password is secure"
+msgstr "Kata sandi sudah aman"
+
+msgid "Pause slideshow"
+msgstr "Jeda tayangan slide"
+
+msgid "People & Body"
+msgstr "Orang & Badan"
+
+msgid "Pick a date"
+msgstr "Pilih tanggal"
+
+msgid "Pick a date and a time"
+msgstr "Pilih tanggal dan waktu"
+
+msgid "Pick a month"
+msgstr "Pilih bulan"
+
+msgid "Pick a time"
+msgstr "Pilih waktu"
+
+msgid "Pick a week"
+msgstr "Pilih pekan"
+
+msgid "Pick a year"
+msgstr "Pilih tahun"
+
+msgid "Pick an emoji"
+msgstr "Pilih emoji"
+
+msgid "Please select a time zone:"
+msgstr "Mohon pilih zona waktu"
+
+msgid "Previous"
+msgstr "Sebelumnya"
+
+msgid "Provider icon"
+msgstr "Ikon penyedia"
+
+msgid "Purple"
+msgstr "Ungu"
+
+msgid "Raw link {options}"
+msgstr "Tautan mentah {options}"
+
+msgid "Related resources"
+msgstr "Sumber daya terkait"
+
+msgid "Save changes"
+msgstr "Simpan perubahan"
+
+msgid "Search"
+msgstr "Cari"
+
+msgid "Search emoji"
+msgstr "Cari emoji"
+
+msgid "Search for options"
+msgstr "Cari opsi"
+
+msgid "Search for time zone"
+msgstr "Cari zona waktu"
+
+msgid "Search results"
+msgstr "Hasil pencarian"
+
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "dtk. yang lalu"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "beberapa detik lalu"
+
+msgid "Select a tag"
+msgstr "Pilih tag"
+
+msgid "Select provider"
+msgstr "Pilih penyedia"
+
+msgid "Selected"
+msgstr "Dipilih"
+
+msgid "Settings"
+msgstr "Pengaturan"
+
+msgid "Settings navigation"
+msgstr "Navigasi pengaturan"
+
+msgid "Show password"
+msgstr "Tampilkan sandi"
+
+msgid "Smart Picker"
+msgstr "Pemilih Cerdas"
+
+msgid "Smileys & Emotion"
+msgstr "Senyuman & Perasaan"
+
+msgid "Start slideshow"
+msgstr "Mulai salindia"
+
+msgid "Start typing to search"
+msgstr "Ketik untuk mulai mencari"
+
+msgid "Submit"
+msgstr "Kirimkan"
+
+msgid "Symbols"
+msgstr "Simbol"
+
+msgid "Travel & Places"
+msgstr "Perjalanan & Tempat"
+
+msgid "Type to search time zone"
+msgstr "Ketik untuk mencari zona waktu"
+
+msgid "Unable to search the group"
+msgstr "Tidak dapat mencari dalam grup"
+
+msgid "Undo changes"
+msgstr "Urungkan perubahan"
+
+msgid "User status: {status}"
+msgstr "Status pengguna: {status}"
+
+msgid "Write a message …"
+msgstr "Tulis pesan ..."
