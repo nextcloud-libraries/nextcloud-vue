@@ -251,6 +251,9 @@ msgstr "إفتَح القائمة"
 msgid "Open navigation"
 msgstr "إفتَح المتصفح"
 
+msgid "Open sidebar"
+msgstr "إفتَح الشريط الجانبي"
+
 msgid "Options"
 msgstr "خيارات"
 
