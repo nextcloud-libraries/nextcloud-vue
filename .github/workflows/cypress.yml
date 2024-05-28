@@ -1,11 +1,18 @@
+# This workflow is provided via the organization template repository
+#
+# https://github.com/nextcloud/.github
+# https://docs.github.com/en/actions/learn-github-actions/sharing-workflows-with-your-organization
+#
+# SPDX-FileCopyrightText: 2023-2024 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: MIT
+
 name: Cypress
 
-on:
-  pull_request:
-  push:
-    branches:
-      - master
-      - stable*
+on: pull_request
+
+concurrency:
+  group: cypress-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
 
 env:
   APP_NAME: nextcloud-vue
