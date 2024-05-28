@@ -11,7 +11,7 @@
   "homepage": "https://github.com/nextcloud-libraries/nextcloud-vue",
   "bugs": "https://github.com/nextcloud-libraries/nextcloud-vue/issues",
   "author": "John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>",
-  "license": "AGPL-3.0",
+  "license": "AGPL-3.0-or-later",
   "type": "module",
   "scripts": {
     "build": "vite build --mode production ",
