@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: 2021 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: CC0-1.0
+ */
+
 const stylelintConfig = require('@nextcloud/stylelint-config')
 
 module.exports = {

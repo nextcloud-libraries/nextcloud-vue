@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: CC0-1.0
+ */
+
 import type { Plugin, UserConfigFn } from 'vite'
 import { createLibConfig } from '@nextcloud/vite-config'
 import { globSync } from 'glob'

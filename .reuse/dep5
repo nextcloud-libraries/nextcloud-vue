@@ -1,0 +1,20 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Nextcloud Vue components library
+Upstream-Contact: Nextcloud GmbH <https://nextcloud.com/impressum/>
+Source: https://github.com/nextcloud-libraries/nextcloud-vue
+
+Files: package.json package-lock.json .github/pull_request_template.md
+Copyright: Nextcloud GmbH and Nextcloud contributors
+License: AGPL-3.0-or-later
+
+Files: styleguide/assets/* cypress/snapshots/* tests/unit/functions/usernameToColor/__snapshots__/usernameToColor.spec.js.snap
+Copyright: Nextcloud GmbH and Nextcloud contributors
+License: AGPL-3.0-or-later
+
+Files: l10n/*.pot
+Copyright: 2020-2024 Nextcloud translators
+License: AGPL-3.0-or-later
+
+Files: tsconfig.json tsconfig.webpack.json cypress/tsconfig.json tests/tsconfig.json .eslintrc.json cypress/.eslintrc.json
+Copyright: 2022-2024 Nextcloud GmbH and Nextcloud contributors
+License: CC0-1.0

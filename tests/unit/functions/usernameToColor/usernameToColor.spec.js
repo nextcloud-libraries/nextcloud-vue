@@ -1,3 +1,7 @@
+/**
+ * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
 import { describe, expect, it } from 'vitest'
 import usernameToColor from '../../../../src/functions/usernameToColor/index'
 
