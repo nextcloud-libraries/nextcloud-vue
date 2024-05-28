@@ -8,7 +8,7 @@
 	min-height: $clickable-area;
 	transition: background-color var(--animation-quick) ease-in-out;
 	transition: background-color 200ms ease-in-out;
-	border-radius: var(--border-radius-pill);
+	border-radius: var(--border-radius-element, var(--border-radius-pill));
 
 	&-wrapper {
 		position: relative;
@@ -117,7 +117,7 @@
 		&:focus-visible {
 			box-shadow: 0 0 0 4px var(--color-main-background);
 			outline: 2px solid var(--color-main-text);
-			border-radius: var(--border-radius-pill);
+			border-radius: var(--border-radius-element, var(--border-radius-pill));
 		}
 	}
 }

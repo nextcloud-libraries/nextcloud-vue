@@ -793,9 +793,7 @@ export default {
 	// 4px padding for the focus-visible styles. Width is reduced to compensate it
 	margin: 4px;
 	width: calc(100% - 8px);
-	// Fix for border-radius being too large for 3-line entries like in Mail
-	// 44px avatar size / 2 + 8px padding, and 2px for better visual quality
-	border-radius: 32px;
+	border-radius: var(--border-radius-element, 32px);
 	cursor: pointer;
 	transition: background-color var(--animation-quick) ease-in-out;
 	list-style: none;
