@@ -801,7 +801,7 @@ export default {
 	// 4px padding for the focus-visible styles. Width is reduced to compensate it
 	margin: 4px;
 	width: calc(100% - 8px);
-	border-radius: var(--border-radius-new-design, 32px);
+	border-radius: var(--border-radius-element, 32px);
 	cursor: pointer;
 	transition: background-color var(--animation-quick) ease-in-out;
 	list-style: none;
