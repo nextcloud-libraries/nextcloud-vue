@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: CC0-1.0
+ */
+
 import { createAppConfig } from '@nextcloud/vite-config'
 import { defineConfig } from 'cypress'
 import { resolve } from 'path'

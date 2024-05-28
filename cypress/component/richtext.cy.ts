@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
 // Markdown guide: https://www.markdownguide.org/basic-syntax/
 // Reference tests: https://github.com/nextcloud-deps/CDMarkdownKit/tree/master/CDMarkdownKitTests
 

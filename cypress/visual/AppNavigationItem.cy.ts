@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
 import { mount } from 'cypress/vue2'
 import Vue, { defineComponent } from 'vue'
 import VueRouter from 'vue-router'

@@ -1,4 +1,6 @@
 # https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes
+# SPDX-FileCopyrightText: 2021-2024 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: CC0-1.0
 changelog:
   exclude:
     authors:

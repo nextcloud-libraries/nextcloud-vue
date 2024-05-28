@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
 import { URL_PATTERN, URL_PATTERN_AUTOLINK } from '../../../../src/components/NcRichText/helpers.js'
 
 describe('URL_PATTERN', () => {

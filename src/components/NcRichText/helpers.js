@@ -1,4 +1,9 @@
 /**
+ * SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+/**
  * Regex pattern to match links to be resolved by the link-reference provider
  *
  * @type {RegExp}
