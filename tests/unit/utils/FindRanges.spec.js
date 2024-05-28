@@ -32,7 +32,7 @@ describe('FindRanges.js', () => {
 			const ranges = FindRanges('ananas', 'anan')
 
 			expect(ranges).toEqual([
-				{start: 0, end: 4},
+				{ start: 0, end: 4 },
 			])
 		})
 
@@ -40,16 +40,16 @@ describe('FindRanges.js', () => {
 			const ranges1 = FindRanges('ananas', 'an')
 
 			expect(ranges1).toEqual([
-				{start: 0, end: 2},
-				{start: 2, end: 4},
+				{ start: 0, end: 2 },
+				{ start: 2, end: 4 },
 			])
 
 			const ranges2 = FindRanges('ananas', 'a')
 
 			expect(ranges2).toEqual([
-				{start: 0, end: 1},
-				{start: 2, end: 3},
-				{start: 4, end: 5},
+				{ start: 0, end: 1 },
+				{ start: 2, end: 3 },
+				{ start: 4, end: 5 },
 			])
 		})
 
@@ -57,14 +57,14 @@ describe('FindRanges.js', () => {
 			const ranges1 = FindRanges('ananas', 'ana')
 
 			expect(ranges1).toEqual([
-				{start: 0, end: 3},
+				{ start: 0, end: 3 },
 			])
 
 			const ranges2 = FindRanges('oooo', 'oo')
 
 			expect(ranges2).toEqual([
-				{start: 0, end: 2},
-				{start: 2, end: 4},
+				{ start: 0, end: 2 },
+				{ start: 2, end: 4 },
 			])
 		})
 	})
