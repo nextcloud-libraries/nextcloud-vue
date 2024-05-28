@@ -7,7 +7,7 @@ Files: package.json package-lock.json .github/pull_request_template.md
 Copyright: Nextcloud GmbH and Nextcloud contributors
 License: AGPL-3.0-or-later
 
-Files: styleguide/assets/* cypress/snapshots/* tests/unit/functions/usernameToColor/__snapshots__/usernameToColor.spec.js.snap
+Files: styleguide/assets/icons.css styleguide/assets/server.css cypress/snapshots/* tests/unit/functions/usernameToColor/__snapshots__/usernameToColor.spec.js.snap
 Copyright: Nextcloud GmbH and Nextcloud contributors
 License: AGPL-3.0-or-later
 
@@ -18,3 +18,19 @@ License: AGPL-3.0-or-later
 Files: tsconfig.json tsconfig.webpack.json cypress/tsconfig.json tests/tsconfig.json
 Copyright: 2022-2024 Nextcloud GmbH and Nextcloud contributors
 License: CC0-1.0
+
+Files: styleguide/assets/img/favicon*.* styleguide/assets/img/logo/logo*.*
+Copyright: 2016-2024 Nextcloud GmbH
+License: LicenseRef-NextcloudTrademarks
+
+Files: styleguide/assets/close.svg styleguide/assets/img/filetypes/*.svg
+Copyright: 2020 Google Inc.
+License: Apache-2.0
+
+Files: styleguide/assets/img/loading* styleguide/assets/img/rss.svg styleguide/assets/img/breadcrumb.svg styleguide/assets/img/actions/* styleguide/assets/img/places/* styleguide/assets/img/categories/*
+Copyright: 2017-2024 Nextcloud GmbH and Nextcloud contributors
+License: AGPL-3.0-or-later
+
+Files: styleguide/assets/img/background styleguide/assets/img/app-background.jpg
+Copyright: Kamil Porembiński
+License: CC-BY-SA-4.0
