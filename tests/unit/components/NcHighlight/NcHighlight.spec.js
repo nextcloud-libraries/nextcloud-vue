@@ -33,15 +33,15 @@ describe('NcHighlight.vue', () => {
 					text: 'Highlight me',
 					search: 'me',
 					highlight: [
-						{ start: 3, end: 1},
-						{ start: 5, end: 7},
-					]
+						{ start: 3, end: 1 },
+						{ start: 5, end: 7 },
+					],
 				},
 			})
 
 			expect(wrapper.vm.ranges).toEqual([
-				{start: 1, end: 3},
-				{start: 5, end: 7},
+				{ start: 1, end: 3 },
+				{ start: 5, end: 7 },
 			])
 		})
 
@@ -55,13 +55,13 @@ describe('NcHighlight.vue', () => {
 						{ start: 1, end: 3 },
 						{ start: 5, end: 7 },
 						{ start: 20, end: 25 },
-					]
+					],
 				},
 			})
 
 			expect(wrapper.vm.ranges).toEqual([
-				{start: 1, end: 3},
-				{start: 5, end: 7},
+				{ start: 1, end: 3 },
+				{ start: 5, end: 7 },
 			])
 		})
 
@@ -77,15 +77,15 @@ describe('NcHighlight.vue', () => {
 						{ start: 5, end: 7 },
 						{ start: 10, end: 25 },
 						{ start: 20, end: 25 },
-					]
+					],
 				},
 			})
 
 			expect(wrapper.vm.ranges).toEqual([
-				{start: 0, end: 1},
-				{start: 3, end: 3},
-				{start: 5, end: 7},
-				{start: 10, end: 12},
+				{ start: 0, end: 1 },
+				{ start: 3, end: 3 },
+				{ start: 5, end: 7 },
+				{ start: 10, end: 12 },
 			])
 		})
 
@@ -101,15 +101,15 @@ describe('NcHighlight.vue', () => {
 						{ start: 10, end: 25 },
 						{ start: 5, end: 7 },
 						{ start: 3, end: 3 },
-					]
+					],
 				},
 			})
 
 			expect(wrapper.vm.ranges).toEqual([
-				{start: 0, end: 1},
-				{start: 3, end: 3},
-				{start: 5, end: 7},
-				{start: 10, end: 12},
+				{ start: 0, end: 1 },
+				{ start: 3, end: 3 },
+				{ start: 5, end: 7 },
+				{ start: 10, end: 12 },
 			])
 		})
 
@@ -127,13 +127,13 @@ describe('NcHighlight.vue', () => {
 						{ start: 7, end: 9 },
 						{ start: 20, end: 25 },
 						{ start: -10, end: -2 },
-					]
+					],
 				},
 			})
 
 			expect(wrapper.vm.ranges).toEqual([
-				{start: 0, end: 3},
-				{start: 5, end: 12},
+				{ start: 0, end: 3 },
+				{ start: 5, end: 12 },
 			])
 		})
 	})
