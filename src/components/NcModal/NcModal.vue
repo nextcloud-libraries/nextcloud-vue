@@ -200,7 +200,7 @@ export default {
 			tabindex="-1">
 			<!-- Header -->
 			<transition name="fade-visibility" appear>
-				<div class="modal-header">
+				<div class="modal-header" data-theme-dark>
 					<h2 v-if="name.trim() !== ''"
 						:id="'modal-name-' + randId"
 						class="modal-header__name">
@@ -834,7 +834,6 @@ export default {
 		transition: padding ease 100ms;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		color: #fff; // Always rendered on dark background
 		font-size: $icon-size;
 		margin-block: 0;
 	}
@@ -907,25 +906,9 @@ export default {
 
 		// The modal ignores the color theme and adds a black backdrop
 		// so we need to add custom color of the actions toggle
-		.header-actions {
-			--open-background-color: #3e3e3e;
-			color: #fff;
-
-			:deep(button) {
-				// force white instead of default main text
-				color: #fff;
-
-				&:hover, &:active {
-					// Also fix the hover color
-					background-color: var(--open-background-color) !important;
-				}
-
-				// Fix the focus visible color
-				&:focus-visible {
-					box-shadow: none !important;
-					outline: 2px solid #fff !important;
-				}
-			}
+		.header-actions :deep(button:focus-visible) {
+			box-shadow: none !important;
+			outline: 2px solid #fff !important;
 		}
 
 		// Force the Actions menu icon to be the same size as other icons

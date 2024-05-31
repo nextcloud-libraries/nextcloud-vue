@@ -7,7 +7,7 @@ Files: package.json package-lock.json .github/pull_request_template.md
 Copyright: Nextcloud GmbH and Nextcloud contributors
 License: AGPL-3.0-or-later
 
-Files: styleguide/assets/icons.css styleguide/assets/server.css cypress/snapshots/* tests/unit/functions/usernameToColor/__snapshots__/usernameToColor.spec.js.snap
+Files: styleguide/assets/dark.css styleguide/assets/icons.css styleguide/assets/server.css cypress/snapshots/* tests/unit/functions/usernameToColor/__snapshots__/usernameToColor.spec.js.snap
 Copyright: Nextcloud GmbH and Nextcloud contributors
 License: AGPL-3.0-or-later
 
