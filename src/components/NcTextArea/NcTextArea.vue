@@ -325,13 +325,13 @@ export default {
 		margin: 0;
 		padding-inline: 10px 6px; // align with label 8px margin label + 4px padding label - 2px border input
 		width: 100%;
-
+		height: calc(var(--default-clickable-area) * 2);
 		font-size: var(--default-font-size);
 		text-overflow: ellipsis;
 
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
-		border: 2px solid var(--color-border-maxcontrast);
+		border: var(--border-width-input, 2px) solid var(--color-border-maxcontrast);
 		border-radius: var(--border-radius-large);
 
 		cursor: pointer;
@@ -339,7 +339,8 @@ export default {
 		&:active:not([disabled]),
 		&:hover:not([disabled]),
 		&:focus:not([disabled]) {
-			border-color: 2px solid var(--color-main-text) !important;
+			border-width: var(--border-width-input-focused, 2px);
+			border-color: var(--color-main-text);
 			box-shadow: 0 0 0 2px var(--color-main-background) !important;
 		}
 

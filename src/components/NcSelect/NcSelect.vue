@@ -1149,7 +1149,7 @@ body {
 
 	/* Borders */
 	--vs-border-color: var(--color-border-maxcontrast);
-	--vs-border-width: 2px;
+	--vs-border-width: var(--border-width-input, 2px) !important;
 	--vs-border-style: solid;
 	--vs-border-radius: var(--border-radius-large);
 
@@ -1234,6 +1234,7 @@ body {
 	}
 
 	&.vs--open .vs__dropdown-toggle {
+		border-width: var(--border-width-input-focused);
 		outline: 2px solid var(--color-main-background);
 		border-color: var(--color-main-text);
 		border-bottom-color: transparent;
@@ -1308,6 +1309,7 @@ body {
 }
 
 .vs__dropdown-menu {
+	border-width: var(--border-width-input-focused) !important;
 	border-color: var(--color-main-text) !important;
 	outline: none !important;
 	box-shadow:
