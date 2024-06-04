@@ -20,6 +20,69 @@
   -
   -->
 
+<docs>
+A component to display a long text with highlight support in one line truncated with ellipsis in the end but keeping up to 10 last characters.
+
+It is supposed to be used as an `NcSelect`'s option in first place.
+
+### General usage
+
+```vue
+<template>
+	<div>
+		<h4>Plain text</h4>
+		<p>{{ text }}</p>
+
+		<h4>Truncated text with <code>text-overflow: ellipsis</code></h4>
+		<p style="text-overflow: ellipsis; overflow: hidden; white-space: pre;">{{ text }}</p>
+
+		<h4>NcEllipsisedOption searching for "Nineteen"</h4>
+		<NcEllipsisedOption :name="text" :search="search" />
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			text: 'One Two Three Four Five Six Seven Eight Nine Ten Eleven Twelve Thirteen Fourteen Fifteen Sixteen Seventeen Eighteen Nineteen Twenty',
+			search: 'Nineteen',
+		}
+	},
+}
+</script>
+```
+
+### Usage in `NcSelect`
+
+```vue
+<template>
+	<NcSelect v-model="selected" :options="options">
+		<template #option="option">
+			<NcEllipsisedOption :name="option.label" />
+		</template>
+		<template #selected-option="selectedOption">
+			<NcEllipsisedOption :name="selectedOption.label" />
+		</template>
+	</NcSelect>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			options: [
+				'Option 1 - a short opt.',
+				'Option 2 - a very very very very long opt.',
+			].map((label) => ({ label })),
+			selected: '',
+		}
+	},
+}
+</script>
+```
+</docs>
+
 <template>
 	<span class="name-parts" :title="name">
 		<NcHighlight class="name-parts__first"
@@ -45,11 +108,16 @@ export default {
 	},
 
 	props: {
+		/**
+		 * The text to be display in one line. If it is longer than 10 characters, it is be truncated with ellipsis in the end but keeping up to 10 last characters to fit the parent container.
+		 */
 		name: {
 			type: String,
 			default: '',
 		},
-
+		/**
+		 * The search value to highlight in the text
+		 */
 		search: {
 			type: String,
 			default: '',
