@@ -45,11 +45,13 @@ export enum EmojiSkinTone {
 }
 
 /**
- * @param {string} query Emoji search string
- * @param {number} maxResults Maximum of returned emojis
- * @return {Array} list of found emojis
+ * Get the list of emojis by search filter or the list of frequently used emojis
+ *
+ * @param query Emoji search filter string; if no string or empty string is given, the list of frequently used emojis is returned
+ * @param maxResults Maximum of returned emojis
+ * @return {object[]} list of found emojis in the same format as the emoji-mart-vue-fast's EmojiIndex
  */
-export const emojiSearch = (query: string, maxResults: number = 10) => {
+export function emojiSearch(query: string, maxResults: number = 10): object[] {
 	// If this is the first call of function - initialize EmojiIndex
 	if (!emojiIndex) {
 		emojiIndex = new EmojiIndex(data)
@@ -69,15 +71,23 @@ export const emojiSearch = (query: string, maxResults: number = 10) => {
 	return results.map((emoji) => emoji.getSkin(currentSkinTone))
 }
 
-export const emojiAddRecent = function(id) {
-	frequently.add(id)
+/**
+ * Add emoji to the list of recent emojis.
+ * This list can be got from emojiSearch function and it is used in NcEmojiPicker.
+ *
+ * @param emojiData object with `id` property
+ * @param emojiData.id the emoji ID from emoji index
+ */
+export function emojiAddRecent(emojiData: { id: string }): void {
+	frequently.add(emojiData)
 }
 
 /**
  * Get the current skin tone index used for emojis
+ *
  * @return {EmojiSkinTone} The skin tone
  */
-export const getCurrentSkinTone = () => {
+export function getCurrentSkinTone(): EmojiSkinTone {
 	const skinTone = Number.parseInt(storage.getItem('NcEmojiPicker::currentSkinTone') ?? '1')
 	// Clamp skinTone to valid ranges
 	return Math.min(Math.max(skinTone, EmojiSkinTone.Neutral), EmojiSkinTone.Dark)
@@ -85,9 +95,10 @@ export const getCurrentSkinTone = () => {
 
 /**
  * Set the current active skin tone for emojis
- * @param {EmojiSkinTone} skinTone Skin tone
+ *
+ * @param skinTone Skin tone
  */
-export const setCurrentSkinTone = (skinTone: EmojiSkinTone) => {
+export function setCurrentSkinTone(skinTone: EmojiSkinTone): void {
 	// Clamp skinTone to valid ranges
 	skinTone = Math.min(Math.max(skinTone, EmojiSkinTone.Neutral), EmojiSkinTone.Dark)
 	storage.setItem('NcEmojiPicker::currentSkinTone', skinTone.toString())
