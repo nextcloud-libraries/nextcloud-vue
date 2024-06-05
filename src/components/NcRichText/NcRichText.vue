@@ -531,7 +531,7 @@ export default {
 							'onUpdate:modelValue': () => {
 								this.$emit('interact:todo', id)
 							},
-						}, labelParts)
+						}, { default: () => labelParts })
 
 						return h(type, props, [inputComponent, nestedNode])
 					}
@@ -546,7 +546,7 @@ export default {
 						return h(RouterLink, {
 							...props,
 							to: route,
-						}, children)
+						}, { default: () => children })
 					}
 				}
 				return h(type, props, children)
@@ -568,7 +568,7 @@ export default {
 					...placeholder.props,
 					class: 'rich-text--component',
 				},
-				children,
+				{ default: () => children },
 			)
 		},
 	},
