@@ -100,11 +100,9 @@
     "unified": "^11.0.4",
     "unist-builder": "^4.0.0",
     "unist-util-visit": "^5.0.0",
+    "vue": "^3.4.27",
     "vue-datepicker-next": "^1.0.3",
     "vue-select": "^4.0.0-beta.6"
-  },
-  "peerDependencies": {
-    "vue": "^3.4.27"
   },
   "engines": {
     "node": "^20.0.0",
