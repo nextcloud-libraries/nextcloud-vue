@@ -2,6 +2,7 @@
  * @copyright Copyright (c) 2019 Georg Ehrke
  *
  * @author Georg Ehrke <oc.list@georgehrke.com>
+ * @author 2024 Richard Steinmetz <richard@steinmetz.cloud>
  *
  * @license AGPL-3.0-or-later
  *
@@ -19,10 +20,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import tzData from '../../../resources/timezones/zones.json'
-import logger from '../../utils/logger.js'
 
-import { getTimezoneManager } from '@nextcloud/calendar-js'
+import { getTimezoneManager } from '@nextcloud/timezones'
 
 const timezoneManager = getTimezoneManager()
 let initialized = false
@@ -35,35 +34,9 @@ let initialized = false
  */
 export default function() {
 	if (!initialized) {
-		initialize()
+		timezoneManager.registerDefaultTimezones()
+		initialized = true
 	}
 
 	return timezoneManager
-}
-
-/**
- * Initializes the timezone-manager with all timezones shipped by the calendar app
- */
-function initialize() {
-	logger.debug(`Using version ${tzData.version} of the timezone database`)
-
-	for (const tzid in tzData.zones) {
-		if (Object.prototype.hasOwnProperty.call(tzData.zones, [tzid])) {
-			const ics = [
-				'BEGIN:VTIMEZONE',
-				'TZID:' + tzid,
-				...tzData.zones[tzid].ics,
-				'END:VTIMEZONE',
-			].join('\r\n')
-			timezoneManager.registerTimezoneFromICS(tzid, ics)
-		}
-	}
-
-	for (const tzid in tzData.aliases) {
-		if (Object.prototype.hasOwnProperty.call(tzData.aliases, [tzid])) {
-			timezoneManager.registerAlias(tzid, tzData.aliases[tzid].aliasTo)
-		}
-	}
-
-	initialized = true
 }
