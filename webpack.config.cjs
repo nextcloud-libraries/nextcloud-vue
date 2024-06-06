@@ -69,7 +69,6 @@ webpackRules.RULE_SCSS = {
 }
 
 webpackRules.RULE_JS.exclude = BabelLoaderExcludeNodeModulesExcept([
-	'@nextcloud/calendar-js',
 	'tributejs',
 ])
 
