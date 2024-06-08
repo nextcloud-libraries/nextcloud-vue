@@ -25,7 +25,10 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 </docs>
 
 <template>
-	<NcButton :aria-label="label" :type="type" @click="handleClick">
+	<NcButton :aria-label="label"
+		:disabled="disabled"
+		:type="type"
+		@click="handleClick">
 		{{ label }}
 		<template #icon>
 			<!-- @slot Allow to set a custom icon for the button -->
@@ -85,6 +88,14 @@ export default defineComponent({
 			required: false,
 			default: 'secondary',
 			validator: (type) => typeof type === 'string' && ['primary', 'secondary', 'error', 'warning', 'success'].includes(type),
+		},
+
+		/**
+		 * If the button should be shown as disabled
+		 */
+		disabled: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
