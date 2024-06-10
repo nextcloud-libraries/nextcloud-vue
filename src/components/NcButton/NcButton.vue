@@ -718,8 +718,8 @@ export default defineComponent({
 	padding: 0;
 	font-size: var(--default-font-size);
 	font-weight: bold;
-	min-height: $clickable-area;
-	min-width: $clickable-area;
+	min-height: var(--default-clickable-area);
+	min-width: var(--default-clickable-area);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -730,7 +730,7 @@ export default defineComponent({
 	span {
 		cursor: pointer;
 	}
-	border-radius: var(--border-radius-element, math.div($clickable-area, 2));
+	border-radius: var(--border-radius-element, calc(var(--default-clickable-area) / 2));
 	transition-property: color, border-color, background-color;
 	transition-duration: 0.1s;
 	transition-timing-function: linear;
@@ -785,10 +785,10 @@ export default defineComponent({
 	}
 
 	&__icon {
-		height: $clickable-area;
-		width: $clickable-area;
-		min-height: $clickable-area;
-		min-width: $clickable-area;
+		height: var(--default-clickable-area);
+		width: var(--default-clickable-area);
+		min-height: var(--default-clickable-area);
+		min-width: var(--default-clickable-area);
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -805,7 +805,8 @@ export default defineComponent({
 
 	// Icon-only button
 	&--icon-only {
-		width: $clickable-area !important;
+		line-height: 1;
+		width: var(--default-clickable-area) !important;
 	}
 
 	// Text-only button
