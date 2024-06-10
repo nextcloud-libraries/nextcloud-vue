@@ -68,6 +68,9 @@ function chunkify(t) {
 	return tz
 }
 
+// Global variables
+window._oc_webroot = ''
+
 window.OC = {
 	debug: true,
 	getCurrentUser() {
