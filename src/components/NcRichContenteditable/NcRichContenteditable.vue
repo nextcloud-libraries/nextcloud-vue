@@ -210,6 +210,48 @@ export default {
 </style>
 ```
 
+### Using public methods
+
+```vue
+<template>
+	<div>
+		<div class="buttons-wrapper">
+			<NcButton class="show-slash-button" @click="showSlashCommands">Slash commands</NcButton>
+			<NcButton class="focus-button" @click="focus">Focus on input</NcButton>
+		</div>
+		<NcRichContenteditable
+			ref="contenteditable"
+			v-model="message"
+			label="Write a comment"
+			:maxlength="100"/>
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			message: '**Lorem ipsum** dolor sit amet. ',
+		}
+	},
+	methods: {
+		showSlashCommands() {
+			this.$refs.contenteditable.showTribute('/')
+		},
+		focus() {
+			this.$refs.contenteditable.focus()
+		},
+	},
+}
+</script>
+<style lang="scss" scoped>
+	.buttons-wrapper {
+		display: flex;
+		gap: 10px;
+		margin-bottom: 20px;
+	}
+</style>
+```
+
 </docs>
 
 <template>
@@ -911,6 +953,8 @@ export default {
 				this.getTributeContainer().setAttribute('class', this.tribute.current.collection.containerClass || this.$style['tribute-container'])
 
 				this.setupTributeIntegration()
+				// Remove the event handler if any
+				document.removeEventListener('click', this.hideTribute, true)
 			} else {
 				// Cancel loading data for autocomplete
 				// Otherwise it could be received when another autocomplete is already opened
@@ -989,6 +1033,28 @@ export default {
 			} else {
 				this.getTributeContainer().classList.remove(this.$style['tribute-container--focus-visible'])
 			}
+		},
+
+		/**
+		 * Show tribute menu programmatically.
+		 * @param {string} trigger - trigger character, can be '/', '@', or ':'
+		 *
+		 * @public
+		 */
+		showTribute(trigger) {
+			this.focus()
+			const index = this.tribute.collection.findIndex(collection => collection.trigger === trigger)
+			this.tribute.showMenuForCollection(this.$refs.contenteditable, index)
+			document.addEventListener('click', this.hideTribute, true)
+		},
+
+		/**
+		 * Hide tribute menu programmatically
+		 *
+		 */
+		hideTribute() {
+			this.tribute.hideMenu()
+			document.removeEventListener('click', this.hideTribute, true)
 		},
 	},
 }
