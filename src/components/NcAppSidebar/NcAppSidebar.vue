@@ -455,8 +455,6 @@ export default {
 		</NcButton>
 		<transition appear
 			name="slide-right"
-			v-bind="$attrs"
-			v-on="$listeners"
 			@before-enter="onBeforeEnter"
 			@after-enter="onAfterEnter"
 			@before-leave="onBeforeLeave"
@@ -465,7 +463,12 @@ export default {
 				id="app-sidebar-vue"
 				ref="sidebar"
 				class="app-sidebar"
+				:class="getClassAttr()"
+				:style="getStyleAttr()"
 				:aria-labelledby="`app-sidebar-vue-${uid}__header`"
+				:[getParentsDataVScopeId()]="true"
+				v-bind="$attrs"
+				v-on="$listeners"
 				@keydown.esc="onKeydownEsc">
 				<header :class="{
 						'app-sidebar-header--with-figure': hasFigure,
@@ -1050,6 +1053,31 @@ export default {
 			this.preserveElementToReturnFocus()
 
 			this.$refs.tabs.focusActiveTabContent()
+		},
+
+		/**
+		 * Get classes passed by parent to <NcAppSidebar> node
+		 */
+		getClassAttr() {
+			// In Vue 2 there is no other way - classes and styles are not a part of the $attrs and cannot be defined as props.
+			// Having Fragment as root breaks default class inheritance.
+			// Also, it is not reactive so it must be used as a method in the template.
+			return [this.$vnode?.data?.staticClass, this.$vnode?.data?.class]
+		},
+
+		/**
+		 * Get styles passed by parent to <NcAppSidebar> node
+		 */
+		getStyleAttr() {
+			// See getClassAttr
+			return [this.$vnode?.data?.staticStyle, this.$vnode?.data?.style]
+		},
+
+		/**
+		 * Get the parents data-v-{scopeid} attr to restore scoped styles from parent with Fragment
+		 */
+		getParentsDataVScopeId() {
+			return this.$parent?.$options._scopeId
 		},
 
 		/**
