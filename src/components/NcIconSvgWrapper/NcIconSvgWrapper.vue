@@ -220,8 +220,8 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	min-width: 44px;
-	min-height: 44px;
+	min-width: var(--default-clickable-area);
+	min-height: var(--default-clickable-area);
 	opacity: 1;
 
 	&--inline {
