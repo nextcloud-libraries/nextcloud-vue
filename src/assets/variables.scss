@@ -5,15 +5,15 @@
 
 // https://uxplanet.org/7-rules-for-mobile-ui-button-design-e9cf2ea54556
 // recommended is 48px
-// 44px is what we choose and have very good visual-to-usability ratio
-$clickable-area: 44px;
+// 34px is what we choose and have very good visual-to-usability ratio
+$clickable-area: 34px;
 
 // background icon size
 // also used for the scss icon font
 $icon-size: 16px;
 
 // icon padding for a $clickable-area width and a $icon-size icon
-// ( 44px - 16px ) / 2
+// ( 34px - 16px ) / 2
 $icon-margin: math.div($clickable-area - $icon-size, 2);
 
 // transparency background for icons
