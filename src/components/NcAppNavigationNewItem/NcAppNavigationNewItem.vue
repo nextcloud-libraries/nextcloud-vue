@@ -171,7 +171,7 @@ export default {
 }
 
 .newItemContainer {
-	width: calc(100% - #{$clickable-area});
+	width: calc(100% - var(--default-clickable-area));
 	margin: auto;
 }
 </style>

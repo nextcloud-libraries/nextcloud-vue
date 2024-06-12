@@ -320,7 +320,7 @@ export default {
 		}
 
 		.custom-option {
-			height: 44px;
+			height: var(--default-clickable-area);
 			display: flex;
 			align-items: center;
 			overflow: hidden;

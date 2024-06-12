@@ -2009,7 +2009,7 @@ export default {
 
 	// Spacing between buttons
 	& > button {
-		margin-right: math.div($icon-margin, 2);
+		margin-right: calc($icon-margin / 2);
 	}
 }
 

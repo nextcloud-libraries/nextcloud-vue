@@ -233,7 +233,7 @@ export default {
 		&__link {
 			display: flex;
 			gap: 12px;
-			height: 44px;
+			height: var(--default-clickable-area);
 			align-items: center;
 			border-radius: var(--border-radius-large);
 
@@ -246,8 +246,8 @@ export default {
 			}
 		}
 		.resource__icon {
-			width: 44px;
-			height: 44px;
+			width: var(--default-clickable-area);
+			height: var(--default-clickable-area);
 			display: flex;
 			align-items: center;
 			justify-content: center;

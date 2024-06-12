@@ -10,7 +10,7 @@
 	flex-wrap: wrap;
 	box-sizing: border-box;
 	width: 100%;
-	min-height: $clickable-area;
+	min-height: var(--default-clickable-area);
 	transition: background-color var(--animation-quick) ease-in-out;
 	transition: background-color 200ms ease-in-out;
 	border-radius: var(--border-radius-element, var(--border-radius-pill));
@@ -86,22 +86,22 @@
 		overflow: hidden;
 		flex: 1 1 0;
 		box-sizing: border-box;
-		min-height: $clickable-area;
+		min-height: var(--default-clickable-area);
 		padding: 0;
 		white-space: nowrap;
 		color: var(--color-main-text);
 		background-repeat: no-repeat;
 		background-position: $icon-margin center;
 		background-size: $icon-size $icon-size;
-		line-height: $clickable-area;
+		line-height: var(--default-clickable-area);
 
 		.app-navigation-entry-icon {
 			display: flex;
 			align-items: center;
-			flex: 0 0 $clickable-area;
+			flex: 0 0 var(--default-clickable-area);
 			justify-content: center;
-			width: $clickable-area;
-			height: $clickable-area;
+			width: var(--default-clickable-area);
+			height: var(--default-clickable-area);
 			background-size: $icon-size $icon-size;
 			background-repeat: no-repeat;
 			background-position: $icon-margin center;
@@ -115,7 +115,7 @@
 		}
 
 		.editingContainer {
-			width: calc(100% - #{$clickable-area});
+			width: calc(100% - var(--default-clickable-area));
 			margin: auto;
 		}
 
@@ -146,21 +146,21 @@
 .app-navigation-entry__deleted {
 	display: inline-flex;
 	flex: 1 1 0;
-	padding-left: $clickable-area - $icon-margin !important;
+	padding-left: calc(var(--default-clickable-area) - $icon-margin) !important;
 	.app-navigation-entry__deleted-description {
 		position: relative;
 		overflow: hidden;
 		flex: 1 1 0;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		line-height: $clickable-area;
+		line-height: var(--default-clickable-area);
 	}
 }
 
 /* counter and actions */
 .app-navigation-entry__utils {
 	display: flex;
-	min-width: $clickable-area;
+	min-width: var(--default-clickable-area);
 	align-items: center;
 	flex: 0 1 auto;
 	justify-content: flex-end;
