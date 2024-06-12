@@ -24,10 +24,11 @@ import { GenColors } from '../../utils/GenColors.js'
 import md5 from 'md5'
 
 /**
+ * Generate a color from a username
  * Originally taken from https://github.com/nextcloud/server/blob/master/core/js/placeholder.js
  *
  * @param {string} username Display name or user id to generate from
- * @return {object} the rgb colors as {r:255, g:255, b:255}
+ * @return {{ r: number, g: number, b: number }} the RGB color
  */
 const usernameToColor = function(username) {
 	// Normalize hash
