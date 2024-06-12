@@ -63,6 +63,8 @@
   --border-radius-element: 10px;
   --border-radius-pill: 100px;
   --default-clickable-area: 34px;
+  --clickable-area-large: 48px;
+  --clickable-area-small: 24px;
   --default-line-height: 24px;
   --default-grid-baseline: 4px;
   --header-height: 50px;
