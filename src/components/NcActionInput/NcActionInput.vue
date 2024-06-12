@@ -506,8 +506,8 @@ $input-margin: 4px;
 		justify-content: center;
 
 		&:deep(.material-design-icon) {
-			width: $clickable-area;
-			height: $clickable-area;
+			width: var(--default-clickable-area);
+			height: var(--default-clickable-area);
 			opacity: $opacity_full;
 
 			.material-design-icon__svg {
@@ -524,9 +524,8 @@ $input-margin: 4px;
 	&__icon {
 		min-width: 0; /* Overwrite icons*/
 		min-height: 0;
-		/* Keep padding to define the width to
-			assure correct position of a possible text */
-		padding: #{math.div($clickable-area, 2)} 0 #{math.div($clickable-area, 2)} $clickable-area;
+		// Keep padding to define the width to assure correct position of a possible text
+		padding: calc(var(--default-clickable-area) / 2) 0 calc(var(--default-clickable-area) / 2) var(--default-clickable-area);
 
 		background-position: #{$icon-margin} center;
 		background-size: $icon-size;
@@ -596,12 +595,12 @@ $input-margin: 4px;
 // add the same bottomMargin as the right padding
 // for visual balance
 li:last-child > .action-input {
-	padding-bottom: $icon-margin - $input-margin;
+	padding-bottom: calc($icon-margin - $input-margin);
 }
 
 // same for first item
 li:first-child > .action-input:not(.action-input--visible-label) {
-	padding-top: $icon-margin - $input-margin;
+	padding-top: calc($icon-margin - $input-margin);
 }
 
 </style>

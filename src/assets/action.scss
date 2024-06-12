@@ -51,7 +51,7 @@
 
 		font-weight: normal;
 		font-size: var(--default-font-size);
-		line-height: $clickable-area;
+		line-height: var(--default-clickable-area);
 
 		& > span {
 			cursor: pointer;
@@ -59,8 +59,8 @@
 		}
 
 		&__icon {
-			width: $clickable-area;
-			height: $clickable-area;
+			width: var(--default-clickable-area);
+			height: var(--default-clickable-area);
 			opacity: $opacity_full;
 			background-position: $icon-margin center;
 			background-size: $icon-size;
@@ -68,8 +68,8 @@
 		}
 
 		&:deep(.material-design-icon) {
-			width: $clickable-area;
-			height: $clickable-area;
+			width: var(--default-clickable-area);
+			height: var(--default-clickable-area);
 			opacity: $opacity_full;
 
 			.material-design-icon__svg {
@@ -83,8 +83,7 @@
 			max-width: 220px;
 			line-height: 1.6em;
 
-			// 14px are currently 1em line-height. Mixing units as '44px - 1.6em' does not work.
-			padding: #{math.div($clickable-area - 1.6 * 14px, 2)} 0;
+			padding: calc((var(--default-clickable-area) - 1.6em) / 2) 0;
 
 			cursor: pointer;
 			text-align: left;
@@ -114,7 +113,7 @@
 			margin-left: auto;
 			// Align with right end of the button
 			// This is the padding-right
-			margin-right: -$icon-margin;
+			margin-right: calc($icon-margin * -1);
 		}
 	}
 }
