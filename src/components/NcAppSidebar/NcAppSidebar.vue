@@ -462,11 +462,12 @@ export default {
 
 <template>
 	<NcButton v-if="!open"
+		ref="toggle"
 		:aria-label="t('Open sidebar')"
 		class="app-sidebar__toggle"
 		:class="toggleClasses"
 		type="tertiary"
-		ref="toggle"
+		v-bind="toggleAttrs"
 		@click="$emit('update:open', true)">
 		<template #icon>
 			<!-- @slot Custom icon for the toggle button, defaults to the dock-right icon from MDI -->
@@ -791,12 +792,20 @@ export default {
 		},
 
 		/**
-		 * Custom classes to assign to the sidebar toggle button
+		 * Custom classes to assign to the sidebar toggle button.
 		 * If needed this can be used to assign styles to the button using `:deep()` selector.
 		 */
 		toggleClasses: {
 			type: [String, Array, Object],
 			default: '',
+		},
+
+		/**
+		 * Custom attrs to assign to the sidebar toggle button.
+		 */
+		toggleAttrs: {
+			type: Object,
+			default: undefined,
 		},
 	},
 
