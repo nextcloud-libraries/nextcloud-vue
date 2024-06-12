@@ -70,7 +70,7 @@ export default {
 .resource {
 	display: flex;
 	align-items: center;
-	height: 44px;
+	height: var(--default-clickable-area);
 
 	// Override default NcButton styles
 	&__button {

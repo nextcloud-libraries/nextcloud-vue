@@ -116,10 +116,10 @@ $sectionMargin: calc(var(--default-grid-baseline) * 7);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: $clickable-area;
-		height: $clickable-area;
+		width: var(--default-clickable-area);
+		height: var(--default-clickable-area);
 		// make sure to properly align the icon with the text
-		margin: -$icon-margin;
+		margin: calc($icon-margin * -1);
 		margin-left: 0;
 		color: var(--color-text-maxcontrast);
 

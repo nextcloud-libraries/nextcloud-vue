@@ -75,7 +75,7 @@ export default {
 	font-size: calc(var(--default-font-size) * .8);
 	overflow: hidden;
 	width: fit-content;
-	max-width: $clickable-area;
+	max-width: var(--default-clickable-area);
 	text-align: center;
 	text-overflow: ellipsis;
 	line-height: 1em;

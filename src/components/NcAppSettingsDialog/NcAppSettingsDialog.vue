@@ -408,9 +408,9 @@ export default {
 		display: flex;
 		align-content: center;
 		font-size: 16px;
-		height: $clickable-area;
+		height: var(--default-clickable-area);
 		margin: 4px 0;
-		line-height: $clickable-area;
+		line-height: var(--default-clickable-area);
 		border-radius: var(--border-radius-pill);
 		font-weight: bold;
 		padding: 0 20px;

@@ -112,7 +112,7 @@ export default {
 .dragme {
 	display: block;
 	width: 100px;
-	height: 44px;
+	height: var(--default-clickable-area);
 	background-color: var(--color-background-dark);
 }
 </style>
