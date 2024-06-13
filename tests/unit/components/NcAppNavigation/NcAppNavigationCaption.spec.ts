@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
 import { describe, expect, test } from '@jest/globals'
 import { shallowMount } from '@vue/test-utils'
 import NcAppNavigationCaption from '../../../../src/components/NcAppNavigationCaption/NcAppNavigationCaption.vue'

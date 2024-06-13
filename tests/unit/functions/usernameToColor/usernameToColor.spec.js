@@ -1,4 +1,8 @@
-import usernameToColor from '../../../../src/functions/usernameToColor/index'
+/**
+ * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+import usernameToColor from '../../../../src/functions/usernameToColor/index.js'
 
 const rgbToHex = (color) => {
 	return '#' + ((1 << 24) + (color.r << 16) + (color.g << 8) + color.b).toString(16).slice(1)

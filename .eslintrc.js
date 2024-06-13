@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: CC0-1.0
+ */
+
 module.exports = {
 	globals: {
 		EMOJIS: true,

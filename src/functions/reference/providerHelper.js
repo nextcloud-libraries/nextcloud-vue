@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
 import { isCustomPickerElementRegistered } from './customPickerElements.js'
 
 import { t } from '../../l10n.js'

@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
 import { mount } from '@vue/test-utils'
 import NcRichContenteditable from '../../../../src/components/NcRichContenteditable/NcRichContenteditable.vue'
 import Tribute from 'tributejs/dist/tribute.esm.js'

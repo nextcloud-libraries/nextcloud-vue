@@ -4,6 +4,11 @@
 [![Test status](https://img.shields.io/github/actions/workflow/status/nextcloud-libraries/nextcloud-vue/npm-test.yml?style=flat-square&label=Test%20status)](https://github.com/nextcloud-libraries/nextcloud-vue/actions/workflows/npm-test.yml?query=branch%3Amaster)
 [![irc](https://img.shields.io/badge/IRC-%23nextcloud--dev%20on%20freenode-blue.svg?style=flat-square)](https://webchat.freenode.net/?channels=nextcloud-dev)
 
+<!--
+ - SPDX-FileCopyrightText: 2020-2024 Nextcloud GmbH and Nextcloud contributors
+ - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 This repo contains the various Vue.js components that Nextcloud uses for its internal design and structure.
 
 # Installation

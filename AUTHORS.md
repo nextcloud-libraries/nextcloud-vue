@@ -1,0 +1,34 @@
+<!--
+ - SPDX-FileCopyrightText: 2020-2024 Nextcloud GmbH and Nextcloud contributors
+ - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+# Authors
+
+- Azul <azul@riseup.net>
+- Carl Schwan <carl@carlschwan.eu>
+- Christopher Ng <chrng8@gmail.com>
+- Christoph Wurst <christoph@winzerhof-wurst.at>
+- Erik Pellikka <erik@pellikka.org>
+- Ferdinand Thiessen <opensource@fthiessen.de>
+- Georg Ehrke <georg-nextcloud@ehrke.email>
+- Greta Doci <gretadoci@gmail.com>
+- Grigorii K. Shartsev <me@shgk.me>
+- Guido Krömer <mail@cacodaemon.de>
+- Jan-Christoph Borchardt <hey@jancborchardt.net>
+- Joas Schilling <coding@schilljs.com>
+- John Molakvoæ <skjnldsv@protonmail.com>
+- Jonas Meurer <jonas@freesources.org>
+- Jonas Sulzer <jonas@violoncello.ch>
+- Jonathan Treffler <mail@jonathan-treffler.de>
+- Julia Kirschenheuter <julia.kirschenheuter@nextcloud.com>
+- Julien Veyssier <eneiluj@posteo.net>
+- Julius Härtl <jus@bitgrid.net>
+- Kristof Hamann
+- Maksim Sukharev <antreesy.web@gmail.com>
+- Marco Ambrosini <marcoambrosini@pm.me>
+- Raimund Schlüßler <raimund.schluessler@mailbox.org>
+- Richard Steinmetz <richard@steinmetz.cloud>
+- Robin Appelman <robin@icewind.nl>
+- Simon Belbeoch <simon.belbeoch@gmail.com>
+- Vincent Petry <vincent@nextcloud.com>
+- Vinicius Reis <vinicius@nextcloud.com>
