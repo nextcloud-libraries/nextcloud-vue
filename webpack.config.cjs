@@ -1,3 +1,7 @@
+/**
+ * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: CC0-1.0
+ */
 // config for the styleguide
 
 const webpackConfig = require('@nextcloud/webpack-vue-config')

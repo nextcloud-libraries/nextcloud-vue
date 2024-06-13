@@ -1,3 +1,8 @@
+<!--
+  - SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 <template>
 	<div v-if="isVisible" class="widgets--list" :class="{'icon-loading': loading }">
 		<div v-for="reference in displayedReferences" :key="reference?.openGraphObject?.id">

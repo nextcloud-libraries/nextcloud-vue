@@ -1,4 +1,9 @@
-import { Plugin } from 'vite'
+/**
+ * SPDX-FileCopyrightText: Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+import type { Plugin } from 'vite'
 import { loadTranslations } from './translations.mts'
 import { dirname, resolve } from 'path'
 

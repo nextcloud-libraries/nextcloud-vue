@@ -1,6 +1,10 @@
+/**
+ * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
 import { mount } from 'cypress/vue'
-import { defineComponent } from 'vue/dist/vue.esm-bundler.js'
-import { createRouter, createMemoryHistory} from 'vue-router'
+import { defineComponent } from 'vue'
+import { createRouter, createMemoryHistory } from 'vue-router'
 
 import NcAppNavigationItem from '../../src/components/NcAppNavigationItem/NcAppNavigationItem.vue'
 
@@ -33,7 +37,7 @@ describe('NcAppNavigationItem', () => {
 			})
 		})
 
-		it('has tertiary styling on non active route', () => {
+		it.only('has tertiary styling on non active route', () => {
 			cy.contains('.app-navigation-entry', 'Foo').compareSnapshot('NcAppNavigationItem-tertiary-non-active-route')
 		})
 

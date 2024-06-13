@@ -1,5 +1,9 @@
-import { describe, expect, test } from 'vitest'
+/**
+ * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
 import { shallowMount } from '@vue/test-utils'
+import { describe, expect, test } from 'vitest'
 import NcAppNavigationCaption from '../../../../src/components/NcAppNavigationCaption/NcAppNavigationCaption.vue'
 
 describe('NcAppNavigationCaption.vue', () => {
