@@ -155,6 +155,11 @@ module.exports = async () => {
 					{
 						name: 'useHotKey',
 						content: 'docs/composables/useHotKey.md',
+
+					},
+					{
+						name: 'useIsDarkTheme',
+						content: 'docs/composables/useIsDarkTheme.md',
 					},
 				],
 			},
