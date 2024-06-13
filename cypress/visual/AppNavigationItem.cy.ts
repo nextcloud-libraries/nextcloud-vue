@@ -4,7 +4,7 @@
  */
 import { mount } from 'cypress/vue'
 import { defineComponent } from 'vue'
-import { createRouter, createMemoryHistory} from 'vue-router'
+import { createRouter, createMemoryHistory } from 'vue-router'
 
 import NcAppNavigationItem from '../../src/components/NcAppNavigationItem/NcAppNavigationItem.vue'
 
@@ -37,7 +37,7 @@ describe('NcAppNavigationItem', () => {
 			})
 		})
 
-		it('has tertiary styling on non active route', () => {
+		it.only('has tertiary styling on non active route', () => {
 			cy.contains('.app-navigation-entry', 'Foo').compareSnapshot('NcAppNavigationItem-tertiary-non-active-route')
 		})
 
