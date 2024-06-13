@@ -443,6 +443,7 @@ export default {
 			:aria-label="t('Open sidebar')"
 			class="app-sidebar__toggle"
 			:class="toggleClasses"
+			v-bind="toggleAttrs"
 			type="tertiary"
 			@click="$emit('update:open', true)">
 			<template #icon>
@@ -773,12 +774,20 @@ export default {
 		},
 
 		/**
-		 * Custom classes to assign to the sidebar toggle button
+		 * Custom classes to assign to the sidebar toggle button.
 		 * If needed this can be used to assign styles to the button using `:deep()` selector.
 		 */
 		toggleClasses: {
 			type: [String, Array, Object],
 			default: '',
+		},
+
+		/**
+		 * Custom attrs to assign to the sidebar toggle button.
+		 */
+		toggleAttrs: {
+			type: Object,
+			default: undefined,
 		},
 	},
 
