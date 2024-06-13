@@ -115,8 +115,23 @@ export const getRoute = (router, url) => {
 
 	const isAbsoluteURL = /^https?:\/\//.test(url)
 
+	// URL is a "mailto:", "tel:" or any custom app protocol link
+	const isNonHttpLink = /^[a-z][a-z0-9+.-]*:.+/.test(url)
+	if (!isAbsoluteURL && isNonHttpLink) {
+		return null
+	}
+
 	// URL is not a link to this Nextcloud server instance => not an app route
 	if (isAbsoluteURL && !url.startsWith(getBaseUrl())) {
+		return null
+	}
+
+	if (!isAbsoluteURL && !url.startsWith('/')) {
+		// Relative URL without a leading slash are not allowed
+		// VueRouter handles such urls according to the URL RFC,
+		// for example, being on /call/abc page, link "def" is resolved as "/call/def" relative to "/call/".
+		// We don't want to support such links,
+		// so relative URL MUST start with a slash.
 		return null
 	}
 
