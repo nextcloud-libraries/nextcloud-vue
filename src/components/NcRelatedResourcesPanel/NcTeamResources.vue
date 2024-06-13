@@ -232,7 +232,7 @@ export default {
 	.related-team-resource {
 		&__link {
 			display: flex;
-			gap: 12px;
+			gap: calc(3 * var(--default-grid-baseline));
 			height: var(--default-clickable-area);
 			align-items: center;
 			border-radius: var(--border-radius-large);
