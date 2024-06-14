@@ -19,6 +19,9 @@ depending on whether you require the Modal to stay within the DOM or not. Do not
 			:outTransition="true"
 			:hasNext="true"
 			:hasPrevious="true">
+			<template #actions>
+				<NcActionCaption name="Some action" />
+			</template>
 			<div class="modal__content">Hello world</div>
 		</NcModal>
 	</div>
@@ -197,10 +200,10 @@ export default {
 			tabindex="-1">
 			<!-- Header -->
 			<transition name="fade-visibility" appear>
-				<div class="modal-header">
+				<div class="modal-header" data-theme-dark>
 					<h2 v-if="name.trim() !== ''"
 						:id="'modal-name-' + randId"
-						class="modal-name">
+						class="modal-header__name">
 						{{ name }}
 					</h2>
 					<div class="icons-menu">
@@ -239,7 +242,7 @@ export default {
 
 						<!-- Actions menu -->
 						<NcActions class="header-actions" :inline="inlineActions">
-							<!-- @slot List of actions to show -->
+							<!-- @slot Actions to show (one or more NcAction* components) -->
 							<slot name="actions" />
 						</NcActions>
 
@@ -823,7 +826,7 @@ export default {
 	overflow: hidden;
 	transition: opacity 250ms, visibility 250ms;
 
-	.modal-name {
+	&__name {
 		overflow-x: hidden;
 		box-sizing: border-box;
 		width: 100%;
@@ -831,14 +834,13 @@ export default {
 		transition: padding ease 100ms;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		color: #fff;
-		font-size: $icon-margin;
-		margin-bottom: 0;
+		font-size: $icon-size;
+		margin-block: 0;
 	}
 
 	// On wider screens the name can be centered
 	@media only screen and (min-width: $breakpoint-mobile) {
-		.modal-name {
+		&__name {
 			padding-left: #{$clickable-area * 3}; // maximum actions is 3
 			text-align: center;
 		}
@@ -889,10 +891,6 @@ export default {
 			}
 		}
 
-		.header-actions {
-			color: white;
-		}
-
 		&:deep() .action-item {
 			margin: math.div($header-height - $clickable-area, 2);
 
@@ -906,9 +904,11 @@ export default {
 			}
 		}
 
-		:deep(button) {
-			// force white instead of default main text
-			color: #fff;
+		// The modal ignores the color theme and adds a black backdrop
+		// so we need to add custom color of the actions toggle
+		.header-actions :deep(button:focus-visible) {
+			box-shadow: none !important;
+			outline: 2px solid #fff !important;
 		}
 
 		// Force the Actions menu icon to be the same size as other icons
