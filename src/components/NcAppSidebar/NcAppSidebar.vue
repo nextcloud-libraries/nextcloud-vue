@@ -444,7 +444,7 @@ export default {
 </docs>
 
 <template>
-	<NcButton v-if="!open"
+	<NcButton v-if="!open && !noToggle"
 		ref="toggle"
 		:aria-label="t('Open sidebar')"
 		class="app-sidebar__toggle"
@@ -764,10 +764,10 @@ export default {
 		/**
 		 * Allow to conditionally show the sidebar
 		 * You can also use `v-if` on the sidebar, but using the open prop allow to keep
-		 * the sidebar inside the DOM for performance if it is opened and closed multple times.
+		 * the sidebar inside the DOM for performance if it is opened and closed multiple times.
 		 *
 		 * When using the `open` property to close the sidebar a built-in toggle button will be shown to reopen it,
-		 * similar to the app navigation.
+		 * similar to the app navigation. You can remove this button with the `no-toggle` prop.
 		 */
 		open: {
 			type: Boolean,
@@ -789,6 +789,14 @@ export default {
 		toggleAttrs: {
 			type: Object,
 			default: undefined,
+		},
+
+		/**
+		 * Do not add the built-in toggle button with `open` prop.
+		 */
+		noToggle: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
