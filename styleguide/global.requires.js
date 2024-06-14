@@ -8,6 +8,7 @@ import Vue from 'vue'
 import { isA11yActivation } from '../src/functions/a11y/index.ts'
 import { EmojiSkinTone, emojiSearch, emojiAddRecent, getCurrentSkinTone, setCurrentSkinTone } from '../src/functions/emoji/index.ts'
 import usernameToColor from '../src/functions/usernameToColor/index.js'
+import { useIsDarkTheme } from '../src/composables/index.js'
 
 import VTooltip from './../src/directives/Tooltip/index.js'
 
@@ -165,5 +166,7 @@ window.emojiAddRecent = emojiAddRecent
 window.getCurrentSkinTone = getCurrentSkinTone
 window.setCurrentSkinTone = setCurrentSkinTone
 window.usernameToColor = usernameToColor
+// Exported composables
+window.useIsDarkTheme = useIsDarkTheme
 
 Vue.directive('tooltip', VTooltip)
