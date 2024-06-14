@@ -108,7 +108,7 @@ describe('autoLink', () => {
 			})
 		})
 
-		it('should not get route from relative link with base /nextcloud/index.php/apps/test/foo', () => {
+		it('should not get route from relative link with base in the link /nextcloud/index.php/apps/test/foo', () => {
 			getBaseUrl.mockReturnValue('https://cloud.ltd/nextcloud')
 			getRootUrl.mockReturnValue('/nextcloud')
 			const router = createRouter({
@@ -120,6 +120,47 @@ describe('autoLink', () => {
 			})
 
 			expect(getRoute(router, '/nextcloud/index.php/apps/test/foo')).toBe(null)
+		})
+
+		it('should not get route from relative link without a leading slash', async () => {
+			getBaseUrl.mockReturnValue('https://cloud.ltd/')
+			getRootUrl.mockReturnValue('')
+			const routerTalk = createRouter({
+				history: createMemoryHistory(''),
+				routes: [
+					{ path: '/apps/spreed', name: 'root' },
+					{ path: '/call/:id', name: 'call' },
+				],
+			})
+			routerTalk.push('/call/12345678')
+
+			expect(getRoute(routerTalk, 'abcdefgh')).toBe(null)
+			expect(getRoute(routerTalk, 'call/abcdefgh')).toBe(null)
+		})
+
+		describe('Non-HTTP links', () => {
+			const routerTalk = createRouter({
+				history: createMemoryHistory(''),
+				routes: [
+					{ path: '/apps/spreed', name: 'root' },
+					{ path: '/call/:id', name: 'call' },
+				],
+			})
+			getBaseUrl.mockReturnValue('https://cloud.ltd/')
+			getRootUrl.mockReturnValue('')
+			routerTalk.push('/call/12345678')
+
+			it('should not handle mailto: link as a relative link', () => {
+				expect(getRoute(routerTalk, 'mailto:email@nextcloud.ltd')).toBe(null)
+			})
+
+			it('should not handle nc: link as a relative link', () => {
+				expect(getRoute(routerTalk, 'nc://login')).toBe(null)
+			})
+
+			it('should not handle a1.b-c+d: link as a relative link', () => {
+				expect(getRoute(routerTalk, 'a1.b-c+d://action')).toBe(null)
+			})
 		})
 
 		// getRoute doesn't have to guarantee Talk Desktop compatibility, but checking just in case
