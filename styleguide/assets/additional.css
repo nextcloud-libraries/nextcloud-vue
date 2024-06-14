@@ -4,6 +4,7 @@
  */
 @import 'default.css';
 @import 'server.css';
+@import 'dark.css';
 
 div[data-preview] * {
 	box-sizing: border-box;
