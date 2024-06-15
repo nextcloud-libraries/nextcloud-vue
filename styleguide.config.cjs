@@ -89,6 +89,21 @@ module.exports = async () => {
 			{
 				name: 'Directives',
 				content: 'docs/directives.md',
+				sectionDepth: 1,
+				sections: [
+					{
+						name: 'Focus',
+						content: 'docs/directives/focus.md',
+					},
+					{
+						name: 'Linkify',
+						content: 'docs/directives/linkify.md',
+					},
+					{
+						name: 'Tooltip',
+						content: 'docs/directives/tooltip.md',
+					},
+				],
 			},
 			{
 				name: 'Components',

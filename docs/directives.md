@@ -1,63 +1,33 @@
-## Tooltip
-
 <!--
- - SPDX-FileCopyrightText: 2020-2024 Nextcloud GmbH and Nextcloud contributors
+ - SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+### Registration
+
+To use any directive, import and register it locally, for example:
+
 ```js static
-import { Tooltip } from '@nextcloud/vue'
+import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
 
-Vue.directive('tooltip', Tooltip)
+export default {
+    directives: {
+        Tooltip,
+    },
+}
+```
+or in `<script setup>`:
+
+```js static
+import vTooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
 ```
 
-The tooltip directive is based on v-tooltip. For a full feature list see the projects [README](https://github.com/Akryum/v-tooltip/blob/master/README.md#directive)
+You can also register any directive globally. But it is not recommended.
 
-In the template, use the `v-tooltip` directive:
+```js static
+import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
 
-```vue
-<a v-tooltip="'You have new messages.'">Hover me</a>
-```
-
-Of course, you can use a reactive property:
-
-```vue
-    <template>
-        <a v-tooltip="tooltipContent">Hover me</a>
-    </template>
-    <script>
-        export default {
-            computed: {
-                tooltipContent: () => 'You have new messages.'
-            }
-        }
-    </script>
-```
-
-You can specify the tooltip position as a modifier:
-
-```vue
-<a v-tooltip.bottom="'You have new messages.'">Hover me</a>
-```
-The available positions are:
- - `'auto'`
- - `'auto-start'`
- - `'auto-end'`
- - `'top'`
- - `'top-start'`
- - `'top-end'`
- - `'right'`
- - `'right-start'`
- - `'right-end'`
- - `'bottom'`
- - `'bottom-start'`
- - `'bottom-end'`
- - `'left'`
- - `'left-start'`
- - `'left-end'`
-
-```vue
-<button v-tooltip="{content: 'I\'m a tooltip', show: true, placement: 'right'}">
-    I'm a button with a tooltip
-</button>
+const app = createApp(App)
+    .directive('Tooltip', Tooltip)
+    .mount('#content-vue')
 ```
