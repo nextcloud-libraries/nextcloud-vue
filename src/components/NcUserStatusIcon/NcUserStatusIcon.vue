@@ -42,7 +42,6 @@ This component displays a user status icon.
 </template>
 
 <script>
-import Vue from 'vue'
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
 import { getCapabilities } from '@nextcloud/capabilities'
@@ -147,12 +146,6 @@ export default {
 				}
 			},
 		},
-	},
-
-	mounted() {
-		if (!this.user && !this.status) {
-			Vue.util.warn('[NcUserStatusIcon] The `user` or `status` prop should be set.')
-		}
 	},
 }
 </script>
