@@ -433,9 +433,9 @@ export default {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			width: 34px;
-			height: 34px;
-			min-height: 34px;
+			width: var(--clickable-area-small);
+			height: var(--clickable-area-small);
+			min-height: var(--clickable-area-small);
 			margin: auto;
 			padding: 0;
 			color: white;
@@ -449,9 +449,6 @@ export default {
 				opacity: .6;
 			}
 			&--active {
-				width: 38px;
-				height: 38px;
-				min-height: 38px;
 				transition: all 100ms ease-in-out;
 				opacity: 1 !important;
 			}
