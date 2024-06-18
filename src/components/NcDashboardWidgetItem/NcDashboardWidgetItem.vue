@@ -181,7 +181,7 @@ export default {
 <style scoped lang="scss">
 .item-list__entry {
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 	position: relative;
 	padding: 8px;
 
