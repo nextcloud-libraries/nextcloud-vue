@@ -830,7 +830,7 @@ export default {
 		overflow-x: hidden;
 		box-sizing: border-box;
 		width: 100%;
-		padding: 0 #{$clickable-area * 3} 0 12px; // maximum actions is 3
+		padding: 0 calc(var(--default-clickable-area) * 3) 0 12px; // maximum actions is 3
 		transition: padding ease 100ms;
 		white-space: nowrap;
 		text-overflow: ellipsis;
@@ -841,7 +841,7 @@ export default {
 	// On wider screens the name can be centered
 	@media only screen and (min-width: $breakpoint-mobile) {
 		&__name {
-			padding-left: #{$clickable-area * 3}; // maximum actions is 3
+			padding-left: calc(var(--default-clickable-area) * 3); // maximum actions is 3
 			text-align: center;
 		}
 	}
@@ -858,7 +858,7 @@ export default {
 			align-items: center;
 			justify-content: center;
 			box-sizing: border-box;
-			margin: math.div($header-height - $clickable-area, 2);
+			margin: calc(calc($header-height - var(--default-clickable-area)) / 2);
 			padding: 0;
 		}
 
@@ -876,28 +876,28 @@ export default {
 				.play-pause-icons__play,
 				.play-pause-icons__pause {
 					opacity: $opacity_full;
-					border-radius: math.div($clickable-area, 2);
+					border-radius: calc(var(--default-clickable-area) / 2);
 					background-color: $icon-focus-bg;
 				}
 			}
 			&__play,
 			&__pause {
 				box-sizing: border-box;
-				width: $clickable-area;
-				height: $clickable-area;
-				margin: math.div($header-height - $clickable-area, 2);
+				width: var(--default-clickable-area);
+				height: var(--default-clickable-area);
+				margin: calc(calc($header-height - var(--default-clickable-area)) / 2);
 				cursor: pointer;
 				opacity: $opacity_normal;
 			}
 		}
 
 		&:deep() .action-item {
-			margin: math.div($header-height - $clickable-area, 2);
+			margin: calc(calc($header-height - var(--default-clickable-area)) / 2);
 
 			&--single {
 				box-sizing: border-box;
-				width: $clickable-area;
-				height: $clickable-area;
+				width: var(--default-clickable-area);
+				height: var(--default-clickable-area);
 				cursor: pointer;
 				background-position: center;
 				background-size: 22px;

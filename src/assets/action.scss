@@ -51,7 +51,7 @@
 
 		font-weight: normal;
 		font-size: var(--default-font-size);
-		line-height: $clickable-area;
+		line-height: var(--default-clickable-area);
 
 		& > span {
 			cursor: pointer;
@@ -59,8 +59,8 @@
 		}
 
 		&__icon {
-			width: $clickable-area;
-			height: $clickable-area;
+			width: var(--default-clickable-area);
+			height: var(--default-clickable-area);
 			opacity: $opacity_full;
 			background-position: $icon-margin center;
 			background-size: $icon-size;
@@ -68,8 +68,8 @@
 		}
 
 		&:deep(.material-design-icon) {
-			width: $clickable-area;
-			height: $clickable-area;
+			width: var(--default-clickable-area);
+			height: var(--default-clickable-area);
 			opacity: $opacity_full;
 
 			.material-design-icon__svg {
@@ -113,7 +113,7 @@
 			margin-left: auto;
 			// Align with right end of the button
 			// This is the padding-right
-			margin-right: -$icon-margin;
+			margin-right: calc($icon-margin * -1);
 		}
 	}
 }
