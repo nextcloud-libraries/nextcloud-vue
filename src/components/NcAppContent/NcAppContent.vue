@@ -79,7 +79,7 @@ The list size must be between the min and the max width value.
 					}"
 					@resized="handlePaneResize">
 					<Pane class="splitpanes__pane-list"
-						:size="listPaneSize || paneDefaults.list.size"
+						:size="listSizeInRange || paneDefaults.list.size"
 						:min-size="paneDefaults.list.min"
 						:max-size="paneDefaults.list.max">
 						<!-- @slot Provide a list to the app content -->
@@ -248,16 +248,20 @@ export default {
 		},
 
 		detailsPaneSize() {
-			if (this.listPaneSize) {
-				return 100 - this.listPaneSize
+			if (this.listSizeInRange) {
+				return 100 - this.listSizeInRange
 			}
 			return this.paneDefaults.details.size
+		},
+
+		listSizeInRange() {
+			return Math.min(Math.max(this.listSize, this.listMinWidth), this.listMaxWidth)
 		},
 
 		paneDefaults() {
 			return {
 				list: {
-					size: this.listSize,
+					size: this.listSizeInRange,
 					min: this.listMinWidth,
 					max: this.listMaxWidth,
 				},
@@ -265,7 +269,7 @@ export default {
 				// set the inverse values of the details column
 				// based on the provided (or default) values of the list column
 				details: {
-					size: 100 - this.listSize,
+					size: 100 - this.listSizeInRange,
 					min: 100 - this.listMaxWidth,
 					max: 100 - this.listMinWidth,
 				},
@@ -324,8 +328,8 @@ export default {
 
 		// $slots is not reactive, we need to update this manually
 		checkSlots() {
-			this.hasList = !!this.$scopedSlots.list
-			this.hasContent = !!this.$scopedSlots.default
+			this.hasList = !!this.$slots.list
+			this.hasContent = !!this.$slots.default
 		},
 
 		// browserStorage is not reactive, we need to update this manually
