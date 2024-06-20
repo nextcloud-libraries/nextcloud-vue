@@ -132,6 +132,9 @@ msgstr "Editar l'elementu"
 msgid "Emoji picker"
 msgstr "Selector de fustaxes"
 
+msgid "Enable interactive view"
+msgstr "Activar la vista interactiva"
+
 msgid "Enter link"
 msgstr "Introducir l'enllaz"
 
@@ -247,6 +250,9 @@ msgstr "Abrir le menú"
 msgid "Open navigation"
 msgstr "Abrir la navegación"
 
+msgid "Open sidebar"
+msgstr "Abrir la barra llateral"
+
 msgid "Options"
 msgstr "Opciones"
 
@@ -297,6 +303,9 @@ msgstr "Enllaz en bruto {optiones}"
 
 msgid "Related resources"
 msgstr "Recursos rellacionao"
+
+msgid "Related team resources"
+msgstr "Recursos rellacionaos colos equipos"
 
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
@@ -385,6 +394,9 @@ msgstr "Desfacer los cambeos"
 
 msgid "User status: {status}"
 msgstr "Estáu del usuariu: {status}"
+
+msgid "View team"
+msgstr "Ver l'equipu"
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
