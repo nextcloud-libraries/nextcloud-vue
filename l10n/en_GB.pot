@@ -251,6 +251,9 @@ msgstr "Open menu"
 msgid "Open navigation"
 msgstr "Open navigation"
 
+msgid "Open sidebar"
+msgstr "Open sidebar"
+
 msgid "Options"
 msgstr "Options"
 
