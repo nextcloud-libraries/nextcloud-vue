@@ -95,7 +95,7 @@ msgid "Close"
 msgstr "أغلِق"
 
 msgid "Close navigation"
-msgstr "أغلِق المُتصفِّح"
+msgstr "أغلِق التصفح"
 
 msgid "Close sidebar"
 msgstr "قفل الشريط الجانبي"
