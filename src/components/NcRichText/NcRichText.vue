@@ -378,7 +378,7 @@ export default {
 			default: true,
 		},
 	},
-	emits: ['interact:todo'],
+	emits: ['interact:todo', 'reference-list-loaded'],
 
 	data() {
 		return {
@@ -387,6 +387,13 @@ export default {
 	},
 
 	methods: {
+		handleReferenceListLoaded(oldHeight) {
+			this.$nextTick(() => {
+				// emit height difference to parent component
+				const heightDiff = this.$refs.referenceList.$el.offsetHeight - oldHeight
+				this.$emit('reference-list-loaded', heightDiff)
+			})
+		},
 		renderPlaintext(h) {
 			const context = this
 			const placeholders = this.text.split(/(\{[a-z\-_.0-9]+\})/ig).map(function(entry, index, list) {
@@ -415,11 +422,13 @@ export default {
 				this.referenceLimit > 0
 					? h('div', { class: 'rich-text--reference-widget' }, [
 						h(NcReferenceList, {
+							ref: 'referenceList',
 							props: {
 								text: this.text,
 								referenceData: this.references,
 								interactive: this.referenceInteractive,
 							},
+							on: { loaded: this.handleReferenceListLoaded },
 						}),
 					])
 					: null,
@@ -540,11 +549,13 @@ export default {
 				this.referenceLimit > 0
 					? h('div', { class: 'rich-text--reference-widget' }, [
 						h(NcReferenceList, {
+							ref: 'referenceList',
 							props: {
 								text: this.text,
 								referenceData: this.references,
 								interactive: this.referenceInteractive,
 							},
+							on: { loaded: this.handleReferenceListLoaded },
 						}),
 					])
 					: null,
