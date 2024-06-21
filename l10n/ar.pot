@@ -2,10 +2,11 @@
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Ali <alimahwer@yahoo.com>, 2024
+# hamza mahjoubi, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ali <alimahwer@yahoo.com>, 2024\n"
+"Last-Translator: hamza mahjoubi, 2024\n"
 "Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
@@ -21,7 +22,7 @@ msgid "A color with a HEX value {hex}"
 msgstr "لون بالقيمة الست عشرية {hex}"
 
 msgid "a few seconds ago"
-msgstr "منذ عدة ثوانٍ مضت"
+msgstr "منذ عدة ثوانٍ"
 
 #. TRANSLATORS: A color name for RGB(110, 166, 143)
 msgid "Acapulco"
@@ -94,13 +95,13 @@ msgid "Close"
 msgstr "أغلِق"
 
 msgid "Close navigation"
-msgstr "أغلِق المُتصفِّح"
+msgstr "أغلِق التصفح"
 
 msgid "Close sidebar"
 msgstr "قفل الشريط الجانبي"
 
 msgid "Close Smart Picker"
-msgstr "أغلِق اللاقط الذكي Smart Picker"
+msgstr "أغلِق Smart Picker"
 
 msgid "Collapse menu"
 msgstr "طَيُّ القائمة"
