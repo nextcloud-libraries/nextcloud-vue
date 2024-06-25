@@ -13,8 +13,8 @@ export default defineConfig({
 
 	env: {
 		visualRegressionType: 'regression',
-		visualRegressionBaseDirectory: './cypress/snapshots/base',
-		visualRegressionDiffDirectory: './cypress/snapshots/diff',
+		visualRegressionBaseDirectory: 'cypress/snapshots/base',
+		visualRegressionDiffDirectory: 'cypress/snapshots/diff',
 		visualRegressionGenerateDiff: true,
 		visualRegressionFailSilently: false,
 	},
