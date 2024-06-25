@@ -9,7 +9,7 @@
 		"appVersion": true
 	},
 	"extends": [
-		"@nextcloud/eslint-config/typescript"
+		"@nextcloud/eslint-config/vue3"
 	],
 	"plugins": [
 		"cypress"
