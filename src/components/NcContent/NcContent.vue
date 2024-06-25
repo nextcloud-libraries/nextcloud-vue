@@ -118,6 +118,7 @@ export default {
 	provide() {
 		return {
 			'NcContent:setHasAppNavigation': this.setAppNavigation,
+			'NcContent:selector': '#content-vue',
 		}
 	},
 	props: {
