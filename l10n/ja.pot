@@ -12,10 +12,10 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "{tag} (invisible)"
-msgstr "{タグ} (不可視)"
+msgstr "{tag} (不可視)"
 
 msgid "{tag} (restricted)"
-msgstr "{タグ} (制限付)"
+msgstr "{tag} (制限付)"
 
 msgid "a few seconds ago"
 msgstr ""
