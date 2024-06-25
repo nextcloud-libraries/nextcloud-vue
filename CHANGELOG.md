@@ -7,6 +7,46 @@
 
 All notable changes to this project will be documented in this file.
 
+<!-- Release notes generated using configuration in .github/release.yml at master -->
+
+## [v8.13.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.13.0) (2024-06-20)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.12.0...v8.13.0)
+
+### 🚀 Enhancements
+* feat(NcDialogButton): Allow to pass `disabled` prop [\#5679](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5679) \([susnux](https://github.com/susnux)\)
+* feat(NcRichContenteditable): programmatically show tributes [\#5674](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5674) \([DorraJaouad](https://github.com/DorraJaouad)\)
+* feat: Add NcChip component [\#5686](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5686) \([susnux](https://github.com/susnux)\)
+* feat(NcAppSidebar): add `toggleAttrs` prop to pass attributes on the toggle button [\#5695](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5695) \([ShGKme](https://github.com/ShGKme)\)
+* feat(NcAppSidebar): add noToggle prop to hide the built-in toggle button [\#5702](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5702) \([ShGKme](https://github.com/ShGKme)\)
+
+### 🐛 Fixed bugs
+* fix(NcAppSidebar): remove hidden navigation toggle from focus trap [\#5613](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5613) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcAppSidebar): make closing animation less glitchy [\#5608](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5608) \([ShGKme](https://github.com/ShGKme)\)
+* Update temporary border radius variable [\#5639](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5639) \([marcoambrosini](https://github.com/marcoambrosini)\)
+* fix: Adjust license in `package.json` [\#5612](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5612) \([susnux](https://github.com/susnux)\)
+* Use variables for input border width [\#5563](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5563) \([marcoambrosini](https://github.com/marcoambrosini)\)
+* fix: re-export `NcEllipsisedOption` and `NcInputField` in root export [\#5666](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5666) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcVNodes): add re-export in root export and add docs [\#5664](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5664) \([ShGKme](https://github.com/ShGKme)\)
+* fix(richText): do not handle relative links without leading slash as router links [\#5703](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5703) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcModal): Adjust modal header name and actions [\#5656](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5656) \([susnux](https://github.com/susnux)\)
+* fix(NcAppSidebar): apply toggle offset transition only on sidebar transition [\#5720](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5720) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcAppSidebar): make sidebar a single node again to allow v-show, classes and attributes [\#5627](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5627) \([ShGKme](https://github.com/ShGKme)\)
+* fix: Make sidebar buttons pixel perfect [\#3518](https://github.com/nextcloud-libraries/nextcloud-vue/pull/3518) \([CarlSchwan](https://github.com/CarlSchwan)\)
+
+### Changed
+* Reduce border radius of components [\#5483](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5483) \([marcoambrosini](https://github.com/marcoambrosini)\)
+* refactor: Drop unused files from source [\#5645](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5645) \([susnux](https://github.com/susnux)\)
+* refactor: Fix linter issues on test case files [\#5646](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5646) \([susnux](https://github.com/susnux)\)
+* chore(CHANGELOG): correct 8.12.0 [\#5618](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5618) \([ShGKme](https://github.com/ShGKme)\)
+* chore: Update CI workflow files from template [\#5647](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5647) \([susnux](https://github.com/susnux)\)
+* chore(NcEllipsisedOption): add docs [\#5663](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5663) \([ShGKme](https://github.com/ShGKme)\)
+* chore(functions): add docs [\#5669](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5669) \([ShGKme](https://github.com/ShGKme)\)
+* chore: Add SPDX headers and REUSE CI workflow [\#5650](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5650) \([susnux](https://github.com/susnux)\)
+* fix(REUSE): add SPDX header to a new file [\#5709](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5709) \([Antreesy](https://github.com/Antreesy)\)
+* chore(directives): add docs [\#5665](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5665) \([ShGKme](https://github.com/ShGKme)\)
+* chore(NcUserStatusIcon): remove warn if status is not set [\#5715](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5715) \([ShGKme](https://github.com/ShGKme)\)
+* Update translations
+
 ## [v8.12.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.12.0) (2024-05-13)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.11.2...v8.12.0)
 
