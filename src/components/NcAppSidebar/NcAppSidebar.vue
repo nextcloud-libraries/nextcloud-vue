@@ -1093,11 +1093,21 @@ export default {
 </script>
 
 <style lang="scss">
+// Allows to use transition over a custom CSS property (CSS Variable)
+// Ignored on old browsers resulting in slightly noticeable jump
+@property --app-sidebar-offset {
+  syntax: '<length>';
+  initial-value: 0;
+  inherits: true;
+}
+
 .content {
 	// A padding between the toggle button and the page border
 	--app-sidebar-padding: #{$app-navigation-padding};
 	// A padding between the toggle button and the page border
 	--app-sidebar-offset: 0;
+	transition-duration: var(--animation-quick);
+	transition-property: --app-sidebar-offset;
 }
 
 .content:has(.app-sidebar__toggle) {
@@ -1106,9 +1116,6 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-$sidebar-min-width: 300px;
-$sidebar-max-width: 500px;
-
 $desc-vertical-padding: 18px;
 $desc-vertical-padding-compact: 10px;
 $desc-input-padding: 7px;
@@ -1125,6 +1132,9 @@ $top-buttons-spacing: 6px;
 	app-content will be shrinked properly
 */
 .app-sidebar {
+	--app-sidebar-width: clamp(300px, 27vw, 500px);
+	width: var(--app-sidebar-width);
+
 	z-index: 1500;
 	top: 0;
 	right: 0;
@@ -1133,12 +1143,11 @@ $top-buttons-spacing: 6px;
 	overflow-y: auto;
 	flex-direction: column;
 	flex-shrink: 0;
-	width: 27vw;
-	min-width: $sidebar-min-width;
-	max-width: $sidebar-max-width;
 	height: 100%;
 	border-left: 1px solid var(--color-border);
 	background: var(--color-main-background);
+	// Make close button positioned relative to the header
+	position: relative;
 
 	&__toggle {
 		position: absolute !important;
@@ -1368,27 +1377,25 @@ $top-buttons-spacing: 6px;
 // Make the sidebar full-width on small screens
 @media only screen and (max-width: $breakpoint-small-mobile) {
 	.app-sidebar {
-		width: 100vw;
-		max-width: 100vw;
+		position: absolute;
+		--app-sidebar-width: 100vw;
 	}
 }
 
 .slide-right-leave-active,
 .slide-right-enter-active {
 	transition-duration: var(--animation-quick);
-	transition-property: max-width, min-width;
+	transition-property: margin-right;
 }
 
 .slide-right-enter-to,
 .slide-right-leave-from {
-	min-width: $sidebar-min-width;
-	max-width: $sidebar-max-width;
+	margin-right: 0;
 }
 
 .slide-right-enter-from,
 .slide-right-leave-to {
-	min-width: 0 !important;
-	max-width: 0 !important;
+	margin-right: calc(-1 * var(--app-sidebar-width));
 }
 </style>
 
