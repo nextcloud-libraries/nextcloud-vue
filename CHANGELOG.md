@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 # Changelog
 
+## [v7.12.8](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.12.8) (2024-06-25)
+### :bug: Fixed bugs
+* fix: japanese system tags translation by @backportbot in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5734
+
 ## [v7.12.7](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v7.12.7) (2023-11-07)
 
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v7.12.6...v7.12.7)
