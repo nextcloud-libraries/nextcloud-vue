@@ -272,7 +272,7 @@ msgid "Pick a date and a time"
 msgstr "Roghnaigh dáta agus am"
 
 msgid "Pick a month"
-msgstr "Pioc in aghaidh na míosa"
+msgstr "Roghnaigh mí"
 
 msgid "Pick a time"
 msgstr "Roghnaigh am"
