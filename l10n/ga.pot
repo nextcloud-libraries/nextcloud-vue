@@ -87,7 +87,7 @@ msgid "Clear selected"
 msgstr "Glan roghnaithe"
 
 msgid "Clear text"
-msgstr "Téacs soiléir"
+msgstr "Glan téacs"
 
 msgid "Close"
 msgstr "Dún"
