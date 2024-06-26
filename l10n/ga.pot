@@ -58,7 +58,7 @@ msgid "Back"
 msgstr "Ar ais"
 
 msgid "Back to provider selection"
-msgstr "Ar ais go roghnú soláthraí"
+msgstr "Ar ais go roghnú soláthróra"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
