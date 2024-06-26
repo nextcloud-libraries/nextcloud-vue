@@ -281,7 +281,7 @@ msgid "Pick a week"
 msgstr "Roghnaigh seachtain"
 
 msgid "Pick a year"
-msgstr "Pioc bliain"
+msgstr "Roghnaigh bliain"
 
 msgid "Pick an emoji"
 msgstr "Roghnaigh emoji"
