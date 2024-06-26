@@ -278,7 +278,7 @@ msgid "Pick a time"
 msgstr "Roghnaigh am"
 
 msgid "Pick a week"
-msgstr "Pioc in aghaidh na seachtaine"
+msgstr "Roghnaigh seachtain"
 
 msgid "Pick a year"
 msgstr "Pioc bliain"
