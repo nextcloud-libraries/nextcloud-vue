@@ -3,10 +3,11 @@
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Martin "phnoggie" Trads, 2023
 # Martin Bonde <Martin@maboni.dk>, 2024
+# Rasmus Rosendahl-Kaa, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Martin Bonde <Martin@maboni.dk>, 2024\n"
+"Last-Translator: Rasmus Rosendahl-Kaa, 2024\n"
 "Language-Team: Danish (https://app.transifex.com/nextcloud/teams/64236/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: da\n"
@@ -251,6 +252,9 @@ msgstr "Åben menu"
 
 msgid "Open navigation"
 msgstr "Åbn navigation"
+
+msgid "Open sidebar"
+msgstr "Åbn sidepanel"
 
 msgid "Options"
 msgstr "Indstillinger"
