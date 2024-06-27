@@ -9,7 +9,7 @@
 	<div class="app-sidebar-tabs">
 		<!-- tabs navigation -->
 		<!-- 33 and 34 code is for page up and page down -->
-		<div v-if="hasMultipleTabs"
+		<div v-if="hasMultipleTabs || showForSingleTab"
 			role="tablist"
 			class="app-sidebar-tabs__nav"
 			@keydown.left.exact.prevent.stop="focusPreviousTab"
@@ -84,6 +84,13 @@ export default {
 			type: String,
 			default: '',
 		},
+		/**
+		 * Force the tab navigation to display even if there is only one tab
+		 */
+		forceTabs: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	emits: ['update:active'],
@@ -109,6 +116,10 @@ export default {
 		 */
 		hasMultipleTabs() {
 			return this.tabs.length > 1
+		},
+
+		showForSingleTab() {
+			return this.forceTabs && this.tabs.length === 1
 		},
 
 		currentTabIndex() {
