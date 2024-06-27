@@ -58,7 +58,7 @@ msgid "Back"
 msgstr "Ar ais"
 
 msgid "Back to provider selection"
-msgstr "Ar ais go roghnú soláthraí"
+msgstr "Ar ais go roghnú soláthróra"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -87,7 +87,7 @@ msgid "Clear selected"
 msgstr "Glan roghnaithe"
 
 msgid "Clear text"
-msgstr "Téacs soiléir"
+msgstr "Glan téacs"
 
 msgid "Close"
 msgstr "Dún"
@@ -272,16 +272,16 @@ msgid "Pick a date and a time"
 msgstr "Roghnaigh dáta agus am"
 
 msgid "Pick a month"
-msgstr "Pioc in aghaidh na míosa"
+msgstr "Roghnaigh mí"
 
 msgid "Pick a time"
 msgstr "Roghnaigh am"
 
 msgid "Pick a week"
-msgstr "Pioc in aghaidh na seachtaine"
+msgstr "Roghnaigh seachtain"
 
 msgid "Pick a year"
-msgstr "Pioc bliain"
+msgstr "Roghnaigh bliain"
 
 msgid "Pick an emoji"
 msgstr "Roghnaigh emoji"
