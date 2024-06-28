@@ -106,6 +106,33 @@ module.exports = async () => {
 				],
 			},
 			{
+				name: 'Functions',
+				content: 'docs/functions.md',
+				sectionDepth: 1,
+				sections: [
+					{
+						name: 'a11y',
+						content: 'docs/functions/a11y.md',
+					},
+					{
+						name: 'emoji',
+						content: 'docs/functions/emoji.md',
+					},
+					{
+						name: 'usernameToColor',
+						content: 'docs/functions/usernameToColor.md',
+					},
+					{
+						name: 'reference',
+						content: 'docs/functions/reference.md',
+					},
+					{
+						name: 'registerReference',
+						content: 'docs/functions/registerReference.md',
+					},
+				],
+			},
+			{
 				name: 'Components',
 				content: 'docs/components.md',
 				components: 'src/components/*/*.vue',
