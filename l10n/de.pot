@@ -4,10 +4,11 @@
 # Markus Eckstein, 2023
 # Andy Scherzinger <info@andy-scherzinger.de>, 2023
 # Mario Siegmann <mario_siegmann@web.de>, 2024
+# Martin Wilichowski, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2024\n"
+"Last-Translator: Martin Wilichowski, 2024\n"
 "Language-Team: German (https://app.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -109,11 +110,17 @@ msgstr "Smart Picker schließen"
 msgid "Collapse menu"
 msgstr "Menü einklappen"
 
+msgid "Color picker"
+msgstr "Farbauswahl"
+
 msgid "Confirm changes"
 msgstr "Änderungen bestätigen"
 
 msgid "Custom"
 msgstr "Benutzerdefiniert"
+
+msgid "Dark skin tone"
+msgstr "Dunkler Hautfarbton"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -127,6 +134,12 @@ msgstr "Bitte nicht stören"
 
 msgid "Edit item"
 msgstr "Objekt bearbeiten"
+
+msgid "Emoji picker"
+msgstr "Emoji-Auswahl"
+
+msgid "Enable interactive view"
+msgstr "Die interaktive Ansicht aktivieren"
 
 msgid "Enter link"
 msgstr "Link eingeben"
@@ -172,12 +185,27 @@ msgstr "Passwort verbergen"
 msgid "invisible"
 msgstr "Unsichtbar"
 
+msgid "Keyboard navigation help"
+msgstr "Tastatur-Navigationshilfe"
+
+msgid "Light skin tone"
+msgstr "Heller Hautfarbton"
+
 msgid "Load more \"{options}\""
 msgstr "Weitere \"{options}\" laden"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Seemann"
+
+msgid "Medium dark skin tone"
+msgstr "Mitteldunkler Hautfarbton"
+
+msgid "Medium light skin tone"
+msgstr "Mittelheller Hautfarbton"
+
+msgid "Medium skin tone"
+msgstr "Mittlerer Hautfarbton"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Nachrichtenlimit von {count} Zeichen erreicht."
@@ -187,6 +215,9 @@ msgstr "Weitere Elemente …"
 
 msgid "More options"
 msgstr "Weitere Optionen"
+
+msgid "Neutral skin color"
+msgstr "Neutraler Hautfarbton"
 
 msgid "Next"
 msgstr "Weiter"
@@ -216,9 +247,6 @@ msgstr "Olivin"
 msgid "online"
 msgstr "Online"
 
-msgid "Open contact menu"
-msgstr "Kontaktmenü öffnen"
-
 msgid "Open link to \"{resourceName}\""
 msgstr "Link zu \"{resourceName}“ öffnen"
 
@@ -227,6 +255,9 @@ msgstr "Menü öffnen"
 
 msgid "Open navigation"
 msgstr "Navigation öffnen"
+
+msgid "Open sidebar"
+msgstr "Seitenleiste öffnen"
 
 msgid "Options"
 msgstr "Optionen"
@@ -279,6 +310,9 @@ msgstr "Unverarbeiteter Link {Optionen}"
 msgid "Related resources"
 msgstr "Verwandte Ressourcen"
 
+msgid "Related team resources"
+msgstr "Verwandte Team-Ressourcen"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Rosiges Braun"
@@ -325,6 +359,15 @@ msgstr "Einstellungen für die Navigation"
 msgid "Show password"
 msgstr "Passwort anzeigen"
 
+msgid "Skin tone"
+msgstr "Hautfarbton"
+
+msgid "Skip to app navigation"
+msgstr "Zur App-Navigation springen"
+
+msgid "Skip to main content"
+msgstr "Zum Hauptinhalt springen"
+
 msgid "Smart Picker"
 msgstr "Smart Picker"
 
@@ -357,6 +400,9 @@ msgstr "Änderungen rückgängig machen"
 
 msgid "User status: {status}"
 msgstr "Benutzerstatus: {status}"
+
+msgid "View team"
+msgstr "Team anzeigen"
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
