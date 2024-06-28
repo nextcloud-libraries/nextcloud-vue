@@ -1,0 +1,405 @@
+# 
+# Translators:
+# Joas Schilling, 2024
+# devi, 2024
+# 
+msgid ""
+msgstr ""
+"Last-Translator: devi, 2024\n"
+"Language-Team: Japanese (Japan) (https://app.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ja_JP\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "{tag} (invisible)"
+msgstr "{tag} (不可視)"
+
+msgid "{tag} (restricted)"
+msgstr "{tag} (制限付)"
+
+msgid "A color with a HEX value {hex}"
+msgstr " HEX値 {hex} を持つ色"
+
+msgid "a few seconds ago"
+msgstr "数秒前"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "アカプルコ"
+
+msgid "Actions"
+msgstr "操作"
+
+msgid "Actions for item with name \"{name}\""
+msgstr "名前 \"{name}\" を持つアイテムのアクション"
+
+msgid "Activities"
+msgstr "アクティビティ"
+
+msgid "Animals & Nature"
+msgstr "動物と自然"
+
+msgid "Any link"
+msgstr "任意のリンク"
+
+msgid "Anything shared with the same group of people will show up here"
+msgstr "同じグループで共有しているものは、全てここに表示されます"
+
+msgid "Avatar of {displayName}"
+msgstr "{displayName} のアバター"
+
+msgid "Avatar of {displayName}, {status}"
+msgstr "{displayName}, {status} のアバター"
+
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "離れる"
+
+msgid "Back"
+msgstr "戻る"
+
+msgid "Back to provider selection"
+msgstr "プロバイダーの選択に戻る"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "ブルーバイオレット"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "ボストンブルー"
+
+msgid "busy"
+msgstr "ビジー"
+
+msgid "Cancel changes"
+msgstr "変更をキャンセル"
+
+msgid "Change name"
+msgstr "名前の変更"
+
+msgid "Choose"
+msgstr "選択"
+
+msgid "Clear search"
+msgstr "検索をクリア"
+
+msgid "Clear selected"
+msgstr "選択を解除"
+
+msgid "Clear text"
+msgstr "テキストをクリア"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Close navigation"
+msgstr "ナビゲーションを閉じる"
+
+msgid "Close sidebar"
+msgstr "サイドバーを閉じる"
+
+msgid "Close Smart Picker"
+msgstr "スマートピッカーを閉じる"
+
+msgid "Collapse menu"
+msgstr "メニューの折りたたみ"
+
+msgid "Color picker"
+msgstr "カラーピッカー"
+
+msgid "Confirm changes"
+msgstr "変更を承認"
+
+msgid "Custom"
+msgstr "カスタム"
+
+msgid "Dark skin tone"
+msgstr "暗い肌のトーン"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Deluge"
+
+msgid "Deselect {option}"
+msgstr "{option} の選択を解除"
+
+msgid "do not disturb"
+msgstr "邪魔をしないでください"
+
+msgid "Edit item"
+msgstr "編集"
+
+msgid "Emoji picker"
+msgstr "絵文字ピッカー"
+
+msgid "Enable interactive view"
+msgstr "インタラクティブ・ビューを有効にする"
+
+msgid "Enter link"
+msgstr "リンクを入力する"
+
+msgid ""
+"Error getting related resources. Please contact your system administrator if"
+" you have any questions."
+msgstr "関連リソースの取得エラー。ご不明な点がございましたら、システム管理者にお問い合わせください。"
+
+msgid "External documentation for {name}"
+msgstr "{name} の外部ドキュメント"
+
+msgid "Favorite"
+msgstr "お気に入り"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "長石"
+
+msgid "Flags"
+msgstr "国旗"
+
+msgid "Food & Drink"
+msgstr "食べ物と飲み物"
+
+msgid "Frequently used"
+msgstr "よく使うもの"
+
+msgid "Global"
+msgstr "全体"
+
+msgid "Go back to the list"
+msgstr "リストに戻る"
+
+msgid "Gold"
+msgstr "黄金"
+
+msgid "Hide password"
+msgstr "パスワードを非表示"
+
+msgid "invisible"
+msgstr "不可視"
+
+msgid "Keyboard navigation help"
+msgstr "キーボード・ナビゲーション・ヘルプ"
+
+msgid "Light skin tone"
+msgstr "明るい肌のトーン"
+
+msgid "Load more \"{options}\""
+msgstr "\"{options}\" をもっと読み込む"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "船乗り"
+
+msgid "Medium dark skin tone"
+msgstr "やや暗い肌のトーン"
+
+msgid "Medium light skin tone"
+msgstr "やや明るい肌のトーン"
+
+msgid "Medium skin tone"
+msgstr "中間の肌のトーン"
+
+msgid "Message limit of {count} characters reached"
+msgstr "{count} 文字のメッセージ上限に達しています"
+
+msgid "More items …"
+msgstr "他のアイテム"
+
+msgid "More options"
+msgstr "他のオプション"
+
+msgid "Neutral skin color"
+msgstr "ニュートラルな肌の色"
+
+msgid "Next"
+msgstr "次"
+
+msgid "Nextcloud blue"
+msgstr "ネクストクラウド・ブルー"
+
+msgid "No emoji found"
+msgstr "絵文字が見つかりません"
+
+msgid "No link provider found"
+msgstr "リンクプロバイダーが見つかりません"
+
+msgid "No results"
+msgstr "結果無し"
+
+msgid "Objects"
+msgstr "物"
+
+msgid "offline"
+msgstr "オフライン"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "カンラン石"
+
+msgid "online"
+msgstr "オンライン"
+
+msgid "Open link to \"{resourceName}\""
+msgstr "\"{resourceName}\" へのリンクを開く"
+
+msgid "Open menu"
+msgstr "メニューを開く"
+
+msgid "Open navigation"
+msgstr "ナビゲーションを開く"
+
+msgid "Open sidebar"
+msgstr "サイドバーを開く"
+
+msgid "Options"
+msgstr "オプション"
+
+msgid "Password is secure"
+msgstr "パスワードは保護されています"
+
+msgid "Pause slideshow"
+msgstr "スライドショーを一時停止"
+
+msgid "People & Body"
+msgstr "様々な人と体の部位"
+
+msgid "Pick a date"
+msgstr "日付を選択してください"
+
+msgid "Pick a date and a time"
+msgstr "日付と時刻を選択してください"
+
+msgid "Pick a month"
+msgstr "月を選択してください"
+
+msgid "Pick a time"
+msgstr "時間を選択してください"
+
+msgid "Pick a week"
+msgstr "週を選択してください"
+
+msgid "Pick a year"
+msgstr "年を選択してください"
+
+msgid "Pick an emoji"
+msgstr "絵文字を選択"
+
+msgid "Please select a time zone:"
+msgstr "タイムゾーンを選んで下さい："
+
+msgid "Previous"
+msgstr "前"
+
+msgid "Provider icon"
+msgstr "プロバイダーのアイコン"
+
+msgid "Purple"
+msgstr "紫色"
+
+msgid "Raw link {options}"
+msgstr "未加工のリンク {options}"
+
+msgid "Related resources"
+msgstr "関連リソース"
+
+msgid "Related team resources"
+msgstr "チームの関連リソース"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "バラ色"
+
+msgid "Save changes"
+msgstr "変更を保存"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "Search emoji"
+msgstr "絵文字を検索"
+
+msgid "Search for time zone"
+msgstr "タイムゾーンを検索"
+
+msgid "Search results"
+msgstr "検索結果"
+
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
+#. few seconds ago'
+msgid "sec. ago"
+msgstr "秒前"
+
+#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
+msgid "seconds ago"
+msgstr "数秒前"
+
+msgid "Select a tag"
+msgstr "タグを選択"
+
+msgid "Select provider"
+msgstr "プロバイダーを選択"
+
+msgid "Selected"
+msgstr "選択済み"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Settings navigation"
+msgstr "ナビゲーション設定"
+
+msgid "Show password"
+msgstr "パスワードを表示"
+
+msgid "Skin tone"
+msgstr "肌のトーン"
+
+msgid "Skip to app navigation"
+msgstr "アプリのナビゲーションへ移動"
+
+msgid "Skip to main content"
+msgstr "メインコンテンツへ移動"
+
+msgid "Smart Picker"
+msgstr "スマートピッカー"
+
+msgid "Smileys & Emotion"
+msgstr "感情表現"
+
+msgid "Start slideshow"
+msgstr "スライドショーを開始"
+
+msgid "Start typing to search"
+msgstr "入力を開始して検索します"
+
+msgid "Submit"
+msgstr "提出"
+
+msgid "Symbols"
+msgstr "記号"
+
+msgid "Travel & Places"
+msgstr "旅行と場所"
+
+msgid "Type to search time zone"
+msgstr "タイムゾーン検索のため入力してください"
+
+msgid "Unable to search the group"
+msgstr "グループを検索できません"
+
+msgid "Undo changes"
+msgstr "変更を取り消し"
+
+msgid "User status: {status}"
+msgstr "ユーザのステータス: {status}"
+
+msgid "View team"
+msgstr "チームを表示"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "ウイスキー"
+
+msgid "Write a message …"
+msgstr "メッセージを書く ..."
