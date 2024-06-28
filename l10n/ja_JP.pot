@@ -119,7 +119,7 @@ msgstr "暗い肌のトーン"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
-msgstr "Deluge"
+msgstr "豪雨"
 
 msgid "Deselect {option}"
 msgstr "{option} の選択を解除"
