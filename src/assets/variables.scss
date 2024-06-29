@@ -8,7 +8,7 @@ $icon-size: 16px;
 
 // icon padding for a var(--default-clickable-area) width and a $icon-size icon
 // ( 34px - 16px ) / 2
-$icon-margin: calc(calc(var(--default-clickable-area) - $icon-size) / 2);
+$icon-margin: calc((var(--default-clickable-area) - $icon-size) / 2);
 
 // transparency background for icons
 $icon-focus-bg: rgba(127, 127, 127, .25);
