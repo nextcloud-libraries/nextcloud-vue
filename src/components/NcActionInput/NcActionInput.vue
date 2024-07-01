@@ -268,6 +268,11 @@ export default {
 
 	mixins: [ActionGlobalMixin],
 
+	model: {
+		prop: 'value',
+		event: 'update:value',
+	},
+
 	props: {
 		/**
 		 * id attribute of the checkbox element
