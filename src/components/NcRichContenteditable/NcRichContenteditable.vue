@@ -1029,6 +1029,7 @@ export default {
 			this.focus()
 			const index = this.tribute.collection.findIndex(collection => collection.trigger === trigger)
 			this.tribute.showMenuForCollection(this.$refs.contenteditable, index)
+			this.updateValue(this.$refs.contenteditable.innerHTML)
 			document.addEventListener('click', this.hideTribute, true)
 		},
 
