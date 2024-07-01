@@ -106,14 +106,15 @@ export default {
 				return
 			}
 
+			// get the height of the component before the references are loaded
+			const height = this.$el.offsetHeight
 			this.resolve().then((response) => {
 				this.references = response.data.ocs.data.references
-				this.loading = false
-				this.$emit('loaded')
 			}).catch((error) => {
 				console.error('Failed to extract references', error)
+			}).finally(() => {
 				this.loading = false
-				this.$emit('loaded')
+				this.$emit('loaded', height)
 			})
 		},
 		resolve() {
