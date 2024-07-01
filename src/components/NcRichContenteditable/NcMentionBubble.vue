@@ -158,7 +158,10 @@ $bubble-avatar-size: $bubble-height - 2 * $bubble-padding;
 	&__select {
 		position: absolute;
 		z-index: -1;
-		left: -1000px;
+		left: -100vw;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
 	}
 }
 
