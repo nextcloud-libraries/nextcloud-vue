@@ -18,7 +18,7 @@
 			:counter-number="44"
 			counterType="highlighted">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="36" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #name>
 				<span style="display: flex; color: var(--color-primary);">
@@ -48,10 +48,10 @@
 			:name="'This is an active element with outlined counter'"
 			:bold="false"
 			:active="true"
-			:counter-number="44"
+			:counter-number="36"
 			counterType="outlined">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="36" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -76,9 +76,9 @@
 			:name="'This is an active element with normal counter'"
 			:bold="false"
 			:active="true"
-			:counter-number="44">
+			:counter-number="36">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="36" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -107,10 +107,10 @@
 			:bold="true"
 			:force-display-actions="true"
 			:details="'1h'"
-			:counter-number="44"
+			:counter-number="36"
 			counterType="highlighted">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="36" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -131,10 +131,10 @@
 			:name="'Name of the element with outlined counter'"
 			:bold="false"
 			:force-display-actions="true"
-			:counter-number="44"
+			:counter-number="36"
 			counterType="outlined">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="36" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -156,9 +156,9 @@
 			:bold="false"
 			:force-display-actions="true"
 			:details="'1h'"
-			:counter-number="44">
+			:counter-number="36">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="36" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -179,7 +179,7 @@
 			:name="'Name of the element'"
 			:bold="false">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="36" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #name>
 				<span style="display: flex; gap: 0.5rem; color: var(--color-primary);">
@@ -216,7 +216,7 @@
 			:bold="false"
 			:details="'1h'">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="36" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #indicator>
 				<!-- Color dot -->
@@ -251,7 +251,7 @@
 	one-line
 	counterType="highlighted">
 	<template #icon>
-		<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+		<NcAvatar disable-menu :size="24" user="janedoe" display-name="Jane Doe" />
 	</template>
 	<template #subname>
 		In this slot you can put both text and other components such as icons
@@ -782,7 +782,7 @@ export default {
 	position: relative;
 	flex: 0 0 auto;
 	justify-content: flex-start;
-	padding: 8px 10px;
+	padding: 8px;
 	// 4px padding for the focus-visible styles. Width is reduced to compensate it
 	margin: 4px;
 	width: calc(100% - 8px);
@@ -803,8 +803,6 @@ export default {
 	}
 
 	&--compact {
-		padding: 4px 10px;
-
 		.list-item__anchor {
 			.line-one, .line-two {
 				margin-block: -4px;
@@ -818,7 +816,7 @@ export default {
 		align-items: end;
 	}
 	&--one-line {
-		padding: 0 9px;
+		padding: 0 6px;
 		margin: 2px;
 		.list-item-content__main {
 			display: flex;
@@ -877,7 +875,7 @@ export default {
 			font-weight: normal;
 		}
 		&__extra {
-			margin: 2px 4px 0 4px;
+			margin: 2px 4px 4px 4px;
 			display: flex;
 			align-items: center;
 		}

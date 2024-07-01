@@ -181,14 +181,14 @@ export default {
 <style scoped lang="scss">
 .item-list__entry {
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 	position: relative;
 	padding: 8px;
 
 	&:hover,
 	&:focus {
 		background-color: var(--color-background-hover);
-		border-radius: var(--border-radius-large);
+		border-radius: var(--border-radius-element, var(--border-radius-large));
 	}
 	.item-avatar {
 		position: relative;
@@ -197,13 +197,13 @@ export default {
 	}
 	.item__details {
 		padding-left: 8px;
-		max-height: 44px;
+		max-height: var(--default-clickable-area);
 		flex-grow: 1;
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		min-height: 44px;
+		min-height: var(--default-clickable-area);
 
 		h3,
 		.message {

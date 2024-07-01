@@ -85,7 +85,7 @@ export default {
 		.settings-button {
 			display: flex;
 			flex: 1 1 0;
-			height: $clickable-area;
+			height: var(--default-clickable-area);
 			width: 100%;
 			padding: 0;
 			margin: 0;
@@ -98,7 +98,7 @@ export default {
 			font-size: 100%;
 			color: var(--color-main-text);
 			padding-right: 14px;
-			line-height: $clickable-area;
+			line-height: var(--default-clickable-area);
 
 			&:hover,
 			&:focus {
@@ -106,9 +106,9 @@ export default {
 			}
 
 			&__icon {
-				width: $clickable-area;
-				height: $clickable-area;
-				min-width: $clickable-area;
+				width: var(--default-clickable-area);
+				height: var(--default-clickable-area);
+				min-width: var(--default-clickable-area);
 			}
 			&__label {
 				overflow: hidden;

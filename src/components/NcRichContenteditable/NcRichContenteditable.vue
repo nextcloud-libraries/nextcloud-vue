@@ -1108,8 +1108,8 @@ export default {
 		background-color: var(--color-main-background);
 		font-family: var(--font-face);
 		font-size: inherit;
-		min-height: $clickable-area;
-		max-height: $clickable-area * 5.5;
+		min-height: var(--default-clickable-area);
+		max-height: calc(var(--default-clickable-area) * 5.5);
 
 		&--has-label {
 			margin-top: 10px;
@@ -1133,7 +1133,7 @@ export default {
 		}
 
 		&--multiline {
-			min-height: $clickable-area * 3;
+			min-height: calc(var(--default-clickable-area) * 3);
 			// No max for mutiline
 			max-height: none;
 		}

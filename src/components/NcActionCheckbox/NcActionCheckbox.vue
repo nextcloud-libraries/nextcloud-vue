@@ -182,7 +182,7 @@ export default {
 	box-shadow: none;
 
 	font-weight: normal;
-	line-height: $clickable-area;
+	line-height: var(--default-clickable-area);
 
 	/* checkbox/radio fixes */
 	&__checkbox {

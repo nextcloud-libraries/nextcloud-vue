@@ -274,7 +274,7 @@ export default {
 .vue-crumb {
 	background-image: none;
 	display: inline-flex;
-	height: $clickable-area;
+	height: var(--default-clickable-area);
 	padding: 0;
 
 	&:last-child {

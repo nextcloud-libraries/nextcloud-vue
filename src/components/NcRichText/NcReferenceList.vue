@@ -137,6 +137,6 @@ export default {
 }
 
 .widgets--list.icon-loading {
-	min-height: 44px;
+	min-height: var(--default-clickable-area);
 }
 </style>

@@ -46,7 +46,7 @@ export default {
 <style lang="scss" scoped>
 	.app-navigation-caption {
 		color: var(--color-text-maxcontrast);
-		line-height: $clickable-area;
+		line-height: var(--default-clickable-area);
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		box-shadow: none !important;
@@ -54,7 +54,7 @@ export default {
 		pointer-events: none;
 		margin-left: 12px;
 		padding-right: 14px;
-		height: $clickable-area;
+		height: var(--default-clickable-area);
 		display: flex;
 		align-items: center;
 	}

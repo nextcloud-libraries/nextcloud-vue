@@ -428,7 +428,7 @@ export default {
 		position: absolute;
 		margin-inline: 14px 0;
 		max-width: fit-content;
-		inset-block-start: 11px;
+		inset-block-start: 6px;
 		inset-inline: 0;
 		// Fix color so that users do not think the input already has content
 		color: var(--color-text-maxcontrast);
@@ -475,6 +475,7 @@ export default {
 		align-items: center;
 		justify-content: center;
 		opacity: 0.7;
+		top: 1px;
 
 		&--leading {
 			inset-block-end: 0;
@@ -490,7 +491,7 @@ export default {
 	&__trailing-button {
 		&.button-vue {
 			position: absolute;
-			top: 0;
+			top: 1px;
 			right: 0;
 			border-radius: var(--border-radius-large);
 		}

@@ -351,7 +351,7 @@ export default {
 	&:hover,
 	&:focus {
 		background-color: var(--color-background-hover);
-		border-radius: var(--border-radius-large);
+		border-radius: var(--border-radius-element, var(--border-radius-large));
 		color: var(--color-main-text);
 	}
 }
@@ -370,7 +370,7 @@ export default {
 	}
 	.item__details {
 		padding-left: 8px;
-		max-height: 44px;
+		max-height: var(--default-clickable-area);
 		flex-grow: 1;
 		overflow: hidden;
 		display: flex;
