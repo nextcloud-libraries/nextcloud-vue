@@ -76,8 +76,10 @@ Single tab is rendered without navigation.
 ```vue
 <template>
 	<div>
+		<NcCheckboxRadioSwitch v-model="forceTabs">Force tab navigation</NcCheckboxRadioSwitch>
 		<NcAppSidebar
 			name="cat-picture.jpg"
+			:force-tabs="forceTabs"
 			subname="last edited 3 weeks ago">
 			<NcAppSidebarTab name="Settings" id="settings-tab">
 				<template #icon>
@@ -94,6 +96,11 @@ import Cog from 'vue-material-design-icons/Cog.vue'
 export default {
 	components: {
 		Cog,
+	},
+	data() {
+		return {
+			forceTabs: false,
+		}
 	},
 }
 </script>
@@ -682,6 +689,7 @@ export default {
 			<NcAppSidebarTabs v-show="!loading"
 				ref="tabs"
 				:active="active"
+				:force-tabs="forceTabs"
 				@update:active="onUpdateActive">
 				<slot />
 			</NcAppSidebarTabs>
@@ -835,6 +843,13 @@ export default {
 		 * Force the actions to display in a three dot menu
 		 */
 		forceMenu: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Force the tab navigation to display even if there is only one tab
+		 */
+		forceTabs: {
 			type: Boolean,
 			default: false,
 		},
