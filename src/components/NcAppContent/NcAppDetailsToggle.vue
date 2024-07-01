@@ -81,8 +81,8 @@ export default {
 <style lang="scss" scoped>
 .app-details-toggle {
 	position: sticky;
-	width: $clickable-area;
-	height: $clickable-area;
+	width: var(--default-clickable-area);
+	height: var(--default-clickable-area);
 	padding: $icon-margin;
 	cursor: pointer;
 	opacity: .6;

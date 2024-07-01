@@ -550,6 +550,6 @@ export default {
 
 .action-button__pressed-icon {
 	margin-left: auto;
-	margin-right: -$icon-margin;
+	margin-right: calc($icon-margin * -1);
 }
 </style>

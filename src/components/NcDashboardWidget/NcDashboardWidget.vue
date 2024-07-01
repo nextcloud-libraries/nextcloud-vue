@@ -370,7 +370,7 @@ export default {
 	}
 	.item__details {
 		padding-left: 8px;
-		max-height: 44px;
+		max-height: var(--default-clickable-area);
 		flex-grow: 1;
 		overflow: hidden;
 		display: flex;

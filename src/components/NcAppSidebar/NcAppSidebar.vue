@@ -1288,10 +1288,10 @@ $top-buttons-spacing: 6px;
 			z-index: 100;
 			top: $top-buttons-spacing;
 			right: $top-buttons-spacing;
-			width: $clickable-area;
-			height: $clickable-area;
+			width: var(--default-clickable-area);
+			height: var(--default-clickable-area);
 			opacity: $opacity_normal;
-			border-radius: math.div($clickable-area, 2);
+			border-radius: calc(var(--default-clickable-area) / 2);
 			&:hover,
 			&:active,
 			&:focus {
@@ -1404,8 +1404,8 @@ $top-buttons-spacing: 6px;
 
 			.app-sidebar-header__tertiary-actions {
 				display: flex;
-				height: $clickable-area;
-				width: $clickable-area;
+				height: var(--default-clickable-area);
+				width: var(--default-clickable-area);
 				justify-content: center;
 				flex: 0 0 auto;
 
@@ -1430,7 +1430,7 @@ $top-buttons-spacing: 6px;
 				.app-sidebar-header__mainname-container {
 					display: flex;
 					align-items: center;
-					min-height: $clickable-area;
+					min-height: var(--default-clickable-area);
 
 					// main name
 					.app-sidebar-header__mainname {

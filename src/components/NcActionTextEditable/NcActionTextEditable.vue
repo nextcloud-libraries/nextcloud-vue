@@ -203,7 +203,7 @@ $input-margin: 4px;
 	box-shadow: none;
 
 	font-weight: normal;
-	line-height: $clickable-area;
+	line-height: var(--default-clickable-area);
 
 	& > span {
 		cursor: pointer;
@@ -215,15 +215,15 @@ $input-margin: 4px;
 		min-height: 0;
 		/* Keep padding to define the width to
 			assure correct position of a possible text */
-		padding: #{math.div($clickable-area, 2)} 0 #{math.div($clickable-area, 2)} $clickable-area;
+		padding: calc(var(--default-clickable-area) / 2) 0 calc(var(--default-clickable-area) / 2) var(--default-clickable-area);
 
 		background-position: #{$icon-margin} center;
 		background-size: $icon-size;
 	}
 
 	&:deep(.material-design-icon) {
-		width: $clickable-area;
-		height: $clickable-area;
+		width: var(--default-clickable-area);
+		height: var(--default-clickable-area);
 		opacity: $opacity_full;
 
 		.material-design-icon__svg {
@@ -258,10 +258,10 @@ $input-margin: 4px;
 
 		// bottom-right corner
 		position: absolute;
-		right: $icon-margin + 1;
+		right: calc($icon-margin + 1);
 		bottom: 1px;
-		width: #{$clickable-area - $input-margin * 2};
-		height: #{$clickable-area - $input-margin * 2};
+		width: calc(var(--default-clickable-area) - $input-margin * 2);
+		height: calc(var(--default-clickable-area) - $input-margin * 2);
 		box-sizing: border-box;
 		margin: 0;
 		padding: 7px 6px;
@@ -283,10 +283,10 @@ $input-margin: 4px;
 		color: inherit;
 		border-color: var(--color-border-maxcontrast);
 
-		min-height: #{$clickable-area * 2 - $input-margin * 2}; /* twice the element margin-y */
-		max-height: #{$clickable-area * 3 - $input-margin * 2}; /* twice the element margin-y */
+		min-height: calc(var(--default-clickable-area) * 2 - $input-margin * 2); /* twice the element margin-y */
+		max-height: calc(var(--default-clickable-area) * 3 - $input-margin * 2); /* twice the element margin-y */
 		// block width widening
-		min-width: $clickable-area * 4;
+		min-width: calc(var(--default-clickable-area) * 4);
 		width: 100% !important;
 		margin: 0;
 
@@ -329,11 +329,11 @@ $input-margin: 4px;
 // add the same bottomMargin as the right padding
 // for visual balance
 li:last-child > .action-text-editable {
-	margin-bottom: $icon-margin - $input-margin;
+	margin-bottom: calc($icon-margin - $input-margin);
 }
 
 // same for first item
 li:first-child > .action-text-editable {
-	margin-top: $icon-margin - $input-margin;
+	margin-top: calc($icon-margin - $input-margin);
 }
 </style>

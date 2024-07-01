@@ -281,7 +281,7 @@
 		align-items: center;
 		justify-content: space-between;
 		width: 100%;
-		height: $clickable-area;
+		height: var(--default-clickable-area);
 		margin-bottom: 4px;
 
 		button {

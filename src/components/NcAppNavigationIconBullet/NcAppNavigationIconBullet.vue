@@ -72,7 +72,7 @@ export default {
 .app-navigation-entry__icon-bullet {
 	display: block;
 	// there is 2 margins
-	padding: $icon-margin + 1px;
+	padding: calc($icon-margin + 1px);
 	div {
 		width: $icon-size - 2px;
 		height: $icon-size - 2px;
