@@ -420,7 +420,12 @@ export default {
 		overflow: hidden;
 		background-color: transparent;
 		border: none;
-
+		&.-text {
+			max-width: 250px;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
 		&:hover,
 		&:focus {
 			background-color: var(--color-background-hover);
