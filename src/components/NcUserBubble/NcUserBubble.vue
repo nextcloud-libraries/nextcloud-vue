@@ -24,6 +24,29 @@ This component has the following slot:
 </p>
 ```
 
+### Example with click event
+
+```vue
+<template>
+	<NcUserBubble
+		:margin="4"
+		:size="30"
+		display-name="Administrator"
+		@click="alert"
+		user="admin">
+	</NcUserBubble>
+</template>
+<script>
+	export default {
+		methods: {
+			alert() {
+				alert('Clicked')
+			},
+		},
+	}
+</script>
+```
+
 ### Example with name slot
 
 ```vue
@@ -71,7 +94,7 @@ export default {
 				class="user-bubble__content"
 				:style="styles.content"
 				:href="hasUrl ? url : null"
-				:class="{ 'user-bubble__content--primary': primary }"
+				:class="{ 'user-bubble__content--primary': primary, 'user-bubble__content--clickable': isClickable }"
 				v-bind="attrs"
 				@click="onClick">
 				<!-- NcAvatar -->
@@ -250,6 +273,10 @@ export default {
 			return true
 		},
 
+		isClickable() {
+			return !!this.$listeners?.click || !this.popoverEmpty
+		},
+
 		styles() {
 			return {
 				content: {
@@ -303,6 +330,10 @@ export default {
 		&--primary {
 			color: var(--color-primary-element-text);
 			background-color: var(--color-primary-element);
+		}
+
+		&--clickable, &--clickable * {
+			cursor: pointer;
 		}
 
 		> :last-child {
