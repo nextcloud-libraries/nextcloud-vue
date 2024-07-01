@@ -149,7 +149,7 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 
 		<NcCheckboxRadioSwitch v-model="autolink" type="checkbox">Autolink</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch v-model="useMarkdown" type="checkbox">Use Markdown</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch :checked.sync="useExtendedMarkdown" type="checkbox">Use extended Markdown</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="useExtendedMarkdown" type="checkbox">Use extended Markdown</NcCheckboxRadioSwitch>
 
 		<NcRichText :text="text"
 			:autolink="autolink"

@@ -76,7 +76,7 @@ Single tab is rendered without navigation.
 ```vue
 <template>
 	<div>
-		<NcCheckboxRadioSwitch :checked.sync="forceTabs">Force tab navigation</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="forceTabs">Force tab navigation</NcCheckboxRadioSwitch>
 		<NcAppSidebar
 			name="cat-picture.jpg"
 			:force-tabs="forceTabs"
