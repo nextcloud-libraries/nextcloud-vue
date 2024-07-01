@@ -55,7 +55,7 @@ export default {
 .result {
 	display: flex;
 	align-items: center;
-	height: 44px;
+	height: var(--default-clickable-area);
 	overflow: hidden;
 
 	&--icon-class,

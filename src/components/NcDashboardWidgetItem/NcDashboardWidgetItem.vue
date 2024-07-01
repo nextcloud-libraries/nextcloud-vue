@@ -197,13 +197,13 @@ export default {
 	}
 	.item__details {
 		padding-left: 8px;
-		max-height: 44px;
+		max-height: var(--default-clickable-area);
 		flex-grow: 1;
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		min-height: 44px;
+		min-height: var(--default-clickable-area);
 
 		h3,
 		.message {
