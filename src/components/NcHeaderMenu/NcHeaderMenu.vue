@@ -337,7 +337,7 @@ $externalMargin: 8px;
 
 		// header is filled with primary or image background
 		filter: none !important;
-		color: var(--color-primary-text) !important;
+		color: var(--color-background-plain-text, var(--color-primary-text)) !important;
 	}
 
 	&--opened &__trigger,
