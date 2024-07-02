@@ -10,7 +10,7 @@
 			class="collection-item-name"
 			title=""
 			@click="showDetails">{{ collection.name }}</span>
-		<form v-else :class="{'shouldshake': error.rename }" @submit.prevent="renameCollection">
+		<form v-else :class="{'should-shake': error }" @submit.prevent="renameCollection">
 			<input v-model="newName"
 				type="text"
 				autocomplete="off"
@@ -18,37 +18,46 @@
 			<input type="submit" value="" class="icon-confirm">
 		</form>
 		<div v-if="!detailsOpen && newName === null" class="linked-icons">
-			<a v-for="resource in limitedResources(collection)"
+			<component :is="getComponent(resource).component"
+				v-for="resource in resources.slice(0, 2)"
 				:key="resource.type + '|' + resource.id"
 				:title="resource.name"
-				:href="resource.link"
-				:class="typeClass(resource)"><img :src="iconUrl(resource)"></a>
+				:to="getComponent(resource).to"
+				:href="getComponent(resource).href"
+				:class="typeClass(resource)">
+				<img :src="iconUrl(resource)" :alt="resource.name">
+			</component>
 		</div>
 
 		<span v-if="newName === null" class="sharingOptionsGroup">
 			<NcActions>
 				<NcActionButton icon="icon-info"
 					@click.prevent="toggleDetails">
-					{{ detailsOpen ? t('core', 'Hide details') : t('core', 'Show details') }}
+					{{ detailsOpen ? t('Hide details') : t('Show details') }}
 				</NcActionButton>
 				<NcActionButton icon="icon-rename"
 					@click.prevent="openRename">
-					{{ t('core', 'Rename project') }}
+					{{ t('Rename project') }}
 				</NcActionButton>
 			</NcActions>
 		</span>
 
 		<transition name="fade">
-			<div v-if="error.rename" class="error">
-				{{ error.rename }}
+			<div v-if="error" class="error">
+				{{ error }}
 			</div>
 		</transition>
 		<transition name="fade">
 			<ul v-if="detailsOpen" class="resource-list-details">
-				<li v-for="resource in collection.resources"
+				<li v-for="resource in resources"
 					:key="resource.type + '|' + resource.id"
 					:class="typeClass(resource)">
-					<a :href="resource.link"><img :src="iconUrl(resource)"><span class="resource-name">{{ resource.name || '' }}</span></a>
+					<component :is="getComponent(resource).component"
+						:to="getComponent(resource).to"
+						:href="getComponent(resource).href">
+						<img :src="iconUrl(resource)" :alt="resource.name">
+						<span class="resource-name">{{ resource.name || '' }}</span>
+					</component>
 					<span class="icon-close" @click="removeResource(collection, resource)" />
 				</li>
 			</ul>
@@ -57,14 +66,12 @@
 </template>
 
 <script>
-import { set } from 'vue'
-import { t } from '@nextcloud/l10n'
+import { t } from '../../l10n.js'
+import { getRoute } from '../NcRichText/autolink.js'
 
 import NcActions from '../NcActions/index.js'
 import NcActionButton from '../NcActionButton/index.js'
 import NcAvatar from '../NcAvatar/index.js'
-
-import { actions } from './collectionstore.js'
 
 export default {
 	name: 'NcCollectionListItem',
@@ -80,13 +87,19 @@ export default {
 			type: Object,
 			default: null,
 		},
+
+		error: {
+			type: String,
+			default: undefined,
+		},
 	},
+
+	emits: ['remove-resource', 'rename-collection'],
 
 	data() {
 		return {
 			detailsOpen: false,
 			newName: null,
-			error: {},
 		}
 	},
 
@@ -99,8 +112,19 @@ export default {
 			return (resource) => 'resource-type-' + resource.type
 		},
 
-		limitedResources() {
-			return (collection) => collection.resources ? collection.resources.slice(0, 2) : []
+		resources() {
+			// invalid resources come from server as empty array ([]) and not an object
+			return this.collection.resources?.filter(resource => !Array.isArray(resource)) ?? []
+		},
+
+		getComponent() {
+			return (resource) => {
+				const route = getRoute(this.$router, resource.link)
+
+				return route
+					? { component: 'router-link', to: route, href: undefined }
+					: { component: 'a', to: undefined, href: resource.link }
+			}
 		},
 
 		iconUrl() {
@@ -127,13 +151,11 @@ export default {
 			this.detailsOpen = true
 		},
 
-		hideDetails() {
-			this.detailsOpen = false
-		},
-
 		removeResource(collection, resource) {
-			actions.removeResource({
-				collectionId: collection.id, resourceType: resource.type, resourceId: resource.id,
+			this.$emit('remove-resource', {
+				collectionId: collection.id,
+				resourceType: resource.type,
+				resourceId: resource.id,
 			})
 		},
 
@@ -142,22 +164,13 @@ export default {
 		},
 
 		renameCollection() {
-			if (this.newName === '') {
-				this.newName = null
-				return
+			if (this.newName) {
+				this.$emit('rename-collection', {
+					collectionId: this.collection.id,
+					name: this.newName,
+				})
 			}
-			actions.renameCollection({
-				collectionId: this.collection.id,
-				name: this.newName,
-			}).then((collection) => {
-				this.newName = null
-			}).catch((e) => {
-				this.$set(this.error, 'rename', t('core', 'Failed to rename the project'))
-				console.error(e)
-				setTimeout(() => {
-					set(this.error, 'rename', null)
-				}, 3000)
-			})
+			this.newName = null
 		},
 	},
 }
@@ -206,7 +219,7 @@ li.collection-list-item {
 	margin-bottom: 0 !important;
 
 	.collection-avatar {
-		margin-top: 6px;
+		margin-top: 0;
 	}
 
 	form, .collection-item-name {
@@ -286,7 +299,7 @@ li.collection-list-item {
 	}
 }
 
-.shouldshake {
+.should-shake {
 	animation: shake 0.6s 1 linear;
 }
 
