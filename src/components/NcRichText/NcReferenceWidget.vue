@@ -72,9 +72,9 @@ export default {
 		const widgetRoot = ref()
 		const { width } = useElementSize(widgetRoot)
 
-		useIntersectionObserver(widgetRoot, () => {
+		useIntersectionObserver(widgetRoot, ([entry]) => {
 			nextTick(() => {
-				isVisible.value = widgetRoot.value?.isIntersecting ?? false
+				isVisible.value = entry.isIntersecting
 			})
 		})
 
