@@ -609,6 +609,10 @@ export default {
 		}
 	},
 
+	mounted() {
+		this.actionsBoundariesElement = document.querySelector('#content-vue') || undefined
+	},
+
 	data() {
 		return {
 			editingValue: '',
@@ -621,6 +625,7 @@ export default {
 			menuOpenLocalValue: false,
 			focused: false,
 			collapsible: false,
+			actionsBoundariesElement: undefined,
 		}
 	},
 
@@ -652,9 +657,6 @@ export default {
 
 		undoButtonAriaLabel() {
 			return t('Undo changes')
-		},
-		actionsBoundariesElement() {
-			return document.querySelector('#content-vue') || undefined
 		},
 	},
 
