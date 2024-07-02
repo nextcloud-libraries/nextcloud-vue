@@ -3,6 +3,19 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+<docs>
+Provides a Vue standalone component for Nextcloud Projects feature introduced in Nextcloud 16. Replaces deprecated `nextcloud-vue-collections` library.
+
+Projects feature is deprecated since Nextcloud 25, and superseded by Related resources. See [NcRelatedResourcesPanel](#/Components/NcRelatedResourcesPanel) documentation for more information.
+
+### Usage
+
+To enable feature in Nextcloud, run following command:
+```sh
+occ config:system:set --value true 'projects.enabled'
+```
+</docs>
+
 <template>
 	<ul v-if="collections && type && id" id="collection-list" class="collection-list">
 		<li @click="showSelect">
@@ -12,7 +25,7 @@
 			<div id="collection-select-container">
 				<NcSelect ref="select"
 					v-model="value"
-					:aria-label-combobox="t('core', 'Add to a project')"
+					:aria-label-combobox="t('Add to a project')"
 					:options="options"
 					:placeholder="placeholder"
 					label="title"
@@ -34,7 +47,7 @@
 						</span>
 					</template>
 					<p class="hint">
-						{{ t('core', 'Connect items to a project to make them easier to find') }}
+						{{ t('Connect items to a project to make them easier to find') }}
 					</p>
 				</NcSelect>
 			</div>
@@ -44,36 +57,29 @@
 				{{ error }}
 			</li>
 		</transition>
-		<NcCollectionListItem v-for="collection in collections" :key="collection.id" :collection="collection" />
+		<NcCollectionListItem v-for="collection in collections"
+			:key="collection.id"
+			:collection="collection"
+			:error="collectionsError[collection.id]"
+			@rename-collection="renameCollectionFromItem"
+			@remove-resource="removeResourceFromCollection" />
 	</ul>
 </template>
 
 <script>
 import debounce from 'debounce'
-import { t } from '@nextcloud/l10n'
+import { ref } from 'vue'
+import { t } from '../../l10n.js'
 
 import NcAvatar from '../NcAvatar/index.js'
 import NcSelect from '../NcSelect/index.js'
 import NcCollectionListItem from './NcCollectionListItem.vue'
 
-import { state, actions } from './collectionstore.js'
+import { useCollections } from './useCollections.js'
+import { searchService } from './service.ts'
 
 const METHOD_CREATE_COLLECTION = 0
 const METHOD_ADD_TO_COLLECTION = 1
-
-const _debouncedSearch = debounce(
-	function(query, loading) {
-		if (query !== '') {
-			loading(true)
-			actions.search(query).then((collections) => {
-				this.searchCollections = collections
-			}).catch(e => {
-				console.error('Failed to search for collections', e)
-			}).finally(() => {
-				loading(false)
-			})
-		}
-	}, 500)
 
 export default {
 	name: 'NcCollectionList',
@@ -106,7 +112,9 @@ export default {
 			type: String,
 			default: '',
 		},
-
+		/**
+		 * Whether the component is active (to start fetch resources)
+		 */
 		isActive: {
 			type: Boolean,
 			default: true,
@@ -114,8 +122,38 @@ export default {
 	},
 
 	setup() {
+		const {
+			storedCollections,
+			fetchCollectionsByResource,
+			createCollection,
+			addResourceToCollection,
+			removeResourceFromCollection,
+			renameCollection,
+		} = useCollections()
+
+		const searchCollections = ref([])
+		const search = debounce(function(query, loading) {
+			if (query !== '') {
+				loading(true)
+				searchService(query).then(collections => {
+					searchCollections.value = collections
+				}).catch(e => {
+					console.error('Failed to search for collections', e)
+				}).finally(() => {
+					loading(false)
+				})
+			}
+		}, 500)
+
 		return {
-			state,
+			storedCollections,
+			fetchCollectionsByResource,
+			createCollection,
+			addResourceToCollection,
+			removeResourceFromCollection,
+			renameCollection,
+			searchCollections,
+			search,
 		}
 	},
 
@@ -126,7 +164,7 @@ export default {
 			codes: undefined,
 			value: null,
 			model: {},
-			searchCollections: [],
+			collectionsError: {},
 			error: null,
 			isSelectOpen: false,
 		}
@@ -134,18 +172,20 @@ export default {
 
 	computed: {
 		collections() {
-			return this.state.collections.filter((collection) => {
-				return typeof collection.resources.find((resource) => resource && resource.id === '' + this.id && resource.type === this.type) !== 'undefined'
-			})
+			return this.storedCollections.filter(collection => collection.resources
+				.some(resource => resource && resource.id === String(this.id) && resource.type === this.type),
+			)
 		},
 
 		placeholder() {
-			return this.isSelectOpen ? t('core', 'Type to search for existing projects') : t('core', 'Add to a project')
+			return this.isSelectOpen
+				? t('Type to search for existing projects')
+				: t('Add to a project')
 		},
 
 		options() {
 			const options = []
-			window.OCP.Collaboration.getTypes().sort().forEach((type) => {
+			window.OCP.Collaboration.getTypes().sort().forEach(type => {
 				options.push({
 					method: METHOD_CREATE_COLLECTION,
 					type,
@@ -155,7 +195,7 @@ export default {
 				})
 			})
 			for (const index in this.searchCollections) {
-				if (this.collections.findIndex((collection) => collection.id === this.searchCollections[index].id) === -1) {
+				if (!this.collections.find(collection => collection.id === this.searchCollections[index].id)) {
 					options.push({
 						method: METHOD_ADD_TO_COLLECTION,
 						title: this.searchCollections[index].name,
@@ -165,58 +205,43 @@ export default {
 			}
 			return options
 		},
+
+		resourceIdentifier() {
+			return {
+				resourceType: this.type,
+				resourceId: this.id,
+				isActive: this.isActive,
+			}
+		},
 	},
 
 	watch: {
-		type() {
-			if (this.isActive) {
-				actions.fetchCollectionsByResource({
-					resourceType: this.type,
-					resourceId: this.id,
-				})
-			}
+		resourceIdentifier: {
+			deep: true,
+			immediate: true,
+			handler(resourceIdentifier) {
+				if (!resourceIdentifier.isActive || !resourceIdentifier.resourceId || !resourceIdentifier.resourceType) {
+					return
+				}
+				this.fetchCollectionsByResource(resourceIdentifier)
+			},
 		},
-
-		id() {
-			if (this.isActive) {
-				actions.fetchCollectionsByResource({
-					resourceType: this.type,
-					resourceId: this.id,
-				})
-			}
-		},
-
-		isActive(isActive) {
-			if (isActive) {
-				actions.fetchCollectionsByResource({
-					resourceType: this.type,
-					resourceId: this.id,
-				})
-			}
-		},
-	},
-
-	mounted() {
-		actions.fetchCollectionsByResource({
-			resourceType: this.type,
-			resourceId: this.id,
-		})
 	},
 
 	methods: {
 		t,
 
-		select(selectedOption, id) {
+		select(selectedOption) {
 			if (selectedOption.method === METHOD_CREATE_COLLECTION) {
-				selectedOption.action().then((id) => {
-					actions.createCollection({
+				selectedOption.action().then(resourceId => {
+					this.createCollection({
 						baseResourceType: this.type,
 						baseResourceId: this.id,
 						resourceType: selectedOption.type,
-						resourceId: id,
+						resourceId,
 						name: this.name,
 					}).catch((e) => {
-						this.setError(t('core', 'Failed to create a project'), e)
+						this.setError(t('Failed to create a project'), e)
 					})
 				}).catch((e) => {
 					console.error('No resource selected', e)
@@ -224,29 +249,19 @@ export default {
 			}
 
 			if (selectedOption.method === METHOD_ADD_TO_COLLECTION) {
-				actions.addResourceToCollection({
+				this.addResourceToCollection({
 					collectionId: selectedOption.collectionId, resourceType: this.type, resourceId: this.id,
 				}).catch((e) => {
-					this.setError(t('core', 'Failed to add the item to the project'), e)
+					this.setError(t('Failed to add the item to the project'), e)
 				})
 			}
-		},
 
-		search(query, loading) {
-			_debouncedSearch.bind(this)(query, loading)
+			this.value = null
 		},
 
 		showSelect() {
 			this.selectIsOpen = true
 			this.$refs.select.$el.focus()
-		},
-
-		hideSelect() {
-			this.selectIsOpen = false
-		},
-
-		isVueComponent(object) {
-			return object._isVue
 		},
 
 		setError(error, e) {
@@ -255,6 +270,17 @@ export default {
 			setTimeout(() => {
 				this.error = null
 			}, 5000)
+		},
+
+		renameCollectionFromItem({ collectionId, name }) {
+			this.renameCollection({ collectionId, name })
+				.catch((e) => {
+					console.error(t('Failed to rename the project'), e)
+					this.collectionsError[collectionId] = t('Failed to rename the project')
+					setTimeout(() => {
+						this.collectionsError[collectionId] = null
+					}, 5000)
+				})
 		},
 	},
 }
@@ -267,11 +293,11 @@ export default {
 
 .collection-list > li {
 	display: flex;
-	align-items: start;
+	align-items: center;
 	gap: 12px;
 
 	& > .avatar {
-		margin-top: auto;
+		margin-top: 0;
 	}
 }
 
@@ -326,6 +352,8 @@ div.avatar {
 
 	.avatar {
 		display: block;
+		width: 32px;
+		height: 32px;
 		background-color: var(--color-background-darker) !important;
 	}
 
