@@ -5,17 +5,7 @@
 
 import axios, { type AxiosResponse } from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
-
-type OCSResponse = {
-	ocs: {
-		meta: {
-			status: string,
-			statuscode: number,
-			message: string,
-		},
-		'data': unknown
-	}
-}
+import type { OCSResponse } from '@nextcloud/typings/ocs'
 
 /**
  * Extracts the OCS data from a response
