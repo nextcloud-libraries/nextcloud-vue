@@ -41,6 +41,8 @@ export default {
 	display: flex;
 	justify-content: right;
 	background-color: var(--color-primary);
+	height: var(--header-height, 50px);
+	padding-right: 12px;
 }
 </style>
 ```
@@ -64,6 +66,7 @@ export default {
 			:aria-describedby="description ? descriptionId : null"
 			:aria-controls="`header-menu-${id}`"
 			:aria-expanded="opened.toString()"
+			size="large"
 			@click.prevent="toggleMenu">
 			<template #icon>
 				<!-- @slot Icon trigger slot. Make sure the svg path
