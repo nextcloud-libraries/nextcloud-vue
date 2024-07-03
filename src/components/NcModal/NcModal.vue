@@ -195,7 +195,7 @@ export default {
 			:style="cssVariables"
 			role="dialog"
 			aria-modal="true"
-			:aria-labelledby="'modal-name-' + randId"
+			:aria-labelledby="modalLabelId"
 			:aria-describedby="'modal-description-' + randId"
 			tabindex="-1">
 			<!-- Header -->
@@ -319,6 +319,10 @@ export default {
 </template>
 
 <script>
+import { useSwipe } from '@vueuse/core'
+import { createFocusTrap } from 'focus-trap'
+import Vue from 'vue'
+
 import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
@@ -332,9 +336,6 @@ import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
 import Close from 'vue-material-design-icons/Close.vue'
 import Pause from 'vue-material-design-icons/Pause.vue'
 import Play from 'vue-material-design-icons/Play.vue'
-
-import { createFocusTrap } from 'focus-trap'
-import { useSwipe } from '@vueuse/core'
 
 export default {
 	name: 'NcModal',
@@ -495,6 +496,15 @@ export default {
 		},
 
 		/**
+		 * Id of the element that labels the dialog (the name)
+		 * Not needed if the `name` prop is set, but if no name is set you need to provide the ID of an element to label the dialog for accessibility.
+		 */
+		labelId: {
+			type: String,
+			default: '',
+		},
+
+		/**
 		 * Set element to return focus to after focus trap deactivation
 		 *
 		 * @type {import('focus-trap').FocusTargetValueOrFalse}
@@ -525,6 +535,13 @@ export default {
 	},
 
 	computed: {
+		/**
+		 * ID of the element to label the modal
+		 */
+		modalLabelId() {
+			return this.labelId || `modal-name-${this.randId}`
+		},
+
 		showModal() {
 			return (this.show === undefined) ? this.internalShow : this.show
 		},
@@ -583,6 +600,10 @@ export default {
 		this.mc.stop()
 	},
 	mounted() {
+		if (!this.name && !this.labelId) {
+			Vue.util.warn('[NcModal] You need either set the name or set a `labelId` for accessibility.')
+		}
+
 		// init clear view
 		this.useFocusTrap()
 		this.mc = useSwipe(this.$refs.mask, {
