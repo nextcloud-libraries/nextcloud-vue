@@ -5,14 +5,13 @@
 
 import type { Component } from 'vue'
 
-import { mount } from 'cypress/vue'
 import { h } from 'vue'
 import NcModal from '../../src/components/NcModal/NcModal.vue'
 
 
 describe('NcModal', () => {
 	it('Modal is labelled correctly if name is set', () => {
-		mount(NcModal, {
+		cy.mount(NcModal, {
 			props: {
 				show: true,
 				name: 'My modal',
@@ -27,7 +26,7 @@ describe('NcModal', () => {
 	})
 
 	it('Modal is labelled correctly if `labelId` is set', () => {
-		mount(NcModal, {
+		cy.mount(NcModal, {
 			props: {
 				show: true,
 				size: 'small',
@@ -42,7 +41,7 @@ describe('NcModal', () => {
 	})
 
 	it('Modal is labelled correctly if `labelId` and `name` are set', () => {
-		mount(NcModal, {
+		cy.mount(NcModal, {
 			props: {
 				show: true,
 				size: 'small',
@@ -58,7 +57,7 @@ describe('NcModal', () => {
 	})
 
 	it('close button is visible when content is scrolled', () => {
-		mount(NcModal, {
+		cy.mount(NcModal, {
 			props: {
 				show: true,
 				size: 'small',
