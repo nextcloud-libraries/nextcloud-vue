@@ -65,7 +65,7 @@
   ],
   "dependencies": {
     "@ckpack/vue-color": "^1.5.0",
-    "@floating-ui/dom": "^1.6.6",
+    "@floating-ui/dom": "^1.6.7",
     "@nextcloud/auth": "^2.3.0",
     "@nextcloud/axios": "^2.5.0",
     "@nextcloud/browser-storage": "^0.4.0",
@@ -100,7 +100,7 @@
     "unified": "^11.0.5",
     "unist-builder": "^4.0.0",
     "unist-util-visit": "^5.0.0",
-    "vue": "^3.4.30",
+    "vue": "^3.4.31",
     "vue-datepicker-next": "^1.0.3",
     "vue-router": "^4.4.0",
     "vue-select": "^4.0.0-beta.6"
@@ -123,6 +123,7 @@
     "@nextcloud/stylelint-config": "^3.0.1",
     "@nextcloud/vite-config": "^2.1.0",
     "@nextcloud/webpack-vue-config": "github:nextcloud/webpack-vue-config#vue3",
+    "@testing-library/cypress": "^10.0.2",
     "@types/gettext-parser": "^4.0.4",
     "@vitest/coverage-v8": "^1.6.0",
     "@vue/test-utils": "^2.4.6",

@@ -6,7 +6,8 @@
 		"rootDir": "..",
 		"types": [
 			"cypress",
-			"cypress-visual-regression"
+			"cypress-visual-regression",
+			"@testing-library/cypress"
 		]
 	}	
 }
