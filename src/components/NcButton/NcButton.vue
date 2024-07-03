@@ -22,7 +22,9 @@ It can be used with one or multiple actions.
 		<NcCheckboxRadioSwitch v-model="style" value="icon" name="style" type="radio">Icon only</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch v-model="style" value="icontext" name="style" type="radio">Icon and text</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch v-model="disabled" type="checkbox">Disabled</NcCheckboxRadioSwitch>
-		<!--<NcCheckboxRadioSwitch v-model="readonly" type="checkbox">Read-only</NcCheckboxRadioSwitch>-->
+		<NcCheckboxRadioSwitch v-model="size" value="small" name="size" type="radio">Small</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="size" value="normal" name="size" type="radio">Normal (default)</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="size" value="large" name="size" type="radio">Large</NcCheckboxRadioSwitch>
 	</div>
 
 	<h5>Standard buttons</h5>
@@ -34,7 +36,7 @@ It can be used with one or multiple actions.
 		<NcButton
 			aria-label="Example text"
 			:disabled="disabled"
-			:readonly="readonly"
+			:size="size"
 			type="tertiary-no-background">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
@@ -45,7 +47,7 @@ It can be used with one or multiple actions.
 		<NcButton
 			aria-label="Example text"
 			:disabled="disabled"
-			:readonly="readonly"
+			:size="size"
 			type="tertiary">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
@@ -56,7 +58,7 @@ It can be used with one or multiple actions.
 		<NcButton
 			aria-label="Example text"
 			:disabled="disabled"
-			:readonly="readonly">
+			:size="size">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
 					:size="20" />
@@ -66,7 +68,7 @@ It can be used with one or multiple actions.
 		<NcButton
 			aria-label="Example text"
 			:disabled="disabled"
-			:readonly="readonly"
+			:size="size"
 			type="primary">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
@@ -80,7 +82,7 @@ It can be used with one or multiple actions.
 	<h5>Wide button</h5>
 	<NcButton
 		:disabled="disabled"
-		:readonly="readonly"
+		:size="size"
 		:wide="true"
 		text="Example text">
 		<template #icon>
@@ -99,7 +101,7 @@ It can be used with one or multiple actions.
 		<p> - </p>
 		<NcButton
 			:disabled="disabled"
-			:readonly="readonly"
+			:size="size"
 			type="success">
 			<template #icon>
 				<Video
@@ -109,7 +111,7 @@ It can be used with one or multiple actions.
 		</NcButton>
 		<NcButton
 			:disabled="disabled"
-			:readonly="readonly"
+			:size="size"
 			type="warning">
 			<template #icon>
 				<Video
@@ -119,7 +121,7 @@ It can be used with one or multiple actions.
 		</NcButton>
 		<NcButton
 			:disabled="disabled"
-			:readonly="readonly"
+			:size="size"
 			type="error">
 			<template #icon>
 				<Video
@@ -143,7 +145,7 @@ export default {
 		return {
 			toggled: false,
 			disabled: false,
-			readonly: false,
+			size: 'normal',
 			style: 'icontext',
 		}
 	}
@@ -157,6 +159,7 @@ export default {
 
 .grid {
 	display: grid;
+	gap: 12px;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	grid-template-rows: repeat(auto-fill, auto);
 	position: relative;
@@ -460,6 +463,18 @@ export default defineComponent({
 		},
 
 		/**
+		 * Specify the button size
+		 * Accepted values: `'small'`, `'normal'` (default), `'large'`
+		 */
+		size: {
+			type: String,
+			default: 'normal',
+			validator(value: string) {
+				return ['small', 'normal', 'large'].includes(value)
+			},
+		},
+
+		/**
 		 * Specifies the button type
 		 * If left empty, the default button style will be applied.
 		 *
@@ -468,8 +483,8 @@ export default defineComponent({
 		 */
 		type: {
 			type: String as PropType<typeof BUTTON_TYPES[number]>,
-			validator(value) {
-				return typeof value === 'string' && (BUTTON_TYPES as readonly string[]).indexOf(value) !== -1
+			validator(value: string) {
+				return (BUTTON_TYPES as readonly string[]).includes(value)
 			},
 			default: 'secondary',
 		},
@@ -622,6 +637,7 @@ export default defineComponent({
 			{
 				class: [
 					'button-vue',
+					`button-vue--size-${this.size}`,
 					{
 						'button-vue--icon-only': hasIcon && !hasText,
 						'button-vue--text-only': hasText && !hasIcon,
@@ -692,8 +708,22 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-
 .button-vue {
+	// Setup different button sizes
+	--button-size: var(--default-clickable-area);
+	--button-radius: var(--border-radius-element, calc(var(--button-size) / 2));
+	--button-padding: clamp(var(--default-grid-baseline), var(--button-radius), calc(var(--default-grid-baseline) * 4));
+
+	&--size-small {
+		--button-size: var(--clickable-area-small, 24px);
+		--button-radius: var(--border-radius); // make the border radius even smaller for small buttons
+	}
+
+	&--size-large {
+		--button-size: var(--clickable-area-large, 48px);
+	}
+
+	// General styles
 	position: relative;
 	width: fit-content;
 	overflow: hidden;
@@ -701,8 +731,8 @@ export default defineComponent({
 	padding: 0;
 	font-size: var(--default-font-size);
 	font-weight: bold;
-	min-height: var(--default-clickable-area);
-	min-width: var(--default-clickable-area);
+	min-height: var(--button-size);
+	min-width: var(--button-size);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -713,7 +743,7 @@ export default defineComponent({
 	span {
 		cursor: pointer;
 	}
-	border-radius: var(--border-radius-element, calc(var(--default-clickable-area) / 2));
+	border-radius: var(--button-radius);
 	transition-property: color, border-color, background-color;
 	transition-duration: 0.1s;
 	transition-timing-function: linear;
@@ -764,17 +794,28 @@ export default defineComponent({
 	}
 
 	&--reverse#{&}--icon-and-text {
-		padding-inline: calc(var(--default-grid-baseline) * 4) var(--default-grid-baseline);
+		padding-inline: var(--button-padding) var(--default-grid-baseline);
 	}
 
 	&__icon {
-		height: var(--default-clickable-area);
-		width: var(--default-clickable-area);
-		min-height: var(--default-clickable-area);
-		min-width: var(--default-clickable-area);
+		height: var(--button-size);
+		width: var(--button-size);
+		min-height: var(--button-size);
+		min-width: var(--button-size);
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+	// For small buttons we need to adjust the icon size
+	&--size-small &__icon {
+		:deep(> *) {
+			max-height: 16px;
+			max-width: 16px;
+		}
+		:deep(svg) {
+			height: 16px;
+			width: 16px;
+		}
 	}
 
 	&__text {
@@ -789,12 +830,12 @@ export default defineComponent({
 	// Icon-only button
 	&--icon-only {
 		line-height: 1;
-		width: var(--default-clickable-area) !important;
+		width: var(--button-size) !important;
 	}
 
 	// Text-only button
 	&--text-only {
-		padding: 0 12px;
+		padding: 0 var(--button-padding);
 		& .button-vue__text {
 			margin-left: 4px;
 			margin-right: 4px;
@@ -803,8 +844,11 @@ export default defineComponent({
 
 	// Icon and text button
 	&--icon-and-text {
+		// icon and text means the icon adds "visual" padding thus we need to adjust the text padding
+		--button-padding: min(calc(var(--default-grid-baseline) + var(--button-radius)), calc(var(--default-grid-baseline) * 4));
+		// Adjust padding as the icon already got some padding we need to reduce the padding on the icon side and only add larger padding to the text side
 		padding-block: 0;
-		padding-inline: var(--default-grid-baseline) calc(var(--default-grid-baseline) * 4);
+		padding-inline: var(--default-grid-baseline) var(--button-padding);
 	}
 
 	// Wide button spans the whole width of the container
