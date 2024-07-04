@@ -17,7 +17,7 @@ describe('NcCheckboxRadioSwitch', () => {
 		expect(wrapper.text()).toContain('Test')
 	})
 
-	it('forwards aria-invalid and aria-errormessage to input', () => {
+	it('forwards all but data- attributes to the input', () => {
 		const wrapper = shallowMount(NcCheckboxRadioSwitch, {
 			slots: {
 				default: 'Test',
@@ -25,11 +25,17 @@ describe('NcCheckboxRadioSwitch', () => {
 			attrs: {
 				'aria-invalid': 'true',
 				'aria-errormessage': 'id-test',
+				'data-test': 'checkbox-test-data-attr',
+				title: 'Test title',
 			},
 		})
 
 		const input = wrapper.find('input')
 		expect(input.attributes('aria-invalid')).toBe('true')
 		expect(input.attributes('aria-errormessage')).toBe('id-test')
+		expect(input.attributes('title')).toBe('Test title')
+		expect(input.attributes('data-test')).not.toBe('checkbox-test-data-attr')
+		expect(wrapper.attributes('data-test')).toBe('checkbox-test-data-attr')
+		expect(wrapper.attributes('title')).not.toBe('Test title')
 	})
 })
