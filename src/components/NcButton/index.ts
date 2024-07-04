@@ -4,3 +4,4 @@
  */
 
 export { default } from './NcButton.vue'
+export * from './types'
