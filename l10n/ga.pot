@@ -35,6 +35,9 @@ msgstr "Gníomhartha le haghaidh míre leis an ainm \"{name}\""
 msgid "Activities"
 msgstr "Gníomhaíochtaí"
 
+msgid "Add to a project"
+msgstr "Cuir le tionscadal"
+
 msgid "Animals & Nature"
 msgstr "Ainmhithe & Dúlra"
 
@@ -110,6 +113,10 @@ msgstr "Roghnóir dathanna"
 msgid "Confirm changes"
 msgstr "Deimhnigh na hathruithe"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr ""
+"Ceangail míreanna le tionscadal chun iad a dhéanamh níos éasca iad a aimsiú"
+
 msgid "Custom"
 msgstr "Saincheaptha"
 
@@ -148,6 +155,15 @@ msgstr ""
 msgid "External documentation for {name}"
 msgstr "Doiciméadúchán seachtrach le haghaidh {name}"
 
+msgid "Failed to add the item to the project"
+msgstr "Theip ar an mír a chur leis an tionscadal"
+
+msgid "Failed to create a project"
+msgstr "Theip ar thionscadal a chruthú"
+
+msgid "Failed to rename the project"
+msgstr "Theip ar an tionscadal a athainmniú"
+
 msgid "Favorite"
 msgstr "is fearr leat"
 
@@ -172,6 +188,9 @@ msgstr "Téigh ar ais go dtí an liosta"
 
 msgid "Gold"
 msgstr "Óir"
+
+msgid "Hide details"
+msgstr "Folaigh sonraí"
 
 msgid "Hide password"
 msgstr "Folaigh pasfhocal"
@@ -307,6 +326,9 @@ msgstr "Acmhainní gaolmhara"
 msgid "Related team resources"
 msgstr "Acmhainní foirne gaolmhara"
 
+msgid "Rename project"
+msgstr "Athainmnigh an tionscadal"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Rosach donn"
@@ -350,6 +372,9 @@ msgstr "Socruithe"
 msgid "Settings navigation"
 msgstr "Nascleanúint socruithe"
 
+msgid "Show details"
+msgstr "Sonraí a thaispeáint"
+
 msgid "Show password"
 msgstr "Taispeáin pasfhocal"
 
@@ -382,6 +407,9 @@ msgstr "Siombailí"
 
 msgid "Travel & Places"
 msgstr "Taisteal & Áiteanna"
+
+msgid "Type to search for existing projects"
+msgstr "Clóscríobh chun tionscadail atá ann cheana a chuardach"
 
 msgid "Type to search time zone"
 msgstr "Clóscríobh chun crios ama a chuardach"
