@@ -321,7 +321,7 @@ export default {
 <script>
 import { useSwipe } from '@vueuse/core'
 import { createFocusTrap } from 'focus-trap'
-import Vue from 'vue'
+import { warn as VueWarn } from 'vue'
 
 import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
@@ -601,7 +601,7 @@ export default {
 	},
 	mounted() {
 		if (!this.name && !this.labelId) {
-			Vue.util.warn('[NcModal] You need either set the name or set a `labelId` for accessibility.')
+			VueWarn('[NcModal] You need either set the name or set a `labelId` for accessibility.')
 		}
 
 		// init clear view

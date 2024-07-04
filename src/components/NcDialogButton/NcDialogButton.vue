@@ -22,9 +22,9 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 	</NcButton>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-import NcButton from '../NcButton/index.ts'
+<script lang="ts">
+import { defineComponent, type PropType } from 'vue'
+import NcButton, { ButtonType } from '../NcButton/index'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 
 export default defineComponent({
@@ -67,10 +67,12 @@ export default defineComponent({
 		 * @type {'primary'|'secondary'|'error'|'warning'|'success'}
 		 */
 		type: {
-			type: String,
+			type: String as PropType<ButtonType>,
+			default: ButtonType.Secondary,
 			required: false,
-			default: 'secondary',
-			validator: (type) => typeof type === 'string' && ['primary', 'secondary', 'error', 'warning', 'success'].includes(type),
+			validator(value: string) {
+				return Object.values(ButtonType).includes(value as ButtonType)
+			}
 		},
 
 		/**
