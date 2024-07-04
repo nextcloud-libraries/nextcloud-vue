@@ -9,6 +9,27 @@ All notable changes to this project will be documented in this file.
 
 <!-- Release notes generated using configuration in .github/release.yml at master -->
 
+## [v8.14.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.14.0) (2024-07-04)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.13.0...v8.14.0)
+
+### 🚀 Enhancements
+* feat(NcAppSidebar): force show navigation for a single tab [\#5740](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5740) \([Antreesy](https://github.com/Antreesy)\)
+* feat(NcButton): Add `size` prop to allow setting the button size to `small`, `normal`, `large` [\#5767](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5767) \([susnux](https://github.com/susnux)\)
+* feat: migrate `NcCollectionList` component from `nextcloud-vue-collections` [\#5757](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5757) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcDialog): Ensure the dialog is correctly labelled by its name [\#5771](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5771) \([susnux](https://github.com/susnux)\)
+
+### 🐛 Fixed bugs
+* fix: Migrate SCSS `$clickable-area` to CSS `--default-clickable-area` [\#5694](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5694) \([marcoambrosini](https://github.com/marcoambrosini)\)
+* fix(NcMentionBubble): hide selectable mention id from widescreens [\#5753](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5753) \([Antreesy](https://github.com/Antreesy)\)
+* style(NcHeaderMenu): pass text-on-background color for header menu [\#5747](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5747) \([Antreesy](https://github.com/Antreesy)\)
+* Fix input field label alignment [\#5766](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5766) \([marcoambrosini](https://github.com/marcoambrosini)\)
+* fix(NcRichContentEditable): remove overlapping placeholder with tribute trigger [\#5749](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5749) \([DorraJaouad](https://github.com/DorraJaouad)\)
+* fix(NcReferenceWidget): pass elements to intersection observer [\#5754](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5754) \([DorraJaouad](https://github.com/DorraJaouad)\)
+* fix(NcCheckboxRadioSwitch): only bind aria attributes to the input [\#5777](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5777) \([skjnldsv](https://github.com/skjnldsv)\)
+
+### Changed
+* Updated translations
+
 ## [v8.13.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.13.0) (2024-06-20)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.12.0...v8.13.0)
 
