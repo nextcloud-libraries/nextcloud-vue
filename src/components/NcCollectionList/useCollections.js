@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { ref, set } from 'vue'
+import { ref } from 'vue'
 import {
 	renameCollectionService,
 	getCollectionsByResourceService,
@@ -21,21 +21,21 @@ export function useCollections() {
 
 	// Mutations
 	const addCollections = (collections) => {
-		set(storedCollections, 'value', collections)
+		storedCollections.value = collections
 	}
 
 	const addCollection = (collection) => {
-		set(storedCollections, 'value', [...storedCollections.value, collection])
+		storedCollections.value.push(collection)
 	}
 
 	const removeCollection = (collectionId) => {
-		set(storedCollections, 'value', storedCollections.value.filter(item => item.id !== collectionId))
+		storedCollections.value = storedCollections.value.filter(item => item.id !== collectionId)
 	}
 
 	const updateCollection = (collection) => {
 		const index = storedCollections.value.findIndex(item => item.id === collection.id)
 		if (index !== -1) {
-			set(storedCollections.value, index, collection)
+			storedCollections.value[index] = collection
 		} else {
 			addCollection(collection)
 		}

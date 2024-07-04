@@ -67,7 +67,7 @@
 
 <script>
 import { t } from '../../l10n.js'
-import { getRoute } from '../NcRichText/autolink.js'
+import { getRoute } from '../NcRichText/autolink.ts'
 
 import NcActions from '../NcActions/index.js'
 import NcActionButton from '../NcActionButton/index.js'
