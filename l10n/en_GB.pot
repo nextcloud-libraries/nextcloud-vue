@@ -36,6 +36,9 @@ msgstr "Actions for item with name \"{name}\""
 msgid "Activities"
 msgstr "Activities"
 
+msgid "Add to a project"
+msgstr "Add to a project"
+
 msgid "Animals & Nature"
 msgstr "Animals & Nature"
 
@@ -111,6 +114,9 @@ msgstr "Colour picker"
 msgid "Confirm changes"
 msgstr "Confirm changes"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "Connect items to a project to make them easier to find"
+
 msgid "Custom"
 msgstr "Custom"
 
@@ -149,6 +155,15 @@ msgstr ""
 msgid "External documentation for {name}"
 msgstr "External documentation for {name}"
 
+msgid "Failed to add the item to the project"
+msgstr "Failed to add the item to the project"
+
+msgid "Failed to create a project"
+msgstr "Failed to create a project"
+
+msgid "Failed to rename the project"
+msgstr "Failed to rename the project"
+
 msgid "Favorite"
 msgstr "Favourite"
 
@@ -173,6 +188,9 @@ msgstr "Go back to the list"
 
 msgid "Gold"
 msgstr "Gold"
+
+msgid "Hide details"
+msgstr "Hide details"
 
 msgid "Hide password"
 msgstr "Hide password"
@@ -308,6 +326,9 @@ msgstr "Related resources"
 msgid "Related team resources"
 msgstr "Related team resources"
 
+msgid "Rename project"
+msgstr "Rename project"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Rosy brown"
@@ -351,6 +372,9 @@ msgstr "Settings"
 msgid "Settings navigation"
 msgstr "Settings navigation"
 
+msgid "Show details"
+msgstr "Show details"
+
 msgid "Show password"
 msgstr "Show password"
 
@@ -383,6 +407,9 @@ msgstr "Symbols"
 
 msgid "Travel & Places"
 msgstr "Travel & Places"
+
+msgid "Type to search for existing projects"
+msgstr "Type to search for existing projects"
 
 msgid "Type to search time zone"
 msgstr "Type to search time zone"
