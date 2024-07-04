@@ -258,7 +258,7 @@ export default {
 		class="checkbox-radio-switch"
 		:style="cssVars"
 		:type="isButtonType ? 'button' : null"
-		v-bind="isButtonType ? $attrs : {}"
+		v-bind="isButtonType ? $attrs : dataAttrs"
 		v-on="isButtonType ? listeners : null">
 		<input v-if="!isButtonType"
 			:id="id"
@@ -272,7 +272,7 @@ export default {
 			:indeterminate.prop="hasIndeterminate ? indeterminate : null"
 			:required="required"
 			:name="name"
-			v-bind="$attrs"
+			v-bind="nonDataAttrs"
 			v-on="listeners">
 		<NcCheckboxContent :id="id"
 			class="checkbox-radio-switch__content"
@@ -450,6 +450,18 @@ export default {
 	emits: ['update:checked'],
 
 	computed: {
+		dataAttrs() {
+			// filter all data attributes
+			return Object.fromEntries(Object.entries(this.$attrs)
+				.filter(([key]) => key.startsWith('data-')))
+		},
+
+		nonDataAttrs() {
+			// filter all non-data attributes
+			return Object.fromEntries(Object.entries(this.$attrs)
+				.filter(([key]) => !key.startsWith('data-')))
+		},
+
 		isButtonType() {
 			return this.type === TYPE_BUTTON
 		},
