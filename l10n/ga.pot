@@ -373,7 +373,7 @@ msgid "Settings navigation"
 msgstr "Nascleanúint socruithe"
 
 msgid "Show details"
-msgstr "Sonraí a thaispeáint"
+msgstr "Taispeáin sonraí"
 
 msgid "Show password"
 msgstr "Taispeáin pasfhocal"
