@@ -133,6 +133,9 @@ msgstr "Ögeyi düzenle"
 msgid "Emoji picker"
 msgstr "Emoji seçici"
 
+msgid "Enable interactive view"
+msgstr "Etkileşimli görünümü aç"
+
 msgid "Enter link"
 msgstr "Bağlantıyı yazın"
 
@@ -248,6 +251,9 @@ msgstr "Menüyü aç"
 msgid "Open navigation"
 msgstr "Gezinmeyi aç"
 
+msgid "Open sidebar"
+msgstr "Yan çubuğu aç"
+
 msgid "Options"
 msgstr "Seçenekler"
 
@@ -298,6 +304,9 @@ msgstr "Ham bağlantı {options}"
 
 msgid "Related resources"
 msgstr "İlgili kaynaklar"
+
+msgid "Related team resources"
+msgstr "İlgili takım kaynakları"
 
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
@@ -386,6 +395,9 @@ msgstr "Değişiklikleri geri al"
 
 msgid "User status: {status}"
 msgstr "Kullanıcı durumu: {status}"
+
+msgid "View team"
+msgstr "Takımı görüntüle"
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"

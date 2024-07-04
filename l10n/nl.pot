@@ -3,10 +3,12 @@
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Joost <joho500@hotmail.com>, 2023
 # Sean Molenaar <smillerdev@me.com>, 2023
+# Sebastiaan Veld <sebastiaan.veld@virtfields.nl>, 2024
+# WebSpider <nils@familievogels.nl>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Sean Molenaar <smillerdev@me.com>, 2023\n"
+"Last-Translator: WebSpider <nils@familievogels.nl>, 2024\n"
 "Language-Team: Dutch (https://app.transifex.com/nextcloud/teams/64236/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nl\n"
@@ -18,8 +20,15 @@ msgstr "{tag} (onzichtbaar)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (beperkt)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "Een kleur met een HEX-waarde {hex}"
+
 msgid "a few seconds ago"
 msgstr "enkele seconden terug"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
 
 msgid "Actions"
 msgstr "Acties"
@@ -46,6 +55,7 @@ msgstr "Avatar van {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar van {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
 msgstr "weg"
 
@@ -54,6 +64,17 @@ msgstr "Terug"
 
 msgid "Back to provider selection"
 msgstr "Terug naar provider selectie"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Blauw Paars"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Boston Blauw"
+
+msgid "busy"
+msgstr "bezig"
 
 msgid "Cancel changes"
 msgstr "Wijzigingen annuleren"
@@ -67,14 +88,14 @@ msgstr "Kies"
 msgid "Clear search"
 msgstr "Wis zoekopdracht"
 
+msgid "Clear selected"
+msgstr "Selectie wissen"
+
 msgid "Clear text"
 msgstr "Wis tekst"
 
 msgid "Close"
 msgstr "Sluiten"
-
-msgid "Close modal"
-msgstr "Sluit modal"
 
 msgid "Close navigation"
 msgstr "Navigatie sluiten"
@@ -88,17 +109,36 @@ msgstr "Sluit Slimme Kiezer"
 msgid "Collapse menu"
 msgstr "Klap menu in"
 
+msgid "Color picker"
+msgstr "Kleurkiezer"
+
 msgid "Confirm changes"
 msgstr "Wijzigingen bevestigen"
 
 msgid "Custom"
 msgstr "Aangepast"
 
+msgid "Dark skin tone"
+msgstr "Donkere tint"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Deluge"
+
+msgid "Deselect {option}"
+msgstr "Deselecteer {optie}"
+
 msgid "do not disturb"
 msgstr "niet storen"
 
 msgid "Edit item"
 msgstr "Item bewerken"
+
+msgid "Emoji picker"
+msgstr "Emoji-kiezer"
+
+msgid "Enable interactive view"
+msgstr "Interactieve weergave inschakelen"
 
 msgid "Enter link"
 msgstr "Voer link in"
@@ -116,6 +156,10 @@ msgstr "Externe documentatie voor {name}"
 msgid "Favorite"
 msgstr "Favoriet"
 
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Veldspaat"
+
 msgid "Flags"
 msgstr "Vlaggen"
 
@@ -131,11 +175,36 @@ msgstr "Globaal"
 msgid "Go back to the list"
 msgstr "Ga terug naar de lijst"
 
+msgid "Gold"
+msgstr "Goud"
+
 msgid "Hide password"
 msgstr "Verberg wachtwoord"
 
+msgid "invisible"
+msgstr "Onzichtbaar"
+
+msgid "Keyboard navigation help"
+msgstr "Hulp voor toetsenbordnavigatie"
+
+msgid "Light skin tone"
+msgstr "Lichte tint"
+
 msgid "Load more \"{options}\""
 msgstr "Laad meer \"{options}\""
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Marine blauw"
+
+msgid "Medium dark skin tone"
+msgstr "Gemiddelde donkere tint"
+
+msgid "Medium light skin tone"
+msgstr "Gemiddeld lichte tint"
+
+msgid "Medium skin tone"
+msgstr "Gemiddelde tint"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Berichtlimiet van {count} karakters bereikt"
@@ -146,8 +215,14 @@ msgstr "Meer items..."
 msgid "More options"
 msgstr "Meer opties"
 
+msgid "Neutral skin color"
+msgstr "Neutrale tint"
+
 msgid "Next"
 msgstr "Volgende"
+
+msgid "Nextcloud blue"
+msgstr "Nextcloud blauw"
 
 msgid "No emoji found"
 msgstr "Geen emoji gevonden"
@@ -164,11 +239,12 @@ msgstr "Objecten"
 msgid "offline"
 msgstr "offline"
 
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Olivijn"
+
 msgid "online"
 msgstr "online"
-
-msgid "Open contact menu"
-msgstr "Open contactenmenu"
 
 msgid "Open link to \"{resourceName}\""
 msgstr "Open link naar \"{resourceName}\""
@@ -179,8 +255,11 @@ msgstr "Open menu"
 msgid "Open navigation"
 msgstr "Navigatie openen"
 
-msgid "Open settings menu"
-msgstr "Open instellingenmenu"
+msgid "Open sidebar"
+msgstr "Open sidebar"
+
+msgid "Options"
+msgstr "Opties"
 
 msgid "Password is secure"
 msgstr "Wachtwoord is veilig"
@@ -219,7 +298,10 @@ msgid "Previous"
 msgstr "Vorige"
 
 msgid "Provider icon"
-msgstr "Provider icon"
+msgstr "Provider icoon"
+
+msgid "Purple"
+msgstr "Paars"
 
 msgid "Raw link {options}"
 msgstr "Basis link {options}"
@@ -227,11 +309,24 @@ msgstr "Basis link {options}"
 msgid "Related resources"
 msgstr "Gerelateerde bronnen"
 
+msgid "Related team resources"
+msgstr "Verwante teambronnen"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Rozig bruin"
+
+msgid "Save changes"
+msgstr "Wijzigingen opslaan"
+
 msgid "Search"
 msgstr "Zoeken"
 
 msgid "Search emoji"
 msgstr "Zoek emoji"
+
+msgid "Search for time zone"
+msgstr "Zoeken naar tijdzone"
 
 msgid "Search results"
 msgstr "Zoekresultaten"
@@ -262,6 +357,15 @@ msgstr "Instellingen navigatie"
 
 msgid "Show password"
 msgstr "Toon wachtwoord"
+
+msgid "Skin tone"
+msgstr "Tint van de schil"
+
+msgid "Skip to app navigation"
+msgstr "Doorgaan naar app-navigatie"
+
+msgid "Skip to main content"
+msgstr "Naar hoofdinhoud gaan"
 
 msgid "Smart Picker"
 msgstr "Slimme Kiezer"
@@ -295,6 +399,13 @@ msgstr "Wijzigingen ongedaan maken"
 
 msgid "User status: {status}"
 msgstr "Gebruikers status: {status}"
+
+msgid "View team"
+msgstr "Team bekijken"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Whiskey"
 
 msgid "Write a message …"
 msgstr "Schrijf een bericht..."

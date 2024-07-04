@@ -1,11 +1,11 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# O St <oleksiy.stasevych@gmail.com>, 2023
+# O St <oleksiy.stasevych@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: O St <oleksiy.stasevych@gmail.com>, 2023\n"
+"Last-Translator: O St <oleksiy.stasevych@gmail.com>, 2024\n"
 "Language-Team: Ukrainian (https://app.transifex.com/nextcloud/teams/64236/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: uk\n"
@@ -22,6 +22,10 @@ msgstr "Колір у форматі HEX {hex}"
 
 msgid "a few seconds ago"
 msgstr "декілька секунд тому"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Акапулько"
 
 msgid "Actions"
 msgstr "Дії"
@@ -47,6 +51,7 @@ msgstr "Аватар {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Аватар {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
 msgstr "відсутній"
 
@@ -55,6 +60,17 @@ msgstr "Назад"
 
 msgid "Back to provider selection"
 msgstr "Назад до вибору постачальника"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Блакитна фіалка"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Бостонський синій"
+
+msgid "busy"
+msgstr "зайнято"
 
 msgid "Cancel changes"
 msgstr "Скасувати зміни"
@@ -89,11 +105,21 @@ msgstr "Закрити асистент вибору"
 msgid "Collapse menu"
 msgstr "Згорнути меню"
 
+msgid "Color picker"
+msgstr "Вибір кольору"
+
 msgid "Confirm changes"
 msgstr "Підтвердити зміни"
 
 msgid "Custom"
 msgstr "Власне"
+
+msgid "Dark skin tone"
+msgstr "Смаглявий"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Злива"
 
 msgid "Deselect {option}"
 msgstr "Зняти вибір {option}"
@@ -103,6 +129,12 @@ msgstr "не турбувати"
 
 msgid "Edit item"
 msgstr "Редагувати елемент"
+
+msgid "Emoji picker"
+msgstr "Вибір емоційки"
+
+msgid "Enable interactive view"
+msgstr "Увімкнути інтерактивний перегляд"
 
 msgid "Enter link"
 msgstr "Зазначте посилання"
@@ -119,6 +151,10 @@ msgstr "Зовнішня документація для {name}"
 
 msgid "Favorite"
 msgstr "Із зірочкою"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Польові шпати"
 
 msgid "Flags"
 msgstr "Прапори"
@@ -141,8 +177,30 @@ msgstr "Золотий"
 msgid "Hide password"
 msgstr "Приховати пароль"
 
+msgid "invisible"
+msgstr "Невидимий"
+
+msgid "Keyboard navigation help"
+msgstr "Допомога з навігацією клавішами"
+
+msgid "Light skin tone"
+msgstr "Світла шкіра"
+
 msgid "Load more \"{options}\""
 msgstr "Завантажити більше \"{options}\""
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Морський"
+
+msgid "Medium dark skin tone"
+msgstr "Какао"
+
+msgid "Medium light skin tone"
+msgstr "Лате"
+
+msgid "Medium skin tone"
+msgstr "Середній колір шкіри"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Вичерпано ліміт у {count} символів для повідомлення"
@@ -152,6 +210,9 @@ msgstr "Більше об'єктів..."
 
 msgid "More options"
 msgstr "Більше об'єктів"
+
+msgid "Neutral skin color"
+msgstr "Нейтральний колір шкіри"
 
 msgid "Next"
 msgstr "Вперед"
@@ -174,11 +235,12 @@ msgstr "Об'єкти"
 msgid "offline"
 msgstr "не в мережі"
 
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Олива"
+
 msgid "online"
 msgstr "в мережі"
-
-msgid "Open contact menu"
-msgstr "Відкрити меню контактів"
 
 msgid "Open link to \"{resourceName}\""
 msgstr "Відкрити посилання на \"{resourceName}\""
@@ -189,8 +251,11 @@ msgstr "Відкрити меню"
 msgid "Open navigation"
 msgstr "Відкрити навігацію"
 
-msgid "Open settings menu"
-msgstr "Відкрити меню налаштувань"
+msgid "Open sidebar"
+msgstr "Бокове меню"
+
+msgid "Options"
+msgstr "Параметри"
 
 msgid "Password is secure"
 msgstr "Пароль безпечний"
@@ -240,6 +305,13 @@ msgstr "Пряме посилання {options}"
 msgid "Related resources"
 msgstr "Пов'язані ресурси"
 
+msgid "Related team resources"
+msgstr "Пов'язані ресурси команди"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Темно-рожевий"
+
 msgid "Save changes"
 msgstr "Зберегти зміни"
 
@@ -248,9 +320,6 @@ msgstr "Пошук"
 
 msgid "Search emoji"
 msgstr "Шукати емоційки"
-
-msgid "Search for options"
-msgstr "Шукати параметри"
 
 msgid "Search for time zone"
 msgstr "Шукати часові зони"
@@ -285,6 +354,15 @@ msgstr "Навігація у налаштуваннях"
 msgid "Show password"
 msgstr "Показати пароль"
 
+msgid "Skin tone"
+msgstr "Колір шкіри"
+
+msgid "Skip to app navigation"
+msgstr "Пропустити навігацію по застосунках"
+
+msgid "Skip to main content"
+msgstr "Перейти одразу до головного вмісту"
+
 msgid "Smart Picker"
 msgstr "Асистент вибору"
 
@@ -317,6 +395,13 @@ msgstr "Скасувати зміни"
 
 msgid "User status: {status}"
 msgstr "Статус користувача: {status}"
+
+msgid "View team"
+msgstr "Переглянути команду"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Кола"
 
 msgid "Write a message …"
 msgstr "Написати повідомлення ..."
