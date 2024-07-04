@@ -5,4 +5,6 @@
 
 import { addCompareSnapshotCommand } from 'cypress-visual-regression/dist/command'
 
+import '@testing-library/cypress/add-commands'
+
 addCompareSnapshotCommand()

@@ -327,7 +327,7 @@ export default defineComponent({
 		/**
 		 * The unique id of the nav element
 		 */
-		const navigationId = ref(GenRandomId())
+		const navigationId = GenRandomId()
 
 		/**
 		 * aria-label attribute for the nav element
@@ -343,7 +343,7 @@ export default defineComponent({
 				return undefined
 			}
 			// Use dialog name as a fallback label for navigation
-			return props.navigationAriaLabelledby || navigationId.value
+			return props.navigationAriaLabelledby || navigationId
 		})
 
 		/**
@@ -390,6 +390,8 @@ export default defineComponent({
 			container: props.container === undefined ? 'body' : props.container,
 			// we do not pass the name as we already have the name as the headline
 			// name: props.name,
+			// But we need to set the correct label id so the dialog is labelled
+			labelId: navigationId,
 			size: props.size,
 			show: props.open && showModal.value,
 			outTransition: props.outTransition,
