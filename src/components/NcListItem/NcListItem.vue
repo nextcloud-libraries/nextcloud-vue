@@ -18,7 +18,7 @@
 			:counter-number="44"
 			counterType="highlighted">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="40" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #name>
 				<span style="display: flex; color: var(--color-primary);">
@@ -51,7 +51,7 @@
 			:counter-number="44"
 			counterType="outlined">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="40" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -78,7 +78,7 @@
 			:active="true"
 			:counter-number="44">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="40" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -110,7 +110,7 @@
 			:counter-number="44"
 			counterType="highlighted">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="40" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -134,7 +134,7 @@
 			:counter-number="44"
 			counterType="outlined">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="40" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -158,7 +158,7 @@
 			:details="'1h'"
 			:counter-number="44">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="40" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -179,7 +179,7 @@
 			:name="'Name of the element'"
 			:bold="false">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="40" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #name>
 				<span style="display: flex; gap: 0.5rem; color: var(--color-primary);">
@@ -216,7 +216,7 @@
 			:bold="false"
 			:details="'1h'">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="40" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #indicator>
 				<!-- Color dot -->
@@ -251,7 +251,7 @@
 	one-line
 	counterType="highlighted">
 	<template #icon>
-		<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+		<NcAvatar disable-menu :size="24" user="janedoe" display-name="Jane Doe" />
 	</template>
 	<template #subname>
 		In this slot you can put both text and other components such as icons
@@ -782,9 +782,9 @@ export default {
 	position: relative;
 	flex: 0 0 auto;
 	justify-content: flex-start;
-	padding: 8px 10px;
+	padding: calc(var(--default-line-height) / 2) calc(var(--default-clickable-area) / 4);
 	// 4px padding for the focus-visible styles. Width is reduced to compensate it
-	margin: 4px;
+	margin: 2px;
 	width: calc(100% - 8px);
 	border-radius: var(--border-radius-element, 32px);
 	cursor: pointer;
@@ -814,11 +814,11 @@ export default {
 	.list-item-content__details {
 		display: flex;
 		flex-direction: column;
-		justify-content: end;
+		justify-content: center;
 		align-items: end;
 	}
 	&--one-line {
-		padding: 0 9px;
+		padding: 0 0 0 calc(var(--default-clickable-area) / 5);
 		margin: 2px;
 		.list-item-content__main {
 			display: flex;
@@ -877,7 +877,7 @@ export default {
 			font-weight: normal;
 		}
 		&__extra {
-			margin: 2px 4px 0 4px;
+			margin: 2px 0 0 4px;
 			display: flex;
 			align-items: center;
 		}
