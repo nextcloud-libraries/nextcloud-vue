@@ -36,6 +36,9 @@ msgstr "Åtgärder för objekt med namn \"{name}\""
 msgid "Activities"
 msgstr "Aktiviteter"
 
+msgid "Add to a project"
+msgstr "Lägg till i ett projekt"
+
 msgid "Animals & Nature"
 msgstr "Djur & Natur"
 
@@ -111,6 +114,9 @@ msgstr "Färgväljare"
 msgid "Confirm changes"
 msgstr "Bekräfta ändringar"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "Anslut objekt till ett projekt för att göra dem lättare att hitta"
+
 msgid "Custom"
 msgstr "Anpassad"
 
@@ -149,6 +155,15 @@ msgstr ""
 msgid "External documentation for {name}"
 msgstr "Extern dokumentation för {name}"
 
+msgid "Failed to add the item to the project"
+msgstr "Det gick inte att lägga till objektet i projektet"
+
+msgid "Failed to create a project"
+msgstr "Det gick inte att skapa ett projekt"
+
+msgid "Failed to rename the project"
+msgstr "Kunde inte byta namn på projektet"
+
 msgid "Favorite"
 msgstr "Favorit"
 
@@ -173,6 +188,9 @@ msgstr "Gå tillbaka till listan"
 
 msgid "Gold"
 msgstr "Guld"
+
+msgid "Hide details"
+msgstr "Göm detaljer"
 
 msgid "Hide password"
 msgstr "Göm lössenordet"
@@ -308,6 +326,9 @@ msgstr "Relaterade resurser"
 msgid "Related team resources"
 msgstr "Relaterade teamresurser"
 
+msgid "Rename project"
+msgstr "Byt namn på projektet"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Rosabrun"
@@ -351,6 +372,9 @@ msgstr "Inställningar"
 msgid "Settings navigation"
 msgstr "Inställningsmeny"
 
+msgid "Show details"
+msgstr "Visa detaljer"
+
 msgid "Show password"
 msgstr "Visa lössenordet"
 
@@ -383,6 +407,9 @@ msgstr "Symboler"
 
 msgid "Travel & Places"
 msgstr "Resor & Sevärdigheter"
+
+msgid "Type to search for existing projects"
+msgstr "Skriv för att söka efter befintliga projekt"
 
 msgid "Type to search time zone"
 msgstr "Skriv för att välja tidszon"
