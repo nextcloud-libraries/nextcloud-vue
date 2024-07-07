@@ -36,6 +36,9 @@ msgstr "Дії для об'єкту \"{name}\""
 msgid "Activities"
 msgstr "Діяльність"
 
+msgid "Add to a project"
+msgstr "Додати др проєкту"
+
 msgid "Animals & Nature"
 msgstr "Тварини та природа"
 
@@ -111,6 +114,9 @@ msgstr "Вибір кольору"
 msgid "Confirm changes"
 msgstr "Підтвердити зміни"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "Приєднайте ресурси до проєкту для швидшого  пошуку"
+
 msgid "Custom"
 msgstr "Власне"
 
@@ -149,6 +155,15 @@ msgstr ""
 msgid "External documentation for {name}"
 msgstr "Зовнішня документація для {name}"
 
+msgid "Failed to add the item to the project"
+msgstr "Не вдалося приєднати ресурс до проєкту"
+
+msgid "Failed to create a project"
+msgstr "Не вдалося створити проєкт"
+
+msgid "Failed to rename the project"
+msgstr "Не вдалося перейменувати проєкт"
+
 msgid "Favorite"
 msgstr "Із зірочкою"
 
@@ -173,6 +188,9 @@ msgstr "Повернутися до списку"
 
 msgid "Gold"
 msgstr "Золотий"
+
+msgid "Hide details"
+msgstr "Сховати деталі"
 
 msgid "Hide password"
 msgstr "Приховати пароль"
@@ -308,6 +326,9 @@ msgstr "Пов'язані ресурси"
 msgid "Related team resources"
 msgstr "Пов'язані ресурси команди"
 
+msgid "Rename project"
+msgstr "Перейменувати проєкт"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Темно-рожевий"
@@ -351,6 +372,9 @@ msgstr "Налаштування"
 msgid "Settings navigation"
 msgstr "Навігація у налаштуваннях"
 
+msgid "Show details"
+msgstr "Показати деталі"
+
 msgid "Show password"
 msgstr "Показати пароль"
 
@@ -383,6 +407,9 @@ msgstr "Символи"
 
 msgid "Travel & Places"
 msgstr "Поїздки та місця"
+
+msgid "Type to search for existing projects"
+msgstr "Почніть вводити, щоб знайти проєкт"
 
 msgid "Type to search time zone"
 msgstr "Введіть для пошуку часовий пояс"
