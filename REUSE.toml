@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+# SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
 # SPDX-License-Identifier: AGPL-3.0-or-later
 version = 1
 SPDX-PackageName = "Nextcloud Vue components library"
@@ -40,8 +40,7 @@ path = ["styleguide/assets/close.svg", "styleguide/assets/img/rss.svg", "stylegu
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2018-2024 Google Inc."
 SPDX-License-Identifier = "Apache-2.0"
-# SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
-# SPDX-License-Identifier: AGPL-3.0-or-later
+
 [[annotations]]
 path = "styleguide/assets/img/loading**"
 precedence = "aggregate"
