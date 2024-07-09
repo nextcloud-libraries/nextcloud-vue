@@ -120,7 +120,10 @@ export default {
 	</NcModal>
 </template>
 
-<script>
+<script lang="ts">
+import type { PropType } from 'vue'
+import type { ComponentProps } from '../../utils/VueTypes.ts'
+
 import { useElementSize } from '@vueuse/core'
 import { computed, defineComponent, ref } from 'vue'
 
@@ -128,6 +131,8 @@ import NcModal from '../NcModal/index.js'
 import NcDialogButton from '../NcDialogButton/index.js'
 
 import GenRandomId from '../../utils/GenRandomId.js'
+
+type NcDialogButtonProps = ComponentProps<typeof NcDialogButton>
 
 export default defineComponent({
 	name: 'NcDialog',
@@ -152,7 +157,7 @@ export default defineComponent({
 
 		/** Additional elements to add to the focus trap */
 		additionalTrapElements: {
-			type: Array,
+			type: Array as PropType<(string|HTMLElement)[]>,
 			validator: (arr) => {
 				return (
 					Array.isArray(arr) && arr.every(
@@ -189,10 +194,10 @@ export default defineComponent({
 		 * @type {'small'|'normal'|'large'|'full'}
 		 */
 		size: {
-			type: String,
+			type: String as PropType<'small'|'normal'|'large'|'full'>,
 			required: false,
 			default: 'small',
-			validator: (value) => typeof value === 'string' && ['small', 'normal', 'large', 'full'].includes(value),
+			validator: (value: string) => ['small', 'normal', 'large', 'full'].includes(value),
 		},
 
 		/**
@@ -200,10 +205,13 @@ export default defineComponent({
 		 * @default []
 		 */
 		buttons: {
-			type: Array,
+			type: Array as PropType<NcDialogButtonProps[]>,
 			required: false,
 			default: () => ([]),
-			validator: (value) => Array.isArray(value) && value.every((element) => typeof element === 'object'),
+			validator(value: unknown[]) {
+				return Array.isArray(value)
+					&& value.every((element) => typeof element === 'object')
+			},
 		},
 
 		/**
@@ -304,14 +312,13 @@ export default defineComponent({
 	setup(props, { emit, slots }) {
 		/**
 		 * The dialog wrapper element
-		 * @type {import('vue').Ref<HTMLDivElement>}
 		 */
-		const wrapper = ref()
+		const wrapper = ref<HTMLDivElement>()
 
 		/**
 		 * We use the dialog width to decide if we collapse the navigation (flex direction row)
 		 */
-		const { width: dialogWidth } = useElementSize(wrapper, { width: 900 })
+		const { width: dialogWidth } = useElementSize(wrapper, { width: 900, height: 0 })
 
 		/**
 		 * Whether the navigation is collapsed due to dialog and window size
@@ -327,7 +334,7 @@ export default defineComponent({
 		/**
 		 * The unique id of the nav element
 		 */
-		const navigationId = ref(GenRandomId())
+		const navigationId = GenRandomId()
 
 		/**
 		 * aria-label attribute for the nav element
@@ -343,7 +350,7 @@ export default defineComponent({
 				return undefined
 			}
 			// Use dialog name as a fallback label for navigation
-			return props.navigationAriaLabelledby || navigationId.value
+			return props.navigationAriaLabelledby || navigationId
 		})
 
 		/**
@@ -390,6 +397,8 @@ export default defineComponent({
 			container: props.container === undefined ? 'body' : props.container,
 			// we do not pass the name as we already have the name as the headline
 			// name: props.name,
+			// But we need to set the correct label id so the dialog is labelled
+			labelId: navigationId,
 			size: props.size,
 			show: props.open && showModal.value,
 			outTransition: props.outTransition,

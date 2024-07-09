@@ -422,12 +422,8 @@ td.row-size {
 import type { PropType } from 'vue'
 
 import { defineComponent, h, resolveComponent } from 'vue'
-
+import { ButtonAlignment, ButtonNativeType, ButtonType } from './types'
 import isSlotPopulated from '../../utils/isSlotPopulated'
-
-const BUTTON_ALIGNMENT = ['start', 'start-reverse', 'center', 'center-reverse', 'end', 'end-reverse'] as const
-const BUTTON_TYPES = ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'] as const
-const NATIVE_TYPES = ['submit', 'reset', 'button'] as const
 
 export default defineComponent({
 	name: 'NcButton',
@@ -447,10 +443,10 @@ export default defineComponent({
 		 * @type {'start' | 'start-reverse' | 'center' | 'center-reverse' | 'end' | 'end-reverse'}
 		 */
 		alignment: {
-			type: String as PropType<typeof BUTTON_ALIGNMENT[number]>,
-			default: 'center',
-			validator(alignment) {
-				return typeof alignment === 'string' && (BUTTON_ALIGNMENT as readonly string[]).includes(alignment)
+			type: String as PropType<ButtonAlignment>,
+			default: ButtonAlignment.Center,
+			validator(value: string) {
+				return Object.values(ButtonAlignment).includes(value as ButtonAlignment)
 			},
 		},
 
@@ -482,25 +478,26 @@ export default defineComponent({
 		 * @type {'primary' | 'secondary' | 'tertiary' | 'tertiary-no-background' | 'tertiary-on-primary' | 'error' | 'warning' | 'success'}
 		 */
 		type: {
-			type: String as PropType<typeof BUTTON_TYPES[number]>,
+			type: String as PropType<ButtonType>,
+			default: ButtonType.Secondary,
 			validator(value: string) {
-				return (BUTTON_TYPES as readonly string[]).includes(value)
+				return Object.values(ButtonType).includes(value as ButtonType)
 			},
-			default: 'secondary',
 		},
 
 		/**
 		 * Specifies the button native type
 		 * If left empty, the default "button" type will be used.
 		 *
+		 * @default 'button'
 		 * @type {'submit' | 'reset' | 'button'}
 		 */
 		nativeType: {
-			type: String as PropType<typeof NATIVE_TYPES[number]>,
-			validator(value) {
-				return typeof value === 'string' && (NATIVE_TYPES as readonly string[]).includes(value)
+			type: String as PropType<ButtonNativeType>,
+			default: ButtonNativeType.Button,
+			validator(value: string) {
+				return Object.values(ButtonNativeType).includes(value as ButtonNativeType)
 			},
-			default: 'button',
 		},
 
 		/**

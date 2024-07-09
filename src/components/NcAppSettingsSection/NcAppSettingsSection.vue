@@ -4,14 +4,14 @@
 -->
 
 <template>
-	<div :id="htmlId" class="app-settings-section">
-		<h3 class="app-settings-section__name">
+	<section :id="htmlId" :aria-labelledby="`${htmlId}--label`" class="app-settings-section">
+		<h3 :id="`${htmlId}--label`" class="app-settings-section__name">
 			{{ name }}
 		</h3>
 		<slot />
 		<!-- @slot Optonal icon to for the secion in the navigation -->
 		<slot v-if="false" name="icon" />
-	</div>
+	</section>
 </template>
 
 <script>
