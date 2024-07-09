@@ -92,7 +92,7 @@ export default {
 			background-color: var(--color-main-background);
 			box-shadow: none;
 			border: 0;
-			border-radius: var(--border-radius-pill);
+			border-radius: var(--body-container-radius);
 			text-align: left;
 			font-weight: normal;
 			font-size: 100%;
