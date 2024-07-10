@@ -135,7 +135,7 @@
 		<!-- Actions -->
 		<div v-if="!!$slots.actions"
 			class="app-navigation-caption__actions">
-			<NcActions v-bind="$attrs">
+			<NcActions v-bind="actionsProps">
 				<!-- @slot Slot for the actions menu -->
 				<slot name="actions" />
 				<template #icon>
@@ -147,7 +147,7 @@
 </template>
 
 <script>
-import NcActions from '../NcActions/index.js'
+import NcActions from '../NcActions/NcActions.vue'
 
 export default {
 	name: 'NcAppNavigationCaption',
@@ -155,8 +155,6 @@ export default {
 	components: {
 		NcActions,
 	},
-
-	inheritAttrs: false,
 
 	props: {
 		name: {
@@ -195,10 +193,18 @@ export default {
 		 */
 		// Not an actual prop but needed to show in vue-styleguidist docs
 		// eslint-disable-next-line
-		' ': {},
+		...NcActions.props,
 	},
 
 	computed: {
+		actionsProps() {
+			const actionProps = Object.keys(NcActions.props)
+			const props = Object
+				.entries(this.$props)
+				// eslint-disable-next-line @typescript-eslint/no-unused-vars
+				.filter(([key, _value]) => actionProps.includes(key))
+			return Object.fromEntries(props)
+		},
 		wrapperTag() {
 			return this.isHeading ? 'div' : 'li'
 		},
