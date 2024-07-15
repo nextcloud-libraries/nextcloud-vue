@@ -956,7 +956,7 @@ import GenRandomId from '../../utils/GenRandomId.js'
 import { t } from '../../l10n.js'
 import { getTrapStack } from '../../utils/focusTrap.js'
 import { useElementBounding, useWindowSize } from '@vueuse/core'
-import Vue, { ref, computed } from 'vue'
+import Vue, { ref, computed, toRef } from 'vue'
 
 import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
@@ -1131,7 +1131,7 @@ export default {
 		 */
 		boundariesElement: {
 			type: Element,
-			default: () => document.querySelector('body'),
+			default: () => document.querySelector('#app-content-vue') ?? document.querySelector('body'),
 		},
 
 		/**
@@ -1169,19 +1169,30 @@ export default {
 		'click',
 	],
 
-	setup() {
+	setup(props) {
 		const randomId = `menu-${GenRandomId()}`
 		const triggerRandomId = `trigger-${randomId}`
 
 		const triggerButton = ref()
 
 		const { top, bottom } = useElementBounding(triggerButton)
-		const { height } = useWindowSize()
+		const { top: boundaryTop, bottom: boundaryBottom } = useElementBounding(toRef(props, 'boundariesElement'))
+		const { height: windowHeight } = useWindowSize()
 		const maxMenuHeight = computed(() => Math.max(
-			// Either expand to the top, so the max height is the top position of the trigger minus the header height minus the wedge and the padding
-			top.value - 84,
-			// or expand to the bottom, so the max height is the window height minus current position of the trigger minus the wedge and padding
-			height.value - bottom.value - 34,
+			// Either expand to the top
+			Math.min(
+				// max height is the top position of the trigger minus the header height minus the wedge and the padding
+				top.value - 84,
+				// and also limited to the space in the boundary
+				top.value - boundaryTop.value,
+			),
+			// or expand to the bottom
+			Math.min(
+				// the max height is the window height minus current position of the trigger minus the wedge and padding
+				windowHeight.value - bottom.value - 34,
+				// and limit to the available space in the boundary
+				boundaryBottom.value - bottom.value,
+			),
 		))
 
 		return {
@@ -1473,6 +1484,8 @@ export default {
 					actionHeight = action.clientHeight
 					currentHeight += actionHeight
 				}
+			} else {
+				inner.style.height = 'fit-content'
 			}
 		},
 
