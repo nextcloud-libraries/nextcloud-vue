@@ -30,6 +30,7 @@ module.exports = async () => {
 			path.join(__dirname, 'styleguide/global.requires.js'),
 			path.join(__dirname, 'styleguide/assets/icons.css'),
 			path.join(__dirname, 'styleguide/assets/additional.css'),
+			path.join(__dirname, 'styleguide/assets/styleguide.css'),
 		],
 		pagePerSection: true,
 		minimize: true,
