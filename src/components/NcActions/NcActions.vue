@@ -952,11 +952,13 @@ export default {
 import NcButton from '../NcButton/index.js'
 import NcPopover from '../NcPopover/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
-import { getTrapStack } from '../../utils/focusTrap.js'
-import { t } from '../../l10n.js'
 
-import Vue, { computed } from 'vue'
-import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
+import { t } from '../../l10n.js'
+import { getTrapStack } from '../../utils/focusTrap.js'
+import { useElementBounding, useWindowSize } from '@vueuse/core'
+import Vue, { ref, computed } from 'vue'
+
+import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 const focusableSelector = '.focusable'
 
@@ -973,7 +975,6 @@ export default {
 
 	components: {
 		NcButton,
-		DotsHorizontal,
 		NcPopover,
 	},
 
@@ -1170,9 +1171,25 @@ export default {
 
 	setup() {
 		const randomId = `menu-${GenRandomId()}`
+		const triggerRandomId = `trigger-${randomId}`
+
+		const triggerButton = ref()
+
+		const { top, bottom } = useElementBounding(triggerButton)
+		const { height } = useWindowSize()
+		const maxMenuHeight = computed(() => Math.max(
+			// Either expand to the top, so the max height is the top position of the trigger minus the header height minus the wedge and the padding
+			top.value - 84,
+			// or expand to the bottom, so the max height is the window height minus current position of the trigger minus the wedge and padding
+			height.value - bottom.value - 34,
+		))
+
 		return {
+			triggerButton,
+			maxMenuHeight,
+
 			randomId,
-			triggerRandomId: `trigger-${randomId}`,
+			triggerRandomId,
 		}
 	},
 
@@ -1416,8 +1433,8 @@ export default {
 			this.focusIndex = 0
 
 			if (returnFocus) {
-				// Focus back the menu button
-				this.$refs.menuButton?.$el.focus()
+				// Focus back the trigger button
+				this.$refs.triggerButton?.$el.focus()
 			}
 		},
 
@@ -1432,15 +1449,15 @@ export default {
 		},
 
 		/**
-		 * Hanle resizing the popover to make sure users can discover there is more to scroll
+		 * Handle resizing the popover to make sure users can discover there is more to scroll
 		 */
 		resizePopover() {
 			// Get the inner v-popper element that defines the popover height (from floating-vue)
 			const inner = this.$refs.menu.closest('.v-popper__inner')
-			const maxHeight = Number.parseFloat(window.getComputedStyle(inner).maxHeight)
 			const height = this.$refs.menu.clientHeight
+
 			// If the popover height is limited by the max-height (scrollbars shown) limit the height to half of the last element
-			if (height > maxHeight) {
+			if (height > this.maxMenuHeight) {
 				// sum of action heights
 				let currentHeight = 0
 				// last action height
@@ -1448,7 +1465,7 @@ export default {
 				for (const action of this.$refs.menuList.children) {
 					// If the max height would be overflown by half of the current element,
 					// then we limit the height to the half of the previous element
-					if ((currentHeight + action.clientHeight / 2) > maxHeight) {
+					if ((currentHeight + action.clientHeight / 2) > this.maxMenuHeight) {
 						inner.style.height = `${currentHeight - actionHeight / 2}px`
 						break
 					}
@@ -1836,7 +1853,7 @@ export default {
 			const triggerIcon = this.$slots.icon?.[0] || (
 				this.defaultIcon
 					? h('span', { class: ['icon', this.defaultIcon] })
-					: h('DotsHorizontal', {
+					: h(IconDotsHorizontal, {
 						props: {
 							size: 20,
 						},
@@ -1854,7 +1871,7 @@ export default {
 						container: this.container,
 						popoverBaseClass: 'action-item__popper',
 						popupRole: this.config.popupRole,
-						setReturnFocus: this.config.withFocusTrap ? this.$refs.menuButton?.$el : null,
+						setReturnFocus: this.config.withFocusTrap ? this.$refs.triggerButton?.$el : null,
 						focusTrap: this.config.withFocusTrap,
 					},
 					// For some reason the popover component
@@ -1883,7 +1900,7 @@ export default {
 							disabled: this.disabled,
 						},
 						slot: 'trigger',
-						ref: 'menuButton',
+						ref: 'triggerButton',
 						attrs: {
 							id: this.triggerRandomId,
 							'aria-label': this.menuName ? null : this.ariaLabel,
@@ -2059,12 +2076,12 @@ export default {
 // the popover__inner for actions only.
 .v-popper--theme-dropdown.v-popper__popper.action-item__popper .v-popper__wrapper {
 	border-radius: var(--border-radius-large);
-	overflow:hidden;
+	overflow: hidden;
 
 	.v-popper__inner {
 		border-radius: var(--border-radius-large);
 		padding: 4px;
-		max-height: calc(50vh - 16px);
+		max-height: calc(100vh - var(--header-height));
 		overflow: auto;
 	}
 }
