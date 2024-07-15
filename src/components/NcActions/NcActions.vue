@@ -919,7 +919,7 @@ export default {
 
 <script>
 import { useElementBounding, useWindowSize } from '@vueuse/core'
-import { computed, h, Fragment, warn, mergeProps, ref } from 'vue'
+import { Fragment, computed, h, mergeProps, ref, toRef, warn } from 'vue'
 import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
 
@@ -1073,7 +1073,7 @@ export default {
 		 */
 		boundariesElement: {
 			type: Element,
-			default: () => document.querySelector('body'),
+			default: () => document.getElementById('content-vue') ?? document.querySelector('body'),
 		},
 
 		/**
@@ -1111,19 +1111,30 @@ export default {
 		'click',
 	],
 
-	setup() {
+	setup(props) {
 		const randomId = `menu-${GenRandomId()}`
 		const triggerRandomId = `trigger-${randomId}`
 
 		const triggerButton = ref()
 
 		const { top, bottom } = useElementBounding(triggerButton)
-		const { height } = useWindowSize()
+		const { top: boundaryTop, bottom: boundaryBottom } = useElementBounding(toRef(() => props.boundariesElement))
+		const { height: windowHeight } = useWindowSize()
 		const maxMenuHeight = computed(() => Math.max(
-			// Either expand to the top, so the max height is the top position of the trigger minus the header height minus the wedge and the padding
-			top.value - 84,
-			// or expand to the bottom, so the max height is the window height minus current position of the trigger minus the wedge and padding
-			height.value - bottom.value - 34,
+			// Either expand to the top
+			Math.min(
+				// max height is the top position of the trigger minus the header height minus the wedge and the padding
+				top.value - 84,
+				// and also limited to the space in the boundary
+				top.value - boundaryTop.value,
+			),
+			// or expand to the bottom
+			Math.min(
+				// the max height is the window height minus current position of the trigger minus the wedge and padding
+				windowHeight.value - bottom.value - 34,
+				// and limit to the available space in the boundary
+				boundaryBottom.value - bottom.value,
+			),
 		))
 
 		return {
@@ -1393,6 +1404,8 @@ export default {
 					actionHeight = action.clientHeight
 					currentHeight += actionHeight
 				}
+			} else {
+				inner.style.height = 'fit-content'
 			}
 		},
 
@@ -1403,12 +1416,14 @@ export default {
 		getCurrentActiveMenuItemElement() {
 			return this.$refs.menu.querySelector('li.active')
 		},
+
 		/**
 		 * @return {NodeListOf<HTMLElement>}
 		 */
 		getFocusableMenuItemElements() {
 			return this.$refs.menu.querySelectorAll(focusableSelector)
 		},
+
 		/**
 		 * Focus nearest focusable item on mouse move.
 		 * DO NOT change the focus if the target is already focused
