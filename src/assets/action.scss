@@ -80,7 +80,7 @@
 		// long text area
 		&__longtext-wrapper,
 		&__longtext {
-			max-width: 220px;
+			max-width: calc(var(--default-clickable-area) * 5);
 			line-height: 1.6em;
 
 			padding: calc((var(--default-clickable-area) - 1.6em) / 2) 0;
