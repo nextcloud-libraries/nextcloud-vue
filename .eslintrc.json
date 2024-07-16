@@ -11,9 +11,6 @@
 	"extends": [
 		"@nextcloud/eslint-config/vue3"
 	],
-	"plugins": [
-		"cypress"
-	],
 	"parserOptions": {
 		"babelOptions": {
 			"plugins": [

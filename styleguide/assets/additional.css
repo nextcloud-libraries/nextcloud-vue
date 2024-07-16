@@ -2,8 +2,9 @@
  * SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-@import 'default.css';
 @import 'server.css';
+@import 'apps.css';
+@import 'default.css';
 @import 'dark.css';
 
 div[data-preview] * {
