@@ -118,7 +118,7 @@ msgid "Custom"
 msgstr "Benutzerdefiniert"
 
 msgid "Dark skin tone"
-msgstr "Dunkler Skin-Farbton"
+msgstr "Dunkler Hautfarbton"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -135,6 +135,9 @@ msgstr "Element bearbeiten"
 
 msgid "Emoji picker"
 msgstr "Emoji-Auswahl"
+
+msgid "Enable interactive view"
+msgstr "Die interaktive Ansicht aktivieren"
 
 msgid "Enter link"
 msgstr "Link eingeben"
@@ -184,7 +187,7 @@ msgid "Keyboard navigation help"
 msgstr "Tastatur-Navigationshilfe"
 
 msgid "Light skin tone"
-msgstr "Heller Skin-Farbton"
+msgstr "Heller Hautfarbton"
 
 msgid "Load more \"{options}\""
 msgstr "Weitere \"{options}\" laden"
@@ -194,13 +197,13 @@ msgid "Mariner"
 msgstr "Seemann"
 
 msgid "Medium dark skin tone"
-msgstr "Mitteldunkler Skin-Farbton"
+msgstr "Mitteldunkler Hautfarbton"
 
 msgid "Medium light skin tone"
-msgstr "Mittelheller Skin-Farbton"
+msgstr "Mittelheller Hautfarbton"
 
 msgid "Medium skin tone"
-msgstr "Mittlerer Skin-Farbton"
+msgstr "Mittlerer Hautfarbton"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
@@ -212,7 +215,7 @@ msgid "More options"
 msgstr "Mehr Optionen"
 
 msgid "Neutral skin color"
-msgstr "Neutraler Skin-Farbton"
+msgstr "Neutraler Hautfarbton"
 
 msgid "Next"
 msgstr "Weiter"
@@ -250,6 +253,9 @@ msgstr "Menü öffnen"
 
 msgid "Open navigation"
 msgstr "Navigation öffnen"
+
+msgid "Open sidebar"
+msgstr "Seitenleiste öffnen"
 
 msgid "Options"
 msgstr "Optionen"
@@ -302,6 +308,9 @@ msgstr "Unverarbeiteter Link {Optionen}"
 msgid "Related resources"
 msgstr "Verwandte Ressourcen"
 
+msgid "Related team resources"
+msgstr "Verwandte Team-Ressourcen"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Rosiges Braun"
@@ -349,7 +358,7 @@ msgid "Show password"
 msgstr "Passwort anzeigen"
 
 msgid "Skin tone"
-msgstr "Skin-Farbton"
+msgstr "Hautfarbton"
 
 msgid "Skip to app navigation"
 msgstr "Zur App-Navigation springen"
@@ -389,6 +398,9 @@ msgstr "Änderungen rückgängig machen"
 
 msgid "User status: {status}"
 msgstr "Benutzerstatus: {status}"
+
+msgid "View team"
+msgstr "Team anzeigen"
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"

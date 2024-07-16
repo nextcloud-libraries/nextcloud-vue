@@ -97,7 +97,7 @@ msgid "Close navigation"
 msgstr "Stäng navigering"
 
 msgid "Close sidebar"
-msgstr "Stäng sidopanel"
+msgstr "Stäng sidofältet"
 
 msgid "Close Smart Picker"
 msgstr "Stäng Smart Picker"
@@ -132,6 +132,9 @@ msgstr "Ändra"
 
 msgid "Emoji picker"
 msgstr "Emoji-väljare"
+
+msgid "Enable interactive view"
+msgstr "Aktivera interaktiv vy"
 
 msgid "Enter link"
 msgstr "Ange länk"
@@ -248,6 +251,9 @@ msgstr "Öppna menyn"
 msgid "Open navigation"
 msgstr "Öppna navigering"
 
+msgid "Open sidebar"
+msgstr "Öppna sidofältet"
+
 msgid "Options"
 msgstr "Alternativ"
 
@@ -298,6 +304,9 @@ msgstr "Oformaterad länk {options}"
 
 msgid "Related resources"
 msgstr "Relaterade resurser"
+
+msgid "Related team resources"
+msgstr "Relaterade teamresurser"
 
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
@@ -386,6 +395,9 @@ msgstr "Ångra ändringar"
 
 msgid "User status: {status}"
 msgstr "Användarstatus: {status}"
+
+msgid "View team"
+msgstr "Visa team"
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
