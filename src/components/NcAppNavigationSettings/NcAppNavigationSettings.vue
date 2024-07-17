@@ -89,7 +89,7 @@ export default {
 			width: 100%;
 			padding: 0;
 			margin: 0;
-			background-color: var(--color-main-background);
+			background-color: transparent;
 			box-shadow: none;
 			border: 0;
 			border-radius: var(--body-container-radius);
