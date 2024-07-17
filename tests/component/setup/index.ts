@@ -5,11 +5,12 @@
 
 // Visual setup
 import '../../../styleguide/assets/additional.css'
-import '@fontsource/roboto'
+import '@fontsource/roboto/index.css'
+import './index.css'
 
 // Mount hooks
-import { beforeMount } from '@playwright/experimental-ct-vue/hooks';
-import { createMemoryHistory, createRouter, type RouteRecordRaw } from 'vue-router';
+import { beforeMount } from '@playwright/experimental-ct-vue/hooks'
+import { createMemoryHistory, createRouter, type RouteRecordRaw } from 'vue-router'
 
 export type HooksConfig = {
   routes?: RouteRecordRaw[];
@@ -21,4 +22,4 @@ beforeMount<HooksConfig>(async ({ hooksConfig, app }) => {
 		history: createMemoryHistory(),
 	})
 	app.use(router)
-});
+})

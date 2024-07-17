@@ -29,7 +29,7 @@
     "stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix",
     "styleguide": "vue-styleguidist --config styleguide.config.cjs server",
     "styleguide:build": "vue-styleguidist --config styleguide.config.cjs build",
-    "update:snapshots": "npm run test:component -- --update-snapshots"
+    "update:snapshots": "npm run test:component -- --grep @visual --update-snapshots"
   },
   "exports": {
     ".": {
