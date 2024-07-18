@@ -258,7 +258,7 @@ export default {
 		 * @param {boolean} [state] set the state instead of inverting the current one
 		 */
 		toggleNavigation(state) {
-			// Early return if alreay in that state
+			// Early return if already in that state
 			if (this.open === state) {
 				emit('navigation-toggled', {
 					open: this.open,
@@ -305,7 +305,7 @@ export default {
 <style lang="scss">
 .app-navigation,
 .app-content {
-	/** Distance of the app naviation toggle and the first navigation item to the top edge of the app content container */
+	/** Distance of the app navigation toggle and the first navigation item to the top edge of the app content container */
 	--app-navigation-padding: #{$app-navigation-padding};
 }
 </style>
@@ -324,7 +324,7 @@ export default {
 	top: 0;
 	left: 0;
 	padding: 0px;
-	// Above appcontent
+	// Above NcAppContent
 	z-index: 1800;
 	height: 100%;
 	box-sizing: border-box;
@@ -382,14 +382,14 @@ export default {
 	}
 }
 
-// When on mobile, we make the navigation slide over the appcontent
+// When on mobile, we make the navigation slide over the NcAppContent
 @media only screen and (max-width: $breakpoint-mobile) {
 	.app-navigation {
 		position: absolute;
 	}
 }
 
-// Put the toggle behind appsidebar on small screens
+// Put the toggle behind NcAppSidebar on small screens
 @media only screen and (max-width: $breakpoint-small-mobile) {
 	.app-navigation {
 		z-index: 1400;
