@@ -490,11 +490,17 @@ export default {
 	}
 
 	&__trailing-button {
+		--button-size: calc(var(--default-clickable-area) - 2 * var(--border-width-input-focused, 2px)) !important;
+
 		&.button-vue {
 			position: absolute;
-			top: 0;
-			right: 0;
+			top: var(--border-width-input-focused, 2px);
+			right: var(--border-width-input-focused, 2px);
 			border-radius: var(--border-radius-large);
+
+			&:focus-visible {
+				box-shadow: none !important;
+			}
 		}
 
 		&--pill.button-vue {
