@@ -17,7 +17,11 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 </docs>
 
 <template>
-	<div class="input-field" :class="{ 'input-field--disabled': disabled }">
+	<div class="input-field"
+		:class="{
+			'input-field--disabled': disabled,
+			'input-field--pill': pill,
+		}">
 		<div class="input-field__main-wrapper">
 			<input v-bind="$attrs"
 				:id="computedId"
@@ -35,7 +39,6 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 						'input-field__input--label-outside': labelOutside,
 						'input-field__input--success': success,
 						'input-field__input--error': error,
-						'input-field__input--pill': pill,
 					}]"
 				:value="value.toString()"
 				v-on="$listeners"
@@ -61,9 +64,6 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 			<NcButton v-if="showTrailingButton"
 				type="tertiary-no-background"
 				class="input-field__trailing-button"
-				:class="[{
-					'input-field__trailing-button--pill': pill,
-				}]"
 				:aria-label="trailingButtonLabel"
 				:disabled="disabled"
 				@click="handleTrailingButtonClick">
@@ -329,9 +329,10 @@ export default {
 <style lang="scss" scoped>
 
 .input-field {
+	--input-border-radius: var(--border-radius-element, var(--border-radius-large));
+	// styles
 	position: relative;
 	width: 100%;
-	border-radius: var(--border-radius-large);
 	margin-block-start: 6px; // for the label in active state
 
 	&__main-wrapper {
@@ -342,6 +343,10 @@ export default {
 	&--disabled {
 		opacity: 0.4;
 		filter: saturate(0.4);
+	}
+
+	&--pill {
+		--input-border-radius: var(--border-radius-pill);
 	}
 
 	&__input {
@@ -356,11 +361,12 @@ export default {
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
 		border: var(--border-width-input, 2px) solid var(--color-border-maxcontrast);
-		border-radius: var(--border-radius-large);
+		border-radius: var(--input-border-radius);
 
 		cursor: pointer;
 		-webkit-appearance: textfield !important;
 		-moz-appearance: textfield !important;
+		appearance: textfield !important;
 
 		// Center text if external label is used
 		&--label-outside {
@@ -417,10 +423,6 @@ export default {
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 			}
-		}
-
-		&--pill {
-			border-radius: var(--border-radius-pill);
 		}
 	}
 
@@ -488,15 +490,17 @@ export default {
 	}
 
 	&__trailing-button {
+		--button-size: calc(var(--default-clickable-area) - 2 * var(--border-width-input-focused, 2px)) !important;
+		--button-radius: calc(var(--input-border-radius) - var(--border-width-input-focused, 2px)); // lower radius as size is smaller
+
 		&.button-vue {
 			position: absolute;
-			top: 0;
-			right: 0;
-			border-radius: var(--border-radius-large);
-		}
+			top: var(--border-width-input-focused, 2px);
+			right: var(--border-width-input-focused, 2px);
 
-		&--pill.button-vue {
-			border-radius: var(--border-radius-pill);
+			&:focus-visible {
+				box-shadow: none !important;
+			}
 		}
 	}
 
