@@ -336,25 +336,14 @@ export default {
 	border-radius: var(--border-radius-large);
 	margin-block-start: 6px; // for the label in active state
 
-	&__main-wrapper {
-		height: var(--default-clickable-area);
-		position: relative;
-	}
-
 	&--disabled {
 		opacity: 0.4;
 		filter: saturate(0.4);
 	}
 
 	&__input {
-		margin: 0;
-		padding-inline: 12px 6px; // align with label 8px margin label + 6px padding label - 2px border input
-		height: var(--default-clickable-area) !important;
-		width: 100%;
-
-		font-size: var(--default-font-size);
-		text-overflow: ellipsis;
-
+		// If border width differes between focused and unfocused we need to compensate to prevent jumping
+		--input-border-width-offset: calc(var(--border-width-input-focused, 2px) - var(--border-width-input, 2px));
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
 		border: var(--border-width-input, 2px) solid var(--color-border-maxcontrast);
@@ -364,10 +353,14 @@ export default {
 		-webkit-appearance: textfield !important;
 		-moz-appearance: textfield !important;
 
-		// Center text if external label is used
-		&--label-outside {
-			padding-block: 0;
-		}
+		font-size: var(--default-font-size);
+		text-overflow: ellipsis;
+
+		height: calc(var(--default-clickable-area) - 2 * var(--input-border-width-offset)) !important;
+		width: 100%;
+
+		padding-inline: calc(var(--input-padding-start) + var(--input-border-width-offset)) calc(var(--input-padding-end) + var(--input-border-width-offset));
+		padding-block: var(--input-border-width-offset);
 
 		&:active:not([disabled]),
 		&:hover:not([disabled]),
@@ -375,16 +368,13 @@ export default {
 			border-width: var(--border-width-input-focused, 2px);
 			border-color: var(--color-main-text) !important;
 			box-shadow: 0 0 0 2px var(--color-main-background) !important;
+			// Reset padding offset when focused
+			--input-border-width-offset: 0px;
 		}
 
 		&:focus + .input-field__label,
 		&:hover:not(:placeholder-shown) + .input-field__label {
 			color: var(--color-main-text);
-		}
-
-		// Hide placeholder while not focussed -> show label instead (only if internal label is used)
-		&:not(:focus,&--label-outside)::placeholder {
-			opacity: 0;
 		}
 
 		&:focus {
@@ -397,14 +387,6 @@ export default {
 
 		&:focus-visible {
 			box-shadow: unset !important; // Override server rules
-		}
-
-		&--leading-icon {
-			padding-inline-start: var(--default-clickable-area);
-		}
-
-		&--trailing-icon {
-			padding-inline-end: var(--default-clickable-area);
 		}
 
 		&--success {
@@ -426,12 +408,19 @@ export default {
 		}
 	}
 
+	// Hide placeholder while not focussed -> show label instead (only if internal label is used)
+	&:not(&--label-outside) &__input:not(:focus)::placeholder {
+		opacity: 0;
+	}
+
 	&__label {
+		--input-label-font-size: var(--default-font-size);
 		position: absolute;
-		margin-inline: 14px 0;
+		margin-inline: var(--input-padding-start) var(--input-padding-end);
 		max-width: fit-content;
+		font-size: var(--input-label-font-size);
 		inset-block-start: calc((var(--default-clickable-area) - var(--default-line-height)) / 2); // center the label vertically
-		inset-inline: 0;
+		inset-inline: var(--border-width-input-focused, 2px);
 		// Fix color so that users do not think the input already has content
 		color: var(--color-text-maxcontrast);
 		// only one line labels are allowed
@@ -442,31 +431,21 @@ export default {
 		pointer-events: none;
 		// Position transition
 		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick), background-color var(--animation-quick) var(--animation-slow);
-
-		&--leading-icon {
-			margin-inline-start: var(--default-clickable-area);
-		}
-
-		&--trailing-icon {
-			margin-inline-end: var(--default-clickable-area);
-		}
 	}
 
 	&__input:focus + &__label,
 	&__input:not(:placeholder-shown) + &__label {
-		inset-block-start: -10px;
+		--input-label-font-size: 13px; // minimum allowed font size for accessibility
 		line-height: 1.5; // minimum allowed line height for accessibility
-		font-size: 13px; // minimum allowed font size for accessibility
+		// 1.5 * font-size = line-height; line-height / 2 for centering and make it negative as we need to move outside the element
+		inset-block-start: calc(-1.5 * var(--input-label-font-size) / 2);
 		font-weight: 500;
 		border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0;
 		background-color: var(--color-main-background);
-		padding-inline: 5px;
-		margin-inline-start: 9px;
+		padding-inline: var(--default-grid-baseline);
+		margin-inline: calc(var(--input-padding-start) - var(--default-grid-baseline)) calc(var(--input-padding-end) - var(--default-grid-baseline));
 
 		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick);
-		&--leading-icon {
-			margin-inline-start: 41px;
-		}
 	}
 
 	&__icon {
@@ -478,14 +457,14 @@ export default {
 		justify-content: center;
 		opacity: 0.7;
 
+		inset-block-end: 0;
+
 		&--leading {
-			inset-block-end: 0;
-			inset-inline-start: 2px;
+			inset-inline-start: 0px;
 		}
 
 		&--trailing {
-			inset-block-end: 0;
-			inset-inline-end: 2px;
+			inset-inline-end: 0px;
 		}
 	}
 
