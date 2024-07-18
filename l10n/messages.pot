@@ -332,6 +332,9 @@ msgstr ""
 msgid "Search for time zone"
 msgstr ""
 
+msgid "Search in app…"
+msgstr ""
+
 msgid "Search results"
 msgstr ""
 
