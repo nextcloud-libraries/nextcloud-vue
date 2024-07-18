@@ -757,7 +757,6 @@ export default {
 
 .list-item-content__name {
 	min-width: 100px;
-	max-width: 300px;
 	flex: 1 1 10%;
 	font-weight: 500;
 }
@@ -823,6 +822,7 @@ export default {
 			justify-content: start;
 			gap: 12px;
 			min-width: 0;
+			max-width: 300px;
 		}
 		.list-item-content__details {
 			flex-direction: row;
