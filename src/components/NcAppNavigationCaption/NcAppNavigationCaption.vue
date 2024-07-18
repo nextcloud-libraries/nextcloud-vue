@@ -8,33 +8,38 @@
 
 ```vue
 	<template>
-		<ul class="nav">
-			<NcAppNavigationCaption
-				name="Your caption goes here">
-				<template #actions>
-					<NcActionButton>
-						<template #icon>
-							<Plus :size="20" />
+		<div class="styleguide-nc-content">
+			<NcAppNavigation>
+				<template #list>
+					<NcAppNavigationCaption
+						name="Your caption goes here">
+						<template #actions>
+							<NcActionButton>
+								<template #icon>
+									<IconPlus :size="20" />
+								</template>
+								This is an action
+							</NcActionButton>
 						</template>
-						This is an action
-					</NcActionButton>
+					</NcAppNavigationCaption>
 				</template>
-			</NcAppNavigationCaption>
-		</ul>
+			</NcAppNavigation>
+		</div>
 	</template>
 	<script>
-	import Plus from 'vue-material-design-icons/Plus'
+	import IconPlus from 'vue-material-design-icons/Plus.vue'
 
 	export default {
 		components: {
-			Plus,
+			IconPlus,
 		},
 	}
 	</script>
 	<style scoped>
-		/* mock the appnavigation */
-		ul.nav {
-			background-color: #cce6f4;
+		/* Mock NcContent */
+		.styleguide-nc-content {
+			background-color: var(--color-background-plain);
+			overflow: hidden;
 		}
 	</style>
 ```
@@ -42,62 +47,67 @@
 ### Element with a slot for custom actions icon
 ```vue
 	<template>
-		<ul class="nav">
-			<NcAppNavigationCaption
-				name="Your caption goes here">
-				<template #actionsTriggerIcon>
-					<Plus slot="icon" :size="20" />
+		<div class="styleguide-nc-content">
+			<NcAppNavigation>
+				<template #list>
+					<NcAppNavigationCaption
+						name="Your caption goes here">
+						<template #actionsTriggerIcon>
+							<IconPlus slot="icon" :size="20" />
+						</template>
+						<template #actions>
+							<NcActionButton>
+								<template #icon>
+									<IconPencil :size="20" />
+								</template>
+								Rename
+							</NcActionButton>
+							<NcActionButton>
+								<template #icon>
+									<IconDelete :size="20" />
+								</template>
+								Delete
+							</NcActionButton>
+							<NcActionButton>
+								<template #icon>
+									<IconArrowRight :size="20" />
+								</template>
+								Validate
+							</NcActionButton>
+							<NcActionButton>
+								<template #icon>
+									<IconDownload :size="20" />
+								</template>
+								Download
+							</NcActionButton>
+						</template>
+					</NcAppNavigationCaption>
 				</template>
-				<template #actions>
-					<NcActionButton>
-						<template #icon>
-							<Pencil :size="20" />
-						</template>
-						Rename
-					</NcActionButton>
-					<NcActionButton>
-						<template #icon>
-							<Delete :size="20" />
-						</template>
-						Delete
-					</NcActionButton>
-					<NcActionButton>
-						<template #icon>
-							<ArrowRight :size="20" />
-						</template>
-						Validate
-					</NcActionButton>
-					<NcActionButton>
-						<template #icon>
-							<Download :size="20" />
-						</template>
-						Download
-					</NcActionButton>
-				</template>
-			</NcAppNavigationCaption>
-		</ul>
+			</NcAppNavigation>
+		</div>
 	</template>
 	<script>
-		import ArrowRight from 'vue-material-design-icons/ArrowRight'
-		import Delete from 'vue-material-design-icons/Delete'
-		import Download from 'vue-material-design-icons/Download'
-		import Pencil from 'vue-material-design-icons/Pencil'
-		import Plus from 'vue-material-design-icons/Plus'
+		import IconArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+		import IconDelete from 'vue-material-design-icons/Delete.vue'
+		import IconDownload from 'vue-material-design-icons/Download.vue'
+		import IconPencil from 'vue-material-design-icons/Pencil.vue'
+		import IconPlus from 'vue-material-design-icons/Plus.vue'
 
 		export default {
 			components: {
-				ArrowRight,
-				Delete,
-				Download,
-				Pencil,
-				Plus,
+				IconArrowRight,
+				IconDelete,
+				IconDownload,
+				IconPencil,
+				IconPlus,
 			}
 		}
 	</script>
 	<style scoped>
-		/* mock the appnavigation */
-		ul.nav {
-			background-color: #cce6f4;
+		/* Mock NcContent */
+		.styleguide-nc-content {
+			background-color: var(--color-background-plain);
+			overflow: hidden;
 		}
 	</style>
 ```
@@ -105,18 +115,35 @@
 ### Element used as a heading
 ```vue
 	<template>
-		<!-- e.g. NcAppNavigation-->
-		<div style="display: flex; flex-direction: column;">
-			<NcAppNavigationCaption heading-id="mylist-heading"
-				is-heading
-				name="My navigation list" />
-			<NcAppNavigationList aria-labelledby="mylist-heading">
-				<NcAppNavigationItem name="First" />
-				<NcAppNavigationItem name="Second" />
-				<NcAppNavigationItem name="Third" />
-			</NcAppNavigationList>
+		<div class="styleguide-nc-content">
+			<NcAppNavigation>
+				<!-- if you need multiple lists you can use it in the default slot like this: -->
+				<NcAppNavigationCaption heading-id="people-heading"
+					is-heading
+					name="People" />
+				<NcAppNavigationList aria-labelledby="people-heading">
+					<NcAppNavigationItem name="Emma" />
+					<NcAppNavigationItem name="Jane" />
+					<NcAppNavigationItem name="Jake" />
+				</NcAppNavigationList>
+				<NcAppNavigationCaption heading-id="places-heading"
+					is-heading
+					name="Places" />
+				<NcAppNavigationList aria-labelledby="places-heading">
+					<NcAppNavigationItem name="America" />
+					<NcAppNavigationItem name="Australia" />
+					<NcAppNavigationItem name="Europe" />
+				</NcAppNavigationList>
+			</NcAppNavigation>
 		</div>
 	</template>
+	<style scoped>
+		/* Mock NcContent */
+		.styleguide-nc-content {
+			background-color: var(--color-background-plain);
+			overflow: hidden;
+		}
+	</style>
 ```
 
 </docs>
