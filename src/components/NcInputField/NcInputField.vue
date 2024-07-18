@@ -502,8 +502,10 @@ export default {
 
 	&__helper-text-message {
 		padding-block: 4px;
+		padding-inline: var(--border-radius-large);
 		display: flex;
 		align-items: center;
+		color: var(--color-text-maxcontrast);
 
 		&__icon {
 			margin-inline-end: 8px;

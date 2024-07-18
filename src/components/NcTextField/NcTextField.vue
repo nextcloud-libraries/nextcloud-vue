@@ -34,6 +34,11 @@ and `minlength`.
 			<Lock :size="20" />
 		</NcTextField>
 		<NcTextField :value.sync="text2"
+			label="With helper text"
+			helper-text="This is an optional message to show e.g. validation errors."
+			@trailing-button-click="clearText">
+		</NcTextField>
+		<NcTextField :value.sync="text2"
 			label="Success state"
 			placeholder="Placeholders are possible"
 			:success="true"
