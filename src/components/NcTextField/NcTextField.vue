@@ -38,6 +38,11 @@ and `minlength`.
 			</template>
 		</NcTextField>
 		<NcTextField v-model="text2"
+			label="With helper text"
+			helper-text="This is an optional message to show e.g. validation errors."
+			@trailing-button-click="clearText">
+		</NcTextField>
+		<NcTextField v-model="text2"
 			label="Success state"
 			placeholder="Placeholders are possible"
 			:success="true"
