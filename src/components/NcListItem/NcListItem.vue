@@ -15,15 +15,10 @@
 			:bold="true"
 			:active="true"
 			:details="'1h'"
-			:counter-number="44"
+			:counter-number="123"
 			counterType="highlighted">
 			<template #icon>
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
-			</template>
-			<template #name>
-				<span style="display: flex; color: var(--color-primary);">
-					Name of the element with content
-				</span>
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -48,7 +43,7 @@
 			:name="'This is an active element with outlined counter'"
 			:bold="false"
 			:active="true"
-			:counter-number="44"
+			:counter-number="123"
 			counterType="outlined">
 			<template #icon>
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
@@ -76,7 +71,7 @@
 			:name="'This is an active element with normal counter'"
 			:bold="false"
 			:active="true"
-			:counter-number="44">
+			:counter-number="123">
 			<template #icon>
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
@@ -107,7 +102,7 @@
 			:bold="true"
 			:force-display-actions="true"
 			:details="'1h'"
-			:counter-number="44"
+			:counter-number="123"
 			counterType="highlighted">
 			<template #icon>
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
@@ -131,7 +126,7 @@
 			:name="'Name of the element with outlined counter'"
 			:bold="false"
 			:force-display-actions="true"
-			:counter-number="44"
+			:counter-number="123"
 			counterType="outlined">
 			<template #icon>
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
@@ -156,7 +151,7 @@
 			:bold="false"
 			:force-display-actions="true"
 			:details="'1h'"
-			:counter-number="44">
+			:counter-number="123">
 			<template #icon>
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
@@ -247,18 +242,18 @@
 	:bold="false"
 	:active="true"
 	:details="'1h'"
-	:counter-number="44"
+	:counter-number="123"
 	one-line
 	counterType="highlighted">
 	<template #icon>
-		<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+		<NcAvatar disable-menu :size="34" user="janedoe" display-name="Jane Doe" />
 	</template>
 	<template #subname>
 		In this slot you can put both text and other components such as icons
 	</template>
 	<template #indicator>
 		<!-- Color dot -->
-		<CheckboxBlankCircle :size="16" fill-color="#fff" />
+		<CheckboxBlankCircle :size="20" fill-color="#fff" />
 	</template>
 	<template #actions>
 		<NcActionButton>
@@ -720,6 +715,15 @@ export default {
 	display: flex;
 	position: relative;
 	width: 100%;
+	// padding for the focus-visible styles. Width is reduced to compensate it
+	padding: 2px 4px;
+	// The first and lastelement needs also padding for the box shadow of the focus-visible effect
+	&:first-of-type {
+		padding-block-start: 4px;
+	}
+	&:last-of-type {
+		padding-block-end: 4px
+	}
 
 	&--active,
 	&.active {
@@ -769,19 +773,25 @@ export default {
 
 // NcListItem
 .list-item {
+	--list-item-padding: 8px;
+	// The content are two lines of text and respect the 1.5 line height
+	--list-item-height: calc(2 * var(--default-line-height));
+	--list-item-border-radius: var(--border-radius-element, 32px);
+	// General styles
 	box-sizing: border-box;
 	display: flex;
 	position: relative;
 	flex: 0 0 auto;
 	justify-content: flex-start;
-	padding: 8px 10px;
-	// 4px padding for the focus-visible styles. Width is reduced to compensate it
-	margin: 4px;
-	width: calc(100% - 8px);
+	// we need to make sure the elements are not cut off by the border
+	padding-inline: calc((var(--list-item-height) - var(--list-item-border-radius)) / 2);
+	padding-block: var(--list-item-padding);
+	width: 100%;
 	border-radius: var(--border-radius-element, 32px);
 	cursor: pointer;
 	transition: background-color var(--animation-quick) ease-in-out;
 	list-style: none;
+
 	&:hover,
 	&:focus-within,
 	&:has(:active),
@@ -795,13 +805,7 @@ export default {
 	}
 
 	&--compact {
-		padding: 4px 10px;
-
-		.list-item__anchor {
-			.line-one, .line-two {
-				margin-block: -4px;
-			}
-		}
+		--list-item-padding: 2px;
 	}
 	.list-item-content__details {
 		display: flex;
@@ -810,8 +814,10 @@ export default {
 		align-items: end;
 	}
 	&--one-line {
-		padding: 0 9px;
-		margin: 2px;
+		--list-item-height: var(--default-clickable-area);
+		--list-item-border-radius: var(--border-radius-element, calc(var(--default-clickable-area) / 2));
+		--list-item-padding: 2px;
+
 		.list-item-content__main {
 			display: flex;
 			justify-content: start;
@@ -829,7 +835,7 @@ export default {
 		display: flex;
 		flex: 1 0 auto;
 		align-items: center;
-		height: var(--default-clickable-area);
+		height: var(--list-item-height);
 		min-width: 0;
 
 		// This is handled by the parent container
