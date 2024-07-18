@@ -33,6 +33,117 @@ emit('toggle-navigation', {
 })
 ```
 
+#### With in-app search
+
+```vue
+<template>
+	<div class="styleguide-wrapper">
+		<NcContent app-name="styleguide-app-navigation" class="content-styleguidist">
+			<NcAppNavigation show-search :search.sync="searchQuery">
+				<template #search-actions>
+					<NcActions aria-label="Filters">
+						<template #icon>
+							<IconFilter :size="20" />
+						</template>
+						<NcActionButton>
+							<template #icon>
+								<IconAccount :size="20" />
+							</template>
+							Filter by name
+						</NcActionButton>
+						<NcActionButton>
+							<template #icon>
+								<IconCalendarAccount :size="20" />
+							</template>
+							Filter by year
+						</NcActionButton>
+					</NcActions>
+					<NcButton aria-label="Search globally" type="tertiary">
+						<template #icon>
+							<IconSearchGlobal :size="20" />
+						</template>
+					</NcButton>
+				</template>
+				<template #list>
+					<NcAppNavigationItem name="First navigation entry">
+						<template #icon>
+							<IconStar :size="20" />
+						</template>
+					</NcAppNavigationItem>
+					<NcAppNavigationItem name="Second navigation entry">
+						<template #icon>
+							<IconStar :size="20" />
+						</template>
+					</NcAppNavigationItem>
+				</template>
+			</NcAppNavigation>
+			<NcAppContent>
+				<ul class="fake-content">
+					<li>Search query: {{ searchQuery }}</li>
+					<li v-for="(item, index) in items" :key="index">
+						{{ item }}
+					</li>
+				</ul>
+			</NcAppContent>
+		</NcContent>
+	</div>
+</template>
+<script>
+import IconAccount from 'vue-material-design-icons/Account.vue'
+import IconCalendarAccount from 'vue-material-design-icons/CalendarAccount.vue'
+import IconFilter from 'vue-material-design-icons/Filter.vue'
+import IconSearchGlobal from 'vue-material-design-icons/CloudSearch.vue'
+import IconStar from 'vue-material-design-icons/Star.vue'
+
+const exampleItem = ['Mary', 'Patricia', 'James', 'Michael']
+
+export default {
+	components: {
+		IconAccount,
+		IconCalendarAccount,
+		IconFilter,
+		IconSearchGlobal,
+		IconStar,
+	},
+
+	data() {
+		return {
+			searchQuery: '',
+		}
+	},
+
+	computed: {
+		items() {
+			return exampleItem.filter((item) => item.toLocaleLowerCase().includes(this.searchQuery.toLocaleLowerCase()))
+		},
+	},
+}
+</script>
+<style scoped>
+/* This styles just mock NcContent and NcAppContent */
+.content-styleguidist {
+	position: relative !important;
+	margin: 0 !important;
+	/* prevent jumping */
+	min-height: 200px;
+}
+
+.content-styleguidist > * {
+	height: auto;
+}
+
+.fake-content {
+	padding: var(--app-navigation-padding);
+	padding-top: calc(2 * var(--app-navigation-padding) + var(--default-clickable-area));
+}
+
+.styleguide-wrapper {
+	background-color: var(--color-background-plain);
+	padding: var(--body-container-margin);
+}
+</style>
+```
+
 </docs>
 
 <template>
@@ -47,6 +158,17 @@ emit('toggle-navigation', {
 			:inert="!open || undefined"
 			@keydown.esc="handleEsc">
 			<div class="app-navigation__body" :class="{ 'app-navigation__body--no-list': !$scopedSlots.list }">
+				<NcAppNavigationSearch v-if="showSearch"
+					:label="searchLabel || undefined"
+					:no-inline-actions="noSearchInlineActions"
+					:value="search"
+					@update:value="$emit('update:search', $event)">
+					<template #actions>
+						<!-- @slot Optional actions, like NcActions or icon only buttons, to show next to the search input -->
+						<slot name="search-actions" />
+					</template>
+				</NcAppNavigationSearch>
+
 				<!-- The main content of the navigation. If no list is passed to the #list slot, stretched vertically. -->
 				<slot />
 			</div>
@@ -69,8 +191,9 @@ import { getTrapStack } from '../../utils/focusTrap.js'
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { createFocusTrap } from 'focus-trap'
 
-import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
 import NcAppNavigationList from '../NcAppNavigationList/index.js'
+import NcAppNavigationSearch from './NcAppNavigationSearch.vue'
+import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
 import Vue from 'vue'
 
 export default {
@@ -78,6 +201,7 @@ export default {
 
 	components: {
 		NcAppNavigationList,
+		NcAppNavigationSearch,
 		NcAppNavigationToggle,
 	},
 
@@ -104,6 +228,38 @@ export default {
 		ariaLabelledby: {
 			type: String,
 			default: '',
+		},
+
+		/**
+		 * If set an in-app search is shown as the first entry
+		 */
+		showSearch: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * The current search query
+		 */
+		search: {
+			type: String,
+			default: '',
+		},
+
+		/**
+		 * Label of in-app search input
+		 */
+		searchLabel: {
+			type: String,
+			default: null,
+		},
+
+		/**
+		 * Force a menu if there is more than one search action
+		 */
+		noSearchInlineActions: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -159,7 +315,7 @@ export default {
 		 * @param {boolean} [state] set the state instead of inverting the current one
 		 */
 		toggleNavigation(state) {
-			// Early return if alreay in that state
+			// Early return if already in that state
 			if (this.open === state) {
 				emit('navigation-toggled', {
 					open: this.open,
@@ -206,7 +362,7 @@ export default {
 <style lang="scss">
 .app-navigation,
 .app-content {
-	/** Distance of the app naviation toggle and the first navigation item to the top edge of the app content container */
+	/** Distance of the app navigation toggle and the first navigation item to the top edge of the app content container */
 	--app-navigation-padding: #{$app-navigation-padding};
 }
 </style>
