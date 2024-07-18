@@ -392,10 +392,10 @@
 								<slot name="details">{{ details }}</slot>
 							</div>
 							<!-- Counter and indicator -->
-							<div v-if="counterNumber != 0 || hasIndicator"
+							<div v-if="counterNumber || hasIndicator"
 								v-show="showAdditionalElements"
 								class="list-item-details__extra">
-								<NcCounterBubble v-if="counterNumber != 0"
+								<NcCounterBubble v-if="counterNumber"
 									:active="isActive || active"
 									class="list-item-details__counter"
 									:type="counterType">
