@@ -204,10 +204,10 @@ export default {
 		padding: 0 !important;
 		padding-right: $icon-margin !important;
 
-		// checkbox-width is 12px, border is 2
-		// (44 - 14 - 2) / 2 = 14
 		&::before {
-			margin: 0 14px 0 !important;
+			margin-block: 0 !important;
+			// 16px is the width of the checkbox including the border
+			margin-inline: calc((var(--default-clickable-area) - 16px) / 2) !important;
 		}
 	}
 
