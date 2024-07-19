@@ -421,9 +421,14 @@ td.row-size {
 </docs>
 
 <script>
+import vwave from 'v-wave'
 
 export default {
 	name: 'NcButton',
+
+	directives: {
+		vwave,
+	},
 
 	inject: {
 		getNcPopoverTriggerAttrs: {
@@ -646,6 +651,24 @@ export default {
 						'router-link-exact-active': isExactActive,
 					},
 				],
+
+				vwave: {
+					color: 'red',
+					initialOpacity: 0.5,
+					easing: 'ease-in',
+				},
+
+				directives: [
+					{
+						name: 'vwave',
+						value: {
+							color: 'red',
+							initialOpacity: 0.5,
+							easing: 'ease-in',
+						},
+					},
+				],
+
 				attrs: {
 					'aria-label': this.ariaLabel,
 					'aria-pressed': hasPressed ? this.pressed.toString() : undefined,

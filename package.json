@@ -101,6 +101,7 @@
     "unified": "^11.0.1",
     "unist-builder": "^4.0.0",
     "unist-util-visit": "^5.0.0",
+    "v-wave": "^2.0.0",
     "vue": "^2.7.16",
     "vue-color": "^2.8.1",
     "vue-frag": "^1.4.3",
