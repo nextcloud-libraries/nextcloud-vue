@@ -66,7 +66,7 @@ export default {
 .app-settings-section {
 	margin-bottom: 80px;
 	&__name {
-		font-size: 20px;
+		font-size: 1.6em;
 		margin: 0;
 		padding: 20px 0;
 		font-weight: bold;
