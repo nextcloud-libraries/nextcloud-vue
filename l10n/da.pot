@@ -2,12 +2,12 @@
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Martin "phnoggie" Trads, 2023
-# Martin Bonde <Martin@maboni.dk>, 2024
 # Rasmus Rosendahl-Kaa, 2024
+# Martin Bonde <Martin@maboni.dk>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Rasmus Rosendahl-Kaa, 2024\n"
+"Last-Translator: Martin Bonde <Martin@maboni.dk>, 2024\n"
 "Language-Team: Danish (https://app.transifex.com/nextcloud/teams/64236/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: da\n"
@@ -37,6 +37,9 @@ msgstr "Handlinger for element med navnet \"{name}\""
 
 msgid "Activities"
 msgstr "Aktiviteter"
+
+msgid "Add to a project"
+msgstr "Tilføj til et projekt"
 
 msgid "Animals & Nature"
 msgstr "Dyr & Natur"
@@ -113,6 +116,9 @@ msgstr "Farvevælger"
 msgid "Confirm changes"
 msgstr "Bekræft ændringer"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "Forbind elementer til et projekt for at gøre dem nemmere at finde"
+
 msgid "Custom"
 msgstr "Brugerdefineret"
 
@@ -151,6 +157,15 @@ msgstr ""
 msgid "External documentation for {name}"
 msgstr "Ekstern dokumentation for {name}"
 
+msgid "Failed to add the item to the project"
+msgstr "Kunne ikke føje elementet til projektet"
+
+msgid "Failed to create a project"
+msgstr "Kunne ikke oprette et projekt"
+
+msgid "Failed to rename the project"
+msgstr "Projektet kunne ikke omdøbes"
+
 msgid "Favorite"
 msgstr "Favorit"
 
@@ -175,6 +190,9 @@ msgstr "Tilbage til listen"
 
 msgid "Gold"
 msgstr "Guld"
+
+msgid "Hide details"
+msgstr "Skjul detaljer"
 
 msgid "Hide password"
 msgstr "Skjul kodeord"
@@ -310,6 +328,9 @@ msgstr "Relaterede emner"
 msgid "Related team resources"
 msgstr "Relaterede teamressourcer"
 
+msgid "Rename project"
+msgstr "Omdøb projekt"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Rosy brown"
@@ -353,6 +374,9 @@ msgstr "Indstillinger"
 msgid "Settings navigation"
 msgstr "Naviger i indstillinger"
 
+msgid "Show details"
+msgstr "Vis detaljer"
+
 msgid "Show password"
 msgstr "Vis kodeord"
 
@@ -385,6 +409,9 @@ msgstr "Symboler"
 
 msgid "Travel & Places"
 msgstr "Rejser & Rejsemål"
+
+msgid "Type to search for existing projects"
+msgstr "Skriv for at søge efter eksisterende projekter"
 
 msgid "Type to search time zone"
 msgstr "Indtast for at søge efter tidszone"
