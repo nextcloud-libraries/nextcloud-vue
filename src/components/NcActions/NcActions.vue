@@ -1131,7 +1131,7 @@ export default {
 		 */
 		boundariesElement: {
 			type: Element,
-			default: () => document.querySelector('#app-content-vue') ?? document.querySelector('body'),
+			default: () => document.querySelector('#content-vue') ?? document.querySelector('body'),
 		},
 
 		/**
