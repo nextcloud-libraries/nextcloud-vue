@@ -837,6 +837,9 @@ export default {
 			align-items: unset;
 			justify-content: end;
 		}
+		.list-item-content__name {
+			align-self: center;
+		}
 	}
 
 	&__anchor {
