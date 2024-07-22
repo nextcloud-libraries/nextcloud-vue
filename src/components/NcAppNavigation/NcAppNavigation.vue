@@ -33,117 +33,6 @@ emit('toggle-navigation', {
 })
 ```
 
-#### With in-app search
-
-```vue
-<template>
-	<div class="styleguide-wrapper">
-		<NcContent app-name="styleguide-app-navigation" class="content-styleguidist">
-			<NcAppNavigation show-search :search.sync="searchQuery">
-				<template #search-actions>
-					<NcActions aria-label="Filters">
-						<template #icon>
-							<IconFilter :size="20" />
-						</template>
-						<NcActionButton>
-							<template #icon>
-								<IconAccount :size="20" />
-							</template>
-							Filter by name
-						</NcActionButton>
-						<NcActionButton>
-							<template #icon>
-								<IconCalendarAccount :size="20" />
-							</template>
-							Filter by year
-						</NcActionButton>
-					</NcActions>
-					<NcButton aria-label="Search globally" type="tertiary">
-						<template #icon>
-							<IconSearchGlobal :size="20" />
-						</template>
-					</NcButton>
-				</template>
-				<template #list>
-					<NcAppNavigationItem name="First navigation entry">
-						<template #icon>
-							<IconStar :size="20" />
-						</template>
-					</NcAppNavigationItem>
-					<NcAppNavigationItem name="Second navigation entry">
-						<template #icon>
-							<IconStar :size="20" />
-						</template>
-					</NcAppNavigationItem>
-				</template>
-			</NcAppNavigation>
-			<NcAppContent>
-				<ul class="fake-content">
-					<li>Search query: {{ searchQuery }}</li>
-					<li v-for="(item, index) in items" :key="index">
-						{{ item }}
-					</li>
-				</ul>
-			</NcAppContent>
-		</NcContent>
-	</div>
-</template>
-<script>
-import IconAccount from 'vue-material-design-icons/Account.vue'
-import IconCalendarAccount from 'vue-material-design-icons/CalendarAccount.vue'
-import IconFilter from 'vue-material-design-icons/Filter.vue'
-import IconSearchGlobal from 'vue-material-design-icons/CloudSearch.vue'
-import IconStar from 'vue-material-design-icons/Star.vue'
-
-const exampleItem = ['Mary', 'Patricia', 'James', 'Michael']
-
-export default {
-	components: {
-		IconAccount,
-		IconCalendarAccount,
-		IconFilter,
-		IconSearchGlobal,
-		IconStar,
-	},
-
-	data() {
-		return {
-			searchQuery: '',
-		}
-	},
-
-	computed: {
-		items() {
-			return exampleItem.filter((item) => item.toLocaleLowerCase().includes(this.searchQuery.toLocaleLowerCase()))
-		},
-	},
-}
-</script>
-<style scoped>
-/* This styles just mock NcContent and NcAppContent */
-.content-styleguidist {
-	position: relative !important;
-	margin: 0 !important;
-	/* prevent jumping */
-	min-height: 200px;
-}
-
-.content-styleguidist > * {
-	height: auto;
-}
-
-.fake-content {
-	padding: var(--app-navigation-padding);
-	padding-top: calc(2 * var(--app-navigation-padding) + var(--default-clickable-area));
-}
-
-.styleguide-wrapper {
-	background-color: var(--color-background-plain);
-	padding: var(--body-container-margin);
-}
-</style>
-```
-
 </docs>
 
 <template>
@@ -167,7 +56,7 @@ export default {
 				<slot name="list" />
 			</NcAppNavigationList>
 
-			<!-- Footer for e.g. NcAppNavigationSettings -->
+			<!-- @slot Footer for e.g. NcAppNavigationSettings -->
 			<slot name="footer" />
 		</nav>
 		<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
@@ -188,7 +77,6 @@ export default {
 
 	components: {
 		NcAppNavigationList,
-		NcAppNavigationSearch,
 		NcAppNavigationToggle,
 	},
 
@@ -215,38 +103,6 @@ export default {
 		ariaLabelledby: {
 			type: String,
 			default: '',
-		},
-
-		/**
-		 * If set an in-app search is shown as the first entry
-		 */
-		showSearch: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * The current search query
-		 */
-		search: {
-			type: String,
-			default: '',
-		},
-
-		/**
-		 * Label of in-app search input
-		 */
-		searchLabel: {
-			type: String,
-			default: null,
-		},
-
-		/**
-		 * Force a menu if there is more than one search action
-		 */
-		noSearchInlineActions: {
-			type: Boolean,
-			default: false,
 		},
 	},
 
@@ -384,6 +240,14 @@ export default {
 
 	&--close {
 		margin-left: calc(-1 * min($navigation-width, var(--app-navigation-max-width)));
+	}
+
+	&__search {
+		width: 100%;
+	}
+
+	&__body {
+		overflow-y: scroll;
 	}
 
 	// For legacy purposes support passing a bare list to the content in #default slot and including #footer slot

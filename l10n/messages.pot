@@ -332,10 +332,10 @@ msgstr ""
 msgid "Search for time zone"
 msgstr ""
 
-msgid "Search in app…"
+msgid "Search results"
 msgstr ""
 
-msgid "Search results"
+msgid "Search…"
 msgstr ""
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
