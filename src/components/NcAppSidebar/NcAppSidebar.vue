@@ -959,8 +959,6 @@ export default {
 		},
 
 		open() {
-			this.toggleFocusTrap()
-
 			this.checkToggleButtonContainerAvailability()
 		},
 	},
@@ -969,15 +967,6 @@ export default {
 		this.preserveElementToReturnFocus()
 
 		this.checkToggleButtonContainerAvailability()
-	},
-
-	mounted() {
-		// Focus sidebar on open only if it was opened by a user interaction
-		if (this.elementToReturnFocus) {
-			this.focus()
-		}
-
-		this.toggleFocusTrap()
 	},
 
 	beforeUnmount() {
@@ -1051,6 +1040,13 @@ export default {
 		},
 
 		onAfterEnter(element) {
+			// Focus sidebar on open only if it was opened by a user interaction
+			if (this.elementToReturnFocus) {
+				this.focus()
+			}
+
+			this.toggleFocusTrap()
+
 			/**
 			 * The sidebar is opened and the transition is complete
 			 *
@@ -1065,6 +1061,8 @@ export default {
 			 * @type {HTMLElement}
 			 */
 			this.$emit('closed', element)
+
+			this.toggleFocusTrap()
 
 			// Return focus to the element that had focus before the sidebar was opened
 			this.elementToReturnFocus?.focus({ focusVisible: true })
