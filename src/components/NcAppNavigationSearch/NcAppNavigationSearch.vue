@@ -195,7 +195,7 @@ const { focused: inputHasFocus } = useFocusWithin(inputElement)
 const transitionTimeout = Number.parseInt(window.getComputedStyle(window.document.body).getPropertyValue('--animation-quick')) || 100
 
 /**
- * @type {import('vue').Ref<import('vue').ComponentPublicInstance>}
+ * @type {import('vue').Ref<HTMLDivElement>}
  */
 const actionsContainer = ref()
 const hasActions = () => !!slots.actions
@@ -205,13 +205,15 @@ const timeoutId = ref()
 const hideActions = ref(false)
 watch(inputHasFocus, () => {
 	showActions.value = !inputHasFocus.value
+})
+watch(showActions, (show) => {
 	window.clearTimeout(timeoutId.value)
-	if (showActions.value) {
+	if (show) {
 		hideActions.value = false
 	} else {
 		// If the transition is done, we fully hide the actions visually
 		window.setTimeout(() => {
-			hideActions.value = !showActions.value
+			hideActions.value = !show
 		}, transitionTimeout)
 	}
 })
@@ -223,7 +225,7 @@ function onCloseSearch() {
 	emit('update:modelValue', '')
 	if (hasActions()) {
 		showActions.value = true
-		nextTick(() => actionsContainer.value.$el.querySelector('button')?.focus())
+		nextTick(() => actionsContainer.value.querySelector('button')?.focus())
 	}
 }
 </script>
