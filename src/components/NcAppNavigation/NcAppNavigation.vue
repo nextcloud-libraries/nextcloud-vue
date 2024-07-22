@@ -46,17 +46,21 @@ emit('toggle-navigation', {
 			class="app-navigation__content"
 			:inert="!open || undefined"
 			@keydown.esc="handleEsc">
+			<div class="app-navigation__search">
+				<!-- @slot For in-app search you can pass a `NcAppNavigationSearch` component as the slot content. -->
+				<slot name="search" />
+			</div>
 			<div class="app-navigation__body" :class="{ 'app-navigation__body--no-list': !$scopedSlots.list }">
-				<!-- The main content of the navigation. If no list is passed to the #list slot, stretched vertically. -->
+				<!-- @slot The main content of the navigation. If no list is passed to the #list slot, stretched vertically. -->
 				<slot />
 			</div>
 
 			<NcAppNavigationList v-if="$scopedSlots.list" class="app-navigation__list">
-				<!-- List for Navigation list items. Stretched between the main content and the footer -->
+				<!-- @slot List for Navigation list items. Stretched between the main content and the footer -->
 				<slot name="list" />
 			</NcAppNavigationList>
 
-			<!-- Footer for e.g. NcAppNavigationSettings -->
+			<!-- @slot Footer for e.g. NcAppNavigationSettings -->
 			<slot name="footer" />
 		</nav>
 		<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
@@ -69,8 +73,8 @@ import { getTrapStack } from '../../utils/focusTrap.js'
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { createFocusTrap } from 'focus-trap'
 
-import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
 import NcAppNavigationList from '../NcAppNavigationList/index.js'
+import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
 import Vue from 'vue'
 
 export default {
@@ -159,7 +163,7 @@ export default {
 		 * @param {boolean} [state] set the state instead of inverting the current one
 		 */
 		toggleNavigation(state) {
-			// Early return if alreay in that state
+			// Early return if already in that state
 			if (this.open === state) {
 				emit('navigation-toggled', {
 					open: this.open,
@@ -206,7 +210,7 @@ export default {
 <style lang="scss">
 .app-navigation,
 .app-content {
-	/** Distance of the app naviation toggle and the first navigation item to the top edge of the app content container */
+	/** Distance of the app navigation toggle and the first navigation item to the top edge of the app content container */
 	--app-navigation-padding: #{$app-navigation-padding};
 }
 </style>
@@ -241,6 +245,14 @@ export default {
 
 	&--close {
 		margin-left: calc(-1 * min($navigation-width, var(--app-navigation-max-width)));
+	}
+
+	&__search {
+		width: 100%;
+	}
+
+	&__body {
+		overflow-y: scroll;
 	}
 
 	// For legacy purposes support passing a bare list to the content in #default slot and including #footer slot
