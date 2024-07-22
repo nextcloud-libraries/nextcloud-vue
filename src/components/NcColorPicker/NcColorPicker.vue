@@ -59,7 +59,7 @@ export default {
 
 .color0 {
 	width: 100px;
-	height: 40px;
+	height: 34px;
 	border-radius: 6px;
 }
 </style>
@@ -98,7 +98,7 @@ export default {
 
 .color1 {
 	width: 100px;
-	height: 40px;
+	height: 34px;
 	margin-left: 20px;
 	border-radius: 6px;
 }
@@ -133,7 +133,7 @@ export default {
 
 .color0 {
 	width: 100px;
-	height: 40px;
+	height: 34px;
 	margin-left: 20px;
 	border-radius: 6px;
 }
@@ -433,9 +433,9 @@ export default {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			width: 34px;
-			height: 34px;
-			min-height: 34px;
+			width: calc(var(--default-clickable-area) - 10px);
+			height: calc(var(--default-clickable-area) - 10px);
+			min-height: calc(var(--default-clickable-area) - 10px);
 			margin: auto;
 			padding: 0;
 			color: white;
@@ -449,9 +449,9 @@ export default {
 				opacity: .6;
 			}
 			&--active {
-				width: 38px;
-				height: 38px;
-				min-height: 38px;
+				width: calc(var(--default-clickable-area) - 6px);
+				height: calc(var(--default-clickable-area) - 6px);
+				min-height: calc(var(--default-clickable-area) - 6px);
 				transition: all 100ms ease-in-out;
 				opacity: 1 !important;
 			}
@@ -481,8 +481,8 @@ export default {
 		}
 
 		&-active-color {
-			width: 34px;
-			height: 34px;
+			width: calc(var(--default-clickable-area) - 10 px);
+			height: calc(var(--default-clickable-area) - 10 px);
 			border-radius: 17px;
 		}
 
