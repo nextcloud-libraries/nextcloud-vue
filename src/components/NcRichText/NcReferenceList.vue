@@ -15,6 +15,8 @@ import NcReferenceWidget from './NcReferenceWidget.vue'
 import { URL_PATTERN } from './helpers.js'
 
 import axios from '@nextcloud/axios'
+import { getSharingToken } from '@nextcloud/sharing/public'
+import { getCurrentUser } from '@nextcloud/auth'
 import { generateOcsUrl } from '@nextcloud/router'
 
 export default {
@@ -119,15 +121,25 @@ export default {
 		},
 		resolve() {
 			const match = (new RegExp(URL_PATTERN).exec(this.text.trim()))
+			const isPublic = getCurrentUser() === null
 			if (this.limit === 1 && match) {
-				return axios.get(generateOcsUrl('references/resolve', 2) + `?reference=${encodeURIComponent(match[0])}`)
+				return isPublic
+					? axios.get(generateOcsUrl('references/resolvePublic') + `?reference=${encodeURIComponent(match[0])}&sharingToken=${getSharingToken()}`)
+					: axios.get(generateOcsUrl('references/resolve') + `?reference=${encodeURIComponent(match[0])}`)
 			}
 
-			return axios.post(generateOcsUrl('references/extract', 2), {
-				text: this.text,
-				resolve: true,
-				limit: this.limit,
-			})
+			return isPublic
+				? axios.post(generateOcsUrl('references/extractPublic'), {
+					text: this.text,
+					resolve: true,
+					limit: this.limit,
+					sharingToken: getSharingToken(),
+				})
+				: axios.post(generateOcsUrl('references/extract'), {
+					text: this.text,
+					resolve: true,
+					limit: this.limit,
+				})
 		},
 	},
 }
