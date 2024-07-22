@@ -23,13 +23,13 @@
     "lint:fix": "eslint src --fix",
     "test": "TZ=UTC vitest run",
     "test:coverage": "TZ=UTC vitest run --coverage",
+    "test:component": "playwright test -c playwright.config.ts",
+    "test:component:gui": "playwright test --ui -c playwright.config.ts",
     "stylelint": "stylelint src/**/*.vue src/**/*.scss src/**/*.css",
     "stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix",
     "styleguide": "vue-styleguidist --config styleguide.config.cjs server",
     "styleguide:build": "vue-styleguidist --config styleguide.config.cjs build",
-    "cypress": "TZ=UTC cypress run --component",
-    "cypress:gui": "TZ=UTC cypress open --component",
-    "cypress:update-snapshots": "TZ=UTC cypress run --component --spec \"cypress/visual/**/*.cy.{t,j}s\" --env type=base --config screenshotsFolder=cypress/snapshots/base"
+    "update:snapshots": "npm run test:component -- --grep @visual --update-snapshots"
   },
   "exports": {
     ".": {
@@ -107,14 +107,13 @@
     "vue-select": "^4.0.0-beta.6"
   },
   "engines": {
-    "node": "^20.0.0",
+    "node": "^20.11.0",
     "npm": "^10.0.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-import-assertions": "^7.24.7",
     "@babel/plugin-transform-typescript": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
-    "@cypress/vue": "^6.0.1",
     "@fontsource/roboto": "^5.0.13",
     "@mdi/js": "^7.4.47",
     "@mdi/svg": "^7.4.47",
@@ -124,15 +123,14 @@
     "@nextcloud/stylelint-config": "^3.0.1",
     "@nextcloud/vite-config": "^2.1.0",
     "@nextcloud/webpack-vue-config": "github:nextcloud/webpack-vue-config#vue3",
-    "@testing-library/cypress": "^10.0.2",
+    "@playwright/experimental-ct-vue": "^1.45.2",
+    "@playwright/test": "^1.45.2",
     "@types/gettext-parser": "^4.0.4",
-    "@vitest/coverage-v8": "^1.6.0",
+    "@types/node": "^20.14.10",
+    "@vitest/coverage-v8": "^2.0.3",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.5.1",
     "babel-loader-exclude-node-modules-except": "^1.2.1",
-    "cypress": "^13.12.0",
-    "cypress-visual-regression": "5.0.0",
-    "eslint-plugin-cypress": "^3.3.0",
     "file-loader": "^6.2.0",
     "gettext-extractor": "^3.8.0",
     "gettext-parser": "^8.0.0",
@@ -144,8 +142,8 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.5.2",
     "url-loader": "^4.1.1",
-    "vite": "^5.3.1",
-    "vitest": "^1.6.0",
+    "vite": "^5.3.4",
+    "vitest": "^2.0.3",
     "vue-eslint-parser": "^9.4.3",
     "vue-material-design-icons": "^5.3.0",
     "vue-styleguidist": "^4.72.4",

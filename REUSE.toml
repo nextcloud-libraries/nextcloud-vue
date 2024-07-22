@@ -12,7 +12,11 @@ SPDX-FileCopyrightText = "Nextcloud GmbH and Nextcloud contributors"
 SPDX-License-Identifier = "AGPL-3.0-or-later"
 
 [[annotations]]
-path = ["styleguide/assets/dark.css", "styleguide/assets/icons.css", "styleguide/assets/server.css", "cypress/snapshots/**", "tests/unit/functions/usernameToColor/__snapshots__/usernameToColor.spec.js.snap"]
+path = [
+	"styleguide/assets/apps.css", "styleguide/assets/dark.css", "styleguide/assets/icons.css", "styleguide/assets/server.css",
+	"tests/unit/functions/usernameToColor/__snapshots__/usernameToColor.spec.js.snap",
+	"tests/component/snapshots/**"
+]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Nextcloud GmbH and Nextcloud contributors"
 SPDX-License-Identifier = "AGPL-3.0-or-later"

@@ -27,9 +27,8 @@ coverage
 styleguide/build/
 styleguide/index.html
 
-# Cypress files
-cypress/videos
-cypress/screenshots
-cypress/snapshots/actual
-cypress/snapshots/diff
-cypress/snapshots/base/**/*-base-*
+# Playwright files
+/test-results/
+/playwright-report/
+/blob-report/
+/tests/component/setup/.cache/

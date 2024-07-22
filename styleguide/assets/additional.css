@@ -3,8 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 @import 'default.css';
-@import 'server.css';
 @import 'dark.css';
+@import 'server.css';
+@import 'apps.css';
 
 div[data-preview] * {
 	box-sizing: border-box;
@@ -12,11 +13,6 @@ div[data-preview] * {
 
 body {
 	position: relative;
-}
-
-h1,
-h2 {
-	line-height: 1.5 !important;
 }
 
 div[data-preview="AppNavigationItem"],

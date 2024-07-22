@@ -23,7 +23,7 @@ const entryPoints = {
 		const name = item
 			.replace(/\/index\.(j|t)s/, '')
 			.replace('src/directives/', 'Directives/')
-		acc[name] = join(__dirname, item)
+		acc[name] = join(import.meta.dirname, item)
 		return acc
 	}, {}),
 
@@ -31,7 +31,7 @@ const entryPoints = {
 		const name = item
 			.replace(/\/index\.(j|t)s/, '')
 			.replace('src/components/', 'Components/')
-		acc[name] = join(__dirname, item)
+		acc[name] = join(import.meta.dirname, item)
 		return acc
 	}, {}),
 
@@ -39,7 +39,7 @@ const entryPoints = {
 		const name = item
 			.replace(/\/index\.(j|t)s/, '')
 			.replace('src/functions/', 'Functions/')
-		acc[name] = join(__dirname, item)
+		acc[name] = join(import.meta.dirname, item)
 		return acc
 	}, {}),
 
@@ -47,7 +47,7 @@ const entryPoints = {
 		const name = item
 			.replace(/\/index\.(j|t)s/, '')
 			.replace('src/mixins/', 'Mixins/')
-		acc[name] = join(__dirname, item)
+		acc[name] = join(import.meta.dirname, item)
 		return acc
 	}, {}),
 
@@ -55,15 +55,15 @@ const entryPoints = {
 		const name = item
 			.replace(/\/index\.(j|t)s/, '')
 			.replace('src/composables/', 'Composables/')
-		acc[name] = join(__dirname, item)
+		acc[name] = join(import.meta.dirname, item)
 		return acc
 	}, {}),
 
-	index: resolve(__dirname, 'src/index.ts'),
+	index: resolve(import.meta.dirname, 'src/index.ts'),
 }
 
 // Plugin for stripping out <docs> sections from vue files
-const vueDocsPlugin: Plugin = {
+export const vueDocsPlugin: Plugin = {
 	name: 'vue-docs-plugin',
 	transform(code, id) {
 		if (!/vue&type=doc/.test(id)) {
@@ -77,7 +77,7 @@ const vueDocsPlugin: Plugin = {
 const overrides = defineConfig({
 	plugins: [
 		vueDocsPlugin,
-		l10nPlugin(resolve(__dirname, 'l10n')),
+		l10nPlugin(resolve(import.meta.dirname, 'l10n')),
 	],
 	css: {
 		devSourcemap: true,
@@ -86,7 +86,7 @@ const overrides = defineConfig({
 				additionalData: `@use 'sass:math'; $scope_version:${SCOPE_VERSION}; @import 'variables'; @import 'material-icons';`,
 				sourceMapContents: false,
 				includePaths: [
-					resolve(__dirname, 'src/assets'),
+					resolve(import.meta.dirname, 'src/assets'),
 				],
 			},
 		},

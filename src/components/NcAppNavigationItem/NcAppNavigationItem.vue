@@ -316,7 +316,7 @@ Just set the `pinned` prop.
 						<!-- @slot Slot for the optional leading icon -->
 						<slot v-else name="icon" />
 					</div>
-					<span v-if="!editingActive" class="app-navigation-entry__name">
+					<span class="app-navigation-entry__name" :class="{ 'hidden-visually': editingActive }">
 						{{ name }}
 					</span>
 					<div v-if="editingActive" class="editingContainer">
