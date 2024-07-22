@@ -9,6 +9,43 @@ All notable changes to this project will be documented in this file.
 
 <!-- Release notes generated using configuration in .github/release.yml at master -->
 
+## [v8.15.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.15.0) (2024-07-22)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.14.0...v8.15.0)
+
+### 🚀 Enhancements
+* feat(NcAppNavigation): Provide consistent in-app search [\#5831](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5831) \([susnux](https://github.com/susnux)\)
+* feat(NcRichText): Call public reference API when unauthenticated [\#5800](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5800) \([mejo-](https://github.com/mejo-)\)
+
+### 🐛 Fixed bugs
+* fix(NcAppNavigationItem): Fix popper boundary element [\#5632](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5632) \([ChristophWurst](https://github.com/ChristophWurst)\)
+* Use correct date in header [\#5793](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5793) \([AndyScherzinger](https://github.com/AndyScherzinger)\)
+* fix(NcAppNavigationSettings): border radius of toggle button [\#5765](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5765) \([st3iny](https://github.com/st3iny)\)
+* fix(NcAppNavigationCaption): properly align with NcAppNavigationItem [\#5804](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5804) \([GVodyanov](https://github.com/GVodyanov)\)
+* fix(NcActions): Use full window height [\#5806](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5806) \([susnux](https://github.com/susnux)\ [\#5842](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5842) \([Antreesy](https://github.com/Antreesy)\)
+* style(NcAppNavigationCaption): remove margin-bottom [\#5815](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5815) \([GVodyanov](https://github.com/GVodyanov)\)
+* docs: Fix `NcAppNavigationCaption` examples [\#5820](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5820) \([susnux](https://github.com/susnux)\)
+* fix(NcInputField): Make helper text aligned and maxcontrast color [\#5822](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5822) \([susnux](https://github.com/susnux)\)
+* fix(NcInputField): Make focus visible on trailing button look better [\#5823](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5823) \([susnux](https://github.com/susnux)\)
+* fix(NcInputField): Make sure label and placeholder is not jumping [\#5821](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5821) \([susnux](https://github.com/susnux)\)
+* fix(NcListItem): Anchor height was set not to content but random area [\#5780](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5780) \([susnux](https://github.com/susnux)\)
+* fix(NcListItem): do not render counter on falsy values  [\#5834](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5834) \([Antreesy](https://github.com/Antreesy)\)
+* NcAppSettingsSection: make titles normal h3 size [\#5819](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5819) \([GVodyanov](https://github.com/GVodyanov)\)
+* fix(NcAppSidebar): manage focus only after transition has finished [\#5833](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5833) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcColorPicker): Make the color circle size depend on clickable area [\#5816](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5816) \([ChristophWurst](https://github.com/ChristophWurst)\)
+* fix(NcAppContent): splitpane splitter styles with dark theme [\#5843](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5843) \([mejo-](https://github.com/mejo-)\)
+* fix(NcModal): temporary deactivate focus-traps on modal open [\#5783](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5783) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcAppNavigationSearch): Fix focus button when clearing search [\#5850](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5850) \([susnux](https://github.com/susnux)\)
+
+### Other Changes
+* Updated translations
+* Migrate REUSE to TOML [\#5791](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5791) \([AndyScherzinger](https://github.com/AndyScherzinger)\)
+* Add reuse status badge [\#5794](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5794) \([AndyScherzinger](https://github.com/AndyScherzinger)\)
+* chore(docs): remove SPDX header from component docs [\#5810](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5810) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcAppNavigationSettings): use tertiary styling for the toggle button [\#5814](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5814) \([st3iny](https://github.com/st3iny)\)
+
+## New Contributors
+* @GVodyanov made their first contribution in [\#5819](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5819)
+
 ## [v8.14.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.14.0) (2024-07-04)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.13.0...v8.14.0)
 
