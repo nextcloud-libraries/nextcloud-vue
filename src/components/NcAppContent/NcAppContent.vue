@@ -418,23 +418,15 @@ export default {
 			}
 		}
 	}
-	.app-content-wrapper--vertical-split {
-		.splitpanes__splitter {
-			width: 9px;
-			margin-left: -5px;
-			background-color: transparent;
-			border-left: none;
 
-			&:before,
-			&:after {
-				display: none;
-			}
-		}
-	}
-	.app-content-wrapper--horizontal-split {
+	&.splitpanes--vertical {
 		.splitpanes__splitter {
-			height: 9px;
-			margin-top: -5px;
+			background-color: var(--color-main-background);
+			border-left: 1px solid var(--color-border);
+
+			&::before, &::after {
+				background-color: var(--color-border);
+			}
 		}
 	}
 }
