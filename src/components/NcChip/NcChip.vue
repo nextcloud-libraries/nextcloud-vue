@@ -69,7 +69,7 @@ export default {
 </docs>
 
 <template>
-	<div class="nc-chip" :class="{ [`nc-chip--${type}`]: true, 'nc-chip--no-actions': !hasActions }">
+	<div class="nc-chip" :class="{ [`nc-chip--${type}`]: true, 'nc-chip--no-actions': noClose && !hasActions() }">
 		<span class="nc-chip__icon">
 			<!-- @slot The icon slot can be used to set the chip icon. Make sure that the icon is not exceeding a height of `24px`. For round icons a exact size of `24px` is recommended. -->
 			<slot name="icon">
@@ -85,7 +85,7 @@ export default {
 			<!-- @slot The default slot can be used to set the text that is shown -->
 			<slot>{{ text }}</slot>
 		</span>
-		<NcActions v-if="hasActions"
+		<NcActions v-if="canClose || hasActions()"
 			class="nc-chip__actions"
 			:force-menu="!canClose"
 			type="tertiary-no-background">
@@ -103,107 +103,82 @@ export default {
 	</div>
 </template>
 
-<script>
+<script setup>
 import { mdiClose } from '@mdi/js'
-import { defineComponent } from 'vue'
+import { computed, useSlots } from 'vue'
 import { t } from '../../l10n.js'
 
 import NcActions from '../NcActions/NcActions.vue'
 import NcActionButton from '../NcActionButton/NcActionButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 
-export default defineComponent({
-	name: 'NcChip',
-
-	components: {
-		NcActions,
-		NcActionButton,
-		NcIconSvgWrapper,
+const props = defineProps({
+	/**
+	 * aria label to set on the close button
+	 * @default 'Close'
+	 */
+	ariaLabelClose: {
+		type: String,
+		default: t('Close'),
 	},
 
-	props: {
-		/**
-		 * aria label to set on the close button
-		 * @default 'Close'
-		 */
-		ariaLabelClose: {
-			type: String,
-			default: t('Close'),
-		},
-
-		/**
-		 * Main text of the chip
-		 */
-		text: {
-			type: String,
-			default: '',
-		},
-
-		/**
-		 * Chip style
-		 * This sets the background style of the chip, similar to NcButton's `type`
-		 */
-		type: {
-			type: String,
-			default: 'secondary',
-			validator: (value) => ['primary', 'secondary', 'tertiary'].includes(value),
-		},
-
-		/**
-		 * SVG path of the icon to use.
-		 * For example icon paths from `@mdi/js` can be used.
-		 */
-		iconPath: {
-			type: String,
-			default: null,
-		},
-
-		/**
-		 * Inline SVG to use as the icon
-		 */
-		iconSvg: {
-			type: String,
-			default: null,
-		},
-
-		/**
-		 * Set to true to prevent the close button to be shown
-		 */
-		noClose: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * Main text of the chip
+	 */
+	text: {
+		type: String,
+		default: '',
 	},
 
-	emits: ['close'],
-
-	setup() {
-		return {
-			mdiClose,
-		}
+	/**
+	 * Chip style
+	 * This sets the background style of the chip, similar to NcButton's `type`
+	 */
+	type: {
+		type: String,
+		default: 'secondary',
+		validator: (value) => ['primary', 'secondary', 'tertiary'].includes(value),
 	},
 
-	computed: {
-		canClose() {
-			return !this.noClose
-		},
-
-		hasActions() {
-			return this.canClose || (this.$slots?.actions !== undefined) || (this.$scopedSlots.actions !== undefined)
-		},
+	/**
+	 * SVG path of the icon to use, this takes precedence over `iconSVG`.
+	 * For example icon paths from `@mdi/js` can be used.
+	 */
+	iconPath: {
+		type: String,
+		default: null,
 	},
 
-	methods: {
-		t,
+	/**
+	 * Inline SVG to use as the icon
+	 */
+	iconSvg: {
+		type: String,
+		default: null,
+	},
 
-		onClose() {
-			/**
-			 * Emitted when the close button is clicked
-			 */
-			this.$emit('close')
-		},
+	/**
+	 * Set to true to prevent the close button to be shown
+	 */
+	noClose: {
+		type: Boolean,
+		default: false,
 	},
 })
+
+const emit = defineEmits(['close'])
+const slots = useSlots()
+
+const canClose = computed(() => !props.noClose)
+const hasActions = () => Boolean(slots.actions?.())
+const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon?.())
+
+const onClose = () => {
+	/**
+	 * Emitted when the close button is clicked
+	 */
+	emit('close')
+}
 </script>
 
 <style scoped lang="scss">
