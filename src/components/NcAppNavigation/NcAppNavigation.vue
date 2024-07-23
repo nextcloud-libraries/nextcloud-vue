@@ -4,6 +4,107 @@
 -->
 
 <docs>
+```vue
+<template>
+	<div class="styleguide-nc-content">
+		<NcAppNavigation>
+			<!-- TODO replace with template #search -->
+			<template #default>
+				<div class="navigation__header">
+					<!-- TODO replace with NcAppNavigationSearch -->
+					<NcTextField v-model="searchValue" label="Search …" />
+					<NcActions>
+						<NcActionButton close-after-click @click="showModal = true">
+							<template #icon>
+								<IconCog />
+							</template>
+							App settings (close after click)
+						</NcActionButton>
+						<NcActionButton @click="showModal = true">
+							<template #icon>
+								<IconCog />
+							</template>
+							App settings (handle only click)
+						</NcActionButton>
+					</NcActions>
+				</div>
+			</template>
+			<template #list>
+				<NcAppNavigationItem v-for="item in items" :key="item" :name="item">
+					<template #icon>
+						<IconCheck :size="20" />
+					</template>
+				</NcAppNavigationItem>
+			</template>
+			<template #footer>
+				<div class="navigation__footer">
+					<NcButton wide @click="showModal = true">
+						<template #icon>
+							<IconCog />
+						</template>
+						App settings
+					</NcButton>
+					<NcModal v-if="showModal" name="Modal for focus-trap check" @close="showModal = false">
+						<div class="modal-content">
+							<h4>Focus-trap should be locked inside the modal</h4>
+							<NcTextField v-model="modalValue" label="Focus me" />
+						</div>
+					</NcModal>
+				</div>
+			</template>
+		</NcAppNavigation>
+	</div>
+</template>
+
+<script>
+	import IconCheck from 'vue-material-design-icons/Check'
+	import IconCog from 'vue-material-design-icons/Cog'
+
+	export default {
+		components: {
+			IconCheck,
+			IconCog,
+		},
+		provide() {
+			return {
+				'NcContent:setHasAppNavigation': () => {},
+			}
+		},
+		data() {
+			return {
+				items: Array.from({ length: 5 }, (v, i) => `Item ${i+1}`),
+				searchValue: '',
+				modalValue: '',
+				showModal: false,
+			}
+		},
+	}
+</script>
+
+<style scoped>
+	/* Mock NcContent */
+	.styleguide-nc-content {
+		position: relative;
+		height: 300px;
+		background-color: var(--color-background-plain);
+		overflow: hidden;
+	}
+
+	.navigation__header,
+	.navigation__footer {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		padding: 4px;
+	}
+
+	.modal-content {
+		height: 120px;
+		padding: 10px;
+	}
+</style>
+```
+
 The navigation bar can be open and closed from anywhere in the app using the
 nextcloud event bus.
 
@@ -159,7 +260,7 @@ export default {
 		 * @param {boolean} [state] set the state instead of inverting the current one
 		 */
 		toggleNavigation(state) {
-			// Early return if alreay in that state
+			// Early return if already in that state
 			if (this.open === state) {
 				emit('navigation-toggled', {
 					open: this.open,
@@ -206,7 +307,7 @@ export default {
 <style lang="scss">
 .app-navigation,
 .app-content {
-	/** Distance of the app naviation toggle and the first navigation item to the top edge of the app content container */
+	/** Distance of the app navigation toggle and the first navigation item to the top edge of the app content container */
 	--app-navigation-padding: #{$app-navigation-padding};
 }
 </style>
@@ -225,7 +326,7 @@ export default {
 	top: 0;
 	left: 0;
 	padding: 0px;
-	// Above appcontent
+	// Above NcAppContent
 	z-index: 1800;
 	height: 100%;
 	box-sizing: border-box;
@@ -283,14 +384,14 @@ export default {
 	}
 }
 
-// When on mobile, we make the navigation slide over the appcontent
+// When on mobile, we make the navigation slide over the NcAppContent
 @media only screen and (max-width: $breakpoint-mobile) {
 	.app-navigation {
 		position: absolute;
 	}
 }
 
-// Put the toggle behind appsidebar on small screens
+// Put the toggle behind NcAppSidebar on small screens
 @media only screen and (max-width: $breakpoint-small-mobile) {
 	.app-navigation {
 		z-index: 1400;

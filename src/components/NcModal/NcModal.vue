@@ -72,7 +72,7 @@ export default {
 				</div>
 				<div class="form-group">
 					<label for="pizza">What is the most important pizza item?</label>
-					<NcSelect input-id="pizza" :options="['Cheese', 'Tomatos', 'Pineapples']" v-model="pizza" />
+					<NcSelect input-id="pizza" :options="['Cheese', 'Tomatoes', 'Pineapples']" v-model="pizza" />
 				</div>
 				<div class="form-group">
 					<label for="emoji-trigger">Select your favorite emoji</label>
@@ -438,7 +438,7 @@ export default {
 		},
 
 		/**
-		 * Close the modal if the user clicked outside of the modal
+		 * Close the modal if the user clicked outside the modal
 		 * Only relevant if `canClose` is set to true.
 		 */
 		closeOnClickOutside: {
@@ -529,6 +529,7 @@ export default {
 			slideshowTimeout: null,
 			iconSize: 24,
 			focusTrap: null,
+			externalFocusTrapStack: [],
 			randId: GenRandomId(),
 			internalShow: true,
 		}
@@ -701,8 +702,8 @@ export default {
 			}
 			if (arrowHandlers[event.key]) {
 				// Ignore arrow navigation, if there is a current focus outside the modal.
-				// For example, when the focus is in Sidebar or NcActions's items,
-				// arrow navigation should not be intercept by modal slider
+				// For example, when the focus is in Sidebar or NcActions' items,
+				// arrow navigation should not be intercepted by modal slider
 				if (document.activeElement && !this.$el.contains(document.activeElement)) {
 					return
 				}
@@ -793,12 +794,17 @@ export default {
 				allowOutsideClick: true,
 				fallbackFocus: contentContainer,
 				trapStack: getTrapStack(),
-				// Esc can be used without stop in content or additionalTrapElements where it should not deacxtivate modal's focus trap.
+				// Esc can be used without stop in content or additionalTrapElements where it should not deactivate modal's focus trap.
 				// Focus trap is deactivated on modal close anyway.
 				escapeDeactivates: false,
 				setReturnFocus: this.setReturnFocus,
 			}
 
+			// Deactivate other focus traps to unlock modal elements
+			this.externalFocusTrapStack = [...options.trapStack]
+			for (const trap of this.externalFocusTrapStack) {
+				trap.deactivate()
+			}
 			// Init focus trap
 			this.focusTrap = createFocusTrap([contentContainer, ...this.additionalTrapElements], options)
 			this.focusTrap.activate()
@@ -809,6 +815,10 @@ export default {
 			}
 			this.focusTrap?.deactivate()
 			this.focusTrap = null
+			for (const trap of this.externalFocusTrapStack) {
+				trap.activate()
+			}
+			this.externalFocusTrapStack = []
 		},
 
 	},
@@ -837,7 +847,7 @@ export default {
 	top: 0;
 	right: 0;
 	left: 0;
-	// prevent vue show to use display:none and reseting
+	// prevent vue show to use display:none and resetting
 	// the circle animation loop
 	display: flex !important;
 	align-items: center;
@@ -992,7 +1002,7 @@ export default {
 		box-shadow: 0 0 40px rgba(0, 0, 0, .2);
 
 		&__close {
-			// Ensure the close button is always ontop of the content
+			// Ensure the close button is always on top of the content
 			z-index: 1;
 			position: absolute;
 			top: 4px;
@@ -1002,7 +1012,7 @@ export default {
 		&__content {
 			width: 100%;
 			min-height: 52px; // At least the close button shall fit in
-			overflow: auto; // avoids unecessary hacks if the content should be bigger than the modal
+			overflow: auto; // avoids unnecessary hacks if the content should be bigger than the modal
 		}
 	}
 
