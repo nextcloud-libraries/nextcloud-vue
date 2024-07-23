@@ -8,24 +8,25 @@
 <template>
 	<div class="styleguide-nc-content">
 		<NcAppNavigation>
-			<template>
-				<div class="navigation__header">
-					<NcTextField :value.sync="searchValue" label="Search …" />
-					<NcActions>
-						<NcActionButton close-after-click @click="showModal = true">
-							<template #icon>
-								<IconCog />
-							</template>
-							App settings (close after click)
-						</NcActionButton>
-						<NcActionButton @click="showModal = true">
-							<template #icon>
-								<IconCog />
-							</template>
-							App settings (handle only click)
-						</NcActionButton>
-					</NcActions>
-				</div>
+			<template #search>
+				<NcAppNavigationSearch v-model="searchValue">
+					<template #actions>
+						<NcActions>
+							<NcActionButton close-after-click @click="showModal = true">
+								<template #icon>
+									<IconCog :size="20" />
+								</template>
+								App settings (close after click)
+							</NcActionButton>
+							<NcActionButton @click="showModal = true">
+								<template #icon>
+									<IconCog :size="20" />
+								</template>
+								App settings (handle only click)
+							</NcActionButton>
+						</NcActions>
+					</template>
+				</NcAppNavigationSearch>
 			</template>
 			<template #list>
 				<NcAppNavigationItem v-for="item in items" :key="item" :name="item">
