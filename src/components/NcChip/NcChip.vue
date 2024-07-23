@@ -8,7 +8,8 @@
 ```vue
 <template>
 	<div style="display: flex; gap: 8px; flex-wrap: wrap;">
-		<NcChip text="Notes.txt" :icon-path="mdiFile" />
+		<NcChip text="Notes.txt" />
+		<NcChip text="Files" :icon-path="mdiFile" />
 		<NcChip text="Color" type="tertiary" :icon-path="mdiPalette" />
 		<NcChip text="Current time" type="primary" :icon-path="mdiClock" no-close />
 	</div>
@@ -33,7 +34,7 @@ export default {
 It is also possible to use custom components for the icon by using the `icon` slot.
 In this example we are using the `NcAvatar` component to render the users avatar as the icon.
 
-*Hint: If you use round icons like avatars you should set their size to `24px` (or use CSS variable `--chip-size`) to make then fully fill and align with the the chip*
+*Hint: If you use round icons like avatars you should set their size to `24px` (or use CSS variable `--chip-size`) to make them fully fill and align with the the chip*
 
 Also it is possible to pass custom actions.
 
@@ -69,8 +70,13 @@ export default {
 </docs>
 
 <template>
-	<div class="nc-chip" :class="{ [`nc-chip--${type}`]: true, 'nc-chip--no-actions': noClose && !hasActions() }">
-		<span class="nc-chip__icon">
+	<div class="nc-chip"
+		:class="{
+			[`nc-chip--${type}`]: true,
+			'nc-chip--no-actions': noClose && !hasActions(),
+			'nc-chip--no-icon': !hasIcon(),
+		}">
+		<span v-if="hasIcon()" class="nc-chip__icon">
 			<!-- @slot The icon slot can be used to set the chip icon. Make sure that the icon is not exceeding a height of `24px`. For round icons a exact size of `24px` is recommended. -->
 			<slot name="icon">
 				<!-- The default icon wrapper uses a size of 18px to ensure the icon is not clipped by the round chip style -->
@@ -191,7 +197,6 @@ const onClose = () => {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	gap: var(--default-grid-baseline);
 	border-radius: var(--chip-radius);
 	background-color: var(--color-background-hover);
 
@@ -210,6 +215,11 @@ const onClose = () => {
 		padding-inline-end: calc(1.5 * var(--default-grid-baseline));
 	}
 
+	&--no-icon &__text {
+		// Add some more space to the border
+		padding-inline-start: calc(1.5 * var(--default-grid-baseline));
+	}
+
 	&__text {
 		// Allow to grow the text
 		// this is only used if an app forces a width of the chip
@@ -217,11 +227,13 @@ const onClose = () => {
 
 		overflow: hidden;
 		text-overflow: ellipsis;
+		text-wrap: nowrap;
 	}
 
 	&__icon {
 		// Do neither grow nor shrink, size is fixed
 		flex: 0 0 var(--chip-size);
+		margin-inline-end: var(--default-grid-baseline);
 
 		line-height: 1;
 		display: flex;
