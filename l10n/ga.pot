@@ -348,6 +348,9 @@ msgstr "Cuardaigh crios ama"
 msgid "Search results"
 msgstr "Torthaí cuardaigh"
 
+msgid "Search…"
+msgstr "Cuardaigh…"
+
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
