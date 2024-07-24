@@ -84,6 +84,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+$app-navigation-settings-margin: 3px;
+
 #app-settings {
 	margin-top: auto;
 	padding: $app-navigation-settings-margin;
