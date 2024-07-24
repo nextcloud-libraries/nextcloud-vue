@@ -1247,7 +1247,7 @@ export default {
 
 .content {
 	// A padding between the toggle button and the page border
-	--app-sidebar-padding: #{$app-navigation-padding};
+	--app-sidebar-padding: calc(var(--default-grid-baseline, 4px) * 2);
 	// A padding between the toggle button and the page border
 	--app-sidebar-offset: 0;
 	// Explicitly disable transition by default to enable it only when sidebar animation is active
@@ -1256,12 +1256,12 @@ export default {
 }
 
 // When AppSidebar is animation is active - also apply transition for the toggle button offset
-.content:has(.app-sidebar.slide-right-enter-active),
-.content:has(.app-sidebar.slide-right-leave-active) {
+body:has(.app-sidebar.slide-right-enter-active),
+body:has(.app-sidebar.slide-right-leave-active) {
 	transition: --app-sidebar-offset var(--animation-quick);
 }
 
-.content:has(.app-sidebar__toggle) {
+body:has(.app-sidebar__toggle) {
 	--app-sidebar-offset: calc(var(--app-sidebar-padding) + var(--default-clickable-area));
 }
 </style>
@@ -1273,8 +1273,6 @@ $desc-input-padding: 7px;
 $desc-name-height: 30px;
 $desc-subname-height: 22px;
 $desc-height: $desc-name-height + $desc-subname-height;
-
-$top-buttons-spacing: $app-navigation-padding; // align with app navigation
 
 /*
 	Sidebar: to be used within #content
@@ -1309,13 +1307,13 @@ $top-buttons-spacing: $app-navigation-padding; // align with app navigation
 
 	.app-sidebar-header {
 		// Variable for custom content to be aware of space taken by close button (from top-right corner)
-		--app-sidebar-close-button-offset: calc(var(--default-clickable-area) + #{$top-buttons-spacing});
+		--app-sidebar-close-button-offset: calc(var(--default-clickable-area) + var(--app-sidebar-padding));
 
 		> .app-sidebar__close {
 			position: absolute;
 			z-index: 100;
-			top: $top-buttons-spacing;
-			inset-inline-end: $top-buttons-spacing;
+			top: var(--app-sidebar-padding);
+			inset-inline-end: var(--app-sidebar-padding);
 			width: var(--default-clickable-area);
 			height: var(--default-clickable-area);
 		}
@@ -1353,7 +1351,7 @@ $top-buttons-spacing: $app-navigation-padding; // align with app navigation
 						gap: 0; // override gap
 					}
 					.app-sidebar-header__menu {
-						top: $top-buttons-spacing;
+						top: var(--app-sidebar-padding);
 						inset-inline-end: var(--app-sidebar-close-button-offset); // left of the close button
 						position: absolute;
 					}
@@ -1366,7 +1364,7 @@ $top-buttons-spacing: $app-navigation-padding; // align with app navigation
 			// align the menu with the close button
 			.app-sidebar-header__menu {
 				position: absolute;
-				top: $top-buttons-spacing;
+				top: var(--app-sidebar-padding);
 				inset-inline-end: var(--app-sidebar-close-button-offset);
 			}
 			// increase the padding to not overlap the menu
@@ -1406,7 +1404,7 @@ $top-buttons-spacing: $app-navigation-padding; // align with app navigation
 			justify-content: center;
 			align-items: center;
 			padding-inline: var(--app-sidebar-padding);
-			padding-block: #{$top-buttons-spacing} calc(var(--app-sidebar-padding) / 2);
+			padding-block: var(--app-sidebar-padding) calc(var(--app-sidebar-padding) / 2);
 			gap: 0 4px;
 
 			// custom overrides
