@@ -384,6 +384,10 @@ export default {
 		padding-inline: calc(var(--input-padding-start) + var(--input-border-width-offset)) calc(var(--input-padding-end) + var(--input-border-width-offset));
 		padding-block: var(--input-border-width-offset);
 
+		&::placeholder {
+			color: var(--color-text-maxcontrast);
+		}
+
 		&:active:not([disabled]),
 		&:hover:not([disabled]),
 		&:focus:not([disabled]) {
