@@ -1245,10 +1245,15 @@ export default {
   inherits: true;
 }
 
-.content {
-	// A padding between the toggle button and the page border
+body {
+	/**
+	 * The padding between the toggle button and the page border
+	 */
 	--app-sidebar-padding: calc(var(--default-grid-baseline, 4px) * 2);
-	// A padding between the toggle button and the page border
+	/**
+	 * The minimal offset width required to be reserved for the toggle button.
+	 * Automatically changes to 0 when there is no toggle button.
+	 */
 	--app-sidebar-offset: 0;
 	// Explicitly disable transition by default to enable it only when sidebar animation is active
 	// !important to override styles from an older version, because it's global non-scoped styles
