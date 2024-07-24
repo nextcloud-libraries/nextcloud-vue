@@ -1245,7 +1245,7 @@ export default {
 
 .content {
 	// A padding between the toggle button and the page border
-	--app-sidebar-padding: #{$app-navigation-padding};
+	--app-sidebar-padding: calc(var(--default-grid-baseline, 4px) * 2);
 	// A padding between the toggle button and the page border
 	--app-sidebar-offset: 0;
 	// Explicitly disable transition by default to enable it only when sidebar animation is active
@@ -1271,8 +1271,6 @@ $desc-input-padding: 7px;
 $desc-name-height: 30px;
 $desc-subname-height: 22px;
 $desc-height: $desc-name-height + $desc-subname-height;
-
-$top-buttons-spacing: $app-navigation-padding; // align with app navigation
 
 /*
 	Sidebar: to be used within #content
@@ -1308,8 +1306,8 @@ $top-buttons-spacing: $app-navigation-padding; // align with app navigation
 		> .app-sidebar__close {
 			position: absolute;
 			z-index: 100;
-			top: $top-buttons-spacing;
-			right: $top-buttons-spacing;
+			top: var(--app-sidebar-padding);
+			right: var(--app-sidebar-padding);
 			width: var(--default-clickable-area);
 			height: var(--default-clickable-area);
 			opacity: $opacity_normal;
@@ -1340,11 +1338,11 @@ $top-buttons-spacing: $app-navigation-padding; // align with app navigation
 					padding-left: 0;
 					flex: 1 1 auto;
 					min-width: 0;
-					padding-right: calc(2 * var(--default-clickable-area) + $top-buttons-spacing);
+					padding-right: calc(2 * var(--default-clickable-area) + var(--app-sidebar-padding));
 					padding-top: var(--app-sidebar-padding);
 
 					&.app-sidebar-header__desc--without-actions {
-						padding-right: calc(var(--default-clickable-area) + $top-buttons-spacing);
+						padding-right: calc(var(--default-clickable-area) + var(--app-sidebar-padding));
 					}
 
 					.app-sidebar-header__tertiary-actions {
@@ -1355,8 +1353,8 @@ $top-buttons-spacing: $app-navigation-padding; // align with app navigation
 						gap: 0; // override gap
 					}
 					.app-sidebar-header__menu {
-						top: $top-buttons-spacing;
-						right: calc(var(--default-clickable-area) + $top-buttons-spacing); // left of the close button
+						top: var(--app-sidebar-padding);
+						right: calc(var(--default-clickable-area) + var(--app-sidebar-padding)); // left of the close button
 						position: absolute;
 					}
 				}
@@ -1368,15 +1366,15 @@ $top-buttons-spacing: $app-navigation-padding; // align with app navigation
 			// align the menu with the close button
 			.app-sidebar-header__menu {
 				position: absolute;
-				top: $top-buttons-spacing;
-				right: calc($top-buttons-spacing + var(--default-clickable-area));
+				top: var(--app-sidebar-padding);
+				right: calc(var(--app-sidebar-padding) + var(--default-clickable-area));
 			}
 			// increase the padding to not overlap the menu
 			.app-sidebar-header__desc {
-				padding-right: calc(var(--default-clickable-area) * 2 + $top-buttons-spacing);
+				padding-right: calc(var(--default-clickable-area) * 2 + var(--app-sidebar-padding));
 
 				&.app-sidebar-header__desc--without-actions {
-					padding-right: calc(var(--default-clickable-area) + $top-buttons-spacing);
+					padding-right: calc(var(--default-clickable-area) + var(--app-sidebar-padding));
 				}
 			}
 		}
@@ -1408,7 +1406,7 @@ $top-buttons-spacing: $app-navigation-padding; // align with app navigation
 			justify-content: center;
 			align-items: center;
 			padding-inline: var(--app-sidebar-padding);
-			padding-block: #{$top-buttons-spacing} calc(var(--app-sidebar-padding) / 2);
+			padding-block: var(--app-sidebar-padding) calc(var(--app-sidebar-padding) / 2);
 			gap: 0 4px;
 
 			// custom overrides
