@@ -4,6 +4,13 @@
 -->
 
 <docs>
+### Exposed CSS Variables
+
+| Variable                | Description                                                                                                                               |
+|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| `--app-sidebar-padding` | The padding between the toggle button and the page border.                                                                                |
+| `--app-sidebar-offset`  | The minimal offset width required to be reserved for the toggle button. <br /> Automatically changes to 0 when there is no toggle button. |
+
 ### General description
 
 This component provides a way to include the standardised sidebar.
