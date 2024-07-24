@@ -4,6 +4,15 @@
 -->
 
 <docs>
+### Exposed CSS Variables
+
+| Variable                   | Description                                                            |
+|----------------------------|------------------------------------------------------------------------|
+| `--app-navigation-padding` | The padding between the toggle button and the page border              |
+| `--app-navigation-offset`  | The minimal offset width required to be reserved for the toggle button |
+
+### General usage
+
 ```vue
 <template>
 	<div class="styleguide-nc-content">
@@ -52,6 +61,12 @@
 				</div>
 			</template>
 		</NcAppNavigation>
+
+		<div class="nc-app-content-stub">
+			<div class="top-bar">
+				Some content, moved using --app-navigation-offset.
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -87,6 +102,7 @@
 		height: 300px;
 		background-color: var(--color-background-plain);
 		overflow: hidden;
+		display: flex;
 	}
 
 	.navigation__header,
@@ -100,6 +116,14 @@
 	.modal-content {
 		height: 120px;
 		padding: 10px;
+	}
+
+	.top-bar {
+		/* Reserver space for the navigation toggle button */
+		margin-left: var(--app-navigation-offset);
+		/* General padding */
+		padding: var(--default-grid-baseline);
+		height: 50px;
 	}
 </style>
 ```
@@ -308,10 +332,20 @@ export default {
 </script>
 
 <style lang="scss">
-.app-navigation,
-.app-content {
-	/** Distance of the app navigation toggle and the first navigation item to the top edge of the app content container */
-	--app-navigation-padding: #{$app-navigation-padding};
+:root {
+	/**
+	 * The distance between the app navigation toggle and the first navigation item to the top edge of the app content container
+	 */
+	 --app-navigation-padding: calc(var(--default-grid-baseline, 4px) * 2);
+
+	/**
+	 * The minimal offset width required to be reserved for the toggle button
+	 */
+	 --app-navigation-offset: 0;
+
+	 &:has(.app-navigation) {
+		 --app-navigation-offset: calc(var(--app-navigation-padding) + var(--default-clickable-area));
+	 }
 }
 </style>
 
