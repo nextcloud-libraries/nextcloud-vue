@@ -526,7 +526,7 @@ export default {
 		<template #option="option">
 			<NcListItemIcon v-if="userSelect"
 				v-bind="option"
-				:avatar-size="24"
+				:avatar-size="32"
 				:name="option[localLabel]"
 				:search="search" />
 			<NcEllipsisedOption v-else
@@ -536,7 +536,7 @@ export default {
 		<template #selected-option="selectedOption">
 			<NcListItemIcon v-if="userSelect"
 				v-bind="selectedOption"
-				:avatar-size="24"
+				:avatar-size="32"
 				:name="selectedOption[localLabel]"
 				:search="search" />
 			<NcEllipsisedOption v-else
