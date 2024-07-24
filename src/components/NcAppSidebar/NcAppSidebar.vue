@@ -1250,7 +1250,7 @@ export default {
   inherits: true;
 }
 
-.content {
+body {
 	/**
 	 * The padding between the toggle button and the page border
 	 */
@@ -1266,12 +1266,12 @@ export default {
 }
 
 // When AppSidebar is animation is active - also apply transition for the toggle button offset
-.content:has(.app-sidebar.slide-right-enter-active),
-.content:has(.app-sidebar.slide-right-leave-active) {
+body:has(.app-sidebar.slide-right-enter-active),
+body:has(.app-sidebar.slide-right-leave-active) {
 	transition: --app-sidebar-offset var(--animation-quick);
 }
 
-.content:has(.app-sidebar__toggle) {
+body:has(.app-sidebar__toggle) {
 	--app-sidebar-offset: calc(var(--app-sidebar-padding) + var(--default-clickable-area));
 }
 </style>
