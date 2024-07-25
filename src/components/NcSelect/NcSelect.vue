@@ -1181,7 +1181,7 @@ body {
 	/* Override default vue-select styles */
 	min-height: $clickable-area;
 	min-width: 260px;
-	margin: 0;
+	margin: 0 0 var(--default-grid-baseline);
 
 	.select__label {
 		display: block;
@@ -1189,7 +1189,8 @@ body {
 	}
 
 	.vs__selected {
-		height: 32px;
+		height: calc(var(--default-clickable-area) - var(--default-grid-baseline));
+		margin: calc(var(--default-grid-baseline) / 2);
 		padding: 0 8px 0 12px;
 		border-radius: 18px !important;
 		background: var(--color-primary-element-light);
@@ -1198,10 +1199,15 @@ body {
 
 	.vs__search {
 		text-overflow: ellipsis;
+		color: var(--color-main-text);
+
+		&::placeholder {
+			color: var(--color-text-maxcontrast);
+		}
 	}
 
 	.vs__search, .vs__search:focus {
-		margin: 2px 0 0;
+		margin: 0;
 	}
 
 	.vs__dropdown-toggle {
@@ -1267,12 +1273,13 @@ body {
 
 	.vs__selected-options {
 		// If search is hidden, ensure that the height of the search is the same
-		min-height: 40px; // 36px search height + 4px search margin
+		min-height: var(--default-clickable-area);
 
 		// Hide search from dom if unused to prevent unneeded flex wrap
 		.vs__selected ~ .vs__search[readonly] {
 			position: absolute;
 		}
+		padding: 0 5px;
 	}
 
 	&.vs--single {
@@ -1336,6 +1343,6 @@ body {
 
 // Selected users require slightly different padding
 .user-select .vs__selected {
-	padding: 0 2px !important;
+	padding: 0 5px !important;
 }
 </style>
