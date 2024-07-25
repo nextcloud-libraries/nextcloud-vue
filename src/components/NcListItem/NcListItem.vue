@@ -218,6 +218,37 @@
 				<CheckboxBlankCircle :size="16" fill-color="#0082c9"/>
 			</template>
 		</NcListItem>
+		<NcListItem
+			:name="'Name of the element with normal counter'"
+			:bold="false"
+			:details="'1h'"
+			:counter-number="44">
+			<template #icon>
+				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+			</template>
+			<template #subname>
+				In this slot you can put both text and other components such as icons
+			</template>
+			<template #tags>
+				<NcChip>
+					Work
+				</NcChip>
+				<NcChip>
+					To Do
+				</NcChip>
+			</template>
+			<template #actions>
+				<NcActionButton>
+					Button one
+				</NcActionButton>
+				<NcActionButton>
+					Button two
+				</NcActionButton>
+				<NcActionButton>
+					Button three
+				</NcActionButton>
+			</template>
+		</NcListItem>
 	</ul>
 </template>
 
@@ -357,6 +388,7 @@
 				:class="{
 					'list-item--compact': compact,
 					'list-item--one-line': oneLine,
+					'list-item--tagged': $slots.tags,
 				}"
 				@mouseover="handleMouseover"
 				@mouseleave="handleMouseleave">
@@ -374,7 +406,7 @@
 					<slot name="icon" />
 
 					<!-- Main content -->
-					<div class="list-item-content">
+					<div class="list-item-content" v-if="!$slots.tags">
 						<div class="list-item-content__main">
 							<div class="list-item-content__name">
 								<!-- @slot Slot for the first line of the component. prop 'name' is used as a fallback is no slots are provided -->
@@ -385,6 +417,10 @@
 								:class="{'list-item-content__subname--bold': bold}">
 								<!-- @slot Slot for the second line of the component -->
 								<slot name="subname" />
+							</div>
+							<div class="list-item-content__tags" v-if="$slots.tags">
+								<!-- @slot This slot is used for the third line of the component -->
+								<slot name="tags" />
 							</div>
 						</div>
 						<div class="list-item-content__details">
@@ -410,16 +446,63 @@
 							</div>
 						</div>
 					</div>
+
+					<div class="list-item-content" v-if="$slots.tags">
+						<div class="list-item-content__name">
+							<!-- @slot Slot for the first line of the component. prop 'name' is used as a fallback is no slots are provided -->
+							<slot name="name">{{ name }}</slot>
+						</div>
+						<div class="list-item-inner-content">
+							<div class="list-item-inner-content__main">
+								<div v-if="hasSubname"
+									 class="list-item-content__subname"
+									 :class="{'list-item-content__subname--bold': bold}">
+									<!-- @slot Slot for the second line of the component -->
+									<slot name="subname" />
+								</div>
+								<div class="list-item-content__tags" v-if="$slots.tags">
+									<!-- @slot This slot is used for the third line of the component -->
+									<slot name="tags" />
+								</div>
+							</div>
+
+							<div class="list-item-inner-content__details">
+								<div>
+									<div v-if="showDetails" class="list-item-details__details">
+										<!-- @slot This slot is used for some details in form of icon (prop `details` as a fallback) -->
+										<slot name="details">{{ details }}</slot>
+									</div>
+
+									<!-- Counter and indicator -->
+									<div v-if="counterNumber || hasIndicator"
+										 v-show="showAdditionalElements"
+										 class="list-item-details__extra">
+										<NcCounterBubble v-if="counterNumber"
+														 :active="isActive || active"
+														 class="list-item-details__counter"
+														 :type="counterType">
+											{{ counterNumber }}
+										</NcCounterBubble>
+
+										<span v-if="hasIndicator" class="list-item-details__indicator">
+										<!-- @slot This slot is used for some indicator in form of icon -->
+										<slot name="indicator" />
+									</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</a>
 
 				<!-- Actions -->
 				<div v-show="forceDisplayActions || displayActionsOnHoverFocus"
-					class="list-item-content__actions"
-					@focusout="handleBlur">
+					 class="list-item-content__actions"
+					 @focusout="handleBlur">
 					<NcActions ref="actions"
-						:primary="isActive || active"
-						:aria-label="computedActionsAriaLabel"
-						@update:open="handleActionsUpdateOpen">
+							   :primary="isActive || active"
+							   :aria-label="computedActionsAriaLabel"
+							   @update:open="handleActionsUpdateOpen">
 						<!-- @slot Provide the actions for the right side quick menu -->
 						<slot name="actions" />
 					</NcActions>
@@ -778,6 +861,14 @@ export default {
 	}
 }
 
+.list-item-content__tags {
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
+	align-items: center;
+	align-content: center;
+}
+
 // NcListItem
 .list-item {
 	--list-item-padding: 8px;
@@ -804,6 +895,10 @@ export default {
 	&:has(:active),
 	&:has(:focus-visible) {
 		background-color: var(--color-background-hover);
+
+		a {
+			max-width: calc(100% - var(--button-size));
+		}
 	}
 
 	&:has(&__anchor:focus-visible) {
@@ -839,6 +934,37 @@ export default {
 		}
 		.list-item-content__name {
 			align-self: center;
+		}
+	}
+
+	&--tagged {
+		--list-item-height: calc(3 * var(--default-line-height));
+		padding-inline: calc((calc(2 * var(--default-line-height)) - var(--list-item-border-radius)) / 2);
+		display: flex;
+		flex-direction: row;
+
+		.list-item-content {
+			dispay: flex;
+			flex-direction: column;
+		}
+
+		.list-item-inner-content {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+
+			&__main {
+				flex-grow: 1;
+			}
+
+			&__details {
+				display: flex;
+				flex-direction: row;
+			}
+		}
+
+		a {
+			max-width: 100%;
 		}
 	}
 
