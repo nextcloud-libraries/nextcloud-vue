@@ -39,6 +39,9 @@ msgstr "Aktionen für das Element \"{name}“"
 msgid "Activities"
 msgstr "Aktivitäten"
 
+msgid "Add to a project"
+msgstr "Einem Projekt hinzufügen"
+
 msgid "Animals & Nature"
 msgstr "Tiere & Natur"
 
@@ -116,6 +119,9 @@ msgstr "Farbauswahl"
 msgid "Confirm changes"
 msgstr "Änderungen bestätigen"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "Verbinden Sie Elemente mit einem Projekt, um sie leichter zu finden"
+
 msgid "Custom"
 msgstr "Benutzerdefiniert"
 
@@ -154,6 +160,15 @@ msgstr ""
 msgid "External documentation for {name}"
 msgstr "Externe Dokumentation für {name}"
 
+msgid "Failed to add the item to the project"
+msgstr "Das Element konnte nicht zum Projekt hinzugefügt werden"
+
+msgid "Failed to create a project"
+msgstr "Fehler beim Erstellen eines Projektes"
+
+msgid "Failed to rename the project"
+msgstr "Fehler beim Umbenennen eines Projektes"
+
 msgid "Favorite"
 msgstr "Favorit"
 
@@ -178,6 +193,9 @@ msgstr "Zurück zur Liste"
 
 msgid "Gold"
 msgstr "Gold"
+
+msgid "Hide details"
+msgstr "Details ausblenden"
 
 msgid "Hide password"
 msgstr "Passwort verbergen"
@@ -313,6 +331,9 @@ msgstr "Verwandte Ressourcen"
 msgid "Related team resources"
 msgstr "Verwandte Team-Ressourcen"
 
+msgid "Rename project"
+msgstr "Projekt umbenennen"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Rosiges Braun"
@@ -331,6 +352,9 @@ msgstr "Nach Zeitzone suchen"
 
 msgid "Search results"
 msgstr "Suchergebnisse"
+
+msgid "Search…"
+msgstr "Suche…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -355,6 +379,9 @@ msgstr "Einstellungen"
 
 msgid "Settings navigation"
 msgstr "Einstellungen für die Navigation"
+
+msgid "Show details"
+msgstr "Details anzeigen"
 
 msgid "Show password"
 msgstr "Passwort anzeigen"
@@ -388,6 +415,9 @@ msgstr "Symbole"
 
 msgid "Travel & Places"
 msgstr "Reisen & Orte"
+
+msgid "Type to search for existing projects"
+msgstr "Tippen, um nach vorhandenen Projekten zu suchen"
 
 msgid "Type to search time zone"
 msgstr "Tippen, um Zeitzone zu suchen"
