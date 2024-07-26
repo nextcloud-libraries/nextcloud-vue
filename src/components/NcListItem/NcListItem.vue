@@ -467,28 +467,26 @@
 							</div>
 
 							<div class="list-item-inner-content__details">
-								<div>
-									<div v-if="showDetails" class="list-item-details__details">
-										<!-- @slot This slot is used for some details in form of icon (prop `details` as a fallback) -->
-										<slot name="details">{{ details }}</slot>
-									</div>
+								<div v-if="showDetails" class="list-item-inner-content__details__details">
+									<!-- @slot This slot is used for some details in form of icon (prop `details` as a fallback) -->
+									<slot name="details">{{ details }}</slot>
+								</div>
 
-									<!-- Counter and indicator -->
-									<div v-if="counterNumber || hasIndicator"
-										 v-show="showAdditionalElements"
-										 class="list-item-details__extra">
-										<NcCounterBubble v-if="counterNumber"
-														 :active="isActive || active"
-														 class="list-item-details__counter"
-														 :type="counterType">
-											{{ counterNumber }}
-										</NcCounterBubble>
+								<!-- Counter and indicator -->
+								<div v-if="counterNumber || hasIndicator"
+									 v-show="showAdditionalElements"
+									 class="list-item-inner-content__details__extra">
+									<NcCounterBubble v-if="counterNumber"
+													 :active="isActive || active"
+													 class="list-item-details__counter"
+													 :type="counterType">
+										{{ counterNumber }}
+									</NcCounterBubble>
 
-										<span v-if="hasIndicator" class="list-item-details__indicator">
-										<!-- @slot This slot is used for some indicator in form of icon -->
-										<slot name="indicator" />
-									</span>
-									</div>
+									<span v-if="hasIndicator" class="list-item-inner-content__details__indicator">
+									<!-- @slot This slot is used for some indicator in form of icon -->
+									<slot name="indicator" />
+								</span>
 								</div>
 							</div>
 						</div>
@@ -897,7 +895,7 @@ export default {
 		background-color: var(--color-background-hover);
 
 		a {
-			max-width: calc(100% - var(--button-size));
+			max-width: calc(100% - var(--default-clickable-area));
 		}
 	}
 
@@ -942,29 +940,60 @@ export default {
 		padding-inline: calc((calc(2 * var(--default-line-height)) - var(--list-item-border-radius)) / 2);
 		display: flex;
 		flex-direction: row;
+		flex-wrap: nowrap !important;
 
 		.list-item-content {
 			dispay: flex;
 			flex-direction: column;
+
+			&__name {
+				max-width: 100%;
+			}
+
+			&__tags {
+				overflow-y: auto;
+			}
 		}
 
 		.list-item-inner-content {
 			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
+			max-width: 100%;
 
 			&__main {
-				flex-grow: 1;
+				flex: 0 1 auto;
+				min-width: 0;
 			}
 
 			&__details {
 				display: flex;
-				flex-direction: row;
+				flex-direction: column;
+				justify-content: end;
+				align-items: end;
+				white-space: nowrap;
+				margin-left: calc(var(--default-grid-baseline) * 2);
+
+				&__details {
+					color: var(--color-text-maxcontrast);
+					height: var(var(--default-line-height));
+					font-weight: normal;
+				}
+
+				&__extra {
+					height: var(--default-line-height);
+					display: flex;
+					align-items: center;
+				}
 			}
 		}
 
 		a {
 			max-width: 100%;
+		}
+
+		.one-line .envelope__subtitle__subject {
+			max-width: 300px;
 		}
 	}
 
