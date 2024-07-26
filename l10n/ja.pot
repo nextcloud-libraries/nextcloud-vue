@@ -347,6 +347,9 @@ msgstr "タイムゾーンを検索"
 msgid "Search results"
 msgstr "検索結果"
 
+msgid "Search…"
+msgstr "検索…"
+
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
