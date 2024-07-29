@@ -355,6 +355,7 @@
 				class="list-item"
 				:class="{
 					'list-item--compact': compact,
+					'list-item--legacy': isLegacy,
 					'list-item--one-line': oneLine,
 				}"
 				@mouseover="handleMouseover"
@@ -577,6 +578,15 @@ export default {
 		'update:menuOpen',
 	],
 
+	setup() {
+		const [major] = window._oc_config?.version.split('.', 2) ?? []
+		const isLegacy = major && Number.parseInt(major) < 30
+
+		return {
+			isLegacy,
+		}
+	},
+
 	data() {
 		return {
 			hovered: false,
@@ -773,7 +783,7 @@ export default {
 
 // NcListItem
 .list-item {
-	--list-item-padding: 8px;
+	--list-item-padding: var(--default-grid-baseline);
 	// The content are two lines of text and respect the 1.5 line height
 	--list-item-height: 2lh;
 	--list-item-border-radius: var(--border-radius-element, 32px);
@@ -783,9 +793,7 @@ export default {
 	position: relative;
 	flex: 0 0 auto;
 	justify-content: flex-start;
-	// we need to make sure the elements are not cut off by the border
-	padding-inline: calc((var(--list-item-height) - var(--list-item-border-radius)) / 2);
-	padding-block: var(--list-item-padding);
+	padding: var(--list-item-padding);
 	width: 100%;
 	border-radius: var(--border-radius-element, 32px);
 	cursor: pointer;
@@ -805,18 +813,29 @@ export default {
 	}
 
 	&--compact {
-		--list-item-padding: 2px;
+		--list-item-padding: calc(0.5 * var(--default-grid-baseline)) var(--default-grid-baseline);
+
+		&:not(:has(.list-item-content__subname)) {
+			--list-item-height: var(--default-clickable-area);
+		}
 	}
-	.list-item-content__details {
-		display: flex;
-		flex-direction: column;
-		justify-content: end;
-		align-items: end;
+
+	&--legacy {
+		--list-item-padding: calc(2 * var(--default-grid-baseline));
+
+		&.list-item--compact {
+			--list-item-padding: var(--default-grid-baseline) calc(2 * var(--default-grid-baseline));
+		}
 	}
+
 	&--one-line {
 		--list-item-height: var(--default-clickable-area);
 		--list-item-border-radius: var(--border-radius-element, calc(var(--default-clickable-area) / 2));
-		--list-item-padding: 2px;
+		--list-item-padding: var(--default-grid-baseline);
+
+		&#{&}--legacy {
+			--list-item-padding: 2px calc((var(--list-item-height) - var(--list-item-border-radius)) / 2);
+		}
 
 		.list-item-content__main {
 			display: flex;
@@ -851,8 +870,9 @@ export default {
 		display: flex;
 		flex: 1 0;
 		justify-content: space-between;
-		padding-left: 8px;
+		padding-left: calc(2 * var(--default-grid-baseline));
 		min-width: 0;
+
 		&__main {
 			flex: 1 0;
 			width: 0;
@@ -861,6 +881,13 @@ export default {
 			&--oneline {
 				display: flex;
 			}
+		}
+
+		&__details {
+			display: flex;
+			flex-direction: column;
+			justify-content: end;
+			align-items: end;
 		}
 
 		&__actions {
@@ -886,8 +913,9 @@ export default {
 			margin: 0 5px;
 		}
 	}
+
 	&__extra {
-		margin-top: 4px;
+		margin-top: var(--default-grid-baseline);
 	}
 }
 
