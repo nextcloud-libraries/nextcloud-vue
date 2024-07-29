@@ -149,7 +149,7 @@ import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 
 import { userStatus } from '../../mixins/index.js'
 
-// global margin, ratio
+// global margin, ^2 ratio
 const margin = 8
 const defaultSize = 32
 
