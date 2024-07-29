@@ -536,8 +536,9 @@ export default {
 		<template #selected-option="selectedOption">
 			<NcListItemIcon v-if="userSelect"
 				v-bind="selectedOption"
-				:avatar-size="32"
+				:avatar-size="avatarSize"
 				:name="selectedOption[localLabel]"
+				no-margin
 				:search="search" />
 			<NcEllipsisedOption v-else
 				:name="String(selectedOption[localLabel])"
@@ -557,9 +558,6 @@ export default {
 </template>
 
 <script>
-import '@nextcloud/vue-select/dist/vue-select.css'
-
-import Vue from 'vue'
 import { VueSelect } from '@nextcloud/vue-select'
 import {
 	autoUpdate,
@@ -569,6 +567,7 @@ import {
 	offset,
 	shift,
 } from '@floating-ui/dom'
+import Vue from 'vue'
 import { t } from '../../l10n.js'
 
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
@@ -579,6 +578,8 @@ import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
 import GenRandomId from '../../utils/GenRandomId.js'
+
+import '@nextcloud/vue-select/dist/vue-select.css'
 
 export default {
 	name: 'NcSelect',
@@ -965,6 +966,16 @@ export default {
 		' ',
 	],
 
+	setup() {
+		const clickableArea = Number.parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-clickable-area'))
+		const gridBaseLine = Number.parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-grid-baseline'))
+		const avatarSize = clickableArea - 2 * gridBaseLine
+
+		return {
+			avatarSize,
+		}
+	},
+
 	data() {
 		return {
 			search: '',
@@ -1179,23 +1190,34 @@ body {
 	min-width: 260px;
 	margin: 0 0 var(--default-grid-baseline);
 
+	&.vs--open {
+		--vs-border-width: var(--border-width-input-focused, 2px);
+	}
+
 	.select__label {
 		display: block;
 		margin-bottom: 2px;
 	}
 
 	.vs__selected {
-		height: calc(var(--default-clickable-area) - var(--default-grid-baseline));
+		height: calc(var(--default-clickable-area) - 2 * var(--vs-border-width) - var(--default-grid-baseline));
 		margin: calc(var(--default-grid-baseline) / 2);
-		padding: 0 8px 0 12px;
-		border-radius: 18px !important;
+		padding-block: 0;
+		padding-inline: 12px 8px;
+		border-radius: 16px !important;
 		background: var(--color-primary-element-light);
 		border: none;
+	}
+
+	&.vs--open .vs__selected:first-of-type {
+		margin-inline-start: calc(var(--default-grid-baseline) / 2 - (var(--border-width-input-focused, 2px) - var(--border-width-input, 2px))) !important; // prevent jumping
 	}
 
 	.vs__search {
 		text-overflow: ellipsis;
 		color: var(--color-main-text);
+		min-height: unset !important;
+		height: calc(var(--default-clickable-area) - 2 * var(--vs-border-width)) !important;
 
 		&::placeholder {
 			color: var(--color-text-maxcontrast);
@@ -1269,7 +1291,7 @@ body {
 
 	.vs__selected-options {
 		// If search is hidden, ensure that the height of the search is the same
-		min-height: var(--default-clickable-area);
+		min-height: calc(var(--default-clickable-area) - 2 * var(--vs-border-width));
 
 		// Hide search from dom if unused to prevent unneeded flex wrap
 		.vs__selected ~ .vs__search[readonly] {
@@ -1339,6 +1361,6 @@ body {
 
 // Selected users require slightly different padding
 .user-select .vs__selected {
-	padding: 0 5px !important;
+	padding-inline: 0 5px !important;
 }
 </style>
