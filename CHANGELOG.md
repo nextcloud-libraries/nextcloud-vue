@@ -9,6 +9,22 @@ All notable changes to this project will be documented in this file.
 
 <!-- Release notes generated using configuration in .github/release.yml at master -->
 
+## [v8.15.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.15.1) (2024-07-29)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.15.0...v8.15.1)
+
+### 🐛 Fixed bugs
+* fix(NcListItem): Make paddings smaller again on Nextcloud 30 [\#5879](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5879) \([susnux](https://github.com/susnux)\) 
+* fix(NcChip): Ensure chips without icon do not reserve empty space for icon [\#5859](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5859) \([susnux](https://github.com/susnux)\)
+* fix: alignment of listitem name for one line layout [\#5853](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5853) \([GretaD](https://github.com/GretaD)\)
+* NcActionCheckbox: align with NcActionText [\#5839](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5839) \([GVodyanov](https://github.com/GVodyanov)\)
+* NcSelect: make same height and color as NcTextField [\#5829](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5829) \([GVodyanov](https://github.com/GVodyanov)\)
+* fix(NcSelect): increase avatar size to show subname [\#5865](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5865) \([luka-nextcloud](https://github.com/luka-nextcloud)\)
+* NcListItem: remove max width [\#5830](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5830) \([GVodyanov](https://github.com/GVodyanov)\)
+
+### Changed
+* fix(NcAppNavigation): update docs example with NcAppNavigationSearch component [\#5857](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5857) \([Antreesy](https://github.com/Antreesy)\)
+* Updated translations
+
 ## [v8.15.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.15.0) (2024-07-22)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.14.0...v8.15.0)
 
