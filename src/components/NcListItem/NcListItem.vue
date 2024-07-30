@@ -943,7 +943,7 @@ export default {
 		flex-wrap: nowrap !important;
 
 		.list-item-content {
-			dispay: flex;
+			display: flex;
 			flex-direction: column;
 
 			&__name {
@@ -976,7 +976,7 @@ export default {
 
 				&__details {
 					color: var(--color-text-maxcontrast);
-					height: var(var(--default-line-height));
+					height: var(--default-line-height);
 					font-weight: normal;
 				}
 
