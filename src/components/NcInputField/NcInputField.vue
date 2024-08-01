@@ -441,7 +441,7 @@ export default {
 		margin-inline: var(--input-padding-start) var(--input-padding-end);
 		max-width: fit-content;
 		font-size: var(--input-label-font-size);
-		inset-block-start: calc((var(--default-clickable-area) - var(--default-line-height)) / 2); // center the label vertically
+		inset-block-start: calc((var(--default-clickable-area) - 1lh) / 2); // center the label vertically
 		inset-inline: var(--border-width-input-focused, 2px);
 		// Fix color so that users do not think the input already has content
 		color: var(--color-text-maxcontrast);
