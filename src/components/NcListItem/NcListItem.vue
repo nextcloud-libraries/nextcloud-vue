@@ -792,7 +792,7 @@ export default {
 .list-item {
 	--list-item-padding: var(--default-grid-baseline);
 	// The content are two lines of text and respect the 1.5 line height
-	--list-item-height: calc(2 * var(--default-line-height));
+	--list-item-height: 2lh;
 	--list-item-border-radius: var(--border-radius-element, 32px);
 	// General styles
 	box-sizing: border-box;
