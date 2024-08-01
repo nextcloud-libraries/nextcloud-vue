@@ -434,7 +434,7 @@ export default {
 		position: absolute;
 		margin-inline: 14px 0;
 		max-width: fit-content;
-		inset-block-start: calc((var(--default-clickable-area) - var(--default-line-height)) / 2); // center the label vertically
+		inset-block-start: calc((var(--default-clickable-area) - 1lh) / 2); // center the label vertically
 		inset-inline: 0;
 		// Fix color so that users do not think the input already has content
 		color: var(--color-text-maxcontrast);
