@@ -192,7 +192,7 @@ export default {
 
 	img {
 		padding: 12px;
-		height: 44px;
+		height: var(--default-clickable-area);
 		display: block;
 		background-repeat: no-repeat;
 		background-position: center;
@@ -252,7 +252,7 @@ li.collection-list-item {
 
 		li {
 			display: flex;
-			margin-left: 44px;
+			margin-left: var(--default-clickable-area);
 			border-radius: 3px;
 			cursor: pointer;
 

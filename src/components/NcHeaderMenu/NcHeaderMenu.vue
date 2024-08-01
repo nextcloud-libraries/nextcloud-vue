@@ -387,7 +387,7 @@ $externalMargin: 8px;
 		overflow: auto;
 		width: 350px;
 		max-width: calc(100vw - 2 * $externalMargin);
-		min-height: calc(44px * 1.5);
+		min-height: calc(var(--default-clickable-area) * 1.5);
 		max-height: calc(100vh - 50px * 2);
 		:deep(.empty-content) {
 			margin: 12vh 10px;
@@ -397,7 +397,7 @@ $externalMargin: 8px;
 
 @media only screen and (max-width: $breakpoint-small-mobile) {
 	.header-menu {
-		width: $clickable-area;
+		width: var(--default-clickable-area);
 	}
 }
 </style>

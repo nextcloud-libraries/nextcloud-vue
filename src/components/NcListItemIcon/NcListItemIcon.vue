@@ -357,11 +357,11 @@ export default {
 	}
 
 	&__icon {
-		width: $clickable-area;
-		height: $clickable-area;
+		width: var(--default-clickable-area);
+		height: var(--default-clickable-area);
 		color: var(--color-text-maxcontrast);
 		&.icon {
-			flex: 0 0 $clickable-area;
+			flex: 0 0 var(--default-clickable-area);
 			opacity: $opacity_normal;
 			background-position: center;
 			background-size: 16px;

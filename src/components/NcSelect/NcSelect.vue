@@ -1179,7 +1179,7 @@ body {
 
 .v-select.select {
 	/* Override default vue-select styles */
-	min-height: $clickable-area;
+	min-height: var(--default-clickable-area);
 	min-width: 260px;
 	margin: 0 0 var(--default-grid-baseline);
 

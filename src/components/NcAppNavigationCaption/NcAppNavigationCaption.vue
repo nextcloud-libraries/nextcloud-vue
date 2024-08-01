@@ -261,7 +261,7 @@ export default {
 		font-weight: bold;
 		color: var(--color-main-text);
 		font-size: var(--default-font-size);
-		line-height: $clickable-area;
+		line-height: var(--default-clickable-area);
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -274,12 +274,12 @@ export default {
 	}
 
 	&__actions {
-		flex: 0 0 $clickable-area;
+		flex: 0 0 var(--default-clickable-area);
 	}
 }
 
 // extra top space if it's not the first item on the list
 .app-navigation-caption:not(:first-child) {
-	margin-top: math.div($clickable-area, 2);
+	margin-top: calc(var(--default-clickable-area) / 2);
 }
 </style>
