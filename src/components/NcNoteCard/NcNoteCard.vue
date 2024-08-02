@@ -14,30 +14,31 @@ available in four versions:
 
 When using an error type,
 
+### Usage
+
 ```vue
 <template>
 	<div>
-		<NcNoteCard type="warning">
-			<p>This is dangerous</p>
-		</NcNoteCard>
+		<NcNoteCard type="warning" text="This is dangerous" />
 
-		<NcNoteCard type="error" heading="Error">
-			<p>The server is not happy and reported the following error</p>
-		</NcNoteCard>
+		<NcNoteCard type="error"
+			heading="Error"
+			text="The server is not happy and reported the following error" />
 
-		<NcNoteCard type="success">
-			<p>You won</p>
-		</NcNoteCard>
+		<NcNoteCard type="success" text="You won" />
 
-		<NcNoteCard type="info">
-			<p>For your information</p>
-		</NcNoteCard>
+		<NcNoteCard type="info" text="For your information" />
 
-		<NcNoteCard type="warning">
+		<h4>Custom icon</h4>
+		<NcNoteCard type="warning" text="Custom icon usage">
 			<template #icon>
 				<Cog :size="20"/>
 			</template>
-			<p>Custom icon usage</p>
+		</NcNoteCard>
+
+		<h4>Custom content using the default slot</h4>
+		<NcNoteCard type="info">
+			Press <kbd>CTRL</kbd>+<kbd>C</kbd>
 		</NcNoteCard>
 	</div>
 </template>
@@ -69,7 +70,12 @@ When using an error type,
 			<h2 v-if="heading">
 				{{ heading }}
 			</h2>
-			<slot />
+			<!-- @slot The main content (overwrites the `text` prop) -->
+			<slot>
+				<p class="notecard__text">
+					{{ text }}
+				</p>
+			</slot>
 		</div>
 	</div>
 </template>
@@ -97,6 +103,13 @@ export default {
 			default: false,
 		},
 		heading: {
+			type: String,
+			default: '',
+		},
+		/**
+		 * The message text of the note card
+		 */
+		text: {
 			type: String,
 			default: '',
 		},
