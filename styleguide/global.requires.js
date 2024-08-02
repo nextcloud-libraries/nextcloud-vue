@@ -10,6 +10,7 @@ import { EmojiSkinTone, emojiSearch, emojiAddRecent, getCurrentSkinTone, setCurr
 import usernameToColor from '../src/functions/usernameToColor/index.js'
 import Tooltip from './../src/directives/Tooltip/index.js'
 import Focus from './../src/directives/Focus/index.js'
+import KeyStroke from './../src/directives/KeyStroke/index.js'
 import Linkify from './../src/directives/Linkify/index.js'
 
 import axios from '@nextcloud/axios'
@@ -170,4 +171,5 @@ window.usernameToColor = usernameToColor
 // Directives
 Vue.directive('Tooltip', Tooltip)
 Vue.directive('Focus', Focus)
+Vue.directive('KeyStroke', KeyStroke)
 Vue.directive('Linkify', Linkify)
