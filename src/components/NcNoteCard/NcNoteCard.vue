@@ -7,12 +7,14 @@
 This component is made to display additional information to the user. It is
 available in four versions:
 
-- success: Display a successful message
-- info: Display an informational message
-- warning: Display a warning to the user. This indicate that the action they want
-- error: Display an error message. For example
-
-When using an error type,
+- **success**: Display a successful message.<br>
+  Should be used to show success of an operation or optional information to help a user be more successful.
+- **info**: Display an informational message.<br>
+  Should be used to highlight information that users should take into account.
+- **warning**: Display a warning to the user.<br>
+  Should be used for critical content demanding user attention due to potential risks.
+- **error**: Display an error message.<br>
+  Should be used for negative potential consequences of an action.
 
 ### Usage
 
@@ -64,12 +66,13 @@ When using an error type,
 			<component :is="icon"
 				class="notecard__icon"
 				:class="{'notecard__icon--heading': heading}"
-				:fill-color="color" />
+				:fill-color="color"
+				:size="20" />
 		</slot>
 		<div>
-			<h2 v-if="heading">
+			<p v-if="heading" class="notecard__heading">
 				{{ heading }}
-			</h2>
+			</p>
 			<!-- @slot The main content (overwrites the `text` prop) -->
 			<slot>
 				<p class="notecard__text">
@@ -91,17 +94,26 @@ export default {
 
 	props: {
 		/**
-		 * Type of the attribute
+		 * Type or severity of the message
 		 */
 		type: {
 			type: String,
 			default: 'warning',
 			validator: type => ['success', 'info', 'warning', 'error'].includes(type),
 		},
+		/**
+		 * Enforce the `alert` role on the note card.
+		 *
+		 * The [`alert` role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alert_role)
+		 * should only be used for information that requires the user's immediate attention.
+		 */
 		showAlert: {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Optional text to show as a heading of the note card
+		 */
 		heading: {
 			type: String,
 			default: '',
@@ -152,20 +164,29 @@ export default {
 
 <style lang="scss" scoped>
 .notecard {
+	--note-card-icon-size: 20px;
+	--note-card-padding: calc(2 * var(--default-grid-baseline));
 	color: var(--color-main-text) !important;
 	background-color: var(--note-background) !important;
-	border-inline-start: 4px solid var(--note-theme);
+	border-inline-start: var(--default-grid-baseline) solid var(--note-theme);
 	border-radius: var(--border-radius);
 	margin: 1rem 0;
-	margin-top: 1rem;
-	padding: 1rem;
+	padding: var(--note-card-padding);
 	display: flex;
 	flex-direction: row;
-	gap: 1rem;
+	gap: var(--note-card-padding);
 
-	&__icon--heading {
-		margin-bottom: auto;
-		margin-top: 0.3rem;
+	&__heading {
+		font-size: var(--note-card-icon-size); // Same as icon
+		font-weight: 600;
+	}
+
+	&__icon {
+		&--heading {
+			font-size: var(--note-card-icon-size);
+			// Ensure icon is on the same height as the heading
+			margin-block: calc((1lh - 1em) / 2) auto;
+		}
 	}
 
 	&--success {
