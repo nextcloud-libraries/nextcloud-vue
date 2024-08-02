@@ -152,6 +152,7 @@ $maxWidth: 900px;
 		font-size: 20px;
 		font-weight: bold;
 		max-width: $maxWidth;
+		margin-top: 0; // Remove default heading margin
 	}
 
 	&__info {
