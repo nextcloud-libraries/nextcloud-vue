@@ -12,12 +12,30 @@ This component is to be used in the settings section of nextcloud.
 
 ```vue
 <template>
-	<NcSettingsSection
-		name="Two-Factor Authentication"
-		description="Two-factor authentication can be enforced for all users and specific groups."
-		doc-url="https://docs.nextcloud.com/server/19/go.php?to=admin-2fa">
-		<p>Your settings here</p>
-	</NcSettingsSection>
+	<div>
+		<NcSettingsSection name="Two-factor authentication"
+			description="Two-factor authentication can be enforced for all accounts and specific groups. If they do not have a two-factor provider configured, they will be unable to log into the system."
+			doc-url="https://docs.nextcloud.com/server/19/go.php?to=admin-2fa">
+			<NcCheckboxRadioSwitch type="switch">
+				Enforce two-factor authentication
+			</NcCheckboxRadioSwitch>
+		</NcSettingsSection>
+
+		<NcSettingsSection name="Server-side encryption"
+			description="Server-side encryption makes it possible to encrypt files which are uploaded to this server. This comes with limitations like a performance penalty, so enable this only if needed.">
+			<NcCheckboxRadioSwitch type="switch">
+				Enable server-side encryption
+			</NcCheckboxRadioSwitch>
+		</NcSettingsSection>
+
+		<NcSettingsSection name="OAuth 2.0 clients"
+			description="OAuth 2.0 allows external services to request access to Nextcloud."
+			doc-url="https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/oauth2.html">
+
+			Any content here
+
+		</NcSettingsSection>
+	</div>
 </template>
 ```
 </docs>
