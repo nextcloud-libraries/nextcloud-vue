@@ -772,6 +772,9 @@ export default {
 				min-width: var(--size);
 			}
 		}
+		& > :deep(.button-vue) {
+			--button-radius: calc(var(--button-size) / 2);
+		}
 	}
 
 	.avatardiv__initials-wrapper {
