@@ -128,6 +128,7 @@ $sectionMargin: calc(var(--default-grid-baseline) * 7);
 		align-items: center;
 		justify-content: center;
 		max-width: $maxWidth;
+		margin-top: 0; // Remove default heading margin
 	}
 
 	&__info {
