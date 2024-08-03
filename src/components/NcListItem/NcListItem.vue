@@ -411,20 +411,19 @@
 							</div>
 						</div>
 					</div>
+					<!-- Actions -->
+					<div v-show="forceDisplayActions || displayActionsOnHoverFocus"
+						class="list-item-content__actions"
+						@focusout="handleBlur">
+						<NcActions ref="actions"
+							:primary="isActive || active"
+							:aria-label="computedActionsAriaLabel"
+							@update:open="handleActionsUpdateOpen">
+							<!-- @slot Provide the actions for the right side quick menu -->
+							<slot name="actions" />
+						</NcActions>
+					</div>
 				</a>
-
-				<!-- Actions -->
-				<div v-show="forceDisplayActions || displayActionsOnHoverFocus"
-					class="list-item-content__actions"
-					@focusout="handleBlur">
-					<NcActions ref="actions"
-						:primary="isActive || active"
-						:aria-label="computedActionsAriaLabel"
-						@update:open="handleActionsUpdateOpen">
-						<!-- @slot Provide the actions for the right side quick menu -->
-						<slot name="actions" />
-					</NcActions>
-				</div>
 
 				<!-- @slot Extra elements below the item -->
 				<div v-if="$slots.extra" class="list-item__extra">
@@ -796,7 +795,7 @@ export default {
 	--list-item-border-radius: var(--border-radius-element, 32px);
 	// General styles
 	box-sizing: border-box;
-	display: flex;
+	display: block;
 	position: relative;
 	flex: 0 0 auto;
 	justify-content: flex-start;
