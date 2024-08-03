@@ -70,6 +70,7 @@ export default {
 			<component :is="isLinkComponent"
 				class="user-bubble__content"
 				:style="styles.content"
+				:to="to"
 				:href="hasUrl ? url : null"
 				:class="{ 'user-bubble__content--primary': primary }"
 				v-bind="attrs"
@@ -161,6 +162,13 @@ export default {
 			},
 		},
 		/**
+		 * Use bubble as a router-link for in-app navigation
+		 */
+		to: {
+			type: [String, Object],
+			default: undefined,
+		},
+		/**
 		 * Default popover state. Requires the UserBubble
 		 * to have some content to render inside the popover
 		 */
@@ -226,7 +234,9 @@ export default {
 		},
 
 		isLinkComponent() {
-			return this.hasUrl ? 'a' : 'div'
+			return this.hasUrl
+				? (this.to ? RouterLink : 'a')
+				: 'div'
 		},
 
 		styles() {
@@ -308,4 +318,7 @@ export default {
 	}
 }
 
+a.user-bubble__content {
+	cursor: pointer;
+}
 </style>
