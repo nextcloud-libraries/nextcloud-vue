@@ -627,6 +627,7 @@ export default {
 
 	data() {
 		return {
+			actionsBoundariesElement: undefined,
 			editingValue: '',
 			opened: this.open, // Collapsible state
 			editingActive: false,
@@ -660,15 +661,16 @@ export default {
 		undoButtonAriaLabel() {
 			return t('Undo changes')
 		},
-		actionsBoundariesElement() {
-			return document.querySelector('#content-vue') || undefined
-		},
 	},
 
 	watch: {
 		open(newVal) {
 			this.opened = newVal
 		},
+	},
+
+	mounted() {
+		this.actionsBoundariesElement = document.querySelector('#content-vue') || undefined
 	},
 
 	methods: {
