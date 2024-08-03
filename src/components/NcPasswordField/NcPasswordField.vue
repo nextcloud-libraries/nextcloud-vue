@@ -44,6 +44,10 @@ General purpose password field component.
 		<NcPasswordField v-model="text5"
 			:disabled="true"
 			label="Disabled" />
+
+		<NcPasswordField :value.sync="text6"
+			label="Secret token"
+			as-text />
 	</div>
 </template>
 <script>
@@ -57,6 +61,7 @@ export default {
 			text3: 'hunter',
 			text4: '',
 			text5: '',
+			text6: 'secret-token',
 		}
 	},
 
@@ -91,7 +96,7 @@ export default {
 <template>
 	<NcInputField v-bind="propsToForward"
 		ref="inputField"
-		:type="isPasswordHidden ? 'password' : 'text'"
+		:type="isPasswordHidden && !asText ? 'password' : 'text'"
 		:trailing-button-label="trailingButtonLabelPassword"
 		:helper-text="computedHelperText"
 		:error="computedError"
@@ -203,6 +208,18 @@ export default {
 		maxlength: {
 			type: Number,
 			default: null,
+		},
+
+		/**
+		 * Render as input[type=text] that looks like password field.
+		 * Allows to avoid unwanted password-specific browser behavior,
+		 * such as save or generate password prompt.
+		 * Useful for secret token fields.
+		 * Note: autocomplete="off" is ignored by browsers.
+		 */
+		asText: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -324,3 +341,11 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+:deep(.password-field__input--secure-text) {
+	// Emulate password field look
+	// This is not a part of the standard but well supported
+	-webkit-text-security: disc;
+}
+</style>
