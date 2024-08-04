@@ -268,6 +268,94 @@
 	</template>
 </NcListItem>
 ```
+### NcListItem with extra actions slot and customized icon
+
+The `extra-actions` slot can be used to add other interactive components.
+
+The `actions-icon` slot can be used to pass icon to the inner NcActions component.
+
+```vue
+<template>
+	<div>
+		<NcListItem
+			name="This is an active element with extra actions slot"
+			:bold="true"
+			:active="true"
+			:force-display-actions="true">
+			<template #icon>
+				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+			</template>
+			<template #extra-actions>
+				<NcButton type="primary">
+					<template #icon>
+						<IconCog :size="20" />
+					</template>
+				</NcButton>
+			</template>
+			<template #actions-icon>
+				<IconNoteText :size="20" />
+			</template>
+			<template #actions>
+				<NcActionButton>
+					Button one
+				</NcActionButton>
+				<NcActionButton>
+					Button two
+				</NcActionButton>
+				<NcActionButton>
+					Button three
+				</NcActionButton>
+			</template>
+		</NcListItem>
+		<NcListItem
+			name="This is an element with extra actions slot"
+			:bold="true">
+			<template #icon>
+				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+			</template>
+			<template #extra-actions>
+				<NcButton type="tertiary">
+					<template #icon>
+						<IconPencil :size="20" />
+					</template>
+				</NcButton>
+				<NcButton type="tertiary">
+					<template #icon>
+						<IconCog :size="20" />
+					</template>
+				</NcButton>
+			</template>
+			<template #actions-icon>
+				<IconNoteText :size="20" />
+			</template>
+			<template #actions>
+				<NcActionButton>
+					Button one
+				</NcActionButton>
+				<NcActionButton>
+					Button two
+				</NcActionButton>
+				<NcActionButton>
+					Button three
+				</NcActionButton>
+			</template>
+		</NcListItem>
+	</div>
+</template>
+<script>
+	import IconCog from 'vue-material-design-icons/Cog.vue'
+	import IconNoteText from 'vue-material-design-icons/NoteText.vue'
+	import IconPencil from 'vue-material-design-icons/Pencil.vue'
+
+	export default {
+		components: {
+			IconCog,
+			IconNoteText,
+			IconPencil,
+		},
+	}
+</script>
+```
 ### NcListItem compact mode
 ```vue
 <template>
@@ -412,6 +500,11 @@
 					</div>
 				</a>
 
+				<div v-if="$slots['extra-actions']" class="list-item-content__extra-actions">
+					<!-- @slot Extra elements next to the right side quick menu -->
+					<slot name="extra-actions" />
+				</div>
+
 				<!-- Actions -->
 				<div v-show="forceDisplayActions || displayActionsOnHoverFocus"
 					class="list-item-content__actions"
@@ -420,13 +513,17 @@
 						:primary="isActive || active"
 						:aria-label="computedActionsAriaLabel"
 						@update:open="handleActionsUpdateOpen">
+						<template v-if="$slots['actions-icon']" #icon>
+							<!-- @slot Provide the custom icon for the right side quick menu -->
+							<slot name="actions-icon" />
+						</template>
 						<!-- @slot Provide the actions for the right side quick menu -->
 						<slot name="actions" />
 					</NcActions>
 				</div>
 
-				<!-- @slot Extra elements below the item -->
 				<div v-if="$slots.extra" class="list-item__extra">
+					<!-- @slot Extra elements below the item -->
 					<slot name="extra" />
 				</div>
 			</div>
@@ -890,11 +987,18 @@ export default {
 			align-items: end;
 		}
 
-		&__actions {
+		&__actions,
+		&__extra-actions {
 			flex: 0 0 auto;
 			align-self: center;
 			justify-content: center;
-			margin-left: 4px;
+			margin-left: var(--default-grid-baseline);
+		}
+
+		&__extra-actions {
+			display: flex;
+			align-items: center;
+			gap: var(--default-grid-baseline);
 		}
 	}
 
