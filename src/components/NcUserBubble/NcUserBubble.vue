@@ -70,6 +70,7 @@ export default {
 			<component :is="isLinkComponent"
 				class="user-bubble__content"
 				:style="styles.content"
+				:to="to"
 				:href="hasUrl ? url : null"
 				:class="{ 'user-bubble__content--primary': primary }"
 				v-bind="attrs"
@@ -108,6 +109,7 @@ import NcUserBubbleDiv from './NcUserBubbleDiv.vue'
 import NcAvatar from '../NcAvatar/index.js'
 import NcPopover from '../NcPopover/index.js'
 import { warn } from 'vue'
+import { RouterLink } from 'vue-router'
 
 export default {
 	name: 'NcUserBubble',
@@ -159,6 +161,13 @@ export default {
 					return false
 				}
 			},
+		},
+		/**
+		 * Use bubble as a router-link for in-app navigation
+		 */
+		to: {
+			type: [String, Object],
+			default: undefined,
 		},
 		/**
 		 * Default popover state. Requires the UserBubble
@@ -226,7 +235,9 @@ export default {
 		},
 
 		isLinkComponent() {
-			return this.hasUrl ? 'a' : 'div'
+			return this.hasUrl
+				? (this.to ? RouterLink : 'a')
+				: 'div'
 		},
 
 		styles() {
@@ -308,4 +319,7 @@ export default {
 	}
 }
 
+a.user-bubble__content {
+	cursor: pointer;
+}
 </style>
