@@ -190,7 +190,7 @@ const onClose = () => {
 <style scoped lang="scss">
 .nc-chip {
 	--chip-size: 24px;
-	--chip-radius: calc(var(--chip-size) / 2);
+	--chip-radius: var(--border-radius-small);
 	// Setup size of wrapper
 	height: var(--chip-size);
 	max-width: fit-content;
