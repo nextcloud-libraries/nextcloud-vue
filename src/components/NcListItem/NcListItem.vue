@@ -877,6 +877,7 @@ export default {
 }
 
 .list-item-content__subname {
+	font-size: var(--font-size-small);
 	flex: 1 0;
 	min-width: 0;
 	color: var(--color-text-maxcontrast);
@@ -1012,6 +1013,7 @@ export default {
 
 	&-details {
 		&__details {
+			font-size: var(--font-size-small);
 			color: var(--color-text-maxcontrast);
 			margin: 0 9px !important;
 			font-weight: normal;
