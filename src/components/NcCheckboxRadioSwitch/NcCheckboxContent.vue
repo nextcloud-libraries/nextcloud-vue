@@ -198,7 +198,7 @@ export default {
 	gap: 4px;
 	user-select: none;
 	min-height: var(--default-clickable-area);
-	border-radius: var(--default-clickable-area);
+	border-radius: var(--border-radius-element);
 	padding: 4px calc((var(--default-clickable-area) - var(--icon-height)) / 2);
 	// Set to 100% to make text overflow work on button style
 	width: 100%;
