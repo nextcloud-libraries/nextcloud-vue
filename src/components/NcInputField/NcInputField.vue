@@ -17,7 +17,8 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 </docs>
 
 <template>
-	<div class="input-field" :class="[{ 'input-field--disabled': disabled }, $props.class ]">
+	<div class="input-field"
+		:class="[{ 'input-field--disabled': disabled, 'input-field--pill': pill, }, $props.class ]">
 		<div class="input-field__main-wrapper">
 			<input v-bind="$attrs"
 				:id="computedId"
