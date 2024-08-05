@@ -1013,10 +1013,10 @@ export default {
 
 	&-details {
 		&__details {
-			font-size: var(--font-size-small);
 			color: var(--color-text-maxcontrast);
-			margin: 0 9px !important;
+			font-size: var(--font-size-small);
 			font-weight: normal;
+			margin: 0 9px !important;
 		}
 		&__extra {
 			margin: 2px 4px 0 4px;
