@@ -9,11 +9,32 @@ All notable changes to this project will be documented in this file.
 
 <!-- Release notes generated using configuration in .github/release.yml at master -->
 
+## [v8.16.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.16.0) (2024-08-05)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.15.1...v8.16.0)
+
+### 🚀 Enhancements
+* feat(NcNoteCard): Add `text` prop to pass the content of the note card [\#5894](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5894) \([susnux](https://github.com/susnux)\)
+* feat(NcPasswordField): Add `as-text` prop to remove autocomplete [\#5896](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5896) \([ShGKme](https://github.com/ShGKme)\)
+* feat(NcListItem): Provide additional slots for NcActions / extra actions customization [\#5870](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5870) \([Antreesy](https://github.com/Antreesy)\)
+* feat(NcUserBubble): Add RouterLink support [\#5708](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5708) [\#5917](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5917) \([Antreesy](https://github.com/Antreesy)\)
+
+### 🐛 Fixed bugs
+* fix(NcSelect): Ensure that component height is the same as input element [\#5883](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5883) \([susnux](https://github.com/susnux)\)
+* fix(style): Adjust elements styles to unit-less line-height [\#5889](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5889) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcSettingsSection): Remove default h2 margin-top [\#5897](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5897) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcCounterButton): Adjust min-width to make it a right circle [\#5905](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5905) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcDashboardWidgetItem): Fix alignment of dashboard list items [\#5914](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5914) \([juliushaertl](https://github.com/juliushaertl)\)
+* fix(NcNoteCard): Adjust padding and margin [\#5893](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5893) \([susnux](https://github.com/susnux)\)
+* fix(NcAvatar): Make button element round as the avatar [\#5898](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5898) [\#5916](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5916) \([Antreesy](https://github.com/Antreesy))\)
+
+### Changed
+* Updated translations
+
 ## [v8.15.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.15.1) (2024-07-29)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.15.0...v8.15.1)
 
 ### 🐛 Fixed bugs
-* fix(NcListItem): Make paddings smaller again on Nextcloud 30 [\#5879](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5879) \([susnux](https://github.com/susnux)\) 
+* fix(NcListItem): Make paddings smaller again on Nextcloud 30 [\#5879](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5879) \([susnux](https://github.com/susnux)\)
 * fix(NcChip): Ensure chips without icon do not reserve empty space for icon [\#5859](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5859) \([susnux](https://github.com/susnux)\)
 * fix: alignment of listitem name for one line layout [\#5853](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5853) \([GretaD](https://github.com/GretaD)\)
 * NcActionCheckbox: align with NcActionText [\#5839](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5839) \([GVodyanov](https://github.com/GVodyanov)\)
