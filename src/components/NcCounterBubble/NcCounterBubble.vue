@@ -76,10 +76,11 @@ export default {
 	overflow: hidden;
 	width: fit-content;
 	max-width: var(--default-clickable-area);
+	min-width: calc(1lh + 2 * var(--default-grid-baseline)); // Make it not narrower than a circle
 	text-align: center;
 	text-overflow: ellipsis;
 	line-height: 1em;
-	padding: 4px 6px;
+	padding: var(--default-grid-baseline);
 	border-radius: var(--border-radius-pill);
 	background-color: var(--color-primary-element-light);
 	font-weight: bold;
