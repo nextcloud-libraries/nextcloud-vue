@@ -772,6 +772,10 @@ export default {
 				min-width: var(--size);
 			}
 		}
+		& > :deep(.button-vue),
+		& > :deep(.action-item .button-vue) {
+			--button-radius: calc(var(--size) / 2);
+		}
 	}
 
 	.avatardiv__initials-wrapper {
@@ -779,7 +783,7 @@ export default {
 		height: var(--size);
 		width: var(--size);
 		background-color: var(--color-main-background);
-		border-radius: 50%;
+		border-radius: calc(var(--size) / 2);
 
 		.avatardiv__initials {
 			position: absolute;
@@ -848,7 +852,7 @@ export default {
 
 .avatar-class-icon {
 	display: block;
-	border-radius: 50%;
+	border-radius: calc(var(--size) / 2);
 	background-color: var(--color-background-darker);
 	height: 100%;
 }
