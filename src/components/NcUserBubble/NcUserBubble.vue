@@ -235,9 +235,13 @@ export default {
 		},
 
 		isLinkComponent() {
-			return this.hasUrl
-				? (this.to ? RouterLink : 'a')
-				: 'div'
+			if (this.hasUrl) {
+				return 'a'
+			} else if (this.to) {
+				return RouterLink
+			} else {
+				return 'div'
+			}
 		},
 
 		styles() {
@@ -317,9 +321,5 @@ export default {
 		padding: 0;
 		padding-left: 4px;
 	}
-}
-
-a.user-bubble__content {
-	cursor: pointer;
 }
 </style>
