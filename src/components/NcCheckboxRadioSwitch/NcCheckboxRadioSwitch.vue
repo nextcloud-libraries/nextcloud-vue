@@ -688,7 +688,7 @@ export default {
 
 	&--button-variant.checkbox-radio-switch {
 		background-color: var(--color-main-background);
-		border: 2px solid var(--color-border-maxcontrast);
+		border: 1px solid var(--color-border-maxcontrast);
 		overflow: hidden;
 
 		&--checked {
