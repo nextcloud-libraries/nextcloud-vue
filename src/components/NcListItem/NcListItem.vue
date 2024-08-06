@@ -10,13 +10,12 @@
 ```vue
 <template>
 	<ul>
-		<NcListItem
-			:name="'This is an active element with highlighted counter'"
-			:bold="true"
-			:active="true"
-			:details="'1h'"
+		<NcListItem active
+			bold
 			:counter-number="123"
-			counterType="highlighted">
+			counterType="highlighted"
+			details="1h"
+			name="This is an active element with highlighted counter">
 			<template #icon>
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
@@ -40,7 +39,7 @@
 			</template>
 		</NcListItem>
 		<NcListItem
-			:name="'This is an active element with outlined counter'"
+			name="This is an active element with outlined counter"
 			:bold="false"
 			:active="true"
 			:counter-number="123"
@@ -68,7 +67,7 @@
 			</template>
 		</NcListItem>
 		<NcListItem
-			:name="'This is an active element with normal counter'"
+			name="This is an active element with normal counter"
 			:bold="false"
 			:active="true"
 			:counter-number="123">
@@ -98,10 +97,10 @@
 			</template>
 		</NcListItem>
 		<NcListItem
-			:name="'Name of the element with highlighted counter'"
-			:bold="true"
+			name="Name of the element with highlighted counter"
+			bold
 			:force-display-actions="true"
-			:details="'1h'"
+			details="1h"
 			:counter-number="123"
 			counterType="highlighted">
 			<template #icon>
@@ -123,7 +122,7 @@
 			</template>
 		</NcListItem>
 		<NcListItem
-			:name="'Name of the element with outlined counter'"
+			name="Name of the element with outlined counter"
 			:bold="false"
 			:force-display-actions="true"
 			:counter-number="123"
@@ -147,10 +146,10 @@
 			</template>
 		</NcListItem>
 		<NcListItem
-			:name="'Name of the element with normal counter'"
+			name="Name of the element with normal counter"
 			:bold="false"
 			:force-display-actions="true"
-			:details="'1h'"
+			details="1h"
 			:counter-number="123">
 			<template #icon>
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
@@ -171,15 +170,15 @@
 			</template>
 		</NcListItem>
 		<NcListItem
-			:name="'Name of the element'"
+			name="Name of the element"
 			:bold="false">
 			<template #icon>
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #name>
-				<span style="display: flex; gap: 0.5rem; color: var(--color-primary);">
+				<span style="display: flex; gap: 0.5rem; color: var(--color-warning);">
 					Flexible styling within the first line of the component
-					<div style="color: var(--color-secondary);">
+					<div style="color: var(--color-error);">
 						like this.
 					</div>
 				</span>
@@ -207,9 +206,9 @@
 			</template>
 		</NcListItem>
 		<NcListItem
-			:name="'Without subname, Name of the element'"
+			name="Without subname, Name of the element"
 			:bold="false"
-			:details="'1h'">
+			details="1h">
 			<template #icon>
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
@@ -237,14 +236,13 @@
 
 ### NcListItem one line mode
 ```vue
-<NcListItem
-	:name="'This is an active element with highlighted counter'"
+<NcListItem active
 	:bold="false"
-	:active="true"
-	:details="'1h'"
 	:counter-number="123"
-	one-line
-	counterType="highlighted">
+	counterType="highlighted"
+	details="1h"
+	name="This is an active element with highlighted counter"
+	one-line>
 	<template #icon>
 		<NcAvatar disable-menu :size="34" user="janedoe" display-name="Jane Doe" />
 	</template>
@@ -279,7 +277,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 	<div>
 		<NcListItem
 			name="This is an active element with extra actions slot"
-			:bold="true"
+			bold
 			:active="true"
 			:force-display-actions="true">
 			<template #icon>
@@ -309,7 +307,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 		</NcListItem>
 		<NcListItem
 			name="This is an element with extra actions slot"
-			:bold="true">
+			bold>
 			<template #icon>
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
@@ -360,10 +358,22 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 ```vue
 <template>
 	<ul style="width: 350px;">
-		<NcListItem
-			:name="'Name of the element'"
-			:counter-number="1"
-			:compact="true" >
+		<NcListItem active
+			compact
+			name="Active item">
+			<template #icon>
+				<IconNoteText :size="20" />
+			</template>
+		</NcListItem>
+		<NcListItem compact
+			name="Name of the element">
+			<template #icon>
+				<IconNoteText :size="20" />
+			</template>
+		</NcListItem>
+		<NcListItem compact
+			name="Name of the element"
+			:counter-number="1">
 			<template #icon>
 				<IconNoteText :size="20" />
 			</template>
@@ -379,17 +389,9 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 				</NcActionButton>
 			</template>
 		</NcListItem>
-		<NcListItem
-			:name="'Name of the element'"
-			:compact="true" >
-			<template #icon>
-				<IconNoteText :size="20" />
-			</template>
-		</NcListItem>
-		<NcListItem
-			:name="'Name of the element'"
-			:counter-number="3"
-			:compact="true" >
+		<NcListItem compact
+			name="Name of the element"
+			:counter-number="3">
 			<template #icon>
 				<IconNoteText :size="20" />
 			</template>
@@ -405,9 +407,8 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 				</NcActionButton>
 			</template>
 		</NcListItem>
-		<NcListItem
-			:name="'Name of the element'"
-			:compact="true"
+		<NcListItem compact
+			name="Name of the element"
 			:counter-number="4"
 			href="https://nextcloud.com">
 			<template #icon>
@@ -836,6 +837,8 @@ export default {
 	&.active {
 		.list-item {
 			background-color: var(--color-primary-element);
+			color: var(--color-primary-element-text) !important;
+
 			&:hover,
 			&:focus-within,
 			&:has(:focus-visible),
@@ -951,6 +954,7 @@ export default {
 	}
 
 	&__anchor {
+		color: inherit;
 		display: flex;
 		flex: 1 0 auto;
 		align-items: center;
