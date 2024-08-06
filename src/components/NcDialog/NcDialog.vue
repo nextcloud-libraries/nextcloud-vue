@@ -95,7 +95,7 @@ Note that this is not possible if the dialog contains a navigation!
 			name="Choose a name"
 			:open.sync="showDialog"
 			@submit="currentName = newName"
-			@close="newName = ''">
+			@closing="newName = ''">
 			<NcTextField label="New name"
 				placeholder="Min. 6 characters"
 				required
