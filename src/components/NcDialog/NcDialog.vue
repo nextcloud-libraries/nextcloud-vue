@@ -60,7 +60,7 @@ You can also use the default slot to inject custom content.
 			</template>
 			<div style="color: red; font-weight: bold;">This is serious</div>
 		</NcDialog>
-		<NcDialog :open.sync="showLongDialog" name="Lorem Ipsum">
+		<NcDialog v-model:open="showLongDialog" name="Lorem Ipsum">
 			<p v-for="i in new Array(63)" :key="i">Lorem ipsum dolor sit amet.</p>
 		</NcDialog>
 	</div>
@@ -93,14 +93,14 @@ Note that this is not possible if the dialog contains a navigation!
 		<NcDialog is-form
 			:buttons="buttons"
 			name="Choose a name"
-			:open.sync="showDialog"
+			v-model:open="showDialog"
 			@submit="currentName = newName"
-			@close="newName = ''">
-			<NcTextField label="New name"
-				placeholder="Min. 6 characters"
-				required
+			@closing="newName = ''">
+			<NcTextField v-model="newName"
+				label="New name"
 				minlength="6"
-				:value.sync="newName" />
+				placeholder="Min. 6 characters"
+				required />
 		</NcDialog>
 		<p>New name: {{ currentName }}</p>
 	</div>
@@ -214,7 +214,7 @@ export default defineComponent({
 		/** Additional elements to add to the focus trap */
 		additionalTrapElements: {
 			type: Array as PropType<(string|HTMLElement)[]>,
-			validator: (arr) => {
+			validator: (arr: unknown) => {
 				return (
 					Array.isArray(arr) && arr.every(
 						(element) =>
