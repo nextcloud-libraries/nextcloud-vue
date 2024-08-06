@@ -1262,6 +1262,7 @@ export default {
 					},
 					popoverContainerA11yAttrs: {},
 					popoverUlA11yAttrs: {
+						'aria-labelledby': this.triggerRandomId,
 						id: this.randomId,
 						role: 'menu',
 					},
@@ -1311,7 +1312,11 @@ export default {
 					withFocusTrap: true,
 					triggerA11yAttr: {},
 					popoverContainerA11yAttrs: {},
-					popoverUlA11yAttrs: {},
+					popoverUlA11yAttrs: {
+						// there is nothing against labelling a list, it is mostly recommended
+						// so as we do not know the dialog type lets include the label
+						'aria-labelledby': this.triggerRandomId,
+					},
 				},
 			}
 			return configs[this.actionsMenuSemanticType]
