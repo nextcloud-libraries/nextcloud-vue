@@ -530,6 +530,15 @@ export default defineComponent({
 		},
 
 		/**
+		 * Target for the `a` element if `href` is set.
+		 * @default '_self'
+		 */
+		target: {
+			type: String,
+			default: '_self',
+		},
+
+		/**
 		 * Providing the download attribute with href downloads file when clicking.
 		 */
 		download: {
@@ -652,7 +661,7 @@ export default defineComponent({
 				type: isLink ? null : this.nativeType,
 				role: isLink ? 'button' : null,
 				href: this.to ? href : (this.href || null),
-				target: isLink ? '_self' : null,
+				target: isLink ? this.target : null,
 				rel: isLink ? 'nofollow noreferrer noopener' : null,
 				download: (!this.to && this.href && this.download) ? this.download : null,
 				// If this button is used as a popover trigger, we need to apply trigger attrs, e.g. aria attributes
