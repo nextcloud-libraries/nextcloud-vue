@@ -335,6 +335,9 @@ msgstr ""
 msgid "Search results"
 msgstr ""
 
+msgid "Search…"
+msgstr ""
+
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr ""

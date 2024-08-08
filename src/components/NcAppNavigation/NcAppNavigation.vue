@@ -157,7 +157,7 @@ emit('toggle-navigation', {
 				<slot name="list" />
 			</NcAppNavigationList>
 
-			<!-- Footer for e.g. NcAppNavigationSettings -->
+			<!-- @slot Footer for e.g. NcAppNavigationSettings -->
 			<slot name="footer" />
 		</nav>
 		<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
@@ -170,7 +170,6 @@ import { getTrapStack } from '../../utils/focusTrap.js'
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { createFocusTrap } from 'focus-trap'
 
-import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
 import NcAppNavigationList from '../NcAppNavigationList/index.js'
 import { warn } from 'vue'
 
@@ -342,6 +341,14 @@ export default {
 
 	&--close {
 		margin-left: calc(-1 * min($navigation-width, var(--app-navigation-max-width)));
+	}
+
+	&__search {
+		width: 100%;
+	}
+
+	&__body {
+		overflow-y: scroll;
 	}
 
 	// For legacy purposes support passing a bare list to the content in #default slot and including #footer slot
