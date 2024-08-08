@@ -356,7 +356,7 @@ Just set the `pinned` prop.
 						<slot name="actions" />
 					</NcActions>
 				</div>
-				<NcAppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
+				<NcAppNavigationIconCollapsible v-if="showCollapse || collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
 
 				<!-- @slot Slot for anything (virtual) that should be mounted in the component, like a related modal -->
 				<slot name="extra" />
@@ -478,11 +478,20 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Gives the possibility to collapse the children elements into the
 		 * parent element (true) or expands the children elements (false).
 		 */
 		allowCollapse: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Show the collapse icon. Overrides the internal collapsible state.
+		 */
+		showCollapse: {
 			type: Boolean,
 			default: false,
 		},
