@@ -726,7 +726,7 @@ import CheckIcon from 'vue-material-design-icons/Check.vue'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
 import DownloadIcon from 'vue-material-design-icons/Download.vue'
 
-// Formating icons
+// Formatting icons
 import FormatTitle from 'vue-material-design-icons/FormatTitle.vue'
 import FormatAlignLeft from 'vue-material-design-icons/FormatAlignLeft.vue'
 import FormatAlignCenter from 'vue-material-design-icons/FormatAlignCenter.vue'
@@ -751,7 +751,7 @@ export default {
 		OpenInNewIcon,
 		DownloadIcon,
 
-		// Formating icons
+		// Formatting icons
 		FormatTitle,
 		FormatAlignLeft,
 		FormatAlignCenter,
@@ -764,7 +764,7 @@ export default {
 	data() {
 		return {
 			selected: false,
-			// Formating
+			// Formatting
 			checked: {
 				bold: true,
 				italic: false,
@@ -918,16 +918,16 @@ export default {
 </docs>
 
 <script>
+import { useElementBounding } from '@vueuse/core'
+import { Fragment, computed, h, mergeProps, ref, toRef, warn } from 'vue'
+import { getTrapStack } from '../../utils/focusTrap.js'
+import { t } from '../../l10n.js'
+
+import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 import NcButton from '../NcButton/index.ts'
 import NcPopover from '../NcPopover/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import isSlotPopulated from '../../utils/isSlotPopulated.ts'
-import { getTrapStack } from '../../utils/focusTrap.js'
-import { t } from '../../l10n.js'
-
-import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
-
-import { computed, h, Fragment, warn, mergeProps } from 'vue'
 
 const focusableSelector = '.focusable'
 
@@ -944,7 +944,6 @@ export default {
 
 	components: {
 		NcButton,
-		DotsHorizontal,
 		NcPopover,
 	},
 
@@ -1073,7 +1072,7 @@ export default {
 		 */
 		boundariesElement: {
 			type: Element,
-			default: () => document.querySelector('body'),
+			default: () => document.querySelector('#content-vue') ?? document.querySelector('body'),
 		},
 
 		/**
@@ -1111,11 +1110,43 @@ export default {
 		'click',
 	],
 
+	setup(props) {
+		const randomId = GenRandomId()
+		const menuListId = `menu-${randomId}`
+		const menuButtonId = `menu-button-${randomId}`
+		const menuButton = ref()
+		const { top, bottom } = useElementBounding(menuButton)
+		const { top: boundaryTop, bottom: boundaryBottom } = useElementBounding(toRef(() => props.boundariesElement))
+		const { height: windowHeight } = useWindowSize()
+		const maxMenuHeight = computed(() => Math.max(
+			// Either expand to the top
+			Math.min(
+				// max height is the top position of the trigger minus the header height minus the wedge and the padding
+				top.value - 84,
+				// and also limited to the space in the boundary
+				top.value - boundaryTop.value,
+			),
+			// or expand to the bottom
+			Math.min(
+				// the max height is the window height minus current position of the trigger minus the wedge and padding
+				windowHeight.value - bottom.value - 34,
+				// and limit to the available space in the boundary
+				boundaryBottom.value - bottom.value,
+			),
+		))
+
+		return {
+			maxMenuHeight,
+			menuButton,
+			menuButtonId,
+			menuListId,
+		}
+	},
+
 	data() {
 		return {
 			opened: this.open,
 			focusIndex: 0,
-			randomId: `menu-${GenRandomId()}`,
 			/**
 			 * @type {'menu'|'navigation'|'dialog'|'tooltip'|'unknown'}
 			 */
@@ -1322,7 +1353,7 @@ export default {
 			this.focusIndex = 0
 
 			if (returnFocus) {
-				// Focus back the menu button
+				// Focus back the trigger button
 				this.$refs.menuButton?.$el.focus()
 			}
 		},
@@ -1338,15 +1369,15 @@ export default {
 		},
 
 		/**
-		 * Hanle resizing the popover to make sure users can discover there is more to scroll
+		 * Handle resizing the popover to make sure users can discover there is more to scroll
 		 */
 		resizePopover() {
 			// Get the inner v-popper element that defines the popover height (from floating-vue)
 			const inner = this.$refs.menu.closest('.v-popper__inner')
-			const maxHeight = Number.parseFloat(window.getComputedStyle(inner).maxHeight)
 			const height = this.$refs.menu.clientHeight
+
 			// If the popover height is limited by the max-height (scrollbars shown) limit the height to half of the last element
-			if (height > maxHeight) {
+			if (height > this.maxMenuHeight) {
 				// sum of action heights
 				let currentHeight = 0
 				// last action height
@@ -1354,7 +1385,7 @@ export default {
 				for (const action of this.$refs.menuList.children) {
 					// If the max height would be overflown by half of the current element,
 					// then we limit the height to the half of the previous element
-					if ((currentHeight + action.clientHeight / 2) > maxHeight) {
+					if ((currentHeight + action.clientHeight / 2) > this.maxMenuHeight) {
 						inner.style.height = `${currentHeight - actionHeight / 2}px`
 						break
 					}
@@ -1362,6 +1393,8 @@ export default {
 					actionHeight = action.clientHeight
 					currentHeight += actionHeight
 				}
+			} else {
+				inner.style.height = 'fit-content'
 			}
 		},
 
@@ -1671,7 +1704,7 @@ export default {
 			const iconProp = action?.props?.icon
 			const icon = action?.children?.icon?.()?.[0] ?? (
 				this.isIconUrl(iconProp)
-					? h('img', { class: 'action-item__menutoggle__icon', src: iconProp, alt: '' })
+					? h('img', { class: 'action-item__menu-button__icon', src: iconProp, alt: '' })
 					: h('span', { class: ['icon', iconProp] })
 			)
 			const text = action?.children?.default?.()?.[0]?.children?.trim()
@@ -1725,9 +1758,8 @@ export default {
 				? this.$slots.icon?.()
 				: (this.defaultIcon
 					? h('span', { class: ['icon', this.defaultIcon] })
-					: h(DotsHorizontal, { size: 20 })
+					: h(IconDotsHorizontal, { size: 20 })
 				)
-			const triggerRandomId = `${this.randomId}-trigger`
 			return h(NcPopover,
 				{
 					ref: 'popover',
@@ -1748,8 +1780,8 @@ export default {
 				},
 				{
 					trigger: () => h(NcButton, {
-						id: triggerRandomId,
-						class: 'action-item__menutoggle',
+						id: this.menuButtonId,
+						class: 'action-item__menu-button',
 						type: this.triggerBtnType,
 						disabled: this.disabled,
 						ariaHidden: this.ariaHidden,
@@ -1775,12 +1807,12 @@ export default {
 						ref: 'menu',
 					}, [
 						h('ul', {
-							id: this.randomId,
+							id: this.menuListId,
 							tabindex: '-1',
 							ref: 'menuList',
 							role: this.config.popupRole,
 							// Dialog must have a label
-							'aria-labelledby': this.actionsMenuSemanticType === 'dialog' ? triggerRandomId : undefined,
+							'aria-labelledby': this.actionsMenuSemanticType === 'dialog' ? this.menuButtonId : undefined,
 							'aria-modal': this.actionsMenuSemanticType === 'dialog' ? 'true' : undefined,
 						}, [
 							actions,
@@ -1905,11 +1937,11 @@ export default {
 		--open-background-color: transparent;
 	}
 
-	&.action-item--open .action-item__menutoggle {
+	&.action-item--open .action-item__menu-button {
 		background-color: var(--open-background-color);
 	}
 
-	&__menutoggle__icon {
+	&__menu-button__icon {
 		width: 20px;
 		height: 20px;
 		object-fit: contain;
@@ -1922,12 +1954,12 @@ export default {
 // the popover__inner for actions only.
 .v-popper--theme-dropdown.v-popper__popper.action-item__popper .v-popper__wrapper {
 	border-radius: var(--border-radius-large);
-	overflow:hidden;
+	overflow: hidden;
 
 	.v-popper__inner {
 		border-radius: var(--border-radius-large);
 		padding: 4px;
-		max-height: calc(50vh - 16px);
+		max-height: calc(100vh - var(--header-height));
 		overflow: auto;
 	}
 }
