@@ -10,6 +10,7 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 <template>
 	<NcButton :aria-label="label"
 		:disabled="disabled"
+		:native-type="nativeType"
 		:type="type"
 		@click="handleClick">
 		{{ label }}
@@ -42,7 +43,8 @@ export default defineComponent({
 		 */
 		callback: {
 			type: Function,
-			required: true,
+			required: false,
+			default: () => {},
 		},
 
 		/**
@@ -70,7 +72,19 @@ export default defineComponent({
 			type: String,
 			required: false,
 			default: 'secondary',
-			validator: (type) => typeof type === 'string' && ['primary', 'secondary', 'error', 'warning', 'success'].includes(type),
+			validator: (type) => typeof type === 'string' && ['primary', 'secondary', 'tertiary', 'error', 'warning', 'success'].includes(type),
+		},
+
+		/**
+		 * See `nativeType` of `NcButton`
+		 */
+		nativeType: {
+			type: String,
+			required: false,
+			default: 'button',
+			validator(value) {
+				return ['submit', 'reset', 'button'].includes(value)
+			},
 		},
 
 		/**

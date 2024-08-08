@@ -76,6 +76,58 @@ export default {
 }
 </script>
 ```
+
+### Form example
+It is also possible to use the dialog for small forms.
+This can be used when asking for a password, a name or similar to have native form validation.
+
+To make the dialog a form the `is-form` prop needs to be set.
+When using the form variant you can also pass buttons with `nativeType` prop to add a native `submit` button.
+
+Note that this is not possible if the dialog contains a navigation!
+
+```vue
+<template>
+	<div>
+		<NcButton @click="showDialog = true">Show dialog</NcButton>
+		<NcDialog is-form
+			:buttons="buttons"
+			name="Choose a name"
+			:open.sync="showDialog"
+			@submit="currentName = newName"
+			@closing="newName = ''">
+			<NcTextField label="New name"
+				placeholder="Min. 6 characters"
+				required
+				minlength="6"
+				:value.sync="newName" />
+		</NcDialog>
+		<p>New name: {{ currentName }}</p>
+	</div>
+</template>
+<script>
+import IconCancel from '@mdi/svg/svg/cancel.svg?raw'
+import IconCheck from '@mdi/svg/svg/check.svg?raw'
+
+export default {
+	data() {
+		return {
+			showDialog: false,
+			newName: '',
+			currentName: 'none yet.',
+			buttons: [
+				{
+					label: 'Submit',
+					type: 'primary',
+					nativeType: 'submit',
+					icon: IconCheck,
+				}
+			]
+		}
+	},
+}
+</script>
+```
 </docs>
 
 <template>
@@ -88,7 +140,11 @@ export default {
 		@update:show="handleClosing">
 		<!-- The dialog name / header -->
 		<h2 :id="navigationId" class="dialog__name" v-text="name" />
-		<div class="dialog" :class="dialogClasses">
+		<component :is="dialogTagName"
+			ref="dialogElement"
+			class="dialog"
+			:class="dialogClasses"
+			v-on="dialogListeners">
 			<div ref="wrapper" :class="['dialog__wrapper', { 'dialog__wrapper--collapsed': isNavigationCollapsed }]">
 				<!-- When the navigation is collapsed (too small dialog) it is displayed above the main content, otherwise on the inline start -->
 				<nav v-if="hasNavigation"
@@ -116,7 +172,7 @@ export default {
 						@click="handleButtonClose" />
 				</slot>
 			</div>
-		</div>
+		</component>
 	</NcModal>
 </template>
 
@@ -225,6 +281,16 @@ export default defineComponent({
 		},
 
 		/**
+		 * Make the dialog wrapper a HTML form element.
+		 * The buttons will be wrapped within the form so they can be used as submit / reset buttons.
+		 * Please note that when using the property the `navigation` should not be used.
+		 */
+		isForm: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * Declare if hiding the modal should be animated
 		 * @default false
 		 */
@@ -299,7 +365,7 @@ export default defineComponent({
 		},
 	},
 
-	emits: ['closing', 'update:open'],
+	emits: ['closing', 'update:open', 'submit'],
 
 	setup(props, { emit, slots }) {
 		/**
@@ -347,7 +413,33 @@ export default defineComponent({
 		})
 
 		/**
-		 * If the underlaying modal is shown
+		 * @type {import('vue').Ref<HTMLFormElement|undefined>}
+		 */
+		const dialogElement = ref()
+		/**
+		 * The HTML element to use for the dialog wrapper - either form or plain div
+		 */
+		const dialogTagName = computed(() => props.isForm && !hasNavigation.value ? 'form' : 'div')
+		/**
+		 * Listener to assign to the dialog element
+		 * This only sets the `@submit` listener if the dialog element is a form
+		 */
+		const dialogListeners = computed(() => dialogTagName.value === 'form'
+			? {
+				/**
+				 * @param {SubmitEvent} event Form submit event
+				 */
+				submit(event) {
+					event.preventDefault()
+					/** Forwarded HTMLFormElement submit event (only if `is-form` is set) */
+					emit('submit', event)
+				},
+			}
+			: {},
+		)
+
+		/**
+		 * If the underlying modal is shown
 		 */
 		const showModal = ref(true)
 
@@ -356,6 +448,10 @@ export default defineComponent({
 		 * Handle clicking a dialog button -> should close
 		 */
 		const handleButtonClose = () => {
+			// Skip close if invalid dialog
+			if (dialogTagName.value === 'form' && !dialogElement.value.reportValidity()) {
+				return
+			}
 			handleClosing()
 			window.setTimeout(() => handleClosed(), 300)
 		}
@@ -400,6 +496,9 @@ export default defineComponent({
 		}))
 
 		return {
+			dialogElement,
+			dialogListeners,
+			dialogTagName,
 			handleButtonClose,
 			handleClosing,
 			handleClosed,
