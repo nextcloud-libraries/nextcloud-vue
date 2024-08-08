@@ -530,6 +530,14 @@ export default defineComponent({
 		},
 
 		/**
+		 * Target for the `a` element if `href` is set.
+		 */
+		target: {
+			type: String,
+			default: '_self',
+		},
+
+		/**
 		 * Providing the download attribute with href downloads file when clicking.
 		 */
 		download: {
