@@ -320,6 +320,11 @@ export default {
 
 	inheritAttrs: false,
 
+	model: {
+		prop: 'value',
+		event: 'update:value',
+	},
+
 	props: {
 		/**
 		 * The ID attribute of the content editable
