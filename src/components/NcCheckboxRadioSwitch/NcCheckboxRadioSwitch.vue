@@ -682,13 +682,13 @@ export default {
 		color: var(--color-primary-element-light);
 	}
 
-	$border-radius: calc(var(--default-clickable-area) / 2);
+	$border-radius: var(--border-radius-element);
 	// keep inner border width in mind
 	$border-radius-outer: calc($border-radius + 2px);
 
 	&--button-variant.checkbox-radio-switch {
 		background-color: var(--color-main-background);
-		border: 2px solid var(--color-border-maxcontrast);
+		border: 1px solid var(--color-border-maxcontrast);
 		overflow: hidden;
 
 		&--checked {
