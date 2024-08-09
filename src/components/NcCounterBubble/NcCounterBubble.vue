@@ -72,14 +72,15 @@ export default {
 
 <style lang="scss" scoped>
 .counter-bubble__counter {
+	--counter-bubble-line-height: 1em;
 	font-size: calc(var(--default-font-size) * .8);
 	overflow: hidden;
 	width: fit-content;
 	max-width: var(--default-clickable-area);
-	min-width: calc(1lh + 2 * var(--default-grid-baseline)); // Make it not narrower than a circle
+	min-width: calc(var(--counter-bubble-line-height) + 2 * var(--default-grid-baseline)); // Make it not narrower than a circle
 	text-align: center;
 	text-overflow: ellipsis;
-	line-height: 1em;
+	line-height: var(--counter-bubble-line-height);
 	padding: var(--default-grid-baseline);
 	border-radius: var(--border-radius-pill);
 	background-color: var(--color-primary-element-light);
@@ -112,4 +113,12 @@ export default {
 	}
 }
 
+// Make it pixel perfect aligned
+@supports (line-height: 1cap) {
+	.counter-bubble__counter {
+		// 1em is higher than one digit and makes it not perfectly vertically aligned
+		// 1cap = hight of a digit (T character)
+		--counter-bubble-line-height: 1cap;
+	}
+}
 </style>
