@@ -270,7 +270,6 @@ export default {
 				content: {
 					height: this.size + 'px',
 					lineHeight: this.size + 'px',
-					borderRadius: this.size / 2 + 'px',
 				},
 				avatar: {
 					marginLeft: this.margin + 'px',
@@ -314,6 +313,7 @@ export default {
 		display: inline-flex;
 		max-width: 100%;
 		background-color: var(--color-background-dark);
+		border-radius: var(--border-radius-small);
 
 		&--primary {
 			color: var(--color-primary-element-text);
