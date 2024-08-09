@@ -7,6 +7,61 @@
 https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-actions.html -->
 
 <docs>
+### Slots debugging
+
+```vue
+<template>
+	<NcActions>
+		<NcActionButton v-if="show" @click="show = !show">
+			<template #icon>
+				<Zero :size="20" />
+			</template>
+			0 - Action to be removed
+		</NcActionButton>
+		<NcActionButton @click="show = !show">
+			<template #icon>
+				<One :size="20" />
+			</template>
+			<template #default v-if="show">
+				1 - Text to hide / NEW slot syntax
+			</template>
+		</NcActionButton>
+		<NcActionButton @click="show = !show">
+			<template #icon>
+				<Two :size="20" />
+			</template>
+			{{ show ? '2 - Text to hide / OLD slot syntax' : '' }}
+		</NcActionButton>
+		<NcActionButton @click="show = !show">
+			<template #icon>
+				<Three :size="20" />
+			</template>
+			3 - just button
+		</NcActionButton>
+	</NcActions>
+</template>
+<script>
+import Zero from 'vue-material-design-icons/Numeric0Circle.vue'
+import One from 'vue-material-design-icons/Numeric1Circle.vue'
+import Two from 'vue-material-design-icons/Numeric2Circle.vue'
+import Three from 'vue-material-design-icons/Numeric3Circle.vue'
+
+export default {
+	components: {
+		Zero,
+		One,
+		Two,
+		Three,
+	},
+	data() {
+		return {
+			show: true,
+		}
+	},
+}
+</script>
+```
+
 ### Single action
 
 ```vue
