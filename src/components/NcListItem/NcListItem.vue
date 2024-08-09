@@ -17,7 +17,7 @@
 			details="1h"
 			name="This is an active element with highlighted counter">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="42" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -45,7 +45,7 @@
 			:counter-number="123"
 			counterType="outlined">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="42" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -72,7 +72,7 @@
 			:active="true"
 			:counter-number="123">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="42" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -104,7 +104,7 @@
 			:counter-number="123"
 			counterType="highlighted">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="42" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -128,7 +128,7 @@
 			:counter-number="123"
 			counterType="outlined">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="42" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -152,7 +152,7 @@
 			details="1h"
 			:counter-number="123">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="42" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #subname>
 				In this slot you can put both text and other components such as icons
@@ -173,7 +173,7 @@
 			name="Name of the element"
 			:bold="false">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="42" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #name>
 				<span style="display: flex; gap: 0.5rem; color: var(--color-warning);">
@@ -210,7 +210,7 @@
 			:bold="false"
 			details="1h">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="42" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #indicator>
 				<!-- Color dot -->
@@ -281,7 +281,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 			:active="true"
 			:force-display-actions="true">
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="42" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #extra-actions>
 				<NcButton type="primary">
@@ -309,7 +309,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 			name="This is an element with extra actions slot"
 			bold>
 			<template #icon>
-				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
+				<NcAvatar disable-menu :size="42" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #extra-actions>
 				<NcButton type="tertiary">
@@ -880,6 +880,7 @@ export default {
 }
 
 .list-item-content__subname {
+	font-size: var(--font-size-small);
 	flex: 1 0;
 	min-width: 0;
 	color: var(--color-text-maxcontrast);
@@ -1017,8 +1018,9 @@ export default {
 	&-details {
 		&__details {
 			color: var(--color-text-maxcontrast);
-			margin: 0 9px !important;
+			font-size: var(--font-size-small);
 			font-weight: normal;
+			margin: 0 9px !important;
 		}
 		&__extra {
 			margin: 2px 4px 0 4px;
