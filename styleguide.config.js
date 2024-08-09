@@ -103,6 +103,10 @@ module.exports = async () => {
 						content: 'docs/directives/focus.md',
 					},
 					{
+						name: 'KeyStroke',
+						content: 'docs/directives/keystroke.md',
+					},
+					{
 						name: 'Linkify',
 						content: 'docs/directives/linkify.md',
 					},

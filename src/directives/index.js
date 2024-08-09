@@ -4,5 +4,6 @@
  */
 
 export { default as Focus } from './Focus/index.js'
+export { default as KeyStroke } from './KeyStroke/index.js'
 export { default as Linkify } from './Linkify/index.js'
 export { default as Tooltip } from './Tooltip/index.js'
