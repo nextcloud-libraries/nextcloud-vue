@@ -342,6 +342,7 @@ export default {
 	background-color: var(--color-main-background-blur, var(--color-main-background));
 	-webkit-backdrop-filter: var(--filter-background-blur, none);
 	backdrop-filter: var(--filter-background-blur, none);
+	border-inline-end: 1px solid var(--color-border);
 
 	&--close {
 		margin-left: calc(-1 * min($navigation-width, var(--app-navigation-max-width)));
@@ -385,13 +386,6 @@ export default {
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-	}
-}
-
-// add extra border for high contrast mode
-[data-themes*='highcontrast'] {
-	.app-navigation {
-		border-right: 1px solid var(--color-border);
 	}
 }
 
