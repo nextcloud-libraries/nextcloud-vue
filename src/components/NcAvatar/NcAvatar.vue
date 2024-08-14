@@ -20,7 +20,7 @@
 ### Avatar with material design icon
 
 ```
- <template>
+<template>
 	<NcAvatar>
 		<template #icon>
 			<AccountMultiple :size="20" />
@@ -34,32 +34,93 @@ export default {
 	components: {
 		AccountMultiple,
 	},
- }
- </script>
+}
+</script>
 ```
 
 ### Avatar with preloaded status
 ```
- <template>
+<template>
+<div class="grid">
 	<NcAvatar user="janedoe"
 		display-name="Jane Doe"
-		:preloaded-user-status="status">
+		:size="44"
+		:preloaded-user-status="status.online">
 	</NcAvatar>
+	<NcAvatar user="janedoe"
+		display-name="Jane Doe"
+		:size="44"
+		:preloaded-user-status="status.away">
+	</NcAvatar>
+	<NcAvatar user="janedoe"
+		display-name="Jane Doe"
+		:size="44"
+		:preloaded-user-status="status.dnd">
+	</NcAvatar>
+	<NcAvatar user="janedoe"
+		display-name="Jane Doe"
+		:size="44"
+		:preloaded-user-status="status.custom">
+	</NcAvatar>
+	<NcAvatar user="janedoe"
+		display-name="Jane Doe"
+		:preloaded-user-status="status.online">
+	</NcAvatar>
+	<NcAvatar user="janedoe"
+		display-name="Jane Doe"
+		:preloaded-user-status="status.away">
+	</NcAvatar>
+	<NcAvatar user="janedoe"
+		display-name="Jane Doe"
+		:preloaded-user-status="status.dnd">
+	</NcAvatar>
+	<NcAvatar user="janedoe"
+		display-name="Jane Doe"
+		:preloaded-user-status="status.custom">
+	</NcAvatar>
+</div>
 </template>
-<script>
 
+<script>
 export default {
 	data() {
 		return {
 			status: {
-				icon: '',
-				status: 'dnd',
-				message: 'Not busy',
+				online: {
+					icon: '',
+					status: 'online',
+					message: 'Available',
+				},
+				away: {
+					icon: '',
+					status: 'away',
+					message: 'Away',
+				},
+				dnd: {
+					icon: '',
+					status: 'dnd',
+					message: 'Busy',
+				},
+				custom: {
+					icon: '📆',
+					status: 'online',
+					message: 'In a meeting',
+				}
 			},
 		}
 	},
- }
- </script>
+}
+</script>
+<style>
+	.grid {
+		width: fit-content;
+		display: grid;
+		justify-content: center;
+		align-items: center;
+		gap: 8px;
+		grid-template-columns: repeat(4, 1fr);
+	}
+</style>
 ```
 
 ### Avatar for non-users
@@ -807,14 +868,14 @@ export default {
 		position: absolute;
 		right: -4px;
 		bottom: -4px;
-		min-height: 18px;
-		min-width: 18px;
+		min-height: 14px;
+		min-width: 14px;
 		max-height: 18px;
 		max-width: 18px;
 		height: 40%;
 		width: 40%;
-		line-height: 15px;
-		font-size: var(--default-font-size);
+		line-height: 1;
+		font-size: clamp(var(--font-size-small), 85%, var(--default-font-size));
 		border: 2px solid var(--color-main-background);
 		background-color: var(--color-main-background);
 		background-repeat: no-repeat;
