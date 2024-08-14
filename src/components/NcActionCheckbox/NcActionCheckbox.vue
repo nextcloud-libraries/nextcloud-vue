@@ -206,8 +206,7 @@ export default {
 
 		&::before {
 			margin-block: 0 !important;
-			// 16px is the width of the checkbox including the border
-			margin-inline: calc((var(--default-clickable-area) - 16px) / 2) !important;
+			margin-inline: calc((var(--default-clickable-area) - 14px) / 2) !important;
 		}
 	}
 

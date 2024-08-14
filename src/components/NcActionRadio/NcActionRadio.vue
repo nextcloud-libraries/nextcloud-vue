@@ -199,10 +199,9 @@ export default {
 		padding: 0 !important;
 		padding-right: $icon-margin !important;
 
-		// radio-width is 12px, border is 2
-		// (44 - 14 - 2) / 2 = 14
+		// (34 -14) / 2 = 10 same as ncactioncheckbox
 		&::before {
-			margin: 0 14px 0 !important;
+			margin: calc((var(--default-clickable-area) - 14px) / 2) !important;
 		}
 	}
 
