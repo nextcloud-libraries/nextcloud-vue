@@ -36,6 +36,9 @@ msgstr "{name} adındaki öge için işlemler"
 msgid "Activities"
 msgstr "Etkinlikler"
 
+msgid "Add to a project"
+msgstr "Bir projeye ekle"
+
 msgid "Animals & Nature"
 msgstr "Hayvanlar ve Doğa"
 
@@ -111,6 +114,9 @@ msgstr "Renk seçici"
 msgid "Confirm changes"
 msgstr "Değişiklikleri onayla"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "Ögeleri daha kolay bulmak için bir proje ile ilişkilendirin"
+
 msgid "Custom"
 msgstr "Özel"
 
@@ -149,6 +155,15 @@ msgstr ""
 msgid "External documentation for {name}"
 msgstr "{name} için dış belgeler"
 
+msgid "Failed to add the item to the project"
+msgstr "Öge projeye eklenemedi"
+
+msgid "Failed to create a project"
+msgstr "Bir proje oluşturulamadı"
+
+msgid "Failed to rename the project"
+msgstr "Proje yeniden adlandırılamadı"
+
 msgid "Favorite"
 msgstr "Sık kullanılanlara ekle"
 
@@ -173,6 +188,9 @@ msgstr "Listeye dön"
 
 msgid "Gold"
 msgstr "Altın"
+
+msgid "Hide details"
+msgstr "Ayrıntıları gizle"
 
 msgid "Hide password"
 msgstr "Parolayı gizle"
@@ -308,6 +326,9 @@ msgstr "İlgili kaynaklar"
 msgid "Related team resources"
 msgstr "İlgili takım kaynakları"
 
+msgid "Rename project"
+msgstr "Projeyi yeniden adlandır"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Kırmızımsı kahverengi"
@@ -326,6 +347,9 @@ msgstr "Saat dilimi ara"
 
 msgid "Search results"
 msgstr "Arama sonuçları"
+
+msgid "Search…"
+msgstr "Ara…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -350,6 +374,9 @@ msgstr "Ayarlar"
 
 msgid "Settings navigation"
 msgstr "Gezinme ayarları"
+
+msgid "Show details"
+msgstr "Ayrıntıları görüntüle"
 
 msgid "Show password"
 msgstr "Parolayı görüntüle"
@@ -383,6 +410,9 @@ msgstr "Simgeler"
 
 msgid "Travel & Places"
 msgstr "Gezi ve yerler"
+
+msgid "Type to search for existing projects"
+msgstr "Var olan projeleri aramak için yazmaya başlayın"
 
 msgid "Type to search time zone"
 msgstr "Saat dilimi aramak için yazmaya başlayın"
