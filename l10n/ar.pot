@@ -413,7 +413,7 @@ msgid "Travel & Places"
 msgstr "سفر و أماكن"
 
 msgid "Type to search for existing projects"
-msgstr "أكتُب للبحث في المشاريع القائمة"
+msgstr "أكتُب للبحث في المشاريع الموجودة"
 
 msgid "Type to search time zone"
 msgstr "أكتُب للبحث عن منطقة زمنية"
