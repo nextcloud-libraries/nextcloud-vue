@@ -78,7 +78,7 @@
     "@nextcloud/sharing": "^0.2.2",
     "@nextcloud/timezones": "^0.1.1",
     "@nextcloud/vue-select": "^3.25.0",
-    "@vueuse/components": "^10.9.0",
+    "@vueuse/components": "^11.0.0",
     "@vueuse/core": "^10.9.0",
     "clone": "^2.1.2",
     "debounce": "2.1.0",
