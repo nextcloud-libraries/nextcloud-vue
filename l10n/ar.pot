@@ -1,12 +1,12 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Ali <alimahwer@yahoo.com>, 2024
 # hamza mahjoubi, 2024
+# Ali <alimahwer@yahoo.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: hamza mahjoubi, 2024\n"
+"Last-Translator: Ali <alimahwer@yahoo.com>, 2024\n"
 "Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
@@ -36,6 +36,9 @@ msgstr "إجراءات على العنصر المُسمَّى \"{name}\""
 
 msgid "Activities"
 msgstr "سجل الحركات"
+
+msgid "Add to a project"
+msgstr "أضف إلى مشروع"
 
 msgid "Animals & Nature"
 msgstr "الحيوانات والطبيعة"
@@ -112,6 +115,9 @@ msgstr "لاقط الألوان"
 msgid "Confirm changes"
 msgstr "تأكيد التغييرات"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "ربط عناصر بمشروع لتسهيل العثور عليها"
+
 msgid "Custom"
 msgstr "مُخصَّص"
 
@@ -150,6 +156,15 @@ msgstr ""
 msgid "External documentation for {name}"
 msgstr "التوثيق الخارجي لـ {name}"
 
+msgid "Failed to add the item to the project"
+msgstr "تعذر ربط عنصر بمشروع"
+
+msgid "Failed to create a project"
+msgstr "تعذر إنشاء مشروع"
+
+msgid "Failed to rename the project"
+msgstr "تعذّر تغيير اسم المشروع"
+
 msgid "Favorite"
 msgstr "المُفضَّلة"
 
@@ -174,6 +189,9 @@ msgstr "عودة إلى القائمة"
 
 msgid "Gold"
 msgstr "ذهبي"
+
+msgid "Hide details"
+msgstr "أخفِ التفاصيل"
 
 msgid "Hide password"
 msgstr "إخفاء كلمة المرور"
@@ -309,6 +327,9 @@ msgstr "مصادر ذات صلة"
 msgid "Related team resources"
 msgstr "موارد للفريق ذات صلة"
 
+msgid "Rename project"
+msgstr "تغيير اسم المشروع"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "بُنِّي زهري"
@@ -327,6 +348,9 @@ msgstr "البحث عن منطقة زمنية"
 
 msgid "Search results"
 msgstr "نتائج البحث"
+
+msgid "Search…"
+msgstr "بحث ..."
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -351,6 +375,9 @@ msgstr "الإعدادات"
 
 msgid "Settings navigation"
 msgstr "إعدادات التّصفُّح"
+
+msgid "Show details"
+msgstr "أظهِر التفاصيل"
 
 msgid "Show password"
 msgstr "أظهِر كلمة المرور"
@@ -384,6 +411,9 @@ msgstr "رموز"
 
 msgid "Travel & Places"
 msgstr "سفر و أماكن"
+
+msgid "Type to search for existing projects"
+msgstr "أكتُب للبحث في المشاريع الموجودة"
 
 msgid "Type to search time zone"
 msgstr "أكتُب للبحث عن منطقة زمنية"
