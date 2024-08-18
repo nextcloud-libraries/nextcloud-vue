@@ -358,7 +358,7 @@ $externalMargin: 8px;
 	&__wrapper {
 		position: fixed;
 		z-index: 2000;
-		top: 50px;
+		top: var(--header-height);
 		inset-inline-end: 0;
 		box-sizing: border-box;
 		margin: 0 $externalMargin;
@@ -388,7 +388,7 @@ $externalMargin: 8px;
 		width: 350px;
 		max-width: calc(100vw - 2 * $externalMargin);
 		min-height: calc(var(--default-clickable-area) * 1.5);
-		max-height: calc(100vh - 50px * 2);
+		max-height: calc(100vh - var(--header-height) * 2);
 		:deep(.empty-content) {
 			margin: 12vh 10px;
 		}
