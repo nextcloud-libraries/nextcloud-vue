@@ -195,11 +195,11 @@ export default {
 	display: flex;
 	align-items: center;
 	flex-direction: row;
-	gap: 4px;
+	gap: var(--default-grid-baseline);
 	user-select: none;
 	min-height: var(--default-clickable-area);
-	border-radius: var(--default-clickable-area);
-	padding: 4px calc((var(--default-clickable-area) - var(--icon-height)) / 2);
+	border-radius: var(--checkbox-radio-switch--border-radius);
+	padding: var(--default-grid-baseline) calc((var(--default-clickable-area) - var(--icon-height)) / 2);
 	// Set to 100% to make text overflow work on button style
 	width: 100%;
 	// but restrict to content so plain checkboxes / radio switches do not expand
