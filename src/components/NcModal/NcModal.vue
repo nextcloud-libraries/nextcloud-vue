@@ -923,7 +923,7 @@ export default {
 		}
 
 		&:deep() .action-item {
-			margin: calc(calc(var(--header-height) - var(--default-clickable-area)) / 2);
+			margin: calc((var(--header-height) - var(--default-clickable-area)) / 2);
 
 			&--single {
 				box-sizing: border-box;
