@@ -889,7 +889,7 @@ export default {
 			align-items: center;
 			justify-content: center;
 			box-sizing: border-box;
-			margin: calc(calc(var(--header-height) - var(--default-clickable-area)) / 2);
+			margin: calc((var(--header-height) - var(--default-clickable-area)) / 2);
 			padding: 0;
 		}
 
@@ -916,7 +916,7 @@ export default {
 				box-sizing: border-box;
 				width: var(--default-clickable-area);
 				height: var(--default-clickable-area);
-				margin: calc(calc(var(--header-height) - var(--default-clickable-area)) / 2);
+				margin: calc((var(--header-height) - var(--default-clickable-area)) / 2);
 				cursor: pointer;
 				opacity: $opacity_normal;
 			}
