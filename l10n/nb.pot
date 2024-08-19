@@ -348,6 +348,9 @@ msgstr "Søk etter tidssone"
 msgid "Search results"
 msgstr "Søkeresultater"
 
+msgid "Search…"
+msgstr "Søk..."
+
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
