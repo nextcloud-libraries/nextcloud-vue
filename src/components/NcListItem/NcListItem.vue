@@ -513,6 +513,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 					@focusout="handleBlur">
 					<NcActions ref="actions"
 						:primary="isActive || active"
+						:force-menu="forceMenu"
 						:aria-label="computedActionsAriaLabel"
 						@update:open="handleActionsUpdateOpen">
 						<template v-if="$slots['actions-icon']" #icon>
@@ -670,6 +671,15 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Force the actions to display in a three dot menu
+		 */
+		forceMenu: {
+			type: Boolean,
+			default: false,
+		},
+
 		/**
 		 * Show the list component layout
 		 */
