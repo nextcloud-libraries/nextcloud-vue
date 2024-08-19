@@ -140,6 +140,10 @@ module.exports = async () => {
 				content: 'docs/composables.md',
 				sectionDepth: 1,
 				sections: [
+					{
+						name: 'useHotKey',
+						content: 'docs/composables/useHotKey.md',
+					},
 				],
 			},
 			{
