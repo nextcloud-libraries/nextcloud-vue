@@ -140,6 +140,13 @@ module.exports = async () => {
 				],
 			},
 			{
+				name: 'Composables',
+				content: 'docs/composables.md',
+				sectionDepth: 1,
+				sections: [
+				],
+			},
+			{
 				name: 'Components',
 				content: 'docs/components.md',
 				components: 'src/components/*/*.vue',
