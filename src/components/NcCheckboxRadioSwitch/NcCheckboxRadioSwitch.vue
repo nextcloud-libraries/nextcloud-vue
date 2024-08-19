@@ -690,9 +690,9 @@ export default {
 		color: var(--color-primary-element-light);
 	}
 
-	$border-radius: calc(var(--default-clickable-area) / 2);
+	--checkbox-radio-switch--border-radius: var(--border-radius-element, calc(var(--default-clickable-area) / 2));
 	// keep inner border width in mind
-	$border-radius-outer: calc($border-radius + 2px);
+	--checkbox-radio-switch--border-radius-outer: calc(var(--checkbox-radio-switch--border-radius) + 2px);
 
 	&--button-variant.checkbox-radio-switch {
 		background-color: var(--color-main-background);
@@ -729,7 +729,7 @@ export default {
 
 	&--button-variant:not(&--button-variant-v-grouped):not(&--button-variant-h-grouped),
 	&--button-variant &__content {
-		border-radius: $border-radius;
+		border-radius: var(--checkbox-radio-switch--border-radius);
 	}
 
 	/* Special rules for vertical button groups */
@@ -740,12 +740,12 @@ export default {
 	}
 	&--button-variant-v-grouped {
 		&:first-of-type {
-			border-top-left-radius: $border-radius-outer;
-			border-top-right-radius: $border-radius-outer;
+			border-top-left-radius: var(--checkbox-radio-switch--border-radius-outer);
+			border-top-right-radius: var(--checkbox-radio-switch--border-radius-outer);
 		}
 		&:last-of-type {
-			border-bottom-left-radius: $border-radius-outer;
-			border-bottom-right-radius: $border-radius-outer;
+			border-bottom-left-radius: var(--checkbox-radio-switch--border-radius-outer);
+			border-bottom-right-radius: var(--checkbox-radio-switch--border-radius-outer);
 		}
 
 		// remove borders between elements
@@ -763,12 +763,12 @@ export default {
 	/* Special rules for horizontal button groups */
 	&--button-variant-h-grouped {
 		&:first-of-type {
-			border-top-left-radius: $border-radius-outer;
-			border-bottom-left-radius: $border-radius-outer;
+			border-top-left-radius: var(--checkbox-radio-switch--border-radius-outer);
+			border-bottom-left-radius: var(--checkbox-radio-switch--border-radius-outer);
 		}
 		&:last-of-type {
-			border-top-right-radius: $border-radius-outer;
-			border-bottom-right-radius: $border-radius-outer;
+			border-top-right-radius: var(--checkbox-radio-switch--border-radius-outer);
+			border-bottom-right-radius: var(--checkbox-radio-switch--border-radius-outer);
 		}
 
 		// remove borders between elements
