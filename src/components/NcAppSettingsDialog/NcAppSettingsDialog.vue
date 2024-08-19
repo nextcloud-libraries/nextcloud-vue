@@ -387,14 +387,14 @@ export default {
 .app-settings {
 	:deep &__navigation {
 		min-width: 200px;
-		margin-right: 20px;
+		margin-right: calc(4 * var(--default-grid-baseline));
 		overflow-x: hidden;
 		overflow-y: auto;
 		position: relative;
 	}
 	:deep &__content {
 		box-sizing: border-box;
-		padding-inline: 16px;
+		padding-inline: calc(4 * var(--default-grid-baseline));
 	}
 }
 
@@ -402,7 +402,7 @@ export default {
 	height: 100%;
 	box-sizing: border-box;
 	overflow-y: auto;
-	padding: 12px;
+	padding: calc(3 * var(--default-grid-baseline));
 
 	&__link {
 		display: flex;
@@ -411,9 +411,9 @@ export default {
 		height: var(--default-clickable-area);
 		margin: 4px 0;
 		line-height: var(--default-clickable-area);
-		border-radius: var(--border-radius-pill);
+		border-radius: var(--border-radius-element, var(--border-radius-pill));
 		font-weight: bold;
-		padding: 0 20px;
+		padding: 0 calc(4 * var(--default-grid-baseline));
 		cursor: pointer;
 		white-space: nowrap;
 		text-overflow: ellipsis;
@@ -431,16 +431,16 @@ export default {
 		}
 
 		&--icon {
-			padding-inline-start: 8px;
-			gap: 4px;
+			padding-inline-start: calc(2 * var(--default-grid-baseline));
+			gap: var(--default-grid-baseline);
 		}
 
 		&-icon {
 			display: flex;
 			justify-content: center;
 			align-content: center;
-			width: 36px;
-			max-width: 36px;
+			width: calc(var(--default-clickable-area) - 2 * var(--default-grid-baseline));
+			max-width: calc(var(--default-clickable-area) - 2 * var(--default-grid-baseline));
 		}
 	}
 }
