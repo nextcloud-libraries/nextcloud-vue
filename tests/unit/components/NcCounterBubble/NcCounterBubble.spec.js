@@ -13,11 +13,6 @@ describe('NcCounterBubble', () => {
 			const wrapper = mount(NcCounterBubble, { props: { count: 314 } })
 			expect(wrapper.text()).toBe('314')
 		})
-
-		it('should render non-number content as it is', () => {
-			const wrapper = mount(NcCounterBubble, { slots: { default: '14 rows' } })
-			expect(wrapper.text()).toBe('14 rows')
-		})
 	})
 
 	describe('with humanization', () => {
@@ -30,38 +25,28 @@ describe('NcCounterBubble', () => {
 			const wrapper = mount(NcCounterBubble, { props: { count: 1042, raw: true } })
 			expect(wrapper.text()).toBe('1042')
 		})
-
-		it('should render slot content 1020 with humanization as "1K"', () => {
-			const wrapper = mount(NcCounterBubble, { slots: { default: '1042' } })
-			expect(wrapper.text()).toBe('1K')
-		})
-
-		it('should render slot content 1020 as it is with raw prop', () => {
-			const wrapper = mount(NcCounterBubble, { props: { raw: true }, slots: { default: '1042' } })
-			expect(wrapper.text()).toBe('1042')
-		})
 	})
 
 	describe('with styling', () => {
 		it('should not have any additional classes', () => {
-			const wrapper = mount(NcCounterBubble)
+			const wrapper = mount(NcCounterBubble, { props: { count: 0 } })
 			expect(wrapper.classes('counter-bubble__counter--highlighted')).toBeFalsy()
 			expect(wrapper.classes('counter-bubble__counter--outlined')).toBeFalsy()
 			expect(wrapper.classes('active')).toBeFalsy()
 		})
 
 		it('should have class "counter-bubble__counter--highlighted" when type="highlighted"', () => {
-			const wrapper = mount(NcCounterBubble, { props: { type: 'highlighted' } })
+			const wrapper = mount(NcCounterBubble, { props: { count: 0, type: 'highlighted' } })
 			expect(wrapper.classes('counter-bubble__counter--highlighted')).toBeTruthy()
 		})
 
 		it('should have class "counter-bubble__counter--outlined" when type="outlined"', () => {
-			const wrapper = mount(NcCounterBubble, { props: { type: 'outlined' } })
+			const wrapper = mount(NcCounterBubble, { props: { count: 0, type: 'outlined' } })
 			expect(wrapper.classes('counter-bubble__counter--outlined')).toBeTruthy()
 		})
 
 		it('should have class "active" when active', () => {
-			const wrapper = mount(NcCounterBubble, { props: { active: true } })
+			const wrapper = mount(NcCounterBubble, { props: { count: 0, active: true }, attachTo: document.body })
 			expect(wrapper.classes('active')).toBeTruthy()
 		})
 	})
