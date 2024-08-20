@@ -1155,27 +1155,34 @@ export default {
 .tribute-container {
 	z-index: 9000;
 	overflow: auto;
-	// Hide container root element while initialising
+	// Hide container root element while initializing
 	position: absolute;
 	left: -10000px;
 	// Space it out a bit from the text
 	margin: var(--default-grid-baseline) 0;
 	padding: var(--default-grid-baseline);
 	color: var(--color-text-maxcontrast);
-	border-radius: var(--border-radius);
+	border-radius: var(--border-radius-element, var(--border-radius));
 	background: var(--color-main-background);
 	box-shadow: 0 1px 5px var(--color-box-shadow);
 
+	&,
+	& * {
+		box-sizing: border-box;
+	}
+
+	ul {
+		display: flex;
+		flex-direction: column;
+		gap: var(--default-grid-baseline);
+	}
+
 	.tribute-container__item {
 		color: var(--color-text-maxcontrast);
-		border-radius: var(--border-radius);
-		padding: var(--default-grid-baseline) calc(2 * var(--default-grid-baseline));
-		margin-bottom: var(--default-grid-baseline);
+		border-radius: var(--border-radius-small, var(--border-radius));
+		padding: var(--default-grid-baseline);
 		cursor: pointer;
-
-		&:last-child {
-			margin-bottom: 0;
-		}
+		min-height: var(--clickable-area-small, auto);
 
 		&:global(.highlight) {
 			color: var(--color-main-text);
@@ -1199,11 +1206,10 @@ export default {
 	max-width: 300px;
 	// Show maximum 4 entries and a half to show scroll
 	// Autocomplete height
-	// + 2 paddings around autocomplete
-	// + 2 paddings arouind tribute item
+	// + 2 paddings inside autocomplete
 	// + 1 padding gap
 	// And 1.5 paddings - container's padding without the last gap
-	max-height: calc((var(--default-clickable-area) + 5 * var(--default-grid-baseline)) * 4.5 - 1.5 * var(--default-grid-baseline));
+	max-height: calc((var(--default-clickable-area) + 3 * var(--default-grid-baseline)) * 4.5 - 1.5 * var(--default-grid-baseline));
 }
 
 .tribute-container-emoji,
@@ -1212,8 +1218,7 @@ export default {
 	max-width: 200px;
 	// Show maximum 5 entries and a half to show scroll
 	// Item height
-	// + 2 paddings around autocomplete
-	// + 2 paddings arouind tribute item
+	// + 2 paddings around tribute item
 	// + 1 padding gap
 	// And 1.5 paddings - container's padding without the last gap
 	max-height: calc((24px + 3 * var(--default-grid-baseline)) * 5.5 - 1.5 * var(--default-grid-baseline));
@@ -1223,10 +1228,6 @@ export default {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-
-		&__emoji {
-			padding-right: calc(var(--default-grid-baseline) * 2);
-		}
 	}
 }
 
@@ -1246,7 +1247,7 @@ export default {
 			width: 20px;
 			height: 20px;
 			object-fit: contain;
-			padding-right: calc(var(--default-grid-baseline) * 2);
+			padding-right: var(--default-grid-baseline);
 			filter: var(--background-invert-if-dark);
 		}
 	}
