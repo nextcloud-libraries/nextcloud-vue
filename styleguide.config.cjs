@@ -136,6 +136,17 @@ module.exports = async () => {
 				],
 			},
 			{
+				name: 'Composables',
+				content: 'docs/composables.md',
+				sectionDepth: 1,
+				sections: [
+					{
+						name: 'useHotKey',
+						content: 'docs/composables/useHotKey.md',
+					},
+				],
+			},
+			{
 				name: 'Components',
 				content: 'docs/components.md',
 				components: 'src/components/*/*.vue',
