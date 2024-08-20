@@ -106,8 +106,10 @@ export default {
 <style lang="scss" scoped>
 .autocomplete-result {
 	display: flex;
-	height: var(--default-clickable-area);
-	padding: var(--default-grid-baseline) 0;
+	align-items: center;
+	gap: var(--default-grid-baseline);
+	line-height: 1.2;
+	--auto-complete-result-avatar-size: var(--default-clickable-area);
 
 	&__icon {
 		position: relative;
@@ -127,21 +129,22 @@ export default {
 	}
 
 	&__status {
+		--auto-complete-result-status-icon-size: clamp(14px, var(--auto-complete-result-avatar-size) * 0.4, 18px);
+		// Avatar Radius * (1 - 1 / sqrt(2)) - Status Icon Radius / 2
+		--auto-complete-result-status-icon-position: calc(var(--auto-complete-result-avatar-size) / 2 * (1 - 1 / sqrt(2)) - var(--auto-complete-result-status-icon-size) / 2);
 		box-sizing: border-box;
 		position: absolute;
-		right: -4px;
-		bottom: -4px;
-		min-width: 18px;
-		min-height: 18px;
-		width: 18px;
-		height: 18px;
+		right: var(--auto-complete-result-status-icon-position);
+		bottom: var(--auto-complete-result-status-icon-position);
+		height: var(--auto-complete-result-status-icon-size);
+		width: var(--auto-complete-result-status-icon-size);
 		border: 2px solid var(--color-main-background);
 		border-radius: 50%;
 		background-color: var(--color-main-background);
-		font-size: var(--default-font-size);
-		line-height: 15px;
+		font-size: calc(var(--auto-complete-result-status-icon-size) / 1.2);
+		line-height: 1.2;
 		background-repeat: no-repeat;
-		background-size: 16px;
+		background-size: var(--auto-complete-result-status-icon-size);
 		background-position: center;
 
 		&--icon {
@@ -156,7 +159,6 @@ export default {
 		flex-direction: column;
 		justify-content: center;
 		min-width: 0;
-		padding-left: calc(var(--default-grid-baseline) * 2);
 	}
 
 	&__title,
