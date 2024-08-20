@@ -11,8 +11,8 @@ import stripTags from 'striptags'
 import { createApp } from 'vue'
 
 // Referenced from public function getMentions(): https://github.com/nextcloud/server/blob/master/lib/private/Comments/Comment.php
-// Beginning or whitespace. Non-capturing group within word boundary
-const MENTION_START = /\B(?<![^a-z0-9_\-@.'\s])/.source
+// Beginning or whitespace. Uses positive lookahead (to work on MobileSafari <16.4)
+const MENTION_START = /(?=[a-z0-9_\-@.'])\B/.source
 // Capturing groups like: @user-id, @"guest/abc16def", @"federated_user/user-id", @"user-id with space"
 const MENTION_SIMPLE = /(@[a-z0-9_\-@.']+)/.source
 const MENTION_GUEST = /@&quot;guest\/[a-f0-9]+&quot;/.source
