@@ -126,6 +126,10 @@ module.exports = async () => {
 						content: 'docs/functions/emoji.md',
 					},
 					{
+						name: 'isDarkTheme',
+						content: 'docs/functions/isDarkTheme.md',
+					},
+					{
 						name: 'usernameToColor',
 						content: 'docs/functions/usernameToColor.md',
 					},
@@ -136,6 +140,17 @@ module.exports = async () => {
 					{
 						name: 'registerReference',
 						content: 'docs/functions/registerReference.md',
+					},
+				],
+			},
+			{
+				name: 'Composables',
+				content: 'docs/composables.md',
+				sectionDepth: 1,
+				sections: [
+					{
+						name: 'useIsDarkTheme',
+						content: 'docs/composables/useIsDarkTheme.md',
 					},
 				],
 			},

@@ -11,6 +11,7 @@ import usernameToColor from '../src/functions/usernameToColor/index.js'
 import Tooltip from './../src/directives/Tooltip/index.js'
 import Focus from './../src/directives/Focus/index.js'
 import Linkify from './../src/directives/Linkify/index.js'
+import { useIsDarkTheme } from '../src/composables/index.js'
 
 import axios from '@nextcloud/axios'
 
@@ -166,6 +167,8 @@ window.emojiAddRecent = emojiAddRecent
 window.getCurrentSkinTone = getCurrentSkinTone
 window.setCurrentSkinTone = setCurrentSkinTone
 window.usernameToColor = usernameToColor
+// Exported composables
+window.useIsDarkTheme = useIsDarkTheme
 
 // Directives
 Vue.directive('Tooltip', Tooltip)
