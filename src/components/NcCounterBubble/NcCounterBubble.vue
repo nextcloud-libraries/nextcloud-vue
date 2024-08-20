@@ -292,14 +292,14 @@ export default {
 
 <style lang="scss" scoped>
 .counter-bubble__counter {
-	--counter-bubble-line-height: 1em;
+	--counter-bubble-height: 22px; // ~ 1cap + 2 * 1.5 * grid
 	font-size: var(--font-size-small, 13px);
 	overflow: hidden;
 	width: fit-content;
-	min-width: calc(var(--counter-bubble-line-height) + 2 * var(--default-grid-baseline)); // Make it not narrower than a circle
+	min-width: var(--counter-bubble-height); // Make it not narrower than a circle
 	text-align: center;
-	line-height: var(--counter-bubble-line-height);
-	padding: var(--default-grid-baseline);
+	line-height: var(--counter-bubble-height); // Expand line-height to full height to center text vertically
+	padding: 0 calc(1.5 * var(--default-grid-baseline));
 	border-radius: var(--border-radius-pill);
 	background-color: var(--color-primary-element-light);
 	font-weight: bold;
@@ -329,15 +329,6 @@ export default {
 	&--outlined.active {
 		color: var(--color-main-background);
 		box-shadow: inset 0 0 0 2px;
-	}
-}
-
-// Make it pixel perfect aligned
-@supports (line-height: 1cap) {
-	.counter-bubble__counter {
-		// 1em is higher than one digit and makes it not perfectly vertically aligned
-		// 1cap = hight of a digit (T character)
-		--counter-bubble-line-height: 1cap;
 	}
 }
 </style>
