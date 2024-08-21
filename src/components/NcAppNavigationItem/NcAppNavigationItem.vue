@@ -114,9 +114,7 @@ Just nest the counter in a template within `<NcAppNavigationItem>` and add `#cou
 					<Folder :size="20" />
 				</template>
 				<template #counter>
-					<NcCounterBubble>
-						99+
-					</NcCounterBubble>
+					<NcCounterBubble :count="90" />
 				</template>
 			</NcAppNavigationItem>
 		</ul>
@@ -145,9 +143,7 @@ prevent the user from collapsing the items.
 					<Folder :size="20" />
 				</template>
 				<template #counter>
-					<NcCounterBubble>
-						99+
-					</NcCounterBubble>
+					<NcCounterBubble :count="90" />
 				</template>
 				<template #actions>
 					<NcActionButton @click="alert('Edit')">
