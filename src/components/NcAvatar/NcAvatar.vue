@@ -41,44 +41,24 @@ export default {
 ### Avatar with preloaded status
 ```
 <template>
-<div class="grid">
-	<NcAvatar user="janedoe"
-		display-name="Jane Doe"
-		:size="44"
-		:preloaded-user-status="status.online">
-	</NcAvatar>
-	<NcAvatar user="janedoe"
-		display-name="Jane Doe"
-		:size="44"
-		:preloaded-user-status="status.away">
-	</NcAvatar>
-	<NcAvatar user="janedoe"
-		display-name="Jane Doe"
-		:size="44"
-		:preloaded-user-status="status.dnd">
-	</NcAvatar>
-	<NcAvatar user="janedoe"
-		display-name="Jane Doe"
-		:size="44"
-		:preloaded-user-status="status.custom">
-	</NcAvatar>
-	<NcAvatar user="janedoe"
-		display-name="Jane Doe"
-		:preloaded-user-status="status.online">
-	</NcAvatar>
-	<NcAvatar user="janedoe"
-		display-name="Jane Doe"
-		:preloaded-user-status="status.away">
-	</NcAvatar>
-	<NcAvatar user="janedoe"
-		display-name="Jane Doe"
-		:preloaded-user-status="status.dnd">
-	</NcAvatar>
-	<NcAvatar user="janedoe"
-		display-name="Jane Doe"
-		:preloaded-user-status="status.custom">
-	</NcAvatar>
-</div>
+	<div>
+		<NcAvatar user="janedoe"
+			display-name="Jane Doe"
+			:preloaded-user-status="status.online">
+		</NcAvatar>
+		<NcAvatar user="janedoe"
+			display-name="Jane Doe"
+			:preloaded-user-status="status.away">
+		</NcAvatar>
+		<NcAvatar user="janedoe"
+			display-name="Jane Doe"
+			:preloaded-user-status="status.dnd">
+		</NcAvatar>
+		<NcAvatar user="janedoe"
+			display-name="Jane Doe"
+			:preloaded-user-status="status.custom">
+		</NcAvatar>
+	</div>
 </template>
 
 <script>
@@ -111,16 +91,6 @@ export default {
 	},
 }
 </script>
-<style>
-	.grid {
-		width: fit-content;
-		display: grid;
-		justify-content: center;
-		align-items: center;
-		gap: 8px;
-		grid-template-columns: repeat(4, 1fr);
-	}
-</style>
 ```
 
 ### Avatar for non-users
@@ -148,6 +118,72 @@ export default {
 	margin: 15px 25px;
 }
 </style>
+```
+
+### Avatar size
+
+```vue
+<template>
+	<div>
+		<div v-for="size in [15, 24, 34, 44, 180]">
+			<span>
+				{{ size }}px
+			</span>
+			<NcAvatar user="alice-smith"
+				display-name="Alice Smith"
+				:size="size"
+				:preloaded-user-status="status.online" />
+			<NcAvatar user="bob-doe"
+				display-name="Bob Doe"
+				:size="size"
+				:preloaded-user-status="status.meeting" />
+		</div>
+		<div>
+			<div>
+				Custom: {{ customSize }}px
+			</div>
+			<NcAvatar user="alice-smith"
+				display-name="Alice Smith"
+				:size="customSize"
+				:preloaded-user-status="status.online" />
+			<NcAvatar user="bob-doe"
+				display-name="Bob Doe"
+				:size="customSize"
+				:preloaded-user-status="status.meeting" />
+		</div>
+		<div>
+			<input type="range" v-model="customSize" :min="15" :max="180" step="1" />
+		</div>
+	</div>
+</template>
+
+<script>
+import AccountMultiple from 'vue-material-design-icons/AccountMultiple.vue'
+
+export default {
+	components: {
+		AccountMultiple,
+	},
+
+	data() {
+		return {
+			customSize: 20,
+			status: {
+				online: {
+					icon: '',
+					status: 'online',
+					message: 'Available',
+				},
+				meeting: {
+					icon: '📆',
+					status: 'online',
+					message: 'In a meeting',
+				},
+			},
+		}
+	},
+}
+</script>
 ```
 
 </docs>
