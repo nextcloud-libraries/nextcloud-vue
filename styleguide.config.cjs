@@ -66,6 +66,9 @@ module.exports = async () => {
 		},
 
 		enhancePreviewApp: path.resolve(__dirname, 'styleguide/preview.js'),
+		compilerConfig: {
+			transforms: { asyncAwait: false },
+		},
 
 		sections: [
 			{
