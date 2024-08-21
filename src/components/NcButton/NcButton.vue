@@ -686,9 +686,7 @@ export default defineComponent({
 					hasIcon
 						? h('span', {
 							class: 'button-vue__icon',
-							attrs: {
-								'aria-hidden': 'true',
-							},
+							'aria-hidden': 'true',
 						},
 						[this.$slots.icon?.()],
 						)

@@ -28,16 +28,18 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import { ref } from 'vue'
+import { t } from '../../l10n.js'
 
 import NcButton, { ButtonNativeType, ButtonType } from '../NcButton/index'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
-import { t } from '../../l10n.js'
 
 const props = defineProps({
 	/**
 	 * The function that will be called when the button is pressed.
-	 * If the function returns `false` the click is ignored and the dialog will not be closed.
+	 * If the function returns `false` the click is ignored and the dialog will not be closed,
+	 * which is the default behavior of "reset"-buttons.
+	 *
 	 * @type {() => unknown|false|Promise<unknown|false>}
 	 */
 	callback: {
@@ -108,9 +110,9 @@ const isLoading = ref(false)
 
 /**
  * Handle clicking the button
- * @param {MouseEvent} e The click event
+ * @param e The click event
  */
-const handleClick = async (e) => {
+async function handleClick(e: MouseEvent) {
 	// Do not re-emit while loading
 	if (isLoading.value) {
 		return
@@ -118,7 +120,9 @@ const handleClick = async (e) => {
 
 	isLoading.value = true
 	try {
-		const result = await props.callback?.()
+		// for reset buttons the default is "false"
+		const fallback = props.nativeType === 'reset' ? false : undefined
+		const result = await props.callback?.() ?? fallback
 		if (result !== false) {
 			/**
 			 * The click event (`MouseEvent`) and the value returned by the callback
