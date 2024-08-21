@@ -5,9 +5,35 @@
 
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## [v8.17.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.17.0) (2024-08-21)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.16.0...v8.17.0)
 
-<!-- Release notes generated using configuration in .github/release.yml at master -->
+### 🚀 Enhancements
+* feat(NcButton): Allow to specify `target` attribute for buttons with href [\#5938](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5938) \([mejo-](https://github.com/mejo-)\)
+* feat(NcDialog): Allow to make the dialog a form [\#5932](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5932) \([susnux](https://github.com/susnux)\)
+* feat(NcListItem): allow to control the display of a three dot menu [\#5980](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5980) \([DorraJaouad](https://github.com/DorraJaouad)\)
+* feat(NcCounterBubble): add count prop for humanized count display [\#5863](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5863) \([ShGKme](https://github.com/ShGKme)\)
+* feat(useHotKey): add composable for keyboard shortcuts [\#5899](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5899) \([Antreesy](https://github.com/Antreesy)\)
+
+### 🐛 Fixed bugs
+* fix(NcActions): Role `menu` needs a label assigned so label by trigger [\#5933](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5933) \([susnux](https://github.com/susnux)\)
+* fix(NcListItem): Adjust icon color when the list item is active [\#5936](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5936) \([susnux](https://github.com/susnux)\)
+* fix(NcCounterBubble): make it perfectly aligned circle [\#5948](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5948) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcAvatar): extend variable size of status icons [\#5959](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5959) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcActions): NcActionCheckbox and NcActionRadio icon alignment [\#5958](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5958) \([GretaD](https://github.com/GretaD)\)
+* fix(NcCheckboxRadioSwitch): adjust to new border radius [\#5974](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5974) \([ShGKme](https://github.com/ShGKme)\)
+* fix: use `--header-height` instead of `50px` constant [\#5973](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5973) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcAppSettingsDialog): Adjust navigation entries to match Nextcloud 30 design [\#5963](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5963) \([susnux](https://github.com/susnux)\)
+* fix(NcAppNavigationCaption): make name ellipsize [\#5982](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5982) \([GVodyanov](https://github.com/GVodyanov)\)
+* fix(NcAppNavigation): add border-right [\#5953](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5953) \([marcoambrosini](https://github.com/marcoambrosini)\)
+* fix(NcRichText): modify MENTION_START regex to work on older MobileSafari versions [\#5976](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5976) \([arthurlockman](https://github.com/arthurlockman)\)
+* fix(NcCounterBubble): increase size [\#5985](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5985) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcRichContenteditable): adjust to new design [\#5992](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5992) \([ShGKme](https://github.com/ShGKme)\)
+
+### Changed
+* chore(docs): specify more Nextcloud versions in styleguidist [\#5930](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5930) \([ShGKme](https://github.com/ShGKme)\)
+* refactor(NcModal): get rid of unneeded calc() [\#5984](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5984) \([ShGKme](https://github.com/ShGKme)\)
+* Updated translations
 
 ## [v8.16.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.16.0) (2024-08-05)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.15.1...v8.16.0)
