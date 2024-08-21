@@ -95,6 +95,7 @@ Note that this is not possible if the dialog contains a navigation!
 			name="Choose a name"
 			:open.sync="showDialog"
 			@submit="currentName = newName"
+			@reset="newName = ''"
 			@closing="newName = ''">
 			<NcTextField label="New name"
 				placeholder="Min. 6 characters"
@@ -114,8 +115,14 @@ export default {
 		return {
 			showDialog: false,
 			newName: '',
-			currentName: 'none yet.',
+			currentName: 'non yet.',
 			buttons: [
+				{
+					label: 'Reset',
+					nativeType: 'reset',
+					// returning `false` to prevent the dialog from closing
+					callback: () => false,
+				},
 				{
 					label: 'Submit',
 					type: 'primary',
@@ -169,7 +176,7 @@ export default {
 					<NcDialogButton v-for="(button, idx) in buttons"
 						:key="idx"
 						v-bind="button"
-						@click="handleButtonClose" />
+						@click="handleButtonClose(button)" />
 				</slot>
 			</div>
 		</component>
@@ -300,7 +307,7 @@ export default defineComponent({
 		},
 
 		/**
-		 * Optionally pass additionaly classes which will be set on the navigation for custom styling
+		 * Optionally pass additional classes which will be set on the navigation for custom styling
 		 * @default ''
 		 * @example
 		 * ```html
@@ -344,7 +351,7 @@ export default defineComponent({
 		},
 
 		/**
-		 * Optionally pass additionaly classes which will be set on the content wrapper for custom styling
+		 * Optionally pass additional classes which will be set on the content wrapper for custom styling
 		 * @default ''
 		 */
 		contentClasses: {
@@ -354,7 +361,7 @@ export default defineComponent({
 		},
 
 		/**
-		 * Optionally pass additionaly classes which will be set on the dialog itself
+		 * Optionally pass additional classes which will be set on the dialog itself
 		 * (the default `class` attribute will be set on the modal wrapper)
 		 * @default ''
 		 */
@@ -434,6 +441,16 @@ export default defineComponent({
 					/** Forwarded HTMLFormElement submit event (only if `is-form` is set) */
 					emit('submit', event)
 				},
+				/**
+				 * @param {Event} event Form submit event
+				 */
+				reset(event) {
+					event.preventDefault()
+					/**
+					 * Forwarded HTMLFormElement reset event (only if `is-form` is set).
+					 */
+					emit('reset', event)
+				}
 			}
 			: {},
 		)
@@ -447,9 +464,11 @@ export default defineComponent({
 		/**
 		 * Handle clicking a dialog button -> should close
 		 */
-		const handleButtonClose = () => {
-			// Skip close if invalid dialog
-			if (dialogTagName.value === 'form' && !dialogElement.value.reportValidity()) {
+		const handleButtonClose = (button) => {
+			// Skip close on submit if invalid dialog
+			if (button.nativeType === 'submit'
+				&& dialogTagName.value === 'form'
+				&& !dialogElement.value.reportValidity()) {
 				return
 			}
 			handleClosing()
