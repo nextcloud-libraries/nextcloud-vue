@@ -342,7 +342,6 @@ export default {
 	background-color: var(--color-main-background-blur, var(--color-main-background));
 	-webkit-backdrop-filter: var(--filter-background-blur, none);
 	backdrop-filter: var(--filter-background-blur, none);
-	border-inline-end: 1px solid var(--color-border);
 
 	&--close {
 		margin-left: calc(-1 * min($navigation-width, var(--app-navigation-max-width)));
@@ -389,10 +388,18 @@ export default {
 	}
 }
 
+// Add extra border for high contrast mode
+[data-themes*="highcontrast"] {
+	.app-navigation {
+		border-inline-end: 1px solid var(--color-border);
+	}
+}
+
 // When on mobile, we make the navigation slide over the NcAppContent
 @media only screen and (max-width: $breakpoint-mobile) {
 	.app-navigation {
 		position: absolute;
+		border-inline-end: 1px solid var(--color-border);
 	}
 }
 
