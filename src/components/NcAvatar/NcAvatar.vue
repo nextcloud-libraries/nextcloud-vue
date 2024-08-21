@@ -487,7 +487,7 @@ export default {
 
 		avatarStyle() {
 			const style = {
-				'--size': this.size + 'px',
+				'--avatar-size': this.size + 'px',
 				lineHeight: this.size + 'px',
 				fontSize: Math.round(this.size * 0.45) + 'px',
 			}
@@ -777,8 +777,8 @@ export default {
 .avatardiv {
 	position: relative;
 	display: inline-block;
-	width: var(--size);
-	height: var(--size);
+	width: var(--avatar-size);
+	height: var(--avatar-size);
 
 	&--unknown {
 		position: relative;
@@ -820,24 +820,24 @@ export default {
 		:deep() {
 			.button-vue,
 			.button-vue__icon {
-				height: var(--size);
-				min-height: var(--size);
-				width: var(--size) !important;
-				min-width: var(--size);
+				height: var(--avatar-size);
+				min-height: var(--avatar-size);
+				width: var(--avatar-size) !important;
+				min-width: var(--avatar-size);
 			}
 		}
 		& > :deep(.button-vue),
 		& > :deep(.action-item .button-vue) {
-			--button-radius: calc(var(--size) / 2);
+			--button-radius: calc(var(--avatar-size) / 2);
 		}
 	}
 
 	.avatardiv__initials-wrapper {
 		display: block;
-		height: var(--size);
-		width: var(--size);
+		height: var(--avatar-size);
+		width: var(--avatar-size);
 		background-color: var(--color-main-background);
-		border-radius: calc(var(--size) / 2);
+		border-radius: calc(var(--avatar-size) / 2);
 
 		.avatardiv__initials {
 			position: absolute;
@@ -859,8 +859,8 @@ export default {
 	}
 
 	.material-design-icon {
-		width: var(--size);
-		height: var(--size);
+		width: var(--avatar-size);
+		height: var(--avatar-size);
 	}
 
 	.avatardiv__user-status {
@@ -906,7 +906,7 @@ export default {
 
 .avatar-class-icon {
 	display: block;
-	border-radius: calc(var(--size) / 2);
+	border-radius: calc(var(--avatar-size) / 2);
 	background-color: var(--color-background-darker);
 	height: 100%;
 }
