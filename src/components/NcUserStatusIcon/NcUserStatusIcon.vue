@@ -125,13 +125,14 @@ const activeSvg = computed(() => status.value && matchSvg[status.value])
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	min-width: 16px;
-	min-height: 16px;
-	max-width: 20px;
-	max-height: 20px;
 
 	&--invisible {
 		filter: var(--background-invert-if-dark);
+	}
+
+	:deep(svg) {
+		width: 100%;
+		height: 100%;
 	}
 }
 </style>

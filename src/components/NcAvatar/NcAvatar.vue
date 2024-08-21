@@ -934,23 +934,33 @@ export default {
 	}
 
 	.avatardiv__user-status {
+		// Size of the status icon to make it:
+		// - 💫 Orbital: the status icon's center is positioned on the avatar circle
+		// - ⏹️ Best-fit: the status icon is as large as possible without exceeding the avatar box
+		// See PR for math explanation: PR #6004
+		--avatar-status-size-orbital: calc(var(--avatar-size) * (1 - 1 / sqrt(2)));
+		// Limit the status icon size to the status of a small clickable avatar
+		// Ideally avatars with a smaller should not be used with the status icon at all
+		--avatar-status-size-min: calc(var(--default-clickable-area) * (1 - 1 / sqrt(2)));
+		--avatar-status-size: max(var(--avatar-status-size-orbital), var(--avatar-status-size-min));
+		// Because the status icon size is limited, smaller avatar requires a position offset to keep the status icon orbital
+		--avatar-status-icon-position: min(0px, (var(--avatar-status-size-orbital) - var(--avatar-status-size)) / 2);
 		box-sizing: border-box;
 		position: absolute;
-		inset-inline-end: -4px;
-		bottom: -4px;
-		min-height: 14px;
-		min-width: 14px;
-		max-height: 18px;
-		max-width: 18px;
-		height: 40%;
-		width: 40%;
+		inset-inline-end: var(--avatar-status-icon-position);
+		inset-block-end: var(--avatar-status-icon-position);
+		height: var(--avatar-status-size);
+		width: var(--avatar-status-size);
 		line-height: 1;
-		font-size: clamp(var(--font-size-small, 13px), 85%, var(--default-font-size));
+		font-size: calc(var(--avatar-status-size) / 1.2);
 		background-color: var(--color-main-background);
 		background-repeat: no-repeat;
-		background-size: 16px;
+		background-size: var(--avatar-status-size);
 		background-position: center;
 		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 
 		.acli:hover & {
 			border-color: var(--color-background-hover);
