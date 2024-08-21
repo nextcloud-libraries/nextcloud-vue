@@ -127,62 +127,18 @@ th {
 </style>
 ```
 
-### Custom content (deprecated)
+### Custom content (removed)
 
-You can use the default slot to pass any custom content. If you pass a plain number to the default slot, without raw prop it will be humanized like via `count` prop.
+In v8 it was possible ti to pass any custom content via the default slot. This feature has been removed. Use `count` prop for numbers or [NcChip](#/Components/NcChip) component for a custom content.
+</docs>
 
-**DEPRECATED:** passing count via slot content is **deprecated** and will be removed in the v9. Prefer using `count` prop for numbers or [NcChip](#/Components/NcChip) component for a custom content.
-
-```vue
 <template>
-	<table>
-		<tr>
-			<th>content</th>
-			<th>default</th>
-			<th>raw</th>
-		</tr>
-		<tr v-for="num in numbers" :key="num">
-			<td>{{ num }}</td>
-			<td>
-				<NcCounterBubble>{{ num }}</NcCounterBubble>
-			</td>
-			<td>
-				<NcCounterBubble raw>{{ num }}</NcCounterBubble>
-			</td>
-		</tr>
-	</table>
+	<div class="counter-bubble__counter" :class="counterClassObject">
+		{{ humanizedCount }}
+	</div>
 </template>
 
 <script>
-export default {
-	setup() {
-		return {
-			numbers: ['314+', '16 rows', '24564'],
-		}
-	},
-}
-</script>
-
-<style scoped>
-table {
-	border-collapse: collapse;
-}
-
-th,
-td {
-	border: 1px solid var(--color-border);
-	padding: var(--default-grid-baseline) calc(var(--default-grid-baseline) * 2);
-}
-
-th {
-	color: var(--color-text-maxcontrast);
-}
-</style>
-```
-</docs>
-
-<script>
-import { h } from 'vue'
 import { getCanonicalLocale } from '@nextcloud/l10n'
 
 export default {
@@ -209,16 +165,14 @@ export default {
 
 		/**
 		 * The count to display in the counter bubble.
-		 * Alternatively, you can pass any value to the default slot.
 		 */
 		count: {
 			type: Number,
-			required: false,
-			default: undefined,
+			required: true,
 		},
 
 		/**
-		 * Disables humanization to display count or content as it is
+		 * Disables humanization to display count as it is.
 		 */
 		raw: {
 			type: Boolean,
@@ -237,14 +191,8 @@ export default {
 		},
 
 		humanizedCount() {
-			return this.humanizeCount(this.count)
-		},
-	},
-
-	methods: {
-		humanizeCount(count) {
 			if (this.raw) {
-				return count
+				return this.count
 			}
 
 			const formatter = new Intl.NumberFormat(getCanonicalLocale(), {
@@ -252,42 +200,8 @@ export default {
 				compactDisplay: 'short',
 			})
 
-			return formatter.format(count)
+			return formatter.format(this.count)
 		},
-
-		/**
-		 * Get the humanized count from `count` prop
-		 * @return {string | undefined}
-		 */
-		getHumanizedCount() {
-			// If we have count prop - just render from count
-			if (this.count !== undefined) {
-				return this.humanizedCount
-			}
-
-			// Raw value - render as it is
-			if (this.raw) {
-				return undefined
-			}
-
-			// If slot content is just a text with a number - process like count
-			const slotContent = this.$slots.default?.()?.[0]?.children
-			if (typeof slotContent === 'string') {
-				const textContent = slotContent.trim()
-				if (textContent && /^\d+$/.test(textContent)) {
-					const count = parseInt(textContent, 10)
-					return this.humanizeCount(count)
-				}
-			}
-		},
-	},
-
-	render() {
-		return h('div', {
-			class: ['counter-bubble__counter', this.counterClassObject],
-		}, {
-			default: () => this.getHumanizedCount() ?? this.$slots.default?.(),
-		})
 	},
 }
 
