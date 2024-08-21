@@ -885,22 +885,25 @@ export default {
 	}
 
 	.avatardiv__user-status {
+		// min avatar size = 24px (clickable-area-small)
+		// min status size = 10px (~40% of min avatar size)
+		--avatar-status-icon-size: max(10px, 0.4 * var(--avatar-size)); // Default status size is 40% of avatar
+		// Avatar Radius * (1 - 1 / sqrt(2)) - Status Icon Radius / 2
+		// See PR for math explanation: TODO
+		--avatar-status-icon-position: calc(var(--avatar-size) / 2 * (1 - 1 / sqrt(2)) - var(--avatar-status-icon-size) / 2);
 		box-sizing: border-box;
 		position: absolute;
-		right: -4px;
-		bottom: -4px;
-		min-height: 14px;
-		min-width: 14px;
-		max-height: 18px;
-		max-width: 18px;
-		height: 40%;
-		width: 40%;
-		line-height: 1;
-		font-size: clamp(var(--font-size-small), 85%, var(--default-font-size));
-		border: 2px solid var(--color-main-background);
+		inset-inline-end: var(--avatar-status-icon-position);
+		inset-block-end: var(--avatar-status-icon-position);
+		height: var(--avatar-status-icon-size);
+		width: var(--avatar-status-icon-size);
+		line-height: 1.2;
+		font-size: calc(var(--avatar-status-icon-size) / 1.2);
+		// Icon for online-like statuses
+		border: max(2px, calc(var(--avatar-status-icon-size) * 0.125)) solid var(--color-main-background);
 		background-color: var(--color-main-background);
 		background-repeat: no-repeat;
-		background-size: 16px;
+		background-size: 16px; // TODO
 		background-position: center;
 		border-radius: 50%;
 
