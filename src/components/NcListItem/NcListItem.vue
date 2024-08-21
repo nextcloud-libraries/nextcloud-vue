@@ -482,15 +482,14 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 								<slot name="details">{{ details }}</slot>
 							</div>
 							<!-- Counter and indicator -->
-							<div v-if="counterNumber || hasIndicator"
+							<div v-if="counterNumber !== undefined || hasIndicator"
 								v-show="showAdditionalElements"
 								class="list-item-details__extra">
-								<NcCounterBubble v-if="counterNumber"
+								<NcCounterBubble v-if="counterNumber !== undefined"
+									:count="counterNumber"
 									:active="isActive || active"
 									class="list-item-details__counter"
-									:type="counterType">
-									{{ counterNumber }}
-								</NcCounterBubble>
+									:type="counterType" />
 
 								<span v-if="hasIndicator" class="list-item-details__indicator">
 									<!-- @slot This slot is used for some indicator in form of icon -->
