@@ -379,8 +379,8 @@ export default {
 		&:active:not([disabled]),
 		&:hover:not([disabled]),
 		&:focus:not([disabled]) {
+			border-color: var(--color-main-text);
 			border-width: var(--border-width-input-focused, 2px);
-			border-color: var(--color-main-text) !important;
 			box-shadow: 0 0 0 2px var(--color-main-background) !important;
 		}
 
@@ -421,7 +421,8 @@ export default {
 			}
 		}
 
-		&--error {
+		&--error,
+		&:invalid {
 			border-color: var(--color-error) !important; //Override hover border color
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px

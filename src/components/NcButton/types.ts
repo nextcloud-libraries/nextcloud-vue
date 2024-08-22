@@ -26,7 +26,7 @@ export enum ButtonType {
 	TertiaryOnPrimary = 'tertiary-on-primary',
 	Error = 'error',
 	/**
-	 * @deprecated Designwise not recommended for new code
+	 * @deprecated Design-wise not recommended for new code
 	 */
 	Warning = 'warning',
 	Success = 'success',

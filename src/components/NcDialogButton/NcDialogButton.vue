@@ -10,6 +10,7 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 <template>
 	<NcButton :aria-label="label"
 		:disabled="disabled"
+		:native-type="nativeType"
 		:type="type"
 		@click="handleClick">
 		{{ label }}
@@ -24,7 +25,7 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue'
-import NcButton, { ButtonType } from '../NcButton/index'
+import NcButton, { ButtonNativeType, ButtonType } from '../NcButton/index'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 
 export default defineComponent({
@@ -42,7 +43,8 @@ export default defineComponent({
 		 */
 		callback: {
 			type: Function,
-			required: true,
+			required: false,
+			default: () => {},
 		},
 
 		/**
@@ -71,8 +73,23 @@ export default defineComponent({
 			default: ButtonType.Secondary,
 			required: false,
 			validator(value: string) {
-				return Object.values(ButtonType).includes(value as ButtonType)
-			}
+				return typeof value === 'string'
+					&& Object.values(ButtonType).includes(value as ButtonType)
+			},
+		},
+
+		/**
+		 * The native type of the button, see `NcButton`
+		 * @type {'button'|'submit'|'reset'}
+		 */
+		nativeType: {
+			type: String as PropType<ButtonNativeType>,
+			required: false,
+			default: 'button',
+			validator(value) {
+				return typeof value === 'string'
+					&& Object.values(ButtonNativeType).includes(value as ButtonNativeType)
+			},
 		},
 
 		/**
