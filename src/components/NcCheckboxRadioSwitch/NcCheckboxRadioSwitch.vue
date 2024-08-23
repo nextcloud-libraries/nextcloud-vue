@@ -583,8 +583,8 @@ export default {
 		t,
 		n,
 
-		onToggle() {
-			if (this.disabled) {
+		onToggle(event) {
+			if (this.disabled || event.target.tagName.toLowerCase() === 'a') {
 				return
 			}
 
