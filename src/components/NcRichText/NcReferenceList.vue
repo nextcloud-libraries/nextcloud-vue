@@ -99,11 +99,13 @@ export default {
 		fetch() {
 			this.loading = true
 			if (this.referenceData) {
+				this.references = null
 				this.loading = false
 				return
 			}
 
 			if (!(new RegExp(URL_PATTERN).exec(this.text))) {
+				this.references = null
 				this.loading = false
 				return
 			}
