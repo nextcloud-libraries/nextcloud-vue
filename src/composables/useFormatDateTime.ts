@@ -74,7 +74,7 @@ export function useFormatDateTime(
 
 			const diff = date.value.getTime() - currentTime.value
 			const seconds = diff / 1000
-			if (Math.abs(seconds) <= 90) {
+			if (Math.abs(seconds) < 59.5) {
 				if (wrappedOptions.value.ignoreSeconds) {
 					return FEW_SECONDS_AGO[wrappedOptions.value.relativeTime]
 				} else {
@@ -82,23 +82,23 @@ export function useFormatDateTime(
 				}
 			}
 			const minutes = seconds / 60
-			if (Math.abs(minutes) <= 90) {
+			if (Math.abs(minutes) <= 59) {
 				return formatter.format(Math.round(minutes), 'minute')
 			}
 			const hours = minutes / 60
-			if (Math.abs(hours) <= 24) {
+			if (Math.abs(hours) < 23.5) {
 				return formatter.format(Math.round(hours), 'hour')
 			}
 			const days = hours / 24
-			if (Math.abs(days) <= 6) {
+			if (Math.abs(days) < 6.5) {
 				return formatter.format(Math.round(days), 'day')
 			}
-			const weeks = days / 7
-			if (Math.abs(weeks) <= 4) {
+			if (Math.abs(days) < 27.5) {
+				const weeks = days / 7
 				return formatter.format(Math.round(weeks), 'week')
 			}
 			const months = days / 30
-			if (Math.abs(months) <= 12) {
+			if (Math.abs(months) < 11.5) {
 				return formatter.format(Math.round(months), 'month')
 			}
 			return formatter.format(Math.round(days / 365), 'year')
