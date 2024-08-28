@@ -5,6 +5,7 @@
 import { onKeyStroke } from '@vueuse/core'
 
 const disableKeyboardShortcuts = window.OCP?.Accessibility?.disableKeyboardShortcuts?.()
+const isMac = /mac|ipad|iphone|darwin/i.test(navigator.userAgent)
 
 /**
  * Check if event target (active element) is editable (allows input from keyboard) or NcModal is open
@@ -26,7 +27,8 @@ function shouldIgnoreEvent(event) {
 }
 
 const eventHandler = (callback, options) => (event) => {
-	if (!!options.ctrl !== event.ctrlKey) {
+	const ctrlKeyPressed = isMac ? event.metaKey : event.ctrlKey
+	if (ctrlKeyPressed !== Boolean(options.ctrl)) {
 		// Ctrl is required and not pressed, or the opposite
 		return
 	} else if (!!options.alt !== event.altKey) {
