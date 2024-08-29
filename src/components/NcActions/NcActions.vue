@@ -1779,8 +1779,9 @@ export default {
 							tabindex: '-1',
 							ref: 'menuList',
 							role: this.config.popupRole,
-							// Dialog must have a label
-							'aria-labelledby': this.actionsMenuSemanticType === 'dialog' ? triggerRandomId : undefined,
+							// For most roles a label is required (dialog, menu), but also in general nothing speaks against labelling a list.
+							// It is even recommended to do so.
+							'aria-labelledby': triggerRandomId,
 							'aria-modal': this.actionsMenuSemanticType === 'dialog' ? 'true' : undefined,
 						}, [
 							actions,
