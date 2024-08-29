@@ -4,7 +4,7 @@
 -->
 
 <docs>
-> We're wrapping the awesome datepicker library here https://github.com/mengxiong10/vue-datepicker-next
+> We're wrapping the awesome datepicker library [@vuepic/vue-datepicker](https://vue3datepicker.com/)
 > Please check there for all the available options.
 
 ### Defaults
@@ -107,47 +107,37 @@ export default {
 
 <template>
 	<DatePicker ref="datepicker"
-		:append-to-body="appendToBody"
+		v-model="internalValue"
+		:auto-apply="autoApply"
 		:clearable="clearable"
-		:format="format ? format : formatTypeMap"
-		:formatter="internalFormatter"
-		:lang="lang ? lang : defaultLang"
-		:minute-step="minuteStep"
-		:placeholder="placeholder ? placeholder : defaultPlaceholder"
-		:popup-class="{ 'show-week-number': showWeekNumber }"
-		:show-week-number="showWeekNumber"
-		:type="type"
-		:value="modelValue"
-		@select-year="handleSelectYear"
-		@select-month="handleSelectMonth"
-		@update:value="$emit('update:modelValue', $event)">
-		<template #icon-calendar>
-			<NcPopover v-if="showTimezoneSelect"
-				v-model:shown="showTimezonePopover"
-				popup-role="dialog"
-				popover-base-class="timezone-select__popper">
-				<template #trigger="{ attrs }">
-					<button class="datetime-picker-inline-icon"
-						:class="{'datetime-picker-inline-icon--highlighted': highlightTimezone}"
-						v-bind="attrs"
-						@mousedown.stop.prevent="() => {}">
-						<Web :size="20" />
-					</button>
-				</template>
-
-				<div role="dialog"
-					:aria-labelledby="timezoneDialogHeaderId">
-					<div class="timezone-popover-wrapper__label">
-						<strong :id="timezoneDialogHeaderId">
-							{{ t('Please select a time zone:') }}
-						</strong>
-					</div>
-					<NcTimezonePicker :model-value="tzVal"
-						class="timezone-popover-wrapper__timezone-select"
-						@update:model-value="$emit('update:timezone-id', $event)" />
-				</div>
-			</NcPopover>
-			<CalendarBlank v-else :size="20" />
+		:locale="userLanguage"
+		:placeholder="placeholder ?? defaultPlaceholder"
+		:six-weeks="sixWeeks"
+		:week-start="firstDayOfWeek"
+		v-bind="{ ...localizedLabels, ...legacyFallbacks() }">
+		<template #input-icon>
+			<NcIconSvgWrapper :class="$style.icon" :path="mdiCalendarBlank" />
+		</template>
+		<template #calendar-icon>
+			<NcIconSvgWrapper :class="$style.icon" :path="mdiCalendarBlank" />
+		</template>
+		<template #clear-icon>
+			<NcIconSvgWrapper :class="$style.icon" :path="mdiClose" />
+		</template>
+		<template #clock-icon>
+			<NcIconSvgWrapper :class="$style.icon" :path="mdiClock" />
+		</template>
+		<template #arrow-left>
+			<NcIconSvgWrapper :class="$style.icon" :path="mdiArrowLeft" />
+		</template>
+		<template #arrow-right>
+			<NcIconSvgWrapper :class="$style.icon" :path="mdiArrowRight" />
+		</template>
+		<template #arrow-up>
+			<NcIconSvgWrapper :class="$style.icon" :path="mdiArrowUp" />
+		</template>
+		<template #arrow-down>
+			<NcIconSvgWrapper :class="$style.icon" :path="mdiArrowDown" />
 		</template>
 		<template v-for="(_, slot) of $slots" #[slot]="scope">
 			<slot :name="slot" v-bind="scope" />
@@ -155,289 +145,92 @@ export default {
 	</DatePicker>
 </template>
 
-<script>
-import { t } from '../../l10n.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-
-import NcTimezonePicker from '../NcTimezonePicker/index.js'
-import NcPopover from '../NcPopover/index.js'
-import ScopeComponent from '../../utils/ScopeComponent.js'
-
-import CalendarBlank from 'vue-material-design-icons/CalendarBlank.vue'
-import Web from 'vue-material-design-icons/Web.vue'
+<script setup lang="ts">
+import type { NcDateTimePickerEmits, NcDateTimePickerProps } from './types.js'
+import type { VueDatePickerProps } from '@vuepic/vue-datepicker'
 
 import {
 	getFirstDay,
-	getDayNames,
-	getDayNamesShort,
+	getCanonicalLocale,
 	getDayNamesMin,
-	getMonthNames,
-	getMonthNamesShort,
 } from '@nextcloud/l10n'
+import { t } from '../../l10n.js'
+import DatePicker from '@vuepic/vue-datepicker'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
+import { mdiArrowDown, mdiArrowLeft, mdiArrowRight, mdiArrowUp, mdiCalendarBlank, mdiClock, mdiClose } from '@mdi/js'
+import { useAttrs } from 'vue'
 
-import DatePicker from 'vue-datepicker-next'
-import './index.scss'
+import '@vuepic/vue-datepicker/dist/main.css'
 
-const formatMap = {
-	date: 'YYYY-MM-DD',
-	datetime: 'YYYY-MM-DD H:mm:ss',
-	year: 'YYYY',
-	month: 'YYYY-MM',
-	time: 'H:mm:ss',
-	week: 'w',
+defineEmits<NcDateTimePickerEmits>()
+
+const props = withDefaults(
+	defineProps<NcDateTimePickerProps>(),
+	{
+		clearable: false,
+		sixWeeks: 'fair',
+	},
+)
+
+const firstDayOfWeek = getFirstDay() as 0|1|2|3|4|5|6
+/**
+ * Is is called locale on the component, but it is used for translating names.
+ * Language -> text
+ * Locale -> formatting
+ */
+const userLanguage = getCanonicalLocale()
+
+const defaultPlaceholder = ''
+const internalValue = defineModel<Date>()
+
+// const timezoneDialogHeaderId = `timezone-dialog-header-${getRandomId()}`
+
+// const showTimezonePopover = ref(false)
+// const tzVa = ref(props.timezoneId)
+
+const attrs = useAttrs()
+
+/**
+ * Set legacy fallbacks for deprecated props.
+ * This translates props that were exposed with `@nextcloud/vue` v8 to `@vuepic/vue-datepicker` props.
+ *
+ * All of those props are deprecated, so:
+ * @todo Remove this v10
+ */
+const legacyFallbacks = (): Partial<VueDatePickerProps> => {
+	return {
+		partialFlow: attrs.partialFlow ?? props.autoApply,
+		teleport: props.appendToBody || attrs.teleport,
+		minutesIncrement: attrs.minutesIncrement || props.minuteStep,
+		minutesGridIncrement: attrs.minutesGridIncrement || props.minuteStep,
+		weekNumbers: attrs.weekNumbers || (props.showWeekNumber ? { type: 'iso' } : null),
+	} as Partial<VueDatePickerProps>
 }
 
-export default ScopeComponent({
-	name: 'NcDateTimePicker',
+const localizedLabels = {
+	// TRANSLATOR: Like in "Pick a date"
+	selectText: t('Pick'),
 
-	components: {
-		CalendarBlank,
-		DatePicker,
-		NcPopover,
-		NcTimezonePicker,
-		Web,
-	},
+	cancelText: t('Cancel'),
 
-	props: {
-		clearable: {
-			type: Boolean,
-			default: false,
-		},
+	// TRANSLATORS: Shown to pick the current date or current time
+	nowButtonLabel: t('Now'),
 
-		minuteStep: {
-			type: Number,
-			default: 10,
-		},
+	// TRANSLATORS: The abbreviation shown for "Week number" on a table header
+	weekNumName: t('W'),
 
-		type: {
-			type: String,
-			default: 'date',
-		},
+	dayNames: getDayNamesMin(),
 
-		format: {
-			type: String,
-			default: null,
-		},
-
-		formatter: {
-			type: Object,
-			default: null,
-		},
-
-		lang: {
-			type: Object,
-			default: null,
-		},
-
-		/**
-		 * The value to initialize, but also two-way bind the selected date. The date is – like the `Date` object in
-		 * JavaScript – tied to UTC. The selected time zone does not have an influence of the selected time and date
-		 * value. You have to translate the time yourself when you want to factor in time zones.
-		 */
-		// eslint-disable-next-line
-		modelValue: {
-			default: () => new Date(),
-		},
-
-		/**
-		 * The preselected IANA time zone ID for the time zone picker, only relevant in combination with `:show-timezone-select="true"`. Example: `Europe/Berlin`. The prop supports two-way binding through v-model directive.
-		 */
-		timezoneId: {
-			type: String,
-			default: 'UTC',
-		},
-
-		showTimezoneSelect: {
-			type: Boolean,
-			default: false,
-		},
-
-		highlightTimezone: {
-			type: Boolean,
-			default: false,
-		},
-
-		appendToBody: {
-			type: Boolean,
-			default: false,
-		},
-
-		showWeekNumber: {
-			type: Boolean,
-			default: false,
-		},
-
-		placeholder: {
-			type: String,
-			default: null,
-		},
-	},
-
-	emits: [
-		'update:modelValue',
-		'update:timezone-id',
-	],
-
-	setup() {
-		return {
-			timezoneDialogHeaderId: `timezone-dialog-header-${GenRandomId()}`,
-		}
-	},
-
-	data() {
-		return {
-			showTimezonePopover: false,
-			tzVal: this.timezoneId,
-		}
-	},
-
-	computed: {
-		/**
-		 * Datepicker language
-		 * https://github.com/mengxiong10/vue2-datepicker/blob/master/locale.md
-		 *
-		 * @return {object}
-		 */
-		defaultLang() {
-			return {
-				formatLocale: {
-					months: getMonthNames(),
-					monthsShort: getMonthNamesShort(),
-					weekdays: getDayNames(),
-					weekdaysShort: getDayNamesShort(),
-					weekdaysMin: getDayNamesMin(),
-					// 0 = sunday, 1 = monday
-					firstDayOfWeek: getFirstDay(),
-				},
-				monthFormat: 'MMM',
-			}
-		},
-
-		/**
-		 * Translated placeholder
-		 *
-		 * @return {string}
-		 */
-		defaultPlaceholder() {
-			if (this.type === 'time') {
-				return t('Pick a time')
-			}
-			if (this.type === 'month') {
-				return t('Pick a month')
-			}
-			if (this.type === 'year') {
-				return t('Pick a year')
-			}
-			if (this.type === 'week') {
-				return t('Pick a week')
-			}
-			if (this.type === 'date') {
-				return t('Pick a date')
-			}
-			return t('Pick a date and a time')
-		},
-
-		/**
-		 * If format is not provided, try to match the type
-		 * or fallback to 'date'
-		 *
-		 * @return {string}
-		 */
-		formatTypeMap() {
-			return formatMap[this.type] ?? formatMap.date
-		},
-
-		/**
-		 * The formatter used for the vue-datepicker to fix nextcloud-libraries/nextcloud-vue#5044
-		 */
-		internalFormatter() {
-			/**
-			 * Get the ISO week number of the date
-			 * @param {Date} date The date to format
-			 */
-			const getWeek = (date) => {
-				// Adjust to nearest Thursday
-				const firstThursday = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
-				firstThursday.setUTCDate(firstThursday.getUTCDate() + 4 - (firstThursday.getUTCDay() || 7))
-
-				const yearStart = new Date(Date.UTC(firstThursday.getUTCFullYear(), 0, 1))
-
-				// Full weeks to nearest Thursday
-				return Math.ceil((((firstThursday - yearStart) / 86400000) + 1) / 7)
-			}
-
-			return {
-				getWeek,
-				// allow to override it by users using the `formatter` prop
-				...(this.formatter ?? {}),
-			}
-		},
-	},
-
-	methods: {
-		t,
-
-		handleSelectYear(year) {
-			const value = this.$refs.datepicker.currentValue
-			if (value) {
-				try {
-					const date = new Date(new Date(value).setFullYear(year))
-					this.$refs.datepicker.selectDate(date)
-				} catch (error) {
-					console.error('Invalid value', value, year)
-				}
-			}
-		},
-
-		handleSelectMonth(month) {
-			const value = this.$refs.datepicker.currentValue
-			if (value) {
-				try {
-					const date = new Date(new Date(value).setMonth(month))
-					this.$refs.datepicker.selectDate(date)
-				} catch (error) {
-					console.error('Invalid value', value, month)
-				}
-			}
-		},
-
-		/**
-		 * Toggles the visibility of the time zone popover
-		 */
-		toggleTimezonePopover() {
-			if (!this.showTimezoneSelect) {
-				// Just a click on the icon, but not for time zones -> ignore
-				return
-			}
-
-			this.showTimezonePopover = !this.showTimezonePopover
-		},
-	},
-})
-
+	/*ariaLabels: {
+		
+	} as VueDatePickerProps['ariaLabels'],*/
+}
 </script>
 
-<style lang="scss" scoped>
-.mx-datepicker :deep(.mx-input-wrapper .mx-input) {
-	background-clip: border-box;
-}
-
-.datetime-picker-inline-icon {
-	opacity: .3;
-	border: none;
-	background-color: transparent;
-	border-radius: 0;
-	padding: 0 !important;
-	margin: 0;
-
-	&--highlighted {
-		opacity: .7;
-	}
-
-	&:focus,
-	&:hover {
-		opacity: 1;
-	}
+<style module lang="scss">
+.icon span {
+	opacity: 1;
+	display: inherit;
 }
 </style>
 
