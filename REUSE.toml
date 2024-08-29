@@ -52,7 +52,7 @@ SPDX-FileCopyrightText = "2017-2024 Nextcloud GmbH and Nextcloud contributors"
 SPDX-License-Identifier = "AGPL-3.0-or-later"
 
 [[annotations]]
-path = ["styleguide/assets/img/app-background.jpg", "styleguide/assets/img/background/kamil-porembinski-clouds.jpg"]
+path = ["styleguide/assets/img/app-background.jpg", "styleguide/assets/img/background/jenna-kim-the-globe.webp"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Kamil Porembiński"
 SPDX-License-Identifier = "CC-BY-SA-4.0"
