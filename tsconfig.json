@@ -1,23 +1,27 @@
 {
-  "extends": "@vue/tsconfig",
-  "include": ["./src/**/*.js","./src/**/*.ts", "./src/**/*.vue", "**/*.ts"],
-  "exclude": ["tests", "vitest.config.ts"],
+	"extends": "@vue/tsconfig",
+	"include": ["./src/**/*.js","./src/**/*.ts", "./src/**/*.vue", "**/*.ts"],
+	"exclude": ["tests", "vitest.config.ts"],
 
-  "compilerOptions": {
-    "allowJs": true,
-    "allowImportingTsExtensions": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "noImplicitAny": false,
-    "outDir": "./dist",
-    "rootDir": ".",
-    "strict": true,
-    "noEmit": true,
-  },
+	"compilerOptions": {
+		"allowJs": true,
+		"allowImportingTsExtensions": true,
+		"allowSyntheticDefaultImports": true,
+		"lib": [
+			"DOM",
+			"ESNext",
+		],
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"noImplicitAny": false,
+		"outDir": "./dist",
+		"rootDir": ".",
+		"strict": true,
+		"noEmit": true,
+	},
 
-  "vueCompilerOptions": {
-    "target": 3.3,
-  },
+	"vueCompilerOptions": {
+		"target": 3.5,
+	},
 }
