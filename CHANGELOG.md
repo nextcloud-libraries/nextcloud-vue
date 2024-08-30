@@ -5,6 +5,17 @@
 
 # Changelog
 
+## [v8.17.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.17.1) (2024-08-30)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.17.0...v8.17.1)
+
+### 🐛 Fixed bugs
+* fix(NcAppNavigation): keep border only on mobile [\#6008](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6008) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcRichText): discard reference widgets on text update [\#6011](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6011) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcCheckBoxRadioSwitch): do not toggle on a click on a link inside [\#6013](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6013) \([DorraJaouad](https://github.com/DorraJaouad)\)
+* fix: Adjust time intervals for relative time [\#6017](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6017) \([susnux](https://github.com/susnux)\)
+* fix(NcHeaderMenu): Remove padding from popover menu [\#6026](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6026) \([susnux](https://github.com/susnux)\)
+* fix(useHotKey): respect press of MacOS Cmd key as Ctrl key [\#6021](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6021) \([Antreesy](https://github.com/Antreesy)\)
+
 ## [v8.17.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.17.0) (2024-08-21)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.16.0...v8.17.0)
 
