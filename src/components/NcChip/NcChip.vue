@@ -8,7 +8,8 @@
 ```vue
 <template>
 	<div style="display: flex; gap: 8px; flex-wrap: wrap;">
-		<NcChip text="Notes.txt" :icon-path="mdiFile" />
+		<NcChip text="Notes.txt" />
+		<NcChip text="Files" :icon-path="mdiFile" />
 		<NcChip text="Color" type="tertiary" :icon-path="mdiPalette" />
 		<NcChip text="Current time" type="primary" :icon-path="mdiClock" no-close />
 	</div>
@@ -33,7 +34,7 @@ export default {
 It is also possible to use custom components for the icon by using the `icon` slot.
 In this example we are using the `NcAvatar` component to render the users avatar as the icon.
 
-*Hint: If you use round icons like avatars you should set their size to `24px` (or use CSS variable `--chip-size`) to make then fully fill and align with the the chip*
+*Hint: If you use round icons like avatars you should set their size to `24px` (or use CSS variable `--chip-size`) to make them fully fill and align with the the chip*
 
 Also it is possible to pass custom actions.
 
@@ -69,8 +70,13 @@ export default {
 </docs>
 
 <template>
-	<div class="nc-chip" :class="{ [`nc-chip--${type}`]: true, 'nc-chip--no-actions': !hasActions }">
-		<span class="nc-chip__icon">
+	<div class="nc-chip"
+		:class="{
+			[`nc-chip--${type}`]: true,
+			'nc-chip--no-actions': noClose && !hasActions(),
+			'nc-chip--no-icon': !hasIcon(),
+		}">
+		<span v-if="hasIcon()" class="nc-chip__icon">
 			<!-- @slot The icon slot can be used to set the chip icon. Make sure that the icon is not exceeding a height of `24px`. For round icons a exact size of `24px` is recommended. -->
 			<slot name="icon">
 				<!-- The default icon wrapper uses a size of 18px to ensure the icon is not clipped by the round chip style -->
@@ -85,7 +91,7 @@ export default {
 			<!-- @slot The default slot can be used to set the text that is shown -->
 			<slot>{{ text }}</slot>
 		</span>
-		<NcActions v-if="hasActions"
+		<NcActions v-if="canClose || hasActions()"
 			class="nc-chip__actions"
 			:force-menu="!canClose"
 			type="tertiary-no-background">
@@ -103,107 +109,85 @@ export default {
 	</div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { mdiClose } from '@mdi/js'
-import { defineComponent } from 'vue'
+import { computed, useSlots, type PropType } from 'vue'
 import { t } from '../../l10n.js'
 
 import NcActions from '../NcActions/NcActions.vue'
 import NcActionButton from '../NcActionButton/NcActionButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 
-export default defineComponent({
-	name: 'NcChip',
-
-	components: {
-		NcActions,
-		NcActionButton,
-		NcIconSvgWrapper,
+const props = defineProps({
+	/**
+	 * aria label to set on the close button
+	 * @default 'Close'
+	 */
+	ariaLabelClose: {
+		type: String,
+		default: t('Close'),
 	},
 
-	props: {
-		/**
-		 * aria label to set on the close button
-		 * @default 'Close'
-		 */
-		ariaLabelClose: {
-			type: String,
-			default: t('Close'),
-		},
-
-		/**
-		 * Main text of the chip
-		 */
-		text: {
-			type: String,
-			default: '',
-		},
-
-		/**
-		 * Chip style
-		 * This sets the background style of the chip, similar to NcButton's `type`
-		 */
-		type: {
-			type: String,
-			default: 'secondary',
-			validator: (value: string) => ['primary', 'secondary', 'tertiary'].includes(value),
-		},
-
-		/**
-		 * SVG path of the icon to use.
-		 * For example icon paths from `@mdi/js` can be used.
-		 */
-		iconPath: {
-			type: String,
-			default: null,
-		},
-
-		/**
-		 * Inline SVG to use as the icon
-		 */
-		iconSvg: {
-			type: String,
-			default: null,
-		},
-
-		/**
-		 * Set to true to prevent the close button to be shown
-		 */
-		noClose: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * Main text of the chip
+	 */
+	text: {
+		type: String,
+		default: '',
 	},
 
-	emits: ['close'],
-
-	setup() {
-		return {
-			mdiClose,
-		}
+	/**
+	 * Chip style
+	 * This sets the background style of the chip, similar to NcButton's `type`
+	 */
+	type: {
+		type: String as PropType<'primary' | 'secondary' | 'tertiary'>,
+		default: 'secondary',
+		validator: (value: string) => ['primary', 'secondary', 'tertiary'].includes(value),
 	},
 
-	computed: {
-		canClose() {
-			return !this.noClose
-		},
-
-		hasActions() {
-			return this.canClose || this.$slots.actions?.() !== undefined
-		},
+	/**
+	 * SVG path of the icon to use, this takes precedence over `iconSVG`.
+	 * For example icon paths from `@mdi/js` can be used.
+	 */
+	iconPath: {
+		type: String,
+		default: null,
 	},
 
-	methods: {
-		t,
+	/**
+	 * Inline SVG to use as the icon
+	 */
+	iconSvg: {
+		type: String,
+		default: null,
+	},
 
-		onClose() {
-			/**
-			 * Emitted when the close button is clicked
-			 */
-			this.$emit('close')
-		},
+	/**
+	 * Set to true to prevent the close button to be shown
+	 */
+	noClose: {
+		type: Boolean,
+		default: false,
 	},
 })
+
+const emit = defineEmits(['close'])
+const slots = useSlots()
+
+const canClose = computed(() => !props.noClose)
+const hasActions = () => Boolean(slots.actions?.())
+const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon?.())
+
+/**
+ * Handle closing the chip (pressing the X-button)
+ */
+function onClose() {
+	/**
+	 * Emitted when the close button is clicked
+	 */
+	emit('close')
+}
 </script>
 
 <style scoped lang="scss">
@@ -216,7 +200,6 @@ export default defineComponent({
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	gap: var(--default-grid-baseline);
 	border-radius: var(--chip-radius);
 	background-color: var(--color-background-hover);
 
@@ -235,6 +218,11 @@ export default defineComponent({
 		padding-inline-end: calc(1.5 * var(--default-grid-baseline));
 	}
 
+	&--no-icon &__text {
+		// Add some more space to the border
+		padding-inline-start: calc(1.5 * var(--default-grid-baseline));
+	}
+
 	&__text {
 		// Allow to grow the text
 		// this is only used if an app forces a width of the chip
@@ -242,11 +230,13 @@ export default defineComponent({
 
 		overflow: hidden;
 		text-overflow: ellipsis;
+		text-wrap: nowrap;
 	}
 
 	&__icon {
 		// Do neither grow nor shrink, size is fixed
 		flex: 0 0 var(--chip-size);
+		margin-inline-end: var(--default-grid-baseline);
 
 		line-height: 1;
 		display: flex;
