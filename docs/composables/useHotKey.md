@@ -21,7 +21,7 @@ where:
   - `push`: whether the event should be triggered on both keydown and keyup
   - `prevent`: prevents the default action of the event
   - `stop`: prevents propagation of the event in the capturing and bubbling phases
-  - `ctrl`: whether the Ctrl key should be pressed
+  - `ctrl`: whether the Ctrl key should be pressed (Cmd key on MacOS)
   - `alt`: whether the Alt key should be pressed
   - `shift`: whether the Shift key should be pressed
 - `stopCallback`: a callback to stop listening to the event
