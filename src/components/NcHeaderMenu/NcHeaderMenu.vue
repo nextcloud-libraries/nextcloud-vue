@@ -341,6 +341,11 @@ $externalMargin: 8px;
 		// header is filled with primary or image background
 		filter: none !important;
 		color: var(--color-background-plain-text, var(--color-primary-text)) !important;
+
+		&:focus-visible {
+			outline: none !important;
+			box-shadow: none !important;
+		}
 	}
 
 	&--opened &__trigger,
@@ -350,11 +355,6 @@ $externalMargin: 8px;
 		opacity: 1;
 	}
 
-	#{&}__trigger:focus-visible {
-		outline: none !important;
-		box-shadow: none !important;
-	}
-
 	&__wrapper {
 		position: fixed;
 		z-index: 2000;
@@ -362,7 +362,6 @@ $externalMargin: 8px;
 		inset-inline-end: 0;
 		box-sizing: border-box;
 		margin: 0 $externalMargin;
-		padding: 8px;
 		border-radius: 0 0 var(--border-radius) var(--border-radius);
 		border-radius: var(--border-radius-large);
 		background-color: var(--color-main-background);
