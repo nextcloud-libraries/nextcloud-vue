@@ -106,7 +106,6 @@ Note that this is not possible if the dialog contains a navigation!
 	</div>
 </template>
 <script>
-import IconCancel from '@mdi/svg/svg/cancel.svg?raw'
 import IconCheck from '@mdi/svg/svg/check.svg?raw'
 
 export default {
@@ -128,6 +127,82 @@ export default {
 }
 </script>
 ```
+
+### Loading buttons
+Sometimes a dialog ends with a request and this request might fail due to server-side-validation.
+In this case it is often desired to keep the dialog open, this can be done by returning `false` from the button callback,
+to not block this callback should return a `Promise<false>`.
+
+It is also possible to get the result of the callback from the dialog, as the result is passed as the payload of the `closing` event.
+
+While the promise is awaited the button will have a loading state,
+this means, as long as no custom `icon`-slot is used, a loading icon will be shown.
+Please note that the **button will not be disabled or accessibility reasons**,
+because disabled elements cannot be focused and so the loading state could not be communicated e.g. via screen readers.
+
+```vue
+<template>
+	<div>
+		<NcButton @click="openDialog">Show dialog</NcButton>
+		<NcDialog :buttons="buttons"
+			name="Create user"
+			:message="message"
+			:open.sync="showDialog"
+			@closing="response = $event"
+			@update:open="clickClosesDialog = false" />
+		<div style="margin-top: 8px;">Dialog response: {{ response }}</div>
+	</div>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			showDialog: false,
+			clickClosesDialog: false,
+			response: 'none',
+		}
+	},
+
+	methods: {
+		async callback() {
+			// wait 3 seconds
+			await new Promise((resolve) => window.setTimeout(resolve, 3000))
+			this.clickClosesDialog = !this.clickClosesDialog
+			// Do not close the dialog on first and then every second button click
+			if (this.clickClosesDialog) {
+				// return false means the dialog stays open
+				return false
+			}
+			return '✅'
+		},
+
+		openDialog() {
+			this.response = 'none'
+			this.showDialog = true
+		},
+	},
+
+	computed: {
+		buttons() {
+			return [
+				{
+					label: 'Create user',
+					type: 'primary',
+					callback: this.callback,
+				}
+			]
+		},
+		message() {
+			if (this.clickClosesDialog) {
+				return 'Next button click will work and close the dialog.'
+			} else {
+				return 'Clicking the button will load but not close the dialog.'
+			}
+		},
+	},
+}
+</script>
+```
 </docs>
 
 <template>
@@ -137,7 +212,7 @@ export default {
 		:enable-swipe="false"
 		v-bind="modalProps"
 		@close="handleClosed"
-		@update:show="handleClosing">
+		@update:show="handleClosing()">
 		<!-- The dialog name / header -->
 		<h2 :id="navigationId" class="dialog__name" v-text="name" />
 		<component :is="dialogTagName"
@@ -446,25 +521,29 @@ export default defineComponent({
 		// Because NcModal does not emit `close` when show prop is changed
 		/**
 		 * Handle clicking a dialog button -> should close
+		 * @param {MouseEvent} event The click event
+		 * @param {unknown} result Result of the callback function
 		 */
-		const handleButtonClose = () => {
+		const handleButtonClose = (event, result) => {
 			// Skip close if invalid dialog
 			if (dialogTagName.value === 'form' && !dialogElement.value.reportValidity()) {
 				return
 			}
-			handleClosing()
+			handleClosing(result)
 			window.setTimeout(() => handleClosed(), 300)
 		}
 
 		/**
 		 * Handle closing the dialog, optional out transition did not run yet
+		 * @param {unknown} result the result of the callback
 		 */
-		const handleClosing = () => {
+		const handleClosing = (result) => {
 			showModal.value = false
 			/**
-			 * Emitted when the dialog is closing, so the out transition did not finish yet
+			 * Emitted when the dialog is closing, so the out transition did not finish yet.
+			 * @param result The result of the button callback (`undefined` if closing because of clicking the 'close'-button)
 			 */
-			emit('closing')
+			emit('closing', result)
 		}
 
 		/**

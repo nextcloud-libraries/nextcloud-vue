@@ -65,6 +65,10 @@ module.exports = async () => {
 			return `import ${name} from '@nextcloud/vue/dist/Components/${name}.js'`
 		},
 
+		compilerConfig: {
+			transforms: { asyncAwait: false },
+		},
+
 		sections: [
 			{
 				name: 'Introduction',
