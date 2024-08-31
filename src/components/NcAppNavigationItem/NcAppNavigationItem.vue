@@ -609,10 +609,6 @@ export default {
 		}
 	},
 
-	mounted() {
-		this.actionsBoundariesElement = document.querySelector('#content-vue') || undefined
-	},
-
 	data() {
 		return {
 			editingValue: '',
@@ -664,6 +660,10 @@ export default {
 		open(newVal) {
 			this.opened = newVal
 		},
+	},
+
+	mounted() {
+		this.actionsBoundariesElement = document.querySelector('#content-vue') || undefined
 	},
 
 	created() {
