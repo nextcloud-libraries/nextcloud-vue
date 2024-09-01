@@ -1,13 +1,13 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Mario Siegmann <mario_siegmann@web.de>, 2024
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2024
 # Martin Wilichowski, 2024
+# Mario Siegmann <mario_siegmann@web.de>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Martin Wilichowski, 2024\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2024\n"
 "Language-Team: German (Germany) (https://app.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -210,6 +210,10 @@ msgstr "Heller Hautfarbton"
 
 msgid "Load more \"{options}\""
 msgstr "Weitere \"{options}\" laden"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Wird geladen …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
