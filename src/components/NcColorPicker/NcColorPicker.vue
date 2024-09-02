@@ -217,6 +217,7 @@ import Check from 'vue-material-design-icons/Check.vue'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 import { Chrome } from 'vue-color'
+import { useModelMigration } from '../../composables/private/useModelMigration.js'
 
 const HEX_REGEX = /^#([a-f0-9]{3}|[a-f0-9]{6})$/i
 
@@ -235,10 +236,19 @@ export default {
 	props: {
 		/**
 		 * A HEX color that represents the initial value of the picker
+		 * @deprecated Removed in v9 - use `value` instead
 		 */
 		value: {
 			type: String,
-			required: true,
+			required: false,
+		},
+
+		/**
+		 * A HEX color that represents the initial value of the picker
+		 */
+		modelValue: {
+			type: String,
+			required: false,
 		},
 
 		/**
@@ -287,13 +297,22 @@ export default {
 		'submit',
 		'close',
 		'update:open',
+		/** @deprecated Removed in v9 - use `update:modelValue` instead */
 		'update:value',
+		'update:modelValue',
 		'input',
 	],
 
+	setup() {
+		const { model } = useModelMigration('value', 'update:value')
+		return {
+			model,
+		}
+	},
+
 	data() {
 		return {
-			currentColor: this.value,
+			currentColor: this.model,
 			advanced: false,
 			ariaBack: t('Back'),
 			ariaMore: t('More options'),
@@ -321,7 +340,7 @@ export default {
 	},
 
 	watch: {
-		value(color) {
+		model(color) {
 			this.currentColor = color
 		},
 	},
@@ -370,10 +389,8 @@ export default {
 			}
 			this.currentColor = color
 
-			/**
-			 * Emits a hexadecimal string e.g. '#ffffff'
-			 */
-			this.$emit('update:value', color)
+
+			this.model = color
 
 			/**
 			 * Emits a hexadecimal string e.g. '#ffffff'

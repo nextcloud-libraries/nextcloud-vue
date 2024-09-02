@@ -10,17 +10,17 @@ All undocumented attributes will be bound to the textarea. e.g. `maxlength`
 ```
 <template>
 	<NcActions>
-		<NcActionTextEditable value="This is a textarea">
+		<NcActionTextEditable :modelValue.sync="This is a textarea">
 			<template #icon>
 				<Pencil :size="20" />
 			</template>
 		</NcActionTextEditable>
-		<NcActionTextEditable :disabled="true" value="This is a disabled textarea">
+		<NcActionTextEditable :modelValue.sync="This is a disabled textarea" disabled>
 			<template #icon>
 				<Pencil :size="20" />
 			</template>
 		</NcActionTextEditable>
-		<NcActionTextEditable name="Please edit the text" value="This is a textarea with name">
+		<NcActionTextEditable :modelValue.sync="This is a textarea with name" name="Please edit the text">
 			<template #icon>
 				<Pencil :size="20" />
 			</template>
@@ -34,6 +34,14 @@ export default {
 	components: {
 		Pencil,
 	},
+
+	data() {
+		return {
+			text1: 'This is a textarea',
+			text2: 'This is a disabled textarea',
+			text3: 'This is a textarea with name',
+		}
+	}
 }
 </script>
 ```
@@ -66,7 +74,7 @@ export default {
 
 				<textarea :id="computedId"
 					:disabled="disabled"
-					:value="value"
+					:value="model"
 					v-bind="$attrs"
 					:class="['action-text-editable__textarea', { focusable: isFocusable }]"
 					@input="onInput" />
@@ -82,6 +90,7 @@ export default {
 </template>
 
 <script>
+import { useModelMigration } from '../../composables/private/useModelMigration.js';
 import ActionTextMixin from '../../mixins/actionText.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
@@ -114,8 +123,16 @@ export default {
 		},
 		/**
 		 * value attribute of the input field
+		 * @deprecated Removed in v9 - use `modelValue` instead
 		 */
 		value: {
+			type: String,
+			default: '',
+		},
+		/**
+		 * value attribute of the input field
+		 */
+		modelValue: {
 			type: String,
 			default: '',
 		},
@@ -123,9 +140,18 @@ export default {
 
 	emits: [
 		'input',
+		/** @deprecated Removed in v9 - use `update:modelValue` instead */
 		'update:value',
+		'update:modelValue',
 		'submit',
 	],
+
+	setup() {
+		const { model } = useModelMigration('value', 'update:value')
+		return {
+			model,
+		}
+	},
 
 	computed: {
 		/**
@@ -150,12 +176,8 @@ export default {
 			 * @type {Event|Date}
 			 */
 			this.$emit('input', event)
-			/**
-			 * Emitted when the inputs value changes
-			 *
-			 * @type {string|Date}
-			 */
-			this.$emit('update:value', event.target.value)
+			
+			this.model = event.target.value
 		},
 		onSubmit(event) {
 			event.preventDefault()

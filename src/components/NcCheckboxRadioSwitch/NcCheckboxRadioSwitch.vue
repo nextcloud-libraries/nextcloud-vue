@@ -300,6 +300,7 @@ export default {
 import NcCheckboxContent, { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxContent.vue'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { t, n } from '../../l10n.js'
+import { useModelMigration } from '../../composables/private/useModelMigration.js';
 
 export default {
 	name: 'NcCheckboxRadioSwitch',
@@ -388,8 +389,17 @@ export default {
 
 		/**
 		 * Checked state. To be used with `:value.sync`
+		 * @deprecated Removed in v9 - use `modelValue` instead
 		 */
 		checked: {
+			type: [Boolean, Array, String],
+			default: false,
+		},
+
+		/**
+		 * Checkbox value
+		 */
+		modelValue: {
 			type: [Boolean, Array, String],
 			default: false,
 		},
@@ -447,7 +457,18 @@ export default {
 		},
 	},
 
-	emits: ['update:checked'],
+	emits: [
+		/** @deprecated Removed in v9 - use `update:modelValue` instead */
+		'update:checked',
+		'update:modelValue',
+	],
+
+	setup() {
+		const { model } = useModelMigration('checked', 'update:checked')
+		return {
+			model,
+		}
+	},
 
 	computed: {
 		dataAttrs() {
@@ -531,18 +552,18 @@ export default {
 		/**
 		 * Check if that entry is checked
 		 * If value is defined, we use that as the checked value
-		 * If not, we expect true/false in this.checked
+		 * If not, we expect true/false in checked state
 		 *
 		 * @return {boolean}
 		 */
 		isChecked() {
 			if (this.value !== null) {
-				if (Array.isArray(this.checked)) {
-					return [...this.checked].indexOf(this.value) > -1
+				if (Array.isArray(this.model)) {
+					return [...this.model].indexOf(this.value) > -1
 				}
-				return this.checked === this.value
+				return this.model === this.value
 			}
-			return this.checked === true
+			return this.model === true
 		},
 
 		hasIndeterminate() {
@@ -555,7 +576,7 @@ export default {
 
 	mounted() {
 		if (this.name && this.type === TYPE_CHECKBOX) {
-			if (!Array.isArray(this.checked)) {
+			if (!Array.isArray(this.model)) {
 				throw new Error('When using groups of checkboxes, the updated value will be an array.')
 			}
 		}
@@ -566,7 +587,7 @@ export default {
 		}
 
 		// https://material.io/components/checkboxes#usage
-		if (typeof this.checked !== 'boolean' && this.type === TYPE_SWITCH) {
+		if (typeof this.model !== 'boolean' && this.type === TYPE_SWITCH) {
 			throw new Error('Switches can only be used with boolean as checked prop.')
 		}
 	},
@@ -582,19 +603,19 @@ export default {
 
 			// If this is a radio, there can only be one value
 			if (this.type === TYPE_RADIO) {
-				this.$emit('update:checked', this.value)
+				this.model = this.value
 				return
 			}
 
 			// If this is a radio, there can only be one value
 			if (this.type === TYPE_SWITCH) {
-				this.$emit('update:checked', !this.isChecked)
+				this.model = !this.isChecked
 				return
 			}
 
 			// If the initial value was a boolean, let's keep it that way
-			if (typeof this.checked === 'boolean') {
-				this.$emit('update:checked', !this.checked)
+			if (typeof this.model === 'boolean') {
+				this.model = !this.model
 				return
 			}
 
@@ -604,9 +625,9 @@ export default {
 				.map(input => input.value)
 
 			if (values.includes(this.value)) {
-				this.$emit('update:checked', values.filter((v) => v !== this.value))
+				this.model = values.filter((v) => v !== this.value)
 			} else {
-				this.$emit('update:checked', [...values, this.value])
+				this.model = [...values, this.value]
 			}
 		},
 

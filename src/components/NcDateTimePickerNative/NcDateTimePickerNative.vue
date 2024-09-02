@@ -151,8 +151,20 @@ export default {
 		 * The selected time zone does not have an influence of the selected time and date value.
 		 * You have to translate the time yourself when you want to factor in time zones.
 		 * Pass null to clear the input field.
+		 * @deprecated Removed in v9. Use `modelValue` instead.
 		 */
 		value: {
+			type: Date,
+			default: null,
+		},
+
+		/**
+		 * The date is – like the `Date` object in JavaScript – tied to UTC.
+		 * The selected time zone does not have an influence of the selected time and date value.
+		 * You have to translate the time yourself when you want to factor in time zones.
+		 * Pass null to clear the input field.
+		 */
+		modelValue: {
 			type: Date,
 			default: null,
 		},
@@ -219,6 +231,7 @@ export default {
 
 	emits: [
 		'input',
+		'update:modelValue',
 	],
 
 	computed: {

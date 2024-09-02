@@ -40,7 +40,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 						'input-field__input--success': success,
 						'input-field__input--error': error,
 					}]"
-				:value="value.toString()"
+				:value="valueWithMigration?.toString()"
 				v-on="$listeners"
 				@input="handleInput">
 			<!-- Label -->
@@ -97,6 +97,7 @@ import GenRandomId from '../../utils/GenRandomId.js'
 
 import AlertCircle from 'vue-material-design-icons/AlertCircleOutline.vue'
 import Check from 'vue-material-design-icons/Check.vue'
+import { useModelMigration } from '../../composables/private/useModelMigration.js';
 
 export default {
 	name: 'NcInputField',
@@ -113,10 +114,25 @@ export default {
 		/**
 		 * The value of the input field
 		 * If type is 'number' and a number is passed as value than the type of `update:value` will also be 'number'
+		 * @deprecated Removed in v9. Use `modelValue` instead.
 		 */
 		value: {
 			type: [String, Number],
-			required: true,
+			required: false,
+			default: undefined,
+		},
+
+		/**
+		 * The value of the input field
+		 * If type is 'number' and a number is passed as value than the type of `update:value` will also be 'number'
+		 */
+		modelValue: {
+			type: [String, Number],
+			required: false,
+			default: undefined,
+			validator(modelValue) {
+				return modelValue !== undefined && this.value !== undefined
+			},
 		},
 
 		/**
@@ -244,10 +260,30 @@ export default {
 
 	emits: [
 		'update:value',
+		'update:modelValue',
 		'trailing-button-click',
 	],
 
+	model: {
+		prop: 'modelValue',
+		event: 'update:modelValue',
+	},
+
+	setup() {
+		const { model } = useModelMigration('value', 'update:value')
+		return {
+			model,
+		}
+	},
+
 	computed: {
+		valueWithMigration() {
+			if (this.value !== undefined) {
+				return this.value
+			}
+			return this.modelValue
+		},
+
 		computedId() {
 			return this.$attrs.id && this.$attrs.id !== '' ? this.$attrs.id : this.inputName
 		},
@@ -312,7 +348,8 @@ export default {
 		},
 
 		handleInput(event) {
-			this.$emit('update:value', this.type === 'number' && typeof this.value === 'number' ? parseFloat(event.target.value, 10) : event.target.value)
+			const newValue = this.type === 'number' && typeof this.value === 'number' ? parseFloat(event.target.value, 10) : event.target.value
+			this.model = newValue
 		},
 
 		handleTrailingButtonClick(event) {

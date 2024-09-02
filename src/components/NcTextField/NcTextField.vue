@@ -201,6 +201,7 @@ export default {
 
 	emits: [
 		'update:value',
+		'update:modelValue',
 	],
 
 	computed: {
@@ -245,6 +246,7 @@ export default {
 
 		handleInput(event) {
 			this.$emit('update:value', event.target.value)
+			this.$emit('update:modelValue', event.target.value)
 		},
 	},
 }

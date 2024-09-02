@@ -22,7 +22,7 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 			<input :id="id"
 				ref="checkbox"
 				:disabled="disabled"
-				:checked="checked"
+				:checked="model"
 				:value="value"
 				:class="{ focusable: isFocusable }"
 				type="checkbox"
@@ -38,6 +38,7 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 </template>
 
 <script>
+import { useModelMigration } from '../../composables/private/useModelMigration.js';
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
@@ -65,8 +66,17 @@ export default {
 
 		/**
 		 * checked state of the the checkbox element
+		 * @deprecated Removed in v9 - use `modelValue` instead
 		 */
 		checked: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * checked state of the the checkbox element
+		 */
+		modelValue: {
 			type: Boolean,
 			default: false,
 		},
@@ -92,8 +102,22 @@ export default {
 		'change',
 		'check',
 		'uncheck',
+		/** @deprecated Removed in v9 - use `update:modelValue` instead */
 		'update:checked',
+		/**
+		 * Emitted when the checkbox state is changed
+		 *
+		 * @type {boolean}
+		 */
+		'update:modelValue',
 	],
+
+	setup() {
+		const { model } = useModelMigration('checked', 'update:checked')
+		return {
+			model,
+		}
+	},
 
 	computed: {
 		/**
@@ -112,7 +136,7 @@ export default {
 		 */
 		ariaChecked() {
 			if (this.isInSemanticMenu) {
-				return this.checked ? 'true' : 'false'
+				return this.model ? 'true' : 'false'
 			}
 			return undefined
 		},
@@ -124,12 +148,7 @@ export default {
 			this.$refs.label.click()
 		},
 		onChange(event) {
-			/**
-			 * Emitted when the checkbox state is changed
-			 *
-			 * @type {boolean}
-			 */
-			this.$emit('update:checked', this.$refs.checkbox.checked)
+			this.model = this.$refs.checkbox.checked
 
 			/**
 			 * Emitted when the checkbox state is changed

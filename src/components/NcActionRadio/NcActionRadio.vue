@@ -41,6 +41,7 @@ So that only one of each name set can be selected at the same time.
 </template>
 
 <script>
+import { useModelMigration } from '../../composables/private/useModelMigration.js';
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
@@ -68,8 +69,17 @@ export default {
 
 		/**
 		 * checked state of the the radio element
+		 * @deprecated Removed in v9 - use `modelValue` instead
 		 */
 		checked: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * checked state of the the radio element
+		 */
+		modelValue: {
 			type: Boolean,
 			default: false,
 		},
@@ -102,9 +112,22 @@ export default {
 	},
 
 	emits: [
+		/** @deprecated Removed in v9 - use `update:modelValue` instead */
 		'update:checked',
+		/**
+		 * The radio state is changed
+		 * @type {boolean}
+		 */
+		'update:modelValue',
 		'change',
 	],
+
+	setup() {
+		const { model } = useModelMigration('checked', 'update:checked')
+		return {
+			model,
+		}
+	},
 
 	computed: {
 		/**
@@ -123,7 +146,7 @@ export default {
 		 */
 		 ariaChecked() {
 			if (this.isInSemanticMenu) {
-				return this.checked ? 'true' : 'false'
+				return this.model ? 'true' : 'false'
 			}
 			return undefined
 		},
@@ -135,12 +158,7 @@ export default {
 			this.$refs.label.click()
 		},
 		onChange(event) {
-			/**
-			 * Emitted when the radio state is changed
-			 *
-			 * @type {boolean}
-			 */
-			this.$emit('update:checked', this.$refs.radio.checked)
+			this.model = this.$refs.radio.checked
 
 			/**
 			 * Emitted when the radio state is changed
