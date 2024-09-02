@@ -1,110 +1,175 @@
 # 
 # Translators:
-# Joas Schilling, 2023
-# Transifex Bot <>, 2023
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2024
+# thingumy, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2023\n"
+"Last-Translator: thingumy, 2024\n"
 "Language-Team: Finnish (Finland) (https://app.transifex.com/nextcloud/teams/64236/fi_FI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fi_FI\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
-msgstr "{tag} (näkymätön)"
+msgstr "{tag}(näkymätön)"
 
 msgid "{tag} (restricted)"
-msgstr "{tag} (rajoitettu)"
+msgstr "{tag}(rajoitettu)"
+
+msgid "A color with a HEX value {hex}"
+msgstr "Väri heksa-arvolla {hex}"
 
 msgid "a few seconds ago"
-msgstr ""
+msgstr "muutamia sekunteja sitten"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
 
 msgid "Actions"
 msgstr "Toiminnot"
 
 msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgstr "\"{name}\"n toiminnot"
 
 msgid "Activities"
 msgstr "Aktiviteetit"
+
+msgid "Add to a project"
+msgstr "Lisää projektiin"
 
 msgid "Animals & Nature"
 msgstr "Eläimet & luonto"
 
 msgid "Any link"
-msgstr ""
+msgstr "Mikä tahansa linkki"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr ""
+msgstr "Kaikki saman ryhmän kesken jaettu näkyy tässä"
 
 msgid "Avatar of {displayName}"
-msgstr "Käyttäjän {displayName} avatar"
+msgstr "{displayName}n avatar"
 
 msgid "Avatar of {displayName}, {status}"
-msgstr "Käyttäjän {displayName} avatar, {status}"
+msgstr "{displayName}n avatar, {status}"
+
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "poissa"
 
 msgid "Back"
-msgstr ""
+msgstr "Takaisin"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Takaisin toimittajavalintaan"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Sinivioletti"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Bostoninsininen"
+
+msgid "busy"
+msgstr "varattu"
 
 msgid "Cancel changes"
 msgstr "Peruuta muutokset"
 
 msgid "Change name"
-msgstr ""
+msgstr "Vaihda nimi"
 
 msgid "Choose"
 msgstr "Valitse"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Tyhjennä haku"
+
+msgid "Clear selected"
+msgstr "Tyhjennä valitut"
 
 msgid "Clear text"
-msgstr ""
+msgstr "Tyhjennä teksti"
 
 msgid "Close"
 msgstr "Sulje"
-
-msgid "Close modal"
-msgstr ""
 
 msgid "Close navigation"
 msgstr "Sulje navigaatio"
 
 msgid "Close sidebar"
-msgstr ""
+msgstr "Sulje sivupalkki"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Sulje älykas valitsin"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Supista valikko"
+
+msgid "Color picker"
+msgstr "Värivalitsin"
 
 msgid "Confirm changes"
 msgstr "Vahvista muutokset"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "Yhdistä kohteet projektiin, jotta ne olisivat helpompia löytää"
+
 msgid "Custom"
 msgstr "Mukautettu"
+
+msgid "Dark skin tone"
+msgstr "Tumma ihonväri"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Tulva"
+
+msgid "Deselect {option}"
+msgstr "Poista valinta {option}"
+
+msgid "do not disturb"
+msgstr "älä häiritse"
 
 msgid "Edit item"
 msgstr "Muokkaa kohdetta"
 
+msgid "Emoji picker"
+msgstr "Emojivalitsin"
+
+msgid "Enable interactive view"
+msgstr "Näytä interaktiivinen näkymä"
+
 msgid "Enter link"
-msgstr ""
+msgstr "Kirjoita linkki"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"Virhe resurssien haussa. Ota yhteyttä järjestelmän ylläpitäjään, mikäli "
+"sinulla on kysyttävää."
 
 msgid "External documentation for {name}"
-msgstr ""
+msgstr "Ulkoinen dokumentaatio {name}lle"
+
+msgid "Failed to add the item to the project"
+msgstr "Kohteiden lisääminen projektiin epäonnistui"
+
+msgid "Failed to create a project"
+msgstr "Projektin luominen epäonnistui"
+
+msgid "Failed to rename the project"
+msgstr "Projektin nimeäminen epäonnistui"
 
 msgid "Favorite"
-msgstr ""
+msgstr "Suosikki"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Feldspar"
 
 msgid "Flags"
 msgstr "Liput"
@@ -116,34 +181,72 @@ msgid "Frequently used"
 msgstr "Usein käytetyt"
 
 msgid "Global"
-msgstr "Yleinen"
+msgstr "Globaali"
 
 msgid "Go back to the list"
-msgstr "Siirry takaisin listaan"
+msgstr "Takaisin listaan"
+
+msgid "Gold"
+msgstr "Kulta"
+
+msgid "Hide details"
+msgstr "Piilota yksityiskohdat"
 
 msgid "Hide password"
-msgstr ""
+msgstr "Piilota salasana"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+msgid "invisible"
+msgstr "näkymätön"
+
+msgid "Keyboard navigation help"
+msgstr "Näppäimistönavigoinnin ohje"
+
+msgid "Light skin tone"
+msgstr "Vaalea ihonväri"
+
+msgid "Load more \"{options}\""
+msgstr "Lataa lisää \"{options}\""
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Ladataan ..."
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Merenkulkija"
+
+msgid "Medium dark skin tone"
+msgstr "Keskitumma ihonväri"
+
+msgid "Medium light skin tone"
+msgstr "Keskivaalea ihonväri"
+
+msgid "Medium skin tone"
+msgstr "Keskimääräinen ihonväri"
 
 msgid "Message limit of {count} characters reached"
-msgstr "Viestin merkken enimmäisimäärä {count} täynnä "
+msgstr "Viestin {count}merkin raja saavutettu"
 
 msgid "More items …"
-msgstr ""
+msgstr "Lisää kohteita ..."
 
 msgid "More options"
-msgstr ""
+msgstr "Lisää vaihtoehtoja"
+
+msgid "Neutral skin color"
+msgstr "Neutraali ihonväri"
 
 msgid "Next"
 msgstr "Seuraava"
+
+msgid "Nextcloud blue"
+msgstr "Nextcloudin sininen"
 
 msgid "No emoji found"
 msgstr "Emojia ei löytynyt"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "Linkin tarjoajia ei löydetty"
 
 msgid "No results"
 msgstr "Ei tuloksia"
@@ -151,23 +254,33 @@ msgstr "Ei tuloksia"
 msgid "Objects"
 msgstr "Esineet & asiat"
 
-msgid "Open contact menu"
-msgstr ""
+msgid "offline"
+msgstr "ei linjalla"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Oliviini"
+
+msgid "online"
+msgstr "linjalla"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "Avaa linkki \"{resourceName}\""
 
 msgid "Open menu"
-msgstr ""
+msgstr "Avaa valikko"
 
 msgid "Open navigation"
 msgstr "Avaa navigaatio"
 
-msgid "Open settings menu"
-msgstr ""
+msgid "Open sidebar"
+msgstr "Avaa sivupalkki"
+
+msgid "Options"
+msgstr "Valinnat"
 
 msgid "Password is secure"
-msgstr ""
+msgstr "Salasana on turvallinen"
 
 msgid "Pause slideshow"
 msgstr "Keskeytä diaesitys"
@@ -176,22 +289,22 @@ msgid "People & Body"
 msgstr "Ihmiset & keho"
 
 msgid "Pick a date"
-msgstr ""
+msgstr "Valitse päivä"
 
 msgid "Pick a date and a time"
-msgstr ""
+msgstr "Valitse päivä ja kellonaika"
 
 msgid "Pick a month"
-msgstr ""
+msgstr "Valitse kuukausi"
 
 msgid "Pick a time"
-msgstr ""
+msgstr "Valitse kellonaika"
 
 msgid "Pick a week"
-msgstr ""
+msgstr "Valitse viikko"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "Valitse vuosi"
 
 msgid "Pick an emoji"
 msgstr "Valitse emoji"
@@ -203,49 +316,86 @@ msgid "Previous"
 msgstr "Edellinen"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "Palveluntarjoajan ikoni"
+
+msgid "Purple"
+msgstr "Purppura"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Raaka linkki {options}"
 
 msgid "Related resources"
-msgstr ""
+msgstr "Liittyvät resurssit"
+
+msgid "Related team resources"
+msgstr "Liittyvät tiimiresurssit"
+
+msgid "Rename project"
+msgstr "Nimeä projekti"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Ruusunruskea"
+
+msgid "Save changes"
+msgstr "Tallenna muutokset"
 
 msgid "Search"
 msgstr "Etsi"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "Etsi emojia"
+
+msgid "Search for time zone"
+msgstr "Etsi aikavyöhykettä"
 
 msgid "Search results"
 msgstr "Hakutulokset"
 
+msgid "Search…"
+msgstr "Hae..."
+
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "sek. sitten"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "sekunteja sitten"
 
 msgid "Select a tag"
-msgstr "Valitse tagi"
+msgstr "Valitse tunniste"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Valitse tarjoaja"
+
+msgid "Selected"
+msgstr "Valittu"
 
 msgid "Settings"
 msgstr "Asetukset"
 
 msgid "Settings navigation"
-msgstr "Asetusnavigaatio"
+msgstr "Asetusten navigointi"
+
+msgid "Show details"
+msgstr "Näytä yksityiskohdat"
 
 msgid "Show password"
-msgstr ""
+msgstr "Näytä salasana"
+
+msgid "Skin tone"
+msgstr "Ihonväri"
+
+msgid "Skip to app navigation"
+msgstr "Siirry sovelluksen navigaatioon"
+
+msgid "Skip to main content"
+msgstr "Siirry pääsisältöön"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "Älykäs valitsin"
 
 msgid "Smileys & Emotion"
 msgstr "Hymiöt & tunteet"
@@ -254,7 +404,7 @@ msgid "Start slideshow"
 msgstr "Aloita diaesitys"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Aloita kirjoittaminen hakeaksesi"
 
 msgid "Submit"
 msgstr "Lähetä"
@@ -265,8 +415,11 @@ msgstr "Symbolit"
 msgid "Travel & Places"
 msgstr "Matkustus & kohteet"
 
+msgid "Type to search for existing projects"
+msgstr "Kirjoita etsiäksesi olemassaolevia projekteja"
+
 msgid "Type to search time zone"
-msgstr "Kirjoita etsiäksesi aikavyöhyke"
+msgstr "Kirjoita etsiäksesi aikavyöhykettä"
 
 msgid "Unable to search the group"
 msgstr "Ryhmää ei voi hakea"
@@ -274,7 +427,15 @@ msgstr "Ryhmää ei voi hakea"
 msgid "Undo changes"
 msgstr "Kumoa muutokset"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
+msgid "User status: {status}"
+msgstr "Käyttäjän tila: {status}"
+
+msgid "View team"
+msgstr "Näytä tiimi"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Viski"
+
+msgid "Write a message …"
+msgstr "Kirjoita viesti…"
