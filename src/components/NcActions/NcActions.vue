@@ -1335,6 +1335,14 @@ export default {
 
 		opened() {
 			this.intersectIntoCurrentFocusTrapStack()
+
+			// Ensure that pressing escape will close the menu even if the menu is not hovered
+			// and not currently active, e.g. because user opened the context menu
+			if (this.opened) {
+				document.body.addEventListener('keydown', this.handleEscapePressed)
+			} else {
+				document.body.removeEventListener('keydown', this.handleEscapePressed)
+			}
 		},
 	},
 
@@ -1594,11 +1602,9 @@ export default {
 				}
 			}
 
-			if (event.key === 'Escape') {
-				this.closeMenu()
-				event.preventDefault()
-			}
+			this.handleEscapePressed(event)
 		},
+
 		onTriggerKeydown(event) {
 			if (event.key === 'Escape') {
 				// Tooltip has no focusable elements and the focus remains on the trigger button.
@@ -1609,6 +1615,14 @@ export default {
 				}
 			}
 		},
+
+		handleEscapePressed(event) {
+			if (event.key === 'Escape') {
+				this.closeMenu()
+				event.preventDefault()
+			}
+		},
+
 		removeCurrentActive() {
 			const currentActiveElement = this.$refs.menu.querySelector('li.active')
 			if (currentActiveElement) {
