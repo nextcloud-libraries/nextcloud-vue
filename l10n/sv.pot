@@ -207,6 +207,10 @@ msgstr "Ljus hudton"
 msgid "Load more \"{options}\""
 msgstr "Ladda fler \"{options}\""
 
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Laddar ..."
+
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Marinblå"
