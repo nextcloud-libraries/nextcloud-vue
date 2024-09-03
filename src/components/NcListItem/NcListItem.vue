@@ -959,15 +959,15 @@ export default {
 			justify-content: start;
 			gap: 12px;
 			min-width: 0;
-			max-width: 300px;
 		}
 		.list-item-content__details {
 			flex-direction: row;
-			align-items: unset;
+			align-items: center;
 			justify-content: end;
 		}
 		.list-item-content__name {
 			align-self: center;
+			max-width: 300px;
 		}
 	}
 
