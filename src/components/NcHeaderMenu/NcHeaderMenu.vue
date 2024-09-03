@@ -15,10 +15,13 @@ This component is made to be used in the Nextcloud top header.
 				<Magnify />
 			</template>
 			<div>
-				<input placeholder="Search for files, comments, contacts..." type="search" style="width: 99%;" />
+				<NcTextField label="Search for files, comments, contacts…"
+				style="padding-inline: 8px;"
+				type="search"
+				:value.sync="query" />
 				<NcEmptyContent
 					name="Search"
-					description="Start typing to search">
+					:description="query ? `No results for '${query}'` : 'Start typing to search'">
 					<template #icon>
 						<Magnify />
 					</template>
@@ -33,6 +36,11 @@ import Magnify from 'vue-material-design-icons/Magnify'
 export default {
 	components: {
 		Magnify,
+	},
+	data() {
+		return {
+			query: '',
+		}
 	},
 }
 </script>
@@ -328,33 +336,9 @@ export default {
 // Also used for menu top-right positioning
 $externalMargin: 8px;
 
+@import './header-menu__trigger';
+
 .header-menu {
-	position: relative;
-	width: var(--header-height);
-	height: var(--header-height);
-
-	#{&}__trigger {
-		--button-size: var(--header-height) !important;
-		height: var(--header-height);
-		opacity: .85;
-
-		// header is filled with primary or image background
-		filter: none !important;
-		color: var(--color-background-plain-text, var(--color-primary-text)) !important;
-
-		&:focus-visible {
-			outline: none !important;
-			box-shadow: none !important;
-		}
-	}
-
-	&--opened &__trigger,
-	&__trigger:hover,
-	&__trigger:focus,
-	&__trigger:active {
-		opacity: 1;
-	}
-
 	&__wrapper {
 		position: fixed;
 		z-index: 2000;
@@ -390,16 +374,6 @@ $externalMargin: 8px;
 		max-height: calc(100vh - var(--header-height) * 2);
 		:deep(.empty-content) {
 			margin: 12vh 10px;
-		}
-	}
-}
-
-@media only screen and (max-width: $breakpoint-small-mobile) {
-	.header-menu {
-		width: var(--default-clickable-area);
-
-		#{&}__trigger {
-			--button-size: var(--default-clickable-area) !important;
 		}
 	}
 }
