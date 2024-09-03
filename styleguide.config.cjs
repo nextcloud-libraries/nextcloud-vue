@@ -166,6 +166,7 @@ module.exports = async () => {
 					'src/components/NcDashboard*/*.vue',
 					'src/components/NcDialog*/*.vue',
 					'src/components/NcEllipsisedOption*/*.vue',
+					'src/components/NcHeader*/*.vue',
 					'src/components/NcListItem*/*.vue',
 					'src/components/NcPopover/NcPopoverTriggerProvider.vue',
 					'src/components/NcRichContenteditable/!(NcRichContenteditable).vue',
@@ -246,6 +247,12 @@ module.exports = async () => {
 						],
 					},
 					{
+						name: 'NcHeader',
+						components: [
+							'src/components/NcHeader*/*.vue',
+						],
+					},
+					{
 						name: 'NcListItems',
 						components: [
 							'src/components/NcListItem*/*.vue',
@@ -269,7 +276,7 @@ module.exports = async () => {
 							'src/components/NcRichText/NcRichText.vue',
 						],
 					},
-				 	{
+					{
 						name: 'NcSettings',
 						components: [
 							'src/components/NcSettings*/*.vue',
