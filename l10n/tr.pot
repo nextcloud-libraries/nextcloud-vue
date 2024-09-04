@@ -207,6 +207,10 @@ msgstr "Açık deri rengi"
 msgid "Load more \"{options}\""
 msgstr "Diğer \"{options}\""
 
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Yükleniyor…"
+
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Denizci"
