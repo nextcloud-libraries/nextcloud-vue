@@ -217,6 +217,7 @@ export default {
 	&__icon > * {
 		width: var(--icon-size);
 		height: var(--icon-size);
+		color: var(--color-primary-element);
 	}
 
 	&--button-variant {
@@ -231,12 +232,6 @@ export default {
 
 	&--has-text {
 		padding-right: $icon-margin;
-	}
-
-	&:not(&--button-variant) {
-		.checkbox-content__icon > * {
-			color: var(--color-primary-element);
-		}
 	}
 
 	&, * {
