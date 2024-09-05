@@ -105,6 +105,7 @@ It might be used for list rendering or within the multiselect for example
 <template>
 	<span :id="id"
 		class="option"
+		:class="{ 'option--compact': avatarSize < defaultSize }"
 		:style="cssVars">
 		<NcAvatar v-bind="$attrs"
 			:disable-menu="true"
@@ -259,9 +260,10 @@ export default {
 		},
 	},
 
-	data() {
+	setup() {
 		return {
 			margin,
+			defaultSize,
 		}
 	},
 
@@ -279,7 +281,7 @@ export default {
 		},
 
 		isSizeBigEnough() {
-			return this.avatarSize >= defaultSize
+			return this.avatarSize >= 26 // the font sizes
 		},
 
 		cssVars() {
@@ -293,7 +295,7 @@ export default {
 		},
 
 		/**
-		 * Seperates the search property into two parts, the first one is the search part on the name, the second on the subname.
+		 * Separates the search property into two parts, the first one is the search part on the name, the second on the subname.
 		 * @return {[string, string]}
 		 */
 		searchParts() {
@@ -350,9 +352,22 @@ export default {
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		line-height: 1.1em;
+		line-height: 1.2;
 		strong {
 			font-weight: bold;
+		}
+	}
+
+	&--compact {
+		.option {
+			&__lineone {
+				font-size: 14px;
+			}
+			&__linetwo {
+				font-size: 11px;
+				line-height: 1.5;
+				margin-top: -4px;
+			}
 		}
 	}
 
