@@ -523,14 +523,14 @@ export default {
 			&.emoji-mart-emoji-selected::before{
 				background-color: var(--color-background-hover) !important;
 				outline: 2px solid var(--color-primary-element);
+				border-radius: var(--border-radius-element, var(--border-radius-pill));
 			}
 		}
 		button {
-
 			&:focus-visible {
 				background-color: var(--color-background-hover);
 				border: 2px solid var(--color-primary-element) !important;
-				border-radius: 50%;
+				border-radius: var(--border-radius-element, var(--border-radius-pill));
 			}
 		}
 	}
