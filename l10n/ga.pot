@@ -207,6 +207,10 @@ msgstr "Ton craiceann éadrom"
 msgid "Load more \"{options}\""
 msgstr "Luchtaigh tuilleadh \"{options}\""
 
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Á lódáil…"
+
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Mairnéalach"
