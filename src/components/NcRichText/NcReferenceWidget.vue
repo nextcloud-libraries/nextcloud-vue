@@ -34,6 +34,7 @@
 	</div>
 </template>
 <script>
+import debounce from 'debounce'
 import { useElementSize, useIntersectionObserver } from '@vueuse/core'
 import { nextTick, ref } from 'vue'
 import { RouterLink } from 'vue-router'
@@ -71,10 +72,13 @@ export default {
 		// This is the widget root node
 		const widgetRoot = ref()
 		const { width } = useElementSize(widgetRoot)
+		const debounceUpdateVisible = debounce((value) => {
+			isVisible.value = value
+		}, 100)
 
 		useIntersectionObserver(widgetRoot, ([entry]) => {
 			nextTick(() => {
-				isVisible.value = entry.isIntersecting
+				debounceUpdateVisible(entry.isIntersecting)
 			})
 		})
 
