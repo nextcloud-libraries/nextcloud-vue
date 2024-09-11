@@ -173,6 +173,7 @@ module.exports = async () => {
 					'src/components/NcContent/*.vue',
 					'src/components/NcDashboard*/*.vue',
 					'src/components/NcDialog*/*.vue',
+					'src/components/NcHeader*/*.vue',
 					'src/components/NcListItem*/*.vue',
 					'src/components/NcMultiselect*/*.vue',
 					'src/components/NcRichContenteditable/!(NcRichContenteditable).vue',
@@ -251,6 +252,12 @@ module.exports = async () => {
 						components: [
 							'src/components/Nc*Field/*.vue',
 							'src/components/NcTextArea/*.vue',
+						],
+					},
+					{
+						name: 'NcHeader',
+						components: [
+							'src/components/NcHeader*/*.vue',
 						],
 					},
 					{
