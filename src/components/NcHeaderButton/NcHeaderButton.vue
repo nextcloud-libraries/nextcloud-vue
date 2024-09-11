@@ -64,7 +64,7 @@ export default {
 <template>
 	<!-- We need a wrapper for server styles to apply -->
 	<div :id="id" class="header-menu">
-		<NcButton type="tertiary-no-background"
+		<NcButton :type="ButtonType.TertiaryNoBackground"
 			class="header-menu__trigger"
 			:aria-label="ariaLabel"
 			:aria-describedby="descriptionId"
@@ -85,53 +85,24 @@ export default {
 	</div>
 </template>
 
-<script>
+<script setup lang="ts">
 import GenRandomId from '../../utils/GenRandomId.js'
-import NcButton from '../NcButton/index.js'
+import NcButton, { ButtonType } from '../NcButton/index.js'
 
-export default {
-	name: 'NcHeaderButton',
+defineProps<{
+	/** Unique id for this menu */
+	id: string,
+	/** `aria-label` attribute of the button */
+	ariaLabel: string,
+	/** Optional visually hidden description text for the button */
+	description?: string
+}>()
 
-	components: {
-		NcButton,
-	},
+defineEmits<{
+	click: [event: MouseEvent]
+}>()
 
-	props: {
-		/**
-		 * Unique id for this menu
-		 */
-		id: {
-			type: String,
-			required: true,
-		},
-
-		/**
-		 * `aria-label` attribute of the button
-		 */
-		ariaLabel: {
-			type: String,
-			required: true,
-		},
-
-		/**
-		 * Additional visually hidden description text for the button
-		 */
-		description: {
-			type: String,
-			default: null,
-		},
-	},
-
-	emits: [
-		'click',
-	],
-
-	data() {
-		return {
-			descriptionId: GenRandomId(),
-		}
-	},
-}
+const descriptionId = GenRandomId()
 </script>
 
 <style lang="scss" scoped>
