@@ -5,6 +5,24 @@
 
 # Changelog
 
+## [v8.18.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.18.0) (2024-09-12)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.17.1...v8.18.0)
+
+### 🚀 Enhancements
+* feat(NcDialogButton): Allow to return `false` from callback to keep dialog open [\#6005](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6005) \([susnux](https://github.com/susnux)\)
+* feat(NcHeaderButton): Add a button-only alternative for the header menu [\#6048](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6048) \([susnux](https://github.com/susnux)\)
+
+### 🐛 Fixed bugs
+* fix(NcActions): Pressing `Escape` should always close the actions [\#6037](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6037) \([susnux](https://github.com/susnux)\)
+* fix(NcListItem): make the max width in `oneline` mode apply only to the content name [\#6039](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6039) \([GVodyanov](https://github.com/GVodyanov)\)
+* fix(NcHeaderMenu): Ensure trigger button has the same width as a wrapper [\#6047](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6047) \([susnux](https://github.com/susnux)\)
+* fix(NcCheckboxRadioSwitch): switch may have incorrect checked-like background [\#6055](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6055) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcEmojiPicker): adjust hover effects to the new design [\#6056](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6056) \([Antreesy](https://github.com/Antreesy)\)
+
+### Changed
+* Updated workflows and dependencies
+* Updated translations
+
 ## [v8.17.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.17.1) (2024-08-30)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.17.0...v8.17.1)
 
