@@ -191,7 +191,10 @@ export default {
 		<div v-show="showModal"
 			ref="mask"
 			class="modal-mask"
-			:class="{ 'modal-mask--dark': dark || !closeButtonContained || hasPrevious || hasNext }"
+			:class="{
+				'modal-mask--opaque': dark || !closeButtonContained || hasPrevious || hasNext,
+				'modal-mask--light': lightBackdrop,
+			}"
 			:style="cssVariables"
 			role="dialog"
 			aria-modal="true"
@@ -200,7 +203,9 @@ export default {
 			tabindex="-1">
 			<!-- Header -->
 			<transition name="fade-visibility" appear>
-				<div class="modal-header" data-theme-dark>
+				<div class="modal-header"
+					:data-theme-light="lightBackdrop"
+					:data-theme-dark="!lightBackdrop">
 					<h2 v-if="name.trim() !== ''"
 						:id="'modal-name-' + randId"
 						class="modal-header__name">
@@ -447,10 +452,18 @@ export default {
 		},
 
 		/**
-		 * Makes the modal backdrop black if true
+		 * Makes the modal backdrop opaque if true
 		 * Will be overwritten if some buttons are shown outside
 		 */
 		dark: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Set light backdrop. Makes the modal header appear light.
+		 */
+		lightBackdrop: {
 			type: Boolean,
 			default: false,
 		},
@@ -835,9 +848,13 @@ export default {
 	display: block;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0, 0, 0, .5);
-	&--dark {
-		background-color: rgba(0, 0, 0, .92);
+	--backdrop-color: 0, 0, 0;
+	background-color: rgba(var(--backdrop-color), .5);
+	&--opaque {
+		background-color: rgba(var(--backdrop-color), .92);
+	}
+	&--light {
+		--backdrop-color: 255, 255, 255;
 	}
 }
 
