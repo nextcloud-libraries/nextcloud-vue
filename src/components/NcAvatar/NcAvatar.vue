@@ -875,7 +875,7 @@ export default {
 		height: 40%;
 		width: 40%;
 		line-height: 1;
-		font-size: clamp(var(--font-size-small), 85%, var(--default-font-size));
+		font-size: clamp(var(--font-size-small, 13px), 85%, var(--default-font-size));
 		border: 2px solid var(--color-main-background);
 		background-color: var(--color-main-background);
 		background-repeat: no-repeat;
