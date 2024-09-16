@@ -41,44 +41,24 @@ export default {
 ### Avatar with preloaded status
 ```
 <template>
-<div class="grid">
-	<NcAvatar user="janedoe"
-		display-name="Jane Doe"
-		:size="44"
-		:preloaded-user-status="status.online">
-	</NcAvatar>
-	<NcAvatar user="janedoe"
-		display-name="Jane Doe"
-		:size="44"
-		:preloaded-user-status="status.away">
-	</NcAvatar>
-	<NcAvatar user="janedoe"
-		display-name="Jane Doe"
-		:size="44"
-		:preloaded-user-status="status.dnd">
-	</NcAvatar>
-	<NcAvatar user="janedoe"
-		display-name="Jane Doe"
-		:size="44"
-		:preloaded-user-status="status.custom">
-	</NcAvatar>
-	<NcAvatar user="janedoe"
-		display-name="Jane Doe"
-		:preloaded-user-status="status.online">
-	</NcAvatar>
-	<NcAvatar user="janedoe"
-		display-name="Jane Doe"
-		:preloaded-user-status="status.away">
-	</NcAvatar>
-	<NcAvatar user="janedoe"
-		display-name="Jane Doe"
-		:preloaded-user-status="status.dnd">
-	</NcAvatar>
-	<NcAvatar user="janedoe"
-		display-name="Jane Doe"
-		:preloaded-user-status="status.custom">
-	</NcAvatar>
-</div>
+	<div>
+		<NcAvatar user="janedoe"
+			display-name="Jane Doe"
+			:preloaded-user-status="status.online">
+		</NcAvatar>
+		<NcAvatar user="janedoe"
+			display-name="Jane Doe"
+			:preloaded-user-status="status.away">
+		</NcAvatar>
+		<NcAvatar user="janedoe"
+			display-name="Jane Doe"
+			:preloaded-user-status="status.dnd">
+		</NcAvatar>
+		<NcAvatar user="janedoe"
+			display-name="Jane Doe"
+			:preloaded-user-status="status.custom">
+		</NcAvatar>
+	</div>
 </template>
 
 <script>
@@ -111,16 +91,6 @@ export default {
 	},
 }
 </script>
-<style>
-	.grid {
-		width: fit-content;
-		display: grid;
-		justify-content: center;
-		align-items: center;
-		gap: 8px;
-		grid-template-columns: repeat(4, 1fr);
-	}
-</style>
 ```
 
 ### Avatar for non-users
@@ -148,6 +118,57 @@ export default {
 	margin: 15px 25px;
 }
 </style>
+```
+
+### Avatar size
+
+```vue
+<template>
+	<div>
+		<div>
+			<input type="range" v-model="size" :min="min" :max="max" step="1" />
+		</div>
+		<div>
+			<NcAvatar user="alice-smith"
+				display-name="Alice Smith"
+				:size="size"
+				:preloaded-user-status="status.online" />
+			<NcAvatar user="bob-doe"
+				display-name="Bob Doe"
+				:size="size"
+				:preloaded-user-status="status.meeting" />
+		</div>
+	</div>
+</template>
+<script>
+import AccountMultiple from 'vue-material-design-icons/AccountMultiple.vue'
+
+export default {
+	components: {
+		AccountMultiple,
+	},
+
+	data() {
+		return {
+			min: 24, // --clickable-area-small
+			max: 180, // Profile page
+			size: 20,
+			status: {
+				online: {
+					icon: '',
+					status: 'online',
+					message: 'Available',
+				},
+				meeting: {
+					icon: '📆',
+					status: 'online',
+					message: 'In a meeting',
+				}
+			},
+		}
+	}
+}
+</script>
 ```
 
 </docs>
@@ -487,7 +508,7 @@ export default {
 
 		avatarStyle() {
 			const style = {
-				'--size': this.size + 'px',
+				'--avatar-size': this.size + 'px',
 				lineHeight: this.size + 'px',
 				fontSize: Math.round(this.size * 0.45) + 'px',
 			}
@@ -777,8 +798,8 @@ export default {
 .avatardiv {
 	position: relative;
 	display: inline-block;
-	width: var(--size);
-	height: var(--size);
+	width: var(--avatar-size);
+	height: var(--avatar-size);
 
 	&--unknown {
 		position: relative;
@@ -820,24 +841,24 @@ export default {
 		:deep() {
 			.button-vue,
 			.button-vue__icon {
-				height: var(--size);
-				min-height: var(--size);
-				width: var(--size) !important;
-				min-width: var(--size);
+				height: var(--avatar-size);
+				min-height: var(--avatar-size);
+				width: var(--avatar-size) !important;
+				min-width: var(--avatar-size);
 			}
 		}
 		& > :deep(.button-vue),
 		& > :deep(.action-item .button-vue) {
-			--button-radius: calc(var(--size) / 2);
+			--button-radius: calc(var(--avatar-size) / 2);
 		}
 	}
 
 	.avatardiv__initials-wrapper {
 		display: block;
-		height: var(--size);
-		width: var(--size);
+		height: var(--avatar-size);
+		width: var(--avatar-size);
 		background-color: var(--color-main-background);
-		border-radius: calc(var(--size) / 2);
+		border-radius: calc(var(--avatar-size) / 2);
 
 		.avatardiv__initials {
 			position: absolute;
@@ -859,27 +880,30 @@ export default {
 	}
 
 	.material-design-icon {
-		width: var(--size);
-		height: var(--size);
+		width: var(--avatar-size);
+		height: var(--avatar-size);
 	}
 
 	.avatardiv__user-status {
+		// min avatar size = 24px (clickable-area-small)
+		// min status size = 10px (~40% of min avatar size)
+		--avatar-status-icon-size: max(10px, 0.4 * var(--avatar-size)); // Default status size is 40% of avatar
+		// Avatar Radius * (1 - 1 / sqrt(2)) - Status Icon Radius / 2
+		// See PR for math explanation: TODO
+		--avatar-status-icon-position: calc(var(--avatar-size) / 2 * (1 - 1 / sqrt(2)) - var(--avatar-status-icon-size) / 2);
 		box-sizing: border-box;
 		position: absolute;
-		right: -4px;
-		bottom: -4px;
-		min-height: 14px;
-		min-width: 14px;
-		max-height: 18px;
-		max-width: 18px;
-		height: 40%;
-		width: 40%;
-		line-height: 1;
-		font-size: clamp(var(--font-size-small), 85%, var(--default-font-size));
-		border: 2px solid var(--color-main-background);
+		inset-inline-end: var(--avatar-status-icon-position);
+		inset-block-end: var(--avatar-status-icon-position);
+		height: var(--avatar-status-icon-size);
+		width: var(--avatar-status-icon-size);
+		line-height: 1.2;
+		font-size: calc(var(--avatar-status-icon-size) / 1.2);
+		// Icon for online-like statuses
+		border: max(2px, calc(var(--avatar-status-icon-size) * 0.125)) solid var(--color-main-background);
 		background-color: var(--color-main-background);
 		background-repeat: no-repeat;
-		background-size: 16px;
+		background-size: 16px; // TODO
 		background-position: center;
 		border-radius: 50%;
 
@@ -906,7 +930,7 @@ export default {
 
 .avatar-class-icon {
 	display: block;
-	border-radius: calc(var(--size) / 2);
+	border-radius: calc(var(--avatar-size) / 2);
 	background-color: var(--color-background-darker);
 	height: 100%;
 }
