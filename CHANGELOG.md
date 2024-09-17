@@ -5,6 +5,21 @@
 
 # Changelog
 
+## [v8.19.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.19.0) (2024-09-16)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.18.0...v8.19.0)
+
+### 🚀 Enhancements
+* feat(NcModal): make dark header configurable [\#6083](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6083) \([mejo-](https://github.com/mejo-)\)
+* feat(NcActions): Emit `closed` event only when the actions are fully closed [\#6065](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6065) \([susnux](https://github.com/susnux)\)
+
+### 🐛 Fixed bugs
+* fix(NcAppNavigationItem): align utils with actions and other components [\#6054](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6054) \([GVodyanov](https://github.com/GVodyanov)\)
+* fix(NcAvatar): add a fallback for missing CSS variable [\#6090](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6090) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcColorPicker): style advanced fields as NcInputField [\#6097](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6097) \([Antreesy](https://github.com/Antreesy)\)
+
+### Changed
+* Updated workflows and dependencies
+
 ## [v8.18.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.18.0) (2024-09-12)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.17.1...v8.18.0)
 
