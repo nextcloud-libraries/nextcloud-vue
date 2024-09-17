@@ -1449,7 +1449,8 @@ export default {
 			this.$emit('update:open', false)
 
 			/**
-			 * Event emitted when the popover menu is closed
+			 * Event emitted when the popover menu is *being* closed.
+			 * @deprecated use `update:open` instead. This is always emitted the same time as `('update:open', false)`
 			 */
 			this.$emit('close')
 
@@ -1460,6 +1461,15 @@ export default {
 				// Focus back the trigger button
 				this.$refs.triggerButton?.$el.focus()
 			}
+		},
+
+		onClosed() {
+			/**
+			 * Event emitted when the popover menu is closed.
+			 *
+			 * This event is emitted after `update:open` was emitted and the closing transition finished.
+			 */
+			 this.$emit('closed')
 		},
 
 		/**
@@ -1922,6 +1932,7 @@ export default {
 						show: this.openMenu,
 						'apply-show': this.onOpen,
 						hide: this.closeMenu,
+						'apply-hide': this.onClosed,
 					},
 				},
 				[
