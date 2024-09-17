@@ -477,13 +477,74 @@ export default defineComponent({
 		&-body {
 			padding: 14px 0 0 0;
 			background-color: var(--color-main-background);
+
 			.vc-input__input {
+				--input-border-radius: var(--border-radius-element, var(--border-radius-large));
+				--input-border-width-offset: calc(var(--border-width-input-focused, 2px) - var(--border-width-input, 2px));
+				width: 100%;
+				height: var(--default-clickable-area);
+				margin: 0;
+				padding-inline: calc(var(--border-radius-large) + var(--input-border-width-offset));
+				padding-block: var(--input-border-width-offset);
+				border: var(--border-width-input, 2px) solid var(--color-border-maxcontrast);
+				border-radius: var(--input-border-radius);
+				font-size: var(--default-font-size);
+				color: var(--color-main-text);
 				box-shadow: none;
+
+				&:active:not([disabled]),
+				&:hover:not([disabled]),
+				&:focus:not([disabled]) {
+					// Reset padding offset when focused
+					--input-border-width-offset: 0px;
+					border-color: var(--color-main-text);
+					border-width: var(--border-width-input-focused, 2px);
+					box-shadow: 0 0 0 2px var(--color-main-background) !important;
+
+					& + .vc-input__label {
+						color: var(--color-main-text);
+					}
+				}
+			}
+
+			.vc-input__label {
+				position: absolute;
+				inset-inline: var(--border-width-input-focused, 2px);
+				inset-block-start: calc(-1.5 * var(--font-size-small, 13px) / 2);
+				max-width: fit-content;
+				margin-inline: calc(var(--border-radius-large) - var(--default-grid-baseline));
+				margin-block: 0;
+				padding-inline: var(--default-grid-baseline);
+				font-family: var(--font-face);
+				font-size: var(--font-size-small, 13px);
+				line-height: 1.5;
+				font-weight: 500;
+				color: var(--color-text-maxcontrast);
+				background-color: var(--color-main-background);
+				pointer-events: none;
 			}
 		}
 
 		&-toggle-btn {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: var(--default-clickable-area);
+			height: var(--default-clickable-area);
+			margin-left: 6px;
 			filter: var(--background-invert-if-dark);
+		}
+
+		&-toggle-icon {
+			width: 24px;
+			height: 24px;
+			margin: 0;
+		}
+
+		&-toggle-icon-highlight {
+			width: var(--default-clickable-area);
+			height: var(--default-clickable-area);
+			inset: 0;
 		}
 
 		&-saturation {
