@@ -1,7 +1,7 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# hamza mahjoubi, 2024
+# Hamza, 2024
 # Ali <alimahwer@yahoo.com>, 2024
 # 
 msgid ""
@@ -207,6 +207,10 @@ msgstr "فاتح البُشرة"
 
 msgid "Load more \"{options}\""
 msgstr "تحميل المزيد من \"{options}\" "
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "تحميل ..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
