@@ -1,279 +1,442 @@
 # 
 # Translators:
-# Transifex Bot <>, 2023
+# Goudarz Jafari <goudarz.jafari@gmail.com>, 2023
+# Mostafa Ahangarha <ahangarha@riseup.net>, 2024
+# reza reza <forghan89@yahoo.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2023\n"
+"Last-Translator: reza reza <forghan89@yahoo.com>, 2024\n"
 "Language-Team: Persian (https://app.transifex.com/nextcloud/teams/64236/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fa\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "{tag} (invisible)"
-msgstr ""
+msgstr "{tag} مخفی"
 
 msgid "{tag} (restricted)"
-msgstr ""
+msgstr "{tag} محدود شده"
+
+msgid "A color with a HEX value {hex}"
+msgstr "رنگی با مقدار مبنای هشت {hex}"
 
 msgid "a few seconds ago"
-msgstr ""
+msgstr "چند ثانیه پیش"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "آکاپولکو"
 
 msgid "Actions"
-msgstr ""
+msgstr "کنش‌ها"
 
 msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgstr "کنش‌ها برای موردی با نام «{name}»"
 
 msgid "Activities"
-msgstr ""
+msgstr "فعالیت‌ها"
+
+msgid "Add to a project"
+msgstr "افزودن به پروژه"
 
 msgid "Animals & Nature"
-msgstr ""
+msgstr "حیوانات و طبیعت"
 
 msgid "Any link"
-msgstr ""
+msgstr "هر پیوندی"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr ""
+msgstr "هر چیزی که با گروه مشابهی هم‌رسانی شود در این قسمت نمایش می‌یابد"
 
 msgid "Avatar of {displayName}"
-msgstr ""
+msgstr "آواتار {displayName}"
 
 msgid "Avatar of {displayName}, {status}"
-msgstr ""
+msgstr "آواتار {displayName} ، {status}"
+
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "دور از دستگاه"
 
 msgid "Back"
-msgstr ""
+msgstr "بازگشت"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "بازگشت به انتخاب ارائه دهنده"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "بنفش آبی"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "آبی بوستونی"
+
+msgid "busy"
+msgstr "مشغول"
 
 msgid "Cancel changes"
-msgstr ""
+msgstr "لغو تغییرات"
 
 msgid "Change name"
-msgstr ""
+msgstr "تغییر نام"
 
 msgid "Choose"
-msgstr ""
+msgstr "انتخاب کنید"
 
 msgid "Clear search"
-msgstr ""
+msgstr "پاک کردن جستجو"
+
+msgid "Clear selected"
+msgstr "پاک کردن مورد انتخاب شده"
 
 msgid "Clear text"
-msgstr ""
+msgstr "پاک کردن متن"
 
 msgid "Close"
-msgstr ""
-
-msgid "Close modal"
-msgstr ""
+msgstr "بستن"
 
 msgid "Close navigation"
-msgstr ""
+msgstr "بستن بخش ناوبری"
 
 msgid "Close sidebar"
-msgstr ""
+msgstr "بستن نوار کناری"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "بستن انتخاب‌گر هوشمند"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "بستن فهرست"
+
+msgid "Color picker"
+msgstr "انتخاب‌گر رنگ"
 
 msgid "Confirm changes"
-msgstr ""
+msgstr "تایید تغییرات"
+
+msgid "Connect items to a project to make them easier to find"
+msgstr "برای پیدا کردن راحت‌تر، مواردی را به پروژه متصل کنید"
 
 msgid "Custom"
-msgstr ""
+msgstr "سفارشی"
+
+msgid "Dark skin tone"
+msgstr "رنگ پوسته تیره"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "سیل"
+
+msgid "Deselect {option}"
+msgstr "لغو انتخاب {option}"
+
+msgid "do not disturb"
+msgstr "مزاحم نشوید"
 
 msgid "Edit item"
-msgstr ""
+msgstr "ویرایش مورد"
+
+msgid "Emoji picker"
+msgstr "انتخاب‌گر شکلک"
+
+msgid "Enable interactive view"
+msgstr "فعال‌سازی نمای تعاملی"
 
 msgid "Enter link"
-msgstr ""
+msgstr "لینک را وارد کنید"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"خطا در دریافت منابع مرتبط. لطفاً در صورت داشتن هر گونه سؤال با مدیر سیستم "
+"خود تماس بگیرید."
 
 msgid "External documentation for {name}"
-msgstr ""
+msgstr "اسناد بیرونی برای {name}"
+
+msgid "Failed to add the item to the project"
+msgstr "موارد به پروژه اضافه نشد"
+
+msgid "Failed to create a project"
+msgstr "ایجاد پروژه نامؤفق بود"
+
+msgid "Failed to rename the project"
+msgstr "تغییر نام پروژه انجام نشد"
 
 msgid "Favorite"
-msgstr ""
+msgstr "مورد علاقه"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "فلدسپات"
 
 msgid "Flags"
-msgstr ""
+msgstr "پرچم‌ها"
 
 msgid "Food & Drink"
-msgstr ""
+msgstr "غذا و نوشیدنی"
 
 msgid "Frequently used"
-msgstr ""
+msgstr "پرکاربرد"
 
 msgid "Global"
-msgstr ""
+msgstr "سراسری"
 
 msgid "Go back to the list"
-msgstr ""
+msgstr "برگشت به لیست"
+
+msgid "Gold"
+msgstr "طلا"
+
+msgid "Hide details"
+msgstr "پنهان کردن جزئیات"
 
 msgid "Hide password"
-msgstr ""
+msgstr "پنهان کردن رمز عبور"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+msgid "invisible"
+msgstr "مخفی"
+
+msgid "Keyboard navigation help"
+msgstr "راهنمای ناوبری صفحه کلید"
+
+msgid "Light skin tone"
+msgstr "رنگ پوسته روشن"
+
+msgid "Load more \"{options}\""
+msgstr "بارگذاری بیشتر \"{options}\""
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "در حال بارگذاری ..."
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "مارینر"
+
+msgid "Medium dark skin tone"
+msgstr "رنگ پوسته تیره متوسط"
+
+msgid "Medium light skin tone"
+msgstr "رنگ پوسته روشن متوسط"
+
+msgid "Medium skin tone"
+msgstr "رنگ پوسته متوسط"
 
 msgid "Message limit of {count} characters reached"
-msgstr ""
+msgstr "به حد مجاز پیام {count} نویسه (کاراکتر) رسیده است"
 
 msgid "More items …"
-msgstr ""
+msgstr "موارد بیشتر ..."
 
 msgid "More options"
-msgstr ""
+msgstr "گزینه‌های بیشتر"
+
+msgid "Neutral skin color"
+msgstr "رنگ پوسته خنثی"
 
 msgid "Next"
-msgstr ""
+msgstr "بعدی"
+
+msgid "Nextcloud blue"
+msgstr "نکس کلود آبی"
 
 msgid "No emoji found"
-msgstr ""
+msgstr "هیچ شکلکی یافت نشد"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "هیچ ارائه‌دهنده پیوندی یافت نشد"
 
 msgid "No results"
-msgstr ""
+msgstr "بدون هیچ نتیجه‌ای"
 
 msgid "Objects"
-msgstr ""
+msgstr "اشیاء"
 
-msgid "Open contact menu"
-msgstr ""
+msgid "offline"
+msgstr "برون‌خط"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "الیوین"
+
+msgid "online"
+msgstr "برخط"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "باز کردن پیوند به «{resourceName}»"
 
 msgid "Open menu"
-msgstr ""
+msgstr "باز کردن فهرست"
 
 msgid "Open navigation"
-msgstr ""
+msgstr "باز کردن بخش ناوبری"
 
-msgid "Open settings menu"
-msgstr ""
+msgid "Open sidebar"
+msgstr "باز کردن نوار کنار"
+
+msgid "Options"
+msgstr "گزینه‌ها"
 
 msgid "Password is secure"
-msgstr ""
+msgstr "گذرواژه امن است"
 
 msgid "Pause slideshow"
-msgstr ""
+msgstr "توقف نمایش اسلاید"
 
 msgid "People & Body"
-msgstr ""
+msgstr "مردم و بدن"
 
 msgid "Pick a date"
-msgstr ""
+msgstr "انتخاب تاریخ"
 
 msgid "Pick a date and a time"
-msgstr ""
+msgstr "انتخاب تاریخ و زمان"
 
 msgid "Pick a month"
-msgstr ""
+msgstr "انتخاب ماه"
 
 msgid "Pick a time"
-msgstr ""
+msgstr "انتخاب زمان"
 
 msgid "Pick a week"
-msgstr ""
+msgstr "انتخاب هفته"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "انتخاب سال"
 
 msgid "Pick an emoji"
-msgstr ""
+msgstr "انتخاب شکلک"
 
 msgid "Please select a time zone:"
-msgstr ""
+msgstr "لطفا یک منطقهٔ زمانی را انتخاب کنید:"
 
 msgid "Previous"
-msgstr ""
+msgstr "قبلی"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "آیکون ارائه دهنده"
+
+msgid "Purple"
+msgstr "بنفش"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "پیوند خام {options}"
 
 msgid "Related resources"
-msgstr ""
+msgstr "منابع مرتبط"
+
+msgid "Related team resources"
+msgstr "منابع تیمی مرتبط"
+
+msgid "Rename project"
+msgstr "تغییر نام پروژه"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "قهوه‌ای رز"
+
+msgid "Save changes"
+msgstr "ذخیرهٔ تغییرات"
 
 msgid "Search"
-msgstr ""
+msgstr "جستجو"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "جستجوی شکلک"
+
+msgid "Search for time zone"
+msgstr "جستجو برای منطقهٔ زمانی"
 
 msgid "Search results"
-msgstr ""
+msgstr "نتایج جستجو"
+
+msgid "Search…"
+msgstr "جستجو..."
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "چند ثانیه پیش"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "چند ثانیه پیش"
 
 msgid "Select a tag"
-msgstr ""
+msgstr "انتخاب یک برچسب"
 
 msgid "Select provider"
-msgstr ""
+msgstr "ارائه دهنده را انتخاب کنید"
+
+msgid "Selected"
+msgstr "انتخاب شده"
 
 msgid "Settings"
-msgstr ""
+msgstr "تنظیمات"
 
 msgid "Settings navigation"
-msgstr ""
+msgstr "ناوبری تنظیمات"
+
+msgid "Show details"
+msgstr "نمایش جزئیات"
 
 msgid "Show password"
-msgstr ""
+msgstr "نمایش گذرواژه"
+
+msgid "Skin tone"
+msgstr "رنگ پوسته"
+
+msgid "Skip to app navigation"
+msgstr "رفتن به پیمایش برنامه"
+
+msgid "Skip to main content"
+msgstr "رفتن به محتوای اصلی"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "انتخابگر هوشمند"
 
 msgid "Smileys & Emotion"
-msgstr ""
+msgstr "شکلک‌ها و احساسات"
 
 msgid "Start slideshow"
-msgstr ""
+msgstr "شروع نمایش اسلاید"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "برای جستجو تایپ کنید"
 
 msgid "Submit"
-msgstr ""
+msgstr "ارسال"
 
 msgid "Symbols"
-msgstr ""
+msgstr "نمادها"
 
 msgid "Travel & Places"
-msgstr ""
+msgstr "سفر و مکان‌ها"
+
+msgid "Type to search for existing projects"
+msgstr "برای جستجوی پروژه‌های موجود تایپ کنید"
 
 msgid "Type to search time zone"
-msgstr ""
+msgstr "برای جستجوی منطقه زمانی تایپ کنید"
 
 msgid "Unable to search the group"
-msgstr ""
+msgstr "امکان جستجوی گروه وجود ندارد"
 
 msgid "Undo changes"
-msgstr ""
+msgstr "لغو تغییرات"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
+msgid "User status: {status}"
+msgstr "وضعیت کاربر: {status}"
+
+msgid "View team"
+msgstr "مشاهده گروه"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "ویسکی"
+
+msgid "Write a message …"
+msgstr "یک پیام بنویسید ..."
