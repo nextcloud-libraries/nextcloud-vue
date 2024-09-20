@@ -200,6 +200,7 @@ export default {
 
 			// create a separate element so we can rerender on the ref again
 			const widget = document.createElement('div')
+			widget.style = 'width: 100%;'
 			this.$refs.customWidget.appendChild(widget)
 			this.$nextTick(() => {
 				// Waiting for the ref to become available
