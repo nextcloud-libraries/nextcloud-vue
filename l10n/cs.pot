@@ -206,6 +206,10 @@ msgstr "Světlý tělový tón"
 msgid "Load more \"{options}\""
 msgstr "Načíst další „{options}“"
 
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Načítání…"
+
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Námořnická"
