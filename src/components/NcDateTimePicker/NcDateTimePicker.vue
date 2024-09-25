@@ -486,44 +486,4 @@ export default {
 	// Higher z-index than the popover in which the NcSelect is located.
 	z-index: 100001 !important;
 }
-
-.mx-datepicker-main .mx-table .cell.disabled {
-	border-radius: var(--border-radius-small);
-	background-color: var(--color-background-dark);
-	color: var(--color-text-maxcontrast);
-	opacity: 1;
-}
-
-.mx-datepicker-main .mx-table .cell {
-	border-radius: var(--border-radius-small);
-	min-height: 30px !important;
-}
-
-.mx-datepicker-main .mx-calendar-header button {
-	opacity: 1 !important;
-	background-color: transparent;
-}
-.mx-datepicker-main .mx-calendar-header .mx-calendar-header-label {
-	color: var(--color-main-text);
-}
-
-.mx-datepicker-main .mx-table .mx-table thead > tr > th {
-	color: var(--color-text-maxcontrast);
-}
-
-.mx-datepicker-main .mx-table .cell.not-current-month {
-	color: var(--color-text-maxcontrast);
-}
-
-.mx-datepicker-main .mx-table .cell.today {
-	background-color: transparent;
-	color: var(--color-primary-element);
-	border-radius: var(--border-radius-small);
-}
-.mx-datepicker-main .mx-table .cell {
-	border-radius: var(--border-radius-small);
-}
-.mx-datepicker-main {
-	left: 0 !important;
-}
 </style>

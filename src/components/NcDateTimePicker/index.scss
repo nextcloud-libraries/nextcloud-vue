@@ -2,7 +2,7 @@
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
- 
+
  $cell_height: 32px;
 
 @import 'vue2-datepicker/scss/index';
@@ -23,7 +23,7 @@
 			border: 2px solid var(--color-border-maxcontrast);
 			background-color: var(--color-main-background);
 			background-clip: content-box;
-			
+
 			&:active:not(.disabled),
 			&:hover:not(.disabled),
 			&:focus:not(.disabled) {
@@ -51,6 +51,7 @@
 	background-color: var(--color-main-background);
 	font-family: var(--font-face) !important;
 	line-height: 1.5;
+	left: 0 !important;
 
 	svg {
 		fill: var(--color-main-text);
@@ -64,7 +65,7 @@
 			border-left: 1px solid var(--color-border);
 		}
 	}
-	
+
 	&.show-week-number .mx-calendar {
 		width: $cell_height * 8 + 2 * 5px + 30px; // week number + 7 days + padding + 30px padding to fit the buttons
 	}
@@ -109,12 +110,13 @@
 
 		// first active cell, range style on day picker panel only
 		.mx-calendar-content .mx-table-date .cell {
+			border-radius: var(--border-radius-small);
 			&.active {
-				border-radius: var(--border-radius) 0 0 var(--border-radius);
+				border-radius: var(--border-radius-small) 0 0 var(--border-radius-small);
 			}
 			// second selected cell
 			&.in-range + .cell.active {
-				border-radius: 0 var(--border-radius) var(--border-radius) 0;
+				border-radius: 0 var(--border-radius-small) var(--border-radius-small) 0;
 			}
 		}
 	}
@@ -126,7 +128,7 @@
 		thead > tr > th {
 			text-align: center;
 			opacity: $opacity_disabled;
-			color: var(--color-text-lighter);
+			color: var(--color-main-text);
 		}
 
 		// Override table rule from server
@@ -141,7 +143,8 @@
 			transition: all 100ms ease-in-out;
 			text-align: center;
 			opacity: $opacity_normal;
-			border-radius: 50px;
+			border-radius: var(--border-radius-small);
+			min-height: 30px !important;
 
 			// force pointer on all content
 			> * {
@@ -151,8 +154,10 @@
 			// Selected and mouse event
 			&.today {
 				opacity: $opacity_full;
-				color: var(--color-primary-element);
 				font-weight: bold;
+				background-color: transparent;
+				color: var(--color-primary-element);
+				border-radius: var(--border-radius-small);
 				&:hover,
 				&:focus {
 					color: var(--color-primary-element-text);
@@ -160,15 +165,17 @@
 			}
 			&.in-range,
 			&.disabled {
-				border-radius: 0;
-				font-weight: normal;
+				border-radius: var(--border-radius-small);
+				background-color: var(--color-background-dark);
+				color: var(--color-text-maxcontrast);
+				opacity: 1;
 			}
 			&.in-range {
 				opacity: $opacity_normal;
 			}
 			&.not-current-month {
 				opacity: $opacity_disabled;
-				color: var(--color-text-lighter);
+				color: var(--color-text-maxcontrast);
 				&:hover,
 				&:focus {
 					opacity: $opacity_full;
@@ -188,8 +195,8 @@
 			}
 			&.disabled {
 				opacity: $opacity_disabled;
-				color: var(--color-text-lighter);
-				border-radius: 0;
+				color: var(--color-text-maxcontrast);
+				border-radius: var(--border-radius-small);
 				background-color: var(--color-background-darker);
 			}
 		}
@@ -222,6 +229,7 @@
 				flex: 1 1 $cell_height;
 				justify-content: space-around;
 				min-height: $cell_height;
+				color: var(--color-text-maxcontrast);
 			}
 			// Default cell style
 			th,
@@ -236,6 +244,7 @@
 				height: 95%;
 				min-height: $cell_height;
 				transition: background 100ms ease-in-out;
+				color: var(--color-text-maxcontrast);
 			}
 		}
 		&.mx-table-year {
@@ -263,8 +272,8 @@
 		cursor: pointer;
 		text-decoration: none;
 		opacity: $opacity_disabled;
-		color: var(--color-text-lighter);
-		border-radius: $cell_height;
+		color: var(--color-main-text);
+		border-radius: var(--border-radius-small);
 		line-height: $cell_height - 12px; // padding minus 2px for better visual
 		// Mouse feedback
 		&:hover,
@@ -293,7 +302,8 @@
 			text-decoration: none;
 			opacity: $opacity_normal;
 			color: var(--color-main-text);
-			border-radius: $cell_height;
+			border-radius: var(--border-radius-small);
+			background-color: transparent;
 			line-height: $cell_height - 12px; // padding minus 2px for better visual
 
 			// Mouse feedback
@@ -305,10 +315,8 @@
 			}
 
 			// Header arrows
-			&.mx-btn-icon-double-left,
 			&.mx-btn-icon-left,
-			&.mx-btn-icon-right,
-			&.mx-btn-icon-double-right {
+			&.mx-btn-icon-right {
 				align-items: center;
 				justify-content: center;
 				width: $cell_height;
@@ -335,10 +343,7 @@
 
 		.mx-calendar-header-label {
 			display: flex;
-		}
-
-		.mx-btn-icon-double-left > i {
-			background-image: url('./chevron-double-left.svg');
+			color: var(--color-main-text);
 		}
 
 		.mx-btn-icon-left > i {
@@ -349,16 +354,8 @@
 			background-image: url('./chevron-right.svg');
 		}
 
-		.mx-btn-icon-double-right > i {
-			background-image: url('./chevron-double-right.svg');
-		}
-
 		button.mx-btn-icon-right {
 			order: 2;
-		}
-
-		button.mx-btn-icon-double-right {
-			order: 3;
 		}
 	}
 	// Week panel
@@ -371,7 +368,7 @@
 			&:hover,
 			&.mx-active-week {
 				opacity: $opacity_full;
-				border-radius: 50px;
+				border-radius: var(--border-radius-small);
 				background-color: var(--color-background-dark);
 				td {
 					background-color: transparent;
@@ -400,6 +397,8 @@
 			// only one button, center it
 			justify-content: center;
 			border-bottom: 1px solid var(--color-border);
+			opacity: 1 !important;
+			background-color: transparent;
 		}
 
 		.mx-time-column {
