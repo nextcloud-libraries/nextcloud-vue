@@ -311,7 +311,7 @@ export default {
 					// 0 = sunday, 1 = monday
 					firstDayOfWeek: getFirstDay(),
 				},
-				monthFormat: 'MMM',
+				monthFormat: 'MMMM',
 			}
 		},
 
