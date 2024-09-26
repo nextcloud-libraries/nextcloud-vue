@@ -4,6 +4,7 @@
  */
 
  $cell_height: 32px;
+ $opacity_full: 1;
 
 @import 'vue2-datepicker/scss/index';
 
@@ -144,7 +145,7 @@
 			text-align: center;
 			opacity: $opacity_normal;
 			border-radius: var(--border-radius-small);
-			min-height: 30px !important;
+			min-height: var(--clickable-area-small) !important;
 
 			// force pointer on all content
 			> * {
@@ -167,7 +168,7 @@
 			&.disabled {
 				border-radius: var(--border-radius-small);
 				background-color: var(--color-background-dark);
-				color: var(--color-text-maxcontrast);
+				color: var(--color-main-text);
 				opacity: 1;
 			}
 			&.in-range {
@@ -195,7 +196,7 @@
 			}
 			&.disabled {
 				opacity: $opacity_disabled;
-				color: var(--color-text-maxcontrast);
+				color: var(--color-main-text);
 				border-radius: var(--border-radius-small);
 				background-color: var(--color-background-darker);
 			}
@@ -229,7 +230,7 @@
 				flex: 1 1 $cell_height;
 				justify-content: space-around;
 				min-height: $cell_height;
-				color: var(--color-text-maxcontrast);
+				color: var(--color-main-text);
 			}
 			// Default cell style
 			th,
@@ -244,7 +245,7 @@
 				height: 95%;
 				min-height: $cell_height;
 				transition: background 100ms ease-in-out;
-				color: var(--color-text-maxcontrast);
+				color: var(--color-main-text);
 			}
 		}
 		&.mx-table-year {
@@ -271,7 +272,7 @@
 		padding: 7px 10px;
 		cursor: pointer;
 		text-decoration: none;
-		opacity: $opacity_disabled;
+		opacity: $opacity_full;
 		color: var(--color-main-text);
 		border-radius: var(--border-radius-small);
 		line-height: $cell_height - 12px; // padding minus 2px for better visual
@@ -340,10 +341,13 @@
 				line-height: initial;
 			}
 		}
-
 		.mx-calendar-header-label {
 			display: flex;
 			color: var(--color-main-text);
+		}
+		.mx-btn-icon-double-left,
+		.mx-btn-icon-double-right {
+			display: none;
 		}
 
 		.mx-btn-icon-left > i {
