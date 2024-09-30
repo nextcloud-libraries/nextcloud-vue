@@ -79,14 +79,13 @@
 
 	.mx-datepicker-btn-confirm {
 		background-color: var(--color-primary-element);
-		border-color: var(--color-primary-element);
 		color: var(--color-primary-element-text) !important;
 		opacity: 1 !important;
 	}
 
 	.mx-datepicker-btn-confirm:hover {
-		background-color: var(--color-primary-element-light) !important;
-		border-color: var(--color-primary-element-light) !important;
+		background-color: var(--color-primary-element-hover) !important;
+		border-color: var(--color-primary-element-hover) !important;
 	}
 
 	// default popup styles
@@ -140,8 +139,8 @@
 		.cell {
 			transition: all 100ms ease-in-out;
 			text-align: center;
-			opacity: $opacity_normal;
-			border-radius: 50px;
+			opacity: $opacity_full;
+			border-radius: var(--border-radius-element);
 
 			// force pointer on all content
 			> * {
@@ -166,9 +165,11 @@
 			&.in-range {
 				opacity: $opacity_normal;
 			}
+			&.disabled,
 			&.not-current-month {
-				opacity: $opacity_disabled;
-				color: var(--color-text-lighter);
+				color: var(--color-text-maxcontrast);
+			}
+			&.not-current-month {
 				&:hover,
 				&:focus {
 					opacity: $opacity_full;
@@ -197,7 +198,7 @@
 		.mx-week-number {
 			text-align: center;
 			opacity: $opacity_normal;
-			border-radius: 50px;
+			border-radius: (--border-radius-element)
 		}
 
 		// cell that are not in a table
@@ -248,8 +249,14 @@
 		&.mx-table-date {
 			tr th,
 			tr td {
+				font-size: unset;
+
 				// only two rows in year panel
 				flex-basis: $cell_height;
+			}
+
+			tr th {
+				color: var(--color-text-maxcontrast);
 			}
 		}
 	}
@@ -264,7 +271,7 @@
 		text-decoration: none;
 		opacity: $opacity_disabled;
 		color: var(--color-text-lighter);
-		border-radius: $cell_height;
+		border-radius: var(--border-radius-element);
 		line-height: $cell_height - 12px; // padding minus 2px for better visual
 		// Mouse feedback
 		&:hover,
@@ -291,17 +298,17 @@
 			cursor: pointer;
 			text-align: center;
 			text-decoration: none;
-			opacity: $opacity_normal;
+			opacity: $opacity_full;
 			color: var(--color-main-text);
-			border-radius: $cell_height;
+			background-color: transparent;
+			border-radius: var(--border-radius-element);
 			line-height: $cell_height - 12px; // padding minus 2px for better visual
 
 			// Mouse feedback
 			&:hover,
 			&:focus {
-				opacity: $opacity_full;
 				color: var(--color-main-text);
-				background-color: var(--color-background-darker);
+				background-color: var(--color-background-hover);
 			}
 
 			// Header arrows
@@ -371,7 +378,7 @@
 			&:hover,
 			&.mx-active-week {
 				opacity: $opacity_full;
-				border-radius: 50px;
+				border-radius: var(--border-radius-element);
 				background-color: var(--color-background-dark);
 				td {
 					background-color: transparent;
