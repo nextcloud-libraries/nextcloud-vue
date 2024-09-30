@@ -167,7 +167,6 @@
 			&.in-range,
 			&.disabled {
 				border-radius: var(--border-radius-small);
-				background-color: var(--color-background-dark);
 				color: var(--color-main-text);
 				opacity: 1;
 			}
@@ -195,10 +194,9 @@
 				font-weight: bold;
 			}
 			&.disabled {
-				opacity: $opacity_disabled;
+				opacity: $opacity_full;
 				color: var(--color-main-text);
 				border-radius: var(--border-radius-small);
-				background-color: var(--color-background-darker);
 			}
 		}
 
@@ -269,7 +267,7 @@
 		min-width: $cell_height;
 		height: $cell_height;
 		margin: 0 2px !important; // center also single element. Definitively use margin so that buttons are not touching
-		padding: 7px 10px;
+		padding: 0;
 		cursor: pointer;
 		text-decoration: none;
 		opacity: $opacity_full;
@@ -301,7 +299,7 @@
 			cursor: pointer;
 			text-align: center;
 			text-decoration: none;
-			opacity: $opacity_normal;
+			opacity: $opacity_full;
 			color: var(--color-main-text);
 			border-radius: var(--border-radius-small);
 			background-color: transparent;
@@ -316,8 +314,10 @@
 			}
 
 			// Header arrows
+			&.mx-btn-icon-double-left,
 			&.mx-btn-icon-left,
-			&.mx-btn-icon-right {
+			&.mx-btn-icon-right,
+			&.mx-btn-icon-double-right {
 				align-items: center;
 				justify-content: center;
 				width: $cell_height;
@@ -345,11 +345,9 @@
 			display: flex;
 			color: var(--color-main-text);
 		}
-		.mx-btn-icon-double-left,
-		.mx-btn-icon-double-right {
-			display: none;
+		.mx-btn-icon-double-left > i {
+			background-image: url('./chevron-double-left.svg');
 		}
-
 		.mx-btn-icon-left > i {
 			background-image: url('./chevron-left.svg');
 		}
@@ -357,9 +355,14 @@
 		.mx-btn-icon-right > i {
 			background-image: url('./chevron-right.svg');
 		}
-
+		.mx-btn-icon-double-right > i {
+			background-image: url('./chevron-double-right.svg');
+		}
 		button.mx-btn-icon-right {
 			order: 2;
+		}
+		button.mx-btn-icon-double-right {
+			order: 3;
 		}
 	}
 	// Week panel
@@ -414,14 +417,12 @@
 			&.active,
 			&:hover {
 				color: var(--color-primary-element-text);
-				background-color: var(--color-primary-element);
 			}
 
 			&.disabled {
 				cursor: not-allowed;
 				opacity: $opacity_disabled;
 				color: var(--color-main-text);
-				background-color: var(--color-main-background);
 			}
 		}
 	}
