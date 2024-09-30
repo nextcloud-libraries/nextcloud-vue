@@ -198,7 +198,7 @@
 		.mx-week-number {
 			text-align: center;
 			opacity: $opacity_normal;
-			border-radius: (--border-radius-element)
+			border-radius: var(--border-radius-element)
 		}
 
 		// cell that are not in a table
