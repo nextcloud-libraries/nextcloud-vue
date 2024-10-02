@@ -377,6 +377,10 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+		showLinkTooltip: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	emits: ['interact:todo'],
 
@@ -500,6 +504,10 @@ export default {
 											to: route,
 										},
 									}, children)
+								}
+
+								if (this.showLinkTooltip) {
+									attrs.attrs.title = attrs.attrs.href
 								}
 							}
 
