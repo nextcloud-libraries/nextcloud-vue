@@ -697,7 +697,7 @@ export default {
 			// Always forward native event
 			this.$emit('click', event)
 
-			//If no links are defined, and collapsing is enabled, we want it to collapse
+			// If no links are defined, and collapsing is enabled, we want it to collapse
 			if (this.to === null && this.href === null && this.collapsible === true) {
 				this.open = !this.open
 				event.preventDefault()
