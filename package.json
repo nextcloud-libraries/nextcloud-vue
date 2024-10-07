@@ -29,7 +29,9 @@
     "stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix",
     "styleguide": "vue-styleguidist --config styleguide.config.cjs server",
     "styleguide:build": "vue-styleguidist --config styleguide.config.cjs build",
-    "update:snapshots": "npm run test:component -- --grep @visual --update-snapshots"
+    "update:snapshots": "npm run test:component -- --grep @visual --update-snapshots",
+    "storybook": "storybook dev -p 6006 --no-open",
+    "build-storybook": "storybook build"
   },
   "exports": {
     ".": {
@@ -125,12 +127,19 @@
     "@nextcloud/webpack-vue-config": "github:nextcloud/webpack-vue-config#vue3",
     "@playwright/experimental-ct-vue": "^1.46.1",
     "@playwright/test": "^1.46.1",
+    "@storybook/addon-essentials": "^8.3.1",
+    "@storybook/addon-links": "^8.3.1",
+    "@storybook/addon-storysource": "^8.3.1",
+    "@storybook/blocks": "^8.3.1",
+    "@storybook/vue3": "^8.3.1",
+    "@storybook/vue3-vite": "^8.3.1",
     "@types/gettext-parser": "^4.0.4",
     "@types/node": "^20.14.10",
     "@vitest/coverage-v8": "^2.0.5",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.5.1",
     "babel-loader-exclude-node-modules-except": "^1.2.1",
+    "eslint-plugin-storybook": "^0.8.0",
     "file-loader": "^6.2.0",
     "gettext-extractor": "^3.8.0",
     "gettext-parser": "^8.0.0",
@@ -138,6 +147,7 @@
     "jsdom": "^24.1.1",
     "resolve-url-loader": "^5.0.0",
     "sanitize-filename": "^1.6.3",
+    "storybook": "^8.3.1",
     "stylelint": "^16.8.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4",

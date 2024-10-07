@@ -32,3 +32,5 @@ styleguide/index.html
 /playwright-report/
 /blob-report/
 /tests/component/setup/.cache/
+
+*storybook.log
