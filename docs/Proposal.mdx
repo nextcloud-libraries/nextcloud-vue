@@ -1,0 +1,83 @@
+{/**
+ * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */}
+
+import { Meta } from '@storybook/blocks'
+
+<Meta title="Proposals" />
+
+# Documentation proposals
+
+## Problem 1: documentation tooling
+
+### Proposal : Migrate from `vue-stylegudist` to `storybook`
+
+### ✅ Props
+
+- Better Vue support without custom API
+- Better UI out of the box
+- Easier to extend:
+  - Light/dark theme switch
+  - Nextcloud 29 / Nextcloud 30 switch
+- Reuse stories with e2e testing in Playwright 
+- Addons:
+  - Figma integration
+  - A11y testing
+- De-facto standard for frontend docs
+
+## ❌ Cons
+
+- More complex docs structure - wrinting stories with a huge boilerplate
+- MDX with JSX syntax and React inside
+- More ways to write docs
+- Not easy to support Vue 2 + Vue 3
+
+### Migration component docs from `styleguidist` to `storybook`
+
+1. Add `<ComponentName>.stories.ts` file next to the component
+2. Define component name, including categories
+3. If component doesn't use `<script setup>` convert custom vue-styleguidist typing to generic Vue typing:
+   - `props` with [`PropType` for object](https://vuejs.org/api/utility-types.html#proptype-t)
+   - `emits` in [a full object form](https://vuejs.org/guide/typescript/options-api.html#typing-component-emits)
+   - `slots` with [`slots`](https://vuejs.org/api/options-rendering.html#slots) option
+   - Public methods 
+4. Remove unneeded vue-styleguidist comments like `@default`, `@slot`, `@emit`
+5. Convert documentation:
+   1. Convert examples into stories
+   2. For a simple 1 line docs - set `description` property of the story
+   3. For a complex documentation add `<Component>.mdx` file
+
+### Hard parts
+
+- Options API `emits` is not recognized in short form, requiring adding validator
+- MDX in storybook only supports JSX
+
+### TODO
+
+- Configure grid baseline
+- Find a way to isolate example from the docs page
+- Add dark/light theme switch
+- Add Nextcloud 29/30 theme switch
+- Make stories reusable with Playwright
+
+## Problem 2: scattered frontend documentation
+
+Frontend related documentation can be found it:
+1. `@nextcloud/vue` - UI components and some Nextcloud component + some integrations
+2. `docs.nextcloud.com`
+3. Penpot markups
+4. `server` source code
+
+### Proposal - use `@nextcloud/vue` as `nextcloud-ui`
+
+`@nextcloud/vue` => source of truth for Frontend development, aka `@nextcloud/ui`:
+- UI components documentation (like styleguidist)
+- Some integrations documentation (because they are already in `@nextcloud/vue`)
+- Globally styled elements: `<button>`, `<input>`, typography, etc.
+- CSS Variables (**with life examples**)
+  - Theming variables
+  - Global variables
+- Links to other frontend libraries
+  - Or examples for UI component libraries?
+
