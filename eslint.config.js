@@ -5,6 +5,7 @@
 
 import { recommendedLibrary } from '@nextcloud/eslint-config'
 import { defineConfig } from 'eslint/config'
+import storybook from 'eslint-plugin-storybook'
 
 export default defineConfig([
 	{
@@ -15,6 +16,9 @@ export default defineConfig([
 	},
 
 	...recommendedLibrary,
+
+	storybook.configs['flat/recommended'],
+
 	{
 		files: ['**/*.vue'],
 		rules: {
