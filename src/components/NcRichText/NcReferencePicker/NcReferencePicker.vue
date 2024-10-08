@@ -26,6 +26,7 @@
 		<div v-else-if="mode === MODES.customElement"
 			class="custom-element-wrapper">
 			<NcCustomPickerElement :provider="selectedProvider"
+				class="custom-element"
 				@submit="submitLink"
 				@cancel="cancelCustomElement" />
 		</div>
@@ -180,6 +181,11 @@ export default {
 		display: flex;
 		overflow-y: auto;
 		width: 100%;
+		.custom-element {
+			display: flex;
+			overflow-y: auto;
+			width: 100%;
+		}
 	}
 }
 </style>
