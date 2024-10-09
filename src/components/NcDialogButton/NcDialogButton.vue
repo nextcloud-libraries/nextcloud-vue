@@ -17,7 +17,9 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 		<template #icon>
 			<!-- @slot Allow to set a custom icon for the button -->
 			<slot name="icon">
-				<NcIconSvgWrapper v-if="icon !== undefined" :svg="icon" />
+				<!-- The loading state is an information that must be accessible -->
+				<NcLoadingIcon v-if="isLoading" :name="t('Loading …') /* TRANSLATORS: The button is in a loading state*/" />
+				<NcIconSvgWrapper v-else-if="icon !== undefined" :svg="icon" />
 			</slot>
 		</template>
 	</NcButton>
@@ -27,42 +29,48 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 import { defineComponent, type PropType } from 'vue'
 import NcButton, { ButtonNativeType, ButtonType } from '../NcButton/index'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
+import NcLoadingIcon from '../NcLoadingIcon/index.js'
+import { t } from '../../l10n.js'
 
-export default defineComponent({
-	name: 'NcDialogButton',
-
-	components: {
-		NcButton,
-		NcIconSvgWrapper,
+const props = defineProps({
+	/**
+	 * The function that will be called when the button is pressed.
+	 * If the function returns `false` the click is ignored and the dialog will not be closed.
+	 * @type {() => unknown|false|Promise<unknown|false>}
+	 */
+	callback: {
+		type: Function,
+		required: false,
+		default: () => {},
 	},
 
-	props: {
-		/**
-		 * The function that will be called when the button is pressed
-		 * @type {() => void}
-		 */
-		callback: {
-			type: Function,
-			required: false,
-			default: () => {},
-		},
+	/**
+	 * The label of the button
+	 */
+	label: {
+		type: String,
+		required: true,
+	},
 
-		/**
-		 * The label of the button
-		 */
-		label: {
-			type: String,
-			required: true,
-		},
+	/**
+	 * Optional inline SVG icon for the button
+	 */
+	icon: {
+		type: String,
+		required: false,
+		default: undefined,
+	},
 
-		/**
-		 * Optional inline SVG icon for the button
-		 */
-		icon: {
-			type: String,
-			required: false,
-			default: undefined,
-		},
+	/**
+	 * The button type, see NcButton
+	 * @type {'primary'|'secondary'|'error'|'warning'|'success'}
+	 */
+	type: {
+		type: String,
+		required: false,
+		default: 'secondary',
+		validator: (type) => typeof type === 'string' && ['primary', 'secondary', 'tertiary', 'error', 'warning', 'success'].includes(type),
+	},
 
 		/**
 		 * The button type, see NcButton
@@ -101,19 +109,40 @@ export default defineComponent({
 		},
 	},
 
-	emits: ['click'],
-
-	setup(props, { emit }) {
-		/**
-		 * Handle clicking the button
-		 * @param {MouseEvent} e The click event
-		 */
-		const handleClick = (e) => {
-			props.callback?.()
-			emit('click', e)
-		}
-
-		return { handleClick }
+	/**
+	 * If the button should be shown as disabled
+	 */
+	disabled: {
+		type: Boolean,
+		default: false,
 	},
 })
+
+const emit = defineEmits(['click'])
+
+const isLoading = ref(false)
+
+/**
+ * Handle clicking the button
+ * @param {MouseEvent} e The click event
+ */
+const handleClick = async (e) => {
+	// Do not re-emit while loading
+	if (isLoading.value) {
+		return
+	}
+
+	isLoading.value = true
+	try {
+		const result = await props.callback?.()
+		if (result !== false) {
+			/**
+			 * The click event (`MouseEvent`) and the value returned by the callback
+			 */
+			emit('click', e, result)
+		}
+	} finally {
+		isLoading.value = false
+	}
+}
 </script>
