@@ -4,9 +4,9 @@
 -->
 
 <docs>
-# Usage
+### Usage
 
-### New Item element
+#### New Item element
 ```vue
 	<template>
 		<NcAppNavigationNewItem name="New Item" @new-item="function(value){alert(value)}">
@@ -26,7 +26,7 @@
 	</script>
 ```
 
-### New Item element with a loading animation instead of the icon
+#### New Item element with a loading animation instead of the icon
 ```vue
 	<template>
 		<NcAppNavigationNewItem name="New Item" :loading="true">
