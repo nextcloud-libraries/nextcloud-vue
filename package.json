@@ -89,6 +89,7 @@
     "focus-trap": "^7.4.3",
     "linkify-string": "^4.0.0",
     "md5": "^2.3.0",
+    "primevue": "^4.1.0",
     "rehype-external-links": "^3.0.0",
     "rehype-react": "^7.1.2",
     "remark-breaks": "^4.0.0",
