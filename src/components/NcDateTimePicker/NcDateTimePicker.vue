@@ -477,6 +477,7 @@ export default {
 		}
 	}
 }
+
 .v-select.select {
 	min-width: 246px;
 	left: -8px !important;
