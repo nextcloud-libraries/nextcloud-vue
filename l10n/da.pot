@@ -209,6 +209,10 @@ msgstr "Lys skin tone"
 msgid "Load more \"{options}\""
 msgstr "Indlæs flere \"{options}\""
 
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Indlæser…"
+
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Mariner"
@@ -349,6 +353,9 @@ msgstr "Søg efter tidszone"
 
 msgid "Search results"
 msgstr "Søgeresultater"
+
+msgid "Search…"
+msgstr "Søg…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
