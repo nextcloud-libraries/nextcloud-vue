@@ -344,7 +344,7 @@ export default {
 	backdrop-filter: var(--filter-background-blur, none);
 
 	&--close {
-		margin-left: calc(-1 * min($navigation-width, var(--app-navigation-max-width)));
+		margin-inline-start: calc(-1 * min($navigation-width, var(--app-navigation-max-width)));
 	}
 
 	&__search {
