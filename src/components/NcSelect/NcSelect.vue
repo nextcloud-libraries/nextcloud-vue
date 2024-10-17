@@ -512,6 +512,7 @@ export default {
 			<input :class="['vs__search', inputClass]"
 				v-bind="attributes"
 				:required="inputRequired"
+				dir="auto"
 				v-on="events">
 		</template>
 		<template #open-indicator="{ attributes }">
