@@ -229,7 +229,7 @@ export default {
 	margin-top: calc(var(--default-grid-baseline, 4px) * 3);
 	overflow: hidden;
 	border: 2px solid var(--color-border);
-	border-radius: var(--border-radius-large);
+	border-radius: var(--border-radius-container);
 	background-color: transparent;
 	display: flex;
 }
@@ -317,17 +317,9 @@ export default {
 	position: relative;
 	.toggle-interactive--button {
 		position: absolute;
-		top: 50%;
+		bottom: var(--default-grid-baseline);
+		right: var(--default-grid-baseline);
 		z-index: 10000;
-		left: 50%;
-		transform: translateX(-50%) translateY(-50%);
-		opacity: 0;
-	}
-
-	&:focus-within, &:hover {
-		.toggle-interactive--button {
-			opacity: 1;
-		}
 	}
 }
 </style>
