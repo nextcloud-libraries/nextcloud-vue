@@ -1,0 +1,42 @@
+import { Canvas, Meta, ArgTypes } from '@storybook/blocks'
+ 
+import * as NcButtonStories from './NcButton.stories.ts'
+ 
+<Meta of={NcButtonStories} />
+
+# NcButton
+
+General purpose button component. See props for different options.
+[Use material design icons only for icons](https://www.npmjs.com/package/vue-material-design-icons) and remember to set their size to 20.
+
+<ArgTypes />
+
+## Usage
+
+### Custom icon slot
+
+To be used with `vue-material-design-icons` only. For icon classes use the `default-icon` slot.
+It can be used with one or multiple actions.
+
+<Canvas of={NcButtonStories.General} />
+
+### Alignment
+
+Sometimes it is required to change the icon alignment on the button, like for switching between pages as in following example:
+
+<Canvas of={NcButtonStories.Alignment} />
+
+### Pressed state
+
+It is possible to make the button stateful by adding a pressed state, e.g. if you like to create a favorite button.
+The button will have the required `aria` attribute for accessibility and visual style (`primary` when pressed, and the configured type otherwise).
+
+Do not change `text` or `aria-label` of the pressed/unpressed button. See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed
+
+<Canvas of={NcButtonStories.Pressed} />
+
+### Usage example: Sorting table columns
+
+The standard way to implement sortable table column headers should be like this:
+
+<Canvas of={NcButtonStories.SortingTable} />
