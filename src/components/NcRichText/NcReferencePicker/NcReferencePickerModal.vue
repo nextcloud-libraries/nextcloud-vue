@@ -6,7 +6,7 @@
 <template>
 	<NcModal v-if="show"
 		:size="modalSize"
-		:can-close="false"
+		:can-close="true"
 		class="reference-picker-modal"
 		@close="onCancel">
 		<div ref="modal_content"
