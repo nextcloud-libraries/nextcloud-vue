@@ -41,6 +41,12 @@ import GenRandomId from '../../utils/GenRandomId.js'
 
 export default {
 	name: 'NcSettingsInputText',
+
+	model: {
+		prop: 'value',
+		event: 'update:value',
+	},
+
 	props: {
 		/**
 		 * label of the select group element
