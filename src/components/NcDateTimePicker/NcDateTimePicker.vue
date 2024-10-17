@@ -311,7 +311,8 @@ export default {
 					// 0 = sunday, 1 = monday
 					firstDayOfWeek: getFirstDay(),
 				},
-				monthFormat: 'MMM',
+				monthFormat: 'MMMM',
+				months: getMonthNames(), // Use long month names in month picker
 			}
 		},
 
@@ -419,8 +420,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.mx-datepicker :deep(.mx-input-wrapper .mx-input) {
-	background-clip: border-box;
+.mx-datepicker {
+	:deep(.mx-input-wrapper .mx-input) {
+		background-clip: border-box;
+	}
+
+	:deep(.mx-calendar-panel-date) {
+		.mx-btn-icon-double-left,
+		.mx-btn-icon-double-right {
+			display: none;
+		}
+	}
 }
 
 .datetime-picker-inline-icon {
