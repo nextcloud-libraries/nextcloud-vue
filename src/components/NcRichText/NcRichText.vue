@@ -330,6 +330,10 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+		referenceInteractiveOptIn: {
+			type: Boolean,
+			default: false,
+		},
 		/** Provide data upfront to avoid extra http request */
 		references: {
 			type: Object,
@@ -419,6 +423,7 @@ export default {
 								text: this.text,
 								referenceData: this.references,
 								interactive: this.referenceInteractive,
+								interactiveOptIn: this.referenceInteractiveOptIn,
 							},
 						}),
 					])
@@ -544,6 +549,7 @@ export default {
 								text: this.text,
 								referenceData: this.references,
 								interactive: this.referenceInteractive,
+								interactiveOptIn: this.referenceInteractiveOptIn,
 							},
 						}),
 					])
