@@ -71,8 +71,8 @@ export default {
 .app-navigation-toggle-wrapper {
 	position: absolute;
 	top: var(--app-navigation-padding);
-	right: calc(0px - var(--app-navigation-padding));
-	margin-right: calc(-1 * var(--default-clickable-area));
+	inset-inline-end: calc(0px - var(--app-navigation-padding));
+	margin-inline-end: calc(-1 * var(--default-clickable-area));
 }
 
 button.app-navigation-toggle {
