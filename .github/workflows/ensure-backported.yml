@@ -1,0 +1,29 @@
+
+name: Ensure changes are migrated to Vue3
+
+on:
+  pull_request:
+    types: [opened, ready_for_review, reopened, synchronize, labeled]
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  commit-message-check:
+    if: github.event.pull_request.draft == false
+
+    name: Require Vue3 migration backport
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Run check
+      run: |
+        if ! ${{ contains(github.event.pull_request.labels.*.name, 'backport-request') }}; then
+          echo -e "Please request a backport to the next-branch for our ongoing Vue 3 migration.\nSimply create a comment '/backport to next' and handle the backport afterwards.";
+          exit 1;
+        else
+          echo "Backport request is already created. Thank you!"
+        fi
