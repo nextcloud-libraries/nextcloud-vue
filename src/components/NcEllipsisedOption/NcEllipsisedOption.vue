@@ -67,7 +67,7 @@ export default {
 </docs>
 
 <template>
-	<span class="name-parts" :title="name">
+	<span dir="auto" class="name-parts" :title="name">
 		<NcHighlight class="name-parts__first"
 			:text="part1"
 			:search="search"
