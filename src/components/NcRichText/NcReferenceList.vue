@@ -5,9 +5,11 @@
 
 <template>
 	<div v-if="isVisible" class="widgets--list" :class="{'icon-loading': loading }">
-		<div v-for="reference in displayedReferences" :key="reference?.openGraphObject?.id">
-			<NcReferenceWidget :reference="reference" :interactive="interactive" :interactive-opt-in="interactiveOptIn" />
-		</div>
+		<NcReferenceWidget v-for="reference in displayedReferences"
+			:key="reference?.openGraphObject?.id"
+			:reference="reference"
+			:interactive="interactive"
+			:interactive-opt-in="interactiveOptIn" />
 	</div>
 </template>
 <script>
@@ -147,11 +149,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.widget--list {
-	width: var(--widget-full-width, 100%);
-}
-
-.widgets--list.icon-loading {
+.widgets--list {
+	width: 100%;
 	min-height: var(--default-clickable-area);
 }
 </style>
