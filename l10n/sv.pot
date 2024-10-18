@@ -134,7 +134,7 @@ msgid "do not disturb"
 msgstr "stör ej"
 
 msgid "Edit item"
-msgstr "Ändra"
+msgstr "Redigera objekt"
 
 msgid "Emoji picker"
 msgstr "Emoji-väljare"
