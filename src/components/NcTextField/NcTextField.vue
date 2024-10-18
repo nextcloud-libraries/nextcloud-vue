@@ -160,6 +160,11 @@ export default {
 	// Allow forwarding all attributes
 	inheritAttrs: false,
 
+	model: {
+		prop: 'value',
+		event: 'update:value',
+	},
+
 	props: {
 		/**
 		 * Any [NcInputField](#/Components/NcFields?id=ncinputfield) props
