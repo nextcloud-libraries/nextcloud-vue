@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Joas Schilling, 2023
-# Transifex Bot <>, 2023
+# Stanislav Prekop <prekop3@gmail.com>, 2024
+# Tomas Rusnak <linkermail@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2023\n"
+"Last-Translator: Tomas Rusnak <linkermail@gmail.com>, 2024\n"
 "Language-Team: Slovak (Slovakia) (https://app.transifex.com/nextcloud/teams/64236/sk_SK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sk_SK\n"
@@ -17,26 +17,36 @@ msgstr "{tag} (neviditeľný)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (obmedzený)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "Farba s hodnotou HEX {hex}"
+
 msgid "a few seconds ago"
-msgstr ""
+msgstr "pred chvíľou"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
 
 msgid "Actions"
 msgstr "Akcie"
 
 msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgstr "Akcie pre položku s názvom \"{name}\""
 
 msgid "Activities"
 msgstr "Aktivity"
+
+msgid "Add to a project"
+msgstr "Pridať do projektu"
 
 msgid "Animals & Nature"
 msgstr "Zvieratá a príroda"
 
 msgid "Any link"
-msgstr ""
+msgstr "Akýkoľvek odkaz"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr ""
+msgstr "Tu sa zobrazí čokoľvek zdieľané s rovnakou skupinou ľudí"
 
 msgid "Avatar of {displayName}"
 msgstr "Avatar {displayName}"
@@ -44,67 +54,122 @@ msgstr "Avatar {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Avatar {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "neprítomný"
+
 msgid "Back"
-msgstr ""
+msgstr "Späť"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Späť na výber poskytovateľa"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Modro fialová"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Bostonská modrá"
+
+msgid "busy"
+msgstr "zaneprázdnený"
 
 msgid "Cancel changes"
 msgstr "Zrušiť zmeny"
 
 msgid "Change name"
-msgstr ""
+msgstr "Zmeniť názov"
 
 msgid "Choose"
 msgstr "Vybrať"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Vymazať vyhľadávanie"
+
+msgid "Clear selected"
+msgstr "Vymazať vybraté"
 
 msgid "Clear text"
-msgstr ""
+msgstr "Vamazať text"
 
 msgid "Close"
-msgstr "Zatvoriť"
-
-msgid "Close modal"
-msgstr ""
+msgstr "Zavrieť"
 
 msgid "Close navigation"
 msgstr "Zavrieť navigáciu"
 
 msgid "Close sidebar"
-msgstr ""
+msgstr "Zavrieť bočný panel"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Zavrieť inteligentný výber"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Zbaliť menu"
+
+msgid "Color picker"
+msgstr "Výber farby"
 
 msgid "Confirm changes"
 msgstr "Potvrdiť zmeny"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "Pridať položky do projektu pre jednoduchšie vyhľadávanie"
+
 msgid "Custom"
-msgstr "Zvyk"
+msgstr "Vlastné"
+
+msgid "Dark skin tone"
+msgstr "Tmavý vzhľad"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Deluge"
+
+msgid "Deselect {option}"
+msgstr "Zrušiť výber {option}"
+
+msgid "do not disturb"
+msgstr "nerušiť"
 
 msgid "Edit item"
 msgstr "Upraviť položku"
 
+msgid "Emoji picker"
+msgstr "Výber emodži"
+
+msgid "Enable interactive view"
+msgstr "Povoliť interaktívny pohľad"
+
 msgid "Enter link"
-msgstr ""
+msgstr "Vložiť link"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"Chyba pri získavaní súvisiacich zdrojov. V prípade otázok kontaktujte prosím"
+" svojho systemového administrátora."
 
 msgid "External documentation for {name}"
-msgstr ""
+msgstr "Externá dokumentácia pre {name}"
+
+msgid "Failed to add the item to the project"
+msgstr "Nepodarilo sa pridať položku do projektu"
+
+msgid "Failed to create a project"
+msgstr "Nepodarilo sa vytvoriť projekt"
+
+msgid "Failed to rename the project"
+msgstr "Nepodarilo sa premenovať projekt"
 
 msgid "Favorite"
-msgstr ""
+msgstr "Obľúbené"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Živec"
 
 msgid "Flags"
 msgstr "Vlajky"
@@ -119,31 +184,69 @@ msgid "Global"
 msgstr "Globálne"
 
 msgid "Go back to the list"
-msgstr "Naspäť na zoznam"
+msgstr "Späť na zoznam"
+
+msgid "Gold"
+msgstr "Zlatá"
+
+msgid "Hide details"
+msgstr "Skryť detaily"
 
 msgid "Hide password"
-msgstr ""
+msgstr "Skryť heslo"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+msgid "invisible"
+msgstr "neviditeľný"
+
+msgid "Keyboard navigation help"
+msgstr "Pomoc pri navigácii pomocou klávesnice"
+
+msgid "Light skin tone"
+msgstr "Svetlý vzhľad"
+
+msgid "Load more \"{options}\""
+msgstr "Načítať viac \"{options}\""
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Nahrávam ..."
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Námorník"
+
+msgid "Medium dark skin tone"
+msgstr "Stredne tmavý vzhľad"
+
+msgid "Medium light skin tone"
+msgstr "Stredne svetlý vzhľad"
+
+msgid "Medium skin tone"
+msgstr "Stredný vzhľad"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Limit správy na {count} znakov dosiahnutý"
 
 msgid "More items …"
-msgstr ""
+msgstr "Viac položiek..."
 
 msgid "More options"
-msgstr ""
+msgstr "Viac možností"
+
+msgid "Neutral skin color"
+msgstr "Neutrálny vzhľad"
 
 msgid "Next"
-msgstr "Ďalší"
+msgstr "Ďalej"
+
+msgid "Nextcloud blue"
+msgstr "Nextcloud modrá"
 
 msgid "No emoji found"
 msgstr "Nenašli sa žiadne emodži"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "Žiaden odkaz poskytovateľa nebol nájdený"
 
 msgid "No results"
 msgstr "Žiadne výsledky"
@@ -151,23 +254,33 @@ msgstr "Žiadne výsledky"
 msgid "Objects"
 msgstr "Objekty"
 
-msgid "Open contact menu"
-msgstr ""
+msgid "offline"
+msgstr "Odpojený - offline"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Olivová"
+
+msgid "online"
+msgstr "Pripojený - online"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "Otvoriť link v \"{resourceName}\""
 
 msgid "Open menu"
-msgstr ""
+msgstr "Otvoriť menu"
 
 msgid "Open navigation"
 msgstr "Otvoriť navigáciu"
 
-msgid "Open settings menu"
-msgstr ""
+msgid "Open sidebar"
+msgstr "Otvoriť bočný panel"
+
+msgid "Options"
+msgstr "možnosti"
 
 msgid "Password is secure"
-msgstr ""
+msgstr "Heslo je bezpečné"
 
 msgid "Pause slideshow"
 msgstr "Pozastaviť prezentáciu"
@@ -176,64 +289,89 @@ msgid "People & Body"
 msgstr "Ľudia a telo"
 
 msgid "Pick a date"
-msgstr ""
+msgstr "Vybrať dátum"
 
 msgid "Pick a date and a time"
-msgstr ""
+msgstr "Vybrať dátum a čas"
 
 msgid "Pick a month"
-msgstr ""
+msgstr "Vybrať mesiac"
 
 msgid "Pick a time"
-msgstr ""
+msgstr "Vybrať čas"
 
 msgid "Pick a week"
-msgstr ""
+msgstr "Vybrať týždeň"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "Vybrať rok"
 
 msgid "Pick an emoji"
-msgstr "Vyberte si emodži"
+msgstr "Vybrať emodži"
 
 msgid "Please select a time zone:"
 msgstr "Prosím vyberte časovú zónu:"
 
 msgid "Previous"
-msgstr "Predchádzajúci"
+msgstr "Predchádzajúce"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "Ikonka poskytovateľa"
+
+msgid "Purple"
+msgstr "Fialová"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Raw odkaz {options}"
 
 msgid "Related resources"
-msgstr ""
+msgstr "Súvisiace zdroje"
+
+msgid "Related team resources"
+msgstr "Súvisiace tímové zdroje"
+
+msgid "Rename project"
+msgstr "Premenovať projekt"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Ružovo hnedá"
+
+msgid "Save changes"
+msgstr "Uložiť zmeny"
 
 msgid "Search"
 msgstr "Hľadať"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "Vyhľadať emoji"
+
+msgid "Search for time zone"
+msgstr "Vyhľadať časové pásmo"
 
 msgid "Search results"
 msgstr "Výsledky vyhľadávania"
 
+msgid "Search…"
+msgstr "Vyhľadať..."
+
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "pred pár sekundami"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "pred sekundami"
 
 msgid "Select a tag"
 msgstr "Vybrať štítok"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Vybrať poskytovateľa"
+
+msgid "Selected"
+msgstr "Vybraný"
 
 msgid "Settings"
 msgstr "Nastavenia"
@@ -241,11 +379,23 @@ msgstr "Nastavenia"
 msgid "Settings navigation"
 msgstr "Navigácia v nastaveniach"
 
+msgid "Show details"
+msgstr "Zobraziť detaily"
+
 msgid "Show password"
-msgstr ""
+msgstr "Zobraziť heslo"
+
+msgid "Skin tone"
+msgstr "Vzhľad"
+
+msgid "Skip to app navigation"
+msgstr "Preskočiť na navigáciu v aplikácii"
+
+msgid "Skip to main content"
+msgstr "Preskočiť na hlavný obsah"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "Inteligentný výber"
 
 msgid "Smileys & Emotion"
 msgstr "Smajlíky a emócie"
@@ -254,7 +404,7 @@ msgid "Start slideshow"
 msgstr "Začať prezentáciu"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Začnite písať pre vyhľadávanie"
 
 msgid "Submit"
 msgstr "Odoslať"
@@ -265,6 +415,9 @@ msgstr "Symboly"
 msgid "Travel & Places"
 msgstr "Cestovanie a miesta"
 
+msgid "Type to search for existing projects"
+msgstr "Začnite písať pre vyhľadávanie v existujúcich projektoch"
+
 msgid "Type to search time zone"
 msgstr "Začníte písať pre vyhľadávanie časovej zóny"
 
@@ -274,7 +427,15 @@ msgstr "Skupinu sa nepodarilo nájsť"
 msgid "Undo changes"
 msgstr "Vrátiť zmeny"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
+msgid "User status: {status}"
+msgstr "Stav užívateľa: {status}"
+
+msgid "View team"
+msgstr "Zobraziť tím"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Whisky"
+
+msgid "Write a message …"
+msgstr "Napíšte správu…"
