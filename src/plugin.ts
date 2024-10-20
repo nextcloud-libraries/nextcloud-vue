@@ -8,6 +8,8 @@ import type { DefineComponent, Directive, PluginObject } from 'vue'
 import * as NcComponents from './components/index.js'
 import * as NcDirectives from './directives/index.js'
 
+import PrimeVue from 'primevue/config'
+
 /**
  * Install all Nextcloud Vue components and directives globally
  * @example
@@ -34,5 +36,7 @@ export const NextcloudVuePlugin: PluginObject<never> = {
 		Object.entries(NcDirectives as { [key: string]: Directive }).forEach(([name, directive]) => {
 			Vue.directive(name, directive)
 		})
+
+		Vue.use(PrimeVue as any)
 	},
 }
