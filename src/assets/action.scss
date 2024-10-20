@@ -86,7 +86,7 @@
 			padding: calc((var(--default-clickable-area) - 1.6em) / 2) 0;
 
 			cursor: pointer;
-			text-align: left;
+			text-align: start;
 
 			// in case there are no spaces like long email addresses
 			overflow: hidden;
