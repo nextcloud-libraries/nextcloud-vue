@@ -73,6 +73,7 @@ Our awesome translation community will then be notified and a bot will sync thos
 
 Nonetheless, it requires a bit of caution.
 When you implement a translated string, import the `translate` or `translatePlural` and add it in your methods like so:
+
 ```vue
 <template>
 	<element>
@@ -93,6 +94,7 @@ export default {
 
 Please note that using a translated string as an attribute will _NOT_ work.
 But it will work if it's within an element (like the example above)
+
 ```vue
 <template>
 	<element :prop="t('This will not work')" />
@@ -100,6 +102,7 @@ But it will work if it's within an element (like the example above)
 ```
 
 You will instead have to define the string in the data section and use the relevant variable reference.
+
 ```vue
 <template>
 	<element :prop="chooseProp" />
