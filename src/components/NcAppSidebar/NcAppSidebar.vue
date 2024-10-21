@@ -1229,8 +1229,15 @@ export default {
 	--app-sidebar-padding: #{$app-navigation-padding};
 	// A padding between the toggle button and the page border
 	--app-sidebar-offset: 0;
-	transition-duration: var(--animation-quick);
-	transition-property: --app-sidebar-offset;
+	// Explicitly disable transition by default to enable it only when sidebar animation is active
+	// !important to override styles from an older version, because it's global non-scoped styles
+	transition: --app-sidebar-offset 0ms !important;
+}
+
+// When AppSidebar is animation is active - also apply transition for the toggle button offset
+.content:has(.app-sidebar.slide-right-enter-active),
+.content:has(.app-sidebar.slide-right-leave-active) {
+	transition: --app-sidebar-offset var(--animation-quick);
 }
 
 .content:has(.app-sidebar__toggle) {
