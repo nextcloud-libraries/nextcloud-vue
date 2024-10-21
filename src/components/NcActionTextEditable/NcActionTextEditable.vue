@@ -96,6 +96,11 @@ export default {
 
 	mixins: [ActionTextMixin],
 
+	model: {
+		prop: 'value',
+		event: 'update:value',
+	},
+
 	props: {
 		/**
 		 * id attribute of the checkbox element
