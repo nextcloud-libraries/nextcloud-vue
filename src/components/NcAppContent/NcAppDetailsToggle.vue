@@ -10,7 +10,8 @@
 		class="app-details-toggle"
 		:class="{ 'app-details-toggle--mobile': isMobile }">
 		<template #icon>
-			<ArrowRight :size="20" />
+			<ArrowLeft v-if="isRTL" :size="20" />
+			<ArrowRight v-else :size="20" />
 		</template>
 	</NcButton>
 </template>
@@ -23,7 +24,10 @@ import Tooltip from '../../directives/Tooltip/index.js'
 import { emit } from '@nextcloud/event-bus'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
+
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { isRTL } from '@nextcloud/l10n'
 
 export default {
 	name: 'NcAppDetailsToggle',
@@ -35,9 +39,11 @@ export default {
 	components: {
 		NcButton,
 		ArrowRight,
+		ArrowLeft,
 	},
 	setup() {
 		return {
+			isRTL: isRTL(),
 			isMobile: useIsMobile(),
 		}
 	},
@@ -92,10 +98,10 @@ export default {
 
 	top: var(--app-navigation-padding);
 	// Navigation Toggle button width + 2 paddings around
-	left: calc(var(--default-clickable-area) + var(--app-navigation-padding) * 2);
+	inset-inline-start: calc(var(--default-clickable-area) + var(--app-navigation-padding) * 2);
 	&--mobile {
 		// There is no NavigationToggle button
-		left: var(--app-navigation-padding);
+		inset-inline-start: var(--app-navigation-padding);
 	}
 
 	&:active,
