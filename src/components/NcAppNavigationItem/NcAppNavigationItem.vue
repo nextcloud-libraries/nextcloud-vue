@@ -316,12 +316,12 @@ Just set the `pinned` prop.
 				<div v-if="hasUtils && !editingActive"
 					class="app-navigation-entry__utils"
 					:class="{'app-navigation-entry__utils--display-actions': forceDisplayActions || menuOpenLocalValue || menuOpen }">
-					<div v-if="$slots.counter"
+					<div v-if="$scopedSlots.counter"
 						class="app-navigation-entry__counter-wrapper">
 						<!-- @slot Slot for the `NcCounterBubble` -->
 						<slot name="counter" />
 					</div>
-					<NcActions v-if="$slots.actions || (editable && !editingActive) || undo"
+					<NcActions v-if="$scopedSlots.actions || (editable && !editingActive) || undo"
 						ref="actions"
 						:inline="inlineActions"
 						class="app-navigation-entry__actions"
@@ -641,7 +641,7 @@ export default {
 		},
 
 		hasUtils() {
-			if (this.$slots.actions || this.$slots.counter || this.editable || this.undo) {
+			if (this.$scopedSlots.actions || this.$scopedSlots.counter || this.editable || this.undo) {
 				return true
 			}
 			return false
@@ -731,8 +731,8 @@ export default {
 		},
 
 		updateSlotInfo() {
-			this.hasChildren = !!this.$slots.default
-			this.collapsible = this.allowCollapse && !!this.$slots.default
+			this.hasChildren = !!this.$scopedSlots.default
+			this.collapsible = this.allowCollapse && !!this.$scopedSlots.default
 		},
 
 		/**
