@@ -24,7 +24,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 					<Pencil :size="20" />
 				</template>
 			</NcActionInput>
-			<NcActionInput :value.sync="text" label="Input with placeholder">
+			<NcActionInput v-model="text" label="Input with placeholder">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>

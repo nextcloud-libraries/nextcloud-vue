@@ -25,7 +25,7 @@ and `minlength`.
 			@trailing-button-click="clearText">
 			<Magnify :size="20" />
 		</NcTextField>
-		<NcTextField :value.sync="text4"
+		<NcTextField v-model="text4"
 			label="Internal label"
 			placeholder="That can be used together with placeholder"
 			trailing-button-icon="close"
@@ -51,8 +51,10 @@ and `minlength`.
 			@trailing-button-click="clearText">
 		</NcTextField>
 		<NcTextField label="Disabled"
+			:value="text1"
 			:disabled="true" />
 		<NcTextField label="Disabled + Success"
+			:value="text2"
 			:success="true"
 			:disabled="true" />
 		<div class="external-label">
