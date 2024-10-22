@@ -9,12 +9,30 @@ Usually, you will provide a name prop to bind the radio together.
 So that only one of each name set can be selected at the same time.
 
 ```vue
+<template>
 	<NcActions>
 		<NcActionRadio @change="alert('(un)checked !')" name="uniqueId">First choice</NcActionRadio>
-		<NcActionRadio value="second" name="uniqueId" @change="alert('(un)checked !')">Second choice</NcActionRadio>
+		<NcActionRadio value="second" v-model="radioValue" name="uniqueId" @change="alert('(un)checked !')">Second choice (v-model)</NcActionRadio>
 		<NcActionRadio :checked="true" name="uniqueId" @change="alert('(un)checked !')">Third choice (checked)</NcActionRadio>
-		<NcActionRadio :disabled="true" name="uniqueId" @change="alert('(un)checked !')">Second choice (disabled)</NcActionRadio>
+		<NcActionRadio :disabled="true" name="uniqueId" @change="alert('(un)checked !')">Fourth choice (disabled)</NcActionRadio>
 	</NcActions>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				radioValue: false,
+			}
+		},
+
+		methods: {
+			alert(message) {
+				alert(message)
+			}
+		}
+	}
+</script>
 ```
 </docs>
 
