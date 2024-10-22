@@ -78,7 +78,6 @@ export default {
 				:id="computedId"
 				ref="input"
 				class="textarea__input"
-				:type="type"
 				:disabled="disabled"
 				:placeholder="computedPlaceholder"
 				:aria-describedby="ariaDescribedby"
