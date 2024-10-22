@@ -71,7 +71,6 @@ It extends and styles an HTMLTextAreaElement.
 				:id="computedId"
 				ref="input"
 				class="textarea__input"
-				:type="type"
 				:disabled="disabled"
 				:placeholder="computedPlaceholder"
 				:aria-describedby="ariaDescribedby"
