@@ -256,7 +256,7 @@ Just set the `pinned` prop.
 		:class="{
 			'app-navigation-entry--opened': opened,
 			'app-navigation-entry--pinned': pinned,
-			'app-navigation-entry--collapsible': collapsible,
+			'app-navigation-entry--collapsible': isCollapsible(),
 		}"
 		class="app-navigation-entry-wrapper">
 		<component :is="isRouterLink ? 'router-link' : 'NcVNodes'"
@@ -275,7 +275,7 @@ Just set the `pinned` prop.
 					class="app-navigation-entry-link"
 					:aria-current="active || (isActive && to) ? 'page' : undefined"
 					:aria-description="ariaDescription"
-					:aria-expanded="hasChildren ? opened.toString() : undefined"
+					:aria-expanded="$scopedSlots.default ? opened.toString() : undefined"
 					:href="href || routerLinkHref || '#'"
 					:target="isExternal(href) ? '_blank' : undefined"
 					:title="title || name"
@@ -316,12 +316,12 @@ Just set the `pinned` prop.
 				<div v-if="hasUtils && !editingActive"
 					class="app-navigation-entry__utils"
 					:class="{'app-navigation-entry__utils--display-actions': forceDisplayActions || menuOpenLocalValue || menuOpen }">
-					<div v-if="$slots.counter"
+					<div v-if="$scopedSlots.counter"
 						class="app-navigation-entry__counter-wrapper">
 						<!-- @slot Slot for the `NcCounterBubble` -->
 						<slot name="counter" />
 					</div>
-					<NcActions v-if="$slots.actions || (editable && !editingActive) || undo"
+					<NcActions v-if="$scopedSlots.actions || (editable && !editingActive) || undo"
 						ref="actions"
 						:inline="inlineActions"
 						class="app-navigation-entry__actions"
@@ -356,14 +356,14 @@ Just set the `pinned` prop.
 						<slot name="actions" />
 					</NcActions>
 				</div>
-				<NcAppNavigationIconCollapsible v-if="collapsible" :open="opened" @click.prevent.stop="toggleCollapse" />
+				<NcAppNavigationIconCollapsible v-if="isCollapsible()" :open="opened" @click.prevent.stop="toggleCollapse" />
 
 				<!-- @slot Slot for anything (virtual) that should be mounted in the component, like a related modal -->
 				<slot name="extra" />
 			</div>
 		</component>
 		<!-- Children elements -->
-		<ul v-if="canHaveChildren && hasChildren" class="app-navigation-entry__children">
+		<ul v-if="canHaveChildren && $scopedSlots.default" class="app-navigation-entry__children">
 			<!-- @slot Slot for children -->
 			<slot />
 		</ul>
@@ -614,13 +614,11 @@ export default {
 			editingValue: '',
 			opened: this.open, // Collapsible state
 			editingActive: false,
-			hasChildren: false,
 			/**
 			 * Tracks the open state of the actions menu
 			 */
 			menuOpenLocalValue: false,
 			focused: false,
-			collapsible: false,
 			actionsBoundariesElement: undefined,
 		}
 	},
@@ -641,7 +639,7 @@ export default {
 		},
 
 		hasUtils() {
-			if (this.$slots.actions || this.$slots.counter || this.editable || this.undo) {
+			if (this.$scopedSlots.actions || this.$scopedSlots.counter || this.editable || this.undo) {
 				return true
 			}
 			return false
@@ -664,14 +662,6 @@ export default {
 
 	mounted() {
 		this.actionsBoundariesElement = document.querySelector('#content-vue') || undefined
-	},
-
-	created() {
-		this.updateSlotInfo()
-	},
-
-	beforeUpdate() {
-		this.updateSlotInfo()
 	},
 
 	methods: {
@@ -730,9 +720,13 @@ export default {
 			this.$emit('undo')
 		},
 
-		updateSlotInfo() {
-			this.hasChildren = !!this.$slots.default
-			this.collapsible = this.allowCollapse && !!this.$slots.default
+		/**
+		 * Does this item have children and is collapsing allowed via the prop?
+		 *
+		 * @return {boolean} True, if the item can be collapsed
+		 */
+		isCollapsible() {
+			return this.allowCollapse && !!this.$scopedSlots.default
 		},
 
 		/**
