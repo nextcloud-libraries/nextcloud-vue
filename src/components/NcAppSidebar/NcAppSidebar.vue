@@ -1535,6 +1535,7 @@ $top-buttons-spacing: $app-navigation-padding; // align with app navigation
 .slide-right-enter-active {
 	transition-duration: var(--animation-quick);
 	transition-property: margin-right;
+	transition-timing-function: cubic-bezier(0,.11,1,1.2);
 }
 
 .slide-right-enter-to,
