@@ -6,8 +6,22 @@
 <docs>
 
 ```vue
-<NcSettingsInputText label="Label" hint="Hint" />
-<NcSettingsInputText label="Label" value="Value" hint="Hint" disabled />
+<template>
+	<div>
+		<NcSettingsInputText v-model="value" label="Label" hint="Hint" />
+		<NcSettingsInputText label="Label" value="Value" hint="Hint" disabled />
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			value: ''
+		}
+	},
+}
+</script>
 ```
 
 </docs>
@@ -41,6 +55,12 @@ import GenRandomId from '../../utils/GenRandomId.js'
 
 export default {
 	name: 'NcSettingsInputText',
+
+	model: {
+		prop: 'value',
+		event: 'update:value',
+	},
+
 	props: {
 		/**
 		 * label of the select group element

@@ -7,12 +7,30 @@
 This component is made to be used inside of the [NcActions](#NcActions) component slots.
 
 ```vue
+<template>
 	<NcActions>
 		<NcActionCheckbox @change="alert('(un)checked !')">First choice</NcActionCheckbox>
-		<NcActionCheckbox value="second" @change="alert('(un)checked !')">Second choice</NcActionCheckbox>
+		<NcActionCheckbox value="second" v-model="checkboxValue" @change="alert('(un)checked !')">Second choice (v-model)</NcActionCheckbox>
 		<NcActionCheckbox :checked="true" @change="alert('(un)checked !')">Third choice (checked)</NcActionCheckbox>
-		<NcActionCheckbox :disabled="true" @change="alert('(un)checked !')">Second choice (disabled)</NcActionCheckbox>
+		<NcActionCheckbox :disabled="true" @change="alert('(un)checked !')">Fourth choice (disabled)</NcActionCheckbox>
 	</NcActions>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			checkboxValue: false,
+		}
+	},
+
+	methods: {
+		alert(message) {
+			alert(message)
+		}
+	}
+}
+</script>
 ```
 </docs>
 
@@ -51,6 +69,11 @@ export default {
 			from: 'NcActions:isSemanticMenu',
 			default: false,
 		},
+	},
+
+	model: {
+		prop: 'checked',
+		event: 'update:checked',
 	},
 
 	props: {

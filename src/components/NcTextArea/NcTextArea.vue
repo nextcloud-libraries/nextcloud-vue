@@ -13,34 +13,57 @@ It extends and styles an HTMLTextAreaElement.
 <template>
 	<div class="wrapper">
 		<NcTextArea label="Text area"
+			:value.sync="text1"
 			placeholder="Placeholders are possible"
 			helper-text="This is a regular helper text." >
 		</NcTextArea>
 		<NcTextArea label="Success state"
+			v-model="text2"
 			:success="true">
 		</NcTextArea>
 		<NcTextArea label="Error state"
+			:value.sync="text3"
 			placeholder="Enter something valid"
 			helper-text="Helper texts will be styled accordingly."
 			:error="true">
 		</NcTextArea>
 		<NcTextArea label="Disabled"
+			:value.sync="text4"
 			:disabled="true" />
 		<NcTextArea label="Disabled + Success"
+			:value.sync="text5"
 			:success="true"
 			:disabled="true" />
 		<div class="external-label">
 			<label for="textField">External label</label>
 			<NcTextArea id="textField"
+				:value.sync="text6"
 				:label-outside="true"
 				placeholder="Text area with external label" />
 		</div>
 		<NcTextArea label="Custom size and no resize"
+			:value.sync="text7"
 			resize="none"
 			rows="5" />
 		</NcTextArea>
 	</div>
 </template>
+
+<script>
+	export default {
+		data() {
+			return {
+				text1: '',
+				text2: '',
+				text3: '',
+				text4: '',
+				text5: '',
+				text6: '',
+				text7: '',
+			}
+		},
+	}
+</script>
 
 <style lang="scss" scoped>
 .wrapper {
@@ -71,7 +94,6 @@ It extends and styles an HTMLTextAreaElement.
 				:id="computedId"
 				ref="input"
 				class="textarea__input"
-				:type="type"
 				:disabled="disabled"
 				:placeholder="computedPlaceholder"
 				:aria-describedby="ariaDescribedby"
@@ -122,6 +144,11 @@ export default {
 	},
 
 	inheritAttrs: false,
+
+	model: {
+		prop: 'value',
+		event: 'update:value',
+	},
 
 	props: {
 		/**
