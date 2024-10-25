@@ -208,7 +208,7 @@ msgstr "加载更多 “{options}”"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "加载中 ..."
+msgstr "加载中..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
