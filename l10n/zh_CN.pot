@@ -2,10 +2,11 @@
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # TUCAOEVER, 2024
+# Gloryandel, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: TUCAOEVER, 2024\n"
+"Last-Translator: Gloryandel, 2024\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/nextcloud/teams/64236/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_CN\n"
@@ -21,7 +22,7 @@ msgid "A color with a HEX value {hex}"
 msgstr "以16进制 {hex} 表示的颜色为"
 
 msgid "a few seconds ago"
-msgstr "不久前"
+msgstr "几秒前"
 
 #. TRANSLATORS: A color name for RGB(110, 166, 143)
 msgid "Acapulco"
