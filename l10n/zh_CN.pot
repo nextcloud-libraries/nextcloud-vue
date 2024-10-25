@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "{tag} (invisible)"
-msgstr "{tag} （不可见）"
+msgstr "{tag} （隐藏）"
 
 msgid "{tag} (restricted)"
 msgstr "{tag} （受限）"
