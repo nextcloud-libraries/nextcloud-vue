@@ -1023,7 +1023,7 @@ export default {
 			z-index: 1;
 			position: absolute;
 			top: 4px;
-			right: 4px;
+			inset-inline-end: var(--default-grid-baseline);
 		}
 
 		&__content {
