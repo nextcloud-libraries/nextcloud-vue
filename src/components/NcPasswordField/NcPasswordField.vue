@@ -17,7 +17,7 @@ General purpose password field component.
 		<div class="external-label">
 			<label for="textField">New password</label>
 			<NcPasswordField id="textField"
-				:value.sync="text2"
+				v-model="text2"
 				:label-outside="true"
 				placeholder="Min. 12 characters" />
 		</div>
@@ -145,6 +145,11 @@ export default {
 
 	// Allow forwarding all attributes
 	inheritAttrs: false,
+
+	model: {
+		prop: 'value',
+		event: 'update:value',
+	},
 
 	props: {
 		/**

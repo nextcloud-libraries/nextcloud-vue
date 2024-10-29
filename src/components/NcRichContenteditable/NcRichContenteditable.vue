@@ -26,7 +26,7 @@ Try mentioning user @Test01 or inserting emoji :smile
 		<br>
 
 		<NcRichContenteditable
-			:value.sync="message"
+			v-model="message"
 			:auto-complete="autoComplete"
 			:maxlength="400"
 			:multiline="true"
@@ -319,6 +319,11 @@ export default {
 	mixins: [richEditor],
 
 	inheritAttrs: false,
+
+	model: {
+		prop: 'value',
+		event: 'update:value',
+	},
 
 	props: {
 		/**
