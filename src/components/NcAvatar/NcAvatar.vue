@@ -196,7 +196,8 @@ export default {
 			<component :is="item.ncActionComponent"
 				v-for="(item, key) in menu"
 				:key="key"
-				v-bind="item.ncActionComponentProps">
+				v-bind="item.ncActionComponentProps"
+				v-on="item.ncActionComponentHandlers">
 				<template v-if="item.iconSvg" #icon>
 					<NcIconSvgWrapper :svg="item.iconSvg" />
 				</template>
@@ -232,11 +233,13 @@ import NcActions from '../NcActions/index.js'
 import NcActionLink from '../NcActionLink/index.js'
 import NcActionRouter from '../NcActionRouter/index.js'
 import NcActionText from '../NcActionText/index.js'
+import NcActionButton from '../NcActionButton/index.js'
 import NcButton from '../NcButton/index.js'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
 import usernameToColor from '../../functions/usernameToColor/index.js'
+import { callContactsMenuHook, hasContactsMenuHook } from '../../functions/contactsMenu/index.ts'
 import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
 import { getUserStatusText } from '../../utils/UserStatus.ts'
 import { userStatus } from '../../mixins/index.js'
@@ -549,22 +552,48 @@ export default {
 			return initials.toLocaleUpperCase()
 		},
 		menu() {
-			const actions = this.contactsMenuActions.map((item) => {
-				const route = getRoute(this.$router, item.hyperlink)
-				return {
-					ncActionComponent: route ? NcActionRouter : NcActionLink,
-					ncActionComponentProps: route
-						? {
-							to: route,
-							icon: item.icon,
+			const actions = this.contactsMenuActions
+				.map((item) => {
+					switch (item.type) {
+					default: // Backwards compatibility
+					case 'LinkAction':
+						const route = getRoute(this.$router, item.hyperlink)
+						return {
+							ncActionComponent: route ? NcActionRouter : NcActionLink,
+							ncActionComponentProps: route
+								? {
+									to: route,
+									icon: item.icon,
+								}
+								: {
+									href: item.hyperlink,
+									icon: item.icon,
+								},
+							ncActionComponentHandlers: {},
+							text: item.title,
 						}
-						: {
-							href: item.hyperlink,
-							icon: item.icon,
-						},
-					text: item.title,
-				}
-			})
+					case 'JavascriptAction':
+						if (!item.hook || !hasContactsMenuHook(item.hook)) {
+							console.warn(`Skipping missing hook ${item.hook}`)
+							return undefined
+						}
+
+						return {
+							ncActionComponent: NcActionButton,
+							ncActionComponentProps: {
+								icon: item.icon,
+								text: item.title,
+							},
+							ncActionComponentHandlers: {
+								click: () => {
+									console.log('click handler')
+									callContactsMenuHook(item.hook)
+								},
+							},
+						}
+					}
+				})
+				.filter(item => item)
 
 			/**
 			 * @param {string} html The HTML to escape
