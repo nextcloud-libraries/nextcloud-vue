@@ -10,8 +10,8 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 <template>
 	<NcActions>
 		<NcActionCheckbox @change="alert('(un)checked !')">First choice</NcActionCheckbox>
-		<NcActionCheckbox value="second" v-model="checkboxValue" @change="alert('(un)checked !')">Second choice (v-model)</NcActionCheckbox>
-		<NcActionCheckbox :checked="true" @change="alert('(un)checked !')">Third choice (checked)</NcActionCheckbox>
+		<NcActionCheckbox v-model="checkboxValue" value="second" @change="alert('(un)checked !')">Second choice (v-model)</NcActionCheckbox>
+		<NcActionCheckbox :model-value="checkboxValue" @change="alert('(un)checked !')">Third choice (checked)</NcActionCheckbox>
 		<NcActionCheckbox :disabled="true" @change="alert('(un)checked !')">Fourth choice (disabled)</NcActionCheckbox>
 	</NcActions>
 </template>
@@ -40,7 +40,7 @@ export default {
 			<input :id="id"
 				ref="checkbox"
 				:disabled="disabled"
-				:checked="checked"
+				:checked="model"
 				:value="value"
 				:class="{ focusable: isFocusable }"
 				type="checkbox"
@@ -56,6 +56,7 @@ export default {
 </template>
 
 <script>
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
@@ -72,8 +73,8 @@ export default {
 	},
 
 	model: {
-		prop: 'checked',
-		event: 'update:checked',
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 
 	props: {
@@ -87,9 +88,18 @@ export default {
 		},
 
 		/**
-		 * checked state of the the checkbox element
+		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 * @deprecated
 		 */
 		checked: {
+			type: Boolean,
+			default: undefined,
+		},
+
+		/**
+		 * checked state of the the checkbox element
+		 */
+		modelValue: {
 			type: Boolean,
 			default: false,
 		},
@@ -115,8 +125,26 @@ export default {
 		'change',
 		'check',
 		'uncheck',
+		/**
+		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
 		'update:checked',
+		/**
+		 * Emitted when the checkbox state is changed
+		 * @type {boolean}
+		 */
+		'update:modelValue',
+		/** Same as update:modelValue for Vue 2 compatibility */
+		'update:model-value',
 	],
+
+	setup() {
+		const model = useModelMigration('checked', 'update:checked')
+		return {
+			model,
+		}
+	},
 
 	computed: {
 		/**
@@ -135,7 +163,7 @@ export default {
 		 */
 		ariaChecked() {
 			if (this.isInSemanticMenu) {
-				return this.checked ? 'true' : 'false'
+				return this.model ? 'true' : 'false'
 			}
 			return undefined
 		},
@@ -147,12 +175,7 @@ export default {
 			this.$refs.label.click()
 		},
 		onChange(event) {
-			/**
-			 * Emitted when the checkbox state is changed
-			 *
-			 * @type {boolean}
-			 */
-			this.$emit('update:checked', this.$refs.checkbox.checked)
+			this.model = this.$refs.checkbox.checked
 
 			/**
 			 * Emitted when the checkbox state is changed
