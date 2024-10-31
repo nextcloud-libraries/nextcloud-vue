@@ -116,11 +116,13 @@ export default {
 	<NcSelect v-bind="propsToForward"
 		:options="availableOptions"
 		:close-on-select="!multiple"
-		:value="passthru ? value : localValue"
+		:value="passthru ? model : localValue"
 		@search="searchString => search = searchString"
 		v-on="{
 			...$listeners,
-			input: passthru ? $listeners.input : handleInput,
+			input: passthru ? $listeners.input : noop,
+			'update:modelValue': passthru ? $listeners['update:modelValue'] : handleInput,
+			'update:model-value': passthru ? $listeners['update:model-value'] : noop,
 		}">
 		<template #option="option">
 			<NcEllipsisedOption :name="getOptionLabel(option)"
@@ -143,6 +145,7 @@ import NcSelect from '../NcSelect/index.js'
 
 import { searchTags } from './api.js'
 import { t } from '../../l10n.js'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 export default {
 	name: 'NcSelectTags',
@@ -150,6 +153,11 @@ export default {
 	components: {
 		NcEllipsisedOption,
 		NcSelect,
+	},
+
+	model: {
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 
 	props: {
@@ -239,9 +247,18 @@ export default {
 		},
 
 		/**
-		 * Currently selected value
+		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 * @deprecated
 		 */
 		value: {
+			type: [Number, Array, Object],
+			default: undefined,
+		},
+
+		/**
+		 * Currently selected value
+		 */
+		modelValue: {
 			type: [Number, Array, Object],
 			default: null,
 		},
@@ -257,13 +274,33 @@ export default {
 	},
 
 	emits: [
+		/**
+		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 */
 		'input',
+		/**
+		 * Emitted on input events of the multiselect field
+		 *
+		 * @type {number|number[]}
+		 */
+		'update:modelValue',
+		/** Same as update:modelValue for Vue 2 compatibility */
+		'update:model-value',
 		/**
 		 * All events from https://vue-select.org/api/events.html
 		 */
 		// Not an actual event but needed to show in vue-styleguidist docs
 		' ',
 	],
+
+	setup() {
+		const model = useModelMigration('value', 'input')
+		const noop = () => {}
+		return {
+			model,
+			noop,
+		}
+	},
 
 	data() {
 		return {
@@ -285,11 +322,11 @@ export default {
 				return []
 			}
 			if (this.multiple) {
-				return this.value
+				return this.model
 					.filter(tag => tag !== '')
 					.map(id => this.tags.find(tag2 => tag2.id === id))
 			} else {
-				return this.tags.find(tag => tag.id === this.value)
+				return this.tags.find(tag => tag.id === this.model)
 			}
 		},
 
@@ -334,12 +371,12 @@ export default {
 				 *
 				 * @type {number|number[]}
 				 */
-				this.$emit('input', value.map(element => element.id))
+				this.model = value.map(element => element.id)
 			} else {
 				if (value === null) {
-					this.$emit('input', null)
+					this.model = null
 				} else {
-					this.$emit('input', value.id)
+					this.model = value.id
 				}
 			}
 		},
