@@ -138,6 +138,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 </template>
 
 <script>
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 const inputDateTypes = ['date', 'datetime-local', 'month', 'time', 'week']
 
@@ -145,14 +146,28 @@ export default {
 	name: 'NcDateTimePickerNative',
 	inheritAttrs: false,
 
+	model: {
+		prop: 'modelValue',
+		event: 'update:modelValue',
+	},
+
 	props: {
+		/**
+		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
+		value: {
+			type: Date,
+			default: undefined,
+		},
+
 		/**
 		 * The date is – like the `Date` object in JavaScript – tied to UTC.
 		 * The selected time zone does not have an influence of the selected time and date value.
 		 * You have to translate the time yourself when you want to factor in time zones.
 		 * Pass null to clear the input field.
 		 */
-		value: {
+		modelValue: {
 			type: Date,
 			default: null,
 		},
@@ -218,12 +233,31 @@ export default {
 	},
 
 	emits: [
+		/**
+		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
 		'input',
+		/**
+		 * Emitted when the input value changes
+		 *
+		 * @return {Date} new chosen Date()
+		 */
+		'update:modelValue',
+		/** Same as update:modelValue for Vue 2 compatibility */
+		'update:model-value',
 	],
+
+	setup() {
+		const model = useModelMigration('value', 'input')
+		return {
+			model,
+		}
+	},
 
 	computed: {
 		formattedValue() {
-			return this.formatValue(this.value)
+			return this.formatValue(this.model)
 		},
 		formattedMin() {
 			if (this.min) {
@@ -248,16 +282,11 @@ export default {
 				 */
 				input: ($event) => {
 					if (isNaN($event.target.valueAsNumber)) {
-						/**
-						 * Emitted when the input value changes
-						 *
-						 * @return {string} empty string
-						 */
-						return this.$emit('input', null)
+						this.model = null
 					}
 					if (this.type === 'time') {
 						const time = $event.target.value
-						if (this.value === '') {
+						if (this.model === '') {
 							// this case is because of Chrome bug
 							const { yyyy, MM, dd } = this.getReadableDate(new Date())
 							/**
@@ -265,42 +294,22 @@ export default {
 							 *
 							 * @return {Date} new chosen Date()
 							 */
-							return this.$emit('input', new Date(`${yyyy}-${MM}-${dd}T${time}`))
+							this.model = new Date(`${yyyy}-${MM}-${dd}T${time}`)
 						}
-						const { yyyy, MM, dd } = this.getReadableDate(this.value)
-						/**
-						 * Emitted when the input value changes
-						 *
-						 * @return {Date} new chosen Date()
-						 */
-						return this.$emit('input', new Date(`${yyyy}-${MM}-${dd}T${time}`))
+						const { yyyy, MM, dd } = this.getReadableDate(this.model)
+						this.model = new Date(`${yyyy}-${MM}-${dd}T${time}`)
 					} else if (this.type === 'month') {
 						const MM = (new Date($event.target.value).getMonth() + 1).toString().padStart(2, '0')
-						if (this.value === '') {
+						if (this.model === '') {
 							const { yyyy, dd, hh, mm } = this.getReadableDate(new Date())
-							/**
-							 * Emitted when the input value changes
-							 *
-							 * @return {Date} new chosen Date()
-							 */
-							return this.$emit('input', new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`))
+							this.model = new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`)
 						}
-						const { yyyy, dd, hh, mm } = this.getReadableDate(this.value)
-						/**
-						 * Emitted when the input value changes
-						 *
-						 * @return {Date} new chosen Date()
-						 */
-						return this.$emit('input', new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`))
+						const { yyyy, dd, hh, mm } = this.getReadableDate(this.model)
+						this.model = new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`)
 					}
 					const timezoneOffsetSeconds = new Date($event.target.valueAsNumber).getTimezoneOffset() * 1000 * 60
 					const inputDateWithTimezone = $event.target.valueAsNumber + timezoneOffsetSeconds
-					/**
-					 * Emitted when the input value changes
-					 *
-					 * @return {Date} new chosen Date()
-					 */
-					return this.$emit('input', new Date(inputDateWithTimezone))
+					this.model = new Date(inputDateWithTimezone)
 				},
 			}
 		},
