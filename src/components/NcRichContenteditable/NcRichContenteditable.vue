@@ -18,7 +18,7 @@ Try mentioning user @Test01 or inserting emoji :smile
 	<div>
 		<NcRichContenteditable
 			label="Write a comment"
-			:value.sync="message"
+			v-model="message"
 			:auto-complete="autoComplete"
 			:maxlength="100"
 			:user-data="userData"
@@ -206,7 +206,7 @@ export default {
 		<NcRichContenteditable
 			ref="contenteditable"
 			label="Write a comment"
-			:value.sync="message"
+			v-model="message"
 			:maxlength="100"/>
 	</div>
 </template>
@@ -297,6 +297,7 @@ import Tribute from 'tributejs/dist/tribute.esm.js'
 import debounce from 'debounce'
 import stringLength from 'string-length'
 import GenRandomId from '../../utils/GenRandomId.js'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 /**
  * Populate the list of text smiles we want to offer via Tribute.
@@ -321,8 +322,8 @@ export default {
 	inheritAttrs: false,
 
 	model: {
-		prop: 'value',
-		event: 'update:value',
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 
 	props: {
@@ -342,10 +343,18 @@ export default {
 			default: '',
 		},
 
+		/**
+		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
 		value: {
 			type: String,
+			default: undefined,
+		},
+
+		modelValue: {
+			type: String,
 			default: '',
-			required: true,
 		},
 
 		placeholder: {
@@ -419,13 +428,22 @@ export default {
 	emits: [
 		'submit',
 		'paste',
+		/**
+		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
 		'update:value',
+		'update:modelValue',
+		/** Same as update:modelValue for Vue 2 compatibility */
+		'update:model-value',
 		'smart-picker-submit',
 	],
 
 	setup() {
 		const uid = GenRandomId(5)
+		const model = useModelMigration('value', 'update:value', true)
 		return {
+			model,
 			// Constants
 			labelId: `nc-rich-contenteditable-${uid}-label`,
 			tributeId: `nc-rich-contenteditable-${uid}-tribute`,
@@ -444,7 +462,7 @@ export default {
 			// Represent the raw untrimmed text of the contenteditable
 			// serves no other purpose than to check whether the
 			// content is empty or not
-			localValue: this.value,
+			localValue: this.model,
 
 			// Is in text composition session in IME
 			isComposing: false,
@@ -544,11 +562,11 @@ export default {
 		 * If the parent value change, we compare the plain text rendering
 		 * If it's different, we render everything and update the main content
 		 */
-		value() {
+		model() {
 			const html = this.$refs.contenteditable.innerHTML
 			// Compare trimmed versions to be safe
-			if (this.value.trim() !== this.parseContent(html).trim()) {
-				this.updateContent(this.value)
+			if (this.model.trim() !== this.parseContent(html).trim()) {
+				this.updateContent(this.model)
 			}
 		},
 	},
@@ -557,7 +575,7 @@ export default {
 		this.initializeTribute()
 
 		// Update default value
-		this.updateContent(this.value)
+		this.updateContent(this.model)
 
 		// Removes the contenteditable attribute at first load if the prop is
 		// set to false.
@@ -804,7 +822,7 @@ export default {
 		updateValue(htmlOrText) {
 			const text = this.parseContent(htmlOrText)
 			this.localValue = text
-			this.$emit('update:value', text)
+			this.model = text
 		},
 
 		/**

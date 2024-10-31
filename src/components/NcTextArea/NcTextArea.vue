@@ -13,7 +13,7 @@ It extends and styles an HTMLTextAreaElement.
 <template>
 	<div class="wrapper">
 		<NcTextArea label="Text area"
-			:value.sync="text1"
+			v-model="text1"
 			placeholder="Placeholders are possible"
 			helper-text="This is a regular helper text." >
 		</NcTextArea>
@@ -22,27 +22,27 @@ It extends and styles an HTMLTextAreaElement.
 			:success="true">
 		</NcTextArea>
 		<NcTextArea label="Error state"
-			:value.sync="text3"
+			v-model="text3"
 			placeholder="Enter something valid"
 			helper-text="Helper texts will be styled accordingly."
 			:error="true">
 		</NcTextArea>
 		<NcTextArea label="Disabled"
-			:value.sync="text4"
+			v-model="text4"
 			:disabled="true" />
 		<NcTextArea label="Disabled + Success"
-			:value.sync="text5"
+			v-model="text5"
 			:success="true"
 			:disabled="true" />
 		<div class="external-label">
 			<label for="textField">External label</label>
 			<NcTextArea id="textField"
-				:value.sync="text6"
+				v-model="text6"
 				:label-outside="true"
 				placeholder="Text area with external label" />
 		</div>
 		<NcTextArea label="Custom size and no resize"
-			:value.sync="text7"
+			v-model="text7"
 			resize="none"
 			rows="5" />
 		</NcTextArea>
@@ -105,7 +105,7 @@ It extends and styles an HTMLTextAreaElement.
 						'textarea__input--error': error,
 					}]"
 				:style="{ resize: resize }"
-				:value="value"
+				:value="model"
 				v-on="$listeners"
 				@input="handleInput" />
 			<!-- Label -->
@@ -134,6 +134,7 @@ import GenRandomId from '../../utils/GenRandomId.js'
 
 import AlertCircle from 'vue-material-design-icons/AlertCircleOutline.vue'
 import Check from 'vue-material-design-icons/Check.vue'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 export default {
 	name: 'NcTextArea',
@@ -146,17 +147,26 @@ export default {
 	inheritAttrs: false,
 
 	model: {
-		prop: 'value',
-		event: 'update:value',
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 
 	props: {
 		/**
-		 * The value of the input field
+		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 * @deprecated
 		 */
 		value: {
 			type: String,
-			required: true,
+			default: undefined,
+		},
+
+		/**
+		 * The value of the input field
+		 */
+		modelValue: {
+			type: String,
+			default: undefined,
 		},
 
 		/**
@@ -247,8 +257,22 @@ export default {
 	},
 
 	emits: [
+		/**
+		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
 		'update:value',
+		'update:modelValue',
+		/** Same as update:modelValue for Vue 2 compatibility */
+		'update:model-value',
 	],
+
+	setup() {
+		const model = useModelMigration('value', 'update:value', true)
+		return {
+			model,
+		}
+	},
 
 	computed: {
 		computedId() {
@@ -307,7 +331,7 @@ export default {
 		},
 
 		handleInput(event) {
-			this.$emit('update:value', event.target.value)
+			this.model = event.target.value
 		},
 	},
 }
