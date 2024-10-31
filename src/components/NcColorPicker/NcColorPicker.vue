@@ -71,7 +71,7 @@ export default {
 <template>
 	<div class="container1">
 		<NcButton @click="open = !open"> Click Me </NcButton>
-		<NcColorPicker :value="color" @input="updateColor" :shown.sync="open" @submit="open = false" v-slot="{ attrs }">
+		<NcColorPicker :model-value="color" @update:model-value="updateColor" :shown.sync="open" @submit="open = false" v-slot="{ attrs }">
 			<div v-bind="attrs" :style="{'background-color': color}" class="color1" />
 		</NcColorPicker>
 	</div>
@@ -217,6 +217,7 @@ import Check from 'vue-material-design-icons/Check.vue'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 import { Chrome } from 'vue-color'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 const HEX_REGEX = /^#([a-f0-9]{3}|[a-f0-9]{6})$/i
 
@@ -232,13 +233,27 @@ export default {
 		NcPopover,
 	},
 
+	model: {
+		prop: 'modelValue',
+		event: 'update:modelValue',
+	},
+
 	props: {
 		/**
-		 * A HEX color that represents the initial value of the picker
+		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 * @deprecated
 		 */
 		value: {
 			type: String,
-			required: true,
+			default: undefined,
+		},
+
+		/**
+		 * A HEX color that represents the initial value of the picker
+		 */
+		modelValue: {
+			type: String,
+			default: undefined,
 		},
 
 		/**
@@ -287,13 +302,30 @@ export default {
 		'submit',
 		'close',
 		'update:open',
+		/**
+		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
 		'update:value',
+		/**
+		 * Emits a hexadecimal string e.g. '#ffffff'
+		 */
+		'update:modelValue',
+		/** Same as update:modelValue for Vue 2 compatibility */
+		'update:model-value',
 		'input',
 	],
 
+	setup() {
+		const model = useModelMigration('value', 'update:value', true)
+		return {
+			model,
+		}
+	},
+
 	data() {
 		return {
-			currentColor: this.value,
+			currentColor: this.model,
 			advanced: false,
 			ariaBack: t('Back'),
 			ariaMore: t('More options'),
@@ -321,7 +353,7 @@ export default {
 	},
 
 	watch: {
-		value(color) {
+		model(color) {
 			this.currentColor = color
 		},
 	},
@@ -370,10 +402,7 @@ export default {
 			}
 			this.currentColor = color
 
-			/**
-			 * Emits a hexadecimal string e.g. '#ffffff'
-			 */
-			this.$emit('update:value', color)
+			this.model = color
 
 			/**
 			 * Emits a hexadecimal string e.g. '#ffffff'
