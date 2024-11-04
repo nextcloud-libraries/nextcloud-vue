@@ -1266,14 +1266,14 @@ $top-buttons-spacing: 6px;
 
 	z-index: 1500;
 	top: 0;
-	right: 0;
+	inset-inline-end: 0;
 	display: flex;
 	overflow-x: hidden;
 	overflow-y: auto;
 	flex-direction: column;
 	flex-shrink: 0;
 	height: 100%;
-	border-left: 1px solid var(--color-border);
+	border-inline-start: 1px solid var(--color-border);
 	background: var(--color-main-background);
 	// Make close button positioned relative to the header
 	position: relative;
@@ -1291,7 +1291,7 @@ $top-buttons-spacing: 6px;
 			position: absolute;
 			z-index: 100;
 			top: $top-buttons-spacing;
-			right: $top-buttons-spacing;
+			inset-inline-end: $top-buttons-spacing;
 			width: var(--default-clickable-area);
 			height: var(--default-clickable-area);
 			opacity: $opacity_normal;
@@ -1318,26 +1318,26 @@ $top-buttons-spacing: 6px;
 					flex: 0 0 auto;
 				}
 				.app-sidebar-header__desc {
-					padding-left: 0;
+					padding-inline-start: 0;
 					flex: 1 1 auto;
 					min-width: 0;
-					padding-right: calc(2 * var(--default-clickable-area) + $top-buttons-spacing);
-					padding-top: $desc-vertical-padding-compact;
+					padding-inline-end: calc(2 * var(--default-clickable-area) + $top-buttons-spacing);
+					padding-top: var(--app-sidebar-padding);
 
 					&.app-sidebar-header__desc--without-actions {
-						padding-right: calc(var(--default-clickable-area) + $top-buttons-spacing);
+						padding-inline-end: calc(var(--default-clickable-area) + $top-buttons-spacing);
 					}
 
 					.app-sidebar-header__tertiary-actions {
 						z-index: 3; // above star
 						position: absolute;
-						top: math.div($desc-vertical-padding, 2);
-						left: calc(-1 * var(--default-clickable-area));
+						top: calc(var(--app-sidebar-padding) / 2);
+						inset-inline-start: calc(-1 * var(--default-clickable-area));
 						gap: 0; // override gap
 					}
 					.app-sidebar-header__menu {
 						top: $top-buttons-spacing;
-						right: calc(var(--default-clickable-area) + $top-buttons-spacing); // left of the close button
+						inset-inline-end: calc(var(--default-clickable-area) + $top-buttons-spacing); // left of the close button
 						position: absolute;
 					}
 				}
@@ -1350,14 +1350,14 @@ $top-buttons-spacing: 6px;
 			.app-sidebar-header__menu {
 				position: absolute;
 				top: $top-buttons-spacing;
-				right: calc(var(--default-clickable-area) + $top-buttons-spacing);
+				inset-inline-end: calc($top-buttons-spacing + var(--default-clickable-area));
 			}
 			// increase the padding to not overlap the menu
 			.app-sidebar-header__desc {
-				padding-right: calc(2 * var(--default-clickable-area) + $top-buttons-spacing);
+				padding-inline-end: calc(var(--default-clickable-area) * 2 + $top-buttons-spacing);
 
 				&.app-sidebar-header__desc--without-actions {
-					padding-right: calc(var(--default-clickable-area) + $top-buttons-spacing);
+					padding-inline-end: calc(var(--default-clickable-area) + $top-buttons-spacing);
 				}
 			}
 		}
@@ -1393,7 +1393,7 @@ $top-buttons-spacing: 6px;
 
 			// custom overrides
 			&--with-tertiary-action {
-				padding-left: 6px;
+				padding-inline-start: 6px;
 			}
 
 			&--editable .app-sidebar-header__mainname-form,
@@ -1467,7 +1467,7 @@ $top-buttons-spacing: 6px;
 
 					// main menu
 					.app-sidebar-header__menu {
-						margin-left: 5px;
+						margin-inline-start: 5px;
 					}
 				}
 
@@ -1514,17 +1514,17 @@ $top-buttons-spacing: 6px;
 .slide-right-leave-active,
 .slide-right-enter-active {
 	transition-duration: var(--animation-quick);
-	transition-property: margin-right;
+	transition-property: margin-inline-end;
 }
 
 .slide-right-enter-to,
-.slide-right-leave-from {
-	margin-right: 0;
+.slide-right-leave {
+	margin-inline-end: 0;
 }
 
 .slide-right-enter-from,
 .slide-right-leave-to {
-	margin-right: calc(-1 * var(--app-sidebar-width));
+	margin-inline-end: calc(-1 * var(--app-sidebar-width));
 }
 </style>
 

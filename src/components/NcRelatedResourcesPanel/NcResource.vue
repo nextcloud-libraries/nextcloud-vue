@@ -84,7 +84,7 @@ export default {
 
 				.button-vue__text {
 					font-weight: normal !important;
-					margin-left: 2px !important;
+					margin-inline-start: 2px !important;
 				}
 			}
 		}

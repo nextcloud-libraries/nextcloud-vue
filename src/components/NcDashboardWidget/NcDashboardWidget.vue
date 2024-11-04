@@ -364,12 +364,11 @@ export default {
 
 	.item-avatar {
 		position: relative;
-		margin-top: auto;
-		margin-bottom: auto;
+		margin-block: auto;
 		background-color: var(--color-background-dark) !important;
 	}
 	.item__details {
-		padding-left: 8px;
+		padding-inline-start: 8px;
 		max-height: var(--default-clickable-area);
 		flex-grow: 1;
 		overflow: hidden;

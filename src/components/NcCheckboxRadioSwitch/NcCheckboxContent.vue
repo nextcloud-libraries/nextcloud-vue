@@ -222,7 +222,7 @@ export default {
 	}
 
 	&--has-text {
-		padding-right: $icon-margin;
+		padding-inline-end: $icon-margin;
 	}
 
 	&, * {

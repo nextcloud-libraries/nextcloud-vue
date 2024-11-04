@@ -841,8 +841,7 @@ export default defineComponent({
 	&--text-only {
 		padding: 0 var(--button-padding);
 		& .button-vue__text {
-			margin-left: 4px;
-			margin-right: 4px;
+			margin-inline: 4px;
 		}
 	}
 

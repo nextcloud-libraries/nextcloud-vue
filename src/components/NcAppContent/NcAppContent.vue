@@ -518,7 +518,7 @@ export default {
 	}
 
 	&.splitpanes--vertical .splitpanes__splitter {
-		border-left: 1px solid var(--color-border);
+		border-inline-start: 1px solid var(--color-border);
 	}
 
 	&.splitpanes--horizontal .splitpanes__splitter {

@@ -387,7 +387,7 @@ export default {
 .app-settings {
 	:deep &__navigation {
 		min-width: 200px;
-		margin-right: calc(4 * var(--default-grid-baseline));
+		margin-inline-end: calc(4 * var(--default-grid-baseline));
 		overflow-x: hidden;
 		overflow-y: auto;
 		position: relative;

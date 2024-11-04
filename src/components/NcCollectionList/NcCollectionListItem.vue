@@ -252,7 +252,7 @@ li.collection-list-item {
 
 		li {
 			display: flex;
-			margin-left: var(--default-clickable-area);
+			margin-inline-start: var(--default-clickable-area);
 			border-radius: 3px;
 			cursor: pointer;
 
@@ -271,7 +271,7 @@ li.collection-list-item {
 		span {
 			display: inline-block;
 			vertical-align: top;
-			margin-right: 10px;
+			margin-inline-end: 10px;
 		}
 
 		span.resource-name {

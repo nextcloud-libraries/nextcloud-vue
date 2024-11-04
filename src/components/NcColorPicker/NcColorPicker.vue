@@ -531,7 +531,7 @@ export default defineComponent({
 			align-items: center;
 			width: var(--default-clickable-area);
 			height: var(--default-clickable-area);
-			margin-left: 6px;
+			margin-inline-start: 6px;
 			filter: var(--background-invert-if-dark);
 		}
 
