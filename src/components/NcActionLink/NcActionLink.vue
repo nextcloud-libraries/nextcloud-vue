@@ -87,19 +87,19 @@ export default {
 				</strong>
 				<br>
 				<!-- white space is shown on longtext, so we can't
-				put {{ text }} on a new line for code readability -->
-				<span class="action-link__longtext" v-text="text" />
+				put {{ getText() }} on a new line for code readability -->
+				<span class="action-link__longtext" v-text="getText()" />
 			</span>
 
 			<!-- long text only -->
 			<!-- white space is shown on longtext, so we can't
-			put {{ text }} on a new line for code readability -->
-			<span v-else-if="isLongText"
+			put {{ getText() }} on a new line for code readability -->
+			<span v-else-if="isLongText()"
 				class="action-link__longtext"
-				v-text="text" />
+				v-text="getText()" />
 
 			<!-- default text display -->
-			<span v-else class="action-link__text">{{ text }}</span>
+			<span v-else class="action-link__text">{{ getText() }}</span>
 
 			<!-- fake slot to gather inner text -->
 			<slot v-if="false" />

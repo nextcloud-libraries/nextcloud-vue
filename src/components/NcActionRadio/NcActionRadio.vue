@@ -50,7 +50,7 @@ So that only one of each name set can be selected at the same time.
 				class="radio action-radio__radio"
 				@keydown.enter.exact.prevent="toggleInput"
 				@change="onChange">
-			<label ref="label" :for="id" class="action-radio__label">{{ text }}</label>
+			<label ref="label" :for="id" class="action-radio__label">{{ getText() }}</label>
 
 			<!-- fake slot to gather inner text -->
 			<slot v-if="false" />
