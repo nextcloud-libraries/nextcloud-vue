@@ -309,7 +309,7 @@ export default ScopeComponent({
 					// 0 = sunday, 1 = monday
 					firstDayOfWeek: getFirstDay(),
 				},
-				monthFormat: 'MMM',
+				monthFormat: 'MMMM',
 			}
 		},
 
@@ -477,6 +477,10 @@ export default ScopeComponent({
 	}
 }
 
+.v-select.select {
+	min-width: 246px;
+	left: -8px !important;
+}
 // TODO: This should be scoped or targeted by a specific selector, but the NcSelect component does not allow this yet.
 .vs__dropdown-menu--floating {
 	// Higher z-index than the popover in which the NcSelect is located.
