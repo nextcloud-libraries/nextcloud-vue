@@ -273,7 +273,7 @@ export default {
 				border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0 !important;
 				margin: 0 !important;
 				border-bottom: var(--default-grid-baseline) solid transparent !important;
-				.checkbox-content__icon--checked > * {
+				.checkbox-content__icon > * {
 					color: var(--color-main-text) !important;
 				}
 			}
