@@ -460,6 +460,10 @@ export default {
 
 			// We overwrite the border radius of the input to account for the popover border-radius minus the padding
 			&__timezone-select.v-select {
+				&.select {
+					min-width: 246px;
+					left: -8px !important;
+				}
 				.vs__dropdown-toggle {
 					border-radius: calc(var(--border-radius-large) - 4px);
 				}
@@ -478,10 +482,6 @@ export default {
 	}
 }
 
-.v-select.select {
-	min-width: 246px;
-	left: -8px !important;
-}
 // TODO: This should be scoped or targeted by a specific selector, but the NcSelect component does not allow this yet.
 .vs__dropdown-menu--floating {
 	// Higher z-index than the popover in which the NcSelect is located.
