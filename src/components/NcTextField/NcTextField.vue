@@ -18,7 +18,7 @@ and `minlength`.
 ```
 <template>
 	<div class="wrapper">
-		<NcTextField :value.sync="text1"
+		<NcTextField v-model="text1"
 			label="Leading icon and clear trailing button"
 			trailing-button-icon="close"
 			:show-trailing-button="text1 !== ''"
@@ -33,18 +33,18 @@ and `minlength`.
 			@trailing-button-click="clearText">
 			<Lock :size="20" />
 		</NcTextField>
-		<NcTextField :value.sync="text2"
+		<NcTextField v-model="text2"
 			label="With helper text"
 			helper-text="This is an optional message to show e.g. validation errors."
 			@trailing-button-click="clearText">
 		</NcTextField>
-		<NcTextField :value.sync="text2"
+		<NcTextField v-model="text2"
 			label="Success state"
 			placeholder="Placeholders are possible"
 			:success="true"
 			@trailing-button-click="clearText">
 		</NcTextField>
-		<NcTextField :value.sync="text3"
+		<NcTextField v-model="text3"
 			label="Error state"
 			placeholder="Enter something valid"
 			:error="true"
@@ -59,7 +59,7 @@ and `minlength`.
 			:disabled="true" />
 		<div class="external-label">
 			<label for="textField">External label</label>
-			<NcTextField :value.sync="text5"
+			<NcTextField v-model="text5"
 				id="textField"
 				:label-outside="true"
 				placeholder="Input with external label"
@@ -146,6 +146,7 @@ import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import Undo from 'vue-material-design-icons/UndoVariant.vue'
 
 import { t } from '../../l10n.js'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 const NcInputFieldProps = new Set(Object.keys(NcInputField.props))
 
@@ -163,8 +164,8 @@ export default {
 	inheritAttrs: false,
 
 	model: {
-		prop: 'value',
-		event: 'update:value',
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 
 	props: {
@@ -207,8 +208,22 @@ export default {
 	},
 
 	emits: [
+		/**
+		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
 		'update:value',
+		'update:modelValue',
+		/** Same as update:modelValue for Vue 2 compatibility */
+		'update:model-value',
 	],
+
+	setup() {
+		const model = useModelMigration('value', 'update:value')
+		return {
+			model,
+		}
+	},
 
 	computed: {
 		propsAndAttrsToForward() {
@@ -251,7 +266,7 @@ export default {
 		},
 
 		handleInput(event) {
-			this.$emit('update:value', event.target.value)
+			this.model = event.target.value
 		},
 	},
 }

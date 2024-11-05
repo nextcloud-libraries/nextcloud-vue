@@ -40,7 +40,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 						'input-field__input--success': success,
 						'input-field__input--error': error,
 					}]"
-				:value="value.toString()"
+				:value="model?.toString()"
 				v-on="$listeners"
 				@input="handleInput">
 			<!-- Label -->
@@ -97,6 +97,7 @@ import GenRandomId from '../../utils/GenRandomId.js'
 
 import AlertCircle from 'vue-material-design-icons/AlertCircleOutline.vue'
 import Check from 'vue-material-design-icons/Check.vue'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 export default {
 	name: 'NcInputField',
@@ -110,18 +111,27 @@ export default {
 	inheritAttrs: false,
 
 	model: {
-		prop: 'value',
-		event: 'update:value',
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 
 	props: {
 		/**
-		 * The value of the input field
-		 * If type is 'number' and a number is passed as value than the type of `update:value` will also be 'number'
+		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 * @deprecated
 		 */
 		value: {
 			type: [String, Number],
-			required: true,
+			default: undefined,
+		},
+
+		/**
+		 * The value of the input field
+		 * If type is 'number' and a number is passed as value than the type of `update:modelValue` will also be 'number'
+		 */
+		modelValue: {
+			type: [String, Number],
+			default: undefined,
 		},
 
 		/**
@@ -248,9 +258,23 @@ export default {
 	},
 
 	emits: [
+		/**
+		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
 		'update:value',
+		'update:modelValue',
+		/** Same as update:modelValue for Vue 2 compatibility */
+		'update:model-value',
 		'trailing-button-click',
 	],
+
+	setup() {
+		const model = useModelMigration('value', 'update:value', true)
+		return {
+			model,
+		}
+	},
 
 	computed: {
 		computedId() {
@@ -317,7 +341,8 @@ export default {
 		},
 
 		handleInput(event) {
-			this.$emit('update:value', this.type === 'number' && typeof this.value === 'number' ? parseFloat(event.target.value, 10) : event.target.value)
+			const newValue = this.type === 'number' && typeof this.model === 'number' ? parseFloat(event.target.value, 10) : event.target.value
+			this.model = newValue
 		},
 
 		handleTrailingButtonClick(event) {

@@ -500,7 +500,7 @@ export default {
 			'user-select': userSelect,
 		}"
 		v-bind="propsToForward"
-		v-on="$listeners"
+		v-on="listenersToForward"
 		@search="searchString => search = searchString">
 		<template v-if="!labelOutside && inputLabel" #header>
 			<label :for="inputId"
@@ -579,6 +579,7 @@ import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
 import GenRandomId from '../../utils/GenRandomId.js'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 import '@nextcloud/vue-select/dist/vue-select.css'
 
@@ -591,6 +592,11 @@ export default {
 		NcListItemIcon,
 		NcLoadingIcon,
 		VueSelect,
+	},
+
+	model: {
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 
 	props: {
@@ -928,6 +934,15 @@ export default {
 		},
 
 		/**
+		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
+		value: {
+			type: [String, Number, Object, Array],
+			default: undefined,
+		},
+
+		/**
 		 * Currently selected value
 		 *
 		 * The `v-model` directive may be used for two-way data binding
@@ -936,7 +951,7 @@ export default {
 		 *
 		 * @see https://vue-select.org/api/props.html#value
 		 */
-		value: {
+		modelValue: {
 			type: [String, Number, Object, Array],
 			default: null,
 		},
@@ -965,6 +980,14 @@ export default {
 		 */
 		// Not an actual event but needed to show in vue-styleguidist docs
 		' ',
+		/**
+		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
+		'input',
+		'update:modelValue',
+		/** Same as update:modelValue for Vue 2 compatibility */
+		'update:model-value',
 	],
 
 	setup() {
@@ -972,8 +995,11 @@ export default {
 		const gridBaseLine = Number.parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-grid-baseline'))
 		const avatarSize = clickableArea - 2 * gridBaseLine
 
+		const model = useModelMigration('value', 'input')
+
 		return {
 			avatarSize,
+			model,
 		}
 	},
 
@@ -989,7 +1015,7 @@ export default {
 				return null
 			}
 			// The <input> itself does not have any value so we set the `required` attribute conditionally
-			return this.value === null || (Array.isArray(this.value) && this.value.length === 0)
+			return this.model === null || (Array.isArray(this.model) && this.model.length === 0)
 		},
 
 		localCalculatePosition() {
@@ -1094,11 +1120,21 @@ export default {
 			const propsToForward = {
 				...initialPropsToForward,
 				// Custom overrides of vue-select props
+				value: this.model,
 				calculatePosition: this.localCalculatePosition,
 				filterBy: this.localFilterBy,
 				label: this.localLabel,
 			}
 			return propsToForward
+		},
+
+		listenersToForward() {
+			return {
+				...this.$listeners,
+				input: ($event) => {
+					this.model = $event
+				},
+			}
 		},
 	},
 

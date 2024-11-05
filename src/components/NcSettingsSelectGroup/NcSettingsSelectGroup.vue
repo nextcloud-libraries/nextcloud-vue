@@ -43,7 +43,7 @@ section * {
 			:multiple="true"
 			:close-on-select="false"
 			:disabled="disabled"
-			@input="update"
+			@update:model-value="update"
 			@search="onSearch" />
 		<div v-show="hasError" class="select-group-error">
 			{{ errorMessage }}
@@ -55,6 +55,7 @@ section * {
 import NcSelect from '../../components/NcSelect/index.js'
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 import axios from '@nextcloud/axios'
 import debounce from 'debounce'
@@ -64,6 +65,11 @@ export default {
 	name: 'NcSettingsSelectGroup',
 	components: {
 		NcSelect,
+	},
+
+	model: {
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 
 	props: {
@@ -94,10 +100,19 @@ export default {
 		},
 
 		/**
+		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
+		value: {
+			type: Array,
+			default: undefined,
+		},
+
+		/**
 		 * value of the select group input
 		 * A list of group IDs can be provided
 		 */
-		value: {
+		modelValue: {
 			type: Array,
 			default: () => [],
 		},
@@ -111,9 +126,23 @@ export default {
 		},
 	},
 	emits: [
+		/**
+		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
 		'input',
+		/** Emitted when the groups selection changes<br />**Payload:** `value` (`Array`) - *Ids of selected groups */
+		'update:modelValue',
+		/** Same as update:modelValue for Vue 2 compatibility */
+		'update:model-value',
 		'error',
 	],
+	setup() {
+		const model = useModelMigration('value', 'input')
+		return {
+			model,
+		}
+	},
 	data() {
 		return {
 			/** Temporary store to cache groups */
@@ -136,7 +165,7 @@ export default {
 		 * @return {string[]}
 		 */
 		filteredValue() {
-			return this.value.filter((group) => group !== '' && typeof group === 'string')
+			return this.model.filter((group) => group !== '' && typeof group === 'string')
 		},
 
 		/**
@@ -163,7 +192,7 @@ export default {
 		 * @return {object[]}
 		 */
 		groupsArray() {
-			return Object.values(this.groups).filter(g => !this.value.includes(g.id))
+			return Object.values(this.groups).filter(g => !this.model.includes(g.id))
 		},
 	},
 	watch: {
@@ -208,8 +237,7 @@ export default {
 		 */
 		update(updatedValue) {
 			const value = updatedValue.map((element) => element.id)
-			/** Emitted when the groups selection changes<br />**Payload:** `value` (`Array`) - *Ids of selected groups */
-			this.$emit('input', value)
+			this.model = value
 		},
 
 		/**

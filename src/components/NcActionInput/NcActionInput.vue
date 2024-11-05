@@ -14,12 +14,12 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 ```vue
 	<template>
 		<NcActions>
-			<NcActionInput :value.sync="text" :label-outside="true" label="Label outside the input">
+			<NcActionInput v-model="text" :label-outside="true" label="Label outside the input">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
 			</NcActionInput>
-			<NcActionInput :value.sync="text" :show-trailing-button="false" label="Input without trailing button">
+			<NcActionInput v-model="text" :show-trailing-button="false" label="Input without trailing button">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
@@ -30,25 +30,25 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 				</template>
 				This is the placeholder
 			</NcActionInput>
-			<NcActionInput type="password" :value.sync="text" label="Password with visible label">
+			<NcActionInput type="password" v-model="text" label="Password with visible label">
 				<template #icon>
 					<Key :size="20" />
 				</template>
 				Password placeholder
 			</NcActionInput>
-			<NcActionInput type="password" :value.sync="text" :show-trailing-button="false">
+			<NcActionInput type="password" v-model="text" :show-trailing-button="false">
 				<template #icon>
 					<Key :size="20" />
 				</template>
 				Password placeholder
 			</NcActionInput>
-			<NcActionInput type="color" :value.sync="color" label="Favorite color">
+			<NcActionInput type="color" v-model="color" label="Favorite color">
 				<template #icon>
 					<Eyedropper :size="20" />
 				</template>
 				Color placeholder
 			</NcActionInput>
-			<NcActionInput label="Visible label" :value.sync="text">
+			<NcActionInput label="Visible label" v-model="text">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
@@ -59,19 +59,20 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 					<Close :size="20" />
 				</template>
 			</NcActionInput>
-			<NcActionInput type="date" isNativePicker :value="new Date()">
+			<NcActionInput type="date" isNativePicker v-model="date">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
 				Please pick a date
 			</NcActionInput>
-			<NcActionInput type="date">
+			<NcActionInput v-model="date" type="date">
 				<template #icon>
 					<Pencil :size="20" />
 				</template>
 				Please pick a date
 			</NcActionInput>
 			<NcActionInput
+				v-model="multiSelected"
 				type="multiselect"
 				input-label="Fruit selection"
 				:options="['Apple', 'Banana', 'Cherry']">
@@ -113,6 +114,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 				color: '#0082C9',
 				text: 'This is the input text',
 				multiSelected: [],
+				date: new Date(),
 			}
 		},
 	}
@@ -154,7 +156,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 
 						<NcDateTimePicker v-if="datePickerType"
 							ref="datetimepicker"
-							:value="value"
+							:value="model"
 							style="z-index: 99999999999;"
 							:placeholder="text"
 							:disabled="disabled"
@@ -167,16 +169,16 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 
 						<NcDateTimePickerNative v-else-if="isNativePicker"
 							:id="idNativeDateTimePicker"
-							:value="value"
+							:value="model"
 							:type="nativeDatePickerType"
 							:input-class="{ focusable: isFocusable }"
 							class="action-input__datetimepicker"
 							v-bind="$attrs"
-							@input="$emit('input', $event)"
+							@update:model-value="model = $event"
 							@change="$emit('change', $event)" />
 
 						<NcSelect v-else-if="isMultiselectType"
-							:value="value"
+							:value="model"
 							:placeholder="text"
 							:disabled="disabled"
 							:append-to-body="$attrs.appendToBody || $attrs['append-to-body'] || false"
@@ -187,7 +189,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 
 						<NcPasswordField v-else-if="type==='password'"
 							:id="inputId"
-							:value="value"
+							:value="model"
 							:label="label"
 							:label-outside="!label || labelOutside"
 							:placeholder="text"
@@ -208,13 +210,13 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 							</label>
 							<div class="action-input__input-container">
 								<NcColorPicker id="inputId"
-									:value="value"
+									:value="model"
 									class="colorpicker__trigger"
 									v-bind="$attrs"
 									v-on="$listeners"
-									@input="onInput"
+									@update:model-value="onInput"
 									@submit="$refs.form.requestSubmit()">
-									<button :style="{'background-color': value}"
+									<button :style="{'background-color': model}"
 										class="colorpicker__preview"
 										:class="{ focusable: isFocusable }" />
 								</NcColorPicker>
@@ -223,7 +225,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 
 						<NcTextField v-else
 							:id="inputId"
-							:value="value"
+							:value="model"
 							:label="label"
 							:label-outside="!label || labelOutside"
 							:placeholder="text"
@@ -254,6 +256,7 @@ import NcTextField from '../NcTextField/index.js'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { t } from '../../l10n.js'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 export default {
 	name: 'NcActionInput',
@@ -269,8 +272,8 @@ export default {
 	mixins: [ActionGlobalMixin],
 
 	model: {
-		prop: 'value',
-		event: 'update:value',
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 
 	props: {
@@ -340,9 +343,17 @@ export default {
 			default: true,
 		},
 		/**
-		 * value attribute of the input field
+		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 * @deprecated
 		 */
 		value: {
+			type: [String, Date, Number, Array],
+			default: undefined,
+		},
+		/**
+		 * value attribute of the input field
+		 */
+		modelValue: {
 			type: [String, Date, Number, Array],
 			default: '',
 		},
@@ -389,8 +400,28 @@ export default {
 		'input',
 		'submit',
 		'change',
+		/**
+		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
 		'update:value',
+		/**
+		 * Emitted when the inputs value changes
+		 * ! DatetimePicker only send the value
+		 *
+		 * @type {string|Date}
+		 */
+		'update:modelValue',
+		/** Same as `update:modelValue` but with a different event name */
+		'update:model-value',
 	],
+
+	setup() {
+		const model = useModelMigration('value', 'update:value')
+		return {
+			model,
+		}
+	},
 
 	computed: {
 		isIconUrl() {
@@ -455,13 +486,8 @@ export default {
 			 * @type {Event|Date}
 			 */
 			this.$emit('input', event)
-			/**
-			 * Emitted when the inputs value changes
-			 * ! DatetimePicker only send the value
-			 *
-			 * @type {string|Date}
-			 */
-			this.$emit('update:value', event.target ? event.target.value : event)
+
+			this.model = event.target ? event.target.value : event
 		},
 		onSubmit(event) {
 			event.preventDefault()

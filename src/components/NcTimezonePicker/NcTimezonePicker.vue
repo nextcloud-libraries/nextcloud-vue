@@ -46,11 +46,16 @@ import getTimezoneManager from './timezoneDataProviderService.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import NcSelect from '../NcSelect/index.js'
 import { t } from '../../l10n.js'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 export default {
 	name: 'NcTimezonePicker',
 	components: {
 		NcSelect,
+	},
+	model: {
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 	props: {
 		/**
@@ -61,9 +66,17 @@ export default {
 			default: () => [],
 		},
 		/**
-		 * The selected timezone. Use v-model for two-way binding. The default timezone is floating, which means a time independent of timezone. See https://icalendar.org/CalDAV-Access-RFC-4791/7-3-date-and-floating-time.html for details.
+		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 * @deprecated
 		 */
 		value: {
+			type: String,
+			default: undefined,
+		},
+		/**
+		 * The selected timezone. Use v-model for two-way binding. The default timezone is floating, which means a time independent of timezone. See https://icalendar.org/CalDAV-Access-RFC-4791/7-3-date-and-floating-time.html for details.
+		 */
+		modelValue: {
 			type: String,
 			default: 'floating',
 		},
@@ -75,21 +88,39 @@ export default {
 			default: () => `tz-${GenRandomId(5)}`,
 		},
 	},
-	emits: ['input'],
+	emits: [
+		/**
+		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
+		'input',
+		/**
+		 * Two-way binding of the value prop. Use v-model="selectedTimezone" for two-way binding
+		 */
+		'update:modelValue',
+		/** Same as update:modelValue for Vue 2 compatibility */
+		'update:model-value',
+	],
+	setup() {
+		const model = useModelMigration('value', 'input')
+		return {
+			model,
+		}
+	},
 	computed: {
 		placeholder() {
 			return t('Type to search time zone')
 		},
 		selectedTimezone() {
 			for (const additionalTimezone of this.additionalTimezones) {
-				if (additionalTimezone.timezoneId === this.value) {
+				if (additionalTimezone.timezoneId === this.model) {
 					return additionalTimezone
 				}
 			}
 
 			return {
-				label: getReadableTimezoneName(this.value),
-				timezoneId: this.value,
+				label: getReadableTimezoneName(this.model),
+				timezoneId: this.model,
 			}
 		},
 		options() {
@@ -123,10 +154,7 @@ export default {
 				return
 			}
 
-			/**
-			 * Two-way binding of the value prop. Use v-model="selectedTimezone" for two-way binding
-			 */
-			this.$emit('input', newValue.timezoneId)
+			this.model = newValue.timezoneId
 		},
 
 		/**

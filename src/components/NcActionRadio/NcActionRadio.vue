@@ -13,7 +13,7 @@ So that only one of each name set can be selected at the same time.
 	<NcActions>
 		<NcActionRadio @change="alert('(un)checked !')" name="uniqueId">First choice</NcActionRadio>
 		<NcActionRadio value="second" v-model="radioValue" name="uniqueId" @change="alert('(un)checked !')">Second choice (v-model)</NcActionRadio>
-		<NcActionRadio :checked="true" name="uniqueId" @change="alert('(un)checked !')">Third choice (checked)</NcActionRadio>
+		<NcActionRadio :model-value="true" name="uniqueId" @change="alert('(un)checked !')">Third choice (checked)</NcActionRadio>
 		<NcActionRadio :disabled="true" name="uniqueId" @change="alert('(un)checked !')">Fourth choice (disabled)</NcActionRadio>
 	</NcActions>
 </template>
@@ -59,6 +59,7 @@ So that only one of each name set can be selected at the same time.
 </template>
 
 <script>
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
@@ -75,8 +76,8 @@ export default {
 	},
 
 	model: {
-		prop: 'checked',
-		event: 'update:checked',
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 
 	props: {
@@ -90,9 +91,18 @@ export default {
 		},
 
 		/**
-		 * checked state of the the radio element
+		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 * @deprecated
 		 */
 		checked: {
+			type: Boolean,
+			default: undefined,
+		},
+
+		/**
+		 * checked state of the the radio element
+		 */
+		modelValue: {
 			type: Boolean,
 			default: false,
 		},
@@ -125,9 +135,27 @@ export default {
 	},
 
 	emits: [
+		/**
+		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
 		'update:checked',
+		/**
+		 * The radio state is changed
+		 * @type {boolean}
+		 */
+		'update:modelValue',
+		/** Same as update:modelValue for Vue 2 compatibility */
+		'update:model-value',
 		'change',
 	],
+
+	setup() {
+		const model = useModelMigration('checked', 'update:checked')
+		return {
+			model,
+		}
+	},
 
 	computed: {
 		/**
@@ -146,7 +174,7 @@ export default {
 		 */
 		 ariaChecked() {
 			if (this.isInSemanticMenu) {
-				return this.checked ? 'true' : 'false'
+				return this.model ? 'true' : 'false'
 			}
 			return undefined
 		},
@@ -158,12 +186,7 @@ export default {
 			this.$refs.label.click()
 		},
 		onChange(event) {
-			/**
-			 * Emitted when the radio state is changed
-			 *
-			 * @type {boolean}
-			 */
-			this.$emit('update:checked', this.$refs.radio.checked)
+			this.model = this.$refs.radio.checked
 
 			/**
 			 * Emitted when the radio state is changed

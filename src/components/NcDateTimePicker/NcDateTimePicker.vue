@@ -117,12 +117,12 @@ export default {
 		:popup-class="{ 'show-week-number': showWeekNumber }"
 		:show-week-number="showWeekNumber"
 		:type="type"
-		:value="value"
+		:value="model"
 		v-bind="$attrs"
 		v-on="$listeners"
 		@select-year="handleSelectYear"
 		@select-month="handleSelectMonth"
-		@update:value="$emit('update:value', value)">
+		@input="model = $event">
 		<template #icon-calendar>
 			<NcPopover v-if="showTimezoneSelect"
 				popup-role="dialog"
@@ -160,6 +160,7 @@ export default {
 <script>
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 import NcTimezonePicker from '../NcTimezonePicker/index.js'
 import NcPopover from '../NcPopover/index.js'
@@ -200,6 +201,11 @@ export default {
 
 	inheritAttrs: false,
 
+	model: {
+		prop: 'modelValue',
+		event: 'update:modelValue',
+	},
+
 	props: {
 		clearable: {
 			type: Boolean,
@@ -232,12 +238,21 @@ export default {
 		},
 
 		/**
+		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
+		// eslint-disable-next-line
+		value: {
+			default: undefined,
+		},
+
+		/**
 		 * The value to initialize, but also two-way bind the selected date. The date is – like the `Date` object in
 		 * JavaScript – tied to UTC. The selected time zone does not have an influence of the selected time and date
 		 * value. You have to translate the time yourself when you want to factor in time zones.
 		 */
 		// eslint-disable-next-line
-		value: {
+		modelValue: {
 			default: () => new Date(),
 		},
 
@@ -276,12 +291,21 @@ export default {
 	},
 
 	emits: [
+		/**
+		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
 		'update:value',
+		'update:modelValue',
+		/** Same as update:modelValue for Vue 2 compatibility */
+		'update:model-value',
 		'update:timezone-id',
 	],
 
 	setup() {
+		const model = useModelMigration('value', 'update:value')
 		return {
+			model,
 			timezoneDialogHeaderId: `timezone-dialog-header-${GenRandomId()}`,
 		}
 	},

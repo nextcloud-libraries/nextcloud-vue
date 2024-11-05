@@ -12,7 +12,7 @@ General purpose password field component.
 ```
 <template>
 	<div class="wrapper">
-		<NcPasswordField :value.sync="text1"
+		<NcPasswordField v-model="text1"
 			label="Old password" />
 		<div class="external-label">
 			<label for="textField">New password</label>
@@ -24,24 +24,24 @@ General purpose password field component.
 		<div class="external-label">
 			<label for="textField2">New password</label>
 			<NcPasswordField id="textField2"
-				:value.sync="text3"
+				v-model="text3"
 				:error="true"
 				:label-outside="true"
 				placeholder="Min. 12 characters"
 				helper-text="Password is insecure" />
 		</div>
 
-		<NcPasswordField :value.sync="text4"
+		<NcPasswordField v-model="text4"
 			label="Good new password"
 			:success="true"
 			placeholder="Min. 12 characters"
 			helper-text="Password is secure" />
 
-		<NcPasswordField :value.sync="text5"
+		<NcPasswordField v-model="text5"
 			:disabled="true"
 			label="Disabled" />
 
-		<NcPasswordField :value.sync="text6"
+		<NcPasswordField v-model="text6"
 			label="Secret token"
 			as-text />
 	</div>
@@ -116,6 +116,7 @@ import { loadState } from '@nextcloud/initial-state'
 import { generateOcsUrl } from '@nextcloud/router'
 import { t } from '../../l10n.js'
 import logger from '../../utils/logger.js'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 /**
  * @typedef PasswordPolicy
@@ -147,8 +148,8 @@ export default {
 	inheritAttrs: false,
 
 	model: {
-		prop: 'value',
-		event: 'update:value',
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 
 	props: {
@@ -224,8 +225,28 @@ export default {
 	emits: [
 		'valid',
 		'invalid',
+		/**
+		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
 		'update:value',
+		/**
+		 * Triggers when the value inside the password field is
+		 * updated.
+		 *
+		 * @property {string} The new value
+		 */
+		'update:modelValue',
+		/** Same as update:modelValue for Vue 2 compatibility */
+		'update:model-value',
 	],
+
+	setup() {
+		const model = useModelMigration('value', 'update:value')
+		return {
+			model,
+		}
+	},
 
 	data() {
 		return {
@@ -273,7 +294,7 @@ export default {
 	},
 
 	watch: {
-		value(newValue) {
+		model(newValue) {
 			if (this.checkPasswordStrength) {
 				if (passwordPolicy === null) {
 					return
@@ -303,13 +324,7 @@ export default {
 		},
 
 		handleInput(event) {
-			/**
-			 * Triggers when the value inside the password field is
-			 * updated.
-			 *
-			 * @property {string} The new value
-			 */
-			this.$emit('update:value', event.target.value)
+			this.model = event.target.value
 		},
 		togglePasswordVisibility() {
 			this.isPasswordHidden = !this.isPasswordHidden

@@ -9,7 +9,7 @@
 <template>
 	<div>
 		<NcSettingsInputText v-model="value" label="Label" hint="Hint" />
-		<NcSettingsInputText label="Label" value="Value" hint="Hint" disabled />
+		<NcSettingsInputText label="Label" model-value="Value" hint="Hint" disabled />
 	</div>
 </template>
 
@@ -34,7 +34,7 @@ export default {
 			<label :for="id" class="action-input__label">{{ label }}</label>
 			<input :id="id"
 				type="text"
-				:value="value"
+				:value="model"
 				:disabled="disabled"
 				@input="onInput"
 				@change="onChange">
@@ -52,6 +52,7 @@ export default {
 <script>
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
 
 export default {
 	name: 'NcSettingsInputText',
@@ -79,9 +80,18 @@ export default {
 		},
 
 		/**
-		 * value of the select group input
+		 * Removed in v9 - use `modelValue` (`v-model`) instead
+		 * @deprecated
 		 */
 		value: {
+			type: String,
+			default: undefined,
+		},
+
+		/**
+		 * value of the select group input
+		 */
+		 modelValue: {
 			type: String,
 			default: '',
 		},
@@ -105,11 +115,30 @@ export default {
 	},
 
 	emits: [
+		/**
+		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 * @deprecated
+		 */
 		'update:value',
+		/**
+		 * Emitted when the inputs value changes
+		 *
+		 * @type {string}
+		 */
+		'update:modelValue',
+		/* Same as update:modelValue for Vue 2 compatibility */
+		'update:model-value',
 		'input',
 		'submit',
 		'change',
 	],
+
+	setup() {
+		const model = useModelMigration('value', 'update:value')
+		return {
+			model,
+		}
+	},
 
 	data() {
 		return {
@@ -128,12 +157,7 @@ export default {
 	methods: {
 		onInput(event) {
 			this.$emit('input', event)
-			/**
-			 * Emitted when the inputs value changes
-			 *
-			 * @type {string}
-			 */
-			this.$emit('update:value', event.target.value)
+			this.model = event.target.value
 		},
 		onSubmit(event) {
 			if (!this.disabled) {
