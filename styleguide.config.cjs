@@ -48,6 +48,11 @@ module.exports = async () => {
 					},
 				},
 			},
+			resolve: {
+				alias: {
+					vue$: 'vue/dist/vue.esm-browser.js',
+				},
+			},
 		}),
 
 		exampleMode: 'collapse',
@@ -136,6 +141,10 @@ module.exports = async () => {
 					{
 						name: 'registerReference',
 						content: 'docs/functions/registerReference.md',
+					},
+					{
+						name: 'spawnDialog',
+						content: 'docs/functions/spawnDialog.md',
 					},
 				],
 			},
