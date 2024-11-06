@@ -5,6 +5,7 @@
 
   "compilerOptions": {
     "allowJs": true,
+    "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true,
     "target": "ESNext",
     "module": "ESNext",
