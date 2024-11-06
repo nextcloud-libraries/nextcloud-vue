@@ -45,12 +45,6 @@ webpackRules.RULE_TS = {
 	test: /\.tsx?$/,
 	use: [
 		'babel-loader',
-		{
-			loader: 'ts-loader',
-			options: {
-				configFile: 'tsconfig.webpack.json',
-			},
-		},
 	],
 }
 
