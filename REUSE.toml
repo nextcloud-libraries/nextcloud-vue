@@ -24,7 +24,7 @@ SPDX-FileCopyrightText = "2020-2024 Nextcloud translators"
 SPDX-License-Identifier = "AGPL-3.0-or-later"
 
 [[annotations]]
-path = ["tsconfig.json", "tsconfig.webpack.json", "cypress/tsconfig.json", "tests/tsconfig.json"]
+path = ["tsconfig.json", "cypress/tsconfig.json", "tests/tsconfig.json"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2022-2024 Nextcloud GmbH and Nextcloud contributors"
 SPDX-License-Identifier = "CC0-1.0"

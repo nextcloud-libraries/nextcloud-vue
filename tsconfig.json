@@ -3,6 +3,7 @@
   "include": ["./src/**/*.ts"],
   "exclude": ["./src/**/*.cy.ts"],
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "Bundler",
     "target": "ESNext",
