@@ -25,7 +25,7 @@ const preview: Preview = {
 			// TODO: add layouts for app navigation/sidebar
 			switch (pageLayout) {
 			default:
-				return { template: '<story/>' };
+				return { template: `<div data-server-root><story/></div>` }
 			}
 	  	},
 	]

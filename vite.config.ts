@@ -8,6 +8,7 @@ import { createLibConfig } from '@nextcloud/vite-config'
 import { globSync } from 'glob'
 import { join, resolve } from 'node:path'
 import { defineConfig } from 'vite'
+import prefixwrap from 'postcss-prefixwrap'
 
 import md5 from 'md5'
 
@@ -89,6 +90,13 @@ const overrides = defineConfig({
 					resolve(import.meta.dirname, 'src/assets'),
 				],
 			},
+		},
+		postcss: {
+			plugins: [
+				prefixwrap('[data-server-root]', {
+					whitelist: ["server.css", "apps.css"],
+				}),
+			],
 		},
 	},
 })
