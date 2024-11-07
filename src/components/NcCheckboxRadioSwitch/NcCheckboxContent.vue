@@ -195,15 +195,25 @@ export default {
 	display: flex;
 	align-items: center;
 	flex-direction: row;
-	gap: var(--default-grid-baseline);
+	gap: 0;
 	user-select: none;
 	min-height: var(--default-clickable-area);
 	border-radius: var(--checkbox-radio-switch--border-radius);
-	padding: var(--default-grid-baseline) calc((var(--default-clickable-area) - var(--icon-height)) / 2);
+	// same extra padding as the NcButton
+	padding-inline: var(--default-grid-baseline);
 	// Set to 100% to make text overflow work on button style
 	width: 100%;
 	// but restrict to content so plain checkboxes / radio switches do not expand
 	max-width: fit-content;
+
+	// The icon takes the full clickable-area and pushes the text to the right
+	&__icon {
+		width: var(--default-clickable-area);
+		height: var(--default-clickable-area);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 
 	&__text {
 		flex: 1 0;
@@ -231,7 +241,7 @@ export default {
 	}
 
 	&--has-text {
-		padding-right: $icon-margin;
+		padding-inline-end: $icon-margin;
 	}
 
 	&, * {

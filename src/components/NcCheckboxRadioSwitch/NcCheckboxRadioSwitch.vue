@@ -668,14 +668,15 @@ export default {
 	padding: 0;
 	position: relative;
 
+	// The input should take the same position as the checkbox icon
 	&__input {
 		position: absolute;
 		z-index: -1;
 		opacity: 0 !important; // We need !important, or it gets overwritten by server style
-		width: var(--icon-size);
-		height: var(--icon-size);
-		// Same as label padding
-		margin: 4px $icon-margin;
+		width: var(--default-clickable-area);
+		height: var(--default-clickable-area);
+		// Same as internal checkbox content padding
+		margin-inline-start: var(--default-grid-baseline);
 	}
 
 	&__input:focus-visible + &__content,
