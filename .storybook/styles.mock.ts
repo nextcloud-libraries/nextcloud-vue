@@ -3,5 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import '../styleguide/assets/icons.css'
-import '../styleguide/assets/additional.css'
+import '../styleguide/assets/default.css'
+import '../styleguide/assets/dark.css'
+import '../styleguide/assets/server.css'
+import '../styleguide/assets/apps.css'
+import './styles.css'

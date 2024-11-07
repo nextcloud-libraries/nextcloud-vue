@@ -4,12 +4,13 @@
  */
 
 import type { Plugin, UserConfigFn } from 'vite'
+
 import { createLibConfig } from '@nextcloud/vite-config'
 import { globSync } from 'glob'
 import { join, resolve } from 'node:path'
 import { defineConfig } from 'vite'
-
 import crypto from 'node:crypto'
+
 import l10nPlugin from './build/l10n-plugin.mjs'
 
 const appVersion = JSON.stringify(process.env.npm_package_version || 'nextcloud-vue')
