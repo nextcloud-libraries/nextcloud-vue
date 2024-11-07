@@ -25,14 +25,17 @@ const preview: Preview = {
 	},
 
 	decorators: [
-    	(_, { parameters }) => {
+		(_, { parameters }) => {
 			const { pageLayout } = parameters
 			// TODO: add layouts for app navigation/sidebar
 			switch (pageLayout) {
-			default:
-				return { template: '<story/>' };
+				case 'root':
+					return { template: `<div data-server-root><story/></div>` }
+				case 'app-content':
+				default:
+					return { template: '<div data-server-root><div style="background: var(--color-main-background);" class="app-content"><story/></div></div>' }
 			}
-	  	},
+		},
 	]
 }
 

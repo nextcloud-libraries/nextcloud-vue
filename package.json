@@ -159,6 +159,7 @@
     "gettext-parser": "^8.0.0",
     "glob": "^11.0.3",
     "jsdom": "^26.1.0",
+    "postcss-prefixwrap": "^1.57.0",
     "remark-gfm": "^4.0.1",
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.93.0",
