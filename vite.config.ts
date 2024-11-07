@@ -4,6 +4,7 @@
  */
 
 import type { UserConfigFn } from 'vite'
+
 import { createLibConfig } from '@nextcloud/vite-config'
 import { globSync } from 'glob'
 import { join, resolve } from 'node:path'
