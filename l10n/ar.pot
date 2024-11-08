@@ -318,7 +318,7 @@ msgid "Previous"
 msgstr "السابق"
 
 msgid "Provider icon"
-msgstr "أيقونة المُزوِّد"
+msgstr "أيقونة المزوّد"
 
 msgid "Purple"
 msgstr "بنفسجي"
