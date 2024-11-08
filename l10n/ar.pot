@@ -282,7 +282,7 @@ msgid "Options"
 msgstr "خيارات"
 
 msgid "Password is secure"
-msgstr "كلمة المرور مُؤمّنة"
+msgstr "كلمة المرور آمنة"
 
 msgid "Pause slideshow"
 msgstr "تجميد عرض الشرائح"
