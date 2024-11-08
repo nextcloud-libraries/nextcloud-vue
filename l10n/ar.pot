@@ -64,7 +64,7 @@ msgid "Back"
 msgstr "عودة"
 
 msgid "Back to provider selection"
-msgstr "عودة إلى اختيار المُزوِّد"
+msgstr "عودة إلى اختيار المزوّد"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
