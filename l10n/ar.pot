@@ -108,7 +108,7 @@ msgid "Close Smart Picker"
 msgstr "إغلاق المحدد الذكي"
 
 msgid "Collapse menu"
-msgstr "طَيُّ القائمة"
+msgstr "طي القائمة"
 
 msgid "Color picker"
 msgstr "لاقط الألوان"
