@@ -51,10 +51,10 @@ msgid "Anything shared with the same group of people will show up here"
 msgstr "أيّ مادة تمت مشاركتها مع نفس المجموعة من الأشخاص سيتم عرضها هنا"
 
 msgid "Avatar of {displayName}"
-msgstr "الرمز التجسيدي avatar لــ {displayName}  "
+msgstr "صورة الملف الشخصي الرمزية لــ {displayName}  "
 
 msgid "Avatar of {displayName}, {status}"
-msgstr "الرمز التجسيدي  avatar لــ {displayName}، {status}"
+msgstr "صورة الملف الشخصي الرمزية لــ {displayName}، {status}"
 
 #. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
