@@ -93,7 +93,7 @@ msgid "Clear selected"
 msgstr "محو المحدّد"
 
 msgid "Clear text"
-msgstr "مَحْوُ النص"
+msgstr "محو النص"
 
 msgid "Close"
 msgstr "إغلاق"
