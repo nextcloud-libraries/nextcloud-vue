@@ -440,4 +440,4 @@ msgid "Whiskey"
 msgstr "نبيذي"
 
 msgid "Write a message …"
-msgstr "أكتُب رسالةً ..."
+msgstr "أكتب رسالة ..."
