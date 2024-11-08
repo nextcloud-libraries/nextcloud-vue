@@ -105,7 +105,7 @@ msgid "Close sidebar"
 msgstr "قفل الشريط الجانبي"
 
 msgid "Close Smart Picker"
-msgstr "أغلِق Smart Picker"
+msgstr "إغلاق المحدد الذكي"
 
 msgid "Collapse menu"
 msgstr "طَيُّ القائمة"
