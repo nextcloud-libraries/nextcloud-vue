@@ -87,7 +87,7 @@ msgid "Choose"
 msgstr "إختَر"
 
 msgid "Clear search"
-msgstr "مَحْوُ البحث"
+msgstr "محو البحث"
 
 msgid "Clear selected"
 msgstr "مَحْوُ المُحدّد"
