@@ -167,7 +167,7 @@ msgid "Failed to rename the project"
 msgstr "تعذّر تغيير اسم المشروع"
 
 msgid "Favorite"
-msgstr "المُفضَّلة"
+msgstr "المفضلة"
 
 #. TRANSLATORS: A color name for RGB(201, 136, 121)
 msgid "Feldspar"
