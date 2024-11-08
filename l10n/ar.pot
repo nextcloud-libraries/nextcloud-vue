@@ -367,7 +367,7 @@ msgid "seconds ago"
 msgstr "ثوانٍ مضت"
 
 msgid "Select a tag"
-msgstr "إختَر سِمَةً tag"
+msgstr "اختر وسم"
 
 msgid "Select provider"
 msgstr "إختَر مٌزوِّداً"
