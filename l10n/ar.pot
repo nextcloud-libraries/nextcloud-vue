@@ -36,7 +36,7 @@ msgid "Actions for item with name \"{name}\""
 msgstr "إجراءات على العنصر المُسمَّى \"{name}\""
 
 msgid "Activities"
-msgstr "سجل الحركات"
+msgstr "سجل الأنشطة"
 
 msgid "Add to a project"
 msgstr "أضف إلى مشروع"
