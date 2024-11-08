@@ -547,7 +547,7 @@ export default {
 @include action-item('button');
 
 .action-button__pressed-icon {
-	margin-left: auto;
-	margin-right: calc($icon-margin * -1);
+	margin-inline-start: auto;
+	margin-inline-end: calc($icon-margin * -1);
 }
 </style>
