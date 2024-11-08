@@ -370,10 +370,10 @@ msgid "Select a tag"
 msgstr "اختر وسم"
 
 msgid "Select provider"
-msgstr "إختَر مٌزوِّداً"
+msgstr "اختر مزود"
 
 msgid "Selected"
-msgstr "مُحدّدة"
+msgstr "محدّدة"
 
 msgid "Settings"
 msgstr "الإعدادات"
