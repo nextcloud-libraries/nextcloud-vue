@@ -96,10 +96,10 @@ msgid "Clear text"
 msgstr "مَحْوُ النص"
 
 msgid "Close"
-msgstr "أغلِق"
+msgstr "إغلاق"
 
 msgid "Close navigation"
-msgstr "أغلِق التصفح"
+msgstr "إغلاق التصفح"
 
 msgid "Close sidebar"
 msgstr "قفل الشريط الجانبي"
