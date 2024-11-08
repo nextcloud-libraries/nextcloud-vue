@@ -45,7 +45,7 @@ msgid "Animals & Nature"
 msgstr "الحيوانات والطبيعة"
 
 msgid "Any link"
-msgstr "أيَّ رابطٍ"
+msgstr "أيَّ رابط"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "أيّ مادة تمت مشاركتها مع نفس المجموعة من الأشخاص سيتم عرضها هنا"
