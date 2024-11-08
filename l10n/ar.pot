@@ -264,7 +264,7 @@ msgid "Olivine"
 msgstr "زيتي"
 
 msgid "online"
-msgstr "مُتّصِلٌ"
+msgstr "متصل"
 
 msgid "Open link to \"{resourceName}\""
 msgstr "إفتَح الرابط إلى \"{resourceName}\""
