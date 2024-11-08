@@ -218,13 +218,13 @@ msgid "Mariner"
 msgstr "أزرق بحري"
 
 msgid "Medium dark skin tone"
-msgstr "بُشرة متوسطة الاسمرار"
+msgstr "بشرة متوسطة الاسمرار"
 
 msgid "Medium light skin tone"
-msgstr "بُشرة متوسطة البياض"
+msgstr "بشرة متوسطة البياض"
 
 msgid "Medium skin tone"
-msgstr "بُشرة وسطية اللون"
+msgstr "بشرة وسطية اللون"
 
 msgid "Message limit of {count} characters reached"
 msgstr "تمّ الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
