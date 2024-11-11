@@ -5,6 +5,47 @@
 
 # Changelog
 
+## [v8.20.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.20.0) (2024-10-29)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.19.0...v8.20.0)
+
+### 📝 Notes
+Now you can use `v-model` directive, `:model-value` prop, and `@update:model-value` (`@update:modelValue`) event in all data input components to have **compatibility with v9** in the future.
+```html
+<!-- Only v8 (Vue 2) -->
+<NcTextField :value.sync="username" />
+<!-- Compatible with both v8 (Vue 2) and v9 (Vue 3) -->
+<NcTextField v-model="username" />
+<!-- same as -->
+<NcTextField :model-value="username" @update:model-value="username = $event" />
+```
+If you already use `v-model` with a custom writable computed on `:value.sync` components before, it might not work as expected anymore. Make sure to remove or adjust it before update.
+See the full list in [v9 breaking changes](https://github.com/nextcloud-libraries/nextcloud-vue/blob/next/CHANGELOG.md#-breaking-changes).
+
+### 🚀 Enhancements
+* feat: add `v-model` support for input-like components [\#5418](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5418) \([kyteinsky](https://github.com/kyteinsky)\)
+* feat: forward compatibility with v9 on `v-model` props/events [\#6172](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6172) \([ShGKme](https://github.com/ShGKme)\)
+* feat(NcRichText): add styles to mount point for custom picker and custom widget elements [\#6108](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6108) \([julien-nc](https://github.com/julien-nc)\)
+* feat(NcRichText): make interactive widgets opt-in [\#6151](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6151) \([Antreesy](https://github.com/Antreesy)\)
+* feat: add `isDarkTheme` functions and composables [\#5698](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5698) \([ShGKme](https://github.com/ShGKme)\)
+* feat: add `spawnDialog` function [\#6195](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6195) \([susnux](https://github.com/susnux)\)
+
+### 🐛 Fixed bugs
+* fix(NcReferencePicker): allow closing modal dialog [\#6137](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6137) \([JuliaKirschenheuter](https://github.com/JuliaKirschenheuter)\)
+* fix(NcActions): RTL support [\#6148](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6148) \([hamza221](https://github.com/hamza221)\)
+* fix(NcAppNavigation): RTL support [\#6144](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6144) \([hamza221](https://github.com/hamza221)\)
+* fix(NcSelect): RTL support [\#6150](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6150) \([hamza221](https://github.com/hamza221)\)
+* fix(NcAppDetailsToggle): RTL support [\#6145](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6145) \([hamza221](https://github.com/hamza221)\)
+* fix(NcModal): RTL support [\#6171](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6171) \([hamza221](https://github.com/hamza221)\)
+* fix(NcAppSidebar): RTL support [\#6187](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6187) \([hamza221](https://github.com/hamza221)\)
+* fix(NcDateTimePicker): adjust component styling close to native appearance [\#6095](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6095) \([GretaD](https://github.com/GretaD)\)
+* fix(NcTimeZonePicker): scope css styles [\#6184](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6184) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcAppSidebarTabs): force color-main-text for icons [\#6189](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6189) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcAppNavigationItem): use $scopedSlots instead of $slots [\#6161](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6161) \([st3iny](https://github.com/st3iny)\)
+
+### Changed
+* Updated workflows and dependencies
+* Updated translations
+
 ## [v8.19.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.19.0) (2024-09-16)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.18.0...v8.19.0)
 
