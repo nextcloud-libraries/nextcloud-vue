@@ -12,6 +12,7 @@ import Tooltip from './../src/directives/Tooltip/index.js'
 import Focus from './../src/directives/Focus/index.js'
 import Linkify from './../src/directives/Linkify/index.js'
 import { useIsDarkTheme } from '../src/composables/index.js'
+import { spawnDialog } from '../src/functions/dialog/index.ts'
 
 import axios from '@nextcloud/axios'
 
@@ -167,6 +168,7 @@ window.emojiAddRecent = emojiAddRecent
 window.getCurrentSkinTone = getCurrentSkinTone
 window.setCurrentSkinTone = setCurrentSkinTone
 window.usernameToColor = usernameToColor
+window.spawnDialog = spawnDialog
 // Exported composables
 window.useIsDarkTheme = useIsDarkTheme
 

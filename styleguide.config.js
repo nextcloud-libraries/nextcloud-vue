@@ -145,6 +145,10 @@ module.exports = async () => {
 						name: 'registerReference',
 						content: 'docs/functions/registerReference.md',
 					},
+					{
+						name: 'spawnDialog',
+						content: 'docs/functions/spawnDialog.md',
+					},
 				],
 			},
 			{
