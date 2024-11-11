@@ -500,7 +500,7 @@ export default {
 		&.button-vue {
 			position: absolute;
 			top: var(--border-width-input-focused, 2px);
-			right: var(--border-width-input-focused, 2px);
+			inset-inline-end: var(--border-width-input-focused, 2px);
 
 			&:focus-visible {
 				box-shadow: none !important;
