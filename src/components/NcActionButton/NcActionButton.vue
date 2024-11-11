@@ -387,6 +387,10 @@ export default {
 			from: 'NcActions:isSemanticMenu',
 			default: false,
 		},
+		openSubmenu: {
+			from: 'NcActions:openSubmenu',
+			default: () => () => {},
+		},
 	},
 
 	props: {
@@ -409,11 +413,12 @@ export default {
 		},
 
 		/**
-		 * If this is a menu, a chevron icon will
-		 * be added at the end of the line
+		 * Weather the button opens a submenu
+		 * - Boolean value makes button looks like a submenu opener
+		 * - String value can be used to open a specific submenu slot in NcActions
 		 */
 		isMenu: {
-			type: Boolean,
+			type: [Boolean, String],
 			default: false,
 		},
 
@@ -518,6 +523,11 @@ export default {
 		 */
 		handleClick(event) {
 			this.onClick(event)
+
+			if (typeof this.isMenu === 'string') {
+				this.openSubmenu(this.isMenu)
+			}
+
 			// If modelValue or type is set (so modelValue might be null for tri-state) we need to update it
 			if (this.modelValue !== null || this.type !== 'button') {
 				if (this.type === 'radio') {
