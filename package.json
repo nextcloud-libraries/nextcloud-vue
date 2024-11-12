@@ -90,6 +90,7 @@
     "linkify-string": "^4.0.0",
     "md5": "^2.3.0",
     "rehype-external-links": "^3.0.0",
+    "rehype-highlight": "^7.0.1",
     "rehype-react": "^7.1.2",
     "remark-breaks": "^4.0.0",
     "remark-gfm": "^4.0.0",
