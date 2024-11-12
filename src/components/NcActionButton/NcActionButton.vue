@@ -414,7 +414,7 @@ export default {
 		},
 
 		/**
-		 * Weather the button opens a submenu
+		 * Whether the button opens a submenu
 		 * - Boolean value makes button looks like a submenu opener
 		 * - String value can be used to open a specific submenu slot in NcActions
 		 */
