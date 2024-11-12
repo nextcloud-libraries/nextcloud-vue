@@ -1446,6 +1446,11 @@ export default {
 		},
 
 		pushSubmenu(submenu) {
+			// Only allow existing submenus
+			if (!this.$slots[`submenu:${submenu}`]) {
+				return
+			}
+
 			this.submenuStack.push(submenu)
 			this.submenuIndexStack.push(this.focusIndex)
 			this.$nextTick(() => {
