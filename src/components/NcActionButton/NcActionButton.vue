@@ -323,7 +323,8 @@ export default {
 			:title="title"
 			:type="nativeType"
 			v-bind="buttonAttributes"
-			@click="handleClick">
+			@click="handleClick"
+			@keydown="handleKeydown">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
 				<span :class="[isIconUrl ? 'action-button__icon--url' : icon]"
@@ -544,6 +545,17 @@ export default {
 					// Checkbox toggles value
 					this.$emit('update:modelValue', !this.isChecked)
 				}
+			}
+		},
+
+		handleKeydown(event) {
+			if (typeof this.isMenu !== 'string') {
+				return
+			}
+
+			// TODO RTL support
+			if (event.key === 'ArrowRight') {
+				this.openSubmenu(this.isMenu)
 			}
 		},
 	},

@@ -1459,6 +1459,10 @@ export default {
 		},
 
 		popSubmenu() {
+			if (!this.submenuStack.length) {
+				return
+			}
+
 			this.submenuStack.pop()
 			this.focusIndex = this.submenuIndexStack.pop()
 			this.$nextTick(() => {
@@ -1849,6 +1853,13 @@ export default {
 				on: {
 					click: () => {
 						this.popSubmenu()
+					},
+				},
+				nativeOn: {
+					keydown: (event) => {
+						if (event.key === 'ArrowLeft') {
+							this.popSubmenu()
+						}
 					},
 				},
 			}, [
