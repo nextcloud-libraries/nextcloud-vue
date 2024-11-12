@@ -4,7 +4,7 @@
  */
 
 import { mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import NcRichText from '../../../../src/components/NcRichText/NcRichText.vue'
 
 import { h } from 'vue'
@@ -209,5 +209,19 @@ describe('Foo', () => {
 		expect(checkbox.exists()).toBeTruthy()
 		await checkbox.vm.$emit('update:modelValue', true)
 		expect(wrapper.emitted()['interact:todo']).toBeTruthy()
+	})
+
+	it('properly defines syntax in code blocks and highlights it', async () => {
+		const wrapper = mount(NcRichText, {
+			props: {
+				text: '```js\nconsole.log(\'hello world\')\n```',
+				autolink: false,
+				useExtendedMarkdown: true,
+			},
+		})
+		expect(wrapper.text()).toEqual('console.log(\'hello world\')')
+		expect(wrapper.find('code').classes()).toEqual(['language-js'])
+		await vi.dynamicImportSettled()
+		expect(wrapper.find('code').classes()).toEqual(['hljs', 'language-js'])
 	})
 })
