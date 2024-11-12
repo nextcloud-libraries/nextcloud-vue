@@ -65,7 +65,7 @@ textarea {
 ### Flavored Markdown
 
 This component can support [Github Flavored Markdown](https://github.github.com/gfm/).
-It adds such elements, as tables, task lists, strikethrough, and supports autolinks by default
+It adds such elements, as tables, task lists, strikethrough, and supports code syntax highlighting and autolinks by default
 
 It is also possible to make a rendered content interactive and listen for events
 
@@ -94,6 +94,17 @@ It is also possible to make a rendered content interactive and listen for events
 Table header | Column A | Column B
 -- | -- | --
 Table row | value A | value B
+
+---
+
+\`\`\`js
+const GenRandomId = (length) => {
+\treturn Math.random()
+\t\t.toString(36)
+\t\t.replace(/[^a-z]+/g, '')
+\t\t.slice(0, length || 5)
+}
+\`\`\`
 `,
 			}
 		},
@@ -105,7 +116,7 @@ Table row | value A | value B
 					return
 				}
 				let checkBoxIndex = 0
-				lines = this.text.split('\n')
+				let lines = this.text.split('\n')
 				for (let i = 0; i < lines.length; i++) {
 					if (lines[i].includes('[ ]') || lines[i].includes('[x]')) {
 						if (checkBoxIndex === index) {
@@ -291,6 +302,7 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 </docs>
 
 <script>
+import { ref } from 'vue'
 import NcReferenceList from './NcReferenceList.vue'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
 import { getRoute, remarkAutolink } from './autolink.js'
@@ -305,6 +317,20 @@ import remark2rehype from 'remark-rehype'
 import rehype2react from 'rehype-react'
 import rehypeExternalLinks from 'rehype-external-links'
 import { RouterLink } from 'vue-router'
+
+/**
+ * Heavy libraries should be loaded on demand to reduce component size
+ */
+let rehypeHighlight
+const rehypeHighlightLoaded = ref(false)
+/**
+ * Load 'rehype-highlight' library when code block is rendered with `useExtendedMarkdown`
+ */
+async function importRehypeLibrary() {
+	const module = await import('rehype-highlight')
+	rehypeHighlight = module.default
+	rehypeHighlightLoaded.value = true
+}
 
 export default {
 	name: 'NcRichText',
@@ -447,6 +473,7 @@ export default {
 						},
 					},
 				})
+				.use((this.useExtendedMarkdown && rehypeHighlightLoaded.value) ? rehypeHighlight : undefined)
 				// .use(rehypeAddClasses, this.markdownCssClasses)
 				.use(remarkPlaceholder)
 				.use(rehypeExternalLinks, {
@@ -463,6 +490,9 @@ export default {
 
 						if (!tag.startsWith('#')) {
 							if (this.useExtendedMarkdown) {
+								if (tag === 'code' && !rehypeHighlightLoaded.value) {
+									importRehypeLibrary()
+								}
 								let nestedNode = null
 								if (tag === 'li' && Array.isArray(children)
 									&& children[0].tag === 'input'

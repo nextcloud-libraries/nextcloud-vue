@@ -2,10 +2,12 @@
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
- 
- /**
+
+/**
  * Styles are extracted to extract scss to dist folder, too.
  */
+
+@import './highlight.scss';
 
 li.task-list-item > ul,
 li.task-list-item > ol,
@@ -214,5 +216,30 @@ li.task-list-item > pre {
 		padding-left: 13px;
 		border-left: 2px solid var(--color-border-dark);
 		color: var(--color-text-lighter);
+	}
+}
+
+/**
+* Highlight code syntax in code blocks
+*/
+.rich-text--wrapper-markdown {
+	@include highlight-rules;
+}
+
+@media (prefers-color-scheme: light) {
+	.rich-text--wrapper-markdown {
+		@include highlight-light-colors;
+	}
+	[data-theme-dark] .rich-text--wrapper-markdown {
+		@include highlight-dark-colors;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	.rich-text--wrapper-markdown {
+		@include highlight-dark-colors;
+	}
+	[data-theme-light] .rich-text--wrapper-markdown {
+		@include highlight-light-colors;
 	}
 }

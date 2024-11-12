@@ -5,6 +5,7 @@
 
 import { mount } from '@vue/test-utils'
 import NcRichText from '../../../../src/components/NcRichText/NcRichText.vue'
+import { nextTick } from 'vue'
 
 describe('NcRichText', () => {
 	it('renders a message and responds correctly to props changes', async () => {
@@ -206,5 +207,20 @@ describe('NcRichText', () => {
 		expect(checkbox.exists()).toBeTruthy()
 		await checkbox.vm.$emit('update:checked', true)
 		expect(wrapper.emitted()['interact:todo']).toBeTruthy()
+	})
+
+	it('properly defines syntax in code blocks and highlights it', async () => {
+		const wrapper = mount(NcRichText, {
+			propsData: {
+				text: '```js\nconsole.log(\'hello world\')\n```',
+				autolink: false,
+				useExtendedMarkdown: true,
+			},
+		})
+		expect(wrapper.text()).toEqual('console.log(\'hello world\')')
+		expect(wrapper.find('code').classes()).toEqual(['language-js'])
+		await nextTick()
+		await nextTick()
+		expect(wrapper.find('code').classes()).toEqual(['hljs', 'language-js'])
 	})
 })
