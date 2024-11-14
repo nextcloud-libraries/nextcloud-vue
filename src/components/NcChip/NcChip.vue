@@ -202,7 +202,7 @@ const onClose = () => {
 
 	&--primary {
 		background-color: var(--color-primary-element);
-		color: var(--color-primary-text);
+		color: var(--color-primary-element-text);
 	}
 
 	&--secondary {
