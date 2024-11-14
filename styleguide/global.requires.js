@@ -10,7 +10,9 @@ import axios from '@nextcloud/axios'
 
 import { isA11yActivation } from '../src/functions/a11y/index.ts'
 import { EmojiSkinTone, emojiSearch, emojiAddRecent, getCurrentSkinTone, setCurrentSkinTone } from '../src/functions/emoji/index.ts'
+import { spawnDialog } from '../src/functions/dialog/index.ts'
 import usernameToColor from '../src/functions/usernameToColor/index.js'
+import NcDialog from '../src/components/NcDialog/index.js'
 
 const USER_GROUPS = [
 	{ id: 'admin', displayname: 'The administrators' },
@@ -157,6 +159,9 @@ window.emojiAddRecent = emojiAddRecent
 window.getCurrentSkinTone = getCurrentSkinTone
 window.setCurrentSkinTone = setCurrentSkinTone
 window.usernameToColor = usernameToColor
+window.spawnDialog = spawnDialog
+// Exported components
+window.NcDialog = NcDialog
 // Exported composables
 window.useIsDarkTheme = useIsDarkTheme
 
