@@ -60,10 +60,37 @@ describe('richEditor.js', () => {
 					},
 				},
 			})
-			const input = 'hello @jdoe'
+			const input = 'hello @jdoe!\nhow are you?'
 			const output = editor.vm.renderContent(input)
 
-			expect(output).toMatch(/^hello <span.+role="heading" title="J. Doe"/)
+			expect(output).toMatch(/^hello <span.+role="heading" title="J. Doe".+\/span>!<br>how are you\?$/)
+			expect(output).not.toMatch(/[\n\t]/gmi)
+			expect(output).not.toMatch(/>\s+</g)
+		})
+
+		it('keeps adjacent mentions with user data', () => {
+			const editor = shallowMount(TestEditor, {
+				propsData: {
+					userData: {
+						jdoe: {
+							id: 'jdoe',
+							label: 'J. Doe',
+							source: 'users',
+							icon: 'icon-user',
+						},
+						'guest/47e0a7cf': {
+							id: 'guest/47e0a7cf',
+							label: 'J. Guest',
+							source: 'emails',
+							icon: 'icon-user',
+						},
+					},
+				},
+			})
+			const input = 'hello @jdoe @"guest/47e0a7cf"! how are you?'
+			const output = editor.vm.renderContent(input)
+
+			expect(output).toMatch(/^hello <span.+role="heading" title="J. Doe".+\/span> <span.+role="heading" title="J. Guest".+\/span>! how are you\?$/)
 		})
 
 		it('keep mentions with special characters', () => {

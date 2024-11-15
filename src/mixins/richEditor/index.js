@@ -73,8 +73,6 @@ export default {
 		 */
 		parseContent(content) {
 			let text = content
-			// Consecutive spaces in HTML tags should collapse
-			text = text.replace(/>\s+</g, '><')
 			// Replace break lines with new lines
 			text = text.replace(/<br>/gmi, '\n')
 			// Replace some html special characters
@@ -115,8 +113,10 @@ export default {
 					: `@"${value}"`
 			}
 
-			// Return template and make sure we strip of new lines and tabs
-			return this.renderComponentHtml(data, NcMentionBubble).replace(/[\n\t]/gmi, '')
+			// Return template and make sure we strip off new lines, tabs and consecutive whitespaces
+			return this.renderComponentHtml(data, NcMentionBubble)
+				.replace(/[\n\t]/gmi, '')
+				.replace(/>\s+</g, '><')
 		},
 
 		/**
