@@ -753,10 +753,10 @@ export default {
 			}
 			if (this.focused) {
 				e.preventDefault()
-				this.$refs.actions.$refs.menuButton.$el.focus()
+				this.$refs.actions.$refs.triggerButton.$el.focus()
 				this.focused = false
 			} else {
-				this.$refs.actions.$refs.menuButton.$el.blur()
+				this.$refs.actions.$refs.triggerButton.$el.blur()
 			}
 		},
 
