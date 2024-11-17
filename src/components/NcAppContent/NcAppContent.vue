@@ -419,15 +419,19 @@ export default {
 		}
 	}
 
-	&.splitpanes--vertical {
-		.splitpanes__splitter {
-			background-color: var(--color-main-background);
-			border-left: 1px solid var(--color-border);
-
-			&::before, &::after {
-				background-color: var(--color-border);
-			}
+	.splitpanes__splitter {
+		background-color: var(--color-main-background);
+		&::before, &::after {
+			background-color: var(--color-border);
 		}
+	}
+
+	&.splitpanes--vertical .splitpanes__splitter {
+		border-left: 1px solid var(--color-border);
+	}
+
+	&.splitpanes--horizontal .splitpanes__splitter {
+		border-top: 1px solid var(--color-border);
 	}
 }
 
