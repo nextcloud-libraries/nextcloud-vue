@@ -123,8 +123,7 @@ export default {
 <template>
 	<NcInputField v-bind="propsAndAttrsToForward"
 		ref="inputField"
-		v-on="$listeners"
-		@input="handleInput">
+		v-on="$listeners">
 		<!-- Default slot for the leading icon -->
 		<slot />
 
@@ -263,10 +262,6 @@ export default {
 		 */
 		select() {
 			this.$refs.inputField.select()
-		},
-
-		handleInput(event) {
-			this.model = event.target.value
 		},
 	},
 }
