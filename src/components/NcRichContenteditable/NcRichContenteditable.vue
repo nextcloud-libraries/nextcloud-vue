@@ -782,23 +782,13 @@ export default {
 			const text = clipboardData.getData('text')
 			const selection = window.getSelection()
 
-			// If no selection, replace the whole data
-			if (!selection.rangeCount) {
-				this.updateValue(text)
-				return
-			}
-
 			// Generate text and insert
 			const range = selection.getRangeAt(0)
-			selection.deleteFromDocument()
+			range.deleteContents()
 			range.insertNode(document.createTextNode(text))
 
-			// Put cursor at the end of the selection
-			const newRange = document.createRange()
-			newRange.setStart(event.target, range.endOffset)
-			newRange.collapse(true)
-			selection.removeAllRanges()
-			selection.addRange(newRange)
+			// Collapse the range to the end position
+			range.collapse(false)
 
 			// Propagate data
 			this.updateValue(this.$refs.contenteditable.innerHTML)
