@@ -32,6 +32,9 @@ describe('richEditor.js', () => {
 			const output = editor.vm.renderContent(input)
 
 			expect(output).toEqual('hard<br>break')
+
+			const parsedOutput = editor.vm.parseContent(output)
+			expect(parsedOutput).toEqual(input)
 		})
 
 		it('no duplicated ampersand (from Linkify)', () => {
@@ -40,6 +43,9 @@ describe('richEditor.js', () => {
 			const output = editor.vm.renderContent(input)
 
 			expect(output).toEqual('hello &amp;')
+
+			const parsedOutput = editor.vm.parseContent(output)
+			expect(parsedOutput).toEqual(input)
 		})
 
 		it('keeps mentions without user data', () => {
@@ -48,6 +54,9 @@ describe('richEditor.js', () => {
 			const output = editor.vm.renderContent(input)
 
 			expect(output).toEqual('hello @foobar')
+
+			const parsedOutput = editor.vm.parseContent(output)
+			expect(parsedOutput).toEqual(input)
 		})
 
 		it('keeps mentions with user data', () => {
@@ -69,6 +78,9 @@ describe('richEditor.js', () => {
 			expect(output).toMatch(/^hello <span.+role="heading".+title="J. Doe".+\/span>!<br>how are you\?$/)
 			expect(output).not.toMatch(/[\n\t]/gmi)
 			expect(output).not.toMatch(/>\s+</g)
+
+			const parsedOutput = editor.vm.parseContent(output)
+			expect(parsedOutput).toEqual(input)
 		})
 
 		it('keeps adjacent mentions with user data', () => {
@@ -94,6 +106,9 @@ describe('richEditor.js', () => {
 			const output = editor.vm.renderContent(input)
 
 			expect(output).toMatch(/^hello <span.+role="heading".+title="J. Doe".+\/span> <span.+role="heading".+title="J. Guest".+\/span>! how are you\?$/)
+
+			const parsedOutput = editor.vm.parseContent(output)
+			expect(parsedOutput).toEqual(input)
 		})
 
 		it('keep mentions with special characters', () => {
@@ -122,6 +137,9 @@ describe('richEditor.js', () => {
 			for (const i in inputs) {
 				const output = editor.vm.renderContent(inputs[i])
 				expect(output).toEqual(outputs[i])
+
+				const parsedOutput = editor.vm.parseContent(output)
+				expect(parsedOutput).toEqual(inputs[i])
 			}
 		})
 	})
