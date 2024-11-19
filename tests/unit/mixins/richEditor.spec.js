@@ -77,6 +77,7 @@ describe('richEditor.js', () => {
 				'hello foo@bar - hello @@foobar',
 				'@foobar no space - \n\n@foobar  @foobar',
 				'hello @"guest/47e0a7cf"',
+				'hello @"email/47e0a7cf"',
 				'hello @"group/group-id" @"federated_user/user-id"',
 				'hello @"federated_user/user-id@server.com:8080"',
 			]
@@ -86,6 +87,7 @@ describe('richEditor.js', () => {
 				'hello foo@bar - hello @@foobar',
 				'@foobar no space - <br><br>@foobar  @foobar',
 				'hello @"guest/47e0a7cf"',
+				'hello @"email/47e0a7cf"',
 				'hello @"group/group-id" @"federated_user/user-id"',
 				'hello @"federated_user/user-id@server.com:8080"',
 			]
