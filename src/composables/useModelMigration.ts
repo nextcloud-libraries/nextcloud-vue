@@ -28,12 +28,12 @@ export function useModelMigration(oldModelName, oldModelEvent, required = false)
 		},
 
 		set(value) {
-			// Old nextcloud-vue v8 event
-			vm.$emit(oldModelEvent, value)
 			// New nextcloud-vue v9 event
 			vm.$emit('update:modelValue', value)
 			// Vue 2 fallback for kebab-case event names in templates (recommended by Vue 3 style guide)
 			vm.$emit('update:model-value', value)
+			// Old nextcloud-vue v8 event
+			vm.$emit(oldModelEvent, value)
 		},
 	})
 
