@@ -1,0 +1,171 @@
+/**
+ * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+/**
+* Colors and class selectors are extracted from source code of:
+* - library: highlight.js (v11.10.0)
+* - light theme: highlight.js/styles/github.css
+* - dark theme: highlight.js/styles/github-dark.css
+* and reworked to use with Nextcloud dark and light theme
+*/
+
+@mixin highlight-light-colors {
+	--hljs-color: var(--color-main-text, #24292e);
+	--hljs-background-color: var(--color-background-dark, #ffffff);
+	--hljs-syntax-keyword-color: #d73a49;
+	--hljs-syntax-entity-color: #6f42c1;
+	--hljs-syntax-constant-color: #005cc5;
+	--hljs-syntax-string-color: #032f62;
+	--hljs-syntax-variable-color: #e36209;
+	--hljs-syntax-comment-color: #6a737d;
+	--hljs-syntax-entity-tag-color: #22863a;
+	--hljs-syntax-storage-modifier-import-color: #24292e;
+	--hljs-syntax-markup-heading-color: #005cc5;
+	--hljs-syntax-markup-list-color: #735c0f;
+	--hljs-syntax-markup-italic-color: #24292e;
+	--hljs-syntax-markup-bold-color: #24292e;
+	--hljs-syntax-markup-inserted-color: #22863a;
+	--hljs-syntax-markup-inserted-background-color: #f0fff4;
+	--hljs-syntax-markup-deleted-color: #b31d28;
+	--hljs-syntax-markup-deleted-background-color: #ffeef0;
+}
+
+@mixin highlight-dark-colors {
+	--hljs-color: var(--color-main-text, #c9d1d9);
+	--hljs-background-color: var(--color-background-dark, #0d1117);
+	--hljs-syntax-keyword-color: #ff7b72;
+	--hljs-syntax-entity-color: #d2a8ff;
+	--hljs-syntax-constant-color: #79c0ff;
+	--hljs-syntax-string-color: #a5d6ff;
+	--hljs-syntax-variable-color: #ffa657;
+	--hljs-syntax-comment-color: #8b949e;
+	--hljs-syntax-entity-tag-color: #7ee787;
+	--hljs-syntax-storage-modifier-import-color: #c9d1d9;
+	--hljs-syntax-markup-heading-color: #1f6feb;
+	--hljs-syntax-markup-list-color: #f2cc60;
+	--hljs-syntax-markup-italic-color: #c9d1d9;
+	--hljs-syntax-markup-bold-color: #c9d1d9;
+	--hljs-syntax-markup-inserted-color: #aff5b4;
+	--hljs-syntax-markup-inserted-background-color: #033a16;
+	--hljs-syntax-markup-deleted-color: #ffdcd7;
+	--hljs-syntax-markup-deleted-background-color: #67060c;
+}
+
+@mixin highlight-rules {
+	pre:has(.hljs) {
+		color: var(--hljs-color);
+		background: var(--hljs-background-color);
+	}
+
+	.hljs-doctag,
+	.hljs-keyword,
+	.hljs-meta .hljs-keyword,
+	.hljs-template-tag,
+	.hljs-template-variable,
+	.hljs-type,
+	.hljs-variable.language_ {
+		/* prettylights-syntax-keyword */
+		color: var(--hljs-syntax-keyword-color);
+	}
+
+	.hljs-title,
+	.hljs-title.class_,
+	.hljs-title.class_.inherited__,
+	.hljs-title.function_ {
+		/* prettylights-syntax-entity */
+		color: var(--hljs-syntax-entity-color)
+	}
+
+	.hljs-attr,
+	.hljs-attribute,
+	.hljs-literal,
+	.hljs-meta,
+	.hljs-number,
+	.hljs-operator,
+	.hljs-variable,
+	.hljs-selector-attr,
+	.hljs-selector-class,
+	.hljs-selector-id {
+		/* prettylights-syntax-constant */
+		color: var(--hljs-syntax-constant-color);
+	}
+
+	.hljs-regexp,
+	.hljs-string,
+	.hljs-meta .hljs-string {
+		/* prettylights-syntax-string */
+		color: var(--hljs-syntax-string-color);
+	}
+
+	.hljs-built_in,
+	.hljs-symbol {
+		/* prettylights-syntax-variable */
+		color: var(--hljs-syntax-variable-color);
+	}
+
+	.hljs-comment,
+	.hljs-code,
+	.hljs-formula {
+		/* prettylights-syntax-comment */
+		color: var(--hljs-syntax-comment-color);
+	}
+
+	.hljs-name,
+	.hljs-quote,
+	.hljs-selector-tag,
+	.hljs-selector-pseudo {
+		/* prettylights-syntax-entity-tag */
+		color: var(--hljs-syntax-entity-tag-color);
+	}
+
+	.hljs-subst {
+		/* prettylights-syntax-storage-modifier-import */
+		color: var(--hljs-syntax-storage-modifier-import-color);
+	}
+
+	.hljs-section {
+		/* prettylights-syntax-markup-heading */
+		color: var(--hljs-syntax-markup-heading-color);
+		font-weight: bold
+	}
+
+	.hljs-bullet {
+		/* prettylights-syntax-markup-list */
+		color: var(--hljs-syntax-markup-list-color);
+	}
+
+	.hljs-emphasis {
+		/* prettylights-syntax-markup-italic */
+		color: var(--hljs-syntax-markup-italic-color);
+		font-style: italic
+	}
+
+	.hljs-strong {
+		/* prettylights-syntax-markup-bold */
+		color: var(--hljs-syntax-markup-bold-color);
+		font-weight: bold
+	}
+
+	.hljs-addition {
+		/* prettylights-syntax-markup-inserted */
+		color: var(--hljs-syntax-markup-inserted-color);
+		background-color: var(--hljs-syntax-markup-inserted-background-color);
+	}
+
+	.hljs-deletion {
+		/* prettylights-syntax-markup-deleted */
+		color: var(--hljs-syntax-markup-deleted-color);
+		background-color: var(--hljs-syntax-markup-deleted-background-color);
+	}
+
+	.hljs-char.escape_,
+	.hljs-link,
+	.hljs-params,
+	.hljs-property,
+	.hljs-punctuation,
+	.hljs-tag {
+		/* purposely ignored */
+	}
+}
