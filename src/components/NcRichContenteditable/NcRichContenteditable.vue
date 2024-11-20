@@ -766,7 +766,8 @@ export default {
 		 * @param {string} htmlOrText the html content (or raw text with @mentions)
 		 */
 		updateValue(htmlOrText) {
-			const text = this.parseContent(htmlOrText)
+			// Browsers keep <br> after erasing contenteditable
+			const text = this.parseContent(htmlOrText).replace(/^\n$/, '')
 			this.localValue = text
 			this.$emit('update:modelValue', text)
 		},
