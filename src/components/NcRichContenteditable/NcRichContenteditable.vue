@@ -266,7 +266,6 @@ export default {
 			@input="onInput"
 			@compositionstart="isComposing = true"
 			@compositionend="isComposing = false"
-			@keydown.delete="onDelete"
 			@keydown.esc.capture="onKeyEsc"
 			@keydown.enter.exact="onEnter"
 			@keydown.ctrl.enter.exact.stop.prevent="onCtrlEnter"
@@ -466,15 +465,6 @@ export default {
 		 */
 		isEmptyValue() {
 			return !this.localValue || this.localValue.trim() === ''
-		},
-
-		/**
-		 * Is this Firefox? 🙄
-		 *
-		 * @return {boolean}
-		 */
-		isFF() {
-			return !!navigator.userAgent.match(/firefox/i)
 		},
 
 		/**
@@ -758,23 +748,13 @@ export default {
 			const text = clipboardData.getData('text')
 			const selection = window.getSelection()
 
-			// If no selection, replace the whole data
-			if (!selection.rangeCount) {
-				this.updateValue(text)
-				return
-			}
-
 			// Generate text and insert
 			const range = selection.getRangeAt(0)
-			selection.deleteFromDocument()
+			range.deleteContents()
 			range.insertNode(document.createTextNode(text))
 
-			// Put cursor at the end of the selection
-			const newRange = document.createRange()
-			newRange.setStart(event.target, range.endOffset)
-			newRange.collapse(true)
-			selection.removeAllRanges()
-			selection.addRange(newRange)
+			// Collapse the range to the end position
+			range.collapse(false)
 
 			// Propagate data
 			this.updateValue(this.$refs.contenteditable.innerHTML)
@@ -786,7 +766,8 @@ export default {
 		 * @param {string} htmlOrText the html content (or raw text with @mentions)
 		 */
 		updateValue(htmlOrText) {
-			const text = this.parseContent(htmlOrText)
+			// Browsers keep <br> after erasing contenteditable
+			const text = this.parseContent(htmlOrText).replace(/^\n$/, '')
 			this.localValue = text
 			this.$emit('update:modelValue', text)
 		},
@@ -802,59 +783,6 @@ export default {
 			this.localValue = value
 		},
 
-		/**
-		 * Because FF have a decade old bug preventing contenteditable=false
-		 * to properly be deleted on backspace, we have to hack 👀
-		 * https://stackoverflow.com/a/59383394/3885878
-		 * https://stackoverflow.com/a/30574622
-		 *
-		 * @param {Event} event the delete keydown event
-		 */
-		onDelete(event) {
-			if (!this.isFF || !window.getSelection) {
-				return
-			}
-
-			// Either disabled or edit deactivated
-			if (!this.canEdit) {
-				return
-			}
-
-			// fix backspace bug in FF
-			// https://bugzilla.mozilla.org/show_bug.cgi?id=685445
-			// https://bugzilla.mozilla.org/show_bug.cgi?id=1665167
-			const selection = window.getSelection()
-			const node = event.target
-			if (!selection.isCollapsed || !selection.rangeCount) {
-				return
-			}
-
-			const curRange = selection.getRangeAt(selection.rangeCount - 1)
-			if (curRange.commonAncestorContainer.nodeType === 3 && curRange.startOffset > 0) {
-				// we are in child selection. The characters of the text node is being deleted
-				return
-			}
-
-			const range = document.createRange()
-			if (selection.anchorNode !== node) {
-				// selection is in character mode. expand it to the whole editable field
-				range.selectNodeContents(node)
-				range.setEndBefore(selection.anchorNode)
-			} else if (selection.anchorOffset > 0) {
-				range.setEnd(node, selection.anchorOffset)
-			} else {
-				// reached the beginning of editable field
-				return
-			}
-			range.setStart(node, range.endOffset - 1)
-
-			const previousNode = range.cloneContents().lastChild
-			if (previousNode && previousNode.contentEditable === 'false') {
-				// this is some rich content, e.g. smile. We should help the user to delete it
-				range.deleteContents()
-				event.preventDefault()
-			}
-		},
 		/**
 		 * Enter key pressed. Submits if not multiline
 		 *
