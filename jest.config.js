@@ -15,6 +15,7 @@ const ignorePatterns = [
 	'hast-*',
 	'is-*',
 	'longest-streak', // ESM dependency of remark-gfm
+	'lowlight', // ESM dependency of rehype-highlight
 	'markdown-table', // ESM dependency of remark-gfm
 	'mdast-util-*',
 	'micromark',
