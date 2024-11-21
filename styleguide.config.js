@@ -231,7 +231,8 @@ module.exports = async () => {
 							{
 								name: 'NcAppSidebar',
 								components: [
-									'src/components/NcAppSidebar*/*.vue',
+									'src/components/NcAppSidebar/NcAppSidebar.vue',
+									'src/components/NcAppSidebarTab/NcAppSidebarTab.vue',
 								],
 							},
 							{
