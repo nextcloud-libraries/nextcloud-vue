@@ -68,6 +68,32 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 </script>
 ```
 
+#### Usage: type='time'
+```vue
+<template>
+	<div>
+		<span>Picked time: {{ value || 'null' }}</span>
+		<NcDateTimePickerNative
+			v-model="value"
+			:id="id"
+			:label="label"
+			type="time" />
+	</div>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				value: new Date(),
+				id: 'date-time-picker',
+				label: 'Please select a new time',
+			}
+		},
+	}
+</script>
+```
+
 #### Usage: type='week'
 ```vue
 <template>
