@@ -5,6 +5,27 @@
 
 # Changelog
 
+## [v8.21.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.21.0) (2024-11-21)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.20.0...v8.21.0)
+
+
+### 🚀 Enhancements
+* feat(NcRichText): highlight code syntax if language provided [\#6212](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6212) \([Antreesy](https://github.com/Antreesy)\)
+
+### 🐛 Fixed bugs
+* fix(NcInputField): correct position of trailing icon in RTL [\#6202](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6202) \([alsulami1](https://github.com/alsulami1)\)
+* fix(NcChip): wrong color-primary-text variable used [\#6218](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6218) \([skjnldsv](https://github.com/skjnldsv)\)
+* fix: make sure model event in `v-model` happens first to avoid regression [\#6234](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6234) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcTextField): don't fire value-updating events twice [\#6235](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6235) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcRichContenteditable): support mentions of email/* guests [\#6233](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6233) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcAppContent): correct splitter color in dark mode when using split-horizontal mode [\#6227](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6227) \([wofferl](https://github.com/wofferl)\)
+* fix(NcRichContenteditable): do not break adjacent user mentions [\#6223](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6223) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcRichContenteditable): fix pasting of the content to an empty field [\#6241](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6241) \([DorraJaouad](https://github.com/DorraJaouad)\)
+
+## New Contributors
+* @alsulami1 made their first contribution in [\#6202](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6202)
+* @wofferl made their first contribution in [\#6227](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6227)
+
 ## [v8.20.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.20.0) (2024-10-29)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.19.0...v8.20.0)
 
