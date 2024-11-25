@@ -321,15 +321,13 @@ import { RouterLink } from 'vue-router'
 /**
  * Heavy libraries should be loaded on demand to reduce component size
  */
-let rehypeHighlight
-const rehypeHighlightLoaded = ref(false)
+const rehypeHighlight = ref(null)
 /**
  * Load 'rehype-highlight' library when code block is rendered with `useExtendedMarkdown`
  */
-async function importRehypeLibrary() {
+async function importRehypeHighlightLibrary() {
 	const module = await import('rehype-highlight')
-	rehypeHighlight = module.default
-	rehypeHighlightLoaded.value = true
+	rehypeHighlight.value = module.default
 }
 
 export default {
@@ -473,7 +471,7 @@ export default {
 						},
 					},
 				})
-				.use((this.useExtendedMarkdown && rehypeHighlightLoaded.value) ? rehypeHighlight : undefined)
+				.use(this.useExtendedMarkdown ? rehypeHighlight.value : undefined)
 				// .use(rehypeAddClasses, this.markdownCssClasses)
 				.use(remarkPlaceholder)
 				.use(rehypeExternalLinks, {
@@ -490,8 +488,9 @@ export default {
 
 						if (!tag.startsWith('#')) {
 							if (this.useExtendedMarkdown) {
-								if (tag === 'code' && !rehypeHighlightLoaded.value) {
-									importRehypeLibrary()
+								if (tag === 'code' && !rehypeHighlight.value
+									&& attrs?.attrs?.class?.includes('language')) {
+									importRehypeHighlightLibrary()
 								}
 								let nestedNode = null
 								if (tag === 'li' && Array.isArray(children)
