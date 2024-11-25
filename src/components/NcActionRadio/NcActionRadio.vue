@@ -9,12 +9,37 @@ Usually, you will provide a name prop to bind the radio together.
 So that only one of each name set can be selected at the same time.
 
 ```vue
-	<NcActions>
-		<NcActionRadio @change="alert('(un)checked !')" name="uniqueId">First choice</NcActionRadio>
-		<NcActionRadio value="second" name="uniqueId" @change="alert('(un)checked !')">Second choice</NcActionRadio>
-		<NcActionRadio :model-value="true" name="uniqueId" @change="alert('(un)checked !')">Third choice (checked)</NcActionRadio>
-		<NcActionRadio :disabled="true" name="uniqueId" @change="alert('(un)checked !')">Second choice (disabled)</NcActionRadio>
-	</NcActions>
+<template>
+	<div>
+		<NcActions>
+			<NcActionRadio v-for="option in radioOptions"
+				:key="option.value"
+				:value="option.value"
+				:disabled="option.disabled"
+				name="uniqueId"
+				v-model="radioValue">
+				{{ option.label }}
+			</NcActionRadio>
+		</NcActions>
+		<span>Selected value: {{ radioValue }}</span>
+	</div>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				radioOptions: [
+					{ value: 'first', label: 'First choise', disabled: false },
+					{ value: 'second', label: 'Second choise', disabled: false },
+					{ value: 'third', label: 'Third choise', disabled: false },
+					{ value: 'fourth', label: 'Fourth choise (disabled)', disabled: true },
+				],
+				radioValue: 'first',
+			}
+		},
+	}
+</script>
 ```
 </docs>
 
@@ -23,8 +48,8 @@ So that only one of each name set can be selected at the same time.
 		<span class="action-radio" role="menuitemradio" :aria-checked="ariaChecked">
 			<input :id="id"
 				ref="radio"
+				v-model="model"
 				:disabled="disabled"
-				:checked="modelValue"
 				:name="name"
 				:value="value"
 				:class="{ focusable: isFocusable }"
@@ -67,11 +92,11 @@ export default {
 		},
 
 		/**
-		 * checked state of the the radio element
+		 * checked state of the radio element
 		 */
 		modelValue: {
-			type: Boolean,
-			default: false,
+			type: [String, Number],
+			default: '',
 		},
 
 		/**
@@ -116,6 +141,20 @@ export default {
 			return !this.disabled
 		},
 
+		model: {
+			get() {
+				return this.modelValue
+			},
+			set(value) {
+				/**
+				 * Emitted when the radio state is changed
+				 *
+				 * @type {string|number}
+				 */
+				this.$emit('update:modelValue', value)
+			},
+		},
+
 		/**
 		 * aria-checked attribute for role="menuitemcheckbox"
 		 *
@@ -123,7 +162,7 @@ export default {
 		 */
 		 ariaChecked() {
 			if (this.isInSemanticMenu) {
-				return this.modelValue ? 'true' : 'false'
+				return this.modelValue === this.value ? 'true' : 'false'
 			}
 			return undefined
 		},
@@ -135,13 +174,6 @@ export default {
 			this.$refs.label.click()
 		},
 		onChange(event) {
-			/**
-			 * Emitted when the radio state is changed
-			 *
-			 * @type {boolean}
-			 */
-			this.$emit('update:modelValue', this.$refs.radio.checked)
-
 			/**
 			 * Emitted when the radio state is changed
 			 *
