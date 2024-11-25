@@ -3,7 +3,26 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-type ContactsMenuCallback = () => void
+// Taken from \OC\Contacts\ContactsMenu\Entry::jsonSerialize
+interface ContactsMenuEntry {
+	id: number|string|null,
+	fullName: string,
+	avatar: string|null,
+	topAction: object|null,
+	actions: object[],
+	lastMessage: '',
+	emailAddresses: string[],
+	profileTitle: string|null,
+	profileUrl: string|null,
+	status: string|null,
+	statusMessage: null|string,
+	statusMessageTimestamp: null|number,
+	statusIcon: null|string,
+	isUser: boolean,
+	uid: null|string,
+}
+
+type ContactsMenuCallback = (entry: ContactsMenuEntry) => void
 
 interface ContactsMenuHookProps {
 	id: string;
@@ -32,8 +51,8 @@ const registerContactsMenuHook = (id: string, callback: ContactsMenuCallback) =>
 	}
 }
 
-const callContactsMenuHook = (id: string) => {
-	window._vue_contacts_menu_hooks[id]?.callback()
+const callContactsMenuHook = (id: string, entry: ContactsMenuEntry) => {
+	window._vue_contacts_menu_hooks[id]?.callback(entry)
 }
 
 const hasContactsMenuHook = (id: string) => {

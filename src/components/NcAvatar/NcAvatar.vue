@@ -422,6 +422,7 @@ export default {
 			isAvatarLoaded: false,
 			isMenuLoaded: false,
 			contactsMenuLoading: false,
+			contactsMenuData: {},
 			contactsMenuActions: [],
 			contactsMenuOpenState: false,
 		}
@@ -586,8 +587,7 @@ export default {
 							},
 							ncActionComponentHandlers: {
 								click: () => {
-									console.log('click handler')
-									callContactsMenuHook(item.hook)
+									callContactsMenuHook(item.hook, this.contactsMenuData)
 								},
 							},
 						}
@@ -692,6 +692,7 @@ export default {
 			try {
 				const user = encodeURIComponent(this.user)
 				const { data } = await axios.post(generateUrl('contactsmenu/findOne'), `shareType=0&shareWith=${user}`)
+				this.contactsMenuData = data
 				this.contactsMenuActions = data.topAction ? [data.topAction].concat(data.actions) : data.actions
 			} catch (e) {
 				this.contactsMenuOpenState = false
