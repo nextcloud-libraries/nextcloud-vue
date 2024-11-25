@@ -514,7 +514,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 					<NcActions ref="actions"
 						:primary="isActive || active"
 						:force-menu="forceMenu"
-						:aria-label="computedActionsAriaLabel"
+						:aria-label="actionsAriaLabel"
 						@update:open="handleActionsUpdateOpen">
 						<template v-if="$slots['actions-icon']" #icon>
 							<!-- @slot Provide the custom icon for the right side quick menu -->
@@ -538,7 +538,6 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 import NcActions from '../NcActions/index.js'
 import NcCounterBubble from '../NcCounterBubble/index.js'
 import NcVNodes from '../NcVNodes/index.js'
-import { t } from '../../l10n.js'
 
 export default {
 	name: 'NcListItem',
@@ -563,7 +562,7 @@ export default {
 		 */
 		name: {
 			type: String,
-			required: true,
+			default: undefined,
 		},
 
 		/**
@@ -641,7 +640,7 @@ export default {
 		 */
 		actionsAriaLabel: {
 			type: String,
-			default: '',
+			default: undefined,
 		},
 
 		/**
@@ -723,10 +722,6 @@ export default {
 		showDetails() {
 			return (this.details !== '' || this.hasDetails)
 				&& (!this.displayActionsOnHoverFocus || this.forceDisplayActions)
-		},
-
-		computedActionsAriaLabel() {
-			return this.actionsAriaLabel || t('Actions for item with name "{name}"', { name: this.name })
 		},
 	},
 
