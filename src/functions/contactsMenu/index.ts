@@ -3,8 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import logger from '../../utils/logger.js'
+
 // Taken from \OC\Contacts\ContactsMenu\Entry::jsonSerialize
-interface ContactsMenuEntry {
+export interface ContactsMenuEntry {
 	id: number|string|null,
 	fullName: string,
 	avatar: string|null,
@@ -22,45 +24,54 @@ interface ContactsMenuEntry {
 	uid: null|string,
 }
 
-type ContactsMenuCallback = (entry: ContactsMenuEntry) => void
+export type ContactsMenuActionCallback = (entry: ContactsMenuEntry) => void
 
-interface ContactsMenuHookProps {
-	id: string;
-	callback: ContactsMenuCallback;
+export interface ContactsMenuAction {
+	id: string,
+	displayName: (entry: ContactsMenuEntry) => string,
+	enabled: (entry: ContactsMenuEntry) => boolean,
+	iconSvg: (entry: ContactsMenuEntry) => string,
+	callback: ContactsMenuActionCallback,
 }
 
-declare global {
-	interface Window {
-		_vue_contacts_menu_hooks: Record<string, ContactsMenuHookProps>;
-	}
-}
+/**
+ * Register a contacts and avatar menu action that will invoke the given callback on click.
+ *
+ * @param {ContactsMenuAction} action The action to register
+ */
+export function registerContactsMenuAction(action: ContactsMenuAction): void {
+	window._nc_contacts_menu_hooks ??= {}
 
-if (!window._vue_contacts_menu_hooks) {
-	window._vue_contacts_menu_hooks = {}
-}
-
-const registerContactsMenuHook = (id: string, callback: ContactsMenuCallback) => {
-	if (window._vue_contacts_menu_hooks[id]) {
-		console.error(`Hook for id ${id} already registered`)
+	if (window._nc_contacts_menu_hooks[action.id]) {
+		logger.error(`ContactsMenu action for id ${action.id} was already registered`, {
+			action,
+		})
 		return
 	}
 
-	window._vue_contacts_menu_hooks[id] = {
-		id,
-		callback,
+	window._nc_contacts_menu_hooks[action.id] = action
+}
+
+/**
+ * Check if a contacts menu action with the given id was registered and is enabled for the given
+ * entry.
+ *
+ * @param {string} id The unique id by which the action was registered
+ * @param {ContactsMenuEntry} entry The contacts menu entry object as returned by the backend
+ */
+export function isContactsMenuActionEnabled(id: string, entry: ContactsMenuEntry): boolean {
+	return window._nc_contacts_menu_hooks?.[id]?.enabled(entry) ?? false
+}
+
+/**
+ * Get all registered and enabled contacts menu actions for the given menu entry.
+ *
+ * @param {ContactsMenuEntry} entry The contacts menu entry object as returned by the backend
+ */
+export function getEnabledContactsMenuActions(entry: ContactsMenuEntry): ContactsMenuAction[] {
+	if (!window._nc_contacts_menu_hooks) {
+		return []
 	}
-}
 
-const callContactsMenuHook = (id: string, entry: ContactsMenuEntry) => {
-	window._vue_contacts_menu_hooks[id]?.callback(entry)
-}
-
-const hasContactsMenuHook = (id: string) => {
-	return !!window._vue_contacts_menu_hooks[id]
-}
-
-export {
-	registerContactsMenuHook,
-	callContactsMenuHook,
-	hasContactsMenuHook,
+	return Object.values(window._nc_contacts_menu_hooks).filter((action) => action.enabled(entry))
 }

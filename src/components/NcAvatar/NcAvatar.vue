@@ -239,12 +239,13 @@ import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
 import usernameToColor from '../../functions/usernameToColor/index.js'
-import { callContactsMenuHook, hasContactsMenuHook } from '../../functions/contactsMenu/index.ts'
+import { getEnabledContactsMenuActions } from '../../functions/contactsMenu/index.ts'
 import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
 import { getUserStatusText } from '../../utils/UserStatus.ts'
 import { userStatus } from '../../mixins/index.js'
 import { t } from '../../l10n.js'
 import { getRoute } from '../../components/NcRichText/autolink.js'
+import logger from '../../utils/logger.js'
 
 import axios from '@nextcloud/axios'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
@@ -553,47 +554,41 @@ export default {
 			return initials.toLocaleUpperCase()
 		},
 		menu() {
-			const actions = this.contactsMenuActions
-				.map((item) => {
-					switch (item.type) {
-					default: // Backwards compatibility
-					case 'LinkAction':
-						const route = getRoute(this.$router, item.hyperlink)
-						return {
-							ncActionComponent: route ? NcActionRouter : NcActionLink,
-							ncActionComponentProps: route
-								? {
-									to: route,
-									icon: item.icon,
-								}
-								: {
-									href: item.hyperlink,
-									icon: item.icon,
-								},
-							ncActionComponentHandlers: {},
-							text: item.title,
+			const actions = this.contactsMenuActions.map((item) => {
+				const route = getRoute(this.$router, item.hyperlink)
+				return {
+					ncActionComponent: route ? NcActionRouter : NcActionLink,
+					ncActionComponentProps: route
+						? {
+							to: route,
+							icon: item.icon,
 						}
-					case 'JavascriptAction':
-						if (!item.hook || !hasContactsMenuHook(item.hook)) {
-							console.warn(`Skipping missing hook ${item.hook}`)
-							return undefined
-						}
+						: {
+							href: item.hyperlink,
+							icon: item.icon,
+						},
+					text: item.title,
+				}
+			})
 
-						return {
-							ncActionComponent: NcActionButton,
-							ncActionComponentProps: {
-								icon: item.icon,
-								text: item.title,
-							},
-							ncActionComponentHandlers: {
-								click: () => {
-									callContactsMenuHook(item.hook, this.contactsMenuData)
-								},
-							},
-						}
-					}
-				})
-				.filter(item => item)
+			for (const action of getEnabledContactsMenuActions(this.contactsMenuData)) {
+				try {
+					actions.push({
+						ncActionComponent: NcActionButton,
+						ncActionComponentProps: {},
+						ncActionComponentHandlers: {
+							click: () => action.callback(this.contactsMenuData),
+						},
+						text: action.displayName(this.contactsMenuData),
+						iconSvg: action.iconSvg(this.contactsMenuData),
+					})
+				} catch (error) {
+					logger.error(`Failed to render ContactsMenu action ${action.id}`, {
+						error,
+						action,
+					})
+				}
+			}
 
 			/**
 			 * @param {string} html The HTML to escape
