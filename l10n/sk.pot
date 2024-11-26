@@ -30,9 +30,6 @@ msgstr "Acapulco"
 msgid "Actions"
 msgstr "Akcie"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Akcie pre položku s názvom \"{name}\""
-
 msgid "Activities"
 msgstr "Aktivity"
 
