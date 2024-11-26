@@ -30,9 +30,6 @@ msgstr "Akapulko"
 msgid "Actions"
 msgstr "İşlemler"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "{name} adındaki öge için işlemler"
-
 msgid "Activities"
 msgstr "Etkinlikler"
 
