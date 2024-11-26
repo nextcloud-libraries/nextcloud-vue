@@ -106,7 +106,7 @@
     "vue": "^2.7.16",
     "vue-color": "^2.8.1",
     "vue-frag": "^1.4.3",
-    "vue-router": "^3.6.5",
+    "vue-router": "^4.5.0",
     "vue2-datepicker": "^3.11.0"
   },
   "engines": {
