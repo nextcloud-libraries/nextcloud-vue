@@ -30,9 +30,6 @@ msgstr "Acapulco"
 msgid "Actions"
 msgstr "Handlinger"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Handlinger for element med navnet \"{name}\""
-
 msgid "Activities"
 msgstr "Aktiviteter"
 
