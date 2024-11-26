@@ -31,9 +31,6 @@ msgstr "آکاپولکو"
 msgid "Actions"
 msgstr "کنش‌ها"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "کنش‌ها برای موردی با نام «{name}»"
-
 msgid "Activities"
 msgstr "فعالیت‌ها"
 
