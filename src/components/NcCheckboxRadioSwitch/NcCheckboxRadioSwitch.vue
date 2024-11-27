@@ -690,6 +690,10 @@ export default {
 		:deep(.checkbox-radio-switch__icon) > * {
 			color: var(--color-main-text)
 		}
+		&.checkbox-content,
+		&.checkbox-content :deep(*:not(a)) {
+			cursor: default !important;
+		}
 	}
 
 	&:not(&--disabled, &--checked):focus-within &__content,
