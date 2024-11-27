@@ -24,14 +24,12 @@ export interface ContactsMenuEntry {
 	uid: null|string,
 }
 
-export type ContactsMenuActionCallback = (entry: ContactsMenuEntry) => void
-
 export interface ContactsMenuAction {
 	id: string,
 	displayName: (entry: ContactsMenuEntry) => string,
 	enabled: (entry: ContactsMenuEntry) => boolean,
 	iconSvg: (entry: ContactsMenuEntry) => string,
-	callback: ContactsMenuActionCallback,
+	callback: (entry: ContactsMenuEntry) => void,
 }
 
 /**
