@@ -41,24 +41,13 @@ export function registerContactsMenuAction(action: ContactsMenuAction): void {
 	window._nc_contacts_menu_hooks ??= {}
 
 	if (window._nc_contacts_menu_hooks[action.id]) {
-		logger.error(`ContactsMenu action for id ${action.id} was already registered`, {
+		logger.error(`ContactsMenu action for id ${action.id} has already been registered`, {
 			action,
 		})
 		return
 	}
 
 	window._nc_contacts_menu_hooks[action.id] = action
-}
-
-/**
- * Check if a contacts menu action with the given id was registered and is enabled for the given
- * entry.
- *
- * @param {string} id The unique id by which the action was registered
- * @param {ContactsMenuEntry} entry The contacts menu entry object as returned by the backend
- */
-export function isContactsMenuActionEnabled(id: string, entry: ContactsMenuEntry): boolean {
-	return window._nc_contacts_menu_hooks?.[id]?.enabled(entry) ?? false
 }
 
 /**
