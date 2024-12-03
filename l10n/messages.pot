@@ -191,6 +191,10 @@ msgstr ""
 msgid "Load more \"{options}\""
 msgstr ""
 
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr ""
+
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr ""
