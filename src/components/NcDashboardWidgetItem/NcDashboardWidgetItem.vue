@@ -196,7 +196,7 @@ export default {
 		margin-bottom: auto;
 	}
 	.item__details {
-		padding-left: 8px;
+		padding-inline-start: 8px;
 		max-height: fit-content;
 		flex-grow: 1;
 		overflow: hidden;
@@ -230,7 +230,8 @@ export default {
 		position: relative;
 		width: 14px;
 		height: 14px;
-		margin: 27px -3px 0px -7px;
+		margin-top: 25px;
+		margin-inline: -10px -2px;
 	}
 
 	button.primary {
@@ -242,8 +243,7 @@ export default {
 .content-popover {
 	height: 0px;
 	width: 0px;
-	margin-left: auto;
-	margin-right: auto;
+	margin-inline: auto;
 }
 .popover-container {
 	width: 100%;
