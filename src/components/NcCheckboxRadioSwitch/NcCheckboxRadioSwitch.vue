@@ -278,7 +278,7 @@ export default {
 			:name="name"
 			v-bind="nonDataAttrs"
 			v-on="listeners">
-		<NcCheckboxContent :id="id"
+		<NcCheckboxContent :id="!isButtonType ? `${id}-label` : undefined"
 			class="checkbox-radio-switch__content"
 			icon-class="checkbox-radio-switch__icon"
 			text-class="checkbox-radio-switch__text"
