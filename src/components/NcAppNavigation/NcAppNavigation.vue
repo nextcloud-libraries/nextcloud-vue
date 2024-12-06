@@ -327,7 +327,7 @@ export default {
 	max-width: var(--app-navigation-max-width);
 	position: relative;
 	top: 0;
-	left: 0;
+	inset-inline-start: 0;
 	padding: 0px;
 	// Above NcAppContent
 	z-index: 1800;
