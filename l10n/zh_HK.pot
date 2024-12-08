@@ -1,11 +1,11 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Café Tango, 2023
+# Café Tango, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Café Tango, 2023\n"
+"Last-Translator: Café Tango, 2024\n"
 "Language-Team: Chinese (Hong Kong) (https://app.transifex.com/nextcloud/teams/64236/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_HK\n"
@@ -17,17 +17,24 @@ msgstr "{tag} (隱藏)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (受限)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "具有 HEX 值 {hex}的顏色 "
+
 msgid "a few seconds ago"
 msgstr "幾秒前"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "阿卡普爾科"
 
 msgid "Actions"
 msgstr "動作"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "名稱為「{name}」項目的操作"
-
 msgid "Activities"
 msgstr "活動"
+
+msgid "Add to a project"
+msgstr "添加到項目中"
 
 msgid "Animals & Nature"
 msgstr "動物與自然"
@@ -44,6 +51,7 @@ msgstr "{displayName} 的頭像"
 msgid "Avatar of {displayName}, {status}"
 msgstr "{displayName} 的頭像，{status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
 msgstr "離開"
 
@@ -52,6 +60,17 @@ msgstr "返回"
 
 msgid "Back to provider selection"
 msgstr "回到提供者選擇"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "藍紫色"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "波士頓藍"
+
+msgid "busy"
+msgstr "忙碌"
 
 msgid "Cancel changes"
 msgstr "取消更改"
@@ -65,14 +84,14 @@ msgstr "選擇"
 msgid "Clear search"
 msgstr "清除搜索"
 
+msgid "Clear selected"
+msgstr "清除所選項目"
+
 msgid "Clear text"
 msgstr "清除文本"
 
 msgid "Close"
 msgstr "關閉"
-
-msgid "Close modal"
-msgstr "關閉模態"
 
 msgid "Close navigation"
 msgstr "關閉導航"
@@ -86,17 +105,39 @@ msgstr "關閉 Smart Picker"
 msgid "Collapse menu"
 msgstr "折疊選單"
 
+msgid "Color picker"
+msgstr "顏色選擇器"
+
 msgid "Confirm changes"
 msgstr "確認更改"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "將項目連接到方案中，以便更容易找到。"
+
 msgid "Custom"
 msgstr "自定義"
+
+msgid "Dark skin tone"
+msgstr "深膚色"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "大洪水"
+
+msgid "Deselect {option}"
+msgstr "取消選擇 {option}"
 
 msgid "do not disturb"
 msgstr "請勿打擾"
 
 msgid "Edit item"
 msgstr "編輯項目"
+
+msgid "Emoji picker"
+msgstr "表情符號選擇器"
+
+msgid "Enable interactive view"
+msgstr "啟用互動視圖"
 
 msgid "Enter link"
 msgstr "輸入連結"
@@ -109,8 +150,21 @@ msgstr "取得相關資源時發生錯誤。如果有任何問題，請聯絡系
 msgid "External documentation for {name}"
 msgstr "{name} 的外部文件"
 
+msgid "Failed to add the item to the project"
+msgstr "無法將項目添加到方案中"
+
+msgid "Failed to create a project"
+msgstr "無法創建方案"
+
+msgid "Failed to rename the project"
+msgstr "無法重命名方案"
+
 msgid "Favorite"
 msgstr "喜愛"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "長石"
 
 msgid "Flags"
 msgstr "旗幟"
@@ -127,11 +181,43 @@ msgstr "全球的"
 msgid "Go back to the list"
 msgstr "返回清單"
 
+msgid "Gold"
+msgstr "Gold"
+
+msgid "Hide details"
+msgstr "隱藏詳情"
+
 msgid "Hide password"
 msgstr "隱藏密碼"
 
+msgid "invisible"
+msgstr "隐藏的"
+
+msgid "Keyboard navigation help"
+msgstr "鍵盤導航幫助"
+
+msgid "Light skin tone"
+msgstr "淺膚色"
+
 msgid "Load more \"{options}\""
 msgstr "載入更多 \"{options}\""
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "加載中 …"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "海軍藍"
+
+msgid "Medium dark skin tone"
+msgstr "中等深膚色"
+
+msgid "Medium light skin tone"
+msgstr "中等淺膚色"
+
+msgid "Medium skin tone"
+msgstr "中等膚色"
 
 msgid "Message limit of {count} characters reached"
 msgstr "已達到訊息最多 {count} 字元限制"
@@ -142,8 +228,14 @@ msgstr "更多項目 …"
 msgid "More options"
 msgstr "更多選項"
 
+msgid "Neutral skin color"
+msgstr "中性色膚色"
+
 msgid "Next"
 msgstr "下一個"
+
+msgid "Nextcloud blue"
+msgstr "Nextcloud 藍色"
 
 msgid "No emoji found"
 msgstr "未找到表情符號"
@@ -160,11 +252,12 @@ msgstr "物件"
 msgid "offline"
 msgstr "離線"
 
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "橄欖石色"
+
 msgid "online"
 msgstr "在線"
-
-msgid "Open contact menu"
-msgstr "開啟通訊錄選單"
 
 msgid "Open link to \"{resourceName}\""
 msgstr "開啟到「{resourceName}」的連結"
@@ -175,8 +268,11 @@ msgstr "開啟選單"
 msgid "Open navigation"
 msgstr "開啟導航"
 
-msgid "Open settings menu"
-msgstr "開啟設定選單"
+msgid "Open sidebar"
+msgstr "打開側邊欄"
+
+msgid "Options"
+msgstr "選項"
 
 msgid "Password is secure"
 msgstr "密碼是安全的"
@@ -217,11 +313,27 @@ msgstr "上一個"
 msgid "Provider icon"
 msgstr "提供者圖示"
 
+msgid "Purple"
+msgstr "紫色"
+
 msgid "Raw link {options}"
 msgstr "原始連結 {options}"
 
 msgid "Related resources"
 msgstr "相關資源"
+
+msgid "Related team resources"
+msgstr "相關團隊資源"
+
+msgid "Rename project"
+msgstr "重命名方案"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "玫瑰棕色"
+
+msgid "Save changes"
+msgstr "保存更改"
 
 msgid "Search"
 msgstr "搜尋"
@@ -229,8 +341,14 @@ msgstr "搜尋"
 msgid "Search emoji"
 msgstr "搜尋表情符號"
 
+msgid "Search for time zone"
+msgstr "搜索時區"
+
 msgid "Search results"
 msgstr "搜尋結果"
+
+msgid "Search…"
+msgstr "搜尋 ..."
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -256,8 +374,20 @@ msgstr "設定"
 msgid "Settings navigation"
 msgstr "設定值導覽"
 
+msgid "Show details"
+msgstr "顯示詳情"
+
 msgid "Show password"
 msgstr "顯示密碼"
+
+msgid "Skin tone"
+msgstr "膚色"
+
+msgid "Skip to app navigation"
+msgstr "跳至應用程式導航"
+
+msgid "Skip to main content"
+msgstr "跳至主要內容"
 
 msgid "Smart Picker"
 msgstr "Smart Picker"
@@ -280,6 +410,9 @@ msgstr "標誌"
 msgid "Travel & Places"
 msgstr "旅遊與景點"
 
+msgid "Type to search for existing projects"
+msgstr "輸入以搜索現有方案"
+
 msgid "Type to search time zone"
 msgstr "鍵入以搜索時區"
 
@@ -291,6 +424,13 @@ msgstr "取消更改"
 
 msgid "User status: {status}"
 msgstr "用戶狀態：{status}"
+
+msgid "View team"
+msgstr "查看團隊"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "威士忌"
 
 msgid "Write a message …"
 msgstr "編寫訊息 …"
