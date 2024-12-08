@@ -29,9 +29,6 @@ msgstr "Akapulko"
 msgid "Actions"
 msgstr "Akce"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Akce pro položku s názvem „{name}“"
-
 msgid "Activities"
 msgstr "Aktivity"
 

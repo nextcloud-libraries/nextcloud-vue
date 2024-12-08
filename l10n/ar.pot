@@ -3,11 +3,11 @@
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Hamza, 2024
 # Ali <alimahwer@yahoo.com>, 2024
-# abusaud, 2024
+# abu.s3ud, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: abusaud, 2024\n"
+"Last-Translator: abu.s3ud, 2024\n"
 "Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
@@ -31,9 +31,6 @@ msgstr "بازلائي مطفي"
 
 msgid "Actions"
 msgstr "إجراءات"
-
-msgid "Actions for item with name \"{name}\""
-msgstr "إجراءات على العنصر المُسمَّى \"{name}\""
 
 msgid "Activities"
 msgstr "سجل الأنشطة"

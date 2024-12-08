@@ -31,9 +31,6 @@ msgstr "アカプルコ"
 msgid "Actions"
 msgstr "操作"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "名前 \"{name}\" を持つアイテムのアクション"
-
 msgid "Activities"
 msgstr "アクティビティ"
 

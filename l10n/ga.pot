@@ -29,9 +29,6 @@ msgstr "Acapulco"
 msgid "Actions"
 msgstr "Gníomhartha"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Gníomhartha le haghaidh míre leis an ainm \"{name}\""
-
 msgid "Activities"
 msgstr "Gníomhaíochtaí"
 

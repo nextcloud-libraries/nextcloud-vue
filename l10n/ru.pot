@@ -3,10 +3,14 @@
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Max Smith <sevinfolds@gmail.com>, 2023
 # ashed <craysy@gmail.com>, 2023
+# Oye Lukoye, 2024
+# Влад, 2024
+# Max Zav, 2024
+# Maksim Sukharev, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: ashed <craysy@gmail.com>, 2023\n"
+"Last-Translator: Maksim Sukharev, 2024\n"
 "Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
@@ -18,17 +22,24 @@ msgstr "{tag} (невидимое)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (ограниченное)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "Цвет в HEX {hex}"
+
 msgid "a few seconds ago"
 msgstr "несколько секунд назад"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Акапулько"
 
 msgid "Actions"
 msgstr "Действия "
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Действия для элемента с названием \"{name}\""
-
 msgid "Activities"
 msgstr "События"
+
+msgid "Add to a project"
+msgstr "Добавить в проект"
 
 msgid "Animals & Nature"
 msgstr "Животные и природа "
@@ -45,6 +56,7 @@ msgstr "Аватар {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Фотография {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
 msgstr "отсутствие"
 
@@ -53,6 +65,17 @@ msgstr "Назад"
 
 msgid "Back to provider selection"
 msgstr "Вернуться к выбору провайдера"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Синий фиолет"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Синий Бостон"
+
+msgid "busy"
+msgstr "занятый"
 
 msgid "Cancel changes"
 msgstr "Отменить изменения"
@@ -66,14 +89,14 @@ msgstr "Выберите"
 msgid "Clear search"
 msgstr "Очистить поиск"
 
+msgid "Clear selected"
+msgstr "Очистить выбранный"
+
 msgid "Clear text"
 msgstr "Очистить текст"
 
 msgid "Close"
 msgstr "Закрыть"
-
-msgid "Close modal"
-msgstr "Закрыть модальное окно"
 
 msgid "Close navigation"
 msgstr "Закрыть навигацию"
@@ -87,17 +110,39 @@ msgstr "Закрыть интеллектуальный выбор"
 msgid "Collapse menu"
 msgstr "Свернуть меню"
 
+msgid "Color picker"
+msgstr "Выбор цвета"
+
 msgid "Confirm changes"
 msgstr "Подтвердить изменения"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "Подключайте элементы к проекту, чтобы их было легче найти"
+
 msgid "Custom"
 msgstr "Пользовательское"
+
+msgid "Dark skin tone"
+msgstr "Темный оттенок"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Перламутрово-фиолетовый"
+
+msgid "Deselect {option}"
+msgstr "Отменить выбор {option}"
 
 msgid "do not disturb"
 msgstr "не беспокоить"
 
 msgid "Edit item"
 msgstr "Изменить элемент"
+
+msgid "Emoji picker"
+msgstr "Подборщик эмодзи"
+
+msgid "Enable interactive view"
+msgstr "Включить интерактивный просмотр"
 
 msgid "Enter link"
 msgstr "Введите ссылку"
@@ -112,8 +157,21 @@ msgstr ""
 msgid "External documentation for {name}"
 msgstr "Внешняя документация для {name}"
 
+msgid "Failed to add the item to the project"
+msgstr "Не удалось добавить элемент в проект"
+
+msgid "Failed to create a project"
+msgstr "Не удалось создать проект"
+
+msgid "Failed to rename the project"
+msgstr "Не удалось переименовать проект"
+
 msgid "Favorite"
 msgstr "Избранное"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Античная латунь"
 
 msgid "Flags"
 msgstr "Флаги"
@@ -130,11 +188,43 @@ msgstr "Глобальный"
 msgid "Go back to the list"
 msgstr "Вернуться к списку"
 
+msgid "Gold"
+msgstr "Золотой"
+
+msgid "Hide details"
+msgstr "Скрыть подробности"
+
 msgid "Hide password"
 msgstr "Скрыть пароль"
 
+msgid "invisible"
+msgstr "невидимый"
+
+msgid "Keyboard navigation help"
+msgstr "Справка по навигации с помощью клавиатуры"
+
+msgid "Light skin tone"
+msgstr "Светлый оттенок"
+
 msgid "Load more \"{options}\""
 msgstr "Загрузить больше \"{options}\"\""
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Загрузка ..."
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Морской"
+
+msgid "Medium dark skin tone"
+msgstr "Средний темный оттенок"
+
+msgid "Medium light skin tone"
+msgstr "Средний светлый оттенок"
+
+msgid "Medium skin tone"
+msgstr "Средний оттенок"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Достигнуто ограничение на количество символов в {count}"
@@ -145,8 +235,14 @@ msgstr "Больше элементов..."
 msgid "More options"
 msgstr "Больше опций"
 
+msgid "Neutral skin color"
+msgstr "Нейтральный оттенок"
+
 msgid "Next"
 msgstr "Следующее"
+
+msgid "Nextcloud blue"
+msgstr "Nextcloud голубой"
 
 msgid "No emoji found"
 msgstr "Эмодзи не найдено"
@@ -163,11 +259,12 @@ msgstr "Объекты"
 msgid "offline"
 msgstr "офлайн"
 
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr " Оливковый"
+
 msgid "online"
 msgstr "онлайн"
-
-msgid "Open contact menu"
-msgstr "Открыть меню контакта"
 
 msgid "Open link to \"{resourceName}\""
 msgstr "Открыть ссылку на \"{resourceName}\""
@@ -178,8 +275,11 @@ msgstr "Открыть меню"
 msgid "Open navigation"
 msgstr "Открыть навигацию"
 
-msgid "Open settings menu"
-msgstr "Открыть меню настроек"
+msgid "Open sidebar"
+msgstr "Открыть боковую панель"
+
+msgid "Options"
+msgstr "Варианты"
 
 msgid "Password is secure"
 msgstr "Пароль надежный"
@@ -220,11 +320,27 @@ msgstr "Предыдущее"
 msgid "Provider icon"
 msgstr "Значок поставщика"
 
+msgid "Purple"
+msgstr "Фиолетовый"
+
 msgid "Raw link {options}"
 msgstr "Необработанная ссылка {options}"
 
 msgid "Related resources"
 msgstr "Связанные ресурсы"
+
+msgid "Related team resources"
+msgstr "Связанные командные ресурсы"
+
+msgid "Rename project"
+msgstr "Переименовать проект"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Розово-коричневый"
+
+msgid "Save changes"
+msgstr "Сохранить изменения"
 
 msgid "Search"
 msgstr "Поиск"
@@ -232,8 +348,14 @@ msgstr "Поиск"
 msgid "Search emoji"
 msgstr "Поиск эмодзи"
 
+msgid "Search for time zone"
+msgstr "Поиск часового пояса"
+
 msgid "Search results"
 msgstr "Результаты поиска"
+
+msgid "Search…"
+msgstr "Поиск..."
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -259,8 +381,20 @@ msgstr "Параметры"
 msgid "Settings navigation"
 msgstr "Навигация по настройкам"
 
+msgid "Show details"
+msgstr "Показать детали"
+
 msgid "Show password"
 msgstr "Показать пароль"
+
+msgid "Skin tone"
+msgstr "Оттенок скина"
+
+msgid "Skip to app navigation"
+msgstr "Перейти к навигации по приложению"
+
+msgid "Skip to main content"
+msgstr "Перейти к основному содержанию"
 
 msgid "Smart Picker"
 msgstr "Умный выбор"
@@ -283,6 +417,9 @@ msgstr "Символы"
 msgid "Travel & Places"
 msgstr "Путешествия и места"
 
+msgid "Type to search for existing projects"
+msgstr "Введите для поиска существующих проектов"
+
 msgid "Type to search time zone"
 msgstr "Введите для поиска часового пояса"
 
@@ -294,6 +431,13 @@ msgstr "Отменить изменения"
 
 msgid "User status: {status}"
 msgstr "Статус пользователя: {status}"
+
+msgid "View team"
+msgstr "Просмотр команды"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Виски"
 
 msgid "Write a message …"
 msgstr "Напиши сообщение …"
