@@ -305,13 +305,13 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 import { ref } from 'vue'
 import NcReferenceList from './NcReferenceList.vue'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
+import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
 import { getRoute, remarkAutolink } from './autolink.js'
 import { remarkPlaceholder, prepareTextNode } from './placeholder.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
 import { unified } from 'unified'
 import remarkParse from 'remark-parse'
-import remarkGfm from 'remark-gfm'
 import breaks from 'remark-breaks'
 import remark2rehype from 'remark-rehype'
 import rehype2react from 'rehype-react'
@@ -321,15 +321,22 @@ import { RouterLink } from 'vue-router'
 /**
  * Heavy libraries should be loaded on demand to reduce component size
  */
-let rehypeHighlight
-const rehypeHighlightLoaded = ref(false)
+const remarkGfm = ref(null)
+/**
+ * Load 'remark-gfm' library when prop `useExtendedMarkdown` is truthy
+ */
+async function importRemarkGfmLibrary() {
+	const module = await import('remark-gfm')
+	remarkGfm.value = module.default
+}
+
+const rehypeHighlight = ref(null)
 /**
  * Load 'rehype-highlight' library when code block is rendered with `useExtendedMarkdown`
  */
-async function importRehypeLibrary() {
+async function importRehypeHighlightLibrary() {
 	const module = await import('rehype-highlight')
-	rehypeHighlight = module.default
-	rehypeHighlightLoaded.value = true
+	rehypeHighlight.value = module.default
 }
 
 export default {
@@ -416,6 +423,17 @@ export default {
 		}
 	},
 
+	watch: {
+		useExtendedMarkdown: {
+			handler(value) {
+				if (value && !remarkGfm.value) {
+					importRemarkGfmLibrary()
+				}
+			},
+			immediate: true,
+		},
+	},
+
 	methods: {
 		renderPlaintext(h) {
 			const context = this
@@ -464,7 +482,7 @@ export default {
 					useMarkdown: this.useMarkdown,
 					useExtendedMarkdown: this.useExtendedMarkdown,
 				})
-				.use(this.useExtendedMarkdown ? remarkGfm : undefined)
+				.use(this.useExtendedMarkdown ? remarkGfm.value : undefined)
 				.use(breaks)
 				.use(remark2rehype, {
 					handlers: {
@@ -473,7 +491,7 @@ export default {
 						},
 					},
 				})
-				.use((this.useExtendedMarkdown && rehypeHighlightLoaded.value) ? rehypeHighlight : undefined)
+				.use(this.useExtendedMarkdown ? rehypeHighlight.value : undefined)
 				// .use(rehypeAddClasses, this.markdownCssClasses)
 				.use(remarkPlaceholder)
 				.use(rehypeExternalLinks, {
@@ -489,9 +507,10 @@ export default {
 						)
 
 						if (!tag.startsWith('#')) {
-							if (this.useExtendedMarkdown) {
-								if (tag === 'code' && !rehypeHighlightLoaded.value) {
-									importRehypeLibrary()
+							if (this.useExtendedMarkdown && remarkGfm.value) {
+								if (tag === 'code' && !rehypeHighlight.value
+									&& attrs?.attrs?.class?.includes('language')) {
+									importRehypeHighlightLibrary()
 								}
 								let nestedNode = null
 								if (tag === 'li' && Array.isArray(children)
@@ -569,6 +588,12 @@ export default {
 					.replace(/&gt;/gmi, '>'),
 				)
 				.result
+
+			if (this.useExtendedMarkdown && !remarkGfm.value) {
+				return h('div', { class: 'rich-text--wrapper' }, [
+					h(NcLoadingIcon),
+				])
+			}
 
 			return h('div', { class: 'rich-text--wrapper rich-text--wrapper-markdown' }, [
 				renderedMarkdown,
