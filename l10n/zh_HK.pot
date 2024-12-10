@@ -34,7 +34,7 @@ msgid "Activities"
 msgstr "活動"
 
 msgid "Add to a project"
-msgstr "添加到項目中"
+msgstr "添加到方案中"
 
 msgid "Animals & Nature"
 msgstr "動物與自然"
