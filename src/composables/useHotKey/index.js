@@ -29,13 +29,21 @@ function shouldIgnoreEvent(event) {
 const eventHandler = (callback, options) => (event) => {
 	const ctrlKeyPressed = isMac ? event.metaKey : event.ctrlKey
 	if (ctrlKeyPressed !== Boolean(options.ctrl)) {
-		// Ctrl is required and not pressed, or the opposite
+		/**
+		 * Ctrl is required and not pressed, or the opposite
+		 * As on macOS 'cmd' key is used instead of 'ctrl' key for most key combinations,
+		 * 'event.metaKey' should be checked
+		 */
 		return
-	} else if (!!options.alt !== event.altKey) {
+	} else if (event.altKey !== Boolean(options.alt)) {
 		// Alt is required and not pressed, or the opposite
 		return
-	} else if (!!options.shift !== event.shiftKey) {
-		// Shift is required and not pressed, or the opposite
+	} else if (options.shift !== undefined && event.shiftKey !== Boolean(options.shift)) {
+		/**
+		 * Shift is required and not pressed, or the opposite
+		 * As shift key is used to type capital letters and alternate characters,
+		 * option should be explicitly defined
+		 */
 		return
 	} else if (shouldIgnoreEvent(event)) {
 		// Keyboard shortcuts are disabled, because active element assumes input
