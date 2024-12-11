@@ -71,14 +71,48 @@ export function useHotKey(keysOrFilter, callback = () => {}, options = {}) {
 		return () => {}
 	}
 
-	const stopKeyDown = onKeyStroke(keysOrFilter, eventHandler(callback, options), {
+	/**
+	 * Validates event key to expected key
+	 * FIXME should support any languages / key codes
+	 *
+	 * @param {KeyboardEvent} event keyboard event
+	 * @param {string} key expected key
+	 * @return {boolean} whether it satisfies expected value or not
+	 */
+	const validateKeyEvent = (event, key) => {
+		if (options.caseSensitive) {
+			return event.key === key
+		}
+		return event.key.toLowerCase() === key.toLowerCase()
+	}
+
+	/**
+	 * Filter function for the listener
+	 * see https://github.com/vueuse/vueuse/blob/v11.3.0/packages/core/onKeyStroke/index.ts#L21-L32
+	 *
+	 * @param {KeyboardEvent} event keyboard event
+	 * @return {boolean} whether it satisfies expected value or not
+	 */
+	const keyFilter = (event) => {
+		if (typeof keysOrFilter === 'function') {
+			return keysOrFilter(event)
+		} else if (typeof keysOrFilter === 'string') {
+			return validateKeyEvent(event, keysOrFilter)
+		} else if (Array.isArray(keysOrFilter)) {
+			return keysOrFilter.some(key => validateKeyEvent(event, key))
+		} else {
+			return true
+		}
+	}
+
+	const stopKeyDown = onKeyStroke(keyFilter, eventHandler(callback, options), {
 		eventName: 'keydown',
 		dedupe: true,
 		passive: !options.prevent,
 	})
 
 	const stopKeyUp = options.push
-		? onKeyStroke(keysOrFilter, eventHandler(callback, options), {
+		? onKeyStroke(keyFilter, eventHandler(callback, options), {
 			eventName: 'keyup',
 			passive: !options.prevent,
 		})
