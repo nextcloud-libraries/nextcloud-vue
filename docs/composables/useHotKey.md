@@ -28,6 +28,7 @@ where:
   - `ctrl`: whether the Ctrl key (Cmd key on MacOS) should be pressed (default: `false`)
   - `alt`: whether the Alt key should be pressed (default: `false`)
   - `shift`: whether the Shift key should be pressed (should be explicitly defined as `true`|`false` if needed)
+  - `caseSensitive`: whether specific case should be listened, e.g. only 'd' and not 'D' (default: `false`)
 - `stopCallback`: a callback to stop listening to the event
 
 ### Playground
