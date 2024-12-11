@@ -60,25 +60,25 @@ const eventHandler = (callback, options) => (event) => {
 }
 
 /**
- * @param {string} key - keyboard key or keys to listen to
+ * @param {true|string|string[]|Function} keysOrFilter - keyboard key or keys to listen to, or filter function
  * @param {Function} callback - callback function
  * @param {object} options - composable options
  * @see docs/composables/usekeystroke.md
  */
-export function useHotKey(key, callback = () => {}, options = {}) {
+export function useHotKey(keysOrFilter, callback = () => {}, options = {}) {
 	if (disableKeyboardShortcuts) {
 		// Keyboard shortcuts are disabled
 		return () => {}
 	}
 
-	const stopKeyDown = onKeyStroke(key, eventHandler(callback, options), {
+	const stopKeyDown = onKeyStroke(keysOrFilter, eventHandler(callback, options), {
 		eventName: 'keydown',
 		dedupe: true,
 		passive: !options.prevent,
 	})
 
 	const stopKeyUp = options.push
-		? onKeyStroke(key, eventHandler(callback, options), {
+		? onKeyStroke(keysOrFilter, eventHandler(callback, options), {
 			eventName: 'keyup',
 			passive: !options.prevent,
 		})
