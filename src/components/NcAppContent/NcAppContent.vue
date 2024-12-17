@@ -77,6 +77,7 @@ The list size must be between the min and the max width value.
 					:class="{ 'splitpanes--horizontal': layout === 'horizontal-split',
 						'splitpanes--vertical': layout === 'vertical-split'
 					}"
+					:rtl="isRTL"
 					@resized="handlePaneResize">
 					<Pane class="splitpanes__pane-list"
 						:size="listPaneSize || paneDefaults.list.size"
@@ -111,6 +112,7 @@ import { Splitpanes, Pane } from 'splitpanes'
 
 import 'splitpanes/dist/splitpanes.css'
 import { emit } from '@nextcloud/event-bus'
+import { isRTL } from '@nextcloud/l10n'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 
@@ -215,6 +217,7 @@ export default {
 	setup() {
 		return {
 			isMobile: useIsMobile(),
+			isRTL: isRTL(),
 		}
 	},
 
