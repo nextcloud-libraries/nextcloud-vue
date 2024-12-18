@@ -5,9 +5,9 @@
 
 <docs>
 
-# Usage
+### Usage
 
-### Simple element
+#### Simple element
 
 * With an icon:
 
@@ -46,7 +46,7 @@
 </ul>
 ```
 
-### Element with actions
+#### Element with actions
 Wrap the children in a template. If you have more than 2 actions, a popover menu and a menu
 button will be automatically created.
 
@@ -103,7 +103,7 @@ button will be automatically created.
 	</script>
 ```
 
-### Element with counter
+#### Element with counter
 Just nest the counter in a template within `<NcAppNavigationItem>` and add `#counter` to it.
 
 ```vue
@@ -130,7 +130,7 @@ Just nest the counter in a template within `<NcAppNavigationItem>` and add `#cou
 	</script>
 ```
 
-### Element with children
+#### Element with children
 
 Wrap the children in a template with the `slot` property and use the prop `allowCollapse` to choose wether to allow or
 prevent the user from collapsing the items.
@@ -195,7 +195,7 @@ prevent the user from collapsing the items.
 	</script>
 ```
 
-### Editable element
+#### Editable element
 Add the prop `:editable=true` and an edit placeholder if you need it. By default
 the placeholder is the previous name of the element.
 
@@ -226,7 +226,7 @@ the placeholder is the previous name of the element.
 	</script>
 ```
 
-### Undo element
+#### Undo element
 Just set the `undo` and `name` props. When clicking the undo button, an `undo` event is emitted.
 
 ```vue
@@ -246,7 +246,7 @@ Just set the `undo` and `name` props. When clicking the undo button, an `undo` e
 	</script>
 ```
 
-### Link element
+#### Link element
 Href that start by http will be treated as external and opened in a new tab
 ```
 <div>
@@ -257,14 +257,14 @@ Href that start by http will be treated as external and opened in a new tab
 </div>
 ```
 
-### Custom title
+#### Custom title
 ```
 <ul>
 	<NcAppNavigationItem name="Nextcloud" title="Open the Nextcloud website" href="https://nextcloud.com" />
 </ul>
 ```
 
-### Pinned element
+#### Pinned element
 Just set the `pinned` prop.
 ```
 <ul>
