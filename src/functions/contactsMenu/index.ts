@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import logger from '../../utils/logger.js'
+import { logger } from '../../utils/logger.ts'
 
 // Taken from \OC\Contacts\ContactsMenu\Entry::jsonSerialize
 export interface ContactsMenuEntry {

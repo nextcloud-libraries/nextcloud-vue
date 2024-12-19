@@ -5,7 +5,7 @@
 
 import { getLoggerBuilder } from '@nextcloud/logger'
 
-export default getLoggerBuilder()
+export const logger = getLoggerBuilder()
 	.detectUser()
 	.setApp('@nextcloud/vue')
 	.build()
