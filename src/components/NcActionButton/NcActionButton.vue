@@ -354,8 +354,9 @@ export default {
 			<!-- default text display -->
 			<span v-else class="action-button__text">{{ text }}</span>
 
-			<!-- right arrow icon when there is a sub-menu -->
-			<ChevronRightIcon v-if="isMenu" :size="20" class="action-button__menu-icon" />
+			<!-- right(in LTR) or left(in RTL) arrow icon when there is a sub-menu -->
+			<ChevronRightIcon v-if="isMenu && !isRTL" :size="20" class="action-button__menu-icon" />
+			<ChevronLeftIcon v-else-if="isMenu && isRTL" :size="20" class="action-button__menu-icon" />
 			<CheckIcon v-else-if="isChecked === true" :size="20" class="action-button__pressed-icon" />
 			<span v-else-if="isChecked === false" class="action-button__pressed-icon material-design-icon" />
 
@@ -368,7 +369,9 @@ export default {
 <script>
 import CheckIcon from 'vue-material-design-icons/Check.vue'
 import ChevronRightIcon from 'vue-material-design-icons/ChevronRight.vue'
+import ChevronLeftIcon from 'vue-material-design-icons/ChevronLeft.vue'
 import ActionTextMixin from '../../mixins/actionText.js'
+import { isRTL } from '@nextcloud/l10n'
 
 /**
  * Button component to be used in Actions
@@ -379,6 +382,12 @@ export default {
 	components: {
 		CheckIcon,
 		ChevronRightIcon,
+		ChevronLeftIcon,
+	},
+	setup() {
+		return {
+			isRTL: isRTL(),
+		}
 	},
 	mixins: [ActionTextMixin],
 
@@ -547,7 +556,6 @@ export default {
 @include action-item('button');
 
 .action-button__pressed-icon {
-	margin-left: auto;
-	margin-right: calc($icon-margin * -1);
+	margin-inline: auto calc($icon-margin * -1);
 }
 </style>
