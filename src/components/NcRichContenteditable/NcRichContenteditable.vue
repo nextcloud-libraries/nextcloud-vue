@@ -1012,6 +1012,7 @@ export default {
 .rich-contenteditable {
 	position: relative;
 	width: auto;
+	overflow: hidden;
 
 	&__label {
 		position: absolute;
