@@ -1010,6 +1010,9 @@ export default {
 <style lang="scss" scoped>
 // Standalone styling, independent from server
 .rich-contenteditable {
+	--contenteditable-block-offset: calc(2 * var(--default-grid-baseline));
+	--contenteditable-inline-start-offset: calc(2 * var(--default-grid-baseline));
+	--contenteditable-inline-end-offset: calc(2 * var(--default-grid-baseline));
 	position: relative;
 	width: auto;
 
@@ -1049,7 +1052,8 @@ export default {
 		overflow-y: auto;
 		width: auto;
 		margin: 0;
-		padding: 8px;
+		padding-block: var(--contenteditable-block-offset);
+		padding-inline: var(--contenteditable-inline-start-offset) var(--contenteditable-inline-end-offset);
 		cursor: text;
 		white-space: pre-wrap;
 		word-break: break-word;
@@ -1073,8 +1077,8 @@ export default {
 			content: attr(aria-placeholder);
 			color: var(--color-text-maxcontrast);
 			position: absolute;
-			width: calc(100% - 2 * 8px);
-			height: calc(100% - 2 * 8px);
+			width: calc(100% - var(--contenteditable-inline-start-offset) - var(--contenteditable-inline-end-offset));
+			height: calc(100% - 2 * var(--contenteditable-block-offset));
 			overflow: hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;
