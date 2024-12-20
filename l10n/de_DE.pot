@@ -271,8 +271,8 @@ msgstr "Link zu \"{resourceName}“ öffnen"
 msgid "Open menu"
 msgstr "Menü öffnen"
 
-msgid "Open navigation"
-msgstr "Navigation öffnen"
+msgid "Open navigation {shortcut}"
+msgstr "Navigation öffnen {shortcut}"
 
 msgid "Open sidebar"
 msgstr "Seitenleiste öffnen"
