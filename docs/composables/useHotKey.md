@@ -13,17 +13,22 @@ import { useHotKey } from '@nextcloud/vue/dist/Composables/useHotKey/index.js'
 const stopCallback = useHotKey(key, callback, options)
 ```
 where:
-- `key`: string representing the keyboard key to listen to
+- `keysOrFilter`: one of following:
+  - `string`: representing the keyboard key to listen to
+  - `Array<string>`: representing any of keys to listen to
+  - `Function`: custom filter function to validate event key
+  - `true`: to listen for all events
 
-	See [KeyboardEvent.key Value column](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values) for possible values
+  See [KeyboardEvent.key Value column](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values) for possible values
 - `callback`: a function to be called when the key is pressed. Before called, it will be checked whether keyboard shortcuts are disabled, or interactive element is currently focused, or whether options should be applied
 - `options`: options to be applied to the shortcut:
-  - `push`: whether the event should be triggered on both keydown and keyup
-  - `prevent`: prevents the default action of the event
-  - `stop`: prevents propagation of the event in the capturing and bubbling phases
-  - `ctrl`: whether the Ctrl key should be pressed (Cmd key on MacOS)
-  - `alt`: whether the Alt key should be pressed
-  - `shift`: whether the Shift key should be pressed
+  - `push`: whether the event should be triggered on both keydown and keyup (default: `false`)
+  - `prevent`: prevents the default action of the event (default: `false`)
+  - `stop`: prevents propagation of the event in the capturing and bubbling phases (default: `false`)
+  - `ctrl`: whether the Ctrl key (Cmd key on MacOS) should be pressed (default: `false`)
+  - `alt`: whether the Alt key should be pressed (default: `false`)
+  - `shift`: whether the Shift key should be pressed (should be explicitly defined as `true`|`false` if needed)
+  - `caseSensitive`: whether specific case should be listened, e.g. only 'd' and not 'D' (default: `false`)
 - `stopCallback`: a callback to stop listening to the event
 
 ### Playground
