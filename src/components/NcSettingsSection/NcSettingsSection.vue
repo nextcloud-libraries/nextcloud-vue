@@ -139,7 +139,7 @@ $sectionMargin: calc(var(--default-grid-baseline) * 7);
 		height: var(--default-clickable-area);
 		// make sure to properly align the icon with the text
 		margin: calc($icon-margin * -1);
-		margin-left: 0;
+		margin-inline-start: 0;
 		color: var(--color-text-maxcontrast);
 
 		&:hover, &:focus, &:active {
