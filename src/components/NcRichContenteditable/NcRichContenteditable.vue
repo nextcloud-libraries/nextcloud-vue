@@ -981,7 +981,7 @@ export default {
 
 	&__label {
 		position: absolute;
-		margin-inline: 14px 0;
+		margin-inline: 14px;
 		max-width: fit-content;
 		inset-block-start: 11px;
 		inset-inline: 0;
@@ -1006,7 +1006,7 @@ export default {
 		border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0;
 		background-color: var(--color-main-background);
 		padding-inline: 5px;
-		margin-inline-start: 9px;
+		margin-inline: 9px;
 
 		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick);
 	}
@@ -1039,6 +1039,11 @@ export default {
 			content: attr(aria-placeholder);
 			color: var(--color-text-maxcontrast);
 			position: absolute;
+			width: calc(100% - 2 * 8px);
+			height: calc(100% - 2 * 8px);
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
 		}
 
 		&[contenteditable='false']:not(&--disabled) {
