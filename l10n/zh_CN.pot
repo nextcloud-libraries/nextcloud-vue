@@ -31,9 +31,6 @@ msgstr "Acapulco"
 msgid "Actions"
 msgstr "行为"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "名称为“{name}”项目的操作"
-
 msgid "Activities"
 msgstr "活动"
 
