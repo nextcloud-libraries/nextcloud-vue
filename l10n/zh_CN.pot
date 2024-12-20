@@ -3,10 +3,11 @@
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # TUCAOEVER, 2024
 # Gloryandel, 2024
+# Ame chan, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Gloryandel, 2024\n"
+"Last-Translator: Ame chan, 2024\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/nextcloud/teams/64236/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_CN\n"
@@ -266,8 +267,8 @@ msgstr "打开 “{resourceName}” 的链接"
 msgid "Open menu"
 msgstr "打开菜单"
 
-msgid "Open navigation"
-msgstr "开启导航"
+msgid "Open navigation {shortcut}"
+msgstr "打开导览{shortcut}"
 
 msgid "Open sidebar"
 msgstr "打开侧边栏"
