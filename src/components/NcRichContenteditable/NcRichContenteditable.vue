@@ -976,12 +976,15 @@ export default {
 <style lang="scss" scoped>
 // Standalone styling, independent from server
 .rich-contenteditable {
+	--contenteditable-block-offset: calc(2 * var(--default-grid-baseline));
+	--contenteditable-inline-start-offset: calc(2 * var(--default-grid-baseline));
+	--contenteditable-inline-end-offset: calc(2 * var(--default-grid-baseline));
 	position: relative;
 	width: auto;
 
 	&__label {
 		position: absolute;
-		margin-inline: 14px 0;
+		margin-inline: 14px;
 		max-width: fit-content;
 		inset-block-start: 11px;
 		inset-inline: 0;
@@ -1006,7 +1009,7 @@ export default {
 		border-radius: var(--default-grid-baseline) var(--default-grid-baseline) 0 0;
 		background-color: var(--color-main-background);
 		padding-inline: 5px;
-		margin-inline-start: 9px;
+		margin-inline: 9px;
 
 		transition: height var(--animation-quick), inset-block-start var(--animation-quick), font-size var(--animation-quick), color var(--animation-quick);
 	}
@@ -1015,7 +1018,8 @@ export default {
 		overflow-y: auto;
 		width: auto;
 		margin: 0;
-		padding: 8px;
+		padding-block: var(--contenteditable-block-offset);
+		padding-inline: var(--contenteditable-inline-start-offset) var(--contenteditable-inline-end-offset);
 		cursor: text;
 		white-space: pre-wrap;
 		word-break: break-word;
@@ -1039,6 +1043,11 @@ export default {
 			content: attr(aria-placeholder);
 			color: var(--color-text-maxcontrast);
 			position: absolute;
+			width: calc(100% - var(--contenteditable-inline-start-offset) - var(--contenteditable-inline-end-offset));
+			height: calc(100% - 2 * var(--contenteditable-block-offset));
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
 		}
 
 		&[contenteditable='false']:not(&--disabled) {
