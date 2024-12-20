@@ -690,6 +690,10 @@ export default {
 		:deep(.checkbox-radio-switch__icon) > * {
 			color: var(--color-main-text)
 		}
+		&.checkbox-content,
+		&.checkbox-content :deep(*:not(a)) {
+			cursor: default !important;
+		}
 	}
 
 	&:not(&--disabled, &--checked):focus-within &__content,
@@ -767,12 +771,12 @@ export default {
 	}
 	&--button-variant-v-grouped {
 		&:first-of-type {
-			border-top-left-radius: var(--checkbox-radio-switch--border-radius-outer);
-			border-top-right-radius: var(--checkbox-radio-switch--border-radius-outer);
+			border-start-start-radius: var(--checkbox-radio-switch--border-radius-outer);
+			border-start-end-radius: var(--checkbox-radio-switch--border-radius-outer);
 		}
 		&:last-of-type {
-			border-bottom-left-radius: var(--checkbox-radio-switch--border-radius-outer);
-			border-bottom-right-radius: var(--checkbox-radio-switch--border-radius-outer);
+			border-end-start-radius: var(--checkbox-radio-switch--border-radius-outer);
+			border-end-end-radius: var(--checkbox-radio-switch--border-radius-outer);
 		}
 
 		// remove borders between elements
@@ -790,23 +794,23 @@ export default {
 	/* Special rules for horizontal button groups */
 	&--button-variant-h-grouped {
 		&:first-of-type {
-			border-top-left-radius: var(--checkbox-radio-switch--border-radius-outer);
-			border-bottom-left-radius: var(--checkbox-radio-switch--border-radius-outer);
+			border-start-start-radius: var(--checkbox-radio-switch--border-radius-outer);
+			border-end-start-radius: var(--checkbox-radio-switch--border-radius-outer);
 		}
 		&:last-of-type {
-			border-top-right-radius: var(--checkbox-radio-switch--border-radius-outer);
-			border-bottom-right-radius: var(--checkbox-radio-switch--border-radius-outer);
+			border-start-end-radius: var(--checkbox-radio-switch--border-radius-outer);
+			border-end-end-radius: var(--checkbox-radio-switch--border-radius-outer);
 		}
 
 		// remove borders between elements
 		&:not(:last-of-type) {
-			border-right: 0!important;
+			border-inline-end: 0!important;
 			.checkbox-radio-switch__content {
-				margin-right: 2px;
+				margin-inline-end: 2px;
 			}
 		}
 		&:not(:first-of-type) {
-			border-left: 0!important;
+			border-inline-start: 0!important;
 		}
 	}
 	&--button-variant-h-grouped :deep(.checkbox-radio-switch__text) {

@@ -30,9 +30,6 @@ msgstr "Акапулко"
 msgid "Actions"
 msgstr "Радње"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Радње за ставку под називом „{name}”"
-
 msgid "Activities"
 msgstr "Активности"
 

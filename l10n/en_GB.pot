@@ -30,9 +30,6 @@ msgstr "Acapulco"
 msgid "Actions"
 msgstr "Actions"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Actions for item with name \"{name}\""
-
 msgid "Activities"
 msgstr "Activities"
 

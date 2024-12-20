@@ -15,7 +15,7 @@ import Vue from 'vue'
 const MENTION_START = /(?=[a-z0-9_\-@.'])\B/.source
 // Capturing groups like: @user-id, @"guest/abc16def", @"federated_user/user-id", @"user-id with space"
 const MENTION_SIMPLE = /(@[a-z0-9_\-@.']+)/.source
-const MENTION_GUEST = /@&quot;guest\/[a-f0-9]+&quot;/.source
+const MENTION_GUEST = /@&quot;(?:guest|email){1}\/[a-f0-9]+&quot;/.source
 const MENTION_PREFIXED = /@&quot;(?:federated_)?(?:group|team|user){1}\/[a-z0-9_\-@.' /:]+&quot;/.source
 const MENTION_WITH_SPACE = /@&quot;[a-z0-9_\-@.' ]+&quot;/.source
 const MENTION_COMPLEX = `(${MENTION_GUEST}|${MENTION_PREFIXED}|${MENTION_WITH_SPACE})`
@@ -73,8 +73,6 @@ export default {
 		 */
 		parseContent(content) {
 			let text = content
-			// Consecutive spaces in HTML tags should collapse
-			text = text.replace(/>\s+</g, '><')
 			// Replace break lines with new lines
 			text = text.replace(/<br>/gmi, '\n')
 			// Replace some html special characters
@@ -115,8 +113,10 @@ export default {
 					: `@"${value}"`
 			}
 
-			// Return template and make sure we strip of new lines and tabs
-			return this.renderComponentHtml(data, NcMentionBubble).replace(/[\n\t]/gmi, '')
+			// Return template and make sure we strip off new lines, tabs and consecutive whitespaces
+			return this.renderComponentHtml(data, NcMentionBubble)
+				.replace(/[\n\t]/gmi, '')
+				.replace(/>\s+</g, '><')
 		},
 
 		/**

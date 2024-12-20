@@ -30,9 +30,6 @@ msgstr "Акапулько"
 msgid "Actions"
 msgstr "Дії"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Дії для об'єкту \"{name}\""
-
 msgid "Activities"
 msgstr "Діяльність"
 

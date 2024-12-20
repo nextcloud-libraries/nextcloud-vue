@@ -21,9 +21,6 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
-msgid "Actions for item with name \"{name}\""
-msgstr ""
-
 msgid "Activities"
 msgstr ""
 
