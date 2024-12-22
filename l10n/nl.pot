@@ -1,14 +1,14 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Sean Molenaar <smillerdev@me.com>, 2023
 # Sebastiaan Veld <sebastiaan.veld@virtfields.nl>, 2024
 # WebSpider <nils@familievogels.nl>, 2024
 # Joost <joho500@hotmail.com>, 2024
+# John Molakvoæ <skjnldsv@protonmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Joost <joho500@hotmail.com>, 2024\n"
+"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
 "Language-Team: Dutch (https://app.transifex.com/nextcloud/teams/64236/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nl\n"
@@ -271,8 +271,8 @@ msgstr "Open link naar \"{resourceName}\""
 msgid "Open menu"
 msgstr "Open menu"
 
-msgid "Open navigation"
-msgstr "Navigatie openen"
+msgid "Open navigation {shortcut}"
+msgstr "Navigatie openen {shortcut}"
 
 msgid "Open sidebar"
 msgstr "Open sidebar"

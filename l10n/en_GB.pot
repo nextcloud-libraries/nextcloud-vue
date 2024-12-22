@@ -1,11 +1,11 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Andi Chandler <andi@gowling.com>, 2024
+# John Molakvoæ <skjnldsv@protonmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Andi Chandler <andi@gowling.com>, 2024\n"
+"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
 "Language-Team: English (United Kingdom) (https://app.transifex.com/nextcloud/teams/64236/en_GB/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: en_GB\n"
@@ -267,8 +267,8 @@ msgstr "Open link to \"{resourceName}\""
 msgid "Open menu"
 msgstr "Open menu"
 
-msgid "Open navigation"
-msgstr "Open navigation"
+msgid "Open navigation {shortcut}"
+msgstr "Open navigation {shortcut}"
 
 msgid "Open sidebar"
 msgstr "Open sidebar"

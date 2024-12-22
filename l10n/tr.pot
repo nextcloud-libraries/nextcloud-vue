@@ -267,8 +267,8 @@ msgstr "{resourceName} bağlantısını aç"
 msgid "Open menu"
 msgstr "Menüyü aç"
 
-msgid "Open navigation"
-msgstr "Gezinmeyi aç"
+msgid "Open navigation {shortcut}"
+msgstr "Gezinmeyi aç {shortcut}"
 
 msgid "Open sidebar"
 msgstr "Yan çubuğu aç"
