@@ -3,10 +3,11 @@
 # Joas Schilling, 2024
 # devi, 2024
 # kshimohata, 2024
+# John Molakvoæ <skjnldsv@protonmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: kshimohata, 2024\n"
+"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
 "Language-Team: Japanese (Japan) (https://app.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ja_JP\n"
@@ -266,8 +267,8 @@ msgstr "\"{resourceName}\" へのリンクを開く"
 msgid "Open menu"
 msgstr "メニューを開く"
 
-msgid "Open navigation"
-msgstr "ナビゲーションを開く"
+msgid "Open navigation {shortcut}"
+msgstr "ナビゲーションを開く {shortcut}"
 
 msgid "Open sidebar"
 msgstr "サイドバーを開く"
