@@ -1,6 +1,5 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Rémi LEBLOND, 2023
 # Mordecai, 2023
 # Jaxom Kaplan, 2023
@@ -8,10 +7,11 @@
 # Christophe LG, 2024
 # Delphin PETER (Del) <delphinpeter@gmail.com>, 2024
 # DEV314R, 2024
+# John Molakvoæ <skjnldsv@protonmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: DEV314R, 2024\n"
+"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -274,8 +274,8 @@ msgstr "Ouvrir le lien vers \"{resourceName}\""
 msgid "Open menu"
 msgstr "Ouvrir le menu"
 
-msgid "Open navigation"
-msgstr "Ouvrir la navigation"
+msgid "Open navigation {shortcut}"
+msgstr "Ouvrir la navigation {shortcut}"
 
 msgid "Open sidebar"
 msgstr "Ouvrir la barre latérale"
