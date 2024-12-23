@@ -267,8 +267,8 @@ msgstr "Відкрити посилання на \"{resourceName}\""
 msgid "Open menu"
 msgstr "Відкрити меню"
 
-msgid "Open navigation"
-msgstr "Відкрити навігацію"
+msgid "Open navigation {shortcut}"
+msgstr "Відкрити навігацію {shortcut}"
 
 msgid "Open sidebar"
 msgstr "Бокове меню"
