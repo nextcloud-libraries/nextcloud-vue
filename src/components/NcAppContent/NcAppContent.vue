@@ -67,9 +67,9 @@ The list size must be between the min and the max width value.
 					'app-content-wrapper--show-list': !showDetails,
 					'app-content-wrapper--mobile': isMobile,}">
 				<NcAppDetailsToggle v-if="showDetails" @click.native.stop.prevent="hideDetails" />
-				<slot v-if="!showDetails" name="list" />
+				<slot v-show="!showDetails" name="list" />
 
-				<slot v-else />
+				<slot v-if="showDetails" />
 			</div>
 			<div v-else-if="layout === 'vertical-split' || layout === 'horizontal-split'" class="app-content-wrapper">
 				<Splitpanes :horizontal="layout === 'horizontal-split'"
