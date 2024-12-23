@@ -5,6 +5,35 @@
 
 # Changelog
 
+## [v8.22.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.22.0) (2024-12-20)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.21.0...v8.22.0)
+
+### 🚀 Enhancements
+* feat(NcAvatar): implement custom javascript hook action for the contacts menu [\#6238](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6238) \([st3iny](https://github.com/st3iny)\)
+* feat(NcAppNavigation): add `n` hotkey to toggle navigation [\#6311](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6311) \([skjnldsv](https://github.com/skjnldsv)\)
+### 🐛 Fixed bugs
+* fix(NcAppNavigationItem): TypeError: this.$refs.actions.$refs.menuButton is undefined [\#6226](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6226) \([wofferl](https://github.com/wofferl)\)
+* fix(NcListItem): Don't require name prop by @artonge in [\#6128](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6128) \([artonge](https://github.com/artonge)\)
+* style(NcCheckboxRadioSwitch): fix styles in disabled state [\#6265](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6265) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcModal): make 'Close' button the last element for the focus-trap [\#6266](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6266) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcAppNavigation): Fix sidebar position in RTL and mobile mode.[\#6260](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6260) \([falghamdi125](https://github.com/falghamdi125)\)
+* fix(NcAppContent): add RTL support [\#6303](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6303) \([hamza221](https://github.com/hamza221)\)
+* fix(NcCheckboxRadioSwitch): RTL support [\#6302](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6302) \([hamza221](https://github.com/hamza221)\)
+* fix(NcDateTimePicker): popup position [\#6312](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6312) \([hamza221](https://github.com/hamza221)\)
+* Fix(NcSettingsSection): Add RTL support to NcSettingsSection info icon. [\#6290](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6290) \([falghamdi125](https://github.com/falghamdi125)\)
+* Fix(NcDashboardWidgetItem): Add RTL support to NcDashboardWidgetItem [\#6292](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6292) \([falghamdi125](https://github.com/falghamdi125)\)
+* fix(useHotKey): allow hotkeys with implicit `SHIFT` and add `caseSensitive`, custom event filter options [\#6301](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6301) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcRichContenteditable): prevent content from overflowing [\#6316](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6316) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcActionButton): RTL support [\#6200](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6200) \([falghamdi125](https://github.com/falghamdi125)\)
+### Changed
+* docs(NcDateTimePickerNative): add time picker example [\#6188](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6188) \([GVodyanov](https://github.com/GVodyanov)\)
+* chore(NcAppSidebarTabs): remove internal component from docs [\#6253](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6253) \([ShGKme](https://github.com/ShGKme)\)
+* Updated workflows and dependencies
+* Updated translations
+
+## New Contributors
+* @falghamdi125 made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/6260
+
 ## [v8.21.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.21.0) (2024-11-21)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.20.0...v8.21.0)
 
