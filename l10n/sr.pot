@@ -267,8 +267,8 @@ msgstr "Отвори линк на „{resourceName}”"
 msgid "Open menu"
 msgstr "Отвори мени"
 
-msgid "Open navigation"
-msgstr "Отвори навигацију"
+msgid "Open navigation {shortcut}"
+msgstr "Отвори навигацију {shortcut}"
 
 msgid "Open sidebar"
 msgstr "Отвори бочну траку"
