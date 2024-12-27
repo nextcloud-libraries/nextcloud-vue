@@ -71,7 +71,7 @@ export default {
 <template>
 	<div class="container1">
 		<NcButton @click="open = !open"> Click Me </NcButton>
-		<NcColorPicker v-model="color" v-model:shown="open" @submit="open = false" v-slot="{ attrs }">
+		<NcColorPicker v-model="color" v-model:shown="open" v-slot="{ attrs }">
 			<div v-bind="attrs" :style="{'background-color': color}" class="color1" />
 		</NcColorPicker>
 	</div>
@@ -143,57 +143,59 @@ export default {
 		<template #trigger="slotProps">
 			<slot v-bind="slotProps" />
 		</template>
-		<div role="dialog"
-			class="color-picker"
-			aria-modal="true"
-			:aria-label="t('Color picker')"
-			:class="{ 'color-picker--advanced-fields': advanced && advancedFields }">
-			<Transition name="slide" mode="out-in">
-				<div v-if="!advanced" class="color-picker__simple">
-					<label v-for="({ color, name }, index) in normalizedPalette"
-						:key="index"
-						:style="{ backgroundColor: color }"
-						class="color-picker__simple-color-circle"
-						:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }">
-						<Check v-if="color === currentColor" :size="20" :fill-color="contrastColor" />
-						<input type="radio"
-							class="hidden-visually"
-							:aria-label="name"
-							:name="`color-picker-${uid}`"
-							:checked="color === currentColor"
-							@click="pickColor(color)">
-					</label>
+		<template #default="slotProps">
+			<div role="dialog"
+				class="color-picker"
+				aria-modal="true"
+				:aria-label="t('Color picker')"
+				:class="{ 'color-picker--advanced-fields': advanced && advancedFields }">
+				<Transition name="slide" mode="out-in">
+					<div v-if="!advanced" class="color-picker__simple">
+						<label v-for="({ color, name }, index) in normalizedPalette"
+							:key="index"
+							:style="{ backgroundColor: color }"
+							class="color-picker__simple-color-circle"
+							:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }">
+							<Check v-if="color === currentColor" :size="20" :fill-color="contrastColor" />
+							<input type="radio"
+								class="hidden-visually"
+								:aria-label="name"
+								:name="`color-picker-${uid}`"
+								:checked="color === currentColor"
+								@click="pickColor(color)">
+						</label>
+					</div>
+					<Chrome v-else
+						v-model="currentColor"
+						class="color-picker__advanced"
+						:disable-alpha="true"
+						:disable-fields="!advancedFields"
+						@update:model-value="pickColor" />
+				</Transition>
+				<div v-if="!paletteOnly" class="color-picker__navigation">
+					<NcButton v-if="advanced"
+						type="tertiary"
+						:aria-label="ariaBack"
+						@click="handleBack">
+						<template #icon>
+							<ArrowLeft :size="20" />
+						</template>
+					</NcButton>
+					<NcButton v-else
+						type="tertiary"
+						:aria-label="ariaMore"
+						@click="handleMoreSettings">
+						<template #icon>
+							<DotsHorizontal :size="20" />
+						</template>
+					</NcButton>
+					<NcButton type="primary"
+						@click="handleConfirm(slotProps.hide)">
+						{{ t('Choose') }}
+					</NcButton>
 				</div>
-				<Chrome v-else
-					v-model="currentColor"
-					class="color-picker__advanced"
-					:disable-alpha="true"
-					:disable-fields="!advancedFields"
-					@update:model-value="pickColor" />
-			</Transition>
-			<div v-if="!paletteOnly" class="color-picker__navigation">
-				<NcButton v-if="advanced"
-					type="tertiary"
-					:aria-label="ariaBack"
-					@click="handleBack">
-					<template #icon>
-						<ArrowLeft :size="20" />
-					</template>
-				</NcButton>
-				<NcButton v-else
-					type="tertiary"
-					:aria-label="ariaMore"
-					@click="handleMoreSettings">
-					<template #icon>
-						<DotsHorizontal :size="20" />
-					</template>
-				</NcButton>
-				<NcButton type="primary"
-					@click="handleConfirm">
-					{{ t('Choose') }}
-				</NcButton>
 			</div>
-		</div>
+		</template>
 	</NcPopover>
 </template>
 
@@ -324,13 +326,14 @@ export default defineComponent({
 
 		/**
 		 * Submit a picked colour and close picker
+		 * @param {Function} hideCallback callback to close popover
 		 */
-		handleConfirm() {
+		handleConfirm(hideCallback) {
 			/**
 			 * Emits a hexadecimal string e.g. '#ffffff'
 			 */
 			this.$emit('submit', this.currentColor)
-			this.handleClose()
+			hideCallback()
 
 			this.advanced = false
 		},
