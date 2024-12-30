@@ -157,7 +157,20 @@ describe('NcAppNavigation.vue', () => {
 			expect(navigation.attributes('aria-hidden')).toBe('true')
 			expect(navigation.attributes('inert')).toBeTruthy()
 			expect(togglebutton.attributes('aria-expanded')).toBe('false')
-			expect(togglebutton.attributes('aria-label')).toBe('Open navigation')
+			expect(togglebutton.attributes('aria-label')).toBe('Open navigation [n]')
+		})
+
+		it('has correct aria attributes and inert on closed navigation with disabled shortcuts', async () => {
+			window.OCP = { Accessibility: { disableKeyboardShortcuts: () => true } }
+			const wrapper = mount(NcAppNavigation)
+			const togglebutton = findToggleButton(wrapper)
+
+			// Close navigation
+			await togglebutton.trigger('click')
+			expect(togglebutton.attributes('aria-label')).toBe('Open navigation [n]')
+
+			// Clean up
+			delete window.OCP
 		})
 
 		it('has aria-label from corresponding prop on navigation', () => {

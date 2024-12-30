@@ -250,7 +250,7 @@ msgstr ""
 msgid "Open menu"
 msgstr ""
 
-msgid "Open navigation"
+msgid "Open navigation {shortcut}"
 msgstr ""
 
 msgid "Open sidebar"
