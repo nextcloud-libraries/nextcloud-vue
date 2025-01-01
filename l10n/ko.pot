@@ -1,11 +1,11 @@
 # 
 # Translators:
-# ohora0923, 2023
-# Transifex Bot <>, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# 이상오, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2023\n"
+"Last-Translator: 이상오, 2025\n"
 "Language-Team: Korean (https://app.transifex.com/nextcloud/teams/64236/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ko\n"
@@ -17,264 +17,420 @@ msgstr "{tag}(숨김)"
 msgid "{tag} (restricted)"
 msgstr "{tag}(제한)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "HEX 값이 {hex}인 색상"
+
 msgid "a few seconds ago"
 msgstr "방금 전"
 
-msgid "Actions"
-msgstr ""
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "아카풀코"
 
-msgid "Actions for item with name \"{name}\""
-msgstr ""
+msgid "Actions"
+msgstr "동작"
 
 msgid "Activities"
 msgstr "활동"
 
+msgid "Add to a project"
+msgstr "프로젝트에 추가"
+
 msgid "Animals & Nature"
-msgstr ""
+msgstr "동물 & 자연"
 
 msgid "Any link"
-msgstr ""
+msgstr "아무 링크"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr ""
+msgstr "같은 그룹의 사용자와 공유된 모든 것들이 이곳에 나타납니다."
 
 msgid "Avatar of {displayName}"
-msgstr ""
+msgstr "{displayName}님의 아바타"
 
 msgid "Avatar of {displayName}, {status}"
-msgstr ""
+msgstr "{displayName}, {status}님의 아바타"
+
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "자리 비움"
 
 msgid "Back"
-msgstr ""
+msgstr "뒤로"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "제공자 선택으로 돌아가기"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "푸른 보라"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "보스턴 블루"
+
+msgid "busy"
+msgstr "바쁨"
 
 msgid "Cancel changes"
-msgstr ""
+msgstr "변경 취소"
 
 msgid "Change name"
-msgstr ""
+msgstr "이름 변경"
 
 msgid "Choose"
-msgstr ""
+msgstr "선택"
 
 msgid "Clear search"
-msgstr ""
+msgstr "검색 지우기"
+
+msgid "Clear selected"
+msgstr "선택 항목 지우기"
 
 msgid "Clear text"
-msgstr ""
+msgstr "텍스트 지우기"
 
 msgid "Close"
-msgstr ""
-
-msgid "Close modal"
-msgstr ""
+msgstr "닫기"
 
 msgid "Close navigation"
-msgstr ""
+msgstr "탐색 닫기"
 
 msgid "Close sidebar"
-msgstr ""
+msgstr "사이드바 닫기"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "스마트 선택기 닫기"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "메뉴 접기"
+
+msgid "Color picker"
+msgstr "색상 선택기"
 
 msgid "Confirm changes"
-msgstr ""
+msgstr "변경 사항 확인"
+
+msgid "Connect items to a project to make them easier to find"
+msgstr "항목을 더 쉽게 찾을 수 있도록 프로젝트에 연결하세요."
 
 msgid "Custom"
-msgstr ""
+msgstr "맞춤 설정"
+
+msgid "Dark skin tone"
+msgstr "어두운 피부 톤"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "폭우"
+
+msgid "Deselect {option}"
+msgstr "{option} 선택 해제"
+
+msgid "do not disturb"
+msgstr "방해 금지"
 
 msgid "Edit item"
-msgstr ""
+msgstr "항목 수정"
+
+msgid "Emoji picker"
+msgstr "이모지 선택기"
+
+msgid "Enable interactive view"
+msgstr "대화형 보기 활성화"
 
 msgid "Enter link"
-msgstr ""
+msgstr "링크 입력"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
-msgstr ""
+msgstr "관련 리소스를 가져오는 중 오류가 발생했습니다. 궁금한 것이 있는 경우 시스템 관리자에게 연락해 주세요."
 
 msgid "External documentation for {name}"
-msgstr ""
+msgstr "{name}의 외부 문서"
+
+msgid "Failed to add the item to the project"
+msgstr "항목을 프로젝트에 추가하는 데 실패함"
+
+msgid "Failed to create a project"
+msgstr "프로젝트를 만드는 데 실패함"
+
+msgid "Failed to rename the project"
+msgstr "프로젝트의 이름을 바꾸는 데 실패함"
 
 msgid "Favorite"
-msgstr ""
+msgstr "즐겨찾기"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "장석"
 
 msgid "Flags"
-msgstr ""
+msgstr "깃발"
 
 msgid "Food & Drink"
-msgstr ""
+msgstr "음식 & 음료"
 
 msgid "Frequently used"
-msgstr ""
+msgstr "자주 쓰임"
 
 msgid "Global"
-msgstr ""
+msgstr "글로벌"
 
 msgid "Go back to the list"
-msgstr ""
+msgstr "목록으로 돌아가기"
+
+msgid "Gold"
+msgstr "금"
+
+msgid "Hide details"
+msgstr "세부 사항 숨기기"
 
 msgid "Hide password"
-msgstr ""
+msgstr "암호 숨기기"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+msgid "invisible"
+msgstr "보이지 않음"
+
+msgid "Keyboard navigation help"
+msgstr "키보드 탐색 도움말"
+
+msgid "Light skin tone"
+msgstr "밝은 피부 톤"
+
+msgid "Load more \"{options}\""
+msgstr "\"{options}\" 더 불러오기"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "불러오는 중..."
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "뱃사람"
+
+msgid "Medium dark skin tone"
+msgstr "약간 어두운 피부 톤"
+
+msgid "Medium light skin tone"
+msgstr "약간 밝은 피부 톤"
+
+msgid "Medium skin tone"
+msgstr "중간 피부 톤"
 
 msgid "Message limit of {count} characters reached"
-msgstr ""
+msgstr "메시지 제한 {count}자에 도달"
 
 msgid "More items …"
-msgstr ""
+msgstr "항목 더 보기..."
 
 msgid "More options"
-msgstr ""
+msgstr "옵션 더 보기"
+
+msgid "Neutral skin color"
+msgstr "중성적 피부 톤"
 
 msgid "Next"
-msgstr ""
+msgstr "다음"
+
+msgid "Nextcloud blue"
+msgstr "Nextcloud 파랑"
 
 msgid "No emoji found"
-msgstr ""
+msgstr "이모지 없음"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "링크 제공자 없음"
 
 msgid "No results"
-msgstr ""
+msgstr "결과 없음"
 
 msgid "Objects"
-msgstr ""
+msgstr "물체"
 
-msgid "Open contact menu"
-msgstr ""
+msgid "offline"
+msgstr "오프라인"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "감람석"
+
+msgid "online"
+msgstr "온라인"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "\"{resourceName}\"의 링크 열기"
 
 msgid "Open menu"
-msgstr ""
+msgstr "메뉴 열기"
 
-msgid "Open navigation"
-msgstr ""
+msgid "Open navigation {shortcut}"
+msgstr "{shortcut} 탐색 열기"
 
-msgid "Open settings menu"
-msgstr ""
+msgid "Open sidebar"
+msgstr "사이드바 열기"
+
+msgid "Options"
+msgstr "옵션"
 
 msgid "Password is secure"
-msgstr ""
+msgstr "암호가 안전합니다."
 
 msgid "Pause slideshow"
-msgstr ""
+msgstr "슬라이드쇼 일시정지"
 
 msgid "People & Body"
-msgstr ""
+msgstr "사람 & 신체"
 
 msgid "Pick a date"
-msgstr ""
+msgstr "날짜 선택"
 
 msgid "Pick a date and a time"
-msgstr ""
+msgstr "날짜와 시간 선택"
 
 msgid "Pick a month"
-msgstr ""
+msgstr "달 선택"
 
 msgid "Pick a time"
-msgstr ""
+msgstr "시간 선택"
 
 msgid "Pick a week"
-msgstr ""
+msgstr "주 선택"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "연도 선택"
 
 msgid "Pick an emoji"
-msgstr ""
+msgstr "이모지 선택"
 
 msgid "Please select a time zone:"
-msgstr ""
+msgstr "시간대를 선택하세요:"
 
 msgid "Previous"
-msgstr ""
+msgstr "이전"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "제공자 아이콘"
+
+msgid "Purple"
+msgstr "보라"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "{options} 원본 링크"
 
 msgid "Related resources"
-msgstr ""
+msgstr "관련 리소스"
+
+msgid "Related team resources"
+msgstr "관련 팀 리소스"
+
+msgid "Rename project"
+msgstr "프로젝트 이름 변경"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "로지 브라운"
+
+msgid "Save changes"
+msgstr "변경 사항 저장"
 
 msgid "Search"
-msgstr ""
+msgstr "검색"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "이모지 검색"
+
+msgid "Search for time zone"
+msgstr "시간대 검색"
 
 msgid "Search results"
-msgstr ""
+msgstr "검색 결과"
+
+msgid "Search…"
+msgstr "검색..."
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "몇 초 전"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "초 전"
 
 msgid "Select a tag"
-msgstr ""
+msgstr "태그 선택"
 
 msgid "Select provider"
-msgstr ""
+msgstr "제공자 선택"
+
+msgid "Selected"
+msgstr "선택됨"
 
 msgid "Settings"
-msgstr ""
+msgstr "선택"
 
 msgid "Settings navigation"
-msgstr ""
+msgstr "세팅 탐색"
+
+msgid "Show details"
+msgstr "세부 사항 보기"
 
 msgid "Show password"
-msgstr ""
+msgstr "암호 표시"
+
+msgid "Skin tone"
+msgstr "피부 톤"
+
+msgid "Skip to app navigation"
+msgstr "앱 탐색으로 건너뛰기"
+
+msgid "Skip to main content"
+msgstr "본 내용으로 건너뛰기"
 
 msgid "Smart Picker"
-msgstr ""
+msgstr "스마트 선택기"
 
 msgid "Smileys & Emotion"
-msgstr ""
+msgstr "스마일리 & 이모티콘"
 
 msgid "Start slideshow"
-msgstr ""
+msgstr "슬라이드쇼 시작"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "입력하여 검색"
 
 msgid "Submit"
-msgstr ""
+msgstr "제출"
 
 msgid "Symbols"
-msgstr ""
+msgstr "기호"
 
 msgid "Travel & Places"
-msgstr ""
+msgstr "여행 & 장소"
+
+msgid "Type to search for existing projects"
+msgstr "입력하여 프로젝트를 검색"
 
 msgid "Type to search time zone"
-msgstr ""
+msgstr "입력하여 시간대를 검색"
 
 msgid "Unable to search the group"
-msgstr ""
+msgstr "그룹을 검색할 수 없음"
 
 msgid "Undo changes"
-msgstr ""
+msgstr "변경 되돌리기"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
+msgid "User status: {status}"
+msgstr "사용자 상태: {status}"
+
+msgid "View team"
+msgstr "팀 보기"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "위스키"
+
+msgid "Write a message …"
+msgstr "메시지 작성..."
