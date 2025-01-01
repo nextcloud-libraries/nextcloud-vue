@@ -1,10 +1,10 @@
 # 
 # Translators:
-# Aindriú Mac Giolla Eoin, 2024
+# Aindriú Mac Giolla Eoin, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Aindriú Mac Giolla Eoin, 2024\n"
+"Last-Translator: Aindriú Mac Giolla Eoin, 2025\n"
 "Language-Team: Irish (https://app.transifex.com/nextcloud/teams/64236/ga/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ga\n"
@@ -267,8 +267,8 @@ msgstr "Oscail nasc chuig \"{resourceName}\""
 msgid "Open menu"
 msgstr "Roghchlár a oscailt"
 
-msgid "Open navigation"
-msgstr "Oscail nascleanúint"
+msgid "Open navigation {shortcut}"
+msgstr "Oscail nascleanúint {shortcut}"
 
 msgid "Open sidebar"
 msgstr "Oscail barra taoibh"
