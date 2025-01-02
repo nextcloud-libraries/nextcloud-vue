@@ -8,10 +8,11 @@
 # Delphin PETER (Del) <delphinpeter@gmail.com>, 2024
 # DEV314R, 2024
 # John Molakvoæ <skjnldsv@protonmail.com>, 2024
+# Luc Van Vlasselaer <news@lv2.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
+"Last-Translator: Luc Van Vlasselaer <news@lv2.com>, 2025\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -70,7 +71,7 @@ msgstr "Revenir à la sélection du fournisseur"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
-msgstr "bleu violet"
+msgstr "Bleu violet"
 
 #. TRANSLATORS: A color name for RGB(55, 148, 172)
 msgid "Boston Blue"
