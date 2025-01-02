@@ -168,6 +168,11 @@ import { createFocusTrap } from 'focus-trap'
 import { getTrapStack } from '../../utils/focusTrap.js'
 import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
 
+/**
+ * @typedef {import('focus-trap').FocusTargetValueOrFalse} FocusTargetValueOrFalse
+ * @typedef {FocusTargetValueOrFalse|() => FocusTargetValueOrFalse} SetReturnFocus
+ */
+
 export default {
 	name: 'NcPopover',
 
@@ -210,11 +215,11 @@ export default {
 		/**
 		 * Set element to return focus to after focus trap deactivation
 		 *
-		 * @type {import('focus-trap').FocusTargetValueOrFalse}
+		 * @type {SetReturnFocus}
 		 */
 		setReturnFocus: {
 			default: undefined,
-			type: [HTMLElement, SVGElement, String, Boolean],
+			type: [HTMLElement, SVGElement, String, Boolean, Function],
 		},
 	},
 
