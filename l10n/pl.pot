@@ -322,7 +322,7 @@ msgid "Purple"
 msgstr "Fioletowy"
 
 msgid "Raw link {options}"
-msgstr "Link Raw {options}"
+msgstr "Surowy odnośnik {options}"
 
 msgid "Related resources"
 msgstr "Powiązane zasoby"
