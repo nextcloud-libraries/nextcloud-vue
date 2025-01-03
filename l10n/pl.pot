@@ -3,11 +3,11 @@
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Valdnet, 2024
 # Pirania 3680, 2024
-# Piotr Strębski <strebski@gmail.com>, 2024
+# Piotr Strebski <strebski@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Piotr Strębski <strebski@gmail.com>, 2024\n"
+"Last-Translator: Piotr Strebski <strebski@gmail.com>, 2025\n"
 "Language-Team: Polish (https://app.transifex.com/nextcloud/teams/64236/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
@@ -270,8 +270,8 @@ msgstr "Otwórz link do \"{resourceName}\""
 msgid "Open menu"
 msgstr "Otwórz menu"
 
-msgid "Open navigation"
-msgstr "Otwórz nawigację"
+msgid "Open navigation {shortcut}"
+msgstr "Otwórz nawigację {shortcut}"
 
 msgid "Open sidebar"
 msgstr "Otwórz pasek boczny"
@@ -322,7 +322,7 @@ msgid "Purple"
 msgstr "Fioletowy"
 
 msgid "Raw link {options}"
-msgstr "Link Raw {options}"
+msgstr "Surowy odnośnik {options}"
 
 msgid "Related resources"
 msgstr "Powiązane zasoby"
@@ -438,4 +438,4 @@ msgid "Whiskey"
 msgstr "Whisky"
 
 msgid "Write a message …"
-msgstr "Napisać wiadomość…"
+msgstr "Napisz wiadomość…"
