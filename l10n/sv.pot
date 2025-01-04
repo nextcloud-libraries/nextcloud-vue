@@ -2,10 +2,11 @@
 # Translators:
 # Magnus Höglund, 2024
 # John Molakvoæ <skjnldsv@protonmail.com>, 2024
+# Martin H <pilino+transifex@posteo.de>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
+"Last-Translator: Martin H <pilino+transifex@posteo.de>, 2025\n"
 "Language-Team: Swedish (https://app.transifex.com/nextcloud/teams/64236/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sv\n"
@@ -103,7 +104,7 @@ msgid "Close Smart Picker"
 msgstr "Stäng Smart Picker"
 
 msgid "Collapse menu"
-msgstr "Komprimera menyn"
+msgstr "Dölj menyn"
 
 msgid "Color picker"
 msgstr "Färgväljare"
@@ -190,7 +191,7 @@ msgid "Hide details"
 msgstr "Göm detaljer"
 
 msgid "Hide password"
-msgstr "Göm lössenordet"
+msgstr "Göm lösenordet"
 
 msgid "invisible"
 msgstr "osynlig"
@@ -222,10 +223,10 @@ msgid "Medium skin tone"
 msgstr "Medium hudton"
 
 msgid "Message limit of {count} characters reached"
-msgstr "Meddelandegräns {count} tecken används"
+msgstr "Meddelandebegränsning {count} tecken har uppnåtts"
 
 msgid "More items …"
-msgstr "Fler objekt"
+msgstr "Fler objekt …"
 
 msgid "More options"
 msgstr "Fler alternativ"

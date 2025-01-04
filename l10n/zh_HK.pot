@@ -1,11 +1,11 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Café Tango, 2024
+# Café Tango, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Café Tango, 2024\n"
+"Last-Translator: Café Tango, 2025\n"
 "Language-Team: Chinese (Hong Kong) (https://app.transifex.com/nextcloud/teams/64236/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_HK\n"
@@ -34,7 +34,7 @@ msgid "Activities"
 msgstr "活動"
 
 msgid "Add to a project"
-msgstr "添加到項目中"
+msgstr "添加到方案中"
 
 msgid "Animals & Nature"
 msgstr "動物與自然"
@@ -265,8 +265,8 @@ msgstr "開啟到「{resourceName}」的連結"
 msgid "Open menu"
 msgstr "開啟選單"
 
-msgid "Open navigation"
-msgstr "開啟導航"
+msgid "Open navigation {shortcut}"
+msgstr "開啟導航 {shortcut}"
 
 msgid "Open sidebar"
 msgstr "打開側邊欄"
