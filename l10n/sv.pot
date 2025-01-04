@@ -226,7 +226,7 @@ msgid "Message limit of {count} characters reached"
 msgstr "Meddelandegräns {count} tecken används"
 
 msgid "More items …"
-msgstr "Fler objekt"
+msgstr "Fler objekt …"
 
 msgid "More options"
 msgstr "Fler alternativ"
