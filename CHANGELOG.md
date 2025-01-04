@@ -14,7 +14,8 @@ All notable changes to this project will be documented in this file.
 * The package now uses Vue 3 instead of Vue 2.7
 * The package is now a native ESM package and the CommonJS entry points were dropped!
 * The old import path `@nextcloud/vue/dist/Components/NcComponent.js` were removed, please use the new ones (`@nextcloud/vue/components/NcComponent`) instead.
-* The `limitWidth` prop of `NcSettingsSection` was removed (the content is now always limitted width) [\#5605](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5605)
+* The plugin registering all the components and directives globally is removed. Use local registration instead. Use [`unplugin-vue-components`](https://github.com/unplugin/unplugin-vue-components) if you need an alternative.
+* The `limitWidth` prop of `NcSettingsSection` was removed (the content is now always limited width) [\#5605](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5605)
 * The `closing` and `opening` events of `NcAppSidebar` were removed as they are directly emitted when the sidebar was opened when using `v-if` and also just duplicated the state of the `open` prop [\#5606](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5606)
 * The `checked` prop was renamed to `modelValue`, the `update:checked` event was renamed to `update:modelValue`. This affects the following components:
   - `NcActionCheckbox`
