@@ -191,7 +191,7 @@ msgid "Hide details"
 msgstr "Göm detaljer"
 
 msgid "Hide password"
-msgstr "Göm lössenordet"
+msgstr "Göm lösenordet"
 
 msgid "invisible"
 msgstr "osynlig"
