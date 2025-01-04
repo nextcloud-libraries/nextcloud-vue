@@ -223,7 +223,7 @@ msgid "Medium skin tone"
 msgstr "Medium hudton"
 
 msgid "Message limit of {count} characters reached"
-msgstr "Meddelandegräns {count} tecken används"
+msgstr "Meddelandebegränsning {count} tecken har uppnåtts"
 
 msgid "More items …"
 msgstr "Fler objekt …"
