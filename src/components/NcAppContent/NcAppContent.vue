@@ -198,7 +198,6 @@ export default {
 		 * - `vertical-split` - a 2-column layout with list and default content separated vertically
 		 * - `no-split` - a single column layout; List is shown when `showDetails` is `false`, otherwise the default slot content is shown with a back button to return to the list.
 		 * - 'horizontal-split' - a 2-column layout with list and default content separated horizontally
-		 * On mobile screen `no-split` layout is forced.
 		 */
 		layout: {
 			type: String,
@@ -207,6 +206,16 @@ export default {
 				return ['no-split', 'vertical-split', 'horizontal-split'].includes(value)
 			},
 		},
+		/**
+		 * Content layout used on mobile. 
+		 */
+		mobileLayout: {
+			type: String,
+			default: 'no-split',
+			validator(value) {
+				return ['no-split'].includes(value)
+			}
+		}
 	},
 
 	emits: [
