@@ -1190,6 +1190,8 @@ body {
 	min-height: var(--default-clickable-area);
 	min-width: 260px;
 	margin: 0 0 var(--default-grid-baseline);
+	/* to make sure the timezone doesnt push the timeslots in a certain width container*/
+	max-width: 260px;
 
 	&.vs--open {
 		--vs-border-width: var(--border-width-input-focused, 2px);
