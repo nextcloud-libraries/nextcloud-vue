@@ -179,6 +179,7 @@ export default {
 		return {
 			registerSection: this.registerSection,
 			unregisterSection: this.unregisterSection,
+			getCurrentSection: () => this.selectedSection,
 		}
 	},
 
@@ -343,10 +344,10 @@ export default {
 		 */
 		handleSettingsNavigationClick(item) {
 			this.linkClicked = true
-			document.getElementById('settings-section_' + item).scrollIntoView({
-				behavior: 'smooth',
-				inline: 'nearest',
-			})
+			// document.getElementById('settings-section_' + item).scrollIntoView({
+			// 	behavior: 'smooth',
+			// 	inline: 'nearest',
+			// })
 			this.selectedSection = item
 			setTimeout(() => {
 				this.linkClicked = false
@@ -387,7 +388,6 @@ export default {
 .app-settings {
 	:deep &__navigation {
 		min-width: 200px;
-		margin-right: calc(4 * var(--default-grid-baseline));
 		overflow-x: hidden;
 		overflow-y: auto;
 		position: relative;
@@ -395,6 +395,11 @@ export default {
 	:deep &__content {
 		box-sizing: border-box;
 		padding-inline: calc(4 * var(--default-grid-baseline));
+		min-height: 70vh;
+	}
+
+	:deep(.dialog__name) {
+		display: none;
 	}
 }
 
@@ -402,14 +407,18 @@ export default {
 	height: 100%;
 	box-sizing: border-box;
 	overflow-y: auto;
-	padding: calc(3 * var(--default-grid-baseline));
+	padding: calc(2 * var(--default-grid-baseline));
+	background-color: var(--color-background-dark);
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	width: 100%;
 
 	&__link {
 		display: flex;
 		align-content: center;
 		font-size: 16px;
 		height: var(--default-clickable-area);
-		margin: 4px 0;
 		line-height: var(--default-clickable-area);
 		border-radius: var(--border-radius-element, var(--border-radius-pill));
 		font-weight: bold;
@@ -427,7 +436,8 @@ export default {
 		}
 
 		&--active {
-			background-color: var(--color-primary-element-light) !important;
+			background-color: var(--color-primary-element) !important;
+			color: var(--color-primary-element-text);
 		}
 
 		&--icon {

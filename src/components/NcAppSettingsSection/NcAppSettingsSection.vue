@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<section :id="htmlId" :aria-labelledby="`${htmlId}--label`" class="app-settings-section">
+	<section :id="htmlId" :aria-labelledby="`${htmlId}--label`" class="app-settings-section" v-show="currentSection === id">
 		<h3 :id="`${htmlId}--label`" class="app-settings-section__name">
 			{{ name }}
 		</h3>
@@ -17,7 +17,7 @@
 <script>
 export default {
 	name: 'NcAppSettingsSection',
-	inject: ['registerSection', 'unregisterSection'],
+	inject: ['registerSection', 'unregisterSection', 'getCurrentSection'],
 
 	props: {
 		name: {
@@ -38,6 +38,9 @@ export default {
 		// generate an id for each settingssection based on the name without whitespaces
 		htmlId() {
 			return 'settings-section_' + this.id
+		},
+		currentSection() {
+			return this.getCurrentSection()
 		},
 	},
 	// Reactive changes for section navigation
@@ -68,7 +71,7 @@ export default {
 	&__name {
 		font-size: 1.6em;
 		margin: 0;
-		padding: 20px 0;
+		padding: 0 0 20px 0;
 		font-weight: bold;
 		overflow: hidden;
 		white-space: nowrap;

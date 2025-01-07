@@ -213,41 +213,44 @@ export default {
 		v-bind="modalProps"
 		@close="handleClosed"
 		@update:show="handleClosing()">
-		<!-- The dialog name / header -->
-		<h2 :id="navigationId" class="dialog__name" v-text="name" />
-		<component :is="dialogTagName"
-			ref="dialogElement"
-			class="dialog"
-			:class="dialogClasses"
-			v-on="dialogListeners">
-			<div ref="wrapper" :class="['dialog__wrapper', { 'dialog__wrapper--collapsed': isNavigationCollapsed }]">
-				<!-- When the navigation is collapsed (too small dialog) it is displayed above the main content, otherwise on the inline start -->
-				<nav v-if="hasNavigation"
-					class="dialog__navigation"
-					:class="navigationClasses"
-					:aria-label="navigationAriaLabelAttr"
-					:aria-labelledby="navigationAriaLabelledbyAttr">
-					<slot name="navigation" :is-collapsed="isNavigationCollapsed" />
-				</nav>
-				<!-- Main dialog content -->
-				<div class="dialog__content" :class="contentClasses">
-					<slot>
-						<p class="dialog__text">
-							{{ message }}
-						</p>
-					</slot>
-				</div>
+		<div style="display: flex;">
+			<!-- When the navigation is collapsed (too small dialog) it is displayed above the main content, otherwise on the inline start -->
+			<nav class="dialog__navigation"
+				:class="navigationClasses"
+				:aria-label="navigationAriaLabelAttr"
+				:aria-labelledby="navigationAriaLabelledbyAttr">
+				<slot name="navigation" />
+			</nav>
+			<div style="flex: 1; padding-top: 4px">
+				<!-- The dialog name / header -->
+				<h2 :id="navigationId" class="dialog__name" v-text="name" />
+				<component :is="dialogTagName"
+					ref="dialogElement"
+					class="dialog"
+					:class="dialogClasses"
+					v-on="dialogListeners">
+					<div ref="wrapper" :class="['dialog__wrapper', { 'dialog__wrapper--collapsed': isNavigationCollapsed }]">
+						<!-- Main dialog content -->
+						<div class="dialog__content" :class="contentClasses">
+							<slot>
+								<p class="dialog__text">
+									{{ message }}
+								</p>
+							</slot>
+						</div>
+					</div>
+					<!-- The dialog actions aka the buttons -->
+					<div class="dialog__actions">
+						<slot name="actions">
+							<NcDialogButton v-for="(button, idx) in buttons"
+								:key="idx"
+								v-bind="button"
+								@click="handleButtonClose" />
+						</slot>
+					</div>
+				</component>
 			</div>
-			<!-- The dialog actions aka the buttons -->
-			<div class="dialog__actions">
-				<slot name="actions">
-					<NcDialogButton v-for="(button, idx) in buttons"
-						:key="idx"
-						v-bind="button"
-						@click="handleButtonClose" />
-				</slot>
-			</div>
-		</component>
+		</div>
 	</NcModal>
 </template>
 
@@ -605,6 +608,10 @@ export default defineComponent({
 		border-radius: var(--border-radius-large);
 	}
 }
+
+.dialog__modal .modal-container {
+	overflow: hidden;
+}
 </style>
 
 <style lang="scss" scoped>
@@ -619,8 +626,8 @@ export default defineComponent({
 	&__modal {
 		:deep(.modal-wrapper .modal-container) {
 			display: flex !important;
-			padding-block: 4px 0; // 4px to align with close button, 0 block-end to make overflowing content on scroll look nice
-			padding-inline: 12px 0; // Same as with padding-block, we need the actions to have a margin of 4px for the button outline
+			//padding-block: 4px 0; // 4px to align with close button, 0 block-end to make overflowing content on scroll look nice
+			//padding-inline: 0; // Same as with padding-block, we need the actions to have a margin of 4px for the button outline
 		}
 		:deep(.modal-wrapper .modal-container__content) {
 			display: flex;
