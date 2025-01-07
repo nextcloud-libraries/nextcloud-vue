@@ -549,6 +549,11 @@ export default {
 			<NcLoadingIcon v-if="spinner.loading" />
 		</template>
 		<template #no-options>
+			<!--
+				@slot Define the message when there are no options available.
+				Default : "No results"
+				@see https://vue-select.org/guide/slots.html#improving-the-default-no-options-text
+			-->
 			{{ t('No results') }}
 		</template>
 		<template v-for="(_, name) in $scopedSlots" #[name]="data">
