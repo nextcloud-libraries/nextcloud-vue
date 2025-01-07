@@ -153,6 +153,7 @@ export default {
 </docs>
 <template>
 	<span ref="main"
+		:title="tooltip"
 		v-click-outside="closeMenu"
 		:class="{
 			'avatardiv--unknown': userDoesNotExist,
@@ -184,7 +185,6 @@ export default {
 			type="tertiary-no-background"
 			class="action-item action-item__menutoggle"
 			:aria-label="avatarAriaLabel"
-			:title="tooltip"
 			@click="toggleMenu">
 			<template #icon>
 				<NcLoadingIcon v-if="contactsMenuLoading" />
@@ -198,7 +198,6 @@ export default {
 			type="tertiary-no-background"
 			:container="menuContainer"
 			:aria-label="avatarAriaLabel"
-			:title="tooltip"
 			@click="toggleMenu">
 			<component :is="item.ncActionComponent"
 				v-for="(item, key) in menu"
