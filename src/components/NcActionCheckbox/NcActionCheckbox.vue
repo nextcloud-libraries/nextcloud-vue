@@ -248,7 +248,7 @@ export default {
 
 		width: 100%;
 		padding: 0 !important;
-		padding-right: $icon-margin !important;
+		padding-inline-end: $icon-margin !important;
 
 		&::before {
 			margin-block: 0 !important;
