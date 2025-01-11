@@ -37,7 +37,7 @@
 		height: auto;
 		margin: 0;
 		padding: 0;
-		padding-right: $icon-margin;
+		padding-inline-end: $icon-margin;
 		box-sizing: border-box; // otherwise router-link overflows in Firefox
 
 		cursor: pointer;
@@ -109,11 +109,7 @@
 		}
 
 		&__menu-icon {
-			// Push to the right
-			margin-left: auto;
-			// Align with right end of the button
-			// This is the padding-right
-			margin-right: calc($icon-margin * -1);
+			margin-inline: auto calc($icon-margin * -1);
 		}
 	}
 }
