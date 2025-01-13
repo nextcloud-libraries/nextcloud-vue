@@ -129,7 +129,7 @@ th {
 
 ### Custom content (removed)
 
-In v8 it was possible ti to pass any custom content via the default slot. This feature has been removed. Use `count` prop for numbers or [NcChip](#/Components/NcChip) component for a custom content.
+In v8 it was possible to pass any custom content via the default slot. This feature has been removed. Use `count` prop for numbers or [NcChip](#/Components/NcChip) component for a custom content.
 </docs>
 
 <template>
