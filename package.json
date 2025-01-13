@@ -112,9 +112,9 @@
     "npm": "^10.0.0"
   },
   "devDependencies": {
-    "@babel/plugin-syntax-import-assertions": "^7.24.7",
-    "@babel/plugin-transform-typescript": "^7.24.7",
-    "@babel/preset-typescript": "^7.24.7",
+    "@babel/plugin-syntax-import-assertions": "^7.26.0",
+    "@babel/plugin-transform-typescript": "^7.26.5",
+    "@babel/preset-typescript": "^7.26.0",
     "@fontsource/roboto": "^5.0.14",
     "@mdi/js": "^7.4.47",
     "@mdi/svg": "^7.4.47",
