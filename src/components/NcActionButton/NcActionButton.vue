@@ -384,11 +384,7 @@ export default {
 		ChevronRightIcon,
 		ChevronLeftIcon,
 	},
-	setup() {
-		return {
-			isRTL: isRTL(),
-		}
-	},
+
 	mixins: [ActionTextMixin],
 
 	inject: {
@@ -464,6 +460,12 @@ export default {
 	},
 
 	emits: ['update:modelValue'],
+
+	setup() {
+		return {
+			isRTL: isRTL(),
+		}
+	},
 
 	computed: {
 		/**
