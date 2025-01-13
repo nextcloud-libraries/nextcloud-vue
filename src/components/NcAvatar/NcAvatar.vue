@@ -153,8 +153,8 @@ export default {
 </docs>
 <template>
 	<span ref="main"
-		:title="tooltip"
 		v-click-outside="closeMenu"
+		:title="tooltip"
 		:class="{
 			'avatardiv--unknown': userDoesNotExist,
 			'avatardiv--with-menu': hasMenu,
