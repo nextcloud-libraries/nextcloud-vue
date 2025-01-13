@@ -4,7 +4,6 @@
  */
 
 import NcMentionBubble from '../../components/NcRichContenteditable/NcMentionBubble.vue'
-import Linkify from '../../utils/Linkify.js'
 
 import escapeHtml from 'escape-html'
 import stripTags from 'striptags'
@@ -51,8 +50,7 @@ export default {
 					// When splitting, the string is always putting the userIds
 					// on the uneven indexes. We only want to generate the mentions html
 					if (!part.startsWith('@')) {
-						// This part doesn't contain a mention, let's make sure links are parsed
-						return Linkify(part)
+						return part
 					}
 
 					// Extracting the id, nuking the leading @ and all "
