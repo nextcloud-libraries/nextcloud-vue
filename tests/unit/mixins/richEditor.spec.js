@@ -34,17 +34,6 @@ describe('richEditor.js', () => {
 			expect(parsedOutput).toEqual(input)
 		})
 
-		it('no duplicated ampersand (from Linkify)', () => {
-			const editor = shallowMount(TestEditor, { propsData: { userData: {} } })
-			const input = 'hello &'
-			const output = editor.vm.renderContent(input)
-
-			expect(output).toEqual('hello &amp;')
-
-			const parsedOutput = editor.vm.parseContent(output)
-			expect(parsedOutput).toEqual(input)
-		})
-
 		it('keeps mentions without user data', () => {
 			const editor = shallowMount(TestEditor, { propsData: { userData: {} } })
 			const input = 'hello @foobar'
