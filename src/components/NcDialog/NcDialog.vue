@@ -646,7 +646,6 @@ export default defineComponent({
 	&__modal {
 		:deep(.modal-wrapper .modal-container) {
 			display: flex !important;
-			padding-block: 4px 0; // 4px to align with close button, 0 block-end to make overflowing content on scroll look nice
 			padding-inline: 12px 0; // Same as with padding-block, we need the actions to have a margin of 4px for the button outline
 		}
 		:deep(.modal-wrapper .modal-container__content) {
@@ -696,13 +695,13 @@ export default defineComponent({
 
 	&__name {
 		font-size: 21px;
-
 		text-align: center;
 		height: fit-content;
 		min-height: var(--default-clickable-area);
 		line-height: var(--default-clickable-area);
 		overflow-wrap: break-word;
-		margin-block: 0 12px;
+		// align with close button
+		margin-block: var(--default-grid-baseline) calc(3 * var(--default-grid-baseline));
 	}
 
 	&__content {
