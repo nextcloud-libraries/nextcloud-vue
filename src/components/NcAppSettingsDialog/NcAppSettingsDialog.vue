@@ -123,60 +123,74 @@ export default {
 </docs>
 
 <template>
-	<NcDialog v-if="open"
-		:navigation-aria-label="settingsNavigationAriaLabel"
-		v-bind="dialogProperties"
-		@update:open="handleCloseModal">
-		<template v-if="hasNavigation" #navigation="{ isCollapsed }">
-			<ul v-if="!isCollapsed"
-				class="navigation-list">
-				<li v-for="section in sections" :key="section.id">
-					<a :aria-current="`${section.id === selectedSection}`"
-						:class="{
-							'navigation-list__link': true,
-							'navigation-list__link--active': section.id === selectedSection,
-							'navigation-list__link--icon': hasNavigationIcons,
-						}"
-						:href="`#settings-section_${section.id}`"
-						tabindex="0"
-						@click.prevent="handleSettingsNavigationClick(section.id)"
-						@keydown.enter="handleSettingsNavigationClick(section.id)">
-						<div v-if="hasNavigationIcons" class="navigation-list__link-icon">
-							<NcVNodes v-if="section.icon" :vnodes="section.icon" />
-						</div>
-						<span class="navigation-list__link-text">
+	<NcModal v-if="open"
+		:additional-trap-elements="additionalTrapElements"
+		:close-button-contained="!isMobile"
+		close-on-click-outside
+		class="app-settings"
+		:container="container"
+		content-classes="app-settings__content"
+		size="large"
+		:name="name"
+		@update:show="handleCloseModal">
+		<div class="app-settings__wrapper">
+			<nav class="app-settings__nav" :aria-label="t('Application settings')" tabindex="-1">
+				<ul class="navigation-list">
+					<li v-for="(section, sectionIndex) in sections" :key="section.id">
+						<NcButton ref="navigationButton"
+							:aria-current="section.id === selectedSection ? 'page' : undefined"
+							:class="{ 'navigation-list__link--icon': hasNavigationIcons }"
+							:href="`#settings-section_${section.id}`"
+							:type="section.id === selectedSection ? 'primary' : 'tertiary'"
+							alignment="start"
+							wide
+							@keydown.down="openSection(sectionIndex + 1)"
+							@keydown.up="openSection(sectionIndex - 1)"
+							@keydown.left="openSection(sectionIndex + (isRTL ? 1 : -1))"
+							@keydown.right="openSection(sectionIndex + (isRTL ? -1 : +1))"
+							@keydown.tab.prevent="() => {/* noop */}"
+							@click.prevent="openSection(sectionIndex)">
+							<template v-if="hasNavigationIcons" #icon>
+								<div class="navigation-list__link-icon">
+									<NcVNodes v-if="section.icon" :vnodes="section.icon" />
+								</div>
+							</template>
 							{{ section.name }}
-						</span>
-					</a>
-				</li>
-			</ul>
-		</template>
-		<div ref="settingsScroller">
-			<slot />
+						</NcButton>
+					</li>
+				</ul>
+			</nav>
+			<div ref="settingsScroller" style="overflow-y: auto; flex: 1">
+				<slot />
+			</div>
 		</div>
-	</NcDialog>
+	</NcModal>
 </template>
 
 <script>
-import debounce from 'debounce'
 import { warn } from 'vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { t } from '../../l10n.js'
+import { isRTL as checkRTL } from '@nextcloud/l10n'
+import NcButton from '../NcButton/index.js'
+import NcModal from '../NcModal/index.js'
+import NcVNodes from '../NcVNodes/index.js'
 
-import NcDialog from '../NcDialog/index.ts'
-import NcVNodes from '../NcVNodes/index.ts'
+const isRTL = checkRTL()
 
 export default {
 
 	name: 'NcAppSettingsDialog',
 
 	components: {
-		NcDialog,
+		NcButton,
+		NcModal,
 		NcVNodes,
 	},
 
 	provide() {
 		return {
+			getSelectedSection: () => this.selectedSection,
 			registerSection: this.registerSection,
 			unregisterSection: this.unregisterSection,
 		}
@@ -228,6 +242,8 @@ export default {
 
 	setup() {
 		return {
+			t,
+			isRTL,
 			isMobile: useIsMobile(),
 		}
 	},
@@ -247,19 +263,6 @@ export default {
 	},
 
 	computed: {
-		dialogProperties() {
-			return {
-				additionalTrapElements: this.additionalTrapElements,
-				closeOnClickOutside: true,
-				class: 'app-settings',
-				container: this.container,
-				contentClasses: 'app-settings__content',
-				size: 'large',
-				name: this.name,
-				navigationClasses: 'app-settings__navigation',
-			}
-		},
-
 		/**
 		 * Check if one or more navigation entries provide icons
 		 */
@@ -280,19 +283,19 @@ export default {
 		},
 	},
 
-	updated() {
-		// Check that the scroller element has been mounted
-		if (!this.$refs.settingsScroller) {
-			return
-		}
-		// Get the scroller element
-		this.scroller = this.$refs.settingsScroller
-		if (!this.addedScrollListener) {
-			this.scroller.addEventListener('scroll', this.handleScroll)
-			this.addedScrollListener = true
-		}
+	// updated() {
+	// 	// Check that the scroller element has been mounted
+	// 	if (!this.$refs.settingsScroller) {
+	// 		return
+	// 	}
+	// 	// Get the scroller element
+	// 	this.scroller = this.$refs.settingsScroller
+	// 	if (!this.addedScrollListener) {
+	// 		this.scroller.addEventListener('scroll', this.handleScroll)
+	// 		this.addedScrollListener = true
+	// 	}
 
-	},
+	// },
 
 	methods: {
 		/**
@@ -342,15 +345,25 @@ export default {
 		 * @param {string} item the ID of the section
 		 */
 		handleSettingsNavigationClick(item) {
-			this.linkClicked = true
-			document.getElementById('settings-section_' + item).scrollIntoView({
-				behavior: 'smooth',
-				inline: 'nearest',
-			})
 			this.selectedSection = item
-			setTimeout(() => {
-				this.linkClicked = false
-			}, 1000)
+			// --- WIP ---
+			// this.linkClicked = true
+			// document.getElementById('settings-section_' + item).scrollIntoView({
+			// 	behavior: 'smooth',
+			// 	inline: 'nearest',
+			// })
+			// this.selectedSection = item
+			// setTimeout(() => {
+			// 	this.linkClicked = false
+			// }, 1000)
+		},
+
+		openSection(sectionIndex) {
+			if (sectionIndex < 0 || sectionIndex >= this.sections.length) {
+				return
+			}
+			this.selectedSection = this.sections[sectionIndex].id
+			this.$refs.navigationButton[sectionIndex].$el.focus()
 		},
 
 		handleCloseModal(isOpen) {
@@ -360,9 +373,9 @@ export default {
 
 			this.$emit('update:open', false)
 			// Remove scroll listener each time the modal is closed
-			this.scroller.removeEventListener('scroll', this.handleScroll)
-			this.addedScrollListener = false
-			this.scroller.scrollTop = 0
+			// this.scroller.removeEventListener('scroll', this.handleScroll)
+			// this.addedScrollListener = false
+			// this.scroller.scrollTop = 0
 		},
 
 		handleScroll() {
@@ -372,18 +385,28 @@ export default {
 		},
 
 		// Remove selected section once the user starts scrolling
-		unfocusNavigationItem: debounce(function() {
-			this.selectedSection = ''
-			if (document.activeElement.className.includes('navigation-list__link')) {
-				document.activeElement.blur()
-			}
-		}, 300),
+		// unfocusNavigationItem: debounce(function() {
+		// 	this.selectedSection = ''
+		// 	if (document.activeElement.className.includes('navigation-list__link')) {
+		// 		document.activeElement.blur()
+		// 	}
+		// }, 300),
 	},
 }
 
 </script>
 
 <style lang="scss" scoped>
+.app-settings {
+	:deep(.modal-wrapper .modal-container) {
+		overflow: hidden;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+}
+
 .app-settings {
 	:deep &__navigation {
 		min-width: 200px;
@@ -392,45 +415,36 @@ export default {
 		overflow-y: auto;
 		position: relative;
 	}
+
 	:deep &__content {
 		padding-inline: calc(4 * var(--default-grid-baseline));
+	}
+
+	&__wrapper {
+		display: flex;
+		flex-direction: row;
+		gap: calc(4 * var(--default-grid-baseline));
+		height: 100%;
+	}
+
+	&__nav {
+		background-color: var(--color-background-dark);
+		padding: calc(2 * var(--default-grid-baseline));
+		overflow-y: auto;
+	}
+
+	.navigation-list {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: calc(2 * var(--default-grid-baseline));
 	}
 }
 
 .navigation-list {
-	height: 100%;
-	overflow-y: auto;
-	padding: calc(3 * var(--default-grid-baseline));
-
 	&__link {
-		display: flex;
-		align-content: center;
-		font-size: 16px;
-		height: var(--default-clickable-area);
-		margin: 4px 0;
-		line-height: var(--default-clickable-area);
-		border-radius: var(--border-radius-element, var(--border-radius-pill));
-		font-weight: bold;
-		padding: 0 calc(4 * var(--default-grid-baseline));
-		cursor: pointer;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-		overflow: hidden;
-		background-color: transparent;
-		border: none;
-
-		&:hover,
-		&:focus {
-			background-color: var(--color-background-hover);
-		}
-
 		&--active {
 			background-color: var(--color-primary-element-light) !important;
-		}
-
-		&--icon {
-			padding-inline-start: calc(2 * var(--default-grid-baseline));
-			gap: var(--default-grid-baseline);
 		}
 
 		&-icon {
@@ -439,6 +453,18 @@ export default {
 			align-content: center;
 			width: calc(var(--default-clickable-area) - 2 * var(--default-grid-baseline));
 			max-width: calc(var(--default-clickable-area) - 2 * var(--default-grid-baseline));
+		}
+	}
+}
+
+@media only screen and (max-width: $breakpoint-mobile) {
+	.app-settings {
+		&__wrapper {
+			flex-direction: column;
+		}
+
+		.navigation-list {
+			flex-direction: row;
 		}
 	}
 }
