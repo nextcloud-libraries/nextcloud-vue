@@ -11,6 +11,7 @@
 			:aria-label="label"
 			:title="label"
 			aria-controls="app-navigation-vue"
+			:aria-keyshortcuts="disableKeyboardShortcuts ? '' : 'n'"
 			@click="toggleNavigation">
 			<template #icon>
 				<MenuOpenIcon v-if="open" :size="20" />
@@ -26,6 +27,8 @@ import { t } from '../../l10n.js'
 
 import MenuIcon from 'vue-material-design-icons/Menu.vue'
 import MenuOpenIcon from 'vue-material-design-icons/MenuOpen.vue'
+
+const disableKeyboardShortcuts = window.OCP?.Accessibility?.disableKeyboardShortcuts?.()
 
 export default {
 	name: 'NcAppNavigationToggle',
@@ -50,9 +53,15 @@ export default {
 
 	emits: ['update:open'],
 
+	setup() {
+		return { disableKeyboardShortcuts }
+	},
+
 	computed: {
 		label() {
-			return this.open ? t('Close navigation') : t('Open navigation')
+			return this.open
+				? t('Close navigation')
+				: t('Open navigation {shortcut}', { shortcut: disableKeyboardShortcuts ? '' : '[n]' }).trim()
 		},
 	},
 	methods: {
