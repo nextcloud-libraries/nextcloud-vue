@@ -5,6 +5,18 @@
 
 # Changelog
 
+## [v8.23.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.23.0) (UNRELEASED)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.22.0...v8.23.0)
+
+### 🚀 Enhancements
+* The individual import path of components, composables, directives, and functions was changed.
+  The type of import is (e.g. `components`) is now lowercase and the `dist` will be omitted.
+  For example to import the `NcButton` component the path has changed:
+  - from `import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'`.
+  - to `import NcButton from '@nextcloud/vue/components/NcButton'`
+
+  The old import paths are still valid, but deprecated and will be removed in version 9.
+
 ## [v8.22.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.22.0) (2024-12-20)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.21.0...v8.22.0)
 

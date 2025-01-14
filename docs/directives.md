@@ -8,7 +8,7 @@
 To use any directive, import and register it locally, for example:
 
 ```js static
-import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
+import Tooltip from '@nextcloud/vue/directives/Tooltip'
 
 export default {
     directives: {
@@ -19,13 +19,13 @@ export default {
 or in `<script setup>`:
 
 ```js static
-import vTooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
+import vTooltip from '@nextcloud/vue/directives/Tooltip'
 ```
 
 You can also register any directive globally. But it is not recommended.
 
 ```js static
-import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
+import Tooltip from '@nextcloud/vue/directives/Tooltip'
 
 Vue.directive('Tooltip', Tooltip)
 ```

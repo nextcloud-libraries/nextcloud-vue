@@ -4,7 +4,7 @@
 -->
 
 ```js static
-import Linkify from '@nextcloud/vue/dist/Directives/Linkify.js'
+import Linkify from '@nextcloud/vue/directives/Linkify'
 ```
 
 Automatically make links in rendered text clickable.

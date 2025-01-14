@@ -8,7 +8,7 @@ It respects Nextcloud's value of ```OCP.Accessibility.disableKeyboardShortcuts``
 
 ### Usage
 ```js static
-import { useHotKey } from '@nextcloud/vue/dist/Composables/useHotKey/index.js'
+import { useHotKey } from '@nextcloud/vue/composables/useHotKey'
 
 const stopCallback = useHotKey(key, callback, options)
 ```

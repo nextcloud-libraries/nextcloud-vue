@@ -7,7 +7,7 @@
 import {
     isDarkTheme,
     checkIfDarkTheme,
-} from '@nextcloud/vue/dist/Functions/isDarkTheme.js'
+} from '@nextcloud/vue/functions/isDarkTheme'
 ```
 
 Check whether the dark theme is enabled in Nextcloud. 

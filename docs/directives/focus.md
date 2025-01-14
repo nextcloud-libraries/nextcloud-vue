@@ -4,7 +4,7 @@
 -->
 
 ```js static
-import Focus from '@nextcloud/vue/dist/Directives/Focus.js'
+import Focus from '@nextcloud/vue/directives/Focus'
 ```
 
 Focus an element when it is mounted to DOM.
