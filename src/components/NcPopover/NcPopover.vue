@@ -157,8 +157,8 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 		</NcPopoverTriggerProvider>
 
 		<!-- This will be the content of the popover -->
-		<template #popper>
-			<slot />
+		<template #popper="slotProps">
+			<slot name="default" v-bind="slotProps" />
 		</template>
 	</Dropdown>
 </template>
