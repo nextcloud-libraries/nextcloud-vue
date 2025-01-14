@@ -4,7 +4,7 @@
 -->
 
 ```js static
-import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
+import Tooltip from '@nextcloud/vue/directives/Tooltip'
 ```
 
 Tooltip directive based on [v-tooltip](https://github.com/Akryum/v-tooltip).

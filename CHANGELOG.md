@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 ### 💥 Breaking Changes
 * The package now uses Vue 3 instead of Vue 2.7
 * The package is now a native ESM package and the CommonJS entry points were dropped!
+* The old import path `@nextcloud/vue/dist/Components/NcComponent.js` were removed, please use the new ones (`@nextcloud/vue/components/NcComponent`) instead.
 * The `limitWidth` prop of `NcSettingsSection` was removed (the content is now always limitted width) [\#5605](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5605)
 * The `closing` and `opening` events of `NcAppSidebar` were removed as they are directly emitted when the sidebar was opened when using `v-if` and also just duplicated the state of the `open` prop [\#5606](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5606)
 * The `checked` prop was renamed to `modelValue`, the `update:checked` event was renamed to `update:modelValue`. This affects the following components.
@@ -106,6 +107,18 @@ All notable changes to this project will be documented in this file.
 * chore: Update stylings from server [\#5473](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5473) \([susnux](https://github.com/susnux)\)
 * [next] chore: Update and pin development dependencies [\#5266](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5266) \([susnux](https://github.com/susnux)\)
 * [next] chore(NcUserStatusIcon): remove warn if status is not set by @ShGKme in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5744
+
+## [v8.23.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.23.0) (UNRELEASED)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.22.0...v8.23.0)
+
+### 🚀 Enhancements
+* The individual import path of components, composables, directives, and functions was changed.
+  The type of import is (e.g. `components`) is now lowercase and the `dist` will be omitted.
+  For example to import the `NcButton` component the path has changed:
+  - from `import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'`.
+  - to `import NcButton from '@nextcloud/vue/components/NcButton'`
+
+  The old import paths are still valid, but deprecated and will be removed in version 9.
 
 ## [v8.14.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.14.0) (2024-07-04)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.13.0...v8.14.0)

@@ -36,25 +36,25 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs"
     },
-    "./dist/Components/*.js": {
+    "./components/*": {
       "types": "./dist/components/*/index.d.ts",
-      "import": "./dist/Components/*.mjs"
+      "import": "./dist/components/*/index.mjs"
     },
-    "./dist/Directives/*.js": {
-      "types": "./dist/directives/*/index.d.ts",
-      "import": "./dist/Directives/*.mjs"
-    },
-    "./dist/Functions/*.js": {
-      "types": "./dist/functions/*/index.d.ts",
-      "import": "./dist/Functions/*.mjs"
-    },
-    "./dist/Mixins/*.js": {
-      "types": "./dist/mixins/*/index.d.ts",
-      "import": "./dist/Mixins/*.mjs"
-    },
-    "./dist/Composables/*.js": {
+    "./composables/*": {
       "types": "./dist/composables/*/index.d.ts",
-      "import": "./dist/Composables/*.mjs"
+      "import": "./dist/composables/*/index.mjs"
+    },
+    "./directives/*": {
+      "types": "./dist/directives/*/index.d.ts",
+      "import": "./dist/directives/*/index.mjs"
+    },
+    "./functions/*": {
+      "types": "./dist/functions/*/index.d.ts",
+      "import": "./dist/functions/*/index.mjs"
+    },
+    "./mixins/*": {
+      "types": "./dist/mixins/*/index.d.ts",
+      "import": "./dist/mixins/*/index.mjs"
     }
   },
   "files": [

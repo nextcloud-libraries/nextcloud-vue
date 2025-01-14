@@ -4,7 +4,7 @@
 -->
 
 ```js static
-import usernameToColor from '@nextcloud/vue/dist/Functions/usernameToColor.js'
+import usernameToColor from '@nextcloud/vue/functions/usernameToColor'
 ```
 
 ## Definition

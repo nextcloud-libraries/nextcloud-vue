@@ -19,45 +19,14 @@ const SCOPE_VERSION = JSON.stringify(versionHash)
 
 // Entry points which we build using vite
 const entryPoints = {
-	...globSync(['src/directives/*/index.js', 'src/directives/*/index.ts']).reduce((acc, item) => {
-		const name = item
-			.replace(/\/index\.(j|t)s/, '')
-			.replace('src/directives/', 'Directives/')
-		acc[name] = join(import.meta.dirname, item)
-		return acc
-	}, {}),
-
-	...globSync(['src/components/*/index.js', 'src/components/*/index.ts']).reduce((acc, item) => {
-		const name = item
-			.replace(/\/index\.(j|t)s/, '')
-			.replace('src/components/', 'Components/')
-		acc[name] = join(import.meta.dirname, item)
-		return acc
-	}, {}),
-
-	...globSync(['src/functions/*/index.js', 'src/functions/*/index.ts']).reduce((acc, item) => {
-		const name = item
-			.replace(/\/index\.(j|t)s/, '')
-			.replace('src/functions/', 'Functions/')
-		acc[name] = join(import.meta.dirname, item)
-		return acc
-	}, {}),
-
-	...globSync(['src/mixins/*/index.js', 'src/mixins/*/index.ts']).reduce((acc, item) => {
-		const name = item
-			.replace(/\/index\.(j|t)s/, '')
-			.replace('src/mixins/', 'Mixins/')
-		acc[name] = join(import.meta.dirname, item)
-		return acc
-	}, {}),
-
-	...globSync(['src/composables/*/index.js', 'src/composables/*/index.ts']).reduce((acc, item) => {
-		const name = item
-			.replace(/\/index\.(j|t)s/, '')
-			.replace('src/composables/', 'Composables/')
-		acc[name] = join(import.meta.dirname, item)
-		return acc
-	}, {}),
+	...globSync('src/@(components|composables|directives|functions|mixins)/*/index.@(js|ts)')
+		.reduce((acc, item) => {
+			const name = item
+				.replace('src/', '')
+				.replace(/\/index\.(j|t)s$/, '/index')
+			acc[name] = join(import.meta.dirname, item)
+			return acc
+		}, {}),
 
 	index: resolve(import.meta.dirname, 'src/index.ts'),
 }

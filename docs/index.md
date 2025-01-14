@@ -33,7 +33,7 @@ You can also import individual module without bundling the full library.
 
 
 ```js static
-import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar'
+import NcAvatar from '@nextcloud/vue/components/NcAvatar'
 ```
 
 ## Recommendations
