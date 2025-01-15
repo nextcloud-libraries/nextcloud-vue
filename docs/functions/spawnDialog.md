@@ -5,7 +5,7 @@
 ```ts static
 import {
 	spawnDialog,
-} from '@nextcloud/vue/dist/Functions/dialog.js'
+} from '@nextcloud/vue/functions/dialog'
 ```
 
 ## Definitions

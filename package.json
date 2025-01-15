@@ -55,6 +55,22 @@
     "./dist/Composables/*.js": {
       "import": "./dist/Composables/*.mjs",
       "require": "./dist/Composables/*.cjs"
+    },
+    "./components/*": {
+      "import": "./dist/Components/*.mjs",
+      "require": "./dist/Components/*.cjs"
+    },
+    "./composables/*": {
+      "import": "./dist/Composables/*.mjs",
+      "require": "./dist/Composables/*.cjs"
+    },
+    "./directives/*": {
+      "import": "./dist/Directives/*.mjs",
+      "require": "./dist/Directives/*.cjs"
+    },
+    "./functions/*": {
+      "import": "./dist/Functions/*.mjs",
+      "require": "./dist/Functions/*.cjs"
     }
   },
   "files": [

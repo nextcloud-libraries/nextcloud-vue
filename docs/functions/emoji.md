@@ -9,7 +9,7 @@ import {
     emojiAddRecent,
     getCurrentSkinTone,
     setCurrentSkinTone,
-} from '@nextcloud/vue/dist/Functions/emoji.js'
+} from '@nextcloud/vue/functions/emoji'
 ```
 
 ## Definitions
