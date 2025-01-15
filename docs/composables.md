@@ -8,7 +8,7 @@
 To use any composable, import and use it according to documentation or Vue guidelines, for example:
 
 ```js static
-import { useIsMobile } from '@nextcloud/vue/dist/composables/useIsMobile.js'
+import { useIsMobile } from '@nextcloud/vue/composables/useIsMobile'
 
 export default {
 	setup() {
@@ -21,7 +21,7 @@ export default {
 or in `<script setup>`:
 
 ```js static
-import { useIsMobile } from '@nextcloud/vue/dist/composables/useIsMobile.js'
+import { useIsMobile } from '@nextcloud/vue/composables/useIsMobile'
 
 const isMobile = useIsMobile()
 ```
