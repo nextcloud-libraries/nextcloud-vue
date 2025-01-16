@@ -47,7 +47,6 @@ export default {
 	width: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
-	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
 	gap: var(--default-grid-baseline, 4px);

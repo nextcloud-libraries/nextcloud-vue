@@ -2,13 +2,12 @@
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
- 
+
  .app-navigation-entry {
 	position: relative;
 	display: flex;
 	flex-shrink: 0;
 	flex-wrap: wrap;
-	box-sizing: border-box;
 	width: 100%;
 	min-height: var(--default-clickable-area);
 	transition: background-color var(--animation-quick) ease-in-out;
@@ -20,7 +19,6 @@
 		display: flex;
 		flex-shrink: 0;
 		flex-wrap: wrap;
-		box-sizing: border-box;
 		width: 100%;
 
 		&.app-navigation-entry--collapsible:not(.app-navigation-entry--opened) > ul {
@@ -85,7 +83,6 @@
 		display: flex;
 		overflow: hidden;
 		flex: 1 1 0;
-		box-sizing: border-box;
 		min-height: var(--default-clickable-area);
 		padding: 0;
 		white-space: nowrap;

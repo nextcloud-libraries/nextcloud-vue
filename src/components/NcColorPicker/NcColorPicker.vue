@@ -406,7 +406,6 @@ export default defineComponent({
 	align-content: flex-end;
 	flex-direction: column;
 	justify-content: space-between;
-	box-sizing: content-box !important;
 	width: 176px;
 	padding: 8px;
 	border-radius: 3px;

@@ -850,6 +850,12 @@ export default {
 	height: 100%;
 	--backdrop-color: 0, 0, 0;
 	background-color: rgba(var(--backdrop-color), .5);
+
+	&,
+	& * {
+		box-sizing: border-box;
+	}
+
 	&--opaque {
 		background-color: rgba(var(--backdrop-color), .92);
 	}
@@ -876,7 +882,6 @@ export default {
 
 	&__name {
 		overflow-x: hidden;
-		box-sizing: border-box;
 		width: 100%;
 		padding: 0 calc(var(--default-clickable-area) * 3) 0 12px; // maximum actions is 3
 		transition: padding ease 100ms;
@@ -905,7 +910,6 @@ export default {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			box-sizing: border-box;
 			margin: calc((var(--header-height) - var(--default-clickable-area)) / 2);
 			padding: 0;
 		}
@@ -930,7 +934,6 @@ export default {
 			}
 			&__play,
 			&__pause {
-				box-sizing: border-box;
 				width: var(--default-clickable-area);
 				height: var(--default-clickable-area);
 				margin: calc((var(--header-height) - var(--default-clickable-area)) / 2);
@@ -943,7 +946,6 @@ export default {
 			margin: calc((var(--header-height) - var(--default-clickable-area)) / 2);
 
 			&--single {
-				box-sizing: border-box;
 				width: var(--default-clickable-area);
 				height: var(--default-clickable-area);
 				cursor: pointer;
@@ -974,13 +976,8 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	box-sizing: border-box;
 	width: 100%;
 	height: 100%;
-
-	:deep(*) {
-		box-sizing: border-box;
-	}
 
 	/* Navigation buttons */
 	.prev,

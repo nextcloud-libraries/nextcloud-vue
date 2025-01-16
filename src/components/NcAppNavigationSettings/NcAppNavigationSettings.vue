@@ -79,7 +79,6 @@ export default {
 	padding: $app-navigation-settings-margin;
 
 	&__header {
-		box-sizing: border-box;
 		margin: 0 $app-navigation-settings-margin $app-navigation-settings-margin $app-navigation-settings-margin;
 
 		.settings-button {
@@ -129,7 +128,6 @@ export default {
 		/* restrict height of settings and make scrollable */
 		max-height: 300px;
 		overflow-y: auto;
-		box-sizing: border-box;
 	}
 }
 

@@ -15,11 +15,11 @@ All notable changes to this project will be documented in this file.
 * The package is now a native ESM package and the CommonJS entry points were dropped!
 * The `limitWidth` prop of `NcSettingsSection` was removed (the content is now always limitted width) [\#5605](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5605)
 * The `closing` and `opening` events of `NcAppSidebar` were removed as they are directly emitted when the sidebar was opened when using `v-if` and also just duplicated the state of the `open` prop [\#5606](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5606)
-* The `checked` prop was renamed to `modelValue`, the `update:checked` event was renamed to `update:modelValue`. This affects the following components.
+* The `checked` prop was renamed to `modelValue`, the `update:checked` event was renamed to `update:modelValue`. This affects the following components:
   - `NcActionCheckbox`
   - `NcActionRadio`
   - `NcCheckboxRadioSwitch`
-* The `value` prop was renamed to `modelValue`, the `update:value` or `input` events were renamed to `update:modelValue`. This affects the following components.
+* The `value` prop was renamed to `modelValue`, the `update:value` or `input` events were renamed to `update:modelValue`. This affects the following components:
   - `NcActionInput`
   - `NcActionTextEditable`
   - `NcColorPicker`
@@ -41,6 +41,9 @@ All notable changes to this project will be documented in this file.
   - `NcBreadcrumb`
   - `NcListItem`
 * The `isFullscreen` and `isMobile` mixins were removed. Use the according composables instead.
+* The `box-sizing: border-box` is now default for following components and its content. This is done to match behaviour of `NcContent` (as they can be mounted directly to `body`):
+  - `NcModal`
+  - `NcPopover`
 
 ### 🚀 Enhancements
 * Allow writing components using Typescript and provide type definitions for `NcButton` [\#4525](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4525) \([susnux](https://github.com/susnux)\)
