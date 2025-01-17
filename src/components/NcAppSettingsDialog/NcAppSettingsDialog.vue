@@ -393,14 +393,12 @@ export default {
 		position: relative;
 	}
 	:deep &__content {
-		box-sizing: border-box;
 		padding-inline: calc(4 * var(--default-grid-baseline));
 	}
 }
 
 .navigation-list {
 	height: 100%;
-	box-sizing: border-box;
 	overflow-y: auto;
 	padding: calc(3 * var(--default-grid-baseline));
 

@@ -425,6 +425,11 @@ export default {
 $arrow-width: 10px;
 
 .v-popper--theme-dropdown {
+	&,
+	& * {
+		box-sizing: border-box;
+	}
+
 	&.v-popper__popper {
 		z-index: 100000;
 		top: 0;

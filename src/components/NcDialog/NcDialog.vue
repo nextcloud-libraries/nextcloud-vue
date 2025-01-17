@@ -622,8 +622,6 @@ export default defineComponent({
 	}
 
 	&__actions {
-		box-sizing: border-box;
-
 		display: flex;
 		gap: 6px;
 		align-content: center;

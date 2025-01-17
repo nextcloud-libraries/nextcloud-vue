@@ -221,7 +221,6 @@ export default {
 }
 
 .content {
-	box-sizing: border-box;
 	display: flex;
 	width: calc(100% - var(--body-container-margin) * 2);
 	border-radius: var(--body-container-radius);
@@ -233,7 +232,8 @@ export default {
 		position: fixed;
 	}
 
-	:deep(*) {
+	&,
+	& * {
 		box-sizing: border-box;
 	}
 }
