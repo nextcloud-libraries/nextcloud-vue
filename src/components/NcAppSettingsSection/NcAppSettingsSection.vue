@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<section v-if="isSelected"
+	<div v-if="isSelected"
 		:id="htmlId"
 		:aria-labelledby="`${htmlId}--label`"
 		class="app-settings-section">
@@ -12,9 +12,9 @@
 			{{ name }}
 		</h3>
 		<slot />
-		<!-- @slot Optonal icon to for the secion in the navigation -->
+		<!-- @slot Optional icon to for the section in the navigation -->
 		<slot v-if="false" name="icon" />
-	</section>
+	</div>
 </template>
 
 <script>
@@ -71,15 +71,13 @@ export default {
 
 <style lang="scss" scoped>
 .app-settings-section {
-	margin-bottom: 80px;
+	padding: calc(2 * var(--default-grid-baseline));
+
 	&__name {
 		font-size: 1.6em;
 		margin: 0;
-		padding: 20px 0;
+		padding: 0;
 		font-weight: bold;
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
 	}
 }
 </style>

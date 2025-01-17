@@ -89,7 +89,10 @@ You can also add icons to the section navigation:
 					Twitch setting
 				</p>
 			</NcAppSettingsSection>
-			<NcAppSettingsSection id="asci-name-4" name="Twitter">
+			<NcAppSettingsSection id="asci-name-4" name="No icon">
+				No icon settings
+			</NcAppSettingsSection>
+			<NcAppSettingsSection id="asci-name-5" name="Twitter">
 				<template #icon>
 					<Twitter :size="20" />
 				</template>
@@ -129,17 +132,18 @@ export default {
 		close-on-click-outside
 		class="app-settings"
 		:container="container"
-		content-classes="app-settings__content"
 		size="large"
 		:name="name"
 		@update:show="handleCloseModal">
 		<div class="app-settings__wrapper">
-			<nav class="app-settings__nav" :aria-label="t('Application settings')" tabindex="-1">
-				<ul class="navigation-list">
+			<nav v-if="sections.length > 1"
+				class="app-settings__nav"
+				:aria-label="t('Application settings')"
+				tabindex="-1">
+				<ul class="app-settings__nav-list">
 					<li v-for="(section, sectionIndex) in sections" :key="section.id">
 						<NcButton ref="navigationButton"
 							:aria-current="section.id === selectedSection ? 'page' : undefined"
-							:class="{ 'navigation-list__link--icon': hasNavigationIcons }"
 							:href="`#settings-section_${section.id}`"
 							:type="section.id === selectedSection ? 'primary' : 'tertiary'"
 							alignment="start"
@@ -148,10 +152,10 @@ export default {
 							@keydown.up="openSection(sectionIndex - 1)"
 							@keydown.left="openSection(sectionIndex + (isRTL ? 1 : -1))"
 							@keydown.right="openSection(sectionIndex + (isRTL ? -1 : +1))"
-							@keydown.tab.prevent="() => {/* noop */}"
+							@keydown.tab.prevent="() => $refs.settingsScroller.focus()"
 							@click.prevent="openSection(sectionIndex)">
 							<template v-if="hasNavigationIcons" #icon>
-								<div class="navigation-list__link-icon">
+								<div class="app-settings__nav-button-icon">
 									<NcVNodes v-if="section.icon" :vnodes="section.icon" />
 								</div>
 							</template>
@@ -160,7 +164,10 @@ export default {
 					</li>
 				</ul>
 			</nav>
-			<div ref="settingsScroller" style="overflow-y: auto; flex: 1">
+			<div ref="settingsScroller"
+				class="app-settings__content"
+				tabindex="-1"
+				@keydown.shift.tab="$refs.navigationButton?.[selectedSectionIndex]?.$el.focus()">
 				<slot />
 			</div>
 		</div>
@@ -265,6 +272,10 @@ export default {
 	},
 
 	computed: {
+		selectedSectionIndex() {
+			return this.sections.findIndex(({ id }) => id === this.selectedSection)
+		},
+
 		/**
 		 * Check if one or more navigation entries provide icons
 		 */
@@ -400,33 +411,22 @@ export default {
 
 <style lang="scss" scoped>
 .app-settings {
-	:deep(.modal-wrapper .modal-container) {
-		overflow: hidden;
-	}
-
 	* {
 		box-sizing: border-box;
+	}
+
+	:deep(.modal-wrapper .modal-container) {
+		// Scroll the content and navigation separately instead of an entire modal
+		overflow: hidden;
+		min-height: 70vh;
 	}
 }
 
 .app-settings {
-	:deep &__navigation {
-		min-width: 200px;
-		margin-right: calc(4 * var(--default-grid-baseline));
-		overflow-x: hidden;
-		overflow-y: auto;
-		position: relative;
-	}
-
-	:deep &__content {
-		box-sizing: border-box;
-		padding-inline: calc(4 * var(--default-grid-baseline));
-	}
-
 	&__wrapper {
 		display: flex;
 		flex-direction: row;
-		gap: calc(4 * var(--default-grid-baseline));
+		// gap: calc(4 * var(--default-grid-baseline));
 		height: 100%;
 	}
 
@@ -436,27 +436,20 @@ export default {
 		overflow-y: auto;
 	}
 
-	.navigation-list {
+	&__nav-list {
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
 		gap: calc(2 * var(--default-grid-baseline));
 	}
-}
 
-.navigation-list {
-	&__link {
-		&--active {
-			background-color: var(--color-primary-element-light) !important;
-		}
+	&__nav-button-icon {
+		width: 20px;
+	}
 
-		&-icon {
-			display: flex;
-			justify-content: center;
-			align-content: center;
-			width: calc(var(--default-clickable-area) - 2 * var(--default-grid-baseline));
-			max-width: calc(var(--default-clickable-area) - 2 * var(--default-grid-baseline));
-		}
+	&__content {
+		overflow-y: auto;
+		flex: 1;
 	}
 }
 
