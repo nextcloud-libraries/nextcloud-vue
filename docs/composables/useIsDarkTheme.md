@@ -7,7 +7,7 @@
 import {
     useIsDarkTheme,
     useIsDarkThemeElement,
-} from '@nextcloud/vue/dist/Composables/useIsDarkTheme.js'
+} from '@nextcloud/vue/composables/useIsDarkTheme'
 ```
 
 Same as `isDarkTheme` functions, but with reactivity.
