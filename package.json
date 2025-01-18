@@ -1,6 +1,6 @@
 {
   "name": "@nextcloud/vue",
-  "version": "9.0.0-alpha.5",
+  "version": "9.0.0-alpha.6",
   "description": "Nextcloud vue components",
   "keywords": [
     "vuejs",
@@ -10,7 +10,7 @@
   "repository": "https://github.com/nextcloud-libraries/nextcloud-vue",
   "homepage": "https://github.com/nextcloud-libraries/nextcloud-vue",
   "bugs": "https://github.com/nextcloud-libraries/nextcloud-vue/issues",
-  "author": "John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>",
+  "author": "Nextcloud GmbH and Nextcloud contributors",
   "license": "AGPL-3.0-or-later",
   "type": "module",
   "scripts": {
