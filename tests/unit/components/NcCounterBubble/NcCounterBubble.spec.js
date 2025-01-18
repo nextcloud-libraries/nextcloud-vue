@@ -21,24 +21,34 @@ describe('NcCounterBubble', () => {
 	})
 
 	describe('with humanization', () => {
-		it('should render count 1020 with humanization as "1K"', () => {
+		it('should render count 1042 with humanization as "1K" and original count in the title', () => {
 			const wrapper = mount(NcCounterBubble, { propsData: { count: 1042 } })
 			expect(wrapper.text()).toBe('1K')
+			expect(wrapper.attributes('title')).toBe('1042')
+		})
+
+		it('should render count 12 without humanization and without title', () => {
+			const wrapper = mount(NcCounterBubble, { propsData: { count: 12 } })
+			expect(wrapper.text()).toBe('12')
+			expect(wrapper.attributes('title')).toBeUndefined()
 		})
 
 		it('should not humanize with raw', () => {
 			const wrapper = mount(NcCounterBubble, { propsData: { count: 1042, raw: true } })
 			expect(wrapper.text()).toBe('1042')
+			expect(wrapper.attributes('title')).toBeUndefined()
 		})
 
-		it('should render slot content 1020 with humanization as "1K"', () => {
+		it('should render slot content 1042 with humanization as "1K" and original count in the title', () => {
 			const wrapper = mount(NcCounterBubble, { slots: { default: '1042' } })
 			expect(wrapper.text()).toBe('1K')
+			expect(wrapper.attributes('title')).toBe('1042')
 		})
 
-		it('should render slot content 1020 as it is with raw prop', () => {
+		it('should render slot content 1042 as it is with raw prop', () => {
 			const wrapper = mount(NcCounterBubble, { propsData: { raw: true }, slots: { default: '1042' } })
 			expect(wrapper.text()).toBe('1042')
+			expect(wrapper.attributes('title')).toBeUndefined()
 		})
 	})
 
