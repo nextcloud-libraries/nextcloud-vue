@@ -133,7 +133,9 @@ In v8 it was possible to pass any custom content via the default slot. This feat
 </docs>
 
 <template>
-	<div class="counter-bubble__counter" :class="counterClassObject">
+	<div class="counter-bubble__counter"
+		:class="counterClassObject"
+		:title="originalCountAsTitleIfNeeded">
 		{{ humanizedCount }}
 	</div>
 </template>
@@ -192,7 +194,7 @@ export default {
 
 		humanizedCount() {
 			if (this.raw) {
-				return this.count
+				return this.count.toString()
 			}
 
 			const formatter = new Intl.NumberFormat(getCanonicalLocale(), {
@@ -201,6 +203,17 @@ export default {
 			})
 
 			return formatter.format(this.count)
+		},
+
+		originalCountAsTitleIfNeeded() {
+			const countAsString = this.count.toString()
+
+			// If raw or unchanged - no need for the title
+			if (this.raw || countAsString === this.humanizedCount) {
+				return undefined
+			}
+
+			return countAsString
 		},
 	},
 }
