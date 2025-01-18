@@ -863,9 +863,8 @@ export default {
 	.list-item-content__details,
 	.list-item-details__details {
 		white-space: nowrap;
-		margin-top: 0;
-		margin-bottom: 0;
-		margin-inline:0 auto;
+		margin-block: 0;
+		margin-inline: 0 auto;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
