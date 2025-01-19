@@ -21,7 +21,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 		:class="[{
 			'input-field--disabled': disabled,
 			'input-field--label-outside': labelOutside || !isValidLabel,
-			'input-field--leading-icon': !!$slots.icon?.({}),
+			'input-field--leading-icon': !!$slots.icon,
 			'input-field--trailing-icon': showTrailingButton || hasTrailingIcon,
 			'input-field--pill': pill,
 		}, $props.class]">
