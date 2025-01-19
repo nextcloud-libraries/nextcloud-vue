@@ -5,7 +5,7 @@
 import type { HooksConfig } from '../../setup/index'
 import { expect, test } from '@playwright/experimental-ct-vue'
 
-import AppNavigation from './AppNavigation.story.vue'
+import AppNavigation from './NcAppNavigationItem.story.vue'
 
 test.skip(({ browserName }) => browserName !== 'chromium')
 
