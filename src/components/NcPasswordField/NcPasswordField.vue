@@ -96,8 +96,14 @@ export default {
 		v-on="$listeners"
 		@trailing-button-click="togglePasswordVisibility"
 		@input="handleInput">
-		<!-- Default slot for the leading icon -->
-		<slot />
+		<template v-if="!!$scopedSlots.icon || !!$slots.default || !!$scopedSlots.default" #icon>
+			<!-- @slot Leading icon -->
+			<slot name="icon">
+				<!-- @slot Deprecated, removed in v9: use #icon slot instead. -->
+				<slot />
+			</slot>
+		</template>
+
 		<template #trailing-button-icon>
 			<Eye v-if="isPasswordHidden" :size="18" />
 			<EyeOff v-else :size="18" />
