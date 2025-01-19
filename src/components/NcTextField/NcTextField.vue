@@ -129,7 +129,7 @@ export default {
 		ref="inputField"
 		@update:model-value="handleInput">
 		<template v-if="!!$slots.icon" #icon>
-			<!-- Default slot for the leading icon -->
+			<!-- @slot Leading icon -->
 			<slot name="icon" />
 		</template>
 

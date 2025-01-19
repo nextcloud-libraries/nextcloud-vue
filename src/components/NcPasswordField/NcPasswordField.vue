@@ -105,7 +105,7 @@ export default {
 		@trailing-button-click="togglePasswordVisibility"
 		@update:model-value="handleInput">
 		<template v-if="!!$slots.icon" #icon>
-			<!-- Default slot for the leading icon -->
+			<!-- @slot Leading icon -->
 			<slot name="icon" />
 		</template>
 		<template #trailing-button-icon>
