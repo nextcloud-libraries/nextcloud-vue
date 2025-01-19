@@ -8,11 +8,9 @@
 <template>
 	<div class="styleguide-nc-content">
 		<NcAppNavigation>
-			<!-- TODO replace with template #search -->
-			<template #default>
+			<template #search>
 				<div class="navigation__header">
-					<!-- TODO replace with NcAppNavigationSearch -->
-					<NcTextField v-model="searchValue" label="Search …" />
+					<NcAppNavigationSearch v-model="searchValue" label="Search …" />
 					<NcActions>
 						<NcActionButton close-after-click @click="showModal = true">
 							<template #icon>
@@ -147,8 +145,13 @@ emit('toggle-navigation', {
 			class="app-navigation__content"
 			:inert="!open || undefined"
 			@keydown.esc="handleEsc">
+			<div class="app-navigation__search">
+				<!-- @slot For in-app search you can pass a `NcAppNavigationSearch` component as the slot content. -->
+				<slot name="search" />
+			</div>
+
 			<div class="app-navigation__body" :class="{ 'app-navigation__body--no-list': !$slots.list }">
-				<!-- The main content of the navigation. If no list is passed to the #list slot, stretched vertically. -->
+				<!-- @slot The main content of the navigation. If no list is passed to the #list slot, stretched vertically. -->
 				<slot />
 			</div>
 
@@ -157,7 +160,7 @@ emit('toggle-navigation', {
 				<slot name="list" />
 			</NcAppNavigationList>
 
-			<!-- Footer for e.g. NcAppNavigationSettings -->
+			<!-- @slot Footer for e.g. NcAppNavigationSettings -->
 			<slot name="footer" />
 		</nav>
 		<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
@@ -170,8 +173,8 @@ import { getTrapStack } from '../../utils/focusTrap.js'
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { createFocusTrap } from 'focus-trap'
 
-import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
 import NcAppNavigationList from '../NcAppNavigationList/index.js'
+import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
 import { warn } from 'vue'
 
 export default {
@@ -341,6 +344,14 @@ export default {
 
 	&--close {
 		margin-inline-start: calc(-1 * min($navigation-width, var(--app-navigation-max-width)));
+	}
+
+	&__search {
+		width: 100%;
+	}
+
+	&__body {
+		overflow-y: scroll;
 	}
 
 	// For legacy purposes support passing a bare list to the content in #default slot and including #footer slot
