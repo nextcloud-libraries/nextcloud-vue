@@ -242,6 +242,7 @@ export default {
 	<div class="rich-contenteditable">
 		<div :id="id"
 			ref="contenteditable"
+			v-shortkey.avoid
 			v-tooltip="tooltipString"
 			:class="{
 				'rich-contenteditable__input--empty': isEmptyValue,
@@ -297,6 +298,10 @@ import debounce from 'debounce'
 import stringLength from 'string-length'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
+import Vue from 'vue'
+import VueShortKey from 'vue-shortkey'
+
+Vue.use(VueShortKey, { prevent: ['input', 'textarea'] })
 
 /**
  * Populate the list of text smiles we want to offer via Tribute.
