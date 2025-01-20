@@ -243,7 +243,7 @@ export default {
 	methods: {
 		humanizeCount(count) {
 			if (this.raw) {
-				return count
+				return count.toString()
 			}
 
 			const formatter = new Intl.NumberFormat(getCanonicalLocale(), {
@@ -256,12 +256,15 @@ export default {
 
 		/**
 		 * Get the humanized count from `count` prop
-		 * @return {string | undefined}
+		 * @return {{ humanized: string, original: string} | undefined}
 		 */
 		getHumanizedCount() {
 			// If we have count prop - just render from count
 			if (this.count !== undefined) {
-				return this.humanizedCount
+				return {
+					humanized: this.humanizedCount,
+					original: this.count.toString(),
+				}
 			}
 
 			// Raw value - render as it is
@@ -274,17 +277,26 @@ export default {
 				const slotContent = this.$slots.default[0].text?.trim()
 				if (slotContent && /^\d+$/.test(slotContent)) {
 					const count = parseInt(slotContent, 10)
-					return this.humanizeCount(count)
+					return {
+						humanized: this.humanizeCount(count),
+						original: slotContent,
+					}
 				}
 			}
 		},
 	},
 
 	render(h) {
+		const count = this.getHumanizedCount()
+
 		return h('div', {
 			staticClass: 'counter-bubble__counter',
 			class: this.counterClassObject,
-		}, [this.getHumanizedCount() ?? this.$slots.default])
+			attrs: {
+				// Show original count in title if humanized
+				title: count && count.original !== count.humanized ? count.original : undefined,
+			},
+		}, [count?.humanized ?? this.$slots.default])
 	},
 }
 
