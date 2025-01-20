@@ -1,11 +1,11 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Miguel Anxo Bouzada <mbouzada@gmail.com>, 2024
+# Miguel Anxo Bouzada <mbouzada@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>, 2024\n"
+"Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>, 2025\n"
 "Language-Team: Galician (https://app.transifex.com/nextcloud/teams/64236/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: gl\n"
@@ -267,8 +267,8 @@ msgstr "Abrir a ligazón a «{resourceName}»"
 msgid "Open menu"
 msgstr "Abrir o menú"
 
-msgid "Open navigation"
-msgstr "Abrir a navegación"
+msgid "Open navigation {shortcut}"
+msgstr "Abrir a navegación {shortcut}"
 
 msgid "Open sidebar"
 msgstr "Abrir a barra lateral"
