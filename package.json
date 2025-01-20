@@ -7,30 +7,15 @@
     "nextcloud",
     "components"
   ],
-  "repository": "https://github.com/nextcloud-libraries/nextcloud-vue",
   "homepage": "https://github.com/nextcloud-libraries/nextcloud-vue",
   "bugs": "https://github.com/nextcloud-libraries/nextcloud-vue/issues",
-  "author": "Nextcloud GmbH and Nextcloud contributors",
-  "license": "AGPL-3.0-or-later",
-  "type": "module",
-  "scripts": {
-    "build": "vite build --mode production ",
-    "dev": "vite build --mode development",
-    "dev:watch": "vite build --mode development --watch",
-    "watch": "npm run dev:watch",
-    "l10n:extract": "node build/extract-l10n.mjs",
-    "lint": "eslint src",
-    "lint:fix": "eslint src --fix",
-    "test": "TZ=UTC vitest run",
-    "test:coverage": "TZ=UTC vitest run --coverage",
-    "test:component": "playwright test -c playwright.config.ts",
-    "test:component:gui": "playwright test --ui -c playwright.config.ts",
-    "stylelint": "stylelint src/**/*.vue src/**/*.scss src/**/*.css",
-    "stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix",
-    "styleguide": "vue-styleguidist --config styleguide.config.cjs server",
-    "styleguide:build": "vue-styleguidist --config styleguide.config.cjs build",
-    "update:snapshots": "npm run test:component -- --grep @visual --update-snapshots"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nextcloud-libraries/nextcloud-vue.git"
   },
+  "license": "AGPL-3.0-or-later",
+  "author": "Nextcloud GmbH and Nextcloud contributors",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -62,6 +47,27 @@
     "LICENSE",
     "README.md",
     "dist"
+  ],
+  "scripts": {
+    "build": "vite build --mode production ",
+    "dev": "vite build --mode development",
+    "dev:watch": "vite build --mode development --watch",
+    "l10n:extract": "node build/extract-l10n.mjs",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "styleguide": "vue-styleguidist --config styleguide.config.cjs server",
+    "styleguide:build": "vue-styleguidist --config styleguide.config.cjs build",
+    "stylelint": "stylelint src/**/*.vue src/**/*.scss src/**/*.css",
+    "stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix",
+    "test": "TZ=UTC vitest run",
+    "test:component": "playwright test -c playwright.config.ts",
+    "test:component:gui": "playwright test --ui -c playwright.config.ts",
+    "test:coverage": "TZ=UTC vitest run --coverage",
+    "update:snapshots": "npm run test:component -- --grep @visual --update-snapshots",
+    "watch": "npm run dev:watch"
+  },
+  "browserslist": [
+    "extends @nextcloud/browserslist-config"
   ],
   "dependencies": {
     "@ckpack/vue-color": "^1.6.0",
@@ -107,10 +113,6 @@
     "vue-router": "^4.5.0",
     "vue-select": "^4.0.0-beta.6"
   },
-  "engines": {
-    "node": "^20.11.0",
-    "npm": "^10.0.0"
-  },
   "devDependencies": {
     "@babel/plugin-syntax-import-assertions": "^7.26.0",
     "@babel/plugin-transform-typescript": "^7.26.5",
@@ -152,7 +154,8 @@
     "webpack": "^5.97.1",
     "webpack-merge": "^6.0.1"
   },
-  "browserslist": [
-    "extends @nextcloud/browserslist-config"
-  ]
+  "engines": {
+    "node": "^20.11.0",
+    "npm": "^10.0.0"
+  }
 }
