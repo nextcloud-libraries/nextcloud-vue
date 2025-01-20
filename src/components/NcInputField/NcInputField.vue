@@ -21,7 +21,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 		:class="{
 			'input-field--disabled': disabled,
 			'input-field--label-outside': labelOutside || !isValidLabel,
-			'input-field--leading-icon': hasLeadingIcon,
+			'input-field--leading-icon': !!$scopedSlots.icon || !!$scopedSlots.default || !!$slots.default,
 			'input-field--trailing-icon': showTrailingButton || hasTrailingIcon,
 			'input-field--pill': pill,
 		}">
@@ -51,9 +51,12 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 			</label>
 
 			<!-- Leading icon -->
-			<div v-show="hasLeadingIcon" class="input-field__icon input-field__icon--leading">
-				<!-- Leading material design icon in the text field, set the size to 18 -->
-				<slot />
+			<div v-show="!!$scopedSlots.icon || !!$scopedSlots.default || !!$slots.default" class="input-field__icon input-field__icon--leading">
+				<!-- @slot Leading icon, set the size to 18 -->
+				<slot name="icon">
+					<!-- @slot Deprecated, removed in v9: use #icon slot instead. -->
+					<slot />
+				</slot>
 			</div>
 
 			<!-- trailing button -->
@@ -283,10 +286,6 @@ export default {
 
 		inputName() {
 			return 'input' + GenRandomId()
-		},
-
-		hasLeadingIcon() {
-			return this.$slots.default
 		},
 
 		hasTrailingIcon() {
