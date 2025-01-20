@@ -36,6 +36,10 @@ All notable changes to this project will be documented in this file.
   - `NcTextArea`
   - `NcTextField`
   - `NcTimezonePicker`
+* The leading icon slot was changed from `#default` to `#icon` in `Nc*Field` components:
+  - `NcInputField`
+  - `NcTextField`
+  - `NcPasswordField`
 * The `exact` prop was removed. This affects the following components:
   - `NcActionRouter`
   - `NcAppNavigationItem`

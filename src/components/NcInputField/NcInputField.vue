@@ -51,7 +51,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 
 			<!-- Leading icon -->
 			<div v-show="!!$slots.icon" class="input-field__icon input-field__icon--leading">
-				<!-- Leading material design icon in the text field, set the size to 18 -->
+				<!-- @slot Leading icon, set the size to 18 -->
 				<slot name="icon" />
 			</div>
 
