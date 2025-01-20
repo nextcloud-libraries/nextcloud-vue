@@ -9,5 +9,3 @@ export * from './composables/index.js'
 export * from './functions/index.ts'
 export * from './directives/index.js'
 export * from './mixins/index.js'
-
-export { NextcloudVuePlugin } from './plugin'
