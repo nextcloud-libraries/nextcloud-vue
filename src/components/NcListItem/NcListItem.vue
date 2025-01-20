@@ -863,7 +863,8 @@ export default {
 	.list-item-content__details,
 	.list-item-details__details {
 		white-space: nowrap;
-		margin: 0 auto 0 0;
+		margin-block: 0;
+		margin-inline: 0 auto;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
@@ -975,7 +976,7 @@ export default {
 		display: flex;
 		flex: 1 0;
 		justify-content: space-between;
-		padding-left: calc(2 * var(--default-grid-baseline));
+		padding-inline-start: calc(2 * var(--default-grid-baseline));
 		min-width: 0;
 
 		&__main {
@@ -1000,7 +1001,7 @@ export default {
 			flex: 0 0 auto;
 			align-self: center;
 			justify-content: center;
-			margin-left: var(--default-grid-baseline);
+			margin-inline-start: var(--default-grid-baseline);
 		}
 
 		&__extra-actions {
