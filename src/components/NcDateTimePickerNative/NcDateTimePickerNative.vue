@@ -13,30 +13,50 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 
 ### Examples
 
-#### Usage: type='datetime-local'
 ```vue
 <template>
 	<div>
 		<span>Picked date: {{ value || 'null' }}</span>
-		<NcDateTimePickerNative
-			v-model="value"
-			:id="id"
-			:label="label"
-			type="datetime-local" />
-		The date selected is {{ value }}
+		<hr/>
+		<div class="flex">
+			<NcSelect v-bind="props" v-model="type" />
+			<NcDateTimePickerNative
+				v-model="value"
+				:id="id"
+				:label="label"
+				:type="type" />
+		</div>
 	</div>
 </template>
 <script>
 	export default {
 		data() {
 			return {
+				props: {
+					clearable: false,
+					inputLabel: 'Picker type',
+					options: [
+						'date',
+						'datetime-local',
+						'month',
+						'time',
+						'week',
+					],
+				},
+				type: 'datetime-local',
 				value: new Date(),
 				id: 'date-time-picker',
-				label: 'Please select a new date',
+				label: 'Select a new date or time',
 			}
 		},
 	}
 </script>
+<style scoped>
+.flex {
+	display: flex;
+	gap: 4px;
+}
+</style>
 ```
 
 #### Usage: type='datetime-local' with min date and max date
@@ -63,58 +83,6 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 				label: 'Please select a new date',
 				yesterdayDate: new Date(new Date().setDate(new Date().getDate() - 1)),
 				someDate: new Date(new Date().setDate(new Date().getDate() + 7)),
-			}
-		},
-	}
-</script>
-```
-
-#### Usage: type='week'
-```vue
-<template>
-	<div>
-		<span>Picked date: {{ value || 'null' }}</span>
-		<NcDateTimePickerNative
-			v-model="value"
-			:id="id"
-			:label="label"
-			type="week" />
-	</div>
-</template>
-
-<script>
-	export default {
-		data() {
-			return {
-				value: new Date(),
-				id: 'date-time-picker',
-				label: 'Please select a new date',
-			}
-		},
-	}
-</script>
-```
-
-#### Usage: type='month'
-```vue
-<template>
-	<div>
-		<span>Picked date: {{ value || 'null' }}</span>
-		<NcDateTimePickerNative
-			v-model="value"
-			:id="id"
-			:label="label"
-			type="month" />
-	</div>
-</template>
-
-<script>
-	export default {
-		data() {
-			return {
-				value: new Date(),
-				id: 'date-time-picker',
-				label: 'Please select a new date',
 			}
 		},
 	}
@@ -259,7 +227,7 @@ export default ScopeComponent({
 			}
 			if (this.type === 'time') {
 				const time = $event.target.value
-				if (this.modelValue === '') {
+				if (this.modelValue === '' || this.modelValue === null) {
 					// this case is because of Chrome bug
 					const { yyyy, MM, dd } = this.getReadableDate(new Date())
 					/**
@@ -278,7 +246,7 @@ export default ScopeComponent({
 				return this.$emit('update:modelValue', new Date(`${yyyy}-${MM}-${dd}T${time}`))
 			} else if (this.type === 'month') {
 				const MM = (new Date($event.target.value).getMonth() + 1).toString().padStart(2, '0')
-				if (this.modelValue === '') {
+				if (this.modelValue === '' || this.modelValue === null) {
 					const { yyyy, dd, hh, mm } = this.getReadableDate(new Date())
 					/**
 					 * Emitted when the input value changes
@@ -287,7 +255,7 @@ export default ScopeComponent({
 					 */
 					return this.$emit('update:modelValue', new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`))
 				}
-				const { yyyy, dd, hh, mm } = this.getReadableDate(this.value)
+				const { yyyy, dd, hh, mm } = this.getReadableDate(this.modelValue)
 				/**
 				 * Emitted when the input value changes
 				 *
