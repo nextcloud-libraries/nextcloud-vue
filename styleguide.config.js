@@ -32,6 +32,10 @@ module.exports = async () => {
 			path.join(__dirname, 'styleguide/assets/additional.css'),
 			path.join(__dirname, 'styleguide/assets/styleguide.css'),
 		],
+
+		assetsDir: path.join(__dirname, 'styleguide/assets/img'),
+		styleguideDir: 'styleguide/build',
+
 		pagePerSection: true,
 		minimize: true,
 		verbose: false,
