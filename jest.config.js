@@ -19,6 +19,8 @@ const ignorePatterns = [
 	'markdown-table', // ESM dependency of remark-gfm
 	'mdast-util-*',
 	'micromark',
+	'p-queue',
+	'p-timeout',
 	'property-information',
 	'rehype-*',
 	'remark-*',
