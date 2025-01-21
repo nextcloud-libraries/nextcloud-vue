@@ -318,7 +318,7 @@ export default {
 	.toggle-interactive--button {
 		position: absolute;
 		bottom: var(--default-grid-baseline);
-		right: var(--default-grid-baseline);
+		inset-inline-end: var(--default-grid-baseline);
 		z-index: 10000;
 	}
 }
