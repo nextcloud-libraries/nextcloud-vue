@@ -13,29 +13,50 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 
 ### Examples
 
-#### Usage: type='datetime-local'
 ```vue
 <template>
 	<div>
 		<span>Picked date: {{ value || 'null' }}</span>
-		<NcDateTimePickerNative
-			v-model="value"
-			:id="id"
-			:label="label"
-			type="datetime-local" />
+		<hr/>
+		<div class="flex">
+			<NcSelect v-bind="props" v-model="type" />
+			<NcDateTimePickerNative
+				v-model="value"
+				:id="id"
+				:label="label"
+				:type="type" />
+		</div>
 	</div>
 </template>
 <script>
 	export default {
 		data() {
 			return {
+				props: {
+					clearable: false,
+					inputLabel: 'Picker type',
+					options: [
+						'date',
+						'datetime-local',
+						'month',
+						'time',
+						'week',
+					],
+				},
+				type: 'datetime-local',
 				value: new Date(),
 				id: 'date-time-picker',
-				label: 'please select a new date',
+				label: 'Select a new date or time',
 			}
 		},
 	}
 </script>
+<style scoped>
+.flex {
+	display: flex;
+	gap: 4px;
+}
+</style>
 ```
 
 #### Usage: type='datetime-local' with min date and max date
@@ -309,8 +330,7 @@ export default {
 				input: ($event) => {
 					if (isNaN($event.target.valueAsNumber)) {
 						this.model = null
-					}
-					if (this.type === 'time') {
+					} else if (this.type === 'time') {
 						const time = $event.target.value
 						if (this.model === '') {
 							// this case is because of Chrome bug
@@ -321,21 +341,24 @@ export default {
 							 * @return {Date} new chosen Date()
 							 */
 							this.model = new Date(`${yyyy}-${MM}-${dd}T${time}`)
+						} else {
+							const { yyyy, MM, dd } = this.getReadableDate(this.model)
+							this.model = new Date(`${yyyy}-${MM}-${dd}T${time}`)
 						}
-						const { yyyy, MM, dd } = this.getReadableDate(this.model)
-						this.model = new Date(`${yyyy}-${MM}-${dd}T${time}`)
 					} else if (this.type === 'month') {
 						const MM = (new Date($event.target.value).getMonth() + 1).toString().padStart(2, '0')
 						if (this.model === '') {
 							const { yyyy, dd, hh, mm } = this.getReadableDate(new Date())
 							this.model = new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`)
+						} else {
+							const { yyyy, dd, hh, mm } = this.getReadableDate(this.model)
+							this.model = new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`)
 						}
-						const { yyyy, dd, hh, mm } = this.getReadableDate(this.model)
-						this.model = new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`)
+					} else {
+						const timezoneOffsetSeconds = new Date($event.target.valueAsNumber).getTimezoneOffset() * 1000 * 60
+						const inputDateWithTimezone = $event.target.valueAsNumber + timezoneOffsetSeconds
+						this.model = new Date(inputDateWithTimezone)
 					}
-					const timezoneOffsetSeconds = new Date($event.target.valueAsNumber).getTimezoneOffset() * 1000 * 60
-					const inputDateWithTimezone = $event.target.valueAsNumber + timezoneOffsetSeconds
-					this.model = new Date(inputDateWithTimezone)
 				},
 			}
 		},
