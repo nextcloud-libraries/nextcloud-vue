@@ -14,7 +14,7 @@
 ### Avatar with image
 
 ```vue
-	<NcAvatar url="https://nextcloud.com/wp-content/themes/next/assets/img/common/nextcloud-square-logo.png" />
+	<NcAvatar url="favicon-touch.png" />
 ```
 
 ### Avatar with material design icon
