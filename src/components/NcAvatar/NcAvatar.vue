@@ -890,7 +890,7 @@ export default {
 	.avatardiv__user-status {
 		box-sizing: border-box;
 		position: absolute;
-		right: -4px;
+		inset-inline-end: -4px;
 		bottom: -4px;
 		min-height: 14px;
 		min-width: 14px;
