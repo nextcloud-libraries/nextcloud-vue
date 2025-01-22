@@ -101,7 +101,7 @@
     "dompurify": "^3.0.5",
     "emoji-mart-vue-fast": "^15.0.1",
     "escape-html": "^1.0.3",
-    "floating-vue": "^1.0.0-beta.19",
+    "floating-vue": "^2.0.0",
     "focus-trap": "^7.4.3",
     "linkify-string": "^4.0.0",
     "md5": "^2.3.0",
