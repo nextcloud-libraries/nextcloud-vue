@@ -7,7 +7,7 @@
  * Styles are extracted to extract scss to dist folder, too.
  */
 
-@import './highlight.scss';
+@use './highlight.scss';
 
 li.task-list-item > ul,
 li.task-list-item > ol,
@@ -220,26 +220,28 @@ li.task-list-item > pre {
 }
 
 /**
-* Highlight code syntax in code blocks
-*/
+ * Highlight code syntax in code blocks
+ */
+
+/* stylelint-disable-next-line no-duplicate-selectors */
 .rich-text--wrapper-markdown {
-	@include highlight-rules;
+	@include highlight.highlight-rules;
 }
 
 @media (prefers-color-scheme: light) {
 	.rich-text--wrapper-markdown {
-		@include highlight-light-colors;
+		@include highlight.highlight-light-colors;
 	}
 	[data-theme-dark] .rich-text--wrapper-markdown {
-		@include highlight-dark-colors;
+		@include highlight.highlight-dark-colors;
 	}
 }
 
 @media (prefers-color-scheme: dark) {
 	.rich-text--wrapper-markdown {
-		@include highlight-dark-colors;
+		@include highlight.highlight-dark-colors;
 	}
 	[data-theme-light] .rich-text--wrapper-markdown {
-		@include highlight-light-colors;
+		@include highlight.highlight-light-colors;
 	}
 }
