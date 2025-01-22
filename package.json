@@ -153,7 +153,7 @@
     "babel-jest": "^29.0.1",
     "babel-loader-exclude-node-modules-except": "^1.2.1",
     "core-js": "^3.36.1",
-    "cypress": "^13.6.5",
+    "cypress": "^14.0.0",
     "cypress-visual-regression": "^5.0.0",
     "eslint-plugin-cypress": "^3.0.0",
     "file-loader": "^6.2.0",
