@@ -1,12 +1,13 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Hamza, 2024
 # Ali <alimahwer@yahoo.com>, 2024
-# hamza mahjoubi, 2024
+# abu.s3ud, 2024
+# John Molakvoæ <skjnldsv@protonmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: hamza mahjoubi, 2024\n"
+"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
 "Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
@@ -16,7 +17,7 @@ msgid "{tag} (invisible)"
 msgstr "{tag} (غير مرئي)"
 
 msgid "{tag} (restricted)"
-msgstr "{tag} (مُقيّد)"
+msgstr "{tag} (مقيد)"
 
 msgid "A color with a HEX value {hex}"
 msgstr "لون بالقيمة الست عشرية {hex}"
@@ -31,26 +32,26 @@ msgstr "بازلائي مطفي"
 msgid "Actions"
 msgstr "إجراءات"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "إجراءات على العنصر المُسمَّى \"{name}\""
-
 msgid "Activities"
-msgstr "سجل الحركات"
+msgstr "سجل الأنشطة"
+
+msgid "Add to a project"
+msgstr "أضف إلى مشروع"
 
 msgid "Animals & Nature"
 msgstr "الحيوانات والطبيعة"
 
 msgid "Any link"
-msgstr "أيَّ رابطٍ"
+msgstr "أيَّ رابط"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "أيّ مادة تمت مشاركتها مع نفس المجموعة من الأشخاص سيتم عرضها هنا"
 
 msgid "Avatar of {displayName}"
-msgstr "الرمز التجسيدي avatar لــ {displayName}  "
+msgstr "صورة الملف الشخصي الرمزية لــ {displayName}  "
 
 msgid "Avatar of {displayName}, {status}"
-msgstr "الرمز التجسيدي  avatar لــ {displayName}، {status}"
+msgstr "صورة الملف الشخصي الرمزية لــ {displayName}، {status}"
 
 #. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
@@ -60,7 +61,7 @@ msgid "Back"
 msgstr "عودة"
 
 msgid "Back to provider selection"
-msgstr "عودة إلى اختيار المُزوِّد"
+msgstr "عودة إلى اختيار المزوّد"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -83,34 +84,37 @@ msgid "Choose"
 msgstr "إختَر"
 
 msgid "Clear search"
-msgstr "مَحْوُ البحث"
+msgstr "محو البحث"
 
 msgid "Clear selected"
-msgstr "مَحْوُ المُحدّد"
+msgstr "محو المحدّد"
 
 msgid "Clear text"
-msgstr "مَحْوُ النص"
+msgstr "محو النص"
 
 msgid "Close"
-msgstr "أغلِق"
+msgstr "إغلاق"
 
 msgid "Close navigation"
-msgstr "أغلِق التصفح"
+msgstr "إغلاق التصفح"
 
 msgid "Close sidebar"
 msgstr "قفل الشريط الجانبي"
 
 msgid "Close Smart Picker"
-msgstr "أغلِق Smart Picker"
+msgstr "إغلاق المحدد الذكي"
 
 msgid "Collapse menu"
-msgstr "طَيُّ القائمة"
+msgstr "طي القائمة"
 
 msgid "Color picker"
 msgstr "لاقط الألوان"
 
 msgid "Confirm changes"
 msgstr "تأكيد التغييرات"
+
+msgid "Connect items to a project to make them easier to find"
+msgstr "ربط عناصر بمشروع لتسهيل العثور عليها"
 
 msgid "Custom"
 msgstr "مُخصَّص"
@@ -150,8 +154,17 @@ msgstr ""
 msgid "External documentation for {name}"
 msgstr "التوثيق الخارجي لـ {name}"
 
+msgid "Failed to add the item to the project"
+msgstr "تعذر ربط عنصر بمشروع"
+
+msgid "Failed to create a project"
+msgstr "تعذر إنشاء مشروع"
+
+msgid "Failed to rename the project"
+msgstr "تعذّر تغيير اسم المشروع"
+
 msgid "Favorite"
-msgstr "المُفضَّلة"
+msgstr "المفضلة"
 
 #. TRANSLATORS: A color name for RGB(201, 136, 121)
 msgid "Feldspar"
@@ -175,6 +188,9 @@ msgstr "عودة إلى القائمة"
 msgid "Gold"
 msgstr "ذهبي"
 
+msgid "Hide details"
+msgstr "أخفِ التفاصيل"
+
 msgid "Hide password"
 msgstr "إخفاء كلمة المرور"
 
@@ -190,18 +206,22 @@ msgstr "فاتح البُشرة"
 msgid "Load more \"{options}\""
 msgstr "تحميل المزيد من \"{options}\" "
 
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "التحميل جارٍ ..."
+
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "أزرق بحري"
 
 msgid "Medium dark skin tone"
-msgstr "بُشرة متوسطة الاسمرار"
+msgstr "بشرة متوسطة الاسمرار"
 
 msgid "Medium light skin tone"
-msgstr "بُشرة متوسطة البياض"
+msgstr "بشرة متوسطة البياض"
 
 msgid "Medium skin tone"
-msgstr "بُشرة وسطية اللون"
+msgstr "بشرة وسطية اللون"
 
 msgid "Message limit of {count} characters reached"
 msgstr "تمّ الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
@@ -241,7 +261,7 @@ msgid "Olivine"
 msgstr "زيتي"
 
 msgid "online"
-msgstr "مُتّصِلٌ"
+msgstr "متصل"
 
 msgid "Open link to \"{resourceName}\""
 msgstr "إفتَح الرابط إلى \"{resourceName}\""
@@ -249,8 +269,8 @@ msgstr "إفتَح الرابط إلى \"{resourceName}\""
 msgid "Open menu"
 msgstr "إفتَح القائمة"
 
-msgid "Open navigation"
-msgstr "إفتَح المتصفح"
+msgid "Open navigation {shortcut}"
+msgstr "إفتَح المتصفح {shortcut}"
 
 msgid "Open sidebar"
 msgstr "إفتَح الشريط الجانبي"
@@ -259,7 +279,7 @@ msgid "Options"
 msgstr "خيارات"
 
 msgid "Password is secure"
-msgstr "كلمة المرور مُؤمّنة"
+msgstr "كلمة المرور آمنة"
 
 msgid "Pause slideshow"
 msgstr "تجميد عرض الشرائح"
@@ -295,7 +315,7 @@ msgid "Previous"
 msgstr "السابق"
 
 msgid "Provider icon"
-msgstr "أيقونة المُزوِّد"
+msgstr "أيقونة المزوّد"
 
 msgid "Purple"
 msgstr "بنفسجي"
@@ -308,6 +328,9 @@ msgstr "مصادر ذات صلة"
 
 msgid "Related team resources"
 msgstr "موارد للفريق ذات صلة"
+
+msgid "Rename project"
+msgstr "تغيير اسم المشروع"
 
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
@@ -328,6 +351,9 @@ msgstr "البحث عن منطقة زمنية"
 msgid "Search results"
 msgstr "نتائج البحث"
 
+msgid "Search…"
+msgstr "بحث ..."
+
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
@@ -338,19 +364,22 @@ msgid "seconds ago"
 msgstr "ثوانٍ مضت"
 
 msgid "Select a tag"
-msgstr "إختَر سِمَةً tag"
+msgstr "اختر وسم"
 
 msgid "Select provider"
-msgstr "إختَر مٌزوِّداً"
+msgstr "اختر مزود"
 
 msgid "Selected"
-msgstr "مُحدّدة"
+msgstr "محدّدة"
 
 msgid "Settings"
 msgstr "الإعدادات"
 
 msgid "Settings navigation"
 msgstr "إعدادات التّصفُّح"
+
+msgid "Show details"
+msgstr "أظهِر التفاصيل"
 
 msgid "Show password"
 msgstr "أظهِر كلمة المرور"
@@ -385,6 +414,9 @@ msgstr "رموز"
 msgid "Travel & Places"
 msgstr "سفر و أماكن"
 
+msgid "Type to search for existing projects"
+msgstr "أكتُب للبحث في المشاريع الموجودة"
+
 msgid "Type to search time zone"
 msgstr "أكتُب للبحث عن منطقة زمنية"
 
@@ -405,4 +437,4 @@ msgid "Whiskey"
 msgstr "نبيذي"
 
 msgid "Write a message …"
-msgstr "أكتُب رسالةً ..."
+msgstr "أكتب رسالة ..."
