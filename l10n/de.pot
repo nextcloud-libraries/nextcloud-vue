@@ -227,7 +227,7 @@ msgid "Medium skin tone"
 msgstr "Mittlerer Hautfarbton"
 
 msgid "Message limit of {count} characters reached"
-msgstr "Nachrichtenlimit von {count} Zeichen erreicht."
+msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
 
 msgid "More items …"
 msgstr "Weitere Elemente …"
@@ -254,7 +254,7 @@ msgid "No results"
 msgstr "Keine Ergebnisse"
 
 msgid "Objects"
-msgstr "Gegenstände"
+msgstr "Objekte"
 
 msgid "offline"
 msgstr "Offline"
