@@ -294,7 +294,7 @@ import { searchProvider, getLinkWithPicker } from '../NcRichText/index.js'
 import Tribute from 'tributejs/dist/tribute.esm.js'
 import debounce from 'debounce'
 import stringLength from 'string-length'
-import GenRandomId from '../../utils/GenRandomId.js'
+import { createElementId } from '../../utils/createElementId.ts'
 
 /**
  * Populate the list of text smiles we want to offer via Tribute.
@@ -324,7 +324,7 @@ export default {
 		 */
 		id: {
 			type: String,
-			default: () => GenRandomId(7),
+			default: () => createElementId(7),
 		},
 
 		/**
@@ -425,7 +425,7 @@ export default {
 	],
 
 	setup() {
-		const uid = GenRandomId(5)
+		const uid = createElementId()
 		return {
 			// Constants
 			labelId: `nc-rich-contenteditable-${uid}-label`,
@@ -559,7 +559,7 @@ export default {
 		},
 
 		initializeTribute() {
-			const renderMenuItem = (content) => `<div id="nc-rich-contenteditable-tribute-item-${GenRandomId(5)}" class="${this.$style['tribute-item']}" role="option">${content}</div>`
+			const renderMenuItem = (content) => `<div id="nc-rich-contenteditable-tribute-item-${createElementId()}" class="${this.$style['tribute-item']}" role="option">${content}</div>`
 
 			const tributesCollection = []
 			tributesCollection.push({

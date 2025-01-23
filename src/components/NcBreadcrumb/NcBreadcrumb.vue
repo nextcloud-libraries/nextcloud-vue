@@ -61,7 +61,7 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 
 <script>
 import NcActions from '../NcActions/index.js'
-import GenRandomId from '../../utils/GenRandomId.js'
+import { createElementId } from '../../utils/createElementId.ts'
 import NcButton from '../NcButton/NcButton.vue'
 
 import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
@@ -172,7 +172,7 @@ export default {
 			 * The unique id of the breadcrumb. Necessary to append the
 			 * Actions menu to the correct crumb.
 			 */
-			crumbId: `crumb-id-${GenRandomId()}`,
+			crumbId: `crumb-id-${createElementId()}`,
 		}
 	},
 	computed: {

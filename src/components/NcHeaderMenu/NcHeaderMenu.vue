@@ -106,10 +106,10 @@ import type { FocusTrap } from 'focus-trap'
 import { onClickOutside } from '@vueuse/core'
 import { createFocusTrap } from 'focus-trap'
 import { computed, nextTick, ref, useTemplateRef, watch, type Slot } from 'vue'
-import { getTrapStack } from '../../utils/focusTrap.ts'
 import { useHotKey } from '../../composables/index.js'
+import { getTrapStack } from '../../utils/focusTrap.js'
+import { createElementId } from '../../utils/createElementId.ts'
 
-import GenRandomId from '../../utils/GenRandomId.js'
 import NcButton from '../NcButton/index.ts'
 
 const {
@@ -172,9 +172,9 @@ defineSlots<{
 }>()
 
 /** Id of the menu description */
-const descriptionId = GenRandomId()
+const descriptionId = createElementId()
 /** Id of the trigger button */
-const triggerId = GenRandomId()
+const triggerId = createElementId()
 /** The active focus trap (if any) */
 const focusTrap = ref<FocusTrap>()
 /** Is the menu currently opened */
@@ -234,6 +234,8 @@ async function setMenuState(state: boolean) {
 /**
  * When this is role navigation, then we cannot apply a focus trap.
  * In this case we close the menu on focus-out.
+ *
+ * @param event the focus event
  */
 function onFocusOut(event: FocusEvent) {
 	// Is not a navigation

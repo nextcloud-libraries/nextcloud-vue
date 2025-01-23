@@ -711,9 +711,11 @@ import NcButton from '../NcButton/index.ts'
 import NcEmptyContent from '../NcEmptyContent/index.js'
 import Focus from '../../directives/Focus/index.js'
 import Linkify from '../../directives/Linkify/index.js'
+import { vOnClickOutside as ClickOutside } from '@vueuse/components'
+import { createFocusTrap } from 'focus-trap'
 import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
-import GenRandomId from '../../utils/GenRandomId.js'
 import { getTrapStack } from '../../utils/focusTrap.ts'
+import { createElementId } from '../../utils/createElementId.ts'
 import { t } from '../../l10n.js'
 import isSlotPopulated from '../../utils/isSlotPopulated.ts'
 
@@ -722,9 +724,6 @@ import IconClose from 'vue-material-design-icons/Close.vue'
 import IconDockRight from 'vue-material-design-icons/DockRight.vue'
 import IconStar from 'vue-material-design-icons/Star.vue'
 import IconStarOutline from 'vue-material-design-icons/StarOutline.vue'
-
-import { vOnClickOutside as ClickOutside } from '@vueuse/components'
-import { createFocusTrap } from 'focus-trap'
 
 export default {
 	name: 'NcAppSidebar',
@@ -924,7 +923,7 @@ export default {
 
 	setup() {
 		return {
-			uid: GenRandomId(),
+			uid: createElementId(),
 			isMobile: useIsSmallMobile(),
 		}
 	},

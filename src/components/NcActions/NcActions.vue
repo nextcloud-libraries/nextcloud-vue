@@ -925,7 +925,7 @@ import { t } from '../../l10n.js'
 
 import NcButton from '../NcButton/index.ts'
 import NcPopover from '../NcPopover/index.js'
-import GenRandomId from '../../utils/GenRandomId.js'
+import { createElementId } from '../../utils/createElementId.ts'
 import isSlotPopulated from '../../utils/isSlotPopulated.ts'
 
 import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
@@ -1112,7 +1112,7 @@ export default {
 	],
 
 	setup(props) {
-		const randomId = `menu-${GenRandomId()}`
+		const randomId = createElementId()
 		const triggerRandomId = `trigger-${randomId}`
 
 		const triggerButton = ref()

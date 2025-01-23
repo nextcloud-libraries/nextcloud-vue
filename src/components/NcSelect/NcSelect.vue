@@ -583,7 +583,7 @@ import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
 import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
-import GenRandomId from '../../utils/GenRandomId.js'
+import { createElementId } from '../../utils/createElementId.ts'
 
 export default {
 	name: 'NcSelect',
@@ -758,7 +758,7 @@ export default {
 		 */
 		inputId: {
 			type: String,
-			default: () => `select-input-${GenRandomId()}`,
+			default: () => `select-input-${createElementId()}`,
 		},
 
 		/**
@@ -894,7 +894,7 @@ export default {
 		 */
 		uid: {
 			type: String,
-			default: () => GenRandomId(),
+			default: () => createElementId(),
 		},
 
 		/**

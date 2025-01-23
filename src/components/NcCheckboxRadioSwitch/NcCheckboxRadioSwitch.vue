@@ -303,7 +303,7 @@ export default {
 
 <script>
 import NcCheckboxContent, { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxContent.vue'
-import GenRandomId from '../../utils/GenRandomId.js'
+import { createElementId } from '../../utils/createElementId.ts'
 import { t, n } from '../../l10n.js'
 
 export default {
@@ -322,7 +322,7 @@ export default {
 		 */
 		id: {
 			type: String,
-			default: () => 'checkbox-radio-switch-' + GenRandomId(),
+			default: () => 'checkbox-radio-switch-' + createElementId(),
 			validator: id => id.trim() !== '',
 		},
 
