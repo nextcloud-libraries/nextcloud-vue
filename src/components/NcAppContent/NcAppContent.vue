@@ -67,8 +67,8 @@ The list size must be between the min and the max width value.
 					'app-content-wrapper--show-list': !showDetails,
 					'app-content-wrapper--mobile': isMobile,}">
 				<NcAppDetailsToggle v-if="showDetails" @click.native.stop.prevent="hideDetails" />
-				<slot v-if="!showDetails" name="list" />
 
+				<slot v-if="!showDetails" name="list" />
 				<slot v-else />
 			</div>
 			<div v-else-if="layout === 'vertical-split' || layout === 'horizontal-split'" class="app-content-wrapper">
@@ -131,10 +131,19 @@ export default {
 	props: {
 		/**
 		 * Allows to disable the control by swipe of the app navigation open state
+		 * @deprecated will be removed with the next version - use `disableSwipe` instead
 		 */
 		allowSwipeNavigation: {
 			type: Boolean,
 			default: true,
+		},
+
+		/**
+		 * Allows to disable the control by swipe of the app navigation open state.
+		 */
+		disableSwipe: {
+			type: Boolean,
+			default: false,
 		},
 
 		/**
@@ -175,7 +184,8 @@ export default {
 		},
 
 		/**
-		 * When in mobile view, only the list or the details are shown
+		 * When in mobile view, only the list or the details are shown.
+		 *
 		 * If you provide a list, you need to provide a variable
 		 * that will be set to true by the user when an element of
 		 * the list gets selected. The details will then show a back
@@ -281,7 +291,7 @@ export default {
 	},
 
 	mounted() {
-		if (this.allowSwipeNavigation) {
+		if (this.allowSwipeNavigation && !this.disableSwipe) {
 			this.swiping = useSwipe(this.$el, {
 				onSwipeEnd: this.handleSwipe,
 			})
