@@ -14,3 +14,12 @@ declare module '*?raw' {
 	const content: string
 	export default content
 }
+
+declare global {
+	interface Window {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		OCP: any
+	}
+}
+
+export {}
