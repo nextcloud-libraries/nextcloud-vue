@@ -410,11 +410,11 @@ export default {
 			default: false,
 		},
 		/**
-		 * Enable swipe between slides
+		 * Disable swipe between slides
 		 */
-		enableSwipe: {
+		disableSwipe: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 		spreadNavigation: {
 			type: Boolean,
@@ -731,7 +731,7 @@ export default {
 		 * @param {import('@vueuse/core').SwipeDirection} direction Swipe direction
 		 */
 		handleSwipe(e, direction) {
-			if (this.enableSwipe) {
+			if (!this.disableSwipe) {
 				if (direction === 'left') {
 					// swiping to left to go to the next item
 					this.next(e)
