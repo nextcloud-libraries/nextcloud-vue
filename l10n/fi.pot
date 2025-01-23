@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2024
 # thingumy, 2024
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: thingumy, 2024\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>, 2025\n"
 "Language-Team: Finnish (Finland) (https://app.transifex.com/nextcloud/teams/64236/fi_FI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fi_FI\n"
@@ -267,8 +267,8 @@ msgstr "Avaa linkki \"{resourceName}\""
 msgid "Open menu"
 msgstr "Avaa valikko"
 
-msgid "Open navigation"
-msgstr "Avaa navigaatio"
+msgid "Open navigation {shortcut}"
+msgstr "Avaa navigaatio {shortcut}"
 
 msgid "Open sidebar"
 msgstr "Avaa sivupalkki"
