@@ -12,10 +12,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
-msgstr "{tag}(näkymätön)"
+msgstr "{tag} (näkymätön)"
 
 msgid "{tag} (restricted)"
-msgstr "{tag}(rajoitettu)"
+msgstr "{tag} (rajoitettu)"
 
 msgid "A color with a HEX value {hex}"
 msgstr "Väri heksa-arvolla {hex}"
