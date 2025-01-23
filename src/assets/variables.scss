@@ -2,6 +2,8 @@
  * SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
+@use 'sass:math';
 // background icon size
 // also used for the scss icon font
 $icon-size: 16px;
