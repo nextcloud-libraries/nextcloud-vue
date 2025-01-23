@@ -13,17 +13,42 @@ All notable changes to this project will be documented in this file.
 ### 💥 Breaking Changes
 * The package now uses Vue 3 instead of Vue 2.7
 * The package is now a native ESM package and the CommonJS entry points were dropped!
-* The old import paths like `@nextcloud/vue/dist/Components/NcComponent.js` were removed, please use the new ones (`@nextcloud/vue/components/NcComponent`) instead.
-* The plugin registering all the components and directives globally is removed.
-  Use local registration instead. Use [`unplugin-vue-components`](https://github.com/unplugin/unplugin-vue-components) if you need an alternative.
-* The `limitWidth` prop of `NcSettingsSection` was removed (the content is now always limited width) [\#5605](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5605)
-* `NcCounterBubble`: remove default slot and make `count` prop required [\#5997](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5997)x
-* The `closing` and `opening` events of `NcAppSidebar` were removed as they are directly emitted when the sidebar was opened when using `v-if` and also just duplicated the state of the `open` prop [\#5606](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5606)
-* The `checked` prop was renamed to `modelValue`, the `update:checked` event was renamed to `update:modelValue`. This affects the following components:
+
+#### Plugin registering removed
+The plugin registering all the components and directives globally is removed.
+Instead use local registration of components and directives.
+If you really need an alternative we recommend using [`unplugin-vue-components`](https://github.com/unplugin/unplugin-vue-components).
+
+#### Import paths changed
+The old import paths like `@nextcloud/vue/dist/Components/NcComponent.js` were removed.
+Instead use the new ones (`@nextcloud/vue/components/NcComponent`).
+
+Example shell command to do the refactoring:
+```sh
+PATTERN='s,@nextcloud/vue/dist/([^/]+)/([^.]+).js,@nextcloud/vue/\L\1\E/\2,'
+find src \
+  -name "*.vue" \
+  -exec sed -i -re "$PATTERN" \{\} +
+```
+
+#### Container components now default to `box-sizing: border-box`
+For container components that can be directly mounted to `<body>` the `box-sizing` was adjusted to match the behavior of `NcContent`.
+
+The `box-sizing: border-box` is now default for following components and its content:
+- `NcDialog`
+- `NcModal`
+- `NcPopover`
+
+#### Consistent usage of `modelValue` prop
+All input elements were refactored to use the `modelValue` prop instead of the now removed `value` / `checked` prop and emit the `update:modelValue` event instead of the removed `update:checked` / `update:value` / `input` events.
+This which allows consistent using of `v-model`.
+
+Affected components:
+- Removed `checked` prop and `update:checked` event
   - `NcActionCheckbox`
   - `NcActionRadio`
   - `NcCheckboxRadioSwitch`
-* The `value` prop was renamed to `modelValue`, the `update:value` or `input` events were renamed to `update:modelValue`. This affects the following components:
+* Removed `value` prop and `update:value` / `input` events:
   - `NcActionInput`
   - `NcActionTextEditable`
   - `NcColorPicker`
@@ -39,19 +64,41 @@ All notable changes to this project will be documented in this file.
   - `NcTextArea`
   - `NcTextField`
   - `NcTimezonePicker`
-* The leading icon slot was changed from `#default` to `#icon` in `Nc*Field` components:
-  - `NcInputField`
-  - `NcTextField`
-  - `NcPasswordField`
-* The `exact` prop was removed. This affects the following components:
+
+#### Removing the `exact` prop
+The `exact` prop, previously used by `router-link` components, was removed.
+This affects the following components:
   - `NcActionRouter`
   - `NcAppNavigationItem`
   - `NcBreadcrumb`
   - `NcListItem`
-* The `isFullscreen` and `isMobile` mixins were removed. Use the according composables instead.
-* The `box-sizing: border-box` is now default for following components and its content. This is done to match behaviour of `NcContent` (as they can be mounted directly to `body`):
-  - `NcModal`
-  - `NcPopover`
+
+#### Renaming icon slot of `Nc*Field`
+The leading icon slot was changed from `#default` to `#icon` in `Nc*Field` components:
+  - `NcInputField`
+  - `NcTextField`
+  - `NcPasswordField`
+
+#### Mixins are removed
+Mixins only work in Options API and are in general not recommended by Vue anymore:
+
+> In Vue 2, mixins were the primary mechanism for creating reusable chunks of component logic. While mixins continue to be supported in Vue 3, Composable functions using Composition API is now the preferred approach for code reuse between components.
+
+As this library also uses composition API now all required mixins have been migrated to composables which work in Options API and Composition API.
+Especially the following are now provided as composables:
+- `isFullscreen` is now provided as `useIsFullscreen`
+- `isMobile` is now provided as `useIsMobile`
+
+#### Other breaking changes
+- `NcAppSidebar`
+  - The `closing` and `opening` events were removed.
+    They are directly emitted when the sidebar was opened when using `v-if`
+    and also just duplicated the state of the `open` prop [\#5606](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5606)
+- `NcCounterBubble`
+  - The default slot was removed
+  - The `count` prop is now required [\#5997](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5997)
+- `NcSettingsSection`
+  - The `limitWidth` was removed (the content is now always limited width) [\#5605](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5605)
 
 ### 🚀 Enhancements
 * Allow writing components using Typescript and provide type definitions for `NcButton` [\#4525](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4525) \([susnux](https://github.com/susnux)\)
