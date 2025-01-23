@@ -313,7 +313,7 @@ msgid "Previous"
 msgstr "Edellinen"
 
 msgid "Provider icon"
-msgstr "Palveluntarjoajan ikoni"
+msgstr "Palveluntarjoajan kuvake"
 
 msgid "Purple"
 msgstr "Purppura"
