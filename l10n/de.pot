@@ -3,12 +3,12 @@
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Markus Eckstein, 2023
 # Andy Scherzinger <info@andy-scherzinger.de>, 2023
-# Martin Wilichowski, 2024
 # Mario Siegmann <mario_siegmann@web.de>, 2024
+# Martin Wilichowski, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2024\n"
+"Last-Translator: Martin Wilichowski, 2025\n"
 "Language-Team: German (https://app.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -117,7 +117,7 @@ msgid "Confirm changes"
 msgstr "Änderungen bestätigen"
 
 msgid "Connect items to a project to make them easier to find"
-msgstr "Verbinden Sie Elemente mit einem Projekt, um sie leichter zu finden"
+msgstr "Verbinde Elemente mit einem Projekt, um sie leichter zu finden"
 
 msgid "Custom"
 msgstr "Benutzerdefiniert"
