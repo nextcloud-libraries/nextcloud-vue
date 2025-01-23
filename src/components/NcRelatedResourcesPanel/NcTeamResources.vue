@@ -68,6 +68,7 @@
 <script>
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
+import { getCapabilities } from '@nextcloud/capabilities'
 import AccountGroup from 'vue-material-design-icons/AccountGroup.vue'
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import ChevronUp from 'vue-material-design-icons/ChevronUp.vue'
@@ -76,6 +77,8 @@ import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 
 import { t } from '../../l10n.js'
+
+const teamResourceProviders = getCapabilities()?.circles?.teamResourceProviders ?? []
 
 export default {
 	name: 'NcTeamResources',
@@ -158,6 +161,9 @@ export default {
 	methods: {
 		t,
 		async fetchTeamResources() {
+			if (!teamResourceProviders.includes(this.providerId)) {
+				return
+			}
 			try {
 				this.loading = true
 				const response = await axios.get(generateOcsUrl(`/teams/resources/${this.providerId}/${this.itemId}`))
