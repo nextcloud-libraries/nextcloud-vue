@@ -137,7 +137,7 @@ msgid "Emoji picker"
 msgstr "Emojivalitsin"
 
 msgid "Enable interactive view"
-msgstr "Näytä interaktiivinen näkymä"
+msgstr "Näytä vuorovaikutteinen näkymä"
 
 msgid "Enter link"
 msgstr "Kirjoita linkki"
