@@ -421,10 +421,10 @@ msgid "Type to search for existing projects"
 msgstr "Tippen, um nach vorhandenen Projekten zu suchen"
 
 msgid "Type to search time zone"
-msgstr "Tippen, um Zeitzone zu suchen"
+msgstr "Tippen, um eine Zeitzone zu suchen"
 
 msgid "Unable to search the group"
-msgstr "Die Gruppe konnte nicht durchsucht werden."
+msgstr "Die Gruppe kann nicht durchsucht werden"
 
 msgid "Undo changes"
 msgstr "Änderungen rückgängig machen"
