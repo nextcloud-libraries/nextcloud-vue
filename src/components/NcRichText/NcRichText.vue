@@ -98,7 +98,7 @@ Table row | value A | value B
 ---
 
 \`\`\`js
-const getRandomId = (length) => {
+const getElementId = (length) => {
 \treturn Math.random()
 \t\t.toString(36)
 \t\t.replace(/[^a-z]+/g, '')
@@ -307,7 +307,7 @@ import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitc
 import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
 import { getRoute, remarkAutolink } from './autolink.ts'
 import { remarkPlaceholder, prepareTextNode } from './placeholder.js'
-import { getRandomId } from '../../utils/getRandomId.ts'
+import { getElementId } from '../../utils/getElementId.ts'
 
 import { unified } from 'unified'
 import remarkParse from 'remark-parse'
@@ -419,7 +419,7 @@ export default {
 
 	data() {
 		return {
-			parentId: getRandomId(5),
+			parentId: getElementId(5),
 		}
 	},
 
@@ -556,7 +556,7 @@ export default {
 							labelParts.splice(nestedNodeIndex)
 						}
 
-						const id = this.parentId + '-markdown-input-' + getRandomId(5)
+						const id = this.parentId + '-markdown-input-' + getElementId(5)
 						const propsToForward = { ...inputNode.props }
 						// The checked prop is name modelValue for NcCheckboxRadioSwitch
 						delete propsToForward.checked

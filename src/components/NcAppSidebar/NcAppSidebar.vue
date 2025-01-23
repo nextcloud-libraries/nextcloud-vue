@@ -712,7 +712,7 @@ import NcEmptyContent from '../NcEmptyContent/index.js'
 import Focus from '../../directives/Focus/index.js'
 import Linkify from '../../directives/Linkify/index.js'
 import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
-import { getRandomId } from '../../utils/getRandomId.ts'
+import { getElementId } from '../../utils/getElementId.ts'
 import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
 import isSlotPopulated from '../../utils/isSlotPopulated.ts'
@@ -924,7 +924,7 @@ export default {
 
 	setup() {
 		return {
-			uid: getRandomId(),
+			uid: getElementId(),
 			isMobile: useIsSmallMobile(),
 		}
 	},

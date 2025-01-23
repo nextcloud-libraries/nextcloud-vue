@@ -87,7 +87,7 @@ export default {
 
 <script>
 import { defineComponent } from 'vue'
-import { getRandomId } from '../../utils/getRandomId.ts'
+import { getElementId } from '../../utils/getElementId.ts'
 import { t } from '../../l10n.js'
 
 /**
@@ -116,7 +116,7 @@ export default defineComponent({
 
 	setup() {
 		return {
-			labelId: `nc-action-button-group-${getRandomId()}`,
+			labelId: `nc-action-button-group-${getElementId()}`,
 		}
 	},
 

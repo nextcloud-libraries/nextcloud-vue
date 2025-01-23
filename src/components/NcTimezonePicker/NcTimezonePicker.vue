@@ -44,7 +44,7 @@ import {
 	getSortedTimezoneList,
 } from './timezone.js'
 import getTimezoneManager from './timezoneDataProviderService.js'
-import { getRandomId } from '../../utils/getRandomId.ts'
+import { getElementId } from '../../utils/getElementId.ts'
 import NcSelect from '../NcSelect/index.js'
 import { t } from '../../l10n.js'
 
@@ -73,7 +73,7 @@ export default {
 		 */
 		uid: {
 			type: [String, Number],
-			default: () => `tz-${getRandomId(5)}`,
+			default: () => `tz-${getElementId(5)}`,
 		},
 	},
 	emits: ['update:modelValue'],

@@ -109,7 +109,7 @@ import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
 
 import { clickOutsideOptions } from '../../mixins/index.js'
-import { getRandomId } from '../../utils/getRandomId.ts'
+import { getElementId } from '../../utils/getElementId.ts'
 import { getTrapStack } from '../../utils/focusTrap.js'
 
 import NcButton from '../NcButton/index.ts'
@@ -189,8 +189,8 @@ export default {
 			focusTrap: null,
 			opened: this.open,
 			shortcutsDisabled: window.OCP?.Accessibility?.disableKeyboardShortcuts?.(),
-			triggerId: getRandomId(),
-			descriptionId: getRandomId(),
+			triggerId: getElementId(),
+			descriptionId: getElementId(),
 		}
 	},
 

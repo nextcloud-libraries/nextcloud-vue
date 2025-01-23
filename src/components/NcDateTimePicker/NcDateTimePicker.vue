@@ -157,7 +157,7 @@ export default {
 
 <script>
 import { t } from '../../l10n.js'
-import { getRandomId } from '../../utils/getRandomId.ts'
+import { getElementId } from '../../utils/getElementId.ts'
 
 import NcTimezonePicker from '../NcTimezonePicker/index.js'
 import NcPopover from '../NcPopover/index.js'
@@ -280,7 +280,7 @@ export default ScopeComponent({
 
 	setup() {
 		return {
-			timezoneDialogHeaderId: `timezone-dialog-header-${getRandomId()}`,
+			timezoneDialogHeaderId: `timezone-dialog-header-${getElementId()}`,
 		}
 	},
 

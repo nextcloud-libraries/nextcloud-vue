@@ -113,7 +113,7 @@ export default {
 </template>
 
 <script>
-import { getRandomId } from '../../utils/getRandomId.ts'
+import { getElementId } from '../../utils/getElementId.ts'
 
 import AlertCircle from 'vue-material-design-icons/AlertCircleOutline.vue'
 import Check from 'vue-material-design-icons/Check.vue'
@@ -234,7 +234,7 @@ export default {
 		},
 
 		inputName() {
-			return 'input' + getRandomId()
+			return 'input' + getElementId()
 		},
 
 		hasPlaceholder() {

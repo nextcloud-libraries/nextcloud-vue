@@ -205,7 +205,7 @@ import NcPopover from '../NcPopover/index.js'
 import { t } from '../../l10n.js'
 import { defaultPalette } from '../../utils/GenColors.js'
 
-import { getRandomId } from '../../utils/getRandomId.ts'
+import { getElementId } from '../../utils/getElementId.ts'
 
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
 import Check from 'vue-material-design-icons/Check.vue'
@@ -306,7 +306,7 @@ export default defineComponent({
 		},
 
 		uid() {
-			return getRandomId()
+			return getElementId()
 		},
 		contrastColor() {
 			const black = '#000000'

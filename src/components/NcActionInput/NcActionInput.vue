@@ -246,7 +246,7 @@ import NcPasswordField from '../NcPasswordField/index.js'
 import NcSelect from '../NcSelect/index.js'
 import NcTextField from '../NcTextField/index.js'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
-import { getRandomId } from '../../utils/getRandomId.ts'
+import { getElementId } from '../../utils/getElementId.ts'
 import { t } from '../../l10n.js'
 
 export default {
@@ -270,7 +270,7 @@ export default {
 		 */
 		id: {
 			type: String,
-			default: () => 'action-' + getRandomId(),
+			default: () => 'action-' + getElementId(),
 			validator: id => id.trim() !== '',
 		},
 		/**
@@ -278,7 +278,7 @@ export default {
 		 */
 		inputId: {
 			type: String,
-			default: () => 'action-input-' + getRandomId(),
+			default: () => 'action-input-' + getElementId(),
 			validator: id => id.trim() !== '',
 		},
 		/**

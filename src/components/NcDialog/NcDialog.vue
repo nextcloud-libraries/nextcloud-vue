@@ -261,7 +261,7 @@ import { computed, defineComponent, ref } from 'vue'
 import NcModal from '../NcModal/index.js'
 import NcDialogButton from '../NcDialogButton/index.js'
 
-import { getRandomId } from '../../utils/getRandomId.ts'
+import { getElementId } from '../../utils/getElementId.ts'
 
 type NcDialogButtonProps = ComponentProps<typeof NcDialogButton>
 
@@ -475,7 +475,7 @@ export default defineComponent({
 		/**
 		 * The unique id of the nav element
 		 */
-		const navigationId = getRandomId()
+		const navigationId = getElementId()
 
 		/**
 		 * aria-label attribute for the nav element
