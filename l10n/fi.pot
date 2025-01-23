@@ -225,7 +225,7 @@ msgid "Message limit of {count} characters reached"
 msgstr "Viestin {count}merkin raja saavutettu"
 
 msgid "More items …"
-msgstr "Lisää kohteita ..."
+msgstr "Lisää kohteita…"
 
 msgid "More options"
 msgstr "Lisää vaihtoehtoja"
