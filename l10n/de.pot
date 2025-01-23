@@ -406,7 +406,7 @@ msgid "Start slideshow"
 msgstr "Diashow starten"
 
 msgid "Start typing to search"
-msgstr "Beginne mit der Eingabe, um zu suchen"
+msgstr "Mit der Eingabe beginnen, um zu suchen"
 
 msgid "Submit"
 msgstr "Einreichen"
