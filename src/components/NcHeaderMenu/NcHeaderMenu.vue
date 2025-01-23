@@ -150,7 +150,7 @@ const {
 	 * A query-selector or an array of query-selectors
 	 * to be ignored when clicking outside an element
 	 */
-	excludeClickOutsideSelectors?: string | string[] 
+	excludeClickOutsideSelectors?: string | string[]
 }>()
 
 const emit = defineEmits<{
