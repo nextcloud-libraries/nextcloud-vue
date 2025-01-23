@@ -107,8 +107,8 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 </template>
 
 <script>
+import { getElementId } from '../../utils/getElementId.js'
 import ScopeComponent from '../../utils/ScopeComponent.js'
-import GenRandomId from '../../utils/GenRandomId.js'
 
 const inputDateTypes = ['date', 'datetime-local', 'month', 'time', 'week']
 
@@ -133,7 +133,7 @@ export default ScopeComponent({
 		 */
 		id: {
 			type: String,
-			default: () => 'date-time-picker-' + GenRandomId(),
+			default: () => getElementId(),
 			validator: id => id.trim() !== '',
 		},
 		/**
