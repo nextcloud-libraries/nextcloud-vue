@@ -1,21 +1,21 @@
 # 
 # Translators:
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2024
 # thingumy, 2024
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: thingumy, 2024\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>, 2025\n"
 "Language-Team: Finnish (Finland) (https://app.transifex.com/nextcloud/teams/64236/fi_FI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fi_FI\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
-msgstr "{tag}(näkymätön)"
+msgstr "{tag} (näkymätön)"
 
 msgid "{tag} (restricted)"
-msgstr "{tag}(rajoitettu)"
+msgstr "{tag} (rajoitettu)"
 
 msgid "A color with a HEX value {hex}"
 msgstr "Väri heksa-arvolla {hex}"
@@ -137,7 +137,7 @@ msgid "Emoji picker"
 msgstr "Emojivalitsin"
 
 msgid "Enable interactive view"
-msgstr "Näytä interaktiivinen näkymä"
+msgstr "Näytä vuorovaikutteinen näkymä"
 
 msgid "Enter link"
 msgstr "Kirjoita linkki"
@@ -225,7 +225,7 @@ msgid "Message limit of {count} characters reached"
 msgstr "Viestin {count}merkin raja saavutettu"
 
 msgid "More items …"
-msgstr "Lisää kohteita ..."
+msgstr "Lisää kohteita…"
 
 msgid "More options"
 msgstr "Lisää vaihtoehtoja"
@@ -267,8 +267,8 @@ msgstr "Avaa linkki \"{resourceName}\""
 msgid "Open menu"
 msgstr "Avaa valikko"
 
-msgid "Open navigation"
-msgstr "Avaa navigaatio"
+msgid "Open navigation {shortcut}"
+msgstr "Avaa navigaatio {shortcut}"
 
 msgid "Open sidebar"
 msgstr "Avaa sivupalkki"
@@ -313,7 +313,7 @@ msgid "Previous"
 msgstr "Edellinen"
 
 msgid "Provider icon"
-msgstr "Palveluntarjoajan ikoni"
+msgstr "Palveluntarjoajan kuvake"
 
 msgid "Purple"
 msgstr "Purppura"
