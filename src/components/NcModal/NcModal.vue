@@ -147,9 +147,11 @@ export default {
 	<div>
 		<NcButton @click="showModal">Show Modal</NcButton>
 		<NcModal v-if="modal" @close="closeModal" size="small" class="emoji-modal">
-			<NcEmojiPicker container=".emoji-modal" @select="select">
-				<NcButton>Select emoji {{ emoji }}</NcButton>
-			</NcEmojiPicker>
+			<div class="modal-content">
+				<NcEmojiPicker container=".emoji-modal" @select="select">
+					<NcButton>Select emoji {{ emoji }}</NcButton>
+				</NcEmojiPicker>
+			</div>
 		</NcModal>
 	</div>
 </template>
@@ -175,9 +177,14 @@ export default {
 }
 </script>
 <style scoped>
-.modal__content {
-	margin: 50px;
-	text-align: center;
+.modal-content {
+	width: 100%;
+	min-height: 100px;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 }
 </style>
 ```
@@ -192,10 +199,9 @@ export default {
 			ref="mask"
 			class="modal-mask"
 			:class="{
-				'modal-mask--opaque': dark || !closeButtonContained || hasPrevious || hasNext,
+				'modal-mask--opaque': dark || forceDarkBackdrop,
 				'modal-mask--light': lightBackdrop,
 			}"
-			:style="cssVariables"
 			role="dialog"
 			aria-modal="true"
 			:aria-labelledby="modalLabelId"
@@ -206,10 +212,10 @@ export default {
 				<div class="modal-header"
 					:data-theme-light="lightBackdrop"
 					:data-theme-dark="!lightBackdrop">
-					<h2 v-if="name.trim() !== ''"
+					<h2 v-if="modalName"
 						:id="'modal-name-' + randId"
 						class="modal-header__name">
-						{{ name }}
+						{{ modalName }}
 					</h2>
 					<div class="icons-menu">
 						<!-- Play-pause toggle -->
@@ -221,10 +227,10 @@ export default {
 							@click="togglePlayPause">
 							<!-- Play/pause icons -->
 							<Play v-if="!playing"
-								:size="iconSize"
+								:size="20"
 								class="play-pause-icons__play" />
 							<Pause v-else
-								:size="iconSize"
+								:size="20"
 								class="play-pause-icons__pause" />
 							<span class="hidden-visually">
 								{{ playPauseName }}
@@ -258,7 +264,7 @@ export default {
 							type="tertiary"
 							@click="close">
 							<template #icon>
-								<Close :size="iconSize" />
+								<Close :size="20" />
 							</template>
 						</NcButton>
 					</div>
@@ -452,8 +458,8 @@ export default {
 		},
 
 		/**
-		 * Makes the modal backdrop opaque if true
-		 * Will be overwritten if some buttons are shown outside
+		 * Makes the modal backdrop opaque if true.
+		 * Will be overwritten if some buttons are shown outside.
 		 */
 		dark: {
 			type: Boolean,
@@ -540,7 +546,6 @@ export default {
 			mc: null,
 			playing: false,
 			slideshowTimeout: null,
-			iconSize: 24,
 			focusTrap: null,
 			externalFocusTrapStack: [],
 			randId: GenRandomId(),
@@ -549,6 +554,31 @@ export default {
 	},
 
 	computed: {
+		/**
+		 * slide show delay to set to CSS
+		 */
+		cssSlideshowDelay() {
+			return `${this.slideshowDelay}ms`
+		},
+
+		/**
+		 * True if there are any buttons shown on the backdrop or a name (for accessibility)
+		 */
+		forceDarkBackdrop() {
+			return (this.canClose && !this.closeButtonContained)
+				|| this.hasNext
+				|| this.hasPrevious
+				|| this.modalName !== ''
+				|| Boolean(this.$slots.actions)
+		},
+
+		/**
+		 * Trimmed modal name
+		 */
+		modalName() {
+			return this.name.trim()
+		},
+
 		/**
 		 * ID of the element to label the modal
 		 */
@@ -564,12 +594,6 @@ export default {
 		},
 		playPauseName() {
 			return this.playing ? t('Pause slideshow') : t('Start slideshow')
-		},
-		cssVariables() {
-			return {
-				'--slideshow-duration': this.slideshowDelay + 'ms',
-				'--icon-size': this.iconSize + 'px',
-			}
 		},
 
 		closeButtonAriaLabel() {
@@ -839,8 +863,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .modal-mask {
+	--backdrop-color: 0, 0, 0;
+	--icon-size: 20px;
+	--slideshow-duration: v-bind('cssSlideshowDelay');
 	position: fixed;
 	z-index: 9998;
 	top: 0;
@@ -848,11 +874,12 @@ export default {
 	display: block;
 	width: 100%;
 	height: 100%;
-	--backdrop-color: 0, 0, 0;
 	background-color: rgba(var(--backdrop-color), .5);
+
 	&--opaque {
 		background-color: rgba(var(--backdrop-color), .92);
 	}
+
 	&--light {
 		--backdrop-color: 255, 255, 255;
 	}

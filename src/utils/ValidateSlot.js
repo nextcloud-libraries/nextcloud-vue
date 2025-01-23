@@ -26,8 +26,8 @@ const ValidateSlot = (slots, allowed, vm) => {
 
 		// if html element or not a vue component or vue component not in allowed tags
 		if (isHtmlElement || !isVueComponent || isForbiddenComponent) {
-			// only warn when html elment or forbidden component
-			// sometimes text nodes are present which are hardly removeable by the developer and spam the warnings
+			// only warn when html element or forbidden component
+			// sometimes text nodes are present which are hardly removable by the developer and spam the warnings
 			if (isHtmlElement || isForbiddenComponent) {
 				Vue.util.warn(`${isHtmlElement ? node.tag : node.componentOptions.tag} is not allowed inside the ${vm.$options.name} component`, vm)
 			}
