@@ -86,7 +86,7 @@ export default {
 </template>
 
 <script setup lang="ts">
-import GenRandomId from '../../utils/GenRandomId.js'
+import { getRandomId } from '../../utils/getRandomId.ts'
 import NcButton, { ButtonType } from '../NcButton/index.js'
 
 defineProps<{
@@ -102,7 +102,7 @@ defineEmits<{
 	click: [event: MouseEvent]
 }>()
 
-const descriptionId = GenRandomId()
+const descriptionId = getRandomId()
 </script>
 
 <style lang="scss" scoped>

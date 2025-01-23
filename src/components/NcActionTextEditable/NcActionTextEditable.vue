@@ -83,7 +83,7 @@ export default {
 
 <script>
 import ActionTextMixin from '../../mixins/actionText.js'
-import GenRandomId from '../../utils/GenRandomId.js'
+import { getRandomId } from '../../utils/getRandomId.ts'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 
@@ -102,7 +102,7 @@ export default {
 		 */
 		id: {
 			type: String,
-			default: () => 'action-' + GenRandomId(),
+			default: () => 'action-' + getRandomId(),
 			validator: id => id.trim() !== '',
 		},
 		/**
@@ -138,7 +138,7 @@ export default {
 		},
 
 		computedId() {
-			return GenRandomId()
+			return getRandomId()
 		},
 	},
 

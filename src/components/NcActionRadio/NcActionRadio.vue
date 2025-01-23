@@ -42,7 +42,7 @@ So that only one of each name set can be selected at the same time.
 
 <script>
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
-import GenRandomId from '../../utils/GenRandomId.js'
+import { getRandomId } from '../../utils/getRandomId.ts'
 
 export default {
 	name: 'NcActionRadio',
@@ -62,7 +62,7 @@ export default {
 		 */
 		id: {
 			type: String,
-			default: () => 'action-' + GenRandomId(),
+			default: () => 'action-' + getRandomId(),
 			validator: id => id.trim() !== '',
 		},
 
