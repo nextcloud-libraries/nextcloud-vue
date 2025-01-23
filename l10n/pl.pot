@@ -3,11 +3,11 @@
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Valdnet, 2024
 # Pirania 3680, 2024
-# Piotr Strębski <strebski@gmail.com>, 2024
+# Piotr Strebski <strebski@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Piotr Strębski <strebski@gmail.com>, 2024\n"
+"Last-Translator: Piotr Strebski <strebski@gmail.com>, 2025\n"
 "Language-Team: Polish (https://app.transifex.com/nextcloud/teams/64236/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
@@ -32,11 +32,11 @@ msgstr "Acapulco"
 msgid "Actions"
 msgstr "Działania"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Akcje dla elementu o nazwie \"{name}\""
-
 msgid "Activities"
 msgstr "Aktywność"
+
+msgid "Add to a project"
+msgstr "Dodaj do projektu"
 
 msgid "Animals & Nature"
 msgstr "Zwierzęta i natura"
@@ -114,6 +114,9 @@ msgstr "Wybierz kolor"
 msgid "Confirm changes"
 msgstr "Potwierdź zmiany"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "Połącz elementy z projektem, aby ułatwić ich znalezienie"
+
 msgid "Custom"
 msgstr "Zwyczajne"
 
@@ -152,6 +155,15 @@ msgstr ""
 msgid "External documentation for {name}"
 msgstr "Dokumentacja zewnętrzna dla {name}"
 
+msgid "Failed to add the item to the project"
+msgstr "Nie udało się dodać elementu do projektu"
+
+msgid "Failed to create a project"
+msgstr "Nie udało się utworzyć projektu"
+
+msgid "Failed to rename the project"
+msgstr "Nie udało się zmienić nazwy projektu"
+
 msgid "Favorite"
 msgstr "Ulubiony"
 
@@ -177,6 +189,9 @@ msgstr "Powrót do listy"
 msgid "Gold"
 msgstr "Złote"
 
+msgid "Hide details"
+msgstr "Ukryj szczegóły"
+
 msgid "Hide password"
 msgstr "Ukryj hasło"
 
@@ -191,6 +206,10 @@ msgstr "Jasny odcień skóry"
 
 msgid "Load more \"{options}\""
 msgstr "Załaduj więcej \"{options}\""
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Wczytywanie…"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -251,8 +270,11 @@ msgstr "Otwórz link do \"{resourceName}\""
 msgid "Open menu"
 msgstr "Otwórz menu"
 
-msgid "Open navigation"
-msgstr "Otwórz nawigację"
+msgid "Open navigation {shortcut}"
+msgstr "Otwórz nawigację {shortcut}"
+
+msgid "Open sidebar"
+msgstr "Otwórz pasek boczny"
 
 msgid "Options"
 msgstr "Opcje"
@@ -300,13 +322,16 @@ msgid "Purple"
 msgstr "Fioletowy"
 
 msgid "Raw link {options}"
-msgstr "Link Raw {options}"
+msgstr "Surowy odnośnik {options}"
 
 msgid "Related resources"
 msgstr "Powiązane zasoby"
 
 msgid "Related team resources"
 msgstr "Powiązane zasoby grupowe"
+
+msgid "Rename project"
+msgstr "Zmień nazwę projektu"
 
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
@@ -326,6 +351,9 @@ msgstr "Szukaj strefy czasowej"
 
 msgid "Search results"
 msgstr "Wyniki wyszukiwania"
+
+msgid "Search…"
+msgstr "Szukaj…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -350,6 +378,9 @@ msgstr "Ustawienia"
 
 msgid "Settings navigation"
 msgstr "Ustawienia nawigacji"
+
+msgid "Show details"
+msgstr "Pokaż szczegóły"
 
 msgid "Show password"
 msgstr "Pokaż hasło"
@@ -384,6 +415,9 @@ msgstr "Symbole"
 msgid "Travel & Places"
 msgstr "Podróże i miejsca"
 
+msgid "Type to search for existing projects"
+msgstr "Wpisz, aby wyszukać istniejące projekty"
+
 msgid "Type to search time zone"
 msgstr "Wpisz, aby wyszukać strefę czasową"
 
@@ -404,4 +438,4 @@ msgid "Whiskey"
 msgstr "Whisky"
 
 msgid "Write a message …"
-msgstr "Napisać wiadomość…"
+msgstr "Napisz wiadomość…"

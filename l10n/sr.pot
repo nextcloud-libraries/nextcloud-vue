@@ -30,11 +30,11 @@ msgstr "Акапулко"
 msgid "Actions"
 msgstr "Радње"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Радње за ставку под називом „{name}”"
-
 msgid "Activities"
 msgstr "Активности"
+
+msgid "Add to a project"
+msgstr "Додај у пројекат"
 
 msgid "Animals & Nature"
 msgstr "Животиње и природа"
@@ -111,6 +111,9 @@ msgstr "Бирач боје"
 msgid "Confirm changes"
 msgstr "Потврдите измене"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "Повезује ставке у пројекат како би се лакше пронашле"
+
 msgid "Custom"
 msgstr "Произвољно"
 
@@ -133,6 +136,9 @@ msgstr "Уреди ставку"
 msgid "Emoji picker"
 msgstr "Бирач емођија"
 
+msgid "Enable interactive view"
+msgstr "Укључи интерактивни приказ"
+
 msgid "Enter link"
 msgstr "Унесите линк"
 
@@ -145,6 +151,15 @@ msgstr ""
 
 msgid "External documentation for {name}"
 msgstr "Спољна документација за {name}"
+
+msgid "Failed to add the item to the project"
+msgstr "Није успело додавање ставке у пројекат"
+
+msgid "Failed to create a project"
+msgstr "Није успело креирање пројекта"
+
+msgid "Failed to rename the project"
+msgstr "Није успела промена имена пројекта"
 
 msgid "Favorite"
 msgstr "Омиљени"
@@ -171,6 +186,9 @@ msgstr "Назад на листу"
 msgid "Gold"
 msgstr "Злато"
 
+msgid "Hide details"
+msgstr "Сакриј детаље"
+
 msgid "Hide password"
 msgstr "Сакриј лозинку"
 
@@ -185,6 +203,10 @@ msgstr "Светли тен коже"
 
 msgid "Load more \"{options}\""
 msgstr "Учитај још „{options}”"
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Учитава се…"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -245,8 +267,11 @@ msgstr "Отвори линк на „{resourceName}”"
 msgid "Open menu"
 msgstr "Отвори мени"
 
-msgid "Open navigation"
-msgstr "Отвори навигацију"
+msgid "Open navigation {shortcut}"
+msgstr "Отвори навигацију {shortcut}"
+
+msgid "Open sidebar"
+msgstr "Отвори бочну траку"
 
 msgid "Options"
 msgstr "Опције"
@@ -299,6 +324,12 @@ msgstr "Сирови линк {options}"
 msgid "Related resources"
 msgstr "Повезани ресурси"
 
+msgid "Related team resources"
+msgstr "Повезани тимски ресурси"
+
+msgid "Rename project"
+msgstr "Промени име пројекта"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Роси браон"
@@ -317,6 +348,9 @@ msgstr "Претрага временске зоне"
 
 msgid "Search results"
 msgstr "Резултати претраге"
+
+msgid "Search…"
+msgstr "Претражи…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -341,6 +375,9 @@ msgstr "Поставке"
 
 msgid "Settings navigation"
 msgstr "Кретање по подешавањима"
+
+msgid "Show details"
+msgstr "Прикажи детаље"
 
 msgid "Show password"
 msgstr "Прикажи лозинку"
@@ -375,6 +412,9 @@ msgstr "Симболи"
 msgid "Travel & Places"
 msgstr "Путовање и места"
 
+msgid "Type to search for existing projects"
+msgstr "Куцајте да претражите постојеће пројекте"
+
 msgid "Type to search time zone"
 msgstr "Куцајте да претражите временске зоне"
 
@@ -386,6 +426,9 @@ msgstr "Поништи измене"
 
 msgid "User status: {status}"
 msgstr "Статус корисника: {status}"
+
+msgid "View team"
+msgstr "Прикажи тим"
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"

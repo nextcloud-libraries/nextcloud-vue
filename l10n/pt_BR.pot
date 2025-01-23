@@ -3,10 +3,11 @@
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Roberto Costa, 2024
 # Flávio Veras <flaviove@gmail.com>, 2024
+# Paulo Schopf, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Flávio Veras <flaviove@gmail.com>, 2024\n"
+"Last-Translator: Paulo Schopf, 2024\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_BR\n"
@@ -31,11 +32,11 @@ msgstr "Acapulco"
 msgid "Actions"
 msgstr "Ações"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Ações para item com nome \"{name}\""
-
 msgid "Activities"
 msgstr "Atividades"
+
+msgid "Add to a project"
+msgstr "Adicionar a um projeto"
 
 msgid "Animals & Nature"
 msgstr "Animais & Natureza"
@@ -113,6 +114,9 @@ msgstr "Seletor de cores"
 msgid "Confirm changes"
 msgstr "Confirmar alterações"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "Conectar itens a um projeto para encontrá-los mais facilmente"
+
 msgid "Custom"
 msgstr "Personalizado"
 
@@ -151,6 +155,15 @@ msgstr ""
 msgid "External documentation for {name}"
 msgstr "Documentação externa para {name}"
 
+msgid "Failed to add the item to the project"
+msgstr "Erro ao adicionar itens ao projeto"
+
+msgid "Failed to create a project"
+msgstr "Erro ao criar um projeto"
+
+msgid "Failed to rename the project"
+msgstr "Erro ao renomear o projeto"
+
 msgid "Favorite"
 msgstr "Favorito"
 
@@ -176,6 +189,9 @@ msgstr "Volte para a lista"
 msgid "Gold"
 msgstr "Ouro"
 
+msgid "Hide details"
+msgstr "Ocultar detalhes"
+
 msgid "Hide password"
 msgstr "Ocultar a senha"
 
@@ -190,6 +206,10 @@ msgstr "Tome de pele claro"
 
 msgid "Load more \"{options}\""
 msgstr "Carregue mais \"{options}\""
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Carregando..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -253,6 +273,9 @@ msgstr "Abrir menu"
 msgid "Open navigation"
 msgstr "Abrir navegação"
 
+msgid "Open sidebar"
+msgstr "Abrir barra lateral"
+
 msgid "Options"
 msgstr "Opções"
 
@@ -307,6 +330,9 @@ msgstr "Recursos relacionados"
 msgid "Related team resources"
 msgstr "Recursos de equipe relacionados"
 
+msgid "Rename project"
+msgstr "Renomear projeto"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Castanho rosado"
@@ -325,6 +351,9 @@ msgstr "Pesquisar fuso horário"
 
 msgid "Search results"
 msgstr "Resultados da pesquisa"
+
+msgid "Search…"
+msgstr "Procurar..."
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -349,6 +378,9 @@ msgstr "Configurações"
 
 msgid "Settings navigation"
 msgstr "Navegação de configurações"
+
+msgid "Show details"
+msgstr "Mostrar detalhes"
 
 msgid "Show password"
 msgstr "Mostrar senha"
@@ -382,6 +414,9 @@ msgstr "Símbolo"
 
 msgid "Travel & Places"
 msgstr "Viagem & Lugares"
+
+msgid "Type to search for existing projects"
+msgstr "Digite para pesquisar por projetos existentes"
 
 msgid "Type to search time zone"
 msgstr "Digite para pesquisar o fuso horário "

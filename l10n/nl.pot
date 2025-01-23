@@ -1,14 +1,14 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Joost <joho500@hotmail.com>, 2023
 # Sean Molenaar <smillerdev@me.com>, 2023
 # Sebastiaan Veld <sebastiaan.veld@virtfields.nl>, 2024
 # WebSpider <nils@familievogels.nl>, 2024
+# Joost <joho500@hotmail.com>, 2024
+# John Molakvoæ <skjnldsv@protonmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: WebSpider <nils@familievogels.nl>, 2024\n"
+"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
 "Language-Team: Dutch (https://app.transifex.com/nextcloud/teams/64236/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nl\n"
@@ -33,11 +33,11 @@ msgstr "Acapulco"
 msgid "Actions"
 msgstr "Acties"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Actie voor item met naam \"{name}\""
-
 msgid "Activities"
 msgstr "Activiteiten"
+
+msgid "Add to a project"
+msgstr "Toevoegen aan een project"
 
 msgid "Animals & Nature"
 msgstr "Dieren & Natuur"
@@ -115,6 +115,9 @@ msgstr "Kleurkiezer"
 msgid "Confirm changes"
 msgstr "Wijzigingen bevestigen"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "Vebind items aan een project zodat ze eenvoudiger te vinden zijn"
+
 msgid "Custom"
 msgstr "Aangepast"
 
@@ -153,6 +156,15 @@ msgstr ""
 msgid "External documentation for {name}"
 msgstr "Externe documentatie voor {name}"
 
+msgid "Failed to add the item to the project"
+msgstr "Toevoegen van item aan project mislukt"
+
+msgid "Failed to create a project"
+msgstr "Aanmaken project mislukt"
+
+msgid "Failed to rename the project"
+msgstr "Hernoemen project mislukt"
+
 msgid "Favorite"
 msgstr "Favoriet"
 
@@ -178,6 +190,9 @@ msgstr "Ga terug naar de lijst"
 msgid "Gold"
 msgstr "Goud"
 
+msgid "Hide details"
+msgstr "Details verbergen"
+
 msgid "Hide password"
 msgstr "Verberg wachtwoord"
 
@@ -192,6 +207,10 @@ msgstr "Lichte tint"
 
 msgid "Load more \"{options}\""
 msgstr "Laad meer \"{options}\""
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Laden ..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -252,8 +271,8 @@ msgstr "Open link naar \"{resourceName}\""
 msgid "Open menu"
 msgstr "Open menu"
 
-msgid "Open navigation"
-msgstr "Navigatie openen"
+msgid "Open navigation {shortcut}"
+msgstr "Navigatie openen {shortcut}"
 
 msgid "Open sidebar"
 msgstr "Open sidebar"
@@ -312,6 +331,9 @@ msgstr "Gerelateerde bronnen"
 msgid "Related team resources"
 msgstr "Verwante teambronnen"
 
+msgid "Rename project"
+msgstr "Hernoem project"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Rozig bruin"
@@ -330,6 +352,9 @@ msgstr "Zoeken naar tijdzone"
 
 msgid "Search results"
 msgstr "Zoekresultaten"
+
+msgid "Search…"
+msgstr "Zoeken ..."
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -354,6 +379,9 @@ msgstr "Instellingen"
 
 msgid "Settings navigation"
 msgstr "Instellingen navigatie"
+
+msgid "Show details"
+msgstr "Toon details"
 
 msgid "Show password"
 msgstr "Toon wachtwoord"
@@ -387,6 +415,9 @@ msgstr "Symbolen"
 
 msgid "Travel & Places"
 msgstr "Reizen & Plaatsen"
+
+msgid "Type to search for existing projects"
+msgstr "Type om naar bestaande projecten te zoeken"
 
 msgid "Type to search time zone"
 msgstr "Type om een tijdzone te zoeken"

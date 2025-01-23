@@ -1,11 +1,12 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Magnus Höglund, 2024
+# John Molakvoæ <skjnldsv@protonmail.com>, 2024
+# Martin H <pilino+transifex@posteo.de>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Magnus Höglund, 2024\n"
+"Last-Translator: Martin H <pilino+transifex@posteo.de>, 2025\n"
 "Language-Team: Swedish (https://app.transifex.com/nextcloud/teams/64236/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sv\n"
@@ -30,11 +31,11 @@ msgstr "Acapulco"
 msgid "Actions"
 msgstr "Åtgärder"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Åtgärder för objekt med namn \"{name}\""
-
 msgid "Activities"
 msgstr "Aktiviteter"
+
+msgid "Add to a project"
+msgstr "Lägg till i ett projekt"
 
 msgid "Animals & Nature"
 msgstr "Djur & Natur"
@@ -103,13 +104,16 @@ msgid "Close Smart Picker"
 msgstr "Stäng Smart Picker"
 
 msgid "Collapse menu"
-msgstr "Komprimera menyn"
+msgstr "Dölj menyn"
 
 msgid "Color picker"
 msgstr "Färgväljare"
 
 msgid "Confirm changes"
 msgstr "Bekräfta ändringar"
+
+msgid "Connect items to a project to make them easier to find"
+msgstr "Anslut objekt till ett projekt för att göra dem lättare att hitta"
 
 msgid "Custom"
 msgstr "Anpassad"
@@ -128,7 +132,7 @@ msgid "do not disturb"
 msgstr "stör ej"
 
 msgid "Edit item"
-msgstr "Ändra"
+msgstr "Redigera objekt"
 
 msgid "Emoji picker"
 msgstr "Emoji-väljare"
@@ -148,6 +152,15 @@ msgstr ""
 
 msgid "External documentation for {name}"
 msgstr "Extern dokumentation för {name}"
+
+msgid "Failed to add the item to the project"
+msgstr "Det gick inte att lägga till objektet i projektet"
+
+msgid "Failed to create a project"
+msgstr "Det gick inte att skapa ett projekt"
+
+msgid "Failed to rename the project"
+msgstr "Kunde inte byta namn på projektet"
 
 msgid "Favorite"
 msgstr "Favorit"
@@ -174,8 +187,11 @@ msgstr "Gå tillbaka till listan"
 msgid "Gold"
 msgstr "Guld"
 
+msgid "Hide details"
+msgstr "Göm detaljer"
+
 msgid "Hide password"
-msgstr "Göm lössenordet"
+msgstr "Göm lösenordet"
 
 msgid "invisible"
 msgstr "osynlig"
@@ -188,6 +204,10 @@ msgstr "Ljus hudton"
 
 msgid "Load more \"{options}\""
 msgstr "Ladda fler \"{options}\""
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Laddar ..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -203,10 +223,10 @@ msgid "Medium skin tone"
 msgstr "Medium hudton"
 
 msgid "Message limit of {count} characters reached"
-msgstr "Meddelandegräns {count} tecken används"
+msgstr "Meddelandebegränsning {count} tecken har uppnåtts"
 
 msgid "More items …"
-msgstr "Fler objekt"
+msgstr "Fler objekt …"
 
 msgid "More options"
 msgstr "Fler alternativ"
@@ -248,8 +268,8 @@ msgstr "Öppna länken till \"{resourceName}\""
 msgid "Open menu"
 msgstr "Öppna menyn"
 
-msgid "Open navigation"
-msgstr "Öppna navigering"
+msgid "Open navigation {shortcut}"
+msgstr "Öppna navigering {shortcut}"
 
 msgid "Open sidebar"
 msgstr "Öppna sidofältet"
@@ -308,6 +328,9 @@ msgstr "Relaterade resurser"
 msgid "Related team resources"
 msgstr "Relaterade teamresurser"
 
+msgid "Rename project"
+msgstr "Byt namn på projektet"
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Rosabrun"
@@ -326,6 +349,9 @@ msgstr "Sök efter tidszon"
 
 msgid "Search results"
 msgstr "Sökresultat"
+
+msgid "Search…"
+msgstr "Sök..."
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -350,6 +376,9 @@ msgstr "Inställningar"
 
 msgid "Settings navigation"
 msgstr "Inställningsmeny"
+
+msgid "Show details"
+msgstr "Visa detaljer"
 
 msgid "Show password"
 msgstr "Visa lössenordet"
@@ -383,6 +412,9 @@ msgstr "Symboler"
 
 msgid "Travel & Places"
 msgstr "Resor & Sevärdigheter"
+
+msgid "Type to search for existing projects"
+msgstr "Skriv för att söka efter befintliga projekt"
 
 msgid "Type to search time zone"
 msgstr "Skriv för att välja tidszon"
