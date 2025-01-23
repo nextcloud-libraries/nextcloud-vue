@@ -4,23 +4,29 @@
 name: L10n
 on: pull_request
 
+permissions:
+  contents: read
+
 jobs:
   l10n-extract-check:
     runs-on: ubuntu-latest
 
     name: Pot check
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
       - name: Read package.json node and npm engines version
-        uses: skjnldsv/read-package-engines-version-actions@v3
+        uses: skjnldsv/read-package-engines-version-actions@06d6baf7d8f41934ab630e97d9e6c0bc9c9ac5e4 # v3
         id: versions
         with:
-          fallbackNode: '^12'
-          fallbackNpm: '^6'
+          fallbackNode: '^20'
+          fallbackNpm: '^10'
 
       - name: Set up node ${{ steps.versions.outputs.nodeVersion }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version: ${{ steps.versions.outputs.nodeVersion }}
 
