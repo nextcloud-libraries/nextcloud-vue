@@ -3,12 +3,12 @@
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Markus Eckstein, 2023
 # Andy Scherzinger <info@andy-scherzinger.de>, 2023
-# Martin Wilichowski, 2024
 # Mario Siegmann <mario_siegmann@web.de>, 2024
+# Martin Wilichowski, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2024\n"
+"Last-Translator: Martin Wilichowski, 2025\n"
 "Language-Team: German (https://app.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -117,7 +117,7 @@ msgid "Confirm changes"
 msgstr "Änderungen bestätigen"
 
 msgid "Connect items to a project to make them easier to find"
-msgstr "Verbinden Sie Elemente mit einem Projekt, um sie leichter zu finden"
+msgstr "Verbinde Elemente mit einem Projekt, um sie leichter zu finden"
 
 msgid "Custom"
 msgstr "Benutzerdefiniert"
@@ -227,7 +227,7 @@ msgid "Medium skin tone"
 msgstr "Mittlerer Hautfarbton"
 
 msgid "Message limit of {count} characters reached"
-msgstr "Nachrichtenlimit von {count} Zeichen erreicht."
+msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
 
 msgid "More items …"
 msgstr "Weitere Elemente …"
@@ -254,7 +254,7 @@ msgid "No results"
 msgstr "Keine Ergebnisse"
 
 msgid "Objects"
-msgstr "Gegenstände"
+msgstr "Objekte"
 
 msgid "offline"
 msgstr "Offline"
@@ -312,7 +312,7 @@ msgid "Pick an emoji"
 msgstr "Ein Emoji auswählen"
 
 msgid "Please select a time zone:"
-msgstr "Bitte wähle eine Zeitzone:"
+msgstr "Bitte eine Zeitzone auswählen:"
 
 msgid "Previous"
 msgstr "Vorherige"
@@ -406,7 +406,7 @@ msgid "Start slideshow"
 msgstr "Diashow starten"
 
 msgid "Start typing to search"
-msgstr "Beginne mit der Eingabe, um zu suchen"
+msgstr "Mit der Eingabe beginnen, um zu suchen"
 
 msgid "Submit"
 msgstr "Einreichen"
@@ -421,10 +421,10 @@ msgid "Type to search for existing projects"
 msgstr "Tippen, um nach vorhandenen Projekten zu suchen"
 
 msgid "Type to search time zone"
-msgstr "Tippen, um Zeitzone zu suchen"
+msgstr "Tippen, um eine Zeitzone zu suchen"
 
 msgid "Unable to search the group"
-msgstr "Die Gruppe konnte nicht durchsucht werden."
+msgstr "Die Gruppe kann nicht durchsucht werden"
 
 msgid "Undo changes"
 msgstr "Änderungen rückgängig machen"
