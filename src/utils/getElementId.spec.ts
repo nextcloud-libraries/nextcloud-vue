@@ -4,29 +4,37 @@
  */
 
 import { beforeEach, describe, expect, test, vi } from 'vitest'
-import { getElementId } from './getElementId.ts'
 
-const vue = vi.hoisted(() => ({ useId: vi.fn() }))
-vi.mock('vue', () => vue)
+const md5 = vi.hoisted(() => vi.fn())
+vi.mock('md5', () => ({ default: md5 }))
 
 describe('getElementId', () => {
 
-	beforeEach(() => vue.useId.mockReset())
-
-	test('getting an id', () => {
-		vue.useId.mockImplementationOnce(() => 'vueid')
-		const id = getElementId()
-		expect(id).toEqual('nextcloud-vue-vueid')
+	beforeEach(() => {
+		md5.mockReset()
+		vi.resetModules()
 	})
 
-	test('getting multiple ids', () => {
-		let index = 0
-		vue.useId.mockImplementation(() => index++)
+	test('getting an id', async () => {
+		md5.mockImplementationOnce(() => 'hash')
+		const { getElementId } = await import('./getElementId.ts')
+
+		const id = getElementId()
+		expect(id).toEqual('nchash-0')
+		expect(md5).toHaveBeenCalledTimes(1)
+	})
+
+	test('getting multiple ids', async () => {
+		md5.mockImplementationOnce(() => 'hash')
+		const { getElementId } = await import('./getElementId.ts')
 
 		const id = getElementId()
 		const id2 = getElementId()
+
+		// only once call the hash
+		expect(md5).toHaveBeenCalledTimes(1)
+		// both ids are different
 		expect(id).not.toEqual(id2)
-		expect(vue.useId).toBeCalledTimes(2)
 	})
 
 })
