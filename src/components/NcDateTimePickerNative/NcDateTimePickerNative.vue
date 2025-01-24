@@ -22,7 +22,6 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 			<NcSelect v-bind="props" v-model="type" />
 			<NcDateTimePickerNative
 				v-model="value"
-				:id="id"
 				:label="label"
 				:type="type" />
 		</div>
@@ -45,7 +44,6 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 				},
 				type: 'datetime-local',
 				value: new Date(),
-				id: 'date-time-picker',
 				label: 'Select a new date or time',
 			}
 		},
@@ -66,7 +64,6 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 		<span>Picked date: {{ value || 'null' }}</span>
 		<NcDateTimePickerNative
 			v-model="value"
-			:id="id"
 			:min="yesterdayDate"
 			:max="someDate"
 			:label="label"
@@ -79,7 +76,6 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 		data() {
 			return {
 				value: new Date(),
-				id: 'date-time-picker',
 				label: 'please select a new date',
 				yesterdayDate: new Date(new Date().setDate(new Date().getDate() - 1)),
 				someDate: new Date(new Date().setDate(new Date().getDate() + 7)),
@@ -186,6 +182,7 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 
 <script>
 import { useModelMigration } from '../../composables/useModelMigration.ts'
+import GenRandomId from '../../utils/GenRandomId.js'
 
 const inputDateTypes = ['date', 'datetime-local', 'month', 'time', 'week']
 
@@ -224,7 +221,8 @@ export default {
 		 */
 		id: {
 			type: String,
-			required: true,
+			default: () => 'date-time-picker-' + GenRandomId(),
+			validator: id => id.trim() !== '',
 		},
 		/**
 		 * type attribute of the input field
