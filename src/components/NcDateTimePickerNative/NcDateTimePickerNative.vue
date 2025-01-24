@@ -167,7 +167,11 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 
 <template>
 	<div class="native-datetime-picker">
-		<label :class="{ 'hidden-visually': hideLabel }" :for="id">{{ label }}</label>
+		<label class="native-datetime-picker--label"
+			:class="{ 'hidden-visually': hideLabel }"
+			:for="id">
+			{{ label }}
+		</label>
 		<input :id="id"
 			class="native-datetime-picker--input"
 			:class="inputClass"
@@ -418,10 +422,30 @@ export default {
 		flex-direction: column;
 	}
 
+	.native-datetime-picker .native-datetime-picker--label {
+		margin-block-end: 2px;
+	}
+
 	.native-datetime-picker .native-datetime-picker--input {
+		// If border width differs between focused and unfocused we need to compensate to prevent jumping
+		--input-border-width-offset: calc(var(--border-width-input-focused, 2px) - var(--border-width-input, 2px));
 		width: 100%;
 		flex: 0 0 auto;
-		padding-right: 4px;
+		margin: 0;
+		padding-inline-start: calc(var(--border-radius-large) + var(--input-border-width-offset));
+		padding-inline-end: calc(var(--default-grid-baseline) + var(--input-border-width-offset));
+		border: var(--border-width-input, 2px) solid var(--color-border-maxcontrast);
+
+		&:active:not([disabled]),
+		&:hover:not([disabled]),
+		&:focus:not([disabled]),
+		&:focus-within:not([disabled]) {
+			border-color: var(--color-main-text);
+			border-width: var(--border-width-input-focused, 2px);
+			box-shadow: 0 0 0 2px var(--color-main-background) !important;
+			// Reset padding offset when focused
+			--input-border-width-offset: 0px;
+		}
 	}
 
 	[data-theme-light],
