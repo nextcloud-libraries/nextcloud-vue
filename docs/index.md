@@ -9,9 +9,22 @@
  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-This repo contains the various Vue.js components that Nextcloud uses for its internal design and structure.
+> Nextcloud UI Kit for building Nextcloud apps with Vue
 
-## Installation
+- Standardized UI Components
+- Composables and frontend utilities
+- [Reference providers](https://docs.nextcloud.com/server/latest/developer_manual/digging_deeper/reference.html) utilities
+
+## Documentation
+
+| Version        | Target                | Documentation                                         |
+|----------------|-----------------------|-------------------------------------------------------|
+| v9.x [next]    | Nextcloud 30+ (Vue 3) | https://next--nextcloud-vue-components.netlify.app    |
+| v8.x [master]  | Nextcloud 28+ (Vue 2) | https://nextcloud-vue-components.netlify.app          |
+| v7.x [stable7] | Nextcloud 25 - 27     | https://stable7--nextcloud-vue-components.netlify.app |
+| v6.x [stable6] | Nextcloud 24 - 25     | https://stable6--nextcloud-vue-components.netlify.app |
+
+## Install
 
 ```bash
 npm i @nextcloud/vue
