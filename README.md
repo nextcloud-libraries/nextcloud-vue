@@ -8,13 +8,13 @@
 [![npm last version](https://img.shields.io/npm/v/@nextcloud/vue.svg?style=flat)](https://www.npmjs.com/package/@nextcloud/vue)
 [![Dependabot status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?longCache=true&style=flat&logo=dependabot)](https://dependabot.com)
 
-> UI Kit for building Nextcloud apps with Vue
+> 🖼️ UI Kit for building Nextcloud apps with Vue
 
-- Standardized UI Components
-- Composables and frontend utilities
-- [Reference providers](https://docs.nextcloud.com/server/latest/developer_manual/digging_deeper/reference.html) utilities
+- ✨ Standardized UI Components
+- 🛠️ Composables and frontend utilities
+- 🔗 [Reference providers](https://docs.nextcloud.com/server/latest/developer_manual/digging_deeper/reference.html) utilities
 
-## Documentation
+## 📄 Documentation
 
 | Version        | Target                | Documentation                                         |
 |----------------|-----------------------|-------------------------------------------------------|
@@ -23,13 +23,13 @@
 | v7.x [stable7] | Nextcloud 25 - 27     | https://stable7--nextcloud-vue-components.netlify.app |
 | v6.x [stable6] | Nextcloud 24 - 25     | https://stable6--nextcloud-vue-components.netlify.app |
 
-## Install
+## 📦 Install
 
 ```bash
 npm i @nextcloud/vue@next
 ```
 
-## Usage
+## 🚀 Usage
 
 Import corresponding components and other modules on use. Check the documentation for more details.
 
@@ -58,7 +58,7 @@ If you want to work on improving the components it’s best to run the latest co
     - In the repository of an app do `npm link @nextcloud/vue` (you need to re-link any time you do `npm ci` in the app)
 4. Then build the app with: `npm run build` (or watch for changes with `npm run watch`)
 
-## Translations
+## 🌐 Translations
 
 Use `t` and `n` functions from `src/l10n.js` to display translated strings. They follow `gettext` and `ngettext` interface from [`@nextcloud/l10n/gettext`](https://nextcloud-libraries.github.io/nextcloud-l10n/modules/_nextcloud_l10n_gettext.html).
 
@@ -81,7 +81,7 @@ Our awesome translation community will then be notified and a bot will sync tran
 npm run l10n:extract
 ```
 
-## Styleguide
+## 🐸 Styleguide
 
 When developing new components or extending components, make sure to also have some bits of related documentation like examples, where applicable.
 To test components and the documentation in that context, you can run `npm run styleguide` to run a local server that serves the style guide
@@ -113,7 +113,7 @@ index 0e3a6a705d..416b8b0fb9 100644
         /** @var array Domains from which scripts can get loaded */
 ```
 
-## Releasing a new version
+## 📤 Releasing a new version
 
 - Pull the latest changes from `master` or `stableX`
 - Checkout a new branch with the tag name (e.g `v4.0.1`): `git checkout -b v<version>`
