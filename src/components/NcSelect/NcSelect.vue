@@ -991,7 +991,7 @@ export default {
 				return null
 			}
 			// The <input> itself does not have any value so we set the `required` attribute conditionally
-			return this.value === null || (Array.isArray(this.value) && this.value.length === 0)
+			return this.modelValue === null || (Array.isArray(this.modelValue) && this.modelValue.length === 0)
 		},
 
 		localCalculatePosition() {
