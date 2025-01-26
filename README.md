@@ -41,9 +41,12 @@ To use a component, just import it:
 import { NcAppNavigation, NcActions, NcActionButton } from '@nextcloud/vue'
 ```
 
-### Registering all components.
+#### (Deprecated) Registering all components
 
-> Be careful, this will registry all components and directives, even the ones not being used.
+`NextcloudVuePlugin` registers all the components and directives globally.
+
+> ⚠️ This installation method leads to extremely large bundle and removed in v9.\
+> If you don't want to import component on usage you may use [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components) instead.
 
 ```js
 import Vue from 'vue'
