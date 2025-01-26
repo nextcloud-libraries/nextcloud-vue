@@ -63,53 +63,25 @@ If you want to work on improving the components it’s best to run the latest co
 
 ## Translations
 
-This library uses translated strings.
-When you edit/create a translated string, you need to run `npm run l10n:extract` to update the source files.
-Our awesome translation community will then be notified and a bot will sync those changes automatically.
+Use `t` and `n` functions from `src/l10n.js` to display translated strings. They follow `gettext` and `ngettext` interface from [`@nextcloud/l10n/gettext`](https://nextcloud-libraries.github.io/nextcloud-l10n/modules/_nextcloud_l10n_gettext.html).
 
-Nonetheless, it requires a bit of caution.
-When you implement a translated string, import the `translate` or `translatePlural` and add it in your methods like so:
 ```vue
+<script setup lang="ts">
+import { t } from '../../l10n.js'
+</script>
+
 <template>
 	<element>
 		{{ t('Choose') }}
 	</element>
 </template>
-
-<script>
-import { translate as t } from '@nextcloud/l10n'
-
-export default {
-	methods: {
-		t,
-	},
-}
-</script>
 ```
 
-Please note that using a translated string as an attribute will _NOT_ work.
-But it will work if it's within an element (like the example above)
-```vue
-<template>
-	<element :prop="t('This will not work')" />
-</template>
-```
+When you edit/create a translated string, you need to update the l10n files.
+Our awesome translation community will then be notified and a bot will sync translations automatically.
 
-You will instead have to define the string in the data section and use the relevant variable reference.
-```vue
-<template>
-	<element :prop="chooseProp" />
-</template>
-
-<script>
-export default {
-	data() {
-		return {
-			chooseProp: t('Choose'),
-		},
-	}
-}
-</script>
+```sh
+npm run l10n:extract
 ```
 
 ## Styleguide
