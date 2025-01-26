@@ -35,16 +35,3 @@ You can also import individual module without bundling the full library.
 ```js static
 import NcAvatar from '@nextcloud/vue/components/NcAvatar'
 ```
-
-## Recommendations
-
-Some components require Nextcloud functionality to work, so it is currently recommended to extend Vue with the following:
-
-```js static
-Vue.prototype.OC = window.OC
-Vue.prototype.OCA = window.OCA
-```
-
-<a href="https://www.netlify.com">
-  <img src="https://www.netlify.com/img/global/badges/netlify-dark.svg"/>
-</a>
