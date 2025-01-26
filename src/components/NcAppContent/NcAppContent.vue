@@ -60,7 +60,7 @@ The list size must be between the min and the max width value.
 
 		<template v-if="hasList">
 			<!-- Mobile view does not allow resizeable panes -->
-			<div v-if="(isMobile && mobileLayout === 'no-split') || layout === 'no-split' "
+			<div v-if="currentLayout === 'no-split'"
 				class="app-content-wrapper app-content-wrapper--no-split"
 				:class="{
 					'app-content-wrapper--show-details': showDetails,
@@ -71,12 +71,12 @@ The list size must be between the min and the max width value.
 
 				<slot v-else />
 			</div>
-			<div v-else-if="layout === 'vertical-split' || layout === 'horizontal-split'" class="app-content-wrapper">
-				<Splitpanes :horizontal="layout === 'horizontal-split' || (isMobile && mobileLayout === 'horizontal-split')"
+			<div v-else-if="currentLayout === 'vertical-split' || currentLayout === 'horizontal-split'" class="app-content-wrapper">
+				<Splitpanes :horizontal="currentLayout === 'horizontal-split'"
 					class="default-theme"
-					:class="{ 'splitpanes--horizontal': layout === 'horizontal-split' || (isMobile && mobileLayout === 'horizontal-split') ,
-						'splitpanes--vertical': layout === 'vertical-split',
-						'splitpanes--horizontal-mobile': mobileLayout == 'horizontal-split'
+					:class="{ 'splitpanes--horizontal': currentLayout === 'horizontal-split',
+						'splitpanes--vertical': currentLayout === 'vertical-split',
+						'splitpanes--horizontal-mobile': currentLayout === 'horizontal-split' && isMobile
 					}"
 					:rtl="isRTL"
 					@resized="handlePaneResize">
@@ -176,7 +176,6 @@ export default {
 		},
 
 		/**
-		 * When in 'no-split' mobile view, only the list or the details are shown
 		 * If you provide a list, you need to provide a variable
 		 * that will be set to true by the user when an element of
 		 * the list gets selected. The details will then show a back
@@ -208,7 +207,7 @@ export default {
 			},
 		},
 		/**
-		 * Content layout used on mobile. 
+		 * Content layout used on mobile.
 		 * - `no-split` - a single column layout; List is shown when `showDetails` is `false`, otherwise the default slot content is shown with a back button to return to the list.
 		 * - 'horizontal-split' - a 2-column layout with list and default content separated horizontally
 		 */
@@ -217,8 +216,8 @@ export default {
 			default: 'no-split',
 			validator(value) {
 				return ['no-split', 'horizontal-split'].includes(value)
-			}
-		}
+			},
+		},
 	},
 
 	emits: [
@@ -285,6 +284,13 @@ export default {
 					max: 100 - this.listMinWidth,
 				},
 			}
+		},
+
+		currentLayout() {
+			if (this.isMobile && this.mobileLayout) {
+				return this.mobileLayout
+			}
+			return this.layout
 		},
 	},
 
@@ -413,17 +419,17 @@ export default {
 	}
 
 	&:not(.splitpanes--horizontal-mobile) {
-		.splitpanes__pane-list{
+		.splitpanes__pane-list {
 			@media only screen and (width < $breakpoint-mobile) {
 				display: none;
 			}
-		}	
+		}
 	}
 
 	&.splitpanes--horizontal-mobile {
-		.splitpanes__pane-details{
+		.splitpanes__pane-details {
 			@media only screen and (width < $breakpoint-mobile) {
-				min-height:30%;
+				min-height: 30%;
 			}
 		}
 	}
@@ -436,7 +442,6 @@ export default {
 			min-width: 300px;
 			position: sticky;
 
-			
 		}
 
 		&-details {
