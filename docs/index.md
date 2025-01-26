@@ -9,13 +9,13 @@
  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-> Nextcloud UI Kit for building Nextcloud apps with Vue
+> 🖼️ Nextcloud UI Kit for building Nextcloud apps with Vue
 
-- Standardized UI Components
-- Composables and frontend utilities
-- [Reference providers](https://docs.nextcloud.com/server/latest/developer_manual/digging_deeper/reference.html) utilities
+- ✨ Standardized UI Components
+- 🛠️ Composables and frontend utilities
+- 🔗 [Reference providers](https://docs.nextcloud.com/server/latest/developer_manual/digging_deeper/reference.html) utilities
 
-## Documentation
+## 📄 Documentation
 
 | Version        | Target                | Documentation                                         |
 |----------------|-----------------------|-------------------------------------------------------|
@@ -24,13 +24,13 @@
 | v7.x [stable7] | Nextcloud 25 - 27     | https://stable7--nextcloud-vue-components.netlify.app |
 | v6.x [stable6] | Nextcloud 24 - 25     | https://stable6--nextcloud-vue-components.netlify.app |
 
-## Install
+## 📦 Install
 
 ```bash
 npm i @nextcloud/vue
 ```
 
-## Usage
+## 🚀 Usage
 
 Import corresponding components and other modules on use. Check the documentation for more details.
 
