@@ -26,7 +26,7 @@ The documentation is built from the latest development branch, for stable releas
 If you want to check a real live example of a nextcloud app that uses this library, you can head over to https://github.com/skjnldsv/vueexample/
 We will try to maintain this repository the best we can, but some example might be obsolete. Always check this [repository documentation](#documentation).
 
-### Install the library
+### Installation
 
 ```bash
 npm i @nextcloud/vue@next

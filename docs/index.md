@@ -14,7 +14,7 @@ This repo contains the various Vue.js components that Nextcloud uses for its int
 # Installation
 
 ```bash
-npm i --save @nextcloud/vue
+npm i @nextcloud/vue
 ```
 
 # Usage
