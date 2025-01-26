@@ -35,10 +35,21 @@ npm i @nextcloud/vue
 
 ### Usage
 
-To use a component, just import it:
+Import corresponding components and other modules on use. Check the documentation for more details.
 
 ```js
-import { NcAppNavigation, NcActions, NcActionButton } from '@nextcloud/vue'
+import NcButton from '@nextcloud/vue/components/NcButton'
+import { useHotKey } from '@nextcloud/vue/composables/useHotKey'
+
+// (Deprecated) Old import path 
+import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
+import { useHotKey } from '@nextcloud/vue/dist/Composables/useHotKey.js'
+```
+
+Import from a single root is available as well. Use with caution: this might lead to slower build time and larger bundles in some cases.
+
+```js
+import { NcButton, useHotKey } from '@nextcloud/vue'
 ```
 
 #### (Deprecated) Registering all components

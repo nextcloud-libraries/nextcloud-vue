@@ -11,27 +11,41 @@
 
 This repo contains the various Vue.js components that Nextcloud uses for its internal design and structure.
 
-# Installation
+## Installation
 
 ```bash
 npm i @nextcloud/vue
 ```
 
-# Usage
-```js static
-import { NcAppNavigation } from '@nextcloud/vue'
+## Usage
 
-export default {
-    name: 'MyComponent',
-    components: {
-        NcAppNavigation
-    }
-}
+Import corresponding components and other modules on use. Check the documentation for more details.
+
+```js static
+import NcButton from '@nextcloud/vue/components/NcButton'
+import { useHotKey } from '@nextcloud/vue/composables/useHotKey'
+
+// (Deprecated) Old import path 
+import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
+import { useHotKey } from '@nextcloud/vue/dist/Composables/useHotKey.js'
 ```
 
-You can also import individual module without bundling the full library.
-
+Import from a single root is available as well. Use with caution: this might lead to slower build time and larger bundles in some cases.
 
 ```js static
-import NcAvatar from '@nextcloud/vue/components/NcAvatar'
+import { NcButton, useHotKey } from '@nextcloud/vue'
+```
+
+### (Deprecated) Registering all components
+
+`NextcloudVuePlugin` registers all the components and directives globally.
+
+> ⚠️ This installation method leads to extremely large bundle and removed in v9.\
+> If you don't want to import component on usage you may use [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components) instead.
+
+```js static
+import Vue from 'vue'
+import { NextcloudVuePlugin } from '@nextcloud/vue'
+
+Vue.use(NextcloudVuePlugin)
 ```
