@@ -21,19 +21,13 @@ The documentation is built from the latest development branch, for stable releas
 - [7.x.x](https://stable7--nextcloud-vue-components.netlify.app/)
 - [6.x.x](https://stable6--nextcloud-vue-components.netlify.app/)
 
-## Getting started
-
-### App example
-If you want to check a real live example of a nextcloud app that uses this library, you can head over to https://github.com/skjnldsv/vueexample/
-We will try to maintain this repository the best we can, but some example might be obsolete. Always check this [repository documentation](#documentation).
-
-### Installation
+## Installation
 
 ```bash
 npm i @nextcloud/vue
 ```
 
-### Usage
+## Usage
 
 Import corresponding components and other modules on use. Check the documentation for more details.
 
@@ -52,7 +46,7 @@ Import from a single root is available as well. Use with caution: this might lea
 import { NcButton, useHotKey } from '@nextcloud/vue'
 ```
 
-#### (Deprecated) Registering all components
+### (Deprecated) Registering all components
 
 `NextcloudVuePlugin` registers all the components and directives globally.
 
