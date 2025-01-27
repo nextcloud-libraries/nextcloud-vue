@@ -65,6 +65,27 @@ Vue.use(NextcloudVuePlugin)
 
 ## 🤝 Contributing
 
+### 📜 How to contribute
+
+1. It's always good to check/create an issue first and discuss the problem or feature you want to work on
+2. Fork the repository and create a new branch
+3. Make the changes
+4. Check the change in Vue-Styleguidist and/or Nextcloud apps
+   - Do not forget to `lint` and `test` your changes
+   - If possible, add tests for your changes
+5. Commit and push your changes, create a Pull Request
+   - Make sure to follow the [Conventional Commits](https://www.conventionalcommits.org) in commit messages, and PR titles, for example:\
+     `fix(NcButton): correct layout on Safari`
+   - Make sure to follow the **Pull Request template**
+   - Sign-off you commits for the [Developer Certificate of Origin (DCO)](https://developercertificate.org/)
+6. Get your PR reviewed
+   - If you don't receive a feedback in a week, feel free to mention the maintainers, for example, last developers worked on the module
+7. Get your PR merged 
+
+Please read the [Code of Conduct](https://nextcloud.com/community/code-of-conduct/). This document offers some guidance to ensure Nextcloud participants can cooperate effectively in a positive and inspiring atmosphere and to explain how together we can strengthen and support each other.
+
+More information on how to contribute: [https://nextcloud.com/contribute/](https://nextcloud.com/contribute/)
+
 ### 🧑‍💻 Development setup
 
 If you want to work on improving the components it’s best to run the latest code and link it to your local Nextcloud installation:
