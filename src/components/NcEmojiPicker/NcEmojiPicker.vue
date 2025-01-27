@@ -119,7 +119,8 @@ This component allows the user to pick an emoji.
 		<template #trigger="slotProps">
 			<slot v-bind="slotProps" />
 		</template>
-		<Picker ref="picker"
+		<Picker v-if="isReadyToRenderPicker"
+			ref="picker"
 			class="nc-emoji-picker"
 			color="var(--color-primary-element)"
 			:data="emojiIndex"
@@ -192,6 +193,7 @@ This component allows the user to pick an emoji.
 					@click="unselect" />
 			</template>
 		</Picker>
+		<div v-else class="dummy-emoji-picker" style="width: 320px; height: 420px" />
 	</NcPopover>
 </template>
 
@@ -363,6 +365,7 @@ export default {
 			currentSkinTone,
 			search: '',
 			open: false,
+			isReadyToRenderPicker: false,
 		}
 	},
 
@@ -419,9 +422,18 @@ export default {
 			this.log('<NcPopover> afterShow nextTick')
 			await this.$nextTick()
 			this.log('<NcPopover> afterShow nextTick 2')
+			// NcPopover first renders its content,
+			// then changes CSS to check content size,
+			// and then actually shows the content.
+			// With heavy rendered content like emoji-mart-vue-fast it causes unneeded reflows, making rendering slow.
+			// To avoid this we first render an empty dummy <div> with exactly the same size,
+			// and only then NcPOpover completely ready and shown actually render the picker
+			// It makes rendering x1.5-x2 times faster
+			this.isReadyToRenderPicker = true
 		},
 
 		afterHide() {
+			this.isReadyToRenderPicker = false
 		},
 
 		/**
