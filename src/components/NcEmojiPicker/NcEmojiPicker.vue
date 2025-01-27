@@ -139,7 +139,7 @@ This component allows the user to pick an emoji.
 			v-bind="$attrs"
 			@keydown.native.tab.prevent="handleTabNavigationSkippingEmojis"
 			@select="select">
-			<template #searchTemplate="slotProps">
+			<template #searchTemplate="{ onSearch }">
 				<div class="search__wrapper">
 					<NcTextField ref="search"
 						class="search"
@@ -155,8 +155,8 @@ This component allows the user to pick an emoji.
 						@keydown.down="callPickerArrowHandlerWithScrollFix('onArrowDown', $event)"
 						@keydown.up="callPickerArrowHandlerWithScrollFix('onArrowUp', $event)"
 						@keydown.enter="$refs.picker.onEnter"
-						@trailing-button-click="clearSearch(); slotProps.onSearch(search);"
-						@update:value="slotProps.onSearch(search)" />
+						@trailing-button-click="clearSearch(); onSearch('');"
+						@update:value="onSearch(search)" />
 					<NcColorPicker palette-only
 						:container="container"
 						:palette="skinTonePalette"
@@ -359,10 +359,7 @@ export default {
 
 		clearSearch() {
 			this.search = ''
-			const input = this.$refs.search?.$refs.inputField?.$refs.input
-			if (input) {
-				input.focus()
-			}
+			this.$refs.search.focus()
 		},
 
 		/**
@@ -575,15 +572,13 @@ export default {
 </style>
 
 <style scoped lang="scss">
-.search {
-	&__wrapper {
-		display: flex;
-		flex-direction: row;
-		gap: var(--default-grid-baseline);
-		align-items: end;
-		padding-block: var(--default-grid-baseline);
-		padding-inline: calc(2 * var(--default-grid-baseline));
-	}
+.search__wrapper {
+	display: flex;
+	flex-direction: row;
+	gap: var(--default-grid-baseline);
+	align-items: end;
+	padding-block: var(--default-grid-baseline);
+	padding-inline: calc(2 * var(--default-grid-baseline));
 }
 
 .row-selected {
