@@ -23,6 +23,7 @@ All notable changes to this project will be documented in this file.
   - `NcActionCheckbox`
   - `NcActionRadio`
   - `NcCheckboxRadioSwitch`
+* The `modelValue` prop of `NcActionRadio` is expecting to have type String|Number to be compared to `value` prop.
 * The `value` prop was renamed to `modelValue`, the `update:value` or `input` events were renamed to `update:modelValue`. This affects the following components:
   - `NcActionInput`
   - `NcActionTextEditable`
@@ -87,7 +88,7 @@ All notable changes to this project will be documented in this file.
 * ci: Migrate component tests to Playwright [\#5818](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5818) \([susnux](https://github.com/susnux)\)
 * Change module import paths - drop dist and .js-extension [\#6389](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6389) \([susnux](https://github.com/susnux)\)
 * The plugin was removed - components need to be registered manually now [\#6349](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6349) \([ShGKme](https://github.com/ShGKme)\)
-* chore(Nc*Field): icon slot change note [\#6398](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6398) \([ShGKme](https://github.com/ShGKme)\) 
+* chore(Nc*Field): icon slot change note [\#6398](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6398) \([ShGKme](https://github.com/ShGKme)\)
 * Rename `checked` prop to `modelValue` [\#4994](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4994) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 * Unify `modelValue` naming [\#4990](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4990) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 * Remove deprecated mixins [\#4830](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4830) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
