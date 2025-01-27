@@ -147,6 +147,11 @@ This component allows the user to pick an emoji.
 						trailing-button-icon="close"
 						:trailing-button-label="t('Clear search')"
 						:show-trailing-button="search !== ''"
+						@keydown.left="callPickerArrowHandlerWithScrollFix('onArrowLeft', $event)"
+						@keydown.right="callPickerArrowHandlerWithScrollFix('onArrowRight', $event)"
+						@keydown.down="callPickerArrowHandlerWithScrollFix('onArrowDown', $event)"
+						@keydown.up="callPickerArrowHandlerWithScrollFix('onArrowUp', $event)"
+						@keydown.enter="$refs.picker.onEnter"
 						@trailing-button-click="clearSearch(); slotProps.onSearch(search);"
 						@update:value="slotProps.onSearch(search)" />
 					<NcColorPicker palette-only
@@ -431,6 +436,33 @@ export default {
 				event.preventDefault()
 				focusableList[last].focus()
 			}
+		},
+
+		/**
+		 * Handle arrow navigation via <Picker>'s handlers with scroll bug fix
+		 * @param {'onArrowLeft' | 'onArrowRight' | 'onArrowDown' | 'onArrowUp'} originalHandlerName - Picker's arrow keydown handler name
+		 * @param {KeyboardEvent} event - Keyboard event
+		 */
+		async callPickerArrowHandlerWithScrollFix(originalHandlerName, event) {
+			// Call the original handler
+			// See: https://github.com/serebrov/emoji-mart-vue/blob/a1ea72673a111cce78dc8caad8bc9ea3e02ad5bd/src/components/Picker.vue#L29
+			// TODO: expose these methods via slot props in upstream library
+			this.$refs.picker[originalHandlerName](event)
+
+			// Wait until emoji-mart-vue-fast scrolls
+			await this.$nextTick()
+
+			// Scroll position is incorrect after emoji-mart-vue-fast scrolls...
+			// It calculates scroll incorrectly.
+			// It doesn't take into account, that emojis are wrapped into categories sections
+			// See: https://github.com/serebrov/emoji-mart-vue/blob/a1ea72673a111cce78dc8caad8bc9ea3e02ad5bd/src/utils/picker.js#L244
+			// Now scroll to the correct position
+			// TODO: fix in upstream
+			const selectedEmoji = this.$refs.picker.$el.querySelector('.emoji-mart-emoji-selected')
+			selectedEmoji?.scrollIntoView({
+				block: 'center',
+				inline: 'center',
+			})
 		},
 	},
 }
