@@ -113,6 +113,7 @@ This component allows the user to pick an emoji.
 		v-bind="$attrs"
 		:focus-trap="false /* Handled manually */"
 		v-on="$listeners"
+		@update:shown="($event) => { $event ? log('<NcPopover> beforeShow', true) : log('<NcPopover> closing', true) }"
 		@after-show="afterShow"
 		@after-hide="afterHide">
 		<template #trigger="slotProps">
@@ -137,6 +138,8 @@ This component allows the user to pick an emoji.
 			:aria-label="t('Emoji picker')"
 			v-bind="$attrs"
 			@keydown.native.tab.prevent="handleTabNavigationSkippingEmojis"
+			@hook:created="log('<Picker> created')"
+			@hook:mounted="log('<Picker> mounted')"
 			@select="select">
 			<template #searchTemplate="{ onSearch }">
 				<div class="search__wrapper">
@@ -193,6 +196,7 @@ This component allows the user to pick an emoji.
 </template>
 
 <script>
+import { getCurrentInstance } from 'vue'
 import { Picker, Emoji, EmojiIndex } from 'emoji-mart-vue-fast'
 import { t } from '../../l10n.js'
 import { getCurrentSkinTone, setCurrentSkinTone } from '../../functions/emoji/emoji.ts'
@@ -236,6 +240,14 @@ const skinTonePalette = [
 	new Color(158, 113, 88, t('Medium dark skin tone')),
 	new Color(96, 79, 69, t('Dark skin tone')),
 ]
+
+const last = {}
+const log = (id, text, reset = false) => {
+	const now = performance.now()
+	const diff = last[id] && !reset ? `+${(now - last[id]).toFixed(2)}ms` : '-------'
+	console.log(`${now.toFixed(2)}ms (${diff}) [NcEmojiPicker #${id}]`, text)
+	last[id] = now
+}
 
 export default {
 	name: 'NcEmojiPicker',
@@ -316,16 +328,23 @@ export default {
 	],
 
 	setup() {
+		const id = getCurrentInstance().proxy._uid
+		const _log = (...args) => log(id, ...args)
+		_log('setup | start')
+
 		// If this is the first instance of NcEmojiPicker - setup EmojiIndex
 		if (!emojiIndex) {
 			emojiIndex = new EmojiIndex(data)
 		}
+
+		_log('setup | end')
 
 		return {
 			// Non-reactive constants
 			emojiIndex,
 			skinTonePalette,
 			i18n,
+			log: _log,
 		}
 	},
 
@@ -394,7 +413,12 @@ export default {
 			this.$emit('unselect')
 		},
 
-		afterShow() {
+		async afterShow() {
+			this.log('<NcPopover> afterShow')
+			await this.$nextTick()
+			this.log('<NcPopover> afterShow nextTick')
+			await this.$nextTick()
+			this.log('<NcPopover> afterShow nextTick 2')
 		},
 
 		afterHide() {
