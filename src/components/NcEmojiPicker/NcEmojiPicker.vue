@@ -211,9 +211,23 @@ import NcColorPicker from '../NcColorPicker/NcColorPicker.vue'
 import NcPopover from '../NcPopover/index.js'
 import NcTextField from '../NcTextField/index.js'
 
-// Shared emoji index and skinTone for all NcEmojiPicker instances
-// Will be initialized on the first NcEmojiPicker creating
 let emojiIndex
+
+/**
+ * Initialize shared EmojiIndex if it's not initialized yet
+ */
+function initEmojiIndexIfNeeded() {
+	if (!emojiIndex) {
+		emojiIndex = new EmojiIndex(data)
+	}
+}
+
+// Initializing EmojiIndex may take up to 100ms...
+// - Doing it in module-scope leads to blocking the main thread on page init (unacceptable)
+// - Doing it in setup leads to blocking the thread on the first NcEmojiPicker creating (more or less acceptable)
+// The best - do it in the idle time if possible.
+// This method is not available in Safari - it will load EmojiIndex on the first NcEmojiPicker creating in setup.
+window.requestIdleCallback?.(initEmojiIndexIfNeeded)
 
 const i18n = {
 	search: t('Search emoji'),
@@ -334,10 +348,7 @@ export default {
 		const _log = (...args) => log(id, ...args)
 		_log('setup | start')
 
-		// If this is the first instance of NcEmojiPicker - setup EmojiIndex
-		if (!emojiIndex) {
-			emojiIndex = new EmojiIndex(data)
-		}
+		initEmojiIndexIfNeeded()
 
 		_log('setup | end')
 
