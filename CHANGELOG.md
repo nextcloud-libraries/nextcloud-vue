@@ -49,6 +49,8 @@ Affected components:
   - `NcActionRadio`
   - `NcCheckboxRadioSwitch`
 * Removed `value` prop and `update:value` / `input` events:
+* The `modelValue` prop of `NcActionRadio` is expecting to have type `string|number` to be compared to `value` prop.
+* The `value` prop was renamed to `modelValue`, the `update:value` or `input` events were renamed to `update:modelValue`. This affects the following components:
   - `NcActionInput`
   - `NcActionTextEditable`
   - `NcColorPicker`
