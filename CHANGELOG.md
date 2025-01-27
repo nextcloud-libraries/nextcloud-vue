@@ -16,6 +16,8 @@
   - to `import NcButton from '@nextcloud/vue/components/NcButton'`
 
   The old import paths are still valid, but deprecated and will be removed in version 9.
+* `NcActionRadio` is now expecting String|Number in `v-model` directive (to compare with passed `value`) instead of Boolean. Consider it for migration.
+
 
 ## [v8.22.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.22.0) (2024-12-20)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.21.0...v8.22.0)
