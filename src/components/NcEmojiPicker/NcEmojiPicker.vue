@@ -107,9 +107,11 @@ This component allows the user to pick an emoji.
 </docs>
 
 <template>
-	<NcPopover v-model:shown="open"
+	<NcPopover ref="popover"
+		v-model:shown="open"
 		:container="container"
 		popup-role="dialog"
+		:focus-trap="false /* Handled manually to remove emoji buttons from TAB sequence */"
 		@after-show="afterShow"
 		@after-hide="afterHide">
 		<template #trigger="slotProps">
@@ -133,6 +135,7 @@ This component allows the user to pick an emoji.
 			aria-modal="true"
 			:aria-label="t('Emoji picker')"
 			v-bind="$attrs"
+			@keydown.tab.prevent="handleTabNavigationSkippingEmojis"
 			@select="select">
 			<template #searchTemplate="slotProps">
 				<div class="search__wrapper">
@@ -395,45 +398,28 @@ export default {
 		},
 
 		afterShow() {
-			// add focus trap in modal
-			const picker = this.$refs.picker
-			picker.$el.addEventListener('keydown', this.checkKeyEvent)
-
-			// set focus on input search field
-			const input = this.$refs.search?.$refs.inputField?.$refs.input
-			if (input) {
-				input.focus()
-			}
+			this.$refs.search.focus()
 		},
 
 		afterHide() {
-			// remove keydown listner if popover is hidden
-			const picker = this.$refs.picker
-			picker.$el.removeEventListener('keydown', this.checkKeyEvent)
+			// Manually return focus to the trigger button, as we disabled focus-trap
+			this.$refs.popover.$el.querySelector('button, [role="button"]')?.focus()
 		},
 
-		checkKeyEvent(event) {
-			if (event.key !== 'Tab') {
-				return
-			}
-			const picker = this.$refs.picker
-			const focusableList = picker.$el.querySelectorAll(
-				'button, input',
-			)
-			const last = focusableList.length - 1
-			// escape early if only 1 or no elements to focus
-			if (focusableList.length <= 1) {
-				event.preventDefault()
-				return
-			}
-			if (event.shiftKey === false && event.target === focusableList[last]) {
-				// Jump to first item when pressing tab on the latest item
-				event.preventDefault()
-				focusableList[0].focus()
-			} else if (event.shiftKey === true && event.target === focusableList[0]) {
-				// Jump to the last item if pressing shift+tab on the first item
-				event.preventDefault()
-				focusableList[last].focus()
+		/**
+		 * Manually handle Tab navigation skipping emoji buttons.
+		 * Navigation over emojis is handled by Arrow keys.
+		 * @param {KeyboardEvent} event - Keyboard event
+		 */
+		handleTabNavigationSkippingEmojis(event) {
+			const current = event.target
+			const focusable = Array.from(this.$refs.picker.$el.querySelectorAll('button:not(.emoji-mart-emoji), input'))
+			if (!event.shiftKey) {
+				const nextNode = focusable.find((node) => current.compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING) || focusable[0]
+				nextNode.focus()
+			} else {
+				const prevNode = focusable.findLast((node) => current.compareDocumentPosition(node) & Node.DOCUMENT_POSITION_PRECEDING) || focusable.at(-1)
+				prevNode.focus()
 			}
 		},
 
