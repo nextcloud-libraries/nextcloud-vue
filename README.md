@@ -44,7 +44,9 @@ Import from a single root is available as well. Use with caution: this might lea
 import { NcButton, useHotKey } from '@nextcloud/vue'
 ```
 
-## Development setup
+## 🤝 Contributing
+
+### 🧑‍💻 Development setup
 
 If you want to work on improving the components it’s best to run the latest code and link it to your local Nextcloud installation:
 
@@ -58,7 +60,7 @@ If you want to work on improving the components it’s best to run the latest co
     - In the repository of an app do `npm link @nextcloud/vue` (you need to re-link any time you do `npm ci` in the app)
 4. Then build the app with: `npm run build` (or watch for changes with `npm run watch`)
 
-## 🌐 Translations
+### 🌐 Translations
 
 Use `t` and `n` functions from `src/l10n.js` to display translated strings. They follow `gettext` and `ngettext` interface from [`@nextcloud/l10n/gettext`](https://nextcloud-libraries.github.io/nextcloud-l10n/modules/_nextcloud_l10n_gettext.html).
 
@@ -81,13 +83,13 @@ Our awesome translation community will then be notified and a bot will sync tran
 npm run l10n:extract
 ```
 
-## 🐸 Styleguide
+### 🐸 Styleguidist
 
 When developing new components or extending components, make sure to also have some bits of related documentation like examples, where applicable.
 To test components and the documentation in that context, you can run `npm run styleguide` to run a local server that serves the style guide
 with all the components.
 
-### Using vue-devtools in Firefox
+#### Using vue-devtools in Firefox
 
 If you want to use [vue-devtools](https://github.com/vuejs/vue-devtools) in Firefox, you need to:
 
