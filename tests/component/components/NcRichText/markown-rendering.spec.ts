@@ -286,7 +286,7 @@ test.describe('strikethrough text', () => {
 			},
 		})
 
-		expect(await component.locator('del').count()).toBe(2)
+		await expect(component.locator('del')).toHaveCount(2)
 		expect(await component.locator('del').allInnerTexts()).toEqual(outputs)
 	})
 
@@ -298,7 +298,7 @@ test.describe('strikethrough text', () => {
 			},
 		})
 
-		expect(await component.locator('del').count()).toBe(2)
+		await expect(component.locator('del')).toHaveCount(2)
 		expect(await component.locator('del').allInnerTexts()).toEqual(['strikethrough', 'strikethrough'])
 	})
 })
