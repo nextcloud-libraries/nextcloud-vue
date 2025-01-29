@@ -69,6 +69,7 @@ export default {
 			:aria-label="ariaLabel"
 			:aria-describedby="descriptionId"
 			size="large"
+			variant="tertiary-no-background"
 			@click.prevent="$emit('click', $event)">
 			<template #icon>
 				<!-- @slot Icon trigger slot. Make sure the svg path
