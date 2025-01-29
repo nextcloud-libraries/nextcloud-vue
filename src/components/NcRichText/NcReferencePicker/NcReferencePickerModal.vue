@@ -172,17 +172,17 @@ export default {
 		top: 4px;
 	}
 	.back-button {
-		left: 4px;
+		inset-inline-start: 4px;
 	}
 	.close-button {
-		right: 4px;
+		inset-inline-end: 4px;
 	}
 
 	> h2 {
 		display: flex;
 		margin: 12px 0 20px 0;
 		.icon {
-			margin-right: 8px;
+			margin-inline-end: 8px;
 		}
 	}
 }
