@@ -26,6 +26,8 @@
 /* Markdown styles */
 
 .rich-text--wrapper-markdown {
+	tab-size: 4;
+
 	div > *:first-child,
 	blockquote > *:first-child {
 		margin-top: 0 !important;

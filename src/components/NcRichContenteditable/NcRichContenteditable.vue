@@ -1030,6 +1030,7 @@ export default {
 		background-color: var(--color-main-background);
 		font-family: var(--font-face);
 		font-size: inherit;
+		tab-size: 4;
 		min-height: var(--default-clickable-area);
 		max-height: calc(var(--default-clickable-area) * 5.5);
 
