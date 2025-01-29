@@ -6,22 +6,22 @@
 import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
-import { ButtonNativeType } from '../../../../src/components/NcButton'
+import { ButtonType } from '../../../../src/components/NcButton/index.ts'
 import NcDialogButton from '../../../../src/components/NcDialogButton/NcDialogButton.vue'
 
 describe('NcDialogButton', () => {
 	it.each([
-		[ButtonNativeType.Reset],
-		[ButtonNativeType.Button],
-		[ButtonNativeType.Submit],
-	])('forwards the native type', async (nativeType: ButtonNativeType) => {
+		[ButtonType.Reset],
+		[ButtonType.Button],
+		[ButtonType.Submit],
+	])('forwards the native type', async (type: ButtonType) => {
 		const wrapper = mount(NcDialogButton, {
 			props: {
 				label: 'button',
-				nativeType,
+				type,
 			},
 		})
-		expect(wrapper.find('button').attributes('type')).toBe(nativeType)
+		expect(wrapper.find('button').attributes('type')).toBe(type)
 	})
 
 	it('handles click', async () => {
@@ -75,7 +75,7 @@ describe('NcDialogButton', () => {
 		const wrapper = mount(NcDialogButton, {
 			props: {
 				label: 'button',
-				nativeType: ButtonNativeType.Reset,
+				type: ButtonType.Reset,
 			},
 		})
 		await wrapper.find('button').trigger('click')
@@ -86,7 +86,7 @@ describe('NcDialogButton', () => {
 		const wrapper = mount(NcDialogButton, {
 			props: {
 				label: 'button',
-				nativeType: ButtonNativeType.Reset,
+				type: ButtonType.Reset,
 				callback: () => true,
 			},
 		})
