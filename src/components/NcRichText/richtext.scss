@@ -3,21 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-/**
- * Styles are extracted to extract scss to dist folder, too.
- */
-
 @use './highlight.scss';
 
-li.task-list-item > ul,
-li.task-list-item > ol,
-li.task-list-item > li,
-li.task-list-item > blockquote,
-li.task-list-item > pre {
-	margin-inline-start: 15px;
-	margin-block-end: 0;
- }
-
+/* Plain text styles */
 
 .rich-text--wrapper {
 	word-break: break-word;
@@ -35,6 +23,8 @@ li.task-list-item > pre {
 	}
 }
 
+/* Markdown styles */
+
 .rich-text--wrapper-markdown {
 	div > *:first-child,
 	blockquote > *:first-child {
@@ -43,6 +33,12 @@ li.task-list-item > pre {
 	div > *:last-child,
 	blockquote > *:last-child {
 		margin-bottom: 0 !important;
+	}
+
+	blockquote {
+		padding-left: 13px;
+		border-left: 2px solid var(--color-border-dark);
+		color: var(--color-text-lighter);
 	}
 
 	h1, h2, h3, h4, h5, h6, p, ul, ol, blockquote, pre {
@@ -66,9 +62,20 @@ li.task-list-item > pre {
 		list-style-type: disc;
 	}
 
+	/* Flavored Markdown styles */
+
 	ul.contains-task-list {
 		list-style-type: none;
 		padding: 0;
+	}
+
+	li.task-list-item > ul,
+	li.task-list-item > ol,
+	li.task-list-item > li,
+	li.task-list-item > blockquote,
+	li.task-list-item > pre {
+		margin-inline-start: 15px;
+		margin-block-end: 0;
 	}
 
 	table {
@@ -96,17 +103,9 @@ li.task-list-item > pre {
 			}
 		}
 	}
-
-	blockquote {
-		padding-left: 13px;
-		border-left: 2px solid var(--color-border-dark);
-		color: var(--color-text-lighter);
-	}
 }
 
-/**
- * Highlight code syntax in code blocks
- */
+/* Highlight code syntax in code blocks */
 
 /* stylelint-disable-next-line no-duplicate-selectors */
 .rich-text--wrapper-markdown {
