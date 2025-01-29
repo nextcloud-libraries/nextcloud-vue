@@ -118,7 +118,7 @@ This component allows the user to pick an emoji.
 			<slot v-bind="slotProps" />
 		</template>
 		<Picker ref="picker"
-			:auto-focus="false /* We manage the input focus ourselves */"
+			class="nc-emoji-picker"
 			color="var(--color-primary-element)"
 			:data="emojiIndex"
 			:emoji="previewFallbackEmoji"
@@ -439,24 +439,16 @@ export default {
 <style lang="scss">
 @import 'emoji-mart-vue-fast/css/emoji-mart.css';
 
-.emoji-mart {
+.nc-emoji-picker.emoji-mart {
 	background-color: var(--color-main-background) !important;
 	border: 0;
 	color: var(--color-main-text) !important;
 
-	// default style reset
+	// Reset emoji-mart styles
 	button {
-		margin: 0;
-		padding: 0;
 		border: none;
 		background: transparent;
 		font-size: inherit;
-		height: 36px;
-		width: auto;
-
-		* {
-			cursor: pointer !important;
-		}
 	}
 
 	.emoji-mart-bar,
@@ -472,69 +464,95 @@ export default {
 		color: inherit !important;
 	}
 
-	.emoji-mart-search input:focus-visible {
-		box-shadow: inset 0 0 0 2px var(--color-primary-element);
-		outline: none;
-	}
-
-	.emoji-mart-bar {
-		&:first-child {
-			border-top-left-radius: var(--border-radius) !important;
-			border-top-right-radius: var(--border-radius) !important;
-		}
-	}
-
 	.emoji-mart-anchors {
-		button {
-			border-radius: 0;
-			padding: 12px 4px;
-			height: auto;
-			&:focus-visible {
-				/* box-shadow: inset 0 0 0 2px var(--color-primary-element); */
-				outline: 2px solid var(--color-primary-element);
-			}
+		padding-block: 0;
+		padding-inline: calc(2 * var(--default-grid-baseline));
+	}
+
+	.emoji-mart-anchor {
+		border-radius: 0;
+		margin: 0 !important;
+		padding: 0 !important;
+		height: var(--clickable-area-small);
+		min-width: var(--clickable-area-small);
+
+		&:hover {
+			background-color: var(--color-background-hover);
 		}
+
+		&:focus-visible {
+			outline: 2px solid var(--color-primary-element) !important;
+			outline-offset: -2px;
+		}
+
+		// Icon
+		div {
+			display: grid;
+			place-content: center;
+		}
+	}
+
+	.emoji-mart-scroll {
+		padding-inline: calc(2 * var(--default-grid-baseline));
+		padding-block: 0 calc(2 * var(--default-grid-baseline));
 	}
 
 	.emoji-mart-category {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: start;
+		display: grid;
+		grid-template-columns: repeat(8, 1fr);
+		justify-items: stretch;
 
-		.emoji-mart-category-label,
-		.emoji-mart-emoji {
-			user-select: none;
-			flex-grow: 0;
-			flex-shrink: 0;
-		}
-
-		.emoji-mart-category-label {
-			flex-basis: 100%;
-			margin: 0;
-		}
-
-		.emoji-mart-emoji {
-			// 8 emoji per row
-			flex-basis: calc(100% / 8);
-			text-align: center;
-
-			&:hover::before,
-			&.emoji-mart-emoji-selected::before{
-				background-color: var(--color-background-hover) !important;
-				outline: 2px solid var(--color-primary-element);
-				border-radius: var(--border-radius-element, var(--border-radius-pill));
-			}
-		}
-		button {
-			&:focus-visible {
-				background-color: var(--color-background-hover);
-				border: 2px solid var(--color-primary-element) !important;
-				border-radius: var(--border-radius-element, var(--border-radius-pill));
-			}
+		&.emoji-mart-no-results {
+			grid-template-columns: 1fr;
+			font-size: inherit;
+			color: var(--color-text-maxcontrast) !important;
 		}
 	}
 
+	/* Label element in the section grid */
+	div.emoji-mart-category-label {
+		grid-column: span 8;
+		justify-self: stretch;
+	}
+
+	/* An actual heading inside the element */
+	h3.emoji-mart-category-label  {
+		display: flex;
+		align-items: center;
+		// Inline with buttons
+		height: var(--default-clickable-area);
+		margin: 0;
+		// Inline with input
+		padding-inline: calc(2 * var(--default-grid-baseline));
+		padding-block: 0;
+		user-select: none;
+	}
+
+	.emoji-mart-emoji {
+		aspect-ratio: 1 / 1;
+		text-align: center;
+		margin: 0 !important;
+		padding: 0 !important;
+
+		&:hover,
+		&:focus-visible,
+		&.emoji-mart-emoji-selected {
+			background-color: var(--color-background-hover) !important;
+			border: none;
+			border-radius: var(--border-radius-element, var(--border-radius-pill));
+			box-shadow: none !important;
+			outline: 2px solid var(--color-primary-element) !important;
+			outline-offset: -2px;
+		}
+
+		&::before {
+			display: none;
+		}
+
+		span {
+			cursor: pointer;
+		}
+	}
 }
 </style>
 
@@ -543,9 +561,10 @@ export default {
 	&__wrapper {
 		display: flex;
 		flex-direction: row;
-		gap: 4px; // for focus-visible outlines
+		gap: var(--default-grid-baseline);
 		align-items: end;
-		padding: 4px 8px;
+		padding-block: var(--default-grid-baseline);
+		padding-inline: calc(2 * var(--default-grid-baseline));
 	}
 }
 
