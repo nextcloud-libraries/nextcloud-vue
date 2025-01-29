@@ -64,11 +64,11 @@ export default {
 <template>
 	<!-- We need a wrapper for server styles to apply -->
 	<div :id="id" class="header-menu">
-		<NcButton type="tertiary-no-background"
-			class="header-menu__trigger"
+		<NcButton class="header-menu__trigger"
 			:aria-label="ariaLabel"
 			:aria-describedby="descriptionId"
 			size="large"
+			variant="tertiary-no-background"
 			@click.prevent="$emit('click', $event)">
 			<template #icon>
 				<!-- @slot Icon trigger slot. Make sure the svg path

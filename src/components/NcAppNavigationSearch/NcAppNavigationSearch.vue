@@ -31,7 +31,7 @@
 									Filter by year
 								</NcActionButton>
 							</NcActions>
-							<NcButton aria-label="Search globally" type="tertiary">
+							<NcButton aria-label="Search globally" variant="tertiary">
 								<template #icon>
 									<IconSearchGlobal :size="20" />
 								</template>
