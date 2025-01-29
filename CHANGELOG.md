@@ -96,6 +96,20 @@ are now removed. Following components have been adjusted:
 
 Additionally the default value `closeOnClickOutside` for `NcModal` was aligned with `NcDialog` and now defaults to `false`.
 
+#### Removal of `type` and `nativeType` props
+
+The `type`  property for button components (`NcButton`, `NcActions`, `NcDialogButton`) was deprecated for the usage with color variants like `primary`.
+The fallback behavior was removed, `type` now only allows the native HTML button type like `button`, `reset` or `submit`.
+Instead use the `variant` property for the color variant.
+
+The `nativeType` property was removed in favor of `type`.
+```vue
+<!-- Old: Nextcloud Vue v8 -->
+<NcButton type="primary" native-type="submit">Submit</NcButton>
+<!-- New: Nextcloud Vue v9 -->
+<NcButton type="submit" variant="primary">Submit</NcButton>
+```
+
 #### Mixins are removed
 Mixins only work in Options API and are in general not recommended by Vue anymore:
 

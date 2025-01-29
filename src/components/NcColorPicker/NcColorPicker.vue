@@ -174,22 +174,22 @@ export default {
 				</Transition>
 				<div v-if="!paletteOnly" class="color-picker__navigation">
 					<NcButton v-if="advanced"
-						type="tertiary"
 						:aria-label="ariaBack"
+						variant="tertiary"
 						@click="handleBack">
 						<template #icon>
 							<ArrowLeft :size="20" />
 						</template>
 					</NcButton>
 					<NcButton v-else
-						type="tertiary"
 						:aria-label="ariaMore"
+						variant="tertiary"
 						@click="handleMoreSettings">
 						<template #icon>
 							<DotsHorizontal :size="20" />
 						</template>
 					</NcButton>
-					<NcButton type="primary"
+					<NcButton variant="primary"
 						@click="handleConfirm(slotProps.hide)">
 						{{ t('Choose') }}
 					</NcButton>

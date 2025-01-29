@@ -24,9 +24,8 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
 		<NcButton v-if="(name || icon || $slots.icon) && !$slots.default"
-			:title="title"
 			:aria-label="icon ? name : undefined"
-			type="tertiary"
+			variant="tertiary"
 			v-bind="linkAttributes">
 			<template v-if="$slots.icon || icon" #icon>
 				<!-- @slot Slot for passing a material design icon. Precedes the icon and name prop. -->
@@ -40,13 +39,13 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 		</NcButton>
 		<NcActions v-if="$slots.default"
 			ref="actions"
-			type="tertiary"
 			:force-menu="forceMenu"
 			:open="open"
 			:menu-name="name"
 			:title="title"
 			:force-name="true"
 			:container="`.vue-crumb[${crumbId}]`"
+			variant="tertiary"
 			@update:open="onOpenChange">
 			<template #icon>
 				<!-- @slot Slot for the custom menu icon -->

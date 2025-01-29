@@ -349,9 +349,9 @@ Just set the `pinned` prop.
 						:boundaries-element="actionsBoundariesElement"
 						:placement="menuPlacement"
 						:open="menuOpen"
-						:type="(isActive && to) || active ? 'primary' : null"
 						:force-menu="forceMenu"
 						:default-icon="menuIcon"
+						:variant="(isActive && to) || active ? 'primary' : null"
 						@update:open="onMenuToggle">
 						<template #icon>
 							<!-- @slot Slot for the custom menu icon -->

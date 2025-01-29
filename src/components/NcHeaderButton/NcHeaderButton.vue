@@ -64,11 +64,11 @@ export default {
 <template>
 	<!-- We need a wrapper for server styles to apply -->
 	<div :id="id" class="header-menu">
-		<NcButton :type="ButtonType.TertiaryNoBackground"
-			class="header-menu__trigger"
-			:aria-label="ariaLabel"
+		<NcButton :aria-label="ariaLabel"
 			:aria-describedby="descriptionId"
+			class="header-menu__trigger"
 			size="large"
+			variant="tertiary-no-background"
 			@click.prevent="$emit('click', $event)">
 			<template #icon>
 				<!-- @slot Icon trigger slot. Make sure the svg path
@@ -87,7 +87,7 @@ export default {
 
 <script setup lang="ts">
 import { createElementId } from '../../utils/createElementId.ts'
-import NcButton, { ButtonType } from '../NcButton/index.js'
+import NcButton from '../NcButton/index.js'
 
 defineProps<{
 	/** Unique id for this menu */

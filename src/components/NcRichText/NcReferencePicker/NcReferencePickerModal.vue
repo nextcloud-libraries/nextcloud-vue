@@ -19,10 +19,10 @@
 					<ArrowLeftIcon />
 				</template>
 			</NcButton>
-			<NcButton :aria-label="closeButtonLabel"
+			<NcButton class="close-button"
+				:aria-label="closeButtonLabel"
 				:title="closeButtonTitle"
-				type="tertiary"
-				class="close-button"
+				variant="tertiary"
 				@click="onCancel">
 				<template #icon>
 					<CloseIcon />
