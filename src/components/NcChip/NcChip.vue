@@ -10,8 +10,8 @@
 	<div style="display: flex; gap: 8px; flex-wrap: wrap;">
 		<NcChip text="Notes.txt" />
 		<NcChip text="Files" :icon-path="mdiFile" />
-		<NcChip text="Color" type="tertiary" :icon-path="mdiPalette" />
-		<NcChip text="Current time" type="primary" :icon-path="mdiClock" no-close />
+		<NcChip text="Color" :icon-path="mdiPalette" variant="tertiary" />
+		<NcChip text="Current time" :icon-path="mdiClock" no-close variant="primary" />
 	</div>
 </template>
 <script>
@@ -72,7 +72,7 @@ export default {
 <template>
 	<div class="nc-chip"
 		:class="{
-			[`nc-chip--${type}`]: true,
+			[`nc-chip--${variant}`]: true,
 			'nc-chip--no-actions': noClose && !hasActions(),
 			'nc-chip--no-icon': !hasIcon(),
 		}">
@@ -94,7 +94,7 @@ export default {
 		<NcActions v-if="canClose || hasActions()"
 			class="nc-chip__actions"
 			:force-menu="!canClose"
-			type="tertiary-no-background">
+			variant="tertiary-no-background">
 			<NcActionButton v-if="canClose"
 				close-after-click
 				@click="onClose">
@@ -111,65 +111,55 @@ export default {
 
 <script setup lang="ts">
 import { mdiClose } from '@mdi/js'
-import { computed, useSlots, type PropType } from 'vue'
+import { computed, useSlots } from 'vue'
 import { t } from '../../l10n.js'
 
 import NcActions from '../NcActions/NcActions.vue'
 import NcActionButton from '../NcActionButton/NcActionButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 
-const props = defineProps({
+const props = withDefaults(defineProps<{
 	/**
 	 * aria label to set on the close button
 	 * @default 'Close'
 	 */
-	ariaLabelClose: {
-		type: String,
-		default: t('Close'),
-	},
+	ariaLabelClose?: string
 
 	/**
-	 * Main text of the chip
+	 * Main text of the chip.
 	 */
-	text: {
-		type: String,
-		default: '',
-	},
-
-	/**
-	 * Chip style
-	 * This sets the background style of the chip, similar to NcButton's `type`
-	 */
-	type: {
-		type: String as PropType<'primary' | 'secondary' | 'tertiary'>,
-		default: 'secondary',
-		validator: (value: string) => ['primary', 'secondary', 'tertiary'].includes(value),
-	},
+	text?: string
 
 	/**
 	 * SVG path of the icon to use, this takes precedence over `iconSVG`.
 	 * For example icon paths from `@mdi/js` can be used.
 	 */
-	iconPath: {
-		type: String,
-		default: null,
-	},
+	iconPath?: string
 
 	/**
 	 * Inline SVG to use as the icon
 	 */
-	iconSvg: {
-		type: String,
-		default: null,
-	},
+	iconSvg?: string
 
 	/**
 	 * Set to true to prevent the close button to be shown
 	 */
-	noClose: {
-		type: Boolean,
-		default: false,
-	},
+	noClose?: boolean
+
+	/**
+	 * Set the chips design variant-
+	 *
+	 * This sets the background style of the chip, similar to NcButton's `variant`.
+	 * @default 'secondary'
+	 * @since 8.23.0
+	 */
+	variant: 'primary' | 'secondary' | 'tertiary'
+}>(), {
+	ariaLabelClose: t('Close'),
+	iconPath: undefined,
+	iconSvg: undefined,
+	text: '',
+	variant: 'secondary',
 })
 
 const emit = defineEmits(['close'])
