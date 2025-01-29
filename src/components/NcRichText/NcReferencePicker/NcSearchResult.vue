@@ -73,7 +73,7 @@ export default {
 	&--content {
 		display: flex;
 		flex-direction: column;
-		padding-left: 10px;
+		padding-inline-start: 10px;
 		overflow: hidden;
 
 		&--name,

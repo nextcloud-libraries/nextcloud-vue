@@ -32,18 +32,18 @@
 	}
 	div > *:last-child,
 	blockquote > *:last-child {
-		margin-bottom: 0 !important;
+		margin-block-end: 0 !important;
 	}
 
 	blockquote {
-		padding-left: 13px;
-		border-left: 2px solid var(--color-border-dark);
+		padding-inline-start: 13px;
+		border-inline-start: 2px solid var(--color-border-dark);
 		color: var(--color-text-lighter);
 	}
 
 	h1, h2, h3, h4, h5, h6, p, ul, ol, blockquote, pre {
 		margin-top: 0;
-		margin-bottom: 1em;
+		margin-block-end: 1em;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -55,7 +55,7 @@
 	}
 
 	ul, ol {
-		padding-left: 15px;
+		padding-inline-start: 15px;
 	}
 
 	ul {
@@ -87,10 +87,10 @@
 			padding: var(--default-grid-baseline);
 			border: 1px solid var(--color-border-maxcontrast);
 			&:first-child {
-				border-left: 0;
+				border-inline-start: 0;
 			}
 			&:last-child {
-				border-right: 0;
+				border-inline-end: 0;
 			}
 		}
 
@@ -99,7 +99,7 @@
 				border-top: 0;
 			}
 			&:last-child td {
-				border-bottom: 0;
+				border-block-end: 0;
 			}
 		}
 	}
