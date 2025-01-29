@@ -444,12 +444,12 @@ export default {
 </script>
 ```
 
-### Type variants
+### Design variants
 
 ```vue
 <template>
 	<div>
-		<NcActions :type="current">
+		<NcActions :variant="current">
 			<template #icon>
 				<SelectColor :size="20" />
 			</template>
@@ -461,7 +461,7 @@ export default {
 				Remove
 			</NcActionButton>
 
-			<NcActionButton v-for="row in types" close-after-click @click="define(row)" :key="`type-icon--${row}`">
+			<NcActionButton v-for="row in variants" close-after-click @click="define(row)" :key="`type-icon--${row}`">
 				<template #icon>
 					<CheckboxMarkedCircleOutline v-if="row === current" :size="20" />
 					<SelectColor v-else :size="20" />
@@ -470,7 +470,7 @@ export default {
 			</NcActionButton>
 		</NcActions>
 
-		<NcActions :type="current" menu-name="Choose a type">
+		<NcActions :variant="current" menu-name="Choose a variant">
 			<NcActionButton v-if="current" close-after-click @click="define()">
 				<template #icon>
 					<Delete :size="20" />
@@ -478,7 +478,7 @@ export default {
 				Remove
 			</NcActionButton>
 
-			<NcActionButton v-for="row in types" close-after-click @click="define(row)" :key="`type-text--${row}`">
+			<NcActionButton v-for="row in variants" close-after-click @click="define(row)" :key="`type-text--${row}`">
 				<template #icon>
 					<CheckboxMarkedCircleOutline v-if="row === current" :size="20" />
 					<SelectColor v-else :size="20" />
@@ -487,7 +487,7 @@ export default {
 			</NcActionButton>
 		</NcActions>
 
-		<NcActions :type="current"  menu-name="Choose a type">
+		<NcActions :variant="current"  menu-name="Choose a variant">
 			<template #icon>
 				<SelectColor :size="20" />
 			</template>
@@ -499,7 +499,7 @@ export default {
 				Remove
 			</NcActionButton>
 
-			<NcActionButton v-for="row in types" close-after-click @click="define(row)" :key="`type-icon-text--${row}`">
+			<NcActionButton v-for="row in variants" close-after-click @click="define(row)" :key="`type-icon-text--${row}`">
 				<template #icon>
 					<CheckboxMarkedCircleOutline v-if="row === current" :size="20" />
 					<SelectColor v-else :size="20" />
@@ -526,7 +526,7 @@ export default {
 	data() {
 		return {
 			current: 'primary',
-			types: [
+			variants: [
 				'primary',
 				'secondary',
 				'tertiary',
@@ -554,7 +554,7 @@ export default {
 		<p>Has buttons, button groups, links and router links, separators, texts. May have checkboxes and radio buttons. Separator can be used to make groups of radio buttons as well.</p>
 		<p><kbd>Arrows</kbd> are used to navigate between items, <kbd>Tab</kbd> is used to navigate to the next UI element on the page.</p>
 		<p>
-			<NcActions aria-label="Email menu" type="tertiary">
+			<NcActions aria-label="Email menu" variant="tertiary">
 				<NcActionButtonGroup>
 					<NcActionButton>
 						<template #icon>
@@ -606,11 +606,11 @@ export default {
 			</NcActions>
 		</p>
 		<p>
-			<NcActions aria-label="Text settings" type="tertiary">
+			<NcActions aria-label="Text settings" variant="tertiary">
 				<template #icon>
 					<FormatTitle :size="20" />
 				</template>
-				<NcActionButtonGroup name="Allignment">
+				<NcActionButtonGroup name="Alignment">
 					<NcActionButton aria-label="Left">
 						<template #icon>
 							<FormatAlignLeft :size="20" />
@@ -658,7 +658,7 @@ export default {
 		<p>Has links or router links. May use text elements, captions and separators.</p>
 		<p>Uses classic <kbd>Tab</kbd> navigation.</p>
 		<p>
-			<NcActions aria-label="Applications navigation" :inline="2" type="tertiary">
+			<NcActions aria-label="Applications navigation" :inline="2" variant="tertiary">
 				<NcActionLink href="/apps/dashboard" icon="icon-category-dashboard-white">
 					Dashboard
 				</NcActionLink>
@@ -696,7 +696,7 @@ export default {
 			</NcActions>
 		</p>
 
-		<h2>Toolip</h2>
+		<h2>Tooltip</h2>
 		<p>Has only text and no interactive elements.</p>
 		<p>
 			<NcActions aria-label="Contact" :inline="1">
@@ -726,7 +726,7 @@ import CheckIcon from 'vue-material-design-icons/Check.vue'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
 import DownloadIcon from 'vue-material-design-icons/Download.vue'
 
-// Formating icons
+// Formatting icons
 import FormatTitle from 'vue-material-design-icons/FormatTitle.vue'
 import FormatAlignLeft from 'vue-material-design-icons/FormatAlignLeft.vue'
 import FormatAlignCenter from 'vue-material-design-icons/FormatAlignCenter.vue'
@@ -751,7 +751,7 @@ export default {
 		OpenInNewIcon,
 		DownloadIcon,
 
-		// Formating icons
+		// Formatting icons
 		FormatTitle,
 		FormatAlignLeft,
 		FormatAlignCenter,
@@ -764,7 +764,7 @@ export default {
 	data() {
 		return {
 			selected: false,
-			// Formating
+			// Formatting
 			checked: {
 				bold: true,
 				italic: false,
@@ -965,7 +965,7 @@ const focusableSelector = '.focusable'
 /**
  * The Actions component can be used to display one ore more actions.
  * If only a single action is provided, it will be rendered as an inline icon.
- * For more, a menu indicator will be shown and a popovermenu containing the
+ * For more, a menu indicator will be shown and a popover menu containing the
  * actions will be opened on click.
  *
  * @since 0.10.0
@@ -1074,14 +1074,16 @@ export default {
 		},
 
 		/**
-		 * Specifies the button type used for trigger and single actions buttons
+		 * Specifies the button variant used for trigger and single actions buttons.
+		 *
 		 * Accepted values: primary, secondary, tertiary, tertiary-no-background, tertiary-on-primary, error, warning, success. If left empty,
 		 * the default button style will be applied.
+		 * @deprecated use `variant` instead - will be removed with v9
 		 */
 		type: {
 			type: String,
 			validator(value) {
-				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].indexOf(value) !== -1
+				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].includes(value)
 			},
 			default: null,
 		},
@@ -1158,6 +1160,22 @@ export default {
 			type: Number,
 			default: 0,
 		},
+
+		/**
+		 * Specifies the button variant used for trigger and single actions buttons.
+		 *
+		 * Accepted values: primary, secondary, tertiary, tertiary-no-background, tertiary-on-primary, error, warning, success.
+		 * If left empty, the default button style will be applied.
+		 *
+		 * @since 8.23.0
+		 */
+		variant: {
+			type: String,
+			validator(value) {
+				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].includes(value)
+			},
+			default: null,
+		},
 	},
 
 	emits: [
@@ -1216,9 +1234,9 @@ export default {
 	},
 
 	computed: {
-		triggerBtnType() {
+		triggerButtonVariant() {
 			// If requested, we use a primary button
-			return this.type || (this.primary
+			return (this.type ?? this.variant) || (this.primary
 				? 'primary'
 				// If it has a name, we use a secondary button
 				: this.menuName ? 'secondary' : 'tertiary')
@@ -1660,7 +1678,7 @@ export default {
 			this.$emit('blur', event)
 
 			// When there is no focusable elements to handle Tab press from actions menu
-			// It requries manual closing
+			// It requires manual closing
 			if (this.actionsMenuSemanticType === 'tooltip') {
 				// Tooltip is supposed to have no focusable element.
 				// However, if there is a custom focusable element, it will be auto-focused and cause the menu to be closed on open.
@@ -1808,12 +1826,12 @@ export default {
 					},
 					ref: action?.data?.ref,
 					props: {
-						// If it has a menuName, we use a secondary button
-						type: this.type || (buttonText ? 'secondary' : 'tertiary'),
+						...propsToForward,
 						disabled: this.disabled || action?.componentOptions?.propsData?.disabled,
 						pressed: action?.componentOptions?.propsData?.modelValue,
-						nativeType,
-						...propsToForward,
+						type: nativeType,
+						// If it has a menuName, we use a secondary button
+						variant: (this.type ?? this.variant) || (buttonText ? 'secondary' : 'tertiary'),
 					},
 					on: {
 						focus: this.onFocus,
@@ -1892,7 +1910,7 @@ export default {
 					h('NcButton', {
 						class: 'action-item__menutoggle',
 						props: {
-							type: this.triggerBtnType,
+							variant: this.triggerButtonVariant,
 							disabled: this.disabled,
 						},
 						slot: 'trigger',
@@ -1968,7 +1986,7 @@ export default {
 				{
 					class: [
 						'action-items',
-						`action-item--${this.triggerBtnType}`,
+						`action-item--${this.triggerButtonVariant}`,
 					],
 				},
 				[
@@ -1999,7 +2017,7 @@ export default {
 			{
 				class: [
 					'action-item action-item--default-popover',
-					`action-item--${this.triggerBtnType}`,
+					`action-item--${this.triggerButtonVariant}`,
 					{
 						'action-item--open': this.opened,
 					},
