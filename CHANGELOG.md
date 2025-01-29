@@ -9,7 +9,7 @@
 
 ### 📝 Notes
 #### `NcButton` color variant and native type
-`NcButton` now provides a `variant` prop to set the color variant to use (e.g. `'primary'`) and allows to set the native button type using the `type` prop.
+`NcButton` (and `NcDialogButton`) now provides a `variant` prop to set the color variant to use (e.g. `'primary'`) and allows to set the native button type using the `type` prop.
 The legacy behavior, `type` for the color variant and `nativeType` for the button type, still works but will be removed in the next major version.
 
 To make a later migration to version 9 easier you can already migrate your `NcButton` usage like this:
