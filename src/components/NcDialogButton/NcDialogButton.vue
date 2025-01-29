@@ -9,9 +9,9 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 
 <template>
 	<NcButton :aria-label="label"
-		:disabled="disabled"
-		:native-type="nativeType"
-		:type="type"
+		:disabled
+		:type
+		:variant
 		@click="handleClick">
 		{{ label }}
 		<template #icon>
@@ -30,7 +30,7 @@ import type { PropType } from 'vue'
 import { ref } from 'vue'
 import { t } from '../../l10n.js'
 
-import NcButton, { ButtonNativeType, ButtonType } from '../NcButton/index'
+import NcButton, { ButtonType, ButtonVariant } from '../NcButton/index'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
@@ -66,31 +66,14 @@ const props = defineProps({
 	},
 
 	/**
-	 * The button type, see NcButton
-	 * @type {'primary'|'secondary'|'error'|'warning'|'success'}
-	 */
-	type: {
-		type: String as PropType<ButtonType>,
-		default: ButtonType.Secondary,
-		required: false,
-		validator(value: string) {
-			return typeof value === 'string'
-				&& Object.values(ButtonType).includes(value as ButtonType)
-		},
-	},
-
-	/**
-	 * The native type of the button, see `NcButton`
+	 * The button type, see `NcButton`.
+	 *
 	 * @type {'button'|'submit'|'reset'}
 	 */
-	nativeType: {
-		type: String as PropType<ButtonNativeType>,
-		required: false,
+	type: {
+		type: String as PropType<ButtonType | `${ButtonType}`>,
 		default: 'button',
-		validator(value) {
-			return typeof value === 'string'
-				&& Object.values(ButtonNativeType).includes(value as ButtonNativeType)
-		},
+		validator: (type: string) => ['button', 'submit', 'reset'].includes(type),
 	},
 
 	/**
@@ -99,6 +82,19 @@ const props = defineProps({
 	disabled: {
 		type: Boolean,
 		default: false,
+	},
+
+	/**
+	 * The button variant, see `NcButton`.
+	 *
+	 * @type {'primary'|'secondary'|'tertiary'|'error'|'warning'|'success'}
+	 * @since 8.23.0
+	 */
+	variant: {
+		type: String as PropType<ButtonVariant | `${ButtonVariant}`>,
+		required: false,
+		default: 'secondary',
+		validator: (type) => typeof type === 'string' && ['primary', 'secondary', 'tertiary', 'error', 'warning', 'success'].includes(type),
 	},
 })
 
@@ -121,7 +117,7 @@ async function handleClick(e: MouseEvent) {
 	isLoading.value = true
 	try {
 		// for reset buttons the default is "false"
-		const fallback = props.nativeType === 'reset' ? false : undefined
+		const fallback = props.type === 'reset' ? false : undefined
 		const result = await props.callback?.() ?? fallback
 		if (result !== false) {
 			/**
