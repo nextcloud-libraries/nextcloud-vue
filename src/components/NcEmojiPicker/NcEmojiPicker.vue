@@ -107,10 +107,12 @@ This component allows the user to pick an emoji.
 </docs>
 
 <template>
-	<NcPopover :shown.sync="open"
+	<NcPopover ref="popover"
+		:shown.sync="open"
 		:container="container"
 		popup-role="dialog"
 		v-bind="$attrs"
+		:focus-trap="false /* Handled manually to remove emoji buttons from TAB sequence */"
 		v-on="$listeners"
 		@after-show="afterShow"
 		@after-hide="afterHide">
@@ -135,8 +137,9 @@ This component allows the user to pick an emoji.
 			aria-modal="true"
 			:aria-label="t('Emoji picker')"
 			v-bind="$attrs"
+			@keydown.native.tab.prevent="handleTabNavigationSkippingEmojis"
 			@select="select">
-			<template #searchTemplate="slotProps">
+			<template #searchTemplate="{ onSearch }">
 				<div class="search__wrapper">
 					<NcTextField ref="search"
 						class="search"
@@ -147,8 +150,13 @@ This component allows the user to pick an emoji.
 						trailing-button-icon="close"
 						:trailing-button-label="t('Clear search')"
 						:show-trailing-button="search !== ''"
-						@trailing-button-click="clearSearch(); slotProps.onSearch(search);"
-						@update:value="slotProps.onSearch(search)" />
+						@keydown.left="callPickerArrowHandlerWithScrollFix('onArrowLeft', $event)"
+						@keydown.right="callPickerArrowHandlerWithScrollFix('onArrowRight', $event)"
+						@keydown.down="callPickerArrowHandlerWithScrollFix('onArrowDown', $event)"
+						@keydown.up="callPickerArrowHandlerWithScrollFix('onArrowUp', $event)"
+						@keydown.enter="$refs.picker.onEnter"
+						@trailing-button-click="clearSearch(); onSearch('');"
+						@update:value="onSearch(search)" />
 					<NcColorPicker palette-only
 						:container="container"
 						:palette="skinTonePalette"
@@ -351,10 +359,7 @@ export default {
 
 		clearSearch() {
 			this.search = ''
-			const input = this.$refs.search?.$refs.inputField?.$refs.input
-			if (input) {
-				input.focus()
-			}
+			this.$refs.search.focus()
 		},
 
 		/**
@@ -391,46 +396,56 @@ export default {
 		},
 
 		afterShow() {
-			// add focus trap in modal
-			const picker = this.$refs.picker
-			picker.$el.addEventListener('keydown', this.checkKeyEvent)
-
-			// set focus on input search field
-			const input = this.$refs.search?.$refs.inputField?.$refs.input
-			if (input) {
-				input.focus()
-			}
+			this.$refs.search.focus()
 		},
 
 		afterHide() {
-			// remove keydown listner if popover is hidden
-			const picker = this.$refs.picker
-			picker.$el.removeEventListener('keydown', this.checkKeyEvent)
+			// Manually return focus to the trigger button, as we disabled focus-trap
+			this.$refs.popover.$el.querySelector('button, [role="button"]')?.focus()
 		},
 
-		checkKeyEvent(event) {
-			if (event.key !== 'Tab') {
-				return
+		/**
+		 * Manually handle Tab navigation skipping emoji buttons.
+		 * Navigation over emojis is handled by Arrow keys.
+		 * @param {KeyboardEvent} event - Keyboard event
+		 */
+		handleTabNavigationSkippingEmojis(event) {
+			const current = event.target
+			const focusable = Array.from(this.$refs.picker.$el.querySelectorAll('button:not(.emoji-mart-emoji), input'))
+			if (!event.shiftKey) {
+				const nextNode = focusable.find((node) => current.compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING) || focusable[0]
+				nextNode.focus()
+			} else {
+				const prevNode = focusable.findLast((node) => current.compareDocumentPosition(node) & Node.DOCUMENT_POSITION_PRECEDING) || focusable.at(-1)
+				prevNode.focus()
 			}
-			const picker = this.$refs.picker
-			const focusableList = picker.$el.querySelectorAll(
-				'button, input',
-			)
-			const last = focusableList.length - 1
-			// escape early if only 1 or no elements to focus
-			if (focusableList.length <= 1) {
-				event.preventDefault()
-				return
-			}
-			if (event.shiftKey === false && event.target === focusableList[last]) {
-				// Jump to first item when pressing tab on the latest item
-				event.preventDefault()
-				focusableList[0].focus()
-			} else if (event.shiftKey === true && event.target === focusableList[0]) {
-				// Jump to the last item if pressing shift+tab on the first item
-				event.preventDefault()
-				focusableList[last].focus()
-			}
+		},
+
+		/**
+		 * Handle arrow navigation via <Picker>'s handlers with scroll bug fix
+		 * @param {'onArrowLeft' | 'onArrowRight' | 'onArrowDown' | 'onArrowUp'} originalHandlerName - Picker's arrow keydown handler name
+		 * @param {KeyboardEvent} event - Keyboard event
+		 */
+		async callPickerArrowHandlerWithScrollFix(originalHandlerName, event) {
+			// Call the original handler
+			// See: https://github.com/serebrov/emoji-mart-vue/blob/a1ea72673a111cce78dc8caad8bc9ea3e02ad5bd/src/components/Picker.vue#L29
+			// TODO: expose these methods via slot props in upstream library
+			this.$refs.picker[originalHandlerName](event)
+
+			// Wait until emoji-mart-vue-fast scrolls
+			await this.$nextTick()
+
+			// Scroll position is incorrect after emoji-mart-vue-fast scrolls...
+			// It calculates scroll incorrectly.
+			// It doesn't take into account, that emojis are wrapped into categories sections
+			// See: https://github.com/serebrov/emoji-mart-vue/blob/a1ea72673a111cce78dc8caad8bc9ea3e02ad5bd/src/utils/picker.js#L244
+			// Now scroll to the correct position
+			// TODO: fix in upstream
+			const selectedEmoji = this.$refs.picker.$el.querySelector('.emoji-mart-emoji-selected')
+			selectedEmoji?.scrollIntoView({
+				block: 'center',
+				inline: 'center',
+			})
 		},
 	},
 }
@@ -557,15 +572,13 @@ export default {
 </style>
 
 <style scoped lang="scss">
-.search {
-	&__wrapper {
-		display: flex;
-		flex-direction: row;
-		gap: var(--default-grid-baseline);
-		align-items: end;
-		padding-block: var(--default-grid-baseline);
-		padding-inline: calc(2 * var(--default-grid-baseline));
-	}
+.search__wrapper {
+	display: flex;
+	flex-direction: row;
+	gap: var(--default-grid-baseline);
+	align-items: end;
+	padding-block: var(--default-grid-baseline);
+	padding-inline: calc(2 * var(--default-grid-baseline));
 }
 
 .row-selected {
