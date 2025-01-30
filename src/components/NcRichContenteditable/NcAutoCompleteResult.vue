@@ -134,7 +134,7 @@ export default {
 		--auto-complete-result-status-icon-position: calc(var(--auto-complete-result-avatar-size) / 2 * (1 - 1 / sqrt(2)) - var(--auto-complete-result-status-icon-size) / 2);
 		box-sizing: border-box;
 		position: absolute;
-		right: var(--auto-complete-result-status-icon-position);
+		inset-inline-end: var(--auto-complete-result-status-icon-position);
 		bottom: var(--auto-complete-result-status-icon-position);
 		height: var(--auto-complete-result-status-icon-size);
 		width: var(--auto-complete-result-status-icon-size);
