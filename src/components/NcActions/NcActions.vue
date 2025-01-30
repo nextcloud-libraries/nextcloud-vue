@@ -1526,31 +1526,6 @@ export default {
 			return this.$refs.menu.querySelectorAll(focusableSelector)
 		},
 		/**
-		 * Focus nearest focusable item on mouse move.
-		 * DO NOT change the focus if the target is already focused
-		 * this will prevent issues with input being unfocused
-		 * on mouse move
-		 * @param {PointerEvent} event - The mouse move event
-		 */
-		onMouseFocusAction(event) {
-			if (document.activeElement === event.target) {
-				return
-			}
-
-			const menuItem = event.target.closest('li')
-			if (menuItem && this.$refs.menu.contains(menuItem)) {
-				const focusableItem = menuItem.querySelector(focusableSelector)
-				if (focusableItem) {
-					const focusList = this.getFocusableMenuItemElements()
-					const focusIndex = [...focusList].indexOf(focusableItem)
-					if (focusIndex > -1) {
-						this.focusIndex = focusIndex
-						this.focusAction()
-					}
-				}
-			}
-		},
-		/**
 		 * Dispatches the keydown listener to different handlers
 		 *
 		 * @param {object} event The keydown event
@@ -1969,7 +1944,6 @@ export default {
 						},
 						on: {
 							keydown: this.onKeydown,
-							mousemove: this.onMouseFocusAction,
 						},
 						ref: 'menu',
 					}, [
