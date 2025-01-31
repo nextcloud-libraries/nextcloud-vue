@@ -121,8 +121,7 @@ $bubble-avatar-size: $bubble-height - 2 * $bubble-padding;
 		height: $bubble-height ;
 		-webkit-user-select: none;
 		user-select: none;
-		padding-right: $bubble-padding * 3;
-		padding-left: $bubble-padding;
+		padding-inline: $bubble-padding  $bubble-padding * 3;
 		border-radius: math.div($bubble-height, 2);
 		background-color: var(--color-background-dark);
 	}
@@ -145,7 +144,7 @@ $bubble-avatar-size: $bubble-height - 2 * $bubble-padding;
 
 	&__title {
 		overflow: hidden;
-		margin-left: $bubble-padding;
+		margin-inline-start: $bubble-padding;
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		// Put title in ::before so it is not selectable
@@ -158,7 +157,7 @@ $bubble-avatar-size: $bubble-height - 2 * $bubble-padding;
 	&__select {
 		position: absolute;
 		z-index: -1;
-		left: -100vw;
+		inset-inline-start: -100vw;
 		width: 1px;
 		height: 1px;
 		overflow: hidden;
