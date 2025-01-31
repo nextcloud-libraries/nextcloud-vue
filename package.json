@@ -87,7 +87,7 @@
     "@vueuse/core": "^12.4.0",
     "clone": "^2.1.2",
     "debounce": "^2.2.0",
-    "dompurify": "^3.2.3",
+    "dompurify": "^3.2.4",
     "emoji-mart-vue-fast": "^15.0.3",
     "escape-html": "^1.0.3",
     "floating-vue": "^5.2.2",
