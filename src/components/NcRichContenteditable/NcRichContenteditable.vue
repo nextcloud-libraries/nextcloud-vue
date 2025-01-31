@@ -185,7 +185,7 @@ export default {
 <style lang="scss" scoped>
 	h5 {
 		font-weight: bold;
-		margin: 40px 0 20px 0;
+		margin: 40px 0 20px;
 	}
 
 	.pre-line {
@@ -1064,6 +1064,7 @@ export default {
 		background-color: var(--color-main-background);
 		font-family: var(--font-face);
 		font-size: inherit;
+		tab-size: 4;
 		min-height: var(--default-clickable-area);
 		max-height: calc(var(--default-clickable-area) * 5.5);
 
@@ -1117,7 +1118,8 @@ export default {
 	overflow: auto;
 	// Hide container root element while initializing
 	position: absolute;
-	left: -10000px;
+	/* stylelint-disable csstools/use-logical */ /* upstream logic */
+	left: -100vw;
 	// Space it out a bit from the text
 	margin: var(--default-grid-baseline) 0;
 	padding: var(--default-grid-baseline);
@@ -1207,7 +1209,7 @@ export default {
 			width: 20px;
 			height: 20px;
 			object-fit: contain;
-			padding-right: var(--default-grid-baseline);
+			padding-inline-end: var(--default-grid-baseline);
 			filter: var(--background-invert-if-dark);
 		}
 	}
