@@ -75,7 +75,7 @@
 
 	&:not(.app-navigation-entry--editing) {
 		.app-navigation-entry-link, .app-navigation-entry-button {
-			padding-right: $icon-margin;
+			padding-inline-end: $icon-margin;
 		}
 	}
 
@@ -138,7 +138,7 @@
 	.app-navigation-entry {
 		display: inline-flex;
 		flex-wrap: wrap;
-		padding-left: $icon-size;
+		padding-inline-start: $icon-size;
 	}
 }
 
@@ -146,7 +146,7 @@
 .app-navigation-entry__deleted {
 	display: inline-flex;
 	flex: 1 1 0;
-	padding-left: calc(var(--default-clickable-area) - $icon-margin) !important;
+	padding-inline-start: calc(var(--default-clickable-area) - $icon-margin) !important;
 	.app-navigation-entry__deleted-description {
 		position: relative;
 		overflow: hidden;
@@ -169,8 +169,8 @@
 	}
 	/* counter */
 	.app-navigation-entry__counter-wrapper {
-		// Add slightly more space to the right of the counter
-		margin-right: calc(var(--default-grid-baseline) * 2);
+		// Add slightly more space to the end of the counter
+		margin-inline-end: calc(var(--default-grid-baseline) * 2);
 		display: flex;
 		align-items: center;
 		flex: 0 1 auto;

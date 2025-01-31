@@ -64,7 +64,7 @@ export default {
 	position: relative;
 	z-index: 105; // above a, under button
 	color: var(--color-main-text);
-	right: 0;
+	inset-inline-end: 0;
 	&--open {
 		color: var(--color-main-text);
 		&:hover{

@@ -93,11 +93,11 @@ export default {
 			box-shadow: none;
 			border: 0;
 			border-radius: var(--body-container-radius);
-			text-align: left;
+			text-align: start;
 			font-weight: normal;
 			font-size: 100%;
 			color: var(--color-main-text);
-			padding-right: 14px;
+			padding-inline-end: 14px;
 			line-height: var(--default-clickable-area);
 
 			&:hover,

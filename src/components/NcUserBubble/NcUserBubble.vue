@@ -273,7 +273,7 @@ export default {
 					borderRadius: this.size / 2 + 'px',
 				},
 				avatar: {
-					marginLeft: this.margin + 'px',
+					marginInlineStart: this.margin + 'px',
 				},
 			}
 		},
@@ -321,8 +321,8 @@ export default {
 		}
 
 		> :last-child {
-			// border radius left padding
-			padding-right: 8px;
+			// border radius end padding
+			padding-inline-end: 8px;
 		}
 	}
 
@@ -339,8 +339,8 @@ export default {
 	&__name,
 	&__secondary {
 		// proper spacing between avatar, name & slot
-		padding: 0;
-		padding-left: 4px;
+		padding-block: 0;
+		padding-inline: 4px 0;
 	}
 }
 </style>
