@@ -126,14 +126,14 @@ export default {
 			overflow: hidden;
 
 			.link-icon {
-				margin-right: 8px;
+				margin-inline-end: 8px;
 			}
 
 			.provider-icon {
 				width: 20px;
 				height: 20px;
 				object-fit: contain;
-				margin-right: 8px;
+				margin-inline-end: 8px;
 				filter: var(--background-invert-if-dark);
 			}
 

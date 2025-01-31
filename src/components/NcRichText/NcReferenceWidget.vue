@@ -239,7 +239,7 @@ export default {
 
 	&.full-width {
 		width: var(--widget-full-width, 100%) !important;
-		left: calc( (var(--widget-full-width, 100%) - 100%) / 2 * -1);
+		inset-inline-start: calc( (var(--widget-full-width, 100%) - 100%) / 2 * -1);
 		position: relative;
 	}
 }

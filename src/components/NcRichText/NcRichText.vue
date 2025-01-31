@@ -372,30 +372,7 @@ export default {
 			type: Object,
 			default: null,
 		},
-		markdownCssClasses: {
-			type: Object,
-			default: () => {
-				return {
-					a: 'rich-text--external-link',
-					ol: 'rich-text--ordered-list',
-					ul: 'rich-text--un-ordered-list',
-					li: 'rich-text--list-item',
-					strong: 'rich-text--strong',
-					em: 'rich-text--italic',
-					h1: 'rich-text--heading rich-text--heading-1',
-					h2: 'rich-text--heading rich-text--heading-2',
-					h3: 'rich-text--heading rich-text--heading-3',
-					h4: 'rich-text--heading rich-text--heading-4',
-					h5: 'rich-text--heading rich-text--heading-5',
-					h6: 'rich-text--heading rich-text--heading-6',
-					hr: 'rich-text--hr',
-					table: 'rich-text--table',
-					pre: 'rich-text--pre',
-					code: 'rich-text--code',
-					blockquote: 'rich-text--blockquote',
-				}
-			},
-		},
+		/** Provide basic Markdown syntax */
 		useMarkdown: {
 			type: Boolean,
 			default: false,
@@ -489,7 +466,6 @@ export default {
 					},
 				})
 				.use(this.useExtendedMarkdown ? rehypeHighlight.value : undefined)
-				// .use(rehypeAddClasses, this.markdownCssClasses)
 				.use(remarkPlaceholder)
 				.use(rehypeExternalLinks, {
 					target: '_blank',
@@ -550,7 +526,7 @@ export default {
 						&& children[0].props.type === 'checkbox') {
 						const [inputNode, , ...labelParts] = children
 
-						const nestedNodeIndex = labelParts.findIndex((child) => ['ul', 'ol', 'li', 'blockquote', 'pre'].includes(child.tag))
+						const nestedNodeIndex = labelParts.findIndex((child) => ['ul', 'ol', 'li', 'blockquote', 'pre'].includes(child.type))
 						if (nestedNodeIndex !== -1) {
 							nestedNode = labelParts[nestedNodeIndex]
 							labelParts.splice(nestedNodeIndex)
