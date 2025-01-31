@@ -526,7 +526,7 @@ export default {
 						&& children[0].props.type === 'checkbox') {
 						const [inputNode, , ...labelParts] = children
 
-						const nestedNodeIndex = labelParts.findIndex((child) => ['ul', 'ol', 'li', 'blockquote', 'pre'].includes(child.tag))
+						const nestedNodeIndex = labelParts.findIndex((child) => ['ul', 'ol', 'li', 'blockquote', 'pre'].includes(child.type))
 						if (nestedNodeIndex !== -1) {
 							nestedNode = labelParts[nestedNodeIndex]
 							labelParts.splice(nestedNodeIndex)
