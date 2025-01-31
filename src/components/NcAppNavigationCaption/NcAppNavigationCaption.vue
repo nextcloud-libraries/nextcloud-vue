@@ -268,7 +268,8 @@ export default {
 		box-shadow: none !important;
 		flex-shrink: 0;
 		// padding to align the name with the icon of app navigation items
-		padding: 0 calc(var(--default-grid-baseline, 4px) * 2) 0 calc(var(--default-grid-baseline, 4px) * 2);
+		padding-block: 0;
+		padding-inline: calc(var(--default-grid-baseline, 4px) * 2) 0;
 		margin-top: 0px;
 		margin-bottom: var(--default-grid-baseline);
 	}
