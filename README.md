@@ -3,47 +3,58 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Vue components
+# @nextcloud/vue
 
 [![REUSE status](https://api.reuse.software/badge/github.com/nextcloud-libraries/nextcloud-vue)](https://api.reuse.software/info/github.com/nextcloud-libraries/nextcloud-vue)
-[![npm last version](https://img.shields.io/npm/v/@nextcloud/vue.svg?style=flat-square)](https://www.npmjs.com/package/@nextcloud/vue)
-[![Dependabot status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?longCache=true&style=flat-square&logo=dependabot)](https://dependabot.com)
+[![npm last version](https://img.shields.io/npm/v/@nextcloud/vue.svg?style=flat)](https://www.npmjs.com/package/@nextcloud/vue)
+[![Dependabot status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?longCache=true&style=flat&logo=dependabot)](https://dependabot.com)
 
-This repo contains the various Vue.js components that Nextcloud uses for its internal design and structure. It provides standardized UI elements for building Nextcloud app frontends with Vue.js.
+> 🖼️ UI Kit for building Nextcloud apps with Vue
 
-## Documentation
+- ✨ Standardized UI Components
+- 🛠️ Composables and frontend utilities
+- 🔗 [Reference providers](https://docs.nextcloud.com/server/latest/developer_manual/digging_deeper/reference.html) utilities
 
-A list of available components with examples to try out is available in the [documentation](https://nextcloud-vue-components.netlify.app).
+## 📄 Documentation
 
-The documentation is built from the latest development branch, for stable releases the documentation can be found matching the latest minor version:
+| Version        | Target                | Documentation                                         |
+|----------------|-----------------------|-------------------------------------------------------|
+| v9.x [next]    | Nextcloud 30+ (Vue 3) | https://next--nextcloud-vue-components.netlify.app    |
+| v8.x [master]  | Nextcloud 28+ (Vue 2) | https://nextcloud-vue-components.netlify.app          |
+| v7.x [stable7] | Nextcloud 25 - 27     | https://stable7--nextcloud-vue-components.netlify.app |
+| v6.x [stable6] | Nextcloud 24 - 25     | https://stable6--nextcloud-vue-components.netlify.app |
 
-- [master](https://nextcloud-vue-components.netlify.app).
-- [7.x.x](https://stable7--nextcloud-vue-components.netlify.app/)
-- [6.x.x](https://stable6--nextcloud-vue-components.netlify.app/)
-
-## Getting started
-
-### App example
-If you want to check a real live example of a nextcloud app that uses this library, you can head over to https://github.com/skjnldsv/vueexample/
-We will try to maintain this repository the best we can, but some example might be obsolete. Always check this [repository documentation](#documentation).
-
-### Install the library
+## 📦 Install
 
 ```bash
-npm i --save @nextcloud/vue
+npm i @nextcloud/vue
 ```
 
-### Usage
+## 🚀 Usage
 
-To use a component, just import it:
+Import corresponding components and other modules on use. Check the documentation for more details.
 
 ```js
-import { NcAppNavigation, NcActions, NcActionButton } from '@nextcloud/vue'
+import NcButton from '@nextcloud/vue/components/NcButton'
+import { useHotKey } from '@nextcloud/vue/composables/useHotKey'
+
+// (Deprecated) Old import path 
+import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
+import { useHotKey } from '@nextcloud/vue/dist/Composables/useHotKey.js'
 ```
 
-### Registering all components.
+Import from a single root is available as well. Use with caution: this might lead to slower build time and larger bundles in some cases.
 
-> Be careful, this will registry all components and directives, even the ones not being used.
+```js
+import { NcButton, useHotKey } from '@nextcloud/vue'
+```
+
+### (Deprecated) Registering all components
+
+`NextcloudVuePlugin` registers all the components and directives globally.
+
+> ⚠️ This installation method leads to extremely large bundle and removed in v9.\
+> If you don't want to import component on usage you may use [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components) instead.
 
 ```js
 import Vue from 'vue'
@@ -52,7 +63,30 @@ import { NextcloudVuePlugin } from '@nextcloud/vue'
 Vue.use(NextcloudVuePlugin)
 ```
 
-## Development setup
+## 🤝 Contributing
+
+### 📜 How to contribute
+
+1. It's always good to check/create an issue first and discuss the problem or feature you want to work on
+2. Fork the repository and create a new branch
+3. Make the changes
+4. Check the change in Vue-Styleguidist and/or Nextcloud apps
+   - Do not forget to `lint` and `test` your changes
+   - If possible, add tests for your changes
+5. Commit and push your changes, create a Pull Request
+   - Make sure to follow the [Conventional Commits](https://www.conventionalcommits.org) in commit messages, and PR titles, for example:\
+     `fix(NcButton): correct layout on Safari`
+   - Make sure to follow the **Pull Request template**
+   - Sign-off you commits for the [Developer Certificate of Origin (DCO)](https://developercertificate.org/)
+6. Get your PR reviewed
+   - If you don't receive a feedback in a week, feel free to mention the maintainers, for example, last developers worked on the module
+7. Get your PR merged 
+
+Please read the [Code of Conduct](https://nextcloud.com/community/code-of-conduct/). This document offers some guidance to ensure Nextcloud participants can cooperate effectively in a positive and inspiring atmosphere and to explain how together we can strengthen and support each other.
+
+More information on how to contribute: [https://nextcloud.com/contribute/](https://nextcloud.com/contribute/)
+
+### 🧑‍💻 Development setup
 
 If you want to work on improving the components it’s best to run the latest code and link it to your local Nextcloud installation:
 
@@ -66,64 +100,36 @@ If you want to work on improving the components it’s best to run the latest co
     - In the repository of an app do `npm link @nextcloud/vue` (you need to re-link any time you do `npm ci` in the app)
 4. Then build the app with: `npm run build` (or watch for changes with `npm run watch`)
 
-## Translations
+### 🌐 Translations
 
-This library uses translated strings.
-When you edit/create a translated string, you need to run `npm run l10n:extract` to update the source files.
-Our awesome translation community will then be notified and a bot will sync those changes automatically.
+Use `t` and `n` functions from `src/l10n.js` to display translated strings. They follow `gettext` and `ngettext` interface from [`@nextcloud/l10n/gettext`](https://nextcloud-libraries.github.io/nextcloud-l10n/modules/_nextcloud_l10n_gettext.html).
 
-Nonetheless, it requires a bit of caution.
-When you implement a translated string, import the `translate` or `translatePlural` and add it in your methods like so:
 ```vue
+<script setup lang="ts">
+import { t } from '../../l10n.js'
+</script>
+
 <template>
 	<element>
 		{{ t('Choose') }}
 	</element>
 </template>
-
-<script>
-import { translate as t } from '@nextcloud/l10n'
-
-export default {
-	methods: {
-		t,
-	},
-}
-</script>
 ```
 
-Please note that using a translated string as an attribute will _NOT_ work.
-But it will work if it's within an element (like the example above)
-```vue
-<template>
-	<element :prop="t('This will not work')" />
-</template>
+When you edit/create a translated string, you need to update the l10n files.
+Our awesome translation community will then be notified and a bot will sync translations automatically.
+
+```sh
+npm run l10n:extract
 ```
 
-You will instead have to define the string in the data section and use the relevant variable reference.
-```vue
-<template>
-	<element :prop="chooseProp" />
-</template>
-
-<script>
-export default {
-	data() {
-		return {
-			chooseProp: t('Choose'),
-		},
-	}
-}
-</script>
-```
-
-## Styleguide
+### 🐸 Styleguidist
 
 When developing new components or extending components, make sure to also have some bits of related documentation like examples, where applicable.
 To test components and the documentation in that context, you can run `npm run styleguide` to run a local server that serves the style guide
 with all the components.
 
-### Using vue-devtools in Firefox
+#### Using vue-devtools in Firefox
 
 If you want to use [vue-devtools](https://github.com/vuejs/vue-devtools) in Firefox, you need to:
 
@@ -149,7 +155,7 @@ index 0e3a6a705d..416b8b0fb9 100644
         /** @var array Domains from which scripts can get loaded */
 ```
 
-## Releasing a new version
+## 📤 Releasing a new version
 
 - Pull the latest changes from `master` or `stableX`
 - Checkout a new branch with the tag name (e.g `v4.0.1`): `git checkout -b v<version>`
