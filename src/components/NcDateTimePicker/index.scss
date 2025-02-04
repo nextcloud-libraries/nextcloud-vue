@@ -413,9 +413,14 @@
 
 		.mx-time-option,
 		.mx-time-item {
-			&.active,
-			&:hover {
+			&.active {
+				background-color: var(--color-primary-element);
 				color: var(--color-primary-element-text);
+			}
+
+			&:hover {
+				background-color: var(--color-background-hover);
+				color: var(--color-main-text);
 			}
 
 			&.disabled {
