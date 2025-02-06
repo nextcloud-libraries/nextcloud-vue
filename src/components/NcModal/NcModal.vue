@@ -330,7 +330,7 @@ import { warn as VueWarn } from 'vue'
 
 import { getTrapStack } from '../../utils/focusTrap.js'
 import { t } from '../../l10n.js'
-import GenRandomId from '../../utils/GenRandomId.js'
+import { getElementId } from '../../utils/getElementId.ts'
 import NcActions from '../NcActions/index.js'
 import NcButton from '../NcButton/index.ts'
 import Timer from '../../utils/Timer.js'
@@ -543,7 +543,7 @@ export default {
 			iconSize: 24,
 			focusTrap: null,
 			externalFocusTrapStack: [],
-			randId: GenRandomId(),
+			randId: getElementId(),
 			internalShow: true,
 		}
 	},
