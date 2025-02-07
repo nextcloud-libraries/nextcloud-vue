@@ -10,20 +10,55 @@ import { mount } from 'cypress/vue2'
 import NcRichText from '../../src/components/NcRichText/NcRichText.vue'
 
 describe('NcRichText', () => {
-	describe('renders with markdown', () => {
-		describe('normal text', () => {
-			it('XML-like text (escaped and unescaped)', () => {
-				mount(NcRichText, {
-					propsData: {
-						text: '<span>text&lt;/span&gt;',
-						useMarkdown: true,
-					},
-				})
-
-				cy.get('p').should('have.text', '<span>text</span>')
+	describe.only('XML-like text (escaped and unescaped)', () => {
+		const TEST = '<span>text</span> &lt;span&gt;text&lt;/span&gt;'
+		it('renders normal text as passed', () => {
+			mount(NcRichText, {
+				propsData: {
+					text: TEST,
+				},
 			})
+			cy.get('div.rich-text--wrapper').should('have.text', TEST)
 		})
+		it('renders with Markdown, escaping XML', () => {
+			mount(NcRichText, {
+				propsData: {
+					text: TEST,
+					useMarkdown: true,
+				},
+			})
+			cy.get('p').should('have.text', '<span>text</span> <span>text</span>')
+		})
+		it('renders with Markdown, escaping XML in code', () => {
+			mount(NcRichText, {
+				propsData: {
+					text: '```\n' + TEST + '\n```',
+					useMarkdown: true,
+				},
+			})
+			cy.get('code').should('have.text', '<span>text</span> <span>text</span>' + '\n')
+		})
+		it('renders with Flavored Markdown, escaping XML', () => {
+			mount(NcRichText, {
+				propsData: {
+					text: TEST,
+					useExtendedMarkdown: true,
+				},
+			})
+			cy.get('p').should('have.text', '<span>text</span> <span>text</span>')
+		})
+		it('renders with Flavored Markdown, escaping XML in code', () => {
+			mount(NcRichText, {
+				propsData: {
+					text: '```\n' + TEST + '\n```',
+					useExtendedMarkdown: true,
+				},
+			})
+			cy.get('code').should('have.text', '<span>text</span> <span>text</span>' + '\n')
+		})
+	})
 
+	describe('renders with markdown', () => {
 		describe('headings', () => {
 			it('heading (with hash (#) syntax divided with space from text)', () => {
 				const testCases = [

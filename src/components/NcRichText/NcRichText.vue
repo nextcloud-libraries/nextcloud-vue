@@ -308,6 +308,7 @@ import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitc
 import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
 import { getRoute, remarkAutolink } from './autolink.js'
 import { remarkPlaceholder, prepareTextNode } from './placeholder.js'
+import { remarkUnescape } from './remarkUnescape.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
 import { unified } from 'unified'
@@ -459,6 +460,7 @@ export default {
 					useMarkdown: this.useMarkdown,
 					useExtendedMarkdown: this.useExtendedMarkdown,
 				})
+				.use(remarkUnescape)
 				.use(this.useExtendedMarkdown ? remarkGfm.value : undefined)
 				.use(breaks)
 				.use(remark2rehype, {
@@ -476,12 +478,6 @@ export default {
 				})
 				.use(rehype2react, {
 					createElement: (tag, attrs, children) => {
-						// unescape special symbol "<" for simple text nodes
-						children = children?.map(child => typeof child === 'string'
-							? child.replace(/&lt;/gmi, '<')
-							: child,
-						)
-
 						if (!tag.startsWith('#')) {
 							if (this.useExtendedMarkdown && remarkGfm.value) {
 								if (tag === 'code' && !rehypeHighlight.value
@@ -559,9 +555,7 @@ export default {
 				})
 				.processSync(this.text
 					// escape special symbol "<" to not treat text as HTML
-					.replace(/</gmi, '&lt;')
-					// unescape special symbol ">" to parse blockquotes
-					.replace(/&gt;/gmi, '>'),
+					.replace(/<[^>]+>/g, (match) => match.replace(/</g, '&lt;')),
 				)
 				.result
 
