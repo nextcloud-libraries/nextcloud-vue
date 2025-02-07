@@ -9,6 +9,54 @@
 import { expect, test } from '@playwright/experimental-ct-vue'
 import NcRichText from '../../../../src/components/NcRichText/NcRichText.vue'
 
+test.describe('XML-like text (escaped and unescaped)', () => {
+	const TEST = '<span>text</span> &lt;span&gt;text&lt;/span&gt;'
+	test('renders normal text as passed', async ({ mount }) => {
+		const component = await mount(NcRichText, {
+			props: {
+				text: TEST,
+			},
+		})
+		await expect(component.getByText(TEST)).toBeVisible()
+	})
+	test('renders with Markdown, escaping XML', async ({ mount }) => {
+		const component = await mount(NcRichText, {
+			props: {
+				text: TEST,
+				useMarkdown: true,
+			},
+		})
+		await expect(component.getByRole('paragraph')).toContainText('<span>text</span> <span>text</span>')
+	})
+	test('renders with Markdown, escaping XML in code', async ({ mount }) => {
+		const component = await mount(NcRichText, {
+			props: {
+				text: '```\n' + TEST + '\n```',
+				useMarkdown: true,
+			},
+		})
+		await expect(component.getByRole('code')).toContainText('<span>text</span> <span>text</span>' + '\n')
+	})
+	test('renders with Flavored Markdown, escaping XML', async ({ mount }) => {
+		const component = await mount(NcRichText, {
+			props: {
+				text: TEST,
+				useExtendedMarkdown: true,
+			},
+		})
+		await expect(component.getByRole('paragraph')).toContainText('<span>text</span> <span>text</span>')
+	})
+	test('renders with Flavored Markdown, escaping XML in code', async ({ mount }) => {
+		const component = await mount(NcRichText, {
+			props: {
+				text: '```\n' + TEST + '\n```',
+				useExtendedMarkdown: true,
+			},
+		})
+		await expect(component.getByRole('code')).toContainText('<span>text</span> <span>text</span>' + '\n')
+	})
+})
+
 test.describe('dividers', () => {
 	test('dividers with asterisks', async ({ mount }) => {
 		const component = await mount(NcRichText, {
