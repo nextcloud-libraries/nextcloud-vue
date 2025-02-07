@@ -555,7 +555,9 @@ export default {
 				})
 				.processSync(this.text
 					// escape special symbol "<" to not treat text as HTML
-					.replace(/<[^>]+>/g, (match) => match.replace(/</g, '&lt;')),
+					.replace(/<[^>]+>/g, (match) => match.replace(/</g, '&lt;'))
+					// unescape special symbol ">" to parse blockquotes
+					.replace(/&gt;/gmi, '>'),
 				)
 				.result
 

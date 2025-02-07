@@ -10,7 +10,7 @@ import { mount } from 'cypress/vue2'
 import NcRichText from '../../src/components/NcRichText/NcRichText.vue'
 
 describe('NcRichText', () => {
-	describe.only('XML-like text (escaped and unescaped)', () => {
+	describe('XML-like text (escaped and unescaped)', () => {
 		const TEST = '<span>text</span> &lt;span&gt;text&lt;/span&gt;'
 		it('renders normal text as passed', () => {
 			mount(NcRichText, {
