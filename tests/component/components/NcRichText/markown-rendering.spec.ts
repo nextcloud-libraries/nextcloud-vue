@@ -6,8 +6,56 @@
 // Markdown guide: https://www.markdownguide.org/basic-syntax/
 // Reference tests: https://github.com/nextcloud-deps/CDMarkdownKit/tree/master/CDMarkdownKitTests
 
-import { expect, test } from '@playwright/experimental-ct-vue';
+import { expect, test } from '@playwright/experimental-ct-vue'
 import NcRichText from '../../../../src/components/NcRichText/NcRichText.vue'
+
+test.describe('XML-like text (escaped and unescaped)', () => {
+	const TEST = '<span>text</span> &lt;span&gt;text&lt;/span&gt;'
+	test('renders normal text as passed', async ({ mount }) => {
+		const component = await mount(NcRichText, {
+			props: {
+				text: TEST,
+			},
+		})
+		await expect(component.getByText(TEST)).toBeVisible()
+	})
+	test('renders with Markdown, escaping XML', async ({ mount }) => {
+		const component = await mount(NcRichText, {
+			props: {
+				text: TEST,
+				useMarkdown: true,
+			},
+		})
+		await expect(component.getByRole('paragraph')).toContainText('<span>text</span> <span>text</span>')
+	})
+	test('renders with Markdown, escaping XML in code', async ({ mount }) => {
+		const component = await mount(NcRichText, {
+			props: {
+				text: '```\n' + TEST + '\n```',
+				useMarkdown: true,
+			},
+		})
+		await expect(component.getByRole('code')).toContainText('<span>text</span> <span>text</span>' + '\n')
+	})
+	test('renders with Flavored Markdown, escaping XML', async ({ mount }) => {
+		const component = await mount(NcRichText, {
+			props: {
+				text: TEST,
+				useExtendedMarkdown: true,
+			},
+		})
+		await expect(component.getByRole('paragraph')).toContainText('<span>text</span> <span>text</span>')
+	})
+	test('renders with Flavored Markdown, escaping XML in code', async ({ mount }) => {
+		const component = await mount(NcRichText, {
+			props: {
+				text: '```\n' + TEST + '\n```',
+				useExtendedMarkdown: true,
+			},
+		})
+		await expect(component.getByRole('code')).toContainText('<span>text</span> <span>text</span>' + '\n')
+	})
+})
 
 test.describe('dividers', () => {
 	test('dividers with asterisks', async ({ mount }) => {
@@ -179,7 +227,6 @@ test.describe('bold text', () => {
 	})
 })
 
-
 test.describe('italic text', () => {
 	test('italic text (single with asterisk syntax)', async ({ mount }) => {
 		const component = await mount(NcRichText, {
@@ -253,7 +300,6 @@ test.describe('italic text', () => {
 	})
 })
 
-
 test.describe('strikethrough text', () => {
 	test('strikethrough text (with single tilda syntax)', async ({ mount }) => {
 		const component = await mount(NcRichText, {
@@ -302,7 +348,6 @@ test.describe('strikethrough text', () => {
 		expect(await component.locator('del').allInnerTexts()).toEqual(['strikethrough', 'strikethrough'])
 	})
 })
-
 
 test.describe('inline code', () => {
 	test('inline code (single with backticks syntax)', async ({ mount }) => {
@@ -374,7 +419,6 @@ test.describe('inline code', () => {
 	})
 })
 
-
 test.describe('multiline code', () => {
 	test('multiline code (with triple backticks syntax)', async ({ mount }) => {
 		const component = await mount(NcRichText, {
@@ -443,7 +487,6 @@ test.describe('multiline code', () => {
 		await expect(component.locator('pre')).toHaveText('**bold text**\n_italic text_\n`inline code`\n<span>text</span>\n')
 	})
 })
-
 
 test.describe('blockquote', () => {
 	test('blockquote (with greater then (>) syntax - normal)', async ({ mount }) => {
@@ -527,7 +570,6 @@ test.describe('blockquote', () => {
 	})
 })
 
-
 test.describe('lists', () => {
 	test('ordered list (with number + `.` syntax divided with space from text)', async ({ mount }) => {
 		const testCases = [
@@ -586,7 +628,6 @@ test.describe('lists', () => {
 	})
 })
 
-
 test.describe('task lists', () => {
 	test('task list (with `- [ ]` and `- [x]` syntax divided with space from text)', async ({ mount }) => {
 		const testCases = [
@@ -606,13 +647,12 @@ test.describe('task lists', () => {
 		await expect(component.locator('ul')).toHaveCount(1)
 		await expect(component.getByRole('listitem')).toHaveCount(testCases.length)
 
-		for(const [index, testcase] of testCases.entries()) {
+		for (const [index, testcase] of testCases.entries()) {
 			await expect(component.getByRole('listitem').nth(index)).toHaveText(testcase.output)
-			await expect(component.getByRole('listitem').nth(index).getByRole('checkbox')).toBeChecked({ checked: testcase.checked})
+			await expect(component.getByRole('listitem').nth(index).getByRole('checkbox')).toBeChecked({ checked: testcase.checked })
 		}
 	})
 })
-
 
 test.describe('tables', () => {
 	test('table (with `-- | --` syntax)', async ({ mount }) => {

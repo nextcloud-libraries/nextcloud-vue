@@ -307,6 +307,7 @@ import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitc
 import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
 import { getRoute, remarkAutolink } from './autolink.ts'
 import { remarkPlaceholder, prepareTextNode } from './placeholder.js'
+import { remarkUnescape } from './remarkUnescape.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
 import { unified } from 'unified'
@@ -456,6 +457,7 @@ export default {
 					useMarkdown: this.useMarkdown,
 					useExtendedMarkdown: this.useExtendedMarkdown,
 				})
+				.use(remarkUnescape)
 				.use(this.useExtendedMarkdown ? remarkGfm.value : undefined)
 				.use(breaks)
 				.use(remark2rehype, {
@@ -480,7 +482,7 @@ export default {
 				})
 				.processSync(this.text
 					// escape special symbol "<" to not treat text as HTML
-					.replace(/</gmi, '&lt;')
+					.replace(/<[^>]+>/g, (match) => match.replace(/</g, '&lt;'))
 					// unescape special symbol ">" to parse blockquotes
 					.replace(/&gt;/gmi, '>'),
 				)
@@ -506,13 +508,8 @@ export default {
 				props.key = key
 			}
 			// Children should be always an array
-			let children = props.children ?? []
+			const children = props.children ?? []
 			delete props.children
-
-			// unescape special symbol "<" for simple text nodes
-			if (typeof children === 'string') {
-				children = children.replace(/&lt;/gmi, '<')
-			}
 
 			if (!String(type).startsWith('#')) {
 				let nestedNode = null
