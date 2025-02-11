@@ -305,7 +305,6 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 import { ref } from 'vue'
 import NcReferenceList from './NcReferenceList.vue'
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
-import NcLoadingIcon from '../NcLoadingIcon/NcLoadingIcon.vue'
 import { getRoute, remarkAutolink } from './autolink.js'
 import { remarkPlaceholder, prepareTextNode } from './placeholder.js'
 import { remarkUnescape } from './remarkUnescape.js'
@@ -313,6 +312,7 @@ import GenRandomId from '../../utils/GenRandomId.js'
 
 import { unified } from 'unified'
 import remarkParse from 'remark-parse'
+import remarkGfm from 'remark-gfm'
 import breaks from 'remark-breaks'
 import remark2rehype from 'remark-rehype'
 import rehype2react from 'rehype-react'
@@ -322,15 +322,6 @@ import { RouterLink } from 'vue-router'
 /**
  * Heavy libraries should be loaded on demand to reduce component size
  */
-const remarkGfm = ref(null)
-/**
- * Load 'remark-gfm' library when prop `useExtendedMarkdown` is truthy
- */
-async function importRemarkGfmLibrary() {
-	const module = await import('remark-gfm')
-	remarkGfm.value = module.default
-}
-
 const rehypeHighlight = ref(null)
 /**
  * Load 'rehype-highlight' library when code block is rendered with `useExtendedMarkdown`
@@ -401,17 +392,6 @@ export default {
 		}
 	},
 
-	watch: {
-		useExtendedMarkdown: {
-			handler(value) {
-				if (value && !remarkGfm.value) {
-					importRemarkGfmLibrary()
-				}
-			},
-			immediate: true,
-		},
-	},
-
 	methods: {
 		renderPlaintext(h) {
 			const context = this
@@ -461,7 +441,7 @@ export default {
 					useExtendedMarkdown: this.useExtendedMarkdown,
 				})
 				.use(remarkUnescape)
-				.use(this.useExtendedMarkdown ? remarkGfm.value : undefined)
+				.use(this.useExtendedMarkdown ? remarkGfm : undefined)
 				.use(breaks)
 				.use(remark2rehype, {
 					handlers: {
@@ -479,7 +459,7 @@ export default {
 				.use(rehype2react, {
 					createElement: (tag, attrs, children) => {
 						if (!tag.startsWith('#')) {
-							if (this.useExtendedMarkdown && remarkGfm.value) {
+							if (this.useExtendedMarkdown) {
 								if (tag === 'code' && !rehypeHighlight.value
 									&& attrs?.attrs?.class?.includes('language')) {
 									importRehypeHighlightLibrary()
@@ -560,12 +540,6 @@ export default {
 					.replace(/&gt;/gmi, '>'),
 				)
 				.result
-
-			if (this.useExtendedMarkdown && !remarkGfm.value) {
-				return h('div', { class: 'rich-text--wrapper' }, [
-					h(NcLoadingIcon),
-				])
-			}
 
 			return h('div', { class: 'rich-text--wrapper rich-text--wrapper-markdown' }, [
 				renderedMarkdown,

@@ -202,8 +202,6 @@ describe('NcRichText', () => {
 				interactive: true,
 			},
 		})
-		await nextTick()
-		await nextTick()
 		expect(wrapper.text()).toEqual('task item')
 		const checkbox = wrapper.findComponent({ name: 'NcCheckboxRadioSwitch' })
 		expect(checkbox.exists()).toBeTruthy()
