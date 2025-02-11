@@ -5,7 +5,7 @@
 
 # Changelog
 
-## [v8.23.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.23.0) (UNRELEASED)
+## [v8.23.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.23.0) (2025-02-13)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.22.0...v8.23.0)
 
 ### 📝 Notes
@@ -21,11 +21,8 @@
   ```
 
   The old import paths are still valid, but deprecated and will be removed in version 9.
-
-### 📝 Notes
+* `#default` slot for leading icon is now deprecated in components `NcInputField`, `NcTextField`, `NcPasswordField`. Use `#icon` slot instead.
 * `NcActionRadio` is now expecting String|Number in `v-model` directive (to compare with passed `value`) instead of Boolean. Consider it for migration.
-
-
 * Some boolean props have been deprecated in favor of alternatives with default value `false`.
   This allows to use shorthand notation on the template, as a prop with a default value of `false`
   will be set to `true` if it is set (without any value) in the template,
@@ -38,13 +35,45 @@
   |`NcAppContent` | `allowSwipeNavigation` | `disabledSwipe` |
 
 ### 🚀 Enhancements
-* TBD
+* feat: Allow to import without `dist` [\#6385](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6385) \([susnux](https://github.com/susnux)\)
+* feat: Use boolean props with default value false [\#6452](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6452) \([susnux](https://github.com/susnux)\)
+* feat(Nc*Field): add `#icon` slot for forward compatibility with v9, `#default` slot is deprecated [\#6399](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6399) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcActionRadio): change `modelValue` to behave like NcCheckboxRadioSwitch [\#6264](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6264) [\#6470](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6470) \([Antreesy](https://github.com/Antreesy)\)
 
 ### 🐛 Fixed bugs
-* TBD
+* fix(NcAction*): Fix RTL support for component [\#6507](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6507) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcActions): Remove on `mousemove` listener for auto focus elements [\#6475](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6475) \([susnux](https://github.com/susnux)\)
+* fix(NcActionCheckbox): Fix padding in RTL mode [\#6354](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6354) \([falghamdi125](https://github.com/falghamdi125)\)
+* fix(NcAppNavigation + NcUserBubble + NcRichContenteditable): RTL support [\#6455](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6455) \([DorraJaouad](https://github.com/DorraJaouad)\)
+* fix(NcAvatar): title not shown when component used without menu [\#6297](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6297) \([Koc](https://github.com/Koc)\)
+* fix(NcAvatar): user status and interactivity toggle button Bidi support [\#6407](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6407) \([DorraJaouad](https://github.com/DorraJaouad)\)
+* fix(NcColorPicker): close popover on submit event [\#6336](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6336) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcCounterBubble): show original count in title when shortened [\#6395](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6395) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcDateTimePicker): selected and hover time is not readable [\#6492](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6492) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcDateTimePickerNative): do not set invalid value on clear event [\#6387](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6387) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcDateTimePickerNative): style alignment with other input components [\#6454](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6454) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcEmojiPicker): add arrow navigation [\#6466](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6466) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcEmojiPicker): adjust styles to correctly fit emojis [\#6465](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6465) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcListItem): Fix padding in RTL mode [\#6359](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6359) \([falghamdi125](https://github.com/falghamdi125)\)
+* fix(NcModal): Enforce opaque backdrop if needed [\#6434](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6434) \([susnux](https://github.com/susnux)\)
+* fix(NcPopover): emit `after-show` after `focus-trap` init to correctly return focus [\#6342](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6342) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcPopover): blurry content on scaled page in Chromium [\#6512](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6512) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcRich*): style fixes and RTL support [\#6474](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6474) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcRichContenteditable): remove value linkify [\#6372](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6372) \([ShGKme](https://github.com/ShGKme)\)
+* fix(NcRichText): adjust conditions for highlight syntax [\#6259](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6259) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcRichText): extract un-escaping of text/code nodes with XML-like content [\#6499](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6499) [\#6501](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6501) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcTeamResources): Do not make extraneous requests for resources [\#6379](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6379) \([Pytal](https://github.com/Pytal)\)
 
-### ♻️ Changed
-* TBD
+### Changed
+* chore(stylelint): `csstools/use-logical` [\#6419](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6419) \([ShGKme](https://github.com/ShGKme)\)
+* chore(stylelint): fix scripts to be unix-compatible [\#6418](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6418) \([ShGKme](https://github.com/ShGKme)\)
+* chore(docs): Do not override assets while building the styleguide [\#6408](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6408) \([susnux](https://github.com/susnux)\)
+* chore(docs): update documentation [\#6460](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6460) \([ShGKme](https://github.com/ShGKme)\)
+* Updated workflows and dependencies
+* Updated translations
+
+## New Contributors
+* @Koc made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/6297
 
 ## [v8.22.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.22.0) (2024-12-20)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.21.0...v8.22.0)
