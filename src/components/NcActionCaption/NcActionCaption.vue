@@ -52,8 +52,8 @@ export default {
 		box-shadow: none !important;
 		user-select: none;
 		pointer-events: none;
-		margin-left: 12px;
-		padding-right: 14px;
+		margin-inline-start: 12px;
+		padding-inline-end: 14px;
 		height: var(--default-clickable-area);
 		display: flex;
 		align-items: center;
