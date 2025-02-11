@@ -204,7 +204,6 @@ describe('Foo', () => {
 				interactive: true,
 			},
 		})
-		await vi.dynamicImportSettled()
 		expect(wrapper.text()).toEqual('task item')
 		const checkbox = wrapper.findComponent({ name: 'NcCheckboxRadioSwitch' })
 		expect(checkbox.exists()).toBeTruthy()
