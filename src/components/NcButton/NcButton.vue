@@ -397,7 +397,7 @@ td.row-name {
 }
 
 td.row-size {
-	text-align: right;
+	text-align: end;
 	padding-inline-end: 16px;
 }
 

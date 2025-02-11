@@ -50,7 +50,7 @@ export default {
 	justify-content: right;
 	background-color: var(--color-primary);
 	height: var(--header-height, 50px);
-	padding-right: 12px;
+	padding-inline-end: 12px;
 }
 </style>
 ```
