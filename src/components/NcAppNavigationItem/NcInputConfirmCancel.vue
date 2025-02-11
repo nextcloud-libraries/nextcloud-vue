@@ -21,18 +21,18 @@
 				class="app-navigation-input-confirm__input"
 				:placeholder="placeholder">
 
-			<NcButton native-type="submit"
-				type="primary"
-				:aria-label="labelConfirm"
+			<NcButton :aria-label="labelConfirm"
+				type="submit"
+				variant="primary"
 				@click.stop.prevent="confirm">
 				<template #icon>
 					<ArrowRight :size="20" />
 				</template>
 			</NcButton>
 
-			<NcButton native-type="reset"
-				:type="primary ? 'primary' : 'tertiary'"
-				:aria-label="labelCancel"
+			<NcButton :aria-label="labelCancel"
+				type="reset"
+				:variant="primary ? 'primary' : 'tertiary'"
 				@click.stop.prevent="cancel">
 				<template #icon>
 					<Close :size="20" />
@@ -42,11 +42,11 @@
 	</div>
 </template>
 <script>
-import NcButton from '../NcButton/index.js'
 import { t } from '../../l10n.js'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import Close from 'vue-material-design-icons/Close.vue'
+import NcButton from '../NcButton/index.js'
 
 export default {
 	name: 'NcInputConfirmCancel',

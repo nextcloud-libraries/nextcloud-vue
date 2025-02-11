@@ -8,16 +8,40 @@
 ## [v8.23.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.23.0) (UNRELEASED)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.22.0...v8.23.0)
 
-### 🚀 Enhancements
-* The individual import path of components, composables, directives, and functions was changed.
-  The type of import is (e.g. `components`) is now lowercase and the `dist` will be omitted.
-  For example to import the `NcButton` component the path has changed:
+### 📝 Notes
+#### Import paths
+The individual import path of components, composables, directives, and functions was changed.
+The type of import is (e.g. `components`) is now lowercase and the `dist` will be omitted.
+For example to import the `NcButton` component the path has changed:
   - from `import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'`.
   - to `import NcButton from '@nextcloud/vue/components/NcButton'`
 
-  The old import paths are still valid, but deprecated and will be removed in version 9.
-* `NcActionRadio` is now expecting String|Number in `v-model` directive (to compare with passed `value`) instead of Boolean. Consider it for migration.
+The old import paths are still valid, but deprecated and will be removed in version 9.
 
+#### `NcButton` color variant and native type
+`NcButton` (and `NcDialogButton`) now provides a `variant` prop to set the color variant to use (e.g. `'primary'`) and allows to set the native button type using the `type` prop.
+The legacy behavior, `type` for the color variant and `nativeType` for the button type, still works but will be removed in the next major version.
+
+To make a later migration to version 9 easier you can already migrate your `NcButton` usage like this:
+```vue
+<!-- Before: -->
+<NcButton type="primary" native-type="submit">Submit</NcButton>
+<!-- After: -->
+<NcButton type="submit" variant="primary">Submit</NcButton>
+```
+
+#### `NcActionRadio` model value
+`NcActionRadio` is now expecting `String|Number` in `v-model` directive (to compare with passed `value`) instead of `Boolean`.
+Consider it for migration.
+
+### 🚀 Enhancements
+* TBD
+
+### 🐛 Fixed bugs
+* TBD
+
+### Changed
+* TBD
 
 ## [v8.22.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.22.0) (2024-12-20)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.21.0...v8.22.0)

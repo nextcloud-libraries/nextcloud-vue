@@ -162,7 +162,7 @@ This component allows the user to pick an emoji.
 						:palette="skinTonePalette"
 						:value="currentColor.color"
 						@update:value="onChangeSkinTone">
-						<NcButton :aria-label="t('Skin tone')" type="tertiary-no-background">
+						<NcButton :aria-label="t('Skin tone')" variant="tertiary-no-background">
 							<template #icon>
 								<IconCircle :style="{ color: currentColor.color }" :title="currentColor.name" :size="20" />
 							</template>
