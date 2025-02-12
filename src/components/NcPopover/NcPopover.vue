@@ -434,6 +434,9 @@ export default {
 }
 
 $arrow-width: 10px;
+// Move the arrow just slightly inside the popover
+// To prevent a visual gap on page scaling
+$arrow-position: $arrow-width - 1px;
 
 .v-popper--theme-dropdown {
 	&.v-popper__popper {
@@ -474,25 +477,25 @@ $arrow-width: 10px;
 		}
 
 		&[data-popper-placement^='top'] .v-popper__arrow-container {
-			bottom: -$arrow-width;
+			bottom: -$arrow-position;
 			border-bottom-width: 0;
 			border-top-color: var(--color-main-background);
 		}
 
 		&[data-popper-placement^='bottom'] .v-popper__arrow-container {
-			top: -$arrow-width;
+			top: -$arrow-position;
 			border-top-width: 0;
 			border-bottom-color: var(--color-main-background);
 		}
 
 		&[data-popper-placement^='right'] .v-popper__arrow-container {
-			left: -$arrow-width;
+			left: -$arrow-position;
 			border-left-width: 0;
 			border-right-color: var(--color-main-background);
 		}
 
 		&[data-popper-placement^='left'] .v-popper__arrow-container {
-			right: -$arrow-width;
+			right: -$arrow-position;
 			border-right-width: 0;
 			border-left-color: var(--color-main-background);
 		}
