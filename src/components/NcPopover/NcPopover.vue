@@ -441,7 +441,18 @@ $arrow-width: 10px;
 		left: 0;
 		display: block !important;
 
-		filter: drop-shadow(0 1px 10px var(--color-box-shadow));
+		.v-popper__wrapper {
+			/*
+			 * In theory, "filter: drop-shadow" would look better here with arrow shadow.
+			 * In fact, in results in a blurry popover in Chromium on scaling.
+			 * The hypothesis is that "filter" creates a new composition layer,
+			 * and with GPU acceleration requires the previous layers content to be rasterized.
+			 * In combination with translate3d from floating-vue, it makes Chromium to first render and rasterize the popover
+			 * and then apply scaling, which results in a blurry popover.
+			 */
+			box-shadow: 0 1px 10px var(--color-box-shadow);
+			border-radius: var(--border-radius-large);
+		}
 
 		.v-popper__inner {
 			padding: 0;

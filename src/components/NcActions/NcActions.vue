@@ -1949,7 +1949,6 @@ export default {
 // the popover__inner for actions only.
 .v-popper--theme-dropdown.v-popper__popper.action-item__popper .v-popper__wrapper {
 	border-radius: var(--border-radius-large);
-	overflow: hidden;
 
 	.v-popper__inner {
 		border-radius: var(--border-radius-large);
