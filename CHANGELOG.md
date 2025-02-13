@@ -5,6 +5,13 @@
 
 # Changelog
 
+## [v8.23.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.23.1) (2025-02-13)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.23.0...v8.23.1)
+
+### 🐛 Fixed bugs
+* fix(l10n): fix build error after `@nextcloud/l10n` bump [\#6521](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6521) \([ShGKme](https://github.com/ShGKme)\)
+
+
 ## [v8.23.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.23.0) (2025-02-13)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.22.0...v8.23.0)
 
