@@ -98,7 +98,9 @@ import GenRandomId from '../../utils/GenRandomId.js'
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 
-import { isRTL } from '@nextcloud/l10n'
+import { isRTL as isRTLFunction } from '@nextcloud/l10n'
+
+const isRTL = isRTLFunction()
 
 export default {
 	name: 'NcActionTextEditable',
@@ -170,7 +172,7 @@ export default {
 		const model = useModelMigration('value', 'update:value')
 		return {
 			model,
-			isRTL: isRTL(),
+			isRTL,
 		}
 	},
 

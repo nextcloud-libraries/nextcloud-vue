@@ -371,7 +371,9 @@ import CheckIcon from 'vue-material-design-icons/Check.vue'
 import ChevronRightIcon from 'vue-material-design-icons/ChevronRight.vue'
 import ChevronLeftIcon from 'vue-material-design-icons/ChevronLeft.vue'
 import ActionTextMixin from '../../mixins/actionText.js'
-import { isRTL } from '@nextcloud/l10n'
+import { isRTL as isRTLFunction } from '@nextcloud/l10n'
+
+const isRTL = isRTLFunction()
 
 /**
  * Button component to be used in Actions
@@ -386,7 +388,7 @@ export default {
 	},
 	setup() {
 		return {
-			isRTL: isRTL(),
+			isRTL,
 		}
 	},
 	mixins: [ActionTextMixin],

@@ -27,7 +27,9 @@ import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
 
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { isRTL } from '@nextcloud/l10n'
+import { isRTL as isRTLFunction } from '@nextcloud/l10n'
+
+const isRTL = isRTLFunction()
 
 export default {
 	name: 'NcAppDetailsToggle',
@@ -43,7 +45,7 @@ export default {
 	},
 	setup() {
 		return {
-			isRTL: isRTL(),
+			isRTL,
 			isMobile: useIsMobile(),
 		}
 	},
