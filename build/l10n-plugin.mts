@@ -98,15 +98,23 @@ export default (dir: string) => {
 			} else if (id === '\0l10n') {
 				// exports are all chunked translations
 				const exports = Object.entries(nameMap).map(([usage, id]) => `export const ${id} = ${JSON.stringify(translations[usage])}`).join(';\n')
-				return `import { getGettextBuilder } from '@nextcloud/l10n/gettext'
-const gettext = getGettextBuilder().detectLocale().build()
-export const n = gettext.ngettext.bind(gettext)
-export const t = gettext.gettext.bind(gettext)
-export const register = (...chunks) => {
-	chunks.forEach((chunk) => {
+				return `import { getLanguage } from '@nextcloud/l10n'
+import { getGettextBuilder } from '@nextcloud/l10n/gettext'
+const builder = getGettextBuilder().setLanguage(getLanguage())
+let gettext = builder.build()
+
+export const n = (...args) => gettext.ngettext(...args)
+export const t = (...args) => gettext.gettext(...args)
+
+export function register(...chunks) {
+	for (const chunk of chunks) {
 		if (!chunk.registered) {
-			// for every locale in the chunk: decompress and register
-			chunk.forEach(({ l: locale, t: translations }) => {
+			// for every language in the chunk: decompress and register
+			for (const { l: language, t: translations } of chunk) {
+				if (language !== getLanguage() || !translations) {
+					continue
+				}
+
 				const decompressed = Object.fromEntries(
 					Object.entries(translations)
 					.map(([id, value]) => [
@@ -118,15 +126,19 @@ export const register = (...chunks) => {
 						}
 					])
 				)
-				// We need to do this manually as 'addTranslations' overrides the translations
-				if (!gettext.gt.catalogs[locale]) {
-					gettext.gt.catalogs[locale] = { messages: { translations: {}} }
-				}
-				gettext.gt.catalogs[locale].messages.translations[''] = { ...gettext.gt.catalogs[locale].messages.translations[''], ...decompressed }
-			})
+
+				gettext = builder.addTranslation(getLanguage(), {
+					translations: {
+						'': {
+							...(gettext.bundle.translations?.[''] ?? {}),
+							...decompressed,
+						},
+					},
+				}).build()
+			}
 			chunk.registered = true
 		}
-	})
+	}
 }
 ${exports}`
 			}
