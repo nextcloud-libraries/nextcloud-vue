@@ -30,10 +30,10 @@ So that only one of each name set can be selected at the same time.
 		data() {
 			return {
 				radioOptions: [
-					{ value: 'first', label: 'First choise', disabled: false },
-					{ value: 'second', label: 'Second choise', disabled: false },
-					{ value: 'third', label: 'Third choise', disabled: false },
-					{ value: 'fourth', label: 'Fourth choise (disabled)', disabled: true },
+					{ value: 'first', label: 'First choice', disabled: false },
+					{ value: 'second', label: 'Second choice', disabled: false },
+					{ value: 'third', label: 'Third choice', disabled: false },
+					{ value: 'fourth', label: 'Fourth choice (disabled)', disabled: true },
 				],
 				radioValue: 'first',
 			}
@@ -47,7 +47,6 @@ So that only one of each name set can be selected at the same time.
 	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
 		<span class="action-radio" role="menuitemradio" :aria-checked="ariaChecked">
 			<input :id="id"
-				ref="radio"
 				v-model="model"
 				:disabled="disabled"
 				:name="name"
@@ -66,6 +65,7 @@ So that only one of each name set can be selected at the same time.
 </template>
 
 <script>
+import Vue from 'vue'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
@@ -107,11 +107,12 @@ export default {
 		},
 
 		/**
-		 * checked state of the radio element
+		 * Checked state of the radio element
+		 * Boolean type removed in v9 - use String | Number instead
 		 */
 		modelValue: {
-			type: [String, Number],
-			default: '',
+			type: [Boolean, String, Number],
+			default: false,
 		},
 
 		/**
@@ -157,7 +158,11 @@ export default {
 		'change',
 	],
 
-	setup() {
+	setup(props) {
+		if (typeof props.modelValue === 'boolean') {
+			Vue.util.warn('[NcActionRadio] Boolean type of `modelValue` is deprecated and will be removed in next versions')
+		}
+
 		const model = useModelMigration('checked', 'update:checked')
 		return {
 			model,
@@ -193,12 +198,6 @@ export default {
 			this.$refs.label.click()
 		},
 		onChange(event) {
-			if (this.checked !== undefined) {
-				this.model = this.$refs.radio.checked
-			} else {
-				this.model = this.value
-			}
-
 			/**
 			 * Emitted when the radio state is changed
 			 *

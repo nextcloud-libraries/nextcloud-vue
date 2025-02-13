@@ -21,6 +21,8 @@
   ```
 
   The old import paths are still valid, but deprecated and will be removed in version 9.
+
+### 📝 Notes
 * `NcActionRadio` is now expecting String|Number in `v-model` directive (to compare with passed `value`) instead of Boolean. Consider it for migration.
 
 
