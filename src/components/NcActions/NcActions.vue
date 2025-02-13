@@ -2040,11 +2040,7 @@ export default {
 .action-items {
 	display: flex;
 	align-items: center;
-
-	// Spacing between buttons
-	& > button {
-		margin-right: calc($icon-margin / 2);
-	}
+	gap: calc($icon-margin / 2);
 }
 
 .action-item {

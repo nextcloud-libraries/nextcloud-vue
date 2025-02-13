@@ -94,12 +94,12 @@ export default {
 <style>
 .container1 {
 	display: flex;
+	gap: 20px;
 }
 
 .color1 {
 	width: 100px;
 	height: 34px;
-	margin-left: 20px;
 	border-radius: 6px;
 }
 </style>
@@ -129,12 +129,12 @@ export default {
 <style>
 .container0 {
 	display: flex;
+	gap: 20px;
 }
 
 .color0 {
 	width: 100px;
 	height: 34px;
-	margin-left: 20px;
 	border-radius: 6px;
 }
 </style>

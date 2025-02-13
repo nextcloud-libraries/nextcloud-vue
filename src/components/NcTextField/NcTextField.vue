@@ -111,13 +111,13 @@ export default {
 
 .external-label {
 	display: flex;
+	gap: 14px;
 	width: 100%;
 	margin-top: 1rem;
 }
 
 .external-label label {
 	padding-top: 7px;
-	padding-right: 14px;
 	white-space: nowrap;
 }
 </style>

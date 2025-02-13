@@ -583,10 +583,11 @@ $input-margin: 4px;
 		flex: 1 1 auto;
 
 		margin: $input-margin 0;
-		padding-right: $icon-margin;
+		padding-inline-end: $icon-margin;
 	}
 
 	&__container {
+		position: relative;
 		width: 100%;
 	}
 
@@ -615,11 +616,12 @@ $input-margin: 4px;
 
 		&--hidden {
 			position: absolute;
-			left: -10000px;
-			top: auto;
+			inset-inline-start: 0;
 			width: 1px;
 			height: 1px;
 			overflow: hidden;
+			z-index: -1;
+			opacity: 0;
 		}
 	}
 
