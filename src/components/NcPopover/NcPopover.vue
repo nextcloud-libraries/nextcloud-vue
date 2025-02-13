@@ -168,6 +168,11 @@ import { createFocusTrap } from 'focus-trap'
 import { getTrapStack } from '../../utils/focusTrap.js'
 import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
 
+/**
+ * @typedef {import('focus-trap').FocusTargetValueOrFalse} FocusTargetValueOrFalse
+ * @typedef {FocusTargetValueOrFalse|() => FocusTargetValueOrFalse} SetReturnFocus
+ */
+
 export default {
 	name: 'NcPopover',
 
@@ -210,11 +215,11 @@ export default {
 		/**
 		 * Set element to return focus to after focus trap deactivation
 		 *
-		 * @type {import('focus-trap').FocusTargetValueOrFalse}
+		 * @type {SetReturnFocus}
 		 */
 		setReturnFocus: {
 			default: undefined,
-			type: [HTMLElement, SVGElement, String, Boolean],
+			type: [HTMLElement, SVGElement, String, Boolean, Function],
 		},
 	},
 
@@ -365,29 +370,29 @@ export default {
 			}
 		},
 
-		afterShow() {
+		async afterShow() {
 			this.removeFloatingVueAriaDescribedBy()
 
-			this.$nextTick(() => {
-				/**
-				 * Triggered after the tooltip was visually displayed.
-				 *
-				 * This is different from the 'show' and 'apply-show' which
-				 * run earlier than this where there is no guarantee that the
-				 * tooltip is already visible and in the DOM.
-				 */
-				this.$emit('after-show')
-				this.useFocusTrap()
-				this.addEscapeStopPropagation()
-			})
+			await this.$nextTick()
+			await this.useFocusTrap()
+			this.addEscapeStopPropagation()
+
+			/**
+			 * Triggered after the tooltip was visually displayed.
+			 *
+			 * This is different from the 'show' and 'apply-show' which
+			 * run earlier than this where there is no guarantee that the
+			 * tooltip is already visible and in the DOM.
+			 */
+			this.$emit('after-show')
 		},
 		afterHide() {
+			this.clearFocusTrap()
+			this.clearEscapeStopPropagation()
 			/**
 			 * Triggered after the tooltip was visually hidden.
 			 */
 			this.$emit('after-hide')
-			this.clearFocusTrap()
-			this.clearEscapeStopPropagation()
 		},
 	},
 }
