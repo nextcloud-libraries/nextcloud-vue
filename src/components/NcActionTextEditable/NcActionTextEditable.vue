@@ -74,7 +74,8 @@ export default {
 				<!-- allow the custom font to inject a ::before
 					not possible on input[type=submit] -->
 				<label v-show="!disabled" :for="id" class="action-text-editable__label">
-					<ArrowRight :size="20" />
+					<ArrowLeft v-if="isRTL" :size="20" />
+					<ArrowRight v-else :size="20" />
 				</label>
 			</form>
 		</span>
@@ -85,12 +86,16 @@ export default {
 import ActionTextMixin from '../../mixins/actionText.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
+import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
+
+import { isRTL } from '@nextcloud/l10n'
 
 export default {
 	name: 'NcActionTextEditable',
 
 	components: {
+		ArrowLeft,
 		ArrowRight,
 	},
 
@@ -126,6 +131,12 @@ export default {
 		'update:modelValue',
 		'submit',
 	],
+
+	setup() {
+		return {
+			isRTL: isRTL(),
+		}
+	},
 
 	computed: {
 		/**
@@ -239,16 +250,18 @@ $input-margin: 4px;
 
 		position: relative;
 		margin: $input-margin 0;
-		padding-right: $icon-margin;
+		padding-inline-end: $icon-margin;
 	}
 
 	&__submit {
 		position: absolute;
-		left: -10000px;
+		inset-inline-start: 0;
 		top: auto;
 		width: 1px;
 		height: 1px;
 		overflow: hidden;
+		z-index: -1;
+		opacity: 0;
 	}
 
 	&__label {
@@ -258,7 +271,7 @@ $input-margin: 4px;
 
 		// bottom-right corner
 		position: absolute;
-		right: calc($icon-margin + 1);
+		inset-inline-end: calc($icon-margin + 1px);
 		bottom: 1px;
 		width: calc(var(--default-clickable-area) - $input-margin * 2);
 		height: calc(var(--default-clickable-area) - $input-margin * 2);
@@ -319,7 +332,7 @@ $input-margin: 4px;
 				z-index: 2;
 
 				border-color: var(--color-primary-element);
-				border-left-color: transparent;
+				border-inline-start-color: transparent;
 			}
 		}
 	}
