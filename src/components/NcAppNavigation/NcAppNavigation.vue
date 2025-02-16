@@ -168,10 +168,13 @@ emit('toggle-navigation', {
 </template>
 
 <script>
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { getTrapStack } from '../../utils/focusTrap.js'
-import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { createFocusTrap } from 'focus-trap'
+import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
+import { tabbable } from 'tabbable'
+
+import { getTrapStack } from '../../utils/focusTrap.js'
+import { useHotKey } from '../../composables/useHotKey/index.js'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
 
 import NcAppNavigationList from '../NcAppNavigationList/index.js'
 import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
@@ -249,6 +252,12 @@ export default {
 			escapeDeactivates: false,
 		})
 		this.toggleFocusTrap()
+
+		// N opens + focuses the navigation
+		useHotKey('n', this.onKeyDown, {
+			prevent: true,
+			stop: true,
+		})
 	},
 	unmounted() {
 		this.setHasAppNavigation(false)
@@ -262,7 +271,7 @@ export default {
 		 *
 		 * @param {boolean} [state] set the state instead of inverting the current one
 		 */
-		toggleNavigation(state) {
+		async toggleNavigation(state) {
 			// Early return if already in that state
 			if (this.open === state) {
 				emit('navigation-toggled', {
@@ -274,6 +283,12 @@ export default {
 			this.open = (typeof state === 'undefined') ? !this.open : state
 			const bodyStyles = getComputedStyle(document.body)
 			const animationLength = parseInt(bodyStyles.getPropertyValue('--animation-quick')) || 100
+
+			// If we just opened, we focus the first element
+			if (this.open) {
+				await this.$nextTick()
+				this.focusFirstElement()
+			}
 
 			setTimeout(() => {
 				emit('navigation-toggled', {
@@ -299,9 +314,38 @@ export default {
 		},
 
 		handleEsc() {
-			if (this.isMobile) {
+			if (this.isMobile && this.open) {
 				this.toggleNavigation(false)
 			}
+		},
+
+		focusFirstElement() {
+			const element = tabbable(this.$refs.appNavigationContainer)[0]
+			if (element) {
+				element.focus()
+				logger.debug('Focusing first element in the navigation', { element })
+			}
+		},
+
+		onKeyDown(event) {
+			// toggle the navigation on 'n' key
+			if (event.key === 'n') {
+				// If the navigation is closed, open it
+				if (!this.open) {
+					this.toggleNavigation(true)
+					return
+				}
+
+				// If the navigation is open and the focus is within the navigation, close it
+				if (this.isFocusWithinNavigation()) {
+					this.toggleNavigation(false)
+				}
+			}
+		},
+
+		isFocusWithinNavigation() {
+			const activeElement = document.activeElement
+			return this.$refs.appNavigationContainer.contains(activeElement)
 		},
 	},
 }
