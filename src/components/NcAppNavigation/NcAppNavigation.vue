@@ -56,8 +56,8 @@
 </template>
 
 <script>
-	import IconCheck from 'vue-material-design-icons/Check'
-	import IconCog from 'vue-material-design-icons/Cog'
+	import IconCheck from 'vue-material-design-icons/Check.vue'
+	import IconCog from 'vue-material-design-icons/Cog.vue'
 
 	export default {
 		components: {
@@ -346,7 +346,7 @@ export default {
 
 		isFocusWithinNavigation() {
 			const activeElement = document.activeElement
-			return this.$refs.appNavigationContainer.contains(activeElement)
+			return this.$refs.appNavigationContainer?.contains(activeElement)
 		},
 	},
 }

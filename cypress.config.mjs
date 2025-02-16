@@ -77,9 +77,9 @@ export default defineConfig({
 							devSourcemap: true,
 							preprocessorOptions: {
 								scss: {
-									additionalData: `@use 'sass:math'; $scope_version:${SCOPE_VERSION}; @import 'variables'; @import 'material-icons';`,
+									additionalData: `@use 'sass:math'; @use 'variables.scss' as *; @use 'material-icons.css' as *; $scope_version:${SCOPE_VERSION};`,
 									sourceMapContents: false,
-									includePaths: [
+									loadPaths: [
 										resolve(__dirname, 'src/assets'),
 									],
 								},

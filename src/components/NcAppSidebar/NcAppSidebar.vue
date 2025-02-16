@@ -398,7 +398,7 @@ Note: the built-in toggle button is only available then NcAppSidebar is used in 
 </template>
 
 <script>
-import Cog from 'vue-material-design-icons/Cog'
+import Cog from 'vue-material-design-icons/Cog.vue'
 
 export default {
 	components: {
@@ -479,7 +479,7 @@ If the sidebar should be shown conditionally without any explicit toggle button,
 </template>
 
 <script>
-import Cog from 'vue-material-design-icons/Cog'
+import Cog from 'vue-material-design-icons/Cog.vue'
 
 export default {
 	components: {
