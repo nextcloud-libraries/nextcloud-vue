@@ -209,7 +209,7 @@ export default {
 	<NcModal v-if="open"
 		class="dialog__modal"
 		:enable-slideshow="false"
-		:enable-swipe="false"
+		disable-swipe
 		v-bind="modalProps"
 		@close="handleClosed"
 		@update:show="handleClosing()">

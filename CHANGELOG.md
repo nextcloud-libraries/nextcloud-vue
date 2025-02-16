@@ -79,6 +79,15 @@ The leading icon slot was changed from `#default` to `#icon` in `Nc*Field` compo
   - `NcTextField`
   - `NcPasswordField`
 
+#### Boolean props default to `false`
+Some boolean props that have been deprecated in favor of alternatives with default value `false`,
+are now removed. Following components have been adjusted:
+
+|     Component | Removed deprecated prop | New alternative |
+|---------------|-------------------------|-----------------|
+|     `NcModal` |           `enableSwipe` |  `disableSwipe` |
+|`NcAppContent` |  `allowSwipeNavigation` | `disabledSwipe` |
+
 #### Mixins are removed
 Mixins only work in Options API and are in general not recommended by Vue anymore:
 
@@ -134,7 +143,7 @@ Especially the following are now provided as composables:
 * ci: Migrate component tests to Playwright [\#5818](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5818) \([susnux](https://github.com/susnux)\)
 * Change module import paths - drop dist and .js-extension [\#6389](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6389) \([susnux](https://github.com/susnux)\)
 * The plugin was removed - components need to be registered manually now [\#6349](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6349) \([ShGKme](https://github.com/ShGKme)\)
-* chore(Nc*Field): icon slot change note [\#6398](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6398) \([ShGKme](https://github.com/ShGKme)\) 
+* chore(Nc*Field): icon slot change note [\#6398](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6398) \([ShGKme](https://github.com/ShGKme)\)
 * Rename `checked` prop to `modelValue` [\#4994](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4994) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 * Unify `modelValue` naming [\#4990](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4990) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 * Remove deprecated mixins [\#4830](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4830) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
