@@ -79,6 +79,15 @@ The leading icon slot was changed from `#default` to `#icon` in `Nc*Field` compo
   - `NcTextField`
   - `NcPasswordField`
 
+#### Boolean props default to `false`
+Some boolean props that have been deprecated in favor of alternatives with default value `false`,
+are now removed. Following components have been adjusted:
+
+|     Component | Removed deprecated prop | New alternative |
+|---------------|-------------------------|-----------------|
+|     `NcModal` |           `enableSwipe` |  `disableSwipe` |
+|`NcAppContent` |  `allowSwipeNavigation` | `disabledSwipe` |
+
 #### Mixins are removed
 Mixins only work in Options API and are in general not recommended by Vue anymore:
 
