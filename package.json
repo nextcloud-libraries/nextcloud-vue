@@ -95,7 +95,7 @@
     "@nextcloud/timezones": "^0.1.1",
     "@nextcloud/vue-select": "^3.25.1",
     "@vueuse/components": "^11.0.0",
-    "@vueuse/core": "^11.0.0",
+    "@vueuse/core": "^12.7.0",
     "clone": "^2.1.2",
     "debounce": "^2.2.0",
     "dompurify": "^3.2.4",
