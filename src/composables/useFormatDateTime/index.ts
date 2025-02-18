@@ -5,7 +5,7 @@
 
 import { getCanonicalLocale, getLanguage } from '@nextcloud/l10n'
 import { computed, onUnmounted, ref, onMounted, watch, unref, type Ref } from 'vue'
-import { t } from '../l10n.js'
+import { t } from '../../l10n.js'
 
 const FEW_SECONDS_AGO = {
 	long: t('a few seconds ago'),
