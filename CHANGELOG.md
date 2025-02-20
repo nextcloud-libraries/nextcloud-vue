@@ -108,6 +108,10 @@ Especially the following are now provided as composables:
   - The `count` prop is now required [\#5997](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5997)
 - `NcSettingsSection`
   - The `limitWidth` was removed (the content is now always limited width) [\#5605](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5605)
+* The `clickOutsideOptions`, `isFullscreen`, and `isMobile` mixins were removed. Use the according composables instead.
+* The `box-sizing: border-box` is now default for following components and its content. This is done to match behaviour of `NcContent` (as they can be mounted directly to `body`):
+  - `NcModal`
+  - `NcPopover`
 
 ### 🚀 Enhancements
 * Allow writing components using Typescript and provide type definitions for `NcButton` [\#4525](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4525) \([susnux](https://github.com/susnux)\)

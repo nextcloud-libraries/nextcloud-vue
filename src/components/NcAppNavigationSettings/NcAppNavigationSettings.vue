@@ -3,145 +3,111 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+<script setup lang="ts">
+import type { Slot } from 'vue'
+import { onClickOutside } from '@vueuse/core'
+import { computed, ref, useTemplateRef } from 'vue'
+import { t } from '../../l10n.js'
+import GenRandomId from '../../utils/GenRandomId.js'
+
+import IconCog from 'vue-material-design-icons/Cog.vue'
+import NcButton from '../NcButton/NcButton.vue'
+
+const {
+	excludeClickOutsideSelectors = [],
+	name = t('Settings'),
+} = defineProps<{
+	/**
+	 * A query-selector or an array of query-selectors
+	 * to be ignored when clicking outside an element
+	 */
+	excludeClickOutsideSelectors?: string | string[]
+
+	/**
+	 * Text of the button
+	 * @default 'Settings'
+	 */
+	name?: string
+}>()
+
+defineSlots<{
+	/**
+	 * Content of the accordion button (the settings).
+	 */
+	default: Slot
+}>()
+
+const contentId = GenRandomId()
+/**
+ * Are the settings open
+ */
+const open = ref(false)
+
+// Close the menu when the user clicks outside of the container
+const container = useTemplateRef('wrapperElement')
+const ignore = computed(() => Array.isArray(excludeClickOutsideSelectors)
+	? excludeClickOutsideSelectors
+	: excludeClickOutsideSelectors.split(' '),
+)
+onClickOutside(container, () => { open.value = false }, { ignore })
+</script>
+
 <template>
-	<div id="app-settings"
-		v-click-outside="clickOutsideConfig"
-		:class="{ open }">
-		<div id="app-settings__header">
-			<button class="settings-button"
-				type="button"
+	<div ref="wrapperElement" :class="$style.container">
+		<div :class="$style.header">
+			<NcButton :aria-controls="contentId"
 				:aria-expanded="open ? 'true' : 'false'"
-				aria-controls="app-settings__content"
-				@click="toggleMenu">
-				<Cog class="settings-button__icon" :size="20" />
-				<span class="settings-button__label">{{ name }}</span>
-			</button>
+				@click="open = !open">
+				<template #icon>
+					<IconCog :size="20" />
+				</template>
+				{{ name }}
+			</NcButton>
 		</div>
-		<Transition name="slide-up">
-			<div v-show="open" id="app-settings__content">
+		<Transition :enter-active-class="$style.animationActive"
+			:leave-active-class="$style.animationActive"
+			:enter-from-class="$style.animationStop"
+			:leave-to-class="$style.animationStop">
+			<div v-show="open"
+				:id="contentId"
+				:class="$style.content">
 				<slot />
 			</div>
 		</Transition>
 	</div>
 </template>
 
-<script>
-import { t } from '../../l10n.js'
-import { clickOutsideOptions } from '../../mixins/index.js'
-
-import Cog from 'vue-material-design-icons/Cog.vue'
-
-import { vOnClickOutside as ClickOutside } from '@vueuse/components'
-
-export default {
-	directives: {
-		ClickOutside,
-	},
-	components: {
-		Cog,
-	},
-	mixins: [
-		clickOutsideOptions,
-	],
-	props: {
-		name: {
-			type: String,
-			required: false,
-			default: t('Settings'),
-		},
-	},
-	data() {
-		return {
-			open: false,
-		}
-	},
-	computed: {
-		clickOutsideConfig() {
-			return [
-				this.closeMenu,
-				this.clickOutsideOptions,
-			]
-		},
-	},
-	methods: {
-		toggleMenu() {
-			this.open = !this.open
-		},
-		closeMenu() {
-			this.open = false
-		},
-	},
-}
-</script>
-<style lang="scss" scoped>
-#app-settings {
+<style module>
+.container {
 	margin-top: auto;
-	padding: $app-navigation-settings-margin;
-
-	&__header {
-		margin: 0 $app-navigation-settings-margin $app-navigation-settings-margin $app-navigation-settings-margin;
-
-		.settings-button {
-			display: flex;
-			flex: 1 1 0;
-			height: var(--default-clickable-area);
-			width: 100%;
-			padding: 0;
-			margin: 0;
-			background-color: transparent;
-			box-shadow: none;
-			border: 0;
-			border-radius: var(--body-container-radius);
-			text-align: start;
-			font-weight: normal;
-			font-size: 100%;
-			color: var(--color-main-text);
-			padding-inline-end: 14px;
-			line-height: var(--default-clickable-area);
-
-			&:hover,
-			&:focus {
-				background-color: var(--color-background-hover);
-			}
-
-			&__icon {
-				width: var(--default-clickable-area);
-				height: var(--default-clickable-area);
-				min-width: var(--default-clickable-area);
-			}
-			&__label {
-				overflow: hidden;
-				max-width: 100%;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-			}
-		}
-	}
-
-	&__content {
-		display: block;
-		padding: 10px;
-
-		/* prevent scrolled contents from stopping too early */
-		margin-bottom: -$app-navigation-settings-margin;
-
-		/* restrict height of settings and make scrollable */
-		max-height: 300px;
-		overflow-y: auto;
-	}
+	padding: var(--default-grid-baseline);
 }
 
-.slide-up-leave-active,
-.slide-up-enter-active {
+.header {
+	margin-block: 0 var(--default-grid-baseline);
+	margin-inline: var(--default-grid-baseline);
+}
+
+.content {
+	display: block;
+	padding: 10px;
+
+	/* prevent scrolled contents from stopping too early */
+	margin-bottom: calc(-1 * var(--default-grid-baseline));
+
+	/* restrict height of settings and make scrollable */
+	max-height: 300px;
+	overflow-y: auto;
+}
+
+.animationActive {
 	transition-duration: var(--animation-slow);
 	transition-property: max-height, padding;
 	overflow-y: hidden !important;
 }
 
-.slide-up-enter-from,
-.slide-up-leave-to {
+.animationStop {
 	max-height: 0 !important;
 	padding: 0 10px !important;
 }
-
 </style>
