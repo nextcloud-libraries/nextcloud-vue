@@ -10,7 +10,6 @@ import { join, resolve } from 'node:path'
 import { defineConfig } from 'vite'
 
 import md5 from 'md5'
-
 import l10nPlugin from './build/l10n-plugin.mjs'
 
 const appVersion = JSON.stringify(process.env.npm_package_version || 'nextcloud-vue')
