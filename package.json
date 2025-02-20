@@ -149,7 +149,7 @@
     "typescript": "^5.7.3",
     "url-loader": "^4.1.1",
     "vite": "^6.1.1",
-    "vitest": "^3.0.3",
+    "vitest": "^3.0.6",
     "vue-eslint-parser": "^9.4.3",
     "vue-material-design-icons": "^5.3.1",
     "vue-styleguidist": "^4.72.4",
