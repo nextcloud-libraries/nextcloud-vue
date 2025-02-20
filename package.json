@@ -130,7 +130,7 @@
     "@playwright/test": "^1.50.1",
     "@types/gettext-parser": "^8.0.0",
     "@types/node": "^22.13.4",
-    "@vitest/coverage-v8": "^3.0.5",
+    "@vitest/coverage-v8": "^3.0.6",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.7.0",
     "babel-loader-exclude-node-modules-except": "^1.2.1",
