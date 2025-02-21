@@ -197,6 +197,7 @@ This component allows the user to pick an emoji.
 import { Picker, Emoji, EmojiIndex } from 'emoji-mart-vue-fast'
 import { t } from '../../l10n.js'
 import { getCurrentSkinTone, setCurrentSkinTone } from '../../functions/emoji/emoji.ts'
+import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
 import { Color } from '../../utils/GenColors.js'
 
 import data from 'emoji-mart-vue-fast/data/all.json'
@@ -352,6 +353,12 @@ export default {
 		native() {
 			return this.activeSet === 'native'
 		},
+	},
+
+	created() {
+		// Component has its own custom focus management
+		// The global focus trap stack should be paused
+		useTrapStackControl(() => this.open)
 	},
 
 	methods: {
