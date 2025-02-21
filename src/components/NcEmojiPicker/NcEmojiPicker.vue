@@ -185,6 +185,7 @@ This component allows the user to pick an emoji.
 
 <script>
 import { getCurrentSkinTone, setCurrentSkinTone } from '../../functions/emoji/emoji.ts'
+import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
 import { Color } from '../../utils/GenColors.js'
 
 import IconCircle from 'vue-material-design-icons/Circle.vue'
@@ -343,6 +344,12 @@ export default {
 		native() {
 			return this.activeSet === 'native'
 		},
+	},
+
+	created() {
+		// Component has its own custom focus management
+		// The global focus trap stack should be paused
+		useTrapStackControl(() => this.open)
 	},
 
 	methods: {
