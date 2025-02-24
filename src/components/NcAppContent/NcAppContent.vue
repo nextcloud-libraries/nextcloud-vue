@@ -112,7 +112,9 @@ import { Splitpanes, Pane } from 'splitpanes'
 
 import 'splitpanes/dist/splitpanes.css'
 import { emit } from '@nextcloud/event-bus'
-import { isRTL } from '@nextcloud/l10n'
+import { isRTL as isRTLFunction } from '@nextcloud/l10n'
+
+const isRTL = isRTLFunction()
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 
@@ -227,7 +229,7 @@ export default {
 	setup() {
 		return {
 			isMobile: useIsMobile(),
-			isRTL: isRTL(),
+			isRTL,
 		}
 	},
 
