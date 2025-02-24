@@ -1,11 +1,11 @@
 # 
 # Translators:
 # Stanislav Prekop <prekop3@gmail.com>, 2024
-# Tomas Rusnak <linkermail@gmail.com>, 2024
+# Tomas Rusnak <linkermail@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Tomas Rusnak <linkermail@gmail.com>, 2024\n"
+"Last-Translator: Tomas Rusnak <linkermail@gmail.com>, 2025\n"
 "Language-Team: Slovak (Slovakia) (https://app.transifex.com/nextcloud/teams/64236/sk_SK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sk_SK\n"
@@ -267,8 +267,8 @@ msgstr "Otvoriť link v \"{resourceName}\""
 msgid "Open menu"
 msgstr "Otvoriť menu"
 
-msgid "Open navigation"
-msgstr "Otvoriť navigáciu"
+msgid "Open navigation {shortcut}"
+msgstr "Otvoriť navigáciu {shortcut}"
 
 msgid "Open sidebar"
 msgstr "Otvoriť bočný panel"
