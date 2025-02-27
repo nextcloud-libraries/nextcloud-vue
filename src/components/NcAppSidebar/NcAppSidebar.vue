@@ -711,7 +711,7 @@ import Focus from '../../directives/Focus/index.js'
 import Linkify from '../../directives/Linkify/index.js'
 import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
-import { getTrapStack } from '../../utils/focusTrap.js'
+import { getTrapStack } from '../../utils/focusTrap.ts'
 import { t } from '../../l10n.js'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'

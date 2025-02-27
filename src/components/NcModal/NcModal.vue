@@ -334,7 +334,7 @@ import { useSwipe } from '@vueuse/core'
 import { createFocusTrap } from 'focus-trap'
 import Vue from 'vue'
 
-import { getTrapStack } from '../../utils/focusTrap.js'
+import { getTrapStack } from '../../utils/focusTrap.ts'
 import { t } from '../../l10n.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import NcActions from '../NcActions/index.js'

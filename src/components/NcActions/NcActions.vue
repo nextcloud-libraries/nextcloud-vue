@@ -954,7 +954,7 @@ import NcPopover from '../NcPopover/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
 import { t } from '../../l10n.js'
-import { getTrapStack } from '../../utils/focusTrap.js'
+import { getTrapStack } from '../../utils/focusTrap.ts'
 import { useElementBounding, useWindowSize } from '@vueuse/core'
 import Vue, { ref, computed, toRef } from 'vue'
 

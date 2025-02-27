@@ -110,7 +110,7 @@ import { createFocusTrap } from 'focus-trap'
 
 import GenRandomId from '../../utils/GenRandomId.js'
 import { clickOutsideOptions } from '../../mixins/index.js'
-import { getTrapStack } from '../../utils/focusTrap.js'
+import { getTrapStack } from '../../utils/focusTrap.ts'
 
 import NcButton from '../NcButton/index.js'
 
