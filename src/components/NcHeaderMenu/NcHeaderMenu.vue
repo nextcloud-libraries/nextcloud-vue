@@ -106,7 +106,7 @@ import type { FocusTrap } from 'focus-trap'
 import { onClickOutside } from '@vueuse/core'
 import { createFocusTrap } from 'focus-trap'
 import { computed, nextTick, ref, useTemplateRef, watch, type Slot } from 'vue'
-import { getTrapStack } from '../../utils/focusTrap.js'
+import { getTrapStack } from '../../utils/focusTrap.ts'
 import { useHotKey } from '../../composables/index.js'
 
 import GenRandomId from '../../utils/GenRandomId.js'

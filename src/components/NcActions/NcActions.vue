@@ -920,7 +920,7 @@ export default {
 <script>
 import { useElementBounding, useWindowSize } from '@vueuse/core'
 import { Fragment, computed, h, mergeProps, ref, toRef, warn } from 'vue'
-import { getTrapStack } from '../../utils/focusTrap.js'
+import { getTrapStack } from '../../utils/focusTrap.ts'
 import { t } from '../../l10n.js'
 
 import NcButton from '../NcButton/index.ts'
