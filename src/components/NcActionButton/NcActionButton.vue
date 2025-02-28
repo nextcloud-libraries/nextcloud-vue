@@ -355,8 +355,8 @@ export default {
 			<span v-else class="action-button__text">{{ text }}</span>
 
 			<!-- right(in LTR) or left(in RTL) arrow icon when there is a sub-menu -->
-			<ChevronRightIcon v-if="isMenu && !isRTL" :size="20" class="action-button__menu-icon" />
-			<ChevronLeftIcon v-else-if="isMenu && isRTL" :size="20" class="action-button__menu-icon" />
+			<ChevronRightIcon v-if="isMenu && !isRtl" :size="20" class="action-button__menu-icon" />
+			<ChevronLeftIcon v-else-if="isMenu && isRtl" :size="20" class="action-button__menu-icon" />
 			<CheckIcon v-else-if="isChecked === true" :size="20" class="action-button__pressed-icon" />
 			<span v-else-if="isChecked === false" class="action-button__pressed-icon material-design-icon" />
 
@@ -371,7 +371,7 @@ import CheckIcon from 'vue-material-design-icons/Check.vue'
 import ChevronRightIcon from 'vue-material-design-icons/ChevronRight.vue'
 import ChevronLeftIcon from 'vue-material-design-icons/ChevronLeft.vue'
 import ActionTextMixin from '../../mixins/actionText.js'
-import { isRTL } from '@nextcloud/l10n'
+import { isRtl } from '../../utils/rtl.ts'
 
 /**
  * Button component to be used in Actions
@@ -463,7 +463,7 @@ export default {
 
 	setup() {
 		return {
-			isRTL: isRTL(),
+			isRtl,
 		}
 	},
 
