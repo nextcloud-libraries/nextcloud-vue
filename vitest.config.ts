@@ -17,6 +17,7 @@ export default async (env) => {
 		test: {
 			environment: 'jsdom',
 			setupFiles: resolve(__dirname, './tests/setup.js'),
+			globalSetup: resolve(__dirname, './tests/global-setup.js'),
 			exclude: [
 				'tests/component/**',
 				'node_modules/**',
