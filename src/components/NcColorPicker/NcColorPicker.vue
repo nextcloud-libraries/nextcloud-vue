@@ -513,8 +513,6 @@ export default {
 		}
 
 		&-active-color {
-			width: calc(var(--default-clickable-area) - 10 px);
-			height: calc(var(--default-clickable-area) - 10 px);
 			border-radius: 17px;
 		}
 
