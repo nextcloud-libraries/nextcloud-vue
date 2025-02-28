@@ -167,7 +167,7 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 import Vue from 'vue'
 import { Dropdown } from 'floating-vue'
 import { createFocusTrap } from 'focus-trap'
-import { getTrapStack } from '../../utils/focusTrap.js'
+import { getTrapStack } from '../../utils/focusTrap.ts'
 import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
 
 /**
