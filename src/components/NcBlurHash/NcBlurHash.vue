@@ -133,46 +133,36 @@ Using `v-if` is also possible, this can e.g. used if the image is not loaded fro
 ```
 </docs>
 
-<script setup>
+<script setup lang="ts">
 import { decode } from 'blurhash'
 import { ref, watch, nextTick } from 'vue'
-import { logger } from '../../utils/logger.ts'
 import { preloadImage } from '../../functions/preloadImage/index.ts'
+import logger from '../../utils/logger.js'
 
-const props = defineProps({
+const props = defineProps<{
 	/**
 	 * The blur hash value to use.
 	 */
-	hash: {
-		required: true,
-		type: String,
-	},
+	hash: string
 
 	/**
 	 * This is normally not needed, but if this blur hash is not only intended
 	 * for decorative purpose, descriptive text should be passed for accessibility.
 	 */
-	alt: {
-		type: String,
-		default: '',
-	},
+	alt?: string
 
 	/**
 	 * Optional an image source to load, during the load the blur hash is shown.
 	 * As soon as it is loaded the image will be shown instead.
 	 */
-	src: {
-		type: String,
-		default: '',
-	},
-})
-
-const emit = defineEmits([
+	src?: string
+}>()
+const emit = defineEmits<{
 	/**
 	 * Emitted when the image (`src`) has been loaded.
 	 */
-	'load',
-])
+	'load': [boolean],
+}>()
 
 const canvas = ref()
 const imageLoaded = ref(false)
@@ -242,7 +232,7 @@ function drawBlurHash() {
 		:leave-to-class="$style.fadeTransitionActive">
 		<canvas v-if="!imageLoaded"
 			ref="canvas"
-			:aria-hidden="alt ? null : 'true'"
+			:aria-hidden="alt ? undefined : 'true'"
 			:aria-label="alt" />
 		<img v-else :alt="alt" :src="src">
 	</Transition>
