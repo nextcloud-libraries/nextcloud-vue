@@ -82,7 +82,7 @@ export default {
 				<!-- allow the custom font to inject a ::before
 					not possible on input[type=submit] -->
 				<label v-show="!disabled" :for="id" class="action-text-editable__label">
-					<ArrowLeft v-if="isRTL" :size="20" />
+					<ArrowLeft v-if="isRtl" :size="20" />
 					<ArrowRight v-else :size="20" />
 				</label>
 			</form>
@@ -98,7 +98,7 @@ import GenRandomId from '../../utils/GenRandomId.js'
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 
-import { isRTL } from '@nextcloud/l10n'
+import { isRtl } from '../../utils/rtl.ts'
 
 export default {
 	name: 'NcActionTextEditable',
@@ -170,7 +170,7 @@ export default {
 		const model = useModelMigration('value', 'update:value')
 		return {
 			model,
-			isRTL: isRTL(),
+			isRtl,
 		}
 	},
 

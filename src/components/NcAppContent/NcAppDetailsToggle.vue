@@ -10,7 +10,7 @@
 		class="app-details-toggle"
 		:class="{ 'app-details-toggle--mobile': isMobile }">
 		<template #icon>
-			<ArrowLeft v-if="isRTL" :size="20" />
+			<ArrowLeft v-if="isRtl" :size="20" />
 			<ArrowRight v-else :size="20" />
 		</template>
 	</NcButton>
@@ -27,7 +27,7 @@ import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
 
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { isRTL } from '@nextcloud/l10n'
+import { isRtl } from '../../utils/rtl.ts'
 
 export default {
 	name: 'NcAppDetailsToggle',
@@ -43,7 +43,7 @@ export default {
 	},
 	setup() {
 		return {
-			isRTL: isRTL(),
+			isRtl,
 			isMobile: useIsMobile(),
 		}
 	},
