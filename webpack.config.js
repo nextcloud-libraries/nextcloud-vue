@@ -79,6 +79,35 @@ webpackRules.RULE_SCSS = {
 	],
 }
 
+webpackRules.RULE_CSS = {
+	test: /\.css$/,
+	oneOf: [
+		{
+			resourceQuery: /module/,
+			use: [
+				'style-loader',
+				{
+					loader: 'css-loader',
+					options: {
+						modules: {
+							// Same as in Vite
+							localIdentName: '_[local]_[hash:base64:5]',
+						},
+					},
+				},
+				'resolve-url-loader',
+			],
+		},
+		{
+			use: [
+				'style-loader',
+				'css-loader',
+				'resolve-url-loader',
+			],
+		},
+	],
+}
+
 webpackRules.RULE_JS.exclude = BabelLoaderExcludeNodeModulesExcept([
 	'tributejs',
 ])
