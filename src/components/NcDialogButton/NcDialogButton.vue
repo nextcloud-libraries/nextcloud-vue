@@ -27,15 +27,18 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 
 <script setup>
 import { ref } from 'vue'
+import { t } from '../../l10n.js'
+
 import NcButton from '../NcButton/index.js'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
-import { t } from '../../l10n.js'
 
 const props = defineProps({
 	/**
 	 * The function that will be called when the button is pressed.
-	 * If the function returns `false` the click is ignored and the dialog will not be closed.
+	 * If the function returns `false` the click is ignored and the dialog will not be closed,
+	 * which is the default behavior of "reset"-buttons.
+	 *
 	 * @type {() => unknown|false|Promise<unknown|false>}
 	 */
 	callback: {
@@ -109,7 +112,9 @@ const handleClick = async (e) => {
 
 	isLoading.value = true
 	try {
-		const result = await props.callback?.()
+		// for reset buttons the default is "false"
+		const fallback = props.nativeType === 'reset' ? false : undefined
+		const result = await props.callback?.() ?? fallback
 		if (result !== false) {
 			/**
 			 * The click event (`MouseEvent`) and the value returned by the callback
