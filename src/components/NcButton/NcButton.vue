@@ -432,58 +432,176 @@ td.row-size {
 ```
 </docs>
 
-<template>
-	<component :is="isLink ? 'a' : 'button'"
-		class="button-vue"
-		:class="[
-			`button-vue--size-${size}`,
-			{
-				[`button-vue--${realVariant}`]: realVariant,
-				'button-vue--wide': wide,
-				[`button-vue--${flexAlignment}`]: flexAlignment !== 'center',
-				'button-vue--reverse': isReverseAligned,
-				active: routerLink?.isActive,
-			},
-		]"
-		:disabled
-		:aria-label="ariaLabel"
-		v-bind="{
-			...ncPopoverTriggerAttrs,
-			...(isLink ? linkAttrs : buttonAttrs),
-		}"
-		@click="onClick">
-		<span class="button-vue__wrapper">
-			<span v-if="hasIcon()"
-				:aria-hidden="noIconAriaHidden ? undefined : 'true'"
-				class="button-vue__icon">
-				<slot name="icon" />
-			</span>
-			<span v-if="hasText()" class="button-vue__text">
-				<slot>
-					{{ text }}
-				</slot>
-			</span>
-		</span>
-	</component>
-</template>
-
 <script setup lang="ts">
-import type { NcButtonEvents, NcButtonProps, NcButtonSlots } from './types.ts'
+import type { Slot } from 'vue'
+import type { RouteLocation } from 'vue-router'
 
-import { computed, inject, toRef, watch } from 'vue'
+import { computed, inject, toRef } from 'vue'
 import { routerKey, useLink } from 'vue-router'
 import isSlotPopulated from '../../utils/isSlotPopulated.ts'
-import logger from '../../utils/logger.ts'
+
+export type ButtonAlignment = 'start'
+	| 'start-reverse'
+	| 'center'
+	| 'center-reverse'
+	| 'end'
+	| 'end-reverse'
+
+export type ButtonSize = 'small'
+	| 'normal'
+	| 'large'
+
+export type ButtonType =
+	| 'submit'
+	| 'reset'
+	| 'button'
+
+export type ButtonVariant = 'primary'
+	| 'secondary'
+	| 'tertiary'
+	| 'tertiary-no-background'
+	| 'tertiary-on-primary'
+	| 'error'
+	// Design-wise not recommended for new code
+	| 'warning'
+	| 'success'
+
+interface NcButtonProps {
+	/**
+	 * Set the text and icon alignment
+	 *
+	 * @default 'center'
+	 */
+	alignment?: ButtonAlignment
+
+	/**
+	 * Toggles the disabled state of the button on and off.
+	 * @default false
+	 */
+	disabled?: boolean
+
+	/**
+	 * Specify the button size.
+	 * @default 'normal'
+	 */
+	size?: ButtonSize
+
+	/**
+	 * The main button text.
+	 * This can be overwritten by using the *default* slot.
+	 * @since 9.0.0
+	 */
+	text?: string
+
+	/**
+	 * Specifies the button variant.
+	 * If left empty, the default button style will be applied.
+	 *
+	 * @default 'secondary'
+	 */
+	variant?: ButtonVariant
+
+	/**
+	 * Specifies the button native type
+	 * If left empty, the default "button" type will be used.
+	 *
+	 * @default 'button'
+	 */
+	type?: ButtonType
+
+	/**
+	 * Specifies whether the button should span all the available width.
+	 * By default, buttons span the whole width of the container.
+	 * @default false
+	 */
+	wide?: boolean
+
+	/**
+	 * Always try to provide an aria-label to your button.
+	 *
+	 * Make it more specific than the button's name by provide some more context.
+	 * E.g. if the name of the button is "send" in the Mail app,
+	 * the aria label could be "Send email".
+	 */
+	ariaLabel?: string
+
+	/**
+	 * Providing the href attribute turns the button component into an `a` element.
+	 */
+	href?: string
+
+	/**
+	 * Target for the `a` element if `href` is set.
+	 * @default '_self'
+	 */
+	target?: string
+
+	/**
+	 * When `href` is set this will make the browser try to download the target.
+	 * If a string is passed the browser will use it as the filename.
+	 *
+	 * Note that the browser might adjust it for allowed characters (e.g. '/' or '\').
+	 * Also this only works with same-origin URLs and `blob:` or `data:` schemas.
+	 * Moreover a `Content-Disposition` header set by the server will override the filename.
+	 */
+	download?: string|true
+
+	/**
+	 * The pressed state of the button if it has a checked state.
+	 * This will add the `aria-pressed` attribute and for the button to have the primary style in checked state.
+	 *
+	 * Note: Pressed state is not supported for links.
+	 */
+	pressed?: boolean
+
+	/**
+	 * Providing the to attribute turns the button component into a `router-link` element.
+	 *
+	 * Note: This takes precedence over the href attribute.
+	 */
+	to?: string|RouteLocation
+}
 
 const props = withDefaults(defineProps<NcButtonProps>(), {
+	ariaLabel: undefined,
 	alignment: 'center',
+	download: undefined,
+	href: undefined,
+	pressed: undefined,
 	size: 'normal',
+	target: '_self',
+	text: undefined,
+	to: undefined,
 	type: 'button',
 	variant: 'secondary',
 })
 
-const emit = defineEmits<NcButtonEvents>()
-const slots = defineSlots<NcButtonSlots>()
+const emit = defineEmits<{
+	/**
+	 * Emitted when the button was clicked.
+	 */
+	 click: [e: MouseEvent]
+
+	/**
+	 * If the button is a toggle button (`pressed` state is boolean),
+	 * then this will be emitted if the user toggled the state.
+	 */
+	'update:pressed': [pressed: boolean]
+}>()
+
+const slots = defineSlots<{
+	/**
+	 * Custom button content.
+	 * This can be used for custom formatted content, ensure to not include any interactive elements.
+	 * For plain text it is preferred to use the `text` prop instead.
+	 */
+	default?: Slot
+
+	/**
+	 * Icon (optional) to show within the button
+	 */
+	icon?: Slot
+}>()
 
 // Make sure the component also works if the app does not use any router
 // And if the app uses a router we need to make sure a `to` prop was passed to use to router
@@ -582,27 +700,40 @@ function onClick(event: MouseEvent) {
 	emit('click', event)
 	routerLink.value?.navigate(event)
 }
-
-/**
- * Warn developers about missing aria label for icon-only buttons
- */
-watch(
-	() => props.ariaLabel,
-	() => {
-		// This is purely for developers
-		// So we skip if not in debug mode to prevent performance issues as `hasText` requires a full render function call
-		if (window._oc_config?.loglevel !== 0) {
-			return
-		}
-
-		if (!props.ariaLabel && !hasText()) {
-			// Warning but we made sure that the log level is DEBUG above so we do not spam users
-			logger.warn('You need to fill either the text or the ariaLabel props in the button component.')
-		}
-	},
-	{ immediate: true },
-)
 </script>
+
+<template>
+	<component :is="isLink ? 'a' : 'button'"
+		class="button-vue"
+		:class="[
+			`button-vue--size-${size}`,
+			{
+				[`button-vue--${realVariant}`]: realVariant,
+				'button-vue--wide': wide,
+				[`button-vue--${flexAlignment}`]: flexAlignment !== 'center',
+				'button-vue--reverse': isReverseAligned,
+				active: routerLink?.isActive,
+			},
+		]"
+		:disabled
+		:aria-label
+		v-bind="{
+			...ncPopoverTriggerAttrs,
+			...(isLink ? linkAttrs : buttonAttrs),
+		}"
+		@click="onClick">
+		<span class="button-vue__wrapper">
+			<span v-if="hasIcon()" class="button-vue__icon">
+				<slot name="icon" />
+			</span>
+			<span v-if="hasText()" class="button-vue__text">
+				<slot>
+					{{ text }}
+				</slot>
+			</span>
+		</span>
+	</component>
+</template>
 
 <style lang="scss" scoped>
 .button-vue {
