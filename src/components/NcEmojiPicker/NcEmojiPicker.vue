@@ -122,12 +122,12 @@ This component allows the user to pick an emoji.
 			color="var(--color-primary-element)"
 			:data="emojiIndex"
 			:emoji="previewFallbackEmoji"
-			:i18n="i18n"
-			:native="native"
+			:i18n
+			:native
 			:emoji-size="20"
 			:per-line="8"
 			:picker-styles="{ width: '320px' }"
-			:show-preview="showPreview"
+			:show-preview
 			:skin="currentSkinTone"
 			:show-skin-tones="false"
 			:title="previewFallbackName"
@@ -156,7 +156,7 @@ This component allows the user to pick an emoji.
 						@trailing-button-click="clearSearch(); onSearch('');"
 						@update:model-value="onSearch(search)" />
 					<NcColorPicker palette-only
-						:container="container"
+						:container
 						:palette="skinTonePalette"
 						:model-value="currentColor.color"
 						@update:model-value="onChangeSkinTone">
@@ -177,13 +177,13 @@ This component allows the user to pick an emoji.
 				<Emoji class="emoji-selected"
 					:data="emojiIndex"
 					:emoji="selectedEmoji"
-					:native="true"
+					native
 					:size="32"
 					@click="unselect" />
 				<Emoji class="emoji-delete"
 					:data="emojiIndex"
 					emoji=":x:"
-					:native="true"
+					native
 					:size="10"
 					@click="unselect" />
 			</template>
