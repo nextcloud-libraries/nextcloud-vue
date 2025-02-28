@@ -286,7 +286,7 @@ function clearFocusTrap() {
 // Also used for menu top-right positioning
 $externalMargin: 8px;
 
-@use './header-menu__trigger' as *;
+@import './header-menu__trigger';
 
 .header-menu {
 	&__wrapper {
