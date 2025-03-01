@@ -284,7 +284,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #extra-actions>
-				<NcButton type="primary">
+				<NcButton variant="primary">
 					<template #icon>
 						<IconCog :size="20" />
 					</template>
@@ -312,12 +312,12 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #extra-actions>
-				<NcButton type="tertiary">
+				<NcButton variant="tertiary">
 					<template #icon>
 						<IconPencil :size="20" />
 					</template>
 				</NcButton>
-				<NcButton type="tertiary">
+				<NcButton variant="tertiary">
 					<template #icon>
 						<IconCog :size="20" />
 					</template>
