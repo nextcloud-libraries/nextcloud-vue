@@ -399,7 +399,7 @@ import NcAppNavigationIconCollapsible from './NcAppNavigationIconCollapsible.vue
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import NcInputConfirmCancel from './NcInputConfirmCancel.vue'
 import { t } from '../../l10n.js'
-import GenRandomId from '../../utils/GenRandomId.js'
+import { getElementId } from '../../utils/getElementId.ts'
 
 import Pencil from 'vue-material-design-icons/Pencil.vue'
 import Undo from 'vue-material-design-icons/Undo.vue'
@@ -449,7 +449,7 @@ export default {
 		 */
 		id: {
 			type: String,
-			default: () => 'app-navigation-item-' + GenRandomId(),
+			default: () => 'app-navigation-item-' + getElementId(),
 			validator: id => id.trim() !== '',
 		},
 

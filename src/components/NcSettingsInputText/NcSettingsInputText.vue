@@ -37,7 +37,7 @@
 
 <script>
 import { t } from '../../l10n.js'
-import GenRandomId from '../../utils/GenRandomId.js'
+import { getElementId } from '../../utils/getElementId.ts'
 
 export default {
 	name: 'NcSettingsInputText',
@@ -79,7 +79,7 @@ export default {
 		 */
 		id: {
 			type: String,
-			default: () => 'settings-input-text-' + GenRandomId(),
+			default: () => 'settings-input-text-' + getElementId(),
 			validator: id => id.trim() !== '',
 		},
 	},

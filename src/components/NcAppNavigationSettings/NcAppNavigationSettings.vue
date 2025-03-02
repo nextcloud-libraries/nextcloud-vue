@@ -7,8 +7,8 @@
 import type { Slot } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import { computed, ref, useTemplateRef } from 'vue'
+import { getElementId } from '../../utils/getElementId.js'
 import { t } from '../../l10n.js'
-import GenRandomId from '../../utils/GenRandomId.js'
 
 import IconCog from 'vue-material-design-icons/Cog.vue'
 import NcButton from '../NcButton/NcButton.vue'
@@ -37,7 +37,7 @@ defineSlots<{
 	default: Slot
 }>()
 
-const contentId = GenRandomId()
+const contentId = getElementId()
 /**
  * Are the settings open
  */
