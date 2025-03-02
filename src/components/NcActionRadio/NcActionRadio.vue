@@ -66,6 +66,7 @@ So that only one of each name set can be selected at the same time.
 </template>
 
 <script>
+import { useModel } from 'vue'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 
@@ -131,6 +132,12 @@ export default {
 		'update:modelValue',
 	],
 
+	setup(props) {
+		return {
+			model: useModel(props, 'modelValue'),
+		}
+	},
+
 	computed: {
 		/**
 		 * determines if the action is focusable
@@ -139,20 +146,6 @@ export default {
 		 */
 		isFocusable() {
 			return !this.disabled
-		},
-
-		model: {
-			get() {
-				return this.modelValue
-			},
-			set(value) {
-				/**
-				 * Emitted when the radio state is changed
-				 *
-				 * @type {string|number}
-				 */
-				this.$emit('update:modelValue', value)
-			},
 		},
 
 		/**
