@@ -5,36 +5,36 @@
 
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-const md5 = vi.hoisted(() => vi.fn())
-vi.mock('md5', () => ({ default: md5 }))
-
 describe('getElementId', () => {
 
 	beforeEach(() => {
-		md5.mockReset()
+		delete window._nc_vue_element_id
 		vi.resetModules()
 	})
 
 	test('getting an id', async () => {
-		md5.mockImplementationOnce(() => 'hash')
 		const { getElementId } = await import('./getElementId.ts')
 
 		const id = getElementId()
-		expect(id).toEqual('nchash-0')
-		expect(md5).toHaveBeenCalledTimes(1)
+		expect(id).toEqual('nc-vue-0')
+	})
+
+	test('getting an id when already initialized', async () => {
+		window._nc_vue_element_id = 5
+		const { getElementId } = await import('./getElementId.ts')
+
+		const id = getElementId()
+		expect(id).toEqual('nc-vue-5')
 	})
 
 	test('getting multiple ids', async () => {
-		md5.mockImplementationOnce(() => 'hash')
 		const { getElementId } = await import('./getElementId.ts')
 
 		const id = getElementId()
 		const id2 = getElementId()
 
-		// only once call the hash
-		expect(md5).toHaveBeenCalledTimes(1)
-		// both ids are different
-		expect(id).not.toEqual(id2)
+		expect(id).toBe('nc-vue-0')
+		expect(id2).toBe('nc-vue-1')
 	})
 
 })

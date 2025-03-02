@@ -21,6 +21,8 @@ declare global {
 	interface Window {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		OCP: any
+		// internal global variables
+		_nc_vue_element_id?: number
 	}
 }
 
