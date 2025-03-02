@@ -1,11 +1,12 @@
 # 
 # Translators:
-# Joas Schilling, 2023
-# Transifex Bot <>, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# otterbash <mixalis.tsokaris@gmail.com>, 2023
+# Efstathios Iosifidis <iefstathios@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2023\n"
+"Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>, 2025\n"
 "Language-Team: Greek (https://app.transifex.com/nextcloud/teams/64236/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: el\n"
@@ -17,23 +18,30 @@ msgstr "{tag} (αόρατο)"
 msgid "{tag} (restricted)"
 msgstr "{tag} (περιορισμένο)"
 
+msgid "A color with a HEX value {hex}"
+msgstr "Ένα χρώμα με τιμή HEX {hex}"
+
 msgid "a few seconds ago"
-msgstr ""
+msgstr "πριν λίγα δευτερόλεπτα"
+
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Ακαπούλκο"
 
 msgid "Actions"
 msgstr "Ενέργειες"
 
-msgid "Actions for item with name \"{name}\""
-msgstr ""
-
 msgid "Activities"
 msgstr "Δραστηριότητες"
+
+msgid "Add to a project"
+msgstr "Προσθήκη σε ένα έργο"
 
 msgid "Animals & Nature"
 msgstr "Ζώα & Φύση"
 
 msgid "Any link"
-msgstr ""
+msgstr "Οποιοσδήποτε σύνδεσμος"
 
 msgid "Anything shared with the same group of people will show up here"
 msgstr "Οτιδήποτε μοιράζεται με την ίδια ομάδα ατόμων θα εμφανίζεται εδώ"
@@ -44,32 +52,47 @@ msgstr "Άβαταρ του {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Άβαταρ του {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
+msgid "away"
+msgstr "μακριά"
+
 msgid "Back"
-msgstr ""
+msgstr "Επιστροφή"
 
 msgid "Back to provider selection"
-msgstr ""
+msgstr "Επιστροφή στην επιλογή παρόχου"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Μπλε Βιολέτ"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Μπλε Βοστώνης"
+
+msgid "busy"
+msgstr "απασχολημένος"
 
 msgid "Cancel changes"
 msgstr "Ακύρωση αλλαγών"
 
 msgid "Change name"
-msgstr ""
+msgstr "Αλλαγή ονόματος"
 
 msgid "Choose"
 msgstr "Επιλογή"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Εκκαθάριση αναζήτησης"
+
+msgid "Clear selected"
+msgstr "Εκκαθάριση επιλογής"
 
 msgid "Clear text"
 msgstr "Εκκαθάριση κειμένου"
 
 msgid "Close"
 msgstr "Κλείσιμο"
-
-msgid "Close modal"
-msgstr "Βοηθητικό κλείσιμο"
 
 msgid "Close navigation"
 msgstr "Κλείσιμο πλοήγησης"
@@ -78,33 +101,73 @@ msgid "Close sidebar"
 msgstr "Κλείσιμο πλευρικής μπάρας"
 
 msgid "Close Smart Picker"
-msgstr ""
+msgstr "Κλείσιμο Έξυπνης Επιλογής"
 
 msgid "Collapse menu"
-msgstr ""
+msgstr "Σύμπτυξη μενού"
+
+msgid "Color picker"
+msgstr "Επιλογέας χρώματος"
 
 msgid "Confirm changes"
 msgstr "Επιβεβαίωση αλλαγών"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "Συνδέστε αντικείμενα σε ένα έργο για να τα βρίσκετε πιο εύκολα"
+
 msgid "Custom"
 msgstr "Προσαρμογή"
 
+msgid "Dark skin tone"
+msgstr "Σκούρο θέμα"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Deluge"
+
+msgid "Deselect {option}"
+msgstr "Αποεπιλογή {option}"
+
+msgid "do not disturb"
+msgstr "μην ενοχλείτε"
+
 msgid "Edit item"
-msgstr "Επεξεργασία"
+msgstr "Επεξεργασία αντικειμένου"
+
+msgid "Emoji picker"
+msgstr "Επιλογέας emoji"
+
+msgid "Enable interactive view"
+msgstr "Ενεργοποίηση διαδραστικής προβολής"
 
 msgid "Enter link"
-msgstr ""
+msgstr "Εισάγετε σύνδεσμο"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
+"Σφάλμα λήψης σχετικών πόρων. Παρακαλούμε επικοινωνήστε με τον διαχειριστή "
+"του συστήματός σας εάν έχετε οποιεσδήποτε ερωτήσεις."
 
 msgid "External documentation for {name}"
-msgstr ""
+msgstr "Εξωτερική τεκμηρίωση για {name}"
+
+msgid "Failed to add the item to the project"
+msgstr "Αποτυχία προσθήκης του αντικειμένου στο έργο"
+
+msgid "Failed to create a project"
+msgstr "Αποτυχία δημιουργίας έργου"
+
+msgid "Failed to rename the project"
+msgstr "Αποτυχία μετονομασίας του έργου"
 
 msgid "Favorite"
 msgstr "Αγαπημένα"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Feldspar"
 
 msgid "Flags"
 msgstr "Σημαίες"
@@ -119,13 +182,45 @@ msgid "Global"
 msgstr "Καθολικό"
 
 msgid "Go back to the list"
-msgstr "Επιστροφή στην αρχική λίστα "
+msgstr "Επιστροφή στην αρχική λίστα"
+
+msgid "Gold"
+msgstr "Χρυσό"
+
+msgid "Hide details"
+msgstr "Απόκρυψη λεπτομερειών"
 
 msgid "Hide password"
-msgstr "Απόκρυψη κωδικού πρόσβασης"
+msgstr "Απόκρυψη συνθηματικού"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+msgid "invisible"
+msgstr "αόρατο"
+
+msgid "Keyboard navigation help"
+msgstr "Βοήθεια πλοήγησης με πληκτρολόγιο"
+
+msgid "Light skin tone"
+msgstr "Ανοιχτό θέμα"
+
+msgid "Load more \"{options}\""
+msgstr "Φόρτωση περισσότερων \"{options}\""
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Φόρτωση …"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Mariner"
+
+msgid "Medium dark skin tone"
+msgstr "Μέτριο σκούρο θέμα"
+
+msgid "Medium light skin tone"
+msgstr "Μέτριο ανοιχτό θέμα"
+
+msgid "Medium skin tone"
+msgstr "Μέτριος τόνος θέματος"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Συμπληρώθηκε το όριο των {count} χαρακτήρων του μηνύματος"
@@ -134,16 +229,22 @@ msgid "More items …"
 msgstr "Περισσότερα στοιχεία …"
 
 msgid "More options"
-msgstr ""
+msgstr "Περισσότερες επιλογές"
+
+msgid "Neutral skin color"
+msgstr "Ουδέτερο χρώμα θέματος"
 
 msgid "Next"
 msgstr "Επόμενο"
+
+msgid "Nextcloud blue"
+msgstr "Μπλε Nextcloud"
 
 msgid "No emoji found"
 msgstr "Δεν βρέθηκε emoji"
 
 msgid "No link provider found"
-msgstr ""
+msgstr "Δεν βρέθηκε πάροχος συνδέσμου"
 
 msgid "No results"
 msgstr "Κανένα αποτέλεσμα"
@@ -151,23 +252,33 @@ msgstr "Κανένα αποτέλεσμα"
 msgid "Objects"
 msgstr "Αντικείμενα"
 
-msgid "Open contact menu"
-msgstr ""
+msgid "offline"
+msgstr "εκτός σύνδεσης"
+
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Olivine"
+
+msgid "online"
+msgstr "συνδεδεμένος"
 
 msgid "Open link to \"{resourceName}\""
-msgstr ""
+msgstr "Άνοιγμα συνδέσμου για \"{resourceName}\""
 
 msgid "Open menu"
-msgstr ""
+msgstr "Άνοιγμα μενού"
 
-msgid "Open navigation"
-msgstr "Άνοιγμα πλοήγησης"
+msgid "Open navigation {shortcut}"
+msgstr "Άνοιγμα πλοήγησης {shortcut}"
 
-msgid "Open settings menu"
-msgstr ""
+msgid "Open sidebar"
+msgstr "Άνοιγμα πλευρικής μπάρας"
+
+msgid "Options"
+msgstr "Επιλογές"
 
 msgid "Password is secure"
-msgstr "Ο κωδικός πρόσβασης είναι ασφαλής"
+msgstr "Το συνθηματικό είναι ασφαλές"
 
 msgid "Pause slideshow"
 msgstr "Παύση προβολής διαφανειών"
@@ -176,22 +287,22 @@ msgid "People & Body"
 msgstr "Άνθρωποι & Σώμα"
 
 msgid "Pick a date"
-msgstr ""
+msgstr "Επιλέξτε ημερομηνία"
 
 msgid "Pick a date and a time"
-msgstr ""
+msgstr "Επιλέξτε ημερομηνία και ώρα"
 
 msgid "Pick a month"
-msgstr ""
+msgstr "Επιλέξτε μήνα"
 
 msgid "Pick a time"
-msgstr ""
+msgstr "Επιλέξτε ώρα"
 
 msgid "Pick a week"
-msgstr ""
+msgstr "Επιλέξτε εβδομάδα"
 
 msgid "Pick a year"
-msgstr ""
+msgstr "Επιλέξτε έτος"
 
 msgid "Pick an emoji"
 msgstr "Επιλέξτε ένα emoji"
@@ -203,37 +314,62 @@ msgid "Previous"
 msgstr "Προηγούμενο"
 
 msgid "Provider icon"
-msgstr ""
+msgstr "Εικονίδιο παρόχου"
+
+msgid "Purple"
+msgstr "Μωβ"
 
 msgid "Raw link {options}"
-msgstr ""
+msgstr "Ακατέργαστος σύνδεσμος {options}"
 
 msgid "Related resources"
 msgstr "Σχετικοί πόροι"
+
+msgid "Related team resources"
+msgstr "Σχετικοί πόροι ομάδας"
+
+msgid "Rename project"
+msgstr "Μετονομασία έργου"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Ροζ καφέ"
+
+msgid "Save changes"
+msgstr "Αποθήκευση αλλαγών"
 
 msgid "Search"
 msgstr "Αναζήτηση"
 
 msgid "Search emoji"
-msgstr ""
+msgstr "Αναζήτηση emoji"
+
+msgid "Search for time zone"
+msgstr "Αναζήτηση ζώνης ώρας"
 
 msgid "Search results"
 msgstr "Αποτελέσματα αναζήτησης"
 
+msgid "Search…"
+msgstr "Αναζήτηση…"
+
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
 msgid "sec. ago"
-msgstr ""
+msgstr "δευτ. πριν"
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
-msgstr ""
+msgstr "δευτερόλεπτα πριν"
 
 msgid "Select a tag"
 msgstr "Επιλογή ετικέτας"
 
 msgid "Select provider"
-msgstr ""
+msgstr "Επιλογή παρόχου"
+
+msgid "Selected"
+msgstr "Επιλεγμένο"
 
 msgid "Settings"
 msgstr "Ρυθμίσεις"
@@ -241,11 +377,23 @@ msgstr "Ρυθμίσεις"
 msgid "Settings navigation"
 msgstr "Πλοήγηση ρυθμίσεων"
 
+msgid "Show details"
+msgstr "Εμφάνιση λεπτομερειών"
+
 msgid "Show password"
 msgstr "Εμφάνιση κωδικού πρόσβασης"
 
+msgid "Skin tone"
+msgstr "Τόνος δέρματος"
+
+msgid "Skip to app navigation"
+msgstr "Μετάβαση στην πλοήγηση της εφαρμογής"
+
+msgid "Skip to main content"
+msgstr "Μετάβαση στο κύριο περιεχόμενο"
+
 msgid "Smart Picker"
-msgstr ""
+msgstr "Έξυπνη Επιλογή"
 
 msgid "Smileys & Emotion"
 msgstr "Φατσούλες & Συναίσθημα"
@@ -254,7 +402,7 @@ msgid "Start slideshow"
 msgstr "Έναρξη προβολής διαφανειών"
 
 msgid "Start typing to search"
-msgstr ""
+msgstr "Ξεκινήστε να πληκτρολογείτε για αναζήτηση"
 
 msgid "Submit"
 msgstr "Υποβολή"
@@ -265,6 +413,9 @@ msgstr "Σύμβολα"
 msgid "Travel & Places"
 msgstr "Ταξίδια & Τοποθεσίες"
 
+msgid "Type to search for existing projects"
+msgstr "Πληκτρολογήστε για αναζήτηση υπαρχόντων έργων"
+
 msgid "Type to search time zone"
 msgstr "Πληκτρολογήστε για αναζήτηση ζώνης ώρας"
 
@@ -274,9 +425,15 @@ msgstr "Δεν είναι δυνατή η αναζήτηση της ομάδας
 msgid "Undo changes"
 msgstr "Αναίρεση Αλλαγών"
 
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
-"Γράψτε μήνυμα, χρησιμοποιείστε \"@\" για να αναφέρετε κάποιον, "
-"χρησιμοποιείστε \":\" για αυτόματη συμπλήρωση emoji …"
+msgid "User status: {status}"
+msgstr "Κατάσταση χρήστη: {status}"
+
+msgid "View team"
+msgstr "Προβολή ομάδας"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Ουίσκι"
+
+msgid "Write a message …"
+msgstr "Γράψτε ένα μήνυμα …"
