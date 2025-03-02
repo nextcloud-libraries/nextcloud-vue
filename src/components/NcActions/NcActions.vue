@@ -920,7 +920,7 @@ export default {
 <script>
 import { useElementBounding, useWindowSize } from '@vueuse/core'
 import { Fragment, computed, h, mergeProps, ref, toRef, warn } from 'vue'
-import { getTrapStack } from '../../utils/focusTrap.js'
+import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
 import { t } from '../../l10n.js'
 
 import NcButton from '../NcButton/index.ts'
@@ -1154,7 +1154,6 @@ export default {
 			 * @type {'menu'|'navigation'|'dialog'|'tooltip'|'unknown'}
 			 */
 			actionsMenuSemanticType: 'unknown',
-			externalFocusTrapStack: [],
 		}
 	},
 
@@ -1238,8 +1237,6 @@ export default {
 		},
 
 		opened() {
-			this.intersectIntoCurrentFocusTrapStack()
-
 			// Ensure that pressing escape will close the menu even if the menu is not hovered
 			// and not currently active, e.g. because user opened the context menu
 			if (this.opened) {
@@ -1248,6 +1245,14 @@ export default {
 				document.body.removeEventListener('keydown', this.handleEscapePressed)
 			}
 		},
+	},
+
+	created() {
+		// When component has its own custom focus management
+		// The global focus trap stack should be paused
+		useTrapStackControl(() => this.opened, {
+			disabled: () => this.config.withFocusTrap,
+		})
 	},
 
 	methods: {
@@ -1259,33 +1264,6 @@ export default {
 		 */
 		getActionName(action) {
 			return action?.type?.name
-		},
-
-		/**
-		 * When the component has its own focus trap, then it is managed by global trap stack by focus-trap.
-		 *
-		 * However if the component has no focus trap and is used inside another focus trap - there is an issue.
-		 * By default popover content is rendered in body or other container, which is likely outside the current focus trap containers.
-		 * It results in broken behavior from focus-trap.
-		 *
-		 * We need to pause all the focus traps for opening popover and then unpause them back after closing.
-		 */
-		intersectIntoCurrentFocusTrapStack() {
-			if (this.config.withFocusTrap) {
-				return
-			}
-
-			if (this.opened) {
-				this.externalFocusTrapStack = [...getTrapStack()]
-				for (const trap of this.externalFocusTrapStack) {
-					trap.pause()
-				}
-			} else {
-				for (const trap of this.externalFocusTrapStack) {
-					trap.unpause()
-				}
-				this.externalFocusTrapStack = []
-			}
 		},
 
 		/**

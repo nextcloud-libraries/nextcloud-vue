@@ -169,7 +169,7 @@ emit('toggle-navigation', {
 
 <script>
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { getTrapStack } from '../../utils/focusTrap.js'
+import { getTrapStack } from '../../utils/focusTrap.ts'
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { createFocusTrap } from 'focus-trap'
 
