@@ -161,7 +161,7 @@ export default {
 				:options="options"
 				v-model="singleValue"
 				required />
-			<NcButton native-type="submit">Submit</NcButton>
+			<NcButton type="submit">Submit</NcButton>
 		</form>
 
 		<form class="container__form" @submit.prevent>
@@ -171,7 +171,7 @@ export default {
 				v-model="multiValue"
 				multiple
 				required />
-			<NcButton native-type="submit">Submit</NcButton>
+			<NcButton type="submit">Submit</NcButton>
 		</form>
 	</div>
 </template>

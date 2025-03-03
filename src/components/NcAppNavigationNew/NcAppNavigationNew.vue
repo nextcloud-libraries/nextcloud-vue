@@ -30,7 +30,7 @@
 	<div class="app-navigation-new">
 		<NcButton :id="buttonId"
 			:disabled="disabled"
-			:type="type"
+			:variant="type !== 'primary' ? type : variant"
 			@click="$emit('click')">
 			<template #icon>
 				<slot name="icon" />
@@ -62,6 +62,10 @@ export default {
 			type: String,
 			required: true,
 		},
+
+		/**
+		 * @deprecated use `variant` instead - will be removed with v9
+		 */
 		type: {
 			type: String,
 			default: 'primary',
@@ -69,6 +73,18 @@ export default {
 				return ['primary', 'secondary', 'tertiary'].indexOf(value) !== -1
 			},
 		},
+
+		/**
+		 * The color variant to use.
+		 * @default 'primary'
+		 */
+		variant: {
+			type: String,
+			default: 'primary',
+			validator(value) {
+				return ['primary', 'secondary', 'tertiary'].indexOf(value) !== -1
+			},
+		}
 	},
 
 	emits: ['click'],

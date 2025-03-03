@@ -10,8 +10,9 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 <template>
 	<NcButton :aria-label="label"
 		:disabled="disabled"
-		:native-type="nativeType"
 		:type="type"
+		:native-type="nativeType"
+		:variant="variant"
 		@click="handleClick">
 		{{ label }}
 		<template #icon>
@@ -65,18 +66,21 @@ const props = defineProps({
 	},
 
 	/**
-	 * The button type, see NcButton
-	 * @type {'primary'|'secondary'|'error'|'warning'|'success'}
+	 * The button type, see NcButton.
+	 *
+	 * @deprecated The usage for setting the color variant is deprecated and will be removed with v9.
+	 * @type {'button'|'submit'|'reset'|'primary'|'secondary'|'error'|'warning'|'success'}
 	 */
 	type: {
 		type: String,
 		required: false,
 		default: 'secondary',
-		validator: (type) => typeof type === 'string' && ['primary', 'secondary', 'tertiary', 'error', 'warning', 'success'].includes(type),
+		validator: (type) => typeof type === 'string' && ['button', 'submit', 'reset', 'primary', 'secondary', 'tertiary', 'error', 'warning', 'success'].includes(type),
 	},
 
 	/**
-	 * See `nativeType` of `NcButton`
+	 * See `nativeType` of `NcButton`.
+	 * @deprecated use `type` instead - will removed with v9
 	 */
 	nativeType: {
 		type: String,
@@ -93,6 +97,19 @@ const props = defineProps({
 	disabled: {
 		type: Boolean,
 		default: false,
+	},
+
+	/**
+	 * The button variant, see NcButton.
+	 *
+	 * @type {'primary'|'secondary'|'tertiary'|'error'|'warning'|'success'}
+	 * @since 8.23.0
+	 */
+	variant: {
+		type: String,
+		required: false,
+		default: 'secondary',
+		validator: (type) => typeof type === 'string' && ['primary', 'secondary', 'tertiary', 'error', 'warning', 'success'].includes(type),
 	},
 })
 
