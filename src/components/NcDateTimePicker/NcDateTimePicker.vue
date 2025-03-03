@@ -280,7 +280,7 @@ export default ScopeComponent({
 
 	setup() {
 		return {
-			timezoneDialogHeaderId: `timezone-dialog-header-${createElementId()}`,
+			timezoneDialogHeaderId: createElementId(),
 		}
 	},
 

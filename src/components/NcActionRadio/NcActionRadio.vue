@@ -67,8 +67,8 @@ So that only one of each name set can be selected at the same time.
 
 <script>
 import { useModel } from 'vue'
-import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import { createElementId } from '../../utils/createElementId.ts'
+import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 
 export default {
 	name: 'NcActionRadio',
@@ -88,7 +88,7 @@ export default {
 		 */
 		id: {
 			type: String,
-			default: () => 'action-' + createElementId(),
+			default: () => createElementId(),
 			validator: id => id.trim() !== '',
 		},
 

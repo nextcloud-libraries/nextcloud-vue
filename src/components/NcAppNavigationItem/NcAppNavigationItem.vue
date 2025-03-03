@@ -396,10 +396,10 @@ import NcActionButton from '../NcActionButton/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import NcVNodes from '../NcVNodes/index.js'
 import NcAppNavigationIconCollapsible from './NcAppNavigationIconCollapsible.vue'
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import NcInputConfirmCancel from './NcInputConfirmCancel.vue'
-import { t } from '../../l10n.js'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { createElementId } from '../../utils/createElementId.ts'
+import { t } from '../../l10n.js'
 
 import Pencil from 'vue-material-design-icons/Pencil.vue'
 import Undo from 'vue-material-design-icons/Undo.vue'
@@ -449,7 +449,7 @@ export default {
 		 */
 		id: {
 			type: String,
-			default: () => 'app-navigation-item-' + createElementId(),
+			default: () => createElementId(),
 			validator: id => id.trim() !== '',
 		},
 

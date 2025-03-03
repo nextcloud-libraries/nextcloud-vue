@@ -60,8 +60,8 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 </template>
 
 <script>
-import NcActions from '../NcActions/index.js'
 import { createElementId } from '../../utils/createElementId.ts'
+import NcActions from '../NcActions/index.js'
 import NcButton from '../NcButton/NcButton.vue'
 
 import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
@@ -162,19 +162,26 @@ export default {
 		'dropped',
 		'update:open',
 	],
+
+	setup() {
+		return {
+			/**
+			 * The unique id of the breadcrumb. Necessary to append the
+			 * Actions menu to the correct crumb.
+			 */
+			 crumbId: createElementId(),
+		}
+	},
+
 	data() {
 		return {
 			/**
 			 * Variable to track if we hover over the breadcrumb
 			 */
 			hovering: false,
-			/**
-			 * The unique id of the breadcrumb. Necessary to append the
-			 * Actions menu to the correct crumb.
-			 */
-			crumbId: `crumb-id-${createElementId()}`,
 		}
 	},
+
 	computed: {
 		/**
 		 * The attributes to pass to `router-link` or `a`

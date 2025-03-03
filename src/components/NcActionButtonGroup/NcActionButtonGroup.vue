@@ -116,7 +116,7 @@ export default defineComponent({
 
 	setup() {
 		return {
-			labelId: `nc-action-button-group-${createElementId()}`,
+			labelId: createElementId(),
 		}
 	},
 

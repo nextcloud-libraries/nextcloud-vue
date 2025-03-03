@@ -290,11 +290,11 @@ import richEditor from '../../mixins/richEditor/index.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 import { emojiSearch, emojiAddRecent } from '../../functions/emoji/index.ts'
 import { searchProvider, getLinkWithPicker } from '../NcRichText/index.js'
+import { createElementId } from '../../utils/createElementId.ts'
 
 import Tribute from 'tributejs/dist/tribute.esm.js'
 import debounce from 'debounce'
 import stringLength from 'string-length'
-import { createElementId } from '../../utils/createElementId.ts'
 
 /**
  * Populate the list of text smiles we want to offer via Tribute.
@@ -324,7 +324,7 @@ export default {
 		 */
 		id: {
 			type: String,
-			default: () => createElementId(7),
+			default: () => createElementId(),
 		},
 
 		/**
@@ -425,11 +425,11 @@ export default {
 	],
 
 	setup() {
-		const uid = createElementId()
 		return {
 			// Constants
-			labelId: `nc-rich-contenteditable-${uid}-label`,
-			tributeId: `nc-rich-contenteditable-${uid}-tribute`,
+			labelId: createElementId(),
+			tributeId: createElementId(),
+
 			/**
 			 * Non-reactive property to store Tribute instance
 			 *
@@ -559,7 +559,7 @@ export default {
 		},
 
 		initializeTribute() {
-			const renderMenuItem = (content) => `<div id="nc-rich-contenteditable-tribute-item-${createElementId()}" class="${this.$style['tribute-item']}" role="option">${content}</div>`
+			const renderMenuItem = (content) => `<div id="${createElementId()}" class="${this.$style['tribute-item']}" role="option">${content}</div>`
 
 			const tributesCollection = []
 			tributesCollection.push({
