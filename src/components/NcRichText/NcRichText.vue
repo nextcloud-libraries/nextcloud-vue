@@ -98,7 +98,7 @@ Table row | value A | value B
 ---
 
 \`\`\`js
-const GenRandomId = (length) => {
+const createElementId = (length) => {
 \treturn Math.random()
 \t\t.toString(36)
 \t\t.replace(/[^a-z]+/g, '')
@@ -302,22 +302,23 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 </docs>
 
 <script>
-import NcReferenceList from './NcReferenceList.vue'
-import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
-import { getRoute, remarkAutolink } from './autolink.ts'
-import { remarkPlaceholder, prepareTextNode } from './placeholder.js'
-import { remarkUnescape } from './remarkUnescape.js'
-import GenRandomId from '../../utils/GenRandomId.js'
-
 import { unified } from 'unified'
+import { Fragment, h, ref, resolveComponent } from 'vue'
+import { RouterLink } from 'vue-router'
+
 import remarkParse from 'remark-parse'
 import remarkGfm from 'remark-gfm'
 import breaks from 'remark-breaks'
 import remark2rehype from 'remark-rehype'
 import rehype2react from 'rehype-react'
 import rehypeExternalLinks from 'rehype-external-links'
-import { Fragment, h, ref, resolveComponent } from 'vue'
-import { RouterLink } from 'vue-router'
+
+import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
+import NcReferenceList from './NcReferenceList.vue'
+import { getRoute, remarkAutolink } from './autolink.ts'
+import { remarkPlaceholder, prepareTextNode } from './placeholder.js'
+import { remarkUnescape } from './remarkUnescape.js'
+import { createElementId } from '../../utils/createElementId.ts'
 
 /**
  * Heavy libraries should be loaded on demand to reduce component size
@@ -388,7 +389,7 @@ export default {
 
 	data() {
 		return {
-			parentId: GenRandomId(5),
+			parentId: createElementId(),
 		}
 	},
 
@@ -509,7 +510,7 @@ export default {
 							labelParts.splice(nestedNodeIndex)
 						}
 
-						const id = this.parentId + '-markdown-input-' + GenRandomId(5)
+						const id = this.parentId + '-markdown-input-' + createElementId()
 						const propsToForward = { ...inputNode.props }
 						// The checked prop is name modelValue for NcCheckboxRadioSwitch
 						delete propsToForward.checked

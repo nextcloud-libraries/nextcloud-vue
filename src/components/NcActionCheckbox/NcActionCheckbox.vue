@@ -39,7 +39,7 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 
 <script>
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
-import GenRandomId from '../../utils/GenRandomId.js'
+import { createElementId } from '../../utils/createElementId.ts'
 
 export default {
 	name: 'NcActionCheckbox',
@@ -59,7 +59,7 @@ export default {
 		 */
 		id: {
 			type: String,
-			default: () => 'action-' + GenRandomId(),
+			default: () => 'action-' + createElementId(),
 			validator: id => id.trim() !== '',
 		},
 

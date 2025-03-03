@@ -478,7 +478,7 @@ export default defineComponent({
 		 * @type {'primary' | 'secondary' | 'tertiary' | 'tertiary-no-background' | 'tertiary-on-primary' | 'error' | 'warning' | 'success'}
 		 */
 		type: {
-			type: String as PropType<ButtonType>,
+			type: String as PropType<ButtonType | `${ButtonType}`>,
 			default: ButtonType.Secondary,
 			validator(value: string) {
 				return Object.values(ButtonType).includes(value as ButtonType)

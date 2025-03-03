@@ -54,7 +54,7 @@ section * {
 <script>
 import NcSelect from '../../components/NcSelect/index.js'
 import { t } from '../../l10n.js'
-import GenRandomId from '../../utils/GenRandomId.js'
+import { createElementId } from '../../utils/createElementId.ts'
 
 import axios from '@nextcloud/axios'
 import debounce from 'debounce'
@@ -89,7 +89,7 @@ export default {
 		 */
 		id: {
 			type: String,
-			default: () => 'action-' + GenRandomId(),
+			default: () => 'action-' + createElementId(),
 			validator: id => id.trim() !== '',
 		},
 
@@ -119,7 +119,7 @@ export default {
 		return {
 			/** Temporary store to cache groups */
 			groups: {},
-			randId: GenRandomId(),
+			randId: createElementId(),
 			errorMessage: '',
 		}
 	},

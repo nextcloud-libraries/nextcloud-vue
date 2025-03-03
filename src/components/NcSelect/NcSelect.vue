@@ -574,6 +574,7 @@ import {
 	shift,
 } from '@floating-ui/dom'
 import { h, warn } from 'vue'
+import { createElementId } from '../../utils/createElementId.ts'
 import { t } from '../../l10n.js'
 
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
@@ -582,8 +583,6 @@ import Close from 'vue-material-design-icons/Close.vue'
 import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
 import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
-
-import GenRandomId from '../../utils/GenRandomId.js'
 
 export default {
 	name: 'NcSelect',
@@ -758,7 +757,7 @@ export default {
 		 */
 		inputId: {
 			type: String,
-			default: () => `select-input-${GenRandomId()}`,
+			default: () => createElementId(),
 		},
 
 		/**
@@ -894,7 +893,7 @@ export default {
 		 */
 		uid: {
 			type: String,
-			default: () => GenRandomId(),
+			default: () => createElementId(),
 		},
 
 		/**
