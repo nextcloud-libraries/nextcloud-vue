@@ -145,7 +145,7 @@
     "resolve-url-loader": "^5.0.0",
     "sanitize-filename": "^1.6.3",
     "sass": "^1.85.1",
-    "stylelint": "^16.14.1",
+    "stylelint": "^16.15.0",
     "stylelint-use-logical": "^2.1.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2",
