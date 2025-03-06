@@ -74,7 +74,7 @@ consider only using header elements as the root elements for the name slot.
 			</h1>
 		</template>
 		<template #action>
-			<NcButton type="primary">
+			<NcButton variant="primary">
 				Add a comment!
 			</NcButton>
 		</template>

@@ -6,12 +6,12 @@
 <template>
 	<div class="app-navigation-toggle-wrapper">
 		<NcButton class="app-navigation-toggle"
-			type="tertiary"
+			aria-controls="app-navigation-vue"
 			:aria-expanded="open ? 'true' : 'false'"
+			:aria-keyshortcuts="disableKeyboardShortcuts ? '' : 'n'"
 			:aria-label="label"
 			:title="label"
-			aria-controls="app-navigation-vue"
-			:aria-keyshortcuts="disableKeyboardShortcuts ? '' : 'n'"
+			variant="tertiary"
 			@click="toggleNavigation">
 			<template #icon>
 				<MenuOpenIcon v-if="open" :size="20" />

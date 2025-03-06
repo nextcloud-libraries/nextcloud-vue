@@ -5,10 +5,10 @@
 
 <template>
 	<NcButton v-tooltip="title"
-		type="tertiary"
-		:aria-label="title"
 		class="app-details-toggle"
-		:class="{ 'app-details-toggle--mobile': isMobile }">
+		:class="{ 'app-details-toggle--mobile': isMobile }"
+		:aria-label="title"
+		variant="tertiary">
 		<template #icon>
 			<ArrowLeft v-if="isRtl" :size="20" />
 			<ArrowRight v-else :size="20" />

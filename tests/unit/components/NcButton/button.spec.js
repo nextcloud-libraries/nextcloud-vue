@@ -7,7 +7,51 @@ import { shallowMount } from '@vue/test-utils'
 import NcButton from '../../../../src/components/NcButton/NcButton.vue'
 
 describe('NcButton', () => {
-	describe('pressed', () => {
+	describe('native HTML button type', () => {
+		test('using the legacy `nativeType` prop works', () => {
+			const wrapper = shallowMount(NcButton, { propsData: { nativeType: 'submit' } })
+			const button = wrapper.find('button')
+			expect(button.attributes('type')).toBe('submit')
+		})
+
+		test('using the `type` prop works', () => {
+			const wrapper = shallowMount(NcButton, { propsData: { type: 'submit' } })
+			const button = wrapper.find('button')
+			expect(button.attributes('type')).toBe('submit')
+		})
+	})
+
+	describe('migration from `type` and `nativeType` to `variant` and `type`', () => {
+		test('Setting only the type prop to a color', () => {
+			const wrapper = shallowMount(NcButton, { propsData: { type: 'primary' } })
+			const button = wrapper.find('button')
+			expect(button.attributes('type')).toBe('button')
+			expect(button.classes().filter((name) => name.includes('primary'))).toHaveLength(1)
+		})
+
+		test('Setting only the variant prop to a color', () => {
+			const wrapper = shallowMount(NcButton, { propsData: { variant: 'primary' } })
+			const button = wrapper.find('button')
+			expect(button.attributes('type')).toBe('button')
+			expect(button.classes().filter((name) => name.includes('primary'))).toHaveLength(1)
+		})
+
+		test('Setting type to native type and variant prop to a color', () => {
+			const wrapper = shallowMount(NcButton, { propsData: { type: 'submit', variant: 'primary' } })
+			const button = wrapper.find('button')
+			expect(button.attributes('type')).toBe('submit')
+			expect(button.classes().filter((name) => name.includes('primary'))).toHaveLength(1)
+		})
+
+		test('Setting type to color and nativeType to button type', () => {
+			const wrapper = shallowMount(NcButton, { propsData: { type: 'primary', nativeType: 'submit' } })
+			const button = wrapper.find('button')
+			expect(button.attributes('type')).toBe('submit')
+			expect(button.classes().filter((name) => name.includes('primary'))).toHaveLength(1)
+		})
+	})
+
+	describe('toggle button behavior', () => {
 		it('has aria-pressed="true" when pressed', () => {
 			const wrapper = shallowMount(NcButton, { propsData: { ariaLabel: 'button', pressed: true } })
 			const button = wrapper.find('button')

@@ -5,6 +5,21 @@
 
 # Changelog
 
+## UNRELEASED
+
+### 📝 Notes
+#### `NcButton` color variant and native type
+`NcButton` (and `NcDialogButton`) now provides a `variant` prop to set the color variant to use (e.g. `'primary'`) and allows to set the native button type using the `type` prop.
+The legacy behavior, `type` for the color variant and `nativeType` for the button type, still works but will be removed in the next major version.
+
+To make a later migration to version 9 easier you can already migrate your `NcButton` usage like this:
+```vue
+<!-- Before: -->
+<NcButton type="primary" native-type="submit">Submit</NcButton>
+<!-- After: -->
+<NcButton type="submit" variant="primary">Submit</NcButton>
+```
+
 ## [v8.23.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.23.1) (2025-02-13)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.23.0...v8.23.1)
 

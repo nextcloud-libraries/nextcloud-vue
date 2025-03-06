@@ -10,8 +10,8 @@
 	<div style="display: flex; gap: 8px; flex-wrap: wrap;">
 		<NcChip text="Notes.txt" />
 		<NcChip text="Files" :icon-path="mdiFile" />
-		<NcChip text="Color" type="tertiary" :icon-path="mdiPalette" />
-		<NcChip text="Current time" type="primary" :icon-path="mdiClock" no-close />
+		<NcChip text="Color" :icon-path="mdiPalette" variant="tertiary" />
+		<NcChip text="Current time" :icon-path="mdiClock" no-close variant="primary" />
 	</div>
 </template>
 <script>
@@ -72,7 +72,7 @@ export default {
 <template>
 	<div class="nc-chip"
 		:class="{
-			[`nc-chip--${type}`]: true,
+			[`nc-chip--${realVariant}`]: true,
 			'nc-chip--no-actions': noClose && !hasActions(),
 			'nc-chip--no-icon': !hasIcon(),
 		}">
@@ -94,7 +94,7 @@ export default {
 		<NcActions v-if="canClose || hasActions()"
 			class="nc-chip__actions"
 			:force-menu="!canClose"
-			type="tertiary-no-background">
+			variant="tertiary-no-background">
 			<NcActionButton v-if="canClose"
 				close-after-click
 				@click="onClose">
@@ -137,8 +137,10 @@ const props = defineProps({
 	},
 
 	/**
-	 * Chip style
-	 * This sets the background style of the chip, similar to NcButton's `type`
+	 * Set the chips design variant-
+	 *
+	 * This sets the background style of the chip, similar to NcButton's `variant`.
+	 * @deprecated will be removed with v9 - use `variant` instead.
 	 */
 	type: {
 		type: String,
@@ -170,10 +172,25 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+
+	/**
+	 * Set the chips design variant-
+	 *
+	 * This sets the background style of the chip, similar to NcButton's `variant`.
+	 * @since 8.23.0
+	 */
+	variant: {
+		type: String,
+		default: 'secondary',
+		validator: (value) => ['primary', 'secondary', 'tertiary'].includes(value),
+	},
 })
 
 const emit = defineEmits(['close'])
 const slots = useSlots()
+
+// TODO: Replace with just `variant` in v9
+const realVariant = computed(() => props.type !== 'secondary' ? props.type : props.variant)
 
 const canClose = computed(() => !props.noClose)
 const hasActions = () => Boolean(slots.actions?.())

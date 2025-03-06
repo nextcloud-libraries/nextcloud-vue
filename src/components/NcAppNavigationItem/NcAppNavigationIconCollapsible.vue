@@ -7,8 +7,8 @@
 	<!-- Button to expand or collapse children -->
 	<NcButton class="icon-collapse"
 		:class="{'icon-collapse--open':open}"
-		type="tertiary"
 		:aria-label="labelButton"
+		variant="tertiary"
 		@click="onClick">
 		<template #icon>
 			<ChevronUp v-if="open"

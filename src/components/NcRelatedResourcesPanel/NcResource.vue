@@ -7,9 +7,9 @@
 	<li class="resource">
 		<NcButton class="resource__button"
 			:aria-label="labelTranslated"
-			type="tertiary"
 			:to="route"
-			:href="route ? null : url">
+			:href="route ? null : url"
+			variant="tertiary">
 			<template #icon>
 				<div class="resource__icon">
 					<img :src="icon">
