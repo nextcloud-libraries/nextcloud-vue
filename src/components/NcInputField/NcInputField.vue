@@ -57,10 +57,10 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 
 			<!-- trailing button -->
 			<NcButton v-if="showTrailingButton"
-				type="tertiary-no-background"
 				class="input-field__trailing-button"
 				:aria-label="trailingButtonLabel"
 				:disabled="disabled"
+				variant="tertiary-no-background"
 				@click="handleTrailingButtonClick">
 				<!-- Populating this slot creates a trailing button within the
 				input boundaries that emits a `trailing-button-click` event -->

@@ -37,7 +37,7 @@ It can be used with one or multiple actions.
 			aria-label="Example text"
 			:disabled="disabled"
 			:size="size"
-			type="tertiary-no-background">
+			variant="tertiary-no-background">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
 					:size="20" />
@@ -48,7 +48,7 @@ It can be used with one or multiple actions.
 			aria-label="Example text"
 			:disabled="disabled"
 			:size="size"
-			type="tertiary">
+			variant="tertiary">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
 					:size="20" />
@@ -69,7 +69,7 @@ It can be used with one or multiple actions.
 			aria-label="Example text"
 			:disabled="disabled"
 			:size="size"
-			type="primary">
+			variant="primary">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
 					:size="20" />
@@ -102,7 +102,7 @@ It can be used with one or multiple actions.
 		<NcButton
 			:disabled="disabled"
 			:size="size"
-			type="success">
+			variant="success">
 			<template #icon>
 				<Video
 					:size="20" />
@@ -112,7 +112,7 @@ It can be used with one or multiple actions.
 		<NcButton
 			:disabled="disabled"
 			:size="size"
-			type="warning">
+			variant="warning">
 			<template #icon>
 				<Video
 					:size="20" />
@@ -122,7 +122,7 @@ It can be used with one or multiple actions.
 		<NcButton
 			:disabled="disabled"
 			:size="size"
-			type="error">
+			variant="error">
 			<template #icon>
 				<Video
 					:size="20" />
@@ -189,13 +189,13 @@ Sometimes it is required to change the icon alignment on the button, like for sw
 ```vue
 <template>
 	<div style="display: flex; flex-direction: column; gap: 12px;">
-		<NcButton aria-label="center (default)" type="secondary" wide>
+		<NcButton aria-label="center (default)" variant="secondary" wide>
 			<template #icon>
 				<IconLeft :size="20" />
 			</template>
 			center (default)
 		</NcButton>
-		<NcButton alignment="center-reverse" aria-label="center-reverse" type="secondary" wide>
+		<NcButton alignment="center-reverse" aria-label="center-reverse" variant="secondary" wide>
 			<template #icon>
 				<IconRight :size="20" />
 			</template>
@@ -203,13 +203,13 @@ Sometimes it is required to change the icon alignment on the button, like for sw
 		</NcButton>
 		<div style="display: flex; gap: 12px;">
 			<div style="display: flex; flex-direction: column; gap: 12px; flex: 1">
-				<NcButton alignment="start" aria-label="start" type="secondary" wide>
+				<NcButton alignment="start" aria-label="start" variant="secondary" wide>
 					<template #icon>
 						<IconLeft :size="20" />
 					</template>
 					start
 				</NcButton>
-				<NcButton alignment="start-reverse" aria-label="start-reverse" type="secondary" wide>
+				<NcButton alignment="start-reverse" aria-label="start-reverse" variant="secondary" wide>
 					<template #icon>
 						<IconRight :size="20" />
 					</template>
@@ -217,13 +217,13 @@ Sometimes it is required to change the icon alignment on the button, like for sw
 				</NcButton>
 			</div>
 			<div style="display: flex; flex-direction: column; gap: 12px; flex: 1">
-				<NcButton alignment="end" aria-label="end" type="secondary" wide>
+				<NcButton alignment="end" aria-label="end" variant="secondary" wide>
 					<template #icon>
 						<IconLeft :size="20" />
 					</template>
 					end
 				</NcButton>
-				<NcButton alignment="end-reverse" aria-label="end-reverse" type="secondary" wide>
+				<NcButton alignment="end-reverse" aria-label="end-reverse" variant="secondary" wide>
 					<template #icon>
 						<IconRight :size="20" />
 					</template>
@@ -249,7 +249,7 @@ export default {
 ### Pressed state
 
 It is possible to make the button stateful by adding a pressed state, e.g. if you like to create a favorite button.
-The button will have the required `aria` attribute for accessibility and visual style (`primary` when pressed, and the configured type otherwise).
+The button will have the required `aria` attribute for accessibility and visual style (`primary` when pressed, and the configured variant otherwise).
 
 Do not change `text` or `aria-label` of the pressed/unpressed button. See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed
 
@@ -316,7 +316,7 @@ The standard way to implement sortable table column headers should be like this:
 				<th :aria-sorted="sortedName" class="row-name">
 					<NcButton alignment="start-reverse"
 						:wide="true"
-						type="tertiary"
+						variant="tertiary"
 						@click="sortName">
 						<template #icon>
 							<IconDown v-if="sortedName === 'ascending'" class="sort-icon" :size="20" />
@@ -328,7 +328,7 @@ The standard way to implement sortable table column headers should be like this:
 				<th :aria-sorted="sortedSize" class="row-size">
 					<NcButton alignment="end"
 						:wide="true"
-						type="tertiary"
+						variant="tertiary"
 						@click="sortSize">
 						<template #icon>
 							<IconDown v-if="sortedSize === 'ascending'" class="sort-icon" :size="20" />
@@ -575,6 +575,22 @@ export default defineComponent({
 			type: Boolean,
 			default: null,
 		},
+
+		/**
+		 * Specifies the button variant.
+		 *
+		 * Accepted values: primary, secondary, tertiary, tertiary-no-background, tertiary-on-primary, error, warning, success.
+		 *
+		 * @default 'secondary'
+		 * @since 8.23.0
+		 */
+		 variant: {
+			type: String,
+			validator(value) {
+				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].includes(value)
+			},
+			default: 'secondary',
+		},
 	},
 
 	emits: ['update:pressed', 'click'],
@@ -584,15 +600,39 @@ export default defineComponent({
 		 * The real type to be used for the button, enforces `primary` for pressed state and, if stateful button, any other type for not pressed state
 		 * Otherwise the type property is used.
 		 */
-		realType() {
+		realVariant() {
 			// Force *primary* when pressed
 			if (this.pressed) {
 				return 'primary'
 			}
 			// If not pressed but button is configured as stateful button then the type must not be primary
-			if (this.pressed === false && this.type === 'primary') {
+			if (this.pressed === false && (this.type === 'primary' || this.variant === 'primary')) {
 				return 'secondary'
 			}
+			// handle legacy behavior
+			if (this.type !== 'secondary' && ['primary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].includes(this.type)) {
+				return this.type
+			}
+			// otherwise use the configured variant
+			return this.variant
+		},
+
+		/**
+		 * The HTML button type
+		 */
+		realType() {
+			if (typeof this.pressed === 'boolean') {
+				return 'button'
+			}
+			// Handle legacy behavior
+			if (this.nativeType !== 'button') {
+				return this.nativeType
+			}
+			// Also handling legacy behavior: Ensure we do not conflict here
+			if (['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].includes(this.type)) {
+				return this.nativeType
+			}
+			// otherwise use the type
 			return this.type
 		},
 
@@ -648,7 +688,7 @@ export default defineComponent({
 						'button-vue--icon-only': hasIcon && !hasText,
 						'button-vue--text-only': hasText && !hasIcon,
 						'button-vue--icon-and-text': hasIcon && hasText,
-						[`button-vue--vue-${this.realType}`]: this.realType,
+						[`button-vue--vue-${this.realVariant}`]: this.realVariant,
 						'button-vue--wide': this.wide,
 						[`button-vue--${this.flexAlignment}`]: this.flexAlignment !== 'center',
 						'button-vue--reverse': this.isReverseAligned,
