@@ -143,9 +143,11 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 	<Dropdown ref="popover"
 		:distance="10"
 		:arrow-padding="10"
+		:positioning-disabled="isMobileMode"
 		v-bind="$attrs"
 		:no-auto-focus="true /* Handled by the focus trap */"
 		:popper-class="popoverBaseClass"
+		class="foo"
 		:shown="internalShown"
 		v-on="$listeners"
 		@update:shown="internalShown = $event"
@@ -164,11 +166,12 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue, { computed } from 'vue'
 import { Dropdown } from 'floating-vue'
 import { createFocusTrap } from 'focus-trap'
 import { getTrapStack } from '../../utils/focusTrap.ts'
 import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
+import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
 
 /**
  * @typedef {import('focus-trap').FocusTargetValueOrFalse} FocusTargetValueOrFalse
@@ -225,6 +228,14 @@ export default {
 			default: undefined,
 			type: [HTMLElement, SVGElement, String, Boolean, Function],
 		},
+
+		/**
+		 * Enable mobile mode (show popover almost full screen) on mobile screen size
+		 */
+		withMobileMode: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	emits: [
@@ -235,6 +246,14 @@ export default {
 		 */
 		'update:shown',
 	],
+
+	setup(props) {
+		const isSmallMobile = useIsSmallMobile()
+		const isMobileMode = computed(() => props.withMobileMode && isSmallMobile.value)
+		return {
+			isMobileMode,
+		}
+	},
 
 	data() {
 		return {
@@ -510,6 +529,36 @@ $arrow-position: $arrow-width - 1px;
 			visibility: visible;
 			transition: opacity var(--animation-quick);
 			opacity: 1;
+		}
+
+		&.v-popper__popper--no-positioning {
+			position: fixed;
+			inset: 0;
+
+			.v-popper__backdrop {
+				position: absolute;
+				inset: 0;
+				background-color: rgba(0, 0, 0, 0.5);
+			}
+
+			.v-popper__wrapper {
+				position: absolute;
+				inset: auto 0 0 0;
+				max-height: calc(100vh - var(--default-clickable-area));
+			}
+
+			.v-popper__inner {
+				border-radius: var(--border-radius-large) var(--border-radius-large) 0 0;
+			}
+
+			&.v-popper__popper--show-from .v-popper__wrapper {
+				transform: translateY(var(--default-clickable-area));
+			}
+
+			&.v-popper__popper--show-to .v-popper__wrapper {
+				transform: none;
+				transition: transform ease var(--animation-quick), visibility ease var(--animation-quick);
+			}
 		}
 	}
 }
