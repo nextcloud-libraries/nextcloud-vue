@@ -5,6 +5,6 @@
 
 export * from './useIsFullscreen/index.js'
 export * from './useIsMobile/index.js'
-export * from './useFormatDateTime.ts'
+export * from './useFormatDateTime/index.ts'
 export * from './useHotKey/index.js'
 export * from './useIsDarkTheme/index.ts'
