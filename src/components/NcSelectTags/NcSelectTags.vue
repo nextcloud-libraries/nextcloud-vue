@@ -293,8 +293,8 @@ export default {
 		' ',
 	],
 
-	setup() {
-		const model = useModelMigration('value', 'input')
+	setup(props, {emit}) {
+		const model = useModelMigration(props, emit, 'value', 'input')
 		const noop = () => {}
 		return {
 			model,

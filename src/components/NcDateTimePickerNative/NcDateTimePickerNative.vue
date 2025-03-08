@@ -218,8 +218,8 @@ export default {
 		'update:model-value',
 	],
 
-	setup() {
-		const model = useModelMigration('value', 'input')
+	setup(props, {emit}) {
+		const model = useModelMigration(props, emit, 'value', 'input')
 		return {
 			model,
 		}

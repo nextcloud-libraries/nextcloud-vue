@@ -272,8 +272,8 @@ export default {
 		'trailing-button-click',
 	],
 
-	setup() {
-		const model = useModelMigration('value', 'update:value', true)
+	setup(props, {emit}) {
+		const model = useModelMigration(props, emit, 'value', 'update:value', true)
 		return {
 			model,
 		}
