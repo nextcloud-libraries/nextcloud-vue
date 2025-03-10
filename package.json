@@ -83,7 +83,7 @@
     "@nextcloud/router": "^3.0.1",
     "@nextcloud/sharing": "^0.2.4",
     "@nextcloud/timezones": "^0.1.1",
-    "@vueuse/components": "^12.7.0",
+    "@vueuse/components": "^13.0.0",
     "@vueuse/core": "^12.8.2",
     "blurhash": "^2.0.5",
     "clone": "^2.1.2",
