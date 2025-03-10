@@ -4,10 +4,11 @@
 # Roberto Costa, 2024
 # Flávio Veras <flaviove@gmail.com>, 2024
 # Paulo Schopf, 2024
+# F Bausch, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Paulo Schopf, 2024\n"
+"Last-Translator: F Bausch, 2025\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_BR\n"
@@ -270,8 +271,8 @@ msgstr "Abrir i link para \"{resourceName}\""
 msgid "Open menu"
 msgstr "Abrir menu"
 
-msgid "Open navigation"
-msgstr "Abrir navegação"
+msgid "Open navigation {shortcut}"
+msgstr "Abrir navegação {shortcut}"
 
 msgid "Open sidebar"
 msgstr "Abrir barra lateral"
