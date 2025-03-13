@@ -18,10 +18,10 @@
 					<AccountGroup :size="20" />
 					{{ team.displayName }}
 				</h5>
-				<NcButton type="tertiary"
+				<NcButton :aria-label="t('View team')"
 					:href="team.link"
-					:aria-label="t('View team')"
-					:title="t('View team')">
+					:title="t('View team')"
+					variant="tertiary">
 					<template #icon>
 						<OpenInNew :size="20" />
 					</template>
