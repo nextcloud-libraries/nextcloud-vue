@@ -103,7 +103,7 @@ const props = defineProps({
 	 * The button variant, see NcButton.
 	 *
 	 * @type {'primary'|'secondary'|'tertiary'|'error'|'warning'|'success'}
-	 * @since 8.23.0
+	 * @since 8.24.0
 	 */
 	variant: {
 		type: String,

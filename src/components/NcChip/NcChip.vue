@@ -177,7 +177,7 @@ const props = defineProps({
 	 * Set the chips design variant-
 	 *
 	 * This sets the background style of the chip, similar to NcButton's `variant`.
-	 * @since 8.23.0
+	 * @since 8.24.0
 	 */
 	variant: {
 		type: String,

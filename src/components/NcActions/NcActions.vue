@@ -1167,7 +1167,7 @@ export default {
 		 * Accepted values: primary, secondary, tertiary, tertiary-no-background, tertiary-on-primary, error, warning, success.
 		 * If left empty, the default button style will be applied.
 		 *
-		 * @since 8.23.0
+		 * @since 8.24.0
 		 */
 		variant: {
 			type: String,
