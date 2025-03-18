@@ -144,7 +144,7 @@
     "jsdom": "^26.0.0",
     "resolve-url-loader": "^5.0.0",
     "sanitize-filename": "^1.6.3",
-    "sass": "^1.85.1",
+    "sass": "^1.86.0",
     "stylelint": "^16.15.0",
     "stylelint-use-logical": "^2.1.2",
     "ts-node": "^10.9.2",
