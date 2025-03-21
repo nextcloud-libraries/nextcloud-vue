@@ -438,9 +438,9 @@ export default {
 		'smart-picker-submit',
 	],
 
-	setup() {
+	setup(props, {emit}) {
 		const uid = GenRandomId(5)
-		const model = useModelMigration('value', 'update:value', true)
+		const model = useModelMigration(props, emit, 'value', 'update:value', true)
 		return {
 			model,
 			// Constants

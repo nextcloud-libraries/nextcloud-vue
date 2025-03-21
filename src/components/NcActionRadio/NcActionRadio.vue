@@ -158,12 +158,12 @@ export default {
 		'change',
 	],
 
-	setup(props) {
+	setup(props, {emit}) {
 		if (typeof props.modelValue === 'boolean') {
 			Vue.util.warn('[NcActionRadio] Boolean type of `modelValue` is deprecated and will be removed in next versions')
 		}
 
-		const model = useModelMigration('checked', 'update:checked')
+		const model = useModelMigration(props, emit, 'checked', 'update:checked')
 		return {
 			model,
 		}
