@@ -319,7 +319,7 @@ export default {
 			this.focusTrap = createFocusTrap(contentContainer, {
 				allowOutsideClick: true,
 				trapStack: getTrapStack(),
-				fallbackFocus: this.$refs.trigger,
+				fallbackFocus: this.$refs.trigger.$el,
 			})
 			this.focusTrap.activate()
 		},
