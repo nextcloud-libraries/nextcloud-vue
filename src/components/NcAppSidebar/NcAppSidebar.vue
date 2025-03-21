@@ -1010,7 +1010,7 @@ export default {
 				document.querySelector('#header'),
 			], {
 				allowOutsideClick: true,
-				fallbackFocus: this.$refs.closeButton,
+				fallbackFocus: this.$refs.closeButton.$el,
 				trapStack: getTrapStack(),
 				escapeDeactivates: false,
 			})
