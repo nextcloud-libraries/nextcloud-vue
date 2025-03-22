@@ -69,11 +69,10 @@ export default {
 			ref="triggerButton"
 			type="tertiary-no-background"
 			class="header-menu__trigger"
-			:aria-label="ariaLabel"
-			:aria-describedby="description ? descriptionId : null"
 			:aria-controls="`header-menu-${id}`"
 			:aria-expanded="isOpened.toString()"
 			size="large"
+			variant="tertiary-no-background"
 			@click.prevent="toggleMenu">
 			<template #icon>
 				<slot name="trigger" />
