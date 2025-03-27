@@ -62,7 +62,7 @@ describe('NcAvatar.vue', () => {
 				user: 'janedoe',
 				displayName: 'J. Doe',
 				preloadedUserStatus: status,
-				showUserStatus: false,
+				hideStatus: true,
 			},
 		})
 

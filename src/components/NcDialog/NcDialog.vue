@@ -54,7 +54,7 @@ You can also use the default slot to inject custom content.
 	<div style="display: flex; gap: 12px;">
 		<NcButton @click="showDialog = true">Show dialog</NcButton>
 		<NcButton @click="showLongDialog = true">Show long dialog</NcButton>
-		<NcDialog v-if="showDialog" name="Warning" :can-close="false">
+		<NcDialog v-if="showDialog" name="Warning" no-close>
 			<template #actions>
 				<NcButton @click="showDialog = false">Ok</NcButton>
 			</template>
@@ -351,17 +351,17 @@ export default defineComponent({
 		},
 
 		/**
-		 * Set to false to no show a close button on the dialog
-		 * @default true
+		 * Do not show the close button for the dialog.
+		 * @default false
 		 */
-		canClose: {
+		noClose: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 
 		/**
 		 * Close the dialog if the user clicked outside of the dialog
-		 * Only relevant if `canClose` is set to true.
+		 * Only relevant if `noClose` is not set.
 		 */
 		closeOnClickOutside: {
 			type: Boolean,
@@ -585,7 +585,7 @@ export default defineComponent({
 		 * Properties to pass to the underlying NcModal
 		 */
 		const modalProps = computed(() => ({
-			canClose: props.canClose,
+			noClose: props.noClose,
 			container: props.container === undefined ? 'body' : props.container,
 			// we do not pass the name as we already have the name as the headline
 			// name: props.name,
