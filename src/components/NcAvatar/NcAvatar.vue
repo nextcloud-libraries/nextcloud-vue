@@ -321,18 +321,18 @@ export default {
 			default: undefined,
 		},
 		/**
-		 * Whether or not to display the user-status
+		 * Do not show the user status on the avatar.
 		 */
-		showUserStatus: {
+		hideStatus: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 		/**
-		 * Whether or not to the status-icon should be used instead of online/away
+		 * Show the verbose user status (e.g. "online" / "away") instead of just the status icon.
 		 */
-		showUserStatusCompact: {
+		verboseStatus: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 		/**
 		 * When the user status was preloaded via another source it can be handed in with this property to save the request.
@@ -368,11 +368,11 @@ export default {
 			default: 32,
 		},
 		/**
-		 * Placeholder avatars will be automatically generated when this is set to true
+		 * Do not automatically generate a placeholder avatars if there is no real avatar is available.
 		 */
-		allowPlaceholder: {
+		noPlaceholder: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 		/**
 		 * Disable the tooltip
@@ -441,13 +441,13 @@ export default {
 			return t('Avatar of {displayName}', { displayName: this.displayName ?? this.user })
 		},
 		canDisplayUserStatus() {
-			return this.showUserStatus
+			return !this.hideStatus
 				&& this.hasStatus
 				&& ['online', 'away', 'busy', 'dnd'].includes(this.userStatus.status)
 		},
 		showUserStatusIconOnAvatar() {
-			return this.showUserStatus
-				&& this.showUserStatusCompact
+			return !this.hideStatus
+				&& !this.verboseStatus
 				&& this.hasStatus
 				&& this.userStatus.status !== 'dnd'
 				&& this.userStatus.icon
@@ -488,7 +488,7 @@ export default {
 		 * True if initials should be shown as the user icon fallback
 		 */
 		showInitials() {
-			return this.allowPlaceholder && this.userDoesNotExist && !(this.iconClass || this.$slots.icon?.())
+			return !this.noPlaceholder && this.userDoesNotExist && !(this.iconClass || this.$slots.icon?.())
 		},
 
 		avatarStyle() {
@@ -582,7 +582,7 @@ export default {
 				return p.innerHTML
 			}
 
-			if (this.showUserStatus && (this.userStatus.icon || this.userStatus.message)) {
+			if (!this.hideStatus && (this.userStatus.icon || this.userStatus.message)) {
 				// NcAction's URL icons are inverted in dark mode, so we need to pass SVG image in the icon slot
 				const emojiIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
 					<text x="50%" y="50%" text-anchor="middle" style="dominant-baseline: central; font-size: 85%">${escape(this.userStatus.icon)}</text>
@@ -615,7 +615,7 @@ export default {
 		this.loadAvatarUrl()
 		subscribe('settings:avatar:updated', this.loadAvatarUrl)
 		subscribe('settings:display-name:updated', this.loadAvatarUrl)
-		if (this.showUserStatus && this.user && !this.isNoUser) {
+		if (!this.hideStatus && this.user && !this.isNoUser) {
 			if (!this.preloadedUserStatus) {
 				this.fetchUserStatus(this.user)
 			} else {
@@ -631,7 +631,7 @@ export default {
 	beforeUnmount() {
 		unsubscribe('settings:avatar:updated', this.loadAvatarUrl)
 		unsubscribe('settings:display-name:updated', this.loadAvatarUrl)
-		if (this.showUserStatus && this.user && !this.isNoUser) {
+		if (!this.hideStatus && this.user && !this.isNoUser) {
 			unsubscribe('user_status:status.updated', this.handleUserStatusUpdated)
 		}
 	},

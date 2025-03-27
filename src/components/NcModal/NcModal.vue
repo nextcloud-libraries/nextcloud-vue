@@ -252,7 +252,7 @@ export default {
 						</NcActions>
 
 						<!-- Close modal -->
-						<NcButton v-if="canClose && !closeButtonContained"
+						<NcButton v-if="!noClose && !closeButtonContained"
 							:aria-label="closeButtonAriaLabel"
 							class="header-close"
 							type="tertiary"
@@ -294,7 +294,7 @@ export default {
 							<slot />
 						</div>
 						<!-- Close modal -->
-						<NcButton v-if="canClose && closeButtonContained"
+						<NcButton v-if="!noClose && closeButtonContained"
 							type="tertiary"
 							class="modal-container__close"
 							:aria-label="closeButtonAriaLabel"
@@ -435,20 +435,21 @@ export default {
 		},
 
 		/**
-		 * Declare if the modal can be closed
+		 * Do not show the close button for the dialog.
+		 * @default false
 		 */
-		canClose: {
+		noClose: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 
 		/**
 		 * Close the modal if the user clicked outside the modal
-		 * Only relevant if `canClose` is set to true.
+		 * Only relevant if `noClose` is not set.
 		 */
 		closeOnClickOutside: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 
 		/**
@@ -669,19 +670,21 @@ export default {
 		},
 		close(data) {
 			// do not fire event if forbidden
-			if (this.canClose) {
-				// We set internalShow here, so the out transitions properly run before the component is destroyed
-				this.internalShow = false
-				this.$emit('update:show', false)
-
-				// delay closing for animation
-				setTimeout(() => {
-					/**
-					 * Emitted when the closing animation is finished
-					 */
-					this.$emit('close', data)
-				}, 300)
+			if (this.noClose) {
+				return
 			}
+
+			// We set internalShow here, so the out transitions properly run before the component is destroyed
+			this.internalShow = false
+			this.$emit('update:show', false)
+
+			// delay closing for animation
+			setTimeout(() => {
+				/**
+				 * Emitted when the closing animation is finished
+				 */
+				this.$emit('close', data)
+			}, 300)
 		},
 
 		/**

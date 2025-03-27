@@ -87,8 +87,14 @@ are now removed. Following components have been adjusted:
 
 |     Component | Removed deprecated prop | New alternative |
 |---------------|-------------------------|-----------------|
-|     `NcModal` |           `enableSwipe` |  `disableSwipe` |
 |`NcAppContent` |  `allowSwipeNavigation` | `disabledSwipe` |
+|    `NcAvatar` |        `showUserStatus` |    `hideStatus` |
+|    `NcAvatar` | `showUserStatusCompact` | `verboseStatus` |
+|     `NcModal` |           `enableSwipe` |  `disableSwipe` |
+|     `NcModal` |              `canClose` |       `noClose` |
+|    `NcDialog` |              `canClose` |       `noClose` |
+
+Additionally the default value `closeOnClickOutside` for `NcModal` was aligned with `NcDialog` and now defaults to `false`.
 
 #### Mixins are removed
 Mixins only work in Options API and are in general not recommended by Vue anymore:
