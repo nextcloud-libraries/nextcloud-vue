@@ -128,7 +128,7 @@
     "@nextcloud/stylelint-config": "^3.0.1",
     "@nextcloud/vite-config": "^2.3.2",
     "@nextcloud/webpack-vue-config": "github:nextcloud/webpack-vue-config#vue3",
-    "@playwright/experimental-ct-vue": "^1.50.1",
+    "@playwright/experimental-ct-vue": "^1.51.1",
     "@playwright/test": "^1.51.1",
     "@types/gettext-parser": "^8.0.0",
     "@types/node": "^22.13.14",
