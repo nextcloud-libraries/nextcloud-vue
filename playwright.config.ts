@@ -3,7 +3,8 @@
  * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: CC0-1.0
  */
-import { defineConfig, devices } from '@playwright/experimental-ct-vue';
+import { defineConfig, devices } from '@playwright/experimental-ct-vue'
+import { resolve } from 'node:path'
 
 // Configure projects for major browsers
 const projects = [
@@ -71,12 +72,13 @@ export default defineConfig({
 				SCOPE_VERSION: '"testing"',
 			},
 			css: {
+				devSourcemap: false,
 				preprocessorOptions: {
 					scss: {
-						additionalData: '@use \'sass:math\'; $scope_version:\'"testing"\'; @import \'variables\'; @import \'material-icons\';',
+						additionalData: '@use \'sass:math\'; @use \'variables\' as *; @use \'material-icons\' as *; $scope_version:abcdef;',
 						sourceMapContents: false,
-						includePaths: [
-							`${import.meta.dirname}/src/assets`,
+						loadPaths: [
+							resolve(import.meta.dirname, 'src/assets'),
 						],
 					},
 				},
@@ -85,4 +87,4 @@ export default defineConfig({
 	},
 
 	projects,
-});
+})
