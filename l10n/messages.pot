@@ -63,6 +63,12 @@ msgstr ""
 msgid "busy"
 msgstr ""
 
+msgid "Calendar icon"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
 msgid "Cancel changes"
 msgstr ""
 
@@ -81,6 +87,9 @@ msgstr ""
 msgid "Clear text"
 msgstr ""
 
+msgid "Clear value"
+msgstr ""
+
 msgid "Close"
 msgstr ""
 
@@ -91,6 +100,9 @@ msgid "Close sidebar"
 msgstr ""
 
 msgid "Close Smart Picker"
+msgstr ""
+
+msgid "Close time Picker"
 msgstr ""
 
 msgid "Collapse menu"
@@ -109,6 +121,21 @@ msgid "Custom"
 msgstr ""
 
 msgid "Dark skin tone"
+msgstr ""
+
+msgid "Datepicker input"
+msgstr ""
+
+msgid "Datepicker menu"
+msgstr ""
+
+msgid "Decrement hours"
+msgstr ""
+
+msgid "Decrement minutes"
+msgstr ""
+
+msgid "Decrement seconds"
 msgstr ""
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
@@ -179,6 +206,15 @@ msgstr ""
 msgid "Hide password"
 msgstr ""
 
+msgid "Increment hours"
+msgstr ""
+
+msgid "Increment minutes"
+msgstr ""
+
+msgid "Increment seconds"
+msgstr ""
+
 msgid "invisible"
 msgstr ""
 
@@ -211,6 +247,12 @@ msgstr ""
 msgid "Message limit of {count} characters reached"
 msgstr ""
 
+msgid "Month picker"
+msgstr ""
+
+msgid "Month picker overlay"
+msgstr ""
+
 msgid "More items …"
 msgstr ""
 
@@ -223,6 +265,12 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
+msgid "Next month"
+msgstr ""
+
+msgid "Next year"
+msgstr ""
+
 msgid "Nextcloud blue"
 msgstr ""
 
@@ -233,6 +281,9 @@ msgid "No link provider found"
 msgstr ""
 
 msgid "No results"
+msgstr ""
+
+msgid "Now"
 msgstr ""
 
 msgid "Objects"
@@ -248,16 +299,34 @@ msgstr ""
 msgid "online"
 msgstr ""
 
+msgid "Open hours overlay"
+msgstr ""
+
 msgid "Open link to \"{resourceName}\""
 msgstr ""
 
 msgid "Open menu"
 msgstr ""
 
+msgid "Open minutes overlay"
+msgstr ""
+
+msgid "Open months overlay"
+msgstr ""
+
 msgid "Open navigation"
 msgstr ""
 
+msgid "Open seconds overlay"
+msgstr ""
+
 msgid "Open sidebar"
+msgstr ""
+
+msgid "Open time picker"
+msgstr ""
+
+msgid "Open years overlay"
 msgstr ""
 
 msgid "Options"
@@ -272,31 +341,19 @@ msgstr ""
 msgid "People & Body"
 msgstr ""
 
-msgid "Pick a date"
-msgstr ""
-
-msgid "Pick a date and a time"
-msgstr ""
-
-msgid "Pick a month"
-msgstr ""
-
-msgid "Pick a time"
-msgstr ""
-
-msgid "Pick a week"
-msgstr ""
-
-msgid "Pick a year"
+msgid "Pick"
 msgstr ""
 
 msgid "Pick an emoji"
 msgstr ""
 
-msgid "Please select a time zone:"
+msgid "Previous"
 msgstr ""
 
-msgid "Previous"
+msgid "Previous month"
+msgstr ""
+
+msgid "Previous year"
 msgstr ""
 
 msgid "Provider icon"
@@ -330,7 +387,7 @@ msgstr ""
 msgid "Search emoji"
 msgstr ""
 
-msgid "Search for time zone"
+msgid "Search for timezone"
 msgstr ""
 
 msgid "Search results"
@@ -350,7 +407,28 @@ msgstr ""
 msgid "Select a tag"
 msgstr ""
 
+msgid "Select date"
+msgstr ""
+
+msgid "Select date and time"
+msgstr ""
+
+msgid "Select month"
+msgstr ""
+
 msgid "Select provider"
+msgstr ""
+
+msgid "Select time"
+msgstr ""
+
+msgid "Select time range"
+msgstr ""
+
+msgid "Select week"
+msgstr ""
+
+msgid "Select year"
 msgstr ""
 
 msgid "Selected"
@@ -392,7 +470,19 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
+msgid "Switch AM/PM mode"
+msgstr ""
+
 msgid "Symbols"
+msgstr ""
+
+msgid "Time picker"
+msgstr ""
+
+msgid "Timezone"
+msgstr ""
+
+msgid "Toggle overlay"
 msgstr ""
 
 msgid "Travel & Places"
@@ -416,9 +506,18 @@ msgstr ""
 msgid "View team"
 msgstr ""
 
+msgid "W"
+msgstr ""
+
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr ""
 
 msgid "Write a message …"
+msgstr ""
+
+msgid "Year picker"
+msgstr ""
+
+msgid "Year picker overlay"
 msgstr ""
