@@ -343,7 +343,17 @@ export default defineComponent({
 		},
 
 		/**
+		 * Do not show the close button for the dialog.
+		 * @default false
+		 */
+		noClose: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
 		 * Set to false to no show a close button on the dialog
+		 * @deprecated - Use `noClose` instead. Will be removed in v9.
 		 * @default true
 		 */
 		canClose: {
@@ -578,7 +588,7 @@ export default defineComponent({
 		 * Properties to pass to the underlying NcModal
 		 */
 		const modalProps = computed(() => ({
-			canClose: props.canClose,
+			noClose: props.noClose || !props.canClose,
 			container: props.container === undefined ? 'body' : props.container,
 			// we do not pass the name as we already have the name as the headline
 			// name: props.name,
