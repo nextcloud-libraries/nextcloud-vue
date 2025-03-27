@@ -94,7 +94,6 @@
     "floating-vue": "^5.2.2",
     "focus-trap": "^7.6.4",
     "linkify-string": "^4.2.0",
-    "md5": "^2.3.0",
     "p-queue": "^8.0.1",
     "rehype-external-links": "^3.0.0",
     "rehype-highlight": "^7.0.2",

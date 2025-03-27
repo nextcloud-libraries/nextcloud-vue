@@ -1,0 +1,73 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`usernameToColor >  has the proper color 1`] = `"#b6469d"`;
+
+exports[`usernameToColor > , has the proper color 1`] = `"#93b27b"`;
+
+exports[`usernameToColor > . has the proper color 1`] = `"#499aa2"`;
+
+exports[`usernameToColor > 123e4567-e89b-12d3-a456-426614174000 has the proper color 1`] = `"#795aab"`;
+
+exports[`usernameToColor > Akeel Robertson has the proper color 1`] = `"#499aa2"`;
+
+exports[`usernameToColor > Alishia Ann Lowry has the proper color 1`] = `"#bc5c91"`;
+
+exports[`usernameToColor > Arham Johnson has the proper color 1`] = `"#795aab"`;
+
+exports[`usernameToColor > Brayden Truong has the proper color 1`] = `"#c37285"`;
+
+exports[`usernameToColor > Daphne Roy has the proper color 1`] = `"#795aab"`;
+
+exports[`usernameToColor > Ellena Wright Frederic Conway has the proper color 1`] = `"#6ea68f"`;
+
+exports[`usernameToColor > Gianluca Hills has the proper color 1`] = `"#3c6eba"`;
+
+exports[`usernameToColor > Haseeb Stephens has the proper color 1`] = `"#795aab"`;
+
+exports[`usernameToColor > Idris Mac has the proper color 1`] = `"#ddcb55"`;
+
+exports[`usernameToColor > Kristi Fisher has the proper color 1`] = `"#9750a4"`;
+
+exports[`usernameToColor > Lillian Wall has the proper color 1`] = `"#b8be68"`;
+
+exports[`usernameToColor > Lorelai Taylor has the proper color 1`] = `"#248eb5"`;
+
+exports[`usernameToColor > Madina Knight has the proper color 1`] = `"#bc5c91"`;
+
+exports[`usernameToColor > Meeting has the proper color 1`] = `"#248eb5"`;
+
+exports[`usernameToColor > Private Circle has the proper color 1`] = `"#c98879"`;
+
+exports[`usernameToColor > Rae Hope has the proper color 1`] = `"#ddcb55"`;
+
+exports[`usernameToColor > Santiago Singleton has the proper color 1`] = `"#bc5c91"`;
+
+exports[`usernameToColor > Sid Combs has the proper color 1`] = `"#c37285"`;
+
+exports[`usernameToColor > TestCircle has the proper color 1`] = `"#c37285"`;
+
+exports[`usernameToColor > Tom Mörtel has the proper color 1`] = `"#3c6eba"`;
+
+exports[`usernameToColor > Vivienne Jacobs has the proper color 1`] = `"#93b27b"`;
+
+exports[`usernameToColor > Zaki Cortes has the proper color 1`] = `"#5b64b3"`;
+
+exports[`usernameToColor > a user has the proper color 1`] = `"#795aab"`;
+
+exports[`usernameToColor > admin has the proper color 1`] = `"#9750a4"`;
+
+exports[`usernameToColor > admin@cloud.example.com has the proper color 1`] = `"#c98879"`;
+
+exports[`usernameToColor > another user has the proper color 1`] = `"#499aa2"`;
+
+exports[`usernameToColor > asd has the proper color 1`] = `"#ddcb55"`;
+
+exports[`usernameToColor > bar has the proper color 1`] = `"#6ea68f"`;
+
+exports[`usernameToColor > foo has the proper color 1`] = `"#b6469d"`;
+
+exports[`usernameToColor > wasd has the proper color 1`] = `"#9750a4"`;
+
+exports[`usernameToColor > مرحبا بالعالم has the proper color 1`] = `"#d09e6d"`;
+
+exports[`usernameToColor > 🙈 has the proper color 1`] = `"#b8be68"`;

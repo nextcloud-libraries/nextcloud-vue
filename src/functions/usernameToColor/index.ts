@@ -3,4 +3,4 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-export { default } from './usernameToColor.js'
+export { usernameToColor as default } from './usernameToColor.js'
