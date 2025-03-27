@@ -192,6 +192,7 @@ This component allows the user to pick an emoji.
 </template>
 
 <script>
+import { isFocusable } from 'tabbable'
 import { getCurrentSkinTone, setCurrentSkinTone } from '../../functions/emoji/emoji.ts'
 import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
 import { Color } from '../../utils/GenColors.js'
@@ -407,7 +408,10 @@ export default {
 
 		afterHide() {
 			// Manually return focus to the trigger button, as we disabled focus-trap
-			this.$refs.popover.$el.querySelector('button, [role="button"]')?.focus()
+			// But only if there is no focus target outside the picker, for example, input element that received focus by click closing the emoji picker
+			if (!document.activeElement || this.$refs.picker.$el.contains(document.activeElement) || !isFocusable(document.activeElement)) {
+				this.$refs.popover.$el.querySelector('button, [role="button"]')?.focus()
+			}
 		},
 
 		/**
