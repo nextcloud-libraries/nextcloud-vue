@@ -182,9 +182,9 @@ export default {
 		<!-- Contact menu -->
 		<!-- We show a button if the menu is not loaded yet. -->
 		<NcButton v-if="hasMenu && menu.length === 0"
-			type="tertiary-no-background"
-			class="action-item action-item__menutoggle"
 			:aria-label="avatarAriaLabel"
+			class="action-item action-item__menutoggle"
+			variant="tertiary-no-background"
 			@click="toggleMenu">
 			<template #icon>
 				<NcLoadingIcon v-if="contactsMenuLoading" />
