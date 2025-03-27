@@ -258,7 +258,7 @@ export default {
 						</NcActions>
 
 						<!-- Close modal -->
-						<NcButton v-if="canClose && !closeButtonContained"
+						<NcButton v-if="!noClose && canClose && !closeButtonContained"
 							:aria-label="closeButtonAriaLabel"
 							class="header-close"
 							variant="tertiary"
@@ -300,7 +300,7 @@ export default {
 							<slot />
 						</div>
 						<!-- Close modal -->
-						<NcButton v-if="canClose && closeButtonContained"
+						<NcButton v-if="!noClose && canClose && closeButtonContained"
 							:aria-label="closeButtonAriaLabel"
 							class="modal-container__close"
 							variant="tertiary"
@@ -451,7 +451,18 @@ export default {
 		},
 
 		/**
-		 * Declare if the modal can be closed
+		 * Do not show the close button for the dialog.
+		 * @default false
+		 */
+		noClose: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Set to false to no show a close button on the dialog
+		 * @deprecated - Use `noClose` instead. Will be removed in v9.
+		 * @default true
 		 */
 		canClose: {
 			type: Boolean,
@@ -575,7 +586,7 @@ export default {
 		 * True if there are any buttons shown on the backdrop or a name (for accessibility)
 		 */
 		forceDarkBackdrop() {
-			return (this.canClose && !this.closeButtonContained)
+			return (!this.noClose && this.canClose && !this.closeButtonContained)
 				|| this.hasNext
 				|| this.hasPrevious
 				|| this.modalName !== ''
@@ -703,7 +714,7 @@ export default {
 		},
 		close(data) {
 			// do not fire event if forbidden
-			if (this.canClose) {
+			if (!this.noClose && this.canClose) {
 				// We set internalShow here, so the out transitions properly run before the component is destroyed
 				this.internalShow = false
 				this.$emit('update:show', false)

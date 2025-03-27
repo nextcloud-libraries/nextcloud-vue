@@ -318,14 +318,30 @@ export default {
 			default: undefined,
 		},
 		/**
-		 * Whether or not to display the user-status
+		 * Do not show the user status on the avatar.
+		 */
+		 hideStatus: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Whether or not to display the user-status.
+		 * @deprecated - Use `hideStatus` instead. Will be removed with v9.
 		 */
 		showUserStatus: {
 			type: Boolean,
 			default: true,
 		},
 		/**
+		 * Show the verbose user status (e.g. "online" / "away") instead of just the status icon.
+		 */
+		verboseStatus: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		 * Whether or not to the status-icon should be used instead of online/away
+		 * @deprecated - Use `verboseStatus` instead. Will be removed with v9.
 		 */
 		showUserStatusCompact: {
 			type: Boolean,
@@ -365,7 +381,15 @@ export default {
 			default: 32,
 		},
 		/**
-		 * Placeholder avatars will be automatically generated when this is set to true
+		 * Do not automatically generate a placeholder avatars if there is no real avatar is available.
+		 */
+		 noPlaceholder: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Placeholder avatars will be automatically generated when this is set to true.
+		 * @deprecated - Use `noPlaceholder` instead. Will be removed in v9.
 		 */
 		allowPlaceholder: {
 			type: Boolean,
@@ -439,12 +463,15 @@ export default {
 			return t('Avatar of {displayName}', { displayName: this.displayName ?? this.user })
 		},
 		canDisplayUserStatus() {
-			return this.showUserStatus
+			return !this.hideStatus
+				&& this.showUserStatus
 				&& this.hasStatus
 				&& ['online', 'away', 'busy', 'dnd'].includes(this.userStatus.status)
 		},
 		showUserStatusIconOnAvatar() {
-			return this.showUserStatus
+			return !this.hideStatus
+				&& this.showUserStatus
+				&& !this.verboseStatus
 				&& this.showUserStatusCompact
 				&& this.hasStatus
 				&& this.userStatus.status !== 'dnd'
@@ -486,7 +513,7 @@ export default {
 		 * True if initials should be shown as the user icon fallback
 		 */
 		showInitials() {
-			return this.allowPlaceholder && this.userDoesNotExist && !(this.iconClass || this.$slots.icon)
+			return !this.noPlaceholder && this.allowPlaceholder && this.userDoesNotExist && !(this.iconClass || this.$slots.icon)
 		},
 
 		avatarStyle() {

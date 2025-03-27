@@ -8,6 +8,20 @@
 ## UNRELEASED
 
 ### 📝 Notes
+#### Boolean properties
+Some boolean props have been deprecated in favor of alternatives with default value `false`.
+This allows to use shorthand notation on the template, as a prop with a default value of `false`
+will be set to `true` if it is set (without any value) in the template,
+similar to native HTML boolean attributes.
+Following components have been adjusted:
+
+|     Component |         Deprecated prop | New alternative |
+|---------------|-------------------------|-----------------|
+|    `NcAvatar` |        `showUserStatus` |    `hideStatus` |
+|    `NcAvatar` | `showUserStatusCompact` | `verboseStatus` |
+|     `NcModal` |              `canClose` |       `noClose` |
+|    `NcDialog` |              `canClose` |       `noClose` |
+
 #### `NcButton` color variant and native type
 `NcButton` (and `NcDialogButton`) now provides a `variant` prop to set the color variant to use (e.g. `'primary'`) and allows to set the native button type using the `type` prop.
 The legacy behavior, `type` for the color variant and `nativeType` for the button type, still works but will be removed in the next major version.
