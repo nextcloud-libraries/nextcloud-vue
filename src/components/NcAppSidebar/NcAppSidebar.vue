@@ -669,7 +669,7 @@ export default {
 				</div>
 
 
-				<NcButton ref="closeButton"
+				<NcButton v-if="!noClose" ref="closeButton"
 					:aria-label="closeTranslated"
 					:title="closeTranslated"
 					class="app-sidebar__close"
@@ -840,7 +840,14 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-
+		/**
+		 * Do not show the close button for the sidebar.
+		 * @default false
+		 */
+		noClose: {
+			type: Boolean,
+			default: false,
+		},
 		/**
 		 * Force the actions to display in a three dot menu
 		 */
