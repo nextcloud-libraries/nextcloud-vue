@@ -104,7 +104,7 @@ Mixins only work in Options API and are in general not recommended by Vue anymor
 As this library also uses composition API now all required mixins have been migrated to composables which work in Options API and Composition API.
 Especially the following are now provided as composables:
 - `isFullscreen` is now provided as `useIsFullscreen`
-- `isMobile` is now provided as `useIsMobile`
+- `isMobile` is now provided as `useIsMobile` and `isMobileState` was removed.
 
 #### Other breaking changes
 - `NcAppSidebar`
