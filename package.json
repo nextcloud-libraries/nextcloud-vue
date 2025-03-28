@@ -111,7 +111,6 @@
     "rehype-highlight": "^7.0.2",
     "rehype-react": "^7.1.2",
     "remark-breaks": "^4.0.0",
-    "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.0.0",
     "splitpanes": "^2.4.1",
@@ -167,6 +166,7 @@
     "jest-raw-loader": "^1.0.1",
     "jest-serializer-vue": "^3.1.0",
     "jest-transform-stub": "^2.0.0",
+    "remark-gfm": "^4.0.1",
     "resolve-url-loader": "^5.0.0",
     "sanitize-filename": "^1.6.3",
     "sass": "^1.86.0",
@@ -181,6 +181,11 @@
     "vue-template-compiler": "^2.7.16",
     "webpack": "^5.98.0",
     "webpack-merge": "^6.0.1"
+  },
+  "overrides": {
+    "mdast-util-gfm": {
+      "mdast-util-gfm-autolink-literal": "2.0.0"
+    }
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
