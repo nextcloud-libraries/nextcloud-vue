@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { isFullscreenState } from '../../composables/useIsFullscreen/index.js'
+import { isFullscreenState } from '../../composables/useIsFullscreen/index.ts'
 
 export default {
 	computed: {
