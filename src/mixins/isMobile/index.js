@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { isMobileState } from '../../composables/useIsMobile/index.js'
+import { isMobileState } from '../../composables/useIsMobile/index.ts'
 
 export default {
 	computed: {

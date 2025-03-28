@@ -6,7 +6,7 @@
 import { describe, expect, it } from '@jest/globals'
 import { mount } from '@vue/test-utils'
 import { isRef, nextTick } from 'vue'
-import { useIsMobile } from '../../../src/composables/useIsMobile/index.js'
+import { useIsMobile } from '../../../src/composables/useIsMobile/index.ts'
 import { resizeWindowWidth } from '../testing-utils.ts'
 
 describe('useIsMobile', () => {
