@@ -566,9 +566,9 @@ export default {
 				}"
 				class="app-sidebar-header">
 				<!-- container for figure and description, allows easy switching to compact mode -->
-				<div class="app-sidebar-header__info">
+				<div v-if="!empty" class="app-sidebar-header__info">
 					<!-- sidebar header illustration/figure -->
-					<div v-if="hasFigure && !empty"
+					<div v-if="hasFigure"
 						:class="{
 							'app-sidebar-header__figure--with-action': hasFigureClickListener
 						}"
@@ -583,8 +583,7 @@ export default {
 					</div>
 
 					<!-- sidebar details -->
-					<div v-if="!empty"
-						:class="{
+					<div :class="{
 							'app-sidebar-header__desc--with-tertiary-action': canStar || $slots['tertiary-actions'],
 							'app-sidebar-header__desc--editable': nameEditable && !subname,
 							'app-sidebar-header__desc--with-subname--editable': nameEditable && subname,
@@ -664,8 +663,13 @@ export default {
 						</div>
 					</div>
 				</div>
+				<div v-else-if="$slots['content']" class="app-sidebar-header__info">
+					<!-- @slot Alternative to the default header content: use 'empty' prop for bare AppSidebar with custom inner content and tabs -->
+					<slot name="content"/>
+				</div>
 
-				<NcButton ref="closeButton"
+
+				<NcButton v-if="!noClose" ref="closeButton"
 					:aria-label="closeTranslated"
 					:title="closeTranslated"
 					class="app-sidebar__close"
@@ -836,7 +840,14 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-
+		/**
+		 * Do not show the close button for the sidebar.
+		 * @default false
+		 */
+		noClose: {
+			type: Boolean,
+			default: false,
+		},
 		/**
 		 * Force the actions to display in a three dot menu
 		 */
