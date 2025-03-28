@@ -106,6 +106,7 @@
     "focus-trap": "^7.4.3",
     "linkify-string": "^4.0.0",
     "md5": "^2.3.0",
+    "mdast-util-gfm-autolink-literal": "2.0.0",
     "p-queue": "^8.1.0",
     "rehype-external-links": "^3.0.0",
     "rehype-highlight": "^7.0.2",
