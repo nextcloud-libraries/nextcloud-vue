@@ -23,9 +23,8 @@ Highlight a string with html &lt;strong&gt;. Accepts a substring to highlight or
 </docs>
 
 <script>
-import FindRanges from '../../utils/FindRanges.js'
-
 import { h } from 'vue'
+import { findRanges } from '../../utils/findRanges.ts'
 
 export default {
 	name: 'NcHighlight',
@@ -72,7 +71,7 @@ export default {
 				ranges = this.highlight
 			// Otherwise we check the text to highlight for matches of the search term.
 			} else {
-				ranges = FindRanges(this.text, this.search)
+				ranges = findRanges(this.text, this.search)
 			}
 
 			/**

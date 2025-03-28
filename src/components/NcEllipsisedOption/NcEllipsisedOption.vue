@@ -80,8 +80,8 @@ export default {
 	</span>
 </template>
 <script>
+import { findRanges } from '../../utils/findRanges.ts'
 import NcHighlight from '../NcHighlight/index.js'
-import FindRanges from '../../utils/FindRanges.js'
 
 export default {
 	name: 'NcEllipsisedOption',
@@ -142,7 +142,7 @@ export default {
 			if (!this.search) {
 				return []
 			}
-			return FindRanges(this.name, this.search)
+			return findRanges(this.name, this.search)
 		},
 		/**
 		 * We shift the ranges for the second part by the position of the split.

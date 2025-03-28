@@ -5,14 +5,12 @@
 
 import { describe, expect, it } from 'vitest'
 
-import FindRanges from '../../../src/utils/FindRanges'
+import { findRanges } from '../../../src/utils/findRanges.ts'
 
-describe('FindRanges.js', () => {
-	'use strict'
-
+describe('utils: findRanges', () => {
 	describe('find matching ranges', () => {
 		it('should find the matching range', () => {
-			const ranges = FindRanges('ananas', 'anan')
+			const ranges = findRanges('ananas', 'anan')
 
 			expect(ranges).toEqual([
 				{ start: 0, end: 4 },
@@ -20,14 +18,14 @@ describe('FindRanges.js', () => {
 		})
 
 		it('should find all non-overlapping ranges', () => {
-			const ranges1 = FindRanges('ananas', 'an')
+			const ranges1 = findRanges('ananas', 'an')
 
 			expect(ranges1).toEqual([
 				{ start: 0, end: 2 },
 				{ start: 2, end: 4 },
 			])
 
-			const ranges2 = FindRanges('ananas', 'a')
+			const ranges2 = findRanges('ananas', 'a')
 
 			expect(ranges2).toEqual([
 				{ start: 0, end: 1 },
@@ -37,13 +35,13 @@ describe('FindRanges.js', () => {
 		})
 
 		it('should only find first occurence of overlapping ranges', () => {
-			const ranges1 = FindRanges('ananas', 'ana')
+			const ranges1 = findRanges('ananas', 'ana')
 
 			expect(ranges1).toEqual([
 				{ start: 0, end: 3 },
 			])
 
-			const ranges2 = FindRanges('oooo', 'oo')
+			const ranges2 = findRanges('oooo', 'oo')
 
 			expect(ranges2).toEqual([
 				{ start: 0, end: 2 },
