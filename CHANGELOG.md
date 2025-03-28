@@ -5,9 +5,11 @@
 
 # Changelog
 
-## UNRELEASED
+## [v8.24.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.24.0) (2025-03-28)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.23.1...v8.24.0)
 
 ### 📝 Notes
+
 #### Boolean properties
 Some boolean props have been deprecated in favor of alternatives with default value `false`.
 This allows to use shorthand notation on the template, as a prop with a default value of `false`
@@ -31,15 +33,35 @@ To make a later migration to version 9 easier you can already migrate your `NcBu
 <!-- Before: -->
 <NcButton type="primary" native-type="submit">Submit</NcButton>
 <!-- After: -->
-<NcButton type="submit" variant="primary">Submit</NcButton>
+<NcButton variant="primary" type="submit">Submit</NcButton>
 ```
+
+### 🚀 Enhancements
+* feat(NcBlurHash): Add a blur hash component [\#6396](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6396) \([susnux](https://github.com/susnux)\)
+* feat(NcDialog): Allow to catch `reset` event [\#6006](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6006) \([susnux](https://github.com/susnux)\)
+* feat: Add consistent `variant` prop for design variant of buttons / chips [\#6472](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6472) \([susnux](https://github.com/susnux)\)
+* feat(NcAppContent): Allow to set the page title [\#5269](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5269) \([susnux](https://github.com/susnux)\)
+* feat: add boolean prop alternatives with false as default value [\#6656](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6656) \([susnux](https://github.com/susnux)\)
+
+### 🐛 Fixed bugs
+* fix(NcEmojiPicker): not focusable when used in another focus trap [\#6558](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6558) \([ShGKme](https://github.com/ShGKme)\)
+* fix(RTL): initialize language direction check once in utils [\#6523](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6523) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcColorPicker): remove unused invalid styles [\#6565](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6565) \([susnux](https://github.com/susnux)\)
+* fix(NcAppSidebar, NcHeaderMenu): correctly focus trigger/close buggon when no focusable elements inside [\#6636](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6636) \([Antreesy](https://github.com/Antreesy)\)
+* fix(NcInputField): Only show error state border if user interacted with the input [\#6640](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6640) \([susnux](https://github.com/susnux)\)
+* fix(NcEmojiPicker): return focus steals actual focus [\#6652](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6652) \([ShGKme](https://github.com/ShGKme)\)
+
+### Other Changes
+* refactor(NcCheckboxRadioSwitch): Do not use HTML attribute name `id` as property name [\#5516](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5516) \([susnux](https://github.com/susnux)\)
+* docs: adjust version number for `variant` props [\#6623](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6623) \([susnux](https://github.com/susnux)\)
+* Updated workflows and dependencies
+* Updated translations
 
 ## [v8.23.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.23.1) (2025-02-13)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.23.0...v8.23.1)
 
 ### 🐛 Fixed bugs
 * fix(l10n): fix build error after `@nextcloud/l10n` bump [\#6521](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6521) \([ShGKme](https://github.com/ShGKme)\)
-
 
 ## [v8.23.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.23.0) (2025-02-13)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.22.0...v8.23.0)
