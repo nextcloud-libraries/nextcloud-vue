@@ -24,6 +24,17 @@
 | v7.x [stable7] | Nextcloud 25 - 27     | https://stable7--nextcloud-vue-components.netlify.app |
 | v6.x [stable6] | Nextcloud 24 - 25     | https://stable6--nextcloud-vue-components.netlify.app |
 
+## 🧩 Compatibility
+
+For `NcRichText` component an external library `mdast-util-gfm-autolink-literal` is used. If your app requires compatibility with Safari <16.4, consider locking it in your app package.json file:
+```json
+"overrides": {
+  "mdast-util-gfm": {
+    "mdast-util-gfm-autolink-literal": "2.0.0"
+  }
+}
+```
+
 ## 📦 Install
 
 ```bash
@@ -38,7 +49,7 @@ Import corresponding components and other modules on use. Check the documentatio
 import NcButton from '@nextcloud/vue/components/NcButton'
 import { useHotKey } from '@nextcloud/vue/composables/useHotKey'
 
-// (Deprecated) Old import path 
+// (Deprecated) Old import path
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 import { useHotKey } from '@nextcloud/vue/dist/Composables/useHotKey.js'
 ```
@@ -80,7 +91,7 @@ Vue.use(NextcloudVuePlugin)
    - Sign-off you commits for the [Developer Certificate of Origin (DCO)](https://developercertificate.org/)
 6. Get your PR reviewed
    - If you don't receive a feedback in a week, feel free to mention the maintainers, for example, last developers worked on the module
-7. Get your PR merged 
+7. Get your PR merged
 
 Please read the [Code of Conduct](https://nextcloud.com/community/code-of-conduct/). This document offers some guidance to ensure Nextcloud participants can cooperate effectively in a positive and inspiring atmosphere and to explain how together we can strengthen and support each other.
 
