@@ -123,7 +123,7 @@ export const defaultPalette = [
  * 3 colors * 6 will result in 18 generated colors
  *
  * @param {number} [steps] Number of steps to go from a color to another
- * @return {object[]}
+ * @return {Color[]}
  */
 export function GenColors(steps) {
 	if (!steps) {

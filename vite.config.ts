@@ -9,12 +9,11 @@ import { globSync } from 'glob'
 import { join, resolve } from 'node:path'
 import { defineConfig } from 'vite'
 
-import md5 from 'md5'
-
+import crypto from 'node:crypto'
 import l10nPlugin from './build/l10n-plugin.mjs'
 
 const appVersion = JSON.stringify(process.env.npm_package_version || 'nextcloud-vue')
-const versionHash = md5(appVersion).slice(0, 7) as string
+const versionHash = crypto.createHash('md5').update(appVersion).digest('hex').slice(0, 7)
 const SCOPE_VERSION = JSON.stringify(versionHash)
 
 // Entry points which we build using vite
