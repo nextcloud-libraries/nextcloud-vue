@@ -137,7 +137,7 @@ Using `v-if` is also possible, this can e.g. used if the image is not loaded fro
 import { decode } from 'blurhash'
 import { ref, watch, nextTick } from 'vue'
 import { preloadImage } from '../../functions/preloadImage/index.ts'
-import logger from '../../utils/logger.js'
+import logger from '../../utils/logger.ts'
 
 const props = defineProps<{
 	/**
