@@ -7,7 +7,7 @@
 const webpackConfig = require('@nextcloud/webpack-vue-config')
 const webpackRules = require('@nextcloud/webpack-vue-config/rules')
 
-const md5 = require('md5')
+const crypto = require('crypto')
 const path = require('path')
 
 const { DefinePlugin } = require('webpack')
@@ -19,7 +19,7 @@ const isDev = buildMode === 'development'
 // scope variable
 // fallback for cypress testing
 const appVersion = JSON.stringify(process.env.npm_package_version || 'nextcloud-vue')
-const versionHash = md5(appVersion).slice(0, 7)
+const versionHash = crypto.createHash('md5').update(appVersion).digest('hex').slice(0, 7)
 const SCOPE_VERSION = JSON.stringify(versionHash)
 
 webpackConfig.devtool = isDev ? false : 'source-map'
