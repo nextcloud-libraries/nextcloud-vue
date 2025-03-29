@@ -96,59 +96,42 @@ h4 {
 		v-text="formattedTime" />
 </template>
 
-<script>
-import { computed } from 'vue'
+<script setup lang="ts">
+import { toRef } from 'vue'
 import { useFormatDateTime } from '../../composables/useFormatDateTime.ts'
 
-export default {
-	name: 'NcDateTime',
+const props = withDefaults(defineProps<{
+	/**
+	 * The timestamp to display, either an unix timestamp (in milliseconds) or a Date object
+	 */
+	timestamp: Date | number
 
-	props: {
-		/**
-		 * The timestamp to display, either an unix timestamp (in milliseconds) or a Date object
-		 */
-		timestamp: {
-			type: [Date, Number],
-			required: true,
-		},
-		/**
-		 * The format used for displaying, or if relative time is used the format used for the title (optional)
-		 *
-		 * @type {Intl.DateTimeFormatOptions}
-		 */
-		format: {
-			type: Object,
-			default: () => ({ timeStyle: 'medium', dateStyle: 'short' }),
-		},
-		/**
-		 * Wether to display the timestamp as time from now (optional)
-		 *
-		 * - `false`: Disable relative time
-		 * - `'long'`: Long text, like *2 seconds ago* (default)
-		 * - `'short'`: Short text, like *2 sec. ago*
-		 * - `'narrow'`: Even shorter text (same as `'short'` on some languages)
-		 */
-		relativeTime: {
-			type: [Boolean, String],
-			default: 'long',
-			validator: (v) => v === false || ['long', 'short', 'narrow'].includes(v),
-		},
-		/**
-		 * Ignore seconds when displaying the relative time and just show `a few seconds ago`
-		 */
-		ignoreSeconds: {
-			type: Boolean,
-			default: false,
-		},
-	},
+	/**
+	 * The format used for displaying, or if relative time is used the format used for the title (optional)
+	 */
+	format?: Intl.DateTimeFormatOptions
 
-	setup(props) {
-		const timestamp = computed(() => props.timestamp)
-		const { formattedTime, formattedFullTime } = useFormatDateTime(timestamp, props)
-		return {
-			formattedTime,
-			formattedFullTime,
-		}
-	},
-}
+	/**
+	 * Wether to display the timestamp as time from now (optional)
+	 *
+	 * - `false`: Disable relative time
+	 * - `'long'`: Long text, like *2 seconds ago* (default)
+	 * - `'short'`: Short text, like *2 sec. ago*
+	 * - `'narrow'`: Even shorter text (same as `'short'` on some languages)
+	 */
+	relativeTime?: false | 'long' | 'short' | 'narrow'
+
+	/**
+	 * Ignore seconds when displaying the relative time and just show `a few seconds ago`
+	 */
+	ignoreSeconds?: boolean
+}>(), {
+	format: () => ({ timeStyle: 'medium', dateStyle: 'short' }),
+	relativeTime: 'long',
+})
+
+const {
+	formattedTime,
+	formattedFullTime,
+} = useFormatDateTime(toRef(() => props.timestamp), props)
 </script>
