@@ -99,7 +99,6 @@
     "rehype-highlight": "^7.0.2",
     "rehype-react": "^8.0.0",
     "remark-breaks": "^4.0.0",
-    "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.1",
     "splitpanes": "^4.0.3",
@@ -142,6 +141,7 @@
     "gettext-parser": "^8.0.0",
     "glob": "^11.0.1",
     "jsdom": "^26.0.0",
+    "remark-gfm": "^4.0.1",
     "resolve-url-loader": "^5.0.0",
     "sanitize-filename": "^1.6.3",
     "sass": "^1.86.0",
@@ -157,6 +157,11 @@
     "vue-styleguidist": "^4.72.4",
     "webpack": "^5.98.0",
     "webpack-merge": "^6.0.1"
+  },
+  "overrides": {
+    "mdast-util-gfm": {
+      "mdast-util-gfm-autolink-literal": "2.0.0"
+    }
   },
   "engines": {
     "node": "^20.11.0",
