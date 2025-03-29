@@ -326,14 +326,14 @@ export default {
 <script>
 import { useSwipe } from '@vueuse/core'
 import { createFocusTrap } from 'focus-trap'
-import { warn as VueWarn } from 'vue'
+import { shallowRef, warn as VueWarn, watch } from 'vue'
 
 import { getTrapStack } from '../../utils/focusTrap.ts'
-import { t } from '../../l10n.js'
 import { createElementId } from '../../utils/createElementId.ts'
+import { Timer } from '../../utils/Timer.ts'
+import { t } from '../../l10n.js'
 import NcActions from '../NcActions/index.js'
 import NcButton from '../NcButton/index.ts'
-import Timer from '../../utils/Timer.js'
 import Tooltip from '../../directives/Tooltip/index.js'
 
 import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue'
@@ -536,6 +536,74 @@ export default {
 		'update:show',
 	],
 
+	setup(props, { emit }) {
+		const timer = shallowRef(new Timer(handleSlideshow, props.slideshowDelay))
+		watch(() => props.slideshowDelay, () => {
+			timer.value.clear()
+			timer.value = new Timer(handleSlideshow, props.slideshowDelay)
+		})
+
+		/**
+		 * Reset the slideshow timer and keep going if it was on
+		 */
+		function resetSlideshow() {
+			timer.value.clear()
+			timer.value.start()
+		}
+
+		/**
+		 * Move to previous slide
+		 * @param event - MouseEvent if click on button
+		 */
+		function previous(event) {
+			// do not send the event if nothing is available
+			if (props.hasPrevious) {
+				// if data is set, then it's a user mouse event
+				// and not the slideshow handler, therefore
+				// we reset the timer
+				if (event) {
+					resetSlideshow()
+				}
+				emit('previous', event)
+			}
+		}
+
+		/**
+		 * Move to the next slide
+		 * @param event - MouseEvent if click on button
+		 */
+		function next(event) {
+			// do not send the event if nothing is available
+			if (props.hasNext) {
+				// if data is set, then it's a mouse event
+				// and not the slideshow handler, therefore
+				// we reset the timer
+				if (event) {
+					resetSlideshow()
+				}
+				emit('next', event)
+			}
+		}
+
+		/**
+		 * Callback for the slideshow
+		 */
+		function handleSlideshow() {
+			if (props.hasNext) {
+				next()
+			} else {
+				timer.value.clear()
+			}
+		}
+
+		return {
+			timer,
+
+			next,
+			previous,
+		}
+	},
+
 	data() {
 		return {
 			mc: null,
@@ -564,7 +632,7 @@ export default {
 			return `modal-${this.outTransition ? 'out' : 'in'}`
 		},
 		playPauseName() {
-			return this.playing ? t('Pause slideshow') : t('Start slideshow')
+			return this.timer.isRunning ? t('Pause slideshow') : t('Start slideshow')
 		},
 		cssVariables() {
 			return {
@@ -643,31 +711,6 @@ export default {
 	methods: {
 		t,
 
-		// Events emitters
-		previous(event) {
-			// do not send the event if nothing is available
-			if (this.hasPrevious) {
-				// if data is set, then it's a user mouse event
-				// and not the slideshow handler, therefore
-				// we reset the timer
-				if (event) {
-					this.resetSlideshow()
-				}
-				this.$emit('previous', event)
-			}
-		},
-		next(event) {
-			// do not send the event if nothing is available
-			if (this.hasNext) {
-				// if data is set, then it's a mouse event
-				// and not the slideshow handler, therefore
-				// we reset the timer
-				if (event) {
-					this.resetSlideshow()
-				}
-				this.$emit('next', event)
-			}
-		},
 		close(data) {
 			// do not fire event if forbidden
 			if (this.noClose) {
@@ -749,49 +792,13 @@ export default {
 		 * Toggle the slideshow state
 		 */
 		togglePlayPause() {
-			this.playing = !this.playing
-			if (this.playing) {
-				this.handleSlideshow()
+			if (this.timer.isRunning) {
+				this.timer.pause()
 			} else {
-				this.clearSlideshowTimeout()
+				this.timer.start()
 			}
 		},
 
-		/**
-		 * Reset the slideshow timer and keep going if it was on
-		 */
-		resetSlideshow() {
-			this.playing = !this.playing
-			this.clearSlideshowTimeout()
-			this.$nextTick(function() {
-				this.togglePlayPause()
-			})
-		},
-
-		/**
-		 * Handle the slideshow timer and next event
-		 */
-		handleSlideshow() {
-			this.playing = true
-			if (this.hasNext) {
-				this.slideshowTimeout = new Timer(() => {
-					this.next()
-					this.handleSlideshow()
-				}, this.slideshowDelay)
-			} else {
-				this.playing = false
-				this.clearSlideshowTimeout()
-			}
-		},
-
-		/**
-		 * Clear slideshowTimeout if ongoing
-		 */
-		clearSlideshowTimeout() {
-			if (this.slideshowTimeout) {
-				this.slideshowTimeout.clear()
-			}
-		},
 		/**
 		 * Add focus trap for accessibility.
 		 */

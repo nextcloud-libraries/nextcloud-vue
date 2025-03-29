@@ -40,7 +40,6 @@ describe('usernameToColor', () => {
 		'Private Circle',
 	])('%s has the proper color', (name: string) => {
 		const color = usernameToColor(name)
-		console.error(color)
 		expect(rgbToHex(color)).toMatchSnapshot()
 	})
 })
