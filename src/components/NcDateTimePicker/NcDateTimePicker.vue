@@ -190,7 +190,7 @@ const props = withDefaults(defineProps<{
 	 * while 'range-date' will only allow picking a date range without time.
 	 * @default 'datetime'
 	 */
-	type?: 'datetime'|'date'|'time'|'week'|'month'|'year'|'range'|'range-date'
+	type?: 'datetime' | 'date' | 'time' | 'week' | 'month' | 'year' | 'range' | 'range-date'
 
 	appendToBody?: boolean
 
