@@ -266,7 +266,7 @@ msgid "online"
 msgstr "ligado"
 
 msgid "Open link to \"{resourceName}\""
-msgstr "Abrir i link para \"{resourceName}\""
+msgstr "Abrir o link para \"{resourceName}\""
 
 msgid "Open menu"
 msgstr "Abrir menu"
