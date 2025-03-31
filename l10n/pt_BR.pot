@@ -24,7 +24,7 @@ msgid "A color with a HEX value {hex}"
 msgstr "Uma cor com valor HEX {hex}"
 
 msgid "a few seconds ago"
-msgstr "Alguns segundos atrás"
+msgstr "alguns segundos atrás"
 
 #. TRANSLATORS: A color name for RGB(110, 166, 143)
 msgid "Acapulco"
