@@ -369,7 +369,7 @@ msgid "Select a tag"
 msgstr "Selecionar uma etiqueta"
 
 msgid "Select provider"
-msgstr "Selecione o provedor"
+msgstr "Selecionar provedor"
 
 msgid "Selected"
 msgstr "Selecionado"
