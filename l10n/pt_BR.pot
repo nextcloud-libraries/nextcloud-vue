@@ -185,7 +185,7 @@ msgid "Global"
 msgstr "Global"
 
 msgid "Go back to the list"
-msgstr "Volte para a lista"
+msgstr "Voltar para a lista"
 
 msgid "Gold"
 msgstr "Ouro"
