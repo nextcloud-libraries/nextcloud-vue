@@ -157,13 +157,13 @@ msgid "External documentation for {name}"
 msgstr "Documentação externa para {name}"
 
 msgid "Failed to add the item to the project"
-msgstr "Erro ao adicionar itens ao projeto"
+msgstr "Falha ao adicionar itens ao projeto"
 
 msgid "Failed to create a project"
-msgstr "Erro ao criar um projeto"
+msgstr "Falha ao criar um projeto"
 
 msgid "Failed to rename the project"
-msgstr "Erro ao renomear o projeto"
+msgstr "Falha ao renomear o projeto"
 
 msgid "Favorite"
 msgstr "Favorito"
