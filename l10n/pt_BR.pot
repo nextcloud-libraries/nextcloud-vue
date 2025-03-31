@@ -138,7 +138,7 @@ msgid "Edit item"
 msgstr "Editar item"
 
 msgid "Emoji picker"
-msgstr "Selecionar emoji"
+msgstr "Seletor de emoji"
 
 msgid "Enable interactive view"
 msgstr "Ativar visualização interativa"
