@@ -366,7 +366,7 @@ msgid "seconds ago"
 msgstr "segundos atrás"
 
 msgid "Select a tag"
-msgstr "Selecionar uma tag"
+msgstr "Selecionar uma etiqueta"
 
 msgid "Select provider"
 msgstr "Selecione o provedor"
