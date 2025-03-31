@@ -80,7 +80,7 @@ msgid "Cancel changes"
 msgstr "Cancelar alterações"
 
 msgid "Change name"
-msgstr "Mude o nome"
+msgstr "Mudar nome"
 
 msgid "Choose"
 msgstr "Escolher"
