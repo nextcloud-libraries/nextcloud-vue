@@ -148,6 +148,7 @@ import { loadState } from '@nextcloud/initial-state'
 import { useSwipe } from '@vueuse/core'
 import { Splitpanes, Pane } from 'splitpanes'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { APP_NAME } from '../../utils/appName.ts'
 import { isRtl } from '../../utils/rtl.ts'
 
 import NcAppDetailsToggle from './NcAppDetailsToggle.vue'
@@ -156,8 +157,8 @@ import 'splitpanes/dist/splitpanes.css'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 const { name: productName } = loadState('theming', 'data', { name: 'Nextcloud' })
-const activeApp = loadState('core', 'active-app', appName)
-const localizedAppName = loadState('core', 'apps', {})[activeApp]?.name ?? appName
+const activeApp = loadState('core', 'active-app', APP_NAME)
+const localizedAppName = loadState('core', 'apps', {})[activeApp]?.name ?? APP_NAME
 
 /**
  * App content container to be used for the main content of your app
@@ -299,7 +300,7 @@ export default {
 				// This will throw a ReferenceError when the global variable is missing
 				// In that case either you provide paneConfigKey or else it fallback
 				// to a global storage key
-				return `pane-list-size-${appName}`
+				return `pane-list-size-${APP_NAME}`
 			} catch (e) {
 				console.info('[INFO] AppContent:', 'falling back to global nextcloud pane config')
 				return 'pane-list-size-nextcloud'
