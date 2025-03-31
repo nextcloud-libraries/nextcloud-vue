@@ -411,7 +411,7 @@ msgid "Submit"
 msgstr "Enviar"
 
 msgid "Symbols"
-msgstr "Símbolo"
+msgstr "Símbolos"
 
 msgid "Travel & Places"
 msgstr "Viagem & Lugares"
