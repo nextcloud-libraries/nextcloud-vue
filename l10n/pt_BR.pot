@@ -241,7 +241,7 @@ msgid "Next"
 msgstr "Próximo"
 
 msgid "Nextcloud blue"
-msgstr "Nextcloud azul"
+msgstr "azul Nextcloud"
 
 msgid "No emoji found"
 msgstr "Nenhum emoji encontrado"
