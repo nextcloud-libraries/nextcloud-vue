@@ -345,7 +345,7 @@ msgid "Search"
 msgstr "Pesquisar"
 
 msgid "Search emoji"
-msgstr "Pesquisar emoticons"
+msgstr "Pesquisar emoji"
 
 msgid "Search for time zone"
 msgstr "Pesquisar fuso horário"
