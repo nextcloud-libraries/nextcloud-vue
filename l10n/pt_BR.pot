@@ -206,7 +206,7 @@ msgid "Light skin tone"
 msgstr "Tome de pele claro"
 
 msgid "Load more \"{options}\""
-msgstr "Carregue mais \"{options}\""
+msgstr "Carregar mais \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
