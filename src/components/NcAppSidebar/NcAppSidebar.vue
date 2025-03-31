@@ -551,6 +551,7 @@ export default {
 			-->
 			<Teleport v-if="ncContentSelector && !open && !noToggle" :to="ncContentSelector">
 				<NcButton :aria-label="t('Open sidebar')"
+					ref="toggle"
 					class="app-sidebar__toggle"
 					:class="toggleClasses"
 					variant="tertiary"
@@ -564,6 +565,15 @@ export default {
 					</template>
 				</NcButton>
 			</Teleport>
+
+			<!-- Fallback for screen reader navigation in case header was not rendered -->
+			<h2 v-if="hasHeaderAriaFallback"
+				:id="`app-sidebar-vue-${uid}__header`"
+				ref="headerAriaFallback"
+				:tabindex="0"
+				class="hidden-visually">
+				{{ name }}
+			</h2>
 
 			<header :class="{
 					'app-sidebar-header--with-figure': isSlotPopulated($slots.header?.()) || background,
@@ -957,6 +967,9 @@ export default {
 		hasFigureClickListener() {
 			return !!this.$attrs.onFigureClick
 		},
+		hasHeaderAriaFallback() {
+			return this.empty || isSlotPopulated(this.$slots.content)
+		},
 	},
 
 	watch: {
@@ -1019,7 +1032,7 @@ export default {
 				document.querySelector('#header'),
 			], {
 				allowOutsideClick: true,
-				fallbackFocus: this.$refs.closeButton.$el,
+				fallbackFocus: this.$refs.closeButton?.$el ?? this.$refs.sidebar,
 				trapStack: getTrapStack(),
 				escapeDeactivates: false,
 			})
@@ -1146,7 +1159,16 @@ export default {
 		 * @public
 		 */
 		focus() {
-			(this.$refs.header ?? this.$refs.toggle)?.focus()
+			if (!this.open && !this.noToggle) {
+				this.$refs.toggle.$el.focus()
+				return
+			}
+
+			if (this.hasHeaderAriaFallback) {
+				this.$refs.headerAriaFallback.focus()
+			} else {
+				this.$refs.header.focus()
+			}
 		},
 
 		/**
