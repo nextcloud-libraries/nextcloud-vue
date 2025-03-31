@@ -200,7 +200,7 @@ msgid "invisible"
 msgstr "invisível"
 
 msgid "Keyboard navigation help"
-msgstr "Ajuda navegação de teclado"
+msgstr "Ajuda para navegação pelo teclado"
 
 msgid "Light skin tone"
 msgstr "Tome de pele claro"
