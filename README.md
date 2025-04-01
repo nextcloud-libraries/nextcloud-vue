@@ -144,8 +144,12 @@ index 0e3a6a705d..416b8b0fb9 100644
   This will return a new version name, make sure it matches what you expect
 - Generate the changelog content from the [release](https://github.com/nextcloud-libraries/nextcloud-vue/releases) page.
   Create a draft release, select the previous tag, click `generate` then paste the content to the `CHANGELOG.md` file
-  1. use the version as tag AND title (e.g `v4.0.1`)
-  2. add the changelog content as description (https://github.com/nextcloud-libraries/nextcloud-vue/releases)
+  1. adjust the links to the merged pull requests and authors so that the changelog also works outside of GitHub
+     by running `npm run prerelease:format-changelog`.
+     This will apply this regex: `by @([^ ]+) in ((https://github.com/)nextcloud-libraries/nextcloud-vue/pull/(\d+))`
+     Which this as the replacement: `[\#$4]($2) \([$1]($3$1)\)`
+  2. use the the version as tag AND title (e.g `v4.0.1`)
+  3. add the changelog content as description (https://github.com/nextcloud-libraries/nextcloud-vue/releases)
 - Commit, push and create PR
 - Get your PR reviewed and merged
 - Create a milestone with the follow-up version at https://github.com/nextcloud-libraries/nextcloud-vue/milestones
