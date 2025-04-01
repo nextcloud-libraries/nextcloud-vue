@@ -803,7 +803,7 @@ export default {
 		.action-item {
 			position: absolute;
 			top: 0;
-			left: 0;
+			inset-inline-start: 0;
 		}
 		:deep(.action-item__menutoggle) {
 			cursor: pointer;
@@ -848,7 +848,7 @@ export default {
 		.avatardiv__initials {
 			position: absolute;
 			top: 0;
-			left: 0;
+			inset-inline-start: 0;
 			display: block;
 			width: 100%;
 			text-align: center;

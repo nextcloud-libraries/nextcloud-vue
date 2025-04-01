@@ -328,7 +328,7 @@ export default {
 	cursor: inherit;
 
 	&__avatar {
-		margin-right: var(--margin);
+		margin-inline-end: var(--margin);
 	}
 
 	&__details {

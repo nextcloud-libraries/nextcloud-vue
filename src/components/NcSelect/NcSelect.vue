@@ -1244,7 +1244,7 @@ body {
 	}
 
 	.vs__clear {
-		margin-right: 2px;
+		margin-inline-end: 2px;
 	}
 
 	&.vs--open .vs__dropdown-toggle {
@@ -1339,7 +1339,7 @@ body {
 		width: max-content;
 		position: absolute;
 		top: 0;
-		left: 0;
+		inset-inline-start: 0;
 
 		&-placement-top {
 			border-radius: var(--vs-border-radius) var(--vs-border-radius) 0 0 !important;

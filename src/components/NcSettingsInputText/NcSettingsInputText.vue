@@ -147,7 +147,7 @@ export default {
 		max-width: 400px;
 
 		& .action-input__label {
-			margin-right: 12px;
+			margin-inline-end: 12px;
 		}
 
 		// if disabled, change cursor
@@ -157,7 +157,7 @@ export default {
 
 		.hint {
 			color: var(--color-text-maxcontrast);
-			margin-left: 8px;
+			margin-inline-start: 8px;
 		}
 	}
 

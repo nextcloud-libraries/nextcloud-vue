@@ -181,7 +181,7 @@ export default {
 // Remove server stylings and add a backdrop
 #skip-actions.vue-skip-actions:focus-within {
 	top: 0!important;
-	left: 0!important;
+	inset-inline-start: 0!important;
 	width: 100vw;
 	height: 100vh;
 	padding: var(--body-container-margin)!important;

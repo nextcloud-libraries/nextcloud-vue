@@ -131,7 +131,7 @@ $input-margin: 5px;
 		flex: 1 1 100%;
 		font-size: 100% !important;
 		margin: $input-margin !important;
-		margin-left: -1px - $input-padding !important;
+		margin-inline-start: -1px - $input-padding !important;
 		padding: $input-padding !important;
 
 		&:active,

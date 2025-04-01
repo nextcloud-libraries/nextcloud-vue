@@ -204,7 +204,7 @@ export default {
 
 	&__header {
 		padding: 6px;
-		padding-right: 24px;
+		padding-inline-end: 24px;
 		display: flex;
 		gap: 12px;
 	}

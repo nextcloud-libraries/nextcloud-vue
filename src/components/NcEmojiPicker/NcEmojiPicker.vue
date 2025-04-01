@@ -600,7 +600,7 @@ export default {
 
 .emoji-delete {
 	vertical-align: top;
-	margin-left: -21px;
+	margin-inline-start: -21px;
 	margin-top: -3px;
 }
 </style>
