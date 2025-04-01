@@ -517,12 +517,11 @@ export default {
 		},
 
 		avatarStyle() {
-			const style = {
+			return {
 				'--size': this.size + 'px',
-				lineHeight: this.size + 'px',
+				lineHeight: this.showInitials ? (this.size + 'px') : 0,
 				fontSize: Math.round(this.size * 0.45) + 'px',
 			}
-			return style
 		},
 		initialsWrapperStyle() {
 			const { r, g, b } = usernameToColor(this.userIdentifier)
