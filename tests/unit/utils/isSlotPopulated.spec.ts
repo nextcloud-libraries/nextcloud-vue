@@ -7,7 +7,7 @@ import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { defineComponent } from 'vue'
 
-import isSlotPopulated from '../../../src/utils/isSlotPopulated'
+import { isSlotPopulated } from '../../../src/utils/isSlotPopulated.ts'
 
 const IsSlotPopulatedTest = defineComponent({
 	name: 'IsSlotPopulatedTest',

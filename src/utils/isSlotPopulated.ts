@@ -11,7 +11,7 @@ import { Fragment, Comment, Text } from 'vue'
  *
  * @param vnodes The array of vnodes to check
  */
-const isSlotPopulated = function(vnodes?: VNode[] | VNodeNormalizedChildren) {
+export function isSlotPopulated(vnodes?: VNode[] | VNodeNormalizedChildren) {
 	return Array.isArray(vnodes) && vnodes.some(node => {
 		if (node === null) return false
 		if (typeof node === 'object') {
@@ -23,5 +23,3 @@ const isSlotPopulated = function(vnodes?: VNode[] | VNodeNormalizedChildren) {
 		return true
 	})
 }
-
-export default isSlotPopulated

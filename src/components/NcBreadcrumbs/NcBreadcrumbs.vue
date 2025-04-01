@@ -120,19 +120,18 @@ export default {
 </docs>
 
 <script>
+import { subscribe, unsubscribe } from '@nextcloud/event-bus'
+import { cloneVNode, h, Fragment } from 'vue'
+import debounce from 'debounce'
+
+import { isSlotPopulated } from '../../utils/isSlotPopulated.ts'
+
+import IconFolder from 'vue-material-design-icons/Folder.vue'
 import NcActions from '../NcActions/index.js'
 import NcActionButton from '../NcActionButton/index.js'
 import NcActionRouter from '../NcActionRouter/index.js'
 import NcActionLink from '../NcActionLink/index.js'
 import NcBreadcrumb from '../NcBreadcrumb/index.js'
-import isSlotPopulated from '../../utils/isSlotPopulated.ts'
-
-import { subscribe, unsubscribe } from '@nextcloud/event-bus'
-
-import IconFolder from 'vue-material-design-icons/Folder.vue'
-
-import debounce from 'debounce'
-import { cloneVNode, h, Fragment } from 'vue'
 
 const crumbClass = 'vue-crumb'
 
