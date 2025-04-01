@@ -4,7 +4,7 @@
  */
 
 import md5 from 'md5'
-import { GenColors } from '../../utils/GenColors.js'
+import { generatePalette } from '../../utils/colors.ts'
 
 /**
  * Generate a color from a username
@@ -25,7 +25,7 @@ export function usernameToColor(username) {
 	hash = hash.replace(/[^0-9a-f]/g, '')
 
 	const steps = 6
-	const finalPalette = GenColors(steps)
+	const finalPalette = generatePalette(steps)
 
 	/**
 	 * Convert a string to an integer evenly
