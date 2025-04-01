@@ -3,7 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { type Color, GenColors } from '../../utils/GenColors.js'
+import type { Color } from '../../utils/colors.ts'
+import { generatePalette } from '../../utils/colors.ts'
 
 /**
  * Create a simple hash from a string
@@ -32,7 +33,7 @@ function hashCode(str: string): number {
  */
 export function usernameToColor(username: string): Color {
 	const steps = 6
-	const finalPalette = GenColors(steps)
+	const finalPalette = generatePalette(steps)
 	const hash = hashCode(username.toLocaleLowerCase())
 
 	return finalPalette[hash % finalPalette.length]

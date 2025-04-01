@@ -200,19 +200,17 @@ export default {
 </template>
 
 <script>
-import NcButton from '../NcButton/index.ts'
-import NcPopover from '../NcPopover/index.js'
-import { t } from '../../l10n.js'
-import { defaultPalette } from '../../utils/GenColors.js'
-
+import { Chrome } from '@ckpack/vue-color'
+import { defineComponent } from 'vue'
+import { defaultPalette } from '../../utils/colors.ts'
 import { createElementId } from '../../utils/createElementId.ts'
+import { t } from '../../l10n.js'
 
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
 import Check from 'vue-material-design-icons/Check.vue'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
-
-import { Chrome } from '@ckpack/vue-color'
-import { defineComponent } from 'vue'
+import NcButton from '../NcButton/index.ts'
+import NcPopover from '../NcPopover/index.js'
 
 const HEX_REGEX = /^#([a-f0-9]{3}|[a-f0-9]{6})$/i
 
