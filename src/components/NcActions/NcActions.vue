@@ -1369,6 +1369,15 @@ export default {
 			})
 		},
 
+		onClosed() {
+			/**
+			 * Event emitted when the popover menu is closed.
+			 *
+			 * This event is emitted after `update:open` was emitted and the closing transition finished.
+			 */
+			 this.$emit('closed')
+		},
+
 		/**
 		 * Handle resizing the popover to make sure users can discover there is more to scroll
 		 */
@@ -1760,7 +1769,8 @@ export default {
 					setReturnFocus: this.config.withFocusTrap ? this.$refs.triggerButton?.$el : null,
 					focusTrap: this.config.withFocusTrap,
 					onShow: this.openMenu,
-					onApplyShow: this.onOpen,
+					onAfterShow: this.onOpened,
+					onAfterClose: this.onClosed,
 					onHide: this.closeMenu,
 				},
 				{
