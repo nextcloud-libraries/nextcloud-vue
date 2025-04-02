@@ -4,10 +4,11 @@
 # Roberto Costa, 2024
 # Flávio Veras <flaviove@gmail.com>, 2024
 # Paulo Schopf, 2024
+# F Bausch, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Paulo Schopf, 2024\n"
+"Last-Translator: F Bausch, 2025\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_BR\n"
@@ -23,7 +24,7 @@ msgid "A color with a HEX value {hex}"
 msgstr "Uma cor com valor HEX {hex}"
 
 msgid "a few seconds ago"
-msgstr "Alguns segundos atrás"
+msgstr "alguns segundos atrás"
 
 #. TRANSLATORS: A color name for RGB(110, 166, 143)
 msgid "Acapulco"
@@ -79,7 +80,7 @@ msgid "Cancel changes"
 msgstr "Cancelar alterações"
 
 msgid "Change name"
-msgstr "Mude o nome"
+msgstr "Mudar nome"
 
 msgid "Choose"
 msgstr "Escolher"
@@ -128,7 +129,7 @@ msgid "Deluge"
 msgstr "Dilúvio"
 
 msgid "Deselect {option}"
-msgstr "Desmarque {option}"
+msgstr "Desmacar {option}"
 
 msgid "do not disturb"
 msgstr "não perturbe"
@@ -137,7 +138,7 @@ msgid "Edit item"
 msgstr "Editar item"
 
 msgid "Emoji picker"
-msgstr "Selecionar emoji"
+msgstr "Seletor de emoji"
 
 msgid "Enable interactive view"
 msgstr "Ativar visualização interativa"
@@ -156,13 +157,13 @@ msgid "External documentation for {name}"
 msgstr "Documentação externa para {name}"
 
 msgid "Failed to add the item to the project"
-msgstr "Erro ao adicionar itens ao projeto"
+msgstr "Falha ao adicionar itens ao projeto"
 
 msgid "Failed to create a project"
-msgstr "Erro ao criar um projeto"
+msgstr "Falha ao criar um projeto"
 
 msgid "Failed to rename the project"
-msgstr "Erro ao renomear o projeto"
+msgstr "Falha ao renomear o projeto"
 
 msgid "Favorite"
 msgstr "Favorito"
@@ -184,7 +185,7 @@ msgid "Global"
 msgstr "Global"
 
 msgid "Go back to the list"
-msgstr "Volte para a lista"
+msgstr "Voltar para a lista"
 
 msgid "Gold"
 msgstr "Ouro"
@@ -193,23 +194,23 @@ msgid "Hide details"
 msgstr "Ocultar detalhes"
 
 msgid "Hide password"
-msgstr "Ocultar a senha"
+msgstr "Ocultar senha"
 
 msgid "invisible"
 msgstr "invisível"
 
 msgid "Keyboard navigation help"
-msgstr "Ajuda navegação de teclado"
+msgstr "Ajuda para navegação pelo teclado"
 
 msgid "Light skin tone"
 msgstr "Tome de pele claro"
 
 msgid "Load more \"{options}\""
-msgstr "Carregue mais \"{options}\""
+msgstr "Carregar mais \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "Carregando..."
+msgstr "Carregando …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -240,7 +241,7 @@ msgid "Next"
 msgstr "Próximo"
 
 msgid "Nextcloud blue"
-msgstr "Nextcloud azul"
+msgstr "azul Nextcloud"
 
 msgid "No emoji found"
 msgstr "Nenhum emoji encontrado"
@@ -265,13 +266,13 @@ msgid "online"
 msgstr "ligado"
 
 msgid "Open link to \"{resourceName}\""
-msgstr "Abrir i link para \"{resourceName}\""
+msgstr "Abrir o link para \"{resourceName}\""
 
 msgid "Open menu"
 msgstr "Abrir menu"
 
-msgid "Open navigation"
-msgstr "Abrir navegação"
+msgid "Open navigation {shortcut}"
+msgstr "Abrir navegação {shortcut}"
 
 msgid "Open sidebar"
 msgstr "Abrir barra lateral"
@@ -344,7 +345,7 @@ msgid "Search"
 msgstr "Pesquisar"
 
 msgid "Search emoji"
-msgstr "Pesquisar emoticons"
+msgstr "Pesquisar emoji"
 
 msgid "Search for time zone"
 msgstr "Pesquisar fuso horário"
@@ -353,7 +354,7 @@ msgid "Search results"
 msgstr "Resultados da pesquisa"
 
 msgid "Search…"
-msgstr "Procurar..."
+msgstr "Pesquisar…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -365,10 +366,10 @@ msgid "seconds ago"
 msgstr "segundos atrás"
 
 msgid "Select a tag"
-msgstr "Selecionar uma tag"
+msgstr "Selecionar uma etiqueta"
 
 msgid "Select provider"
-msgstr "Selecione o provedor"
+msgstr "Selecionar provedor"
 
 msgid "Selected"
 msgstr "Selecionado"
@@ -410,7 +411,7 @@ msgid "Submit"
 msgstr "Enviar"
 
 msgid "Symbols"
-msgstr "Símbolo"
+msgstr "Símbolos"
 
 msgid "Travel & Places"
 msgstr "Viagem & Lugares"
