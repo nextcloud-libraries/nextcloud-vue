@@ -84,7 +84,7 @@ export default {
 			validator(value) {
 				return ['primary', 'secondary', 'tertiary'].indexOf(value) !== -1
 			},
-		}
+		},
 	},
 
 	emits: ['click'],
