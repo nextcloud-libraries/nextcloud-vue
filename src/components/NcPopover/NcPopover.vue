@@ -379,7 +379,7 @@ export default {
 				 * tooltip is already visible and in the DOM.
 				 */
 				this.$emit('after-show')
-			}, { once: true })
+			}, { once: true, passive: true })
 
 			this.removeFloatingVueAriaDescribedBy()
 
@@ -397,7 +397,7 @@ export default {
 				 * tooltip is already visible and in the DOM.
 				 */
 				this.$emit('after-hide')
-			}, { once: true })
+			}, { once: true, passive: true })
 
 			this.clearFocusTrap()
 			this.clearEscapeStopPropagation()
