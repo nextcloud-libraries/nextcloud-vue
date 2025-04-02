@@ -234,7 +234,6 @@ export default {
 	data() {
 		return {
 			internalShown: this.shown,
-			animationDuration: 100,
 		}
 	},
 
@@ -250,7 +249,6 @@ export default {
 
 	mounted() {
 		this.checkTriggerA11y()
-		this.animationDuration = parseInt(getComputedStyle(this.$el).getPropertyValue('--animation-quick')) || 100
 	},
 
 	beforeUnmount() {
@@ -372,33 +370,37 @@ export default {
 		},
 
 		async afterShow() {
+			this.getPopoverContentElement().addEventListener('transitionend', () => {
+				/**
+				 * Triggered after the tooltip was visually displayed.
+				 *
+				 * This is different from the 'show' and 'apply-show' which
+				 * run earlier than this where there is no guarantee that the
+				 * tooltip is already visible and in the DOM.
+				 */
+				this.$emit('after-show')
+			}, { once: true })
+
 			this.removeFloatingVueAriaDescribedBy()
 
 			await this.$nextTick()
 			await this.useFocusTrap()
 			this.addEscapeStopPropagation()
-
-			setTimeout(() => {
-			/**
-			 * Triggered after the tooltip was visually displayed.
-			 *
-			 * This is different from the 'show' and 'apply-show' which
-			 * run earlier than this where there is no guarantee that the
-			 * tooltip is already visible and in the DOM.
-			 */
-				this.$emit('after-show')
-			}, this.animationDuration)
 		},
-		async afterHide() {
-			this.clearFocusTrap()
-			this.clearEscapeStopPropagation()
-
-			setTimeout(() => {
+		afterHide() {
+			this.getPopoverContentElement().addEventListener('transitionend', () => {
 				/**
 				 * Triggered after the tooltip was visually hidden.
+				 *
+				 * This is different from the 'hide' and 'apply-hide' which
+				 * run earlier than this where there is no guarantee that the
+				 * tooltip is already visible and in the DOM.
 				 */
 				this.$emit('after-hide')
-			}, this.animationDuration)
+			}, { once: true })
+
+			this.clearFocusTrap()
+			this.clearEscapeStopPropagation()
 		},
 	},
 }
