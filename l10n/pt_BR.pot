@@ -71,7 +71,7 @@ msgstr "Violeta Azul"
 
 #. TRANSLATORS: A color name for RGB(55, 148, 172)
 msgid "Boston Blue"
-msgstr "Violeta Azul"
+msgstr "Azul Boston"
 
 msgid "busy"
 msgstr "ocupado"
@@ -89,7 +89,7 @@ msgid "Clear search"
 msgstr "Limpar pesquisa"
 
 msgid "Clear selected"
-msgstr "Limpar selecionado"
+msgstr "Limpar selecionados"
 
 msgid "Clear text"
 msgstr "Limpar texto"
