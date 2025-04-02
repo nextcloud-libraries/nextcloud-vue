@@ -174,7 +174,6 @@ import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
  * @typedef {import('focus-trap').FocusTargetValueOrFalse} FocusTargetValueOrFalse
  * @typedef {FocusTargetValueOrFalse|() => FocusTargetValueOrFalse} SetReturnFocus
  */
-
 export default {
 	name: 'NcPopover',
 
@@ -239,6 +238,7 @@ export default {
 	data() {
 		return {
 			internalShown: this.shown,
+			animationDuration: 100,
 		}
 	},
 
@@ -254,6 +254,7 @@ export default {
 
 	mounted() {
 		this.checkTriggerA11y()
+		this.animationDuration = parseInt(getComputedStyle(this.$el).getPropertyValue('--animation-quick')) || 100
 	},
 
 	beforeDestroy() {
@@ -385,6 +386,7 @@ export default {
 			await this.useFocusTrap()
 			this.addEscapeStopPropagation()
 
+			setTimeout(() => {
 			/**
 			 * Triggered after the tooltip was visually displayed.
 			 *
@@ -392,15 +394,19 @@ export default {
 			 * run earlier than this where there is no guarantee that the
 			 * tooltip is already visible and in the DOM.
 			 */
-			this.$emit('after-show')
+				this.$emit('after-show')
+			}, this.animationDuration)
 		},
-		afterHide() {
+		async afterHide() {
 			this.clearFocusTrap()
 			this.clearEscapeStopPropagation()
-			/**
-			 * Triggered after the tooltip was visually hidden.
-			 */
-			this.$emit('after-hide')
+
+			setTimeout(() => {
+				/**
+				 * Triggered after the tooltip was visually hidden.
+				 */
+				this.$emit('after-hide')
+			}, this.animationDuration)
 		},
 	},
 }

@@ -384,11 +384,6 @@ export default {
 		ChevronRightIcon,
 		ChevronLeftIcon,
 	},
-	setup() {
-		return {
-			isRtl,
-		}
-	},
 	mixins: [ActionTextMixin],
 
 	inject: {
@@ -461,6 +456,11 @@ export default {
 			type: String,
 			default: null,
 		},
+	},
+	setup() {
+		return {
+			isRtl,
+		}
 	},
 
 	computed: {
