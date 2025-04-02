@@ -13,7 +13,7 @@ jobs:
         with:
           github-token: ${{ secrets.COMMAND_BOT_PAT }}
 
-      - uses: pascalgn/automerge-action@v0.16.2
+      - uses: pascalgn/automerge-action@v0.16.4
         env:
           MERGE_DELETE_BRANCH: true
           MERGE_LABELS: ''
