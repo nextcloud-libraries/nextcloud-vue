@@ -928,6 +928,7 @@ import { t } from '../../l10n.js'
 import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 import NcButton from '../NcButton/index.ts'
 import NcPopover from '../NcPopover/index.js'
+import { NC_ACTIONS_IS_SEMANTIC_MENU } from './useNcActions.ts'
 
 const focusableSelector = '.focusable'
 
@@ -958,7 +959,7 @@ export default {
 			 * Provide the role for NcAction* components in the NcActions content.
 			 * @type {import('vue').ComputedRef<boolean>}
 			 */
-			'NcActions:isSemanticMenu': computed(() => this.actionsMenuSemanticType === 'menu'),
+			[NC_ACTIONS_IS_SEMANTIC_MENU]: computed(() => this.actionsMenuSemanticType === 'menu'),
 		}
 	},
 

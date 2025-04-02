@@ -40,6 +40,7 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 <script>
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import { createElementId } from '../../utils/createElementId.ts'
+import { NC_ACTIONS_IS_SEMANTIC_MENU } from '../NcActions/useNcActions.ts'
 
 export default {
 	name: 'NcActionCheckbox',
@@ -48,7 +49,7 @@ export default {
 
 	inject: {
 		isInSemanticMenu: {
-			from: 'NcActions:isSemanticMenu',
+			from: NC_ACTIONS_IS_SEMANTIC_MENU,
 			default: false,
 		},
 	},
