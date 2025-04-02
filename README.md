@@ -18,8 +18,8 @@
 
 | Version        | Target                | Documentation                                         |
 |----------------|-----------------------|-------------------------------------------------------|
-| v9.x [next]    | Nextcloud 30+ (Vue 3) | https://next--nextcloud-vue-components.netlify.app    |
-| v8.x [master]  | Nextcloud 28+ (Vue 2) | https://nextcloud-vue-components.netlify.app          |
+| v9.x [main]    | Nextcloud 30+ (Vue 3) | https://nextcloud-vue-components.netlify.app          |
+| v8.x [stable8] | Nextcloud 28+ (Vue 2) | https://stable8--nextcloud-vue-components.netlify.app |
 | v7.x [stable7] | Nextcloud 25 - 27     | https://stable7--nextcloud-vue-components.netlify.app |
 | v6.x [stable6] | Nextcloud 24 - 25     | https://stable6--nextcloud-vue-components.netlify.app |
 
@@ -138,7 +138,7 @@ index 0e3a6a705d..416b8b0fb9 100644
 
 ## 📤 Releasing a new version
 
-- Pull the latest changes from `master` or `stableX`
+- Pull the latest changes from `main` or `stableX`
 - Checkout a new branch with the tag name (e.g `v4.0.1`): `git checkout -b v<version>`
 - Run `npm version patch --no-git-tag-version` (`npm version minor --no-git-tag-version` if minor).
   This will return a new version name, make sure it matches what you expect
