@@ -422,8 +422,8 @@ td.row-size {
 import type { PropType } from 'vue'
 
 import { defineComponent, h, resolveComponent } from 'vue'
-import { ButtonAlignment, ButtonNativeType, ButtonType } from './types'
-import isSlotPopulated from '../../utils/isSlotPopulated'
+import { ButtonAlignment, ButtonNativeType, ButtonType } from './types.ts'
+import { isSlotPopulated } from '../../utils/isSlotPopulated.ts'
 
 export default defineComponent({
 	name: 'NcButton',

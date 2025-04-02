@@ -921,14 +921,13 @@ export default {
 import { useElementBounding, useWindowSize } from '@vueuse/core'
 import { Fragment, computed, h, mergeProps, ref, toRef, warn } from 'vue'
 import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
+import { createElementId } from '../../utils/createElementId.ts'
+import { isSlotPopulated } from '../../utils/isSlotPopulated.ts'
 import { t } from '../../l10n.js'
 
+import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 import NcButton from '../NcButton/index.ts'
 import NcPopover from '../NcPopover/index.js'
-import { createElementId } from '../../utils/createElementId.ts'
-import isSlotPopulated from '../../utils/isSlotPopulated.ts'
-
-import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 const focusableSelector = '.focusable'
 
