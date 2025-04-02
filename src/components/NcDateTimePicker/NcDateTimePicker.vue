@@ -4,14 +4,11 @@
 -->
 
 <docs>
-> We're wrapping the awesome datepicker library here https://github.com/mengxiong10/vue-datepicker-next
-> Please check there for all the available options.
+In general it is recommended to use the native date picker (see `NcDateTimePickerNative` which is based on `<input type="date">`).
+But some use cases are not covered by the native date selector, like selecting ranges or selecting a timezone.
+For those cases this component can be used.
 
-### Defaults
-- cleareable: false
-- minute-step: 10
-
-### Example
+### General examples
 ```vue
 <template>
 	<div class="wrapper">
@@ -54,6 +51,11 @@ export default {
 ```
 
 ### Example with confirm button
+
+By default the date is applied as soon as you select the day in the calendar.
+Sometimes - especially when selecting date and time - it is required to only emit the selected date when the flow is finished.
+For this the `confirm` prop can be used, this will add a confirmation button to the selector.
+
 ```vue
 <template>
 	<span>
@@ -76,24 +78,57 @@ export default {
 ```
 
 ### Range picker
+
+The most common use case for the `NcDateTimePicker` is picking a range, as this is not supported by the native date picker.
+
+When selecting the range picker type, the model value type will change from `Date` to `[Date, Date]`.
+Meaning an array with two dates is used, the first date is the range start and the second date is the range end.
+
 ```vue
 <template>
-	<span>
+	<div>
+		<fieldset class="type-select">
+			<legend>Picker mode</legend>
+			<NcCheckboxRadioSwitch v-model="type" type="radio" value="range">Date</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch v-model="type" type="radio" value="range-datetime">Date and time</NcCheckboxRadioSwitch>
+		</fieldset>
+
 		<NcDateTimePicker
 			v-model="time"
-			type="range-datetime" />
-		{{ time }}
-	</span>
+			:type />
+		<div>
+			<div>Start: {{ formatDate(time[0]) }}</div>
+			<div>End: {{ formatDate(time[1]) }}</div>
+		</div>
+	</div>
 </template>
 <script>
 export default {
 	data() {
 		return {
-			time: null,
+			time: [new Date(2025, 3, 18), new Date(2025, 3, 21)],
+			type: 'range',
 		}
+	},
+	methods: {
+		formatDate(date) {
+			const text = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+			if (this.type === 'range') {
+				return text
+			}
+			return `${text} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`
+		},
 	},
 }
 </script>
+
+<style scoped>
+.type-select {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+</style>
 ```
 
 ### Time zone aware date picker
