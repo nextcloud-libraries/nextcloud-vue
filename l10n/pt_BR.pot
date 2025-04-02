@@ -89,7 +89,7 @@ msgid "Clear search"
 msgstr "Limpar pesquisa"
 
 msgid "Clear selected"
-msgstr "Limpar selecionado"
+msgstr "Limpar selecionados"
 
 msgid "Clear text"
 msgstr "Limpar texto"
