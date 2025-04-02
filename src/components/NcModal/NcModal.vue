@@ -84,7 +84,7 @@ export default {
 				<NcButton
 					:disabled="!firstName || !lastName || !pizza"
 					@click="closeModal"
-					type="primary">
+					variant="primary">
 					Submit
 				</NcButton>
 			</div>
@@ -255,7 +255,7 @@ export default {
 						<NcButton v-if="!noClose && !closeButtonContained"
 							:aria-label="closeButtonAriaLabel"
 							class="header-close"
-							type="tertiary"
+							variant="tertiary"
 							@click="close">
 							<template #icon>
 								<Close :size="iconSize" />
@@ -277,9 +277,9 @@ export default {
 					<!-- Navigation button -->
 					<transition name="fade-visibility" appear>
 						<NcButton v-show="hasPrevious"
-							type="tertiary-no-background"
-							class="prev"
 							:aria-label="prevButtonAriaLabel"
+							class="prev"
+							variant="tertiary-no-background"
 							@click="previous">
 							<template #icon>
 								<ChevronLeft :size="40" />
@@ -295,9 +295,9 @@ export default {
 						</div>
 						<!-- Close modal -->
 						<NcButton v-if="!noClose && closeButtonContained"
-							type="tertiary"
-							class="modal-container__close"
 							:aria-label="closeButtonAriaLabel"
+							class="modal-container__close"
+							variant="tertiary"
 							@click="close">
 							<template #icon>
 								<Close :size="20" />
@@ -308,9 +308,9 @@ export default {
 					<!-- Navigation button -->
 					<transition name="fade-visibility" appear>
 						<NcButton v-show="hasNext"
-							type="tertiary-no-background"
-							class="next"
 							:aria-label="nextButtonAriaLabel"
+							class="next"
+							variant="tertiary-no-background"
 							@click="next">
 							<template #icon>
 								<ChevronRight :size="40" />

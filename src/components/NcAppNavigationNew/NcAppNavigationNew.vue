@@ -29,8 +29,8 @@
 <template>
 	<div class="app-navigation-new">
 		<NcButton :id="buttonId"
-			:disabled="disabled"
-			:type="type"
+			:disabled
+			:variant
 			@click="$emit('click')">
 			<template #icon>
 				<slot name="icon" />
@@ -62,7 +62,12 @@ export default {
 			type: String,
 			required: true,
 		},
-		type: {
+
+		/**
+		 * The color variant to use.
+		 * @default 'primary'
+		 */
+		variant: {
 			type: String,
 			default: 'primary',
 			validator(value) {

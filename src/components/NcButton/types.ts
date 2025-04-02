@@ -12,13 +12,13 @@ export enum ButtonAlignment {
 	EndReverse = 'end-reverse',
 }
 
-export enum ButtonNativeType {
+export enum ButtonType {
 	Submit = 'submit',
 	Reset = 'reset',
 	Button = 'button',
 }
 
-export enum ButtonType {
+export enum ButtonVariant {
 	Primary = 'primary',
 	Secondary = 'secondary',
 	Tertiary = 'tertiary',

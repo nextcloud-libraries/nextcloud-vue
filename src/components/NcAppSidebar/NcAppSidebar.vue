@@ -386,7 +386,7 @@ Note: the built-in toggle button is only available then NcAppSidebar is used in 
 	<NcContent app-name="styleguidist" class="content-styleguidist">
 		<NcAppContent>
 			<div class="top-bar">
-				<NcButton type="primary">Start a call</NcButton>
+				<NcButton variant="primary">Start a call</NcButton>
 			</div>
 		</NcAppContent>
 		<!-- The sidebar -->
@@ -553,7 +553,7 @@ export default {
 				<NcButton :aria-label="t('Open sidebar')"
 					class="app-sidebar__toggle"
 					:class="toggleClasses"
-					type="tertiary"
+					variant="tertiary"
 					v-bind="toggleAttrs"
 					@click="$emit('update:open', true)">
 					<template #icon>
@@ -603,7 +603,7 @@ export default {
 									:aria-label="favoriteTranslated"
 									:pressed="isStarred"
 									class="app-sidebar-header__star"
-									type="secondary"
+									variant="secondary"
 									@click.prevent="toggleStarred">
 									<template #icon>
 										<NcLoadingIcon v-if="starLoading" />
@@ -641,9 +641,9 @@ export default {
 											:value="name"
 											@keydown.esc.stop="onDismissEditing"
 											@input="onNameInput">
-										<NcButton type="tertiary-no-background"
-											:aria-label="changeNameTranslated"
-											native-type="submit">
+										<NcButton :aria-label="changeNameTranslated"
+											type="submit"
+											variant="tertiary-no-background">
 											<template #icon>
 												<IconArrowRight :size="20" />
 											</template>
@@ -671,10 +671,10 @@ export default {
 				</div>
 
 				<NcButton ref="closeButton"
-					:title="closeTranslated"
 					:aria-label="closeTranslated"
-					type="tertiary"
+					:title="closeTranslated"
 					class="app-sidebar__close"
+					variant="tertiary"
 					@click.prevent="closeSidebar">
 					<template #icon>
 						<IconClose :size="20" />
@@ -706,9 +706,9 @@ export default {
 <script>
 import NcAppSidebarTabs from './NcAppSidebarTabs.vue'
 import NcActions from '../NcActions/index.js'
-import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import NcButton from '../NcButton/index.ts'
 import NcEmptyContent from '../NcEmptyContent/index.js'
+import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import Focus from '../../directives/Focus/index.js'
 import Linkify from '../../directives/Linkify/index.js'
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'

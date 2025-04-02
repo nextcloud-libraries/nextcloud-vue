@@ -8,7 +8,21 @@ import { describe, expect, it } from 'vitest'
 import NcButton from '../../../../src/components/NcButton/NcButton.vue'
 
 describe('NcButton', () => {
-	describe('pressed', () => {
+	describe('native HTML button type', () => {
+		it('using the legacy `type` prop works', () => {
+			const wrapper = shallowMount(NcButton, { props: { type: 'submit' } })
+			const button = wrapper.find('button')
+			expect(button.attributes('type')).toBe('submit')
+		})
+
+		it('using the `type` prop works', () => {
+			const wrapper = shallowMount(NcButton, { props: { type: 'submit' } })
+			const button = wrapper.find('button')
+			expect(button.attributes('type')).toBe('submit')
+		})
+	})
+
+	describe('toggle button behavior', () => {
 		it('has aria-pressed="true" when pressed', () => {
 			const wrapper = shallowMount(NcButton, { props: { ariaLabel: 'button', pressed: true } })
 			const button = wrapper.find('button')
