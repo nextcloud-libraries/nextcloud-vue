@@ -1,11 +1,11 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Sveinn í Felli <sv1@fellsnet.is>, 2023
+# Sveinn í Felli <sv1@fellsnet.is>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>, 2023\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>, 2025\n"
 "Language-Team: Icelandic (https://app.transifex.com/nextcloud/teams/64236/is/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: is\n"
@@ -23,14 +23,18 @@ msgstr "Litur með HEX-gildi {hex}"
 msgid "a few seconds ago"
 msgstr "fyrir örfáum sekúndum síðan"
 
+#. TRANSLATORS: A color name for RGB(110, 166, 143)
+msgid "Acapulco"
+msgstr "Acapulco"
+
 msgid "Actions"
 msgstr "Aðgerðir"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Aðgerð fyrir atriði með heitið \"{name}\""
-
 msgid "Activities"
 msgstr "Aðgerðir"
+
+msgid "Add to a project"
+msgstr "Bæta við verkefni"
 
 msgid "Animals & Nature"
 msgstr "Dýr og náttúra"
@@ -47,6 +51,7 @@ msgstr "Auðkennismynd fyrir {displayName}"
 msgid "Avatar of {displayName}, {status}"
 msgstr "Auðkennismynd fyrir {displayName}, {status}"
 
+#. TRANSLATORS: User status if the user is currently away from keyboard
 msgid "away"
 msgstr "í burtu"
 
@@ -55,6 +60,17 @@ msgstr "Til baka"
 
 msgid "Back to provider selection"
 msgstr "Til baka í val á þjónustuveitu"
+
+#. TRANSLATORS: A color name for RGB(91, 100, 179)
+msgid "Blue Violet"
+msgstr "Bláklukka"
+
+#. TRANSLATORS: A color name for RGB(55, 148, 172)
+msgid "Boston Blue"
+msgstr "Bostonblátt"
+
+msgid "busy"
+msgstr "upptekin/n"
 
 msgid "Cancel changes"
 msgstr "Hætta við breytingar"
@@ -89,11 +105,24 @@ msgstr "Loka snjall-veljara"
 msgid "Collapse menu"
 msgstr "Fella valmynd saman"
 
+msgid "Color picker"
+msgstr "Litaplokkari"
+
 msgid "Confirm changes"
 msgstr "Staðfesta breytingar"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr "Tengdu atriði við verkefni til að gera einfaldara að finna þau"
+
 msgid "Custom"
 msgstr "Sérsniðið"
+
+msgid "Dark skin tone"
+msgstr "Dökkur húðlitur"
+
+#. TRANSLATORS: A color name for RGB(136, 85, 168)
+msgid "Deluge"
+msgstr "Fjólublátt"
 
 msgid "Deselect {option}"
 msgstr "Afvelja {option}"
@@ -103,6 +132,12 @@ msgstr "ekki ónáða"
 
 msgid "Edit item"
 msgstr "Breyta atriði"
+
+msgid "Emoji picker"
+msgstr "Emoji-táknmyndaval"
+
+msgid "Enable interactive view"
+msgstr "Virkja gagnvirka sýn"
 
 msgid "Enter link"
 msgstr "Settu inn tengil"
@@ -117,8 +152,21 @@ msgstr ""
 msgid "External documentation for {name}"
 msgstr "Utanaðkomandi leiðbeiningar fyrir {name}"
 
+msgid "Failed to add the item to the project"
+msgstr "Mistókst að bæta atriðinu í verkefnið"
+
+msgid "Failed to create a project"
+msgstr "Mistókst að útbúa verkefni"
+
+msgid "Failed to rename the project"
+msgstr "Mistókst að endurnefna verkefnið"
+
 msgid "Favorite"
 msgstr "Eftirlæti"
+
+#. TRANSLATORS: A color name for RGB(201, 136, 121)
+msgid "Feldspar"
+msgstr "Feldspat"
 
 msgid "Flags"
 msgstr "Flögg"
@@ -138,11 +186,40 @@ msgstr "Fara til baka í listann"
 msgid "Gold"
 msgstr "Gull"
 
+msgid "Hide details"
+msgstr "Fela nánari upplýsingar"
+
 msgid "Hide password"
 msgstr "Fela lykilorð"
 
+msgid "invisible"
+msgstr "ósýnilegt"
+
+msgid "Keyboard navigation help"
+msgstr "Aðstoð við rötun á lyklaborði"
+
+msgid "Light skin tone"
+msgstr "Ljós húðlitur"
+
 msgid "Load more \"{options}\""
 msgstr "Hlaða inn fleiri \"{options}\""
+
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr "Hleð inn …"
+
+#. TRANSLATORS: A color name for RGB(45, 115, 190)
+msgid "Mariner"
+msgstr "Sjóarablátt"
+
+msgid "Medium dark skin tone"
+msgstr "Meðaldökkur húðlitur"
+
+msgid "Medium light skin tone"
+msgstr "Meðalljós húðlitur"
+
+msgid "Medium skin tone"
+msgstr "Meðaltónn húðar"
 
 msgid "Message limit of {count} characters reached"
 msgstr "Takmörkum {count} stafa náð"
@@ -152,6 +229,9 @@ msgstr "Fleiri atriði …"
 
 msgid "More options"
 msgstr "Fleiri valkostir"
+
+msgid "Neutral skin color"
+msgstr "Hlutlaus húðlitur"
 
 msgid "Next"
 msgstr "Næsta"
@@ -174,11 +254,12 @@ msgstr "Hlutir"
 msgid "offline"
 msgstr "ónettengt"
 
+#. TRANSLATORS: A color name for RGB(165, 184, 114)
+msgid "Olivine"
+msgstr "Ólivín"
+
 msgid "online"
 msgstr "nettengt"
-
-msgid "Open contact menu"
-msgstr "Opna valmynd tengiliða"
 
 msgid "Open link to \"{resourceName}\""
 msgstr "Opna tengil í \"{resourceName}\""
@@ -186,11 +267,14 @@ msgstr "Opna tengil í \"{resourceName}\""
 msgid "Open menu"
 msgstr "Opna valmynd"
 
-msgid "Open navigation"
-msgstr "Opna leiðsagnarsleða"
+msgid "Open navigation {shortcut}"
+msgstr "Opna flakkstýringu {shortcut}"
 
-msgid "Open settings menu"
-msgstr "Opna stillingavalmynd"
+msgid "Open sidebar"
+msgstr "Opna hliðarspjald"
+
+msgid "Options"
+msgstr "Valkostir"
 
 msgid "Password is secure"
 msgstr "Lykilorðið er öruggt"
@@ -240,6 +324,16 @@ msgstr "Hrár tengill {options}"
 msgid "Related resources"
 msgstr "Tengd tilföng"
 
+msgid "Related team resources"
+msgstr "Tengd tilföng teymis"
+
+msgid "Rename project"
+msgstr "Endurnefna verkefni"
+
+#. TRANSLATORS: A color name for RGB(191, 103, 139)
+msgid "Rosy brown"
+msgstr "Rósabrúnt"
+
 msgid "Save changes"
 msgstr "Vista breytingar"
 
@@ -249,14 +343,14 @@ msgstr "Leita"
 msgid "Search emoji"
 msgstr "Leita að tjáningartákni"
 
-msgid "Search for options"
-msgstr "Leita að valkostum"
-
 msgid "Search for time zone"
 msgstr "Leita að tímabelti"
 
 msgid "Search results"
 msgstr "Leitarniðurstöður"
+
+msgid "Search…"
+msgstr "Leita…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -282,8 +376,20 @@ msgstr "Stillingar"
 msgid "Settings navigation"
 msgstr "Flakk um stillingar"
 
+msgid "Show details"
+msgstr "Birta nánari upplýsingar"
+
 msgid "Show password"
 msgstr "Birta lykilorð"
+
+msgid "Skin tone"
+msgstr "Húðlitur"
+
+msgid "Skip to app navigation"
+msgstr "Sleppa og fara í flakk innan forrits"
+
+msgid "Skip to main content"
+msgstr "Sleppa og fara í meginefni"
 
 msgid "Smart Picker"
 msgstr "Snjall-veljari"
@@ -306,6 +412,9 @@ msgstr "Tákn"
 msgid "Travel & Places"
 msgstr "Staðir og ferðalög"
 
+msgid "Type to search for existing projects"
+msgstr "Skrifaðu hér til að leita að fyrirliggjandi verkefnum"
+
 msgid "Type to search time zone"
 msgstr "Skrifaðu til að leita að tímabelti"
 
@@ -317,6 +426,13 @@ msgstr "Afturkalla breytingar"
 
 msgid "User status: {status}"
 msgstr "Staða notanda: {status}"
+
+msgid "View team"
+msgstr "Skoða teymi"
+
+#. TRANSLATORS: A color name for RGB(211, 169, 103)
+msgid "Whiskey"
+msgstr "Viský"
 
 msgid "Write a message …"
 msgstr "Skrifaðu skilaboð …"
