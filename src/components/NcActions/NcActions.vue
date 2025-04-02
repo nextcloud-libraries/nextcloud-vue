@@ -1102,12 +1102,15 @@ export default {
 	},
 
 	emits: [
-		'open',
-		'update:open',
-		'close',
-		'focus',
-		'blur',
 		'click',
+		'blur',
+		'focus',
+
+		'close',
+		'closed',
+		'open',
+		'opened',
+		'update:open',
 	],
 
 	setup(props) {
@@ -1349,10 +1352,17 @@ export default {
 		/**
 		 * Called when popover is shown after the show delay
 		 */
-		onOpen() {
+		onOpened() {
 			this.$nextTick(() => {
 				this.focusFirstAction(null)
 				this.resizePopover()
+
+				/**
+				 * Event emitted when the popover menu is opened.
+				 *
+				 * This event is emitted after `update:open` was emitted and the opening transition finished.
+				 */
+				this.$emit('opened')
 			})
 		},
 
