@@ -8,13 +8,13 @@ describe('Custom L10n plugin is working', () => {
 	beforeEach(() => vi.resetModules())
 
 	test('Default language', async () => {
-		const { defaultPalette } = await import('../../../src/utils/GenColors.js')
+		const { defaultPalette } = await import('../../../src/utils/colors.ts')
 		expect(defaultPalette[1].name).toBe('Rosy brown')
 	})
 
 	test('Other translation', async () => {
 		document.documentElement.lang = 'de'
-		const { defaultPalette } = await import('../../../src/utils/GenColors.js')
+		const { defaultPalette } = await import('../../../src/utils/colors.ts')
 
 		expect(defaultPalette[1].name).toBe('Rosiges Braun')
 	})
