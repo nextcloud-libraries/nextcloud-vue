@@ -13,17 +13,6 @@ updates:
     - 3. to review
     - dependencies
 
-  - package-ecosystem: npm
-    directory: "/"
-    target-branch: next
-    schedule:
-      interval: daily
-      timezone: Europe/Paris
-    open-pull-requests-limit: 10
-    labels:
-    - 3. to review
-    - dependencies
-
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
@@ -33,3 +22,30 @@ updates:
     labels:
     - 3. to review
     - dependencies
+
+  # Keep stable8 up-to-date
+  - package-ecosystem: github-actions
+    directory: "/"
+    target-branch: stable8
+    schedule:
+      interval: weekly
+      timezone: Europe/Paris
+    open-pull-requests-limit: 10
+    labels:
+    - 3. to review
+    - dependencies
+  - package-ecosystem: npm
+    directory: "/"
+    target-branch: stable8
+    schedule:
+      interval: weekly
+      timezone: Europe/Paris
+    open-pull-requests-limit: 10
+    labels:
+    - 3. to review
+    - dependencies
+    ignore:
+      # For all deps
+      - dependency-name: "*"
+        # ignore all major updates
+        update-types: ["version-update:semver-major"]
