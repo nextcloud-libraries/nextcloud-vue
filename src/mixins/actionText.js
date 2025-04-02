@@ -4,7 +4,7 @@
  */
 
 import actionGlobal from './actionGlobal.js'
-import { getParent } from '../utils/getParent.ts'
+import { NC_ACTIONS_CLOSE_MENU } from '../components/NcActions/useNcActions.ts'
 
 export default {
 	mixins: [actionGlobal],
@@ -55,6 +55,12 @@ export default {
 		},
 	},
 
+	inject: {
+		closeMenu: {
+			from: NC_ACTIONS_CLOSE_MENU,
+		},
+	},
+
 	emits: [
 		'click',
 	],
@@ -83,10 +89,7 @@ export default {
 			this.$emit('click', event)
 
 			if (this.closeAfterClick) {
-				const parent = getParent(this, 'NcActions')
-				if (parent && parent.closeMenu) {
-					parent.closeMenu(false)
-				}
+				this.closeMenu(false)
 			}
 		},
 	},
