@@ -3,14 +3,15 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import type { ComponentPublicInstance } from 'vue'
+
 /**
  * Get the first parent component matching the provided name
  *
- * @param {object} context the context to search from (usually this)
- * @param {string} name the parent name
- * @return {object|undefined} the parent component
+ * @param context - The component to search from (usually this)
+ * @param name - The parent name
  */
-const GetParent = function(context, name) {
+export function getParent(context: ComponentPublicInstance, name: string) {
 	let parent = context.$parent
 	while (parent) {
 		if (parent.$options.name === name) {
@@ -19,5 +20,3 @@ const GetParent = function(context, name) {
 		parent = parent.$parent
 	}
 }
-
-export default GetParent

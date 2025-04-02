@@ -4,7 +4,7 @@
  */
 
 import actionGlobal from './actionGlobal.js'
-import GetParent from '../utils/GetParent.js'
+import { getParent } from '../utils/getParent.ts'
 
 export default {
 	mixins: [actionGlobal],
@@ -83,7 +83,7 @@ export default {
 			this.$emit('click', event)
 
 			if (this.closeAfterClick) {
-				const parent = GetParent(this, 'NcActions')
+				const parent = getParent(this, 'NcActions')
 				if (parent && parent.closeMenu) {
 					parent.closeMenu(false)
 				}
