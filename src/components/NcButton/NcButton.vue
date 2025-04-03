@@ -438,7 +438,6 @@ import type { RouteLocation } from 'vue-router'
 
 import { computed, inject, toRef } from 'vue'
 import { routerKey, useLink } from 'vue-router'
-import { isSlotPopulated } from '../../utils/isSlotPopulated.ts'
 
 export type ButtonAlignment = 'start'
 	| 'start-reverse'
@@ -590,7 +589,7 @@ const emit = defineEmits<{
 	'update:pressed': [pressed: boolean]
 }>()
 
-const slots = defineSlots<{
+defineSlots<{
 	/**
 	 * Custom button content.
 	 * This can be used for custom formatted content, ensure to not include any interactive elements.
@@ -671,20 +670,6 @@ const buttonAttrs = computed(() => ({
 }))
 
 /**
- * Check if the button has a text content (function because slots are not reactive)
- */
-function hasText(): boolean {
-	return Boolean(props.text) || isSlotPopulated(slots.default?.({}))
-}
-
-/**
- * Check if the button has an icon (function because slots are not reactive)
- */
-function hasIcon(): boolean {
-	return !!slots.icon
-}
-
-/**
  * Handle the click on the link / button
  * @param event The mouse click event
  */
@@ -719,10 +704,10 @@ function onClick(event: MouseEvent) {
 		}"
 		@click="onClick">
 		<span class="button-vue__wrapper">
-			<span v-if="hasIcon()" class="button-vue__icon">
+			<span class="button-vue__icon">
 				<slot name="icon" />
 			</span>
-			<span v-if="hasText()" class="button-vue__text">
+			<span class="button-vue__text">
 				<slot>
 					{{ text }}
 				</slot>
@@ -835,7 +820,12 @@ function onClick(event: MouseEvent) {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+
+		&:empty {
+			display: none;
+		}
 	}
+
 	// For small buttons we need to adjust the icon size
 	&--size-small &__icon {
 		:deep(> *) {
@@ -855,19 +845,24 @@ function onClick(event: MouseEvent) {
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		overflow: hidden;
+
+		&:empty {
+			display: none;
+		}
 	}
 
 	// Icon-only button
-	&:not(:has(#{&}__text)) {
+	&:has(#{&}__text:empty) {
 		--button-padding: clamp(var(--default-grid-baseline), var(--button-radius), calc(var(--default-grid-baseline) * 4));
 		line-height: 1;
 		width: var(--button-size) !important;
 	}
 
 	// Text-only button
-	&:not(:has(#{&}__icon)) {
+	&:has(#{&}__icon:empty) {
 		--button-padding: var(--button-padding-default);
-		& .button-vue__text {
+
+		.button-vue__text {
 			padding-inline: var(--default-grid-baseline);
 		}
 	}
