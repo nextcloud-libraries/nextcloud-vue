@@ -1,11 +1,11 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# O St <oleksiy.stasevych@gmail.com>, 2024
+# Joas Schilling, 2025
+# O St <oleksiy.stasevych@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: O St <oleksiy.stasevych@gmail.com>, 2024\n"
+"Last-Translator: O St <oleksiy.stasevych@gmail.com>, 2025\n"
 "Language-Team: Ukrainian (https://app.transifex.com/nextcloud/teams/64236/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: uk\n"
@@ -72,6 +72,12 @@ msgstr "Бостонський синій"
 msgid "busy"
 msgstr "зайнято"
 
+msgid "Calendar icon"
+msgstr "Значок календаря"
+
+msgid "Cancel"
+msgstr "Скасувати"
+
 msgid "Cancel changes"
 msgstr "Скасувати зміни"
 
@@ -90,6 +96,9 @@ msgstr "Очистити вибране"
 msgid "Clear text"
 msgstr "Очистити текст"
 
+msgid "Clear value"
+msgstr "Очистити значення"
+
 msgid "Close"
 msgstr "Закрити"
 
@@ -101,6 +110,9 @@ msgstr "Закрити бічну панель"
 
 msgid "Close Smart Picker"
 msgstr "Закрити асистент вибору"
+
+msgid "Close time Picker"
+msgstr "Закрити вибір часу"
 
 msgid "Collapse menu"
 msgstr "Згорнути меню"
@@ -119,6 +131,21 @@ msgstr "Власне"
 
 msgid "Dark skin tone"
 msgstr "Смаглявий"
+
+msgid "Datepicker input"
+msgstr "Вибір дати"
+
+msgid "Datepicker menu"
+msgstr "Меню вибору дати"
+
+msgid "Decrement hours"
+msgstr "Зменшення годин"
+
+msgid "Decrement minutes"
+msgstr "Зменшення хвилин"
+
+msgid "Decrement seconds"
+msgstr "Зменшення секунд"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -192,6 +219,15 @@ msgstr "Сховати деталі"
 msgid "Hide password"
 msgstr "Приховати пароль"
 
+msgid "Increment hours"
+msgstr "Збільшення годин"
+
+msgid "Increment minutes"
+msgstr "Збільшення хвилин"
+
+msgid "Increment seconds"
+msgstr "Збільшення секунд"
+
 msgid "invisible"
 msgstr "Невидимий"
 
@@ -224,6 +260,12 @@ msgstr "Середній колір шкіри"
 msgid "Message limit of {count} characters reached"
 msgstr "Вичерпано ліміт у {count} символів для повідомлення"
 
+msgid "Month picker"
+msgstr "Вибір місяця"
+
+msgid "Month picker overlay"
+msgstr "Напис вибору місяця"
+
 msgid "More items …"
 msgstr "Більше об'єктів..."
 
@@ -236,6 +278,12 @@ msgstr "Нейтральний колір шкіри"
 msgid "Next"
 msgstr "Вперед"
 
+msgid "Next month"
+msgstr "Наступний місяць"
+
+msgid "Next year"
+msgstr "Наступний рік"
+
 msgid "Nextcloud blue"
 msgstr "Блакитний Nextcloud"
 
@@ -247,6 +295,9 @@ msgstr "Не наведено посилання"
 
 msgid "No results"
 msgstr "Відсутні результати"
+
+msgid "Now"
+msgstr "Зараз"
 
 msgid "Objects"
 msgstr "Об'єкти"
@@ -261,17 +312,35 @@ msgstr "Олива"
 msgid "online"
 msgstr "в мережі"
 
+msgid "Open hours overlay"
+msgstr "Відкрити напис годин"
+
 msgid "Open link to \"{resourceName}\""
 msgstr "Відкрити посилання на \"{resourceName}\""
 
 msgid "Open menu"
 msgstr "Відкрити меню"
 
-msgid "Open navigation {shortcut}"
-msgstr "Відкрити навігацію {shortcut}"
+msgid "Open minutes overlay"
+msgstr "Відкрити напис хвилин"
+
+msgid "Open months overlay"
+msgstr "Відкрити напис місяців"
+
+msgid "Open navigation"
+msgstr "Перейти до навігації"
+
+msgid "Open seconds overlay"
+msgstr "Відкрити напис секунд"
 
 msgid "Open sidebar"
 msgstr "Бокове меню"
+
+msgid "Open time picker"
+msgstr "Відкрити вибір часу"
+
+msgid "Open years overlay"
+msgstr "Відкрити напис років"
 
 msgid "Options"
 msgstr "Параметри"
@@ -285,32 +354,20 @@ msgstr "Пауза у показі слайдів"
 msgid "People & Body"
 msgstr "Люди та жести"
 
-msgid "Pick a date"
-msgstr "Вибрати дату"
-
-msgid "Pick a date and a time"
-msgstr "Виберіть дату та час"
-
-msgid "Pick a month"
-msgstr "Виберіть місяць"
-
-msgid "Pick a time"
-msgstr "Виберіть час"
-
-msgid "Pick a week"
-msgstr "Виберіть тиждень"
-
-msgid "Pick a year"
-msgstr "Виберіть рік"
+msgid "Pick"
+msgstr "Вибрати"
 
 msgid "Pick an emoji"
 msgstr "Виберіть емоційку"
 
-msgid "Please select a time zone:"
-msgstr "Виберіть часовий пояс:"
-
 msgid "Previous"
 msgstr "Назад"
+
+msgid "Previous month"
+msgstr "Попередній місяць"
+
+msgid "Previous year"
+msgstr "Попередній рік"
 
 msgid "Provider icon"
 msgstr "Піктограма постачальника"
@@ -343,8 +400,8 @@ msgstr "Пошук"
 msgid "Search emoji"
 msgstr "Шукати емоційки"
 
-msgid "Search for time zone"
-msgstr "Шукати часові зони"
+msgid "Search for timezone"
+msgstr "Пошук часового поясу"
 
 msgid "Search results"
 msgstr "Результати пошуку"
@@ -364,8 +421,29 @@ msgstr "с тому"
 msgid "Select a tag"
 msgstr "Виберіть позначку"
 
+msgid "Select date"
+msgstr "Вибрати дату"
+
+msgid "Select date and time"
+msgstr "Вибрати дату та час"
+
+msgid "Select month"
+msgstr "Вибрати місяць"
+
 msgid "Select provider"
 msgstr "Виберіть постачальника"
+
+msgid "Select time"
+msgstr "Вибрати час"
+
+msgid "Select time range"
+msgstr "Вибрати проміжок часу"
+
+msgid "Select week"
+msgstr "Вибрати тиждень"
+
+msgid "Select year"
+msgstr "Вибрати рік"
 
 msgid "Selected"
 msgstr "Вибрано"
@@ -406,8 +484,20 @@ msgstr "Почніть вводити для пошуку"
 msgid "Submit"
 msgstr "Надіслати"
 
+msgid "Switch AM/PM mode"
+msgstr "Перемкнути показ по полудні/до полудня"
+
 msgid "Symbols"
 msgstr "Символи"
+
+msgid "Time picker"
+msgstr "Вибір часу"
+
+msgid "Timezone"
+msgstr "Часовий пояс"
+
+msgid "Toggle overlay"
+msgstr "Перемкнути напис"
 
 msgid "Travel & Places"
 msgstr "Поїздки та місця"
@@ -430,9 +520,18 @@ msgstr "Статус користувача: {status}"
 msgid "View team"
 msgstr "Переглянути команду"
 
+msgid "W"
+msgstr "Тиж."
+
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Кола"
 
 msgid "Write a message …"
 msgstr "Написати повідомлення ..."
+
+msgid "Year picker"
+msgstr "Вибір року"
+
+msgid "Year picker overlay"
+msgstr "Напис вибору року"
