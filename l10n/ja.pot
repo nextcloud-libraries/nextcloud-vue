@@ -1,13 +1,11 @@
 # 
 # Translators:
-# Joas Schilling, 2024
-# devi, 2024
-# kshimohata, 2024
-# John Molakvoæ <skjnldsv@protonmail.com>, 2024
+# Joas Schilling, 2025
+# kshimohata, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
+"Last-Translator: kshimohata, 2025\n"
 "Language-Team: Japanese (Japan) (https://app.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ja_JP\n"
@@ -74,6 +72,12 @@ msgstr "ボストンブルー"
 msgid "busy"
 msgstr "ビジー"
 
+msgid "Calendar icon"
+msgstr "カレンダーのアイコン"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
 msgid "Cancel changes"
 msgstr "変更をキャンセル"
 
@@ -92,6 +96,9 @@ msgstr "選択を解除"
 msgid "Clear text"
 msgstr "テキストをクリア"
 
+msgid "Clear value"
+msgstr "値をクリア"
+
 msgid "Close"
 msgstr "閉じる"
 
@@ -103,6 +110,9 @@ msgstr "サイドバーを閉じる"
 
 msgid "Close Smart Picker"
 msgstr "スマートピッカーを閉じる"
+
+msgid "Close time Picker"
+msgstr "時間ピッカーを閉じる"
 
 msgid "Collapse menu"
 msgstr "メニューの折りたたみ"
@@ -121,6 +131,21 @@ msgstr "カスタム"
 
 msgid "Dark skin tone"
 msgstr "暗い肌のトーン"
+
+msgid "Datepicker input"
+msgstr "データピッカー入力"
+
+msgid "Datepicker menu"
+msgstr "データピッカーメニュー"
+
+msgid "Decrement hours"
+msgstr "時間を減らす"
+
+msgid "Decrement minutes"
+msgstr "分を減らす"
+
+msgid "Decrement seconds"
+msgstr "秒を減らす"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -192,6 +217,15 @@ msgstr "詳細を非表示"
 msgid "Hide password"
 msgstr "パスワードを非表示"
 
+msgid "Increment hours"
+msgstr "時間を増やす"
+
+msgid "Increment minutes"
+msgstr "分を増やす"
+
+msgid "Increment seconds"
+msgstr "秒を増やす"
+
 msgid "invisible"
 msgstr "不可視"
 
@@ -224,6 +258,12 @@ msgstr "中間の肌のトーン"
 msgid "Message limit of {count} characters reached"
 msgstr "{count} 文字のメッセージ上限に達しています"
 
+msgid "Month picker"
+msgstr "月ピッカー"
+
+msgid "Month picker overlay"
+msgstr "月ピッカーオーバーレイ"
+
 msgid "More items …"
 msgstr "他のアイテム"
 
@@ -236,6 +276,12 @@ msgstr "ニュートラルな肌の色"
 msgid "Next"
 msgstr "次"
 
+msgid "Next month"
+msgstr "次月"
+
+msgid "Next year"
+msgstr "次年"
+
 msgid "Nextcloud blue"
 msgstr "ネクストクラウド・ブルー"
 
@@ -247,6 +293,9 @@ msgstr "リンクプロバイダーが見つかりません"
 
 msgid "No results"
 msgstr "結果無し"
+
+msgid "Now"
+msgstr "現在"
 
 msgid "Objects"
 msgstr "物"
@@ -261,17 +310,35 @@ msgstr "カンラン石"
 msgid "online"
 msgstr "オンライン"
 
+msgid "Open hours overlay"
+msgstr "時間オーバーレイを開く"
+
 msgid "Open link to \"{resourceName}\""
 msgstr "\"{resourceName}\" へのリンクを開く"
 
 msgid "Open menu"
 msgstr "メニューを開く"
 
-msgid "Open navigation {shortcut}"
-msgstr "ナビゲーションを開く {shortcut}"
+msgid "Open minutes overlay"
+msgstr "分オーバーレイを開く"
+
+msgid "Open months overlay"
+msgstr "月オーバーレイを開く"
+
+msgid "Open navigation"
+msgstr "ナビゲーションを開く"
+
+msgid "Open seconds overlay"
+msgstr "秒オーバーレイを開く"
 
 msgid "Open sidebar"
 msgstr "サイドバーを開く"
+
+msgid "Open time picker"
+msgstr "時間ピッカーを開く"
+
+msgid "Open years overlay"
+msgstr "年オーバーレイを開く"
 
 msgid "Options"
 msgstr "オプション"
@@ -285,32 +352,20 @@ msgstr "スライドショーを一時停止"
 msgid "People & Body"
 msgstr "様々な人と体の部位"
 
-msgid "Pick a date"
-msgstr "日付を選択してください"
-
-msgid "Pick a date and a time"
-msgstr "日付と時刻を選択してください"
-
-msgid "Pick a month"
-msgstr "月を選択してください"
-
-msgid "Pick a time"
-msgstr "時間を選択してください"
-
-msgid "Pick a week"
-msgstr "週を選択してください"
-
-msgid "Pick a year"
-msgstr "年を選択してください"
+msgid "Pick"
+msgstr "選択"
 
 msgid "Pick an emoji"
 msgstr "絵文字を選択"
 
-msgid "Please select a time zone:"
-msgstr "タイムゾーンを選んで下さい："
-
 msgid "Previous"
 msgstr "前"
+
+msgid "Previous month"
+msgstr "前月"
+
+msgid "Previous year"
+msgstr "前年"
 
 msgid "Provider icon"
 msgstr "プロバイダーのアイコン"
@@ -343,7 +398,7 @@ msgstr "検索"
 msgid "Search emoji"
 msgstr "絵文字を検索"
 
-msgid "Search for time zone"
+msgid "Search for timezone"
 msgstr "タイムゾーンを検索"
 
 msgid "Search results"
@@ -364,8 +419,29 @@ msgstr "数秒前"
 msgid "Select a tag"
 msgstr "タグを選択"
 
+msgid "Select date"
+msgstr "日付を選択"
+
+msgid "Select date and time"
+msgstr "日付と時刻を選択"
+
+msgid "Select month"
+msgstr "月を選択"
+
 msgid "Select provider"
 msgstr "プロバイダーを選択"
+
+msgid "Select time"
+msgstr "時刻を選択"
+
+msgid "Select time range"
+msgstr "時間範囲を選択"
+
+msgid "Select week"
+msgstr "週を選択"
+
+msgid "Select year"
+msgstr "年を選択"
 
 msgid "Selected"
 msgstr "選択済み"
@@ -406,8 +482,20 @@ msgstr "入力を開始して検索します"
 msgid "Submit"
 msgstr "提出"
 
+msgid "Switch AM/PM mode"
+msgstr "AM/PMモードの切り替え"
+
 msgid "Symbols"
 msgstr "記号"
+
+msgid "Time picker"
+msgstr "時刻ピッカー"
+
+msgid "Timezone"
+msgstr "タイムゾーン"
+
+msgid "Toggle overlay"
+msgstr "オーバーレイの切り替え"
 
 msgid "Travel & Places"
 msgstr "旅行と場所"
@@ -430,9 +518,18 @@ msgstr "ユーザのステータス: {status}"
 msgid "View team"
 msgstr "チームを表示"
 
+msgid "W"
+msgstr "W"
+
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "ウイスキー"
 
 msgid "Write a message …"
 msgstr "メッセージを書く ..."
+
+msgid "Year picker"
+msgstr "年ピッカー"
+
+msgid "Year picker overlay"
+msgstr "年ピッカーオーバーレイ"
