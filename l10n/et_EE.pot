@@ -1,6 +1,6 @@
 # 
 # Translators:
-# Mait R, 2023
+# Joas Schilling, 2025
 # Priit Jõerüüt <transifex@joeruut.com>, 2025
 # 
 msgid ""
@@ -72,6 +72,12 @@ msgstr "Bostoni rohekassinine"
 msgid "busy"
 msgstr "hõivatud"
 
+msgid "Calendar icon"
+msgstr "Kalendriikoon"
+
+msgid "Cancel"
+msgstr "Katkesta"
+
 msgid "Cancel changes"
 msgstr "Tühista muudatused"
 
@@ -90,6 +96,9 @@ msgstr "Tühjenad valik"
 msgid "Clear text"
 msgstr "Kustuta tekst"
 
+msgid "Clear value"
+msgstr "Kustuta väärtus"
+
 msgid "Close"
 msgstr "Sulge"
 
@@ -101,6 +110,9 @@ msgstr "Sulge külgriba"
 
 msgid "Close Smart Picker"
 msgstr "Sulge nutikas valija"
+
+msgid "Close time Picker"
+msgstr "Sulge ajavalija"
 
 msgid "Collapse menu"
 msgstr "Menüü kokkuklappimine"
@@ -119,6 +131,21 @@ msgstr "Kohanda"
 
 msgid "Dark skin tone"
 msgstr "Kesta tume toon"
+
+msgid "Datepicker input"
+msgstr "Kuupäevavalija sisend"
+
+msgid "Datepicker menu"
+msgstr "Kuupäevavalija sisend"
+
+msgid "Decrement hours"
+msgstr "Vähenda tunde"
+
+msgid "Decrement minutes"
+msgstr "Vähenda minuteid"
+
+msgid "Decrement seconds"
+msgstr "Vähenda sekundeid"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -150,7 +177,7 @@ msgstr ""
 "süsteemiadministraatoriga."
 
 msgid "External documentation for {name}"
-msgstr "Väline dokumentatsioon {nimi}"
+msgstr "Väline dokumentatsioon: {name}"
 
 msgid "Failed to add the item to the project"
 msgstr "Objekti lisamine projekti ei õnnestunud"
@@ -192,6 +219,15 @@ msgstr "Peida üksikasjad"
 msgid "Hide password"
 msgstr "Peida salasõna"
 
+msgid "Increment hours"
+msgstr "Suurenda tunde"
+
+msgid "Increment minutes"
+msgstr "Suurenda minuteid"
+
+msgid "Increment seconds"
+msgstr "Suurenda sekundeid"
+
 msgid "invisible"
 msgstr "nähtamatu"
 
@@ -202,7 +238,7 @@ msgid "Light skin tone"
 msgstr "Kesta hele toon"
 
 msgid "Load more \"{options}\""
-msgstr "Laadi rohkem \"{valikud}\""
+msgstr "Laadi veel „{options}“"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
@@ -222,7 +258,13 @@ msgid "Medium skin tone"
 msgstr "Kesta keskmine toon"
 
 msgid "Message limit of {count} characters reached"
-msgstr "Sõnumi piiratud arv {count} tähemärke on saavutatud"
+msgstr "Sõnumi piiratud arv {count} tähemärki on käes"
+
+msgid "Month picker"
+msgstr "Kuupäevavalija"
+
+msgid "Month picker overlay"
+msgstr "Kuupäevavalija ülekatteaken"
 
 msgid "More items …"
 msgstr "Rohkem objekte ..."
@@ -236,6 +278,12 @@ msgstr "Kesta neutraalne toon"
 msgid "Next"
 msgstr "Edasi"
 
+msgid "Next month"
+msgstr "Järgmine kuu"
+
+msgid "Next year"
+msgstr "Järgmine aasta"
+
 msgid "Nextcloud blue"
 msgstr "Nextcloudi sinine"
 
@@ -247,6 +295,9 @@ msgstr "Lingi pakkujat ei leitud"
 
 msgid "No results"
 msgstr "Tulemusi pole"
+
+msgid "Now"
+msgstr "Praegu"
 
 msgid "Objects"
 msgstr "Objektid"
@@ -261,17 +312,35 @@ msgstr "Oliiviroheline"
 msgid "online"
 msgstr "võrgus"
 
+msgid "Open hours overlay"
+msgstr "Ava tundide vaade"
+
 msgid "Open link to \"{resourceName}\""
-msgstr "Ava link \"{resourceName}\""
+msgstr "Ava link „{resourceName}“"
 
 msgid "Open menu"
 msgstr "Ava menüü"
 
-msgid "Open navigation {shortcut}"
-msgstr "Ava valik {shortcut}"
+msgid "Open minutes overlay"
+msgstr "Ava minutite vaade"
+
+msgid "Open months overlay"
+msgstr "Ava kuude vaade"
+
+msgid "Open navigation"
+msgstr "Ava liikumisvaade"
+
+msgid "Open seconds overlay"
+msgstr "Ava sekundite vaade"
 
 msgid "Open sidebar"
 msgstr "Ava külgriba"
+
+msgid "Open time picker"
+msgstr "Ava ajavalija"
+
+msgid "Open years overlay"
+msgstr "Ava aastate vaade"
 
 msgid "Options"
 msgstr "Valikud"
@@ -285,32 +354,20 @@ msgstr "Slaidiesitluse paus"
 msgid "People & Body"
 msgstr "Inimesed ja keha"
 
-msgid "Pick a date"
-msgstr "Vali kuupäev"
-
-msgid "Pick a date and a time"
-msgstr "Vali kuupäev ja kellaaeg"
-
-msgid "Pick a month"
-msgstr "Vali kuu"
-
-msgid "Pick a time"
-msgstr "Vali kellaaeg"
-
-msgid "Pick a week"
-msgstr "Vali nädal"
-
-msgid "Pick a year"
-msgstr "Vali aasta"
+msgid "Pick"
+msgstr "Vali"
 
 msgid "Pick an emoji"
 msgstr "Vali emoji"
 
-msgid "Please select a time zone:"
-msgstr "Vali ajatsoon"
-
 msgid "Previous"
 msgstr "Eelmine"
+
+msgid "Previous month"
+msgstr "Eelmine kuu"
+
+msgid "Previous year"
+msgstr "Eelmine aasta"
 
 msgid "Provider icon"
 msgstr "Teenusepakkuja ikoon"
@@ -319,7 +376,7 @@ msgid "Purple"
 msgstr "Purpurpunane"
 
 msgid "Raw link {options}"
-msgstr "Raw link {valikud}"
+msgstr "Töötlemata link: {options}"
 
 msgid "Related resources"
 msgstr "Seotud ressursid"
@@ -343,7 +400,7 @@ msgstr "Otsing"
 msgid "Search emoji"
 msgstr "Otsi emojit"
 
-msgid "Search for time zone"
+msgid "Search for timezone"
 msgstr "Otsi ajavööndit"
 
 msgid "Search results"
@@ -364,8 +421,29 @@ msgstr "sekundit tagasi"
 msgid "Select a tag"
 msgstr "Vali silt"
 
+msgid "Select date"
+msgstr "Vali kuupäev"
+
+msgid "Select date and time"
+msgstr "Vali kuupäev ja kellaaeg"
+
+msgid "Select month"
+msgstr "Vali kuu"
+
 msgid "Select provider"
 msgstr "Vali teenuspakkuja"
+
+msgid "Select time"
+msgstr "Vali aeg"
+
+msgid "Select time range"
+msgstr "Vali ajavahemik"
+
+msgid "Select week"
+msgstr "Vali nädal"
+
+msgid "Select year"
+msgstr "Vali aasta"
 
 msgid "Selected"
 msgstr "Valitud"
@@ -406,8 +484,20 @@ msgstr "Alusta otsinguks sisestamist"
 msgid "Submit"
 msgstr "Saada"
 
+msgid "Switch AM/PM mode"
+msgstr "Vaheta AM/PM kuvamist"
+
 msgid "Symbols"
 msgstr "Sümbolid"
+
+msgid "Time picker"
+msgstr "Ajavalija"
+
+msgid "Timezone"
+msgstr "Ajavöönd"
+
+msgid "Toggle overlay"
+msgstr "Lülita ülekatteaken sisse/välja"
 
 msgid "Travel & Places"
 msgstr "Reisimine ja kohad"
@@ -430,9 +520,18 @@ msgstr "Kasutaja olek: {status}"
 msgid "View team"
 msgstr "Vaata tiimi"
 
+msgid "W"
+msgstr "W"
+
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Viskikarva kollakaspruun"
 
 msgid "Write a message …"
 msgstr "Kirjuta sõnum…"
+
+msgid "Year picker"
+msgstr "Aastavalija"
+
+msgid "Year picker overlay"
+msgstr "Aastavavalija ülekatteaken"

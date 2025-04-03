@@ -1,10 +1,11 @@
 # 
 # Translators:
-# Pavel Borecki <pavel.borecki@gmail.com>, 2024
+# Joas Schilling, 2025
+# Pavel Borecki <pavel.borecki@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2024\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2025\n"
 "Language-Team: Czech (Czech Republic) (https://app.transifex.com/nextcloud/teams/64236/cs_CZ/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: cs_CZ\n"
@@ -71,6 +72,12 @@ msgstr "Bostonská modrá"
 msgid "busy"
 msgstr "zaneprádněn(a)"
 
+msgid "Calendar icon"
+msgstr "Ikona kalendáře"
+
+msgid "Cancel"
+msgstr "Storno"
+
 msgid "Cancel changes"
 msgstr "Zrušit změny"
 
@@ -89,6 +96,9 @@ msgstr "Vyčistit vybrané"
 msgid "Clear text"
 msgstr "Čitelný text"
 
+msgid "Clear value"
+msgstr "Vyčistit hodnotu"
+
 msgid "Close"
 msgstr "Zavřít"
 
@@ -100,6 +110,9 @@ msgstr "Zavřít postranní panel"
 
 msgid "Close Smart Picker"
 msgstr "Zavřít inteligentní výběr"
+
+msgid "Close time Picker"
+msgstr "Zavřít výběr času"
 
 msgid "Collapse menu"
 msgstr "Sbalit nabídku"
@@ -118,6 +131,21 @@ msgstr "Uživatelsky určené"
 
 msgid "Dark skin tone"
 msgstr "Tmavý tělový tón"
+
+msgid "Datepicker input"
+msgstr "Vstup výběru data"
+
+msgid "Datepicker menu"
+msgstr "Nabídka výběru data"
+
+msgid "Decrement hours"
+msgstr "Snížit hodiny"
+
+msgid "Decrement minutes"
+msgstr "Snížit minuty"
+
+msgid "Decrement seconds"
+msgstr "Snížit sekundy"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -191,6 +219,15 @@ msgstr "Skrýt podrobnosti"
 msgid "Hide password"
 msgstr "Skrýt heslo"
 
+msgid "Increment hours"
+msgstr "Zvýšit hodiny"
+
+msgid "Increment minutes"
+msgstr "Zvýšit minuty"
+
+msgid "Increment seconds"
+msgstr "Zvýšit sekundy"
+
 msgid "invisible"
 msgstr "neviditelné"
 
@@ -223,6 +260,12 @@ msgstr "Střední tělový tón"
 msgid "Message limit of {count} characters reached"
 msgstr "Dosaženo limitu počtu ({count}) znaků zprávy"
 
+msgid "Month picker"
+msgstr "Výběr měsíce"
+
+msgid "Month picker overlay"
+msgstr "Překryvné okno výběru měsíce"
+
 msgid "More items …"
 msgstr "Další položky…"
 
@@ -235,6 +278,12 @@ msgstr "Neutřální tělová barva"
 msgid "Next"
 msgstr "Následující"
 
+msgid "Next month"
+msgstr "Příští měsíc"
+
+msgid "Next year"
+msgstr "Příští rok"
+
 msgid "Nextcloud blue"
 msgstr "Nextcloud modrá"
 
@@ -246,6 +295,9 @@ msgstr "Nenalezen žádný poskytovatel odkazů"
 
 msgid "No results"
 msgstr "Nic nenalezeno"
+
+msgid "Now"
+msgstr "Nyní"
 
 msgid "Objects"
 msgstr "Objekty"
@@ -260,17 +312,35 @@ msgstr "Olivínová"
 msgid "online"
 msgstr "online"
 
+msgid "Open hours overlay"
+msgstr "Otevřít překryvné okno hodin"
+
 msgid "Open link to \"{resourceName}\""
 msgstr "Otevřít odkaz na „{resourceName}“"
 
 msgid "Open menu"
 msgstr "Otevřít nabídku"
 
-msgid "Open navigation {shortcut}"
-msgstr "Otevřít navigaci {shortcut}"
+msgid "Open minutes overlay"
+msgstr "Otevřít překryvné okno minut"
+
+msgid "Open months overlay"
+msgstr "Otevřít překryvné okno měsíců"
+
+msgid "Open navigation"
+msgstr "Otevřít navigaci"
+
+msgid "Open seconds overlay"
+msgstr "Otevřít překryvné okno sekund"
 
 msgid "Open sidebar"
 msgstr "Otevřít postranní panel"
+
+msgid "Open time picker"
+msgstr "Otevřít výběr času"
+
+msgid "Open years overlay"
+msgstr "Otevřít překryvné okno roku"
 
 msgid "Options"
 msgstr "Možnosti"
@@ -284,32 +354,20 @@ msgstr "Pozastavit prezentaci"
 msgid "People & Body"
 msgstr "Lidé a tělo"
 
-msgid "Pick a date"
-msgstr "Vybrat datum"
-
-msgid "Pick a date and a time"
-msgstr "Vybrat datum a čas"
-
-msgid "Pick a month"
-msgstr "Vybrat měsíc"
-
-msgid "Pick a time"
-msgstr "Vybrat čas"
-
-msgid "Pick a week"
-msgstr "Vybrat týden"
-
-msgid "Pick a year"
-msgstr "Vybrat rok"
+msgid "Pick"
+msgstr "Vybrat"
 
 msgid "Pick an emoji"
 msgstr "Vybrat emoji"
 
-msgid "Please select a time zone:"
-msgstr "Vyberte časovou zónu:"
-
 msgid "Previous"
 msgstr "Předchozí"
+
+msgid "Previous month"
+msgstr "Předchozí měsíc"
+
+msgid "Previous year"
+msgstr "Předchozí rok"
 
 msgid "Provider icon"
 msgstr "Ikona poskytovatele"
@@ -342,7 +400,7 @@ msgstr "Hledat"
 msgid "Search emoji"
 msgstr "Hledat emoji"
 
-msgid "Search for time zone"
+msgid "Search for timezone"
 msgstr "Vyhledat časové pásmo"
 
 msgid "Search results"
@@ -363,8 +421,29 @@ msgstr "sekund předtím"
 msgid "Select a tag"
 msgstr "Vybrat štítek"
 
+msgid "Select date"
+msgstr "Vybrat datum"
+
+msgid "Select date and time"
+msgstr "Vybrat datum a čas"
+
+msgid "Select month"
+msgstr "Vybrat měsíc"
+
 msgid "Select provider"
 msgstr "Vybrat poskytovatele"
+
+msgid "Select time"
+msgstr "Vybrat čas"
+
+msgid "Select time range"
+msgstr "Vybrat časový rozsah"
+
+msgid "Select week"
+msgstr "Vybrat týden"
+
+msgid "Select year"
+msgstr "Vybrat rok"
 
 msgid "Selected"
 msgstr "Vybráno"
@@ -405,8 +484,20 @@ msgstr "Vyhledávejte psaním"
 msgid "Submit"
 msgstr "Odeslat"
 
+msgid "Switch AM/PM mode"
+msgstr "Přepnout režim dopo/odpoledne"
+
 msgid "Symbols"
 msgstr "Symboly"
+
+msgid "Time picker"
+msgstr "Výběr času"
+
+msgid "Timezone"
+msgstr "Časové pásmo"
+
+msgid "Toggle overlay"
+msgstr "Vyp/zap. překryvné okno"
 
 msgid "Travel & Places"
 msgstr "Cestování a místa"
@@ -429,9 +520,18 @@ msgstr "Stav uživatele: {status}"
 msgid "View team"
 msgstr "Zobrazit kolektiv"
 
+msgid "W"
+msgstr "T"
+
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Whisky"
 
 msgid "Write a message …"
 msgstr "Napsat zprávu…"
+
+msgid "Year picker"
+msgstr "Výběr roku"
+
+msgid "Year picker overlay"
+msgstr "Překryvné okno výběru roku"
