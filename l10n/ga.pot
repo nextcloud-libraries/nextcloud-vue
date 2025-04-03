@@ -1,5 +1,6 @@
 # 
 # Translators:
+# Joas Schilling, 2025
 # Aindriú Mac Giolla Eoin, 2025
 # 
 msgid ""
@@ -71,6 +72,12 @@ msgstr "Bostún Gorm"
 msgid "busy"
 msgstr "gnóthach"
 
+msgid "Calendar icon"
+msgstr "Deilbhín féilire"
+
+msgid "Cancel"
+msgstr "Cealaigh"
+
 msgid "Cancel changes"
 msgstr "Cealaigh athruithe"
 
@@ -89,6 +96,9 @@ msgstr "Glan roghnaithe"
 msgid "Clear text"
 msgstr "Glan téacs"
 
+msgid "Clear value"
+msgstr "Luach soiléir"
+
 msgid "Close"
 msgstr "Dún"
 
@@ -100,6 +110,9 @@ msgstr "Dún barra taoibh"
 
 msgid "Close Smart Picker"
 msgstr "Dún Piocálaí Cliste"
+
+msgid "Close time Picker"
+msgstr "Roghnóir am dúnta"
 
 msgid "Collapse menu"
 msgstr "Roghchlár Laghdaigh"
@@ -119,6 +132,21 @@ msgstr "Saincheaptha"
 
 msgid "Dark skin tone"
 msgstr "Ton craiceann dorcha"
+
+msgid "Datepicker input"
+msgstr "Ionchur datepicker"
+
+msgid "Datepicker menu"
+msgstr "Roghchlár datepicker"
+
+msgid "Decrement hours"
+msgstr "Laghdaigh uaireanta"
+
+msgid "Decrement minutes"
+msgstr "Laghdaigh nóiméid "
+
+msgid "Decrement seconds"
+msgstr "Laghdaigh soicind"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -192,6 +220,15 @@ msgstr "Folaigh sonraí"
 msgid "Hide password"
 msgstr "Folaigh pasfhocal"
 
+msgid "Increment hours"
+msgstr "Méadaigh uaireanta"
+
+msgid "Increment minutes"
+msgstr "Méadaigh nóiméid"
+
+msgid "Increment seconds"
+msgstr "Méadaigh soicind"
+
 msgid "invisible"
 msgstr "dofheicthe"
 
@@ -224,6 +261,12 @@ msgstr "Ton craiceann meánach"
 msgid "Message limit of {count} characters reached"
 msgstr "Teorainn teachtaireachta de {count} carachtar bainte amach"
 
+msgid "Month picker"
+msgstr "Roghnóir míosa"
+
+msgid "Month picker overlay"
+msgstr "Forleagan roghnóir míosa"
+
 msgid "More items …"
 msgstr "Tuilleadh earraí…"
 
@@ -236,6 +279,12 @@ msgstr "Dath craiceann neodrach"
 msgid "Next"
 msgstr "Ar aghaidh"
 
+msgid "Next month"
+msgstr "An mhí seo chugainn"
+
+msgid "Next year"
+msgstr "An bhliain seo chugainn"
+
 msgid "Nextcloud blue"
 msgstr "Nextcloud gorm"
 
@@ -247,6 +296,9 @@ msgstr "Níor aimsíodh aon soláthraí naisc"
 
 msgid "No results"
 msgstr "Gan torthaí"
+
+msgid "Now"
+msgstr "Anois"
 
 msgid "Objects"
 msgstr "Réada"
@@ -261,17 +313,35 @@ msgstr "Olaivín"
 msgid "online"
 msgstr "ar líne"
 
+msgid "Open hours overlay"
+msgstr "Forleagan uaireanta oscailte"
+
 msgid "Open link to \"{resourceName}\""
 msgstr "Oscail nasc chuig \"{resourceName}\""
 
 msgid "Open menu"
 msgstr "Roghchlár a oscailt"
 
-msgid "Open navigation {shortcut}"
-msgstr "Oscail nascleanúint {shortcut}"
+msgid "Open minutes overlay"
+msgstr "Forleagan nóiméad oscailte"
+
+msgid "Open months overlay"
+msgstr "Forleagan míonna oscailte"
+
+msgid "Open navigation"
+msgstr "Oscail nascleanúint"
+
+msgid "Open seconds overlay"
+msgstr "Soicind oscailte forleagan"
 
 msgid "Open sidebar"
 msgstr "Oscail barra taoibh"
+
+msgid "Open time picker"
+msgstr "Roghnóir am oscailte"
+
+msgid "Open years overlay"
+msgstr "Forleagan blianta oscailte"
 
 msgid "Options"
 msgstr "Roghanna"
@@ -285,32 +355,20 @@ msgstr "Cuir taispeántas sleamhnán ar sos"
 msgid "People & Body"
 msgstr "Daoine & Corp"
 
-msgid "Pick a date"
-msgstr "Roghnaigh dáta"
-
-msgid "Pick a date and a time"
-msgstr "Roghnaigh dáta agus am"
-
-msgid "Pick a month"
-msgstr "Roghnaigh mí"
-
-msgid "Pick a time"
-msgstr "Roghnaigh am"
-
-msgid "Pick a week"
-msgstr "Roghnaigh seachtain"
-
-msgid "Pick a year"
-msgstr "Roghnaigh bliain"
+msgid "Pick"
+msgstr "Pioc"
 
 msgid "Pick an emoji"
 msgstr "Roghnaigh emoji"
 
-msgid "Please select a time zone:"
-msgstr "Roghnaigh crios ama le do thoil:"
-
 msgid "Previous"
 msgstr "Roimhe Seo"
+
+msgid "Previous month"
+msgstr "An mhí roimhe sin"
+
+msgid "Previous year"
+msgstr "Bhliain roimhe sin"
 
 msgid "Provider icon"
 msgstr "Deilbhín soláthraí"
@@ -343,7 +401,7 @@ msgstr "Cuardach"
 msgid "Search emoji"
 msgstr "Cuardaigh emoji"
 
-msgid "Search for time zone"
+msgid "Search for timezone"
 msgstr "Cuardaigh crios ama"
 
 msgid "Search results"
@@ -364,8 +422,29 @@ msgstr "soicind ó shin"
 msgid "Select a tag"
 msgstr "Roghnaigh clib"
 
+msgid "Select date"
+msgstr "Roghnaigh dáta"
+
+msgid "Select date and time"
+msgstr "Roghnaigh dáta agus am"
+
+msgid "Select month"
+msgstr "Roghnaigh mí"
+
 msgid "Select provider"
 msgstr "Roghnaigh soláthraí"
+
+msgid "Select time"
+msgstr "Roghnaigh am"
+
+msgid "Select time range"
+msgstr "Roghnaigh raon ama"
+
+msgid "Select week"
+msgstr "Roghnaigh seachtain"
+
+msgid "Select year"
+msgstr "Roghnaigh bliain"
 
 msgid "Selected"
 msgstr "Roghnaithe"
@@ -406,8 +485,20 @@ msgstr "Tosaigh ag clóscríobh chun cuardach a dhéanamh"
 msgid "Submit"
 msgstr "Cuir isteach"
 
+msgid "Switch AM/PM mode"
+msgstr "Athraigh mód AM/PM"
+
 msgid "Symbols"
 msgstr "Siombailí"
+
+msgid "Time picker"
+msgstr "Roghnóir ama"
+
+msgid "Timezone"
+msgstr "Crios ama"
+
+msgid "Toggle overlay"
+msgstr "Scoránaigh forleagan"
 
 msgid "Travel & Places"
 msgstr "Taisteal & Áiteanna"
@@ -430,9 +521,18 @@ msgstr "Stádas úsáideora: {status}"
 msgid "View team"
 msgstr "Féach ar an bhfoireann"
 
+msgid "W"
+msgstr "W"
+
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Fuisce"
 
 msgid "Write a message …"
 msgstr "Scríobh teachtaireacht…"
+
+msgid "Year picker"
+msgstr "Roghnóir bliana"
+
+msgid "Year picker overlay"
+msgstr "Forleagan roghnóir bliana"
