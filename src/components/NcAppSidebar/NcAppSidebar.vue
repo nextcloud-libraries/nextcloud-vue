@@ -710,7 +710,7 @@ import NcButton from '../NcButton/index.ts'
 import NcEmptyContent from '../NcEmptyContent/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import Focus from '../../directives/Focus/index.js'
-import Linkify from '../../directives/Linkify/index.js'
+import Linkify from '../../directives/Linkify/index.ts'
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
 import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
@@ -742,8 +742,8 @@ export default {
 	},
 
 	directives: {
-		focus: Focus,
-		linkify: Linkify,
+		Focus,
+		Linkify,
 		ClickOutside,
 	},
 

@@ -95,7 +95,7 @@
     "escape-html": "^1.0.3",
     "floating-vue": "^5.2.2",
     "focus-trap": "^7.6.4",
-    "linkify-string": "^4.2.0",
+    "linkifyjs": "^4.2.0",
     "p-queue": "^8.0.1",
     "rehype-external-links": "^3.0.0",
     "rehype-highlight": "^7.0.2",
