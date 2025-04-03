@@ -69,6 +69,7 @@ So that only one of each name set can be selected at the same time.
 import { useModel } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
+import { NC_ACTIONS_IS_SEMANTIC_MENU } from '../NcActions/useNcActions.ts'
 
 export default {
 	name: 'NcActionRadio',
@@ -77,7 +78,7 @@ export default {
 
 	inject: {
 		isInSemanticMenu: {
-			from: 'NcActions:isSemanticMenu',
+			from: NC_ACTIONS_IS_SEMANTIC_MENU,
 			default: false,
 		},
 	},

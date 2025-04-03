@@ -46,6 +46,7 @@
 
 <script>
 import ActionTextMixin from '../../mixins/actionText.js'
+import { NC_ACTIONS_IS_SEMANTIC_MENU } from '../NcActions/useNcActions.ts'
 
 export default {
 	name: 'NcActionText',
@@ -54,7 +55,7 @@ export default {
 
 	inject: {
 		isInSemanticMenu: {
-			from: 'NcActions:isSemanticMenu',
+			from: NC_ACTIONS_IS_SEMANTIC_MENU,
 			default: false,
 		},
 	},

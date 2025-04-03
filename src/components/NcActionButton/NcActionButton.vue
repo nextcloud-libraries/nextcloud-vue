@@ -372,6 +372,7 @@ import ChevronRightIcon from 'vue-material-design-icons/ChevronRight.vue'
 import ChevronLeftIcon from 'vue-material-design-icons/ChevronLeft.vue'
 import ActionTextMixin from '../../mixins/actionText.js'
 import { isRtl } from '../../utils/rtl.ts'
+import { NC_ACTIONS_IS_SEMANTIC_MENU } from '../NcActions/useNcActions.ts'
 
 /**
  * Button component to be used in Actions
@@ -389,7 +390,7 @@ export default {
 
 	inject: {
 		isInSemanticMenu: {
-			from: 'NcActions:isSemanticMenu',
+			from: NC_ACTIONS_IS_SEMANTIC_MENU,
 			default: false,
 		},
 	},

@@ -89,6 +89,7 @@ export default {
 import { defineComponent } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import { t } from '../../l10n.js'
+import { NC_ACTIONS_IS_SEMANTIC_MENU } from '../NcActions/useNcActions.ts'
 
 /**
  * A wrapper for allowing inlining NcAction components within the action menu
@@ -98,7 +99,7 @@ export default defineComponent({
 
 	inject: {
 		isInSemanticMenu: {
-			from: 'NcActions:isSemanticMenu',
+			from: NC_ACTIONS_IS_SEMANTIC_MENU,
 			default: false,
 		},
 	},
