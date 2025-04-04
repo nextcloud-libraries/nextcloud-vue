@@ -1,13 +1,11 @@
 # 
 # Translators:
-# Hamza, 2024
-# Ali <alimahwer@yahoo.com>, 2024
-# abu.s3ud, 2024
-# John Molakvoæ <skjnldsv@protonmail.com>, 2024
+# Joas Schilling, 2025
+# Ali <alimahwer@yahoo.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
+"Last-Translator: Ali <alimahwer@yahoo.com>, 2025\n"
 "Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
@@ -74,6 +72,12 @@ msgstr "سماوي مطفي"
 msgid "busy"
 msgstr "مشغول"
 
+msgid "Calendar icon"
+msgstr "أيقونة التقويم"
+
+msgid "Cancel"
+msgstr "إلغاء"
+
 msgid "Cancel changes"
 msgstr "إلغاء التغييرات"
 
@@ -92,6 +96,9 @@ msgstr "محو المحدّد"
 msgid "Clear text"
 msgstr "محو النص"
 
+msgid "Clear value"
+msgstr "مَحو القيمة"
+
 msgid "Close"
 msgstr "إغلاق"
 
@@ -103,6 +110,9 @@ msgstr "قفل الشريط الجانبي"
 
 msgid "Close Smart Picker"
 msgstr "إغلاق المحدد الذكي"
+
+msgid "Close time Picker"
+msgstr "إغلاق لاقط الوقت"
 
 msgid "Collapse menu"
 msgstr "طي القائمة"
@@ -121,6 +131,21 @@ msgstr "مُخصَّص"
 
 msgid "Dark skin tone"
 msgstr "أسمر البُشرة"
+
+msgid "Datepicker input"
+msgstr "مُدخَلات لاقط التاريخ"
+
+msgid "Datepicker menu"
+msgstr "قائمة لاقط التاريخ"
+
+msgid "Decrement hours"
+msgstr "إنقاص الساعات"
+
+msgid "Decrement minutes"
+msgstr "إنقاص الدقائق"
+
+msgid "Decrement seconds"
+msgstr "إنقاص الثواني"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -194,6 +219,15 @@ msgstr "أخفِ التفاصيل"
 msgid "Hide password"
 msgstr "إخفاء كلمة المرور"
 
+msgid "Increment hours"
+msgstr "زيادة الساعات"
+
+msgid "Increment minutes"
+msgstr "زيادة الدقائق"
+
+msgid "Increment seconds"
+msgstr "زيادة الثواني"
+
 msgid "invisible"
 msgstr "غير مرئي"
 
@@ -226,6 +260,12 @@ msgstr "بشرة وسطية اللون"
 msgid "Message limit of {count} characters reached"
 msgstr "تمّ الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
 
+msgid "Month picker"
+msgstr "لاقط الشهر"
+
+msgid "Month picker overlay"
+msgstr "تراكب لاقط الشهر"
+
 msgid "More items …"
 msgstr "عناصر أخرى ..."
 
@@ -238,6 +278,12 @@ msgstr "لون بُشرة طبيعي"
 msgid "Next"
 msgstr "التالي"
 
+msgid "Next month"
+msgstr "الشهر القادم"
+
+msgid "Next year"
+msgstr "السنة القادمة"
+
 msgid "Nextcloud blue"
 msgstr "أزرق نكست كلاود"
 
@@ -249,6 +295,9 @@ msgstr "لا يوجد أيّ مزود روابط link provider"
 
 msgid "No results"
 msgstr "ليس هناك أية نتيجة"
+
+msgid "Now"
+msgstr "الآن"
 
 msgid "Objects"
 msgstr "أشياء"
@@ -263,17 +312,35 @@ msgstr "زيتي"
 msgid "online"
 msgstr "متصل"
 
+msgid "Open hours overlay"
+msgstr "فتح تراكب الساعات "
+
 msgid "Open link to \"{resourceName}\""
 msgstr "إفتَح الرابط إلى \"{resourceName}\""
 
 msgid "Open menu"
 msgstr "إفتَح القائمة"
 
-msgid "Open navigation {shortcut}"
-msgstr "إفتَح المتصفح {shortcut}"
+msgid "Open minutes overlay"
+msgstr "فتح تراكب الدقائق"
+
+msgid "Open months overlay"
+msgstr "فتح تراكب الشهور"
+
+msgid "Open navigation"
+msgstr "فتح التنقُّل"
+
+msgid "Open seconds overlay"
+msgstr "فتح تراكب الثواني"
 
 msgid "Open sidebar"
 msgstr "إفتَح الشريط الجانبي"
+
+msgid "Open time picker"
+msgstr "فتح لاقط الوقت"
+
+msgid "Open years overlay"
+msgstr "فتح تراكب السنوات"
 
 msgid "Options"
 msgstr "خيارات"
@@ -287,32 +354,20 @@ msgstr "تجميد عرض الشرائح"
 msgid "People & Body"
 msgstr "أشخاص و أجسام"
 
-msgid "Pick a date"
-msgstr "إختَر التاريخ"
-
-msgid "Pick a date and a time"
-msgstr "إختَر التاريخ و الوقت"
-
-msgid "Pick a month"
-msgstr "إختَر الشهر"
-
-msgid "Pick a time"
-msgstr "إختَر الوقت"
-
-msgid "Pick a week"
-msgstr "إختَر الأسبوع"
-
-msgid "Pick a year"
-msgstr "إختَر السنة"
+msgid "Pick"
+msgstr "إلتقاط"
 
 msgid "Pick an emoji"
 msgstr "إختَر رمز إيموجي emoji"
 
-msgid "Please select a time zone:"
-msgstr "الرجاء تحديد المنطقة الزمنية:"
-
 msgid "Previous"
 msgstr "السابق"
+
+msgid "Previous month"
+msgstr "الشهر الماضي"
+
+msgid "Previous year"
+msgstr "السنة الماضية"
 
 msgid "Provider icon"
 msgstr "أيقونة المزوّد"
@@ -345,8 +400,8 @@ msgstr "بحث"
 msgid "Search emoji"
 msgstr "البحث عن إيموجي emoji"
 
-msgid "Search for time zone"
-msgstr "البحث عن منطقة زمنية"
+msgid "Search for timezone"
+msgstr "البحث عن المنطقة الزمنية"
 
 msgid "Search results"
 msgstr "نتائج البحث"
@@ -366,8 +421,29 @@ msgstr "ثوانٍ مضت"
 msgid "Select a tag"
 msgstr "اختر وسم"
 
+msgid "Select date"
+msgstr "إختيار التاريخ"
+
+msgid "Select date and time"
+msgstr "إختيار التاريخ والوقت"
+
+msgid "Select month"
+msgstr "إختيار الشهر"
+
 msgid "Select provider"
 msgstr "اختر مزود"
+
+msgid "Select time"
+msgstr "إختيار الوقت"
+
+msgid "Select time range"
+msgstr "إختيار المدى الزمني"
+
+msgid "Select week"
+msgstr "إختيار الأسبوع"
+
+msgid "Select year"
+msgstr "إختيار السنة"
 
 msgid "Selected"
 msgstr "محدّدة"
@@ -408,8 +484,20 @@ msgstr "إبدإ كتابة مفردات البحث"
 msgid "Submit"
 msgstr "إرسال"
 
+msgid "Switch AM/PM mode"
+msgstr "تبديل وضعية صباحاً/مساءً"
+
 msgid "Symbols"
 msgstr "رموز"
+
+msgid "Time picker"
+msgstr "لاقط الوقت"
+
+msgid "Timezone"
+msgstr "المنطقة الزمنية"
+
+msgid "Toggle overlay"
+msgstr "تبديل التراكب"
 
 msgid "Travel & Places"
 msgstr "سفر و أماكن"
@@ -432,9 +520,18 @@ msgstr "حالة المستخدِم: {status}"
 msgid "View team"
 msgstr "عرض الفريق"
 
+msgid "W"
+msgstr "أ"
+
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "نبيذي"
 
 msgid "Write a message …"
 msgstr "أكتب رسالة ..."
+
+msgid "Year picker"
+msgstr "لاقط السنة"
+
+msgid "Year picker overlay"
+msgstr "تراكب لاقط السنة"
