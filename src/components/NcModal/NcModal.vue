@@ -192,7 +192,7 @@ export default {
 			ref="mask"
 			class="modal-mask"
 			:class="{
-				'modal-mask--opaque': dark || closeButtonOutside || !closeButtonContained || hasPrevious || hasNext,
+				'modal-mask--opaque': dark || closeButtonOutside || hasPrevious || hasNext,
 				'modal-mask--light': lightBackdrop,
 			}"
 			:style="cssVariables"
@@ -252,7 +252,7 @@ export default {
 						</NcActions>
 
 						<!-- Close modal -->
-						<NcButton v-if="!noClose && closeButtonOutside && !closeButtonContained"
+						<NcButton v-if="!noClose && closeButtonOutside"
 							:aria-label="closeButtonAriaLabel"
 							class="header-close"
 							variant="tertiary"
@@ -294,7 +294,7 @@ export default {
 							<slot />
 						</div>
 						<!-- Close modal -->
-						<NcButton v-if="!noClose && !closeButtonOutside && closeButtonContained"
+						<NcButton v-if="!noClose && !closeButtonOutside"
 							:aria-label="closeButtonAriaLabel"
 							class="modal-container__close"
 							variant="tertiary"
@@ -487,18 +487,6 @@ export default {
 		closeButtonOutside: {
 			type: Boolean,
 			default: false,
-		},
-
-		/**
-		 * Pass in false if you want the modal 'close' button to be displayed
-		 * outside the modal boundaries, in the top right corner of the window.
-		 *
-		 * @default true
-		 * @deprecated 8.25.0 - Use `closeButtonOutside` instead
-		 */
-		closeButtonContained: {
-			type: Boolean,
-			default: true,
 		},
 
 		/**
