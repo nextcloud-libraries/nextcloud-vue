@@ -58,6 +58,39 @@ test('Modal is labelled correctly if `labelId` and `name` are set', async ({ mou
 	await expect(page.getByRole('dialog', { name: 'Real name' })).toBeVisible()
 })
 
+test('Close button is contained within the dialog by default', async ({ mount, page }) => {
+	await mount(NcModal, {
+		props: {
+			show: true,
+			size: 'small',
+			name: 'test modal',
+		},
+	})
+
+	const button = page.getByRole('dialog', { name: 'test modal' })
+		.locator('.modal-container')
+		.getByRole('button', { name: 'Close' })
+
+	await expect(button).toBeVisible()
+})
+
+test('Close button can be moved to the modal header', async ({ mount, page }) => {
+	await mount(NcModal, {
+		props: {
+			closeButtonOutside: true,
+			show: true,
+			size: 'small',
+			name: 'test modal',
+		},
+	})
+
+	const button = page.getByRole('dialog', { name: 'test modal' })
+		.locator('.modal-header')
+		.getByRole('button', { name: 'Close' })
+
+	await expect(button).toBeVisible()
+})
+
 test('Close button is visible when content is scrolled', async ({ mount, page }) => {
 	await mount(NcModal, {
 		props: {
