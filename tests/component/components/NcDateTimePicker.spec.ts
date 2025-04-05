@@ -23,8 +23,9 @@ const testcases = [
 	['week', new Date(2000, 0, 2, 3, 4), '1999-52'],
 	['month', new Date(2000, 0, 2, 3, 4), '01/2000'],
 	['year', new Date(2000, 0, 2, 3, 4), '2000'],
-	['range', [new Date(2000, 0, 1), new Date(2000, 0, 7)] as [Date, Date], /Jan 1\s–\s7, 2000/i],
-	['range-datetime', [new Date(2000, 0, 1, 2, 3), new Date(2000, 0, 7, 8, 9)] as [Date, Date], /Jan 1, 2000, 2:03\sAM\s–\sJan 7, 2000, 8:09\sAM/i],
+	['date-range', [new Date(2000, 0, 1), new Date(2000, 0, 7)] as [Date, Date], /Jan 1\s–\s7, 2000/i],
+	['time-range', [new Date(2000, 0, 1, 2, 3), new Date(2000, 0, 1, 8, 9)] as [Date, Date], /2:03\s(AM\s)?–\s8:09\sAM/i],
+	['datetime-range', [new Date(2000, 0, 1, 2, 3), new Date(2000, 0, 7, 8, 9)] as [Date, Date], /Jan 1, 2000, 2:03\sAM\s–\sJan 7, 2000, 8:09\sAM/i],
 ] as const
 
 for (const [type, modelValue, expectedValue] of testcases) {

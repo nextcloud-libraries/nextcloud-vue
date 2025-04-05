@@ -136,7 +136,7 @@ Especially the following are now provided as composables:
   - `NcModal`
   - `NcPopover`
 - `NcDateTimePicker`
-  - The `range` property was removed in favor of `type="range"` (datetime ranges) and `type="range-date"` (date only ranges).
+  - The `range` property was removed in favor of `type="datetime-range"` (datetime ranges), `type="date-range"` (date only ranges), and `type="time-range"` (time only ranges).
   - The `lang` property was replaced with the `locale` property.
   - The `formatter` property was removed.
   
