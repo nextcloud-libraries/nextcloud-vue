@@ -215,7 +215,8 @@ const props = withDefaults(defineProps<{
 
 	/**
 	 * Preview format for the picker input field.
-	 * @default 'yyyy-MM-dd HH:mm'
+	 *
+	 * @default Intl.DateTimeFormat is used to format dates and times
 	 * @see https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table
 	 */
 	format?: string
@@ -335,20 +336,37 @@ const placeholderFallback = computed(() => {
 	return t('Select date and time')
 })
 
+/**
+ * The date (time) formatting to be used by the library.
+ * We use the provided format if possible, otherwise we provide a formatting function
+ * which uses the browsers Intl API to format the date / time in the current users locale.
+ */
 const realFormat = computed(() => {
 	if (props.format) {
 		return props.format
-	} else if (props.type === 'datetime' || props.type === 'range-datetime') {
-		return 'yyyy-MM-dd HH:mm'
-	} else if (props.type === 'date' || props.type === 'range') {
-		return 'yyyy-MM-dd'
 	} else if (props.type === 'week') {
+		// cannot format weeks with Intl.
 		return 'RR-II'
-	} else if (props.type === 'month') {
-		return 'yyyy-MM'
-	} else if (props.type === 'year') {
-		return 'yyyy'
 	}
+
+	let formatter: Intl.DateTimeFormat | undefined
+	if (props.type === 'datetime' || props.type === 'range-datetime') {
+		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { dateStyle: 'medium', timeStyle: 'short' })
+	} else if (props.type === 'date' || props.type === 'range') {
+		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { dateStyle: 'medium' })
+	} else if (props.type === 'month') {
+		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { year: 'numeric', month: '2-digit' })
+	} else if (props.type === 'year') {
+		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { year: 'numeric' })
+	}
+
+	if (formatter) {
+		return (input: Date | [Date, Date]) => Array.isArray(input)
+			? formatter.formatRange(...input)
+			: formatter.format(input)
+	}
+
+	// fallback to default formatting
 	return undefined
 })
 
