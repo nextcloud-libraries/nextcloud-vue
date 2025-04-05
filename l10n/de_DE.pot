@@ -1,13 +1,13 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Mark Ziegler <mark.ziegler@rakekniven.de>, 2024
-# Martin Wilichowski, 2024
-# Mario Siegmann <mario_siegmann@web.de>, 2024
+# Joas Schilling, 2025
+# Catherine Bühnsack, 2025
+# Mark Ziegler <mark.ziegler@rakekniven.de>, 2025
+# Mario Siegmann <mario_siegmann@web.de>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2024\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2025\n"
 "Language-Team: German (Germany) (https://app.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -76,6 +76,12 @@ msgstr "Boston-Blau"
 msgid "busy"
 msgstr "Beschäftigt"
 
+msgid "Calendar icon"
+msgstr "Kalendersymbol"
+
+msgid "Cancel"
+msgstr "Abbrechen"
+
 msgid "Cancel changes"
 msgstr "Änderungen verwerfen"
 
@@ -94,6 +100,9 @@ msgstr "Auswahl leeren"
 msgid "Clear text"
 msgstr "Klartext"
 
+msgid "Clear value"
+msgstr "Wert löschen"
+
 msgid "Close"
 msgstr "Schließen"
 
@@ -105,6 +114,9 @@ msgstr "Seitenleiste schließen"
 
 msgid "Close Smart Picker"
 msgstr "Smart Picker schließen"
+
+msgid "Close time Picker"
+msgstr "Zeitauswahl schließen"
 
 msgid "Collapse menu"
 msgstr "Menü einklappen"
@@ -123,6 +135,21 @@ msgstr "Benutzerdefiniert"
 
 msgid "Dark skin tone"
 msgstr "Dunkler Hautfarbton"
+
+msgid "Datepicker input"
+msgstr "Eingabe Datumsauswahl"
+
+msgid "Datepicker menu"
+msgstr "Menü Datumsauswahl"
+
+msgid "Decrement hours"
+msgstr "Stunden verringern"
+
+msgid "Decrement minutes"
+msgstr "Minuten verringern"
+
+msgid "Decrement seconds"
+msgstr "Sekunden verringern"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -196,6 +223,15 @@ msgstr "Details ausblenden"
 msgid "Hide password"
 msgstr "Passwort verbergen"
 
+msgid "Increment hours"
+msgstr "Stunden hochzählen"
+
+msgid "Increment minutes"
+msgstr "Minuten hochzählen"
+
+msgid "Increment seconds"
+msgstr "Sekunden hochzählen"
+
 msgid "invisible"
 msgstr "Unsichtbar"
 
@@ -228,6 +264,12 @@ msgstr "Mittlerer Hautfarbton"
 msgid "Message limit of {count} characters reached"
 msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
 
+msgid "Month picker"
+msgstr "Monatsauswahl"
+
+msgid "Month picker overlay"
+msgstr "Monatsauswahl-Overlay"
+
 msgid "More items …"
 msgstr "Weitere Elemente …"
 
@@ -240,6 +282,12 @@ msgstr "Neutraler Hautfarbton"
 msgid "Next"
 msgstr "Weiter"
 
+msgid "Next month"
+msgstr "Nächster Monat"
+
+msgid "Next year"
+msgstr "Nächstes Jahr"
+
 msgid "Nextcloud blue"
 msgstr "Nextcloud Blau"
 
@@ -251,6 +299,9 @@ msgstr "Kein Linkanbieter gefunden"
 
 msgid "No results"
 msgstr "Keine Ergebnisse"
+
+msgid "Now"
+msgstr "Jetzt"
 
 msgid "Objects"
 msgstr "Objekte"
@@ -265,17 +316,35 @@ msgstr "Olivin"
 msgid "online"
 msgstr "Online"
 
+msgid "Open hours overlay"
+msgstr "Stunden-Overlay öffnen"
+
 msgid "Open link to \"{resourceName}\""
 msgstr "Link zu \"{resourceName}“ öffnen"
 
 msgid "Open menu"
 msgstr "Menü öffnen"
 
-msgid "Open navigation {shortcut}"
-msgstr "Navigation öffnen {shortcut}"
+msgid "Open minutes overlay"
+msgstr "Minuten-Overlay öffnen"
+
+msgid "Open months overlay"
+msgstr "Monate-Overlay öffnen"
+
+msgid "Open navigation"
+msgstr "Navigation öffnen"
+
+msgid "Open seconds overlay"
+msgstr "Sekunden-Overlay öffnen"
 
 msgid "Open sidebar"
 msgstr "Seitenleiste öffnen"
+
+msgid "Open time picker"
+msgstr "Zeitauswahl öffnen"
+
+msgid "Open years overlay"
+msgstr "Jahre-Overlay öffnen"
 
 msgid "Options"
 msgstr "Optionen"
@@ -289,32 +358,20 @@ msgstr "Diashow pausieren"
 msgid "People & Body"
 msgstr "Menschen & Körper"
 
-msgid "Pick a date"
-msgstr "Ein Datum auswählen"
-
-msgid "Pick a date and a time"
-msgstr "Datum und Uhrzeit auswählen"
-
-msgid "Pick a month"
-msgstr "Einen Monat auswählen"
-
-msgid "Pick a time"
-msgstr "Eine Uhrzeit auswählen"
-
-msgid "Pick a week"
-msgstr "Eine Woche auswählen"
-
-msgid "Pick a year"
-msgstr "Ein Jahr auswählen"
+msgid "Pick"
+msgstr "Auswählen"
 
 msgid "Pick an emoji"
 msgstr "Ein Emoji auswählen"
 
-msgid "Please select a time zone:"
-msgstr "Bitte eine Zeitzone auswählen:"
-
 msgid "Previous"
 msgstr "Vorherige"
+
+msgid "Previous month"
+msgstr "Vorheriger Monat"
+
+msgid "Previous year"
+msgstr "Vorheriges Jahr"
 
 msgid "Provider icon"
 msgstr "Anbietersymbol"
@@ -323,7 +380,7 @@ msgid "Purple"
 msgstr "Lila"
 
 msgid "Raw link {options}"
-msgstr "Unverarbeiteter Link {Optionen}"
+msgstr "Unverarbeiteter Link {options}"
 
 msgid "Related resources"
 msgstr "Verwandte Ressourcen"
@@ -347,7 +404,7 @@ msgstr "Suche"
 msgid "Search emoji"
 msgstr "Emoji suchen"
 
-msgid "Search for time zone"
+msgid "Search for timezone"
 msgstr "Nach Zeitzone suchen"
 
 msgid "Search results"
@@ -368,8 +425,29 @@ msgstr "Sekunden zuvor"
 msgid "Select a tag"
 msgstr "Schlagwort auswählen"
 
+msgid "Select date"
+msgstr "Datum auswählen"
+
+msgid "Select date and time"
+msgstr "Datum und Uhrzeit auswählen"
+
+msgid "Select month"
+msgstr "Monat auswählen"
+
 msgid "Select provider"
 msgstr "Anbieter auswählen"
+
+msgid "Select time"
+msgstr "Uhrzeit auswählen"
+
+msgid "Select time range"
+msgstr "Zeitspanne auswählen"
+
+msgid "Select week"
+msgstr "Woche auswählen"
+
+msgid "Select year"
+msgstr "Jahr auswählen"
 
 msgid "Selected"
 msgstr "Ausgewählt"
@@ -410,8 +488,20 @@ msgstr "Mit der Eingabe beginnen, um zu suchen"
 msgid "Submit"
 msgstr "Einreichen"
 
+msgid "Switch AM/PM mode"
+msgstr "Zwischen AM/PM-Modus wechseln"
+
 msgid "Symbols"
 msgstr "Symbole"
+
+msgid "Time picker"
+msgstr "Zeitauswahl"
+
+msgid "Timezone"
+msgstr "Zeitzone"
+
+msgid "Toggle overlay"
+msgstr "Overlay umschalten"
 
 msgid "Travel & Places"
 msgstr "Reisen & Orte"
@@ -434,9 +524,18 @@ msgstr "Benutzerstatus: {status}"
 msgid "View team"
 msgstr "Team anzeigen"
 
+msgid "W"
+msgstr "W"
+
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Whiskey"
 
 msgid "Write a message …"
 msgstr "Nachricht schreiben …"
+
+msgid "Year picker"
+msgstr "Jahresauswahl"
+
+msgid "Year picker overlay"
+msgstr "Jahre-Overlay öffnen"
