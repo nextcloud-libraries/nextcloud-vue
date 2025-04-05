@@ -18,17 +18,37 @@ test('aria-label set on input element', async ({ mount, page }) => {
 })
 
 const testcases = [
-	['datetime', new Date(2000, 0, 2, 3, 4), '2000-01-02 03:04'],
-	['date', new Date(2000, 0, 2, 3, 4), '2000-01-02'],
+	['datetime', new Date(2000, 0, 2, 3, 4), 'Jan 2, 2000, 3:04 AM'],
+	['date', new Date(2000, 0, 2, 3, 4), 'Jan 2, 2000'],
 	['week', new Date(2000, 0, 2, 3, 4), '1999-52'],
-	['month', new Date(2000, 0, 2, 3, 4), '2000-01'],
+	['month', new Date(2000, 0, 2, 3, 4), '01/2000'],
 	['year', new Date(2000, 0, 2, 3, 4), '2000'],
-	['range', [new Date(2000, 0, 1), new Date(2000, 0, 7)] as [Date, Date], '2000-01-01 - 2000-01-07'],
-	['range-datetime', [new Date(2000, 0, 1, 2, 3), new Date(2000, 0, 7, 8, 9)] as [Date, Date], '2000-01-01 02:03 - 2000-01-07 08:09'],
+	['range', [new Date(2000, 0, 1), new Date(2000, 0, 7)] as [Date, Date], /Jan 1\s–\s7, 2000/i],
+	['range-datetime', [new Date(2000, 0, 1, 2, 3), new Date(2000, 0, 7, 8, 9)] as [Date, Date], /Jan 1, 2000, 2:03\sAM\s–\sJan 7, 2000, 8:09\sAM/i],
 ] as const
 
 for (const [type, modelValue, expectedValue] of testcases) {
 	test(`Handle intially specified date with type: ${type}`, async ({ mount, page }) => {
+		await mount(NcDateTimePicker, {
+			props: {
+				modelValue,
+				type,
+			},
+		})
+
+		await expect(page.getByRole('textbox')).toHaveValue(expectedValue)
+	})
+}
+
+const l10nTestcases = [
+	['datetime', new Date(2000, 0, 2, 3, 4), 'en-GB', '2 Jan 2000, 03:04'],
+	['date', new Date(2000, 0, 2, 3, 4), 'es-ES', '2 ene 2000'],
+	['month', new Date(2000, 0, 2, 3, 4), 'de-DE', '01.2000'],
+] as const
+
+for (const [type, modelValue, locale, expectedValue] of l10nTestcases) {
+	test(`Handle localized formatting for date with type: ${type} formatted in locale ${locale}`, async ({ mount, page }) => {
+		page.addScriptTag({ content: `document.getElementsByTagName('html')[0].dataset.locale = "${locale}";` })
 		await mount(NcDateTimePicker, {
 			props: {
 				modelValue,
@@ -49,7 +69,7 @@ test('Today is selected by default', async ({ mount, page }) => {
 		},
 	})
 
-	await expect(page.getByRole('textbox')).toHaveValue('2000-01-22')
+	await expect(page.getByRole('textbox')).toHaveValue('Jan 22, 2000')
 
 	// see also menu is checked
 	await page.getByRole('textbox').click()
