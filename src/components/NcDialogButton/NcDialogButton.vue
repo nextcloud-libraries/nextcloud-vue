@@ -26,80 +26,70 @@ Dialog button component used by NcDialog in the actions slot to display the butt
 </template>
 
 <script setup lang="ts">
-import type { PropType } from 'vue'
+import type { ButtonType, ButtonVariant } from '../NcButton/index.ts'
 import { ref } from 'vue'
 import { t } from '../../l10n.js'
 
-import NcButton, { ButtonType, ButtonVariant } from '../NcButton/index'
+import NcButton from '../NcButton/index'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
-const props = defineProps({
+const props = withDefaults(defineProps<{
 	/**
 	 * The function that will be called when the button is pressed.
 	 * If the function returns `false` the click is ignored and the dialog will not be closed,
 	 * which is the default behavior of "reset"-buttons.
 	 *
-	 * @type {() => unknown|false|Promise<unknown|false>}
+	 * @default '() => {}'
 	 */
-	callback: {
-		type: Function,
-		required: false,
-		default: () => {},
-	},
+	callback?: () => unknown|false
 
 	/**
-	 * The label of the button
+	 * If the button should be shown as disabled.
+	 *
+	 * @default false
 	 */
-	label: {
-		type: String,
-		required: true,
-	},
+	disabled?: boolean
 
 	/**
-	 * Optional inline SVG icon for the button
+	 * Optional inline SVG icon for the button.
+	 *
+	 * @default undefined
 	 */
-	icon: {
-		type: String,
-		required: false,
-		default: undefined,
-	},
+	icon?: string
+
+	/**
+	 * The label of the button.
+	 */
+	label: string
 
 	/**
 	 * The button type, see `NcButton`.
 	 *
-	 * @type {'button'|'submit'|'reset'}
+	 * @default 'button'
 	 */
-	type: {
-		type: String as PropType<ButtonType | `${ButtonType}`>,
-		default: 'button',
-		validator: (type: string) => ['button', 'submit', 'reset'].includes(type),
-	},
-
-	/**
-	 * If the button should be shown as disabled
-	 */
-	disabled: {
-		type: Boolean,
-		default: false,
-	},
+	type?: ButtonType
 
 	/**
 	 * The button variant, see `NcButton`.
 	 *
-	 * @type {'primary'|'secondary'|'tertiary'|'error'|'warning'|'success'}
-	 * @since 8.23.0
+	 * @default 'tertiary'
+	 * @since 8.24.0
 	 */
-	variant: {
-		type: String as PropType<ButtonVariant | `${ButtonVariant}`>,
-		required: false,
-		default: 'secondary',
-		validator: (type) => typeof type === 'string' && ['primary', 'secondary', 'tertiary', 'error', 'warning', 'success'].includes(type),
-	},
+	variant?: ButtonVariant
+}>(), {
+	callback: () => {},
+	disabled: false,
+	icon: undefined,
+	type: 'button',
+	variant: 'tertiary',
 })
 
 const emit = defineEmits<{
-	(name: 'click', event: MouseEvent, payload: unknown): void
+	/**
+	 * The click event (`MouseEvent`) and the value returned by the callback
+	 */
+	'click': [event: MouseEvent, payload: unknown]
 }>()
 
 const isLoading = ref(false)
@@ -120,9 +110,6 @@ async function handleClick(e: MouseEvent) {
 		const fallback = props.type === 'reset' ? false : undefined
 		const result = await props.callback?.() ?? fallback
 		if (result !== false) {
-			/**
-			 * The click event (`MouseEvent`) and the value returned by the callback
-			 */
 			emit('click', e, result)
 		}
 	} finally {

@@ -22,6 +22,9 @@ declare global {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		OCP: any
 		// internal global variables
+		_oc_config?: {
+			loglevel?: number
+		}
 		_nc_vue_element_id?: number
 	}
 }
