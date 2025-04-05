@@ -33,7 +33,7 @@ export function spawnDialog(
 
 	const vueComponent = createVNode(dialog, {
 		...props,
-		onclose: (...rest: unknown[]) => {
+		onClose: (...rest: unknown[]) => {
 			onClose(...rest.map(v => toRaw(v)))
 			// destroy the component
 			render(null, el)
