@@ -142,7 +142,7 @@ picked time zone, but you will have to convert it yourself when necessary.
 		<NcDateTimePicker
 			v-model="time"
 			type="datetime"
-			:show-timezone-select="true"
+			show-timezone-select
 			v-model:timezone-id="tz" /><br>
 		{{ time }} | {{ tz }}
 	</span>
@@ -185,19 +185,29 @@ import NcTimezonePicker from '../NcTimezonePicker/NcTimezonePicker.vue'
 
 const props = withDefaults(defineProps<{
 	/**
+	 * If set to true the menu will be placed on the `<body>`
+	 * instead of default placement on the picker.
+	 */
+	appendToBody?: boolean
+
+	/**
 	 * Aria label for the input box.
+	 *
 	 * @default 'Datepicker input'
 	 */
 	ariaLabel?: string
 
 	/**
 	 * Aria label for the date picker menu.
+	 *
 	 * @default 'Datepicker menu'
 	 */
 	ariaLabelMenu?: string
 
 	/**
 	 * Allow to clear the input.
+	 *
+	 * @default false
 	 */
 	clearable?: boolean
 
@@ -208,24 +218,26 @@ const props = withDefaults(defineProps<{
 	confirm?: boolean
 
 	/**
-	 * Default increment step for minutes in the time picker.
-	 * @default 10
-	 */
-	minuteStep?: number
-
-	/**
 	 * Preview format for the picker input field.
+	 * Can either be a string of Unicode tokens or a function that takes a Date object
+	 * or for range picker an array of two dates, and returns the formatted date as string.
 	 *
 	 * @default Intl.DateTimeFormat is used to format dates and times
 	 * @see https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table
 	 */
-	format?: string
+	format?: string | ((date: Date) => string) | ((dates: [Date, Date]) => string)
 
 	/**
 	 * The locale to use for formatting the shown dates.
 	 * By default the users current Nextcloud locale is used.
 	 */
 	locale?: string
+
+	/**
+	 * Default increment step for minutes in the time picker.
+	 * @default 10
+	 */
+	minuteStep?: number
 
 	/**
 	 * The value to initialize, but also two-way bind the selected date. The date is – like the `Date` object in
@@ -241,7 +253,21 @@ const props = withDefaults(defineProps<{
 	 */
 	placeholder?: string
 
+	/**
+	 * Include a timezone picker within the menu.
+	 * Please note that the dates are still bound to the locale timezone
+	 * and any conversion needs to be done by the app itself.
+	 *
+	 * @default false
+	 */
 	showTimezoneSelect?: boolean
+
+	/**
+	 * Show the ISO week numbers within the calendar.
+	 *
+	 * @default false
+	 */
+	showWeekNumber?: boolean
 
 	/**
 	 * Type of the picker.
@@ -250,10 +276,6 @@ const props = withDefaults(defineProps<{
 	 * @default 'date'
 	 */
 	type?: 'date' | 'datetime' | 'time' | 'week' | 'month' | 'year' | 'range' | 'range-datetime'
-
-	appendToBody?: boolean
-
-	showWeekNumber?: boolean
 }>(), {
 	ariaLabel: t('Datepicker input'),
 	ariaLabelMenu: t('Datepicker menu'),
@@ -286,6 +308,11 @@ const emit = defineEmits<{
 	'update:timezoneId': [string]
 }>()
 
+/**
+ * Mapping of the model-value prop to the format expected by the library.
+ * We do not directly pass the prop and adjust the interface to not transparently wrap the library.
+ * This has show as beeing a pain in the past when we need to switch underlying libraries.
+ */
 const value = computed(() => {
 	if (props.modelValue === undefined && props.clearable) {
 		return props.modelValue
