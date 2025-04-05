@@ -559,6 +559,11 @@ const ariaLabels = computed(() => ({
 		font-size: calc(2 * var(--default-font-size)) !important;
 	}
 
+	// Adjust padding to prevent horizontal scrolling in time selection
+	:deep(.dp__time_input .dp__time_col_reg_block) {
+		padding: 0 calc(4 * var(--default-grid-baseline));
+	}
+
 	&.dp__theme_dark,
 	&.dp__theme_light,
 	:deep(.dp__theme_dark),
