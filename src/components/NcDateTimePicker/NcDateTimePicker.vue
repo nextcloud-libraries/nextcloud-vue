@@ -161,6 +161,11 @@ export default {
 </docs>
 
 <script setup lang="ts">
+import type {
+	ModelValue as LibraryModelValueType,
+	VueDatePickerProps as LibraryPropsType,
+} from '@vuepic/vue-datepicker'
+
 import {
 	mdiCalendarBlank,
 	mdiChevronDown,
@@ -313,9 +318,9 @@ const emit = defineEmits<{
  * We do not directly pass the prop and adjust the interface to not transparently wrap the library.
  * This has show as beeing a pain in the past when we need to switch underlying libraries.
  */
-const value = computed(() => {
+const value = computed<LibraryModelValueType>(() => {
 	if (props.modelValue === undefined && props.clearable) {
-		return props.modelValue
+		return null
 	}
 
 	if (props.type === 'week') {
@@ -368,9 +373,11 @@ const placeholderFallback = computed(() => {
  * We use the provided format if possible, otherwise we provide a formatting function
  * which uses the browsers Intl API to format the date / time in the current users locale.
  */
-const realFormat = computed(() => {
+const realFormat = computed<LibraryPropsType['format']>(() => {
 	if (props.format) {
-		return props.format
+		// we can cast the type here as in this case its either string
+		// function `(Date) => string` or `([Date, Date]) => string` where we cast to `(Date[]) => string` here.
+		return props.format as LibraryPropsType['format']
 	} else if (props.type === 'week') {
 		// cannot format weeks with Intl.
 		return 'RR-II'
@@ -389,7 +396,7 @@ const realFormat = computed(() => {
 
 	if (formatter) {
 		return (input: Date | [Date, Date]) => Array.isArray(input)
-			? formatter.formatRange(...input)
+			? formatter.formatRange(input[0], input[1])
 			: formatter.format(input)
 	}
 
@@ -418,7 +425,7 @@ const pickerType = computed(() => ({
  * Called on model value update of the library.
  * @param value The value emitted from the underlying library
  */
-function onUpdateModelValue(value: Date | [Date, Date] | number | { month: number, year: number }): void {
+function onUpdateModelValue(value: LibraryModelValueType): void {
 	let date = value as Date | [Date, Date]
 	if (props.type === 'month') {
 		const data = value as { month: number, year: number }
@@ -426,7 +433,7 @@ function onUpdateModelValue(value: Date | [Date, Date] | number | { month: numbe
 	} else if (props.type === 'year') {
 		date = new Date(value as number, 0)
 	} else if (props.type === 'week') {
-		date = value[0]
+		date = value?.[0]
 	}
 	emit('update:modelValue', date)
 }
