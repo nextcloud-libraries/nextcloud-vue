@@ -319,178 +319,6 @@ export default {
 }
 </style>
 ```
-
-### User select examples
-
-```vue
-<template>
-	<div class="grid">
-		<div v-for="{ props } in selectArray"
-			class="container">
-			<NcSelect v-bind="props"
-				v-model="props.value" />
-		</div>
-	</div>
-</template>
-
-<script>
-import AccountGroup from '@mdi/svg/svg/account-group.svg?raw'
-import Email from '@mdi/svg/svg/email.svg?raw'
-
-const selectArray = [
-	{
-		props: {
-			inputLabel: 'User select',
-			userSelect: true,
-			options: [
-				{
-					id: '0-john',
-					displayName: 'John',
-					isNoUser: false,
-					subname: 'john@example.org',
-					icon: '',
-					// Example of how to show the user status within the option
-					user: '0-john',
-					preloadedUserStatus: {
-						icon: '',
-						status: 'online',
-						message: 'I am online',
-					},
-				},
-				{
-					id: '0-emma',
-					displayName: 'Emma',
-					isNoUser: false,
-					subname: 'emma@example.org',
-					icon: '',
-				},
-				{
-					id: '0-olivia',
-					displayName: 'Olivia',
-					isNoUser: false,
-					subname: 'olivia@example.org',
-					icon: '',
-				},
-				{
-					id: '0-noah',
-					displayName: 'Noah',
-					isNoUser: false,
-					subname: 'noah@example.org',
-					icon: '',
-				},
-				{
-					id: '0-oliver',
-					displayName: 'Oliver',
-					isNoUser: false,
-					subname: 'oliver@example.org',
-					icon: '',
-				},
-				{
-					id: '1-admin',
-					displayName: 'Admin',
-					isNoUser: true,
-					subname: null,
-					iconSvg: AccountGroup,
-					iconName: 'Group icon',
-				},
-				{
-					id: '2-org@example.org',
-					displayName: 'Organization',
-					isNoUser: true,
-					subname: 'org@example.org',
-					iconSvg: Email,
-					iconName: 'Email icon',
-				},
-			],
-		},
-	},
-
-	{
-		props: {
-			inputLabel: 'Multiple user select (stay open on select)',
-			userSelect: true,
-			multiple: true,
-			closeOnSelect: false,
-			options: [
-				{
-					id: '0-john',
-					displayName: 'John',
-					isNoUser: false,
-					subname: 'john@example.org',
-					icon: '',
-				},
-				{
-					id: '0-emma',
-					displayName: 'Emma',
-					isNoUser: false,
-					subname: 'emma@example.org',
-					icon: '',
-				},
-				{
-					id: '0-olivia',
-					displayName: 'Olivia',
-					isNoUser: false,
-					subname: 'olivia@example.org',
-					icon: '',
-				},
-				{
-					id: '0-noah',
-					displayName: 'Noah',
-					isNoUser: false,
-					subname: 'noah@example.org',
-					icon: '',
-				},
-				{
-					id: '0-oliver',
-					displayName: 'Oliver',
-					isNoUser: false,
-					subname: 'oliver@example.org',
-					icon: '',
-				},
-				{
-					id: '1-admin',
-					displayName: 'Admin',
-					isNoUser: true,
-					subname: null,
-					iconSvg: AccountGroup,
-					iconName: 'Group icon',
-				},
-				{
-					id: '2-org@example.org',
-					displayName: 'Organization',
-					isNoUser: true,
-					subname: 'org@example.org',
-					iconSvg: Email,
-					iconName: 'Email icon',
-				},
-			],
-		},
-	},
-]
-
-export default {
-	data() {
-		return {
-			selectArray,
-		}
-	},
-}
-</script>
-
-<style>
-.grid {
-	display: grid;
-	grid-template-columns: repeat(1, 500px);
-	gap: 10px;
-}
-
-.container {
-	display: flex;
-	flex-direction: column;
-	gap: 2px 0;
-}
-</style>
-```
 </docs>
 
 <template>
@@ -525,25 +353,31 @@ export default {
 				<!-- Set size to 26 to make up for the increased padding of this icon -->
 		</template>
 		<template #option="option">
-			<NcListItemIcon v-if="userSelect"
-				v-bind="option"
-				:avatar-size="32"
-				:name="option[localLabel]"
-				:search="search" />
-			<NcEllipsisedOption v-else
-				:name="String(option[localLabel])"
-				:search="search" />
+			<!-- @slot Customize how a option is rendered. -->
+			<slot name="option" v-bind="option">
+				<NcListItemIcon v-if="userSelect"
+					v-bind="option"
+					:avatar-size="32"
+					:name="option[localLabel]"
+					:search="search" />
+				<NcEllipsisedOption v-else
+					:name="String(option[localLabel])"
+					:search="search" />
+			</slot>
 		</template>
 		<template #selected-option="selectedOption">
-			<NcListItemIcon v-if="userSelect"
-				v-bind="selectedOption"
-				:avatar-size="avatarSize"
-				:name="selectedOption[localLabel]"
-				no-margin
-				:search="search" />
-			<NcEllipsisedOption v-else
-				:name="String(selectedOption[localLabel])"
-				:search="search" />
+			<!-- @slot Customize how a selected option is rendered -->
+			<slot name="selected-option" :v-bind="selectedOption">
+				<NcListItemIcon v-if="userSelect"
+					v-bind="selectedOption"
+					:avatar-size="avatarSize"
+					:name="selectedOption[localLabel]"
+					no-margin
+					:search="search" />
+				<NcEllipsisedOption v-else
+					:name="String(selectedOption[localLabel])"
+					:search="search" />
+			</slot>
 		</template>
 		<template #spinner="spinner">
 			<NcLoadingIcon v-if="spinner.loading" />
@@ -938,6 +772,8 @@ export default {
 		 * Objects must contain the data expected by the
 		 * [NcListItemIcon](#/Components/NcListItemIcon) and
 		 * [NcAvatar](#/Components/NcAvatar) components
+		 *
+		 * @deprecated Use the `NcSelectUsers` component instead
 		 */
 		userSelect: {
 			type: Boolean,

@@ -352,6 +352,9 @@ msgstr ""
 msgid "Select a tag"
 msgstr ""
 
+msgid "Select account"
+msgstr ""
+
 msgid "Select provider"
 msgstr ""
 
