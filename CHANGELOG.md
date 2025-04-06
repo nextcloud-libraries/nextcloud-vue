@@ -5,6 +5,24 @@
 
 # Changelog
 
+## [v8.25.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.25.0) (UNRELEASED)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.24.0...v8.25.0)
+
+### 📝 Notes
+#### `NcDateTimePicker`
+In version 8 the `NcDateTimePicker` was a transparent wrapper around the [vue2 datepicker library](https://github.com/mengxiong10/vue2-datepicker).
+With version 9 and beyond we will no longer transparently wrap external libraries,
+thus only documented props, events, and slots of Nextcloud components are guaranteed to work.
+This will allow use to change the underlying library while keeping a stable API for the component users.
+
+For this we deprecated the `range` property in favor of three new types for the `NcDateTimePicker`.
+- `date-range`
+- `time-range`
+- `datetime-range`
+
+Also the `formatter` property is deprecated, instead you can now provide a function to the `format` property,
+which will receive a `Date` object and should return the formatted date as a string.
+
 ## [v8.24.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.24.0) (2025-04-02)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.23.1...v8.24.0)
 
