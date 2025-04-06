@@ -453,7 +453,7 @@ export default defineComponent({
 		},
 	},
 
-	emits: ['closing', 'update:open', 'submit'],
+	emits: ['closing', 'update:open', 'reset', 'submit'],
 
 	setup(props, { emit, slots }) {
 		/**
@@ -559,13 +559,14 @@ export default defineComponent({
 
 		/**
 		 * Handle closing the dialog, optional out transition did not run yet
-		 * @param {unknown} result the result of the callback
+		 * @param result - The result of the callback
 		 */
-		const handleClosing = (result) => {
+		function handleClosing(result?: unknown): void {
 			showModal.value = false
 			/**
 			 * Emitted when the dialog is closing, so the out transition did not finish yet.
-			 * @param result The result of the button callback (`undefined` if closing because of clicking the 'close'-button)
+			 *
+			 * @param result - The result of the button callback (`undefined` if closing because of clicking the 'close'-button)
 			 */
 			emit('closing', result)
 		}
