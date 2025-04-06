@@ -31,7 +31,7 @@
 				<NcLoadingIcon v-if="loading" />
 				<component :is="checkboxRadioIconElement"
 					v-else-if="!buttonVariant"
-					:size="size" />
+					:size="iconSize" />
 			</slot>
 		</span>
 
@@ -136,7 +136,7 @@ export default {
 		/**
 		 * Icon size
 		 */
-		size: {
+		iconSize: {
 			type: Number,
 			default: 24,
 		},

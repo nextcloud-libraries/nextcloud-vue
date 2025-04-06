@@ -259,7 +259,7 @@ export default {
 				'button-vue': isButtonType,
 			},
 		]"
-		:style="[cssVars, style]"
+		:style
 		:type="isButtonType ? 'button' : null"
 		v-bind="isButtonType ? $attrs : {} "
 		v-on="isButtonType ? listeners : {}">
@@ -286,7 +286,7 @@ export default {
 			:button-variant="buttonVariant"
 			:is-checked="isChecked"
 			:loading="loading"
-			:size="size"
+			:icon-size
 			@click="onToggle">
 			<template #icon>
 				<!-- @slot The checkbox/radio icon, you can use it for adding an icon to the button variant -->
@@ -496,26 +496,20 @@ export default {
 			}
 		},
 
-		/**
-		 * CSS local variables for this component
-		 * @return {Record<string, string>}
-		 */
-		cssVars() {
-			return {
-				'--icon-size': this.size + 'px',
-				'--icon-height': (this.type === TYPE_SWITCH ? 16 : this.size) + 'px',
-			}
-		},
-
-		/**
-		 * Icon size
-		 *
-		 * @return {number}
-		 */
-		size() {
+		iconSize() {
 			return this.type === TYPE_SWITCH
 				? 36
-				: 24
+				: 20
+		},
+
+		cssIconSize() {
+			return this.iconSize + 'px'
+		},
+
+		cssIconHeight() {
+			return this.type === TYPE_SWITCH
+				? '16px'
+				: this.cssIconSize
 		},
 
 		/**
@@ -632,6 +626,12 @@ export default {
 
 <style lang="scss" scoped>
 .checkbox-radio-switch {
+	--icon-size: v-bind('cssIconSize');
+	--icon-height: v-bind('cssIconHeight');
+	--checkbox-radio-switch--border-radius: var(--border-radius-element, calc(var(--default-clickable-area) / 2));
+	// keep inner border width in mind
+	--checkbox-radio-switch--border-radius-outer: calc(var(--checkbox-radio-switch--border-radius) + 2px);
+	// general setup
 	display: flex;
 	align-items: center;
 	color: var(--color-main-text);
@@ -647,8 +647,6 @@ export default {
 		opacity: 0 !important; // We need !important, or it gets overwritten by server style
 		width: var(--icon-size);
 		height: var(--icon-size);
-		// Same as label padding
-		margin: 4px $icon-margin;
 	}
 
 	&__input:focus-visible + &__content,
@@ -659,7 +657,8 @@ export default {
 	}
 
 	&--disabled &__content {
-		opacity: $opacity_disabled;
+		opacity: .5;
+
 		:deep(.checkbox-radio-switch__icon) > * {
 			color: var(--color-main-text)
 		}
@@ -693,10 +692,6 @@ export default {
 	&-switch.checkbox-radio-switch--disabled.checkbox-radio-switch--checked :deep(.checkbox-radio-switch__icon) > * {
 		color: var(--color-primary-element-light);
 	}
-
-	--checkbox-radio-switch--border-radius: var(--border-radius-element, calc(var(--default-clickable-area) / 2));
-	// keep inner border width in mind
-	--checkbox-radio-switch--border-radius-outer: calc(var(--checkbox-radio-switch--border-radius) + 2px);
 
 	&--button-variant.checkbox-radio-switch {
 		background-color: var(--color-main-background);
