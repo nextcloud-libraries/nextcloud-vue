@@ -422,7 +422,7 @@ td.row-size {
 import type { PropType } from 'vue'
 
 import { defineComponent, h, resolveComponent } from 'vue'
-import { ButtonAlignment, ButtonType } from './types.ts'
+import { ButtonAlignment, ButtonType, ButtonVariant } from './types.ts'
 import { isSlotPopulated } from '../../utils/isSlotPopulated.ts'
 
 export default defineComponent({
@@ -566,7 +566,7 @@ export default defineComponent({
 		 * Accepted values: primary, secondary, tertiary, tertiary-no-background, tertiary-on-primary, error, warning, success.
 		 *
 		 * @default 'secondary'
-		 * @since 8.23.0
+		 * @since 8.24.0
 		 */
 		 variant: {
 			type: String as PropType<ButtonVariant | `${ButtonVariant}`>,
