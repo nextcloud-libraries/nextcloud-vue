@@ -325,7 +325,6 @@ export default {
 	<VueSelect class="select"
 		:class="{
 			'select--no-wrap': noWrap,
-			'user-select': userSelect,
 		}"
 		v-bind="propsToForward"
 		@search="search = $event"
@@ -355,27 +354,14 @@ export default {
 		<template #option="option">
 			<!-- @slot Customize how a option is rendered. -->
 			<slot name="option" v-bind="option">
-				<NcListItemIcon v-if="userSelect"
-					v-bind="option"
-					:avatar-size="32"
-					:name="option[localLabel]"
-					:search="search" />
-				<NcEllipsisedOption v-else
-					:name="String(option[localLabel])"
+				<NcEllipsisedOption :name="String(option[localLabel])"
 					:search="search" />
 			</slot>
 		</template>
 		<template #selected-option="selectedOption">
 			<!-- @slot Customize how a selected option is rendered -->
 			<slot name="selected-option" :v-bind="selectedOption">
-				<NcListItemIcon v-if="userSelect"
-					v-bind="selectedOption"
-					:avatar-size="avatarSize"
-					:name="selectedOption[localLabel]"
-					no-margin
-					:search="search" />
-				<NcEllipsisedOption v-else
-					:name="String(selectedOption[localLabel])"
+				<NcEllipsisedOption :name="String(selectedOption[localLabel])"
 					:search="search" />
 			</slot>
 		</template>
@@ -415,7 +401,6 @@ import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import Close from 'vue-material-design-icons/Close.vue'
 
 import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
-import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
 export default {
@@ -424,7 +409,6 @@ export default {
 	components: {
 		ChevronDown,
 		NcEllipsisedOption,
-		NcListItemIcon,
 		NcLoadingIcon,
 		VueSelect,
 	},
@@ -576,10 +560,6 @@ export default {
 		 * Defaults to the internal vue-select function documented at the link
 		 * below
 		 *
-		 * Enabling `userSelect` will automatically set this to filter by the
-		 * `displayName` and `subname` properties of the user option object
-		 * unless this prop is set explicitly
-		 *
 		 * @see https://vue-select.org/api/props.html#filterby
 		 */
 		filterBy: {
@@ -637,9 +617,6 @@ export default {
 		 *
 		 * Defaults to the internal vue-select string documented at the link
 		 * below
-		 *
-		 * Enabling `userSelect` will automatically set this to `'displayName'`
-		 * unless this prop is set explicitly
 		 *
 		 * @see https://vue-select.org/api/props.html#label
 		 */
@@ -758,20 +735,6 @@ export default {
 		resetFocusOnOptionsChange: {
 			type: Boolean,
 			default: true,
-		},
-
-		/**
-		 * Enable the user selector with avatars
-		 *
-		 * Objects must contain the data expected by the
-		 * [NcListItemIcon](#/Components/NcListItemIcon) and
-		 * [NcAvatar](#/Components/NcAvatar) components
-		 *
-		 * @deprecated Use the `NcSelectUsers` component instead
-		 */
-		userSelect: {
-			type: Boolean,
-			default: false,
 		},
 
 		/**
@@ -901,35 +864,6 @@ export default {
 			}
 		},
 
-		localFilterBy() {
-			// Match the email notation like "Jane <j.doe@example.com>" with the email address as matching group
-			const EMAIL_NOTATION = /[^<]*<([^>]+)/
-
-			if (this.filterBy !== null) {
-				return this.filterBy
-			}
-			if (this.userSelect) {
-				return (option, label, search) => {
-					const match = search.match(EMAIL_NOTATION)
-					return (match && option.subname?.toLocaleLowerCase?.()?.indexOf(match[1].toLocaleLowerCase()) > -1)
-						|| (`${label} ${option.subname}`
-							.toLocaleLowerCase()
-							.indexOf(search.toLocaleLowerCase()) > -1)
-				}
-			}
-			return VueSelect.props.filterBy.default
-		},
-
-		localLabel() {
-			if (this.label !== null) {
-				return this.label
-			}
-			if (this.userSelect) {
-				return 'displayName'
-			}
-			return VueSelect.props.label.default
-		},
-
 		propsToForward() {
 			const vueSelectKeys = [
 				...Object.keys(VueSelect.props),
@@ -945,8 +879,6 @@ export default {
 				// Custom overrides of vue-select props
 				calculatePosition: this.localCalculatePosition,
 				closeOnSelect: this.closeOnSelect && !this.keepOpen,
-				filterBy: this.localFilterBy,
-				label: this.localLabel,
 			}
 			return propsToForward
 		},
@@ -1208,10 +1140,5 @@ body {
 	.vs__no-options {
 		color: var(--color-text-lighter) !important;
 	}
-}
-
-// Selected users require slightly different padding
-.user-select .vs__selected {
-	padding-inline: 0 5px !important;
 }
 </style>
