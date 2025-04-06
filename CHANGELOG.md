@@ -141,7 +141,8 @@ Especially the following are now provided as composables:
   - The `lang` property was replaced with the `locale` property.
   - The `formatter` property was removed.
 - `NcSelect`
-  - `user-select` property was removed, instead just use the `NcSelectUsers` component
+  - `userSelect` property was removed, instead just use the `NcSelectUsers` component
+  - `closeOnSelect` property was removed in favor of `keepOpen`.
 
 ### 🚀 Enhancements
 * Allow writing components using Typescript and provide type definitions for `NcButton` [\#4525](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4525) \([susnux](https://github.com/susnux)\)

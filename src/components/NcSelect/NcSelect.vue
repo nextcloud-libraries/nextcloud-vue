@@ -481,16 +481,6 @@ export default {
 		},
 
 		/**
-		 * Close the dropdown when selecting an option.
-		 *
-		 * @deprecated Use the `keepOpen` prop instead
-		 */
-		closeOnSelect: {
-			type: Boolean,
-			default: true,
-		},
-
-		/**
 		 * Keep the dropdown open after selecting an option.
 		 *
 		 * @default false
@@ -864,6 +854,14 @@ export default {
 			}
 		},
 
+		localFilterBy() {
+			return this.filterBy ?? VueSelect.props.filterBy.default
+		},
+
+		localLabel() {
+			return this.label ?? VueSelect.props.label.default
+		},
+
 		propsToForward() {
 			const vueSelectKeys = [
 				...Object.keys(VueSelect.props),
@@ -878,7 +876,9 @@ export default {
 				...initialPropsToForward,
 				// Custom overrides of vue-select props
 				calculatePosition: this.localCalculatePosition,
-				closeOnSelect: this.closeOnSelect && !this.keepOpen,
+				closeOnSelect: !this.keepOpen,
+				filterBy: this.localFilterBy,
+				label: this.localLabel,
 			}
 			return propsToForward
 		},
