@@ -375,7 +375,12 @@ const pickerType = computed(() => ({
 	yearPicker: props.type === 'year',
 	monthPicker: props.type === 'month',
 	weekPicker: props.type === 'week',
-	range: props.type.startsWith('range'),
+	range: props.type.startsWith('range') && {
+		// do not use partial ranges (meaning after selecting the start [Date, null] will be emitted)
+		// if this is needed someday we can enable it,
+		// but its not covered by our component interface (props / events) documentation so just disabled for now.
+		partialRange: false,
+	},
 	enableTimePicker: !(props.type === 'date' || props.type === 'range'),
 	flow: props.type === 'datetime'
 		? ['calendar', 'time'] as ['calendar', 'time']
