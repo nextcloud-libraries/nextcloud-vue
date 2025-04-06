@@ -27,7 +27,7 @@ webpackConfig.devtool = isDev ? false : 'source-map'
 const sassLoader = {
 	loader: 'sass-loader',
 	options: {
-		additionalData: `@use 'sass:math'; $scope_version:${SCOPE_VERSION}; @import 'variables'; @import 'material-icons';`,
+		additionalData: `$scope_version:${SCOPE_VERSION}; @use 'sass:math'; @use 'variables' as *; @use 'material-icons' as *;`,
 		/**
 		 * ! needed for resolve-url-loader
 		 */
