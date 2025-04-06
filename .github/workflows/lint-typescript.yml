@@ -1,0 +1,39 @@
+# SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: MIT
+
+name: Type checking
+
+on: pull_request
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lint-typescript-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    name: Type checking
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+
+      - name: Set up node
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v3
+        with:
+          node-version-file: package.json
+
+      - name: Install dependencies
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+          PUPPETEER_SKIP_DOWNLOAD: true
+        run: npm ci
+
+      - name: Check types
+        run: |
+          npm run --if-present check-types
+          npm run --if-present ts:check
