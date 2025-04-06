@@ -68,8 +68,8 @@ const selectArray = [
 	{
 		props: {
 			inputLabel: 'Multiple (objects, pre-selected, stay open on select)',
+			keepOpen: true,
 			multiple: true,
-			closeOnSelect: false,
 			options: [
 				{
 					id: 'foo',
@@ -234,7 +234,7 @@ const data1 = {
 	props: {
 		inputLabel: 'Wrapped (Default)',
 		multiple: true,
-		closeOnSelect: false,
+		keepOpen: true,
 		options: [
 			'foo',
 			'bar',
@@ -265,8 +265,8 @@ const data1 = {
 const data2 = {
 	props: {
 		inputLabel: 'Not wrapped',
+		keepOpen: true,
 		multiple: true,
-		closeOnSelect: false,
 		options: [
 			'foo',
 			'bar',
@@ -663,13 +663,24 @@ export default {
 		},
 
 		/**
-		 * Close the dropdown when selecting an option
+		 * Close the dropdown when selecting an option.
 		 *
-		 * @see https://vue-select.org/api/props.html#closeonselect
+		 * @deprecated Use the `keepOpen` prop instead
 		 */
 		closeOnSelect: {
 			type: Boolean,
 			default: true,
+		},
+
+		/**
+		 * Keep the dropdown open after selecting an option.
+		 *
+		 * @default false
+		 * @since 8.25.0
+		 */
+		keepOpen: {
+			type: Boolean,
+			default: false,
 		},
 
 		/**
@@ -1097,6 +1108,7 @@ export default {
 				...initialPropsToForward,
 				// Custom overrides of vue-select props
 				calculatePosition: this.localCalculatePosition,
+				closeOnSelect: this.closeOnSelect && !this.keepOpen,
 				filterBy: this.localFilterBy,
 				label: this.localLabel,
 			}
