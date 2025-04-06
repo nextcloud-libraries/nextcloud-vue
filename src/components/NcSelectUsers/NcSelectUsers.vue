@@ -165,167 +165,144 @@ export default {
 </docs>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
+import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcSelect from '../NcSelect/index.js'
-import { createElementId } from '../../utils/createElementId.js'
-import { t } from '../../l10n.js'
-import { PropType, ref } from 'vue'
-import NcListItemIcon from '../NcListItemIcon/NcListItemIcon.vue'
 
 export interface IUserData {
+	id: string
+
+	/**
+	 * Main display name
+	 */
 	displayName: string
+
+	/**
+	 * The user id.
+	 * Will be used to fetch the user status if not disabled.
+	 */
+	user?: string
+
+	/**
+	 * The secondary displayname (e.g. the email address).
+	 */
+	subname?: string
+
+	/**
+	 * Optional icon to use as the avatar.
+	 * Setting this will disable the automatic avatar loading.
+	 */
+	iconSvg?: string
+
+	/**
+	 * Accessible name for the icon.
+	 */
+	iconName?: string
+
+	/**
+	 * If this is a guest user.
+	 * Needed as guest users have a different API endpoint for avatar loading.
+	 */
+	isGuest?: boolean
+
+	/**
+	 * Set if this is not a regular user.
+	 * This will disable user status and avatar loading.
+	 */
+	isNoUser?: boolean
 }
 
-defineProps({
+defineProps<{
 	/**
-	 * `aria-label` for the clear input button
-	 */
-	ariaLabelClearSelected: {
-		type: String,
-		default: t('Clear selected'),
-	},
-
-	/**
-	 * `aria-label` for the listbox element
-	 */
-	ariaLabelListbox: {
-		type: String,
-		default: t('Options'),
-	},
-
-	/**
-	 * Allows to customize the `aria-label` for the deselect-option button
-	 * The default is "Deselect " + optionLabel
-	 * @type {(optionLabel: string) => string}
-	 */
-	ariaLabelDeselectOption: {
-		type: Function,
-		default: (optionLabel) => t('Deselect {option}', { option: optionLabel }),
-	},
-
-	/**
-	 * Keep the dropdown open after selecting an entry.
-	 */
-	keepOpen: {
-		type: Boolean,
-		default: false,
-	},
-
-	/**
-	 * Disable the component
-	 */
-	disabled: {
-		type: Boolean,
-		default: false,
-	},
-
-	/**
-	 * Callback to determine if the provided option should match the current search text.
-	 * Used to determine if the option should be displayed.
+	 * `aria-label` for the clear input button.
 	 *
-	 * By default it filters by the `displayName` and `subname` properties of the user
-	 * option object unless this prop is set explicitly
+	 * @default 'Clear selected'
 	 */
-	filterBy: {
-		type: Function,
-		default: null,
-	},
+	ariaLabelClearSelected?: string
 
 	/**
-	 * Input element id
+	 * `aria-label` for the listbox element.
+	 *
+	 * @default 'Options'
 	 */
-	inputId: {
-		type: String,
-		default: () => createElementId(),
-	},
+	ariaLabelListbox?: string
+
+	/**
+	 * Allows to customize the `aria-label` for the deselect-option button.
+	 *
+	 * @default (label) => `Deselect ${label}`
+	 */
+	ariaLabelDeselectOption?: (label: string) => string
+
+	/**
+	 * Disable the component.
+	 */
+	disabled?: boolean
+
+	/**
+	 * Input element id.
+	 *
+	 * @default random generated id
+	 */
+	inputId?: string
 
 	/**
 	 * Visible label for the input element
 	 *
 	 * @default 'Select account'
 	 */
-	inputLabel: {
-		type: String,
-		default: t('Select account'),
-	},
+	inputLabel?: string
 
 	/**
 	 * Pass true if you are using an external label.
 	 * In this case make sure you set the `for` attribute of your `<label>` to the `inputId` of this component.
 	 */
-	labelOutside: {
-		type: Boolean,
-		default: false,
-	},
+	labelOutside?: boolean
+
+	/**
+	 * Keep the dropdown open after selecting an entry.
+	 */
+	keepOpen?: boolean
 
 	/**
 	 * Show a loading icon.
-	 *
-	 * @default false
 	 */
-	loading: {
-		type: Boolean,
-		default: false,
-	},
+	loading?: boolean
 
 	/**
 	 * Allow selection of multiple options
-	 *
-	 * @default false
 	 */
-	multiple: {
-		type: Boolean,
-		default: false,
-	},
+	multiple?: boolean
 
 	/**
 	 * Disable automatic wrapping when selected options overflow the width.
-	 *
-	 * @default false
 	 */
-	noWrap: {
-		type: Boolean,
-		default: false,
-	},
+	noWrap?: boolean
 
 	/**
-	 * Array of users.
-	 *
-	 * @type {{displayName: string, user: string, subname?: string, iconSvg?: string, iconName?: string, isGuest?: boolean, isNoUser?: boolean}[]}
+	 * Array of users or similar object (e.g. groups or guest users).
 	 */
-	options: {
-		type: Array as PropType<{id: string, displayName: string, user?: string, subname?: string, iconSvg?: string, iconName?: string, isGuest?: boolean, isNoUser?: boolean}[]>,
-		default: () => [],
-	},
+	options: IUserData[]
 
 	/**
 	 * Placeholder text.
-	 */
-	placeholder: {
-		type: String,
-		default: '',
-	},
-
-	/**
-	 * Enable if a value is required for native form validation
-	 */
-	required: {
-		type: Boolean,
-		default: false,
-	},
-
-	/**
-	 * Currently selected value
 	 *
-	 * The `v-model` directive may be used for two-way data binding
+	 * @default ''
 	 */
-	modelValue: {
-		type: Object as PropType<IUserData>,
-		default: null,
-	},
-})
+	placeholder?: string
 
-defineEmits(['update:modelValue'])
+	/**
+	 * Enable if a value is required for native form validation.
+	 */
+	required?: boolean
+}>()
 
+/**
+ * Currently selected value.
+ * The `v-model` directive may be used for two-way data binding.
+ */
+defineModel<IUserData>('modelValue')
 const search = ref('')
 
 // Avatar size so the component has the same size as Nc*Field
