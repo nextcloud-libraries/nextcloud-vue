@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<NcSelect user-select
+	<NcSelectUsers v-model="value"
 		input-label="My account"
 		input-class="cypress-search-input"
 		:options="[
@@ -13,25 +13,25 @@
 				displayName: 'John',
 				isNoUser: false,
 				subname: 'john@example.org',
-				icon: '',
 			},
 			{
 				id: '0-emma',
 				displayName: 'Emma',
 				isNoUser: false,
 				subname: 'emma@example.org',
-				icon: '',
 			},
 			{
 				id: '0-olivia',
 				displayName: 'Olivia',
 				isNoUser: false,
 				subname: 'olivia@example.org',
-				icon: '',
 			},
 		]" />
 </template>
 
 <script setup lang="ts">
-import NcSelect from '../../../../src/components/NcSelect/NcSelect.vue'
+import { ref } from 'vue';
+import NcSelectUsers from '../../../../src/components/NcSelectUsers/NcSelectUsers.vue'
+
+const value = ref()
 </script>
