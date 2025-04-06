@@ -1,5 +1,5 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.json",
+  "extends": "@vue/tsconfig",
   "include": ["./src/**/*.js","./src/**/*.ts", "./src/**/*.vue", "**/*.ts"],
   "exclude": ["tests", "vitest.config.ts"],
 
