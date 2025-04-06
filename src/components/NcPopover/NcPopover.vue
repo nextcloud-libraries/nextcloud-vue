@@ -415,44 +415,44 @@ export default {
 </script>
 
 <style lang="scss">
-
-.resize-observer {
-	position:absolute;
-	top:0;
-	left:0;
-	z-index:-1;
-	width:100%;
-	height:100%;
-	border:none;
-	background-color:transparent;
-	pointer-events:none;
-	display:block;
-	overflow:hidden;
-	opacity:0
-}
-
-.resize-observer object {
-	display:block;
-	position:absolute;
-	top:0;
-	left:0;
-	height:100%;
-	width:100%;
-	overflow:hidden;
-	pointer-events:none;
-	z-index:-1
-}
-
 $arrow-width: 10px;
 // Move the arrow just slightly inside the popover
 // To prevent a visual gap on page scaling
 $arrow-position: $arrow-width - 1px;
 
+// Size class comes from the floating-vue library we use
+.resize-observer {
+	position: absolute;
+	top: 0;
+	inset-inline-start: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	border: none;
+	background-color: transparent;
+	pointer-events: none;
+	display: block;
+	overflow: hidden;
+	opacity: 0;
+
+	object {
+		display: block;
+		position: absolute;
+		top: 0;
+		inset-inline-start: 0;
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+		pointer-events: none;
+		z-index: -1;
+	}
+}
+
 .v-popper--theme-dropdown {
 	&.v-popper__popper {
 		z-index: 100000;
 		top: 0;
-		left: 0;
+		inset-inline-start: 0;
 		display: block !important;
 
 		.v-popper__wrapper {
@@ -499,15 +499,15 @@ $arrow-position: $arrow-width - 1px;
 		}
 
 		&[data-popper-placement^='right'] .v-popper__arrow-container {
-			left: -$arrow-position;
-			border-left-width: 0;
-			border-right-color: var(--color-main-background);
+			inset-inline-start: -$arrow-position;
+			border-inline-start-width: 0;
+			border-inline-end-color: var(--color-main-background);
 		}
 
 		&[data-popper-placement^='left'] .v-popper__arrow-container {
-			right: -$arrow-position;
-			border-right-width: 0;
-			border-left-color: var(--color-main-background);
+			inset-inline-end: -$arrow-position;
+			border-inline-end-width: 0;
+			border-inline-start-color: var(--color-main-background);
 		}
 
 		&[aria-hidden='true'] {

@@ -897,7 +897,7 @@ export default {
 	position: fixed;
 	z-index: 9998;
 	top: 0;
-	left: 0;
+	inset-inline-start: 0;
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -916,8 +916,7 @@ export default {
 	position: absolute;
 	z-index: 10001;
 	top: 0;
-	right: 0;
-	left: 0;
+	inset-inline: 0 0;
 	// prevent vue show to use display:none and resetting
 	// the circle animation loop
 	display: flex !important;
@@ -943,14 +942,14 @@ export default {
 	// On wider screens the name can be centered
 	@media only screen and (min-width: $breakpoint-mobile) {
 		&__name {
-			padding-left: calc(var(--default-clickable-area) * 3); // maximum actions is 3
+			padding-inline-start: calc(var(--default-clickable-area) * 3); // maximum actions is 3
 			text-align: center;
 		}
 	}
 
 	.icons-menu {
 		position: absolute;
-		right: 0;
+		inset-inline-end: 0;
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
@@ -1051,10 +1050,10 @@ export default {
 	}
 
 	.prev {
-		left: 2px;
+		inset-inline-start: 2px;
 	}
 	.next {
-		right: 2px;
+		inset-inline-end: 2px;
 	}
 
 	/* Content */
@@ -1182,7 +1181,7 @@ $pi: 3.14159265358979;
 	.progress-ring {
 		position: absolute;
 		top: 0;
-		left: 0;
+		inset-inline-start: 0;
 		transform: rotate(-90deg);
 		.progress-ring__circle {
 			transition: 100ms stroke-dashoffset;
