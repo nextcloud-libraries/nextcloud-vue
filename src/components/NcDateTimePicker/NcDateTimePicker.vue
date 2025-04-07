@@ -89,11 +89,13 @@ Meaning an array with two dates is used, the first date is the range start and t
 	<div>
 		<fieldset class="type-select">
 			<legend>Picker mode</legend>
-			<NcCheckboxRadioSwitch v-model="type" type="radio" value="range">Date</NcCheckboxRadioSwitch>
-			<NcCheckboxRadioSwitch v-model="type" type="radio" value="range-datetime">Date and time</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch v-model="type" type="radio" value="date-range">Date</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch v-model="type" type="radio" value="time-range">Time</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch v-model="type" type="radio" value="datetime-range">Date and time</NcCheckboxRadioSwitch>
 		</fieldset>
 
 		<NcDateTimePicker
+			:key="type"
 			v-model="time"
 			:type />
 		<div>
@@ -106,17 +108,20 @@ Meaning an array with two dates is used, the first date is the range start and t
 export default {
 	data() {
 		return {
-			time: [new Date(2025, 3, 18), new Date(2025, 3, 21)],
-			type: 'range',
+			time: [new Date(2025, 3, 18, 12, 30), new Date(2025, 3, 21, 13, 30)],
+			type: 'date-range',
 		}
 	},
 	methods: {
 		formatDate(date) {
-			const text = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
-			if (this.type === 'range') {
-				return text
+			const dateString = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+			const timeString = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`
+			if (this.type === 'date-range') {
+				return dateString
+			} else if (this.type === 'time-range') {
+				return timeString
 			}
-			return `${text} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`
+			return `${dateString} ${timeString}`
 		},
 	},
 }
@@ -161,6 +166,13 @@ export default {
 </docs>
 
 <script setup lang="ts">
+import type {
+	// The emitted object for time picker
+	TimeObj as LibraryTimeObject,
+	// The accepted model value
+	ModelValue as LibraryModelValue,
+} from '@vuepic/vue-datepicker'
+
 import {
 	mdiCalendarBlank,
 	mdiChevronDown,
@@ -271,11 +283,14 @@ const props = withDefaults(defineProps<{
 
 	/**
 	 * Type of the picker.
-	 * The 'range' type will enable a range picker for dates,
-	 * while 'range-datetime' will allow picking a date range with times.
+	 * There is some special handling for ranges as those types require a `[Date, Date]` model value.
+	 * - The 'date-range' type will enable a range picker for dates
+	 * - The 'time-range' allows picking a time range.
+	 * - The 'datetime-range' allows picking dates with times assigned.
+	 *
 	 * @default 'date'
 	 */
-	type?: 'date' | 'datetime' | 'time' | 'week' | 'month' | 'year' | 'range' | 'range-datetime'
+	type?: 'date' | 'datetime' | 'time' | 'week' | 'month' | 'year' | 'date-range' | 'time-range' | 'datetime-range'
 }>(), {
 	ariaLabel: t('Datepicker input'),
 	ariaLabelMenu: t('Datepicker menu'),
@@ -303,8 +318,9 @@ const emit = defineEmits<{
 	/**
 	 * If range picker is enabled then an array containing start and end date are emitted.
 	 * Otherwise the selected date is emitted.
+	 * `null` is emitted if `clearable` is set to `true` and the value was cleared.
 	 */
-	'update:modelValue': [Date | [Date, Date]]
+	'update:modelValue': [Date | [Date, Date] | null]
 	'update:timezoneId': [string]
 }>()
 
@@ -323,7 +339,25 @@ const value = computed(() => {
 		const end = new Date(date)
 		end.setUTCDate(date.getUTCDate() + 6)
 		return [date, end]
-	} else if (props.type.startsWith('range')) {
+	} else if (props.type === 'year') {
+		const date = props.modelValue instanceof Date ? props.modelValue : new Date()
+		return date.getUTCFullYear()
+	} else if (props.type === 'month') {
+		const date = props.modelValue instanceof Date ? props.modelValue : new Date()
+		return { year: date.getUTCFullYear(), month: date.getUTCMonth() }
+	} else if (props.type === 'time' || props.type === 'time-range') {
+		const time = [props.modelValue ?? (props.type === 'time-range' ? [new Date(), new Date()] : new Date())].flat()
+		// default time range is 1 hour
+		if (props.modelValue === undefined && props.type === 'time-range') {
+			time[1].setHours(time[1].getHours() + 1)
+		}
+		const timeValue = time.map((date) => ({
+			hours: date.getHours(),
+			minutes: date.getMinutes(),
+			seconds: date.getSeconds(),
+		} as LibraryTimeObject))
+		return props.type === 'time' ? timeValue[0] : timeValue
+	} else if (props.type.endsWith('-range')) {
 		if (props.modelValue === undefined) {
 			const start = new Date()
 			const end = new Date(start)
@@ -331,12 +365,6 @@ const value = computed(() => {
 			return [start, end]
 		}
 		return props.modelValue
-	} else if (props.type === 'year') {
-		const date = props.modelValue instanceof Date ? props.modelValue : new Date()
-		return date.getUTCFullYear()
-	} else if (props.type === 'month') {
-		const date = props.modelValue instanceof Date ? props.modelValue : new Date()
-		return { year: date.getUTCFullYear(), month: date.getUTCMonth() }
 	}
 
 	// no special handling for other types needed
@@ -356,7 +384,7 @@ const placeholderFallback = computed(() => {
 		return t('Select month')
 	} else if (props.type === 'year') {
 		return t('Select year')
-	} else if (props.type.startsWith('range')) {
+	} else if (props.type.endsWith('-range')) {
 		return t('Select time range')
 	}
 	// should not be reached
@@ -377,10 +405,12 @@ const realFormat = computed(() => {
 	}
 
 	let formatter: Intl.DateTimeFormat | undefined
-	if (props.type === 'datetime' || props.type === 'range-datetime') {
-		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { dateStyle: 'medium', timeStyle: 'short' })
-	} else if (props.type === 'date' || props.type === 'range') {
+	if (props.type === 'date' || props.type === 'date-range') {
 		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { dateStyle: 'medium' })
+	} else if (props.type === 'time' || props.type === 'time-range') {
+		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { timeStyle: 'short' })
+	} else if (props.type === 'datetime' || props.type === 'datetime-range') {
+		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { dateStyle: 'medium', timeStyle: 'short' })
 	} else if (props.type === 'month') {
 		formatter = new Intl.DateTimeFormat(getCanonicalLocale(), { year: 'numeric', month: '2-digit' })
 	} else if (props.type === 'year') {
@@ -398,17 +428,17 @@ const realFormat = computed(() => {
 })
 
 const pickerType = computed(() => ({
-	timePicker: props.type === 'time',
+	timePicker: props.type === 'time' || props.type === 'time-range',
 	yearPicker: props.type === 'year',
 	monthPicker: props.type === 'month',
 	weekPicker: props.type === 'week',
-	range: props.type.startsWith('range') && {
+	range: props.type.endsWith('-range') && {
 		// do not use partial ranges (meaning after selecting the start [Date, null] will be emitted)
 		// if this is needed someday we can enable it,
 		// but its not covered by our component interface (props / events) documentation so just disabled for now.
 		partialRange: false,
 	},
-	enableTimePicker: !(props.type === 'date' || props.type === 'range'),
+	enableTimePicker: !(props.type === 'date' || props.type === 'date-range'),
 	flow: props.type === 'datetime'
 		? ['calendar', 'time'] as ['calendar', 'time']
 		: undefined,
@@ -418,17 +448,50 @@ const pickerType = computed(() => ({
  * Called on model value update of the library.
  * @param value The value emitted from the underlying library
  */
-function onUpdateModelValue(value: Date | [Date, Date] | number | { month: number, year: number }): void {
-	let date = value as Date | [Date, Date]
-	if (props.type === 'month') {
-		const data = value as { month: number, year: number }
-		date = new Date(data.year, data.month, 1)
-	} else if (props.type === 'year') {
-		date = new Date(value as number, 0)
-	} else if (props.type === 'week') {
-		date = value[0]
+function onUpdateModelValue(value: LibraryModelValue): void {
+	if (value === null) {
+		return emit('update:modelValue', null)
 	}
-	emit('update:modelValue', date)
+
+	if (props.type === 'time') {
+		// time is provided as an object
+		emit('update:modelValue', formatLibraryTime(value as LibraryTimeObject))
+	} else if (props.type === 'time-range') {
+		// same as time but as an array with two elements
+		const start = formatLibraryTime(value[0])
+		const end = formatLibraryTime(value[1])
+		// ensure end is beyond the start
+		if (end.getTime() < start.getTime()) {
+			end.setDate(end.getDate() + 1)
+		}
+		emit('update:modelValue', [start, end])
+	} else if (props.type === 'month') {
+		// month is emitted as an object with month and year attribute
+		const data = value as { month: number, year: number }
+		emit('update:modelValue', new Date(data.year, data.month, 1))
+	} else if (props.type === 'year') {
+		// Years are emitted as the numeric year e.g. 2022
+		emit('update:modelValue', new Date(value as number, 0))
+	} else if (props.type === 'week') {
+		// weeks are emitted as [Date, Date]
+		emit('update:modelValue', value[0])
+	} else {
+		// otherwise it already emits the correct format
+		emit('update:modelValue', value as Date | [Date, Date])
+	}
+}
+
+/**
+ * Format a vuepick time object to native JS Date object.
+ *
+ * @param time - The library time value object
+ */
+function formatLibraryTime(time: LibraryTimeObject): Date {
+	const date = new Date()
+	date.setHours(time.hours)
+	date.setMinutes(time.minutes)
+	date.setSeconds(time.seconds)
+	return date
 }
 
 // Localization
