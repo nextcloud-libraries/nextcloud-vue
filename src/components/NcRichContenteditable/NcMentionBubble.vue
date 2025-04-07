@@ -4,8 +4,8 @@
 -->
 
 <template>
-	<span :class="{'mention-bubble--primary': primary}"
-		class="mention-bubble"
+	<span class="mention-bubble"
+		:class="{'mention-bubble--primary': primary}"
 		contenteditable="false">
 		<span class="mention-bubble__wrapper">
 			<span class="mention-bubble__content">
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { useIsDarkTheme } from '../../composables/useIsDarkTheme/index.ts'
 import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
 
 export default {
@@ -57,6 +58,15 @@ export default {
 			default: false,
 		},
 	},
+
+	setup() {
+		const isDarkTheme = useIsDarkTheme()
+
+		return {
+			isDarkTheme,
+		}
+	},
+
 	computed: {
 		avatarUrl() {
 			if (this.iconUrl) {
@@ -64,7 +74,7 @@ export default {
 			}
 
 			return this.id && this.source === 'users'
-				? this.getAvatarUrl(this.id, 44)
+				? getAvatarUrl(this.id, { isDarkTheme: this.isDarkTheme })
 				: null
 		},
 		mentionText() {
@@ -72,10 +82,6 @@ export default {
 				? `@${this.id}`
 				: `@"${this.id}"`
 		},
-	},
-
-	methods: {
-		getAvatarUrl,
 	},
 }
 </script>

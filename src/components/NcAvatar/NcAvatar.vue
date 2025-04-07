@@ -188,7 +188,7 @@ export default {
 			@click="toggleMenu">
 			<template #icon>
 				<NcLoadingIcon v-if="contactsMenuLoading" />
-				<DotsHorizontal v-else :size="20" />
+				<IconDotsHorizontal v-else :size="20" />
 			</template>
 		</NcButton>
 		<NcActions v-else-if="hasMenu"
@@ -234,6 +234,15 @@ export default {
 </template>
 
 <script>
+import { getCurrentUser } from '@nextcloud/auth'
+import axios from '@nextcloud/axios'
+import { getBuilder } from '@nextcloud/browser-storage'
+import { subscribe, unsubscribe } from '@nextcloud/event-bus'
+import { generateUrl } from '@nextcloud/router'
+import { vOnClickOutside as ClickOutside } from '@vueuse/components'
+import { useTemplateRef } from 'vue'
+
+import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 import NcActions from '../NcActions/index.js'
 import NcActionLink from '../NcActionLink/index.js'
 import NcActionRouter from '../NcActionRouter/index.js'
@@ -242,24 +251,15 @@ import NcButton from '../NcButton/index.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 import NcLoadingIcon from '../NcLoadingIcon/index.ts'
 import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
-import NcActionButton from '../NcActionButton/index.js'
+
+import { getRoute } from '../../components/NcRichText/autolink.ts'
+import { useIsDarkThemeElement } from '../../composables/index.ts'
 import usernameToColor from '../../functions/usernameToColor/index.js'
 import { getEnabledContactsMenuActions } from '../../functions/contactsMenu/index.ts'
+import { userStatus } from '../../mixins/index.js'
 import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
 import { getUserStatusText } from '../../utils/UserStatus.ts'
-import { userStatus } from '../../mixins/index.js'
 import { t } from '../../l10n.js'
-import { getRoute } from '../../components/NcRichText/autolink.ts'
-import logger from '../../utils/logger.ts'
-
-import axios from '@nextcloud/axios'
-import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
-
-import { getCurrentUser } from '@nextcloud/auth'
-import { subscribe, unsubscribe } from '@nextcloud/event-bus'
-import { getBuilder } from '@nextcloud/browser-storage'
-import { generateUrl } from '@nextcloud/router'
-import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 
@@ -291,7 +291,7 @@ export default {
 		ClickOutside,
 	},
 	components: {
-		DotsHorizontal,
+		IconDotsHorizontal,
 		NcActions,
 		NcButton,
 		NcIconSvgWrapper,
@@ -420,6 +420,16 @@ export default {
 			default: 'body',
 		},
 	},
+
+	setup() {
+		const root = useTemplateRef('main')
+		const isDarkTheme = useIsDarkThemeElement(root)
+
+		return {
+			isDarkTheme,
+		}
+	},
+
 	data() {
 		return {
 			avatarUrlLoaded: null,
@@ -741,7 +751,11 @@ export default {
 		 * @return {string}
 		 */
 		avatarUrlGenerator(user, size) {
-			let avatarUrl = getAvatarUrl(user, size, this.isGuest)
+			let avatarUrl = getAvatarUrl(user, {
+				size,
+				isDarkTheme: this.isDarkTheme,
+				isGuest: this.isGuest,
+			})
 
 			// eslint-disable-next-line camelcase
 			if (user === getCurrentUser()?.uid && typeof oc_userconfig !== 'undefined') {

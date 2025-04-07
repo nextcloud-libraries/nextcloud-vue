@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { useIsDarkTheme } from '../../composables/useIsDarkTheme/index.ts'
 import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
 
 import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
@@ -73,6 +74,14 @@ export default {
 			default: () => ({}),
 		},
 	},
+
+	setup() {
+		const isDarkTheme = useIsDarkTheme()
+		return {
+			isDarkTheme,
+		}
+	},
+
 	computed: {
 		avatarUrl() {
 			if (this.iconUrl) {
@@ -80,13 +89,9 @@ export default {
 			}
 
 			return this.id && this.source === 'users'
-				? this.getAvatarUrl(this.id, 44)
+				? getAvatarUrl(this.id, { isDarkTheme: this.isDarkTheme })
 				: null
 		},
-	},
-
-	methods: {
-		getAvatarUrl,
 	},
 }
 </script>
