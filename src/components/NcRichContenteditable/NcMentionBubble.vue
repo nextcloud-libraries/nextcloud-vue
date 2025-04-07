@@ -4,7 +4,8 @@
 -->
 
 <template>
-	<span :class="{'mention-bubble--primary': primary}"
+	<span ref="root"
+		:class="{'mention-bubble--primary': primary}"
 		class="mention-bubble"
 		contenteditable="false">
 		<span class="mention-bubble__wrapper">
@@ -25,7 +26,8 @@
 </template>
 
 <script>
-import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
+import { useTemplateRef } from 'vue'
+import { useIsDarkThemeElement } from '../../composables/index.ts'
 
 export default {
 	name: 'NcMentionBubble',
@@ -65,6 +67,16 @@ export default {
 			default: false,
 		},
 	},
+
+	setup() {
+		const root = useTemplateRef('root')
+		const isDarkTheme = useIsDarkThemeElement(root)
+
+		return {
+			isDarkTheme,
+		}
+	},
+
 	computed: {
 		avatarUrl() {
 			if (this.iconUrl) {
@@ -72,7 +84,7 @@ export default {
 			}
 
 			return this.id && this.source === 'users'
-				? this.getAvatarUrl(this.id, 44)
+				? this.getAvatarUrl(this.id, { isDarkTheme: this.isDarkTheme })
 				: null
 		},
 		mentionText() {
@@ -84,10 +96,6 @@ export default {
 		labelWithFallback() {
 			return this.label || this.title
 		},
-	},
-
-	methods: {
-		getAvatarUrl,
 	},
 }
 </script>

@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<div class="autocomplete-result">
+	<div ref="root" class="autocomplete-result">
 		<!-- Avatar or icon -->
 		<div :class="[icon, `autocomplete-result__icon--${avatarUrl ? 'with-avatar' : ''}`]"
 			:style="avatarUrl ? { backgroundImage: `url(${avatarUrl})` } : null "
@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import { useTemplateRef } from 'vue'
+import { useIsDarkThemeElement } from '../../composables/useIsDarkTheme/index.ts'
 import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
 
 import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
@@ -81,6 +83,15 @@ export default {
 			default: () => ({}),
 		},
 	},
+
+	setup() {
+		const root = useTemplateRef('root')
+		const isDarkTheme = useIsDarkThemeElement(root)
+		return {
+			isDarkTheme,
+		}
+	},
+
 	computed: {
 		avatarUrl() {
 			if (this.iconUrl) {
@@ -88,17 +99,13 @@ export default {
 			}
 
 			return this.id && this.source === 'users'
-				? this.getAvatarUrl(this.id, 44)
+				? getAvatarUrl(this.id, { isDarkTheme: this.isDarkTheme })
 				: null
 		},
 		// For backwards compatibility
 		labelWithFallback() {
 			return this.label || this.title
 		},
-	},
-
-	methods: {
-		getAvatarUrl,
 	},
 }
 </script>

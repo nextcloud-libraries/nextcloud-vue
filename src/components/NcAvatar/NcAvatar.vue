@@ -234,6 +234,24 @@ export default {
 </template>
 
 <script>
+import { getCurrentUser } from '@nextcloud/auth'
+import { getBuilder } from '@nextcloud/browser-storage'
+import { subscribe, unsubscribe } from '@nextcloud/event-bus'
+import { generateUrl } from '@nextcloud/router'
+import { vOnClickOutside as ClickOutside } from '@vueuse/components'
+import { useTemplateRef } from 'vue'
+
+import { getRoute } from '../../components/NcRichText/autolink.ts'
+import { useIsDarkThemeElement } from '../../composables/index.ts'
+import { userStatus } from '../../mixins/index.js'
+import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
+import { getUserStatusText } from '../../utils/UserStatus.ts'
+import { t } from '../../l10n.js'
+
+import axios from '@nextcloud/axios'
+import usernameToColor from '../../functions/usernameToColor/index.js'
+
+import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 import NcActions from '../NcActions/index.js'
 import NcActionLink from '../NcActionLink/index.js'
 import NcActionRouter from '../NcActionRouter/index.js'
@@ -242,21 +260,6 @@ import NcButton from '../NcButton/index.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
-import usernameToColor from '../../functions/usernameToColor/index.js'
-import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
-import { getUserStatusText } from '../../utils/UserStatus.ts'
-import { userStatus } from '../../mixins/index.js'
-import { t } from '../../l10n.js'
-import { getRoute } from '../../components/NcRichText/autolink.ts'
-
-import axios from '@nextcloud/axios'
-import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
-
-import { getCurrentUser } from '@nextcloud/auth'
-import { subscribe, unsubscribe } from '@nextcloud/event-bus'
-import { getBuilder } from '@nextcloud/browser-storage'
-import { generateUrl } from '@nextcloud/router'
-import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 
@@ -417,6 +420,16 @@ export default {
 			default: 'body',
 		},
 	},
+
+	setup() {
+		const root = useTemplateRef('main')
+		const isDarkTheme = useIsDarkThemeElement(root)
+
+		return {
+			isDarkTheme,
+		}
+	},
+
 	data() {
 		return {
 			avatarUrlLoaded: null,
@@ -717,7 +730,11 @@ export default {
 		 * @return {string}
 		 */
 		avatarUrlGenerator(user, size) {
-			let avatarUrl = getAvatarUrl(user, size, this.isGuest)
+			let avatarUrl = getAvatarUrl(user, {
+				size,
+				isDarkTheme: this.isDarkTheme,
+				isGuest: this.isGuest,
+			})
 
 			// eslint-disable-next-line camelcase
 			if (user === getCurrentUser()?.uid && typeof oc_userconfig !== 'undefined') {

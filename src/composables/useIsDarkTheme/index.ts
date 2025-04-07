@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import type { DeepReadonly, Ref } from 'vue'
-import { ref, readonly, watch } from 'vue'
+import type { DeepReadonly, MaybeRef, Ref } from 'vue'
+import { ref, readonly, watch, toValue, computed } from 'vue'
 import { createSharedComposable, usePreferredDark, useMutationObserver } from '@vueuse/core'
 import { checkIfDarkTheme } from '../../functions/isDarkTheme/index.ts'
 
@@ -15,19 +15,22 @@ import { checkIfDarkTheme } from '../../functions/isDarkTheme/index.ts'
  * @param el - The element to check for the dark theme enabled on (default is `document.body`)
  * @return {DeepReadonly<Ref<boolean>>} - computed boolean whether the dark theme is enabled
  */
-export function useIsDarkThemeElement(el: HTMLElement = document.body): DeepReadonly<Ref<boolean>> {
-	const isDarkTheme = ref(checkIfDarkTheme(el))
+export function useIsDarkThemeElement(el: MaybeRef<HTMLElement> = document.body): DeepReadonly<Ref<boolean>> {
+	const element = computed(() => toValue(el))
+	const isDarkTheme = ref(checkIfDarkTheme(toValue(el)))
 	const isDarkSystemTheme = usePreferredDark()
 
 	/** Update the isDarkTheme */
 	function updateIsDarkTheme() {
-		isDarkTheme.value = checkIfDarkTheme(el)
+		isDarkTheme.value = checkIfDarkTheme(element.value)
 	}
 
 	// Watch for element change to handle data-theme* attributes change
-	useMutationObserver(el, updateIsDarkTheme, { attributes: true })
+	useMutationObserver(element, updateIsDarkTheme, { attributes: true })
 	// Watch for system theme change for the default theme
 	watch(isDarkSystemTheme, updateIsDarkTheme, { immediate: true })
+	// Watch for element changes
+	watch(element, updateIsDarkTheme)
 
 	return readonly(isDarkTheme)
 }
