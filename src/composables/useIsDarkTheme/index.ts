@@ -16,7 +16,7 @@ import { checkIfDarkTheme } from '../../functions/isDarkTheme/index.ts'
  * @return {DeepReadonly<Ref<boolean>>} - computed boolean whether the dark theme is enabled
  */
 export function useIsDarkThemeElement(el: MaybeRef<HTMLElement> = document.body): DeepReadonly<Ref<boolean>> {
-	const element = computed(() => toValue(el))
+	const element = toRef(el)
 	const isDarkTheme = ref(checkIfDarkTheme(toValue(el)))
 	const isDarkSystemTheme = usePreferredDark()
 
