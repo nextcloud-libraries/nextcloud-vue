@@ -4,8 +4,10 @@
 -->
 
 <docs>
-> We're wrapping the awesome datepicker library here https://github.com/mengxiong10/vue2-datepicker
-> Please check there for all the available options.
+> In version 8 we were wrapping the awesome [vue2 datepicker library](https://github.com/mengxiong10/vue2-datepicker),
+> were you could use all of there options even with this component.
+> In version 9 and above this component will no longer be a transparent wrapper,
+> as such only the documented properties below will work.
 
 ### Defaults
 - cleareable: false
@@ -60,8 +62,7 @@ export default {
 	<span>
 		<NcDateTimePicker
 			v-model="time"
-			range
-			type="date" />
+			type="date-range" />
 		{{ time }}
 	</span>
 </template>
@@ -109,14 +110,15 @@ export default {
 	<DatePicker ref="datepicker"
 		:append-to-body="appendToBody"
 		:clearable="clearable"
-		:format="format ? format : formatTypeMap"
+		:format="internalFormat"
 		:formatter="internalFormatter"
 		:lang="lang ? lang : defaultLang"
 		:minute-step="minuteStep"
 		:placeholder="placeholder ? placeholder : defaultPlaceholder"
 		:popup-class="{ 'show-week-number': showWeekNumber }"
+		:range="internalRange"
 		:show-week-number="showWeekNumber"
-		:type="type"
+		:type="realType"
 		:value="model"
 		v-bind="$attrs"
 		v-on="$listeners"
@@ -217,16 +219,27 @@ export default {
 			default: 10,
 		},
 
+		/**
+		 * Since 8.25.0: Support 'date-range', 'time-range' and 'datetime-range' values.
+		 */
 		type: {
 			type: String,
 			default: 'date',
+			validator: (type) => ['date', 'time', 'datetime', 'week', 'month', 'year', 'date-range', 'time-range', 'datetime-range'].includes(type),
 		},
 
+		/**
+		 * Either `moment.js` formatting tokens or a function taking a Date object and returning a string.
+		 * Warning: In v9 this will change the accepted token format to standardized Unicode tokens instead!
+		 */
 		format: {
-			type: String,
+			type: [String, Function],
 			default: null,
 		},
 
+		/**
+		 * @deprecated use `format` instead
+		 */
 		formatter: {
 			type: Object,
 			default: null,
@@ -288,6 +301,14 @@ export default {
 			type: String,
 			default: null,
 		},
+
+		/**
+		 * @deprecated use the 'date-range' or 'datetime-range' type instead.
+		 */
+		range: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	emits: [
@@ -318,6 +339,10 @@ export default {
 	},
 
 	computed: {
+		realType() {
+			return this.type.split('-')[0]
+		},
+
 		/**
 		 * Datepicker language
 		 * https://github.com/mengxiong10/vue2-datepicker/blob/master/locale.md
@@ -345,32 +370,36 @@ export default {
 		 * @return {string}
 		 */
 		defaultPlaceholder() {
-			if (this.type === 'time') {
+			if (this.realType === 'time') {
 				return t('Pick a time')
 			}
-			if (this.type === 'month') {
+			if (this.realType === 'month') {
 				return t('Pick a month')
 			}
-			if (this.type === 'year') {
+			if (this.realType === 'year') {
 				return t('Pick a year')
 			}
-			if (this.type === 'week') {
+			if (this.realType === 'week') {
 				return t('Pick a week')
 			}
-			if (this.type === 'date') {
+			if (this.realType === 'date') {
 				return t('Pick a date')
 			}
 			return t('Pick a date and a time')
 		},
 
 		/**
-		 * If format is not provided, try to match the type
-		 * or fallback to 'date'
-		 *
-		 * @return {string}
+		 * Is the range picker enabled
 		 */
-		formatTypeMap() {
-			return formatMap[this.type] ?? formatMap.date
+		internalRange() {
+			return this.range || this.type.endsWith('-range')
+		},
+
+		internalFormat() {
+			if (this.format && typeof this.format === 'string') {
+				return this.format
+			}
+			return formatMap[this.realType] || formatMap.date
 		},
 
 		/**
@@ -394,6 +423,8 @@ export default {
 
 			return {
 				getWeek,
+				// wrape the format if it is a function
+				...(typeof this.format === 'function' ? { stringify: this.format } : {}),
 				// allow to override it by users using the `formatter` prop
 				...(this.formatter ?? {}),
 			}
