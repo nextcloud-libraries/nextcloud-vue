@@ -10,7 +10,7 @@ type SpawnDialogOptions = {
 	 * Container to mount the dialog to
 	 * @default document.body
 	 */
-	container?: string
+	container?: Element | string
 }
 
 export function spawnDialog(
@@ -53,7 +53,7 @@ export function spawnDialog(
 	}
 
 	// Resolve container to an Element or fallback to document.body
-	const resolvedContainer = (typeof container === 'string' && document.querySelector(container)) || document.body
+	const resolvedContainer = (typeof container === 'string' ? document.querySelector(container) : container) || document.body
 
 	// Create root container element for the dialog
 	const element = resolvedContainer.appendChild(document.createElement('div'))
