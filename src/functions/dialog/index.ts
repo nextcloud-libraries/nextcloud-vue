@@ -2,7 +2,7 @@
  * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import type { AppContext, Component } from 'vue'
+import type { AppContext, Component, ComponentPublicInstance } from 'vue'
 import { createVNode, getCurrentInstance, render, toRaw } from 'vue'
 
 interface DialogProps {
@@ -19,33 +19,53 @@ interface DialogProps {
  * @param props.container Optionally pass a query selector for the dialog container element
  * @param props.appContext Optionally the app context to use (e.g. for registered components)
  * @param onClose Callback when the dialog is closed
+ * @return The dialog's component public instance and a function to unmount it
  */
 export function spawnDialog(
 	dialog: Component,
 	props?: DialogProps,
 	onClose: (...rest: unknown[]) => void = () => {},
-): void {
+): {
+	vm: ComponentPublicInstance
+	unmount(): void
+} {
 	const el = document.createElement('div')
 	const container: HTMLElement = typeof props?.container === 'string'
 		? (document.querySelector(props.container) || document.body)
 		: document.body
 	container.appendChild(el)
 
-	const vueComponent = createVNode(dialog, {
+	const vnode = createVNode(dialog, {
 		...props,
 		onClose: (...rest: unknown[]) => {
 			onClose(...rest.map(v => toRaw(v)))
-			// destroy the component
-			render(null, el)
-			el.remove()
+			unmount()
 		},
 	})
 
 	// If there is an instance use it to get access to registered components
 	const appContext = props?.appContext ?? getCurrentInstance()?.appContext
 	if (appContext) {
-		vueComponent.appContext = { ...appContext }
+		vnode.appContext = { ...appContext }
 	}
 
-	render(vueComponent, el)
+	render(vnode, el)
+
+	// vnode.component and proxy are not null here, because we just rendered it
+	const vm = vnode.component!.proxy!
+
+	/**
+	 * Unmount the dialog instance
+	 */
+	function unmount() {
+		// Destroy component instance
+		render(null, el)
+		// Remove the element it was mounted to
+		el.remove()
+	}
+
+	return {
+		vm,
+		unmount,
+	}
 }
