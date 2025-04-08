@@ -159,8 +159,20 @@
     "webpack-merge": "^6.0.1"
   },
   "engines": {
-    "node": "^20.11.0",
-    "npm": "^10.0.0"
+    "node": "^20.11.0 || ^22",
+    "npm": "^10 || ^11"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "npm",
+      "version": "^10",
+      "onFail": "error"
+    },
+    "runtime": {
+      "name": "node",
+      "version": "^22",
+      "onFail": "error"
+    }
   },
   "overrides": {
     "mdast-util-gfm": {
