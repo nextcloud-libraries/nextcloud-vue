@@ -17,7 +17,6 @@ import {
  * @param dialog The dialog component to spawn - the component must emit the 'close' event whenever it is closed
  * @param props Properties to pass to the dialog
  * @param props.container Optionally pass a query selector for the dialog container element
- * @param props.appContext Optionally the app context to use (e.g. for registered components)
  * @param onClose Callback when the dialog is closed (parameters of the 'close' event of the dialog)
  */
 function spawnDialog(
@@ -72,7 +71,7 @@ const ExampleDialog = {
 				},
 				{
 					label: 'Accept',
-					type: 'primary',
+					variant: 'primary',
 					callback: () => 'accepted',
 				},
 			]
