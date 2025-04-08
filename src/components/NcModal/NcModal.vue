@@ -214,9 +214,9 @@ export default {
 					<div class="icons-menu">
 						<!-- Play-pause toggle -->
 						<button v-if="hasNext && enableSlideshow"
-							v-tooltip.auto="playPauseName"
 							:class="{ 'play-pause-icons--paused': slideshowPaused }"
 							class="play-pause-icons"
+							:title="playPauseName"
 							type="button"
 							@click="togglePlayPause">
 							<!-- Play/pause icons -->
@@ -334,7 +334,6 @@ import { createElementId } from '../../utils/createElementId.ts'
 import NcActions from '../NcActions/index.js'
 import NcButton from '../NcButton/index.ts'
 import Timer from '../../utils/Timer.js'
-import Tooltip from '../../directives/Tooltip/index.js'
 
 import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue'
 import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
@@ -346,17 +345,13 @@ export default {
 	name: 'NcModal',
 
 	components: {
-		NcActions,
 		ChevronLeft,
 		ChevronRight,
 		Close,
 		Pause,
 		Play,
+		NcActions,
 		NcButton,
-	},
-
-	directives: {
-		tooltip: Tooltip,
 	},
 
 	props: {
