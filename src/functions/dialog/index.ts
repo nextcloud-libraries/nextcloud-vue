@@ -54,7 +54,7 @@ export function spawnDialog(
 	}
 
 	// Resolve container to an Element or fallback to document.body
-	const resolvedContainer = (typeof container === 'string' ? document.querySelector(container) : container) || document.body
+	const resolvedContainer = (typeof container === 'string' && document.querySelector(container)) || document.body
 
 	// Create root container element for the dialog
 	const element = resolvedContainer.appendChild(document.createElement('div'))
@@ -64,7 +64,12 @@ export function spawnDialog(
 		name: 'VueDialogHelper',
 		render: (h) =>
 			h(dialog, {
-				props,
+				props: {
+					// If dialog has no `container` prop passing a falsy value does nothing
+					// Otherwise it is expected that `null` disables teleport and mounts dialog in place like NcDialog/NcModal
+					container: null,
+					...props,
+				},
 				on: {
 					close: (...rest: unknown[]) => {
 						onClose(...rest.map(v => toRaw(v)))
