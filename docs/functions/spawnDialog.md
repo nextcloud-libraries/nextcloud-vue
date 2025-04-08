@@ -16,7 +16,7 @@ type SpawnDialogOptions = {
 	 * Container to mount the dialog to
 	 * @default document.body
 	 */
-	container?: string
+	container?: Element | string
 }
 
 export function spawnDialog(
