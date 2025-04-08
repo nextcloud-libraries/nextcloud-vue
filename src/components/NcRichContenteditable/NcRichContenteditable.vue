@@ -242,7 +242,6 @@ export default {
 	<div class="rich-contenteditable">
 		<div :id="id"
 			ref="contenteditable"
-			v-tooltip="tooltipString"
 			:class="{
 				'rich-contenteditable__input--empty': isEmptyValue,
 				'rich-contenteditable__input--multiline': multiline,
@@ -261,6 +260,7 @@ export default {
 			:aria-controls="tributeId"
 			:aria-expanded="isAutocompleteOpen ? 'true' : 'false'"
 			:aria-activedescendant="autocompleteActiveId"
+			:title="tooltipString"
 			v-bind="$attrs"
 			v-on="listeners"
 			@focus="moveCursorToEnd"
@@ -288,7 +288,6 @@ export default {
 import { t } from '../../l10n.js'
 import NcAutoCompleteResult from './NcAutoCompleteResult.vue'
 import richEditor from '../../mixins/richEditor/index.js'
-import Tooltip from '../../directives/Tooltip/index.js'
 import { emojiSearch, emojiAddRecent } from '../../functions/emoji/index.ts'
 import { searchProvider, getLinkWithPicker } from '../NcRichText/index.js'
 
@@ -311,10 +310,6 @@ smilesCharacters.forEach((char) => {
 
 export default {
 	name: 'NcRichContenteditable',
-
-	directives: {
-		tooltip: Tooltip,
-	},
 
 	mixins: [richEditor],
 
