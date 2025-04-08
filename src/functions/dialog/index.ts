@@ -5,38 +5,68 @@
 import type { Component } from 'vue'
 import { createApp, toRaw } from 'vue'
 
-interface DialogProps {
-	[index: string]: unknown
+type SpawnDialogOptions = {
+	/**
+	 * Container to mount the dialog to
+	 * @default document.body
+	 */
 	container?: string
 }
 
+export function spawnDialog(
+	dialog: Component,
+	props?: object,
+	onClose?: (...rest: unknown[]) => void,
+): void
+
+export function spawnDialog(
+	dialog: Component,
+	props?: object,
+	options?: SpawnDialogOptions,
+	onClose?: (...rest: unknown[]) => void,
+): void
+
 /**
- * Helper to spawn a Vue dialog without having to mount it from a component
+ * Spawn a single-use Vue dialog instance to get the result when it is closed
  *
- * @param dialog The dialog component to spawn
- * @param props Properties to pass to the dialog
- * @param props.container Optionally pass a query selector for the dialog container element
- * @param onClose Callback when the dialog is closed
+ * @param dialog - Dialog component to spawn
+ * @param props - Props to pass to the dialog instance
+ * @param optionsOrOnClose - Spawning options or a callback when the dialog is closed
+ * @param onClose - Callback when the dialog is closed
  */
 export function spawnDialog(
 	dialog: Component,
-	props?: DialogProps,
+	props: object = {},
+	optionsOrOnClose: SpawnDialogOptions | ((...rest: unknown[]) => void) = {},
 	onClose: (...rest: unknown[]) => void = () => {},
 ): void {
-	const el = document.createElement('div')
-	const container: HTMLElement = typeof props?.container === 'string'
-		? (document.querySelector(props.container) || document.body)
-		: document.body
-	container.appendChild(el)
+	if (typeof optionsOrOnClose === 'function') {
+		onClose = optionsOrOnClose
+		optionsOrOnClose = {}
+	}
+
+	let { container } = optionsOrOnClose
+
+	// For backwards compatibility try to use container from props
+	if ('container' in props && typeof props.container === 'string') {
+		container ??= props.container
+	}
+
+	// Resolve container to an Element or fallback to document.body
+	const resolvedContainer = (typeof container === 'string' && document.querySelector(container)) || document.body
+
+	// Create root container element for the dialog
+	const element = resolvedContainer.appendChild(document.createElement('div'))
 
 	const app = createApp(dialog, {
 		...props,
+		container,
 		onClose: (...rest: unknown[]) => {
 			onClose(...rest.map(v => toRaw(v)))
 			app.unmount()
-			el.remove()
+			element.remove()
 		},
 	})
 
-	app.mount(el)
+	app.mount(element)
 }
