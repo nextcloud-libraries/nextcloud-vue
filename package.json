@@ -144,7 +144,6 @@
     "jsdom": "^26.0.0",
     "remark-gfm": "^4.0.1",
     "resolve-url-loader": "^5.0.0",
-    "sanitize-filename": "^1.6.3",
     "sass": "^1.86.1",
     "stylelint": "^16.17.0",
     "stylelint-use-logical": "^2.1.2",
