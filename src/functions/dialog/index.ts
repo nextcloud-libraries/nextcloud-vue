@@ -13,40 +13,20 @@ type SpawnDialogOptions = {
 	container?: Element | string
 }
 
-export function spawnDialog(
-	dialog: Component,
-	props?: object,
-	onClose?: (...rest: unknown[]) => void,
-): Promise<unknown>
-
-export function spawnDialog(
-	dialog: Component,
-	props?: object,
-	options?: SpawnDialogOptions,
-	onClose?: (...rest: unknown[]) => void,
-): Promise<unknown>
-
 /**
  * Spawn a single-use Vue dialog instance to get the result when it is closed
  *
  * @param dialog - Dialog component to spawn
  * @param props - Props to pass to the dialog instance
- * @param optionsOrOnClose - Spawning options or a callback when the dialog is closed
- * @param onClose - Callback when the dialog is closed
+ * @param options - Spawning options
  * @return Promise resolved with the `close` event payload
  */
 export function spawnDialog(
 	dialog: Component,
 	props: object = {},
-	optionsOrOnClose: SpawnDialogOptions | ((...rest: unknown[]) => void) = {},
-	onClose?: (...rest: unknown[]) => void,
+	options: SpawnDialogOptions = {},
 ): Promise<unknown> {
-	if (typeof optionsOrOnClose === 'function') {
-		onClose = optionsOrOnClose
-		optionsOrOnClose = {}
-	}
-
-	let { container } = optionsOrOnClose
+	let { container } = options
 
 	// For backwards compatibility try to use container from props
 	if ('container' in props && typeof props.container === 'string') {
@@ -68,7 +48,6 @@ export function spawnDialog(
 			onClose(...rest: unknown[]) {
 				app.unmount()
 				element.remove()
-				onClose?.(...rest)
 				resolve(rest.length > 1 ? rest : rest[0])
 			},
 			'onVue:unmounted'() {
