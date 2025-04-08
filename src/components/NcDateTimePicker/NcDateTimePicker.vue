@@ -230,7 +230,7 @@ export default {
 
 		/**
 		 * Either `moment.js` formatting tokens or a function taking a Date object and returning a string.
-		 * Warning: In v9 this will change the accepted token format to standardized Unicode tokes instead!
+		 * Warning: In v9 this will change the accepted token format to standardized Unicode tokens instead!
 		 */
 		format: {
 			type: [String, Function],
