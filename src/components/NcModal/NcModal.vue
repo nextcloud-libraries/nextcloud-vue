@@ -288,7 +288,9 @@ export default {
 							variant="tertiary-no-background"
 							@click="previous">
 							<template #icon>
-								<ChevronLeft :size="40" />
+								<NcIconSvgWrapper directional
+									:path="mdiChevronLeft"
+									:size="40" />
 							</template>
 						</NcButton>
 					</transition>
@@ -319,7 +321,9 @@ export default {
 							variant="tertiary-no-background"
 							@click="next">
 							<template #icon>
-								<ChevronRight :size="40" />
+								<NcIconSvgWrapper directional
+									:path="mdiChevronRight"
+									:size="40" />
 							</template>
 						</NcButton>
 					</transition>
@@ -331,18 +335,19 @@ export default {
 
 <script>
 import { useSwipe } from '@vueuse/core'
+import { mdiChevronLeft, mdiChevronRight } from '@mdi/js'
 import { createFocusTrap } from 'focus-trap'
 import Vue from 'vue'
 
+import GenRandomId from '../../utils/GenRandomId.js'
 import { getTrapStack } from '../../utils/focusTrap.ts'
 import { t } from '../../l10n.js'
-import GenRandomId from '../../utils/GenRandomId.js'
+
 import NcActions from '../NcActions/index.js'
-import NcButton from '../../components/NcButton/index.js'
+import NcButton from '../NcButton/index.js'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import Timer from '../../utils/Timer.js'
 
-import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue'
-import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
 import Close from 'vue-material-design-icons/Close.vue'
 import Pause from 'vue-material-design-icons/Pause.vue'
 import Play from 'vue-material-design-icons/Play.vue'
@@ -351,13 +356,12 @@ export default {
 	name: 'NcModal',
 
 	components: {
-		ChevronLeft,
-		ChevronRight,
 		Close,
 		Pause,
 		Play,
 		NcActions,
 		NcButton,
+		NcIconSvgWrapper,
 	},
 
 	props: {
@@ -556,6 +560,13 @@ export default {
 		'close',
 		'update:show',
 	],
+
+	setup() {
+		return {
+			mdiChevronLeft,
+			mdiChevronRight,
+		}
+	},
 
 	data() {
 		return {
