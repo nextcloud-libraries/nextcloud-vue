@@ -1,11 +1,11 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# 이상오, 2025
+# Joas Schilling, 2025
+# Hyogeol Lee, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: 이상오, 2025\n"
+"Last-Translator: Hyogeol Lee, 2025\n"
 "Language-Team: Korean (https://app.transifex.com/nextcloud/teams/64236/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ko\n"
@@ -72,6 +72,12 @@ msgstr "보스턴 블루"
 msgid "busy"
 msgstr "바쁨"
 
+msgid "Calendar icon"
+msgstr "캘린더 아이콘"
+
+msgid "Cancel"
+msgstr "취소"
+
 msgid "Cancel changes"
 msgstr "변경 취소"
 
@@ -90,6 +96,9 @@ msgstr "선택 항목 지우기"
 msgid "Clear text"
 msgstr "텍스트 지우기"
 
+msgid "Clear value"
+msgstr "값 지우기"
+
 msgid "Close"
 msgstr "닫기"
 
@@ -101,6 +110,9 @@ msgstr "사이드바 닫기"
 
 msgid "Close Smart Picker"
 msgstr "스마트 선택기 닫기"
+
+msgid "Close time Picker"
+msgstr "시간 선택기 닫기"
 
 msgid "Collapse menu"
 msgstr "메뉴 접기"
@@ -119,6 +131,21 @@ msgstr "맞춤 설정"
 
 msgid "Dark skin tone"
 msgstr "어두운 피부 톤"
+
+msgid "Datepicker input"
+msgstr "날짜 선택기 입력"
+
+msgid "Datepicker menu"
+msgstr "날짜 입력기 메뉴"
+
+msgid "Decrement hours"
+msgstr "시 감소"
+
+msgid "Decrement minutes"
+msgstr "분 감소"
+
+msgid "Decrement seconds"
+msgstr "초 감소"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -190,6 +217,15 @@ msgstr "세부 사항 숨기기"
 msgid "Hide password"
 msgstr "암호 숨기기"
 
+msgid "Increment hours"
+msgstr "시 증가"
+
+msgid "Increment minutes"
+msgstr "분 증가"
+
+msgid "Increment seconds"
+msgstr "초 증가"
+
 msgid "invisible"
 msgstr "보이지 않음"
 
@@ -222,6 +258,12 @@ msgstr "중간 피부 톤"
 msgid "Message limit of {count} characters reached"
 msgstr "메시지 제한 {count}자에 도달"
 
+msgid "Month picker"
+msgstr "월 선택기"
+
+msgid "Month picker overlay"
+msgstr "월 선택기 오버레이"
+
 msgid "More items …"
 msgstr "항목 더 보기..."
 
@@ -234,6 +276,12 @@ msgstr "중성적 피부 톤"
 msgid "Next"
 msgstr "다음"
 
+msgid "Next month"
+msgstr "다음 달"
+
+msgid "Next year"
+msgstr "다음 해"
+
 msgid "Nextcloud blue"
 msgstr "Nextcloud 파랑"
 
@@ -245,6 +293,9 @@ msgstr "링크 제공자 없음"
 
 msgid "No results"
 msgstr "결과 없음"
+
+msgid "Now"
+msgstr "현재"
 
 msgid "Objects"
 msgstr "물체"
@@ -259,17 +310,35 @@ msgstr "감람석"
 msgid "online"
 msgstr "온라인"
 
+msgid "Open hours overlay"
+msgstr "시 오버레이 열기"
+
 msgid "Open link to \"{resourceName}\""
 msgstr "\"{resourceName}\"의 링크 열기"
 
 msgid "Open menu"
 msgstr "메뉴 열기"
 
-msgid "Open navigation {shortcut}"
-msgstr "{shortcut} 탐색 열기"
+msgid "Open minutes overlay"
+msgstr "분 오버레이 열기"
+
+msgid "Open months overlay"
+msgstr "월 오버레이 열기"
+
+msgid "Open navigation"
+msgstr "탐색 열기"
+
+msgid "Open seconds overlay"
+msgstr "초 오버레이 열기"
 
 msgid "Open sidebar"
 msgstr "사이드바 열기"
+
+msgid "Open time picker"
+msgstr "시간 선택기 열기"
+
+msgid "Open years overlay"
+msgstr "년 오버레이 열기"
 
 msgid "Options"
 msgstr "옵션"
@@ -283,32 +352,20 @@ msgstr "슬라이드쇼 일시정지"
 msgid "People & Body"
 msgstr "사람 & 신체"
 
-msgid "Pick a date"
-msgstr "날짜 선택"
-
-msgid "Pick a date and a time"
-msgstr "날짜와 시간 선택"
-
-msgid "Pick a month"
-msgstr "달 선택"
-
-msgid "Pick a time"
-msgstr "시간 선택"
-
-msgid "Pick a week"
-msgstr "주 선택"
-
-msgid "Pick a year"
-msgstr "연도 선택"
+msgid "Pick"
+msgstr "선택"
 
 msgid "Pick an emoji"
 msgstr "이모지 선택"
 
-msgid "Please select a time zone:"
-msgstr "시간대를 선택하세요:"
-
 msgid "Previous"
 msgstr "이전"
+
+msgid "Previous month"
+msgstr "이전 달"
+
+msgid "Previous year"
+msgstr "이전 해"
 
 msgid "Provider icon"
 msgstr "제공자 아이콘"
@@ -341,7 +398,7 @@ msgstr "검색"
 msgid "Search emoji"
 msgstr "이모지 검색"
 
-msgid "Search for time zone"
+msgid "Search for timezone"
 msgstr "시간대 검색"
 
 msgid "Search results"
@@ -362,8 +419,29 @@ msgstr "초 전"
 msgid "Select a tag"
 msgstr "태그 선택"
 
+msgid "Select date"
+msgstr "날짜 선택"
+
+msgid "Select date and time"
+msgstr "날짜와 시간 선택"
+
+msgid "Select month"
+msgstr "월 선택"
+
 msgid "Select provider"
 msgstr "제공자 선택"
+
+msgid "Select time"
+msgstr "시간 선택"
+
+msgid "Select time range"
+msgstr "시간 구간 선택"
+
+msgid "Select week"
+msgstr "주 선택"
+
+msgid "Select year"
+msgstr "년도 선택"
 
 msgid "Selected"
 msgstr "선택됨"
@@ -404,8 +482,20 @@ msgstr "입력하여 검색"
 msgid "Submit"
 msgstr "제출"
 
+msgid "Switch AM/PM mode"
+msgstr "AM/PM 모드 전환"
+
 msgid "Symbols"
 msgstr "기호"
+
+msgid "Time picker"
+msgstr "시간 선택기"
+
+msgid "Timezone"
+msgstr "시간대"
+
+msgid "Toggle overlay"
+msgstr "오버레이 토글"
 
 msgid "Travel & Places"
 msgstr "여행 & 장소"
@@ -428,9 +518,18 @@ msgstr "사용자 상태: {status}"
 msgid "View team"
 msgstr "팀 보기"
 
+msgid "W"
+msgstr "W"
+
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "위스키"
 
 msgid "Write a message …"
 msgstr "메시지 작성..."
+
+msgid "Year picker"
+msgstr "년도 선택기"
+
+msgid "Year picker overlay"
+msgstr "년도 선택기 오버레이"
