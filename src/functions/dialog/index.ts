@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import type { Component } from 'vue'
-import { createApp, toRaw } from 'vue'
+import { createApp } from 'vue'
 
 type SpawnDialogOptions = {
 	/**
@@ -62,7 +62,7 @@ export function spawnDialog(
 		...props,
 		container,
 		onClose: (...rest: unknown[]) => {
-			onClose(...rest.map(v => toRaw(v)))
+			onClose(...rest)
 			app.unmount()
 			element.remove()
 		},
