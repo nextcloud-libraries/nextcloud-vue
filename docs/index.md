@@ -34,7 +34,7 @@ npm i @nextcloud/vue
 
 Import corresponding components and other modules on use. Check the documentation for more details.
 
-```js
+```js static
 import NcButton from '@nextcloud/vue/components/NcButton'
 import { useHotKey } from '@nextcloud/vue/composables/useHotKey'
 
@@ -45,7 +45,7 @@ import { useHotKey } from '@nextcloud/vue/dist/Composables/useHotKey.js'
 
 Import from a single root is available as well. Use with caution: this might lead to slower build time and larger bundles in some cases.
 
-```js
+```js static
 import { NcButton, useHotKey } from '@nextcloud/vue'
 ```
 
@@ -56,7 +56,7 @@ import { NcButton, useHotKey } from '@nextcloud/vue'
 > ⚠️ This installation method leads to extremely large bundle and removed in v9.\
 > If you don't want to import component on usage you may use [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components) instead.
 
-```js
+```js static
 import Vue from 'vue'
 import { NextcloudVuePlugin } from '@nextcloud/vue'
 
