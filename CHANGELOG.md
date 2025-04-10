@@ -243,6 +243,21 @@ Especially the following are now provided as composables:
 * chore: restructure `package.json` [\#6405](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6405) \([susnux](https://github.com/susnux)\)
 * chore: Refactor changelog to make breaking changes better readable [\#6428](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6428) \([susnux](https://github.com/susnux)\)
 
+## [v8.25.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.25.0) (UNRELEASED)
+
+### 📝 Notes
+The `Tooltip` directive has been deprecated and will be removed in the future.
+In most cases you want to use the native browser tooltips instead by using the native HTML `title` attribute.
+In some rare cases where you really need a formatted tooltip `NcPopover` could be used.
+
+```diff
+ <NcButton
+-    v-tooltip="title"
++    :title="title"
+```
+
+#### Boolean properties
+
 ## [v8.24.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.24.0) (2025-04-02)
 
 ### 📝 Notes
