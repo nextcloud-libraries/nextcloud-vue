@@ -21,6 +21,7 @@ module.exports = async () => {
 	})
 
 	return {
+		styleguideDir: 'styleguide/build',
 		require: [
 			path.join(__dirname, 'styleguide/global.requires.js'),
 			path.join(__dirname, 'styleguide/assets/icons.css'),
