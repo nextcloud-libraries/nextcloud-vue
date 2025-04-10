@@ -7,6 +7,11 @@ import type { DeepReadonly, Ref } from 'vue'
 import { ref, readonly, watch } from 'vue'
 import { createSharedComposable, usePreferredDark, useMutationObserver } from '@vueuse/core'
 import { checkIfDarkTheme } from '../../functions/isDarkTheme/index.ts'
+/**
+ * Symbol used to provide the enforced dark / light theme state.
+ * Injected by `NcThemeProvider`.
+ */
+export const KEY_ENFORCE_THEME = Symbol('enforce-theme')
 
 /**
  * Check whether the dark theme is enabled on a specific element.

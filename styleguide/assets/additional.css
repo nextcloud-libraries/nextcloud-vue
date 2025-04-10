@@ -3,8 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 @import 'default.css';
-@import 'server.css';
+@import 'light.css';
 @import 'dark.css';
+@import 'server.css';
 
 div[data-preview] * {
 	box-sizing: border-box;
