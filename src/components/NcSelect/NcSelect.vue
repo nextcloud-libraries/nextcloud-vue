@@ -990,12 +990,12 @@ export default {
 		'update:model-value',
 	],
 
-	setup() {
+	setup(props, {emit}) {
 		const clickableArea = Number.parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-clickable-area'))
 		const gridBaseLine = Number.parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-grid-baseline'))
 		const avatarSize = clickableArea - 2 * gridBaseLine
 
-		const model = useModelMigration('value', 'input')
+		const model = useModelMigration(props, emit, 'value', 'input')
 
 		return {
 			avatarSize,
