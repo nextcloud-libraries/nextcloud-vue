@@ -54,27 +54,6 @@ module.exports = {
 			usageMode: 'hide',
 		},
 		{
-			name: 'Versions',
-			sections: [
-				{
-					name: 'Latest version',
-					href: 'https://nextcloud-vue-components.netlify.app',
-				},
-				{
-					name: 'v8.x (Nextcloud 28+ on Vue 2)',
-					href: 'https://stable8--nextcloud-vue-components.netlify.app',
-				},
-				{
-					name: 'v7.x (Nextcloud 25 - 27)',
-					href: 'https://stable7--nextcloud-vue-components.netlify.app',
-				},
-				{
-					name: 'v6.x (Nextcloud 24 - 25)',
-					href: 'https://stable6--nextcloud-vue-components.netlify.app',
-				},
-			],
-		},
-		{
 			name: 'Directives',
 			content: 'docs/directives.md',
 		},
