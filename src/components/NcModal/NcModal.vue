@@ -288,7 +288,9 @@ export default {
 							variant="tertiary-no-background"
 							@click="previous">
 							<template #icon>
-								<ChevronLeft :size="40" />
+								<NcIconSvgWrapper directional
+									:path="mdiChevronLeft"
+									:size="40" />
 							</template>
 						</NcButton>
 					</transition>
@@ -319,7 +321,9 @@ export default {
 							variant="tertiary-no-background"
 							@click="next">
 							<template #icon>
-								<ChevronRight :size="40" />
+								<NcIconSvgWrapper directional
+									:path="mdiChevronRight"
+									:size="40" />
 							</template>
 						</NcButton>
 					</transition>
@@ -331,18 +335,19 @@ export default {
 
 <script>
 import { useSwipe } from '@vueuse/core'
+import { mdiChevronLeft, mdiChevronRight } from '@mdi/js'
 import { createFocusTrap } from 'focus-trap'
 import Vue from 'vue'
 
+import GenRandomId from '../../utils/GenRandomId.js'
 import { getTrapStack } from '../../utils/focusTrap.ts'
 import { t } from '../../l10n.js'
-import GenRandomId from '../../utils/GenRandomId.js'
+
 import NcActions from '../NcActions/index.js'
-import NcButton from '../../components/NcButton/index.js'
+import NcButton from '../NcButton/index.js'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import Timer from '../../utils/Timer.js'
 
-import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue'
-import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
 import Close from 'vue-material-design-icons/Close.vue'
 import Pause from 'vue-material-design-icons/Pause.vue'
 import Play from 'vue-material-design-icons/Play.vue'
@@ -351,13 +356,12 @@ export default {
 	name: 'NcModal',
 
 	components: {
-		ChevronLeft,
-		ChevronRight,
 		Close,
 		Pause,
 		Play,
 		NcActions,
 		NcButton,
+		NcIconSvgWrapper,
 	},
 
 	props: {
@@ -556,6 +560,13 @@ export default {
 		'close',
 		'update:show',
 	],
+
+	setup() {
+		return {
+			mdiChevronLeft,
+			mdiChevronRight,
+		}
+	},
 
 	data() {
 		return {
@@ -886,7 +897,7 @@ export default {
 	position: fixed;
 	z-index: 9998;
 	top: 0;
-	left: 0;
+	inset-inline-start: 0;
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -905,8 +916,7 @@ export default {
 	position: absolute;
 	z-index: 10001;
 	top: 0;
-	right: 0;
-	left: 0;
+	inset-inline: 0 0;
 	// prevent vue show to use display:none and resetting
 	// the circle animation loop
 	display: flex !important;
@@ -932,14 +942,14 @@ export default {
 	// On wider screens the name can be centered
 	@media only screen and (min-width: $breakpoint-mobile) {
 		&__name {
-			padding-left: calc(var(--default-clickable-area) * 3); // maximum actions is 3
+			padding-inline-start: calc(var(--default-clickable-area) * 3); // maximum actions is 3
 			text-align: center;
 		}
 	}
 
 	.icons-menu {
 		position: absolute;
-		right: 0;
+		inset-inline-end: 0;
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
@@ -1040,10 +1050,10 @@ export default {
 	}
 
 	.prev {
-		left: 2px;
+		inset-inline-start: 2px;
 	}
 	.next {
-		right: 2px;
+		inset-inline-end: 2px;
 	}
 
 	/* Content */
@@ -1171,7 +1181,7 @@ $pi: 3.14159265358979;
 	.progress-ring {
 		position: absolute;
 		top: 0;
-		left: 0;
+		inset-inline-start: 0;
 		transform: rotate(-90deg);
 		.progress-ring__circle {
 			transition: 100ms stroke-dashoffset;

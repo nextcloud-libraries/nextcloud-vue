@@ -12,12 +12,10 @@ $arrow-width: 10px;
 		position: absolute;
 		z-index: 100000;
 		top: 0;
-		right: auto;
-		left: auto;
+		inset-inline: auto;
 		display: block;
 		margin: 0;
 		padding: 0;
-		text-align: left;
 		text-align: start;
 		opacity: 0;
 		line-height: 1.6;
@@ -41,16 +39,16 @@ $arrow-width: 10px;
 
 		// RIGHT
 		&[data-popper-placement^='right'] .v-popper__arrow-container {
-			right: 100%;
-			border-left-width: 0;
-			border-right-color: var(--color-main-background);
+			inset-inline-end: 100%;
+			border-inline-start-width: 0;
+			border-inline-end-color: var(--color-main-background);
 		}
 
 		// LEFT
 		&[data-popper-placement^='left'] .v-popper__arrow-container {
-			left: 100%;
-			border-right-width: 0;
-			border-left-color: var(--color-main-background);
+			inset-inline-start: 100%;
+			border-inline-end-width: 0;
+			border-inline-start-color: var(--color-main-background);
 		}
 
 		// HIDDEN / SHOWN
