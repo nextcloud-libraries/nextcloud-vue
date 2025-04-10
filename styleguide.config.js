@@ -66,6 +66,10 @@ module.exports = async () => {
 				href: 'https://nextcloud-vue-components.netlify.app',
 				sections: [
 					{
+						name: 'v8.x (Nextcloud 28+ on Vue 2)',
+						href: 'https://stable8--nextcloud-vue-components.netlify.app',
+					},
+					{
 						name: 'v7.x (Nextcloud 25 - 27)',
 						href: 'https://stable7--nextcloud-vue-components.netlify.app',
 					},
