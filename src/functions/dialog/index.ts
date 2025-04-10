@@ -17,14 +17,14 @@ export function spawnDialog(
 	dialog: Component,
 	props?: object,
 	onClose?: (...rest: unknown[]) => void,
-): void
+): Promise<unknown>
 
 export function spawnDialog(
 	dialog: Component,
 	props?: object,
 	options?: SpawnDialogOptions,
 	onClose?: (...rest: unknown[]) => void,
-): void
+): Promise<unknown>
 
 /**
  * Spawn a single-use Vue dialog instance to get the result when it is closed
@@ -33,13 +33,14 @@ export function spawnDialog(
  * @param props - Props to pass to the dialog instance
  * @param optionsOrOnClose - Spawning options or a callback when the dialog is closed
  * @param onClose - Callback when the dialog is closed
+ * @return Promise resolved with the `close` event payload
  */
 export function spawnDialog(
 	dialog: Component,
 	props: object = {},
 	optionsOrOnClose: SpawnDialogOptions | ((...rest: unknown[]) => void) = {},
-	onClose: (...rest: unknown[]) => void = () => {},
-): void {
+	onClose?: (...rest: unknown[]) => void,
+): Promise<unknown> {
 	if (typeof optionsOrOnClose === 'function') {
 		onClose = optionsOrOnClose
 		optionsOrOnClose = {}
@@ -58,17 +59,25 @@ export function spawnDialog(
 	// Create root container element for the dialog
 	const element = resolvedContainer.appendChild(document.createElement('div'))
 
-	const app = createApp(dialog, {
-		...props,
-		// If dialog has no `container` prop passing a falsy value does nothing
-		// Otherwise it is expected that `null` disables teleport and mounts dialog in place like NcDialog/NcModal
-		container: null,
-		onClose: (...rest: unknown[]) => {
-			onClose(...rest)
-			app.unmount()
-			element.remove()
-		},
-	})
+	return new Promise((resolve, reject) => {
+		const app = createApp(dialog, {
+			...props,
+			// If dialog has no `container` prop passing a falsy value does nothing
+			// Otherwise it is expected that `null` disables teleport and mounts dialog in place like NcDialog/NcModal
+			container: null,
+			onClose(...rest: unknown[]) {
+				app.unmount()
+				element.remove()
+				onClose?.(...rest)
+				resolve(rest.length > 1 ? rest : rest[0])
+			},
+			'onVue:unmounted'() {
+				app.unmount()
+				element.remove()
+				reject(new Error('Dialog was unmounted without close event'))
+			},
+		})
 
-	app.mount(element)
+		app.mount(element)
+	})
 }

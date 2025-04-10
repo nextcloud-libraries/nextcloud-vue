@@ -116,15 +116,10 @@ export default {
 		}
 	},
 	methods: {
-		onSpawnDialog() {
+		async onSpawnDialog() {
 			this.timesClicked += 1
-			spawnDialog(
-				ExampleDialog,
-				{
-					timesClicked: this.timesClicked,
-				},
-				(result) => window.alert(`Dialog was ${result}`)
-			)
+			const result = await spawnDialog(ExampleDialog, { timesClicked: this.timesClicked })
+			window.alert(`Dialog was ${result}`)
 		},
 	},
 }
