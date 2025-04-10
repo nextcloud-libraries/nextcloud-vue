@@ -11,5 +11,10 @@ options.themes.tooltip.delay = { show: 500, hide: 200 }
 options.themes.tooltip.distance = 10
 options.themes.tooltip['arrow-padding'] = 3
 
-export default VTooltip
-export { options }
+export {
+	/**
+	 * @deprecated Use the native `title` attribute instead.
+	 */
+	VTooltip as default,
+	options,
+}

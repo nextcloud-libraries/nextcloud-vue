@@ -4,10 +4,10 @@
 -->
 
 <template>
-	<NcButton v-tooltip="title"
+	<NcButton :aria-label="title"
 		class="app-details-toggle"
 		:class="{ 'app-details-toggle--mobile': isMobile }"
-		:aria-label="title"
+		:title="title"
 		variant="tertiary">
 		<template #icon>
 			<ArrowLeft v-if="isRtl" :size="20" />
@@ -17,29 +17,22 @@
 </template>
 
 <script>
-import NcButton from '../NcButton/index.js'
-import { t } from '../../l10n.js'
-import Tooltip from '../../directives/Tooltip/index.js'
-
 import { emit } from '@nextcloud/event-bus'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { isRtl } from '../../utils/rtl.ts'
+import { t } from '../../l10n.js'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
-
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { isRtl } from '../../utils/rtl.ts'
+import NcButton from '../NcButton/index.js'
 
 export default {
 	name: 'NcAppDetailsToggle',
 
-	directives: {
-		tooltip: Tooltip,
-	},
-
 	components: {
-		NcButton,
 		ArrowRight,
 		ArrowLeft,
+		NcButton,
 	},
 	setup() {
 		return {
