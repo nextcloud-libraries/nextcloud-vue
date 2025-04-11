@@ -5,6 +5,32 @@
 import type { Component } from 'vue'
 import { createApp } from 'vue'
 
+/**
+ * Utility type to extract props from Vue component
+ */
+type ComponentProps<T> =
+	T extends new (...args: unknown[]) => { $props: infer P; } ? NonNullable<P> :
+	T extends (props: infer P, ...args: unknown[]) => unknown ? P :
+	Record<string, never>
+
+/**
+ * Utility type to transform event name to corresponding prop name
+ */
+type EventPropName<E extends string> = `on${Capitalize<E>}`
+
+/**
+ * Utility type to extract event payload from event handler
+ */
+type EventPayload<Handler> = NonNullable<Handler> extends ((...args: infer P) => void) ? P : never
+
+/**
+ * Utility type to cast array with one element to the element type
+ */
+type Result<T extends unknown[]> = T extends []
+	? void
+	: T extends [infer K]
+		? K : T
+
 type SpawnDialogOptions = {
 	/**
 	 * Container to mount the dialog to
@@ -21,11 +47,15 @@ type SpawnDialogOptions = {
  * @param options - Spawning options
  * @return Promise resolved with the `close` event payload
  */
-export function spawnDialog(
-	dialog: Component,
-	props: object = {},
+export function spawnDialog<
+	C extends Component,
+	Props extends Record<EventPropName<'close'>, (...payload: unknown[]) => unknown> = ComponentProps<C>, // eslint-disable-line space-before-function-paren
+	Payload extends unknown[] = EventPayload<NonNullable<Props[EventPropName<'close'>]>>,
+>(
+	dialog: C,
+	props: Props = {} as Props,
 	options: SpawnDialogOptions = {},
-): Promise<unknown> {
+): Promise<Result<Payload>> {
 	let { container } = options
 
 	// For backwards compatibility try to use container from props
@@ -39,16 +69,16 @@ export function spawnDialog(
 	// Create root container element for the dialog
 	const element = resolvedContainer.appendChild(document.createElement('div'))
 
-	return new Promise((resolve, reject) => {
+	return new Promise<Result<Payload>>((resolve, reject) => {
 		const app = createApp(dialog, {
 			...props,
 			// If dialog has no `container` prop passing a falsy value does nothing
 			// Otherwise it is expected that `null` disables teleport and mounts dialog in place like NcDialog/NcModal
 			container: null,
-			onClose(...rest: unknown[]) {
+			onClose(...rest: Payload) {
 				app.unmount()
 				element.remove()
-				resolve(rest.length > 1 ? rest : rest[0])
+				resolve((rest.length > 1 ? rest : rest[0]) as Result<Payload>)
 			},
 			'onVue:unmounted'() {
 				app.unmount()
