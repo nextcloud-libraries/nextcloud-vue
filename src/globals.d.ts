@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import type { ContactsMenuAction } from './functions/contactsMenu/index.ts'
+
 declare const PRODUCTION: boolean
 declare const SCOPE_VERSION: string
 
@@ -23,6 +25,7 @@ declare global {
 		OCP: any
 		// internal global variables
 		_nc_vue_element_id?: number
+		_nc_contacts_menu_hooks: { [id: string]: ContactsMenuAction },
 	}
 }
 

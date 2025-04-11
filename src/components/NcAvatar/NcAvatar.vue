@@ -242,12 +242,15 @@ import NcButton from '../NcButton/index.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
+import NcActionButton from '../NcActionButton/index.js'
 import usernameToColor from '../../functions/usernameToColor/index.js'
+import { getEnabledContactsMenuActions } from '../../functions/contactsMenu/index.ts'
 import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
 import { getUserStatusText } from '../../utils/UserStatus.ts'
 import { userStatus } from '../../mixins/index.js'
 import { t } from '../../l10n.js'
 import { getRoute } from '../../components/NcRichText/autolink.ts'
+import logger from '../../utils/logger.ts'
 
 import axios from '@nextcloud/axios'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
@@ -425,6 +428,7 @@ export default {
 			isAvatarLoaded: false,
 			isMenuLoaded: false,
 			contactsMenuLoading: false,
+			contactsMenuData: {},
 			contactsMenuActions: [],
 			contactsMenuOpenState: false,
 		}
@@ -571,6 +575,24 @@ export default {
 				}
 			})
 
+			for (const action of getEnabledContactsMenuActions(this.contactsMenuData)) {
+				try {
+					actions.push({
+						ncActionComponent: NcActionButton,
+						ncActionComponentProps: {
+							onClick: () => action.callback(this.contactsMenuData),
+						},
+						text: action.displayName(this.contactsMenuData),
+						iconSvg: action.iconSvg(this.contactsMenuData),
+					})
+				} catch (error) {
+					logger.error(`Failed to render ContactsMenu action ${action.id}`, {
+						error,
+						action,
+					})
+				}
+			}
+
 			/**
 			 * @param {string} html The HTML to escape
 			 */
@@ -668,6 +690,7 @@ export default {
 			try {
 				const user = encodeURIComponent(this.user)
 				const { data } = await axios.post(generateUrl('contactsmenu/findOne'), `shareType=0&shareWith=${user}`)
+				this.contactsMenuData = data
 				this.contactsMenuActions = data.topAction ? [data.topAction].concat(data.actions) : data.actions
 			} catch (e) {
 				this.contactsMenuOpenState = false

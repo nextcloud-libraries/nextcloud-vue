@@ -4,6 +4,7 @@
  */
 
 export * from './a11y/index.ts'
+export * from './contactsMenu/index.ts'
 export * from './dialog/index.ts'
 export * from './emoji/index.ts'
 export * from './isDarkTheme/index.ts'
