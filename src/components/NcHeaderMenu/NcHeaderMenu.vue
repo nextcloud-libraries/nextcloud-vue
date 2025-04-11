@@ -282,11 +282,11 @@ function clearFocusTrap() {
 </script>
 
 <style lang="scss" scoped>
+@use './header-menu__trigger.scss';
+
 // content inner and outer margin
 // Also used for menu top-right positioning
 $externalMargin: 8px;
-
-@import './header-menu__trigger';
 
 .header-menu {
 	&__wrapper {

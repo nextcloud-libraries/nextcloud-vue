@@ -188,8 +188,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/inputs';
-@import '../../assets/action';
+@use '../../assets/inputs.scss';
+@use '../../assets/action.scss' as *;
 @include action-active;
 @include action--disabled;
 
