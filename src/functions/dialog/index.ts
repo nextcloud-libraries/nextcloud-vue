@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import type { Component } from 'vue'
-import { createApp } from 'vue'
+import { createApp, defineComponent } from 'vue'
 
 /**
  * Utility type to extract props from Vue component
@@ -90,3 +90,51 @@ export function spawnDialog<
 		app.mount(element)
 	})
 }
+
+const ComponentNoEvent = defineComponent({
+	name: 'Component1',
+	props: {
+		foo: {
+			type: Number,
+			required: true,
+		},
+	},
+})
+
+const Component1 = defineComponent({
+	name: 'Component1',
+	props: {
+		foo: Number,
+	},
+	emits: {
+		close: () => true,
+	},
+})
+
+const Component2 = defineComponent({
+	name: 'Component2',
+	props: {
+		foo: Number,
+	},
+	emits: {
+		close: (payload: Date) => true,
+		open: () => true,
+	},
+})
+
+const Component3 = defineComponent({
+	name: 'Component3',
+	props: {
+		foo: Number,
+	},
+	emits: {
+		close: (a: number, b: number) => true,
+	},
+})
+
+// const result1 = await spawnDialog(Component1, { foo: 1 })
+// console.log(result1 + 1)
+const result2 = await spawnDialog<typeof Component2>(Component2, { foo: 1 })
+console.log(result2[0].toISOString())
+// const result3 = await spawnDialog(Component3, { foo: 1 })
+// console.log(result3[0])
