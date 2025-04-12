@@ -112,11 +112,12 @@ legend {
 	min-height: 2lh;
 }
 </style>
+```
 </docs>
 
 <script setup>
 import { computed, provide } from 'vue'
-import { KEY_ENFORCE_THEME } from '../../composables/useIsDarkTheme/index.ts'
+import { INJECTION_KEY_THEME } from '../../composables/useIsDarkTheme/constants.ts'
 
 const props = defineProps({
 	/**
@@ -144,18 +145,11 @@ const theme = computed(() => {
 	}
 	return ''
 })
-provide(KEY_ENFORCE_THEME, theme)
-
-const dataTheme = computed(() => {
-	if (theme.value) {
-		return { [`data-theme-${theme.value}`]: true }
-	}
-	return {}
-})
+provide(INJECTION_KEY_THEME, theme)
 </script>
 
 <template>
-	<div v-bind="dataTheme">
+	<div :[`data-theme-${theme}`]="theme">
 		<slot />
 	</div>
 </template>

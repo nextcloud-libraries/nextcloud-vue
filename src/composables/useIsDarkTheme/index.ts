@@ -1,19 +1,14 @@
-/**
+/*!
  * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import type { ComputedRef, DeepReadonly, Ref } from 'vue'
+import type { DeepReadonly, Ref } from 'vue'
 
 import { createSharedComposable, usePreferredDark, useMutationObserver } from '@vueuse/core'
 import { ref, readonly, watch, inject, computed } from 'vue'
 import { checkIfDarkTheme } from '../../functions/isDarkTheme/index.ts'
-
-/**
- * Symbol used to provide the enforced dark / light theme state.
- * Injected by `NcThemeProvider`.
- */
-export const KEY_ENFORCE_THEME = Symbol('enforce-theme')
+import { INJECTION_KEY_THEME } from './constants.ts'
 
 /**
  * Check whether the dark theme is enabled on a specific element.
@@ -55,7 +50,7 @@ const useInternalIsDarkTheme = createSharedComposable(() => useIsDarkThemeElemen
  */
 export function useIsDarkTheme(): DeepReadonly<Ref<boolean>> {
 	const isDarkTheme = useInternalIsDarkTheme()
-	const enforcedTheme = inject<ComputedRef<string>>(KEY_ENFORCE_THEME)
+	const enforcedTheme = inject(INJECTION_KEY_THEME)
 
 	return computed(() => {
 		if (enforcedTheme?.value) {
