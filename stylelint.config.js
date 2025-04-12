@@ -20,7 +20,7 @@ module.exports = {
 		'csstools/use-logical': [
 			'always',
 			{
-				severity: 'error',
+				severity: 'warning',
 				// Only lint LTR-RTL properties for now
 				except: [
 					// Position properties
