@@ -85,14 +85,15 @@ The leading icon slot was changed from `#default` to `#icon` in `Nc*Field` compo
 Some boolean props that have been deprecated in favor of alternatives with default value `false`,
 are now removed. Following components have been adjusted:
 
-|     Component | Removed deprecated prop | New alternative |
-|---------------|-------------------------|-----------------|
-|`NcAppContent` |  `allowSwipeNavigation` | `disabledSwipe` |
-|    `NcAvatar` |        `showUserStatus` |    `hideStatus` |
-|    `NcAvatar` | `showUserStatusCompact` | `verboseStatus` |
-|     `NcModal` |           `enableSwipe` |  `disableSwipe` |
-|     `NcModal` |              `canClose` |       `noClose` |
-|    `NcDialog` |              `canClose` |       `noClose` |
+|     Component | Removed deprecated prop |      New alternative |
+|---------------|-------------------------|----------------------|
+|`NcAppContent` |  `allowSwipeNavigation` |      `disabledSwipe` |
+|    `NcAvatar` |        `showUserStatus` |         `hideStatus` |
+|    `NcAvatar` | `showUserStatusCompact` |      `verboseStatus` |
+|     `NcModal` |  `closeButtonContained` | `closeButtonOutside` |
+|     `NcModal` |           `enableSwipe` |       `disableSwipe` |
+|     `NcModal` |              `canClose` |            `noClose` |
+|    `NcDialog` |              `canClose` |            `noClose` |
 
 Additionally the default value `closeOnClickOutside` for `NcModal` was aligned with `NcDialog` and now defaults to `false`.
 
