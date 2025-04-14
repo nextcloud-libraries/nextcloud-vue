@@ -91,18 +91,88 @@ export default {
 }
 </script>
 ```
+
+### Directional usage
+
+The `directional` property allows to enable a language direction aware icon.
+This icon component can be used in places where an language direction aware icon should be used,
+for example if an arrow pointing to the left it used it often points in the wrong direction for right-to-left languages.
+In this cases this icon can be used which will always point into the logical "start" direction.
+
+```vue
+<template>
+	<div class="wrapper">
+		<NcButton @click="isRtl = !isRtl">Toggle RTL</NcButton>
+		<div class="directional" :dir="isRtl ? 'rtl' : 'ltr'">
+			<NcButton alignment="start">
+				<template #icon>
+					<NcIconSvgWrapper directional :path="mdiChevronLeft" />
+				</template>
+				Previous
+			</NcButton>
+			<NcButton alignment="end-reverse">
+				<template #icon>
+					<NcIconSvgWrapper directional :path="mdiChevronRight" />
+				</template>
+				Next
+			</NcButton>
+		</div>
+	</div>
+</template>
+
+<script>
+import { mdiChevronLeft, mdiChevronRight } from '@mdi/js'
+
+export default {
+	setup() {
+		return {
+			mdiChevronLeft,
+			mdiChevronRight,
+		}
+	},
+	data() {
+		return {
+			isRtl: false
+		}
+	},
+}
+</script>
+<style scoped>
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: calc(2 * var(--default-grid-baseline));
+	max-width: 300px;
+}
+
+.directional {
+	display: flex;
+	flex-direction: row;
+	gap: calc(2 * var(--default-grid-baseline));
+}
+
+.directional * {
+	flex: 1 50%;
+}
+</style>
+```
 </docs>
 
 <template>
-	<span v-if="!cleanSvg"
-		v-bind="attributes">
-		<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+	<span :aria-hidden="name ? undefined : 'true'"
+		:aria-label="name || undefined"
+		class="icon-vue"
+		:class="{
+			'icon-vue--directional': directional,
+			'icon-vue--inline': inline,
+		}"
+		role="img">
+		<svg v-if="!cleanSvg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 			<path :d="path" />
 		</svg>
+		<!-- eslint-disable-next-line vue/no-v-text-v-html-on-component,vue/no-v-html -->
+		<span v-else v-html="cleanSvg" />
 	</span>
-	<span v-else
-		v-bind="attributes"
-		v-html="cleanSvg" /> <!-- eslint-disable-line vue/no-v-html -->
 </template>
 
 <script>
@@ -113,6 +183,15 @@ export default {
 	name: 'NcIconSvgWrapper',
 
 	props: {
+		/**
+		 * Make the icon directional, meaning it is langauge direction aware.
+		 * If the icon is placed in a right-to-left context it will be mirrored vertically.
+		 */
+		directional: {
+			type: Boolean,
+			default: false,
+		},
+
 		/**
 		 * Set if the icon should be used as inline content e.g. within text.
 		 * By default the icon is made a block element for use inside `icon`-slots.
@@ -186,23 +265,13 @@ export default {
 
 			return svgDocument.documentElement.outerHTML
 		},
-		attributes() {
-			return {
-				class: ['icon-vue', { 'icon-vue--inline': this.inline }],
-				style: {
-					'--icon-size': this.iconSize,
-				},
-				role: 'img',
-				'aria-hidden': !this.name ? true : undefined,
-				'aria-label': this.name || undefined,
-			}
-		},
 	},
 }
 </script>
 
 <style lang="scss" scoped>
 .icon-vue {
+	--icon-size: v-bind('iconSize');
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -223,6 +292,10 @@ export default {
 		height: var(--icon-size, 20px);
 		max-width: var(--icon-size, 20px);
 		max-height: var(--icon-size, 20px);
+	}
+
+	&--directional:deep(svg:dir(rtl)) {
+		transform: scaleX(-1);
 	}
 }
 </style>
