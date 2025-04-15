@@ -8,9 +8,7 @@ import type { Component } from 'vue'
 import { createApp } from 'vue'
 
 type ComponentProps<T extends Component> = T extends new (...args: any) => { $props: infer P }
-	? P extends Record<string, any>
-		? P
-		: never
+	? P
 	: never
 
 type DialogComponent<T extends Component> = 'onClose' extends keyof ComponentProps<T>
