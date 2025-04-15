@@ -2,8 +2,29 @@
  * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import type { Component } from 'vue'
-import { createApp } from 'vue'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { createApp, type Component } from 'vue'
+
+type ComponentProps<T extends Component> = T extends new (...args: any) => { $props: infer P }
+	? P extends Record<string, any>
+		? P
+		: never
+	: never
+
+type DialogComponent<T extends Component> = 'onClose' extends keyof ComponentProps<T>
+	? T
+	: 'Please provide a Dialog Component that supports `@close` event'
+
+type NormalizedPayload<T> = T extends []
+	? void
+	: T extends [infer F]
+		? F
+		: T
+
+type ClosePayload<T> = T extends { onClose?: (...args: infer P) => any }
+	? P
+	: never
 
 type SpawnDialogOptions = {
 	/**
@@ -21,11 +42,11 @@ type SpawnDialogOptions = {
  * @param options - Spawning options
  * @return Promise resolved with the `close` event payload
  */
-export function spawnDialog(
-	dialog: Component,
-	props: object = {},
-	options: SpawnDialogOptions = {},
-): Promise<unknown> {
+export function spawnDialog<
+    C extends Component,
+		P extends ComponentProps<C>,
+		E extends ClosePayload<P>,
+>(dialog: DialogComponent<C>, props: Partial<P> = {}, options: SpawnDialogOptions = {}): Promise<NormalizedPayload<E>> {
 	let { container } = options
 
 	// For backwards compatibility try to use container from props
@@ -40,15 +61,17 @@ export function spawnDialog(
 	const element = resolvedContainer.appendChild(document.createElement('div'))
 
 	return new Promise((resolve, reject) => {
-		const app = createApp(dialog, {
+		const app = createApp(dialog as Component, {
 			...props,
 			// If dialog has no `container` prop passing a falsy value does nothing
 			// Otherwise it is expected that `null` disables teleport and mounts dialog in place like NcDialog/NcModal
 			container: null,
-			onClose(...rest: unknown[]) {
+			onClose(...rest: E) {
+				const payload = (rest.length > 1 ? rest : rest[0]) as NormalizedPayload<E>
+
 				app.unmount()
 				element.remove()
-				resolve(rest.length > 1 ? rest : rest[0])
+				resolve(payload)
 			},
 			'onVue:unmounted'() {
 				app.unmount()
