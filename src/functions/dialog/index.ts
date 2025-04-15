@@ -4,7 +4,8 @@
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { createApp, type Component } from 'vue'
+import type { Component } from 'vue'
+import { createApp } from 'vue'
 
 type ComponentProps<T extends Component> = T extends new (...args: any) => { $props: infer P }
 	? P extends Record<string, any>
