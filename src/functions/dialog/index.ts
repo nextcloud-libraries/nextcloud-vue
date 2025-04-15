@@ -46,7 +46,7 @@ export function spawnDialog<
 	C extends Component,
 	P extends ComponentProps<C>,
 	E extends ClosePayload<P>,
->(dialog: DialogComponent<C>, props: Partial<P> = {}, options: SpawnDialogOptions = {}): Promise<NormalizedPayload<E>> {
+>(dialog: DialogComponent<C>, props: Partial<NoInfer<P>> = {}, options: SpawnDialogOptions = {}): Promise<NormalizedPayload<E>> {
 	let { container } = options
 
 	// For backwards compatibility try to use container from props
