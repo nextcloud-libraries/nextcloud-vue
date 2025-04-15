@@ -43,9 +43,9 @@ type SpawnDialogOptions = {
  * @return Promise resolved with the `close` event payload
  */
 export function spawnDialog<
-    C extends Component,
-		P extends ComponentProps<C>,
-		E extends ClosePayload<P>,
+	C extends Component,
+	P extends ComponentProps<C>,
+	E extends ClosePayload<P>,
 >(dialog: DialogComponent<C>, props: Partial<P> = {}, options: SpawnDialogOptions = {}): Promise<NormalizedPayload<E>> {
 	let { container } = options
 
