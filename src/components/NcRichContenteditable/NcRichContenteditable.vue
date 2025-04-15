@@ -284,7 +284,7 @@ export default {
 </template>
 
 <script>
-import { t } from '../../l10n.js'
+import { n, t } from '../../l10n.js'
 import NcAutoCompleteResult from './NcAutoCompleteResult.vue'
 import richEditor from '../../mixins/richEditor/index.js'
 import { emojiSearch, emojiAddRecent } from '../../functions/emoji/index.ts'
@@ -487,11 +487,7 @@ export default {
 			if (!this.isOverMaxlength) {
 				return null
 			}
-			return {
-				content: t('Message limit of {count} characters reached', { count: this.maxlength }),
-				shown: true,
-				trigger: 'manual',
-			}
+			return n('Message limit of %n character reached', 'Message limit of %n characters reached', this.maxlength)
 		},
 
 		/**

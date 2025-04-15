@@ -244,8 +244,10 @@ msgstr ""
 msgid "Medium skin tone"
 msgstr ""
 
-msgid "Message limit of {count} characters reached"
-msgstr ""
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Month picker"
 msgstr ""
