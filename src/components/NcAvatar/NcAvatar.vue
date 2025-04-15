@@ -625,7 +625,7 @@ export default {
 				return p.innerHTML
 			}
 
-			if (this.showUserStatus && (this.userStatus.icon || this.userStatus.message)) {
+			if (!this.hideStatus && this.showUserStatus && (this.userStatus.icon || this.userStatus.message)) {
 				// NcAction's URL icons are inverted in dark mode, so we need to pass SVG image in the icon slot
 				const emojiIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
 					<text x="50%" y="50%" text-anchor="middle" style="dominant-baseline: central; font-size: 85%">${escape(this.userStatus.icon)}</text>
@@ -658,7 +658,7 @@ export default {
 		this.loadAvatarUrl()
 		subscribe('settings:avatar:updated', this.loadAvatarUrl)
 		subscribe('settings:display-name:updated', this.loadAvatarUrl)
-		if (this.showUserStatus && this.user && !this.isNoUser) {
+		if (!this.hideStatus && this.showUserStatus && this.user && !this.isNoUser) {
 			if (!this.preloadedUserStatus) {
 				this.fetchUserStatus(this.user)
 			} else {
@@ -674,9 +674,7 @@ export default {
 	beforeDestroy() {
 		unsubscribe('settings:avatar:updated', this.loadAvatarUrl)
 		unsubscribe('settings:display-name:updated', this.loadAvatarUrl)
-		if (this.showUserStatus && this.user && !this.isNoUser) {
-			unsubscribe('user_status:status.updated', this.handleUserStatusUpdated)
-		}
+		unsubscribe('user_status:status.updated', this.handleUserStatusUpdated)
 	},
 
 	methods: {
