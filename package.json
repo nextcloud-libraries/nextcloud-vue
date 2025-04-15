@@ -104,7 +104,6 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.1",
     "splitpanes": "^4.0.3",
-    "string-length": "^6.0.0",
     "striptags": "^3.2.0",
     "tabbable": "^6.2.0",
     "tributejs": "^5.1.3",

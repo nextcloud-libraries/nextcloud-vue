@@ -293,7 +293,6 @@ import { createElementId } from '../../utils/createElementId.ts'
 
 import Tribute from 'tributejs/dist/tribute.esm.js'
 import debounce from 'debounce'
-import stringLength from 'string-length'
 
 /**
  * Populate the list of text smiles we want to offer via Tribute.
@@ -420,10 +419,14 @@ export default {
 	],
 
 	setup() {
+		const segmenter = new Intl.Segmenter()
+
 		return {
 			// Constants
 			labelId: createElementId(),
 			tributeId: createElementId(),
+
+			segmenter,
 
 			/**
 			 * Non-reactive property to store Tribute instance
@@ -471,7 +474,8 @@ export default {
 			if (this.isEmptyValue || !this.maxlength) {
 				return false
 			}
-			return stringLength(this.localValue) > this.maxlength
+			const length = [...this.segmenter.segment(this.localValue)].length
+			return length > this.maxlength
 		},
 
 		/**
