@@ -711,13 +711,6 @@ export default {
 </template>
 
 <script>
-import NcAppSidebarTabs from './NcAppSidebarTabs.vue'
-import NcActions from '../NcActions/index.js'
-import NcAppSidebarHeader from '../NcAppSidebarHeader/index.ts'
-import NcButton from '../NcButton/index.ts'
-import NcEmptyContent from '../NcEmptyContent/index.js'
-import NcLoadingIcon from '../NcLoadingIcon/index.js'
-import Focus from '../../directives/Focus/index.js'
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
 import { provide, ref, warn } from 'vue'
@@ -732,6 +725,14 @@ import IconClose from 'vue-material-design-icons/Close.vue'
 import IconDockRight from 'vue-material-design-icons/DockRight.vue'
 import IconStar from 'vue-material-design-icons/Star.vue'
 import IconStarOutline from 'vue-material-design-icons/StarOutline.vue'
+
+import NcAppSidebarTabs from './NcAppSidebarTabs.vue'
+import NcActions from '../NcActions/index.js'
+import NcButton from '../NcButton/index.ts'
+import NcEmptyContent from '../NcEmptyContent/index.js'
+import NcLoadingIcon from '../NcLoadingIcon/index.js'
+import NcAppSidebarHeader from '../NcAppSidebarHeader/index.ts'
+import Focus from '../../directives/Focus/index.ts'
 
 export default {
 	name: 'NcAppSidebar',
