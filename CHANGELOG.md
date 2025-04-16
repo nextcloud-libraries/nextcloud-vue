@@ -5,7 +5,7 @@
 
 # Changelog
 
-## [v8.25.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.25.0) (UNRELEASED)
+## [v8.25.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.25.0) (2025-04-16)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.24.0...v8.25.0)
 
 ### 📝 Notes
@@ -33,6 +33,20 @@ In some rare cases where you really need a formatted tooltip `NcPopover` could b
 -    v-tooltip="title"
 +    :title="title"
 ```
+
+### 🚀 Enhancements
+* feat(NcDateTimePicker): add new types as alternative for `range` property [#6738](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6738) ([susnux](https://github.com/susnux))
+* feat: provide `NcSelectUsers` as replacement of `user-select` prop for `NcSelect` [#6791](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6791)
+
+### 🐛 Fixed bugs
+* Adjust all styles for RTL support and add `directional` prop to NcIconSvgWrapper [#6766](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6766)
+* fix(NcRichContenteditable): add correct tooltip [#6782](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6782)
+* fix(NcRichContenteditable): bring back error style on overflow [#6789](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6789)
+* fix(NcAvatar): skip user status request if `hideStatus` prop was provided [#6780](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6780) ([Antreesy](https://github.com/Antreesy))
+
+### Other Changes
+* Updates for project Nextcloud vue library [#6690](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6690) ([transifex-integration](https://github.com/transifex-integration))
+* refactor: deprecate `Tooltip` directive for accessibility [#6765](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6765)
 
 ## [v8.24.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.24.0) (2025-04-02)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.23.1...v8.24.0)
