@@ -171,6 +171,7 @@ import type {
 	TimeObj as LibraryTimeObject,
 	// The accepted model value
 	ModelValue as LibraryModelValue,
+	VueDatePickerProps,
 } from '@vuepic/vue-datepicker'
 
 import {
@@ -194,6 +195,8 @@ import { t } from '../../l10n.js'
 import VueDatePicker from '@vuepic/vue-datepicker'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcTimezonePicker from '../NcTimezonePicker/NcTimezonePicker.vue'
+
+type LibraryFormatOptions = VueDatePickerProps['format']
 
 const props = withDefaults(defineProps<{
 	/**
@@ -329,9 +332,9 @@ const emit = defineEmits<{
  * We do not directly pass the prop and adjust the interface to not transparently wrap the library.
  * This has show as beeing a pain in the past when we need to switch underlying libraries.
  */
-const value = computed(() => {
+const value = computed<LibraryModelValue>(() => {
 	if (props.modelValue === undefined && props.clearable) {
-		return props.modelValue
+		return null
 	}
 
 	if (props.type === 'week') {
@@ -396,9 +399,11 @@ const placeholderFallback = computed(() => {
  * We use the provided format if possible, otherwise we provide a formatting function
  * which uses the browsers Intl API to format the date / time in the current users locale.
  */
-const realFormat = computed(() => {
+const realFormat = computed<LibraryFormatOptions>(() => {
 	if (props.format) {
-		return props.format
+		// we can cast the type here as in this case its either string
+		// function `(Date) => string` or `([Date, Date]) => string` where we cast to `(Date[]) => string` here.
+		return props.format as LibraryFormatOptions
 	} else if (props.type === 'week') {
 		// cannot format weeks with Intl.
 		return 'RR-II'
@@ -419,7 +424,7 @@ const realFormat = computed(() => {
 
 	if (formatter) {
 		return (input: Date | [Date, Date]) => Array.isArray(input)
-			? formatter.formatRange(...input)
+			? formatter.formatRange(input[0], input[1])
 			: formatter.format(input)
 	}
 
