@@ -723,11 +723,36 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .button-vue {
-	// Setup different button sizes
 	--button-size: var(--default-clickable-area);
 	--button-radius: var(--border-radius-element, calc(var(--button-size) / 2));
 	--button-padding: clamp(var(--default-grid-baseline), var(--button-radius), calc(var(--default-grid-baseline) * 4));
 
+	// General styles
+	// by default use secondary styling
+	color: var(--color-primary-element-light-text);
+	background-color: var(--color-primary-element-light);
+	// no border but rounded
+	border: 0;
+	border-radius: var(--button-radius);
+	// adjust position and size
+	position: relative;
+	width: fit-content;
+	overflow: hidden;
+	padding: 0;
+	min-height: var(--button-size);
+	min-width: var(--button-size);
+	// display setup
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition-property: color, border-color, background-color;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+	cursor: pointer;
+	font-size: var(--default-font-size);
+	font-weight: bold;
+
+	// Setup different button sizes
 	&--size-small {
 		--button-size: var(--clickable-area-small, 24px);
 		--button-radius: var(--border-radius); // make the border radius even smaller for small buttons
@@ -737,30 +762,11 @@ export default defineComponent({
 		--button-size: var(--clickable-area-large, 48px);
 	}
 
-	// General styles
-	position: relative;
-	width: fit-content;
-	overflow: hidden;
-	border: 0;
-	padding: 0;
-	font-size: var(--default-font-size);
-	font-weight: bold;
-	min-height: var(--button-size);
-	min-width: var(--button-size);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
 	// Cursor pointer on element and all children
-	cursor: pointer;
 	& *,
 	span {
 		cursor: pointer;
 	}
-	border-radius: var(--button-radius);
-	transition-property: color, border-color, background-color;
-	transition-duration: 0.1s;
-	transition-timing-function: linear;
 
 	// No outline feedback for focus. Handled with a toggled class in js (see data)
 	&:focus {
@@ -769,17 +775,15 @@ export default defineComponent({
 
 	&:disabled {
 		cursor: default;
-		& * {
-			cursor: default;
-		}
 		opacity: $opacity_disabled;
 		// Gives a wash out effect
 		filter: saturate($opacity_normal);
+
+		& * {
+			cursor: default;
+		}
 	}
 
-	// Default button type
-	color: var(--color-primary-element-light-text);
-	background-color: var(--color-primary-element-light);
 	&:hover:not(:disabled) {
 		background-color: var(--color-primary-element-light-hover);
 	}
@@ -850,7 +854,8 @@ export default defineComponent({
 	// Text-only button
 	&--text-only {
 		padding: 0 var(--button-padding);
-		& .button-vue__text {
+
+		.button-vue__text {
 			margin-inline: 4px;
 		}
 	}

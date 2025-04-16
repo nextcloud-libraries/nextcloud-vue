@@ -2,6 +2,7 @@
  * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+@use 'variables' as variables;
 
 .header-menu {
 	position: relative;
@@ -31,7 +32,7 @@
 	}
 }
 
-@media only screen and (max-width: $breakpoint-small-mobile) {
+@media only screen and (max-width: variables.$breakpoint-small-mobile) {
 	.header-menu {
 		width: var(--default-clickable-area);
 

@@ -2,8 +2,9 @@
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+@use './variables.scss' as *;
 
- .app-navigation-entry {
+.app-navigation-entry {
 	position: relative;
 	display: flex;
 	flex-shrink: 0;
