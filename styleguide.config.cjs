@@ -115,10 +115,6 @@ module.exports = async () => {
 						name: 'Linkify',
 						content: 'docs/directives/linkify.md',
 					},
-					{
-						name: 'Tooltip',
-						content: 'docs/directives/tooltip.md',
-					},
 				],
 			},
 			{
