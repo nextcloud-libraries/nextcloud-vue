@@ -1068,6 +1068,12 @@ export default {
 			border-radius: var(--border-radius);
 			background-color: var(--color-background-dark);
 		}
+
+		&--overflow,
+		&--overflow:hover {
+			// we need important to override server styles
+			border-color: var(--color-error) !important;
+		}
 	}
 }
 
