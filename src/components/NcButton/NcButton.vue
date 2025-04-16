@@ -35,46 +35,46 @@ It can be used with one or multiple actions.
 		<p>Primary</p>
 		<NcButton
 			aria-label="Example text"
-			:disabled="disabled"
-			:size="size"
+			:disabled
+			:size
+			:text
 			variant="tertiary-no-background">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
 					:size="20" />
 			</template>
-			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</NcButton>
 		<NcButton
 			aria-label="Example text"
-			:disabled="disabled"
-			:size="size"
+			:disabled
+			:size
+			:text
 			variant="tertiary">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
 					:size="20" />
 			</template>
-			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</NcButton>
 		<NcButton
 			aria-label="Example text"
-			:disabled="disabled"
-			:size="size">
+			:disabled
+			:size
+			:text>
 			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
 					:size="20" />
 			</template>
-			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</NcButton>
 		<NcButton
 			aria-label="Example text"
-			:disabled="disabled"
-			:size="size"
+			:disabled
+			:size
+			:text
 			variant="primary">
 			<template v-if="style.indexOf('icon') !== -1" #icon>
 				<Video
 					:size="20" />
 			</template>
-			<template v-if="style.indexOf('text') !== -1">Example text</template>
 		</NcButton>
 	</div>
 
@@ -83,13 +83,13 @@ It can be used with one or multiple actions.
 	<NcButton
 		:disabled="disabled"
 		:size="size"
+		:text="text"
 		:wide="true"
 		text="Example text">
 		<template #icon>
 			<Video
 				:size="20" />
 		</template>
-		Example text
 	</NcButton>
 
 	<!-- Special buttons -->
@@ -100,34 +100,34 @@ It can be used with one or multiple actions.
 		<p>Error</p>
 		<p> - </p>
 		<NcButton
-			:disabled="disabled"
-			:size="size"
+			:disabled
+			:size
+			text="Example text"
 			variant="success">
 			<template #icon>
 				<Video
 					:size="20" />
 			</template>
-			Example text
 		</NcButton>
 		<NcButton
-			:disabled="disabled"
-			:size="size"
+			:disabled
+			:size
+			text="Example text"
 			variant="warning">
 			<template #icon>
 				<Video
 					:size="20" />
 			</template>
-			Example text
 		</NcButton>
 		<NcButton
-			:disabled="disabled"
-			:size="size"
+			:disabled
+			:size
+			text="Example text"
 			variant="error">
 			<template #icon>
 				<Video
 					:size="20" />
 			</template>
-			Example text
 		</NcButton>
 		<p> - </p>
 	</div>
@@ -148,7 +148,14 @@ export default {
 			size: 'normal',
 			style: 'icontext',
 		}
-	}
+	},
+	computed: {
+		text() {
+			if (this.style.includes('text')) {
+				return 'Example text'
+			}
+		},
+	},
 }
 </script>
 
@@ -189,45 +196,39 @@ Sometimes it is required to change the icon alignment on the button, like for sw
 ```vue
 <template>
 	<div style="display: flex; flex-direction: column; gap: 12px;">
-		<NcButton aria-label="center (default)" variant="secondary" wide>
+		<NcButton text="center (default)" variant="secondary" wide>
 			<template #icon>
 				<IconLeft :size="20" />
 			</template>
-			center (default)
 		</NcButton>
-		<NcButton alignment="center-reverse" aria-label="center-reverse" variant="secondary" wide>
+		<NcButton alignment="center-reverse" text="center-reverse" variant="secondary" wide>
 			<template #icon>
 				<IconRight :size="20" />
 			</template>
-			center-reverse
 		</NcButton>
 		<div style="display: flex; gap: 12px;">
 			<div style="display: flex; flex-direction: column; gap: 12px; flex: 1">
-				<NcButton alignment="start" aria-label="start" variant="secondary" wide>
+				<NcButton alignment="start" text="start" variant="secondary" wide>
 					<template #icon>
 						<IconLeft :size="20" />
 					</template>
-					start
 				</NcButton>
-				<NcButton alignment="start-reverse" aria-label="start-reverse" variant="secondary" wide>
+				<NcButton alignment="start-reverse" text="start-reverse" variant="secondary" wide>
 					<template #icon>
 						<IconRight :size="20" />
 					</template>
-					start-reverse
 				</NcButton>
 			</div>
 			<div style="display: flex; flex-direction: column; gap: 12px; flex: 1">
-				<NcButton alignment="end" aria-label="end" variant="secondary" wide>
+				<NcButton alignment="end" text="end" variant="secondary" wide>
 					<template #icon>
 						<IconLeft :size="20" />
 					</template>
-					end
 				</NcButton>
-				<NcButton alignment="end-reverse" aria-label="end-reverse" variant="secondary" wide>
+				<NcButton alignment="end-reverse" text="end-reverse" variant="secondary" wide>
 					<template #icon>
 						<IconRight :size="20" />
 					</template>
-					end-reverse
 				</NcButton>
 			</div>
 		</div>
@@ -263,12 +264,11 @@ Do not change `text` or `aria-label` of the pressed/unpressed button. See: https
 					<IconStarOutline v-else :size="20" />
 				</template>
 			</NcButton>
-			<NcButton v-model:pressed="isFavorite" variant="tertiary">
+			<NcButton v-model:pressed="isFavorite" text="Favorite" variant="tertiary">
 				<template #icon>
 					<IconStar v-if="isFavorite" :size="20" />
 					<IconStarOutline v-else :size="20" />
 				</template>
-				Favorite
 			</NcButton>
 			<NcButton v-model:pressed="isFavorite" aria-label="Favorite">
 				<template #icon>
@@ -303,6 +303,21 @@ export default {
 	},
 }
 </script>
+```
+
+### Usage example: Custom content
+Sometimes custom content, meaning more than text and icon, is required.
+For this the `default`-slot can be used.
+
+**Important**: Never include interactive elements inside the button,
+this results in invalid HTML and is not accessible!
+
+```vue
+<template>
+	<NcButton>
+		Some <del>formatted</del> content
+	</NcButton>
+</template>
 ```
 
 ### Usage example: Sorting table columns
@@ -415,317 +430,298 @@ td.row-size {
 }
 </style>
 ```
-
 </docs>
 
-<script lang="ts">
-import type { PropType } from 'vue'
+<script setup lang="ts">
+import type { Slot } from 'vue'
+import type { RouteLocation } from 'vue-router'
 
-import { defineComponent, h, resolveComponent } from 'vue'
-import { ButtonAlignment, ButtonType, ButtonVariant } from './types.ts'
-import { isSlotPopulated } from '../../utils/isSlotPopulated.ts'
+import { computed, inject, toRef } from 'vue'
+import { routerKey, useLink } from 'vue-router'
 
-export default defineComponent({
-	name: 'NcButton',
+export type ButtonAlignment = 'start'
+	| 'start-reverse'
+	| 'center'
+	| 'center-reverse'
+	| 'end'
+	| 'end-reverse'
 
-	inject: {
-		getNcPopoverTriggerAttrs: {
-			from: 'NcPopover:trigger:attrs',
-			default: () => () => ({}),
-		},
-	},
+export type ButtonSize = 'small'
+	| 'normal'
+	| 'large'
 
-	props: {
-		/**
-		 * Set the text and icon alignment
-		 *
-		 * @default 'center'
-		 * @type {'start' | 'start-reverse' | 'center' | 'center-reverse' | 'end' | 'end-reverse'}
-		 */
-		alignment: {
-			type: String as PropType<ButtonAlignment>,
-			default: ButtonAlignment.Center,
-			validator(value: string) {
-				return Object.values(ButtonAlignment).includes(value as ButtonAlignment)
-			},
-		},
+export type ButtonType =
+	| 'submit'
+	| 'reset'
+	| 'button'
 
-		/**
-		 * Toggles the disabled state of the button on and off.
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
+export type ButtonVariant = 'primary'
+	| 'secondary'
+	| 'tertiary'
+	| 'tertiary-no-background'
+	| 'tertiary-on-primary'
+	| 'error'
+	// Design-wise not recommended for new code
+	| 'warning'
+	| 'success'
 
-		/**
-		 * Specify the button size
-		 * Accepted values: `'small'`, `'normal'` (default), `'large'`
-		 */
-		size: {
-			type: String,
-			default: 'normal',
-			validator(value: string) {
-				return ['small', 'normal', 'large'].includes(value)
-			},
-		},
-
-		/**
-		 * Specifies the HTML button type.
-		 * Accepted values: submit, reset, button.
-		 *
-		 * @default 'button'
-		 */
-		type: {
-			type: String as PropType<ButtonType | `${ButtonType}`>,
-			default: ButtonType.Button,
-			validator(value: string) {
-				return Object.values(ButtonType).includes(value as ButtonType)
-			},
-		},
-
-		/**
-		 * Specifies whether the button should span all the available width.
-		 * By default, buttons span the whole width of the container.
-		 */
-		wide: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Always try to provide an aria-label to your button. Make it more
-		 * specific than the button's name by provide some more context. E.g. if
-		 * the name of the button is "send" in the Mail app, the aria label could
-		 * be "Send email".
-		 */
-		ariaLabel: {
-			type: String,
-			default: null,
-		},
-
-		/**
-		 * Providing the href attribute turns the button component into an `a`
-		 * element.
-		 */
-		href: {
-			type: String,
-			default: null,
-		},
-
-		/**
-		 * Target for the `a` element if `href` is set.
-		 * @default '_self'
-		 */
-		target: {
-			type: String,
-			default: '_self',
-		},
-
-		/**
-		 * Providing the download attribute with href downloads file when clicking.
-		 */
-		download: {
-			type: String,
-			default: null,
-		},
-
-		/**
-		 * Providing the to attribute turns the button component into a `router-link`
-		 * element. Takes precedence over the href attribute.
-		 */
-		to: {
-			type: [String, Object],
-			default: null,
-		},
-
-		/**
-		 * @deprecated To be removed in @nextcloud/vue 9. Migration guide: remove ariaHidden prop from NcAction* components.
-		 * @todo Add a check in @nextcloud/vue 9 that this prop is not provided,
-		 * otherwise root element will inherit incorrect aria-hidden.
-		 */
-		ariaHidden: {
-			type: Boolean,
-			default: null,
-		},
-
-		/**
-		 * The pressed state of the button if it has a checked state
-		 * This will add the `aria-pressed` attribute and for the button to have the primary style in checked state.
-		 *
-		 * Pressed state is not supported for links
-		 */
-		pressed: {
-			type: Boolean,
-			default: null,
-		},
-
-		/**
-		 * Specifies the button variant.
-		 *
-		 * Accepted values: primary, secondary, tertiary, tertiary-no-background, tertiary-on-primary, error, warning, success.
-		 *
-		 * @default 'secondary'
-		 * @since 8.24.0
-		 */
-		 variant: {
-			type: String as PropType<ButtonVariant | `${ButtonVariant}`>,
-			validator(value: string) {
-				return ['primary', 'secondary', 'tertiary', 'tertiary-no-background', 'tertiary-on-primary', 'error', 'warning', 'success'].includes(value)
-			},
-			default: 'secondary',
-		},
-	},
-
-	emits: ['update:pressed', 'click'],
-
-	computed: {
-		/**
-		 * The real type to be used for the button, enforces `primary` for pressed state and, if stateful button, any other type for not pressed state
-		 * Otherwise the type property is used.
-		 */
-		realVariant() {
-			// Force *primary* when pressed
-			if (this.pressed) {
-				return 'primary'
-			}
-			// If not pressed but button is configured as stateful button then the type must not be primary
-			if (this.pressed === false && this.variant === 'primary') {
-				return 'secondary'
-			}
-			return this.variant
-		},
-
-		/**
-		 * The HTML button type
-		 */
-		realType() {
-			if (typeof this.pressed === 'boolean') {
-				return 'button'
-			}
-			return this.type
-		},
-
-		/**
-		 * The flexbox alignment of the button content
-		 */
-		flexAlignment() {
-			return this.alignment.split('-')[0]
-		},
-
-		/**
-		 * If the button content should be reversed (icon on the end)
-		 */
-		isReverseAligned() {
-			return this.alignment.includes('-')
-		},
-
-		ncPopoverTriggerAttrs() {
-			return (this.getNcPopoverTriggerAttrs as () => Record<string, string|undefined>)()
-		},
-	},
+interface NcButtonProps {
+	/**
+	 * Set the text and icon alignment
+	 *
+	 * @default 'center'
+	 */
+	alignment?: ButtonAlignment
 
 	/**
-	 * The render function to display the component
+	 * Always try to provide an aria-label to your button.
 	 *
-	 * @return {object|undefined} The created VNode
+	 * Make it more specific than the button's name by provide some more context.
+	 * E.g. if the name of the button is "send" in the Mail app,
+	 * the aria label could be "Send email".
 	 */
-	render() {
-		const hasText = isSlotPopulated(this.$slots.default?.())
-		const hasIcon = isSlotPopulated(this.$slots.icon?.())
+	ariaLabel?: string
 
-		/**
-		 * Always fill either the text prop or the ariaLabel one.
-		 */
-		if (!hasText && !this.ariaLabel) {
-			console.warn('You need to fill either the text or the ariaLabel props in the button component.', {
-				text: this.$slots.default?.()?.[0]?.children,
-				ariaLabel: this.ariaLabel,
-			},
-			this)
-		}
+	/**
+	 * Toggles the disabled state of the button on and off.
+	 * @default false
+	 */
+	disabled?: boolean
 
-		const isLink = (this.to || this.href)
+	/**
+	 * When `href` is set this will make the browser try to download the target.
+	 * If a string is passed the browser will use it as the filename.
+	 *
+	 * Note that the browser might adjust it for allowed characters (e.g. '/' or '\').
+	 * Also this only works with same-origin URLs and `blob:` or `data:` schemas.
+	 * Moreover a `Content-Disposition` header set by the server will override the filename.
+	 */
+	download?: string|true
 
-		const hasPressed = !isLink && typeof this.pressed === 'boolean'
+	/**
+	 * Providing the href attribute turns the button component into an `a` element.
+	 */
+	href?: string
 
-		const renderButton = ({ href, navigate, isActive }: {href?: string, navigate?: (ev: Event) => void, isActive?: boolean } = {}) => h(isLink ? 'a' : 'button',
-			{
-				class: [
-					'button-vue',
-					`button-vue--size-${this.size}`,
-					{
-						'button-vue--icon-only': hasIcon && !hasText,
-						'button-vue--text-only': hasText && !hasIcon,
-						'button-vue--icon-and-text': hasIcon && hasText,
-						[`button-vue--vue-${this.realVariant}`]: this.realVariant,
-						'button-vue--wide': this.wide,
-						[`button-vue--${this.flexAlignment}`]: this.flexAlignment !== 'center',
-						'button-vue--reverse': this.isReverseAligned,
-						active: isActive,
-					},
-				],
-				'aria-label': this.ariaLabel,
-				'aria-pressed': hasPressed ? this.pressed.toString() : undefined,
-				disabled: this.disabled,
-				type: isLink ? null : this.type,
-				role: isLink ? 'button' : null,
-				href: this.to ? href : (this.href || null),
-				target: isLink ? this.target : null,
-				rel: isLink ? 'nofollow noreferrer noopener' : null,
-				download: (!this.to && this.href && this.download) ? this.download : null,
-				// If this button is used as a popover trigger, we need to apply trigger attrs, e.g. aria attributes
-				...this.ncPopoverTriggerAttrs,
-				onClick: ($event) => {
-					// Update pressed prop on click if it is set
-					if (hasPressed) {
-						/**
-						 * Update the current pressed state of the button (if the `pressed` property was configured)
-						 *
-						 * @property {boolean} newValue The new `pressed`-state
-						 */
-						this.$emit('update:pressed', !this.pressed)
-					}
-					// We have to both navigate and emit the click event
-					this.$emit('click', $event)
-					navigate?.($event)
-				},
-			},
-			[
-				h('span', { class: 'button-vue__wrapper' }, [
-					hasIcon
-						? h('span', {
-							class: 'button-vue__icon',
-							'aria-hidden': 'true',
-						},
-						[this.$slots.icon?.()],
-						)
-						: null,
-					hasText ? h('span', { class: 'button-vue__text' }, [this.$slots.default?.()]) : null,
-				]),
-			],
-		)
+	/**
+	 * The pressed state of the button if it has a checked state.
+	 * This will add the `aria-pressed` attribute and for the button to have the primary style in checked state.
+	 *
+	 * Note: Pressed state is not supported for links.
+	 */
+	pressed?: boolean
 
-		// If we have a router-link, we wrap the button in it
-		if (this.to) {
-			return h(resolveComponent('router-link'), {
-				custom: true,
-				to: this.to,
-			}, {
-				default: renderButton,
-			})
-		}
-		// Otherwise we simply return the button
-		return renderButton()
-	},
+	/**
+	 * Specify the button size.
+	 * @default 'normal'
+	 */
+	size?: ButtonSize
+
+	/**
+	 * Target for the `a` element if `href` is set.
+	 * @default '_self'
+	 */
+	target?: string
+
+	/**
+	 * The main button text.
+	 * This can be overwritten by using the *default* slot.
+	 * @since 9.0.0
+	 */
+	text?: string
+
+	/**
+	 * Providing the to attribute turns the button component into a `router-link` element.
+	 *
+	 * Note: This takes precedence over the href attribute.
+	 */
+	to?: string|RouteLocation
+
+	/**
+	 * Specifies the button native type
+	 * If left empty, the default "button" type will be used.
+	 *
+	 * @default 'button'
+	 */
+	type?: ButtonType
+
+	/**
+	 * Specifies the button variant.
+	 * If left empty, the default button style will be applied.
+	 *
+	 * @default 'secondary'
+	 */
+	variant?: ButtonVariant
+
+	/**
+	 * Specifies whether the button should span all the available width.
+	 * By default, buttons span the whole width of the container.
+	 * @default false
+	 */
+	wide?: boolean
+}
+
+const props = withDefaults(defineProps<NcButtonProps>(), {
+	ariaLabel: undefined,
+	alignment: 'center',
+	download: undefined,
+	href: undefined,
+	pressed: undefined,
+	size: 'normal',
+	target: '_self',
+	text: undefined,
+	to: undefined,
+	type: 'button',
+	variant: 'secondary',
 })
+
+const emit = defineEmits<{
+	/**
+	 * Emitted when the button was clicked.
+	 */
+	 click: [e: MouseEvent]
+
+	/**
+	 * Update the current pressed state of the button (if the `pressed` property was configured).
+	 * If the button is a toggle button (`pressed` state is boolean),
+	 * then this will be emitted if the user toggled the state.
+	 */
+	'update:pressed': [pressed: boolean]
+}>()
+
+defineSlots<{
+	/**
+	 * Custom button content.
+	 * This can be used for custom formatted content, ensure to not include any interactive elements.
+	 * For plain text it is preferred to use the `text` prop instead.
+	 */
+	default?: Slot
+
+	/**
+	 * Icon (optional) to show within the button
+	 */
+	icon?: Slot
+}>()
+
+// Make sure the component also works if the app does not use any router
+// And if the app uses a router we need to make sure a `to` prop was passed to use to router
+const routerLink = computed(() => (
+	inject(routerKey, null) !== null && props.to
+		? useLink({ to: toRef(() => props.to!) })
+		: undefined
+))
+
+/**
+ * If this is a link (<a>) element
+ */
+const isLink = computed(() => props.href)
+
+/**
+ * If the button has a pressed state (only if not a link)
+ */
+const hasPressedState = computed(() => !isLink.value && typeof props.pressed === 'boolean')
+
+/**
+ * The real variant to be used for the button, enforces `primary` for pressed state and, if stateful button, any other type for not pressed state
+ * Otherwise the type property is used.
+ */
+const realVariant = computed(() => {
+	// Force *primary* when pressed
+	if (props.pressed) {
+		return 'primary'
+	}
+	// If not pressed but button is configured as stateful button then the type must not be primary
+	if (props.pressed === false && props.variant === 'primary') {
+		return 'secondary'
+	}
+	return props.variant
+})
+
+/**
+ * The flexbox alignment of the button content
+ */
+const flexAlignment = computed(() => props.alignment.split('-')[0])
+
+/**
+ * If the button content should be reversed (icon on the end)
+ */
+const isReverseAligned = computed(() => props.alignment.includes('-'))
+
+const getNcPopoverTriggerAttrs = inject<() => Record<string, string|undefined>>('NcPopover:trigger:attrs', () => ({}), false)
+const ncPopoverTriggerAttrs = computed(() => getNcPopoverTriggerAttrs())
+
+/**
+ * Attributes to pass to the <a> element
+ */
+const linkAttrs = computed(() => ({
+	role: 'button',
+	href: props.href || '#',
+	target: props.target,
+	rel: 'nofollow noreferrer noopener',
+	download: props.download || null,
+}))
+
+/**
+ * Attribute to pass to the <button> element
+ */
+const buttonAttrs = computed(() => ({
+	'aria-pressed': hasPressedState.value ? String(props.pressed) : undefined,
+	type: props.type,
+}))
+
+/**
+ * Handle the click on the link / button
+ * @param event The mouse click event
+ */
+function onClick(event: MouseEvent) {
+	if (hasPressedState.value) {
+		emit('update:pressed', !props.pressed)
+	}
+	// We have to both navigate and emit the click event
+	emit('click', event)
+	routerLink.value?.navigate(event)
+}
 </script>
+
+<template>
+	<component :is="isLink ? 'a' : 'button'"
+		class="button-vue"
+		:class="[
+			`button-vue--size-${size}`,
+			{
+				[`button-vue--${realVariant}`]: realVariant,
+				'button-vue--wide': wide,
+				[`button-vue--${flexAlignment}`]: flexAlignment !== 'center',
+				'button-vue--reverse': isReverseAligned,
+				active: routerLink?.isActive,
+			},
+		]"
+		:disabled
+		:aria-label
+		v-bind="{
+			...ncPopoverTriggerAttrs,
+			...(isLink ? linkAttrs : buttonAttrs),
+		}"
+		@click="onClick">
+		<span class="button-vue__wrapper">
+			<span class="button-vue__icon">
+				<slot name="icon" />
+			</span>
+			<span class="button-vue__text">
+				<slot>
+					{{ text }}
+				</slot>
+			</span>
+		</span>
+	</component>
+</template>
 
 <style lang="scss" scoped>
 .button-vue {
 	--button-size: var(--default-clickable-area);
 	--button-radius: var(--border-radius-element, calc(var(--button-size) / 2));
-	--button-padding: clamp(var(--default-grid-baseline), var(--button-radius), calc(var(--default-grid-baseline) * 4));
+	--button-padding-default: min(calc(var(--default-grid-baseline) + var(--button-radius)), calc(var(--default-grid-baseline) * 4));
+	--button-padding: var(--default-grid-baseline) var(--button-padding-default);
 
 	// General styles
 	// by default use secondary styling
@@ -738,7 +734,8 @@ export default defineComponent({
 	position: relative;
 	width: fit-content;
 	overflow: hidden;
-	padding: 0;
+	padding-block: 0;
+	padding-inline: var(--button-padding);
 	min-height: var(--button-size);
 	min-width: var(--button-size);
 	// display setup
@@ -773,17 +770,20 @@ export default defineComponent({
 		outline: none;
 	}
 
+	// Disabled styles
 	&:disabled {
-		cursor: default;
-		opacity: $opacity_disabled;
 		// Gives a wash out effect
 		filter: saturate($opacity_normal);
+		opacity: $opacity_disabled;
 
-		& * {
+		// Reset the cursor
+		cursor: default;
+		* {
 			cursor: default;
 		}
 	}
 
+	// Hover styles when not disabled (for the default theming of 'secondary')
 	&:hover:not(:disabled) {
 		background-color: var(--color-primary-element-light-hover);
 	}
@@ -823,7 +823,12 @@ export default defineComponent({
 		display: flex;
 		justify-content: center;
 		align-items: center;
+
+		&:empty {
+			display: none;
+		}
 	}
+
 	// For small buttons we need to adjust the icon size
 	&--size-small &__icon {
 		:deep(> *) {
@@ -843,30 +848,26 @@ export default defineComponent({
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		overflow: hidden;
+
+		&:empty {
+			display: none;
+		}
 	}
 
 	// Icon-only button
-	&--icon-only {
+	&:has(#{&}__text:empty) {
+		--button-padding: clamp(var(--default-grid-baseline), var(--button-radius), calc(var(--default-grid-baseline) * 4));
 		line-height: 1;
 		width: var(--button-size) !important;
 	}
 
 	// Text-only button
-	&--text-only {
-		padding: 0 var(--button-padding);
+	&:has(#{&}__icon:empty) {
+		--button-padding: var(--button-padding-default);
 
 		.button-vue__text {
-			margin-inline: 4px;
+			padding-inline: var(--default-grid-baseline);
 		}
-	}
-
-	// Icon and text button
-	&--icon-and-text {
-		// icon and text means the icon adds "visual" padding thus we need to adjust the text padding
-		--button-padding: min(calc(var(--default-grid-baseline) + var(--button-radius)), calc(var(--default-grid-baseline) * 4));
-		// Adjust padding as the icon already got some padding we need to reduce the padding on the icon side and only add larger padding to the text side
-		padding-block: 0;
-		padding-inline: var(--default-grid-baseline) var(--button-padding);
 	}
 
 	// Wide button spans the whole width of the container
@@ -887,7 +888,7 @@ export default defineComponent({
 	// Button types
 
 	// Primary
-	&--vue-primary {
+	&--primary {
 		background-color: var(--color-primary-element);
 		color: var(--color-primary-element-text);
 		&:hover:not(:disabled) {
@@ -901,7 +902,7 @@ export default defineComponent({
 	}
 
 	// Secondary
-	&--vue-secondary {
+	&--secondary {
 		color: var(--color-primary-element-light-text);
 		background-color: var(--color-primary-element-light);
 		&:hover:not(:disabled) {
@@ -911,7 +912,7 @@ export default defineComponent({
 	}
 
 	// Tertiary
-	&--vue-tertiary {
+	&--tertiary {
 		color: var(--color-main-text);
 		background-color: transparent;
 		&:hover:not(:disabled) {
@@ -920,7 +921,7 @@ export default defineComponent({
 	}
 
 	// Tertiary, no background
-	&--vue-tertiary-no-background {
+	&--tertiary-no-background {
 		color: var(--color-main-text);
 		background-color: transparent;
 		&:hover:not(:disabled) {
@@ -929,7 +930,7 @@ export default defineComponent({
 	}
 
 	// Tertiary on primary color (like the header)
-	&--vue-tertiary-on-primary {
+	&--tertiary-on-primary {
 		color: var(--color-primary-element-text);
 		background-color: transparent;
 
@@ -939,7 +940,7 @@ export default defineComponent({
 	}
 
 	// Success
-	&--vue-success {
+	&--success {
 		background-color: var(--color-success);
 		color: white;
 		&:hover:not(:disabled) {
@@ -953,7 +954,7 @@ export default defineComponent({
 	}
 
 	// Warning
-	&--vue-warning {
+	&--warning {
 		background-color: var(--color-warning);
 		color: white;
 		&:hover:not(:disabled) {
@@ -967,7 +968,7 @@ export default defineComponent({
 	}
 
 	// Error
-	&--vue-error {
+	&--error {
 		background-color: var(--color-error);
 		color: white;
 		&:hover:not(:disabled) {

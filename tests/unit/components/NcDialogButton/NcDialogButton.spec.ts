@@ -2,23 +2,23 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+import type { ButtonType } from '../../../../src/components/NcButton/index.ts'
 
 import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
-import { ButtonType } from '../../../../src/components/NcButton/index.ts'
 import NcDialogButton from '../../../../src/components/NcDialogButton/NcDialogButton.vue'
 
 describe('NcDialogButton', () => {
 	it.each([
-		[ButtonType.Reset],
-		[ButtonType.Button],
-		[ButtonType.Submit],
-	])('forwards the native type', async (type: ButtonType) => {
+		['reset'],
+		['button'],
+		['submit'],
+	])('forwards the native type', async (type: string) => {
 		const wrapper = mount(NcDialogButton, {
 			props: {
 				label: 'button',
-				type,
+				type: type as ButtonType,
 			},
 		})
 		expect(wrapper.find('button').attributes('type')).toBe(type)
@@ -75,7 +75,7 @@ describe('NcDialogButton', () => {
 		const wrapper = mount(NcDialogButton, {
 			props: {
 				label: 'button',
-				type: ButtonType.Reset,
+				type: 'reset',
 			},
 		})
 		await wrapper.find('button').trigger('click')
@@ -86,7 +86,7 @@ describe('NcDialogButton', () => {
 		const wrapper = mount(NcDialogButton, {
 			props: {
 				label: 'button',
-				type: ButtonType.Reset,
+				type: 'reset',
 				callback: () => true,
 			},
 		})

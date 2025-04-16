@@ -60,10 +60,10 @@
     "styleguide:build": "vue-styleguidist --config styleguide.config.cjs build",
     "stylelint": "stylelint \"src/**/*.vue\" \"src/**/*.scss\" \"src/**/*.css\"",
     "stylelint:fix": "stylelint \"src/**/*.vue\" \"src/**/*.scss\" \"src/**/*.css\" --fix",
-    "test": "TZ=UTC vitest run",
+    "test": "vitest run",
     "test:component": "playwright test -c playwright.config.ts",
     "test:component:gui": "playwright test --ui -c playwright.config.ts",
-    "test:coverage": "TZ=UTC vitest run --coverage",
+    "test:coverage": "vitest run --coverage",
     "ts:check": "vue-tsc --noEmit",
     "update:snapshots": "npm run test:component -- --grep @visual --update-snapshots",
     "watch": "npm run dev:watch"
