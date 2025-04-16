@@ -36,10 +36,6 @@
     "./functions/*": {
       "types": "./dist/functions/*/index.d.ts",
       "import": "./dist/functions/*/index.mjs"
-    },
-    "./mixins/*": {
-      "types": "./dist/mixins/*/index.d.ts",
-      "import": "./dist/mixins/*/index.mjs"
     }
   },
   "files": [

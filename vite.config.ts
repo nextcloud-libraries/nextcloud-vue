@@ -18,7 +18,7 @@ const SCOPE_VERSION = JSON.stringify(versionHash)
 
 // Entry points which we build using vite
 const entryPoints = {
-	...globSync('src/@(components|composables|directives|functions|mixins)/*/index.@(js|ts)')
+	...globSync('src/@(components|composables|directives|functions)/*/index.@(js|ts)')
 		.reduce((acc, item) => {
 			const name = item
 				.replace('src/', '')

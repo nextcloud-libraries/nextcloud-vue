@@ -121,6 +121,8 @@ Especially the following are now provided as composables:
 - `isFullscreen` is now provided as `useIsFullscreen`
 - `isMobile` is now provided as `useIsMobile` and `isMobileState` was removed.
 
+The `richEditing` mixin can be replaced by just using the `NcRichText` component.
+
 #### Other breaking changes
 - `NcAppSidebar`
   - The `closing` and `opening` events were removed.
