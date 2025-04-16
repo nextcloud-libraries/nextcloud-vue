@@ -257,8 +257,10 @@ msgstr "Kesta keskmiselt hele toon"
 msgid "Medium skin tone"
 msgstr "Kesta keskmine toon"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Sõnumi piiratud arv {count} tähemärki on käes"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Sõnumi piirarv %n tähemärk on käes"
+msgstr[1] "Sõnumi piirarv %n tähemärki on käes"
 
 msgid "Month picker"
 msgstr "Kuupäevavalija"
