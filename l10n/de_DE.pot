@@ -261,8 +261,10 @@ msgstr "Mittelheller Hautfarbton"
 msgid "Medium skin tone"
 msgstr "Mittlerer Hautfarbton"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Nachrichtenlimit von %n Zeichen erreicht"
+msgstr[1] "Nachrichtenlimit von %n Zeichen erreicht"
 
 msgid "Month picker"
 msgstr "Monatsauswahl"
