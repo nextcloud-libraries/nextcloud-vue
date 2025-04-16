@@ -68,8 +68,8 @@ const selectArray = [
 	{
 		props: {
 			inputLabel: 'Multiple (objects, pre-selected, stay open on select)',
+			keepOpen: true,
 			multiple: true,
-			closeOnSelect: false,
 			options: [
 				{
 					id: 'foo',
@@ -234,7 +234,7 @@ const data1 = {
 	props: {
 		inputLabel: 'Wrapped (Default)',
 		multiple: true,
-		closeOnSelect: false,
+		keepOpen: true,
 		options: [
 			'foo',
 			'bar',
@@ -265,8 +265,8 @@ const data1 = {
 const data2 = {
 	props: {
 		inputLabel: 'Not wrapped',
+		keepOpen: true,
 		multiple: true,
-		closeOnSelect: false,
 		options: [
 			'foo',
 			'bar',
@@ -319,185 +319,12 @@ export default {
 }
 </style>
 ```
-
-### User select examples
-
-```vue
-<template>
-	<div class="grid">
-		<div v-for="{ props } in selectArray"
-			class="container">
-			<NcSelect v-bind="props"
-				v-model="props.value" />
-		</div>
-	</div>
-</template>
-
-<script>
-import AccountGroup from '@mdi/svg/svg/account-group.svg?raw'
-import Email from '@mdi/svg/svg/email.svg?raw'
-
-const selectArray = [
-	{
-		props: {
-			inputLabel: 'User select',
-			userSelect: true,
-			options: [
-				{
-					id: '0-john',
-					displayName: 'John',
-					isNoUser: false,
-					subname: 'john@example.org',
-					icon: '',
-					// Example of how to show the user status within the option
-					user: '0-john',
-					preloadedUserStatus: {
-						icon: '',
-						status: 'online',
-						message: 'I am online',
-					},
-				},
-				{
-					id: '0-emma',
-					displayName: 'Emma',
-					isNoUser: false,
-					subname: 'emma@example.org',
-					icon: '',
-				},
-				{
-					id: '0-olivia',
-					displayName: 'Olivia',
-					isNoUser: false,
-					subname: 'olivia@example.org',
-					icon: '',
-				},
-				{
-					id: '0-noah',
-					displayName: 'Noah',
-					isNoUser: false,
-					subname: 'noah@example.org',
-					icon: '',
-				},
-				{
-					id: '0-oliver',
-					displayName: 'Oliver',
-					isNoUser: false,
-					subname: 'oliver@example.org',
-					icon: '',
-				},
-				{
-					id: '1-admin',
-					displayName: 'Admin',
-					isNoUser: true,
-					subname: null,
-					iconSvg: AccountGroup,
-					iconName: 'Group icon',
-				},
-				{
-					id: '2-org@example.org',
-					displayName: 'Organization',
-					isNoUser: true,
-					subname: 'org@example.org',
-					iconSvg: Email,
-					iconName: 'Email icon',
-				},
-			],
-		},
-	},
-
-	{
-		props: {
-			inputLabel: 'Multiple user select (stay open on select)',
-			userSelect: true,
-			multiple: true,
-			closeOnSelect: false,
-			options: [
-				{
-					id: '0-john',
-					displayName: 'John',
-					isNoUser: false,
-					subname: 'john@example.org',
-					icon: '',
-				},
-				{
-					id: '0-emma',
-					displayName: 'Emma',
-					isNoUser: false,
-					subname: 'emma@example.org',
-					icon: '',
-				},
-				{
-					id: '0-olivia',
-					displayName: 'Olivia',
-					isNoUser: false,
-					subname: 'olivia@example.org',
-					icon: '',
-				},
-				{
-					id: '0-noah',
-					displayName: 'Noah',
-					isNoUser: false,
-					subname: 'noah@example.org',
-					icon: '',
-				},
-				{
-					id: '0-oliver',
-					displayName: 'Oliver',
-					isNoUser: false,
-					subname: 'oliver@example.org',
-					icon: '',
-				},
-				{
-					id: '1-admin',
-					displayName: 'Admin',
-					isNoUser: true,
-					subname: null,
-					iconSvg: AccountGroup,
-					iconName: 'Group icon',
-				},
-				{
-					id: '2-org@example.org',
-					displayName: 'Organization',
-					isNoUser: true,
-					subname: 'org@example.org',
-					iconSvg: Email,
-					iconName: 'Email icon',
-				},
-			],
-		},
-	},
-]
-
-export default {
-	data() {
-		return {
-			selectArray,
-		}
-	},
-}
-</script>
-
-<style>
-.grid {
-	display: grid;
-	grid-template-columns: repeat(1, 500px);
-	gap: 10px;
-}
-
-.container {
-	display: flex;
-	flex-direction: column;
-	gap: 2px 0;
-}
-</style>
-```
 </docs>
 
 <template>
 	<VueSelect class="select"
 		:class="{
 			'select--no-wrap': noWrap,
-			'user-select': userSelect,
 		}"
 		v-bind="propsToForward"
 		@search="search = $event"
@@ -525,25 +352,18 @@ export default {
 				<!-- Set size to 26 to make up for the increased padding of this icon -->
 		</template>
 		<template #option="option">
-			<NcListItemIcon v-if="userSelect"
-				v-bind="option"
-				:avatar-size="32"
-				:name="option[localLabel]"
-				:search="search" />
-			<NcEllipsisedOption v-else
-				:name="String(option[localLabel])"
-				:search="search" />
+			<!-- @slot Customize how a option is rendered. -->
+			<slot name="option" v-bind="option">
+				<NcEllipsisedOption :name="String(option[localLabel])"
+					:search="search" />
+			</slot>
 		</template>
 		<template #selected-option="selectedOption">
-			<NcListItemIcon v-if="userSelect"
-				v-bind="selectedOption"
-				:avatar-size="avatarSize"
-				:name="selectedOption[localLabel]"
-				no-margin
-				:search="search" />
-			<NcEllipsisedOption v-else
-				:name="String(selectedOption[localLabel])"
-				:search="search" />
+			<!-- @slot Customize how a selected option is rendered -->
+			<slot name="selected-option" :v-bind="selectedOption">
+				<NcEllipsisedOption :name="String(selectedOption[localLabel])"
+					:search="search" />
+			</slot>
 		</template>
 		<template #spinner="spinner">
 			<NcLoadingIcon v-if="spinner.loading" />
@@ -581,7 +401,6 @@ import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import Close from 'vue-material-design-icons/Close.vue'
 
 import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
-import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
 export default {
@@ -590,7 +409,6 @@ export default {
 	components: {
 		ChevronDown,
 		NcEllipsisedOption,
-		NcListItemIcon,
 		NcLoadingIcon,
 		VueSelect,
 	},
@@ -663,13 +481,14 @@ export default {
 		},
 
 		/**
-		 * Close the dropdown when selecting an option
+		 * Keep the dropdown open after selecting an option.
 		 *
-		 * @see https://vue-select.org/api/props.html#closeonselect
+		 * @default false
+		 * @since 8.25.0
 		 */
-		closeOnSelect: {
+		keepOpen: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 
 		/**
@@ -731,10 +550,6 @@ export default {
 		 * Defaults to the internal vue-select function documented at the link
 		 * below
 		 *
-		 * Enabling `userSelect` will automatically set this to filter by the
-		 * `displayName` and `subname` properties of the user option object
-		 * unless this prop is set explicitly
-		 *
 		 * @see https://vue-select.org/api/props.html#filterby
 		 */
 		filterBy: {
@@ -792,9 +607,6 @@ export default {
 		 *
 		 * Defaults to the internal vue-select string documented at the link
 		 * below
-		 *
-		 * Enabling `userSelect` will automatically set this to `'displayName'`
-		 * unless this prop is set explicitly
 		 *
 		 * @see https://vue-select.org/api/props.html#label
 		 */
@@ -913,18 +725,6 @@ export default {
 		resetFocusOnOptionsChange: {
 			type: Boolean,
 			default: true,
-		},
-
-		/**
-		 * Enable the user selector with avatars
-		 *
-		 * Objects must contain the data expected by the
-		 * [NcListItemIcon](#/Components/NcListItemIcon) and
-		 * [NcAvatar](#/Components/NcAvatar) components
-		 */
-		userSelect: {
-			type: Boolean,
-			default: false,
 		},
 
 		/**
@@ -1055,32 +855,11 @@ export default {
 		},
 
 		localFilterBy() {
-			// Match the email notation like "Jane <j.doe@example.com>" with the email address as matching group
-			const EMAIL_NOTATION = /[^<]*<([^>]+)/
-
-			if (this.filterBy !== null) {
-				return this.filterBy
-			}
-			if (this.userSelect) {
-				return (option, label, search) => {
-					const match = search.match(EMAIL_NOTATION)
-					return (match && option.subname?.toLocaleLowerCase?.()?.indexOf(match[1].toLocaleLowerCase()) > -1)
-						|| (`${label} ${option.subname}`
-							.toLocaleLowerCase()
-							.indexOf(search.toLocaleLowerCase()) > -1)
-				}
-			}
-			return VueSelect.props.filterBy.default
+			return this.filterBy ?? VueSelect.props.filterBy.default
 		},
 
 		localLabel() {
-			if (this.label !== null) {
-				return this.label
-			}
-			if (this.userSelect) {
-				return 'displayName'
-			}
-			return VueSelect.props.label.default
+			return this.label ?? VueSelect.props.label.default
 		},
 
 		propsToForward() {
@@ -1097,6 +876,7 @@ export default {
 				...initialPropsToForward,
 				// Custom overrides of vue-select props
 				calculatePosition: this.localCalculatePosition,
+				closeOnSelect: !this.keepOpen,
 				filterBy: this.localFilterBy,
 				label: this.localLabel,
 			}
@@ -1360,10 +1140,5 @@ body {
 	.vs__no-options {
 		color: var(--color-text-lighter) !important;
 	}
-}
-
-// Selected users require slightly different padding
-.user-select .vs__selected {
-	padding-inline: 0 5px !important;
 }
 </style>

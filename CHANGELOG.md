@@ -140,7 +140,10 @@ Especially the following are now provided as composables:
   - The `range` property was removed in favor of `type="datetime-range"` (datetime ranges), `type="date-range"` (date only ranges), and `type="time-range"` (time only ranges).
   - The `lang` property was replaced with the `locale` property.
   - The `formatter` property was removed.
-  
+- `NcSelect`
+  - `userSelect` property was removed, instead just use the `NcSelectUsers` component
+  - `closeOnSelect` property was removed in favor of `keepOpen`.
+
 ### 🚀 Enhancements
 * Allow writing components using Typescript and provide type definitions for `NcButton` [\#4525](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4525) \([susnux](https://github.com/susnux)\)
 
