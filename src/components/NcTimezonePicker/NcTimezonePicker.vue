@@ -101,8 +101,8 @@ export default {
 		/** Same as update:modelValue for Vue 2 compatibility */
 		'update:model-value',
 	],
-	setup() {
-		const model = useModelMigration('value', 'input')
+	setup(props, {emit}) {
+		const model = useModelMigration(props, emit, 'value', 'input')
 		return {
 			model,
 		}
