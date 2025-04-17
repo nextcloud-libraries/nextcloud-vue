@@ -32,7 +32,7 @@ export default {
 			default: '',
 		},
 		referenceData: {
-			type: Object,
+			type: Array,
 			default: null,
 		},
 		limit: {
