@@ -5,6 +5,12 @@
 
 # Changelog
 
+## [v8.25.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.25.1) (2025-04-17)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.25.0...v8.25.1)
+
+### 🐛 Fixed bugs
+* fix(NcPopover): regression with incorrect size on RTL [#6797](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6797)
+
 ## [v8.25.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.25.0) (2025-04-16)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.24.0...v8.25.0)
 
