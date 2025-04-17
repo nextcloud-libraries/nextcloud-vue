@@ -107,8 +107,10 @@ export default {
 					'app-content-wrapper--mobile': isMobile,}">
 				<NcAppDetailsToggle v-if="showDetails" @click.stop.prevent="hideDetails" />
 
-				<slot v-if="!showDetails" name="list" />
-				<slot v-else />
+				<div v-show="!showDetails">
+					<slot name="list" />
+				</div>
+				<slot v-if="showDetails" />
 			</div>
 			<div v-else-if="layout === 'vertical-split' || layout === 'horizontal-split'" class="app-content-wrapper">
 				<Splitpanes :horizontal="layout === 'horizontal-split'"
