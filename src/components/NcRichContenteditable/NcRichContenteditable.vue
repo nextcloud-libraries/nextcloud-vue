@@ -1085,7 +1085,7 @@ export default {
 	overflow: auto;
 	// Hide container root element while initializing
 	position: absolute;
-	/* stylelint-disable csstools/use-logical */ /* upstream logic */
+	/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
 	left: -100vw;
 	// Space it out a bit from the text
 	margin: var(--default-grid-baseline) 0;

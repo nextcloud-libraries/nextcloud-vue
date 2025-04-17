@@ -416,7 +416,8 @@ $arrow-position: $arrow-width - 1px;
 .resize-observer {
 	position: absolute;
 	top: 0;
-	inset-inline-start: 0;
+	/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
+	left: 0;
 	z-index: -1;
 	width: 100%;
 	height: 100%;
@@ -431,7 +432,8 @@ $arrow-position: $arrow-width - 1px;
 		display: block;
 		position: absolute;
 		top: 0;
-		inset-inline-start: 0;
+		/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
+		left: 0;
 		height: 100%;
 		width: 100%;
 		overflow: hidden;
@@ -449,7 +451,8 @@ $arrow-position: $arrow-width - 1px;
 	&.v-popper__popper {
 		z-index: 100000;
 		top: 0;
-		inset-inline-start: 0;
+		/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
+		left: 0;
 		display: block !important;
 
 		.v-popper__wrapper {
@@ -485,26 +488,36 @@ $arrow-position: $arrow-width - 1px;
 
 		&[data-popper-placement^='top'] .v-popper__arrow-container {
 			bottom: -$arrow-position;
+			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
 			border-bottom-width: 0;
+			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
 			border-top-color: var(--color-main-background);
 		}
 
 		&[data-popper-placement^='bottom'] .v-popper__arrow-container {
 			top: -$arrow-position;
+			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
 			border-top-width: 0;
+			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
 			border-bottom-color: var(--color-main-background);
 		}
 
 		&[data-popper-placement^='right'] .v-popper__arrow-container {
-			inset-inline-start: -$arrow-position;
-			border-inline-start-width: 0;
-			border-inline-end-color: var(--color-main-background);
+			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
+			left: -$arrow-position;
+			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
+			border-left-width: 0;
+			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
+			border-right-color: var(--color-main-background);
 		}
 
 		&[data-popper-placement^='left'] .v-popper__arrow-container {
-			inset-inline-end: -$arrow-position;
-			border-inline-end-width: 0;
-			border-inline-start-color: var(--color-main-background);
+			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
+			right: -$arrow-position;
+			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
+			border-right-width: 0;
+			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
+			border-left-color: var(--color-main-background);
 		}
 
 		&[aria-hidden='true'] {
