@@ -94,6 +94,7 @@ are now removed. Following components have been adjusted:
 |     `NcModal` |           `enableSwipe` |       `disableSwipe` |
 |     `NcModal` |              `canClose` |            `noClose` |
 |    `NcDialog` |              `canClose` |            `noClose` |
+|   `NcPopover` |             `focusTrap` |        `noFocusTrap` |
 
 Additionally the default value `closeOnClickOutside` for `NcModal` was aligned with `NcDialog` and now defaults to `false`.
 
@@ -142,6 +143,9 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
   - The `range` property was removed in favor of `type="datetime-range"` (datetime ranges), `type="date-range"` (date only ranges), and `type="time-range"` (time only ranges).
   - The `lang` property was replaced with the `locale` property.
   - The `formatter` property was removed.
+- `NcPopover` no longer is a transparent wrapper over the `floating-vue` package.
+  Instead only use the documented properties and events.
+  If you find some use cases not covered by the documented interface, please open a feature request.
 - `NcSelect`
   - `userSelect` property was removed, instead just use the `NcSelectUsers` component
   - `closeOnSelect` property was removed in favor of `keepOpen`.
