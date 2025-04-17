@@ -252,6 +252,18 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * chore: restructure `package.json` [\#6405](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6405) \([susnux](https://github.com/susnux)\)
 * chore: Refactor changelog to make breaking changes better readable [\#6428](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6428) \([susnux](https://github.com/susnux)\)
 
+## [v8.26.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.26.0) (UNRELEASED)
+
+### 📝 Notes
+#### NcPopover
+`NcPopover` not has its own properties and no longer directly exposes the internal library used (`floating-vue`).
+It is still possible to use its properties, but this ability might be removed in the next version.
+This we encourage you to only use the documented properties.
+
+Also this component now supports a logical placement (`start`, `end`) which works with RTL design.
+Moreover the `focusTrap` property is now deprecated and will be replaced with `noFocusTrap`,
+the reason behind this is to only have boolean properties with default value of `false` allowing shortcut props.
+
 ## [v8.25.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.25.0) (UNRELEASED)
 
 ### 📝 Notes

@@ -7,10 +7,6 @@
 
 ### General description
 
-This component is just a wrapper for the floating-vue plugin by Akryum,
-please refer to this documentation for customization:
-https://github.com/Akryum/floating-vue
-
 This components has two slots:
 * 'trigger' which can be any html element and it will trigger the popover
 this slot is optional since you can toggle the popover also by updating the
@@ -68,21 +64,60 @@ The prop `:focus-trap="false"` help to prevent it when the default behavior is n
 </template>
 ```
 
-#### With passing props to `floating-vue`'s `Dropdown`:
+#### With logical placement
+
+If the text flow is language specific (e.g. UI is shown for right-to-left language),
+also the popover often needs to be adjusted when not rendered on top or bottom (default).
 
 ```vue
 <template>
-	<div style="display: flex">
-		<NcPopover container="body" :popper-hide-triggers="(triggers) => [...triggers, 'click']" popup-role="dialog">
-			<template #trigger>
-				<NcButton>I am the trigger</NcButton>
-			</template>
-			<template #default>
-				<NcButton>Click on the button will close NcPopover</NcButton>
-			</template>
-		</NcPopover>
+	<div class="wrapper">
+		<fieldset>
+			<NcCheckboxRadioSwitch v-model="dir" type="radio" value="ltr">
+				LTR
+			</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch v-model="dir" type="radio" value="rtl">
+				RTL
+			</NcCheckboxRadioSwitch>
+		</fieldset>
+		<div class="content" :dir>
+			<NcPopover :key="dir"
+				placement="end"
+				:triggers="['hover']">
+				<template #trigger>
+					<NcButton>
+						Hover me
+					</NcButton>
+				</template>
+				<template #default>
+					This will be shown on the logical end of the button.
+				</template>
+			</NcPopover>
+		</div>
 	</div>
 </template>
+<script>
+export default {
+	data() {
+		return {
+			dir: 'ltr',
+		}
+	},
+}
+</script>
+<style scoped>
+.content {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+fieldset {
+	display: flex;
+	flex-direction: row;
+	gap: 12px;
+}
+</style>
 ```
 
 #### With a custom button in as a trigger:
@@ -141,11 +176,22 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 
 <template>
 	<Dropdown ref="popover"
-		:distance="10"
 		:arrow-padding="10"
+		:auto-hide="closeOnClickOutside"
+		:boundary="boundary || undefined"
+		:container
+		:delay
+		:distance="10"
 		:no-auto-focus="true /* Handled by the focus trap */"
+		:placement="internalPlacement"
 		:popper-class="popoverBaseClass"
+		:popper-triggers="popoverTriggers"
+		:popper-hide-triggers="popoverTriggersHide"
+		:popper-show-triggers="popoverTriggersShow"
 		:shown="internalShown"
+		:triggers
+		:hide-triggers="triggersHide"
+		:show-triggers="triggersShow"
 		@update:shown="internalShown = $event"
 		@apply-show="afterShow"
 		@apply-hide="afterHide">
@@ -182,12 +228,107 @@ export default {
 
 	props: {
 		/**
-		 * Show or hide the popper
-		 * @see https://floating-vue.starpad.dev/api/#shown
+		 * Element to use for calculating the popper boundary (size and position).
 		 */
-		shown: {
+		boundary: {
+			type: String,
+			default: '',
+		},
+
+		/**
+		 * Automatically hide the popover on click outside.
+		 */
+		closeOnClickOutside: {
 			type: Boolean,
 			default: false,
+		},
+
+		/**
+		 * Container where to mount the popover.
+		 * Either a select query or `false` to mount to the parent node.
+		 */
+		container: {
+			type: [String, Boolean],
+			default: 'body',
+		},
+
+		/**
+		 * Delay for showing or hiding the popover.
+		 *
+		 * Can either be a number or an object to configure different delays (`{ show: number, hide: number }`).
+		 */
+		delay: {
+			type: [Number, Object],
+			default: 0,
+		},
+
+		/**
+		 * Enable popover focus trap
+		 *
+		 * @deprecated use noFocusTrap instead
+		 */
+		focusTrap: {
+			type: Boolean,
+			default: true,
+		},
+
+		/**
+		 * Disable the popover focus trap.
+		 */
+		noFocusTrap: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Where to place the popover.
+		 *
+		 * This consists of the vertical placment and the horizontal placement.
+		 * E.g. `bottom` will place the popover on the bottom of the trigger (horizontally centered),
+		 * while `buttom-start` will horizontally align the popover on the logical start (e.g. for LTR layout on the left.).
+		 * The `start` or `end` placement will align the popover on the left or right side or the trigger element.
+		 *
+		 * @type {'auto'|'auto-start'|'auto-end'|'top'|'top-start'|'top-end'|'bottom'|'bottom-start'|'bottom-end'|'start'|'end'}
+		 */
+		placement: {
+			type: String,
+			default: 'bottom',
+		},
+
+		popoverBaseClass: {
+			type: String,
+			default: '',
+		},
+
+		/**
+		 * Events that trigger the popover on the popover container itself.
+		 * This is useful if you set `triggers` to `hover` and also want the popover to stay open while hovering the popover itself.
+		 */
+		popoverTriggers: {
+			type: Array,
+			default: () => [],
+		},
+
+		/**
+		 * Override the trigger events for hiding on the popper container itself.
+		 * Passing a function allows to extend the `popoverTriggers`.
+		 */
+		popoverTriggersHide: {
+			type: [Function, Array],
+			default() {
+				return (triggers) => [...triggers]
+			},
+		},
+
+		/**
+		 * Override the trigger events for showing on the popper container itself.
+		 * Passing a function allows to extend the `popoverTriggers`.
+		 */
+		popoverTriggersShow: {
+			type: [Function, Array],
+			default() {
+				return (triggers) => [...triggers]
+			},
 		},
 
 		/**
@@ -200,17 +341,6 @@ export default {
 			validator: (value) => ['menu', 'listbox', 'tree', 'grid', 'dialog', 'true'].includes(value),
 		},
 
-		popoverBaseClass: {
-			type: String,
-			default: '',
-		},
-		/**
-		 * Enable popover focus trap
-		 */
-		focusTrap: {
-			type: Boolean,
-			default: true,
-		},
 		/**
 		 * Set element to return focus to after focus trap deactivation
 		 *
@@ -220,24 +350,71 @@ export default {
 			default: undefined,
 			type: [HTMLElement, SVGElement, String, Boolean, Function],
 		},
+
+		/**
+		 * Show or hide the popper
+		 */
+		shown: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Events that trigger the popover.
+		 *
+		 * If you pass an empty array then only the `shown` prop can control the popover state.
+		 * Following events are available:
+		 * - `'hover'`
+		 * - `'click'`
+		 * - `'focus'`
+		 * - `'touch'`
+		 */
+		triggers: {
+			type: Array,
+			default: () => ['click'],
+		},
+
+		/**
+		 * Triggers for only hiding the popover.
+		 * Passing a function allows to extend the `triggers`.
+		 */
+		triggersHide: {
+			type: [Function, Array],
+			default() {
+				return (triggers) => [...triggers]
+			},
+		},
+
+		/**
+		 * Triggers for only showing the popover.
+		 * Passing a function allows to extend the `triggers`.
+		 */
+		triggersShow: {
+			type: [Function, Array],
+			default() {
+				return (triggers) => [...triggers]
+			},
+		},
 	},
 
 	emits: [
 		'after-show',
 		'after-hide',
-		/**
-		 * @see https://floating-vue.starpad.dev/api/#update-shown
-		 */
 		'update:shown',
 	],
 
 	data() {
 		return {
+			internalPlacement: this.logicalPlacement(this.placement),
 			internalShown: this.shown,
 		}
 	},
 
 	watch: {
+		placement(value) {
+			this.internalPlacement = this.logicalPlacement(value)
+		},
+
 		shown(value) {
 			this.internalShown = value
 		},
@@ -249,6 +426,7 @@ export default {
 
 	mounted() {
 		this.checkTriggerA11y()
+		this.internalPlacement = this.logicalPlacement(this.placement)
 	},
 
 	beforeUnmount() {
@@ -257,6 +435,35 @@ export default {
 	},
 
 	methods: {
+		logicalPlacement(placement) {
+			if (placement === 'start') {
+				return 'left'
+			} else if (placement === 'end') {
+				const trigger = this.getPopoverTriggerContainerElement() ?? this.$refs.popover?.$el
+				return this.logicalDirection(trigger, 'right', 'left')
+			}
+			return placement
+		},
+
+		/**
+		 * @param {HTMLElement} element The HTML element to check
+		 * @param {string} ltr LTR alternative
+		 * @param {string} rtl RTL alternative
+		 * @returns {string} The selected alternative
+		 */
+		logicalDirection(element, ltr, rtl) {
+			console.error(element, ltr, rtl)
+			if (!element) {
+				return ltr
+			}
+			const direction = window.getComputedStyle(element).direction
+			const { dir } = element
+			console.error(direction, dir)
+			return dir === 'rtl' || direction === 'rtl'
+				? rtl
+				: ltr
+		},
+
 		/**
 		 * Check if the trigger has all required a11y attributes.
 		 * Important to check custom trigger button.
@@ -295,7 +502,7 @@ export default {
 		 * @return {HTMLElement|undefined}
 		 */
 		getPopoverTriggerContainerElement() {
-			return this.$refs.popover.$refs.popper.$refs.reference
+			return this.$refs.popover?.$refs.popper.$refs.reference
 		},
 
 		/**
@@ -304,7 +511,7 @@ export default {
 		async useFocusTrap() {
 			await this.$nextTick()
 
-			if (!this.focusTrap) {
+			if (this.noFocusTrap || !this.focusTrap) {
 				return
 			}
 
@@ -370,7 +577,7 @@ export default {
 		},
 
 		async afterShow() {
-			this.getPopoverContentElement().addEventListener('transitionend', () => {
+			this.getPopoverContentElement()?.addEventListener('transitionend', () => {
 				/**
 				 * Triggered after the tooltip was visually displayed.
 				 *
@@ -388,7 +595,7 @@ export default {
 			this.addEscapeStopPropagation()
 		},
 		afterHide() {
-			this.getPopoverContentElement().addEventListener('transitionend', () => {
+			this.getPopoverContentElement()?.addEventListener('transitionend', () => {
 				/**
 				 * Triggered after the tooltip was visually hidden.
 				 *
