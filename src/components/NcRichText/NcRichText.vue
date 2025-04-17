@@ -361,7 +361,7 @@ export default {
 		},
 		/** Provide data upfront to avoid extra http request */
 		references: {
-			type: Object,
+			type: Array,
 			default: null,
 		},
 		/** Provide basic Markdown syntax */
