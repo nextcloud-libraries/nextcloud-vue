@@ -94,6 +94,7 @@ are now removed. Following components have been adjusted:
 |     `NcModal` |           `enableSwipe` |       `disableSwipe` |
 |     `NcModal` |              `canClose` |            `noClose` |
 |    `NcDialog` |              `canClose` |            `noClose` |
+|   `NcPopover` |             `focusTrap` |        `noFocusTrap` |
 
 Additionally the default value `closeOnClickOutside` for `NcModal` was aligned with `NcDialog` and now defaults to `false`.
 
@@ -251,6 +252,13 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * refactor(useHotKey): migrate code to Typescript [\#6430](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6430) \([susnux](https://github.com/susnux)\)
 * chore: restructure `package.json` [\#6405](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6405) \([susnux](https://github.com/susnux)\)
 * chore: Refactor changelog to make breaking changes better readable [\#6428](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6428) \([susnux](https://github.com/susnux)\)
+
+## [v8.26.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.26.0) (UNRELEASED)
+
+### 📝 Notes
+#### NcPopover
+The `focusTrap` property is now deprecated and will be replaced with `noFocusTrap`,
+the reason behind this is to only have boolean properties with default value of `false` allowing shortcut props.
 
 ## [v8.25.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.25.0) (UNRELEASED)
 
