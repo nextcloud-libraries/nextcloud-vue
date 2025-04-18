@@ -94,6 +94,7 @@ are now removed. Following components have been adjusted:
 |     `NcModal` |           `enableSwipe` |       `disableSwipe` |
 |     `NcModal` |              `canClose` |            `noClose` |
 |    `NcDialog` |              `canClose` |            `noClose` |
+|   `NcPopover` |             `focusTrap` |        `noFocusTrap` |
 
 Additionally the default value `closeOnClickOutside` for `NcModal` was aligned with `NcDialog` and now defaults to `false`.
 
