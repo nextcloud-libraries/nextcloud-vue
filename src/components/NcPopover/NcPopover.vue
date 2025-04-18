@@ -204,13 +204,25 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Enable popover focus trap
+		 *
+		 * @deprecated use noFocusTrap instead
 		 */
 		focusTrap: {
 			type: Boolean,
 			default: true,
 		},
+
+		/**
+		 * Disable the popover focus trap.
+		 */
+		noFocusTrap: {
+			type: Boolean,
+			default: false,
+		},
+
 		/**
 		 * Set element to return focus to after focus trap deactivation
 		 *
@@ -304,7 +316,7 @@ export default {
 		async useFocusTrap() {
 			await this.$nextTick()
 
-			if (!this.focusTrap) {
+			if (this.noFocusTrap || !this.focusTrap) {
 				return
 			}
 
