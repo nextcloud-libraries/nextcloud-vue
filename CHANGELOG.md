@@ -7,8 +7,8 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0-alpha.8) (unreleased)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.24.0...v9.0.0-alpha.8)
+## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0-rc.0) (unreleased)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.24.0...v9.0.0-rc.0)
 
 ### 💥 Breaking Changes
 * The package now uses Vue 3 instead of Vue 2.7
@@ -151,6 +151,11 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 
 ### 🚀 Enhancements
 * Allow writing components using Typescript and provide type definitions for `NcButton` [\#4525](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4525) \([susnux](https://github.com/susnux)\)
+* feat(NcDateTimePicker): add time range picker and align naming [#6728](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6728) ([susnux](https://github.com/susnux))
+* feat(dialogs/spawnDialog): separate spawning options from dialog props and allow Element as a container [#6756](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6756) ([ShGKme](https://github.com/ShGKme))
+* feat(dialogs/spawnDialogs)!: do not toRaw the result  [#6760](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6760) ([ShGKme](https://github.com/ShGKme))
+* feat(dialogs/spawnDialog): return promise with the result [#6758](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6758) ([ShGKme](https://github.com/ShGKme))
+* feat(dialogs/spawnDialog)!: replace onClose callback with Promise [#6759](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6759) ([ShGKme](https://github.com/ShGKme))
 
 ### 🐛 Fixed bugs
 * fix(NcActions): trigger forgotten closed event and correctly handle open [#6706](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6706) ([ShGKme](https://github.com/ShGKme))
@@ -180,6 +185,10 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * fix(NcAvatar): attributes order [\#6377](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6377) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 * fix!: make 'box-sizing: border-box' a default behaviour for all containers [\#6390](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6390) \([Antreesy](https://github.com/Antreesy)\)
 * fix(NcSelect): `required` doesn't work [\#6458](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6458) \([ShGKme](https://github.com/ShGKme)\)
+* fix(dialogs/spawnDialog): enhance `spawnDialog` types [#6781](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6781) ([mattersj](https://github.com/mattersj))
+* fix(NcDateTimePicker): adjust padding to prevent horizontal scrolling [#6722](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6722) ([susnux](https://github.com/susnux))
+* fix(NcDateTimePicker): prevent emitting `[Date, null]` [#6726](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6726) ([susnux](https://github.com/susnux))
+* fix(dialogs/spawnDialog)!: support vue-devtool but lose appContext [#6752](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6752) ([ShGKme](https://github.com/ShGKme))
 
 ### Changed
 * refactor: replace boolean properties with `default: true` with `default: false` [#6653](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6653) ([susnux](https://github.com/susnux))
@@ -251,10 +260,33 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * refactor(useHotKey): migrate code to Typescript [\#6430](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6430) \([susnux](https://github.com/susnux)\)
 * chore: restructure `package.json` [\#6405](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6405) \([susnux](https://github.com/susnux)\)
 * chore: Refactor changelog to make breaking changes better readable [\#6428](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6428) \([susnux](https://github.com/susnux)\)
+* refactor: Migrate `NcButton` from render function to template [#6033](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6033) ([susnux](https://github.com/susnux))
+* refactor: adjust code to fix all SASS deprecations [#6734](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6734) ([susnux](https://github.com/susnux))
+* refactor: drop `string-length` dependency and replace with native solution [#6779](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6779) ([susnux](https://github.com/susnux))
+* chore: drop remaining cypress files [#6735](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6735) ([susnux](https://github.com/susnux))
+* chore: adjust package engines versions [#6725](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6725) ([susnux](https://github.com/susnux))
+* chore: update pull_request_template.md [#6736](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6736) ([ShGKme](https://github.com/ShGKme))
+* docs(NcDateTimePicker): add prop documentation for all props [#6727](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6727) ([susnux](https://github.com/susnux))
 
-## [v8.25.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.25.0) (UNRELEASED)
+## [v8.25.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.25.0) (2025-04-16)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.24.0...v8.25.0)
 
 ### 📝 Notes
+#### `NcDateTimePicker`
+In version 8 the `NcDateTimePicker` was a transparent wrapper around the [vue2 datepicker library](https://github.com/mengxiong10/vue2-datepicker).
+With version 9 and beyond we will no longer transparently wrap external libraries,
+thus only documented props, events, and slots of Nextcloud components are guaranteed to work.
+This will allow use to change the underlying library while keeping a stable API for the component users.
+
+For this we deprecated the `range` property in favor of three new types for the `NcDateTimePicker`.
+- `date-range`
+- `time-range`
+- `datetime-range`
+
+Also the `formatter` property is deprecated, instead you can now provide a function to the `format` property,
+which will receive a `Date` object and should return the formatted date as a string.
+
+#### `Tooltip` directive
 The `Tooltip` directive has been deprecated and will be removed in the future.
 In most cases you want to use the native browser tooltips instead by using the native HTML `title` attribute.
 In some rare cases where you really need a formatted tooltip `NcPopover` could be used.
@@ -265,7 +297,19 @@ In some rare cases where you really need a formatted tooltip `NcPopover` could b
 +    :title="title"
 ```
 
-#### Boolean properties
+### 🚀 Enhancements
+* feat(NcDateTimePicker): add new types as alternative for `range` property [#6738](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6738) ([susnux](https://github.com/susnux))
+* feat: provide `NcSelectUsers` as replacement of `user-select` prop for `NcSelect` [#6791](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6791)
+
+### 🐛 Fixed bugs
+* Adjust all styles for RTL support and add `directional` prop to NcIconSvgWrapper [#6766](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6766)
+* fix(NcRichContenteditable): add correct tooltip [#6782](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6782)
+* fix(NcRichContenteditable): bring back error style on overflow [#6789](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6789)
+* fix(NcAvatar): skip user status request if `hideStatus` prop was provided [#6780](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6780) ([Antreesy](https://github.com/Antreesy))
+
+### Other Changes
+* Updates for project Nextcloud vue library [#6690](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6690) ([transifex-integration](https://github.com/transifex-integration))
+* refactor: deprecate `Tooltip` directive for accessibility [#6765](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6765)
 
 ## [v8.24.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.24.0) (2025-04-02)
 
