@@ -165,12 +165,12 @@ export default {
 </docs>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { t } from '../../l10n.js'
 import createElementId from '../../utils/GenRandomId.js'
 
 import NcListItemIcon from '../NcListItemIcon/NcListItemIcon.vue'
-import NcSelect from '../NcSelect/index.js'
+import NcSelect from '../NcSelect/NcSelect.vue'
 
 const props = defineProps({
 	/**
@@ -321,9 +321,16 @@ const props = defineProps({
 	},
 })
 
-defineEmits(['update:modelValue'])
+const emit = defineEmits(['search', 'update:modelValue'])
 
 const search = ref('')
+watch(search, () => {
+	/**
+	 * Emitted when the user enters some query.
+	 * This can be used to asynchronously fetch more options.
+	 */
+	emit('search', search.value)
+})
 
 // Avatar size so the component has the same size as Nc*Field
 const clickableArea = Number.parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-clickable-area'))
