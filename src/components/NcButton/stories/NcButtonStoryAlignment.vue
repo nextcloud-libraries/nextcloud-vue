@@ -2,9 +2,15 @@
   - SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
+<script setup>
+import NcButton from '../NcButton.vue'
+import IconLeft from 'vue-material-design-icons/ArrowLeft.vue'
+import IconRight from 'vue-material-design-icons/ArrowRight.vue'
+</script>
+
 <template>
 	<div style="display: flex; flex-direction: column; gap: 12px;">
-		<NcButton aria-label="center (default)" type="secondary" wide>
+		<NcButton aria-label="center (default)" variant="secondary" wide>
 			<template #icon>
 				<IconLeft :size="20" />
 			</template>
@@ -12,7 +18,7 @@
 		</NcButton>
 		<NcButton alignment="center-reverse"
 			aria-label="center-reverse"
-			type="secondary"
+			variant="secondary"
 			wide>
 			<template #icon>
 				<IconRight :size="20" />
@@ -23,7 +29,7 @@
 			<div style="display: flex; flex-direction: column; gap: 12px; flex: 1">
 				<NcButton alignment="start"
 					aria-label="start"
-					type="secondary"
+					variant="secondary"
 					wide>
 					<template #icon>
 						<IconLeft :size="20" />
@@ -32,7 +38,7 @@
 				</NcButton>
 				<NcButton alignment="start-reverse"
 					aria-label="start-reverse"
-					type="secondary"
+					variant="secondary"
 					wide>
 					<template #icon>
 						<IconRight :size="20" />
@@ -43,7 +49,7 @@
 			<div style="display: flex; flex-direction: column; gap: 12px; flex: 1">
 				<NcButton alignment="end"
 					aria-label="end"
-					type="secondary"
+					variant="secondary"
 					wide>
 					<template #icon>
 						<IconLeft :size="20" />
@@ -52,7 +58,7 @@
 				</NcButton>
 				<NcButton alignment="end-reverse"
 					aria-label="end-reverse"
-					type="secondary"
+					variant="secondary"
 					wide>
 					<template #icon>
 						<IconRight :size="20" />
@@ -63,17 +69,3 @@
 		</div>
 	</div>
 </template>
-
-<script>
-import NcButton from '../NcButton.vue'
-import IconLeft from 'vue-material-design-icons/ArrowLeft.vue'
-import IconRight from 'vue-material-design-icons/ArrowRight.vue'
-
-export default {
-	components: {
-		IconLeft,
-		IconRight,
-		NcButton,
-	},
-}
-</script>

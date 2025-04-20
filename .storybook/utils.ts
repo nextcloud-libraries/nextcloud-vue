@@ -15,7 +15,12 @@ import { h } from "vue"
  */
 export async function makeStory<T extends StoryObj>(vueComponent: Promise<{ default: Component }>, source: Promise<{ default: string }>) {
 	const { default: component } = await vueComponent
-	const { default: vueStorySource } = await source
+	const { default: sourceCode } = await source
+
+	const vueStorySource = sourceCode.replaceAll(
+		/import (Nc\S+) from '\.\.\/.+/g,
+		'import $1 from \'@nextcloud/vue/components/$1\'',
+	)
 
 	return {
 		render: (args) => ({
@@ -24,7 +29,6 @@ export async function makeStory<T extends StoryObj>(vueComponent: Promise<{ defa
 
 
 		vueStorySource,
-
 		tags: ['autodocs'],
 	} as unknown as T & { vueStorySource: string }
 }

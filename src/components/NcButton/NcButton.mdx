@@ -2,6 +2,10 @@
   * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
   * SPDX-License-Identifier: AGPL-3.0-or-later
   */}
+import { Meta, ArgTypes } from '@storybook/blocks'
+import { Canvas } from '../../../.storybook/utils.ts'
+import * as NcButtonStories from './stories/NcButton.stories.ts'
+import NcButton from './NcButton.vue'
 
 <Meta of={NcButtonStories} />
 
@@ -10,7 +14,7 @@
 General purpose button component. See props for different options.
 [Use material design icons only for icons](https://www.npmjs.com/package/vue-material-design-icons) and remember to set their size to 20.
 
-<ArgTypes />
+<ArgTypes of={NcButtonStories} />
 
 ## Usage
 
