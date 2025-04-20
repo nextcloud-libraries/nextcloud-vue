@@ -1,3 +1,7 @@
+/*!
+ * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
 import type { StorybookConfig } from '@storybook/vue3-vite'
 import { join } from 'path'
 
