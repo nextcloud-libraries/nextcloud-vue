@@ -1,3 +1,7 @@
+<!--
+  - SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 <template>
 	<div style="display: flex; flex-direction: column; gap: 12px;">
 		<NcButton aria-label="center (default)" type="secondary" wide>
