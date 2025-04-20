@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: CC0-1.0
  */
 
-import type { Plugin, UserConfigFn } from 'vite'
+import type { UserConfigFn } from 'vite'
 
 import { createLibConfig } from '@nextcloud/vite-config'
 import { globSync } from 'glob'
@@ -12,6 +12,7 @@ import { defineConfig } from 'vite'
 import crypto from 'node:crypto'
 
 import l10nPlugin from './build/l10n-plugin.mjs'
+import vueDocsPlugin from './build/vue-docs-plugin.ts'
 
 const appVersion = JSON.stringify(process.env.npm_package_version || 'nextcloud-vue')
 const versionHash = crypto.createHash('md5').update(appVersion).digest('hex').slice(0, 7)
@@ -29,17 +30,6 @@ const entryPoints = {
 		}, {}),
 
 	index: resolve(import.meta.dirname, 'src/index.ts'),
-}
-
-// Plugin for stripping out <docs> sections from vue files
-export const vueDocsPlugin: Plugin = {
-	name: 'vue-docs-plugin',
-	transform(code, id) {
-		if (!/vue&type=doc/.test(id)) {
-			return
-		}
-		return 'export default ""'
-	},
 }
 
 // Customizations for the vite config
