@@ -93,6 +93,7 @@ export default {
 		</span>
 		<NcActions v-if="canClose || hasActions()"
 			class="nc-chip__actions"
+			:container="actionsContainer"
 			:force-menu="!canClose"
 			variant="tertiary-no-background">
 			<NcActionButton v-if="canClose"
@@ -129,7 +130,15 @@ const props = defineProps({
 	},
 
 	/**
-	 * Main text of the chip
+	 * Container for the actions
+	 */
+	actionsContainer: {
+		type: String,
+		default: 'body'
+	},
+
+	/**
+	 * Main text of the chip.
 	 */
 	text: {
 		type: String,
