@@ -52,25 +52,28 @@ export default {
 ```
 </docs>
 
-<script>
-export default {
+<script lang="ts">
+import type { PropType, VNode } from 'vue'
+import { defineComponent } from 'vue'
+
+export default defineComponent({
 	name: 'NcVNodes',
+
 	props: {
 		/**
 		 * The vnodes to render
 		 */
 		vnodes: {
-			type: [Array, Object],
+			type: [Array, Object] as PropType<VNode | VNode[]>,
 			default: null,
 		},
 	},
+
 	/**
 	 * The render function to display the component
-	 *
-	 * @return {object} The created VNode
 	 */
 	render() {
 		return this.vnodes || this.$slots?.default?.({})
 	},
-}
+})
 </script>
