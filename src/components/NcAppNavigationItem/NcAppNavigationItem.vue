@@ -391,18 +391,18 @@ Just set the `pinned` prop.
 </template>
 
 <script>
-import NcActions from '../NcActions/index.js'
-import NcActionButton from '../NcActionButton/index.js'
-import NcLoadingIcon from '../NcLoadingIcon/index.js'
-import NcVNodes from '../NcVNodes/index.js'
-import NcAppNavigationIconCollapsible from './NcAppNavigationIconCollapsible.vue'
-import NcInputConfirmCancel from './NcInputConfirmCancel.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { createElementId } from '../../utils/createElementId.ts'
 import { t } from '../../l10n.js'
 
 import Pencil from 'vue-material-design-icons/Pencil.vue'
 import Undo from 'vue-material-design-icons/Undo.vue'
+import NcActions from '../NcActions/index.js'
+import NcActionButton from '../NcActionButton/index.js'
+import NcAppNavigationIconCollapsible from './NcAppNavigationIconCollapsible.vue'
+import NcInputConfirmCancel from './NcInputConfirmCancel.vue'
+import NcLoadingIcon from '../NcLoadingIcon/index.js'
+import NcVNodes from '../NcVNodes/index.ts'
 
 export default {
 	name: 'NcAppNavigationItem',
