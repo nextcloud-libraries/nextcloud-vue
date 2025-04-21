@@ -50,13 +50,61 @@ export default {
 ```
 </docs>
 
+<script setup lang="ts">
+import { computed } from 'vue'
+
+const props = withDefaults(defineProps<{
+	/**
+	 * Specify the size of the saving icon.
+	 */
+	size?: number
+
+	/**
+	 * Specify what is saved.
+	 * If not set the element will be hidden from accessibility tree.
+	 */
+	name?: string
+
+	/**
+	 * Set to true when saving is in progress.
+	 */
+	saving?: boolean
+
+	/**
+	 * Set to true if an error occured while saving.
+	 */
+	error?: boolean
+}>(), {
+	error: false,
+	name: '',
+	saving: false,
+	size: 20,
+})
+
+defineEmits<{
+	/**
+	 * Click event on the icon.
+	 */
+	click: [MouseEvent]
+}>()
+
+const indicatorColor = computed(() => {
+	if (props.error) {
+		return 'var(--color-error)'
+	}
+	if (props.saving) {
+		return 'var(--color-primary-element)'
+	}
+	return 'none'
+})
+</script>
+
 <template>
 	<span :aria-label="name"
 		class="material-design-icon"
 		role="img"
 		@click="$emit('click', $event)">
-		<svg :fill="fillColor"
-			class="material-design-icon__svg"
+		<svg class="material-design-icon__svg"
 			:width="size"
 			:height="size"
 			viewBox="0 0 24 24">
@@ -67,49 +115,3 @@ export default {
 		</svg>
 	</span>
 </template>
-
-<script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-	name: 'NcSavingIndicatorIcon',
-	props: {
-		/**
-		 * Specify the size of the saving icon.
-		 */
-		size: {
-			type: Number,
-			default: 20,
-		},
-		/**
-		 * Specify what is saved.
-		 */
-		name: {
-			type: String,
-			default: '',
-		},
-		/**
-		 * Set to true when saving is in progress.
-		 */
-		saving: {
-			type: Boolean,
-			default: false,
-			required: false,
-		},
-		/**
-		 * Set to true if an error occured while saving.
-		 */
-		error: {
-			type: Boolean,
-			default: false,
-			required: false,
-		},
-	},
-	emits: ['click'],
-	computed: {
-		indicatorColor() {
-			return this.error ? 'var(--color-error)' : (this.saving ? 'var(--color-primary-element)' : 'none')
-		},
-	},
-})
-</script>
