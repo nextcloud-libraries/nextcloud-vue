@@ -41,6 +41,7 @@ import { t } from '../../l10n.js'
 import { createElementId } from '../../utils/createElementId.ts'
 import NcSelect from '../NcSelect/index.js'
 import getTimezoneManager from './timezoneDataProviderService.ts'
+import getTimezoneManager from './timezoneDataProviderService.js'
 
 const props = withDefaults(defineProps<{
 	/**
