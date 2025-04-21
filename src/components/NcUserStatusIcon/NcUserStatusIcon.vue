@@ -29,126 +29,84 @@ This component displays a user status icon.
 ```
 </docs>
 
-<template>
-	<span v-if="activeStatus"
-		class="user-status-icon"
-		:class="{
-			'user-status-icon--invisible': ['invisible', 'offline'].includes(status),
-		}"
-		role="img"
-		:aria-hidden="ariaHidden"
-		:aria-label="ariaLabel"
-		v-html="activeSvg" /> <!-- eslint-disable-line vue/no-v-html -->
-</template>
-
-<script>
+<script setup lang="ts">
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
 import { getCapabilities } from '@nextcloud/capabilities'
+import { computed, watch } from 'vue'
+import { getUserStatusText } from '../../utils/UserStatus.ts'
+import { t } from '../../l10n.js'
 
 import onlineSvg from '../../assets/status-icons/user-status-online.svg?raw'
 import awaySvg from '../../assets/status-icons/user-status-away.svg?raw'
 import dndSvg from '../../assets/status-icons/user-status-dnd.svg?raw'
 import invisibleSvg from '../../assets/status-icons/user-status-invisible.svg?raw'
+import logger from '../../utils/logger.ts'
 
-import { getUserStatusText } from '../../utils/UserStatus.ts'
-import { t } from '../../l10n.js'
+const props = withDefaults(defineProps<{
+	/**
+	 * Set the user id to fetch the status
+	 */
+	user?: string
 
-export default {
-	name: 'NcUserStatusIcon',
+	/**
+	 * Set the `aria-hidden` attribute
+	 */
+	ariaHidden?: boolean | 'true' | 'false'
+}>(), {
+	user: undefined,
+	ariaHidden: false,
+})
 
-	props: {
-		/**
-		 * Set the user id to fetch the status
-		 */
-		user: {
-			type: String,
-			default: null,
-		},
+/**
+ * The user preloaded user status.
+ */
+const status = defineModel<'online' | 'away' | 'busy' | 'dnd' | 'invisible' | 'offline'>('status')
+const isInvisible = computed(() => status.value && ['invisible', 'offline'].includes(status.value))
 
-		/**
-		 * Set the status
-		 *
-		 * @type {'online' | 'away' | 'busy' | 'dnd' | 'invisible' | 'offline'}
-		 */
-		status: {
-			type: String,
-			default: null,
-			validator: (value) => [
-				'online',
-				'away',
-				'busy',
-				'dnd',
-				'invisible',
-				'offline',
-			].includes(value),
-		},
+/**
+ * Aria label to set on the element (will be set when ariaHidden is not set)
+ */
+const ariaLabel = computed(() => (
+	status.value && (!props.ariaHidden || props.ariaHidden === 'false')
+		? t('User status: {status}', { status: getUserStatusText(status.value) })
+		: undefined
+))
 
-		/**
-		 * Set the `aria-hidden` attribute
-		 *
-		 * @type {'true' | 'false'}
-		 */
-		ariaHidden: {
-			type: String,
-			default: null,
-			validator: (value) => [
-				'true',
-				'false',
-			].includes(value),
-		},
-	},
-
-	data() {
-		return {
-			fetchedUserStatus: null,
+watch(() => props.user, async (user) => {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	if (!status.value && user && (getCapabilities() as any)?.user_status?.enabled) {
+		try {
+			const { data } = await axios.get(generateOcsUrl('/apps/user_status/api/v1/statuses/{user}', { user }))
+			status.value = data.ocs?.data?.status
+		} catch (error) {
+			logger.debug('Error while fetching user status', { error })
 		}
-	},
+	}
+}, { immediate: true })
 
-	computed: {
-		activeStatus() {
-			return this.status ?? this.fetchedUserStatus
-		},
-
-		activeSvg() {
-			const matchSvg = {
-				online: onlineSvg,
-				away: awaySvg,
-				busy: awaySvg,
-				dnd: dndSvg,
-				invisible: invisibleSvg,
-				offline: invisibleSvg,
-			}
-			return matchSvg[this.activeStatus] ?? null
-		},
-
-		ariaLabel() {
-			if (this.ariaHidden === 'true') {
-				return null
-			}
-			return t('User status: {status}', { status: getUserStatusText(this.activeStatus) })
-		},
-	},
-
-	watch: {
-		user: {
-			immediate: true,
-			async handler(user) {
-				if (!user || !getCapabilities()?.user_status?.enabled) {
-					this.fetchedUserStatus = null
-					return
-				}
-				try {
-					const { data } = await axios.get(generateOcsUrl('/apps/user_status/api/v1/statuses/{user}', { user }))
-					this.fetchedUserStatus = data.ocs?.data?.status
-				} catch (error) {
-					this.fetchedUserStatus = null
-				}
-			},
-		},
-	},
+const matchSvg = {
+	online: onlineSvg,
+	away: awaySvg,
+	busy: awaySvg,
+	dnd: dndSvg,
+	invisible: invisibleSvg,
+	offline: invisibleSvg,
 }
+const activeSvg = computed(() => status.value && matchSvg[status.value])
 </script>
+
+<template>
+	<span v-if="status"
+		class="user-status-icon"
+		:class="{
+			'user-status-icon--invisible': isInvisible,
+		}"
+		:aria-hidden="!ariaLabel || undefined"
+		:aria-label
+		role="img"
+		v-html="activeSvg" /> <!-- eslint-disable-line vue/no-v-html -->
+</template>
 
 <style lang="scss" scoped>
 .user-status-icon {
