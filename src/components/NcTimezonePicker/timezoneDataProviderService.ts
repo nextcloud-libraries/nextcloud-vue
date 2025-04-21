@@ -11,8 +11,6 @@ let initialized = false
 /**
  * Gets the timezone-manager
  * initializes it if necessary
- *
- * @return {object}
  */
 export default function() {
 	if (!initialized) {
