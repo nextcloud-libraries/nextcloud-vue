@@ -65,7 +65,7 @@ export default defineConfig({
 				// We do have some dependencies that use node modules -> we need to polyfill
 				(await import('vite-plugin-node-polyfills')).nodePolyfills(),
 				// We need to strip off the docs sections for the vue plugin
-				(await import('./vite.config.ts')).vueDocsPlugin,
+				(await import('./build/docs-plugin.ts')).default,
 			],
 			define: {
 				appName: '"exampleApp"',
