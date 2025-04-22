@@ -10,7 +10,7 @@ import crypto from 'node:crypto'
 import { join, resolve } from 'node:path'
 import { defineConfig } from 'vite'
 
-import vueDocsPlugin from './build/docs-plugin'
+import vueDocsPlugin from './build/docs-plugin.ts'
 import l10nPlugin from './build/l10n-plugin.mjs'
 
 const appVersion = JSON.stringify(process.env.npm_package_version || 'nextcloud-vue')
