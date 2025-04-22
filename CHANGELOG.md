@@ -5,6 +5,13 @@
 
 # Changelog
 
+## [v8.26.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.26.0) (UNRELEASED)
+
+### 📝 Notes
+#### NcPopover
+The `focusTrap` property is now deprecated and will be replaced with `noFocusTrap`,
+the reason behind this is to only have boolean properties with default value of `false` allowing shortcut props.
+
 ## [v8.25.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.25.1) (2025-04-17)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.25.0...v8.25.1)
 
