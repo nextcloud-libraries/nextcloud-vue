@@ -9,7 +9,8 @@
 		"appVersion": true
 	},
 	"extends": [
-		"@nextcloud/eslint-config/vue3"
+		"@nextcloud/eslint-config/vue3",
+		"plugin:storybook/recommended"
 	],
 	"parserOptions": {
 		"babelOptions": {
