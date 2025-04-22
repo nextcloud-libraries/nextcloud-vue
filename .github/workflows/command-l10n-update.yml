@@ -64,7 +64,7 @@ jobs:
         if: ${{ needs.init.outputs.arg1 != 'fixup' && needs.init.outputs.arg1 != 'amend' }}
         run: |
           git add .
-          git commit --signoff -m 'Updating l10n asset'
+          git commit --signoff -m 'chore(l10n): extract new translations'
           git push origin ${{ needs.init.outputs.head_ref }}
 
       - name: Commit and push fixup
