@@ -114,4 +114,107 @@ describe('NcAvatar.vue', () => {
 			expect(wrapper.text()).toBe(initials)
 		})
 	})
+
+	describe('Icon and image rendering', () => {
+		// Mock the Image constructor
+		let originalImage
+
+		beforeAll(() => {
+			originalImage = global.Image
+			global.Image = jest.fn(() => ({
+				onload: null,
+				onerror: null,
+				_src: '',
+				get src() {
+					return this._src
+				},
+				set src(value) {
+					this._src = value
+					this.onload?.() // Trigger the onload event
+				},
+			}))
+		})
+
+		afterAll(() => {
+			global.Image = originalImage
+		})
+
+		it('should render image with avatar url pointing to a user', async () => {
+			const wrapper = mount(NcAvatar, {
+				propsData: {
+					displayName: 'Guest',
+					user: 'user1',
+				},
+			})
+			await nextTick()
+
+			expect(wrapper.find('img').exists()).toBeTruthy()
+			expect(wrapper.find('img').attributes('src')).toMatch(/avatar\/user1\/64$/)
+		})
+
+		it('should render image with avatar url pointing to a user', async () => {
+			const avatarUrl = 'https://cloud.ltd/index.php/avatar/user2/512'
+
+			const wrapper = mount(NcAvatar, {
+				propsData: {
+					displayName: 'Guest',
+					url: avatarUrl,
+				},
+			})
+			await nextTick()
+
+			expect(wrapper.find('img').exists()).toBeTruthy()
+			expect(wrapper.find('img').attributes('src')).toBe(avatarUrl)
+		})
+
+		it('should not render image with avatar url if icon slot is populated', async () => {
+			const wrapper = mount(NcAvatar, {
+				propsData: {
+					displayName: 'User',
+					user: 'userid',
+				},
+				slots: {
+					icon: '<span class="slot-scoped-icon"></span>',
+				}
+			})
+
+			expect(wrapper.find('img').exists()).toBeFalsy()
+			expect(wrapper.find('span.slot-scoped-icon').exists()).toBeTruthy()
+		})
+
+		it('should not render image with avatar url if iconClass is provided', async () => {
+			const wrapper = mount(NcAvatar, {
+				propsData: {
+					displayName: 'User',
+					user: 'userid',
+					iconClass: 'custom-icon-class',
+				},
+			})
+
+			expect(wrapper.find('img').exists()).toBeFalsy()
+			expect(wrapper.find('span.avatar-class-icon.custom-icon-class').exists()).toBeTruthy()
+		})
+
+		it('should not render image with avatar url if not a user', async () => {
+			const wrapper = mount(NcAvatar, {
+				propsData: {
+					displayName: 'Guest',
+					user: 'guest/abcdef',
+					isNoUser: true,
+				},
+			})
+
+			expect(wrapper.find('img').exists()).toBeFalsy()
+		})
+
+		it('should not render image with avatar url if user id is not provided', async () => {
+			const wrapper = mount(NcAvatar, {
+				propsData: {
+					displayName: 'Empty',
+				},
+			})
+
+			expect(wrapper.find('img').exists()).toBeFalsy()
+		})
+	})
 })
