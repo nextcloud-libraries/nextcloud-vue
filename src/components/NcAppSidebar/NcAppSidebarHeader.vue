@@ -10,17 +10,17 @@ import vLinkify from '../../directives/Linkify/index.ts'
 defineProps<{
 	name: string,
 	title?: string,
-	linkifyName?: boolean,
+	linkify?: boolean,
 }>()
 
 const id = inject('NcAppSidebar:header:id', 'app-sidebar-vue__header')
 </script>
 
 <template>
-	<h2 :id="id"
-		v-linkify="{ text: name, linkify: linkifyName }"
+	<h2 :id
+		v-linkify="{ text: name, linkify }"
 		:aria-label="title"
-		:title="title">
+		:title>
 		<slot>{{ name }}</slot>
 	</h2>
 </template>

@@ -620,7 +620,7 @@ export default {
 										ref="header"
 										class="app-sidebar-header__mainname"
 										:name="name"
-										:linkify-name="linkifyName"
+										:linkify="linkifyName"
 										:title="title"
 										:tabindex="nameEditable ? 0 : -1"
 										@click="editName" />
@@ -723,7 +723,7 @@ import StarOutline from 'vue-material-design-icons/StarOutline.vue'
 
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
-import { computed, warn } from 'vue'
+import { warn } from 'vue'
 
 export default {
 	name: 'NcAppSidebar',
@@ -750,7 +750,7 @@ export default {
 
 	provide() {
 		return {
-			'NcAppSidebar:header:id': computed(() => this.headerId),
+			'NcAppSidebar:header:id': this.headerId,
 		}
 	},
 
@@ -1022,7 +1022,7 @@ export default {
 				document.querySelector('#header'),
 			], {
 				allowOutsideClick: true,
-				fallbackFocus: this.$refs.closeButton?.$el ?? this.$refs.sidebar,
+				fallbackFocus: this.$refs.closeButton.$el,
 				trapStack: getTrapStack(),
 				escapeDeactivates: false,
 			})
@@ -1173,7 +1173,7 @@ export default {
 			}
 
 			try {
-				document.getElementById(this.headerId).focus()
+				(this.$refs.header ?? document.getElementById(this.headerId)).focus()
 			} catch (e) {
 				warn('NcAppSidebar should have focusable header for accessibility reasons. Use NcAppSidebarHeader component.')
 			}
