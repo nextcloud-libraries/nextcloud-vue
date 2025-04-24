@@ -550,7 +550,8 @@ export default {
 				As a simple solution - render it in the content to keep correct position.
 			-->
 			<Teleport v-if="ncContentSelector && !open && !noToggle" :to="ncContentSelector">
-				<NcButton :aria-label="t('Open sidebar')"
+				<NcButton ref="toggle"
+					:aria-label="t('Open sidebar')"
 					class="app-sidebar__toggle"
 					:class="toggleClasses"
 					variant="tertiary"
@@ -618,17 +619,13 @@ export default {
 						<div class="app-sidebar-header__name-container">
 							<div class="app-sidebar-header__mainname-container">
 								<!-- main name -->
-								<h2 v-show="!nameEditable"
-									:id="`app-sidebar-vue-${uid}__header`"
-									ref="header"
-									v-linkify="{text: name, linkify: linkifyName}"
-									:aria-label="title"
-									:title="title"
+								<NcAppSidebarHeader v-show="!nameEditable"
 									class="app-sidebar-header__mainname"
+									:name
+									:linkify="linkifyName"
+									:title
 									:tabindex="nameEditable ? 0 : -1"
-									@click.self="editName">
-									{{ name }}
-								</h2>
+									@click.self="editName" />
 								<template v-if="nameEditable">
 									<form v-click-outside="() => onSubmitName()"
 										class="app-sidebar-header__mainname-form"
@@ -669,6 +666,11 @@ export default {
 						</div>
 					</div>
 				</div>
+				<!-- a11y fallback for empty content -->
+				<NcAppSidebarHeader v-if="empty"
+					class="app-sidebar-header__mainname--hidden"
+					:name
+					tabindex="-1" />
 
 				<NcButton ref="closeButton"
 					:aria-label="closeTranslated"
@@ -706,13 +708,14 @@ export default {
 <script>
 import NcAppSidebarTabs from './NcAppSidebarTabs.vue'
 import NcActions from '../NcActions/index.js'
+import NcAppSidebarHeader from '../NcAppSidebarHeader/index.ts'
 import NcButton from '../NcButton/index.ts'
 import NcEmptyContent from '../NcEmptyContent/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import Focus from '../../directives/Focus/index.js'
-import Linkify from '../../directives/Linkify/index.ts'
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
+import { provide, ref, warn } from 'vue'
 import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
 import { createElementId } from '../../utils/createElementId.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
@@ -730,6 +733,7 @@ export default {
 
 	components: {
 		NcActions,
+		NcAppSidebarHeader,
 		NcAppSidebarTabs,
 		NcButton,
 		NcLoadingIcon,
@@ -743,7 +747,6 @@ export default {
 
 	directives: {
 		Focus,
-		Linkify,
 		ClickOutside,
 	},
 
@@ -922,9 +925,13 @@ export default {
 	],
 
 	setup() {
+		const headerRef = ref(null)
+		provide('NcAppSidebar:header:ref', headerRef)
+
 		return {
 			uid: createElementId(),
 			isMobile: useIsSmallMobile(),
+			headerRef,
 		}
 	},
 
@@ -1135,7 +1142,16 @@ export default {
 		 * @public
 		 */
 		focus() {
-			(this.$refs.header ?? this.$refs.toggle)?.focus()
+			if (!this.open && !this.noToggle) {
+				this.$refs.toggle.$el.focus()
+				return
+			}
+
+			try {
+				this.headerRef.focus()
+			} catch {
+				warn('NcAppSidebar should have focusable header for accessibility reasons. Use NcAppSidebarHeader component.')
+			}
 		},
 
 		/**
@@ -1495,6 +1511,17 @@ $top-buttons-spacing: 6px;
 					}
 				}
 			}
+		}
+
+		// Hidden a11y fallback
+		.app-sidebar-header__mainname--hidden {
+			position: absolute;
+			top: 0;
+			inset-inline-start: 0;
+			margin: 0;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
 		}
 
 		// sidebar description slot
