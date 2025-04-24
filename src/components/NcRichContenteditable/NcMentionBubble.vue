@@ -105,6 +105,7 @@ $bubble-avatar-size: $bubble-height - 2 * $bubble-padding;
 	}
 
 	&__wrapper {
+		position: relative;
 		max-width: $bubble-max-width;
 		// Align with text
 		height: $bubble-height - $bubble-padding;
@@ -118,10 +119,10 @@ $bubble-avatar-size: $bubble-height - 2 * $bubble-padding;
 		overflow: hidden;
 		align-items: center;
 		max-width: 100%;
-		height: $bubble-height ;
+		height: $bubble-height;
 		-webkit-user-select: none;
 		user-select: none;
-		padding-inline: $bubble-padding  $bubble-padding * 3;
+		padding-inline: $bubble-padding $bubble-padding * 3;
 		border-radius: math.div($bubble-height, 2);
 		background-color: var(--color-background-dark);
 	}
