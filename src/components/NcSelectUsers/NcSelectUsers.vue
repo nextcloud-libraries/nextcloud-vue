@@ -165,7 +165,7 @@ export default {
 </docs>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 import NcListItemIcon from '../NcListItemIcon/index.js'
 import NcSelect from '../NcSelect/index.js'
@@ -303,7 +303,17 @@ defineProps<{
  * The `v-model` directive may be used for two-way data binding.
  */
 defineModel<IUserData>('modelValue')
+
+const emit = defineEmits<{
+	/**
+	 * Emitted when the user enters some query.
+	 * This can be used to asynchronously fetch more options.
+	 */
+	search: [string]
+}>()
+
 const search = ref('')
+watch(search, () => emit('search', search.value))
 
 // Avatar size so the component has the same size as Nc*Field
 const clickableArea = Number.parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-clickable-area'))
@@ -314,6 +324,7 @@ const avatarSize = clickableArea - 2 * gridBaseLine
  * Filter function to search users.
  *
  * @param option - The option to check
+ * @param option.subname - The second line to check (often the email address)
  * @param label - The label of the option
  * @param search - The current search string
  */
