@@ -1305,6 +1305,9 @@ $top-buttons-spacing: $app-navigation-padding; // align with app navigation
 	}
 
 	.app-sidebar-header {
+		// Variable for custom content to be aware of space taken by close button (from top-right corner)
+		--app-sidebar-close-button-offset: calc(var(--default-clickable-area) + #{$top-buttons-spacing});
+
 		> .app-sidebar__close {
 			position: absolute;
 			z-index: 100;
@@ -1340,11 +1343,11 @@ $top-buttons-spacing: $app-navigation-padding; // align with app navigation
 					padding-inline-start: 0;
 					flex: 1 1 auto;
 					min-width: 0;
-					padding-inline-end: calc(2 * var(--default-clickable-area) + $top-buttons-spacing);
+					padding-inline-end: calc(var(--default-clickable-area) + var(--app-sidebar-close-button-offset));
 					padding-top: var(--app-sidebar-padding);
 
 					&.app-sidebar-header__desc--without-actions {
-						padding-inline-end: calc(var(--default-clickable-area) + $top-buttons-spacing);
+						padding-inline-end: var(--app-sidebar-close-button-offset);
 					}
 
 					.app-sidebar-header__tertiary-actions {
@@ -1356,7 +1359,7 @@ $top-buttons-spacing: $app-navigation-padding; // align with app navigation
 					}
 					.app-sidebar-header__menu {
 						top: $top-buttons-spacing;
-						inset-inline-end: calc(var(--default-clickable-area) + $top-buttons-spacing); // left of the close button
+						inset-inline-end: var(--app-sidebar-close-button-offset); // left of the close button
 						position: absolute;
 					}
 				}
@@ -1369,14 +1372,14 @@ $top-buttons-spacing: $app-navigation-padding; // align with app navigation
 			.app-sidebar-header__menu {
 				position: absolute;
 				top: $top-buttons-spacing;
-				inset-inline-end: calc($top-buttons-spacing + var(--default-clickable-area));
+				inset-inline-end: var(--app-sidebar-close-button-offset);
 			}
 			// increase the padding to not overlap the menu
 			.app-sidebar-header__desc {
-				padding-inline-end: calc(var(--default-clickable-area) * 2 + $top-buttons-spacing);
+				padding-inline-end: calc(var(--default-clickable-area) + var(--app-sidebar-close-button-offset));
 
 				&.app-sidebar-header__desc--without-actions {
-					padding-inline-end: calc(var(--default-clickable-area) + $top-buttons-spacing);
+					padding-inline-end: var(--app-sidebar-close-button-offset);
 				}
 			}
 		}
