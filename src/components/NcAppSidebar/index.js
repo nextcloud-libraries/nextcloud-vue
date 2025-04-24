@@ -4,3 +4,4 @@
  */
 
 export { default } from './NcAppSidebar.vue'
+export { default as NcAppSidebarHeader } from './NcAppSidebarHeader.vue'

@@ -30,7 +30,7 @@ export { default as NcAppNavigationSettings } from './NcAppNavigationSettings/in
 export { default as NcAppNavigationSpacer } from './NcAppNavigationSpacer/index.js'
 export { default as NcAppSettingsDialog } from './NcAppSettingsDialog/index.js'
 export { default as NcAppSettingsSection } from './NcAppSettingsSection/index.js'
-export { default as NcAppSidebar } from './NcAppSidebar/index.js'
+export { default as NcAppSidebar, NcAppSidebarHeader } from './NcAppSidebar/index.js'
 export { default as NcAppSidebarTab } from './NcAppSidebarTab/index.js'
 export { default as NcAvatar } from './NcAvatar/index.js'
 export { default as NcBlurHash } from './NcBlurHash/index.js'

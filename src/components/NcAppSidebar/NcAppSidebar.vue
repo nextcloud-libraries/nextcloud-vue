@@ -545,7 +545,8 @@ export default {
 				As a simple solution - render it in the content to keep correct position.
 			-->
 			<Teleport v-if="ncContentSelector && !open && !noToggle" :selector="ncContentSelector">
-				<NcButton :aria-label="t('Open sidebar')"
+				<NcButton ref="toggle"
+					:aria-label="t('Open sidebar')"
 					class="app-sidebar__toggle"
 					:class="toggleClasses"
 					variant="tertiary"
@@ -613,17 +614,14 @@ export default {
 						<div class="app-sidebar-header__name-container">
 							<div class="app-sidebar-header__mainname-container">
 								<!-- main name -->
-								<h2 v-show="!nameEditable"
-									:id="`app-sidebar-vue-${uid}__header`"
+								<NcAppSidebarHeader v-show="!nameEditable"
 									ref="header"
-									v-linkify="{text: name, linkify: linkifyName}"
-									:aria-label="title"
-									:title="title"
 									class="app-sidebar-header__mainname"
+									:name="name"
+									:linkify-name="linkifyName"
+									:title="title"
 									:tabindex="nameEditable ? 0 : -1"
-									@click.self="editName">
-									{{ name }}
-								</h2>
+									@click="editName" />
 								<template v-if="nameEditable">
 									<form v-click-outside="() => onSubmitName()"
 										class="app-sidebar-header__mainname-form"
@@ -702,13 +700,13 @@ export default {
 // TODO: This is built-in for vue3 just drop the import
 import { Portal as Teleport } from '@linusborg/vue-simple-portal'
 
+import NcAppSidebarHeader from './NcAppSidebarHeader.vue'
 import NcAppSidebarTabs from './NcAppSidebarTabs.vue'
 import NcActions from '../NcActions/index.js'
 import NcButton from '../NcButton/index.js'
 import NcEmptyContent from '../NcEmptyContent/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import Focus from '../../directives/Focus/index.js'
-import Linkify from '../../directives/Linkify/index.js'
 import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
 import GenRandomId from '../../utils/GenRandomId.js'
 import { getTrapStack } from '../../utils/focusTrap.ts'
@@ -722,6 +720,7 @@ import StarOutline from 'vue-material-design-icons/StarOutline.vue'
 
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
+import { computed, warn } from 'vue'
 
 export default {
 	name: 'NcAppSidebar',
@@ -729,6 +728,7 @@ export default {
 	components: {
 		Teleport,
 		NcActions,
+		NcAppSidebarHeader,
 		NcAppSidebarTabs,
 		ArrowRight,
 		IconDockRight,
@@ -742,8 +742,13 @@ export default {
 
 	directives: {
 		focus: Focus,
-		linkify: Linkify,
 		ClickOutside,
+	},
+
+	provide() {
+		return {
+			'NcAppSidebar:header:id': computed(() => this.headerId),
+		}
 	},
 
 	inject: {
@@ -923,8 +928,12 @@ export default {
 	],
 
 	setup() {
+		const uid = GenRandomId()
+		const headerId = `app-sidebar-vue-${uid}__header`
+
 		return {
-			uid: GenRandomId(),
+			uid,
+			headerId,
 			isMobile: useIsSmallMobile(),
 		}
 	},
@@ -1010,7 +1019,7 @@ export default {
 				document.querySelector('#header'),
 			], {
 				allowOutsideClick: true,
-				fallbackFocus: this.$refs.closeButton.$el,
+				fallbackFocus: this.$refs.closeButton?.$el ?? this.$refs.sidebar,
 				trapStack: getTrapStack(),
 				escapeDeactivates: false,
 			})
@@ -1155,7 +1164,16 @@ export default {
 		 * @public
 		 */
 		focus() {
-			this.$refs.header.focus()
+			if (!this.open && !this.noToggle) {
+				this.$refs.toggle.$el.focus()
+				return
+			}
+
+			try {
+				document.getElementById(this.headerId).focus()
+			} catch (e) {
+				warn('NcAppSidebar should have focusable header for accessibility reasons. Use NcAppSidebarHeader component.')
+			}
 		},
 
 		/**
