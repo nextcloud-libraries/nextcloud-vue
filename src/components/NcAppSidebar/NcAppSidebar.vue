@@ -571,103 +571,108 @@ export default {
 					'app-sidebar-header--compact': compact,
 				}"
 				class="app-sidebar-header">
-				<!-- container for figure and description, allows easy switching to compact mode -->
-				<div class="app-sidebar-header__info">
-					<!-- sidebar header illustration/figure -->
-					<div v-if="(isSlotPopulated($slots.header?.()) || background) && !empty"
-						:class="{
-							'app-sidebar-header__figure--with-action': hasFigureClickListener
-						}"
-						class="app-sidebar-header__figure"
-						:style="{
-							backgroundImage: `url(${background})`
-						}"
-						tabindex="0"
-						@click="onFigureClick"
-						@keydown.enter="onFigureClick">
-						<slot class="app-sidebar-header__background" name="header" />
-					</div>
-
-					<!-- sidebar details -->
-					<div v-if="!empty"
-						:class="{
-							'app-sidebar-header__desc--with-tertiary-action': canStar || isSlotPopulated($slots['tertiary-actions']?.()),
-							'app-sidebar-header__desc--editable': nameEditable && !subname,
-							'app-sidebar-header__desc--with-subname--editable': nameEditable && subname,
-							'app-sidebar-header__desc--without-actions': !isSlotPopulated($slots['secondary-actions']?.()),
-						}"
-						class="app-sidebar-header__desc">
-						<!-- favourite icon -->
-						<div v-if="canStar || isSlotPopulated($slots['tertiary-actions']?.())" class="app-sidebar-header__tertiary-actions">
-							<slot name="tertiary-actions">
-								<NcButton v-if="canStar"
-									:aria-label="favoriteTranslated"
-									:pressed="isStarred"
-									class="app-sidebar-header__star"
-									variant="secondary"
-									@click.prevent="toggleStarred">
-									<template #icon>
-										<NcLoadingIcon v-if="starLoading" />
-										<IconStar v-else-if="isStarred" :size="20" />
-										<IconStarOutline v-else :size="20" />
-									</template>
-								</NcButton>
-							</slot>
+				<!-- @slot Alternative to the default header info: use for bare NcAppSidebar with tabs.
+					NcAppSidebarHeader would be required to use for accessibility reasons.
+					This will be overridden by `empty` prop.
+				-->
+				<slot v-if="!empty" name="info">
+					<!-- container for figure and description, allows easy switching to compact mode -->
+					<div class="app-sidebar-header__info">
+						<!-- sidebar header illustration/figure -->
+						<div v-if="(isSlotPopulated($slots.header?.()) || background)"
+							:class="{
+								'app-sidebar-header__figure--with-action': hasFigureClickListener
+							}"
+							class="app-sidebar-header__figure"
+							:style="{
+								backgroundImage: `url(${background})`
+							}"
+							tabindex="0"
+							@click="onFigureClick"
+							@keydown.enter="onFigureClick">
+							<slot class="app-sidebar-header__background" name="header" />
 						</div>
 
-						<!-- name -->
-						<div class="app-sidebar-header__name-container">
-							<div class="app-sidebar-header__mainname-container">
-								<!-- main name -->
-								<NcAppSidebarHeader v-show="!nameEditable"
-									class="app-sidebar-header__mainname"
-									:name
-									:linkify="linkifyName"
-									:title
-									:tabindex="nameEditable ? 0 : -1"
-									@click.self="editName" />
-								<template v-if="nameEditable">
-									<form v-click-outside="() => onSubmitName()"
-										class="app-sidebar-header__mainname-form"
-										@submit.prevent="onSubmitName">
-										<input ref="nameInput"
-											v-focus
-											class="app-sidebar-header__mainname-input"
-											type="text"
-											:placeholder="namePlaceholder"
-											:value="name"
-											@keydown.esc.stop="onDismissEditing"
-											@input="onNameInput">
-										<NcButton :aria-label="changeNameTranslated"
-											type="submit"
-											variant="tertiary-no-background">
-											<template #icon>
-												<IconArrowRight :size="20" />
-											</template>
-										</NcButton>
-									</form>
-								</template>
-								<!-- header main menu -->
-								<NcActions v-if="isSlotPopulated($slots['secondary-actions']?.())"
-									class="app-sidebar-header__menu"
-									:force-menu="forceMenu">
-									<slot name="secondary-actions" />
-								</NcActions>
-							</div>
-							<!-- secondary name -->
-							<p v-if="subname.trim() !== '' || $slots['subname']"
-								:title="subtitle || undefined"
-								class="app-sidebar-header__subname">
-								<!-- @slot Alternative to the `subname` prop can be used for more complex conent. It will be rendered within a `p` tag. -->
-								<slot name="subname">
-									{{ subname }}
+						<!-- sidebar details -->
+						<div :class="{
+								'app-sidebar-header__desc--with-tertiary-action': canStar || isSlotPopulated($slots['tertiary-actions']?.()),
+								'app-sidebar-header__desc--editable': nameEditable && !subname,
+								'app-sidebar-header__desc--with-subname--editable': nameEditable && subname,
+								'app-sidebar-header__desc--without-actions': !isSlotPopulated($slots['secondary-actions']?.()),
+							}"
+							class="app-sidebar-header__desc">
+							<!-- favourite icon -->
+							<div v-if="canStar || isSlotPopulated($slots['tertiary-actions']?.())" class="app-sidebar-header__tertiary-actions">
+								<slot name="tertiary-actions">
+									<NcButton v-if="canStar"
+										:aria-label="favoriteTranslated"
+										:pressed="isStarred"
+										class="app-sidebar-header__star"
+										variant="secondary"
+										@click.prevent="toggleStarred">
+										<template #icon>
+											<NcLoadingIcon v-if="starLoading" />
+											<IconStar v-else-if="isStarred" :size="20" />
+											<IconStarOutline v-else :size="20" />
+										</template>
+									</NcButton>
 								</slot>
-							</p>
+							</div>
+
+							<!-- name -->
+							<div class="app-sidebar-header__name-container">
+								<div class="app-sidebar-header__mainname-container">
+									<!-- main name -->
+									<NcAppSidebarHeader v-show="!nameEditable"
+										class="app-sidebar-header__mainname"
+										:name
+										:linkify="linkifyName"
+										:title
+										:tabindex="nameEditable ? 0 : -1"
+										@click.self="editName" />
+									<template v-if="nameEditable">
+										<form v-click-outside="() => onSubmitName()"
+											class="app-sidebar-header__mainname-form"
+											@submit.prevent="onSubmitName">
+											<input ref="nameInput"
+												v-focus
+												class="app-sidebar-header__mainname-input"
+												type="text"
+												:placeholder="namePlaceholder"
+												:value="name"
+												@keydown.esc.stop="onDismissEditing"
+												@input="onNameInput">
+											<NcButton :aria-label="changeNameTranslated"
+												type="submit"
+												variant="tertiary-no-background">
+												<template #icon>
+													<IconArrowRight :size="20" />
+												</template>
+											</NcButton>
+										</form>
+									</template>
+									<!-- header main menu -->
+									<NcActions v-if="isSlotPopulated($slots['secondary-actions']?.())"
+										class="app-sidebar-header__menu"
+										:force-menu="forceMenu">
+										<slot name="secondary-actions" />
+									</NcActions>
+								</div>
+								<!-- secondary name -->
+								<p v-if="subname.trim() !== '' || $slots['subname']"
+									:title="subtitle || undefined"
+									class="app-sidebar-header__subname">
+									<!-- @slot Alternative to the `subname` prop can be used for more complex conent. It will be rendered within a `p` tag. -->
+									<slot name="subname">
+										{{ subname }}
+									</slot>
+								</p>
+							</div>
 						</div>
 					</div>
-				</div>
+				</slot>
 				<!-- a11y fallback for empty content -->
-				<NcAppSidebarHeader v-if="empty"
+				<NcAppSidebarHeader v-else
 					class="app-sidebar-header__mainname--hidden"
 					:name
 					tabindex="-1" />
