@@ -1,11 +1,11 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Kaya Zeren <kayazeren@gmail.com>, 2024
+# Joas Schilling, 2025
+# Kaya Zeren <kayazeren@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2024\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2025\n"
 "Language-Team: Turkish (https://app.transifex.com/nextcloud/teams/64236/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: tr\n"
@@ -15,7 +15,7 @@ msgid "{tag} (invisible)"
 msgstr "{tag} (görünmez)"
 
 msgid "{tag} (restricted)"
-msgstr "{tag} (kısıtlı)"
+msgstr "{tag} (kısıtlanmış)"
 
 msgid "A color with a HEX value {hex}"
 msgstr "{hex} onaltılık değeri ile bir renk "
@@ -37,7 +37,7 @@ msgid "Add to a project"
 msgstr "Bir projeye ekle"
 
 msgid "Animals & Nature"
-msgstr "Hayvanlar ve Doğa"
+msgstr "Hayvanlar ve doğa"
 
 msgid "Any link"
 msgstr "Herhangi bir bağlantı"
@@ -59,7 +59,7 @@ msgid "Back"
 msgstr "Geri"
 
 msgid "Back to provider selection"
-msgstr "Sağlayıcı seçimine dön"
+msgstr "Hizmet sağlayıcı seçimine dön"
 
 #. TRANSLATORS: A color name for RGB(91, 100, 179)
 msgid "Blue Violet"
@@ -70,7 +70,13 @@ msgid "Boston Blue"
 msgstr "Boston mavisi"
 
 msgid "busy"
-msgstr "meşgul"
+msgstr "Meşgul"
+
+msgid "Calendar icon"
+msgstr "Takvim simgesi"
+
+msgid "Cancel"
+msgstr "İptal"
 
 msgid "Cancel changes"
 msgstr "Değişiklikleri iptal et"
@@ -90,6 +96,9 @@ msgstr "Seçilmişleri temizle"
 msgid "Clear text"
 msgstr "Metni temizle"
 
+msgid "Clear value"
+msgstr "Değeri temizle"
+
 msgid "Close"
 msgstr "Kapat"
 
@@ -101,6 +110,9 @@ msgstr "Yan çubuğu kapat"
 
 msgid "Close Smart Picker"
 msgstr "Akıllı seçimi kapat"
+
+msgid "Close time Picker"
+msgstr "Zaman seçiciyi kapat"
 
 msgid "Collapse menu"
 msgstr "Menüyü daralt"
@@ -119,6 +131,21 @@ msgstr "Özel"
 
 msgid "Dark skin tone"
 msgstr "Koyu deri rengi"
+
+msgid "Datepicker input"
+msgstr "Tarih seçici girişi"
+
+msgid "Datepicker menu"
+msgstr "Tarih seçici menüsü"
+
+msgid "Decrement hours"
+msgstr "Azalma saati"
+
+msgid "Decrement minutes"
+msgstr "Azalma dakikası"
+
+msgid "Decrement seconds"
+msgstr "Azalma saniyesi"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -177,6 +204,7 @@ msgstr "Yeme ve içme"
 msgid "Frequently used"
 msgstr "Sık kullanılanlar"
 
+#. TRANSLATORS: This refers to global timezones in the timezone picker
 msgid "Global"
 msgstr "Evrensel"
 
@@ -191,6 +219,15 @@ msgstr "Ayrıntıları gizle"
 
 msgid "Hide password"
 msgstr "Parolayı gizle"
+
+msgid "Increment hours"
+msgstr "Artma saati"
+
+msgid "Increment minutes"
+msgstr "Artma dakikası"
+
+msgid "Increment seconds"
+msgstr "Artma saniyesi"
 
 msgid "invisible"
 msgstr "görünmez"
@@ -221,8 +258,16 @@ msgstr "Orta açık deri rengi"
 msgid "Medium skin tone"
 msgstr "Orta deri rengi"
 
-msgid "Message limit of {count} characters reached"
-msgstr "{count} karakter ileti sınırına ulaşıldı"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "İleti için %n karakter sayısı sınırına ulaşıldı"
+msgstr[1] "İleti için %n karakter sayısı sınırına ulaşıldı"
+
+msgid "Month picker"
+msgstr "Ay seçici"
+
+msgid "Month picker overlay"
+msgstr "Ay seçici kaplaması"
 
 msgid "More items …"
 msgstr "Diğer ögeler…"
@@ -236,6 +281,12 @@ msgstr "Nötr deri rengi"
 msgid "Next"
 msgstr "Sonraki"
 
+msgid "Next month"
+msgstr "Sonraki ay"
+
+msgid "Next year"
+msgstr "Sonraki yıl"
+
 msgid "Nextcloud blue"
 msgstr "Nextcloud mavi"
 
@@ -243,10 +294,13 @@ msgid "No emoji found"
 msgstr "Herhangi bir emoji bulunamadı"
 
 msgid "No link provider found"
-msgstr "Bağlantı sağlayıcısı bulunamadı"
+msgstr "Bağlantı hizmeti sağlayıcısı bulunamadı"
 
 msgid "No results"
 msgstr "Herhangi bir sonuç bulunamadı"
+
+msgid "Now"
+msgstr "Şimdi"
 
 msgid "Objects"
 msgstr "Nesneler"
@@ -261,17 +315,35 @@ msgstr "Zeytinlik"
 msgid "online"
 msgstr "Çevrim içi"
 
+msgid "Open hours overlay"
+msgstr "Açık saatler kaplaması"
+
 msgid "Open link to \"{resourceName}\""
-msgstr "{resourceName} bağlantısını aç"
+msgstr "Bağlantıyı \"{resourceName}\" üzerine aç"
 
 msgid "Open menu"
 msgstr "Menüyü aç"
 
-msgid "Open navigation {shortcut}"
-msgstr "Gezinmeyi aç {shortcut}"
+msgid "Open minutes overlay"
+msgstr "Dakika kaplamasını aç"
+
+msgid "Open months overlay"
+msgstr "Ay kaplamasını aç"
+
+msgid "Open navigation"
+msgstr "Gezinmeyi aç"
+
+msgid "Open seconds overlay"
+msgstr "Saniye kaplamasını aç"
 
 msgid "Open sidebar"
 msgstr "Yan çubuğu aç"
+
+msgid "Open time picker"
+msgstr "Saat seçiciyi aç"
+
+msgid "Open years overlay"
+msgstr "Yıl kaplamasını aç"
 
 msgid "Options"
 msgstr "Seçenekler"
@@ -285,35 +357,23 @@ msgstr "Slayt sunumunu duraklat"
 msgid "People & Body"
 msgstr "İnsanlar ve beden"
 
-msgid "Pick a date"
-msgstr "Bir tarih seçin"
-
-msgid "Pick a date and a time"
-msgstr "Bir tarih ve saat seçin"
-
-msgid "Pick a month"
-msgstr "Bir ay seçin"
-
-msgid "Pick a time"
-msgstr "Bir saat seçin"
-
-msgid "Pick a week"
-msgstr "Bir hafta seçin"
-
-msgid "Pick a year"
-msgstr "Bir yıl seçin"
+msgid "Pick"
+msgstr "Seçin"
 
 msgid "Pick an emoji"
 msgstr "Bir emoji seçin"
 
-msgid "Please select a time zone:"
-msgstr "Lütfen bir saat dilimi seçin:"
-
 msgid "Previous"
 msgstr "Önceki"
 
+msgid "Previous month"
+msgstr "Önceki ay"
+
+msgid "Previous year"
+msgstr "Önceki yıl"
+
 msgid "Provider icon"
-msgstr "Sağlayıcı simgesi"
+msgstr "Hizmet sağlayıcı simgesi"
 
 msgid "Purple"
 msgstr "Mor"
@@ -338,12 +398,12 @@ msgid "Save changes"
 msgstr "Değişiklikleri kaydet"
 
 msgid "Search"
-msgstr "Arama"
+msgstr "Ara"
 
 msgid "Search emoji"
 msgstr "Emoji ara"
 
-msgid "Search for time zone"
+msgid "Search for timezone"
 msgstr "Saat dilimi ara"
 
 msgid "Search results"
@@ -364,8 +424,29 @@ msgstr "saniye önce"
 msgid "Select a tag"
 msgstr "Bir etiket seçin"
 
+msgid "Select date"
+msgstr "Tarih seçin"
+
+msgid "Select date and time"
+msgstr "Tarih ve saat seçin"
+
+msgid "Select month"
+msgstr "Ay seçin"
+
 msgid "Select provider"
-msgstr "Sağlayıcı seçin"
+msgstr "Hizmet sağlayıcı seçin"
+
+msgid "Select time"
+msgstr "Saat seçin"
+
+msgid "Select time range"
+msgstr "Saat aralığı seçin"
+
+msgid "Select week"
+msgstr "Hafta seçin"
+
+msgid "Select year"
+msgstr "Yıl seçin"
 
 msgid "Selected"
 msgstr "Seçilmiş"
@@ -406,8 +487,20 @@ msgstr "Aramak için yazmaya başlayın"
 msgid "Submit"
 msgstr "Gönder"
 
+msgid "Switch AM/PM mode"
+msgstr "ÖÖ/ÖS kipine geç"
+
 msgid "Symbols"
 msgstr "Simgeler"
+
+msgid "Time picker"
+msgstr "Saat seçici"
+
+msgid "Timezone"
+msgstr "Saat dilimi"
+
+msgid "Toggle overlay"
+msgstr "Kaplamayı aç/kapat"
 
 msgid "Travel & Places"
 msgstr "Gezi ve yerler"
@@ -430,9 +523,18 @@ msgstr "Kullanıcı durumu: {status}"
 msgid "View team"
 msgstr "Takımı görüntüle"
 
+msgid "W"
+msgstr "W"
+
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Viski"
 
 msgid "Write a message …"
 msgstr "Bir ileti yazın…"
+
+msgid "Year picker"
+msgstr "Yıl seçici"
+
+msgid "Year picker overlay"
+msgstr "Yıl seçici kaplaması"
