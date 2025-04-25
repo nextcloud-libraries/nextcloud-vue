@@ -5,12 +5,27 @@
 
 # Changelog
 
-## [v8.26.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.26.0) (UNRELEASED)
+## [v8.26.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.26.0) (2025-04-25)
 
 ### 📝 Notes
+#### NcAppSidebar
+The `info` slot was introduced to allow customization of sidebar header content.
+This will replace original main name of the sidebar and `header`, `subname`, `secondary-actions`, `tertiary-actions` slots.
+It is recommended to use slot together with `NcAppSidebarHeader` component to support accessibility features.
 #### NcPopover
 The `focusTrap` property is now deprecated and will be replaced with `noFocusTrap`,
 the reason behind this is to only have boolean properties with default value of `false` allowing shortcut props.
+
+### 🚀 Enhancements
+* [stable8] feat(NcAppSidebar): add `info` slot [#6843](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6843)
+* [stable8] feat(NcPopover): add new `noFocusTrap` prop [#6808](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6808)
+
+### 🐛 Fixed bugs
+* [stable8] fix(NcRichText): `references` prop type [#6800](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6800)
+* [stable8]  fix(NcAppContent): don't remove list when showing details in mobile or no-split mode [#6261](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6261) ([wofferl](https://github.com/wofferl))
+* [stable8] fix(NcMentionBubble): position selectable text aligned with the component [#6837](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6837)
+* [stable8] fix(NcAvatar): do not load avatar from server, if iconClass was provided [#6836](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6836)
+* [stable8] fix(NcSelectUsers): add missing `search` event [#6838](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6838)
 
 ## [v8.25.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.25.1) (2025-04-17)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.25.0...v8.25.1)
