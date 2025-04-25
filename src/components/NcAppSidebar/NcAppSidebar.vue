@@ -617,7 +617,6 @@ export default {
 								<div class="app-sidebar-header__mainname-container">
 									<!-- main name -->
 									<NcAppSidebarHeader v-show="!nameEditable"
-										ref="header"
 										class="app-sidebar-header__mainname"
 										:name="name"
 										:linkify="linkifyName"
@@ -724,7 +723,7 @@ import StarOutline from 'vue-material-design-icons/StarOutline.vue'
 
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
-import { warn } from 'vue'
+import { warn, provide, ref } from 'vue'
 
 export default {
 	name: 'NcAppSidebar',
@@ -747,12 +746,6 @@ export default {
 	directives: {
 		focus: Focus,
 		ClickOutside,
-	},
-
-	provide() {
-		return {
-			'NcAppSidebar:header:id': this.headerId,
-		}
 	},
 
 	inject: {
@@ -933,11 +926,16 @@ export default {
 
 	setup() {
 		const uid = GenRandomId()
+
 		const headerId = `app-sidebar-vue-${uid}__header`
+		const headerRef = ref(null)
+		provide('NcAppSidebar:header:id', headerId)
+		provide('NcAppSidebar:header:ref', headerRef)
 
 		return {
 			uid,
 			headerId,
+			headerRef,
 			isMobile: useIsSmallMobile(),
 		}
 	},
@@ -1174,7 +1172,7 @@ export default {
 			}
 
 			try {
-				(this.$refs.header ?? document.getElementById(this.headerId)).focus()
+				(this.headerRef ?? document.getElementById(this.headerId)).focus()
 			} catch (e) {
 				warn('NcAppSidebar should have focusable header for accessibility reasons. Use NcAppSidebarHeader component.')
 			}

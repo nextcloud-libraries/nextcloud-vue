@@ -14,10 +14,12 @@ defineProps<{
 }>()
 
 const id = inject('NcAppSidebar:header:id', 'app-sidebar-vue__header')
+const headerRef = inject('NcAppSidebar:header:ref')
 </script>
 
 <template>
 	<h2 :id
+		ref="headerRef"
 		v-linkify="{ text: name, linkify }"
 		:aria-label="title"
 		:title>
