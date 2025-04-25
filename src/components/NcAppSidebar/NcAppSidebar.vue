@@ -702,7 +702,6 @@ export default {
 // TODO: This is built-in for vue3 just drop the import
 import { Portal as Teleport } from '@linusborg/vue-simple-portal'
 
-import NcAppSidebarHeader from './NcAppSidebarHeader.vue'
 import NcAppSidebarTabs from './NcAppSidebarTabs.vue'
 import NcActions from '../NcActions/index.js'
 import NcAppSidebarHeader from '../NcAppSidebarHeader/index.ts'
@@ -723,7 +722,7 @@ import StarOutline from 'vue-material-design-icons/StarOutline.vue'
 
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
-import { warn, provide, ref } from 'vue'
+import Vue, { provide, ref } from 'vue'
 
 export default {
 	name: 'NcAppSidebar',
@@ -1171,10 +1170,11 @@ export default {
 				return
 			}
 
+			console.log(this.headerRef, document.getElementById(this.headerId))
 			try {
 				(this.headerRef ?? document.getElementById(this.headerId)).focus()
 			} catch (e) {
-				warn('NcAppSidebar should have focusable header for accessibility reasons. Use NcAppSidebarHeader component.')
+				Vue.util.warn('NcAppSidebar should have focusable header for accessibility reasons. Use NcAppSidebarHeader component.')
 			}
 		},
 
