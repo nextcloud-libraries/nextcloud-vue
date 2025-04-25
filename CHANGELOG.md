@@ -143,6 +143,9 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
   - The `range` property was removed in favor of `type="datetime-range"` (datetime ranges), `type="date-range"` (date only ranges), and `type="time-range"` (time only ranges).
   - The `lang` property was replaced with the `locale` property.
   - The `formatter` property was removed.
+- `NcPopover` is no longer a transparent wrapper over the `floating-vue` package.
+  Instead only use the documented properties and events.
+  If you find some use cases not covered by the documented interface, please open a feature request.
 - `NcSelect`
   - `userSelect` property was removed, instead just use the `NcSelectUsers` component
   - `closeOnSelect` property was removed in favor of `keepOpen`.
@@ -257,7 +260,12 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 
 ### 📝 Notes
 #### NcPopover
-The `focusTrap` property is now deprecated and will be replaced with `noFocusTrap`,
+`NcPopover` now has its own properties and no longer directly exposes the internal library used (`floating-vue`).
+It is still possible to use its properties, but this ability might be removed in the next version.
+Thus we encourage you to only use the documented properties.
+
+Also this component now supports a logical placement (`start`, `end`) which works with RTL design.
+Moreover the `focusTrap` property is now deprecated and will be replaced with `noFocusTrap`,
 the reason behind this is to only have boolean properties with default value of `false` allowing shortcut props.
 
 ## [v8.25.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.25.0) (UNRELEASED)
