@@ -1,5 +1,15 @@
+# This workflow is provided via the organization template repository
+#
+# https://github.com/nextcloud-libraries/.github
+# https://docs.github.com/en/actions/learn-github-actions/sharing-workflows-with-your-organization
+#
 # SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
 # SPDX-License-Identifier: MIT
+
+# Usage:
+# /update-snapshots        - update the snapshots and commit as a new commit
+# /update-snapshots fixup  - update but commit as a fixup commit
+# /update-snapshots amend  - update and commit as amended commit
 
 name: Command update Playwright snapshots
 on:
