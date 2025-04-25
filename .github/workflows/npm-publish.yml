@@ -1,6 +1,6 @@
 # This workflow is provided via the organization template repository
 #
-# https://github.com/nextcloud/.github
+# https://github.com/nextcloud-libraries/.github
 # https://docs.github.com/en/actions/learn-github-actions/sharing-workflows-with-your-organization
 #
 # SPDX-FileCopyrightText: 2021-2024 Nextcloud GmbH and Nextcloud contributors
@@ -22,16 +22,18 @@ jobs:
 
     name: Build and publish to npm
     env:
-      RELEASE_GROUP: ${{ (contains(github.ref, 'beta') || contains(github.ref, 'alpha')) && 'next' || 'latest' }}
+      RELEASE_GROUP: ${{ (contains(github.ref, 'rc') || contains(github.ref, 'beta') || contains(github.ref, 'alpha')) && 'next' || 'latest' }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
       - name: Set up node
-        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v3
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          node-version-file: package.json
+          node-version-file: 'package.json'
 
       - name: Install dependencies & build
         env:
