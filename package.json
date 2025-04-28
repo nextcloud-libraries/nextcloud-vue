@@ -93,7 +93,7 @@
     "@nextcloud/logger": "^3.0.2",
     "@nextcloud/router": "^3.0.1",
     "@nextcloud/sharing": "^0.2.3",
-    "@nextcloud/timezones": "^0.1.1",
+    "@nextcloud/timezones": "^0.2.0",
     "@nextcloud/vue-select": "^3.25.1",
     "@vueuse/components": "^11.0.0",
     "@vueuse/core": "^11.0.0",
