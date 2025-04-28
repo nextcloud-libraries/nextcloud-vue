@@ -2,7 +2,7 @@
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
- 
+
  .app-navigation-entry {
 	position: relative;
 	display: flex;
@@ -134,11 +134,12 @@
 	flex-direction: column;
 	width: 100%;
 	gap: var(--default-grid-baseline, 4px);
+	padding-left: 10px;
 
 	.app-navigation-entry {
 		display: inline-flex;
 		flex-wrap: wrap;
-		padding-left: $icon-size;
+		padding-left: 10px;
 	}
 }
 
