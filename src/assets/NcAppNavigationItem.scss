@@ -126,17 +126,21 @@
 }
 /* Second level nesting for lists */
 .app-navigation-entry__children {
+	--app-navigation-item-child-offset: 10px;
 	position: relative;
 	display: flex;
 	flex: 0 1 auto;
 	flex-direction: column;
 	width: 100%;
 	gap: var(--default-grid-baseline, 4px);
+	padding-inline-start: var(--app-navigation-item-child-offset);
 
 	.app-navigation-entry {
 		display: inline-flex;
 		flex-wrap: wrap;
-		padding-inline-start: $icon-size;
+	}
+	& & & & & & & {
+		--app-navigation-item-child-offset: 0;
 	}
 }
 
