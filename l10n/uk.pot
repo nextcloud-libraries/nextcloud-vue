@@ -204,6 +204,7 @@ msgstr "Їжа та напої"
 msgid "Frequently used"
 msgstr "Найчастіші"
 
+#. TRANSLATORS: This refers to global timezones in the timezone picker
 msgid "Global"
 msgstr "Глобальний"
 
@@ -257,8 +258,12 @@ msgstr "Лате"
 msgid "Medium skin tone"
 msgstr "Середній колір шкіри"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Вичерпано ліміт у {count} символів для повідомлення"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Досягнуто обмеження на довжину повідомлення у %n символ."
+msgstr[1] "Досягнуто обмеження на довжину повідомлення у %n символи."
+msgstr[2] "Досягнуто обмеження на довжину повідомлення у%n символів."
+msgstr[3] "Досягнуто обмеження на довжину повідомлення у %n символів."
 
 msgid "Month picker"
 msgstr "Вибір місяця"
