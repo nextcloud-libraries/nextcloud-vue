@@ -287,9 +287,7 @@ export default {
 
 	// Icon svg wrapper
 	span {
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		line-height: 0;
 	}
 
 	&:deep(svg) {
