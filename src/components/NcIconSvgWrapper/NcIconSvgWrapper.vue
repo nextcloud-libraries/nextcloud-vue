@@ -285,6 +285,11 @@ export default {
 		vertical-align: text-bottom;
 	}
 
+	// Icon svg wrapper
+	span {
+		line-height: 0;
+	}
+
 	&:deep(svg) {
 		fill: currentColor;
 		width: v-bind('iconSize');
