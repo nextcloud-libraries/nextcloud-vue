@@ -5,6 +5,10 @@
 
 # Changelog
 
+## [v8.26.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.26.1) (2025-05-07)
+### 🐛 Fixed bugs
+* [stable8] fix(NcIconSvgWrapper): center svg span wrapper [#6880](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6880) ([backportbot](https://github.com/backportbot))
+
 ## [v8.26.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.26.0) (2025-04-25)
 
 ### 📝 Notes
