@@ -167,6 +167,7 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 import Vue from 'vue'
 import { Dropdown } from 'floating-vue'
 import { createFocusTrap } from 'focus-trap'
+import { tabbable } from 'tabbable'
 import { getTrapStack } from '../../utils/focusTrap.ts'
 import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
 
@@ -174,6 +175,7 @@ import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
  * @typedef {import('focus-trap').FocusTargetValueOrFalse} FocusTargetValueOrFalse
  * @typedef {FocusTargetValueOrFalse|() => FocusTargetValueOrFalse} SetReturnFocus
  */
+
 export default {
 	name: 'NcPopover',
 
@@ -236,6 +238,15 @@ export default {
 			default: undefined,
 			type: [HTMLElement, SVGElement, String, Boolean, Function],
 		},
+
+		/**
+		 * When there is no setReturnFocus, NcPopover will try to return focus to the trigger button.
+		 * Use this prop to disable this behavior.
+		 */
+		noAutoReturnFocus: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	emits: [
@@ -279,9 +290,8 @@ export default {
 		 */
 		checkTriggerA11y() {
 			if (window.OC?.debug) {
-				const triggerContainer = this.getPopoverTriggerContainerElement()
-				const requiredTriggerButton = triggerContainer.querySelector('[aria-expanded]')
-				if (!requiredTriggerButton) {
+				const triggerButton = this.getPopoverTriggerButtonElement()
+				if (!triggerButton || !triggerButton.hasAttributes('aria-expanded', 'aria-haspopup')) {
 					Vue.util.warn('It looks like you are using a custom button as a <NcPopover> or other popover #trigger. If you are not using <NcButton> as a trigger, you need to bind attrs from the #trigger slot props to your custom button. See <NcPopover> docs for an example.')
 				}
 			}
@@ -310,10 +320,18 @@ export default {
 		/**
 		 * @return {HTMLElement|undefined}
 		 */
-		getPopoverTriggerContainerElement() {
+		getPopoverTriggerElement() {
 			// TODO: Vue 3: should be
 			// this.$refs.popover.$refs.popper.$refs.reference
 			return this.$refs.popover.$refs.reference
+		},
+
+		/**
+		 * @return {HTMLElement|undefined}
+		 */
+		getPopoverTriggerButtonElement() {
+			const triggerContainer = this.getPopoverTriggerElement()
+			return triggerContainer && tabbable(triggerContainer)[0]
 		},
 
 		/**
@@ -339,7 +357,7 @@ export default {
 				// Focus will be release when popover be hide
 				escapeDeactivates: false,
 				allowOutsideClick: true,
-				setReturnFocus: this.setReturnFocus,
+				setReturnFocus: this.setReturnFocus || (!this.noAutoReturnFocus && this.getPopoverTriggerButtonElement()),
 				trapStack: getTrapStack(),
 				fallBackFocus: el,
 			})
