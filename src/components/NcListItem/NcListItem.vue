@@ -535,7 +535,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 <script>
 import NcActions from '../NcActions/index.js'
 import NcCounterBubble from '../NcCounterBubble/index.js'
-import NcVNodes from '../NcVNodes/index.js'
+import NcVNodes from '../NcVNodes/index.ts'
 
 export default {
 	name: 'NcListItem',
