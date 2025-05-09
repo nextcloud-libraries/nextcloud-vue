@@ -10,34 +10,32 @@
 		:title
 		variant="tertiary">
 		<template #icon>
-			<ArrowLeft v-if="isRtl" :size="20" />
-			<ArrowRight v-else :size="20" />
+			<NcIconSvgWrapper directional :path="mdiArrowLeft" />
 		</template>
 	</NcButton>
 </template>
 
 <script>
+import { mdiArrowLeft } from '@mdi/js'
 import { emit } from '@nextcloud/event-bus'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { isRtl } from '../../utils/rtl.ts'
 import { t } from '../../l10n.js'
 
-import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
 import NcButton from '../NcButton/index.ts'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 
 export default {
 	name: 'NcAppDetailsToggle',
 
 	components: {
-		ArrowRight,
-		ArrowLeft,
 		NcButton,
+		NcIconSvgWrapper,
 	},
+
 	setup() {
 		return {
-			isRtl,
 			isMobile: useIsMobile(),
+			mdiArrowLeft,
 		}
 	},
 
