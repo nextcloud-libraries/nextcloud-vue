@@ -121,56 +121,72 @@ export default {
 ```
 </docs>
 
+<script setup lang="ts">
+import type { Slot } from 'vue'
+
+withDefaults(defineProps<{
+	/**
+	 * Desription of the empty content
+	 *
+	 * @example 'No comments yet, start the conversation!'
+	 */
+	description?: string
+
+	/**
+	 * A header message about an empty content shown.
+	 *
+	 * @example 'No comments'
+	 */
+	name?: string
+}>(), {
+	description: '',
+	name: '',
+})
+
+defineSlots<{
+	/**
+	 * Optional slot for a button or the like
+	 */
+	action?: Slot
+
+	/**
+	 * Optional slot for adding an icon
+	 */
+	icon?: Slot
+
+	/**
+	 * Allow to add custom formatted name as an alternative to the name property.
+	 * The content passed shall be enclosed by a header element.
+	 */
+	name?: Slot
+
+	/**
+	 * Optional formatted description rendered inside a paragraph as an alternative to the description property.
+	 */
+	description?: Slot
+}>()
+</script>
+
 <template>
 	<div class="empty-content" role="note">
 		<div v-if="$slots.icon" class="empty-content__icon" aria-hidden="true">
-			<!-- @slot Optional material design icon -->
 			<slot name="icon" />
 		</div>
-		<!-- @slot Optional name if not set as property, shall be enclosed by a header element -->
 		<slot name="name">
 			<span v-if="name !== ''" class="empty-content__name">
 				{{ name }}
 			</span>
 		</slot>
 		<p v-if="description !== '' || $slots.description" class="empty-content__description">
-			<!-- @slot Optional formatted description rendered inside a paragraph -->
 			<slot name="description">
 				{{ description }}
 			</slot>
 		</p>
 		<div v-if="$slots.action" class="empty-content__action">
-			<!-- @slot Optional slot for a button or the like -->
 			<slot name="action" />
 		</div>
 	</div>
 </template>
-
-<script>
-export default {
-	name: 'NcEmptyContent',
-
-	props: {
-		/**
-		 * A header message about an empty content shown
-		 * @example 'No comments'
-		 */
-		name: {
-			type: String,
-			default: '',
-		},
-
-		/**
-		 * Desription of the empty content
-		 * @example 'No comments yet, start the conversation!'
-		 */
-		description: {
-			type: String,
-			default: '',
-		},
-	},
-}
-</script>
 
 <style lang="scss" scoped>
 .empty-content {

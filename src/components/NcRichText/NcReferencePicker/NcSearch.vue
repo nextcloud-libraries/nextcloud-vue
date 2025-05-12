@@ -70,7 +70,7 @@
 <script>
 import NcSearchResult from './NcSearchResult.vue'
 import { isUrl, delay } from './utils.js'
-import NcEmptyContent from '../../NcEmptyContent/index.js'
+import NcEmptyContent from '../../NcEmptyContent/index.ts'
 import NcSelect from '../../NcSelect/index.js'
 
 import { t } from '../../../l10n.js'
