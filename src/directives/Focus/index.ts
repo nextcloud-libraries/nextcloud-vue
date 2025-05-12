@@ -3,8 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-export const directive = {
-	mounted(el) {
+import type { ObjectDirective } from 'vue'
+
+const directive: ObjectDirective<HTMLElement> = {
+	mounted(el: HTMLElement) {
 		el.focus()
 	},
 }
