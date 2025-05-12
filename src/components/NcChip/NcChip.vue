@@ -171,24 +171,24 @@ const slots = defineSlots<{
 	/**
 	 * The actions slot can be used to add custom actions (`NcAction*`) to the chips actions.
 	 */
-	actions: Slot
+	actions?: Slot
 
 	/**
 	 * The default slot can be used to set the text that is shown.
 	 */
-	default: Slot
+	default?: Slot
 
 	/**
 	 * The icon slot can be used to set the chip icon.
 	 * Make sure that the icon is not exceeding a height of `--chip-size`.
 	 * For round icons a exact size of `var(--chip-size)` is recommended.
 	 */
-	icon: Slot
+	icon?: Slot
 }>()
 
 const canClose = computed(() => !props.noClose)
-const hasActions = () => Boolean(slots.actions?.())
-const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon?.())
+const hasActions = () => !!slots.actions
+const hasIcon = () => Boolean(props.iconPath || props.iconSvg || !!slots.icon)
 </script>
 
 <style scoped lang="scss">
