@@ -15,11 +15,17 @@ type DialogComponent<T extends Component> = 'onClose' extends keyof ComponentPro
 	? T
 	: 'Please provide a Dialog Component that supports `@close` event'
 
+/**
+ * Event payload array normalized to a single value when payload has only one argument,
+ * including one optional argument
+ */
 type NormalizedPayload<T> = T extends []
 	? void
 	: T extends [infer F]
 		? F
-		: T
+		: T extends { length: 0 | 1, 0?: infer F }
+			? F | undefined
+			: T
 
 type ClosePayload<T> = T extends { onClose?: (...args: infer P) => any }
 	? P
