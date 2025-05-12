@@ -2,10 +2,11 @@
 # Translators:
 # Joas Schilling, 2025
 # Hyogeol Lee, 2025
+# 이상오, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Hyogeol Lee, 2025\n"
+"Last-Translator: 이상오, 2025\n"
 "Language-Team: Korean (https://app.transifex.com/nextcloud/teams/64236/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ko\n"
@@ -202,6 +203,7 @@ msgstr "음식 & 음료"
 msgid "Frequently used"
 msgstr "자주 쓰임"
 
+#. TRANSLATORS: This refers to global timezones in the timezone picker
 msgid "Global"
 msgstr "글로벌"
 
@@ -255,8 +257,9 @@ msgstr "약간 밝은 피부 톤"
 msgid "Medium skin tone"
 msgstr "중간 피부 톤"
 
-msgid "Message limit of {count} characters reached"
-msgstr "메시지 제한 {count}자에 도달"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "메시지 제한 %n자에 도달"
 
 msgid "Month picker"
 msgstr "월 선택기"
