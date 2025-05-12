@@ -215,7 +215,7 @@ export default {
 <script>
 import NcAvatar from '../NcAvatar/index.js'
 import NcDashboardWidgetItem from '../NcDashboardWidgetItem/index.js'
-import NcEmptyContent from '../NcEmptyContent/index.js'
+import NcEmptyContent from '../NcEmptyContent/index.ts'
 
 import Check from 'vue-material-design-icons/Check.vue'
 
