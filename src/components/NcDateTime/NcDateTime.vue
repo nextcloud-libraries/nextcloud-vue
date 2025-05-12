@@ -98,7 +98,7 @@ h4 {
 
 <script>
 import { computed } from 'vue'
-import { useFormatDateTime } from '../../composables/useFormatDateTime.ts'
+import { useFormatDateTime } from '../../composables/useFormatDateTime/index.ts'
 
 export default {
 	name: 'NcDateTime',
