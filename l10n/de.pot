@@ -186,10 +186,10 @@ msgid "Failed to add the item to the project"
 msgstr "Das Element konnte nicht zum Projekt hinzugefügt werden"
 
 msgid "Failed to create a project"
-msgstr "Fehler beim Erstellen eines Projektes"
+msgstr "Projekt konnte nicht erstellt werden"
 
 msgid "Failed to rename the project"
-msgstr "Fehler beim Umbenennen eines Projektes"
+msgstr "Das Projekt konnte nicht umbenannt werden"
 
 msgid "Favorite"
 msgstr "Favorit"
