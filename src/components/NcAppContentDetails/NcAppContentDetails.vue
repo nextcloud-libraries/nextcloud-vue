@@ -17,6 +17,6 @@ defineSlots<{
 	 * Provide content to the details view.
 	 * Passing content to this slot is required!
 	 */
-	default: Slot
+	default?: Slot
 }>()
 </script>
