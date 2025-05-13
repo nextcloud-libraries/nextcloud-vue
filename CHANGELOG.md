@@ -162,6 +162,7 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * feat(dialogs/spawnDialog)!: replace onClose callback with Promise [#6759](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6759) ([ShGKme](https://github.com/ShGKme))
 
 ### 🐛 Fixed bugs
+* feat(NcAppSidebar): add `info` slot [#6666](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6666) ([Antreesy](https://github.com/Antreesy))
 * fix(NcActions): trigger forgotten closed event and correctly handle open [#6706](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6706) ([ShGKme](https://github.com/ShGKme))
 * fix(NcActionInput): listen to correct events [\#5231](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5231) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
 * fix(NcRichText*): listen to correct events form NcSelect [\#5239](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5239) \([raimund-schluessler](https://github.com/raimund-schluessler)\)
@@ -193,6 +194,10 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * fix(NcDateTimePicker): adjust padding to prevent horizontal scrolling [#6722](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6722) ([susnux](https://github.com/susnux))
 * fix(NcDateTimePicker): prevent emitting `[Date, null]` [#6726](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6726) ([susnux](https://github.com/susnux))
 * fix(dialogs/spawnDialog)!: support vue-devtool but lose appContext [#6752](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6752) ([ShGKme](https://github.com/ShGKme))
+* fix(NcIconSvgWrapper): center svg span wrapper [#6869](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6869) ([skjnldsv](https://github.com/skjnldsv))
+* fix(NcChip): do not rerender slots to check if they are available [#6903](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6903) ([susnux](https://github.com/susnux))
+* fix(dialog/spawnDialog): incorrect return type for optional result [#6905](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6905) ([ShGKme](https://github.com/ShGKme))
+* add fallBackFocus to NcPopover [#6679](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6679)
 
 ### Changed
 * refactor: replace boolean properties with `default: true` with `default: false` [#6653](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6653) ([susnux](https://github.com/susnux))
@@ -271,6 +276,12 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * chore: adjust package engines versions [#6725](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6725) ([susnux](https://github.com/susnux))
 * chore: update pull_request_template.md [#6736](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6736) ([ShGKme](https://github.com/ShGKme))
 * docs(NcDateTimePicker): add prop documentation for all props [#6727](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6727) ([susnux](https://github.com/susnux))
+* chore: update workflows from organization [#6841](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6841) ([susnux](https://github.com/susnux))
+* refactor(NcChip): properly document and type slots and emits [#6812](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6812) ([susnux](https://github.com/susnux))
+* chore: move from `dev:watch` to `watch` [#6888](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6888) ([skjnldsv](https://github.com/skjnldsv))
+* refactor(NcVNodes): migrate component to Typescript [#6822](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6822) ([susnux](https://github.com/susnux))
+* refactor(Focus): migrate directive to Typescript [#6786](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6786) ([susnux](https://github.com/susnux))
+* refactor(NcEmptyContent): migrate component to Typescript [#6904](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6904) ([susnux](https://github.com/susnux))
 
 ## [v8.26.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.26.0) (UNRELEASED)
 
