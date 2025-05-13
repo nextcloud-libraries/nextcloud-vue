@@ -366,191 +366,159 @@ export default {
 	</li>
 </template>
 
-<script>
+<script setup lang="ts">
+import type { NcActionTextProps } from '../NcActions/useNcActions.ts'
+
 import CheckIcon from 'vue-material-design-icons/Check.vue'
-import ChevronRightIcon from 'vue-material-design-icons/ChevronRight.vue'
-import ChevronLeftIcon from 'vue-material-design-icons/ChevronLeft.vue'
-import ActionTextMixin from '../../mixins/actionText.js'
 import { isRtl } from '../../utils/rtl.ts'
-import { NC_ACTIONS_IS_SEMANTIC_MENU } from '../NcActions/useNcActions.ts'
+import { NC_ACTIONS_CLOSE_MENU, NC_ACTIONS_IS_SEMANTIC_MENU } from '../NcActions/useNcActions.ts'
+import { computed, inject } from 'vue'
+
+const props = withDefaults(defineProps<NcActionTextProps & {
+	/**
+	 * Disabled state of the action button
+	 */
+	disabled?: boolean
+
+	/**
+	 * If this is a menu, a chevron icon will
+	 * be added at the end of the line
+	 */
+	isMenu?: boolean
+
+	/**
+	 * The button's behavior, by default the button acts like a normal button with optional toggle button behavior if `modelValue` is `true` or `false`.
+	 * But you can also set to checkbox button behavior with tri-state or radio button like behavior.
+	 * This extends the native HTML button type attribute.
+	 */
+	type?: 'button' | 'checkbox' | 'radio' | 'reset' | 'submit'
+
+	/**
+	 * The value used for the `modelValue` when this component is used with radio behavior
+	 * Similar to the `value` attribute of `<input type="radio">`
+	 */
+	value?: string
+}>(), {
+	ariaLabel: undefined,
+	icon: undefined,
+	name: undefined,
+	title: undefined,
+	type: 'button',
+	value: '',
+})
+
+const emit = defineEmits<{
+	/**
+	 * Emitted when the action is clicked
+	 */
+	click: [event: MouseEvent]
+}>()
 
 /**
- * Button component to be used in Actions
+ * The buttons state if `type` is 'checkbox' or 'radio' (meaning if it is pressed / selected).
+ * For checkbox and toggle button behavior - boolean value.
+ * For radio button behavior - could be a boolean checked or a string with the value of the button.
+ * Note: Unlike native radio buttons, NcActionButton are not grouped by name, so you need to connect them by bind correct modelValue.
+ *
+ *  **This is not availabe for `type='submit'` or `type='reset'`**
+ *
+ * If using `type='checkbox'` a `model-value` of `true` means checked, `false` means unchecked and `null` means indeterminate (tri-state)
+ * For `type='radio'` `null` is equal to `false`
  */
-export default {
-	name: 'NcActionButton',
+const modelValue = defineModel<boolean | string>()
 
-	components: {
-		CheckIcon,
-		ChevronRightIcon,
-		ChevronLeftIcon,
-	},
+const closeMenu = inject(NC_ACTIONS_CLOSE_MENU)
+const isInSemanticMenu = inject(NC_ACTIONS_IS_SEMANTIC_MENU)
 
-	mixins: [ActionTextMixin],
+/**
+ * determines if the action is focusable
+ */
+const isFocusable = computed(() => !props.disabled)
 
-	inject: {
-		isInSemanticMenu: {
-			from: NC_ACTIONS_IS_SEMANTIC_MENU,
-			default: false,
-		},
-	},
+/**
+ * The current "checked" or "pressed" state for the model behavior
+ */
+const isChecked = computed(() => {
+	if (props.type === 'radio' && typeof modelValue.value !== 'boolean') {
+		return modelValue.value === props.value
+	}
+	return modelValue.value
+})
 
-	props: {
-		/**
-		 * @deprecated To be removed in @nextcloud/vue 9. Migration guide: remove ariaHidden prop from NcAction* components.
-		 * @todo Add a check in @nextcloud/vue 9 that this prop is not provided,
-		 * otherwise root element will inherit incorrect aria-hidden.
-		 */
-		ariaHidden: {
-			type: Boolean,
-			default: null,
-		},
+/**
+ * The native HTML type to set on the button
+ */
+const nativeType = computed(() => {
+	if (props.type === 'submit' || props.type === 'reset') {
+		return props.type
+	}
+	return 'button'
+})
 
-		/**
-		 * disabled state of the action button
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
+/**
+ * HTML attributes to bind to the <button>
+ */
+const buttonAttributes = computed(() => {
+	const attributes: Record<string, string> = {}
 
-		/**
-		 * If this is a menu, a chevron icon will
-		 * be added at the end of the line
-		 */
-		isMenu: {
-			type: Boolean,
-			default: false,
-		},
+	if (isInSemanticMenu?.value) {
+		// By default it needs to be a menu item in semantic menus
+		attributes.role = 'menuitem'
 
-		/**
-		 * The button's behavior, by default the button acts like a normal button with optional toggle button behavior if `modelValue` is `true` or `false`.
-		 * But you can also set to checkbox button behavior with tri-state or radio button like behavior.
-		 * This extends the native HTML button type attribute.
-		 */
-		type: {
-			type: String,
-			default: 'button',
-			validator: (behavior) => ['button', 'checkbox', 'radio', 'reset', 'submit'].includes(behavior),
-		},
-
-		/**
-		 * The buttons state if `type` is 'checkbox' or 'radio' (meaning if it is pressed / selected).
-		 * For checkbox and toggle button behavior - boolean value.
-		 * For radio button behavior - could be a boolean checked or a string with the value of the button.
-		 * Note: Unlike native radio buttons, NcActionButton are not grouped by name, so you need to connect them by bind correct modelValue.
-		 *
-		 *  **This is not availabe for `type='submit'` or `type='reset'`**
-		 *
-		 * If using `type='checkbox'` a `model-value` of `true` means checked, `false` means unchecked and `null` means indeterminate (tri-state)
-		 * For `type='radio'` `null` is equal to `false`
-		 */
-		modelValue: {
-			type: [Boolean, String],
-			default: null,
-		},
-
-		/**
-		 * The value used for the `modelValue` when this component is used with radio behavior
-		 * Similar to the `value` attribute of `<input type="radio">`
-		 */
-		value: {
-			type: String,
-			default: null,
-		},
-	},
-
-	emits: ['update:modelValue'],
-
-	setup() {
-		return {
-			isRtl,
+		if (props.type === 'radio') {
+			attributes.role = 'menuitemradio'
+			attributes['aria-checked'] = isChecked.value ? 'true' : 'false'
+		} else if (props.type === 'checkbox' || (nativeType.value === 'button' && isDefined(modelValue.value))) {
+			// either if checkbox behavior was set or the model value is not unset
+			attributes.role = 'menuitemcheckbox'
+			attributes['aria-checked'] = modelValue.value === null ? 'mixed' : (modelValue.value ? 'true' : 'false')
 		}
-	},
+	} else if (isDefined(modelValue.value) && nativeType.value === 'button') {
+		// In case this has a modelValue it is considered a toggle button, so we need to set the aria-pressed
+		attributes['aria-pressed'] = modelValue.value ? 'true' : 'false'
+	}
 
-	computed: {
-		/**
-		 * determines if the action is focusable
-		 *
-		 * @return {boolean} is the action focusable ?
-		 */
-		isFocusable() {
-			return !this.disabled
-		},
+	return attributes
+})
 
-		/**
-		 * The current "checked" or "pressed" state for the model behavior
-		 */
-		isChecked() {
-			if (this.type === 'radio' && typeof this.modelValue !== 'boolean') {
-				return this.modelValue === this.value
-			}
-			return this.modelValue
-		},
+/**
+ * Check that a value is defined meaning its neither undefined nor null.
+ *
+ * @param value - Value to check
+ */
+function isDefined<T>(value: T | undefined | null): value is T {
+	// not a strict comparison! Because == null matches 'null' AND 'undefined' but not 'false'
+	return value == null
+}
 
-		/**
-		 * The native HTML type to set on the button
-		 */
-		nativeType() {
-			if (this.type === 'submit' || this.type === 'reset') {
-				return this.type
-			}
-			return 'button'
-		},
+/**
+ * Forward click event, let mixin handle the close-after-click and emit new modelValue if needed.
+ *
+ * @param event - The click event
+ */
+function handleClick(event: MouseEvent) {
+	emit('click', event)
+	if (props.closeAfterClick) {
+		closeMenu?.(false)
+	}
 
-		/**
-		 * HTML attributes to bind to the <button>
-		 */
-		buttonAttributes() {
-			const attributes = {}
-
-			if (this.isInSemanticMenu) {
-				// By default it needs to be a menu item in semantic menus
-				attributes.role = 'menuitem'
-
-				if (this.type === 'radio') {
-					attributes.role = 'menuitemradio'
-					attributes['aria-checked'] = this.isChecked ? 'true' : 'false'
-				} else if (this.type === 'checkbox' || (this.nativeType === 'button' && this.modelValue !== null)) {
-					// either if checkbox behavior was set or the model value is not unset
-					attributes.role = 'menuitemcheckbox'
-					attributes['aria-checked'] = this.modelValue === null ? 'mixed' : (this.modelValue ? 'true' : 'false')
+	// If modelValue or type is set (so modelValue might be null for tri-state) we need to update it
+	if (isDefined(modelValue.value) || props.type !== 'button') {
+		if (props.type === 'radio') {
+			if (typeof modelValue.value !== 'boolean') {
+				// String-value radios behavior is similar to native - click on checked radio does nothing
+				if (!isChecked.value) {
+					modelValue.value = props.value
 				}
-			} else if (this.modelValue !== null && this.nativeType === 'button') {
-				// In case this has a modelValue it is considered a toggle button, so we need to set the aria-pressed
-				attributes['aria-pressed'] = this.modelValue ? 'true' : 'false'
+			} else {
+				// Boolean radio allows to uncheck
+				modelValue.value = !isChecked.value
 			}
-
-			return attributes
-		},
-	},
-
-	methods: {
-		/**
-		 * Forward click event, let mixin handle the close-after-click and emit new modelValue if needed
-		 * @param {MouseEvent} event The click event
-		 */
-		handleClick(event) {
-			this.onClick(event)
-			// If modelValue or type is set (so modelValue might be null for tri-state) we need to update it
-			if (this.modelValue !== null || this.type !== 'button') {
-				if (this.type === 'radio') {
-					if (typeof this.modelValue !== 'boolean') {
-						// String-value radios behavior is similar to native - click on checked radio does nothing
-						if (!this.isChecked) {
-							this.$emit('update:modelValue', this.value)
-						}
-					} else {
-						// Boolean radio allows to uncheck
-						this.$emit('update:modelValue', !this.isChecked)
-					}
-				} else {
-					// Checkbox toggles value
-					this.$emit('update:modelValue', !this.isChecked)
-				}
-			}
-		},
-	},
+		} else {
+			// Checkbox toggles value
+			modelValue.value = !isChecked.value
+		}
+	}
 }
 </script>
 
