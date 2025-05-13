@@ -2,12 +2,8 @@
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-
+import type { DeepReadonly, Ref } from 'vue'
 import { readonly, ref } from 'vue'
-
-// if the window height is equal to the screen height,
-// we're in full screen mode
-const checkIfIsFullscreen = () => window.outerHeight === screen.height
 
 const isFullscreen = ref(checkIfIsFullscreen())
 
@@ -16,11 +12,17 @@ window.addEventListener('resize', () => {
 })
 
 /**
- * Use global isFullscreen state, based on the screen height check
- *
- * @return {import('vue').DeepReadonly<import('vue').Ref<boolean>>}
+ * If the window height is equal to the screen height,
+ * we are in full screen mode.
  */
-export function useIsFullscreen() {
+function checkIfIsFullscreen(): boolean {
+	return window.outerHeight === window.screen.height
+}
+
+/**
+ * Use global `isFullscreen` state, based on the screen height check.
+ */
+export function useIsFullscreen(): DeepReadonly<Ref<boolean>> {
 	return readonly(isFullscreen)
 }
 
