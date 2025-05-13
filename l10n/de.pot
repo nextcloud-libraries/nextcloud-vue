@@ -2,10 +2,11 @@
 # Translators:
 # Joas Schilling, 2025
 # Mario Siegmann <mario_siegmann@web.de>, 2025
+# Martin Wilichowski, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2025\n"
+"Last-Translator: Martin Wilichowski, 2025\n"
 "Language-Team: German (https://app.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -160,7 +161,7 @@ msgid "do not disturb"
 msgstr "Bitte nicht stören"
 
 msgid "Edit item"
-msgstr "Objekt bearbeiten"
+msgstr "Element bearbeiten"
 
 msgid "Emoji picker"
 msgstr "Emoji-Auswahl"
@@ -206,6 +207,7 @@ msgstr "Essen & Trinken"
 msgid "Frequently used"
 msgstr "Häufig verwendet"
 
+#. TRANSLATORS: This refers to global timezones in the timezone picker
 msgid "Global"
 msgstr "Global"
 
@@ -222,13 +224,13 @@ msgid "Hide password"
 msgstr "Passwort verbergen"
 
 msgid "Increment hours"
-msgstr "Stunden erhöhen"
+msgstr "Stunden hochzählen"
 
 msgid "Increment minutes"
-msgstr "Minuten erhöhen"
+msgstr "Minuten hochzählen"
 
 msgid "Increment seconds"
-msgstr "Sekunden erhöhen"
+msgstr "Sekunden hochzählen"
 
 msgid "invisible"
 msgstr "Unsichtbar"
@@ -320,7 +322,7 @@ msgid "Open hours overlay"
 msgstr "Stunden-Overlay öffnen"
 
 msgid "Open link to \"{resourceName}\""
-msgstr "Link zu \"{resourceName}“ öffnen"
+msgstr "Link zu \"{resourceName}\" öffnen"
 
 msgid "Open menu"
 msgstr "Menü öffnen"
@@ -380,7 +382,7 @@ msgid "Purple"
 msgstr "Lila"
 
 msgid "Raw link {options}"
-msgstr "Unverarbeiteter Link {Optionen}"
+msgstr "Unverarbeiteter Link {options}"
 
 msgid "Related resources"
 msgstr "Verwandte Ressourcen"
