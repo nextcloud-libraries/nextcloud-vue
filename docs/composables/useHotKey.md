@@ -55,7 +55,7 @@ where:
 
 <script>
 	import { ref } from 'vue'
-	import { useHotKey } from '../../src/composables/useHotKey/index.js'
+	import { useHotKey } from '../../src/composables/useHotKey/index.ts'
 
 	export default {
 		setup() {
