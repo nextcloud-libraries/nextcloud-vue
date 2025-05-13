@@ -11,39 +11,44 @@ The standard properties like name, subname, starred, etc. allow to automatically
 include a standard-header like it's used by the files app.
 
 To conditionally show the sidebar either use `v-if` on the sidebar component,
-or use the `open` property of the component to controll the state.
+or use the `open` property of the component to control the state.
 Using `v-show` directly will result in usability issues due to internal focus trap handling.
 
 ### Standard usage
 
 ```vue
 <template>
-	<NcAppSidebar
-		:starred="starred"
-		name="cat-picture.jpg"
-		subname="last edited 3 weeks ago"
-		background="https://nextcloud.com/wp-content/uploads/2022/08/nextcloud-logo-icon.svg"
-		@figure-click="figureClick">
-		<NcAppSidebarTab name="Search" id="search-tab">
-			<template #icon>
-				<Magnify :size="20" />
-			</template>
-			Search tab content
-		</NcAppSidebarTab>
-		<NcAppSidebarTab name="Settings" id="settings-tab">
-			<template #icon>
-				<Cog :size="20" />
-			</template>
-			Settings tab content
-		</NcAppSidebarTab>
-		<NcAppSidebarTab name="Sharing" id="share-tab">
-			<template #icon>
-				<ShareVariant :size="20" />
-			</template>
-			Sharing tab content
-		</NcAppSidebarTab>
-	</NcAppSidebar>
+	<div class="content-styleguidist">
+		<main id="content-styleguidist-1" />
+		<NcAppSidebar
+			v-model:open="open"
+			:starred="starred"
+			name="cat-picture.jpg"
+			subname="last edited 3 weeks ago"
+			background="https://nextcloud.com/wp-content/uploads/2022/08/nextcloud-logo-icon.svg"
+			@figure-click="figureClick">
+			<NcAppSidebarTab name="Search" id="search-tab">
+				<template #icon>
+					<Magnify :size="20" />
+				</template>
+				Search tab content
+			</NcAppSidebarTab>
+			<NcAppSidebarTab name="Settings" id="settings-tab">
+				<template #icon>
+					<Cog :size="20" />
+				</template>
+				Settings tab content
+			</NcAppSidebarTab>
+			<NcAppSidebarTab name="Sharing" id="share-tab">
+				<template #icon>
+					<ShareVariant :size="20" />
+				</template>
+				Sharing tab content
+			</NcAppSidebarTab>
+		</NcAppSidebar>
+	</div>
 </template>
+
 <script>
 	import Magnify from 'vue-material-design-icons/Magnify.vue'
 	import Cog from 'vue-material-design-icons/Cog.vue'
@@ -55,8 +60,14 @@ Using `v-show` directly will result in usability issues due to internal focus tr
 			Cog,
 			ShareVariant,
 		},
+		provide() {
+			return {
+				'NcContent:selector': '#content-styleguidist-1',
+			}
+		},
 		data() {
 			return {
+				open: true,
 				starred: false,
 			}
 		},
@@ -67,54 +78,50 @@ Using `v-show` directly will result in usability issues due to internal focus tr
 		},
 	}
 </script>
-```
 
-### One tab
+<style scoped>
+	/* This styles just mock NcContent and NcAppContent */
+	.content-styleguidist {
+		--app-sidebar-padding: 8px;
+		--app-sidebar-offset: calc(var(--app-sidebar-padding) + var(--default-clickable-area));
+		display: flex;
+		position: relative !important;
+		/* Just to prevent jumping when the sidebar is hidden */
+		min-height: 360px;
+		overflow: hidden;
 
-Single tab is rendered without navigation.
-
-```vue
-<template>
-	<div>
-		<NcCheckboxRadioSwitch v-model="forceTabs">Force tab navigation</NcCheckboxRadioSwitch>
-		<NcAppSidebar
-			name="cat-picture.jpg"
-			:force-tabs="forceTabs"
-			subname="last edited 3 weeks ago">
-			<NcAppSidebarTab name="Settings" id="settings-tab">
-				<template #icon>
-					<Cog :size="20" />
-				</template>
-				Single tab content
-			</NcAppSidebarTab>
-		</NcAppSidebar>
-	</div>
-</template>
-<script>
-import Cog from 'vue-material-design-icons/Cog.vue'
-
-export default {
-	components: {
-		Cog,
-	},
-	data() {
-		return {
-			forceTabs: false,
+		main {
+			width: 100%;
 		}
-	},
-}
-</script>
+	}
+
+	/* Fix styles on this style guide page */
+	@media only screen and (max-width: 512px) {
+		:deep(aside) {
+			width: calc(100vw - 64px) !important;
+		}
+	}
+</style>
 ```
 
 ### Dynamic tabs
 
+Sidebar tabs and their content can be changed dynamically.
+
+Single tab is rendered without navigation, but it is possible to force it.
+
 ```vue
 <template>
-	<div>
-		<NcCheckboxRadioSwitch v-model="showTabs[0]">Show search tab</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model="showTabs[1]">Show settings tab</NcCheckboxRadioSwitch>
-		<NcCheckboxRadioSwitch v-model="showTabs[2]">Show sharing tab</NcCheckboxRadioSwitch>
+	<div class="content-styleguidist">
+		<main id="content-styleguidist-2">
+			<NcCheckboxRadioSwitch v-model="forceTabs">Force tab navigation</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch v-model="showTabs[0]">Show search tab</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch v-model="showTabs[1]">Show settings tab</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch v-model="showTabs[2]">Show sharing tab</NcCheckboxRadioSwitch>
+		</main>
 		<NcAppSidebar
+			v-model:open="open"
+			:force-tabs="forceTabs"
 			name="cat-picture.jpg"
 			subname="last edited 3 weeks ago">
 			<NcAppSidebarTab v-if="showTabs[0]" name="Search" id="search-tab">
@@ -138,91 +145,88 @@ export default {
 		</NcAppSidebar>
 	</div>
 </template>
-<script>
-import Magnify from 'vue-material-design-icons/Magnify.vue'
-import Cog from 'vue-material-design-icons/Cog.vue'
-import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
 
-export default {
-	components: {
-		Magnify,
-		Cog,
-		ShareVariant,
-	},
-	data() {
-		return {
-			showTabs: [true, true, false],
+<script>
+	import Magnify from 'vue-material-design-icons/Magnify.vue'
+	import Cog from 'vue-material-design-icons/Cog.vue'
+	import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
+
+	export default {
+		components: {
+			Magnify,
+			Cog,
+			ShareVariant,
+		},
+		provide() {
+			return {
+				'NcContent:selector': '#content-styleguidist-2',
+			}
+		},
+		data() {
+			return {
+				open: true,
+				forceTabs: false,
+				showTabs: [true, true, false],
+			}
+		},
+	}
+</script>
+
+<style scoped>
+	/* This styles just mock NcContent and NcAppContent */
+	.content-styleguidist {
+		--app-sidebar-padding: 8px;
+		--app-sidebar-offset: calc(var(--app-sidebar-padding) + var(--default-clickable-area));
+		display: flex;
+		position: relative !important;
+		/* Just to prevent jumping when the sidebar is hidden */
+		min-height: 360px;
+		overflow: hidden;
+
+		main {
+			width: 100%;
 		}
-	},
-}
-</script>
+	}
+
+	/* Fix styles on this style guide page */
+	@media only screen and (max-width: 512px) {
+		:deep(aside) {
+			width: calc(100vw - 64px) !important;
+		}
+	}
+</style>
 ```
 
-### Custom order
+### Tabs order and programmatic activation
+
+To customize the order of tabs, ``order`` prop can be used on child components.
+
+``active`` prop on NcAppSidebar can be modified to show required tab as active
 
 ```vue
 <template>
-	<NcAppSidebar
-		name="cat-picture.jpg"
-		subname="last edited 3 weeks ago">
-		<NcAppSidebarTab name="Search" id="search-tab" :order="3">
-			<template #icon>
-				<Magnify :size="20" />
-			</template>
-			Search tab content
-		</NcAppSidebarTab>
-		<NcAppSidebarTab name="Settings" id="settings-tab" :order="2">
-			<template #icon>
-				<Cog :size="20" />
-			</template>
-			Settings tab content
-		</NcAppSidebarTab>
-		<NcAppSidebarTab name="Sharing" id="share-tab" :order="1">
-			<template #icon>
-				<ShareVariant :size="20" />
-			</template>
-			Sharing tab content
-		</NcAppSidebarTab>
-	</NcAppSidebar>
-</template>
-<script>
-import Magnify from 'vue-material-design-icons/Magnify.vue'
-import Cog from 'vue-material-design-icons/Cog.vue'
-import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
-
-export default {
-	components: {
-		Magnify,
-		Cog,
-		ShareVariant,
-	},
-}
-</script>
-```
-
-### Activating tab programmatically
-
-```vue
-<template>
-	<div>
-		<NcSelect v-model="active" :options="['search-tab', 'settings-tab', 'share-tab']" />
+	<div class="content-styleguidist">
+		<main id="content-styleguidist-3">
+			<NcSelect v-model="active" :options="['search-tab', 'settings-tab', 'share-tab']"/>
+		</main>
 		<NcAppSidebar
 			name="cat-picture.jpg"
 			subname="last edited 3 weeks ago"
+			v-model:open="open"
 			v-model:active="active">
-			<NcAppSidebarTab name="Search" id="search-tab">
+			<NcAppSidebarTab name="Search" id="search-tab" :order="3">
 				<template #icon>
 					<Magnify :size="20" />
 				</template>
 				Search tab content
 			</NcAppSidebarTab>
-			<NcAppSidebarTab name="Settings" id="settings-tab">
+			<NcAppSidebarTab name="Settings" id="settings-tab" :order="2">
 				<template #icon>
 					<Cog :size="20" />
 				</template>
 				Settings
 			</NcAppSidebarTab>
-			<NcAppSidebarTab name="Sharing" id="share-tab">
+			<NcAppSidebarTab name="Sharing" id="share-tab" :order="1">
 				<template #icon>
 					<ShareVariant :size="20" />
 				</template>
@@ -231,70 +235,147 @@ export default {
 		</NcAppSidebar>
 	</div>
 </template>
-<script>
-import Magnify from 'vue-material-design-icons/Magnify.vue'
-import Cog from 'vue-material-design-icons/Cog.vue'
-import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
 
-export default {
-	components: {
-		Magnify,
-		Cog,
-		ShareVariant,
-	},
-	data() {
-		return {
-			active: 'search-tab',
-		}
-	},
-}
+<script>
+	import Magnify from 'vue-material-design-icons/Magnify.vue'
+	import Cog from 'vue-material-design-icons/Cog.vue'
+	import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
+
+	export default {
+		components: {
+			Magnify,
+			Cog,
+			ShareVariant,
+		},
+		provide() {
+			return {
+				'NcContent:selector': '#content-styleguidist-3',
+			}
+		},
+		data() {
+			return {
+				open: true,
+				active: 'search-tab',
+			}
+		},
+	}
 </script>
+
+<style scoped>
+	/* This styles just mock NcContent and NcAppContent */
+	.content-styleguidist {
+		--app-sidebar-padding: 8px;
+		--app-sidebar-offset: calc(var(--app-sidebar-padding) + var(--default-clickable-area));
+		display: flex;
+		position: relative !important;
+		/* Just to prevent jumping when the sidebar is hidden */
+		min-height: 360px;
+		overflow: hidden;
+
+		main {
+			width: 100%;
+		}
+	}
+
+	/* Fix styles on this style guide page */
+	@media only screen and (max-width: 512px) {
+		:deep(aside) {
+			width: calc(100vw - 64px) !important;
+		}
+	}
+</style>
 ```
 
 ### Editable name
 
 ```vue
 <template>
-	<NcAppSidebar
-		v-model:name="name"
-		:name-editable="true"
-		name-placeholder="Filename"
-		subname="last edited 3 weeks ago">
-		<!-- Insert your slots and tabs here -->
-	</NcAppSidebar>
+	<div class="content-styleguidist">
+		<main id="content-styleguidist-4" />
+		<NcAppSidebar
+			v-model:open="open"
+			v-model:name="name"
+			:name-editable="true"
+			name-placeholder="Filename"
+			subname="last edited 3 weeks ago">
+			<!-- Insert your slots and tabs here -->
+		</NcAppSidebar>
+	</div>
 </template>
+
 <script>
 	export default {
+		provide() {
+			return {
+				'NcContent:selector': '#content-styleguidist-4',
+			}
+		},
 		data() {
 			return {
+				open: true,
 				name: 'cat-picture.jpg',
 			}
 		},
 	}
 </script>
+
+<style scoped>
+	/* This styles just mock NcContent and NcAppContent */
+	.content-styleguidist {
+		--app-sidebar-padding: 8px;
+		--app-sidebar-offset: calc(var(--app-sidebar-padding) + var(--default-clickable-area));
+		display: flex;
+		position: relative !important;
+		/* Just to prevent jumping when the sidebar is hidden */
+		min-height: 360px;
+		overflow: hidden;
+
+		main {
+			width: 100%;
+		}
+	}
+
+	/* Fix styles on this style guide page */
+	@media only screen and (max-width: 512px) {
+		:deep(aside) {
+			width: calc(100vw - 64px) !important;
+		}
+	}
+</style>
 ```
 
 ### Editable name after click with custom tertiary action
 
 ```vue
 <template>
-	<NcAppSidebar
-		:name="name"
-		v-model:name-editable="nameEditable"
-		:name-placeholder="namePlaceholder"
-		:subname="subname"
-		@update:name="nameUpdate">
-		<template #tertiary-actions>
-			<form>
-				<input type="checkbox" @click="toggledCheckbox"/>
-			</form>
-		</template>
-	</NcAppSidebar>
+	<div class="content-styleguidist">
+		<main id="content-styleguidist-5" />
+		<NcAppSidebar
+			:name="name"
+			v-model:open="open"
+			v-model:name-editable="nameEditable"
+			:name-placeholder="namePlaceholder"
+			:subname="subname"
+			@update:name="nameUpdate">
+			<template #tertiary-actions>
+				<form>
+					<input type="checkbox" @click="toggledCheckbox"/>
+				</form>
+			</template>
+		</NcAppSidebar>
+	</div>
 </template>
+
 <script>
 	export default {
+		provide() {
+			return {
+				'NcContent:selector': '#content-styleguidist-5',
+			}
+		},
 		data() {
 			return {
+				open: true,
 				name: 'cat-picture.jpg',
 				namePlaceholder: 'Filename',
 				subname: 'last edited 3 weeks ago',
@@ -311,26 +392,56 @@ export default {
 		}
 	}
 </script>
+
+<style scoped>
+	/* This styles just mock NcContent and NcAppContent */
+	.content-styleguidist {
+		--app-sidebar-padding: 8px;
+		--app-sidebar-offset: calc(var(--app-sidebar-padding) + var(--default-clickable-area));
+		display: flex;
+		position: relative !important;
+		/* Just to prevent jumping when the sidebar is hidden */
+		min-height: 360px;
+		overflow: hidden;
+
+		main {
+			width: 100%;
+		}
+	}
+
+	/* Fix styles on this style guide page */
+	@media only screen and (max-width: 512px) {
+		:deep(aside) {
+			width: calc(100vw - 64px) !important;
+		}
+	}
+</style>
 ```
 
 ### Custom subname
 
 Instead of using the `subname` prop you can use the same called slot. This is handy if you need to add accessible information.
 Like in the following example where the goal is to show a star icon to mark the file a favorite.
-Simplying adding `★` would not work as screen readers might not or wrongly announce the icon meaning this information is lost.
+Simply adding `★` would not work as screen readers might not or wrongly announce the icon meaning this information is lost.
 
 A working alternative would be using an icon together with an `aria-label`:
 
 ```vue
-	<template>
-		<NcAppSidebar name="cat-picture.jpg">
+<template>
+	<div class="content-styleguidist">
+		<main id="content-styleguidist-6" />
+		<NcAppSidebar
+			v-model:open="open"
+			name="cat-picture.jpg">
 			<template #subname>
 				<NcIconSvgWrapper inline :path="mdiStar" name="Favorite" />
 				123 KiB, a month ago
 			</template>
 		</NcAppSidebar>
-	</template>
-	<script>
+	</div>
+</template>
+
+<script>
 	import { mdiStar } from '@mdi/js'
 
 	export default {
@@ -338,16 +449,53 @@ A working alternative would be using an icon together with an `aria-label`:
 			return {
 				mdiStar,
 			}
+		},
+		provide() {
+			return {
+				'NcContent:selector': '#content-styleguidist-6',
+			}
+		},
+		data() {
+			return {
+				open: true,
+			}
+		},
+	}
+</script>
+
+<style scoped>
+	/* This styles just mock NcContent and NcAppContent */
+	.content-styleguidist {
+		--app-sidebar-padding: 8px;
+		--app-sidebar-offset: calc(var(--app-sidebar-padding) + var(--default-clickable-area));
+		display: flex;
+		position: relative !important;
+		/* Just to prevent jumping when the sidebar is hidden */
+		min-height: 360px;
+		overflow: hidden;
+
+		main {
+			width: 100%;
 		}
 	}
-	</script>
+
+	/* Fix styles on this style guide page */
+	@media only screen and (max-width: 512px) {
+		:deep(aside) {
+			width: calc(100vw - 64px) !important;
+		}
+	}
+</style>
 ```
 
 ### Empty sidebar for e.g. empty content component.
 
 ```vue
-	<template>
+<template>
+	<div class="content-styleguidist">
+		<main id="content-styleguidist-7" />
 		<NcAppSidebar
+			v-model:open="open"
 			name="cat-picture.jpg"
 			:empty="true">
 			<NcEmptyContent name="Content not found.">
@@ -356,16 +504,52 @@ A working alternative would be using an icon together with an `aria-label`:
 				</template>
 			</NcEmptyContent>
 		</NcAppSidebar>
-	</template>
-	<script>
+	</div>
+</template>
+
+<script>
 	import Magnify from 'vue-material-design-icons/Magnify.vue'
 
 	export default {
 		components: {
 			Magnify,
 		},
+		provide() {
+			return {
+				'NcContent:selector': '#content-styleguidist-7',
+			}
+		},
+		data() {
+			return {
+				open: true,
+			}
+		},
 	}
-	</script>
+</script>
+
+<style scoped>
+	/* This styles just mock NcContent and NcAppContent */
+	.content-styleguidist {
+		--app-sidebar-padding: 8px;
+		--app-sidebar-offset: calc(var(--app-sidebar-padding) + var(--default-clickable-area));
+		display: flex;
+		position: relative !important;
+		/* Just to prevent jumping when the sidebar is hidden */
+		min-height: 360px;
+		overflow: hidden;
+
+		main {
+			width: 100%;
+		}
+	}
+
+	/* Fix styles on this style guide page */
+	@media only screen and (max-width: 512px) {
+		:deep(aside) {
+			width: calc(100vw - 64px) !important;
+		}
+	}
+</style>
 ```
 
 ### Conditionally show the sidebar with `open`
@@ -382,16 +566,14 @@ Note: the built-in toggle button is only available then NcAppSidebar is used in 
 
 ```vue
 <template>
-	<!-- This is in most cases NcContent -->
-	<NcContent app-name="styleguidist" class="content-styleguidist">
-		<NcAppContent>
+	<div class="content-styleguidist">
+		<main id="content-styleguidist-8">
 			<div class="top-bar">
 				<NcButton variant="primary">Start a call</NcButton>
 			</div>
-		</NcAppContent>
-		<!-- The sidebar -->
+		</main>
 		<NcAppSidebar
-			v-model:open="showSidebar"
+			v-model:open="open"
 			name="cat-picture.jpg"
 			subname="last edited 3 weeks ago">
 			<NcAppSidebarTab name="Settings" id="settings-tab">
@@ -401,52 +583,60 @@ Note: the built-in toggle button is only available then NcAppSidebar is used in 
 				Single tab content
 			</NcAppSidebarTab>
 		</NcAppSidebar>
-	</NcContent>
+	</div>
 </template>
 
 <script>
-import Cog from 'vue-material-design-icons/Cog'
+	import Cog from 'vue-material-design-icons/Cog'
 
-export default {
-	components: {
-		Cog,
-	},
-	data() {
-		return {
-			showSidebar: true,
-		}
-	},
-}
-</script>
-<style scoped>
-/* This styles just mock NcContent and NcAppContent */
-.content-styleguidist {
-	position: relative !important;
-	/* Just to prevent jumping when the sidebar is hidden */
-	min-height: 360px;
-}
-
-.main-content {
-	position: absolute;
-	height: 100%;
-	width: 100%;
-}
-
-/* Fix styles on this style guide page */
-@media only screen and (max-width: 512px) {
-	:deep(aside) {
-		width: calc(100vw - 64px) !important;
+	export default {
+		components: {
+			Cog,
+		},
+		provide() {
+			return {
+				'NcContent:selector': '#content-styleguidist-8',
+			}
+		},
+		data() {
+			return {
+				open: true,
+			}
+		},
 	}
-}
+</script>
 
-.top-bar {
-	display: flex;
-	justify-content: flex-end;
-	/* preserve space for toggle button */
-	padding-inline-end: var(--app-sidebar-offset);
-	/* same as on toggle button, but doesn't have to be the same */
-	margin: var(--app-sidebar-padding);
-}
+<style scoped>
+	/* This styles just mock NcContent and NcAppContent */
+	.content-styleguidist {
+		--app-sidebar-padding: 8px;
+		--app-sidebar-offset: calc(var(--app-sidebar-padding) + var(--default-clickable-area));
+		display: flex;
+		position: relative !important;
+		/* Just to prevent jumping when the sidebar is hidden */
+		min-height: 360px;
+		overflow: hidden;
+
+		main {
+			width: 100%;
+		}
+	}
+
+	/* Fix styles on this style guide page */
+	@media only screen and (max-width: 512px) {
+		:deep(aside) {
+			width: calc(100vw - 64px) !important;
+		}
+	}
+
+	.top-bar {
+		display: flex;
+		justify-content: flex-end;
+		/* preserve space for toggle button */
+		padding-inline-end: var(--app-sidebar-offset);
+		/* same as on toggle button, but doesn't have to be the same */
+		margin: var(--app-sidebar-padding);
+	}
 </style>
 ```
 
@@ -460,21 +650,20 @@ If the sidebar should be shown conditionally without any explicit toggle button,
 
 ```vue
 <template>
-	<!-- This is in most cases NcContent -->
-	<NcContent app-name="styleguidist" class="content-styleguidist">
-		<NcAppContent>
+	<div class="content-styleguidist">
+		<main id="content-styleguidist-9">
 			<div class="top-bar">
-				<NcButton @click.prevent="showSidebar = true">
+				<NcButton @click.prevent="open = !open">
 					Toggle sidebar
 				</NcButton>
 			</div>
-		</NcAppContent>
+		</main>
 		<!-- The sidebar -->
 		<NcAppSidebar
-			v-if="showSidebar"
+			v-if="open"
 			name="cat-picture.jpg"
 			subname="last edited 3 weeks ago"
-			@close="showSidebar = false">
+			@close="open = false">
 			<NcAppSidebarTab name="Settings" id="settings-tab">
 				<template #icon>
 					<Cog :size="20" />
@@ -482,52 +671,59 @@ If the sidebar should be shown conditionally without any explicit toggle button,
 				Single tab content
 			</NcAppSidebarTab>
 		</NcAppSidebar>
-	</NcContent>
+	</div>
 </template>
 
 <script>
-import Cog from 'vue-material-design-icons/Cog'
+	import Cog from 'vue-material-design-icons/Cog'
 
-export default {
-	components: {
-		Cog,
-	},
-	data() {
-		return {
-			showSidebar: true,
-		}
-	},
-}
+	export default {
+		components: {
+			Cog,
+		},
+		provide() {
+			return {
+				'NcContent:selector': '#content-styleguidist-9',
+			}
+		},
+		data() {
+			return {
+				open: true,
+			}
+		},
+	}
 </script>
 <style scoped>
-/* This styles just mock NcContent and NcAppContent */
-.content-styleguidist {
-	position: relative !important;
-	/* Just to prevent jumping when the sidebar is hidden */
-	min-height: 360px;
-}
+	/* This styles just mock NcContent and NcAppContent */
+	.content-styleguidist {
+		--app-sidebar-padding: 8px;
+		--app-sidebar-offset: calc(var(--app-sidebar-padding) + var(--default-clickable-area));
+		display: flex;
+		position: relative !important;
+		/* Just to prevent jumping when the sidebar is hidden */
+		min-height: 360px;
+		overflow: hidden;
 
-.main-content {
-	position: absolute;
-	height: 100%;
-	width: 100%;
-}
-
-/* Fix styles on this style guide page */
-@media only screen and (max-width: 512px) {
-	:deep(aside) {
-		width: calc(100vw - 64px) !important;
+		main {
+			width: 100%;
+		}
 	}
-}
 
-.top-bar {
-	display: flex;
-	justify-content: flex-end;
-	/* preserve space for toggle button */
-	padding-inline-end: var(--app-sidebar-offset);
-	/* same as on toggle button, but doesn't have to be the same */
-	margin: var(--app-sidebar-padding);
-}
+	/* Fix styles on this style guide page */
+	@media only screen and (max-width: 512px) {
+		:deep(aside) {
+			width: calc(100vw - 64px) !important;
+		}
+	}
+
+	.top-bar {
+		display: flex;
+		justify-content: flex-end;
+		/* preserve space for toggle button */
+		padding-inline-end: var(--app-sidebar-offset);
+		/* same as on toggle button, but doesn't have to be the same */
+		margin: var(--app-sidebar-padding);
+	}
 </style>
 ```
 </docs>
@@ -662,7 +858,7 @@ export default {
 								<p v-if="subname.trim() !== '' || $slots['subname']"
 									:title="subtitle || undefined"
 									class="app-sidebar-header__subname">
-									<!-- @slot Alternative to the `subname` prop can be used for more complex conent. It will be rendered within a `p` tag. -->
+									<!-- @slot Alternative to the `subname` prop can be used for more complex content. It will be rendered within a `p` tag. -->
 									<slot name="subname">
 										{{ subname }}
 									</slot>
@@ -1016,7 +1212,7 @@ export default {
 			this.focusTrap = createFocusTrap([
 				// The sidebar itself
 				this.$refs.sidebar,
-				// Nextcloud Server header navigarion
+				// Nextcloud Server header navigation
 				document.querySelector('#header'),
 			], {
 				allowOutsideClick: true,
@@ -1239,9 +1435,9 @@ export default {
 // Allows to use transition over a custom CSS property (CSS Variable)
 // Ignored on old browsers resulting in slightly noticeable jump
 @property --app-sidebar-offset {
-  syntax: '<length>';
-  initial-value: 0;
-  inherits: true;
+	syntax: '<length>';
+	initial-value: 0;
+	inherits: true;
 }
 
 .content {
@@ -1279,7 +1475,7 @@ $top-buttons-spacing: 6px;
 
 /*
 	Sidebar: to be used within #content
-	app-content will be shrinked properly
+	app-content will be shrunk properly
 */
 .app-sidebar {
 	--app-sidebar-width: clamp(300px, 27vw, 500px);
@@ -1341,6 +1537,7 @@ $top-buttons-spacing: 6px;
 					border-radius: 3px;
 					flex: 0 0 auto;
 				}
+
 				.app-sidebar-header__desc {
 					padding-inline-start: 0;
 					flex: 1 1 auto;
@@ -1359,6 +1556,7 @@ $top-buttons-spacing: 6px;
 						inset-inline-start: calc(-1 * var(--default-clickable-area));
 						gap: 0; // override gap
 					}
+
 					.app-sidebar-header__menu {
 						top: $top-buttons-spacing;
 						inset-inline-end: var(--app-sidebar-close-button-offset); // left of the close button
@@ -1376,6 +1574,7 @@ $top-buttons-spacing: 6px;
 				top: $top-buttons-spacing;
 				inset-inline-end: var(--app-sidebar-close-button-offset);
 			}
+
 			// increase the padding to not overlap the menu
 			.app-sidebar-header__desc {
 				padding-inline-end: calc(var(--default-clickable-area) + var(--app-sidebar-close-button-offset));
@@ -1400,6 +1599,7 @@ $top-buttons-spacing: 6px;
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: contain;
+
 			&--with-action {
 				cursor: pointer;
 			}
@@ -1440,6 +1640,7 @@ $top-buttons-spacing: 6px;
 				.app-sidebar-header__star {
 					// Override default Button component styles
 					box-shadow: none;
+
 					&:not([aria-pressed='true']):hover {
 						box-shadow: none;
 						background-color: var(--color-background-hover);
