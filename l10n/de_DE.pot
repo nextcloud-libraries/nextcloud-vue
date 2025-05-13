@@ -4,10 +4,11 @@
 # Catherine Bühnsack, 2025
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2025
 # Mario Siegmann <mario_siegmann@web.de>, 2025
+# Martin Wilichowski, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2025\n"
+"Last-Translator: Martin Wilichowski, 2025\n"
 "Language-Team: German (Germany) (https://app.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -208,6 +209,7 @@ msgstr "Essen & Trinken"
 msgid "Frequently used"
 msgstr "Häufig verwendet"
 
+#. TRANSLATORS: This refers to global timezones in the timezone picker
 msgid "Global"
 msgstr "Global"
 
@@ -322,7 +324,7 @@ msgid "Open hours overlay"
 msgstr "Stunden-Overlay öffnen"
 
 msgid "Open link to \"{resourceName}\""
-msgstr "Link zu \"{resourceName}“ öffnen"
+msgstr "Link zu \"{resourceName}\" öffnen"
 
 msgid "Open menu"
 msgstr "Menü öffnen"
