@@ -3,79 +3,53 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+<script setup lang="ts">
+import { mdiArrowRight } from '@mdi/js'
+import { emit } from '@nextcloud/event-bus'
+import { onBeforeUnmount, watch } from 'vue'
+import NcButton from '../NcButton/index.ts'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { t } from '../../l10n.js'
+
+const isMobile = useIsMobile()
+watch(isMobile, toggleAppNavigationButton, { immediate: true })
+
+onBeforeUnmount(() => {
+	if (isMobile.value) {
+		toggleAppNavigationButton(false)
+	}
+})
+
+/**
+ * Toggle the app navigation button and hide it if needed.
+ *
+ * @param hide - if true the navigation toggle is visually hidden
+ */
+function toggleAppNavigationButton(hide = true) {
+	const appNavigationToggle = document.querySelector<HTMLElement>('.app-navigation .app-navigation-toggle')
+	if (appNavigationToggle) {
+		appNavigationToggle.style.display = hide ? 'none' : ''
+
+		// If we hide the NavigationToggle, we need to make sure the Navigation is also closed
+		if (hide === true) {
+			emit('toggle-navigation', { open: false })
+		}
+	}
+}
+</script>
+
 <template>
-	<NcButton :aria-label="title"
+	<NcButton :aria-label="t('Go back to the list')"
 		class="app-details-toggle"
 		:class="{ 'app-details-toggle--mobile': isMobile }"
-		:title
+		:title="t('Go back to the list')"
 		variant="tertiary">
 		<template #icon>
-			<ArrowLeft v-if="isRtl" :size="20" />
-			<ArrowRight v-else :size="20" />
+			<NcIconSvgWrapper directional :path="mdiArrowRight" />
 		</template>
 	</NcButton>
 </template>
-
-<script>
-import { emit } from '@nextcloud/event-bus'
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { isRtl } from '../../utils/rtl.ts'
-import { t } from '../../l10n.js'
-
-import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
-import NcButton from '../NcButton/index.ts'
-
-export default {
-	name: 'NcAppDetailsToggle',
-
-	components: {
-		ArrowRight,
-		ArrowLeft,
-		NcButton,
-	},
-	setup() {
-		return {
-			isRtl,
-			isMobile: useIsMobile(),
-		}
-	},
-
-	computed: {
-		title() {
-			return t('Go back to the list')
-		},
-	},
-	watch: {
-		isMobile: {
-			immediate: true,
-			handler() {
-				this.toggleAppNavigationButton(this.isMobile)
-			},
-		},
-	},
-
-	beforeUnmount() {
-		if (this.isMobile) {
-			this.toggleAppNavigationButton(false)
-		}
-	},
-
-	methods: {
-		toggleAppNavigationButton(hide = true) {
-			const appNavigationToggle = document.querySelector('.app-navigation .app-navigation-toggle')
-			if (appNavigationToggle) {
-				appNavigationToggle.style.display = hide ? 'none' : null
-
-				// If we hide the NavigationToggle, we need to make sure the Navigation is also closed
-				if (hide === true) {
-					emit('toggle-navigation', { open: false })
-				}
-			}
-		},
-	},
-}
-</script>
 
 <style lang="scss" scoped>
 .app-details-toggle {
