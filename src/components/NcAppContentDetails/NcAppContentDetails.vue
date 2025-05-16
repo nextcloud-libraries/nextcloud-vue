@@ -5,13 +5,18 @@
 
 <template>
 	<div class="app-content-details">
-		<!-- @slot Provide content to the details view -->
 		<slot />
 	</div>
 </template>
 
-<script>
-export default {
-	name: 'NcAppContentDetails',
-}
+<script setup lang="ts">
+import type { Slot } from 'vue'
+
+defineSlots<{
+	/**
+	 * Provide content to the details view.
+	 * Passing content to this slot is required!
+	 */
+	default?: Slot
+}>()
 </script>
