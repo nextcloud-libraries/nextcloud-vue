@@ -91,6 +91,7 @@ export default {
 		</span>
 		<NcActions v-if="canClose || hasActions()"
 			class="nc-chip__actions"
+			:container="actionsContainer"
 			:force-menu="!canClose"
 			variant="tertiary-no-background">
 			<NcActionButton v-if="canClose"
@@ -124,6 +125,11 @@ const props = withDefaults(defineProps<{
 	ariaLabelClose?: string
 
 	/**
+	 * Container for the actions
+	 */
+	actionsContainer?: string
+
+	/**
 	 * Main text of the chip.
 	 */
 	text?: string
@@ -154,6 +160,7 @@ const props = withDefaults(defineProps<{
 	variant: 'primary' | 'secondary' | 'tertiary'
 }>(), {
 	ariaLabelClose: t('Close'),
+	actionsContainer: 'body',
 	iconPath: undefined,
 	iconSvg: undefined,
 	text: '',
