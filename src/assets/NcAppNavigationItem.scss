@@ -132,11 +132,14 @@
 	flex-direction: column;
 	width: 100%;
 	gap: var(--default-grid-baseline, 4px);
-
+	padding-inline-start: 10px;
 	.app-navigation-entry {
 		display: inline-flex;
 		flex-wrap: wrap;
-		padding-inline-start: $icon-size;
+		padding-inline-start: 10px;
+	}
+	& & & & & & & {
+		--app-navigation-item-child-offset: 0;
 	}
 }
 
