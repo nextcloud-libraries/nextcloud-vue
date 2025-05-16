@@ -17,7 +17,6 @@ It also will set the skip content buttons needed for accessibility.
 
 ```vue
 	<template>
-		<div id="skip-actions" />
 		<NcContent app-name="forms">
 			<NcAppNavigation>
 				<template #list>
