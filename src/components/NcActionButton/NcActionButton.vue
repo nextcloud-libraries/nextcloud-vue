@@ -53,7 +53,9 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 	</script>
 ```
 
-If you're using a long text you can specify a name
+If you're using a long text, you can specify a `name` prop.
+
+For the same purpose, but in a more compact way, `description` prop can be used.
 
 ```vue
 	<template>
@@ -70,15 +72,23 @@ If you're using a long text you can specify a name
 				</template>
 				This button is associated with a very long text.\nAnd with new lines too.
 			</NcActionButton>
+			<NcActionButton description="Subline description for the button" @click="showMessage('Edit')">
+				<template #icon>
+					<Pencil :size="20" />
+				</template>
+				Edit
+			</NcActionButton>
 		</NcActions>
 	</template>
 	<script>
 	import Delete from 'vue-material-design-icons/Delete.vue'
+	import Pencil from 'vue-material-design-icons/Pencil.vue'
 	import Plus from 'vue-material-design-icons/Plus.vue'
 
 	export default {
 		components: {
 			Delete,
+			Pencil,
 			Plus,
 		},
 		methods: {
@@ -348,6 +358,9 @@ export default {
 					class="action-button__text">
 					{{ text }}
 				</span>
+				<span v-if="description"
+					class="action-button__description"
+					v-text="description" />
 			</span>
 
 			<!-- right(in LTR) or left(in RTL) arrow icon when there is a sub-menu -->
@@ -443,6 +456,14 @@ export default {
 		value: {
 			type: String,
 			default: null,
+		},
+
+		/**
+		 * Small underlying text content of the entry
+		 */
+		description: {
+			type: String,
+			default: '',
 		},
 	},
 
