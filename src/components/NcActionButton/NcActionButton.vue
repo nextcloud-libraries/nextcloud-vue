@@ -333,26 +333,22 @@ export default {
 			</slot>
 
 			<!-- long text with name -->
-			<span v-if="name"
-				class="action-button__longtext-wrapper">
-				<strong class="action-button__name">
+			<span class="action-button__longtext-wrapper">
+				<strong v-if="name"
+					class="action-button__name">
 					{{ name }}
 				</strong>
-				<br>
 				<!-- white space is shown on longtext, so we can't
 					put {{ text }} on a new line for code readability -->
-				<span class="action-button__longtext" v-text="text" />
+				<span v-if="isLongText"
+					class="action-button__longtext"
+					v-text="text" />
+				<!-- default text display -->
+				<span v-else
+					class="action-button__text">
+					{{ text }}
+				</span>
 			</span>
-
-			<!-- long text only -->
-			<!-- white space is shown on longtext, so we can't
-				put {{ text }} on a new line for code readability -->
-			<span v-else-if="isLongText"
-				class="action-button__longtext"
-				v-text="text" />
-
-			<!-- default text display -->
-			<span v-else class="action-button__text">{{ text }}</span>
 
 			<!-- right(in LTR) or left(in RTL) arrow icon when there is a sub-menu -->
 			<ChevronRightIcon v-if="isMenu && !isRtl" :size="20" class="action-button__menu-icon" />
