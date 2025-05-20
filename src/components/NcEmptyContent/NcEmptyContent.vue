@@ -228,6 +228,8 @@ export default {
 
 	&__description {
 		color: var(--color-text-maxcontrast);
+		text-align: center;
+		text-wrap-style: balance;
 	}
 
 	&__action {
