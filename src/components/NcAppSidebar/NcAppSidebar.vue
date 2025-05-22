@@ -1267,8 +1267,6 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-$desc-vertical-padding: 18px;
-$desc-vertical-padding-compact: 10px;
 $desc-input-padding: 7px;
 
 // name and subname
@@ -1276,7 +1274,7 @@ $desc-name-height: 30px;
 $desc-subname-height: 22px;
 $desc-height: $desc-name-height + $desc-subname-height;
 
-$top-buttons-spacing: 6px;
+$top-buttons-spacing: $app-navigation-padding; // align with app navigation
 
 /*
 	Sidebar: to be used within #content
@@ -1284,6 +1282,7 @@ $top-buttons-spacing: 6px;
 */
 .app-sidebar {
 	--app-sidebar-width: clamp(300px, 27vw, 500px);
+	--app-sidebar-padding: #{$app-navigation-padding};
 	width: var(--app-sidebar-width);
 
 	z-index: 1500;
@@ -1335,10 +1334,11 @@ $top-buttons-spacing: 6px;
 				flex-direction: row;
 
 				.app-sidebar-header__figure {
+					--figure-size: calc($desc-height + var(--app-sidebar-padding));
 					z-index: 2;
-					width: $desc-height + $desc-vertical-padding;
-					height: $desc-height + $desc-vertical-padding;
-					margin: math.div($desc-vertical-padding, 2);
+					width: var(--figure-size);
+					height: var(--figure-size);
+					margin: calc(var(--app-sidebar-padding) / 2);
 					border-radius: 3px;
 					flex: 0 0 auto;
 				}
@@ -1413,7 +1413,8 @@ $top-buttons-spacing: 6px;
 			flex-direction: row;
 			justify-content: center;
 			align-items: center;
-			padding: #{$desc-vertical-padding} #{$top-buttons-spacing} #{$desc-vertical-padding} #{math.div($desc-vertical-padding, 2)};
+			padding-inline: var(--app-sidebar-padding);
+			padding-block: #{$top-buttons-spacing} calc(var(--app-sidebar-padding) / 2);
 			gap: 0 4px;
 
 			// custom overrides
