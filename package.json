@@ -47,7 +47,7 @@
   "scripts": {
     "build": "vite build --mode production ",
     "dev": "vite build --mode development",
-    "watch": "vite build --mode development --watch",
+    "watch": "npm run dev:watch",
     "l10n:extract": "node build/extract-l10n.mjs",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
@@ -61,8 +61,7 @@
     "test:component:gui": "playwright test --ui -c playwright.config.ts",
     "test:coverage": "vitest run --coverage",
     "ts:check": "vue-tsc --noEmit",
-    "update:snapshots": "npm run test:component -- --grep @visual --update-snapshots",
-    "watch": "npm run dev:watch"
+    "update:snapshots": "npm run test:component -- --grep @visual --update-snapshots"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
