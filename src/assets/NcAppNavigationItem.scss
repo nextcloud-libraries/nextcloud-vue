@@ -134,7 +134,7 @@
 	flex-direction: column;
 	width: 100%;
 	gap: var(--default-grid-baseline, 4px);
-	padding-left: var(--app-navigation-item-child-offset);
+	padding-inline-start: var(--app-navigation-item-child-offset);
 
 	.app-navigation-entry {
 		display: inline-flex;
