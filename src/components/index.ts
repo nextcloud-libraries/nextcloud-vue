@@ -80,6 +80,6 @@ export { default as NcSettingsSelectGroup } from './NcSettingsSelectGroup/index.
 export { default as NcTextArea } from './NcTextArea/index.js'
 export { default as NcTextField } from './NcTextField/index.js'
 export { default as NcTimezonePicker } from './NcTimezonePicker/index.ts'
-export { default as NcUserBubble } from './NcUserBubble/index.js'
+export { default as NcUserBubble } from './NcUserBubble/index.ts'
 export { default as NcUserStatusIcon } from './NcUserStatusIcon/index.ts'
 export { default as NcVNodes } from './NcVNodes/index.ts'
