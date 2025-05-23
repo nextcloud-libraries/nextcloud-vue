@@ -5,6 +5,7 @@
 
 <docs>
 ### General description
+Guest content container to be used for the guest content of your app.
 
 This components provides a wrapper around guest page content.
 It should be used as the main wrapper for public pages, similar to `NcContent`.
@@ -23,26 +24,28 @@ It can't be used multiple times on the same page.
 ```
 </docs>
 
+<script setup lang="ts">
+import type { Slot } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
+
+defineSlots<{
+	default?: Slot
+}>()
+
+onMounted(() => {
+	document.getElementById('content')!.classList.add('nc-guest-content')
+})
+
+onUnmounted(() => {
+	document.getElementById('content')!.classList.remove('nc-guest-content')
+})
+</script>
+
 <template>
 	<div id="guest-content-vue">
 		<slot />
 	</div>
 </template>
-
-<script>
-/**
- * Guest content container to be used for the guest content of your app
- */
-export default {
-	name: 'NcGuestContent',
-	mounted() {
-		document.getElementById('content').classList.add('nc-guest-content')
-	},
-	unmounted() {
-		document.getElementById('content').classList.remove('nc-guest-content')
-	},
-}
-</script>
 
 <style lang="scss" scoped>
 #guest-content-vue {
