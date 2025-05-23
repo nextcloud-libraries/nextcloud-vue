@@ -192,6 +192,7 @@ export default {
 	justify-content: center;
 	/* In case of using in a flex container - flex in advance */
 	flex-grow: 1;
+	padding: var(--default-grid-baseline);
 
 	.modal-wrapper & {
 		margin-top: 5vh;
@@ -228,6 +229,8 @@ export default {
 
 	&__description {
 		color: var(--color-text-maxcontrast);
+		text-align: center;
+		text-wrap-style: balance;
 	}
 
 	&__action {
