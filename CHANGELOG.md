@@ -5,6 +5,14 @@
 
 # Changelog
 
+## [v8.26.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.26.2) (TBA)
+
+### 📝 Notes
+#### NcEmptyContent
+A padding was added to the empty content wrapper.
+It is recommended to check in-app styles for possible overrides.
+
+
 ## [v8.26.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.26.1) (2025-05-07)
 ### 🐛 Fixed bugs
 * [stable8] fix(NcIconSvgWrapper): center svg span wrapper [#6880](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6880) ([backportbot](https://github.com/backportbot))
