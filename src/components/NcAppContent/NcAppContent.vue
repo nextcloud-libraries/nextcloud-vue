@@ -405,7 +405,7 @@ export default {
 		},
 
 		handlePaneResize(event) {
-			const listPaneSize = parseInt(event[0].size, 10)
+			const listPaneSize = parseInt(event.panes[0].size, 10)
 			browserStorage.setItem(this.paneConfigID, JSON.stringify(listPaneSize))
 			this.listPaneSize = listPaneSize
 			/**
