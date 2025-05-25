@@ -243,7 +243,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 import NcColorPicker from '../NcColorPicker/index.js'
 import NcDateTimePicker from '../NcDateTimePicker/index.js'
 import NcDateTimePickerNative from '../NcDateTimePickerNative/index.js'
-import NcPasswordField from '../NcPasswordField/index.js'
+import NcPasswordField from '../NcPasswordField/index.ts'
 import NcSelect from '../NcSelect/index.js'
 import NcTextField from '../NcTextField/index.ts'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'

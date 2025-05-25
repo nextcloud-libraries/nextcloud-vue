@@ -10,4 +10,7 @@ export type ComponentProps<C extends Component> = C extends new (...args: any) =
 	? Omit<InstanceType<C>['$props'], keyof VNodeProps | keyof AllowedComponentProps | `on${string}`>
 	: never;
 
-export type VueClassType = string | Record<string, boolean> | (string | Record<string, boolean>)[]
+type ClassType = string | Record<string, boolean | undefined>
+export type VueClassType = ClassType | ClassType[] | VueClassType[]
+
+export type Writable<T> = { -readonly [P in keyof T]: T[P] }
