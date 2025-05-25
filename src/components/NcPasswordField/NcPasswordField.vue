@@ -96,14 +96,15 @@ export default {
 <template>
 	<NcInputField v-bind="propsToForward"
 		ref="inputField"
+		v-model="modelValue"
+		:error="error || isValid === false"
+		:helper-text="helperText || internalHelpMessage"
+		:input-class="[inputClass, { 'password-field__input--secure-text': isPasswordHidden && asText }]"
+		:minlength="minlength ?? passwordPolicy?.minLength ?? 0"
+		:success="success || isValid === true"
+		:trailing-button-label="isPasswordHidden ? t('Show password') : t('Hide password')"
 		:type="isPasswordHidden && !asText ? 'password' : 'text'"
-		:trailing-button-label="trailingButtonLabelPassword"
-		:helper-text="computedHelperText"
-		:error="computedError"
-		:success="computedSuccess"
-		:minlength="rules.minlength"
-		@trailing-button-click="togglePasswordVisibility"
-		@update:model-value="handleInput">
+		@trailing-button-click="isPasswordHidden = !isPasswordHidden">
 		<template v-if="!!$slots.icon" #icon>
 			<!-- @slot Leading icon -->
 			<slot name="icon" />
@@ -115,230 +116,183 @@ export default {
 	</NcInputField>
 </template>
 
-<script>
+<script setup lang="ts">
+import type { NcInputFieldProps } from '../NcInputField/NcInputField.vue'
+import type { Writable } from '../../utils/VueTypes.ts'
 
+import debounce from 'debounce'
+import axios from '@nextcloud/axios'
+import { getCapabilities } from '@nextcloud/capabilities'
+import { generateOcsUrl } from '@nextcloud/router'
+import { computed, ref, useTemplateRef, watch } from 'vue'
 import Eye from 'vue-material-design-icons/Eye.vue'
 import EyeOff from 'vue-material-design-icons/EyeOff.vue'
 import NcInputField from '../NcInputField/NcInputField.vue'
-import debounce from 'debounce'
-import axios from '@nextcloud/axios'
-import { loadState } from '@nextcloud/initial-state'
-import { generateOcsUrl } from '@nextcloud/router'
 import { t } from '../../l10n.js'
 import logger from '../../utils/logger.ts'
 
+const props = withDefaults(defineProps<Omit<NcInputFieldProps, 'trailingButtonLabel' | 'type'> & {
+	/**
+	 * Check if the user entered a valid password using the password_policy
+	 * app if available.
+	 *
+	 * Warning: this doesn't replace server side checking and will do nothing
+	 * if the password_policy app is disabled.
+	 */
+	checkPasswordStrength?: boolean
+
+	/**
+	 * The minlength property defines the minimum number of characters
+	 * (as UTF-16 code units) the user can enter.
+	 */
+	minlength?: number
+
+	/**
+	 * Render as input[type=text] that looks like password field.
+	 * Allows to avoid unwanted password-specific browser behavior,
+	 * such as save or generate password prompt.
+	 * Useful for secret token fields.
+	 * Note: autocomplete="off" is ignored by most browsers.
+	 */
+	asText?: boolean
+}>(), {
+	inputClass: '',
+	minlength: undefined,
+	// overwrite default
+	showTrailingButton: true,
+})
+
+const modelValue = defineModel<string>('modelValue', { default: '' })
+watch(modelValue, debounce(checkPassword, 500))
+
+const emit = defineEmits<{
+	valid: []
+	invalid: []
+}>()
+
+// public API
+defineExpose({
+	focus,
+	select,
+})
+
+// password policy
+interface PasswordPolicy {
+	/**
+	 * The URLs to the password_policy app methods
+	 */
+	api: {
+		/**
+		 * The URL to the password generator
+		 */
+		generate: string
+
+		/**
+		 * The URL to the password validator
+		 */
+		validate: string
+	}
+
+	/**
+	 * Whether to enforce non common passwords
+	 */
+	enforceNonCommonPassword: boolean
+
+	/**
+	 * Whether to enforce numeric characters
+	 */
+	enforceNumericCharacters: boolean
+
+	/**
+	 * Whether to enforce special characters
+	 */
+	enforceSpecialCharacters: boolean
+
+	/**
+	 * Whether to enforce upper and lower case
+	 */
+	enforceUpperLowerCase: boolean
+
+	/**
+	 * The minimum length of the password
+	 */
+	minLength: number
+}
+
+const { password_policy: passwordPolicy } = getCapabilities() as { password_policy?: PasswordPolicy }
+
+// internal state
+const inputField = useTemplateRef('inputField')
+
+const isPasswordHidden = ref(true)
+const internalHelpMessage = ref('')
+const isValid = ref<boolean>()
+
+const propsToForward = computed<Partial<NcInputFieldProps>>(() => {
+	const all = { ...props } as Partial<Writable<typeof props>>
+	// our props
+	delete all.checkPasswordStrength
+	delete all.minlength
+	delete all.asText
+	// other props already set in template
+	delete all.error
+	delete all.helperText
+	delete all.inputClass
+	delete all.success
+
+	return all satisfies Partial<NcInputFieldProps>
+})
+
 /**
- * @typedef PasswordPolicy
- * @property {object} api - The URLs to the password_policy app methods
- * @property {string} api.generate - The URL to the password generator
- * @property {string} api.validate - The URL to the password validator
- * @property {boolean} enforceNonCommonPassword - Whether to enforce non common passwords
- * @property {boolean} enforceNumericCharacters - Whether to enforce numeric characters
- * @property {boolean} enforceSpecialCharacters - Whether to enforce special characters
- * @property {boolean} enforceUpperLowerCase - Whether to enforce upper and lower case
- * @property {number} minLength - The minimum length of the password
+ * Validate the entered password.
+ * If available this method will use the password-policy app API to validate the password.
  */
+async function checkPassword() {
+	if (!props.checkPasswordStrength) {
+		return
+	}
 
-/** @type {PasswordPolicy|null} */
-const passwordPolicy = loadState('core', 'capabilities', {}).password_policy || null
-
-const NcInputFieldProps = new Set(Object.keys(NcInputField.props))
-
-export default {
-	name: 'NcPasswordField',
-
-	components: {
-		NcInputField,
-		Eye,
-		EyeOff,
-	},
-
-	props: {
-		/**
-		 * Any [NcInputField](#/Components/NcFields?id=ncinputfield) props
-		 */
-		// Not an actual prop but needed to show in vue-styleguidist docs
-		// eslint-disable-next-line
-		' ': {},
-
-		// Reuse all the props from NcInputField for better typing and documentation
-		...NcInputField.props,
-
-		// Redefined props
-
-		/**
-		 * Controls whether to display the trailing button.
-		 */
-		showTrailingButton: {
-			type: Boolean,
-			default: true,
-		},
-
-		// Removed NcInputField props, defined only by this component
-
-		trailingButtonLabel: undefined,
-
-		// Custom props
-
-		/**
-		 * Check if the user entered a valid password using the password_policy
-		 * app if available.
-		 *
-		 * Warning: this doesn't replace server side checking and will do nothing
-		 * if the password_policy app is disabled.
-		 */
-		checkPasswordStrength: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * The minlength property defines the minimum number of characters
-		 * (as UTF-16 code units) the user can enter
-		 */
-		minlength: {
-			type: Number,
-			default: 0,
-		},
-
-		/**
-		 * The maxlength property defines the maximum number of characters
-		 * (as UTF-16 code units) the user can enter
-		 */
-		maxlength: {
-			type: Number,
-			default: null,
-		},
-
-		/**
-		 * Render as input[type=text] that looks like password field.
-		 * Allows to avoid unwanted password-specific browser behavior,
-		 * such as save or generate password prompt.
-		 * Useful for secret token fields.
-		 * Note: autocomplete="off" is ignored by browsers.
-		 */
-		asText: {
-			type: Boolean,
-			default: false,
-		},
-	},
-
-	emits: [
-		'valid',
-		'invalid',
-		'update:modelValue',
-	],
-
-	data() {
-		return {
-			isPasswordHidden: true,
-			internalHelpMessage: '',
-			isValid: null,
-		}
-	},
-
-	computed: {
-		computedError() {
-			return this.error || this.isValid === false
-		},
-		computedSuccess() {
-			return this.success || this.isValid === true
-		},
-		computedHelperText() {
-			if (this.helperText.length > 0) {
-				return this.helperText
-			}
-			return this.internalHelpMessage
-		},
-
-		rules() {
-			const { minlength } = this
-			return {
-				minlength: minlength ?? passwordPolicy?.minLength,
-			}
-		},
-
-		trailingButtonLabelPassword() {
-			return this.isPasswordHidden ? t('Show password') : t('Hide password')
-		},
-
-		propsToForward() {
-			return {
-				// Proxy original NcInputField's props
-				...Object.fromEntries(
-					Object.entries(this.$props).filter(([key]) => NcInputFieldProps.has(key)),
-				),
-			}
-		},
-	},
-
-	watch: {
-		modelValue(newValue) {
-			if (this.checkPasswordStrength) {
-				if (passwordPolicy === null) {
-					return
-				}
-				this.checkPassword(newValue)
-			}
-		},
-	},
-
-	methods: {
-		/**
-		 * Focus the input element
-		 *
-		 * @public
-		 */
-		focus() {
-			this.$refs.inputField.focus()
-		},
-
-		/**
-		 * Select all the text in the input
-		 *
-		 * @public
-		 */
-		select() {
-			this.$refs.inputField.select()
-		},
-
-		handleInput(event) {
+	try {
+		const { data } = await axios.post(generateOcsUrl('apps/password_policy/api/v1/validate'), { password: modelValue.value })
+		isValid.value = data.ocs.data.passed
+		if (data.ocs.data.passed) {
+			internalHelpMessage.value = t('Password is secure')
 			/**
-			 * Triggers when the value inside the password field is
-			 * updated.
-			 *
-			 * @property {string} The new value
+			 * Triggers when the internal password_policy detect that the
+			 * password entered is valid.
 			 */
-			this.$emit('update:modelValue', event)
-		},
-		togglePasswordVisibility() {
-			this.isPasswordHidden = !this.isPasswordHidden
-		},
-		checkPassword: debounce(async function(password) {
-			try {
-				const { data } = await axios.post(generateOcsUrl('apps/password_policy/api/v1/validate'), { password })
-				this.isValid = data.ocs.data.passed
-				if (data.ocs.data.passed) {
-					this.internalHelpMessage = t('Password is secure')
-					/**
-					 * Triggers when the internal password_policy detect that the
-					 * password entered is valid.
-					 */
-					this.$emit('valid')
-					return
-				}
+			emit('valid')
+			return
+		}
 
-				this.internalHelpMessage = data.ocs.data.reason
-				/**
-				 * Triggers when the internal password_policy detect that the
-				 * password entered is invalid.
-				 */
-				this.$emit('invalid')
-			} catch (e) {
-				logger.error('Password policy returned an error', e)
-			}
-		}, 500),
-	},
+		internalHelpMessage.value = data.ocs.data.reason
+		/**
+		 * Triggers when the internal password_policy detect that the
+		 * password entered is invalid.
+		 */
+		emit('invalid')
+	} catch (error) {
+		logger.error('Password policy returned an error', { error })
+	}
+}
+
+/**
+ * Focus the input element
+ *
+ * @param options - Focus options
+ * @public
+ */
+function focus(options?: FocusOptions) {
+	inputField.value!.focus(options)
+}
+
+/**
+ * Select all the text in the input
+ *
+ * @public
+ */
+function select() {
+	inputField.value!.select()
 }
 </script>
 
