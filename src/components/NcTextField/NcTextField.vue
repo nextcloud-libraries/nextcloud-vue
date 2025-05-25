@@ -127,9 +127,8 @@ export default {
 <template>
 	<NcInputField v-bind="propsToForward"
 		ref="inputField"
-		@update:model-value="handleInput">
+		v-model="modelValue">
 		<template v-if="!!$slots.icon" #icon>
-			<!-- @slot Leading icon -->
 			<slot name="icon" />
 		</template>
 
@@ -142,112 +141,90 @@ export default {
 	</NcInputField>
 </template>
 
-<script>
+<script setup lang="ts">
+import type { Slot } from 'vue'
+import type { NcInputFieldProps } from '../NcInputField/index.ts'
 
-import NcInputField from '../NcInputField/NcInputField.vue'
-
+import { computed, useTemplateRef } from 'vue'
 import Close from 'vue-material-design-icons/Close.vue'
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import Undo from 'vue-material-design-icons/UndoVariant.vue'
-
+import NcInputField from '../NcInputField/index.ts'
 import { t } from '../../l10n.js'
 
-const NcInputFieldProps = new Set(Object.keys(NcInputField.props))
+const props = withDefaults(defineProps<NcInputFieldProps & {
+	/**
+	 * Specifies which material design icon should be used for the trailing button.
+	 */
+	trailingButtonIcon?: 'close' | 'arrowRight' | 'undo'
 
-export default {
-	name: 'NcTextField',
+	/**
+	 * The `aria-label` to set on the trailing button
+	 * If no explicit value is set it will default to the one matching the `trailingButtonIcon`:
+	 * - 'Clear text'
+	 * - 'Save changes'
+	 * - 'Undo changes'
+	 */
+	trailingButtonLabel?: string
+}>(), {
+	trailingButtonIcon: 'close',
+	trailingButtonLabel: undefined,
+})
 
-	components: {
-		NcInputField,
-		Close,
-		ArrowRight,
-		Undo,
-	},
+/**
+ * The value of the input field
+ * If type is 'number' and a number is passed as value than the type of `update:value` will also be 'number'
+ */
+const modelValue = defineModel<string | number>('modelValue', { default: '' })
 
-	props: {
-		/**
-		 * Any [NcInputField](#/Components/NcFields?id=ncinputfield) props
-		 */
-		// Not an actual prop but needed to show in vue-styleguidist docs
-		// eslint-disable-next-line
-		' ': {},
+// public API
+defineExpose({
+	focus,
+	select,
+})
 
-		// Reuse all the props from NcInputField for better typing and documentation
-		...NcInputField.props,
+defineSlots<{
+	/**
+	 * Leading icon, set the size to 20.
+	 */
+	icon?: Slot
+}>()
 
-		/**
-		 * The `aria-label` to set on the trailing button
-		 * If no explicit value is set it will default to the one matching the `trailingButtonIcon`:
-		 * @default 'Clear text'|'Save changes'|'Undo changes'
-		 */
-		trailingButtonLabel: {
-			type: String,
-			default: '',
-		},
+const inputField = useTemplateRef('inputField')
 
-		// Custom props
+const defaultTrailingButtonLabels = {
+	undo: t('Undo changes'),
+	close: t('Clear text'),
+	arrowRight: t('Save changes'),
+}
 
-		/**
-		 * Specifies which material design icon should be used for the trailing
-		 * button.
-		 * @type {'close'|'arrowRight'|'undo'}
-		 */
-		trailingButtonIcon: {
-			type: String,
-			default: 'close',
-			validator: (value) => [
-				'close',
-				'arrowRight',
-				'undo',
-			].includes(value),
-		},
-	},
+const NcInputFieldPropNames = new Set(Object.keys(NcInputField.props))
+const propsToForward = computed<NcInputFieldProps>(() => {
+	const sharedProps = Object.fromEntries(
+		Object.entries(props)
+			.filter(([key]) => NcInputFieldPropNames.has(key)),
+	)
 
-	emits: [
-		'update:modelValue',
-	],
+	sharedProps.trailingButtonLabel ??= defaultTrailingButtonLabels[props.trailingButtonIcon]
+	return sharedProps satisfies NcInputFieldProps
+})
 
-	computed: {
-		propsToForward() {
-			const predefinedLabels = {
-				undo: t('Undo changes'),
-				close: t('Clear text'),
-				arrowRight: t('Save changes'),
-			}
+/**
+ * Focus the input element
+ *
+ * @param options - Focus options
+ * @public
+ */
+function focus(options?: FocusOptions) {
+	inputField.value!.focus(options)
+}
 
-			return {
-				// Proxy original NcInputField's props
-				...Object.fromEntries(
-					Object.entries(this.$props).filter(([key]) => NcInputFieldProps.has(key)),
-				),
-				// Adjust aria-label for predefined trailing buttons
-				trailingButtonLabel: this.trailingButtonLabel || predefinedLabels[this.trailingButtonIcon],
-			}
-		},
-	},
-
-	methods: {
-		/**
-		 * Focus the input element
-		 *
-		 * @public
-		 */
-		focus() {
-			this.$refs.inputField.focus()
-		},
-
-		/**
-		 * Select all the text in the input
-		 *
-		 * @public
-		 */
-		select() {
-			this.$refs.inputField.select()
-		},
-
-		handleInput(event) {
-			this.$emit('update:modelValue', event)
-		},
-	},
+/**
+ * Select all the text in the input
+ *
+ * @public
+ */
+function select() {
+	inputField.value!.select()
 }
 </script>
