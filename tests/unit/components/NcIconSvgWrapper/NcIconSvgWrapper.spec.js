@@ -10,10 +10,6 @@ import NcIconSvgWrapper from '../../../../src/components/NcIconSvgWrapper/index.
 // @mdi/check.svg
 const SVG_ICON = '<svg xmlns="http://www.w3.org/2000/svg" id="mdi-check" viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" /></svg>'
 
-const SVG_ICON_SNAPSHOT = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path>
-</svg>`
-
 /**
  * @param {NcIconSvgWrapper.props} props - NcIconSvgWrapper.props
  */
@@ -26,7 +22,11 @@ describe('NcIconSvgWrapper', () => {
 		const wrapper = mountNcIconSvgWrapper({ svg: SVG_ICON })
 		const svg = wrapper.find('svg')
 		expect(svg.exists()).toBeTruthy()
-		expect(svg.html()).toBe(SVG_ICON_SNAPSHOT)
+		expect(svg.html()).toMatchInlineSnapshot(`
+			"<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+			  <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path>
+			</svg>"
+		`)
 	})
 
 	it('should render SVG in a span with aria-hidden when no name is provided', () => {
