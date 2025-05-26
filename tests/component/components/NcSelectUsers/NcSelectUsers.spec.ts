@@ -66,3 +66,66 @@ test(
 		expect(await page.getByRole('option').all()).toHaveLength(1)
 	},
 )
+
+test('can select option', async ({ mount, page }) => {
+	const emitted: unknown[] = []
+	const component = await mount(UserSelect, {
+		on: {
+			selected: (data) => emitted.push(data),
+		},
+	})
+
+	await expect(component.getByRole('searchbox')).toBeVisible()
+	await component.getByRole('searchbox').click()
+
+	await expect(page.getByRole('option', { name: 'Olivia' })).toBeVisible()
+	await page.getByRole('option', { name: 'Olivia' }).click()
+
+	expect(emitted).toHaveLength(1)
+	expect(emitted[0]).toMatchObject({
+		id: '0-olivia',
+	})
+
+	await expect(component.getByRole('searchbox')).toBeVisible()
+	await component.getByRole('searchbox').click()
+
+	await expect(page.getByRole('option', { name: 'John' })).toBeVisible()
+	await page.getByRole('option', { name: 'John' }).click()
+
+	expect(emitted).toHaveLength(2)
+	expect(emitted[1]).toMatchObject({
+		id: '0-john',
+	})
+})
+
+test('can select multiple option', async ({ mount, page }) => {
+	const emitted: unknown[] = []
+	const component = await mount(UserSelect, {
+		on: {
+			selected: (data) => emitted.push(data),
+		},
+		props: {
+			multiple: true,
+		},
+	})
+
+	await expect(component.getByRole('searchbox')).toBeVisible()
+	await component.getByRole('searchbox').click()
+
+	await expect(page.getByRole('option', { name: 'Olivia' })).toBeVisible()
+	await page.getByRole('option', { name: 'Olivia' }).click()
+
+	await expect(component.getByRole('searchbox')).toBeVisible()
+	await component.getByRole('searchbox').click()
+	await expect(page.getByRole('option', { name: 'John' })).toBeVisible()
+	await page.getByRole('option', { name: 'John' }).click()
+
+	expect(emitted).toHaveLength(2)
+	expect(emitted[0]).toEqual([
+		expect.objectContaining({ id: '0-olivia' }),
+	])
+	expect(emitted[1]).toEqual([
+		expect.objectContaining({ id: '0-olivia' }),
+		expect.objectContaining({ id: '0-john' }),
+	])
+})
