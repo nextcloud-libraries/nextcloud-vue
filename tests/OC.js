@@ -20,7 +20,7 @@ export default {
 	Util: {
 		naturalSortCompare(a, b) {
 			return 0
-		}
+		},
 	},
 
 	coreApps: [
