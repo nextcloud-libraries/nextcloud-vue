@@ -577,8 +577,6 @@ export default {
 
 		/**
 		 * Visible label for the input element
-		 *
-		 * @todo Set default for @nextcloud/vue 9
 		 */
 		inputLabel: {
 			type: String,
