@@ -1300,6 +1300,14 @@ export default {
 		},
 
 		// MENU STATE MANAGEMENT
+		toggleMenu(state) {
+			if (state) {
+				this.openMenu()
+			} else {
+				this.closeMenu()
+			}
+		},
+
 		openMenu() {
 			if (this.opened) {
 				return
@@ -1760,20 +1768,21 @@ export default {
 				{
 					ref: 'popover',
 					delay: 0,
-					handleResize: true,
 					shown: this.opened,
 					placement: this.placement,
 					boundary: this.boundariesElement,
 					container: this.container,
-					...this.manualOpen && { triggers: [] },
+					...this.manualOpen && {
+						triggers: [],
+					},
+					closeOnClickOutside: !this.manualOpen,
 					popoverBaseClass: 'action-item__popper',
 					popupRole: this.config.popupRole,
-					setReturnFocus: this.config.withFocusTrap ? this.$refs.triggerButton?.$el : null,
+					setReturnFocus: this.config.withFocusTrap ? this.$refs.triggerButton?.$el : undefined,
 					focusTrap: this.config.withFocusTrap,
-					onShow: this.openMenu,
+					'onUpdate:shown': this.toggleMenu,
 					onAfterShow: this.onOpened,
 					onAfterClose: this.onClosed,
-					onHide: this.closeMenu,
 				},
 				{
 					trigger: () => h(NcButton, {
