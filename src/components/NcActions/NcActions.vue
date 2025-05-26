@@ -1039,16 +1039,6 @@ export default {
 		},
 
 		/**
-		 * @deprecated To be removed in @nextcloud/vue 9. Migration guide: remove ariaHidden prop from NcAction* components.
-		 * @todo Add a check in @nextcloud/vue 9 that this prop is not provided,
-		 * otherwise root element will inherit incorrect aria-hidden.
-		 */
-		ariaHidden: {
-			type: Boolean,
-			default: null,
-		},
-
-		/**
 		 * Wanted direction of the menu
 		 */
 		placement: {
@@ -1260,6 +1250,10 @@ export default {
 		useTrapStackControl(() => this.opened, {
 			disabled: () => this.config.withFocusTrap,
 		})
+
+		if ('ariaHidden' in this.$attrs) {
+			warn('[NcActions]: Do not set the ariaHidden attribute as the root element will inherit the incorrect aria-hidden.')
+		}
 	},
 
 	methods: {
