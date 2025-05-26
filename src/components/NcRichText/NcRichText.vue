@@ -575,7 +575,7 @@ export default {
 
 // Plain text styles
 .rich-text--wrapper {
-	word-break: break-word;
+	overflow-wrap: break-word;
 	line-height: 1.5;
 
 	.rich-text--fallback, .rich-text-component {
