@@ -47,7 +47,7 @@
   "scripts": {
     "build": "vite build --mode production ",
     "dev": "vite build --mode development",
-    "watch": "npm run dev:watch",
+    "watch": "vite build --mode development --watch",
     "l10n:extract": "node build/extract-l10n.mjs",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
