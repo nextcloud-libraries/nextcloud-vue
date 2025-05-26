@@ -16,5 +16,6 @@ module.exports = {
 				ignorePseudoClasses: [...stylelintConfig.rules['selector-pseudo-class-no-unknown'][1].ignorePseudoClasses, 'global'],
 			},
 		],
+		'scss/load-partial-extension': ['always'],
 	},
 }
