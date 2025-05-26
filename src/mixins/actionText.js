@@ -5,6 +5,7 @@
 
 import actionGlobal from './actionGlobal.js'
 import { NC_ACTIONS_CLOSE_MENU } from '../components/NcActions/useNcActions.ts'
+import { warn } from 'vue'
 
 export default {
 	mixins: [actionGlobal],
@@ -44,15 +45,6 @@ export default {
 			type: String,
 			default: null,
 		},
-		/**
-		 * @deprecated To be removed in @nextcloud/vue 9. Migration guide: remove ariaHidden prop from NcAction* components.
-		 * @todo Add a check in @nextcloud/vue 9 that this prop is not provided,
-		 * otherwise root element will inherit incorrect aria-hidden.
-		 */
-		ariaHidden: {
-			type: Boolean,
-			default: null,
-		},
 	},
 
 	inject: {
@@ -64,6 +56,12 @@ export default {
 	emits: [
 		'click',
 	],
+
+	created() {
+		if ('ariaHidden' in this.$attrs) {
+			warn('[NcAction*]: Do not set the ariaHidden attribute as the root element will inherit the incorrect aria-hidden.')
+		}
+	},
 
 	computed: {
 		/**

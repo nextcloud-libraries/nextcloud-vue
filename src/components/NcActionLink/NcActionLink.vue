@@ -164,15 +164,6 @@ export default {
 			type: String,
 			default: null,
 		},
-		/**
-		 * @deprecated To be removed in @nextcloud/vue 9. Migration guide: remove ariaHidden prop from NcAction* components.
-		 * @todo Add a check in @nextcloud/vue 9 that this prop is not provided,
-		 * otherwise root element will inherit incorrect aria-hidden.
-		 */
-		ariaHidden: {
-			type: Boolean,
-			default: null,
-		},
 	},
 }
 </script>

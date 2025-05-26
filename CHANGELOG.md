@@ -125,6 +125,8 @@ Especially the following are now provided as composables:
 The `richEditing` mixin can be replaced by just using the `NcRichText` component.
 
 #### Other breaking changes
+- `NcActions` and `NcAction*`
+  - The `ariaHidden` property is removed, please do no longer provide it, otherwise the root element will inherit incorrect aria-hidden.
 - `NcAppSidebar`
   - The `closing` and `opening` events were removed.
     They are directly emitted when the sidebar was opened when using `v-if`
