@@ -1017,7 +1017,7 @@ export default {
 		padding-inline: var(--contenteditable-inline-start-offset) var(--contenteditable-inline-end-offset);
 		cursor: text;
 		white-space: pre-wrap;
-		word-break: break-word;
+		overflow-wrap: break-word;
 		color: var(--color-main-text);
 		border: 2px solid var(--color-border-maxcontrast);
 		border-radius: var(--border-radius-large);
