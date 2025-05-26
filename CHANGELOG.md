@@ -136,7 +136,7 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
   - The `limitWidth` was removed (the content is now always limited width) [\#5605](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5605)
 - The `isFullscreen`, and `isMobile` mixins were removed. Use the according composables instead.
 - The `clickOutsideOptions` mixin is removed
-- The `box-sizing: border-box` is now default for following components and its content. This is done to match behaviour of `NcContent` (as they can be mounted directly to `body`):
+- The `box-sizing: border-box` is now default for following components and its content. This is done to match behavior of `NcContent` (as they can be mounted directly to `body`):
   - `NcModal`
   - `NcPopover`
 - `NcDateTimePicker`
@@ -146,6 +146,9 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 - `NcPopover` is no longer a transparent wrapper over the `floating-vue` package.
   Instead only use the documented properties and events.
   If you find some use cases not covered by the documented interface, please open a feature request.
+- `NcRichContenteditable`
+  - `NcAutoCompleteResult`: The `title` prop was deprecated and is now removed in favor of the `label` prop
+  - `NcMentionBubble`: The `title` prop was deprecated and is now removed in favor of the `label` prop
 - `NcSelect`
   - `userSelect` property was removed, instead just use the `NcSelectUsers` component
   - `closeOnSelect` property was removed in favor of `keepOpen`.
