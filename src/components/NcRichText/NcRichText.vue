@@ -573,8 +573,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-/* stylelint-disable-next-line scss/at-import-partial-extension */
-@import './richtext.scss';
+@use './richtext.scss';
 
 a:not(.rich-text--component) {
 	text-decoration: underline;
