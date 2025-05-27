@@ -15,7 +15,7 @@
 					class="mention-bubble__icon" />
 
 				<!-- Title -->
-				<span role="heading" class="mention-bubble__title" :title="labelWithFallback" />
+				<span role="heading" class="mention-bubble__title" :title="label" />
 			</span>
 
 			<!-- Selectable text for copy/paste -->
@@ -34,14 +34,6 @@ export default {
 		id: {
 			type: String,
 			required: true,
-		},
-		/**
-		 * @deprecated Use `label` instead
-		 */
-		title: {
-			type: String,
-			required: false,
-			default: null,
 		},
 		label: {
 			type: String,
@@ -79,10 +71,6 @@ export default {
 			return !this.id.includes(' ') && !this.id.includes('/')
 				? `@${this.id}`
 				: `@"${this.id}"`
-		},
-		// Fallback to title for compatibility
-		labelWithFallback() {
-			return this.label || this.title
 		},
 	},
 
