@@ -3,36 +3,32 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { registerWidget, renderWidget, isWidgetRegistered, hasInteractiveView } from './widgets.ts'
-import { getLinkWithPicker } from './referencePickerModal.js'
-import {
-	getProvider,
-	getProviders,
-	sortProviders,
-	searchProvider,
-	anyLinkProviderId,
-} from './providerHelper.js'
-import {
-	registerCustomPickerElement,
-	renderCustomPickerElement,
-	isCustomPickerElementRegistered,
-	NcCustomPickerRenderResult,
-} from './customPickerElements.js'
-
 export {
+	type ReferenceWidgetProps,
+	type ReferenceWidgetRenderProperties,
+
 	registerWidget,
 	renderWidget,
 	isWidgetRegistered,
 	hasInteractiveView,
+} from './widgets.ts'
 
-	NcCustomPickerRenderResult,
-	registerCustomPickerElement,
-	renderCustomPickerElement,
-	isCustomPickerElementRegistered,
-	getLinkWithPicker,
-	anyLinkProviderId,
+export { getLinkWithPicker } from './referencePickerModal.ts'
+
+export {
+	type ReferenceProvider,
+
 	getProvider,
 	getProviders,
 	sortProviders,
 	searchProvider,
-}
+	anyLinkProviderId,
+} from './providerHelper.ts'
+
+export {
+	type CustomPickerElement,
+	registerCustomPickerElement,
+	renderCustomPickerElement,
+	isCustomPickerElementRegistered,
+	NcCustomPickerRenderResult,
+} from './customPickerElements.ts'
