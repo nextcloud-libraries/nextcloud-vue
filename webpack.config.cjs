@@ -6,8 +6,6 @@
 
 const webpackConfig = require('@nextcloud/webpack-vue-config')
 const webpackRules = require('@nextcloud/webpack-vue-config/rules')
-
-const crypto = require('crypto')
 const path = require('path')
 
 const { DefinePlugin } = require('webpack')
@@ -16,18 +14,12 @@ const BabelLoaderExcludeNodeModulesExcept = require('babel-loader-exclude-node-m
 const buildMode = process.env.NODE_ENV
 const isDev = buildMode === 'development'
 
-// scope variable
-// fallback for cypress testing
-const appVersion = JSON.stringify(process.env.npm_package_version || 'nextcloud-vue')
-const versionHash = crypto.createHash('md5').update(appVersion).digest('hex').slice(0, 7)
-const SCOPE_VERSION = JSON.stringify(versionHash)
-
 webpackConfig.devtool = isDev ? false : 'source-map'
 
 const sassLoader = {
 	loader: 'sass-loader',
 	options: {
-		additionalData: `$scope_version:${SCOPE_VERSION}; @use 'sass:math'; @use 'variables' as *; @use 'material-icons' as *;`,
+		additionalData: '@use \'sass:math\'; @use \'variables\' as *; @use \'material-icons\' as *;',
 		/**
 		 * ! needed for resolve-url-loader
 		 */
@@ -135,7 +127,6 @@ webpackConfig.module.rules = Object.values(webpackRules)
 module.exports = () => {
 	webpackConfig.plugins.push(new DefinePlugin({
 		PRODUCTION: JSON.stringify(!isDev),
-		SCOPE_VERSION,
 	}))
 
 	webpackConfig.resolve.extensionAlias = {

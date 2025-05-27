@@ -8,7 +8,6 @@ import logger from './logger.ts'
 let realAppName = 'missing-app-name'
 
 try {
-	// @ts-expect-error This is a  name replaces by the compiler
 	realAppName = appName
 } catch {
 	logger.error('The `@nextcloud/vue` library was used without setting / replacing the `appName`.')
