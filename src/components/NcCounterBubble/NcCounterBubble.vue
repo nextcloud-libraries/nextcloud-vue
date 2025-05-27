@@ -132,93 +132,75 @@ th {
 In v8 it was possible to pass any custom content via the default slot. This feature has been removed. Use `count` prop for numbers or [NcChip](#/Components/NcChip) component for a custom content.
 </docs>
 
+<script setup lang="ts">
+import { getCanonicalLocale } from '@nextcloud/l10n'
+import { computed } from 'vue'
+
+const props = withDefaults(defineProps<{
+	/**
+	 * The count to display in the counter bubble.
+	 */
+	count: number
+
+	/**
+	 * Specifies whether the component is used within a component that is
+	 * active and therefore has a primary background. Inverts the color of
+	 * this component when that is the case.
+	 */
+	active?: boolean
+
+	/**
+	 * Visual appearence of the counter bubble
+	 */
+	type?: 'highlighted' | 'outlined' | ''
+
+	/**
+	 * Disables humanization to display count as it is.
+	 */
+	raw?: boolean
+}>(), {
+	type: '',
+})
+
+const humanizedCount = computed(() => {
+	if (props.raw) {
+		return props.count.toString()
+	}
+
+	const formatter = new Intl.NumberFormat(getCanonicalLocale(), {
+		notation: 'compact',
+		compactDisplay: 'short',
+	})
+
+	return formatter.format(props.count)
+})
+
+const originalCountAsTitleIfNeeded = computed(() => {
+	if (props.raw) {
+		return
+	}
+
+	const countAsString = props.count.toString()
+	// If unchanged then there is no need for the title
+	if (countAsString === humanizedCount.value) {
+		return
+	}
+
+	return countAsString
+})
+</script>
+
 <template>
 	<div class="counter-bubble__counter"
-		:class="counterClassObject"
+		:class="{
+			active,
+			'counter-bubble__counter--highlighted': type === 'highlighted',
+			'counter-bubble__counter--outlined': type === 'outlined',
+		}"
 		:title="originalCountAsTitleIfNeeded">
 		{{ humanizedCount }}
 	</div>
 </template>
-
-<script>
-import { getCanonicalLocale } from '@nextcloud/l10n'
-
-export default {
-	name: 'NcCounterBubble',
-
-	props: {
-		type: {
-			type: String,
-			default: '',
-			validator(value) {
-				return ['highlighted', 'outlined', ''].includes(value)
-			},
-		},
-
-		/**
-		 * Specifies whether the component is used within a component that is
-		 * active and therefore has a primary background. Inverts the color of
-		 * this component when that is the case.
-		 */
-		active: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * The count to display in the counter bubble.
-		 */
-		count: {
-			type: Number,
-			required: true,
-		},
-
-		/**
-		 * Disables humanization to display count as it is.
-		 */
-		raw: {
-			type: Boolean,
-			required: false,
-			default: false,
-		},
-	},
-
-	computed: {
-		counterClassObject() {
-			return {
-				'counter-bubble__counter--highlighted': this.type === 'highlighted',
-				'counter-bubble__counter--outlined': this.type === 'outlined',
-				active: this.active,
-			}
-		},
-
-		humanizedCount() {
-			if (this.raw) {
-				return this.count.toString()
-			}
-
-			const formatter = new Intl.NumberFormat(getCanonicalLocale(), {
-				notation: 'compact',
-				compactDisplay: 'short',
-			})
-
-			return formatter.format(this.count)
-		},
-
-		originalCountAsTitleIfNeeded() {
-			const countAsString = this.count.toString()
-
-			// If raw or unchanged - no need for the title
-			if (this.raw || countAsString === this.humanizedCount) {
-				return undefined
-			}
-
-			return countAsString
-		},
-	},
-}
-
-</script>
 
 <style lang="scss" scoped>
 .counter-bubble__counter {
