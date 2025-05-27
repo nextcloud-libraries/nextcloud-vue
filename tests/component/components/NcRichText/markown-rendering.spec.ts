@@ -419,6 +419,36 @@ test.describe('inline code', () => {
 	})
 })
 
+test.describe('links', () => {
+	const testLink = (key: string, { text, href = text, name = text }) => {
+		test(key, async ({ mount }) => {
+			const component = await mount(NcRichText, {
+				props: {
+					text,
+					useExtendedMarkdown: true,
+				},
+			})
+			await expect(component.getByRole('link', { name }))
+				.toHaveAttribute('href', href)
+		})
+	}
+	testLink('autolink', { text: 'https://autolink.me' })
+	testLink('relative link', { text: '[hello](world)', href: 'world', name: 'hello' })
+	testLink('absolute link', { text: '[hello](https://nextcloud.com)', href: 'https://nextcloud.com', name: 'hello' })
+	testLink('tel link', { text: '[hello](tel:+49123456789)', href: 'tel:+49123456789', name: 'hello' })
+
+	test('no link to unknown protocols', async ({ mount }) => {
+		const component = await mount(NcRichText, {
+			props: {
+				text: '[link](other:proto)',
+				useExtendedMarkdown: true,
+			},
+		})
+		await expect(component).toContainText('link')
+		await expect(component.getByText('link')).not.toHaveRole('link')
+	})
+})
+
 test.describe('multiline code', () => {
 	test('multiline code (with triple backticks syntax)', async ({ mount }) => {
 		const component = await mount(NcRichText, {
