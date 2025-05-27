@@ -7,6 +7,7 @@
 	<NcSelectUsers v-model="value"
 		input-label="My account"
 		input-class="cypress-search-input"
+		:multiple
 		:options="[
 			{
 				id: '0-john',
@@ -26,12 +27,24 @@
 				isNoUser: false,
 				subname: 'olivia@example.org',
 			},
-		]" />
+		]"
+		@update:model-value="$emit('selected', $event)" />
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import type { IUserData } from '../../../../src/components/NcSelectUsers/NcSelectUsers.vue'
+
+import { ref } from 'vue'
 import NcSelectUsers from '../../../../src/components/NcSelectUsers/NcSelectUsers.vue'
 
-const value = ref()
+defineProps<{
+	/** test selecting multiple options */
+	multiple?: boolean
+}>()
+
+defineEmits<{
+	selected: [data?: IUserData | IUserData[]]
+}>()
+
+const value = ref<IUserData | IUserData[]>()
 </script>

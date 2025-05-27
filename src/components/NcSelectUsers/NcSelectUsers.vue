@@ -301,8 +301,11 @@ defineProps<{
 /**
  * Currently selected value.
  * The `v-model` directive may be used for two-way data binding.
+ *
+ * If the `multiple` property is set then an array of users is emitted,
+ * otherwise a single user data object will be emitted.
  */
-defineModel<IUserData>('modelValue')
+const modelValue = defineModel<IUserData | IUserData[]>('modelValue')
 
 const emit = defineEmits<{
 	/**
@@ -342,12 +345,12 @@ function filterBy(option: { subname?: string }, label: string, search: string) {
 </script>
 
 <template>
-	<NcSelect class="nc-select-users"
+	<NcSelect v-model="modelValue"
+		class="nc-select-users"
 		v-bind="$props"
 		:filter-by
 		label="displayName"
-		@search="search = $event"
-		@update:model-value="$emit('update:modelValue', $event)">
+		@search="search = $event">
 		<template #option="option">
 			<NcListItemIcon v-bind="option"
 				:avatar-size="32"
