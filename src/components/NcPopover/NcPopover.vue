@@ -176,19 +176,20 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 
 <template>
 	<Dropdown ref="popover"
+		v-model:shown="internalShown"
 		:arrow-padding="10"
 		:auto-hide="closeOnClickOutside"
 		:boundary="boundary || undefined"
 		:container
 		:delay
 		:distance="10"
+		handle-resize
 		:no-auto-focus="true /* Handled by the focus trap */"
 		:placement="internalPlacement"
 		:popper-class="popoverBaseClass"
 		:popper-triggers
 		:popper-hide-triggers
 		:popper-show-triggers
-		:shown="internalShown"
 		:triggers="internalTriggers"
 		:hide-triggers
 		:show-triggers
@@ -230,9 +231,10 @@ export default {
 	props: {
 		/**
 		 * Element to use for calculating the popper boundary (size and position).
+		 * Either a query string or the actual HTMLElement.
 		 */
 		boundary: {
-			type: String,
+			type: [String, Object],
 			default: '',
 		},
 
