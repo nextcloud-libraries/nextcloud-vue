@@ -339,7 +339,7 @@ import { t } from '../../l10n.js'
 
 import NcActions from '../NcActions/index.js'
 import NcButton from '../NcButton/index.ts'
-import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 import Timer from '../../utils/Timer.js'
 
 import Close from 'vue-material-design-icons/Close.vue'

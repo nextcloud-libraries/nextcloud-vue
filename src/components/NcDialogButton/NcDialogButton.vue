@@ -31,7 +31,7 @@ import { ref } from 'vue'
 import { t } from '../../l10n.js'
 
 import NcButton from '../NcButton/index'
-import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 import NcLoadingIcon from '../NcLoadingIcon/index.js'
 
 const props = withDefaults(defineProps<{
