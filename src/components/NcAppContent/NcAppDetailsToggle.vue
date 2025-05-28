@@ -8,7 +8,7 @@ import { mdiArrowRight } from '@mdi/js'
 import { emit } from '@nextcloud/event-bus'
 import { onBeforeUnmount, watch } from 'vue'
 import NcButton from '../NcButton/index.ts'
-import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { t } from '../../l10n.js'
 
