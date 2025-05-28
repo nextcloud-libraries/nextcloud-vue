@@ -6,16 +6,11 @@
 import type { UserConfigFn } from 'vite'
 import { createLibConfig } from '@nextcloud/vite-config'
 import { globSync } from 'glob'
-import crypto from 'node:crypto'
 import { join, resolve } from 'node:path'
 import { defineConfig } from 'vite'
 
 import vueDocsPlugin from './build/docs-plugin.ts'
 import l10nPlugin from './build/l10n-plugin.mjs'
-
-const appVersion = JSON.stringify(process.env.npm_package_version || 'nextcloud-vue')
-const versionHash = crypto.createHash('md5').update(appVersion).digest('hex').slice(0, 7)
-const SCOPE_VERSION = JSON.stringify(versionHash)
 
 // Entry points which we build using vite
 const entryPoints = {
@@ -41,7 +36,7 @@ const overrides = defineConfig({
 		devSourcemap: true,
 		preprocessorOptions: {
 			scss: {
-				additionalData: `@use 'sass:math'; @use 'variables' as *; @use 'material-icons' as *; $scope_version:${SCOPE_VERSION};`,
+				additionalData: '@use "sass:math"; @use "variables" as *; @use "material-icons" as *;',
 				sourceMapContents: false,
 				loadPaths: [
 					resolve(import.meta.dirname, 'src/assets'),
@@ -79,7 +74,6 @@ export default defineConfig((env) => {
 		libraryFormats: ['es'],
 		replace: {
 			PRODUCTION: JSON.stringify(env.mode === 'production'),
-			SCOPE_VERSION,
 		},
 	})
 

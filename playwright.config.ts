@@ -70,13 +70,12 @@ export default defineConfig({
 			define: {
 				appName: '"exampleApp"',
 				PRODUCTION: 'false',
-				SCOPE_VERSION: '"testing"',
 			},
 			css: {
 				devSourcemap: false,
 				preprocessorOptions: {
 					scss: {
-						additionalData: '@use \'sass:math\'; @use \'variables\' as *; @use \'material-icons\' as *; $scope_version:abcdef;',
+						additionalData: '@use \'sass:math\'; @use \'variables\' as *; @use \'material-icons\' as *;',
 						sourceMapContents: false,
 						loadPaths: [
 							resolve(import.meta.dirname, 'src/assets'),

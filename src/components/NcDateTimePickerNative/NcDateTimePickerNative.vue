@@ -107,12 +107,12 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 </template>
 
 <script>
+import { defineComponent } from 'vue'
 import { createElementId } from '../../utils/createElementId.js'
-import ScopeComponent from '../../utils/ScopeComponent.js'
 
 const inputDateTypes = ['date', 'datetime-local', 'month', 'time', 'week']
 
-export default ScopeComponent({
+export default defineComponent({
 	name: 'NcDateTimePickerNative',
 	inheritAttrs: false,
 

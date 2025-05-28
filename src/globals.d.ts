@@ -5,16 +5,14 @@
 
 import type { ContactsMenuAction } from './functions/contactsMenu/index.ts'
 
-declare const PRODUCTION: boolean
-declare const SCOPE_VERSION: string
-
-declare const appName: string
-declare const appVersion: string
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-declare const TRANSLATIONS: { locale: string, translations: any }[]
-
 declare global {
+	declare const PRODUCTION: boolean
+	declare const appName: string
+	declare const appVersion: string
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	declare const TRANSLATIONS: { locale: string, translations: any }[]
+
 	interface Window {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		OCP: any
