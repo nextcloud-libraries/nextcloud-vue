@@ -109,7 +109,16 @@
 			overflow: hidden;
 			white-space: nowrap;
 			max-width: 100%;
-			display: inline-block;
+			display: block;
+		}
+
+		&__description {
+			display: block;
+			white-space: pre-wrap;
+			font-size: var(--font-size-small);
+			line-height: var(--default-line-height);
+			color: var(--color-text-maxcontrast);
+			cursor: pointer;
 		}
 
 		&__menu-icon {
