@@ -364,9 +364,12 @@ export default {
 			</span>
 
 			<!-- right(in LTR) or left(in RTL) arrow icon when there is a sub-menu -->
-			<ChevronRightIcon v-if="isMenu && !isRtl" :size="20" class="action-button__menu-icon" />
-			<ChevronLeftIcon v-else-if="isMenu && isRtl" :size="20" class="action-button__menu-icon" />
-			<CheckIcon v-else-if="isChecked === true" :size="20" class="action-button__pressed-icon" />
+			<NcIconSvgWrapper v-if="isMenu"
+				class="action-button__menu-icon"
+				directional
+				:path="mdiChevronRight" />
+			<NcIconSvgWrapper v-else-if="isChecked" :path="mdiCheck" class="action-button__pressed-icon" />
+
 			<span v-else-if="isChecked === false" class="action-button__pressed-icon material-design-icon" />
 
 			<!-- fake slot to gather inner text -->
@@ -376,11 +379,9 @@ export default {
 </template>
 
 <script>
-import CheckIcon from 'vue-material-design-icons/Check.vue'
-import ChevronRightIcon from 'vue-material-design-icons/ChevronRight.vue'
-import ChevronLeftIcon from 'vue-material-design-icons/ChevronLeft.vue'
+import { mdiCheck, mdiChevronRight } from '@mdi/js'
 import ActionTextMixin from '../../mixins/actionText.js'
-import { isRtl } from '../../utils/rtl.ts'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 
 /**
  * Button component to be used in Actions
@@ -389,9 +390,7 @@ export default {
 	name: 'NcActionButton',
 
 	components: {
-		CheckIcon,
-		ChevronRightIcon,
-		ChevronLeftIcon,
+		NcIconSvgWrapper,
 	},
 	mixins: [ActionTextMixin],
 
@@ -476,7 +475,8 @@ export default {
 	},
 	setup() {
 		return {
-			isRtl,
+			mdiCheck,
+			mdiChevronRight,
 		}
 	},
 

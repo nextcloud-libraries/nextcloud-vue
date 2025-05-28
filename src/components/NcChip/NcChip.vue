@@ -134,7 +134,7 @@ const props = defineProps({
 	 */
 	actionsContainer: {
 		type: String,
-		default: 'body'
+		default: 'body',
 	},
 
 	/**
