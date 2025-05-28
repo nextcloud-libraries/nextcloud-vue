@@ -74,8 +74,7 @@ export default {
 				<!-- allow the custom font to inject a ::before
 					not possible on input[type=submit] -->
 				<label v-show="!disabled" :for="id" class="action-text-editable__label">
-					<ArrowLeft v-if="isRtl" :size="20" />
-					<ArrowRight v-else :size="20" />
+					<NcIconSvgWrapper directional :path="mdiArrowRight" />
 				</label>
 			</form>
 		</span>
@@ -83,20 +82,17 @@ export default {
 </template>
 
 <script>
-import ActionTextMixin from '../../mixins/actionText.js'
+import { mdiArrowRight } from '@mdi/js'
 import { createElementId } from '../../utils/createElementId.ts'
 
-import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
-import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-
-import { isRtl } from '../../utils/rtl.ts'
+import ActionTextMixin from '../../mixins/actionText.js'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 
 export default {
 	name: 'NcActionTextEditable',
 
 	components: {
-		ArrowLeft,
-		ArrowRight,
+		NcIconSvgWrapper,
 	},
 
 	mixins: [ActionTextMixin],
@@ -134,7 +130,7 @@ export default {
 
 	setup() {
 		return {
-			isRtl,
+			mdiArrowRight,
 		}
 	},
 
