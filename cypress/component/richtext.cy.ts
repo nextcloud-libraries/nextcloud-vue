@@ -393,6 +393,39 @@ describe('NcRichText', () => {
 			})
 		})
 
+		describe('links', () => {
+
+			const testLink = (key: string, { text, href = text, name = text }) => {
+				it(key, () => {
+					mount(NcRichText, {
+						propsData: {
+							text,
+							useMarkdown: true,
+						},
+					})
+					cy.get('a').should('have.text', name)
+					cy.get('a').invoke('attr', 'href').should('eq', href)
+				})
+			}
+
+			testLink('autolink', { text: 'https://autolink.me' })
+			testLink('relative link', { text: '[hello](world)', href: 'world', name: 'hello' })
+			testLink('absolute link', { text: '[hello](https://nextcloud.com)', href: 'https://nextcloud.com', name: 'hello' })
+			testLink('tel link', { text: '[hello](tel:+49123456789)', href: 'tel:+49123456789', name: 'hello' })
+
+			it('no link to unknown protocols', () => {
+				mount(NcRichText, {
+					propsData: {
+						text: '[link](other:proto)',
+						useMarkdown: true,
+					},
+				})
+				cy.get('body').should('contain', name)
+				cy.get('a').should('not.exist')
+			})
+
+		})
+
 		describe('multiline code', () => {
 			it('multiline code (with triple backticks syntax)', () => {
 				mount(NcRichText, {

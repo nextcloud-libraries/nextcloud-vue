@@ -314,10 +314,16 @@ import { unified } from 'unified'
 import remarkParse from 'remark-parse'
 import remarkGfm from 'remark-gfm'
 import breaks from 'remark-breaks'
+import remarkUnlinkProtocols from 'remark-unlink-protocols'
 import remark2rehype from 'remark-rehype'
 import rehype2react from 'rehype-react'
 import rehypeExternalLinks from 'rehype-external-links'
 import { RouterLink } from 'vue-router'
+
+/**
+ * Protocols allowed in links.
+ */
+const LINK_PROTOCOLS = ['http', 'https', 'mailto', 'tel']
 
 /**
  * Heavy libraries should be loaded on demand to reduce component size
@@ -443,6 +449,7 @@ export default {
 				.use(remarkUnescape)
 				.use(this.useExtendedMarkdown ? remarkGfm : undefined)
 				.use(breaks)
+				.use(remarkUnlinkProtocols, { except: LINK_PROTOCOLS })
 				.use(remark2rehype, {
 					handlers: {
 						component(toHast, node) {
