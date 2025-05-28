@@ -247,8 +247,7 @@ export default {
 				/**
 				 * Handle the input event
 				 *
-				 * @param {InputEvent} $event input event payload
-				 * @return {Date|string} new chosen Date() or an empty string
+				 * @param {InputEvent} $event input event payloads
 				 */
 				input: ($event) => {
 					if (isNaN($event.target.valueAsNumber)) {
