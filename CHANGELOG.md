@@ -5,19 +5,36 @@
 
 # Changelog
 
-## [v8.26.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.26.2) (TBA)
+## [v8.27.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.27.0) (2025-05-28)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.26.1...v8.27.0)
 
 ### 📝 Notes
 #### NcEmptyContent
-A padding was added to the empty content wrapper.
-It is recommended to check in-app styles for possible overrides.
+A padding was added to the empty content wrapper. It is recommended to check in-app styles for possible overrides.
 
+### 🚀 Enhancements
+* feat(NcChip): allow to define the actions container [#6964](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6964)
+* feat(NcActionButton): introduce `description` prop [#6975](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6975)
+
+### 🐛 Fixed bugs
+* fix(NcEmptyContent): description styling for mobile [#6943](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6943)
+* style(NcAppSidebar): remove custom styles from close button [#6945](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6945)
+
+### Other Changes
+* refactor(useIsFullscreen): migrate to Typescript [#6912](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6912) ([ShGKme](https://github.com/ShGKme))
+* refactor(useHotKey): migrate code to Typescript [#6911](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6911)
+* refactor(Focus): migrate directive to Typescript [#6914](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6914)
+* refactor: use `NcIconSvgWrapper` with `directional` property where needed [#6976](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6976)
+* feat(NcRichText): filter links based on protocol [#6977](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6977) ([max-nextcloud](https://github.com/max-nextcloud))
 
 ## [v8.26.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.26.1) (2025-05-07)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.26.0...v8.26.1)
+
 ### 🐛 Fixed bugs
-* [stable8] fix(NcIconSvgWrapper): center svg span wrapper [#6880](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6880) ([backportbot](https://github.com/backportbot))
+* fix(NcIconSvgWrapper): center svg span wrapper [#6880](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6880)
 
 ## [v8.26.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.26.0) (2025-04-25)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.25.1...v8.26.0)
 
 ### 📝 Notes
 #### NcAppSidebar
@@ -29,15 +46,15 @@ The `focusTrap` property is now deprecated and will be replaced with `noFocusTra
 the reason behind this is to only have boolean properties with default value of `false` allowing shortcut props.
 
 ### 🚀 Enhancements
-* [stable8] feat(NcAppSidebar): add `info` slot [#6843](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6843)
-* [stable8] feat(NcPopover): add new `noFocusTrap` prop [#6808](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6808)
+* feat(NcAppSidebar): add `info` slot [#6843](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6843)
+* feat(NcPopover): add new `noFocusTrap` prop [#6808](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6808)
 
 ### 🐛 Fixed bugs
-* [stable8] fix(NcRichText): `references` prop type [#6800](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6800)
-* [stable8]  fix(NcAppContent): don't remove list when showing details in mobile or no-split mode [#6261](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6261) ([wofferl](https://github.com/wofferl))
-* [stable8] fix(NcMentionBubble): position selectable text aligned with the component [#6837](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6837)
-* [stable8] fix(NcAvatar): do not load avatar from server, if iconClass was provided [#6836](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6836)
-* [stable8] fix(NcSelectUsers): add missing `search` event [#6838](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6838)
+* fix(NcRichText): `references` prop type [#6800](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6800)
+*  fix(NcAppContent): don't remove list when showing details in mobile or no-split mode [#6261](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6261) ([wofferl](https://github.com/wofferl))
+* fix(NcMentionBubble): position selectable text aligned with the component [#6837](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6837)
+* fix(NcAvatar): do not load avatar from server, if iconClass was provided [#6836](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6836)
+* fix(NcSelectUsers): add missing `search` event [#6838](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6838)
 
 ## [v8.25.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.25.1) (2025-04-17)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.25.0...v8.25.1)
