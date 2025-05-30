@@ -202,6 +202,7 @@ msgstr "食べ物と飲み物"
 msgid "Frequently used"
 msgstr "よく使うもの"
 
+#. TRANSLATORS: This refers to global timezones in the timezone picker
 msgid "Global"
 msgstr "全体"
 
@@ -255,8 +256,9 @@ msgstr "やや明るい肌のトーン"
 msgid "Medium skin tone"
 msgstr "中間の肌のトーン"
 
-msgid "Message limit of {count} characters reached"
-msgstr "{count} 文字のメッセージ上限に達しています"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "メッセージの%n文字の制限に達しました"
 
 msgid "Month picker"
 msgstr "月ピッカー"
