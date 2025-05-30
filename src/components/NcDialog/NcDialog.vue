@@ -210,6 +210,284 @@ export default {
 ```
 </docs>
 
+<script setup lang="ts">
+import type { ComponentProps, VueClassType } from '../../utils/VueTypes.ts'
+
+import { useElementSize } from '@vueuse/core'
+import { computed, ref, useTemplateRef, type Slot } from 'vue'
+
+import NcModal from '../NcModal/index.js'
+import NcDialogButton from '../NcDialogButton/index.ts'
+
+import { createElementId } from '../../utils/createElementId.ts'
+
+type NcDialogButtonProps = ComponentProps<typeof NcDialogButton>
+
+const props = withDefaults(defineProps<{
+	/** Name of the dialog (the heading) */
+	name: string
+
+	/** Text of the dialog */
+	message?: string
+
+	/** Additional elements to add to the focus trap */
+	additionalTrapElements?: Array<string | HTMLElement>
+
+	/**
+	 * The element where to mount the dialog, if `null` is passed the dialog is mounted in place.
+	 */
+	container?: string
+
+	/**
+	 * Size of the underlying NcModal
+	 */
+	size?: 'small'|'normal'|'large'|'full'
+
+	/**
+	 * Buttons to display
+	 */
+	buttons?: NcDialogButtonProps[]
+
+	/**
+	 * Make the dialog wrapper a HTML form element.
+	 * The buttons will be wrapped within the form so they can be used as submit / reset buttons.
+	 * Please note that when using the property the `navigation` should not be used.
+	 */
+	isForm?: boolean
+
+	/**
+	 * Do not show the close button for the dialog.
+	 */
+	noClose?: boolean
+
+	/**
+	 * Close the dialog if the user clicked outside of the dialog
+	 * Only relevant if `noClose` is not set.
+	 */
+	closeOnClickOutside?: boolean
+
+	/**
+	 * Declare if hiding the modal should be animated
+	 */
+	outTransition?: boolean
+
+	/**
+	 * aria-label for the dialog navigation.
+	 * Use it when you want to provide a more meaningful label than the dialog name.
+	 *
+	 * By default, navigation is labeled by the dialog name.
+	 */
+	navigationAriaLabel?: string
+
+	/**
+	 * aria-labelledby for the dialog navigation.
+	 * Use it when you have an implicit navigation label (e.g. a heading).
+	 *
+	 * By default, navigation is labeled by the dialog name.
+	 */
+	navigationAriaLabelledby?: string
+
+	/**
+	 * Optionally pass additional classes which will be set on the content wrapper for custom styling
+	 */
+	contentClasses?: VueClassType
+
+	/**
+	 * Optionally pass additional classes which will be set on the dialog itself
+	 * (the default `class` attribute will be set on the modal wrapper)
+	 */
+	dialogClasses?: VueClassType
+
+	/**
+	 * Optionally pass additional classes which will be set on the navigation for custom styling
+	 * @example
+	 * ```html
+	 * <DialogBase :navigation-classes="['mydialog-navigation']"><!-- --></DialogBase>
+	 * <!-- ... -->
+	 * <style lang="scss">
+	 * :deep(.mydialog-navigation) {
+	 *     flex-direction: row-reverse;
+	 * }
+	 * </style>
+	 * ```
+	 */
+	navigationClasses?: VueClassType
+}>(), {
+	additionalTrapElements: () => [],
+	buttons: () => [],
+	container: 'body',
+	contentClasses: '',
+	dialogClasses: '',
+	message: '',
+	navigationAriaLabel: '',
+	navigationAriaLabelledby: '',
+	navigationClasses: '',
+	size: 'small',
+})
+
+/**
+ * Whether the dialog should be shown
+ */
+const open = defineModel<boolean>('open', { default: true })
+
+const emit = defineEmits<{
+	/**
+	 * Emitted when the dialog is closing, so the out transition did not finish yet.
+	 *
+	 * @param result - The result of the button callback (`undefined` if closing because of clicking the 'close'-button)
+	 */
+	closing: [result?: unknown]
+	/**
+	 * Forwarded HTMLFormElement reset event (only if `is-form` is set).
+	 *
+	 * @param event - The forwarded form event
+	 */
+	reset: [event: Event]
+	/**
+	 * Forwarded HTMLFormElement submit event (only if `is-form` is set)
+	 *
+	 * @param event - The submit event
+	 */
+	submit: [event: SubmitEvent]
+}>()
+
+const slots = defineSlots<{
+	actions?: Slot
+	default?: Slot
+	navigation?: Slot
+}>()
+
+/**
+ * The dialog wrapper element
+ */
+const wrapper = useTemplateRef('wrapper')
+
+/**
+ * We use the dialog width to decide if we collapse the navigation (flex direction row)
+ */
+const { width: dialogWidth } = useElementSize(wrapper, { width: 900, height: 0 })
+
+/**
+ * Whether the navigation is collapsed due to dialog and window size
+ * (collapses when modal is below: 900px modal width - 2x 12px margin)
+ */
+const isNavigationCollapsed = computed(() => dialogWidth.value < 876)
+
+/**
+ * Whether a navigation was passed and the element should be displayed
+ */
+const hasNavigation = computed(() => slots?.navigation !== undefined)
+
+/**
+ * The unique id of the nav element
+ */
+const navigationId = createElementId()
+
+/**
+ * aria-label attribute for the nav element
+ */
+const navigationAriaLabelAttr = computed(() => props.navigationAriaLabel || undefined)
+
+/**
+ * aria-labelledby attribute for the nav element
+ */
+const navigationAriaLabelledbyAttr = computed(() => {
+	if (props.navigationAriaLabel) {
+		// Not needed, already labelled by aria-label
+		return undefined
+	}
+	// Use dialog name as a fallback label for navigation
+	return props.navigationAriaLabelledby || navigationId
+})
+
+const dialogElement = useTemplateRef<HTMLDivElement|HTMLFormElement>('dialogElement')
+/**
+ * The HTML element to use for the dialog wrapper - either form or plain div
+ */
+const dialogTagName = computed(() => props.isForm && !hasNavigation.value ? 'form' : 'div')
+/**
+ * Listener to assign to the dialog element
+ * This only sets the `@submit` listener if the dialog element is a form
+ */
+const dialogListeners = computed(() => dialogTagName.value === 'form'
+	? {
+		/**
+		 * @param event - Form submit event
+		 */
+		submit(event: SubmitEvent) {
+			event.preventDefault()
+			emit('submit', event)
+		},
+
+		/**
+		 * @param event - Form submit event
+		 */
+		reset(event: Event) {
+			event.preventDefault()
+			emit('reset', event)
+		},
+	}
+	: {},
+)
+
+/**
+ * If the underlying modal is shown
+ */
+const showModal = ref(true)
+
+// Because NcModal does not emit `close` when show prop is changed
+/**
+ * Handle clicking a dialog button -> should close
+ * @param button - The button that was clicked
+ * @param result - Result of the callback function
+ */
+function handleButtonClose(button: NcDialogButtonProps, result: unknown) {
+	// Skip close on submit if invalid dialog
+	if (button.type === 'submit'
+		&& dialogTagName.value === 'form'
+		&& 'reportValidity' in dialogElement.value!
+		&& !dialogElement.value.reportValidity()) {
+		return
+	}
+	handleClosing(result)
+	window.setTimeout(() => handleClosed(), 300)
+}
+
+/**
+ * Handle closing the dialog, optional out transition did not run yet
+ * @param result - The result of the callback
+ */
+function handleClosing(result?: unknown): void {
+	showModal.value = false
+	emit('closing', result)
+}
+
+/**
+ * Handle dialog closed (out transition finished)
+ */
+const handleClosed = () => {
+	showModal.value = true
+	open.value = false
+}
+
+/**
+ * Properties to pass to the underlying NcModal
+ */
+const modalProps = computed(() => ({
+	noClose: props.noClose,
+	container: props.container === undefined ? 'body' : props.container,
+	// we do not pass the name as we already have the name as the headline
+	// name: props.name,
+	// But we need to set the correct label id so the dialog is labelled
+	labelId: navigationId,
+	size: props.size,
+	show: open.value && showModal.value,
+	outTransition: props.outTransition,
+	closeOnClickOutside: props.closeOnClickOutside,
+	additionalTrapElements: props.additionalTrapElements,
+}))
+</script>
+
 <template>
 	<NcModal v-if="open"
 		class="dialog__modal"
@@ -255,368 +533,6 @@ export default {
 		</component>
 	</NcModal>
 </template>
-
-<script lang="ts">
-import type { PropType } from 'vue'
-import type { ComponentProps } from '../../utils/VueTypes.ts'
-
-import { useElementSize } from '@vueuse/core'
-import { computed, defineComponent, ref } from 'vue'
-
-import NcModal from '../NcModal/index.js'
-import NcDialogButton from '../NcDialogButton/index.js'
-
-import { createElementId } from '../../utils/createElementId.ts'
-
-type NcDialogButtonProps = ComponentProps<typeof NcDialogButton>
-
-export default defineComponent({
-	name: 'NcDialog',
-
-	components: {
-		NcDialogButton,
-		NcModal,
-	},
-
-	props: {
-		/** Name of the dialog (the heading) */
-		name: {
-			type: String,
-			required: true,
-		},
-
-		/** Text of the dialog */
-		message: {
-			type: String,
-			default: '',
-		},
-
-		/** Additional elements to add to the focus trap */
-		additionalTrapElements: {
-			type: Array as PropType<(string|HTMLElement)[]>,
-			validator: (arr: unknown) => {
-				return (
-					Array.isArray(arr) && arr.every(
-						(element) =>
-							typeof element === 'string' || element instanceof HTMLElement,
-					)
-				)
-			},
-			default: () => ([]),
-		},
-
-		/**
-		 * The element where to mount the dialog, if `null` is passed the dialog is mounted in place
-		 * @default 'body'
-		 */
-		container: {
-			type: String,
-			required: false,
-			default: 'body',
-		},
-
-		/**
-		 * Whether the dialog should be shown
-		 * @default true
-		 */
-		open: {
-			type: Boolean,
-			default: true,
-		},
-
-		/**
-		 * Size of the underlying NcModal
-		 * @default 'small'
-		 * @type {'small'|'normal'|'large'|'full'}
-		 */
-		size: {
-			type: String as PropType<'small'|'normal'|'large'|'full'>,
-			required: false,
-			default: 'small',
-			validator: (value: string) => ['small', 'normal', 'large', 'full'].includes(value),
-		},
-
-		/**
-		 * Buttons to display
-		 * @default []
-		 */
-		buttons: {
-			type: Array as PropType<NcDialogButtonProps[]>,
-			required: false,
-			default: () => ([]),
-			validator(value: unknown[]) {
-				return Array.isArray(value)
-					&& value.every((element) => typeof element === 'object')
-			},
-		},
-
-		/**
-		 * Do not show the close button for the dialog.
-		 * @default false
-		 */
-		noClose: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Close the dialog if the user clicked outside of the dialog
-		 * Only relevant if `noClose` is not set.
-		 */
-		closeOnClickOutside: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Make the dialog wrapper a HTML form element.
-		 * The buttons will be wrapped within the form so they can be used as submit / reset buttons.
-		 * Please note that when using the property the `navigation` should not be used.
-		 */
-		isForm: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Declare if hiding the modal should be animated
-		 * @default false
-		 */
-		outTransition: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Optionally pass additional classes which will be set on the navigation for custom styling
-		 * @default ''
-		 * @example
-		 * ```html
-		 * <DialogBase :navigation-classes="['mydialog-navigation']"><!-- --></DialogBase>
-		 * <!-- ... -->
-		 * <style lang="scss">
-		 * :deep(.mydialog-navigation) {
-		 *     flex-direction: row-reverse;
-		 * }
-		 * </style>
-		 * ```
-		 */
-		navigationClasses: {
-			type: [String, Array, Object],
-			required: false,
-			default: '',
-		},
-
-		/**
-		 * aria-label for the dialog navigation.
-		 * Use it when you want to provide a more meaningful label than the dialog name.
-		 *
-		 * By default, navigation is labeled by the dialog name.
-		 */
-		navigationAriaLabel: {
-			type: String,
-			required: false,
-			default: '',
-		},
-
-		/**
-		 * aria-labelledby for the dialog navigation.
-		 * Use it when you have an implicit navigation label (e.g. a heading).
-		 *
-		 * By default, navigation is labeled by the dialog name.
-		 */
-		navigationAriaLabelledby: {
-			type: String,
-			required: false,
-			default: '',
-		},
-
-		/**
-		 * Optionally pass additional classes which will be set on the content wrapper for custom styling
-		 * @default ''
-		 */
-		contentClasses: {
-			type: [String, Array, Object],
-			required: false,
-			default: '',
-		},
-
-		/**
-		 * Optionally pass additional classes which will be set on the dialog itself
-		 * (the default `class` attribute will be set on the modal wrapper)
-		 * @default ''
-		 */
-		dialogClasses: {
-			type: [String, Array, Object],
-			required: false,
-			default: '',
-		},
-	},
-
-	emits: ['closing', 'update:open', 'reset', 'submit'],
-
-	setup(props, { emit, slots }) {
-		/**
-		 * The dialog wrapper element
-		 */
-		const wrapper = ref<HTMLDivElement>()
-
-		/**
-		 * We use the dialog width to decide if we collapse the navigation (flex direction row)
-		 */
-		const { width: dialogWidth } = useElementSize(wrapper, { width: 900, height: 0 })
-
-		/**
-		 * Whether the navigation is collapsed due to dialog and window size
-		 * (collapses when modal is below: 900px modal width - 2x 12px margin)
-		 */
-		const isNavigationCollapsed = computed(() => dialogWidth.value < 876)
-
-		/**
-		 * Whether a navigation was passed and the element should be displayed
-		 */
-		const hasNavigation = computed(() => slots?.navigation !== undefined)
-
-		/**
-		 * The unique id of the nav element
-		 */
-		const navigationId = createElementId()
-
-		/**
-		 * aria-label attribute for the nav element
-		 */
-		const navigationAriaLabelAttr = computed(() => props.navigationAriaLabel || undefined)
-
-		/**
-		 * aria-labelledby attribute for the nav element
-		 */
-		const navigationAriaLabelledbyAttr = computed(() => {
-			if (props.navigationAriaLabel) {
-				// Not needed, already labelled by aria-label
-				return undefined
-			}
-			// Use dialog name as a fallback label for navigation
-			return props.navigationAriaLabelledby || navigationId
-		})
-
-		/**
-		 * @type {import('vue').Ref<HTMLFormElement|undefined>}
-		 */
-		const dialogElement = ref()
-		/**
-		 * The HTML element to use for the dialog wrapper - either form or plain div
-		 */
-		const dialogTagName = computed(() => props.isForm && !hasNavigation.value ? 'form' : 'div')
-		/**
-		 * Listener to assign to the dialog element
-		 * This only sets the `@submit` listener if the dialog element is a form
-		 */
-		const dialogListeners = computed(() => dialogTagName.value === 'form'
-			? {
-				/**
-				 * @param {SubmitEvent} event Form submit event
-				 */
-				submit(event) {
-					event.preventDefault()
-					/** Forwarded HTMLFormElement submit event (only if `is-form` is set) */
-					emit('submit', event)
-				},
-				/**
-				 * @param {Event} event Form submit event
-				 */
-				reset(event) {
-					event.preventDefault()
-					/**
-					 * Forwarded HTMLFormElement reset event (only if `is-form` is set).
-					 */
-					emit('reset', event)
-				},
-			}
-			: {},
-		)
-
-		/**
-		 * If the underlying modal is shown
-		 */
-		const showModal = ref(true)
-
-		// Because NcModal does not emit `close` when show prop is changed
-		/**
-		 * Handle clicking a dialog button -> should close
-		 * @param {MouseEvent} button The button that was clicked
-		 * @param {unknown} result Result of the callback function
-		 */
-		function handleButtonClose(button, result) {
-			// Skip close on submit if invalid dialog
-			if (button.nativeType === 'submit'
-				&& dialogTagName.value === 'form'
-				&& !dialogElement.value.reportValidity()) {
-				return
-			}
-			handleClosing(result)
-			window.setTimeout(() => handleClosed(), 300)
-		}
-
-		/**
-		 * Handle closing the dialog, optional out transition did not run yet
-		 * @param result - The result of the callback
-		 */
-		function handleClosing(result?: unknown): void {
-			showModal.value = false
-			/**
-			 * Emitted when the dialog is closing, so the out transition did not finish yet.
-			 *
-			 * @param result - The result of the button callback (`undefined` if closing because of clicking the 'close'-button)
-			 */
-			emit('closing', result)
-		}
-
-		/**
-		 * Handle dialog closed (out transition finished)
-		 */
-		const handleClosed = () => {
-			showModal.value = true
-			/**
-			 * Emitted then the dialog is fully closed and the out transition run
-			 */
-			emit('update:open', false)
-		}
-
-		/**
-		 * Properties to pass to the underlying NcModal
-		 */
-		const modalProps = computed(() => ({
-			noClose: props.noClose,
-			container: props.container === undefined ? 'body' : props.container,
-			// we do not pass the name as we already have the name as the headline
-			// name: props.name,
-			// But we need to set the correct label id so the dialog is labelled
-			labelId: navigationId,
-			size: props.size,
-			show: props.open && showModal.value,
-			outTransition: props.outTransition,
-			closeOnClickOutside: props.closeOnClickOutside,
-			additionalTrapElements: props.additionalTrapElements,
-		}))
-
-		return {
-			dialogElement,
-			dialogListeners,
-			dialogTagName,
-			handleButtonClose,
-			handleClosing,
-			handleClosed,
-			hasNavigation,
-			navigationId,
-			navigationAriaLabelAttr,
-			navigationAriaLabelledbyAttr,
-			isNavigationCollapsed,
-			modalProps,
-			wrapper,
-		}
-	},
-})
-</script>
 
 <style lang="scss">
 /** When having the small dialog style we override the modal styling so dialogs look more dialog like */
