@@ -8,9 +8,9 @@
 		<NcButton class="app-navigation-toggle"
 			aria-controls="app-navigation-vue"
 			:aria-expanded="open ? 'true' : 'false'"
-			:aria-keyshortcuts="disableKeyboardShortcuts ? '' : 'n'"
 			:aria-label="label"
 			:title="label"
+			variant="tertiary"
 			@click="toggleNavigation">
 			<template #icon>
 				<MenuOpenIcon v-if="open" :size="20" />
