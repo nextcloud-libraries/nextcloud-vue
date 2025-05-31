@@ -71,225 +71,194 @@ export default {
 ```
 </docs>
 
+<script setup lang="ts">
+import type { VueClassType } from '../../utils/VueTypes.ts'
+
+import { mdiAlertCircle, mdiCheck } from '@mdi/js'
+import { computed, useAttrs, useTemplateRef, watch } from 'vue'
+import { createElementId } from '../../utils/createElementId.ts'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
+import logger from '../../utils/logger.ts'
+
+defineOptions({ inheritAttrs: false })
+
+defineExpose({
+	focus,
+	select,
+})
+
+const props = withDefaults(defineProps<{
+	/**
+	 * Disable the text area
+	 */
+	disabled?: boolean
+
+	/**
+	 * Toggles the error state of the component.
+	 * Adds an error icon.
+	 */
+	error?: boolean
+
+	/**
+	 * Additional helper text message
+	 *
+	 * This will be displayed beneath the input field. In case the field is
+	 * also marked as having an error, the text will be displayed in red.
+	 */
+	helperText?: string
+
+	/**
+	 * The id of the textarea element
+	 */
+	id?: string
+
+	/**
+	 * Class to add to the `<textarea>` element.
+	 */
+	inputClass?: VueClassType
+
+	/**
+	 * The input label, always provide one for accessibility purposes.
+	 * This will also be used as a placeholder unless the placeholder
+	 * prop is populated with a different string.
+	 */
+	label?: string
+
+	/**
+	 * Pass in true if you want to use an external label. This is useful
+	 * if you need a label that looks different from the one provided by
+	 * this component
+	 */
+	labelOutside?: boolean
+
+	/**
+	 * The placeholder of the input. This defaults as the string that's
+	 * passed into the label prop. In order to remove the placeholder,
+	 * pass in an empty string.
+	 */
+	placeholder?: string
+
+	/**
+	 * The resize CSS property sets whether an element is resizable, and if
+	 * so, in which directions.
+	 */
+	resize?: 'both' | 'vertical' | 'horizontal' | 'none'
+
+	/**
+	 * Toggles the success state of the component.
+	 * Adds a checkmark icon.
+	 */
+	success?: boolean
+}>(), {
+	helperText: undefined,
+	id: () => createElementId(),
+	inputClass: '',
+	label: undefined,
+	placeholder: undefined,
+	resize: 'both',
+})
+
+/**
+ * The value of the text area
+ */
+const modelValue = defineModel<string>({ required: true })
+
+/**
+ * The native text area component instance
+ */
+const textAreaElement = useTemplateRef('input')
+
+// needs to be a getter as attrs are not reactive
+const attrs = useAttrs()
+
+// warn about invalid labels (missing label and no label outside)
+watch(() => props.labelOutside, () => {
+	if (!props.labelOutside && !props.label) {
+		logger.warn('[NcTextArea] You need to add a label to the NcInputField component. Either use the prop label or use an external one, as per the example in the documentation.')
+	}
+})
+
+const ariaDescribedby = computed(() => {
+	const ariaDescribedby: string[] = []
+	if (props.helperText) {
+		ariaDescribedby.push(`${props.id}-helper-text`)
+	}
+	if (typeof attrs['aria-describedby'] === 'string') {
+		ariaDescribedby.push(attrs['aria-describedby'])
+	}
+	return ariaDescribedby.join(' ') || undefined
+})
+
+/**
+ * Update the model value to the text area value.
+ *
+ * @param event - The input event
+ */
+function handleInput(event: Event) {
+	const { value } = event.target as HTMLTextAreaElement
+	modelValue.value = value
+}
+
+/**
+ * Focus the input element
+ *
+ * @param options - Focus options
+ * @public
+ */
+function focus(options?: FocusOptions) {
+	textAreaElement.value!.focus(options)
+}
+
+/**
+ * Select all the text in the input
+ *
+ * @public
+ */
+function select() {
+	textAreaElement.value!.select()
+}
+</script>
+
 <template>
-	<div class="textarea" :class="{ 'textarea--disabled': disabled }">
+	<div class="textarea" :class="[$attrs.class, { 'textarea--disabled': disabled }]">
 		<div class="textarea__main-wrapper">
-			<textarea v-bind="$attrs"
-				:id="computedId"
+			<textarea v-bind="{ ...$attrs, class: undefined }"
+				:id
 				ref="input"
-				class="textarea__input"
-				:disabled="disabled"
-				:placeholder="computedPlaceholder"
-				:aria-describedby="ariaDescribedby"
+				:aria-describedby
 				aria-live="polite"
+				class="textarea__input"
 				:class="[inputClass,
 					{
 						'textarea__input--label-outside': labelOutside,
 						'textarea__input--success': success,
 						'textarea__input--error': error,
 					}]"
-				:style="{ resize: resize }"
+				:disabled
+				:placeholder="placeholder || label"
+				:style="{ resize }"
 				:value="modelValue"
 				@input="handleInput" />
 			<!-- Label -->
-			<label v-if="!labelOutside && isValidLabel"
+			<label v-if="!labelOutside"
 				class="textarea__label"
-				:for="computedId">
+				:for="id">
 				{{ label }}
 			</label>
 		</div>
-		<p v-if="helperText.length > 0"
-			:id="`${inputName}-helper-text`"
+		<p v-if="helperText"
+			:id="`${id}-helper-text`"
 			class="textarea__helper-text-message"
 			:class="{
 				'textarea__helper-text-message--error': error,
 				'textarea__helper-text-message--success': success,
 			}">
-			<Check v-if="success" class="textarea__helper-text-message__icon" :size="18" />
-			<AlertCircle v-else-if="error" class="textarea__helper-text-message__icon" :size="18" />
+			<NcIconSvgWrapper v-if="success" class="textarea__helper-text-message__icon" :path="mdiCheck" />
+			<NcIconSvgWrapper v-else-if="error" class="textarea__helper-text-message__icon" :path="mdiAlertCircle" />
 			{{ helperText }}
 		</p>
 	</div>
 </template>
-
-<script>
-import { createElementId } from '../../utils/createElementId.ts'
-
-import AlertCircle from 'vue-material-design-icons/AlertCircleOutline.vue'
-import Check from 'vue-material-design-icons/Check.vue'
-
-export default {
-	name: 'NcTextArea',
-
-	components: {
-		AlertCircle,
-		Check,
-	},
-
-	inheritAttrs: false,
-
-	props: {
-		/**
-		 * The value of the input field
-		 */
-		modelValue: {
-			type: String,
-			required: true,
-		},
-
-		/**
-		 * The input label, always provide one for accessibility purposes.
-		 * This will also be used as a placeholder unless the placeholder
-		 * prop is populated with a different string.
-		 */
-		label: {
-			type: String,
-			default: undefined,
-		},
-
-		/**
-		 * Pass in true if you want to use an external label. This is useful
-		 * if you need a label that looks different from the one provided by
-		 * this component
-		 */
-		labelOutside: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * The placeholder of the input. This defaults as the string that's
-		 * passed into the label prop. In order to remove the placeholder,
-		 * pass in an empty string.
-		 */
-		placeholder: {
-			type: String,
-			default: undefined,
-		},
-
-		/**
-		 * Toggles the success state of the component. Adds a checkmark icon.
-		 * this cannot be used together with canClear.
-		 */
-		success: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Toggles the error state of the component. Adds an error icon.
-		 * this cannot be used together with canClear.
-		 */
-		error: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Additional helper text message
-		 *
-		 * This will be displayed beneath the input field. In case the field is
-		 * also marked as having an error, the text will be displayed in red.
-		 */
-		helperText: {
-			type: String,
-			default: '',
-		},
-
-		/**
-		 * Disable the input field
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Class to add to the input field.
-		 * Necessary to use NcInputField in the NcActionInput component.
-		 */
-		inputClass: {
-			type: [Object, String],
-			default: '',
-		},
-
-		/**
-		 * The resize CSS property sets whether an element is resizable, and if
-		 * so, in which directions.
-		 */
-		resize: {
-			type: String,
-			default: 'both',
-			validator: (value) => ['both', 'vertical', 'horizontal', 'none'].includes(value),
-		},
-	},
-
-	emits: [
-		'update:modelValue',
-	],
-
-	computed: {
-		computedId() {
-			return this.$attrs.id && this.$attrs.id !== '' ? this.$attrs.id : this.inputName
-		},
-
-		inputName() {
-			return 'input' + createElementId()
-		},
-
-		hasPlaceholder() {
-			return this.placeholder !== '' && this.placeholder !== undefined
-		},
-
-		computedPlaceholder() {
-			return this.hasPlaceholder ? this.placeholder : this.label
-		},
-
-		isValidLabel() {
-			const isValidLabel = this.label || this.labelOutside
-			if (!isValidLabel) {
-				console.warn('You need to add a label to the NcInputField component. Either use the prop label or use an external one, as per the example in the documentation.')
-			}
-			return isValidLabel
-		},
-
-		ariaDescribedby() {
-			const ariaDescribedby = []
-			if (this.helperText.length > 0) {
-				ariaDescribedby.push(`${this.inputName}-helper-text`)
-			}
-			if (this.$attrs['aria-describedby']) {
-				ariaDescribedby.push(this.$attrs['aria-describedby'])
-			}
-			return ariaDescribedby.join(' ') || null
-		},
-	},
-
-	methods: {
-		/**
-		 * Focus the input element
-		 *
-		 * @public
-		 */
-		focus() {
-			this.$refs.input.focus()
-		},
-
-		/**
-		 * Select all the text in the input
-		 *
-		 * @public
-		 */
-		select() {
-			this.$refs.input.select()
-		},
-
-		handleInput(event) {
-			this.$emit('update:modelValue', event.target.value)
-		},
-	},
-}
-</script>
 
 <style lang="scss" scoped>
 
