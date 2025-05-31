@@ -57,23 +57,80 @@ available in four versions:
 ```
 </docs>
 
+<script setup lang="ts">
+import type { Slot } from 'vue'
+
+import { mdiAlert, mdiAlertDecagram, mdiCheckboxMarkedCircle, mdiInformation } from '@mdi/js'
+import { computed } from 'vue'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
+
+const props = withDefaults(defineProps<{
+	/**
+	 * Optional text to show as a heading of the note card
+	 */
+	heading?: string
+
+	/**
+	 * Enforce the `alert` role on the note card.
+	 *
+	 * The alert role should only be used for information that requires the user's immediate attention.
+	 *
+	 * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alert_role
+	 */
+	showAlert?: boolean
+
+	/**
+	 * The message text of the note card
+	 */
+	text?: string
+
+	/**
+	 * Type or severity of the message
+	 */
+	type?: 'success' | 'info' | 'warning' | 'error'
+}>(), {
+	heading: undefined,
+	text: undefined,
+	type: 'warning',
+})
+
+defineSlots<{
+	/** The main content (overwrites the `text` prop) */
+	default?: Slot
+	/** Manually provided icon */
+	icon?: Slot
+}>()
+
+const shouldShowAlert = computed(() => props.showAlert || props.type === 'error')
+
+const iconPath = computed(() => {
+	switch (props.type) {
+	case 'error':
+		return mdiAlertDecagram
+	case 'success':
+		return mdiCheckboxMarkedCircle
+	case 'info':
+		return mdiInformation
+	case 'warning':
+	default:
+		return mdiAlert
+	}
+})
+</script>
+
 <template>
 	<div class="notecard"
 		:class="`notecard--${type}`"
 		:role="shouldShowAlert ? 'alert' : 'note'">
-		<!-- @slot Manually provide icon -->
 		<slot name="icon">
-			<component :is="icon"
+			<NcIconSvgWrapper :path="iconPath"
 				class="notecard__icon"
-				:class="{'notecard__icon--heading': heading}"
-				:fill-color="color"
-				:size="20" />
+				:class="{ 'notecard__icon--heading': heading }" />
 		</slot>
 		<div>
 			<p v-if="heading" class="notecard__heading">
 				{{ heading }}
 			</p>
-			<!-- @slot The main content (overwrites the `text` prop) -->
 			<slot>
 				<p class="notecard__text">
 					{{ text }}
@@ -82,85 +139,6 @@ available in four versions:
 		</div>
 	</div>
 </template>
-
-<script>
-import CheckboxMarkedCircle from 'vue-material-design-icons/CheckboxMarkedCircle.vue'
-import AlertDecagram from 'vue-material-design-icons/AlertDecagram.vue'
-import Alert from 'vue-material-design-icons/Alert.vue'
-import Information from 'vue-material-design-icons/Information.vue'
-
-export default {
-	name: 'NcNoteCard',
-
-	props: {
-		/**
-		 * Type or severity of the message
-		 */
-		type: {
-			type: String,
-			default: 'warning',
-			validator: type => ['success', 'info', 'warning', 'error'].includes(type),
-		},
-		/**
-		 * Enforce the `alert` role on the note card.
-		 *
-		 * The [`alert` role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alert_role)
-		 * should only be used for information that requires the user's immediate attention.
-		 */
-		showAlert: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Optional text to show as a heading of the note card
-		 */
-		heading: {
-			type: String,
-			default: '',
-		},
-		/**
-		 * The message text of the note card
-		 */
-		text: {
-			type: String,
-			default: '',
-		},
-	},
-	computed: {
-		shouldShowAlert() {
-			return this.showAlert || this.type === 'error'
-		},
-		icon() {
-			switch (this.type) {
-			case 'error':
-				return AlertDecagram
-			case 'success':
-				return CheckboxMarkedCircle
-			case 'info':
-				return Information
-			case 'warning':
-				return Alert
-			default:
-				return Alert
-			}
-		},
-		color() {
-			switch (this.type) {
-			case 'error':
-				return 'var(--color-error)'
-			case 'success':
-				return 'var(--color-success)'
-			case 'info':
-				return 'var(--color-info)'
-			case 'warning':
-				return 'var(--color-warning)'
-			default:
-				return 'var(--color-warning)'
-			}
-		},
-	},
-}
-</script>
 
 <style lang="scss" scoped>
 .notecard {
@@ -182,6 +160,8 @@ export default {
 	}
 
 	&__icon {
+		color: var(--note-theme);
+
 		&--heading {
 			font-size: var(--note-card-icon-size);
 			// Ensure icon is on the same height as the heading
