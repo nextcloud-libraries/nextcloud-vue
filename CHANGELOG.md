@@ -5,6 +5,13 @@
 
 # Changelog
 
+## [v8.27.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.27.1) (UNRELEASED)
+
+### 📝 Notes
+#### `NcTextField`
+The value `arrowRight` of the property `trailingButtonIcon` is deprecated and will be removed in a future version.
+It is replaced by `arrowEnd` which reflects that the directions depends on the text directions (LTR vs RTL).
+
 ## [v8.27.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.27.0) (2025-05-28)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.26.1...v8.27.0)
 
