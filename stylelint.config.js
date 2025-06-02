@@ -5,4 +5,7 @@
 
 module.exports = {
 	extends: ['@nextcloud/stylelint-config'],
+	rules: {
+		'scss/load-partial-extension': ['always'],
+	},
 }

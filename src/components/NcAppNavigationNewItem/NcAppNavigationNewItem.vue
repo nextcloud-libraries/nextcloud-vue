@@ -168,7 +168,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../../assets/NcAppNavigationItem';
+@use '../../assets/NcAppNavigationItem.scss';
 
 .app-navigation-new-item__name {
 	overflow: hidden;

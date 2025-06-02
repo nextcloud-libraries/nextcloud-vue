@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+@use '../../assets/variables.scss' as *;
+
 .header-menu {
 	position: relative;
 	width: var(--header-height);
