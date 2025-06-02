@@ -154,6 +154,8 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 - `NcSelect`
   - `userSelect` property was removed, instead just use the `NcSelectUsers` component
   - `closeOnSelect` property was removed in favor of `keepOpen`.
+- `NcTextField`:
+  - The value `'arrowRight'` for the `trailingButtonIcon` property was deprecated is now removed in favor of `arrowEnd`.
 - `Tooltip` directive was deprecated in v8 and is now removed.
   This was done in favor of native tooltips using the `title` attribute, which is better for accessibility.
   If you really need custom formatted tooltips, you can use `NcPopover` instead.
