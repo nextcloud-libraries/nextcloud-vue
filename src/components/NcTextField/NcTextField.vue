@@ -134,9 +134,8 @@ export default {
 
 		<!-- Trailing icon slot, except for search type input as the browser already adds a trailing close icon -->
 		<template v-if="type !== 'search'" #trailing-button-icon>
-			<Close v-if="trailingButtonIcon === 'close'" :size="20" />
-			<ArrowRight v-else-if="trailingButtonIcon === 'arrowRight'" :size="20" />
-			<Undo v-else-if="trailingButtonIcon === 'undo'" :size="20" />
+			<NcIconSvgWrapper v-if="isArrow" directional :path="mdiArrowRight" />
+			<NcIconSvgWrapper v-else :path="trailingButtonIcon === 'undo' ? mdiUndo : mdiClose" />
 		</template>
 	</NcInputField>
 </template>
@@ -145,18 +144,20 @@ export default {
 import type { Slot } from 'vue'
 import type { NcInputFieldProps } from '../NcInputField/index.ts'
 
+import { mdiArrowRight, mdiClose, mdiUndo } from '@mdi/js'
 import { computed, useTemplateRef } from 'vue'
-import Close from 'vue-material-design-icons/Close.vue'
-import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-import Undo from 'vue-material-design-icons/UndoVariant.vue'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 import NcInputField from '../NcInputField/index.ts'
 import { t } from '../../l10n.js'
 
 const props = withDefaults(defineProps<NcInputFieldProps & {
 	/**
 	 * Specifies which material design icon should be used for the trailing button.
+	 *
+	 * The value `'arrowRight'` is deprecated and will be removed with the next version.
+	 * Instead use the `arrowEnd` option which reflects that the directions depends on the text directions (LTR vs RTL).
 	 */
-	trailingButtonIcon?: 'close' | 'arrowRight' | 'undo'
+	trailingButtonIcon?: 'arrowEnd' | 'arrowRight' | 'close' | 'undo'
 
 	/**
 	 * The `aria-label` to set on the trailing button
@@ -192,11 +193,25 @@ defineSlots<{
 
 const inputField = useTemplateRef('inputField')
 
-const defaultTrailingButtonLabels = {
-	undo: t('Undo changes'),
-	close: t('Clear text'),
-	arrowRight: t('Save changes'),
-}
+/**
+ * Is the trailing button icon directional.
+ * Meaning the icon needs to be flipped on RTL text flow.
+ */
+const isArrow = computed(() => props.trailingButtonIcon === 'arrowEnd' || props.trailingButtonIcon === 'arrowRight')
+
+const defaultTrailingButtonLabel = computed(() => {
+	switch (props.trailingButtonIcon) {
+	case 'arrowEnd':
+	case 'arrowRight':
+		return t('Save changes')
+	case 'close':
+		return t('Clear text')
+	case 'undo':
+		return t('Undo changes')
+	default:
+		return undefined
+	}
+})
 
 const NcInputFieldPropNames = new Set(Object.keys(NcInputField.props))
 const propsToForward = computed<NcInputFieldProps>(() => {
@@ -205,7 +220,7 @@ const propsToForward = computed<NcInputFieldProps>(() => {
 			.filter(([key]) => NcInputFieldPropNames.has(key)),
 	)
 
-	sharedProps.trailingButtonLabel ??= defaultTrailingButtonLabels[props.trailingButtonIcon]
+	sharedProps.trailingButtonLabel ??= defaultTrailingButtonLabel.value
 	return sharedProps satisfies NcInputFieldProps
 })
 

@@ -308,6 +308,39 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * refactor(NcCounterBubble): migrate component to Typescript and script-setup [#6970](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6970) ([susnux](https://github.com/susnux))
 * refactor: use NcIconSvgWrapper with directional property where needed [#6767](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6767) ([susnux](https://github.com/susnux))
 
+## [v8.27.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.27.1) (UNRELEASED)
+
+### 📝 Notes
+#### `NcTextField`
+The value `arrowRight` of the property `trailingButtonIcon` is deprecated and will be removed in a future version.
+It is replaced by `arrowEnd` which reflects that the directions depends on the text directions (LTR vs RTL).
+
+## [v8.27.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.27.0) (2025-05-28)
+
+### 📝 Notes
+#### NcEmptyContent
+A padding was added to the empty content wrapper. It is recommended to check in-app styles for possible overrides.
+
+### 🚀 Enhancements
+* feat(NcChip): allow to define the actions container [#6964](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6964)
+* feat(NcActionButton): introduce `description` prop [#6975](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6975)
+
+### 🐛 Fixed bugs
+* fix(NcEmptyContent): description styling for mobile [#6943](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6943)
+* style(NcAppSidebar): remove custom styles from close button [#6945](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6945)
+
+### Other Changes
+* refactor(useIsFullscreen): migrate to Typescript [#6912](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6912) ([ShGKme](https://github.com/ShGKme))
+* refactor(useHotKey): migrate code to Typescript [#6911](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6911)
+* refactor(Focus): migrate directive to Typescript [#6914](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6914)
+* refactor: use `NcIconSvgWrapper` with `directional` property where needed [#6976](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6976)
+* feat(NcRichText): filter links based on protocol [#6977](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6977) ([max-nextcloud](https://github.com/max-nextcloud))
+
+## [v8.26.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.26.1) (2025-05-07)
+
+### 🐛 Fixed bugs
+* fix(NcIconSvgWrapper): center svg span wrapper [#6880](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6880)
+
 ## [v8.26.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.26.0) (2025-04-25)
 
 ### 📝 Notes
