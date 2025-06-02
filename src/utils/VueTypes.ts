@@ -12,3 +12,5 @@ export type ComponentProps<C extends Component> = C extends new (...args: any) =
 
 type ClassType = string | Record<string, boolean | undefined>
 export type VueClassType = ClassType | ClassType[] | VueClassType[]
+
+export type Writable<T> = { -readonly [P in keyof T]: T[P] }

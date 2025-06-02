@@ -16,42 +16,239 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 
 </docs>
 
+<script setup lang="ts">
+import type { Slot } from 'vue'
+import type { VueClassType } from '../../utils/VueTypes.ts'
+
+import { mdiAlertCircle, mdiCheck } from '@mdi/js'
+import { computed, useAttrs, useTemplateRef, warn } from 'vue'
+import NcButton from '../NcButton/index.ts'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
+import { createElementId } from '../../utils/createElementId.ts'
+
+export interface NcInputFieldProps {
+	/**
+	 * Class to add to the root component.
+	 */
+	class?: VueClassType
+
+	/**
+	 * Class to add to the input field.
+	 * Necessary to use NcInputField in the NcActionInput component.
+	 */
+	inputClass?: VueClassType
+
+	/**
+	 * HTML id of the input field
+	 */
+	id?: string
+
+	/**
+	 * The input label, always provide one for accessibility purposes.
+	 * This will also be used as a placeholder unless the placeholder
+	 * prop is populated with a different string.
+	 *
+	 * Note: If the background color is not `--color-main-background` consider using an external label instead (see `labelOutside`).
+	 */
+	label?: string
+
+	/**
+	 * Pass in true if you want to use an external label. This is useful
+	 * if you need a label that looks different from the one provided by
+	 * this component
+	 */
+	labelOutside?: boolean
+
+	/**
+	 * The type of the input element
+	 */
+	type?: 'text' | 'password' | 'email' | 'tel' | 'url' | 'search' | 'number'
+
+	/**
+	 * The placeholder of the input. This defaults as the string that's
+	 * passed into the label prop. In order to remove the placeholder,
+	 * pass in an empty string.
+	 */
+	placeholder?: string
+
+	/**
+	 * Controls whether to display the trailing button.
+	 */
+	showTrailingButton?: boolean
+
+	/**
+	 * Label of the trailing button
+	 *
+	 * Required when showTrailingButton is set
+	 */
+	trailingButtonLabel?: string
+
+	/**
+	 * Toggles the success state of the component. Adds a checkmark icon.
+	 */
+	success?: boolean
+
+	/**
+	 * Toggles the error state of the component. Adds an error icon.
+	 */
+	error?: boolean
+
+	/**
+	 * Additional helper text message
+	 *
+	 * This will be displayed beneath the input field. In case the field is
+	 * also marked as having an error, the text will be displayed in red.
+	 */
+	helperText?: string
+
+	/**
+	 * Disable the input field
+	 */
+	disabled?: boolean
+
+	/**
+	 * Specifies whether the input should have a pill form.
+	 * By default, input has rounded corners.
+	 */
+	pill?: boolean
+}
+
+const props = withDefaults(defineProps<NcInputFieldProps>(), {
+	class: '',
+	helperText: '',
+	id: () => createElementId(),
+	inputClass: '',
+	label: undefined,
+	placeholder: undefined,
+	trailingButtonLabel: undefined,
+	type: 'text',
+})
+
+/**
+ * The value of the input field
+ * If type is 'number' and a number is passed as value than the type of `update:value` will also be 'number'
+ */
+const modelValue = defineModel<string|number>({ required: true })
+
+const emit = defineEmits<{
+	'trailing-button-click': [event: MouseEvent]
+}>()
+
+defineOptions({
+	inheritAttrs: false,
+})
+
+// public API
+defineExpose({
+	focus,
+	select,
+})
+
+defineSlots<{
+	/**
+	 * Leading icon, set the size to 20.
+	 */
+	icon?: Slot
+
+	/**
+	 * Icon for the trailing button.
+	 */
+	'trailing-button-icon'?: Slot
+}>()
+
+const attrs = useAttrs()
+
+const input = useTemplateRef('input')
+
+const hasTrailingIcon = computed(() => props.showTrailingButton || props.success)
+
+const isValidLabel = computed(() => {
+	const isValidLabel = props.label || props.labelOutside
+	if (!isValidLabel) {
+		warn('You need to add a label to the NcInputField component. Either use the prop label or use an external one, as per the example in the documentation.')
+	}
+	return isValidLabel
+})
+
+const ariaDescribedby = computed(() => {
+	const ariaDescribedby: string[] = []
+	if (props.helperText) {
+		ariaDescribedby.push(`${props.id}-helper-text`)
+	}
+	if (attrs['aria-describedby']) {
+		ariaDescribedby.push(String(attrs['aria-describedby']))
+	}
+	return ariaDescribedby.join(' ') || undefined
+})
+
+/**
+ * Focus the input element
+ *
+ * @param options - Focus options
+ * @public
+ */
+function focus(options?: FocusOptions) {
+	input.value!.focus(options)
+}
+
+/**
+ * Select all the text in the input
+ *
+ * @public
+ */
+function select() {
+	input.value!.select()
+}
+
+/**
+ * Handle the input event of the HTML input.
+ * Parses numbers in case of numeric type.
+ *
+ * @param event - The input event
+ */
+function handleInput(event: Event) {
+	const target = event.target as HTMLInputElement
+	modelValue.value = props.type === 'number' && typeof modelValue.value === 'number'
+		? parseFloat(target.value)
+		: target.value
+}
+</script>
+
 <template>
 	<div class="input-field"
 		:class="[{
 			'input-field--disabled': disabled,
 			'input-field--label-outside': labelOutside || !isValidLabel,
 			'input-field--leading-icon': !!$slots.icon,
-			'input-field--trailing-icon': showTrailingButton || hasTrailingIcon,
+			'input-field--trailing-icon': hasTrailingIcon,
 			'input-field--pill': pill,
 		}, $props.class]">
 		<div class="input-field__main-wrapper">
 			<input v-bind="$attrs"
-				:id="computedId"
+				:id
 				ref="input"
-				class="input-field__input"
-				:type="type"
-				:disabled="disabled"
-				:placeholder="computedPlaceholder"
 				:aria-describedby="ariaDescribedby"
 				aria-live="polite"
+				class="input-field__input"
 				:class="[inputClass,
 					{
 						'input-field__input--success': success,
 						'input-field__input--error': error,
 					}]"
+				:disabled
+				:placeholder="placeholder || label"
+				:type
 				:value="modelValue.toString()"
 				@input="handleInput">
 			<!-- Label -->
 			<label v-if="!labelOutside && isValidLabel"
 				class="input-field__label"
-				:for="computedId">
+				:for="id">
 				{{ label }}
 			</label>
 
 			<!-- Leading icon -->
 			<div v-show="!!$slots.icon" class="input-field__icon input-field__icon--leading">
-				<!-- @slot Leading icon, set the size to 18 -->
 				<slot name="icon" />
 			</div>
 
@@ -61,9 +258,7 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 				:aria-label="trailingButtonLabel"
 				:disabled="disabled"
 				variant="tertiary-no-background"
-				@click="handleTrailingButtonClick">
-				<!-- Populating this slot creates a trailing button within the
-				input boundaries that emits a `trailing-button-click` event -->
+				@click="emit('trailing-button-click', $event)">
 				<template #icon>
 					<slot name="trailing-button-icon" />
 				</template>
@@ -76,253 +271,19 @@ For a list of all available props and attributes, please check the [HTMLInputEle
 				<AlertCircle v-else-if="error" :size="20" style="color: var(--color-error-text);" />
 			</div>
 		</div>
-		<p v-if="helperText.length > 0"
-			:id="`${inputName}-helper-text`"
+		<p v-if="helperText"
+			:id="`${id}-helper-text`"
 			class="input-field__helper-text-message"
 			:class="{
 				'input-field__helper-text-message--error': error,
 				'input-field__helper-text-message--success': success,
 			}">
-			<Check v-if="success" class="input-field__helper-text-message__icon" :size="18" />
-			<AlertCircle v-else-if="error" class="input-field__helper-text-message__icon" :size="18" />
+			<NcIconSvgWrapper v-if="success" class="input-field__helper-text-message__icon" :path="mdiCheck" />
+			<NcIconSvgWrapper v-else-if="error" class="input-field__helper-text-message__icon" :path="mdiAlertCircle" />
 			{{ helperText }}
 		</p>
 	</div>
 </template>
-
-<script>
-import NcButton from '../NcButton/index.ts'
-import { createElementId } from '../../utils/createElementId.ts'
-
-import AlertCircle from 'vue-material-design-icons/AlertCircleOutline.vue'
-import Check from 'vue-material-design-icons/Check.vue'
-
-export default {
-	name: 'NcInputField',
-
-	components: {
-		NcButton,
-		AlertCircle,
-		Check,
-	},
-
-	inheritAttrs: false,
-
-	props: {
-		/**
-		 * The value of the input field
-		 * If type is 'number' and a number is passed as value than the type of `update:value` will also be 'number'
-		 */
-		modelValue: {
-			type: [String, Number],
-			required: true,
-		},
-
-		/**
-		 * The type of the input element
-		 */
-		type: {
-			type: String,
-			default: 'text',
-			validator: (value) => [
-				'text',
-				'password',
-				'email',
-				'tel',
-				'url',
-				'search',
-				'number',
-			].includes(value),
-		},
-
-		/**
-		 * The input label, always provide one for accessibility purposes.
-		 * This will also be used as a placeholder unless the placeholder
-		 * prop is populated with a different string.
-		 *
-		 * Note: If the background color is not `--color-main-background` consider using an external label instead (see `labelOutside`).
-		 */
-		label: {
-			type: String,
-			default: undefined,
-		},
-
-		/**
-		 * Pass in true if you want to use an external label. This is useful
-		 * if you need a label that looks different from the one provided by
-		 * this component
-		 */
-		labelOutside: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * The placeholder of the input. This defaults as the string that's
-		 * passed into the label prop. In order to remove the placeholder,
-		 * pass in an empty string.
-		 */
-		placeholder: {
-			type: String,
-			default: undefined,
-		},
-
-		/**
-		 * Controls whether to display the trailing button.
-		 */
-		showTrailingButton: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Label of the trailing button
-		 *
-		 * Required when showTrailingButton is set
-		 */
-		trailingButtonLabel: {
-			type: String,
-			default: '',
-		},
-
-		/**
-		 * Toggles the success state of the component. Adds a checkmark icon.
-		 * this cannot be used together with canClear.
-		 */
-		success: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Toggles the error state of the component. Adds an error icon.
-		 * this cannot be used together with canClear.
-		 */
-		error: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Additional helper text message
-		 *
-		 * This will be displayed beneath the input field. In case the field is
-		 * also marked as having an error, the text will be displayed in red.
-		 */
-		helperText: {
-			type: String,
-			default: '',
-		},
-
-		/**
-		 * Disable the input field
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Specifies whether the input should have a pill form.
-		 * By default, input has rounded corners.
-		 */
-		pill: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Class to add to the root component.
-		 */
-		class: {
-			type: [Object, String, Array],
-			default: '',
-		},
-		/**
-		 * Class to add to the input field.
-		 * Necessary to use NcInputField in the NcActionInput component.
-		 */
-		inputClass: {
-			type: [Object, String],
-			default: '',
-		},
-	},
-
-	emits: [
-		'update:modelValue',
-		'trailing-button-click',
-	],
-
-	computed: {
-		computedId() {
-			return this.$attrs.id && this.$attrs.id !== '' ? this.$attrs.id : this.inputName
-		},
-
-		inputName() {
-			return 'input' + createElementId()
-		},
-
-		hasTrailingIcon() {
-			return this.success
-		},
-
-		hasPlaceholder() {
-			return this.placeholder !== '' && this.placeholder !== undefined
-		},
-
-		computedPlaceholder() {
-			return this.hasPlaceholder ? this.placeholder : this.label
-		},
-
-		isValidLabel() {
-			const isValidLabel = this.label || this.labelOutside
-			if (!isValidLabel) {
-				console.warn('You need to add a label to the NcInputField component. Either use the prop label or use an external one, as per the example in the documentation.')
-			}
-			return isValidLabel
-		},
-
-		ariaDescribedby() {
-			const ariaDescribedby = []
-			if (this.helperText.length > 0) {
-				ariaDescribedby.push(`${this.inputName}-helper-text`)
-			}
-			if (this.$attrs['aria-describedby']) {
-				ariaDescribedby.push(this.$attrs['aria-describedby'])
-			}
-			return ariaDescribedby.join(' ') || null
-		},
-	},
-
-	methods: {
-		/**
-		 * Focus the input element
-		 *
-		 * @public
-		 */
-		focus() {
-			this.$refs.input.focus()
-		},
-
-		/**
-		 * Select all the text in the input
-		 *
-		 * @public
-		 */
-		select() {
-			this.$refs.input.select()
-		},
-
-		handleInput(event) {
-			this.$emit('update:modelValue', this.type === 'number' && typeof this.modelValue === 'number' ? parseFloat(event.target.value, 10) : event.target.value)
-		},
-
-		handleTrailingButtonClick(event) {
-			this.$emit('trailing-button-click', event)
-		},
-	},
-}
-</script>
 
 <style lang="scss" scoped>
 

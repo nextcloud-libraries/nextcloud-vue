@@ -205,7 +205,7 @@ import IconCircle from 'vue-material-design-icons/Circle.vue'
 import NcButton from '../NcButton/index.ts'
 import NcColorPicker from '../NcColorPicker/NcColorPicker.vue'
 import NcPopover from '../NcPopover/index.js'
-import NcTextField from '../NcTextField/index.js'
+import NcTextField from '../NcTextField/index.ts'
 
 // Shared emoji index and skinTone for all NcEmojiPicker instances
 // Will be initialized on the first NcEmojiPicker creating
