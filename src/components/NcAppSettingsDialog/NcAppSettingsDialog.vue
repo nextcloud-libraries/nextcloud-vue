@@ -160,10 +160,10 @@ export default {
 <script>
 import debounce from 'debounce'
 import { warn } from 'vue'
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { t } from '../../l10n.js'
 
-import NcDialog from '../NcDialog/index.js'
+import NcDialog from '../NcDialog/index.ts'
 import NcVNodes from '../NcVNodes/index.ts'
 
 export default {
