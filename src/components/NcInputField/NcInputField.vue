@@ -218,10 +218,12 @@ function handleInput(event: Event) {
 	<div class="input-field"
 		:class="[{
 			'input-field--disabled': disabled,
+			'input-field--error': error,
 			'input-field--label-outside': labelOutside || !isValidLabel,
 			'input-field--leading-icon': !!$slots.icon,
 			'input-field--trailing-icon': hasTrailingIcon,
 			'input-field--pill': pill,
+			'input-field--success': success,
 		}, $props.class]">
 		<div class="input-field__main-wrapper">
 			<input v-bind="$attrs"
@@ -230,11 +232,7 @@ function handleInput(event: Event) {
 				:aria-describedby="ariaDescribedby"
 				aria-live="polite"
 				class="input-field__input"
-				:class="[inputClass,
-					{
-						'input-field__input--success': success,
-						'input-field__input--error': error,
-					}]"
+				:class="inputClass"
 				:disabled
 				:placeholder="placeholder || label"
 				:type
@@ -267,17 +265,13 @@ function handleInput(event: Event) {
 			<!-- Success and error icons -->
 			<div v-else-if="success || error"
 				class="input-field__icon input-field__icon--trailing">
-				<Check v-if="success" :size="20" style="color: var(--color-success-text);" />
-				<AlertCircle v-else-if="error" :size="20" style="color: var(--color-error-text);" />
+				<NcIconSvgWrapper v-if="success" :path="mdiCheck" />
+				<NcIconSvgWrapper v-else :path="mdiAlertCircle" />
 			</div>
 		</div>
 		<p v-if="helperText"
 			:id="`${id}-helper-text`"
-			class="input-field__helper-text-message"
-			:class="{
-				'input-field__helper-text-message--error': error,
-				'input-field__helper-text-message--success': success,
-			}">
+			class="input-field__helper-text-message">
 			<NcIconSvgWrapper v-if="success" class="input-field__helper-text-message__icon" :path="mdiCheck" />
 			<NcIconSvgWrapper v-else-if="error" class="input-field__helper-text-message__icon" :path="mdiAlertCircle" />
 			{{ helperText }}
@@ -377,21 +371,6 @@ function handleInput(event: Event) {
 		&:focus-visible {
 			box-shadow: unset !important; // Override server rules
 		}
-
-		&--success {
-			border-color: var(--color-success) !important; //Override hover border color
-			&:focus-visible {
-				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
-			}
-		}
-
-		&--error,
-		&:user-invalid {
-			border-color: var(--color-error) !important; //Override hover border color
-			&:focus-visible {
-				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
-			}
-		}
 	}
 
 	// Hide placeholder while not focussed -> show label instead (only if internal label is used)
@@ -481,13 +460,34 @@ function handleInput(event: Event) {
 		&__icon {
 			margin-inline-end: 8px;
 		}
+	}
 
-		&--error {
-			color: var(--color-error-text);
+	&--error {
+		.input-field__helper-text-message,
+		.input-field__icon--trailing {
+			color: var(--color-error);
+		}
+	}
+
+	&--error .input-field__input,
+	&__input:user-invalid {
+		border-color: var(--color-error) !important; //Override hover border color
+		&:focus-visible {
+			box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
+		}
+	}
+
+	&--success {
+		.input-field__input {
+			border-color: var(--color-success) !important; //Override hover border color
+			&:focus-visible {
+				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
+			}
 		}
 
-		&--success {
-			color: var(--color-success-text);
+		.input-field__helper-text-message,
+		.input-field__icon--trailing {
+			color: var(--color-success);
 		}
 	}
 }
