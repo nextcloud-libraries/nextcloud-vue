@@ -1,14 +1,11 @@
 # 
 # Translators:
-# Sean Molenaar <smillerdev@me.com>, 2023
-# Sebastiaan Veld <sebastiaan.veld@virtfields.nl>, 2024
-# WebSpider <nils@familievogels.nl>, 2024
-# Joost <joho500@hotmail.com>, 2024
-# John Molakvoæ <skjnldsv@protonmail.com>, 2024
+# Joas Schilling, 2025
+# Stephan Paternotte <stephan@paternottes.net>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
+"Last-Translator: Stephan Paternotte <stephan@paternottes.net>, 2025\n"
 "Language-Team: Dutch (https://app.transifex.com/nextcloud/teams/64236/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nl\n"
@@ -24,7 +21,7 @@ msgid "A color with a HEX value {hex}"
 msgstr "Een kleur met een HEX-waarde {hex}"
 
 msgid "a few seconds ago"
-msgstr "enkele seconden terug"
+msgstr "enkele seconden geleden"
 
 #. TRANSLATORS: A color name for RGB(110, 166, 143)
 msgid "Acapulco"
@@ -76,23 +73,32 @@ msgstr "Boston Blauw"
 msgid "busy"
 msgstr "bezig"
 
+msgid "Calendar icon"
+msgstr "Kalender-pictogram"
+
+msgid "Cancel"
+msgstr "Annuleren"
+
 msgid "Cancel changes"
 msgstr "Wijzigingen annuleren"
 
 msgid "Change name"
-msgstr "Verander naam"
+msgstr "Naam wijzigen"
 
 msgid "Choose"
-msgstr "Kies"
+msgstr "Kiezen"
 
 msgid "Clear search"
-msgstr "Wis zoekopdracht"
+msgstr "Zoekopdracht wissen"
 
 msgid "Clear selected"
 msgstr "Selectie wissen"
 
 msgid "Clear text"
-msgstr "Wis tekst"
+msgstr "Tekst wissen"
+
+msgid "Clear value"
+msgstr "Waarde wissen"
 
 msgid "Close"
 msgstr "Sluiten"
@@ -101,13 +107,16 @@ msgid "Close navigation"
 msgstr "Navigatie sluiten"
 
 msgid "Close sidebar"
-msgstr "Sluit sidebar"
+msgstr "Zijbalk sluiten"
 
 msgid "Close Smart Picker"
-msgstr "Sluit Slimme Kiezer"
+msgstr "Slimme Kiezer sluiten"
+
+msgid "Close time Picker"
+msgstr "Tijdkiezer sluiten"
 
 msgid "Collapse menu"
-msgstr "Klap menu in"
+msgstr "Menu inklappen"
 
 msgid "Color picker"
 msgstr "Kleurkiezer"
@@ -116,20 +125,35 @@ msgid "Confirm changes"
 msgstr "Wijzigingen bevestigen"
 
 msgid "Connect items to a project to make them easier to find"
-msgstr "Vebind items aan een project zodat ze eenvoudiger te vinden zijn"
+msgstr "Items aan een project koppelen om ze eenvoudiger te vinden"
 
 msgid "Custom"
 msgstr "Aangepast"
 
 msgid "Dark skin tone"
-msgstr "Donkere tint"
+msgstr "Donkere huidskleur"
+
+msgid "Datepicker input"
+msgstr "Datumkiezer invoer"
+
+msgid "Datepicker menu"
+msgstr "Datumkiezer menu"
+
+msgid "Decrement hours"
+msgstr "Uren verminderen"
+
+msgid "Decrement minutes"
+msgstr "Minuten verminderen"
+
+msgid "Decrement seconds"
+msgstr "Seconden verminderen"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
 msgstr "Deluge"
 
 msgid "Deselect {option}"
-msgstr "Deselecteer {optie}"
+msgstr "Selectie {option} opheffen"
 
 msgid "do not disturb"
 msgstr "niet storen"
@@ -144,13 +168,13 @@ msgid "Enable interactive view"
 msgstr "Interactieve weergave inschakelen"
 
 msgid "Enter link"
-msgstr "Voer link in"
+msgstr "Link invoeren"
 
 msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
-"Fout bij het verkrijgen van resources. Neem a.u.b. contact op met uw "
+"Fout bij het ophalen van gerelateerde bronnen. Neem contact op met uw "
 "systeembeheerder als u vragen heeft."
 
 msgid "External documentation for {name}"
@@ -160,10 +184,10 @@ msgid "Failed to add the item to the project"
 msgstr "Toevoegen van item aan project mislukt"
 
 msgid "Failed to create a project"
-msgstr "Aanmaken project mislukt"
+msgstr "Project aanmaken mislukt"
 
 msgid "Failed to rename the project"
-msgstr "Hernoemen project mislukt"
+msgstr "Project hernoemen mislukt"
 
 msgid "Favorite"
 msgstr "Favoriet"
@@ -181,6 +205,7 @@ msgstr "Eten & Drinken"
 msgid "Frequently used"
 msgstr "Vaak gebruikt"
 
+#. TRANSLATORS: This refers to global timezones in the timezone picker
 msgid "Global"
 msgstr "Globaal"
 
@@ -194,7 +219,16 @@ msgid "Hide details"
 msgstr "Details verbergen"
 
 msgid "Hide password"
-msgstr "Verberg wachtwoord"
+msgstr "Wachtwoord verbergen"
+
+msgid "Increment hours"
+msgstr "Uren vermeerderen"
+
+msgid "Increment minutes"
+msgstr "Minuten vermeerderen"
+
+msgid "Increment seconds"
+msgstr "Seconden vermeerderen"
 
 msgid "invisible"
 msgstr "Onzichtbaar"
@@ -203,42 +237,56 @@ msgid "Keyboard navigation help"
 msgstr "Hulp voor toetsenbordnavigatie"
 
 msgid "Light skin tone"
-msgstr "Lichte tint"
+msgstr "Lichte huidskleur"
 
 msgid "Load more \"{options}\""
-msgstr "Laad meer \"{options}\""
+msgstr "Meer \"{options}\" laden"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
-msgstr "Laden ..."
+msgstr "Laden…"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
-msgstr "Marine blauw"
+msgstr "Marineblauw"
 
 msgid "Medium dark skin tone"
-msgstr "Gemiddelde donkere tint"
+msgstr "Gemiddeld donkere huidskleur"
 
 msgid "Medium light skin tone"
-msgstr "Gemiddeld lichte tint"
+msgstr "Gemiddeld lichte huidskleur"
 
 msgid "Medium skin tone"
-msgstr "Gemiddelde tint"
+msgstr "Gemiddelde huidskleur"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Berichtlimiet van {count} karakters bereikt"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Berichtlimiet van %n teken bereikt"
+msgstr[1] "Berichtlimiet van %n tekens bereikt"
+
+msgid "Month picker"
+msgstr "Maandkiezer"
+
+msgid "Month picker overlay"
+msgstr "Maandkiezer-overlay"
 
 msgid "More items …"
-msgstr "Meer items..."
+msgstr "Meer items…"
 
 msgid "More options"
 msgstr "Meer opties"
 
 msgid "Neutral skin color"
-msgstr "Neutrale tint"
+msgstr "Neutrale huidskleur"
 
 msgid "Next"
 msgstr "Volgende"
+
+msgid "Next month"
+msgstr "Volgende maand"
+
+msgid "Next year"
+msgstr "Volgend jaar"
 
 msgid "Nextcloud blue"
 msgstr "Nextcloud blauw"
@@ -251,6 +299,9 @@ msgstr "Geen link provider gevonden"
 
 msgid "No results"
 msgstr "Geen resultaten"
+
+msgid "Now"
+msgstr "Nu"
 
 msgid "Objects"
 msgstr "Objecten"
@@ -265,17 +316,35 @@ msgstr "Olivijn"
 msgid "online"
 msgstr "online"
 
+msgid "Open hours overlay"
+msgstr "Uren-overlay openen"
+
 msgid "Open link to \"{resourceName}\""
-msgstr "Open link naar \"{resourceName}\""
+msgstr "Link naar \"{resourceName}\" openen"
 
 msgid "Open menu"
-msgstr "Open menu"
+msgstr "Menu openen"
 
-msgid "Open navigation {shortcut}"
-msgstr "Navigatie openen {shortcut}"
+msgid "Open minutes overlay"
+msgstr "Minuten-overlay openen"
+
+msgid "Open months overlay"
+msgstr "Maanden-overlay openen"
+
+msgid "Open navigation"
+msgstr "Navigatie openen"
+
+msgid "Open seconds overlay"
+msgstr "Seconden-overlay openen"
 
 msgid "Open sidebar"
-msgstr "Open sidebar"
+msgstr "Zijbalk openen"
+
+msgid "Open time picker"
+msgstr "Tijdkiezer openen"
+
+msgid "Open years overlay"
+msgstr "Jaren-overlay openen"
 
 msgid "Options"
 msgstr "Opties"
@@ -284,46 +353,34 @@ msgid "Password is secure"
 msgstr "Wachtwoord is veilig"
 
 msgid "Pause slideshow"
-msgstr "Pauzeer diavoorstelling"
+msgstr "Diavoorstelling pauzeren"
 
 msgid "People & Body"
 msgstr "Mensen & Lichaam"
 
-msgid "Pick a date"
-msgstr "Selecteer een datum"
-
-msgid "Pick a date and a time"
-msgstr "Selecteer een datum en tijd"
-
-msgid "Pick a month"
-msgstr "Selecteer een maand"
-
-msgid "Pick a time"
-msgstr "Selecteer een tijd"
-
-msgid "Pick a week"
-msgstr "Selecteer een week"
-
-msgid "Pick a year"
-msgstr "Selecteer een jaar"
+msgid "Pick"
+msgstr "Kiezen"
 
 msgid "Pick an emoji"
 msgstr "Kies een emoji"
 
-msgid "Please select a time zone:"
-msgstr "Selecteer een tijdzone:"
-
 msgid "Previous"
 msgstr "Vorige"
 
+msgid "Previous month"
+msgstr "Vorige maand"
+
+msgid "Previous year"
+msgstr "Vorig jaar"
+
 msgid "Provider icon"
-msgstr "Provider icoon"
+msgstr "Provider-pictogram"
 
 msgid "Purple"
 msgstr "Paars"
 
 msgid "Raw link {options}"
-msgstr "Basis link {options}"
+msgstr "Ruwe link {options}"
 
 msgid "Related resources"
 msgstr "Gerelateerde bronnen"
@@ -332,7 +389,7 @@ msgid "Related team resources"
 msgstr "Verwante teambronnen"
 
 msgid "Rename project"
-msgstr "Hernoem project"
+msgstr "Project hernoemen"
 
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
@@ -345,16 +402,16 @@ msgid "Search"
 msgstr "Zoeken"
 
 msgid "Search emoji"
-msgstr "Zoek emoji"
+msgstr "Emoji zoeken"
 
-msgid "Search for time zone"
-msgstr "Zoeken naar tijdzone"
+msgid "Search for timezone"
+msgstr "Tijdzone zoeken"
 
 msgid "Search results"
 msgstr "Zoekresultaten"
 
 msgid "Search…"
-msgstr "Zoeken ..."
+msgstr "Zoeken…"
 
 #. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
 #. few seconds ago'
@@ -368,8 +425,29 @@ msgstr "seconden geleden"
 msgid "Select a tag"
 msgstr "Selecteer een label"
 
+msgid "Select date"
+msgstr "Selecteer datum"
+
+msgid "Select date and time"
+msgstr "Selecteer datum en tijd"
+
+msgid "Select month"
+msgstr "Selecteer maand"
+
 msgid "Select provider"
 msgstr "Selecteer provider"
+
+msgid "Select time"
+msgstr "Selecteer tijd"
+
+msgid "Select time range"
+msgstr "Selecteer tijdsbereik"
+
+msgid "Select week"
+msgstr "Selecteer week"
+
+msgid "Select year"
+msgstr "Selecteer jaar"
 
 msgid "Selected"
 msgstr "Geselecteerd"
@@ -381,13 +459,13 @@ msgid "Settings navigation"
 msgstr "Instellingen navigatie"
 
 msgid "Show details"
-msgstr "Toon details"
+msgstr "Details weergeven"
 
 msgid "Show password"
-msgstr "Toon wachtwoord"
+msgstr "Wachtwoord weergeven"
 
 msgid "Skin tone"
-msgstr "Tint van de schil"
+msgstr "Huidskleur"
 
 msgid "Skip to app navigation"
 msgstr "Doorgaan naar app-navigatie"
@@ -402,25 +480,37 @@ msgid "Smileys & Emotion"
 msgstr "Smileys & Emotie"
 
 msgid "Start slideshow"
-msgstr "Start diavoorstelling"
+msgstr "Diavoorstelling starten"
 
 msgid "Start typing to search"
 msgstr "Start met typen om te zoeken"
 
 msgid "Submit"
-msgstr "Verwerken"
+msgstr "Indienen"
+
+msgid "Switch AM/PM mode"
+msgstr "AM/PM-modus wisselen"
 
 msgid "Symbols"
 msgstr "Symbolen"
+
+msgid "Time picker"
+msgstr "Tijdkiezer"
+
+msgid "Timezone"
+msgstr "Tijdzone"
+
+msgid "Toggle overlay"
+msgstr "Overlay wisselen"
 
 msgid "Travel & Places"
 msgstr "Reizen & Plaatsen"
 
 msgid "Type to search for existing projects"
-msgstr "Type om naar bestaande projecten te zoeken"
+msgstr "Typ om te zoeken naar bestaande projecten"
 
 msgid "Type to search time zone"
-msgstr "Type om een tijdzone te zoeken"
+msgstr "Typ om een tijdzone te zoeken"
 
 msgid "Unable to search the group"
 msgstr "Kan niet zoeken in de groep"
@@ -429,14 +519,23 @@ msgid "Undo changes"
 msgstr "Wijzigingen ongedaan maken"
 
 msgid "User status: {status}"
-msgstr "Gebruikers status: {status}"
+msgstr "Gebruikersstatus: {status}"
 
 msgid "View team"
 msgstr "Team bekijken"
+
+msgid "W"
+msgstr "W"
 
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Whiskey"
 
 msgid "Write a message …"
-msgstr "Schrijf een bericht..."
+msgstr "Schrijf een bericht…"
+
+msgid "Year picker"
+msgstr "Jaarkiezer"
+
+msgid "Year picker overlay"
+msgstr "Jaarkiezer-overlay"
