@@ -47,7 +47,7 @@ export default {
 <style>
 #nextcloud-header {
 	display: flex;
-	justify-content: right;
+	justify-content: end;
 	background-color: var(--color-primary);
 	height: var(--header-height, 50px);
 	padding-inline-end: 12px;
@@ -55,48 +55,6 @@ export default {
 </style>
 ```
 </docs>
-
-<template>
-	<component :is="wrapperTag"
-		:id="id"
-		ref="headerMenu"
-		:aria-labelledby="isNav ? triggerId : null"
-		:class="{ 'header-menu--opened': isOpened }"
-		class="header-menu"
-		@focusout="onFocusOut">
-		<!-- Trigger -->
-		<NcButton :id="isNav ? triggerId : null"
-			ref="triggerButton"
-			class="header-menu__trigger"
-			:aria-controls="`header-menu-${id}`"
-			:aria-expanded="isOpened.toString()"
-			size="large"
-			variant="tertiary-no-background"
-			@click.prevent="toggleMenu">
-			<template #icon>
-				<slot name="trigger" />
-			</template>
-		</NcButton>
-
-		<span v-if="description"
-			:id="descriptionId"
-			class="header-menu__description hidden-visually">
-			{{ description }}
-		</span>
-
-		<!-- Visual triangle -->
-		<div v-show="isOpened" class="header-menu__caret" />
-
-		<!-- Menu opened content -->
-		<div v-show="isOpened"
-			:id="`header-menu-${id}`"
-			class="header-menu__wrapper">
-			<div ref="contentContainer" class="header-menu__content">
-				<slot />
-			</div>
-		</div>
-	</component>
-</template>
 
 <script setup lang="ts">
 import type { FocusTrap } from 'focus-trap'
@@ -164,9 +122,9 @@ const emit = defineEmits<{
 
 defineSlots<{
 	/** The menu content */
-	default: Slot
+	default?: Slot
 	/** Icon trigger slot. Make sure the svg path is at least 16px. Usually mdi icon works at 20px */
-	trigger: Slot
+	trigger?: Slot
 }>()
 
 /** Id of the menu description */
@@ -280,6 +238,48 @@ function clearFocusTrap() {
 	focusTrap.value = undefined
 }
 </script>
+
+<template>
+	<component :is="wrapperTag"
+		:id="id"
+		ref="headerMenu"
+		:aria-labelledby="isNav ? triggerId : null"
+		:class="{ 'header-menu--opened': isOpened }"
+		class="header-menu"
+		@focusout="onFocusOut">
+		<!-- Trigger -->
+		<NcButton :id="isNav ? triggerId : null"
+			ref="triggerButton"
+			class="header-menu__trigger"
+			:aria-controls="`header-menu-${id}`"
+			:aria-expanded="isOpened.toString()"
+			size="large"
+			variant="tertiary-no-background"
+			@click.prevent="toggleMenu">
+			<template #icon>
+				<slot name="trigger" />
+			</template>
+		</NcButton>
+
+		<span v-if="description"
+			:id="descriptionId"
+			class="header-menu__description hidden-visually">
+			{{ description }}
+		</span>
+
+		<!-- Visual triangle -->
+		<div v-show="isOpened" class="header-menu__caret" />
+
+		<!-- Menu opened content -->
+		<div v-show="isOpened"
+			:id="`header-menu-${id}`"
+			class="header-menu__wrapper">
+			<div ref="contentContainer" class="header-menu__content">
+				<slot />
+			</div>
+		</div>
+	</component>
+</template>
 
 <style lang="scss" scoped>
 @use './header-menu__trigger.scss';
