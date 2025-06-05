@@ -1,15 +1,43 @@
 <!--
   - SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
   - SPDX-License-Identifier: AGPL-3.0-or-later
+  -->
+<!--
+  - This component is only used for the NcAppNavigation component and not exported otherwise.
 -->
+
+<script setup lang="ts">
+import { computed } from 'vue'
+import MenuIcon from 'vue-material-design-icons/Menu.vue'
+import MenuOpenIcon from 'vue-material-design-icons/MenuOpen.vue'
+import NcButton from '../NcButton/index.ts'
+import { t } from '../../l10n.js'
+
+/**
+ * Tracks whether the toggle has been clicked or not.
+ * If it has been clicked, switches between the different MenuIcons
+ * and emits a boolean indicating its opened status
+ */
+const open = defineModel<boolean>('open', { required: true })
+
+const title = computed(() => open.value ? t('Close navigation') : t('Open navigation'))
+
+/**
+ * Once the toggle has been clicked, emits the toggle status
+ * so parent components can gauge the status of the navigation button
+ */
+function toggleNavigation(): void {
+	open.value = !open.value
+}
+</script>
 
 <template>
 	<div class="app-navigation-toggle-wrapper">
 		<NcButton class="app-navigation-toggle"
 			aria-controls="app-navigation-vue"
 			:aria-expanded="open ? 'true' : 'false'"
-			:aria-label="label"
-			:title="label"
+			:aria-label="title"
+			:title
 			variant="tertiary"
 			@click="toggleNavigation">
 			<template #icon>
@@ -19,53 +47,6 @@
 		</NcButton>
 	</div>
 </template>
-
-<script>
-import NcButton from '../NcButton/index.ts'
-import { t } from '../../l10n.js'
-
-import MenuIcon from 'vue-material-design-icons/Menu.vue'
-import MenuOpenIcon from 'vue-material-design-icons/MenuOpen.vue'
-
-export default {
-	name: 'NcAppNavigationToggle',
-
-	components: {
-		NcButton,
-		MenuIcon,
-		MenuOpenIcon,
-	},
-
-	props: {
-		/**
-		 * Tracks whether the toggle has been clicked or not.
-		 * If it has been clicked, switches between the different MenuIcons
-		 * and emits a boolean indicating its opened status
-		 */
-		open: {
-			type: Boolean,
-			required: true,
-		},
-	},
-
-	emits: ['update:open'],
-
-	computed: {
-		label() {
-			return this.open ? t('Close navigation') : t('Open navigation')
-		},
-	},
-	methods: {
-		/**
-		 * Once the toggle has been clicked, emits the toggle status
-		 * so parent components can gauge the status of the navigation button
-		 */
-		toggleNavigation() {
-			this.$emit('update:open', !this.open)
-		},
-	},
-}
-</script>
 
 <style scoped lang="scss">
 .app-navigation-toggle-wrapper {

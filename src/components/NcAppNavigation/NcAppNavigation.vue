@@ -174,7 +174,7 @@ import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { createFocusTrap } from 'focus-trap'
 
 import NcAppNavigationList from '../NcAppNavigationList/index.js'
-import NcAppNavigationToggle from '../NcAppNavigationToggle/index.js'
+import NcAppNavigationToggle from '../NcAppNavigationToggle/index.ts'
 import { warn } from 'vue'
 
 export default {
