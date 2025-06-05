@@ -57,6 +57,8 @@ onClickOutside(container, () => { open.value = false }, { ignore })
 		<div :class="$style.header">
 			<NcButton :aria-controls="contentId"
 				:aria-expanded="open ? 'true' : 'false'"
+				alignment="start"
+				wide
 				@click="open = !open">
 				<template #icon>
 					<IconCog :size="20" />
