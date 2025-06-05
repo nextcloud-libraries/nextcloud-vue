@@ -138,21 +138,16 @@ export default {
 
 		<!-- Trailing icon slot, except for search type input as the browser already adds a trailing close icon -->
 		<template v-if="type !== 'search'" #trailing-button-icon>
-			<Close v-if="trailingButtonIcon === 'close'" :size="20" />
-			<ArrowRight v-else-if="trailingButtonIcon === 'arrowRight'" :size="20" />
-			<Undo v-else-if="trailingButtonIcon === 'undo'" :size="20" />
+			<NcIconSvgWrapper v-if="isArrow" directional :path="mdiArrowRight" />
+			<NcIconSvgWrapper v-else :path="trailingButtonIcon === 'undo' ? mdiUndo : mdiClose" />
 		</template>
 	</NcInputField>
 </template>
 
 <script>
-
+import { mdiArrowRight, mdiClose, mdiUndo } from '@mdi/js'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 import NcInputField from '../NcInputField/NcInputField.vue'
-
-import Close from 'vue-material-design-icons/Close.vue'
-import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-import Undo from 'vue-material-design-icons/UndoVariant.vue'
-
 import { t } from '../../l10n.js'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
 
@@ -162,10 +157,8 @@ export default {
 	name: 'NcTextField',
 
 	components: {
+		NcIconSvgWrapper,
 		NcInputField,
-		Close,
-		ArrowRight,
-		Undo,
 	},
 
 	// Allow forwarding all attributes
@@ -202,13 +195,18 @@ export default {
 		/**
 		 * Specifies which material design icon should be used for the trailing
 		 * button.
-		 * @type {'close'|'arrowRight'|'undo'}
+		 *
+		 * The `'arrowRight'` value is deprecated and will be removed in the next major version.
+		 * Use `'arrowEnd'` instead.
+		 *
+		 * @type {'close'|'arrowEnd'|'arrowRight'|'undo'}
 		 */
 		trailingButtonIcon: {
 			type: String,
 			default: 'close',
 			validator: (value) => [
 				'close',
+				'arrowEnd',
 				'arrowRight',
 				'undo',
 			].includes(value),
@@ -230,15 +228,28 @@ export default {
 		const model = useModelMigration('value', 'update:value')
 		return {
 			model,
+
+			mdiArrowRight,
+			mdiClose,
+			mdiUndo,
 		}
 	},
 
 	computed: {
+		/**
+		 * Is the trailing button icon directional.
+		 * Meaning the icon needs to be flipped on RTL text flow.
+		 */
+		isArrow() {
+			return this.trailingButtonIcon === 'arrowEnd' || this.trailingButtonIcon === 'arrowRight'
+		},
+
 		propsAndAttrsToForward() {
 			const predefinedLabels = {
-				undo: t('Undo changes'),
-				close: t('Clear text'),
+				arrowEnd: t('Save changes'),
 				arrowRight: t('Save changes'),
+				close: t('Clear text'),
+				undo: t('Undo changes'),
 			}
 
 			return {
