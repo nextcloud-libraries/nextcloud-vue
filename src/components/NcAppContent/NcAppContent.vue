@@ -159,7 +159,11 @@ import 'splitpanes/dist/splitpanes.css'
 const browserStorage = getBuilder('nextcloud').persist().build()
 const { name: productName } = loadState('theming', 'data', { name: 'Nextcloud' })
 const activeApp = loadState('core', 'active-app', appName)
-const localizedAppName = loadState('core', 'apps', {})[activeApp]?.name ?? appName
+const localizedAppNameState = loadState('core', 'apps', {})
+const localizedAppName = (Array.isArray(localizedAppNameState)
+	? localizedAppNameState.find(app => app.id === activeApp)?.name
+	: localizedAppNameState[activeApp]?.name
+) ?? appName
 
 /**
  * App content container to be used for the main content of your app
