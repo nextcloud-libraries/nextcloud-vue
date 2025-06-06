@@ -42,7 +42,7 @@ export { default as NcCheckboxRadioSwitch } from './NcCheckboxRadioSwitch/index.
 export { default as NcChip } from './NcChip/index'
 export { default as NcCollectionList } from './NcCollectionList/index.js'
 export { default as NcColorPicker } from './NcColorPicker/index.js'
-export { default as NcContent } from './NcContent/index.js'
+export { default as NcContent } from './NcContent/index.ts'
 export { default as NcCounterBubble } from './NcCounterBubble/index.ts'
 export { default as NcDashboardWidget } from './NcDashboardWidget/index.js'
 export { default as NcDashboardWidgetItem } from './NcDashboardWidgetItem/index.js'
