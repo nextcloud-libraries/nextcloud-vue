@@ -1,16 +1,12 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Max Smith <sevinfolds@gmail.com>, 2023
-# ashed <craysy@gmail.com>, 2023
-# Oye Lukoye, 2024
-# Влад, 2024
-# Max Zav, 2024
-# Maksim Sukharev, 2024
+# Joas Schilling, 2025
+# Elena Mishina, 2025
+# Igor Orlov, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Maksim Sukharev, 2024\n"
+"Last-Translator: Igor Orlov, 2025\n"
 "Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
@@ -77,6 +73,12 @@ msgstr "Синий Бостон"
 msgid "busy"
 msgstr "занятый"
 
+msgid "Calendar icon"
+msgstr "Значок календаря"
+
+msgid "Cancel"
+msgstr "Отмена"
+
 msgid "Cancel changes"
 msgstr "Отменить изменения"
 
@@ -95,6 +97,9 @@ msgstr "Очистить выбранный"
 msgid "Clear text"
 msgstr "Очистить текст"
 
+msgid "Clear value"
+msgstr "Очистить значение"
+
 msgid "Close"
 msgstr "Закрыть"
 
@@ -106,6 +111,9 @@ msgstr "Закрыть сайдбар"
 
 msgid "Close Smart Picker"
 msgstr "Закрыть интеллектуальный выбор"
+
+msgid "Close time Picker"
+msgstr "Закрыть выбор времени"
 
 msgid "Collapse menu"
 msgstr "Свернуть меню"
@@ -124,6 +132,21 @@ msgstr "Пользовательское"
 
 msgid "Dark skin tone"
 msgstr "Темный оттенок"
+
+msgid "Datepicker input"
+msgstr "Поле выбора даты"
+
+msgid "Datepicker menu"
+msgstr "Меню выбора даты"
+
+msgid "Decrement hours"
+msgstr "Уменьшить количество часов"
+
+msgid "Decrement minutes"
+msgstr "Уменьшить количество минут"
+
+msgid "Decrement seconds"
+msgstr "Уменьшить количество секунд"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -182,6 +205,7 @@ msgstr "Еда, напиток"
 msgid "Frequently used"
 msgstr "Часто используемый"
 
+#. TRANSLATORS: This refers to global timezones in the timezone picker
 msgid "Global"
 msgstr "Глобальный"
 
@@ -196,6 +220,15 @@ msgstr "Скрыть подробности"
 
 msgid "Hide password"
 msgstr "Скрыть пароль"
+
+msgid "Increment hours"
+msgstr "Увеличить количество часов"
+
+msgid "Increment minutes"
+msgstr "Увеличить количество минут"
+
+msgid "Increment seconds"
+msgstr "Увеличить количество секунд"
 
 msgid "invisible"
 msgstr "невидимый"
@@ -226,8 +259,18 @@ msgstr "Средний светлый оттенок"
 msgid "Medium skin tone"
 msgstr "Средний оттенок"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Достигнуто ограничение на количество символов в {count}"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Достигнут лимит в %n символ"
+msgstr[1] "Достигнут лимит в %n символа"
+msgstr[2] "Достигнут лимит в %n символов"
+msgstr[3] "Достигнут лимит в %n символов"
+
+msgid "Month picker"
+msgstr "Выбор месяца"
+
+msgid "Month picker overlay"
+msgstr "Окно выбора месяца"
 
 msgid "More items …"
 msgstr "Больше элементов..."
@@ -241,6 +284,12 @@ msgstr "Нейтральный оттенок"
 msgid "Next"
 msgstr "Следующее"
 
+msgid "Next month"
+msgstr "Следующий месяц"
+
+msgid "Next year"
+msgstr "Следующий год"
+
 msgid "Nextcloud blue"
 msgstr "Nextcloud голубой"
 
@@ -252,6 +301,9 @@ msgstr "Поставщик ссылок не найден"
 
 msgid "No results"
 msgstr "Результаты отсуствуют"
+
+msgid "Now"
+msgstr "Сейчас"
 
 msgid "Objects"
 msgstr "Объекты"
@@ -266,17 +318,35 @@ msgstr " Оливковый"
 msgid "online"
 msgstr "онлайн"
 
+msgid "Open hours overlay"
+msgstr "Открыть окно выбора часов"
+
 msgid "Open link to \"{resourceName}\""
 msgstr "Открыть ссылку на \"{resourceName}\""
 
 msgid "Open menu"
 msgstr "Открыть меню"
 
-msgid "Open navigation {shortcut}"
-msgstr "Открыть навигацию {shortcut}"
+msgid "Open minutes overlay"
+msgstr "Открыть окно выбора минут"
+
+msgid "Open months overlay"
+msgstr "Открыть окно выбора месяца"
+
+msgid "Open navigation"
+msgstr "Открыть навигацию"
+
+msgid "Open seconds overlay"
+msgstr "Открыть окно выбора секунд"
 
 msgid "Open sidebar"
 msgstr "Открыть боковую панель"
+
+msgid "Open time picker"
+msgstr "Открыть средство выбора времени"
+
+msgid "Open years overlay"
+msgstr "Открыть окно выбора года"
 
 msgid "Options"
 msgstr "Варианты"
@@ -290,32 +360,20 @@ msgstr "Приостановить показ слйдов"
 msgid "People & Body"
 msgstr "Люди и тело"
 
-msgid "Pick a date"
-msgstr "Выберите дату"
-
-msgid "Pick a date and a time"
-msgstr "Выберите дату и время"
-
-msgid "Pick a month"
-msgstr "Выберите месяц"
-
-msgid "Pick a time"
-msgstr "Выберите время"
-
-msgid "Pick a week"
-msgstr "Выберите неделю"
-
-msgid "Pick a year"
-msgstr "Выберите год"
+msgid "Pick"
+msgstr "Выбор"
 
 msgid "Pick an emoji"
 msgstr "Выберите эмодзи"
 
-msgid "Please select a time zone:"
-msgstr "Пожалуйста, выберите часовой пояс:"
-
 msgid "Previous"
 msgstr "Предыдущее"
+
+msgid "Previous month"
+msgstr "Предыдущий месяц"
+
+msgid "Previous year"
+msgstr "Предыдущий год"
 
 msgid "Provider icon"
 msgstr "Значок поставщика"
@@ -348,7 +406,7 @@ msgstr "Поиск"
 msgid "Search emoji"
 msgstr "Поиск эмодзи"
 
-msgid "Search for time zone"
+msgid "Search for timezone"
 msgstr "Поиск часового пояса"
 
 msgid "Search results"
@@ -369,8 +427,29 @@ msgstr "секунд назад"
 msgid "Select a tag"
 msgstr "Выберите метку"
 
+msgid "Select date"
+msgstr "Выбрать дату"
+
+msgid "Select date and time"
+msgstr "Выбрать дату и время"
+
+msgid "Select month"
+msgstr "Выбрать месяц"
+
 msgid "Select provider"
 msgstr "Выбрать поставщика"
+
+msgid "Select time"
+msgstr "Выбрать время"
+
+msgid "Select time range"
+msgstr "Выбрать временной диапазон"
+
+msgid "Select week"
+msgstr "Выбрать неделю"
+
+msgid "Select year"
+msgstr "Выбрать год"
 
 msgid "Selected"
 msgstr "Выбрано"
@@ -411,8 +490,20 @@ msgstr "Начните вводить текст для поиска"
 msgid "Submit"
 msgstr "Утвердить"
 
+msgid "Switch AM/PM mode"
+msgstr "Переключение режима AM/PM"
+
 msgid "Symbols"
 msgstr "Символы"
+
+msgid "Time picker"
+msgstr "Выбор времени"
+
+msgid "Timezone"
+msgstr "Часовой пояс"
+
+msgid "Toggle overlay"
+msgstr "Переключить панель"
 
 msgid "Travel & Places"
 msgstr "Путешествия и места"
@@ -435,9 +526,18 @@ msgstr "Статус пользователя: {status}"
 msgid "View team"
 msgstr "Просмотр команды"
 
+msgid "W"
+msgstr "Н"
+
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Виски"
 
 msgid "Write a message …"
 msgstr "Напиши сообщение …"
+
+msgid "Year picker"
+msgstr "Выбор года"
+
+msgid "Year picker overlay"
+msgstr "Окно выбора года"
