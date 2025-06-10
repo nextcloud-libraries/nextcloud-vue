@@ -445,7 +445,7 @@ msgid "Select time range"
 msgstr "Selecione intervalo de tempo"
 
 msgid "Select week"
-msgstr "Selecionar semana"
+msgstr "Selecione semana"
 
 msgid "Select year"
 msgstr "Selecionar ano"
