@@ -436,7 +436,7 @@ msgid "Select month"
 msgstr "Selecione mês"
 
 msgid "Select provider"
-msgstr "Selecionar provedor"
+msgstr "Selecione provedor"
 
 msgid "Select time"
 msgstr "Selecionar tempo"
