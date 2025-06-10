@@ -15,7 +15,7 @@ msgid "{tag} (invisible)"
 msgstr "{tag} (invisível)"
 
 msgid "{tag} (restricted)"
-msgstr "{tag} (restrito) "
+msgstr "{tag} (restrito)"
 
 msgid "A color with a HEX value {hex}"
 msgstr "Uma cor com valor HEX {hex}"
@@ -205,6 +205,7 @@ msgstr "Comida & Bebida"
 msgid "Frequently used"
 msgstr "Mais usados"
 
+#. TRANSLATORS: This refers to global timezones in the timezone picker
 msgid "Global"
 msgstr "Global"
 
