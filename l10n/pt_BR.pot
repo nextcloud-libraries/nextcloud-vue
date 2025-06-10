@@ -508,7 +508,7 @@ msgid "Travel & Places"
 msgstr "Viagem & Lugares"
 
 msgid "Type to search for existing projects"
-msgstr "Digite para pesquisar por projetos existentes"
+msgstr "Digite para pesquisar projetos existentes"
 
 msgid "Type to search time zone"
 msgstr "Digite para pesquisar o fuso horário "
