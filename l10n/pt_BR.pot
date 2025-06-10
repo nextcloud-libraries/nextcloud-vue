@@ -262,7 +262,7 @@ msgstr "Tom de pele médio"
 msgid "Message limit of %n character reached"
 msgid_plural "Message limit of %n characters reached"
 msgstr[0] "Limite de mensagem de %n caractere atingido"
-msgstr[1] "Limite de mensagem de %n caracteres atingido"
+msgstr[1] "Limite de mensagem de %n de caracteres atingido"
 msgstr[2] "Limite de mensagem de %n caracteres atingido"
 
 msgid "Month picker"
