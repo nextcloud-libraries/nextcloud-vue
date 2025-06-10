@@ -448,7 +448,7 @@ msgid "Select week"
 msgstr "Selecione semana"
 
 msgid "Select year"
-msgstr "Selecionar ano"
+msgstr "Selecione ano"
 
 msgid "Selected"
 msgstr "Selecionado"
