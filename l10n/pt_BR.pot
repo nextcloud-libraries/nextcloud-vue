@@ -128,7 +128,7 @@ msgid "Connect items to a project to make them easier to find"
 msgstr "Conectar itens a um projeto para encontrá-los mais facilmente"
 
 msgid "Custom"
-msgstr "Personalizado"
+msgstr "Personalizados"
 
 msgid "Dark skin tone"
 msgstr "Tom de pele escuro"
