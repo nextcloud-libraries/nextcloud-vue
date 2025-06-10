@@ -174,7 +174,7 @@ msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
-"Erro ao obter recursos relacionados. Por favor entre em contato com o "
+"Erro ao obter recursos relacionados. Por favor, entre em contato com o "
 "administrador do sistema se tiver alguma dúvida."
 
 msgid "External documentation for {name}"
