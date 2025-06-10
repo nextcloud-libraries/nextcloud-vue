@@ -153,7 +153,7 @@ msgid "Deluge"
 msgstr "Deluge"
 
 msgid "Deselect {option}"
-msgstr "Desmacar {option}"
+msgstr "Desselecionar {option}"
 
 msgid "do not disturb"
 msgstr "não perturbe"
