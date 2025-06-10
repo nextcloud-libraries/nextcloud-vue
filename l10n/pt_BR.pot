@@ -150,7 +150,7 @@ msgstr "Diminuir segundos"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
-msgstr "Dilúvio"
+msgstr "Deluge"
 
 msgid "Deselect {option}"
 msgstr "Desmacar {option}"
