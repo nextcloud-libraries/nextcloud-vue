@@ -809,12 +809,12 @@ function onClick(event: MouseEvent) {
 		justify-content: start;
 	}
 
+	&--reverse &__wrapper {
+		flex-direction: row-reverse;
+	}
+
 	&--reverse {
 		--button-padding: var(--button-padding-default) var(--default-grid-baseline);
-
-		#{&}__wrapper {
-			flex-direction: row-reverse;
-		}
 	}
 
 	&__icon {
