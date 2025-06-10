@@ -369,7 +369,7 @@ msgid "Previous"
 msgstr "Anterior"
 
 msgid "Previous month"
-msgstr "Mês passado"
+msgstr "Mês anterior"
 
 msgid "Previous year"
 msgstr "Ano passado"
