@@ -469,7 +469,7 @@ msgid "Skin tone"
 msgstr "Tom de pele"
 
 msgid "Skip to app navigation"
-msgstr "Ir para navegação"
+msgstr "Ir para navegação de aplicativo"
 
 msgid "Skip to main content"
 msgstr "Ir para conteúdo principal"
