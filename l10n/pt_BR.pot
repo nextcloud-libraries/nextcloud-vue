@@ -427,10 +427,10 @@ msgid "Select a tag"
 msgstr "Selecione uma etiqueta"
 
 msgid "Select date"
-msgstr "Selecionar data"
+msgstr "Selecione data"
 
 msgid "Select date and time"
-msgstr "Selecionar data e hora"
+msgstr "Selecione data e hora"
 
 msgid "Select month"
 msgstr "Selecionar mês"
