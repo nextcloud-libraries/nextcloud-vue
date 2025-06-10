@@ -15,7 +15,7 @@ msgid "{tag} (invisible)"
 msgstr "{tag} (invisível)"
 
 msgid "{tag} (restricted)"
-msgstr "{tag} (restrito) "
+msgstr "{tag} (restrito)"
 
 msgid "A color with a HEX value {hex}"
 msgstr "Uma cor com valor HEX {hex}"
@@ -68,7 +68,7 @@ msgstr "Violeta Azul"
 
 #. TRANSLATORS: A color name for RGB(55, 148, 172)
 msgid "Boston Blue"
-msgstr "Violeta Azul"
+msgstr "Azul Boston"
 
 msgid "busy"
 msgstr "ocupado"
@@ -128,7 +128,7 @@ msgid "Connect items to a project to make them easier to find"
 msgstr "Conectar itens a um projeto para encontrá-los mais facilmente"
 
 msgid "Custom"
-msgstr "Personalizado"
+msgstr "Personalizados"
 
 msgid "Dark skin tone"
 msgstr "Tom de pele escuro"
@@ -150,10 +150,10 @@ msgstr "Diminuir segundos"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
-msgstr "Dilúvio"
+msgstr "Deluge"
 
 msgid "Deselect {option}"
-msgstr "Desmacar {option}"
+msgstr "Desselecionar {option}"
 
 msgid "do not disturb"
 msgstr "não perturbe"
@@ -174,7 +174,7 @@ msgid ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 msgstr ""
-"Erro ao obter recursos relacionados. Por favor entre em contato com o "
+"Erro ao obter recursos relacionados. Por favor, entre em contato com o "
 "administrador do sistema se tiver alguma dúvida."
 
 msgid "External documentation for {name}"
@@ -205,6 +205,7 @@ msgstr "Comida & Bebida"
 msgid "Frequently used"
 msgstr "Mais usados"
 
+#. TRANSLATORS: This refers to global timezones in the timezone picker
 msgid "Global"
 msgstr "Global"
 
@@ -261,7 +262,7 @@ msgstr "Tom de pele médio"
 msgid "Message limit of %n character reached"
 msgid_plural "Message limit of %n characters reached"
 msgstr[0] "Limite de mensagem de %n caractere atingido"
-msgstr[1] "Limite de mensagem de %n caracteres atingido"
+msgstr[1] "Limite de mensagem de %n de caracteres atingido"
 msgstr[2] "Limite de mensagem de %n caracteres atingido"
 
 msgid "Month picker"
@@ -283,13 +284,13 @@ msgid "Next"
 msgstr "Próximo"
 
 msgid "Next month"
-msgstr "Mês que vem"
+msgstr "Próximo mês"
 
 msgid "Next year"
-msgstr "Ano que vem"
+msgstr "Próximo ano"
 
 msgid "Nextcloud blue"
-msgstr "azul Nextcloud"
+msgstr "Azul Nextcloud"
 
 msgid "No emoji found"
 msgstr "Nenhum emoji encontrado"
@@ -368,10 +369,10 @@ msgid "Previous"
 msgstr "Anterior"
 
 msgid "Previous month"
-msgstr "Mês passado"
+msgstr "Mês anterior"
 
 msgid "Previous year"
-msgstr "Ano passado"
+msgstr "Ano anterior"
 
 msgid "Provider icon"
 msgstr "Ícone do provedor"
@@ -423,31 +424,31 @@ msgid "seconds ago"
 msgstr "segundos atrás"
 
 msgid "Select a tag"
-msgstr "Selecionar uma etiqueta"
+msgstr "Selecione uma etiqueta"
 
 msgid "Select date"
-msgstr "Selecionar data"
+msgstr "Selecione data"
 
 msgid "Select date and time"
-msgstr "Selecionar data e hora"
+msgstr "Selecione data e hora"
 
 msgid "Select month"
-msgstr "Selecionar mês"
+msgstr "Selecione mês"
 
 msgid "Select provider"
-msgstr "Selecionar provedor"
+msgstr "Selecione provedor"
 
 msgid "Select time"
-msgstr "Selecionar tempo"
+msgstr "Selecione hora"
 
 msgid "Select time range"
-msgstr "Selecionar intervalo de tempo"
+msgstr "Selecione intervalo de tempo"
 
 msgid "Select week"
-msgstr "Selecionar semana"
+msgstr "Selecione semana"
 
 msgid "Select year"
-msgstr "Selecionar ano"
+msgstr "Selecione ano"
 
 msgid "Selected"
 msgstr "Selecionado"
@@ -468,7 +469,7 @@ msgid "Skin tone"
 msgstr "Tom de pele"
 
 msgid "Skip to app navigation"
-msgstr "Ir para navegação"
+msgstr "Ir para navegação de aplicativo"
 
 msgid "Skip to main content"
 msgstr "Ir para conteúdo principal"
@@ -477,7 +478,7 @@ msgid "Smart Picker"
 msgstr "Seletor Inteligente"
 
 msgid "Smileys & Emotion"
-msgstr "Smiles & Emoções"
+msgstr "Smileys & Emoções"
 
 msgid "Start slideshow"
 msgstr "Iniciar apresentação de slides"
@@ -507,7 +508,7 @@ msgid "Travel & Places"
 msgstr "Viagem & Lugares"
 
 msgid "Type to search for existing projects"
-msgstr "Digite para pesquisar por projetos existentes"
+msgstr "Digite para pesquisar projetos existentes"
 
 msgid "Type to search time zone"
 msgstr "Digite para pesquisar o fuso horário "
@@ -532,7 +533,7 @@ msgid "Whiskey"
 msgstr "Uísque"
 
 msgid "Write a message …"
-msgstr "Escreve uma mensagem …"
+msgstr "Escreva uma mensagem …"
 
 msgid "Year picker"
 msgstr "Seletor de ano"
