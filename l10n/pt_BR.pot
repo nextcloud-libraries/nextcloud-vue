@@ -290,7 +290,7 @@ msgid "Next year"
 msgstr "Próximo ano"
 
 msgid "Nextcloud blue"
-msgstr "azul Nextcloud"
+msgstr "Azul Nextcloud"
 
 msgid "No emoji found"
 msgstr "Nenhum emoji encontrado"
