@@ -433,7 +433,7 @@ msgid "Select date and time"
 msgstr "Selecione data e hora"
 
 msgid "Select month"
-msgstr "Selecionar mês"
+msgstr "Selecione mês"
 
 msgid "Select provider"
 msgstr "Selecionar provedor"
