@@ -284,7 +284,7 @@ msgid "Next"
 msgstr "Próximo"
 
 msgid "Next month"
-msgstr "Mês que vem"
+msgstr "Próximo mês"
 
 msgid "Next year"
 msgstr "Ano que vem"
