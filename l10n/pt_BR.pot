@@ -533,7 +533,7 @@ msgid "Whiskey"
 msgstr "Uísque"
 
 msgid "Write a message …"
-msgstr "Escreve uma mensagem …"
+msgstr "Escreva uma mensagem …"
 
 msgid "Year picker"
 msgstr "Seletor de ano"
