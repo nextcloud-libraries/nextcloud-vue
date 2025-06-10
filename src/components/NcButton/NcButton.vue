@@ -812,7 +812,7 @@ function onClick(event: MouseEvent) {
 	&--reverse {
 		--button-padding: var(--button-padding-default) var(--default-grid-baseline);
 
-		&__wrapper {
+		#{&}__wrapper {
 			flex-direction: row-reverse;
 		}
 	}
