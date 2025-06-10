@@ -478,7 +478,7 @@ msgid "Smart Picker"
 msgstr "Seletor Inteligente"
 
 msgid "Smileys & Emotion"
-msgstr "Smiles & Emoções"
+msgstr "Smileys & Emoções"
 
 msgid "Start slideshow"
 msgstr "Iniciar apresentação de slides"
