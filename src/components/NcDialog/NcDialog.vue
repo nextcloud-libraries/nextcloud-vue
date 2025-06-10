@@ -551,7 +551,7 @@ export default defineComponent({
 		 */
 		function handleButtonClose(button, result) {
 			// Skip close on submit if invalid dialog
-			if (button.nativeType === 'submit'
+			if ((button.type ?? button.nativeType) === 'submit'
 				&& dialogTagName.value === 'form'
 				&& !dialogElement.value.reportValidity()) {
 				return
