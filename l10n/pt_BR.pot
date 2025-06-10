@@ -372,7 +372,7 @@ msgid "Previous month"
 msgstr "Mês anterior"
 
 msgid "Previous year"
-msgstr "Ano passado"
+msgstr "Ano anterior"
 
 msgid "Provider icon"
 msgstr "Ícone do provedor"
