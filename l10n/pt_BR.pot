@@ -439,10 +439,10 @@ msgid "Select provider"
 msgstr "Selecione provedor"
 
 msgid "Select time"
-msgstr "Selecionar tempo"
+msgstr "Selecione hora"
 
 msgid "Select time range"
-msgstr "Selecionar intervalo de tempo"
+msgstr "Selecione intervalo de tempo"
 
 msgid "Select week"
 msgstr "Selecionar semana"
