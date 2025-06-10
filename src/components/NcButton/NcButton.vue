@@ -804,15 +804,17 @@ function onClick(event: MouseEvent) {
 	&--end &__wrapper {
 		justify-content: end;
 	}
+
 	&--start &__wrapper {
 		justify-content: start;
 	}
+
 	&--reverse &__wrapper {
 		flex-direction: row-reverse;
 	}
 
-	&--reverse#{&}--icon-and-text {
-		padding-inline: var(--button-padding) var(--default-grid-baseline);
+	&--reverse {
+		--button-padding: var(--button-padding-default) var(--default-grid-baseline);
 	}
 
 	&__icon {
