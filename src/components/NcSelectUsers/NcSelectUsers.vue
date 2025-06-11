@@ -361,6 +361,16 @@ function localFilterBy(option, label, search) {
 }
 </script>
 
+<script>
+/** For backward compatibility with Vue 2 */
+export default {
+	model: {
+		prop: 'modelValue',
+		event: 'update:modelValue',
+	},
+}
+</script>
+
 <template>
 	<NcSelect class="nc-select-users"
 		v-bind="$props"
