@@ -666,6 +666,7 @@ export default {
 					icon: state.icon,
 					message: state.message,
 				}
+				this.hasStatus = state.status !== null
 			}
 		},
 
