@@ -9,18 +9,21 @@
  * @return {boolean} - Whether the dark theme is enabled via Nextcloud theme
  */
 export function checkIfDarkTheme(el: HTMLElement = document.body): boolean {
-	// Nextcloud uses --background-invert-if-dark for dark theme filters in CSS
-	// Values:
-	// - 'invert(100%)' for dark theme
-	// - 'no' for light theme
-	// This is the most reliable way to check for dark theme, including custom themes
-	const backgroundInvertIfDark = window.getComputedStyle(el).getPropertyValue('--background-invert-if-dark')
-	if (backgroundInvertIfDark !== undefined) {
-		return backgroundInvertIfDark === 'invert(100%)'
+	// Check if the new clean nextcloud-theme-dark variable is set
+	const isNextcloudThemeDark = window.getComputedStyle(el).getPropertyValue('--nextcloud-theme-dark')
+	if (isNextcloudThemeDark !== undefined) {
+		return isNextcloudThemeDark === '1'
 	}
 
-	// There is no theme? Fallback to the light theme
-	return false
+	// Else we check the old ways
+	// 1. first priority is the data-theme-dark attribute on a parent element
+	// 2. second priority is the data-themes attribute on the body, aka the user setting
+	// 3. third priority is the system preference
+	// 4. lastly is the default light theme
+	const darkModeSystemPreference = window?.matchMedia?.('(prefers-color-scheme: dark)')?.matches
+	const darkModeAccountSetting = document.body.getAttribute('data-themes')?.includes('dark')
+	const darkModeElementOverride = el.closest('[data-theme-dark]') !== null
+	return darkModeElementOverride || darkModeAccountSetting || darkModeSystemPreference || false
 }
 
 /**
