@@ -6,18 +6,34 @@ import type { AsyncComponent, Component } from 'vue'
 
 import Vue, { toRaw } from 'vue'
 
-interface DialogProps {
-	[index: string]: unknown
-	container?: string
+type SpawnDialogOptions = {
+	/**
+	 * Container to mount the dialog to
+	 * @default document.body
+	 */
+	container?: Element | string
 }
 
+export function spawnDialog(
+	dialog: Component,
+	props?: object,
+	onClose?: (...rest: unknown[]) => void,
+): void
+
+export function spawnDialog(
+	dialog: Component,
+	props?: object,
+	options?: SpawnDialogOptions,
+	onClose?: (...rest: unknown[]) => void,
+): void
+
 /**
- * Helper to spawn a Vue dialog without having to mount it from a component
+ * Spawn a single-use Vue dialog instance to get the result when it is closed
  *
- * @param dialog The dialog component to spawn
- * @param props Properties to pass to the dialog
- * @param props.container Optionally pass a query selector for the dialog container element
- * @param onClose Callback when the dialog is closed
+ * @param dialog - Dialog component to spawn
+ * @param props - Props to pass to the dialog instance
+ * @param optionsOrOnClose - Spawning options or a callback when the dialog is closed
+ * @param onClose - Callback when the dialog is closed
  */
 export function spawnDialog(
 	dialog: Component | AsyncComponent,
