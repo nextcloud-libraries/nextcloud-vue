@@ -19,6 +19,9 @@ Note: All generic attributes on the component, except `class` and `style`, are p
 		<NcCheckboxRadioSwitch v-model="sharingEnabled">Enable sharing</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch v-model="sharingEnabled" :disabled="true">Enable sharing (disabled)</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch :model-value="sharingEnabled" :loading="loading" @update:model-value="onToggle">Enable sharing (with request loading)</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingEnabled">
+			Enable sharing. This can contain a long multiline text, that will be wrapped in a second row. It is generally not advised to have such long text inside of an element
+		</NcCheckboxRadioSwitch>
 		<br>
 		sharingEnabled: {{ sharingEnabled }}
 	</div>
@@ -51,6 +54,9 @@ export default {
 	<div>
 		<NcCheckboxRadioSwitch v-model="sharingPermission" value="r" name="sharing_permission_radio" type="radio">Default permission read</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch v-model="sharingPermission" value="rw" name="sharing_permission_radio" type="radio">Default permission read+write</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingPermission" value="rws" name="sharing_permission_radio" type="radio">
+			Default permission read+write+share. This can contain a long multiline text, that will be wrapped in a second row. It is generally not advised to have such long text inside of an element
+		</NcCheckboxRadioSwitch>
 		<br>
 		sharingPermission: {{ sharingPermission }}
 	</div>
@@ -224,6 +230,9 @@ export default {
 	<div>
 		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch">Enable sharing</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch" :disabled="true">Enable sharing (disabled)</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch">
+			Enable sharing. This can contain a long multiline text, that will be wrapped in a second row. It is generally not advised to have such long text inside of an element
+		</NcCheckboxRadioSwitch>
 		<br>
 		sharingEnabled: {{ sharingEnabled }}
 	</div>
