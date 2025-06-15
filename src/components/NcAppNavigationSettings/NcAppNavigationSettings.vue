@@ -96,6 +96,10 @@ onClickOutside(container, () => { open.value = false }, { ignore })
 .button {
 	padding-left: 0 !important;
 	padding-inline-end: calc((var(--default-clickable-area) - 16px) / 2) !important;
+
+	:global(.button-vue__text) {
+		font-weight: normal;
+	}
 }
 
 .content {
