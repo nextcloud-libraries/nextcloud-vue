@@ -572,7 +572,13 @@ export default {
 @include action--disabled;
 @include action-item('button');
 
-.action-button__pressed-icon {
-	margin-inline: auto calc($icon-margin * -1);
+.action-button {
+	&__pressed-icon {
+		margin-inline: auto calc($icon-margin * -1);
+	}
+
+	* {
+		cursor: pointer;
+	}
 }
 </style>
