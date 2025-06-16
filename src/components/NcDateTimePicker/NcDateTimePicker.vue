@@ -606,9 +606,11 @@ const ariaLabels = computed(() => ({
 	</VueDatePicker>
 </template>
 
-<style scoped lang="scss">
+<style lang="css">
 @import '@vuepic/vue-datepicker/dist/main.css';
+</style>
 
+<style scoped lang="scss">
 .vue-date-time-picker {
 	--dp-border-radius: var(--border-radius-element);
 	--dp-input-icon-padding: var(--default-clickable-area);
