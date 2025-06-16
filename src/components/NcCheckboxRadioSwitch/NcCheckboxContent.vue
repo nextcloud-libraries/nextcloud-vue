@@ -205,9 +205,15 @@ export default {
 		}
 	}
 
+	&-checkbox:not(&--button-variant) &__icon,
+	&-radio:not(&--button-variant) &__icon,
+	&-switch:not(&--button-variant) &__icon {
+		margin-block: calc((var(--default-clickable-area) - 2 * var(--default-grid-baseline) - var(--icon-height)) / 2) auto;
+	}
+
 	&__icon > * {
 		width: var(--icon-size);
-		height: var(--icon-size);
+		height: var(--icon-height);
 		color: var(--color-primary-element);
 	}
 

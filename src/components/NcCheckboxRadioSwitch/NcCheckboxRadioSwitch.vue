@@ -20,6 +20,9 @@ Note: All attributes on the element are passed to the inner input element - exce
 		<NcCheckboxRadioSwitch v-model="sharingEnabled" :disabled="true">Enable sharing (disabled)</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch v-model="sharingEnabled">Enable sharing (v-model)</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch :model-value="sharingEnabled" :loading="loading" @update:modelValue="onToggle">Enable sharing (with request loading)</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingEnabled">
+			Enable sharing. This can contain a long multiline text, that will be wrapped in a second row. It is generally not advised to have such long text inside of an element
+		</NcCheckboxRadioSwitch>
 		<br>
 		sharingEnabled: {{ sharingEnabled }}
 	</div>
@@ -53,6 +56,9 @@ export default {
 		<NcCheckboxRadioSwitch v-model="sharingPermission" value="r" name="sharing_permission_radio" type="radio">Default permission read</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch v-model="sharingPermission" value="rw" name="sharing_permission_radio" type="radio">Default permission read+write</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch v-model="sharingPermission" value="rwx" name="sharing_permission_radio" type="radio">Default permission read+write+execute</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingPermission" value="rws" name="sharing_permission_radio" type="radio">
+			Default permission read+write+share. This can contain a long multiline text, that will be wrapped in a second row. It is generally not advised to have such long text inside of an element
+		</NcCheckboxRadioSwitch>
 		<br>
 		sharingPermission: {{ sharingPermission }}
 	</div>
@@ -228,6 +234,9 @@ export default {
 		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch">Enable sharing</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch">Enable sharing (v-model)</NcCheckboxRadioSwitch>
 		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch" :disabled="true">Enable sharing (disabled)</NcCheckboxRadioSwitch>
+		<NcCheckboxRadioSwitch v-model="sharingEnabled" type="switch">
+			Enable sharing. This can contain a long multiline text, that will be wrapped in a second row. It is generally not advised to have such long text inside of an element
+		</NcCheckboxRadioSwitch>
 		<br>
 		sharingEnabled: {{ sharingEnabled }}
 	</div>
