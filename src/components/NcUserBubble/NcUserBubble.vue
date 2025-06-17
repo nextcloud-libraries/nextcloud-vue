@@ -245,7 +245,7 @@ watch([() => props.displayName, () => props.user], () => {
 					:style="avatarStyle"
 					:disable-tooltip="true"
 					:disable-menu="true"
-					:show-user-status="showUserStatus"
+					:hide-status="!showUserStatus"
 					class="user-bubble__avatar" />
 
 				<!-- Name -->
