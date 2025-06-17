@@ -25,7 +25,7 @@ This component is meant to be used inside a DashboardWidget component.
 					:url="avatarUrl"
 					:user="avatarUsername"
 					:is-no-user="avatarIsNoUser"
-					:show-user-status="!gotOverlayIcon" />
+					:hide-status="gotOverlayIcon" />
 			</slot>
 			<img v-if="overlayIconUrl"
 				class="item-icon"
