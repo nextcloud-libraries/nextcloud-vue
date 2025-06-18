@@ -83,9 +83,9 @@ export default {
 	},
 	emits: [
 		'cancel',
-		'cancel-raw-link',
-		'cancel-search',
-		'provider-selected',
+		'cancelRawLink',
+		'cancelSearch',
+		'providerSelected',
 		'submit',
 	],
 	data() {
@@ -134,7 +134,7 @@ export default {
 		},
 		onProviderSelected(provider) {
 			this.selectedProvider = provider
-			this.$emit('provider-selected', provider)
+			this.$emit('providerSelected', provider)
 			this.$nextTick(() => {
 				this.$refs['url-input']?.focus()
 			})
@@ -143,11 +143,11 @@ export default {
 			this.deselectProvider()
 		},
 		cancelSearch() {
-			this.$emit('cancel-search', this.selectedProvider?.title)
+			this.$emit('cancelSearch', this.selectedProvider?.title)
 			this.deselectProvider()
 		},
 		cancelRawLinkInput() {
-			this.$emit('cancel-raw-link', this.selectedProvider?.title)
+			this.$emit('cancelRawLink', this.selectedProvider?.title)
 			this.deselectProvider()
 		},
 		cancelProviderSelection() {
@@ -162,7 +162,7 @@ export default {
 		},
 		deselectProvider() {
 			this.selectedProvider = null
-			this.$emit('provider-selected', null)
+			this.$emit('providerSelected', null)
 			setTimeout(() => {
 				this.$refs['provider-list']?.focus()
 			}, 300)
