@@ -654,6 +654,11 @@ export default {
 		margin-block-end: 0;
 	}
 
+	// Always render code blocks in LTR direction
+	pre {
+		direction: ltr;
+	}
+
 	table {
 		border-collapse: collapse;
 		border: 2px solid var(--color-border-maxcontrast);
