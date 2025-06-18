@@ -53,6 +53,16 @@ describe('NcAppContent', () => {
 		expect(document.title).toBe('nextcloud-vue - Nextcloud')
 	})
 
+	it('does not duplicate the heading in the document title if already formatted', () => {
+		mount(NcAppContent, {
+			propsData: {
+				pageHeading: 'My heading - nextcloud-vue',
+			},
+		})
+
+		expect(document.title).toBe('My heading - nextcloud-vue - Nextcloud')
+	})
+
 	it('sets the document title if pageTitle is provided', () => {
 		mount(NcAppContent, {
 			propsData: {
@@ -60,17 +70,27 @@ describe('NcAppContent', () => {
 			},
 		})
 
-		expect(document.title).toBe('My title - nextcloud-vue - Nextcloud')
+		expect(document.title).toBe('My title - Nextcloud')
 	})
 
 	it('does not duplicate the title in the document title', () => {
 		mount(NcAppContent, {
 			propsData: {
-				pageTitle: 'nextcloud-vue',
+				pageTitle: 'Nextcloud',
 			},
 		})
 
-		expect(document.title).toBe('nextcloud-vue - Nextcloud')
+		expect(document.title).toBe('Nextcloud')
+	})
+
+	it('does not duplicate the title in the document title if already formatted', () => {
+		mount(NcAppContent, {
+			propsData: {
+				pageTitle: 'My title - Nextcloud',
+			},
+		})
+
+		expect(document.title).toBe('My title - Nextcloud')
 	})
 
 	it('sets the document title if pageTitle and pageHeading are provided', () => {
@@ -81,6 +101,6 @@ describe('NcAppContent', () => {
 			},
 		})
 
-		expect(document.title).toBe('My title - My heading - Nextcloud')
+		expect(document.title).toBe('My title - Nextcloud')
 	})
 })
