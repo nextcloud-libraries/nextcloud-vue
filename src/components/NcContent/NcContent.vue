@@ -77,7 +77,7 @@ import contentSvg from './content-selected.svg?raw'
 import navigationSvg from './navigation-selected.svg?raw'
 /* eslint-enable import/no-unresolved */
 
-defineProps<{
+const props = defineProps<{
 	/**
 	 * The application name to use.
 	 * This is used to scope all content (content, sidebar, navigation) to the application.
@@ -94,6 +94,7 @@ defineSlots<{
 
 provide('NcContent:setHasAppNavigation', setAppNavigation)
 provide('NcContent:selector', '#content-vue')
+provide('appName', computed(() => props.appName))
 
 const isMobile = useIsMobile()
 

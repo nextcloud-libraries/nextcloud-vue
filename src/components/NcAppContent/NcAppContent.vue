@@ -270,7 +270,7 @@ export default {
 
 	emits: [
 		'update:showDetails',
-		'resize-list',
+		'resizeList',
 		'resize:list',
 	],
 
@@ -418,7 +418,7 @@ export default {
 			/**
 			 * Emitted when the list pane is resized by the user
 			 */
-			this.$emit('resize-list', { size: listPaneSize })
+			this.$emit('resizeList', { size: listPaneSize })
 			console.debug('AppContent pane config', listPaneSize)
 		},
 
