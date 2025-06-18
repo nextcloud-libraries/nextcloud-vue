@@ -271,7 +271,6 @@ export default {
 	emits: [
 		'update:showDetails',
 		'resizeList',
-		'resize:list',
 	],
 
 	setup() {
@@ -409,12 +408,6 @@ export default {
 			const listPaneSize = parseInt(event.panes[0].size, 10)
 			browserStorage.setItem(this.paneConfigID, JSON.stringify(listPaneSize))
 			this.listPaneSize = listPaneSize
-			/**
-			 * Emitted when the list pane is resized by the user
-			 *
-			 * @deprecated listen on `resize-list` instead
-			 */
-			this.$emit('resize:list', { size: listPaneSize })
 			/**
 			 * Emitted when the list pane is resized by the user
 			 */
