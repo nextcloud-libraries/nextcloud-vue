@@ -112,6 +112,15 @@ The `nativeType` property was removed in favor of `type`.
 <NcButton type="submit" variant="primary">Submit</NcButton>
 ```
 
+#### Event names
+To have a consistent naming for custom event the following events were deprecated
+and now are removed in favor of a new consistent event name:
+
+     Component |       Old event |       New event
+---------------|-----------------|----------------
+`NcAppContent` |   `resize:list` |   `resizeList`
+  `NcRichText` | `interact:todo` | `interactTodo`
+
 #### Mixins are removed
 Mixins only work in Options API and are in general not recommended by Vue anymore:
 
