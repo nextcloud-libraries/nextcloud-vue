@@ -392,7 +392,7 @@ export default {
 		},
 	},
 	emits: [
-		'interact-todo',
+		'interactTodo',
 		'interact:todo',
 	],
 
@@ -533,13 +533,13 @@ export default {
 								/**
 								 * Emitted when a todo-list entry was interacted with
 								 *
-								 * @deprecated listen on the `interact-todo` instead
+								 * @deprecated listen on the `interactTodo` instead
 								 */
 								this.$emit('interact:todo', id)
 								/**
 								 * Emitted when a todo-list entry was interacted with
 								 */
-								this.$emit('interact-todo', id)
+								this.$emit('interactTodo', id)
 							},
 						}, { default: () => labelParts })
 
