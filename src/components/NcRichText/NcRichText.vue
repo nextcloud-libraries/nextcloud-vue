@@ -532,12 +532,6 @@ export default {
 							'onUpdate:modelValue': () => {
 								/**
 								 * Emitted when a todo-list entry was interacted with
-								 *
-								 * @deprecated listen on the `interactTodo` instead
-								 */
-								this.$emit('interact:todo', id)
-								/**
-								 * Emitted when a todo-list entry was interacted with
 								 */
 								this.$emit('interactTodo', id)
 							},

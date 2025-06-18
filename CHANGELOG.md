@@ -112,6 +112,15 @@ The `nativeType` property was removed in favor of `type`.
 <NcButton type="submit" variant="primary">Submit</NcButton>
 ```
 
+#### Event names
+With Vue 3 it is recommended to use camel case event names and only scope events for models like `update:modelValue` or `update:shown`.
+Thus following events were deprecated and now are removed in favor of a new consistent event name:
+
+     Component |       Old event |       New event
+---------------|-----------------|----------------
+`NcAppContent` |   `resize:list` |   `resizeList`
+  `NcRichText` | `interact:todo` | `interactTodo`
+
 #### Mixins are removed
 Mixins only work in Options API and are in general not recommended by Vue anymore:
 
