@@ -69,6 +69,7 @@ import { emit } from '@nextcloud/event-bus'
 import { computed, nextTick, onBeforeMount, provide, ref } from 'vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
+import { INJECT_APP_NAME_KEY, INJECT_CONTENT_HAS_NAVIGATION, INJECT_CONTENT_SELECTOR } from './injection-keys.ts'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { t } from '../../l10n.js'
 
@@ -77,7 +78,7 @@ import contentSvg from './content-selected.svg?raw'
 import navigationSvg from './navigation-selected.svg?raw'
 /* eslint-enable import/no-unresolved */
 
-defineProps<{
+const props = defineProps<{
 	/**
 	 * The application name to use.
 	 * This is used to scope all content (content, sidebar, navigation) to the application.
@@ -92,8 +93,9 @@ defineSlots<{
 	default?: Slot
 }>()
 
-provide('NcContent:setHasAppNavigation', setAppNavigation)
-provide('NcContent:selector', '#content-vue')
+provide(INJECT_APP_NAME_KEY, computed(() => props.appName))
+provide(INJECT_CONTENT_SELECTOR, '#content-vue')
+provide(INJECT_CONTENT_HAS_NAVIGATION, setAppNavigation)
 
 const isMobile = useIsMobile()
 

@@ -149,18 +149,16 @@ import { emit } from '@nextcloud/event-bus'
 import { loadState } from '@nextcloud/initial-state'
 import { useSwipe } from '@vueuse/core'
 import { Splitpanes, Pane } from 'splitpanes'
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { APP_NAME } from '../../utils/appName.ts'
-import { isRtl } from '../../utils/rtl.ts'
-
+import { computed, inject } from 'vue'
 import NcAppDetailsToggle from './NcAppDetailsToggle.vue'
+import { INJECT_APP_NAME_KEY } from '../NcContent/injection-keys.ts'
+import { useIsMobile } from '../../composables/useIsMobile/index.js'
+import { isRtl } from '../../utils/rtl.ts'
 
 import 'splitpanes/dist/splitpanes.css'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 const { name: productName } = loadState('theming', 'data', { name: 'Nextcloud' })
-const activeApp = loadState('core', 'active-app', APP_NAME)
-const localizedAppName = loadState('core', 'apps', []).find(app => app.id === activeApp)?.name ?? APP_NAME
 
 /**
  * App content container to be used for the main content of your app
@@ -212,8 +210,8 @@ export default {
 		},
 
 		/**
-		 * Specify the config key for the pane config sizes
-		 * Default is the global var appName if you use the webpack-vue-config
+		 * Specify the config key for the pane config sizes.
+		 * Default is the appName passed to NcContent.
 		 */
 		paneConfigKey: {
 			type: String,
@@ -274,9 +272,21 @@ export default {
 	],
 
 	setup() {
+		const APP_NAME = inject(INJECT_APP_NAME_KEY)
+		const activeApp = loadState('core', 'active-app', '')
+		const allApps = loadState('core', 'apps', [])
+
+		const localizedAppName = computed(() => {
+			const appId = activeApp || APP_NAME.value
+			return allApps.find(app => app.id === appId)?.name ?? APP_NAME.value
+		})
+
 		return {
+			APP_NAME,
+
 			isMobile: useIsMobile(),
 			isRtl,
+			localizedAppName,
 		}
 	},
 
@@ -297,16 +307,7 @@ export default {
 				return `pane-list-size-${this.paneConfigKey}`
 			}
 
-			try {
-				// Using the webpack-vue-config, appName is a global variable
-				// This will throw a ReferenceError when the global variable is missing
-				// In that case either you provide paneConfigKey or else it fallback
-				// to a global storage key
-				return `pane-list-size-${APP_NAME}`
-			} catch (e) {
-				console.info('[INFO] AppContent:', 'falling back to global nextcloud pane config')
-				return 'pane-list-size-nextcloud'
-			}
+			return `pane-list-size-${this.APP_NAME}`
 		},
 
 		detailsPaneSize() {
