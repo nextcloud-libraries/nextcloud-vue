@@ -282,6 +282,7 @@ export default {
 
 	emits: [
 		'update:showDetails',
+		'resize-list',
 		'resize:list',
 	],
 
@@ -422,8 +423,14 @@ export default {
 			this.listPaneSize = listPaneSize
 			/**
 			 * Emitted when the list pane is resized by the user
+			 *
+			 * @deprecated listen on `resize-list` instead
 			 */
 			this.$emit('resize:list', { size: listPaneSize })
+			/**
+			 * Emitted when the list pane is resized by the user
+			 */
+			this.$emit('resize-list', { size: listPaneSize })
 			console.debug('AppContent pane config', listPaneSize)
 		},
 
