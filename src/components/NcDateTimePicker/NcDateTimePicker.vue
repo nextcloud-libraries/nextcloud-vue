@@ -607,11 +607,17 @@ const ariaLabels = computed(() => ({
 </template>
 
 <style scoped lang="scss">
-@import '@vuepic/vue-datepicker/dist/main.css';
+@use "sass:meta";
 
 .vue-date-time-picker {
 	--dp-border-radius: var(--border-radius-element);
 	--dp-input-icon-padding: var(--default-clickable-area);
+
+	// we need to import the vuepic styles but at least scoped to our class and scope
+	// plain @import does not work as this will scope all styles imported.
+	:deep() {
+		@include meta.load-css('@vuepic/vue-datepicker/dist/main.css');
+	}
 
 	.vue-date-time-picker__timezone {
 		min-width: unset;
