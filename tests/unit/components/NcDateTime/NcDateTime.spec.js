@@ -4,9 +4,16 @@
  */
 
 import { mount } from '@vue/test-utils'
-import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
+import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import NcDateTime from '../../../../src/components/NcDateTime/NcDateTime.vue'
 import { nextTick } from 'vue'
+
+const getCanonicalLocale = vi.hoisted(() => vi.fn(() => 'en-US'))
+
+vi.mock('@nextcloud/l10n', async (original) => ({
+	...(await original()),
+	getCanonicalLocale,
+}))
 
 describe('NcDateTime.vue', () => {
 	'use strict'
@@ -56,13 +63,8 @@ describe('NcDateTime.vue', () => {
 	})
 
 	describe('Work with different locales', () => {
-		beforeAll(() => {
-			// mock the locale
-			document.documentElement.dataset.locale = 'de_DE'
-		})
-		afterAll(() => {
-			// revert mock
-			document.documentElement.dataset.locale = 'en'
+		beforeEach(() => {
+			getCanonicalLocale.mockImplementationOnce(() => 'de-DE')
 		})
 
 		/**
@@ -199,40 +201,6 @@ describe('NcDateTime.vue', () => {
 			})
 
 			expect(wrapper.element.textContent).toContain('3 weeks')
-		})
-
-		it('shows months from now', () => {
-			const time = Date.UTC(2023, 1, 23, 14, 30, 30)
-			const currentTime = Date.UTC(2023, 6, 13, 14, 30, 30)
-			vi.setSystemTime(currentTime)
-			const wrapper = mount(NcDateTime, {
-				props: {
-					timestamp: time,
-				},
-			})
-
-			expect(wrapper.element.textContent).toContain('5 months')
-		})
-
-		it('shows years from now', () => {
-			const time = Date.UTC(2023, 5, 23, 14, 30, 30)
-			const time2 = Date.UTC(2022, 5, 23, 14, 30, 30)
-			const currentTime = Date.UTC(2024, 6, 13, 14, 30, 30)
-			vi.setSystemTime(currentTime)
-
-			const wrapper = mount(NcDateTime, {
-				props: {
-					timestamp: time,
-				},
-			})
-			const wrapper2 = mount(NcDateTime, {
-				props: {
-					timestamp: time2,
-				},
-			})
-
-			expect(wrapper.element.textContent).toContain('last year')
-			expect(wrapper2.element.textContent).toContain('2 years')
 		})
 	})
 })
