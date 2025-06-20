@@ -189,7 +189,7 @@ import {
 	getDayNamesMin,
 	getCanonicalLocale,
 } from '@nextcloud/l10n'
-import { computed, Teleport, useTemplateRef } from 'vue'
+import { computed, useTemplateRef } from 'vue'
 import { t } from '../../l10n.js'
 
 import VueDatePicker from '@vuepic/vue-datepicker'
