@@ -572,7 +572,7 @@ const ariaLabels = computed(() => ({
 			:now-button-label="t('Now')"
 			:select-text="t('Pick')"
 			six-weeks="fair"
-			:teleport="target || undefined"
+			:teleport="appendToBody ? (target || undefined) : false"
 			text-input
 			:week-num-name
 			:week-numbers="showWeekNumber ? { type: 'iso' } : undefined"
