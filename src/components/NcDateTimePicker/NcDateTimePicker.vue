@@ -607,13 +607,57 @@ const ariaLabels = computed(() => ({
 		</VueDatePicker>
 	</span>
 	<Teleport to="body" :disabled="!appendToBody">
-    	<div ref="target" class="date-time-picker-menu-scope" />
+		<div ref="target" class="date-time-picker-scope" />
 	</Teleport>
 </template>
 
 <style scoped lang="scss">
-// This import is still scoped
-@import '@vuepic/vue-datepicker/dist/main.css';
+@use "sass:meta";
+
+.date-time-picker-scope {
+	// This is under :root in @vuepic/vue-datepicker/dist/main.css, so importing it scoped won't work
+	--dp-common-transition: all 0.1s ease-in;
+	--dp-menu-padding: 6px 8px;
+	--dp-animation-duration: 0.1s;
+	--dp-menu-appear-transition-timing: cubic-bezier(.4, 0, 1, 1);
+	--dp-transition-timing: ease-out;
+	--dp-action-row-transtion: all 0.2s ease-in;
+	--dp-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, oxygen, ubuntu, cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+	--dp-border-radius: 4px;
+	--dp-cell-border-radius: 4px;
+	--dp-transition-length: 22px;
+	--dp-transition-timing-general: 0.1s;
+	--dp-button-height: 35px;
+	--dp-month-year-row-height: 35px;
+	--dp-month-year-row-button-size: 25px;
+	--dp-button-icon-height: 20px;
+	--dp-calendar-wrap-padding: 0 5px;
+	--dp-cell-size: 35px;
+	--dp-cell-padding: 5px;
+	--dp-common-padding: 10px;
+	--dp-input-icon-padding: 35px;
+	--dp-input-padding: 6px 30px 6px 12px;
+	--dp-menu-min-width: 260px;
+	--dp-action-buttons-padding: 1px 6px;
+	--dp-row-margin: 5px 0;
+	--dp-calendar-header-cell-padding: 0.5rem;
+	--dp-multi-calendars-spacing: 10px;
+	--dp-overlay-col-padding: 3px;
+	--dp-time-inc-dec-button-size: 32px;
+	--dp-font-size: 1rem;
+	--dp-preview-font-size: 0.8rem;
+	--dp-time-font-size: 2rem;
+	--dp-action-button-height: 22px;
+	--dp-action-row-padding: 8px;
+	--dp-direction: ltr;
+
+	// we need to import the vuepic styles but at least scoped to our class and scope
+	// plain @import does not work as this will scope all styles imported.
+	:deep() {
+		// Importing like this does not work for webpack, it seems?
+		@include meta.load-css('@vuepic/vue-datepicker/dist/main.css');
+	}
+}
 
 .vue-date-time-picker {
 	--dp-border-radius: var(--border-radius-element);
