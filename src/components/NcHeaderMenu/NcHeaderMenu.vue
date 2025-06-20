@@ -303,7 +303,7 @@ $externalMargin: 8px;
 		filter: drop-shadow(0 1px 5px var(--color-box-shadow));
 	}
 
-	&__carret {
+	&__caret {
 		position: absolute;
 		z-index: 2001; // Because __wrapper is 2000.
 		bottom: 0;
