@@ -189,7 +189,7 @@ import {
 	getDayNamesMin,
 	getCanonicalLocale,
 } from '@nextcloud/l10n'
-import { computed } from 'vue'
+import { computed, Teleport, useTemplateRef } from 'vue'
 import { t } from '../../l10n.js'
 
 import VueDatePicker from '@vuepic/vue-datepicker'
@@ -316,6 +316,8 @@ const props = withDefaults(defineProps<{
  * @default 'UTC'
  */
 const timezoneId = defineModel<string>('timezoneId', { default: 'UTC' })
+
+const target = useTemplateRef('target')
 
 const emit = defineEmits<{
 	/**
@@ -570,7 +572,7 @@ const ariaLabels = computed(() => ({
 			:now-button-label="t('Now')"
 			:select-text="t('Pick')"
 			six-weeks="fair"
-			:teleport="appendToBody || undefined"
+			:teleport="target || undefined"
 			text-input
 			:week-num-name
 			:week-numbers="showWeekNumber ? { type: 'iso' } : undefined"
@@ -655,7 +657,7 @@ const ariaLabels = computed(() => ({
 	// plain @import does not work as this will scope all styles imported.
 	:deep() {
 		// Importing like this does not work for webpack, it seems?
-		@include meta.load-css('@vuepic/vue-datepicker/dist/main.css');
+		@include meta.load-css('node_modules/@vuepic/vue-datepicker/dist/main.css');
 	}
 }
 
