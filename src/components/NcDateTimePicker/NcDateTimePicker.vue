@@ -555,62 +555,66 @@ const ariaLabels = computed(() => ({
 </script>
 
 <template>
-	<VueDatePicker :aria-labels
-		:auto-apply="!confirm"
-		class="vue-date-time-picker"
-		:cancel-text="t('Cancel')"
-		:clearable
-		:day-names
-		:placeholder="placeholder ?? placeholderFallback"
-		:format="realFormat"
-		:locale
-		:minutes-increment="minuteStep"
-		:model-value="value"
-		:now-button-label="t('Now')"
-		:select-text="t('Pick')"
-		six-weeks="fair"
-		:teleport="appendToBody || undefined"
-		text-input
-		:week-num-name
-		:week-numbers="showWeekNumber ? { type: 'iso' } : undefined"
-		:week-start
-		v-bind="pickerType"
-		@update:model-value="onUpdateModelValue">
-		<template #input-icon>
-			<NcIconSvgWrapper :path="mdiCalendarBlank" :size="20" />
-		</template>
-		<template #clear-icon>
-			<NcIconSvgWrapper inline :path="mdiClose" :size="20" />
-		</template>
-		<template #clock-icon>
-			<NcIconSvgWrapper inline :path="mdiClock" :size="20" />
-		</template>
-		<template #arrow-left>
-			<NcIconSvgWrapper inline :path="mdiChevronLeft" :size="20" />
-		</template>
-		<template #arrow-right>
-			<NcIconSvgWrapper inline :path="mdiChevronRight" :size="20" />
-		</template>
-		<template #arrow-down>
-			<NcIconSvgWrapper inline :path="mdiChevronDown" :size="20" />
-		</template>
-		<template #arrow-up>
-			<NcIconSvgWrapper inline :path="mdiChevronUp" :size="20" />
-		</template>
-		<template v-if="showTimezoneSelect" #action-extra>
-			<NcTimezonePicker v-model="timezoneId"
-				class="vue-date-time-picker__timezone"
-				:append-to-body="false"
-				:input-label="t('Timezone')" />
-		</template>
-	</VueDatePicker>
+	<span class="date-time-picker-scope">
+		<VueDatePicker :aria-labels
+			:auto-apply="!confirm"
+			class="vue-date-time-picker"
+			:cancel-text="t('Cancel')"
+			:clearable
+			:day-names
+			:placeholder="placeholder ?? placeholderFallback"
+			:format="realFormat"
+			:locale
+			:minutes-increment="minuteStep"
+			:model-value="value"
+			:now-button-label="t('Now')"
+			:select-text="t('Pick')"
+			six-weeks="fair"
+			:teleport="appendToBody || undefined"
+			text-input
+			:week-num-name
+			:week-numbers="showWeekNumber ? { type: 'iso' } : undefined"
+			:week-start
+			v-bind="pickerType"
+			@update:model-value="onUpdateModelValue">
+			<template #input-icon>
+				<NcIconSvgWrapper :path="mdiCalendarBlank" :size="20" />
+			</template>
+			<template #clear-icon>
+				<NcIconSvgWrapper inline :path="mdiClose" :size="20" />
+			</template>
+			<template #clock-icon>
+				<NcIconSvgWrapper inline :path="mdiClock" :size="20" />
+			</template>
+			<template #arrow-left>
+				<NcIconSvgWrapper inline :path="mdiChevronLeft" :size="20" />
+			</template>
+			<template #arrow-right>
+				<NcIconSvgWrapper inline :path="mdiChevronRight" :size="20" />
+			</template>
+			<template #arrow-down>
+				<NcIconSvgWrapper inline :path="mdiChevronDown" :size="20" />
+			</template>
+			<template #arrow-up>
+				<NcIconSvgWrapper inline :path="mdiChevronUp" :size="20" />
+			</template>
+			<template v-if="showTimezoneSelect" #action-extra>
+				<NcTimezonePicker v-model="timezoneId"
+					class="vue-date-time-picker__timezone"
+					:append-to-body="false"
+					:input-label="t('Timezone')" />
+			</template>
+		</VueDatePicker>
+	</span>
+	<Teleport to="body" :disabled="!appendToBody">
+    	<div ref="target" class="date-time-picker-menu-scope" />
+	</Teleport>
 </template>
 
-<style lang="css">
-@import '@vuepic/vue-datepicker/dist/main.css';
-</style>
-
 <style scoped lang="scss">
+// This import is still scoped
+@import '@vuepic/vue-datepicker/dist/main.css';
+
 .vue-date-time-picker {
 	--dp-border-radius: var(--border-radius-element);
 	--dp-input-icon-padding: var(--default-clickable-area);
