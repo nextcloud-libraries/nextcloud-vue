@@ -657,7 +657,7 @@ const ariaLabels = computed(() => ({
 	// plain @import does not work as this will scope all styles imported.
 	:deep() {
 		// Importing like this does not work for webpack, it seems?
-		@include meta.load-css('node_modules/@vuepic/vue-datepicker/dist/main.css');
+		@include meta.load-css('@vuepic/vue-datepicker/dist/main.css');
 	}
 }
 
