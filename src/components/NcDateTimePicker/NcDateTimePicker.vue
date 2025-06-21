@@ -625,8 +625,8 @@ const ariaLabels = computed(() => ({
 	--dp-transition-timing: ease-out;
 	--dp-action-row-transtion: all 0.2s ease-in;
 	--dp-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, oxygen, ubuntu, cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-	--dp-border-radius: 4px;
-	// --dp-cell-border-radius: 4px;
+	// --dp-border-radius: 4px;
+	--dp-cell-border-radius: 4px;
 	--dp-transition-length: 22px;
 	--dp-transition-timing-general: 0.1s;
 	--dp-button-height: 35px;
@@ -637,8 +637,8 @@ const ariaLabels = computed(() => ({
 	--dp-cell-size: 35px;
 	--dp-cell-padding: 5px;
 	--dp-common-padding: 10px;
-	--dp-input-icon-padding: 35px;
-	// --dp-input-padding: 6px 30px 6px 12px;
+	// --dp-input-icon-padding: 35px;
+	--dp-input-padding: 6px 30px 6px 12px;
 	--dp-menu-min-width: 260px;
 	--dp-action-buttons-padding: 1px 6px;
 	--dp-row-margin: 5px 0;
