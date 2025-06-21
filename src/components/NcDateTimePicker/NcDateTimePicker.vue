@@ -557,7 +557,7 @@ const ariaLabels = computed(() => ({
 </script>
 
 <template>
-	<span class="date-time-picker-scope">
+	<span class="vue-date-time-picker-wrapper">
 		<VueDatePicker :aria-labels
 			:auto-apply="!confirm"
 			class="vue-date-time-picker"
@@ -608,7 +608,7 @@ const ariaLabels = computed(() => ({
 			</template>
 		</VueDatePicker>
 		<Teleport to="body" :disabled="!appendToBody">
-			<div ref="target" class="date-time-picker-scope" />
+			<div ref="target" class="vue-date-time-picker-wrapper" />
 		</Teleport>
 	</span>
 </template>
@@ -616,7 +616,7 @@ const ariaLabels = computed(() => ({
 <style scoped lang="scss">
 @use "sass:meta";
 
-.date-time-picker-scope {
+.vue-date-time-picker-wrapper {
 	// This is under :root in @vuepic/vue-datepicker/dist/main.css, so importing it scoped won't work
 	--dp-common-transition: all 0.1s ease-in;
 	--dp-menu-padding: 6px 8px;
@@ -653,15 +653,15 @@ const ariaLabels = computed(() => ({
 	--dp-action-row-padding: 8px;
 	--dp-direction: ltr;
 
-	// we need to import the vuepic styles but at least scoped to our class and scope
+	// We need to import the vuepic styles, but at least scoped to our class and scope
 	// plain @import does not work as this will scope all styles imported.
 	:deep() {
-		// Importing like this does not work for webpack, it seems?
 		@include meta.load-css('@vuepic/vue-datepicker/dist/main.css');
 	}
-}
 
-.vue-date-time-picker {
+	/*
+	 * These are our customizations to the date picker.
+	 */
 	--dp-border-radius: var(--border-radius-element);
 	--dp-input-icon-padding: var(--default-clickable-area);
 
@@ -734,8 +734,8 @@ const ariaLabels = computed(() => ({
 		padding: 0 calc(4 * var(--default-grid-baseline));
 	}
 
-	&.dp__theme_dark,
-	&.dp__theme_light,
+	.vue-date-time-picker.dp__theme_dark,
+	.vue-date-time-picker.dp__theme_light,
 	:deep(.dp__theme_dark),
 	:deep(.dp__theme_light) {
 		--dp-background-color: var(--color-main-background);
