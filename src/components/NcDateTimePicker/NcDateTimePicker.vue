@@ -607,10 +607,10 @@ const ariaLabels = computed(() => ({
 					:input-label="t('Timezone')" />
 			</template>
 		</VueDatePicker>
+		<Teleport to="body" :disabled="!appendToBody">
+			<div ref="target" class="date-time-picker-scope" />
+		</Teleport>
 	</span>
-	<Teleport to="body" :disabled="!appendToBody">
-		<div ref="target" class="date-time-picker-scope" />
-	</Teleport>
 </template>
 
 <style scoped lang="scss">
