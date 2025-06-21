@@ -77,7 +77,7 @@ It is also possible to make a rendered content interactive and listen for events
 		<NcRichText :text="text"
 			:use-extended-markdown="true"
 			:interactive="true"
-			@interact:todo="handleInteraction"/>
+			@interact-todo="handleInteraction"/>
 	</div>
 </template>
 <script>
@@ -391,7 +391,10 @@ export default {
 			default: true,
 		},
 	},
-	emits: ['interact:todo'],
+	emits: [
+		'interact-todo',
+		'interact:todo',
+	],
 
 	data() {
 		return {
@@ -527,7 +530,16 @@ export default {
 							id,
 							disabled: !this.interactive,
 							'onUpdate:modelValue': () => {
+								/**
+								 * Emitted when a todo-list entry was interacted with
+								 *
+								 * @deprecated listen on the `interact-todo` instead
+								 */
 								this.$emit('interact:todo', id)
+								/**
+								 * Emitted when a todo-list entry was interacted with
+								 */
+								this.$emit('interact-todo', id)
 							},
 						}, { default: () => labelParts })
 
