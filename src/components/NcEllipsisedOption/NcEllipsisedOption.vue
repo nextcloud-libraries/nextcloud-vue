@@ -81,7 +81,7 @@ export default {
 </template>
 <script>
 import { findRanges } from '../../utils/findRanges.ts'
-import NcHighlight from '../NcHighlight/index.js'
+import NcHighlight from '../NcHighlight/index.ts'
 
 export default {
 	name: 'NcEllipsisedOption',
