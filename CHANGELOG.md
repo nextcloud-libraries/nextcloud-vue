@@ -317,6 +317,16 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 The value `arrowRight` of the property `trailingButtonIcon` is deprecated and will be removed in a future version.
 It is replaced by `arrowEnd` which reflects that the directions depends on the text directions (LTR vs RTL).
 
+#### Event names
+Custom events now have a consistent naming without custom scoping of the events.
+Thus following events are deprecated in favor of a new consistent event name:
+
+     Component |       Old event |       New event
+---------------|-----------------|----------------
+`NcAppContent` |   `resize:list` |   `resize-list`
+  `NcRichText` | `interact:todo` | `interact-todo`
+
+
 ## [v8.27.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.27.0) (2025-05-28)
 
 ### 📝 Notes
