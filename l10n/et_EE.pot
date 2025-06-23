@@ -204,6 +204,7 @@ msgstr "Söök ja jook"
 msgid "Frequently used"
 msgstr "Sageli kasutatud"
 
+#. TRANSLATORS: This refers to global timezones in the timezone picker
 msgid "Global"
 msgstr "Globaalne"
 
@@ -361,6 +362,9 @@ msgstr "Vali"
 
 msgid "Pick an emoji"
 msgstr "Vali emoji"
+
+msgid "Please choose a date"
+msgstr "Palun vali kuupäev"
 
 msgid "Previous"
 msgstr "Eelmine"
