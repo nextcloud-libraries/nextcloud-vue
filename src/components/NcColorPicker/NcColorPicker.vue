@@ -381,6 +381,9 @@ export default {
 			 * Emitted after picker close
 			 */
 			this.$emit('close')
+			/**
+			 * @deprecated use the 'close' event instead
+			 */
 			this.$emit('update:open', false)
 		},
 
