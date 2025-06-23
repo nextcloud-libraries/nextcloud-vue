@@ -131,6 +131,8 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
   - The `closing` and `opening` events were removed.
     They are directly emitted when the sidebar was opened when using `v-if`
     and also just duplicated the state of the `open` prop [\#5606](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5606)
+- `NcColorPicker`
+  - The `update:open` event is removed in favor of the already available `close` event.
 - `NcCounterBubble`
   - The default slot was removed
   - The `count` prop is now required [\#5997](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5997)
