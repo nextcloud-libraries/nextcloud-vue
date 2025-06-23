@@ -87,17 +87,159 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 
 </docs>
 
+<script setup lang="ts">
+import type { VueClassType } from '../../utils/VueTypes.ts'
+
+import { computed } from 'vue'
+import { createElementId } from '../../utils/createElementId.ts'
+import { t } from '../../l10n.js'
+
+defineOptions({ inheritAttrs: false })
+
+const props = withDefaults(defineProps<{
+	/**
+	 * HTML class of the element
+	 */
+	class?: VueClassType
+
+	/**
+	 * ID of the input element
+	 */
+	id?: string
+
+	/**
+	 * Class to add to the input field.
+	 * Necessary to use NcDateTimePickerNative in the NcActionInput component.
+	 */
+	inputClass?: VueClassType
+
+	/**
+	 * type attribute of the input field
+	 * default type: String
+	 * The type of the input element, it can be `date`, `datetime-local`, `month`, `time`, `week`
+	 */
+	type?: 'date' | 'datetime-local' | 'month' | 'time' | 'week'
+
+	/**
+	 * Visual label of the input
+	 */
+	label?: string
+
+	/**
+	 * min attribute of the input field
+	 */
+	min?: Date | null
+
+	/**
+	 * max attribute of the input field
+	 */
+	max?: Date | null
+
+	/**
+	 * Flag to hide the label.
+	 * The hidden input label for accessibility purposes.
+	 */
+	hideLabel?: boolean
+}>(), {
+	class: undefined,
+	id: () => createElementId(),
+	inputClass: '',
+	label: () => t('Please choose a date'),
+	max: null,
+	min: null,
+	modelValue: null,
+	type: 'date',
+})
+
+/**
+ * The date is – like the `Date` object in JavaScript – tied to UTC.
+ * The selected time zone does not have an influence of the selected time and date value.
+ * You have to translate the time yourself when you want to factor in time zones.
+ * Pass null to clear the input field.
+ */
+const modelValue = defineModel<Date | null>({ default: null })
+
+const formattedValue = computed(() => modelValue.value ? formatValue(modelValue.value) : '')
+const formattedMax = computed(() => props.max ? formatValue(props.max) : undefined)
+const formattedMin = computed(() => props.min ? formatValue(props.min) : undefined)
+
+/**
+ * Returns Object with string values of a Date
+ *
+ * @param value - The selected value
+ */
+function getReadableDate(value: Date) {
+	const yyyy = value.getFullYear().toString().padStart(4, '0')
+	const MM = (value.getMonth() + 1).toString().padStart(2, '0')
+	const dd = value.getDate().toString().padStart(2, '0')
+	const hh = value.getHours().toString().padStart(2, '0')
+	const mm = value.getMinutes().toString().padStart(2, '0')
+
+	return { yyyy, MM, dd, hh, mm }
+}
+
+/**
+ * Returns preformatted value for the input field
+ *
+ * @param value - The selected value
+ */
+function formatValue(value: Date): string {
+	const { yyyy, MM, dd, hh, mm } = getReadableDate(value)
+	if (props.type === 'datetime-local') {
+		return `${yyyy}-${MM}-${dd}T${hh}:${mm}`
+	} else if (props.type === 'date') {
+		return `${yyyy}-${MM}-${dd}`
+	} else if (props.type === 'month') {
+		return `${yyyy}-${MM}`
+	} else if (props.type === 'time') {
+		return `${hh}:${mm}`
+	} else if (props.type === 'week') {
+		const startDate = new Date(Number.parseInt(yyyy), 0, 1)
+		const daysSinceBeginningOfYear = Math.floor((value.getTime() - startDate.getTime())
+			/ (24 * 60 * 60 * 1000))
+		const weekNumber = Math.ceil(daysSinceBeginningOfYear / 7)
+		return `${yyyy}-W${weekNumber}`
+	}
+	return ''
+}
+
+/**
+ * Handle the input event
+ *
+ * @param event - The input event payload
+ */
+function onInput(event: Event): void {
+	const input = event.target as HTMLInputElement
+	if (!input || isNaN(input.valueAsNumber)) {
+		modelValue.value = null
+	} else if (props.type === 'time') {
+		const time = input.value
+
+		const { yyyy, MM, dd } = getReadableDate(modelValue.value || new Date())
+		modelValue.value = new Date(`${yyyy}-${MM}-${dd}T${time}`)
+	} else if (props.type === 'month') {
+		const MM = (new Date(input.value).getMonth() + 1).toString().padStart(2, '0')
+		const { yyyy, dd, hh, mm } = getReadableDate(modelValue.value || new Date())
+		modelValue.value = new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`)
+	} else {
+		const timezoneOffsetSeconds = new Date(input.valueAsNumber).getTimezoneOffset() * 1000 * 60
+		const inputDateWithTimezone = input.valueAsNumber + timezoneOffsetSeconds
+		modelValue.value = new Date(inputDateWithTimezone)
+	}
+}
+</script>
+
 <template>
-	<div class="native-datetime-picker">
-		<label class="native-datetime-picker--label"
+	<div class="native-datetime-picker" :class="$props.class">
+		<label class="native-datetime-picker__label"
 			:class="{ 'hidden-visually': hideLabel }"
 			:for="id">
 			{{ label }}
 		</label>
-		<input :id="id"
-			class="native-datetime-picker--input"
+		<input :id
+			class="native-datetime-picker__input"
 			:class="inputClass"
-			:type="type"
+			:type
 			:value="formattedValue"
 			:min="formattedMin"
 			:max="formattedMax"
@@ -106,234 +248,16 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 	</div>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-import { createElementId } from '../../utils/createElementId.js'
-
-const inputDateTypes = ['date', 'datetime-local', 'month', 'time', 'week']
-
-export default defineComponent({
-	name: 'NcDateTimePickerNative',
-	inheritAttrs: false,
-
-	props: {
-		/**
-		 * The date is – like the `Date` object in JavaScript – tied to UTC.
-		 * The selected time zone does not have an influence of the selected time and date value.
-		 * You have to translate the time yourself when you want to factor in time zones.
-		 * Pass null to clear the input field.
-		 */
-		modelValue: {
-			type: [Date, null],
-			default: null,
-		},
-
-		/**
-		 * id attribute of the input field
-		 */
-		id: {
-			type: String,
-			default: () => createElementId(),
-			validator: id => id.trim() !== '',
-		},
-		/**
-		 * type attribute of the input field
-		 * default type: String
-		 * The type of the input element, it can be `date`, `datetime-local`, `month`, `time`, `week`
-		 */
-		type: {
-			type: String,
-			default: 'date',
-			validate: (name) => inputDateTypes.includes(name),
-		},
-		/**
-		 * text inside the label element
-		 * default type: String
-		 */
-		label: {
-			type: String,
-			default: 'Please choose a date',
-		},
-		/**
-		 * min attribute of the input field
-		 * default type: null
-		 */
-		min: {
-			type: [Date, Boolean, null],
-			default: null,
-		},
-		/**
-		 * max attribute of the input field
-		 * default type: null
-		 */
-		max: {
-			type: [Date, Boolean, null],
-			default: null,
-		},
-		/**
-		 * Flag to hide the label
-		 * default type: String
-		 * The hidden input label for accessibility purposes.
-		 */
-		hideLabel: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Class to add to the input field.
-		 * Necessary to use NcDateTimePickerNative in the NcActionInput component.
-		 */
-		inputClass: {
-			type: [Object, String],
-			default: '',
-		},
-	},
-
-	emits: [
-		'update:modelValue',
-	],
-
-	computed: {
-		formattedValue() {
-			return this.formatValue(this.modelValue)
-		},
-		formattedMin() {
-			if (this.min) {
-				return this.formatValue(this.min)
-			}
-			return false
-		},
-		formattedMax() {
-			if (this.max) {
-				return this.formatValue(this.max)
-			}
-			return false
-		},
-	},
-
-	methods: {
-		/**
-		 * Handle the input event
-		 *
-		 * @param {InputEvent} $event input event payload
-		 * @return {Date|null} new chosen Date() or null
-		 */
-		onInput($event) {
-			if (isNaN($event.target.valueAsNumber)) {
-				/**
-				 * Emitted when the input value changes
-				 *
-				 * @return {null} null value
-				 */
-				return this.$emit('update:modelValue', null)
-			}
-			if (this.type === 'time') {
-				const time = $event.target.value
-				if (this.modelValue === '' || this.modelValue === null) {
-					// this case is because of Chrome bug
-					const { yyyy, MM, dd } = this.getReadableDate(new Date())
-					/**
-					 * Emitted when the input value changes
-					 *
-					 * @return {Date} new chosen Date()
-					 */
-					return this.$emit('update:modelValue', new Date(`${yyyy}-${MM}-${dd}T${time}`))
-				}
-				const { yyyy, MM, dd } = this.getReadableDate(this.modelValue)
-				/**
-				 * Emitted when the input value changes
-				 *
-				 * @return {Date} new chosen Date()
-				 */
-				return this.$emit('update:modelValue', new Date(`${yyyy}-${MM}-${dd}T${time}`))
-			} else if (this.type === 'month') {
-				const MM = (new Date($event.target.value).getMonth() + 1).toString().padStart(2, '0')
-				if (this.modelValue === '' || this.modelValue === null) {
-					const { yyyy, dd, hh, mm } = this.getReadableDate(new Date())
-					/**
-					 * Emitted when the input value changes
-					 *
-					 * @return {Date} new chosen Date()
-					 */
-					return this.$emit('update:modelValue', new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`))
-				}
-				const { yyyy, dd, hh, mm } = this.getReadableDate(this.modelValue)
-				/**
-				 * Emitted when the input value changes
-				 *
-				 * @return {Date} new chosen Date()
-				 */
-				return this.$emit('update:modelValue', new Date(`${yyyy}-${MM}-${dd}T${hh}:${mm}`))
-			}
-			const timezoneOffsetSeconds = new Date($event.target.valueAsNumber).getTimezoneOffset() * 1000 * 60
-			const inputDateWithTimezone = $event.target.valueAsNumber + timezoneOffsetSeconds
-			/**
-			 * Emitted when the input value changes
-			 *
-			 * @return {Date} new chosen Date()
-			 */
-			return this.$emit('update:modelValue', new Date(inputDateWithTimezone))
-		},
-		/**
-		 * Returns Object with string values of a Date
-		 *
-		 * @param {Date} value The selected value
-		 * @return {object|undefined}
-		 */
-		getReadableDate(value) {
-			if (value instanceof Date) {
-				const yyyy = value.getFullYear().toString().padStart(4, '0')
-				const MM = (value.getMonth() + 1).toString().padStart(2, '0')
-				const dd = value.getDate().toString().padStart(2, '0')
-				const hh = value.getHours().toString().padStart(2, '0')
-				const mm = value.getMinutes().toString().padStart(2, '0')
-
-				return { yyyy, MM, dd, hh, mm }
-			}
-		},
-		/**
-		 * Returns preformatted value for the input field
-		 *
-		 * @param {Date} value The selected value
-		 * @return {string|undefined}
-		 */
-		formatValue(value) {
-			if (value instanceof Date) {
-				const { yyyy, MM, dd, hh, mm } = this.getReadableDate(value)
-				if (this.type === 'datetime-local') {
-					return `${yyyy}-${MM}-${dd}T${hh}:${mm}`
-				} else if (this.type === 'date') {
-					return `${yyyy}-${MM}-${dd}`
-				} else if (this.type === 'month') {
-					return `${yyyy}-${MM}`
-				} else if (this.type === 'time') {
-					return `${hh}:${mm}`
-				} else if (this.type === 'week') {
-					const startDate = new Date(yyyy, 0, 1)
-					const daysSinceBeginningOfYear = Math.floor((value - startDate)
-						/ (24 * 60 * 60 * 1000))
-					const weekNumber = Math.ceil(daysSinceBeginningOfYear / 7)
-					return `${yyyy}-W${weekNumber}`
-				}
-			} else {
-				return ''
-			}
-		},
-	},
-})
-</script>
-
 <style lang="scss" scoped>
-	.native-datetime-picker {
-		display: flex;
-		flex-direction: column;
-	}
+.native-datetime-picker {
+	display: flex;
+	flex-direction: column;
 
-	.native-datetime-picker .native-datetime-picker--label {
+	.native-datetime-picker__label {
 		margin-block-end: 2px;
 	}
 
-	.native-datetime-picker .native-datetime-picker--input {
+	.native-datetime-picker__input {
 		// If border width differs between focused and unfocused we need to compensate to prevent jumping
 		--input-border-width-offset: calc(var(--border-width-input-focused, 2px) - var(--border-width-input, 2px));
 		width: 100%;
@@ -354,32 +278,33 @@ export default defineComponent({
 			--input-border-width-offset: 0px;
 		}
 	}
+}
 
-	[data-theme-light],
-	[data-themes*=light] {
-		.native-datetime-picker--input {
+[data-theme-light],
+[data-themes*=light] {
+	.native-datetime-picker__input {
+		color-scheme: light;
+	}
+}
+
+[data-theme-dark],
+[data-themes*=dark] {
+	.native-datetime-picker__input {
+		color-scheme: dark;
+	}
+}
+
+[data-theme-default],
+[data-themes*=default] {
+	@media (prefers-color-scheme: light) {
+		.native-datetime-picker__input {
 			color-scheme: light;
 		}
 	}
-
-	[data-theme-dark],
-	[data-themes*=dark] {
-		.native-datetime-picker--input {
+	@media (prefers-color-scheme: dark) {
+		.native-datetime-picker__input {
 			color-scheme: dark;
 		}
 	}
-
-	[data-theme-default],
-	[data-themes*=default] {
-		@media (prefers-color-scheme: light) {
-			.native-datetime-picker--input {
-				color-scheme: light;
-			}
-		}
-		@media (prefers-color-scheme: dark) {
-			.native-datetime-picker--input {
-				color-scheme: dark;
-			}
-		}
-	}
+}
 </style>

@@ -350,6 +350,9 @@ msgstr ""
 msgid "Pick an emoji"
 msgstr ""
 
+msgid "Please choose a date"
+msgstr ""
+
 msgid "Previous"
 msgstr ""
 
