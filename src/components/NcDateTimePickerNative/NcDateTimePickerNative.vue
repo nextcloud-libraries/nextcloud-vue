@@ -124,7 +124,7 @@ export default defineComponent({
 		 * Pass null to clear the input field.
 		 */
 		modelValue: {
-			type: Date,
+			type: [Date, null],
 			default: null,
 		},
 
@@ -159,7 +159,7 @@ export default defineComponent({
 		 * default type: null
 		 */
 		min: {
-			type: [Date, Boolean],
+			type: [Date, Boolean, null],
 			default: null,
 		},
 		/**
@@ -167,7 +167,7 @@ export default defineComponent({
 		 * default type: null
 		 */
 		max: {
-			type: [Date, Boolean],
+			type: [Date, Boolean, null],
 			default: null,
 		},
 		/**
