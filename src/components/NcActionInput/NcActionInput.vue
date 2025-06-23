@@ -277,7 +277,7 @@ export default {
 		NcPasswordField,
 		NcTextField,
 		// Lazy load components with more than 50kB bundle size impact
-		NcColorPicker: defineAsyncComponent(() => import('../NcColorPicker/index.js')),
+		NcColorPicker: defineAsyncComponent(() => import('../NcColorPicker/index.ts')),
 		NcDateTimePicker: defineAsyncComponent(() => import('../NcDateTimePicker/index.js')),
 		NcSelect: defineAsyncComponent(() => import('../NcSelect/index.js')),
 	},
