@@ -730,7 +730,7 @@ import NcAppSidebarTabs from './NcAppSidebarTabs.vue'
 import NcActions from '../NcActions/index.js'
 import NcButton from '../NcButton/index.ts'
 import NcEmptyContent from '../NcEmptyContent/index.ts'
-import NcLoadingIcon from '../NcLoadingIcon/index.js'
+import NcLoadingIcon from '../NcLoadingIcon/index.ts'
 import NcAppSidebarHeader from '../NcAppSidebarHeader/index.ts'
 import Focus from '../../directives/Focus/index.ts'
 
