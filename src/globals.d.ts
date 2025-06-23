@@ -20,6 +20,7 @@ declare global {
 		_oc_config?: {
 			loglevel?: number
 		}
+		_oc_debug?: boolean
 		_nc_vue_element_id?: number
 		_nc_contacts_menu_hooks: { [id: string]: ContactsMenuAction },
 	}

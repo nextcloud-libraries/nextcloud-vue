@@ -68,7 +68,7 @@ import type { RouteLocation } from 'vue-router'
 
 import NcUserBubbleDiv from './NcUserBubbleDiv.vue'
 import NcAvatar from '../NcAvatar/index.js'
-import NcPopover from '../NcPopover/index.js'
+import NcPopover from '../NcPopover/index.ts'
 import { computed, warn, watch, type Slot } from 'vue'
 import { RouterLink } from 'vue-router'
 

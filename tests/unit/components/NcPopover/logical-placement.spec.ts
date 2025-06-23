@@ -12,7 +12,7 @@ vi.mock('../../../../src/utils/rtl.ts', () => rtlTs)
 describe('NcPopover support logical placement', () => {
 	beforeAll(() => {
 		// disable debug as this tries to access internals of floting-vue
-		window.OC.debug = false
+		window._oc_debug = false
 	})
 
 	test.each`
@@ -37,6 +37,6 @@ describe('NcPopover support logical placement', () => {
 			},
 		})
 
-		expect(vm.getComponent({ name: 'Dropdown' }).props('placement')).toBe(expected)
+		expect(vm.getComponent({ ref: 'popover' }).props('placement')).toBe(expected)
 	})
 })

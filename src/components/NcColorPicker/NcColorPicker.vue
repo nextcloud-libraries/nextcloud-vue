@@ -210,7 +210,7 @@ import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
 import Check from 'vue-material-design-icons/Check.vue'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 import NcButton from '../NcButton/index.ts'
-import NcPopover from '../NcPopover/index.js'
+import NcPopover from '../NcPopover/index.ts'
 
 const HEX_REGEX = /^#([a-f0-9]{3}|[a-f0-9]{6})$/i
 

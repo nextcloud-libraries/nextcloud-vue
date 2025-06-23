@@ -204,7 +204,7 @@ import data from 'emoji-mart-vue-fast/data/all.json'
 import IconCircle from 'vue-material-design-icons/Circle.vue'
 import NcButton from '../NcButton/index.ts'
 import NcColorPicker from '../NcColorPicker/NcColorPicker.vue'
-import NcPopover from '../NcPopover/index.js'
+import NcPopover from '../NcPopover/index.ts'
 import NcTextField from '../NcTextField/index.ts'
 
 // Shared emoji index and skinTone for all NcEmojiPicker instances

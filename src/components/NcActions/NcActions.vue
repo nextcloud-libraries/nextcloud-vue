@@ -927,7 +927,7 @@ import { t } from '../../l10n.js'
 
 import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 import NcButton from '../NcButton/index.ts'
-import NcPopover from '../NcPopover/index.js'
+import NcPopover from '../NcPopover/index.ts'
 import { NC_ACTIONS_CLOSE_MENU, NC_ACTIONS_IS_SEMANTIC_MENU } from './useNcActions.ts'
 
 const focusableSelector = '.focusable'

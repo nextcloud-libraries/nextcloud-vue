@@ -174,9 +174,337 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 ```
 </docs>
 
+<script setup lang="ts">
+import type { FocusTargetValueOrFalse, FocusTrap } from 'focus-trap'
+import type { Popper, PopperContent } from 'floating-vue'
+
+import { Dropdown } from 'floating-vue'
+import { createFocusTrap } from 'focus-trap'
+import { computed, nextTick, onMounted, onUnmounted, useTemplateRef, warn } from 'vue'
+import { getTrapStack } from '../../utils/focusTrap.ts'
+import { isRtl } from '../../utils/rtl.ts'
+import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
+import logger from '../../utils/logger.ts'
+
+type PopoverTriggerEvents = 'hover' | 'click' | 'focus' | 'touch'
+export type PopoverTriggers = PopoverTriggerEvents[] | { show: PopoverTriggerEvents[], hide: PopoverTriggerEvents[] }
+export type PopoverSetReturnFocus = FocusTargetValueOrFalse | (() => FocusTargetValueOrFalse)
+
+const props = withDefaults(defineProps<{
+	/**
+	 * Element to use for calculating the popper boundary (size and position).
+	 * Either a query string or the actual HTMLElement.
+	 */
+	boundary?: string | HTMLElement
+
+	/**
+	 * Automatically hide the popover on click outside.
+	 */
+	closeOnClickOutside?: boolean
+
+	/**
+	 * Container where to mount the popover.
+	 * Either a select query or `false` to mount to the parent node.
+	 */
+	container?: string | false
+
+	/**
+	 * Delay for showing or hiding the popover.
+	 * Can either be a number or an object to configure different delays.
+	 */
+	delay?: number | { show: number, hide: number }
+
+	/**
+	 * Disable the popover focus trap.
+	 */
+	noFocusTrap?: boolean
+
+	/**
+	 * Where to place the popover.
+	 *
+	 * This consists of the vertical placement and the horizontal placement.
+	 * E.g. `bottom` will place the popover on the bottom of the trigger (horizontally centered),
+	 * while `buttom-start` will horizontally align the popover on the logical start (e.g. for LTR layout on the left.).
+	 * The `start` or `end` placement will align the popover on the left or right side or the trigger element.
+	 */
+	placement?: 'auto'|'auto-start'|'auto-end'|'top'|'top-start'|'top-end'|'bottom'|'bottom-start'|'bottom-end'|'start'|'end'
+
+	popoverBaseClass?: string
+
+	/**
+	 * Events that trigger the popover on the popover container itself.
+	 * This is useful if you set `triggers` to `hover` and also want the popover to stay open while hovering the popover itself.
+	 *
+	 * It is possible to also pass an object to define different triggers for hide and show `{ show: ['hover'], hide: ['click'] }`.
+	 */
+	popoverTriggers?: PopoverTriggers
+
+	/**
+	 * Popup role
+	 * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-haspopup#values
+	 */
+	popupRole?: 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog' | 'true'
+
+	/**
+	 * Set element to return focus to after focus trap deactivation
+	 */
+	setReturnFocus?: PopoverSetReturnFocus
+
+	/**
+	 * Events that trigger the popover.
+	 *
+	 * If you pass an empty array then only the `shown` prop can control the popover state.
+	 * Following events are available:
+	 * - `'hover'`
+	 * - `'click'`
+	 * - `'focus'`
+	 * - `'touch'`
+	 *
+	 * It is also possible to pass an object to have different events for show and hide:
+	 * `{ hide: ['click'], show: ['click', 'hover'] }`
+	 */
+	triggers?: PopoverTriggers
+}>(), {
+	boundary: '',
+	container: 'body',
+	delay: 0,
+	placement: 'bottom',
+	popoverBaseClass: '',
+	popoverTriggers: undefined,
+	popupRole: undefined,
+	setReturnFocus: undefined,
+	triggers: () => ['click'],
+})
+
+/**
+ * Show or hide the popper
+ */
+const shown = defineModel<boolean>('shown', { default: false })
+
+const emit = defineEmits<{
+	afterShow: [],
+
+	/**
+	 * Triggered after the tooltip was visually hidden.
+	 *
+	 * This is different from the 'hide' and 'apply-hide' which
+	 * run earlier than this where there is no guarantee that the
+	 * tooltip is already visible and in the DOM.
+	 */
+	afterHide: [],
+}>()
+
+/**
+ * The popover implementation
+ */
+const popover = useTemplateRef('popover')
+
+// active focus trap
+let focusTrap: FocusTrap | undefined
+
+const popperTriggers = computed(() => {
+	if (props.popoverTriggers && Array.isArray(props.popoverTriggers)) {
+		return props.popoverTriggers
+	}
+	return undefined
+})
+
+const popperHideTriggers = computed(() => {
+	if (props.popoverTriggers && !Array.isArray(props.popoverTriggers)) {
+		return props.popoverTriggers.hide
+	}
+	return undefined
+})
+
+const popperShowTriggers = computed(() => {
+	if (props.popoverTriggers && !Array.isArray(props.popoverTriggers)) {
+		return props.popoverTriggers.show
+	}
+	return undefined
+})
+
+const internalTriggers = computed(() => {
+	if (props.triggers && Array.isArray(props.triggers)) {
+		return props.triggers
+	}
+	return undefined
+})
+
+const hideTriggers = computed(() => {
+	if (props.triggers && !Array.isArray(props.triggers)) {
+		return props.triggers.hide
+	}
+	return undefined
+})
+
+const showTriggers = computed(() => {
+	if (props.triggers && !Array.isArray(props.triggers)) {
+		return props.triggers.show
+	}
+	return undefined
+})
+
+const internalPlacement = computed(() => {
+	if (props.placement === 'start') {
+		return isRtl ? 'right' : 'left'
+	} else if (props.placement === 'end') {
+		return isRtl ? 'left' : 'right'
+	}
+	return props.placement
+})
+
+// check accessibility when mounted
+onMounted(checkTriggerA11y)
+// clear focustrap when unmounted
+onUnmounted(() => {
+	clearFocusTrap()
+	clearEscapeStopPropagation()
+})
+
+/**
+ * Check if the trigger has all required a11y attributes.
+ * Important to check custom trigger button.
+ */
+function checkTriggerA11y() {
+	if (window._oc_debug) {
+		const triggerContainer = getPopoverTriggerContainerElement()
+		const requiredTriggerButton = triggerContainer?.querySelector('[aria-expanded]')
+		if (!requiredTriggerButton) {
+			warn('It looks like you are using a custom button as a <NcPopover> or other popover #trigger. If you are not using <NcButton> as a trigger, you need to bind attrs from the #trigger slot props to your custom button. See <NcPopover> docs for an example.')
+		}
+	}
+}
+
+/**
+ * Remove stop Escape handler
+ */
+function clearEscapeStopPropagation() {
+	const el = getPopoverContentElement()
+	el?.removeEventListener('keydown', stopKeydownEscapeHandler)
+}
+
+/**
+ * Remove focus trap
+ */
+function clearFocusTrap(): void {
+	try {
+		focusTrap?.deactivate({})
+		focusTrap = undefined
+	} catch (error) {
+		logger.error('[NcPopover] Failed to clear focus trap', { error })
+	}
+}
+
+/**
+ * Handle showing the popover and applying the focus trap.
+ */
+async function afterShow() {
+	getPopoverContentElement()?.addEventListener('transitionend', () => {
+		emit('afterShow')
+	}, { once: true, passive: true })
+
+	removeFloatingVueAriaDescribedBy()
+
+	await nextTick()
+	await useFocusTrap()
+	addEscapeStopPropagation()
+}
+
+/**
+ * Handle hiding the popover and thus clearing the focus trap
+ */
+function afterHide() {
+	getPopoverContentElement()?.addEventListener('transitionend', () => {
+		emit('afterHide')
+	}, { once: true, passive: true })
+
+	clearFocusTrap()
+	clearEscapeStopPropagation()
+}
+
+/**
+ * Add focus trap for accessibility.
+ */
+async function useFocusTrap() {
+	await nextTick()
+
+	if (props.noFocusTrap) {
+		return
+	}
+
+	const el = getPopoverContentElement()
+	if (!el) {
+		return
+	}
+
+	el.tabIndex = -1
+	// Init focus trap
+	focusTrap = createFocusTrap(el, {
+		// Prevents to lose focus using esc key
+		// Focus will be release when popover be hide
+		escapeDeactivates: false,
+		allowOutsideClick: true,
+		setReturnFocus: props.setReturnFocus,
+		trapStack: getTrapStack(),
+		fallbackFocus: el,
+	})
+	focusTrap.activate()
+}
+
+/**
+ * Get the popover content container element from the template references
+ */
+function getPopoverContentElement() {
+	const popperContent = popover.value?.$refs.popperContent as InstanceType<typeof PopperContent> | undefined
+	return popperContent?.$el as HTMLElement | undefined
+}
+
+/**
+ * Get the popover trigger container element from the template references
+ */
+function getPopoverTriggerContainerElement() {
+	const popper = popover.value?.$refs.popper as InstanceType<ReturnType<typeof Popper>> | undefined
+	return popper?.$refs.reference as HTMLElement | undefined
+}
+
+/**
+ * Add stopPropagation for Escape.
+ * It prevents global Escape handling after closing popover.
+ *
+ * Manual event handling is used here instead of v-on because there is no direct access to the node.
+ * Alternative - wrap <template #popover> in a div wrapper.
+ */
+function addEscapeStopPropagation() {
+	const el = getPopoverContentElement()
+	el?.addEventListener('keydown', stopKeydownEscapeHandler)
+}
+
+/**
+ * @param event - native keydown event
+ */
+function stopKeydownEscapeHandler(event: KeyboardEvent) {
+	if (event.type === 'keydown' && event.key === 'Escape') {
+		event.stopPropagation()
+	}
+}
+
+/**
+ * Remove incorrect aria-describedby attribute from the trigger.
+ * @see https://github.com/Akryum/floating-vue/blob/8d4f7125aae0e3ea00ba4093d6d2001ab15058f1/packages/floating-vue/src/components/Popper.ts#L734
+ */
+function removeFloatingVueAriaDescribedBy() {
+	// When the popover is shown, floating-vue mutates the root elements of the trigger adding data-popper-shown and incorrect aria-describedby attributes.
+	const triggerContainer = getPopoverTriggerContainerElement()
+	const triggerElements = triggerContainer?.querySelectorAll('[data-popper-shown]')
+	triggerElements?.forEach((el) => {
+		el.removeAttribute('aria-describedby')
+	})
+}
+</script>
+
 <template>
 	<Dropdown ref="popover"
-		v-model:shown="internalShown"
+		v-model:shown="shown"
 		:arrow-padding="10"
 		:auto-hide="closeOnClickOutside"
 		:boundary="boundary || undefined"
@@ -193,10 +521,9 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 		:triggers="internalTriggers"
 		:hide-triggers
 		:show-triggers
-		@update:shown="internalShown = $event"
 		@apply-show="afterShow"
 		@apply-hide="afterHide">
-		<NcPopoverTriggerProvider v-slot="slotProps" :shown="internalShown" :popup-role="popupRole">
+		<NcPopoverTriggerProvider v-slot="slotProps" :shown :popup-role>
 			<!-- This will be the popover target (for the events and position) -->
 			<slot name="trigger" v-bind="slotProps" />
 		</NcPopoverTriggerProvider>
@@ -207,381 +534,6 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 		</template>
 	</Dropdown>
 </template>
-
-<script>
-import { Dropdown } from 'floating-vue'
-import { createFocusTrap } from 'focus-trap'
-import { warn } from 'vue'
-import { getTrapStack } from '../../utils/focusTrap.ts'
-import { isRtl } from '../../utils/rtl.ts'
-import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
-
-/**
- * @typedef {import('focus-trap').FocusTargetValueOrFalse} FocusTargetValueOrFalse
- * @typedef {FocusTargetValueOrFalse|() => FocusTargetValueOrFalse} SetReturnFocus
- */
-export default {
-	name: 'NcPopover',
-
-	components: {
-		Dropdown,
-		NcPopoverTriggerProvider,
-	},
-
-	props: {
-		/**
-		 * Element to use for calculating the popper boundary (size and position).
-		 * Either a query string or the actual HTMLElement.
-		 */
-		boundary: {
-			type: [String, Object],
-			default: '',
-		},
-
-		/**
-		 * Automatically hide the popover on click outside.
-		 */
-		closeOnClickOutside: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Container where to mount the popover.
-		 * Either a select query or `false` to mount to the parent node.
-		 */
-		container: {
-			type: [String, Boolean],
-			default: 'body',
-		},
-
-		/**
-		 * Delay for showing or hiding the popover.
-		 *
-		 * Can either be a number or an object to configure different delays (`{ show: number, hide: number }`).
-		 */
-		delay: {
-			type: [Number, Object],
-			default: 0,
-		},
-
-		/**
-		 * Disable the popover focus trap.
-		 */
-		noFocusTrap: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Where to place the popover.
-		 *
-		 * This consists of the vertical placement and the horizontal placement.
-		 * E.g. `bottom` will place the popover on the bottom of the trigger (horizontally centered),
-		 * while `buttom-start` will horizontally align the popover on the logical start (e.g. for LTR layout on the left.).
-		 * The `start` or `end` placement will align the popover on the left or right side or the trigger element.
-		 *
-		 * @type {'auto'|'auto-start'|'auto-end'|'top'|'top-start'|'top-end'|'bottom'|'bottom-start'|'bottom-end'|'start'|'end'}
-		 */
-		placement: {
-			type: String,
-			default: 'bottom',
-		},
-
-		popoverBaseClass: {
-			type: String,
-			default: '',
-		},
-
-		/**
-		 * Events that trigger the popover on the popover container itself.
-		 * This is useful if you set `triggers` to `hover` and also want the popover to stay open while hovering the popover itself.
-		 *
-		 * It is possible to also pass an object to define different triggers for hide and show `{ show: ['hover'], hide: ['click'] }`.
-		 */
-		popoverTriggers: {
-			type: [Array, Object],
-			default: null,
-		},
-
-		/**
-		 * Popup role
-		 * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-haspopup#values
-		 */
-		popupRole: {
-			type: String,
-			default: undefined,
-			validator: (value) => ['menu', 'listbox', 'tree', 'grid', 'dialog', 'true'].includes(value),
-		},
-
-		/**
-		 * Set element to return focus to after focus trap deactivation
-		 *
-		 * @type {SetReturnFocus}
-		 */
-		setReturnFocus: {
-			default: undefined,
-			type: [HTMLElement, SVGElement, String, Boolean, Function],
-		},
-
-		/**
-		 * Show or hide the popper
-		 */
-		shown: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Events that trigger the popover.
-		 *
-		 * If you pass an empty array then only the `shown` prop can control the popover state.
-		 * Following events are available:
-		 * - `'hover'`
-		 * - `'click'`
-		 * - `'focus'`
-		 * - `'touch'`
-		 *
-		 * It is also possible to pass an object to have different events for show and hide:
-		 * `{ hide: ['click'], show: ['click', 'hover'] }`
-		 */
-		triggers: {
-			type: [Array, Object],
-			default: () => ['click'],
-		},
-	},
-
-	emits: [
-		'afterShow',
-		'afterHide',
-		'update:shown',
-	],
-
-	data() {
-		return {
-			internalShown: this.shown,
-		}
-	},
-
-	computed: {
-		popperTriggers() {
-			if (this.popoverTriggers && Array.isArray(this.popoverTriggers)) {
-				return this.popoverTriggers
-			}
-			return undefined
-		},
-		popperHideTriggers() {
-			if (this.popoverTriggers && typeof this.popoverTriggers === 'object') {
-				return this.popoverTriggers.hide
-			}
-			return undefined
-		},
-		popperShowTriggers() {
-			if (this.popoverTriggers && typeof this.popoverTriggers === 'object') {
-				return this.popoverTriggers.show
-			}
-			return undefined
-		},
-
-		internalTriggers() {
-			if (this.triggers && Array.isArray(this.triggers)) {
-				return this.triggers
-			}
-			return undefined
-		},
-		hideTriggers() {
-			if (this.triggers && typeof this.triggers === 'object') {
-				return this.triggers.hide
-			}
-			return undefined
-		},
-		showTriggers() {
-			if (this.triggers && typeof this.triggers === 'object') {
-				return this.triggers.show
-			}
-			return undefined
-		},
-
-		internalPlacement() {
-			if (this.placement === 'start') {
-				return isRtl ? 'right' : 'left'
-			} else if (this.placement === 'end') {
-				return isRtl ? 'left' : 'right'
-			}
-			return this.placement
-		},
-	},
-
-	watch: {
-		shown(value) {
-			this.internalShown = value
-		},
-
-		internalShown(value) {
-			this.$emit('update:shown', value)
-		},
-	},
-
-	mounted() {
-		this.checkTriggerA11y()
-	},
-
-	beforeUnmount() {
-		this.clearFocusTrap()
-		this.clearEscapeStopPropagation()
-	},
-
-	methods: {
-		/**
-		 * Check if the trigger has all required a11y attributes.
-		 * Important to check custom trigger button.
-		 */
-		checkTriggerA11y() {
-			if (window.OC?.debug) {
-				const triggerContainer = this.getPopoverTriggerContainerElement()
-				const requiredTriggerButton = triggerContainer.querySelector('[aria-expanded]')
-				if (!requiredTriggerButton) {
-					warn('It looks like you are using a custom button as a <NcPopover> or other popover #trigger. If you are not using <NcButton> as a trigger, you need to bind attrs from the #trigger slot props to your custom button. See <NcPopover> docs for an example.')
-				}
-			}
-		},
-
-		/**
-		 * Remove incorrect aria-describedby attribute from the trigger.
-		 * @see https://github.com/Akryum/floating-vue/blob/8d4f7125aae0e3ea00ba4093d6d2001ab15058f1/packages/floating-vue/src/components/Popper.ts#L734
-		 */
-		removeFloatingVueAriaDescribedBy() {
-			// When the popover is shown, floating-vue mutates the root elements of the trigger adding data-popper-shown and incorrect aria-describedby attributes.
-			const triggerContainer = this.getPopoverTriggerContainerElement()
-			const triggerElements = triggerContainer.querySelectorAll('[data-popper-shown]')
-			for (const el of triggerElements) {
-				el.removeAttribute('aria-describedby')
-			}
-		},
-
-		/**
-		 * @return {HTMLElement|undefined}
-		 */
-		getPopoverContentElement() {
-			return this.$refs.popover?.$refs.popperContent?.$el
-		},
-
-		/**
-		 * @return {HTMLElement|undefined}
-		 */
-		getPopoverTriggerContainerElement() {
-			return this.$refs.popover?.$refs.popper?.$refs.reference
-		},
-
-		/**
-		 * Add focus trap for accessibility.
-		 */
-		async useFocusTrap() {
-			await this.$nextTick()
-
-			if (this.noFocusTrap) {
-				return
-			}
-
-			const el = this.getPopoverContentElement()
-			el.tabIndex = -1
-
-			if (!el) {
-				return
-			}
-
-			// Init focus trap
-			this.$focusTrap = createFocusTrap(el, {
-				// Prevents to lose focus using esc key
-				// Focus will be release when popover be hide
-				escapeDeactivates: false,
-				allowOutsideClick: true,
-				setReturnFocus: this.setReturnFocus,
-				trapStack: getTrapStack(),
-				fallBackFocus: el,
-			})
-			this.$focusTrap.activate()
-		},
-
-		/**
-		 * Remove focus trap
-		 *
-		 * @param {object} options The configuration options for focusTrap
-		 */
-		clearFocusTrap(options = {}) {
-			try {
-				this.$focusTrap?.deactivate(options)
-				this.$focusTrap = null
-			} catch (err) {
-				console.warn(err)
-			}
-		},
-
-		/**
-		 * Add stopPropagation for Escape.
-		 * It prevents global Escape handling after closing popover.
-		 *
-		 * Manual event handling is used here instead of v-on because there is no direct access to the node.
-		 * Alternative - wrap <template #popover> in a div wrapper.
-		 */
-		addEscapeStopPropagation() {
-			const el = this.getPopoverContentElement()
-			el?.addEventListener('keydown', this.stopKeydownEscapeHandler)
-		},
-
-		/**
-		 * Remove stop Escape handler
-		 */
-		clearEscapeStopPropagation() {
-			const el = this.getPopoverContentElement()
-			el?.removeEventListener('keydown', this.stopKeydownEscapeHandler)
-		},
-
-		/**
-		 * @param {KeyboardEvent} event - native keydown event
-		 */
-		stopKeydownEscapeHandler(event) {
-			if (event.type === 'keydown' && event.key === 'Escape') {
-				event.stopPropagation()
-			}
-		},
-
-		async afterShow() {
-			this.getPopoverContentElement().addEventListener('transitionend', () => {
-				/**
-				 * Triggered after the tooltip was visually displayed.
-				 *
-				 * This is different from the 'show' and 'apply-show' which
-				 * run earlier than this where there is no guarantee that the
-				 * tooltip is already visible and in the DOM.
-				 */
-				this.$emit('afterShow')
-			}, { once: true, passive: true })
-
-			this.removeFloatingVueAriaDescribedBy()
-
-			await this.$nextTick()
-			await this.useFocusTrap()
-			this.addEscapeStopPropagation()
-		},
-		afterHide() {
-			this.getPopoverContentElement().addEventListener('transitionend', () => {
-				/**
-				 * Triggered after the tooltip was visually hidden.
-				 *
-				 * This is different from the 'hide' and 'apply-hide' which
-				 * run earlier than this where there is no guarantee that the
-				 * tooltip is already visible and in the DOM.
-				 */
-				this.$emit('afterHide')
-			}, { once: true, passive: true })
-
-			this.clearFocusTrap()
-			this.clearEscapeStopPropagation()
-		},
-	},
-}
-</script>
 
 <style lang="scss">
 $arrow-width: 10px;
