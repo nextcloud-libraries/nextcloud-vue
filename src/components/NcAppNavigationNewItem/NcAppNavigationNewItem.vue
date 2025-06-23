@@ -77,7 +77,7 @@
 
 <script>
 import NcInputConfirmCancel from '../NcAppNavigationItem/NcInputConfirmCancel.vue'
-import NcLoadingIcon from '../NcLoadingIcon/index.js'
+import NcLoadingIcon from '../NcLoadingIcon/index.ts'
 
 export default {
 	name: 'NcAppNavigationNewItem',

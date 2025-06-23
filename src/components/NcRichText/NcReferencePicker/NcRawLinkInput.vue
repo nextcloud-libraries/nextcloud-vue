@@ -36,7 +36,7 @@
 import NcReferenceWidget from '../NcReferenceWidget.vue'
 import { isUrl, delay } from './utils.js'
 import NcEmptyContent from '../../NcEmptyContent/index.ts'
-import NcLoadingIcon from '../../NcLoadingIcon/index.js'
+import NcLoadingIcon from '../../NcLoadingIcon/index.ts'
 import NcTextField from '../../NcTextField/index.ts'
 import { t } from '../../../l10n.js'
 
