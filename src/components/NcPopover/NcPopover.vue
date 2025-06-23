@@ -565,7 +565,16 @@ export default {
 			this.addEscapeStopPropagation()
 		},
 		afterHide() {
-			this.getPopoverContentElement().addEventListener('transitionend', () => {
+			/**
+			 * On component unmounting Vue:
+			 * 1. Resets the template ref to null
+			 * 2. Triggers <Dropdown> `beforeUnmount` - it emits `apply-hide` event
+			 *   2.1. At that moment this.$refs.popover is null already, and we cannot use `this.getPopoverContentElement()`
+			 *   2.2. We can ignore emitting `after-hide` event (was also not the case on stable8)
+			 * 3. Actually removes <Dropdown> node
+			 * 4. Triggers <Dropdown> `unmounted`
+			 */
+			this.getPopoverContentElement()?.addEventListener('transitionend', () => {
 				/**
 				 * Triggered after the tooltip was visually hidden.
 				 *
