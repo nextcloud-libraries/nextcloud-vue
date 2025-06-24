@@ -438,7 +438,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 		v-slot="{ href: routerLinkHref, navigate, isActive }"
 		v-bind="{ ...to && { custom: true, to } }">
 		<li class="list-item__wrapper"
-			:class="{ 'list-item__wrapper--active' : isActive || active }"
+			:class="{ 'list-item__wrapper--active' : active ?? isActive }"
 			v-bind="$attrs">
 			<div ref="list-item"
 				class="list-item"
@@ -487,7 +487,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 								class="list-item-details__extra">
 								<NcCounterBubble v-if="counterNumber !== 0"
 									:count="counterNumber"
-									:active="isActive || active"
+									:active="active ?? isActive"
 									class="list-item-details__counter"
 									:type="counterType" />
 
@@ -510,7 +510,7 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 					class="list-item-content__actions"
 					@focusout="handleBlur">
 					<NcActions ref="actions"
-						:primary="isActive || active"
+						:primary="active ?? isActive"
 						:force-menu="forceMenu"
 						:aria-label="actionsAriaLabel"
 						@update:open="handleActionsUpdateOpen">
@@ -615,7 +615,7 @@ export default {
 		 */
 		active: {
 			type: Boolean,
-			default: false,
+			default: undefined,
 		},
 
 		/**
