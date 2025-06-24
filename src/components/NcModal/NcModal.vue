@@ -574,7 +574,6 @@ export default {
 			playing: false,
 			slideshowTimeout: null,
 			focusTrap: null,
-			externalFocusTrapStack: [],
 			randId: GenRandomId(),
 			internalShow: true,
 		}
@@ -864,11 +863,6 @@ export default {
 				setReturnFocus: this.setReturnFocus,
 			}
 
-			// Deactivate other focus traps to unlock modal elements
-			this.externalFocusTrapStack = [...options.trapStack]
-			for (const trap of this.externalFocusTrapStack) {
-				trap.deactivate()
-			}
 			// Init focus trap
 			this.focusTrap = createFocusTrap([contentContainer, ...this.additionalTrapElements], options)
 			this.focusTrap.activate()
@@ -879,10 +873,6 @@ export default {
 			}
 			this.focusTrap?.deactivate()
 			this.focusTrap = null
-			for (const trap of this.externalFocusTrapStack) {
-				trap.activate()
-			}
-			this.externalFocusTrapStack = []
 		},
 
 	},
