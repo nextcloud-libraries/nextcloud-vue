@@ -215,24 +215,22 @@ import type { Slot } from 'vue'
 import type { ComponentProps, VueClassType } from '../../utils/VueTypes.ts'
 
 import { useElementSize } from '@vueuse/core'
-import { computed, ref, useTemplateRef } from 'vue'
+import { computed, ref, useModel, useTemplateRef } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import NcDialogButton from '../NcDialogButton/index.ts'
 import NcModal from '../NcModal/index.js'
 
 type NcDialogButtonProps = ComponentProps<typeof NcDialogButton>
 
-/**
- * Whether the dialog should be shown
- */
-const open = defineModel<boolean>('open', { default: true })
-
-const props = withDefaults(defineProps<{
+export type NcDialogProps = {
 	/** Name of the dialog (the heading) */
 	name: string
 
 	/** Text of the dialog */
 	message?: string
+
+	/** Whether the dialog should be shown */
+	open?: boolean
 
 	/** Additional elements to add to the focus trap */
 	additionalTrapElements?: Array<string | HTMLElement>
@@ -317,26 +315,21 @@ const props = withDefaults(defineProps<{
 	 * ```
 	 */
 	navigationClasses?: VueClassType
-}>(), {
-	additionalTrapElements: () => [],
-	buttons: () => [],
-	container: 'body',
-	contentClasses: '',
-	dialogClasses: '',
-	message: '',
-	navigationAriaLabel: '',
-	navigationAriaLabelledby: '',
-	navigationClasses: '',
-	size: 'small',
-})
+}
 
-const emit = defineEmits<{
+export type NcDialogEmits = {
 	/**
 	 * Emitted when the dialog is closing, so the out transition did not finish yet.
 	 *
 	 * @param result - The result of the button callback (`undefined` if closing because of clicking the 'close'-button)
 	 */
 	closing: [result?: unknown]
+	/**
+	 * Emitted when the open state is changed.
+	 *
+	 * @param value - The updated value
+	 */
+	'update:open': [value: boolean]
 	/**
 	 * Forwarded HTMLFormElement reset event (only if `is-form` is set).
 	 *
@@ -349,13 +342,33 @@ const emit = defineEmits<{
 	 * @param event - The submit event
 	 */
 	submit: [event: SubmitEvent]
-}>()
+}
 
-const slots = defineSlots<{
+export type NcDialogSlots = {
 	actions?: Slot
 	default?: Slot
 	navigation?: Slot
-}>()
+}
+
+const props = withDefaults(defineProps<NcDialogProps>(), {
+	open: true,
+	additionalTrapElements: () => [],
+	buttons: () => [],
+	container: 'body',
+	contentClasses: '',
+	dialogClasses: '',
+	message: '',
+	navigationAriaLabel: '',
+	navigationAriaLabelledby: '',
+	navigationClasses: '',
+	size: 'small',
+})
+
+const emit = defineEmits<NcDialogEmits>()
+
+const slots = defineSlots<NcDialogSlots>()
+
+const open = useModel(props, 'open')
 
 /**
  * The dialog wrapper element
