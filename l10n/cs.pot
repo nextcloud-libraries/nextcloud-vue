@@ -204,6 +204,7 @@ msgstr "Jídlo a pití"
 msgid "Frequently used"
 msgstr "Často používané"
 
+#. TRANSLATORS: This refers to global timezones in the timezone picker
 msgid "Global"
 msgstr "Globální"
 
@@ -363,6 +364,9 @@ msgstr "Vybrat"
 
 msgid "Pick an emoji"
 msgstr "Vybrat emoji"
+
+msgid "Please choose a date"
+msgstr "Zvolte datum"
 
 msgid "Previous"
 msgstr "Předchozí"
