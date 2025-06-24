@@ -214,7 +214,7 @@ export default {
 import type { ComponentProps, VueClassType } from '../../utils/VueTypes.ts'
 
 import { useElementSize } from '@vueuse/core'
-import { computed, ref, useTemplateRef, type Slot } from 'vue'
+import { computed, ref, useModel, useTemplateRef, type Slot } from 'vue'
 
 import NcModal from '../NcModal/index.js'
 import NcDialogButton from '../NcDialogButton/index.ts'
@@ -223,12 +223,15 @@ import { createElementId } from '../../utils/createElementId.ts'
 
 type NcDialogButtonProps = ComponentProps<typeof NcDialogButton>
 
-const props = withDefaults(defineProps<{
+export type NcDialogProps = {
 	/** Name of the dialog (the heading) */
 	name: string
 
 	/** Text of the dialog */
 	message?: string
+
+	/** Whether the dialog is shown */
+	open?: boolean
 
 	/** Additional elements to add to the focus trap */
 	additionalTrapElements?: Array<string | HTMLElement>
@@ -312,7 +315,10 @@ const props = withDefaults(defineProps<{
 	 * ```
 	 */
 	navigationClasses?: VueClassType
-}>(), {
+}
+
+const props = withDefaults(defineProps<NcDialogProps>(), {
+	open: true,
 	additionalTrapElements: () => [],
 	buttons: () => [],
 	container: 'body',
@@ -328,9 +334,15 @@ const props = withDefaults(defineProps<{
 /**
  * Whether the dialog should be shown
  */
-const open = defineModel<boolean>('open', { default: true })
+const open = useModel(props, 'open')
 
-const emit = defineEmits<{
+export type NcDialogEmits = {
+	/**
+	 * Emitted when the open state is changed.
+	 *
+	 * @param value - The updated value
+	 */
+	'update:open': [value: boolean]
 	/**
 	 * Emitted when the dialog is closing, so the out transition did not finish yet.
 	 *
@@ -349,7 +361,9 @@ const emit = defineEmits<{
 	 * @param event - The submit event
 	 */
 	submit: [event: SubmitEvent]
-}>()
+}
+
+const emit = defineEmits<NcDialogEmits>()
 
 const slots = defineSlots<{
 	actions?: Slot
