@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Joas Schilling, 2025
-# Mario Siegmann <mario_siegmann@web.de>, 2025
 # Martin Wilichowski, 2025
+# Mario Siegmann <mario_siegmann@web.de>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Martin Wilichowski, 2025\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2025\n"
 "Language-Team: German (https://app.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -365,6 +365,9 @@ msgstr "Auswählen"
 
 msgid "Pick an emoji"
 msgstr "Ein Emoji auswählen"
+
+msgid "Please choose a date"
+msgstr "Bitte ein Datum wählen"
 
 msgid "Previous"
 msgstr "Vorherige"
