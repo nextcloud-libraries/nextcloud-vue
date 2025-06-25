@@ -327,6 +327,15 @@ msgstr ""
 msgid "Pick an emoji"
 msgstr ""
 
+msgid "Pick file"
+msgstr ""
+
+msgid "Pick files"
+msgstr ""
+
+msgid "Pick folder"
+msgstr ""
+
 msgid "Please select a time zone:"
 msgstr ""
 
@@ -457,6 +466,18 @@ msgid "Unable to search the group"
 msgstr ""
 
 msgid "Undo changes"
+msgstr ""
+
+msgid "Upload file"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload folder"
+msgstr ""
+
+msgid "Uploading …"
 msgstr ""
 
 msgid "User status: {status}"
