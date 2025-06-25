@@ -950,9 +950,14 @@ export default {
 		 */
 		showTribute(trigger) {
 			this.focus()
-			const index = this.tribute.collection.findIndex(collection => collection.trigger === trigger)
-			this.tribute.showMenuForCollection(this.$refs.contenteditable, index)
-			this.updateValue(this.$refs.contenteditable.innerHTML)
+			// For an unknown reason in Vue 3 calling `tribute.showMenuForCollection` immediately after `contenteditable.focus()` 
+			// results in the wrong positioning.
+			// Waiting one animation frame for focusing fixes the issue.
+			requestAnimationFrame(() => {
+				const index = this.tribute.collection.findIndex(collection => collection.trigger === trigger)
+				this.tribute.showMenuForCollection(this.$refs.contenteditable, index)
+				this.updateValue(this.$refs.contenteditable.innerHTML)
+			})
 			document.addEventListener('click', this.hideTribute, true)
 		},
 
