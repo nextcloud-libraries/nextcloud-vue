@@ -131,6 +131,8 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
   - The `closing` and `opening` events were removed.
     They are directly emitted when the sidebar was opened when using `v-if`
     and also just duplicated the state of the `open` prop [\#5606](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5606)
+- `NcColorPicker`
+  - The `update:open` event is removed in favor of the already available `close` event.
 - `NcCounterBubble`
   - The default slot was removed
   - The `count` prop is now required [\#5997](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5997)
@@ -317,6 +319,9 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 The value `arrowRight` of the property `trailingButtonIcon` is deprecated and will be removed in a future version.
 It is replaced by `arrowEnd` which reflects that the directions depends on the text directions (LTR vs RTL).
 
+#### `NcColorPicker`
+The `update:open` event is deprecated, instead just use the `close` event which is emitted at the same time.
+
 #### Event names
 Custom events now have a consistent naming without custom scoping of the events.
 Thus following events are deprecated in favor of a new consistent event name:
@@ -325,7 +330,6 @@ Thus following events are deprecated in favor of a new consistent event name:
 ---------------|-----------------|----------------
 `NcAppContent` |   `resize:list` |   `resize-list`
   `NcRichText` | `interact:todo` | `interact-todo`
-
 
 ## [v8.27.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.27.0) (2025-05-28)
 

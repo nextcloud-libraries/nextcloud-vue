@@ -240,7 +240,7 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 </template>
 
 <script>
-import NcColorPicker from '../NcColorPicker/index.js'
+import NcColorPicker from '../NcColorPicker/index.ts'
 import NcDateTimePicker from '../NcDateTimePicker/index.js'
 import NcDateTimePickerNative from '../NcDateTimePickerNative/index.ts'
 import NcPasswordField from '../NcPasswordField/index.ts'
