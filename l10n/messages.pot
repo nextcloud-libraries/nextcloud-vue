@@ -459,6 +459,18 @@ msgstr ""
 msgid "Undo changes"
 msgstr ""
 
+msgid "Upload file"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload folder"
+msgstr ""
+
+msgid "Uploading …"
+msgstr ""
+
 msgid "User status: {status}"
 msgstr ""
 
