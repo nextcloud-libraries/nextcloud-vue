@@ -7,8 +7,8 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0-rc.2) (unreleased)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.24.0...v9.0.0-rc.2)
+## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0-rc.3) (unreleased)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.27.1...v9.0.0-rc.3)
 
 ### 💥 Breaking Changes
 * The package now uses Vue 3 instead of Vue 2.7
@@ -169,7 +169,7 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * feat(dialogs/spawnDialogs)!: do not toRaw the result  [#6760](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6760) ([ShGKme](https://github.com/ShGKme))
 * feat(dialogs/spawnDialog): return promise with the result [#6758](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6758) ([ShGKme](https://github.com/ShGKme))
 * feat(dialogs/spawnDialog)!: replace onClose callback with Promise [#6759](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6759) ([ShGKme](https://github.com/ShGKme))
-* feat(NcChip): allow to define the actions container [#6813](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6813) ([susnux](https://github.com/susnux)) 
+* feat(NcChip): allow to define the actions container [#6813](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6813) ([susnux](https://github.com/susnux))
 * feat(NcActionButton): introduce description prop [#6932](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6932) ([Antreesy](https://github.com/Antreesy))
 
 ### 🐛 Fixed bugs
@@ -215,6 +215,22 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * fix(NcAppContent): adapt to new emitted event object with splitpanes ^4.0.0 [#6950](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6950) ([wofferl](https://github.com/wofferl))
 * fix(NcActionInput): register used NcColorPicker component [#6956](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6956) ([susnux](https://github.com/susnux))
 * fix(NcSelectUsers): use correct type for model and add tests for model-value handling [#6957](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6957) ([susnux](https://github.com/susnux))
+* fix(NcAppNavigationToggle): restore button design and remove wrong attribute [#6984](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6984) ([susnux](https://github.com/susnux))
+* fix(NcInputField): unresolved component and state color [#6994](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6994) ([susnux](https://github.com/susnux))
+* fix(NcAppNavigationItem): multi level padding [#6861](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6861) ([GretaD](https://github.com/GretaD))
+* fix(NcTextField)!: make trailing button icon for confirmation also work on RTL [#6993](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6993) ([susnux](https://github.com/susnux))
+* fix(NcAppContent): incorrect page title from a different `core.apps` format in Nextcloud 30 [#7010](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7010) ([julien-nc](https://github.com/julien-nc))
+* fix(NcButton): correctly apply reverse padding [#7029](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7029) ([raimund-schluessler](https://github.com/raimund-schluessler))
+* fix(NcAvatar): update 'hasStatus' flag if changed [#7033](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7033) ([Antreesy](https://github.com/Antreesy))
+* fix(NcCheckboxRadioSwitch): align icons with the first row of label [#7043](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7043) ([Antreesy](https://github.com/Antreesy))
+* fix(actions): use pointer cursor for action button text [#7042](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7042) ([ChristophWurst](https://github.com/ChristophWurst))
+* fix(NcAvatar): migrate from deprecated `showUserStatus` prop [#7053](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7053) ([Antreesy](https://github.com/Antreesy))
+* fix(NcAppNavigationSettings): adjust style and padding of button [#7018](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7018) ([raimund-schluessler](https://github.com/raimund-schluessler))
+* fix(NcRichText): always render code blocks in LTR direction [#7056](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7056) ([Antreesy](https://github.com/Antreesy))
+* fix(NcHeaderMenu): bring caret back [#7071](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7071) ([ShGKme](https://github.com/ShGKme))
+* fix(NcChip): adjust default prop declaration [#7074](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7074) ([Antreesy](https://github.com/Antreesy))
+* fix(NcPopover): component crash when unmounted shown [#7077](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7077) ([Antreesy](https://github.com/Antreesy))
+* fix(NcListItem): let `active` prop take higher priority [#7086](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7086) ([DorraJaouad](https://github.com/DorraJaouad))
 
 ### Changed
 * refactor: replace boolean properties with `default: true` with `default: false` [#6653](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6653) ([susnux](https://github.com/susnux))
@@ -311,6 +327,22 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * refactor(NcIconSvgWrapper): migrate component to Typescript and script-setup [#6967](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6967) ([susnux](https://github.com/susnux))
 * refactor(NcCounterBubble): migrate component to Typescript and script-setup [#6970](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6970) ([susnux](https://github.com/susnux))
 * refactor: use NcIconSvgWrapper with directional property where needed [#6767](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6767) ([susnux](https://github.com/susnux))
+* refactor(NcTextArea): migrate component to Typescript and script-setup [#6986](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6986) ([susnux](https://github.com/susnux))
+* refactor(NcNoteCard): migrate component to Typescript and script-setup [#6985](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6985) ([susnux](https://github.com/susnux))
+* refactor(NcDialog): migrate to script-setup and use Typescript for module [#6968](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6968) ([susnux](https://github.com/susnux))
+* refactor: migrate Nc*Field to Typescript [#6951](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6951) ([susnux](https://github.com/susnux))
+* refactor(NcUserBubble): migrate components to Typescript [#6946](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6946) ([susnux](https://github.com/susnux))
+* refactor(NcHeaderMenu): export as Typescript module and reorder script tags [#7000](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7000) ([susnux](https://github.com/susnux))
+* fix(NcAppNavigationSettings): button left full width [#6999](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6999) ([raimund-schluessler](https://github.com/raimund-schluessler))
+* refactor: migrate NcAppNavigationToggle / NcAppNavigationSpacer to Typescript [#7004](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7004) ([susnux](https://github.com/susnux))
+* refactor(NcContent): migrate to Typescript and script-setup [#7003](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7003) ([susnux](https://github.com/susnux))
+* chore: adjust vitest config to be consistent on CI and locally [#7065](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7065) ([susnux](https://github.com/susnux))
+* refactor(NcLoadingIcon): migrate component to Typescript and script-setup [#7076](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7076) ([susnux](https://github.com/susnux))
+* refactor(NcDateTimePickerNative): migrate component to Typescript and script-setup [#7075](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7075) ([susnux](https://github.com/susnux))
+* refactor: deprecate events not comply with Vue event naming rules [#7058](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7058) ([susnux](https://github.com/susnux))
+* fix(NcModal): correctly handle when trying to activate non-existing focus-trap [#7084](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7084) ([Antreesy](https://github.com/Antreesy))
+* refactor(NcHighlight): migrate component to Typescript [#7073](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7073) ([susnux](https://github.com/susnux))
+* refactor(NcColorPicker): migrate component to Typescript [#7080](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7080) ([susnux](https://github.com/susnux))
 
 ## [v8.27.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.27.1) (UNRELEASED)
 
