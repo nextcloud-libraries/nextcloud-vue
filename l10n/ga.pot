@@ -205,6 +205,7 @@ msgstr "Bia & Deoch"
 msgid "Frequently used"
 msgstr "Úsáidtear go minic"
 
+#. TRANSLATORS: This refers to global timezones in the timezone picker
 msgid "Global"
 msgstr "Domhanda"
 
@@ -365,6 +366,9 @@ msgstr "Pioc"
 
 msgid "Pick an emoji"
 msgstr "Roghnaigh emoji"
+
+msgid "Please choose a date"
+msgstr "Roghnaigh dáta le do thoil"
 
 msgid "Previous"
 msgstr "Roimhe Seo"
