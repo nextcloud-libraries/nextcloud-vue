@@ -436,8 +436,8 @@ td.row-size {
 import type { Slot } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 
-import { computed, inject, toRef } from 'vue'
-import { routerKey, useLink } from 'vue-router'
+import { computed, inject } from 'vue'
+import { routerKey } from 'vue-router'
 
 export type ButtonAlignment = 'start'
 	| 'start-reverse'
@@ -603,105 +603,94 @@ defineSlots<{
 	icon?: Slot
 }>()
 
-// Make sure the component also works if the app does not use any router
-// And if the app uses a router we need to make sure a `to` prop was passed to use to router
-const routerLink = computed(() => (
-	inject(routerKey, null) !== null && props.to
-		? useLink({ to: toRef(() => props.to!) })
-		: undefined
-))
+const hasVueRouterContext = inject(routerKey, null) !== null
 
-/**
- * If this is a link (<a>) element
- */
-const isLink = computed(() => props.href)
+const tag = computed(() => {
+	// TODO: should we warn if props.to is provided but there is no vue-router?
+	if (hasVueRouterContext && props.to) {
+		// Note: RouterLink is used as globally registered component (by name) and not imported intentionally
+		// to use injected component from the app and not bundle it to the button
+		return 'RouterLink'
+	} else if (props.href) {
+		return 'a'
+	} else {
+		return 'button'
+	}
+})
 
-/**
- * If the button has a pressed state (only if not a link)
- */
-const hasPressedState = computed(() => !isLink.value && typeof props.pressed === 'boolean')
+const hasPressedState = computed(() => tag.value === 'button' && typeof props.pressed === 'boolean')
 
-/**
- * The real variant to be used for the button, enforces `primary` for pressed state and, if stateful button, any other type for not pressed state
- * Otherwise the type property is used.
- */
-const realVariant = computed(() => {
-	// Force *primary* when pressed
+const variantWithPressed = computed(() => {
+	// Pressed toggle button forced to be primary
 	if (props.pressed) {
 		return 'primary'
 	}
-	// If not pressed but button is configured as stateful button then the type must not be primary
+	// Non-pressed toggle button may use passed variant but it cannot be primary
 	if (props.pressed === false && props.variant === 'primary') {
 		return 'secondary'
 	}
+
 	return props.variant
 })
 
-/**
- * The flexbox alignment of the button content
- */
 const flexAlignment = computed(() => props.alignment.split('-')[0])
-
-/**
- * If the button content should be reversed (icon on the end)
- */
 const isReverseAligned = computed(() => props.alignment.includes('-'))
 
 const getNcPopoverTriggerAttrs = inject<() => Record<string, string|undefined>>('NcPopover:trigger:attrs', () => ({}), false)
 const ncPopoverTriggerAttrs = computed(() => getNcPopoverTriggerAttrs())
 
-/**
- * Attributes to pass to the <a> element
- */
-const linkAttrs = computed(() => ({
-	role: 'button',
-	href: props.href || '#',
-	target: props.target,
-	rel: 'nofollow noreferrer noopener',
-	download: props.download || null,
-}))
+const attrs = computed(() => {
+	if (tag.value === 'RouterLink') {
+		return {
+			to: props.to,
+			activeClass: 'active',
+		}
+	} else if (tag.value === 'a') {
+		return {
+			href: props.href || '#',
+			target: props.target,
+			rel: 'nofollow noreferrer noopener',
+			download: props.download || undefined,
+		}
+	} else if (tag.value === 'button') {
+		return {
+			...ncPopoverTriggerAttrs.value,
+			'aria-pressed': props.pressed,
+			type: props.type,
+			disabled: props.disabled,
+		}
+	}
 
-/**
- * Attribute to pass to the <button> element
- */
-const buttonAttrs = computed(() => ({
-	'aria-pressed': hasPressedState.value ? String(props.pressed) : undefined,
-	type: props.type,
-}))
+	return undefined
+})
 
 /**
  * Handle the click on the link / button
- * @param event The mouse click event
+ *
+ * @param event - Mouse click event
  */
 function onClick(event: MouseEvent) {
 	if (hasPressedState.value) {
 		emit('update:pressed', !props.pressed)
 	}
-	// We have to both navigate and emit the click event
 	emit('click', event)
-	routerLink.value?.navigate(event)
 }
 </script>
 
 <template>
-	<component :is="isLink ? 'a' : 'button'"
+	<component :is="tag"
 		class="button-vue"
 		:class="[
 			`button-vue--size-${size}`,
 			{
-				[`button-vue--${realVariant}`]: realVariant,
+				[`button-vue--${variantWithPressed}`]: variantWithPressed,
 				'button-vue--wide': wide,
 				[`button-vue--${flexAlignment}`]: flexAlignment !== 'center',
 				'button-vue--reverse': isReverseAligned,
-				active: routerLink?.isActive,
 			},
 		]"
-		:disabled
 		:aria-label
-		v-bind="{
-			...ncPopoverTriggerAttrs,
-			...(isLink ? linkAttrs : buttonAttrs),
-		}"
+		v-bind="attrs"
 		@click="onClick">
 		<span class="button-vue__wrapper">
 			<span class="button-vue__icon">
