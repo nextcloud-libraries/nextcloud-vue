@@ -363,6 +363,9 @@ msgstr "Seçin"
 msgid "Pick an emoji"
 msgstr "Bir emoji seçin"
 
+msgid "Please choose a date"
+msgstr "Lütfen bir tarih seçin"
+
 msgid "Previous"
 msgstr "Önceki"
 
