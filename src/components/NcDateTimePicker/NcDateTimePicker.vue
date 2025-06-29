@@ -557,7 +557,7 @@ const ariaLabels = computed(() => ({
 </script>
 
 <template>
-	<span class="vue-date-time-picker-wrapper">
+	<span class="vue-date-time-picker__wrapper">
 		<VueDatePicker :aria-labels
 			:auto-apply="!confirm"
 			class="vue-date-time-picker"
@@ -608,7 +608,7 @@ const ariaLabels = computed(() => ({
 			</template>
 		</VueDatePicker>
 		<Teleport to="body" :disabled="!appendToBody">
-			<div ref="target" class="vue-date-time-picker-wrapper" />
+			<div ref="target" class="vue-date-time-picker__wrapper" />
 		</Teleport>
 	</span>
 </template>
@@ -616,7 +616,7 @@ const ariaLabels = computed(() => ({
 <style scoped lang="scss">
 @use "sass:meta";
 
-.vue-date-time-picker-wrapper {
+.vue-date-time-picker__wrapper {
 	// This is under :root in @vuepic/vue-datepicker/dist/main.css, so importing it scoped won't work
 	--dp-common-transition: all 0.1s ease-in;
 	--dp-menu-padding: 6px 8px;
