@@ -193,6 +193,7 @@ import { computed } from 'vue'
 import { t } from '../../l10n.js'
 
 import VueDatePicker from '@vuepic/vue-datepicker'
+import NcButton from '../NcButton/index.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcTimezonePicker from '../NcTimezonePicker/NcTimezonePicker.vue'
 
@@ -261,7 +262,7 @@ const props = withDefaults(defineProps<{
 	 *
 	 * When using the range picker then an array containing the start and end date needs to be passed.
 	 */
-	modelValue?: Date | [Date, Date]
+	modelValue?: Date | [Date, Date] | null
 
 	/**
 	 * Optional custom placeholder for the input box.
@@ -301,7 +302,7 @@ const props = withDefaults(defineProps<{
 	locale: getCanonicalLocale(),
 	minuteStep: 10,
 	timezoneId: 'UTC',
-	modelValue: undefined,
+	modelValue: null,
 	// set by fallbackPlaceholder
 	placeholder: undefined,
 	type: 'date',
@@ -333,7 +334,7 @@ const emit = defineEmits<{
  * This has show as beeing a pain in the past when we need to switch underlying libraries.
  */
 const value = computed<LibraryModelValue>(() => {
-	if (props.modelValue === undefined && props.clearable) {
+	if (props.modelValue === null && props.clearable) {
 		return null
 	}
 
@@ -579,8 +580,13 @@ const ariaLabels = computed(() => ({
 		<template #input-icon>
 			<NcIconSvgWrapper :path="mdiCalendarBlank" :size="20" />
 		</template>
-		<template #clear-icon>
-			<NcIconSvgWrapper inline :path="mdiClose" :size="20" />
+		<template #clear-icon="{ clear }">
+			<NcButton variant="tertiary-no-background"
+				@click="clear">
+				<template #icon>
+					<NcIconSvgWrapper inline :path="mdiClose" :size="20" />
+				</template>
+			</NcButton>
 		</template>
 		<template #clock-icon>
 			<NcIconSvgWrapper inline :path="mdiClock" :size="20" />
