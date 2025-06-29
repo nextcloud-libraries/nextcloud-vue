@@ -702,9 +702,42 @@ const ariaLabels = computed(() => ({
 	:deep(input) {
 		padding-inline-start: var(--dp-input-icon-padding) !important;
 	}
-	:deep(.dp__btn) {
-		padding: calc((var(--default-clickable-area) - 20px) / 2);
+	:deep(.dp__input) {
+		margin: 3px;
+		margin-inline-start: 0;
+		padding: 0 12px;
+		font-size: var(--default-font-size);
+		background-color: var(--color-main-background);
+		color: var(--color-main-text);
+		border: 2px solid var(--color-border-maxcontrast);
+		outline: none;
+		border-radius: var(--border-radius-large);
+		text-overflow: ellipsis;
+		cursor: pointer;
+	}
+	:deep(.dp__btn),
+	:deep(.dp--time-overlay-btn),
+	:deep(.dp__action_button) {
 		margin: 0;
+		font-weight: bold;
+		border-radius: var(--border-radius-element);
+		padding: calc((var(--default-clickable-area) - 1lh) / 2) calc(3 * var(--default-grid-baseline));
+		font-size: var(--default-font-size);
+		width: auto;
+		min-height: var(--default-clickable-area);
+		cursor: pointer;
+		box-sizing: border-box;
+		color: var(--color-primary-element-light-text);
+		background-color: var(--color-primary-element-light);
+		border: none;
+	}
+	:deep(.dp--time-overlay-btn),
+	:deep(.dp__action_button) {
+		margin: 3px;
+		margin-inline-start: 0;
+	}
+	:deep(.dp__inc_dec_button) {
+		padding: calc((var(--default-clickable-area) - 20px) / 2);
 	}
 	:deep(.dp__inner_nav) {
 		height: fit-content;
