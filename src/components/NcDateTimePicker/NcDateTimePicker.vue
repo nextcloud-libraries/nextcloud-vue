@@ -558,7 +558,7 @@ const ariaLabels = computed(() => ({
 </script>
 
 <template>
-	<div class="vue-date-time-picker-wrapper">
+	<div class="vue-date-time-picker__wrapper">
 		<VueDatePicker :aria-labels
 			:auto-apply="!confirm"
 			class="vue-date-time-picker"
@@ -615,7 +615,7 @@ const ariaLabels = computed(() => ({
 			</template>
 		</VueDatePicker>
 		<Teleport to="body" :disabled="!appendToBody">
-			<div ref="target" class="vue-date-time-picker-wrapper" />
+			<div ref="target" class="vue-date-time-picker__wrapper" />
 		</Teleport>
 	</div>
 </template>
@@ -623,7 +623,7 @@ const ariaLabels = computed(() => ({
 <style scoped lang="scss">
 @use "sass:meta";
 
-.vue-date-time-picker-wrapper {
+.vue-date-time-picker__wrapper {
 	// This is under :root in @vuepic/vue-datepicker/dist/main.css, so importing it scoped won't work
 	--dp-common-transition: all 0.1s ease-in;
 	--dp-menu-padding: 6px 8px;
@@ -709,9 +709,42 @@ const ariaLabels = computed(() => ({
 	:deep(input) {
 		padding-inline-start: var(--dp-input-icon-padding) !important;
 	}
-	:deep(.dp__btn) {
-		padding: calc((var(--default-clickable-area) - 20px) / 2);
+	:deep(.dp__input) {
+		margin: 3px;
+		margin-inline-start: 0;
+		padding: 0 12px;
+		font-size: var(--default-font-size);
+		background-color: var(--color-main-background);
+		color: var(--color-main-text);
+		border: 2px solid var(--color-border-maxcontrast);
+		outline: none;
+		border-radius: var(--border-radius-large);
+		text-overflow: ellipsis;
+		cursor: pointer;
+	}
+	:deep(.dp__btn),
+	:deep(.dp--time-overlay-btn),
+	:deep(.dp__action_button) {
 		margin: 0;
+		font-weight: bold;
+		border-radius: var(--border-radius-element);
+		padding: calc((var(--default-clickable-area) - 1lh) / 2) calc(3 * var(--default-grid-baseline));
+		font-size: var(--default-font-size);
+		width: auto;
+		min-height: var(--default-clickable-area);
+		cursor: pointer;
+		box-sizing: border-box;
+		color: var(--color-primary-element-light-text);
+		background-color: var(--color-primary-element-light);
+		border: none;
+	}
+	:deep(.dp--time-overlay-btn),
+	:deep(.dp__action_button) {
+		margin: 3px;
+		margin-inline-start: 0;
+	}
+	:deep(.dp__inc_dec_button) {
+		padding: calc((var(--default-clickable-area) - 20px) / 2);
 	}
 	:deep(.dp__inner_nav) {
 		height: fit-content;
