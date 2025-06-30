@@ -8,7 +8,8 @@ export {
 	renderWidget,
 	destroyWidget,
 	isWidgetRegistered,
-} from './../reference/widgets.ts'
+} from '../reference/widgets.ts'
+
 export {
 	NcCustomPickerRenderResult,
 	registerCustomPickerElement,
@@ -16,4 +17,4 @@ export {
 	destroyCustomPickerElement,
 	isCustomPickerElementRegistered,
 	getCustomPickerElementSize,
-} from './../reference/customPickerElements.js'
+} from '../reference/customPickerElements.js'
