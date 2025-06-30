@@ -3,54 +3,45 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-interface WidgetRenderProperties {
+import logger from '../../utils/logger.ts'
+
+export interface ReferenceWidgetRenderProperties {
 	richObjectType: string;
 	richObject: object;
 	accessible: boolean;
 	interactive: boolean;
 }
 
-type widgetRenderCallback = (el: HTMLElement, properties: WidgetRenderProperties) => void;
-type widgetDestroyCallback = (el: HTMLElement) => void;
+type ReferenceWidgetRenderCallback = (el: HTMLElement, properties: ReferenceWidgetRenderProperties) => void;
+type ReferenceWidgetDestroyCallback = (el: HTMLElement) => void;
 
-interface WidgetProps {
+export interface ReferenceWidgetProps {
 	id: string;
 	hasInteractiveView: boolean;
 	fullWidth: boolean;
-	callback: widgetRenderCallback;
-	onDestroy: widgetDestroyCallback;
+	callback: ReferenceWidgetRenderCallback;
+	onDestroy: ReferenceWidgetDestroyCallback;
 }
 
-interface WidgetPropsOptional {
-	hasInteractiveView?: boolean;
-	fullWidth?: boolean;
+window._vue_richtext_widgets ??= {}
+window._registerWidget ??= (id: string, callback: ReferenceWidgetRenderCallback, onDestroy: ReferenceWidgetDestroyCallback, props: Partial<ReferenceWidgetProps>) => {
+	registerWidget(id, callback, onDestroy, props)
 }
 
-declare global {
-	interface Window {
-		_vue_richtext_widgets: Record<string, WidgetProps>;
-		_registerWidget: (id: string, callback: widgetRenderCallback, onDestroy: widgetDestroyCallback, props: WidgetPropsOptional) => void;
-	}
-}
-
-if (!window._vue_richtext_widgets) {
-	window._vue_richtext_widgets = {}
-}
-
-const isWidgetRegistered = (id: string) => {
-	return !!window._vue_richtext_widgets[id]
-}
-
-const hasInteractiveView = (id: string) => {
-	return !!window._vue_richtext_widgets[id]?.hasInteractiveView
-}
-
-export const hasFullWidth = (id: string) => {
-	return !!window._vue_richtext_widgets[id]?.fullWidth
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const registerWidget = (id: string, callback: widgetRenderCallback, onDestroy = (el: HTMLElement) => {}, props: WidgetPropsOptional) => {
+/**
+ * Register a new reference widget
+ *
+ * @param id - Id tof the widget
+ * @param callback - Render callback
+ * @param onDestroy - Cleanup callback
+ * @param props - Widget props
+ */
+export function registerWidget(
+	id: string,
+	callback: ReferenceWidgetRenderCallback,
+	onDestroy: ReferenceWidgetDestroyCallback = () => {},
+	props?: Partial<ReferenceWidgetProps>,
+) {
 	const propsWithDefaults = {
 		hasInteractiveView: true,
 		fullWidth: false,
@@ -58,7 +49,7 @@ const registerWidget = (id: string, callback: widgetRenderCallback, onDestroy = 
 	}
 
 	if (window._vue_richtext_widgets[id]) {
-		console.error('Widget for id ' + id + ' already registered')
+		logger.error(`[ReferencePicker]: Widget for id ${id} already registered`)
 		return
 	}
 
@@ -70,7 +61,14 @@ const registerWidget = (id: string, callback: widgetRenderCallback, onDestroy = 
 	}
 }
 
-const renderWidget = (el: HTMLElement, { richObjectType, richObject, accessible, interactive }) => {
+/**
+ * Render a reference widget to a given HTML element.
+ *
+ * @param el - The element to render widget to
+ * @param options - render options
+ */
+export function renderWidget(el: HTMLElement, options: ReferenceWidgetRenderProperties) {
+	const { richObjectType, richObject, accessible, interactive } = options
 	if (richObjectType === 'open-graph') {
 		return
 	}
@@ -83,7 +81,13 @@ const renderWidget = (el: HTMLElement, { richObjectType, richObject, accessible,
 	window._vue_richtext_widgets[richObjectType].callback(el, { richObjectType, richObject, accessible, interactive })
 }
 
-const destroyWidget = (richObjectType: string, el: HTMLElement) => {
+/**
+ * Call the cleanup callback of the reference widget for given object type.
+ *
+ * @param richObjectType - The object type
+ * @param el - The element
+ */
+export function destroyWidget(richObjectType: string, el: HTMLElement) {
 	if (richObjectType === 'open-graph') {
 		return
 	}
@@ -95,14 +99,28 @@ const destroyWidget = (richObjectType: string, el: HTMLElement) => {
 	window._vue_richtext_widgets[richObjectType].onDestroy(el)
 }
 
-window._registerWidget = (id: string, callback: widgetRenderCallback, onDestroy: widgetDestroyCallback, props: WidgetPropsOptional) => {
-	registerWidget(id, callback, onDestroy, props)
+/**
+ * Check if a widget with the give id is registered.
+ * @param id - Id of the widget
+ */
+export function isWidgetRegistered(id: string): boolean {
+	return !!window._vue_richtext_widgets[id]
 }
 
-export {
-	registerWidget,
-	renderWidget,
-	destroyWidget,
-	isWidgetRegistered,
-	hasInteractiveView,
+/**
+ * Check if the given widget has an interactive view.
+ *
+ * @param id - Id of the widget
+ */
+export function hasInteractiveView(id: string): boolean {
+	return !!window._vue_richtext_widgets[id]?.hasInteractiveView
+}
+
+/**
+ * Check if the widget supports full width.
+ *
+ * @param id - Id of the widget
+ */
+export function hasFullWidth(id: string): boolean {
+	return !!window._vue_richtext_widgets[id]?.fullWidth
 }

@@ -8,7 +8,11 @@
 </template>
 
 <script>
-import { renderCustomPickerElement, isCustomPickerElementRegistered, destroyCustomPickerElement } from './../../../functions/reference/customPickerElements.js'
+import {
+	renderCustomPickerElement,
+	isCustomPickerElementRegistered,
+	destroyCustomPickerElement,
+} from '../../../functions/reference/customPickerElements.ts'
 
 export default {
 	name: 'NcCustomPickerElement',
