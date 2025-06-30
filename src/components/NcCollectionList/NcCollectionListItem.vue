@@ -94,7 +94,10 @@ export default {
 		},
 	},
 
-	emits: ['remove-resource', 'rename-collection'],
+	emits: [
+		'removeResource',
+		'renameCollection',
+	],
 
 	data() {
 		return {
@@ -152,7 +155,7 @@ export default {
 		},
 
 		removeResource(collection, resource) {
-			this.$emit('remove-resource', {
+			this.$emit('removeResource', {
 				collectionId: collection.id,
 				resourceType: resource.type,
 				resourceId: resource.id,
@@ -165,7 +168,7 @@ export default {
 
 		renameCollection() {
 			if (this.newName) {
-				this.$emit('rename-collection', {
+				this.$emit('renameCollection', {
 					collectionId: this.collection.id,
 					name: this.newName,
 				})

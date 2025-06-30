@@ -128,7 +128,7 @@ export default {
 		},
 	},
 
-	emits: ['new-item'],
+	emits: ['newItem'],
 
 	data() {
 		return {
@@ -150,7 +150,7 @@ export default {
 			this.newItemActive = false
 		},
 		handleNewItemDone() {
-			this.$emit('new-item', this.newItemValue)
+			this.$emit('newItem', this.newItemValue)
 			this.newItemValue = ''
 			this.newItemActive = false
 		},

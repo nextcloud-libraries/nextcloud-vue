@@ -392,8 +392,7 @@ export default {
 		},
 	},
 	emits: [
-		'interact-todo',
-		'interact:todo',
+		'interactTodo',
 	],
 
 	data() {
@@ -532,14 +531,8 @@ export default {
 							'onUpdate:modelValue': () => {
 								/**
 								 * Emitted when a todo-list entry was interacted with
-								 *
-								 * @deprecated listen on the `interact-todo` instead
 								 */
-								this.$emit('interact:todo', id)
-								/**
-								 * Emitted when a todo-list entry was interacted with
-								 */
-								this.$emit('interact-todo', id)
+								this.$emit('interactTodo', id)
 							},
 						}, { default: () => labelParts })
 
