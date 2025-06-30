@@ -581,7 +581,8 @@ const ariaLabels = computed(() => ({
 			<NcIconSvgWrapper :path="mdiCalendarBlank" :size="20" />
 		</template>
 		<template #clear-icon="{ clear }">
-			<NcButton variant="tertiary-no-background"
+			<NcButton :aria-label="t('Clear value')"
+				variant="tertiary-no-background"
 				@click="clear">
 				<template #icon>
 					<NcIconSvgWrapper inline :path="mdiClose" :size="20" />
