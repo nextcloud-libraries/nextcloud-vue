@@ -177,8 +177,8 @@ msgstr ""
 "Erro ao obter recursos relacionados. Por favor, entre em contato com o "
 "administrador do sistema se tiver alguma dúvida."
 
-msgid "External documentation for {name}"
-msgstr "Documentação externa para {name}"
+msgid "External documentation"
+msgstr "Documentação externa"
 
 msgid "Failed to add the item to the project"
 msgstr "Falha ao adicionar itens ao projeto"
