@@ -365,6 +365,9 @@ msgstr "Escolher"
 msgid "Pick an emoji"
 msgstr "Escolha um emoji"
 
+msgid "Please choose a date"
+msgstr "Por favor, escolha uma data"
+
 msgid "Previous"
 msgstr "Anterior"
 
