@@ -22,11 +22,22 @@ Highlight a string with html &lt;strong&gt;. Accepts a substring to highlight or
 ```
 </docs>
 
-<script>
-import { h } from 'vue'
+<script lang="ts">
+import type { PropType } from 'vue'
+import type { StringRange } from '../../utils/findRanges.ts'
+
+import { defineComponent, h } from 'vue'
 import { findRanges } from '../../utils/findRanges.ts'
 
-export default {
+/**
+ * Represents one chunk of the input text
+ */
+interface HighlightChunk extends StringRange {
+	highlight: boolean
+	text: string
+}
+
+export default defineComponent({
 	name: 'NcHighlight',
 	props: {
 		/**
@@ -36,6 +47,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * The string to match and highlight
 		 */
@@ -43,11 +55,12 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * The ranges to highlight, takes precedence over the search prop.
 		 */
 		highlight: {
-			type: Array,
+			type: Array as PropType<StringRange[]>,
 			default: () => [],
 		},
 	},
@@ -57,10 +70,10 @@ export default {
 		 * If an array with ranges is provided, we use it. Otherwise
 		 * we calculate it based on the provided substring to highlight.
 		 *
-		 * @return {Array} The array of ranges to highlight
+		 * @return The array of ranges to highlight
 		 */
-		ranges() {
-			let ranges = []
+		ranges(): StringRange[] {
+			let ranges: StringRange[] = []
 			// If the search term and the highlight array is empty, return early with empty array
 			if (!this.search && this.highlight.length === 0) {
 				return ranges
@@ -90,7 +103,7 @@ export default {
 			 * Validate the ranges array to be within the string length
 			 * and discard ranges which are completely out of bonds.
 			 */
-			ranges = ranges.reduce((validRanges, range) => {
+			ranges = ranges.reduce<StringRange[]>((validRanges, range) => {
 				if (range.start < this.text.length && range.end > 0) {
 					validRanges.push({
 						start: (range.start < 0) ? 0 : range.start,
@@ -110,7 +123,7 @@ export default {
 			/**
 			 * Merge overlapping or adjacent ranges
 			 */
-			ranges = ranges.reduce((mergedRanges, range) => {
+			ranges = ranges.reduce<StringRange[]>((mergedRanges, range) => {
 				// If there are no ranges, just add the range
 				if (!mergedRanges.length) {
 					mergedRanges.push(range)
@@ -133,10 +146,8 @@ export default {
 		},
 		/**
 		 * Calculate the different chunks to show based on the ranges to highlight.
-		 *
-		 * @return {Array} The chunks
 		 */
-		chunks() {
+		chunks(): HighlightChunk[] {
 			// If the ranges array is empty, show only one chunk with all text
 			if (this.ranges.length === 0) {
 				return [{
@@ -146,8 +157,9 @@ export default {
 					text: this.text,
 				}]
 			}
+
 			// Calculate the chunks
-			const chunks = []
+			const chunks: HighlightChunk[] = []
 			let currentIndex = 0
 			let currentRange = 0
 			// Iterate over all characters in the text
@@ -191,10 +203,9 @@ export default {
 			return chunks
 		},
 	},
+
 	/**
 	 * The render function to display the component
-	 *
-	 * @return {object} The created VNode
 	 */
 	render() {
 		if (!this.ranges.length) {
@@ -205,5 +216,5 @@ export default {
 			return chunk.highlight ? h('strong', {}, chunk.text) : chunk.text
 		}))
 	},
-}
+})
 </script>

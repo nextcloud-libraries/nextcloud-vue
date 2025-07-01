@@ -9,12 +9,17 @@ import viteConfig from './vite.config'
 
 export default async (env) => {
 	const config = typeof viteConfig === 'function' ? await viteConfig(env) : viteConfig
-	// node-externals conflicts with vitest
-	config.plugins = config.plugins!.filter((plugin) => plugin && (!('name' in plugin) || plugin?.name !== 'node-externals'))
 
 	return defineConfig({
 		...config,
 		test: {
+			// ensure we have a consistent testing environment between local and CI
+			env: {
+				// used by Intl.* API
+				LANG: 'en-US',
+				// used by the Date API
+				TZ: 'UTC',
+			},
 			environment: 'jsdom',
 			setupFiles: resolve(__dirname, './tests/setup.js'),
 			globalSetup: resolve(__dirname, './tests/global-setup.js'),

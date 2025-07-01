@@ -19,6 +19,43 @@
 ```
 </docs>
 
+<script setup lang="ts">
+import { computed } from 'vue'
+
+const props = withDefaults(defineProps<{
+	/**
+	 * The appearance of the loading icon.
+	 * 'auto' adjusts to the Nextcloud color scheme,
+	 * 'light' and 'dark' are static.
+	 */
+	appearance?: 'auto' | 'light' | 'dark'
+
+	/**
+	 * Specify what is loading (the accessible name) if this is not purely for decoration.
+	 */
+	name?: string
+
+	/**
+	 * Specify the size of the loading icon.
+	 */
+	size?: number
+}>(), {
+	appearance: 'auto',
+	name: '',
+	size: 20,
+})
+
+const colors = computed(() => {
+	const colors = ['#777', '#CCC']
+	if (props.appearance === 'light') {
+		return colors
+	} else if (props.appearance === 'dark') {
+		return colors.reverse()
+	}
+	return ['var(--color-loading-light)', 'var(--color-loading-dark)']
+})
+</script>
+
 <template>
 	<span :aria-label="name"
 		role="img"
@@ -33,51 +70,6 @@
 		</svg>
 	</span>
 </template>
-
-<script>
-export default {
-	name: 'NcLoadingIcon',
-	props: {
-		/**
-		 * Specify the size of the loading icon.
-		 */
-		size: {
-			type: Number,
-			default: 20,
-		},
-		/**
-		 * The appearance of the loading icon.
-		 * 'auto' adjusts to the Nextcloud color scheme,
-		 * 'light' and 'dark' are static.
-		 */
-		appearance: {
-			type: String,
-			validator(value) {
-				return ['auto', 'light', 'dark'].includes(value)
-			},
-			default: 'auto',
-		},
-		/**
-		 * Specify what is loading.
-		 */
-		name: {
-			type: String,
-			default: '',
-		},
-	},
-	computed: {
-		colors() {
-			const colors = ['#777', '#CCC']
-			if (this.appearance === 'light') {
-				return colors
-			} else if (this.appearance === 'dark') {
-				return colors.reverse()
-			}
-			return ['var(--color-loading-light)', 'var(--color-loading-dark)']
-		},
-	},
-}
-</script>
 
 <style lang="scss" scoped>
 .loading-icon svg{

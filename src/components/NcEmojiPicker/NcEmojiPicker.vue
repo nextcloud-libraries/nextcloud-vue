@@ -111,7 +111,7 @@ This component allows the user to pick an emoji.
 		v-model:shown="open"
 		:container="container"
 		popup-role="dialog"
-		:focus-trap="false /* Handled manually to remove emoji buttons from TAB sequence */"
+		:no-focus-trap="true /* Handled manually to remove emoji buttons from TAB sequence */"
 		@after-show="afterShow"
 		@after-hide="afterHide">
 		<template #trigger="slotProps">

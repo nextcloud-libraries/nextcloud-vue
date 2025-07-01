@@ -345,6 +345,7 @@ import Timer from '../../utils/Timer.js'
 import Close from 'vue-material-design-icons/Close.vue'
 import Pause from 'vue-material-design-icons/Pause.vue'
 import Play from 'vue-material-design-icons/Play.vue'
+import { useTrapStackControl } from '../../composables/useTrapStackControl.js'
 
 export default {
 	name: 'NcModal',
@@ -552,7 +553,6 @@ export default {
 			slideshowTimeout: null,
 			iconSize: 24,
 			focusTrap: null,
-			externalFocusTrapStack: [],
 			randId: createElementId(),
 			internalShow: true,
 		}
@@ -614,6 +614,10 @@ export default {
 				this.focusTrap.updateContainerElements([contentContainer, ...elements])
 			}
 		},
+	},
+
+	created() {
+		useTrapStackControl(() => this.showModal)
 	},
 
 	beforeMount() {
@@ -825,11 +829,6 @@ export default {
 				setReturnFocus: this.setReturnFocus,
 			}
 
-			// Deactivate other focus traps to unlock modal elements
-			this.externalFocusTrapStack = [...options.trapStack]
-			for (const trap of this.externalFocusTrapStack) {
-				trap.deactivate()
-			}
 			// Init focus trap
 			this.focusTrap = createFocusTrap([contentContainer, ...this.additionalTrapElements], options)
 			this.focusTrap.activate()
@@ -840,10 +839,6 @@ export default {
 			}
 			this.focusTrap?.deactivate()
 			this.focusTrap = null
-			for (const trap of this.externalFocusTrapStack) {
-				trap.activate()
-			}
-			this.externalFocusTrapStack = []
 		},
 
 	},

@@ -401,7 +401,7 @@ import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import Close from 'vue-material-design-icons/Close.vue'
 
 import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
-import NcLoadingIcon from '../NcLoadingIcon/index.js'
+import NcLoadingIcon from '../NcLoadingIcon/index.ts'
 
 export default {
 	name: 'NcSelect',

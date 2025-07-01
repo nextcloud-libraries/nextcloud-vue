@@ -1,12 +1,11 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Manuela Silva <mmsrs@sky.com>, 2023
-# Ana Louro, 2025
+# Joas Schilling, 2025
+# artur25 <arturdiogo1997@hotmail.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ana Louro, 2025\n"
+"Last-Translator: artur25 <arturdiogo1997@hotmail.com>, 2025\n"
 "Language-Team: Portuguese (Portugal) (https://app.transifex.com/nextcloud/teams/64236/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_PT\n"
@@ -74,6 +73,12 @@ msgstr "Azul Boston"
 msgid "busy"
 msgstr "ocupado"
 
+msgid "Calendar icon"
+msgstr "Ícone de calendário"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
 msgid "Cancel changes"
 msgstr "Cancelar alterações"
 
@@ -92,6 +97,9 @@ msgstr "Limpeza selecionada"
 msgid "Clear text"
 msgstr "Limpar texto"
 
+msgid "Clear value"
+msgstr "Limpar valor"
+
 msgid "Close"
 msgstr "Fechar"
 
@@ -103,6 +111,9 @@ msgstr "Fechar barra lateral"
 
 msgid "Close Smart Picker"
 msgstr "Fechar \"Smart Picker\""
+
+msgid "Close time Picker"
+msgstr "Fechar seletor de hora"
 
 msgid "Collapse menu"
 msgstr "Ocultar menu"
@@ -121,6 +132,21 @@ msgstr "Personalizado"
 
 msgid "Dark skin tone"
 msgstr "Tom de pele escuro"
+
+msgid "Datepicker input"
+msgstr "Campo do seletor de data"
+
+msgid "Datepicker menu"
+msgstr "Menu do seletor de data"
+
+msgid "Decrement hours"
+msgstr "Diminuir horas"
+
+msgid "Decrement minutes"
+msgstr "Diminuir minutos"
+
+msgid "Decrement seconds"
+msgstr "Diminuir segundos"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -179,6 +205,7 @@ msgstr "Comida e Bebida"
 msgid "Frequently used"
 msgstr "Mais utilizados"
 
+#. TRANSLATORS: This refers to global timezones in the timezone picker
 msgid "Global"
 msgstr "Global"
 
@@ -193,6 +220,15 @@ msgstr "Ocultar detalhes"
 
 msgid "Hide password"
 msgstr "Ocultar palavra-passe"
+
+msgid "Increment hours"
+msgstr "Aumentar horas"
+
+msgid "Increment minutes"
+msgstr "Aumentar minutos"
+
+msgid "Increment seconds"
+msgstr "Aumentar segundos"
 
 msgid "invisible"
 msgstr "invisível"
@@ -223,8 +259,17 @@ msgstr "Tom de pele claro médio"
 msgid "Medium skin tone"
 msgstr "Tom de pele médio"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Atingido o limite de {count} carateres da mensagem."
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Limite de mensagem de %n carácter atingido"
+msgstr[1] "Limite de mensagem de %n caracteres atingido"
+msgstr[2] "Limite de mensagem de %n caracteres atingido"
+
+msgid "Month picker"
+msgstr "Seletor de mês"
+
+msgid "Month picker overlay"
+msgstr "Janela do seletor de mês"
 
 msgid "More items …"
 msgstr "Mais itens…"
@@ -238,6 +283,12 @@ msgstr "Cor de pele neutra"
 msgid "Next"
 msgstr "Seguinte"
 
+msgid "Next month"
+msgstr "Próximo mês"
+
+msgid "Next year"
+msgstr "Próximo ano"
+
 msgid "Nextcloud blue"
 msgstr "Nextcloud azul"
 
@@ -249,6 +300,9 @@ msgstr "Nenhum fornecedor de link encontrado"
 
 msgid "No results"
 msgstr "Sem resultados"
+
+msgid "Now"
+msgstr "Agora"
 
 msgid "Objects"
 msgstr "Objetos"
@@ -263,17 +317,35 @@ msgstr "Olivine"
 msgid "online"
 msgstr "online"
 
+msgid "Open hours overlay"
+msgstr "Abrir janela de horas"
+
 msgid "Open link to \"{resourceName}\""
 msgstr "Abrir link para \"{resourceName}\""
 
 msgid "Open menu"
 msgstr "Abrir menu"
 
-msgid "Open navigation {shortcut}"
-msgstr "Abrir navegação {shortcut}"
+msgid "Open minutes overlay"
+msgstr "Abrir janela de minutos"
+
+msgid "Open months overlay"
+msgstr "Abrir janela de meses"
+
+msgid "Open navigation"
+msgstr "Abrir navegação"
+
+msgid "Open seconds overlay"
+msgstr "Abrir janela de segundos"
 
 msgid "Open sidebar"
 msgstr "Abrir barra lateral"
+
+msgid "Open time picker"
+msgstr "Abrir seletor de hora"
+
+msgid "Open years overlay"
+msgstr "Abrir janela de anos"
 
 msgid "Options"
 msgstr "Opções"
@@ -287,32 +359,23 @@ msgstr "Pausar diaporama"
 msgid "People & Body"
 msgstr "Pessoas e Corpo"
 
-msgid "Pick a date"
-msgstr "Escolha uma data"
-
-msgid "Pick a date and a time"
-msgstr "Escolha uma data e uma hora"
-
-msgid "Pick a month"
-msgstr "Escolha um mês"
-
-msgid "Pick a time"
-msgstr "Escolha uma hora"
-
-msgid "Pick a week"
-msgstr "Escolha uma semana"
-
-msgid "Pick a year"
-msgstr "Escolha um ano"
+msgid "Pick"
+msgstr "Selecionar"
 
 msgid "Pick an emoji"
 msgstr "Escolha um emoji"
 
-msgid "Please select a time zone:"
-msgstr "Por favor, selecione um fuso horário: "
+msgid "Please choose a date"
+msgstr "Por favor, escolha uma data"
 
 msgid "Previous"
 msgstr "Anterior"
+
+msgid "Previous month"
+msgstr "Mês anterior"
+
+msgid "Previous year"
+msgstr "Ano anterior"
 
 msgid "Provider icon"
 msgstr "Ícone do fornecedor"
@@ -345,7 +408,7 @@ msgstr "Pesquisar"
 msgid "Search emoji"
 msgstr "Pesquisar emoji"
 
-msgid "Search for time zone"
+msgid "Search for timezone"
 msgstr "Pesquisar fuso horário"
 
 msgid "Search results"
@@ -366,8 +429,29 @@ msgstr "segundos atrás"
 msgid "Select a tag"
 msgstr "Selecionar uma etiqueta"
 
+msgid "Select date"
+msgstr "Selecionar data"
+
+msgid "Select date and time"
+msgstr "Selecionar data e hora"
+
+msgid "Select month"
+msgstr "Selecionar mês"
+
 msgid "Select provider"
 msgstr "Selecionar fornecedor"
+
+msgid "Select time"
+msgstr "Selecionar hora"
+
+msgid "Select time range"
+msgstr "Selecionar intervalo de horas"
+
+msgid "Select week"
+msgstr "Selecionar semana"
+
+msgid "Select year"
+msgstr "Selecionar ano"
 
 msgid "Selected"
 msgstr "Selecionado"
@@ -408,8 +492,20 @@ msgstr "Comece a digitar para pesquisar"
 msgid "Submit"
 msgstr "Submeter"
 
+msgid "Switch AM/PM mode"
+msgstr "Alternar modo AM/PM"
+
 msgid "Symbols"
 msgstr "Símbolos"
+
+msgid "Time picker"
+msgstr "Seletor de hora"
+
+msgid "Timezone"
+msgstr "Fuso horário"
+
+msgid "Toggle overlay"
+msgstr "Alternar sobreposição"
 
 msgid "Travel & Places"
 msgstr "Viagens e Lugares"
@@ -432,9 +528,18 @@ msgstr "Estado do utilizador: {status}"
 msgid "View team"
 msgstr "Ver equipa"
 
+msgid "W"
+msgstr "S"
+
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Whiskey"
 
 msgid "Write a message …"
 msgstr "Escreva uma mensagem..."
+
+msgid "Year picker"
+msgstr "Seletor de ano"
+
+msgid "Year picker overlay"
+msgstr "Janela do seletor de ano"

@@ -2,10 +2,11 @@
 # Translators:
 # Joas Schilling, 2025
 # XYZ, 2025
+# Corentin Noël <tintou@noel.tf>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: XYZ, 2025\n"
+"Last-Translator: Corentin Noël <tintou@noel.tf>, 2025\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -205,6 +206,7 @@ msgstr "Nourriture & Boissons"
 msgid "Frequently used"
 msgstr "Utilisés fréquemment"
 
+#. TRANSLATORS: This refers to global timezones in the timezone picker
 msgid "Global"
 msgstr "Global"
 
@@ -258,8 +260,11 @@ msgstr "Teint moyen clair"
 msgid "Medium skin tone"
 msgstr "Teint moyen"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Limite de messages de {count} caractères atteinte"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Limite de messages de %n caractère atteinte"
+msgstr[1] "Limite de messages de %n caractères atteinte"
+msgstr[2] "Limite de messages de %n caractères atteinte"
 
 msgid "Month picker"
 msgstr "Sélecteur de mois"

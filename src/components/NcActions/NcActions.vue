@@ -1421,7 +1421,7 @@ export default {
 		},
 
 		/**
-		 * @return {NodeListOf<HTMLElement>}
+		 * @return {NodeList<HTMLElement>}
 		 */
 		getFocusableMenuItemElements() {
 			return this.$refs.menu.querySelectorAll(focusableSelector)
@@ -1773,7 +1773,7 @@ export default {
 					popoverBaseClass: 'action-item__popper',
 					popupRole: this.config.popupRole,
 					setReturnFocus: this.config.withFocusTrap ? this.$refs.triggerButton?.$el : undefined,
-					focusTrap: this.config.withFocusTrap,
+					noFocusTrap: !this.config.withFocusTrap,
 					'onUpdate:shown': this.toggleMenu,
 					onAfterShow: this.onOpened,
 					onAfterClose: this.onClosed,

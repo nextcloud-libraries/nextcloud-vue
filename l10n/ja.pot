@@ -360,6 +360,9 @@ msgstr "選択"
 msgid "Pick an emoji"
 msgstr "絵文字を選択"
 
+msgid "Please choose a date"
+msgstr "日付を選択してください"
+
 msgid "Previous"
 msgstr "前"
 

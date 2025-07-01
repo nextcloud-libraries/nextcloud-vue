@@ -57,7 +57,9 @@ onClickOutside(container, () => { open.value = false }, { ignore })
 		<div :class="$style.header">
 			<NcButton :aria-controls="contentId"
 				:aria-expanded="open ? 'true' : 'false'"
+				:class="$style.button"
 				alignment="start"
+				variant="tertiary"
 				wide
 				@click="open = !open">
 				<template #icon>
@@ -88,6 +90,16 @@ onClickOutside(container, () => { open.value = false }, { ignore })
 .header {
 	margin-block: 0 var(--default-grid-baseline);
 	margin-inline: var(--default-grid-baseline);
+}
+
+/* Overwrite the padding to match NcAppNavigationItem */
+.button {
+	padding-left: 0 !important;
+	padding-inline-end: calc((var(--default-clickable-area) - 16px) / 2) !important;
+
+	:global(.button-vue__text) {
+		font-weight: normal;
+	}
 }
 
 .content {

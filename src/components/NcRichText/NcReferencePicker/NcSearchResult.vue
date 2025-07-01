@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import NcHighlight from '../../NcHighlight/index.js'
+import NcHighlight from '../../NcHighlight/index.ts'
 
 export default {
 	name: 'NcSearchResult',

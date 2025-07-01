@@ -157,7 +157,7 @@ const props = withDefaults(defineProps<{
 	 * @default 'secondary'
 	 * @since 8.23.0
 	 */
-	variant: 'primary' | 'secondary' | 'tertiary'
+	variant?: 'primary' | 'secondary' | 'tertiary'
 }>(), {
 	ariaLabelClose: t('Close'),
 	actionsContainer: 'body',

@@ -136,10 +136,157 @@ export default {
 ```
 </docs>
 
+<script setup lang="ts">
+import { Chrome as VueChrome } from '@ckpack/vue-color'
+import { computed, ref } from 'vue'
+import { Color, defaultPalette } from '../../utils/colors.ts'
+import { createElementId } from '../../utils/createElementId.ts'
+import { t } from '../../l10n.js'
+
+import IconArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
+import IconCheck from 'vue-material-design-icons/Check.vue'
+import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
+import NcButton from '../NcButton/index.ts'
+import NcPopover from '../NcPopover/index.js'
+import logger from '../../utils/logger.ts'
+
+const HEX_REGEX = /^#([a-f0-9]{3}|[a-f0-9]{6})$/i
+
+const props = withDefaults(defineProps<{
+	/**
+	 * Set to `true` to enable advanced fields including HEX, RGB, and HSL
+	 */
+	advancedFields?: boolean
+
+	/**
+	 * Selector for the popover container
+	 */
+	container?: string | Element
+
+	/**
+	 * Provide a custom array of colors to show.
+	 * Can be either an array of string hexadecimal colors,
+	 * or an array of object with a `color` property with hexadecimal color string,
+	 * and a `name` property for accessibility.
+	 *
+	 * @type {string[] | {color: string, name: string}[]}
+	 */
+	palette?: string[] | Color[]
+
+	/**
+	 * Limit selectable colors to only the provided palette
+	 */
+	paletteOnly?: boolean
+}>(), {
+	container: 'body',
+	palette: () => [...defaultPalette],
+})
+
+/**
+ * A HEX color that represents the initial value of the picker
+ */
+const currentColor = defineModel<string>({ required: true })
+
+const emit = defineEmits<{
+	/**
+	 * Emitted when the submit button was pressed.
+	 * The payload is the same as the current modelValue.
+	 */
+	submit: [string]
+
+	/**
+	 * The color picker was fully closed.
+	 */
+	close: []
+}>()
+
+/**
+ * Unique id used to identify different color pickers
+ */
+const id = createElementId()
+
+/**
+ * Is the advanced picker is open
+ */
+const advanced = ref(false)
+
+/**
+ * Normalized palette by converting array of hex colors to color objects
+ */
+const normalizedPalette = computed(() => {
+	let palette = props.palette
+	for (const color of palette) {
+		if ((typeof color === 'string' && !color.match(HEX_REGEX))
+			|| (typeof color === 'object' && !color.color?.match(HEX_REGEX))) {
+			logger.error('[NcColorPicker] Invalid palette passed', { color })
+			palette = [...defaultPalette]
+			break
+		}
+	}
+
+	return palette.map((item) => ({
+		color: typeof item === 'object' ? item.color : item,
+		name: typeof item === 'object' && item.name
+			? item.name
+			: t('A color with a HEX value {hex}', { hex: item.color }),
+	}))
+})
+
+const contrastColor = computed(() => {
+	const black = '#000000'
+	const white = '#FFFFFF'
+	return calculateLuma(currentColor.value) > 0.5 ? black : white
+})
+
+/**
+ * Submit a picked colour and close picker
+ * @param hideCallback - callback to close popover
+ */
+function handleConfirm(hideCallback: () => void) {
+	emit('submit', currentColor.value)
+	hideCallback()
+	advanced.value = false
+}
+
+/**
+ * Pick a colour
+ *
+ * @param color - The picked color
+ */
+function pickColor(color: string | Color | { hex: string }) {
+	if (typeof color !== 'string') {
+		color = 'hex' in color ? color.hex : color.color
+	}
+	currentColor.value = color
+}
+
+/**
+ * Calculate luminance of provided hex color
+ *
+ * @param color - The hex color
+ */
+function calculateLuma(color: string) {
+	const [red, green, blue] = hexToRGB(color)
+	return (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255
+}
+
+/**
+ * Convert hex color to RGB
+ *
+ * @param hex - The hex color
+ */
+function hexToRGB(hex: string) {
+	const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+	return result
+		? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)]
+		: [0, 0, 0]
+}
+</script>
+
 <template>
 	<NcPopover popup-role="dialog"
 		:container="container"
-		@apply-hide="handleClose">
+		@apply-hide="emit('close')">
 		<template #trigger="slotProps">
 			<slot v-bind="slotProps" />
 		</template>
@@ -156,16 +303,16 @@ export default {
 							:style="{ backgroundColor: color }"
 							class="color-picker__simple-color-circle"
 							:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }">
-							<Check v-if="color === currentColor" :size="20" :fill-color="contrastColor" />
+							<IconCheck v-if="color === currentColor" :size="20" :fill-color="contrastColor" />
 							<input type="radio"
 								class="hidden-visually"
 								:aria-label="name"
-								:name="`color-picker-${uid}`"
+								:name="`color-picker-${id}`"
 								:checked="color === currentColor"
 								@click="pickColor(color)">
 						</label>
 					</div>
-					<Chrome v-else
+					<VueChrome v-else
 						v-model="currentColor"
 						class="color-picker__advanced"
 						:disable-alpha="true"
@@ -174,19 +321,19 @@ export default {
 				</Transition>
 				<div v-if="!paletteOnly" class="color-picker__navigation">
 					<NcButton v-if="advanced"
-						:aria-label="ariaBack"
+						:aria-label="t('Back')"
 						variant="tertiary"
-						@click="handleBack">
+						@click="advanced = false">
 						<template #icon>
-							<ArrowLeft :size="20" />
+							<IconArrowLeft :size="20" />
 						</template>
 					</NcButton>
 					<NcButton v-else
-						:aria-label="ariaMore"
+						:aria-label="t('More options')"
 						variant="tertiary"
-						@click="handleMoreSettings">
+						@click="advanced = true">
 						<template #icon>
-							<DotsHorizontal :size="20" />
+							<IconDotsHorizontal :size="20" />
 						</template>
 					</NcButton>
 					<NcButton variant="primary"
@@ -198,204 +345,6 @@ export default {
 		</template>
 	</NcPopover>
 </template>
-
-<script>
-import { Chrome } from '@ckpack/vue-color'
-import { defineComponent } from 'vue'
-import { defaultPalette } from '../../utils/colors.ts'
-import { createElementId } from '../../utils/createElementId.ts'
-import { t } from '../../l10n.js'
-
-import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
-import Check from 'vue-material-design-icons/Check.vue'
-import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
-import NcButton from '../NcButton/index.ts'
-import NcPopover from '../NcPopover/index.js'
-
-const HEX_REGEX = /^#([a-f0-9]{3}|[a-f0-9]{6})$/i
-
-export default defineComponent({
-	name: 'NcColorPicker',
-
-	components: {
-		ArrowLeft,
-		Check,
-		Chrome,
-		DotsHorizontal,
-		NcButton,
-		NcPopover,
-	},
-
-	props: {
-		/**
-		 * A HEX color that represents the initial value of the picker
-		 */
-		modelValue: {
-			type: String,
-			required: true,
-		},
-
-		/**
-		 * Set to `true` to enable advanced fields including HEX, RGB, and HSL
-		 */
-		advancedFields: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Limit selectable colors to only the provided palette
-		 */
-		paletteOnly: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Provide a custom array of colors to show.
-		 * Can be either an array of string hexadecimal colors,
-		 * or an array of object with a `color` property with hexadecimal color string,
-		 * and a `name` property for accessibility.
-		 *
-		 * @type {string[] | {color: string, name: string}[]}
-		 */
-		palette: {
-			type: Array,
-			default: () => [...defaultPalette],
-			validator: (palette) => palette.every(item =>
-				(typeof item === 'string' && HEX_REGEX.test(item))
-				|| (typeof item === 'object' && item.color && HEX_REGEX.test(item.color)),
-			),
-		},
-
-		/**
-		 * Selector for the popover container
-		 */
-		container: {
-			type: [String, Object, Element, Boolean],
-			default: 'body',
-		},
-	},
-
-	emits: [
-		'submit',
-		'close',
-		'update:open',
-		'update:modelValue',
-	],
-
-	data() {
-		return {
-			currentColor: this.modelValue,
-			advanced: false,
-			ariaBack: t('Back'),
-			ariaMore: t('More options'),
-		}
-	},
-
-	computed: {
-		normalizedPalette() {
-			return this.palette.map((item) => ({
-				color: typeof item === 'object' ? item.color : item,
-				name: typeof item === 'object' && item.name
-					? item.name
-					: t('A color with a HEX value {hex}', { hex: item.color }),
-			}))
-		},
-
-		uid() {
-			return createElementId()
-		},
-		contrastColor() {
-			const black = '#000000'
-			const white = '#FFFFFF'
-			return (this.calculateLuma(this.currentColor) > 0.5) ? black : white
-		},
-	},
-
-	watch: {
-		modelValue(color) {
-			this.currentColor = color
-		},
-	},
-
-	methods: {
-		t,
-
-		/**
-		 * Submit a picked colour and close picker
-		 * @param {Function} hideCallback callback to close popover
-		 */
-		handleConfirm(hideCallback) {
-			/**
-			 * Emits a hexadecimal string e.g. '#ffffff'
-			 */
-			this.$emit('submit', this.currentColor)
-			hideCallback()
-
-			this.advanced = false
-		},
-		handleClose() {
-			/**
-			 * Emitted after picker close
-			 */
-			this.$emit('close')
-			this.$emit('update:open', false)
-		},
-
-		/**
-		 * Inner navigations
-		 */
-		handleBack() {
-			this.advanced = false
-		},
-		handleMoreSettings() {
-			this.advanced = true
-		},
-
-		/**
-		 * Pick a colour
-		 *
-		 * @param {string} color the picked color
-		 */
-		pickColor(color) {
-			if (typeof color !== 'string') {
-				color = this.currentColor.hex
-			}
-			this.currentColor = color
-
-			/**
-			 * Emits a hexadecimal string e.g. '#ffffff'
-			 */
-			this.$emit('update:modelValue', color)
-
-		},
-
-		/**
-		 * Calculate luminance of provided hex color
-		 *
-		 * @param {string} color the hex color
-		 */
-		 calculateLuma(color) {
-			const [red, green, blue] = this.hexToRGB(color)
-			return (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255
-		},
-
-		/**
-		 * Convert hex color to RGB
-		 *
-		 * @param {string} hex the hex color
-		 */
-		 hexToRGB(hex) {
-			const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-			return result
-				? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)]
-				: null
-		},
-	},
-})
-
-</script>
 
 <style lang="scss" scoped>
 .color-picker {

@@ -401,7 +401,7 @@ import NcActions from '../NcActions/index.js'
 import NcActionButton from '../NcActionButton/index.js'
 import NcAppNavigationIconCollapsible from './NcAppNavigationIconCollapsible.vue'
 import NcInputConfirmCancel from './NcInputConfirmCancel.vue'
-import NcLoadingIcon from '../NcLoadingIcon/index.js'
+import NcLoadingIcon from '../NcLoadingIcon/index.ts'
 import NcVNodes from '../NcVNodes/index.ts'
 
 export default {

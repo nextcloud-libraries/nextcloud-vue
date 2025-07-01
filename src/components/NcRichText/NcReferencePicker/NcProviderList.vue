@@ -42,10 +42,10 @@
 </template>
 
 <script>
-import { searchProvider } from './../../../functions/reference/providerHelper.js'
+import { searchProvider } from '../../../functions/reference/providerHelper.ts'
 import { isUrl } from './utils.js'
 import NcEmptyContent from '../../NcEmptyContent/index.ts'
-import NcHighlight from '../../NcHighlight/index.js'
+import NcHighlight from '../../NcHighlight/index.ts'
 import NcSelect from '../../NcSelect/index.js'
 import { t } from '../../../l10n.js'
 

@@ -51,7 +51,7 @@ import RadioboxBlank from 'vue-material-design-icons/RadioboxBlank.vue'
 import ToggleSwitchOff from 'vue-material-design-icons/ToggleSwitchOff.vue'
 import ToggleSwitch from 'vue-material-design-icons/ToggleSwitch.vue'
 
-import NcLoadingIcon from '../NcLoadingIcon/index.js'
+import NcLoadingIcon from '../NcLoadingIcon/index.ts'
 
 export const TYPE_CHECKBOX = 'checkbox'
 export const TYPE_RADIO = 'radio'
