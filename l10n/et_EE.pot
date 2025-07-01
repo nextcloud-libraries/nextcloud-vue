@@ -176,8 +176,8 @@ msgstr ""
 "Viga seotud ressursside saamisel. Küsimuste korral võtke ühendust oma "
 "süsteemiadministraatoriga."
 
-msgid "External documentation for {name}"
-msgstr "Väline dokumentatsioon: {name}"
+msgid "External documentation"
+msgstr "Dokumentatsioon välises allikas"
 
 msgid "Failed to add the item to the project"
 msgstr "Objekti lisamine projekti ei õnnestunud"
