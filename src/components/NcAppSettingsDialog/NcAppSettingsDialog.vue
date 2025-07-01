@@ -145,7 +145,7 @@ export default {
 						<NcButton ref="navigationButton"
 							:aria-current="section.id === selectedSection ? 'page' : undefined"
 							:href="`#settings-section_${section.id}`"
-							:type="section.id === selectedSection ? 'primary' : 'tertiary'"
+							:variant="section.id === selectedSection ? 'primary' : 'tertiary'"
 							alignment="start"
 							wide
 							@keydown.down="openSection(sectionIndex + 1)"
