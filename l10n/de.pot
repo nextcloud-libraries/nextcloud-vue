@@ -179,8 +179,8 @@ msgstr ""
 "Fehler beim Abrufen verwandter Ressourcen. Bei Fragen wende dich bitte an "
 "deinen Systemadministrator."
 
-msgid "External documentation for {name}"
-msgstr "Externe Dokumentation für {name}"
+msgid "External documentation"
+msgstr "Externe Dokumentation"
 
 msgid "Failed to add the item to the project"
 msgstr "Das Element konnte nicht zum Projekt hinzugefügt werden"
