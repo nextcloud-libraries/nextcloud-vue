@@ -1421,7 +1421,7 @@ export default {
 		},
 
 		/**
-		 * @return {NodeListOf<HTMLElement>}
+		 * @return {NodeList<HTMLElement>}
 		 */
 		getFocusableMenuItemElements() {
 			return this.$refs.menu.querySelectorAll(focusableSelector)
