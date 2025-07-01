@@ -614,12 +614,14 @@ export default {
 .rich-text--wrapper-markdown {
 	tab-size: 4;
 
-	div > *:first-child,
-	blockquote > *:first-child {
+	& > :first-child,
+	div > :first-child,
+	blockquote > :first-child {
 		margin-top: 0 !important;
 	}
-	div > *:last-child,
-	blockquote > *:last-child {
+	& > :last-child,
+	div > :last-child,
+	blockquote > :last-child {
 		margin-block-end: 0 !important;
 	}
 
