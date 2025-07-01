@@ -43,7 +43,7 @@ msgid "Any link"
 msgstr "Mistahes link"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr "Kõik, mida jagatakse sama grupi inimestega, kuvatakse siin."
+msgstr "Siin kuvatakse kõik, mida jagatakse sama kasutajagrupiga"
 
 msgid "Avatar of {displayName}"
 msgstr "Avatar {displayName}"
