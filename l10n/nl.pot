@@ -177,8 +177,8 @@ msgstr ""
 "Fout bij het ophalen van gerelateerde bronnen. Neem contact op met uw "
 "systeembeheerder als u vragen heeft."
 
-msgid "External documentation for {name}"
-msgstr "Externe documentatie voor {name}"
+msgid "External documentation"
+msgstr "Externe documentatie"
 
 msgid "Failed to add the item to the project"
 msgstr "Toevoegen van item aan project mislukt"
