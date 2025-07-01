@@ -40,74 +40,68 @@ This component is to be used in the settings section of nextcloud.
 ```
 </docs>
 
+<script setup lang="ts">
+import type { Slot } from 'vue'
+
+import HelpCircle from 'vue-material-design-icons/HelpCircle.vue'
+import { t } from '../../l10n.js'
+
+withDefaults(defineProps<{
+	/**
+	 * The name of the settings section.
+	 * This is used for the headline and needs to be set.
+	 */
+	name: string
+
+	/**
+	 * Further informational description of the section.
+	 */
+	description?: string
+
+	/**
+	 * The URL for the documentation about this section
+	 */
+	docUrl?: string
+}>(), {
+	description: '',
+	docUrl: '',
+})
+
+defineSlots<{
+	/**
+	 * The section content.
+	 */
+	default?: Slot
+}>()
+
+/**
+ * Accessible name of the link element.
+ * This should only provide a textual description of the "help"-icon.
+ */
+const ariaLabel = t('External documentation')
+</script>
+
 <template>
 	<div class="settings-section">
 		<h2 class="settings-section__name">
 			{{ name }}
-			<a v-if="hasDocUrl"
-				:href="docUrl"
+			<a v-if="docUrl"
+				:aria-label
 				class="settings-section__info"
-				:title="docNameTranslated"
-				:aria-label="docNameTranslated"
+				:href="docUrl"
+				rel="noreferrer nofollow"
 				target="_blank"
-				rel="noreferrer nofollow">
+				:title="ariaLabel">
 				<HelpCircle :size="20" />
 			</a>
 		</h2>
-		<p v-if="hasDescription"
+		<p v-if="description"
 			class="settings-section__desc">
 			{{ description }}
 		</p>
 		<slot />
 	</div>
 </template>
-
-<script>
-import { t } from '../../l10n.js'
-
-import HelpCircle from 'vue-material-design-icons/HelpCircle.vue'
-
-export default {
-	name: 'NcSettingsSection',
-
-	components: {
-		HelpCircle,
-	},
-
-	props: {
-		name: {
-			type: String,
-			required: true,
-		},
-		description: {
-			type: String,
-			default: '',
-		},
-		docUrl: {
-			type: String,
-			default: '',
-		},
-	},
-
-	data() {
-		return {
-			docNameTranslated: t('External documentation for {name}', {
-				name: this.name,
-			}),
-		}
-	},
-
-	computed: {
-		hasDescription() {
-			return this.description.length > 0
-		},
-		hasDocUrl() {
-			return this.docUrl.length > 0
-		},
-	},
-}
-
-</script>
 
 <style lang="scss" scoped>
 $maxWidth: 900px;
