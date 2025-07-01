@@ -135,6 +135,7 @@ export function useHotKey(
 			return event.key === key
 		}
 		return event.key.toLowerCase() === key.toLowerCase()
+			|| event.code === key
 	}
 
 	/**
