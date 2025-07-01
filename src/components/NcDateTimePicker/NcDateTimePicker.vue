@@ -583,15 +583,15 @@ const ariaLabels = computed(() => ({
 			<template #input-icon>
 				<NcIconSvgWrapper :path="mdiCalendarBlank" :size="20" />
 			</template>
-      <template #clear-icon="{ clear }">
-        <NcButton :aria-label="t('Clear value')"
-          variant="tertiary-no-background"
-          @click="clear">
-          <template #icon>
-            <NcIconSvgWrapper inline :path="mdiClose" :size="20" />
-          </template>
-        </NcButton>
-      </template>
+			<template #clear-icon="{ clear }">
+				<NcButton :aria-label="t('Clear value')"
+					variant="tertiary-no-background"
+					@click="clear">
+					<template #icon>
+						<NcIconSvgWrapper inline :path="mdiClose" :size="20" />
+					</template>
+				</NcButton>
+			</template>
 			<template #clock-icon>
 				<NcIconSvgWrapper inline :path="mdiClock" :size="20" />
 			</template>
