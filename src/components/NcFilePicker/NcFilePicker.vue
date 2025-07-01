@@ -147,7 +147,7 @@ const inputElement = useTemplateRef('input')
  * Hint: This does not check if the current connection supports this, as some browsers require a secure context!
  */
 const canUploadFolders = computed(() => {
-	return props.allowFolders && 'webkitdirectory' in document.createElement('input')
+	return props.allowFolders && 'webkitdirectory' in HTMLInputElement.prototype
 })
 
 /**
