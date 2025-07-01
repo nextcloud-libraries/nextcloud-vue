@@ -163,7 +163,7 @@ msgstr ""
 msgid "Error getting related resources. Please contact your system administrator if you have any questions."
 msgstr ""
 
-msgid "External documentation for {name}"
+msgid "External documentation"
 msgstr ""
 
 msgid "Failed to add the item to the project"
