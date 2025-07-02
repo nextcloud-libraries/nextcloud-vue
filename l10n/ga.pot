@@ -177,8 +177,8 @@ msgstr ""
 "Earráid agus acmhainní gaolmhara á bhfáil. Déan teagmháil le riarthóir do "
 "chórais má tá aon cheist agat."
 
-msgid "External documentation for {name}"
-msgstr "Doiciméadúchán seachtrach le haghaidh {name}"
+msgid "External documentation"
+msgstr "Doiciméadú seachtrach"
 
 msgid "Failed to add the item to the project"
 msgstr "Theip ar an mír a chur leis an tionscadal"
