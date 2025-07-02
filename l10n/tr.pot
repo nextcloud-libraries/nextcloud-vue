@@ -176,8 +176,8 @@ msgstr ""
 "İlgili kaynaklara ulaşılırken sorun çıktı. Herhangi bir sorunuz varsa lütfen"
 " sistem yöneticiniz ile görüşün "
 
-msgid "External documentation for {name}"
-msgstr "{name} için dış belgeler"
+msgid "External documentation"
+msgstr "Dış belgeler"
 
 msgid "Failed to add the item to the project"
 msgstr "Öge projeye eklenemedi"
