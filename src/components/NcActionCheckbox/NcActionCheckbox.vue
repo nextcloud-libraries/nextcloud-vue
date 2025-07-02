@@ -139,8 +139,8 @@ export default {
 		'update:model-value',
 	],
 
-	setup() {
-		const model = useModelMigration('checked', 'update:checked')
+	setup(props, {emit}) {
+		const model = useModelMigration(props, emit, 'checked', 'update:checked')
 		return {
 			model,
 		}
