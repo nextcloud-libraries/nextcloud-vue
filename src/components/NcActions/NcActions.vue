@@ -955,6 +955,7 @@ import GenRandomId from '../../utils/GenRandomId.js'
 
 import { t } from '../../l10n.js'
 import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
+import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
 import { useElementBounding, useWindowSize } from '@vueuse/core'
 import Vue, { ref, computed, toRef } from 'vue'
 
@@ -1199,22 +1200,27 @@ export default {
 		const { top, bottom } = useElementBounding(triggerButton)
 		const { top: boundaryTop, bottom: boundaryBottom } = useElementBounding(toRef(props, 'boundariesElement'))
 		const { height: windowHeight } = useWindowSize()
-		const maxMenuHeight = computed(() => Math.max(
-			// Either expand to the top
-			Math.min(
-				// max height is the top position of the trigger minus the header height minus the wedge and the padding
-				top.value - 84,
-				// and also limited to the space in the boundary
-				top.value - boundaryTop.value,
-			),
-			// or expand to the bottom
-			Math.min(
-				// the max height is the window height minus current position of the trigger minus the wedge and padding
-				windowHeight.value - bottom.value - 34,
-				// and limit to the available space in the boundary
-				boundaryBottom.value - bottom.value,
-			),
-		))
+		const isSmallMobile = useIsSmallMobile()
+		const maxMenuHeight = computed(() => !isSmallMobile.value
+			? Math.max(
+				// Either expand to the top
+				Math.min(
+					// max height is the top position of the trigger minus the header height minus the wedge and the padding
+					top.value - 84,
+					// and also limited to the space in the boundary
+					top.value - boundaryTop.value,
+				),
+				// or expand to the bottom
+				Math.min(
+					// the max height is the window height minus current position of the trigger minus the wedge and padding
+					windowHeight.value - bottom.value - 34,
+					// and limit to the available space in the boundary
+					boundaryBottom.value - bottom.value,
+				),
+			)
+			// Do not limit on mobile with full screen mode
+			: Infinity,
+		)
 
 		return {
 			triggerButton,
@@ -1896,6 +1902,7 @@ export default {
 						popupRole: this.config.popupRole,
 						setReturnFocus: this.config.withFocusTrap ? this.$refs.triggerButton?.$el : null,
 						focusTrap: this.config.withFocusTrap,
+						withMobileMode: true,
 					},
 					// For some reason the popover component
 					// does not react to props given under the 'props' key,
@@ -2094,11 +2101,8 @@ export default {
 // We overwrote the popover base class, so we can style
 // the popover__inner for actions only.
 .v-popper--theme-dropdown.v-popper__popper.action-item__popper .v-popper__wrapper {
-	border-radius: var(--border-radius-large);
-
 	.v-popper__inner {
-		border-radius: var(--border-radius-large);
-		padding: 4px;
+		padding: var(--default-grid-baseline);
 		max-height: calc(100vh - var(--header-height));
 		overflow: auto;
 	}
