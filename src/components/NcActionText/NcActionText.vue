@@ -22,7 +22,6 @@
 				<strong class="action-text__name">
 					{{ name }}
 				</strong>
-				<br>
 				<!-- white space is shown on longtext, so we can't
 				put {{ text }} on a new line for code readability -->
 				<span class="action-text__longtext" v-text="text" />
