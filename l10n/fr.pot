@@ -3,10 +3,11 @@
 # Joas Schilling, 2025
 # XYZ, 2025
 # Corentin Noël <tintou@noel.tf>, 2025
+# Charles Taborin, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Corentin Noël <tintou@noel.tf>, 2025\n"
+"Last-Translator: Charles Taborin, 2025\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -178,8 +179,8 @@ msgstr ""
 "Erreur lors de la récupération des ressources liées. Contactez votre "
 "administrateur système pour répondre à vos éventuelles questions."
 
-msgid "External documentation for {name}"
-msgstr "Documentation externe pour {name}"
+msgid "External documentation"
+msgstr "Documentation externe"
 
 msgid "Failed to add the item to the project"
 msgstr "Impossible d'ajouter l'élément au projet"
@@ -366,6 +367,9 @@ msgstr "Choisir"
 msgid "Pick an emoji"
 msgstr "Choisissez un émoji"
 
+msgid "Please choose a date"
+msgstr "Veuillez choisir une date"
+
 msgid "Previous"
 msgstr "Précédent"
 
@@ -534,7 +538,7 @@ msgid "Whiskey"
 msgstr "Whiskey"
 
 msgid "Write a message …"
-msgstr "Ecrire un message..."
+msgstr "Écrire un message..."
 
 msgid "Year picker"
 msgstr "Sélecteur d'année"
