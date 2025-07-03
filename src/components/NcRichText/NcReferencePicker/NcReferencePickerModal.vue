@@ -186,4 +186,13 @@ export default {
 		}
 	}
 }
+// Hide the empty modal header which prevents from accessing the close button
+// Cannot use display:none because there's a `display: flex !important` in the
+// Ncmodal component which would override it. This works because the
+// `.modal-header` element has `position: absolute`.
+// TODO: Add prop to NcModal to hide the header
+:deep(.modal-header) {
+	visibility: hidden;
+}
+
 </style>
