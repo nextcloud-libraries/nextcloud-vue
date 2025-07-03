@@ -406,7 +406,7 @@ msgid "Save changes"
 msgstr "Sauvegarder les changements"
 
 msgid "Search"
-msgstr "Chercher"
+msgstr "Rechercher"
 
 msgid "Search emoji"
 msgstr "Rechercher un emoji"
