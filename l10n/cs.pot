@@ -176,8 +176,8 @@ msgstr ""
 "Chyba při získávání souvisejících prostředků. Pokud máte jakékoli dotazy, "
 "obraťte se na správce vámi využívaného systému."
 
-msgid "External documentation for {name}"
-msgstr "Externí dokumentace pro {name}"
+msgid "External documentation"
+msgstr "Externí dokumentace"
 
 msgid "Failed to add the item to the project"
 msgstr "Položku se nepodařilo přidat do projektu"
