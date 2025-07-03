@@ -1894,7 +1894,7 @@ export default {
 						container: this.container,
 						popoverBaseClass: 'action-item__popper',
 						popupRole: this.config.popupRole,
-						setReturnFocus: this.config.withFocusTrap ? this.$refs.triggerButton?.$el : null,
+						noAutoReturnFocus: !this.withFocusTrap,
 						focusTrap: this.config.withFocusTrap,
 					},
 					// For some reason the popover component
