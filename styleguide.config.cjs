@@ -158,6 +158,10 @@ module.exports = async () => {
 				sectionDepth: 1,
 				sections: [
 					{
+						name: 'useFormatDateTime',
+						content: 'docs/composables/useFormatDateTime.md',
+					},
+					{
 						name: 'useHotKey',
 						content: 'docs/composables/useHotKey.md',
 
