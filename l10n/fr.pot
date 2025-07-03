@@ -4,10 +4,11 @@
 # XYZ, 2025
 # Corentin Noël <tintou@noel.tf>, 2025
 # Charles Taborin, 2025
+# Pascal Prugna, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Charles Taborin, 2025\n"
+"Last-Translator: Pascal Prugna, 2025\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -115,7 +116,7 @@ msgid "Close Smart Picker"
 msgstr "Fermer le sélecteur intelligent"
 
 msgid "Close time Picker"
-msgstr "Sélecteur de temps de fermeture"
+msgstr "Fermer le sélecteur de temps"
 
 msgid "Collapse menu"
 msgstr "Réduire le menu"
