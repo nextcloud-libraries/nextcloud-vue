@@ -35,24 +35,6 @@ interface FormatTimeOptions {
 	format?: Intl.DateTimeFormatOptions
 }
 
-/**
- * @deprecated
- */
-interface LegacyFormatDateTimeOptions {
-	/**
-	 * The format used for displaying, or if relative time is used the format used for the title
-	 */
-	format?: Intl.DateTimeFormatOptions
-	/**
-	 * Ignore seconds when displaying the relative time and just show `a few seconds ago`
-	 */
-	ignoreSeconds?: boolean
-	/**
-	 * Wether to display the timestamp as time from now
-	 */
-	relativeTime?: false | 'long' | 'short' | 'narrow'
-}
-
 const FEW_SECONDS_AGO = {
 	long: t('a few seconds ago'),
 	short: t('seconds ago'), // FOR TRANSLATORS: Shorter version of 'a few seconds ago'
@@ -139,41 +121,4 @@ export function useFormatTime(
 	const formatter = computed(() => new Intl.DateTimeFormat(options.value.locale, options.value.format))
 
 	return computed(() => formatter.value.format(toValue(timestamp)))
-}
-
-/**
- * Composable for formatting time stamps using current users locale and language
- *
- * @param {import('vue').MaybeRefOrGetter<Date | number>} timestamp Current timestamp
- * @param {object} opts Optional options
- * @param {Intl.DateTimeFormatOptions} opts.format The format used for displaying, or if relative time is used the format used for the title (optional)
- * @param {boolean} opts.ignoreSeconds Ignore seconds when displaying the relative time and just show `a few seconds ago`
- * @param {false | 'long' | 'short' | 'narrow'} opts.relativeTime Wether to display the timestamp as time from now (optional)
- *
- * @deprecated use `useFormatRelativeTime` or `useFormatTime` instead.
- */
-export function useFormatDateTime(
-	timestamp: MaybeRefOrGetter<Date|number> = Date.now(),
-	opts: MaybeRefOrGetter<LegacyFormatDateTimeOptions> = {},
-) {
-	const formattedFullTime = useFormatTime(timestamp, opts)
-	const relativeTime = useFormatRelativeTime(timestamp, computed(() => {
-		const options = toValue(opts)
-		return {
-			...options,
-			relativeTime: typeof options.relativeTime === 'string'
-				? options.relativeTime
-				: 'long',
-		}
-	}))
-
-	const formattedTime = computed(() => toValue(opts).relativeTime !== false
-		? relativeTime.value
-		: formattedFullTime.value,
-	)
-
-	return {
-		formattedTime,
-		formattedFullTime,
-	}
 }
