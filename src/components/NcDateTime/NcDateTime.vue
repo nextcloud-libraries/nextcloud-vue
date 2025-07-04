@@ -92,13 +92,13 @@ h4 {
 <template>
 	<span class="nc-datetime"
 		:data-timestamp="timestamp"
-		:title="formattedFullTime"
+		:title
 		v-text="formattedTime" />
 </template>
 
 <script setup lang="ts">
-import { toRef } from 'vue'
-import { useFormatDateTime } from '../../composables/useFormatDateTime.ts'
+import { computed, toRef } from 'vue'
+import { useFormatRelativeTime, useFormatTime } from '../../composables/useFormatDateTime/index.ts'
 
 const props = withDefaults(defineProps<{
 	/**
@@ -130,8 +130,15 @@ const props = withDefaults(defineProps<{
 	relativeTime: 'long',
 })
 
-const {
-	formattedTime,
-	formattedFullTime,
-} = useFormatDateTime(toRef(() => props.timestamp), props)
+const timeOptions = computed(() => ({ format: props.format }))
+const relativeTimeOptions = computed(() => ({
+	ignoreSeconds: props.ignoreSeconds,
+	relativeTime: props.relativeTime || 'long',
+	update: props.relativeTime !== false,
+}))
+
+const title = useFormatTime(toRef(() => props.timestamp), timeOptions)
+const relativeTime = useFormatRelativeTime(toRef(() => props.timestamp), relativeTimeOptions)
+
+const formattedTime = computed(() => props.relativeTime ? relativeTime.value : title.value)
 </script>
