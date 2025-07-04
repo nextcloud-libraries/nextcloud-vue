@@ -4,8 +4,15 @@
  */
 
 import { mount } from '@vue/test-utils'
-import NcDateTime from '../../../../src/components/NcDateTime/NcDateTime.vue'
 import { nextTick } from 'vue'
+import NcDateTime from '../../../../src/components/NcDateTime/NcDateTime.vue'
+
+import * as nextcloudl10n from '@nextcloud/l10n'
+
+jest.mock('@nextcloud/l10n', () => ({
+	...jest.requireActual('@nextcloud/l10n'),
+	getCanonicalLocale: jest.fn(() => 'en-US'),
+}))
 
 describe('NcDateTime.vue', () => {
 	'use strict'
@@ -29,6 +36,7 @@ describe('NcDateTime.vue', () => {
 	it('Can set format of the title property', () => {
 		const time = Date.UTC(2023, 5, 23, 14, 30)
 		jest.setSystemTime(new Date(time))
+
 		const wrapper = mount(NcDateTime, {
 			propsData: {
 				timestamp: time,
@@ -55,13 +63,8 @@ describe('NcDateTime.vue', () => {
 	})
 
 	describe('Work with different locales', () => {
-		beforeAll(() => {
-			// mock the locale
-			document.documentElement.dataset.locale = 'de_DE'
-		})
-		afterAll(() => {
-			// revert mock
-			document.documentElement.dataset.locale = 'en'
+		beforeEach(() => {
+			nextcloudl10n.getCanonicalLocale.mockImplementationOnce(() => 'de-DE')
 		})
 
 		/**
@@ -69,7 +72,7 @@ describe('NcDateTime.vue', () => {
 		 */
 		it('Works with absolute timestamps', () => {
 			const time = Date.UTC(2023, 5, 23, 14, 30)
-			jest.setSystemTime(time)
+			jest.useFakeTimers({ now: time })
 			const wrapper = mount(NcDateTime, {
 				propsData: {
 					timestamp: time,
@@ -210,7 +213,7 @@ describe('NcDateTime.vue', () => {
 				},
 			})
 
-			expect(wrapper.element.textContent).toContain('5 months')
+			expect(wrapper.element.textContent).toContain('February 23')
 		})
 
 		it('shows years from now', () => {
@@ -230,8 +233,8 @@ describe('NcDateTime.vue', () => {
 				},
 			})
 
-			expect(wrapper.element.textContent).toContain('last year')
-			expect(wrapper2.element.textContent).toContain('2 years')
+			expect(wrapper.element.textContent).toContain('June 2023')
+			expect(wrapper2.element.textContent).toContain('June 2022')
 		})
 	})
 })
