@@ -174,8 +174,8 @@ msgid ""
 " you have any questions."
 msgstr "関連リソースの取得エラー。ご不明な点がございましたら、システム管理者にお問い合わせください。"
 
-msgid "External documentation for {name}"
-msgstr "{name} の外部ドキュメント"
+msgid "External documentation"
+msgstr "外部ドキュメント"
 
 msgid "Failed to add the item to the project"
 msgstr "プロジェクトへのアイテムの追加に失敗しました"
