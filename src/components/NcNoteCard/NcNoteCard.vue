@@ -125,7 +125,8 @@ const iconPath = computed(() => {
 		<slot name="icon">
 			<NcIconSvgWrapper :path="iconPath"
 				class="notecard__icon"
-				:class="{ 'notecard__icon--heading': heading }" />
+				:class="{ 'notecard__icon--heading': heading }"
+				inline />
 		</slot>
 		<div>
 			<p v-if="heading" class="notecard__heading">
