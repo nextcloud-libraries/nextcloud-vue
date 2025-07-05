@@ -123,8 +123,8 @@ export default {
 	},
 
 	emits: [
-		'has-error',
-		'has-resources',
+		'hasError',
+		'hasResources',
 	],
 
 	data() {
@@ -201,7 +201,7 @@ export default {
 			 *
 			 * @type {boolean}
 			 */
-			this.$emit('has-error', Boolean(error))
+			this.$emit('hasError', Boolean(error))
 		},
 		resources(resources) {
 			/**
@@ -209,7 +209,7 @@ export default {
 			 *
 			 * @type {boolean}
 			 */
-			this.$emit('has-resources', resources.length > 0)
+			this.$emit('hasResources', resources.length > 0)
 		},
 	},
 

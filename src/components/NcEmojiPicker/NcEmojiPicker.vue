@@ -313,7 +313,7 @@ export default {
 	},
 	emits: [
 		'select',
-		'select-data',
+		'selectData',
 		'unselect',
 	],
 
@@ -391,7 +391,7 @@ export default {
 			/**
 			 * Emits a object with more data about the picked emoji
 			 */
-			this.$emit('select-data', emojiObject)
+			this.$emit('selectData', emojiObject)
 
 			if (this.closeOnSelect) {
 				this.open = false

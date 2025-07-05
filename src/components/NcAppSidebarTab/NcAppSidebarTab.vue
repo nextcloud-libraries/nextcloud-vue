@@ -62,7 +62,7 @@ export default {
 	},
 
 	emits: [
-		'bottom-reached',
+		'bottomReached',
 		'scroll',
 	],
 
@@ -99,7 +99,7 @@ export default {
 				 *
 				 * @property {Event} event Native scroll event
 				 */
-				this.$emit('bottom-reached', event)
+				this.$emit('bottomReached', event)
 			}
 			/**
 			 * @property {Event} event Native scroll event

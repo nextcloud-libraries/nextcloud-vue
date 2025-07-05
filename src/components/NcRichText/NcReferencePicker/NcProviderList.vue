@@ -60,7 +60,7 @@ export default {
 		LinkVariantIcon,
 	},
 	emits: [
-		'select-provider',
+		'selectProvider',
 		'submit',
 	],
 	data() {
@@ -96,7 +96,7 @@ export default {
 				if (p.isLink) {
 					this.$emit('submit', p.title)
 				} else {
-					this.$emit('select-provider', p)
+					this.$emit('selectProvider', p)
 				}
 				this.selectedProvider = null
 			}
