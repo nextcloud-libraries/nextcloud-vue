@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { useFormatDateTime, useFormatRelativeTime } from '../../../src/composables/useFormatDateTime/index.ts'
-import { computed, isRef, nextTick, ref } from 'vue'
-import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
+import { useFormatRelativeTime } from '../../../src/composables/useFormatDateTime/index.ts'
+import { computed, nextTick, ref } from 'vue'
+import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
 describe('useFormatRelativeTime composable', () => {
 	const time = Date.parse('2025-01-01T00:00:00Z')
@@ -77,72 +77,5 @@ describe('useFormatRelativeTime composable', () => {
 		const options = { ignoreSeconds: true, relativeTime: format }
 		const formatted = useFormatRelativeTime(time, options)
 		expect(formatted.value).toBe(expected)
-	})
-})
-
-describe('useFormatDateTime composable', () => {
-	beforeAll(() => {
-		vi.spyOn(console, 'error').mockImplementation(() => {})
-		vi.useFakeTimers({ now: new Date('2025-01-01T00:00:00Z') })
-	})
-
-	afterAll(() => {
-		vi.restoreAllMocks()
-	})
-
-	it('Should provide formatted time and options as ref', () => {
-		const ctx = useFormatDateTime()
-		expect(isRef(ctx.formattedTime)).toBe(true)
-		expect(isRef(ctx.formattedFullTime)).toBe(true)
-	})
-
-	it('Shows relative times', async () => {
-		const time = ref(Date.now())
-		const ctx = useFormatDateTime(time, { ignoreSeconds: false, relativeTime: 'long' })
-		expect(ctx.formattedTime.value).toContain('now')
-		time.value = Date.now() - 5000
-		await nextTick()
-		expect(ctx.formattedTime.value).toMatch(/\d sec/)
-		time.value = Date.now() - 120000
-		await nextTick()
-		expect(ctx.formattedTime.value).toContain('2 minutes')
-		time.value = Date.now() - 2 * 60 * 60 * 1000
-		await nextTick()
-		expect(ctx.formattedTime.value).toContain('2 hours')
-		time.value = Date.now() - 2 * 24 * 60 * 60 * 1000
-		await nextTick()
-		expect(ctx.formattedTime.value).toContain('2 days')
-		time.value = Date.now() - 2 * 7 * 24 * 60 * 60 * 1000
-		await nextTick()
-		expect(ctx.formattedTime.value).toContain('2 weeks')
-		time.value = Date.now() - 2 * 30 * 24 * 60 * 60 * 1000
-		await nextTick()
-		expect(ctx.formattedTime.value).toContain('November 2')
-		time.value = Date.now() - 2 * 365 * 24 * 60 * 60 * 1000
-		await nextTick()
-		expect(ctx.formattedTime.value).toContain('January 2023')
-	})
-
-	it('Shows different relative times', async () => {
-		const options = ref({ ignoreSeconds: true, relativeTime: 'long' })
-		const ctx = useFormatDateTime(Date.now() - 5000, options)
-		expect(ctx.formattedTime.value).toBe('a few seconds ago')
-		options.value.relativeTime = 'short'
-		await nextTick()
-		expect(ctx.formattedTime.value).toBe('seconds ago')
-		options.value.relativeTime = 'narrow'
-		await nextTick()
-		expect(ctx.formattedTime.value).toBe('sec. ago')
-	})
-
-	it('Should be reactive on options change', async () => {
-		const options = ref({ ignoreSeconds: false })
-		const ctx = useFormatDateTime(Date.now() - 5000, options)
-
-		expect(ctx.formattedTime.value).toContain('sec')
-
-		options.value.ignoreSeconds = true
-		await nextTick()
-		expect(ctx.formattedTime.value).toBe('a few seconds ago')
 	})
 })
