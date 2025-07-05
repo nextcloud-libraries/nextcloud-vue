@@ -37,6 +37,7 @@ where:
 
 <template>
 	<div class="container">
+		<p class="description">{{ loggedKey }}</p>
 		<p class="description">Press <kbd>W</kbd> <kbd>S</kbd> <kbd>A</kbd> <kbd>D</kbd> keys to move the ball</p>
 		<div class="square">
 			<div class="circle" :style="{ left: `${circleX}px`, top: `${circleY}px` }"></div>
@@ -57,11 +58,35 @@ where:
 	import { ref } from 'vue'
 	import { useHotKey } from '../../src/composables/useHotKey/index.js'
 
+	const isMac = /mac|ipad|iphone|darwin/i.test(navigator.userAgent)
+
 	export default {
 		setup() {
+			const loggedKey = ref('Press any key')
 			const circleX = ref(20)
 			const circleY = ref(20)
 			const highlighted = ref(false)
+
+			const updateLoggedKey = (event) => {
+				if (['Ctrl', 'Meta', 'Alt', 'Shift'].includes(event.key)) {
+					return
+				}
+
+				loggedKey.value = `Key pressed: ${event.key} | `
+				if (event.ctrlKey) {
+					loggedKey.value += 'Ctrl + '
+				}
+				if (event.metaKey) {
+					loggedKey.value += isMac ? 'Cmd + ' : 'Meta + '
+				}
+				if (event.altKey) {
+					loggedKey.value += 'Alt + '
+				}
+				if (event.shiftKey) {
+					loggedKey.value += 'Shift + '
+				}
+				loggedKey.value += event.code
+			}
 
 			const moveUp = (event) => {
 				circleY.value = Math.max(0, circleY.value - 10)
@@ -79,13 +104,15 @@ where:
 				highlighted.value = !highlighted.value
 			}
 
-			useHotKey('w', moveUp)
-			useHotKey('s', moveDown)
-			useHotKey('a', moveLeft)
-			useHotKey('d', moveRight)
+			useHotKey(true, updateLoggedKey)
+			useHotKey(['w', 'KeyW'], moveUp)
+			useHotKey(['s', 'KeyS'], moveDown)
+			useHotKey(['a', 'KeyA'], moveLeft)
+			useHotKey(['d', 'KeyD'], moveRight)
 			const stop = useHotKey('m', toggleHighlighted, { push: true })
 
 			return {
+				loggedKey,
 				circleX,
 				circleY,
 				highlighted,
