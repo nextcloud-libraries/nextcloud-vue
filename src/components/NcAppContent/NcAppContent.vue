@@ -145,22 +145,23 @@ export default {
 
 <script>
 import { getBuilder } from '@nextcloud/browser-storage'
+import { getCapabilities } from '@nextcloud/capabilities'
 import { emit } from '@nextcloud/event-bus'
 import { loadState } from '@nextcloud/initial-state'
 import { useSwipe } from '@vueuse/core'
 import { Splitpanes, Pane } from 'splitpanes'
+import NcAppDetailsToggle from './NcAppDetailsToggle.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { APP_NAME } from '../../utils/appName.ts'
 import { isRtl } from '../../utils/rtl.ts'
-
-import NcAppDetailsToggle from './NcAppDetailsToggle.vue'
+import logger from '../../utils/logger.ts'
 
 import 'splitpanes/dist/splitpanes.css'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
-const { name: productName } = loadState('theming', 'data', { name: 'Nextcloud' })
+const instanceName = getCapabilities().theming?.name ?? 'Nextcloud'
 const activeApp = loadState('core', 'active-app', APP_NAME)
-const localizedAppName = loadState('core', 'apps', []).find(app => app.id === activeApp)?.name ?? APP_NAME
+const localizedAppName = loadState('core', 'apps', []).find(({ id }) => id === activeApp)?.name ?? APP_NAME
 
 /**
  * App content container to be used for the main content of your app
@@ -185,8 +186,9 @@ export default {
 
 		/**
 		 * Allows you to set the default width of the resizable list in % on vertical-split
-		 * Allows you to set the default height of the resizable list in % on horizontal-split
-		 * Must be between listMinWidth and listMaxWidth
+		 * or respectively the default height on horizontal-split.
+		 *
+		 * Must be between `listMinWidth` and `listMaxWidth`.
 		 */
 		listSize: {
 			type: Number,
@@ -195,7 +197,7 @@ export default {
 
 		/**
 		 * Allows you to set the minimum width of the list column in % on vertical-split
-		 * Allows you to set the minimum height of the list column in % on horizontal-split
+		 * or respectively the minimum height on horizontal-split.
 		 */
 		listMinWidth: {
 			type: Number,
@@ -204,7 +206,7 @@ export default {
 
 		/**
 		 * Allows you to set the maximum width of the list column in % on vertical-split
-		 * Allows you to set the maximum height of the list column in % on horizontal-split
+		 * or respectively the maximum height on horizontal-split.
 		 */
 		listMaxWidth: {
 			type: Number,
@@ -234,13 +236,6 @@ export default {
 		},
 
 		/**
-		 * Specify the `<h1>` page heading
-		 */
-		pageHeading: {
-			type: String,
-			default: null,
-		},
-		/**
 		 * Content layout used when there is a list together with content:
 		 * - `vertical-split` - a 2-column layout with list and default content separated vertically
 		 * - `no-split` - a single column layout; List is shown when `showDetails` is `false`, otherwise the default slot content is shown with a back button to return to the list.
@@ -256,11 +251,19 @@ export default {
 		},
 
 		/**
+		 * Specify the `<h1>` page heading
+		 */
+		pageHeading: {
+			type: String,
+			default: null,
+		},
+
+		/**
 		 * Allow setting the page's `<title>`
 		 *
-		 * If a page heading is set it defaults to `{pageHeading} - {appName} - {productName}` e.g. `Favorites - Files - Nextcloud`.
-		 * When the page heading and the app name is the same only one is used, e.g. `Files - Files - Nextcloud` is shown as `Files - Nextcloud`.
-		 * When setting the prop then the following format will be used: `{pageTitle} - {pageHeading || appName} - {productName}`
+		 * If a page heading is set it defaults to `{pageHeading} - {appName} - {instanceName}` e.g. `Favorites - Files - MyPersonalCloud`.
+		 * When the page heading and the app name is the same only one is used, e.g. `Files - Files - Nextcloud` is shown as `Files - MyPersonalCloud`.
+		 * When setting the prop then the following format will be used: `{pageTitle} - {pageHeading || appName} - {instanceName}`
 		 */
 		pageTitle: {
 			type: String,
@@ -305,7 +308,7 @@ export default {
 				// to a global storage key
 				return `pane-list-size-${APP_NAME}`
 			} catch (e) {
-				console.info('[INFO] AppContent:', 'falling back to global nextcloud pane config')
+				logger.info('[NcAppContent]: falling back to global nextcloud pane config')
 				return 'pane-list-size-nextcloud'
 			}
 		},
@@ -351,7 +354,7 @@ export default {
 				// Only add if not already pageHeading and pageTitle are included
 				entries.add(localizedAppName)
 			}
-			entries.add(productName)
+			entries.add(instanceName)
 			return [...entries.values()].join(' - ')
 		},
 	},
