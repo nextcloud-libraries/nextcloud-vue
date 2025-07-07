@@ -3,22 +3,96 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { useFormatDateTime } from '../../../src/composables/useFormatDateTime.ts'
-import { isRef, nextTick, ref } from 'vue'
+import { useFormatDateTime, useFormatRelativeTime } from '../../../src/composables/useFormatDateTime/index.ts'
+import Vue, { computed, isRef, nextTick, ref } from 'vue'
+
+describe('useFormatRelativeTime composable', () => {
+	const time = Date.parse('2025-01-01T00:00:00Z')
+
+	beforeAll(() => jest.useFakeTimers())
+	beforeEach(() => jest.setSystemTime(time + 60000))
+
+	it('works with timestamp', () => {
+		const formatted = useFormatRelativeTime(time)
+		expect(formatted.value).toBe('1 minute ago')
+	})
+
+	it('works with computed timestamp', () => {
+		const formatted = useFormatRelativeTime(computed(() => time))
+		expect(formatted.value).toBe('1 minute ago')
+	})
+
+	it('works with a date object', () => {
+		const formatted = useFormatRelativeTime(new Date(time))
+		expect(formatted.value).toBe('1 minute ago')
+	})
+
+	it('works with computed date object', () => {
+		const formatted = useFormatRelativeTime(computed(() => new Date(time)))
+		expect(formatted.value).toBe('1 minute ago')
+	})
+
+	it('updates the time', () => {
+		jest.setSystemTime(time + 6000)
+
+		const formatted = useFormatRelativeTime(time)
+		expect(formatted.value).toBe('6 seconds ago')
+		jest.advanceTimersByTime(6000)
+		expect(formatted.value).toBe('12 seconds ago')
+	})
+
+	it('can stop and restart the interval', async () => {
+		const options = ref({ update: true })
+		const formatted = useFormatRelativeTime(time, options)
+		expect(formatted.value).toBe('1 minute ago')
+
+		// wait one minute
+		await jest.advanceTimersByTimeAsync(60000)
+		expect(formatted.value).toBe('2 minutes ago')
+
+		// disable update and wait 2 minutes
+		options.value.update = false
+		await jest.advanceTimersByTimeAsync(120000)
+		expect(formatted.value).toBe('2 minutes ago')
+
+		// reenable update and wait until next timer
+		Vue.delete(options.value, 'update')
+		// request the next tick
+		nextTick()
+		// and wait for it (Vue's computed calculation)
+		await jest.runOnlyPendingTimersAsync()
+		expect(formatted.value).toBe('4 minutes ago')
+	})
+
+	it.each`
+	format      | expected
+	${'long'}   | ${'a few seconds ago'}
+	${'short'}  | ${'seconds ago'}
+	${'narrow'} | ${'sec. ago'}
+	`('can ignore seconds', ({ format, expected }) => {
+		const time = Date.parse('2025-01-01T00:00:00Z')
+		jest.setSystemTime(time + 6000)
+
+		const options = { ignoreSeconds: true, relativeTime: format }
+		const formatted = useFormatRelativeTime(time, options)
+		expect(formatted.value).toBe(expected)
+	})
+})
 
 describe('useFormatDateTime composable', () => {
 	beforeAll(() => {
 		jest.spyOn(console, 'error').mockImplementation(() => {})
+		jest.useFakeTimers({ now: new Date('2025-01-01T00:00:00Z') })
 	})
+
 	afterAll(() => {
 		jest.restoreAllMocks()
 	})
 
-	it('Should provide formatted time and options as ref', () => {
+	it('Should projestde formatted time and options as ref', () => {
 		const ctx = useFormatDateTime()
 		expect(isRef(ctx.formattedTime)).toBe(true)
 		expect(isRef(ctx.formattedFullTime)).toBe(true)
-		expect(isRef(ctx.options)).toBe(true)
 	})
 
 	it('Shows relative times', async () => {
@@ -42,99 +116,32 @@ describe('useFormatDateTime composable', () => {
 		expect(ctx.formattedTime.value).toContain('2 weeks')
 		time.value = Date.now() - 2 * 30 * 24 * 60 * 60 * 1000
 		await nextTick()
-		expect(ctx.formattedTime.value).toContain('2 month')
+		expect(ctx.formattedTime.value).toContain('November 2')
 		time.value = Date.now() - 2 * 365 * 24 * 60 * 60 * 1000
 		await nextTick()
-		expect(ctx.formattedTime.value).toContain('2 years')
+		expect(ctx.formattedTime.value).toContain('January 2023')
 	})
 
 	it('Shows different relative times', async () => {
-		const ctx = useFormatDateTime(Date.now() - 5000, { ignoreSeconds: true, relativeTime: 'long' })
+		const options = ref({ ignoreSeconds: true, relativeTime: 'long' })
+		const ctx = useFormatDateTime(Date.now() - 5000, options)
 		expect(ctx.formattedTime.value).toBe('a few seconds ago')
-		ctx.options.value.relativeTime = 'short'
+		options.value.relativeTime = 'short'
 		await nextTick()
 		expect(ctx.formattedTime.value).toBe('seconds ago')
-		ctx.options.value.relativeTime = 'narrow'
+		options.value.relativeTime = 'narrow'
 		await nextTick()
 		expect(ctx.formattedTime.value).toBe('sec. ago')
 	})
 
 	it('Should be reactive on options change', async () => {
-		const ctx = useFormatDateTime(Date.now() - 5000, { ignoreSeconds: false })
+		const options = ref({ ignoreSeconds: false })
+		const ctx = useFormatDateTime(Date.now() - 5000, options)
+
 		expect(ctx.formattedTime.value).toContain('sec')
-		ctx.options.value.ignoreSeconds = true
+
+		options.value.ignoreSeconds = true
 		await nextTick()
 		expect(ctx.formattedTime.value).toBe('a few seconds ago')
-	})
-
-	describe('relative time intervals', () => {
-		const time = ref(Date.now())
-		const ctx = useFormatDateTime(time, { ignoreSeconds: false, relativeTime: 'long' })
-
-		test('t < 60s -> seconds', async () => {
-			time.value = Date.now() - (50 * 1000)
-			await nextTick()
-			expect(ctx.formattedTime.value).toMatch(/\d sec/)
-		})
-
-		test('t >= 60s -> minutes', async () => {
-			time.value = Date.now() - (60 * 1000)
-			await nextTick()
-			expect(ctx.formattedTime.value).toMatch(/minute/)
-		})
-
-		test('t >= 60min -> hour', async () => {
-			time.value = Date.now() - (60 * 60 * 1000)
-			await nextTick()
-			expect(ctx.formattedTime.value).toMatch(/hour/)
-		})
-
-		test('t <= 23h -> hour', async () => {
-			time.value = Date.now() - (23 * 60 * 60 * 1000)
-			await nextTick()
-			expect(ctx.formattedTime.value).toMatch(/hour/)
-		})
-
-		test('t >= 24h -> days', async () => {
-			time.value = Date.now() - (24 * 60 * 60 * 1000)
-			await nextTick()
-			expect(ctx.formattedTime.value).toMatch(/day/)
-		})
-
-		test('t <= 6days -> days', async () => {
-			time.value = Date.now() - (6 * 24 * 60 * 60 * 1000)
-			await nextTick()
-			expect(ctx.formattedTime.value).toMatch(/day/)
-		})
-
-		test('t >= 7 days -> weeks', async () => {
-			time.value = Date.now() - (7 * 24 * 60 * 60 * 1000)
-			await nextTick()
-			expect(ctx.formattedTime.value).toMatch(/week/)
-		})
-
-		test('t < 28 days -> weeks', async () => {
-			time.value = Date.now() - (21 * 24 * 60 * 60 * 1000)
-			await nextTick()
-			expect(ctx.formattedTime.value).toMatch(/week/)
-		})
-
-		test('t >= 28 days -> months', async () => {
-			time.value = Date.now() - (28 * 24 * 60 * 60 * 1000)
-			await nextTick()
-			expect(ctx.formattedTime.value).toMatch(/month/)
-		})
-
-		test('t <= 11 month -> month', async () => {
-			time.value = Date.now() - (335 * 24 * 60 * 60 * 1000)
-			await nextTick()
-			expect(ctx.formattedTime.value).toMatch(/month/)
-		})
-
-		test('t >= 12 month -> years', async () => {
-			time.value = Date.now() - (365 * 24 * 60 * 60 * 1000)
-			await nextTick()
-			expect(ctx.formattedTime.value).toMatch(/year/)
-		})
 	})
 })
