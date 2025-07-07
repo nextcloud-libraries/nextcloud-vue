@@ -176,8 +176,8 @@ msgstr ""
 "Помилка під час отримання пов'язаних ресурсів. Будь ласка, сконтактуйте з "
 "системним адміністратором, якщо у вас виникли запитання."
 
-msgid "External documentation for {name}"
-msgstr "Зовнішня документація для {name}"
+msgid "External documentation"
+msgstr "Зовнішня документація"
 
 msgid "Failed to add the item to the project"
 msgstr "Не вдалося приєднати ресурс до проєкту"
@@ -364,6 +364,9 @@ msgstr "Вибрати"
 
 msgid "Pick an emoji"
 msgstr "Виберіть емоційку"
+
+msgid "Please choose a date"
+msgstr "Виберіть дату"
 
 msgid "Previous"
 msgstr "Назад"
