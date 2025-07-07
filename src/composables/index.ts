@@ -4,7 +4,6 @@
  */
 
 export {
-	useFormatDateTime,
 	useFormatRelativeTime,
 	useFormatTime,
 } from './useFormatDateTime/index.ts'
