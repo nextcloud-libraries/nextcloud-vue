@@ -2,11 +2,11 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import type { Meta, StoryObj } from "@storybook/vue3"
-import type { Component } from "vue"
+import type { StoryObj } from '@storybook/vue3'
+import type { Component } from 'vue'
 
-import { Canvas as StorybookCanvas } from "@storybook/blocks"
-import { h } from "vue"
+import { Canvas as StorybookCanvas } from '@storybook/addon-docs/blocks'
+import { h } from 'vue'
 
 /**
  * Create a story from a Vue story file.

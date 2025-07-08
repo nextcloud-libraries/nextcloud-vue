@@ -6,15 +6,13 @@ import type { StorybookConfig } from '@storybook/vue3-vite'
 import { join } from 'path'
 
 const config: StorybookConfig = {
-	stories: ['../docs/**/*.mdx', '../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+	stories: ['../docs/**/*.mdx', '../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
 
 	addons: [
-		// Collection of essential addons like actions, controls, backgrounds, viewport, etc.
-		'@storybook/addon-essentials',
-		// Links between stories
-		'@storybook/addon-links',
 		// Document component usage and properties in Markdown
 		'@storybook/addon-docs',
+		// Links between stories
+		'@storybook/addon-links',
 	],
 
 	framework: {
