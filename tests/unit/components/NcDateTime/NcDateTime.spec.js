@@ -87,11 +87,11 @@ describe('NcDateTime.vue', () => {
 	describe('Work with different languages', () => {
 		beforeAll(() => {
 			// mock the language
-			document.documentElement.lang = 'de'
+			nextcloudl10n.setLanguage('de')
 		})
 		afterAll(() => {
 			// revert mock
-			document.documentElement.lang = 'en'
+			nextcloudl10n.setLanguage('en')
 		})
 
 		it('Works with relative timestamps', () => {
