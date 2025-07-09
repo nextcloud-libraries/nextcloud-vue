@@ -3,12 +3,12 @@
 # Joas Schilling, 2025
 # XYZ, 2025
 # Corentin Noël <tintou@noel.tf>, 2025
-# Charles Taborin, 2025
 # Pascal Prugna, 2025
+# Charles Taborin, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Pascal Prugna, 2025\n"
+"Last-Translator: Charles Taborin, 2025\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -240,7 +240,7 @@ msgid "Keyboard navigation help"
 msgstr "Aide à la navigation du clavier"
 
 msgid "Light skin tone"
-msgstr "Teint clair"
+msgstr "Teint de peau clair"
 
 msgid "Load more \"{options}\""
 msgstr "Charger d'avantage \"{options}\""
