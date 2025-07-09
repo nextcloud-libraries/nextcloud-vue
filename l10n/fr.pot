@@ -254,7 +254,7 @@ msgid "Mariner"
 msgstr "Bleu marine"
 
 msgid "Medium dark skin tone"
-msgstr "Teint de peau brun moyennement foncé"
+msgstr "Teint de peau moyennement foncé"
 
 msgid "Medium light skin tone"
 msgstr "Teint de peau moyennement clair"
