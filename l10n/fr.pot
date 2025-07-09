@@ -260,7 +260,7 @@ msgid "Medium light skin tone"
 msgstr "Teint de peau moyennement clair"
 
 msgid "Medium skin tone"
-msgstr "Teint moyen"
+msgstr "Teint de peau moyen"
 
 msgid "Message limit of %n character reached"
 msgid_plural "Message limit of %n characters reached"
