@@ -208,7 +208,7 @@ describe('Foo', () => {
 		const checkbox = wrapper.findComponent({ name: 'NcCheckboxRadioSwitch' })
 		expect(checkbox.exists()).toBeTruthy()
 		await checkbox.vm.$emit('update:modelValue', true)
-		expect(wrapper.emitted()['interact:todo']).toBeTruthy()
+		expect(wrapper.emitted().interactTodo).toBeTruthy()
 	})
 
 	it('properly defines syntax in code blocks and highlights it', async () => {

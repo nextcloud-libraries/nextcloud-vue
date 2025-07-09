@@ -412,10 +412,10 @@ export default {
 	},
 
 	emits: [
-		'submit',
 		'paste',
 		'update:modelValue',
-		'smart-picker-submit',
+		'smartPickerSubmit',
+		'submit',
 	],
 
 	setup() {
@@ -669,7 +669,7 @@ export default {
 						result,
 						insertText: true,
 					}
-					this.$emit('smart-picker-submit', eventData)
+					this.$emit('smartPickerSubmit', eventData)
 					if (eventData.insertText) {
 						const newElem = document.createTextNode(result)
 						tmpElem.replaceWith(newElem)

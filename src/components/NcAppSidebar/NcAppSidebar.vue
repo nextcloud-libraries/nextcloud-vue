@@ -920,14 +920,14 @@ export default {
 		'close',
 		'closed',
 		'opened',
-		// 'figure-click', not emitted on purpose to make "hasFigureClickListener" work
+		// 'figureClick', not emitted on purpose to make "hasFigureClickListener" work
 		'update:active',
 		'update:name',
 		'update:nameEditable',
 		'update:open',
 		'update:starred',
-		'submit-name',
-		'dismiss-editing',
+		'submitName',
+		'dismissEditing',
 	],
 
 	setup() {
@@ -1112,7 +1112,7 @@ export default {
 			 * @type {Event}
 			 */
 			// eslint-disable-next-line vue/require-explicit-emits
-			this.$emit('figure-click', e)
+			this.$emit('figureClick', e)
 		},
 
 		/**
@@ -1212,7 +1212,7 @@ export default {
 			 *
 			 * @type {Event}
 			 */
-			this.$emit('submit-name', event)
+			this.$emit('submitName', event)
 		},
 		onDismissEditing() {
 			// Disable editing
@@ -1222,7 +1222,7 @@ export default {
 			 *
 			 * @type {Event}
 			 */
-			this.$emit('dismiss-editing')
+			this.$emit('dismissEditing')
 		},
 		onUpdateActive(activeTab) {
 			/**
