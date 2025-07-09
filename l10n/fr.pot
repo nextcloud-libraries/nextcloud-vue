@@ -134,7 +134,7 @@ msgid "Custom"
 msgstr "Personnalisé"
 
 msgid "Dark skin tone"
-msgstr "Teint foncé"
+msgstr "Teint de peau foncé"
 
 msgid "Datepicker input"
 msgstr "Entrée du sélecteur de date"
