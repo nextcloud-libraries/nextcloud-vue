@@ -257,7 +257,7 @@ msgid "Medium dark skin tone"
 msgstr "Teint de peau brun moyennement foncé"
 
 msgid "Medium light skin tone"
-msgstr "Teint de peau clair"
+msgstr "Teint de peau moyennement clair"
 
 msgid "Medium skin tone"
 msgstr "Teint moyen"
