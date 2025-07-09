@@ -7,6 +7,7 @@ import { mount } from '@vue/test-utils'
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import NcDateTime from '../../../../src/components/NcDateTime/NcDateTime.vue'
 import { nextTick } from 'vue'
+import { setLanguage } from '@nextcloud/l10n'
 
 const getCanonicalLocale = vi.hoisted(() => vi.fn(() => 'en-US'))
 
@@ -87,11 +88,11 @@ describe('NcDateTime.vue', () => {
 	describe('Work with different languages', () => {
 		beforeAll(() => {
 			// mock the language
-			document.documentElement.lang = 'de'
+			setLanguage('de')
 		})
 		afterAll(() => {
 			// revert mock
-			document.documentElement.lang = 'en'
+			setLanguage('en')
 		})
 
 		it('Works with relative timestamps', () => {
