@@ -281,7 +281,7 @@ msgid "More options"
 msgstr "Plus d'options"
 
 msgid "Neutral skin color"
-msgstr "Teint neutre"
+msgstr "Teint de peau neutre"
 
 msgid "Next"
 msgstr "Suivant"
