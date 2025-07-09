@@ -2,10 +2,11 @@
 # Translators:
 # Joas Schilling, 2025
 # Stephan Paternotte <stephan@paternottes.net>, 2025
+# Paul de Wit, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Stephan Paternotte <stephan@paternottes.net>, 2025\n"
+"Last-Translator: Paul de Wit, 2025\n"
 "Language-Team: Dutch (https://app.transifex.com/nextcloud/teams/64236/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nl\n"
@@ -150,7 +151,7 @@ msgstr "Seconden verminderen"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
-msgstr "Deluge"
+msgstr "Overlopen"
 
 msgid "Deselect {option}"
 msgstr "Selectie {option} opheffen"
