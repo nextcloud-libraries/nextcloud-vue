@@ -66,6 +66,8 @@ export default defineConfig({
 				(await import('vite-plugin-node-polyfills')).nodePolyfills(),
 				// We need to strip off the docs sections for the vue plugin
 				(await import('./build/docs-plugin.ts')).default,
+				// Also add the l10n plugin so we can test translations
+				(await import('./build/l10n-plugin.mts')).default('l10n'),
 			],
 			define: {
 				appName: '"exampleApp"',

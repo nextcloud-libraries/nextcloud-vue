@@ -100,8 +100,9 @@ export default (dir: string) => {
 				const exports = Object.entries(nameMap).map(([usage, id]) => `export const ${id} = ${JSON.stringify(translations[usage])}`).join(';\n')
 				return `import { getLanguage } from '@nextcloud/l10n'
 import { getGettextBuilder } from '@nextcloud/l10n/gettext'
-const builder = getGettextBuilder().setLanguage(getLanguage())
-let gettext = builder.build()
+const gettext = getGettextBuilder()
+	.detectLanguage()
+	.build()
 
 export const n = (...args) => gettext.ngettext(...args)
 export const t = (...args) => gettext.gettext(...args)
@@ -127,14 +128,11 @@ export function register(...chunks) {
 					])
 				)
 
-				gettext = builder.addTranslation(getLanguage(), {
+				gettext.addTranslations({
 					translations: {
-						'': {
-							...(gettext.bundle.translations?.[''] ?? {}),
-							...decompressed,
-						},
+						'': decompressed,
 					},
-				}).build()
+				})
 			}
 			chunk.registered = true
 		}
