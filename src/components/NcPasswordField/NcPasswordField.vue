@@ -93,40 +93,17 @@ export default {
 ```
 </docs>
 
-<template>
-	<NcInputField v-bind="propsToForward"
-		ref="inputField"
-		v-model="modelValue"
-		:error="error || isValid === false"
-		:helper-text="helperText || internalHelpMessage"
-		:input-class="[inputClass, { 'password-field__input--secure-text': isPasswordHidden && asText }]"
-		:minlength="minlength ?? passwordPolicy?.minLength ?? 0"
-		:success="success || isValid === true"
-		:trailing-button-label="isPasswordHidden ? t('Show password') : t('Hide password')"
-		:type="isPasswordHidden && !asText ? 'password' : 'text'"
-		@trailing-button-click="isPasswordHidden = !isPasswordHidden">
-		<template v-if="!!$slots.icon" #icon>
-			<!-- @slot Leading icon -->
-			<slot name="icon" />
-		</template>
-		<template #trailing-button-icon>
-			<Eye v-if="isPasswordHidden" :size="18" />
-			<EyeOff v-else :size="18" />
-		</template>
-	</NcInputField>
-</template>
-
 <script setup lang="ts">
 import type { NcInputFieldProps } from '../NcInputField/NcInputField.vue'
 import type { Writable } from '../../utils/VueTypes.ts'
 
-import debounce from 'debounce'
+import { mdiEye, mdiEyeOff } from '@mdi/js'
 import axios from '@nextcloud/axios'
 import { getCapabilities } from '@nextcloud/capabilities'
 import { generateOcsUrl } from '@nextcloud/router'
+import debounce from 'debounce'
 import { computed, ref, useTemplateRef, watch } from 'vue'
-import Eye from 'vue-material-design-icons/Eye.vue'
-import EyeOff from 'vue-material-design-icons/EyeOff.vue'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import NcInputField from '../NcInputField/NcInputField.vue'
 import { t } from '../../l10n.js'
 import logger from '../../utils/logger.ts'
@@ -162,8 +139,13 @@ const props = withDefaults(defineProps<Omit<NcInputFieldProps, 'trailingButtonLa
 	showTrailingButton: true,
 })
 
-const modelValue = defineModel<string>('modelValue', { default: '' })
+const modelValue = defineModel<string>({ default: '' })
 watch(modelValue, debounce(checkPassword, 500))
+
+/**
+ * The obfuscating state of the password.
+ */
+const obfuscated = defineModel<boolean>('obfuscated', { default: true })
 
 const emit = defineEmits<{
 	valid: []
@@ -224,7 +206,6 @@ const { password_policy: passwordPolicy } = getCapabilities() as { password_poli
 // internal state
 const inputField = useTemplateRef('inputField')
 
-const isPasswordHidden = ref(true)
 const internalHelpMessage = ref('')
 const isValid = ref<boolean>()
 
@@ -277,6 +258,13 @@ async function checkPassword() {
 }
 
 /**
+ * Toggle the obfuscation of the password
+ */
+function toggleObfuscation() {
+	obfuscated.value = !obfuscated.value
+}
+
+/**
  * Focus the input element
  *
  * @param options - Focus options
@@ -295,6 +283,28 @@ function select() {
 	inputField.value!.select()
 }
 </script>
+
+<template>
+	<NcInputField v-bind="propsToForward"
+		ref="inputField"
+		v-model="modelValue"
+		:error="error || isValid === false"
+		:helper-text="helperText || internalHelpMessage"
+		:input-class="[inputClass, { 'password-field__input--secure-text': obfuscated && asText }]"
+		:minlength="minlength ?? passwordPolicy?.minLength ?? 0"
+		:success="success || isValid === true"
+		:trailing-button-label="obfuscated ? t('Show password') : t('Hide password')"
+		:type="obfuscated && !asText ? 'password' : 'text'"
+		@trailing-button-click="toggleObfuscation">
+		<template v-if="!!$slots.icon" #icon>
+			<!-- @slot Leading icon -->
+			<slot name="icon" />
+		</template>
+		<template #trailing-button-icon>
+			<NcIconSvgWrapper :path="obfuscated ? mdiEye : mdiEyeOff" />
+		</template>
+	</NcInputField>
+</template>
 
 <style lang="scss" scoped>
 :deep(.password-field__input--secure-text) {
