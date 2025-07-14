@@ -6,6 +6,8 @@ import { onKeyStroke } from '@vueuse/core'
 
 const disableKeyboardShortcuts = window.OCP?.Accessibility?.disableKeyboardShortcuts?.()
 const isMac = /mac|ipad|iphone|darwin/i.test(navigator.userAgent)
+const derivedKeysRegex = /^[a-zA-Z0-9]$/
+const nonAsciiPrintableRegex = /^[^\x20-\x7F]$/
 
 export interface UseHotKeyOptions {
 	/** Make key filter case sensitive */
@@ -124,16 +126,32 @@ export function useHotKey(
 
 	/**
 	 * Validates event key to expected key
-	 * FIXME should support any languages / key codes
 	 *
 	 * @param event keyboard event
 	 * @param key expected key
 	 * @return whether it satisfies expected value or not
 	 */
 	const validateKeyEvent = (event: KeyboardEvent, key: string): boolean => {
-		if (options.caseSensitive) {
-			return event.key === key
+		// If key exactly matches event.key, valid with any caseSensitive option. Do not perform further checks
+		if (event.key === key) {
+			return true
 		}
+
+		// If key and event.key are in different cases, invalid with caseSensitive = true. Do not perform further checks
+		if (options.caseSensitive) {
+			const isKeyInLowerCase = key === key.toLowerCase()
+			const isEventKeyInLowerCase = event.key === event.key.toLowerCase()
+			if (isKeyInLowerCase !== isEventKeyInLowerCase) {
+				return false
+			}
+		}
+
+		// If received event.key is not a printable ASCII character code (character code 32-127),
+		// try to derive it from event.code and match with expected key
+		if (derivedKeysRegex.test(key) && nonAsciiPrintableRegex.test(event.key)) {
+			return event.code.replace(/^(?:Key|Digit|Numpad)/, '') === key.toUpperCase()
+		}
+
 		return event.key.toLowerCase() === key.toLowerCase()
 	}
 
