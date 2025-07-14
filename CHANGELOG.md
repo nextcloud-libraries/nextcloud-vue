@@ -5,9 +5,14 @@
 
 # Changelog
 
-## [v8.27.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.27.1) (UNRELEASED)
+## [v8.28.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.28.0) (2025-07-14)
 
 ### 📝 Notes
+#### `NcPasswordField`
+The component now has a `visible` property (with `update:visible` event) to allow setting the visibility state of the password.
+This allows to programmatically make the password visible or obfuscated for the user.
+One use case could be to reset the visibility when submitting some form to prevent leaking the password in a loading state of the UI.
+
 #### `NcTextField`
 The value `arrowRight` of the property `trailingButtonIcon` is deprecated and will be removed in a future version.
 It is replaced by `arrowEnd` which reflects that the directions depends on the text directions (LTR vs RTL).
@@ -19,10 +24,36 @@ The `update:open` event is deprecated, instead just use the `close` event which 
 Custom events now have a consistent naming without custom scoping of the events.
 Thus following events are deprecated in favor of a new consistent event name:
 
-     Component |       Old event |       New event
----------------|-----------------|----------------
-`NcAppContent` |   `resize:list` |   `resize-list`
-  `NcRichText` | `interact:todo` | `interact-todo`
+|      Component |       Old event |       New event |
+|----------------|-----------------|-----------------|
+| `NcAppContent` |   `resize:list` |   `resize-list` |
+|   `NcRichText` | `interact:todo` | `interact-todo` |
+
+### 🚀 Enhancements
+* feat: add `useFormatRelativeTime` composable [#7128](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7128)
+* feat(NcPasswordField): allow to set visibility state [#7148](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7148)
+
+### 🐛 Fixed bugs
+* fix(NcAppNavigationItem): multi level padding [#6919](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6919)
+* fix(NcTextField): make trailing button icon for confirmation also work on RTL [#7002](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7002)
+* fix(NcAppContent): incorrect page title from a different core.apps format in Nextcloud 30 [#7011](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7011) ([julien-nc](https://github.com/julien-nc))
+* fix(NcDialog): deprecated nativeType usage check [#7031](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7031) ([skjnldsv](https://github.com/skjnldsv))
+* fix(NcSelectUsers): fix using of v-model in Vue 2 [#7032](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7032) ([Antreesy](https://github.com/Antreesy))
+* fix(NcAvatar): update 'hasStatus' flag if changed [#7037](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7037)
+* fix(NcCheckboxRadioSwitch): align icons with the first row of label [#7047](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7047)
+* fix(actions): use pointer cursor for action button text [#7049](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7049)
+* fix(NcRichText): always render code blocks in LTR direction [#7061](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7061) ([Antreesy](https://github.com/Antreesy))
+* fix(NcListItem): let `active` prop take higher priority [#7089](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7089)
+* fix(NcActionText): remove br between action name and action long text [#7119](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7119)
+* fix(useHotKey): try to derive latin keys from key codes of non-latin characters [#7147](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7147)
+* fix(l10n): adjust for `@nextcloud/l10n` 3.4.0 [#7150](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7150)
+
+### Other Changes
+* refactor: deprecate events not comply with Vue event naming rules [#7078](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7078)
+* chore(NcColorPicker): deprecate duplicated `update:open` event [#7095](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7095)
+* chore(NcActions): fix type annotation of `NodeList` [#7105](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7105)
+* chore(NcAppContent): rename NcAppDetailsContent to remove from docs [#7139](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7139)
+* refactor(NcAppContent): clarify props documentation and use capabilities over initial state [#7141](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7141)
 
 ## [v8.27.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.27.0) (2025-05-28)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.26.1...v8.27.0)
