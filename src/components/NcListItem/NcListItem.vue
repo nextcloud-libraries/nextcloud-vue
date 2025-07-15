@@ -776,7 +776,9 @@ export default {
 				return
 			}
 			// do not hide if focus is kept within
-			if (this.$refs['list-item'].contains(event.relatedTarget)) {
+			// On component unmounting Vue 3 resets the template ref to null,
+			// so we can ignore this check
+			if (this.$refs['list-item']?.contains(event.relatedTarget)) {
 				return
 			}
 			this.hideActions()
