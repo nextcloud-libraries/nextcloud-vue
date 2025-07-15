@@ -319,6 +319,7 @@ const props = withDefaults(defineProps<{
 const timezoneId = defineModel<string>('timezoneId', { default: 'UTC' })
 
 const target = useTemplateRef('target')
+const picker = useTemplateRef('picker')
 
 const emit = defineEmits<{
 	/**
@@ -555,11 +556,28 @@ const ariaLabels = computed(() => ({
 	monthPicker: (overlay: boolean) => overlay ? t('Month picker overlay') : t('Month picker'),
 	yearPicker: (overlay: boolean) => overlay ? t('Year picker overlay') : t('Year picker'),
 }))
+
+/**
+ * Select the current value.
+ * This is used by the confirmation button if `confirmation` was set.
+ */
+function selectDate() {
+	picker.value!.selectDate()
+}
+
+/**
+ * Cancel the current selection by closing the overlay.
+ * This is used by the confirmation button if `confirmation` was set.
+ */
+function cancelSelection() {
+	picker.value!.closeMenu()
+}
 </script>
 
 <template>
 	<div class="vue-date-time-picker__wrapper">
-		<VueDatePicker :aria-labels
+		<VueDatePicker ref="picker"
+			:aria-labels
 			:auto-apply="!confirm"
 			class="vue-date-time-picker"
 			:cancel-text="t('Cancel')"
@@ -580,6 +598,14 @@ const ariaLabels = computed(() => ({
 			:week-start
 			v-bind="pickerType"
 			@update:model-value="onUpdateModelValue">
+			<template #action-buttons>
+				<NcButton size="small" variant="tertiary" @click="cancelSelection">
+					{{ t('Cancel') }}
+				</NcButton>
+				<NcButton size="small" variant="primary" @click="selectDate">
+					{{ t('Pick') }}
+				</NcButton>
+			</template>
 			<template #clear-icon="{ clear }">
 				<NcButton :aria-label="t('Clear value')"
 					variant="tertiary-no-background"
