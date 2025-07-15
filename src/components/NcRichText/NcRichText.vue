@@ -613,6 +613,7 @@ export default {
 		margin-top: 0 !important;
 	}
 	& > :last-child,
+	& > *:has(+ .rich-text--reference-widget),
 	div > :last-child,
 	blockquote > :last-child {
 		margin-block-end: 0 !important;
