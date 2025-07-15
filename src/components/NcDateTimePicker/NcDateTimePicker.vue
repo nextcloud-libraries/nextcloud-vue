@@ -651,26 +651,26 @@ function cancelSelection() {
 
 .vue-date-time-picker__wrapper {
 	// This is under :root in @vuepic/vue-datepicker/dist/main.css, so importing it scoped won't work
-	--dp-common-transition: all 0.1s ease-in;
+	--dp-common-transition: all var(--animation-quick) ease-in;
 	--dp-menu-padding: 6px 8px;
-	--dp-animation-duration: 0.1s;
+	--dp-animation-duration: var(--animation-quick);
 	--dp-menu-appear-transition-timing: cubic-bezier(.4, 0, 1, 1);
 	--dp-transition-timing: ease-out;
 	--dp-action-row-transtion: all 0.2s ease-in;
-	--dp-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, oxygen, ubuntu, cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-	// --dp-border-radius: 4px;
-	--dp-cell-border-radius: 4px;
+	--dp-font-family: var(--font-face);
+	--dp-border-radius: var(--border-radius-element);
+	--dp-cell-border-radius: var(--border-radius-small);
 	--dp-transition-length: 22px;
-	--dp-transition-timing-general: 0.1s;
-	--dp-button-height: 35px;
-	--dp-month-year-row-height: 35px;
-	--dp-month-year-row-button-size: 25px;
+	--dp-transition-timing-general: var(--animation-quick);
+	--dp-button-height: var(--default-clickable-area);
+	--dp-month-year-row-height: var(--default-clickable-area);
+	--dp-month-year-row-button-size: var(--clickable-area-small);
 	--dp-button-icon-height: 20px;
 	--dp-calendar-wrap-padding: 0 5px;
-	--dp-cell-size: 35px;
+	--dp-cell-size: var(--default-clickable-area);
 	--dp-cell-padding: 5px;
 	--dp-common-padding: 10px;
-	// --dp-input-icon-padding: 35px;
+	--dp-input-icon-padding: var(--default-clickable-area);
 	--dp-input-padding: 6px 30px 6px 12px;
 	--dp-menu-min-width: 260px;
 	--dp-action-buttons-padding: 1px 6px;
@@ -678,11 +678,11 @@ function cancelSelection() {
 	--dp-calendar-header-cell-padding: 0.5rem;
 	--dp-multi-calendars-spacing: 10px;
 	--dp-overlay-col-padding: 3px;
-	--dp-time-inc-dec-button-size: 32px;
+	--dp-time-inc-dec-button-size: var(--default-clickable-area);
 	--dp-font-size: 1rem;
-	--dp-preview-font-size: 0.8rem;
+	--dp-preview-font-size: var(--font-size-small);
 	--dp-time-font-size: 2rem;
-	--dp-action-button-height: 22px;
+	--dp-action-button-height: var(--clickable-area-small);
 	--dp-action-row-padding: 8px;
 	--dp-direction: ltr;
 
@@ -692,18 +692,13 @@ function cancelSelection() {
 		@include meta.load-css('@vuepic/vue-datepicker/dist/main.css');
 	}
 
-	/*
-	 * These are our customizations to the date picker.
-	 */
-	--dp-border-radius: var(--border-radius-element);
-	--dp-input-icon-padding: var(--default-clickable-area);
-
 	.vue-date-time-picker__timezone {
 		min-width: unset;
 		width: 100%;
 	}
 
 	:deep(.icon-vue) {
+		// we enforce full opacity to not create a11y issues with contrast
 		opacity: 1 !important;
 	}
 
@@ -735,46 +730,18 @@ function cancelSelection() {
 	:deep(input) {
 		padding-inline-start: var(--dp-input-icon-padding) !important;
 	}
-	:deep(.dp__input) {
-		margin: 3px;
-		margin-inline-start: 0;
-		padding: 0 12px;
-		font-size: var(--default-font-size);
-		background-color: var(--color-main-background);
-		color: var(--color-main-text);
-		border: 2px solid var(--color-border-maxcontrast);
-		outline: none;
-		border-radius: var(--border-radius-large);
-		text-overflow: ellipsis;
-		cursor: pointer;
-	}
-	:deep(.dp__btn),
-	:deep(.dp--time-overlay-btn),
-	:deep(.dp__action_button) {
+	:deep(.dp__btn) {
 		margin: 0;
-		font-weight: bold;
-		border-radius: var(--border-radius-element);
-		padding: calc((var(--default-clickable-area) - 1lh) / 2) calc(3 * var(--default-grid-baseline));
-		font-size: var(--default-font-size);
-		width: auto;
-		min-height: var(--default-clickable-area);
-		cursor: pointer;
-		box-sizing: border-box;
-		color: var(--color-primary-element-light-text);
-		background-color: var(--color-primary-element-light);
-		border: none;
-	}
-	:deep(.dp--time-overlay-btn),
-	:deep(.dp__action_button) {
-		margin: 3px;
-		margin-inline-start: 0;
-	}
-	:deep(.dp__inc_dec_button) {
-		padding: calc((var(--default-clickable-area) - 20px) / 2);
 	}
 	:deep(.dp__inner_nav) {
 		height: fit-content;
 		width: fit-content;
+	}
+
+	// make the bottom page toggle stand out better
+	:deep(.dp__btn.dp__button.dp__button_bottom) {
+		color: var(--color-primary-element-light);
+		background-color: var(--color-primary-element-light);
 	}
 
 	// Fix server styles causing buttons to be primary colored
@@ -783,7 +750,8 @@ function cancelSelection() {
 		background-color: var(--color-main-background);
 
 		&:hover {
-			background-color: var(--color-background-hover);
+			background: var(--dp-hover-color);
+			color: var(--dp-hover-icon-color);
 		}
 	}
 
@@ -806,9 +774,9 @@ function cancelSelection() {
 	:deep(.dp__theme_light) {
 		--dp-background-color: var(--color-main-background);
 		--dp-text-color: var(--color-main-text);
-		--dp-hover-color: var(--color-background-hover);
-		--dp-hover-text-color: var(--color-main-text);
-		--dp-hover-icon-color: var(--color-main-text);
+		--dp-hover-color: var(--color-primary-element-light-hover);
+		--dp-hover-text-color: var(--color-primary-element-light-text);
+		--dp-hover-icon-color: var(--color-primary-element-light-text);
 		--dp-primary-color: var(--color-primary-element);
 		--dp-primary-disabled-color: var(--color-primary-element-hover);
 		--dp-primary-text-color: var(--color-primary-element-text);
