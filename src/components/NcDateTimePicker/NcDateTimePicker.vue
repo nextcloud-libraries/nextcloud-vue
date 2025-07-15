@@ -189,7 +189,7 @@ import {
 	getDayNamesMin,
 	getCanonicalLocale,
 } from '@nextcloud/l10n'
-import { computed } from 'vue'
+import { computed, useTemplateRef } from 'vue'
 import { t } from '../../l10n.js'
 
 import VueDatePicker from '@vuepic/vue-datepicker'
@@ -317,6 +317,9 @@ const props = withDefaults(defineProps<{
  * @default 'UTC'
  */
 const timezoneId = defineModel<string>('timezoneId', { default: 'UTC' })
+
+const target = useTemplateRef('target')
+const picker = useTemplateRef('picker')
 
 const emit = defineEmits<{
 	/**
@@ -553,72 +556,141 @@ const ariaLabels = computed(() => ({
 	monthPicker: (overlay: boolean) => overlay ? t('Month picker overlay') : t('Month picker'),
 	yearPicker: (overlay: boolean) => overlay ? t('Year picker overlay') : t('Year picker'),
 }))
+
+/**
+ * Select the current value.
+ * This is used by the confirmation button if `confirmation` was set.
+ */
+function selectDate() {
+	picker.value!.selectDate()
+}
+
+/**
+ * Cancel the current selection by closing the overlay.
+ * This is used by the confirmation button if `confirmation` was set.
+ */
+function cancelSelection() {
+	picker.value!.closeMenu()
+}
 </script>
 
 <template>
-	<VueDatePicker :aria-labels
-		:auto-apply="!confirm"
-		class="vue-date-time-picker"
-		:cancel-text="t('Cancel')"
-		:clearable
-		:day-names
-		:placeholder="placeholder ?? placeholderFallback"
-		:format="realFormat"
-		:locale
-		:minutes-increment="minuteStep"
-		:model-value="value"
-		:now-button-label="t('Now')"
-		:select-text="t('Pick')"
-		six-weeks="fair"
-		:teleport="appendToBody || undefined"
-		text-input
-		:week-num-name
-		:week-numbers="showWeekNumber ? { type: 'iso' } : undefined"
-		:week-start
-		v-bind="pickerType"
-		@update:model-value="onUpdateModelValue">
-		<template #input-icon>
-			<NcIconSvgWrapper :path="mdiCalendarBlank" :size="20" />
-		</template>
-		<template #clear-icon="{ clear }">
-			<NcButton :aria-label="t('Clear value')"
-				variant="tertiary-no-background"
-				@click="clear">
-				<template #icon>
-					<NcIconSvgWrapper inline :path="mdiClose" :size="20" />
-				</template>
-			</NcButton>
-		</template>
-		<template #clock-icon>
-			<NcIconSvgWrapper inline :path="mdiClock" :size="20" />
-		</template>
-		<template #arrow-left>
-			<NcIconSvgWrapper inline :path="mdiChevronLeft" :size="20" />
-		</template>
-		<template #arrow-right>
-			<NcIconSvgWrapper inline :path="mdiChevronRight" :size="20" />
-		</template>
-		<template #arrow-down>
-			<NcIconSvgWrapper inline :path="mdiChevronDown" :size="20" />
-		</template>
-		<template #arrow-up>
-			<NcIconSvgWrapper inline :path="mdiChevronUp" :size="20" />
-		</template>
-		<template v-if="showTimezoneSelect" #action-extra>
-			<NcTimezonePicker v-model="timezoneId"
-				class="vue-date-time-picker__timezone"
-				:append-to-body="false"
-				:input-label="t('Timezone')" />
-		</template>
-	</VueDatePicker>
+	<div class="vue-date-time-picker__wrapper">
+		<VueDatePicker ref="picker"
+			:aria-labels
+			:auto-apply="!confirm"
+			class="vue-date-time-picker"
+			:cancel-text="t('Cancel')"
+			:clearable
+			:day-names
+			:placeholder="placeholder ?? placeholderFallback"
+			:format="realFormat"
+			:locale
+			:minutes-increment="minuteStep"
+			:model-value="value"
+			:now-button-label="t('Now')"
+			:select-text="t('Pick')"
+			six-weeks="fair"
+			:teleport="appendToBody ? (target || undefined) : false"
+			text-input
+			:week-num-name
+			:week-numbers="showWeekNumber ? { type: 'iso' } : undefined"
+			:week-start
+			v-bind="pickerType"
+			@update:model-value="onUpdateModelValue">
+			<template #action-buttons>
+				<NcButton size="small" variant="tertiary" @click="cancelSelection">
+					{{ t('Cancel') }}
+				</NcButton>
+				<NcButton size="small" variant="primary" @click="selectDate">
+					{{ t('Pick') }}
+				</NcButton>
+			</template>
+			<template #clear-icon="{ clear }">
+				<NcButton :aria-label="t('Clear value')"
+					variant="tertiary-no-background"
+					@click="clear">
+					<template #icon>
+						<NcIconSvgWrapper inline :path="mdiClose" :size="20" />
+					</template>
+				</NcButton>
+			</template>
+			<template #input-icon>
+				<NcIconSvgWrapper :path="mdiCalendarBlank" :size="20" />
+			</template>
+			<template #clock-icon>
+				<NcIconSvgWrapper inline :path="mdiClock" :size="20" />
+			</template>
+			<template #arrow-left>
+				<NcIconSvgWrapper inline :path="mdiChevronLeft" :size="20" />
+			</template>
+			<template #arrow-right>
+				<NcIconSvgWrapper inline :path="mdiChevronRight" :size="20" />
+			</template>
+			<template #arrow-down>
+				<NcIconSvgWrapper inline :path="mdiChevronDown" :size="20" />
+			</template>
+			<template #arrow-up>
+				<NcIconSvgWrapper inline :path="mdiChevronUp" :size="20" />
+			</template>
+			<template v-if="showTimezoneSelect" #action-extra>
+				<NcTimezonePicker v-model="timezoneId"
+					class="vue-date-time-picker__timezone"
+					:append-to-body="false"
+					:input-label="t('Timezone')" />
+			</template>
+		</VueDatePicker>
+		<Teleport to="body" :disabled="!appendToBody">
+			<div ref="target" class="vue-date-time-picker__wrapper" />
+		</Teleport>
+	</div>
 </template>
 
 <style scoped lang="scss">
-@import '@vuepic/vue-datepicker/dist/main.css';
+@use "sass:meta";
 
-.vue-date-time-picker {
+.vue-date-time-picker__wrapper {
+	// This is under :root in @vuepic/vue-datepicker/dist/main.css, so importing it scoped won't work
+	--dp-common-transition: all var(--animation-quick) ease-in;
+	--dp-menu-padding: 6px 8px;
+	--dp-animation-duration: var(--animation-quick);
+	--dp-menu-appear-transition-timing: cubic-bezier(.4, 0, 1, 1);
+	--dp-transition-timing: ease-out;
+	--dp-action-row-transtion: all 0.2s ease-in;
+	--dp-font-family: var(--font-face);
 	--dp-border-radius: var(--border-radius-element);
+	--dp-cell-border-radius: var(--border-radius-small);
+	--dp-transition-length: 22px;
+	--dp-transition-timing-general: var(--animation-quick);
+	--dp-button-height: var(--default-clickable-area);
+	--dp-month-year-row-height: var(--default-clickable-area);
+	--dp-month-year-row-button-size: var(--clickable-area-small);
+	--dp-button-icon-height: 20px;
+	--dp-calendar-wrap-padding: 0 5px;
+	--dp-cell-size: var(--default-clickable-area);
+	--dp-cell-padding: 5px;
+	--dp-common-padding: 10px;
 	--dp-input-icon-padding: var(--default-clickable-area);
+	--dp-input-padding: 6px 30px 6px 12px;
+	--dp-menu-min-width: 260px;
+	--dp-action-buttons-padding: 1px 6px;
+	--dp-row-margin: 5px 0;
+	--dp-calendar-header-cell-padding: 0.5rem;
+	--dp-multi-calendars-spacing: 10px;
+	--dp-overlay-col-padding: 3px;
+	--dp-time-inc-dec-button-size: var(--default-clickable-area);
+	--dp-font-size: 1rem;
+	--dp-preview-font-size: var(--font-size-small);
+	--dp-time-font-size: 2rem;
+	--dp-action-button-height: var(--clickable-area-small);
+	--dp-action-row-padding: 8px;
+	--dp-direction: ltr;
+
+	// We need to import the vuepic styles, but at least scoped to our class and scope
+	// plain @import does not work as this will scope all styles imported.
+	:deep() {
+		@include meta.load-css('@vuepic/vue-datepicker/dist/main.css');
+	}
 
 	.vue-date-time-picker__timezone {
 		min-width: unset;
@@ -626,6 +698,7 @@ const ariaLabels = computed(() => ({
 	}
 
 	:deep(.icon-vue) {
+		// we enforce full opacity to not create a11y issues with contrast
 		opacity: 1 !important;
 	}
 
@@ -658,12 +731,17 @@ const ariaLabels = computed(() => ({
 		padding-inline-start: var(--dp-input-icon-padding) !important;
 	}
 	:deep(.dp__btn) {
-		padding: calc((var(--default-clickable-area) - 20px) / 2);
 		margin: 0;
 	}
 	:deep(.dp__inner_nav) {
 		height: fit-content;
 		width: fit-content;
+	}
+
+	// make the bottom page toggle stand out better
+	:deep(.dp__btn.dp__button.dp__button_bottom) {
+		color: var(--color-primary-element-light);
+		background-color: var(--color-primary-element-light);
 	}
 
 	// Fix server styles causing buttons to be primary colored
@@ -672,7 +750,8 @@ const ariaLabels = computed(() => ({
 		background-color: var(--color-main-background);
 
 		&:hover {
-			background-color: var(--color-background-hover);
+			background: var(--dp-hover-color);
+			color: var(--dp-hover-icon-color);
 		}
 	}
 
@@ -689,15 +768,15 @@ const ariaLabels = computed(() => ({
 		padding: 0 calc(4 * var(--default-grid-baseline));
 	}
 
-	&.dp__theme_dark,
-	&.dp__theme_light,
+	.vue-date-time-picker.dp__theme_dark,
+	.vue-date-time-picker.dp__theme_light,
 	:deep(.dp__theme_dark),
 	:deep(.dp__theme_light) {
 		--dp-background-color: var(--color-main-background);
 		--dp-text-color: var(--color-main-text);
-		--dp-hover-color: var(--color-background-hover);
-		--dp-hover-text-color: var(--color-main-text);
-		--dp-hover-icon-color: var(--color-main-text);
+		--dp-hover-color: var(--color-primary-element-light-hover);
+		--dp-hover-text-color: var(--color-primary-element-light-text);
+		--dp-hover-icon-color: var(--color-primary-element-light-text);
 		--dp-primary-color: var(--color-primary-element);
 		--dp-primary-disabled-color: var(--color-primary-element-hover);
 		--dp-primary-text-color: var(--color-primary-element-text);

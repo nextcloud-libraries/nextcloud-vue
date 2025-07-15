@@ -28,6 +28,7 @@ const sassLoader = {
 			sourceMapContents: false,
 			includePaths: [
 				path.resolve(__dirname, './src/assets'),
+				path.resolve(__dirname, 'node_modules'),
 			],
 		},
 	},

@@ -258,8 +258,8 @@ const cleanSvg = computed(() => {
 	min-height: var(--default-clickable-area);
 	opacity: 1;
 
-	&--inline {
-		display: inline-flex;
+	&#{&}--inline {
+		display: inline-flex !important;
 		min-width: fit-content;
 		min-height: fit-content;
 		vertical-align: text-bottom;
