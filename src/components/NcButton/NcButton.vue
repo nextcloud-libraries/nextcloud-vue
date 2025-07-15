@@ -802,16 +802,20 @@ export default {
 	align-items: center;
 	justify-content: center;
 
-	// Cursor pointer on element and all children
-	cursor: pointer;
-	& *,
-	span {
-		cursor: pointer;
-	}
 	border-radius: var(--button-radius);
 	transition-property: color, border-color, background-color;
 	transition-duration: 0.1s;
 	transition-timing-function: linear;
+
+	// Default button type
+	color: var(--color-primary-element-light-text);
+	background-color: var(--color-primary-element-light);
+
+	// Cursor pointer on element and all children
+	&,
+	& :deep(*) {
+		cursor: pointer;
+	}
 
 	// No outline feedback for focus. Handled with a toggled class in js (see data)
 	&:focus {
@@ -820,17 +824,16 @@ export default {
 
 	&:disabled {
 		cursor: default;
-		& * {
-			cursor: default;
-		}
 		opacity: $opacity_disabled;
 		// Gives a wash out effect
 		filter: saturate($opacity_normal);
+
+		& :deep(*) {
+			cursor: default;
+		}
 	}
 
 	// Default button type
-	color: var(--color-primary-element-light-text);
-	background-color: var(--color-primary-element-light);
 	&:hover:not(:disabled) {
 		background-color: var(--color-primary-element-light-hover);
 	}
