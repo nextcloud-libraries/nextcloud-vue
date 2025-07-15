@@ -6,6 +6,7 @@
 # Changelog
 
 ## [v8.28.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.28.0) (2025-07-14)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.27.0...v8.28.0)
 
 ### 📝 Notes
 #### `NcPasswordField`
@@ -101,7 +102,7 @@ the reason behind this is to only have boolean properties with default value of 
 
 ### 🐛 Fixed bugs
 * fix(NcRichText): `references` prop type [#6800](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6800)
-*  fix(NcAppContent): don't remove list when showing details in mobile or no-split mode [#6261](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6261) ([wofferl](https://github.com/wofferl))
+* fix(NcAppContent): don't remove list when showing details in mobile or no-split mode [#6261](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6261) ([wofferl](https://github.com/wofferl))
 * fix(NcMentionBubble): position selectable text aligned with the component [#6837](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6837)
 * fix(NcAvatar): do not load avatar from server, if iconClass was provided [#6836](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6836)
 * fix(NcSelectUsers): add missing `search` event [#6838](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6838)
@@ -282,9 +283,6 @@ To make a later migration to version 9 easier you can already migrate your `NcBu
 * Updated workflows and dependencies
 * Updated translations
 
-## New Contributors
-* @Koc made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/6297
-
 ## [v8.22.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.22.0) (2024-12-20)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.21.0...v8.22.0)
 
@@ -312,12 +310,8 @@ To make a later migration to version 9 easier you can already migrate your `NcBu
 * Updated workflows and dependencies
 * Updated translations
 
-## New Contributors
-* @falghamdi125 made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/6260
-
 ## [v8.21.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.21.0) (2024-11-21)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.20.0...v8.21.0)
-
 
 ### 🚀 Enhancements
 * feat(NcRichText): highlight code syntax if language provided [\#6212](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6212) \([Antreesy](https://github.com/Antreesy)\)
@@ -331,10 +325,6 @@ To make a later migration to version 9 easier you can already migrate your `NcBu
 * fix(NcAppContent): correct splitter color in dark mode when using split-horizontal mode [\#6227](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6227) \([wofferl](https://github.com/wofferl)\)
 * fix(NcRichContenteditable): do not break adjacent user mentions [\#6223](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6223) \([Antreesy](https://github.com/Antreesy)\)
 * fix(NcRichContenteditable): fix pasting of the content to an empty field [\#6241](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6241) \([DorraJaouad](https://github.com/DorraJaouad)\)
-
-## New Contributors
-* @alsulami1 made their first contribution in [\#6202](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6202)
-* @wofferl made their first contribution in [\#6227](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6227)
 
 ## [v8.20.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.20.0) (2024-10-29)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.19.0...v8.20.0)
@@ -522,9 +512,6 @@ See the full list in [v9 breaking changes](https://github.com/nextcloud-librarie
 * chore(docs): remove SPDX header from component docs [\#5810](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5810) \([ShGKme](https://github.com/ShGKme)\)
 * fix(NcAppNavigationSettings): use tertiary styling for the toggle button [\#5814](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5814) \([st3iny](https://github.com/st3iny)\)
 
-## New Contributors
-* @GVodyanov made their first contribution in [\#5819](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5819)
-
 ## [v8.14.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.14.0) (2024-07-04)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.13.0...v8.14.0)
 
@@ -612,7 +599,6 @@ See the full list in [v9 breaking changes](https://github.com/nextcloud-librarie
 ## [v8.11.3](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.11.3) (2024-05-07)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.11.2...v8.11.3)
 
-## What's Changed
 ### 🐛 Fixed bugs
 * fix(NcReferenceWidget): do not try to render widget when there is no widget [\#5485](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5485) \([ShGKme](https://github.com/ShGKme)\)
 * fix(NcDialog): Actions should not overflow the action container [\#5495](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5495) \([susnux](https://github.com/susnux)\)
@@ -649,9 +635,6 @@ See the full list in [v9 breaking changes](https://github.com/nextcloud-librarie
 * Updates for project Nextcloud vue library [\#5447](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5447) \([transifex-integration](https://github.com/transifex-integration)\)
 * Updates for project Nextcloud vue library [\#5478](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5478) \([transifex-integration](https://github.com/transifex-integration)\)
 
-## New Contributors
-* @DorraJaouad made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5455
-
 ## [v8.11.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.11.1) (2024-03-21)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.11.0...v8.11.1)
 
@@ -665,9 +648,6 @@ See the full list in [v9 breaking changes](https://github.com/nextcloud-librarie
 ### Other Changes
 * Updates for project Nextcloud vue library [\#5417](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5417) \([transifex-integration](https://github.com/transifex-integration)\)
 * Updates for project Nextcloud vue library [\#5426](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5426) \([transifex-integration](https://github.com/transifex-integration)\)
-
-## New Contributors
-* @RayBB made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5389
 
 ## [v8.11.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.11.0) (2024-03-15)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.10.0...v8.11.0)
@@ -683,9 +663,6 @@ See the full list in [v9 breaking changes](https://github.com/nextcloud-librarie
 * fix(NcAvatar): handle regex error on initials match [\#5407](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5407) \([kyteinsky](https://github.com/kyteinsky)\)
 ### Other Changes
 * Updates for project Nextcloud vue library [\#5404](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5404) \([transifex-integration](https://github.com/transifex-integration)\)
-
-## New Contributors
-* @kyteinsky made their first contribution in https://github.com/nextcloud-libraries/nextcloud-vue/pull/5407
 
 ## [v8.10.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.10.0) (2024-03-11)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.9.1...v8.10.0)
