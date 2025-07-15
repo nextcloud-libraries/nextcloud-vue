@@ -194,6 +194,8 @@ module.exports = async () => {
 					'src/components/NcContent/*.vue',
 					'src/components/NcDashboard*/*.vue',
 					'src/components/NcDialog*/*.vue',
+					'src/components/NcEllipsisedOption*/*.vue',
+					'src/components/NcGuestContent/*.vue',
 					'src/components/NcHeader*/*.vue',
 					'src/components/NcListItem*/*.vue',
 					'src/components/NcMultiselect*/*.vue',
@@ -207,44 +209,55 @@ module.exports = async () => {
 				],
 				sections: [
 					{
+						name: 'App containers',
+						content: 'docs/app-containers.md',
+						sections: [
+							{
+								name: 'NcContent',
+								components: 'src/components/NcContent/NcContent.vue',
+							},
+							{
+								name: 'NcGuestContent',
+								components: 'src/components/NcGuestContent/NcGuestContent.vue',
+							},
+							{
+								name: 'NcAppContent',
+								components: 'src/components/NcAppContent/NcAppContent.vue',
+								sections: [
+									{
+										name: 'NcAppNavigation',
+										components: [
+											'src/components/NcAppNavigation*/*.vue',
+										],
+										ignore: [
+											'src/components/NcAppNavigationItem/NcAppNavigationIconCollapsible.vue',
+											'src/components/NcAppNavigationItem/NcInputConfirmCancel.vue',
+										],
+									},
+									{
+										name: 'NcAppSidebar',
+										components: [
+											'src/components/NcAppSidebar/NcAppSidebar.vue',
+											'src/components/NcAppSidebarHeader/NcAppSidebarHeader.vue',
+											'src/components/NcAppSidebarTab/NcAppSidebarTab.vue',
+										],
+									},
+									{
+										name: 'NcAppSettings',
+										components: [
+											'src/components/NcAppSettings*/*.vue',
+										],
+									},
+								],
+							},
+						],
+					},
+					{
 						name: 'NcActions',
 						components: [
 							// Put Actions component first
 							'src/components/NcActions/*.vue',
 							'src/components/NcAction[A-Z]*/*.vue',
-						],
-					},
-					{
-						name: 'App containers',
-						components: [
-							'src/components/NcAppContent/NcAppContent.vue',
-							'src/components/NcContent/NcContent.vue',
-						],
-						sections: [
-							{
-								name: 'NcAppNavigation',
-								components: [
-									'src/components/NcAppNavigation*/*.vue',
-								],
-								ignore: [
-									'src/components/NcAppNavigationItem/NcAppNavigationIconCollapsible.vue',
-									'src/components/NcAppNavigationItem/NcInputConfirmCancel.vue',
-								],
-							},
-							{
-								name: 'NcAppSidebar',
-								components: [
-									'src/components/NcAppSidebar/NcAppSidebar.vue',
-									'src/components/NcAppSidebarHeader/NcAppSidebarHeader.vue',
-									'src/components/NcAppSidebarTab/NcAppSidebarTab.vue',
-								],
-							},
-							{
-								name: 'NcAppSettings',
-								components: [
-									'src/components/NcAppSettings*/*.vue',
-								],
-							},
 						],
 					},
 					{
