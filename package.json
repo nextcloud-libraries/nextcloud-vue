@@ -54,7 +54,7 @@
     "storybook": "storybook dev -p 6006 --no-open",
     "storybook:build": "storybook build --disable-telemetry --output-dir .storybook/output",
     "styleguide": "vue-styleguidist --config styleguide.config.cjs server",
-    "styleguide:build": "vue-styleguidist --config styleguide.config.cjs build",
+    "styleguide:build": "storybook build --disable-telemetry --output-dir styleguide/build",
     "stylelint": "stylelint \"src/**/*.vue\" \"src/**/*.scss\" \"src/**/*.css\"",
     "stylelint:fix": "stylelint \"src/**/*.vue\" \"src/**/*.scss\" \"src/**/*.css\" --fix",
     "test": "vitest run",
