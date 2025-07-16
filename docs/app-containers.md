@@ -3,13 +3,24 @@
  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-All applications must to be wrapped in one of the provided app containers.
+All applications **must** be wrapped in one of the provided app containers.
 Those containers provide base styling and context for all components.
 
 ### Available containers
 #### `NcContent`
-This is the main container useable for all apps that provide app content.
-Often you would use then `NcAppContent` and maybe `NcAppNavigation` within it.
+This is the main container for all apps that provide full web-page interface.
+Its usual usage looks like this:
+
+```html static
+<NcContent>
+	<NcAppNavigation>
+		<!--- any in-app navigation -->
+	</NcAppNavigation>
+	<NcAppContent>
+		<!-- you application content -->
+	</NcAppContent>
+</NcContent>
+```
 
 #### `NcGuestContent`
 This is the main container for guest content like the login box of Nextcloud.

@@ -15,7 +15,7 @@ It can't be used multiple times on the same page.
 
 ### Usage
 
-```vue static
+```html static
 <template>
 	<NcGuestContent>
 		<h2>Hello guest</h2>
