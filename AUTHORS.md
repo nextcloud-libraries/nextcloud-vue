@@ -4,15 +4,18 @@
 -->
 # Authors
 
+- Anupam Kumar <kyteinsky@gmail.com>
 - Azul <azul@riseup.net>
 - Carl Schwan <carl@carlschwan.eu>
 - Christopher Ng <chrng8@gmail.com>
 - Christoph Wurst <christoph@winzerhof-wurst.at>
+- DorraJaouad <dorra.jaoued7@gmail.com>
 - Erik Pellikka <erik@pellikka.org>
 - Ferdinand Thiessen <opensource@fthiessen.de>
 - Georg Ehrke <georg-nextcloud@ehrke.email>
 - Greta Doci <gretadoci@gmail.com>
 - Grigorii K. Shartsev <me@shgk.me>
+- Grigory Vodyanov <scratchx@gmx.com>
 - Guido Krömer <mail@cacodaemon.de>
 - Jan-Christoph Borchardt <hey@jancborchardt.net>
 - Joas Schilling <coding@schilljs.com>
