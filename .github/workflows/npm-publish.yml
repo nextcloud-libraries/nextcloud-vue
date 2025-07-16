@@ -19,10 +19,7 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
-
     name: Build and publish to npm
-    env:
-      RELEASE_GROUP: ${{ (contains(github.ref, 'rc') || contains(github.ref, 'beta') || contains(github.ref, 'alpha')) && 'next' || 'latest' }}
 
     steps:
       - name: Checkout
@@ -35,6 +32,17 @@ jobs:
         with:
           node-version-file: 'package.json'
 
+      - name: Check tag matches package.json
+        run: |
+          VERSION=$(node -p -e "require('./package.json').version")
+          GH_VERSION=$(echo "$GH_VERSION" | sed s,\^v,,)
+          if [ "$VERSION" != "$GH_VERSION" ]; then
+            echo "$VERSION does not match $GH_VERSION"
+            exit 1;
+          fi;
+        env:
+          GH_VERSION: ${{ github.event.release.tag_name }}
+
       - name: Install dependencies & build
         env:
           CYPRESS_INSTALL_BINARY: 0
@@ -42,9 +50,24 @@ jobs:
           npm ci
           npm run build --if-present
 
+      - name: Fetch latest tag
+        id: latest-tag
+        run: |
+          TAG=$(gh release list \
+            --exclude-drafts \
+            --exclude-pre-releases \
+            --json isLatest,tagName \
+            --jq 'map(select(.isLatest == true))[].tagName' \
+            -R ${{ github.repository }})
+          echo "Latest tag is $TAG"
+          echo "LATEST_TAG=$TAG" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ github.token }}
+
       - name: Publish
         run: |
           npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
           npm publish --tag $RELEASE_GROUP
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          RELEASE_GROUP: ${{ (contains(github.ref, 'rc') || contains(github.ref, 'beta') || contains(github.ref, 'alpha')) && 'next' || ((steps.latest-tag.outputs.LATEST_TAG != github.event.release.tag_name) && 'stable' || 'latest') }}
