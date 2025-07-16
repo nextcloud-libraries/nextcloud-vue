@@ -152,8 +152,7 @@ export default {
 
 </docs>
 <template>
-	<span ref="main"
-		v-click-outside="closeMenu"
+	<span v-click-outside="closeMenu"
 		:title="tooltip"
 		:class="{
 			'avatardiv--unknown': userDoesNotExist,
@@ -234,7 +233,6 @@ import { getBuilder } from '@nextcloud/browser-storage'
 import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { generateUrl } from '@nextcloud/router'
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
-import { ref } from 'vue'
 
 import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 import NcActions from '../NcActions/index.js'
@@ -248,7 +246,7 @@ import NcLoadingIcon from '../NcLoadingIcon/index.js'
 import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
 
 import { getRoute } from '../../components/NcRichText/autolink.js'
-import { useIsDarkThemeElement } from '../../composables/useIsDarkTheme/index.ts'
+import { useIsDarkTheme } from '../../composables/useIsDarkTheme/index.ts'
 import usernameToColor from '../../functions/usernameToColor/index.js'
 import { getEnabledContactsMenuActions } from '../../functions/contactsMenu/index.ts'
 import { userStatus } from '../../mixins/index.js'
@@ -442,12 +440,10 @@ export default {
 	},
 
 	setup() {
-		const main = ref()
-		const isDarkTheme = useIsDarkThemeElement(main)
+		const isDarkTheme = useIsDarkTheme()
 
 		return {
 			isDarkTheme,
-			main,
 		}
 	},
 
