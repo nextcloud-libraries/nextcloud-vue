@@ -1,6 +1,6 @@
 # This workflow is provided via the organization template repository
 #
-# https://github.com/nextcloud/.github
+# https://github.com/nextcloud-libraries/.github
 # https://docs.github.com/en/actions/learn-github-actions/sharing-workflows-with-your-organization
 #
 # SPDX-FileCopyrightText: 2021-2024 Nextcloud GmbH and Nextcloud contributors
@@ -9,11 +9,10 @@
 name: Dependabot
 
 on:
-  pull_request:
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
     branches:
       - main
       - master
-      - next
       - stable*
 
 permissions:

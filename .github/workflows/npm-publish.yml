@@ -1,6 +1,6 @@
 # This workflow is provided via the organization template repository
 #
-# https://github.com/nextcloud/.github
+# https://github.com/nextcloud-libraries/.github
 # https://docs.github.com/en/actions/learn-github-actions/sharing-workflows-with-your-organization
 #
 # SPDX-FileCopyrightText: 2021-2024 Nextcloud GmbH and Nextcloud contributors
@@ -14,42 +14,34 @@ on:
 
 permissions:
   contents: read
+  packages: write
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-
     name: Build and publish to npm
-    env:
-      RELEASE_GROUP: ${{ (contains(github.ref, 'beta') || contains(github.ref, 'alpha')) && 'next' || 'latest' }}
-    permissions:
-      packages: write
 
     steps:
-      - name: Check actor permission level
-        uses: skjnldsv/check-actor-permission@69e92a3c4711150929bca9fcf34448c5bf5526e7 # v3.0
-        with:
-          require: write
-
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           persist-credentials: false
 
-      - name: Read package.json node and npm engines version
-        uses: skjnldsv/read-package-engines-version-actions@06d6baf7d8f41934ab630e97d9e6c0bc9c9ac5e4 # v3
-        id: versions
+      - name: Set up node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          fallbackNode: '^20'
-          fallbackNpm: '^10'
+          node-version-file: 'package.json'
 
-      - name: Set up node ${{ steps.versions.outputs.nodeVersion }}
-        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
-        with:
-          node-version: ${{ steps.versions.outputs.nodeVersion }}
-
-      - name: Set up npm ${{ steps.versions.outputs.npmVersion }}
-        run: npm i -g 'npm@${{ steps.versions.outputs.npmVersion }}'
+      - name: Check tag matches package.json
+        run: |
+          VERSION=$(node -p -e "require('./package.json').version")
+          GH_VERSION=$(echo "$GH_VERSION" | sed s,\^v,,)
+          if [ "$VERSION" != "$GH_VERSION" ]; then
+            echo "$VERSION does not match $GH_VERSION"
+            exit 1;
+          fi;
+        env:
+          GH_VERSION: ${{ github.event.release.tag_name }}
 
       - name: Install dependencies & build
         env:
@@ -58,9 +50,24 @@ jobs:
           npm ci
           npm run build --if-present
 
+      - name: Fetch latest tag
+        id: latest-tag
+        run: |
+          TAG=$(gh release list \
+            --exclude-drafts \
+            --exclude-pre-releases \
+            --json isLatest,tagName \
+            --jq 'map(select(.isLatest == true))[].tagName' \
+            -R ${{ github.repository }})
+          echo "Latest tag is $TAG"
+          echo "LATEST_TAG=$TAG" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ github.token }}
+
       - name: Publish
         run: |
           npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
           npm publish --tag $RELEASE_GROUP
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          RELEASE_GROUP: ${{ (contains(github.ref, 'rc') || contains(github.ref, 'beta') || contains(github.ref, 'alpha')) && 'next' || ((steps.latest-tag.outputs.LATEST_TAG != github.event.release.tag_name) && 'stable' || 'latest') }}

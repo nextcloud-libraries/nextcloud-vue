@@ -1,10 +1,17 @@
-# SPDX-FileCopyrightText: 2023-2024 Nextcloud GmbH and Nextcloud contributors
+# This workflow is provided via the organization template repository
+#
+# https://github.com/nextcloud-libraries/.github
+# https://docs.github.com/en/actions/learn-github-actions/sharing-workflows-with-your-organization
+#
+# SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
 # SPDX-License-Identifier: MIT
 
 name: Command L10n Update
 on:
   issue_comment:
     types: [created]
+permissions:
+  contents: read
 
 jobs:
   init:
@@ -19,29 +26,20 @@ jobs:
 
     steps:
       - name: Add reaction on start
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4.0.0
         with:
           token: ${{ secrets.COMMAND_BOT_PAT }}
           repository: ${{ github.event.repository.full_name }}
           comment-id: ${{ github.event.comment.id }}
-          reaction-type: "+1"
+          reactions: '+1'
 
       - name: Parse command
-        uses: skjnldsv/parse-command-comment@5c955203c52424151e6d0e58fb9de8a9f6a605a1 # v3.1
+        uses: skjnldsv/parse-command-comment@5c955203c52424151e6d0e58fb9de8a9f6a605a1 # v3.1.0
         id: command
 
       - name: Init branch
         uses: xt0rted/pull-request-comment-branch@e8b8daa837e8ea7331c0003c9c316a64c6d8b0b1 # v3.0.0
         id: comment-branch
-
-      - name: Add reaction on failure
-        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4.0.0
-        if: failure()
-        with:
-          token: ${{ secrets.COMMAND_BOT_PAT }}
-          repository: ${{ github.event.repository.full_name }}
-          comment-id: ${{ github.event.comment.id }}
-          reactions: '-1'
 
   process:
     runs-on: ubuntu-latest
@@ -49,32 +47,23 @@ jobs:
 
     steps:
       - name: Checkout ${{ needs.init.outputs.head_ref }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
-          token: ${{ secrets.COMMAND_BOT_PAT }}
           fetch-depth: 0
           ref: ${{ needs.init.outputs.head_ref }}
+          # Needed to push changes
+          persist-credentials: true
+          token: ${{ secrets.COMMAND_BOT_PAT }}
 
       - name: Setup git
         run: |
           git config --local user.email "nextcloud-command@users.noreply.github.com"
           git config --local user.name "nextcloud-command"
 
-      - name: Read package.json node and npm engines version
-        uses: skjnldsv/read-package-engines-version-actions@v3
-        id: package-engines-versions
+      - name: Set up node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          fallbackNode: '^20'
-          fallbackNpm: '^10'
-
-      - name: Set up node ${{ steps.package-engines-versions.outputs.nodeVersion }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ steps.package-engines-versions.outputs.nodeVersion }}
-          cache: npm
-
-      - name: Set up npm ${{ steps.package-engines-versions.outputs.npmVersion }}
-        run: npm i -g npm@"${{ steps.package-engines-versions.outputs.npmVersion }}"
+          node-version-file: package.json
 
       - name: Install dependencies & build l10n
         run: |
@@ -85,7 +74,7 @@ jobs:
         if: ${{ needs.init.outputs.arg1 != 'fixup' && needs.init.outputs.arg1 != 'amend' }}
         run: |
           git add .
-          git commit --signoff -m 'Updating l10n asset'
+          git commit --signoff -m 'chore(l10n): extract new translations'
           git push origin ${{ needs.init.outputs.head_ref }}
 
       - name: Commit and push fixup
@@ -103,7 +92,7 @@ jobs:
           git push --force origin ${{ needs.init.outputs.head_ref }}
 
       - name: Add reaction on failure
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4.0.0
         if: failure()
         with:
           token: ${{ secrets.COMMAND_BOT_PAT }}
