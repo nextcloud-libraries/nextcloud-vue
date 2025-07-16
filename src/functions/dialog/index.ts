@@ -6,42 +6,75 @@ import type { AsyncComponent, Component } from 'vue'
 
 import Vue, { toRaw } from 'vue'
 
-interface DialogProps {
-	[index: string]: unknown
-	container?: string
+type SpawnDialogOptions = {
+	/**
+	 * Container to mount the dialog to
+	 * @default document.body
+	 */
+	container?: Element | string
 }
 
+export function spawnDialog(
+	dialog: Component,
+	props?: object,
+	onClose?: (...rest: unknown[]) => void,
+): void
+
+export function spawnDialog(
+	dialog: Component,
+	props?: object,
+	options?: SpawnDialogOptions,
+	onClose?: (...rest: unknown[]) => void,
+): void
+
 /**
- * Helper to spawn a Vue dialog without having to mount it from a component
+ * Spawn a single-use Vue dialog instance to get the result when it is closed
  *
- * @param dialog The dialog component to spawn
- * @param props Properties to pass to the dialog
- * @param props.container Optionally pass a query selector for the dialog container element
- * @param onClose Callback when the dialog is closed
+ * @param dialog - Dialog component to spawn
+ * @param props - Props to pass to the dialog instance
+ * @param optionsOrOnClose - Spawning options or a callback when the dialog is closed
+ * @param onClose - Callback when the dialog is closed
  */
 export function spawnDialog(
-	dialog: Component | AsyncComponent,
-	props?: DialogProps,
+	dialog: Component,
+	props: object = {},
+	optionsOrOnClose: SpawnDialogOptions | ((...rest: unknown[]) => void) = {},
 	onClose: (...rest: unknown[]) => void = () => {},
 ): Vue {
-	const el = document.createElement('div')
+	if (typeof optionsOrOnClose === 'function') {
+		onClose = optionsOrOnClose
+		optionsOrOnClose = {}
+	}
 
-	const container: HTMLElement = typeof props?.container === 'string'
-		? (document.querySelector(props.container) || document.body)
-		: document.body
-	container.appendChild(el)
+	let { container } = optionsOrOnClose
+
+	// For backwards compatibility try to use container from props
+	if ('container' in props && typeof props.container === 'string') {
+		container ??= props.container
+	}
+
+	// Resolve container to an Element or fallback to document.body
+	const resolvedContainer = (typeof container === 'string' && document.querySelector(container)) || document.body
+
+	// Create root container element for the dialog
+	const element = resolvedContainer.appendChild(document.createElement('div'))
 
 	const vm = new Vue({
-		el,
+		el: element,
 		name: 'VueDialogHelper',
 		render: (h) =>
 			h(dialog, {
-				props,
+				props: {
+					// If dialog has no `container` prop passing a falsy value does nothing
+					// Otherwise it is expected that `null` disables teleport and mounts dialog in place like NcDialog/NcModal
+					container: null,
+					...props,
+				},
 				on: {
 					close: (...rest: unknown[]) => {
 						onClose(...rest.map(v => toRaw(v)))
 						vm.$destroy()
-						el.remove()
+						element.remove()
 					},
 				},
 			}),
