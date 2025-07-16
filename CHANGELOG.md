@@ -172,6 +172,8 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
   If you really need custom formatted tooltips, you can use `NcPopover` instead.
 - The `useFormatDateTime` composable - only exported from default entry point - is removed.
   Instead you can now use `useFormatTime` for formatting a time to a local date string or `useFormatRelativeTime` to format it to a humanized string like *a day ago*.
+- The `usernameToColor` function is named exported instead of a default export.
+  This was done to have consistent export types.
 
 ### 🚀 Enhancements
 * Allow writing components using Typescript and provide type definitions for `NcButton` [\#4525](https://github.com/nextcloud-libraries/nextcloud-vue/pull/4525) \([susnux](https://github.com/susnux)\)
