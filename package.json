@@ -7,31 +7,11 @@
     "nextcloud",
     "components"
   ],
-  "repository": "https://github.com/nextcloud-libraries/nextcloud-vue",
   "homepage": "https://github.com/nextcloud-libraries/nextcloud-vue",
   "bugs": "https://github.com/nextcloud-libraries/nextcloud-vue/issues",
-  "author": "John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>",
+  "repository": "https://github.com/nextcloud-libraries/nextcloud-vue",
   "license": "AGPL-3.0-or-later",
-  "scripts": {
-    "build": "vite build --mode production ",
-    "dev": "vite build --mode development",
-    "dev:watch": "vite build --mode development --watch",
-    "watch": "npm run dev:watch",
-    "l10n:extract": "node build/extract-l10n.mjs",
-    "lint": "eslint --ext .js,.vue src",
-    "lint:fix": "eslint --ext .js,.vue src --fix",
-    "prerelease:format-changelog": "node build/format-changelog.mjs",
-    "test": "TZ=UTC LANG='en-US' jest --verbose --color",
-    "test:coverage": "TZ=UTC LANG='en-US' jest --verbose --coverage --no-cache",
-    "stylelint": "stylelint \"src/**/*.vue\" \"src/**/*.scss\" \"src/**/*.css\"",
-    "stylelint:fix": "stylelint \"src/**/*.vue\" \"src/**/*.scss\" \"src/**/*.css\" --fix",
-    "styleguide": "vue-styleguidist server",
-    "styleguide:build": "vue-styleguidist build",
-    "cypress": "TZ=UTC cypress run --component",
-    "cypress:gui": "TZ=UTC cypress open --component",
-    "cypress:update-snapshots": "TZ=UTC cypress run --component --spec \"cypress/visual/**/*.cy.{t,j}s\" --env type=base --config screenshotsFolder=cypress/snapshots/base"
-  },
-  "main": "dist/index.cjs",
+  "author": "Nextcloud GmbH and Nextcloud contributors",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
@@ -74,12 +54,40 @@
       "require": "./dist/Functions/*.cjs"
     }
   },
+  "main": "dist/index.cjs",
   "files": [
     "CHANGELOG.md",
     "LICENSE",
     "README.md",
     "dist"
   ],
+  "scripts": {
+    "build": "vite build --mode production ",
+    "cypress": "TZ=UTC cypress run --component",
+    "cypress:gui": "TZ=UTC cypress open --component",
+    "cypress:update-snapshots": "TZ=UTC cypress run --component --spec \"cypress/visual/**/*.cy.{t,j}s\" --env type=base --config screenshotsFolder=cypress/snapshots/base",
+    "dev": "vite build --mode development",
+    "dev:watch": "vite build --mode development --watch",
+    "l10n:extract": "node build/extract-l10n.mjs",
+    "lint": "eslint --ext .js,.vue src",
+    "lint:fix": "eslint --ext .js,.vue src --fix",
+    "prerelease:format-changelog": "node build/format-changelog.mjs",
+    "styleguide": "vue-styleguidist server",
+    "styleguide:build": "vue-styleguidist build",
+    "stylelint": "stylelint \"src/**/*.vue\" \"src/**/*.scss\" \"src/**/*.css\"",
+    "stylelint:fix": "stylelint \"src/**/*.vue\" \"src/**/*.scss\" \"src/**/*.css\" --fix",
+    "test": "TZ=UTC LANG='en-US' jest --verbose --color",
+    "test:coverage": "TZ=UTC LANG='en-US' jest --verbose --coverage --no-cache",
+    "watch": "npm run dev:watch"
+  },
+  "browserslist": [
+    "extends @nextcloud/browserslist-config"
+  ],
+  "overrides": {
+    "mdast-util-gfm": {
+      "mdast-util-gfm-autolink-literal": "2.0.0"
+    }
+  },
   "dependencies": {
     "@floating-ui/dom": "^1.1.0",
     "@linusborg/vue-simple-portal": "^0.1.5",
@@ -128,10 +136,6 @@
     "vue-frag": "^1.4.3",
     "vue-router": "^3.6.5",
     "vue2-datepicker": "^3.11.0"
-  },
-  "engines": {
-    "node": "^20.0.0",
-    "npm": "^10.0.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-import-assertions": "^7.22.5",
@@ -184,12 +188,17 @@
     "webpack": "^5.98.0",
     "webpack-merge": "^6.0.1"
   },
-  "overrides": {
-    "mdast-util-gfm": {
-      "mdast-util-gfm-autolink-literal": "2.0.0"
-    }
+  "engines": {
+    "node": "^20.0.0 || ^22.0.0 || ^24.0.0"
   },
-  "browserslist": [
-    "extends @nextcloud/browserslist-config"
-  ]
+  "devEngines": {
+    "packageManager": {
+      "name": "npm",
+      "version": "^10"
+    },
+    "runtime": {
+      "name": "node",
+      "version": "^22"
+    }
+  }
 }

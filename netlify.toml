@@ -2,5 +2,5 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 [build.environment]
-	NODE_VERSION = "20"
+	NODE_VERSION = "22"
 	NPM_VERSION = "10"
