@@ -760,8 +760,7 @@ function onClick(event: MouseEvent) {
 	}
 
 	// Cursor pointer on element and all children
-	& *,
-	span {
+	* {
 		cursor: pointer;
 	}
 
