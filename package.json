@@ -47,7 +47,6 @@
   "scripts": {
     "build": "vite build --mode production ",
     "dev": "vite build --mode development",
-    "watch": "vite build --mode development --watch",
     "l10n:extract": "node build/extract-l10n.mjs",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
@@ -61,11 +60,17 @@
     "test:component:gui": "playwright test --ui -c playwright.config.ts",
     "test:coverage": "vitest run --coverage",
     "ts:check": "vue-tsc --noEmit",
-    "update:snapshots": "npm run test:component -- --grep @visual --update-snapshots"
+    "update:snapshots": "npm run test:component -- --grep @visual --update-snapshots",
+    "watch": "vite build --mode development --watch"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
   ],
+  "overrides": {
+    "mdast-util-gfm": {
+      "mdast-util-gfm-autolink-literal": "2.0.0"
+    }
+  },
   "dependencies": {
     "@ckpack/vue-color": "^1.6.0",
     "@floating-ui/dom": "^1.6.13",
@@ -155,8 +160,7 @@
     "webpack-merge": "^6.0.1"
   },
   "engines": {
-    "node": "^20.11.0 || ^22",
-    "npm": "^10 || ^11"
+    "node": "^20.11.0 || ^22 || ^24"
   },
   "devEngines": {
     "packageManager": {
@@ -168,11 +172,6 @@
       "name": "node",
       "version": "^22",
       "onFail": "error"
-    }
-  },
-  "overrides": {
-    "mdast-util-gfm": {
-      "mdast-util-gfm-autolink-literal": "2.0.0"
     }
   }
 }
