@@ -207,15 +207,11 @@ module.exports = async () => {
 					{
 						name: 'App containers',
 						content: 'docs/app-containers.md',
+						components: [
+							'src/components/NcContent/NcContent.vue',
+							'src/components/NcGuestContent/NcGuestContent.vue',
+						],
 						sections: [
-							{
-								name: 'NcContent',
-								components: 'src/components/NcContent/NcContent.vue',
-							},
-							{
-								name: 'NcGuestContent',
-								components: 'src/components/NcGuestContent/NcGuestContent.vue',
-							},
 							{
 								name: 'NcAppContent',
 								components: 'src/components/NcAppContent/NcAppContent.vue',
