@@ -345,6 +345,20 @@ function handleInput(event: Event) {
 			color: var(--color-text-maxcontrast);
 		}
 
+		// prevent Blink and WebKit to add an additional button when type is set to search
+		// we have our properly styled trailing button anyways.
+		&::-webkit-search-cancel-button {
+			// its a weird bug in Blink that this rule must not be grouped with the other selectors below.
+			// otherwise it is not recognized by Blink
+			display: none;
+		}
+		&::-webkit-search-decoration,
+		&::-webkit-search-results-button,
+		&::-webkit-search-results-decoration,
+		&::-ms-clear {
+			display: none;
+		}
+
 		&:active:not([disabled]),
 		&:hover:not([disabled]),
 		&:focus:not([disabled]) {
