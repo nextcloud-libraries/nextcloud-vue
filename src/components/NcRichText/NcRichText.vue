@@ -316,10 +316,10 @@ import rehypeExternalLinks from 'rehype-external-links'
 
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
 import NcReferenceList from './NcReferenceList.vue'
-import { getRoute, remarkAutolink } from './autolink.ts'
-import { remarkPlaceholder, prepareTextNode } from './placeholder.js'
+import { getRoute, parseUrl, remarkAutolink } from './autolink.ts'
 import { remarkUnescape } from './remarkUnescape.js'
 import { createElementId } from '../../utils/createElementId.ts'
+import { remarkPlaceholder } from './remarkPlaceholder.ts'
 
 /**
  * Protocols allowed in links.
@@ -407,7 +407,7 @@ export default {
 				const matches = entry.match(/^\{([a-z\-_.0-9]+)\}$/i)
 				// just return plain string nodes as text
 				if (!matches) {
-					return prepareTextNode({ h, context: this }, entry)
+					return this.prepareTextNode(entry)
 				}
 				// return component instance if argument is an object
 				const argumentId = matches[1]
@@ -491,6 +491,33 @@ export default {
 					])
 					: null,
 			])
+		},
+
+		/**
+		 * Render plain text nodes
+		 *
+		 * @param {string} text - Content of the node
+		 */
+		prepareTextNode(text) {
+			if (this.autolink) {
+				text = parseUrl(text)
+			}
+
+			if (Array.isArray(text)) {
+				return text.map((entry) => {
+					if (typeof entry === 'string') {
+						return entry
+					}
+					const { component, props } = entry
+					// do not override class of NcLink
+					const componentClass = component.name === 'NcLink' ? undefined : 'rich-text--component'
+					return h(component, {
+						...props,
+						class: componentClass,
+					})
+				})
+			}
+			return text
 		},
 		createElement(type, props, key) {
 			// Modified code from vue/jsx-runtime
