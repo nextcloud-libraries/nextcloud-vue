@@ -1016,7 +1016,7 @@ export default {
 		display: flex;
 		padding: 0;
 		transition: transform 300ms ease;
-		border-radius: var(--border-radius-large);
+		border-radius: var(--border-radius-container, var(--border-radius-rounded));
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
 		box-shadow: 0 0 40px rgba(0, 0, 0, .2);
