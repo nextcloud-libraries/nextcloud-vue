@@ -68,18 +68,16 @@
 </template>
 
 <script>
-import NcSearchResult from './NcSearchResult.vue'
-import { isUrl, delay } from './utils.js'
-import NcEmptyContent from '../../NcEmptyContent/index.ts'
-import NcSelect from '../../NcSelect/index.js'
-
-import { t } from '../../../l10n.js'
-
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
-
+import debounce from 'debounce'
 import DotsHorizontalIcon from 'vue-material-design-icons/DotsHorizontal.vue'
 import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
+import NcSearchResult from './NcSearchResult.vue'
+import NcEmptyContent from '../../NcEmptyContent/index.ts'
+import NcSelect from '../../NcSelect/index.js'
+import { isUrl } from './utils.ts'
+import { t } from '../../../l10n.js'
 
 const LIMIT = 5
 
@@ -183,6 +181,9 @@ export default {
 			})
 			return results
 		},
+		debouncedUpdateSearch() {
+			return debounce(this.updateSearch, 500)
+		},
 	},
 	mounted() {
 		this.resetResults()
@@ -213,9 +214,7 @@ export default {
 		},
 		onSearchInput(query) {
 			this.searchQuery = query
-			delay(() => {
-				this.updateSearch()
-			}, 500)()
+			this.debouncedUpdateSearch()
 		},
 		onSelectResultSelected(item) {
 			if (item !== null) {
