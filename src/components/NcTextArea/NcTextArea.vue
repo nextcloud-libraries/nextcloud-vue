@@ -265,7 +265,7 @@ function select() {
 .textarea {
 	position: relative;
 	width: 100%;
-	border-radius: var(--border-radius-large);
+	border-radius: var(--border-radius-element);
 	margin-block-start: 6px; // for the label in active state
 	resize: vertical;
 
@@ -289,7 +289,7 @@ function select() {
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
 		border: var(--border-width-input, 2px) solid var(--color-border-maxcontrast);
-		border-radius: var(--border-radius-large);
+		border-radius: var(--border-radius-element);
 
 		cursor: pointer;
 

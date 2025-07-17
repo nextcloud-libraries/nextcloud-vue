@@ -245,10 +245,5 @@ function onCloseSearch() {
 			margin-inline-start: calc(-1 * var(--default-clickable-area));
 		}
 	}
-
-	&__input {
-		// This is a fallback for legacy version (Nextcloud 29 and older) so that we keep the pill like design there
-		--input-border-radius: var(--border-radius-element, var(--border-radius-pill)) !important;
-	}
 }
 </style>

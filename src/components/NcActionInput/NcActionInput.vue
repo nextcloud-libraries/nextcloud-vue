@@ -551,7 +551,7 @@ $input-margin: 4px;
 			&__preview {
 				width: 100%;
 				height: 36px;
-				border-radius: var(--border-radius-large);
+				border-radius: var(--border-radius-element);
 				border: 2px solid var(--color-border-maxcontrast);
 				box-shadow: none !important;
 			}

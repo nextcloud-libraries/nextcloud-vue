@@ -195,7 +195,7 @@ function setAppNavigation(value: boolean): void {
 .vue-skip-actions {
 	&__container {
 		background-color: var(--color-main-background);
-		border-radius: var(--border-radius-large);
+		border-radius: var(--border-radius-element);
 		padding: 22px;
 	}
 

@@ -212,7 +212,7 @@ const originalCountAsTitleIfNeeded = computed(() => {
 	text-align: center;
 	line-height: var(--counter-bubble-height); // Expand line-height to full height to center text vertically
 	padding: 0 calc(1.5 * var(--default-grid-baseline));
-	border-radius: var(--border-radius-pill);
+	border-radius: 0.5lh;
 	background-color: var(--color-primary-element-light);
 	font-weight: bold;
 	color: var(--color-primary-element-light-text);

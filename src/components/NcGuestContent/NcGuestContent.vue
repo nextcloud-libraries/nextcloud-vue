@@ -52,7 +52,7 @@ onUnmounted(() => {
 	color: var(--color-main-text);
 	background-color: var(--color-main-background);
 	min-width: 0;
-	border-radius: var(--border-radius-large);
+	border-radius: var(--border-radius-element);
 	box-shadow: 0 0 10px var(--color-box-shadow);
 	height: fit-content;
 	padding: 15px;

@@ -543,7 +543,7 @@ const modalProps = computed(() => ({
 		max-height: 90%;
 		position: relative;
 		top: unset;
-		border-radius: var(--border-radius-large);
+		border-radius: var(--border-radius-element);
 	}
 }
 </style>

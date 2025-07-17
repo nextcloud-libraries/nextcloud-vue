@@ -269,6 +269,6 @@ export default {
 .select-group-error {
 	color: var(--color-error);
 	font-size: 13px;
-	padding-inline-start: var(--border-radius-large);
+	padding-inline-start: var(--border-radius-element);
 }
 </style>

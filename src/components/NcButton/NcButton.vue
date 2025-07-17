@@ -719,7 +719,7 @@ function onClick(event: MouseEvent) {
 <style lang="scss" scoped>
 .button-vue {
 	--button-size: var(--default-clickable-area);
-	--button-radius: var(--border-radius-element, calc(var(--button-size) / 2));
+	--button-radius: var(--border-radius-element);
 	--button-padding-default: min(calc(var(--default-grid-baseline) + var(--button-radius)), calc(var(--default-grid-baseline) * 4));
 	--button-padding: var(--default-grid-baseline) var(--button-padding-default);
 
@@ -751,12 +751,12 @@ function onClick(event: MouseEvent) {
 
 	// Setup different button sizes
 	&--size-small {
-		--button-size: var(--clickable-area-small, 24px);
-		--button-radius: var(--border-radius); // make the border radius even smaller for small buttons
+		--button-size: var(--clickable-area-small);
+		--button-radius: var(--border-radius-small); // make the border radius even smaller for small buttons
 	}
 
 	&--size-large {
-		--button-size: var(--clickable-area-large, 48px);
+		--button-size: var(--clickable-area-large);
 	}
 
 	// Cursor pointer on element and all children
@@ -881,7 +881,7 @@ function onClick(event: MouseEvent) {
 		box-shadow: 0 0 0 4px var(--color-main-background) !important;
 		&.button-vue--vue-tertiary-on-primary {
 			outline: 2px solid var(--color-primary-element-text);
-			border-radius: var(--border-radius-element, var(--border-radius));
+			border-radius: var(--border-radius-element);
 			background-color: transparent;
 		}
 	}
