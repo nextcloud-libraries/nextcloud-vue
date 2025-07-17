@@ -33,17 +33,16 @@
 </template>
 
 <script>
+import axios from '@nextcloud/axios'
+import { generateOcsUrl } from '@nextcloud/router'
+import debounce from 'debounce'
+import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
 import NcReferenceWidget from '../NcReferenceWidget.vue'
-import { isUrl, delay } from './utils.js'
 import NcEmptyContent from '../../NcEmptyContent/index.ts'
 import NcLoadingIcon from '../../NcLoadingIcon/index.ts'
 import NcTextField from '../../NcTextField/index.ts'
+import { isUrl } from './utils.ts'
 import { t } from '../../../l10n.js'
-
-import axios from '@nextcloud/axios'
-import { generateOcsUrl } from '@nextcloud/router'
-
-import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
 
 export default {
 	name: 'NcRawLinkInput',
@@ -79,6 +78,9 @@ export default {
 		isLinkValid() {
 			return isUrl(this.inputValue)
 		},
+		debouncedUpdateReference() {
+			return debounce(this.updateReference, 500)
+		},
 	},
 	methods: {
 		focus() {
@@ -100,9 +102,7 @@ export default {
 				this.abortController.abort()
 			}
 			if (this.isLinkValid) {
-				delay(() => {
-					this.updateReference()
-				}, 500)()
+				this.debouncedUpdateReference()
 			}
 		},
 		updateReference() {
