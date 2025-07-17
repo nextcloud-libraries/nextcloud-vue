@@ -8,7 +8,7 @@ import type { MaybeRefOrGetter, Ref } from 'vue'
 
 import { formatRelativeTime, getCanonicalLocale } from '@nextcloud/l10n'
 import { computed, onUnmounted, readonly, ref, toValue, watchEffect } from 'vue'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 interface FormatRelativeTimeOptions extends Partial<Omit<FormatDateOptions, 'ignoreSeconds'>> {
 	ignoreSeconds?: boolean

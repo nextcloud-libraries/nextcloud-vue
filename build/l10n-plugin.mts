@@ -1,15 +1,16 @@
-/**
+/*!
  * SPDX-FileCopyrightText: Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 import type { Plugin } from 'vite'
+
 import { loadTranslations } from './translations.mts'
 import { dirname, resolve } from 'path'
 
 /**
  * This is a plugin to split all translations into chunks of users meaning components that use that translation
- * If a file imports `t` or `n` from 'l10n.js' that import will be replaced with a wrapper that registeres only the required translations for the file that imports the functions.
+ * If a file imports `t` or `n` from 'l10n.ts' that import will be replaced with a wrapper that registeres only the required translations for the file that imports the functions.
  * Allowing vite to treeshake all not needed translations when building applications
  *
  * @param dir Path to the l10n directory for loading the translations
@@ -57,7 +58,7 @@ export default (dir: string) => {
 		},
 
 		/**
-		 * Hook into module resolver and fake all '../[...]/l10n.js' imports to inject our splitted translations
+		 * Hook into module resolver and fake all '../[...]/l10n.ts' imports to inject our splitted translations
 		 * @param source The file which is imported
 		 * @param importer The file that imported the file
 		 */
@@ -69,7 +70,7 @@ export default (dir: string) => {
 				}
 				// dont handle other plugins imports
 				return null
-			} else if (source.endsWith('l10n.js') && importer && !importer.includes('node_modules')) {
+			} else if (source.endsWith('l10n.ts') && importer && !importer.includes('node_modules')) {
 				if (dirname(resolve(dirname(importer), source)).split('/').at(-1) === 'src') {
 					// return our wrapper for handling the import
 					return `\0l10nwrapper?source=${encodeURIComponent(importer)}`

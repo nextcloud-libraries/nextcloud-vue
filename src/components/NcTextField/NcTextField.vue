@@ -148,7 +148,7 @@ import { mdiArrowRight, mdiClose, mdiUndo } from '@mdi/js'
 import { computed, useTemplateRef } from 'vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 import NcInputField from '../NcInputField/index.ts'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 const props = withDefaults(defineProps<NcInputFieldProps & {
 	/**

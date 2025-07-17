@@ -11,7 +11,7 @@ import { computed } from 'vue'
 import MenuIcon from 'vue-material-design-icons/Menu.vue'
 import MenuOpenIcon from 'vue-material-design-icons/MenuOpen.vue'
 import NcButton from '../NcButton/index.ts'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 /**
  * Tracks whether the toggle has been clicked or not.

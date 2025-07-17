@@ -248,7 +248,7 @@ import NcSelect from '../NcSelect/index.js'
 import NcTextField from '../NcTextField/index.ts'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import { createElementId } from '../../utils/createElementId.ts'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 export default {
 	name: 'NcActionInput',

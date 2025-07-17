@@ -37,7 +37,7 @@ import {
 } from '@nextcloud/timezones'
 import { computed } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 import getTimezoneManager from './timezoneDataProviderService.js'
 import NcSelect from '../NcSelect/index.js'
 

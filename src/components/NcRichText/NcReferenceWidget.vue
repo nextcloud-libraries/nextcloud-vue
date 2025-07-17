@@ -38,7 +38,7 @@ import { useElementSize, useIntersectionObserver } from '@vueuse/core'
 import { nextTick, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 import { getRoute } from './autolink.ts'
 import { renderWidget, isWidgetRegistered, destroyWidget, hasInteractiveView, hasFullWidth } from './../../functions/reference/widgets.ts'
 

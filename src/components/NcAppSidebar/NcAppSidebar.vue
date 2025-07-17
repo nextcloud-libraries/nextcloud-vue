@@ -725,7 +725,7 @@ import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
 import { createElementId } from '../../utils/createElementId.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
 import { isSlotPopulated } from '../../utils/isSlotPopulated.ts'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 import IconArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import IconClose from 'vue-material-design-icons/Close.vue'

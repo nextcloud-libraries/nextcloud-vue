@@ -335,7 +335,7 @@ import { warn as VueWarn } from 'vue'
 
 import { createElementId } from '../../utils/createElementId.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 import NcActions from '../NcActions/index.js'
 import NcButton from '../NcButton/index.ts'

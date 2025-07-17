@@ -54,7 +54,7 @@ import { generateOcsUrl } from '@nextcloud/router'
 import NcTeamResources from './NcTeamResources.vue'
 import NcResource from './NcResource.vue'
 
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 export default {
 	name: 'NcRelatedResourcesPanel',

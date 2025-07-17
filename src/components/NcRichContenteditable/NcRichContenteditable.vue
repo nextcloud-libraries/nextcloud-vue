@@ -284,7 +284,7 @@ export default {
 </template>
 
 <script>
-import { n, t } from '../../l10n.js'
+import { n, t } from '../../l10n.ts'
 import NcAutoCompleteResult from './NcAutoCompleteResult.vue'
 import richEditor from '../../mixins/richEditor/index.js'
 import { emojiSearch, emojiAddRecent } from '../../functions/emoji/index.ts'

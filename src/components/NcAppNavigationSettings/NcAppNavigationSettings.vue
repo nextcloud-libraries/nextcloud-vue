@@ -8,7 +8,7 @@ import type { Slot } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import { computed, ref, useTemplateRef } from 'vue'
 import { createElementId } from '../../utils/createElementId.js'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 import IconCog from 'vue-material-design-icons/Cog.vue'
 import NcButton from '../NcButton/NcButton.vue'
