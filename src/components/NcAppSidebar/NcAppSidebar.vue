@@ -1574,17 +1574,3 @@ $top-buttons-spacing: $app-navigation-padding; // align with app navigation
 	margin-inline-end: calc(-1 * var(--app-sidebar-width));
 }
 </style>
-
-<style lang="scss">
-// ! slots specific designs, cannot be scoped
-// if any button inside the description slot, increase visual padding
-.app-sidebar-header__description {
-	button, .button,
-	input[type='button'],
-	input[type='submit'],
-	input[type='reset'] {
-		padding: 6px 22px;
-	}
-}
-
-</style>
