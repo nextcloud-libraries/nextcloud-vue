@@ -434,10 +434,9 @@ td.row-size {
 
 <script setup lang="ts">
 import type { Slot } from 'vue'
-import type { RouteLocation } from 'vue-router'
+import type { RouteLocation, UseLinkReturn } from 'vue-router'
 
-import { computed, inject, toRef } from 'vue'
-import { routerKey, useLink } from 'vue-router'
+import { computed, inject, Fragment } from 'vue'
 
 export type ButtonAlignment = 'start'
 	| 'start-reverse'
@@ -603,22 +602,11 @@ defineSlots<{
 	icon?: Slot
 }>()
 
-// Make sure the component also works if the app does not use any router
-// And if the app uses a router we need to make sure a `to` prop was passed to use to router
-const routerLink = computed(() => (
-	inject(routerKey, null) !== null && props.to
-		? useLink({ to: toRef(() => props.to!) })
-		: undefined
-))
+const isRouterLink = computed(() => !!props.to)
+const isNativeLink = computed(() => !!props.href)
+const isLink = computed(() => isNativeLink.value || isRouterLink.value)
+const isNativeButton = computed(() => !isLink.value)
 
-/**
- * If this is a link (<a>) element
- */
-const isLink = computed(() => props.href)
-
-/**
- * If the button has a pressed state (only if not a link)
- */
 const hasPressedState = computed(() => !isLink.value && typeof props.pressed === 'boolean')
 
 /**
@@ -637,82 +625,71 @@ const realVariant = computed(() => {
 	return props.variant
 })
 
-/**
- * The flexbox alignment of the button content
- */
 const flexAlignment = computed(() => props.alignment.split('-')[0])
-
-/**
- * If the button content should be reversed (icon on the end)
- */
 const isReverseAligned = computed(() => props.alignment.includes('-'))
 
 const getNcPopoverTriggerAttrs = inject<() => Record<string, string|undefined>>('NcPopover:trigger:attrs', () => ({}), false)
 const ncPopoverTriggerAttrs = computed(() => getNcPopoverTriggerAttrs())
 
 /**
- * Attributes to pass to the <a> element
- */
-const linkAttrs = computed(() => ({
-	role: 'button',
-	href: props.href || '#',
-	target: props.target,
-	rel: 'nofollow noreferrer noopener',
-	download: props.download || null,
-}))
-
-/**
- * Attribute to pass to the <button> element
- */
-const buttonAttrs = computed(() => ({
-	'aria-pressed': hasPressedState.value ? String(props.pressed) : undefined,
-	type: props.type,
-}))
-
-/**
  * Handle the click on the link / button
- * @param event The mouse click event
+ *
+ * @param event - Mouse click event
+ * @param navigate - RouterLink's navigate
  */
-function onClick(event: MouseEvent) {
+function onClick(event: MouseEvent, navigate?: UseLinkReturn['navigate']) {
 	if (hasPressedState.value) {
 		emit('update:pressed', !props.pressed)
 	}
 	// We have to both navigate and emit the click event
 	emit('click', event)
-	routerLink.value?.navigate(event)
+	navigate?.(event)
 }
 </script>
 
 <template>
-	<component :is="isLink ? 'a' : 'button'"
-		class="button-vue"
-		:class="[
-			`button-vue--size-${size}`,
-			{
-				[`button-vue--${realVariant}`]: realVariant,
-				'button-vue--wide': wide,
-				[`button-vue--${flexAlignment}`]: flexAlignment !== 'center',
-				'button-vue--reverse': isReverseAligned,
-				active: routerLink?.isActive,
-			},
-		]"
-		:disabled
-		:aria-label
-		v-bind="{
-			...ncPopoverTriggerAttrs,
-			...(isLink ? linkAttrs : buttonAttrs),
-		}"
-		@click="onClick">
-		<span class="button-vue__wrapper">
-			<span class="button-vue__icon">
-				<slot name="icon" />
+	<component :is="isRouterLink ? 'RouterLink' : Fragment"
+		v-slot="routerLinkProps"
+		:to
+		:custom="isRouterLink">
+		<!-- Note: every prop is passed individually without v-bind="attrs" to use patch flags optimization in a very widely-used component -->
+		<component :is="isNativeLink ? 'a' : 'button'"
+			class="button-vue"
+			:class="[
+				`button-vue--size-${size}`,
+				{
+					[`button-vue--${realVariant}`]: realVariant,
+					'button-vue--wide': wide,
+					[`button-vue--${flexAlignment}`]: flexAlignment !== 'center',
+					'button-vue--reverse': isReverseAligned,
+					active: routerLinkProps?.isActive,
+				},
+			]"
+			:aria-label
+
+			:href="routerLinkProps?.href || (isNativeLink && (href || '#'))"
+			:target
+			:download
+			:rel="isLink && 'nofollow noreferrer noopener'"
+
+			:aria-haspopup="ncPopoverTriggerAttrs['aria-haspopup']"
+			:aria-expanded="ncPopoverTriggerAttrs['aria-expanded']"
+			:aria-pressed="hasPressedState ? pressed : undefined"
+			:type="isNativeButton ? type : undefined"
+			:disabled
+
+			@click="onClick($event, routerLinkProps?.navigate)">
+			<span class="button-vue__wrapper">
+				<span class="button-vue__icon">
+					<slot name="icon" />
+				</span>
+				<span class="button-vue__text">
+					<slot>
+						{{ text }}
+					</slot>
+				</span>
 			</span>
-			<span class="button-vue__text">
-				<slot>
-					{{ text }}
-				</slot>
-			</span>
-		</span>
+		</component>
 	</component>
 </template>
 
