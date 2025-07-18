@@ -637,7 +637,7 @@ export default {
 .checkbox-radio-switch {
 	--icon-size: v-bind('cssIconSize');
 	--icon-height: v-bind('cssIconHeight');
-	--checkbox-radio-switch--border-radius: var(--border-radius-element, calc(var(--default-clickable-area) / 2));
+	--checkbox-radio-switch--border-radius: var(--border-radius-element);
 	// keep inner border width in mind
 	--checkbox-radio-switch--border-radius-outer: calc(var(--checkbox-radio-switch--border-radius) + 2px);
 	// general setup

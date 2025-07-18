@@ -565,7 +565,7 @@ export default {
 		&.emoji-mart-emoji-selected {
 			background-color: var(--color-background-hover) !important;
 			border: none;
-			border-radius: var(--border-radius-element, var(--border-radius-pill));
+			border-radius: var(--border-radius-element);
 			box-shadow: none !important;
 			outline: 2px solid var(--color-primary-element) !important;
 			outline-offset: -2px;

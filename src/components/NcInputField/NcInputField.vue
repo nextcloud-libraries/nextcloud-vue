@@ -282,11 +282,11 @@ function handleInput(event: Event) {
 <style lang="scss" scoped>
 
 .input-field {
-	--input-border-radius: var(--border-radius-element, var(--border-radius-large));
+	--input-border-radius: var(--border-radius-element);
 	// The padding before the input can start (leading button or border)
-	--input-padding-start: var(--border-radius-large);
+	--input-padding-start: var(--border-radius-element);
 	// The padding where the input has to end (trailing button or border)
-	--input-padding-end: var(--border-radius-large);
+	--input-padding-end: var(--border-radius-element);
 	// positional styles
 	position: relative;
 	width: 100%;
@@ -466,7 +466,7 @@ function handleInput(event: Event) {
 
 	&__helper-text-message {
 		padding-block: 4px;
-		padding-inline: var(--border-radius-large);
+		padding-inline: var(--border-radius-element);
 		display: flex;
 		align-items: center;
 		color: var(--color-text-maxcontrast);

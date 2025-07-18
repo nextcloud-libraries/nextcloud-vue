@@ -1020,7 +1020,7 @@ export default {
 		overflow-wrap: break-word;
 		color: var(--color-main-text);
 		border: 2px solid var(--color-border-maxcontrast);
-		border-radius: var(--border-radius-large);
+		border-radius: var(--border-radius-element);
 		outline: none;
 		background-color: var(--color-main-background);
 		font-family: var(--font-face);
@@ -1065,7 +1065,7 @@ export default {
 			opacity: $opacity_disabled;
 			color: var(--color-text-maxcontrast);
 			border: 2px solid var(--color-background-darker);
-			border-radius: var(--border-radius);
+			border-radius: var(--border-radius-small);
 			background-color: var(--color-background-dark);
 		}
 
@@ -1091,7 +1091,7 @@ export default {
 	margin: var(--default-grid-baseline) 0;
 	padding: var(--default-grid-baseline);
 	color: var(--color-text-maxcontrast);
-	border-radius: var(--border-radius-element, var(--border-radius));
+	border-radius: var(--border-radius-element);
 	background: var(--color-main-background);
 	box-shadow: 0 1px 5px var(--color-box-shadow);
 
@@ -1108,7 +1108,7 @@ export default {
 
 	.tribute-container__item {
 		color: var(--color-text-maxcontrast);
-		border-radius: var(--border-radius-small, var(--border-radius));
+		border-radius: var(--border-radius-small);
 		padding: var(--default-grid-baseline);
 		cursor: pointer;
 		min-height: var(--clickable-area-small, auto);

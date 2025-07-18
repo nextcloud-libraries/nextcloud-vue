@@ -296,8 +296,7 @@ $externalMargin: 8px;
 		inset-inline-end: 0;
 		box-sizing: border-box;
 		margin: 0 $externalMargin;
-		border-radius: 0 0 var(--border-radius) var(--border-radius);
-		border-radius: var(--border-radius-large);
+		border-radius: var(--border-radius-element);
 		background-color: var(--color-main-background);
 
 		filter: drop-shadow(0 1px 5px var(--color-box-shadow));

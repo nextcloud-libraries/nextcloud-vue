@@ -3,11 +3,6 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 @use './variables.scss' as *;
-/**
- * color-text-lighter		normal state
- * color-text-lighter		active state
- * color-text-maxcontrast 	disabled state
- */
 
 /* Default global values */
 button:not(.button-vue),
@@ -18,9 +13,9 @@ textarea {
 
 	cursor: text;
 
-	color: var(--color-text-lighter);
+	color: var(--color-main-text);
 	border: 1px solid var(--color-border-dark);
-	border-radius: var(--border-radius);
+	border-radius: var(--border-radius-element);
 	outline: none;
 	background-color: var(--color-main-background);
 
@@ -36,7 +31,7 @@ textarea {
 		}
 
 		&:active {
-			color: var(--color-text-light);
+			color: var(--color-main-text);
 			outline: none;
 			background-color: var(--color-main-background);
 		}

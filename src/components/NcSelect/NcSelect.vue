@@ -926,7 +926,7 @@ body {
 	--vs-border-color: var(--color-border-maxcontrast);
 	--vs-border-width: var(--border-width-input, 2px) !important;
 	--vs-border-style: solid;
-	--vs-border-radius: var(--border-radius-large);
+	--vs-border-radius: var(--border-radius-element);
 
 	/* Component Controls: Clear, Open Indicator */
 	--vs-controls-color: var(--color-main-text);
@@ -1136,7 +1136,7 @@ body {
 	}
 
 	.vs__no-options {
-		color: var(--color-text-lighter) !important;
+		color: var(--color-text-maxcontrast) !important;
 	}
 }
 </style>

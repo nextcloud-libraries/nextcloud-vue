@@ -651,13 +651,13 @@ $arrow-position: $arrow-width - 1px;
 			 * and then apply scaling, which results in a blurry popover.
 			 */
 			box-shadow: 0 1px 10px var(--color-box-shadow);
-			border-radius: var(--border-radius-large);
+			border-radius: var(--border-radius-element);
 		}
 
 		.v-popper__inner {
 			padding: 0;
 			color: var(--color-main-text);
-			border-radius: var(--border-radius-large);
+			border-radius: var(--border-radius-element);
 			overflow: hidden;
 			background: var(--color-main-background);
 		}

@@ -649,7 +649,7 @@ export default {
 	blockquote {
 		padding-inline-start: 13px;
 		border-inline-start: 2px solid var(--color-border-dark);
-		color: var(--color-text-lighter);
+		color: var(--color-text-maxcontrast);
 	}
 
 	h1, h2, h3, h4, h5, h6, p, ul, ol, blockquote, pre {

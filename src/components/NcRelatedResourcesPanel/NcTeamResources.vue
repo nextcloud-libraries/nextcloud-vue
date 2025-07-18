@@ -194,7 +194,7 @@ export default {
 }
 
 .related-team {
-	border-radius: var(--border-radius-rounded);
+	border-radius: var(--border-radius-container);
 	border: 2px solid var(--color-border-dark);
 	margin-bottom: 6px;
 
@@ -241,7 +241,7 @@ export default {
 			gap: 12px;
 			height: var(--default-clickable-area);
 			align-items: center;
-			border-radius: var(--border-radius-large);
+			border-radius: var(--border-radius-element);
 
 			&:hover {
 				background-color: var(--color-background-hover);

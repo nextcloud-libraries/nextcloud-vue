@@ -263,7 +263,7 @@ function onInput(event: Event): void {
 		width: 100%;
 		flex: 0 0 auto;
 		margin: 0;
-		padding-inline-start: calc(var(--border-radius-large) + var(--input-border-width-offset));
+		padding-inline-start: calc(var(--border-radius-element) + var(--input-border-width-offset));
 		padding-inline-end: calc(var(--default-grid-baseline) + var(--input-border-width-offset));
 		border: var(--border-width-input, 2px) solid var(--color-border-maxcontrast);
 

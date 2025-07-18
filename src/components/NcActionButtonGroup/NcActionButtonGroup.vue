@@ -151,7 +151,7 @@ export default defineComponent({
 
 			&.action-button--active {
 				background-color: var(--color-primary-element);
-				border-radius: var(--border-radius-large);
+				border-radius: var(--border-radius-element);
 				color: var(--color-primary-element-text);
 
 				&:hover, &:focus, &:focus-within {

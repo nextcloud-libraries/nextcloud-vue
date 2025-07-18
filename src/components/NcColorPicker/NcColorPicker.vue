@@ -426,12 +426,12 @@ function hexToRGB(hex: string) {
 			background-color: var(--color-main-background);
 
 			.vc-input__input {
-				--input-border-radius: var(--border-radius-element, var(--border-radius-large));
+				--input-border-radius: var(--border-radius-element);
 				--input-border-width-offset: calc(var(--border-width-input-focused, 2px) - var(--border-width-input, 2px));
 				width: 100%;
 				height: var(--default-clickable-area);
 				margin: 0;
-				padding-inline: calc(var(--border-radius-large) + var(--input-border-width-offset));
+				padding-inline: calc(var(--border-radius-element) + var(--input-border-width-offset));
 				padding-block: var(--input-border-width-offset);
 				border: var(--border-width-input, 2px) solid var(--color-border-maxcontrast);
 				border-radius: var(--input-border-radius);
@@ -459,7 +459,7 @@ function hexToRGB(hex: string) {
 				inset-inline: var(--border-width-input-focused, 2px);
 				inset-block-start: calc(-1.5 * var(--font-size-small, 13px) / 2);
 				max-width: fit-content;
-				margin-inline: calc(var(--border-radius-large) - var(--default-grid-baseline));
+				margin-inline: calc(var(--border-radius-element) - var(--default-grid-baseline));
 				margin-block: 0;
 				padding-inline: var(--default-grid-baseline);
 				font-family: var(--font-face);

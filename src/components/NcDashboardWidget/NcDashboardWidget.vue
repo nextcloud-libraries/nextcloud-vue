@@ -351,7 +351,7 @@ export default {
 	&:hover,
 	&:focus {
 		background-color: var(--color-background-hover);
-		border-radius: var(--border-radius-large);
+		border-radius: var(--border-radius-element);
 		color: var(--color-main-text);
 	}
 }

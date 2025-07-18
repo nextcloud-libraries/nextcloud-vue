@@ -148,7 +148,7 @@ const iconPath = computed(() => {
 	color: var(--color-main-text) !important;
 	background-color: var(--note-background) !important;
 	border-inline-start: var(--default-grid-baseline) solid var(--note-theme);
-	border-radius: var(--border-radius);
+	border-radius: var(--border-radius-small);
 	margin: 1rem 0;
 	padding: var(--note-card-padding);
 	display: flex;
