@@ -1,6 +1,6 @@
 /*!
- * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
- * SPDX-License-Identifier: CC0-1.0
+ * SPDX-FileCopyrightText: Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import type { Plugin } from 'vite'
 
@@ -13,10 +13,7 @@ const vueDocsPlugin: Plugin = {
 		if (!/vue&type=doc/.test(id)) {
 			return
 		}
-		return {
-			code: 'export default ""',
-			map: { mappings: '' },
-		}
+		return 'export default ""'
 	},
 }
 

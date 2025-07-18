@@ -4,13 +4,14 @@
  */
 
 import type { UserConfigFn } from 'vite'
+
 import { createLibConfig } from '@nextcloud/vite-config'
 import { globSync } from 'glob'
 import { join, resolve } from 'node:path'
 import { defineConfig } from 'vite'
 
-import vueDocsPlugin from './build/docs-plugin.ts'
 import l10nPlugin from './build/l10n-plugin.mjs'
+import vueDocsPlugin from './build/vue-docs-plugin.ts'
 
 // Entry points which we build using vite
 const entryPoints = {
