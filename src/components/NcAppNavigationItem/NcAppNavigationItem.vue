@@ -393,7 +393,7 @@ Just set the `pinned` prop.
 <script>
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { createElementId } from '../../utils/createElementId.ts'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 import Pencil from 'vue-material-design-icons/Pencil.vue'
 import Undo from 'vue-material-design-icons/Undo.vue'

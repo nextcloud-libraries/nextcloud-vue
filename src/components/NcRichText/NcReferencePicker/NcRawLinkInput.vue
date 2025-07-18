@@ -42,7 +42,7 @@ import NcEmptyContent from '../../NcEmptyContent/index.ts'
 import NcLoadingIcon from '../../NcLoadingIcon/index.ts'
 import NcTextField from '../../NcTextField/index.ts'
 import { isUrl } from './utils.ts'
-import { t } from '../../../l10n.js'
+import { t } from '../../../l10n.ts'
 
 export default {
 	name: 'NcRawLinkInput',

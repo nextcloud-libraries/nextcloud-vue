@@ -139,7 +139,7 @@ import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
 import NcSelect from '../NcSelect/index.js'
 
 import { searchTags } from './api.js'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 export default {
 	name: 'NcSelectTags',

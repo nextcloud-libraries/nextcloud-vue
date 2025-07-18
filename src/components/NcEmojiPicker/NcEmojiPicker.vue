@@ -197,7 +197,7 @@ import { Picker, Emoji, EmojiIndex } from 'emoji-mart-vue-fast/src/index.js'
 import { useTrapStackControl } from '../../composables/useTrapStackControl.ts'
 import { getCurrentSkinTone, setCurrentSkinTone } from '../../functions/emoji/emoji.ts'
 import { Color } from '../../utils/colors.ts'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 import data from 'emoji-mart-vue-fast/data/all.json'
 

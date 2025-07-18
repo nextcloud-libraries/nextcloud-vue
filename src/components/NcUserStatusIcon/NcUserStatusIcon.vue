@@ -35,7 +35,7 @@ import { generateOcsUrl } from '@nextcloud/router'
 import { getCapabilities } from '@nextcloud/capabilities'
 import { computed, watch } from 'vue'
 import { getUserStatusText } from '../../utils/UserStatus.ts'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 import onlineSvg from '../../assets/status-icons/user-status-online.svg?raw'
 import awaySvg from '../../assets/status-icons/user-status-away.svg?raw'

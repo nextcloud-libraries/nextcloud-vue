@@ -46,7 +46,7 @@ import NcReferencePicker from './NcReferencePicker.vue'
 import { getCustomPickerElementSize, isCustomPickerElementRegistered } from '../../../functions/reference/customPickerElements.ts'
 import NcButton from '../../NcButton/index.ts'
 import NcModal from '../../NcModal/index.js'
-import { t } from '../../../l10n.js'
+import { t } from '../../../l10n.ts'
 
 import { emit } from '@nextcloud/event-bus'
 

@@ -47,7 +47,7 @@ import { isUrl } from './utils.js'
 import NcEmptyContent from '../../NcEmptyContent/index.ts'
 import NcHighlight from '../../NcHighlight/index.ts'
 import NcSelect from '../../NcSelect/index.js'
-import { t } from '../../../l10n.js'
+import { t } from '../../../l10n.ts'
 
 import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
 

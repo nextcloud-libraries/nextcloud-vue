@@ -112,7 +112,7 @@ import type { Slot } from 'vue'
 
 import { mdiClose } from '@mdi/js'
 import { computed } from 'vue'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 import NcActions from '../NcActions/NcActions.vue'
 import NcActionButton from '../NcActionButton/NcActionButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'

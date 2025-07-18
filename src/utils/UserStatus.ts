@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { t } from '../l10n.js'
+import { t } from '../l10n.ts'
 
 type Status = 'online' | 'away' | 'busy' | 'dnd' | 'invisible' | 'offline'
 

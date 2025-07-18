@@ -69,7 +69,7 @@ occ config:system:set --value true 'projects.enabled'
 <script>
 import debounce from 'debounce'
 import { ref } from 'vue'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 import NcAvatar from '../NcAvatar/index.js'
 import NcSelect from '../NcSelect/index.js'

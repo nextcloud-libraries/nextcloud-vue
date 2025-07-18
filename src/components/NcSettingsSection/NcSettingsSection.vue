@@ -44,7 +44,7 @@ This component is to be used in the settings section of nextcloud.
 import type { Slot } from 'vue'
 
 import HelpCircle from 'vue-material-design-icons/HelpCircle.vue'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 withDefaults(defineProps<{
 	/**

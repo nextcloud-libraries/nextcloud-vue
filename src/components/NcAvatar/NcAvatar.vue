@@ -257,7 +257,7 @@ import { usernameToColor } from '../../functions/usernameToColor/index.ts'
 import { userStatus } from '../../mixins/index.js'
 import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
 import { getUserStatusText } from '../../utils/UserStatus.ts'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 

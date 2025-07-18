@@ -53,7 +53,7 @@ section * {
 
 <script>
 import NcSelect from '../../components/NcSelect/index.js'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 
 import axios from '@nextcloud/axios'

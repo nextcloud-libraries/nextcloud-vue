@@ -24,7 +24,7 @@
 import NcButton from '../NcButton/index.ts'
 
 import { getRoute } from '../NcRichText/autolink.ts'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 export default {
 	name: 'NcResource',

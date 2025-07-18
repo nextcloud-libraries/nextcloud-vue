@@ -10,7 +10,7 @@ import { onBeforeUnmount, watch } from 'vue'
 import NcButton from '../NcButton/index.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 const isMobile = useIsMobile()
 watch(isMobile, toggleAppNavigationButton, { immediate: true })

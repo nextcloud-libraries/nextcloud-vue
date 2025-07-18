@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 import { getRoute } from '../NcRichText/autolink.ts'
 
 import NcActions from '../NcActions/index.js'

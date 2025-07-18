@@ -190,7 +190,7 @@ import {
 	getCanonicalLocale,
 } from '@nextcloud/l10n'
 import { computed, useTemplateRef } from 'vue'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 import VueDatePicker from '@vuepic/vue-datepicker'
 import NcButton from '../NcButton/index.ts'

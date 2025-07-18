@@ -161,7 +161,7 @@ export default {
 import debounce from 'debounce'
 import { warn } from 'vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 import NcDialog from '../NcDialog/index.ts'
 import NcVNodes from '../NcVNodes/index.ts'

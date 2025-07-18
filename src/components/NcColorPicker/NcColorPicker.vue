@@ -141,7 +141,7 @@ import { Chrome as VueChrome } from '@ckpack/vue-color'
 import { computed, ref } from 'vue'
 import { Color, defaultPalette } from '../../utils/colors.ts'
 import { createElementId } from '../../utils/createElementId.ts'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 import IconArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
 import IconCheck from 'vue-material-design-icons/Check.vue'

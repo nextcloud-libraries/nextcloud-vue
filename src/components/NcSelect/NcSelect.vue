@@ -395,7 +395,7 @@ import {
 } from '@floating-ui/dom'
 import { h, warn } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import Close from 'vue-material-design-icons/Close.vue'
