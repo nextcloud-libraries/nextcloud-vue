@@ -10,4 +10,4 @@ import type { ComputedRef, InjectionKey } from 'vue'
  *
  * @private
  */
-export const INJECTION_KEY_THEME: InjectionKey<ComputedRef<'light' | 'dark' | ''>> = Symbol.for('nc:theme:enforced')
+export const INJECTION_KEY_THEME: InjectionKey<ComputedRef<'light' | 'dark' | ''> | undefined> = Symbol.for('nc:theme:enforced')

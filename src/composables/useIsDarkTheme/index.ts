@@ -55,7 +55,7 @@ const useInternalIsDarkTheme = createSharedComposable(() => useIsDarkThemeElemen
  */
 export function useIsDarkTheme(): DeepReadonly<Ref<boolean>> {
 	const isDarkTheme = useInternalIsDarkTheme()
-	const enforcedTheme = inject(INJECTION_KEY_THEME)
+	const enforcedTheme = inject(INJECTION_KEY_THEME, undefined)
 
 	return computed(() => {
 		if (enforcedTheme?.value) {
