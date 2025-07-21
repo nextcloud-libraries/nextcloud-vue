@@ -7,8 +7,8 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0-rc.4) (unreleased)
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.28.0...v9.0.0-rc.4)
+## [v9.0.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v9.0.0-rc.5) (unreleased)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.28.0...v9.0.0-rc.5)
 
 ### 💥 Breaking Changes
 * The package now uses Vue 3 instead of Vue 2.7
@@ -258,6 +258,12 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * fix(NcDateTimePicker): correctly import library CSS [#7051](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7051) ([raimund-schluessler](https://github.com/raimund-schluessler))
 * fix(NcListItem): correctly handle unmounting [#7151](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7151) ([Antreesy](https://github.com/Antreesy))
 * perf(utils): ensure only 64px or 512px avatars are loaded [#6749](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6749) ([susnux](https://github.com/susnux))
+* perf(NcAvatar): ensure avatar does not add mutation observer [#7157](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7157) ([ShGKme](https://github.com/ShGKme))
+* refactor(NcButton): remove redundant style [#7154](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7154) ([skjnldsv](https://github.com/skjnldsv))
+* fix(NcInputField): remove browser injected clear button [#7167](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7167) ([susnux](https://github.com/susnux))
+* fix(NcModal): use `--border-radius-container` [#7176](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7176) ([susnux](https://github.com/susnux))
+* fix(useIsDarkTheme): provide default value to silence runtime warnings [#7185](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7185) ([susnux](https://github.com/susnux))
+* fix(NcAppSidebar): remove slot styling for buttons in the description [#7182](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7182) ([susnux](https://github.com/susnux))
 
 ### Changed
 * refactor: replace boolean properties with `default: true` with `default: false` [#6653](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6653) ([susnux](https://github.com/susnux))
@@ -377,6 +383,14 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 * refactor!: make all events camelcase and drop deprecated events [#7059](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7059) ([susnux](https://github.com/susnux))
 * chore(NcAppContent): rename NcAppDetailsContent to remove from docs [#7137](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7137) ([susnux](https://github.com/susnux))
 * refactor(NcAppContent): clarify props documentation and use capabilities over initial state [#7057](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7057) ([susnux](https://github.com/susnux))
+* chore(NcAppSidebar): correctly define and document exposed CSS variables [#5861](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5861) ([ShGKme](https://github.com/ShGKme))
+* chore: add current Node (upcoming) LTS 24.0.0 to supported engines [#7163](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7163) ([susnux](https://github.com/susnux))
+* refactor(functions): Make sure only named exports are used (`usernameToColor`) [#7161](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7161) ([susnux](https://github.com/susnux))
+* chore(NcRichText): remove unused remark plugin [#7172](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7172) ([susnux](https://github.com/susnux))
+* refactor(NcRichText): migrate helpers to Typescript [#7173](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7173) ([susnux](https://github.com/susnux))
+* refactor(NcRichText): use `debounce` instead of custom delay function [#7174](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7174) ([susnux](https://github.com/susnux))
+* refactor: replace deprecated CSS variables and legacy fallbacks [#7177](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7177) ([susnux](https://github.com/susnux))
+* refactor: use Typescript for l10n dummy import [#7171](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7171) ([susnux](https://github.com/susnux))
 
 ## [v8.28.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.28.0) (2025-07-14)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.27.0...v8.28.0)
