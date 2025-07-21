@@ -242,6 +242,7 @@ import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 
 import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 import NcActions from '../NcActions/index.js'
+import NcActionButton from '../NcActionButton/index.js'
 import NcActionLink from '../NcActionLink/index.js'
 import NcActionRouter from '../NcActionRouter/index.js'
 import NcActionText from '../NcActionText/index.js'
@@ -256,6 +257,7 @@ import { getEnabledContactsMenuActions } from '../../functions/contactsMenu/inde
 import { usernameToColor } from '../../functions/usernameToColor/index.ts'
 import { userStatus } from '../../mixins/index.js'
 import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
+import logger from '../../utils/logger.ts'
 import { getUserStatusText } from '../../utils/UserStatus.ts'
 import { t } from '../../l10n.ts'
 
