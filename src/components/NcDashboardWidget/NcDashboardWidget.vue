@@ -219,7 +219,7 @@ import NcEmptyContent from '../NcEmptyContent/index.ts'
 
 import Check from 'vue-material-design-icons/Check.vue'
 
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 export default {
 	name: 'NcDashboardWidget',

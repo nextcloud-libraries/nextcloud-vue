@@ -70,7 +70,7 @@ import { computed, nextTick, onBeforeMount, provide, ref } from 'vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 /* eslint-disable import/no-unresolved */
 import contentSvg from './content-selected.svg?raw'

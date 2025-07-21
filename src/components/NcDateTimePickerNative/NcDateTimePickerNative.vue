@@ -92,7 +92,7 @@ import type { VueClassType } from '../../utils/VueTypes.ts'
 
 import { computed } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 defineOptions({ inheritAttrs: false })
 

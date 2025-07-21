@@ -77,7 +77,7 @@ import NcSearchResult from './NcSearchResult.vue'
 import NcEmptyContent from '../../NcEmptyContent/index.ts'
 import NcSelect from '../../NcSelect/index.js'
 import { isUrl } from './utils.ts'
-import { t } from '../../../l10n.js'
+import { t } from '../../../l10n.ts'
 
 const LIMIT = 5
 

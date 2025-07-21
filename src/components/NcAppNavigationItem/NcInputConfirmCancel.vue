@@ -42,7 +42,7 @@
 	</div>
 </template>
 <script>
-import { t } from '../../l10n.js'
+import { t } from '../../l10n.ts'
 
 import IconArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import IconClose from 'vue-material-design-icons/Close.vue'
