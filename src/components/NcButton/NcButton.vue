@@ -434,7 +434,7 @@ td.row-size {
 
 <script setup lang="ts">
 import type { Slot } from 'vue'
-import type { RouteLocation } from 'vue-router'
+import type { RouteLocationRaw } from 'vue-router'
 
 import { computed, inject, toRef } from 'vue'
 import { routerKey, useLink } from 'vue-router'
@@ -535,7 +535,7 @@ interface NcButtonProps {
 	 *
 	 * Note: This takes precedence over the href attribute.
 	 */
-	to?: string|RouteLocation
+	to?: string|RouteLocationRaw
 
 	/**
 	 * Specifies the button native type
@@ -605,16 +605,14 @@ defineSlots<{
 
 // Make sure the component also works if the app does not use any router
 // And if the app uses a router we need to make sure a `to` prop was passed to use to router
-const routerLink = computed(() => (
-	inject(routerKey, null) !== null && props.to
-		? useLink({ to: toRef(() => props.to!) })
-		: undefined
-))
+const routerLink = inject(routerKey, null) !== null
+	? useLink({ to: toRef(() => props.to!) })
+	: undefined
 
 /**
  * If this is a link (<a>) element
  */
-const isLink = computed(() => props.href)
+const isLink = computed(() => props.href || routerLink?.href)
 
 /**
  * If the button has a pressed state (only if not a link)
@@ -655,7 +653,7 @@ const ncPopoverTriggerAttrs = computed(() => getNcPopoverTriggerAttrs())
  */
 const linkAttrs = computed(() => ({
 	role: 'button',
-	href: props.href || '#',
+	href: routerLink?.href.value || props.href || '#',
 	target: props.target,
 	rel: 'nofollow noreferrer noopener',
 	download: props.download || null,
@@ -679,7 +677,10 @@ function onClick(event: MouseEvent) {
 	}
 	// We have to both navigate and emit the click event
 	emit('click', event)
-	routerLink.value?.navigate(event)
+	if (routerLink) {
+		event.preventDefault()
+		routerLink.navigate(event)
+	}
 }
 </script>
 
