@@ -577,6 +577,8 @@ export default {
 							...props,
 							to: route,
 						}, { default: () => children })
+					} else if (!/^https?:\/\//.test(props.href)) {
+						props.href = 'https://' + props.href
 					}
 				}
 				return h(type, props, children)
