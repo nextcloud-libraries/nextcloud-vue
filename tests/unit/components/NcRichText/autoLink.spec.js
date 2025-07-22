@@ -4,13 +4,66 @@
  */
 
 import { expect, describe, it, vi, beforeAll } from 'vitest'
-import { getRoute } from '../../../../src/components/NcRichText/autolink.ts'
+import { getRoute, parseUrl } from '../../../../src/components/NcRichText/autolink.ts'
 import { createRouter, createMemoryHistory, createWebHashHistory } from 'vue-router'
 import { getBaseUrl, getRootUrl } from '@nextcloud/router'
 
 vi.mock('@nextcloud/router')
 
 describe('autoLink', () => {
+	describe('parseUrl', () => {
+		describe.each([
+			['with', 'http://'],
+			['with', 'https://'],
+			['without protocol', ''],
+		])('%s %s', (_, protocol) => {
+			describe.each([
+				[' and domain', 'www.nextcloud.com'],
+				[' and domain', 'localhost'],
+				[' and domain', '128.0.0.1'],
+			])('%s %s', (_, domain) => {
+				describe.each([
+					[' without port', ''],
+					[' and port', ':80'],
+				])('%s %s', (_, port) => {
+					describe.each([
+						[' without path', '/'],
+						[' and path', '/path/to/file.html'],
+						[' and path', '/#/Components/NcRichText'],
+					])('%s %s', (_, path) => {
+						it.each([
+							[' without parameters', ''],
+							[' and parameters', '?query=string&another=1#some_hash'],
+						])('%s %s', (_, parameters) => {
+							const testUrl = `${protocol}${domain}${port}${path}${parameters}`
+							const output = parseUrl(testUrl)
+							if (output.length > 1) {
+								console.log(output[1].props.href)
+								expect(output[1].component.name).toBe('NcLink')
+								expect(output[1].props.href).toBe(testUrl)
+							} else {
+								// Not parsed
+								console.log(output[0])
+								expect(output[0]).toBe(testUrl)
+							}
+						})
+					})
+				})
+			})
+		})
+
+		it.each([
+			['not a link', 'not/a/link'],
+			['not a link', 'not-a-link'],
+			['not a link', 'not.a.link'],
+		])('%s %s', (_, payload) => {
+			const output = parseUrl(payload)
+			// Not parsed
+			console.log(output)
+			expect(output[0]).toBe(payload)
+		})
+	})
+
 	describe('getRoute', () => {
 		describe.each([
 			['an absolute link', 'https://cloud.ltd'],
