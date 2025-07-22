@@ -494,7 +494,7 @@ export default {
 		 * True if initials should be shown as the user icon fallback
 		 */
 		showInitials() {
-			return !this.noPlaceholder && this.userDoesNotExist && !(this.iconClass || this.$slots.icon?.())
+			return !this.noPlaceholder && this.userDoesNotExist && !(this.iconClass || this.$slots.icon)
 		},
 
 		avatarStyle() {
