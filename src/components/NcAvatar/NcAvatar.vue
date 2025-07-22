@@ -160,14 +160,7 @@ export default {
 			'avatardiv--with-menu-loading': contactsMenuLoading
 		}"
 		:style="avatarStyle"
-		class="avatardiv popovermenu-wrapper"
-		:tabindex="hasMenu ? '0' : undefined"
-		:aria-label="avatarAriaLabel"
-		:role="hasMenu ? 'button' : undefined"
-		v-on="hasMenu ? {
-			click: toggleMenu,
-			keydown: toggleMenu,
-		} : {}">
+		class="avatardiv popovermenu-wrapper">
 		<!-- @slot Icon slot -->
 		<slot name="icon">
 			<!-- Avatar icon or image -->
