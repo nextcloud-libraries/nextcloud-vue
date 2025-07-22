@@ -654,9 +654,7 @@ export default {
 	beforeUnmount() {
 		unsubscribe('settings:avatar:updated', this.loadAvatarUrl)
 		unsubscribe('settings:display-name:updated', this.loadAvatarUrl)
-		if (!this.hideStatus && this.user && !this.isNoUser) {
-			unsubscribe('user_status:status.updated', this.handleUserStatusUpdated)
-		}
+		unsubscribe('user_status:status.updated', this.handleUserStatusUpdated)
 	},
 
 	methods: {
