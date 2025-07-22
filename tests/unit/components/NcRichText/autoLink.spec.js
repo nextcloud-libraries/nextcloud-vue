@@ -27,25 +27,21 @@ describe('autoLink', () => {
 					[' and port', ':80'],
 				])('%s %s', (_, port) => {
 					describe.each([
-						[' without path', '/'],
+						[' without path', ''],
 						[' and path', '/path/to/file.html'],
 						[' and path', '/#/Components/NcRichText'],
 					])('%s %s', (_, path) => {
 						it.each([
 							[' without parameters', ''],
-							[' and parameters', '?query=string&another=1#some_hash'],
+							[' and parameters', '/?query=string&another=1#some_hash'],
 						])('%s %s', (_, parameters) => {
 							const testUrl = `${protocol}${domain}${port}${path}${parameters}`
 							const output = parseUrl(testUrl)
-							if (output.length > 1) {
-								console.log(output[1].props.href)
-								expect(output[1].component.name).toBe('NcLink')
-								expect(output[1].props.href).toBe(testUrl)
-							} else {
-								// Not parsed
-								console.log(output[0])
-								expect(output[0]).toBe(testUrl)
-							}
+
+							expect(output).toHaveLength(3)
+							expect(output[1].component.name).toBe('NcLink')
+							expect(output[1].props.href).toBe(testUrl)
+							console.log(output[1].props.href)
 						})
 					})
 				})
