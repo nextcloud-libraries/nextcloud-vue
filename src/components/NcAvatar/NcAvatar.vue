@@ -160,14 +160,7 @@ export default {
 			'avatardiv--with-menu-loading': contactsMenuLoading
 		}"
 		:style="avatarStyle"
-		class="avatardiv popovermenu-wrapper"
-		:tabindex="hasMenu ? '0' : undefined"
-		:aria-label="avatarAriaLabel"
-		:role="hasMenu ? 'button' : undefined"
-		v-on="hasMenu ? {
-			click: toggleMenu,
-			keydown: toggleMenu,
-		} : {}">
+		class="avatardiv popovermenu-wrapper">
 		<!-- @slot Icon slot -->
 		<slot name="icon">
 			<!-- Avatar icon or image -->
@@ -242,6 +235,7 @@ import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 
 import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 import NcActions from '../NcActions/index.js'
+import NcActionButton from '../NcActionButton/index.js'
 import NcActionLink from '../NcActionLink/index.js'
 import NcActionRouter from '../NcActionRouter/index.js'
 import NcActionText from '../NcActionText/index.js'
@@ -256,6 +250,7 @@ import { getEnabledContactsMenuActions } from '../../functions/contactsMenu/inde
 import { usernameToColor } from '../../functions/usernameToColor/index.ts'
 import { userStatus } from '../../mixins/index.js'
 import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
+import logger from '../../utils/logger.ts'
 import { getUserStatusText } from '../../utils/UserStatus.ts'
 import { t } from '../../l10n.ts'
 
@@ -499,7 +494,7 @@ export default {
 		 * True if initials should be shown as the user icon fallback
 		 */
 		showInitials() {
-			return !this.noPlaceholder && this.userDoesNotExist && !(this.iconClass || this.$slots.icon?.())
+			return !this.noPlaceholder && this.userDoesNotExist && !(this.iconClass || this.$slots.icon)
 		},
 
 		avatarStyle() {
@@ -659,9 +654,7 @@ export default {
 	beforeUnmount() {
 		unsubscribe('settings:avatar:updated', this.loadAvatarUrl)
 		unsubscribe('settings:display-name:updated', this.loadAvatarUrl)
-		if (!this.hideStatus && this.user && !this.isNoUser) {
-			unsubscribe('user_status:status.updated', this.handleUserStatusUpdated)
-		}
+		unsubscribe('user_status:status.updated', this.handleUserStatusUpdated)
 	},
 
 	methods: {
