@@ -240,11 +240,9 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 </template>
 
 <script>
-import NcColorPicker from '../NcColorPicker/index.ts'
-import NcDateTimePicker from '../NcDateTimePicker/index.js'
+import { defineAsyncComponent } from 'vue'
 import NcDateTimePickerNative from '../NcDateTimePickerNative/index.ts'
 import NcPasswordField from '../NcPasswordField/index.ts'
-import NcSelect from '../NcSelect/index.js'
 import NcTextField from '../NcTextField/index.ts'
 import ActionGlobalMixin from '../../mixins/actionGlobal.js'
 import { createElementId } from '../../utils/createElementId.ts'
@@ -254,12 +252,13 @@ export default {
 	name: 'NcActionInput',
 
 	components: {
-		NcColorPicker,
-		NcDateTimePicker,
 		NcDateTimePickerNative,
 		NcPasswordField,
-		NcSelect,
 		NcTextField,
+		// Lazy load components with more than 50kB bundle size impact
+		NcColorPicker: defineAsyncComponent(() => import('../NcColorPicker/index.ts')),
+		NcDateTimePicker: defineAsyncComponent(() => import('../NcDateTimePicker/index.js')),
+		NcSelect: defineAsyncComponent(() => import('../NcSelect/index.js')),
 	},
 
 	mixins: [ActionGlobalMixin],
