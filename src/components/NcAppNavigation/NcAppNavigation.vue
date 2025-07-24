@@ -134,10 +134,150 @@ emit('toggle-navigation', {
 
 </docs>
 
+<script setup lang="ts">
+import type { FocusTrap } from 'focus-trap'
+import type { Slot } from 'vue'
+
+import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
+import { createFocusTrap } from 'focus-trap'
+import { inject, onMounted, onUnmounted, ref, useTemplateRef, warn, watch } from 'vue'
+import NcAppNavigationList from '../NcAppNavigationList/index.js'
+import NcAppNavigationToggle from '../NcAppNavigationToggle/index.ts'
+import { useIsMobile } from '../../composables/useIsMobile/index.ts'
+import { getTrapStack } from '../../utils/focusTrap.ts'
+
+defineProps<{
+	/**
+	 * The aria label to describe the navigation
+	 */
+	ariaLabel?: string
+
+	/**
+	 * aria-labelledby attribute to describe the navigation
+	 */
+	ariaLabelledby?: string
+}>()
+
+defineSlots<{
+	/**
+	 * The main content of the navigation.
+	 * If no list is passed to the `#list` slot, stretched vertically.
+	 */
+	default?: Slot
+	/**
+	 * Footer for e.g. `NcAppNavigationSettings`
+	 */
+	footer?: Slot
+	/**
+	 * List for Navigation list items.
+	 * Stretched between the main content and the footer
+	 */
+	list?: Slot
+	/**
+	 * For in-app search you can pass a `NcAppNavigationSearch` component as the slot content.
+	 */
+	search?: Slot
+}>()
+
+let focusTrap: FocusTrap
+const setHasAppNavigation = inject<(v: boolean) => void>('NcContent:setHasAppNavigation', () => warn('NcAppNavigation is not mounted inside NcContent, this is probably an error.'), false)
+
+const appNavigationContainer = useTemplateRef('appNavigationContainer')
+const isMobile = useIsMobile()
+const open = ref(!isMobile.value)
+
+watch(isMobile, () => {
+	open.value = !isMobile.value
+})
+
+watch(open, () => {
+	toggleFocusTrap()
+})
+
+onMounted(() => {
+	setHasAppNavigation(true)
+	subscribe('toggle-navigation', toggleNavigationByEventBus)
+	// Emit an event with the initial state of the navigation
+	emit('navigation-toggled', {
+		open: open.value,
+	})
+
+	focusTrap = createFocusTrap(appNavigationContainer.value!, {
+		allowOutsideClick: true,
+		fallbackFocus: appNavigationContainer.value!,
+		trapStack: getTrapStack(),
+		escapeDeactivates: false,
+	})
+	toggleFocusTrap()
+})
+
+onUnmounted(() => {
+	setHasAppNavigation(false)
+	unsubscribe('toggle-navigation', toggleNavigationByEventBus)
+	focusTrap.deactivate()
+})
+
+/**
+ * Toggle the navigation
+ *
+ * @param state set the state instead of inverting the current one
+ */
+function toggleNavigation(state?: boolean): void {
+	// Early return if already in that state
+	if (open.value === state) {
+		emit('navigation-toggled', {
+			open: open.value,
+		})
+		return
+	}
+
+	open.value = state === undefined ? !open.value : state
+	const bodyStyles = getComputedStyle(document.body)
+	const animationLength = parseInt(bodyStyles.getPropertyValue('--animation-quick')) || 100
+
+	setTimeout(() => {
+		emit('navigation-toggled', {
+			open: open.value,
+		})
+	// We wait for 1.5 times the animation length to give the animation time to really finish.
+	}, 1.5 * animationLength)
+}
+
+/**
+ * Handler for the event-bus navigation event.
+ *
+ * @param context - The event bus context
+ * @param context.open - The new navigation open state
+ */
+function toggleNavigationByEventBus({ open }: { open: boolean }): void {
+	return toggleNavigation(open)
+}
+
+/**
+ * Activate focus trap if it is currently needed, otherwise deactivate
+ */
+function toggleFocusTrap(): void {
+	if (isMobile.value && open.value) {
+		focusTrap.activate()
+	} else {
+		focusTrap.deactivate()
+	}
+}
+
+/**
+ * Handle hotkey for closing the navigation.
+ */
+function handleEsc(): void {
+	if (isMobile.value) {
+		toggleNavigation(false)
+	}
+}
+</script>
+
 <template>
 	<div ref="appNavigationContainer"
 		class="app-navigation"
-		:class="{'app-navigation--close':!open }">
+		:class="{'app-navigation--closed':!open }">
 		<nav id="app-navigation-vue"
 			:aria-hidden="open ? 'false' : 'true'"
 			:aria-label="ariaLabel || undefined"
@@ -146,166 +286,22 @@ emit('toggle-navigation', {
 			:inert="!open || undefined"
 			@keydown.esc="handleEsc">
 			<div class="app-navigation__search">
-				<!-- @slot For in-app search you can pass a `NcAppNavigationSearch` component as the slot content. -->
 				<slot name="search" />
 			</div>
 
 			<div class="app-navigation__body" :class="{ 'app-navigation__body--no-list': !$slots.list }">
-				<!-- @slot The main content of the navigation. If no list is passed to the #list slot, stretched vertically. -->
 				<slot />
 			</div>
 
 			<NcAppNavigationList v-if="$slots.list" class="app-navigation__list">
-				<!-- List for Navigation list items. Stretched between the main content and the footer -->
 				<slot name="list" />
 			</NcAppNavigationList>
 
-			<!-- @slot Footer for e.g. NcAppNavigationSettings -->
 			<slot name="footer" />
 		</nav>
-		<NcAppNavigationToggle :open="open" @update:open="toggleNavigation" />
+		<NcAppNavigationToggle :open @update:open="toggleNavigation" />
 	</div>
 </template>
-
-<script>
-import { useIsMobile } from '../../composables/useIsMobile/index.js'
-import { getTrapStack } from '../../utils/focusTrap.ts'
-import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
-import { createFocusTrap } from 'focus-trap'
-
-import NcAppNavigationList from '../NcAppNavigationList/index.js'
-import NcAppNavigationToggle from '../NcAppNavigationToggle/index.ts'
-import { warn } from 'vue'
-
-export default {
-	name: 'NcAppNavigation',
-
-	components: {
-		NcAppNavigationList,
-		NcAppNavigationToggle,
-	},
-
-	// Injected from NcContent
-	inject: {
-		setHasAppNavigation: {
-			default: () => () => warn('NcAppNavigation is not mounted inside NcContent, this is probably an error.'),
-			from: 'NcContent:setHasAppNavigation',
-		},
-	},
-
-	props: {
-		/**
-		 * The aria label to describe the navigation
-		 */
-		ariaLabel: {
-			type: String,
-			default: '',
-		},
-
-		/**
-		 * aria-labelledby attribute to describe the navigation
-		 */
-		ariaLabelledby: {
-			type: String,
-			default: '',
-		},
-	},
-
-	setup() {
-		return {
-			isMobile: useIsMobile(),
-		}
-	},
-
-	data() {
-		return {
-			open: !this.isMobile,
-			focusTrap: null,
-		}
-	},
-
-	watch: {
-		isMobile() {
-			this.open = !this.isMobile
-			this.toggleFocusTrap()
-		},
-		open() {
-			this.toggleFocusTrap()
-		},
-	},
-
-	mounted() {
-		this.setHasAppNavigation(true)
-		subscribe('toggle-navigation', this.toggleNavigationByEventBus)
-		// Emit an event with the initial state of the navigation
-		emit('navigation-toggled', {
-			open: this.open,
-		})
-
-		this.focusTrap = createFocusTrap(this.$refs.appNavigationContainer, {
-			allowOutsideClick: true,
-			fallbackFocus: this.$refs.appNavigationContainer,
-			trapStack: getTrapStack(),
-			escapeDeactivates: false,
-		})
-		this.toggleFocusTrap()
-	},
-	unmounted() {
-		this.setHasAppNavigation(false)
-		unsubscribe('toggle-navigation', this.toggleNavigationByEventBus)
-		this.focusTrap.deactivate()
-	},
-
-	methods: {
-		/**
-		 * Toggle the navigation
-		 *
-		 * @param {boolean} [state] set the state instead of inverting the current one
-		 */
-		toggleNavigation(state) {
-			// Early return if already in that state
-			if (this.open === state) {
-				emit('navigation-toggled', {
-					open: this.open,
-				})
-				return
-			}
-
-			this.open = (typeof state === 'undefined') ? !this.open : state
-			const bodyStyles = getComputedStyle(document.body)
-			const animationLength = parseInt(bodyStyles.getPropertyValue('--animation-quick')) || 100
-
-			setTimeout(() => {
-				emit('navigation-toggled', {
-					open: this.open,
-				})
-			// We wait for 1.5 times the animation length to give the animation time to really finish.
-			}, 1.5 * animationLength)
-		},
-
-		toggleNavigationByEventBus({ open }) {
-			this.toggleNavigation(open)
-		},
-
-		/**
-		 * Activate focus trap if it is currently needed, otherwise deactivate
-		 */
-		toggleFocusTrap() {
-			if (this.isMobile && this.open) {
-				this.focusTrap.activate()
-			} else {
-				this.focusTrap.deactivate()
-			}
-		},
-
-		handleEsc() {
-			if (this.isMobile) {
-				this.toggleNavigation(false)
-			}
-		},
-	},
-}
-</script>
 
 <style lang="scss">
 .app-navigation,
@@ -342,7 +338,7 @@ export default {
 	-webkit-backdrop-filter: var(--filter-background-blur, none);
 	backdrop-filter: var(--filter-background-blur, none);
 
-	&--close {
+	&--closed {
 		margin-inline-start: calc(-1 * min($navigation-width, var(--app-navigation-max-width)));
 	}
 
