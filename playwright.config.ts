@@ -65,7 +65,7 @@ export default defineConfig({
 				// We do have some dependencies that use node modules -> we need to polyfill
 				(await import('vite-plugin-node-polyfills')).nodePolyfills(),
 				// We need to strip off the docs sections for the vue plugin
-				(await import('./build/docs-plugin.ts')).default,
+				(await import('./build/vue-docs-plugin.ts')).default,
 				// Also add the l10n plugin so we can test translations
 				(await import('./build/l10n-plugin.mts')).default('l10n'),
 			],
