@@ -434,7 +434,7 @@ td.row-size {
 
 <script setup lang="ts">
 import type { Slot } from 'vue'
-import type { RouteLocation } from 'vue-router'
+import type { RouteLocationRaw } from 'vue-router'
 
 import { computed, inject, toRef } from 'vue'
 import { routerKey, useLink } from 'vue-router'
@@ -535,7 +535,7 @@ interface NcButtonProps {
 	 *
 	 * Note: This takes precedence over the href attribute.
 	 */
-	to?: string|RouteLocation
+	to?: RouteLocationRaw
 
 	/**
 	 * Specifies the button native type
