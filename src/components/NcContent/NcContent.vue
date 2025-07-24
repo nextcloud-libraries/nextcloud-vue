@@ -212,6 +212,11 @@ export default {
 
 	&__image {
 		margin-top: 12px;
+
+		// Flip the image in RTL mode
+		&:dir(rtl) {
+			transform: rotateY(180deg);
+		}
 	}
 }
 
