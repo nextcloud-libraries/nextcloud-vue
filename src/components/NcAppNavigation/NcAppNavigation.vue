@@ -142,7 +142,7 @@ import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { createFocusTrap } from 'focus-trap'
 import { inject, onMounted, onUnmounted, ref, useTemplateRef, warn, watch } from 'vue'
 import NcAppNavigationList from '../NcAppNavigationList/index.js'
-import NcAppNavigationToggle from '../NcAppNavigationToggle/index.ts'
+import NcAppNavigationToggle from './NcAppNavigationToggle.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
 
