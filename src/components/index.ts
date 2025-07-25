@@ -18,7 +18,7 @@ export { default as NcActionTextEditable } from './NcActionTextEditable/index.js
 export { default as NcAppContent } from './NcAppContent/index.js'
 export { default as NcAppContentDetails } from './NcAppContentDetails/index.ts'
 export { default as NcAppContentList } from './NcAppContentList/index.js'
-export { default as NcAppNavigation } from './NcAppNavigation/index.js'
+export { default as NcAppNavigation } from './NcAppNavigation/index.ts'
 export { default as NcAppNavigationCaption } from './NcAppNavigationCaption/index.js'
 export { default as NcAppNavigationIconBullet } from './NcAppNavigationIconBullet/index.js'
 export { default as NcAppNavigationItem } from './NcAppNavigationItem/index.js'

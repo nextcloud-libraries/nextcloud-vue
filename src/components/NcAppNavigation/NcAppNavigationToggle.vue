@@ -2,15 +2,12 @@
   - SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
   - SPDX-License-Identifier: AGPL-3.0-or-later
   -->
-<!--
-  - This component is only used for the NcAppNavigation component and not exported otherwise.
--->
 
 <script setup lang="ts">
+import { mdiMenu, mdiMenuOpen } from '@mdi/js'
 import { computed } from 'vue'
-import MenuIcon from 'vue-material-design-icons/Menu.vue'
-import MenuOpenIcon from 'vue-material-design-icons/MenuOpen.vue'
 import NcButton from '../NcButton/index.ts'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { t } from '../../l10n.ts'
 
 /**
@@ -21,14 +18,6 @@ import { t } from '../../l10n.ts'
 const open = defineModel<boolean>('open', { required: true })
 
 const title = computed(() => open.value ? t('Close navigation') : t('Open navigation'))
-
-/**
- * Once the toggle has been clicked, emits the toggle status
- * so parent components can gauge the status of the navigation button
- */
-function toggleNavigation(): void {
-	open.value = !open.value
-}
 </script>
 
 <template>
@@ -39,10 +28,9 @@ function toggleNavigation(): void {
 			:aria-label="title"
 			:title
 			variant="tertiary"
-			@click="toggleNavigation">
+			@click="open = !open">
 			<template #icon>
-				<MenuOpenIcon v-if="open" :size="20" />
-				<MenuIcon v-else :size="20" />
+				<NcIconSvgWrapper :path="open ? mdiMenuOpen : mdiMenu" />
 			</template>
 		</NcButton>
 	</div>

@@ -12,7 +12,7 @@ import { resizeWindowWidth } from '../../testing-utils.ts'
 
 const NAVIGATION__SELECTOR = 'nav'
 const TOGGLE_BUTTON__SELECTOR = 'button[aria-controls="app-navigation-vue"]'
-const NAVIGATION_CLOSE__CLASS = 'app-navigation--close'
+const NAVIGATION_CLOSED__CLASS = 'app-navigation--closed'
 
 const findNavigation = (wrapper) => wrapper.get(NAVIGATION__SELECTOR)
 const findToggleButton = (wrapper) => wrapper.get(TOGGLE_BUTTON__SELECTOR)
@@ -28,7 +28,7 @@ describe('NcAppNavigation.vue', () => {
 			const wrapper = mount(NcAppNavigation)
 			const navigation = findNavigation(wrapper)
 
-			expect(navigation.classes(NAVIGATION_CLOSE__CLASS)).toBeFalsy()
+			expect(navigation.classes(NAVIGATION_CLOSED__CLASS)).toBeFalsy()
 		})
 	})
 
@@ -39,7 +39,7 @@ describe('NcAppNavigation.vue', () => {
 			emit('toggle-navigation', { open: undefined })
 			await nextTick()
 
-			expect(wrapper.classes(NAVIGATION_CLOSE__CLASS)).toBeTruthy()
+			expect(wrapper.classes(NAVIGATION_CLOSED__CLASS)).toBeTruthy()
 		})
 
 		it('toggles with open: false keeps it closed', async () => {
@@ -49,7 +49,7 @@ describe('NcAppNavigation.vue', () => {
 			emit('toggle-navigation', { open: false })
 			await nextTick()
 
-			expect(wrapper.classes(NAVIGATION_CLOSE__CLASS)).toBeTruthy()
+			expect(wrapper.classes(NAVIGATION_CLOSED__CLASS)).toBeTruthy()
 		})
 	})
 
@@ -60,7 +60,7 @@ describe('NcAppNavigation.vue', () => {
 
 			await togglebutton.trigger('click')
 
-			expect(wrapper.classes(NAVIGATION_CLOSE__CLASS)).toBeTruthy()
+			expect(wrapper.classes(NAVIGATION_CLOSED__CLASS)).toBeTruthy()
 		})
 	})
 
@@ -68,12 +68,12 @@ describe('NcAppNavigation.vue', () => {
 		it('closes on switch to mobile', async () => {
 			const wrapper = mount(NcAppNavigation)
 
-			expect(wrapper.classes(NAVIGATION_CLOSE__CLASS)).toBeFalsy()
+			expect(wrapper.classes(NAVIGATION_CLOSED__CLASS)).toBeFalsy()
 
 			await resizeWindowWidth(1023)
 			await nextTick()
 
-			expect(wrapper.classes(NAVIGATION_CLOSE__CLASS)).toBeTruthy()
+			expect(wrapper.classes(NAVIGATION_CLOSED__CLASS)).toBeTruthy()
 		})
 
 		it('opens on switch to desktop', async () => {
@@ -81,7 +81,7 @@ describe('NcAppNavigation.vue', () => {
 			const togglebutton = findToggleButton(wrapper)
 			await resizeWindowWidth(1023)
 
-			expect(wrapper.classes(NAVIGATION_CLOSE__CLASS)).toBeTruthy()
+			expect(wrapper.classes(NAVIGATION_CLOSED__CLASS)).toBeTruthy()
 
 			// Close
 			await togglebutton.trigger('click')
@@ -89,7 +89,7 @@ describe('NcAppNavigation.vue', () => {
 			await resizeWindowWidth(1024)
 			await nextTick()
 
-			expect(wrapper.classes(NAVIGATION_CLOSE__CLASS)).toBeFalsy()
+			expect(wrapper.classes(NAVIGATION_CLOSED__CLASS)).toBeFalsy()
 		})
 
 		it('closes by ESC key on mobile', async () => {
@@ -99,7 +99,7 @@ describe('NcAppNavigation.vue', () => {
 
 			await navigation.trigger('keydown', { key: 'Escape' })
 
-			expect(wrapper.classes(NAVIGATION_CLOSE__CLASS)).toBeTruthy()
+			expect(wrapper.classes(NAVIGATION_CLOSED__CLASS)).toBeTruthy()
 		})
 
 		it("doesn't close by ESC key on desktop", async () => {
@@ -108,12 +108,12 @@ describe('NcAppNavigation.vue', () => {
 
 			await navigation.trigger('keydown', { key: 'Escape' })
 
-			expect(wrapper.classes(NAVIGATION_CLOSE__CLASS)).toBeFalsy()
+			expect(wrapper.classes(NAVIGATION_CLOSED__CLASS)).toBeFalsy()
 		})
 	})
 
 	// describe('focus trap', () => {
-	// 	// TODO
+	// TODO: add focus trap tests
 	// })
 
 	describe('accessibility', () => {
