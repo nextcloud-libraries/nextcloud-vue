@@ -71,7 +71,7 @@ export default {
 <template>
 	<div class="container1">
 		<NcButton @click="open = !open"> Click Me </NcButton>
-		<NcColorPicker v-model="color" v-model:shown="open" v-slot="{ attrs }">
+		<NcColorPicker v-model="color" v-model:open="open" v-slot="{ attrs }">
 			<div v-bind="attrs" :style="{'background-color': color}" class="color1" />
 		</NcColorPicker>
 	</div>
@@ -187,6 +187,11 @@ const props = withDefaults(defineProps<{
  */
 const currentColor = defineModel<string>({ required: true })
 
+/**
+ * The open state of the color picker.
+ */
+const open = defineModel<boolean>('open')
+
 const emit = defineEmits<{
 	/**
 	 * Emitted when the submit button was pressed.
@@ -297,8 +302,9 @@ function onClosed() {
 </script>
 
 <template>
-	<NcPopover popup-role="dialog"
+	<NcPopover v-model:shown="open"
 		:container="container"
+		popup-role="dialog"
 		@apply-hide="onClosed">
 		<template #trigger="slotProps">
 			<slot v-bind="slotProps" />
