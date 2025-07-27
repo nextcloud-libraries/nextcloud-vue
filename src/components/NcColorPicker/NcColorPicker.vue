@@ -203,11 +203,6 @@ const emit = defineEmits<{
 	 * The color picker was fully closed and all transitions are finished.
 	 */
 	closed: []
-
-	/**
-	 * @deprecated - use the `closed` event instead.
-	 */
-	close:[]
 }>()
 
 /**
@@ -291,21 +286,13 @@ function hexToRGB(hex: string) {
 		? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)]
 		: [0, 0, 0]
 }
-
-/**
- * Callback when all transistions of the closing popover are finished
- */
-function onClosed() {
-	emit('close')
-	emit('closed')
-}
 </script>
 
 <template>
 	<NcPopover v-model:shown="open"
 		:container="container"
 		popup-role="dialog"
-		@apply-hide="onClosed">
+		@apply-hide="emit('closed')">
 		<template #trigger="slotProps">
 			<slot v-bind="slotProps" />
 		</template>
