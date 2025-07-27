@@ -54,12 +54,7 @@ export default defineConfig((env) => {
 		config: overrides,
 		// Only create declarations for source files
 		DTSPluginOptions: {
-			include: ['src/**/*.ts', 'src/**/*.js', 'src/**/*.vue'],
-			compilerOptions: {
-				declaration: true,
-				rootDir: 'src',
-				noEmit: false,
-			},
+			tsconfigPath: 'src/tsconfig.json',
 		},
 		// By default all dependencies are external, but no path imports
 		nodeExternalsOptions: {

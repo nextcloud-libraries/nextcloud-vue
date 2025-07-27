@@ -1,7 +1,6 @@
 {
 	"extends": "@vue/tsconfig",
-	"include": ["./src/**/*.js","./src/**/*.ts", "./src/**/*.vue", "**/*.ts"],
-	"exclude": ["tests", "vitest.config.ts"],
+	"exclude": ["vitest.config.ts", "tests"],
 
 	"compilerOptions": {
 		"allowJs": true,
