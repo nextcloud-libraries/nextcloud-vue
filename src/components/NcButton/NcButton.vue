@@ -465,7 +465,7 @@ export type ButtonVariant = 'primary'
 	| 'warning'
 	| 'success'
 
-interface NcButtonProps {
+const props = withDefaults(defineProps<{
 	/**
 	 * Set the text and icon alignment
 	 *
@@ -559,9 +559,7 @@ interface NcButtonProps {
 	 * @default false
 	 */
 	wide?: boolean
-}
-
-const props = withDefaults(defineProps<NcButtonProps>(), {
+}>(), {
 	ariaLabel: undefined,
 	alignment: 'center',
 	download: undefined,

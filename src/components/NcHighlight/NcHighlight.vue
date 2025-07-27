@@ -32,7 +32,7 @@ import { findRanges } from '../../utils/findRanges.ts'
 /**
  * Represents one chunk of the input text
  */
-interface HighlightChunk extends StringRange {
+export interface HighlightChunk extends StringRange {
 	highlight: boolean
 	text: string
 }
