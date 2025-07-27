@@ -301,21 +301,34 @@ export default {
 	},
 
 	emits: [
-		'submit',
-		'close',
-		'update:open',
 		/**
-		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
-		 * @deprecated
+		 * @deprecated use the `closed` event instead.
 		 */
-		'update:value',
+		'close',
+		/**
+		 * Emitted when the color picker is closed and all transitions have finished.
+		 */
+		'closed',
+		'submit',
+		'update:open',
 		/**
 		 * Emits a hexadecimal string e.g. '#ffffff'
 		 */
 		'update:modelValue',
-		/** Same as update:modelValue for Vue 2 compatibility */
+		/**
+		 * Same as update:modelValue for Vue 2 compatibility
+		 */
 		'update:model-value',
+		/**
+		 * Same as update:modelValue for Vue 2 compatibility.
+		 *
+		 * @deprecated Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 */
 		'input',
+		/**
+		 * @deprecated Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 */
+		'update:value',
 	],
 
 	setup() {
@@ -378,9 +391,15 @@ export default {
 		},
 		handleClose() {
 			/**
-			 * Emitted after picker close
+			 * Emitted after picker close.
+			 *
+			 * @deprecated removed in v9 - use the `closed` event instead
 			 */
 			this.$emit('close')
+			/**
+			 * Emitted after the picker is closed and all transitions have finished.
+			 */
+			this.$emit('closed')
 			/**
 			 * @deprecated use the 'close' event instead
 			 */
