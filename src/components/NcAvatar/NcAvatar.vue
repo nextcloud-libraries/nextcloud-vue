@@ -281,6 +281,7 @@ export default {
 	name: 'NcAvatar',
 
 	directives: {
+		/** @type {import('vue').ObjectDirective} */
 		ClickOutside,
 	},
 	components: {

@@ -371,7 +371,11 @@ export default {
 			}
 		},
 
-		// Remove selected section once the user starts scrolling
+		/**
+		 * Remove selected section once the user starts scrolling
+		 *
+		 * @type {import('debounce').DebouncedFunction<() => void>}
+		 */
 		unfocusNavigationItem: debounce(function() {
 			this.selectedSection = ''
 			if (document.activeElement.className.includes('navigation-list__link')) {

@@ -59,7 +59,7 @@
     "test:component": "playwright test -c playwright.config.ts",
     "test:component:gui": "playwright test --ui -c playwright.config.ts",
     "test:coverage": "vitest run --coverage",
-    "ts:check": "vue-tsc --noEmit",
+    "ts:check": "vue-tsc -p src/tsconfig.json --noEmit",
     "update:snapshots": "npm run test:component -- --grep @visual --update-snapshots",
     "watch": "vite build --mode development --watch"
   },

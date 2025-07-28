@@ -760,6 +760,7 @@ export default {
 
 	directives: {
 		Focus,
+		/** @type {import('vue').ObjectDirective} */
 		ClickOutside,
 	},
 
