@@ -143,7 +143,7 @@ The `richEditing` mixin can be replaced by just using the `NcRichText` component
 - `NcButton` now does no longer has `role="button"` when used as a link (passing the `href` prop or a router link (`to`)).
    Instead, for accessibility and semantical correctness, has the `link` role.
 - `NcColorPicker`
-  - The `update:open` event is removed in favor of the already available `close` event.
+  - The deprecated `close` event was removed in favor of the `closed` event, this was done for consistent event names.
 - `NcCounterBubble`
   - The default slot was removed
   - The `count` prop is now required [\#5997](https://github.com/nextcloud-libraries/nextcloud-vue/pull/5997)
