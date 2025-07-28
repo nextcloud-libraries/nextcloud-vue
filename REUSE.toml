@@ -34,7 +34,7 @@ SPDX-FileCopyrightText = "2022-2024 Nextcloud GmbH and Nextcloud contributors"
 SPDX-License-Identifier = "CC0-1.0"
 
 [[annotations]]
-path = ["styleguide/assets/img/favicon**.**", "styleguide/assets/img/logo/logo**.**", "styleguide/assets/img/categories/dashboard.svg"]
+path = [".storybook/logo.png", "styleguide/assets/img/favicon**.**", "styleguide/assets/img/logo/logo**.**", "styleguide/assets/img/categories/dashboard.svg"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2016-2024 Nextcloud GmbH"
 SPDX-License-Identifier = "LicenseRef-NextcloudTrademarks"
