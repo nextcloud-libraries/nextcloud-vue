@@ -580,7 +580,7 @@ function cancelSelection() {
 			:aria-labels
 			:auto-apply="!confirm"
 			class="vue-date-time-picker"
-			:class="{ "vue-date-time-picker--clearable": clearable }"
+			:class="{ 'vue-date-time-picker--clearable': clearable }"
 			:cancel-text="t('Cancel')"
 			:clearable
 			:day-names
