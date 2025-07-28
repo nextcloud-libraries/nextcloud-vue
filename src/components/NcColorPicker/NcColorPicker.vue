@@ -71,7 +71,7 @@ export default {
 <template>
 	<div class="container1">
 		<NcButton @click="open = !open"> Click Me </NcButton>
-		<NcColorPicker :model-value="color" @update:model-value="updateColor" :shown.sync="open" v-slot="{ attrs }">
+		<NcColorPicker v-model="color" :open.sync="open" v-slot="{ attrs }">
 			<div v-bind="attrs" :style="{'background-color': color}" class="color1" />
 		</NcColorPicker>
 	</div>
@@ -84,11 +84,6 @@ export default {
 			open: false
 		}
 	},
-	methods: {
-		updateColor(e) {
-			this.color = e
-		}
-	}
 }
 </script>
 <style>
@@ -142,8 +137,9 @@ export default {
 </docs>
 
 <template>
-	<NcPopover popup-role="dialog"
+	<NcPopover :shown.sync="modelOpen"
 		:container="container"
+		popup-role="dialog"
 		v-bind="$attrs"
 		v-on="$listeners"
 		@apply-hide="handleClose">
@@ -220,6 +216,7 @@ import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 import { Chrome } from 'vue-color'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { useVModel } from '@vueuse/core'
 
 const HEX_REGEX = /^#([a-f0-9]{3}|[a-f0-9]{6})$/i
 
@@ -267,9 +264,18 @@ export default {
 		},
 
 		/**
-		 * Limit selectable colors to only the provided palette
+		 * Selector for the popover container
 		 */
-		paletteOnly: {
+		container: {
+			type: [String, Object, Element, Boolean],
+			default: 'body',
+		},
+
+		/**
+		 * The open state of the color picker.
+		 * This can be used as two-way binding together with the `update:open` event.
+		 */
+		open: {
 			type: Boolean,
 			default: false,
 		},
@@ -292,36 +298,52 @@ export default {
 		},
 
 		/**
-		 * Selector for the popover container
+		 * Limit selectable colors to only the provided palette
 		 */
-		container: {
-			type: [String, Object, Element, Boolean],
-			default: 'body',
+		paletteOnly: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
 	emits: [
-		'submit',
-		'close',
-		'update:open',
 		/**
-		 * Removed in v9 - use `update:modelValue` (`v-model`) instead
-		 * @deprecated
+		 * @deprecated use the `closed` event instead.
 		 */
-		'update:value',
+		'close',
+		/**
+		 * Emitted when the color picker is closed and all transitions have finished.
+		 */
+		'closed',
+		'submit',
+		'update:open',
 		/**
 		 * Emits a hexadecimal string e.g. '#ffffff'
 		 */
 		'update:modelValue',
-		/** Same as update:modelValue for Vue 2 compatibility */
+		/**
+		 * Same as update:modelValue for Vue 2 compatibility
+		 */
 		'update:model-value',
+		/**
+		 * Same as update:modelValue for Vue 2 compatibility.
+		 *
+		 * @deprecated Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 */
 		'input',
+		/**
+		 * @deprecated Removed in v9 - use `update:modelValue` (`v-model`) instead
+		 */
+		'update:value',
 	],
 
-	setup() {
+	setup(props, { emit }) {
 		const model = useModelMigration('value', 'update:value', true)
+		const modelOpen = useVModel(props, 'open', emit)
+
 		return {
 			model,
+			modelOpen,
 		}
 	},
 
@@ -378,9 +400,15 @@ export default {
 		},
 		handleClose() {
 			/**
-			 * Emitted after picker close
+			 * Emitted after picker close.
+			 *
+			 * @deprecated removed in v9 - use the `closed` event instead
 			 */
 			this.$emit('close')
+			/**
+			 * Emitted after the picker is closed and all transitions have finished.
+			 */
+			this.$emit('closed')
 			/**
 			 * @deprecated use the 'close' event instead
 			 */

@@ -5,6 +5,18 @@
 
 # Changelog
 
+## [v8.29.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.29.0) (UNRELEASED)
+
+### 📝 Notes
+#### `NcColorPicker`
+The `update:open` event was undeprecated, instead proper open state handling of the component was added.
+This means it is now possible to pass the `open` prop directly to the component,
+it is implemented as two-way binding with the corresponding `update:open` event.
+It is now discouraged to use the previous solution of relying on the `shown` prop of the underlying component.
+
+Additionally for consistent event naming the `close` event was deprecated in favor of the `closed` event.
+The `closed` event will be emitted after `update:open` (with payload `false`) was emitted and all transitions have finished.
+
 ## [v8.28.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.28.0) (2025-07-14)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.27.0...v8.28.0)
 
@@ -19,7 +31,7 @@ The value `arrowRight` of the property `trailingButtonIcon` is deprecated and wi
 It is replaced by `arrowEnd` which reflects that the directions depends on the text directions (LTR vs RTL).
 
 #### `NcColorPicker`
-The `update:open` event is deprecated, instead just use the `close` event which is emitted at the same time.
+<del>The `update:open` event is deprecated, instead just use the `close` event which is emitted at the same time.</del> *(this was reverted in 8.29.0)*
 
 #### Event names
 Custom events now have a consistent naming without custom scoping of the events.
