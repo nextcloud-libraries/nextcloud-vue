@@ -67,11 +67,11 @@
     "extends @nextcloud/browserslist-config"
   ],
   "overrides": {
-    "mdast-util-gfm": {
-      "mdast-util-gfm-autolink-literal": "2.0.0"
-    },
     "@playwright/experimental-ct-core": {
       "vite": "^6.3.4 || ^7.0.0"
+    },
+    "mdast-util-gfm": {
+      "mdast-util-gfm-autolink-literal": "2.0.0"
     }
   },
   "dependencies": {
@@ -167,11 +167,13 @@
     "node": "^20.11.0 || ^22 || ^24"
   },
   "devEngines": {
-    "packageManager": {
-      "name": "npm",
-      "version": "^10",
-      "onFail": "error"
-    },
+    "packageManager": [
+      {
+        "name": "npm",
+        "version": "^10",
+        "onFail": "error"
+      }
+    ],
     "runtime": {
       "name": "node",
       "version": "^22",
