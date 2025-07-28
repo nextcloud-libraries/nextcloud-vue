@@ -580,6 +580,7 @@ function cancelSelection() {
 			:aria-labels
 			:auto-apply="!confirm"
 			class="vue-date-time-picker"
+			:class="{ 'vue-date-time-picker--clearable': clearable }"
 			:cancel-text="t('Cancel')"
 			:clearable
 			:day-names
@@ -671,7 +672,7 @@ function cancelSelection() {
 	--dp-cell-padding: 5px;
 	--dp-common-padding: 10px;
 	--dp-input-icon-padding: var(--default-clickable-area);
-	--dp-input-padding: 6px 30px 6px 12px;
+	--dp-input-padding: 6px 12px;
 	--dp-menu-min-width: 260px;
 	--dp-action-buttons-padding: 1px 6px;
 	--dp-row-margin: 5px 0;
@@ -690,6 +691,10 @@ function cancelSelection() {
 	// plain @import does not work as this will scope all styles imported.
 	:deep() {
 		@include meta.load-css('@vuepic/vue-datepicker/dist/main.css');
+	}
+
+	.vue-date-time-picker--clearable :deep(.dp__input) {
+		padding-inline-end: var(--default-clickable-area);
 	}
 
 	.vue-date-time-picker__timezone {
