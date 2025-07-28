@@ -37,7 +37,6 @@ const overrides = defineConfig({
 		preprocessorOptions: {
 			scss: {
 				additionalData: '@use "sass:math"; @use "variables" as *; @use "material-icons" as *;',
-				sourceMapContents: false,
 				loadPaths: [
 					resolve(import.meta.dirname, 'src/assets'),
 				],
