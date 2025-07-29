@@ -89,7 +89,7 @@
     "@nextcloud/sharing": "^0.2.5",
     "@nextcloud/timezones": "^0.2.0",
     "@vuepic/vue-datepicker": "^11.0.2",
-    "@vueuse/components": "^13.0.0",
+    "@vueuse/components": "^13.6.0",
     "@vueuse/core": "^13.0.0",
     "blurhash": "^2.0.5",
     "clone": "^2.1.2",
