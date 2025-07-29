@@ -131,7 +131,7 @@ const props = withDefaults(defineProps<NcInputFieldProps>(), {
 const modelValue = defineModel<string|number>({ required: true })
 
 const emit = defineEmits<{
-	'trailing-button-click': [event: MouseEvent]
+	trailingButtonClick: [event: MouseEvent]
 }>()
 
 defineOptions({
@@ -256,7 +256,7 @@ function handleInput(event: Event) {
 				:aria-label="trailingButtonLabel"
 				:disabled="disabled"
 				variant="tertiary-no-background"
-				@click="emit('trailing-button-click', $event)">
+				@click="emit('trailingButtonClick', $event)">
 				<template #icon>
 					<slot name="trailing-button-icon" />
 				</template>
