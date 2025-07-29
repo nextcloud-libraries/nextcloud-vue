@@ -50,6 +50,7 @@ import { t } from '../../l10n.ts'
 
 import onlineSvg from '../../assets/status-icons/user-status-online.svg?raw'
 import awaySvg from '../../assets/status-icons/user-status-away.svg?raw'
+import busySvg from '../../assets/status-icons/user-status-busy.svg?raw'
 import dndSvg from '../../assets/status-icons/user-status-dnd.svg?raw'
 import invisibleSvg from '../../assets/status-icons/user-status-invisible.svg?raw'
 import logger from '../../utils/logger.ts'
@@ -99,7 +100,7 @@ watch(() => props.user, async (user) => {
 const matchSvg = {
 	online: onlineSvg,
 	away: awaySvg,
-	busy: awaySvg,
+	busy: busySvg,
 	dnd: dndSvg,
 	invisible: invisibleSvg,
 	offline: invisibleSvg,
