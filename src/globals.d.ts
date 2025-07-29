@@ -25,4 +25,10 @@ declare global {
 	}
 }
 
+declare module '@nextcloud/event-bus' {
+	 export interface NextcloudEvents {
+		'toggle-navigation': { open: boolean }
+	 }
+}
+
 export {}
