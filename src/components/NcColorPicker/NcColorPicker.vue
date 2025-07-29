@@ -156,10 +156,13 @@ export default {
 					<div v-if="!advanced" class="color-picker__simple">
 						<label v-for="({ color, name }, index) in normalizedPalette"
 							:key="index"
-							:style="{ backgroundColor: color }"
 							class="color-picker__simple-color-circle"
-							:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }">
-							<Check v-if="color === currentColor" :size="20" :fill-color="contrastColor" />
+							:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }"
+							:style="{
+								backgroundColor: color,
+								color: contrastColor,
+							}">
+							<NcIconSvgWrapper v-if="color === currentColor" :path="mdiCheck" />
 							<input type="radio"
 								class="hidden-visually"
 								:aria-label="name"
@@ -181,7 +184,7 @@ export default {
 						variant="tertiary"
 						@click="handleBack">
 						<template #icon>
-							<ArrowLeft :size="20" />
+							<NcIconSvgWrapper directional :path="mdiArrowLeft" />
 						</template>
 					</NcButton>
 					<NcButton v-else
@@ -189,7 +192,7 @@ export default {
 						variant="tertiary"
 						@click="handleMoreSettings">
 						<template #icon>
-							<DotsHorizontal :size="20" />
+							<NcIconSvgWrapper :path="mdiDotsHorizontal" />
 						</template>
 					</NcButton>
 					<NcButton variant="primary"
@@ -203,20 +206,16 @@ export default {
 </template>
 
 <script>
-import NcButton from '../NcButton/index.js'
-import NcPopover from '../NcPopover/index.js'
-import { t } from '../../l10n.js'
-import { defaultPalette } from '../../utils/GenColors.js'
-
-import GenRandomId from '../../utils/GenRandomId.js'
-
-import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
-import Check from 'vue-material-design-icons/Check.vue'
-import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
-
-import { Chrome } from 'vue-color'
-import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { mdiArrowLeft, mdiCheck, mdiDotsHorizontal } from '@mdi/js'
 import { useVModel } from '@vueuse/core'
+import { Chrome } from 'vue-color'
+import NcButton from '../NcButton/index.js'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
+import NcPopover from '../NcPopover/index.js'
+import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { defaultPalette } from '../../utils/GenColors.js'
+import GenRandomId from '../../utils/GenRandomId.js'
+import { t } from '../../l10n.js'
 
 const HEX_REGEX = /^#([a-f0-9]{3}|[a-f0-9]{6})$/i
 
@@ -224,11 +223,9 @@ export default {
 	name: 'NcColorPicker',
 
 	components: {
-		ArrowLeft,
-		Check,
 		Chrome,
-		DotsHorizontal,
 		NcButton,
+		NcIconSvgWrapper,
 		NcPopover,
 	},
 
@@ -342,6 +339,9 @@ export default {
 		const modelOpen = useVModel(props, 'open', emit)
 
 		return {
+			mdiArrowLeft,
+			mdiCheck,
+			mdiDotsHorizontal,
 			model,
 			modelOpen,
 		}
