@@ -9,6 +9,7 @@ updates:
       interval: daily
       timezone: Europe/Paris
     open-pull-requests-limit: 10
+    versioning-strategy: increase
     labels:
     - 3. to review
     - dependencies
@@ -41,6 +42,7 @@ updates:
       interval: weekly
       timezone: Europe/Paris
     open-pull-requests-limit: 10
+    versioning-strategy: increase
     labels:
     - 3. to review
     - dependencies
