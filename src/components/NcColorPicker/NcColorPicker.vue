@@ -138,17 +138,15 @@ export default {
 
 <script setup lang="ts">
 import { Chrome as VueChrome } from '@ckpack/vue-color'
+import { mdiArrowLeft, mdiCheck, mdiDotsHorizontal } from '@mdi/js'
 import { computed, ref } from 'vue'
+import NcButton from '../NcButton/index.ts'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
+import NcPopover from '../NcPopover/index.js'
 import { Color, defaultPalette } from '../../utils/colors.ts'
 import { createElementId } from '../../utils/createElementId.ts'
-import { t } from '../../l10n.ts'
-
-import IconArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
-import IconCheck from 'vue-material-design-icons/Check.vue'
-import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
-import NcButton from '../NcButton/index.ts'
-import NcPopover from '../NcPopover/index.js'
 import logger from '../../utils/logger.ts'
+import { t } from '../../l10n.ts'
 
 const HEX_REGEX = /^#([a-f0-9]{3}|[a-f0-9]{6})$/i
 
@@ -306,10 +304,13 @@ function hexToRGB(hex: string) {
 					<div v-if="!advanced" class="color-picker__simple">
 						<label v-for="({ color, name }, index) in normalizedPalette"
 							:key="index"
-							:style="{ backgroundColor: color }"
 							class="color-picker__simple-color-circle"
-							:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }">
-							<IconCheck v-if="color === currentColor" :size="20" :fill-color="contrastColor" />
+							:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }"
+							:style="{
+								backgroundColor: color,
+								color: contrastColor,
+							}">
+							<NcIconSvgWrapper v-if="color === currentColor" :path="mdiCheck" />
 							<input type="radio"
 								class="hidden-visually"
 								:aria-label="name"
@@ -331,7 +332,7 @@ function hexToRGB(hex: string) {
 						variant="tertiary"
 						@click="advanced = false">
 						<template #icon>
-							<IconArrowLeft :size="20" />
+							<NcIconSvgWrapper directional :path="mdiArrowLeft" />
 						</template>
 					</NcButton>
 					<NcButton v-else
@@ -339,7 +340,7 @@ function hexToRGB(hex: string) {
 						variant="tertiary"
 						@click="advanced = true">
 						<template #icon>
-							<IconDotsHorizontal :size="20" />
+							<NcIconSvgWrapper :path="mdiDotsHorizontal" />
 						</template>
 					</NcButton>
 					<NcButton variant="primary"
