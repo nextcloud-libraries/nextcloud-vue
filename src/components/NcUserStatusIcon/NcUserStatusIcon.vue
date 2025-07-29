@@ -12,18 +12,29 @@ This component displays a user status icon.
 
 ```vue
 <template>
-	<div class="row">
+	<div class="grid">
 		<NcUserStatusIcon status="online" />
+		<span>Online</span>
 		<NcUserStatusIcon status="away" />
+		<span>Away</span>
+		<NcUserStatusIcon status="busy" />
+		<span>Busy</span>
 		<NcUserStatusIcon status="dnd" />
+		<span>Do not disturb</span>
 		<NcUserStatusIcon status="invisible" />
+		<span>Invisible</span>
+		<NcUserStatusIcon status="offline" />
+		<span>Offline</span>
 	</div>
 </template>
 
 <style>
-.row {
-	display: flex;
-	gap: 10px;
+.grid {
+	display: grid;
+	grid-template-columns: 20px 1fr;
+	gap: 8px;
+	align-items: center;
+	width: fit-content;
 }
 </style>
 ```
@@ -39,6 +50,7 @@ import { t } from '../../l10n.ts'
 
 import onlineSvg from '../../assets/status-icons/user-status-online.svg?raw'
 import awaySvg from '../../assets/status-icons/user-status-away.svg?raw'
+import busySvg from '../../assets/status-icons/user-status-busy.svg?raw'
 import dndSvg from '../../assets/status-icons/user-status-dnd.svg?raw'
 import invisibleSvg from '../../assets/status-icons/user-status-invisible.svg?raw'
 import logger from '../../utils/logger.ts'
@@ -88,7 +100,7 @@ watch(() => props.user, async (user) => {
 const matchSvg = {
 	online: onlineSvg,
 	away: awaySvg,
-	busy: awaySvg,
+	busy: busySvg,
 	dnd: dndSvg,
 	invisible: invisibleSvg,
 	offline: invisibleSvg,
