@@ -16,7 +16,7 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 	<li ref="crumb"
 		class="vue-crumb"
 		:class="[{'vue-crumb--hovered': hovering}, $props.class]"
-		:[crumbId]="''"
+		:data-crumb-id="crumbId"
 		draggable="false"
 		@dragstart.prevent="() => {/** Prevent the breadcrumb from being draggable. */}"
 		@drop.prevent="dropped"
@@ -39,12 +39,12 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 		</NcButton>
 		<NcActions v-if="$slots.default"
 			ref="actions"
+			:container="actionsContainer"
 			:force-menu="forceMenu"
+			force-name
 			:open="open"
 			:menu-name="name"
-			:title="title"
-			:force-name="true"
-			:container="`.vue-crumb[${crumbId}]`"
+			:title
 			variant="tertiary"
 			@update:open="onOpenChange">
 			<template #icon>
@@ -163,12 +163,10 @@ export default {
 	],
 
 	setup() {
+		const crumbId = createElementId()
 		return {
-			/**
-			 * The unique id of the breadcrumb. Necessary to append the
-			 * Actions menu to the correct crumb.
-			 */
-			 crumbId: createElementId(),
+			actionsContainer: `.vue-crumb[data-crumb-id="${crumbId}"]`,
+			crumbId,
 		}
 	},
 
