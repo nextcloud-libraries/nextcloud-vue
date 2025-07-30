@@ -63,9 +63,14 @@ This component is to be used in the settings section of nextcloud.
 </template>
 
 <script>
+import { loadState } from '@nextcloud/initial-state'
 import { t } from '../../l10n.js'
 
 import HelpCircle from 'vue-material-design-icons/HelpCircle.vue'
+
+// Overwrite this on Nextcloud 30+ to always limit the width
+const [major] = loadState('core', 'config', { version: '30.0' }).version.split('.', 2) ?? []
+const isLegacy = major && Number.parseInt(major) < 30
 
 export default {
 	name: 'NcSettingsSection',
@@ -110,12 +115,7 @@ export default {
 
 	computed: {
 		forceLimitWidth() {
-			if (this.limitWidth) {
-				return true
-			}
-			// Overwrite this on Nextcloud 30+ to always limit the width
-			const [major] = window._oc_config?.version.split('.', 2) ?? []
-			return major && Number.parseInt(major) >= 30
+			return this.limitWidth || !isLegacy
 		},
 
 		hasDescription() {

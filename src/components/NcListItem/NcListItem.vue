@@ -535,9 +535,13 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 </template>
 
 <script>
+import { loadState } from '@nextcloud/initial-state'
 import NcActions from '../NcActions/index.js'
 import NcCounterBubble from '../NcCounterBubble/index.js'
 import NcVNodes from '../NcVNodes/index.js'
+
+const [major] = loadState('core', 'config', { version: '30.0' }).version.split('.', 2) ?? []
+const isLegacy = major && Number.parseInt(major) < 30
 
 export default {
 	name: 'NcListItem',
@@ -694,9 +698,6 @@ export default {
 	],
 
 	setup() {
-		const [major] = window._oc_config?.version.split('.', 2) ?? []
-		const isLegacy = major && Number.parseInt(major) < 30
-
 		return {
 			isLegacy,
 		}
