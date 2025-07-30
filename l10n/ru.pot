@@ -3,10 +3,11 @@
 # Joas Schilling, 2025
 # Elena Mishina, 2025
 # Igor Orlov, 2025
+# Leonid Fedotov, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Igor Orlov, 2025\n"
+"Last-Translator: Leonid Fedotov, 2025\n"
 "Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
@@ -177,8 +178,8 @@ msgstr ""
 "Ошибка при получении связанных ресурсов. Если у вас есть какие-либо вопросы,"
 " обратитесь к системному администратору."
 
-msgid "External documentation for {name}"
-msgstr "Внешняя документация для {name}"
+msgid "External documentation"
+msgstr "Внешняя документация"
 
 msgid "Failed to add the item to the project"
 msgstr "Не удалось добавить элемент в проект"
@@ -365,6 +366,9 @@ msgstr "Выбор"
 
 msgid "Pick an emoji"
 msgstr "Выберите эмодзи"
+
+msgid "Please choose a date"
+msgstr "Выберите дату"
 
 msgid "Previous"
 msgstr "Предыдущее"
