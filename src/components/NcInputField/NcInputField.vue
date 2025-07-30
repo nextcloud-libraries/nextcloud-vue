@@ -158,7 +158,7 @@ defineSlots<{
 
 const attrs = useAttrs()
 
-const input = useTemplateRef('input')
+const input = useTemplateRef('input-key')
 
 const hasTrailingIcon = computed(() => props.showTrailingButton || props.success)
 
@@ -228,7 +228,7 @@ function handleInput(event: Event) {
 		<div class="input-field__main-wrapper">
 			<input v-bind="$attrs"
 				:id
-				ref="input"
+				ref="input-key"
 				:aria-describedby="ariaDescribedby"
 				aria-live="polite"
 				class="input-field__input"

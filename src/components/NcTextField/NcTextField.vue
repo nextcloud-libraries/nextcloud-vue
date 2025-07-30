@@ -126,7 +126,7 @@ export default {
 
 <template>
 	<NcInputField v-bind="propsToForward"
-		ref="inputField"
+		ref="input-field-key"
 		v-model="modelValue">
 		<template v-if="!!$slots.icon" #icon>
 			<slot name="icon" />
@@ -188,7 +188,7 @@ defineSlots<{
 	icon?: Slot
 }>()
 
-const inputField = useTemplateRef('inputField')
+const inputField = useTemplateRef('input-field-key')
 
 const defaultTrailingButtonLabels = {
 	arrowEnd: t('Save changes'),
