@@ -444,7 +444,6 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 				class="list-item"
 				:class="{
 					'list-item--compact': compact,
-					'list-item--legacy': isLegacy,
 					'list-item--one-line': oneLine,
 				}"
 				@mouseover="handleMouseover"
@@ -684,15 +683,6 @@ export default {
 		'update:menuOpen',
 	],
 
-	setup() {
-		const [major] = window._oc_config?.version.split('.', 2) ?? []
-		const isLegacy = major && Number.parseInt(major) < 30
-
-		return {
-			isLegacy,
-		}
-	},
-
 	data() {
 		return {
 			hovered: false,
@@ -926,22 +916,10 @@ export default {
 		}
 	}
 
-	&--legacy {
-		--list-item-padding: calc(2 * var(--default-grid-baseline));
-
-		&.list-item--compact {
-			--list-item-padding: var(--default-grid-baseline) calc(2 * var(--default-grid-baseline));
-		}
-	}
-
 	&--one-line {
 		--list-item-height: var(--default-clickable-area);
 		--list-item-border-radius: var(--border-radius-element, calc(var(--default-clickable-area) / 2));
 		--list-item-padding: var(--default-grid-baseline);
-
-		&#{&}--legacy {
-			--list-item-padding: 2px calc((var(--list-item-height) - var(--list-item-border-radius)) / 2);
-		}
 
 		.list-item-content__main {
 			display: flex;
