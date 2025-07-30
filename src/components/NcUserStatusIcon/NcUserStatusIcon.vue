@@ -56,14 +56,31 @@ This component displays a user status icon.
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
 import { getCapabilities } from '@nextcloud/capabilities'
+import { loadState } from '@nextcloud/initial-state'
 
 import onlineSvg from '../../assets/status-icons/user-status-online.svg?raw'
+import onlineLegacySvg from '../../assets/status-icons/user-status-online-legacy.svg?raw'
 import awaySvg from '../../assets/status-icons/user-status-away.svg?raw'
+import awayLegacySvg from '../../assets/status-icons/user-status-away-legacy.svg?raw'
+import busySvg from '../../assets/status-icons/user-status-busy.svg?raw'
 import dndSvg from '../../assets/status-icons/user-status-dnd.svg?raw'
+import dndLegacySvg from '../../assets/status-icons/user-status-dnd-legacy.svg?raw'
 import invisibleSvg from '../../assets/status-icons/user-status-invisible.svg?raw'
+import invisibleLegacySvg from '../../assets/status-icons/user-status-invisible-legacy.svg?raw'
 
 import { getUserStatusText } from '../../utils/UserStatus.ts'
 import { t } from '../../l10n.js'
+
+const [major] = loadState('core', 'config', { version: '32.0' }).version.split('.', 2) ?? []
+const isLegacy = major && Number.parseInt(major) < 32
+const matchSvg = {
+	online: isLegacy ? onlineLegacySvg : onlineSvg,
+	away: isLegacy ? awayLegacySvg : awaySvg,
+	busy: isLegacy ? awayLegacySvg : busySvg,
+	dnd: isLegacy ? dndLegacySvg : dndSvg,
+	invisible: isLegacy ? invisibleLegacySvg : invisibleSvg,
+	offline: isLegacy ? invisibleLegacySvg : invisibleSvg,
+}
 
 export default {
 	name: 'NcUserStatusIcon',
@@ -122,14 +139,6 @@ export default {
 		},
 
 		activeSvg() {
-			const matchSvg = {
-				online: onlineSvg,
-				away: awaySvg,
-				busy: awaySvg,
-				dnd: dndSvg,
-				invisible: invisibleSvg,
-				offline: invisibleSvg,
-			}
 			return matchSvg[this.activeStatus] ?? null
 		},
 
