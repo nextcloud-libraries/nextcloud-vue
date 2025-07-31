@@ -466,7 +466,7 @@ export default {
 		 * Selector for the popover menu container
 		 */
 		menuContainer: {
-			type: [String, Object, Element, Boolean],
+			type: [Boolean, String, Object, Element],
 			default: 'body',
 		},
 	},

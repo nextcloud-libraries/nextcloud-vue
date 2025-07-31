@@ -318,7 +318,7 @@ export default {
 		 * Selector for the popover container
 		 */
 		container: {
-			type: [String, Object, Element, Boolean],
+			type: [Boolean, String, Object, Element],
 			default: 'body',
 		},
 	},
