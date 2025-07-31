@@ -4,9 +4,8 @@
  */
 
 import { shallowMount } from '@vue/test-utils'
-import NcInputField from '../../../../src/components/NcInputField/index.js'
-
 import { describe, expect, it } from 'vitest'
+import NcInputField from '../../../../src/components/NcInputField/index.js'
 
 describe('NcInputField', () => {
 	it('should emit text when type is text', async () => {

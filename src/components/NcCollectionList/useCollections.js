@@ -5,11 +5,11 @@
 
 import { ref } from 'vue'
 import {
-	renameCollectionService,
-	getCollectionsByResourceService,
-	createCollectionService,
 	addResourceService,
+	createCollectionService,
+	getCollectionsByResourceService,
 	removeResourceService,
+	renameCollectionService,
 } from './service.ts'
 
 /**
@@ -29,11 +29,11 @@ export function useCollections() {
 	}
 
 	const removeCollection = (collectionId) => {
-		storedCollections.value = storedCollections.value.filter(item => item.id !== collectionId)
+		storedCollections.value = storedCollections.value.filter((item) => item.id !== collectionId)
 	}
 
 	const updateCollection = (collection) => {
-		const index = storedCollections.value.findIndex(item => item.id === collection.id)
+		const index = storedCollections.value.findIndex((item) => item.id === collection.id)
 		if (index !== -1) {
 			storedCollections.value[index] = collection
 		} else {

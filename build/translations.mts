@@ -3,13 +3,17 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { join, basename } from 'path'
 import { readdir, readFile } from 'fs/promises'
 import { po as poParser } from 'gettext-parser'
+import { basename, join } from 'path'
 
 // https://github.com/alexanderwallin/node-gettext#usage
 // https://github.com/alexanderwallin/node-gettext#load-and-add-translations-from-mo-or-po-files
-const parseFile = async (fileName) => {
+/**
+ *
+ * @param fileName
+ */
+async function parseFile(fileName) {
 	const locale = basename(fileName).slice(0, -'.pot'.length)
 	const po = await readFile(fileName)
 
@@ -23,12 +27,16 @@ const parseFile = async (fileName) => {
 	return [locale, json] as const
 }
 
-export const loadTranslations = async (baseDir: string) => {
+/**
+ *
+ * @param baseDir
+ */
+export async function loadTranslations(baseDir: string) {
 	const files = await readdir(baseDir)
 
 	const promises = files
-		.filter(name => name !== 'messages.pot' && name.endsWith('.pot'))
-		.map(file => join(baseDir, file))
+		.filter((name) => name !== 'messages.pot' && name.endsWith('.pot'))
+		.map((file) => join(baseDir, file))
 		.map(parseFile)
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars

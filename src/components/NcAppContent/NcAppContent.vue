@@ -99,12 +99,14 @@ export default {
 
 		<template v-if="hasList">
 			<!-- Mobile view does not allow resizeable panes -->
-			<div v-if="isMobile || layout === 'no-split'"
+			<div
+				v-if="isMobile || layout === 'no-split'"
 				class="app-content-wrapper app-content-wrapper--no-split"
 				:class="{
 					'app-content-wrapper--show-details': showDetails,
 					'app-content-wrapper--show-list': !showDetails,
-					'app-content-wrapper--mobile': isMobile,}">
+					'app-content-wrapper--mobile': isMobile,
+				}">
 				<NcAppContentDetailsToggle v-if="showDetails" @click.stop.prevent="hideDetails" />
 
 				<div v-show="!showDetails">
@@ -113,14 +115,17 @@ export default {
 				<slot v-if="showDetails" />
 			</div>
 			<div v-else-if="layout === 'vertical-split' || layout === 'horizontal-split'" class="app-content-wrapper">
-				<Splitpanes :horizontal="layout === 'horizontal-split'"
+				<Splitpanes
+					:horizontal="layout === 'horizontal-split'"
 					class="default-theme"
-					:class="{ 'splitpanes--horizontal': layout === 'horizontal-split',
-						'splitpanes--vertical': layout === 'vertical-split'
+					:class="{
+						'splitpanes--horizontal': layout === 'horizontal-split',
+						'splitpanes--vertical': layout === 'vertical-split',
 					}"
 					:rtl="isRtl"
 					@resized="handlePaneResize">
-					<Pane class="splitpanes__pane-list"
+					<Pane
+						class="splitpanes__pane-list"
 						:size="listPaneSize || paneDefaults.list.size"
 						:min-size="paneDefaults.list.min"
 						:max-size="paneDefaults.list.max">
@@ -128,7 +133,8 @@ export default {
 						<slot name="list" />
 					</Pane>
 
-					<Pane class="splitpanes__pane-details"
+					<Pane
+						class="splitpanes__pane-details"
 						:size="detailsPaneSize"
 						:min-size="paneDefaults.details.min"
 						:max-size="paneDefaults.details.max">
@@ -149,12 +155,12 @@ import { getCapabilities } from '@nextcloud/capabilities'
 import { emit } from '@nextcloud/event-bus'
 import { loadState } from '@nextcloud/initial-state'
 import { useSwipe } from '@vueuse/core'
-import { Splitpanes, Pane } from 'splitpanes'
+import { Pane, Splitpanes } from 'splitpanes'
 import NcAppContentDetailsToggle from './NcAppContentDetailsToggle.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { APP_NAME } from '../../utils/appName.ts'
-import { isRtl } from '../../utils/rtl.ts'
 import logger from '../../utils/logger.ts'
+import { isRtl } from '../../utils/rtl.ts'
 
 import 'splitpanes/dist/splitpanes.css'
 
@@ -175,6 +181,7 @@ export default {
 		Pane,
 		Splitpanes,
 	},
+
 	props: {
 		/**
 		 * Allows to disable the control by swipe of the app navigation open state.
@@ -450,6 +457,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 
 .app-content {

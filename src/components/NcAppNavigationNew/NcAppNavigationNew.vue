@@ -28,7 +28,8 @@
 
 <template>
 	<div class="app-navigation-new">
-		<NcButton :id="buttonId"
+		<NcButton
+			:id="buttonId"
 			:disabled
 			:variant
 			@click="$emit('click')">
@@ -47,17 +48,20 @@ export default {
 	components: {
 		NcButton,
 	},
+
 	props: {
 		buttonId: {
 			type: String,
 			required: false,
 			default: '',
 		},
+
 		disabled: {
 			type: Boolean,
 			required: false,
 			default: false,
 		},
+
 		text: {
 			type: String,
 			required: true,
@@ -65,6 +69,7 @@ export default {
 
 		/**
 		 * The color variant to use.
+		 *
 		 * @default 'primary'
 		 */
 		variant: {

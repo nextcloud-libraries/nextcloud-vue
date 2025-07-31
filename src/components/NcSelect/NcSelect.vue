@@ -322,7 +322,8 @@ export default {
 </docs>
 
 <template>
-	<VueSelect class="select"
+	<VueSelect
+		class="select"
 		:class="{
 			'select--no-wrap': noWrap,
 		}"
@@ -330,20 +331,24 @@ export default {
 		@search="search = $event"
 		@update:model-value="$emit('update:modelValue', $event)">
 		<template v-if="!labelOutside && inputLabel" #header>
-			<label :for="inputId"
+			<label
+				:for="inputId"
 				class="select__label">
 				{{ inputLabel }}
 			</label>
 		</template>
 		<template #search="{ attributes, events }">
-			<input :class="['vs__search', inputClass]"
+			<input
+				class="vs__search"
+				:class="[inputClass]"
 				v-bind="attributes"
 				:required="inputRequired"
 				dir="auto"
 				v-on="events">
 		</template>
 		<template #open-indicator="{ attributes }">
-			<ChevronDown v-bind="attributes"
+			<ChevronDown
+				v-bind="attributes"
 				fill-color="var(--vs-controls-color)"
 				:style="{
 					cursor: !disabled ? 'pointer' : null,
@@ -354,14 +359,16 @@ export default {
 		<template #option="option">
 			<!-- @slot Customize how a option is rendered. -->
 			<slot name="option" v-bind="option">
-				<NcEllipsisedOption :name="String(option[localLabel])"
+				<NcEllipsisedOption
+					:name="String(option[localLabel])"
 					:search="search" />
 			</slot>
 		</template>
 		<template #selected-option="selectedOption">
 			<!-- @slot Customize how a selected option is rendered -->
 			<slot name="selected-option" :v-bind="selectedOption">
-				<NcEllipsisedOption :name="String(selectedOption[localLabel])"
+				<NcEllipsisedOption
+					:name="String(selectedOption[localLabel])"
 					:search="search" />
 			</slot>
 		</template>
@@ -379,12 +386,6 @@ export default {
 </template>
 
 <script>
-// TODO: Use @nextcloud/vue-select once a vue 3 version is available.
-// Until then, all @nextcloud/vue-select specific improvements won't be available.
-// E.g. the `limit` prop has no effect, currently.
-import 'vue-select/dist/vue-select.css'
-
-import VueSelect from 'vue-select'
 import {
 	autoUpdate,
 	computePosition,
@@ -394,14 +395,18 @@ import {
 	shift,
 } from '@floating-ui/dom'
 import { h, warn } from 'vue'
-import { createElementId } from '../../utils/createElementId.ts'
-import { t } from '../../l10n.ts'
-
+import VueSelect from 'vue-select'
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import Close from 'vue-material-design-icons/Close.vue'
-
+import { t } from '../../l10n.ts'
+import { createElementId } from '../../utils/createElementId.ts'
 import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
 import NcLoadingIcon from '../NcLoadingIcon/index.ts'
+
+// TODO: Use @nextcloud/vue-select once a vue 3 version is available.
+// Until then, all @nextcloud/vue-select specific improvements won't be available.
+// E.g. the `limit` prop has no effect, currently.
+import 'vue-select/dist/vue-select.css'
 
 export default {
 	name: 'NcSelect',
@@ -447,6 +452,7 @@ export default {
 		/**
 		 * Allows to customize the `aria-label` for the deselect-option button
 		 * The default is "Deselect " + optionLabel
+		 *
 		 * @type {(optionLabel: string) => string}
 		 */
 		ariaLabelDeselectOption: {
@@ -863,13 +869,11 @@ export default {
 		propsToForward() {
 			const vueSelectKeys = [
 				...Object.keys(VueSelect.props),
-				...VueSelect.mixins.flatMap(mixin => Object.keys(mixin.props ?? {})),
+				...VueSelect.mixins.flatMap((mixin) => Object.keys(mixin.props ?? {})),
 			]
-			const initialPropsToForward = Object.fromEntries(
-				Object.entries(this.$props)
-					// eslint-disable-next-line @typescript-eslint/no-unused-vars
-					.filter(([key, _value]) => vueSelectKeys.includes(key)),
-			)
+			const initialPropsToForward = Object.fromEntries(Object.entries(this.$props)
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
+				.filter(([key, _value]) => vueSelectKeys.includes(key)))
 			const propsToForward = {
 				...initialPropsToForward,
 				// Custom overrides of vue-select props

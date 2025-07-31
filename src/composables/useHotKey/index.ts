@@ -168,7 +168,7 @@ export function useHotKey(
 		} else if (typeof keysOrFilter === 'string') {
 			return validateKeyEvent(event, keysOrFilter)
 		} else if (Array.isArray(keysOrFilter)) {
-			return keysOrFilter.some(key => validateKeyEvent(event, key))
+			return keysOrFilter.some((key) => validateKeyEvent(event, key))
 		} else {
 			return true
 		}
@@ -182,9 +182,9 @@ export function useHotKey(
 
 	const stopKeyUp = options.push
 		? onKeyStroke(keyFilter, eventHandler(callback, options), {
-			eventName: 'keyup',
-			passive: !options.prevent,
-		})
+				eventName: 'keyup',
+				passive: !options.prevent,
+			})
 		: () => {}
 
 	return () => {

@@ -175,7 +175,8 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 </docs>
 
 <template>
-	<Dropdown ref="popover"
+	<Dropdown
+		ref="popover"
 		v-model:shown="internalShown"
 		:arrow-padding="10"
 		:auto-hide="closeOnClickOutside"
@@ -212,9 +213,9 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 import { Dropdown } from 'floating-vue'
 import { createFocusTrap } from 'focus-trap'
 import { warn } from 'vue'
+import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
 import { getTrapStack } from '../../utils/focusTrap.ts'
 import { isRtl } from '../../utils/rtl.ts'
-import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
 
 /**
  * @typedef {import('focus-trap').FocusTargetValueOrFalse} FocusTargetValueOrFalse
@@ -306,6 +307,7 @@ export default {
 
 		/**
 		 * Popup role
+		 *
 		 * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-haspopup#values
 		 */
 		popupRole: {
@@ -370,12 +372,14 @@ export default {
 			}
 			return undefined
 		},
+
 		popperHideTriggers() {
 			if (this.popoverTriggers && typeof this.popoverTriggers === 'object') {
 				return this.popoverTriggers.hide
 			}
 			return undefined
 		},
+
 		popperShowTriggers() {
 			if (this.popoverTriggers && typeof this.popoverTriggers === 'object') {
 				return this.popoverTriggers.show
@@ -389,12 +393,14 @@ export default {
 			}
 			return undefined
 		},
+
 		hideTriggers() {
 			if (this.triggers && typeof this.triggers === 'object') {
 				return this.triggers.hide
 			}
 			return undefined
 		},
+
 		showTriggers() {
 			if (this.triggers && typeof this.triggers === 'object') {
 				return this.triggers.show
@@ -448,6 +454,7 @@ export default {
 
 		/**
 		 * Remove incorrect aria-describedby attribute from the trigger.
+		 *
 		 * @see https://github.com/Akryum/floating-vue/blob/8d4f7125aae0e3ea00ba4093d6d2001ab15058f1/packages/floating-vue/src/components/Popper.ts#L734
 		 */
 		removeFloatingVueAriaDescribedBy() {
@@ -564,6 +571,7 @@ export default {
 			await this.useFocusTrap()
 			this.addEscapeStopPropagation()
 		},
+
 		afterHide() {
 			/**
 			 * On component unmounting Vue:

@@ -33,7 +33,8 @@ section * {
 <template>
 	<div>
 		<label v-if="label" :for="id" class="hidden-visually">{{ label }}</label>
-		<NcSelect :model-value="inputValue"
+		<NcSelect
+			:model-value="inputValue"
 			:options="groupsArray"
 			:placeholder="placeholder || label"
 			:filter-by="filterGroups"
@@ -52,13 +53,12 @@ section * {
 </template>
 
 <script>
+import axios from '@nextcloud/axios'
+import { generateOcsUrl } from '@nextcloud/router'
+import debounce from 'debounce'
 import NcSelect from '../../components/NcSelect/index.js'
 import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
-
-import axios from '@nextcloud/axios'
-import debounce from 'debounce'
-import { generateOcsUrl } from '@nextcloud/router'
 
 export default {
 	name: 'NcSettingsSelectGroup',
@@ -90,7 +90,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'action-' + createElementId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 
 		/**
@@ -110,11 +110,13 @@ export default {
 			default: false,
 		},
 	},
+
 	emits: [
 		'error',
 		'input',
 		'update:modelValue',
 	],
+
 	data() {
 		return {
 			/** Temporary store to cache groups */
@@ -123,6 +125,7 @@ export default {
 			errorMessage: '',
 		}
 	},
+
 	computed: {
 		/**
 		 * If the error message should be shown
@@ -144,17 +147,15 @@ export default {
 		 * value property converted to an array of group objects used as input for the NcSelect
 		 */
 		inputValue() {
-			return this.filteredValue.map(
-				(id) => {
-					if (typeof this.groups[id] === 'undefined') {
-						return {
-							id,
-							displayname: id,
-						}
+			return this.filteredValue.map((id) => {
+				if (typeof this.groups[id] === 'undefined') {
+					return {
+						id,
+						displayname: id,
 					}
-					return this.groups[id]
-				},
-			)
+				}
+				return this.groups[id]
+			})
 		},
 
 		/**
@@ -164,9 +165,10 @@ export default {
 		 * @return {object[]}
 		 */
 		groupsArray() {
-			return Object.values(this.groups).filter(g => !this.modelValue.includes(g.id))
+			return Object.values(this.groups).filter((g) => !this.modelValue.includes(g.id))
 		},
 	},
+
 	watch: {
 		/**
 		 * If the value is changed, check that all groups are loaded so we show the correct display name
@@ -174,15 +176,17 @@ export default {
 		modelValue: {
 			handler() {
 				const loadedGroupIds = Object.keys(this.groups)
-				const missing = this.filteredValue.filter(group => !loadedGroupIds.includes(group))
+				const missing = this.filteredValue.filter((group) => !loadedGroupIds.includes(group))
 				missing.forEach((groupId) => {
 					this.loadGroup(groupId)
 				})
 			},
+
 			// Run the watch handler also when the component is initially mounted
 			immediate: true,
 		},
 	},
+
 	/**
 	 * Load groups matching the empty query to reduce API calls
 	 */
@@ -192,13 +196,14 @@ export default {
 
 		let savedGroups = window.sessionStorage.getItem(storageName)
 		if (savedGroups) {
-			savedGroups = Object.fromEntries(JSON.parse(savedGroups).map(group => [group.id, group]))
+			savedGroups = Object.fromEntries(JSON.parse(savedGroups).map((group) => [group.id, group]))
 			this.groups = { ...this.groups, ...savedGroups }
 		} else {
 			await this.loadGroup('')
 			window.sessionStorage.setItem(storageName, JSON.stringify(Object.values(this.groups)))
 		}
 	},
+
 	methods: {
 		t,
 

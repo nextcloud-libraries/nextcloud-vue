@@ -113,18 +113,21 @@ export default {
 </docs>
 
 <template>
-	<NcSelect v-bind="propsToForward"
+	<NcSelect
+		v-bind="propsToForward"
 		:options="availableOptions"
 		:close-on-select="!multiple"
 		:model-value="localValue"
 		@search="search = $event"
 		@update:model-value="handleInput">
 		<template #option="option">
-			<NcEllipsisedOption :name="getOptionLabel(option)"
+			<NcEllipsisedOption
+				:name="getOptionLabel(option)"
 				:search="search" />
 		</template>
 		<template #selected-option="selectedOption">
-			<NcEllipsisedOption :name="getOptionLabel(selectedOption)"
+			<NcEllipsisedOption
+				:name="getOptionLabel(selectedOption)"
 				:search="search" />
 		</template>
 		<template v-for="(_, name) in $slots" #[name]="data">
@@ -135,11 +138,10 @@ export default {
 </template>
 
 <script>
+import { t } from '../../l10n.ts'
 import NcEllipsisedOption from '../NcEllipsisedOption/index.js'
 import NcSelect from '../NcSelect/index.js'
-
 import { searchTags } from './api.js'
-import { t } from '../../l10n.ts'
 
 export default {
 	name: 'NcSelectTags',
@@ -286,10 +288,10 @@ export default {
 			}
 			if (this.multiple) {
 				return this.modelValue
-					.filter(tag => tag !== '')
-					.map(id => this.tags.find(tag2 => tag2.id === id))
+					.filter((tag) => tag !== '')
+					.map((id) => this.tags.find((tag2) => tag2.id === id))
 			} else {
-				return this.tags.find(tag => tag.id === this.modelValue)
+				return this.tags.find((tag) => tag.id === this.modelValue)
 			}
 		},
 
@@ -335,7 +337,7 @@ export default {
 				 *
 				 * @type {number|number[]}
 				 */
-				this.$emit('update:modelValue', value.map(element => element.id))
+				this.$emit('update:modelValue', value.map((element) => element.id))
 			} else {
 				if (value === null) {
 					this.$emit('update:modelValue', null)

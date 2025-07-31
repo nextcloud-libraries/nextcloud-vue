@@ -7,10 +7,10 @@
 import { mdiArrowRight } from '@mdi/js'
 import { emit } from '@nextcloud/event-bus'
 import { onBeforeUnmount, watch } from 'vue'
-import NcButton from '../NcButton/index.ts'
-import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 import { useIsMobile } from '../../composables/useIsMobile/index.js'
 import { t } from '../../l10n.ts'
+import NcButton from '../NcButton/index.ts'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 
 const isMobile = useIsMobile()
 watch(isMobile, toggleAppNavigationButton, { immediate: true })
@@ -40,7 +40,8 @@ function toggleAppNavigationButton(hide = true) {
 </script>
 
 <template>
-	<NcButton :aria-label="t('Go back to the list')"
+	<NcButton
+		:aria-label="t('Go back to the list')"
 		class="app-details-toggle"
 		:class="{ 'app-details-toggle--mobile': isMobile }"
 		:title="t('Go back to the list')"

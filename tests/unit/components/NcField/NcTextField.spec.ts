@@ -4,10 +4,9 @@
  */
 
 import { mount, shallowMount } from '@vue/test-utils'
-import NcInputField from '../../../../src/components/NcInputField/index.js'
-
 import { describe, expect, it } from 'vitest'
 import NcTextField from '../../../../src/components/NcTextField/NcTextField.vue'
+import NcInputField from '../../../../src/components/NcInputField/index.js'
 
 describe('NcTextField', () => {
 	it('does forward attributes to input field', async () => {

@@ -6,7 +6,6 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 describe('createElementId', () => {
-
 	beforeEach(() => {
 		delete window._nc_vue_element_id
 		vi.resetModules()
@@ -36,5 +35,4 @@ describe('createElementId', () => {
 		expect(id).toBe('nc-vue-0')
 		expect(id2).toBe('nc-vue-1')
 	})
-
 })

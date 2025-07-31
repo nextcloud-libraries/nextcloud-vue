@@ -64,7 +64,8 @@ export default {
 <template>
 	<!-- We need a wrapper for server styles to apply -->
 	<div :id="id" class="header-menu">
-		<NcButton :aria-label="ariaLabel"
+		<NcButton
+			:aria-label="ariaLabel"
 			:aria-describedby="descriptionId"
 			class="header-menu__trigger"
 			size="large"
@@ -77,7 +78,8 @@ export default {
 			</template>
 		</NcButton>
 
-		<span v-if="description"
+		<span
+			v-if="description"
 			:id="descriptionId"
 			class="header-menu__description hidden-visually">
 			{{ description }}
@@ -91,9 +93,9 @@ import NcButton from '../NcButton/index.ts'
 
 defineProps<{
 	/** Unique id for this menu */
-	id: string,
+	id: string
 	/** `aria-label` attribute of the button */
-	ariaLabel: string,
+	ariaLabel: string
 	/** Optional visually hidden description text for the button */
 	description?: string
 }>()

@@ -100,11 +100,13 @@ const indicatorColor = computed(() => {
 </script>
 
 <template>
-	<span :aria-label="name"
+	<span
+		:aria-label="name"
 		class="material-design-icon"
 		role="img"
 		@click="$emit('click', $event)">
-		<svg class="material-design-icon__svg"
+		<svg
+			class="material-design-icon__svg"
 			:width="size"
 			:height="size"
 			viewBox="0 0 24 24">

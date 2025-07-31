@@ -87,8 +87,8 @@ export default {
 
 <script>
 import { defineComponent } from 'vue'
-import { createElementId } from '../../utils/createElementId.ts'
 import { t } from '../../l10n.ts'
+import { createElementId } from '../../utils/createElementId.ts'
 import { NC_ACTIONS_IS_SEMANTIC_MENU } from '../NcActions/useNcActions.ts'
 
 /**

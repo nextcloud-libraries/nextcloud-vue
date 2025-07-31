@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { emit } from '@nextcloud/event-bus'
 import { mount } from '@vue/test-utils'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { emit } from '@nextcloud/event-bus'
 import { nextTick } from 'vue'
 import NcAppNavigation from '../../../../src/components/NcAppNavigation/NcAppNavigation.vue'
 import { resizeWindowWidth } from '../../testing-utils.ts'
@@ -121,10 +121,8 @@ describe('NcAppNavigation.vue', () => {
 			const wrapper = mount(NcAppNavigation)
 			const navigation = findNavigation(wrapper)
 
-			expect(
-				navigation.attributes('role') === 'navigation'
-				|| navigation.element.tagName === 'NAV',
-			).toBeTruthy()
+			expect(navigation.attributes('role') === 'navigation'
+				|| navigation.element.tagName === 'NAV').toBeTruthy()
 		})
 
 		it('has toggle button, connected by aria-controls', () => {

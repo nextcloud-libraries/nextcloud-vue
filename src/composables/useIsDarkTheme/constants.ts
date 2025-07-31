@@ -8,6 +8,5 @@ import type { ComputedRef, InjectionKey } from 'vue'
 /**
  * Enforced dark / light theme state
  *
- * @private
  */
 export const INJECTION_KEY_THEME: InjectionKey<ComputedRef<'light' | 'dark' | ''> | undefined> = Symbol.for('nc:theme:enforced')

@@ -13,18 +13,21 @@
 </docs>
 
 <template>
-	<form ref="form"
+	<form
+		ref="form"
 		:disabled="disabled"
 		@submit.prevent.stop="onSubmit">
 		<div class="input-wrapper">
 			<label :for="id" class="action-input__label">{{ label }}</label>
-			<input :id="id"
+			<input
+				:id="id"
 				type="text"
 				:value="modelValue"
 				:disabled="disabled"
 				@input="onInput"
 				@change="onChange">
-			<input :id="idSubmit"
+			<input
+				:id="idSubmit"
 				:value="submitTranslated"
 				type="submit"
 				class="action-input__submit">
@@ -80,7 +83,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'settings-input-text-' + createElementId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 	},
 
@@ -105,6 +108,7 @@ export default {
 			return this.id + '-submit'
 		},
 	},
+
 	methods: {
 		onInput(event) {
 			this.$emit('input', event)
@@ -115,6 +119,7 @@ export default {
 			 */
 			this.$emit('update:modelValue', event.target.value)
 		},
+
 		onSubmit(event) {
 			if (!this.disabled) {
 				/**
@@ -125,6 +130,7 @@ export default {
 				this.$emit('submit', event)
 			}
 		},
+
 		onChange(event) {
 			/**
 			 * Emitted on change of the input field

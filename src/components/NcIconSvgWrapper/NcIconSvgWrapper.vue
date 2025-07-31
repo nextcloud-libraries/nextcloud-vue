@@ -159,8 +159,8 @@ export default {
 </docs>
 
 <script setup lang="ts">
-import { computed, warn } from 'vue'
 import DOMPurify from 'dompurify'
+import { computed, warn } from 'vue'
 
 const props = withDefaults(defineProps<{
 	/**
@@ -233,7 +233,8 @@ const cleanSvg = computed(() => {
 </script>
 
 <template>
-	<span :aria-hidden="name ? undefined : 'true'"
+	<span
+		:aria-hidden="name ? undefined : 'true'"
 		:aria-label="name || undefined"
 		class="icon-vue"
 		:class="{

@@ -5,7 +5,6 @@
 
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-
 import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'
 
 describe('NcActionButton', () => {

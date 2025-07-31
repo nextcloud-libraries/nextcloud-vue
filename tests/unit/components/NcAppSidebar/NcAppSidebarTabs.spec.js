@@ -5,10 +5,9 @@
 
 import { mount } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-
+import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'
 import NcAppSidebarTabs from '../../../../src/components/NcAppSidebar/NcAppSidebarTabs.vue'
 import NcAppSidebarTab from '../../../../src/components/NcAppSidebarTab/NcAppSidebarTab.vue'
-import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'
 
 const initialConsole = { ...console }
 

@@ -3,10 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { createApp } from 'vue'
 import NcReferencePickerModal from './../../components/NcRichText/NcReferencePicker/NcReferencePickerModal.vue'
 import { getProvider } from './providerHelper.js'
-
-import { createApp } from 'vue'
 
 /**
  * Creates a reference picker modal and return a promise which provides the result

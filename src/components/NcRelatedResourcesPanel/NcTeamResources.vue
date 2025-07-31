@@ -7,7 +7,8 @@
 		<h5 class="team-resources__header">
 			{{ t('Related team resources') }}
 		</h5>
-		<details v-for="team in teamResources"
+		<details
+			v-for="team in teamResources"
 			:key="team.teamId"
 			name="Team resources"
 			class="related-team"
@@ -18,7 +19,8 @@
 					<AccountGroup :size="20" />
 					{{ team.displayName }}
 				</h5>
-				<NcButton :aria-label="t('View team')"
+				<NcButton
+					:aria-label="t('View team')"
 					:href="team.link"
 					:title="t('View team')"
 					variant="tertiary">
@@ -27,14 +29,17 @@
 					</template>
 				</NcButton>
 
-				<ChevronUp v-if="open(team.teamId)"
+				<ChevronUp
+					v-if="open(team.teamId)"
 					:size="20" />
-				<ChevronDown v-else
+				<ChevronDown
+					v-else
 					:size="20" />
 			</summary>
 
 			<div>
-				<div v-for="provider in teamProviders(team.teamId)"
+				<div
+					v-for="provider in teamProviders(team.teamId)"
 					:key="provider.id"
 					class="related-team-provider">
 					<h6 v-if="provider.resources.length > 0">
@@ -46,7 +51,8 @@
 								<span v-if="resource.iconEmoji" class="resource__icon">
 									{{ resource.iconEmoji }}
 								</span>
-								<NcIconSvgWrapper v-else-if="resource.iconSvg"
+								<NcIconSvgWrapper
+									v-else-if="resource.iconSvg"
 									class="resource__icon"
 									:svg="resource.iconSvg"
 									:size="20" />
@@ -67,15 +73,14 @@
 
 <script>
 import axios from '@nextcloud/axios'
-import { generateOcsUrl } from '@nextcloud/router'
 import { getCapabilities } from '@nextcloud/capabilities'
+import { generateOcsUrl } from '@nextcloud/router'
 import AccountGroup from 'vue-material-design-icons/AccountGroup.vue'
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import ChevronUp from 'vue-material-design-icons/ChevronUp.vue'
 import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
-
 import { t } from '../../l10n.ts'
 
 const teamResourceProviders = getCapabilities()?.circles?.teamResourceProviders ?? []
@@ -97,6 +102,7 @@ export default {
 			type: String,
 			default: null,
 		},
+
 		itemId: {
 			type: [String, Number],
 			default: null,
@@ -116,9 +122,10 @@ export default {
 		isVisible() {
 			return !this.loading && this.teamResources?.length > 0
 		},
+
 		teamProviders() {
 			return (teamId) => {
-				const team = this.teamResources.find(t => t.teamId === teamId)
+				const team = this.teamResources.find((t) => t.teamId === teamId)
 				return team.resources?.reduce((acc, resource) => {
 					if (resource.provider.id === this.providerId && resource.id === String(this.itemId)) {
 						return acc
@@ -138,6 +145,7 @@ export default {
 				}, {})
 			}
 		},
+
 		open() {
 			return (teamId) => {
 				return this.teamOpen.indexOf(teamId) !== -1
@@ -149,6 +157,7 @@ export default {
 		providerId() {
 			this.fetchTeamResources()
 		},
+
 		itemId() {
 			this.fetchTeamResources()
 		},
@@ -176,6 +185,7 @@ export default {
 				this.loading = false
 			}
 		},
+
 		toggleOpen(teamId, open) {
 			if (open) {
 				this.teamOpen.push(teamId)

@@ -4,11 +4,11 @@
  */
 
 import type { UserConfigFn } from 'vite'
+
 import { createLibConfig } from '@nextcloud/vite-config'
 import { globSync } from 'glob'
 import { join, resolve } from 'node:path'
 import { defineConfig } from 'vite'
-
 import vueDocsPlugin from './build/docs-plugin.ts'
 import l10nPlugin from './build/l10n-plugin.mjs'
 
@@ -47,7 +47,6 @@ const overrides = defineConfig({
 
 // We need a callback config so we can access the vite build mode
 export default defineConfig((env) => {
-
 	const createConfig = createLibConfig(entryPoints, {
 		// Add our overrides to the config
 		config: overrides,

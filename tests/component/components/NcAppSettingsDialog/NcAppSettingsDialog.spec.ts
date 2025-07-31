@@ -4,7 +4,6 @@
  */
 
 import { expect, test } from '@playwright/experimental-ct-vue'
-
 import AppSettings from './AppSettings.story.vue'
 
 test('Dialog has visible headline', async ({ mount, page }) => {

@@ -41,34 +41,40 @@ export default {
 
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }">
-		<span class="action-text-editable"
+		<span
+			class="action-text-editable"
 			@click="onClick">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
-				<span :class="[isIconUrl ? 'action-text-editable__icon--url' : icon]"
+				<span
+					:class="[isIconUrl ? 'action-text-editable__icon--url' : icon]"
 					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
 					class="action-text-editable__icon" />
 			</slot>
 
 			<!-- form and input -->
-			<form ref="form"
+			<form
+				ref="form"
 				class="action-text-editable__form"
 				:disabled="disabled"
 				@submit.prevent="onSubmit">
 				<input :id="id" type="submit" class="action-text-editable__submit">
 
 				<!-- name -->
-				<label v-if="name"
+				<label
+					v-if="name"
 					class="action-text-editable__name"
 					:for="computedId">
 					{{ name }}
 				</label>
 
-				<textarea :id="computedId"
+				<textarea
+					:id="computedId"
 					:disabled="disabled"
 					:value="modelValue"
 					v-bind="$attrs"
-					:class="['action-text-editable__textarea', { focusable: isFocusable }]"
+					class="action-text-editable__textarea"
+					:class="[{ focusable: isFocusable }]"
 					@input="onInput" />
 
 				<!-- allow the custom font to inject a ::before
@@ -83,9 +89,8 @@ export default {
 
 <script>
 import { mdiArrowRight } from '@mdi/js'
-import { createElementId } from '../../utils/createElementId.ts'
-
 import ActionTextMixin from '../../mixins/actionText.js'
+import { createElementId } from '../../utils/createElementId.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.js'
 
 export default {
@@ -104,8 +109,9 @@ export default {
 		id: {
 			type: String,
 			default: () => 'action-' + createElementId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
+
 		/**
 		 * disabled state of the text area
 		 */
@@ -113,6 +119,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * value attribute of the input field
 		 */
@@ -164,6 +171,7 @@ export default {
 			 */
 			this.$emit('update:modelValue', event.target.value)
 		},
+
 		onSubmit(event) {
 			event.preventDefault()
 			event.stopPropagation()

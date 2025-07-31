@@ -6,7 +6,11 @@
 import axios from '@nextcloud/axios'
 import { generateRemoteUrl } from '@nextcloud/router'
 
-const xmlToJson = (xml) => {
+/**
+ *
+ * @param xml
+ */
+function xmlToJson(xml) {
 	let obj = {}
 
 	if (xml.nodeType === 1) {
@@ -40,7 +44,11 @@ const xmlToJson = (xml) => {
 	return obj
 }
 
-const parseXml = (xml) => {
+/**
+ *
+ * @param xml
+ */
+function parseXml(xml) {
 	let dom = null
 	try {
 		dom = (new DOMParser()).parseFromString(xml, 'text/xml')
@@ -50,7 +58,11 @@ const parseXml = (xml) => {
 	return dom
 }
 
-const xmlToTagList = (xml) => {
+/**
+ *
+ * @param xml
+ */
+function xmlToTagList(xml) {
 	const json = xmlToJson(parseXml(xml))
 	const list = json['d:multistatus']['d:response']
 	const result = []
@@ -71,7 +83,10 @@ const xmlToTagList = (xml) => {
 	return result
 }
 
-const searchTags = async function() {
+/**
+ *
+ */
+async function searchTags() {
 	if (window.NextcloudVueDocs) {
 		return Promise.resolve(xmlToTagList(window.NextcloudVueDocs.tags))
 	}

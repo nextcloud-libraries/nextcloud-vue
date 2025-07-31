@@ -4,13 +4,15 @@
 -->
 
 <template>
-	<div ref="widgetRoot" :class="{'toggle-interactive': hasInteractiveView && !isInteractive }">
-		<div v-if="reference && hasCustomWidget"
+	<div ref="widgetRoot" :class="{ 'toggle-interactive': hasInteractiveView && !isInteractive }">
+		<div
+			v-if="reference && hasCustomWidget"
 			ref="customWidget"
 			class="widget-custom"
 			:class="{ 'full-width': hasFullWidth }" />
 
-		<component :is="referenceWidgetLinkComponent"
+		<component
+			:is="referenceWidgetLinkComponent"
 			v-else-if="!noAccess && reference && reference.openGraphObject && !hasCustomWidget"
 			v-bind="referenceWidgetLinkProps"
 			rel="noopener noreferrer"
@@ -33,16 +35,15 @@
 		</NcButton>
 	</div>
 </template>
+
 <script>
 import { useElementSize, useIntersectionObserver } from '@vueuse/core'
 import { nextTick, ref } from 'vue'
 import { RouterLink } from 'vue-router'
-
-import { t } from '../../l10n.ts'
-import { getRoute } from './autolink.ts'
-import { renderWidget, isWidgetRegistered, destroyWidget, hasInteractiveView, hasFullWidth } from './../../functions/reference/widgets.ts'
-
 import NcButton from '../../components/NcButton/NcButton.vue'
+import { t } from '../../l10n.ts'
+import { destroyWidget, hasFullWidth, hasInteractiveView, isWidgetRegistered, renderWidget } from './../../functions/reference/widgets.ts'
+import { getRoute } from './autolink.ts'
 
 const IDLE_TIMEOUT = 3 * 60 * 1000 // 3 minutes outside of viewport before widget is removed from the DOM
 
@@ -51,15 +52,18 @@ export default {
 	components: {
 		NcButton,
 	},
+
 	props: {
 		reference: {
 			type: Object,
 			required: true,
 		},
+
 		interactive: {
 			type: Boolean,
 			default: true,
 		},
+
 		interactiveOptIn: {
 			type: Boolean,
 			default: false,
@@ -97,18 +101,23 @@ export default {
 		isInteractive() {
 			return (!this.interactiveOptIn && this.interactive) || this.showInteractive
 		},
+
 		hasFullWidth() {
 			return hasFullWidth(this.reference.richObjectType)
 		},
+
 		hasCustomWidget() {
 			return isWidgetRegistered(this.reference.richObjectType)
 		},
+
 		hasInteractiveView() {
 			return isWidgetRegistered(this.reference.richObjectType) && hasInteractiveView(this.reference.richObjectType)
 		},
+
 		noAccess() {
 			return this.reference && !this.reference.accessible
 		},
+
 		descriptionStyle() {
 			if (this.numberOfLines === 0) {
 				return {
@@ -121,11 +130,13 @@ export default {
 				webkitLineClamp: lineClamp,
 			}
 		},
+
 		numberOfLines() {
 			// no description for width < 450, one line until 550 and so on
 			const lineCountOffsets = [450, 550, 650, Infinity]
-			return lineCountOffsets.findIndex(max => this.width < max)
+			return lineCountOffsets.findIndex((max) => this.width < max)
 		},
+
 		compactLink() {
 			const link = this.reference.openGraphObject.link
 			if (!link) {
@@ -140,18 +151,22 @@ export default {
 			}
 			return link
 		},
+
 		route() {
 			return getRoute(this.$router, this.reference.openGraphObject.link)
 		},
+
 		referenceWidgetLinkComponent() {
 			return this.route ? RouterLink : 'a'
 		},
+
 		referenceWidgetLinkProps() {
 			return this.route
 				? { to: this.route }
 				: { href: this.reference.openGraphObject.link, target: '_blank' }
 		},
 	},
+
 	watch: {
 		isVisible: {
 			handler(val) {
@@ -174,12 +189,15 @@ export default {
 					this.renderWidget()
 				}
 			},
+
 			immediate: true,
 		},
 	},
+
 	beforeUnmount() {
 		this.destroyWidget()
 	},
+
 	methods: {
 		t,
 
@@ -187,6 +205,7 @@ export default {
 			this.showInteractive = true
 			this.renderWidget()
 		},
+
 		renderWidget() {
 			if (!this.$refs.customWidget) {
 				return
@@ -211,6 +230,7 @@ export default {
 				this.rendered = true
 			})
 		},
+
 		destroyWidget() {
 			if (this.rendered) {
 				destroyWidget(this.reference.richObjectType, this.$el)
@@ -220,6 +240,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 
 @mixin widget {

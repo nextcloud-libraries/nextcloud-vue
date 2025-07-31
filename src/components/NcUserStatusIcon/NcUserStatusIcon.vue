@@ -42,18 +42,22 @@ This component displays a user status icon.
 
 <script setup lang="ts">
 import axios from '@nextcloud/axios'
-import { generateOcsUrl } from '@nextcloud/router'
 import { getCapabilities } from '@nextcloud/capabilities'
+import { generateOcsUrl } from '@nextcloud/router'
 import { computed, watch } from 'vue'
-import { getUserStatusText } from '../../utils/UserStatus.ts'
-import { t } from '../../l10n.ts'
-
-import onlineSvg from '../../assets/status-icons/user-status-online.svg?raw'
 import awaySvg from '../../assets/status-icons/user-status-away.svg?raw'
 import busySvg from '../../assets/status-icons/user-status-busy.svg?raw'
 import dndSvg from '../../assets/status-icons/user-status-dnd.svg?raw'
 import invisibleSvg from '../../assets/status-icons/user-status-invisible.svg?raw'
+import onlineSvg from '../../assets/status-icons/user-status-online.svg?raw'
+import { t } from '../../l10n.ts'
 import logger from '../../utils/logger.ts'
+import { getUserStatusText } from '../../utils/UserStatus.ts'
+
+/**
+ * The user preloaded user status.
+ */
+const status = defineModel<'online' | 'away' | 'busy' | 'dnd' | 'invisible' | 'offline'>('status')
 
 const props = withDefaults(defineProps<{
 	/**
@@ -70,10 +74,6 @@ const props = withDefaults(defineProps<{
 	ariaHidden: false,
 })
 
-/**
- * The user preloaded user status.
- */
-const status = defineModel<'online' | 'away' | 'busy' | 'dnd' | 'invisible' | 'offline'>('status')
 const isInvisible = computed(() => status.value && ['invisible', 'offline'].includes(status.value))
 
 /**
@@ -109,7 +109,8 @@ const activeSvg = computed(() => status.value && matchSvg[status.value])
 </script>
 
 <template>
-	<span v-if="status"
+	<span
+		v-if="status"
 		class="user-status-icon"
 		:class="{
 			'user-status-icon--invisible': isInvisible,

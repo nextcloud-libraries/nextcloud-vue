@@ -5,8 +5,8 @@
 
 import { mount, shallowMount } from '@vue/test-utils'
 import { beforeEach, describe, expect, it } from 'vitest'
-import NcButton from '../../../../src/components/NcButton/NcButton.vue'
 import { createRouter, createWebHashHistory, RouterLink } from 'vue-router'
+import NcButton from '../../../../src/components/NcButton/NcButton.vue'
 
 describe('NcButton', () => {
 	describe('as a native button', () => {

@@ -4,28 +4,34 @@
 -->
 
 <template>
-	<div class="reference-picker"
+	<div
+		class="reference-picker"
 		:style="pickerWrapperStyle"
 		tabindex="-1"
 		@keydown.stop.prevent.esc="onEscapePressed">
-		<NcProviderList v-if="mode === MODES.providerList"
+		<NcProviderList
+			v-if="mode === MODES.providerList"
 			ref="provider-list"
 			@select-provider="onProviderSelected"
 			@submit="submitLink"
 			@cancel="cancelProviderSelection" />
-		<NcRawLinkInput v-else-if="mode === MODES.standardLinkInput"
+		<NcRawLinkInput
+			v-else-if="mode === MODES.standardLinkInput"
 			ref="url-input"
 			:provider="selectedProvider"
 			@submit="submitLink"
 			@cancel="cancelRawLinkInput" />
-		<NcSearch v-else-if="mode === MODES.searchInput"
+		<NcSearch
+			v-else-if="mode === MODES.searchInput"
 			ref="url-input"
 			:provider="selectedProvider"
 			@cancel="cancelSearch"
 			@submit="submitLink" />
-		<div v-else-if="mode === MODES.customElement"
+		<div
+			v-else-if="mode === MODES.customElement"
 			class="custom-element-wrapper">
-			<NcCustomPickerElement :provider="selectedProvider"
+			<NcCustomPickerElement
+				:provider="selectedProvider"
 				class="custom-element"
 				@submit="submitLink"
 				@cancel="cancelCustomElement" />
@@ -55,6 +61,7 @@ export default {
 		NcRawLinkInput,
 		NcSearch,
 	},
+
 	props: {
 		/**
 		 * Provider to select on creation
@@ -64,6 +71,7 @@ export default {
 			type: Object,
 			default: () => null,
 		},
+
 		/**
 		 * Optional width in pixels
 		 * Default: 100%
@@ -72,6 +80,7 @@ export default {
 			type: Number,
 			default: null,
 		},
+
 		/**
 		 * Focus on the provider list select input on creation
 		 * Default: true
@@ -81,6 +90,7 @@ export default {
 			default: true,
 		},
 	},
+
 	emits: [
 		'cancel',
 		'cancelRawLink',
@@ -88,12 +98,14 @@ export default {
 		'providerSelected',
 		'submit',
 	],
+
 	data() {
 		return {
 			MODES,
 			selectedProvider: this.initialProvider,
 		}
 	},
+
 	computed: {
 		mode() {
 			return this.selectedProvider === null
@@ -104,12 +116,14 @@ export default {
 						? MODES.searchInput
 						: MODES.standardLinkInput
 		},
+
 		pickerWrapperStyle() {
 			return {
 				width: this.width ? this.width + 'px' : undefined,
 			}
 		},
 	},
+
 	mounted() {
 		if (this.focusOnCreate) {
 			if (this.initialProvider) {
@@ -122,8 +136,8 @@ export default {
 				})
 			}
 		}
-
 	},
+
 	methods: {
 		onEscapePressed() {
 			if (this.selectedProvider !== null) {
@@ -132,6 +146,7 @@ export default {
 				this.cancelProviderSelection()
 			}
 		},
+
 		onProviderSelected(provider) {
 			this.selectedProvider = provider
 			this.$emit('providerSelected', provider)
@@ -139,20 +154,25 @@ export default {
 				this.$refs['url-input']?.focus()
 			})
 		},
+
 		cancelCustomElement() {
 			this.deselectProvider()
 		},
+
 		cancelSearch() {
 			this.$emit('cancelSearch', this.selectedProvider?.title)
 			this.deselectProvider()
 		},
+
 		cancelRawLinkInput() {
 			this.$emit('cancelRawLink', this.selectedProvider?.title)
 			this.deselectProvider()
 		},
+
 		cancelProviderSelection() {
 			this.$emit('cancel')
 		},
+
 		submitLink(link) {
 			if (this.selectedProvider !== null) {
 				touchProvider(this.selectedProvider.id)
@@ -160,6 +180,7 @@ export default {
 			this.$emit('submit', link)
 			this.deselectProvider()
 		},
+
 		deselectProvider() {
 			this.selectedProvider = null
 			this.$emit('providerSelected', null)

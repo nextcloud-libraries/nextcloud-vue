@@ -6,14 +6,17 @@
 <template>
 	<div class="autocomplete-result">
 		<!-- Avatar or icon -->
-		<div :class="[icon, `autocomplete-result__icon--${avatarUrl ? 'with-avatar' : ''}`]"
+		<div
+			:class="[icon, `autocomplete-result__icon--${avatarUrl ? 'with-avatar' : ''}`]"
 			:style="avatarUrl ? { backgroundImage: `url(${avatarUrl})` } : null "
 			class="autocomplete-result__icon">
-			<span v-if="status.icon"
+			<span
+				v-if="status.icon"
 				class="autocomplete-result__status autocomplete-result__status--icon">
 				{{ status && status.icon || '' }}
 			</span>
-			<NcUserStatusIcon v-else-if="status.status && status.status !== 'offline'"
+			<NcUserStatusIcon
+				v-else-if="status.status && status.status !== 'offline'"
 				class="autocomplete-result__status"
 				:status="status.status" />
 		</div>
@@ -33,7 +36,6 @@
 <script>
 import { useIsDarkTheme } from '../../composables/useIsDarkTheme/index.ts'
 import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
-
 import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
 
 export default {
@@ -49,26 +51,32 @@ export default {
 			required: false,
 			default: null,
 		},
+
 		subline: {
 			type: String,
 			default: null,
 		},
+
 		id: {
 			type: String,
 			default: null,
 		},
+
 		icon: {
 			type: String,
 			required: true,
 		},
+
 		iconUrl: {
 			type: String,
 			default: null,
 		},
+
 		source: {
 			type: String,
 			required: true,
 		},
+
 		status: {
 			type: [Object, Array],
 			default: () => ({}),

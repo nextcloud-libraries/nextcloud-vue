@@ -5,14 +5,23 @@
 import { describe, expect, it } from 'vitest'
 import { usernameToColor } from '../../../../src/functions/usernameToColor/index.ts'
 
-const rgbToHex = (color) => {
+function rgbToHex(color) {
 	return '#' + ((1 << 24) + (color.r << 16) + (color.g << 8) + color.b).toString(16).slice(1)
 }
 
 describe('usernameToColor', () => {
-
 	it.for([
-		'', ',', '.', 'admin', 'foo', 'bar', 'asd', 'wasd', 'a user', 'another user', 'admin@cloud.example.com',
+		'',
+		',',
+		'.',
+		'admin',
+		'foo',
+		'bar',
+		'asd',
+		'wasd',
+		'a user',
+		'another user',
+		'admin@cloud.example.com',
 		'Lorelai Taylor',
 		'Lillian Wall',
 		'Haseeb Stephens',
