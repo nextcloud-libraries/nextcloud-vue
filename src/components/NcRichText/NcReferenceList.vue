@@ -135,7 +135,7 @@ export default {
 				this.loading = false
 				this.$emit('loaded')
 			}).catch((error) => {
-				console.error('Failed to extract references', error)
+				logger.error('[NcReferenceList] Failed to extract references', { error })
 				this.loading = false
 				this.$emit('loaded')
 			})

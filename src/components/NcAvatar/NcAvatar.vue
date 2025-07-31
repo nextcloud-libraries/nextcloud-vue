@@ -861,7 +861,7 @@ export default {
 				setUserHasAvatar(this.user, true)
 			}
 			img.onerror = () => {
-				console.debug('Invalid avatar url', url)
+				logger.debug('[NcAvatar] Invalid avatar url', { url })
 				// Avatar is invalid, reset
 				this.avatarUrlLoaded = null
 				this.avatarSrcSetLoaded = null

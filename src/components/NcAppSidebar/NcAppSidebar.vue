@@ -749,6 +749,7 @@ import { t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
 import { isSlotPopulated } from '../../utils/isSlotPopulated.ts'
+import logger from '../../utils/logger.ts'
 import NcActions from '../NcActions/index.js'
 import NcAppSidebarHeader from '../NcAppSidebarHeader/index.ts'
 import NcButton from '../NcButton/index.ts'
@@ -1226,8 +1227,7 @@ export default {
 		checkToggleButtonContainerAvailability() {
 			// Toggle button must be rendered, but there is no element to teleport it to
 			if (this.open === false && !this.noToggle && !this.ncContentSelector) {
-				console.warn('[NcAppSidebar] It looks like you want to use NcAppSidebar with the built-in toggle button. '
-					+ 'This feature is only available when NcAppSidebar is used in NcContent.')
+				logger.warn('[NcAppSidebar] It looks like you want to use NcAppSidebar with the built-in toggle button. This feature is only available when NcAppSidebar is used in NcContent.')
 			}
 		},
 

@@ -9,6 +9,7 @@ import { getBaseUrl, getRootUrl } from '@nextcloud/router'
 import { u } from 'unist-builder'
 import { SKIP, visit } from 'unist-util-visit'
 import { defineComponent, h } from 'vue'
+import logger from '../../utils/logger.ts'
 import { URL_PATTERN_AUTOLINK } from './helpers.js'
 
 const NcLink = defineComponent({
@@ -104,7 +105,7 @@ export function parseUrl(text: string) {
 	if (text === joinedText) {
 		return list
 	}
-	console.error('Failed to reassemble the chunked text: ' + text)
+	logger.error('[NcRichText] Failed to reassemble the chunked text: ' + text)
 	return text
 }
 

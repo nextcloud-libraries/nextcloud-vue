@@ -82,6 +82,7 @@ import OpenInNew from 'vue-material-design-icons/OpenInNew.vue'
 import NcButton from '../NcButton/NcButton.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { t } from '../../l10n.ts'
+import logger from '../../utils/logger.ts'
 
 const teamResourceProviders = getCapabilities()?.circles?.teamResourceProviders ?? []
 
@@ -178,9 +179,9 @@ export default {
 				const response = await axios.get(generateOcsUrl(`/teams/resources/${this.providerId}/${this.itemId}`))
 				this.teamResources = response.data.ocs.data.teams
 				this.teamOpen = [this.teamResources[0]?.teamId]
-			} catch (e) {
+			} catch (error) {
 				this.teamResources = null
-				console.error(e)
+				logger.error('[NcTeamResources] Failed to fetch resources', { error })
 			} finally {
 				this.loading = false
 			}
