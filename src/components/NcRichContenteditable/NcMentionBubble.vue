@@ -34,22 +34,34 @@ export default {
 	name: 'NcMentionBubble',
 
 	props: {
+		/**
+		 * Id of the bubble
+		 */
 		id: {
 			type: String,
 			required: true,
 		},
 
+		/**
+		 * The main text
+		 */
 		label: {
 			type: String,
 			required: false,
 			default: null,
 		},
 
+		/**
+		 * Icon to be applied
+		 */
 		icon: {
 			type: String,
 			required: true,
 		},
 
+		/**
+		 * URL of the icon
+		 */
 		iconUrl: {
 			type: [String, null],
 			default: null,
@@ -60,6 +72,9 @@ export default {
 			required: true,
 		},
 
+		/**
+		 * Is the bubble shown as primary
+		 */
 		primary: {
 			type: Boolean,
 			default: false,

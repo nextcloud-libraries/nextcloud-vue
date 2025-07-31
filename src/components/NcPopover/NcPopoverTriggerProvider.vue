@@ -17,11 +17,17 @@ export default defineComponent({
 	},
 
 	props: {
+		/**
+		 * Is the popover currently shown
+		 */
 		shown: {
 			type: Boolean,
 			required: true,
 		},
 
+		/**
+		 * ARIA Role of the popup
+		 */
 		popupRole: {
 			type: String,
 			default: undefined,

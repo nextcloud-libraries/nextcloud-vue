@@ -65,8 +65,8 @@ export default (dir: string) => {
 		/**
 		 * Hook into module resolver and fake all '../[...]/l10n.ts' imports to inject our splitted translations
 		 *
-		 * @param source The file which is imported
-		 * @param importer The file that imported the file
+		 * @param source - The file which is imported
+		 * @param importer - The file that imported the file
 		 */
 		resolveId(source, importer) {
 			if (source.startsWith('\0')) {
@@ -87,9 +87,9 @@ export default (dir: string) => {
 		/**
 		 * This function injects the translation chunks by returning a module that exports one translation object per component
 		 *
-		 * @param id The name of the module that should be loaded
+		 * @param id - The name of the module that should be loaded
 		 */
-		load(id) {
+		load(id: string) {
 			const match = id.match(/\0l10nwrapper\?source=(.+)/)
 			if (match) {
 				// In case this is the wrapper module we provide a module that imports only the required translations and exports t and n functions

@@ -46,27 +46,42 @@ export default {
 	},
 
 	props: {
+		/**
+		 * The label text
+		 */
 		label: {
 			type: String,
 			required: false,
 			default: null,
 		},
 
+		/**
+		 * The secondary line of text if any
+		 */
 		subline: {
 			type: String,
 			default: null,
 		},
 
+		/**
+		 * Unique id
+		 */
 		id: {
 			type: String,
 			default: null,
 		},
 
+		/**
+		 * The icon class
+		 */
 		icon: {
 			type: String,
 			required: true,
 		},
 
+		/**
+		 * Icon as external URL
+		 */
 		iconUrl: {
 			type: String,
 			default: null,

@@ -8,7 +8,7 @@ import { po as poParser } from 'gettext-parser'
 import { basename, join } from 'path'
 
 /**
- * @param baseDir
+ * @param baseDir - Base directory to look for translations
  */
 export async function loadTranslations(baseDir: string) {
 	const files = await readdir(baseDir)
@@ -28,7 +28,9 @@ export async function loadTranslations(baseDir: string) {
 }
 
 /**
- * @param fileName - The full filename to open and parse
+ * Read a .po file and return the locale and the content as parsed JSON.
+ *
+ * @param fileName - The full filename to parse
  *
  * @see https://github.com/alexanderwallin/node-gettext#usage
  * @see https://github.com/alexanderwallin/node-gettext#load-and-add-translations-from-mo-or-po-files

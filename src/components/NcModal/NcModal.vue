@@ -436,6 +436,9 @@ export default {
 			default: false,
 		},
 
+		/**
+		 * Enable spread navigation
+		 */
 		spreadNavigation: {
 			type: Boolean,
 			default: false,
@@ -529,6 +532,9 @@ export default {
 			default: 0,
 		},
 
+		/**
+		 * The current open property of the modal
+		 */
 		show: {
 			type: Boolean,
 			default: undefined,

@@ -11,7 +11,7 @@ import { nextTick } from 'vue'
  *
  * @param width - The width of the window
  */
-export async function resizeWindowWidth(width) {
+export async function resizeWindowWidth(width: number) {
 	vi.spyOn(document.documentElement, 'clientWidth', 'get').mockReturnValue(width)
 	window.dispatchEvent(new window.Event('resize'))
 	await nextTick()

@@ -544,7 +544,7 @@ export default {
 		/**
 		 * Forward click event, let mixin handle the close-after-click and emit new modelValue if needed
 		 *
-		 * @param {MouseEvent} event The click event
+		 * @param {MouseEvent} event - The click event
 		 */
 		handleClick(event) {
 			this.onClick(event)

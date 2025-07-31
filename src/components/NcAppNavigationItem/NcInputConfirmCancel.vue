@@ -71,11 +71,17 @@ export default {
 			type: Boolean,
 		},
 
+		/**
+		 * Placeholder of the edit field
+		 */
 		placeholder: {
 			default: '',
 			type: String,
 		},
 
+		/**
+		 * The current name (model value)
+		 */
 		modelValue: {
 			default: '',
 			type: String,

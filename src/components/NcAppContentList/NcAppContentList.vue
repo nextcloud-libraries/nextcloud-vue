@@ -15,11 +15,17 @@
 export default {
 	name: 'NcAppContentList',
 	props: {
+		/**
+		 * Is the list selected
+		 */
 		selection: {
 			type: Boolean,
 			default: false,
 		},
 
+		/**
+		 * Is the details pane shown
+		 */
 		showDetails: {
 			type: Boolean,
 			default: false,

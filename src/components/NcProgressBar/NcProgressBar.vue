@@ -76,6 +76,9 @@ const props = withDefaults(defineProps<{
 	 */
 	type?: 'linear' | 'circular'
 
+	/**
+	 * The color of the progress bar
+	 */
 	color?: string
 }>(), {
 	value: 0,

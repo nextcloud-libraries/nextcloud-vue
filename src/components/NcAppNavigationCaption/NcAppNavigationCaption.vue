@@ -187,6 +187,9 @@ export default {
 	},
 
 	props: {
+		/**
+		 * The text of the caption
+		 */
 		name: {
 			type: String,
 			required: true,

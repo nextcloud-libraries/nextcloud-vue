@@ -38,6 +38,9 @@ export default {
 	name: 'NcAppNavigationIconBullet',
 
 	props: {
+		/**
+		 * The color of the bullet point (as RGB HEX)
+		 */
 		color: {
 			type: String,
 			required: true,

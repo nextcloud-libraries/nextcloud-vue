@@ -41,10 +41,17 @@ export default {
 	},
 
 	props: {
+		/**
+		 * Is the list currently open (or collapsed)
+		 */
 		open: {
 			type: Boolean,
 			default: true,
 		},
+
+		/**
+		 * Is the navigation item currently active.
+		 */
 		active: {
 			type: Boolean,
 			required: true,
