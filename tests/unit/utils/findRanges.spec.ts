@@ -4,7 +4,6 @@
  */
 
 import { describe, expect, it } from 'vitest'
-
 import { findRanges } from '../../../src/utils/findRanges.ts'
 
 describe('utils: findRanges', () => {

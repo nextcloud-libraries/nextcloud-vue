@@ -137,18 +137,28 @@ export default {
 </docs>
 
 <script setup lang="ts">
+import type { Color } from '../../utils/colors.ts'
+
 import { Chrome as VueChrome } from '@ckpack/vue-color'
 import { mdiArrowLeft, mdiCheck, mdiDotsHorizontal } from '@mdi/js'
 import { computed, ref } from 'vue'
+import { t } from '../../l10n.ts'
+import { defaultPalette } from '../../utils/colors.ts'
+import { createElementId } from '../../utils/createElementId.ts'
+import logger from '../../utils/logger.ts'
 import NcButton from '../NcButton/index.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 import NcPopover from '../NcPopover/index.js'
-import { Color, defaultPalette } from '../../utils/colors.ts'
-import { createElementId } from '../../utils/createElementId.ts'
-import logger from '../../utils/logger.ts'
-import { t } from '../../l10n.ts'
 
-const HEX_REGEX = /^#([a-f0-9]{3}|[a-f0-9]{6})$/i
+/**
+ * A HEX color that represents the initial value of the picker
+ */
+const currentColor = defineModel<string>({ required: true })
+
+/**
+ * The open state of the color picker.
+ */
+const open = defineModel<boolean>('open')
 
 const props = withDefaults(defineProps<{
 	/**
@@ -180,16 +190,6 @@ const props = withDefaults(defineProps<{
 	palette: () => [...defaultPalette],
 })
 
-/**
- * A HEX color that represents the initial value of the picker
- */
-const currentColor = defineModel<string>({ required: true })
-
-/**
- * The open state of the color picker.
- */
-const open = defineModel<boolean>('open')
-
 const emit = defineEmits<{
 	/**
 	 * Emitted when the submit button was pressed.
@@ -202,6 +202,8 @@ const emit = defineEmits<{
 	 */
 	closed: []
 }>()
+
+const HEX_REGEX = /^#([a-f0-9]{3}|[a-f0-9]{6})$/i
 
 /**
  * Unique id used to identify different color pickers
@@ -243,6 +245,7 @@ const contrastColor = computed(() => {
 
 /**
  * Submit a picked colour and close picker
+ *
  * @param hideCallback - callback to close popover
  */
 function handleConfirm(hideCallback: () => void) {
@@ -289,7 +292,8 @@ function hexToRGB(hex: string): [number, number, number] {
 </script>
 
 <template>
-	<NcPopover v-model:shown="open"
+	<NcPopover
+		v-model:shown="open"
 		:container="container"
 		popup-role="dialog"
 		@apply-hide="emit('closed')">
@@ -297,23 +301,26 @@ function hexToRGB(hex: string): [number, number, number] {
 			<slot v-bind="slotProps" />
 		</template>
 		<template #default="slotProps">
-			<div role="dialog"
+			<div
+				role="dialog"
 				class="color-picker"
 				aria-modal="true"
 				:aria-label="t('Color picker')"
 				:class="{ 'color-picker--advanced-fields': advanced && advancedFields }">
 				<Transition name="slide" mode="out-in">
 					<div v-if="!advanced" class="color-picker__simple">
-						<label v-for="({ color, name }, index) in normalizedPalette"
+						<label
+							v-for="({ color, name }, index) in normalizedPalette"
 							:key="index"
 							class="color-picker__simple-color-circle"
-							:class="{ 'color-picker__simple-color-circle--active' : color === currentColor }"
+							:class="{ 'color-picker__simple-color-circle--active': color === currentColor }"
 							:style="{
 								backgroundColor: color,
 								color: contrastColor,
 							}">
 							<NcIconSvgWrapper v-if="color === currentColor" :path="mdiCheck" />
-							<input type="radio"
+							<input
+								type="radio"
 								class="hidden-visually"
 								:aria-label="name"
 								:name="`color-picker-${id}`"
@@ -321,7 +328,8 @@ function hexToRGB(hex: string): [number, number, number] {
 								@click="pickColor(color)">
 						</label>
 					</div>
-					<VueChrome v-else
+					<VueChrome
+						v-else
 						v-model="currentColor"
 						class="color-picker__advanced"
 						:disable-alpha="true"
@@ -329,7 +337,8 @@ function hexToRGB(hex: string): [number, number, number] {
 						@update:model-value="pickColor" />
 				</Transition>
 				<div v-if="!paletteOnly" class="color-picker__navigation">
-					<NcButton v-if="advanced"
+					<NcButton
+						v-if="advanced"
 						:aria-label="t('Back')"
 						variant="tertiary"
 						@click="advanced = false">
@@ -337,7 +346,8 @@ function hexToRGB(hex: string): [number, number, number] {
 							<NcIconSvgWrapper directional :path="mdiArrowLeft" />
 						</template>
 					</NcButton>
-					<NcButton v-else
+					<NcButton
+						v-else
 						:aria-label="t('More options')"
 						variant="tertiary"
 						@click="advanced = true">
@@ -345,7 +355,8 @@ function hexToRGB(hex: string): [number, number, number] {
 							<NcIconSvgWrapper :path="mdiDotsHorizontal" />
 						</template>
 					</NcButton>
-					<NcButton variant="primary"
+					<NcButton
+						variant="primary"
 						@click="handleConfirm(slotProps.hide)">
 						{{ t('Choose') }}
 					</NcButton>

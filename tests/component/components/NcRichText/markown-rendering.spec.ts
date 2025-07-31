@@ -105,7 +105,7 @@ test.describe('headings', () => {
 
 		const component = await mount(NcRichText, {
 			props: {
-				text: testCases.map(i => i.input).join('\n'),
+				text: testCases.map((i) => i.input).join('\n'),
 				useMarkdown: true,
 			},
 		})
@@ -610,7 +610,7 @@ test.describe('lists', () => {
 
 		const component = await mount(NcRichText, {
 			props: {
-				text: testCases.map(i => i.input).join('\n'),
+				text: testCases.map((i) => i.input).join('\n'),
 				useMarkdown: true,
 			},
 		})
@@ -629,7 +629,7 @@ test.describe('lists', () => {
 
 		const component = await mount(NcRichText, {
 			props: {
-				text: testCases.map(i => i.input).join('\n'),
+				text: testCases.map((i) => i.input).join('\n'),
 				useMarkdown: true,
 			},
 		})
@@ -648,7 +648,7 @@ test.describe('lists', () => {
 
 		const component = await mount(NcRichText, {
 			props: {
-				text: testCases.map(i => i.input).join('\n'),
+				text: testCases.map((i) => i.input).join('\n'),
 				useMarkdown: true,
 			},
 		})
@@ -668,7 +668,7 @@ test.describe('task lists', () => {
 
 		const component = await mount(NcRichText, {
 			props: {
-				text: testCases.map(i => i.input).join('\n'),
+				text: testCases.map((i) => i.input).join('\n'),
 				useExtendedMarkdown: true,
 			},
 		})

@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { useFormatRelativeTime } from '../../../src/composables/useFormatDateTime/index.ts'
-import { computed, nextTick, ref } from 'vue'
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
+import { computed, nextTick, ref } from 'vue'
+import { useFormatRelativeTime } from '../../../src/composables/useFormatDateTime/index.ts'
 
 describe('useFormatRelativeTime composable', () => {
 	const time = Date.parse('2025-01-01T00:00:00Z')

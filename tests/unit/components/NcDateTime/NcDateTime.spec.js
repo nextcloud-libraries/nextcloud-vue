@@ -3,11 +3,11 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { setLanguage } from '@nextcloud/l10n'
 import { mount } from '@vue/test-utils'
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
-import NcDateTime from '../../../../src/components/NcDateTime/NcDateTime.vue'
 import { nextTick } from 'vue'
-import { setLanguage } from '@nextcloud/l10n'
+import NcDateTime from '../../../../src/components/NcDateTime/NcDateTime.vue'
 
 const getCanonicalLocale = vi.hoisted(() => vi.fn(() => 'en-US'))
 

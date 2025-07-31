@@ -76,17 +76,17 @@ import type { VueClassType } from '../../utils/VueTypes.ts'
 
 import { mdiAlertCircle, mdiCheck } from '@mdi/js'
 import { computed, useAttrs, useTemplateRef, watch } from 'vue'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy } from '../../utils/legacy.ts'
-import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import logger from '../../utils/logger.ts'
 
 defineOptions({ inheritAttrs: false })
 
-defineExpose({
-	focus,
-	select,
-})
+/**
+ * The value of the text area
+ */
+const modelValue = defineModel<string>({ required: true })
 
 const props = withDefaults(defineProps<{
 	/**
@@ -158,10 +158,10 @@ const props = withDefaults(defineProps<{
 	resize: 'both',
 })
 
-/**
- * The value of the text area
- */
-const modelValue = defineModel<string>({ required: true })
+defineExpose({
+	focus,
+	select,
+})
 
 /**
  * The native text area component instance
@@ -224,7 +224,8 @@ function select() {
 <template>
 	<div class="textarea" :class="[$attrs.class, { 'textarea--disabled': disabled }]">
 		<div class="textarea__main-wrapper">
-			<textarea v-bind="{ ...$attrs, class: undefined }"
+			<textarea
+				v-bind="{ ...$attrs, class: undefined }"
 				:id
 				ref="input"
 				:aria-describedby
@@ -242,13 +243,15 @@ function select() {
 				:value="modelValue"
 				@input="handleInput" />
 			<!-- Label -->
-			<label v-if="!labelOutside"
+			<label
+				v-if="!labelOutside"
 				class="textarea__label"
 				:for="id">
 				{{ label }}
 			</label>
 		</div>
-		<p v-if="helperText"
+		<p
+			v-if="helperText"
 			:id="`${id}-helper-text`"
 			class="textarea__helper-text-message"
 			:class="{

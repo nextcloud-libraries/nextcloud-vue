@@ -4,13 +4,15 @@
 -->
 
 <template>
-	<span class="mention-bubble"
-		:class="{'mention-bubble--primary': primary}"
+	<span
+		class="mention-bubble"
+		:class="{ 'mention-bubble--primary': primary }"
 		contenteditable="false">
 		<span class="mention-bubble__wrapper">
 			<span class="mention-bubble__content">
 				<!-- Avatar or icon -->
-				<span :class="[icon, `mention-bubble__icon--${avatarUrl ? 'with-avatar' : ''}`]"
+				<span
+					:class="[icon, `mention-bubble__icon--${avatarUrl ? 'with-avatar' : ''}`]"
 					:style="avatarUrl ? { backgroundImage: `url(${avatarUrl})` } : null"
 					class="mention-bubble__icon" />
 
@@ -36,23 +38,28 @@ export default {
 			type: String,
 			required: true,
 		},
+
 		label: {
 			type: String,
 			required: false,
 			default: null,
 		},
+
 		icon: {
 			type: String,
 			required: true,
 		},
+
 		iconUrl: {
 			type: [String, null],
 			default: null,
 		},
+
 		source: {
 			type: String,
 			required: true,
 		},
+
 		primary: {
 			type: Boolean,
 			default: false,
@@ -77,6 +84,7 @@ export default {
 				? getAvatarUrl(this.id, { isDarkTheme: this.isDarkTheme })
 				: null
 		},
+
 		mentionText() {
 			return !this.id.includes(' ') && !this.id.includes('/')
 				? `@${this.id}`

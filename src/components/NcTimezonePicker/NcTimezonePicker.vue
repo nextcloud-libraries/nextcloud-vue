@@ -27,8 +27,8 @@ export default {
 <script setup lang="ts">
 import type {
 	IContinent,
-	ITimezone,
 	IRegion,
+	ITimezone,
 } from '@nextcloud/timezones'
 
 import {
@@ -36,10 +36,17 @@ import {
 	getSortedTimezoneList,
 } from '@nextcloud/timezones'
 import { computed } from 'vue'
-import { createElementId } from '../../utils/createElementId.ts'
 import { t } from '../../l10n.ts'
-import getTimezoneManager from './timezoneDataProviderService.js'
+import { createElementId } from '../../utils/createElementId.ts'
 import NcSelect from '../NcSelect/index.js'
+import getTimezoneManager from './timezoneDataProviderService.js'
+
+/**
+ * The selected timezone.
+ * Use v-model for two-way binding.
+ * The default timezone is floating, which means a time independent of timezone. See https://icalendar.org/CalDAV-Access-RFC-4791/7-3-date-and-floating-time.html for details.
+ */
+const modelValue = defineModel<string>({ default: 'floating' })
 
 const props = withDefaults(defineProps<{
 	/**
@@ -55,13 +62,6 @@ const props = withDefaults(defineProps<{
 	additionalTimezones: () => [],
 	uid: createElementId(),
 })
-
-/**
- * The selected timezone.
- * Use v-model for two-way binding.
- * The default timezone is floating, which means a time independent of timezone. See https://icalendar.org/CalDAV-Access-RFC-4791/7-3-date-and-floating-time.html for details.
- */
-const modelValue = defineModel<string>({ default: 'floating' })
 
 const selectedTimezone = computed({
 	set(timezone: IRegion) {
@@ -138,7 +138,7 @@ function filterBy(option: IContinent | IRegion, label: string, search: string): 
 
 	// For the continent labels, we have to check if one region matches every search term.
 	if ('continent' in option) {
-		return option.regions.some(region => {
+		return option.regions.some((region) => {
 			return matchTimezoneId(region.timezoneId, terms)
 		})
 	}
@@ -157,7 +157,8 @@ function matchTimezoneId(timezoneId: string, terms: string[]): boolean {
 </script>
 
 <template>
-	<NcSelect v-model="selectedTimezone"
+	<NcSelect
+		v-model="selectedTimezone"
 		:aria-label-combobox="t('Search for timezone')"
 		:clearable="false"
 		:filter-by

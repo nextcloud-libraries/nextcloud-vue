@@ -22,10 +22,10 @@ import type { VueClassType } from '../../utils/VueTypes.ts'
 
 import { mdiAlertCircle, mdiCheck } from '@mdi/js'
 import { computed, useAttrs, useTemplateRef, warn } from 'vue'
-import NcButton from '../NcButton/index.ts'
-import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 import { createElementId } from '../../utils/createElementId.ts'
 import { isLegacy } from '../../utils/legacy.ts'
+import NcButton from '../NcButton/index.ts'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 
 export interface NcInputFieldProps {
 	/**
@@ -114,6 +114,16 @@ export interface NcInputFieldProps {
 	pill?: boolean
 }
 
+defineOptions({
+	inheritAttrs: false,
+})
+
+/**
+ * The value of the input field
+ * If type is 'number' and a number is passed as value than the type of `update:value` will also be 'number'
+ */
+const modelValue = defineModel<string | number>({ required: true })
+
 const props = withDefaults(defineProps<NcInputFieldProps>(), {
 	class: '',
 	helperText: '',
@@ -125,25 +135,9 @@ const props = withDefaults(defineProps<NcInputFieldProps>(), {
 	type: 'text',
 })
 
-/**
- * The value of the input field
- * If type is 'number' and a number is passed as value than the type of `update:value` will also be 'number'
- */
-const modelValue = defineModel<string|number>({ required: true })
-
 const emit = defineEmits<{
 	trailingButtonClick: [event: MouseEvent]
 }>()
-
-defineOptions({
-	inheritAttrs: false,
-})
-
-// public API
-defineExpose({
-	focus,
-	select,
-})
 
 defineSlots<{
 	/**
@@ -156,6 +150,12 @@ defineSlots<{
 	 */
 	'trailing-button-icon'?: Slot
 }>()
+
+// public API
+defineExpose({
+	focus,
+	select,
+})
 
 const attrs = useAttrs()
 
@@ -218,7 +218,8 @@ function handleInput(event: Event) {
 </script>
 
 <template>
-	<div class="input-field"
+	<div
+		class="input-field"
 		:class="[{
 			'input-field--disabled': disabled,
 			'input-field--error': error,
@@ -229,7 +230,8 @@ function handleInput(event: Event) {
 			'input-field--success': success,
 		}, $props.class]">
 		<div class="input-field__main-wrapper">
-			<input v-bind="$attrs"
+			<input
+				v-bind="$attrs"
 				:id
 				ref="input-key"
 				:aria-describedby="ariaDescribedby"
@@ -242,7 +244,8 @@ function handleInput(event: Event) {
 				:value="modelValue.toString()"
 				@input="handleInput">
 			<!-- Label -->
-			<label v-if="!labelOutside && isValidLabel"
+			<label
+				v-if="!labelOutside && isValidLabel"
 				class="input-field__label"
 				:for="id">
 				{{ label }}
@@ -254,7 +257,8 @@ function handleInput(event: Event) {
 			</div>
 
 			<!-- trailing button -->
-			<NcButton v-if="showTrailingButton"
+			<NcButton
+				v-if="showTrailingButton"
 				class="input-field__trailing-button"
 				:aria-label="trailingButtonLabel"
 				:disabled="disabled"
@@ -266,13 +270,15 @@ function handleInput(event: Event) {
 			</NcButton>
 
 			<!-- Success and error icons -->
-			<div v-else-if="success || error"
+			<div
+				v-else-if="success || error"
 				class="input-field__icon input-field__icon--trailing">
 				<NcIconSvgWrapper v-if="success" :path="mdiCheck" />
 				<NcIconSvgWrapper v-else :path="mdiAlertCircle" />
 			</div>
 		</div>
-		<p v-if="helperText"
+		<p
+			v-if="helperText"
 			:id="`${id}-helper-text`"
 			class="input-field__helper-text-message">
 			<NcIconSvgWrapper v-if="success" class="input-field__helper-text-message__icon" :path="mdiCheck" />

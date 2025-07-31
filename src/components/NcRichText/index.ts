@@ -3,51 +3,48 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import NcRichText from './NcRichText.vue'
-
-import { registerWidget, renderWidget, isWidgetRegistered } from './../../functions/reference/widgets.ts'
 import NcReferenceList from './NcReferenceList.vue'
-import NcReferenceWidget from './NcReferenceWidget.vue'
 import NcReferencePicker from './NcReferencePicker/NcReferencePicker.vue'
 import NcReferencePickerModal from './NcReferencePicker/NcReferencePickerModal.vue'
 import NcSearch from './NcReferencePicker/NcSearch.vue'
-import { getLinkWithPicker } from '../../functions/reference/referencePickerModal.ts'
+import NcReferenceWidget from './NcReferenceWidget.vue'
+import NcRichText from './NcRichText.vue'
 import {
-	getProvider,
-	getProviders,
-	sortProviders,
-	searchProvider,
-	anyLinkProviderId,
-} from '../../functions/reference/providerHelper.ts'
-import {
-	registerCustomPickerElement,
-	renderCustomPickerElement,
 	isCustomPickerElementRegistered,
 	NcCustomPickerRenderResult,
+	registerCustomPickerElement,
+	renderCustomPickerElement,
 } from '../../functions/reference/customPickerElements.ts'
+import {
+	anyLinkProviderId,
+	getProvider,
+	getProviders,
+	searchProvider,
+	sortProviders,
+} from '../../functions/reference/providerHelper.ts'
+import { getLinkWithPicker } from '../../functions/reference/referencePickerModal.ts'
+import { isWidgetRegistered, registerWidget, renderWidget } from './../../functions/reference/widgets.ts'
 
 export default NcRichText
 
 export {
-	NcRichText,
-	NcReferenceList,
-	NcReferenceWidget,
-	NcReferencePicker,
-	NcReferencePickerModal,
-	NcSearch,
-
-	registerWidget,
-	renderWidget,
-	isWidgetRegistered,
-
-	NcCustomPickerRenderResult,
-	registerCustomPickerElement,
-	renderCustomPickerElement,
-	isCustomPickerElementRegistered,
-	getLinkWithPicker,
 	anyLinkProviderId,
+	getLinkWithPicker,
 	getProvider,
 	getProviders,
-	sortProviders,
+	isCustomPickerElementRegistered,
+	isWidgetRegistered,
+	NcCustomPickerRenderResult,
+	NcReferenceList,
+	NcReferencePicker,
+	NcReferencePickerModal,
+	NcReferenceWidget,
+	NcRichText,
+	NcSearch,
+	registerCustomPickerElement,
+	registerWidget,
+	renderCustomPickerElement,
+	renderWidget,
 	searchProvider,
+	sortProviders,
 }

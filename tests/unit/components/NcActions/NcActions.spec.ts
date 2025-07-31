@@ -5,9 +5,8 @@
 
 import { mount } from '@vue/test-utils'
 import { beforeEach, describe, expect, it } from 'vitest'
-
-import NcActions from '../../../../src/components/NcActions/NcActions.vue'
 import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'
+import NcActions from '../../../../src/components/NcActions/NcActions.vue'
 import TestCompositionApi from './TestCompositionApi.vue'
 
 describe('NcActions.vue', () => {
@@ -171,7 +170,7 @@ describe('NcActions.vue', () => {
 					inline: 1,
 				},
 			})
-		
+
 			expect(wrapper.find('img[src="http://example.com/image.png"').exists()).toBe(true)
 		})
 	})

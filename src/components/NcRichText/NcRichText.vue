@@ -302,24 +302,22 @@ See [NcRichContenteditable](#/Components/NcRichContenteditable) documentation fo
 </docs>
 
 <script>
+import rehypeExternalLinks from 'rehype-external-links'
+import rehype2react from 'rehype-react'
+import breaks from 'remark-breaks'
+import remarkGfm from 'remark-gfm'
+import remarkParse from 'remark-parse'
+import remark2rehype from 'remark-rehype'
+import remarkUnlinkProtocols from 'remark-unlink-protocols'
 import { unified } from 'unified'
 import { Fragment, h, ref, resolveComponent } from 'vue'
 import { RouterLink } from 'vue-router'
-
-import remarkParse from 'remark-parse'
-import remarkGfm from 'remark-gfm'
-import breaks from 'remark-breaks'
-import remarkUnlinkProtocols from 'remark-unlink-protocols'
-import remark2rehype from 'remark-rehype'
-import rehype2react from 'rehype-react'
-import rehypeExternalLinks from 'rehype-external-links'
-
 import NcCheckboxRadioSwitch from '../NcCheckboxRadioSwitch/NcCheckboxRadioSwitch.vue'
 import NcReferenceList from './NcReferenceList.vue'
-import { getRoute, parseUrl, remarkAutolink } from './autolink.ts'
-import { remarkUnescape } from './remarkUnescape.js'
 import { createElementId } from '../../utils/createElementId.ts'
+import { getRoute, parseUrl, remarkAutolink } from './autolink.ts'
 import { remarkPlaceholder } from './remarkPlaceholder.ts'
+import { remarkUnescape } from './remarkUnescape.js'
 
 /**
  * Protocols allowed in links.
@@ -343,54 +341,65 @@ export default {
 	components: {
 		NcReferenceList,
 	},
+
 	props: {
 		text: {
 			type: String,
 			default: '',
 		},
+
 		arguments: {
 			type: Object,
 			default: () => {
 				return {}
 			},
 		},
+
 		referenceLimit: {
 			type: Number,
 			default: 0,
 		},
+
 		referenceInteractive: {
 			type: Boolean,
 			default: true,
 		},
+
 		referenceInteractiveOptIn: {
 			type: Boolean,
 			default: false,
 		},
+
 		/** Provide data upfront to avoid extra http request */
 		references: {
 			type: Array,
 			default: null,
 		},
+
 		/** Provide basic Markdown syntax */
 		useMarkdown: {
 			type: Boolean,
 			default: false,
 		},
+
 		/** Provide GitHub Flavored Markdown syntax */
 		useExtendedMarkdown: {
 			type: Boolean,
 			default: false,
 		},
+
 		/** Provide event from rendered markdown inputs */
 		interactive: {
 			type: Boolean,
 			default: false,
 		},
+
 		autolink: {
 			type: Boolean,
 			default: true,
 		},
 	},
+
 	emits: [
 		'interactTodo',
 	],
@@ -428,16 +437,17 @@ export default {
 				h('div', {}, placeholders.flat()),
 				this.referenceLimit > 0
 					? h('div', { class: 'rich-text--reference-widget' }, [
-						h(NcReferenceList, {
-							text: this.text,
-							referenceData: this.references,
-							interactive: this.referenceInteractive,
-							interactiveOptIn: this.referenceInteractiveOptIn,
-						}),
-					])
+							h(NcReferenceList, {
+								text: this.text,
+								referenceData: this.references,
+								interactive: this.referenceInteractive,
+								interactiveOptIn: this.referenceInteractiveOptIn,
+							}),
+						])
 					: null,
 			])
 		},
+
 		renderMarkdown() {
 			const renderedMarkdown = unified()
 				.use(remarkParse)
@@ -474,21 +484,20 @@ export default {
 					// escape special symbol "<" to not treat text as HTML
 					.replace(/<[^>]+>/g, (match) => match.replace(/</g, '&lt;'))
 					// unescape special symbol ">" to parse blockquotes
-					.replace(/&gt;/gmi, '>'),
-				)
+					.replace(/&gt;/gmi, '>'))
 				.result
 
 			return h('div', { class: 'rich-text--wrapper rich-text--wrapper-markdown' }, [
 				renderedMarkdown,
 				this.referenceLimit > 0
 					? h('div', { class: 'rich-text--reference-widget' }, [
-						h(NcReferenceList, {
-							text: this.text,
-							referenceData: this.references,
-							interactive: this.referenceInteractive,
-							interactiveOptIn: this.referenceInteractiveOptIn,
-						}),
-					])
+							h(NcReferenceList, {
+								text: this.text,
+								referenceData: this.references,
+								interactive: this.referenceInteractive,
+								interactiveOptIn: this.referenceInteractiveOptIn,
+							}),
+						])
 					: null,
 			])
 		},
@@ -519,6 +528,7 @@ export default {
 			}
 			return text
 		},
+
 		createElement(type, props, key) {
 			// Modified code from vue/jsx-runtime
 			if (key) {
@@ -602,6 +612,7 @@ export default {
 			)
 		},
 	},
+
 	render() {
 		return this.useMarkdown || this.useExtendedMarkdown
 			? this.renderMarkdown()
@@ -609,6 +620,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 @use './highlight.scss';
 

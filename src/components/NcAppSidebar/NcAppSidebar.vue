@@ -540,11 +540,13 @@ export default {
 </docs>
 
 <template>
-	<transition appear
+	<transition
+		appear
 		name="slide-right"
 		@after-enter="onAfterEnter"
 		@after-leave="onAfterLeave">
-		<aside v-show="open"
+		<aside
+			v-show="open"
 			id="app-sidebar-vue"
 			ref="sidebar"
 			class="app-sidebar"
@@ -557,7 +559,8 @@ export default {
 				As a simple solution - render it in the content to keep correct position.
 			-->
 			<Teleport v-if="ncContentSelector && !open && !noToggle" :to="ncContentSelector">
-				<NcButton ref="toggle"
+				<NcButton
+					ref="toggle"
 					:aria-label="t('Open sidebar')"
 					class="app-sidebar__toggle"
 					:class="toggleClasses"
@@ -573,7 +576,8 @@ export default {
 				</NcButton>
 			</Teleport>
 
-			<header :class="{
+			<header
+				:class="{
 					'app-sidebar-header--with-figure': isSlotPopulated($slots.header?.()) || background,
 					'app-sidebar-header--compact': compact,
 				}"
@@ -586,13 +590,14 @@ export default {
 					<!-- container for figure and description, allows easy switching to compact mode -->
 					<div class="app-sidebar-header__info">
 						<!-- sidebar header illustration/figure -->
-						<div v-if="(isSlotPopulated($slots.header?.()) || background)"
+						<div
+							v-if="(isSlotPopulated($slots.header?.()) || background)"
 							:class="{
-								'app-sidebar-header__figure--with-action': hasFigureClickListener
+								'app-sidebar-header__figure--with-action': hasFigureClickListener,
 							}"
 							class="app-sidebar-header__figure"
 							:style="{
-								backgroundImage: `url(${background})`
+								backgroundImage: `url(${background})`,
 							}"
 							tabindex="0"
 							@click="onFigureClick"
@@ -601,7 +606,8 @@ export default {
 						</div>
 
 						<!-- sidebar details -->
-						<div :class="{
+						<div
+							:class="{
 								'app-sidebar-header__desc--with-tertiary-action': canStar || isSlotPopulated($slots['tertiary-actions']?.()),
 								'app-sidebar-header__desc--editable': nameEditable && !subname,
 								'app-sidebar-header__desc--with-subname--editable': nameEditable && subname,
@@ -611,7 +617,8 @@ export default {
 							<!-- favourite icon -->
 							<div v-if="canStar || isSlotPopulated($slots['tertiary-actions']?.())" class="app-sidebar-header__tertiary-actions">
 								<slot name="tertiary-actions">
-									<NcButton v-if="canStar"
+									<NcButton
+										v-if="canStar"
 										:aria-label="favoriteTranslated"
 										:pressed="isStarred"
 										class="app-sidebar-header__star"
@@ -630,7 +637,8 @@ export default {
 							<div class="app-sidebar-header__name-container">
 								<div class="app-sidebar-header__mainname-container">
 									<!-- main name -->
-									<NcAppSidebarHeader v-show="!nameEditable"
+									<NcAppSidebarHeader
+										v-show="!nameEditable"
 										class="app-sidebar-header__mainname"
 										:name
 										:linkify="linkifyName"
@@ -638,10 +646,12 @@ export default {
 										:tabindex="nameEditable ? 0 : -1"
 										@click.self="editName" />
 									<template v-if="nameEditable">
-										<form v-click-outside="() => onSubmitName()"
+										<form
+											v-click-outside="() => onSubmitName()"
 											class="app-sidebar-header__mainname-form"
 											@submit.prevent="onSubmitName">
-											<input ref="nameInput"
+											<input
+												ref="nameInput"
 												v-focus
 												class="app-sidebar-header__mainname-input"
 												type="text"
@@ -649,7 +659,8 @@ export default {
 												:value="name"
 												@keydown.esc.stop="onDismissEditing"
 												@input="onNameInput">
-											<NcButton :aria-label="changeNameTranslated"
+											<NcButton
+												:aria-label="changeNameTranslated"
 												type="submit"
 												variant="tertiary-no-background">
 												<template #icon>
@@ -659,14 +670,16 @@ export default {
 										</form>
 									</template>
 									<!-- header main menu -->
-									<NcActions v-if="isSlotPopulated($slots['secondary-actions']?.())"
+									<NcActions
+										v-if="isSlotPopulated($slots['secondary-actions']?.())"
 										class="app-sidebar-header__menu"
 										:force-menu="forceMenu">
 										<slot name="secondary-actions" />
 									</NcActions>
 								</div>
 								<!-- secondary name -->
-								<p v-if="subname.trim() !== '' || $slots['subname']"
+								<p
+									v-if="subname.trim() !== '' || $slots['subname']"
 									:title="subtitle || undefined"
 									class="app-sidebar-header__subname">
 									<!-- @slot Alternative to the `subname` prop can be used for more complex conent. It will be rendered within a `p` tag. -->
@@ -679,12 +692,14 @@ export default {
 					</div>
 				</slot>
 				<!-- a11y fallback for empty content -->
-				<NcAppSidebarHeader v-else
+				<NcAppSidebarHeader
+					v-else
 					class="app-sidebar-header__mainname--hidden"
 					:name
 					tabindex="-1" />
 
-				<NcButton ref="closeButton"
+				<NcButton
+					ref="closeButton"
 					:aria-label="closeTranslated"
 					:title="closeTranslated"
 					class="app-sidebar__close"
@@ -700,7 +715,8 @@ export default {
 				</div>
 			</header>
 
-			<NcAppSidebarTabs v-show="!loading"
+			<NcAppSidebarTabs
+				v-show="!loading"
 				ref="tabs"
 				:active="active"
 				:force-tabs="forceTabs"
@@ -721,26 +737,23 @@ export default {
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
 import { createFocusTrap } from 'focus-trap'
 import { provide, ref, warn } from 'vue'
-import { CONTENT_SELECTOR_KEY } from '../NcContent/constants.ts'
-import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
-import { createElementId } from '../../utils/createElementId.ts'
-import { getTrapStack } from '../../utils/focusTrap.ts'
-import { isSlotPopulated } from '../../utils/isSlotPopulated.ts'
-import { t } from '../../l10n.ts'
-
 import IconArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import IconClose from 'vue-material-design-icons/Close.vue'
 import IconDockRight from 'vue-material-design-icons/DockRight.vue'
 import IconStar from 'vue-material-design-icons/Star.vue'
 import IconStarOutline from 'vue-material-design-icons/StarOutline.vue'
-
 import NcAppSidebarTabs from './NcAppSidebarTabs.vue'
+import { useIsSmallMobile } from '../../composables/useIsMobile/index.js'
+import Focus from '../../directives/Focus/index.ts'
+import { t } from '../../l10n.ts'
+import { createElementId } from '../../utils/createElementId.ts'
+import { getTrapStack } from '../../utils/focusTrap.ts'
+import { isSlotPopulated } from '../../utils/isSlotPopulated.ts'
 import NcActions from '../NcActions/index.js'
+import NcAppSidebarHeader from '../NcAppSidebarHeader/index.ts'
 import NcButton from '../NcButton/index.ts'
 import NcEmptyContent from '../NcEmptyContent/index.ts'
 import NcLoadingIcon from '../NcLoadingIcon/index.ts'
-import NcAppSidebarHeader from '../NcAppSidebarHeader/index.ts'
-import Focus from '../../directives/Focus/index.ts'
 
 export default {
 	name: 'NcAppSidebar',
@@ -777,6 +790,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		name: {
 			type: String,
 			default: '',
@@ -790,14 +804,17 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		namePlaceholder: {
 			type: String,
 			default: '',
 		},
+
 		subname: {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Title to display for the subname.
 		 */
@@ -823,6 +840,7 @@ export default {
 			type: Boolean,
 			default: null,
 		},
+
 		/**
 		 * Show loading spinner instead of the star icon
 		 */
@@ -830,6 +848,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Show loading spinner instead of tabs
 		 */
@@ -863,6 +882,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Force the tab navigation to display even if there is only one tab
 		 */
@@ -870,6 +890,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Linkify the name
 		 */
@@ -877,6 +898,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Title to display for the name.
 		 * Can be set to the same text in case it's too long.
@@ -965,6 +987,7 @@ export default {
 		canStar() {
 			return this.isStarred !== null
 		},
+
 		hasFigureClickListener() {
 			return !!this.$attrs.onFigureClick
 		},
@@ -1075,6 +1098,7 @@ export default {
 			 */
 			this.$emit('opened', element)
 		},
+
 		onAfterLeave(element) {
 			/**
 			 * The sidebar is closed and the transition is complete
@@ -1104,6 +1128,7 @@ export default {
 			this.$emit('close', e)
 			/**
 			 * Current open state emitted after the transitions are finished
+			 *
 			 * @type {boolean}
 			 */
 			this.$emit('update:open', false)
@@ -1154,6 +1179,7 @@ export default {
 
 		/**
 		 * Focus the sidebar
+		 *
 		 * @public
 		 */
 		focus() {
@@ -1171,6 +1197,7 @@ export default {
 
 		/**
 		 * Focus the active tab
+		 *
 		 * @public
 		 */
 		focusActiveTabContent() {
@@ -1186,10 +1213,8 @@ export default {
 		checkToggleButtonContainerAvailability() {
 			// Toggle button must be rendered, but there is no element to teleport it to
 			if (this.open === false && !this.noToggle && !this.ncContentSelector) {
-				console.warn(
-					'[NcAppSidebar] It looks like you want to use NcAppSidebar with the built-in toggle button. '
-					+ 'This feature is only available when NcAppSidebar is used in NcContent.',
-				)
+				console.warn('[NcAppSidebar] It looks like you want to use NcAppSidebar with the built-in toggle button. '
+					+ 'This feature is only available when NcAppSidebar is used in NcContent.')
 			}
 		},
 
@@ -1223,6 +1248,7 @@ export default {
 			 */
 			this.$emit('submitName', event)
 		},
+
 		onDismissEditing() {
 			// Disable editing
 			this.$emit('update:nameEditable', false)
@@ -1233,6 +1259,7 @@ export default {
 			 */
 			this.$emit('dismissEditing')
 		},
+
 		onUpdateActive(activeTab) {
 			/**
 			 * The active tab changed

@@ -19,7 +19,8 @@ This component is made to be used inside of the [NcActions](#NcActions) componen
 <template>
 	<li class="action" :class="{ 'action--disabled': disabled }" :role="isInSemanticMenu && 'presentation'">
 		<span class="action-checkbox" :role="isInSemanticMenu && 'menuitemcheckbox'" :aria-checked="ariaChecked">
-			<input :id="id"
+			<input
+				:id="id"
 				ref="checkbox"
 				:disabled="disabled"
 				:checked="modelValue"
@@ -61,7 +62,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'action-' + createElementId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 
 		/**
@@ -124,6 +125,7 @@ export default {
 			// by clicking we also trigger the change event
 			this.$refs.label.click()
 		},
+
 		onChange(event) {
 			/**
 			 * Emitted when the checkbox state is changed

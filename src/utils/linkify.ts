@@ -6,7 +6,7 @@
 import type { IntermediateRepresentation } from 'linkifyjs'
 
 import escapeHTML from 'escape-html'
-import { tokenize, Options } from 'linkifyjs'
+import { Options, tokenize } from 'linkifyjs'
 
 /**
  * Convert a plan text string to an HTML string with links. Expects that the
@@ -43,6 +43,7 @@ export function linkifyString(str: string): string {
 
 /**
  * Escape quotation marks in links for href attribute
+ *
  * @param href The link to escape
  */
 function escapeAttr(href: string): string {
@@ -51,6 +52,7 @@ function escapeAttr(href: string): string {
 
 /**
  * Map attributes to a string.
+ *
  * @param attributes - The attribute mapping
  */
 function attributesToString(attributes: Record<string, string>): string {

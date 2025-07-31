@@ -10,7 +10,7 @@
 		<NcAppNavigation>
 			<template #search>
 				<div class="navigation__header">
-					<NcAppNavigationSearch v-model="searchValue" label="Search …" />
+					<NcAppNavigationSearch v-model="searchValue" label="Search …" />
 					<NcActions>
 						<NcActionButton close-after-click @click="showModal = true">
 							<template #icon>
@@ -141,11 +141,11 @@ import type { Slot } from 'vue'
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { createFocusTrap } from 'focus-trap'
 import { inject, onMounted, onUnmounted, ref, useTemplateRef, warn, watch, watchEffect } from 'vue'
-import NcAppNavigationList from '../NcAppNavigationList/index.js'
+import NcAppNavigationList from '../NcAppNavigationList/NcAppNavigationList.vue'
 import NcAppNavigationToggle from './NcAppNavigationToggle.vue'
-import { HAS_APP_NAVIGATION_KEY } from '../NcContent/constants.ts'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
+import { HAS_APP_NAVIGATION_KEY } from '../NcContent/constants.ts'
 
 const props = defineProps<{
 	/**
@@ -286,10 +286,12 @@ function handleEsc(): void {
 </script>
 
 <template>
-	<div ref="app-navigation-container-key"
+	<div
+		ref="app-navigation-container-key"
 		class="app-navigation"
-		:class="{'app-navigation--closed':!open }">
-		<nav id="app-navigation-vue"
+		:class="{ 'app-navigation--closed': !open }">
+		<nav
+			id="app-navigation-vue"
 			:aria-hidden="open ? 'false' : 'true'"
 			:aria-label="ariaLabel || undefined"
 			:aria-labelledby="ariaLabelledby || undefined"

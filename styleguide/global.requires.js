@@ -1,19 +1,17 @@
+import axios from '@nextcloud/axios'
+import NcDialog from '../src/components/NcDialog/index.ts'
+import { useIsDarkTheme } from '../src/composables/useIsDarkTheme/index.ts'
+import { isA11yActivation } from '../src/functions/a11y/index.ts'
+import { spawnDialog } from '../src/functions/dialog/index.ts'
+import { emojiAddRecent, emojiSearch, EmojiSkinTone, getCurrentSkinTone, setCurrentSkinTone } from '../src/functions/emoji/index.ts'
+import { usernameToColor } from '../src/functions/usernameToColor/index.ts'
+
+import 'regenerator-runtime/runtime.js'
 /**
  * SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import 'core-js/stable/index.js'
-/* eslint-disable-next-line */
-import 'regenerator-runtime/runtime.js'
-
-import axios from '@nextcloud/axios'
-
-import { isA11yActivation } from '../src/functions/a11y/index.ts'
-import { EmojiSkinTone, emojiSearch, emojiAddRecent, getCurrentSkinTone, setCurrentSkinTone } from '../src/functions/emoji/index.ts'
-import { spawnDialog } from '../src/functions/dialog/index.ts'
-import { usernameToColor } from '../src/functions/usernameToColor/index.ts'
-import { useIsDarkTheme } from '../src/composables/useIsDarkTheme/index.ts'
-import NcDialog from '../src/components/NcDialog/index.ts'
 
 const USER_GROUPS = [
 	{ id: 'admin', displayname: 'The administrators' },
@@ -35,7 +33,7 @@ function mockRequests(error) {
 	// Mock requesting groups
 	const requestGroups = request.responseURL.match(/cloud\/groups\/details\?search=([^&]*)&limit=\d+$/)
 	if (requestGroups) {
-		data = { groups: USER_GROUPS.filter(e => !requestGroups[1] || e.displayname.startsWith(requestGroups[1]) || e.id.startsWith(requestGroups[1])) }
+		data = { groups: USER_GROUPS.filter((e) => !requestGroups[1] || e.displayname.startsWith(requestGroups[1]) || e.id.startsWith(requestGroups[1])) }
 	}
 
 	if (data) {
@@ -44,7 +42,7 @@ function mockRequests(error) {
 	return Promise.reject(error)
 }
 
-axios.interceptors.response.use((r) => r, e => mockRequests(e))
+axios.interceptors.response.use((r) => r, (e) => mockRequests(e))
 
 /**
  * From server util.js
@@ -61,19 +59,19 @@ function chunkify(t) {
 	let c
 
 	while (x < t.length) {
-	  c = t.charAt(x) // only include the dot in strings
+		c = t.charAt(x) // only include the dot in strings
 
-	  const m = !n && (c === '.' || (c >= '0' && c <= '9'))
+		const m = !n && (c === '.' || (c >= '0' && c <= '9'))
 
-	  if (m !== n) {
+		if (m !== n) {
 		// next chunk
 			y++
 			tz[y] = ''
 			n = m
-	  }
+		}
 
-	  tz[y] += c
-	  x++
+		tz[y] += c
+		x++
 	}
 
 	return tz

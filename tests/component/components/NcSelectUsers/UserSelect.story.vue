@@ -4,7 +4,8 @@
 -->
 
 <template>
-	<NcSelectUsers v-model="value"
+	<NcSelectUsers
+		v-model="value"
 		input-label="My account"
 		input-class="cypress-search-input"
 		:multiple

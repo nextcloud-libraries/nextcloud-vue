@@ -12,7 +12,7 @@ let initialized = false
  * Gets the timezone-manager
  * initializes it if necessary
  *
- * @return {object}
+ * @return
  */
 export default function() {
 	if (!initialized) {

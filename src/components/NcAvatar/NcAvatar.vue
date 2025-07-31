@@ -187,13 +187,15 @@ export default {
 ```
 
 </docs>
+
 <template>
-	<span v-click-outside="closeMenu"
+	<span
+		v-click-outside="closeMenu"
 		:title="tooltip"
 		:class="{
 			'avatardiv--unknown': userDoesNotExist,
 			'avatardiv--with-menu': hasMenu,
-			'avatardiv--with-menu-loading': contactsMenuLoading
+			'avatardiv--with-menu-loading': contactsMenuLoading,
 		}"
 		:style="avatarStyle"
 		class="avatardiv popovermenu-wrapper">
@@ -201,7 +203,8 @@ export default {
 		<slot name="icon">
 			<!-- Avatar icon or image -->
 			<span v-if="iconClass" :class="iconClass" class="avatar-class-icon" />
-			<img v-else-if="isAvatarLoaded && !userDoesNotExist"
+			<img
+				v-else-if="isAvatarLoaded && !userDoesNotExist"
 				:src="avatarUrlLoaded"
 				:srcset="avatarSrcSetLoaded"
 				alt="">
@@ -209,7 +212,8 @@ export default {
 
 		<!-- Contact menu -->
 		<!-- We show a button if the menu is not loaded yet. -->
-		<NcButton v-if="hasMenu && menu.length === 0"
+		<NcButton
+			v-if="hasMenu && menu.length === 0"
 			:aria-label="avatarAriaLabel"
 			class="action-item action-item__menutoggle"
 			variant="tertiary-no-background"
@@ -219,7 +223,8 @@ export default {
 				<IconDotsHorizontal v-else :size="20" />
 			</template>
 		</NcButton>
-		<NcActions v-else-if="hasMenu"
+		<NcActions
+			v-else-if="hasMenu"
 			v-model:open="contactsMenuOpenState"
 			:aria-label="avatarAriaLabel"
 			:container="menuContainer"
@@ -227,7 +232,8 @@ export default {
 			manual-open
 			variant="tertiary-no-background"
 			@click="toggleMenu">
-			<component :is="item.ncActionComponent"
+			<component
+				:is="item.ncActionComponent"
 				v-for="(item, key) in menu"
 				:key="key"
 				v-bind="item.ncActionComponentProps">
@@ -245,13 +251,15 @@ export default {
 		<span v-if="showUserStatusIconOnAvatar" class="avatardiv__user-status avatardiv__user-status--icon">
 			{{ userStatus.icon }}
 		</span>
-		<NcUserStatusIcon v-else-if="canDisplayUserStatus"
+		<NcUserStatusIcon
+			v-else-if="canDisplayUserStatus"
 			class="avatardiv__user-status"
 			:status="userStatus.status"
 			:aria-hidden="String(hasMenu)" />
 
 		<!-- Show the letter if no avatar nor icon class -->
-		<span v-if="showInitials"
+		<span
+			v-if="showInitials"
 			:style="initialsWrapperStyle"
 			class="avatardiv__initials-wrapper">
 			<span :style="initialsStyle" class="avatardiv__initials">
@@ -268,27 +276,25 @@ import { getBuilder } from '@nextcloud/browser-storage'
 import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { generateUrl } from '@nextcloud/router'
 import { vOnClickOutside as ClickOutside } from '@vueuse/components'
-
 import IconDotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
-import NcActions from '../NcActions/index.js'
+import { getRoute } from '../../components/NcRichText/autolink.ts'
+import { useIsDarkTheme } from '../../composables/index.ts'
+import { getEnabledContactsMenuActions } from '../../functions/contactsMenu/index.ts'
+import { usernameToColor } from '../../functions/usernameToColor/index.ts'
+import { t } from '../../l10n.ts'
+import { userStatus } from '../../mixins/index.js'
+import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
+import logger from '../../utils/logger.ts'
+import { getUserStatusText } from '../../utils/UserStatus.ts'
 import NcActionButton from '../NcActionButton/index.js'
 import NcActionLink from '../NcActionLink/index.js'
 import NcActionRouter from '../NcActionRouter/index.js'
+import NcActions from '../NcActions/index.js'
 import NcActionText from '../NcActionText/index.js'
 import NcButton from '../NcButton/index.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 import NcLoadingIcon from '../NcLoadingIcon/index.ts'
 import NcUserStatusIcon from '../NcUserStatusIcon/index.js'
-
-import { getRoute } from '../../components/NcRichText/autolink.ts'
-import { useIsDarkTheme } from '../../composables/index.ts'
-import { getEnabledContactsMenuActions } from '../../functions/contactsMenu/index.ts'
-import { usernameToColor } from '../../functions/usernameToColor/index.ts'
-import { userStatus } from '../../mixins/index.js'
-import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
-import logger from '../../utils/logger.ts'
-import { getUserStatusText } from '../../utils/UserStatus.ts'
-import { t } from '../../l10n.ts'
 
 const browserStorage = getBuilder('nextcloud').persist().build()
 
@@ -320,6 +326,7 @@ export default {
 		/** @type {import('vue').ObjectDirective} */
 		ClickOutside,
 	},
+
 	components: {
 		IconDotsHorizontal,
 		NcActions,
@@ -328,6 +335,7 @@ export default {
 		NcLoadingIcon,
 		NcUserStatusIcon,
 	},
+
 	mixins: [userStatus],
 	props: {
 		/**
@@ -338,6 +346,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Set a css icon-class for an icon to be used instead of the avatar.
 		 */
@@ -345,6 +354,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Set the user id to fetch the avatar
 		 * either the url, user or displayName property must be defined
@@ -353,6 +363,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Do not show the user status on the avatar.
 		 */
@@ -360,6 +371,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Show the verbose user status (e.g. "online" / "away") instead of just the status icon.
 		 */
@@ -367,6 +379,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * When the user status was preloaded via another source it can be handed in with this property to save the request.
 		 * If this property is not set the status will be fetched automatically.
@@ -376,6 +389,7 @@ export default {
 			type: Object,
 			default: undefined,
 		},
+
 		/**
 		 * Is the user a guest user (then we have to user a different endpoint)
 		 */
@@ -383,6 +397,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Set a display name that will be rendered as a tooltip
 		 * either the url, user or displayName property must be defined
@@ -393,6 +408,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Set a size in px for the rendered avatar
 		 */
@@ -400,6 +416,7 @@ export default {
 			type: Number,
 			default: 32,
 		},
+
 		/**
 		 * Do not automatically generate a placeholder avatars if there is no real avatar is available.
 		 */
@@ -407,6 +424,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Disable the tooltip
 		 */
@@ -414,6 +432,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Disable the menu
 		 */
@@ -421,6 +440,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Declares a custom tooltip when not null
 		 * Fallback will be the displayName
@@ -472,6 +492,7 @@ export default {
 			contactsMenuOpenState: false,
 		}
 	},
+
 	computed: {
 		avatarAriaLabel() {
 			// aria-label is only allowed on interactive elements
@@ -483,11 +504,13 @@ export default {
 			}
 			return t('Avatar of {displayName}', { displayName: this.displayName ?? this.user })
 		},
+
 		canDisplayUserStatus() {
 			return !this.hideStatus
 				&& this.hasStatus
 				&& ['online', 'away', 'busy', 'dnd'].includes(this.userStatus.status)
 		},
+
 		showUserStatusIconOnAvatar() {
 			return !this.hideStatus
 				&& !this.verboseStatus
@@ -495,6 +518,7 @@ export default {
 				&& this.userStatus.status !== 'dnd'
 				&& this.userStatus.icon
 		},
+
 		/**
 		 * The user identifier, either the display name if set or the user property
 		 * If both properties are not set an empty string is returned
@@ -508,15 +532,19 @@ export default {
 			}
 			return ''
 		},
+
 		isUserDefined() {
 			return typeof this.user !== 'undefined'
 		},
+
 		isDisplayNameDefined() {
 			return typeof this.displayName !== 'undefined'
 		},
+
 		isUrlDefined() {
 			return typeof this.url !== 'undefined'
 		},
+
 		hasMenu() {
 			if (this.disableMenu) {
 				return false
@@ -541,18 +569,21 @@ export default {
 				fontSize: Math.round(this.size * 0.45) + 'px',
 			}
 		},
+
 		initialsWrapperStyle() {
 			const { r, g, b } = usernameToColor(this.userIdentifier)
 			return {
 				backgroundColor: `rgba(${r}, ${g}, ${b}, 0.1)`,
 			}
 		},
+
 		initialsStyle() {
 			const { r, g, b } = usernameToColor(this.userIdentifier)
 			return {
 				color: `rgb(${r}, ${g}, ${b})`,
 			}
 		},
+
 		tooltip() {
 			if (this.disableTooltip) {
 				return null
@@ -580,6 +611,7 @@ export default {
 				 * \p{L}: Letters of all languages
 				 * \p{N}: Numbers of all languages
 				 * \s: White space for breaking the string
+				 *
 				 * @type {string}
 				 */
 				const filteredChars = user.match(/[\p{L}\p{N}\s]/gu)
@@ -596,6 +628,7 @@ export default {
 			}
 			return initials.toLocaleUpperCase()
 		},
+
 		menu() {
 			const actions = this.contactsMenuActions.map((item) => {
 				const route = getRoute(this.$router, item.hyperlink)
@@ -603,13 +636,13 @@ export default {
 					ncActionComponent: route ? NcActionRouter : NcActionLink,
 					ncActionComponentProps: route
 						? {
-							to: route,
-							icon: item.icon,
-						}
+								to: route,
+								icon: item.icon,
+							}
 						: {
-							href: item.hyperlink,
-							icon: item.icon,
-						},
+								href: item.hyperlink,
+								icon: item.icon,
+							},
 					text: item.title,
 				}
 			})
@@ -664,6 +697,7 @@ export default {
 			this.userDoesNotExist = false
 			this.loadAvatarUrl()
 		},
+
 		user() {
 			this.userDoesNotExist = false
 			this.isMenuLoaded = false
@@ -709,6 +743,7 @@ export default {
 
 		/**
 		 * Toggle the popover menu on click or enter
+		 *
 		 * @param {KeyboardEvent|MouseEvent} event the UI event
 		 */
 		async toggleMenu(event) {
@@ -720,9 +755,11 @@ export default {
 			}
 			this.contactsMenuOpenState = !this.contactsMenuOpenState
 		},
+
 		closeMenu() {
 			this.contactsMenuOpenState = false
 		},
+
 		async fetchContactsMenu() {
 			this.contactsMenuLoading = true
 			try {

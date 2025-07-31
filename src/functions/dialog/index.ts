@@ -5,6 +5,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import type { Component } from 'vue'
+
 import { createApp } from 'vue'
 
 type ComponentProps<T extends Component> = T extends new (...args: any) => { $props: infer P }
@@ -34,6 +35,7 @@ type ClosePayload<T> = T extends { onClose?: (...args: infer P) => any }
 type SpawnDialogOptions = {
 	/**
 	 * Container to mount the dialog to
+	 *
 	 * @default document.body
 	 */
 	container?: Element | string
@@ -77,7 +79,7 @@ export function spawnDialog<
 				element.remove()
 				resolve(payload)
 			},
-			'onVue:unmounted'() {
+			'onVue:unmounted': function() {
 				app.unmount()
 				element.remove()
 				reject(new Error('Dialog was unmounted without close event'))

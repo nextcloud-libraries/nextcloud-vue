@@ -5,7 +5,8 @@
 
 <template>
 	<div class="smart-picker-search" :class="{ 'with-empty-content': showEmptyContent }">
-		<NcSelect ref="search-select"
+		<NcSelect
+			ref="search-select"
 			v-model="selectedResult"
 			class="smart-picker-search--select"
 			input-id="search-select-input"
@@ -30,19 +31,21 @@
 						{{ t('Raw link {options}', { options: option.resourceUrl }) }}
 					</span>
 				</div>
-				<NcSearchResult v-else-if="option.resourceUrl"
+				<NcSearchResult
+					v-else-if="option.resourceUrl"
 					class="search-result"
 					:entry="option"
 					:query="searchQuery" />
 				<span v-else-if="option.isCustomGroupTitle" class="custom-option group-name">
-					<img v-if="provider.icon_url"
+					<img
+						v-if="provider.icon_url"
 						class="provider-icon group-name-icon"
 						:src="provider.icon_url">
 					<span class="option-text">
 						<strong>{{ option.name }}</strong>
 					</span>
 				</span>
-				<span v-else-if="option.isMore" :class="{ 'custom-option': true }">
+				<span v-else-if="option.isMore" class="custom-option">
 					<span v-if="option.isLoading" class="option-simple-icon icon-loading-small" />
 					<DotsHorizontalIcon v-else class="option-simple-icon" :size="20" />
 					<span class="option-text">
@@ -54,10 +57,12 @@
 				{{ noOptionsText }}
 			</template>
 		</NcSelect>
-		<NcEmptyContent v-if="showEmptyContent"
+		<NcEmptyContent
+			v-if="showEmptyContent"
 			class="smart-picker-search--empty-content">
 			<template #icon>
-				<img v-if="provider.icon_url"
+				<img
+					v-if="provider.icon_url"
 					class="provider-icon"
 					:alt="providerIconAlt"
 					:src="provider.icon_url">
@@ -74,10 +79,10 @@ import debounce from 'debounce'
 import DotsHorizontalIcon from 'vue-material-design-icons/DotsHorizontal.vue'
 import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
 import NcSearchResult from './NcSearchResult.vue'
+import { t } from '../../../l10n.ts'
 import NcEmptyContent from '../../NcEmptyContent/index.ts'
 import NcSelect from '../../NcSelect/index.js'
 import { isUrl } from './utils.ts'
-import { t } from '../../../l10n.ts'
 
 const LIMIT = 5
 
@@ -90,6 +95,7 @@ export default {
 		NcSelect,
 		NcSearchResult,
 	},
+
 	props: {
 		/**
 		 * The selected reference provider
@@ -98,18 +104,22 @@ export default {
 			type: Object,
 			required: true,
 		},
+
 		showEmptyContent: {
 			type: Boolean,
 			default: true,
 		},
+
 		searchPlaceholder: {
 			type: String,
 			default: null,
 		},
 	},
+
 	emits: [
 		'submit',
 	],
+
 	data() {
 		return {
 			searchQuery: '',
@@ -122,13 +132,16 @@ export default {
 			providerIconAlt: t('Provider icon'),
 		}
 	},
+
 	computed: {
 		mySearchPlaceholder() {
 			return this.searchPlaceholder || t('Search')
 		},
+
 		searchProviderIds() {
 			return this.provider.search_providers_ids
 		},
+
 		options() {
 			if (this.searchQuery === '') {
 				return []
@@ -141,6 +154,7 @@ export default {
 			options.push(...this.formattedSearchResults)
 			return options
 		},
+
 		rawLinkEntry() {
 			return {
 				id: 'rawLinkEntry',
@@ -148,9 +162,10 @@ export default {
 				isRawLink: true,
 			}
 		},
+
 		formattedSearchResults() {
 			const results = []
-			this.searchProviderIds.forEach(pid => {
+			this.searchProviderIds.forEach((pid) => {
 				if (this.resultsBySearchProvider[pid].entries.length > 0) {
 					// don't show group name entry if there is only one search provider and one result
 					if (this.searchProviderIds.length > 1 || this.resultsBySearchProvider[pid].entries.length > 1) {
@@ -181,41 +196,49 @@ export default {
 			})
 			return results
 		},
+
 		debouncedUpdateSearch() {
 			return debounce(this.updateSearch, 500)
 		},
 	},
+
 	mounted() {
 		this.resetResults()
 	},
+
 	beforeUnmount() {
 		this.cancelSearchRequests()
 	},
+
 	methods: {
 		t,
 		resetResults() {
 			const resultsBySearchProvider = {}
-			this.searchProviderIds.forEach(pid => {
+			this.searchProviderIds.forEach((pid) => {
 				resultsBySearchProvider[pid] = {
 					entries: [],
 				}
 			})
 			this.resultsBySearchProvider = resultsBySearchProvider
 		},
+
 		focus() {
 			setTimeout(() => {
 				this.$refs['search-select']?.$el?.querySelector('#search-select-input')?.focus()
 			}, 300)
 		},
+
 		cancelSearchRequests() {
 			if (this.abortController) {
 				this.abortController.abort()
 			}
 		},
+
 		onSearchInput(query) {
 			this.searchQuery = query
 			this.debouncedUpdateSearch()
 		},
+
 		onSelectResultSelected(item) {
 			if (item !== null) {
 				if (item.resourceUrl) {
@@ -229,11 +252,13 @@ export default {
 				}
 			}
 		},
+
 		searchMoreOf(searchProviderId) {
 			this.searchingMoreOf = searchProviderId
 			this.cancelSearchRequests()
 			return this.searchProviders(searchProviderId)
 		},
+
 		updateSearch() {
 			this.cancelSearchRequests()
 			this.resetResults()
@@ -244,21 +269,22 @@ export default {
 
 			return this.searchProviders()
 		},
+
 		searchProviders(searchProviderId = null) {
 			this.abortController = new AbortController()
 			this.searching = true
 
 			const searchPromises = searchProviderId === null
-				? [...this.searchProviderIds].map(pid => {
-					return this.searchOneProvider(pid)
-				})
+				? [...this.searchProviderIds].map((pid) => {
+						return this.searchOneProvider(pid)
+					})
 				: [this.searchOneProvider(searchProviderId, this.resultsBySearchProvider[searchProviderId]?.cursor ?? null)]
 			// fake one to have a request error
 			// searchPromises.push(this.searchOneProvider('nopid'))
 
 			return Promise.allSettled(searchPromises)
 				.then((promises) => {
-					const isOneCanceled = !!promises.find(p => {
+					const isOneCanceled = !!promises.find((p) => {
 						return p.status === 'rejected' && (p.reason.name === 'CanceledError' || p.reason.code === 'ERR_CANCELED')
 					})
 					// nothing was canceled: not searching
@@ -268,6 +294,7 @@ export default {
 					}
 				})
 		},
+
 		searchOneProvider(providerId, cursor = null) {
 			const url = cursor === null
 				? generateOcsUrl('search/providers/{providerId}/search?term={term}&limit={limit}', { providerId, term: this.searchQuery, limit: LIMIT })

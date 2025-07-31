@@ -13,17 +13,19 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 </docs>
 
 <template>
-	<li ref="crumb"
+	<li
+		ref="crumb"
 		class="vue-crumb"
-		:class="[{'vue-crumb--hovered': hovering}, $props.class]"
+		:class="[{ 'vue-crumb--hovered': hovering }, $props.class]"
 		:data-crumb-id="crumbId"
 		draggable="false"
-		@dragstart.prevent="() => {/** Prevent the breadcrumb from being draggable. */}"
+		@dragstart.prevent="() => { /** Prevent the breadcrumb from being draggable. */ }"
 		@drop.prevent="dropped"
 		@dragover.prevent="() => {}"
 		@dragenter="dragEnter"
 		@dragleave="dragLeave">
-		<NcButton v-if="(name || icon || $slots.icon) && !$slots.default"
+		<NcButton
+			v-if="(name || icon || $slots.icon) && !$slots.default"
 			:aria-label="icon ? name : undefined"
 			variant="tertiary"
 			v-bind="linkAttributes">
@@ -37,7 +39,8 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 				{{ name }}
 			</template>
 		</NcButton>
-		<NcActions v-if="$slots.default"
+		<NcActions
+			v-if="$slots.default"
 			ref="actions"
 			:container="actionsContainer"
 			:force-menu="forceMenu"
@@ -59,11 +62,10 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 </template>
 
 <script>
+import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
+import NcButton from '../NcButton/NcButton.vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import NcActions from '../NcActions/index.js'
-import NcButton from '../NcButton/NcButton.vue'
-
-import ChevronRight from 'vue-material-design-icons/ChevronRight.vue'
 
 export default {
 	name: 'NcBreadcrumb',
@@ -72,6 +74,7 @@ export default {
 		ChevronRight,
 		NcButton,
 	},
+
 	inheritAttrs: false,
 	props: {
 		/**
@@ -81,6 +84,7 @@ export default {
 			type: String,
 			required: true,
 		},
+
 		/**
 		 * The title attribute of the element.
 		 */
@@ -155,6 +159,7 @@ export default {
 			default: '',
 		},
 	},
+
 	emits: [
 		'dragenter',
 		'dragleave',
@@ -188,11 +193,12 @@ export default {
 			return this.to
 				? { to: this.to, ...this.$attrs }
 				: (this.href
-					? { href: this.href, ...this.$attrs }
-					: this.$attrs
-				)
+						? { href: this.href, ...this.$attrs }
+						: this.$attrs
+					)
 		},
 	},
+
 	methods: {
 		/**
 		 * Function to handle changing the open state of the Actions menu
@@ -208,6 +214,7 @@ export default {
 			 */
 			this.$emit('update:open', open)
 		},
+
 		/**
 		 * Function to handle a drop on the breadcrumb.
 		 * $emit the event and the path, remove the hovering state.
@@ -233,6 +240,7 @@ export default {
 			this.hovering = false
 			return false
 		},
+
 		/**
 		 * Add the hovering state on drag enter
 		 *
@@ -248,6 +256,7 @@ export default {
 			}
 			this.hovering = true
 		},
+
 		/**
 		 * Remove the hovering state on drag leave
 		 *

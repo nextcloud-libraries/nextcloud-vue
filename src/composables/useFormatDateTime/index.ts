@@ -15,6 +15,7 @@ interface FormatRelativeTimeOptions extends Partial<Omit<FormatDateOptions, 'ign
 
 	/**
 	 * If set to false the relative time will not be updated anymore.
+	 *
 	 * @default true - Meaning the relative time will be updated if needed
 	 */
 	update?: boolean
@@ -23,6 +24,7 @@ interface FormatRelativeTimeOptions extends Partial<Omit<FormatDateOptions, 'ign
 interface FormatTimeOptions {
 	/**
 	 * Locale to use for formatting.
+	 *
 	 * @default current locale
 	 */
 	locale?: string

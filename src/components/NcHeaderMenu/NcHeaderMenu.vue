@@ -61,11 +61,14 @@ import type { FocusTrap } from 'focus-trap'
 
 import { onClickOutside } from '@vueuse/core'
 import { createFocusTrap } from 'focus-trap'
-import { computed, nextTick, ref, useTemplateRef, watch, type Slot } from 'vue'
-import { useHotKey } from '../../composables/index.js'
-import { getTrapStack } from '../../utils/focusTrap.js'
-import { createElementId } from '../../utils/createElementId.ts'
+import {
+	type Slot,
 
+	computed, nextTick, ref, useTemplateRef, watch,
+} from 'vue'
+import { useHotKey } from '../../composables/index.js'
+import { createElementId } from '../../utils/createElementId.ts'
+import { getTrapStack } from '../../utils/focusTrap.js'
 import NcButton from '../NcButton/index.ts'
 
 const {
@@ -148,8 +151,7 @@ const triggerButton = useTemplateRef('trigger-button-key')
 // Handle click outside of the menu -> should close the menu
 const ignore = computed(() => Array.isArray(excludeClickOutsideSelectors)
 	? excludeClickOutsideSelectors
-	: excludeClickOutsideSelectors.split(' '),
-)
+	: excludeClickOutsideSelectors.split(' '))
 onClickOutside(headerMenu, () => setMenuState(false), { ignore })
 
 // Pressing escape should close the menu
@@ -167,6 +169,7 @@ function toggleMenu() {
 
 /**
  * Set the menu opened state
+ *
  * @param state The opened state to set
  */
 async function setMenuState(state: boolean) {
@@ -240,7 +243,8 @@ function clearFocusTrap() {
 </script>
 
 <template>
-	<component :is="wrapperTag"
+	<component
+		:is="wrapperTag"
 		:id="id"
 		ref="header-menu-key"
 		:aria-labelledby="isNav ? triggerId : null"
@@ -248,7 +252,8 @@ function clearFocusTrap() {
 		class="header-menu"
 		@focusout="onFocusOut">
 		<!-- Trigger -->
-		<NcButton :id="isNav ? triggerId : null"
+		<NcButton
+			:id="isNav ? triggerId : null"
 			ref="trigger-button-key"
 			class="header-menu__trigger"
 			:aria-controls="`header-menu-${id}`"
@@ -261,7 +266,8 @@ function clearFocusTrap() {
 			</template>
 		</NcButton>
 
-		<span v-if="description"
+		<span
+			v-if="description"
 			:id="descriptionId"
 			class="header-menu__description hidden-visually">
 			{{ description }}
@@ -271,7 +277,8 @@ function clearFocusTrap() {
 		<div v-show="isOpened" class="header-menu__caret" />
 
 		<!-- Menu opened content -->
-		<div v-show="isOpened"
+		<div
+			v-show="isOpened"
 			:id="`header-menu-${id}`"
 			class="header-menu__wrapper">
 			<div ref="content-container-key" class="header-menu__content">

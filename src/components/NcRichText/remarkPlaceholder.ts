@@ -12,6 +12,7 @@ import { visit } from 'unist-util-visit'
 
 /**
  * Check if the given node is a literal and specifically a text node
+ *
  * @param node - A Unist node
  */
 function isTextNode(node: Node): node is TextNode {

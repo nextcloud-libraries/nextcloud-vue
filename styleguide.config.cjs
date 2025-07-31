@@ -10,8 +10,8 @@ const webpackConfig = require('./webpack.config.cjs')
 
 module.exports = async () => {
 	const base = await webpackConfig()
-	const newConfig = Object.assign({}, base, {
-		// Necessary, because vue-styleguidist runs an old version of webpack-dev-server
+	const newConfig = {
+		...base, // Necessary, because vue-styleguidist runs an old version of webpack-dev-server
 		devServer: {
 			historyApiFallback: true,
 			noInfo: true,
@@ -20,11 +20,9 @@ module.exports = async () => {
 		externals: {},
 		module: {
 			// Ignore eslint
-			rules: base.module.rules.filter(
-				rule => rule.use !== 'eslint-loader',
-			),
+			rules: base.module.rules.filter((rule) => rule.use !== 'eslint-loader'),
 		},
-	})
+	}
 
 	return {
 		require: [

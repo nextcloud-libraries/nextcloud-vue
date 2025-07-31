@@ -4,8 +4,8 @@
  */
 import type { ButtonType } from '../../../../src/components/NcButton/index.ts'
 
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import { nextTick } from 'vue'
 import NcDialogButton from '../../../../src/components/NcDialogButton/NcDialogButton.vue'
 
@@ -109,7 +109,7 @@ describe('NcDialogButton', () => {
 		// no event because it is still resolving
 		expect(wrapper.emitted('click')).toBeUndefined()
 		// see there is the loading indicator
-		expect(button.find('[aria-label="Loading …"]').exists()).toBe(true)
+		expect(button.find('[aria-label="Loading …"]').exists()).toBe(true)
 		// resolve the callback
 		resolve()
 		await nextTick()
@@ -118,6 +118,6 @@ describe('NcDialogButton', () => {
 		await nextTick()
 		// and the loading indicator is gone
 		// see there is the loading indicator
-		expect(button.find('[aria-label="Loading …"]').exists()).toBe(false)
+		expect(button.find('[aria-label="Loading …"]').exists()).toBe(false)
 	})
 })

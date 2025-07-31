@@ -32,7 +32,7 @@ export default {
 				return
 			}
 			const capabilities = getCapabilities()
-			if (!Object.prototype.hasOwnProperty.call(capabilities, 'user_status') || !capabilities.user_status.enabled) {
+			if (!Object.hasOwn(capabilities, 'user_status') || !capabilities.user_status.enabled) {
 				return
 			}
 

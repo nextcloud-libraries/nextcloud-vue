@@ -6,19 +6,22 @@
 <template>
 	<li class="collection-list-item">
 		<NcAvatar :display-name="collection.name" allow-placeholder class="collection-avatar" />
-		<span v-if="newName === null"
+		<span
+			v-if="newName === null"
 			class="collection-item-name"
 			title=""
 			@click="showDetails">{{ collection.name }}</span>
-		<form v-else :class="{'should-shake': error }" @submit.prevent="renameCollection">
-			<input v-model="newName"
+		<form v-else :class="{ 'should-shake': error }" @submit.prevent="renameCollection">
+			<input
+				v-model="newName"
 				type="text"
 				autocomplete="off"
 				autocapitalize="off">
 			<input type="submit" value="" class="icon-confirm">
 		</form>
 		<div v-if="!detailsOpen && newName === null" class="linked-icons">
-			<component :is="getComponent(resource).component"
+			<component
+				:is="getComponent(resource).component"
 				v-for="resource in resources.slice(0, 2)"
 				:key="resource.type + '|' + resource.id"
 				:title="resource.name"
@@ -31,11 +34,13 @@
 
 		<span v-if="newName === null" class="sharingOptionsGroup">
 			<NcActions>
-				<NcActionButton icon="icon-info"
+				<NcActionButton
+					icon="icon-info"
 					@click.prevent="toggleDetails">
 					{{ detailsOpen ? t('Hide details') : t('Show details') }}
 				</NcActionButton>
-				<NcActionButton icon="icon-rename"
+				<NcActionButton
+					icon="icon-rename"
 					@click.prevent="openRename">
 					{{ t('Rename project') }}
 				</NcActionButton>
@@ -49,10 +54,12 @@
 		</transition>
 		<transition name="fade">
 			<ul v-if="detailsOpen" class="resource-list-details">
-				<li v-for="resource in resources"
+				<li
+					v-for="resource in resources"
 					:key="resource.type + '|' + resource.id"
 					:class="typeClass(resource)">
-					<component :is="getComponent(resource).component"
+					<component
+						:is="getComponent(resource).component"
 						:to="getComponent(resource).to"
 						:href="getComponent(resource).href">
 						<img :src="iconUrl(resource)" :alt="resource.name">
@@ -67,11 +74,10 @@
 
 <script>
 import { t } from '../../l10n.ts'
-import { getRoute } from '../NcRichText/autolink.ts'
-
-import NcActions from '../NcActions/index.js'
 import NcActionButton from '../NcActionButton/index.js'
+import NcActions from '../NcActions/index.js'
 import NcAvatar from '../NcAvatar/index.js'
+import { getRoute } from '../NcRichText/autolink.ts'
 
 export default {
 	name: 'NcCollectionListItem',
@@ -117,7 +123,7 @@ export default {
 
 		resources() {
 			// invalid resources come from server as empty array ([]) and not an object
-			return this.collection.resources?.filter(resource => !Array.isArray(resource)) ?? []
+			return this.collection.resources?.filter((resource) => !Array.isArray(resource)) ?? []
 		},
 
 		getComponent() {

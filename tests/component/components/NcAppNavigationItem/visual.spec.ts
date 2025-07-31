@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import type { HooksConfig } from '../../setup/index'
-import { expect, test } from '@playwright/experimental-ct-vue'
 
+import { expect, test } from '@playwright/experimental-ct-vue'
 import AppNavigation from './AppNavigation.story.vue'
 
 test.skip(({ browserName }) => browserName !== 'chromium')

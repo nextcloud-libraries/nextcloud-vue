@@ -4,8 +4,9 @@
 -->
 
 <template>
-	<div class="app-content-list"
-		:class="{selection, showdetails: showDetails}">
+	<div
+		class="app-content-list"
+		:class="{ selection, showdetails: showDetails }">
 		<slot />
 	</div>
 </template>
@@ -18,6 +19,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		showDetails: {
 			type: Boolean,
 			default: false,

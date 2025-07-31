@@ -70,7 +70,8 @@ export default {
 </docs>
 
 <template>
-	<div class="nc-chip"
+	<div
+		class="nc-chip"
 		:class="{
 			[`nc-chip--${variant}`]: true,
 			'nc-chip--no-actions': noClose && !hasActions(),
@@ -79,7 +80,8 @@ export default {
 		<span v-if="hasIcon()" class="nc-chip__icon">
 			<slot name="icon">
 				<!-- The default icon wrapper uses a size of 18px to ensure the icon is not clipped by the round chip style -->
-				<NcIconSvgWrapper v-if="iconPath || iconSvg"
+				<NcIconSvgWrapper
+					v-if="iconPath || iconSvg"
 					inline
 					:path="iconPath"
 					:svg="iconPath ? undefined : iconSvg"
@@ -89,12 +91,14 @@ export default {
 		<span class="nc-chip__text">
 			<slot>{{ text }}</slot>
 		</span>
-		<NcActions v-if="canClose || hasActions()"
+		<NcActions
+			v-if="canClose || hasActions()"
 			class="nc-chip__actions"
 			:container="actionsContainer"
 			:force-menu="!canClose"
 			variant="tertiary-no-background">
-			<NcActionButton v-if="canClose"
+			<NcActionButton
+				v-if="canClose"
 				close-after-click
 				@click="emit('close')">
 				<template #icon>
@@ -112,14 +116,15 @@ import type { Slot } from 'vue'
 
 import { mdiClose } from '@mdi/js'
 import { computed } from 'vue'
-import { t } from '../../l10n.ts'
-import NcActions from '../NcActions/NcActions.vue'
 import NcActionButton from '../NcActionButton/NcActionButton.vue'
+import NcActions from '../NcActions/NcActions.vue'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
+import { t } from '../../l10n.ts'
 
 const props = withDefaults(defineProps<{
 	/**
 	 * aria label to set on the close button
+	 *
 	 * @default 'Close'
 	 */
 	ariaLabelClose?: string
@@ -154,6 +159,7 @@ const props = withDefaults(defineProps<{
 	 * Set the chips design variant-
 	 *
 	 * This sets the background style of the chip, similar to NcButton's `variant`.
+	 *
 	 * @default 'secondary'
 	 * @since 8.23.0
 	 */

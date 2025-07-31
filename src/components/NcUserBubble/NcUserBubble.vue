@@ -66,11 +66,21 @@ export default {
 <script setup lang="ts">
 import type { RouteLocation } from 'vue-router'
 
+import {
+	type Slot,
+
+	computed, warn, watch,
+} from 'vue'
+import { RouterLink } from 'vue-router'
 import NcUserBubbleDiv from './NcUserBubbleDiv.vue'
 import NcAvatar from '../NcAvatar/index.js'
 import NcPopover from '../NcPopover/index.js'
-import { computed, warn, watch, type Slot } from 'vue'
-import { RouterLink } from 'vue-router'
+
+/**
+ * Default popover state. Requires the UserBubble
+ * to have some content to render inside the popover
+ */
+const isOpen = defineModel<boolean>('open')
 
 const props = withDefaults(defineProps<{
 	/**
@@ -147,12 +157,6 @@ defineSlots<{
 }>()
 
 /**
- * Default popover state. Requires the UserBubble
- * to have some content to render inside the popover
- */
-const isOpen = defineModel<boolean>('open')
-
-/**
  * Is the provided avatar url valid or not
  */
 const isAvatarUrl = computed(() => {
@@ -222,13 +226,15 @@ watch([() => props.displayName, () => props.user], () => {
 </script>
 
 <template>
-	<component :is="!!$slots.default ? NcPopover : NcUserBubbleDiv"
+	<component
+		:is="!!$slots.default ? NcPopover : NcUserBubbleDiv"
 		v-model:shown="isOpen"
 		class="user-bubble__wrapper"
 		trigger="hover focus">
 		<!-- Main userbubble structure -->
 		<template #trigger="{ attrs }">
-			<component :is="contentComponent"
+			<component
+				:is="contentComponent"
 				class="user-bubble__content"
 				:class="{ 'user-bubble__content--primary': primary }"
 				:style="contentStyle"
@@ -237,7 +243,8 @@ watch([() => props.displayName, () => props.user], () => {
 				v-bind="attrs"
 				@click="emit('click', $event)">
 				<!-- NcAvatar -->
-				<NcAvatar :url="isCustomAvatar && isAvatarUrl ? avatarImage : undefined"
+				<NcAvatar
+					:url="isCustomAvatar && isAvatarUrl ? avatarImage : undefined"
 					:icon-class="isCustomAvatar && !isAvatarUrl ? avatarImage : undefined"
 					:user="user"
 					:display-name="displayName"

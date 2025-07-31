@@ -13,21 +13,25 @@ This component is meant to be used inside a DashboardWidget component.
 
 <template>
 	<div @mouseover="hovered = true" @mouseleave="hovered = false">
-		<component :is="targetUrl ? 'a' : 'div'"
+		<component
+			:is="targetUrl ? 'a' : 'div'"
 			:href="targetUrl || undefined"
 			:target="targetUrl ? '_blank' : undefined"
-			:class="{ 'item-list__entry': true, 'item-list__entry--has-actions-menu': gotMenu }"
+			class="item-list__entry"
+			:class="{ 'item-list__entry--has-actions-menu': gotMenu }"
 			@click="onLinkClick">
 			<!-- @slot Slot for passing a user avatar. -->
 			<slot name="avatar" :avatar-url="avatarUrl" :avatar-username="avatarUsername">
-				<NcAvatar class="item-avatar"
+				<NcAvatar
+					class="item-avatar"
 					:size="44"
 					:url="avatarUrl"
 					:user="avatarUsername"
 					:is-no-user="avatarIsNoUser"
 					:hide-status="gotOverlayIcon" />
 			</slot>
-			<img v-if="overlayIconUrl"
+			<img
+				v-if="overlayIconUrl"
 				class="item-icon"
 				alt=""
 				:src="overlayIconUrl">
@@ -42,7 +46,8 @@ This component is meant to be used inside a DashboardWidget component.
 			<NcActions v-if="gotMenu" :force-menu="forceMenu">
 				<!-- @slot This slot can be used to provide actions for each dashboard widget item. -->
 				<slot name="actions">
-					<NcActionButton v-for="(m, menuItemId) in itemMenu"
+					<NcActionButton
+						v-for="(m, menuItemId) in itemMenu"
 						:key="menuItemId"
 						:icon="m.icon"
 						:close-after-click="true"
@@ -56,9 +61,9 @@ This component is meant to be used inside a DashboardWidget component.
 </template>
 
 <script>
-import NcAvatar from '../NcAvatar/index.js'
-import NcActions from '../NcActions/index.js'
 import NcActionButton from '../NcActionButton/index.js'
+import NcActions from '../NcActions/index.js'
+import NcAvatar from '../NcAvatar/index.js'
 
 export default {
 	name: 'NcDashboardWidgetItem',
@@ -76,6 +81,7 @@ export default {
 			type: [String, Number],
 			default: undefined,
 		},
+
 		/**
 		 * The item element is a link to this URL (optional)
 		 */
@@ -83,6 +89,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Where to get the avatar image. (optional) Used if avatarUsername is not defined.
 		 */
@@ -90,6 +97,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Name to provide to the Avatar. (optional) Used if avatarUrl is not defined.
 		 */
@@ -97,6 +105,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Is the avatarUsername not a user's name? (optional, false by default)
 		 */
@@ -104,6 +113,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Small icon to display on the bottom-right corner of the avatar (optional)
 		 */
@@ -111,6 +121,7 @@ export default {
 			type: String,
 			default: undefined,
 		},
+
 		/**
 		 * Item main text (mandatory)
 		 */
@@ -118,6 +129,7 @@ export default {
 			type: String,
 			required: true,
 		},
+
 		/**
 		 * Item subline text (optional)
 		 */
@@ -125,6 +137,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * An object containing context menu entries that will be displayed for each items (optional)
 		 */
@@ -160,9 +173,11 @@ export default {
 				subText: this.subText,
 			}
 		},
+
 		gotMenu() {
 			return Object.keys(this.itemMenu).length !== 0 || !!this.$slots.actions
 		},
+
 		gotOverlayIcon() {
 			return this.overlayIconUrl && this.overlayIconUrl !== ''
 		},

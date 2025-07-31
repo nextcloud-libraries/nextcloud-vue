@@ -1,9 +1,9 @@
+import { mount } from '@vue/test-utils'
 /*!
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import { beforeEach, describe, expect, it } from 'vitest'
-import { mount } from '@vue/test-utils'
 import NcAppContent from '../../../../src/components/NcAppContent/NcAppContent.vue'
 
 describe('NcAppContent', () => {

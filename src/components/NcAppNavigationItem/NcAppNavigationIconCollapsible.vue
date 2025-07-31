@@ -5,7 +5,8 @@
 
 <template>
 	<!-- Button to expand or collapse children -->
-	<NcButton class="icon-collapse"
+	<NcButton
+		class="icon-collapse"
 		:class="{
 			'icon-collapse--active': active,
 			'icon-collapse--open': open,
@@ -14,19 +15,21 @@
 		:variant="active ? 'tertiary-on-primary' : 'tertiary'"
 		@click="onClick">
 		<template #icon>
-			<ChevronUp v-if="open"
+			<ChevronUp
+				v-if="open"
 				:size="20" />
-			<ChevronDown v-else
+			<ChevronDown
+				v-else
 				:size="20" />
 		</template>
 	</NcButton>
 </template>
 
 <script>
-import { t } from '../../l10n.ts'
-import NcButton from '../NcButton/index.ts'
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
 import ChevronUp from 'vue-material-design-icons/ChevronUp.vue'
+import { t } from '../../l10n.ts'
+import NcButton from '../NcButton/index.ts'
 
 export default {
 	name: 'NcAppNavigationIconCollapsible',

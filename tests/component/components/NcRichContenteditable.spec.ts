@@ -14,7 +14,7 @@ test('Placeholder is set', async ({ mount, page }) => {
 	})
 
 	await expect(page.getByRole('textbox')).toBeVisible()
-	await expect(page.getByRole('textbox')).toHaveAttribute('aria-placeholder', 'Write a message …')
+	await expect(page.getByRole('textbox')).toHaveAttribute('aria-placeholder', 'Write a message …')
 })
 
 test('Placeholder is correctly translated', async ({ mount, page }) => {
@@ -27,5 +27,5 @@ test('Placeholder is correctly translated', async ({ mount, page }) => {
 	})
 
 	await expect(page.getByRole('textbox')).toBeVisible()
-	await expect(page.getByRole('textbox')).toHaveAttribute('aria-placeholder', 'Nachricht schreiben …')
+	await expect(page.getByRole('textbox')).toHaveAttribute('aria-placeholder', 'Nachricht schreiben …')
 })

@@ -451,10 +451,10 @@ export type ButtonSize = 'small'
 	| 'normal'
 	| 'large'
 
-export type ButtonType =
-	| 'submit'
-	| 'reset'
-	| 'button'
+export type ButtonType
+	= | 'submit'
+		| 'reset'
+		| 'button'
 
 export type ButtonVariant = 'primary'
 	| 'secondary'
@@ -485,6 +485,7 @@ const props = withDefaults(defineProps<{
 
 	/**
 	 * Toggles the disabled state of the button on and off.
+	 *
 	 * @default false
 	 */
 	disabled?: boolean
@@ -497,7 +498,7 @@ const props = withDefaults(defineProps<{
 	 * Also this only works with same-origin URLs and `blob:` or `data:` schemas.
 	 * Moreover a `Content-Disposition` header set by the server will override the filename.
 	 */
-	download?: string|true
+	download?: string | true
 
 	/**
 	 * Providing the href attribute turns the button component into an `a` element.
@@ -514,12 +515,14 @@ const props = withDefaults(defineProps<{
 
 	/**
 	 * Specify the button size.
+	 *
 	 * @default 'normal'
 	 */
 	size?: ButtonSize
 
 	/**
 	 * Target for the `a` element if `href` is set.
+	 *
 	 * @default '_self'
 	 */
 	target?: string
@@ -527,6 +530,7 @@ const props = withDefaults(defineProps<{
 	/**
 	 * The main button text.
 	 * This can be overwritten by using the *default* slot.
+	 *
 	 * @since 9.0.0
 	 */
 	text?: string
@@ -557,6 +561,7 @@ const props = withDefaults(defineProps<{
 	/**
 	 * Specifies whether the button should span all the available width.
 	 * By default, buttons span the whole width of the container.
+	 *
 	 * @default false
 	 */
 	wide?: boolean
@@ -578,7 +583,7 @@ const emit = defineEmits<{
 	/**
 	 * Emitted when the button was clicked.
 	 */
-	 click: [e: MouseEvent]
+	click: [e: MouseEvent]
 
 	/**
 	 * Update the current pressed state of the button (if the `pressed` property was configured).
@@ -636,7 +641,7 @@ const isTertiaryVariant = computed(() => variantWithPressed.value.startsWith('te
 const flexAlignment = computed(() => props.alignment.split('-')[0])
 const isReverseAligned = computed(() => props.alignment.includes('-'))
 
-const getNcPopoverTriggerAttrs = inject<() => Record<string, string|undefined>>('NcPopover:trigger:attrs', () => ({}), false)
+const getNcPopoverTriggerAttrs = inject<() => Record<string, string | undefined>>('NcPopover:trigger:attrs', () => ({}), false)
 const ncPopoverTriggerAttrs = computed(() => getNcPopoverTriggerAttrs())
 
 const attrs = computed(() => {
@@ -678,7 +683,8 @@ function onClick(event: MouseEvent) {
 </script>
 
 <template>
-	<component :is="tag"
+	<component
+		:is="tag"
 		class="button-vue"
 		:class="[
 			`button-vue--size-${size}`,

@@ -5,9 +5,8 @@
 
 import { shallowMount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import richEditor from '../../../src/mixins/richEditor/index.js'
-
 import { h } from 'vue'
+import richEditor from '../../../src/mixins/richEditor/index.js'
 
 const TestEditor = {
 	mixins: [richEditor],

@@ -5,9 +5,9 @@
 
 import type { Plugin } from 'vite'
 
-import { loadTranslations } from './translations.mts'
 import { readFileSync } from 'fs'
 import { dirname, join, resolve } from 'path'
+import { loadTranslations } from './translations.mts'
 
 /**
  * This is a plugin to split all translations into chunks of users meaning components that use that translation
@@ -64,6 +64,7 @@ export default (dir: string) => {
 
 		/**
 		 * Hook into module resolver and fake all '../[...]/l10n.ts' imports to inject our splitted translations
+		 *
 		 * @param source The file which is imported
 		 * @param importer The file that imported the file
 		 */
@@ -85,6 +86,7 @@ export default (dir: string) => {
 
 		/**
 		 * This function injects the translation chunks by returning a module that exports one translation object per component
+		 *
 		 * @param id The name of the module that should be loaded
 		 */
 		load(id) {

@@ -6,7 +6,6 @@
 import { t } from '../l10n.ts'
 
 export class Color {
-
 	/**
 	 * @param r - The red value
 	 * @param g - The green value
@@ -32,7 +31,6 @@ export class Color {
 		const toHex = (int: number) => `00${int.toString(16)}`.slice(-2)
 		return `#${toHex(this.r)}${toHex(this.g)}${toHex(this.b)}`
 	}
-
 }
 
 /**
@@ -77,49 +75,25 @@ function mixPalette(steps: number, color1: Color, color2: Color): Color[] {
  */
 export const defaultPalette = [
 	new Color(182, 70, 157, t('Purple')),
-	new Color(
-		191, 103, 139,
-		t('Rosy brown'), // TRANSLATORS: A color name for RGB(191, 103, 139)
+	new Color(191, 103, 139, t('Rosy brown'), // TRANSLATORS: A color name for RGB(191, 103, 139)
 	),
-	new Color(
-		201, 136, 121,
-		t('Feldspar'), // TRANSLATORS: A color name for RGB(201, 136, 121)
+	new Color(201, 136, 121, t('Feldspar'), // TRANSLATORS: A color name for RGB(201, 136, 121)
 	),
-	new Color(
-		211, 169, 103,
-		t('Whiskey'), // TRANSLATORS: A color name for RGB(211, 169, 103)
+	new Color(211, 169, 103, t('Whiskey'), // TRANSLATORS: A color name for RGB(211, 169, 103)
 	),
-	new Color(
-		221, 203, 85,
-		t('Gold'),
+	new Color(221, 203, 85, t('Gold')),
+	new Color(165, 184, 114, t('Olivine'), // TRANSLATORS: A color name for RGB(165, 184, 114)
 	),
-	new Color(
-		165, 184, 114,
-		t('Olivine'), // TRANSLATORS: A color name for RGB(165, 184, 114)
+	new Color(110, 166, 143, t('Acapulco'), // TRANSLATORS: A color name for RGB(110, 166, 143)
 	),
-	new Color(
-		110, 166, 143,
-		t('Acapulco'), // TRANSLATORS: A color name for RGB(110, 166, 143)
+	new Color(55, 148, 172, t('Boston Blue'), // TRANSLATORS: A color name for RGB(55, 148, 172)
 	),
-	new Color(
-		55, 148, 172,
-		t('Boston Blue'), // TRANSLATORS: A color name for RGB(55, 148, 172)
+	new Color(0, 130, 201, t('Nextcloud blue')),
+	new Color(45, 115, 190, t('Mariner'), // TRANSLATORS: A color name for RGB(45, 115, 190)
 	),
-	new Color(
-		0, 130, 201,
-		t('Nextcloud blue'),
+	new Color(91, 100, 179, t('Blue Violet'), // TRANSLATORS: A color name for RGB(91, 100, 179)
 	),
-	new Color(
-		45, 115, 190,
-		t('Mariner'), // TRANSLATORS: A color name for RGB(45, 115, 190)
-	),
-	new Color(
-		91, 100, 179,
-		t('Blue Violet'), // TRANSLATORS: A color name for RGB(91, 100, 179)
-	),
-	new Color(
-		136, 85, 168,
-		t('Deluge'), // TRANSLATORS: A color name for RGB(136, 85, 168)
+	new Color(136, 85, 168, t('Deluge'), // TRANSLATORS: A color name for RGB(136, 85, 168)
 	),
 ]
 
