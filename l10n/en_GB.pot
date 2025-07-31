@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Andi Chandler <andi@gowling.com>, 2024
-# John Molakvoæ <skjnldsv@protonmail.com>, 2024
+# Joas Schilling, 2025
+# Andi Chandler <andi@gowling.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>, 2025\n"
 "Language-Team: English (United Kingdom) (https://app.transifex.com/nextcloud/teams/64236/en_GB/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: en_GB\n"
@@ -72,6 +72,12 @@ msgstr "Boston Blue"
 msgid "busy"
 msgstr "busy"
 
+msgid "Calendar icon"
+msgstr "Calendar icon"
+
+msgid "Cancel"
+msgstr "Cancel"
+
 msgid "Cancel changes"
 msgstr "Cancel changes"
 
@@ -90,6 +96,9 @@ msgstr "Clear selected"
 msgid "Clear text"
 msgstr "Clear text"
 
+msgid "Clear value"
+msgstr "Clear value"
+
 msgid "Close"
 msgstr "Close"
 
@@ -101,6 +110,9 @@ msgstr "Close sidebar"
 
 msgid "Close Smart Picker"
 msgstr "Close Smart Picker"
+
+msgid "Close time Picker"
+msgstr "Close time Picker"
 
 msgid "Collapse menu"
 msgstr "Collapse menu"
@@ -119,6 +131,21 @@ msgstr "Custom"
 
 msgid "Dark skin tone"
 msgstr "Dark skin tone"
+
+msgid "Datepicker input"
+msgstr "Datepicker input"
+
+msgid "Datepicker menu"
+msgstr "Datepicker menu"
+
+msgid "Decrement hours"
+msgstr "Decrement hours"
+
+msgid "Decrement minutes"
+msgstr "Decrement minutes"
+
+msgid "Decrement seconds"
+msgstr "Decrement seconds"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -149,8 +176,8 @@ msgstr ""
 "Error getting related resources. Please contact your system administrator if"
 " you have any questions."
 
-msgid "External documentation for {name}"
-msgstr "External documentation for {name}"
+msgid "External documentation"
+msgstr "External documentation"
 
 msgid "Failed to add the item to the project"
 msgstr "Failed to add the item to the project"
@@ -177,6 +204,7 @@ msgstr "Food & Drink"
 msgid "Frequently used"
 msgstr "Frequently used"
 
+#. TRANSLATORS: This refers to global timezones in the timezone picker
 msgid "Global"
 msgstr "Global"
 
@@ -191,6 +219,15 @@ msgstr "Hide details"
 
 msgid "Hide password"
 msgstr "Hide password"
+
+msgid "Increment hours"
+msgstr "Increment hours"
+
+msgid "Increment minutes"
+msgstr "Increment minutes"
+
+msgid "Increment seconds"
+msgstr "Increment seconds"
 
 msgid "invisible"
 msgstr "invisible"
@@ -221,8 +258,16 @@ msgstr "Medium light skin tone"
 msgid "Medium skin tone"
 msgstr "Medium skin tone"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Message limit of {count} characters reached"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Message limit of %n character reached"
+msgstr[1] "Message limit of %n characters reached"
+
+msgid "Month picker"
+msgstr "Month picker"
+
+msgid "Month picker overlay"
+msgstr "Month picker overlay"
 
 msgid "More items …"
 msgstr "More items …"
@@ -236,6 +281,12 @@ msgstr "Neutral skin colour"
 msgid "Next"
 msgstr "Next"
 
+msgid "Next month"
+msgstr "Next month"
+
+msgid "Next year"
+msgstr "Next year"
+
 msgid "Nextcloud blue"
 msgstr "Nextcloud blue"
 
@@ -247,6 +298,9 @@ msgstr "No link provider found"
 
 msgid "No results"
 msgstr "No results"
+
+msgid "Now"
+msgstr "Now"
 
 msgid "Objects"
 msgstr "Objects"
@@ -261,17 +315,35 @@ msgstr "Olivine"
 msgid "online"
 msgstr "online"
 
+msgid "Open hours overlay"
+msgstr "Open hours overlay"
+
 msgid "Open link to \"{resourceName}\""
 msgstr "Open link to \"{resourceName}\""
 
 msgid "Open menu"
 msgstr "Open menu"
 
-msgid "Open navigation {shortcut}"
-msgstr "Open navigation {shortcut}"
+msgid "Open minutes overlay"
+msgstr "Open minutes overlay"
+
+msgid "Open months overlay"
+msgstr "Open months overlay"
+
+msgid "Open navigation"
+msgstr "Open navigation"
+
+msgid "Open seconds overlay"
+msgstr "Open seconds overlay"
 
 msgid "Open sidebar"
 msgstr "Open sidebar"
+
+msgid "Open time picker"
+msgstr "Open time picker"
+
+msgid "Open years overlay"
+msgstr "Open years overlay"
 
 msgid "Options"
 msgstr "Options"
@@ -285,32 +357,23 @@ msgstr "Pause slideshow"
 msgid "People & Body"
 msgstr "People & Body"
 
-msgid "Pick a date"
-msgstr "Pick a date"
-
-msgid "Pick a date and a time"
-msgstr "Pick a date and a time"
-
-msgid "Pick a month"
-msgstr "Pick a month"
-
-msgid "Pick a time"
-msgstr "Pick a time"
-
-msgid "Pick a week"
-msgstr "Pick a week"
-
-msgid "Pick a year"
-msgstr "Pick a year"
+msgid "Pick"
+msgstr "Pick"
 
 msgid "Pick an emoji"
 msgstr "Pick an emoji"
 
-msgid "Please select a time zone:"
-msgstr "Please select a time zone:"
+msgid "Please choose a date"
+msgstr "Please choose a date"
 
 msgid "Previous"
 msgstr "Previous"
+
+msgid "Previous month"
+msgstr "Previous month"
+
+msgid "Previous year"
+msgstr "Previous year"
 
 msgid "Provider icon"
 msgstr "Provider icon"
@@ -343,8 +406,8 @@ msgstr "Search"
 msgid "Search emoji"
 msgstr "Search emoji"
 
-msgid "Search for time zone"
-msgstr "Search for time zone"
+msgid "Search for timezone"
+msgstr "Search for timezone"
 
 msgid "Search results"
 msgstr "Search results"
@@ -364,8 +427,29 @@ msgstr "seconds ago"
 msgid "Select a tag"
 msgstr "Select a tag"
 
+msgid "Select date"
+msgstr "Select date"
+
+msgid "Select date and time"
+msgstr "Select date and time"
+
+msgid "Select month"
+msgstr "Select month"
+
 msgid "Select provider"
 msgstr "Select provider"
+
+msgid "Select time"
+msgstr "Select time"
+
+msgid "Select time range"
+msgstr "Select time range"
+
+msgid "Select week"
+msgstr "Select week"
+
+msgid "Select year"
+msgstr "Select year"
 
 msgid "Selected"
 msgstr "Selected"
@@ -406,8 +490,20 @@ msgstr "Start typing to search"
 msgid "Submit"
 msgstr "Submit"
 
+msgid "Switch AM/PM mode"
+msgstr "Switch AM/PM mode"
+
 msgid "Symbols"
 msgstr "Symbols"
+
+msgid "Time picker"
+msgstr "Time picker"
+
+msgid "Timezone"
+msgstr "Timezone"
+
+msgid "Toggle overlay"
+msgstr "Toggle overlay"
 
 msgid "Travel & Places"
 msgstr "Travel & Places"
@@ -430,9 +526,18 @@ msgstr "User status: {status}"
 msgid "View team"
 msgstr "View team"
 
+msgid "W"
+msgstr "W"
+
 #. TRANSLATORS: A color name for RGB(211, 169, 103)
 msgid "Whiskey"
 msgstr "Whiskey"
 
 msgid "Write a message …"
 msgstr "Write a message …"
+
+msgid "Year picker"
+msgstr "Year picker"
+
+msgid "Year picker overlay"
+msgstr "Year picker overlay"
