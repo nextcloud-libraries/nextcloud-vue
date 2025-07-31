@@ -72,7 +72,7 @@ export default {
 		isIconUrl() {
 			try {
 				return !!(new URL(this.icon, this.icon.startsWith('/') ? window.location.origin : undefined))
-			} catch (error) {
+			} catch {
 				return false
 			}
 		},

@@ -1295,7 +1295,7 @@ export default {
 		isIconUrl(url) {
 			try {
 				return !!(new URL(url, url.startsWith('/') ? window.location.origin : undefined))
-			} catch (error) {
+			} catch {
 				return false
 			}
 		},

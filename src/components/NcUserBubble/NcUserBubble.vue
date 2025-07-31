@@ -164,7 +164,7 @@ const isAvatarUrl = computed(() => {
 	try {
 		const url = new URL(props.avatarImage)
 		return !!url
-	} catch (error) {
+	} catch {
 		return false
 	}
 })
@@ -188,7 +188,7 @@ const hasUrl = computed(() => {
 	try {
 		const url = new URL(props.url, props.url?.startsWith?.('/') ? window.location.href : undefined)
 		return !!url
-	} catch (error) {
+	} catch {
 		warn('[NcUserBubble] Invalid URL passed', { url: props.url })
 		return false
 	}
