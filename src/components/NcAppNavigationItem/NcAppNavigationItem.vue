@@ -287,12 +287,12 @@ Just set the `pinned` prop.
 			v-slot="{ href: routerLinkHref, navigate, isActive }"
 			v-bind="{ ...isRouterLink && { custom: true, to } }">
 			<div
+				class="app-navigation-entry"
 				:class="{
 					'app-navigation-entry--editing': editingActive,
 					'app-navigation-entry--deleted': undo,
 					active: (isActive && to) || active,
-				}"
-				class="app-navigation-entry">
+				}">
 				<!-- Icon and name -->
 				<a
 					v-if="!undo"
@@ -311,8 +311,8 @@ Just set the `pinned` prop.
 					<!-- icon if not collapsible -->
 					<!-- never show the icon over the collapsible if mobile -->
 					<div
-						:class="{ [icon]: icon }"
-						class="app-navigation-entry-icon">
+						class="app-navigation-entry-icon"
+						:class="{ [icon]: icon }">
 						<NcLoadingIcon v-if="loading" />
 						<!-- @slot Slot for the optional leading icon -->
 						<slot v-else name="icon" />
@@ -352,10 +352,10 @@ Just set the `pinned` prop.
 					<NcActions
 						v-if="!!$slots.actions || (editable && !editingActive) || undo"
 						ref="actions"
-						:inline="inlineActions"
 						class="app-navigation-entry__actions"
 						container="#app-navigation-vue"
 						:boundaries-element="actionsBoundariesElement"
+						:inline="inlineActions"
 						:placement="menuPlacement"
 						:open="menuOpen"
 						:force-menu="forceMenu"

@@ -229,12 +229,14 @@ function select() {
 				:aria-describedby
 				aria-live="polite"
 				class="textarea__input"
-				:class="[inputClass,
+				:class="[
+					inputClass,
 					{
 						'textarea__input--label-outside': labelOutside,
 						'textarea__input--success': success,
 						'textarea__input--error': error,
-					}]"
+					},
+				]"
 				:disabled
 				:placeholder="placeholder || label"
 				:style="{ resize }"

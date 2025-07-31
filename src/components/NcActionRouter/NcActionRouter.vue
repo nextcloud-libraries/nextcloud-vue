@@ -6,20 +6,20 @@
 <template>
 	<li class="action" :role="isInSemanticMenu && 'presentation'">
 		<RouterLink
-			:to="to"
-			:aria-label="ariaLabel"
-			:title="title"
+			:aria-label
 			class="action-router focusable"
 			rel="nofollow noreferrer noopener"
 			:role="isInSemanticMenu && 'menuitem'"
+			:title
+			:to
 			@click="onClick">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
 				<span
-					:class="[isIconUrl ? 'action-router__icon--url' : icon]"
-					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+					aria-hidden="true"
 					class="action-router__icon"
-					aria-hidden="true" />
+					:class="[isIconUrl ? 'action-router__icon--url' : icon]"
+					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }" />
 			</slot>
 
 			<!-- long text with name -->

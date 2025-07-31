@@ -49,15 +49,15 @@
 
 <template>
 	<li
+		class="app-navigation-entry"
 		:class="{
 			'app-navigation-entry--newItemActive': newItemActive,
-		}"
-		class="app-navigation-entry">
+		}">
 		<!-- New Item -->
 		<button class="app-navigation-entry-button" @click="handleNewItem">
 			<span
-				:class="{ [icon]: !loading }"
-				class="app-navigation-entry-icon">
+				class="app-navigation-entry-icon"
+				:class="{ [icon]: !loading }">
 				<NcLoadingIcon v-if="loading" />
 				<slot v-else name="icon" />
 			</span>

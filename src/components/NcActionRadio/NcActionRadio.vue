@@ -50,12 +50,12 @@ So that only one of each name set can be selected at the same time.
 				:id="id"
 				ref="radio"
 				v-model="model"
+				class="radio action-radio__radio"
+				:class="{ focusable: isFocusable }"
 				:disabled="disabled"
 				:name="name"
 				:value="value"
-				:class="{ focusable: isFocusable }"
 				type="radio"
-				class="radio action-radio__radio"
 				@keydown.enter.exact.prevent="toggleInput"
 				@change="onChange">
 			<label ref="label" :for="id" class="action-radio__label">{{ text }}</label>

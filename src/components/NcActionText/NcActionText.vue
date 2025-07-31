@@ -12,10 +12,10 @@
 			<slot name="icon">
 				<span
 					v-if="icon !== ''"
-					:class="[isIconUrl ? 'action-text__icon--url' : icon]"
 					aria-hidden="true"
-					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
-					class="action-text__icon" />
+					class="action-text__icon"
+					:class="[isIconUrl ? 'action-text__icon--url' : icon]"
+					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }" />
 			</slot>
 
 			<!-- long text with name -->

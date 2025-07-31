@@ -155,14 +155,14 @@ export default {
 <template>
 	<span
 		v-click-outside="closeMenu"
-		:title="tooltip"
+		class="avatardiv popovermenu-wrapper"
 		:class="{
 			'avatardiv--unknown': userDoesNotExist,
 			'avatardiv--with-menu': hasMenu,
 			'avatardiv--with-menu-loading': contactsMenuLoading,
 		}"
 		:style="avatarStyle"
-		class="avatardiv popovermenu-wrapper">
+		:title="tooltip">
 		<!-- @slot Icon slot -->
 		<slot name="icon">
 			<!-- Avatar icon or image -->

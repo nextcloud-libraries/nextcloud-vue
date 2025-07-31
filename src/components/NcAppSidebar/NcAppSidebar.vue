@@ -577,11 +577,11 @@ export default {
 			</Teleport>
 
 			<header
+				class="app-sidebar-header"
 				:class="{
 					'app-sidebar-header--with-figure': isSlotPopulated($slots.header?.()) || background,
 					'app-sidebar-header--compact': compact,
-				}"
-				class="app-sidebar-header">
+				}">
 				<!-- @slot Alternative to the default header info: use for bare NcAppSidebar with tabs.
 					NcAppSidebarHeader would be required to use for accessibility reasons.
 					This will be overridden by `empty` prop.
@@ -592,10 +592,10 @@ export default {
 						<!-- sidebar header illustration/figure -->
 						<div
 							v-if="(isSlotPopulated($slots.header?.()) || background)"
+							class="app-sidebar-header__figure"
 							:class="{
 								'app-sidebar-header__figure--with-action': hasFigureClickListener,
 							}"
-							class="app-sidebar-header__figure"
 							:style="{
 								backgroundImage: `url(${background})`,
 							}"
@@ -607,13 +607,13 @@ export default {
 
 						<!-- sidebar details -->
 						<div
+							class="app-sidebar-header__desc"
 							:class="{
 								'app-sidebar-header__desc--with-tertiary-action': canStar || isSlotPopulated($slots['tertiary-actions']?.()),
 								'app-sidebar-header__desc--editable': nameEditable && !subname,
 								'app-sidebar-header__desc--with-subname--editable': nameEditable && subname,
 								'app-sidebar-header__desc--without-actions': !isSlotPopulated($slots['secondary-actions']?.()),
-							}"
-							class="app-sidebar-header__desc">
+							}">
 							<!-- favourite icon -->
 							<div v-if="canStar || isSlotPopulated($slots['tertiary-actions']?.())" class="app-sidebar-header__tertiary-actions">
 								<slot name="tertiary-actions">

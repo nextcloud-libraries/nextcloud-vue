@@ -327,10 +327,10 @@ export default {
 		<button
 			:aria-label="ariaLabel"
 			class="action-button button-vue"
-			:class="[{
+			:class="{
 				'action-button--active': isChecked,
 				focusable: isFocusable,
-			}]"
+			}"
 			:disabled="disabled"
 			:title="title"
 			:type="nativeType"
