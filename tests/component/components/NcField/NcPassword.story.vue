@@ -17,8 +17,8 @@
 import NcPasswordField from '../../../../src/components/NcPasswordField/NcPasswordField.vue'
 
 withDefaults(defineProps<{
-	asText?: boolean
-	visible?: boolean
+	asText?: boolean | undefined
+	visible?: boolean | undefined
 }>(), {
 	asText: undefined,
 	visible: undefined,

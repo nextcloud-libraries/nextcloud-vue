@@ -7,5 +7,5 @@
  * Global test setup used to configure process environment.
  */
 export function setup() {
-	process.env.TZ = 'UTC'
+	globalThis.process.env.TZ = 'UTC'
 }
