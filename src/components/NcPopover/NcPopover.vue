@@ -215,6 +215,7 @@ import { createFocusTrap } from 'focus-trap'
 import { warn } from 'vue'
 import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
 import { getTrapStack } from '../../utils/focusTrap.ts'
+import logger from '../../utils/logger.ts'
 import { isRtl } from '../../utils/rtl.ts'
 
 /**
@@ -522,8 +523,8 @@ export default {
 			try {
 				this.$focusTrap?.deactivate(options)
 				this.$focusTrap = null
-			} catch (err) {
-				console.warn(err)
+			} catch (error) {
+				logger.warn('[NcPopover] Failed to clear focus trap', { error })
 			}
 		},
 

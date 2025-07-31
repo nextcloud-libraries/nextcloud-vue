@@ -243,9 +243,9 @@ export default {
 			try {
 				const response = await axios.get(this.url)
 				this.resources = response.data.ocs?.data
-			} catch (e) {
-				this.error = e
-				console.error(e)
+			} catch (error) {
+				this.error = error
+				logger.error('[NcRelatedResourcesPanel] Failed to fetch resources', { error })
 			} finally {
 				this.loading = false
 			}

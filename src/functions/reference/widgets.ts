@@ -74,7 +74,7 @@ export function renderWidget(el: HTMLElement, options: ReferenceWidgetRenderProp
 	}
 
 	if (!window._vue_richtext_widgets[richObjectType]) {
-		console.error('Widget for rich object type ' + richObjectType + ' not registered')
+		logger.error('Widget for rich object type ' + richObjectType + ' not registered')
 		return
 	}
 

@@ -293,6 +293,7 @@ import { emojiAddRecent, emojiSearch } from '../../functions/emoji/index.ts'
 import { n, t } from '../../l10n.ts'
 import richEditor from '../../mixins/richEditor/index.js'
 import { createElementId } from '../../utils/createElementId.ts'
+import logger from '../../utils/logger.ts'
 import { getLinkWithPicker, searchProvider } from '../NcRichText/index.js'
 
 /**
@@ -694,7 +695,7 @@ export default {
 					}
 				})
 				.catch((error) => {
-					console.debug('Smart picker promise rejected:', error)
+					logger.debug('[NcRichContenteditable] Smart picker promise rejected:', { error })
 					const tmpElem = document.getElementById('tmp-smart-picker-result-node')
 					this.setCursorAfter(tmpElem)
 					tmpElem.remove()

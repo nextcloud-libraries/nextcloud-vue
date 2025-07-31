@@ -429,7 +429,7 @@ export default {
 			 * Emitted when the list pane is resized by the user
 			 */
 			this.$emit('resizeList', { size: listPaneSize })
-			console.debug('AppContent pane config', listPaneSize)
+			logger.debug('[NcAppContent] pane config', { listPaneSize })
 		},
 
 		// $slots is not reactive, we need to update this manually
@@ -442,7 +442,7 @@ export default {
 		restorePaneConfig() {
 			const listPaneSize = parseInt(browserStorage.getItem(this.paneConfigID), 10)
 			if (!isNaN(listPaneSize) && listPaneSize !== this.listPaneSize) {
-				console.debug('AppContent pane config', listPaneSize)
+				logger.debug('[NcAppContent] pane config', { listPaneSize })
 				this.listPaneSize = listPaneSize
 				return listPaneSize
 			}

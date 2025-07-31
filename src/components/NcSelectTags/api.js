@@ -5,6 +5,7 @@
 
 import axios from '@nextcloud/axios'
 import { generateRemoteUrl } from '@nextcloud/router'
+import logger from '../../utils/logger.ts'
 
 /**
  *
@@ -52,8 +53,8 @@ function parseXml(xml) {
 	let dom = null
 	try {
 		dom = (new DOMParser()).parseFromString(xml, 'text/xml')
-	} catch (e) {
-		console.error('Failed to parse xml document', e)
+	} catch (error) {
+		logger.error('[NcSelectTags] Failed to parse xml document', { error })
 	}
 	return dom
 }

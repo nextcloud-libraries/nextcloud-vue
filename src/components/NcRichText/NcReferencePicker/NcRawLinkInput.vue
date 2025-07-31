@@ -43,6 +43,7 @@ import debounce from 'debounce'
 import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
 import NcReferenceWidget from '../NcReferenceWidget.vue'
 import { t } from '../../../l10n.ts'
+import logger from '../../../utils/logger.ts'
 import NcEmptyContent from '../../NcEmptyContent/index.ts'
 import NcLoadingIcon from '../../NcLoadingIcon/index.ts'
 import NcTextField from '../../NcTextField/index.ts'
@@ -129,7 +130,7 @@ export default {
 					this.reference = response.data.ocs.data.references[this.inputValue]
 				})
 				.catch((error) => {
-					console.error(error)
+					logger.error('[NcRawLinkInput] Failed to update reference', { error })
 				})
 				.then(() => {
 					this.loading = false
