@@ -787,7 +787,7 @@ export default {
 
 			// eslint-disable-next-line camelcase
 			if (user === getCurrentUser()?.uid && typeof oc_userconfig !== 'undefined') {
-				avatarUrl += '?v=' + oc_userconfig.avatar.version
+				avatarUrl += '?v=' + window.oc_userconfig.avatar.version
 			}
 
 			return avatarUrl
