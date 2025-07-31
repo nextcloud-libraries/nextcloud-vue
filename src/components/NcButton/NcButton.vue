@@ -451,10 +451,9 @@ export type ButtonSize = 'small'
 	| 'normal'
 	| 'large'
 
-export type ButtonType
-	= | 'submit'
-		| 'reset'
-		| 'button'
+export type ButtonType = 'submit'
+	| 'reset'
+	| 'button'
 
 export type ButtonVariant = 'primary'
 	| 'secondary'

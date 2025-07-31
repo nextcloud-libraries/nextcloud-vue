@@ -311,7 +311,8 @@ export default {
 			type: String,
 			default: 'text',
 			validator(type) {
-				return ['date',
+				return [
+					'date',
 					'datetime-local',
 					'month',
 					'multiselect',
@@ -324,7 +325,8 @@ export default {
 					'url',
 					'week',
 					'color',
-					'email'].indexOf(type) > -1
+					'email',
+				].includes(type)
 			},
 		},
 

@@ -409,25 +409,29 @@ const dialogTagName = computed(() => props.isForm && !hasNavigation.value ? 'for
  * Listener to assign to the dialog element
  * This only sets the `@submit` listener if the dialog element is a form
  */
-const dialogListeners = computed(() => dialogTagName.value === 'form'
-	? {
+const dialogListeners = computed(() => {
+	if (dialogTagName.value !== 'form') {
+		return {}
+	}
+
+	return {
 		/**
 		 * @param event - Form submit event
 		 */
-			submit(event: SubmitEvent) {
-				event.preventDefault()
-				emit('submit', event)
-			},
+		submit(event: SubmitEvent) {
+			event.preventDefault()
+			emit('submit', event)
+		},
 
-			/**
-			 * @param event - Form submit event
-			 */
-			reset(event: Event) {
-				event.preventDefault()
-				emit('reset', event)
-			},
-		}
-	: {})
+		/**
+		 * @param event - Form submit event
+		 */
+		reset(event: Event) {
+			event.preventDefault()
+			emit('reset', event)
+		},
+	}
+})
 
 /**
  * If the underlying modal is shown
