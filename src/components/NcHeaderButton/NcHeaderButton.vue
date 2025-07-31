@@ -87,7 +87,7 @@ export default {
 
 <script setup lang="ts">
 import { createElementId } from '../../utils/createElementId.ts'
-import NcButton from '../NcButton/index.js'
+import NcButton from '../NcButton/index.ts'
 
 defineProps<{
 	/** Unique id for this menu */
