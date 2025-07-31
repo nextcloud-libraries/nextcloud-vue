@@ -35,7 +35,7 @@ test.describe('XML-like text (escaped and unescaped)', () => {
 				useMarkdown: true,
 			},
 		})
-		await expect(component.getByRole('code')).toContainText('<span>text</span> <span>text</span>' + '\n')
+		await expect(component.getByRole('code')).toContainText('<span>text</span> <span>text</span>\n')
 	})
 	test('renders with Flavored Markdown, escaping XML', async ({ mount }) => {
 		const component = await mount(NcRichText, {
@@ -53,7 +53,7 @@ test.describe('XML-like text (escaped and unescaped)', () => {
 				useExtendedMarkdown: true,
 			},
 		})
-		await expect(component.getByRole('code')).toContainText('<span>text</span> <span>text</span>' + '\n')
+		await expect(component.getByRole('code')).toContainText('<span>text</span> <span>text</span>\n')
 	})
 })
 

@@ -43,6 +43,7 @@ describe('NcTextArea', () => {
 
 		const wrapper = mount(NcTextArea, {
 			props: {
+				modelValue: '',
 				label: 'The label',
 			},
 		})
@@ -52,6 +53,7 @@ describe('NcTextArea', () => {
 	it('should NOT have the label as the placeholder on Nextcloud 32', () => {
 		const wrapper = mount(NcTextArea, {
 			props: {
+				modelValue: '',
 				label: 'The label',
 			},
 		})
