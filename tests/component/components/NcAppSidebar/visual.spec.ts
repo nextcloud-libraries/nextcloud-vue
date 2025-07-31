@@ -11,7 +11,10 @@ test.skip(({ browserName }) => browserName !== 'chromium')
 test.beforeEach(async ({ page }) => {
 	const handle = await page.locator('#content').elementHandle()
 	expect(handle).not.toBeNull()
-	await handle!.evaluate((node) => { node.innerHTML = ''; node.id = 'root' })
+	await handle!.evaluate((node) => {
+		node.innerHTML = ''
+		node.id = 'root'
+	})
 })
 
 new Array(2 ** 5)

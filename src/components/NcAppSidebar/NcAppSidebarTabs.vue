@@ -214,8 +214,7 @@ export default {
 		 * Update the current active tab
 		 */
 		updateActive() {
-			this.activeTab = this.active
-				&& this.tabs.some((tab) => tab.id === this.active)
+			this.activeTab = (this.active && this.tabs.some((tab) => tab.id === this.active))
 				? this.active
 				: this.tabs.length > 0
 					? this.tabs[0].id

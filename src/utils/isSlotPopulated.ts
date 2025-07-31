@@ -14,12 +14,17 @@ import { Comment, Fragment, Text } from 'vue'
  */
 export function isSlotPopulated(vnodes?: VNode[] | VNodeNormalizedChildren) {
 	return Array.isArray(vnodes) && vnodes.some((node) => {
-		if (node === null) { return false }
-		if (typeof node === 'object') {
+		if (node === null) {
+			return false
+		} else if (typeof node === 'object') {
 			const vnode = node as VNode
-			if (vnode.type === Comment) { return false }
-			if (vnode.type === Fragment && !isSlotPopulated(vnode.children)) { return false }
-			if (vnode.type === Text && !(vnode.children as string).trim()) { return false }
+			if (vnode.type === Comment) {
+				return false
+			} else if (vnode.type === Fragment && !isSlotPopulated(vnode.children)) {
+				return false
+			} else if (vnode.type === Text && !(vnode.children as string).trim()) {
+				return false
+			}
 		}
 		return true
 	})
