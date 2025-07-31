@@ -65,6 +65,7 @@ export default {
 		NcTeamResources,
 	},
 
+	/* eslint vue/require-prop-comment: warn -- TODO: Add a proper doc block about what this props do */
 	props: {
 		/**
 		 * The provider id implemented with `\OCA\RelatedResources\IRelatedResourceProvider::getProviderId()`

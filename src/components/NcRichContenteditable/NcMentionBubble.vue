@@ -33,6 +33,7 @@ import { getAvatarUrl } from '../../utils/getAvatarUrl.ts'
 export default {
 	name: 'NcMentionBubble',
 
+	/* eslint vue/require-prop-comment: warn -- TODO: Add a proper doc block about what this props do */
 	props: {
 		/**
 		 * Id of the bubble
