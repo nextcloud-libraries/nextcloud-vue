@@ -110,6 +110,9 @@ export default {
 			default: true,
 		},
 
+		/**
+		 * Placeholder of the search
+		 */
 		searchPlaceholder: {
 			type: String,
 			default: null,

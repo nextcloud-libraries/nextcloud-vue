@@ -89,11 +89,17 @@ export default {
 	},
 
 	props: {
+		/**
+		 * The collection
+		 */
 		collection: {
 			type: Object,
 			default: null,
 		},
 
+		/**
+		 * Current error if any
+		 */
 		error: {
 			type: String,
 			default: undefined,

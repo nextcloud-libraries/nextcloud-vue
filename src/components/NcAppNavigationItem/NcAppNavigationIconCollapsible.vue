@@ -38,6 +38,9 @@ export default {
 	},
 
 	props: {
+		/**
+		 * Is the list currently open (or collapsed)
+		 */
 		open: {
 			type: Boolean,
 			default: true,

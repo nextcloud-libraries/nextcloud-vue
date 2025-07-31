@@ -343,6 +343,9 @@ export default {
 	},
 
 	props: {
+		/**
+		 * The main text
+		 */
 		text: {
 			type: String,
 			default: '',
@@ -394,6 +397,9 @@ export default {
 			default: false,
 		},
 
+		/**
+		 * Automatically convert link-like text to markdown links
+		 */
 		autolink: {
 			type: Boolean,
 			default: true,

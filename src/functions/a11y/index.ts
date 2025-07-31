@@ -6,11 +6,9 @@
 /**
  * Return true if the DOM event is an accessible mouse or keyboard element activation, false otherwise
  *
- * @param event DOM event
- *
- * @return
+ * @param event - DOM event
  */
-export function isA11yActivation(event: Event) {
+export function isA11yActivation(event: Event): boolean {
 	if (event.type === 'click') {
 		return true
 	}

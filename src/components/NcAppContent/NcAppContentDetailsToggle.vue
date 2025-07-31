@@ -26,7 +26,7 @@ onBeforeUnmount(() => {
  *
  * @param hide - if true the navigation toggle is visually hidden
  */
-function toggleAppNavigationButton(hide = true) {
+function toggleAppNavigationButton(hide: boolean = true) {
 	const appNavigationToggle = document.querySelector<HTMLElement>('.app-navigation .app-navigation-toggle')
 	if (appNavigationToggle) {
 		appNavigationToggle.style.display = hide ? 'none' : ''

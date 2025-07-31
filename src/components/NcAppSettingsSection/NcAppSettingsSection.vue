@@ -20,11 +20,17 @@ export default {
 	inject: ['registerSection', 'unregisterSection'],
 
 	props: {
+		/**
+		 * Name of the section
+		 */
 		name: {
 			type: String,
 			required: true,
 		},
 
+		/**
+		 * The id of the section
+		 */
 		id: {
 			type: String,
 			required: true,

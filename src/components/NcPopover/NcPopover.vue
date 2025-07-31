@@ -289,6 +289,9 @@ export default {
 			default: 'bottom',
 		},
 
+		/**
+		 * Class to be applied to the popover base
+		 */
 		popoverBaseClass: {
 			type: String,
 			default: '',

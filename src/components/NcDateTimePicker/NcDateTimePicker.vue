@@ -328,6 +328,7 @@ const emit = defineEmits<{
 	'update:modelValue': [Date | [Date, Date] | null]
 	'update:timezoneId': [string]
 }>()
+
 const target = useTemplateRef('target')
 const picker = useTemplateRef('picker')
 

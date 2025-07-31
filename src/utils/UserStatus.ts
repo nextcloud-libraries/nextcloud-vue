@@ -8,8 +8,9 @@ import { t } from '../l10n.ts'
 type Status = 'online' | 'away' | 'busy' | 'dnd' | 'invisible' | 'offline'
 
 /**
+ * Get the translated label for a given user status
  *
- * @param status
+ * @param status - The user status
  */
 export function getUserStatusText(status: Status): string {
 	switch (status) {
