@@ -49,7 +49,9 @@ const container = useTemplateRef('wrapperElement')
 const ignore = computed(() => Array.isArray(excludeClickOutsideSelectors)
 	? excludeClickOutsideSelectors
 	: excludeClickOutsideSelectors.split(' '))
-onClickOutside(container, () => { open.value = false }, { ignore })
+onClickOutside(container, () => {
+	open.value = false
+}, { ignore })
 </script>
 
 <template>

@@ -14,7 +14,10 @@ test.skip(({ browserName }) => browserName !== 'chromium')
 test.beforeEach(async ({ mount, page }) => {
 	const handle = await page.locator('#app-content').elementHandle()
 	expect(handle).not.toBeNull()
-	await handle!.evaluate((node) => { node.innerHTML = ''; node.id = 'root' })
+	await handle!.evaluate((node) => {
+		node.innerHTML = ''
+		node.id = 'root'
+	})
 
 	await mount<HooksConfig>(AppNavigation, {
 		hooksConfig: {

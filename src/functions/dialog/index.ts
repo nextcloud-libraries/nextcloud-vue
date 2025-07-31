@@ -79,7 +79,7 @@ export function spawnDialog<
 				element.remove()
 				resolve(payload)
 			},
-			'onVue:unmounted': function() {
+			'onVue:unmounted': () => {
 				app.unmount()
 				element.remove()
 				reject(new Error('Dialog was unmounted without close event'))
