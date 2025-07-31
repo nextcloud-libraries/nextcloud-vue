@@ -133,7 +133,6 @@ export default {
 		 */
 		href: {
 			type: String,
-			default: '#',
 			required: true,
 			validator: (value) => {
 				// href is either an anchor or a valid url starting with a scheme or a relative path

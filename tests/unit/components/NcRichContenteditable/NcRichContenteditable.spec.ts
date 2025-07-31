@@ -16,7 +16,7 @@ Tribute.mockImplementation(() => ({
 }))
 
 function mountNcRichContenteditable({ props, attrs }: any = {}) {
-	let currentValue = props?.modelVvalue
+	let currentValue = props?.modelVvalue ?? ''
 
 	const wrapper = mount(NcRichContenteditable, {
 		props: {
