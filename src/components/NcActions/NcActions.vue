@@ -1888,9 +1888,7 @@ export default {
 										},
 									],
 								},
-								[
-									renderActionsPopover(menuActions),
-								],
+								[renderActionsPopover(menuActions)],
 							)
 						: null,
 				],

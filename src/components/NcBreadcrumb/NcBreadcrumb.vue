@@ -189,13 +189,15 @@ export default {
 		 * The attributes to pass to `router-link` or `a`
 		 */
 		linkAttributes() {
-			// If it's a router-link, we pass `to` and `exact`, if its an <a/> element, we pass `href`, otherwise we have a button
-			return this.to
-				? { to: this.to, ...this.$attrs }
-				: (this.href
-						? { href: this.href, ...this.$attrs }
-						: this.$attrs
-					)
+			// If it's a router-link, we pass `to` and `exact`
+			if (this.to) {
+				return { to: this.to, ...this.$attrs }
+			} else if (this.href) {
+				// if its an <a/> element, we pass `href`
+				return { href: this.href, ...this.$attrs }
+			}
+			// otherwise we have a button
+			return this.$attrs
 		},
 	},
 
