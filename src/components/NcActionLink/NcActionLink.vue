@@ -75,10 +75,10 @@ export default {
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
 				<span
-					:class="[isIconUrl ? 'action-link__icon--url' : icon]"
-					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
 					aria-hidden="true"
-					class="action-link__icon" />
+					class="action-link__icon"
+					:class="[isIconUrl ? 'action-link__icon--url' : icon]"
+					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }" />
 			</slot>
 
 			<!-- long text with name -->

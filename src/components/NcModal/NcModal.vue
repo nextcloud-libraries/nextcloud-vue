@@ -219,20 +219,20 @@ export default {
 						<!-- Play-pause toggle -->
 						<button
 							v-if="hasNext && enableSlideshow"
-							:class="{ 'play-pause-icons--paused': slideshowPaused }"
 							class="play-pause-icons"
+							:class="{ 'play-pause-icons--paused': slideshowPaused }"
 							:title="playPauseName"
 							type="button"
 							@click="togglePlayPause">
 							<!-- Play/pause icons -->
 							<Play
 								v-if="!playing"
-								:size="iconSize"
-								class="play-pause-icons__play" />
+								class="play-pause-icons__play"
+								:size="iconSize" />
 							<Pause
 								v-else
-								:size="iconSize"
-								class="play-pause-icons__pause" />
+								class="play-pause-icons__pause"
+								:size="iconSize" />
 							<span class="hidden-visually">
 								{{ playPauseName }}
 							</span>
@@ -279,11 +279,11 @@ export default {
 			<transition :name="modalTransitionName" appear>
 				<div
 					v-show="showModal"
+					class="modal-wrapper"
 					:class="[
 						`modal-wrapper--${size}`,
 						{ 'modal-wrapper--spread-navigation': spreadNavigation },
 					]"
-					class="modal-wrapper"
 					@mousedown.self="handleClickModalWrapper">
 					<!-- Navigation button -->
 					<transition name="fade-visibility" appear>

@@ -220,15 +220,17 @@ function handleInput(event: Event) {
 <template>
 	<div
 		class="input-field"
-		:class="[{
-			'input-field--disabled': disabled,
-			'input-field--error': error,
-			'input-field--label-outside': labelOutside || !isValidLabel,
-			'input-field--leading-icon': !!$slots.icon,
-			'input-field--trailing-icon': hasTrailingIcon,
-			'input-field--pill': pill,
-			'input-field--success': success,
-		}, $props.class]">
+		:class="[
+			{
+				'input-field--disabled': disabled,
+				'input-field--error': error,
+				'input-field--label-outside': labelOutside || !isValidLabel,
+				'input-field--leading-icon': !!$slots.icon,
+				'input-field--trailing-icon': hasTrailingIcon,
+				'input-field--pill': pill,
+				'input-field--success': success,
+			}, $props.class,
+		]">
 		<div class="input-field__main-wrapper">
 			<input
 				v-bind="$attrs"

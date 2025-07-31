@@ -45,8 +45,8 @@ Renders a button element when given no redirection props, otherwise, renders <a/
 			:container="actionsContainer"
 			:force-menu="forceMenu"
 			force-name
-			:open="open"
 			:menu-name="name"
+			:open="open"
 			:title
 			variant="tertiary"
 			@update:open="onOpenChange">

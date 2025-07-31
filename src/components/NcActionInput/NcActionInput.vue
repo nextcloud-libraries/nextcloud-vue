@@ -124,20 +124,20 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 <template>
 	<li class="action" :class="[{ 'action--disabled': disabled }, $props.class]">
 		<span
+			class="action-input"
 			:class="{
 				'action-input-picker--disabled': disabled,
 				'action-input--visible-label': labelOutside && label,
 			}"
-			class="action-input"
 			@mouseleave="onLeave">
 			<span class="action-input__icon-wrapper">
 				<!-- @slot Manually provide icon -->
 				<slot name="icon">
 					<span
-						:class="[isIconUrl ? 'action-input__icon--url' : icon]"
-						:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
 						aria-hidden="true"
-						class="action-input__icon" />
+						class="action-input__icon"
+						:class="[isIconUrl ? 'action-input__icon--url' : icon]"
+						:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }" />
 				</slot>
 			</span>
 
@@ -221,9 +221,9 @@ For the `NcSelect` component, all events will be passed through. Please see the 
 									@update:model-value="onUpdateModelValue"
 									@submit="$refs.form.requestSubmit()">
 									<button
-										:style="{ 'background-color': modelValue }"
 										class="colorpicker__preview"
-										:class="{ focusable: isFocusable }" />
+										:class="{ focusable: isFocusable }"
+										:style="{ 'background-color': modelValue }" />
 								</NcColorPicker>
 							</div>
 						</div>

@@ -70,11 +70,11 @@ export default {
 
 				<textarea
 					:id="computedId"
+					class="action-text-editable__textarea"
+					:class="[{ focusable: isFocusable }]"
 					:disabled="disabled"
 					:value="modelValue"
 					v-bind="$attrs"
-					class="action-text-editable__textarea"
-					:class="[{ focusable: isFocusable }]"
 					@input="onInput" />
 
 				<!-- allow the custom font to inject a ::before
