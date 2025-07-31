@@ -615,7 +615,7 @@ export default {
 				 * @type {string}
 				 */
 				const filteredChars = user.match(/[\p{L}\p{N}\s]/gu)
-				if (filteredChars == null) {
+				if (!filteredChars) {
 					return initials
 				}
 
