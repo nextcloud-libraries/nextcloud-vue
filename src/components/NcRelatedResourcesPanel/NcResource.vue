@@ -33,6 +33,7 @@ export default {
 		NcButton,
 	},
 
+	/* eslint vue/require-prop-comment: warn -- TODO: Add a proper doc block about what this props do */
 	props: {
 		icon: {
 			type: String,

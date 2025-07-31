@@ -98,6 +98,7 @@ export default {
 		NcIconSvgWrapper,
 	},
 
+	/* eslint vue/require-prop-comment: warn -- TODO: Add a proper doc block about what this props do */
 	props: {
 		providerId: {
 			type: String,

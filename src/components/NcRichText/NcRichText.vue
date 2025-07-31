@@ -342,6 +342,7 @@ export default {
 		NcReferenceList,
 	},
 
+	/* eslint vue/require-prop-comment: warn -- TODO: Add a proper doc block about what this props do */
 	props: {
 		/**
 		 * The main text
