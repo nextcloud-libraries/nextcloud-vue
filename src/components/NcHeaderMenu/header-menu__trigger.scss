@@ -12,7 +12,6 @@
 		--button-size: var(--header-height) !important;
 		height: var(--header-height);
 		opacity: .85;
-
 		// header is filled with primary or image background
 		filter: none !important;
 		color: var(--color-background-plain-text, var(--color-primary-text)) !important;
@@ -20,6 +19,14 @@
 		&:focus-visible {
 			outline: none !important;
 			box-shadow: none !important;
+		}
+
+		// ideally this is directly applied to the SVG for proper mask sizing
+		// but if the icon slot use a different icon type then just apply it to the slot wrapper
+		:deep(.button-vue__icon svg),
+		:deep(.button-vue__icon:not(:has(svg))) {
+			// apply a alpha mask on the header menu - same as for app icons (added with Nextcloud 32)
+			mask: var(--header-menu-icon-mask, none);
 		}
 	}
 
