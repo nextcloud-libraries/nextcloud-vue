@@ -1058,7 +1058,7 @@ export default {
 		 * Selector for the actions' popover container
 		 */
 		container: {
-			type: [String, Object, Element, Boolean],
+			type: [Boolean, String, Object, Element],
 			default: 'body',
 		},
 

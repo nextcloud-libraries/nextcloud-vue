@@ -253,7 +253,7 @@ export default {
 		 * Either a select query or `false` to mount to the parent node.
 		 */
 		container: {
-			type: [String, Boolean],
+			type: [Boolean, String],
 			default: 'body',
 		},
 
@@ -327,7 +327,7 @@ export default {
 		 */
 		setReturnFocus: {
 			default: undefined,
-			type: [HTMLElement, SVGElement, String, Boolean, Function],
+			type: [Boolean, HTMLElement, SVGElement, String, Function],
 		},
 
 		/**
