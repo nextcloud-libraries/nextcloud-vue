@@ -209,7 +209,7 @@ msgstr "Tono de piel medio"
 msgid "Message limit of {count} characters reached"
 msgstr "Se ha alcanzado el límite de {count} caracteres en el mensaje"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Más ítems ..."
 
 msgid "More options"
@@ -407,5 +407,5 @@ msgstr "Ver equipo"
 msgid "Whiskey"
 msgstr "Whiskey"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "Escriba un mensaje ..."

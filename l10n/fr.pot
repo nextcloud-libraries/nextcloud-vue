@@ -246,8 +246,8 @@ msgid "Load more \"{options}\""
 msgstr "Charger d'avantage \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Chargement …"
+msgid "Loading …"
+msgstr "Chargement …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -274,7 +274,7 @@ msgstr "Sélecteur de mois"
 msgid "Month picker overlay"
 msgstr "Superposition du sélecteur de mois"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Plus d'éléments..."
 
 msgid "More options"
@@ -538,7 +538,7 @@ msgstr "W"
 msgid "Whiskey"
 msgstr "Whiskey"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "Écrire un message..."
 
 msgid "Year picker"

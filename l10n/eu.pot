@@ -132,8 +132,8 @@ msgstr "Kargatu \"{options}\" gehiago"
 msgid "Message limit of {count} characters reached"
 msgstr "Mezuaren {count} karaketere-limitera heldu zara"
 
-msgid "More items …"
-msgstr "Elementu gehiago …"
+msgid "More items …"
+msgstr "Elementu gehiago …"
 
 msgid "More options"
 msgstr "Aukera gehiago"
@@ -279,5 +279,5 @@ msgstr "Ezin izan da taldea bilatu"
 msgid "Undo changes"
 msgstr "Aldaketak desegin"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "Idatzi mezu bat…"

@@ -205,8 +205,8 @@ msgid "Load more \"{options}\""
 msgstr "Hlaða inn fleiri \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Hleð inn …"
+msgid "Loading …"
+msgstr "Hleð inn …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -224,8 +224,8 @@ msgstr "Meðaltónn húðar"
 msgid "Message limit of {count} characters reached"
 msgstr "Takmörkum {count} stafa náð"
 
-msgid "More items …"
-msgstr "Fleiri atriði …"
+msgid "More items …"
+msgstr "Fleiri atriði …"
 
 msgid "More options"
 msgstr "Fleiri valkostir"
@@ -434,5 +434,5 @@ msgstr "Skoða teymi"
 msgid "Whiskey"
 msgstr "Viský"
 
-msgid "Write a message …"
-msgstr "Skrifaðu skilaboð …"
+msgid "Write a message …"
+msgstr "Skrifaðu skilaboð …"

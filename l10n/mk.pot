@@ -131,7 +131,7 @@ msgid "Message limit of {count} characters reached"
 msgstr ""
 "Ограничувањето на должината на пораката од {count} карактери е надминато"
 
-msgid "More items …"
+msgid "More items …"
 msgstr ""
 
 msgid "More options"
@@ -277,5 +277,5 @@ msgstr "Врати ги промените"
 
 msgid ""
 "Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
+"autocompletion …"
 msgstr ""

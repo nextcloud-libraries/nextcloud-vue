@@ -201,7 +201,7 @@ msgstr "Střední tělový tón"
 msgid "Message limit of {count} characters reached"
 msgstr "Dosaženo limitu počtu ({count}) znaků zprávy"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Další položky…"
 
 msgid "More options"
@@ -390,5 +390,5 @@ msgstr "Stav uživatele: {status}"
 msgid "Whiskey"
 msgstr "Whisky"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "Napsat zprávu…"
