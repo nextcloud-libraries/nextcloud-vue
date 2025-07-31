@@ -31,7 +31,7 @@ import type { ButtonType, ButtonVariant } from '../NcButton/index.ts'
 
 import { ref } from 'vue'
 import { t } from '../../l10n.ts'
-import NcButton from '../NcButton/index'
+import NcButton from '../NcButton/index.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 import NcLoadingIcon from '../NcLoadingIcon/index.ts'
 

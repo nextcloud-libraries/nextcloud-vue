@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
 import axios from '@nextcloud/axios'
 import NcDialog from '../src/components/NcDialog/index.ts'
 import { useIsDarkTheme } from '../src/composables/useIsDarkTheme/index.ts'
@@ -7,10 +12,6 @@ import { emojiAddRecent, emojiSearch, EmojiSkinTone, getCurrentSkinTone, setCurr
 import { usernameToColor } from '../src/functions/usernameToColor/index.ts'
 
 import 'regenerator-runtime/runtime.js'
-/**
- * SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
 import 'core-js/stable/index.js'
 
 const USER_GROUPS = [

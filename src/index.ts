@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-export * from './components/index'
+export * from './components/index.ts'
 
 export * from './composables/index.js'
 export * from './functions/index.ts'

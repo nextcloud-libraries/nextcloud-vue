@@ -3,10 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { mount, shallowMount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import NcTextField from '../../../../src/components/NcTextField/NcTextField.vue'
-import NcInputField from '../../../../src/components/NcInputField/index.js'
 
 describe('NcTextField', () => {
 	it('does forward attributes to input field', async () => {

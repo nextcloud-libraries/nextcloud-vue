@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import logger from '../../utils/logger'
+import logger from '../../utils/logger.ts'
 
 window._vue_richtext_custom_picker_elements ??= {}
 window._registerCustomPickerElement ??= registerCustomPickerElement
