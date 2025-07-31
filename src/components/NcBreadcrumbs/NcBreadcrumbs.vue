@@ -548,6 +548,7 @@ export default {
 
 				// The Actions menu
 				// Use a breadcrumb component for the hidden breadcrumbs
+				// eslint-disable-line @stylistic/function-call-argument-newline
 				h(NcBreadcrumb, {
 					class: 'dropdown',
 					...this.menuBreadcrumbProps,
