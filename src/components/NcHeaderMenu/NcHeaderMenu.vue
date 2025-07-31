@@ -58,14 +58,11 @@ export default {
 
 <script setup lang="ts">
 import type { FocusTrap } from 'focus-trap'
+import type { Slot } from 'vue'
 
 import { onClickOutside } from '@vueuse/core'
 import { createFocusTrap } from 'focus-trap'
-import {
-	type Slot,
-
-	computed, nextTick, ref, useTemplateRef, watch,
-} from 'vue'
+import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
 import { useHotKey } from '../../composables/index.js'
 import { createElementId } from '../../utils/createElementId.ts'
 import { getTrapStack } from '../../utils/focusTrap.js'

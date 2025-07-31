@@ -4,7 +4,7 @@
  */
 
 import { describe, expect, it } from 'vitest'
-import { linkifyString } from '../../../src/utils/linkify'
+import { linkifyString } from '../../../src/utils/linkify.ts'
 
 describe('utils: linkify', () => {
 	it('should linkify an URL', () => {

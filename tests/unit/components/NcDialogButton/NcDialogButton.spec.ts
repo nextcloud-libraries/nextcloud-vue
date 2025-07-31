@@ -2,6 +2,7 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
 import type { ButtonType } from '../../../../src/components/NcButton/index.ts'
 
 import { mount } from '@vue/test-utils'

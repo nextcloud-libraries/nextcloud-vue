@@ -211,14 +211,11 @@ export default {
 </docs>
 
 <script setup lang="ts">
+import type { Slot } from 'vue'
 import type { ComponentProps, VueClassType } from '../../utils/VueTypes.ts'
 
 import { useElementSize } from '@vueuse/core'
-import {
-	type Slot,
-
-	computed, ref, useTemplateRef,
-} from 'vue'
+import { computed, ref, useTemplateRef } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
 import NcDialogButton from '../NcDialogButton/index.ts'
 import NcModal from '../NcModal/index.js'

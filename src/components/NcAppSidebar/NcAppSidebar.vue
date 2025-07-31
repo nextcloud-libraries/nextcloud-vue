@@ -752,6 +752,7 @@ import { isSlotPopulated } from '../../utils/isSlotPopulated.ts'
 import NcActions from '../NcActions/index.js'
 import NcAppSidebarHeader from '../NcAppSidebarHeader/index.ts'
 import NcButton from '../NcButton/index.ts'
+import { CONTENT_SELECTOR_KEY } from '../NcContent/constants.ts'
 import NcEmptyContent from '../NcEmptyContent/index.ts'
 import NcLoadingIcon from '../NcLoadingIcon/index.ts'
 

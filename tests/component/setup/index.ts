@@ -3,13 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-// Mount hooks
-import { beforeMount } from '@playwright/experimental-ct-vue/hooks'
-import {
-	type RouteRecordRaw,
+import type { RouteRecordRaw } from 'vue-router'
 
-	createMemoryHistory, createRouter,
-} from 'vue-router'
+import { beforeMount } from '@playwright/experimental-ct-vue/hooks'
+import { createMemoryHistory, createRouter } from 'vue-router'
 
 // Visual setup
 import '../../../styleguide/assets/additional.css'

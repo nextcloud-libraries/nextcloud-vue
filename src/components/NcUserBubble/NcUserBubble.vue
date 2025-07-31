@@ -64,13 +64,10 @@ export default {
 </docs>
 
 <script setup lang="ts">
+import type { Slot } from 'vue'
 import type { RouteLocation } from 'vue-router'
 
-import {
-	type Slot,
-
-	computed, warn, watch,
-} from 'vue'
+import { computed, warn, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import NcUserBubbleDiv from './NcUserBubbleDiv.vue'
 import NcAvatar from '../NcAvatar/index.js'
