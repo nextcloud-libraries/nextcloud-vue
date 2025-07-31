@@ -74,7 +74,6 @@ export default {
 		 */
 		to: {
 			type: [String, Object],
-			default: '',
 			required: true,
 		},
 	},

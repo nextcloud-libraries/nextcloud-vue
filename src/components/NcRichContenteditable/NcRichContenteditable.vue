@@ -332,11 +332,10 @@ export default {
 		},
 
 		/**
-		 * The content
+		 * The text content
 		 */
 		modelValue: {
 			type: String,
-			default: '',
 			required: true,
 		},
 
