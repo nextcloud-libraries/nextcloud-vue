@@ -131,7 +131,7 @@ msgstr ""
 msgid "Message limit of {count} characters reached"
 msgstr "S'ha arribat al límit de {count} caràcters per missatge"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Més artícles..."
 
 msgid "More options"
@@ -277,7 +277,7 @@ msgstr "Desfés els canvis"
 
 msgid ""
 "Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
+"autocompletion …"
 msgstr ""
 "Escriu missatge, fes servir \"@\" per esmentar algú, fes servir \":\" per "
 "autocompletar emojis..."

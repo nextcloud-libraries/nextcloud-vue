@@ -184,11 +184,13 @@ export default {
 </docs>
 
 <template>
-	<transition name="fade"
+	<transition
+		name="fade"
 		appear
 		@after-enter="useFocusTrap"
 		@before-leave="clearFocusTrap">
-		<div v-show="showModal"
+		<div
+			v-show="showModal"
 			ref="mask"
 			class="modal-mask"
 			:class="{
@@ -203,39 +205,46 @@ export default {
 			tabindex="-1">
 			<!-- Header -->
 			<transition name="fade-visibility" appear>
-				<div class="modal-header"
+				<div
+					class="modal-header"
 					:data-theme-light="lightBackdrop"
 					:data-theme-dark="!lightBackdrop">
-					<h2 v-if="name.trim() !== ''"
+					<h2
+						v-if="name.trim() !== ''"
 						:id="'modal-name-' + randId"
 						class="modal-header__name">
 						{{ name }}
 					</h2>
 					<div class="icons-menu">
 						<!-- Play-pause toggle -->
-						<button v-if="hasNext && enableSlideshow"
-							:class="{ 'play-pause-icons--paused': slideshowPaused }"
+						<button
+							v-if="hasNext && enableSlideshow"
 							class="play-pause-icons"
+							:class="{ 'play-pause-icons--paused': slideshowPaused }"
 							:title="playPauseName"
 							type="button"
 							@click="togglePlayPause">
 							<!-- Play/pause icons -->
-							<Play v-if="!playing"
-								:size="iconSize"
-								class="play-pause-icons__play" />
-							<Pause v-else
-								:size="iconSize"
-								class="play-pause-icons__pause" />
+							<Play
+								v-if="!playing"
+								class="play-pause-icons__play"
+								:size="iconSize" />
+							<Pause
+								v-else
+								class="play-pause-icons__pause"
+								:size="iconSize" />
 							<span class="hidden-visually">
 								{{ playPauseName }}
 							</span>
 
 							<!-- Progress circle, css animated -->
-							<svg v-if="playing"
+							<svg
+								v-if="playing"
 								class="progress-ring"
 								height="50"
 								width="50">
-								<circle class="progress-ring__circle"
+								<circle
+									class="progress-ring__circle"
 									stroke="white"
 									stroke-width="2"
 									fill="transparent"
@@ -252,7 +261,8 @@ export default {
 						</NcActions>
 
 						<!-- Close modal -->
-						<NcButton v-if="!noClose && closeButtonOutside"
+						<NcButton
+							v-if="!noClose && closeButtonOutside"
 							:aria-label="closeButtonAriaLabel"
 							class="header-close"
 							variant="tertiary"
@@ -267,22 +277,25 @@ export default {
 
 			<!-- Content wrapper -->
 			<transition :name="modalTransitionName" appear>
-				<div v-show="showModal"
+				<div
+					v-show="showModal"
+					class="modal-wrapper"
 					:class="[
 						`modal-wrapper--${size}`,
 						{ 'modal-wrapper--spread-navigation': spreadNavigation },
 					]"
-					class="modal-wrapper"
 					@mousedown.self="handleClickModalWrapper">
 					<!-- Navigation button -->
 					<transition name="fade-visibility" appear>
-						<NcButton v-show="hasPrevious"
+						<NcButton
+							v-show="hasPrevious"
 							:aria-label="prevButtonAriaLabel"
 							class="prev"
 							variant="tertiary-no-background"
 							@click="previous">
 							<template #icon>
-								<NcIconSvgWrapper directional
+								<NcIconSvgWrapper
+									directional
 									:path="mdiChevronLeft"
 									:size="40" />
 							</template>
@@ -296,7 +309,8 @@ export default {
 							<slot />
 						</div>
 						<!-- Close modal -->
-						<NcButton v-if="!noClose && !closeButtonOutside"
+						<NcButton
+							v-if="!noClose && !closeButtonOutside"
 							:aria-label="closeButtonAriaLabel"
 							class="modal-container__close"
 							variant="tertiary"
@@ -309,13 +323,15 @@ export default {
 
 					<!-- Navigation button -->
 					<transition name="fade-visibility" appear>
-						<NcButton v-show="hasNext"
+						<NcButton
+							v-show="hasNext"
 							:aria-label="nextButtonAriaLabel"
 							class="next"
 							variant="tertiary-no-background"
 							@click="next">
 							<template #icon>
-								<NcIconSvgWrapper directional
+								<NcIconSvgWrapper
+									directional
 									:path="mdiChevronRight"
 									:size="40" />
 							</template>
@@ -328,24 +344,21 @@ export default {
 </template>
 
 <script>
-import { useSwipe } from '@vueuse/core'
 import { mdiChevronLeft, mdiChevronRight } from '@mdi/js'
+import { useSwipe } from '@vueuse/core'
 import { createFocusTrap } from 'focus-trap'
 import { warn as VueWarn } from 'vue'
-
-import { createElementId } from '../../utils/createElementId.ts'
-import { getTrapStack } from '../../utils/focusTrap.ts'
-import { t } from '../../l10n.ts'
-
-import NcActions from '../NcActions/index.js'
-import NcButton from '../NcButton/index.ts'
-import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
-import Timer from '../../utils/Timer.js'
-
 import Close from 'vue-material-design-icons/Close.vue'
 import Pause from 'vue-material-design-icons/Pause.vue'
 import Play from 'vue-material-design-icons/Play.vue'
 import { useTrapStackControl } from '../../composables/useTrapStackControl.js'
+import { t } from '../../l10n.ts'
+import { createElementId } from '../../utils/createElementId.ts'
+import { getTrapStack } from '../../utils/focusTrap.ts'
+import Timer from '../../utils/Timer.js'
+import NcActions from '../NcActions/index.js'
+import NcButton from '../NcButton/index.ts'
+import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 
 export default {
 	name: 'NcModal',
@@ -367,6 +380,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * Declare if a previous slide is available
 		 */
@@ -374,6 +388,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Declare if a next slide is available
 		 */
@@ -381,6 +396,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Declare if hiding the modal should be animated
 		 */
@@ -388,6 +404,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Declare if the slideshow functionality should be enabled
 		 */
@@ -395,6 +412,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Declare the slide interval
 		 */
@@ -402,6 +420,7 @@ export default {
 			type: Number,
 			default: 5000,
 		},
+
 		/**
 		 * Allow to pause an ongoing slideshow
 		 */
@@ -409,6 +428,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Disable swipe between slides
 		 */
@@ -416,10 +436,15 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Enable spread navigation
+		 */
 		spreadNavigation: {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Defines the modal size.
 		 * Default is 'normal'.
@@ -429,13 +454,14 @@ export default {
 		size: {
 			type: String,
 			default: 'normal',
-			validator: size => {
+			validator: (size) => {
 				return ['small', 'normal', 'large', 'full'].includes(size)
 			},
 		},
 
 		/**
 		 * Do not show the close button for the dialog.
+		 *
 		 * @default false
 		 */
 		noClose: {
@@ -507,6 +533,9 @@ export default {
 			default: 0,
 		},
 
+		/**
+		 * The current open property of the modal
+		 */
 		show: {
 			type: Boolean,
 			default: undefined,
@@ -528,7 +557,7 @@ export default {
 		 */
 		setReturnFocus: {
 			default: undefined,
-			type: [HTMLElement, SVGElement, String, Boolean],
+			type: [Boolean, HTMLElement, SVGElement, String],
 		},
 	},
 
@@ -569,12 +598,15 @@ export default {
 		showModal() {
 			return (this.show === undefined) ? this.internalShow : this.show
 		},
+
 		modalTransitionName() {
 			return `modal-${this.outTransition ? 'out' : 'in'}`
 		},
+
 		playPauseName() {
 			return this.playing ? t('Pause slideshow') : t('Start slideshow')
 		},
+
 		cssVariables() {
 			return {
 				'--slideshow-duration': this.slideshowDelay + 'ms',
@@ -585,9 +617,11 @@ export default {
 		closeButtonAriaLabel() {
 			return t('Close')
 		},
+
 		prevButtonAriaLabel() {
 			return t('Previous')
 		},
+
 		nextButtonAriaLabel() {
 			return t('Next')
 		},
@@ -608,6 +642,7 @@ export default {
 				}
 			}
 		},
+
 		additionalTrapElements(elements) {
 			if (this.focusTrap) {
 				const contentContainer = this.$refs.mask
@@ -623,10 +658,12 @@ export default {
 	beforeMount() {
 		window.addEventListener('keydown', this.handleKeydown)
 	},
+
 	beforeUnmount() {
 		window.removeEventListener('keydown', this.handleKeydown)
 		this.mc.stop()
 	},
+
 	mounted() {
 		if (!this.name && !this.labelId) {
 			VueWarn('[NcModal] You need either set the name or set a `labelId` for accessibility.')
@@ -648,6 +685,7 @@ export default {
 			}
 		}
 	},
+
 	unmounted() {
 		this.clearFocusTrap()
 		this.$el.remove()
@@ -669,6 +707,7 @@ export default {
 				this.$emit('previous', event)
 			}
 		},
+
 		next(event) {
 			// do not send the event if nothing is available
 			if (this.hasNext) {
@@ -681,6 +720,7 @@ export default {
 				this.$emit('next', event)
 			}
 		},
+
 		close(data) {
 			// do not fire event if forbidden
 			if (this.noClose) {
@@ -805,6 +845,7 @@ export default {
 				this.slideshowTimeout.clear()
 			}
 		},
+
 		/**
 		 * Add focus trap for accessibility.
 		 */
@@ -833,6 +874,7 @@ export default {
 			this.focusTrap = createFocusTrap([contentContainer, ...this.additionalTrapElements], options)
 			this.focusTrap.activate()
 		},
+
 		clearFocusTrap() {
 			if (!this.focusTrap) {
 				return

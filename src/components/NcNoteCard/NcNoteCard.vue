@@ -105,25 +105,27 @@ const shouldShowAlert = computed(() => props.showAlert || props.type === 'error'
 
 const iconPath = computed(() => {
 	switch (props.type) {
-	case 'error':
-		return mdiAlertDecagram
-	case 'success':
-		return mdiCheckboxMarkedCircle
-	case 'info':
-		return mdiInformation
-	case 'warning':
-	default:
-		return mdiAlert
+		case 'error':
+			return mdiAlertDecagram
+		case 'success':
+			return mdiCheckboxMarkedCircle
+		case 'info':
+			return mdiInformation
+		case 'warning':
+		default:
+			return mdiAlert
 	}
 })
 </script>
 
 <template>
-	<div class="notecard"
+	<div
+		class="notecard"
 		:class="`notecard--${type}`"
 		:role="shouldShowAlert ? 'alert' : 'note'">
 		<slot name="icon">
-			<NcIconSvgWrapper :path="iconPath"
+			<NcIconSvgWrapper
+				:path="iconPath"
 				class="notecard__icon"
 				:class="{ 'notecard__icon--heading': heading }"
 				inline />

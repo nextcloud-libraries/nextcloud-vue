@@ -5,16 +5,15 @@
 
 import { mount } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
+import { h } from 'vue'
 import NcRichText from '../../../../src/components/NcRichText/NcRichText.vue'
 
-import { h } from 'vue'
-
 describe('Foo', () => {
-	it('renders a message and responds correctly to props changes', async() => {
+	it('renders a message and responds correctly to props changes', async () => {
 		const wrapper = mount(NcRichText, {
 			props: {
-				text: 'Test {placeholder}'
-			}
+				text: 'Test {placeholder}',
+			},
 		})
 
 		expect(wrapper.text()).toEqual('Test {placeholder}')
@@ -25,7 +24,7 @@ describe('Foo', () => {
 			name: 'MyComponent',
 			render: () => {
 				return h('div', 'MYCOMPONENT')
-			}
+			},
 		}
 		const wrapper = mount(NcRichText, {
 			props: {
@@ -48,7 +47,7 @@ describe('Foo', () => {
 			props: ['username'],
 			render: () => {
 				return h('div', 'MYCOMPONENT')
-			}
+			},
 		}
 		const wrapper = mount(NcRichText, {
 			props: {

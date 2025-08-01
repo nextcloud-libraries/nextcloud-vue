@@ -205,7 +205,7 @@ msgid "Load more \"{options}\""
 msgstr "Учитај још „{options}”"
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "Учитава се…"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -224,7 +224,7 @@ msgstr "Средњи тен коже"
 msgid "Message limit of {count} characters reached"
 msgstr "Достигнуто је ограничење величине поруке од {count} карактера"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Још ставки..."
 
 msgid "More options"
@@ -434,5 +434,5 @@ msgstr "Прикажи тим"
 msgid "Whiskey"
 msgstr "Виски"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "Напишите поруку…"

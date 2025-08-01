@@ -4,7 +4,7 @@
  */
 
 import { mount, shallowMount } from '@vue/test-utils'
-import { beforeAll, afterAll, describe, expect, it, vi } from 'vitest'
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 import { h, nextTick } from 'vue'
 import NcAvatar from '../../../../src/components/NcAvatar/NcAvatar.vue'
 
@@ -175,8 +175,8 @@ describe('NcAvatar.vue', () => {
 					user: 'userid',
 				},
 				slots: {
-					icon: h('span', { class: 'slot-scoped-icon' }, [])
-				}
+					icon: h('span', { class: 'slot-scoped-icon' }, []),
+				},
 			})
 
 			expect(wrapper.find('img').exists()).toBeFalsy()

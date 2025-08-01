@@ -241,7 +241,7 @@ msgid "Load more \"{options}\""
 msgstr "\"{options}\" 더 불러오기"
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "불러오는 중..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -267,7 +267,7 @@ msgstr "월 선택기"
 msgid "Month picker overlay"
 msgstr "월 선택기 오버레이"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "항목 더 보기..."
 
 msgid "More options"
@@ -528,7 +528,7 @@ msgstr "W"
 msgid "Whiskey"
 msgstr "위스키"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "메시지 작성..."
 
 msgid "Year picker"

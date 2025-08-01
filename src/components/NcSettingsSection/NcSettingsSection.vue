@@ -85,7 +85,8 @@ const ariaLabel = t('External documentation')
 	<div class="settings-section">
 		<h2 class="settings-section__name">
 			{{ name }}
-			<a v-if="docUrl"
+			<a
+				v-if="docUrl"
 				:aria-label
 				class="settings-section__info"
 				:href="docUrl"
@@ -95,7 +96,8 @@ const ariaLabel = t('External documentation')
 				<HelpCircle :size="20" />
 			</a>
 		</h2>
-		<p v-if="description"
+		<p
+			v-if="description"
 			class="settings-section__desc">
 			{{ description }}
 		</p>

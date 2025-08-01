@@ -9,6 +9,7 @@ const queue = new PQueue({ concurrency: 5 })
 
 /**
  * Preload an image URL
+ *
  * @param url URL of the image
  */
 export function preloadImage(url: string): Promise<boolean> {

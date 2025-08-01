@@ -7,14 +7,15 @@
 	https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-1/tabs.html -->
 
 <template>
-	<section :id="`tab-${id}`"
-		:class="{'app-sidebar__tab--active': isActive}"
+	<section
+		:id="`tab-${id}`"
 		:aria-hidden="!isActive"
 		:aria-label="isTablistShown() ? undefined : name"
 		:aria-labelledby="isTablistShown() ? `tab-button-${id}` : undefined"
 		class="app-sidebar__tab"
-		:tabindex="isTablistShown() ? 0 : -1"
+		:class="{ 'app-sidebar__tab--active': isActive }"
 		:role="isTablistShown() ? 'tabpanel' : undefined"
+		:tabindex="isTablistShown() ? 0 : -1"
 		@scroll="onScroll">
 		<h3 class="hidden-visually">
 			{{ name }}
@@ -31,6 +32,9 @@ export default {
 	inject: ['registerTab', 'unregisterTab', 'getActiveTab', 'isTablistShown'],
 
 	props: {
+		/**
+		 * Unique id of the sidebar tab
+		 */
 		id: {
 			type: String,
 			required: true,

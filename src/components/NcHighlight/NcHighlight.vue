@@ -64,6 +64,7 @@ export default defineComponent({
 			default: () => [],
 		},
 	},
+
 	computed: {
 		/**
 		 * The indice ranges which should be highlighted.
@@ -144,6 +145,7 @@ export default defineComponent({
 
 			return ranges
 		},
+
 		/**
 		 * Calculate the different chunks to show based on the ranges to highlight.
 		 */
@@ -212,7 +214,7 @@ export default defineComponent({
 			return h('span', {}, this.text)
 		}
 
-		return h('span', {}, this.chunks.map(chunk => {
+		return h('span', {}, this.chunks.map((chunk) => {
 			return chunk.highlight ? h('strong', {}, chunk.text) : chunk.text
 		}))
 	},

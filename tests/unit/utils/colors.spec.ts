@@ -7,7 +7,6 @@ import { describe, expect, it } from 'vitest'
 import { Color, defaultPalette, generatePalette } from '../../../src/utils/colors.ts'
 
 describe('utils: colors', () => {
-
 	describe('default palette', () => {
 		it('has 12 colors', () => {
 			expect(defaultPalette).toHaveLength(12)
@@ -39,13 +38,13 @@ describe('utils: colors', () => {
 		})
 
 		it.each([
-			/* eslint-disable no-multi-spaces,array-bracket-spacing */
+			/* eslint-disable  @stylistic/no-multi-spaces, @stylistic/array-bracket-spacing */
 			[  0,   0,   0, '#000000'],
 			[255,   0,   0, '#ff0000'],
 			[  0, 255,   0, '#00ff00'],
 			[  1,   2,   0, '#010200'],
 			[512, 999, 256, '#ffffff'],
-			/* eslint-enabled no-multi-spaces,array-bracket-spacing */
+			/* eslint-enabled  @stylistic/no-multi-spaces, @stylistic/array-bracket-spacing */
 		])('correctly generated color string', (r: number, g: number, b: number, expected: string) => {
 			expect(new Color(r, g, b).color).toBe(expected)
 		})

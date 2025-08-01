@@ -68,17 +68,20 @@ export default {
 
 <template>
 	<span dir="auto" class="name-parts" :title="name">
-		<NcHighlight class="name-parts__first"
+		<NcHighlight
+			class="name-parts__first"
 			:text="part1"
 			:search="search"
 			:highlight="highlight1" />
-		<NcHighlight v-if="part2"
+		<NcHighlight
+			v-if="part2"
 			class="name-parts__last"
 			:text="part2"
 			:search="search"
 			:highlight="highlight2" />
 	</span>
 </template>
+
 <script>
 import { findRanges } from '../../utils/findRanges.ts'
 import NcHighlight from '../NcHighlight/index.ts'
@@ -98,6 +101,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * The search value to highlight in the text
 		 */
@@ -111,6 +115,7 @@ export default {
 		needsTruncate() {
 			return this.name && this.name.length >= 10
 		},
+
 		/**
 		 * Index at which to split the name if it is longer than 10 characters.
 		 *
@@ -120,18 +125,21 @@ export default {
 			// leave maximum 10 letters
 			return this.name.length - Math.min(Math.floor(this.name.length / 2), 10)
 		},
+
 		part1() {
 			if (this.needsTruncate) {
 				return this.name.slice(0, this.split)
 			}
 			return this.name
 		},
+
 		part2() {
 			if (this.needsTruncate) {
 				return this.name.slice(this.split)
 			}
 			return ''
 		},
+
 		/**
 		 * The ranges to highlight. Since we split the string for ellipsising,
 		 * the Highlight component cannot figure this out itself and needs the ranges provided.
@@ -144,6 +152,7 @@ export default {
 			}
 			return findRanges(this.name, this.search)
 		},
+
 		/**
 		 * We shift the ranges for the second part by the position of the split.
 		 * Ranges out of the string length are discarded by the Highlight component,
@@ -152,7 +161,7 @@ export default {
 		 * @return {Array} The array with the ranges to highlight
 		 */
 		highlight2() {
-			return this.highlight1.map(range => {
+			return this.highlight1.map((range) => {
 				return {
 					start: range.start - this.split,
 					end: range.end - this.split,
@@ -162,6 +171,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 .name-parts {
 	display: flex;

@@ -4,6 +4,7 @@
  */
 
 import type { Ref } from 'vue'
+
 import { readonly, ref } from 'vue'
 
 /** The minimal width of the viewport for a desktop screen */

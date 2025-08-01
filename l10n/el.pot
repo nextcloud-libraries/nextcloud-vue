@@ -206,8 +206,8 @@ msgid "Load more \"{options}\""
 msgstr "Φόρτωση περισσότερων \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Φόρτωση …"
+msgid "Loading …"
+msgstr "Φόρτωση …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -225,8 +225,8 @@ msgstr "Μέτριος τόνος θέματος"
 msgid "Message limit of {count} characters reached"
 msgstr "Συμπληρώθηκε το όριο των {count} χαρακτήρων του μηνύματος"
 
-msgid "More items …"
-msgstr "Περισσότερα στοιχεία …"
+msgid "More items …"
+msgstr "Περισσότερα στοιχεία …"
 
 msgid "More options"
 msgstr "Περισσότερες επιλογές"
@@ -435,5 +435,5 @@ msgstr "Προβολή ομάδας"
 msgid "Whiskey"
 msgstr "Ουίσκι"
 
-msgid "Write a message …"
-msgstr "Γράψτε ένα μήνυμα …"
+msgid "Write a message …"
+msgstr "Γράψτε ένα μήνυμα …"

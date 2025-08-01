@@ -242,7 +242,7 @@ msgid "Load more \"{options}\""
 msgstr "Laadi veel „{options}“"
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "Laadin…"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -269,7 +269,7 @@ msgstr "Kuupäevavalija"
 msgid "Month picker overlay"
 msgstr "Kuupäevavalija ülekatteaken"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Rohkem objekte ..."
 
 msgid "More options"
@@ -533,7 +533,7 @@ msgstr "W"
 msgid "Whiskey"
 msgstr "Viskikarva kollakaspruun"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "Kirjuta sõnum…"
 
 msgid "Year picker"

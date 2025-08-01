@@ -5,23 +5,26 @@
 
 <template>
 	<li class="action" :role="isInSemanticMenu && 'presentation'">
-		<RouterLink :to="to"
-			:aria-label="ariaLabel"
-			:title="title"
+		<RouterLink
+			:aria-label
 			class="action-router focusable"
 			rel="nofollow noreferrer noopener"
 			:role="isInSemanticMenu && 'menuitem'"
+			:title
+			:to
 			@click="onClick">
 			<!-- @slot Manually provide icon -->
 			<slot name="icon">
-				<span :class="[isIconUrl ? 'action-router__icon--url' : icon]"
-					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }"
+				<span
+					aria-hidden="true"
 					class="action-router__icon"
-					aria-hidden="true" />
+					:class="[isIconUrl ? 'action-router__icon--url' : icon]"
+					:style="{ backgroundImage: isIconUrl ? `url(${icon})` : null }" />
 			</slot>
 
 			<!-- long text with name -->
-			<span v-if="name"
+			<span
+				v-if="name"
 				class="action-router__longtext-wrapper">
 				<strong class="action-router__name">
 					{{ name }}
@@ -35,7 +38,8 @@
 			<!-- long text only -->
 			<!-- white space is shown on longtext, so we can't
 			put {{ text }} on a new line for code readability -->
-			<span v-else-if="isLongText"
+			<span
+				v-else-if="isLongText"
 				class="action-router__longtext"
 				v-text="text" />
 
@@ -70,7 +74,6 @@ export default {
 		 */
 		to: {
 			type: [String, Object],
-			default: '',
 			required: true,
 		},
 	},

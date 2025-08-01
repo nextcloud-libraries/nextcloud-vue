@@ -5,7 +5,8 @@
 
 <template>
 	<li class="resource">
-		<NcButton class="resource__button"
+		<NcButton
+			class="resource__button"
 			:aria-label="labelTranslated"
 			:to="route"
 			:href="route ? null : url"
@@ -21,10 +22,9 @@
 </template>
 
 <script>
-import NcButton from '../NcButton/index.ts'
-
-import { getRoute } from '../NcRichText/autolink.ts'
 import { t } from '../../l10n.ts'
+import NcButton from '../NcButton/index.ts'
+import { getRoute } from '../NcRichText/autolink.ts'
 
 export default {
 	name: 'NcResource',
@@ -33,15 +33,18 @@ export default {
 		NcButton,
 	},
 
+	/* eslint vue/require-prop-comment: warn -- TODO: Add a proper doc block about what this props do */
 	props: {
 		icon: {
 			type: String,
 			required: true,
 		},
+
 		name: {
 			type: String,
 			required: true,
 		},
+
 		url: {
 			type: String,
 			required: true,

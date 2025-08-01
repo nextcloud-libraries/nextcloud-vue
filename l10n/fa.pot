@@ -206,7 +206,7 @@ msgid "Load more \"{options}\""
 msgstr "بارگذاری بیشتر \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "در حال بارگذاری ..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -225,7 +225,7 @@ msgstr "رنگ پوسته متوسط"
 msgid "Message limit of {count} characters reached"
 msgstr "به حد مجاز پیام {count} نویسه (کاراکتر) رسیده است"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "موارد بیشتر ..."
 
 msgid "More options"
@@ -435,5 +435,5 @@ msgstr "مشاهده گروه"
 msgid "Whiskey"
 msgstr "ویسکی"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "یک پیام بنویسید ..."

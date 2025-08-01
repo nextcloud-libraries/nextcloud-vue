@@ -91,10 +91,18 @@ All available types are: 'date', 'datetime-local', 'month', 'time' and 'week', p
 import type { VueClassType } from '../../utils/VueTypes.ts'
 
 import { computed } from 'vue'
-import { createElementId } from '../../utils/createElementId.ts'
 import { t } from '../../l10n.ts'
+import { createElementId } from '../../utils/createElementId.ts'
 
 defineOptions({ inheritAttrs: false })
+
+/**
+ * The date is – like the `Date` object in JavaScript – tied to UTC.
+ * The selected time zone does not have an influence of the selected time and date value.
+ * You have to translate the time yourself when you want to factor in time zones.
+ * Pass null to clear the input field.
+ */
+const modelValue = defineModel<Date | null>({ default: null })
 
 const props = withDefaults(defineProps<{
 	/**
@@ -150,14 +158,6 @@ const props = withDefaults(defineProps<{
 	modelValue: null,
 	type: 'date',
 })
-
-/**
- * The date is – like the `Date` object in JavaScript – tied to UTC.
- * The selected time zone does not have an influence of the selected time and date value.
- * You have to translate the time yourself when you want to factor in time zones.
- * Pass null to clear the input field.
- */
-const modelValue = defineModel<Date | null>({ default: null })
 
 const formattedValue = computed(() => modelValue.value ? formatValue(modelValue.value) : '')
 const formattedMax = computed(() => props.max ? formatValue(props.max) : undefined)
@@ -231,12 +231,14 @@ function onInput(event: Event): void {
 
 <template>
 	<div class="native-datetime-picker" :class="$props.class">
-		<label class="native-datetime-picker__label"
+		<label
+			class="native-datetime-picker__label"
 			:class="{ 'hidden-visually': hideLabel }"
 			:for="id">
 			{{ label }}
 		</label>
-		<input :id
+		<input
+			:id
 			class="native-datetime-picker__input"
 			:class="inputClass"
 			:type
