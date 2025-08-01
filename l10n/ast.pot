@@ -204,7 +204,7 @@ msgstr "Tonu d'aspeutu mediu"
 msgid "Message limit of {count} characters reached"
 msgstr "Algamóse la llende del mensaxe con {count} caráuteres"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Más elementos…"
 
 msgid "More options"
@@ -402,5 +402,5 @@ msgstr "Ver l'equipu"
 msgid "Whiskey"
 msgstr "Whiskey"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "Escribi un mensaxe…"

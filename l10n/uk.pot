@@ -242,7 +242,7 @@ msgid "Load more \"{options}\""
 msgstr "Завантажити більше \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "Завантаження ..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -271,7 +271,7 @@ msgstr "Вибір місяця"
 msgid "Month picker overlay"
 msgstr "Напис вибору місяця"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Більше об'єктів..."
 
 msgid "More options"
@@ -535,7 +535,7 @@ msgstr "Тиж."
 msgid "Whiskey"
 msgstr "Кола"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "Написати повідомлення ..."
 
 msgid "Year picker"

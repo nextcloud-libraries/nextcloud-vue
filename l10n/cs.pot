@@ -242,7 +242,7 @@ msgid "Load more \"{options}\""
 msgstr "Načíst další „{options}“"
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "Načítání…"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -271,7 +271,7 @@ msgstr "Výběr měsíce"
 msgid "Month picker overlay"
 msgstr "Překryvné okno výběru měsíce"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Další položky…"
 
 msgid "More options"
@@ -535,7 +535,7 @@ msgstr "T"
 msgid "Whiskey"
 msgstr "Whisky"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "Napsat zprávu…"
 
 msgid "Year picker"

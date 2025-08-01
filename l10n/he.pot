@@ -130,7 +130,7 @@ msgstr ""
 msgid "Message limit of {count} characters reached"
 msgstr "הגעת למגבלה של {count} תווים"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "פריטים נוספים…"
 
 msgid "More options"
@@ -277,5 +277,5 @@ msgstr "לא ניתן לחפש בקבוצה"
 msgid "Undo changes"
 msgstr "ביטול שינויים"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr ""
