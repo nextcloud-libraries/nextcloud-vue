@@ -46,7 +46,7 @@ jobs:
         with:
           path: stable-branch
           token: ${{ secrets.COMMAND_BOT_PAT }}
-          commit-message: "chore(assets): Update styling from server"
+          commit-message: "chore(l10n): sync translations with main branch"
           committer: GitHub <noreply@github.com>
           author: nextcloud-command <nextcloud-command@users.noreply.github.com>
           signoff: true
