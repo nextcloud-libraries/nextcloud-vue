@@ -130,7 +130,7 @@ msgstr ""
 msgid "Message limit of {count} characters reached"
 msgstr "La limo je {count} da literoj atingita"
 
-msgid "More items …"
+msgid "More items …"
 msgstr ""
 
 msgid "More options"
@@ -276,5 +276,5 @@ msgstr ""
 
 msgid ""
 "Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
+"autocompletion …"
 msgstr ""

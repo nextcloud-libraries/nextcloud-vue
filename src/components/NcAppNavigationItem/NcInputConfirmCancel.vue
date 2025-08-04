@@ -10,18 +10,22 @@
 <NcInputConfirmCancel @confirm="alert('confirm')" @cancel="alert('cancel')" />
 ```
 </docs>
+
 <template>
 	<div class="app-navigation-input-confirm">
-		<form @submit.prevent="confirm"
+		<form
+			@submit.prevent="confirm"
 			@keydown.esc.exact.stop.prevent="cancel"
 			@click.stop.prevent>
-			<input ref="input"
+			<input
+				ref="input"
 				v-model="valueModel"
 				type="text"
 				class="app-navigation-input-confirm__input"
 				:placeholder="placeholder">
 
-			<NcButton :aria-label="labelConfirm"
+			<NcButton
+				:aria-label="labelConfirm"
 				type="submit"
 				variant="primary"
 				@click.stop.prevent="confirm">
@@ -30,7 +34,8 @@
 				</template>
 			</NcButton>
 
-			<NcButton :aria-label="labelCancel"
+			<NcButton
+				:aria-label="labelCancel"
 				type="reset"
 				:variant="primary ? 'primary' : 'tertiary'"
 				@click.stop.prevent="cancel">
@@ -41,11 +46,11 @@
 		</form>
 	</div>
 </template>
-<script>
-import { t } from '../../l10n.ts'
 
+<script>
 import IconArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import IconClose from 'vue-material-design-icons/Close.vue'
+import { t } from '../../l10n.ts'
 import NcButton from '../NcButton/index.js'
 
 export default {
@@ -66,11 +71,17 @@ export default {
 			type: Boolean,
 		},
 
+		/**
+		 * Placeholder of the edit field
+		 */
 		placeholder: {
 			default: '',
 			type: String,
 		},
 
+		/**
+		 * The current name (model value)
+		 */
 		modelValue: {
 			default: '',
 			type: String,
@@ -103,9 +114,11 @@ export default {
 		confirm() {
 			this.$emit('confirm')
 		},
+
 		cancel() {
 			this.$emit('cancel')
 		},
+
 		focusInput() {
 			this.$refs.input.focus()
 		},

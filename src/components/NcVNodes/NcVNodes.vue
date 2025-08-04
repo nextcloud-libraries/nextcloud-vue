@@ -54,6 +54,7 @@ export default {
 
 <script lang="ts">
 import type { PropType, VNode } from 'vue'
+
 import { defineComponent } from 'vue'
 
 export default defineComponent({

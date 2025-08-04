@@ -240,8 +240,8 @@ msgid "Load more \"{options}\""
 msgstr "\"{options}\" をもっと読み込む"
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "読み込み中 …"
+msgid "Loading …"
+msgstr "読み込み中 …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
@@ -266,7 +266,7 @@ msgstr "月ピッカー"
 msgid "Month picker overlay"
 msgstr "月ピッカーオーバーレイ"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "他のアイテム"
 
 msgid "More options"
@@ -530,7 +530,7 @@ msgstr "W"
 msgid "Whiskey"
 msgstr "ウイスキー"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "メッセージを書く ..."
 
 msgid "Year picker"

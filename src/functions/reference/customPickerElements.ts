@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import logger from '../../utils/logger'
+import logger from '../../utils/logger.ts'
 
 window._vue_richtext_custom_picker_elements ??= {}
 window._registerCustomPickerElement ??= registerCustomPickerElement
@@ -13,7 +13,6 @@ window._registerCustomPickerElement ??= registerCustomPickerElement
  * It contains a dom element and an object (Vue instance or other fancy things)
  */
 export class NcCustomPickerRenderResult {
-
 	public element: HTMLElement
 	public object: object
 
@@ -25,7 +24,6 @@ export class NcCustomPickerRenderResult {
 		this.element = element
 		this.object = object
 	}
-
 }
 
 interface CustomPickerElementProps {

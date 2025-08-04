@@ -149,18 +149,21 @@
 </docs>
 
 <template>
-	<component :is="wrapperTag"
+	<component
+		:is="wrapperTag"
 		class="app-navigation-caption"
 		:class="{ 'app-navigation-caption--heading': isHeading }">
 		<!-- Name of the caption -->
-		<component :is="captionTag"
+		<component
+			:is="captionTag"
 			:id="headingId"
 			class="app-navigation-caption__name">
 			{{ name }}
 		</component>
 
 		<!-- Actions -->
-		<div v-if="!!$slots.actions"
+		<div
+			v-if="!!$slots.actions"
 			class="app-navigation-caption__actions">
 			<NcActions v-bind="actionsProps">
 				<!-- @slot Slot for the actions menu -->
@@ -184,6 +187,9 @@ export default {
 	},
 
 	props: {
+		/**
+		 * The text of the caption
+		 */
 		name: {
 			type: String,
 			required: true,
@@ -219,7 +225,7 @@ export default {
 		 * Any [NcActions](#/Components/NcActions?id=ncactions-1) prop
 		 */
 		// Not an actual prop but needed to show in vue-styleguidist docs
-		// eslint-disable-next-line
+
 		...NcActions.props,
 	},
 
@@ -232,9 +238,11 @@ export default {
 				.filter(([key, _value]) => actionProps.includes(key))
 			return Object.fromEntries(props)
 		},
+
 		wrapperTag() {
 			return this.isHeading ? 'div' : 'li'
 		},
+
 		captionTag() {
 			// Limit to at least h2 as h1 is considered invalid and reserved
 			const headingLevel = Math.max(2, this.headingLevel)

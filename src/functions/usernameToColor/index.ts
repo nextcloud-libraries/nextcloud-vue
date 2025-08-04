@@ -9,6 +9,7 @@ import { generatePalette } from '../../utils/colors.ts'
 
 /**
  * Create a simple hash from a string
+ *
  * @param str - The string to hash
  */
 function hashCode(str: string): number {

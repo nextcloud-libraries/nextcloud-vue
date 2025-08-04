@@ -2,9 +2,10 @@
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import type { HooksConfig } from '../../setup/index'
-import { expect, test } from '@playwright/experimental-ct-vue'
 
+import type { HooksConfig } from '../../setup/index.ts'
+
+import { expect, test } from '@playwright/experimental-ct-vue'
 import AppNavigation from './AppNavigation.story.vue'
 
 test.skip(({ browserName }) => browserName !== 'chromium')
@@ -13,7 +14,10 @@ test.skip(({ browserName }) => browserName !== 'chromium')
 test.beforeEach(async ({ mount, page }) => {
 	const handle = await page.locator('#app-content').elementHandle()
 	expect(handle).not.toBeNull()
-	await handle!.evaluate((node) => { node.innerHTML = ''; node.id = 'root' })
+	await handle!.evaluate((node) => {
+		node.innerHTML = ''
+		node.id = 'root'
+	})
 
 	await mount<HooksConfig>(AppNavigation, {
 		hooksConfig: {

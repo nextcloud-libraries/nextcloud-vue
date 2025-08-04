@@ -251,7 +251,8 @@ export default {
 </docs>
 
 <template>
-	<component :is="computedWrapperElement"
+	<component
+		:is="computedWrapperElement"
 		:id="wrapperId ?? (isButtonType ? id : null)"
 		:aria-label="isButtonType && ariaLabel ? ariaLabel : undefined"
 		class="checkbox-radio-switch"
@@ -272,7 +273,8 @@ export default {
 		:type="isButtonType ? 'button' : null"
 		v-bind="isButtonType ? $attrs : {} "
 		v-on="isButtonType ? listeners : {}">
-		<input v-if="!isButtonType"
+		<input
+			v-if="!isButtonType"
 			:id="id"
 			:aria-labelledby="!isButtonType && !ariaLabel ? `${id}-label` : null"
 			:aria-label="ariaLabel || undefined"
@@ -286,7 +288,8 @@ export default {
 			:name="name"
 			v-bind="$attrs"
 			v-on="listeners">
-		<NcCheckboxContent :id="!isButtonType ? `${id}-label` : undefined"
+		<NcCheckboxContent
+			:id="!isButtonType ? `${id}-label` : undefined"
 			class="checkbox-radio-switch__content"
 			icon-class="checkbox-radio-switch__icon"
 			text-class="checkbox-radio-switch__text"
@@ -312,8 +315,8 @@ export default {
 
 <script>
 import NcCheckboxContent, { TYPE_BUTTON, TYPE_CHECKBOX, TYPE_RADIO, TYPE_SWITCH } from './NcCheckboxContent.vue'
+import { n, t } from '../../l10n.ts'
 import { createElementId } from '../../utils/createElementId.ts'
-import { t, n } from '../../l10n.ts'
 
 export default {
 	name: 'NcCheckboxRadioSwitch',
@@ -332,7 +335,7 @@ export default {
 		id: {
 			type: String,
 			default: () => 'checkbox-radio-switch-' + createElementId(),
-			validator: id => id.trim() !== '',
+			validator: (id) => id.trim() !== '',
 		},
 
 		/**
@@ -372,7 +375,7 @@ export default {
 		type: {
 			type: String,
 			default: 'checkbox',
-			validator: type => [
+			validator: (type) => [
 				TYPE_CHECKBOX,
 				TYPE_RADIO,
 				TYPE_SWITCH,
@@ -397,7 +400,7 @@ export default {
 		buttonVariantGrouped: {
 			type: String,
 			default: 'no',
-			validator: v => ['no', 'vertical', 'horizontal'].includes(v),
+			validator: (v) => ['no', 'vertical', 'horizontal'].includes(v),
 		},
 
 		/**
@@ -611,8 +614,8 @@ export default {
 
 			// Dispatch the checked values as an array if multiple, or single value otherwise
 			const values = this.getInputsSet()
-				.filter(input => input.checked)
-				.map(input => input.value)
+				.filter((input) => input.checked)
+				.map((input) => input.value)
 
 			if (values.includes(this.value)) {
 				this.$emit('update:modelValue', values.filter((v) => v !== this.value))

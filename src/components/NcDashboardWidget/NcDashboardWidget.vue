@@ -158,7 +158,8 @@ export default {
 	<div class="dashboard-widget">
 		<!-- This element is shown if we have items, but want to show a general message as well.
 		Can be used e.g. to show "No mentions" on top of the item list. -->
-		<NcEmptyContent v-if="showHalfEmptyContentArea"
+		<NcEmptyContent
+			v-if="showHalfEmptyContentArea"
 			:description="halfEmptyContentString"
 			class="half-screen">
 			<template #icon>
@@ -173,7 +174,8 @@ export default {
 			<li v-for="item in displayedItems" :key="item.id">
 				<!-- @slot The default slot can be optionally overridden. It contains the template of one item. -->
 				<slot name="default" :item="item">
-					<NcDashboardWidgetItem v-bind="item"
+					<NcDashboardWidgetItem
+						v-bind="item"
 						:item-menu="itemMenu"
 						v-on="handlers" />
 				</slot>
@@ -193,7 +195,8 @@ export default {
 		</div>
 		<!-- @slot Slot for showing information in case of an empty item list. -->
 		<slot v-else-if="items.length === 0" name="empty-content">
-			<NcEmptyContent v-if="emptyContentMessage"
+			<NcEmptyContent
+				v-if="emptyContentMessage"
 				:description="emptyContentMessage">
 				<template #icon>
 					<!-- @slot The icon to show in the empty content area. -->
@@ -202,7 +205,8 @@ export default {
 			</NcEmptyContent>
 		</slot>
 		<!-- A "show more" link, e.g. to navigate to the main app belonging to this widget. -->
-		<a v-else-if="showMore"
+		<a
+			v-else-if="showMore"
 			:href="showMoreUrl"
 			target="_blank"
 			class="more"
@@ -213,13 +217,11 @@ export default {
 </template>
 
 <script>
+import Check from 'vue-material-design-icons/Check.vue'
+import { t } from '../../l10n.ts'
 import NcAvatar from '../NcAvatar/index.js'
 import NcDashboardWidgetItem from '../NcDashboardWidgetItem/index.js'
 import NcEmptyContent from '../NcEmptyContent/index.ts'
-
-import Check from 'vue-material-design-icons/Check.vue'
-
-import { t } from '../../l10n.ts'
 
 export default {
 	name: 'NcDashboardWidget',
@@ -239,6 +241,7 @@ export default {
 			type: Array,
 			default: () => { return [] },
 		},
+
 		/**
 		 * If this is set, a "show more" text is displayed on the widget's bottom.
 		 * It's a link pointing to this URL.
@@ -247,6 +250,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * The text of show more button.
 		 *
@@ -254,8 +258,9 @@ export default {
 		 */
 		showMoreLabel: {
 			type: String,
-			default: t('More items …'),
+			default: t('More items …'),
 		},
+
 		/**
 		 * A boolean to put the widget in a loading state.
 		 */
@@ -263,6 +268,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * An object containing context menu entries that will be displayed for each item.
 		 */
@@ -270,6 +276,7 @@ export default {
 			type: Object,
 			default: () => { return {} },
 		},
+
 		/**
 		 * Whether both the items and the empty content message are shown.
 		 * Usefull for e.g. showing "No mentions" and a list of elements.
@@ -278,6 +285,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * The text to show in the empty content area.
 		 */
@@ -285,6 +293,7 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		/**
 		 * The text to show in the half empty content area.
 		 */
@@ -305,6 +314,7 @@ export default {
 			}
 			return h
 		},
+
 		displayedItems() {
 			const nbItems = (this.showMoreUrl && this.items.length >= this.maxItemNumber)
 				? this.maxItemNumber - 1

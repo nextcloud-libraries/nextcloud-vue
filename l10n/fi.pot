@@ -205,7 +205,7 @@ msgid "Load more \"{options}\""
 msgstr "Lataa lisää \"{options}\""
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "Ladataan ..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -224,7 +224,7 @@ msgstr "Keskimääräinen ihonväri"
 msgid "Message limit of {count} characters reached"
 msgstr "Viestin {count}merkin raja saavutettu"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Lisää kohteita…"
 
 msgid "More options"
@@ -434,5 +434,5 @@ msgstr "Näytä tiimi"
 msgid "Whiskey"
 msgstr "Viski"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "Kirjoita viesti…"

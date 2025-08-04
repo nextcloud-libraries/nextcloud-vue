@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { expect, describe, it, vi, beforeAll } from 'vitest'
-import { getRoute } from '../../../../src/components/NcRichText/autolink.ts'
-import { createRouter, createMemoryHistory, createWebHashHistory } from 'vue-router'
 import { getBaseUrl, getRootUrl } from '@nextcloud/router'
+import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { createMemoryHistory, createRouter, createWebHashHistory } from 'vue-router'
+import { getRoute } from '../../../../src/components/NcRichText/autolink.ts'
 
 vi.mock('@nextcloud/router')
 

@@ -7,10 +7,11 @@ import type { Plugin } from 'unified'
 import type { Node, Parent } from 'unist'
 import type { TextNode } from './helpers.ts'
 
-import { visit, SKIP } from 'unist-util-visit'
+import { SKIP, visit } from 'unist-util-visit'
 
 /**
  * Check if the given node is a literal and specifically a text node
+ *
  * @param node - A Unist node
  */
 function isTextNode(node: Node): node is TextNode {

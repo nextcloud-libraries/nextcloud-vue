@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import actionGlobal from './actionGlobal.js'
-import { NC_ACTIONS_CLOSE_MENU } from '../components/NcActions/useNcActions.ts'
 import { warn } from 'vue'
+import { NC_ACTIONS_CLOSE_MENU } from '../components/NcActions/useNcActions.ts'
+import actionGlobal from './actionGlobal.js'
 
 export default {
 	mixins: [actionGlobal],
@@ -66,12 +66,13 @@ export default {
 	computed: {
 		/**
 		 * Check if icon prop is an URL
+		 *
 		 * @return {boolean} Whether the icon prop is an URL
 		 */
 		isIconUrl() {
 			try {
 				return !!(new URL(this.icon, this.icon.startsWith('/') ? window.location.origin : undefined))
-			} catch (error) {
+			} catch {
 				return false
 			}
 		},

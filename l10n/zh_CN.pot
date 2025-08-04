@@ -205,7 +205,7 @@ msgid "Load more \"{options}\""
 msgstr "加载更多 “{options}”"
 
 #. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
+msgid "Loading …"
 msgstr "加载中..."
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
@@ -224,7 +224,7 @@ msgstr "中等皮肤"
 msgid "Message limit of {count} characters reached"
 msgstr "已达到 {count} 个字符的消息限制"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "更多项目…"
 
 msgid "More options"
@@ -434,5 +434,5 @@ msgstr "查看团队"
 msgid "Whiskey"
 msgstr "威士忌"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "编写信息 ..."

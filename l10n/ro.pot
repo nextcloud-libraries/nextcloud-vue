@@ -148,7 +148,7 @@ msgstr "Încarcă mai multe \"{options}\""
 msgid "Message limit of {count} characters reached"
 msgstr "Limita mesajului de {count} caractere a fost atinsă"
 
-msgid "More items …"
+msgid "More items …"
 msgstr "Mai multe articole ..."
 
 msgid "More options"
@@ -319,5 +319,5 @@ msgstr "Anularea modificărilor"
 msgid "User status: {status}"
 msgstr "Status utilizator: {status}"
 
-msgid "Write a message …"
+msgid "Write a message …"
 msgstr "Scrieți un mesaj ..."

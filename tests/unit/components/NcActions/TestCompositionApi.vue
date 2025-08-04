@@ -12,6 +12,6 @@
 </template>
 
 <script setup>
-import NcActions from '../../../../src/components/NcActions/NcActions.vue'
 import NcActionButton from '../../../../src/components/NcActionButton/NcActionButton.vue'
+import NcActions from '../../../../src/components/NcActions/NcActions.vue'
 </script>

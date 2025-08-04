@@ -10,7 +10,7 @@
 		<NcAppNavigation>
 			<template #search>
 				<div class="navigation__header">
-					<NcAppNavigationSearch v-model="searchValue" label="Search …" />
+					<NcAppNavigationSearch v-model="searchValue" label="Search …" />
 					<NcActions>
 						<NcActionButton close-after-click @click="showModal = true">
 							<template #icon>
@@ -141,10 +141,10 @@ import type { Slot } from 'vue'
 import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { createFocusTrap } from 'focus-trap'
 import { inject, onMounted, onUnmounted, ref, useTemplateRef, warn, watch } from 'vue'
-import NcAppNavigationList from '../NcAppNavigationList/index.js'
 import NcAppNavigationToggle from './NcAppNavigationToggle.vue'
 import { useIsMobile } from '../../composables/useIsMobile/index.ts'
 import { getTrapStack } from '../../utils/focusTrap.ts'
+import NcAppNavigationList from '../NcAppNavigationList/index.js'
 
 defineProps<{
 	/**
@@ -275,10 +275,12 @@ function handleEsc(): void {
 </script>
 
 <template>
-	<div ref="appNavigationContainer"
+	<div
+		ref="appNavigationContainer"
 		class="app-navigation"
-		:class="{'app-navigation--closed':!open }">
-		<nav id="app-navigation-vue"
+		:class="{ 'app-navigation--closed': !open }">
+		<nav
+			id="app-navigation-vue"
 			:aria-hidden="open ? 'false' : 'true'"
 			:aria-label="ariaLabel || undefined"
 			:aria-labelledby="ariaLabelledby || undefined"

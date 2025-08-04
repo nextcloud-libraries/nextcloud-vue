@@ -6,9 +6,9 @@
 <script setup lang="ts">
 import { mdiMenu, mdiMenuOpen } from '@mdi/js'
 import { computed } from 'vue'
-import NcButton from '../NcButton/index.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import { t } from '../../l10n.ts'
+import NcButton from '../NcButton/index.ts'
 
 /**
  * Tracks whether the toggle has been clicked or not.
@@ -22,7 +22,8 @@ const title = computed(() => open.value ? t('Close navigation') : t('Open naviga
 
 <template>
 	<div class="app-navigation-toggle-wrapper">
-		<NcButton class="app-navigation-toggle"
+		<NcButton
+			class="app-navigation-toggle"
 			aria-controls="app-navigation-vue"
 			:aria-expanded="open ? 'true' : 'false'"
 			:aria-label="title"

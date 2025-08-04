@@ -6,10 +6,9 @@
 
 const webpackConfig = require('@nextcloud/webpack-vue-config')
 const webpackRules = require('@nextcloud/webpack-vue-config/rules')
-const path = require('path')
-
-const { DefinePlugin } = require('webpack')
 const BabelLoaderExcludeNodeModulesExcept = require('babel-loader-exclude-node-modules-except')
+const path = require('path')
+const { DefinePlugin } = require('webpack')
 
 const buildMode = process.env.NODE_ENV
 const isDev = buildMode === 'development'

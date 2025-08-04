@@ -33,8 +33,8 @@ describe('NcDateTimePickerNative.vue', () => {
 		const wrapper = mount(NcDateTimePickerNative, {
 			props: {
 				inputClass: 'input-class',
-				class: 'class'
-			}
+				class: 'class',
+			},
 		})
 
 		expect(wrapper.classes('class')).toBe(true)
@@ -45,7 +45,7 @@ describe('NcDateTimePickerNative.vue', () => {
 		const wrapper = mount(NcDateTimePickerNative, {
 			props: {
 				label: 'the label',
-			}
+			},
 		})
 
 		expect(wrapper.find('label').text()).toBe('the label')
@@ -61,7 +61,7 @@ describe('NcDateTimePickerNative.vue', () => {
 		const wrapper = mount(NcDateTimePickerNative, {
 			props: {
 				label: 'the label',
-			}
+			},
 		})
 
 		expect(wrapper.find('label').text()).toBe('the label')

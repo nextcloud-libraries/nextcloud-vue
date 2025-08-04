@@ -434,13 +434,16 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 
 <template>
 	<!-- This wrapper can be either a router link or a `<li>` -->
-	<component :is="to ? 'router-link' : 'NcVNodes'"
+	<component
+		:is="to ? 'router-link' : 'NcVNodes'"
 		v-slot="{ href: routerLinkHref, navigate, isActive }"
 		v-bind="{ ...to && { custom: true, to } }">
-		<li class="list-item__wrapper"
-			:class="{ 'list-item__wrapper--active' : active ?? isActive }"
+		<li
+			class="list-item__wrapper"
+			:class="{ 'list-item__wrapper--active': active ?? isActive }"
 			v-bind="$attrs">
-			<div ref="list-item"
+			<div
+				ref="list-item"
 				class="list-item"
 				:class="{
 					'list-item--compact': compact,
@@ -448,7 +451,8 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 				}"
 				@mouseover="handleMouseover"
 				@mouseleave="handleMouseleave">
-				<a :id="anchorId || undefined"
+				<a
+					:id="anchorId || undefined"
 					:aria-label="linkAriaLabel"
 					class="list-item__anchor"
 					:href="routerLinkHref || href"
@@ -468,9 +472,10 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 								<!-- @slot Slot for the first line of the component. prop 'name' is used as a fallback is no slots are provided -->
 								<slot name="name">{{ name }}</slot>
 							</div>
-							<div v-if="hasSubname"
+							<div
+								v-if="hasSubname"
 								class="list-item-content__subname"
-								:class="{'list-item-content__subname--bold': bold}">
+								:class="{ 'list-item-content__subname--bold': bold }">
 								<!-- @slot Slot for the second line of the component -->
 								<slot name="subname" />
 							</div>
@@ -481,10 +486,12 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 								<slot name="details">{{ details }}</slot>
 							</div>
 							<!-- Counter and indicator -->
-							<div v-if="counterNumber !== 0 || hasIndicator"
+							<div
+								v-if="counterNumber !== 0 || hasIndicator"
 								v-show="showAdditionalElements"
 								class="list-item-details__extra">
-								<NcCounterBubble v-if="counterNumber !== 0"
+								<NcCounterBubble
+									v-if="counterNumber !== 0"
 									:count="counterNumber"
 									:active="active ?? isActive"
 									class="list-item-details__counter"
@@ -505,10 +512,12 @@ The `actions-icon` slot can be used to pass icon to the inner NcActions componen
 				</div>
 
 				<!-- Actions -->
-				<div v-show="forceDisplayActions || displayActionsOnHoverFocus"
+				<div
+					v-show="forceDisplayActions || displayActionsOnHoverFocus"
 					class="list-item-content__actions"
 					@focusout="handleBlur">
-					<NcActions ref="actions"
+					<NcActions
+						ref="actions"
 						:primary="active ?? isActive"
 						:force-menu="forceMenu"
 						:aria-label="actionsAriaLabel"
@@ -580,6 +589,9 @@ export default {
 			default: '#',
 		},
 
+		/**
+		 * The HTML target attribute used for the link
+		 */
 		target: {
 			type: String,
 			default: '',
@@ -637,10 +649,10 @@ export default {
 		 * If different from 0 this component will display the
 		 * NcCounterBubble component
 		 */
-		 counterNumber: {
-			 type: [Number, String],
-			 default: 0,
-		 },
+		counterNumber: {
+			type: [Number, String],
+			default: 0,
+		},
 
 		/**
 		 * Outlined or highlighted state of the counter

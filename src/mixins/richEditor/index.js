@@ -3,11 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import NcMentionBubble from '../../components/NcRichContenteditable/NcMentionBubble.vue'
-
 import escapeHtml from 'escape-html'
 import stripTags from 'striptags'
 import { createApp } from 'vue'
+import NcMentionBubble from '../../components/NcRichContenteditable/NcMentionBubble.vue'
 
 // Referenced from public function getMentions(): https://github.com/nextcloud/server/blob/master/lib/private/Comments/Comment.php
 // Beginning or whitespace. Uses positive lookahead (to work on MobileSafari <16.4)
@@ -42,11 +41,11 @@ export default {
 
 			// Extract all the userIds
 			const splitValue = sanitizedValue.split(USERID_REGEX)
-				.map(part => part.split(USERID_REGEX_WITH_SPACE)).flat()
+				.map((part) => part.split(USERID_REGEX_WITH_SPACE)).flat()
 
 			// Replace userIds by html
 			return splitValue
-				.map(part => {
+				.map((part) => {
 					// When splitting, the string is always putting the userIds
 					// on the uneven indexes. We only want to generate the mentions html
 					if (!part.startsWith('@')) {
@@ -106,7 +105,7 @@ export default {
 			// Fallback to @mention in case no data matches
 			if (!data) {
 				// return @value if matches MENTION_SIMPLE, @"value" otherwise
-				return [' ', '/', ':'].every(char => !value.includes(char))
+				return [' ', '/', ':'].every((char) => !value.includes(char))
 					? `@${value}`
 					: `@"${value}"`
 			}

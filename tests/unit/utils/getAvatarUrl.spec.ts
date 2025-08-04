@@ -1,9 +1,10 @@
-/**
+/*
  * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import { getAvatarUrl } from '../../../src/utils/getAvatarUrl'
+
 import { afterEach, describe, expect, it } from 'vitest'
+import { getAvatarUrl } from '../../../src/utils/getAvatarUrl.ts'
 
 describe('getAvatarUrl', () => {
 	afterEach(() => {

@@ -3,8 +3,6 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import type { Component } from 'vue'
-
 import { expect, test } from '@playwright/experimental-ct-vue'
 import NcModal from '../../../src/components/NcModal/NcModal.vue'
 

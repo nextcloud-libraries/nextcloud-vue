@@ -108,7 +108,7 @@ ${'NcTextField'}     | ${NcTextField}
 		expect(wrapper.find('input').classes('some-class')).toBe(true)
 	})
 
-	it('should have the disabled attribute', async() => {
+	it('should have the disabled attribute', async () => {
 		const wrapper = mount(component, {
 			props: {
 				modelValue: '',
@@ -118,7 +118,7 @@ ${'NcTextField'}     | ${NcTextField}
 		expect(wrapper.find('input').attributes('disabled')).toBe(undefined)
 
 		await wrapper.setProps({
-			disabled: true
+			disabled: true,
 		})
 		expect(wrapper.find('input').attributes('disabled')).toBe('')
 	})
