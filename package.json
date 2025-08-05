@@ -140,7 +140,7 @@
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.7.0",
     "babel-loader-exclude-node-modules-except": "^1.2.1",
-    "core-js": "^3.44.0",
+    "core-js": "^3.45.0",
     "file-loader": "^6.2.0",
     "gettext-extractor": "^4.0.1",
     "gettext-parser": "^8.0.0",
