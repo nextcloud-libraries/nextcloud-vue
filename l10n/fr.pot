@@ -1,22 +1,19 @@
-# 
+#
 # Translators:
-# Rémi LEBLOND, 2023
-# Mordecai, 2023
-# Jaxom Kaplan, 2023
-# tflidd <tflidd@aspekte.net>, 2023
-# Christophe LG, 2024
-# Delphin PETER (Del) <delphinpeter@gmail.com>, 2024
-# DEV314R, 2024
-# John Molakvoæ <skjnldsv@protonmail.com>, 2024
-# Luc Van Vlasselaer <news@lv2.com>, 2025
-# 
+# Joas Schilling, 2025
+# XYZ, 2025
+# Corentin Noël <tintou@noel.tf>, 2025
+# Pascal Prugna, 2025
+# Charles Taborin, 2025
+#
 msgid ""
 msgstr ""
-"Last-Translator: Luc Van Vlasselaer <news@lv2.com>, 2025\n"
+"Last-Translator: Charles Taborin, 2025\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
-"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % "
+"1000000 == 0 ? 1 : 2;\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (invisible)"
@@ -126,7 +123,7 @@ msgid "Custom"
 msgstr "Personnalisé"
 
 msgid "Dark skin tone"
-msgstr "Teint foncé"
+msgstr "Teint de peau foncé"
 
 #. TRANSLATORS: A color name for RGB(136, 85, 168)
 msgid "Deluge"
@@ -151,8 +148,8 @@ msgid "Enter link"
 msgstr "Saisissez le lien"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Erreur lors de la récupération des ressources liées. Contactez votre "
 "administrateur système pour répondre à vos éventuelles questions."
@@ -207,7 +204,7 @@ msgid "Keyboard navigation help"
 msgstr "Aide à la navigation du clavier"
 
 msgid "Light skin tone"
-msgstr "Teint clair"
+msgstr "Teint de peau clair"
 
 msgid "Load more \"{options}\""
 msgstr "Charger d'avantage \"{options}\""
@@ -218,19 +215,22 @@ msgstr "Chargement …"
 
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
-msgstr "Mariner"
+msgstr "Bleu marine"
 
 msgid "Medium dark skin tone"
-msgstr "Teint moyennement foncé"
+msgstr "Teint de peau moyennement foncé"
 
 msgid "Medium light skin tone"
-msgstr "Teint moyen clair"
+msgstr "Teint de peau moyennement clair"
 
 msgid "Medium skin tone"
-msgstr "Teint moyen"
+msgstr "Teint de peau moyen"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Limite de messages de {count} caractères atteinte"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Limite de messages de %n caractère atteinte"
+msgstr[1] "Limite de messages de %n caractères atteinte"
+msgstr[2] "Limite de messages de %n caractères atteinte"
 
 msgid "More items …"
 msgstr "Plus d'éléments..."
@@ -239,7 +239,7 @@ msgid "More options"
 msgstr "Plus d'options"
 
 msgid "Neutral skin color"
-msgstr "Teint neutre"
+msgstr "Teint de peau neutre"
 
 msgid "Next"
 msgstr "Suivant"
@@ -346,7 +346,7 @@ msgid "Save changes"
 msgstr "Sauvegarder les changements"
 
 msgid "Search"
-msgstr "Chercher"
+msgstr "Rechercher"
 
 msgid "Search emoji"
 msgstr "Rechercher un emoji"
@@ -360,10 +360,9 @@ msgstr "Résultats de recherche"
 msgid "Search…"
 msgstr "Rechercher…"
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
-msgstr "il y a sec."
+msgstr "il y a qq. sec."
 
 #. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
 msgid "seconds ago"
@@ -371,6 +370,9 @@ msgstr "il y a quelques secondes"
 
 msgid "Select a tag"
 msgstr "Sélectionnez une balise"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Sélectionner un fournisseur"
@@ -443,4 +445,139 @@ msgid "Whiskey"
 msgstr "Whiskey"
 
 msgid "Write a message …"
-msgstr "Ecrire un message..."
+msgstr "Écrire un message..."
+
+#~ msgid "Calendar icon"
+#~ msgstr "Icône de calendrier"
+
+#~ msgid "Cancel"
+#~ msgstr "Annuler"
+
+#~ msgid "Clear value"
+#~ msgstr "Effacer la valeur"
+
+#~ msgid "Close time Picker"
+#~ msgstr "Fermer le sélecteur de temps"
+
+#~ msgid "Datepicker input"
+#~ msgstr "Entrée du sélecteur de date"
+
+#~ msgid "Datepicker menu"
+#~ msgstr "Menu du sélecteur de date"
+
+#~ msgid "Decrement hours"
+#~ msgstr "Diminuer les heures"
+
+#~ msgid "Decrement minutes"
+#~ msgstr "Diminuer les minutes"
+
+#~ msgid "Decrement seconds"
+#~ msgstr "Diminuer les secondes"
+
+#~ msgid "External documentation"
+#~ msgstr "Documentation externe"
+
+#~ msgid "Increment hours"
+#~ msgstr "Augmenter les heures"
+
+#~ msgid "Increment minutes"
+#~ msgstr "Augmenter les minutes"
+
+#~ msgid "Increment seconds"
+#~ msgstr "Augmenter les secondes"
+
+#~ msgid "Month picker"
+#~ msgstr "Sélecteur de mois"
+
+#~ msgid "Month picker overlay"
+#~ msgstr "Superposition du sélecteur de mois"
+
+#~ msgid "Next month"
+#~ msgstr "Mois prochain"
+
+#~ msgid "Next year"
+#~ msgstr "Année prochaine"
+
+#~ msgid "Now"
+#~ msgstr "Maintenant"
+
+#~ msgid "Open hours overlay"
+#~ msgstr "Superposition des heures d'ouverture"
+
+#~ msgid "Open minutes overlay"
+#~ msgstr "Superposition des minutes d'ouverture"
+
+#~ msgid "Open months overlay"
+#~ msgstr "Superposition des mois ouverts"
+
+#~ msgid "Open navigation"
+#~ msgstr "Ouvrir la navigation"
+
+#~ msgid "Open seconds overlay"
+#~ msgstr "Superposition des secondes ouvertes"
+
+#~ msgid "Open time picker"
+#~ msgstr "Ouvrir le sélecteur de temps"
+
+#~ msgid "Open years overlay"
+#~ msgstr "Superposition des années ouvertes"
+
+#~ msgid "Pick"
+#~ msgstr "Choisir"
+
+#~ msgid "Please choose a date"
+#~ msgstr "Veuillez choisir une date"
+
+#~ msgid "Previous month"
+#~ msgstr "Mois précédent"
+
+#~ msgid "Previous year"
+#~ msgstr "Année précédente"
+
+#~ msgid "Search for timezone"
+#~ msgstr "Rechercher un fuseau horaire"
+
+#~ msgid "Select date"
+#~ msgstr "Sélectionnez la date"
+
+#~ msgid "Select date and time"
+#~ msgstr "Sélectionnez la date et l'heure"
+
+#~ msgid "Select month"
+#~ msgstr "Sélectionnez le mois"
+
+#~ msgid "Select time"
+#~ msgstr "Sélectionnez l'heure"
+
+#~ msgid "Select time range"
+#~ msgstr "Sélectionnez la plage horaire"
+
+#~ msgid "Select week"
+#~ msgstr "Sélectionnez la semaine"
+
+#~ msgid "Select year"
+#~ msgstr "Sélectionnez l'année"
+
+#~ msgid "Switch AM/PM mode"
+#~ msgstr "Basculer le mode Matin/Après-midi"
+
+#~ msgid "Time picker"
+#~ msgstr "Sélecteur de temps"
+
+#~ msgid "Timezone"
+#~ msgstr "Fuseau horaire"
+
+#~ msgid "Toggle overlay"
+#~ msgstr "Basculer la superposition"
+
+#~ msgid "W"
+#~ msgstr "W"
+
+#~ msgid "Year picker"
+#~ msgstr "Sélecteur d'année"
+
+#~ msgid "Year picker overlay"
+#~ msgstr "Superposition du sélecteur d’année"
+
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "Limite de messages de {count} caractères atteinte"

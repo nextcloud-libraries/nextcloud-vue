@@ -1,280 +1,188 @@
-# 
+#
 # Translators:
 # Joas Schilling, 2023
 # Transifex Bot <>, 2023
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Transifex Bot <>, 2023\n"
-"Language-Team: Slovenian (https://app.transifex.com/nextcloud/teams/64236/sl/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Slovenian (https://app.transifex.com/nextcloud/teams/64236/"
+"sl/)\n"
 "Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 
-msgid "{tag} (invisible)"
-msgstr "{tag} (nevidno)"
+#~ msgid "{tag} (invisible)"
+#~ msgstr "{tag} (nevidno)"
 
-msgid "{tag} (restricted)"
-msgstr "{tag} (omejeno)"
+#~ msgid "{tag} (restricted)"
+#~ msgstr "{tag} (omejeno)"
 
-msgid "a few seconds ago"
-msgstr ""
+#~ msgid "Actions"
+#~ msgstr "Dejanja"
 
-msgid "Actions"
-msgstr "Dejanja"
+#~ msgid "Activities"
+#~ msgstr "Dejavnosti"
 
-msgid "Actions for item with name \"{name}\""
-msgstr ""
+#~ msgid "Animals & Nature"
+#~ msgstr "Živali in Narava"
 
-msgid "Activities"
-msgstr "Dejavnosti"
+#~ msgid "Avatar of {displayName}"
+#~ msgstr "Podoba {displayName}"
 
-msgid "Animals & Nature"
-msgstr "Živali in Narava"
+#~ msgid "Avatar of {displayName}, {status}"
+#~ msgstr "Prikazna slika {displayName}, {status}"
 
-msgid "Any link"
-msgstr ""
+#~ msgid "Cancel changes"
+#~ msgstr "Prekliči spremembe"
 
-msgid "Anything shared with the same group of people will show up here"
-msgstr ""
+#~ msgid "Choose"
+#~ msgstr "Izbor"
 
-msgid "Avatar of {displayName}"
-msgstr "Podoba {displayName}"
+#~ msgid "Clear text"
+#~ msgstr "Počisti besedilo"
 
-msgid "Avatar of {displayName}, {status}"
-msgstr "Prikazna slika {displayName}, {status}"
+#~ msgid "Close"
+#~ msgstr "Zapri"
 
-msgid "Back"
-msgstr ""
+#~ msgid "Close modal"
+#~ msgstr "Zapri pojavno okno"
 
-msgid "Back to provider selection"
-msgstr ""
+#~ msgid "Close navigation"
+#~ msgstr "Zapri krmarjenje"
 
-msgid "Cancel changes"
-msgstr "Prekliči spremembe"
+#~ msgid "Close sidebar"
+#~ msgstr "Zapri stransko vrstico"
 
-msgid "Change name"
-msgstr ""
+#~ msgid "Confirm changes"
+#~ msgstr "Potrdi spremembe"
 
-msgid "Choose"
-msgstr "Izbor"
+#~ msgid "Custom"
+#~ msgstr "Po meri"
 
-msgid "Clear search"
-msgstr ""
+#~ msgid "Edit item"
+#~ msgstr "Uredi predmet"
 
-msgid "Clear text"
-msgstr "Počisti besedilo"
+#~ msgid "Favorite"
+#~ msgstr "Priljubljeno"
 
-msgid "Close"
-msgstr "Zapri"
+#~ msgid "Flags"
+#~ msgstr "Zastavice"
 
-msgid "Close modal"
-msgstr "Zapri pojavno okno"
+#~ msgid "Food & Drink"
+#~ msgstr "Hrana in Pijača"
 
-msgid "Close navigation"
-msgstr "Zapri krmarjenje"
+#~ msgid "Frequently used"
+#~ msgstr "Pogostost uporabe"
 
-msgid "Close sidebar"
-msgstr "Zapri stransko vrstico"
+#~ msgid "Global"
+#~ msgstr "Splošno"
 
-msgid "Close Smart Picker"
-msgstr ""
+#~ msgid "Go back to the list"
+#~ msgstr "Vrni se na seznam"
 
-msgid "Collapse menu"
-msgstr ""
+#~ msgid "Hide password"
+#~ msgstr "Skrij geslo"
 
-msgid "Confirm changes"
-msgstr "Potrdi spremembe"
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "Dosežena omejitev {count} znakov na sporočilo."
 
-msgid "Custom"
-msgstr "Po meri"
+#~ msgid "More items …"
+#~ msgstr "Več predmetov ..."
 
-msgid "Edit item"
-msgstr "Uredi predmet"
+#~ msgid "Next"
+#~ msgstr "Naslednji"
 
-msgid "Enter link"
-msgstr ""
+#~ msgid "No emoji found"
+#~ msgstr "Ni najdenih izraznih ikon"
 
-msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
-msgstr ""
+#~ msgid "No results"
+#~ msgstr "Ni zadetkov"
 
-msgid "External documentation for {name}"
-msgstr ""
+#~ msgid "Objects"
+#~ msgstr "Predmeti"
 
-msgid "Favorite"
-msgstr "Priljubljeno"
+#~ msgid "Open navigation"
+#~ msgstr "Odpri krmarjenje"
 
-msgid "Flags"
-msgstr "Zastavice"
+#~ msgid "Password is secure"
+#~ msgstr "Geslo je varno"
 
-msgid "Food & Drink"
-msgstr "Hrana in Pijača"
+#~ msgid "Pause slideshow"
+#~ msgstr "Ustavi predstavitev"
 
-msgid "Frequently used"
-msgstr "Pogostost uporabe"
+#~ msgid "People & Body"
+#~ msgstr "Ljudje in Telo"
 
-msgid "Global"
-msgstr "Splošno"
+#~ msgid "Pick a date"
+#~ msgstr "Izbor datuma"
 
-msgid "Go back to the list"
-msgstr "Vrni se na seznam"
+#~ msgid "Pick a date and a time"
+#~ msgstr "Izbor datuma in časa"
 
-msgid "Hide password"
-msgstr "Skrij geslo"
+#~ msgid "Pick a month"
+#~ msgstr "Izbor meseca"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+#~ msgid "Pick a time"
+#~ msgstr "Izbor časa"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Dosežena omejitev {count} znakov na sporočilo."
+#~ msgid "Pick a week"
+#~ msgstr "Izbor tedna"
 
-msgid "More items …"
-msgstr "Več predmetov ..."
+#~ msgid "Pick a year"
+#~ msgstr "Izbor leta"
 
-msgid "More options"
-msgstr ""
+#~ msgid "Pick an emoji"
+#~ msgstr "Izbor izrazne ikone"
 
-msgid "Next"
-msgstr "Naslednji"
+#~ msgid "Please select a time zone:"
+#~ msgstr "Izbor časovnega pasu:"
 
-msgid "No emoji found"
-msgstr "Ni najdenih izraznih ikon"
+#~ msgid "Previous"
+#~ msgstr "Predhodni"
 
-msgid "No link provider found"
-msgstr ""
+#~ msgid "Related resources"
+#~ msgstr "Povezani viri"
 
-msgid "No results"
-msgstr "Ni zadetkov"
+#~ msgid "Search"
+#~ msgstr "Iskanje"
 
-msgid "Objects"
-msgstr "Predmeti"
+#~ msgid "Search results"
+#~ msgstr "Zadetki iskanja"
 
-msgid "Open contact menu"
-msgstr ""
+#~ msgid "Select a tag"
+#~ msgstr "Izbor oznake"
 
-msgid "Open link to \"{resourceName}\""
-msgstr ""
+#~ msgid "Settings"
+#~ msgstr "Nastavitve"
 
-msgid "Open menu"
-msgstr ""
+#~ msgid "Settings navigation"
+#~ msgstr "Krmarjenje nastavitev"
 
-msgid "Open navigation"
-msgstr "Odpri krmarjenje"
+#~ msgid "Show password"
+#~ msgstr "Pokaži geslo"
 
-msgid "Open settings menu"
-msgstr ""
+#~ msgid "Smileys & Emotion"
+#~ msgstr "Izrazne ikone"
 
-msgid "Password is secure"
-msgstr "Geslo je varno"
+#~ msgid "Start slideshow"
+#~ msgstr "Začni predstavitev"
 
-msgid "Pause slideshow"
-msgstr "Ustavi predstavitev"
+#~ msgid "Submit"
+#~ msgstr "Pošlji"
 
-msgid "People & Body"
-msgstr "Ljudje in Telo"
+#~ msgid "Symbols"
+#~ msgstr "Simboli"
 
-msgid "Pick a date"
-msgstr "Izbor datuma"
+#~ msgid "Travel & Places"
+#~ msgstr "Potovanja in Kraji"
 
-msgid "Pick a date and a time"
-msgstr "Izbor datuma in časa"
+#~ msgid "Type to search time zone"
+#~ msgstr "Vpišite niz za iskanje časovnega pasu"
 
-msgid "Pick a month"
-msgstr "Izbor meseca"
+#~ msgid "Unable to search the group"
+#~ msgstr "Ni mogoče iskati po skupini"
 
-msgid "Pick a time"
-msgstr "Izbor časa"
-
-msgid "Pick a week"
-msgstr "Izbor tedna"
-
-msgid "Pick a year"
-msgstr "Izbor leta"
-
-msgid "Pick an emoji"
-msgstr "Izbor izrazne ikone"
-
-msgid "Please select a time zone:"
-msgstr "Izbor časovnega pasu:"
-
-msgid "Previous"
-msgstr "Predhodni"
-
-msgid "Provider icon"
-msgstr ""
-
-msgid "Raw link {options}"
-msgstr ""
-
-msgid "Related resources"
-msgstr "Povezani viri"
-
-msgid "Search"
-msgstr "Iskanje"
-
-msgid "Search emoji"
-msgstr ""
-
-msgid "Search results"
-msgstr "Zadetki iskanja"
-
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
-msgid "sec. ago"
-msgstr ""
-
-#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
-msgid "seconds ago"
-msgstr ""
-
-msgid "Select a tag"
-msgstr "Izbor oznake"
-
-msgid "Select provider"
-msgstr ""
-
-msgid "Settings"
-msgstr "Nastavitve"
-
-msgid "Settings navigation"
-msgstr "Krmarjenje nastavitev"
-
-msgid "Show password"
-msgstr "Pokaži geslo"
-
-msgid "Smart Picker"
-msgstr ""
-
-msgid "Smileys & Emotion"
-msgstr "Izrazne ikone"
-
-msgid "Start slideshow"
-msgstr "Začni predstavitev"
-
-msgid "Start typing to search"
-msgstr ""
-
-msgid "Submit"
-msgstr "Pošlji"
-
-msgid "Symbols"
-msgstr "Simboli"
-
-msgid "Travel & Places"
-msgstr "Potovanja in Kraji"
-
-msgid "Type to search time zone"
-msgstr "Vpišite niz za iskanje časovnega pasu"
-
-msgid "Unable to search the group"
-msgstr "Ni mogoče iskati po skupini"
-
-msgid "Undo changes"
-msgstr "Razveljavi spremembe"
-
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
+#~ msgid "Undo changes"
+#~ msgstr "Razveljavi spremembe"

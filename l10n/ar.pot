@@ -1,17 +1,16 @@
-# 
+#
 # Translators:
-# Hamza, 2024
-# Ali <alimahwer@yahoo.com>, 2024
-# abu.s3ud, 2024
-# John Molakvoæ <skjnldsv@protonmail.com>, 2024
-# 
+# Joas Schilling, 2025
+# Ali <alimahwer@yahoo.com>, 2025
+#
 msgid ""
 msgstr ""
-"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
+"Last-Translator: Ali <alimahwer@yahoo.com>, 2025\n"
 "Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (غير مرئي)"
@@ -145,8 +144,8 @@ msgid "Enter link"
 msgstr "أدخِل الرابط"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "خطأ في الحصول على الموارد ذات الصلة. يرجى الاتصال بمشرف النظام عندك إذا كان "
 "لديك أيّ أسئلة."
@@ -223,8 +222,14 @@ msgstr "بشرة متوسطة البياض"
 msgid "Medium skin tone"
 msgstr "بشرة وسطية اللون"
 
-msgid "Message limit of {count} characters reached"
-msgstr "تمّ الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "More items …"
 msgstr "عناصر أخرى ..."
@@ -354,8 +359,7 @@ msgstr "نتائج البحث"
 msgid "Search…"
 msgstr "بحث ..."
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "ثانية مضت"
 
@@ -365,6 +369,9 @@ msgstr "ثوانٍ مضت"
 
 msgid "Select a tag"
 msgstr "اختر وسم"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "اختر مزود"
@@ -438,3 +445,132 @@ msgstr "نبيذي"
 
 msgid "Write a message …"
 msgstr "أكتب رسالة ..."
+
+#~ msgid "Calendar icon"
+#~ msgstr "أيقونة التقويم"
+
+#~ msgid "Cancel"
+#~ msgstr "إلغاء"
+
+#~ msgid "Clear value"
+#~ msgstr "مَحو القيمة"
+
+#~ msgid "Close time Picker"
+#~ msgstr "إغلاق لاقط الوقت"
+
+#~ msgid "Datepicker input"
+#~ msgstr "مُدخَلات لاقط التاريخ"
+
+#~ msgid "Datepicker menu"
+#~ msgstr "قائمة لاقط التاريخ"
+
+#~ msgid "Decrement hours"
+#~ msgstr "إنقاص الساعات"
+
+#~ msgid "Decrement minutes"
+#~ msgstr "إنقاص الدقائق"
+
+#~ msgid "Decrement seconds"
+#~ msgstr "إنقاص الثواني"
+
+#~ msgid "Increment hours"
+#~ msgstr "زيادة الساعات"
+
+#~ msgid "Increment minutes"
+#~ msgstr "زيادة الدقائق"
+
+#~ msgid "Increment seconds"
+#~ msgstr "زيادة الثواني"
+
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "تمّ الوصول إلى الحد الأقصى لعدد الأحرف في الرسالة: {count} حرف"
+
+#~ msgid "Month picker"
+#~ msgstr "لاقط الشهر"
+
+#~ msgid "Month picker overlay"
+#~ msgstr "تراكب لاقط الشهر"
+
+#~ msgid "Next month"
+#~ msgstr "الشهر القادم"
+
+#~ msgid "Next year"
+#~ msgstr "السنة القادمة"
+
+#~ msgid "Now"
+#~ msgstr "الآن"
+
+#~ msgid "Open hours overlay"
+#~ msgstr "فتح تراكب الساعات "
+
+#~ msgid "Open minutes overlay"
+#~ msgstr "فتح تراكب الدقائق"
+
+#~ msgid "Open months overlay"
+#~ msgstr "فتح تراكب الشهور"
+
+#~ msgid "Open navigation"
+#~ msgstr "فتح التنقُّل"
+
+#~ msgid "Open seconds overlay"
+#~ msgstr "فتح تراكب الثواني"
+
+#~ msgid "Open time picker"
+#~ msgstr "فتح لاقط الوقت"
+
+#~ msgid "Open years overlay"
+#~ msgstr "فتح تراكب السنوات"
+
+#~ msgid "Pick"
+#~ msgstr "إلتقاط"
+
+#~ msgid "Previous month"
+#~ msgstr "الشهر الماضي"
+
+#~ msgid "Previous year"
+#~ msgstr "السنة الماضية"
+
+#~ msgid "Search for timezone"
+#~ msgstr "البحث عن المنطقة الزمنية"
+
+#~ msgid "Select date"
+#~ msgstr "إختيار التاريخ"
+
+#~ msgid "Select date and time"
+#~ msgstr "إختيار التاريخ والوقت"
+
+#~ msgid "Select month"
+#~ msgstr "إختيار الشهر"
+
+#~ msgid "Select time"
+#~ msgstr "إختيار الوقت"
+
+#~ msgid "Select time range"
+#~ msgstr "إختيار المدى الزمني"
+
+#~ msgid "Select week"
+#~ msgstr "إختيار الأسبوع"
+
+#~ msgid "Select year"
+#~ msgstr "إختيار السنة"
+
+#~ msgid "Switch AM/PM mode"
+#~ msgstr "تبديل وضعية صباحاً/مساءً"
+
+#~ msgid "Time picker"
+#~ msgstr "لاقط الوقت"
+
+#~ msgid "Timezone"
+#~ msgstr "المنطقة الزمنية"
+
+#~ msgid "Toggle overlay"
+#~ msgstr "تبديل التراكب"
+
+#~ msgid "W"
+#~ msgstr "أ"
+
+#~ msgid "Year picker"
+#~ msgstr "لاقط السنة"
+
+#~ msgid "Year picker overlay"
+#~ msgstr "تراكب لاقط السنة"

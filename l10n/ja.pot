@@ -1,16 +1,15 @@
-# 
+#
 # Translators:
-# Joas Schilling, 2024
-# devi, 2024
-# kshimohata, 2024
-# John Molakvoæ <skjnldsv@protonmail.com>, 2024
-# 
+# Joas Schilling, 2025
+# kshimohata, 2025
+#
 msgid ""
 msgstr ""
-"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
-"Language-Team: Japanese (Japan) (https://app.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: kshimohata, 2025\n"
+"Language-Team: Japanese (Japan) (https://app.transifex.com/nextcloud/"
+"teams/64236/ja_JP/)\n"
 "Language: ja_JP\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "{tag} (invisible)"
@@ -145,9 +144,11 @@ msgid "Enter link"
 msgstr "リンクを入力する"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
-msgstr "関連リソースの取得エラー。ご不明な点がございましたら、システム管理者にお問い合わせください。"
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
+msgstr ""
+"関連リソースの取得エラー。ご不明な点がございましたら、システム管理者にお問い"
+"合わせください。"
 
 msgid "External documentation for {name}"
 msgstr "{name} の外部ドキュメント"
@@ -221,8 +222,9 @@ msgstr "やや明るい肌のトーン"
 msgid "Medium skin tone"
 msgstr "中間の肌のトーン"
 
-msgid "Message limit of {count} characters reached"
-msgstr "{count} 文字のメッセージ上限に達しています"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "メッセージの%n文字の制限に達しました"
 
 msgid "More items …"
 msgstr "他のアイテム"
@@ -352,8 +354,7 @@ msgstr "検索結果"
 msgid "Search…"
 msgstr "検索…"
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "秒前"
 
@@ -363,6 +364,9 @@ msgstr "数秒前"
 
 msgid "Select a tag"
 msgstr "タグを選択"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "プロバイダーを選択"
@@ -436,3 +440,138 @@ msgstr "ウイスキー"
 
 msgid "Write a message …"
 msgstr "メッセージを書く ..."
+
+#~ msgid "Calendar icon"
+#~ msgstr "カレンダーのアイコン"
+
+#~ msgid "Cancel"
+#~ msgstr "キャンセル"
+
+#~ msgid "Clear value"
+#~ msgstr "値をクリア"
+
+#~ msgid "Close time Picker"
+#~ msgstr "時間ピッカーを閉じる"
+
+#~ msgid "Datepicker input"
+#~ msgstr "データピッカー入力"
+
+#~ msgid "Datepicker menu"
+#~ msgstr "データピッカーメニュー"
+
+#~ msgid "Decrement hours"
+#~ msgstr "時間を減らす"
+
+#~ msgid "Decrement minutes"
+#~ msgstr "分を減らす"
+
+#~ msgid "Decrement seconds"
+#~ msgstr "秒を減らす"
+
+#~ msgid "External documentation"
+#~ msgstr "外部ドキュメント"
+
+#~ msgid "Increment hours"
+#~ msgstr "時間を増やす"
+
+#~ msgid "Increment minutes"
+#~ msgstr "分を増やす"
+
+#~ msgid "Increment seconds"
+#~ msgstr "秒を増やす"
+
+#~ msgid "Month picker"
+#~ msgstr "月ピッカー"
+
+#~ msgid "Month picker overlay"
+#~ msgstr "月ピッカーオーバーレイ"
+
+#~ msgid "Next month"
+#~ msgstr "次月"
+
+#~ msgid "Next year"
+#~ msgstr "次年"
+
+#~ msgid "Now"
+#~ msgstr "現在"
+
+#~ msgid "Open hours overlay"
+#~ msgstr "時間オーバーレイを開く"
+
+#~ msgid "Open minutes overlay"
+#~ msgstr "分オーバーレイを開く"
+
+#~ msgid "Open months overlay"
+#~ msgstr "月オーバーレイを開く"
+
+#~ msgid "Open navigation"
+#~ msgstr "ナビゲーションを開く"
+
+#~ msgid "Open seconds overlay"
+#~ msgstr "秒オーバーレイを開く"
+
+#~ msgid "Open time picker"
+#~ msgstr "時間ピッカーを開く"
+
+#~ msgid "Open years overlay"
+#~ msgstr "年オーバーレイを開く"
+
+#~ msgid "Pick"
+#~ msgstr "選択"
+
+#~ msgid "Please choose a date"
+#~ msgstr "日付を選択してください"
+
+#~ msgid "Previous month"
+#~ msgstr "前月"
+
+#~ msgid "Previous year"
+#~ msgstr "前年"
+
+#~ msgid "Search for timezone"
+#~ msgstr "タイムゾーンを検索"
+
+#~ msgid "Select date"
+#~ msgstr "日付を選択"
+
+#~ msgid "Select date and time"
+#~ msgstr "日付と時刻を選択"
+
+#~ msgid "Select month"
+#~ msgstr "月を選択"
+
+#~ msgid "Select time"
+#~ msgstr "時刻を選択"
+
+#~ msgid "Select time range"
+#~ msgstr "時間範囲を選択"
+
+#~ msgid "Select week"
+#~ msgstr "週を選択"
+
+#~ msgid "Select year"
+#~ msgstr "年を選択"
+
+#~ msgid "Switch AM/PM mode"
+#~ msgstr "AM/PMモードの切り替え"
+
+#~ msgid "Time picker"
+#~ msgstr "時刻ピッカー"
+
+#~ msgid "Timezone"
+#~ msgstr "タイムゾーン"
+
+#~ msgid "Toggle overlay"
+#~ msgstr "オーバーレイの切り替え"
+
+#~ msgid "W"
+#~ msgstr "W"
+
+#~ msgid "Year picker"
+#~ msgstr "年ピッカー"
+
+#~ msgid "Year picker overlay"
+#~ msgstr "年ピッカーオーバーレイ"
+
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "{count} 文字のメッセージ上限に達しています"
