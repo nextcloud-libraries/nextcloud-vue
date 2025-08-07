@@ -5,7 +5,8 @@
 
 import { Plugin } from 'vite'
 import { loadTranslations } from './translations.mts'
-import { dirname, resolve } from 'path'
+import { readFileSync } from 'fs'
+import { dirname, join, resolve } from 'path'
 
 /**
  * This is a plugin to split all translations into chunks of users meaning components that use that translation
@@ -19,6 +20,7 @@ export default (dir: string) => {
 	let nameMap: Record<string, string>
 	// all loaded translations, as filenames ->
 	const translations: Record<string, { l: string, t: Record<string, { v: string[], p?: string }> }[]> = {}
+	const l10nRegistrationCode = readFileSync(join(__dirname, 'l10n-registration-implementation.js'))
 
 	return {
 		name: 'nextcloud-l10n-plugin',
@@ -98,47 +100,7 @@ export default (dir: string) => {
 			} else if (id === '\0l10n') {
 				// exports are all chunked translations
 				const exports = Object.entries(nameMap).map(([usage, id]) => `export const ${id} = ${JSON.stringify(translations[usage])}`).join(';\n')
-				return `import { getLanguage } from '@nextcloud/l10n'
-import { getGettextBuilder } from '@nextcloud/l10n/gettext'
-const gettext = getGettextBuilder()
-	.detectLanguage()
-	.build()
-
-export const n = (...args) => gettext.ngettext(...args)
-export const t = (...args) => gettext.gettext(...args)
-
-export function register(...chunks) {
-	for (const chunk of chunks) {
-		if (!chunk.registered) {
-			// for every language in the chunk: decompress and register
-			for (const { l: language, t: translations } of chunk) {
-				if (language !== getLanguage() || !translations) {
-					continue
-				}
-
-				const decompressed = Object.fromEntries(
-					Object.entries(translations)
-					.map(([id, value]) => [
-						id,
-						{
-							msgid: id,
-							msgid_plural: value.p,
-							msgstr: value.v,
-						}
-					])
-				)
-
-				gettext.addTranslations({
-					translations: {
-						'': decompressed,
-					},
-				})
-			}
-			chunk.registered = true
-		}
-	}
-}
-${exports}`
+				return `${l10nRegistrationCode}\n${exports}`
 			}
 		},
 	} as Plugin
