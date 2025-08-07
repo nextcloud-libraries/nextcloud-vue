@@ -21,7 +21,7 @@ export default (dir: string) => {
 	let nameMap: Record<string, string>
 	// all loaded translations, as filenames ->
 	const translations: Record<string, { l: string, t: Record<string, { v: string[], p?: string }> }[]> = {}
-	const l10nRegistrationCode = readFileSync(join(__dirname, 'l10n-registration-implementation.js'))
+	let l10nRegistrationCode: string
 
 	return {
 		name: 'nextcloud-l10n-plugin',
@@ -31,6 +31,9 @@ export default (dir: string) => {
 		 * Prepare l10n loading once the building start, this loads all translations and splits them into chunks by their usage in the components.
 		 */
 		async buildStart() {
+			this.info('[l10n] Loading registration code')
+			const l10nRegistrationPath = join(import.meta.dirname, 'l10n-registration-implementation.js')
+			l10nRegistrationCode = readFileSync(l10nRegistrationPath).toString()
 			this.info('[l10n] Loading translations')
 			// all translations for all languages and components
 			const allTranslations = await loadTranslations(dir)
