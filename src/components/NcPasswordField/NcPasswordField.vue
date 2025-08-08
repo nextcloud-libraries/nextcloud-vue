@@ -205,7 +205,7 @@ interface PasswordPolicy {
 const { password_policy: passwordPolicy } = getCapabilities() as { password_policy?: PasswordPolicy }
 
 // internal state
-const inputField = useTemplateRef('inputField')
+const inputField = useTemplateRef('input-field-key')
 
 const internalHelpMessage = ref('')
 const isValid = ref<boolean>()
@@ -287,7 +287,7 @@ function select() {
 
 <template>
 	<NcInputField v-bind="propsToForward"
-		ref="inputField"
+		ref="input-field-key"
 		v-model="modelValue"
 		:error="error || isValid === false"
 		:helper-text="helperText || internalHelpMessage"
