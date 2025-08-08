@@ -1,16 +1,18 @@
-# 
+#
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Mark Ziegler <mark.ziegler@rakekniven.de>, 2024
-# Martin Wilichowski, 2024
-# Mario Siegmann <mario_siegmann@web.de>, 2024
-# 
+# Joas Schilling, 2025
+# Catherine Bühnsack, 2025
+# Mark Ziegler <mark.ziegler@rakekniven.de>, 2025
+# Martin Wilichowski, 2025
+# Mario Siegmann <mario_siegmann@web.de>, 2025
+#
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2024\n"
-"Language-Team: German (Germany) (https://app.transifex.com/nextcloud/teams/64236/de_DE/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2025\n"
+"Language-Team: German (Germany) (https://app.transifex.com/nextcloud/"
+"teams/64236/de_DE/)\n"
 "Language: de_DE\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
@@ -147,8 +149,8 @@ msgid "Enter link"
 msgstr "Link eingeben"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Fehler beim Abrufen verwandter Ressourcen. Bei Fragen wenden Sie sich bitte "
 "an Ihre Systemadministration."
@@ -160,10 +162,10 @@ msgid "Failed to add the item to the project"
 msgstr "Das Element konnte nicht zum Projekt hinzugefügt werden"
 
 msgid "Failed to create a project"
-msgstr "Fehler beim Erstellen eines Projektes"
+msgstr "Projekt konnte nicht erstellt werden"
 
 msgid "Failed to rename the project"
-msgstr "Fehler beim Umbenennen eines Projektes"
+msgstr "Das Projekt konnte nicht umbenannt werden"
 
 msgid "Favorite"
 msgstr "Favorit"
@@ -225,8 +227,10 @@ msgstr "Mittelheller Hautfarbton"
 msgid "Medium skin tone"
 msgstr "Mittlerer Hautfarbton"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Nachrichtenlimit von {count} Zeichen erreicht"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Nachrichtenlimit von %n Zeichen erreicht"
+msgstr[1] "Nachrichtenlimit von %n Zeichen erreicht"
 
 msgid "More items …"
 msgstr "Weitere Elemente …"
@@ -266,7 +270,7 @@ msgid "online"
 msgstr "Online"
 
 msgid "Open link to \"{resourceName}\""
-msgstr "Link zu \"{resourceName}“ öffnen"
+msgstr "Link zu \"{resourceName}\" öffnen"
 
 msgid "Open menu"
 msgstr "Menü öffnen"
@@ -323,7 +327,7 @@ msgid "Purple"
 msgstr "Lila"
 
 msgid "Raw link {options}"
-msgstr "Unverarbeiteter Link {Optionen}"
+msgstr "Unverarbeiteter Link {options}"
 
 msgid "Related resources"
 msgstr "Verwandte Ressourcen"
@@ -356,8 +360,7 @@ msgstr "Suchergebnisse"
 msgid "Search…"
 msgstr "Suche…"
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "Sek. zuvor"
 
@@ -367,6 +370,9 @@ msgstr "Sekunden zuvor"
 
 msgid "Select a tag"
 msgstr "Schlagwort auswählen"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Anbieter auswählen"
@@ -440,3 +446,138 @@ msgstr "Whiskey"
 
 msgid "Write a message …"
 msgstr "Nachricht schreiben …"
+
+#~ msgid "Calendar icon"
+#~ msgstr "Kalendersymbol"
+
+#~ msgid "Cancel"
+#~ msgstr "Abbrechen"
+
+#~ msgid "Clear value"
+#~ msgstr "Wert löschen"
+
+#~ msgid "Close time Picker"
+#~ msgstr "Zeitauswahl schließen"
+
+#~ msgid "Datepicker input"
+#~ msgstr "Eingabe Datumsauswahl"
+
+#~ msgid "Datepicker menu"
+#~ msgstr "Menü Datumsauswahl"
+
+#~ msgid "Decrement hours"
+#~ msgstr "Stunden verringern"
+
+#~ msgid "Decrement minutes"
+#~ msgstr "Minuten verringern"
+
+#~ msgid "Decrement seconds"
+#~ msgstr "Sekunden verringern"
+
+#~ msgid "External documentation"
+#~ msgstr "Externe Dokumentation"
+
+#~ msgid "Increment hours"
+#~ msgstr "Stunden hochzählen"
+
+#~ msgid "Increment minutes"
+#~ msgstr "Minuten hochzählen"
+
+#~ msgid "Increment seconds"
+#~ msgstr "Sekunden hochzählen"
+
+#~ msgid "Month picker"
+#~ msgstr "Monatsauswahl"
+
+#~ msgid "Month picker overlay"
+#~ msgstr "Monatsauswahl-Overlay"
+
+#~ msgid "Next month"
+#~ msgstr "Nächster Monat"
+
+#~ msgid "Next year"
+#~ msgstr "Nächstes Jahr"
+
+#~ msgid "Now"
+#~ msgstr "Jetzt"
+
+#~ msgid "Open hours overlay"
+#~ msgstr "Stunden-Overlay öffnen"
+
+#~ msgid "Open minutes overlay"
+#~ msgstr "Minuten-Overlay öffnen"
+
+#~ msgid "Open months overlay"
+#~ msgstr "Monate-Overlay öffnen"
+
+#~ msgid "Open navigation"
+#~ msgstr "Navigation öffnen"
+
+#~ msgid "Open seconds overlay"
+#~ msgstr "Sekunden-Overlay öffnen"
+
+#~ msgid "Open time picker"
+#~ msgstr "Zeitauswahl öffnen"
+
+#~ msgid "Open years overlay"
+#~ msgstr "Jahre-Overlay öffnen"
+
+#~ msgid "Pick"
+#~ msgstr "Auswählen"
+
+#~ msgid "Please choose a date"
+#~ msgstr "Bitte ein Datum wählen"
+
+#~ msgid "Previous month"
+#~ msgstr "Vorheriger Monat"
+
+#~ msgid "Previous year"
+#~ msgstr "Vorheriges Jahr"
+
+#~ msgid "Search for timezone"
+#~ msgstr "Nach Zeitzone suchen"
+
+#~ msgid "Select date"
+#~ msgstr "Datum auswählen"
+
+#~ msgid "Select date and time"
+#~ msgstr "Datum und Uhrzeit auswählen"
+
+#~ msgid "Select month"
+#~ msgstr "Monat auswählen"
+
+#~ msgid "Select time"
+#~ msgstr "Uhrzeit auswählen"
+
+#~ msgid "Select time range"
+#~ msgstr "Zeitspanne auswählen"
+
+#~ msgid "Select week"
+#~ msgstr "Woche auswählen"
+
+#~ msgid "Select year"
+#~ msgstr "Jahr auswählen"
+
+#~ msgid "Switch AM/PM mode"
+#~ msgstr "Zwischen AM/PM-Modus wechseln"
+
+#~ msgid "Time picker"
+#~ msgstr "Zeitauswahl"
+
+#~ msgid "Timezone"
+#~ msgstr "Zeitzone"
+
+#~ msgid "Toggle overlay"
+#~ msgstr "Overlay umschalten"
+
+#~ msgid "W"
+#~ msgstr "W"
+
+#~ msgid "Year picker"
+#~ msgstr "Jahresauswahl"
+
+#~ msgid "Year picker overlay"
+#~ msgstr "Jahre-Overlay öffnen"
+
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "Nachrichtenlimit von {count} Zeichen erreicht"

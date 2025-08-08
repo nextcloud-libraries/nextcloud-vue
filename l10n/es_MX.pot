@@ -1,14 +1,16 @@
-# 
+#
 # Translators:
 # Jehu Marcos Herrera Puentes, 2024
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Jehu Marcos Herrera Puentes, 2024\n"
-"Language-Team: Spanish (Mexico) (https://app.transifex.com/nextcloud/teams/64236/es_MX/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Spanish (Mexico) (https://app.transifex.com/nextcloud/"
+"teams/64236/es_MX/)\n"
 "Language: es_MX\n"
-"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (invisible)"
@@ -28,9 +30,6 @@ msgstr "Acapulco"
 
 msgid "Actions"
 msgstr "Acciones"
-
-msgid "Actions for item with name \"{name}\""
-msgstr "Acciones para el elemento con nombre \"{name}\""
 
 msgid "Activities"
 msgstr "Actividades"
@@ -115,8 +114,7 @@ msgid "Confirm changes"
 msgstr "Confirmar cambios"
 
 msgid "Connect items to a project to make them easier to find"
-msgstr ""
-"Conecte elementos a un proyecto para hacerlos más fáciles de encontrar"
+msgstr "Conecte elementos a un proyecto para hacerlos más fáciles de encontrar"
 
 msgid "Custom"
 msgstr "Personalizado"
@@ -147,8 +145,8 @@ msgid "Enter link"
 msgstr "Ingresar enlace"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Error al obtener recursos relacionados. Por favor contacte al administrador "
 "si tiene alguna pregunta."
@@ -208,6 +206,10 @@ msgstr "Tono de piel claro"
 msgid "Load more \"{options}\""
 msgstr "Cargar más \"{options}\""
 
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr ""
+
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Marinero"
@@ -221,8 +223,11 @@ msgstr "Tono de piel medio claro"
 msgid "Medium skin tone"
 msgstr "Tono de piel medio"
 
-msgid "Message limit of {count} characters reached"
-msgstr "El mensaje ha alcanzado el límite de {count} caracteres"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "More items …"
 msgstr "Más Elementos ..."
@@ -267,8 +272,8 @@ msgstr "Abrir enlace a \"{resourceName}\""
 msgid "Open menu"
 msgstr "Abrir menú"
 
-msgid "Open navigation"
-msgstr "Abrir navegación"
+msgid "Open navigation {shortcut}"
+msgstr ""
 
 msgid "Open sidebar"
 msgstr "Abrir barra lateral"
@@ -352,8 +357,7 @@ msgstr "Resultados de la búsqueda"
 msgid "Search…"
 msgstr "Buscar..."
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "seg. atrás"
 
@@ -363,6 +367,9 @@ msgstr "segundos atrás"
 
 msgid "Select a tag"
 msgstr "Seleccionar una etiqueta"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Seleccionar proveedor"
@@ -436,3 +443,12 @@ msgstr "Whiskey"
 
 msgid "Write a message …"
 msgstr "Escriba un mensaje ..."
+
+#~ msgid "Actions for item with name \"{name}\""
+#~ msgstr "Acciones para el elemento con nombre \"{name}\""
+
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "El mensaje ha alcanzado el límite de {count} caracteres"
+
+#~ msgid "Open navigation"
+#~ msgstr "Abrir navegación"

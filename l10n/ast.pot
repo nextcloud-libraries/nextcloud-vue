@@ -1,13 +1,14 @@
-# 
+#
 # Translators:
 # enolp <enolp@softastur.org>, 2024
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: enolp <enolp@softastur.org>, 2024\n"
-"Language-Team: Asturian (https://app.transifex.com/nextcloud/teams/64236/ast/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Asturian (https://app.transifex.com/nextcloud/teams/64236/"
+"ast/)\n"
 "Language: ast\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
@@ -29,11 +30,11 @@ msgstr "Acapulcu"
 msgid "Actions"
 msgstr "Aiciones"
 
-msgid "Actions for item with name \"{name}\""
-msgstr "Aiciones pal elementu col nome «{name}»"
-
 msgid "Activities"
 msgstr "Actividaes"
+
+msgid "Add to a project"
+msgstr ""
 
 msgid "Animals & Nature"
 msgstr "Animales y natura"
@@ -110,6 +111,9 @@ msgstr "Selector de colores"
 msgid "Confirm changes"
 msgstr "Confirmar los cambeos"
 
+msgid "Connect items to a project to make them easier to find"
+msgstr ""
+
 msgid "Custom"
 msgstr "Personalizar"
 
@@ -139,14 +143,23 @@ msgid "Enter link"
 msgstr "Introducir l'enllaz"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Hebo un error al consiguir los recursos rellacionaos. Ponte en contautu col "
 "alministrador del sistema si tienes dalguna entruga."
 
 msgid "External documentation for {name}"
 msgstr "Documentación esterna pa: {name}"
+
+msgid "Failed to add the item to the project"
+msgstr ""
+
+msgid "Failed to create a project"
+msgstr ""
+
+msgid "Failed to rename the project"
+msgstr ""
 
 msgid "Favorite"
 msgstr "Favoritu"
@@ -173,6 +186,9 @@ msgstr "Volver a la llista"
 msgid "Gold"
 msgstr "Oru"
 
+msgid "Hide details"
+msgstr ""
+
 msgid "Hide password"
 msgstr "Anubrir la contraseña"
 
@@ -188,6 +204,10 @@ msgstr "Tonu d'aspeutu claru"
 msgid "Load more \"{options}\""
 msgstr "Cargar más «{options}»"
 
+#. TRANSLATORS: The button is in a loading state
+msgid "Loading …"
+msgstr ""
+
 #. TRANSLATORS: A color name for RGB(45, 115, 190)
 msgid "Mariner"
 msgstr "Marineru"
@@ -201,8 +221,10 @@ msgstr "Tonu d'aspeutu medio claru"
 msgid "Medium skin tone"
 msgstr "Tonu d'aspeutu mediu"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Algamóse la llende del mensaxe con {count} caráuteres"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "More items …"
 msgstr "Más elementos…"
@@ -247,8 +269,8 @@ msgstr "Abrir l'enllaz a «{resourceName}»"
 msgid "Open menu"
 msgstr "Abrir le menú"
 
-msgid "Open navigation"
-msgstr "Abrir la navegación"
+msgid "Open navigation {shortcut}"
+msgstr ""
 
 msgid "Open sidebar"
 msgstr "Abrir la barra llateral"
@@ -307,6 +329,9 @@ msgstr "Recursos rellacionao"
 msgid "Related team resources"
 msgstr "Recursos rellacionaos colos equipos"
 
+msgid "Rename project"
+msgstr ""
+
 #. TRANSLATORS: A color name for RGB(191, 103, 139)
 msgid "Rosy brown"
 msgstr "Marrón arrosao"
@@ -326,8 +351,10 @@ msgstr "Buscar fusos horarios"
 msgid "Search results"
 msgstr "Resultaos de la busca"
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+msgid "Search…"
+msgstr ""
+
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "hai segs"
 
@@ -337,6 +364,9 @@ msgstr "hai segundos"
 
 msgid "Select a tag"
 msgstr "Seleicionar una etiqueta"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Seleicionar el fornidor"
@@ -349,6 +379,9 @@ msgstr "Configuración"
 
 msgid "Settings navigation"
 msgstr "Navegación pela configuración"
+
+msgid "Show details"
+msgstr ""
 
 msgid "Show password"
 msgstr "Amosar la contraseña"
@@ -383,6 +416,9 @@ msgstr "Símbolos"
 msgid "Travel & Places"
 msgstr "Viaxes y llugares"
 
+msgid "Type to search for existing projects"
+msgstr ""
+
 msgid "Type to search time zone"
 msgstr "Escribi pa buscar un fusu horariu"
 
@@ -404,3 +440,12 @@ msgstr "Whiskey"
 
 msgid "Write a message …"
 msgstr "Escribi un mensaxe…"
+
+#~ msgid "Actions for item with name \"{name}\""
+#~ msgstr "Aiciones pal elementu col nome «{name}»"
+
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "Algamóse la llende del mensaxe con {count} caráuteres"
+
+#~ msgid "Open navigation"
+#~ msgstr "Abrir la navegación"

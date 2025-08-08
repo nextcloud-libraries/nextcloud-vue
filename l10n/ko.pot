@@ -1,14 +1,15 @@
-# 
+#
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Joas Schilling, 2025
+# Hyogeol Lee, 2025
 # 이상오, 2025
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: 이상오, 2025\n"
 "Language-Team: Korean (https://app.transifex.com/nextcloud/teams/64236/ko/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Language: ko\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "{tag} (invisible)"
@@ -143,9 +144,11 @@ msgid "Enter link"
 msgstr "링크 입력"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
-msgstr "관련 리소스를 가져오는 중 오류가 발생했습니다. 궁금한 것이 있는 경우 시스템 관리자에게 연락해 주세요."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
+msgstr ""
+"관련 리소스를 가져오는 중 오류가 발생했습니다. 궁금한 것이 있는 경우 시스템 "
+"관리자에게 연락해 주세요."
 
 msgid "External documentation for {name}"
 msgstr "{name}의 외부 문서"
@@ -219,8 +222,9 @@ msgstr "약간 밝은 피부 톤"
 msgid "Medium skin tone"
 msgstr "중간 피부 톤"
 
-msgid "Message limit of {count} characters reached"
-msgstr "메시지 제한 {count}자에 도달"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "메시지 제한 %n자에 도달"
 
 msgid "More items …"
 msgstr "항목 더 보기..."
@@ -350,8 +354,7 @@ msgstr "검색 결과"
 msgid "Search…"
 msgstr "검색..."
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "몇 초 전"
 
@@ -361,6 +364,9 @@ msgstr "초 전"
 
 msgid "Select a tag"
 msgstr "태그 선택"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "제공자 선택"
@@ -434,3 +440,132 @@ msgstr "위스키"
 
 msgid "Write a message …"
 msgstr "메시지 작성..."
+
+#~ msgid "Calendar icon"
+#~ msgstr "캘린더 아이콘"
+
+#~ msgid "Cancel"
+#~ msgstr "취소"
+
+#~ msgid "Clear value"
+#~ msgstr "값 지우기"
+
+#~ msgid "Close time Picker"
+#~ msgstr "시간 선택기 닫기"
+
+#~ msgid "Datepicker input"
+#~ msgstr "날짜 선택기 입력"
+
+#~ msgid "Datepicker menu"
+#~ msgstr "날짜 입력기 메뉴"
+
+#~ msgid "Decrement hours"
+#~ msgstr "시 감소"
+
+#~ msgid "Decrement minutes"
+#~ msgstr "분 감소"
+
+#~ msgid "Decrement seconds"
+#~ msgstr "초 감소"
+
+#~ msgid "Increment hours"
+#~ msgstr "시 증가"
+
+#~ msgid "Increment minutes"
+#~ msgstr "분 증가"
+
+#~ msgid "Increment seconds"
+#~ msgstr "초 증가"
+
+#~ msgid "Month picker"
+#~ msgstr "월 선택기"
+
+#~ msgid "Month picker overlay"
+#~ msgstr "월 선택기 오버레이"
+
+#~ msgid "Next month"
+#~ msgstr "다음 달"
+
+#~ msgid "Next year"
+#~ msgstr "다음 해"
+
+#~ msgid "Now"
+#~ msgstr "현재"
+
+#~ msgid "Open hours overlay"
+#~ msgstr "시 오버레이 열기"
+
+#~ msgid "Open minutes overlay"
+#~ msgstr "분 오버레이 열기"
+
+#~ msgid "Open months overlay"
+#~ msgstr "월 오버레이 열기"
+
+#~ msgid "Open navigation"
+#~ msgstr "탐색 열기"
+
+#~ msgid "Open seconds overlay"
+#~ msgstr "초 오버레이 열기"
+
+#~ msgid "Open time picker"
+#~ msgstr "시간 선택기 열기"
+
+#~ msgid "Open years overlay"
+#~ msgstr "년 오버레이 열기"
+
+#~ msgid "Pick"
+#~ msgstr "선택"
+
+#~ msgid "Previous month"
+#~ msgstr "이전 달"
+
+#~ msgid "Previous year"
+#~ msgstr "이전 해"
+
+#~ msgid "Search for timezone"
+#~ msgstr "시간대 검색"
+
+#~ msgid "Select date"
+#~ msgstr "날짜 선택"
+
+#~ msgid "Select date and time"
+#~ msgstr "날짜와 시간 선택"
+
+#~ msgid "Select month"
+#~ msgstr "월 선택"
+
+#~ msgid "Select time"
+#~ msgstr "시간 선택"
+
+#~ msgid "Select time range"
+#~ msgstr "시간 구간 선택"
+
+#~ msgid "Select week"
+#~ msgstr "주 선택"
+
+#~ msgid "Select year"
+#~ msgstr "년도 선택"
+
+#~ msgid "Switch AM/PM mode"
+#~ msgstr "AM/PM 모드 전환"
+
+#~ msgid "Time picker"
+#~ msgstr "시간 선택기"
+
+#~ msgid "Timezone"
+#~ msgstr "시간대"
+
+#~ msgid "Toggle overlay"
+#~ msgstr "오버레이 토글"
+
+#~ msgid "W"
+#~ msgstr "W"
+
+#~ msgid "Year picker"
+#~ msgstr "년도 선택기"
+
+#~ msgid "Year picker overlay"
+#~ msgstr "년도 선택기 오버레이"
+
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "메시지 제한 {count}자에 도달"

@@ -1,438 +1,561 @@
-# 
+#
 # Translators:
-# Khurshid Ibatov <Khurshid.Ibatov@tibbiysugurta.uz>, 2025
-# 
+# Joas Schilling, 2025
+# Khurshid Ibatov <x.ibatov@dtsj.uz>, 2025
+#
 msgid ""
 msgstr ""
-"Last-Translator: Khurshid Ibatov <Khurshid.Ibatov@tibbiysugurta.uz>, 2025\n"
+"Last-Translator: Khurshid Ibatov <x.ibatov@dtsj.uz>, 2025\n"
 "Language-Team: Uzbek (https://app.transifex.com/nextcloud/teams/64236/uz/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Language: uz\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "{tag} (invisible)"
-msgstr "{tag} (ko'rinmas)"
+#~ msgid "{tag} (invisible)"
+#~ msgstr "{tag} (ko'rinmas)"
 
-msgid "{tag} (restricted)"
-msgstr "{tag} (cheklangan)"
+#~ msgid "{tag} (restricted)"
+#~ msgstr "{tag} (cheklangan)"
 
-msgid "A color with a HEX value {hex}"
-msgstr "HEX qiymatiga ega rang {hex}"
+#~ msgid "A color with a HEX value {hex}"
+#~ msgstr "HEX qiymatiga ega rang {hex}"
 
-msgid "a few seconds ago"
-msgstr "bir necha soniya oldin"
+#~ msgid "a few seconds ago"
+#~ msgstr "bir necha soniya oldin"
 
-#. TRANSLATORS: A color name for RGB(110, 166, 143)
-msgid "Acapulco"
-msgstr "Akapulko"
+#~ msgid "Acapulco"
+#~ msgstr "Akapulko"
 
-msgid "Actions"
-msgstr "Harakatlar"
+#~ msgid "Actions"
+#~ msgstr "Harakatlar"
 
-msgid "Activities"
-msgstr "Faolliklar"
+#~ msgid "Activities"
+#~ msgstr "Faolliklar"
 
-msgid "Add to a project"
-msgstr "Loyihaga qo'shish"
+#~ msgid "Add to a project"
+#~ msgstr "Loyihaga qo'shish"
 
-msgid "Animals & Nature"
-msgstr "Hayvonlar va Tabiat"
+#~ msgid "Animals & Nature"
+#~ msgstr "Hayvonlar va Tabiat"
 
-msgid "Any link"
-msgstr "Har qanday havola"
+#~ msgid "Any link"
+#~ msgstr "Har qanday havola"
 
-msgid "Anything shared with the same group of people will show up here"
-msgstr ""
-"Xuddi shu guruhdagi odamlarga ulashilgan hamma narsa shu yerda chiqadi"
+#~ msgid "Anything shared with the same group of people will show up here"
+#~ msgstr ""
+#~ "Xuddi shu guruhdagi odamlarga ulashilgan hamma narsa shu yerda chiqadi"
 
-msgid "Avatar of {displayName}"
-msgstr " {displayName}Avatari"
+#~ msgid "Avatar of {displayName}"
+#~ msgstr " {displayName}Avatari"
 
-msgid "Avatar of {displayName}, {status}"
-msgstr "{displayName}, {status} Avatari"
+#~ msgid "Avatar of {displayName}, {status}"
+#~ msgstr "{displayName}, {status} Avatari"
 
-#. TRANSLATORS: User status if the user is currently away from keyboard
-msgid "away"
-msgstr "uzoqda"
+#~ msgid "away"
+#~ msgstr "uzoqda"
 
-msgid "Back"
-msgstr "Orqaga"
+#~ msgid "Back"
+#~ msgstr "Orqaga"
 
-msgid "Back to provider selection"
-msgstr "Provayder tanloviga qaytish"
+#~ msgid "Back to provider selection"
+#~ msgstr "Provayder tanloviga qaytish"
 
-#. TRANSLATORS: A color name for RGB(91, 100, 179)
-msgid "Blue Violet"
-msgstr "Moviy binafsha"
+#~ msgid "Blue Violet"
+#~ msgstr "Moviy binafsha"
 
-#. TRANSLATORS: A color name for RGB(55, 148, 172)
-msgid "Boston Blue"
-msgstr "Boston ko'k"
+#~ msgid "Boston Blue"
+#~ msgstr "Boston ko'k"
 
-msgid "busy"
-msgstr "band"
+#~ msgid "busy"
+#~ msgstr "band"
 
-msgid "Cancel changes"
-msgstr "O'zgarishlarni bekor qilish"
+#~ msgid "Calendar icon"
+#~ msgstr "Kalendar belgisi"
 
-msgid "Change name"
-msgstr "Ismni o'zgartirish"
+#~ msgid "Cancel"
+#~ msgstr "Bekor qilish"
 
-msgid "Choose"
-msgstr "Tanlang"
+#~ msgid "Cancel changes"
+#~ msgstr "O'zgarishlarni bekor qilish"
 
-msgid "Clear search"
-msgstr "Qidiruvni tozalash"
+#~ msgid "Change name"
+#~ msgstr "Ismni o'zgartirish"
 
-msgid "Clear selected"
-msgstr "Tanlanganni tozalash"
+#~ msgid "Choose"
+#~ msgstr "Tanlang"
 
-msgid "Clear text"
-msgstr "Matnni tozalash"
+#~ msgid "Clear search"
+#~ msgstr "Qidiruvni tozalash"
 
-msgid "Close"
-msgstr "Yopish"
+#~ msgid "Clear selected"
+#~ msgstr "Tanlanganni tozalash"
 
-msgid "Close navigation"
-msgstr "Navigatsiyani yopish"
+#~ msgid "Clear text"
+#~ msgstr "Matnni tozalash"
 
-msgid "Close sidebar"
-msgstr "Yon panelni yoping"
+#~ msgid "Clear value"
+#~ msgstr "Qiymatni tozalash"
 
-msgid "Close Smart Picker"
-msgstr "Smart Picker-ni yoping"
+#~ msgid "Close"
+#~ msgstr "Yopish"
 
-msgid "Collapse menu"
-msgstr "Menyuni yig‘ish"
+#~ msgid "Close navigation"
+#~ msgstr "Navigatsiyani yopish"
 
-msgid "Color picker"
-msgstr "Rang tanlagich"
+#~ msgid "Close sidebar"
+#~ msgstr "Yon panelni yoping"
 
-msgid "Confirm changes"
-msgstr "O'zgarishlarni tasdiqlang"
+#~ msgid "Close Smart Picker"
+#~ msgstr "Smart Picker-ni yoping"
 
-msgid "Connect items to a project to make them easier to find"
-msgstr "Elementlarni topishni osonlashtirish uchun ularni loyihaga ulang"
+#~ msgid "Close time Picker"
+#~ msgstr "Vaqtni tanlash vositasini yopish"
 
-msgid "Custom"
-msgstr "Moslashtirilgan"
+#~ msgid "Collapse menu"
+#~ msgstr "Menyuni yig‘ish"
 
-msgid "Dark skin tone"
-msgstr "Qora rangdagi qoplama"
+#~ msgid "Color picker"
+#~ msgstr "Rang tanlagich"
 
-#. TRANSLATORS: A color name for RGB(136, 85, 168)
-msgid "Deluge"
-msgstr "To'fon"
+#~ msgid "Confirm changes"
+#~ msgstr "O'zgarishlarni tasdiqlang"
 
-msgid "Deselect {option}"
-msgstr "{option}tanlovni bekor qiling"
+#~ msgid "Connect items to a project to make them easier to find"
+#~ msgstr "Elementlarni topishni osonlashtirish uchun ularni loyihaga ulang"
 
-msgid "do not disturb"
-msgstr "bezovta qilmang"
+#~ msgid "Custom"
+#~ msgstr "Moslashtirilgan"
 
-msgid "Edit item"
-msgstr "Elementni tahrirlash"
+#~ msgid "Dark skin tone"
+#~ msgstr "Qora rangdagi qoplama"
 
-msgid "Emoji picker"
-msgstr "Emoji tanlagich"
+#~ msgid "Datepicker input"
+#~ msgstr "Sana tanlash vositasi kiritish"
 
-msgid "Enable interactive view"
-msgstr "Interaktiv ko'rinishni yoqing"
+#~ msgid "Datepicker menu"
+#~ msgstr "Sana tanlash menyusi"
 
-msgid "Enter link"
-msgstr "Havolani kiriting"
+#~ msgid "Decrement hours"
+#~ msgstr "Ish vaqtini qisqartirish"
 
-msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
-msgstr ""
-"Tegishli manbalarni olishda xatolik yuz berdi. Savollaringiz bo'lsa, tizim "
-"administratoriga murojaat qiling."
+#~ msgid "Decrement minutes"
+#~ msgstr "Daqiqalarni kamaytirish"
 
-msgid "External documentation for {name}"
-msgstr "{name}uchun tashqi hujjatlar"
+#~ msgid "Decrement seconds"
+#~ msgstr "Soniyalarni kamaytirish"
 
-msgid "Failed to add the item to the project"
-msgstr "Ob'ektni loyihaga qo'shib bo'lmadi"
+#~ msgid "Deluge"
+#~ msgstr "To'fon"
 
-msgid "Failed to create a project"
-msgstr "Loyiha yaratib bo‘lmadi"
+#~ msgid "Deselect {option}"
+#~ msgstr "{option}tanlovni bekor qiling"
 
-msgid "Failed to rename the project"
-msgstr "Loyiha nomini o‘zgartirib bo‘lmadi"
+#~ msgid "do not disturb"
+#~ msgstr "bezovta qilmang"
 
-msgid "Favorite"
-msgstr "Tanlangan"
+#~ msgid "Edit item"
+#~ msgstr "Elementni tahrirlash"
 
-#. TRANSLATORS: A color name for RGB(201, 136, 121)
-msgid "Feldspar"
-msgstr "Feldspar"
+#~ msgid "Emoji picker"
+#~ msgstr "Emoji tanlagich"
 
-msgid "Flags"
-msgstr "Bayroqlar"
+#~ msgid "Enable interactive view"
+#~ msgstr "Interaktiv ko'rinishni yoqing"
 
-msgid "Food & Drink"
-msgstr "Oziq-ovqat va ichimliklar"
+#~ msgid "Enter link"
+#~ msgstr "Havolani kiriting"
 
-msgid "Frequently used"
-msgstr "Tez-tez ishlatiladi"
+#~ msgid ""
+#~ "Error getting related resources. Please contact your system administrator "
+#~ "if you have any questions."
+#~ msgstr ""
+#~ "Tegishli manbalarni olishda xatolik yuz berdi. Savollaringiz bo'lsa, "
+#~ "tizim administratoriga murojaat qiling."
 
-msgid "Global"
-msgstr "Global"
+#~ msgid "External documentation"
+#~ msgstr "Tashqi hujjatlar"
 
-msgid "Go back to the list"
-msgstr "Ro'yxatga qayting"
+#~ msgid "Failed to add the item to the project"
+#~ msgstr "Ob'ektni loyihaga qo'shib bo'lmadi"
 
-msgid "Gold"
-msgstr "Oltin"
+#~ msgid "Failed to create a project"
+#~ msgstr "Loyiha yaratib bo‘lmadi"
 
-msgid "Hide details"
-msgstr "Tafsilotlarni yashirish"
+#~ msgid "Failed to rename the project"
+#~ msgstr "Loyiha nomini o‘zgartirib bo‘lmadi"
 
-msgid "Hide password"
-msgstr "Parolni yashirish"
+#~ msgid "Favorite"
+#~ msgstr "Tanlangan"
 
-msgid "invisible"
-msgstr "ko'rinmas"
+#~ msgid "Feldspar"
+#~ msgstr "Feldspar"
 
-msgid "Keyboard navigation help"
-msgstr "Klaviatura navigatsiyasi yordami"
+#~ msgid "Flags"
+#~ msgstr "Bayroqlar"
 
-msgid "Light skin tone"
-msgstr "Yorug` rangdagi qoplama"
+#~ msgid "Food & Drink"
+#~ msgstr "Oziq-ovqat va ichimliklar"
 
-msgid "Load more \"{options}\""
-msgstr "Ko'proq yuklash \"{options}\""
+#~ msgid "Frequently used"
+#~ msgstr "Tez-tez ishlatiladi"
 
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Yuklanmoqda..."
+#~ msgid "Global"
+#~ msgstr "Global"
 
-#. TRANSLATORS: A color name for RGB(45, 115, 190)
-msgid "Mariner"
-msgstr "Dengizchi"
+#~ msgid "Go back to the list"
+#~ msgstr "Ro'yxatga qayting"
 
-msgid "Medium dark skin tone"
-msgstr "O`rtacha qorong`u rangdagi qoplama"
+#~ msgid "Gold"
+#~ msgstr "Oltin"
 
-msgid "Medium light skin tone"
-msgstr "O`rtacha yorug`lik rangdagi qoplama"
+#~ msgid "Hide details"
+#~ msgstr "Tafsilotlarni yashirish"
 
-msgid "Medium skin tone"
-msgstr "O`rtacha rangdagi qoplama"
+#~ msgid "Hide password"
+#~ msgstr "Parolni yashirish"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Xabar chegarasi {count}belgilarga erishildi"
+#~ msgid "Increment hours"
+#~ msgstr "Ish soatlarini oshirish"
 
-msgid "More items …"
-msgstr "Ko`proq tafsilotlar..."
+#~ msgid "Increment minutes"
+#~ msgstr "Daqiqalarni oshiring"
 
-msgid "More options"
-msgstr "Boshqa variantlar"
+#~ msgid "Increment seconds"
+#~ msgstr "Soniyalarni ko'paytirish"
 
-msgid "Neutral skin color"
-msgstr "Neytral rang"
+#~ msgid "invisible"
+#~ msgstr "ko'rinmas"
 
-msgid "Next"
-msgstr "Keyingi"
+#~ msgid "Keyboard navigation help"
+#~ msgstr "Klaviatura navigatsiyasi yordami"
 
-msgid "Nextcloud blue"
-msgstr "Ko'k Nextcloud "
+#~ msgid "Light skin tone"
+#~ msgstr "Yorug` rangdagi qoplama"
 
-msgid "No emoji found"
-msgstr "Hech qanday emoji topilmadi"
+#~ msgid "Load more \"{options}\""
+#~ msgstr "Ko'proq yuklash \"{options}\""
 
-msgid "No link provider found"
-msgstr "Hech qanday havola provayderi topilmadi"
+#~ msgid "Loading …"
+#~ msgstr "Yuklanmoqda..."
 
-msgid "No results"
-msgstr "Natija yoʻq"
+#~ msgid "Mariner"
+#~ msgstr "Dengizchi"
 
-msgid "Objects"
-msgstr "Obyekt"
+#~ msgid "Medium dark skin tone"
+#~ msgstr "O`rtacha qorong`u rangdagi qoplama"
 
-msgid "offline"
-msgstr "offline"
+#~ msgid "Medium light skin tone"
+#~ msgstr "O`rtacha yorug`lik rangdagi qoplama"
 
-#. TRANSLATORS: A color name for RGB(165, 184, 114)
-msgid "Olivine"
-msgstr "Olivine"
+#~ msgid "Medium skin tone"
+#~ msgstr "O`rtacha rangdagi qoplama"
 
-msgid "online"
-msgstr "online"
+#~ msgid "Message limit of %n character reached"
+#~ msgid_plural "Message limit of %n characters reached"
+#~ msgstr[0] " %n  ta belgidan iborat xabar chegarasiga yetdi"
 
-msgid "Open link to \"{resourceName}\""
-msgstr " \"{resourceName}\" ga havolani ochish"
+#~ msgid "Month picker"
+#~ msgstr "Oyni tanlovchi"
 
-msgid "Open menu"
-msgstr "Menyuni oching"
+#~ msgid "Month picker overlay"
+#~ msgstr "Oyni tanlash vositasi qoplamasi"
 
-msgid "Open navigation {shortcut}"
-msgstr " {shortcut} navigatsiyani oching"
+#~ msgid "More items …"
+#~ msgstr "Ko`proq tafsilotlar..."
 
-msgid "Open sidebar"
-msgstr "Yon panelni oching"
+#~ msgid "More options"
+#~ msgstr "Boshqa variantlar"
 
-msgid "Options"
-msgstr "Variantlar"
+#~ msgid "Neutral skin color"
+#~ msgstr "Neytral rang"
 
-msgid "Password is secure"
-msgstr "Parol xavfsiz"
+#~ msgid "Next"
+#~ msgstr "Keyingi"
 
-msgid "Pause slideshow"
-msgstr "Slayd-shouni to'xtatib turish"
+#~ msgid "Next month"
+#~ msgstr "Keyingi oy"
 
-msgid "People & Body"
-msgstr "Odamlar va Tana"
+#~ msgid "Next year"
+#~ msgstr "Keyingi yil"
 
-msgid "Pick a date"
-msgstr "Sana tanlang"
+#~ msgid "Nextcloud blue"
+#~ msgstr "Ko'k Nextcloud "
 
-msgid "Pick a date and a time"
-msgstr "Sana va vaqtni tanlang"
+#~ msgid "No emoji found"
+#~ msgstr "Hech qanday emoji topilmadi"
 
-msgid "Pick a month"
-msgstr "Oyni tanlang"
+#~ msgid "No link provider found"
+#~ msgstr "Hech qanday havola provayderi topilmadi"
 
-msgid "Pick a time"
-msgstr "Vaqtni tanlang"
+#~ msgid "No results"
+#~ msgstr "Natija yoʻq"
 
-msgid "Pick a week"
-msgstr "Haftani tanlang"
+#~ msgid "Now"
+#~ msgstr "Hozir"
 
-msgid "Pick a year"
-msgstr "Yilni tanlang"
+#~ msgid "Objects"
+#~ msgstr "Obyekt"
 
-msgid "Pick an emoji"
-msgstr "Emojini tanlang"
+#~ msgid "offline"
+#~ msgstr "offline"
 
-msgid "Please select a time zone:"
-msgstr "Vaqt mintaqasini tanlang:"
+#~ msgid "Olivine"
+#~ msgstr "Olivine"
 
-msgid "Previous"
-msgstr "Oldingi"
+#~ msgid "online"
+#~ msgstr "online"
 
-msgid "Provider icon"
-msgstr "Provayder belgisi"
+#~ msgid "Open hours overlay"
+#~ msgstr "Ochiq ish soatlari"
 
-msgid "Purple"
-msgstr "Binafsha"
+#~ msgid "Open link to \"{resourceName}\""
+#~ msgstr " \"{resourceName}\" ga havolani ochish"
 
-msgid "Raw link {options}"
-msgstr " {options}satr havolasi"
+#~ msgid "Open menu"
+#~ msgstr "Menyuni oching"
 
-msgid "Related resources"
-msgstr "Tegishli manbalar"
+#~ msgid "Open minutes overlay"
+#~ msgstr "Ochiq daqiqalar qoplamasi"
 
-msgid "Related team resources"
-msgstr "Tegishli jamoa resurslari"
+#~ msgid "Open months overlay"
+#~ msgstr "Ochiq oylik qoplama"
 
-msgid "Rename project"
-msgstr "Loyiha nomini o'zgartirish"
+#~ msgid "Open navigation"
+#~ msgstr "Navigatsiyani oching"
 
-#. TRANSLATORS: A color name for RGB(191, 103, 139)
-msgid "Rosy brown"
-msgstr "Qizil jigarrang"
+#~ msgid "Open seconds overlay"
+#~ msgstr "Ochiq soniyalar qoplamasi"
 
-msgid "Save changes"
-msgstr "O'zgarishlarni saqlang"
+#~ msgid "Open sidebar"
+#~ msgstr "Yon panelni oching"
 
-msgid "Search"
-msgstr "Qidiruv"
+#~ msgid "Open time picker"
+#~ msgstr "Vaqt tanlagichni ochish"
 
-msgid "Search emoji"
-msgstr "Emoji qidirish"
+#~ msgid "Open years overlay"
+#~ msgstr "Yillar qoplamasini ochish"
 
-msgid "Search for time zone"
-msgstr "Vaqt mintaqasini qidiring"
+#~ msgid "Options"
+#~ msgstr "Variantlar"
 
-msgid "Search results"
-msgstr "Qidiruv natijalari"
+#~ msgid "Password is secure"
+#~ msgstr "Parol xavfsiz"
 
-msgid "Search…"
-msgstr "Qidiruv…"
+#~ msgid "Pause slideshow"
+#~ msgstr "Slayd-shouni to'xtatib turish"
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
-msgid "sec. ago"
-msgstr "sek. oldin"
+#~ msgid "People & Body"
+#~ msgstr "Odamlar va Tana"
 
-#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
-msgid "seconds ago"
-msgstr "soniyalar oldin"
+#~ msgid "Pick"
+#~ msgstr "Tanlash"
 
-msgid "Select a tag"
-msgstr "Teg tanlang"
+#~ msgid "Pick an emoji"
+#~ msgstr "Emojini tanlang"
 
-msgid "Select provider"
-msgstr "Provayderni tanlang"
+#~ msgid "Please choose a date"
+#~ msgstr "Iltimos, sanani tanlang"
 
-msgid "Selected"
-msgstr "Tanlangan"
+#~ msgid "Previous"
+#~ msgstr "Oldingi"
 
-msgid "Settings"
-msgstr "Sozlamalar"
+#~ msgid "Previous month"
+#~ msgstr "Oldingi oy"
 
-msgid "Settings navigation"
-msgstr "Sozlamalar navigatsiyasi"
+#~ msgid "Previous year"
+#~ msgstr "O'tgan yil"
 
-msgid "Show details"
-msgstr "Tafsilotlarni ko'rsatish"
+#~ msgid "Provider icon"
+#~ msgstr "Provayder belgisi"
 
-msgid "Show password"
-msgstr "Parolni ko'rsatish"
+#~ msgid "Purple"
+#~ msgstr "Binafsha"
 
-msgid "Skin tone"
-msgstr "Odatiy rangdagi qoplama"
+#~ msgid "Raw link {options}"
+#~ msgstr " {options}satr havolasi"
 
-msgid "Skip to app navigation"
-msgstr "Ilova navigatsiyasiga oʻtish"
+#~ msgid "Related resources"
+#~ msgstr "Tegishli manbalar"
 
-msgid "Skip to main content"
-msgstr "Asosiy tarkibga o'tish"
+#~ msgid "Related team resources"
+#~ msgstr "Tegishli jamoa resurslari"
 
-msgid "Smart Picker"
-msgstr "Aqlli tanlovchi"
+#~ msgid "Rename project"
+#~ msgstr "Loyiha nomini o'zgartirish"
 
-msgid "Smileys & Emotion"
-msgstr "Smayllar va Hissiyotlar"
+#~ msgid "Rosy brown"
+#~ msgstr "Qizil jigarrang"
 
-msgid "Start slideshow"
-msgstr "Slayd-shouni boshlash"
+#~ msgid "Save changes"
+#~ msgstr "O'zgarishlarni saqlang"
 
-msgid "Start typing to search"
-msgstr "Qidirish uchun yozishni boshlang"
+#~ msgid "Search"
+#~ msgstr "Qidiruv"
 
-msgid "Submit"
-msgstr "Yuborish"
+#~ msgid "Search emoji"
+#~ msgstr "Emoji qidirish"
 
-msgid "Symbols"
-msgstr "Belgilar"
+#~ msgid "Search for timezone"
+#~ msgstr "Vaqt mintaqasini qidiring"
 
-msgid "Travel & Places"
-msgstr "Sayohat va Joylar"
+#~ msgid "Search results"
+#~ msgstr "Qidiruv natijalari"
 
-msgid "Type to search for existing projects"
-msgstr "Mavjud loyihalarni qidirish uchun kiriting"
+#~ msgid "Search…"
+#~ msgstr "Qidiruv…"
 
-msgid "Type to search time zone"
-msgstr "Vaqt mintaqasini qidirish uchun kiriting"
+#~ msgid "sec. ago"
+#~ msgstr "sek. oldin"
 
-msgid "Unable to search the group"
-msgstr "Guruhni qidirish imkonsiz"
+#~ msgid "seconds ago"
+#~ msgstr "soniyalar oldin"
 
-msgid "Undo changes"
-msgstr "O'zgarishlarni bekor qilish"
+#~ msgid "Select a tag"
+#~ msgstr "Teg tanlang"
 
-msgid "User status: {status}"
-msgstr "Foydalanuvchi holati: {status}"
+#~ msgid "Select date"
+#~ msgstr "Sana tanlang"
 
-msgid "View team"
-msgstr "Jamoani ko'rish"
+#~ msgid "Select date and time"
+#~ msgstr "Sana va vaqtni tanlang"
 
-#. TRANSLATORS: A color name for RGB(211, 169, 103)
-msgid "Whiskey"
-msgstr "Whiskey"
+#~ msgid "Select month"
+#~ msgstr "Oyni tanlang"
 
-msgid "Write a message …"
-msgstr "Xabar yozish…"
+#~ msgid "Select provider"
+#~ msgstr "Provayderni tanlang"
+
+#~ msgid "Select time"
+#~ msgstr "Oyni tanlang"
+
+#~ msgid "Select time range"
+#~ msgstr "Vaqt oralig'ini tanlang"
+
+#~ msgid "Select week"
+#~ msgstr "Haftani tanlang"
+
+#~ msgid "Select year"
+#~ msgstr "Yilni tanlang"
+
+#~ msgid "Selected"
+#~ msgstr "Tanlangan"
+
+#~ msgid "Settings"
+#~ msgstr "Sozlamalar"
+
+#~ msgid "Settings navigation"
+#~ msgstr "Sozlamalar navigatsiyasi"
+
+#~ msgid "Show details"
+#~ msgstr "Tafsilotlarni ko'rsatish"
+
+#~ msgid "Show password"
+#~ msgstr "Parolni ko'rsatish"
+
+#~ msgid "Skin tone"
+#~ msgstr "Odatiy rangdagi qoplama"
+
+#~ msgid "Skip to app navigation"
+#~ msgstr "Ilova navigatsiyasiga oʻtish"
+
+#~ msgid "Skip to main content"
+#~ msgstr "Asosiy tarkibga o'tish"
+
+#~ msgid "Smart Picker"
+#~ msgstr "Aqlli tanlovchi"
+
+#~ msgid "Smileys & Emotion"
+#~ msgstr "Smayllar va Hissiyotlar"
+
+#~ msgid "Start slideshow"
+#~ msgstr "Slayd-shouni boshlash"
+
+#~ msgid "Start typing to search"
+#~ msgstr "Qidirish uchun yozishni boshlang"
+
+#~ msgid "Submit"
+#~ msgstr "Yuborish"
+
+#~ msgid "Switch AM/PM mode"
+#~ msgstr "AM/PM rejimini almashtiring"
+
+#~ msgid "Symbols"
+#~ msgstr "Belgilar"
+
+#~ msgid "Time picker"
+#~ msgstr "Vaqtni tanlovchi"
+
+#~ msgid "Timezone"
+#~ msgstr "Vaqt mintaqasi"
+
+#~ msgid "Toggle overlay"
+#~ msgstr "Qoplamani almashtirish"
+
+#~ msgid "Travel & Places"
+#~ msgstr "Sayohat va Joylar"
+
+#~ msgid "Type to search for existing projects"
+#~ msgstr "Mavjud loyihalarni qidirish uchun kiriting"
+
+#~ msgid "Type to search time zone"
+#~ msgstr "Vaqt mintaqasini qidirish uchun kiriting"
+
+#~ msgid "Unable to search the group"
+#~ msgstr "Guruhni qidirish imkonsiz"
+
+#~ msgid "Undo changes"
+#~ msgstr "O'zgarishlarni bekor qilish"
+
+#~ msgid "User status: {status}"
+#~ msgstr "Foydalanuvchi holati: {status}"
+
+#~ msgid "View team"
+#~ msgstr "Jamoani ko'rish"
+
+#~ msgid "W"
+#~ msgstr "W"
+
+#~ msgid "Whiskey"
+#~ msgstr "Whiskey"
+
+#~ msgid "Write a message …"
+#~ msgstr "Xabar yozish…"
+
+#~ msgid "Year picker"
+#~ msgstr "Yilni tanlovchi"
+
+#~ msgid "Year picker overlay"
+#~ msgstr "Yilni tanlash vositasi"
+
+#~ msgid "External documentation for {name}"
+#~ msgstr "{name}uchun tashqi hujjatlar"
+
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "Xabar chegarasi {count}belgilarga erishildi"
+
+#~ msgid "Open navigation {shortcut}"
+#~ msgstr " {shortcut} navigatsiyani oching"
+
+#~ msgid "Pick a date"
+#~ msgstr "Sana tanlang"
+
+#~ msgid "Pick a date and a time"
+#~ msgstr "Sana va vaqtni tanlang"
+
+#~ msgid "Pick a month"
+#~ msgstr "Oyni tanlang"
+
+#~ msgid "Pick a time"
+#~ msgstr "Vaqtni tanlang"
+
+#~ msgid "Pick a week"
+#~ msgstr "Haftani tanlang"
+
+#~ msgid "Pick a year"
+#~ msgstr "Yilni tanlang"
+
+#~ msgid "Please select a time zone:"
+#~ msgstr "Vaqt mintaqasini tanlang:"
+
+#~ msgid "Search for time zone"
+#~ msgstr "Vaqt mintaqasini qidiring"

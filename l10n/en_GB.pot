@@ -1,14 +1,15 @@
-# 
+#
 # Translators:
-# Andi Chandler <andi@gowling.com>, 2024
-# John Molakvoæ <skjnldsv@protonmail.com>, 2024
-# 
+# Joas Schilling, 2025
+# Andi Chandler <andi@gowling.com>, 2025
+#
 msgid ""
 msgstr ""
-"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2024\n"
-"Language-Team: English (United Kingdom) (https://app.transifex.com/nextcloud/teams/64236/en_GB/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>, 2025\n"
+"Language-Team: English (United Kingdom) (https://app.transifex.com/nextcloud/"
+"teams/64236/en_GB/)\n"
 "Language: en_GB\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
@@ -143,11 +144,11 @@ msgid "Enter link"
 msgstr "Enter link"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 
 msgid "External documentation for {name}"
 msgstr "External documentation for {name}"
@@ -221,8 +222,10 @@ msgstr "Medium light skin tone"
 msgid "Medium skin tone"
 msgstr "Medium skin tone"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Message limit of {count} characters reached"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Message limit of %n character reached"
+msgstr[1] "Message limit of %n characters reached"
 
 msgid "More items …"
 msgstr "More items …"
@@ -352,8 +355,7 @@ msgstr "Search results"
 msgid "Search…"
 msgstr "Search…"
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "sec. ago"
 
@@ -363,6 +365,9 @@ msgstr "seconds ago"
 
 msgid "Select a tag"
 msgstr "Select a tag"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Select provider"
@@ -436,3 +441,138 @@ msgstr "Whiskey"
 
 msgid "Write a message …"
 msgstr "Write a message …"
+
+#~ msgid "Calendar icon"
+#~ msgstr "Calendar icon"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancel"
+
+#~ msgid "Clear value"
+#~ msgstr "Clear value"
+
+#~ msgid "Close time Picker"
+#~ msgstr "Close time Picker"
+
+#~ msgid "Datepicker input"
+#~ msgstr "Datepicker input"
+
+#~ msgid "Datepicker menu"
+#~ msgstr "Datepicker menu"
+
+#~ msgid "Decrement hours"
+#~ msgstr "Decrement hours"
+
+#~ msgid "Decrement minutes"
+#~ msgstr "Decrement minutes"
+
+#~ msgid "Decrement seconds"
+#~ msgstr "Decrement seconds"
+
+#~ msgid "External documentation"
+#~ msgstr "External documentation"
+
+#~ msgid "Increment hours"
+#~ msgstr "Increment hours"
+
+#~ msgid "Increment minutes"
+#~ msgstr "Increment minutes"
+
+#~ msgid "Increment seconds"
+#~ msgstr "Increment seconds"
+
+#~ msgid "Month picker"
+#~ msgstr "Month picker"
+
+#~ msgid "Month picker overlay"
+#~ msgstr "Month picker overlay"
+
+#~ msgid "Next month"
+#~ msgstr "Next month"
+
+#~ msgid "Next year"
+#~ msgstr "Next year"
+
+#~ msgid "Now"
+#~ msgstr "Now"
+
+#~ msgid "Open hours overlay"
+#~ msgstr "Open hours overlay"
+
+#~ msgid "Open minutes overlay"
+#~ msgstr "Open minutes overlay"
+
+#~ msgid "Open months overlay"
+#~ msgstr "Open months overlay"
+
+#~ msgid "Open navigation"
+#~ msgstr "Open navigation"
+
+#~ msgid "Open seconds overlay"
+#~ msgstr "Open seconds overlay"
+
+#~ msgid "Open time picker"
+#~ msgstr "Open time picker"
+
+#~ msgid "Open years overlay"
+#~ msgstr "Open years overlay"
+
+#~ msgid "Pick"
+#~ msgstr "Pick"
+
+#~ msgid "Please choose a date"
+#~ msgstr "Please choose a date"
+
+#~ msgid "Previous month"
+#~ msgstr "Previous month"
+
+#~ msgid "Previous year"
+#~ msgstr "Previous year"
+
+#~ msgid "Search for timezone"
+#~ msgstr "Search for timezone"
+
+#~ msgid "Select date"
+#~ msgstr "Select date"
+
+#~ msgid "Select date and time"
+#~ msgstr "Select date and time"
+
+#~ msgid "Select month"
+#~ msgstr "Select month"
+
+#~ msgid "Select time"
+#~ msgstr "Select time"
+
+#~ msgid "Select time range"
+#~ msgstr "Select time range"
+
+#~ msgid "Select week"
+#~ msgstr "Select week"
+
+#~ msgid "Select year"
+#~ msgstr "Select year"
+
+#~ msgid "Switch AM/PM mode"
+#~ msgstr "Switch AM/PM mode"
+
+#~ msgid "Time picker"
+#~ msgstr "Time picker"
+
+#~ msgid "Timezone"
+#~ msgstr "Timezone"
+
+#~ msgid "Toggle overlay"
+#~ msgstr "Toggle overlay"
+
+#~ msgid "W"
+#~ msgstr "W"
+
+#~ msgid "Year picker"
+#~ msgstr "Year picker"
+
+#~ msgid "Year picker overlay"
+#~ msgstr "Year picker overlay"
+
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "Message limit of {count} characters reached"

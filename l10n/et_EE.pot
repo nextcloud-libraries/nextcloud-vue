@@ -1,14 +1,15 @@
-# 
+#
 # Translators:
-# Mait R, 2023
+# Joas Schilling, 2025
 # Priit Jõerüüt <transifex@joeruut.com>, 2025
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2025\n"
-"Language-Team: Estonian (Estonia) (https://app.transifex.com/nextcloud/teams/64236/et_EE/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Estonian (Estonia) (https://app.transifex.com/nextcloud/"
+"teams/64236/et_EE/)\n"
 "Language: et_EE\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
@@ -43,7 +44,7 @@ msgid "Any link"
 msgstr "Mistahes link"
 
 msgid "Anything shared with the same group of people will show up here"
-msgstr "Kõik, mida jagatakse sama grupi inimestega, kuvatakse siin."
+msgstr "Siin kuvatakse kõik, mida jagatakse sama kasutajagrupiga"
 
 msgid "Avatar of {displayName}"
 msgstr "Avatar {displayName}"
@@ -143,8 +144,8 @@ msgid "Enter link"
 msgstr "Sisesta link"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Viga seotud ressursside saamisel. Küsimuste korral võtke ühendust oma "
 "süsteemiadministraatoriga."
@@ -202,7 +203,7 @@ msgid "Light skin tone"
 msgstr "Kesta hele toon"
 
 msgid "Load more \"{options}\""
-msgstr "Laadi rohkem \"{valikud}\""
+msgstr "Laadi veel „{options}“"
 
 #. TRANSLATORS: The button is in a loading state
 msgid "Loading …"
@@ -221,8 +222,10 @@ msgstr "Kesta keskmiselt hele toon"
 msgid "Medium skin tone"
 msgstr "Kesta keskmine toon"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Sõnumi piiratud arv {count} tähemärke on saavutatud"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Sõnumi piirarv %n tähemärk on käes"
+msgstr[1] "Sõnumi piirarv %n tähemärki on käes"
 
 msgid "More items …"
 msgstr "Rohkem objekte ..."
@@ -262,7 +265,7 @@ msgid "online"
 msgstr "võrgus"
 
 msgid "Open link to \"{resourceName}\""
-msgstr "Ava link \"{resourceName}\""
+msgstr "Ava link „{resourceName}“"
 
 msgid "Open menu"
 msgstr "Ava menüü"
@@ -319,7 +322,7 @@ msgid "Purple"
 msgstr "Purpurpunane"
 
 msgid "Raw link {options}"
-msgstr "Raw link {valikud}"
+msgstr "Töötlemata link: {options}"
 
 msgid "Related resources"
 msgstr "Seotud ressursid"
@@ -352,8 +355,7 @@ msgstr "Otsi tulemustest"
 msgid "Search…"
 msgstr "Otsi…"
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "sek. tagasi"
 
@@ -363,6 +365,9 @@ msgstr "sekundit tagasi"
 
 msgid "Select a tag"
 msgstr "Vali silt"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Vali teenuspakkuja"
@@ -436,3 +441,138 @@ msgstr "Viskikarva kollakaspruun"
 
 msgid "Write a message …"
 msgstr "Kirjuta sõnum…"
+
+#~ msgid "Calendar icon"
+#~ msgstr "Kalendriikoon"
+
+#~ msgid "Cancel"
+#~ msgstr "Katkesta"
+
+#~ msgid "Clear value"
+#~ msgstr "Kustuta väärtus"
+
+#~ msgid "Close time Picker"
+#~ msgstr "Sulge ajavalija"
+
+#~ msgid "Datepicker input"
+#~ msgstr "Kuupäevavalija sisend"
+
+#~ msgid "Datepicker menu"
+#~ msgstr "Kuupäevavalija sisend"
+
+#~ msgid "Decrement hours"
+#~ msgstr "Vähenda tunde"
+
+#~ msgid "Decrement minutes"
+#~ msgstr "Vähenda minuteid"
+
+#~ msgid "Decrement seconds"
+#~ msgstr "Vähenda sekundeid"
+
+#~ msgid "External documentation"
+#~ msgstr "Dokumentatsioon välises allikas"
+
+#~ msgid "Increment hours"
+#~ msgstr "Suurenda tunde"
+
+#~ msgid "Increment minutes"
+#~ msgstr "Suurenda minuteid"
+
+#~ msgid "Increment seconds"
+#~ msgstr "Suurenda sekundeid"
+
+#~ msgid "Month picker"
+#~ msgstr "Kuupäevavalija"
+
+#~ msgid "Month picker overlay"
+#~ msgstr "Kuupäevavalija ülekatteaken"
+
+#~ msgid "Next month"
+#~ msgstr "Järgmine kuu"
+
+#~ msgid "Next year"
+#~ msgstr "Järgmine aasta"
+
+#~ msgid "Now"
+#~ msgstr "Praegu"
+
+#~ msgid "Open hours overlay"
+#~ msgstr "Ava tundide vaade"
+
+#~ msgid "Open minutes overlay"
+#~ msgstr "Ava minutite vaade"
+
+#~ msgid "Open months overlay"
+#~ msgstr "Ava kuude vaade"
+
+#~ msgid "Open navigation"
+#~ msgstr "Ava liikumisvaade"
+
+#~ msgid "Open seconds overlay"
+#~ msgstr "Ava sekundite vaade"
+
+#~ msgid "Open time picker"
+#~ msgstr "Ava ajavalija"
+
+#~ msgid "Open years overlay"
+#~ msgstr "Ava aastate vaade"
+
+#~ msgid "Pick"
+#~ msgstr "Vali"
+
+#~ msgid "Please choose a date"
+#~ msgstr "Palun vali kuupäev"
+
+#~ msgid "Previous month"
+#~ msgstr "Eelmine kuu"
+
+#~ msgid "Previous year"
+#~ msgstr "Eelmine aasta"
+
+#~ msgid "Search for timezone"
+#~ msgstr "Otsi ajavööndit"
+
+#~ msgid "Select date"
+#~ msgstr "Vali kuupäev"
+
+#~ msgid "Select date and time"
+#~ msgstr "Vali kuupäev ja kellaaeg"
+
+#~ msgid "Select month"
+#~ msgstr "Vali kuu"
+
+#~ msgid "Select time"
+#~ msgstr "Vali aeg"
+
+#~ msgid "Select time range"
+#~ msgstr "Vali ajavahemik"
+
+#~ msgid "Select week"
+#~ msgstr "Vali nädal"
+
+#~ msgid "Select year"
+#~ msgstr "Vali aasta"
+
+#~ msgid "Switch AM/PM mode"
+#~ msgstr "Vaheta AM/PM kuvamist"
+
+#~ msgid "Time picker"
+#~ msgstr "Ajavalija"
+
+#~ msgid "Timezone"
+#~ msgstr "Ajavöönd"
+
+#~ msgid "Toggle overlay"
+#~ msgstr "Lülita ülekatteaken sisse/välja"
+
+#~ msgid "W"
+#~ msgstr "W"
+
+#~ msgid "Year picker"
+#~ msgstr "Aastavalija"
+
+#~ msgid "Year picker overlay"
+#~ msgstr "Aastavavalija ülekatteaken"
+
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "Sõnumi piiratud arv {count} tähemärke on saavutatud"
