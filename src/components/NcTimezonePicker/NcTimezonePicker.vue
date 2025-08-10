@@ -25,6 +25,7 @@ export default {
 </docs>
 
 <script setup lang="ts">
+import { getCanonicalLocale } from '@nextcloud/l10n'
 import { computed } from 'vue'
 import NcSelect from '../NcSelect/NcSelect.vue'
 import { t } from '../../l10n.ts'
@@ -72,13 +73,23 @@ const formattedAdditionalTimezones = computed(() => {
 	return props.additionalTimezones.map(({ timezoneId, label }) => ({
 		timezoneId,
 		label,
+		offset: 0,
+		localeOffset: '',
+		time: '',
 	}))
 })
 
 const options = computed(() => {
 	const timezones = getTimezones()
-	timezones.unshift(...formattedAdditionalTimezones.value)
-	return timezones
+	const now = new Date()
+	console.time('Adding current time to timezones')
+	const result = timezones.map((option) => ({
+		...option,
+		time: now.toLocaleString(getCanonicalLocale(), { timeZone: option.timezoneId, hour: '2-digit', minute: '2-digit' }),
+	}))
+	console.timeEnd('Adding current time to timezones')
+	result.unshift(...formattedAdditionalTimezones.value)
+	return result
 })
 
 /**
@@ -95,6 +106,13 @@ function filterBy(option: ITimezone, label: string, search: string): boolean {
 		return values.some((value) => value.toLowerCase().includes(term.toLowerCase()))
 	})
 }
+
+// Getting all the timezones with the current user language takes around 250ms on the first run
+// To prevent the lag on the first open, calculating them in an idle callback
+// TODO: maybe it is better to load it on open? More laggy, but doesn't load the page when not needed
+requestIdleCallback(() => {
+	getTimezones()
+})
 </script>
 
 <template>
@@ -108,5 +126,56 @@ function filterBy(option: ITimezone, label: string, search: string): boolean {
 		:placeholder="t('Type to search time zone')"
 		:uid
 		:reduce="(option) => option.timezoneId"
-		label="label" />
+		label="label">
+		<template #option="option">
+			<span :class="$style.timezoneOption">
+				<span :class="$style.timezoneOption__row">
+					<span>{{ option.label }}</span>
+					<span :class="$style.timezoneOption__time">{{ option.time }}</span>
+				</span>
+				<span :class="[$style.timezoneOption__row, $style.timezoneOption__subline]">
+					<span :class="$style.timezoneOption__id">{{ option.timezoneId }}</span>
+					<span :class="$style.timezoneOption__offset">{{ option.localeOffset }}</span>
+				</span>
+			</span>
+		</template>
+	</NcSelect>
 </template>
+
+<style lang="scss" module>
+/* Dirty hack to override the padding of vue-select options */
+li:has(> .timezoneOption) {
+	padding: calc(1 * var(--default-grid-baseline));
+}
+
+.timezoneOption {
+	display: flex;
+	flex-direction: column;
+	white-space: break-spaces;
+}
+
+.timezoneOption__row {
+	display: flex;
+	justify-content: space-between;
+	gap: calc(1 * var(--default-grid-baseline));
+}
+
+.timezoneOption__subline {
+	color: var(--color-text-maxcontrast);
+	font-size: var(--font-size-small, 13px);
+}
+
+.timezoneOption__offset,
+.timezoneOption__time {
+	white-space: nowrap;
+}
+
+.timezoneOption__time {
+	font-size: var(--font-size-small, 13px);
+}
+
+.timezoneOption__id {
+	/* Timezone ID can be long without spaces, like America/North_Dakota/New_Salem */
+	overflow-wrap: anywhere;
+}
+</style>
