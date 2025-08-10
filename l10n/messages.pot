@@ -193,10 +193,6 @@ msgstr ""
 msgid "Frequently used"
 msgstr ""
 
-#. TRANSLATORS: This refers to global timezones in the timezone picker
-msgid "Global"
-msgstr ""
-
 msgid "Go back to the list"
 msgstr ""
 
