@@ -72,7 +72,11 @@ const colors = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-.loading-icon svg{
-	animation: rotate var(--animation-duration, 0.8s) linear infinite;
+.loading-icon {
+	overflow: hidden;
+
+	svg {
+		animation: rotate var(--animation-duration, 0.8s) linear infinite;
+	}
 }
 </style>
