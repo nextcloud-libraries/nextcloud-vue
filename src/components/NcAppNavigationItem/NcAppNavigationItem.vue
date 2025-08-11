@@ -46,6 +46,37 @@
 </ul>
 ```
 
+* Using different icons based on the active state (e.g. using vue-router and showing the filled variant for the current route):
+
+```vue
+<template>
+	<ul>
+		<NcAppNavigationItem name="Current page" :active="true">
+			<template #icon="{ active }">
+				<NcIconSvgWrapper :path="active ? mdiFolder : mdiFolderOutline" />
+			</template>
+		</NcAppNavigationItem>
+		<NcAppNavigationItem name="Other page">
+			<template #icon="{ active }">
+				<NcIconSvgWrapper :path="active ? mdiFolder : mdiFolderOutline" />
+			</template>
+		</NcAppNavigationItem>
+	</ul>
+</template>
+<script>
+import { mdiFolder, mdiFolderOutline } from '@mdi/js'
+
+export default {
+	setup() {
+		return {
+			mdiFolder,
+			mdiFolderOutline,
+		}
+	},
+}
+</script>
+```
+
 #### Element with actions
 Wrap the children in a template. If you have more than 2 actions, a popover menu and a menu
 button will be automatically created.
@@ -289,8 +320,8 @@ Just set the `pinned` prop.
 					<div :class="{ [icon]: icon }"
 						class="app-navigation-entry-icon">
 						<NcLoadingIcon v-if="loading" />
-						<!-- @slot Slot for the optional leading icon -->
-						<slot v-else name="icon" />
+						<!-- @slot Slot for the optional leading icon. This slots get the `active`-slot attribute passed which is based on the vue-routers active route or the `active` prop. -->
+						<slot v-else name="icon" :active="active || (to && isActive)" />
 					</div>
 					<span v-if="!editingActive" class="app-navigation-entry__name">
 						{{ name }}
