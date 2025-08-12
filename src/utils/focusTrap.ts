@@ -26,6 +26,11 @@ export function getTrapStack() {
  *
  * When some component manually implements its own focus-trap without using global focus-trap stack,
  * it also needs to pause the global stack to avoid conflict.
+ *
+ * Note: if global focus-trap stack was modified outside TrapStackController (likely due to user actions),
+ * trap queue should be correctly handled by focus-trap itself.
+ * It is no longer safe to unpause cached `pausedStack`, as it can disrupt the current focus trap state.
+ * We assume that the focus-trap stack is self-regulated and ignore unpause.
  */
 export function createTrapStackController() {
 	/**
@@ -45,10 +50,13 @@ export function createTrapStackController() {
 		},
 		/**
 		 * Unpause the paused focus trap stack
+		 * If the actual stack is different from the paused one, ignore unpause.
 		 */
 		unpause() {
-			for (const trap of pausedStack) {
-				trap.unpause()
+			if (pausedStack.length === getTrapStack().length) {
+				for (const trap of pausedStack) {
+					trap.unpause()
+				}
 			}
 			pausedStack = []
 		},
