@@ -345,7 +345,6 @@ import Timer from '../../utils/Timer.js'
 import Close from 'vue-material-design-icons/Close.vue'
 import Pause from 'vue-material-design-icons/Pause.vue'
 import Play from 'vue-material-design-icons/Play.vue'
-import { useTrapStackControl } from '../../composables/useTrapStackControl.js'
 
 export default {
 	name: 'NcModal',
@@ -614,10 +613,6 @@ export default {
 				this.focusTrap.updateContainerElements([contentContainer, ...elements])
 			}
 		},
-	},
-
-	created() {
-		useTrapStackControl(() => this.showModal)
 	},
 
 	beforeMount() {

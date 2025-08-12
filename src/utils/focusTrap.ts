@@ -45,10 +45,14 @@ export function createTrapStackController() {
 		},
 		/**
 		 * Unpause the paused focus trap stack
+		 * If the actual stack is different from the paused one, there were changes
+		 * outside of this controller, so we assume it's self-regulated and do not unpause.
 		 */
 		unpause() {
-			for (const trap of pausedStack) {
-				trap.unpause()
+			if (pausedStack.length === getTrapStack().length) {
+				for (const trap of pausedStack) {
+					trap.unpause()
+				}
 			}
 			pausedStack = []
 		},
