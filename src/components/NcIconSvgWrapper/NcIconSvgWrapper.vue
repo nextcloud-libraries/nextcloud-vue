@@ -254,8 +254,8 @@ const cleanSvg = computed(() => {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	min-width: var(--default-clickable-area);
-	min-height: var(--default-clickable-area);
+	min-width: v-bind('iconSize');
+	min-height: v-bind('iconSize');
 	opacity: 1;
 
 	&#{&}--inline {
