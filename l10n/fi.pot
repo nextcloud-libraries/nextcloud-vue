@@ -1,14 +1,15 @@
-# 
+#
 # Translators:
 # thingumy, 2024
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2025
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>, 2025\n"
-"Language-Team: Finnish (Finland) (https://app.transifex.com/nextcloud/teams/64236/fi_FI/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Finnish (Finland) (https://app.transifex.com/nextcloud/"
+"teams/64236/fi_FI/)\n"
 "Language: fi_FI\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "{tag} (invisible)"
@@ -143,8 +144,8 @@ msgid "Enter link"
 msgstr "Kirjoita linkki"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Virhe resurssien haussa. Ota yhteyttä järjestelmän ylläpitäjään, mikäli "
 "sinulla on kysyttävää."
@@ -221,8 +222,10 @@ msgstr "Keskivaalea ihonväri"
 msgid "Medium skin tone"
 msgstr "Keskimääräinen ihonväri"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Viestin {count}merkin raja saavutettu"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "More items …"
 msgstr "Lisää kohteita…"
@@ -352,8 +355,7 @@ msgstr "Hakutulokset"
 msgid "Search…"
 msgstr "Hae..."
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "sek. sitten"
 
@@ -363,6 +365,9 @@ msgstr "sekunteja sitten"
 
 msgid "Select a tag"
 msgstr "Valitse tunniste"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Valitse tarjoaja"
@@ -436,3 +441,6 @@ msgstr "Viski"
 
 msgid "Write a message …"
 msgstr "Kirjoita viesti…"
+
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "Viestin {count}merkin raja saavutettu"

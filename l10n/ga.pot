@@ -1,14 +1,16 @@
-# 
+#
 # Translators:
+# Joas Schilling, 2025
 # Aindriú Mac Giolla Eoin, 2025
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Aindriú Mac Giolla Eoin, 2025\n"
 "Language-Team: Irish (https://app.transifex.com/nextcloud/teams/64236/ga/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Language: ga\n"
-"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : "
+"4);\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (dofheicthe)"
@@ -143,8 +145,8 @@ msgid "Enter link"
 msgstr "Cuir isteach nasc"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Earráid agus acmhainní gaolmhara á bhfáil. Déan teagmháil le riarthóir do "
 "chórais má tá aon cheist agat."
@@ -221,8 +223,13 @@ msgstr "Ton craiceann meánach éadrom"
 msgid "Medium skin tone"
 msgstr "Ton craiceann meánach"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Teorainn teachtaireachta de {count} carachtar bainte amach"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
+msgstr[1] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
+msgstr[2] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
+msgstr[3] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
+msgstr[4] "Sroicheadh ​​teorainn teachtaireachta de %n carachtar"
 
 msgid "More items …"
 msgstr "Tuilleadh earraí…"
@@ -352,8 +359,7 @@ msgstr "Torthaí cuardaigh"
 msgid "Search…"
 msgstr "Cuardaigh…"
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "soic. ó shin"
 
@@ -363,6 +369,9 @@ msgstr "soicind ó shin"
 
 msgid "Select a tag"
 msgstr "Roghnaigh clib"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Roghnaigh soláthraí"
@@ -436,3 +445,138 @@ msgstr "Fuisce"
 
 msgid "Write a message …"
 msgstr "Scríobh teachtaireacht…"
+
+#~ msgid "Calendar icon"
+#~ msgstr "Deilbhín féilire"
+
+#~ msgid "Cancel"
+#~ msgstr "Cealaigh"
+
+#~ msgid "Clear value"
+#~ msgstr "Luach soiléir"
+
+#~ msgid "Close time Picker"
+#~ msgstr "Roghnóir am dúnta"
+
+#~ msgid "Datepicker input"
+#~ msgstr "Ionchur datepicker"
+
+#~ msgid "Datepicker menu"
+#~ msgstr "Roghchlár datepicker"
+
+#~ msgid "Decrement hours"
+#~ msgstr "Laghdaigh uaireanta"
+
+#~ msgid "Decrement minutes"
+#~ msgstr "Laghdaigh nóiméid "
+
+#~ msgid "Decrement seconds"
+#~ msgstr "Laghdaigh soicind"
+
+#~ msgid "External documentation"
+#~ msgstr "Doiciméadú seachtrach"
+
+#~ msgid "Increment hours"
+#~ msgstr "Méadaigh uaireanta"
+
+#~ msgid "Increment minutes"
+#~ msgstr "Méadaigh nóiméid"
+
+#~ msgid "Increment seconds"
+#~ msgstr "Méadaigh soicind"
+
+#~ msgid "Month picker"
+#~ msgstr "Roghnóir míosa"
+
+#~ msgid "Month picker overlay"
+#~ msgstr "Forleagan roghnóir míosa"
+
+#~ msgid "Next month"
+#~ msgstr "An mhí seo chugainn"
+
+#~ msgid "Next year"
+#~ msgstr "An bhliain seo chugainn"
+
+#~ msgid "Now"
+#~ msgstr "Anois"
+
+#~ msgid "Open hours overlay"
+#~ msgstr "Forleagan uaireanta oscailte"
+
+#~ msgid "Open minutes overlay"
+#~ msgstr "Forleagan nóiméad oscailte"
+
+#~ msgid "Open months overlay"
+#~ msgstr "Forleagan míonna oscailte"
+
+#~ msgid "Open navigation"
+#~ msgstr "Oscail nascleanúint"
+
+#~ msgid "Open seconds overlay"
+#~ msgstr "Soicind oscailte forleagan"
+
+#~ msgid "Open time picker"
+#~ msgstr "Roghnóir am oscailte"
+
+#~ msgid "Open years overlay"
+#~ msgstr "Forleagan blianta oscailte"
+
+#~ msgid "Pick"
+#~ msgstr "Pioc"
+
+#~ msgid "Please choose a date"
+#~ msgstr "Roghnaigh dáta le do thoil"
+
+#~ msgid "Previous month"
+#~ msgstr "An mhí roimhe sin"
+
+#~ msgid "Previous year"
+#~ msgstr "Bhliain roimhe sin"
+
+#~ msgid "Search for timezone"
+#~ msgstr "Cuardaigh crios ama"
+
+#~ msgid "Select date"
+#~ msgstr "Roghnaigh dáta"
+
+#~ msgid "Select date and time"
+#~ msgstr "Roghnaigh dáta agus am"
+
+#~ msgid "Select month"
+#~ msgstr "Roghnaigh mí"
+
+#~ msgid "Select time"
+#~ msgstr "Roghnaigh am"
+
+#~ msgid "Select time range"
+#~ msgstr "Roghnaigh raon ama"
+
+#~ msgid "Select week"
+#~ msgstr "Roghnaigh seachtain"
+
+#~ msgid "Select year"
+#~ msgstr "Roghnaigh bliain"
+
+#~ msgid "Switch AM/PM mode"
+#~ msgstr "Athraigh mód AM/PM"
+
+#~ msgid "Time picker"
+#~ msgstr "Roghnóir ama"
+
+#~ msgid "Timezone"
+#~ msgstr "Crios ama"
+
+#~ msgid "Toggle overlay"
+#~ msgstr "Scoránaigh forleagan"
+
+#~ msgid "W"
+#~ msgstr "W"
+
+#~ msgid "Year picker"
+#~ msgstr "Roghnóir bliana"
+
+#~ msgid "Year picker overlay"
+#~ msgstr "Forleagan roghnóir bliana"
+
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "Teorainn teachtaireachta de {count} carachtar bainte amach"

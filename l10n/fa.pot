@@ -1,15 +1,16 @@
-# 
+#
 # Translators:
 # Goudarz Jafari <goudarz.jafari@gmail.com>, 2023
 # Mostafa Ahangarha <ahangarha@riseup.net>, 2024
 # reza reza <forghan89@yahoo.com>, 2024
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: reza reza <forghan89@yahoo.com>, 2024\n"
-"Language-Team: Persian (https://app.transifex.com/nextcloud/teams/64236/fa/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Persian (https://app.transifex.com/nextcloud/teams/64236/"
+"fa/)\n"
 "Language: fa\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "{tag} (invisible)"
@@ -144,11 +145,11 @@ msgid "Enter link"
 msgstr "لینک را وارد کنید"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
-"خطا در دریافت منابع مرتبط. لطفاً در صورت داشتن هر گونه سؤال با مدیر سیستم "
-"خود تماس بگیرید."
+"خطا در دریافت منابع مرتبط. لطفاً در صورت داشتن هر گونه سؤال با مدیر سیستم خود "
+"تماس بگیرید."
 
 msgid "External documentation for {name}"
 msgstr "اسناد بیرونی برای {name}"
@@ -222,8 +223,10 @@ msgstr "رنگ پوسته روشن متوسط"
 msgid "Medium skin tone"
 msgstr "رنگ پوسته متوسط"
 
-msgid "Message limit of {count} characters reached"
-msgstr "به حد مجاز پیام {count} نویسه (کاراکتر) رسیده است"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "More items …"
 msgstr "موارد بیشتر ..."
@@ -268,8 +271,8 @@ msgstr "باز کردن پیوند به «{resourceName}»"
 msgid "Open menu"
 msgstr "باز کردن فهرست"
 
-msgid "Open navigation"
-msgstr "باز کردن بخش ناوبری"
+msgid "Open navigation {shortcut}"
+msgstr ""
 
 msgid "Open sidebar"
 msgstr "باز کردن نوار کنار"
@@ -353,8 +356,7 @@ msgstr "نتایج جستجو"
 msgid "Search…"
 msgstr "جستجو..."
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "چند ثانیه پیش"
 
@@ -364,6 +366,9 @@ msgstr "چند ثانیه پیش"
 
 msgid "Select a tag"
 msgstr "انتخاب یک برچسب"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "ارائه دهنده را انتخاب کنید"
@@ -437,3 +442,9 @@ msgstr "ویسکی"
 
 msgid "Write a message …"
 msgstr "یک پیام بنویسید ..."
+
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "به حد مجاز پیام {count} نویسه (کاراکتر) رسیده است"
+
+#~ msgid "Open navigation"
+#~ msgstr "باز کردن بخش ناوبری"

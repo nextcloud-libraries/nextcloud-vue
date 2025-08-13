@@ -1,14 +1,17 @@
-# 
+#
 # Translators:
-# Pavel Borecki <pavel.borecki@gmail.com>, 2024
-# 
+# Joas Schilling, 2025
+# Pavel Borecki <pavel.borecki@gmail.com>, 2025
+#
 msgid ""
 msgstr ""
-"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2024\n"
-"Language-Team: Czech (Czech Republic) (https://app.transifex.com/nextcloud/teams/64236/cs_CZ/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2025\n"
+"Language-Team: Czech (Czech Republic) (https://app.transifex.com/nextcloud/"
+"teams/64236/cs_CZ/)\n"
 "Language: cs_CZ\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
+"<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 msgid "{tag} (invisible)"
 msgstr "{tag} (neviditelné)"
@@ -142,8 +145,8 @@ msgid "Enter link"
 msgstr "Zadat odkaz"
 
 msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
+"Error getting related resources. Please contact your system administrator if "
+"you have any questions."
 msgstr ""
 "Chyba při získávání souvisejících prostředků. Pokud máte jakékoli dotazy, "
 "obraťte se na správce vámi využívaného systému."
@@ -220,8 +223,12 @@ msgstr "Středně světlý tělový tón"
 msgid "Medium skin tone"
 msgstr "Střední tělový tón"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Dosaženo limitu počtu ({count}) znaků zprávy"
+msgid "Message limit of %n character reached"
+msgid_plural "Message limit of %n characters reached"
+msgstr[0] "Dosaženo limitu počtu %n znaku zprávy"
+msgstr[1] "Dosaženo limitu počtu %n znaků zprávy"
+msgstr[2] "Dosaženo limitu počtu %n znaků zprávy"
+msgstr[3] "Dosaženo limitu počtu %n znaků zprávy"
 
 msgid "More items …"
 msgstr "Další položky…"
@@ -351,8 +358,7 @@ msgstr "Výsledky hledání"
 msgid "Search…"
 msgstr "Hledat…"
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
+#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 msgid "sec. ago"
 msgstr "sek. před"
 
@@ -362,6 +368,9 @@ msgstr "sekund předtím"
 
 msgid "Select a tag"
 msgstr "Vybrat štítek"
+
+msgid "Select account"
+msgstr ""
 
 msgid "Select provider"
 msgstr "Vybrat poskytovatele"
@@ -435,3 +444,138 @@ msgstr "Whisky"
 
 msgid "Write a message …"
 msgstr "Napsat zprávu…"
+
+#~ msgid "Calendar icon"
+#~ msgstr "Ikona kalendáře"
+
+#~ msgid "Cancel"
+#~ msgstr "Storno"
+
+#~ msgid "Clear value"
+#~ msgstr "Vyčistit hodnotu"
+
+#~ msgid "Close time Picker"
+#~ msgstr "Zavřít výběr času"
+
+#~ msgid "Datepicker input"
+#~ msgstr "Vstup výběru data"
+
+#~ msgid "Datepicker menu"
+#~ msgstr "Nabídka výběru data"
+
+#~ msgid "Decrement hours"
+#~ msgstr "Snížit hodiny"
+
+#~ msgid "Decrement minutes"
+#~ msgstr "Snížit minuty"
+
+#~ msgid "Decrement seconds"
+#~ msgstr "Snížit sekundy"
+
+#~ msgid "External documentation"
+#~ msgstr "Externí dokumentace"
+
+#~ msgid "Increment hours"
+#~ msgstr "Zvýšit hodiny"
+
+#~ msgid "Increment minutes"
+#~ msgstr "Zvýšit minuty"
+
+#~ msgid "Increment seconds"
+#~ msgstr "Zvýšit sekundy"
+
+#~ msgid "Month picker"
+#~ msgstr "Výběr měsíce"
+
+#~ msgid "Month picker overlay"
+#~ msgstr "Překryvné okno výběru měsíce"
+
+#~ msgid "Next month"
+#~ msgstr "Příští měsíc"
+
+#~ msgid "Next year"
+#~ msgstr "Příští rok"
+
+#~ msgid "Now"
+#~ msgstr "Nyní"
+
+#~ msgid "Open hours overlay"
+#~ msgstr "Otevřít překryvné okno hodin"
+
+#~ msgid "Open minutes overlay"
+#~ msgstr "Otevřít překryvné okno minut"
+
+#~ msgid "Open months overlay"
+#~ msgstr "Otevřít překryvné okno měsíců"
+
+#~ msgid "Open navigation"
+#~ msgstr "Otevřít navigaci"
+
+#~ msgid "Open seconds overlay"
+#~ msgstr "Otevřít překryvné okno sekund"
+
+#~ msgid "Open time picker"
+#~ msgstr "Otevřít výběr času"
+
+#~ msgid "Open years overlay"
+#~ msgstr "Otevřít překryvné okno roku"
+
+#~ msgid "Pick"
+#~ msgstr "Vybrat"
+
+#~ msgid "Please choose a date"
+#~ msgstr "Zvolte datum"
+
+#~ msgid "Previous month"
+#~ msgstr "Předchozí měsíc"
+
+#~ msgid "Previous year"
+#~ msgstr "Předchozí rok"
+
+#~ msgid "Search for timezone"
+#~ msgstr "Vyhledat časové pásmo"
+
+#~ msgid "Select date"
+#~ msgstr "Vybrat datum"
+
+#~ msgid "Select date and time"
+#~ msgstr "Vybrat datum a čas"
+
+#~ msgid "Select month"
+#~ msgstr "Vybrat měsíc"
+
+#~ msgid "Select time"
+#~ msgstr "Vybrat čas"
+
+#~ msgid "Select time range"
+#~ msgstr "Vybrat časový rozsah"
+
+#~ msgid "Select week"
+#~ msgstr "Vybrat týden"
+
+#~ msgid "Select year"
+#~ msgstr "Vybrat rok"
+
+#~ msgid "Switch AM/PM mode"
+#~ msgstr "Přepnout režim dopo/odpoledne"
+
+#~ msgid "Time picker"
+#~ msgstr "Výběr času"
+
+#~ msgid "Timezone"
+#~ msgstr "Časové pásmo"
+
+#~ msgid "Toggle overlay"
+#~ msgstr "Vyp/zap. překryvné okno"
+
+#~ msgid "W"
+#~ msgstr "T"
+
+#~ msgid "Year picker"
+#~ msgstr "Výběr roku"
+
+#~ msgid "Year picker overlay"
+#~ msgstr "Překryvné okno výběru roku"
+
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "Dosaženo limitu počtu ({count}) znaků zprávy"

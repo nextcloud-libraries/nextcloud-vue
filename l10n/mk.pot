@@ -1,281 +1,149 @@
-# 
+#
 # Translators:
 # Joas Schilling, 2023
 # Transifex Bot <>, 2023
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Transifex Bot <>, 2023\n"
-"Language-Team: Macedonian (https://app.transifex.com/nextcloud/teams/64236/mk/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Macedonian (https://app.transifex.com/nextcloud/teams/64236/"
+"mk/)\n"
 "Language: mk\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
-msgid "{tag} (invisible)"
-msgstr "{tag} (невидливо)"
+#~ msgid "{tag} (invisible)"
+#~ msgstr "{tag} (невидливо)"
 
-msgid "{tag} (restricted)"
-msgstr "{tag} (ограничено)"
+#~ msgid "{tag} (restricted)"
+#~ msgstr "{tag} (ограничено)"
 
-msgid "a few seconds ago"
-msgstr ""
+#~ msgid "Actions"
+#~ msgstr "Акции"
 
-msgid "Actions"
-msgstr "Акции"
+#~ msgid "Activities"
+#~ msgstr "Активности"
 
-msgid "Actions for item with name \"{name}\""
-msgstr ""
+#~ msgid "Animals & Nature"
+#~ msgstr "Животни & Природа"
 
-msgid "Activities"
-msgstr "Активности"
+#~ msgid "Avatar of {displayName}"
+#~ msgstr "Аватар на {displayName}"
 
-msgid "Animals & Nature"
-msgstr "Животни & Природа"
+#~ msgid "Avatar of {displayName}, {status}"
+#~ msgstr "Аватар на {displayName}, {status}"
 
-msgid "Any link"
-msgstr ""
+#~ msgid "Cancel changes"
+#~ msgstr "Откажи ги промените"
 
-msgid "Anything shared with the same group of people will show up here"
-msgstr ""
+#~ msgid "Choose"
+#~ msgstr "Избери"
 
-msgid "Avatar of {displayName}"
-msgstr "Аватар на {displayName}"
+#~ msgid "Close"
+#~ msgstr "Затвори"
 
-msgid "Avatar of {displayName}, {status}"
-msgstr "Аватар на {displayName}, {status}"
+#~ msgid "Close modal"
+#~ msgstr "Затвори модал"
 
-msgid "Back"
-msgstr ""
+#~ msgid "Close navigation"
+#~ msgstr "Затвори навигација"
 
-msgid "Back to provider selection"
-msgstr ""
+#~ msgid "Confirm changes"
+#~ msgstr "Потврди ги промените"
 
-msgid "Cancel changes"
-msgstr "Откажи ги промените"
+#~ msgid "Custom"
+#~ msgstr "Прилагодени"
 
-msgid "Change name"
-msgstr ""
+#~ msgid "Edit item"
+#~ msgstr "Уреди"
 
-msgid "Choose"
-msgstr "Избери"
+#~ msgid "Favorite"
+#~ msgstr "Фаворити"
 
-msgid "Clear search"
-msgstr ""
+#~ msgid "Flags"
+#~ msgstr "Знамиња"
 
-msgid "Clear text"
-msgstr ""
+#~ msgid "Food & Drink"
+#~ msgstr "Храна & Пијалоци"
 
-msgid "Close"
-msgstr "Затвори"
+#~ msgid "Frequently used"
+#~ msgstr "Најчесто користени"
 
-msgid "Close modal"
-msgstr "Затвори модал"
+#~ msgid "Global"
+#~ msgstr "Глобално"
 
-msgid "Close navigation"
-msgstr "Затвори навигација"
+#~ msgid "Go back to the list"
+#~ msgstr "Врати се на листата"
 
-msgid "Close sidebar"
-msgstr ""
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr ""
+#~ "Ограничувањето на должината на пораката од {count} карактери е надминато"
 
-msgid "Close Smart Picker"
-msgstr ""
+#~ msgid "Next"
+#~ msgstr "Следно"
 
-msgid "Collapse menu"
-msgstr ""
+#~ msgid "No emoji found"
+#~ msgstr "Не се пронајдени емотикони"
 
-msgid "Confirm changes"
-msgstr "Потврди ги промените"
+#~ msgid "No results"
+#~ msgstr "Нема резултати"
 
-msgid "Custom"
-msgstr "Прилагодени"
+#~ msgid "Objects"
+#~ msgstr "Објекти"
 
-msgid "Edit item"
-msgstr "Уреди"
+#~ msgid "Open navigation"
+#~ msgstr "Отвори навигација"
 
-msgid "Enter link"
-msgstr ""
+#~ msgid "Pause slideshow"
+#~ msgstr "Пузирај слајдшоу"
 
-msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
-msgstr ""
+#~ msgid "People & Body"
+#~ msgstr "Луѓе & Тело"
 
-msgid "External documentation for {name}"
-msgstr ""
+#~ msgid "Pick an emoji"
+#~ msgstr "Избери емотикон"
 
-msgid "Favorite"
-msgstr "Фаворити"
+#~ msgid "Please select a time zone:"
+#~ msgstr "Изберете временска зона:"
 
-msgid "Flags"
-msgstr "Знамиња"
+#~ msgid "Previous"
+#~ msgstr "Предходно"
 
-msgid "Food & Drink"
-msgstr "Храна & Пијалоци"
+#~ msgid "Search"
+#~ msgstr "Барај"
 
-msgid "Frequently used"
-msgstr "Најчесто користени"
+#~ msgid "Search results"
+#~ msgstr "Резултати од барувањето"
 
-msgid "Global"
-msgstr "Глобално"
+#~ msgid "Select a tag"
+#~ msgstr "Избери ознака"
 
-msgid "Go back to the list"
-msgstr "Врати се на листата"
+#~ msgid "Settings"
+#~ msgstr "Параметри"
 
-msgid "Hide password"
-msgstr ""
+#~ msgid "Settings navigation"
+#~ msgstr "Параметри за навигација"
 
-msgid "Load more \"{options}\"\""
-msgstr ""
+#~ msgid "Smileys & Emotion"
+#~ msgstr "Смешковци & Емотикони"
 
-msgid "Message limit of {count} characters reached"
-msgstr ""
-"Ограничувањето на должината на пораката од {count} карактери е надминато"
+#~ msgid "Start slideshow"
+#~ msgstr "Стартувај слајдшоу"
 
-msgid "More items …"
-msgstr ""
+#~ msgid "Submit"
+#~ msgstr "Испрати"
 
-msgid "More options"
-msgstr ""
+#~ msgid "Symbols"
+#~ msgstr "Симболи"
 
-msgid "Next"
-msgstr "Следно"
+#~ msgid "Travel & Places"
+#~ msgstr "Патувања & Места"
 
-msgid "No emoji found"
-msgstr "Не се пронајдени емотикони"
+#~ msgid "Type to search time zone"
+#~ msgstr "Напишете за да пребарате временска зона"
 
-msgid "No link provider found"
-msgstr ""
+#~ msgid "Unable to search the group"
+#~ msgstr "Неможе да се принајде групата"
 
-msgid "No results"
-msgstr "Нема резултати"
-
-msgid "Objects"
-msgstr "Објекти"
-
-msgid "Open contact menu"
-msgstr ""
-
-msgid "Open link to \"{resourceName}\""
-msgstr ""
-
-msgid "Open menu"
-msgstr ""
-
-msgid "Open navigation"
-msgstr "Отвори навигација"
-
-msgid "Open settings menu"
-msgstr ""
-
-msgid "Password is secure"
-msgstr ""
-
-msgid "Pause slideshow"
-msgstr "Пузирај слајдшоу"
-
-msgid "People & Body"
-msgstr "Луѓе & Тело"
-
-msgid "Pick a date"
-msgstr ""
-
-msgid "Pick a date and a time"
-msgstr ""
-
-msgid "Pick a month"
-msgstr ""
-
-msgid "Pick a time"
-msgstr ""
-
-msgid "Pick a week"
-msgstr ""
-
-msgid "Pick a year"
-msgstr ""
-
-msgid "Pick an emoji"
-msgstr "Избери емотикон"
-
-msgid "Please select a time zone:"
-msgstr "Изберете временска зона:"
-
-msgid "Previous"
-msgstr "Предходно"
-
-msgid "Provider icon"
-msgstr ""
-
-msgid "Raw link {options}"
-msgstr ""
-
-msgid "Related resources"
-msgstr ""
-
-msgid "Search"
-msgstr "Барај"
-
-msgid "Search emoji"
-msgstr ""
-
-msgid "Search results"
-msgstr "Резултати од барувањето"
-
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
-msgid "sec. ago"
-msgstr ""
-
-#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
-msgid "seconds ago"
-msgstr ""
-
-msgid "Select a tag"
-msgstr "Избери ознака"
-
-msgid "Select provider"
-msgstr ""
-
-msgid "Settings"
-msgstr "Параметри"
-
-msgid "Settings navigation"
-msgstr "Параметри за навигација"
-
-msgid "Show password"
-msgstr ""
-
-msgid "Smart Picker"
-msgstr ""
-
-msgid "Smileys & Emotion"
-msgstr "Смешковци & Емотикони"
-
-msgid "Start slideshow"
-msgstr "Стартувај слајдшоу"
-
-msgid "Start typing to search"
-msgstr ""
-
-msgid "Submit"
-msgstr "Испрати"
-
-msgid "Symbols"
-msgstr "Симболи"
-
-msgid "Travel & Places"
-msgstr "Патувања & Места"
-
-msgid "Type to search time zone"
-msgstr "Напишете за да пребарате временска зона"
-
-msgid "Unable to search the group"
-msgstr "Неможе да се принајде групата"
-
-msgid "Undo changes"
-msgstr "Врати ги промените"
-
-msgid ""
-"Write message, use \"@\" to mention someone, use \":\" for emoji "
-"autocompletion …"
-msgstr ""
+#~ msgid "Undo changes"
+#~ msgstr "Врати ги промените"

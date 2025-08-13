@@ -1,438 +1,425 @@
-# 
+#
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2024
 # Roger Knutsen, 2024
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Roger Knutsen, 2024\n"
-"Language-Team: Norwegian Bokmål (Norway) (https://app.transifex.com/nextcloud/teams/64236/nb_NO/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Norwegian Bokmål (Norway) (https://app.transifex.com/"
+"nextcloud/teams/64236/nb_NO/)\n"
 "Language: nb_NO\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "{tag} (invisible)"
-msgstr "{tag} (usynlig)"
+#~ msgid "{tag} (invisible)"
+#~ msgstr "{tag} (usynlig)"
 
-msgid "{tag} (restricted)"
-msgstr "{tag} (beskyttet)"
+#~ msgid "{tag} (restricted)"
+#~ msgstr "{tag} (beskyttet)"
 
-msgid "A color with a HEX value {hex}"
-msgstr "En farge med en HEX-verdi {hex}"
+#~ msgid "A color with a HEX value {hex}"
+#~ msgstr "En farge med en HEX-verdi {hex}"
 
-msgid "a few seconds ago"
-msgstr "noen få sekunder siden"
+#~ msgid "a few seconds ago"
+#~ msgstr "noen få sekunder siden"
 
-#. TRANSLATORS: A color name for RGB(110, 166, 143)
-msgid "Acapulco"
-msgstr "Acapulco"
+#~ msgid "Acapulco"
+#~ msgstr "Acapulco"
 
-msgid "Actions"
-msgstr "Handlinger"
+#~ msgid "Actions"
+#~ msgstr "Handlinger"
 
-msgid "Activities"
-msgstr "Aktiviteter"
+#~ msgid "Activities"
+#~ msgstr "Aktiviteter"
 
-msgid "Add to a project"
-msgstr "Legge til i et prosjekt"
+#~ msgid "Add to a project"
+#~ msgstr "Legge til i et prosjekt"
 
-msgid "Animals & Nature"
-msgstr "Dyr og natur"
+#~ msgid "Animals & Nature"
+#~ msgstr "Dyr og natur"
 
-msgid "Any link"
-msgstr "Enhver lenke"
+#~ msgid "Any link"
+#~ msgstr "Enhver lenke"
 
-msgid "Anything shared with the same group of people will show up here"
-msgstr "Alt som er delt med den samme gruppen vil vises her"
+#~ msgid "Anything shared with the same group of people will show up here"
+#~ msgstr "Alt som er delt med den samme gruppen vil vises her"
 
-msgid "Avatar of {displayName}"
-msgstr "Avataren til {displayName}"
+#~ msgid "Avatar of {displayName}"
+#~ msgstr "Avataren til {displayName}"
 
-msgid "Avatar of {displayName}, {status}"
-msgstr "{displayName}'s avatar, {status}"
+#~ msgid "Avatar of {displayName}, {status}"
+#~ msgstr "{displayName}'s avatar, {status}"
 
-#. TRANSLATORS: User status if the user is currently away from keyboard
-msgid "away"
-msgstr "borte"
+#~ msgid "away"
+#~ msgstr "borte"
 
-msgid "Back"
-msgstr "Tilbake"
+#~ msgid "Back"
+#~ msgstr "Tilbake"
 
-msgid "Back to provider selection"
-msgstr "Tilbake til leverandørvalg"
+#~ msgid "Back to provider selection"
+#~ msgstr "Tilbake til leverandørvalg"
 
-#. TRANSLATORS: A color name for RGB(91, 100, 179)
-msgid "Blue Violet"
-msgstr "Blå fiolett"
+#~ msgid "Blue Violet"
+#~ msgstr "Blå fiolett"
 
-#. TRANSLATORS: A color name for RGB(55, 148, 172)
-msgid "Boston Blue"
-msgstr "Boston blå"
+#~ msgid "Boston Blue"
+#~ msgstr "Boston blå"
 
-msgid "busy"
-msgstr "opptatt"
+#~ msgid "busy"
+#~ msgstr "opptatt"
 
-msgid "Cancel changes"
-msgstr "Avbryt endringer"
+#~ msgid "Cancel changes"
+#~ msgstr "Avbryt endringer"
 
-msgid "Change name"
-msgstr "Endre navn"
+#~ msgid "Change name"
+#~ msgstr "Endre navn"
 
-msgid "Choose"
-msgstr "Velg"
+#~ msgid "Choose"
+#~ msgstr "Velg"
 
-msgid "Clear search"
-msgstr "Tøm søk"
+#~ msgid "Clear search"
+#~ msgstr "Tøm søk"
 
-msgid "Clear selected"
-msgstr "Tøm merket"
+#~ msgid "Clear selected"
+#~ msgstr "Tøm merket"
 
-msgid "Clear text"
-msgstr "Fjern tekst"
+#~ msgid "Clear text"
+#~ msgstr "Fjern tekst"
 
-msgid "Close"
-msgstr "Lukk"
+#~ msgid "Close"
+#~ msgstr "Lukk"
 
-msgid "Close navigation"
-msgstr "Lukk navigasjon"
+#~ msgid "Close navigation"
+#~ msgstr "Lukk navigasjon"
 
-msgid "Close sidebar"
-msgstr "Lukk sidepanel"
+#~ msgid "Close sidebar"
+#~ msgstr "Lukk sidepanel"
 
-msgid "Close Smart Picker"
-msgstr "Lukk Smart Velger"
+#~ msgid "Close Smart Picker"
+#~ msgstr "Lukk Smart Velger"
 
-msgid "Collapse menu"
-msgstr "Skjul meny"
+#~ msgid "Collapse menu"
+#~ msgstr "Skjul meny"
 
-msgid "Color picker"
-msgstr "Fargevelger"
+#~ msgid "Color picker"
+#~ msgstr "Fargevelger"
 
-msgid "Confirm changes"
-msgstr "Bekreft endringer"
+#~ msgid "Confirm changes"
+#~ msgstr "Bekreft endringer"
 
-msgid "Connect items to a project to make them easier to find"
-msgstr "Koble elementer til et prosjekt for å gjøre det enklere å finne dem"
+#~ msgid "Connect items to a project to make them easier to find"
+#~ msgstr "Koble elementer til et prosjekt for å gjøre det enklere å finne dem"
 
-msgid "Custom"
-msgstr "Tilpasset"
+#~ msgid "Custom"
+#~ msgstr "Tilpasset"
 
-msgid "Dark skin tone"
-msgstr "Mørk hudtone"
+#~ msgid "Dark skin tone"
+#~ msgstr "Mørk hudtone"
 
-#. TRANSLATORS: A color name for RGB(136, 85, 168)
-msgid "Deluge"
-msgstr "Syndflod"
+#~ msgid "Deluge"
+#~ msgstr "Syndflod"
 
-msgid "Deselect {option}"
-msgstr "Opphev valg {option}"
+#~ msgid "Deselect {option}"
+#~ msgstr "Opphev valg {option}"
 
-msgid "do not disturb"
-msgstr "ikke forstyrr"
+#~ msgid "do not disturb"
+#~ msgstr "ikke forstyrr"
 
-msgid "Edit item"
-msgstr "Rediger"
+#~ msgid "Edit item"
+#~ msgstr "Rediger"
 
-msgid "Emoji picker"
-msgstr "Emoji-velger"
+#~ msgid "Emoji picker"
+#~ msgstr "Emoji-velger"
 
-msgid "Enable interactive view"
-msgstr "Aktiver interaktiv visning"
+#~ msgid "Enable interactive view"
+#~ msgstr "Aktiver interaktiv visning"
 
-msgid "Enter link"
-msgstr "Skriv inn lenken"
+#~ msgid "Enter link"
+#~ msgstr "Skriv inn lenken"
 
-msgid ""
-"Error getting related resources. Please contact your system administrator if"
-" you have any questions."
-msgstr ""
-"Feil ved henting av relaterte ressurser. Kontakt systemansvarlig hvis du har"
-" spørsmål."
+#~ msgid ""
+#~ "Error getting related resources. Please contact your system administrator "
+#~ "if you have any questions."
+#~ msgstr ""
+#~ "Feil ved henting av relaterte ressurser. Kontakt systemansvarlig hvis du "
+#~ "har spørsmål."
 
-msgid "External documentation for {name}"
-msgstr "Ekstern dokumentasjon for {name}"
+#~ msgid "External documentation for {name}"
+#~ msgstr "Ekstern dokumentasjon for {name}"
 
-msgid "Failed to add the item to the project"
-msgstr "Kan ikke legge til elementet i prosjektet"
+#~ msgid "Failed to add the item to the project"
+#~ msgstr "Kan ikke legge til elementet i prosjektet"
 
-msgid "Failed to create a project"
-msgstr "Kan ikke opprette et prosjekt"
+#~ msgid "Failed to create a project"
+#~ msgstr "Kan ikke opprette et prosjekt"
 
-msgid "Failed to rename the project"
-msgstr "Kunne ikke gi prosjektet nytt navn"
+#~ msgid "Failed to rename the project"
+#~ msgstr "Kunne ikke gi prosjektet nytt navn"
 
-msgid "Favorite"
-msgstr "Favoritt"
+#~ msgid "Favorite"
+#~ msgstr "Favoritt"
 
-#. TRANSLATORS: A color name for RGB(201, 136, 121)
-msgid "Feldspar"
-msgstr "Feltspat"
+#~ msgid "Feldspar"
+#~ msgstr "Feltspat"
 
-msgid "Flags"
-msgstr "Flagg"
+#~ msgid "Flags"
+#~ msgstr "Flagg"
 
-msgid "Food & Drink"
-msgstr "Mat og drikke"
+#~ msgid "Food & Drink"
+#~ msgstr "Mat og drikke"
 
-msgid "Frequently used"
-msgstr "Ofte brukt"
+#~ msgid "Frequently used"
+#~ msgstr "Ofte brukt"
 
-msgid "Global"
-msgstr "Global"
+#~ msgid "Global"
+#~ msgstr "Global"
 
-msgid "Go back to the list"
-msgstr "Gå tilbake til listen"
+#~ msgid "Go back to the list"
+#~ msgstr "Gå tilbake til listen"
 
-msgid "Gold"
-msgstr "Gull"
+#~ msgid "Gold"
+#~ msgstr "Gull"
 
-msgid "Hide details"
-msgstr "Skjul detaljer"
+#~ msgid "Hide details"
+#~ msgstr "Skjul detaljer"
 
-msgid "Hide password"
-msgstr "Skjul passord"
+#~ msgid "Hide password"
+#~ msgstr "Skjul passord"
 
-msgid "invisible"
-msgstr "usynlig"
+#~ msgid "invisible"
+#~ msgstr "usynlig"
 
-msgid "Keyboard navigation help"
-msgstr "Hjelp for tastaturnavigering"
+#~ msgid "Keyboard navigation help"
+#~ msgstr "Hjelp for tastaturnavigering"
 
-msgid "Light skin tone"
-msgstr "Lys hudtone"
+#~ msgid "Light skin tone"
+#~ msgstr "Lys hudtone"
 
-msgid "Load more \"{options}\""
-msgstr "Last inn flere \"{options}\""
+#~ msgid "Load more \"{options}\""
+#~ msgstr "Last inn flere \"{options}\""
 
-#. TRANSLATORS: The button is in a loading state
-msgid "Loading …"
-msgstr "Laster inn..."
+#~ msgid "Loading …"
+#~ msgstr "Laster inn..."
 
-#. TRANSLATORS: A color name for RGB(45, 115, 190)
-msgid "Mariner"
-msgstr "Mariner"
+#~ msgid "Mariner"
+#~ msgstr "Mariner"
 
-msgid "Medium dark skin tone"
-msgstr "Middels mørk hudtone"
+#~ msgid "Medium dark skin tone"
+#~ msgstr "Middels mørk hudtone"
 
-msgid "Medium light skin tone"
-msgstr "Middels lys hudtone"
+#~ msgid "Medium light skin tone"
+#~ msgstr "Middels lys hudtone"
 
-msgid "Medium skin tone"
-msgstr "Middels hudtone"
+#~ msgid "Medium skin tone"
+#~ msgstr "Middels hudtone"
 
-msgid "Message limit of {count} characters reached"
-msgstr "Karakter begrensing {count} nådd i melding"
+#~ msgid "Message limit of {count} characters reached"
+#~ msgstr "Karakter begrensing {count} nådd i melding"
 
-msgid "More items …"
-msgstr "Flere gjenstander..."
+#~ msgid "More items …"
+#~ msgstr "Flere gjenstander..."
 
-msgid "More options"
-msgstr "Flere alternativer"
+#~ msgid "More options"
+#~ msgstr "Flere alternativer"
 
-msgid "Neutral skin color"
-msgstr "Nøytral hudfarge"
+#~ msgid "Neutral skin color"
+#~ msgstr "Nøytral hudfarge"
 
-msgid "Next"
-msgstr "Neste"
+#~ msgid "Next"
+#~ msgstr "Neste"
 
-msgid "Nextcloud blue"
-msgstr "Nextcloud-blå"
+#~ msgid "Nextcloud blue"
+#~ msgstr "Nextcloud-blå"
 
-msgid "No emoji found"
-msgstr "Fant ingen emoji"
+#~ msgid "No emoji found"
+#~ msgstr "Fant ingen emoji"
 
-msgid "No link provider found"
-msgstr "Finner ingen lenkeleverandør"
+#~ msgid "No link provider found"
+#~ msgstr "Finner ingen lenkeleverandør"
 
-msgid "No results"
-msgstr "Ingen resultater"
+#~ msgid "No results"
+#~ msgstr "Ingen resultater"
 
-msgid "Objects"
-msgstr "Objekter"
+#~ msgid "Objects"
+#~ msgstr "Objekter"
 
-msgid "offline"
-msgstr "frakoblet"
+#~ msgid "offline"
+#~ msgstr "frakoblet"
 
-#. TRANSLATORS: A color name for RGB(165, 184, 114)
-msgid "Olivine"
-msgstr "Olivin"
+#~ msgid "Olivine"
+#~ msgstr "Olivin"
 
-msgid "online"
-msgstr "tilkoblet"
+#~ msgid "online"
+#~ msgstr "tilkoblet"
 
-msgid "Open link to \"{resourceName}\""
-msgstr "Åpne lenken til \"{resourceName}\""
+#~ msgid "Open link to \"{resourceName}\""
+#~ msgstr "Åpne lenken til \"{resourceName}\""
 
-msgid "Open menu"
-msgstr "Åpne meny"
+#~ msgid "Open menu"
+#~ msgstr "Åpne meny"
 
-msgid "Open navigation"
-msgstr "Åpne navigasjon"
+#~ msgid "Open navigation"
+#~ msgstr "Åpne navigasjon"
 
-msgid "Open sidebar"
-msgstr "Åpne sidefelt"
+#~ msgid "Open sidebar"
+#~ msgstr "Åpne sidefelt"
 
-msgid "Options"
-msgstr "Alternativer"
+#~ msgid "Options"
+#~ msgstr "Alternativer"
 
-msgid "Password is secure"
-msgstr "Passordet er sikkert"
+#~ msgid "Password is secure"
+#~ msgstr "Passordet er sikkert"
 
-msgid "Pause slideshow"
-msgstr "Pause lysbildefremvisning"
+#~ msgid "Pause slideshow"
+#~ msgstr "Pause lysbildefremvisning"
 
-msgid "People & Body"
-msgstr "Mennesker og kropp"
+#~ msgid "People & Body"
+#~ msgstr "Mennesker og kropp"
 
-msgid "Pick a date"
-msgstr "Velg en dato"
+#~ msgid "Pick a date"
+#~ msgstr "Velg en dato"
 
-msgid "Pick a date and a time"
-msgstr "Velg en dato og et tidspunkt"
+#~ msgid "Pick a date and a time"
+#~ msgstr "Velg en dato og et tidspunkt"
 
-msgid "Pick a month"
-msgstr "Velg en måned"
+#~ msgid "Pick a month"
+#~ msgstr "Velg en måned"
 
-msgid "Pick a time"
-msgstr "Velg et tidspunkt"
+#~ msgid "Pick a time"
+#~ msgstr "Velg et tidspunkt"
 
-msgid "Pick a week"
-msgstr "Velg en uke"
+#~ msgid "Pick a week"
+#~ msgstr "Velg en uke"
 
-msgid "Pick a year"
-msgstr "Velg et år"
+#~ msgid "Pick a year"
+#~ msgstr "Velg et år"
 
-msgid "Pick an emoji"
-msgstr "Velg en emoji"
+#~ msgid "Pick an emoji"
+#~ msgstr "Velg en emoji"
 
-msgid "Please select a time zone:"
-msgstr "Vennligst velg tidssone"
+#~ msgid "Please select a time zone:"
+#~ msgstr "Vennligst velg tidssone"
 
-msgid "Previous"
-msgstr "Forrige"
+#~ msgid "Previous"
+#~ msgstr "Forrige"
 
-msgid "Provider icon"
-msgstr "Leverandørikon"
+#~ msgid "Provider icon"
+#~ msgstr "Leverandørikon"
 
-msgid "Purple"
-msgstr "Lilla"
+#~ msgid "Purple"
+#~ msgstr "Lilla"
 
-msgid "Raw link {options}"
-msgstr "Rå lenke {options}"
+#~ msgid "Raw link {options}"
+#~ msgstr "Rå lenke {options}"
 
-msgid "Related resources"
-msgstr "Relaterte ressurser"
+#~ msgid "Related resources"
+#~ msgstr "Relaterte ressurser"
 
-msgid "Related team resources"
-msgstr "Relaterte lagressurser"
+#~ msgid "Related team resources"
+#~ msgstr "Relaterte lagressurser"
 
-msgid "Rename project"
-msgstr "Gi prosjekt nytt navn"
+#~ msgid "Rename project"
+#~ msgstr "Gi prosjekt nytt navn"
 
-#. TRANSLATORS: A color name for RGB(191, 103, 139)
-msgid "Rosy brown"
-msgstr "Rosenrød brun"
+#~ msgid "Rosy brown"
+#~ msgstr "Rosenrød brun"
 
-msgid "Save changes"
-msgstr "Lagre endringer"
+#~ msgid "Save changes"
+#~ msgstr "Lagre endringer"
 
-msgid "Search"
-msgstr "Søk"
+#~ msgid "Search"
+#~ msgstr "Søk"
 
-msgid "Search emoji"
-msgstr "Søk emoji"
+#~ msgid "Search emoji"
+#~ msgstr "Søk emoji"
 
-msgid "Search for time zone"
-msgstr "Søk etter tidssone"
+#~ msgid "Search for time zone"
+#~ msgstr "Søk etter tidssone"
 
-msgid "Search results"
-msgstr "Søkeresultater"
+#~ msgid "Search results"
+#~ msgstr "Søkeresultater"
 
-msgid "Search…"
-msgstr "Søk..."
+#~ msgid "Search…"
+#~ msgstr "Søk..."
 
-#. FOR TRANSLATORS: If possible in your language an even shorter version of 'a
-#. few seconds ago'
-msgid "sec. ago"
-msgstr "sek. siden"
+#~ msgid "sec. ago"
+#~ msgstr "sek. siden"
 
-#. FOR TRANSLATORS: Shorter version of 'a few seconds ago'
-msgid "seconds ago"
-msgstr "sekunder siden"
+#~ msgid "seconds ago"
+#~ msgstr "sekunder siden"
 
-msgid "Select a tag"
-msgstr "Velg en merkelapp"
+#~ msgid "Select a tag"
+#~ msgstr "Velg en merkelapp"
 
-msgid "Select provider"
-msgstr "Velg leverandør"
+#~ msgid "Select provider"
+#~ msgstr "Velg leverandør"
 
-msgid "Selected"
-msgstr "Valgt"
+#~ msgid "Selected"
+#~ msgstr "Valgt"
 
-msgid "Settings"
-msgstr "Innstillinger"
+#~ msgid "Settings"
+#~ msgstr "Innstillinger"
 
-msgid "Settings navigation"
-msgstr "Navigasjonsinstillinger"
+#~ msgid "Settings navigation"
+#~ msgstr "Navigasjonsinstillinger"
 
-msgid "Show details"
-msgstr "Vis detaljer"
+#~ msgid "Show details"
+#~ msgstr "Vis detaljer"
 
-msgid "Show password"
-msgstr "Vis passord"
+#~ msgid "Show password"
+#~ msgstr "Vis passord"
 
-msgid "Skin tone"
-msgstr "Hudtone"
+#~ msgid "Skin tone"
+#~ msgstr "Hudtone"
 
-msgid "Skip to app navigation"
-msgstr "Hopp til appnavigering"
+#~ msgid "Skip to app navigation"
+#~ msgstr "Hopp til appnavigering"
 
-msgid "Skip to main content"
-msgstr "Hopp til hovedinnhold"
+#~ msgid "Skip to main content"
+#~ msgstr "Hopp til hovedinnhold"
 
-msgid "Smart Picker"
-msgstr "Smart Velger"
+#~ msgid "Smart Picker"
+#~ msgstr "Smart Velger"
 
-msgid "Smileys & Emotion"
-msgstr "Smilefjes og følelser"
+#~ msgid "Smileys & Emotion"
+#~ msgstr "Smilefjes og følelser"
 
-msgid "Start slideshow"
-msgstr "Start lysbildefremvisning"
+#~ msgid "Start slideshow"
+#~ msgstr "Start lysbildefremvisning"
 
-msgid "Start typing to search"
-msgstr "Start å skrive for å søke"
+#~ msgid "Start typing to search"
+#~ msgstr "Start å skrive for å søke"
 
-msgid "Submit"
-msgstr "Send"
+#~ msgid "Submit"
+#~ msgstr "Send"
 
-msgid "Symbols"
-msgstr "Symboler"
+#~ msgid "Symbols"
+#~ msgstr "Symboler"
 
-msgid "Travel & Places"
-msgstr "Reise og steder"
+#~ msgid "Travel & Places"
+#~ msgstr "Reise og steder"
 
-msgid "Type to search for existing projects"
-msgstr "Skriv for å søke for eksisterende prosjekter"
+#~ msgid "Type to search for existing projects"
+#~ msgstr "Skriv for å søke for eksisterende prosjekter"
 
-msgid "Type to search time zone"
-msgstr "Tast for å søke etter tidssone"
+#~ msgid "Type to search time zone"
+#~ msgstr "Tast for å søke etter tidssone"
 
-msgid "Unable to search the group"
-msgstr "Kunne ikke søke i gruppen"
+#~ msgid "Unable to search the group"
+#~ msgstr "Kunne ikke søke i gruppen"
 
-msgid "Undo changes"
-msgstr "Tilbakestill endringer"
+#~ msgid "Undo changes"
+#~ msgstr "Tilbakestill endringer"
 
-msgid "User status: {status}"
-msgstr "Brukerstatus: {status}"
+#~ msgid "User status: {status}"
+#~ msgstr "Brukerstatus: {status}"
 
-msgid "View team"
-msgstr "Se lag"
+#~ msgid "View team"
+#~ msgstr "Se lag"
 
-#. TRANSLATORS: A color name for RGB(211, 169, 103)
-msgid "Whiskey"
-msgstr "Whiskey"
+#~ msgid "Whiskey"
+#~ msgstr "Whiskey"
 
-msgid "Write a message …"
-msgstr "Skriv en melding..."
+#~ msgid "Write a message …"
+#~ msgstr "Skriv en melding..."
