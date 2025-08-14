@@ -59,7 +59,7 @@ ${'NcTextField'}     | ${NcTextField}
 			},
 		})
 
-		expect(wrapper.find('input').attributes('placeholder')).toBe('The placeholder')
+		expect(wrapper.find('input').attributes('placeholder')).toBe('The label')
 	})
 
 	it('should NOT have the placeholder set to the label on Nextcloud 32', async () => {

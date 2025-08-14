@@ -4,10 +4,15 @@
  */
 
 import { mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import NcTextArea from '../../../../src/components/NcTextArea/NcTextArea.vue'
+import * as legacy from '../../../../src/utils/legacy.ts'
 
 describe('NcTextArea', () => {
+	beforeEach(() => {
+		vi.resetAllMocks()
+	})
+
 	it('should emit changed text', async () => {
 		const wrapper = mount(NcTextArea, {
 			props: {
@@ -31,12 +36,26 @@ describe('NcTextArea', () => {
 		})
 
 		expect(wrapper.find('textarea').attributes('placeholder')).toBe('The placeholder')
+	})
 
-		await wrapper.setProps({
-			label: 'The label',
-			placeholder: '',
+	it('should have the label as the placeholder on Nextcloud 31', () => {
+		vi.spyOn(legacy, 'isLegacy', 'get').mockImplementationOnce(() => true)
+
+		const wrapper = mount(NcTextArea, {
+			props: {
+				label: 'The label',
+			},
 		})
 		expect(wrapper.find('textarea').attributes('placeholder')).toBe('The label')
+	})
+
+	it('should NOT have the label as the placeholder on Nextcloud 32', () => {
+		const wrapper = mount(NcTextArea, {
+			props: {
+				label: 'The label',
+			},
+		})
+		expect(wrapper.find('textarea').attributes('placeholder')).toBeFalsy()
 	})
 
 	it('should have the label set', () => {

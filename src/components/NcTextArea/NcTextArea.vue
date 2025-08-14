@@ -77,6 +77,7 @@ import type { VueClassType } from '../../utils/VueTypes.ts'
 import { mdiAlertCircle, mdiCheck } from '@mdi/js'
 import { computed, useAttrs, useTemplateRef, watch } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
+import { isLegacy } from '../../utils/legacy.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import logger from '../../utils/logger.ts'
 
@@ -119,8 +120,8 @@ const props = withDefaults(defineProps<{
 
 	/**
 	 * The input label, always provide one for accessibility purposes.
-	 * This will also be used as a placeholder unless the placeholder
-	 * prop is populated with a different string.
+	 * On Nextcloud before version 32 this will also be used as a placeholder
+	 * unless the placeholder prop is populated with a different string.
 	 */
 	label?: string
 
@@ -132,9 +133,8 @@ const props = withDefaults(defineProps<{
 	labelOutside?: boolean
 
 	/**
-	 * The placeholder of the input. This defaults as the string that's
-	 * passed into the label prop. In order to remove the placeholder,
-	 * pass in an empty string.
+	 * The placeholder of the input.
+	 * On Nextcloud before 32 this defaults to the value of the `label` prop.
 	 */
 	placeholder?: string
 
@@ -170,6 +170,8 @@ const textAreaElement = useTemplateRef('input')
 
 // needs to be a getter as attrs are not reactive
 const attrs = useAttrs()
+
+const internalPlaceholder = computed(() => props.placeholder || (isLegacy ? props.label : undefined))
 
 // warn about invalid labels (missing label and no label outside)
 watch(() => props.labelOutside, () => {
@@ -235,7 +237,7 @@ function select() {
 						'textarea__input--error': error,
 					}]"
 				:disabled
-				:placeholder="placeholder || label"
+				:placeholder="internalPlaceholder"
 				:style="{ resize }"
 				:value="modelValue"
 				@input="handleInput" />
