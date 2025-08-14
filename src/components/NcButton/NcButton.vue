@@ -421,6 +421,7 @@ td.row-size {
 </docs>
 
 <script>
+import { isLegacy32 } from '../../utils/legacy.ts'
 
 export default {
 	name: 'NcButton',
@@ -605,6 +606,8 @@ export default {
 		/**
 		 * The real type to be used for the button, enforces `primary` for pressed state and, if stateful button, any other type for not pressed state
 		 * Otherwise the type property is used.
+		 *
+		 * @return {string}
 		 */
 		realVariant() {
 			// Force *primary* when pressed
@@ -625,6 +628,8 @@ export default {
 
 		/**
 		 * The HTML button type
+		 *
+		 * @return {string}
 		 */
 		realType() {
 			if (typeof this.pressed === 'boolean') {
@@ -640,6 +645,13 @@ export default {
 			}
 			// otherwise use the type
 			return this.type
+		},
+
+		/**
+		 * The variant is one of the tertiary- ones
+		 */
+		isTertiary() {
+			return this.realVariant.startsWith('tertiary')
 		},
 
 		/**
@@ -696,6 +708,8 @@ export default {
 						'button-vue--text-only': hasText && !hasIcon,
 						'button-vue--icon-and-text': hasIcon && hasText,
 						[`button-vue--vue-${this.realVariant}`]: this.realVariant,
+						'button-vue--legacy': isLegacy32,
+						'button-vue--tertiary': this.isTertiary,
 						'button-vue--wide': this.wide,
 						[`button-vue--${this.flexAlignment}`]: this.flexAlignment !== 'center',
 						'button-vue--reverse': this.isReverseAligned,
@@ -774,10 +788,38 @@ export default {
 
 <style lang="scss" scoped>
 .button-vue {
-	// Setup different button sizes
 	--button-size: var(--default-clickable-area);
+	--button-inner-size: calc(var(--button-size) - 4px); // without the outer border
 	--button-radius: var(--border-radius-element, calc(var(--button-size) / 2));
-	--button-padding: clamp(var(--default-grid-baseline), var(--button-radius), calc(var(--default-grid-baseline) * 4));
+	--button-padding-default: min(calc(var(--default-grid-baseline) + var(--button-radius)), calc(var(--default-grid-baseline) * 4));
+	--button-padding: var(--default-grid-baseline) var(--button-padding-default);
+
+	// General styles
+	// by default use secondary styling
+	color: var(--color-primary-element-light-text);
+	background-color: var(--color-primary-element-light);
+	border: 1px solid var(--color-primary-element-light-hover);
+	border-bottom-width: 2px;
+	border-radius: var(--button-radius);
+	box-sizing: border-box;
+	// adjust position and size
+	position: relative;
+	width: fit-content;
+	overflow: hidden;
+	padding-block: 1px 0; // center the content as border is 1px top and 2px bottom
+	padding-inline: var(--button-padding);
+	min-height: var(--button-inner-size);
+	min-width: var(--button-inner-size);
+	// display setup
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition-property: color, border-color, background-color;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+	cursor: pointer;
+	font-size: var(--default-font-size);
+	font-weight: bold;
 
 	&--size-small {
 		--button-size: var(--clickable-area-small, 24px);
@@ -787,29 +829,6 @@ export default {
 	&--size-large {
 		--button-size: var(--clickable-area-large, 48px);
 	}
-
-	// General styles
-	position: relative;
-	width: fit-content;
-	overflow: hidden;
-	border: 0;
-	padding: 0;
-	font-size: var(--default-font-size);
-	font-weight: bold;
-	min-height: var(--button-size);
-	min-width: var(--button-size);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	border-radius: var(--button-radius);
-	transition-property: color, border-color, background-color;
-	transition-duration: 0.1s;
-	transition-timing-function: linear;
-
-	// Default button type
-	color: var(--color-primary-element-light-text);
-	background-color: var(--color-primary-element-light);
 
 	// Cursor pointer on element and all children
 	&,
@@ -866,10 +885,10 @@ export default {
 	}
 
 	&__icon {
-		height: var(--button-size);
-		width: var(--button-size);
-		min-height: var(--button-size);
-		min-width: var(--button-size);
+		height: var(--button-inner-size);
+		width: var(--button-inner-size);
+		min-height: var(--button-inner-size);
+		min-width: var(--button-inner-size);
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -897,6 +916,7 @@ export default {
 
 	// Icon-only button
 	&--icon-only {
+		--button-padding: clamp(var(--default-grid-baseline), var(--button-radius), calc(var(--default-grid-baseline) * 4));
 		line-height: 1;
 		width: var(--button-size) !important;
 	}
@@ -915,7 +935,6 @@ export default {
 		// icon and text means the icon adds "visual" padding thus we need to adjust the text padding
 		--button-padding: min(calc(var(--default-grid-baseline) + var(--button-radius)), calc(var(--default-grid-baseline) * 4));
 		// Adjust padding as the icon already got some padding we need to reduce the padding on the icon side and only add larger padding to the text side
-		padding-block: 0;
 		padding-inline: var(--default-grid-baseline) var(--button-padding);
 	}
 
@@ -939,7 +958,9 @@ export default {
 	// Primary
 	&--vue-primary {
 		background-color: var(--color-primary-element);
+		border-color: var(--color-primary-element-hover);
 		color: var(--color-primary-element-text);
+
 		&:hover:not(:disabled) {
 			background-color: var(--color-primary-element-hover);
 		}
@@ -952,8 +973,10 @@ export default {
 
 	// Secondary
 	&--vue-secondary {
-		color: var(--color-primary-element-light-text);
 		background-color: var(--color-primary-element-light);
+		border-color: var(--color-primary-element-light-hover);
+		color: var(--color-primary-element-light-text);
+
 		&:hover:not(:disabled) {
 			color: var(--color-primary-element-light-text);
 			background-color: var(--color-primary-element-light-hover);
@@ -961,9 +984,12 @@ export default {
 	}
 
 	// Tertiary
+	&--tertiary,
 	&--vue-tertiary {
-		color: var(--color-main-text);
 		background-color: transparent;
+		border-color: transparent;
+		color: var(--color-main-text);
+
 		&:hover:not(:disabled) {
 			background-color: var(--color-background-hover);
 		}
@@ -971,8 +997,6 @@ export default {
 
 	// Tertiary, no background
 	&--vue-tertiary-no-background {
-		color: var(--color-main-text);
-		background-color: transparent;
 		&:hover:not(:disabled) {
 			background-color: transparent;
 		}
@@ -981,7 +1005,6 @@ export default {
 	// Tertiary on primary color (like the header)
 	&--vue-tertiary-on-primary {
 		color: var(--color-primary-element-text);
-		background-color: transparent;
 
 		&:hover:not(:disabled) {
 			background-color: transparent;
@@ -991,7 +1014,9 @@ export default {
 	// Success
 	&--vue-success {
 		background-color: var(--color-success);
+		border-color: var(--color-success-hover);
 		color: white;
+
 		&:hover:not(:disabled) {
 			background-color: var(--color-success-hover);
 		}
@@ -1005,7 +1030,9 @@ export default {
 	// Warning
 	&--vue-warning {
 		background-color: var(--color-warning);
+		border-color: var(--color-warning-hover);
 		color: white;
+
 		&:hover:not(:disabled) {
 			background-color: var(--color-warning-hover);
 		}
@@ -1019,7 +1046,9 @@ export default {
 	// Error
 	&--vue-error {
 		background-color: var(--color-error);
+		border-color: var(--color-error-hover);
 		color: white;
+
 		&:hover:not(:disabled) {
 			background-color: var(--color-error-hover);
 		}
@@ -1028,6 +1057,13 @@ export default {
 		&:active {
 			background-color: var(--color-error);
 		}
+	}
+
+	// before Nextcloud 32
+	&--legacy {
+		--button-inner-size: var(--button-size);
+		// no border
+		border: none;
 	}
 }
 
