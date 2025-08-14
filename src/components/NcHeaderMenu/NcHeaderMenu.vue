@@ -139,11 +139,11 @@ const isOpened = ref(open)
 const wrapperTag = computed(() => isNav ? 'nav' : 'div')
 
 /** The menu content container element */
-const contentContainer = useTemplateRef('contentContainer')
+const contentContainer = useTemplateRef('content-container-key')
 /** The overall header menu wrapping element (<nav> or <div>) */
-const headerMenu = useTemplateRef<HTMLElement>('headerMenu')
+const headerMenu = useTemplateRef<HTMLElement>('header-menu-key')
 /** The menu trigger button */
-const triggerButton = useTemplateRef('triggerButton')
+const triggerButton = useTemplateRef('trigger-button-key')
 
 // Handle click outside of the menu -> should close the menu
 const ignore = computed(() => Array.isArray(excludeClickOutsideSelectors)
@@ -242,14 +242,14 @@ function clearFocusTrap() {
 <template>
 	<component :is="wrapperTag"
 		:id="id"
-		ref="headerMenu"
+		ref="header-menu-key"
 		:aria-labelledby="isNav ? triggerId : null"
 		:class="{ 'header-menu--opened': isOpened }"
 		class="header-menu"
 		@focusout="onFocusOut">
 		<!-- Trigger -->
 		<NcButton :id="isNav ? triggerId : null"
-			ref="triggerButton"
+			ref="trigger-button-key"
 			class="header-menu__trigger"
 			:aria-controls="`header-menu-${id}`"
 			:aria-expanded="isOpened.toString()"
@@ -274,7 +274,7 @@ function clearFocusTrap() {
 		<div v-show="isOpened"
 			:id="`header-menu-${id}`"
 			class="header-menu__wrapper">
-			<div ref="contentContainer" class="header-menu__content">
+			<div ref="content-container-key" class="header-menu__content">
 				<slot />
 			</div>
 		</div>

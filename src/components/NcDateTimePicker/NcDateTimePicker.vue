@@ -318,8 +318,8 @@ const props = withDefaults(defineProps<{
  */
 const timezoneId = defineModel<string>('timezoneId', { default: 'UTC' })
 
-const target = useTemplateRef('target')
-const picker = useTemplateRef('picker')
+const target = useTemplateRef('target-key')
+const picker = useTemplateRef('picker-key')
 
 const emit = defineEmits<{
 	/**
@@ -576,7 +576,7 @@ function cancelSelection() {
 
 <template>
 	<div class="vue-date-time-picker__wrapper">
-		<VueDatePicker ref="picker"
+		<VueDatePicker ref="picker-key"
 			:aria-labels
 			:auto-apply="!confirm"
 			class="vue-date-time-picker"
@@ -642,7 +642,7 @@ function cancelSelection() {
 			</template>
 		</VueDatePicker>
 		<Teleport to="body" :disabled="!appendToBody">
-			<div ref="target" class="vue-date-time-picker__wrapper" />
+			<div ref="target-key" class="vue-date-time-picker__wrapper" />
 		</Teleport>
 	</div>
 </template>

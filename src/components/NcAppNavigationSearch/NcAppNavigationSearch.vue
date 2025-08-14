@@ -139,7 +139,7 @@ export default {
 			</template>
 		</NcInputField>
 		<div v-if="hasActions()"
-			ref="actionsContainer"
+			ref="actions-container-key"
 			class="app-navigation-search__actions"
 			:class="{
 				'app-navigation-search__actions--hidden': !showActions,
@@ -189,7 +189,7 @@ const { focused: inputHasFocus } = useFocusWithin(inputElement)
 /** Timeout used to define when the search input is fully expanded */
 const transitionTimeout = Number.parseInt(window.getComputedStyle(window.document.body).getPropertyValue('--animation-quick')) || 100
 
-const actionsContainer = useTemplateRef('actionsContainer')
+const actionsContainer = useTemplateRef('actions-container-key')
 const hasActions = () => !!slots.actions?.({})
 const showActions = ref(true)
 const timeoutId = ref()

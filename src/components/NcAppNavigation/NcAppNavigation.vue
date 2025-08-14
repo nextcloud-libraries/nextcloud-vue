@@ -182,7 +182,7 @@ defineSlots<{
 let focusTrap: FocusTrap
 const setHasAppNavigation = inject<(v: boolean) => void>('NcContent:setHasAppNavigation', () => warn('NcAppNavigation is not mounted inside NcContent, this is probably an error.'), false)
 
-const appNavigationContainer = useTemplateRef('appNavigationContainer')
+const appNavigationContainer = useTemplateRef('app-navigation-container-key')
 const isMobile = useIsMobile()
 const open = ref(!isMobile.value)
 
@@ -275,7 +275,7 @@ function handleEsc(): void {
 </script>
 
 <template>
-	<div ref="appNavigationContainer"
+	<div ref="app-navigation-container-key"
 		class="app-navigation"
 		:class="{'app-navigation--closed':!open }">
 		<nav id="app-navigation-vue"
