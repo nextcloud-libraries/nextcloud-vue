@@ -16,6 +16,11 @@ declare global {
 	interface Window {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		OCP: any
+		OC: {
+			config: {
+				version: string
+			}
+		}
 		_nc_vue_element_id?: number
 		_nc_contacts_menu_hooks: { [id: string]: ContactsMenuAction },
 	}
