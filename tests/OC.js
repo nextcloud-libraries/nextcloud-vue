@@ -23,6 +23,10 @@ export default {
 		},
 	},
 
+	config: {
+		version: '32.0.0',
+	},
+
 	coreApps: [
 		'',
 		'admin',

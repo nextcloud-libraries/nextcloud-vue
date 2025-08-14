@@ -438,6 +438,7 @@ import type { RouteLocationRaw } from 'vue-router'
 
 import { computed, inject } from 'vue'
 import { routerKey } from 'vue-router'
+import { isLegacy } from '../../utils/legacy.ts'
 
 export type ButtonAlignment = 'start'
 	| 'start-reverse'
@@ -601,7 +602,6 @@ defineSlots<{
 	icon?: Slot
 }>()
 
-const isLegacy = Number.parseInt(window.OC?.config.version.split('.')[0] ?? '0') < 32
 const hasVueRouterContext = inject(routerKey, null) !== null
 
 const tag = computed(() => {
