@@ -77,7 +77,6 @@ import type { VueClassType } from '../../utils/VueTypes.ts'
 import { mdiAlertCircle, mdiCheck } from '@mdi/js'
 import { computed, useAttrs, useTemplateRef, watch } from 'vue'
 import { createElementId } from '../../utils/createElementId.ts'
-import { isLegacy } from '../../utils/legacy.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/NcIconSvgWrapper.vue'
 import logger from '../../utils/logger.ts'
 
@@ -120,8 +119,6 @@ const props = withDefaults(defineProps<{
 
 	/**
 	 * The input label, always provide one for accessibility purposes.
-	 * On Nextcloud before version 32 this will also be used as a placeholder
-	 * unless the placeholder prop is populated with a different string.
 	 */
 	label?: string
 
@@ -134,7 +131,6 @@ const props = withDefaults(defineProps<{
 
 	/**
 	 * The placeholder of the input.
-	 * On Nextcloud before 32 this defaults to the value of the `label` prop.
 	 */
 	placeholder?: string
 
@@ -170,8 +166,6 @@ const textAreaElement = useTemplateRef('input')
 
 // needs to be a getter as attrs are not reactive
 const attrs = useAttrs()
-
-const internalPlaceholder = computed(() => props.placeholder || (isLegacy ? props.label : undefined))
 
 // warn about invalid labels (missing label and no label outside)
 watch(() => props.labelOutside, () => {
@@ -237,7 +231,7 @@ function select() {
 						'textarea__input--error': error,
 					}]"
 				:disabled
-				:placeholder="internalPlaceholder"
+				:placeholder
 				:style="{ resize }"
 				:value="modelValue"
 				@input="handleInput" />

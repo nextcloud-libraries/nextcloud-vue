@@ -38,18 +38,7 @@ describe('NcTextArea', () => {
 		expect(wrapper.find('textarea').attributes('placeholder')).toBe('The placeholder')
 	})
 
-	it('should have the label as the placeholder on Nextcloud 31', () => {
-		vi.spyOn(legacy, 'isLegacy', 'get').mockImplementationOnce(() => true)
-
-		const wrapper = mount(NcTextArea, {
-			props: {
-				label: 'The label',
-			},
-		})
-		expect(wrapper.find('textarea').attributes('placeholder')).toBe('The label')
-	})
-
-	it('should NOT have the label as the placeholder on Nextcloud 32', () => {
+	it('should not have the label as the placeholder', () => {
 		const wrapper = mount(NcTextArea, {
 			props: {
 				label: 'The label',

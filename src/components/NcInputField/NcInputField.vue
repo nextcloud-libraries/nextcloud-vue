@@ -25,7 +25,6 @@ import { computed, useAttrs, useTemplateRef, warn } from 'vue'
 import NcButton from '../NcButton/index.ts'
 import NcIconSvgWrapper from '../NcIconSvgWrapper/index.ts'
 import { createElementId } from '../../utils/createElementId.ts'
-import { isLegacy } from '../../utils/legacy.ts'
 
 export interface NcInputFieldProps {
 	/**
@@ -46,8 +45,6 @@ export interface NcInputFieldProps {
 
 	/**
 	 * The input label, always provide one for accessibility purposes.
-	 * On Nextcloud before version 32 this will also be used as a placeholder unless the placeholder
-	 * prop is populated with a different string.
 	 *
 	 * Note: If the background color is not `--color-main-background` consider using an external label instead (see `labelOutside`).
 	 */
@@ -67,8 +64,6 @@ export interface NcInputFieldProps {
 
 	/**
 	 * The placeholder of the input.
-	 * On Nextcloud before version 32 this would default to the `label` prop.
-	 * On Nextcloud 32 and on v9 of this library it will no longer have a default value.
 	 */
 	placeholder?: string
 
@@ -163,8 +158,6 @@ const input = useTemplateRef('input-key')
 
 const hasTrailingIcon = computed(() => props.showTrailingButton || props.success)
 
-const internalPlaceholder = computed(() => props.placeholder || (isLegacy ? props.label : undefined))
-
 const isValidLabel = computed(() => {
 	const isValidLabel = props.label || props.labelOutside
 	if (!isValidLabel) {
@@ -237,7 +230,7 @@ function handleInput(event: Event) {
 				class="input-field__input"
 				:class="inputClass"
 				:disabled
-				:placeholder="internalPlaceholder"
+				:placeholder
 				:type
 				:value="modelValue.toString()"
 				@input="handleInput">

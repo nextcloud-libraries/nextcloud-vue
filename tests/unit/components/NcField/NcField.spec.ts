@@ -8,7 +8,6 @@ import { describe, expect, it, vi } from 'vitest'
 import NcInputField from '../../../../src/components/NcInputField/index.ts'
 import NcPasswordField from '../../../../src/components/NcPasswordField/index.ts'
 import NcTextField from '../../../../src/components/NcTextField/index.ts'
-import * as legacy from '../../../../src/utils/legacy.ts'
 import { beforeEach } from 'node:test'
 
 // shared behavior between all components
@@ -18,10 +17,6 @@ ${'NcInputField'}    | ${NcInputField}
 ${'NcPasswordField'} | ${NcPasswordField}
 ${'NcTextField'}     | ${NcTextField}
 `('Nc*Field - shared tests for $name', ({ component }) => {
-	beforeEach(() => {
-		vi.resetAllMocks()
-	})
-
 	it('should emit changed text', async () => {
 		const wrapper = mount(component, {
 			props: {
@@ -48,26 +43,11 @@ ${'NcTextField'}     | ${NcTextField}
 		expect(wrapper.find('input').attributes('placeholder')).toBe('The placeholder')
 	})
 
-	it('should have the placeholder set to the label on Nextcloud 31', async () => {
-		vi.spyOn(legacy, 'isLegacy', 'get').mockImplementationOnce(() => true)
-
+	it('should not have the placeholder set to the label', async () => {
 		const wrapper = mount(component, {
 			props: {
 				modelValue: '',
 				label: 'The label',
-				placeholder: '',
-			},
-		})
-
-		expect(wrapper.find('input').attributes('placeholder')).toBe('The label')
-	})
-
-	it('should NOT have the placeholder set to the label on Nextcloud 32', async () => {
-		const wrapper = mount(component, {
-			props: {
-				modelValue: '',
-				label: 'The label',
-				placeholder: '',
 			},
 		})
 
