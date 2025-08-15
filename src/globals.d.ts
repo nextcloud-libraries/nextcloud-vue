@@ -14,6 +14,11 @@ declare global {
 	declare const TRANSLATIONS: { locale: string, translations: any }[]
 
 	interface Window {
+		OC: {
+			config: {
+				version: string
+			}
+		}
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		OCP: any
 		_nc_vue_element_id?: number

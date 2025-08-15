@@ -119,8 +119,6 @@ const props = withDefaults(defineProps<{
 
 	/**
 	 * The input label, always provide one for accessibility purposes.
-	 * This will also be used as a placeholder unless the placeholder
-	 * prop is populated with a different string.
 	 */
 	label?: string
 
@@ -132,9 +130,7 @@ const props = withDefaults(defineProps<{
 	labelOutside?: boolean
 
 	/**
-	 * The placeholder of the input. This defaults as the string that's
-	 * passed into the label prop. In order to remove the placeholder,
-	 * pass in an empty string.
+	 * The placeholder of the input.
 	 */
 	placeholder?: string
 
@@ -235,7 +231,7 @@ function select() {
 						'textarea__input--error': error,
 					}]"
 				:disabled
-				:placeholder="placeholder || label"
+				:placeholder
 				:style="{ resize }"
 				:value="modelValue"
 				@input="handleInput" />

@@ -4,10 +4,11 @@
  */
 
 import { mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import NcInputField from '../../../../src/components/NcInputField/index.ts'
 import NcPasswordField from '../../../../src/components/NcPasswordField/index.ts'
 import NcTextField from '../../../../src/components/NcTextField/index.ts'
+import { beforeEach } from 'node:test'
 
 // shared behavior between all components
 describe.each`
@@ -40,12 +41,17 @@ ${'NcTextField'}     | ${NcTextField}
 		})
 
 		expect(wrapper.find('input').attributes('placeholder')).toBe('The placeholder')
+	})
 
-		await wrapper.setProps({
-			label: 'The label',
-			placeholder: '',
+	it('should not have the placeholder set to the label', async () => {
+		const wrapper = mount(component, {
+			props: {
+				modelValue: '',
+				label: 'The label',
+			},
 		})
-		expect(wrapper.find('input').attributes('placeholder')).toBe('The label')
+
+		expect(wrapper.find('input').attributes('placeholder')).toBeFalsy()
 	})
 
 	it('should have the label set', () => {

@@ -32,6 +32,10 @@ export default {
 		'3rdparty',
 	],
 
+	config: {
+		version: '32.0.0',
+	},
+
 	appswebroots: {
 		calendar: '/apps/calendar',
 		deck: '/apps/deck',

@@ -45,8 +45,6 @@ export interface NcInputFieldProps {
 
 	/**
 	 * The input label, always provide one for accessibility purposes.
-	 * This will also be used as a placeholder unless the placeholder
-	 * prop is populated with a different string.
 	 *
 	 * Note: If the background color is not `--color-main-background` consider using an external label instead (see `labelOutside`).
 	 */
@@ -65,9 +63,7 @@ export interface NcInputFieldProps {
 	type?: 'text' | 'password' | 'email' | 'tel' | 'url' | 'search' | 'number'
 
 	/**
-	 * The placeholder of the input. This defaults as the string that's
-	 * passed into the label prop. In order to remove the placeholder,
-	 * pass in an empty string.
+	 * The placeholder of the input.
 	 */
 	placeholder?: string
 
@@ -234,7 +230,7 @@ function handleInput(event: Event) {
 				class="input-field__input"
 				:class="inputClass"
 				:disabled
-				:placeholder="placeholder || label"
+				:placeholder
 				:type
 				:value="modelValue.toString()"
 				@input="handleInput">
