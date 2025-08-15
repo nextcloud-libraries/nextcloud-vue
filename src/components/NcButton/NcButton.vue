@@ -438,6 +438,7 @@ import type { RouteLocationRaw } from 'vue-router'
 
 import { computed, inject } from 'vue'
 import { routerKey } from 'vue-router'
+import { isLegacy } from '../../utils/legacy.ts'
 
 export type ButtonAlignment = 'start'
 	| 'start-reverse'
@@ -630,6 +631,7 @@ const variantWithPressed = computed(() => {
 
 	return props.variant
 })
+const isTertiaryVariant = computed(() => variantWithPressed.value.startsWith('tertiary'))
 
 const flexAlignment = computed(() => props.alignment.split('-')[0])
 const isReverseAligned = computed(() => props.alignment.includes('-'))
@@ -682,9 +684,11 @@ function onClick(event: MouseEvent) {
 			`button-vue--size-${size}`,
 			{
 				[`button-vue--${variantWithPressed}`]: variantWithPressed,
+				'button-vue--tertiary': isTertiaryVariant,
 				'button-vue--wide': wide,
 				[`button-vue--${flexAlignment}`]: flexAlignment !== 'center',
 				'button-vue--reverse': isReverseAligned,
+				'button-vue--legacy': isLegacy,
 			},
 		]"
 		:aria-label
@@ -706,6 +710,7 @@ function onClick(event: MouseEvent) {
 <style lang="scss" scoped>
 .button-vue {
 	--button-size: var(--default-clickable-area);
+	--button-inner-size: calc(var(--button-size) - 4px); // without the outer border
 	--button-radius: var(--border-radius-element);
 	--button-padding-default: min(calc(var(--default-grid-baseline) + var(--button-radius)), calc(var(--default-grid-baseline) * 4));
 	--button-padding: var(--default-grid-baseline) var(--button-padding-default);
@@ -714,17 +719,18 @@ function onClick(event: MouseEvent) {
 	// by default use secondary styling
 	color: var(--color-primary-element-light-text);
 	background-color: var(--color-primary-element-light);
-	// no border but rounded
-	border: 0;
+	border: 1px solid var(--color-primary-element-light-hover);
+	border-bottom-width: 2px;
 	border-radius: var(--button-radius);
+	box-sizing: border-box;
 	// adjust position and size
 	position: relative;
 	width: fit-content;
 	overflow: hidden;
-	padding-block: 0;
+	padding-block: 1px 0; // center the content as border is 1px top and 2px bottom
 	padding-inline: var(--button-padding);
-	min-height: var(--button-size);
-	min-width: var(--button-size);
+	min-height: var(--button-inner-size);
+	min-width: var(--button-inner-size);
 	// display setup
 	display: flex;
 	align-items: center;
@@ -804,10 +810,10 @@ function onClick(event: MouseEvent) {
 	}
 
 	&__icon {
-		height: var(--button-size);
-		width: var(--button-size);
-		min-height: var(--button-size);
-		min-width: var(--button-size);
+		height: var(--button-inner-size);
+		width: var(--button-inner-size);
+		min-height: var(--button-inner-size);
+		min-width: var(--button-inner-size);
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -878,7 +884,9 @@ function onClick(event: MouseEvent) {
 	// Primary
 	&--primary {
 		background-color: var(--color-primary-element);
+		border-color: var(--color-primary-element-hover);
 		color: var(--color-primary-element-text);
+
 		&:hover:not(:disabled) {
 			background-color: var(--color-primary-element-hover);
 		}
@@ -891,8 +899,10 @@ function onClick(event: MouseEvent) {
 
 	// Secondary
 	&--secondary {
-		color: var(--color-primary-element-light-text);
 		background-color: var(--color-primary-element-light);
+		border-color: var(--color-primary-element-light-hover);
+		color: var(--color-primary-element-light-text);
+
 		&:hover:not(:disabled) {
 			color: var(--color-primary-element-light-text);
 			background-color: var(--color-primary-element-light-hover);
@@ -901,8 +911,10 @@ function onClick(event: MouseEvent) {
 
 	// Tertiary
 	&--tertiary {
-		color: var(--color-main-text);
 		background-color: transparent;
+		border-color: transparent;
+		color: var(--color-main-text);
+
 		&:hover:not(:disabled) {
 			background-color: var(--color-background-hover);
 		}
@@ -910,8 +922,6 @@ function onClick(event: MouseEvent) {
 
 	// Tertiary, no background
 	&--tertiary-no-background {
-		color: var(--color-main-text);
-		background-color: transparent;
 		&:hover:not(:disabled) {
 			background-color: transparent;
 		}
@@ -920,7 +930,6 @@ function onClick(event: MouseEvent) {
 	// Tertiary on primary color (like the header)
 	&--tertiary-on-primary {
 		color: var(--color-primary-element-text);
-		background-color: transparent;
 
 		&:hover:not(:disabled) {
 			background-color: transparent;
@@ -929,6 +938,7 @@ function onClick(event: MouseEvent) {
 
 	// Success
 	&--success {
+		border-color: var(--color-success-hover);
 		background-color: var(--color-success);
 		color: white;
 		&:hover:not(:disabled) {
@@ -943,6 +953,7 @@ function onClick(event: MouseEvent) {
 
 	// Warning
 	&--warning {
+		border-color: var(--color-warning-hover);
 		background-color: var(--color-warning);
 		color: white;
 		&:hover:not(:disabled) {
@@ -957,6 +968,7 @@ function onClick(event: MouseEvent) {
 
 	// Error
 	&--error {
+		border-color: var(--color-error-hover);
 		background-color: var(--color-error);
 		color: white;
 		&:hover:not(:disabled) {
@@ -967,6 +979,13 @@ function onClick(event: MouseEvent) {
 		&:active {
 			background-color: var(--color-error);
 		}
+	}
+
+	// before Nextcloud 32
+	&--legacy {
+		--button-inner-size: var(--button-size);
+		// no border
+		border: none;
 	}
 }
 
