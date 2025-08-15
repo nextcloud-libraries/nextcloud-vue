@@ -13,6 +13,8 @@ All notable changes to this project will be documented in this file.
 ### 💥 Breaking Changes
 * The package now uses Vue 3 instead of Vue 2.7
 * The package is now a native ESM package and the CommonJS entry points were dropped!
+* The package has dropped compatibility with Nextcloud before version 32.
+  This mostly affects the visual appearance of components.
 
 #### Plugin registering removed
 The plugin registering all the components and directives globally is removed.
