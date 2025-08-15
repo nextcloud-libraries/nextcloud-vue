@@ -101,6 +101,7 @@ import GenRandomId from '../../utils/GenRandomId.js'
 import AlertCircle from 'vue-material-design-icons/AlertCircleOutline.vue'
 import Check from 'vue-material-design-icons/Check.vue'
 import { useModelMigration } from '../../composables/useModelMigration.ts'
+import { isLegacy32 } from '../../utils/legacy.ts'
 
 export default {
 	name: 'NcInputField',
@@ -297,7 +298,13 @@ export default {
 		},
 
 		computedPlaceholder() {
-			return this.hasPlaceholder ? this.placeholder : this.label
+			if (this.hasPlaceholder) {
+				return this.placeholder
+			}
+			if (isLegacy32) {
+				return this.label
+			}
+			return undefined
 		},
 
 		isValidLabel() {
