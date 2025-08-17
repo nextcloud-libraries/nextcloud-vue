@@ -99,7 +99,9 @@ window.OC = {
 	isUserAdmin() {
 		return true
 	},
-	config: {},
+	config: {
+		version: '32.0.0',
+	},
 	Util: {
 		/**
 		 * Compare two strings to provide a natural sort
