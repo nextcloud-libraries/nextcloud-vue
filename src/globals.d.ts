@@ -22,5 +22,10 @@ declare global {
 		_nc_contacts_menu_hooks: { [id: string]: ContactsMenuAction }
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		OCP: any
+		OC: {
+			config: {
+				version: string
+			}
+		}
 	}
 }
