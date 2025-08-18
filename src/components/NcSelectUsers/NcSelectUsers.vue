@@ -337,7 +337,7 @@ function filterBy(option: { subname?: string }, label: string, search: string) {
 
 	const match = search.match(EMAIL_NOTATION)
 	const subname = option.subname?.toLocaleLowerCase() ?? ''
-	return (match && subname.indexOf(match[1].toLocaleLowerCase()) > -1)
+	return (match && subname.indexOf(match[1]!.toLocaleLowerCase()) > -1)
 		|| (`${label} ${option.subname}`
 			.toLocaleLowerCase()
 			.indexOf(search.toLocaleLowerCase()) > -1)

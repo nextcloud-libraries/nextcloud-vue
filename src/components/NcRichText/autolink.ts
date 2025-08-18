@@ -68,9 +68,9 @@ export const parseUrl = (text: string) => {
 	const list: (string|Record<string, any>)[] = []
 	let start = 0
 	while (match !== null) {
-		let href = match[2]
+		let href = match[2]!
 		let textAfter
-		let textBefore = text.substring(start, match.index + match[1].length)
+		let textBefore = text.substring(start, match.index + match[1]!.length)
 		if (href[0] === ' ') {
 			textBefore += href[0]
 			href = href.substring(1).trim()
