@@ -1015,7 +1015,7 @@ export default {
 	&--vue-success {
 		background-color: var(--color-success);
 		border-color: var(--color-success-hover);
-		color: white;
+		color: var(--color-success-text);
 
 		&:hover:not(:disabled) {
 			background-color: var(--color-success-hover);
@@ -1031,7 +1031,7 @@ export default {
 	&--vue-warning {
 		background-color: var(--color-warning);
 		border-color: var(--color-warning-hover);
-		color: white;
+		color: var(--color-warning-text);
 
 		&:hover:not(:disabled) {
 			background-color: var(--color-warning-hover);
@@ -1047,7 +1047,7 @@ export default {
 	&--vue-error {
 		background-color: var(--color-error);
 		border-color: var(--color-error-hover);
-		color: white;
+		color: var(--color-error-text);
 
 		&:hover:not(:disabled) {
 			background-color: var(--color-error-hover);
@@ -1062,8 +1062,13 @@ export default {
 	// before Nextcloud 32
 	&--legacy {
 		--button-inner-size: var(--button-size);
-		// no border
 		border: none;
+
+		&.button-vue--vue-error,
+		&.button-vue--vue-success,
+		&.button-vue--vue-warning {
+			color: white;
+		}
 	}
 }
 
