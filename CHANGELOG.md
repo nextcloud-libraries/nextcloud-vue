@@ -5,7 +5,7 @@
 
 # Changelog
 
-## [v8.29.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.29.0) (UNRELEASED)
+## [v8.29.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.29.0) (2025-08-18)
 
 ### 📝 Notes
 #### `NcColorPicker`
@@ -16,6 +16,41 @@ It is now discouraged to use the previous solution of relying on the `shown` pro
 
 Additionally for consistent event naming the `close` event was deprecated in favor of the `closed` event.
 The `closed` event will be emitted after `update:open` (with payload `false`) was emitted and all transitions have finished.
+
+### 🚀 Enhancements
+* feat(NcThemeProvider): allow to override the current theme for parts of the UI [#7152](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7152)
+* feat(dialogs/spawnDialog): separate spawning options from dialog props and allow Element as a container [#6768](https://github.com/nextcloud-libraries/nextcloud-vue/pull/6768)
+* feat(NcColorPicker): add proper open-state handling [#7214](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7214)
+* feat(NcAppNavigationItem): add `active` as slot property to the "icon"-slot [#7274](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7274)
+* feat: add visual border for buttons on Nextcloud 32+ [#7291](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7291)
+* feat(NcUserStatusIcon): update status icons [#7223](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7223)
+* feat(NcHeaderMenu): apply alpha mask to icon slot [#7243](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7243)
+
+### 🐛 Fixed bugs
+* perf(NcAvatar): ensure avatar does not add mutation observer [#7168](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7168)
+* perf(utils): ensure only 64px or 512px avatars are loaded [#7153](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7153)
+* fix(NcButton): force cursor pointer [#7158](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7158) ([ShGKme](https://github.com/ShGKme))
+* fix(NcInputField): remove browser injected clear button [#7169](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7169)
+* fix(NcModal): use `--border-radius-container` [#7178](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7178)
+* fix(useIsDarkTheme): provide default value to silence runtime warnings [#7189](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7189)
+* fix(NcAppSidebar): remove slot styling for buttons in the description [#7190](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7190)
+* fix(NcActionInput): register used NcColorPicker component [#7198](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7198)
+* fix(NcActionInput): lazy load large children [#7197](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7197)
+* fix(NcContent): flip skip action image in rtl mode [#7205](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7205)
+* fix(NcColorPicker): use proper directional arrow icon for submit [#7219](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7219)
+* fix(NcAvatar): orbital best-fit adaptive status icon  [#7260](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7260)
+* fix(NcLoadingIcon): prevent height change from rotate transformation [#7276](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7276)
+* fix(NcInputField, NcTextareaField): remove placeholder on Nextcloud 32+ [#7286](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7286) ([susnux](https://github.com/susnux))
+* fix: migrate from _oc_config to initial state [#7235](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7235) ([Antreesy](https://github.com/Antreesy))
+* fix: auto-resolve focus trap stack, if was changed outside of controller [#7304](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7304) ([Antreesy](https://github.com/Antreesy))
+
+### Other Changes
+* refactor(functions): Make sure only named exports are used (usernameToColor) [#7170](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7170) ([susnux](https://github.com/susnux))
+* refactor: use secondary colors for buttons on Nextcloud 32+ [#7301](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7301) ([susnux](https://github.com/susnux))
+* chore: copy diff from stable8 changelog [#7159](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7159)
+* chore: align sorting of package.json [#7162](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7162) ([susnux](https://github.com/susnux))
+* docs: clarify application containers and especially NcGuestContent [#7216](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7216)
+* ci: update workflows from organization [#7166](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7166) ([susnux](https://github.com/susnux))
 
 ## [v8.28.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.28.0) (2025-07-14)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-vue/compare/v8.27.0...v8.28.0)
