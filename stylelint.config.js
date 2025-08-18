@@ -28,7 +28,9 @@ module.exports = {
 					'bottom',
 					// Position properties with directional suffixes
 					/-top$/,
+					/-top-/,
 					/-bottom$/,
+					/-bottom-/,
 					// Size properties
 					'width',
 					'max-width',
