@@ -10,7 +10,7 @@ import { computed, ref, useTemplateRef } from 'vue'
 import { createElementId } from '../../utils/createElementId.js'
 import { t } from '../../l10n.ts'
 
-import IconCog from 'vue-material-design-icons/Cog.vue'
+import IconCog from 'vue-material-design-icons/CogOutline.vue'
 import NcButton from '../NcButton/NcButton.vue'
 
 const {
