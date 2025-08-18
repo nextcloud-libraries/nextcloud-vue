@@ -130,10 +130,10 @@ export default defineComponent({
 				} else {
 					// If the range overlaps the last range, merge them
 					const idx = mergedRanges.length - 1
-					if (mergedRanges[idx].end >= range.start) {
+					if (mergedRanges[idx]!.end >= range.start) {
 						mergedRanges[idx] = {
-							start: mergedRanges[idx].start,
-							end: Math.max(mergedRanges[idx].end, range.end),
+							start: mergedRanges[idx]!.start,
+							end: Math.max(mergedRanges[idx]!.end, range.end),
 						}
 					} else {
 						mergedRanges.push(range)
@@ -165,7 +165,7 @@ export default defineComponent({
 			// Iterate over all characters in the text
 			while (currentIndex < this.text.length) {
 				// Get the first range to highlight
-				const range = this.ranges[currentRange]
+				const range = this.ranges[currentRange]!
 				// If the range starts at the current index, construct a chunk to highlight,
 				// set the next range and continue with the next iteration.
 				if (range.start === currentIndex) {

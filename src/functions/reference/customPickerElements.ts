@@ -56,7 +56,7 @@ export function isCustomPickerElementRegistered(id: string): boolean {
  */
 export function getCustomPickerElementSize(id: string): 'small' | 'normal' | 'large' | 'full' | null {
 	const size = window._vue_richtext_custom_picker_elements[id]?.size
-	if (['small', 'normal', 'large', 'full'].includes(size)) {
+	if (size && ['small', 'normal', 'large', 'full'].includes(size)) {
 		return size
 	}
 	return null

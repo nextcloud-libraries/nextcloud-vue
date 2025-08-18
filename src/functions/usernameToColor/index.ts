@@ -37,5 +37,5 @@ export function usernameToColor(username: string): Color {
 	const finalPalette = generatePalette(steps)
 	const hash = hashCode(username.toLocaleLowerCase())
 
-	return finalPalette[hash % finalPalette.length]
+	return finalPalette[hash % finalPalette.length]!
 }

@@ -352,18 +352,27 @@ const value = computed<LibraryModelValue>(() => {
 	} else if (props.type === 'month') {
 		const date = props.modelValue instanceof Date ? props.modelValue : new Date()
 		return { year: date.getUTCFullYear(), month: date.getUTCMonth() }
-	} else if (props.type === 'time' || props.type === 'time-range') {
-		const time = [props.modelValue ?? (props.type === 'time-range' ? [new Date(), new Date()] : new Date())].flat()
-		// default time range is 1 hour
-		if (props.modelValue === undefined && props.type === 'time-range') {
-			time[1].setHours(time[1].getHours() + 1)
+	} else if (props.type === 'time') {
+		const time = props.modelValue instanceof Date ? props.modelValue : new Date()
+		return {
+			hours: time.getHours(),
+			minutes: time.getMinutes(),
+			seconds: time.getSeconds(),
+		} satisfies LibraryTimeObject
+	} else if (props.type === 'time-range') {
+		const time = [props.modelValue].flat()
+		if (time.length !== 2) {
+			const start = new Date()
+			const end = new Date(start)
+			end.setHours(end.getHours() + 1)
+			time.splice(0, 2, start, end)
 		}
-		const timeValue = time.map((date) => ({
+
+		return (time as [Date, Date]).map((date) => ({
 			hours: date.getHours(),
 			minutes: date.getMinutes(),
 			seconds: date.getSeconds(),
 		} as LibraryTimeObject))
-		return props.type === 'time' ? timeValue[0] : timeValue
 	} else if (props.type.endsWith('-range')) {
 		if (props.modelValue === undefined) {
 			const start = new Date()

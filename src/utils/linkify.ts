@@ -28,9 +28,7 @@ export function linkifyString(str: string): string {
 	const tokens = tokenize(str)
 	const result: string[] = []
 
-	for (let i = 0; i < tokens.length; i++) {
-		const token = tokens[i]
-
+	for (const token of tokens) {
 		if (token.t === 'nl' && options.get('nl2br')) {
 			result.push('<br>\n')
 		} else if (!token.isLink || !options.check(token)) {
