@@ -806,5 +806,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../../assets/NcAppNavigationItem';
+@use '../../assets/NcAppNavigationItem.scss';
 </style>
