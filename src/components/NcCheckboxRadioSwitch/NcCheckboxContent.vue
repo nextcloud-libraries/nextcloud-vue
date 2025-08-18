@@ -9,6 +9,7 @@
 			['checkbox-content-' + type]: true,
 			'checkbox-content--button-variant': buttonVariant,
 			'checkbox-content--has-text': !!$slots.default,
+			'checkbox-content-switch-end': !isLegacy && type === 'switch',
 		}">
 		<!--
 			label can't be used here because of shift+click firefox bug
@@ -17,6 +18,7 @@
 		<span :class="{
 				'checkbox-content__icon': true,
 				'checkbox-content__icon--checked': isChecked,
+				'checkbox-content__icon--hasDescription': hasDescription,
 				[iconClass]: true
 			}"
 			:aria-hidden="true"
@@ -35,10 +37,16 @@
 			</slot>
 		</span>
 
-		<span v-if="$slots.default" :class="['checkbox-content__text', textClass]">
-			<!-- @slot The checkbox/radio label -->
-			<slot />
-		</span>
+		<div class="checkbox-content__wrapper">
+			<span v-if="$slots.default" :class="['checkbox-content__text', textClass]">
+				<!-- @slot The checkbox/radio label -->
+				<slot />
+			</span>
+			<em v-if="hasDescription" class="checkbox-content__description">
+				{{ description }}
+				<slot name="description" />
+			</em>
+		</div>
 	</span>
 </template>
 
@@ -52,6 +60,7 @@ import ToggleSwitchOff from 'vue-material-design-icons/ToggleSwitchOff.vue'
 import ToggleSwitch from 'vue-material-design-icons/ToggleSwitch.vue'
 
 import NcLoadingIcon from '../NcLoadingIcon/index.ts'
+import { isLegacy } from '../../utils/legacy.ts'
 
 export const TYPE_CHECKBOX = 'checkbox'
 export const TYPE_RADIO = 'radio'
@@ -140,11 +149,29 @@ export default {
 			type: Number,
 			default: 24,
 		},
+
+		/**
+		 * Description
+		 */
+		description: {
+			type: String,
+			default: null,
+		},
+	},
+
+	data() {
+		return {
+			isLegacy,
+		}
 	},
 
 	computed: {
 		isButtonType() {
 			return this.type === TYPE_BUTTON
+		},
+
+		hasDescription() {
+			return !this.isButtonType && (this.$slots.description || this.props.description)
 		},
 
 		/**
@@ -193,11 +220,17 @@ export default {
 	padding: var(--default-grid-baseline) calc((var(--default-clickable-area) - var(--icon-height)) / 2);
 	// Set to 100% to make text overflow work on button style
 	width: 100%;
-	// but restrict to content so plain checkboxes / radio switches do not expand
-	max-width: fit-content;
+
+	&:not(&-switch-end) {
+		// but restrict to content so plain checkboxes / radio switches do not expand
+		max-width: fit-content;
+	}
+
+	&__wrapper {
+		flex: 1 0;
+	}
 
 	&__text {
-		flex: 1 0;
 
 		&:empty {
 			// hide text if empty to ensure checkbox outline is a circle instead of oval
@@ -211,10 +244,26 @@ export default {
 		margin-block: calc((var(--default-clickable-area) - 2 * var(--default-grid-baseline) - var(--icon-height)) / 2) auto;
 	}
 
+	&-checkbox:not(&--button-variant) &__icon--hasDescription,
+	&-radio:not(&--button-variant) &__icon--hasDescription,
+	&-switch:not(&--button-variant) &__icon--hasDescription {
+		display: flex;
+		align-items: center;
+		margin-block-end: 0;
+	}
+
+	&-switch-end:not(&--button-variant) {
+		flex-direction: row-reverse;
+	}
+
 	&__icon > * {
 		width: var(--icon-size);
 		height: var(--icon-height);
 		color: var(--color-primary-element);
+	}
+
+	&__description {
+		display: block;
 	}
 
 	&--button-variant {
@@ -230,6 +279,8 @@ export default {
 	&--has-text {
 		padding-inline-end: $icon-margin;
 	}
+
+	__
 
 	&, * {
 		cursor: pointer;
