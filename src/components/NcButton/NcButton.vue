@@ -791,7 +791,7 @@ export default {
 	--button-size: var(--default-clickable-area);
 	--button-inner-size: calc(var(--button-size) - 4px); // without the outer border
 	--button-radius: var(--border-radius-element, calc(var(--button-size) / 2));
-	--button-padding-default: min(calc(var(--default-grid-baseline) + var(--button-radius)), calc(var(--default-grid-baseline) * 4));
+	--button-padding-default: clamp(var(--default-grid-baseline), var(--button-radius), calc(var(--default-grid-baseline) * 4));
 	--button-padding: var(--default-grid-baseline) var(--button-padding-default);
 
 	// General styles
@@ -808,8 +808,8 @@ export default {
 	overflow: hidden;
 	padding-block: 1px 0; // center the content as border is 1px top and 2px bottom
 	padding-inline: var(--button-padding);
-	min-height: var(--button-inner-size);
-	min-width: var(--button-inner-size);
+	min-height: var(--button-size);
+	min-width: var(--button-size);
 	// display setup
 	display: flex;
 	align-items: center;
@@ -881,10 +881,11 @@ export default {
 	}
 
 	&--reverse#{&}--icon-and-text {
-		padding-inline: var(--button-padding) var(--default-grid-baseline);
+		--button-padding: var(--button-padding-default) var(--default-grid-baseline);
 	}
 
 	&__icon {
+		--default-clickable-area: var(--button-inner-size); // ensure icons align with current button size
 		height: var(--button-inner-size);
 		width: var(--button-inner-size);
 		min-height: var(--button-inner-size);
@@ -893,6 +894,7 @@ export default {
 		justify-content: center;
 		align-items: center;
 	}
+
 	// For small buttons we need to adjust the icon size
 	&--size-small &__icon {
 		:deep(> *) {
@@ -923,19 +925,11 @@ export default {
 
 	// Text-only button
 	&--text-only {
-		padding: 0 var(--button-padding);
-		& .button-vue__text {
-			margin-left: 4px;
-			margin-right: 4px;
-		}
-	}
+		--button-padding: var(--button-padding-default);
 
-	// Icon and text button
-	&--icon-and-text {
-		// icon and text means the icon adds "visual" padding thus we need to adjust the text padding
-		--button-padding: min(calc(var(--default-grid-baseline) + var(--button-radius)), calc(var(--default-grid-baseline) * 4));
-		// Adjust padding as the icon already got some padding we need to reduce the padding on the icon side and only add larger padding to the text side
-		padding-inline: var(--default-grid-baseline) var(--button-padding);
+		& .button-vue__text {
+			margin-inline: 4px;
+		}
 	}
 
 	// Wide button spans the whole width of the container
