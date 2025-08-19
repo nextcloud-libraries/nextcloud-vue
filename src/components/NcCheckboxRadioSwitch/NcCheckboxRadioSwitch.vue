@@ -672,10 +672,15 @@ export default {
 	align-items: center;
 	color: var(--color-main-text);
 	background-color: transparent;
+	box-sizing: border-box;
 	font-size: var(--default-font-size);
 	line-height: var(--default-line-height);
 	padding: 0;
 	position: relative;
+
+	* {
+		box-sizing: border-box;
+	}
 
 	&__input {
 		position: absolute;
