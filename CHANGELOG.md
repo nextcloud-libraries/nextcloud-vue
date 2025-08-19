@@ -5,6 +5,10 @@
 
 # Changelog
 
+## [v8.29.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.29.2) (2025-08-19)
+### 🐛 Fixed bugs
+* fix(NcUserStatusIcon): legacy 32 check by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-vue/pull/7320
+
 ## [v8.29.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.29.1) (2025-08-19)
 ### 🐛 Fixed bugs
 * fix(NcButton): ensure correct padding [#7305](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7305) ([susnux](https://github.com/susnux))
