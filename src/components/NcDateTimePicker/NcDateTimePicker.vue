@@ -807,7 +807,7 @@ function cancelSelection() {
 		--dp-success-color-disabled: var(--color-success-hover);
 		--dp-icon-color: var(--color-main-text);
 		--dp-danger-color: var(--color-error);
-		--dp-marker-color: var(--color-error);
+		--dp-marker-color: var(--color-text-error, var(--color-error));
 		--dp-tooltip-color: var(--color-main-text);
 		--dp-highlight-color: var(--color-main-text);
 	}
