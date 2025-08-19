@@ -176,9 +176,9 @@
 				<NcAvatar disable-menu :size="44" user="janedoe" display-name="Jane Doe" />
 			</template>
 			<template #name>
-				<span style="display: flex; gap: 0.5rem; color: var(--color-warning);">
+				<span style="display: flex; gap: 0.5rem; color: var(--color-favorite);">
 					Flexible styling within the first line of the component
-					<div style="color: var(--color-error);">
+					<div style="color: var(--color-text-error, var(--color-error));">
 						like this.
 					</div>
 				</span>

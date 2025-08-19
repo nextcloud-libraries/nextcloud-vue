@@ -294,7 +294,7 @@ export default {
 
 <style scoped lang="scss">
 .select-group-error {
-	color: var(--color-error);
+	color: var(--color-text-error, var(--color-error));
 	font-size: 13px;
 	padding-inline-start: var(--border-radius-large);
 }

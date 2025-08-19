@@ -568,11 +568,13 @@ export default {
 		}
 
 		&--error {
-			color: var(--color-error-text);
+			color: var(--color-text-error, var(--color-error));
 		}
 
 		&--success {
-			color: var(--color-success-text);
+			.input-field__helper-text-message__icon {
+				color: var(--color-border-success, var(--color-success));
+			}
 		}
 	}
 }

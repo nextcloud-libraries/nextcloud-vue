@@ -54,7 +54,7 @@ textarea {
 	}
 
 	&:invalid {
-		border-color: var(--color-error);
+		border-color: var(--color-border-error, var(--color-error));
 		box-shadow: none !important;
 	}
 
