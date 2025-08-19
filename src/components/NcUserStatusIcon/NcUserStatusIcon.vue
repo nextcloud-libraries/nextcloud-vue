@@ -56,7 +56,6 @@ This component displays a user status icon.
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
 import { getCapabilities } from '@nextcloud/capabilities'
-import { loadState } from '@nextcloud/initial-state'
 
 import onlineSvg from '../../assets/status-icons/user-status-online.svg?raw'
 import onlineLegacySvg from '../../assets/status-icons/user-status-online-legacy.svg?raw'
@@ -69,17 +68,16 @@ import invisibleSvg from '../../assets/status-icons/user-status-invisible.svg?ra
 import invisibleLegacySvg from '../../assets/status-icons/user-status-invisible-legacy.svg?raw'
 
 import { getUserStatusText } from '../../utils/UserStatus.ts'
+import { isLegacy32 } from '../../utils/legacy.ts'
 import { t } from '../../l10n.js'
 
-const [major] = loadState('core', 'config', { version: '32.0' }).version.split('.', 2) ?? []
-const isLegacy = major && Number.parseInt(major) < 32
 const matchSvg = {
-	online: isLegacy ? onlineLegacySvg : onlineSvg,
-	away: isLegacy ? awayLegacySvg : awaySvg,
-	busy: isLegacy ? awayLegacySvg : busySvg,
-	dnd: isLegacy ? dndLegacySvg : dndSvg,
-	invisible: isLegacy ? invisibleLegacySvg : invisibleSvg,
-	offline: isLegacy ? invisibleLegacySvg : invisibleSvg,
+	online: isLegacy32 ? onlineLegacySvg : onlineSvg,
+	away: isLegacy32 ? awayLegacySvg : awaySvg,
+	busy: isLegacy32 ? awayLegacySvg : busySvg,
+	dnd: isLegacy32 ? dndLegacySvg : dndSvg,
+	invisible: isLegacy32 ? invisibleLegacySvg : invisibleSvg,
+	offline: isLegacy32 ? invisibleLegacySvg : invisibleSvg,
 }
 
 export default {
