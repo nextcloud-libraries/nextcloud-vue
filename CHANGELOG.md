@@ -5,6 +5,13 @@
 
 # Changelog
 
+## [v8.29.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.29.1) (2025-08-19)
+### 🐛 Fixed bugs
+* fix(NcButton): ensure correct padding [#7305](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7305) ([susnux](https://github.com/susnux))
+* fix(NcCheckboxRadioSwitch): ensure component has correct box sizing [#7306](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7306) ([susnux](https://github.com/susnux))
+* fix(utils): legacy check syntax [#7315](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7315) ([skjnldsv](https://github.com/skjnldsv))
+* fix: adjust color variables to work with Nextcloud 32+ [#7312](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7312)
+
 ## [v8.29.0](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.29.0) (2025-08-18)
 
 ### 📝 Notes
