@@ -710,7 +710,7 @@ function onClick(event: MouseEvent) {
 	--button-size: var(--default-clickable-area);
 	--button-inner-size: calc(var(--button-size) - 4px); // without the outer border
 	--button-radius: var(--border-radius-element);
-	--button-padding-default: min(calc(var(--default-grid-baseline) + var(--button-radius)), calc(var(--default-grid-baseline) * 4));
+	--button-padding-default: calc(var(--default-grid-baseline) + var(--button-radius));
 	--button-padding: var(--default-grid-baseline) var(--button-padding-default);
 
 	// General styles
@@ -727,8 +727,8 @@ function onClick(event: MouseEvent) {
 	overflow: hidden;
 	padding-block: 1px 0; // center the content as border is 1px top and 2px bottom
 	padding-inline: var(--button-padding);
-	min-height: var(--button-inner-size);
-	min-width: var(--button-inner-size);
+	min-height: var(--button-size);
+	min-width: var(--button-size);
 	// display setup
 	display: flex;
 	align-items: center;
@@ -808,6 +808,7 @@ function onClick(event: MouseEvent) {
 	}
 
 	&__icon {
+		--default-clickable-area: var(--button-inner-size); // align icon size with inner button size
 		height: var(--button-inner-size);
 		width: var(--button-inner-size);
 		min-height: var(--button-inner-size);
@@ -848,7 +849,7 @@ function onClick(event: MouseEvent) {
 
 	// Icon-only button
 	&:has(#{&}__text:empty) {
-		--button-padding: clamp(var(--default-grid-baseline), var(--button-radius), calc(var(--default-grid-baseline) * 4));
+		--button-padding: var(--button-radius);
 		line-height: 1;
 		width: var(--button-size) !important;
 	}
@@ -938,7 +939,7 @@ function onClick(event: MouseEvent) {
 	&--success {
 		border-color: var(--color-success-hover);
 		background-color: var(--color-success);
-		color: white;
+		color: var(--color-success-text);
 		&:hover:not(:disabled) {
 			background-color: var(--color-success-hover);
 		}
@@ -953,7 +954,7 @@ function onClick(event: MouseEvent) {
 	&--warning {
 		border-color: var(--color-warning-hover);
 		background-color: var(--color-warning);
-		color: white;
+		color: var(--color-warning-text);
 		&:hover:not(:disabled) {
 			background-color: var(--color-warning-hover);
 		}
@@ -968,7 +969,7 @@ function onClick(event: MouseEvent) {
 	&--error {
 		border-color: var(--color-error-hover);
 		background-color: var(--color-error);
-		color: white;
+		color: var(--color-error-text);
 		&:hover:not(:disabled) {
 			background-color: var(--color-error-hover);
 		}

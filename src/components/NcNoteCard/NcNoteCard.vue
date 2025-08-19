@@ -171,23 +171,23 @@ const iconPath = computed(() => {
 	}
 
 	&--success {
-		--note-background: rgba(var(--color-success-rgb), 0.1);
-		--note-theme: var(--color-success);
+		--note-background: var(--color-success);
+		--note-theme: var(--color-success-text);
 	}
 
 	&--info {
-		--note-background: rgba(var(--color-info-rgb), 0.1);
-		--note-theme: var(--color-info);
+		--note-background: var(--color-info);
+		--note-theme: var(--color-info-text);
 	}
 
 	&--error {
-		--note-background: rgba(var(--color-error-rgb), 0.1);
-		--note-theme: var(--color-error);
+		--note-background: var(--color-error);
+		--note-theme: var(--color-error-text);
 	}
 
 	&--warning {
-		--note-background: rgba(var(--color-warning-rgb), 0.1);
-		--note-theme: var(--color-warning);
+		--note-background: var(--color-warning);
+		--note-theme: var(--color-warning-text);
 	}
 }
 </style>
