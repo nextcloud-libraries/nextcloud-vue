@@ -475,13 +475,13 @@ function handleInput(event: Event) {
 	&--error {
 		.input-field__helper-text-message,
 		.input-field__icon--trailing {
-			color: var(--color-error);
+			color: var(--color-text-error, var(--color-error));
 		}
 	}
 
 	&--error .input-field__input,
 	&__input:user-invalid {
-		border-color: var(--color-error) !important; //Override hover border color
+		border-color: var(--color-border-error, var(--color-error)) !important; //Override hover border color
 		&:focus-visible {
 			box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 		}
@@ -489,15 +489,13 @@ function handleInput(event: Event) {
 
 	&--success {
 		.input-field__input {
-			border-color: var(--color-success) !important; //Override hover border color
+			border-color: var(--color-border-success, var(--color-success)) !important; //Override hover border color
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 			}
 		}
-
-		.input-field__helper-text-message,
-		.input-field__icon--trailing {
-			color: var(--color-success);
+		.input-field__helper-text-message__icon {
+			color: var(--color-border-success, var(--color-success));
 		}
 	}
 }
