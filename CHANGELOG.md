@@ -5,6 +5,27 @@
 
 # Changelog
 
+## [v8.29.2](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.29.2) (2025-08-28)
+### 🐛 Fixed bugs
+* fix(NcUserStatusIcon): legacy 32 check [#7320](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7320) ([skjnldsv](https://github.com/skjnldsv))
+* fix(NcDateTimePicker): lost styles in docs [#7344](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7344) ([ShGKme](https://github.com/ShGKme))
+* fix(NcPopover): scope styles to avoid leak [#7341](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7341)
+* fix(NcReferencePickerModal): scope styles [#7347](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7347)
+* fix(NcEmojiPicker): scope styles [#7343](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7343)
+* fix(NcActionButtonGroup): scope styles [#7348](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7348)
+* fix(NcAppNavigationItem): icon-collapse has wrong colour [#7346](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7346) ([GretaD](https://github.com/GretaD))
+* fix(NcNoteCard): adjust colors to work with Nextcloud 32+ [#7361](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7361) ([susnux](https://github.com/susnux))
+* fix(l10n): add non-breaking space before ellipsis [#7373](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7373)
+* fix(NcHeaderMenu): pause trap stack on opening [#7384](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7384) ([Antreesy](https://github.com/Antreesy))
+* add new border design for NcInputField and NcTextArea [#7383](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7383)
+* fix: change icon cog into outline version on 32+ [#7394](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7394) \([GretaD](https://github.com/GretaD)\)
+
+### Other Changes
+* docs: fix CSS Modules support in Styleguidist [#7342](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7342)
+* chore(docs): fix css modules export names in styleguidist [#7387](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7387)
+* fix(NcUserStatusIcon): adjust icon colors [#7393](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7393)
+* fix(NcUserStatusIcon): adjust scoped names for style variables [#7400](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7400)
+
 ## [v8.29.1](https://github.com/nextcloud-libraries/nextcloud-vue/tree/v8.29.1) (2025-08-19)
 ### 🐛 Fixed bugs
 * fix(NcButton): ensure correct padding [#7305](https://github.com/nextcloud-libraries/nextcloud-vue/pull/7305) ([susnux](https://github.com/susnux))
