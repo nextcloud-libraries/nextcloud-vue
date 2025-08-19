@@ -450,7 +450,7 @@ export default {
 		 *
 		 * @param {string} color the hex color
 		 */
-		 calculateLuma(color) {
+		calculateLuma(color) {
 			const [red, green, blue] = this.hexToRGB(color)
 			return (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255
 		},
@@ -459,12 +459,13 @@ export default {
 		 * Convert hex color to RGB
 		 *
 		 * @param {string} hex the hex color
+		 * @return {[number, number, number]}
 		 */
-		 hexToRGB(hex) {
+		hexToRGB(hex) {
 			const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
 			return result
 				? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)]
-				: null
+				: [0, 0, 0]
 		},
 	},
 }
