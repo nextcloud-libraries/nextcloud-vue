@@ -315,14 +315,14 @@ function select() {
 		}
 
 		&--success {
-			border-color: var(--color-success-text) !important; //Override hover border color
+			border-color: var(--color-border-success, var(--color-success)) !important; //Override hover border color
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 			}
 		}
 
 		&--error {
-			border-color: var(--color-error-text) !important; //Override hover border color
+			border-color: var(--color-border-error, var(--color-error)) !important; //Override hover border color
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 			}

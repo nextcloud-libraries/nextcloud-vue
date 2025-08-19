@@ -90,7 +90,7 @@ defineEmits<{
 
 const indicatorColor = computed(() => {
 	if (props.error) {
-		return 'var(--color-error-text)'
+		return 'var(--color-text-error, var(--color-error))'
 	}
 	if (props.saving) {
 		return 'var(--color-primary-element)'
