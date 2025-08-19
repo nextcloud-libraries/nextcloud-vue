@@ -192,13 +192,13 @@ const clickableAreaSmall = Number.parseInt(window.getComputedStyle(document.body
 		color: var(--progress-bar-color);
 	}
 	&--error {
-		color: var(--color-error) !important;
+		color: var(--color-text-error, var(--color-error)) !important;
 		// Override previous values
 		&::-moz-progress-bar {
-			background: var(--color-error) !important;
+			background: var(--color-text-error, var(--color-error)) !important;
 		}
 		&::-webkit-progress-value {
-			background: var(--color-error) !important;
+			background: var(--color-text-error, var(--color-error)) !important;
 		}
 	}
 }
