@@ -1102,7 +1102,7 @@ export default {
 		&--overflow,
 		&--overflow:hover {
 			// we need important to override server styles
-			border-color: var(--color-error) !important;
+			border-color: var(--color-border-error, var(--color-error)) !important;
 		}
 	}
 }
