@@ -176,7 +176,7 @@ const props = withDefaults(defineProps<{
 	 */
 	paletteOnly?: boolean
 }>(), {
-	advancedFields: true,
+	advancedFields: false,
 	container: 'body',
 	palette: () => [...defaultPalette],
 })
@@ -326,7 +326,7 @@ function hexToRGB(hex: string): [number, number, number] {
 						v-model="currentColor"
 						class="color-picker__advanced"
 						:disable-alpha="true"
-						:disable-fields="false"
+						:disable-fields="!advancedFields"
 						@update:model-value="pickColor" />
 				</Transition>
 				<div v-if="!paletteOnly" class="color-picker__navigation">
