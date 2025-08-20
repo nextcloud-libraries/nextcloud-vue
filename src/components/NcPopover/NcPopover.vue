@@ -186,10 +186,11 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 		handle-resize
 		:no-auto-focus="true /* Handled by the focus trap */"
 		:placement="internalPlacement"
-		:popper-class="popoverBaseClass"
+		:popper-class="[$style.ncPopover, popoverBaseClass]"
 		:popper-triggers
 		:popper-hide-triggers
 		:popper-show-triggers
+		:theme
 		:triggers="internalTriggers"
 		:hide-triggers
 		:show-triggers
@@ -209,12 +210,17 @@ See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/
 </template>
 
 <script>
-import { Dropdown } from 'floating-vue'
+import { Dropdown, options } from 'floating-vue'
 import { createFocusTrap } from 'focus-trap'
 import { warn } from 'vue'
 import { getTrapStack } from '../../utils/focusTrap.ts'
 import { isRtl } from '../../utils/rtl.ts'
 import NcPopoverTriggerProvider from './NcPopoverTriggerProvider.vue'
+
+const theme = 'nc-popover-9'
+
+// NcPopover has a custom theme to have a custom name but same as the default "dropdown" theme
+options.themes[theme] = structuredClone(options.themes.dropdown)
 
 /**
  * @typedef {import('focus-trap').FocusTargetValueOrFalse} FocusTargetValueOrFalse
@@ -356,6 +362,12 @@ export default {
 		'afterHide',
 		'update:shown',
 	],
+
+	setup() {
+		return {
+			theme,
+		}
+	},
 
 	data() {
 		return {
@@ -592,56 +604,57 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" module>
 $arrow-width: 10px;
 // Move the arrow just slightly inside the popover
 // To prevent a visual gap on page scaling
 $arrow-position: $arrow-width - 1px;
 
-// Size class comes from the floating-vue library we use
-.resize-observer {
-	position: absolute;
-	top: 0;
-	/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
-	left: 0;
-	z-index: -1;
-	width: 100%;
-	height: 100%;
-	border: none;
-	background-color: transparent;
-	pointer-events: none;
-	display: block;
-	overflow: hidden;
-	opacity: 0;
-
-	object {
-		display: block;
-		position: absolute;
-		top: 0;
-		/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
-		left: 0;
-		height: 100%;
-		width: 100%;
-		overflow: hidden;
-		pointer-events: none;
-		z-index: -1;
-	}
-}
-
-.v-popper--theme-dropdown {
+// Class is built by floating-vue as "v-popper--theme-{THEME}"
+.ncPopover:global(.v-popper--theme-nc-popover-9) {
 	&,
 	& * {
 		box-sizing: border-box;
 	}
 
-	&.v-popper__popper {
+	// Size class comes from the floating-vue library we use
+	:global(.resize-observer) {
+		position: absolute;
+		top: 0;
+		/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
+		left: 0;
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		border: none;
+		background-color: transparent;
+		pointer-events: none;
+		display: block;
+		overflow: hidden;
+		opacity: 0;
+
+		object {
+			display: block;
+			position: absolute;
+			top: 0;
+			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
+			left: 0;
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+			pointer-events: none;
+			z-index: -1;
+		}
+	}
+
+	&:global(.v-popper__popper) {
 		z-index: 100000;
 		top: 0;
 		/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
 		left: 0;
 		display: block !important;
 
-		.v-popper__wrapper {
+		:global(.v-popper__wrapper) {
 			/*
 			 * In theory, "filter: drop-shadow" would look better here with arrow shadow.
 			 * In fact, in results in a blurry popover in Chromium on scaling.
@@ -654,7 +667,7 @@ $arrow-position: $arrow-width - 1px;
 			border-radius: var(--border-radius-element);
 		}
 
-		.v-popper__inner {
+		:global(.v-popper__inner) {
 			padding: 0;
 			color: var(--color-main-text);
 			border-radius: var(--border-radius-element);
@@ -662,7 +675,7 @@ $arrow-position: $arrow-width - 1px;
 			background: var(--color-main-background);
 		}
 
-		.v-popper__arrow-container {
+		:global(.v-popper__arrow-container) {
 			position: absolute;
 			z-index: 1;
 			width: 0;
@@ -672,7 +685,7 @@ $arrow-position: $arrow-width - 1px;
 			border-width: $arrow-width;
 		}
 
-		&[data-popper-placement^='top'] .v-popper__arrow-container {
+		&[data-popper-placement^='top'] :global(.v-popper__arrow-container) {
 			bottom: -$arrow-position;
 			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
 			border-bottom-width: 0;
@@ -680,7 +693,7 @@ $arrow-position: $arrow-width - 1px;
 			border-top-color: var(--color-main-background);
 		}
 
-		&[data-popper-placement^='bottom'] .v-popper__arrow-container {
+		&[data-popper-placement^='bottom'] :global(.v-popper__arrow-container) {
 			top: -$arrow-position;
 			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
 			border-top-width: 0;
@@ -688,7 +701,7 @@ $arrow-position: $arrow-width - 1px;
 			border-bottom-color: var(--color-main-background);
 		}
 
-		&[data-popper-placement^='right'] .v-popper__arrow-container {
+		&[data-popper-placement^='right'] :global(.v-popper__arrow-container) {
 			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
 			left: -$arrow-position;
 			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
@@ -697,7 +710,7 @@ $arrow-position: $arrow-width - 1px;
 			border-right-color: var(--color-main-background);
 		}
 
-		&[data-popper-placement^='left'] .v-popper__arrow-container {
+		&[data-popper-placement^='left'] :global(.v-popper__arrow-container) {
 			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
 			right: -$arrow-position;
 			/* stylelint-disable-next-line csstools/use-logical */ /* upstream logic */
