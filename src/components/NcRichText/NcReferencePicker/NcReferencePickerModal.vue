@@ -150,14 +150,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 // this is to avoid scroll on the container and leave it to the result block
-.reference-picker-modal .modal-container {
+.reference-picker-modal :deep(.modal-container) {
 	display: flex !important;
 }
-</style>
 
-<style lang="scss" scoped>
 .reference-picker-modal--content {
 	width: 100%;
 	display: flex;
