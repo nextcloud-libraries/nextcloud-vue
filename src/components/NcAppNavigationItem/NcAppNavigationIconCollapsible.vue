@@ -6,7 +6,10 @@
 <template>
 	<!-- Button to expand or collapse children -->
 	<NcButton class="icon-collapse"
-		:class="{'icon-collapse--open':open}"
+		:class="{
+			'icon-collapse--active': active,
+			'icon-collapse--open': open,
+		}"
 		:aria-label="labelButton"
 		variant="tertiary"
 		@click="onClick">
@@ -39,6 +42,10 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+		active: {
+			type: Boolean,
+			required: true,
+		},
 	},
 
 	emits: ['click'],
@@ -66,9 +73,12 @@ export default {
 	inset-inline-end: 0;
 	&--open {
 		color: var(--color-main-text);
-		&:hover{
+		&:hover {
 			color: var(--color-primary-element);
 		}
+	}
+	&--active {
+		color: var(--color-primary-element-text);
 	}
 }
 
