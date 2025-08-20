@@ -13,3 +13,29 @@ global.appName = 'nextcloud-vue'
 global.PRODUCTION = false
 global.SCOPE_VERSION = 1
 global.TRANSLATIONS = []
+
+// structuredClone polyfill
+if (typeof globalThis.structuredClone === 'undefined') {
+	globalThis.structuredClone = function(obj) {
+		if (obj === null || typeof obj !== 'object') {
+			return obj
+		}
+		if (obj instanceof Date) {
+			return new Date(obj)
+		}
+		if (Array.isArray(obj) instanceof Array) {
+			return obj.map((item) => globalThis.structuredClone(item))
+		}
+
+		const copy = {}
+		Object.keys(obj).forEach(key => {
+			copy[key] = globalThis.structuredClone(obj[key])
+		})
+
+		return Object.fromEntries(
+			Object
+				.entries(obj)
+				.map(([key, value]) => [key, globalThis.structuredClone(value)])
+		)
+	}
+}
