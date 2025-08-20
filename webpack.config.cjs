@@ -34,6 +34,14 @@ const sassLoader = {
 	},
 }
 
+const cssLoaderOptions = {
+	modules: {
+		namedExport: false,
+		// Same as in Vite
+		localIdentName: '_[local]_[hash:base64:5]',
+	},
+}
+
 webpackRules.RULE_SCSS = {
 	test: /\.scss$/,
 	oneOf: [
@@ -43,12 +51,7 @@ webpackRules.RULE_SCSS = {
 				'style-loader',
 				{
 					loader: 'css-loader',
-					options: {
-						modules: {
-							// Same as in Vite
-							localIdentName: '_[local]_[hash:base64:5]',
-						},
-					},
+					options: cssLoaderOptions,
 				},
 				'resolve-url-loader',
 				sassLoader,
@@ -74,12 +77,7 @@ webpackRules.RULE_CSS = {
 				'style-loader',
 				{
 					loader: 'css-loader',
-					options: {
-						modules: {
-							// Same as in Vite
-							localIdentName: '_[local]_[hash:base64:5]',
-						},
-					},
+					options: cssLoaderOptions,
 				},
 				'resolve-url-loader',
 			],
