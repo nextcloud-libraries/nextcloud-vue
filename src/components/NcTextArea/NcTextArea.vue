@@ -222,7 +222,14 @@ function select() {
 </script>
 
 <template>
-	<div class="textarea" :class="[$attrs.class, { 'textarea--disabled': disabled }]">
+	<div class="textarea"
+		:class="[
+			$attrs.class,
+			{
+				'textarea--disabled': disabled,
+				'textarea--legacy': isLegacy,
+			},
+		]">
 		<div class="textarea__main-wrapper">
 			<textarea
 				v-bind="{ ...$attrs, class: undefined }"
@@ -235,6 +242,7 @@ function select() {
 					inputClass,
 					{
 						'textarea__input--label-outside': labelOutside,
+						'textarea__input--legacy': isLegacy,
 						'textarea__input--success': success,
 						'textarea__input--error': error,
 					},
@@ -268,43 +276,57 @@ function select() {
 </template>
 
 <style lang="scss" scoped>
-
 .textarea {
+	--input-border-color: var(--color-border-maxcontrast);
+	--input-border-width-offset: calc(var(--border-width-input-focused, 2px) - var(--border-width-input, 2px));
 	position: relative;
 	width: 100%;
 	border-radius: var(--border-radius-element);
 	margin-block-start: 6px; // for the label in active state
 	resize: vertical;
 
-	&__main-wrapper {
-		position: relative;
-	}
-
 	&--disabled {
 		opacity: 0.7;
 		filter: saturate(0.7);
 	}
 
+	&__main-wrapper {
+		height: calc(var(--default-clickable-area) * 2);
+		padding: var(--border-width-input, 2px);
+		position: relative;
+
+		&:not(:has([disabled])):has(textarea:focus),
+		&:not(:has([disabled])):has(textarea:active) {
+			padding: 0;
+		}
+	}
+
 	&__input {
 		margin: 0;
-		padding-inline: 10px 6px; // align with label 8px margin label + 4px padding label - 2px border input
+		padding-block: calc(10px + var(--input-border-width-offset));
+		padding-inline: calc(12px - var(--border-width-input, 2px) + var(--input-border-width-offset)); // align with label 8px margin label + 4px padding label - 2px border input
 		width: 100%;
-		height: calc(var(--default-clickable-area) * 2);
 		font-size: var(--default-font-size);
 		text-overflow: ellipsis;
+		cursor: pointer;
 
 		background-color: var(--color-main-background);
 		color: var(--color-main-text);
-		border: var(--border-width-input, 2px) solid var(--color-border-maxcontrast);
+		// we use box shadow to create a border as this allows use to have a nice gradient
+		border: none;
 		border-radius: var(--border-radius-element);
+		box-shadow:
+			0 -1px var(--input-border-color),
+			0 0 0 1px color-mix(in srgb, var(--input-border-color), 65% transparent);
 
-		cursor: pointer;
-
+		&:hover:not([disabled]) {
+			box-shadow: 0 0 0 1px var(--input-border-color);
+		}
 		&:active:not([disabled]),
-		&:hover:not([disabled]),
 		&:focus:not([disabled]) {
-			border-width: var(--border-width-input-focused, 2px);
-			border-color: var(--color-main-text);
+			--input-border-width-offset: 0px;
+			--input-border-color: var(--color-main-text);
+			border: var(--border-width-input-focused, 2px) solid var(--input-border-color);
 			box-shadow: 0 0 0 2px var(--color-main-background) !important;
 		}
 
@@ -326,14 +348,14 @@ function select() {
 		}
 
 		&--success {
-			border-color: var(--color-border-success, var(--color-success)) !important; //Override hover border color
+			--input-border-color: var(--color-border-success, var(--color-success)) !important; //Override hover border color
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 			}
 		}
 
 		&--error {
-			border-color: var(--color-border-error, var(--color-error)) !important; //Override hover border color
+			--input-border-color: var(--color-border-error, var(--color-error)) !important; //Override hover border color
 			&:focus-visible {
 				box-shadow: rgb(248, 250, 252) 0px 0px 0px 2px, var(--color-primary-element) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px
 			}
@@ -387,6 +409,25 @@ function select() {
 
 		&--success {
 			color: var(--color-success-text);
+		}
+	}
+
+	// for Nextcloud 31 and older we need the old design with only one color
+	&--legacy {
+		.textarea__input {
+			box-shadow: 0 0 0 1px var(--input-border-color);
+		}
+
+		.textarea__main-wrapper:hover:not(:has([disabled])) {
+			padding: 0;
+
+			.textarea__input {
+				--input-border-color: var(--color-main-text);
+				// Reset padding offset when focused
+				--input-border-width-offset: 0px;
+				border: var(--border-width-input-focused, 2px) solid var(--input-border-color);
+				box-shadow: 0 0 0 2px var(--color-main-background) !important;
+			}
 		}
 	}
 }
