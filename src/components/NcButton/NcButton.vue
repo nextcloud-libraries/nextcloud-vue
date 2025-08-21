@@ -438,6 +438,7 @@ import type { RouteLocationRaw } from 'vue-router'
 
 import { computed, inject } from 'vue'
 import { routerKey } from 'vue-router'
+import { FIELDSET_CONTAINER_CLASS_KEY } from '../NcFieldset/constants'
 
 export type ButtonAlignment = 'start'
 	| 'start-reverse'
@@ -601,6 +602,7 @@ defineSlots<{
 	icon?: Slot
 }>()
 
+const fieldsetClass = inject(FIELDSET_CONTAINER_CLASS_KEY, '')
 const hasVueRouterContext = inject(routerKey, null) !== null
 
 const tag = computed(() => {
@@ -680,6 +682,7 @@ function onClick(event: MouseEvent) {
 	<component :is="tag"
 		class="button-vue"
 		:class="[
+			fieldsetClass,
 			`button-vue--size-${size}`,
 			{
 				[`button-vue--${variantWithPressed}`]: variantWithPressed,
@@ -719,7 +722,7 @@ function onClick(event: MouseEvent) {
 	background-color: var(--color-primary-element-light);
 	border: 1px solid var(--color-primary-element-light-hover);
 	border-bottom-width: 2px;
-	border-radius: var(--button-radius);
+	border-radius: var(--component-border-radius, var(--button-radius));
 	box-sizing: border-box;
 	// adjust position and size
 	position: relative;
